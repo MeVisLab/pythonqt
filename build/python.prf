@@ -1,0 +1,17 @@
+# profile to include and link Python
+
+macx {
+  # for macx you need to have Python development kit installed as framework
+  INCLUDEPATH += /System/Library/Frameworks/Python.framework/Headers
+  LIBS += -F/System/Library/Frameworks -framework Python
+} else {
+  # TODO: this should be improved, maybe the paths can be autodetected on windows and linux?
+
+  # for windows and linux, install a Python development kit or build Python yourself from the sources
+  # make sure that you set the environment variable PYTHON_PATH to point the  Python sources/headers
+  # make sure that you set the environment variable PYTHON_LIB to point the path where the python lib file is located
+  
+  INCLUDEPATH += $(PYTHON_PATH)/Include $(PYTHON_PATH)/PC $(PYTHON_PATH)/
+  win32:LIBS += $(PYTHON_LIB)/python25.lib
+  unix:LIBS += $(PYTHON_LIB)/libpython2.5.a
+}
