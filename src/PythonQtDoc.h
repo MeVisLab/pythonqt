@@ -69,7 +69,7 @@
 
  \section Features
 
- - Access all \b slots and \b properties of any QObject derived class from Python
+ - Access all \b slots, \b properties and children of any QObject derived class from Python
  - Connecting Qt Signals to Python functions
  - Wrapping of C++ objects (which are not derived from QObject) via PythonQtCPPWrapperFactory
  - StdOut/Err redirection to Qt signals instead of cout
@@ -117,8 +117,11 @@
   <tr><td>QTime</td><td>string</td></tr>
   <tr><td>QDateTime</td><td>string</td></tr>
   <tr><td>QObject (and derived classes)</td><td>QObject wrapper</td></tr>
+  <tr><td>PyObject</td><td>PyObject</td></tr>
   </table>
 
+  PyObject is passed as simple pointer, which allows to pass/return any Python Object directly to/from
+  a Qt slot.
   QVariants are mapped recursively as given above, e.g. a dictionary can
   contain lists of dictionaries of doubles.
   For example a QVariant of type "String" is mapped to a python unicode string.
@@ -146,6 +149,24 @@
  In addition to this, the wrapped objects support
  - className() - returns a string that reprents the classname of the QObject
  - help() - shows all properties and slots of the object
+ - connect(signal, function) - connect the signal of the given object to a python function
+ - connect(signal, qobject, slot) - connect the signal of the given object to a slot of another QObject
+ - disconnect(signal, function) - disconnect the signal of the given object from a python function
+ - disconnect(signal, qobject, slot) - disconnect the signal of the given object from a slot of another QObject
+
+ The below example shows how to connect signals in Python:
+
+ \code
+ # define a signal handler function
+ def someFunction(flag):
+   print flag
+
+ # button1 is a QPushButton that has been added to Python via addObject()
+ # connect the clicked signal to a python function:
+ button1.connect("clicked(bool)", someFunction)
+
+ \endcode
+
 
  \section Building
 
@@ -198,7 +219,7 @@
 
   // do something
   PythonQt::self()->runScript(mainContext, "print example\n");
-  PythonQt::self()->runScript(mainContext, "def multiply(a,b): return a*b;\n");
+  PythonQt::self()->runScript(mainContext, "def multiply(a,b):\n  return a*b;\n");
   QVariantList args;
   args << 42 << 47;
   QVariant result = PythonQt::self()->call(mainContext,"multiply", args);

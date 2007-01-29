@@ -52,13 +52,13 @@
 
 PyObject* PythonQtCallSlot(PythonQtWrapper* self, PyObject* args, bool strict, PythonQtSlotInfo* info)
 {
-  static bool recursiveEntry = false;
+  static unsigned int recursiveEntry = 0;
 
-  if (!recursiveEntry) {
+  if (recursiveEntry == 0) {
     //EXTRA: maybe don't do it on each call?
     PythonQtConv::resetParameterStorage();
   }
-  recursiveEntry = true;
+  recursiveEntry++;
 
   // the arguments that are passed to qt_metacall
   void* argList[PYTHONQT_MAX_ARGS];
@@ -90,7 +90,7 @@ PyObject* PythonQtCallSlot(PythonQtWrapper* self, PyObject* args, bool strict, P
 
     result = PythonQtConv::ConvertQtValueToPython(returnValueParam, argList[0]);
   }
-  recursiveEntry = false;
+  recursiveEntry--;
   return result;
 }
 

@@ -79,19 +79,19 @@ PythonQt::PythonQt(int flags)
 
   // add our own python object types for qt object slots
   if (PyType_Ready(&PythonQtSlotFunction_Type) < 0) {
-    std::cerr << "could not initialize PythonQtSlotFunction_Type" << std::endl;
+    std::cerr << "could not initialize PythonQtSlotFunction_Type" << ", in " << __FILE__ << ":" << __LINE__ << std::endl;
   }
   Py_INCREF(&PythonQtSlotFunction_Type);
 
   // add our own python object types for qt objects
   if (PyType_Ready(&PythonQtWrapper_Type) < 0) {
-    std::cerr << "could not initialize PythonQtWrapper_Type" << std::endl;
+    std::cerr << "could not initialize PythonQtWrapper_Type" << ", in " << __FILE__ << ":" << __LINE__ << std::endl;
   }
   Py_INCREF(&PythonQtWrapper_Type);
 
   // add our own python object types for redirection of stdout
   if (PyType_Ready(&PythonQtStdOutRedirectType) < 0) {
-    std::cerr << "could not initialize PythonQtStdOutRedirectType" << std::endl;
+    std::cerr << "could not initialize PythonQtStdOutRedirectType" << ", in " << __FILE__ << ":" << __LINE__ << std::endl;
   }
   Py_INCREF(&PythonQtStdOutRedirectType);
 
@@ -204,6 +204,13 @@ PyObject* PythonQtPrivate::wrapPtr(void* ptr, const QByteArray& name)
         // the ptr is registered, not the qobject wrapper
         _wrappedObjects.insert(ptr, wrap);
 //          mlabDebugConst("MLABPython","new c++ wrapper added " << wrap->_wrappedPtr << " " << wrap->_obj->className() << " " << wrap->_info->wrappedClassName().latin1());
+      } else {
+        // maybe it is a PyObject, which we can return directly
+        if (name == "PyObject") {
+          PyObject* p = (PyObject*)ptr;
+          Py_INCREF(p);
+          return p;
+        }
       }
     }
   } else {
@@ -242,6 +249,16 @@ bool PythonQt::addSignalHandler(QObject* obj, const char* signal, PyObject* modu
   return flag;
 }
 
+bool PythonQt::addSignalHandler(QObject* obj, const char* signal, PyObject* receiver)
+{
+  bool flag = false;
+  PythonQtSignalReceiver* r = getSignalReceiver(obj);
+  if (r) {
+  flag = r->addSignalHandler(signal, receiver);
+  }
+  return flag;
+}
+
 bool PythonQt::removeSignalHandler(QObject* obj, const char* signal, PyObject* module, const QString& objectname)
 {
   bool flag = false;
@@ -253,6 +270,16 @@ bool PythonQt::removeSignalHandler(QObject* obj, const char* signal, PyObject* m
     }
   } else {
     // callable not found
+  }
+  return flag;
+}
+
+bool PythonQt::removeSignalHandler(QObject* obj, const char* signal, PyObject* receiver)
+{
+  bool flag = false;
+  PythonQtSignalReceiver* r = _p->_signalReceivers[obj];
+  if (r) {
+    flag = r->removeSignalHandler(signal, receiver);
   }
   return flag;
 }
@@ -407,7 +434,7 @@ QStringList PythonQt::introspection(PyObject* module, const QString& objectname,
             }
             break;
           default:
-            std::cerr << "PythonQt: introspection: unknown case" << std::endl;
+            std::cerr << "PythonQt: introspection: unknown case" << ", in " << __FILE__ << ":" << __LINE__ << std::endl;
           }
         }
         Py_DECREF(value);
@@ -465,6 +492,16 @@ void PythonQt::setImporter(PythonQtImportFileInterface* importInterface)
     _p->_importInterface = importInterface;
     PythonQtImport::init();
   }
+}
+
+void PythonQt::setImporterIgnorePaths(const QStringList& paths)
+{
+  _p->_importIgnorePaths = paths;
+}
+
+const QStringList& PythonQt::getImporterIgnorePaths()
+{
+  return _p->_importIgnorePaths;
 }
 
 void PythonQt::addWrapperFactory(PythonQtCppWrapperFactory* factory)

@@ -56,8 +56,9 @@ public:
   //! especial the support of Long, Short, Char etc. is missing in QVariant
   //! and QMetaType does not know anything about most variant types and e.g. LongLong
   enum ParameterType {
-    Unknown = 0,
+    Unknown = -1,
     // from QMetaType
+    Void = 0,
     Bool = 1, Int = 2, UInt = 3, Double = 6, QChar = 7,
     String = 10, ByteArray = 12,
     Long = 129, Short, Char, ULong,
@@ -103,7 +104,6 @@ public:
     TextLength = 78,
     TextFormat = 79,
 
-    Void       = 512,
     Variant    = 513
   };
 

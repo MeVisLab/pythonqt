@@ -99,6 +99,60 @@ static PyObject *PythonQtWrapper_help(PythonQtWrapper* type)
   return p;
 }
 
+static PyObject *PythonQtWrapper_connect(PythonQtWrapper* type, PyObject *args)
+{
+  PyObject* p = NULL;
+  PyObject* o;
+  const char* s;
+  const char* slot = NULL;
+  if (PyArg_ParseTuple(args, "sO|s", &s, &o, &slot)) {
+    QByteArray signal("2");
+  signal += s;
+  // if a slot is passed, it is a QObject slot that we want to connect
+  if (slot) {
+      if (o->ob_type == &PythonQtWrapper_Type) {
+    PythonQtWrapper* wrap = (PythonQtWrapper*)o;
+      QByteArray slotTmp("1");
+      slotTmp += slot;
+    return PythonQtConv::GetPyBool(QObject::connect(type->_obj, signal, wrap->_obj, slotTmp));
+    } else {
+    //TODO: error
+    }
+  } else {
+    // otherwise it is a callable we should connect to
+    p = PythonQtConv::GetPyBool(PythonQt::self()->addSignalHandler(type->_obj, signal, o));
+  }
+  }
+  return p;
+}
+
+static PyObject *PythonQtWrapper_disconnect(PythonQtWrapper* type, PyObject *args)
+{
+  PyObject* p = NULL;
+  PyObject* o;
+  const char* s;
+  const char* slot = NULL;
+  if (PyArg_ParseTuple(args, "sO|s", &s, &o, &slot)) {
+    QByteArray signal("2");
+  signal += s;
+  // if a slot is passed, it is a QObject slot that we want to connect
+  if (slot) {
+      if (o->ob_type == &PythonQtWrapper_Type) {
+    PythonQtWrapper* wrap = (PythonQtWrapper*)o;
+      QByteArray slotTmp("1");
+      slotTmp += slot;
+    return PythonQtConv::GetPyBool(QObject::disconnect(type->_obj, signal, wrap->_obj, slotTmp));
+    } else {
+    //TODO: error
+    }
+  } else {
+    // otherwise it is a callable we should connect to
+    p = PythonQtConv::GetPyBool(PythonQt::self()->removeSignalHandler(type->_obj, signal, o));
+  }
+  }
+  return p;
+}
+
 static PyMethodDef PythonQtWrapper_methods[] = {
     {"className", (PyCFunction)PythonQtWrapper_classname, METH_NOARGS,
      "Return the classname of the qobject"
@@ -106,6 +160,13 @@ static PyMethodDef PythonQtWrapper_methods[] = {
     {"help", (PyCFunction)PythonQtWrapper_help, METH_NOARGS,
     "Shows the html help of available methods for this class, dir() does NOT show the available methods!"
     },
+    {"connect", (PyCFunction)PythonQtWrapper_connect, METH_VARARGS,
+     "connect a signal to a python function or a qt signal/slot, returns true if successful"
+    },
+    {"disconnect", (PyCFunction)PythonQtWrapper_disconnect, METH_VARARGS,
+     "disconnect a signal from a python function or a qt signal/slot, returns true if successful"
+    },
+  // TODO: maybe add some more QObject support methods, e.g. findChild, findChildren, children, ...
     {NULL}  /* Sentinel */
 };
 
@@ -119,10 +180,13 @@ static PyObject *PythonQtWrapper_getattro(PyObject *obj,PyObject *name)
   }
 //  mlabDebugConst("Python","get " << nm);
 
-  if (qstrcmp(nm, "name")==0) {
-    nm = "objectName";
-  }
   int i = wt->_obj->metaObject()->indexOfProperty(nm);
+  if (i==-1) {
+    if (qstrcmp(nm, "name")==0) {
+      nm = "objectName";
+    }
+    i = wt->_obj->metaObject()->indexOfProperty(nm);
+  }
   if (i!=-1) {
     QMetaProperty prop = wt->_obj->metaObject()->property(i);
     QVariant v = prop.read(wt->_obj);
@@ -142,6 +206,12 @@ static PyObject *PythonQtWrapper_getattro(PyObject *obj,PyObject *name)
   }
   PyErr_Clear();
 
+  QObject* child = NULL;
+  child = qFindChild(wt->_obj, QString(nm), child);
+  if (child) {
+  return PythonQt::self()->priv()->wrapQObject(child);
+  }
+
   return Py_BuildValue("");
 }
 
@@ -155,6 +225,12 @@ static int PythonQtWrapper_setattro(PyObject *obj,PyObject *name,PyObject *value
 
   // look if it is a property
   int i = wt->_obj->metaObject()->indexOfProperty(nm);
+  if (i==-1) {
+    if (qstrcmp(nm, "name")==0) {
+      nm = "objectName";
+    }
+    i = wt->_obj->metaObject()->indexOfProperty(nm);
+  }
   if (i!=-1) {
     QMetaProperty prop = wt->_obj->metaObject()->property(i);
     if (prop.isWritable()) {
@@ -174,11 +250,11 @@ static int PythonQtWrapper_setattro(PyObject *obj,PyObject *name,PyObject *value
           wt->_obj->setProperty(nm, v);
           return 0;
         } else {
-          std::cerr << "invalid qvariant argument (not implemented yet) " << nm << " type " << QVariant::typeToName(prop.type()) << std::endl;
+          std::cerr << "invalid qvariant argument (not implemented yet) " << nm << " type " << QVariant::typeToName(prop.type()) << ", in " << __FILE__ << ":" << __LINE__ << std::endl;
         }
       }
     } else {
-      std::cerr << "property not writeable " << nm << std::endl;
+      std::cerr << "property not writeable " << nm << ", in " << __FILE__ << ":" << __LINE__ << std::endl;
     }
   }
   return -1;

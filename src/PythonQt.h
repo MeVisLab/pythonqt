@@ -120,13 +120,19 @@ public:
   //! evaluates the given script code and returns the result value
   QVariant evalScript(PyObject* module, const QString& script, int start = Py_file_input);
 
-  //@{ Variable access
+  //@{ Signal handlers
 
   //! add a signal handler to the given \c signal of \c obj  and connect it to a callable \c objectname in module
   bool addSignalHandler(QObject* obj, const char* signal, PyObject* module, const QString& objectname);
 
   //! remove a signal handler from the given \c signal of \c obj
   bool removeSignalHandler(QObject* obj, const char* signal, PyObject* module, const QString& objectname);
+
+  //! add a signal handler to the given \c signal of \c obj  and connect it to a callable \c receiver
+  bool addSignalHandler(QObject* obj, const char* signal, PyObject* receiver);
+
+  //! remove a signal handler from the given \c signal of \c obj
+  bool removeSignalHandler(QObject* obj, const char* signal, PyObject* receiver);
 
   //@}
 
@@ -166,6 +172,12 @@ public:
   //! (this method should be called directly after initialization of init() and before calling overwriteSysPath().
   //! It can only be called once, further calls will be ignored silently. (ownership stays with caller)
   void setImporter(PythonQtImportFileInterface* importInterface);
+
+  //! set paths that the importer should ignore
+  void setImporterIgnorePaths(const QStringList& paths);
+
+  //! get paths that the importer should ignore
+  const QStringList& getImporterIgnorePaths();
 
   //@}
 
@@ -277,6 +289,8 @@ private:
 
   //! the importer interface (if set)
   PythonQtImportFileInterface* _importInterface;
+
+  QStringList _importIgnorePaths;
 
   //! the cpp object wrapper factories
   QList<PythonQtCppWrapperFactory*> _cppWrapperFactories;

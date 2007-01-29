@@ -68,7 +68,7 @@ PyObject* PythonQtConv::ConvertQtValueToPython(const PythonQtMethodInfo::Paramet
       if (pyObj) {
         return pyObj;
       } else {
-        std::cerr << "unknown pointer type " << info.name.data() << std::endl;
+        std::cerr << "unknown pointer type " << info.name.data() << ", in " << __FILE__ << ":" << __LINE__ << std::endl;
         Py_INCREF(Py_None);
         return Py_None;
       }
@@ -80,6 +80,9 @@ PyObject* PythonQtConv::ConvertQtValueToPython(const PythonQtMethodInfo::Paramet
 
 PyObject* PythonQtConv::ConvertQtValueToPython(int type, void* data) {
   switch (type) {
+  case PythonQtMethodInfo::Void:
+    Py_INCREF(Py_None);
+    return Py_None;
   case PythonQtMethodInfo::Char:
     return PyInt_FromLong(*((char*)data));
   case PythonQtMethodInfo::UChar:
@@ -187,7 +190,7 @@ PyObject* PythonQtConv::ConvertQtValueToPython(int type, void* data) {
   case QMetaType::QWidgetStar:
     return PythonQt::priv()->wrapQObject(*((QObject**)data));
   default:
-    std::cerr << "unknown type " << type << std::endl;
+    std::cerr << "unknown type " << type << ", in " << __FILE__ << ":" << __LINE__ << std::endl;
 }
 Py_INCREF(Py_None);
 return Py_None;
@@ -256,10 +259,14 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
         PythonQtValueStorage_ADD_VALUE(global_variantStorage, QVariant, QVariant(str.toUtf8()), ptr2);
         PythonQtValueStorage_ADD_VALUE(global_ptrStorage, void*, (((QByteArray*)((QVariant*)ptr2)->constData())->data()), ptr);
       }
+    } else if (info.name == "PyObject") {
+      // handle low level PyObject directly
+      PythonQtValueStorage_ADD_VALUE(global_ptrStorage, void*, obj, ptr);
     }
     // EXTRA: we could support pointers to other simple types, but this would not make sense in most situations
 
   } else {
+    // not a pointer
     switch (info.typeId) {
       case PythonQtMethodInfo::Char:
         {

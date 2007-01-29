@@ -122,8 +122,17 @@ int PythonQtImporter_init(PythonQtImporter *self, PyObject *args, PyObject *kwds
 
   if (PythonQt::importInterface()->exists(path)) {
     //qDebug("path %s", path);
-    // we handle all paths!
-    self->_path = new QString(path);
+    QString p(path);
+    const QStringList& ignorePaths = PythonQt::self()->getImporterIgnorePaths();
+    foreach(QString a, ignorePaths) {
+      if (a==p) {
+        PyErr_SetString(PythonQtImportError,
+          "path ignored");
+        return -1;
+      }
+    }
+
+    self->_path = new QString(p);
 
     //mlabDebugConst("MLABPython", "PythonQtImporter init: " << *self->_path);
 

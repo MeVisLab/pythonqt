@@ -47,7 +47,7 @@
 #include "PythonQtClassInfo.h"
 #include "PythonQtMethodInfo.h"
 
-#include <QWidget.h>
+#include <QWidget>
 
 //! a static class that offers methods for type conversion
 class PythonQtConv {

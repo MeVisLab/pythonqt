@@ -160,5 +160,10 @@ PythonQtMethodInfo::ParameterType PythonQtMethodInfo::nameToType(const char* nam
     _parameterTypeDict.insert("QTextFormat", PythonQtMethodInfo::TextFormat);
     // own special types... (none so far, could be e.g. ObjectList
   }
-  return _parameterTypeDict.value(name);
+  QHash<QByteArray, ParameterType>::const_iterator it = _parameterTypeDict.find(name);
+  if (it!=_parameterTypeDict.end()) {
+    return it.value();
+  } else {
+    return PythonQtMethodInfo::Unknown;
+  }
 }
