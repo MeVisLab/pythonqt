@@ -207,7 +207,7 @@ static PyObject *PythonQtWrapper_getattro(PyObject *obj,PyObject *name)
   PyErr_Clear();
 
   QObject* child = NULL;
-  child = qFindChild(wt->_obj, QString(nm), child);
+  child = qFindChild<QObject*>(wt->_obj, QString(nm));
   if (child) {
   return PythonQt::self()->priv()->wrapQObject(child);
   }
