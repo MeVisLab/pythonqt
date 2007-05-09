@@ -43,9 +43,10 @@
 //----------------------------------------------------------------------------------
 
 #include <Python.h>
+#include "PythonQtSystem.h"
 
 //! a smart pointer that stores a PyObject pointer and that handles reference counting automatically
-class PythonQtObjectPtr
+class PYTHONQT_EXPORT PythonQtObjectPtr
 {
 public:
   PythonQtObjectPtr():_object(NULL) {}
@@ -107,6 +108,32 @@ public:
     return _object;
   }
 
+  //! evaluates the given script code in the context of this object and returns the result value
+  QVariant evalScript(const QString& script, int start = Py_file_input);
+
+  //! evaluates the given code and returns the result value (use Py_Compile etc. to create pycode from string)
+  //! If pycode is NULL, a python error is printed.
+  QVariant evalCode(PyObject* pycode);
+
+  //! evaluates the given code in the context
+  void evalFile(const QString& filename);
+
+  //! add the given \c object to the \c module as a variable with \c name (it can be removed via clearVariable)
+  void addObject(const QString& name, QObject* object);
+
+  //! add the given variable to the module
+  void addVariable(const QString& name, const QVariant& v);
+
+  //! remove the given variable
+  void removeVariable(const QString& name);
+
+  //! get the variable with the \c name of the \c module, returns an invalid QVariant on error
+  QVariant getVariable(const QString& name);
+
+  //! call the given python object (in the scope of the current object), returns the result converted to a QVariant
+  QVariant call(const QString& callable, const QVariantList& args);
+
+
 protected:
 
   void setObject(PyObject* o) {
@@ -120,5 +147,9 @@ protected:
 private:
   PyObject* _object;
 };
+
+
+// register it to the meta type system
+Q_DECLARE_METATYPE(PythonQtObjectPtr)
 
 #endif

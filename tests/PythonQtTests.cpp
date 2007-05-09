@@ -116,15 +116,22 @@ void PythonQtTestSlotCalling::testObjectSlotCalls()
 void PythonQtTestSlotCalling::testCppFactory()
 {
   PythonQtTestCppFactory* f = new PythonQtTestCppFactory;
+  PythonQt::self()->addInstanceDecorators(new PQCppObjectDecorator);
+  PythonQt::self()->addInstanceDecorators(new PQCppObjectNoWrapDecorator);
+
   PythonQt::self()->addWrapperFactory(f);
   QVERIFY(_helper->runScript("if obj.createPQCppObject(12).getHeight()==12: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if obj.createPQCppObject(12).getH()==12: obj.setPassed();\n"));
   QVERIFY(_helper->runScript("pq1 = obj.createPQCppObject(12);\n"
     "pq2 = obj.createPQCppObject(13);\n"
     "pq3 = obj.getPQCppObject(pq1);\n"
     "pq4 = obj.getPQCppObject(pq2);\n"
     "if pq3.getHeight()==12 and pq4.getHeight()==13: obj.setPassed();\n"
     ));
+
+  QVERIFY(_helper->runScript("if obj.createPQCppObjectNoWrap(12).getH()==12: obj.setPassed();\n"));
 }
+
 
 void PythonQtTestSlotCalling::testMultiArgsSlotCall()
 {
@@ -136,7 +143,7 @@ bool PythonQtTestSlotCallingHelper::runScript(const char* script, int expectedOv
   _called = false;
   _passed = false;
   _calledOverload = -1;
-  int r1 = PyRun_SimpleString(script);
+  PyRun_SimpleString(script);
   return _called && _passed && _calledOverload==expectedOverload;
 }
 
@@ -214,11 +221,9 @@ bool PythonQtTestApiHelper::call(const QString& function, const QVariantList& ar
 
 void PythonQtTestApi::testCall()
 {
-#if !defined(MACOS)
-  QObject* o;
   PythonQtObjectPtr main = PythonQt::self()->getMainModule();
 
-  QVERIFY(qVariantValue(PythonQt::self()->getVariable(main, "obj"), &o)==_helper);
+  QVERIFY(qVariantValue<QObject*>(PythonQt::self()->getVariable(main, "obj"))==_helper);
 
   PyRun_SimpleString("def testCallNoArgs():\n  obj.setPassed();\n");
   QVERIFY(_helper->call("testCallNoArgs", QVariantList(), QVariant()));
@@ -228,19 +233,16 @@ void PythonQtTestApi::testCall()
 
   PyRun_SimpleString("def testCall2(a, b):\n if a=='test' and b==obj: obj.setPassed();\n return obj;\n");
   QVariant r = PythonQt::self()->call(PythonQt::self()->getMainModule(), "testCall2", QVariantList() << QVariant("test") << qVariantFromValue((QObject*)_helper));
-  QObject* p = qVariantValue(r,&p);
+  QObject* p = qVariantValue<QObject*>(r);
   QVERIFY(p==_helper);
-#endif
 }
 
 void PythonQtTestApi::testVariables()
 {
   PythonQt::self()->addObject(PythonQt::self()->getMainModule(), "someObject", _helper);
   QVariant v = PythonQt::self()->getVariable(PythonQt::self()->getMainModule(), "someObject");
-#if !defined(MACOS)
-  QObject* p = qVariantValue(v,&p);
+  QObject* p = qVariantValue<QObject*>(v);
   QVERIFY(p==_helper);
-#endif
   // test for unset variable
   QVariant v2 = PythonQt::self()->getVariable(PythonQt::self()->getMainModule(), "someObject2");
   QVERIFY(v2==QVariant());

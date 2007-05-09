@@ -51,6 +51,16 @@
    ptr = (void*)item; \
 }
 
+//! stores a position in the PythonQtValueStorage
+class PythonQtValueStoragePosition {
+
+public:
+  PythonQtValueStoragePosition() { chunkIdx = 0; chunkOffset = 0; }
+
+  int chunkIdx;
+  int chunkOffset;
+
+};
 
 //! a helper class that stores basic C++ value types in chunks
 template <typename T, int chunkEntries> class PythonQtValueStorage
@@ -63,11 +73,34 @@ public:
     _chunks.append(_currentChunk);
   };
 
-  //! reset the storage to 0 (without freeing memory)
+  //! clear all memory
+  void clear() {
+    T* chunk;
+    foreach(chunk, _chunks) {
+      delete[]chunk;
+    }
+  }
+
+  //! reset the storage to 0 (without freeing memory, thus caching old entries for reuse)
   void reset() {
     _chunkIdx = 0;
     _chunkOffset = 0;
     _currentChunk = _chunks.at(0);
+  }
+
+  //! get the current position to be restored with setPos
+  void getPos(PythonQtValueStoragePosition & pos) {
+    pos.chunkIdx = _chunkIdx;
+    pos.chunkOffset = _chunkOffset;
+  }
+
+  //! set the current position (without freeing memory, thus caching old entries for reuse)
+  void setPos(const PythonQtValueStoragePosition& pos) {
+    _chunkOffset = pos.chunkOffset;
+    if (_chunkIdx != pos.chunkIdx) {
+      _chunkIdx = pos.chunkIdx;
+      _currentChunk = _chunks.at(_chunkIdx);
+    }
   }
 
   //! add one default constructed value and return the pointer to it

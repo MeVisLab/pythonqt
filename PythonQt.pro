@@ -33,11 +33,13 @@ MEVIS_LIB_EXPANDED = $$(MEVIS_LIB)
   include ( build/external.prf )  
 }
 
-
 DEFINES +=  PYTHONQT_EXPORTS
+
+INCLUDEPATH += src
 
 HEADERS +=                    \
   src/PythonQt.h                  \
+  src/PythonQtStdDecorators.h     \
   src/PythonQtClassInfo.h         \
   src/PythonQtImporter.h          \
   src/PythonQtObjectPtr.h         \
@@ -49,11 +51,16 @@ HEADERS +=                    \
   src/PythonQtConversion.h        \
   src/PythonQtSignalReceiver.h    \
   src/PythonQtWrapper.h           \
+  src/PythonQtMetaObjectWrapper.h \
   src/PythonQtCppWrapperFactory.h \
   src/PythonQtVariants.h          \
+  src/PythonQtVariantWrapper.h    \
+  src/wrapper/PythonQtWrappedVariants.h    \
+  src/gui/PythonQtScriptingConsole.h    \
   src/PythonQtSystem.h
   
 SOURCES +=                    \
+  src/PythonQtStdDecorators.cpp   \
   src/PythonQt.cpp                \
   src/PythonQtClassInfo.cpp       \
   src/PythonQtImporter.cpp        \
@@ -65,5 +72,8 @@ SOURCES +=                    \
   src/PythonQtConversion.cpp      \
   src/PythonQtSignalReceiver.cpp  \
   src/PythonQtVariants.cpp        \
-  src/PythonQtWrapper.cpp         
+  src/PythonQtVariantWrapper.cpp \
+  src/PythonQtWrapper.cpp         \
+  src/PythonQtMetaObjectWrapper.cpp \
+  src/gui/PythonQtScriptingConsole.cpp
 

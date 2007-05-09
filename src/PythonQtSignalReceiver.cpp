@@ -89,11 +89,16 @@ void PythonQtSignalTarget::call(void **arguments) const
 
 //------------------------------------------------------------------------------
 
-PythonQtSignalReceiver::PythonQtSignalReceiver(QObject* obj)
+PythonQtSignalReceiver::PythonQtSignalReceiver(QObject* obj):PythonQtSignalReceiverBase(obj)
 {
   _obj = obj;
   _slotCount = staticMetaObject.methodOffset();
 }
+
+PythonQtSignalReceiver::~PythonQtSignalReceiver()
+{
+}
+
 
 bool PythonQtSignalReceiver::addSignalHandler(const char* signal, PyObject* callable)
 {
@@ -102,7 +107,7 @@ bool PythonQtSignalReceiver::addSignalHandler(const char* signal, PyObject* call
   if (sigId>=0) {
     // create PythonQtMethodInfo from signal
     QMetaMethod meta = _obj->metaObject()->method(sigId);
-    const PythonQtMethodInfo* signalInfo = PythonQt::priv()->getSignalInfo(meta);
+    const PythonQtMethodInfo* signalInfo = PythonQtMethodInfo::getCachedMethodInfo(meta);
     PythonQtSignalTarget t(sigId, signalInfo, _slotCount, callable);
     _targets.append(t);
     // now connect to ourselves with the new slot id

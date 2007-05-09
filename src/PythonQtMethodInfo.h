@@ -57,86 +57,48 @@ public:
   //! and QMetaType does not know anything about most variant types and e.g. LongLong
   enum ParameterType {
     Unknown = -1,
-    // from QMetaType
-    Void = 0,
-    Bool = 1, Int = 2, UInt = 3, Double = 6, QChar = 7,
-    String = 10, ByteArray = 12,
-    Long = 129, Short, Char, ULong,
-    UShort, UChar, Float,
-
-    // from QVariant
-    LongLong = 4,
-    ULongLong = 5,
-    Map = 8,
-    List = 9,
-    StringList = 11,
-    BitArray = 13,
-    Date = 14,
-    Time = 15,
-    DateTime = 16,
-    Url = 17,
-    Locale = 18,
-    Rect = 19,
-    RectF = 20,
-    Size = 21,
-    SizeF = 22,
-    Line = 23,
-    LineF = 24,
-    Point = 25,
-    PointF = 26,
-    RegExp = 27,
-
-    ColorGroup = 63,
-    Font = 64,
-    Pixmap = 65,
-    Brush = 66,
-    Color = 67,
-    Palette = 68,
-    Icon = 69,
-    Image = 70,
-    Polygon = 71,
-    Region = 72,
-    Bitmap = 73,
-    Cursor = 74,
-    SizePolicy = 75,
-    KeySequence = 76,
-    Pen = 77,
-    TextLength = 78,
-    TextFormat = 79,
-
-    Variant    = 513
+    Variant = -2
   };
 
   //! stores the QVariant id (if available) and the name of the type
   struct ParameterInfo {
-    ParameterType typeId;
+    int typeId; // a mixture from QMetaType and ParameterType
     QByteArray name;
     bool isPointer;
     bool isConst;
   };
 
+  PythonQtMethodInfo() {};
+  ~PythonQtMethodInfo() {};
   PythonQtMethodInfo(const QMetaMethod& meta);
+  PythonQtMethodInfo(const PythonQtMethodInfo& other) {
+    _parameters = other._parameters;
+  }
 
-  const QMetaMethod* metaMethod() const { return &_meta; }
+  //! returns the method info of the signature, uses a cache internally to speed up
+  //! multiple requests for the same method
+  static const PythonQtMethodInfo* getCachedMethodInfo(const QMetaMethod& method);
+
+  //! cleanup the cache
+  static void cleanupCachedMethodInfos();
 
   //! returns the number of parameters (without the return value)
   int  parameterCount() const { return _parameters.size(); };
 
   //! returns the id for the given type (using an internal dictionary)
-  static ParameterType nameToType(const char* name);
+  static int nameToType(const char* name);
 
   //! get the parameter infos
   const QList<ParameterInfo>& parameters() const { return _parameters; }
 
-  //! get the full signature including return type
-  QString fullSignature() { return QString(_meta.typeName()) + " " + _meta.signature(); }
-
-private:
+  protected:
   static void fillParameterInfo(ParameterInfo& type, const QByteArray& name);
 
-  static QHash<QByteArray, ParameterType> _parameterTypeDict;
+  static QHash<QByteArray, int> _parameterTypeDict;
 
-  QMetaMethod       _meta;
+  //! stores the cached signatures of methods to speedup mapping from Qt to Python types
+  static QHash<QByteArray, PythonQtMethodInfo*> _cachedSignatures;
+
   QList<ParameterInfo> _parameters;
 };
 
@@ -144,10 +106,34 @@ private:
 class PythonQtSlotInfo : public PythonQtMethodInfo
 {
 public:
-  PythonQtSlotInfo(const QMetaMethod& meta, int slotIndex):PythonQtMethodInfo(meta)
-  { _slotIndex = slotIndex; _next = NULL; }
+  enum Type {
+    MemberSlot, InstanceDecorator, ClassDecorator
+  };
+
+  PythonQtSlotInfo(const PythonQtSlotInfo& info):PythonQtMethodInfo() {
+    _meta = info._meta;
+    _parameters = info._parameters;
+    _slotIndex = info._slotIndex;
+    _next = NULL;
+    _decorator = info._decorator;
+    _type = info._type;
+  }
+
+  PythonQtSlotInfo(const QMetaMethod& meta, int slotIndex, QObject* decorator = NULL, Type type = MemberSlot ):PythonQtMethodInfo()
+  { 
+    const PythonQtMethodInfo* info = getCachedMethodInfo(meta);
+    _meta = meta;
+    _parameters = info->parameters();
+    _slotIndex = slotIndex;
+    _next = NULL;
+    _decorator = decorator;
+    _type = type;
+  }
+
 
 public:
+  const QMetaMethod* metaMethod() const { return &_meta; }
+
   //! get the index of the slot (needed for qt_metacall)
   int slotIndex() const { return _slotIndex; }
 
@@ -157,9 +143,26 @@ public:
   //! set the next overloaded slot
   void setNextInfo(PythonQtSlotInfo* next) { _next = next; }
 
+  //! returns if the slot is a decorator slot
+  bool isInstanceDecorator() { return _decorator!=NULL && _type == InstanceDecorator; }
+
+  //! returns if the slot is a constructor slot
+  bool isClassDecorator() { return _decorator!=NULL && _type == ClassDecorator; }
+
+  QObject* decorator() { return _decorator; }
+
+  //! get the full signature including return type
+  QString fullSignature(bool skipFirstArg);
+
+  //! get the short slot name
+  QByteArray slotName();
+
 private:
-  int _slotIndex;
+  int  _slotIndex;
   PythonQtSlotInfo* _next;
+  QObject* _decorator;
+  Type _type;
+  QMetaMethod       _meta;
 };
 
 

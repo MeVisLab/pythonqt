@@ -39,3 +39,46 @@
 */
 //----------------------------------------------------------------------------------
 
+#include <PythonQt.h>
+
+QVariant PythonQtObjectPtr::evalScript(const QString& script, int start)
+{
+  return PythonQt::self()->evalScript(_object, script, start);
+}
+
+void PythonQtObjectPtr::evalFile(const QString& file)
+{
+  PythonQt::self()->evalFile(_object, file);
+}
+
+QVariant PythonQtObjectPtr::evalCode(PyObject* pycode)
+{
+  return PythonQt::self()->evalCode(_object, pycode);
+}
+
+void PythonQtObjectPtr::addObject(const QString& name, QObject* object)
+{
+  PythonQt::self()->addObject(_object, name, object);
+}
+
+void PythonQtObjectPtr::addVariable(const QString& name, const QVariant& v)
+{
+  PythonQt::self()->addVariable(_object, name, v);
+}
+
+void PythonQtObjectPtr::removeVariable(const QString& name)
+{
+  PythonQt::self()->removeVariable(_object, name);
+}
+
+QVariant PythonQtObjectPtr::getVariable(const QString& name)
+{
+  return PythonQt::self()->getVariable(_object, name);
+}
+
+
+QVariant PythonQtObjectPtr::call(const QString& callable, const QVariantList& args)
+{
+  return PythonQt::self()->call(_object, callable, args);
+}
+

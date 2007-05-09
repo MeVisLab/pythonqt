@@ -47,6 +47,10 @@ PyExampleObject::PyExampleObject():QObject(NULL)
 {
 }
 
+PyObject* PyExampleObject::getMainModule() {
+  return PythonQt::self()->getMainModule();
+}
+
 void PyExampleObject::showInformation(const QString& str)
 {
  QMessageBox::information ( NULL, "Test", str);

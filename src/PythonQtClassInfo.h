@@ -41,17 +41,53 @@
 
 class PythonQtSlotInfo;
 
+struct PythonQtMemberInfo {
+  enum Type {
+    Invalid, Slot, EnumValue, Property 
+  };
+
+  PythonQtMemberInfo() { _type = Invalid; }
+  
+  PythonQtMemberInfo(PythonQtSlotInfo* info) {
+    _type = Slot;
+    _slot = info;
+    _enumValue = 0;
+  }
+
+  PythonQtMemberInfo(unsigned int enumValue) {
+    _type = EnumValue;
+    _slot = NULL;
+    _enumValue = enumValue;
+  }
+
+  PythonQtMemberInfo(const QMetaProperty& prop) {
+    _type = Property;
+    _slot = NULL;
+    _enumValue = 0;
+    _property = prop;
+  }
+
+  PythonQtSlotInfo* _slot;
+  unsigned int      _enumValue;
+  QMetaProperty     _property;
+  Type              _type;
+};
+
 //! a class that stores all required information about a Qt object (and an optional associated C++ class name)
 /*! for fast lookup of slots when calling the object from Python
 */
 class PythonQtClassInfo {
 
 public:
-  PythonQtClassInfo(const QMetaObject* meta, const QByteArray& wrappedClassName);
+  PythonQtClassInfo(const QMetaObject* meta, const QByteArray& wrappedClassName = QByteArray());
+
+  ~PythonQtClassInfo();
 
   //! get the Python method definition for a given slot name (without return type and signature)
-  PythonQtSlotInfo* slot(const char* slot);
+  PythonQtMemberInfo member(const char* member);
 
+  PythonQtSlotInfo* constructors();
+  
   //! get the Qt classname
   const char* className();
 
@@ -64,21 +100,25 @@ public:
   //! get the meta object
   const QMetaObject* metaObject() { return _meta; }
 
+  //! set the meta object, this will reset the caching
+  void setMetaObject(const QMetaObject* meta);
+
   //! returns if the meta object inherits the given classname
   bool inherits(const char* name);
-
+  
   //! get help string for the metaobject
   QString help();
 
+  //! get list of all members
+  QStringList memberList(bool metaOnly = false);
+
 private:
-  //! init the caching
-  void initCache();
-
-  bool _initialized;
-
-  QHash<QByteArray, PythonQtSlotInfo*> _slots;
-  const QMetaObject*              _meta;
-  QByteArray                      _wrappedClassName;
+  PythonQtSlotInfo* findDecoratorSlots(const char* classname, const char* memberName, int memberNameLen, PythonQtSlotInfo* tail, bool &found);
+  int findCharOffset(const char* sigStart, char someChar);
+  QHash<QByteArray, PythonQtMemberInfo> _cachedMembers;
+  PythonQtSlotInfo*                    _constructors;
+  const QMetaObject*                   _meta;
+  QByteArray                           _wrappedClassName;
 };
 
 //---------------------------------------------------------------

@@ -54,6 +54,8 @@ int main( int argc, char **argv )
   QTest::qExec(&signalHandler, argc, argv);
   PythonQtTestSlotCalling slotCalling;
   QTest::qExec(&slotCalling, argc, argv);
+
+  PythonQt::cleanup();
   return 0;
 }
 

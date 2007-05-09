@@ -42,13 +42,15 @@
 */
 //----------------------------------------------------------------------------------
 
+#include "PythonQt.h"
+
 #include <QObject>
 #include <QStringList>
 #include <QMainWindow>
 #include <QPushButton>
 #include <QVariant>
+#include <QLayout>
 
-class QMainWindow;
 
 class PyExampleObject : public QObject {
 
@@ -58,6 +60,9 @@ public:
   PyExampleObject();
 
 public slots:
+
+  //! example for passing a PyObject directly from Qt to Python (without extra mashalling) 
+  PyObject* getMainModule();
 
   void showInformation(const QString& str);
 

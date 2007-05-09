@@ -100,7 +100,7 @@ private:
 };
 
 // test implementation of the wrapper factory
-class PythonQtTestCppFactory : public PythonQtCppWrapperFactory
+class PythonQtTestCppFactory : public PythonQtCppWrapperFactory 
 {
 public:
   virtual QObject* create(const QByteArray& name, void *ptr);
@@ -134,6 +134,34 @@ public slots:
 private:
   PQCppObject* _ptr;
 };
+
+class PQCppObjectDecorator : public QObject {
+  Q_OBJECT
+public slots:
+  int  getH(PQCppObject* obj) { return obj->getHeight(); }
+
+};
+
+//! an cpp object to be wrapped by decorators only
+class PQCppObjectNoWrap {
+
+public:
+  PQCppObjectNoWrap(int h) { _height = h; }
+
+  int getHeight() { return _height; }
+  void setHeight(int h) { _height = h; }
+
+private:
+  int _height;
+};
+
+class PQCppObjectNoWrapDecorator : public QObject {
+  Q_OBJECT
+public slots:
+  int  getH(PQCppObjectNoWrap* obj) { return obj->getHeight(); }
+
+};
+
 
 //! test the calling of slots
 class PythonQtTestSlotCalling : public QObject
@@ -226,6 +254,12 @@ public slots:
 
   //! cpp wrapper factory test
   PQCppObject* getPQCppObject(PQCppObject* p) { _called = true; return p; }
+
+  //! cpp wrapper factory test
+  PQCppObjectNoWrap* createPQCppObjectNoWrap(int h) { _called = true; return new PQCppObjectNoWrap(h); }
+
+  //! cpp wrapper factory test
+  PQCppObjectNoWrap* getPQCppObjectNoWrap(PQCppObjectNoWrap* p) { _called = true; return p; }
 
 private:
   bool _passed;

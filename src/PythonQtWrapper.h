@@ -44,6 +44,8 @@
 
 #include <Python.h>
 
+#include "PythonQtSystem.h"
+
 #include "structmember.h"
 #include "methodobject.h"
 #include "compile.h"
@@ -52,7 +54,7 @@
 class PythonQtClassInfo;
 class QObject;
 
-extern PyTypeObject PythonQtWrapper_Type;
+extern PYTHONQT_EXPORT PyTypeObject PythonQtWrapper_Type;
 
 //---------------------------------------------------------------
 //! a Python wrapper object for Qt objects and C++ objects (that are themselves wrapped by wrapper QObjects)
@@ -66,6 +68,9 @@ typedef struct {
 
   //! the class information, this is set even if the _obj or _wrappedPtr is NULL to support typed NULL pointers
   PythonQtClassInfo* _info;
+
+  //! flag that stores if the object is owned by pythonQt
+  bool _ownedByPythonQt;
 
 } PythonQtWrapper;
 

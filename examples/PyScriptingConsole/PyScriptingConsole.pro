@@ -16,7 +16,7 @@ MEVIS_LIB_EXPANDED = $$(MEVIS_LIB)
 !isEmpty(MEVIS_LIB_EXPANDED) {
 
   # add used packages here
-  CONFIG += python qt PythonQt
+  CONFIG += python qt PythonQt PythonQtGui
 
   # DONT REMOVE THE FOLLOWING LINE:
   include( $(MEVIS_LIB)/make/mevisPackages.pro )
@@ -29,15 +29,14 @@ MEVIS_LIB_EXPANDED = $$(MEVIS_LIB)
   
   include ( ../../build/python.prf )  
   include ( ../../build/PythonQt.prf )  
+  include ( ../../build/PythonQtGui.prf )  
 }
 
 HEADERS +=                    \
-  PyScriptingConsole.h        \     
   PyExampleObject.h             
   
 SOURCES +=                    \
-  PyScriptingConsole.cpp      \             
   PyExampleObject.cpp         \  
   main.cpp        
 
-
+RESOURCES += PyScriptingConsole.qrc

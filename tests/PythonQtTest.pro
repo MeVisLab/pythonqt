@@ -8,8 +8,10 @@ TEMPLATE = app
 # ---------------------------------------------------------------
 # special case when PythonQt is built in the MeVis build system:
 # ---------------------------------------------------------------
-DESTDIR           = $(MEVIS_LIB)/lib/
+DESTDIR           = ../bin
 DLLDESTDIR        = ../bin
+
+macx:CONFIG -= app_bundle
 
 MEVIS_LIB_EXPANDED = $$(MEVIS_LIB)
 !isEmpty(MEVIS_LIB_EXPANDED) {

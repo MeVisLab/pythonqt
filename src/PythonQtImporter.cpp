@@ -48,6 +48,7 @@
 #include "PythonQtImportFileInterface.h"
 #include "PythonQt.h"
 #include <QFile>
+#include <QFileInfo>
 
 #define IS_SOURCE   0x0
 #define IS_BYTECODE 0x1
@@ -566,8 +567,9 @@ PythonQtImport::compileSource(const QString& path, const QByteArray& data)
 {
   PyObject *code;
   QByteArray data1 = data;
-  data1.resize(data.size()+1);
-  data1.data()[data.size()-1] = 0;
+// in qt4, data is null terminated
+//  data1.resize(data.size()+1);
+//  data1.data()[data.size()-1] = 0;
   code = Py_CompileString(data.data(), path.toLatin1().constData(),
         Py_file_input);
   return code;
@@ -579,19 +581,36 @@ PythonQtImport::compileSource(const QString& path, const QByteArray& data)
 PyObject *
 PythonQtImport::getCodeFromData(const QString& path, int isbytecode,int ispackage, time_t mtime)
 {
+  bool hasImporter = PythonQt::importInterface()!=NULL;
+
   PyObject *code;
 
   QByteArray qdata;
-  if (!isbytecode) {
-//    mlabDebugConst("MLABPython", "reading source " << path);
-    bool ok;
-    qdata = PythonQt::importInterface()->readSourceFile(path, ok);
-    if (!ok) {
-  //    mlabErrorConst("PythonQtImporter","File could not be verified" << path);
-      return NULL;
+  if (!hasImporter) {
+    QFile file(path);
+    QIODevice::OpenMode flags = QIODevice::ReadOnly;
+    if (!isbytecode) {
+      flags |= QIODevice::Text;
     }
+    if (!file.open(flags)) {
+      return NULL;
+    } 
+    qdata = file.readAll();
   } else {
-    qdata = PythonQt::importInterface()->readFileAsBytes(path);
+    if (!isbytecode) {
+      //    mlabDebugConst("MLABPython", "reading source " << path);
+      bool ok;
+      qdata = PythonQt::importInterface()->readSourceFile(path, ok);
+      if (!ok) {
+        //    mlabErrorConst("PythonQtImporter","File could not be verified" << path);
+        return NULL;
+      }
+      if (qdata == " ") {
+        qdata.clear();
+      }
+    } else {
+      qdata = PythonQt::importInterface()->readFileAsBytes(path);
+    }
   }
 
   if (isbytecode) {
@@ -602,7 +621,9 @@ PythonQtImport::getCodeFromData(const QString& path, int isbytecode,int ispackag
   //  mlabDebugConst("MLABPython", "compiling source " << path);
     code = compileSource(path, qdata);
     // save a pyc file if possible
-    writeCompiledModule((PyCodeObject*)code, path+"c", PythonQt::importInterface()->lastModifiedDate(path).toTime_t());
+    QDateTime time;
+    time = hasImporter?PythonQt::importInterface()->lastModifiedDate(path):QFileInfo(path).lastModified();
+    writeCompiledModule((PyCodeObject*)code, path+"c", time.toTime_t());
   }
   return code;
 }
@@ -677,15 +698,13 @@ QString PythonQtImport::replaceExtension(const QString& str, const QString& ext)
 
 PyObject* PythonQtImport::getCodeFromPyc(const QString& file)
 {
-  if (!PythonQt::importInterface()) {
-    // no importer installed!
-    // EXTRA: support loading code without importer?
-    return NULL;
-  }
+  bool hasImporter = PythonQt::importInterface()!=NULL;
+
   PyObject* code;
   const static QString pycStr("pyc");
   QString pyc = replaceExtension(file, pycStr);
-  if (PythonQt::importInterface()->exists(pyc)) {
+  if ((hasImporter && PythonQt::importInterface()->exists(pyc)) ||
+    (!hasImporter && QFile::exists(pyc))) {
     time_t mtime = 0;
     mtime = getMTimeOfSource(pyc);
     code = getCodeFromData(pyc, true, false, mtime);

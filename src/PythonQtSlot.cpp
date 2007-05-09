@@ -1,34 +1,34 @@
 /*
- *
- *  Copyright (C) 2006 MeVis Research GmbH All Rights Reserved.
- *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2.1 of the License, or (at your option) any later version.
- *
- *  This library is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
- *
- *  Further, this software is distributed without any warranty that it is
- *  free of the rightful claim of any third person regarding infringement
- *  or the like.  Any license provided herein, whether implied or
- *  otherwise, applies only to this software file.  Patent licenses, if
- *  any, provided herein do not apply to combinations of this program with
- *  other software, or any other product whatsoever.
- *
- *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- *
- *  Contact information: MeVis Research GmbH, Universitaetsallee 29,
- *  28359 Bremen, Germany or:
- *
- *  http://www.mevis.de
- *
- */
+*
+*  Copyright (C) 2006 MeVis Research GmbH All Rights Reserved.
+*
+*  This library is free software; you can redistribute it and/or
+*  modify it under the terms of the GNU Lesser General Public
+*  License as published by the Free Software Foundation; either
+*  version 2.1 of the License, or (at your option) any later version.
+*
+*  This library is distributed in the hope that it will be useful,
+*  but WITHOUT ANY WARRANTY; without even the implied warranty of
+*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+*  Lesser General Public License for more details.
+*
+*  Further, this software is distributed without any warranty that it is
+*  free of the rightful claim of any third person regarding infringement
+*  or the like.  Any license provided herein, whether implied or
+*  otherwise, applies only to this software file.  Patent licenses, if
+*  any, provided herein do not apply to combinations of this program with
+*  other software, or any other product whatsoever.
+*
+*  You should have received a copy of the GNU Lesser General Public
+*  License along with this library; if not, write to the Free Software
+*  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+*
+*  Contact information: MeVis Research GmbH, Universitaetsallee 29,
+*  28359 Bremen, Germany or:
+*
+*  http://www.mevis.de
+*
+*/
 
 //----------------------------------------------------------------------------------
 /*!
@@ -50,47 +50,95 @@
 #define PYTHONQT_MAX_ARGS 32
 
 
-PyObject* PythonQtCallSlot(PythonQtWrapper* self, PyObject* args, bool strict, PythonQtSlotInfo* info)
+PyObject* PythonQtCallSlot(QObject* objectToCall, PyObject* args, bool strict, PythonQtSlotInfo* info, bool isVariantCall, void* firstArgument)
 {
+  if (isVariantCall && info->isInstanceDecorator()) return NULL;
+
   static unsigned int recursiveEntry = 0;
-
-  if (recursiveEntry == 0) {
-    //EXTRA: maybe don't do it on each call?
-    PythonQtConv::resetParameterStorage();
-  }
+  
+  // store the current storage position, so that we can get back to this state after a slot is called
+  // (do this locally, so that we have all positions on the stack
+  PythonQtValueStoragePosition globalValueStoragePos;
+  PythonQtValueStoragePosition globalPtrStoragePos;
+  PythonQtValueStoragePosition globalVariantStoragePos;
+  PythonQtConv::global_valueStorage.getPos(globalValueStoragePos);
+  PythonQtConv::global_ptrStorage.getPos(globalPtrStoragePos);
+  PythonQtConv::global_variantStorage.getPos(globalVariantStoragePos);
+  
   recursiveEntry++;
-
+  
   // the arguments that are passed to qt_metacall
   void* argList[PYTHONQT_MAX_ARGS];
   PyObject* result = NULL;
   int argc = info->parameterCount();
   const QList<PythonQtSlotInfo::ParameterInfo>& params = info->parameters();
-
+  
+  bool returnValueIsEnum = false;
   const PythonQtSlotInfo::ParameterInfo& returnValueParam = params.at(0);
-  if (returnValueParam.typeId != PythonQtSlotInfo::Void) {
-    // create empty default value for the return value
-    argList[0] = PythonQtConv::CreateQtReturnValue(params.at(0));
+  if (returnValueParam.typeId != QMetaType::Void) {
+    // extra handling of enum return value
+    if (!returnValueParam.isPointer && returnValueParam.typeId == PythonQtMethodInfo::Unknown) {
+      returnValueIsEnum = PythonQt::priv()->isEnumType(objectToCall->metaObject(), returnValueParam.name);
+      if (returnValueIsEnum) {
+        PythonQtValueStorage_ADD_VALUE(PythonQtConv::global_valueStorage, long, 0, argList[0]);
+      }
+    } else {
+      // create empty default value for the return value
+      argList[0] = PythonQtConv::CreateQtReturnValue(returnValueParam);
+    }
   } else {
     argList[0] = NULL;
   }
-
+  
+  const QMetaObject* meta = objectToCall?objectToCall->metaObject():NULL;
   bool ok = true;
-  for (int i = 1; i<argc && ok; i++) {
-    const PythonQtSlotInfo::ParameterInfo& param = params.at(i);
-    //std::cout << param.name.data() << " " << param.typeId << (param.isPointer?"*":"") << (param.isConst?" const":"") << std::endl;
-    argList[i] = PythonQtConv::ConvertPythonToQt(param, PyTuple_GET_ITEM(args, i-1), strict);
-    if (argList[i]==NULL) {
-      ok = false;
-      break;
+  if (info->isInstanceDecorator() || isVariantCall) {
+    if (!firstArgument) {
+      argList[1] = &objectToCall;
+    } else {
+      // for the variant call we take the ptr to the variant data, for decorators on CPP objects, we take the cpp ptr
+      argList[1] = &firstArgument;
+    }
+    if (ok) {
+      for (int i = 2; i<argc && ok; i++) {
+        const PythonQtSlotInfo::ParameterInfo& param = params.at(i);
+        //std::cout << param.name.data() << " " << param.typeId << (param.isPointer?"*":"") << (param.isConst?" const":"") << std::endl;
+        argList[i] = PythonQtConv::ConvertPythonToQt(param, PyTuple_GET_ITEM(args, i-2), strict, meta);
+        if (argList[i]==NULL) {
+          ok = false;
+          break;
+        }
+      }
+    }
+  } else {
+    for (int i = 1; i<argc && ok; i++) {
+      const PythonQtSlotInfo::ParameterInfo& param = params.at(i);
+      //std::cout << param.name.data() << " " << param.typeId << (param.isPointer?"*":"") << (param.isConst?" const":"") << std::endl;
+      argList[i] = PythonQtConv::ConvertPythonToQt(param, PyTuple_GET_ITEM(args, i-1), strict, meta);
+      if (argList[i]==NULL) {
+        ok = false;
+        break;
+      }
     }
   }
-
+  
   if (ok) {
-    self->_obj->qt_metacall(QMetaObject::InvokeMetaMethod, info->slotIndex(), argList);
-
-    result = PythonQtConv::ConvertQtValueToPython(returnValueParam, argList[0]);
+    (info->decorator()?info->decorator():objectToCall)->qt_metacall(QMetaObject::InvokeMetaMethod, info->slotIndex(), argList);
+    
+    if (!returnValueIsEnum) {
+      result = PythonQtConv::ConvertQtValueToPython(returnValueParam, argList[0]);
+    } else {
+      result = PyInt_FromLong(*((unsigned int*)argList[0]));
+    }
   }
   recursiveEntry--;
+  
+  // reset the parameter storage position to the stored pos to "pop" the parameter stack
+  PythonQtConv::global_valueStorage.setPos(globalValueStoragePos);
+  PythonQtConv::global_ptrStorage.setPos(globalPtrStoragePos);
+  PythonQtConv::global_variantStorage.setPos(globalVariantStoragePos);
+  
+  // NOTE: it is important to only return here, otherwise the stack will not be popped!!!
   return result;
 }
 
@@ -102,18 +150,40 @@ PyObject *PythonQtSlotFunction_Call(PyObject *func, PyObject *args, PyObject *kw
 {
   PythonQtSlotFunctionObject* f = (PythonQtSlotFunctionObject*)func;
   PythonQtSlotInfo*    info = f->m_ml;
-  PythonQtWrapper* self = (PythonQtWrapper*) f->m_self;
+  if (f->m_self->ob_type == &PythonQtWrapper_Type) {
+    PythonQtWrapper* self = (PythonQtWrapper*) f->m_self;
+    return PythonQtSlotFunction_CallImpl(self->_obj, info, args, kw, false, self->_wrappedPtr);
+  } else if (f->m_self->ob_type == &PythonQtVariantWrapper_Type) {
+    PythonQtVariantWrapper* self = (PythonQtVariantWrapper*) f->m_self;
+    if (!info->isClassDecorator()) {
+      return PythonQtSlotFunction_CallImpl(self->_wrapper, info, args, kw, true, (void*)self->_variant->constData());
+    } else {
+      return PythonQtSlotFunction_CallImpl(NULL, info, args, kw);
+    }
+  } else if (f->m_self->ob_type == &PythonQtMetaObjectWrapper_Type) {
+    return PythonQtSlotFunction_CallImpl(NULL, info, args, kw);
+  } else {
+    return NULL;
+  }
+}
+
+PyObject *PythonQtSlotFunction_CallImpl(QObject* objectToCall, PythonQtSlotInfo* info, PyObject *args, PyObject *kw, bool isVariantCall, void* firstArg)
+{
   int argc = PyTuple_Size(args);
+  
+#ifdef PYTHONQT_DEBUG
+  std::cout << "called " << info->metaMethod()->typeName() << " " << info->metaMethod()->signature() << std::endl;
+#endif
 
-  //std::cout << "called " << info->metaMethod()->typeName() << " " << info->metaMethod()->signature() << std::endl;
   PyObject* r = NULL;
-
+  
   if (info->nextInfo()) {
     // overloaded slot call, try on all slots with strict conversion first
     PythonQtSlotInfo* i = info;
     while (i && r==NULL) {
-      if (i->parameterCount()-1 == argc) {
-        r = PythonQtCallSlot(self, args, true, i);
+      bool skipFirst = (i->isInstanceDecorator() || isVariantCall);
+      if (i->parameterCount()-1-(skipFirst?1:0) == argc) {
+        r = PythonQtCallSlot(objectToCall, args, true, i, isVariantCall, firstArg);
       }
       i = i->nextInfo();
     }
@@ -121,35 +191,38 @@ PyObject *PythonQtSlotFunction_Call(PyObject *func, PyObject *args, PyObject *kw
       // try on all slots with non-strict conversion
       i = info;
       while (i && r==NULL) {
-        if (i->parameterCount()-1 == argc) {
-          r = PythonQtCallSlot(self, args, false, i);
+        bool skipFirst = (i->isInstanceDecorator() || isVariantCall);
+        if (i->parameterCount()-1-(skipFirst?1:0) == argc) {
+          r = PythonQtCallSlot(objectToCall, args, false, i, isVariantCall, firstArg);
         }
         i = i->nextInfo();
       }
     }
     if (r==0) {
-      QString e = QString("Could not find matching overload. The following slots are available:\n");
+      QString e = QString("Could not find matching overload for given arguments:\n" + PythonQtConv::PyObjGetString(args) + "\n The following slots are available:\n");
       PythonQtSlotInfo* i = info;
       while (i) {
-        e += QString(i->fullSignature()) + "\n";
+        bool skipFirst = (i->isInstanceDecorator() || isVariantCall);
+        e += QString(i->fullSignature(skipFirst)) + "\n";
         i = i->nextInfo();
       }
       PyErr_SetString(PyExc_ValueError, e.toLatin1().data());
     }
   } else {
     // simple (non-overloaded) slot call
-    if (info->parameterCount()-1 == argc) {
-      r = PythonQtCallSlot(self, args, false, info);
+    bool skipFirst = (info->isInstanceDecorator() || isVariantCall);
+    if (info->parameterCount()-1-(skipFirst?1:0) == argc) {
+      r = PythonQtCallSlot(objectToCall, args, false, info, isVariantCall, firstArg);
       if (!r) {
-        QString e = QString("Called ") + info->fullSignature() + " with wrong arguments.";
+        QString e = QString("Called ") + info->fullSignature(skipFirst) + " with wrong arguments: " + PythonQtConv::PyObjGetString(args);
         PyErr_SetString(PyExc_ValueError, e.toLatin1().data());
       }
     } else {
-      QString e = QString("Called ") + info->fullSignature() + " with wrong number of arguments.";
+      QString e = QString("Called ") + info->fullSignature(skipFirst) + " with wrong number of arguments: " + PythonQtConv::PyObjGetString(args);
       PyErr_SetString(PyExc_ValueError, e.toLatin1().data());
     }
   }
-
+  
   return r;
 }
 
@@ -272,9 +345,9 @@ static PyObject *
 meth_repr(PythonQtSlotFunctionObject *m)
 {
   return PyString_FromFormat("<built-in qt slot %s of %s object at %p>",
-           m->m_ml->metaMethod()->signature(),
-           m->m_self->ob_type->tp_name,
-           m->m_self);
+    m->m_ml->metaMethod()->signature(),
+    m->m_self->ob_type->tp_name,
+    m->m_self);
 }
 
 static int
@@ -313,38 +386,38 @@ meth_hash(PythonQtSlotFunctionObject *a)
 
 PyTypeObject PythonQtSlotFunction_Type = {
   PyObject_HEAD_INIT(&PyType_Type)
-  0,
-  "builtin_qt_slot",
-  sizeof(PythonQtSlotFunctionObject),
-  0,
-  (destructor)meth_dealloc,     /* tp_dealloc */
-  0,          /* tp_print */
-  0,          /* tp_getattr */
-  0,          /* tp_setattr */
-  (cmpfunc)meth_compare,      /* tp_compare */
-  (reprfunc)meth_repr,      /* tp_repr */
-  0,          /* tp_as_number */
-  0,          /* tp_as_sequence */
-  0,          /* tp_as_mapping */
-  (hashfunc)meth_hash,      /* tp_hash */
-  PythonQtSlotFunction_Call,      /* tp_call */
-  0,          /* tp_str */
-  PyObject_GenericGetAttr,    /* tp_getattro */
-  0,          /* tp_setattro */
-  0,          /* tp_as_buffer */
-  Py_TPFLAGS_DEFAULT | Py_TPFLAGS_HAVE_GC,/* tp_flags */
-  0,          /* tp_doc */
-  (traverseproc)meth_traverse,    /* tp_traverse */
-  0,          /* tp_clear */
-  0,          /* tp_richcompare */
-  0,          /* tp_weaklistoffset */
-  0,          /* tp_iter */
-  0,          /* tp_iternext */
-  0,          /* tp_methods */
-  meth_members,       /* tp_members */
-  meth_getsets,       /* tp_getset */
-  0,          /* tp_base */
-  0,          /* tp_dict */
+    0,
+    "builtin_qt_slot",
+    sizeof(PythonQtSlotFunctionObject),
+    0,
+    (destructor)meth_dealloc,     /* tp_dealloc */
+    0,          /* tp_print */
+    0,          /* tp_getattr */
+    0,          /* tp_setattr */
+    (cmpfunc)meth_compare,      /* tp_compare */
+    (reprfunc)meth_repr,      /* tp_repr */
+    0,          /* tp_as_number */
+    0,          /* tp_as_sequence */
+    0,          /* tp_as_mapping */
+    (hashfunc)meth_hash,      /* tp_hash */
+    PythonQtSlotFunction_Call,      /* tp_call */
+    0,          /* tp_str */
+    PyObject_GenericGetAttr,    /* tp_getattro */
+    0,          /* tp_setattro */
+    0,          /* tp_as_buffer */
+    Py_TPFLAGS_DEFAULT | Py_TPFLAGS_HAVE_GC,/* tp_flags */
+    0,          /* tp_doc */
+    (traverseproc)meth_traverse,    /* tp_traverse */
+    0,          /* tp_clear */
+    0,          /* tp_richcompare */
+    0,          /* tp_weaklistoffset */
+    0,          /* tp_iter */
+    0,          /* tp_iternext */
+    0,          /* tp_methods */
+    meth_members,       /* tp_members */
+    meth_getsets,       /* tp_getset */
+    0,          /* tp_base */
+    0,          /* tp_dict */
 };
 
 /* Clear out the free list */

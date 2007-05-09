@@ -1,5 +1,5 @@
-#ifndef _PYSCRIPTINGCONSOLE_H
-#define _PYSCRIPTINGCONSOLE_H
+#ifndef _PythonQtScriptingConsole_H
+#define _PythonQtScriptingConsole_H
 
 /*
  *
@@ -35,7 +35,7 @@
 
 //----------------------------------------------------------------------------------
 /*!
-// \file    PyScriptingConsole.h
+// \file    PythonQtScriptingConsole.h
 // \author  Florian Link
 // \author  Last changed by $Author: florian $
 // \date    2006-10
@@ -46,20 +46,22 @@
 #include <QVariant>
 #include <QTextEdit>
 
+class QCompleter;
+
 //-------------------------------------------------------------------------------
 //! A simple console for python scripting
-class PyScriptingConsole : public QTextEdit
+class PYTHONQT_EXPORT PythonQtScriptingConsole : public QTextEdit
 {
   Q_OBJECT
 
 public:
-  PyScriptingConsole(QWidget* parent, const PythonQtObjectPtr& context, Qt::WindowFlags i = 0);
+  PythonQtScriptingConsole(QWidget* parent, const PythonQtObjectPtr& context, Qt::WindowFlags i = 0);
 
-  ~PyScriptingConsole();
+  ~PythonQtScriptingConsole();
 
 public slots:
   //! execute current line
-  void executeLine();
+  void executeLine(bool storeOnly);
 
   //! derived key press event
   void keyPressEvent (QKeyEvent * e);
@@ -84,7 +86,14 @@ public slots:
   //! output redirection
   void stdErr(const QString& s);
 
+  void insertCompletion(const QString&);
+
+  //! Appends a newline and command prompt at the end of the document.
+  void appendCommandPrompt(bool storeOnly = false);
 protected:
+  //! handle the pressing of tab
+  void handleTabCompletion();
+
   //! Returns the position of the command prompt
   int commandPromptPosition();
 
@@ -98,13 +107,12 @@ protected:
   //! change the history according to _historyPos
   void changeHistory();
 
-  //! Appends a newline and command prompt at the end of the document.
-  void appendCommandPrompt();
-
   //! flush output that was not yet printed
   void flushStdOut();
 
 private:
+  void executeCode(const QString& code);
+
   PythonQtObjectPtr _context;
 
   QStringList _history;
@@ -112,13 +120,15 @@ private:
 
   QString _clickedAnchor;
   QString _storageKey;
-  QString _language;
   QString _commandPrompt;
+
+  QString _currentMultiLineCode;
 
   QString _stdOut;
   QString _stdErr;
 
   QTextCharFormat _defaultTextCharacterFormat;
+  QCompleter* _completer;
 };
 
 

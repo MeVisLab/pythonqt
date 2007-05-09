@@ -94,6 +94,8 @@ private:
 */
 class PythonQtSignalReceiverBase : public QObject {
   Q_OBJECT
+public:
+  PythonQtSignalReceiverBase(QObject* obj):QObject(obj) {};
 };
 
 //! receives all signals for one QObject
@@ -103,6 +105,7 @@ class PythonQtSignalReceiver : public PythonQtSignalReceiverBase {
 
 public:
   PythonQtSignalReceiver(QObject* obj);
+  ~PythonQtSignalReceiver();
 
   //! add a signal handler
   bool addSignalHandler(const char* signal, PyObject* callable);

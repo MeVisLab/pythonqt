@@ -45,31 +45,8 @@
 #include "Python.h"
 #include "structmember.h"
 
-#include <qvariant.h>
 
-extern PyTypeObject PyQSizeType;
-extern PyTypeObject PyQPointType;
-extern PyTypeObject PyQRectType;
-extern PyTypeObject PyQColorType;
-extern PyTypeObject PyQPixmapType;
-
-//! handles mapping of several QVariant types from/to Python
-class PythonQtVariants
-{
-public:
-  //! init py objects
-  static void init(PyObject* module);
-
-  //! convert between wrapper objects
-  static QVariant  PyObjectToQVariant(PyObject* obj, int type);
-
-  static PyObject* QRectToPyObject(const QRect& b);
-  static PyObject* QPointToPyObject(const QPoint& b);
-  static PyObject* QSizeToPyObject(const QSize& b);
-  static PyObject* QColorToPyObject(const QColor& b);
-  static PyObject* QPixmapToPyObject(const QPixmap& b);
-
-};
+#include "wrapper/PythonQtWrappedVariants.h"
 
 #endif
 
