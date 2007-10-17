@@ -78,10 +78,12 @@ public:
     //! get string representation of py object
   static QString PyObjGetRepresentation(PyObject* val);
 
-  //! get string value form py object
+  //! get string value from py object
   static QString PyObjGetString(PyObject* val) { bool ok; QString s = PyObjGetString(val, false, ok); return s; }
-  //! get string value form py object
+  //! get string value from py object
   static QString PyObjGetString(PyObject* val, bool strict, bool &ok);
+  //! get bytes from py object
+  static QByteArray PyObjGetBytes(PyObject* val, bool strict, bool &ok);
   //! get int from py object
   static int     PyObjGetInt(PyObject* val, bool strict, bool &ok);
   //! get int64 from py object

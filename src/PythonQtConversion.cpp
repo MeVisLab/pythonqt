@@ -117,8 +117,10 @@ PyObject* PythonQtConv::ConvertQtValueToPythonInternal(int type, void* data) {
     return PyLong_FromLongLong(*((qint64*)data));
   case QMetaType::ULongLong:
     return PyLong_FromUnsignedLongLong(*((quint64*)data));
-  case QMetaType::QByteArray:
-    return PyString_FromString(*((QByteArray*)data));
+  case QMetaType::QByteArray: {
+    QByteArray* v = (QByteArray*) data;
+    return PyString_FromStringAndSize(*v, v->size());
+  }
   case QMetaType::QVariantMap:
     return PythonQtConv::QVariantMapToPyObject(*((QVariantMap*)data));
   case QMetaType::QVariantList:
@@ -417,9 +419,9 @@ return Py_None;
        break;
      case QMetaType::QByteArray:
        {
-         QString str = PyObjGetString(obj, strict, ok);
+         QByteArray bytes = PyObjGetBytes(obj, strict, ok);
          if (ok) {
-           PythonQtValueStorage_ADD_VALUE(global_variantStorage, QVariant, QVariant(str.toUtf8()), ptr);
+           PythonQtValueStorage_ADD_VALUE(global_variantStorage, QVariant, QVariant(bytes), ptr);
            ptr = (void*)((QVariant*)ptr)->constData();
          }
        }
@@ -533,6 +535,18 @@ QString PythonQtConv::PyObjGetString(PyObject* val, bool strict, bool& ok) {
     } else {
       ok = false;
     }
+  } else {
+    ok = false;
+  }
+  return r;
+}
+
+QByteArray PythonQtConv::PyObjGetBytes(PyObject* val, bool strict, bool& ok) {
+  QByteArray r;
+  ok = true;
+  if (val->ob_type == &PyString_Type) {
+    long size = PyString_GET_SIZE(val);
+    r = QByteArray(PyString_AS_STRING(val), size);
   } else {
     ok = false;
   }
