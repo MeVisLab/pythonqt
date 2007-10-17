@@ -10,11 +10,12 @@ TEMPLATE = lib
 # ---------------------------------------------------------------
 # special case when PythonQt is built in the MeVis build system:
 # ---------------------------------------------------------------
-DESTDIR    = $(MEVIS_LIB)/lib
-DLLDESTDIR = $(MEVIS_LIB)/MLabModules/std/misc
 
 MEVIS_LIB_EXPANDED = $$(MEVIS_LIB)
 !isEmpty(MEVIS_LIB_EXPANDED) {
+
+  DESTDIR    = $(MEVIS_LIB)/lib
+  DLLDESTDIR = $(MEVIS_LIB)/MLabModules/std/misc
 
   # add used packages here
   CONFIG += dll python qt PythonQt
@@ -29,9 +30,9 @@ MEVIS_LIB_EXPANDED = $$(MEVIS_LIB)
 # standard case for external users
 # ---------------------------------------------------------------
   
-  include ( build/PythonQt.prf )  
-  include ( build/python.prf )  
-  include ( build/external.prf )  
+  include ( ../../build/PythonQt.prf )  
+  include ( ../../build/python.prf )  
+  include ( ../../build/external.prf )  
 }
 
 CONFIG += uitools

@@ -2,4 +2,4 @@
 
 INCLUDEPATH += $(PYTHONQT_ROOT)/src
 win32::LIBS += $(PYTHONQT_ROOT)/lib/PythonQt.lib
-unix::LIBS += -L$(PYTHONQT_ROOT)/lib -lPythonQt
+unix::LIBS += -L$(PYTHONQT_ROOT)/lib -lPythonQt -lutil
