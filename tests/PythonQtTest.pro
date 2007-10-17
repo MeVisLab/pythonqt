@@ -27,6 +27,8 @@ MEVIS_LIB_EXPANDED = $$(MEVIS_LIB)
 # standard case for external users
 # ---------------------------------------------------------------
 
+  CONFIG += qtestlib
+
   include ( ../build/python.prf )
   include ( ../build/PythonQt.prf )
 }
