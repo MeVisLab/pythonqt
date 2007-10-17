@@ -32,6 +32,8 @@ MEVIS_LIB_EXPANDED = $$(MEVIS_LIB)
   include ( ../../build/PythonQtGui.prf )  
 }
   
+LIBS += -L../../extensions/PythonQtGui/lib
+
 SOURCES +=                    \
   main.cpp        
 
