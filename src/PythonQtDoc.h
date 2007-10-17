@@ -333,7 +333,7 @@ yourCpp = None
 
  PythonQt requires at least Qt 4.2.2 (or higher) and Python 2.3, 2.4 and 2.5 on Windows, Linux and MacOS X.
  To compile PythonQt, you will need a python developer installation which includes Python's header files and
- the python2x.[lib | dll | so | dynlib].
+ the python2x.[lib | dll | so | dynlib]. On Windows, the (non-source) Python Windows installer can be used instead by adding a "config += release" line in Qt ".pro" files.
 
  For building PythonQt, you will need to set some environment variables:
  \b PYTHON_ROOT should point to the Python sources/headers.
