@@ -634,8 +634,16 @@ PythonQtImport::getMTimeOfSource(const QString& path)
   time_t mtime = 0;
   QString path2 = path;
   path2.truncate(path.length()-1);
-  if (PythonQt::importInterface()->exists(path2)) {
-    mtime = PythonQt::importInterface()->lastModifiedDate(path2).toTime_t();
+
+  bool hasImporter = PythonQt::importInterface()!=NULL;
+  if (hasImporter) {
+    if (PythonQt::importInterface()->exists(path2)) {
+      mtime = PythonQt::importInterface()->lastModifiedDate(path2).toTime_t();
+    }
+  } else {
+    if (QFile::exists(path2)) {
+      mtime = QFileInfo(path2).lastModified().toTime_t();
+    }
   }
   return mtime;
 }
