@@ -10,7 +10,6 @@ TEMPLATE = lib
 DESTDIR    = ../../lib
 DLLDESTDIR = ../../lib
 
-include ( ../../build/python.prf )  
 include ( ../../build/PythonQt.prf )  
 
 CONFIG += qt uitools

@@ -9,7 +9,6 @@ TEMPLATE = app
 
 DESTDIR           = ../../bin
   
-include ( ../../build/python.prf )  
 include ( ../../build/PythonQt.prf )  
 include ( ../../build/PythonQtGui.prf )  
 

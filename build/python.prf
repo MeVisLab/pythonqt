@@ -1,5 +1,9 @@
 # profile to include and link Python
 
+# Change this variable to your python version (2.3, 2.4, 2.5)
+win32:PYTHON_VERSION=25
+unix:PYTHON_VERSION=2.5
+
 macx {
   # for macx you need to have Python development kit installed as framework
   INCLUDEPATH += /System/Library/Frameworks/Python.framework/Headers
@@ -11,7 +15,8 @@ macx {
   # make sure that you set the environment variable PYTHON_PATH to point the  Python sources/headers
   # make sure that you set the environment variable PYTHON_LIB to point the path where the python lib file is located
   
-  INCLUDEPATH += $(PYTHON_PATH)/ $(PYTHON_PATH)/Include $(PYTHON_PATH)/PC 
-  win32:LIBS += $(PYTHON_LIB)/python25.lib
-  unix:LIBS += $(PYTHON_LIB)/libpython2.5.a
+  win32:INCLUDEPATH += $(PYTHON_PATH)/ $(PYTHON_PATH)/Include $(PYTHON_PATH)/PC 
+  win32:LIBS += $(PYTHON_LIB)/python$${PYTHON_VERSION}.lib
+  unix:LIBS += $$system(python$${PYTHON_VERSION}-config --libs)
+  unix:QMAKE_CXXFLAGS += $$system(python$${PYTHON_VERSION}-config --includes)
 }

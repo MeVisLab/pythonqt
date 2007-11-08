@@ -11,7 +11,6 @@ DESTDIR           = ../../bin
 
 CONFIG += console
 
-include ( ../../build/python.prf )  
 include ( ../../build/PythonQt.prf )  
 
 SOURCES +=                    \

@@ -1,5 +1,5 @@
 # profile for non-mevis users to link to PythonQtGui
 
-INCLUDEPATH += $(PYTHONQT_ROOT)/extensions/PythonQtGui
-win32::LIBS += $(PYTHONQT_ROOT)/lib/PythonQtGui.lib
-unix::LIBS += -L$(PYTHONQT_ROOT)/lib -lPythonQtGui
+INCLUDEPATH += $$PWD/../extensions/PythonQtGui
+win32::LIBS += $$PWD/../lib/PythonQtGui.lib
+unix::LIBS += -L$$PWD/../lib -lPythonQtGui

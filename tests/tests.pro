@@ -8,7 +8,6 @@ TEMPLATE = app
 
 CONFIG += qtestlib
 
-include ( ../build/python.prf )
 include ( ../build/PythonQt.prf )
 
 HEADERS +=                    \
