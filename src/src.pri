@@ -1,42 +1,42 @@
 DEFINES +=  PYTHONQT_EXPORTS
 
 HEADERS +=                    \
-  PythonQt.h                  \
-  PythonQtStdDecorators.h     \
-  PythonQtClassInfo.h         \
-  PythonQtImporter.h          \
-  PythonQtObjectPtr.h         \
-  PythonQtSlot.h              \
-  PythonQtStdOut.h            \
-  PythonQtMisc.h              \
-  PythonQtMethodInfo.h        \
-  PythonQtImportFileInterface.h \
-  PythonQtConversion.h        \
-  PythonQtSignalReceiver.h    \
-  PythonQtWrapper.h           \
-  PythonQtMetaObjectWrapper.h \
-  PythonQtCppWrapperFactory.h \
-  PythonQtVariants.h          \
-  PythonQtVariantWrapper.h    \
-  wrapper/PythonQtWrappedVariants.h    \
-  gui/PythonQtScriptingConsole.h    \
-  PythonQtSystem.h
+  $$PWD/PythonQt.h                  \
+  $$PWD/PythonQtStdDecorators.h     \
+  $$PWD/PythonQtClassInfo.h         \
+  $$PWD/PythonQtImporter.h          \
+  $$PWD/PythonQtObjectPtr.h         \
+  $$PWD/PythonQtSlot.h              \
+  $$PWD/PythonQtStdOut.h            \
+  $$PWD/PythonQtMisc.h              \
+  $$PWD/PythonQtMethodInfo.h        \
+  $$PWD/PythonQtImportFileInterface.h \
+  $$PWD/PythonQtConversion.h        \
+  $$PWD/PythonQtSignalReceiver.h    \
+  $$PWD/PythonQtWrapper.h           \
+  $$PWD/PythonQtMetaObjectWrapper.h \
+  $$PWD/PythonQtCppWrapperFactory.h \
+  $$PWD/PythonQtVariants.h          \
+  $$PWD/PythonQtVariantWrapper.h    \
+  $$PWD/wrapper/PythonQtWrappedVariants.h    \
+  $$PWD/gui/PythonQtScriptingConsole.h    \
+  $$PWD/PythonQtSystem.h
   
 SOURCES +=                    \
-  PythonQtStdDecorators.cpp   \
-  PythonQt.cpp                \
-  PythonQtClassInfo.cpp       \
-  PythonQtImporter.cpp        \
-  PythonQtObjectPtr.cpp       \
-  PythonQtStdOut.cpp          \
-  PythonQtSlot.cpp            \
-  PythonQtMisc.cpp            \
-  PythonQtMethodInfo.cpp      \
-  PythonQtConversion.cpp      \
-  PythonQtSignalReceiver.cpp  \
-  PythonQtVariants.cpp        \
-  PythonQtVariantWrapper.cpp \
-  PythonQtWrapper.cpp         \
-  PythonQtMetaObjectWrapper.cpp \
-  gui/PythonQtScriptingConsole.cpp
+  $$PWD/PythonQtStdDecorators.cpp   \
+  $$PWD/PythonQt.cpp                \
+  $$PWD/PythonQtClassInfo.cpp       \
+  $$PWD/PythonQtImporter.cpp        \
+  $$PWD/PythonQtObjectPtr.cpp       \
+  $$PWD/PythonQtStdOut.cpp          \
+  $$PWD/PythonQtSlot.cpp            \
+  $$PWD/PythonQtMisc.cpp            \
+  $$PWD/PythonQtMethodInfo.cpp      \
+  $$PWD/PythonQtConversion.cpp      \
+  $$PWD/PythonQtSignalReceiver.cpp  \
+  $$PWD/PythonQtVariants.cpp        \
+  $$PWD/PythonQtVariantWrapper.cpp \
+  $$PWD/PythonQtWrapper.cpp         \
+  $$PWD/PythonQtMetaObjectWrapper.cpp \
+  $$PWD/gui/PythonQtScriptingConsole.cpp
 
