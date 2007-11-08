@@ -8,15 +8,17 @@ macx {
   # for macx you need to have Python development kit installed as framework
   INCLUDEPATH += /System/Library/Frameworks/Python.framework/Headers
   LIBS += -F/System/Library/Frameworks -framework Python
-} else {
-  # TODO: this should be improved, maybe the paths can be autodetected on windows and linux?
+} else:win32 {
+  # for windows install a Python development kit or build Python yourself from the sources
+  # make sure that you set the environment variable PYTHON_PATH to point to your python installation
 
-  # for windows and linux, install a Python development kit or build Python yourself from the sources
-  # make sure that you set the environment variable PYTHON_PATH to point the  Python sources/headers
-  # make sure that you set the environment variable PYTHON_LIB to point the path where the python lib file is located
+  win32:INCLUDEPATH += $(PYTHON_PATH)/PC $(PYTHON_PATH)/include
+  win32:LIBS += $(PYTHON_PATH)/libs/python$${PYTHON_VERSION}.lib
+
+} else:unix {
+  # on linux, python-config is used to autodetect Python.
+  # make sure that you have installed a matching python-dev package.
   
-  win32:INCLUDEPATH += $(PYTHON_PATH)/ $(PYTHON_PATH)/Include $(PYTHON_PATH)/PC 
-  win32:LIBS += $(PYTHON_LIB)/python$${PYTHON_VERSION}.lib
   unix:LIBS += $$system(python$${PYTHON_VERSION}-config --libs)
   unix:QMAKE_CXXFLAGS += $$system(python$${PYTHON_VERSION}-config --includes)
 }

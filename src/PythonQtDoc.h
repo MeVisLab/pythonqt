@@ -335,17 +335,65 @@ yourCpp = None
 
  \section Building
 
- PythonQt requires at least Qt 4.2.2 (or higher) and Python 2.3, 2.4 and 2.5 on Windows, Linux and MacOS X.
+ PythonQt requires at least Qt 4.2.2 (or higher) and Python 2.3, 2.4 or 2.5 on Windows, Linux and MacOS X.
  To compile PythonQt, you will need a python developer installation which includes Python's header files and
-the python2x.[lib | dll | so | dynlib]. On Windows, the (non-source) Python Windows installer can be used
-instead by adding a "config += release" line in Qt ".pro" files.
+the python2x.[lib | dll | so | dynlib].
+ The build scripts a currently set to use Python 2.5.
+ You may need to tweak the \b build/python.prf file to set the correct Python includes and libs on your system.
 
- For building PythonQt, you will need to set some environment variables:
- \b PYTHON_PATH should point to the Python sources/headers.
- \b PYTHON_LIB should point to where the Python library files are located.
- \b PYTHONQT_ROOT should point to the root directory of PythonQt.
+ \subsection Windows
 
- Run qmake on PythonQt.pro to generate a project file for your system and then build it.
+ On Windows, the (non-source) Python Windows installer can be used.
+ Make sure that you use the same compiler, the current Python distribution is built
+ with Visual Studio 2003. If you want to use another compiler, you will need to build
+ Python yourself, using your compiler.
+
+ To build PythonQt, you need to set the environment variable \b PYTHON_PATH to point to the root
+ dir of the python installation (e.g. PYTHON_PATH = C:\Python25)
+
+ To build all, do the following:
+
+ \code
+ > cd PythonQtRoot
+ > set PYTHON_PATH = C:\Python25
+ > vcvars32
+ > qmake
+ > nmake
+ \endcode
+
+ This should build everything. If Python can not be linked or include files can not be found,
+ you probably need to tweak \b build/python.prf
+
+ To run the tests and examples which are located in PythonQt/bin,
+ you should add PythonQt/lib to your PATH.
+
+ \subsection Linux
+
+ On Linux, you need to install a Python-dev package.
+ If Python can not be linked or include files can not be found,
+ you probably need to tweak \b build/python.prf
+
+ To build PythonQt, just do a:
+
+ \code
+ > cd PythonQtRoot
+ > qmake
+ > make all
+ \endcode
+
+ To run the tests and examples which are located in PythonQt/bin,
+ you should add PythonQt/lib to your LD_LIBRARY_PATH.
+
+ \subsection MacOsX
+
+ On Mac, Python is installed as a Framework, so you should not need to install it.
+ To build PythonQt, just do a:
+
+ \code
+ > cd PythonQtRoot
+ > qmake
+ > make all
+ \endcode
 
  \section Tests
 
