@@ -7,7 +7,11 @@
 TARGET   = PythonQt
 TEMPLATE = lib
 
+DESTDIR    = lib
+DLLDESTDIR = lib
+
+CONFIG += qt
+
 include ( build/python.prf )  
-include ( build/external.prf )  
 
 include ( PythonQt.pri )  

@@ -11,27 +11,8 @@ DESTDIR           = ../../bin
 
 CONFIG += console
 
-# ---------------------------------------------------------------
-# special case when PythonQt is built in the MeVis build system:
-# ---------------------------------------------------------------
-MEVIS_LIB_EXPANDED = $$(MEVIS_LIB)
-!isEmpty(MEVIS_LIB_EXPANDED) {
-
-  # add used packages here
-  CONFIG += python qt PythonQt
-
-  # DONT REMOVE THE FOLLOWING LINE:
-  include( $(MEVIS_LIB)/make/mevisPackages.pro )
-
-  CONFIG += qt
-} else {
-# ---------------------------------------------------------------
-# standard case for external users
-# ---------------------------------------------------------------
-  
-  include ( ../../build/python.prf )  
-  include ( ../../build/PythonQt.prf )  
-}
+include ( ../../build/python.prf )  
+include ( ../../build/PythonQt.prf )  
 
 SOURCES +=                    \
   main.cpp        

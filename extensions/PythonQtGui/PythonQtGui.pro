@@ -7,35 +7,13 @@
 TARGET   = PythonQtGui
 TEMPLATE = lib
 
-# ---------------------------------------------------------------
-# special case when PythonQt is built in the MeVis build system:
-# ---------------------------------------------------------------
+DESTDIR    = ../../lib
+DLLDESTDIR = ../../lib
 
-MEVIS_LIB_EXPANDED = $$(MEVIS_LIB)
-!isEmpty(MEVIS_LIB_EXPANDED) {
+include ( ../../build/python.prf )  
+include ( ../../build/PythonQt.prf )  
 
-  DESTDIR    = $(MEVIS_LIB)/lib
-  DLLDESTDIR = $(MEVIS_LIB)/MLabModules/std/misc
-
-  # add used packages here
-  CONFIG += dll python qt PythonQt
-
-  # DONT REMOVE THE FOLLOWING LINE:
-  include( $(MEVIS_LIB)/make/mevisPackages.pro )
-
-  CONFIG += qt
-
-} else {
-# ---------------------------------------------------------------
-# standard case for external users
-# ---------------------------------------------------------------
-  
-  include ( ../../build/PythonQt.prf )  
-  include ( ../../build/python.prf )  
-  include ( ../../build/external.prf )  
-}
-
-CONFIG += uitools
+CONFIG += qt uitools
 
 DEFINES +=  PYTHONQTGUI_EXPORTS
 

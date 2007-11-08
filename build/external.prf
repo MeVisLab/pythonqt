@@ -1,5 +1,0 @@
-# profile for non-mevis users
-
-DESTDIR    = lib
-DLLDESTDIR = lib
-CONFIG += qt

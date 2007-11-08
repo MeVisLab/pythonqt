@@ -5,34 +5,11 @@
 # --------------------------------------------------
 TARGET   = PythonQtTest
 TEMPLATE = app
-# ---------------------------------------------------------------
-# special case when PythonQt is built in the MeVis build system:
-# ---------------------------------------------------------------
-DESTDIR           = ../bin
-DLLDESTDIR        = ../bin
 
-macx:CONFIG -= app_bundle
+CONFIG += qtestlib
 
-MEVIS_LIB_EXPANDED = $$(MEVIS_LIB)
-!isEmpty(MEVIS_LIB_EXPANDED) {
-  # add used packages here
-  CONFIG += python qt console qtestlib PythonQt
-  
-  # DONT REMOVE THE FOLLOWING LINE:
-  include( $(MEVIS_LIB)/make/mevisPackages.pro )
-  
-  CONFIG += qt
-} else {
-# ---------------------------------------------------------------
-# standard case for external users
-# ---------------------------------------------------------------
-
-  CONFIG += qtestlib
-
-  include ( ../build/python.prf )
-  include ( ../build/PythonQt.prf )
-}
-
+include ( ../build/python.prf )
+include ( ../build/PythonQt.prf )
 
 HEADERS +=                    \
   PythonQtTests.h
