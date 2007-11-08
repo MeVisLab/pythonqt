@@ -120,7 +120,7 @@ PyObject* PythonQtConv::ConvertQtValueToPythonInternal(int type, void* data) {
   case QMetaType::QByteArray: {
     QByteArray* v = (QByteArray*) data;
     return PyString_FromStringAndSize(*v, v->size());
-  }
+                              }
   case QMetaType::QVariantMap:
     return PythonQtConv::QVariantMapToPyObject(*((QVariantMap*)data));
   case QMetaType::QVariantList:
@@ -208,12 +208,13 @@ PyObject* PythonQtConv::ConvertQtValueToPythonInternal(int type, void* data) {
       Py_INCREF(o);
       return o;
     } else {
-      QVariant v(type, data);
-      if (v.isValid()) {
-        return (PyObject*)PythonQt::priv()->createNewPythonQtVariantWrapper(v);
-      } else {
-        std::cerr << "Unknown type that can not be converted to Python: " << type << ", in " << __FILE__ << ":" << __LINE__ << std::endl;
+      if (type != PythonQtMethodInfo::Unknown) {
+        QVariant v(type, data);
+        if (v.isValid()) {
+          return (PyObject*)PythonQt::priv()->createNewPythonQtVariantWrapper(v);
+        }
       }
+      std::cerr << "Unknown type that can not be converted to Python: " << type << ", in " << __FILE__ << ":" << __LINE__ << std::endl;
     }
 }
 Py_INCREF(Py_None);
