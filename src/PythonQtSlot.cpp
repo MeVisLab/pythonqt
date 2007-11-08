@@ -75,6 +75,9 @@ PyObject* PythonQtCallSlot(QObject* objectToCall, PyObject* args, bool strict, P
   
   bool returnValueIsEnum = false;
   const PythonQtSlotInfo::ParameterInfo& returnValueParam = params.at(0);
+  // set return argument to NULL
+  argList[0] = NULL;
+
   if (returnValueParam.typeId != QMetaType::Void) {
     // extra handling of enum return value
     if (!returnValueParam.isPointer && returnValueParam.typeId == PythonQtMethodInfo::Unknown) {
@@ -86,8 +89,6 @@ PyObject* PythonQtCallSlot(QObject* objectToCall, PyObject* args, bool strict, P
       // create empty default value for the return value
       argList[0] = PythonQtConv::CreateQtReturnValue(returnValueParam);
     }
-  } else {
-    argList[0] = NULL;
   }
   
   const QMetaObject* meta = objectToCall?objectToCall->metaObject():NULL;
