@@ -349,13 +349,27 @@ the python2x.[lib | dll | so | dynlib].
  Python yourself, using your compiler.
 
  To build PythonQt, you need to set the environment variable \b PYTHON_PATH to point to the root
- dir of the python installation (e.g. PYTHON_PATH = C:\Python25)
+ dir of the python installation and \b PYTHON_LIB to point to
+ the directory where the python lib file is located.
 
- To build all, do the following:
+ When using the prebuild Python installer, this will be:
+
+ \code
+ > set PYTHON_HOME = c:\Python25
+ > set PYTHON_LIB  = c:\Python25\libs
+ \endcode
+
+ When using the python sources, this will be something like:
+
+ \code
+  > set PYTHON_HOME = c:\yourDir\Python-2.5.1\
+  > set PYTHON_LIB  = c:\yourDir\Python-2.5.1\PCbuild8\Win32
+ \endcode
+
+ To build all, do the following (after setting the above variables):
 
  \code
  > cd PythonQtRoot
- > set PYTHON_PATH = C:\Python25
  > vcvars32
  > qmake
  > nmake

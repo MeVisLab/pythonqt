@@ -10,10 +10,21 @@ macx {
   LIBS += -F/System/Library/Frameworks -framework Python
 } else:win32 {
   # for windows install a Python development kit or build Python yourself from the sources
-  # make sure that you set the environment variable PYTHON_PATH to point to your python installation
+  # Make sure that you set the environment variable PYTHON_PATH to point to your
+  # python installation (or the python sources/header files when building from source).
+  # Make sure that you set the environment variable PYTHON_LIB to point to
+  # the directory where the python libs are located.
+  #
+  # When using the prebuild Python installer, this will be:
+  # set PYTHON_HOME = c:\Python25
+  # set PYTHON_LIB  = c:\Python25\libs
+  #
+  # When using the python sources, this will be something like:
+  # set PYTHON_HOME = c:\yourDir\Python-2.5.1\
+  # set PYTHON_LIB  = c:\yourDir\Python-2.5.1\PCbuild8\Win32
 
   win32:INCLUDEPATH += $(PYTHON_PATH)/PC $(PYTHON_PATH)/include
-  win32:LIBS += $(PYTHON_PATH)/libs/python$${PYTHON_VERSION}.lib
+  win32:LIBS += $(PYTHON_LIB)/python$${PYTHON_VERSION}.lib
 
 } else:unix {
   # on linux, python-config is used to autodetect Python.
