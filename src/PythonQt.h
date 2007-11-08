@@ -294,6 +294,10 @@ public:
   //! called by internal help methods
   PyObject* helpCalled(PythonQtClassInfo* info);
 
+  //! returns the found object or NULL
+  //! @return new reference
+  PythonQtObjectPtr lookupObject(PyObject* module, const QString& name);
+
 private:
   void initPythonQtModule(bool redirectStdOut);
 
@@ -301,10 +305,6 @@ private:
   static void stdOutRedirectCB(const QString& str);
   //! callback for stderr redirection, emits pythonStdErr signal
   static void stdErrRedirectCB(const QString& str);
-
-  //! returns the found object or NULL
-  //! @return new reference
-  PythonQtObjectPtr lookupObject(PyObject* module, const QString& name);
 
   //! get (and create if not available) the signal receiver of that QObject, signal receiver is made child of the passed \c obj
   PythonQtSignalReceiver* getSignalReceiver(QObject* obj);
