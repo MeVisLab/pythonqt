@@ -7,10 +7,11 @@
 TARGET   = PyGettingStarted
 TEMPLATE = app
 
-DESTDIR           = ../../bin
+DESTDIR           = ../../lib
 
 CONFIG += console
 
+include ( ../../build/common.prf )  
 include ( ../../build/PythonQt.prf )  
 
 SOURCES +=                    \

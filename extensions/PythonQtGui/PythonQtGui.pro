@@ -10,9 +10,10 @@ TEMPLATE = lib
 DESTDIR    = ../../lib
 DLLDESTDIR = ../../lib
 
+include ( ../../build/common.prf )  
 include ( ../../build/PythonQt.prf )  
 
-CONFIG += qt uitools
+CONFIG += dll qt uitools
 
 DEFINES +=  PYTHONQTGUI_EXPORTS
 

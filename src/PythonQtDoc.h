@@ -355,14 +355,14 @@ the python2x.[lib | dll | so | dynlib].
  When using the prebuild Python installer, this will be:
 
  \code
- > set PYTHON_HOME = c:\Python25
+ > set PYTHON_PATH = c:\Python25
  > set PYTHON_LIB  = c:\Python25\libs
  \endcode
 
  When using the python sources, this will be something like:
 
  \code
-  > set PYTHON_HOME = c:\yourDir\Python-2.5.1\
+  > set PYTHON_PATH = c:\yourDir\Python-2.5.1\
   > set PYTHON_LIB  = c:\yourDir\Python-2.5.1\PCbuild8\Win32
  \endcode
 
@@ -378,8 +378,7 @@ the python2x.[lib | dll | so | dynlib].
  This should build everything. If Python can not be linked or include files can not be found,
  you probably need to tweak \b build/python.prf
 
- To run the tests and examples which are located in PythonQt/bin,
- you should add PythonQt/lib to your PATH.
+ The tests and examples are located in PythonQt/lib.
 
  \subsection Linux
 
@@ -395,8 +394,9 @@ the python2x.[lib | dll | so | dynlib].
  > make all
  \endcode
 
- To run the tests and examples which are located in PythonQt/bin,
- you should add PythonQt/lib to your LD_LIBRARY_PATH.
+ The tests and examples are located in PythonQt/lib.
+ You should add PythonQt/lib to your LD_LIBRARY_PATH so that the runtime
+ linker can find the *.so files.
 
  \subsection MacOsX
 
@@ -457,7 +457,6 @@ the python2x.[lib | dll | so | dynlib].
 
   \section TODOs
 
-  - improve qmake profiles for non mevis users
   - add more information on how to distribute an application that uses PythonQt, including the Python distribution
 
 */

@@ -7,8 +7,9 @@
 TARGET   = PyCustomMetaTypeExample
 TEMPLATE = app
 
-DESTDIR           = ../../bin
+DESTDIR           = ../../lib
 
+include ( ../../build/common.prf )  
 include ( ../../build/PythonQt.prf )  
   
 
