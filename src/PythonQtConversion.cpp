@@ -478,18 +478,37 @@ return Py_None;
          }
        }
        break;
-     case PythonQtMethodInfo::Unknown:
-       {
-         if (PythonQt::priv()->isEnumType(meta, info.name)) {
-           unsigned int val = (unsigned int)PyObjGetLongLong(obj, strict, ok);
-           if (ok) {
-             PythonQtValueStorage_ADD_VALUE(global_valueStorage, unsigned int, val, ptr);
-           }
-         }
-       }
-       break;
        default:
        {
+         if (info.typeId == PythonQtMethodInfo::Unknown) {
+           // check for enum case
+           if (PythonQt::priv()->isEnumType(meta, info.name)) {
+             unsigned int val = (unsigned int)PyObjGetLongLong(obj, strict, ok);
+             if (ok) {
+               PythonQtValueStorage_ADD_VALUE(global_valueStorage, unsigned int, val, ptr);
+               return ptr;
+             }
+           }
+         }
+         if (info.typeId == PythonQtMethodInfo::Unknown || info.typeId >= QMetaType::User) {
+           // check for QList<AnyPtr*> case, where we will use a QList<void*> QVariant
+           if (info.name.startsWith("QList<")) {
+             QByteArray innerType = info.name.mid(6,info.name.length()-7);
+             if (innerType.endsWith("*")) {
+               innerType.truncate(innerType.length()-1);
+               static int id = QMetaType::type("QList<void*>");
+               PythonQtValueStorage_ADD_VALUE(global_variantStorage, QVariant, QVariant::Type(id), ptr);
+               ptr = (void*)((QVariant*)ptr)->constData();
+               ok = ConvertPythonListToQListOfType(obj, (QList<void*>*)ptr, innerType, strict);
+               if (ok) {
+                 return ptr;
+               } else {
+                 return NULL;
+               }
+             }
+           }
+         }
+
          // for all other types, we use the same qvariant conversion and pass out the constData of the variant:
          QVariant v = PyObjToQVariant(obj, info.typeId);
          if (v.isValid()) {
@@ -953,6 +972,40 @@ PyObject* PythonQtConv::ConvertQListWithPointersToPython(QList<void*>* list, con
   foreach (void* value, *list) {
     PyTuple_SET_ITEM(result, i, PythonQt::priv()->wrapPtr(value, type));
     i++;
+  }
+  return result;
+}
+
+bool PythonQtConv::ConvertPythonListToQListOfType(PyObject* obj, QList<void*>* list, const QByteArray& type, bool strict)
+{
+  bool result = false;
+  if (PySequence_Check(obj)) {
+    result = true;
+    int count = PySequence_Size(obj);
+    PyObject* value;
+    for (int i = 0;i<count;i++) {
+      value = PySequence_GetItem(obj,i);
+      if (value->ob_type == &PythonQtWrapper_Type) {
+        PythonQtWrapper* wrap = (PythonQtWrapper*)value;
+        // c++ wrapper, check if the class names of the c++ objects match
+        if (wrap->_info->isCPPWrapper()) {
+          //TODO: we could support inheritance on cpp wrappers as well
+          if (wrap->_info->wrappedCPPClassName() == type) {
+            list->append(wrap->_wrappedPtr);
+          } else {
+            result = false;
+            break;
+          }
+        } else {
+          if (wrap->_info->inherits(type)) {
+            list->append((void*)wrap->_obj);
+          } else {
+            result = false;
+            break;
+          }
+        }
+      }
+    }
   }
   return result;
 }

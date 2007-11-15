@@ -120,7 +120,8 @@ protected:
 
   //! converts the list of pointers of given type to Python
   static PyObject* ConvertQListWithPointersToPython(QList<void*>* list, const QByteArray& type);
-
+  //! tries to convert the python object to a QList of pointers to \c type objects, returns true on success
+  static bool      ConvertPythonListToQListOfType(PyObject* obj, QList<void*>* list, const QByteArray& type, bool strict);
 };
 
 #endif
