@@ -43,6 +43,7 @@
 #include <iostream>
 
 QHash<QByteArray, PythonQtMethodInfo*> PythonQtMethodInfo::_cachedSignatures;
+QHash<QByteArray, QByteArray> PythonQtMethodInfo::_parameterNameAliases;
 
 PythonQtMethodInfo::PythonQtMethodInfo(const QMetaMethod& meta)
 {
@@ -100,6 +101,10 @@ void PythonQtMethodInfo::fillParameterInfo(ParameterInfo& type, const QByteArray
       type.isPointer = true;
     } else {
       type.isPointer = false;
+    }
+    QByteArray alias = _parameterNameAliases.value(name);
+    if (!alias.isEmpty()) {
+      name = alias;
     }
 
     type.typeId = nameToType(name);
@@ -210,6 +215,13 @@ void PythonQtMethodInfo::cleanupCachedMethodInfos()
   }
 }
 
+void PythonQtMethodInfo::addParameterTypeAlias(const QByteArray& alias, const QByteArray& name)
+{
+  _parameterNameAliases.insert(alias, name);
+}
+
+//-------------------------------------------------------------------------------------------------
+
 QString PythonQtSlotInfo::fullSignature(bool skipFirstArg)
 { 
   QString result = _meta.typeName();
@@ -279,3 +291,4 @@ QByteArray PythonQtSlotInfo::slotName()
   sig = sig.left(idx);
   return sig;
 }
+

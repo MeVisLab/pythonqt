@@ -118,6 +118,9 @@ protected:
   //! converts the Qt parameter given in \c data, interpreting it as a \c type registered qvariant/meta type, into a Python object,
   static PyObject* ConvertQtValueToPythonInternal(int type, void* data);
 
+  //! converts the list of pointers of given type to Python
+  static PyObject* ConvertQListWithPointersToPython(QList<void*>* list, const QByteArray& type);
+
 };
 
 #endif

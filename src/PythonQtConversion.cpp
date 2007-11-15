@@ -64,7 +64,7 @@ PyObject* PythonQtConv::ConvertQtValueToPython(const PythonQtMethodInfo::Paramet
     return Py_None;
   } else {
     if (info.isPointer && (info.typeId == PythonQtMethodInfo::Unknown)) {
-      // convert argList[0] to python
+      // try to convert the pointer to a Python Object
       PyObject* pyObj = PythonQt::priv()->wrapPtr(*((void**)data), info.name);
       if (pyObj) {
         return pyObj;
@@ -77,7 +77,16 @@ PyObject* PythonQtConv::ConvertQtValueToPython(const PythonQtMethodInfo::Paramet
       // a char ptr will probably be a null terminated string, so we support that:
       return PyString_FromString(*((char**)data));
     } else {
-      // handle values that are not pointers
+      if (info.typeId == PythonQtMethodInfo::Unknown || info.typeId >= QMetaType::User) {
+        if (info.name.startsWith("QList<")) {
+          QByteArray innerType = info.name.mid(6,info.name.length()-7);
+          if (innerType.endsWith("*")) {
+            innerType.truncate(innerType.length()-1);
+            return ConvertQListWithPointersToPython((QList<void*>*)data, innerType);
+          }
+        }
+      }
+      // handle values that are not yet handled and not pointers
       return ConvertQtValueToPythonInternal(info.typeId, data);
     }
   }
@@ -246,10 +255,25 @@ return Py_None;
        // return the ptr to the variant
        break;
      default:
-       // everything else is stored in a QVariant...
-       PythonQtValueStorage_ADD_VALUE(global_variantStorage, QVariant, QVariant::Type(info.typeId), ptr);
-       // return the constData pointer that will be filled with the result value later on
-       ptr = (void*)((QVariant*)ptr)->constData();
+       if (info.typeId == PythonQtMethodInfo::Unknown) {
+         // check if we have a QList of pointers, which we can circumvent with a QList<void*>
+         if (info.name.startsWith("QList<")) {
+           QByteArray innerType = info.name.mid(6,info.name.length()-7);
+           if (innerType.endsWith("*")) {
+             static int id = QMetaType::type("QList<void*>");
+             PythonQtValueStorage_ADD_VALUE(global_variantStorage, QVariant, QVariant::Type(id), ptr);
+             // return the constData pointer that will be filled with the result value later on
+             ptr = (void*)((QVariant*)ptr)->constData();
+           }
+         }
+       }
+
+       if (!ptr) {
+         // everything else is stored in a QVariant...
+         PythonQtValueStorage_ADD_VALUE(global_variantStorage, QVariant, QVariant::Type(info.typeId), ptr);
+         // return the constData pointer that will be filled with the result value later on
+         ptr = (void*)((QVariant*)ptr)->constData();
+       }
      }
    }
    return ptr;
@@ -919,6 +943,17 @@ PyObject* PythonQtConv::QVariantListToPyObject(const QVariantList& l) {
   }
   // why is the error state bad after this?
   PyErr_Clear();
+  return result;
+}
+
+PyObject* PythonQtConv::ConvertQListWithPointersToPython(QList<void*>* list, const QByteArray& type)
+{
+  PyObject* result = PyTuple_New(list->count());
+  int i = 0;
+  foreach (void* value, *list) {
+    PyTuple_SET_ITEM(result, i, PythonQt::priv()->wrapPtr(value, type));
+    i++;
+  }
   return result;
 }
 

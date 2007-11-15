@@ -91,10 +91,14 @@ public:
   //! get the parameter infos
   const QList<ParameterInfo>& parameters() const { return _parameters; }
 
+  //! add an alias for a typename, e.g. QObjectList and QList<QObject*>.
+  static void addParameterTypeAlias(const QByteArray& alias, const QByteArray& name);
+
   protected:
   static void fillParameterInfo(ParameterInfo& type, const QByteArray& name);
 
   static QHash<QByteArray, int> _parameterTypeDict;
+  static QHash<QByteArray, QByteArray> _parameterNameAliases;
 
   //! stores the cached signatures of methods to speedup mapping from Qt to Python types
   static QHash<QByteArray, PythonQtMethodInfo*> _cachedSignatures;

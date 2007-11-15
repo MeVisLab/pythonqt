@@ -60,6 +60,9 @@ void PythonQt::init(int flags)
     _self = new PythonQt(flags);
   }
 
+  PythonQtMethodInfo::addParameterTypeAlias("QObjectList", "QList<QObject*>");
+  qRegisterMetaType<QList<QObject*> >("QList<void*>");
+
   PythonQt::self()->addDecorators(new PythonQtStdDecorators());
   
   PythonQt::priv()->addVariantWrapper("QBitArray", new PythonQtQBitArrayWrapper);
