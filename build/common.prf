@@ -4,7 +4,7 @@
 # the default of your Qt installation will used)
 
 # build with both debug and release mode
-#CONFIG += release_and_debug build_all
+#CONFIG += debug_and_release build_all
 
 # build with release mode only
 #CONFIG += release
