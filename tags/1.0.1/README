@@ -1,0 +1,18 @@
+PythonQt
+--------
+
+PythonQt is a dynamic Python (http://www.python.org) binding for Qt (http://www.trolltech.com).
+It offers an easy way to embedd the Python scripting language into
+your Qt applications. It makes heavy use of the QMetaObject system and thus requires Qt4.x.
+
+Licensing
+---------
+PythonQt is distributed under the LGPL license.
+
+Documentation
+-------------
+
+More documentation is available at:
+
+http://pythonqt.sourceforge.net/
+
