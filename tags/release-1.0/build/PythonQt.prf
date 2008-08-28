@@ -1,0 +1,5 @@
+# profile for non-mevis users to link to PythonQt
+
+INCLUDEPATH += $(PYTHONQT_ROOT)/src
+win32::LIBS += $(PYTHONQT_ROOT)/lib/PythonQt.lib
+unix::LIBS += -L$(PYTHONQT_ROOT)/lib -lPythonQt
