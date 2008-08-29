@@ -55,13 +55,21 @@ public:
     setObject(p.object());
   }
 
+  //! If the given variant holds a PythonQtObjectPtr, extract the value from it and hold onto the reference. This results in an increment of the reference count. 
+  PythonQtObjectPtr(const QVariant& variant):_object(NULL) {
+      fromVariant(variant); 
+  }
+  
   PythonQtObjectPtr(PyObject* o) {
     _object = o;
     if (o) Py_INCREF(_object);
   }
 
   ~PythonQtObjectPtr() { if (_object) Py_DECREF(_object); }
-
+  
+  //! If the given variant holds a PythonQtObjectPtr, extract the value from it and hold onto the reference. This results in an increment of the reference count.   
+  bool fromVariant(const QVariant& variant);
+  
   PythonQtObjectPtr &operator=(const PythonQtObjectPtr &p) {
     setObject(p.object());
     return *this;
@@ -72,6 +80,13 @@ public:
     return *this;
   }
 
+  
+  PythonQtObjectPtr &operator=(const QVariant& variant) {
+      fromVariant(variant);
+      return *this;
+  }
+
+  
   bool operator==( const PythonQtObjectPtr &p ) const {
     return object() == p.object();
   }
@@ -133,6 +148,8 @@ public:
   //! call the given python object (in the scope of the current object), returns the result converted to a QVariant
   QVariant call(const QString& callable, const QVariantList& args);
 
+  
+  
 
 protected:
 
