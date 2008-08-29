@@ -1,6 +1,12 @@
 
 Version 1.1 ChangeLog: 
 
+ezust | 2008-29-08
+- Added CHANGELOG
+- Bumped version to 1.1
+- Added PythonQtObjectPtr conversion ctor and operator=(const QVariant&)
+- added examples/CPPPyWrapperExample
+
 florianlink | 2007-11-15 08:38:24 -0800 (Thu, 15 Nov 2007) 
 - added support for mapping Python lists to QList<AnyPtr*> lists on slot calls
 - added support for QList<AnyPtr*> return values and signal signatures
