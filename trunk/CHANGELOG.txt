@@ -1,0 +1,37 @@
+
+Version 1.1 ChangeLog: 
+
+florianlink | 2007-11-15 08:38:24 -0800 (Thu, 15 Nov 2007) 
+- added support for mapping Python lists to QList<AnyPtr*> lists on slot calls
+- added support for QList<AnyPtr*> return values and signal signatures
+- changed binary output to lib as well, so that the setting of PATH can be avoided
+- changed profiles to use a new common.prf to facilitate global settings
+- improved docs
+- added _d extension for debug build (see common.prf)
+- added $$PWD, which is important if the file is included from somewhere else (which we do in mevis)
+- added softspace support (implemented by Andre Kramer)
+- updated windows documentation and variables which need to be set
+- changed to use only PYTHON_PATH on Windows
+- added more build docs
+- changed date conversion from/to strings to ISODate
+- fixed return argument initialization to NULL
+- added mevis doc
+- fixed handling of unknown reference types
+- made lookupObject public
+- added overload calls to introspection
+
+marcusbarann | 2007-11-08 06:15:55 -0800 (Thu, 08 Nov 2007)
+-  Added PythonQt.pro, cleaned up build system
+
+akramer | 2007-10-17 08:02:25 -0700 (Wed, 17 Oct 2007) 
+- external variant was missing the "config += qtestlib" needed for using the Qt unit test framework.
+- provide relative path to Gui extension lib
+- added a sentence about using the Windows installer version of Python
+- Fix for converting QByteArray values that include 0 chars.
+  They are still converted to/from Python strings but using 
+  size of contents rather than string 0 (null) termination.
+- bug fix for getMTimeOfSource when PythonQt::importInterface() is null
+- Linux external build improvements
+
+2007-01-30 00:11:25 -0800 (Tue, 30 Jan 2007) | 1 line 
+- Released version 1.0
