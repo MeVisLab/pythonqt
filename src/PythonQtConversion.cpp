@@ -296,7 +296,8 @@ return Py_None;
          }
        } else {
          if (wrap->_info->inherits(info.name)) {
-           PythonQtValueStorage_ADD_VALUE(global_ptrStorage, void*, wrap->_obj, ptr);
+           QObject* myObject = wrap->_obj;
+           PythonQtValueStorage_ADD_VALUE(global_ptrStorage, void*, myObject, ptr);
          } else {
            // not matching
          }
@@ -487,6 +488,8 @@ return Py_None;
              if (ok) {
                PythonQtValueStorage_ADD_VALUE(global_valueStorage, unsigned int, val, ptr);
                return ptr;
+             } else {
+               return NULL;
              }
            }
          }
@@ -730,7 +733,8 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
         // is this worth anything? we loose the knowledge of the cpp object type
         v = qVariantFromValue(wrap->_wrappedPtr);
       } else {
-        v = qVariantFromValue(wrap->_obj);
+        QObject* myObject = wrap->_obj;
+        v = qVariantFromValue(myObject);
       }
       return v;
     } else if (val->ob_type==&PyDict_Type) {
@@ -998,7 +1002,8 @@ bool PythonQtConv::ConvertPythonListToQListOfType(PyObject* obj, QList<void*>* l
           }
         } else {
           if (wrap->_info->inherits(type)) {
-            list->append((void*)wrap->_obj);
+            QObject* myObject = wrap->_obj;
+            list->append((void*)myObject);
           } else {
             result = false;
             break;

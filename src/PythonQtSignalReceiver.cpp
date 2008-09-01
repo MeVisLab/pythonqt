@@ -45,12 +45,46 @@
 #include "PythonQtConversion.h"
 #include <QMetaObject>
 #include <QMetaMethod>
+#include "funcobject.h"
 
 void PythonQtSignalTarget::call(void **arguments) const
 {
+  // Note: we check if the callable is a PyFunctionObject and has a fixed number of arguments
+  // if that is the case, we only pass these arguments to python and skip the additional arguments from the signal
+  
+  int numPythonArgs = -1;
+  if (PyFunction_Check(_callable)) {
+    PyObject* o = _callable;
+    PyFunctionObject* func = (PyFunctionObject*)o;
+    PyCodeObject* code = (PyCodeObject*)func->func_code;
+    if (!(code->co_flags & 0x04)) {
+      numPythonArgs = code->co_argcount;
+    } else {
+      // variable numbers of arguments allowed
+    }
+  } else if (PyMethod_Check(_callable)) {
+    PyObject* o = _callable;
+    PyMethodObject* method = (PyMethodObject*)o;
+    if (PyFunction_Check(method->im_func)) {
+      PyFunctionObject* func = (PyFunctionObject*)method->im_func;
+      PyCodeObject* code = (PyCodeObject*)func->func_code;
+      if (!(code->co_flags & 0x04)) {
+        numPythonArgs = code->co_argcount - 1; // we subtract one because the first is "self"
+      } else {
+        // variable numbers of arguments allowed
+      }
+    }
+  }
+
   const PythonQtMethodInfo* m = methodInfo();
-  // paramterCount includes return value:
+  // parameterCount includes return value:
   int count = m->parameterCount();
+  if (numPythonArgs!=-1) {
+    if (count>numPythonArgs+1) {
+      // take less arguments
+      count = numPythonArgs+1;
+    }
+  }
 
   PyObject* pargs = NULL;
   if (count>1) {
@@ -97,6 +131,7 @@ PythonQtSignalReceiver::PythonQtSignalReceiver(QObject* obj):PythonQtSignalRecei
 
 PythonQtSignalReceiver::~PythonQtSignalReceiver()
 {
+  PythonQt::priv()->removeSignalEmitter(_obj);
 }
 
 

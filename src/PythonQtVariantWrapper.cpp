@@ -171,6 +171,18 @@ QString qVariantToString(const QVariant& v) {
   case QVariant::Time:
     r = v.toTime().toString(Qt::ISODate);
     break;
+  case QVariant::Pixmap:
+    {
+      QPixmap p = qvariant_cast<QPixmap>(v);
+      r = QString("Pixmap ") + QString::number(p.width()) + ", " + QString::number(p.height());
+    }
+    break;
+  case QVariant::Image:
+    {
+      QImage img = qvariant_cast<QImage>(v);
+      r = QString("Image ") + QString::number(img.width()) + ", " + QString::number(img.height());
+    }
+    break;
     //TODO: add more printing for other variant types
   default:
     r = v.toString();
@@ -182,6 +194,9 @@ static PyObject * PythonQtVariantWrapper_str(PyObject * obj)
 {
   PythonQtVariantWrapper* wt = (PythonQtVariantWrapper*)obj;
   QString val = qVariantToString(*wt->_variant);
+  if (val.isEmpty()) {
+    val = wt->_variant->typeName();
+  }
   return PyString_FromFormat("%s", val.toLatin1().constData());
 }
 

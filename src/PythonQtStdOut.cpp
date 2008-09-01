@@ -70,10 +70,18 @@ static PyObject *PythonQtStdOutRedirect_write(PyObject *self, PyObject *args)
   return Py_BuildValue("");
 }
 
+static PyObject *PythonQtStdOutRedirect_flush(PyObject *self, PyObject *args)
+{
+  return Py_BuildValue("");
+}
+
+
 
 static PyMethodDef PythonQtStdOutRedirect_methods[] = {
   {"write", (PyCFunction)PythonQtStdOutRedirect_write, METH_VARARGS,
-    "redirect the writing to a callback"
+  "redirect the writing to a callback"},
+  {"flush", (PyCFunction)PythonQtStdOutRedirect_flush, METH_VARARGS,
+  "flush the output, currently not implemented but needed for logging framework"
   },
   {NULL}  /* Sentinel */
 };

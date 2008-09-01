@@ -143,7 +143,7 @@ static PyObject *PythonQtMetaObjectWrapper_getattro(PyObject *obj,PyObject *name
   if (member._type == PythonQtMemberInfo::Slot && member._slot->isClassDecorator()) {
     return PythonQtSlotFunction_New(member._slot, obj, NULL);
   }
-  
+
   // look for the interal methods (className(), help())
   PyObject* internalMethod = Py_FindMethod( PythonQtMetaObjectWrapper_methods, obj, (char*)attributeName);
   if (internalMethod) {
@@ -194,6 +194,11 @@ static int PythonQtMetaObjectWrapper_compare(PyObject * obj1, PyObject * obj2)
   }
 }
 
+static long PythonQtMetaObjectWrapper_hash(PythonQtMetaObjectWrapper *obj)
+{
+  return reinterpret_cast<long>(obj->_info);
+}
+
 PyTypeObject PythonQtMetaObjectWrapper_Type = {
     PyObject_HEAD_INIT(NULL)
     0,                         /*ob_size*/
@@ -209,7 +214,7 @@ PyTypeObject PythonQtMetaObjectWrapper_Type = {
     0,                         /*tp_as_number*/
     0,                         /*tp_as_sequence*/
     0,                         /*tp_as_mapping*/
-    0,                         /*tp_hash */
+    (hashfunc)PythonQtMetaObjectWrapper_hash,                         /*tp_hash */
     PythonQtMetaObjectWrapper_call,                         /*tp_call*/
     0,                         /*tp_str*/
     PythonQtMetaObjectWrapper_getattro,                         /*tp_getattro*/
