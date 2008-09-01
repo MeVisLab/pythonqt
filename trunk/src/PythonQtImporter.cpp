@@ -620,10 +620,12 @@ PythonQtImport::getCodeFromData(const QString& path, int isbytecode,int ispackag
   else {
   //  mlabDebugConst("MLABPython", "compiling source " << path);
     code = compileSource(path, qdata);
-    // save a pyc file if possible
-    QDateTime time;
-    time = hasImporter?PythonQt::importInterface()->lastModifiedDate(path):QFileInfo(path).lastModified();
-    writeCompiledModule((PyCodeObject*)code, path+"c", time.toTime_t());
+    if (code) {
+      // save a pyc file if possible
+      QDateTime time;
+      time = hasImporter?PythonQt::importInterface()->lastModifiedDate(path):QFileInfo(path).lastModified();
+      writeCompiledModule((PyCodeObject*)code, path+"c", time.toTime_t());
+    }
   }
   return code;
 }
@@ -776,7 +778,7 @@ void PythonQtImport::init()
   PyObject* classobj = PyDict_GetItemString(PyModule_GetDict(mod), "PythonQtImporter");
   PyObject* path_hooks = PySys_GetObject("path_hooks");
   PyList_Append(path_hooks, classobj);
-
+  
 #ifndef WIN32
   // reload the encodings module, because it might fail to custom import requirements (e.g. encryption).
   PyObject* modules         = PyImport_GetModuleDict();

@@ -66,6 +66,9 @@ class PythonQtImportFileInterface;
 class PythonQtCppWrapperFactory;
 class PythonQtConstructorHandler;
 
+typedef void PythonQtQObjectWrappedCB(QObject* object);
+typedef void PythonQtQObjectNoLongerWrappedCB(QObject* object);
+
 //! the main interface to the Python Qt binding, realized as a singleton
 class PYTHONQT_EXPORT PythonQt : public QObject {
 
@@ -136,6 +139,22 @@ public:
 
   //! evaluates the given script code from file
   void evalFile(PyObject* module, const QString& filename);
+
+  //! creates the new module \c name and evaluates the given file in the context of that module
+  //! If the \c script is empty, the module contains no initial code. You can use evalScript/evalCode to add code
+  //! to a module later on.
+  //! The user needs to make sure that the \c name is unique in the python module dictionary.
+  PythonQtObjectPtr createModuleFromFile(const QString& name, const QString& filename);
+
+  //! creates the new module \c name and evaluates the given script in the context of that module.
+  //! If the \c script is empty, the module contains no initial code. You can use evalScript/evalCode to add code
+  //! to a module later on.
+  //! The user needs to make sure that the \c name is unique in the python module dictionary.
+  PythonQtObjectPtr createModuleFromScript(const QString& name, const QString& script = QString());
+
+  //! create a uniquely named module, you can use evalFile or evalScript to populate the module with
+  //! script code
+  PythonQtObjectPtr createUniqueModule();
 
   //@{ Signal handlers
 
@@ -280,6 +299,14 @@ public:
   //! The error is currently just output to the python stderr, future version might implement better trace printing
   bool handleError();
 
+  //! set a callback that is called when a QObject with parent == NULL is wrapped by pythonqt
+  void setQObjectWrappedCallback(PythonQtQObjectWrappedCB* cb);
+  //! set a callback that is called when a QObject with parent == NULL is no longer wrapped by pythonqt
+  void setQObjectNoLongerWrappedCallback(PythonQtQObjectNoLongerWrappedCB* cb);
+
+  //! call the callback if it is set
+  static void qObjectNoLongerWrappedCB(QObject* o);
+
 signals:
   //! emitted when python outputs something to stdout (and redirection is turned on)
   void pythonStdOut(const QString& str);
@@ -313,6 +340,7 @@ private:
   ~PythonQt();
 
   static PythonQt* _self;
+  static int _uniqueModuleCount;
 
   PythonQtPrivate* _p;
 
@@ -331,7 +359,10 @@ public:
   bool isPythonQtObjectPtrMetaId(int id) { return _PythonQtObjectPtr_metaId == id; }
 
   //! remove the wrapper ptr again
-  void removeWrapperPointer(void* obj) { _wrappedObjects.take(obj); }
+  void removeWrapperPointer(void* obj);
+
+  //! called when a signal emitting QObject is destroyed to remove the signal handler from the hash map
+  void removeSignalEmitter(QObject* obj);
 
   //! wrap the given QObject into a Python object (or return existing wrapper!)
   PyObject* wrapQObject(QObject* obj);
@@ -379,14 +410,13 @@ public:
   //! get the destructor slot for the given classname
   PythonQtSlotInfo* getDestructorSlot(const QByteArray& className) { return _destructorSlots.value(className); }
 
-protected slots:
-  //! called when a wrapped QObject is destroyed
-  void wrappedObjectDestroyed(QObject* obj);
-
-  //! called when a signal emitting QObject is destroyed to remove the signal handler from the hash map
-  void destroyedSignalEmitter(QObject* obj);
+  //! creates the new module from the given pycode
+  PythonQtObjectPtr createModule(const QString& name, PyObject* pycode);
 
 private:
+
+  //! get the wrapper for a given pointer (and remove a wrapper of an already destroyed qobject)
+  PythonQtWrapper* findWrapperAndRemoveUnused(void* obj);
 
   //! stores pointer to PyObject mapping of wrapped QObjects AND C++ objects
   QHash<void* , PythonQtWrapper *>       _wrappedObjects;
@@ -411,6 +441,9 @@ private:
 
   //! the importer interface (if set)
   PythonQtImportFileInterface* _importInterface;
+
+  PythonQtQObjectNoLongerWrappedCB* _noLongerWrappedCB;
+  PythonQtQObjectWrappedCB* _wrappedCB;
 
   QStringList _importIgnorePaths;
 

@@ -52,6 +52,7 @@
 #include <pydebug.h>
 
 PythonQt* PythonQt::_self = NULL;
+int       PythonQt::_uniqueModuleCount = 0;
 
 
 void PythonQt::init(int flags)
@@ -211,6 +212,13 @@ void PythonQt::registerClass(const QMetaObject* metaobject)
   _p->registerClass(metaobject);
 }
 
+void PythonQt::qObjectNoLongerWrappedCB(QObject* o)
+{
+  if (_self->_p->_noLongerWrappedCB) {
+    (*_self->_p->_noLongerWrappedCB)(o);
+  };
+}
+
 void PythonQtPrivate::registerClass(const QMetaObject* metaobject)
 {
   // we register all classes in the hierarchy
@@ -259,7 +267,7 @@ PyObject* PythonQtPrivate::wrapQObject(QObject* obj)
     Py_INCREF(Py_None);
     return Py_None;
   }
-  PythonQtWrapper* wrap = _wrappedObjects.value(obj);
+  PythonQtWrapper* wrap = findWrapperAndRemoveUnused(obj);
   if (!wrap) {
     // smuggling it in...
     PythonQtClassInfo* classInfo = _knownQtClasses.value(obj->metaObject()->className());
@@ -268,8 +276,6 @@ PyObject* PythonQtPrivate::wrapQObject(QObject* obj)
       classInfo = _knownQtClasses.value(obj->metaObject()->className());
     }
     wrap = createNewPythonQtWrapper(obj, classInfo);
-    // insert destroyed handler
-    connect(obj, SIGNAL(destroyed(QObject*)), this, SLOT(wrappedObjectDestroyed(QObject*)));
     //    mlabDebugConst("MLABPython","new qobject wrapper added " << " " << wrap->_obj->className() << " " << wrap->_info->wrappedClassName().latin1());
   } else {
     Py_INCREF(wrap);
@@ -284,7 +290,7 @@ PyObject* PythonQtPrivate::wrapPtr(void* ptr, const QByteArray& name)
     Py_INCREF(Py_None);
     return Py_None;
   }
-  PythonQtWrapper* wrap = _wrappedObjects.value(ptr);
+  PythonQtWrapper* wrap = findWrapperAndRemoveUnused(ptr);
   if (!wrap) {
     PythonQtClassInfo* info = _knownQtClasses.value(name);
     if (!info) {
@@ -304,8 +310,6 @@ PyObject* PythonQtPrivate::wrapPtr(void* ptr, const QByteArray& name)
         info = _knownQtClasses.value(qptr->metaObject()->className());
       }
       wrap = createNewPythonQtWrapper(qptr, info);
-      // insert destroyed handler
-      connect(qptr, SIGNAL(destroyed(QObject*)), this, SLOT(wrappedObjectDestroyed(QObject*)));
       //    mlabDebugConst("MLABPython","new qobject wrapper added " << " " << wrap->_obj->className() << " " << wrap->_info->wrappedClassName().latin1());
     } else {
       // maybe it is a PyObject, which we can return directly
@@ -360,7 +364,7 @@ PythonQtWrapper* PythonQtPrivate::createNewPythonQtWrapper(QObject* obj, PythonQ
   result = (PythonQtWrapper *)PythonQtWrapper_Type.tp_new(&PythonQtWrapper_Type,
     NULL, NULL);
 
-  result->_obj = obj;
+  result->setQObject(obj);
   result->_info = info;
   result->_wrappedPtr = wrappedPtr;
   result->_ownedByPythonQt = false;
@@ -369,6 +373,10 @@ PythonQtWrapper* PythonQtPrivate::createNewPythonQtWrapper(QObject* obj, PythonQ
     _wrappedObjects.insert(wrappedPtr, result);
   } else {
     _wrappedObjects.insert(obj, result);
+    if (obj->parent()== NULL && _wrappedCB) {
+      // tell someone who is interested that the qobject is wrapped the first time, if it has no parent
+      (*_wrappedCB)(obj);
+    }
   }
   return result;
 }
@@ -400,8 +408,6 @@ PythonQtSignalReceiver* PythonQt::getSignalReceiver(QObject* obj)
   if (!r) {
     r = new PythonQtSignalReceiver(obj);
     _p->_signalReceivers.insert(obj, r);
-    // insert destroyed handler
-    connect(obj, SIGNAL(destroyed(QObject*)), _p ,SLOT(destroyedSignalEmitter(QObject*)));
   }
   return r;
 }
@@ -538,6 +544,34 @@ PythonQtObjectPtr PythonQt::parseFile(const QString& filename)
     handleError();
   }
   return p;
+}
+
+PythonQtObjectPtr PythonQt::createModuleFromFile(const QString& name, const QString& filename)
+{
+  PythonQtObjectPtr code = parseFile(filename);
+  PythonQtObjectPtr module = _p->createModule(name, code);
+  return module;
+}
+
+PythonQtObjectPtr PythonQt::createModuleFromScript(const QString& name, const QString& script)
+{
+  PyErr_Clear();
+  QString scriptCode = script;
+  if (scriptCode.isEmpty()) {
+    // we always need at least a linefeed
+    scriptCode = "\n";
+  }
+  PythonQtObjectPtr pycode;
+  pycode.setNewRef(Py_CompileString((char*)scriptCode.toLatin1().data(), "",  Py_file_input));
+  PythonQtObjectPtr module = _p->createModule(name, pycode);
+  return module;
+}
+
+PythonQtObjectPtr PythonQt::createUniqueModule()
+{
+  static QString pyQtStr("PythonQt_module");
+  QString moduleName = pyQtStr+QString::number(_uniqueModuleCount++);
+  return createModuleFromScript(moduleName);
 }
 
 void PythonQt::addObject(PyObject* module, const QString& name, QObject* object)
@@ -763,6 +797,8 @@ const QList<PythonQtConstructorHandler*>& PythonQt::constructorHandlers()
 PythonQtPrivate::PythonQtPrivate()
 {
   _importInterface = NULL;
+  _noLongerWrappedCB = NULL;
+  _wrappedCB = NULL;
 }
 
 void PythonQtPrivate::addDecorators(QObject* o, bool instanceDeco, bool classDeco)
@@ -829,20 +865,9 @@ QList<PythonQtSlotInfo*> PythonQtPrivate::getDecoratorSlots(const QByteArray& cl
   return _knownQtDecoratorSlots.values(className);
 }
 
-void PythonQtPrivate::wrappedObjectDestroyed(QObject* obj)
+void PythonQtPrivate::removeSignalEmitter(QObject* obj)
 {
-  // mlabDebugConst("MLABPython","PyWrapper QObject destroyed " << o << " " << o->name() << " " << o->className());
-  PythonQtWrapper* wrap = _wrappedObjects[obj];
-  if (wrap) {
-    _wrappedObjects.remove(obj);
-    // remove the pointer but keep the wrapper alive in python
-    wrap->_obj = NULL;
-  }
-}
-
-void PythonQtPrivate::destroyedSignalEmitter(QObject* obj)
-{
-  _signalReceivers.take(obj);
+  _signalReceivers.remove(obj);
 }
 
 bool PythonQt::handleError()
@@ -890,6 +915,16 @@ void PythonQt::stdOutRedirectCB(const QString& str)
 void PythonQt::stdErrRedirectCB(const QString& str)
 {
   emit PythonQt::self()->pythonStdErr(str);
+}
+
+void PythonQt::setQObjectWrappedCallback(PythonQtQObjectWrappedCB* cb)
+{
+  _p->_wrappedCB = cb;
+}
+
+void PythonQt::setQObjectNoLongerWrappedCallback(PythonQtQObjectNoLongerWrappedCB* cb)
+{
+  _p->_noLongerWrappedCB = cb;
 }
 
 
@@ -943,4 +978,34 @@ PyObject* PythonQt::helpCalled(PythonQtClassInfo* info)
   } else {
     return PyString_FromString(info->help().toLatin1().data());
   }
+}
+
+void PythonQtPrivate::removeWrapperPointer(void* obj)
+{
+  _wrappedObjects.remove(obj);
+}
+
+PythonQtWrapper* PythonQtPrivate::findWrapperAndRemoveUnused(void* obj)
+{
+  PythonQtWrapper* wrap = _wrappedObjects.value(obj);
+  if (wrap && !wrap->_wrappedPtr && wrap->_obj == NULL) {
+    // this is a wrapper whose QObject was already removed due to destruction
+    // so the obj pointer has to be a new QObject with the same address...
+    // we remove the old one and set the copy to NULL
+    wrap->_objPointerCopy = NULL;
+    removeWrapperPointer(obj);
+    wrap = NULL;
+  }
+  return wrap;
+}
+
+PythonQtObjectPtr PythonQtPrivate::createModule(const QString& name, PyObject* pycode)
+{
+  PythonQtObjectPtr result;
+  if (pycode) {
+    result.setNewRef(PyImport_ExecCodeModule((char*)name.toLatin1().data(), pycode));
+  } else {
+    PythonQt::self()->handleError();
+  }
+  return result;
 }

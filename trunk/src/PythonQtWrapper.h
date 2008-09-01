@@ -45,6 +45,7 @@
 #include <Python.h>
 
 #include "PythonQtSystem.h"
+#include <QPointer>
 
 #include "structmember.h"
 #include "methodobject.h"
@@ -61,8 +62,18 @@ extern PYTHONQT_EXPORT PyTypeObject PythonQtWrapper_Type;
 typedef struct {
   PyObject_HEAD
 
+  //! set the QObject pointer
+  void setQObject(QObject* object) {
+    _obj = object;
+    _objPointerCopy = object;
+  }
+
   //! pointer to the wrapped Qt object or if _wrappedPtr is set, the Qt object that wraps the C++ Ptr
-  QObject* _obj;
+  QPointer<QObject> _obj;
+  //! a copy of the _obj pointer, which is required because the wrapper needs to
+  //! deregister itself via the _obj pointer, even when the QPointer<QObject> object was destroyed
+  void* _objPointerCopy;
+
   //! optional C++ object Ptr that is wrapped by the above _obj
   void*    _wrappedPtr;
 
