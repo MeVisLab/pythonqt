@@ -46,7 +46,8 @@
 #include <QString>
 #include <QByteArray>
 
-//! defines an abstract interface to file access for the Python import statement
+//! Defines an abstract interface to file access for the Python import statement. 
+//! see PythonQt::setImporter()
 class PythonQtImportFileInterface {
 
 public:
