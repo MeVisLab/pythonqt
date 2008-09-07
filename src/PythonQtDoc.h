@@ -52,17 +52,18 @@
  \section Introduction
 
  \b PythonQt is a dynamic Python (http://www.python.org) binding for Qt (http://www.trolltech.com).
- It offers an easy way to embedd the Python scripting language into
+ It offers an easy way to embed the Python scripting language into
  your Qt applications. It makes heavy use of the QMetaObject system and thus requires Qt4.x.
 
  In contrast to <a href="http://www.riverbankcomputing.co.uk/pyqt/">PyQt</a> , PythonQt is \b not a complete
  Python wrapper around the complete Qt functionality. So if you are looking for a way to
  write complete applications in Python using the Qt GUI, you should use PyQt.
 
- If you are looking for a simple way to embed the Python language into your Qt Application
- and to script parts of your application via Python, PythonQt is the way to go!
+ If you are looking for a simple way to embed Python objects into your C++/Qt Application
+ and to script parts of your application via Python, PythonQt is the way to go!  
 
- PythonQt is a stable library that was developed to make the Image Processing and Visualization platform MeVisLab (http://www.mevislab.de)
+ PythonQt is a stable library that was developed to make the 
+ Image Processing and Visualization platform MeVisLab (http://www.mevislab.de)
  scriptable from Python.
 
  \section Licensing
@@ -76,12 +77,14 @@
 
  \section Features
 
+ - Easy wrapping of Python objects from C++ with smart, reference-counting PythonQtObjectPtr. 
+ - Convenient conversions to/from QVariant for PythonQtObjectPtr.
  - Access all \b slots, \b properties, children and registered enums of any QObject derived class from Python
  - Connecting Qt Signals to Python functions (both from within Python and from C++)
- - Wrapping of C++ objects (which are not derived from QObject) via PythonQtCPPWrapperFactory
+ - Wrapping of C++ objects (which are not derived from QObject) via PythonQtCppWrapperFactory
  - Extending C++ and QObject derived classes with additional slots, static methods and constructors (see Decorators)
  - StdOut/Err redirection to Qt signals instead of cout
- - Interface for creating your own \c import replacement, so that Python scripts can be e.g. signed/verified before they are executed (PythonQtImportInterface)
+ - Interface for creating your own \c import replacement, so that Python scripts can be e.g. signed/verified before they are executed (PythonQtImportFileInterface)
  - Mapping of plain-old-datatypes and ALL QVariant types to and from Python
  - Support for wrapping of user QVariant types which are registerd via QMetaType
  - Support for Qt namespace (with all enumerators)
@@ -93,7 +96,7 @@
  Features that PythonQt does NOT support (and will not support):
 
  - you can not derive from QObjects inside of Python, this would require wrapper generation like PyQt does
- - you can only script QObject derived classes, for normal C++ classes you need to create a PythonQtCPPWrapperFactory and adequate wrapper classes or add decorator slots
+ - you can only script QObject derived classes, for normal C++ classes you need to create a PythonQtCppWrapperFactory and adequate wrapper classes or add decorator slots
  - you can not access normal member functions of QObjects, only slots and properties, because the \b moc does not store normal member functions in the MetaObject system
 
  \section Interface
@@ -127,7 +130,7 @@
   <tr><td>OwnRegisteredMetaType</td><td>variant wrapper, optionally with a wrapper provided by addVariantWrapper()</td></tr>
   <tr><td>EnumType</td><td>integer (all enums that are known via the moc and the Qt namespace are supported)</td></tr>
   <tr><td>QObject (and derived classes)</td><td>QObject wrapper</td></tr>
-  <tr><td>C++ object</td><td>CPP wrapper, either wrapped via PythonQtCPPWrapperFactory or just decorated with decorators</td></tr>
+  <tr><td>C++ object</td><td>CPP wrapper, either wrapped via PythonQtCppWrapperFactory or just decorated with decorators</td></tr>
   <tr><td>PyObject</td><td>PyObject</td></tr>
   </table>
 
@@ -182,8 +185,9 @@
 
 \section CPP CPP Wrapping
 
-You can create dedicated wrapper QObject for any C++ class. This is done by deriving from PythonQtCPPWrapperFactory
-and adding your factory via addWrapperFactory(). Whenever PythonQt encounters a CPP pointer (e.g. on a slot or signal)
+You can create dedicated wrapper QObject for any C++ class. This is done by deriving from PythonQtCppWrapperFactory
+and adding your factory via addWrapperFactory(). 
+Whenever PythonQt encounters a CPP pointer (e.g. on a slot or signal)
 and it does not known it as a QObject derived class, it will create a generic CPP wrapper. So even unknown C++ objects
 can be passed through Python. If the wrapper factory supports the CPP class, a QObject wrapper will be created for each
 instance that enters Python. An alternative to a complete wrapper via the wrapper factory are decorators, see \ref Decorators

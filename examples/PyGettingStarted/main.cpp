@@ -60,6 +60,15 @@ int main( int argc, char **argv )
   // evaluate a simple python script and receive the result a qvariant:
   QVariant result = mainModule.evalScript("19*2+4", Py_eval_input);
   
+  // Create object from python, hold onto reference in C++:
+  PythonQtObjectPtr tag = mainModule.evalScript("EyeD3Tagger()\n", Py_eval_input);
+  Q_ASSERT(!tag.isNull());
+
+  // call python methods from C++
+  tag.call("setFileName", QVariantList() << "t.mp3");
+  QVariant fn = tag.call("fileName", QVariantList());
+  Q_ASSERT(fn.toString() == QString("t.mp3"));
+
   // create a small Qt GUI
   QVBoxLayout*  vbox = new QVBoxLayout;
   QGroupBox*    box  = new QGroupBox;
@@ -85,6 +94,8 @@ int main( int argc, char **argv )
   // shows how to call the method with a text that will be append to the browser
   mainModule.call("appendText", QVariantList() << "The ultimate answer is ");
 
+
+  
   return qapp.exec();
 }
 

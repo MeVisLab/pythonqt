@@ -24,3 +24,4 @@ box.edit.connect('returnPressed()', appendLine)
 
 # show the window
 box.show()
+

@@ -5,7 +5,7 @@ florianlink | 2008-09-01
 - merged in features/fixes from the MeVisLab repository:
 - added createModuleFromFile/createModuleFromScript/createUniqueModule
 - switched object destruction to use QPointer and lazy wrapper removal to avoid expensive objectDestroyed signal connections
-- added hash() support for PythnQtWrapper object
+- added hash() support for PythonQtWrapper object
 - added support for signal to python function connections where the function has less arguments than the emitted signal
 - added setQObject[NoLonger]WrappedCallback API to support external reference counting on QObjects that are exposed to PythonQt
 - implemented flush on std redirect to support python logging framework
