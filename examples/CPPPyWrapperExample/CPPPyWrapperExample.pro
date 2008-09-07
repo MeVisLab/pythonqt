@@ -2,7 +2,9 @@ CONFIG += debug
 VPATH += 
 INCLUDEPATH += . $$(PYTHONQT_ROOT)/src /usr/include/python2.5
 
-SOURCES += CPPPyWrapperExample.cpp
+SOURCES += CPPPyWrapperExample.cpp QFileImportInterface.cpp
+HEADERS += QFileImportInterface.h
+
 
 LIBS += -L$$(PYTHONQT_ROOT)/lib -lPythonQt  -lutil
 
