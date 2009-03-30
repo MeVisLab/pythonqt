@@ -1,5 +1,5 @@
-#ifndef _PYTHONQTIMPORTFILEINTERFACE_H
-#define _PYTHONQTIMPORTFILEINTERFACE_H
+#ifndef _PYTHONQTQFILEIMPORTER_H
+#define _PYTHONQTQFILEIMPORTER_H
 
 /*
  *
@@ -35,37 +35,28 @@
 
 //----------------------------------------------------------------------------------
 /*!
-// \file    PythonQtImportFileInterface.h
-// \author  Florian Link
-// \author  Last changed by $Author: florian $
-// \date    2006-05
-*/
+ // \file    PythonQtQFileImporter.h
+ // \author  Florian Link
+ // \author  Last changed by $Author: florian $
+ // \date    2009-03
+ */
 //----------------------------------------------------------------------------------
 
-#include <QDateTime>
-#include <QString>
-#include <QByteArray>
+#include <PythonQtImportFileInterface.h>
 
-//! Defines an abstract interface to file access for the Python import statement. 
-//! see PythonQt::setImporter()
-class PythonQtImportFileInterface {
-
+//! default importer implementation using QFile to load python code
+class PythonQtQFileImporter : public PythonQtImportFileInterface {
 public:
-  // get rid of warnings
-  virtual ~PythonQtImportFileInterface() {}
+    PythonQtQFileImporter();
+    ~PythonQtQFileImporter();
 
-  //! read the given file as byte array, without doing any linefeed translations
-  virtual QByteArray readFileAsBytes(const QString& filename) = 0;
-
-  //! read a source file, expects a readable Python text file with translated line feeds.
-  //! If the file can not be load OR it can not be verified, ok is set to false
-  virtual QByteArray readSourceFile(const QString& filename, bool& ok) = 0;
-
-  //! returns if the file exists
-  virtual bool exists(const QString& filename) = 0;
-
-  //! get the last modified data of a file
-  virtual QDateTime lastModifiedDate(const QString& filename) = 0;
+    QByteArray readFileAsBytes (const QString &filename);
+    
+    QByteArray readSourceFile (const QString &filename, bool &ok);
+    
+    bool exists (const QString &filename);
+    
+    QDateTime lastModifiedDate (const QString &filename);
 
 };
 

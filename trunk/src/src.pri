@@ -18,6 +18,7 @@ HEADERS +=                    \
   $$PWD/PythonQtCppWrapperFactory.h \
   $$PWD/PythonQtVariants.h          \
   $$PWD/PythonQtVariantWrapper.h    \
+  $$PWD/PythonQtQFileImporter.h     \
   $$PWD/wrapper/PythonQtWrappedVariants.h    \
   $$PWD/gui/PythonQtScriptingConsole.h    \
   $$PWD/PythonQtSystem.h
@@ -37,6 +38,7 @@ SOURCES +=                    \
   $$PWD/PythonQtVariants.cpp        \
   $$PWD/PythonQtVariantWrapper.cpp \
   $$PWD/PythonQtWrapper.cpp         \
+  $$PWD/PythonQtQFileImporter.cpp    \
   $$PWD/PythonQtMetaObjectWrapper.cpp \
   $$PWD/gui/PythonQtScriptingConsole.cpp
 

@@ -58,7 +58,7 @@ static void PythonQtVariantWrapper_dealloc(PythonQtVariantWrapper* self)
   self->ob_type->tp_free((PyObject*)self);
 }
 
-static PyObject* PythonQtVariantWrapper_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
+static PyObject* PythonQtVariantWrapper_new(PyTypeObject *type, PyObject * /*args*/, PyObject * /*kwds*/)
 {
   PythonQtVariantWrapper *self;
   
@@ -70,7 +70,7 @@ static PyObject* PythonQtVariantWrapper_new(PyTypeObject *type, PyObject *args, 
   return (PyObject *)self;
 }
 
-static int PythonQtVariantWrapper_init(PythonQtVariantWrapper *self, PyObject *args, PyObject *kwds)
+static int PythonQtVariantWrapper_init(PythonQtVariantWrapper * /*self*/, PyObject * /*args*/, PyObject * /*kwds*/)
 {
   return 0;
 }
@@ -93,7 +93,7 @@ static PyMethodDef PythonQtVariantWrapper_methods[] = {
     {"help", (PyCFunction)PythonQtVariantWrapper_help, METH_NOARGS,
     "Shows the help of available methods for this class"
     },
-    {NULL}  /* Sentinel */
+    {NULL,NULL,0,NULL}  /* Sentinel */
 };
 
 

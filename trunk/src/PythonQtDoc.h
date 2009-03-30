@@ -51,7 +51,7 @@
 
  \section Introduction
 
- \b PythonQt is a dynamic Python (http://www.python.org) binding for Qt (http://www.trolltech.com).
+ \b PythonQt is a dynamic Python (http://www.python.org) binding for Qt (http://www.qtsoftware.com).
  It offers an easy way to embed the Python scripting language into
  your Qt applications. It makes heavy use of the QMetaObject system and thus requires Qt4.x.
 
@@ -339,7 +339,7 @@ yourCpp = None
 
  \section Building
 
- PythonQt requires at least Qt 4.2.2 (or higher) and Python 2.3, 2.4 or 2.5 on Windows, Linux and MacOS X.
+ PythonQt requires at least Qt 4.2.2 (or higher) and Python 2.3, 2.4, 2.5 or 2.6 on Windows, Linux and MacOS X. It has not yet been tested with Python 3.x, but it should only require minor changes.
  To compile PythonQt, you will need a python developer installation which includes Python's header files and
 the python2x.[lib | dll | so | dynlib].
  The build scripts a currently set to use Python 2.5.
@@ -458,9 +458,5 @@ the python2x.[lib | dll | so | dynlib].
   ...
  \endcode
 
-
-  \section TODOs
-
-  - add more information on how to distribute an application that uses PythonQt, including the Python distribution
 
 */

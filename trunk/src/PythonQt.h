@@ -65,6 +65,7 @@ class PythonQtSignalReceiver;
 class PythonQtImportFileInterface;
 class PythonQtCppWrapperFactory;
 class PythonQtConstructorHandler;
+class PythonQtQFileImporter;
 
 typedef void PythonQtQObjectWrappedCB(QObject* object);
 typedef void PythonQtQObjectNoLongerWrappedCB(QObject* object);
@@ -278,8 +279,22 @@ public:
 
   //! replace the internal import implementation and use the supplied interface to load files (both py and pyc files)
   //! (this method should be called directly after initialization of init() and before calling overwriteSysPath().
-  //! It can only be called once, further calls will be ignored silently. (ownership stays with caller)
+  //! On the first call to this method, it will install a generic PythonQt importer in Pythons "path_hooks". 
+  //! This is not reversible, so even setting setImporter(NULL) afterwards will
+  //! keep the custom PythonQt importer with a QFile default import interface.
+  //! Subsequent python import calls will make use of the passed importInterface
+  //! which forwards all import calls to the given \c importInterface.
+  //! Passing NULL will install a default QFile importer.
+  //! (\c importInterface ownership stays with caller)
   void setImporter(PythonQtImportFileInterface* importInterface);
+
+  //! this installs the default QFile importer (which effectively does a setImporter(NULL))
+  //! (without calling setImporter or installDefaultImporter at least once, the default python import
+  //! mechanism is in place)
+  //! the default importer allows to import files from anywhere QFile can read from,
+  //! including the Qt resource system using ":". Keep in mind that you need to extend
+  //! "sys.path" with ":" to be able to import from the Qt resources.
+  void installDefaultImporter() { setImporter(NULL); }
 
   //! set paths that the importer should ignore
   void setImporterIgnorePaths(const QStringList& paths);
@@ -442,6 +457,9 @@ private:
   //! the importer interface (if set)
   PythonQtImportFileInterface* _importInterface;
 
+  //! the default importer
+  PythonQtQFileImporter* _defaultImporter;
+  
   PythonQtQObjectNoLongerWrappedCB* _noLongerWrappedCB;
   PythonQtQObjectWrappedCB* _wrappedCB;
 

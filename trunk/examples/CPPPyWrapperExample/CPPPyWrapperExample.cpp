@@ -1,6 +1,5 @@
 #include <PythonQt.h>
 #include <QtGui>
-#include "QFileImportInterface.h"
 
 int main (int argc, char* argv[]) {
     QApplication app(argc, argv);
@@ -19,11 +18,10 @@ int main (int argc, char* argv[]) {
       Q_ASSERT(fn.toString() == QString("t.mp3"));
       // tag goes out of scope, reference count decremented.
     }
-    qDebug() << "test1";
-/*
     {  
       // Allow the python system path to recognize QFile paths in the sys.path
-      QFileImportInterface qfii;
+      //QFileImportInterface qfii;
+      PythonQt::self()->setImporter(NULL);
       // append the Qt resource root directory to the sys.path
       mainModule.evalScript("sys.path.append(':')\n");
       mainModule.evalScript("import eyed3tagger\n");
@@ -33,7 +31,6 @@ int main (int argc, char* argv[]) {
       QVariant fn = tag.call("fileName", QVariantList());
       Q_ASSERT(fn.toString() == QString("t.mp3"));
     } 
-    qDebug() << "test2"; */
     { // alternative using import and loading it as a real module from sys.path
       // import sys first
       mainModule.evalScript(QString("sys.path.append('%1')\n").arg(QDir::currentPath()));

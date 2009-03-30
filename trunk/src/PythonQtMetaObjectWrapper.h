@@ -70,6 +70,9 @@ typedef struct {
 // an abstact class for handling construction of objects
 class PythonQtConstructorHandler {
 public:
+  //! get rid of warnings
+  virtual ~PythonQtConstructorHandler() {}
+
   virtual QObject* create(const QMetaObject* meta, PyObject *args, PyObject *kw, QString& error) = 0;
 };
 
