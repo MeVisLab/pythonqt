@@ -1,6 +1,3 @@
-#ifndef _PYTHONQTIMPORTFILEINTERFACE_H
-#define _PYTHONQTIMPORTFILEINTERFACE_H
-
 /*
  *
  *  Copyright (C) 2006 MeVis Research GmbH All Rights Reserved.
@@ -35,38 +32,49 @@
 
 //----------------------------------------------------------------------------------
 /*!
-// \file    PythonQtImportFileInterface.h
-// \author  Florian Link
-// \author  Last changed by $Author: florian $
-// \date    2006-05
-*/
+ // \file    PythonQtQFileImporter.h
+ // \author  Florian Link
+ // \author  Last changed by $Author: florian $
+ // \date    2009-03
+ */
 //----------------------------------------------------------------------------------
 
-#include <QDateTime>
-#include <QString>
-#include <QByteArray>
+#include <QFile>
+#include <QFileInfo>
 
-//! Defines an abstract interface to file access for the Python import statement. 
-//! see PythonQt::setImporter()
-class PythonQtImportFileInterface {
+#include "PythonQtQFileImporter.h"
 
-public:
-  // get rid of warnings
-  virtual ~PythonQtImportFileInterface() {}
+PythonQtQFileImporter::PythonQtQFileImporter() {
+}    
 
-  //! read the given file as byte array, without doing any linefeed translations
-  virtual QByteArray readFileAsBytes(const QString& filename) = 0;
+PythonQtQFileImporter::~PythonQtQFileImporter()  {
+}
 
-  //! read a source file, expects a readable Python text file with translated line feeds.
-  //! If the file can not be load OR it can not be verified, ok is set to false
-  virtual QByteArray readSourceFile(const QString& filename, bool& ok) = 0;
+QByteArray PythonQtQFileImporter::readFileAsBytes (const QString &filename) {
+  QFile f(filename);
+  if (f.open(QIODevice::ReadOnly)) {
+    return f.readAll();
+  } else {
+    return QByteArray();
+  }
+}
 
-  //! returns if the file exists
-  virtual bool exists(const QString& filename) = 0;
+QByteArray PythonQtQFileImporter::readSourceFile (const QString &filename, bool &ok) {
+  QFile f(filename);
+  if (f.open(QIODevice::ReadOnly | QIODevice::Text)) {
+    ok = true;
+    return f.readAll();
+  } else {
+    ok = false;
+    return QByteArray();
+  }
+}
 
-  //! get the last modified data of a file
-  virtual QDateTime lastModifiedDate(const QString& filename) = 0;
+bool PythonQtQFileImporter::exists (const QString &filename) {
+  return QFile::exists(filename);
+}
 
-};
-
-#endif
+QDateTime PythonQtQFileImporter::lastModifiedDate (const QString &filename) {
+  QFileInfo fi(filename);
+  return fi.lastModified();
+}

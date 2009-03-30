@@ -52,7 +52,7 @@ static void PythonQtMetaObjectWrapper_dealloc(PythonQtMetaObjectWrapper* self)
   self->ob_type->tp_free((PyObject*)self);
 }
 
-static PyObject* PythonQtMetaObjectWrapper_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
+static PyObject* PythonQtMetaObjectWrapper_new(PyTypeObject *type, PyObject * /*args*/, PyObject * /*kwds*/)
 {
   PythonQtMetaObjectWrapper *self;
 
@@ -63,7 +63,7 @@ static PyObject* PythonQtMetaObjectWrapper_new(PyTypeObject *type, PyObject *arg
   return (PyObject *)self;
 }
 
-static int PythonQtMetaObjectWrapper_init(PythonQtMetaObjectWrapper *self, PyObject *args, PyObject *kwds)
+static int PythonQtMetaObjectWrapper_init(PythonQtMetaObjectWrapper * /*self*/, PyObject * /*args*/, PyObject * /*kwds*/)
 {
   return 0;
 }
@@ -123,7 +123,7 @@ static PyMethodDef PythonQtMetaObjectWrapper_methods[] = {
     {"help", (PyCFunction)PythonQtMetaObjectWrapper_help, METH_NOARGS,
     "Shows the help of available methods for this class"
     },
-    {NULL}  /* Sentinel */
+    {NULL, NULL, 0 , NULL}  /* Sentinel */
 };
 
 

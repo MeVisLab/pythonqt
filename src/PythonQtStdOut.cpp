@@ -41,7 +41,7 @@
 
 #include "PythonQtStdOut.h"
 
-static PyObject *PythonQtStdOutRedirect_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
+static PyObject *PythonQtStdOutRedirect_new(PyTypeObject *type, PyObject * /*args*/, PyObject * /*kwds*/)
 {
   PythonQtStdOutRedirect *self;
   self = (PythonQtStdOutRedirect *)type->tp_alloc(type, 0);
@@ -70,7 +70,7 @@ static PyObject *PythonQtStdOutRedirect_write(PyObject *self, PyObject *args)
   return Py_BuildValue("");
 }
 
-static PyObject *PythonQtStdOutRedirect_flush(PyObject *self, PyObject *args)
+static PyObject *PythonQtStdOutRedirect_flush(PyObject * /*self*/, PyObject * /*args*/)
 {
   return Py_BuildValue("");
 }
@@ -83,7 +83,7 @@ static PyMethodDef PythonQtStdOutRedirect_methods[] = {
   {"flush", (PyCFunction)PythonQtStdOutRedirect_flush, METH_VARARGS,
   "flush the output, currently not implemented but needed for logging framework"
   },
-  {NULL}  /* Sentinel */
+  {NULL,    NULL, 0 , NULL} /* sentinel */
 };
 
 static PyMemberDef PythonQtStdOutRedirect_members[] = {

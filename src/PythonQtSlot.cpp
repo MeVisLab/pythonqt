@@ -178,7 +178,7 @@ PyObject *PythonQtSlotFunction_Call(PyObject *func, PyObject *args, PyObject *kw
   }
 }
 
-PyObject *PythonQtSlotFunction_CallImpl(QObject* objectToCall, PythonQtSlotInfo* info, PyObject *args, PyObject *kw, bool isVariantCall, void* firstArg)
+PyObject *PythonQtSlotFunction_CallImpl(QObject* objectToCall, PythonQtSlotInfo* info, PyObject *args, PyObject * /*kw*/, bool isVariantCall, void* firstArg)
 {
   int argc = PyTuple_Size(args);
   
@@ -298,14 +298,14 @@ meth_dealloc(PythonQtSlotFunctionObject *m)
 }
 
 static PyObject *
-meth_get__doc__(PythonQtSlotFunctionObject *m, void *closure)
+meth_get__doc__(PythonQtSlotFunctionObject * /*m*/, void * /*closure*/)
 {
   Py_INCREF(Py_None);
   return Py_None;
 }
 
 static PyObject *
-meth_get__name__(PythonQtSlotFunctionObject *m, void *closure)
+meth_get__name__(PythonQtSlotFunctionObject *m, void * /*closure*/)
 {
   return PyString_FromString(m->m_ml->metaMethod()->signature());
 }
@@ -328,7 +328,7 @@ meth_traverse(PythonQtSlotFunctionObject *m, visitproc visit, void *arg)
 }
 
 static PyObject *
-meth_get__self__(PythonQtSlotFunctionObject *m, void *closure)
+meth_get__self__(PythonQtSlotFunctionObject *m, void * /*closure*/)
 {
   PyObject *self;
   if (PyEval_GetRestricted()) {
@@ -347,13 +347,17 @@ static PyGetSetDef meth_getsets [] = {
   {"__doc__",  (getter)meth_get__doc__,  NULL, NULL},
   {"__name__", (getter)meth_get__name__, NULL, NULL},
   {"__self__", (getter)meth_get__self__, NULL, NULL},
-  {0}
+  {NULL, NULL, NULL,NULL},
 };
+
+#if PY_MAJOR_VERSION == 2 && PY_MINOR_VERSION < 6
+#define PY_WRITE_RESTRICTED WRITE_RESTRICTED
+#endif
 
 #define OFF(x) offsetof(PythonQtSlotFunctionObject, x)
 
 static PyMemberDef meth_members[] = {
-  {"__module__",    T_OBJECT,     OFF(m_module), WRITE_RESTRICTED},
+  {"__module__",    T_OBJECT,     OFF(m_module), PY_WRITE_RESTRICTED},
   {NULL}
 };
 

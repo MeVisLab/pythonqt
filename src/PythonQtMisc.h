@@ -79,6 +79,7 @@ public:
     foreach(chunk, _chunks) {
       delete[]chunk;
     }
+    _chunks.clear();
   }
 
   //! reset the storage to 0 (without freeing memory, thus caching old entries for reuse)

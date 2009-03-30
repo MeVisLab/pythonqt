@@ -588,7 +588,7 @@ QString PythonQtConv::PyObjGetString(PyObject* val, bool strict, bool& ok) {
   return r;
 }
 
-QByteArray PythonQtConv::PyObjGetBytes(PyObject* val, bool strict, bool& ok) {
+QByteArray PythonQtConv::PyObjGetBytes(PyObject* val, bool /*strict*/, bool& ok) {
   QByteArray r;
   ok = true;
   if (val->ob_type == &PyString_Type) {
@@ -980,7 +980,7 @@ PyObject* PythonQtConv::ConvertQListWithPointersToPython(QList<void*>* list, con
   return result;
 }
 
-bool PythonQtConv::ConvertPythonListToQListOfType(PyObject* obj, QList<void*>* list, const QByteArray& type, bool strict)
+bool PythonQtConv::ConvertPythonListToQListOfType(PyObject* obj, QList<void*>* list, const QByteArray& type, bool /*strict*/)
 {
   bool result = false;
   if (PySequence_Check(obj)) {

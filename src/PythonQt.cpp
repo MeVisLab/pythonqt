@@ -49,6 +49,7 @@
 #include "PythonQtCppWrapperFactory.h"
 #include "PythonQtVariants.h"
 #include "PythonQtStdDecorators.h"
+#include "PythonQtQFileImporter.h"
 #include <pydebug.h>
 
 PythonQt* PythonQt::_self = NULL;
@@ -163,6 +164,14 @@ PythonQt::~PythonQt() {
 }
 
 PythonQtPrivate::~PythonQtPrivate() {
+  delete _defaultImporter;
+  _defaultImporter = NULL;
+  {
+    QHashIterator<QByteArray, PythonQtSlotInfo *> i(_knownQtDecoratorSlots);
+    while (i.hasNext()) {
+      delete i.next().value();
+    }
+  }
   {
     QHashIterator<QByteArray, PythonQtClassInfo *> i(_knownQtClasses);
     while (i.hasNext()) {
@@ -184,13 +193,25 @@ PythonQtPrivate::~PythonQtPrivate() {
   {
     QHashIterator<QByteArray, PythonQtSlotInfo *> i(_constructorSlots);
     while (i.hasNext()) {
-      delete i.next().value();
+      PythonQtSlotInfo* cur = i.next().value();
+      while(cur->nextInfo()) {
+        PythonQtSlotInfo* next = cur->nextInfo();
+        delete cur;
+        cur = next;
+      }
+      delete cur;
     }
   }
   {
     QHashIterator<QByteArray, PythonQtSlotInfo *> i(_destructorSlots);
     while (i.hasNext()) {
-      delete i.next().value();
+      PythonQtSlotInfo* cur = i.next().value();
+      while(cur->nextInfo()) {
+        PythonQtSlotInfo* next = cur->nextInfo();
+        delete cur;
+        cur = next;
+      }
+      delete cur;
     }
   }
   PythonQtConv::global_valueStorage.clear();
@@ -204,7 +225,7 @@ PythonQtPrivate::~PythonQtPrivate() {
 
 PythonQtImportFileInterface* PythonQt::importInterface()
 {
-  return _self->_p->_importInterface;
+  return _self->_p->_importInterface?_self->_p->_importInterface:_self->_p->_defaultImporter;
 }
 
 void PythonQt::registerClass(const QMetaObject* metaobject)
@@ -760,12 +781,8 @@ void PythonQt::registerQObjectClassNames(const QStringList& names)
 
 void PythonQt::setImporter(PythonQtImportFileInterface* importInterface)
 {
-  static bool first = true;
-  if (first) {
-    first = false;
-    _p->_importInterface = importInterface;
-    PythonQtImport::init();
-  }
+  PythonQtImport::init();
+  _p->_importInterface = importInterface;
 }
 
 void PythonQt::setImporterIgnorePaths(const QStringList& paths)
@@ -797,6 +814,7 @@ const QList<PythonQtConstructorHandler*>& PythonQt::constructorHandlers()
 PythonQtPrivate::PythonQtPrivate()
 {
   _importInterface = NULL;
+  _defaultImporter = new PythonQtQFileImporter;
   _noLongerWrappedCB = NULL;
   _wrappedCB = NULL;
 }

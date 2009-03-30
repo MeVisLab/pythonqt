@@ -112,7 +112,7 @@ PythonQtImport::module_info PythonQtImport::getModuleInfo(PythonQtImporter* self
 /* PythonQtImporter.__init__
   Just store the path argument
 */
-int PythonQtImporter_init(PythonQtImporter *self, PyObject *args, PyObject *kwds)
+int PythonQtImporter_init(PythonQtImporter *self, PyObject *args, PyObject * /*kwds*/)
 {
   self->_path = NULL;
 
@@ -205,8 +205,11 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
   }
   dict = PyModule_GetDict(mod);
 
-  if (PyDict_SetItemString(dict, "__loader__", (PyObject *)self) != 0)
-    goto error;
+  if (PyDict_SetItemString(dict, "__loader__", (PyObject *)self) != 0) {
+    Py_DECREF(code);
+    Py_DECREF(mod);
+    return NULL;
+  }
 
   if (ispackage) {
     PyObject *pkgpath, *fullpath;
@@ -217,33 +220,38 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
           self->_path->toLatin1().constData(),
           SEP,
           subname.toLatin1().constData());
-    if (fullpath == NULL)
-      goto error;
+    if (fullpath == NULL) {
+      Py_DECREF(code);
+      Py_DECREF(mod);
+      return NULL;
+    }
 
     pkgpath = Py_BuildValue("[O]", fullpath);
     Py_DECREF(fullpath);
-    if (pkgpath == NULL)
-      goto error;
+    if (pkgpath == NULL) {
+      Py_DECREF(code);
+      Py_DECREF(mod);
+      return NULL;
+    }
     err = PyDict_SetItemString(dict, "__path__", pkgpath);
     Py_DECREF(pkgpath);
-    if (err != 0)
-      goto error;
+    if (err != 0) {
+      Py_DECREF(code);
+      Py_DECREF(mod);
+      return NULL;
+    }
   }
   mod = PyImport_ExecCodeModuleEx(fullname, code, (char*)modpath.toLatin1().data());
   Py_DECREF(code);
   if (Py_VerboseFlag)
     PySys_WriteStderr("import %s # loaded from %s\n",
-          fullname, modpath);
+          fullname, modpath.toLatin1().constData());
   return mod;
-error:
-  Py_DECREF(code);
-  Py_DECREF(mod);
-  return NULL;
 }
 
 
 PyObject *
-PythonQtImporter_get_data(PyObject *obj, PyObject *args)
+PythonQtImporter_get_data(PyObject* /*obj*/, PyObject* /*args*/)
 {
   // EXTRA, NOT YET IMPLEMENTED
   return NULL;
@@ -263,7 +271,7 @@ PythonQtImporter_get_code(PyObject *obj, PyObject *args)
 }
 
 PyObject *
-PythonQtImporter_get_source(PyObject *obj, PyObject *args)
+PythonQtImporter_get_source(PyObject * /*obj*/, PyObject * /*args*/)
 {
   // EXTRA, NOT YET IMPLEMENTED
 /*
@@ -353,7 +361,7 @@ PyMethodDef PythonQtImporter_methods[] = {
    doc_get_code},
   {"get_source", PythonQtImporter_get_source, METH_VARARGS,
    doc_get_source},
-  {NULL,    NULL} /* sentinel */
+  {NULL,    NULL, 0 , NULL} /* sentinel */
 };
 
 
@@ -579,24 +587,11 @@ PythonQtImport::compileSource(const QString& path, const QByteArray& data)
 /* Return the code object for the module named by 'fullname' from the
    Zip archive as a new reference. */
 PyObject *
-PythonQtImport::getCodeFromData(const QString& path, int isbytecode,int ispackage, time_t mtime)
+PythonQtImport::getCodeFromData(const QString& path, int isbytecode,int /*ispackage*/, time_t mtime)
 {
-  bool hasImporter = PythonQt::importInterface()!=NULL;
-
   PyObject *code;
 
   QByteArray qdata;
-  if (!hasImporter) {
-    QFile file(path);
-    QIODevice::OpenMode flags = QIODevice::ReadOnly;
-    if (!isbytecode) {
-      flags |= QIODevice::Text;
-    }
-    if (!file.open(flags)) {
-      return NULL;
-    } 
-    qdata = file.readAll();
-  } else {
     if (!isbytecode) {
       //    mlabDebugConst("MLABPython", "reading source " << path);
       bool ok;
@@ -611,7 +606,6 @@ PythonQtImport::getCodeFromData(const QString& path, int isbytecode,int ispackag
     } else {
       qdata = PythonQt::importInterface()->readFileAsBytes(path);
     }
-  }
 
   if (isbytecode) {
 //    mlabDebugConst("MLABPython", "reading bytecode " << path);
@@ -623,7 +617,7 @@ PythonQtImport::getCodeFromData(const QString& path, int isbytecode,int ispackag
     if (code) {
       // save a pyc file if possible
       QDateTime time;
-      time = hasImporter?PythonQt::importInterface()->lastModifiedDate(path):QFileInfo(path).lastModified();
+      time = PythonQt::importInterface()->lastModifiedDate(path);
       writeCompiledModule((PyCodeObject*)code, path+"c", time.toTime_t());
     }
   }
@@ -637,16 +631,10 @@ PythonQtImport::getMTimeOfSource(const QString& path)
   QString path2 = path;
   path2.truncate(path.length()-1);
 
-  bool hasImporter = PythonQt::importInterface()!=NULL;
-  if (hasImporter) {
-    if (PythonQt::importInterface()->exists(path2)) {
-      mtime = PythonQt::importInterface()->lastModifiedDate(path2).toTime_t();
-    }
-  } else {
-    if (QFile::exists(path2)) {
-      mtime = QFileInfo(path2).lastModified().toTime_t();
-    }
+  if (PythonQt::importInterface()->exists(path2)) {
+    mtime = PythonQt::importInterface()->lastModifiedDate(path2).toTime_t();
   }
+
   return mtime;
 }
 
@@ -708,13 +696,10 @@ QString PythonQtImport::replaceExtension(const QString& str, const QString& ext)
 
 PyObject* PythonQtImport::getCodeFromPyc(const QString& file)
 {
-  bool hasImporter = PythonQt::importInterface()!=NULL;
-
   PyObject* code;
   const static QString pycStr("pyc");
   QString pyc = replaceExtension(file, pycStr);
-  if ((hasImporter && PythonQt::importInterface()->exists(pyc)) ||
-    (!hasImporter && QFile::exists(pyc))) {
+  if (PythonQt::importInterface()->exists(pyc)) {
     time_t mtime = 0;
     mtime = getMTimeOfSource(pyc);
     code = getCodeFromData(pyc, true, false, mtime);
@@ -732,10 +717,16 @@ PyObject* PythonQtImport::getCodeFromPyc(const QString& file)
 /* Module init */
 
 PyDoc_STRVAR(mlabimport_doc,
-"Imports python files into MeVisLab, completely replaces internal python import");
+"Imports python files into PythonQt, completely replaces internal python import");
 
 void PythonQtImport::init()
 {
+  static bool first = true;
+  if (!first) {
+    return;
+  }
+  first = false;
+
   PyObject *mod;
 
   if (PyType_Ready(&PythonQtImporter_Type) < 0)
@@ -778,7 +769,7 @@ void PythonQtImport::init()
   PyObject* classobj = PyDict_GetItemString(PyModule_GetDict(mod), "PythonQtImporter");
   PyObject* path_hooks = PySys_GetObject("path_hooks");
   PyList_Append(path_hooks, classobj);
-  
+
 #ifndef WIN32
   // reload the encodings module, because it might fail to custom import requirements (e.g. encryption).
   PyObject* modules         = PyImport_GetModuleDict();

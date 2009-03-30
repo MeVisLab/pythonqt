@@ -91,7 +91,7 @@ static void PythonQtWrapper_dealloc(PythonQtWrapper* self)
   self->ob_type->tp_free((PyObject*)self);
 }
 
-static PyObject* PythonQtWrapper_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
+static PyObject* PythonQtWrapper_new(PyTypeObject *type, PyObject * /*args*/, PyObject * /*kwds*/)
 {
   PythonQtWrapper *self;
 
@@ -105,7 +105,7 @@ static PyObject* PythonQtWrapper_new(PyTypeObject *type, PyObject *args, PyObjec
   return (PyObject *)self;
 }
 
-static int PythonQtWrapper_init(PythonQtWrapper *self, PyObject *args, PyObject *kwds)
+static int PythonQtWrapper_init(PythonQtWrapper * /*self*/, PyObject * /*args*/, PyObject * /*kwds*/)
 {
   return 0;
 }
@@ -128,7 +128,7 @@ static PyMethodDef PythonQtWrapper_methods[] = {
     {"help", (PyCFunction)PythonQtWrapper_help, METH_NOARGS,
     "Shows the help of available methods for this class"
     },
-    {NULL}  /* Sentinel */
+    {NULL, NULL, 0, NULL}  /* Sentinel */
 };
 
 
@@ -163,6 +163,9 @@ static PyObject *PythonQtWrapper_getattro(PyObject *obj,PyObject *name)
     break;
   case PythonQtMemberInfo::EnumValue:
     return PyInt_FromLong(member._enumValue);
+    break;
+    default:
+      // is an invalid type, go on
     break;
   }
 
