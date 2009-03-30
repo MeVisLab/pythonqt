@@ -1,6 +1,15 @@
 
 Version 1.1 ChangeLog: 
 
+florianlink | 2009-03-30
+- removed warnings
+- fixed some memory leaks (only on library cleanup)
+- fixed bad QString usage as %s argument
+- added PythonQtQFileImporter, which implements a default importer using QFile
+- added PythonQt::self()->installDefaultImporter() to enable the new default importer
+- modified example to make use of new importer
+- removed ugly goto, which was copied from original zip import
+
 florianlink | 2008-09-01
 - merged in features/fixes from the MeVisLab repository:
 - added createModuleFromFile/createModuleFromScript/createUniqueModule
