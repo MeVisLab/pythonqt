@@ -122,6 +122,9 @@ public:
   //! set the parent class name of a wrapped CPP pointer
   void setWrappedParentClassName(const QByteArray& name) { _wrappedParentClassName = name; _parentClassInfo = NULL; _parentClassInfoResolved = false; }
 
+  //! check if the special method "hasOwner" is implemented and if it returns false, which means that the object may be destroyed
+  bool hasOwnerMethodButNoOwner(void* object);
+
 private:
   //! resolve the parent class from either meta object or cpp parent class name
   void resolveParentClassInfo();

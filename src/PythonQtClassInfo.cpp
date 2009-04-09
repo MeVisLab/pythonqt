@@ -641,3 +641,19 @@ QObject* PythonQtClassInfo::decorator()
   }
   return _decoratorProvider;
 }
+
+bool PythonQtClassInfo::hasOwnerMethodButNoOwner(void* object)
+{
+  PythonQtMemberInfo info = member("hasOwner");
+  if (info._type == PythonQtMemberInfo::Slot) {
+    void* obj = object;
+    bool result = false;
+    void* args[2];
+    args[0] = &result;
+    args[1] = &obj;
+    info._slot->decorator()->qt_metacall(QMetaObject::InvokeMetaMethod, info._slot->slotIndex(), args);
+    return !result;
+  } else {
+    return false;
+  }
+}
