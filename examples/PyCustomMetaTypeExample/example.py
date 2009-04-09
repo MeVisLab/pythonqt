@@ -1,4 +1,4 @@
-from PythonQt import *
+from PythonQt import CustomObject
 
 # create a new object
 custom = CustomObject("John","Doe")

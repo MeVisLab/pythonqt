@@ -38,15 +38,16 @@
 #include <QHash>
 #include <QByteArray>
 #include <QList>
+#include "PythonQt.h"
 
 class PythonQtSlotInfo;
 
 struct PythonQtMemberInfo {
   enum Type {
-    Invalid, Slot, EnumValue, Property 
+    Invalid, Slot, EnumValue, Property, NotFound 
   };
 
-  PythonQtMemberInfo() { _type = Invalid; }
+  PythonQtMemberInfo():_slot(NULL),_enumValue(0),_type(Invalid) { }
   
   PythonQtMemberInfo(PythonQtSlotInfo* info) {
     _type = Slot;
@@ -88,11 +89,8 @@ public:
 
   PythonQtSlotInfo* constructors();
   
-  //! get the Qt classname
+  //! get the classname (either of the QObject or of the wrapped CPP object)
   const char* className();
-
-  //! get the classname of the wrapped C++ class
-  const QByteArray& wrappedCPPClassName();
 
   //! returns if the object is a CPP wrapper
   bool isCPPWrapper() { return !_wrappedClassName.isEmpty(); }
@@ -112,13 +110,46 @@ public:
   //! get list of all members
   QStringList memberList(bool metaOnly = false);
 
+  //! get the meta type id of this class (only valid for isCPPWrapper() == true)
+  int metaTypeId() { return _metaTypeId; }
+
+  //! set an additional decorator provider that offers additional decorator slots for this class 
+  void setDecoratorProvider(PythonQtQObjectCreatorFunctionCB* cb) { _decoratorProviderCB = cb; _decoratorProvider = NULL; }
+
+  //! get the decorator qobject instance
+  QObject* decorator();
+  
+  //! set the parent class name of a wrapped CPP pointer
+  void setWrappedParentClassName(const QByteArray& name) { _wrappedParentClassName = name; _parentClassInfo = NULL; _parentClassInfoResolved = false; }
+
 private:
+  //! resolve the parent class from either meta object or cpp parent class name
+  void resolveParentClassInfo();
+  
+  //! clear all cached members
+  void clearCachedMembers();
+
+  PythonQtSlotInfo* findDecoratorSlotsFromDecoratorProvider(const char* memberName, PythonQtSlotInfo* inputInfo, bool &found, QHash<QByteArray, PythonQtMemberInfo>& memberCache);
+  void listDecoratorSlotsFromDecoratorProvider(QStringList& list, bool metaOnly);
+
+  bool lookForPropertyAndCache(const char* memberName);
+  bool lookForMethodAndCache(const char* memberName);
+  bool lookForEnumAndCache(const QMetaObject* m, const char* memberName);
+
   PythonQtSlotInfo* findDecoratorSlots(const char* classname, const char* memberName, int memberNameLen, PythonQtSlotInfo* tail, bool &found);
   int findCharOffset(const char* sigStart, char someChar);
   QHash<QByteArray, PythonQtMemberInfo> _cachedMembers;
   PythonQtSlotInfo*                    _constructors;
   const QMetaObject*                   _meta;
   QByteArray                           _wrappedClassName;
+  QByteArray                           _wrappedParentClassName;
+  QObject*                             _decoratorProvider;
+  PythonQtQObjectCreatorFunctionCB*    _decoratorProviderCB;
+  PythonQtClassInfo*                   _parentClassInfo;
+  
+  bool                                 _parentClassInfoResolved;
+  int                                  _metaTypeId;
+  
 };
 
 //---------------------------------------------------------------

@@ -1,5 +1,6 @@
 TEMPLATE = subdirs
-SUBDIRS = PyGettingStarted \
+SUBDIRS = CPPPyWrapperExample \
+          PyGettingStarted \
           PyCPPWrapperExample \
           PyCustomMetaTypeExample \
           PyGuiExample \

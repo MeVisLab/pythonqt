@@ -1,2 +1,2 @@
 TEMPLATE = subdirs
-SUBDIRS = PythonQtGui
+SUBDIRS = PythonQt_QtAll

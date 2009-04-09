@@ -83,6 +83,9 @@ typedef struct {
   //! flag that stores if the object is owned by pythonQt
   bool _ownedByPythonQt;
 
+  //! stores that the owned object should be destroyed using QMetaType::destroy()
+  bool _useQMetaTypeDestroy;
+  
 } PythonQtWrapper;
 
 

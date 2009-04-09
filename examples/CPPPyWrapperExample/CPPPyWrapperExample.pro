@@ -1,11 +1,15 @@
-CONFIG += debug
-VPATH += 
-INCLUDEPATH += . $$(PYTHONQT_ROOT)/src /usr/include/python2.5
 
-SOURCES += CPPPyWrapperExample.cpp
+TARGET   = CPPPyWrapperExample
+TEMPLATE = app
 
-mac { CONFIG -= app_bundle }
+mac:CONFIG -= app_bundle
 
-LIBS += -L$$(PYTHONQT_ROOT)/lib -lPythonQt_d  -lutil
+DESTDIR           = ../../lib
+
+include ( ../../build/common.prf )  
+include ( ../../build/PythonQt.prf )  
+
+SOURCES +=                    \
+  CPPPyWrapperExample.cpp        
 
 RESOURCES += CPPPyWrapperExample.qrc

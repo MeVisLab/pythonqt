@@ -171,7 +171,18 @@ static PyObject * PythonQtMetaObjectWrapper_repr(PyObject * obj)
 {
   PythonQtMetaObjectWrapper* wt = (PythonQtMetaObjectWrapper*)obj;
   if (wt->_info->isCPPWrapper()) {
-    return PyString_FromFormat("%s Class (C++ wrapped by %s)", wt->_info->className(), wt->_info->metaObject()->className());
+    const QMetaObject* meta = wt->_info->metaObject(); 
+    if (!meta) {
+      QObject* decorator = wt->_info->decorator();
+      if (decorator) {
+        meta = decorator->metaObject();
+      }
+    }
+    if (meta) {
+      return PyString_FromFormat("%s Class (C++ wrapped by %s)", wt->_info->className(), meta->className());
+    } else {
+      return PyString_FromFormat("%s Class (C++ unwrapped)", wt->_info->className());
+    }
   } else {
     return PyString_FromFormat("%s Class", wt->_info->className());
   }

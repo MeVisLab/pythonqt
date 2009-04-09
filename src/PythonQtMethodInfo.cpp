@@ -92,16 +92,22 @@ void PythonQtMethodInfo::fillParameterInfo(ParameterInfo& type, const QByteArray
     } else {
       type.isConst = false;
     }
-    // EXTRA: & references are not yet supported, while const & is removed by moc
+    bool hadPointer   = false;
+    bool hadReference = false;
+    // remove * and & from the end of the string, handle & and * the same way
     while (name.at(len-1) == '*') {
       len--;
+      hadPointer = true;
+    }
+    while (name.at(len-1) == '&') {
+      len--;
+      hadReference = true;
     }
     if (len!=name.length()) {
       name = name.left(len);
-      type.isPointer = true;
-    } else {
-      type.isPointer = false;
     }
+    type.isPointer = hadPointer;
+
     QByteArray alias = _parameterNameAliases.value(name);
     if (!alias.isEmpty()) {
       name = alias;

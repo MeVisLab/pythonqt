@@ -7,7 +7,7 @@ int main (int argc, char* argv[]) {
     PythonQtObjectPtr mainModule = PythonQt::self()->getMainModule();
     mainModule.evalScript(QString("import sys\n"));
     Q_ASSERT(!mainModule.isNull());
-    { 
+    {
       // evaluate a python file embedded in executable as resource:
       mainModule.evalFile(":eyed3tagger.py");
       // create an object, hold onto its reference
@@ -18,9 +18,8 @@ int main (int argc, char* argv[]) {
       Q_ASSERT(fn.toString() == QString("t.mp3"));
       // tag goes out of scope, reference count decremented.
     }
-    {  
+    {
       // Allow the python system path to recognize QFile paths in the sys.path
-      //QFileImportInterface qfii;
       PythonQt::self()->setImporter(NULL);
       // append the Qt resource root directory to the sys.path
       mainModule.evalScript("sys.path.append(':')\n");
@@ -30,7 +29,7 @@ int main (int argc, char* argv[]) {
       tag.call("setFileName", QVariantList() << "t.mp3");
       QVariant fn = tag.call("fileName", QVariantList());
       Q_ASSERT(fn.toString() == QString("t.mp3"));
-    } 
+    }
     { // alternative using import and loading it as a real module from sys.path
       // import sys first
       mainModule.evalScript(QString("sys.path.append('%1')\n").arg(QDir::currentPath()));

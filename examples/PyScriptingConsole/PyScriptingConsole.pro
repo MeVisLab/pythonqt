@@ -9,9 +9,11 @@ TEMPLATE = app
 
 DESTDIR           = ../../lib
 
+mac:CONFIG-= app_bundle
+
 include ( ../../build/common.prf )  
 include ( ../../build/PythonQt.prf )  
-include ( ../../build/PythonQtGui.prf )  
+include ( ../../build/PythonQt_QtAll.prf )  
 
 HEADERS +=                    \
   PyExampleObject.h             

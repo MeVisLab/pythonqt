@@ -70,7 +70,8 @@ public:
     MI_ERROR,
       MI_NOT_FOUND,
       MI_MODULE,
-      MI_PACKAGE
+      MI_PACKAGE,
+      MI_SHAREDLIBRARY
   };
 
   //! initialize

@@ -50,10 +50,8 @@
 #define PYTHONQT_MAX_ARGS 32
 
 
-PyObject* PythonQtCallSlot(QObject* objectToCall, PyObject* args, bool strict, PythonQtSlotInfo* info, bool isVariantCall, void* firstArgument)
+PyObject* PythonQtCallSlot(QObject* objectToCall, PyObject* args, bool strict, PythonQtSlotInfo* info, void* firstArgument)
 {
-  if (isVariantCall && info->isInstanceDecorator()) return NULL;
-
   static unsigned int recursiveEntry = 0;
   
   // store the current storage position, so that we can get back to this state after a slot is called
@@ -96,7 +94,7 @@ PyObject* PythonQtCallSlot(QObject* objectToCall, PyObject* args, bool strict, P
   const QMetaObject* meta = objectToCall?objectToCall->metaObject():NULL;
   bool ok = true;
   bool skipFirst = false;
-  if (info->isInstanceDecorator() || isVariantCall) {
+  if (info->isInstanceDecorator()) {
     skipFirst = true;
     if (!firstArgument) {
       argList[1] = &objectToCall;
@@ -163,14 +161,7 @@ PyObject *PythonQtSlotFunction_Call(PyObject *func, PyObject *args, PyObject *kw
   PythonQtSlotInfo*    info = f->m_ml;
   if (f->m_self->ob_type == &PythonQtWrapper_Type) {
     PythonQtWrapper* self = (PythonQtWrapper*) f->m_self;
-    return PythonQtSlotFunction_CallImpl(self->_obj, info, args, kw, false, self->_wrappedPtr);
-  } else if (f->m_self->ob_type == &PythonQtVariantWrapper_Type) {
-    PythonQtVariantWrapper* self = (PythonQtVariantWrapper*) f->m_self;
-    if (!info->isClassDecorator()) {
-      return PythonQtSlotFunction_CallImpl(self->_wrapper, info, args, kw, true, (void*)self->_variant->constData());
-    } else {
-      return PythonQtSlotFunction_CallImpl(NULL, info, args, kw);
-    }
+    return PythonQtSlotFunction_CallImpl(self->_obj, info, args, kw, self->_wrappedPtr);
   } else if (f->m_self->ob_type == &PythonQtMetaObjectWrapper_Type) {
     return PythonQtSlotFunction_CallImpl(NULL, info, args, kw);
   } else {
@@ -178,7 +169,7 @@ PyObject *PythonQtSlotFunction_Call(PyObject *func, PyObject *args, PyObject *kw
   }
 }
 
-PyObject *PythonQtSlotFunction_CallImpl(QObject* objectToCall, PythonQtSlotInfo* info, PyObject *args, PyObject * /*kw*/, bool isVariantCall, void* firstArg)
+PyObject *PythonQtSlotFunction_CallImpl(QObject* objectToCall, PythonQtSlotInfo* info, PyObject *args, PyObject * /*kw*/, void* firstArg)
 {
   int argc = PyTuple_Size(args);
   
@@ -192,10 +183,10 @@ PyObject *PythonQtSlotFunction_CallImpl(QObject* objectToCall, PythonQtSlotInfo*
     // overloaded slot call, try on all slots with strict conversion first
     PythonQtSlotInfo* i = info;
     while (i && r==NULL) {
-      bool skipFirst = (i->isInstanceDecorator() || isVariantCall);
+      bool skipFirst = i->isInstanceDecorator();
       if (i->parameterCount()-1-(skipFirst?1:0) == argc) {
         PyErr_Clear();
-        r = PythonQtCallSlot(objectToCall, args, true, i, isVariantCall, firstArg);
+        r = PythonQtCallSlot(objectToCall, args, true, i, firstArg);
         if (PyErr_Occurred()) break;
       }
       i = i->nextInfo();
@@ -204,10 +195,10 @@ PyObject *PythonQtSlotFunction_CallImpl(QObject* objectToCall, PythonQtSlotInfo*
       // try on all slots with non-strict conversion
       i = info;
       while (i && r==NULL) {
-        bool skipFirst = (i->isInstanceDecorator() || isVariantCall);
+        bool skipFirst = i->isInstanceDecorator();
         if (i->parameterCount()-1-(skipFirst?1:0) == argc) {
           PyErr_Clear();
-          r = PythonQtCallSlot(objectToCall, args, false, i, isVariantCall, firstArg);
+          r = PythonQtCallSlot(objectToCall, args, false, i, firstArg);
           if (PyErr_Occurred()) break;
         }
         i = i->nextInfo();
@@ -217,7 +208,7 @@ PyObject *PythonQtSlotFunction_CallImpl(QObject* objectToCall, PythonQtSlotInfo*
       QString e = QString("Could not find matching overload for given arguments:\n" + PythonQtConv::PyObjGetString(args) + "\n The following slots are available:\n");
       PythonQtSlotInfo* i = info;
       while (i) {
-        bool skipFirst = (i->isInstanceDecorator() || isVariantCall);
+        bool skipFirst = i->isInstanceDecorator();
         e += QString(i->fullSignature(skipFirst)) + "\n";
         i = i->nextInfo();
       }
@@ -225,10 +216,10 @@ PyObject *PythonQtSlotFunction_CallImpl(QObject* objectToCall, PythonQtSlotInfo*
     }
   } else {
     // simple (non-overloaded) slot call
-    bool skipFirst = (info->isInstanceDecorator() || isVariantCall);
+    bool skipFirst = info->isInstanceDecorator();
     if (info->parameterCount()-1-(skipFirst?1:0) == argc) {
       PyErr_Clear();
-      r = PythonQtCallSlot(objectToCall, args, false, info, isVariantCall, firstArg);
+      r = PythonQtCallSlot(objectToCall, args, false, info, firstArg);
       if (r==NULL && !PyErr_Occurred()) {
         QString e = QString("Called ") + info->fullSignature(skipFirst) + " with wrong arguments: " + PythonQtConv::PyObjGetString(args);
         PyErr_SetString(PyExc_ValueError, e.toLatin1().data());

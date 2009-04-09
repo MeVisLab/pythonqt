@@ -7,11 +7,13 @@
 TARGET   = PyGuiExample
 TEMPLATE = app
 
+mac:CONFIG -= app_bundle
+
 DESTDIR           = ../../lib
 
 include ( ../../build/common.prf )  
 include ( ../../build/PythonQt.prf )  
-include ( ../../build/PythonQtGui.prf )  
+include ( ../../build/PythonQt_QtAll.prf )  
 
 SOURCES +=                    \
   main.cpp        

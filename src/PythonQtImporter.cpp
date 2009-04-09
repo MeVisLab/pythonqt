@@ -105,6 +105,9 @@ PythonQtImport::module_info PythonQtImport::getModuleInfo(PythonQtImporter* self
         return MI_MODULE;
     }
   }
+  if (PythonQt::importInterface()->exists(path+".so")) {
+    return MI_SHAREDLIBRARY;
+  }
   return MI_NOT_FOUND;
 }
 
@@ -168,10 +171,13 @@ PythonQtImporter_find_module(PyObject *obj, PyObject *args)
             &fullname, &path))
     return NULL;
 
+  qDebug() << "looking for " << fullname << " at " << *self->_path;
+
 //  mlabDebugConst("MLABPython", "FindModule " << fullname << " in " << *self->_path);
 
   PythonQtImport::module_info info = PythonQtImport::getModuleInfo(self, fullname);
-  if (info == PythonQtImport::MI_MODULE || info == PythonQtImport::MI_PACKAGE) {
+  if (info == PythonQtImport::MI_MODULE || info == PythonQtImport::MI_PACKAGE ||
+    info== PythonQtImport::MI_SHAREDLIBRARY) {
     Py_INCREF(self);
     return (PyObject *)self;
   } else {
@@ -195,8 +201,9 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
     return NULL;
 
   code = PythonQtImport::getModuleCode(self, fullname, &ispackage, modpath);
-  if (code == NULL)
+  if (code == NULL) {
     return NULL;
+  }
 
   mod = PyImport_AddModule(fullname);
   if (mod == NULL) {
@@ -243,9 +250,10 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
   }
   mod = PyImport_ExecCodeModuleEx(fullname, code, (char*)modpath.toLatin1().data());
   Py_DECREF(code);
-  if (Py_VerboseFlag)
+  if (Py_VerboseFlag) {
     PySys_WriteStderr("import %s # loaded from %s\n",
           fullname, modpath.toLatin1().constData());
+  }
   return mod;
 }
 
@@ -470,7 +478,10 @@ open_exclusive(const QString& filename)
 void PythonQtImport::writeCompiledModule(PyCodeObject *co, const QString& filename, long mtime)
 {
   FILE *fp;
-
+  // we do not want to write Qt resources to disk, do we?
+  if (filename.startsWith(":")) {
+    return;
+  }
   fp = open_exclusive(filename);
   if (fp == NULL) {
     if (Py_VerboseFlag)

@@ -1,4 +1,4 @@
-from PythonQt import *
+from PythonQt.QtGui import *
 
 group = QGroupBox()
 box = QVBoxLayout(group)
