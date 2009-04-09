@@ -46,16 +46,17 @@
 #include "PythonQtClassInfo.h"
 #include "PythonQtConversion.h"
 
-static void PythonQtWrapper_deleteObject(PythonQtWrapper* self) {
+static void PythonQtWrapper_deleteObject(PythonQtWrapper* self, bool force = false) {
+  
+  // is this a C++ wrapper?
   if (self->_wrappedPtr) {
-    
     //mlabDebugConst("Python","c++ wrapper removed " << self->_wrappedPtr << " " << self->_obj->className() << " " << self->_info->wrappedClassName().latin1());
     
     PythonQt::priv()->removeWrapperPointer(self->_wrappedPtr);
     // we own our qobject, so we delete it now:
     delete self->_obj;
     self->_obj = NULL;
-    if (self->_ownedByPythonQt) {
+    if (force || self->_info->hasOwnerMethodButNoOwner(self->_wrappedPtr) || self->_ownedByPythonQt) {
       int type = self->_info->metaTypeId();
       if (self->_useQMetaTypeDestroy && type>=0) {
         // use QMetaType to destroy the object
@@ -84,8 +85,8 @@ static void PythonQtWrapper_deleteObject(PythonQtWrapper* self) {
       PythonQt::priv()->removeWrapperPointer(self->_objPointerCopy);
     }
     if (self->_obj) {
-      if (self->_ownedByPythonQt) {
-        if (!self->_obj->parent()) {
+      if (force || self->_ownedByPythonQt) {
+        if (force || !self->_obj->parent()) {
           delete self->_obj;
         }
       } else {
@@ -138,7 +139,7 @@ static PyObject *PythonQtWrapper_help(PythonQtWrapper* type)
 
 static PyObject *PythonQtWrapper_delete(PythonQtWrapper * self)
 {
-  PythonQtWrapper_deleteObject(self);
+  PythonQtWrapper_deleteObject(self, true);
   Py_INCREF(Py_None);
   return Py_None;
 }
