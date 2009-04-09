@@ -568,7 +568,7 @@ bool ClassGenerator::isSpecialStreamingOperator(const AbstractMetaFunction *fun)
   operator<<() to read/write an instance of meta_class.
 */
 static void writeStreamingOperatorCall(QTextStream &stream, const AbstractMetaFunction *fun,
-                                       const AbstractMetaClass */*meta_class*/, int indent)
+                                       const AbstractMetaClass * /*meta_class*/, int indent)
 {
     QString indentStr(indent, QLatin1Char(' '));
     QString streamClassName = fun->arguments().at(0)->type()->name();

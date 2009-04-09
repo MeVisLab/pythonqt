@@ -1,4 +1,10 @@
+TARGET = pythonqt_generator
+CONFIG -= debug
+CONFIG += release
+DESTDIR = .
+
 include(generator.pri)
+
 
 # Input
 HEADERS += \
@@ -22,6 +28,3 @@ SOURCES += \
         shellheadergenerator.cpp \
         setupgenerator.cpp \
         docgenerator.cpp
-
-CONFIG -= debug
-CONFIG += release

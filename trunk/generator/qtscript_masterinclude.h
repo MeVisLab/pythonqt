@@ -43,7 +43,7 @@
 #  include <phonon/phonon>
 #endif
 
-#include "../qtbindings/qtscript_core/qtscriptconcurrent.h"
+//#include "../qtbindings/qtscript_core/qtscriptconcurrent.h"
 
 #ifndef QT_NO_OPENGL
 #define GL_ACCUM                          0x0100
