@@ -63,6 +63,7 @@ PythonQtScriptingConsole::PythonQtScriptingConsole(QWidget* parent, const Python
   _defaultTextCharacterFormat = currentCharFormat();
   _context                    = context;
   _historyPosition            = 0;
+  _hadError                   = false;
 
   _completer = new QCompleter(this);
   _completer->setWidget(this);
@@ -90,11 +91,12 @@ void PythonQtScriptingConsole::stdOut(const QString& s)
 
 void PythonQtScriptingConsole::stdErr(const QString& s)
 {
+  _hadError = true;
   _stdErr += s;
   int idx;
   while ((idx = _stdErr.indexOf('\n'))!=-1) {
     consoleMessage(_stdErr.left(idx));
-    std::cout << _stdErr.left(idx).toLatin1().data() << std::endl;
+    std::cerr << _stdErr.left(idx).toLatin1().data() << std::endl;
     _stdErr = _stdErr.mid(idx+1);
   }
 }

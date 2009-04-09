@@ -90,6 +90,16 @@ public slots:
 
   //! Appends a newline and command prompt at the end of the document.
   void appendCommandPrompt(bool storeOnly = false);
+
+public:
+  //! returns true if python cerr had an error
+  bool hadError() { return _hadError; }
+
+  //! returns true if python cerr had an error
+  void clearError() {
+    _hadError = false;
+  }
+
 protected:
   //! handle the pressing of tab
   void handleTabCompletion();
@@ -110,6 +120,7 @@ protected:
   //! flush output that was not yet printed
   void flushStdOut();
 
+
 private:
   void executeCode(const QString& code);
 
@@ -129,6 +140,8 @@ private:
 
   QTextCharFormat _defaultTextCharacterFormat;
   QCompleter* _completer;
+
+  bool _hadError;
 };
 
 
