@@ -58,10 +58,8 @@ int main( int argc, char **argv )
   // Alternative 1: make CustomObject known and use decorators for wrapping:
   // -----------------------------------------------------------------
   
-  // register the new object as a known classname
-  PythonQt::self()->registerCPPClassNames(QStringList() << "CustomObject");
-  // add a decorator which can access CustomObject instances
-  PythonQt::self()->addDecorators(new CustomObjectWrapper());
+  // register the new object as a known classname and add it's wrapper object
+  PythonQt::self()->registerCPPClass("CustomObject", "","", PythonQtCreateObject<CustomObjectWrapper>);
 
   // -----------------------------------------------------------------
   // Alternative 2: make CustomObject2 known and use a wrapper factory for wrapping:
@@ -72,7 +70,7 @@ int main( int argc, char **argv )
 
   // the following is optional and only needed if you want a constructor:
   // register the new object as a known classname
-  PythonQt::self()->registerCPPClassNames(QStringList() << "CustomObject2");
+  PythonQt::self()->registerCPPClass("CustomObject2");
   // add a constructor for CustomObject2
   PythonQt::self()->addClassDecorators(new CustomObject2Constructor());
 
