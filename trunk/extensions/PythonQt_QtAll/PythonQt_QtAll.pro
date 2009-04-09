@@ -3,7 +3,6 @@ TARGET   = PythonQt_QtAll
 TEMPLATE = lib
 
 DESTDIR    = ../../lib
-DLLDESTDIR = ../../lib
 
 include ( ../../build/common.prf )  
 include ( ../../build/PythonQt.prf )  
@@ -18,6 +17,7 @@ HEADERS +=                \
 SOURCES +=                \
   PythonQt_QtAll.cpp
 
+CONFIG += uitools
 QT += webkit gui svg sql network xml xmlpatterns opengl
 #QT += phonon 
 
@@ -30,5 +30,6 @@ include (../../generated_cpp/com_trolltech_qt_opengl/com_trolltech_qt_opengl.pri
 include (../../generated_cpp/com_trolltech_qt_webkit/com_trolltech_qt_webkit.pri)
 include (../../generated_cpp/com_trolltech_qt_xml/com_trolltech_qt_xml.pri)
 include (../../generated_cpp/com_trolltech_qt_xmlpatterns/com_trolltech_qt_xmlpatterns.pri)
+include (../../generated_cpp/com_trolltech_qt_uitools/com_trolltech_qt_uitools.pri)
 
 #include (../../generated_cpp/com_trolltech_qt_phonon/com_trolltech_qt_phonon.pri)

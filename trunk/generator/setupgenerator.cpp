@@ -28,7 +28,7 @@
 
 //#define Q_SCRIPT_LAZY_GENERATOR
 
-void SetupGenerator::addClass(const AbstractMetaClass *cls) 
+void SetupGenerator::addClass(const AbstractMetaClass *cls)
 {
     packHash[cls->package()].append(cls);
 }
@@ -59,7 +59,7 @@ void SetupGenerator::generate()
         }
         packName.replace(".", "_");
         packKey.replace(".", "_");
-      
+
         QString shortPackName;
         foreach (QString comp, components) {
           comp[0] = comp[0].toUpper();
@@ -72,26 +72,28 @@ void SetupGenerator::generate()
           shortPackName = "QtXmlPatterns";
         } else if (shortPackName == "QtOpengl") {
           shortPackName = "QtOpenGL";
-        } 
-        
-      
+        } else if (shortPackName == "QtUitools") {
+          shortPackName = "QtUiTools";
+        }
+
+
         {
             FileOut initFile(m_out_dir + "/generated_cpp/" + packName + "/" + packKey + "_init.cpp");
             QTextStream &s = initFile.stream;
 
             if (FileOut::license)
                 writeQtScriptQtBindingsLicense(s);
-          
+
             s << "#include <PythonQt.h>" << endl;
 
           foreach (const AbstractMetaClass *cls, list) {
             s << "#include \"PythonQtWrapper_" << cls->name() << ".h\"" << endl;
           }
           s << endl;
-          
+
             // declare individual class creation functions
             s << "void PythonQt_init_" << shortPackName << "() {" << endl;
-          QStringList cppClassNames; 
+          QStringList cppClassNames;
           foreach (const AbstractMetaClass *cls, list) {
             if (ClassGenerator::isBuiltIn(cls->name())) { continue; }
 
@@ -103,7 +105,7 @@ void SetupGenerator::generate()
             }
           }
           s << endl;
-          
+
             s << "}";
             s << endl;
         }
