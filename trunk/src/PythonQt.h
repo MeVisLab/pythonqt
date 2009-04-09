@@ -112,6 +112,9 @@ public:
   //! overwrite the python sys path (call this directly after PythonQt::init() if you want to change the std python sys path)
   void overwriteSysPath(const QStringList& paths);
 
+  //! prepend a path to sys.path to allow importing from it
+  void addSysPath(const QString& path);
+
   //! sets the __path__ list of a module to the given list (important for local imports)
   void setModuleImportPath(PyObject* module, const QStringList& paths);
 

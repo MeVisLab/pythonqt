@@ -5,4 +5,5 @@ SUBDIRS = CPPPyWrapperExample \
           PyCustomMetaTypeExample \
           PyGuiExample \
           PyDecoratorsExample \
-          PyScriptingConsole
+          PyScriptingConsole \
+          PyLauncher

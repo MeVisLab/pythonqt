@@ -930,6 +930,14 @@ bool PythonQt::handleError()
   return flag;
 }
 
+void PythonQt::addSysPath(const QString& path)
+{
+  PythonQtObjectPtr sys;
+  sys.setNewRef(PyImport_ImportModule("sys"));
+  PythonQtObjectPtr obj = lookupObject(sys, "path");
+  PyList_Insert(obj, 0, PythonQtConv::QStringToPyObject(path)); 
+}
+
 void PythonQt::overwriteSysPath(const QStringList& paths)
 {
   PythonQtObjectPtr sys;
