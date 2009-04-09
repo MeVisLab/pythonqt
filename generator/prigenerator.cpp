@@ -58,7 +58,10 @@ void PriGenerator::generate()
         foreach (const QString &entry, list) {
             file.stream << "           $$PWD/" << entry << " \\\n";
         }
-        file.stream << "           $$PWD/init.cpp\n";
+        QString initName = pri.key();
+        initName = initName.mid(initName.indexOf('/')+1);
+        initName = initName.left(initName.length()-4);
+        file.stream << "           $$PWD/" + initName + "_init.cpp\n";
 
         if (file.done())
             ++m_num_generated_written;

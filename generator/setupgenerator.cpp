@@ -48,6 +48,7 @@ void SetupGenerator::generate()
         if (list.isEmpty())
             continue;
 
+        QString packKey = pack.key();
         QString packName = pack.key();
         QStringList components = packName.split(".");
         if ((components.size() > 2) && (components.at(0) == "com")
@@ -57,6 +58,7 @@ void SetupGenerator::generate()
             components.removeAt(0);
         }
         packName.replace(".", "_");
+        packKey.replace(".", "_");
       
         QString shortPackName;
         foreach (QString comp, components) {
@@ -74,7 +76,7 @@ void SetupGenerator::generate()
         
       
         {
-            FileOut initFile(m_out_dir + "/generated_cpp/" + packName + "/init.cpp");
+            FileOut initFile(m_out_dir + "/generated_cpp/" + packName + "/" + packKey + "_init.cpp");
             QTextStream &s = initFile.stream;
 
             if (FileOut::license)
