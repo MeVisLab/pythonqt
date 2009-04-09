@@ -57,7 +57,7 @@ int main( int argc, char **argv )
   // register the type with QMetaType
   qRegisterMetaType<CustomObject>("CustomObject");
   // add a wrapper object for the new variant type
-  PythonQt::self()->addVariantWrapper("CustomObject", new CustomObjectWrapper());
+  PythonQt::self()->registerCPPWrapper("CustomObject","","", PythonQtCreateObject<CustomObjectWrapper>);
 
   mainContext.evalFile(":example.py");
 

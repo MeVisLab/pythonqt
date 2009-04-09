@@ -1,3 +1,27 @@
+Version 1.2 ChangeLog:
+
+florianlink | 2009-03-30
+- unified wrapping of CPP heap objects and QVariant/MetaTypes stack objects (this made PythonQtVariantWrapper obsolete)
+- added wrapping of the whole Qt API using a modified qtscript generator
+-- this makes all non-slots of QObject derived classes available for scripting
+-- all constructors of QObject/CPP objects are available
+-- comparision based on operator= are mapped to Python compare
+-- C++ (non-QObject) classes are completely wrapped (all public methods, enums, constructors, destructor)
+-- C++ inheritance is captured and supported for automatic upcasting, automatic downcasting is an open topic
+- added delete() method to all wrapped objects to allow C++ deletion (which is handy to remove e.g. QTreeWidgetItems from a QTreeWidget) (use with care!)
+- added support for QList<int>, QList<double>, QList<builtin variants> and QVector/std::vector
+- simple template to register other types for QList/QVector/std::vector
+- added support for custom type conversion between Python<->CPP (to e.g. manually add support for types like QHash<int, QString>, which is currently not supported)
+- remove PythonQtGui, which becomes obsolete because of the complete Qt API wrapping, adapted examples
+- added PythonQt::registerCPPClass()
+- added support for placing classes in packages, default is to place a class directly into PythonQt module
+- Qt packages are called:
+-- PythonQt.Qt - contains all Qt classes that are wrapped (for convenient to avoid using the different packages below)
+-- PythonQt.QtCore - contains the core classes
+-- PythonQt.QtGui - contains the gui classes
+-- PythonQt.QtNetwork - contains the network classes
+-- ...
+- Qt namespace is now located in QtCore, so write PythonQt.QtCore.Qt instead of PythonQt.Qt in your scripts!
 
 Version 1.1 ChangeLog: 
 

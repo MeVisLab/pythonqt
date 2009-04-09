@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<typesystem package="com.trolltech.qt.opengl"><rejection class="QGL"/><rejection class="QGLFormat"/>
+  <rejection class="QGLColormap::QGLColormapData"/>
+  <rejection class="QGLWidget" function-name="setMouseTracking"/>  
+  
+  <enum-type name="QGL::FormatOption" flags="QGL::FormatOptions"/>
+  <enum-type name="QGLFormat::OpenGLVersionFlag" flags="QGLFormat::OpenGLVersionFlags"/>
+  <enum-type name="QGLFramebufferObject::Attachment"/>
+
+  <namespace-type name="QGL">
+     <include file-name="qgl.h" location="global"/>
+  </namespace-type>
+  
+  <value-type name="QGLColormap">
+    <modify-function signature="operator=(QGLColormap)" remove="all"/>
+
+    <modify-function signature="setEntries(int,const unsigned int*,int)">
+        <access modifier="private"/>
+    </modify-function>
+  </value-type>
+ 
+  <value-type name="QGLFormat">
+    <modify-function signature="operator=(QGLFormat)" remove="all"/>
+  </value-type>
+  
+  <object-type name="QGLContext">  
+  
+    <modify-function signature="chooseContext(const QGLContext*)">
+        <modify-argument index="1" invalidate-after-use="yes"/>
+    </modify-function>
+    <modify-function signature="create(const QGLContext*)">
+        <modify-argument index="1" invalidate-after-use="yes"/>
+    </modify-function>
+  
+    <modify-function signature="getProcAddress(QString)const">
+        <remove/>
+    </modify-function>    
+    <modify-field name="currentCtx" read="false" write="false"/>
+    <modify-function signature="setDevice(QPaintDevice*)">
+        <remove/>
+    </modify-function>
+    <modify-function signature="generateFontDisplayLists(QFont, int)" remove="all"/>
+  </object-type>
+  <object-type name="QGLFramebufferObject"/>
+  <object-type name="QGLPixelBuffer">
+    <extra-includes>
+        <include file-name="QImage" location="global"/>
+    </extra-includes>
+  </object-type>
+  <object-type name="QGLWidget">
+    <extra-includes>
+        <include file-name="QImage" location="global"/>
+        <include file-name="QPixmap" location="global"/>
+    </extra-includes>
+    <modify-function signature="setContext(QGLContext*,const QGLContext*,bool)">
+        <remove/> <!--- Obsolete -->
+    </modify-function>
+    <modify-function signature="fontDisplayListBase(QFont, int)" remove="all"/>
+    <modify-function signature="setFormat(QGLFormat)" remove="all"/>
+  </object-type>  
+ 
+
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: skipping * unmatched *type 'QGLColormap::QGLColormapData\*'"/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: visibility of function '*' modified in class '*'"/>  
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: hiding of function '*' in class '*'"/>
+  <suppress-warning text="WARNING(CppImplGenerator) :: protected function '*' in final class '*'"/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QGLFormat' has equals operators but no qHash() function"/>
+  
+</typesystem>

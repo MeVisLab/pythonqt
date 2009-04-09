@@ -67,7 +67,7 @@ class CustomObjectWrapper : public QObject {
 
 public slots:
   // add a constructor
-  QVariant new_CustomObject(const QString& first, const QString& last) { return qVariantFromValue(CustomObject(first, last)); }
+  CustomObject* new_CustomObject(const QString& first, const QString& last) { return new CustomObject(first, last); }
 
   // add access methods
 

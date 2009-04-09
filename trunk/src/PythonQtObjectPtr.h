@@ -44,6 +44,8 @@
 
 #include <Python.h>
 #include "PythonQtSystem.h"
+#include <QVariant>
+#include <QVariantList>
 
 //! a smart pointer that stores a PyObject pointer and that handles reference counting automatically
 class PYTHONQT_EXPORT PythonQtObjectPtr
@@ -146,7 +148,7 @@ public:
   QVariant getVariable(const QString& name);
 
   //! call the given python object (in the scope of the current object), returns the result converted to a QVariant
-  QVariant call(const QString& callable, const QVariantList& args);
+  QVariant call(const QString& callable, const QVariantList& args = QVariantList());
 
   
   

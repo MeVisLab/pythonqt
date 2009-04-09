@@ -46,26 +46,36 @@
 #include "PythonQtClassInfo.h"
 #include "PythonQtConversion.h"
 
-static void PythonQtWrapper_dealloc(PythonQtWrapper* self)
-{
+static void PythonQtWrapper_deleteObject(PythonQtWrapper* self) {
   if (self->_wrappedPtr) {
-
+    
     //mlabDebugConst("Python","c++ wrapper removed " << self->_wrappedPtr << " " << self->_obj->className() << " " << self->_info->wrappedClassName().latin1());
-
+    
     PythonQt::priv()->removeWrapperPointer(self->_wrappedPtr);
     // we own our qobject, so we delete it now:
     delete self->_obj;
     self->_obj = NULL;
     if (self->_ownedByPythonQt) {
-      PythonQtSlotInfo* slot = PythonQt::priv()->getDestructorSlot(self->_info->wrappedCPPClassName());
-      if (slot) {
-        void* args[2];
-        args[0] = NULL;
-        args[1] = &self->_wrappedPtr;
-        slot->decorator()->qt_metacall(QMetaObject::InvokeMetaMethod, slot->slotIndex(), args);
-        self->_wrappedPtr = NULL;
+      int type = self->_info->metaTypeId();
+      if (self->_useQMetaTypeDestroy && type>=0) {
+        // use QMetaType to destroy the object
+        QMetaType::destroy(type, self->_wrappedPtr);
       } else {
-        // TODO: print a warning? we can not destroy that object
+        PythonQtSlotInfo* slot = PythonQt::priv()->getDestructorSlot(self->_info->className());
+        if (slot) {
+          void* args[2];
+          args[0] = NULL;
+          args[1] = &self->_wrappedPtr;
+          slot->decorator()->qt_metacall(QMetaObject::InvokeMetaMethod, slot->slotIndex(), args);
+          self->_wrappedPtr = NULL;
+        } else {
+          if (type>=0) {
+            // use QMetaType to destroy the object
+            QMetaType::destroy(type, self->_wrappedPtr);
+          } else {
+            // TODO: warn about not being able to destroy the object?
+          }
+        }
       }
     }
   } else {
@@ -87,6 +97,11 @@ static void PythonQtWrapper_dealloc(PythonQtWrapper* self)
     }
   }
   self->_obj = NULL;
+}
+
+static void PythonQtWrapper_dealloc(PythonQtWrapper* self)
+{
+  PythonQtWrapper_deleteObject(self);
   self->_obj.~QPointer<QObject>();
   self->ob_type->tp_free((PyObject*)self);
 }
@@ -101,6 +116,7 @@ static PyObject* PythonQtWrapper_new(PyTypeObject *type, PyObject * /*args*/, Py
     new (&self->_obj) QPointer<QObject>();
     self->_wrappedPtr = NULL;
     self->_ownedByPythonQt = false;
+    self->_useQMetaTypeDestroy = false;
   }
   return (PyObject *)self;
 }
@@ -120,6 +136,13 @@ static PyObject *PythonQtWrapper_help(PythonQtWrapper* type)
   return PythonQt::self()->helpCalled(type->_info);
 }
 
+static PyObject *PythonQtWrapper_delete(PythonQtWrapper * self)
+{
+  PythonQtWrapper_deleteObject(self);
+  Py_INCREF(Py_None);
+  return Py_None;
+}
+
 
 static PyMethodDef PythonQtWrapper_methods[] = {
     {"className", (PyCFunction)PythonQtWrapper_classname, METH_NOARGS,
@@ -128,7 +151,10 @@ static PyMethodDef PythonQtWrapper_methods[] = {
     {"help", (PyCFunction)PythonQtWrapper_help, METH_NOARGS,
     "Shows the help of available methods for this class"
     },
-    {NULL, NULL, 0, NULL}  /* Sentinel */
+    {"delete", (PyCFunction)PythonQtWrapper_delete, METH_NOARGS,
+    "Deletes the C++ object (at your own risk, my friend!)"
+    },
+{NULL, NULL, 0, NULL}  /* Sentinel */
 };
 
 
@@ -258,15 +284,38 @@ static int PythonQtWrapper_setattro(PyObject *obj,PyObject *name,PyObject *value
   return -1;
 }
 
+static PyObject * PythonQtWrapper_str(PyObject * obj)
+{
+  PythonQtWrapper* wt = (PythonQtWrapper*)obj;
+  QObject *qobj = wt->_obj;
+  if (wt->_wrappedPtr) {
+    QString str = PythonQtConv::CPPObjectToString(wt->_info->metaTypeId(), wt->_wrappedPtr);
+    if (!str.isEmpty()) {
+      return PyString_FromFormat("%s", str.toLatin1().constData());
+    } else
+    if (wt->_obj) {
+      return PyString_FromFormat("%s (C++ Object %p wrapped by %s %p))", wt->_info->className(), wt->_wrappedPtr, wt->_obj->metaObject()->className(), qobj);
+    } else {
+      return PyString_FromFormat("%s (C++ Object %p)", wt->_info->className(), wt->_wrappedPtr);
+    }
+  } else {
+    return PyString_FromFormat("%s (QObject %p)", wt->_info->className(), qobj);
+  }
+}
+
 static PyObject * PythonQtWrapper_repr(PyObject * obj)
 {
   PythonQtWrapper* wt = (PythonQtWrapper*)obj;
   QObject *qobj = wt->_obj;
   if (wt->_wrappedPtr) {
+    QString str = PythonQtConv::CPPObjectToString(wt->_info->metaTypeId(), wt->_wrappedPtr);
+    if (!str.isEmpty()) {
+      return PyString_FromFormat("%s(%s, %p)", QMetaType::typeName(wt->_info->metaTypeId()), str.toLatin1().constData(), wt->_wrappedPtr);
+    } else
     if (wt->_obj) {
       return PyString_FromFormat("%s (C++ Object %p wrapped by %s %p))", wt->_info->className(), wt->_wrappedPtr, wt->_obj->metaObject()->className(), qobj);
     } else {
-      return PyString_FromFormat("%s (C++ Object %p unwrapped)", wt->_info->className(), wt->_wrappedPtr);
+      return PyString_FromFormat("%s (C++ Object %p)", wt->_info->className(), wt->_wrappedPtr);
     }
   } else {
     return PyString_FromFormat("%s (QObject %p)", wt->_info->className(), qobj);
@@ -280,20 +329,52 @@ static int PythonQtWrapper_compare(PyObject * obj1, PyObject * obj2)
 
     PythonQtWrapper* w1 = (PythonQtWrapper*)obj1;
     PythonQtWrapper* w2 = (PythonQtWrapper*)obj2;
+    // check pointers directly first:
     if (w1->_wrappedPtr != NULL) {
-      if (w1->_wrappedPtr == w1->_wrappedPtr) {
+      if (w1->_wrappedPtr == w2->_wrappedPtr) {
         return 0;
-      } else {
-        return -1;
       }
     } else if (w1->_obj == w2->_obj) {
       return 0;
-    } else {
-      return -1;
     }
-  } else {
-    return -1;
+    const char* class1 = w1->_info->className();
+    const char* class2 = w2->_info->className();
+    if (strcmp(class1, class2) == 0) {
+      // same class names, so we can try the operator_equal
+      PythonQtMemberInfo info = w1->_info->member("operator_equal");
+      if (info._type == PythonQtMemberInfo::Slot) {
+        bool result = false;
+        void* obj1 = w1->_wrappedPtr;
+        if (!obj1) {
+          obj1 = w1->_obj;
+        }
+        if (!obj1) { return -1; }
+        void* obj2 = w2->_wrappedPtr;
+        if (!obj2) {
+          obj2 = w2->_obj;
+        }
+        if (!obj2) { return -1; }
+        if (info._slot->isInstanceDecorator()) {
+          // call on decorator QObject
+          void* args[3];
+          args[0] = &result;
+          args[1] = &obj1; // this is a pointer, so it needs a pointer to a pointer
+          args[2] = obj2;  // this is a reference, so it needs the direct pointer
+          info._slot->decorator()->qt_metacall(QMetaObject::InvokeMetaMethod, info._slot->slotIndex(), args);
+          return result?0:-1;
+        } else {
+          // call directly on QObject
+          if (w1->_obj && w2->_obj) {
+            void* args[2];
+            args[0] = &result;
+            args[2] = obj2;  // this is a reference, so it needs the direct pointer
+            w1->_obj->qt_metacall(QMetaObject::InvokeMetaMethod, info._slot->slotIndex(), args);
+          }
+        }
+      }
+    }
   }
+  return -1;
 }
 
 static int PythonQtWrapper_nonzero(PyObject *obj)
@@ -374,7 +455,7 @@ PyTypeObject PythonQtWrapper_Type = {
     0,                         /*tp_as_mapping*/
     (hashfunc)PythonQtWrapper_hash,                         /*tp_hash */
     0,                         /*tp_call*/
-    0,                         /*tp_str*/
+    PythonQtWrapper_str,      /*tp_str*/
     PythonQtWrapper_getattro,                         /*tp_getattro*/
     PythonQtWrapper_setattro,                         /*tp_setattro*/
     0,                         /*tp_as_buffer*/
