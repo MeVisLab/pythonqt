@@ -451,8 +451,8 @@ private:
   //! create a new class info and python wrapper type
   PythonQtClassInfo* createPythonQtClassInfo(const QMetaObject* meta, const char* cppClassName, const char* package);
 
-  //! get/create new package module
-  PythonQtObjectPtr packageByName(const char* name);
+  //! get/create new package module (the returned object is a borrowed reference)
+  PyObject* packageByName(const char* name);
 
   //! get the wrapper for a given pointer (and remove a wrapper of an already destroyed qobject)
   PythonQtInstanceWrapper* findWrapperAndRemoveUnused(void* obj);
@@ -495,7 +495,7 @@ private:
   QHash<QByteArray , PythonQtSlotInfo *> _constructorSlots;
   QHash<QByteArray , PythonQtSlotInfo *> _destructorSlots;
 
-  QHash<QByteArray, PythonQtObjectPtr> _packages;
+  QHash<QByteArray, PyObject*> _packages;
 
   PythonQtClassInfo* _currentClassInfoForClassWrapperCreation;
 
