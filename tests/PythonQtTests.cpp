@@ -255,9 +255,8 @@ void PythonQtTestApi::testVariables()
   QSet<QString> s;
   // check that at least these three variables are set
   s << "obj" << "someObject" << "someValue";
-  QString a;
-  foreach (a, l) {
-    QVERIFY(s.contains(a));
+  foreach (QString value, s) {
+    QVERIFY(l.indexOf(value)!=-1);
   }
 
   // insert a second time!
