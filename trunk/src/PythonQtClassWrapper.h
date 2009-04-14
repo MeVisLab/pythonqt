@@ -51,29 +51,25 @@
 #include <QString>
 
 class PythonQtClassInfo;
-class QObject;
-struct QMetaObject;
 
+//! the type of the PythonQt class wrapper objects
 extern PyTypeObject PythonQtClassWrapper_Type;
 
 //---------------------------------------------------------------
-//! a Python wrapper object for Qt meta objects
+//! a Python wrapper object for PythonQt wrapped classes
+//! which inherits from the Python type object to allow
+//! deriving of wrapped CPP classes from Python.
 typedef struct {
-  PyObject_HEAD
+  PyHeapTypeObject _base;
 
-  //! the class information (which contains the meta object as well)
-  PythonQtClassInfo* _info;
+  //! the additional class information that PythonQt stores for the CPP class
+  PythonQtClassInfo* _classInfo;
+
+  //! get the class info
+  PythonQtClassInfo* classInfo() { return _classInfo; }
 
 } PythonQtClassWrapper;
 
 //---------------------------------------------------------------
-// an abstact class for handling construction of objects
-class PythonQtConstructorHandler {
-public:
-  //! get rid of warnings
-  virtual ~PythonQtConstructorHandler() {}
-
-  virtual QObject* create(const QMetaObject* meta, PyObject *args, PyObject *kw, QString& error) = 0;
-};
 
 #endif

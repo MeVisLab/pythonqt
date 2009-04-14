@@ -50,10 +50,13 @@
 #define PYTHONQT_MAX_ARGS 32
 
 
-PyObject* PythonQtCallSlot(QObject* objectToCall, PyObject* args, bool strict, PythonQtSlotInfo* info, void* firstArgument)
+bool PythonQtCallSlot(QObject* objectToCall, PyObject* args, bool strict, PythonQtSlotInfo* info, void* firstArgument, PyObject** pythonReturnValue, void** directReturnValuePointer)
 {
   static unsigned int recursiveEntry = 0;
   
+  if (directReturnValuePointer) {
+    *directReturnValuePointer = NULL;
+  }
   // store the current storage position, so that we can get back to this state after a slot is called
   // (do this locally, so that we have all positions on the stack
   PythonQtValueStoragePosition globalValueStoragePos;
@@ -87,7 +90,13 @@ PyObject* PythonQtCallSlot(QObject* objectToCall, PyObject* args, bool strict, P
     }
     if (argList[0]==NULL) {
       // create empty default value for the return value
-      argList[0] = PythonQtConv::CreateQtReturnValue(returnValueParam);
+      if (!directReturnValuePointer) {
+        // create empty default value for the return value
+        argList[0] = PythonQtConv::CreateQtReturnValue(returnValueParam);
+      } else {
+        // we can use our pointer directly!
+        argList[0] = directReturnValuePointer;
+      }
     }
   }
   
@@ -129,10 +138,14 @@ PyObject* PythonQtCallSlot(QObject* objectToCall, PyObject* args, bool strict, P
     (info->decorator()?info->decorator():objectToCall)->qt_metacall(QMetaObject::InvokeMetaMethod, info->slotIndex(), argList);
     
     if (argList[0] || returnValueParam.typeId == QMetaType::Void) {
-      if (!returnValueIsEnum) {
-        result = PythonQtConv::ConvertQtValueToPython(returnValueParam, argList[0]);
+      if (directReturnValuePointer) {
+        result = NULL;
       } else {
-        result = PyInt_FromLong(*((unsigned int*)argList[0]));
+        if (!returnValueIsEnum) {
+          result = PythonQtConv::ConvertQtValueToPython(returnValueParam, argList[0]);
+        } else {
+          result = PyInt_FromLong(*((unsigned int*)argList[0]));
+        }
       }
     } else {
       QString e = QString("Called ") + info->fullSignature(skipFirst) + ", return type is ignored because it is unknown to PythonQt.";
@@ -147,8 +160,9 @@ PyObject* PythonQtCallSlot(QObject* objectToCall, PyObject* args, bool strict, P
   PythonQtConv::global_ptrStorage.setPos(globalPtrStoragePos);
   PythonQtConv::global_variantStorage.setPos(globalVariantStoragePos);
   
+  *pythonReturnValue = result;
   // NOTE: it is important to only return here, otherwise the stack will not be popped!!!
-  return result;
+  return result || (directReturnValuePointer && *directReturnValuePointer);
 }
 
 //-----------------------------------------------------------------------------------
@@ -159,7 +173,7 @@ PyObject *PythonQtSlotFunction_Call(PyObject *func, PyObject *args, PyObject *kw
 {
   PythonQtSlotFunctionObject* f = (PythonQtSlotFunctionObject*)func;
   PythonQtSlotInfo*    info = f->m_ml;
-  if (f->m_self->ob_type == &PythonQtInstanceWrapper_Type) {
+  if (PyObject_TypeCheck(f->m_self, &PythonQtInstanceWrapper_Type)) {
     PythonQtInstanceWrapper* self = (PythonQtInstanceWrapper*) f->m_self;
     return PythonQtSlotFunction_CallImpl(self->_obj, info, args, kw, self->_wrappedPtr);
   } else if (f->m_self->ob_type == &PythonQtClassWrapper_Type) {
@@ -169,7 +183,7 @@ PyObject *PythonQtSlotFunction_Call(PyObject *func, PyObject *args, PyObject *kw
   }
 }
 
-PyObject *PythonQtSlotFunction_CallImpl(QObject* objectToCall, PythonQtSlotInfo* info, PyObject *args, PyObject * /*kw*/, void* firstArg)
+PyObject *PythonQtSlotFunction_CallImpl(QObject* objectToCall, PythonQtSlotInfo* info, PyObject *args, PyObject * /*kw*/, void* firstArg, void** directReturnValuePointer)
 {
   int argc = PyTuple_Size(args);
   
@@ -178,33 +192,32 @@ PyObject *PythonQtSlotFunction_CallImpl(QObject* objectToCall, PythonQtSlotInfo*
 #endif
 
   PyObject* r = NULL;
-  
+  bool ok = false;
+  if (directReturnValuePointer) {
+    *directReturnValuePointer = NULL;
+  }
+
   if (info->nextInfo()) {
     // overloaded slot call, try on all slots with strict conversion first
+    bool strict = true;
     PythonQtSlotInfo* i = info;
-    while (i && r==NULL) {
+    while (i) {
       bool skipFirst = i->isInstanceDecorator();
       if (i->parameterCount()-1-(skipFirst?1:0) == argc) {
         PyErr_Clear();
-        r = PythonQtCallSlot(objectToCall, args, true, i, firstArg);
-        if (PyErr_Occurred()) break;
+        ok = PythonQtCallSlot(objectToCall, args, strict, i, firstArg, &r, directReturnValuePointer);
+        if (PyErr_Occurred() || ok) break;
       }
       i = i->nextInfo();
-    }
-    if (!r) {
-      // try on all slots with non-strict conversion
-      i = info;
-      while (i && r==NULL) {
-        bool skipFirst = i->isInstanceDecorator();
-        if (i->parameterCount()-1-(skipFirst?1:0) == argc) {
-          PyErr_Clear();
-          r = PythonQtCallSlot(objectToCall, args, false, i, firstArg);
-          if (PyErr_Occurred()) break;
+      if (!i) {
+        if (strict) {
+          // one more run without being strict
+          strict = false;
+          i = info;
         }
-        i = i->nextInfo();
       }
     }
-    if (r==NULL && !PyErr_Occurred()) {
+    if (!ok && !PyErr_Occurred()) {
       QString e = QString("Could not find matching overload for given arguments:\n" + PythonQtConv::PyObjGetString(args) + "\n The following slots are available:\n");
       PythonQtSlotInfo* i = info;
       while (i) {
@@ -219,8 +232,8 @@ PyObject *PythonQtSlotFunction_CallImpl(QObject* objectToCall, PythonQtSlotInfo*
     bool skipFirst = info->isInstanceDecorator();
     if (info->parameterCount()-1-(skipFirst?1:0) == argc) {
       PyErr_Clear();
-      r = PythonQtCallSlot(objectToCall, args, false, info, firstArg);
-      if (r==NULL && !PyErr_Occurred()) {
+      ok = PythonQtCallSlot(objectToCall, args, false, info, firstArg, &r, directReturnValuePointer);
+      if (!ok && !PyErr_Occurred()) {
         QString e = QString("Called ") + info->fullSignature(skipFirst) + " with wrong arguments: " + PythonQtConv::PyObjGetString(args);
         PyErr_SetString(PyExc_ValueError, e.toLatin1().data());
       }

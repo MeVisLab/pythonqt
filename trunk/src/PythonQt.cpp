@@ -170,17 +170,20 @@ PythonQt::PythonQt(int flags)
   }
   Py_INCREF(&PythonQtSlotFunction_Type);
   
-  // add our own python object types for qt objects
-  if (PyType_Ready(&PythonQtInstanceWrapper_Type) < 0) {
-    std::cerr << "could not initialize PythonQtInstanceWrapper_Type" << ", in " << __FILE__ << ":" << __LINE__ << std::endl;
-  }
-  Py_INCREF(&PythonQtInstanceWrapper_Type);
-  
-  // add our own python object types for qt objects
+  // according to Python docs, set the type late here, since it can not safely be stored in the struct when declaring it
+  PythonQtClassWrapper_Type.tp_base = &PyType_Type;
+  // add our own python object types for classes
   if (PyType_Ready(&PythonQtClassWrapper_Type) < 0) {
     std::cerr << "could not initialize PythonQtClassWrapper_Type" << ", in " << __FILE__ << ":" << __LINE__ << std::endl;
   }
   Py_INCREF(&PythonQtClassWrapper_Type);
+
+  // add our own python object types for CPP instances
+  if (PyType_Ready(&PythonQtInstanceWrapper_Type) < 0) {
+    PythonQt::handleError();
+    std::cerr << "could not initialize PythonQtInstanceWrapper_Type" << ", in " << __FILE__ << ":" << __LINE__ << std::endl;
+  }
+  Py_INCREF(&PythonQtInstanceWrapper_Type);
   
   // add our own python object types for redirection of stdout
   if (PyType_Ready(&PythonQtStdOutRedirectType) < 0) {
@@ -274,16 +277,8 @@ void PythonQtPrivate::registerClass(const QMetaObject* metaobject, const char* p
   while (m) {
     PythonQtClassInfo* info = _knownQtClasses.value(m->className());
     if (!info) {
-      info = new PythonQtClassInfo(m);
+      info = createPythonQtClassInfo(m, NULL, package);
       _knownQtClasses.insert(m->className(), info);
-      PythonQtObjectPtr pack = packageByName(package);
-      PyObject* pyobj = (PyObject*)createNewPythonQtClassWrapper(info);
-      PyModule_AddObject(pack, m->className(), pyobj);
-      if (package && strncmp(package,"Qt",2)==0) {
-        // put all qt objects into Qt as well
-        PythonQtObjectPtr pack = packageByName("Qt");
-        PyModule_AddObject(pack, m->className(), pyobj);
-      }
     }
     if (first) {
       first = false;
@@ -293,6 +288,21 @@ void PythonQtPrivate::registerClass(const QMetaObject* metaobject, const char* p
     }
     m = m->superClass();
   }
+}
+
+PythonQtClassInfo* PythonQtPrivate::createPythonQtClassInfo(const QMetaObject* meta, const char* cppClassName, const char* package)
+{
+  PythonQtClassInfo* info = new PythonQtClassInfo(meta, cppClassName);
+  PythonQtObjectPtr pack = packageByName(package);
+  PyObject* pyobj = (PyObject*)createNewPythonQtClassWrapper(info, package);
+  PyModule_AddObject(pack, meta?meta->className():cppClassName, pyobj);
+  if (package && strncmp(package,"Qt",2)==0) {
+    // put all qt objects into Qt as well
+    PythonQtObjectPtr pack = packageByName("Qt");
+    PyModule_AddObject(pack, meta?meta->className():cppClassName, pyobj);
+  }
+  info->setPythonQtClassWrapper(pyobj);
+  return info;
 }
 
 bool PythonQtPrivate::isEnumType(const QMetaObject* meta, const QByteArray& name) {
@@ -337,10 +347,10 @@ PyObject* PythonQtPrivate::wrapQObject(QObject* obj)
       classInfo = _knownQtClasses.value(obj->metaObject()->className());
     }
     wrap = createNewPythonQtInstanceWrapper(obj, classInfo);
-    //    mlabDebugConst("MLABPython","new qobject wrapper added " << " " << wrap->_obj->className() << " " << wrap->_info->wrappedClassName().latin1());
+    //    mlabDebugConst("MLABPython","new qobject wrapper added " << " " << wrap->_obj->className() << " " << wrap->classInfo()->wrappedClassName().latin1());
   } else {
     Py_INCREF(wrap);
-    //    mlabDebugConst("MLABPython","qobject wrapper reused " << wrap->_obj->className() << " " << wrap->_info->wrappedClassName().latin1());
+    //    mlabDebugConst("MLABPython","qobject wrapper reused " << wrap->_obj->className() << " " << wrap->classInfo()->wrappedClassName().latin1());
   }
   return (PyObject*)wrap;
 }
@@ -371,7 +381,7 @@ PyObject* PythonQtPrivate::wrapPtr(void* ptr, const QByteArray& name)
         info = _knownQtClasses.value(qptr->metaObject()->className());
       }
       wrap = createNewPythonQtInstanceWrapper(qptr, info);
-      //    mlabDebugConst("MLABPython","new qobject wrapper added " << " " << wrap->_obj->className() << " " << wrap->_info->wrappedClassName().latin1());
+      //    mlabDebugConst("MLABPython","new qobject wrapper added " << " " << wrap->_obj->className() << " " << wrap->classInfo()->wrappedClassName().latin1());
     } else {
       // maybe it is a PyObject, which we can return directly
       if (name == "PyObject") {
@@ -389,32 +399,37 @@ PyObject* PythonQtPrivate::wrapPtr(void* ptr, const QByteArray& name)
       }
       PythonQtClassInfo* info = _knownQtWrapperClasses.value(name);
       if (!info) {
-        info = new PythonQtClassInfo(wrapper?wrapper->metaObject():NULL, name);
-        _knownQtWrapperClasses.insert(name, info);
-        PyModule_AddObject(_pythonQtModule, name, (PyObject*)createNewPythonQtClassWrapper(info));
-      } else {
-        if (wrapper && (info->metaObject() != wrapper->metaObject())) {
-          info->setMetaObject(wrapper->metaObject());
-        }
+        registerCPPClass(name.constData());
+        info = _knownQtWrapperClasses.value(name);
+      }
+      if (wrapper && (info->metaObject() != wrapper->metaObject())) {
+        info->setMetaObject(wrapper->metaObject());
       }
       wrap = createNewPythonQtInstanceWrapper(wrapper, info, ptr);
-      //          mlabDebugConst("MLABPython","new c++ wrapper added " << wrap->_wrappedPtr << " " << wrap->_obj->className() << " " << wrap->_info->wrappedClassName().latin1());
+      //          mlabDebugConst("MLABPython","new c++ wrapper added " << wrap->_wrappedPtr << " " << wrap->_obj->className() << " " << wrap->classInfo()->wrappedClassName().latin1());
     }
   } else {
     Py_INCREF(wrap);
-    //mlabDebugConst("MLABPython","c++ wrapper reused " << wrap->_wrappedPtr << " " << wrap->_obj->className() << " " << wrap->_info->wrappedClassName().latin1());
+    //mlabDebugConst("MLABPython","c++ wrapper reused " << wrap->_wrappedPtr << " " << wrap->_obj->className() << " " << wrap->classInfo()->wrappedClassName().latin1());
   }
   return (PyObject*)wrap;
 }
 
+PyObject* PythonQtPrivate::dummyTuple() {
+  static PyObject* dummyTuple = NULL;
+  if (dummyTuple==NULL) {
+    dummyTuple = PyTuple_New(1);
+    PyTuple_SET_ITEM(dummyTuple, 0 , PyString_FromString("dummy"));
+  }
+  return dummyTuple;
+}
+
 
 PythonQtInstanceWrapper* PythonQtPrivate::createNewPythonQtInstanceWrapper(QObject* obj, PythonQtClassInfo* info, void* wrappedPtr) {
-  PythonQtInstanceWrapper* result;
-  result = (PythonQtInstanceWrapper *)PythonQtInstanceWrapper_Type.tp_new(&PythonQtInstanceWrapper_Type,
-    NULL, NULL);
+  // call the associated class type to create a new instance...
+  PythonQtInstanceWrapper* result = (PythonQtInstanceWrapper*)PyObject_Call(info->pythonQtClassWrapper(), dummyTuple(), NULL);
 
   result->setQObject(obj);
-  result->_info = info;
   result->_wrappedPtr = wrappedPtr;
   result->_ownedByPythonQt = false;
   result->_useQMetaTypeDestroy = false;
@@ -431,11 +446,36 @@ PythonQtInstanceWrapper* PythonQtPrivate::createNewPythonQtInstanceWrapper(QObje
   return result;
 }
 
-PythonQtClassWrapper* PythonQtPrivate::createNewPythonQtClassWrapper(PythonQtClassInfo* info) {
+PythonQtClassWrapper* PythonQtPrivate::createNewPythonQtClassWrapper(PythonQtClassInfo* info, const char* package) {
   PythonQtClassWrapper* result;
-  result = (PythonQtClassWrapper *)PythonQtClassWrapper_Type.tp_new(&PythonQtClassWrapper_Type,
-    NULL, NULL);
-  result->_info = info;
+
+  PyObject* className = PyString_FromString(info->className());
+
+  PyObject* baseClasses = PyTuple_New(1);
+  PyTuple_SET_ITEM(baseClasses, 0, (PyObject*)&PythonQtInstanceWrapper_Type);
+  
+  PyObject* typeDict = PyDict_New();
+  QByteArray moduleName("PythonQt");
+  if (package && strcmp(package, "")!=0) {
+    moduleName += ".";
+    moduleName += package;
+  }
+  PyDict_SetItemString(typeDict, "__module__", PyString_FromString(moduleName.constData()));
+
+  PyObject* args  = Py_BuildValue("OOO", className, baseClasses, typeDict);
+
+  // set the class info so that PythonQtClassWrapper_new can read it
+  _currentClassInfoForClassWrapperCreation = info;
+  // create the new type object by calling the type
+  result = (PythonQtClassWrapper *)PyObject_Call((PyObject *)&PythonQtClassWrapper_Type, args, NULL);
+
+  Py_DECREF(baseClasses);
+  Py_DECREF(typeDict);
+  Py_DECREF(args);
+  Py_DECREF(className);
+
+  //TODO XXX why is this incref needed? It looks like the types get garbage collected somehow?!
+  Py_INCREF((PyObject*)result);
   return result;
 }
 
@@ -666,7 +706,7 @@ QStringList PythonQt::introspection(PyObject* module, const QString& objectname,
         }
       } else if (object->ob_type == &PythonQtClassWrapper_Type) {
         PythonQtClassWrapper* o = (PythonQtClassWrapper*)object.object();
-        PythonQtSlotInfo* info = o->_info->constructors();
+        PythonQtSlotInfo* info = o->classInfo()->constructors();
     
         while (info) {
           results << info->fullSignature(false);
@@ -817,16 +857,6 @@ void PythonQt::addWrapperFactory(PythonQtCppWrapperFactory* factory)
   _p->_cppWrapperFactories.append(factory);
 }
 
-void PythonQt::addConstructorHandler(PythonQtConstructorHandler* factory)
-{
-  _p->_constructorHandlers.append(factory);
-}
-
-const QList<PythonQtConstructorHandler*>& PythonQt::constructorHandlers()
-{ 
-  return _p->_constructorHandlers;
-};
-
 //---------------------------------------------------------------------------------------------------
 PythonQtPrivate::PythonQtPrivate()
 {
@@ -834,6 +864,14 @@ PythonQtPrivate::PythonQtPrivate()
   _defaultImporter = new PythonQtQFileImporter;
   _noLongerWrappedCB = NULL;
   _wrappedCB = NULL;
+  _currentClassInfoForClassWrapperCreation = NULL;
+}
+
+PythonQtClassInfo* PythonQtPrivate::currentClassInfoForClassWrapperCreation()
+{
+  PythonQtClassInfo* info = _currentClassInfoForClassWrapperCreation;
+  _currentClassInfoForClassWrapperCreation = NULL;
+  return info;
 }
 
 void PythonQtPrivate::addDecorators(QObject* o, int decoTypes)
@@ -1006,16 +1044,8 @@ void PythonQtPrivate::registerCPPClass(const char* typeName, const char* parentT
 {
   PythonQtClassInfo* info = _knownQtWrapperClasses.value(typeName);
   if (!info) {
-    info = new PythonQtClassInfo(NULL, typeName);
+    info = createPythonQtClassInfo(NULL, typeName, package);
     _knownQtWrapperClasses.insert(typeName, info);
-    PythonQtObjectPtr pack = packageByName(package);
-    PyObject* pyobj = (PyObject*)createNewPythonQtClassWrapper(info);
-    PyModule_AddObject(pack, typeName, pyobj);
-    if (package && strncmp(package,"Qt",2)==0) {
-      // put all qt objects into Qt as well
-      PythonQtObjectPtr pack = packageByName("Qt");
-      PyModule_AddObject(pack, typeName, pyobj);
-    }
   }
   if (parentTypeName) {
     info->setWrappedParentClassName(parentTypeName);
@@ -1053,6 +1083,11 @@ PyObject* PythonQt::helpCalled(PythonQtClassInfo* info)
 void PythonQtPrivate::removeWrapperPointer(void* obj)
 {
   _wrappedObjects.remove(obj);
+}
+
+void PythonQtPrivate::addWrapperPointer(void* obj, PythonQtInstanceWrapper* wrapper)
+{
+  _wrappedObjects.insert(obj, wrapper);
 }
 
 PythonQtInstanceWrapper* PythonQtPrivate::findWrapperAndRemoveUnused(void* obj)

@@ -54,6 +54,7 @@ PythonQtClassInfo::PythonQtClassInfo(const QMetaObject* meta, const QByteArray& 
   _parentClassInfoResolved = false;
   _decoratorProvider = NULL;
   _decoratorProviderCB = NULL;
+  _pythonQtClassWrapper = NULL;
   if (wrappedClassName.isEmpty()) {
     _metaTypeId = -1;
   } else {
