@@ -1,5 +1,5 @@
-#ifndef _PYTHONQTWRAPPER_H
-#define _PYTHONQTWRAPPER_H
+#ifndef _PYTHONQTMETAOBJECTWRAPPER_H
+#define _PYTHONQTMETAOBJECTWRAPPER_H
 
 /*
  *
@@ -35,7 +35,7 @@
 
 //----------------------------------------------------------------------------------
 /*!
-// \file    PythonQtWrapper.h
+// \file    PythonQtClassWrapper.h
 // \author  Florian Link
 // \author  Last changed by $Author: florian $
 // \date    2006-05
@@ -44,49 +44,36 @@
 
 #include <Python.h>
 
-#include "PythonQtSystem.h"
-#include <QPointer>
-
 #include "structmember.h"
 #include "methodobject.h"
 #include "compile.h"
 #include "eval.h"
+#include <QString>
 
 class PythonQtClassInfo;
 class QObject;
+struct QMetaObject;
 
-extern PYTHONQT_EXPORT PyTypeObject PythonQtWrapper_Type;
+extern PyTypeObject PythonQtClassWrapper_Type;
 
 //---------------------------------------------------------------
-//! a Python wrapper object for Qt objects and C++ objects (that are themselves wrapped by wrapper QObjects)
+//! a Python wrapper object for Qt meta objects
 typedef struct {
   PyObject_HEAD
 
-  //! set the QObject pointer
-  void setQObject(QObject* object) {
-    _obj = object;
-    _objPointerCopy = object;
-  }
-
-  //! pointer to the wrapped Qt object or if _wrappedPtr is set, the Qt object that wraps the C++ Ptr
-  QPointer<QObject> _obj;
-  //! a copy of the _obj pointer, which is required because the wrapper needs to
-  //! deregister itself via the _obj pointer, even when the QPointer<QObject> object was destroyed
-  void* _objPointerCopy;
-
-  //! optional C++ object Ptr that is wrapped by the above _obj
-  void*    _wrappedPtr;
-
-  //! the class information, this is set even if the _obj or _wrappedPtr is NULL to support typed NULL pointers
+  //! the class information (which contains the meta object as well)
   PythonQtClassInfo* _info;
 
-  //! flag that stores if the object is owned by pythonQt
-  bool _ownedByPythonQt;
+} PythonQtClassWrapper;
 
-  //! stores that the owned object should be destroyed using QMetaType::destroy()
-  bool _useQMetaTypeDestroy;
-  
-} PythonQtWrapper;
+//---------------------------------------------------------------
+// an abstact class for handling construction of objects
+class PythonQtConstructorHandler {
+public:
+  //! get rid of warnings
+  virtual ~PythonQtConstructorHandler() {}
 
+  virtual QObject* create(const QMetaObject* meta, PyObject *args, PyObject *kw, QString& error) = 0;
+};
 
 #endif

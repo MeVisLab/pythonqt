@@ -350,11 +350,9 @@ void PythonQtClassInfo::listDecoratorSlotsFromDecoratorProvider(QStringList& lis
           sigStart += 7 + 1 + strlen(className());
           isClassDeco = true;
         } else if (qstrncmp(sigStart, "new_", 4)==0) {
-          sigStart += 4 + 1 + strlen(className());
-          isClassDeco = true;
+          continue;
         } else if (qstrncmp(sigStart, "delete_", 7)==0) {
-          sigStart += 7 + 1 + strlen(className());
-          isClassDeco = true;
+          continue;
         }
         // find the first '('
         int offset = findCharOffset(sigStart, '(');
@@ -375,7 +373,7 @@ QStringList PythonQtClassInfo::memberList(bool metaOnly)
 
   QStringList l;
   QString h;
-  if (_wrappedClassName.isEmpty() && _meta) {
+  if (_wrappedClassName.isEmpty() && _meta && !metaOnly) {
     int i;
     int numProperties = _meta->propertyCount();
     for (i = 0; i < numProperties; i++) {

@@ -41,7 +41,7 @@
 
 #include "PythonQt.h"
 #include "PythonQtSlot.h"
-#include "PythonQtWrapper.h"
+#include "PythonQtInstanceWrapper.h"
 #include "PythonQtClassInfo.h"
 #include "PythonQtMisc.h"
 #include "PythonQtConversion.h"
@@ -159,10 +159,10 @@ PyObject *PythonQtSlotFunction_Call(PyObject *func, PyObject *args, PyObject *kw
 {
   PythonQtSlotFunctionObject* f = (PythonQtSlotFunctionObject*)func;
   PythonQtSlotInfo*    info = f->m_ml;
-  if (f->m_self->ob_type == &PythonQtWrapper_Type) {
-    PythonQtWrapper* self = (PythonQtWrapper*) f->m_self;
+  if (f->m_self->ob_type == &PythonQtInstanceWrapper_Type) {
+    PythonQtInstanceWrapper* self = (PythonQtInstanceWrapper*) f->m_self;
     return PythonQtSlotFunction_CallImpl(self->_obj, info, args, kw, self->_wrappedPtr);
-  } else if (f->m_self->ob_type == &PythonQtMetaObjectWrapper_Type) {
+  } else if (f->m_self->ob_type == &PythonQtClassWrapper_Type) {
     return PythonQtSlotFunction_CallImpl(NULL, info, args, kw);
   } else {
     return NULL;

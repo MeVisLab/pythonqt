@@ -43,8 +43,8 @@
 //----------------------------------------------------------------------------------
 
 #include "PythonQtSystem.h"
-#include "PythonQtWrapper.h"
-#include "PythonQtMetaObjectWrapper.h"
+#include "PythonQtInstanceWrapper.h"
+#include "PythonQtClassWrapper.h"
 #include "PythonQtSlot.h"
 #include "PythonQtObjectPtr.h"
 #include <QObject>
@@ -424,11 +424,11 @@ public:
   //! an enum of another known metaobject (and as last resort, of the Qt namespace)
   bool isEnumType(const QMetaObject* meta, const QByteArray& name);
 
-  //! helper method that creates a PythonQtMetaObjectWrapper object
-  PythonQtMetaObjectWrapper* createNewPythonQtMetaObjectWrapper(PythonQtClassInfo* info);
+  //! helper method that creates a PythonQtClassWrapper object
+  PythonQtClassWrapper* createNewPythonQtClassWrapper(PythonQtClassInfo* info);
 
-  //! helper method that creates a PythonQtWrapper object and registers it in the object map
-  PythonQtWrapper* createNewPythonQtWrapper(QObject* obj, PythonQtClassInfo* info, void* wrappedPtr = NULL);
+  //! helper method that creates a PythonQtInstanceWrapper object and registers it in the object map
+  PythonQtInstanceWrapper* createNewPythonQtInstanceWrapper(QObject* obj, PythonQtClassInfo* info, void* wrappedPtr = NULL);
 
   //! get the class info for a meta object (if available)
   PythonQtClassInfo* getClassInfo(const QMetaObject* meta) { return _knownQtClasses.value(meta->className()); }
@@ -450,10 +450,10 @@ private:
   PythonQtObjectPtr packageByName(const char* name);
 
   //! get the wrapper for a given pointer (and remove a wrapper of an already destroyed qobject)
-  PythonQtWrapper* findWrapperAndRemoveUnused(void* obj);
+  PythonQtInstanceWrapper* findWrapperAndRemoveUnused(void* obj);
 
   //! stores pointer to PyObject mapping of wrapped QObjects AND C++ objects
-  QHash<void* , PythonQtWrapper *>       _wrappedObjects;
+  QHash<void* , PythonQtInstanceWrapper *>       _wrappedObjects;
 
   //! stores the meta info of known Qt classes
   QHash<QByteArray, PythonQtClassInfo *> _knownQtClasses;

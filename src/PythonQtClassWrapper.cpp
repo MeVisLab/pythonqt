@@ -32,14 +32,14 @@
 
 //----------------------------------------------------------------------------------
 /*!
-// \file    PythonQtMetaObjectWrapper.cpp
+// \file    PythonQtClassWrapper.cpp
 // \author  Florian Link
 // \author  Last changed by $Author: florian $
 // \date    2006-05
 */
 //----------------------------------------------------------------------------------
 
-#include "PythonQtMetaObjectWrapper.h"
+#include "PythonQtClassWrapper.h"
 #include <QObject>
 
 #include "PythonQt.h"
@@ -47,29 +47,29 @@
 #include "PythonQtClassInfo.h"
 #include "PythonQtConversion.h"
 
-static void PythonQtMetaObjectWrapper_dealloc(PythonQtMetaObjectWrapper* self)
+static void PythonQtClassWrapper_dealloc(PythonQtClassWrapper* self)
 {
   self->ob_type->tp_free((PyObject*)self);
 }
 
-static PyObject* PythonQtMetaObjectWrapper_new(PyTypeObject *type, PyObject * /*args*/, PyObject * /*kwds*/)
+static PyObject* PythonQtClassWrapper_new(PyTypeObject *type, PyObject * /*args*/, PyObject * /*kwds*/)
 {
-  PythonQtMetaObjectWrapper *self;
+  PythonQtClassWrapper *self;
 
-  self = (PythonQtMetaObjectWrapper *)type->tp_alloc(type, 0);
+  self = (PythonQtClassWrapper *)type->tp_alloc(type, 0);
   if (self != NULL) {
     self->_info = NULL;
   }
   return (PyObject *)self;
 }
 
-static int PythonQtMetaObjectWrapper_init(PythonQtMetaObjectWrapper * /*self*/, PyObject * /*args*/, PyObject * /*kwds*/)
+static int PythonQtClassWrapper_init(PythonQtClassWrapper * /*self*/, PyObject * /*args*/, PyObject * /*kwds*/)
 {
   return 0;
 }
 
-PyObject *PythonQtMetaObjectWrapper_call(PyObject *func, PyObject *args, PyObject *kw) {
-  PythonQtMetaObjectWrapper* wrapper = (PythonQtMetaObjectWrapper*)func;
+PyObject *PythonQtClassWrapper_call(PyObject *func, PyObject *args, PyObject *kw) {
+  PythonQtClassWrapper* wrapper = (PythonQtClassWrapper*)func;
   PyObject* result = NULL;
   QString error;
   PyObject* err = NULL;
@@ -89,8 +89,8 @@ PyObject *PythonQtMetaObjectWrapper_call(PyObject *func, PyObject *args, PyObjec
   }
   if (result) {
     // change ownershipflag to be owned by PythonQt
-    if (result->ob_type == &PythonQtWrapper_Type) {
-      ((PythonQtWrapper*)result)->_ownedByPythonQt = true;
+    if (result->ob_type == &PythonQtInstanceWrapper_Type) {
+      ((PythonQtInstanceWrapper*)result)->_ownedByPythonQt = true;
     }
   } else {
     if (!wrapper->_info->constructors()) {
@@ -105,38 +105,38 @@ PyObject *PythonQtMetaObjectWrapper_call(PyObject *func, PyObject *args, PyObjec
   return result;
 }
 
-static PyObject *PythonQtMetaObjectWrapper_classname(PythonQtMetaObjectWrapper* type)
+static PyObject *PythonQtClassWrapper_classname(PythonQtClassWrapper* type)
 {
   return PyString_FromString((QString("Meta_") + type->_info->className()).toLatin1().data());
 }
 
-static PyObject *PythonQtMetaObjectWrapper_help(PythonQtMetaObjectWrapper* type)
+static PyObject *PythonQtClassWrapper_help(PythonQtClassWrapper* type)
 {
   return PythonQt::self()->helpCalled(type->_info);
 }
 
 
-static PyMethodDef PythonQtMetaObjectWrapper_methods[] = {
-    {"className", (PyCFunction)PythonQtMetaObjectWrapper_classname, METH_NOARGS,
+static PyMethodDef PythonQtClassWrapper_methods[] = {
+    {"className", (PyCFunction)PythonQtClassWrapper_classname, METH_NOARGS,
      "Return the classname of the object"
     },
-    {"help", (PyCFunction)PythonQtMetaObjectWrapper_help, METH_NOARGS,
+    {"help", (PyCFunction)PythonQtClassWrapper_help, METH_NOARGS,
     "Shows the help of available methods for this class"
     },
     {NULL, NULL, 0 , NULL}  /* Sentinel */
 };
 
 
-static PyObject *PythonQtMetaObjectWrapper_getattro(PyObject *obj,PyObject *name)
+static PyObject *PythonQtClassWrapper_getattro(PyObject *obj,PyObject *name)
 {
   const char *attributeName;
-  PythonQtMetaObjectWrapper *wt = (PythonQtMetaObjectWrapper *)obj;
+  PythonQtClassWrapper *wrapper = (PythonQtClassWrapper *)obj;
 
   if ((attributeName = PyString_AsString(name)) == NULL) {
     return NULL;
   }
 
-  PythonQtMemberInfo member = wt->_info->member(attributeName);
+  PythonQtMemberInfo member = wrapper->_info->member(attributeName);
   if (member._type == PythonQtMemberInfo::EnumValue) {
     return PyInt_FromLong(member._enumValue);
   }
@@ -145,14 +145,14 @@ static PyObject *PythonQtMetaObjectWrapper_getattro(PyObject *obj,PyObject *name
   }
 
   // look for the interal methods (className(), help())
-  PyObject* internalMethod = Py_FindMethod( PythonQtMetaObjectWrapper_methods, obj, (char*)attributeName);
+  PyObject* internalMethod = Py_FindMethod( PythonQtClassWrapper_methods, obj, (char*)attributeName);
   if (internalMethod) {
     return internalMethod;
   }
   PyErr_Clear();
 
   if (qstrcmp(attributeName, "__dict__")==0) {
-    QStringList l = wt->_info->memberList(true);
+    QStringList l = wrapper->_info->memberList(true);
     PyObject* dict = PyDict_New();
     foreach (QString name, l) {
       //PyObject* o = PyObject_GetAttrString(obj, name.toLatin1().data());
@@ -162,39 +162,39 @@ static PyObject *PythonQtMetaObjectWrapper_getattro(PyObject *obj,PyObject *name
     return dict;
   }
 
-  QString error = QString(wt->_info->className()) + " has no attribute named '" + QString(attributeName) + "'";
+  QString error = QString(wrapper->_info->className()) + " has no attribute named '" + QString(attributeName) + "'";
   PyErr_SetString(PyExc_AttributeError, error.toLatin1().data());
   return NULL;
 }
 
-static PyObject * PythonQtMetaObjectWrapper_repr(PyObject * obj)
+static PyObject * PythonQtClassWrapper_repr(PyObject * obj)
 {
-  PythonQtMetaObjectWrapper* wt = (PythonQtMetaObjectWrapper*)obj;
-  if (wt->_info->isCPPWrapper()) {
-    const QMetaObject* meta = wt->_info->metaObject(); 
+  PythonQtClassWrapper* wrapper = (PythonQtClassWrapper*)obj;
+  if (wrapper->_info->isCPPWrapper()) {
+    const QMetaObject* meta = wrapper->_info->metaObject(); 
     if (!meta) {
-      QObject* decorator = wt->_info->decorator();
+      QObject* decorator = wrapper->_info->decorator();
       if (decorator) {
         meta = decorator->metaObject();
       }
     }
     if (meta) {
-      return PyString_FromFormat("%s Class (C++ wrapped by %s)", wt->_info->className(), meta->className());
+      return PyString_FromFormat("%s Class (C++ wrapped by %s)", wrapper->_info->className(), meta->className());
     } else {
-      return PyString_FromFormat("%s Class (C++ unwrapped)", wt->_info->className());
+      return PyString_FromFormat("%s Class (C++ unwrapped)", wrapper->_info->className());
     }
   } else {
-    return PyString_FromFormat("%s Class", wt->_info->className());
+    return PyString_FromFormat("%s Class", wrapper->_info->className());
   }
 }
 
-static int PythonQtMetaObjectWrapper_compare(PyObject * obj1, PyObject * obj2)
+static int PythonQtClassWrapper_compare(PyObject * obj1, PyObject * obj2)
 {
-  if (obj1->ob_type == &PythonQtMetaObjectWrapper_Type &&
-    obj2->ob_type == &PythonQtMetaObjectWrapper_Type) {
+  if (obj1->ob_type == &PythonQtClassWrapper_Type &&
+    obj2->ob_type == &PythonQtClassWrapper_Type) {
 
-    PythonQtMetaObjectWrapper* w1 = (PythonQtMetaObjectWrapper*)obj1;
-    PythonQtMetaObjectWrapper* w2 = (PythonQtMetaObjectWrapper*)obj2;
+    PythonQtClassWrapper* w1 = (PythonQtClassWrapper*)obj1;
+    PythonQtClassWrapper* w2 = (PythonQtClassWrapper*)obj2;
     if (w1->_info == w2->_info) {
       return 0;
     } else {
@@ -205,34 +205,34 @@ static int PythonQtMetaObjectWrapper_compare(PyObject * obj1, PyObject * obj2)
   }
 }
 
-static long PythonQtMetaObjectWrapper_hash(PythonQtMetaObjectWrapper *obj)
+static long PythonQtClassWrapper_hash(PythonQtClassWrapper *obj)
 {
   return reinterpret_cast<long>(obj->_info);
 }
 
-PyTypeObject PythonQtMetaObjectWrapper_Type = {
+PyTypeObject PythonQtClassWrapper_Type = {
     PyObject_HEAD_INIT(NULL)
     0,                         /*ob_size*/
-    "PythonQt.PythonQtMetaObjectWrapper",             /*tp_name*/
-    sizeof(PythonQtMetaObjectWrapper),             /*tp_basicsize*/
+    "PythonQt.PythonQtClassWrapper",             /*tp_name*/
+    sizeof(PythonQtClassWrapper),             /*tp_basicsize*/
     0,                         /*tp_itemsize*/
-    (destructor)PythonQtMetaObjectWrapper_dealloc, /*tp_dealloc*/
+    (destructor)PythonQtClassWrapper_dealloc, /*tp_dealloc*/
     0,                         /*tp_print*/
     0,                         /*tp_getattr*/
     0,                         /*tp_setattr*/
-    PythonQtMetaObjectWrapper_compare,         /*tp_compare*/
-    PythonQtMetaObjectWrapper_repr,            /*tp_repr*/
+    PythonQtClassWrapper_compare,         /*tp_compare*/
+    PythonQtClassWrapper_repr,            /*tp_repr*/
     0,                         /*tp_as_number*/
     0,                         /*tp_as_sequence*/
     0,                         /*tp_as_mapping*/
-    (hashfunc)PythonQtMetaObjectWrapper_hash,                         /*tp_hash */
-    PythonQtMetaObjectWrapper_call,                         /*tp_call*/
+    (hashfunc)PythonQtClassWrapper_hash,                         /*tp_hash */
+    PythonQtClassWrapper_call,                         /*tp_call*/
     0,                         /*tp_str*/
-    PythonQtMetaObjectWrapper_getattro,                         /*tp_getattro*/
+    PythonQtClassWrapper_getattro,                         /*tp_getattro*/
     0,                         /*tp_setattro*/
     0,                         /*tp_as_buffer*/
     Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE, /*tp_flags*/
-    "PythonQtMetaObjectWrapper object",           /* tp_doc */
+    "PythonQtClassWrapper object",           /* tp_doc */
     0,                   /* tp_traverse */
     0,                   /* tp_clear */
     0,                   /* tp_richcompare */
@@ -247,9 +247,9 @@ PyTypeObject PythonQtMetaObjectWrapper_Type = {
     0,                         /* tp_descr_get */
     0,                         /* tp_descr_set */
     0,                         /* tp_dictoffset */
-    (initproc)PythonQtMetaObjectWrapper_init,      /* tp_init */
+    (initproc)PythonQtClassWrapper_init,      /* tp_init */
     0,                         /* tp_alloc */
-    PythonQtMetaObjectWrapper_new,                 /* tp_new */
+    PythonQtClassWrapper_new,                 /* tp_new */
 };
 
 //-------------------------------------------------------
