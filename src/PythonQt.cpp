@@ -293,13 +293,14 @@ void PythonQtPrivate::registerClass(const QMetaObject* metaobject, const char* p
 PythonQtClassInfo* PythonQtPrivate::createPythonQtClassInfo(const QMetaObject* meta, const char* cppClassName, const char* package)
 {
   PythonQtClassInfo* info = new PythonQtClassInfo(meta, cppClassName);
-  PythonQtObjectPtr pack = packageByName(package);
+  PyObject* pack = packageByName(package);
   PyObject* pyobj = (PyObject*)createNewPythonQtClassWrapper(info, package);
   PyModule_AddObject(pack, meta?meta->className():cppClassName, pyobj);
   if (package && strncmp(package,"Qt",2)==0) {
+    // since PyModule_AddObject steals the reference, we need a incref once more...
+    Py_INCREF(pyobj);
     // put all qt objects into Qt as well
-    PythonQtObjectPtr pack = packageByName("Qt");
-    PyModule_AddObject(pack, meta?meta->className():cppClassName, pyobj);
+    PyModule_AddObject(packageByName("Qt"), meta?meta->className():cppClassName, pyobj);
   }
   info->setPythonQtClassWrapper(pyobj);
   return info;
@@ -474,8 +475,6 @@ PythonQtClassWrapper* PythonQtPrivate::createNewPythonQtClassWrapper(PythonQtCla
   Py_DECREF(args);
   Py_DECREF(className);
 
-  //TODO XXX why is this incref needed? It looks like the types get garbage collected somehow?!
-  Py_INCREF((PyObject*)result);
   return result;
 }
 
@@ -1016,7 +1015,7 @@ static PyMethodDef PythonQtMethods[] = {
 
 void PythonQt::initPythonQtModule(bool redirectStdOut)
 {
-  _p->_pythonQtModule.setNewRef(Py_InitModule("PythonQt", PythonQtMethods));
+  _p->_pythonQtModule = Py_InitModule("PythonQt", PythonQtMethods);
   
   if (redirectStdOut) {
     PythonQtObjectPtr sys;
@@ -1055,15 +1054,17 @@ void PythonQtPrivate::registerCPPClass(const char* typeName, const char* parentT
   }
 }
 
-PythonQtObjectPtr PythonQtPrivate::packageByName(const char* name)
+PyObject* PythonQtPrivate::packageByName(const char* name)
 {
   if (name==NULL || name[0]==0) {
     return _pythonQtModule;
   }
-  PythonQtObjectPtr v = _packages.value(name);
+  PyObject* v = _packages.value(name);
   if (!v) {
-    v.setNewRef(PyImport_AddModule((QByteArray("PythonQt.") + name).constData()));
+    v = PyImport_AddModule((QByteArray("PythonQt.") + name).constData());
     _packages.insert(name, v);
+    // AddObject steals the reference, so increment it!
+    Py_INCREF(v);
     PyModule_AddObject(_pythonQtModule, name, v);
   }
   return v;
