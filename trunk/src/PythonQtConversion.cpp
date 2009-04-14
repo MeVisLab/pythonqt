@@ -159,7 +159,7 @@ PyObject* PythonQtConv::ConvertQtValueToPythonInternal(int type, const void* dat
         // if the type is known, we can construct it via QMetaType::construct
         void* newCPPObject = QMetaType::construct(type, data);
         // XXX this could be optimized by using metatypeid directly
-        PythonQtWrapper* wrap = (PythonQtWrapper*)PythonQt::priv()->wrapPtr(newCPPObject, QMetaType::typeName(type));
+        PythonQtInstanceWrapper* wrap = (PythonQtInstanceWrapper*)PythonQt::priv()->wrapPtr(newCPPObject, QMetaType::typeName(type));
         wrap->_ownedByPythonQt = true;
         wrap->_useQMetaTypeDestroy = true;
         return (PyObject*)wrap;
@@ -224,12 +224,12 @@ return Py_None;
  {
    bool ok;
    void* ptr = NULL;
-   if (obj->ob_type == &PythonQtWrapper_Type && info.typeId != PythonQtMethodInfo::Variant) {
+   if (obj->ob_type == &PythonQtInstanceWrapper_Type && info.typeId != PythonQtMethodInfo::Variant) {
      // if we have a Qt wrapper object and if we do not need a QVariant, we do the following:
      // (the Variant case is handled below in a switch)
  
      // a C++ wrapper (can be passed as pointer or reference)
-     PythonQtWrapper* wrap = (PythonQtWrapper*)obj;
+     PythonQtInstanceWrapper* wrap = (PythonQtInstanceWrapper*)obj;
      if (wrap->_info->inherits(info.name)) {
        void* object;
        if (wrap->_info->isCPPWrapper()) {
@@ -690,8 +690,8 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
       type = QVariant::Double;
     } else if (val == Py_False || val == Py_True) {
       type = QVariant::Bool;
-    } else if (val->ob_type == &PythonQtWrapper_Type) {
-      PythonQtWrapper* wrap = (PythonQtWrapper*)val;
+    } else if (val->ob_type == &PythonQtInstanceWrapper_Type) {
+      PythonQtInstanceWrapper* wrap = (PythonQtInstanceWrapper*)val;
       // c++ wrapper, check if the class names of the c++ objects match
       if (wrap->_info->isCPPWrapper()) {
         if (wrap->_info->metaTypeId()>0) {
@@ -849,8 +849,8 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
     break;
     
   default:
-    if (val->ob_type == &PythonQtWrapper_Type) {
-      PythonQtWrapper* wrap = (PythonQtWrapper*)val;
+    if (val->ob_type == &PythonQtInstanceWrapper_Type) {
+      PythonQtInstanceWrapper* wrap = (PythonQtInstanceWrapper*)val;
       if (wrap->_info->isCPPWrapper() && wrap->_info->metaTypeId() == type) {
         // construct a new variant from the C++ object if it has the same meta type
         v = QVariant(type, wrap->_wrappedPtr);
@@ -956,8 +956,8 @@ bool PythonQtConv::ConvertPythonListToQListOfPointerType(PyObject* obj, QList<vo
     PyObject* value;
     for (int i = 0;i<count;i++) {
       value = PySequence_GetItem(obj,i);
-      if (value->ob_type == &PythonQtWrapper_Type) {
-        PythonQtWrapper* wrap = (PythonQtWrapper*)value;
+      if (value->ob_type == &PythonQtInstanceWrapper_Type) {
+        PythonQtInstanceWrapper* wrap = (PythonQtInstanceWrapper*)value;
         // both QObjects and CPP wrappers support inherits, so we use that to check of we match
         if (wrap->_info->inherits(type)) {
           if (wrap->_info->isCPPWrapper()) {

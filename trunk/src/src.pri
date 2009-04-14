@@ -13,8 +13,8 @@ HEADERS +=                    \
   $$PWD/PythonQtImportFileInterface.h \
   $$PWD/PythonQtConversion.h        \
   $$PWD/PythonQtSignalReceiver.h    \
-  $$PWD/PythonQtWrapper.h           \
-  $$PWD/PythonQtMetaObjectWrapper.h \
+  $$PWD/PythonQtInstanceWrapper.h   \
+  $$PWD/PythonQtClassWrapper.h \
   $$PWD/PythonQtCppWrapperFactory.h \
   $$PWD/PythonQtVariants.h          \
   $$PWD/PythonQtQFileImporter.h     \
@@ -71,9 +71,9 @@ SOURCES +=                    \
   $$PWD/PythonQtConversion.cpp      \
   $$PWD/PythonQtSignalReceiver.cpp  \
   $$PWD/PythonQtVariants.cpp        \
-  $$PWD/PythonQtWrapper.cpp         \
-  $$PWD/PythonQtQFileImporter.cpp    \
-  $$PWD/PythonQtMetaObjectWrapper.cpp \
+  $$PWD/PythonQtInstanceWrapper.cpp \
+  $$PWD/PythonQtQFileImporter.cpp   \
+  $$PWD/PythonQtClassWrapper.cpp    \
   $$PWD/gui/PythonQtScriptingConsole.cpp \
   \
   $$PWD/../generated_cpp/com_trolltech_qt_core/PythonQtWrapper_Qt.cpp \

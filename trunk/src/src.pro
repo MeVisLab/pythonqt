@@ -11,6 +11,7 @@ TEMPLATE = lib
 DESTDIR    = ../lib
 
 CONFIG += qt dll
+CONFIG -= flat
 
 include ( ../build/common.prf )  
 include ( ../build/python.prf )  
