@@ -63,7 +63,6 @@ class PythonQtMethodInfo;
 class PythonQtSignalReceiver;
 class PythonQtImportFileInterface;
 class PythonQtCppWrapperFactory;
-class PythonQtConstructorHandler;
 class PythonQtQFileImporter;
 
 typedef void PythonQtQObjectWrappedCB(QObject* object);
@@ -269,12 +268,6 @@ public:
   //! add the given factory to PythonQt (ownership stays with caller)
   void addWrapperFactory(PythonQtCppWrapperFactory* factory);
 
-  //! add the given constructor handler to PythonQt (ownership stays with caller)
-  void addConstructorHandler(PythonQtConstructorHandler* handler);
-
-  //! get list of constructor handlers
-  const QList<PythonQtConstructorHandler*>& constructorHandlers();
-
   //@}
 
   //@{ Custom importer (to replace internal import implementation of python)
@@ -383,6 +376,8 @@ public:
   //! returns if the id is the id for PythonQtObjectPtr
   bool isPythonQtObjectPtrMetaId(int id) { return _PythonQtObjectPtr_metaId == id; }
 
+  //! add the wrapper pointer (for reuse if the same obj appears while wrapper still exists)
+  void addWrapperPointer(void* obj, PythonQtInstanceWrapper* wrapper);
   //! remove the wrapper ptr again
   void removeWrapperPointer(void* obj);
 
@@ -425,7 +420,7 @@ public:
   bool isEnumType(const QMetaObject* meta, const QByteArray& name);
 
   //! helper method that creates a PythonQtClassWrapper object
-  PythonQtClassWrapper* createNewPythonQtClassWrapper(PythonQtClassInfo* info);
+  PythonQtClassWrapper* createNewPythonQtClassWrapper(PythonQtClassInfo* info, const char* package = NULL);
 
   //! helper method that creates a PythonQtInstanceWrapper object and registers it in the object map
   PythonQtInstanceWrapper* createNewPythonQtInstanceWrapper(QObject* obj, PythonQtClassInfo* info, void* wrappedPtr = NULL);
@@ -445,7 +440,17 @@ public:
   //! creates the new module from the given pycode
   PythonQtObjectPtr createModule(const QString& name, PyObject* pycode);
 
+  //! get the current class info (for the next PythonQtClassWrapper that is created) and reset it to NULL again
+  PythonQtClassInfo* currentClassInfoForClassWrapperCreation();
+
+  //! the dummy tuple (which is empty and may be used to detected that a wrapper is called from internal wrapper creation
+  static PyObject* dummyTuple();
+
 private:
+
+  //! create a new class info and python wrapper type
+  PythonQtClassInfo* createPythonQtClassInfo(const QMetaObject* meta, const char* cppClassName, const char* package);
+
   //! get/create new package module
   PythonQtObjectPtr packageByName(const char* name);
 
@@ -487,13 +492,12 @@ private:
   //! the cpp object wrapper factories
   QList<PythonQtCppWrapperFactory*> _cppWrapperFactories;
 
-  //! the cpp object wrapper factories
-  QList<PythonQtConstructorHandler*> _constructorHandlers;
-
   QHash<QByteArray , PythonQtSlotInfo *> _constructorSlots;
   QHash<QByteArray , PythonQtSlotInfo *> _destructorSlots;
 
   QHash<QByteArray, PythonQtObjectPtr> _packages;
+
+  PythonQtClassInfo* _currentClassInfoForClassWrapperCreation;
 
   int _initFlags;
   int _PythonQtObjectPtr_metaId;

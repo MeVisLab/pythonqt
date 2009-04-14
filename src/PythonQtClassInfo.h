@@ -125,6 +125,12 @@ public:
   //! check if the special method "hasOwner" is implemented and if it returns false, which means that the object may be destroyed
   bool hasOwnerMethodButNoOwner(void* object);
 
+  //! set the associated PythonQtClassWrapper (which handles instance creation of this type)
+  void setPythonQtClassWrapper(PyObject* obj) { _pythonQtClassWrapper = obj; }
+
+  //! get the associated PythonQtClassWrapper (which handles instance creation of this type)
+  PyObject* pythonQtClassWrapper() { return _pythonQtClassWrapper; }
+  
 private:
   //! resolve the parent class from either meta object or cpp parent class name
   void resolveParentClassInfo();
@@ -150,6 +156,8 @@ private:
   PythonQtQObjectCreatorFunctionCB*    _decoratorProviderCB;
   PythonQtClassInfo*                   _parentClassInfo;
   
+  PyObject*                            _pythonQtClassWrapper;
+
   bool                                 _parentClassInfoResolved;
   int                                  _metaTypeId;
   

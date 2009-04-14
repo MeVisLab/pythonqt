@@ -62,6 +62,9 @@ extern PYTHONQT_EXPORT PyTypeObject PythonQtInstanceWrapper_Type;
 typedef struct {
   PyObject_HEAD
 
+  //! the class information, this is set even if the _obj or _wrappedPtr is NULL to support typed NULL pointers
+  PythonQtClassInfo* classInfo();
+
   //! set the QObject pointer
   void setQObject(QObject* object) {
     _obj = object;
@@ -76,9 +79,6 @@ typedef struct {
 
   //! optional C++ object Ptr that is wrapped by the above _obj
   void*    _wrappedPtr;
-
-  //! the class information, this is set even if the _obj or _wrappedPtr is NULL to support typed NULL pointers
-  PythonQtClassInfo* _info;
 
   //! flag that stores if the object is owned by pythonQt
   bool _ownedByPythonQt;
