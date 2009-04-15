@@ -134,7 +134,7 @@ static PyObject* PythonQtInstanceWrapper_new(PyTypeObject *type, PyObject * args
   return (PyObject *)self;
 }
 
-static int PythonQtInstanceWrapper_init(PythonQtInstanceWrapper * self, PyObject * args, PyObject * kwds)
+int PythonQtInstanceWrapper_init(PythonQtInstanceWrapper * self, PyObject * args, PyObject * kwds)
 {
   PyObject* result = NULL;
 
@@ -247,6 +247,24 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
   }
   PyErr_Clear();
 
+  if (qstrcmp(attributeName, "__dict__")==0) {
+    QStringList l = wrapper->classInfo()->memberList(false);
+    PyObject* dict = PyDict_New();
+    foreach (QString name, l) {
+      PyObject* o = PyObject_GetAttrString(obj, name.toLatin1().data());
+      PyDict_SetItemString(dict, name.toLatin1().data(), Py_None);
+      Py_DECREF(o);
+    }
+    // Note: we do not put children into the dict, is would look confusing?!
+    return dict;
+  }
+
+  // look in super
+  PyObject* superAttr = PyBaseObject_Type.tp_getattro(obj, name);
+  if (superAttr) {
+    return superAttr;
+  }
+
   if (wrapper->_obj) {
     // look for a child
     QObjectList children = wrapper->_obj->children();
@@ -257,19 +275,6 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
       }
     }
   }
-
-  if (qstrcmp(attributeName, "__dict__")==0) {
-    QStringList l = wrapper->classInfo()->memberList(false);
-    PyObject* dict = PyDict_New();
-    foreach (QString name, l) {
-      //PyObject* o = PyObject_GetAttrString(obj, name.toLatin1().data());
-      PyDict_SetItemString(dict, name.toLatin1().data(), Py_None);
-      //Py_DECREF(o);
-    }
-    // Note: we do not put children into the dict, is would look confusing?!
-    return dict;
-  }
-
 
   QString error = QString(wrapper->classInfo()->className()) + " has no attribute named '" + QString(attributeName) + "'";
   PyErr_SetString(PyExc_AttributeError, error.toLatin1().data());
@@ -332,6 +337,7 @@ static int PythonQtInstanceWrapper_setattro(PyObject *obj,PyObject *name,PyObjec
 static PyObject * PythonQtInstanceWrapper_str(PyObject * obj)
 {
   PythonQtInstanceWrapper* wrapper = (PythonQtInstanceWrapper*)obj;
+  const char* typeName = obj->ob_type->tp_name;
   QObject *qobj = wrapper->_obj;
   if (wrapper->_wrappedPtr) {
     QString str = PythonQtConv::CPPObjectToString(wrapper->classInfo()->metaTypeId(), wrapper->_wrappedPtr);
@@ -339,28 +345,30 @@ static PyObject * PythonQtInstanceWrapper_str(PyObject * obj)
       return PyString_FromFormat("%s", str.toLatin1().constData());
     } else
     if (wrapper->_obj) {
-      return PyString_FromFormat("%s (C++ Object %p wrapped by %s %p))", wrapper->classInfo()->className(), wrapper->_wrappedPtr, wrapper->_obj->metaObject()->className(), qobj);
+      return PyString_FromFormat("%s (C++ Object %p wrapped by %s %p))", typeName, wrapper->_wrappedPtr, wrapper->_obj->metaObject()->className(), qobj);
     } else {
-      return PyString_FromFormat("%s (C++ Object %p)", wrapper->classInfo()->className(), wrapper->_wrappedPtr);
+      return PyString_FromFormat("%s (C++ Object %p)", typeName, wrapper->_wrappedPtr);
     }
   } else {
-    return PyString_FromFormat("%s (QObject %p)", wrapper->classInfo()->className(), qobj);
+    return PyString_FromFormat("%s (QObject %p)", typeName, qobj);
   }
 }
 
 static PyObject * PythonQtInstanceWrapper_repr(PyObject * obj)
 {
   PythonQtInstanceWrapper* wrapper = (PythonQtInstanceWrapper*)obj;
+  const char* typeName = obj->ob_type->tp_name;
+    
   QObject *qobj = wrapper->_obj;
   if (wrapper->_wrappedPtr) {
     QString str = PythonQtConv::CPPObjectToString(wrapper->classInfo()->metaTypeId(), wrapper->_wrappedPtr);
     if (!str.isEmpty()) {
-      return PyString_FromFormat("%s(%s, %p)", QMetaType::typeName(wrapper->classInfo()->metaTypeId()), str.toLatin1().constData(), wrapper->_wrappedPtr);
+      return PyString_FromFormat("%s(%s, %p)", typeName, str.toLatin1().constData(), wrapper->_wrappedPtr);
     } else
     if (wrapper->_obj) {
-      return PyString_FromFormat("%s (C++ Object %p wrapped by %s %p))", wrapper->classInfo()->className(), wrapper->_wrappedPtr, wrapper->_obj->metaObject()->className(), qobj);
+      return PyString_FromFormat("%s (C++ Object %p wrapped by %s %p))", typeName, wrapper->_wrappedPtr, wrapper->_obj->metaObject()->className(), qobj);
     } else {
-      return PyString_FromFormat("%s (C++ Object %p)", wrapper->classInfo()->className(), wrapper->_wrappedPtr);
+      return PyString_FromFormat("%s (C++ Object %p)", typeName, wrapper->_wrappedPtr);
     }
   } else {
     return PyString_FromFormat("%s (QObject %p)", wrapper->classInfo()->className(), qobj);

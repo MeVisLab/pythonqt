@@ -46,6 +46,7 @@
 #include "PythonQtSlot.h"
 #include "PythonQtClassInfo.h"
 #include "PythonQtConversion.h"
+#include "PythonQtInstanceWrapper.h"
 
 static PyObject* PythonQtClassWrapper_alloc(PyTypeObject *self, Py_ssize_t nitems)
 {
@@ -93,8 +94,39 @@ static PyObject *PythonQtClassWrapper_help(PythonQtClassWrapper* type)
   return PythonQt::self()->helpCalled(type->classInfo());
 }
 
+PyObject *PythonQtClassWrapper__init__(PythonQtClassWrapper *type, PyObject *args)
+{
+  Py_ssize_t argc = PyTuple_Size(args);
+  if (argc>0) {
+    // we need to call __init__ of the instance
+    PyObject* self = PyTuple_GET_ITEM(args, 0);
+    if (PyObject_TypeCheck(self, (PyTypeObject*)type->classInfo()->pythonQtClassWrapper())) {
+      PyObject* newargs = PyTuple_New(argc-1);
+      for (int i = 0;i<argc-1; i++) {
+        PyTuple_SET_ITEM(newargs, i,PyTuple_GET_ITEM(args, i+1));
+      }
+      PythonQtInstanceWrapper* wrapper = (PythonQtInstanceWrapper*)self;
+      int result = PythonQtInstanceWrapper_init(wrapper, newargs, NULL);
+      Py_DECREF(newargs);
+      if (result==0) {
+        Py_INCREF(Py_None);
+        return Py_None;
+      } else {
+        // init failed!
+      }
+    } else {
+      // self not of correct type!
+    }
+  } else {
+    // wrong number of args
+  }
+  return NULL;
+}
 
 static PyMethodDef PythonQtClassWrapper_methods[] = {
+    {"__init__", (PyCFunction)PythonQtClassWrapper__init__, METH_VARARGS,
+    "Return the classname of the object"
+    },
     {"className", (PyCFunction)PythonQtClassWrapper_classname, METH_NOARGS,
      "Return the classname of the object"
     },
@@ -109,17 +141,44 @@ static PyObject *PythonQtClassWrapper_getattro(PyObject *obj, PyObject *name)
 {
   const char *attributeName;
   PythonQtClassWrapper *wrapper = (PythonQtClassWrapper *)obj;
-
+  
   if ((attributeName = PyString_AsString(name)) == NULL) {
     return NULL;
   }
-
-  PythonQtMemberInfo member = wrapper->classInfo()->member(attributeName);
-  if (member._type == PythonQtMemberInfo::EnumValue) {
-    return PyInt_FromLong(member._enumValue);
+  if (obj == (PyObject*)&PythonQtInstanceWrapper_Type) {
+    return NULL;
   }
-  if (member._type == PythonQtMemberInfo::Slot && member._slot->isClassDecorator()) {
-    return PythonQtSlotFunction_New(member._slot, obj, NULL);
+
+  if (qstrcmp(attributeName, "__dict__")==0) {
+    PyObject* dict = ((PyTypeObject *)wrapper)->tp_dict;
+    if (!wrapper->classInfo()) {
+      Py_INCREF(dict);
+      return dict;
+    }
+    dict = PyDict_Copy(dict);
+    
+    QStringList l = wrapper->classInfo()->memberList(true);
+    foreach (QString name, l) {
+      PyObject* o = PyObject_GetAttrString(obj, name.toLatin1().data());
+      PyDict_SetItemString(dict, name.toLatin1().data(), o);
+      Py_DECREF(o);
+    }
+    if (wrapper->classInfo()->constructors()) {
+      PyDict_SetItemString(dict, "__init__", PyCFunction_New(&PythonQtClassWrapper_methods[0], obj));
+    }
+    PyDict_SetItemString(dict, PythonQtClassWrapper_methods[1].ml_name, PyCFunction_New(&PythonQtClassWrapper_methods[1], obj));
+    PyDict_SetItemString(dict, PythonQtClassWrapper_methods[2].ml_name, PyCFunction_New(&PythonQtClassWrapper_methods[2], obj));
+    return dict;
+  }
+
+  if (wrapper->classInfo()) {
+    PythonQtMemberInfo member = wrapper->classInfo()->member(attributeName);
+    if (member._type == PythonQtMemberInfo::EnumValue) {
+      return PyInt_FromLong(member._enumValue);
+    } else
+    if (member._type == PythonQtMemberInfo::Slot && member._slot->isClassDecorator()) {
+      return PythonQtSlotFunction_New(member._slot, obj, NULL);
+    }
   }
 
   // look for the interal methods (className(), help())
@@ -129,15 +188,10 @@ static PyObject *PythonQtClassWrapper_getattro(PyObject *obj, PyObject *name)
   }
   PyErr_Clear();
 
-  if (qstrcmp(attributeName, "__dict__")==0) {
-    QStringList l = wrapper->classInfo()->memberList(true);
-    PyObject* dict = PyDict_New();
-    foreach (QString name, l) {
-      //PyObject* o = PyObject_GetAttrString(obj, name.toLatin1().data());
-      PyDict_SetItemString(dict, name.toLatin1().data(), Py_None);
-      //Py_DECREF(o);
-    }
-    return dict;
+  // look in super
+  PyObject* superAttr = PyType_Type.tp_getattro(obj, name);
+  if (superAttr) {
+    return superAttr;
   }
 
   QString error = QString(wrapper->classInfo()->className()) + " has no attribute named '" + QString(attributeName) + "'";
@@ -211,8 +265,8 @@ PyTypeObject PythonQtClassWrapper_Type = {
     0,                   /* tp_weaklistoffset */
     0,                   /* tp_iter */
     0,                   /* tp_iternext */
-    0,             /* tp_methods */
-    0,             /* tp_members */
+    0,                   /* tp_methods */
+    0,                   /* tp_members */
     0,                         /* tp_getset */
     0,                         /* tp_base */
     0,                         /* tp_dict */
