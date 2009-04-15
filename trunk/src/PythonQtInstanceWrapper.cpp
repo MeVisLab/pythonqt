@@ -47,7 +47,7 @@
 #include "PythonQtConversion.h"
 #include "PythonQtClassWrapper.h"
 
-PythonQtClassInfo* PythonQtInstanceWrapper::classInfo()
+PythonQtClassInfo* PythonQtInstanceWrapperStruct::classInfo()
 {
   // take the class info from our type object
   return ((PythonQtClassWrapper*)ob_type)->_classInfo;
