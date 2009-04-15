@@ -228,8 +228,9 @@ void PythonQtMethodInfo::addParameterTypeAlias(const QByteArray& alias, const QB
 
 //-------------------------------------------------------------------------------------------------
 
-QString PythonQtSlotInfo::fullSignature(bool skipFirstArg)
+QString PythonQtSlotInfo::fullSignature()
 { 
+  bool skipFirstArg = isInstanceDecorator();
   QString result = _meta.typeName();
   QByteArray sig = slotName();
   QList<QByteArray> names = _meta.parameterNames();

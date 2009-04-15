@@ -157,17 +157,26 @@ static PyObject *PythonQtClassWrapper_getattro(PyObject *obj, PyObject *name)
     }
     dict = PyDict_Copy(dict);
     
-    QStringList l = wrapper->classInfo()->memberList(true);
+    QStringList l = wrapper->classInfo()->memberList(false);
     foreach (QString name, l) {
       PyObject* o = PyObject_GetAttrString(obj, name.toLatin1().data());
-      PyDict_SetItemString(dict, name.toLatin1().data(), o);
-      Py_DECREF(o);
+      if (o) {
+        PyDict_SetItemString(dict, name.toLatin1().data(), o);
+        Py_DECREF(o);
+      } else {
+        // it must have been a property or child, which we do not know as a class object...
+      }
     }
     if (wrapper->classInfo()->constructors()) {
-      PyDict_SetItemString(dict, "__init__", PyCFunction_New(&PythonQtClassWrapper_methods[0], obj));
+      PyObject* func = PyCFunction_New(&PythonQtClassWrapper_methods[0], obj);
+      PyDict_SetItemString(dict, "__init__", func);
+      Py_DECREF(func);
     }
-    PyDict_SetItemString(dict, PythonQtClassWrapper_methods[1].ml_name, PyCFunction_New(&PythonQtClassWrapper_methods[1], obj));
-    PyDict_SetItemString(dict, PythonQtClassWrapper_methods[2].ml_name, PyCFunction_New(&PythonQtClassWrapper_methods[2], obj));
+    for (int i = 1;i<3;i++) {
+      PyObject* func = PyCFunction_New(&PythonQtClassWrapper_methods[i], obj);
+      PyDict_SetItemString(dict, PythonQtClassWrapper_methods[i].ml_name, func);
+      Py_DECREF(func);
+    }
     return dict;
   }
 
@@ -176,7 +185,8 @@ static PyObject *PythonQtClassWrapper_getattro(PyObject *obj, PyObject *name)
     if (member._type == PythonQtMemberInfo::EnumValue) {
       return PyInt_FromLong(member._enumValue);
     } else
-    if (member._type == PythonQtMemberInfo::Slot && member._slot->isClassDecorator()) {
+    if (member._type == PythonQtMemberInfo::Slot) {
+      // we return all slots, even the instance slots, since they are callable as unbound slots with self argument
       return PythonQtSlotFunction_New(member._slot, obj, NULL);
     }
   }

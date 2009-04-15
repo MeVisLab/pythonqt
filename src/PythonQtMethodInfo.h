@@ -156,7 +156,7 @@ public:
   QObject* decorator() { return _decorator; }
 
   //! get the full signature including return type
-  QString fullSignature(bool skipFirstArg);
+  QString fullSignature();
 
   //! get the short slot name
   QByteArray slotName();

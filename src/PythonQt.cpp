@@ -700,7 +700,7 @@ QStringList PythonQt::introspection(PyObject* module, const QString& objectname,
         PythonQtSlotInfo* info = o->m_ml;
         
         while (info) {
-          results << info->fullSignature(info->isInstanceDecorator());
+          results << info->fullSignature();
           info = info->nextInfo();
         }
       } else if (object->ob_type == &PythonQtClassWrapper_Type) {
@@ -708,7 +708,7 @@ QStringList PythonQt::introspection(PyObject* module, const QString& objectname,
         PythonQtSlotInfo* info = o->classInfo()->constructors();
     
         while (info) {
-          results << info->fullSignature(false);
+          results << info->fullSignature();
           info = info->nextInfo();
         }
       } else {

@@ -537,7 +537,7 @@ QString PythonQtClassInfo::help()
     h += "Constructors:\n";
     PythonQtSlotInfo* constr = constructors();
     while (constr) {
-      h += constr->fullSignature(false) + "\n";
+      h += constr->fullSignature() + "\n";
       constr = constr->nextInfo();
     }
   }
@@ -557,7 +557,7 @@ QString PythonQtClassInfo::help()
         if (signa.startsWith("delete_")) continue;
         if (signa.startsWith("static_")) continue;
         PythonQtSlotInfo slot(m, i);
-        h += slot.fullSignature(false)+ "\n";
+        h += slot.fullSignature()+ "\n";
       }
     }
   }
@@ -581,7 +581,7 @@ QString PythonQtClassInfo::help()
     QListIterator<PythonQtSlotInfo*> it(PythonQt::priv()->getDecoratorSlots(nameIt.next()));
     while (it.hasNext()) {
       PythonQtSlotInfo* slot = it.next();
-      h += slot->fullSignature(slot->isInstanceDecorator()) + "\n";
+      h += slot->fullSignature() + "\n";
     }
   }
    

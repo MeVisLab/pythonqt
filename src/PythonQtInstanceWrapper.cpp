@@ -252,7 +252,7 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
     PyObject* dict = PyDict_New();
     foreach (QString name, l) {
       PyObject* o = PyObject_GetAttrString(obj, name.toLatin1().data());
-      PyDict_SetItemString(dict, name.toLatin1().data(), Py_None);
+      PyDict_SetItemString(dict, name.toLatin1().data(), o);
       Py_DECREF(o);
     }
     // Note: we do not put children into the dict, is would look confusing?!
