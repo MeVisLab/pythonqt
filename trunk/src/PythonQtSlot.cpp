@@ -148,7 +148,7 @@ bool PythonQtCallSlot(QObject* objectToCall, PyObject* args, bool strict, Python
         }
       }
     } else {
-      QString e = QString("Called ") + info->fullSignature(skipFirst) + ", return type is ignored because it is unknown to PythonQt.";
+      QString e = QString("Called ") + info->fullSignature() + ", return type is ignored because it is unknown to PythonQt.";
       PyErr_SetString(PyExc_ValueError, e.toLatin1().data());
       result = NULL;
     }
@@ -177,10 +177,40 @@ PyObject *PythonQtSlotFunction_Call(PyObject *func, PyObject *args, PyObject *kw
     PythonQtInstanceWrapper* self = (PythonQtInstanceWrapper*) f->m_self;
     return PythonQtSlotFunction_CallImpl(self->_obj, info, args, kw, self->_wrappedPtr);
   } else if (f->m_self->ob_type == &PythonQtClassWrapper_Type) {
-    return PythonQtSlotFunction_CallImpl(NULL, info, args, kw);
-  } else {
-    return NULL;
+    if (info->isClassDecorator()) {
+      return PythonQtSlotFunction_CallImpl(NULL, info, args, kw);
+    } else {
+      // otherwise, it is an unbound call and we have an instanceDecorator or normal slot...
+      PythonQtClassWrapper* type = (PythonQtClassWrapper*) f->m_self;
+      Py_ssize_t argc = PyTuple_Size(args);
+      if (argc>0) {
+        PyObject* firstArg = PyTuple_GET_ITEM(args, 0);
+        if (PyObject_TypeCheck(firstArg, (PyTypeObject*)&PythonQtInstanceWrapper_Type)
+          && ((PythonQtInstanceWrapper*)firstArg)->classInfo()->inherits(type->classInfo()->className())) {
+          PythonQtInstanceWrapper* self = (PythonQtInstanceWrapper*)firstArg;
+          // strip the first argument...
+          PyObject* newargs = PyTuple_New(argc-1);
+          for (int i = 0;i<argc-1; i++) {
+            PyTuple_SET_ITEM(newargs, i,PyTuple_GET_ITEM(args, i+1));
+          }
+          PyObject* result = PythonQtSlotFunction_CallImpl(self->_obj, info, newargs, kw, self->_wrappedPtr);
+          Py_DECREF(newargs);
+          return result;
+        } else {
+          // first arg is not of correct type!
+          QString error = "slot " + info->fullSignature() + " requires " + type->classInfo()->className() + " instance as first argument, got " + firstArg->ob_type->tp_name;
+          PyErr_SetString(PyExc_ValueError, error.toLatin1().data());
+          return NULL;
+        }
+      } else {
+        // wrong number of args
+        QString error = "slot " + info->fullSignature() + " requires " + type->classInfo()->className() + " instance as first argument.";
+        PyErr_SetString(PyExc_ValueError, error.toLatin1().data());
+        return NULL;
+      }
+    }
   }
+  return NULL;
 }
 
 PyObject *PythonQtSlotFunction_CallImpl(QObject* objectToCall, PythonQtSlotInfo* info, PyObject *args, PyObject * /*kw*/, void* firstArg, void** directReturnValuePointer)
@@ -196,7 +226,6 @@ PyObject *PythonQtSlotFunction_CallImpl(QObject* objectToCall, PythonQtSlotInfo*
   if (directReturnValuePointer) {
     *directReturnValuePointer = NULL;
   }
-
   if (info->nextInfo()) {
     // overloaded slot call, try on all slots with strict conversion first
     bool strict = true;
@@ -221,8 +250,7 @@ PyObject *PythonQtSlotFunction_CallImpl(QObject* objectToCall, PythonQtSlotInfo*
       QString e = QString("Could not find matching overload for given arguments:\n" + PythonQtConv::PyObjGetString(args) + "\n The following slots are available:\n");
       PythonQtSlotInfo* i = info;
       while (i) {
-        bool skipFirst = i->isInstanceDecorator();
-        e += QString(i->fullSignature(skipFirst)) + "\n";
+        e += QString(i->fullSignature()) + "\n";
         i = i->nextInfo();
       }
       PyErr_SetString(PyExc_ValueError, e.toLatin1().data());
@@ -234,11 +262,11 @@ PyObject *PythonQtSlotFunction_CallImpl(QObject* objectToCall, PythonQtSlotInfo*
       PyErr_Clear();
       ok = PythonQtCallSlot(objectToCall, args, false, info, firstArg, &r, directReturnValuePointer);
       if (!ok && !PyErr_Occurred()) {
-        QString e = QString("Called ") + info->fullSignature(skipFirst) + " with wrong arguments: " + PythonQtConv::PyObjGetString(args);
+        QString e = QString("Called ") + info->fullSignature() + " with wrong arguments: " + PythonQtConv::PyObjGetString(args);
         PyErr_SetString(PyExc_ValueError, e.toLatin1().data());
       }
     } else {
-      QString e = QString("Called ") + info->fullSignature(skipFirst) + " with wrong number of arguments: " + PythonQtConv::PyObjGetString(args);
+      QString e = QString("Called ") + info->fullSignature() + " with wrong number of arguments: " + PythonQtConv::PyObjGetString(args);
       PyErr_SetString(PyExc_ValueError, e.toLatin1().data());
     }
   }
@@ -366,12 +394,20 @@ static PyMemberDef meth_members[] = {
 };
 
 static PyObject *
-meth_repr(PythonQtSlotFunctionObject *m)
+meth_repr(PythonQtSlotFunctionObject *f)
 {
-  return PyString_FromFormat("<built-in qt slot %s of %s object at %p>",
-    m->m_ml->metaMethod()->signature(),
-    m->m_self->ob_type->tp_name,
-    m->m_self);
+  if (PyObject_TypeCheck(f->m_self, &PythonQtInstanceWrapper_Type)) {
+    PythonQtInstanceWrapper* self = (PythonQtInstanceWrapper*) f->m_self;
+    return PyString_FromFormat("<qt slot %s of %s instance at %p>",
+      f->m_ml->metaMethod()->signature(),
+      f->m_self->ob_type->tp_name,
+      f->m_self);
+  } else if (f->m_self->ob_type == &PythonQtClassWrapper_Type) {
+    PythonQtClassWrapper* self = (PythonQtClassWrapper*) f->m_self;
+    return PyString_FromFormat("<unbound qt slot %s of %s type>",
+      f->m_ml->metaMethod()->signature(),
+      self->classInfo()->className());
+  }
 }
 
 static int
