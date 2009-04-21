@@ -37,7 +37,10 @@ class SetupGenerator : public Generator
     void addClass(const AbstractMetaClass *cls);
 
  private:
-    QHash<QString, QList<const AbstractMetaClass*> > packHash;
+   QStringList writePolymorphicHandler(QTextStream &s, const QString &package,
+     const AbstractMetaClassList &classes);
+
+   QHash<QString, QList<const AbstractMetaClass*> > packHash;
 };
 #endif // SETUPGENERATOR_H
 

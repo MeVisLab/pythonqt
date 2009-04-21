@@ -471,6 +471,8 @@ public:
     FunctionType functionType() const { return m_function_type; }
     void setFunctionType(FunctionType type) { m_function_type = type; }
 
+    bool isVirtual() { return !(isFinal() || isSignal() || isStatic()); }
+
     QStringList introspectionCompatibleSignatures(const QStringList &resolvedArguments = QStringList()) const;
     QString signature() const;
     QString targetLangSignature(bool minimal = false) const;

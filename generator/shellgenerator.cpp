@@ -269,7 +269,7 @@ AbstractMetaFunctionList ShellGenerator::getProtectedFunctionsThatNeedPromotion(
   AbstractMetaFunctionList functions; 
   AbstractMetaFunctionList functions1 = getFunctionsToWrap(meta_class); 
   foreach(AbstractMetaFunction* func, functions1) {
-    if (!func->wasPublic()) {
+    if (!func->isPublic() || func->isVirtual()) {
       functions << func;
     }
   }

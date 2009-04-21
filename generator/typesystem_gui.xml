@@ -1025,7 +1025,7 @@
         <access modifier="private"/>
     </modify-function>
     <modify-function signature="QImage(const uchar*,int,int,int,QImage::Format)">
-	    <remove/>
+      <remove/>
     </modify-function>
     <modify-function signature="bits()const">
         <remove/>
@@ -1401,7 +1401,7 @@
   <interface-type name="QLayoutItem"/>
   <interface-type name="QPaintDevice"/>
 
-  <interface-type name="QGraphicsItem" delete-in-main-thread="yes">
+  <interface-type name="QGraphicsItem" delete-in-main-thread="yes"  polymorphic-base="yes">
     <modify-function signature="setMatrix(QMatrix, bool)" remove="all"/>
     
     <modify-function signature="paint(QPainter*,const QStyleOptionGraphicsItem*,QWidget*)">
@@ -1476,7 +1476,7 @@
         <modify-argument index="1" invalidate-after-use="yes"/>
     </modify-function>
    
-    <modify-function signature="children()const" remove="all"/>	
+    <modify-function signature="children()const" remove="all"/> 
     <modify-function signature="installSceneEventFilter(QGraphicsItem *)">
         <modify-argument index="1">
             <!-- Safe to ignore because items in a scene are memory managed by the scene --> 
@@ -5045,10 +5045,10 @@
         <access modifier="private"/>
     </modify-function>    
     <modify-function signature="QApplication(int &amp;, char **, QApplication::Type, int)">
-	    <remove/>
+      <remove/>
     </modify-function>
     <modify-function signature="QApplication(int &amp;, char **, bool, int)">
-	    <remove/>
+      <remove/>
     </modify-function>
     
     <modify-function signature="font(const char*)">
