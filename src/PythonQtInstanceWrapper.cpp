@@ -241,6 +241,7 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
   if (superAttr) {
     return superAttr;
   }
+  PyErr_Clear();
 
   if (!wrapper->_obj && !wrapper->_wrappedPtr) {
     QString error = QString("Trying to read attribute '") + attributeName + "' from a destroyed " + wrapper->classInfo()->className() + " object";
@@ -256,7 +257,12 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
   switch (member._type) {
   case PythonQtMemberInfo::Property:
     if (wrapper->_obj) {
-      return PythonQtConv::QVariantToPyObject(member._property.read(wrapper->_obj));
+      if (member._property.userType() != QVariant::Invalid) {
+        return PythonQtConv::QVariantToPyObject(member._property.read(wrapper->_obj));
+      } else {
+        Py_INCREF(Py_None);
+        return Py_None;
+      }
     }
     break;
   case PythonQtMemberInfo::Slot:
