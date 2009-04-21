@@ -372,6 +372,12 @@ PyObject* PythonQtPrivate::wrapPtr(void* ptr, const QByteArray& name)
         break;
       }
     }
+
+    if (info) {
+      // try to downcast in the class hierarchy, which will modify info and ptr if it is successfull
+      ptr  = info->castDownIfPossible(ptr, &info);
+    }
+
     if (!info || info->pythonQtClassWrapper()==NULL) {
       // still unknown, register as CPP class
       registerCPPClass(name.constData());
@@ -1064,6 +1070,17 @@ PythonQtClassInfo* PythonQtPrivate::lookupClassInfoAndCreateIfNotPresent(const c
     _knownClassInfos.insert(typeName, info);
   }
   return info;
+}
+
+void PythonQt::addPolymorphicHandler(const char* typeName, PythonQtPolymorphicHandlerCB* cb)
+{
+  _p->addPolymorphicHandler(typeName, cb);
+}
+
+void PythonQtPrivate::addPolymorphicHandler(const char* typeName, PythonQtPolymorphicHandlerCB* cb)
+{
+  PythonQtClassInfo* info = lookupClassInfoAndCreateIfNotPresent(typeName);
+  info->addPolymorphicHandler(cb);
 }
 
 bool PythonQt::addParentClass(const char* typeName, const char* parentTypeName, int upcastingOffset)

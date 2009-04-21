@@ -466,7 +466,8 @@ QStringList PythonQtClassInfo::memberList(bool metaOnly)
       }
     }
   }
-  return l;
+
+  return QSet<QString>::fromList(l).toList();
 }
 
 const char* PythonQtClassInfo::className()
@@ -668,4 +669,38 @@ bool PythonQtClassInfo::hasOwnerMethodButNoOwner(void* object)
   } else {
     return false;
   }
+}
+
+void* PythonQtClassInfo::recursiveCastDownIfPossible(void* ptr, char** resultClassName)
+{
+  if (!_polymorphicHandlers.isEmpty()) {
+    foreach(PythonQtPolymorphicHandlerCB* cb, _polymorphicHandlers) {
+      void* resultPtr = (*cb)(ptr, resultClassName);
+      if (resultPtr) {
+        return resultPtr;
+      }
+    }
+  }
+  foreach(const ParentClassInfo& info, _parentClasses) {
+    if (!info._parent->isQObject()) {
+      void* resultPtr = info._parent->recursiveCastDownIfPossible((char*)ptr + info._upcastingOffset, resultClassName);
+      if (resultPtr) {
+        return resultPtr;
+      }
+    }
+  }
+  return NULL;
+}
+
+void* PythonQtClassInfo::castDownIfPossible(void* ptr, PythonQtClassInfo** resultClassInfo)
+{
+  char* className;
+  void* resultPtr = recursiveCastDownIfPossible(ptr, &className);
+  if (resultPtr) {
+    *resultClassInfo = PythonQt::priv()->getClassInfo(className);
+  } else {
+    *resultClassInfo = this;
+    resultPtr = ptr;
+  }
+  return resultPtr;
 }
