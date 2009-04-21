@@ -4,9 +4,22 @@
 #include <qstyleoption.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qstyleoption.h>
 #include <qwidget.h>
+
+class PythonQtShell_QStyleOptionViewItem : public QStyleOptionViewItem
+{
+public:
+    PythonQtShell_QStyleOptionViewItem():QStyleOptionViewItem(),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionViewItem(const QStyleOptionViewItem&  other):QStyleOptionViewItem(other),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionViewItem(int  version):QStyleOptionViewItem(version),_wrapper(NULL) {};
+
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
 
 class PythonQtWrapper_QStyleOptionViewItem : public QObject
 { Q_OBJECT

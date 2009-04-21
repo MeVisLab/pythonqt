@@ -4,9 +4,22 @@
 #include <qstyleoption.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qstyleoption.h>
 #include <qwidget.h>
+
+class PythonQtShell_QStyleOptionSpinBox : public QStyleOptionSpinBox
+{
+public:
+    PythonQtShell_QStyleOptionSpinBox():QStyleOptionSpinBox(),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionSpinBox(const QStyleOptionSpinBox&  other):QStyleOptionSpinBox(other),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionSpinBox(int  version):QStyleOptionSpinBox(version),_wrapper(NULL) {};
+
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
 
 class PythonQtWrapper_QStyleOptionSpinBox : public QObject
 { Q_OBJECT

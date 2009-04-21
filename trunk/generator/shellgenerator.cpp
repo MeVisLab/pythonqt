@@ -174,7 +174,7 @@ void ShellGenerator::writeFunctionSignature(QTextStream &s,
 
     if (implementor) {
         if (classname_prefix.isEmpty())
-            s << shellClassName(implementor) << "::";
+            s << wrapperClassName(implementor) << "::";
         else
             s << classname_prefix << implementor->name() << "::";
     }
@@ -198,31 +198,6 @@ void ShellGenerator::writeFunctionSignature(QTextStream &s,
   
     if (function_name.startsWith("operator")) {
       function_name = meta_function->name();
-/*      function_name.replace("operator>>", "op_streamin");
-      function_name.replace("operator<<", "op_streamout");
-      function_name.replace("operator>", "op_greater");
-      function_name.replace("operator<", "op_less");
-      function_name.replace("operator==", "op_equal");
-      function_name.replace("operator!=", "op_notequal");
-      function_name.replace("operator=", "op_assignment");
-      function_name.replace("operator[]", "op_array");
-      function_name.replace("operator*=", "op_assign_multiply"); //todo... (assign is the wrong word!)
-      function_name.replace("operator/=", "op_assign_divide");
-      function_name.replace("operator+=", "op_assign_add");
-      function_name.replace("operator-=", "op_assign_subtract");
-      function_name.replace("operator|=", "op_assign_binary_or");
-      function_name.replace("operator&=", "op_assign_binary_and");
-      function_name.replace("operator~=", "op_assign_tilde"); //todo
-      function_name.replace("operator^=", "op_assign_whatever"); //todo
-      function_name.replace("operator*", "op_multiply");
-      function_name.replace("operator/", "op_divide");
-      function_name.replace("operator+", "op_add");
-      function_name.replace("operator-", "op_subtract");
-      function_name.replace("operator|", "op_binary_or");
-      function_name.replace("operator&", "op_binary_and");
-      function_name.replace("operator~", "op_tilde"); //todo
-      function_name.replace("operator^", "op_whatever"); //todo
- */
     }
 
     s << name_prefix << function_name;
@@ -234,7 +209,7 @@ void ShellGenerator::writeFunctionSignature(QTextStream &s,
 
     s << "(";
 
-  if (meta_function->ownerClass() && !meta_function->isConstructor() && !meta_function->isStatic()) {
+  if ((option & FirstArgIsWrappedObject) && meta_function->ownerClass() && !meta_function->isConstructor() && !meta_function->isStatic()) {
     s << meta_function->ownerClass()->qualifiedCppName() << "* theWrappedObject"; 
     if (meta_function->arguments().size() != 0) {
       s << ", ";
@@ -253,4 +228,124 @@ void ShellGenerator::writeFunctionSignature(QTextStream &s,
     s << ")";
     if (meta_function->isConstant())
         s << " const";
+}
+
+AbstractMetaFunctionList ShellGenerator::getFunctionsToWrap(const AbstractMetaClass* meta_class)
+{
+  AbstractMetaFunctionList functions = meta_class->queryFunctions( 
+    AbstractMetaClass::NormalFunctions | AbstractMetaClass::WasPublic
+    | AbstractMetaClass::NotRemovedFromTargetLang | AbstractMetaClass::ClassImplements
+    );
+  AbstractMetaFunctionList functions2 = meta_class->queryFunctions( 
+    AbstractMetaClass::VirtualFunctions | AbstractMetaClass::WasVisible
+    | AbstractMetaClass::NotRemovedFromTargetLang | AbstractMetaClass::ClassImplements
+    );
+  QSet<AbstractMetaFunction*> set1 = QSet<AbstractMetaFunction*>::fromList(functions);
+  foreach(AbstractMetaFunction* func, functions2) {
+    set1.insert(func);
+  }
+
+  AbstractMetaFunctionList resultFunctions;
+
+  foreach(AbstractMetaFunction* func, set1.toList()) {
+    if (!func->isAbstract() && func->implementingClass()==meta_class) {
+      resultFunctions << func;
+    }
+  }
+  return resultFunctions;
+}
+
+AbstractMetaFunctionList ShellGenerator::getVirtualFunctionsForShell(const AbstractMetaClass* meta_class)
+{
+  AbstractMetaFunctionList functions = meta_class->queryFunctions( 
+    AbstractMetaClass::VirtualFunctions | AbstractMetaClass::WasVisible
+//    | AbstractMetaClass::NotRemovedFromTargetLang
+    );
+  return functions;
+}
+
+AbstractMetaFunctionList ShellGenerator::getProtectedFunctionsThatNeedPromotion(const AbstractMetaClass* meta_class)
+{
+  AbstractMetaFunctionList functions; 
+  AbstractMetaFunctionList functions1 = getFunctionsToWrap(meta_class); 
+  foreach(AbstractMetaFunction* func, functions1) {
+    if (!func->wasPublic()) {
+      functions << func;
+    }
+  }
+  return functions;
+}
+
+/*!
+Writes the include defined by \a inc to \a stream.
+*/
+void ShellGenerator::writeInclude(QTextStream &stream, const Include &inc)
+{
+  if (inc.name.isEmpty())
+    return;
+  if (inc.type == Include::TargetLangImport)
+    return;
+  stream << "#include ";
+  if (inc.type == Include::IncludePath)
+    stream << "<";
+  else
+    stream << "\"";
+  stream << inc.name;
+  if (inc.type == Include::IncludePath)
+    stream << ">";
+  else
+    stream << "\"";
+  stream << endl;
+}
+
+/*!
+Returns true if the given function \a fun is operator>>() or
+operator<<() that streams from/to a Q{Data,Text}Stream, false
+otherwise.
+*/
+bool ShellGenerator::isSpecialStreamingOperator(const AbstractMetaFunction *fun)
+{
+  return ((fun->functionType() == AbstractMetaFunction::GlobalScopeFunction)
+    && (fun->arguments().size() == 1)
+    && (((fun->originalName() == "operator>>") && (fun->modifiedName() == "readFrom"))
+    || ((fun->originalName() == "operator<<") && (fun->modifiedName() == "writeTo"))));
+}
+
+bool ShellGenerator::isBuiltIn(const QString& name) {
+
+  static QSet<QString> builtIn;
+  if (builtIn.isEmpty()) {
+    builtIn.insert("Qt");
+    builtIn.insert("QFont");
+    builtIn.insert("QPixmap");
+    builtIn.insert("QBrush");
+    builtIn.insert("QPalette");
+    builtIn.insert("QIcon");
+    builtIn.insert("QImage");
+    builtIn.insert("QPolygon");
+    builtIn.insert("QRegion");
+    builtIn.insert("QBitmap");
+    builtIn.insert("QCursor");
+    builtIn.insert("QColor");
+    builtIn.insert("QSizePolicy");
+    builtIn.insert("QKeySequence");
+    builtIn.insert("QTextLength");
+    builtIn.insert("QTextFormat");
+    builtIn.insert("QMatrix");
+    builtIn.insert("QDate");
+    builtIn.insert("QTime");
+    builtIn.insert("QDateTime");
+    builtIn.insert("QUrl");
+    builtIn.insert("QLocale");
+    builtIn.insert("QRect");
+    builtIn.insert("QRectF");
+    builtIn.insert("QSize");
+    builtIn.insert("QSizeF");
+    builtIn.insert("QLine");
+    builtIn.insert("QLineF");
+    builtIn.insert("QPoint");
+    builtIn.insert("QPointF");
+    builtIn.insert("QRegExp");
+  }
+  return builtIn.contains(name);
 }

@@ -4,6 +4,8 @@
 #include <qtconcurrentexception.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qtconcurrentreducekernel.h>
 #include <qtconcurrentthreadengine.h>

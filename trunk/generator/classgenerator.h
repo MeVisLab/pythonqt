@@ -48,9 +48,6 @@ class ClassGenerator : public Generator
 
   static bool isSpecialStreamingOperator(const AbstractMetaFunction *fun);
 
-  // PythonQt builtins..., dont put them in pri files and dont register them, but generate the code
-  static bool isBuiltIn(const QString& name);
-
  private:
     PriGenerator *priGenerator;
     SetupGenerator *setupGenerator;

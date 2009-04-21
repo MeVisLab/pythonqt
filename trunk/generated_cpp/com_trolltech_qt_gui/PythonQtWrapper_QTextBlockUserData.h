@@ -4,7 +4,18 @@
 #include <qtextobject.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
+
+class PythonQtShell_QTextBlockUserData : public QTextBlockUserData
+{
+public:
+    PythonQtShell_QTextBlockUserData():QTextBlockUserData(),_wrapper(NULL) {};
+
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
 
 class PythonQtWrapper_QTextBlockUserData : public QObject
 { Q_OBJECT

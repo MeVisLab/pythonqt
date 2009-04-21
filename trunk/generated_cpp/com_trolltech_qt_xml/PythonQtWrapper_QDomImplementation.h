@@ -4,6 +4,8 @@
 #include <qdom.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qdom.h>
 
@@ -18,12 +20,12 @@ QDomImplementation* new_QDomImplementation();
 QDomImplementation* new_QDomImplementation(const QDomImplementation&  arg__1);
 void delete_QDomImplementation(QDomImplementation* obj) { delete obj; } 
    QDomDocument  createDocument(QDomImplementation* theWrappedObject, const QString&  nsURI, const QString&  qName, const QDomDocumentType&  doctype);
-   QDomDocumentType  createDocumentType(QDomImplementation* theWrappedObject, const QString&  qName, const QString&  publicId, const QString&  systemId);
-   bool  hasFeature(QDomImplementation* theWrappedObject, const QString&  feature, const QString&  version) const;
    QDomImplementation::InvalidDataPolicy  static_QDomImplementation_invalidDataPolicy();
    bool  isNull(QDomImplementation* theWrappedObject);
    bool  operator_equal(QDomImplementation* theWrappedObject, const QDomImplementation&  arg__1) const;
    void static_QDomImplementation_setInvalidDataPolicy(QDomImplementation::InvalidDataPolicy  policy);
+   QDomDocumentType  createDocumentType(QDomImplementation* theWrappedObject, const QString&  qName, const QString&  publicId, const QString&  systemId);
+   bool  hasFeature(QDomImplementation* theWrappedObject, const QString&  feature, const QString&  version) const;
 };
 
 #endif // PYTHONQTWRAPPER_QDOMIMPLEMENTATION_H

@@ -4,6 +4,8 @@
 #include <qdom.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qdom.h>
 #include <qtextstream.h>
@@ -15,8 +17,8 @@ public slots:
 QDomEntity* new_QDomEntity();
 QDomEntity* new_QDomEntity(const QDomEntity&  x);
 void delete_QDomEntity(QDomEntity* obj) { delete obj; } 
-   QString  notationName(QDomEntity* theWrappedObject) const;
    QString  publicId(QDomEntity* theWrappedObject) const;
+   QString  notationName(QDomEntity* theWrappedObject) const;
    QString  systemId(QDomEntity* theWrappedObject) const;
 };
 

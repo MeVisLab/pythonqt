@@ -1,5 +1,8 @@
 #include "PythonQtWrapper_QDragEnterEvent.h"
 
+#include <PythonQtSignalReceiver.h>
+#include <PythonQtMethodInfo.h>
+#include <PythonQtConversion.h>
 #include <QVariant>
 #include <qmimedata.h>
 #include <qpoint.h>

@@ -1,5 +1,8 @@
 #include "PythonQtWrapper_QGraphicsSceneEvent.h"
 
+#include <PythonQtSignalReceiver.h>
+#include <PythonQtMethodInfo.h>
+#include <PythonQtConversion.h>
 #include <QVariant>
 #include <qwidget.h>
 
@@ -9,6 +12,6 @@ return new QGraphicsSceneEvent(type); }
 
 QWidget*  PythonQtWrapper_QGraphicsSceneEvent::widget(QGraphicsSceneEvent* theWrappedObject) const
 {
-return theWrappedObject->widget();
+return  (*theWrappedObject).widget();
 }
 

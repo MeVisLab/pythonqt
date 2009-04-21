@@ -4,34 +4,46 @@
 #include <qxml.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qxml.h>
+
+class PythonQtShell_QXmlReader : public QXmlReader
+{
+public:
+    PythonQtShell_QXmlReader():QXmlReader(),_wrapper(NULL) {};
+
+virtual QXmlDTDHandler*  DTDHandler() const;
+virtual QXmlContentHandler*  contentHandler() const;
+virtual QXmlDeclHandler*  declHandler() const;
+virtual QXmlEntityResolver*  entityResolver() const;
+virtual QXmlErrorHandler*  errorHandler() const;
+virtual bool  feature(const QString&  name, bool*  ok = 0) const;
+virtual bool  hasFeature(const QString&  name) const;
+virtual bool  hasProperty(const QString&  name) const;
+virtual QXmlLexicalHandler*  lexicalHandler() const;
+virtual bool  parse(const QXmlInputSource&  input);
+virtual bool  parse(const QXmlInputSource*  input);
+virtual void*  property(const QString&  name, bool*  ok = 0) const;
+virtual void setContentHandler(QXmlContentHandler*  handler);
+virtual void setDTDHandler(QXmlDTDHandler*  handler);
+virtual void setDeclHandler(QXmlDeclHandler*  handler);
+virtual void setEntityResolver(QXmlEntityResolver*  handler);
+virtual void setErrorHandler(QXmlErrorHandler*  handler);
+virtual void setFeature(const QString&  name, bool  value);
+virtual void setLexicalHandler(QXmlLexicalHandler*  handler);
+virtual void setProperty(const QString&  name, void*  value);
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
 
 class PythonQtWrapper_QXmlReader : public QObject
 { Q_OBJECT
 public:
 public slots:
+QXmlReader* new_QXmlReader();
 void delete_QXmlReader(QXmlReader* obj) { delete obj; } 
-   QXmlDTDHandler*  DTDHandler(QXmlReader* theWrappedObject) const;
-   QXmlContentHandler*  contentHandler(QXmlReader* theWrappedObject) const;
-   QXmlDeclHandler*  declHandler(QXmlReader* theWrappedObject) const;
-   QXmlEntityResolver*  entityResolver(QXmlReader* theWrappedObject) const;
-   QXmlErrorHandler*  errorHandler(QXmlReader* theWrappedObject) const;
-   bool  feature(QXmlReader* theWrappedObject, const QString&  name, bool*  ok = 0) const;
-   bool  hasFeature(QXmlReader* theWrappedObject, const QString&  name) const;
-   bool  hasProperty(QXmlReader* theWrappedObject, const QString&  name) const;
-   QXmlLexicalHandler*  lexicalHandler(QXmlReader* theWrappedObject) const;
-   bool  parse(QXmlReader* theWrappedObject, const QXmlInputSource&  input);
-   bool  parse(QXmlReader* theWrappedObject, const QXmlInputSource*  input);
-   void*  property(QXmlReader* theWrappedObject, const QString&  name, bool*  ok = 0) const;
-   void setContentHandler(QXmlReader* theWrappedObject, QXmlContentHandler*  handler);
-   void setDTDHandler(QXmlReader* theWrappedObject, QXmlDTDHandler*  handler);
-   void setDeclHandler(QXmlReader* theWrappedObject, QXmlDeclHandler*  handler);
-   void setEntityResolver(QXmlReader* theWrappedObject, QXmlEntityResolver*  handler);
-   void setErrorHandler(QXmlReader* theWrappedObject, QXmlErrorHandler*  handler);
-   void setFeature(QXmlReader* theWrappedObject, const QString&  name, bool  value);
-   void setLexicalHandler(QXmlReader* theWrappedObject, QXmlLexicalHandler*  handler);
-   void setProperty(QXmlReader* theWrappedObject, const QString&  name, void*  value);
 };
 
 #endif // PYTHONQTWRAPPER_QXMLREADER_H

@@ -1,106 +1,149 @@
 #include "PythonQtWrapper_QGraphicsEllipseItem.h"
 
+#include <PythonQtSignalReceiver.h>
+#include <PythonQtMethodInfo.h>
+#include <PythonQtConversion.h>
 #include <QVariant>
 #include <qbrush.h>
-#include <qcoreevent.h>
-#include <qcursor.h>
-#include <qevent.h>
 #include <qgraphicsitem.h>
 #include <qgraphicsscene.h>
-#include <qgraphicssceneevent.h>
-#include <qgraphicswidget.h>
-#include <qlist.h>
 #include <qpainter.h>
 #include <qpainterpath.h>
 #include <qpen.h>
 #include <qpoint.h>
-#include <qpolygon.h>
 #include <qrect.h>
-#include <qregion.h>
-#include <qsize.h>
 #include <qstyleoption.h>
-#include <qtransform.h>
 #include <qwidget.h>
 
+bool  PythonQtShell_QGraphicsEllipseItem::isObscuredBy(const QGraphicsItem*  item) const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "isObscuredBy");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsEllipseItem::staticMetaObject,
+      "isObscuredBy(QGraphicsEllipseItem*,const QGraphicsItem* )");
+      bool  returnValue;
+    void* args[2] = {NULL, (void*)&item};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((bool *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QGraphicsEllipseItem::isObscuredBy(item);
+}
+QPainterPath  PythonQtShell_QGraphicsEllipseItem::opaqueArea() const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "opaqueArea");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsEllipseItem::staticMetaObject,
+      "opaqueArea(QGraphicsEllipseItem*)");
+      QPainterPath  returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((QPainterPath *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QGraphicsEllipseItem::opaqueArea();
+}
 QGraphicsEllipseItem* PythonQtWrapper_QGraphicsEllipseItem::new_QGraphicsEllipseItem(QGraphicsItem*  parent, QGraphicsScene*  scene)
 { 
-return new QGraphicsEllipseItem(parent, scene); }
+return new PythonQtShell_QGraphicsEllipseItem(parent, scene); }
 
 QGraphicsEllipseItem* PythonQtWrapper_QGraphicsEllipseItem::new_QGraphicsEllipseItem(const QRectF&  rect, QGraphicsItem*  parent, QGraphicsScene*  scene)
 { 
-return new QGraphicsEllipseItem(rect, parent, scene); }
+return new PythonQtShell_QGraphicsEllipseItem(rect, parent, scene); }
 
 QGraphicsEllipseItem* PythonQtWrapper_QGraphicsEllipseItem::new_QGraphicsEllipseItem(qreal  x, qreal  y, qreal  w, qreal  h, QGraphicsItem*  parent, QGraphicsScene*  scene)
 { 
-return new QGraphicsEllipseItem(x, y, w, h, parent, scene); }
-
-QRectF  PythonQtWrapper_QGraphicsEllipseItem::boundingRect(QGraphicsEllipseItem* theWrappedObject) const
-{
-return theWrappedObject->boundingRect();
-}
-
-bool  PythonQtWrapper_QGraphicsEllipseItem::contains(QGraphicsEllipseItem* theWrappedObject, const QPointF&  point) const
-{
-return theWrappedObject->contains(point);
-}
+return new PythonQtShell_QGraphicsEllipseItem(x, y, w, h, parent, scene); }
 
 bool  PythonQtWrapper_QGraphicsEllipseItem::isObscuredBy(QGraphicsEllipseItem* theWrappedObject, const QGraphicsItem*  item) const
 {
-return theWrappedObject->isObscuredBy(item);
-}
-
-QPainterPath  PythonQtWrapper_QGraphicsEllipseItem::opaqueArea(QGraphicsEllipseItem* theWrappedObject) const
-{
-return theWrappedObject->opaqueArea();
-}
-
-void PythonQtWrapper_QGraphicsEllipseItem::paint(QGraphicsEllipseItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget)
-{
-theWrappedObject->paint(painter, option, widget);
-}
-
-QRectF  PythonQtWrapper_QGraphicsEllipseItem::rect(QGraphicsEllipseItem* theWrappedObject) const
-{
-return theWrappedObject->rect();
+return  (*theWrappedObject).isObscuredBy(item);
 }
 
 void PythonQtWrapper_QGraphicsEllipseItem::setRect(QGraphicsEllipseItem* theWrappedObject, const QRectF&  rect)
 {
-theWrappedObject->setRect(rect);
+ (*theWrappedObject).setRect(rect);
 }
 
-void PythonQtWrapper_QGraphicsEllipseItem::setRect(QGraphicsEllipseItem* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h)
+QPainterPath  PythonQtWrapper_QGraphicsEllipseItem::opaqueArea(QGraphicsEllipseItem* theWrappedObject) const
 {
-theWrappedObject->setRect(x, y, w, h);
+return  (*theWrappedObject).opaqueArea();
+}
+
+void PythonQtWrapper_QGraphicsEllipseItem::paint(QGraphicsEllipseItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget)
+{
+ (*theWrappedObject).paint(painter, option, widget);
+}
+
+QRectF  PythonQtWrapper_QGraphicsEllipseItem::rect(QGraphicsEllipseItem* theWrappedObject) const
+{
+return  (*theWrappedObject).rect();
+}
+
+bool  PythonQtWrapper_QGraphicsEllipseItem::contains(QGraphicsEllipseItem* theWrappedObject, const QPointF&  point) const
+{
+return  (*theWrappedObject).contains(point);
 }
 
 void PythonQtWrapper_QGraphicsEllipseItem::setSpanAngle(QGraphicsEllipseItem* theWrappedObject, int  angle)
 {
-theWrappedObject->setSpanAngle(angle);
+ (*theWrappedObject).setSpanAngle(angle);
 }
 
 void PythonQtWrapper_QGraphicsEllipseItem::setStartAngle(QGraphicsEllipseItem* theWrappedObject, int  angle)
 {
-theWrappedObject->setStartAngle(angle);
-}
-
-QPainterPath  PythonQtWrapper_QGraphicsEllipseItem::shape(QGraphicsEllipseItem* theWrappedObject) const
-{
-return theWrappedObject->shape();
-}
-
-int  PythonQtWrapper_QGraphicsEllipseItem::spanAngle(QGraphicsEllipseItem* theWrappedObject) const
-{
-return theWrappedObject->spanAngle();
+ (*theWrappedObject).setStartAngle(angle);
 }
 
 int  PythonQtWrapper_QGraphicsEllipseItem::startAngle(QGraphicsEllipseItem* theWrappedObject) const
 {
-return theWrappedObject->startAngle();
+return  (*theWrappedObject).startAngle();
+}
+
+int  PythonQtWrapper_QGraphicsEllipseItem::spanAngle(QGraphicsEllipseItem* theWrappedObject) const
+{
+return  (*theWrappedObject).spanAngle();
+}
+
+QRectF  PythonQtWrapper_QGraphicsEllipseItem::boundingRect(QGraphicsEllipseItem* theWrappedObject) const
+{
+return  (*theWrappedObject).boundingRect();
+}
+
+void PythonQtWrapper_QGraphicsEllipseItem::setRect(QGraphicsEllipseItem* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h)
+{
+ (*theWrappedObject).setRect(x, y, w, h);
+}
+
+QPainterPath  PythonQtWrapper_QGraphicsEllipseItem::shape(QGraphicsEllipseItem* theWrappedObject) const
+{
+return  (*theWrappedObject).shape();
 }
 
 int  PythonQtWrapper_QGraphicsEllipseItem::type(QGraphicsEllipseItem* theWrappedObject) const
 {
-return theWrappedObject->type();
+return  (*theWrappedObject).type();
 }
 

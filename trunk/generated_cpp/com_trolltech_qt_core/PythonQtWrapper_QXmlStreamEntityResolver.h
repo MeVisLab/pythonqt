@@ -4,7 +4,20 @@
 #include <qxmlstream.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
+
+class PythonQtShell_QXmlStreamEntityResolver : public QXmlStreamEntityResolver
+{
+public:
+    PythonQtShell_QXmlStreamEntityResolver():QXmlStreamEntityResolver(),_wrapper(NULL) {};
+
+virtual QString  resolveEntity(const QString&  publicId, const QString&  systemId);
+virtual QString  resolveUndeclaredEntity(const QString&  name);
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
 
 class PythonQtWrapper_QXmlStreamEntityResolver : public QObject
 { Q_OBJECT

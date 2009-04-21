@@ -4,6 +4,8 @@
 #include <qdom.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qdom.h>
 
@@ -14,19 +16,19 @@ public slots:
 QDomNamedNodeMap* new_QDomNamedNodeMap();
 QDomNamedNodeMap* new_QDomNamedNodeMap(const QDomNamedNodeMap&  arg__1);
 void delete_QDomNamedNodeMap(QDomNamedNodeMap* obj) { delete obj; } 
-   bool  contains(QDomNamedNodeMap* theWrappedObject, const QString&  name) const;
-   int  count(QDomNamedNodeMap* theWrappedObject) const;
-   bool  isEmpty(QDomNamedNodeMap* theWrappedObject) const;
-   QDomNode  item(QDomNamedNodeMap* theWrappedObject, int  index) const;
-   uint  length(QDomNamedNodeMap* theWrappedObject) const;
-   QDomNode  namedItem(QDomNamedNodeMap* theWrappedObject, const QString&  name) const;
-   QDomNode  namedItemNS(QDomNamedNodeMap* theWrappedObject, const QString&  nsURI, const QString&  localName) const;
-   bool  operator_equal(QDomNamedNodeMap* theWrappedObject, const QDomNamedNodeMap&  arg__1) const;
-   QDomNode  removeNamedItem(QDomNamedNodeMap* theWrappedObject, const QString&  name);
-   QDomNode  removeNamedItemNS(QDomNamedNodeMap* theWrappedObject, const QString&  nsURI, const QString&  localName);
    QDomNode  setNamedItem(QDomNamedNodeMap* theWrappedObject, const QDomNode&  newNode);
-   QDomNode  setNamedItemNS(QDomNamedNodeMap* theWrappedObject, const QDomNode&  newNode);
    int  size(QDomNamedNodeMap* theWrappedObject) const;
+   bool  isEmpty(QDomNamedNodeMap* theWrappedObject) const;
+   bool  contains(QDomNamedNodeMap* theWrappedObject, const QString&  name) const;
+   QDomNode  removeNamedItemNS(QDomNamedNodeMap* theWrappedObject, const QString&  nsURI, const QString&  localName);
+   QDomNode  namedItem(QDomNamedNodeMap* theWrappedObject, const QString&  name) const;
+   bool  operator_equal(QDomNamedNodeMap* theWrappedObject, const QDomNamedNodeMap&  arg__1) const;
+   QDomNode  item(QDomNamedNodeMap* theWrappedObject, int  index) const;
+   QDomNode  setNamedItemNS(QDomNamedNodeMap* theWrappedObject, const QDomNode&  newNode);
+   int  count(QDomNamedNodeMap* theWrappedObject) const;
+   uint  length(QDomNamedNodeMap* theWrappedObject) const;
+   QDomNode  namedItemNS(QDomNamedNodeMap* theWrappedObject, const QString&  nsURI, const QString&  localName) const;
+   QDomNode  removeNamedItem(QDomNamedNodeMap* theWrappedObject, const QString&  name);
 };
 
 #endif // PYTHONQTWRAPPER_QDOMNAMEDNODEMAP_H

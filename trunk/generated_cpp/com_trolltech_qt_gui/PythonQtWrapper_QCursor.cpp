@@ -1,5 +1,8 @@
 #include "PythonQtWrapper_QCursor.h"
 
+#include <PythonQtSignalReceiver.h>
+#include <PythonQtMethodInfo.h>
+#include <PythonQtConversion.h>
 #include <QPixmap>
 #include <QVariant>
 #include <qbitmap.h>
@@ -28,34 +31,9 @@ QCursor* PythonQtWrapper_QCursor::new_QCursor(const QPixmap&  pixmap, int  hotX,
 { 
 return new QCursor(pixmap, hotX, hotY); }
 
-const QBitmap*  PythonQtWrapper_QCursor::bitmap(QCursor* theWrappedObject) const
+Qt::CursorShape  PythonQtWrapper_QCursor::shape(QCursor* theWrappedObject) const
 {
-return theWrappedObject->bitmap();
-}
-
-QPoint  PythonQtWrapper_QCursor::hotSpot(QCursor* theWrappedObject) const
-{
-return theWrappedObject->hotSpot();
-}
-
-const QBitmap*  PythonQtWrapper_QCursor::mask(QCursor* theWrappedObject) const
-{
-return theWrappedObject->mask();
-}
-
-void PythonQtWrapper_QCursor::writeTo(QCursor* theWrappedObject, QDataStream&  outS)
-{
-outS <<  *theWrappedObject;
-}
-
-void PythonQtWrapper_QCursor::readFrom(QCursor* theWrappedObject, QDataStream&  inS)
-{
-inS >>  *theWrappedObject;
-}
-
-QPixmap  PythonQtWrapper_QCursor::pixmap(QCursor* theWrappedObject) const
-{
-return theWrappedObject->pixmap();
+return  (*theWrappedObject).shape();
 }
 
 QPoint  PythonQtWrapper_QCursor::static_QCursor_pos()
@@ -63,23 +41,48 @@ QPoint  PythonQtWrapper_QCursor::static_QCursor_pos()
 return QCursor::pos();
 }
 
+const QBitmap*  PythonQtWrapper_QCursor::mask(QCursor* theWrappedObject) const
+{
+return  (*theWrappedObject).mask();
+}
+
+void PythonQtWrapper_QCursor::readFrom(QCursor* theWrappedObject, QDataStream&  inS)
+{
+inS >>  (*theWrappedObject);
+}
+
+const QBitmap*  PythonQtWrapper_QCursor::bitmap(QCursor* theWrappedObject) const
+{
+return  (*theWrappedObject).bitmap();
+}
+
 void PythonQtWrapper_QCursor::static_QCursor_setPos(const QPoint&  p)
 {
 QCursor::setPos(p);
 }
 
-void PythonQtWrapper_QCursor::static_QCursor_setPos(int  x, int  y)
+QPoint  PythonQtWrapper_QCursor::hotSpot(QCursor* theWrappedObject) const
 {
-QCursor::setPos(x, y);
+return  (*theWrappedObject).hotSpot();
+}
+
+void PythonQtWrapper_QCursor::writeTo(QCursor* theWrappedObject, QDataStream&  outS)
+{
+outS <<  (*theWrappedObject);
+}
+
+QPixmap  PythonQtWrapper_QCursor::pixmap(QCursor* theWrappedObject) const
+{
+return  (*theWrappedObject).pixmap();
 }
 
 void PythonQtWrapper_QCursor::setShape(QCursor* theWrappedObject, Qt::CursorShape  newShape)
 {
-theWrappedObject->setShape(newShape);
+ (*theWrappedObject).setShape(newShape);
 }
 
-Qt::CursorShape  PythonQtWrapper_QCursor::shape(QCursor* theWrappedObject) const
+void PythonQtWrapper_QCursor::static_QCursor_setPos(int  x, int  y)
 {
-return theWrappedObject->shape();
+QCursor::setPos(x, y);
 }
 

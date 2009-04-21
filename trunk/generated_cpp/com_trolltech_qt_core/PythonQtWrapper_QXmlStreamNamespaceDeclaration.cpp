@@ -1,5 +1,8 @@
 #include "PythonQtWrapper_QXmlStreamNamespaceDeclaration.h"
 
+#include <PythonQtSignalReceiver.h>
+#include <PythonQtMethodInfo.h>
+#include <PythonQtConversion.h>
 #include <QVariant>
 #include <qxmlstream.h>
 
@@ -15,18 +18,18 @@ QXmlStreamNamespaceDeclaration* PythonQtWrapper_QXmlStreamNamespaceDeclaration::
 { 
 return new QXmlStreamNamespaceDeclaration(arg__1); }
 
-QStringRef  PythonQtWrapper_QXmlStreamNamespaceDeclaration::namespaceUri(QXmlStreamNamespaceDeclaration* theWrappedObject) const
-{
-return theWrappedObject->namespaceUri();
-}
-
 bool  PythonQtWrapper_QXmlStreamNamespaceDeclaration::operator_equal(QXmlStreamNamespaceDeclaration* theWrappedObject, const QXmlStreamNamespaceDeclaration&  other) const
 {
-return *theWrappedObject == other;
+return  (*theWrappedObject)== other;
 }
 
 QStringRef  PythonQtWrapper_QXmlStreamNamespaceDeclaration::prefix(QXmlStreamNamespaceDeclaration* theWrappedObject) const
 {
-return theWrappedObject->prefix();
+return  (*theWrappedObject).prefix();
+}
+
+QStringRef  PythonQtWrapper_QXmlStreamNamespaceDeclaration::namespaceUri(QXmlStreamNamespaceDeclaration* theWrappedObject) const
+{
+return  (*theWrappedObject).namespaceUri();
 }
 

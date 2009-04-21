@@ -4,9 +4,22 @@
 #include <qstyleoption.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qstyleoption.h>
 #include <qwidget.h>
+
+class PythonQtShell_QStyleOptionProgressBar : public QStyleOptionProgressBar
+{
+public:
+    PythonQtShell_QStyleOptionProgressBar():QStyleOptionProgressBar(),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionProgressBar(const QStyleOptionProgressBar&  other):QStyleOptionProgressBar(other),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionProgressBar(int  version):QStyleOptionProgressBar(version),_wrapper(NULL) {};
+
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
 
 class PythonQtWrapper_QStyleOptionProgressBar : public QObject
 { Q_OBJECT

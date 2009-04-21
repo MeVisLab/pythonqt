@@ -4,6 +4,8 @@
 #include <qevent.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qmimedata.h>
 #include <qpoint.h>

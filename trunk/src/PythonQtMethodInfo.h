@@ -42,19 +42,17 @@
 */
 //----------------------------------------------------------------------------------
 
+#include "PythonQtSystem.h"
+
 #include <QByteArray>
 #include <QHash>
 #include <QList>
 #include <QMetaMethod>
 
 //! stores information about a specific signal/slot/method
-class PythonQtMethodInfo
+class PYTHONQT_EXPORT PythonQtMethodInfo
 {
 public:
-  //! this is a funny type union of QMetaType and QVariant, only god knows
-  //! why QMetaType do not support identical types in Qt4,
-  //! especial the support of Long, Short, Char etc. is missing in QVariant
-  //! and QMetaType does not know anything about most variant types and e.g. LongLong
   enum ParameterType {
     Unknown = -1,
     Variant = -2
@@ -79,10 +77,13 @@ public:
   //! multiple requests for the same method
   static const PythonQtMethodInfo* getCachedMethodInfo(const QMetaMethod& method);
 
+  //! get the cached method info by finding the meta method on the meta object via its signature
+  static const PythonQtMethodInfo* getCachedMethodInfoFromMetaObjectAndSignature(const QMetaObject* metaObject, const char* signature);
+
   //! cleanup the cache
   static void cleanupCachedMethodInfos();
 
-  //! returns the number of parameters (without the return value)
+  //! returns the number of parameters including the return value
   int  parameterCount() const { return _parameters.size(); };
 
   //! returns the id for the given type (using an internal dictionary)
@@ -121,6 +122,7 @@ public:
     _next = NULL;
     _decorator = info._decorator;
     _type = info._type;
+    _upcastingOffset = 0;
   }
 
   PythonQtSlotInfo(const QMetaMethod& meta, int slotIndex, QObject* decorator = NULL, Type type = MemberSlot ):PythonQtMethodInfo()
@@ -132,11 +134,19 @@ public:
     _next = NULL;
     _decorator = decorator;
     _type = type;
+    _upcastingOffset = 0;
   }
 
 
 public:
+
+  void deleteOverloadsAndThis();
+
   const QMetaMethod* metaMethod() const { return &_meta; }
+
+  void setUpcastingOffset(int upcastingOffset) { _upcastingOffset = upcastingOffset; }
+
+  int upcastingOffset() const { return _upcastingOffset; }
 
   //! get the index of the slot (needed for qt_metacall)
   int slotIndex() const { return _slotIndex; }
@@ -162,11 +172,12 @@ public:
   QByteArray slotName();
 
 private:
-  int  _slotIndex;
+  int               _slotIndex;
   PythonQtSlotInfo* _next;
-  QObject* _decorator;
-  Type _type;
+  QObject*          _decorator;
+  Type              _type;
   QMetaMethod       _meta;
+  int               _upcastingOffset;
 };
 
 

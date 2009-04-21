@@ -1,19 +1,39 @@
 #include "PythonQtWrapper_QRunnable.h"
 
+#include <PythonQtSignalReceiver.h>
+#include <PythonQtMethodInfo.h>
+#include <PythonQtConversion.h>
 #include <QVariant>
 
-bool  PythonQtWrapper_QRunnable::autoDelete(QRunnable* theWrappedObject) const
+void PythonQtShell_QRunnable::run()
 {
-return theWrappedObject->autoDelete();
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "run");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QRunnable::staticMetaObject,
+      "run(QRunnable*)");
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
 }
-
-void PythonQtWrapper_QRunnable::run(QRunnable* theWrappedObject)
-{
-theWrappedObject->run();
+  
 }
+QRunnable* PythonQtWrapper_QRunnable::new_QRunnable()
+{ 
+return new PythonQtShell_QRunnable(); }
 
 void PythonQtWrapper_QRunnable::setAutoDelete(QRunnable* theWrappedObject, bool  _autoDelete)
 {
-theWrappedObject->setAutoDelete(_autoDelete);
+ (*theWrappedObject).setAutoDelete(_autoDelete);
+}
+
+bool  PythonQtWrapper_QRunnable::autoDelete(QRunnable* theWrappedObject) const
+{
+return  (*theWrappedObject).autoDelete();
 }
 

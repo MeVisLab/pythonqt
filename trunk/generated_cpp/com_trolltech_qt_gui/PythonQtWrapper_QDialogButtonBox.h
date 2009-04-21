@@ -4,6 +4,8 @@
 #include <qdialogbuttonbox.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qabstractbutton.h>
 #include <qaction.h>
@@ -34,6 +36,63 @@
 #include <qstyle.h>
 #include <qwidget.h>
 
+class PythonQtShell_QDialogButtonBox : public QDialogButtonBox
+{
+public:
+    PythonQtShell_QDialogButtonBox(QDialogButtonBox::StandardButtons  buttons, Qt::Orientation  orientation = Qt::Horizontal, QWidget*  parent = 0):QDialogButtonBox(buttons, orientation, parent),_wrapper(NULL) {};
+    PythonQtShell_QDialogButtonBox(QWidget*  parent = 0):QDialogButtonBox(parent),_wrapper(NULL) {};
+    PythonQtShell_QDialogButtonBox(Qt::Orientation  orientation, QWidget*  parent = 0):QDialogButtonBox(orientation, parent),_wrapper(NULL) {};
+
+virtual void actionEvent(QActionEvent*  arg__1);
+virtual void changeEvent(QEvent*  event);
+virtual void childEvent(QChildEvent*  arg__1);
+virtual void closeEvent(QCloseEvent*  arg__1);
+virtual void contextMenuEvent(QContextMenuEvent*  arg__1);
+virtual void customEvent(QEvent*  arg__1);
+virtual int  devType() const;
+virtual void dragEnterEvent(QDragEnterEvent*  arg__1);
+virtual void dragLeaveEvent(QDragLeaveEvent*  arg__1);
+virtual void dragMoveEvent(QDragMoveEvent*  arg__1);
+virtual void dropEvent(QDropEvent*  arg__1);
+virtual void enterEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void focusInEvent(QFocusEvent*  arg__1);
+virtual bool  focusNextPrevChild(bool  next);
+virtual void focusOutEvent(QFocusEvent*  arg__1);
+virtual int  heightForWidth(int  arg__1) const;
+virtual void hideEvent(QHideEvent*  arg__1);
+virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
+virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const;
+virtual void keyPressEvent(QKeyEvent*  arg__1);
+virtual void keyReleaseEvent(QKeyEvent*  arg__1);
+virtual void languageChange();
+virtual void leaveEvent(QEvent*  arg__1);
+virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
+virtual QSize  minimumSizeHint() const;
+virtual void mouseDoubleClickEvent(QMouseEvent*  arg__1);
+virtual void mouseMoveEvent(QMouseEvent*  arg__1);
+virtual void mousePressEvent(QMouseEvent*  arg__1);
+virtual void mouseReleaseEvent(QMouseEvent*  arg__1);
+virtual void moveEvent(QMoveEvent*  arg__1);
+virtual QPaintEngine*  paintEngine() const;
+virtual void paintEvent(QPaintEvent*  arg__1);
+virtual void resizeEvent(QResizeEvent*  arg__1);
+virtual void showEvent(QShowEvent*  arg__1);
+virtual QSize  sizeHint() const;
+virtual void tabletEvent(QTabletEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void wheelEvent(QWheelEvent*  arg__1);
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtPublicPromoter_QDialogButtonBox : public QDialogButtonBox
+{ public:
+inline void changeEvent(QEvent*  event) { QDialogButtonBox::changeEvent(event); }
+inline bool  event(QEvent*  event) { return QDialogButtonBox::event(event); }
+};
+
 class PythonQtWrapper_QDialogButtonBox : public QObject
 { Q_OBJECT
 public:
@@ -49,21 +108,23 @@ QDialogButtonBox* new_QDialogButtonBox(QDialogButtonBox::StandardButtons  button
 QDialogButtonBox* new_QDialogButtonBox(QWidget*  parent = 0);
 QDialogButtonBox* new_QDialogButtonBox(Qt::Orientation  orientation, QWidget*  parent = 0);
 void delete_QDialogButtonBox(QDialogButtonBox* obj) { delete obj; } 
-   void addButton(QDialogButtonBox* theWrappedObject, QAbstractButton*  button, QDialogButtonBox::ButtonRole  role);
-   QPushButton*  addButton(QDialogButtonBox* theWrappedObject, QDialogButtonBox::StandardButton  button);
-   QPushButton*  addButton(QDialogButtonBox* theWrappedObject, const QString&  text, QDialogButtonBox::ButtonRole  role);
-   QPushButton*  button(QDialogButtonBox* theWrappedObject, QDialogButtonBox::StandardButton  which) const;
    QDialogButtonBox::ButtonRole  buttonRole(QDialogButtonBox* theWrappedObject, QAbstractButton*  button) const;
-   QList<QAbstractButton* >  buttons(QDialogButtonBox* theWrappedObject) const;
    bool  centerButtons(QDialogButtonBox* theWrappedObject) const;
-   void clear(QDialogButtonBox* theWrappedObject);
    Qt::Orientation  orientation(QDialogButtonBox* theWrappedObject) const;
    void removeButton(QDialogButtonBox* theWrappedObject, QAbstractButton*  button);
-   void setCenterButtons(QDialogButtonBox* theWrappedObject, bool  center);
+   QPushButton*  addButton(QDialogButtonBox* theWrappedObject, const QString&  text, QDialogButtonBox::ButtonRole  role);
+   QPushButton*  addButton(QDialogButtonBox* theWrappedObject, QDialogButtonBox::StandardButton  button);
+   QPushButton*  button(QDialogButtonBox* theWrappedObject, QDialogButtonBox::StandardButton  which) const;
    void setOrientation(QDialogButtonBox* theWrappedObject, Qt::Orientation  orientation);
-   void setStandardButtons(QDialogButtonBox* theWrappedObject, QDialogButtonBox::StandardButtons  buttons);
-   QDialogButtonBox::StandardButton  standardButton(QDialogButtonBox* theWrappedObject, QAbstractButton*  button) const;
+   void changeEvent(QDialogButtonBox* theWrappedObject, QEvent*  event);
+   void addButton(QDialogButtonBox* theWrappedObject, QAbstractButton*  button, QDialogButtonBox::ButtonRole  role);
    QDialogButtonBox::StandardButtons  standardButtons(QDialogButtonBox* theWrappedObject) const;
+   bool  event(QDialogButtonBox* theWrappedObject, QEvent*  event);
+   void clear(QDialogButtonBox* theWrappedObject);
+   void setCenterButtons(QDialogButtonBox* theWrappedObject, bool  center);
+   void setStandardButtons(QDialogButtonBox* theWrappedObject, QDialogButtonBox::StandardButtons  buttons);
+   QList<QAbstractButton* >  buttons(QDialogButtonBox* theWrappedObject) const;
+   QDialogButtonBox::StandardButton  standardButton(QDialogButtonBox* theWrappedObject, QAbstractButton*  button) const;
 };
 
 #endif // PYTHONQTWRAPPER_QDIALOGBUTTONBOX_H

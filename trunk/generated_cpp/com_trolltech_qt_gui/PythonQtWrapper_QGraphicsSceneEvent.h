@@ -4,6 +4,8 @@
 #include <qgraphicssceneevent.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qwidget.h>
 

@@ -4,6 +4,8 @@
 #include <qcryptographichash.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qbytearray.h>
 #include <qcryptographichash.h>
@@ -17,10 +19,10 @@ enum Algorithm{
 public slots:
 QCryptographicHash* new_QCryptographicHash(QCryptographicHash::Algorithm  method);
 void delete_QCryptographicHash(QCryptographicHash* obj) { delete obj; } 
-   void addData(QCryptographicHash* theWrappedObject, const QByteArray&  data);
    QByteArray  static_QCryptographicHash_hash(const QByteArray&  data, QCryptographicHash::Algorithm  method);
-   void reset(QCryptographicHash* theWrappedObject);
    QByteArray  result(QCryptographicHash* theWrappedObject) const;
+   void addData(QCryptographicHash* theWrappedObject, const QByteArray&  data);
+   void reset(QCryptographicHash* theWrappedObject);
 };
 
 #endif // PYTHONQTWRAPPER_QCRYPTOGRAPHICHASH_H

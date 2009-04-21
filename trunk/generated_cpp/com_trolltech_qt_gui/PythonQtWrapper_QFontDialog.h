@@ -4,6 +4,8 @@
 #include <qfontdialog.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qaction.h>
 #include <qbitmap.h>
@@ -32,13 +34,19 @@
 #include <qstyle.h>
 #include <qwidget.h>
 
+class PythonQtPublicPromoter_QFontDialog : public QFontDialog
+{ public:
+inline void changeEvent(QEvent*  e) { QFontDialog::changeEvent(e); }
+};
+
 class PythonQtWrapper_QFontDialog : public QObject
 { Q_OBJECT
 public:
 public slots:
+   QFont  static_QFontDialog_getFont(bool*  ok, const QFont&  def, QWidget*  parent, const QString&  caption);
+   void changeEvent(QFontDialog* theWrappedObject, QEvent*  e);
    QFont  static_QFontDialog_getFont(bool*  ok, QWidget*  parent = 0);
    QFont  static_QFontDialog_getFont(bool*  ok, const QFont&  def, QWidget*  parent = 0);
-   QFont  static_QFontDialog_getFont(bool*  ok, const QFont&  def, QWidget*  parent, const QString&  caption);
 };
 
 #endif // PYTHONQTWRAPPER_QFONTDIALOG_H

@@ -4,6 +4,8 @@
 #include <qwhatsthis.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qaction.h>
 #include <qobject.h>
@@ -15,12 +17,12 @@ class PythonQtWrapper_QWhatsThis : public QObject
 public:
 public slots:
 void delete_QWhatsThis(QWhatsThis* obj) { delete obj; } 
-   QAction*  static_QWhatsThis_createAction(QObject*  parent = 0);
    void static_QWhatsThis_enterWhatsThisMode();
+   void static_QWhatsThis_showText(const QPoint&  pos, const QString&  text, QWidget*  w = 0);
    void static_QWhatsThis_hideText();
+   QAction*  static_QWhatsThis_createAction(QObject*  parent = 0);
    bool  static_QWhatsThis_inWhatsThisMode();
    void static_QWhatsThis_leaveWhatsThisMode();
-   void static_QWhatsThis_showText(const QPoint&  pos, const QString&  text, QWidget*  w = 0);
 };
 
 #endif // PYTHONQTWRAPPER_QWHATSTHIS_H

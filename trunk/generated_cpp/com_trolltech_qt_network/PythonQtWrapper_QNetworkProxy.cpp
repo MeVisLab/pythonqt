@@ -1,5 +1,8 @@
 #include "PythonQtWrapper_QNetworkProxy.h"
 
+#include <PythonQtSignalReceiver.h>
+#include <PythonQtMethodInfo.h>
+#include <PythonQtConversion.h>
 #include <QVariant>
 #include <qnetworkproxy.h>
 
@@ -15,39 +18,69 @@ QNetworkProxy* PythonQtWrapper_QNetworkProxy::new_QNetworkProxy(const QNetworkPr
 { 
 return new QNetworkProxy(other); }
 
+void PythonQtWrapper_QNetworkProxy::setUser(QNetworkProxy* theWrappedObject, const QString&  userName)
+{
+ (*theWrappedObject).setUser(userName);
+}
+
+QNetworkProxy::ProxyType  PythonQtWrapper_QNetworkProxy::type(QNetworkProxy* theWrappedObject) const
+{
+return  (*theWrappedObject).type();
+}
+
+void PythonQtWrapper_QNetworkProxy::setPort(QNetworkProxy* theWrappedObject, unsigned short  port)
+{
+ (*theWrappedObject).setPort(port);
+}
+
+bool  PythonQtWrapper_QNetworkProxy::isTransparentProxy(QNetworkProxy* theWrappedObject) const
+{
+return  (*theWrappedObject).isTransparentProxy();
+}
+
+void PythonQtWrapper_QNetworkProxy::setHostName(QNetworkProxy* theWrappedObject, const QString&  hostName)
+{
+ (*theWrappedObject).setHostName(hostName);
+}
+
 QNetworkProxy  PythonQtWrapper_QNetworkProxy::static_QNetworkProxy_applicationProxy()
 {
 return QNetworkProxy::applicationProxy();
 }
 
-QString  PythonQtWrapper_QNetworkProxy::hostName(QNetworkProxy* theWrappedObject) const
+unsigned short  PythonQtWrapper_QNetworkProxy::port(QNetworkProxy* theWrappedObject) const
 {
-return theWrappedObject->hostName();
+return  (*theWrappedObject).port();
 }
 
 bool  PythonQtWrapper_QNetworkProxy::isCachingProxy(QNetworkProxy* theWrappedObject) const
 {
-return theWrappedObject->isCachingProxy();
+return  (*theWrappedObject).isCachingProxy();
 }
 
-bool  PythonQtWrapper_QNetworkProxy::isTransparentProxy(QNetworkProxy* theWrappedObject) const
+QString  PythonQtWrapper_QNetworkProxy::user(QNetworkProxy* theWrappedObject) const
 {
-return theWrappedObject->isTransparentProxy();
+return  (*theWrappedObject).user();
 }
 
-bool  PythonQtWrapper_QNetworkProxy::operator_equal(QNetworkProxy* theWrappedObject, const QNetworkProxy&  other) const
+void PythonQtWrapper_QNetworkProxy::setPassword(QNetworkProxy* theWrappedObject, const QString&  password)
 {
-return *theWrappedObject == other;
+ (*theWrappedObject).setPassword(password);
 }
 
 QString  PythonQtWrapper_QNetworkProxy::password(QNetworkProxy* theWrappedObject) const
 {
-return theWrappedObject->password();
+return  (*theWrappedObject).password();
 }
 
-unsigned short  PythonQtWrapper_QNetworkProxy::port(QNetworkProxy* theWrappedObject) const
+QString  PythonQtWrapper_QNetworkProxy::hostName(QNetworkProxy* theWrappedObject) const
 {
-return theWrappedObject->port();
+return  (*theWrappedObject).hostName();
+}
+
+bool  PythonQtWrapper_QNetworkProxy::operator_equal(QNetworkProxy* theWrappedObject, const QNetworkProxy&  other) const
+{
+return  (*theWrappedObject)== other;
 }
 
 void PythonQtWrapper_QNetworkProxy::static_QNetworkProxy_setApplicationProxy(const QNetworkProxy&  proxy)
@@ -55,38 +88,8 @@ void PythonQtWrapper_QNetworkProxy::static_QNetworkProxy_setApplicationProxy(con
 QNetworkProxy::setApplicationProxy(proxy);
 }
 
-void PythonQtWrapper_QNetworkProxy::setHostName(QNetworkProxy* theWrappedObject, const QString&  hostName)
-{
-theWrappedObject->setHostName(hostName);
-}
-
-void PythonQtWrapper_QNetworkProxy::setPassword(QNetworkProxy* theWrappedObject, const QString&  password)
-{
-theWrappedObject->setPassword(password);
-}
-
-void PythonQtWrapper_QNetworkProxy::setPort(QNetworkProxy* theWrappedObject, unsigned short  port)
-{
-theWrappedObject->setPort(port);
-}
-
 void PythonQtWrapper_QNetworkProxy::setType(QNetworkProxy* theWrappedObject, QNetworkProxy::ProxyType  type)
 {
-theWrappedObject->setType(type);
-}
-
-void PythonQtWrapper_QNetworkProxy::setUser(QNetworkProxy* theWrappedObject, const QString&  userName)
-{
-theWrappedObject->setUser(userName);
-}
-
-QNetworkProxy::ProxyType  PythonQtWrapper_QNetworkProxy::type(QNetworkProxy* theWrappedObject) const
-{
-return theWrappedObject->type();
-}
-
-QString  PythonQtWrapper_QNetworkProxy::user(QNetworkProxy* theWrappedObject) const
-{
-return theWrappedObject->user();
+ (*theWrappedObject).setType(type);
 }
 

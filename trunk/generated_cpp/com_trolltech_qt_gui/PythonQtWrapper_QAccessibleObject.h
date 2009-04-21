@@ -4,6 +4,8 @@
 #include <qaccessibleobject.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qaccessible.h>
 #include <qaccessibleobject.h>
@@ -11,17 +13,42 @@
 #include <qobject.h>
 #include <qrect.h>
 
+class PythonQtShell_QAccessibleObject : public QAccessibleObject
+{
+public:
+    PythonQtShell_QAccessibleObject(QObject*  object):QAccessibleObject(object),_wrapper(NULL) {};
+
+virtual QString  actionText(int  action, QAccessible::Text  t, int  child) const;
+virtual int  childAt(int  x, int  y) const;
+virtual int  childCount() const;
+virtual bool  doAction(int  action, int  child, const QList<QVariant >&  params);
+virtual int  indexOfChild(const QAccessibleInterface*  arg__1) const;
+virtual bool  isValid() const;
+virtual int  navigate(QAccessible::RelationFlag  relation, int  index, QAccessibleInterface**  iface) const;
+virtual QObject*  object() const;
+virtual QRect  rect(int  child) const;
+virtual QAccessible::Relation  relationTo(int  child, const QAccessibleInterface*  other, int  otherChild) const;
+virtual QAccessible::Role  role(int  child) const;
+virtual void setText(QAccessible::Text  t, int  child, const QString&  text);
+virtual QAccessible::State  state(int  child) const;
+virtual QString  text(QAccessible::Text  t, int  child) const;
+virtual int  userActionCount(int  child) const;
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
 class PythonQtWrapper_QAccessibleObject : public QObject
 { Q_OBJECT
 public:
 public slots:
+QAccessibleObject* new_QAccessibleObject(QObject*  object);
    QString  actionText(QAccessibleObject* theWrappedObject, int  action, QAccessible::Text  t, int  child) const;
    bool  doAction(QAccessibleObject* theWrappedObject, int  action, int  child, const QList<QVariant >&  params);
-   bool  isValid(QAccessibleObject* theWrappedObject) const;
-   QObject*  object(QAccessibleObject* theWrappedObject) const;
-   QRect  rect(QAccessibleObject* theWrappedObject, int  child) const;
    void setText(QAccessibleObject* theWrappedObject, QAccessible::Text  t, int  child, const QString&  text);
+   QRect  rect(QAccessibleObject* theWrappedObject, int  child) const;
+   QObject*  object(QAccessibleObject* theWrappedObject) const;
    int  userActionCount(QAccessibleObject* theWrappedObject, int  child) const;
+   bool  isValid(QAccessibleObject* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QACCESSIBLEOBJECT_H

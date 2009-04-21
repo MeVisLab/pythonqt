@@ -63,8 +63,8 @@ public:
         IncludeDefaultExpression = 0x00040000,
         NoReturnStatement        = 0x00080000,
         NoBlockedSlot            = 0x00100000,
-
         SuperCall                = 0x00200000,
+        FirstArgIsWrappedObject  = 0x00400000,
 
         GlobalRefJObject         = 0x00100000,
 

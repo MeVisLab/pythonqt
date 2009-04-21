@@ -4,6 +4,8 @@
 #include <qstringmatcher.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qstringmatcher.h>
 
@@ -16,9 +18,9 @@ QStringMatcher* new_QStringMatcher(const QString&  pattern, Qt::CaseSensitivity 
 QStringMatcher* new_QStringMatcher(const QStringMatcher&  other);
 void delete_QStringMatcher(QStringMatcher* obj) { delete obj; } 
    Qt::CaseSensitivity  caseSensitivity(QStringMatcher* theWrappedObject) const;
-   int  indexIn(QStringMatcher* theWrappedObject, const QString&  str, int  from = 0) const;
-   QString  pattern(QStringMatcher* theWrappedObject) const;
    void setCaseSensitivity(QStringMatcher* theWrappedObject, Qt::CaseSensitivity  cs);
+   QString  pattern(QStringMatcher* theWrappedObject) const;
+   int  indexIn(QStringMatcher* theWrappedObject, const QString&  str, int  from = 0) const;
    void setPattern(QStringMatcher* theWrappedObject, const QString&  pattern);
 };
 

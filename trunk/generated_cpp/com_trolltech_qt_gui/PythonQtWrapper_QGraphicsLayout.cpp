@@ -1,5 +1,8 @@
 #include "PythonQtWrapper_QGraphicsLayout.h"
 
+#include <PythonQtSignalReceiver.h>
+#include <PythonQtMethodInfo.h>
+#include <PythonQtConversion.h>
 #include <QVariant>
 #include <qcoreevent.h>
 #include <qgraphicslayout.h>
@@ -8,208 +11,223 @@
 #include <qsize.h>
 #include <qsizepolicy.h>
 
+int  PythonQtShell_QGraphicsLayout::count() const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "count");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsLayout::staticMetaObject,
+      "count(QGraphicsLayout*)");
+      int  returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((int *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  int  result;
+return result;
+}
+void PythonQtShell_QGraphicsLayout::getContentsMargins(qreal*  left, qreal*  top, qreal*  right, qreal*  bottom) const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "getContentsMargins");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsLayout::staticMetaObject,
+      "getContentsMargins(QGraphicsLayout*,qreal* ,qreal* ,qreal* ,qreal* )");
+    void* args[5] = {NULL, (void*)&left, (void*)&top, (void*)&right, (void*)&bottom};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QGraphicsLayout::getContentsMargins(left, top, right, bottom);
+}
+void PythonQtShell_QGraphicsLayout::invalidate()
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "invalidate");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsLayout::staticMetaObject,
+      "invalidate(QGraphicsLayout*)");
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QGraphicsLayout::invalidate();
+}
+QGraphicsLayoutItem*  PythonQtShell_QGraphicsLayout::itemAt(int  i) const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "itemAt");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsLayout::staticMetaObject,
+      "itemAt(QGraphicsLayout*,int )");
+      QGraphicsLayoutItem*  returnValue;
+    void* args[2] = {NULL, (void*)&i};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((QGraphicsLayoutItem* *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  QGraphicsLayoutItem*  result;
+return result;
+}
+void PythonQtShell_QGraphicsLayout::removeAt(int  index)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "removeAt");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsLayout::staticMetaObject,
+      "removeAt(QGraphicsLayout*,int )");
+    void* args[2] = {NULL, (void*)&index};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  
+}
+void PythonQtShell_QGraphicsLayout::setGeometry(const QRectF&  rect)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setGeometry");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsLayout::staticMetaObject,
+      "setGeometry(QGraphicsLayout*,const QRectF& )");
+    void* args[2] = {NULL, (void*)&rect};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QGraphicsLayout::setGeometry(rect);
+}
+QSizeF  PythonQtShell_QGraphicsLayout::sizeHint(Qt::SizeHint  which, const QSizeF&  constraint) const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "sizeHint");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsLayout::staticMetaObject,
+      "sizeHint(QGraphicsLayout*,Qt::SizeHint ,const QSizeF& )");
+      QSizeF  returnValue;
+    void* args[3] = {NULL, (void*)&which, (void*)&constraint};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((QSizeF *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  QSizeF  result;
+return result;
+}
+void PythonQtShell_QGraphicsLayout::updateGeometry()
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "updateGeometry");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsLayout::staticMetaObject,
+      "updateGeometry(QGraphicsLayout*)");
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QGraphicsLayout::updateGeometry();
+}
+void PythonQtShell_QGraphicsLayout::widgetEvent(QEvent*  e)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "widgetEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsLayout::staticMetaObject,
+      "widgetEvent(QGraphicsLayout*,QEvent* )");
+    void* args[2] = {NULL, (void*)&e};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QGraphicsLayout::widgetEvent(e);
+}
+QGraphicsLayout* PythonQtWrapper_QGraphicsLayout::new_QGraphicsLayout(QGraphicsLayoutItem*  parent)
+{ 
+return new PythonQtShell_QGraphicsLayout(parent); }
+
 void PythonQtWrapper_QGraphicsLayout::activate(QGraphicsLayout* theWrappedObject)
 {
-theWrappedObject->activate();
-}
-
-QRectF  PythonQtWrapper_QGraphicsLayout::contentsRect(QGraphicsLayout* theWrappedObject) const
-{
-return theWrappedObject->contentsRect();
-}
-
-int  PythonQtWrapper_QGraphicsLayout::count(QGraphicsLayout* theWrappedObject) const
-{
-return theWrappedObject->count();
-}
-
-QSizeF  PythonQtWrapper_QGraphicsLayout::effectiveSizeHint(QGraphicsLayout* theWrappedObject, Qt::SizeHint  which, const QSizeF&  constraint) const
-{
-return theWrappedObject->effectiveSizeHint(which, constraint);
-}
-
-QRectF  PythonQtWrapper_QGraphicsLayout::geometry(QGraphicsLayout* theWrappedObject) const
-{
-return theWrappedObject->geometry();
-}
-
-void PythonQtWrapper_QGraphicsLayout::getContentsMargins(QGraphicsLayout* theWrappedObject, qreal*  left, qreal*  top, qreal*  right, qreal*  bottom) const
-{
-theWrappedObject->getContentsMargins(left, top, right, bottom);
-}
-
-void PythonQtWrapper_QGraphicsLayout::invalidate(QGraphicsLayout* theWrappedObject)
-{
-theWrappedObject->invalidate();
+ (*theWrappedObject).activate();
 }
 
 bool  PythonQtWrapper_QGraphicsLayout::isActivated(QGraphicsLayout* theWrappedObject) const
 {
-return theWrappedObject->isActivated();
-}
-
-bool  PythonQtWrapper_QGraphicsLayout::isLayout(QGraphicsLayout* theWrappedObject) const
-{
-return theWrappedObject->isLayout();
-}
-
-QGraphicsLayoutItem*  PythonQtWrapper_QGraphicsLayout::itemAt(QGraphicsLayout* theWrappedObject, int  i) const
-{
-return theWrappedObject->itemAt(i);
-}
-
-qreal  PythonQtWrapper_QGraphicsLayout::maximumHeight(QGraphicsLayout* theWrappedObject) const
-{
-return theWrappedObject->maximumHeight();
-}
-
-QSizeF  PythonQtWrapper_QGraphicsLayout::maximumSize(QGraphicsLayout* theWrappedObject) const
-{
-return theWrappedObject->maximumSize();
-}
-
-qreal  PythonQtWrapper_QGraphicsLayout::maximumWidth(QGraphicsLayout* theWrappedObject) const
-{
-return theWrappedObject->maximumWidth();
-}
-
-qreal  PythonQtWrapper_QGraphicsLayout::minimumHeight(QGraphicsLayout* theWrappedObject) const
-{
-return theWrappedObject->minimumHeight();
-}
-
-QSizeF  PythonQtWrapper_QGraphicsLayout::minimumSize(QGraphicsLayout* theWrappedObject) const
-{
-return theWrappedObject->minimumSize();
-}
-
-qreal  PythonQtWrapper_QGraphicsLayout::minimumWidth(QGraphicsLayout* theWrappedObject) const
-{
-return theWrappedObject->minimumWidth();
-}
-
-QGraphicsLayoutItem*  PythonQtWrapper_QGraphicsLayout::parentLayoutItem(QGraphicsLayout* theWrappedObject) const
-{
-return theWrappedObject->parentLayoutItem();
-}
-
-qreal  PythonQtWrapper_QGraphicsLayout::preferredHeight(QGraphicsLayout* theWrappedObject) const
-{
-return theWrappedObject->preferredHeight();
-}
-
-QSizeF  PythonQtWrapper_QGraphicsLayout::preferredSize(QGraphicsLayout* theWrappedObject) const
-{
-return theWrappedObject->preferredSize();
-}
-
-qreal  PythonQtWrapper_QGraphicsLayout::preferredWidth(QGraphicsLayout* theWrappedObject) const
-{
-return theWrappedObject->preferredWidth();
-}
-
-void PythonQtWrapper_QGraphicsLayout::removeAt(QGraphicsLayout* theWrappedObject, int  index)
-{
-theWrappedObject->removeAt(index);
+return  (*theWrappedObject).isActivated();
 }
 
 void PythonQtWrapper_QGraphicsLayout::setContentsMargins(QGraphicsLayout* theWrappedObject, qreal  left, qreal  top, qreal  right, qreal  bottom)
 {
-theWrappedObject->setContentsMargins(left, top, right, bottom);
+ (*theWrappedObject).setContentsMargins(left, top, right, bottom);
 }
 
-void PythonQtWrapper_QGraphicsLayout::setGeometry(QGraphicsLayout* theWrappedObject, const QRectF&  rect)
+void PythonQtWrapper_QGraphicsLayout::invalidate(QGraphicsLayout* theWrappedObject)
 {
-theWrappedObject->setGeometry(rect);
+ (*theWrappedObject).invalidate();
 }
 
-void PythonQtWrapper_QGraphicsLayout::setMaximumHeight(QGraphicsLayout* theWrappedObject, qreal  height)
+void PythonQtWrapper_QGraphicsLayout::getContentsMargins(QGraphicsLayout* theWrappedObject, qreal*  left, qreal*  top, qreal*  right, qreal*  bottom) const
 {
-theWrappedObject->setMaximumHeight(height);
-}
-
-void PythonQtWrapper_QGraphicsLayout::setMaximumSize(QGraphicsLayout* theWrappedObject, const QSizeF&  size)
-{
-theWrappedObject->setMaximumSize(size);
-}
-
-void PythonQtWrapper_QGraphicsLayout::setMaximumSize(QGraphicsLayout* theWrappedObject, qreal  w, qreal  h)
-{
-theWrappedObject->setMaximumSize(w, h);
-}
-
-void PythonQtWrapper_QGraphicsLayout::setMaximumWidth(QGraphicsLayout* theWrappedObject, qreal  width)
-{
-theWrappedObject->setMaximumWidth(width);
-}
-
-void PythonQtWrapper_QGraphicsLayout::setMinimumHeight(QGraphicsLayout* theWrappedObject, qreal  height)
-{
-theWrappedObject->setMinimumHeight(height);
-}
-
-void PythonQtWrapper_QGraphicsLayout::setMinimumSize(QGraphicsLayout* theWrappedObject, const QSizeF&  size)
-{
-theWrappedObject->setMinimumSize(size);
-}
-
-void PythonQtWrapper_QGraphicsLayout::setMinimumSize(QGraphicsLayout* theWrappedObject, qreal  w, qreal  h)
-{
-theWrappedObject->setMinimumSize(w, h);
-}
-
-void PythonQtWrapper_QGraphicsLayout::setMinimumWidth(QGraphicsLayout* theWrappedObject, qreal  width)
-{
-theWrappedObject->setMinimumWidth(width);
-}
-
-void PythonQtWrapper_QGraphicsLayout::setParentLayoutItem(QGraphicsLayout* theWrappedObject, QGraphicsLayoutItem*  parent)
-{
-theWrappedObject->setParentLayoutItem(parent);
-}
-
-void PythonQtWrapper_QGraphicsLayout::setPreferredHeight(QGraphicsLayout* theWrappedObject, qreal  height)
-{
-theWrappedObject->setPreferredHeight(height);
-}
-
-void PythonQtWrapper_QGraphicsLayout::setPreferredSize(QGraphicsLayout* theWrappedObject, const QSizeF&  size)
-{
-theWrappedObject->setPreferredSize(size);
-}
-
-void PythonQtWrapper_QGraphicsLayout::setPreferredSize(QGraphicsLayout* theWrappedObject, qreal  w, qreal  h)
-{
-theWrappedObject->setPreferredSize(w, h);
-}
-
-void PythonQtWrapper_QGraphicsLayout::setPreferredWidth(QGraphicsLayout* theWrappedObject, qreal  width)
-{
-theWrappedObject->setPreferredWidth(width);
-}
-
-void PythonQtWrapper_QGraphicsLayout::setSizePolicy(QGraphicsLayout* theWrappedObject, QSizePolicy::Policy  hPolicy, QSizePolicy::Policy  vPolicy, QSizePolicy::ControlType  controlType)
-{
-theWrappedObject->setSizePolicy(hPolicy, vPolicy, controlType);
-}
-
-void PythonQtWrapper_QGraphicsLayout::setSizePolicy(QGraphicsLayout* theWrappedObject, const QSizePolicy&  policy)
-{
-theWrappedObject->setSizePolicy(policy);
-}
-
-QSizePolicy  PythonQtWrapper_QGraphicsLayout::sizePolicy(QGraphicsLayout* theWrappedObject) const
-{
-return theWrappedObject->sizePolicy();
-}
-
-void PythonQtWrapper_QGraphicsLayout::updateGeometry(QGraphicsLayout* theWrappedObject)
-{
-theWrappedObject->updateGeometry();
+ (*theWrappedObject).getContentsMargins(left, top, right, bottom);
 }
 
 void PythonQtWrapper_QGraphicsLayout::widgetEvent(QGraphicsLayout* theWrappedObject, QEvent*  e)
 {
-theWrappedObject->widgetEvent(e);
+ (*theWrappedObject).widgetEvent(e);
 }
 

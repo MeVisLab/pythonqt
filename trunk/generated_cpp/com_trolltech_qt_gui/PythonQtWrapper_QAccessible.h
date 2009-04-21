@@ -4,9 +4,20 @@
 #include <qaccessible.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qaccessible.h>
 #include <qobject.h>
+
+class PythonQtShell_QAccessible : public QAccessible
+{
+public:
+    PythonQtShell_QAccessible():QAccessible(),_wrapper(NULL) {};
+
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
 
 class PythonQtWrapper_QAccessible : public QObject
 { Q_OBJECT
@@ -29,10 +40,10 @@ enum Text{
 public slots:
 QAccessible* new_QAccessible();
 void delete_QAccessible(QAccessible* obj) { delete obj; } 
-   bool  static_QAccessible_isActive();
-   QAccessibleInterface*  static_QAccessible_queryAccessibleInterface(QObject*  arg__1);
    void static_QAccessible_setRootObject(QObject*  arg__1);
    void static_QAccessible_updateAccessibility(QObject*  arg__1, int  who, QAccessible::Event  reason);
+   QAccessibleInterface*  static_QAccessible_queryAccessibleInterface(QObject*  arg__1);
+   bool  static_QAccessible_isActive();
 };
 
 #endif // PYTHONQTWRAPPER_QACCESSIBLE_H

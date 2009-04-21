@@ -4,6 +4,8 @@
 #include <qevent.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 
 class PythonQtWrapper_QDragLeaveEvent : public QObject

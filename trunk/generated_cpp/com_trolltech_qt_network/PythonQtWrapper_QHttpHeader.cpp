@@ -1,107 +1,215 @@
 #include "PythonQtWrapper_QHttpHeader.h"
 
+#include <PythonQtSignalReceiver.h>
+#include <PythonQtMethodInfo.h>
+#include <PythonQtConversion.h>
 #include <QVariant>
 #include <qlist.h>
 #include <qpair.h>
 #include <qstringlist.h>
 
-void PythonQtWrapper_QHttpHeader::addValue(QHttpHeader* theWrappedObject, const QString&  key, const QString&  value)
+int  PythonQtShell_QHttpHeader::majorVersion() const
 {
-theWrappedObject->addValue(key, value);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "majorVersion");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QHttpHeader::staticMetaObject,
+      "majorVersion(QHttpHeader*)");
+      int  returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((int *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-QStringList  PythonQtWrapper_QHttpHeader::allValues(QHttpHeader* theWrappedObject, const QString&  key) const
-{
-return theWrappedObject->allValues(key);
+  int  result;
+return result;
 }
-
-uint  PythonQtWrapper_QHttpHeader::contentLength(QHttpHeader* theWrappedObject) const
+int  PythonQtShell_QHttpHeader::minorVersion() const
 {
-return theWrappedObject->contentLength();
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "minorVersion");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QHttpHeader::staticMetaObject,
+      "minorVersion(QHttpHeader*)");
+      int  returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((int *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-QString  PythonQtWrapper_QHttpHeader::contentType(QHttpHeader* theWrappedObject) const
-{
-return theWrappedObject->contentType();
+  int  result;
+return result;
 }
-
-bool  PythonQtWrapper_QHttpHeader::hasContentLength(QHttpHeader* theWrappedObject) const
+bool  PythonQtShell_QHttpHeader::parseLine(const QString&  line, int  number)
 {
-return theWrappedObject->hasContentLength();
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "parseLine");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QHttpHeader::staticMetaObject,
+      "parseLine(QHttpHeader*,const QString& ,int )");
+      bool  returnValue;
+    void* args[3] = {NULL, (void*)&line, (void*)&number};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((bool *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-bool  PythonQtWrapper_QHttpHeader::hasContentType(QHttpHeader* theWrappedObject) const
-{
-return theWrappedObject->hasContentType();
+  return QHttpHeader::parseLine(line, number);
 }
-
-bool  PythonQtWrapper_QHttpHeader::hasKey(QHttpHeader* theWrappedObject, const QString&  key) const
+QString  PythonQtShell_QHttpHeader::toString() const
 {
-return theWrappedObject->hasKey(key);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "toString");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QHttpHeader::staticMetaObject,
+      "toString(QHttpHeader*)");
+      QString  returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((QString *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-bool  PythonQtWrapper_QHttpHeader::isValid(QHttpHeader* theWrappedObject) const
-{
-return theWrappedObject->isValid();
+  return QHttpHeader::toString();
 }
+QHttpHeader* PythonQtWrapper_QHttpHeader::new_QHttpHeader()
+{ 
+return new PythonQtShell_QHttpHeader(); }
 
-QStringList  PythonQtWrapper_QHttpHeader::keys(QHttpHeader* theWrappedObject) const
-{
-return theWrappedObject->keys();
-}
+QHttpHeader* PythonQtWrapper_QHttpHeader::new_QHttpHeader(const QString&  str)
+{ 
+return new PythonQtShell_QHttpHeader(str); }
 
-int  PythonQtWrapper_QHttpHeader::majorVersion(QHttpHeader* theWrappedObject) const
+void PythonQtWrapper_QHttpHeader::setValue(QHttpHeader* theWrappedObject, const QString&  key, const QString&  value)
 {
-return theWrappedObject->majorVersion();
-}
-
-int  PythonQtWrapper_QHttpHeader::minorVersion(QHttpHeader* theWrappedObject) const
-{
-return theWrappedObject->minorVersion();
+ (*theWrappedObject).setValue(key, value);
 }
 
 void PythonQtWrapper_QHttpHeader::removeAllValues(QHttpHeader* theWrappedObject, const QString&  key)
 {
-theWrappedObject->removeAllValues(key);
+ (*theWrappedObject).removeAllValues(key);
 }
 
-void PythonQtWrapper_QHttpHeader::removeValue(QHttpHeader* theWrappedObject, const QString&  key)
+QStringList  PythonQtWrapper_QHttpHeader::allValues(QHttpHeader* theWrappedObject, const QString&  key) const
 {
-theWrappedObject->removeValue(key);
+return  (*theWrappedObject).allValues(key);
 }
 
-void PythonQtWrapper_QHttpHeader::setContentLength(QHttpHeader* theWrappedObject, int  len)
+void PythonQtWrapper_QHttpHeader::addValue(QHttpHeader* theWrappedObject, const QString&  key, const QString&  value)
 {
-theWrappedObject->setContentLength(len);
-}
-
-void PythonQtWrapper_QHttpHeader::setContentType(QHttpHeader* theWrappedObject, const QString&  type)
-{
-theWrappedObject->setContentType(type);
-}
-
-void PythonQtWrapper_QHttpHeader::setValue(QHttpHeader* theWrappedObject, const QString&  key, const QString&  value)
-{
-theWrappedObject->setValue(key, value);
-}
-
-void PythonQtWrapper_QHttpHeader::setValues(QHttpHeader* theWrappedObject, const QList<QPair<QString , QString >  >&  values)
-{
-theWrappedObject->setValues(values);
-}
-
-QString  PythonQtWrapper_QHttpHeader::toString(QHttpHeader* theWrappedObject) const
-{
-return theWrappedObject->toString();
+ (*theWrappedObject).addValue(key, value);
 }
 
 QString  PythonQtWrapper_QHttpHeader::value(QHttpHeader* theWrappedObject, const QString&  key) const
 {
-return theWrappedObject->value(key);
+return  (*theWrappedObject).value(key);
+}
+
+bool  PythonQtWrapper_QHttpHeader::hasKey(QHttpHeader* theWrappedObject, const QString&  key) const
+{
+return  (*theWrappedObject).hasKey(key);
+}
+
+bool  PythonQtWrapper_QHttpHeader::isValid(QHttpHeader* theWrappedObject) const
+{
+return  (*theWrappedObject).isValid();
+}
+
+bool  PythonQtWrapper_QHttpHeader::parseLine(QHttpHeader* theWrappedObject, const QString&  line, int  number)
+{
+return  (*((PythonQtPublicPromoter_QHttpHeader*)theWrappedObject)).parseLine(line, number);
+}
+
+void PythonQtWrapper_QHttpHeader::removeValue(QHttpHeader* theWrappedObject, const QString&  key)
+{
+ (*theWrappedObject).removeValue(key);
+}
+
+uint  PythonQtWrapper_QHttpHeader::contentLength(QHttpHeader* theWrappedObject) const
+{
+return  (*theWrappedObject).contentLength();
+}
+
+bool  PythonQtWrapper_QHttpHeader::hasContentLength(QHttpHeader* theWrappedObject) const
+{
+return  (*theWrappedObject).hasContentLength();
+}
+
+QStringList  PythonQtWrapper_QHttpHeader::keys(QHttpHeader* theWrappedObject) const
+{
+return  (*theWrappedObject).keys();
+}
+
+void PythonQtWrapper_QHttpHeader::setContentType(QHttpHeader* theWrappedObject, const QString&  type)
+{
+ (*theWrappedObject).setContentType(type);
+}
+
+void PythonQtWrapper_QHttpHeader::setValues(QHttpHeader* theWrappedObject, const QList<QPair<QString , QString >  >&  values)
+{
+ (*theWrappedObject).setValues(values);
+}
+
+bool  PythonQtWrapper_QHttpHeader::hasContentType(QHttpHeader* theWrappedObject) const
+{
+return  (*theWrappedObject).hasContentType();
+}
+
+void PythonQtWrapper_QHttpHeader::setContentLength(QHttpHeader* theWrappedObject, int  len)
+{
+ (*theWrappedObject).setContentLength(len);
 }
 
 QList<QPair<QString , QString >  >  PythonQtWrapper_QHttpHeader::values(QHttpHeader* theWrappedObject) const
 {
-return theWrappedObject->values();
+return  (*theWrappedObject).values();
+}
+
+QString  PythonQtWrapper_QHttpHeader::contentType(QHttpHeader* theWrappedObject) const
+{
+return  (*theWrappedObject).contentType();
+}
+
+QString  PythonQtWrapper_QHttpHeader::toString(QHttpHeader* theWrappedObject) const
+{
+return  (*theWrappedObject).toString();
 }
 

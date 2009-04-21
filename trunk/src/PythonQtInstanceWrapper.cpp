@@ -69,7 +69,7 @@ static void PythonQtInstanceWrapper_deleteObject(PythonQtInstanceWrapper* self, 
         // use QMetaType to destroy the object
         QMetaType::destroy(type, self->_wrappedPtr);
       } else {
-        PythonQtSlotInfo* slot = PythonQt::priv()->getDestructorSlot(self->classInfo()->className());
+        PythonQtSlotInfo* slot = self->classInfo()->destructor();
         if (slot) {
           void* args[2];
           args[0] = NULL;
@@ -116,7 +116,7 @@ static void PythonQtInstanceWrapper_dealloc(PythonQtInstanceWrapper* self)
 
 static PyObject* PythonQtInstanceWrapper_new(PyTypeObject *type, PyObject * args, PyObject * /*kwds*/)
 {
-  PythonQtClassWrapper    *classType = (PythonQtClassWrapper*)type;
+  //PythonQtClassWrapper    *classType = (PythonQtClassWrapper*)type;
   PythonQtInstanceWrapper *self;
   static PyObject* emptyTuple = NULL;
   if (emptyTuple==NULL) {
@@ -130,14 +130,13 @@ static PyObject* PythonQtInstanceWrapper_new(PyTypeObject *type, PyObject * args
     self->_wrappedPtr = NULL;
     self->_ownedByPythonQt = false;
     self->_useQMetaTypeDestroy = false;
+    self->_isShellInstance = false;
   }
   return (PyObject *)self;
 }
 
 int PythonQtInstanceWrapper_init(PythonQtInstanceWrapper * self, PyObject * args, PyObject * kwds)
 {
-  PyObject* result = NULL;
-
   if (args == PythonQtPrivate::dummyTuple()) {
     // we are called from the internal PythonQt API, so our data will be filled later on...
     return 0;
@@ -162,6 +161,19 @@ int PythonQtInstanceWrapper_init(PythonQtInstanceWrapper * self, PyObject * args
       }
       // register with PythonQt
       PythonQt::priv()->addWrapperPointer(directCPPPointer, self);
+
+      PythonQtShellSetInstanceWrapperCB* cb = self->classInfo()->shellSetInstanceWrapperCB();
+      if (cb) {
+        // if we are a derived python class, we set the wrapper
+        // to activate the shell class, otherwise we just ignore that it is a shell...
+        // we detect it be checking if the type does not have PythonQtInstanceWrapper_Type as direct base class,
+        // which is the case for all non-python derived types
+        if (((PyObject*)self)->ob_type->tp_base != &PythonQtInstanceWrapper_Type) {
+          // set the wrapper and remember that we have a shell instance!
+          (*cb)(directCPPPointer, self);
+          self->_isShellInstance = true;
+        }
+      }
     }
   } else {
     QString error = QString("No constructors available for ") + self->classInfo()->className();
@@ -212,6 +224,24 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
     return NULL;
   }
 
+  if (qstrcmp(attributeName, "__dict__")==0) {
+    QStringList l = wrapper->classInfo()->memberList(false);
+    PyObject* dict = PyDict_New();
+    foreach (QString name, l) {
+      PyObject* o = PyObject_GetAttrString(obj, name.toLatin1().data());
+      PyDict_SetItemString(dict, name.toLatin1().data(), o);
+      Py_DECREF(o);
+    }
+    // Note: we do not put children into the dict, is would look confusing?!
+    return dict;
+  }
+
+  // first look in super, to return derived methods from base object first
+  PyObject* superAttr = PyBaseObject_Type.tp_getattro(obj, name);
+  if (superAttr) {
+    return superAttr;
+  }
+
   if (!wrapper->_obj && !wrapper->_wrappedPtr) {
     QString error = QString("Trying to read attribute '") + attributeName + "' from a destroyed " + wrapper->classInfo()->className() + " object";
     PyErr_SetString(PyExc_ValueError, error.toLatin1().data());
@@ -246,24 +276,6 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
     return internalMethod;
   }
   PyErr_Clear();
-
-  if (qstrcmp(attributeName, "__dict__")==0) {
-    QStringList l = wrapper->classInfo()->memberList(false);
-    PyObject* dict = PyDict_New();
-    foreach (QString name, l) {
-      PyObject* o = PyObject_GetAttrString(obj, name.toLatin1().data());
-      PyDict_SetItemString(dict, name.toLatin1().data(), o);
-      Py_DECREF(o);
-    }
-    // Note: we do not put children into the dict, is would look confusing?!
-    return dict;
-  }
-
-  // look in super
-  PyObject* superAttr = PyBaseObject_Type.tp_getattro(obj, name);
-  if (superAttr) {
-    return superAttr;
-  }
 
   if (wrapper->_obj) {
     // look for a child

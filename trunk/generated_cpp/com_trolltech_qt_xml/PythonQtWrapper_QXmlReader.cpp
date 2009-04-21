@@ -1,105 +1,468 @@
 #include "PythonQtWrapper_QXmlReader.h"
 
+#include <PythonQtSignalReceiver.h>
+#include <PythonQtMethodInfo.h>
+#include <PythonQtConversion.h>
 #include <QVariant>
 #include <qxml.h>
 
-QXmlDTDHandler*  PythonQtWrapper_QXmlReader::DTDHandler(QXmlReader* theWrappedObject) const
+QXmlDTDHandler*  PythonQtShell_QXmlReader::DTDHandler() const
 {
-return theWrappedObject->DTDHandler();
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "DTDHandler");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QXmlReader::staticMetaObject,
+      "DTDHandler(QXmlReader*)");
+      QXmlDTDHandler*  returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((QXmlDTDHandler* *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-QXmlContentHandler*  PythonQtWrapper_QXmlReader::contentHandler(QXmlReader* theWrappedObject) const
+  QXmlDTDHandler*  result;
+return result;
+}
+QXmlContentHandler*  PythonQtShell_QXmlReader::contentHandler() const
 {
-return theWrappedObject->contentHandler();
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "contentHandler");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QXmlReader::staticMetaObject,
+      "contentHandler(QXmlReader*)");
+      QXmlContentHandler*  returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((QXmlContentHandler* *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-QXmlDeclHandler*  PythonQtWrapper_QXmlReader::declHandler(QXmlReader* theWrappedObject) const
+  QXmlContentHandler*  result;
+return result;
+}
+QXmlDeclHandler*  PythonQtShell_QXmlReader::declHandler() const
 {
-return theWrappedObject->declHandler();
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "declHandler");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QXmlReader::staticMetaObject,
+      "declHandler(QXmlReader*)");
+      QXmlDeclHandler*  returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((QXmlDeclHandler* *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-QXmlEntityResolver*  PythonQtWrapper_QXmlReader::entityResolver(QXmlReader* theWrappedObject) const
+  QXmlDeclHandler*  result;
+return result;
+}
+QXmlEntityResolver*  PythonQtShell_QXmlReader::entityResolver() const
 {
-return theWrappedObject->entityResolver();
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "entityResolver");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QXmlReader::staticMetaObject,
+      "entityResolver(QXmlReader*)");
+      QXmlEntityResolver*  returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((QXmlEntityResolver* *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-QXmlErrorHandler*  PythonQtWrapper_QXmlReader::errorHandler(QXmlReader* theWrappedObject) const
+  QXmlEntityResolver*  result;
+return result;
+}
+QXmlErrorHandler*  PythonQtShell_QXmlReader::errorHandler() const
 {
-return theWrappedObject->errorHandler();
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "errorHandler");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QXmlReader::staticMetaObject,
+      "errorHandler(QXmlReader*)");
+      QXmlErrorHandler*  returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((QXmlErrorHandler* *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-bool  PythonQtWrapper_QXmlReader::feature(QXmlReader* theWrappedObject, const QString&  name, bool*  ok) const
+  QXmlErrorHandler*  result;
+return result;
+}
+bool  PythonQtShell_QXmlReader::feature(const QString&  name, bool*  ok) const
 {
-return theWrappedObject->feature(name, ok);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "feature");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QXmlReader::staticMetaObject,
+      "feature(QXmlReader*,const QString& ,bool* )");
+      bool  returnValue;
+    void* args[3] = {NULL, (void*)&name, (void*)&ok};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((bool *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-bool  PythonQtWrapper_QXmlReader::hasFeature(QXmlReader* theWrappedObject, const QString&  name) const
+  bool  result;
+return result;
+}
+bool  PythonQtShell_QXmlReader::hasFeature(const QString&  name) const
 {
-return theWrappedObject->hasFeature(name);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "hasFeature");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QXmlReader::staticMetaObject,
+      "hasFeature(QXmlReader*,const QString& )");
+      bool  returnValue;
+    void* args[2] = {NULL, (void*)&name};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((bool *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-bool  PythonQtWrapper_QXmlReader::hasProperty(QXmlReader* theWrappedObject, const QString&  name) const
+  bool  result;
+return result;
+}
+bool  PythonQtShell_QXmlReader::hasProperty(const QString&  name) const
 {
-return theWrappedObject->hasProperty(name);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "hasProperty");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QXmlReader::staticMetaObject,
+      "hasProperty(QXmlReader*,const QString& )");
+      bool  returnValue;
+    void* args[2] = {NULL, (void*)&name};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((bool *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-QXmlLexicalHandler*  PythonQtWrapper_QXmlReader::lexicalHandler(QXmlReader* theWrappedObject) const
+  bool  result;
+return result;
+}
+QXmlLexicalHandler*  PythonQtShell_QXmlReader::lexicalHandler() const
 {
-return theWrappedObject->lexicalHandler();
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "lexicalHandler");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QXmlReader::staticMetaObject,
+      "lexicalHandler(QXmlReader*)");
+      QXmlLexicalHandler*  returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((QXmlLexicalHandler* *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-bool  PythonQtWrapper_QXmlReader::parse(QXmlReader* theWrappedObject, const QXmlInputSource&  input)
+  QXmlLexicalHandler*  result;
+return result;
+}
+bool  PythonQtShell_QXmlReader::parse(const QXmlInputSource&  input)
 {
-return theWrappedObject->parse(input);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "parse");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QXmlReader::staticMetaObject,
+      "parse(QXmlReader*,const QXmlInputSource& )");
+      bool  returnValue;
+    void* args[2] = {NULL, (void*)&input};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((bool *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-bool  PythonQtWrapper_QXmlReader::parse(QXmlReader* theWrappedObject, const QXmlInputSource*  input)
+  bool  result;
+return result;
+}
+bool  PythonQtShell_QXmlReader::parse(const QXmlInputSource*  input)
 {
-return theWrappedObject->parse(input);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "parse");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QXmlReader::staticMetaObject,
+      "parse(QXmlReader*,const QXmlInputSource* )");
+      bool  returnValue;
+    void* args[2] = {NULL, (void*)&input};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((bool *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-void*  PythonQtWrapper_QXmlReader::property(QXmlReader* theWrappedObject, const QString&  name, bool*  ok) const
+  bool  result;
+return result;
+}
+void*  PythonQtShell_QXmlReader::property(const QString&  name, bool*  ok) const
 {
-return theWrappedObject->property(name, ok);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "property");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QXmlReader::staticMetaObject,
+      "property(QXmlReader*,const QString& ,bool* )");
+      void*  returnValue;
+    void* args[3] = {NULL, (void*)&name, (void*)&ok};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((void* *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-void PythonQtWrapper_QXmlReader::setContentHandler(QXmlReader* theWrappedObject, QXmlContentHandler*  handler)
+  void*  result;
+return result;
+}
+void PythonQtShell_QXmlReader::setContentHandler(QXmlContentHandler*  handler)
 {
-theWrappedObject->setContentHandler(handler);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setContentHandler");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QXmlReader::staticMetaObject,
+      "setContentHandler(QXmlReader*,QXmlContentHandler* )");
+    void* args[2] = {NULL, (void*)&handler};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
 }
-
-void PythonQtWrapper_QXmlReader::setDTDHandler(QXmlReader* theWrappedObject, QXmlDTDHandler*  handler)
+  
+}
+void PythonQtShell_QXmlReader::setDTDHandler(QXmlDTDHandler*  handler)
 {
-theWrappedObject->setDTDHandler(handler);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setDTDHandler");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QXmlReader::staticMetaObject,
+      "setDTDHandler(QXmlReader*,QXmlDTDHandler* )");
+    void* args[2] = {NULL, (void*)&handler};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
 }
-
-void PythonQtWrapper_QXmlReader::setDeclHandler(QXmlReader* theWrappedObject, QXmlDeclHandler*  handler)
+  
+}
+void PythonQtShell_QXmlReader::setDeclHandler(QXmlDeclHandler*  handler)
 {
-theWrappedObject->setDeclHandler(handler);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setDeclHandler");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QXmlReader::staticMetaObject,
+      "setDeclHandler(QXmlReader*,QXmlDeclHandler* )");
+    void* args[2] = {NULL, (void*)&handler};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
 }
-
-void PythonQtWrapper_QXmlReader::setEntityResolver(QXmlReader* theWrappedObject, QXmlEntityResolver*  handler)
+  
+}
+void PythonQtShell_QXmlReader::setEntityResolver(QXmlEntityResolver*  handler)
 {
-theWrappedObject->setEntityResolver(handler);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setEntityResolver");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QXmlReader::staticMetaObject,
+      "setEntityResolver(QXmlReader*,QXmlEntityResolver* )");
+    void* args[2] = {NULL, (void*)&handler};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
 }
-
-void PythonQtWrapper_QXmlReader::setErrorHandler(QXmlReader* theWrappedObject, QXmlErrorHandler*  handler)
+  
+}
+void PythonQtShell_QXmlReader::setErrorHandler(QXmlErrorHandler*  handler)
 {
-theWrappedObject->setErrorHandler(handler);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setErrorHandler");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QXmlReader::staticMetaObject,
+      "setErrorHandler(QXmlReader*,QXmlErrorHandler* )");
+    void* args[2] = {NULL, (void*)&handler};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
 }
-
-void PythonQtWrapper_QXmlReader::setFeature(QXmlReader* theWrappedObject, const QString&  name, bool  value)
+  
+}
+void PythonQtShell_QXmlReader::setFeature(const QString&  name, bool  value)
 {
-theWrappedObject->setFeature(name, value);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setFeature");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QXmlReader::staticMetaObject,
+      "setFeature(QXmlReader*,const QString& ,bool )");
+    void* args[3] = {NULL, (void*)&name, (void*)&value};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
 }
-
-void PythonQtWrapper_QXmlReader::setLexicalHandler(QXmlReader* theWrappedObject, QXmlLexicalHandler*  handler)
+  
+}
+void PythonQtShell_QXmlReader::setLexicalHandler(QXmlLexicalHandler*  handler)
 {
-theWrappedObject->setLexicalHandler(handler);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setLexicalHandler");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QXmlReader::staticMetaObject,
+      "setLexicalHandler(QXmlReader*,QXmlLexicalHandler* )");
+    void* args[2] = {NULL, (void*)&handler};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
 }
-
-void PythonQtWrapper_QXmlReader::setProperty(QXmlReader* theWrappedObject, const QString&  name, void*  value)
+  
+}
+void PythonQtShell_QXmlReader::setProperty(const QString&  name, void*  value)
 {
-theWrappedObject->setProperty(name, value);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setProperty");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QXmlReader::staticMetaObject,
+      "setProperty(QXmlReader*,const QString& ,void* )");
+    void* args[3] = {NULL, (void*)&name, (void*)&value};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
 }
+  
+}
+QXmlReader* PythonQtWrapper_QXmlReader::new_QXmlReader()
+{ 
+return new PythonQtShell_QXmlReader(); }
 

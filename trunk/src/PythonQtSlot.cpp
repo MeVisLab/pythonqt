@@ -105,12 +105,18 @@ bool PythonQtCallSlot(QObject* objectToCall, PyObject* args, bool strict, Python
   bool skipFirst = false;
   if (info->isInstanceDecorator()) {
     skipFirst = true;
-    if (!firstArgument) {
-      argList[1] = &objectToCall;
-    } else {
-      // for the variant call we take the ptr to the variant data, for decorators on CPP objects, we take the cpp ptr
-      argList[1] = &firstArgument;
+
+    // for decorators on CPP objects, we take the cpp ptr, for QObjects we take the QObject pointer
+    void* arg1 = firstArgument;
+    if (!arg1) {
+      arg1 = objectToCall;
     }
+    if (arg1) {
+      // upcast to correct parent class
+      arg1 = ((char*)arg1)+info->upcastingOffset();
+    }
+
+    argList[1] = &arg1;
     if (ok) {
       for (int i = 2; i<argc && ok; i++) {
         const PythonQtSlotInfo::ParameterInfo& param = params.at(i);
@@ -186,13 +192,10 @@ PyObject *PythonQtSlotFunction_Call(PyObject *func, PyObject *args, PyObject *kw
       if (argc>0) {
         PyObject* firstArg = PyTuple_GET_ITEM(args, 0);
         if (PyObject_TypeCheck(firstArg, (PyTypeObject*)&PythonQtInstanceWrapper_Type)
-          && ((PythonQtInstanceWrapper*)firstArg)->classInfo()->inherits(type->classInfo()->className())) {
+          && ((PythonQtInstanceWrapper*)firstArg)->classInfo()->inherits(type->classInfo())) {
           PythonQtInstanceWrapper* self = (PythonQtInstanceWrapper*)firstArg;
           // strip the first argument...
-          PyObject* newargs = PyTuple_New(argc-1);
-          for (int i = 0;i<argc-1; i++) {
-            PyTuple_SET_ITEM(newargs, i,PyTuple_GET_ITEM(args, i+1));
-          }
+          PyObject* newargs = PyTuple_GetSlice(args, 1, argc);
           PyObject* result = PythonQtSlotFunction_CallImpl(self->_obj, info, newargs, kw, self->_wrappedPtr);
           Py_DECREF(newargs);
           return result;
@@ -216,7 +219,7 @@ PyObject *PythonQtSlotFunction_Call(PyObject *func, PyObject *args, PyObject *kw
 PyObject *PythonQtSlotFunction_CallImpl(QObject* objectToCall, PythonQtSlotInfo* info, PyObject *args, PyObject * /*kw*/, void* firstArg, void** directReturnValuePointer)
 {
   int argc = PyTuple_Size(args);
-  
+
 #ifdef PYTHONQT_DEBUG
   std::cout << "called " << info->metaMethod()->typeName() << " " << info->metaMethod()->signature() << std::endl;
 #endif
@@ -396,17 +399,16 @@ static PyMemberDef meth_members[] = {
 static PyObject *
 meth_repr(PythonQtSlotFunctionObject *f)
 {
-  if (PyObject_TypeCheck(f->m_self, &PythonQtInstanceWrapper_Type)) {
-    PythonQtInstanceWrapper* self = (PythonQtInstanceWrapper*) f->m_self;
-    return PyString_FromFormat("<qt slot %s of %s instance at %p>",
-      f->m_ml->metaMethod()->signature(),
-      f->m_self->ob_type->tp_name,
-      f->m_self);
-  } else if (f->m_self->ob_type == &PythonQtClassWrapper_Type) {
+  if (f->m_self->ob_type == &PythonQtClassWrapper_Type) {
     PythonQtClassWrapper* self = (PythonQtClassWrapper*) f->m_self;
     return PyString_FromFormat("<unbound qt slot %s of %s type>",
-      f->m_ml->metaMethod()->signature(),
+      f->m_ml->slotName().data(),
       self->classInfo()->className());
+  } else {
+    return PyString_FromFormat("<qt slot %s of %s instance at %p>",
+      f->m_ml->slotName().data(),
+      f->m_self->ob_type->tp_name,
+      f->m_self);
   }
 }
 

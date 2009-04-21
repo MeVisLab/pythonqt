@@ -4,9 +4,22 @@
 #include <qstyleoption.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qstyleoption.h>
 #include <qwidget.h>
+
+class PythonQtShell_QStyleOptionTab : public QStyleOptionTab
+{
+public:
+    PythonQtShell_QStyleOptionTab():QStyleOptionTab(),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionTab(const QStyleOptionTab&  other):QStyleOptionTab(other),_wrapper(NULL) {};
+    PythonQtShell_QStyleOptionTab(int  version):QStyleOptionTab(version),_wrapper(NULL) {};
+
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
 
 class PythonQtWrapper_QStyleOptionTab : public QObject
 { Q_OBJECT

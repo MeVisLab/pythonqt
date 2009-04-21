@@ -1,136 +1,649 @@
 #include "PythonQtWrapper_QAccessibleTableInterface.h"
 
+#include <PythonQtSignalReceiver.h>
+#include <PythonQtMethodInfo.h>
+#include <PythonQtConversion.h>
 #include <QVariant>
 #include <qaccessible.h>
 #include <qlist.h>
 
-QAccessibleInterface*  PythonQtWrapper_QAccessibleTableInterface::accessibleAt(QAccessibleTableInterface* theWrappedObject, int  row, int  column)
+QAccessibleInterface*  PythonQtShell_QAccessibleTableInterface::accessibleAt(int  row, int  column)
 {
-return theWrappedObject->accessibleAt(row, column);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "accessibleAt");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QAccessibleTableInterface::staticMetaObject,
+      "accessibleAt(QAccessibleTableInterface*,int ,int )");
+      QAccessibleInterface*  returnValue;
+    void* args[3] = {NULL, (void*)&row, (void*)&column};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((QAccessibleInterface* *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-QAccessibleInterface*  PythonQtWrapper_QAccessibleTableInterface::caption(QAccessibleTableInterface* theWrappedObject)
+  QAccessibleInterface*  result;
+return result;
+}
+QAccessibleInterface*  PythonQtShell_QAccessibleTableInterface::caption()
 {
-return theWrappedObject->caption();
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "caption");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QAccessibleTableInterface::staticMetaObject,
+      "caption(QAccessibleTableInterface*)");
+      QAccessibleInterface*  returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((QAccessibleInterface* *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-void PythonQtWrapper_QAccessibleTableInterface::cellAtIndex(QAccessibleTableInterface* theWrappedObject, int  index, int*  row, int*  column, int*  rowSpan, int*  columnSpan, bool*  isSelected)
+  QAccessibleInterface*  result;
+return result;
+}
+void PythonQtShell_QAccessibleTableInterface::cellAtIndex(int  index, int*  row, int*  column, int*  rowSpan, int*  columnSpan, bool*  isSelected)
 {
-theWrappedObject->cellAtIndex(index, row, column, rowSpan, columnSpan, isSelected);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "cellAtIndex");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QAccessibleTableInterface::staticMetaObject,
+      "cellAtIndex(QAccessibleTableInterface*,int ,int* ,int* ,int* ,int* ,bool* )");
+    void* args[7] = {NULL, (void*)&index, (void*)&row, (void*)&column, (void*)&rowSpan, (void*)&columnSpan, (void*)&isSelected};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
 }
-
-int  PythonQtWrapper_QAccessibleTableInterface::childIndex(QAccessibleTableInterface* theWrappedObject, int  rowIndex, int  columnIndex)
+  
+}
+int  PythonQtShell_QAccessibleTableInterface::childIndex(int  rowIndex, int  columnIndex)
 {
-return theWrappedObject->childIndex(rowIndex, columnIndex);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "childIndex");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QAccessibleTableInterface::staticMetaObject,
+      "childIndex(QAccessibleTableInterface*,int ,int )");
+      int  returnValue;
+    void* args[3] = {NULL, (void*)&rowIndex, (void*)&columnIndex};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((int *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-int  PythonQtWrapper_QAccessibleTableInterface::columnCount(QAccessibleTableInterface* theWrappedObject)
+  int  result;
+return result;
+}
+int  PythonQtShell_QAccessibleTableInterface::columnCount()
 {
-return theWrappedObject->columnCount();
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "columnCount");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QAccessibleTableInterface::staticMetaObject,
+      "columnCount(QAccessibleTableInterface*)");
+      int  returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((int *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-QString  PythonQtWrapper_QAccessibleTableInterface::columnDescription(QAccessibleTableInterface* theWrappedObject, int  column)
+  int  result;
+return result;
+}
+QString  PythonQtShell_QAccessibleTableInterface::columnDescription(int  column)
 {
-return theWrappedObject->columnDescription(column);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "columnDescription");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QAccessibleTableInterface::staticMetaObject,
+      "columnDescription(QAccessibleTableInterface*,int )");
+      QString  returnValue;
+    void* args[2] = {NULL, (void*)&column};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((QString *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-QAccessibleInterface*  PythonQtWrapper_QAccessibleTableInterface::columnHeader(QAccessibleTableInterface* theWrappedObject)
+  QString  result;
+return result;
+}
+QAccessibleInterface*  PythonQtShell_QAccessibleTableInterface::columnHeader()
 {
-return theWrappedObject->columnHeader();
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "columnHeader");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QAccessibleTableInterface::staticMetaObject,
+      "columnHeader(QAccessibleTableInterface*)");
+      QAccessibleInterface*  returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((QAccessibleInterface* *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-int  PythonQtWrapper_QAccessibleTableInterface::columnIndex(QAccessibleTableInterface* theWrappedObject, int  childIndex)
+  QAccessibleInterface*  result;
+return result;
+}
+int  PythonQtShell_QAccessibleTableInterface::columnIndex(int  childIndex)
 {
-return theWrappedObject->columnIndex(childIndex);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "columnIndex");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QAccessibleTableInterface::staticMetaObject,
+      "columnIndex(QAccessibleTableInterface*,int )");
+      int  returnValue;
+    void* args[2] = {NULL, (void*)&childIndex};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((int *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-int  PythonQtWrapper_QAccessibleTableInterface::columnSpan(QAccessibleTableInterface* theWrappedObject, int  row, int  column)
+  int  result;
+return result;
+}
+int  PythonQtShell_QAccessibleTableInterface::columnSpan(int  row, int  column)
 {
-return theWrappedObject->columnSpan(row, column);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "columnSpan");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QAccessibleTableInterface::staticMetaObject,
+      "columnSpan(QAccessibleTableInterface*,int ,int )");
+      int  returnValue;
+    void* args[3] = {NULL, (void*)&row, (void*)&column};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((int *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-bool  PythonQtWrapper_QAccessibleTableInterface::isColumnSelected(QAccessibleTableInterface* theWrappedObject, int  column)
+  int  result;
+return result;
+}
+bool  PythonQtShell_QAccessibleTableInterface::isColumnSelected(int  column)
 {
-return theWrappedObject->isColumnSelected(column);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "isColumnSelected");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QAccessibleTableInterface::staticMetaObject,
+      "isColumnSelected(QAccessibleTableInterface*,int )");
+      bool  returnValue;
+    void* args[2] = {NULL, (void*)&column};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((bool *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-bool  PythonQtWrapper_QAccessibleTableInterface::isRowSelected(QAccessibleTableInterface* theWrappedObject, int  row)
+  bool  result;
+return result;
+}
+bool  PythonQtShell_QAccessibleTableInterface::isRowSelected(int  row)
 {
-return theWrappedObject->isRowSelected(row);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "isRowSelected");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QAccessibleTableInterface::staticMetaObject,
+      "isRowSelected(QAccessibleTableInterface*,int )");
+      bool  returnValue;
+    void* args[2] = {NULL, (void*)&row};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((bool *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-bool  PythonQtWrapper_QAccessibleTableInterface::isSelected(QAccessibleTableInterface* theWrappedObject, int  row, int  column)
+  bool  result;
+return result;
+}
+bool  PythonQtShell_QAccessibleTableInterface::isSelected(int  row, int  column)
 {
-return theWrappedObject->isSelected(row, column);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "isSelected");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QAccessibleTableInterface::staticMetaObject,
+      "isSelected(QAccessibleTableInterface*,int ,int )");
+      bool  returnValue;
+    void* args[3] = {NULL, (void*)&row, (void*)&column};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((bool *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-int  PythonQtWrapper_QAccessibleTableInterface::rowCount(QAccessibleTableInterface* theWrappedObject)
+  bool  result;
+return result;
+}
+int  PythonQtShell_QAccessibleTableInterface::rowCount()
 {
-return theWrappedObject->rowCount();
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "rowCount");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QAccessibleTableInterface::staticMetaObject,
+      "rowCount(QAccessibleTableInterface*)");
+      int  returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((int *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-QString  PythonQtWrapper_QAccessibleTableInterface::rowDescription(QAccessibleTableInterface* theWrappedObject, int  row)
+  int  result;
+return result;
+}
+QString  PythonQtShell_QAccessibleTableInterface::rowDescription(int  row)
 {
-return theWrappedObject->rowDescription(row);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "rowDescription");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QAccessibleTableInterface::staticMetaObject,
+      "rowDescription(QAccessibleTableInterface*,int )");
+      QString  returnValue;
+    void* args[2] = {NULL, (void*)&row};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((QString *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-QAccessibleInterface*  PythonQtWrapper_QAccessibleTableInterface::rowHeader(QAccessibleTableInterface* theWrappedObject)
+  QString  result;
+return result;
+}
+QAccessibleInterface*  PythonQtShell_QAccessibleTableInterface::rowHeader()
 {
-return theWrappedObject->rowHeader();
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "rowHeader");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QAccessibleTableInterface::staticMetaObject,
+      "rowHeader(QAccessibleTableInterface*)");
+      QAccessibleInterface*  returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((QAccessibleInterface* *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-int  PythonQtWrapper_QAccessibleTableInterface::rowIndex(QAccessibleTableInterface* theWrappedObject, int  childIndex)
+  QAccessibleInterface*  result;
+return result;
+}
+int  PythonQtShell_QAccessibleTableInterface::rowIndex(int  childIndex)
 {
-return theWrappedObject->rowIndex(childIndex);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "rowIndex");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QAccessibleTableInterface::staticMetaObject,
+      "rowIndex(QAccessibleTableInterface*,int )");
+      int  returnValue;
+    void* args[2] = {NULL, (void*)&childIndex};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((int *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-int  PythonQtWrapper_QAccessibleTableInterface::rowSpan(QAccessibleTableInterface* theWrappedObject, int  row, int  column)
+  int  result;
+return result;
+}
+int  PythonQtShell_QAccessibleTableInterface::rowSpan(int  row, int  column)
 {
-return theWrappedObject->rowSpan(row, column);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "rowSpan");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QAccessibleTableInterface::staticMetaObject,
+      "rowSpan(QAccessibleTableInterface*,int ,int )");
+      int  returnValue;
+    void* args[3] = {NULL, (void*)&row, (void*)&column};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((int *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-void PythonQtWrapper_QAccessibleTableInterface::selectColumn(QAccessibleTableInterface* theWrappedObject, int  column)
+  int  result;
+return result;
+}
+void PythonQtShell_QAccessibleTableInterface::selectColumn(int  column)
 {
-theWrappedObject->selectColumn(column);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "selectColumn");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QAccessibleTableInterface::staticMetaObject,
+      "selectColumn(QAccessibleTableInterface*,int )");
+    void* args[2] = {NULL, (void*)&column};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
 }
-
-void PythonQtWrapper_QAccessibleTableInterface::selectRow(QAccessibleTableInterface* theWrappedObject, int  row)
+  
+}
+void PythonQtShell_QAccessibleTableInterface::selectRow(int  row)
 {
-theWrappedObject->selectRow(row);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "selectRow");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QAccessibleTableInterface::staticMetaObject,
+      "selectRow(QAccessibleTableInterface*,int )");
+    void* args[2] = {NULL, (void*)&row};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
 }
-
-int  PythonQtWrapper_QAccessibleTableInterface::selectedColumnCount(QAccessibleTableInterface* theWrappedObject)
+  
+}
+int  PythonQtShell_QAccessibleTableInterface::selectedColumnCount()
 {
-return theWrappedObject->selectedColumnCount();
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "selectedColumnCount");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QAccessibleTableInterface::staticMetaObject,
+      "selectedColumnCount(QAccessibleTableInterface*)");
+      int  returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((int *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-int  PythonQtWrapper_QAccessibleTableInterface::selectedColumns(QAccessibleTableInterface* theWrappedObject, int  maxColumns, QList<int >*  columns)
+  int  result;
+return result;
+}
+int  PythonQtShell_QAccessibleTableInterface::selectedColumns(int  maxColumns, QList<int >*  columns)
 {
-return theWrappedObject->selectedColumns(maxColumns, columns);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "selectedColumns");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QAccessibleTableInterface::staticMetaObject,
+      "selectedColumns(QAccessibleTableInterface*,int ,QList<int >* )");
+      int  returnValue;
+    void* args[3] = {NULL, (void*)&maxColumns, (void*)&columns};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((int *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-int  PythonQtWrapper_QAccessibleTableInterface::selectedRowCount(QAccessibleTableInterface* theWrappedObject)
+  int  result;
+return result;
+}
+int  PythonQtShell_QAccessibleTableInterface::selectedRowCount()
 {
-return theWrappedObject->selectedRowCount();
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "selectedRowCount");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QAccessibleTableInterface::staticMetaObject,
+      "selectedRowCount(QAccessibleTableInterface*)");
+      int  returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((int *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-int  PythonQtWrapper_QAccessibleTableInterface::selectedRows(QAccessibleTableInterface* theWrappedObject, int  maxRows, QList<int >*  rows)
+  int  result;
+return result;
+}
+int  PythonQtShell_QAccessibleTableInterface::selectedRows(int  maxRows, QList<int >*  rows)
 {
-return theWrappedObject->selectedRows(maxRows, rows);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "selectedRows");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QAccessibleTableInterface::staticMetaObject,
+      "selectedRows(QAccessibleTableInterface*,int ,QList<int >* )");
+      int  returnValue;
+    void* args[3] = {NULL, (void*)&maxRows, (void*)&rows};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((int *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-QAccessibleInterface*  PythonQtWrapper_QAccessibleTableInterface::summary(QAccessibleTableInterface* theWrappedObject)
+  int  result;
+return result;
+}
+QAccessibleInterface*  PythonQtShell_QAccessibleTableInterface::summary()
 {
-return theWrappedObject->summary();
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "summary");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QAccessibleTableInterface::staticMetaObject,
+      "summary(QAccessibleTableInterface*)");
+      QAccessibleInterface*  returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((QAccessibleInterface* *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
 }
-
-void PythonQtWrapper_QAccessibleTableInterface::unselectColumn(QAccessibleTableInterface* theWrappedObject, int  column)
+  QAccessibleInterface*  result;
+return result;
+}
+void PythonQtShell_QAccessibleTableInterface::unselectColumn(int  column)
 {
-theWrappedObject->unselectColumn(column);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "unselectColumn");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QAccessibleTableInterface::staticMetaObject,
+      "unselectColumn(QAccessibleTableInterface*,int )");
+    void* args[2] = {NULL, (void*)&column};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
 }
-
-void PythonQtWrapper_QAccessibleTableInterface::unselectRow(QAccessibleTableInterface* theWrappedObject, int  row)
+  
+}
+void PythonQtShell_QAccessibleTableInterface::unselectRow(int  row)
 {
-theWrappedObject->unselectRow(row);
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "unselectRow");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QAccessibleTableInterface::staticMetaObject,
+      "unselectRow(QAccessibleTableInterface*,int )");
+    void* args[2] = {NULL, (void*)&row};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
 }
+  
+}
+QAccessibleTableInterface* PythonQtWrapper_QAccessibleTableInterface::new_QAccessibleTableInterface()
+{ 
+return new PythonQtShell_QAccessibleTableInterface(); }
 

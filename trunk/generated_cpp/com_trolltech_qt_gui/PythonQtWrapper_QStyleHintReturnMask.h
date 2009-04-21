@@ -4,7 +4,18 @@
 #include <qstyleoption.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
+
+class PythonQtShell_QStyleHintReturnMask : public QStyleHintReturnMask
+{
+public:
+    PythonQtShell_QStyleHintReturnMask():QStyleHintReturnMask(),_wrapper(NULL) {};
+
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
 
 class PythonQtWrapper_QStyleHintReturnMask : public QObject
 { Q_OBJECT

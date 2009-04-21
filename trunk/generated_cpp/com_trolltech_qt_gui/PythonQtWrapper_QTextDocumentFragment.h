@@ -4,6 +4,8 @@
 #include <qtextdocumentfragment.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qbytearray.h>
 #include <qtextcursor.h>
@@ -21,11 +23,11 @@ QTextDocumentFragment* new_QTextDocumentFragment(const QTextDocumentFragment&  r
 void delete_QTextDocumentFragment(QTextDocumentFragment* obj) { delete obj; } 
    QTextDocumentFragment  static_QTextDocumentFragment_fromHtml(const QString&  html);
    QTextDocumentFragment  static_QTextDocumentFragment_fromHtml(const QString&  html, const QTextDocument*  resourceProvider);
-   QTextDocumentFragment  static_QTextDocumentFragment_fromPlainText(const QString&  plainText);
-   bool  isEmpty(QTextDocumentFragment* theWrappedObject) const;
-   QString  toHtml(QTextDocumentFragment* theWrappedObject) const;
    QString  toHtml(QTextDocumentFragment* theWrappedObject, const QByteArray&  encoding) const;
    QString  toPlainText(QTextDocumentFragment* theWrappedObject) const;
+   QString  toHtml(QTextDocumentFragment* theWrappedObject) const;
+   QTextDocumentFragment  static_QTextDocumentFragment_fromPlainText(const QString&  plainText);
+   bool  isEmpty(QTextDocumentFragment* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QTEXTDOCUMENTFRAGMENT_H

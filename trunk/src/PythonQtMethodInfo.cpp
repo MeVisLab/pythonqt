@@ -65,7 +65,6 @@ PythonQtMethodInfo::PythonQtMethodInfo(const QMetaMethod& meta)
   }
 }
 
-
 const PythonQtMethodInfo* PythonQtMethodInfo::getCachedMethodInfo(const QMetaMethod& signal)
 {
   QByteArray sig(signal.signature());
@@ -77,6 +76,14 @@ const PythonQtMethodInfo* PythonQtMethodInfo::getCachedMethodInfo(const QMetaMet
     _cachedSignatures.insert(fullSig, result);
   }
   return result;
+}
+
+const PythonQtMethodInfo* PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(const QMetaObject* metaObject, const char* signature)
+{
+  QByteArray sig = QMetaObject::normalizedSignature(signature);
+  int idx = metaObject->indexOfMethod(sig);
+  QMetaMethod meta = metaObject->method(idx);
+  return PythonQtMethodInfo::getCachedMethodInfo(meta);
 }
 
 void PythonQtMethodInfo::fillParameterInfo(ParameterInfo& type, const QByteArray& orgName)
@@ -227,6 +234,17 @@ void PythonQtMethodInfo::addParameterTypeAlias(const QByteArray& alias, const QB
 }
 
 //-------------------------------------------------------------------------------------------------
+
+void PythonQtSlotInfo::deleteOverloadsAndThis()
+{
+  PythonQtSlotInfo* cur = this;
+  while(cur->nextInfo()) {
+    PythonQtSlotInfo* next = cur->nextInfo();
+    delete cur;
+    cur = next;
+  }
+}
+
 
 QString PythonQtSlotInfo::fullSignature()
 { 

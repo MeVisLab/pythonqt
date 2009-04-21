@@ -4,7 +4,18 @@
 #include <qstyleoption.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
+
+class PythonQtShell_QStyleHintReturn : public QStyleHintReturn
+{
+public:
+    PythonQtShell_QStyleHintReturn(int  version = QStyleOption::Version, int  type = SH_Default):QStyleHintReturn(version, type),_wrapper(NULL) {};
+
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
 
 class PythonQtWrapper_QStyleHintReturn : public QObject
 { Q_OBJECT

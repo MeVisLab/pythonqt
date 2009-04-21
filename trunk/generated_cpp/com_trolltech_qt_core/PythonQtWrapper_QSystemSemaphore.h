@@ -4,6 +4,8 @@
 #include <qsystemsemaphore.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qsystemsemaphore.h>
 
@@ -18,12 +20,12 @@ enum SystemSemaphoreError{
 public slots:
 QSystemSemaphore* new_QSystemSemaphore(const QString&  key, int  initialValue = 0, QSystemSemaphore::AccessMode  mode = QSystemSemaphore::Open);
 void delete_QSystemSemaphore(QSystemSemaphore* obj) { delete obj; } 
+   void setKey(QSystemSemaphore* theWrappedObject, const QString&  key, int  initialValue = 0, QSystemSemaphore::AccessMode  mode = QSystemSemaphore::Open);
    bool  acquire(QSystemSemaphore* theWrappedObject);
+   bool  release(QSystemSemaphore* theWrappedObject, int  n = 1);
+   QString  key(QSystemSemaphore* theWrappedObject) const;
    QSystemSemaphore::SystemSemaphoreError  error(QSystemSemaphore* theWrappedObject) const;
    QString  errorString(QSystemSemaphore* theWrappedObject) const;
-   QString  key(QSystemSemaphore* theWrappedObject) const;
-   bool  release(QSystemSemaphore* theWrappedObject, int  n = 1);
-   void setKey(QSystemSemaphore* theWrappedObject, const QString&  key, int  initialValue = 0, QSystemSemaphore::AccessMode  mode = QSystemSemaphore::Open);
 };
 
 #endif // PYTHONQTWRAPPER_QSYSTEMSEMAPHORE_H

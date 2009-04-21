@@ -4,6 +4,8 @@
 #include <qdial.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qaction.h>
 #include <qbitmap.h>
@@ -33,19 +35,82 @@
 #include <qstyleoption.h>
 #include <qwidget.h>
 
+class PythonQtShell_QDial : public QDial
+{
+public:
+    PythonQtShell_QDial(QWidget*  parent = 0):QDial(parent),_wrapper(NULL) {};
+
+virtual void actionEvent(QActionEvent*  arg__1);
+virtual void changeEvent(QEvent*  e);
+virtual void childEvent(QChildEvent*  arg__1);
+virtual void closeEvent(QCloseEvent*  arg__1);
+virtual void contextMenuEvent(QContextMenuEvent*  arg__1);
+virtual void customEvent(QEvent*  arg__1);
+virtual int  devType() const;
+virtual void dragEnterEvent(QDragEnterEvent*  arg__1);
+virtual void dragLeaveEvent(QDragLeaveEvent*  arg__1);
+virtual void dragMoveEvent(QDragMoveEvent*  arg__1);
+virtual void dropEvent(QDropEvent*  arg__1);
+virtual void enterEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  e);
+virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void focusInEvent(QFocusEvent*  arg__1);
+virtual bool  focusNextPrevChild(bool  next);
+virtual void focusOutEvent(QFocusEvent*  arg__1);
+virtual int  heightForWidth(int  arg__1) const;
+virtual void hideEvent(QHideEvent*  arg__1);
+virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
+virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const;
+virtual void keyPressEvent(QKeyEvent*  ev);
+virtual void keyReleaseEvent(QKeyEvent*  arg__1);
+virtual void languageChange();
+virtual void leaveEvent(QEvent*  arg__1);
+virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
+virtual void mouseDoubleClickEvent(QMouseEvent*  arg__1);
+virtual void mouseMoveEvent(QMouseEvent*  me);
+virtual void mousePressEvent(QMouseEvent*  me);
+virtual void mouseReleaseEvent(QMouseEvent*  me);
+virtual void moveEvent(QMoveEvent*  arg__1);
+virtual QPaintEngine*  paintEngine() const;
+virtual void paintEvent(QPaintEvent*  pe);
+virtual void resizeEvent(QResizeEvent*  re);
+virtual void showEvent(QShowEvent*  arg__1);
+virtual void tabletEvent(QTabletEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void wheelEvent(QWheelEvent*  e);
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtPublicPromoter_QDial : public QDial
+{ public:
+inline void mouseReleaseEvent(QMouseEvent*  me) { QDial::mouseReleaseEvent(me); }
+inline void resizeEvent(QResizeEvent*  re) { QDial::resizeEvent(re); }
+inline bool  event(QEvent*  e) { return QDial::event(e); }
+inline void mousePressEvent(QMouseEvent*  me) { QDial::mousePressEvent(me); }
+inline void paintEvent(QPaintEvent*  pe) { QDial::paintEvent(pe); }
+inline void mouseMoveEvent(QMouseEvent*  me) { QDial::mouseMoveEvent(me); }
+};
+
 class PythonQtWrapper_QDial : public QObject
 { Q_OBJECT
 public:
 public slots:
 QDial* new_QDial(QWidget*  parent = 0);
 void delete_QDial(QDial* obj) { delete obj; } 
-   QSize  minimumSizeHint(QDial* theWrappedObject) const;
-   int  notchSize(QDial* theWrappedObject) const;
-   qreal  notchTarget(QDial* theWrappedObject) const;
-   bool  notchesVisible(QDial* theWrappedObject) const;
-   void setNotchTarget(QDial* theWrappedObject, double  target);
-   QSize  sizeHint(QDial* theWrappedObject) const;
    bool  wrapping(QDial* theWrappedObject) const;
+   void mouseReleaseEvent(QDial* theWrappedObject, QMouseEvent*  me);
+   void resizeEvent(QDial* theWrappedObject, QResizeEvent*  re);
+   bool  event(QDial* theWrappedObject, QEvent*  e);
+   void mousePressEvent(QDial* theWrappedObject, QMouseEvent*  me);
+   QSize  minimumSizeHint(QDial* theWrappedObject) const;
+   void setNotchTarget(QDial* theWrappedObject, double  target);
+   void paintEvent(QDial* theWrappedObject, QPaintEvent*  pe);
+   bool  notchesVisible(QDial* theWrappedObject) const;
+   qreal  notchTarget(QDial* theWrappedObject) const;
+   void mouseMoveEvent(QDial* theWrappedObject, QMouseEvent*  me);
+   QSize  sizeHint(QDial* theWrappedObject) const;
+   int  notchSize(QDial* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QDIAL_H

@@ -1,5 +1,8 @@
 #include "PythonQtWrapper_QActionEvent.h"
 
+#include <PythonQtSignalReceiver.h>
+#include <PythonQtMethodInfo.h>
+#include <PythonQtConversion.h>
 #include <QVariant>
 #include <qaction.h>
 
@@ -9,11 +12,11 @@ return new QActionEvent(type, action, before); }
 
 QAction*  PythonQtWrapper_QActionEvent::action(QActionEvent* theWrappedObject) const
 {
-return theWrappedObject->action();
+return  (*theWrappedObject).action();
 }
 
 QAction*  PythonQtWrapper_QActionEvent::before(QActionEvent* theWrappedObject) const
 {
-return theWrappedObject->before();
+return  (*theWrappedObject).before();
 }
 

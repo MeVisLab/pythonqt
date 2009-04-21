@@ -1,5 +1,8 @@
 #include "PythonQtWrapper_QFontDialog.h"
 
+#include <PythonQtSignalReceiver.h>
+#include <PythonQtMethodInfo.h>
+#include <PythonQtConversion.h>
 #include <QVariant>
 #include <qaction.h>
 #include <qbitmap.h>
@@ -28,6 +31,16 @@
 #include <qstyle.h>
 #include <qwidget.h>
 
+QFont  PythonQtWrapper_QFontDialog::static_QFontDialog_getFont(bool*  ok, const QFont&  def, QWidget*  parent, const QString&  caption)
+{
+return QFontDialog::getFont(ok, def, parent, caption);
+}
+
+void PythonQtWrapper_QFontDialog::changeEvent(QFontDialog* theWrappedObject, QEvent*  e)
+{
+ (*((PythonQtPublicPromoter_QFontDialog*)theWrappedObject)).changeEvent(e);
+}
+
 QFont  PythonQtWrapper_QFontDialog::static_QFontDialog_getFont(bool*  ok, QWidget*  parent)
 {
 return QFontDialog::getFont(ok, parent);
@@ -36,10 +49,5 @@ return QFontDialog::getFont(ok, parent);
 QFont  PythonQtWrapper_QFontDialog::static_QFontDialog_getFont(bool*  ok, const QFont&  def, QWidget*  parent)
 {
 return QFontDialog::getFont(ok, def, parent);
-}
-
-QFont  PythonQtWrapper_QFontDialog::static_QFontDialog_getFont(bool*  ok, const QFont&  def, QWidget*  parent, const QString&  caption)
-{
-return QFontDialog::getFont(ok, def, parent, caption);
 }
 

@@ -4,6 +4,8 @@
 #include <qnetworkrequest.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qbytearray.h>
 #include <qlist.h>
@@ -25,16 +27,16 @@ QNetworkRequest* new_QNetworkRequest(const QNetworkRequest&  other);
 QNetworkRequest* new_QNetworkRequest(const QUrl&  url = QUrl());
 void delete_QNetworkRequest(QNetworkRequest* obj) { delete obj; } 
    QVariant  attribute(QNetworkRequest* theWrappedObject, QNetworkRequest::Attribute  code, const QVariant&  defaultValue = QVariant()) const;
-   bool  hasRawHeader(QNetworkRequest* theWrappedObject, const QByteArray&  headerName) const;
-   QVariant  header(QNetworkRequest* theWrappedObject, QNetworkRequest::KnownHeaders  header) const;
-   bool  operator_equal(QNetworkRequest* theWrappedObject, const QNetworkRequest&  other) const;
-   QByteArray  rawHeader(QNetworkRequest* theWrappedObject, const QByteArray&  headerName) const;
-   QList<QByteArray >  rawHeaderList(QNetworkRequest* theWrappedObject) const;
-   void setAttribute(QNetworkRequest* theWrappedObject, QNetworkRequest::Attribute  code, const QVariant&  value);
-   void setHeader(QNetworkRequest* theWrappedObject, QNetworkRequest::KnownHeaders  header, const QVariant&  value);
    void setRawHeader(QNetworkRequest* theWrappedObject, const QByteArray&  headerName, const QByteArray&  value);
+   bool  hasRawHeader(QNetworkRequest* theWrappedObject, const QByteArray&  headerName) const;
+   void setHeader(QNetworkRequest* theWrappedObject, QNetworkRequest::KnownHeaders  header, const QVariant&  value);
    void setUrl(QNetworkRequest* theWrappedObject, const QUrl&  url);
    QUrl  url(QNetworkRequest* theWrappedObject) const;
+   QByteArray  rawHeader(QNetworkRequest* theWrappedObject, const QByteArray&  headerName) const;
+   QVariant  header(QNetworkRequest* theWrappedObject, QNetworkRequest::KnownHeaders  header) const;
+   void setAttribute(QNetworkRequest* theWrappedObject, QNetworkRequest::Attribute  code, const QVariant&  value);
+   QList<QByteArray >  rawHeaderList(QNetworkRequest* theWrappedObject) const;
+   bool  operator_equal(QNetworkRequest* theWrappedObject, const QNetworkRequest&  other) const;
 };
 
 #endif // PYTHONQTWRAPPER_QNETWORKREQUEST_H

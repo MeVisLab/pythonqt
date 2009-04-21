@@ -4,8 +4,19 @@
 #include <qevent.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qsize.h>
+
+class PythonQtShell_QResizeEvent : public QResizeEvent
+{
+public:
+    PythonQtShell_QResizeEvent(const QSize&  size, const QSize&  oldSize):QResizeEvent(size, oldSize),_wrapper(NULL) {};
+
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
 
 class PythonQtWrapper_QResizeEvent : public QObject
 { Q_OBJECT

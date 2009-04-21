@@ -4,6 +4,8 @@
 #include <qdom.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qdom.h>
 #include <qtextstream.h>

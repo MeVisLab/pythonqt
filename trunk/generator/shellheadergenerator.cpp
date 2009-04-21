@@ -23,7 +23,6 @@
 
 #include "shellheadergenerator.h"
 #include "fileout.h"
-#include "classgenerator.h"
 
 #include <QtCore/QDir>
 
@@ -31,57 +30,129 @@
 
 QString ShellHeaderGenerator::fileNameForClass(const AbstractMetaClass *meta_class) const
 {
-    return QString("PythonQtWrapper_%1.h").arg(meta_class->name());
+  return QString("PythonQtWrapper_%1.h").arg(meta_class->name());
 }
 
 void writeQtScriptQtBindingsLicense(QTextStream &stream);
 
 void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_class)
 {
-  
+
   setupGenerator->addClass(meta_class);
 
   if (FileOut::license)
-        writeQtScriptQtBindingsLicense(s);
+    writeQtScriptQtBindingsLicense(s);
 
-    QString include_block = "PYTHONQTWRAPPER_" + meta_class->name().toUpper() + "_H";
+  QString include_block = "PYTHONQTWRAPPER_" + meta_class->name().toUpper() + "_H";
 
-    s << "#ifndef " << include_block << endl
-      << "#define " << include_block << endl << endl;
+  s << "#ifndef " << include_block << endl
+    << "#define " << include_block << endl << endl;
 
-    Include inc = meta_class->typeEntry()->include();
-    ClassGenerator::writeInclude(s, inc);
-  
+  Include inc = meta_class->typeEntry()->include();
+  ShellGenerator::writeInclude(s, inc);
+
   s << "#include <QObject>" << endl << endl;
+  s << "#include <PythonQt.h>" << endl << endl;
 
   IncludeList list = meta_class->typeEntry()->extraIncludes();
   qSort(list.begin(), list.end());
   foreach (const Include &inc, list) {
-    ClassGenerator::writeInclude(s, inc);
+    ShellGenerator::writeInclude(s, inc);
   }  
   s << endl;
-  
-    QString pro_file_name = meta_class->package().replace(".", "_") + "/" + meta_class->package().replace(".", "_") + ".pri";
 
-//    if (!meta_class->generateShellClass()) {
-//        s << "#endif" << endl << endl;
-//        priGenerator->addHeader(pro_file_name, fileNameForClass(meta_class));
-//        return ;
-//    }
+  QString pro_file_name = meta_class->package().replace(".", "_") + "/" + meta_class->package().replace(".", "_") + ".pri";
+
+  //    if (!meta_class->generateShellClass()) {
+  //        s << "#endif" << endl << endl;
+  //        priGenerator->addHeader(pro_file_name, fileNameForClass(meta_class));
+  //        return ;
+  //    }
+
+  AbstractMetaFunctionList ctors = meta_class->queryFunctions(AbstractMetaClass::Constructors
+    | AbstractMetaClass::WasVisible
+    | AbstractMetaClass::NotRemovedFromTargetLang);
+
+  // Shell-------------------------------------------------------------------
+  if (meta_class->generateShellClass()) {
+
+    AbstractMetaFunctionList virtualsForShell = getVirtualFunctionsForShell(meta_class);
 
     s << "class " << shellClassName(meta_class)
-      << " : public QObject" << endl
-      << "{ Q_OBJECT" << endl;
-
+      << " : public " << meta_class->qualifiedCppName() << endl << "{" << endl;
     s << "public:" << endl;
-    
-    AbstractMetaEnumList enums1 = meta_class->enums();
-    AbstractMetaEnumList enums;
-    foreach(AbstractMetaEnum* enum1, enums1) {
-      if (enum1->isPublic() && !enum1->hasQEnumsDeclaration()) {
-        enums << enum1;
+    foreach(AbstractMetaFunction* fun, ctors) {
+      s << "    ";
+      writeFunctionSignature(s, fun, 0,"PythonQtShell_",
+        Option(IncludeDefaultExpression | OriginalName | ShowStatic | UnderscoreSpaces));
+      s << ":" << meta_class->qualifiedCppName() << "(";
+      QString scriptFunctionName = fun->originalName();
+      AbstractMetaArgumentList args = fun->arguments();
+      for (int i = 0; i < args.size(); ++i) {
+        if (i > 0)
+          s << ", ";
+        s << args.at(i)->argumentName();
       }
+      s << "),_wrapper(NULL) {};" << endl;
     }
+    s << endl;
+
+    foreach(AbstractMetaFunction* fun, virtualsForShell) {
+      s << "virtual ";
+      writeFunctionSignature(s, fun, 0, QString(),
+        Option(IncludeDefaultExpression | OriginalName | ShowStatic | UnderscoreSpaces));
+      s << ";" << endl;
+    }
+    s << endl;
+    s << "  PythonQtInstanceWrapper* _wrapper; " << endl;
+
+    s << "};" << endl << endl;
+  }
+
+  // Promoter-------------------------------------------------------------------
+  AbstractMetaFunctionList promoteFunctions = getProtectedFunctionsThatNeedPromotion(meta_class);
+  if (!promoteFunctions.isEmpty()) {
+    s << "class " << promoterClassName(meta_class)
+      << " : public " << meta_class->qualifiedCppName() << endl << "{ public:" << endl;
+
+    foreach(AbstractMetaFunction* fun, promoteFunctions) {
+      s << "inline ";
+      writeFunctionSignature(s, fun, 0, QString(),
+        Option(IncludeDefaultExpression | OriginalName | ShowStatic | UnderscoreSpaces));
+      s << " { ";
+      QString scriptFunctionName = fun->originalName();
+      AbstractMetaArgumentList args = fun->arguments();
+      if (fun->type())
+        s << "return ";
+      s << meta_class->qualifiedCppName() << "::";
+      s << fun->originalName() << "(";
+      for (int i = 0; i < args.size(); ++i) {
+        if (i > 0)
+          s << ", ";
+        s << args.at(i)->argumentName();
+      }
+      s << "); }" << endl;
+    }
+
+    s << "};" << endl << endl;
+  }
+
+  // Wrapper-------------------------------------------------------------------
+
+  s << "class " << wrapperClassName(meta_class)
+    << " : public QObject" << endl
+    << "{ Q_OBJECT" << endl;
+
+  s << "public:" << endl;
+
+  AbstractMetaEnumList enums1 = meta_class->enums();
+  AbstractMetaEnumList enums;
+  foreach(AbstractMetaEnum* enum1, enums1) {
+    // catch gadgets and enums that are not exported on QObjects...
+    if (enum1->wasPublic() && (!meta_class->isQObject() || !enum1->hasQEnumsDeclaration())) {
+      enums << enum1;
+    }
+  }
   if (enums.count()) {
     s << "Q_ENUMS(";
     foreach(AbstractMetaEnum* enum1, enums) {
@@ -101,19 +172,32 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
     }
   }
 
-    s << "public slots:" << endl;
-  if (!meta_class->isAbstract()) {
-    AbstractMetaFunctionList ctors;
-    ctors = meta_class->queryFunctions(AbstractMetaClass::Constructors
-                                       | AbstractMetaClass::WasVisible
-                                       | AbstractMetaClass::NotRemovedFromTargetLang);
-    
-    foreach (const AbstractMetaFunction *function, ctors) {
-      if (!function->isPublic() || function->isAbstract()) { continue; }
-            s << meta_class->qualifiedCppName() << "* ";
-            writeFunctionSignature(s, function, 0, "new_",
-                                   Option(IncludeDefaultExpression | OriginalName | ShowStatic));
-            s << ";" << endl;
+  s << "public slots:" << endl;
+  if (meta_class->generateShellClass() || !meta_class->isAbstract()) {
+
+    bool copyConstructorSeen = false;
+    bool defaultConstructorSeen = false;
+    foreach (const AbstractMetaFunction *fun, ctors) {
+      if (!fun->isPublic() || fun->isAbstract()) { continue; }
+      s << meta_class->qualifiedCppName() << "* ";
+      writeFunctionSignature(s, fun, 0, "new_",
+        Option(IncludeDefaultExpression | OriginalName | ShowStatic));
+      s << ";" << endl;
+      if (fun->arguments().size()==1 && meta_class->qualifiedCppName() == fun->arguments().at(0)->type()->typeEntry()->qualifiedCppName()) {
+        copyConstructorSeen = true;
+      }
+      if (fun->arguments().size()==0) {
+        defaultConstructorSeen = true;
+      }
+    }
+
+    if (meta_class->typeEntry()->isValue()
+        && !copyConstructorSeen && defaultConstructorSeen) {
+      QString className = meta_class->generateShellClass()?shellClassName(meta_class):meta_class->qualifiedCppName();
+      s << meta_class->qualifiedCppName() << "* new_" << meta_class->name() << "(const " << meta_class->qualifiedCppName() << "& other) {" << endl;
+      s << className << "* a = new " << className << "();" << endl;
+      s << "*((" << meta_class->qualifiedCppName() << "*)a) = other;" << endl;
+      s << "return a; }" << endl;
     }
   }
   if (meta_class->hasPublicDestructor() && !meta_class->isNamespace()) {
@@ -125,39 +209,36 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
   } else if (meta_class->name()=="QGraphicsItem") {
     s << "bool hasOwner(QGraphicsItem* theWrappedObject) { return theWrappedObject->scene()!=NULL || theWrappedObject->parentItem()!=NULL; }" << endl;
   }
-  
-    AbstractMetaFunctionList functions = meta_class->queryFunctions( 
-        AbstractMetaClass::NormalFunctions | AbstractMetaClass::WasVisible | AbstractMetaClass::WasPublic
-        | AbstractMetaClass::NotRemovedFromTargetLang | AbstractMetaClass::ClassImplements
-        );
 
-    foreach (const AbstractMetaFunction *function, functions) {
-      if (!function->isSlot()) {
-        s << "   ";
-        writeFunctionSignature(s, function, 0, QString(),
-                               Option(IncludeDefaultExpression | OriginalName | ShowStatic | UnderscoreSpaces));
-        s << ";" << endl;
-      }
+  AbstractMetaFunctionList functions = getFunctionsToWrap(meta_class);
+
+  foreach (const AbstractMetaFunction *function, functions) {
+    if (!function->isSlot()) {
+      s << "   ";
+      writeFunctionSignature(s, function, 0, QString(),
+        Option(FirstArgIsWrappedObject| IncludeDefaultExpression | OriginalName | ShowStatic | UnderscoreSpaces));
+      s << ";" << endl;
     }
+  }
 
-//    writeInjectedCode(s, meta_class);
+  //    writeInjectedCode(s, meta_class);
 
   //  s  << endl << "    QScriptValue __qtscript_self;" << endl;
 
-    s  << "};" << endl << endl
-       << "#endif // " << include_block << endl;
+  s  << "};" << endl << endl
+    << "#endif // " << include_block << endl;
 
-  if (!ClassGenerator::isBuiltIn(meta_class->name())) {
+  if (!ShellGenerator::isBuiltIn(meta_class->name())) {
     priGenerator->addHeader(pro_file_name, fileNameForClass(meta_class));
   }
 }
 
 void ShellHeaderGenerator::writeInjectedCode(QTextStream &s, const AbstractMetaClass *meta_class)
 {
-    CodeSnipList code_snips = meta_class->typeEntry()->codeSnips();
-    foreach (const CodeSnip &cs, code_snips) {
-        if (cs.language == TypeSystem::ShellDeclaration) {
-            s << cs.code() << endl;
-        }
+  CodeSnipList code_snips = meta_class->typeEntry()->codeSnips();
+  foreach (const CodeSnip &cs, code_snips) {
+    if (cs.language == TypeSystem::ShellDeclaration) {
+      s << cs.code() << endl;
     }
+  }
 }

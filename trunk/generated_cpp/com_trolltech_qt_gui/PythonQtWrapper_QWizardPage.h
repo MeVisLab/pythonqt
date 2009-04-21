@@ -4,6 +4,8 @@
 #include <qwizard.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qaction.h>
 #include <qbitmap.h>
@@ -33,29 +35,83 @@
 #include <qwidget.h>
 #include <qwizard.h>
 
+class PythonQtShell_QWizardPage : public QWizardPage
+{
+public:
+    PythonQtShell_QWizardPage(QWidget*  parent = 0):QWizardPage(parent),_wrapper(NULL) {};
+
+virtual void actionEvent(QActionEvent*  arg__1);
+virtual void changeEvent(QEvent*  arg__1);
+virtual void childEvent(QChildEvent*  arg__1);
+virtual void cleanupPage();
+virtual void closeEvent(QCloseEvent*  arg__1);
+virtual void contextMenuEvent(QContextMenuEvent*  arg__1);
+virtual void customEvent(QEvent*  arg__1);
+virtual int  devType() const;
+virtual void dragEnterEvent(QDragEnterEvent*  arg__1);
+virtual void dragLeaveEvent(QDragLeaveEvent*  arg__1);
+virtual void dragMoveEvent(QDragMoveEvent*  arg__1);
+virtual void dropEvent(QDropEvent*  arg__1);
+virtual void enterEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
+virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void focusInEvent(QFocusEvent*  arg__1);
+virtual bool  focusNextPrevChild(bool  next);
+virtual void focusOutEvent(QFocusEvent*  arg__1);
+virtual int  heightForWidth(int  arg__1) const;
+virtual void hideEvent(QHideEvent*  arg__1);
+virtual void initializePage();
+virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
+virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const;
+virtual bool  isComplete() const;
+virtual void keyPressEvent(QKeyEvent*  arg__1);
+virtual void keyReleaseEvent(QKeyEvent*  arg__1);
+virtual void languageChange();
+virtual void leaveEvent(QEvent*  arg__1);
+virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
+virtual QSize  minimumSizeHint() const;
+virtual void mouseDoubleClickEvent(QMouseEvent*  arg__1);
+virtual void mouseMoveEvent(QMouseEvent*  arg__1);
+virtual void mousePressEvent(QMouseEvent*  arg__1);
+virtual void mouseReleaseEvent(QMouseEvent*  arg__1);
+virtual void moveEvent(QMoveEvent*  arg__1);
+virtual int  nextId() const;
+virtual QPaintEngine*  paintEngine() const;
+virtual void paintEvent(QPaintEvent*  arg__1);
+virtual void resizeEvent(QResizeEvent*  arg__1);
+virtual void showEvent(QShowEvent*  arg__1);
+virtual QSize  sizeHint() const;
+virtual void tabletEvent(QTabletEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
+virtual bool  validatePage();
+virtual void wheelEvent(QWheelEvent*  arg__1);
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
 class PythonQtWrapper_QWizardPage : public QObject
 { Q_OBJECT
 public:
 public slots:
 QWizardPage* new_QWizardPage(QWidget*  parent = 0);
 void delete_QWizardPage(QWizardPage* obj) { delete obj; } 
-   QString  buttonText(QWizardPage* theWrappedObject, QWizard::WizardButton  which) const;
-   void cleanupPage(QWizardPage* theWrappedObject);
-   void initializePage(QWizardPage* theWrappedObject);
-   bool  isCommitPage(QWizardPage* theWrappedObject) const;
-   bool  isComplete(QWizardPage* theWrappedObject) const;
-   bool  isFinalPage(QWizardPage* theWrappedObject) const;
    int  nextId(QWizardPage* theWrappedObject) const;
-   QPixmap  pixmap(QWizardPage* theWrappedObject, QWizard::WizardPixmap  which) const;
-   void setButtonText(QWizardPage* theWrappedObject, QWizard::WizardButton  which, const QString&  text);
-   void setCommitPage(QWizardPage* theWrappedObject, bool  commitPage);
-   void setFinalPage(QWizardPage* theWrappedObject, bool  finalPage);
+   bool  validatePage(QWizardPage* theWrappedObject);
+   void initializePage(QWizardPage* theWrappedObject);
+   QString  title(QWizardPage* theWrappedObject) const;
+   QString  buttonText(QWizardPage* theWrappedObject, QWizard::WizardButton  which) const;
+   bool  isFinalPage(QWizardPage* theWrappedObject) const;
    void setPixmap(QWizardPage* theWrappedObject, QWizard::WizardPixmap  which, const QPixmap&  pixmap);
    void setSubTitle(QWizardPage* theWrappedObject, const QString&  subTitle);
-   void setTitle(QWizardPage* theWrappedObject, const QString&  title);
+   void setFinalPage(QWizardPage* theWrappedObject, bool  finalPage);
    QString  subTitle(QWizardPage* theWrappedObject) const;
-   QString  title(QWizardPage* theWrappedObject) const;
-   bool  validatePage(QWizardPage* theWrappedObject);
+   QPixmap  pixmap(QWizardPage* theWrappedObject, QWizard::WizardPixmap  which) const;
+   void setTitle(QWizardPage* theWrappedObject, const QString&  title);
+   bool  isCommitPage(QWizardPage* theWrappedObject) const;
+   void setCommitPage(QWizardPage* theWrappedObject, bool  commitPage);
+   void cleanupPage(QWizardPage* theWrappedObject);
+   bool  isComplete(QWizardPage* theWrappedObject) const;
+   void setButtonText(QWizardPage* theWrappedObject, QWizard::WizardButton  which, const QString&  text);
 };
 
 #endif // PYTHONQTWRAPPER_QWIZARDPAGE_H

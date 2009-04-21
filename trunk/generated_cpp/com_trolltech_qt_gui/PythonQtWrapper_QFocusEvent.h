@@ -4,6 +4,8 @@
 #include <qevent.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 
 class PythonQtWrapper_QFocusEvent : public QObject
@@ -13,8 +15,8 @@ public slots:
 QFocusEvent* new_QFocusEvent(QEvent::Type  type, Qt::FocusReason  reason = Qt::OtherFocusReason);
 void delete_QFocusEvent(QFocusEvent* obj) { delete obj; } 
    bool  gotFocus(QFocusEvent* theWrappedObject) const;
-   bool  lostFocus(QFocusEvent* theWrappedObject) const;
    Qt::FocusReason  reason(QFocusEvent* theWrappedObject);
+   bool  lostFocus(QFocusEvent* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QFOCUSEVENT_H

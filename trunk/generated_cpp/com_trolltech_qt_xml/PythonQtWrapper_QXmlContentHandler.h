@@ -4,26 +4,38 @@
 #include <qxml.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qxml.h>
+
+class PythonQtShell_QXmlContentHandler : public QXmlContentHandler
+{
+public:
+    PythonQtShell_QXmlContentHandler():QXmlContentHandler(),_wrapper(NULL) {};
+
+virtual bool  characters(const QString&  ch);
+virtual bool  endDocument();
+virtual bool  endElement(const QString&  namespaceURI, const QString&  localName, const QString&  qName);
+virtual bool  endPrefixMapping(const QString&  prefix);
+virtual QString  errorString() const;
+virtual bool  ignorableWhitespace(const QString&  ch);
+virtual bool  processingInstruction(const QString&  target, const QString&  data);
+virtual void setDocumentLocator(QXmlLocator*  locator);
+virtual bool  skippedEntity(const QString&  name);
+virtual bool  startDocument();
+virtual bool  startElement(const QString&  namespaceURI, const QString&  localName, const QString&  qName, const QXmlAttributes&  atts);
+virtual bool  startPrefixMapping(const QString&  prefix, const QString&  uri);
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
 
 class PythonQtWrapper_QXmlContentHandler : public QObject
 { Q_OBJECT
 public:
 public slots:
+QXmlContentHandler* new_QXmlContentHandler();
 void delete_QXmlContentHandler(QXmlContentHandler* obj) { delete obj; } 
-   bool  characters(QXmlContentHandler* theWrappedObject, const QString&  ch);
-   bool  endDocument(QXmlContentHandler* theWrappedObject);
-   bool  endElement(QXmlContentHandler* theWrappedObject, const QString&  namespaceURI, const QString&  localName, const QString&  qName);
-   bool  endPrefixMapping(QXmlContentHandler* theWrappedObject, const QString&  prefix);
-   QString  errorString(QXmlContentHandler* theWrappedObject) const;
-   bool  ignorableWhitespace(QXmlContentHandler* theWrappedObject, const QString&  ch);
-   bool  processingInstruction(QXmlContentHandler* theWrappedObject, const QString&  target, const QString&  data);
-   void setDocumentLocator(QXmlContentHandler* theWrappedObject, QXmlLocator*  locator);
-   bool  skippedEntity(QXmlContentHandler* theWrappedObject, const QString&  name);
-   bool  startDocument(QXmlContentHandler* theWrappedObject);
-   bool  startElement(QXmlContentHandler* theWrappedObject, const QString&  namespaceURI, const QString&  localName, const QString&  qName, const QXmlAttributes&  atts);
-   bool  startPrefixMapping(QXmlContentHandler* theWrappedObject, const QString&  prefix, const QString&  uri);
 };
 
 #endif // PYTHONQTWRAPPER_QXMLCONTENTHANDLER_H

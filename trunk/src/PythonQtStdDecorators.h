@@ -57,17 +57,6 @@ class PYTHONQT_EXPORT PythonQtStdDecorators : public QObject
   Q_OBJECT
 
 public slots:
-  // additional constructors
-  QVariant new_QSize(const QSize& o) { QSize a = o; return a; }
-  QVariant new_QSizeF(const QSizeF& o) { QSizeF a = o; return a; }
-  QVariant new_QPoint(const QPoint& o) { QPoint a = o; return a; }
-  QVariant new_QPointF(const QPointF& o) { QPointF a = o; return a; }
-  QVariant new_QRect(const QRect& o) { QRect a = o; return a; }
-  QVariant new_QRectF(const QRectF& o) { QRectF a = o; return a; }
-  QVariant new_QDate(const QDate& o) { QDate a = o; return a; }
-  QVariant new_QDateTime(const QDateTime& o) { QDateTime a = o; return a; }
-  QVariant new_QTime(const QTime& o) { QTime a = o; return a; }
-
   bool connect(QObject* sender, const QByteArray& signal, PyObject* callable);
   bool connect(QObject* sender, const QByteArray& signal, QObject* receiver, const QByteArray& slot);
   bool disconnect(QObject* sender, const QByteArray& signal, PyObject* callable);

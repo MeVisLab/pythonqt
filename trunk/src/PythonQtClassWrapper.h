@@ -44,6 +44,8 @@
 
 #include <Python.h>
 
+#include "PythonQtSystem.h"
+
 #include "structmember.h"
 #include "methodobject.h"
 #include "compile.h"
@@ -53,7 +55,7 @@
 class PythonQtClassInfo;
 
 //! the type of the PythonQt class wrapper objects
-extern PyTypeObject PythonQtClassWrapper_Type;
+extern PYTHONQT_EXPORT PyTypeObject PythonQtClassWrapper_Type;
 
 //---------------------------------------------------------------
 //! a Python wrapper object for PythonQt wrapped classes

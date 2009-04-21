@@ -4,6 +4,8 @@
 #include <qxmlnamepool.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qxmlnamepool.h>
 

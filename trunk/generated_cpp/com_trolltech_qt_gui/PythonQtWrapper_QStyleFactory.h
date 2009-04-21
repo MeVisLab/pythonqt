@@ -4,9 +4,20 @@
 #include <qstylefactory.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qstringlist.h>
 #include <qstyle.h>
+
+class PythonQtShell_QStyleFactory : public QStyleFactory
+{
+public:
+    PythonQtShell_QStyleFactory():QStyleFactory(),_wrapper(NULL) {};
+
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
 
 class PythonQtWrapper_QStyleFactory : public QObject
 { Q_OBJECT

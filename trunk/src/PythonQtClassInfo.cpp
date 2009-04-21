@@ -46,25 +46,45 @@
 
 QHash<QByteArray, int> PythonQtMethodInfo::_parameterTypeDict;
 
-PythonQtClassInfo::PythonQtClassInfo(const QMetaObject* meta, const QByteArray& wrappedClassName) {
-  _meta = meta;
-  _wrappedClassName = wrappedClassName;
+PythonQtClassInfo::PythonQtClassInfo() {
+  _meta = NULL;
   _constructors = NULL;
-  _parentClassInfo = NULL; 
-  _parentClassInfoResolved = false;
+  _destructor = NULL;
   _decoratorProvider = NULL;
   _decoratorProviderCB = NULL;
   _pythonQtClassWrapper = NULL;
-  if (wrappedClassName.isEmpty()) {
-    _metaTypeId = -1;
-  } else {
-    _metaTypeId = QMetaType::type(wrappedClassName);
-  }
+  _shellSetInstanceWrapperCB = NULL;
+  _metaTypeId = -1;
+  _isQObject = false;
 }
 
 PythonQtClassInfo::~PythonQtClassInfo()
 {
   clearCachedMembers();
+  
+  if (_constructors) {
+    _constructors->deleteOverloadsAndThis();
+  }
+  if (_destructor) {
+    _destructor->deleteOverloadsAndThis();
+  }
+  foreach(PythonQtSlotInfo* info, _decoratorSlots) {
+    info->deleteOverloadsAndThis();
+  }
+}
+
+void PythonQtClassInfo::setupQObject(const QMetaObject* meta)
+{
+  // _wrappedClassName is already set earlier in the class setup
+  _isQObject = true;
+  _meta = meta;
+}
+
+void PythonQtClassInfo::setupCPPObject(const QByteArray& classname)
+{
+  _isQObject = false;
+  _wrappedClassName = classname;
+  _metaTypeId = QMetaType::type(classname);
 }
 
 void PythonQtClassInfo::clearCachedMembers()
@@ -78,22 +98,6 @@ void PythonQtClassInfo::clearCachedMembers()
         PythonQtSlotInfo* next = info->nextInfo();
         delete info;
         info = next;
-      }
-    }
-  }
-}
-
-void PythonQtClassInfo::resolveParentClassInfo()
-{
-  if (!_parentClassInfoResolved) {
-    _parentClassInfoResolved = true;
-    if (isCPPWrapper()) {
-      if (!_wrappedClassName.isEmpty()) {
-        _parentClassInfo = PythonQt::priv()->getClassInfo(_wrappedParentClassName);
-      }
-    } else {
-      if (_meta->superClass()) {
-        _parentClassInfo = PythonQt::priv()->getClassInfo(_meta->superClass());
       }
     }
   }
@@ -138,11 +142,21 @@ bool PythonQtClassInfo::lookForPropertyAndCache(const char* memberName)
   return found;
 }
 
-PythonQtSlotInfo* PythonQtClassInfo::findDecoratorSlotsFromDecoratorProvider(const char* memberName, PythonQtSlotInfo* tail, bool &found, QHash<QByteArray, PythonQtMemberInfo>& memberCache) {
+PythonQtSlotInfo* PythonQtClassInfo::recursiveFindDecoratorSlotsFromDecoratorProvider(const char* memberName, PythonQtSlotInfo* inputInfo, bool &found, QHash<QByteArray, PythonQtMemberInfo>& memberCache, int upcastingOffset)
+{
+  inputInfo = findDecoratorSlotsFromDecoratorProvider(memberName, inputInfo, found, memberCache, upcastingOffset);
+  foreach(const ParentClassInfo& info, _parentClasses) {
+    inputInfo = info._parent->recursiveFindDecoratorSlotsFromDecoratorProvider(memberName, inputInfo, found, memberCache, upcastingOffset+info._upcastingOffset);
+  }
+  return inputInfo;
+}
+
+PythonQtSlotInfo* PythonQtClassInfo::findDecoratorSlotsFromDecoratorProvider(const char* memberName, PythonQtSlotInfo* tail, bool &found, QHash<QByteArray, PythonQtMemberInfo>& memberCache, int upcastingOffset) {
   QObject* decoratorProvider = decorator();
+  int memberNameLen = strlen(memberName);
   if (decoratorProvider) {
+    //qDebug()<< "looking " << decoratorProvider->metaObject()->className() << " " << memberName << " " << upcastingOffset;
     const QMetaObject* meta = decoratorProvider->metaObject();
-    int memberNameLen = strlen(memberName);
     int numMethods = meta->methodCount();
     int startFrom = QObject::staticMetaObject.methodCount();
     for (int i = startFrom; i < numMethods; i++) {
@@ -170,6 +184,8 @@ PythonQtSlotInfo* PythonQtClassInfo::findDecoratorSlotsFromDecoratorProvider(con
         if (memberNameLen == offset && qstrncmp(memberName, sigStart, offset)==0) {
           found = true;
           PythonQtSlotInfo* info = new PythonQtSlotInfo(m, i, decoratorProvider, isClassDeco?PythonQtSlotInfo::ClassDecorator:PythonQtSlotInfo::InstanceDecorator);
+          info->setUpcastingOffset(upcastingOffset);
+          //qDebug()<< "adding " << decoratorProvider->metaObject()->className() << " " << memberName << " " << upcastingOffset;
           if (tail) {
             tail->setNextInfo(info);
           } else {
@@ -181,6 +197,9 @@ PythonQtSlotInfo* PythonQtClassInfo::findDecoratorSlotsFromDecoratorProvider(con
       }
     }
   }
+
+  tail = findDecoratorSlots(memberName, memberNameLen, tail, found, memberCache, upcastingOffset);
+  
   return tail;
 }
 
@@ -217,25 +236,8 @@ bool PythonQtClassInfo::lookForMethodAndCache(const char* memberName)
   }
   
   // look for dynamic decorators in this class and in derived classes
-  PythonQtClassInfo* info = this;
-  while (info) {
-    tail = info->findDecoratorSlotsFromDecoratorProvider(memberName, tail, found, _cachedMembers);
-    if (!info->_parentClassInfoResolved) {
-      info->resolveParentClassInfo();
-    }
-    info = info->_parentClassInfo;
-  }
+  tail = recursiveFindDecoratorSlotsFromDecoratorProvider(memberName, tail, found, _cachedMembers, 0);
 
-  // look for decorators
-  if (!_wrappedClassName.isEmpty()) {
-    tail = findDecoratorSlots(_wrappedClassName.constData(), memberName, memberNameLen, tail, found);
-  } 
-
-  const QMetaObject* meta = _meta;
-  while (meta) {
-    tail = findDecoratorSlots(meta->className(), memberName, memberNameLen, tail, found);
-    meta = meta->superClass();
-  }
   return found;
 }
 
@@ -254,6 +256,7 @@ bool PythonQtClassInfo::lookForEnumAndCache(const QMetaObject* meta, const char*
         std::cout << "caching enum " << memberName << " on " << meta->className() << std::endl;
   #endif
         found = true;
+        break;
       }
     }
   }
@@ -280,17 +283,14 @@ PythonQtMemberInfo PythonQtClassInfo::member(const char* memberName)
       if (!found) {
         // check enums in the class hierachy of CPP classes
         // look for dynamic decorators in this class and in derived classes
-        PythonQtClassInfo* info = this;
-        while (info && !found) {
-          QObject* deco = info->decorator();
-          if (deco) {
-            // call on ourself for caching, but with different metaObject():
-            found = lookForEnumAndCache(deco->metaObject(), memberName);
+        QList<QObject*> decoObjects;
+        recursiveCollectDecoratorObjects(decoObjects);
+        foreach(QObject* deco, decoObjects) {
+          // call on ourself for caching, but with different metaObject():
+          found = lookForEnumAndCache(deco->metaObject(), memberName);
+          if (found) {
+            break;
           }
-          if (!info->_parentClassInfoResolved) {
-            info->resolveParentClassInfo();
-          }
-          info = info->_parentClassInfo;
         }
       }
     }
@@ -304,9 +304,26 @@ PythonQtMemberInfo PythonQtClassInfo::member(const char* memberName)
   return _cachedMembers.value(memberName);
 }
 
-PythonQtSlotInfo* PythonQtClassInfo::findDecoratorSlots(const char* classname, const char* memberName, int memberNameLen, PythonQtSlotInfo* tail, bool& found)
+void PythonQtClassInfo::recursiveCollectDecoratorObjects(QList<QObject*>& decoratorObjects) {
+  QObject* deco = decorator();
+  if (deco) {
+    decoratorObjects.append(deco);
+  }
+  foreach(const ParentClassInfo& info, _parentClasses) {
+    info._parent->recursiveCollectDecoratorObjects(decoratorObjects);
+  }
+}
+
+void PythonQtClassInfo::recursiveCollectClassInfos(QList<PythonQtClassInfo*>& classInfoObjects) {
+  classInfoObjects.append(this);
+  foreach(const ParentClassInfo& info, _parentClasses) {
+    info._parent->recursiveCollectClassInfos(classInfoObjects);
+  }
+}
+
+PythonQtSlotInfo* PythonQtClassInfo::findDecoratorSlots(const char* memberName, int memberNameLen, PythonQtSlotInfo* tail, bool &found, QHash<QByteArray, PythonQtMemberInfo>& memberCache, int upcastingOffset)
 {
-  QListIterator<PythonQtSlotInfo*> it(PythonQt::priv()->getDecoratorSlots(classname));
+  QListIterator<PythonQtSlotInfo*> it(_decoratorSlots);
   while (it.hasNext()) {
 
     PythonQtSlotInfo* infoOrig = it.next();
@@ -320,12 +337,13 @@ PythonQtSlotInfo* PythonQtClassInfo::findDecoratorSlots(const char* classname, c
     if (memberNameLen == offset && qstrncmp(memberName, sigStart, offset)==0) {
       //make a copy, otherwise we will have trouble on overloads!
       PythonQtSlotInfo* info = new PythonQtSlotInfo(*infoOrig);
+      info->setUpcastingOffset(upcastingOffset);
       found = true;
       if (tail) {
         tail->setNextInfo(info);
       } else {
         PythonQtMemberInfo newInfo(info);
-        _cachedMembers.insert(memberName, newInfo);
+        memberCache.insert(memberName, newInfo);
       }
       tail = info;
     }
@@ -365,16 +383,34 @@ void PythonQtClassInfo::listDecoratorSlotsFromDecoratorProvider(QStringList& lis
       }
     }
   }
+
+  // look for global decorator slots
+  QListIterator<PythonQtSlotInfo*> it(_decoratorSlots);
+  while (it.hasNext()) {
+    PythonQtSlotInfo* slot = it.next();
+    if (metaOnly) {
+      if (slot->isClassDecorator()) {
+        QByteArray first = slot->slotName();
+        if (first.startsWith("static_")) {
+          int idx = first.indexOf('_');
+          idx = first.indexOf('_', idx+1);
+          first = first.mid(idx+1);
+        }
+        list << first;
+      }
+    } else {
+      list << slot->slotName();
+    }
+  }
 }
  
 QStringList PythonQtClassInfo::memberList(bool metaOnly)
 {
-  resolveParentClassInfo();
   decorator();
 
   QStringList l;
   QString h;
-  if (_wrappedClassName.isEmpty() && _meta && !metaOnly) {
+  if (_isQObject && _meta && !metaOnly) {
     int i;
     int numProperties = _meta->propertyCount();
     for (i = 0; i < numProperties; i++) {
@@ -386,7 +422,7 @@ QStringList PythonQtClassInfo::memberList(bool metaOnly)
   // normal slots of QObject (or wrapper QObject)
   if (!metaOnly && _meta) {
     int numMethods = _meta->methodCount();
-    bool skipQObj = !_wrappedClassName.isEmpty();
+    bool skipQObj = !_isQObject;
     for (int i = skipQObj?QObject::staticMetaObject.methodCount():0; i < numMethods; i++) {
       QMetaMethod m = _meta->method(i);
       if ((m.methodType() == QMetaMethod::Method ||
@@ -403,51 +439,10 @@ QStringList PythonQtClassInfo::memberList(bool metaOnly)
 
   {
     // look for dynamic decorators in this class and in derived classes
-    PythonQtClassInfo* info = this;
-    while (info) {
+    QList<PythonQtClassInfo*> infos;
+    recursiveCollectClassInfos(infos);
+    foreach(PythonQtClassInfo* info, infos) {
       info->listDecoratorSlotsFromDecoratorProvider(l, metaOnly);
-      if (!info->_parentClassInfoResolved) {
-        info->resolveParentClassInfo();
-      }
-      info = info->_parentClassInfo;
-    }
-  }
-  
-  // look for decorators
-  QList<const char*> names;
-  if (!_wrappedClassName.isEmpty()) {
-    // CPP wrapper case:
-    names << _wrappedClassName.constData();
-    // for CPP classes which are wrapped, we do not want to look for decorators of the wrapping qobjects, since they
-    // would require a different pointer on the decorator slot call
-  } else {
-    // QObject case:
-    const QMetaObject* meta = _meta;
-    while (meta) {
-      if (meta==&QObject::staticMetaObject && !_wrappedClassName.isEmpty()) break;
-      names << meta->className();
-      meta = meta->superClass();
-    }
-  }
-
-  QListIterator<const char*> nameIt(names);
-  while (nameIt.hasNext()) {
-    QListIterator<PythonQtSlotInfo*> it(PythonQt::priv()->getDecoratorSlots(nameIt.next()));
-    while (it.hasNext()) {
-      PythonQtSlotInfo* slot = it.next();
-      if (metaOnly) {
-        if (slot->isClassDecorator()) {
-          QByteArray first = slot->slotName();
-          if (first.startsWith("static_")) {
-            int idx = first.indexOf('_');
-            idx = first.indexOf('_', idx+1);
-            first = first.mid(idx+1);
-          }
-          l << first;
-        }
-      } else {
-        l << slot->slotName();
-      }
     }
   }
   
@@ -457,16 +452,10 @@ QStringList PythonQtClassInfo::memberList(bool metaOnly)
     enumMetaObjects << _meta;
   }
   // check enums in the class hierachy of CPP classes
-  PythonQtClassInfo* info = this;
-  while (info) {
-    QObject* deco = info->decorator();
-    if (deco) {
-      enumMetaObjects << deco->metaObject();
-    }
-    if (!info->_parentClassInfoResolved) {
-      info->resolveParentClassInfo();
-    }
-    info = info->_parentClassInfo;
+  QList<QObject*> decoObjects;
+  recursiveCollectDecoratorObjects(decoObjects);
+  foreach(QObject* deco, decoObjects) {
+    enumMetaObjects << deco->metaObject();
   }
   
   foreach(const QMetaObject* meta, enumMetaObjects) {
@@ -482,34 +471,47 @@ QStringList PythonQtClassInfo::memberList(bool metaOnly)
 
 const char* PythonQtClassInfo::className()
 {
-  if (!_wrappedClassName.isEmpty()) {
-    return _wrappedClassName.constData();
-  } else {
-    return _meta->className();
+  return _wrappedClassName.constData();
+}
+
+void* PythonQtClassInfo::castTo(void* ptr, const char* classname)
+{
+  if (ptr==NULL) {
+    return NULL;
   }
+  if (_wrappedClassName == classname) {
+    return ptr;
+  }
+  foreach(const ParentClassInfo& info, _parentClasses) {
+    void* result = info._parent->castTo((char*)ptr + info._upcastingOffset, classname);
+    if (result) {
+      return result;
+    }
+  }
+  return NULL;
 }
 
 bool PythonQtClassInfo::inherits(const char* name)
 {
-  resolveParentClassInfo();
-  if (isCPPWrapper()) {
-    PythonQtClassInfo* info = this;
-    while (info) {
-      if (_wrappedClassName == name) {
-        return true;
-      }
-      if (!info->_parentClassInfoResolved) {
-        info->resolveParentClassInfo();
-      }
-      info = info->_parentClassInfo;
+  if (_wrappedClassName == name) {
+    return true;
+  }
+  foreach(const ParentClassInfo& info, _parentClasses) {
+    if (info._parent->inherits(name)) {
+      return true;
     }
-  } else {
-    const QMetaObject* m = _meta;
-    while (m) {
-      if (strcmp(name, m->className())==0) {
-        return true;
-      }
-      m = m->superClass();
+  }
+  return false;
+}
+
+bool PythonQtClassInfo::inherits(PythonQtClassInfo* classInfo)
+{
+  if (classInfo == this) {
+    return true;
+  }
+  foreach(const ParentClassInfo& info, _parentClasses) {
+    if (info._parent->inherits(classInfo)) {
+      return true;
     }
   }
   return false;
@@ -517,12 +519,11 @@ bool PythonQtClassInfo::inherits(const char* name)
 
 QString PythonQtClassInfo::help()
 {
-  resolveParentClassInfo();
   decorator();
   QString h;
   h += QString("--- ") + QString(className()) + QString(" ---\n");
   
-  if (_wrappedClassName.isEmpty()) {
+  if (_isQObject) {
     h += "Properties:\n";
   
     int i;
@@ -565,26 +566,6 @@ QString PythonQtClassInfo::help()
   // TODO xxx : decorators and enums from decorator() are missing...
   // maybe we can reuse memberlist()?
   
-  // look for decorators
-  QList<const char*> names;
-  if (!_wrappedClassName.isEmpty()) {
-    names << _wrappedClassName.constData();
-  }
-  const QMetaObject* meta = _meta;
-  while (meta) {
-    names << meta->className();
-    meta = meta->superClass();
-  }
-
-  QListIterator<const char*> nameIt(names);
-  while (nameIt.hasNext()) {
-    QListIterator<PythonQtSlotInfo*> it(PythonQt::priv()->getDecoratorSlots(nameIt.next()));
-    while (it.hasNext()) {
-      PythonQtSlotInfo* slot = it.next();
-      h += slot->fullSignature() + "\n";
-    }
-  }
-   
   if (_meta && _meta->enumeratorCount()) {
     h += "Enums:\n";
     for (int i = 0; i<_meta->enumeratorCount(); i++) {
@@ -598,7 +579,7 @@ QString PythonQtClassInfo::help()
     }
   }
 
-  if (_wrappedClassName.isEmpty() && _meta) {
+  if (_isQObject && _meta) {
     int numMethods = _meta->methodCount();
     if (numMethods>0) {
       h += "Signals:\n";
@@ -618,9 +599,41 @@ PythonQtSlotInfo* PythonQtClassInfo::constructors()
   if (!_constructors) {
     // force creation of lazy decorator, which will register the decorators
     decorator();
-    _constructors = PythonQt::priv()->getConstructorSlot(!_wrappedClassName.isEmpty()?_wrappedClassName:QByteArray(_meta->className()));
   }
   return _constructors;
+}
+
+PythonQtSlotInfo* PythonQtClassInfo::destructor()
+{
+  if (!_destructor) {
+    // force creation of lazy decorator, which will register the decorators
+    decorator();
+  }
+  return _destructor;
+}
+
+void PythonQtClassInfo::addConstructor(PythonQtSlotInfo* info)
+{
+  PythonQtSlotInfo* prev = constructors();
+  if (prev) {
+    info->setNextInfo(prev->nextInfo());
+    prev->setNextInfo(info);
+  } else {
+    _constructors = info;
+  }
+}
+
+void PythonQtClassInfo::addDecoratorSlot(PythonQtSlotInfo* info)
+{
+  _decoratorSlots.append(info);
+}
+
+void PythonQtClassInfo::setDestructor(PythonQtSlotInfo* info)
+{
+  if (_destructor) {
+    _destructor->deleteOverloadsAndThis();
+  }
+  _destructor = info;
 }
 
 void PythonQtClassInfo::setMetaObject(const QMetaObject* meta)

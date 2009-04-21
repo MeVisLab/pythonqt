@@ -69,12 +69,13 @@ QString GeneratorSetQtScript::generate() {
     setupGenerator.setOutputDirectory(outDir);
     setupGenerator.setQtMetaTypeDeclaredTypeNames(declaredTypeNames);
 
+    /*
     ClassGenerator classGenerator(&priGenerator, &setupGenerator);
     classGenerator.setOutputDirectory(outDir);
     classGenerator.setClasses(classes);
     classGenerator.setQtMetaTypeDeclaredTypeNames(declaredTypeNames);
     classGenerator.generate();
-
+*/
     ShellImplGenerator shellImplGenerator(&priGenerator);
     shellImplGenerator.setOutputDirectory(outDir);
     shellImplGenerator.setClasses(classes);
@@ -96,15 +97,12 @@ QString GeneratorSetQtScript::generate() {
 
     return QString("Classes in typesystem: %1\n"
                    "Generated:\n"
-                   "  - classes...: %2 (%3)\n"
                    "  - header....: %4 (%5)\n"
                    "  - impl......: %6 (%7)\n"
                    "  - modules...: %8 (%9)\n"
                    "  - pri.......: %10 (%11)\n"
                    )
         .arg(builder.classes().size())
-        .arg(classGenerator.numGenerated())
-        .arg(classGenerator.numGeneratedAndWritten())
 
         .arg(shellHeaderGenerator.numGenerated())
         .arg(shellHeaderGenerator.numGeneratedAndWritten())

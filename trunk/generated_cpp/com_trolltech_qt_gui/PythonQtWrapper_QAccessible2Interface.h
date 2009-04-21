@@ -4,7 +4,18 @@
 #include <qaccessible2.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
+
+class PythonQtShell_QAccessible2Interface : public QAccessible2Interface
+{
+public:
+    PythonQtShell_QAccessible2Interface():QAccessible2Interface(),_wrapper(NULL) {};
+
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
 
 class PythonQtWrapper_QAccessible2Interface : public QObject
 { Q_OBJECT
