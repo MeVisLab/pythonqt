@@ -222,59 +222,29 @@ QUrlInfo* PythonQtWrapper_QUrlInfo::new_QUrlInfo(const QUrlInfo&  ui)
 { 
 return new PythonQtShell_QUrlInfo(ui); }
 
-bool  PythonQtWrapper_QUrlInfo::isValid(QUrlInfo* theWrappedObject) const
-{
-return  (*theWrappedObject).isValid();
-}
-
-qint64  PythonQtWrapper_QUrlInfo::size(QUrlInfo* theWrappedObject) const
-{
-return  (*theWrappedObject).size();
-}
-
-int  PythonQtWrapper_QUrlInfo::permissions(QUrlInfo* theWrappedObject) const
-{
-return  (*theWrappedObject).permissions();
-}
-
-void PythonQtWrapper_QUrlInfo::setLastRead(QUrlInfo* theWrappedObject, const QDateTime&  dt)
-{
- (*theWrappedObject).setLastRead(dt);
-}
-
 bool  PythonQtWrapper_QUrlInfo::isExecutable(QUrlInfo* theWrappedObject) const
 {
-return  (*theWrappedObject).isExecutable();
-}
-
-QDateTime  PythonQtWrapper_QUrlInfo::lastModified(QUrlInfo* theWrappedObject) const
-{
-return  (*theWrappedObject).lastModified();
-}
-
-QString  PythonQtWrapper_QUrlInfo::owner(QUrlInfo* theWrappedObject) const
-{
-return  (*theWrappedObject).owner();
+return  theWrappedObject->isExecutable();
 }
 
 void PythonQtWrapper_QUrlInfo::setFile(QUrlInfo* theWrappedObject, bool  b)
 {
- (*theWrappedObject).setFile(b);
+ ((PythonQtPublicPromoter_QUrlInfo*)theWrappedObject)->promoted_setFile(b);
 }
 
-bool  PythonQtWrapper_QUrlInfo::isDir(QUrlInfo* theWrappedObject) const
+QString  PythonQtWrapper_QUrlInfo::owner(QUrlInfo* theWrappedObject) const
 {
-return  (*theWrappedObject).isDir();
+return  theWrappedObject->owner();
 }
 
-bool  PythonQtWrapper_QUrlInfo::static_QUrlInfo_lessThan(const QUrlInfo&  i1, const QUrlInfo&  i2, int  sortBy)
+QDateTime  PythonQtWrapper_QUrlInfo::lastRead(QUrlInfo* theWrappedObject) const
 {
-return QUrlInfo::lessThan(i1, i2, sortBy);
+return  theWrappedObject->lastRead();
 }
 
 void PythonQtWrapper_QUrlInfo::setGroup(QUrlInfo* theWrappedObject, const QString&  s)
 {
- (*theWrappedObject).setGroup(s);
+ ((PythonQtPublicPromoter_QUrlInfo*)theWrappedObject)->promoted_setGroup(s);
 }
 
 bool  PythonQtWrapper_QUrlInfo::operator_equal(QUrlInfo* theWrappedObject, const QUrlInfo&  i) const
@@ -282,93 +252,123 @@ bool  PythonQtWrapper_QUrlInfo::operator_equal(QUrlInfo* theWrappedObject, const
 return  (*theWrappedObject)== i;
 }
 
-bool  PythonQtWrapper_QUrlInfo::static_QUrlInfo_equal(const QUrlInfo&  i1, const QUrlInfo&  i2, int  sortBy)
-{
-return QUrlInfo::equal(i1, i2, sortBy);
-}
-
 bool  PythonQtWrapper_QUrlInfo::static_QUrlInfo_greaterThan(const QUrlInfo&  i1, const QUrlInfo&  i2, int  sortBy)
 {
 return QUrlInfo::greaterThan(i1, i2, sortBy);
 }
 
-QString  PythonQtWrapper_QUrlInfo::group(QUrlInfo* theWrappedObject) const
-{
-return  (*theWrappedObject).group();
-}
-
-void PythonQtWrapper_QUrlInfo::setName(QUrlInfo* theWrappedObject, const QString&  name)
-{
- (*theWrappedObject).setName(name);
-}
-
-void PythonQtWrapper_QUrlInfo::setReadable(QUrlInfo* theWrappedObject, bool  b)
-{
- (*theWrappedObject).setReadable(b);
-}
-
-QString  PythonQtWrapper_QUrlInfo::name(QUrlInfo* theWrappedObject) const
-{
-return  (*theWrappedObject).name();
-}
-
-void PythonQtWrapper_QUrlInfo::setWritable(QUrlInfo* theWrappedObject, bool  b)
-{
- (*theWrappedObject).setWritable(b);
-}
-
 bool  PythonQtWrapper_QUrlInfo::isSymLink(QUrlInfo* theWrappedObject) const
 {
-return  (*theWrappedObject).isSymLink();
+return  theWrappedObject->isSymLink();
 }
 
-bool  PythonQtWrapper_QUrlInfo::isWritable(QUrlInfo* theWrappedObject) const
+qint64  PythonQtWrapper_QUrlInfo::size(QUrlInfo* theWrappedObject) const
 {
-return  (*theWrappedObject).isWritable();
+return  theWrappedObject->size();
 }
 
-void PythonQtWrapper_QUrlInfo::setSymLink(QUrlInfo* theWrappedObject, bool  b)
+int  PythonQtWrapper_QUrlInfo::permissions(QUrlInfo* theWrappedObject) const
 {
- (*theWrappedObject).setSymLink(b);
-}
-
-bool  PythonQtWrapper_QUrlInfo::isFile(QUrlInfo* theWrappedObject) const
-{
-return  (*theWrappedObject).isFile();
-}
-
-void PythonQtWrapper_QUrlInfo::setOwner(QUrlInfo* theWrappedObject, const QString&  s)
-{
- (*theWrappedObject).setOwner(s);
+return  theWrappedObject->permissions();
 }
 
 void PythonQtWrapper_QUrlInfo::setPermissions(QUrlInfo* theWrappedObject, int  p)
 {
- (*theWrappedObject).setPermissions(p);
+ ((PythonQtPublicPromoter_QUrlInfo*)theWrappedObject)->promoted_setPermissions(p);
+}
+
+bool  PythonQtWrapper_QUrlInfo::isValid(QUrlInfo* theWrappedObject) const
+{
+return  theWrappedObject->isValid();
 }
 
 void PythonQtWrapper_QUrlInfo::setSize(QUrlInfo* theWrappedObject, qint64  size)
 {
- (*theWrappedObject).setSize(size);
+ ((PythonQtPublicPromoter_QUrlInfo*)theWrappedObject)->promoted_setSize(size);
+}
+
+QDateTime  PythonQtWrapper_QUrlInfo::lastModified(QUrlInfo* theWrappedObject) const
+{
+return  theWrappedObject->lastModified();
+}
+
+bool  PythonQtWrapper_QUrlInfo::isDir(QUrlInfo* theWrappedObject) const
+{
+return  theWrappedObject->isDir();
+}
+
+bool  PythonQtWrapper_QUrlInfo::static_QUrlInfo_lessThan(const QUrlInfo&  i1, const QUrlInfo&  i2, int  sortBy)
+{
+return QUrlInfo::lessThan(i1, i2, sortBy);
+}
+
+bool  PythonQtWrapper_QUrlInfo::isFile(QUrlInfo* theWrappedObject) const
+{
+return  theWrappedObject->isFile();
+}
+
+void PythonQtWrapper_QUrlInfo::setOwner(QUrlInfo* theWrappedObject, const QString&  s)
+{
+ ((PythonQtPublicPromoter_QUrlInfo*)theWrappedObject)->promoted_setOwner(s);
+}
+
+bool  PythonQtWrapper_QUrlInfo::static_QUrlInfo_equal(const QUrlInfo&  i1, const QUrlInfo&  i2, int  sortBy)
+{
+return QUrlInfo::equal(i1, i2, sortBy);
 }
 
 void PythonQtWrapper_QUrlInfo::setDir(QUrlInfo* theWrappedObject, bool  b)
 {
- (*theWrappedObject).setDir(b);
+ ((PythonQtPublicPromoter_QUrlInfo*)theWrappedObject)->promoted_setDir(b);
+}
+
+void PythonQtWrapper_QUrlInfo::setSymLink(QUrlInfo* theWrappedObject, bool  b)
+{
+ ((PythonQtPublicPromoter_QUrlInfo*)theWrappedObject)->promoted_setSymLink(b);
 }
 
 bool  PythonQtWrapper_QUrlInfo::isReadable(QUrlInfo* theWrappedObject) const
 {
-return  (*theWrappedObject).isReadable();
-}
-
-QDateTime  PythonQtWrapper_QUrlInfo::lastRead(QUrlInfo* theWrappedObject) const
-{
-return  (*theWrappedObject).lastRead();
+return  theWrappedObject->isReadable();
 }
 
 void PythonQtWrapper_QUrlInfo::setLastModified(QUrlInfo* theWrappedObject, const QDateTime&  dt)
 {
- (*theWrappedObject).setLastModified(dt);
+ ((PythonQtPublicPromoter_QUrlInfo*)theWrappedObject)->promoted_setLastModified(dt);
+}
+
+QString  PythonQtWrapper_QUrlInfo::group(QUrlInfo* theWrappedObject) const
+{
+return  theWrappedObject->group();
+}
+
+void PythonQtWrapper_QUrlInfo::setName(QUrlInfo* theWrappedObject, const QString&  name)
+{
+ ((PythonQtPublicPromoter_QUrlInfo*)theWrappedObject)->promoted_setName(name);
+}
+
+void PythonQtWrapper_QUrlInfo::setReadable(QUrlInfo* theWrappedObject, bool  b)
+{
+ ((PythonQtPublicPromoter_QUrlInfo*)theWrappedObject)->promoted_setReadable(b);
+}
+
+QString  PythonQtWrapper_QUrlInfo::name(QUrlInfo* theWrappedObject) const
+{
+return  theWrappedObject->name();
+}
+
+void PythonQtWrapper_QUrlInfo::setWritable(QUrlInfo* theWrappedObject, bool  b)
+{
+ ((PythonQtPublicPromoter_QUrlInfo*)theWrappedObject)->promoted_setWritable(b);
+}
+
+bool  PythonQtWrapper_QUrlInfo::isWritable(QUrlInfo* theWrappedObject) const
+{
+return  theWrappedObject->isWritable();
+}
+
+void PythonQtWrapper_QUrlInfo::setLastRead(QUrlInfo* theWrappedObject, const QDateTime&  dt)
+{
+ theWrappedObject->setLastRead(dt);
 }
 

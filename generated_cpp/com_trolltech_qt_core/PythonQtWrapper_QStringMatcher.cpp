@@ -20,26 +20,26 @@ return new QStringMatcher(other); }
 
 Qt::CaseSensitivity  PythonQtWrapper_QStringMatcher::caseSensitivity(QStringMatcher* theWrappedObject) const
 {
-return  (*theWrappedObject).caseSensitivity();
+return  theWrappedObject->caseSensitivity();
 }
 
 void PythonQtWrapper_QStringMatcher::setCaseSensitivity(QStringMatcher* theWrappedObject, Qt::CaseSensitivity  cs)
 {
- (*theWrappedObject).setCaseSensitivity(cs);
+ theWrappedObject->setCaseSensitivity(cs);
 }
 
 QString  PythonQtWrapper_QStringMatcher::pattern(QStringMatcher* theWrappedObject) const
 {
-return  (*theWrappedObject).pattern();
+return  theWrappedObject->pattern();
 }
 
 int  PythonQtWrapper_QStringMatcher::indexIn(QStringMatcher* theWrappedObject, const QString&  str, int  from) const
 {
-return  (*theWrappedObject).indexIn(str, from);
+return  theWrappedObject->indexIn(str, from);
 }
 
 void PythonQtWrapper_QStringMatcher::setPattern(QStringMatcher* theWrappedObject, const QString&  pattern)
 {
- (*theWrappedObject).setPattern(pattern);
+ theWrappedObject->setPattern(pattern);
 }
 

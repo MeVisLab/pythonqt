@@ -12,53 +12,53 @@ QDropEvent* PythonQtWrapper_QDropEvent::new_QDropEvent(const QPoint&  pos, Qt::D
 { 
 return new PythonQtShell_QDropEvent(pos, actions, data, buttons, modifiers, type); }
 
-Qt::KeyboardModifiers  PythonQtWrapper_QDropEvent::keyboardModifiers(QDropEvent* theWrappedObject) const
+Qt::MouseButtons  PythonQtWrapper_QDropEvent::mouseButtons(QDropEvent* theWrappedObject) const
 {
-return  (*theWrappedObject).keyboardModifiers();
-}
-
-Qt::DropAction  PythonQtWrapper_QDropEvent::proposedAction(QDropEvent* theWrappedObject) const
-{
-return  (*theWrappedObject).proposedAction();
-}
-
-Qt::DropAction  PythonQtWrapper_QDropEvent::dropAction(QDropEvent* theWrappedObject) const
-{
-return  (*theWrappedObject).dropAction();
-}
-
-void PythonQtWrapper_QDropEvent::setDropAction(QDropEvent* theWrappedObject, Qt::DropAction  action)
-{
- (*theWrappedObject).setDropAction(action);
-}
-
-const QMimeData*  PythonQtWrapper_QDropEvent::mimeData(QDropEvent* theWrappedObject) const
-{
-return  (*theWrappedObject).mimeData();
+return  theWrappedObject->mouseButtons();
 }
 
 void PythonQtWrapper_QDropEvent::acceptProposedAction(QDropEvent* theWrappedObject)
 {
- (*theWrappedObject).acceptProposedAction();
+ theWrappedObject->acceptProposedAction();
 }
 
-Qt::DropActions  PythonQtWrapper_QDropEvent::possibleActions(QDropEvent* theWrappedObject) const
+Qt::DropAction  PythonQtWrapper_QDropEvent::proposedAction(QDropEvent* theWrappedObject) const
 {
-return  (*theWrappedObject).possibleActions();
+return  theWrappedObject->proposedAction();
 }
 
 QWidget*  PythonQtWrapper_QDropEvent::source(QDropEvent* theWrappedObject) const
 {
-return  (*theWrappedObject).source();
+return  theWrappedObject->source();
 }
 
 const QPoint&  PythonQtWrapper_QDropEvent::pos(QDropEvent* theWrappedObject) const
 {
-return  (*theWrappedObject).pos();
+return  theWrappedObject->pos();
 }
 
-Qt::MouseButtons  PythonQtWrapper_QDropEvent::mouseButtons(QDropEvent* theWrappedObject) const
+Qt::DropAction  PythonQtWrapper_QDropEvent::dropAction(QDropEvent* theWrappedObject) const
 {
-return  (*theWrappedObject).mouseButtons();
+return  theWrappedObject->dropAction();
+}
+
+Qt::DropActions  PythonQtWrapper_QDropEvent::possibleActions(QDropEvent* theWrappedObject) const
+{
+return  theWrappedObject->possibleActions();
+}
+
+const QMimeData*  PythonQtWrapper_QDropEvent::mimeData(QDropEvent* theWrappedObject) const
+{
+return  theWrappedObject->mimeData();
+}
+
+Qt::KeyboardModifiers  PythonQtWrapper_QDropEvent::keyboardModifiers(QDropEvent* theWrappedObject) const
+{
+return  theWrappedObject->keyboardModifiers();
+}
+
+void PythonQtWrapper_QDropEvent::setDropAction(QDropEvent* theWrappedObject, Qt::DropAction  action)
+{
+ theWrappedObject->setDropAction(action);
 }
 

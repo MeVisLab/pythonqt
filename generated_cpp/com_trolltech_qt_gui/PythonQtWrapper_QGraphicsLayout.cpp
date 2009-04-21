@@ -201,33 +201,33 @@ QGraphicsLayout* PythonQtWrapper_QGraphicsLayout::new_QGraphicsLayout(QGraphicsL
 { 
 return new PythonQtShell_QGraphicsLayout(parent); }
 
-void PythonQtWrapper_QGraphicsLayout::activate(QGraphicsLayout* theWrappedObject)
-{
- (*theWrappedObject).activate();
-}
-
 bool  PythonQtWrapper_QGraphicsLayout::isActivated(QGraphicsLayout* theWrappedObject) const
 {
-return  (*theWrappedObject).isActivated();
+return  theWrappedObject->isActivated();
 }
 
 void PythonQtWrapper_QGraphicsLayout::setContentsMargins(QGraphicsLayout* theWrappedObject, qreal  left, qreal  top, qreal  right, qreal  bottom)
 {
- (*theWrappedObject).setContentsMargins(left, top, right, bottom);
+ theWrappedObject->setContentsMargins(left, top, right, bottom);
 }
 
 void PythonQtWrapper_QGraphicsLayout::invalidate(QGraphicsLayout* theWrappedObject)
 {
- (*theWrappedObject).invalidate();
+ ((PythonQtPublicPromoter_QGraphicsLayout*)theWrappedObject)->promoted_invalidate();
+}
+
+void PythonQtWrapper_QGraphicsLayout::activate(QGraphicsLayout* theWrappedObject)
+{
+ theWrappedObject->activate();
 }
 
 void PythonQtWrapper_QGraphicsLayout::getContentsMargins(QGraphicsLayout* theWrappedObject, qreal*  left, qreal*  top, qreal*  right, qreal*  bottom) const
 {
- (*theWrappedObject).getContentsMargins(left, top, right, bottom);
+ ((PythonQtPublicPromoter_QGraphicsLayout*)theWrappedObject)->promoted_getContentsMargins(left, top, right, bottom);
 }
 
 void PythonQtWrapper_QGraphicsLayout::widgetEvent(QGraphicsLayout* theWrappedObject, QEvent*  e)
 {
- (*theWrappedObject).widgetEvent(e);
+ ((PythonQtPublicPromoter_QGraphicsLayout*)theWrappedObject)->promoted_widgetEvent(e);
 }
 

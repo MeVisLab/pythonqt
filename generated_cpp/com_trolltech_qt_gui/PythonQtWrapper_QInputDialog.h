@@ -39,10 +39,10 @@ class PythonQtWrapper_QInputDialog : public QObject
 { Q_OBJECT
 public:
 public slots:
+   QString  static_QInputDialog_getItem(QWidget*  parent, const QString&  title, const QString&  label, const QStringList&  list, int  current = 0, bool  editable = true, bool*  ok = 0, Qt::WindowFlags  f = 0);
    int  static_QInputDialog_getInteger(QWidget*  parent, const QString&  title, const QString&  label, int  value = 0, int  minValue = -2147483647, int  maxValue = 2147483647, int  step = 1, bool*  ok = 0, Qt::WindowFlags  f = 0);
    double  static_QInputDialog_getDouble(QWidget*  parent, const QString&  title, const QString&  label, double  value = 0, double  minValue = -2147483647, double  maxValue = 2147483647, int  decimals = 1, bool*  ok = 0, Qt::WindowFlags  f = 0);
    QString  static_QInputDialog_getText(QWidget*  parent, const QString&  title, const QString&  label, QLineEdit::EchoMode  echo = QLineEdit::Normal, const QString&  text = QString(), bool*  ok = 0, Qt::WindowFlags  f = 0);
-   QString  static_QInputDialog_getItem(QWidget*  parent, const QString&  title, const QString&  label, const QStringList&  list, int  current = 0, bool  editable = true, bool*  ok = 0, Qt::WindowFlags  f = 0);
 };
 
 #endif // PYTHONQTWRAPPER_QINPUTDIALOG_H

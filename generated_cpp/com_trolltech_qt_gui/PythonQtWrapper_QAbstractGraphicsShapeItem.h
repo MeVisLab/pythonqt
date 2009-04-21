@@ -72,18 +72,24 @@ virtual void wheelEvent(QGraphicsSceneWheelEvent*  event);
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QAbstractGraphicsShapeItem : public QAbstractGraphicsShapeItem
+{ public:
+inline QPainterPath  promoted_opaqueArea() const { return QAbstractGraphicsShapeItem::opaqueArea(); }
+inline bool  promoted_isObscuredBy(const QGraphicsItem*  item) const { return QAbstractGraphicsShapeItem::isObscuredBy(item); }
+};
+
 class PythonQtWrapper_QAbstractGraphicsShapeItem : public QObject
 { Q_OBJECT
 public:
 public slots:
 QAbstractGraphicsShapeItem* new_QAbstractGraphicsShapeItem(QGraphicsItem*  parent = 0, QGraphicsScene*  scene = 0);
 void delete_QAbstractGraphicsShapeItem(QAbstractGraphicsShapeItem* obj) { delete obj; } 
-   bool  isObscuredBy(QAbstractGraphicsShapeItem* theWrappedObject, const QGraphicsItem*  item) const;
-   QPainterPath  opaqueArea(QAbstractGraphicsShapeItem* theWrappedObject) const;
-   QPen  pen(QAbstractGraphicsShapeItem* theWrappedObject) const;
    void setBrush(QAbstractGraphicsShapeItem* theWrappedObject, const QBrush&  brush);
-   void setPen(QAbstractGraphicsShapeItem* theWrappedObject, const QPen&  pen);
    QBrush  brush(QAbstractGraphicsShapeItem* theWrappedObject) const;
+   QPainterPath  opaqueArea(QAbstractGraphicsShapeItem* theWrappedObject) const;
+   bool  isObscuredBy(QAbstractGraphicsShapeItem* theWrappedObject, const QGraphicsItem*  item) const;
+   QPen  pen(QAbstractGraphicsShapeItem* theWrappedObject) const;
+   void setPen(QAbstractGraphicsShapeItem* theWrappedObject, const QPen&  pen);
 };
 
 #endif // PYTHONQTWRAPPER_QABSTRACTGRAPHICSSHAPEITEM_H

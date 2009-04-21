@@ -100,43 +100,43 @@ QUndoCommand* PythonQtWrapper_QUndoCommand::new_QUndoCommand(const QString&  tex
 { 
 return new PythonQtShell_QUndoCommand(text, parent); }
 
-int  PythonQtWrapper_QUndoCommand::id(QUndoCommand* theWrappedObject) const
-{
-return  (*theWrappedObject).id();
-}
-
 void PythonQtWrapper_QUndoCommand::undo(QUndoCommand* theWrappedObject)
 {
- (*theWrappedObject).undo();
+ ((PythonQtPublicPromoter_QUndoCommand*)theWrappedObject)->promoted_undo();
 }
 
 void PythonQtWrapper_QUndoCommand::setText(QUndoCommand* theWrappedObject, const QString&  text)
 {
- (*theWrappedObject).setText(text);
+ theWrappedObject->setText(text);
 }
 
 QString  PythonQtWrapper_QUndoCommand::text(QUndoCommand* theWrappedObject) const
 {
-return  (*theWrappedObject).text();
-}
-
-const QUndoCommand*  PythonQtWrapper_QUndoCommand::child(QUndoCommand* theWrappedObject, int  index) const
-{
-return  (*theWrappedObject).child(index);
+return  theWrappedObject->text();
 }
 
 bool  PythonQtWrapper_QUndoCommand::mergeWith(QUndoCommand* theWrappedObject, const QUndoCommand*  other)
 {
-return  (*theWrappedObject).mergeWith(other);
+return  ((PythonQtPublicPromoter_QUndoCommand*)theWrappedObject)->promoted_mergeWith(other);
 }
 
 void PythonQtWrapper_QUndoCommand::redo(QUndoCommand* theWrappedObject)
 {
- (*theWrappedObject).redo();
+ ((PythonQtPublicPromoter_QUndoCommand*)theWrappedObject)->promoted_redo();
+}
+
+const QUndoCommand*  PythonQtWrapper_QUndoCommand::child(QUndoCommand* theWrappedObject, int  index) const
+{
+return  theWrappedObject->child(index);
 }
 
 int  PythonQtWrapper_QUndoCommand::childCount(QUndoCommand* theWrappedObject) const
 {
-return  (*theWrappedObject).childCount();
+return  theWrappedObject->childCount();
+}
+
+int  PythonQtWrapper_QUndoCommand::id(QUndoCommand* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QUndoCommand*)theWrappedObject)->promoted_id();
 }
 

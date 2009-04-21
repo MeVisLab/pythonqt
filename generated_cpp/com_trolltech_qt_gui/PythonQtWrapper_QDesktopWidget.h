@@ -85,7 +85,7 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QDesktopWidget : public QDesktopWidget
 { public:
-inline void resizeEvent(QResizeEvent*  e) { QDesktopWidget::resizeEvent(e); }
+inline void promoted_resizeEvent(QResizeEvent*  e) { QDesktopWidget::resizeEvent(e); }
 };
 
 class PythonQtWrapper_QDesktopWidget : public QObject
@@ -95,18 +95,18 @@ public slots:
 QDesktopWidget* new_QDesktopWidget();
 void delete_QDesktopWidget(QDesktopWidget* obj) { delete obj; } 
    int  screenNumber(QDesktopWidget* theWrappedObject, const QPoint&  arg__1) const;
-   const QRect  availableGeometry(QDesktopWidget* theWrappedObject, int  screen = -1) const;
-   const QRect  availableGeometry(QDesktopWidget* theWrappedObject, const QPoint&  point) const;
-   const QRect  screenGeometry(QDesktopWidget* theWrappedObject, int  screen = -1) const;
-   const QRect  availableGeometry(QDesktopWidget* theWrappedObject, const QWidget*  widget) const;
-   bool  isVirtualDesktop(QDesktopWidget* theWrappedObject) const;
-   const QRect  screenGeometry(QDesktopWidget* theWrappedObject, const QPoint&  point) const;
+   void resizeEvent(QDesktopWidget* theWrappedObject, QResizeEvent*  e);
    int  screenNumber(QDesktopWidget* theWrappedObject, const QWidget*  widget = 0) const;
+   const QRect  availableGeometry(QDesktopWidget* theWrappedObject, int  screen = -1) const;
+   const QRect  screenGeometry(QDesktopWidget* theWrappedObject, const QPoint&  point) const;
+   const QRect  availableGeometry(QDesktopWidget* theWrappedObject, const QPoint&  point) const;
    int  numScreens(QDesktopWidget* theWrappedObject) const;
    QWidget*  screen(QDesktopWidget* theWrappedObject, int  screen = -1);
    const QRect  screenGeometry(QDesktopWidget* theWrappedObject, const QWidget*  widget) const;
+   const QRect  availableGeometry(QDesktopWidget* theWrappedObject, const QWidget*  widget) const;
+   bool  isVirtualDesktop(QDesktopWidget* theWrappedObject) const;
    int  primaryScreen(QDesktopWidget* theWrappedObject) const;
-   void resizeEvent(QDesktopWidget* theWrappedObject, QResizeEvent*  e);
+   const QRect  screenGeometry(QDesktopWidget* theWrappedObject, int  screen = -1) const;
 };
 
 #endif // PYTHONQTWRAPPER_QDESKTOPWIDGET_H

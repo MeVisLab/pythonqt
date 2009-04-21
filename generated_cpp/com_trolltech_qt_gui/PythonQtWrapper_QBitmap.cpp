@@ -114,23 +114,23 @@ QBitmap* PythonQtWrapper_QBitmap::new_QBitmap(int  w, int  h)
 { 
 return new PythonQtShell_QBitmap(w, h); }
 
-QBitmap  PythonQtWrapper_QBitmap::static_QBitmap_fromImage(const QImage&  image, Qt::ImageConversionFlags  flags)
-{
-return QBitmap::fromImage(image, flags);
-}
-
 void PythonQtWrapper_QBitmap::clear(QBitmap* theWrappedObject)
 {
- (*theWrappedObject).clear();
+ theWrappedObject->clear();
 }
 
 QBitmap  PythonQtWrapper_QBitmap::transformed(QBitmap* theWrappedObject, const QMatrix&  arg__1) const
 {
-return  (*theWrappedObject).transformed(arg__1);
+return  theWrappedObject->transformed(arg__1);
 }
 
 QBitmap  PythonQtWrapper_QBitmap::transformed(QBitmap* theWrappedObject, const QTransform&  matrix) const
 {
-return  (*theWrappedObject).transformed(matrix);
+return  theWrappedObject->transformed(matrix);
+}
+
+QBitmap  PythonQtWrapper_QBitmap::static_QBitmap_fromImage(const QImage&  image, Qt::ImageConversionFlags  flags)
+{
+return QBitmap::fromImage(image, flags);
 }
 

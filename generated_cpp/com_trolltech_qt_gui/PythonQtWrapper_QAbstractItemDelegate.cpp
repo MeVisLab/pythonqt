@@ -274,26 +274,26 @@ return new PythonQtShell_QAbstractItemDelegate(parent); }
 
 void PythonQtWrapper_QAbstractItemDelegate::updateEditorGeometry(QAbstractItemDelegate* theWrappedObject, QWidget*  editor, const QStyleOptionViewItem&  option, const QModelIndex&  index) const
 {
- (*theWrappedObject).updateEditorGeometry(editor, option, index);
+ ((PythonQtPublicPromoter_QAbstractItemDelegate*)theWrappedObject)->promoted_updateEditorGeometry(editor, option, index);
 }
 
 void PythonQtWrapper_QAbstractItemDelegate::setEditorData(QAbstractItemDelegate* theWrappedObject, QWidget*  editor, const QModelIndex&  index) const
 {
- (*theWrappedObject).setEditorData(editor, index);
+ ((PythonQtPublicPromoter_QAbstractItemDelegate*)theWrappedObject)->promoted_setEditorData(editor, index);
 }
 
 void PythonQtWrapper_QAbstractItemDelegate::setModelData(QAbstractItemDelegate* theWrappedObject, QWidget*  editor, QAbstractItemModel*  model, const QModelIndex&  index) const
 {
- (*theWrappedObject).setModelData(editor, model, index);
+ ((PythonQtPublicPromoter_QAbstractItemDelegate*)theWrappedObject)->promoted_setModelData(editor, model, index);
 }
 
 QWidget*  PythonQtWrapper_QAbstractItemDelegate::createEditor(QAbstractItemDelegate* theWrappedObject, QWidget*  parent, const QStyleOptionViewItem&  option, const QModelIndex&  index) const
 {
-return  (*theWrappedObject).createEditor(parent, option, index);
+return  ((PythonQtPublicPromoter_QAbstractItemDelegate*)theWrappedObject)->promoted_createEditor(parent, option, index);
 }
 
 bool  PythonQtWrapper_QAbstractItemDelegate::editorEvent(QAbstractItemDelegate* theWrappedObject, QEvent*  event, QAbstractItemModel*  model, const QStyleOptionViewItem&  option, const QModelIndex&  index)
 {
-return  (*theWrappedObject).editorEvent(event, model, option, index);
+return  ((PythonQtPublicPromoter_QAbstractItemDelegate*)theWrappedObject)->promoted_editorEvent(event, model, option, index);
 }
 

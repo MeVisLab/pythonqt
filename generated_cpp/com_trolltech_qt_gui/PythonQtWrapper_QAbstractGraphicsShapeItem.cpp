@@ -758,33 +758,33 @@ QAbstractGraphicsShapeItem* PythonQtWrapper_QAbstractGraphicsShapeItem::new_QAbs
 { 
 return new PythonQtShell_QAbstractGraphicsShapeItem(parent, scene); }
 
-bool  PythonQtWrapper_QAbstractGraphicsShapeItem::isObscuredBy(QAbstractGraphicsShapeItem* theWrappedObject, const QGraphicsItem*  item) const
-{
-return  (*theWrappedObject).isObscuredBy(item);
-}
-
-QPainterPath  PythonQtWrapper_QAbstractGraphicsShapeItem::opaqueArea(QAbstractGraphicsShapeItem* theWrappedObject) const
-{
-return  (*theWrappedObject).opaqueArea();
-}
-
-QPen  PythonQtWrapper_QAbstractGraphicsShapeItem::pen(QAbstractGraphicsShapeItem* theWrappedObject) const
-{
-return  (*theWrappedObject).pen();
-}
-
 void PythonQtWrapper_QAbstractGraphicsShapeItem::setBrush(QAbstractGraphicsShapeItem* theWrappedObject, const QBrush&  brush)
 {
- (*theWrappedObject).setBrush(brush);
-}
-
-void PythonQtWrapper_QAbstractGraphicsShapeItem::setPen(QAbstractGraphicsShapeItem* theWrappedObject, const QPen&  pen)
-{
- (*theWrappedObject).setPen(pen);
+ theWrappedObject->setBrush(brush);
 }
 
 QBrush  PythonQtWrapper_QAbstractGraphicsShapeItem::brush(QAbstractGraphicsShapeItem* theWrappedObject) const
 {
-return  (*theWrappedObject).brush();
+return  theWrappedObject->brush();
+}
+
+QPainterPath  PythonQtWrapper_QAbstractGraphicsShapeItem::opaqueArea(QAbstractGraphicsShapeItem* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QAbstractGraphicsShapeItem*)theWrappedObject)->promoted_opaqueArea();
+}
+
+bool  PythonQtWrapper_QAbstractGraphicsShapeItem::isObscuredBy(QAbstractGraphicsShapeItem* theWrappedObject, const QGraphicsItem*  item) const
+{
+return  ((PythonQtPublicPromoter_QAbstractGraphicsShapeItem*)theWrappedObject)->promoted_isObscuredBy(item);
+}
+
+QPen  PythonQtWrapper_QAbstractGraphicsShapeItem::pen(QAbstractGraphicsShapeItem* theWrappedObject) const
+{
+return  theWrappedObject->pen();
+}
+
+void PythonQtWrapper_QAbstractGraphicsShapeItem::setPen(QAbstractGraphicsShapeItem* theWrappedObject, const QPen&  pen)
+{
+ theWrappedObject->setPen(pen);
 }
 

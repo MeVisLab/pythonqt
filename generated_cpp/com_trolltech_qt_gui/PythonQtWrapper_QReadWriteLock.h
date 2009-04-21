@@ -19,13 +19,13 @@ public slots:
 QReadWriteLock* new_QReadWriteLock();
 QReadWriteLock* new_QReadWriteLock(QReadWriteLock::RecursionMode  recursionMode);
 void delete_QReadWriteLock(QReadWriteLock* obj) { delete obj; } 
-   void lockForRead(QReadWriteLock* theWrappedObject);
-   bool  tryLockForWrite(QReadWriteLock* theWrappedObject, int  timeout);
-   void lockForWrite(QReadWriteLock* theWrappedObject);
-   bool  tryLockForRead(QReadWriteLock* theWrappedObject);
-   void unlock(QReadWriteLock* theWrappedObject);
-   bool  tryLockForRead(QReadWriteLock* theWrappedObject, int  timeout);
    bool  tryLockForWrite(QReadWriteLock* theWrappedObject);
+   void lockForWrite(QReadWriteLock* theWrappedObject);
+   void lockForRead(QReadWriteLock* theWrappedObject);
+   bool  tryLockForRead(QReadWriteLock* theWrappedObject, int  timeout);
+   bool  tryLockForRead(QReadWriteLock* theWrappedObject);
+   bool  tryLockForWrite(QReadWriteLock* theWrappedObject, int  timeout);
+   void unlock(QReadWriteLock* theWrappedObject);
 };
 
 #endif // PYTHONQTWRAPPER_QREADWRITELOCK_H

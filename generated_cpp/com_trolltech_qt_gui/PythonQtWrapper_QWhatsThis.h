@@ -18,11 +18,11 @@ public:
 public slots:
 void delete_QWhatsThis(QWhatsThis* obj) { delete obj; } 
    void static_QWhatsThis_enterWhatsThisMode();
-   void static_QWhatsThis_showText(const QPoint&  pos, const QString&  text, QWidget*  w = 0);
-   void static_QWhatsThis_hideText();
-   QAction*  static_QWhatsThis_createAction(QObject*  parent = 0);
    bool  static_QWhatsThis_inWhatsThisMode();
+   QAction*  static_QWhatsThis_createAction(QObject*  parent = 0);
+   void static_QWhatsThis_hideText();
    void static_QWhatsThis_leaveWhatsThisMode();
+   void static_QWhatsThis_showText(const QPoint&  pos, const QString&  text, QWidget*  w = 0);
 };
 
 #endif // PYTHONQTWRAPPER_QWHATSTHIS_H

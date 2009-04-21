@@ -347,33 +347,33 @@ QSimpleXmlNodeModel* PythonQtWrapper_QSimpleXmlNodeModel::new_QSimpleXmlNodeMode
 { 
 return new PythonQtShell_QSimpleXmlNodeModel(namePool); }
 
-QUrl  PythonQtWrapper_QSimpleXmlNodeModel::baseUri(QSimpleXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  node) const
-{
-return  (*theWrappedObject).baseUri(node);
-}
-
-QVector<QXmlName >  PythonQtWrapper_QSimpleXmlNodeModel::namespaceBindings(QSimpleXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  arg__1) const
-{
-return  (*theWrappedObject).namespaceBindings(arg__1);
-}
-
 QXmlNamePool&  PythonQtWrapper_QSimpleXmlNodeModel::namePool(QSimpleXmlNodeModel* theWrappedObject) const
 {
-return  (*theWrappedObject).namePool();
+return  theWrappedObject->namePool();
 }
 
 QString  PythonQtWrapper_QSimpleXmlNodeModel::stringValue(QSimpleXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  node) const
 {
-return  (*theWrappedObject).stringValue(node);
+return  ((PythonQtPublicPromoter_QSimpleXmlNodeModel*)theWrappedObject)->promoted_stringValue(node);
 }
 
 QXmlNodeModelIndex  PythonQtWrapper_QSimpleXmlNodeModel::elementById(QSimpleXmlNodeModel* theWrappedObject, const QXmlName&  id) const
 {
-return  (*theWrappedObject).elementById(id);
+return  ((PythonQtPublicPromoter_QSimpleXmlNodeModel*)theWrappedObject)->promoted_elementById(id);
+}
+
+QUrl  PythonQtWrapper_QSimpleXmlNodeModel::baseUri(QSimpleXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  node) const
+{
+return  ((PythonQtPublicPromoter_QSimpleXmlNodeModel*)theWrappedObject)->promoted_baseUri(node);
+}
+
+QVector<QXmlName >  PythonQtWrapper_QSimpleXmlNodeModel::namespaceBindings(QSimpleXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  arg__1) const
+{
+return  ((PythonQtPublicPromoter_QSimpleXmlNodeModel*)theWrappedObject)->promoted_namespaceBindings(arg__1);
 }
 
 QVector<QXmlNodeModelIndex >  PythonQtWrapper_QSimpleXmlNodeModel::nodesByIdref(QSimpleXmlNodeModel* theWrappedObject, const QXmlName&  idref) const
 {
-return  (*theWrappedObject).nodesByIdref(idref);
+return  ((PythonQtPublicPromoter_QSimpleXmlNodeModel*)theWrappedObject)->promoted_nodesByIdref(idref);
 }
 

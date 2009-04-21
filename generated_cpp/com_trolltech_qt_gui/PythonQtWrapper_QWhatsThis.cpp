@@ -14,14 +14,9 @@ void PythonQtWrapper_QWhatsThis::static_QWhatsThis_enterWhatsThisMode()
 QWhatsThis::enterWhatsThisMode();
 }
 
-void PythonQtWrapper_QWhatsThis::static_QWhatsThis_showText(const QPoint&  pos, const QString&  text, QWidget*  w)
+bool  PythonQtWrapper_QWhatsThis::static_QWhatsThis_inWhatsThisMode()
 {
-QWhatsThis::showText(pos, text, w);
-}
-
-void PythonQtWrapper_QWhatsThis::static_QWhatsThis_hideText()
-{
-QWhatsThis::hideText();
+return QWhatsThis::inWhatsThisMode();
 }
 
 QAction*  PythonQtWrapper_QWhatsThis::static_QWhatsThis_createAction(QObject*  parent)
@@ -29,13 +24,18 @@ QAction*  PythonQtWrapper_QWhatsThis::static_QWhatsThis_createAction(QObject*  p
 return QWhatsThis::createAction(parent);
 }
 
-bool  PythonQtWrapper_QWhatsThis::static_QWhatsThis_inWhatsThisMode()
+void PythonQtWrapper_QWhatsThis::static_QWhatsThis_hideText()
 {
-return QWhatsThis::inWhatsThisMode();
+QWhatsThis::hideText();
 }
 
 void PythonQtWrapper_QWhatsThis::static_QWhatsThis_leaveWhatsThisMode()
 {
 QWhatsThis::leaveWhatsThisMode();
+}
+
+void PythonQtWrapper_QWhatsThis::static_QWhatsThis_showText(const QPoint&  pos, const QString&  text, QWidget*  w)
+{
+QWhatsThis::showText(pos, text, w);
 }
 

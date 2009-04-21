@@ -74,58 +74,58 @@ QGraphicsSimpleTextItem* PythonQtWrapper_QGraphicsSimpleTextItem::new_QGraphicsS
 { 
 return new PythonQtShell_QGraphicsSimpleTextItem(text, parent, scene); }
 
-QFont  PythonQtWrapper_QGraphicsSimpleTextItem::font(QGraphicsSimpleTextItem* theWrappedObject) const
-{
-return  (*theWrappedObject).font();
-}
-
-int  PythonQtWrapper_QGraphicsSimpleTextItem::type(QGraphicsSimpleTextItem* theWrappedObject) const
-{
-return  (*theWrappedObject).type();
-}
-
-void PythonQtWrapper_QGraphicsSimpleTextItem::paint(QGraphicsSimpleTextItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget)
-{
- (*theWrappedObject).paint(painter, option, widget);
-}
-
-void PythonQtWrapper_QGraphicsSimpleTextItem::setFont(QGraphicsSimpleTextItem* theWrappedObject, const QFont&  font)
-{
- (*theWrappedObject).setFont(font);
-}
-
-QString  PythonQtWrapper_QGraphicsSimpleTextItem::text(QGraphicsSimpleTextItem* theWrappedObject) const
-{
-return  (*theWrappedObject).text();
-}
-
-bool  PythonQtWrapper_QGraphicsSimpleTextItem::contains(QGraphicsSimpleTextItem* theWrappedObject, const QPointF&  point) const
-{
-return  (*theWrappedObject).contains(point);
-}
-
-QPainterPath  PythonQtWrapper_QGraphicsSimpleTextItem::opaqueArea(QGraphicsSimpleTextItem* theWrappedObject) const
-{
-return  (*theWrappedObject).opaqueArea();
-}
-
-void PythonQtWrapper_QGraphicsSimpleTextItem::setText(QGraphicsSimpleTextItem* theWrappedObject, const QString&  text)
-{
- (*theWrappedObject).setText(text);
-}
-
-QRectF  PythonQtWrapper_QGraphicsSimpleTextItem::boundingRect(QGraphicsSimpleTextItem* theWrappedObject) const
-{
-return  (*theWrappedObject).boundingRect();
-}
-
 QPainterPath  PythonQtWrapper_QGraphicsSimpleTextItem::shape(QGraphicsSimpleTextItem* theWrappedObject) const
 {
-return  (*theWrappedObject).shape();
+return  theWrappedObject->shape();
+}
+
+QFont  PythonQtWrapper_QGraphicsSimpleTextItem::font(QGraphicsSimpleTextItem* theWrappedObject) const
+{
+return  theWrappedObject->font();
 }
 
 bool  PythonQtWrapper_QGraphicsSimpleTextItem::isObscuredBy(QGraphicsSimpleTextItem* theWrappedObject, const QGraphicsItem*  item) const
 {
-return  (*theWrappedObject).isObscuredBy(item);
+return  ((PythonQtPublicPromoter_QGraphicsSimpleTextItem*)theWrappedObject)->promoted_isObscuredBy(item);
+}
+
+void PythonQtWrapper_QGraphicsSimpleTextItem::paint(QGraphicsSimpleTextItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget)
+{
+ theWrappedObject->paint(painter, option, widget);
+}
+
+void PythonQtWrapper_QGraphicsSimpleTextItem::setText(QGraphicsSimpleTextItem* theWrappedObject, const QString&  text)
+{
+ theWrappedObject->setText(text);
+}
+
+int  PythonQtWrapper_QGraphicsSimpleTextItem::type(QGraphicsSimpleTextItem* theWrappedObject) const
+{
+return  theWrappedObject->type();
+}
+
+void PythonQtWrapper_QGraphicsSimpleTextItem::setFont(QGraphicsSimpleTextItem* theWrappedObject, const QFont&  font)
+{
+ theWrappedObject->setFont(font);
+}
+
+QString  PythonQtWrapper_QGraphicsSimpleTextItem::text(QGraphicsSimpleTextItem* theWrappedObject) const
+{
+return  theWrappedObject->text();
+}
+
+bool  PythonQtWrapper_QGraphicsSimpleTextItem::contains(QGraphicsSimpleTextItem* theWrappedObject, const QPointF&  point) const
+{
+return  theWrappedObject->contains(point);
+}
+
+QRectF  PythonQtWrapper_QGraphicsSimpleTextItem::boundingRect(QGraphicsSimpleTextItem* theWrappedObject) const
+{
+return  theWrappedObject->boundingRect();
+}
+
+QPainterPath  PythonQtWrapper_QGraphicsSimpleTextItem::opaqueArea(QGraphicsSimpleTextItem* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QGraphicsSimpleTextItem*)theWrappedObject)->promoted_opaqueArea();
 }
 

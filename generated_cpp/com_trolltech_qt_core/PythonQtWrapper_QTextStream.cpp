@@ -21,84 +21,29 @@ QTextStream* PythonQtWrapper_QTextStream::new_QTextStream(const QByteArray&  arr
 { 
 return new PythonQtShell_QTextStream(array, openMode); }
 
-QTextStream::RealNumberNotation  PythonQtWrapper_QTextStream::realNumberNotation(QTextStream* theWrappedObject) const
+QTextStream&  PythonQtWrapper_QTextStream::writeShort(QTextStream* theWrappedObject, signed short  i)
 {
-return  (*theWrappedObject).realNumberNotation();
+return  (*theWrappedObject) <<i;
 }
 
-bool  PythonQtWrapper_QTextStream::seek(QTextStream* theWrappedObject, qint64  pos)
+QString  PythonQtWrapper_QTextStream::read(QTextStream* theWrappedObject, qint64  maxlen)
 {
-return  (*theWrappedObject).seek(pos);
+return  theWrappedObject->read(maxlen);
 }
 
-QString  PythonQtWrapper_QTextStream::readAll(QTextStream* theWrappedObject)
+void PythonQtWrapper_QTextStream::flush(QTextStream* theWrappedObject)
 {
-return  (*theWrappedObject).readAll();
+ theWrappedObject->flush();
 }
 
-QTextStream&  PythonQtWrapper_QTextStream::readShort(QTextStream* theWrappedObject, signed short&  i)
+void PythonQtWrapper_QTextStream::setIntegerBase(QTextStream* theWrappedObject, int  base)
 {
-return  (*theWrappedObject) >>i;
-}
-
-QTextStream&  PythonQtWrapper_QTextStream::readUShort(QTextStream* theWrappedObject, unsigned short&  i)
-{
-return  (*theWrappedObject) >>i;
-}
-
-void PythonQtWrapper_QTextStream::setCodec(QTextStream* theWrappedObject, QTextCodec*  codec)
-{
- (*theWrappedObject).setCodec(codec);
+ theWrappedObject->setIntegerBase(base);
 }
 
 QTextStream::NumberFlags  PythonQtWrapper_QTextStream::numberFlags(QTextStream* theWrappedObject) const
 {
-return  (*theWrappedObject).numberFlags();
-}
-
-void PythonQtWrapper_QTextStream::setCodec(QTextStream* theWrappedObject, const char*  codecName)
-{
- (*theWrappedObject).setCodec(codecName);
-}
-
-void PythonQtWrapper_QTextStream::setStatus(QTextStream* theWrappedObject, QTextStream::Status  status)
-{
- (*theWrappedObject).setStatus(status);
-}
-
-QTextStream&  PythonQtWrapper_QTextStream::readByte(QTextStream* theWrappedObject, char&  ch)
-{
-return  (*theWrappedObject) >>ch;
-}
-
-void PythonQtWrapper_QTextStream::skipWhiteSpace(QTextStream* theWrappedObject)
-{
- (*theWrappedObject).skipWhiteSpace();
-}
-
-qint64  PythonQtWrapper_QTextStream::pos(QTextStream* theWrappedObject) const
-{
-return  (*theWrappedObject).pos();
-}
-
-void PythonQtWrapper_QTextStream::setDevice(QTextStream* theWrappedObject, QIODevice*  device)
-{
- (*theWrappedObject).setDevice(device);
-}
-
-void PythonQtWrapper_QTextStream::setRealNumberPrecision(QTextStream* theWrappedObject, int  precision)
-{
- (*theWrappedObject).setRealNumberPrecision(precision);
-}
-
-bool  PythonQtWrapper_QTextStream::atEnd(QTextStream* theWrappedObject) const
-{
-return  (*theWrappedObject).atEnd();
-}
-
-QTextStream::Status  PythonQtWrapper_QTextStream::status(QTextStream* theWrappedObject) const
-{
-return  (*theWrappedObject).status();
+return  theWrappedObject->numberFlags();
 }
 
 QTextStream&  PythonQtWrapper_QTextStream::writeDouble(QTextStream* theWrappedObject, double  f)
@@ -106,139 +51,14 @@ QTextStream&  PythonQtWrapper_QTextStream::writeDouble(QTextStream* theWrappedOb
 return  (*theWrappedObject) <<f;
 }
 
-int  PythonQtWrapper_QTextStream::realNumberPrecision(QTextStream* theWrappedObject) const
-{
-return  (*theWrappedObject).realNumberPrecision();
-}
-
-bool  PythonQtWrapper_QTextStream::generateByteOrderMark(QTextStream* theWrappedObject) const
-{
-return  (*theWrappedObject).generateByteOrderMark();
-}
-
-bool  PythonQtWrapper_QTextStream::autoDetectUnicode(QTextStream* theWrappedObject) const
-{
-return  (*theWrappedObject).autoDetectUnicode();
-}
-
-QTextStream::FieldAlignment  PythonQtWrapper_QTextStream::fieldAlignment(QTextStream* theWrappedObject) const
-{
-return  (*theWrappedObject).fieldAlignment();
-}
-
-QTextCodec*  PythonQtWrapper_QTextStream::codec(QTextStream* theWrappedObject) const
-{
-return  (*theWrappedObject).codec();
-}
-
-void PythonQtWrapper_QTextStream::setNumberFlags(QTextStream* theWrappedObject, QTextStream::NumberFlags  flags)
-{
- (*theWrappedObject).setNumberFlags(flags);
-}
-
-QTextStream&  PythonQtWrapper_QTextStream::writeByteArray(QTextStream* theWrappedObject, const QByteArray&  array)
-{
-return  (*theWrappedObject) <<array;
-}
-
-int  PythonQtWrapper_QTextStream::fieldWidth(QTextStream* theWrappedObject) const
-{
-return  (*theWrappedObject).fieldWidth();
-}
-
-void PythonQtWrapper_QTextStream::setAutoDetectUnicode(QTextStream* theWrappedObject, bool  enabled)
-{
- (*theWrappedObject).setAutoDetectUnicode(enabled);
-}
-
-QTextStream&  PythonQtWrapper_QTextStream::writeBoolean(QTextStream* theWrappedObject, QBool  b)
-{
-return  (*theWrappedObject) <<b;
-}
-
-int  PythonQtWrapper_QTextStream::integerBase(QTextStream* theWrappedObject) const
-{
-return  (*theWrappedObject).integerBase();
-}
-
-QTextStream&  PythonQtWrapper_QTextStream::writeInt(QTextStream* theWrappedObject, signed int  i)
-{
-return  (*theWrappedObject) <<i;
-}
-
-void PythonQtWrapper_QTextStream::setIntegerBase(QTextStream* theWrappedObject, int  base)
-{
- (*theWrappedObject).setIntegerBase(base);
-}
-
 void PythonQtWrapper_QTextStream::setPadChar(QTextStream* theWrappedObject, QChar  ch)
 {
- (*theWrappedObject).setPadChar(ch);
+ theWrappedObject->setPadChar(ch);
 }
 
-QString  PythonQtWrapper_QTextStream::read(QTextStream* theWrappedObject, qint64  maxlen)
+void PythonQtWrapper_QTextStream::setRealNumberPrecision(QTextStream* theWrappedObject, int  precision)
 {
-return  (*theWrappedObject).read(maxlen);
-}
-
-QTextStream&  PythonQtWrapper_QTextStream::writeString(QTextStream* theWrappedObject, const QString&  s)
-{
-return  (*theWrappedObject) <<s;
-}
-
-QTextStream&  PythonQtWrapper_QTextStream::readInt(QTextStream* theWrappedObject, signed int&  i)
-{
-return  (*theWrappedObject) >>i;
-}
-
-QString  PythonQtWrapper_QTextStream::readLine(QTextStream* theWrappedObject, qint64  maxlen)
-{
-return  (*theWrappedObject).readLine(maxlen);
-}
-
-void PythonQtWrapper_QTextStream::setFieldAlignment(QTextStream* theWrappedObject, QTextStream::FieldAlignment  alignment)
-{
- (*theWrappedObject).setFieldAlignment(alignment);
-}
-
-QIODevice*  PythonQtWrapper_QTextStream::device(QTextStream* theWrappedObject) const
-{
-return  (*theWrappedObject).device();
-}
-
-void PythonQtWrapper_QTextStream::resetStatus(QTextStream* theWrappedObject)
-{
- (*theWrappedObject).resetStatus();
-}
-
-QChar  PythonQtWrapper_QTextStream::padChar(QTextStream* theWrappedObject) const
-{
-return  (*theWrappedObject).padChar();
-}
-
-void PythonQtWrapper_QTextStream::reset(QTextStream* theWrappedObject)
-{
- (*theWrappedObject).reset();
-}
-
-void PythonQtWrapper_QTextStream::setFieldWidth(QTextStream* theWrappedObject, int  width)
-{
- (*theWrappedObject).setFieldWidth(width);
-}
-
-void PythonQtWrapper_QTextStream::setGenerateByteOrderMark(QTextStream* theWrappedObject, bool  generate)
-{
- (*theWrappedObject).setGenerateByteOrderMark(generate);
-}
-
-QTextStream&  PythonQtWrapper_QTextStream::writeFloat(QTextStream* theWrappedObject, float  f)
-{
-return  (*theWrappedObject) <<f;
-}
-
-QTextStream&  PythonQtWrapper_QTextStream::writeShort(QTextStream* theWrappedObject, signed short  i)
-{
-return  (*theWrappedObject) <<i;
+ theWrappedObject->setRealNumberPrecision(precision);
 }
 
 QTextStream&  PythonQtWrapper_QTextStream::readLongLong(QTextStream* theWrappedObject, qlonglong&  i)
@@ -246,9 +66,9 @@ QTextStream&  PythonQtWrapper_QTextStream::readLongLong(QTextStream* theWrappedO
 return  (*theWrappedObject) >>i;
 }
 
-void PythonQtWrapper_QTextStream::flush(QTextStream* theWrappedObject)
+void PythonQtWrapper_QTextStream::setRealNumberNotation(QTextStream* theWrappedObject, QTextStream::RealNumberNotation  notation)
 {
- (*theWrappedObject).flush();
+ theWrappedObject->setRealNumberNotation(notation);
 }
 
 QTextStream&  PythonQtWrapper_QTextStream::readFloat(QTextStream* theWrappedObject, float&  f)
@@ -256,14 +76,14 @@ QTextStream&  PythonQtWrapper_QTextStream::readFloat(QTextStream* theWrappedObje
 return  (*theWrappedObject) >>f;
 }
 
-QTextStream&  PythonQtWrapper_QTextStream::writeByte(QTextStream* theWrappedObject, char  ch)
+QTextStream::RealNumberNotation  PythonQtWrapper_QTextStream::realNumberNotation(QTextStream* theWrappedObject) const
 {
-return  (*theWrappedObject) <<ch;
+return  theWrappedObject->realNumberNotation();
 }
 
-QTextStream&  PythonQtWrapper_QTextStream::readDouble(QTextStream* theWrappedObject, double&  f)
+QTextStream&  PythonQtWrapper_QTextStream::writeByteArray(QTextStream* theWrappedObject, const QByteArray&  array)
 {
-return  (*theWrappedObject) >>f;
+return  (*theWrappedObject) <<array;
 }
 
 QTextStream&  PythonQtWrapper_QTextStream::readUInt(QTextStream* theWrappedObject, unsigned int&  i)
@@ -271,8 +91,188 @@ QTextStream&  PythonQtWrapper_QTextStream::readUInt(QTextStream* theWrappedObjec
 return  (*theWrappedObject) >>i;
 }
 
-void PythonQtWrapper_QTextStream::setRealNumberNotation(QTextStream* theWrappedObject, QTextStream::RealNumberNotation  notation)
+void PythonQtWrapper_QTextStream::setCodec(QTextStream* theWrappedObject, QTextCodec*  codec)
 {
- (*theWrappedObject).setRealNumberNotation(notation);
+ theWrappedObject->setCodec(codec);
+}
+
+void PythonQtWrapper_QTextStream::setDevice(QTextStream* theWrappedObject, QIODevice*  device)
+{
+ theWrappedObject->setDevice(device);
+}
+
+void PythonQtWrapper_QTextStream::setCodec(QTextStream* theWrappedObject, const char*  codecName)
+{
+ theWrappedObject->setCodec(codecName);
+}
+
+void PythonQtWrapper_QTextStream::setAutoDetectUnicode(QTextStream* theWrappedObject, bool  enabled)
+{
+ theWrappedObject->setAutoDetectUnicode(enabled);
+}
+
+qint64  PythonQtWrapper_QTextStream::pos(QTextStream* theWrappedObject) const
+{
+return  theWrappedObject->pos();
+}
+
+QTextStream&  PythonQtWrapper_QTextStream::writeInt(QTextStream* theWrappedObject, signed int  i)
+{
+return  (*theWrappedObject) <<i;
+}
+
+void PythonQtWrapper_QTextStream::setStatus(QTextStream* theWrappedObject, QTextStream::Status  status)
+{
+ theWrappedObject->setStatus(status);
+}
+
+QTextStream::Status  PythonQtWrapper_QTextStream::status(QTextStream* theWrappedObject) const
+{
+return  theWrappedObject->status();
+}
+
+QIODevice*  PythonQtWrapper_QTextStream::device(QTextStream* theWrappedObject) const
+{
+return  theWrappedObject->device();
+}
+
+bool  PythonQtWrapper_QTextStream::atEnd(QTextStream* theWrappedObject) const
+{
+return  theWrappedObject->atEnd();
+}
+
+QTextStream&  PythonQtWrapper_QTextStream::writeBoolean(QTextStream* theWrappedObject, QBool  b)
+{
+return  (*theWrappedObject) <<b;
+}
+
+void PythonQtWrapper_QTextStream::reset(QTextStream* theWrappedObject)
+{
+ theWrappedObject->reset();
+}
+
+void PythonQtWrapper_QTextStream::setGenerateByteOrderMark(QTextStream* theWrappedObject, bool  generate)
+{
+ theWrappedObject->setGenerateByteOrderMark(generate);
+}
+
+bool  PythonQtWrapper_QTextStream::generateByteOrderMark(QTextStream* theWrappedObject) const
+{
+return  theWrappedObject->generateByteOrderMark();
+}
+
+QTextStream&  PythonQtWrapper_QTextStream::writeFloat(QTextStream* theWrappedObject, float  f)
+{
+return  (*theWrappedObject) <<f;
+}
+
+QTextCodec*  PythonQtWrapper_QTextStream::codec(QTextStream* theWrappedObject) const
+{
+return  theWrappedObject->codec();
+}
+
+QTextStream&  PythonQtWrapper_QTextStream::readDouble(QTextStream* theWrappedObject, double&  f)
+{
+return  (*theWrappedObject) >>f;
+}
+
+void PythonQtWrapper_QTextStream::skipWhiteSpace(QTextStream* theWrappedObject)
+{
+ theWrappedObject->skipWhiteSpace();
+}
+
+int  PythonQtWrapper_QTextStream::integerBase(QTextStream* theWrappedObject) const
+{
+return  theWrappedObject->integerBase();
+}
+
+QTextStream&  PythonQtWrapper_QTextStream::readByte(QTextStream* theWrappedObject, char&  ch)
+{
+return  (*theWrappedObject) >>ch;
+}
+
+QTextStream&  PythonQtWrapper_QTextStream::readShort(QTextStream* theWrappedObject, signed short&  i)
+{
+return  (*theWrappedObject) >>i;
+}
+
+QString  PythonQtWrapper_QTextStream::readLine(QTextStream* theWrappedObject, qint64  maxlen)
+{
+return  theWrappedObject->readLine(maxlen);
+}
+
+QTextStream&  PythonQtWrapper_QTextStream::writeString(QTextStream* theWrappedObject, const QString&  s)
+{
+return  (*theWrappedObject) <<s;
+}
+
+int  PythonQtWrapper_QTextStream::realNumberPrecision(QTextStream* theWrappedObject) const
+{
+return  theWrappedObject->realNumberPrecision();
+}
+
+int  PythonQtWrapper_QTextStream::fieldWidth(QTextStream* theWrappedObject) const
+{
+return  theWrappedObject->fieldWidth();
+}
+
+bool  PythonQtWrapper_QTextStream::seek(QTextStream* theWrappedObject, qint64  pos)
+{
+return  theWrappedObject->seek(pos);
+}
+
+bool  PythonQtWrapper_QTextStream::autoDetectUnicode(QTextStream* theWrappedObject) const
+{
+return  theWrappedObject->autoDetectUnicode();
+}
+
+QTextStream::FieldAlignment  PythonQtWrapper_QTextStream::fieldAlignment(QTextStream* theWrappedObject) const
+{
+return  theWrappedObject->fieldAlignment();
+}
+
+QChar  PythonQtWrapper_QTextStream::padChar(QTextStream* theWrappedObject) const
+{
+return  theWrappedObject->padChar();
+}
+
+void PythonQtWrapper_QTextStream::resetStatus(QTextStream* theWrappedObject)
+{
+ theWrappedObject->resetStatus();
+}
+
+void PythonQtWrapper_QTextStream::setNumberFlags(QTextStream* theWrappedObject, QTextStream::NumberFlags  flags)
+{
+ theWrappedObject->setNumberFlags(flags);
+}
+
+QTextStream&  PythonQtWrapper_QTextStream::readInt(QTextStream* theWrappedObject, signed int&  i)
+{
+return  (*theWrappedObject) >>i;
+}
+
+QTextStream&  PythonQtWrapper_QTextStream::writeByte(QTextStream* theWrappedObject, char  ch)
+{
+return  (*theWrappedObject) <<ch;
+}
+
+QTextStream&  PythonQtWrapper_QTextStream::readUShort(QTextStream* theWrappedObject, unsigned short&  i)
+{
+return  (*theWrappedObject) >>i;
+}
+
+QString  PythonQtWrapper_QTextStream::readAll(QTextStream* theWrappedObject)
+{
+return  theWrappedObject->readAll();
+}
+
+void PythonQtWrapper_QTextStream::setFieldAlignment(QTextStream* theWrappedObject, QTextStream::FieldAlignment  alignment)
+{
+ theWrappedObject->setFieldAlignment(alignment);
+}
+
+void PythonQtWrapper_QTextStream::setFieldWidth(QTextStream* theWrappedObject, int  width)
+{
+ theWrappedObject->setFieldWidth(width);
 }
 

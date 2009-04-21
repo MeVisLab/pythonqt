@@ -517,148 +517,148 @@ QIODevice* PythonQtWrapper_QIODevice::new_QIODevice(QObject*  parent)
 { 
 return new PythonQtShell_QIODevice(parent); }
 
-bool  PythonQtWrapper_QIODevice::isWritable(QIODevice* theWrappedObject) const
-{
-return  (*theWrappedObject).isWritable();
-}
-
-qint64  PythonQtWrapper_QIODevice::pos(QIODevice* theWrappedObject) const
-{
-return  (*theWrappedObject).pos();
-}
-
-bool  PythonQtWrapper_QIODevice::putChar(QIODevice* theWrappedObject, char  c)
-{
-return  (*theWrappedObject).putChar(c);
-}
-
-QByteArray  PythonQtWrapper_QIODevice::read(QIODevice* theWrappedObject, qint64  maxlen)
-{
-return  (*theWrappedObject).read(maxlen);
-}
-
-QString  PythonQtWrapper_QIODevice::errorString(QIODevice* theWrappedObject) const
-{
-return  (*theWrappedObject).errorString();
-}
-
-bool  PythonQtWrapper_QIODevice::isSequential(QIODevice* theWrappedObject) const
-{
-return  (*theWrappedObject).isSequential();
-}
-
 QByteArray  PythonQtWrapper_QIODevice::peek(QIODevice* theWrappedObject, qint64  maxlen)
 {
-return  (*theWrappedObject).peek(maxlen);
-}
-
-qint64  PythonQtWrapper_QIODevice::size(QIODevice* theWrappedObject) const
-{
-return  (*theWrappedObject).size();
-}
-
-bool  PythonQtWrapper_QIODevice::isTextModeEnabled(QIODevice* theWrappedObject) const
-{
-return  (*theWrappedObject).isTextModeEnabled();
-}
-
-qint64  PythonQtWrapper_QIODevice::readLineData(QIODevice* theWrappedObject, char*  data, qint64  maxlen)
-{
-return  (*((PythonQtPublicPromoter_QIODevice*)theWrappedObject)).readLineData(data, maxlen);
-}
-
-bool  PythonQtWrapper_QIODevice::isOpen(QIODevice* theWrappedObject) const
-{
-return  (*theWrappedObject).isOpen();
-}
-
-void PythonQtWrapper_QIODevice::close(QIODevice* theWrappedObject)
-{
- (*theWrappedObject).close();
-}
-
-bool  PythonQtWrapper_QIODevice::reset(QIODevice* theWrappedObject)
-{
-return  (*theWrappedObject).reset();
-}
-
-qint64  PythonQtWrapper_QIODevice::bytesAvailable(QIODevice* theWrappedObject) const
-{
-return  (*theWrappedObject).bytesAvailable();
-}
-
-QIODevice::OpenMode  PythonQtWrapper_QIODevice::openMode(QIODevice* theWrappedObject) const
-{
-return  (*theWrappedObject).openMode();
-}
-
-qint64  PythonQtWrapper_QIODevice::bytesToWrite(QIODevice* theWrappedObject) const
-{
-return  (*theWrappedObject).bytesToWrite();
-}
-
-bool  PythonQtWrapper_QIODevice::isReadable(QIODevice* theWrappedObject) const
-{
-return  (*theWrappedObject).isReadable();
-}
-
-void PythonQtWrapper_QIODevice::setTextModeEnabled(QIODevice* theWrappedObject, bool  enabled)
-{
- (*theWrappedObject).setTextModeEnabled(enabled);
-}
-
-bool  PythonQtWrapper_QIODevice::waitForBytesWritten(QIODevice* theWrappedObject, int  msecs)
-{
-return  (*theWrappedObject).waitForBytesWritten(msecs);
+return  theWrappedObject->peek(maxlen);
 }
 
 bool  PythonQtWrapper_QIODevice::open(QIODevice* theWrappedObject, QIODevice::OpenMode  mode)
 {
-return  (*theWrappedObject).open(mode);
+return  ((PythonQtPublicPromoter_QIODevice*)theWrappedObject)->promoted_open(mode);
 }
 
-QByteArray  PythonQtWrapper_QIODevice::readAll(QIODevice* theWrappedObject)
+qint64  PythonQtWrapper_QIODevice::size(QIODevice* theWrappedObject) const
 {
-return  (*theWrappedObject).readAll();
+return  ((PythonQtPublicPromoter_QIODevice*)theWrappedObject)->promoted_size();
+}
+
+qint64  PythonQtWrapper_QIODevice::readLineData(QIODevice* theWrappedObject, char*  data, qint64  maxlen)
+{
+return  ((PythonQtPublicPromoter_QIODevice*)theWrappedObject)->promoted_readLineData(data, maxlen);
+}
+
+bool  PythonQtWrapper_QIODevice::isOpen(QIODevice* theWrappedObject) const
+{
+return  theWrappedObject->isOpen();
+}
+
+void PythonQtWrapper_QIODevice::close(QIODevice* theWrappedObject)
+{
+ ((PythonQtPublicPromoter_QIODevice*)theWrappedObject)->promoted_close();
+}
+
+qint64  PythonQtWrapper_QIODevice::bytesAvailable(QIODevice* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QIODevice*)theWrappedObject)->promoted_bytesAvailable();
+}
+
+QIODevice::OpenMode  PythonQtWrapper_QIODevice::openMode(QIODevice* theWrappedObject) const
+{
+return  theWrappedObject->openMode();
+}
+
+QByteArray  PythonQtWrapper_QIODevice::read(QIODevice* theWrappedObject, qint64  maxlen)
+{
+return  theWrappedObject->read(maxlen);
+}
+
+bool  PythonQtWrapper_QIODevice::isTextModeEnabled(QIODevice* theWrappedObject) const
+{
+return  theWrappedObject->isTextModeEnabled();
+}
+
+bool  PythonQtWrapper_QIODevice::isReadable(QIODevice* theWrappedObject) const
+{
+return  theWrappedObject->isReadable();
+}
+
+bool  PythonQtWrapper_QIODevice::isSequential(QIODevice* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QIODevice*)theWrappedObject)->promoted_isSequential();
 }
 
 bool  PythonQtWrapper_QIODevice::atEnd(QIODevice* theWrappedObject) const
 {
-return  (*theWrappedObject).atEnd();
+return  ((PythonQtPublicPromoter_QIODevice*)theWrappedObject)->promoted_atEnd();
 }
 
 bool  PythonQtWrapper_QIODevice::seek(QIODevice* theWrappedObject, qint64  pos)
 {
-return  (*theWrappedObject).seek(pos);
+return  ((PythonQtPublicPromoter_QIODevice*)theWrappedObject)->promoted_seek(pos);
 }
 
 bool  PythonQtWrapper_QIODevice::getChar(QIODevice* theWrappedObject, char*  c)
 {
-return  (*theWrappedObject).getChar(c);
+return  theWrappedObject->getChar(c);
 }
 
 QByteArray  PythonQtWrapper_QIODevice::readLine(QIODevice* theWrappedObject, qint64  maxlen)
 {
-return  (*theWrappedObject).readLine(maxlen);
-}
-
-qint64  PythonQtWrapper_QIODevice::write(QIODevice* theWrappedObject, const QByteArray&  data)
-{
-return  (*theWrappedObject).write(data);
+return  theWrappedObject->readLine(maxlen);
 }
 
 bool  PythonQtWrapper_QIODevice::canReadLine(QIODevice* theWrappedObject) const
 {
-return  (*theWrappedObject).canReadLine();
+return  ((PythonQtPublicPromoter_QIODevice*)theWrappedObject)->promoted_canReadLine();
+}
+
+qint64  PythonQtWrapper_QIODevice::write(QIODevice* theWrappedObject, const QByteArray&  data)
+{
+return  theWrappedObject->write(data);
+}
+
+bool  PythonQtWrapper_QIODevice::reset(QIODevice* theWrappedObject)
+{
+return  ((PythonQtPublicPromoter_QIODevice*)theWrappedObject)->promoted_reset();
+}
+
+void PythonQtWrapper_QIODevice::setTextModeEnabled(QIODevice* theWrappedObject, bool  enabled)
+{
+ theWrappedObject->setTextModeEnabled(enabled);
 }
 
 void PythonQtWrapper_QIODevice::ungetChar(QIODevice* theWrappedObject, char  c)
 {
- (*theWrappedObject).ungetChar(c);
+ theWrappedObject->ungetChar(c);
 }
 
 bool  PythonQtWrapper_QIODevice::waitForReadyRead(QIODevice* theWrappedObject, int  msecs)
 {
-return  (*theWrappedObject).waitForReadyRead(msecs);
+return  ((PythonQtPublicPromoter_QIODevice*)theWrappedObject)->promoted_waitForReadyRead(msecs);
+}
+
+qint64  PythonQtWrapper_QIODevice::bytesToWrite(QIODevice* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QIODevice*)theWrappedObject)->promoted_bytesToWrite();
+}
+
+bool  PythonQtWrapper_QIODevice::isWritable(QIODevice* theWrappedObject) const
+{
+return  theWrappedObject->isWritable();
+}
+
+qint64  PythonQtWrapper_QIODevice::pos(QIODevice* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QIODevice*)theWrappedObject)->promoted_pos();
+}
+
+bool  PythonQtWrapper_QIODevice::putChar(QIODevice* theWrappedObject, char  c)
+{
+return  theWrappedObject->putChar(c);
+}
+
+bool  PythonQtWrapper_QIODevice::waitForBytesWritten(QIODevice* theWrappedObject, int  msecs)
+{
+return  ((PythonQtPublicPromoter_QIODevice*)theWrappedObject)->promoted_waitForBytesWritten(msecs);
+}
+
+QString  PythonQtWrapper_QIODevice::errorString(QIODevice* theWrappedObject) const
+{
+return  theWrappedObject->errorString();
+}
+
+QByteArray  PythonQtWrapper_QIODevice::readAll(QIODevice* theWrappedObject)
+{
+return  theWrappedObject->readAll();
 }
 

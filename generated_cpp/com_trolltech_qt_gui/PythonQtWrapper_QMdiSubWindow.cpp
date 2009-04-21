@@ -777,183 +777,183 @@ QMdiSubWindow* PythonQtWrapper_QMdiSubWindow::new_QMdiSubWindow(QWidget*  parent
 { 
 return new PythonQtShell_QMdiSubWindow(parent, flags); }
 
-void PythonQtWrapper_QMdiSubWindow::timerEvent(QMdiSubWindow* theWrappedObject, QTimerEvent*  timerEvent)
-{
- (*((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)).timerEvent(timerEvent);
-}
-
-void PythonQtWrapper_QMdiSubWindow::mouseMoveEvent(QMdiSubWindow* theWrappedObject, QMouseEvent*  mouseEvent)
-{
- (*((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)).mouseMoveEvent(mouseEvent);
-}
-
-int  PythonQtWrapper_QMdiSubWindow::keyboardSingleStep(QMdiSubWindow* theWrappedObject) const
-{
-return  (*theWrappedObject).keyboardSingleStep();
-}
-
-void PythonQtWrapper_QMdiSubWindow::contextMenuEvent(QMdiSubWindow* theWrappedObject, QContextMenuEvent*  contextMenuEvent)
-{
- (*((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)).contextMenuEvent(contextMenuEvent);
-}
-
-QWidget*  PythonQtWrapper_QMdiSubWindow::maximizedSystemMenuIconWidget(QMdiSubWindow* theWrappedObject) const
-{
-return  (*theWrappedObject).maximizedSystemMenuIconWidget();
-}
-
-QWidget*  PythonQtWrapper_QMdiSubWindow::widget(QMdiSubWindow* theWrappedObject) const
-{
-return  (*theWrappedObject).widget();
-}
-
-bool  PythonQtWrapper_QMdiSubWindow::testOption(QMdiSubWindow* theWrappedObject, QMdiSubWindow::SubWindowOption  arg__1) const
-{
-return  (*theWrappedObject).testOption(arg__1);
-}
-
-void PythonQtWrapper_QMdiSubWindow::setWidget(QMdiSubWindow* theWrappedObject, QWidget*  widget)
-{
- (*theWrappedObject).setWidget(widget);
-}
-
-bool  PythonQtWrapper_QMdiSubWindow::eventFilter(QMdiSubWindow* theWrappedObject, QObject*  object, QEvent*  event)
-{
-return  (*((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)).eventFilter(object, event);
-}
-
-void PythonQtWrapper_QMdiSubWindow::mouseDoubleClickEvent(QMdiSubWindow* theWrappedObject, QMouseEvent*  mouseEvent)
-{
- (*((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)).mouseDoubleClickEvent(mouseEvent);
-}
-
-QWidget*  PythonQtWrapper_QMdiSubWindow::maximizedButtonsWidget(QMdiSubWindow* theWrappedObject) const
-{
-return  (*theWrappedObject).maximizedButtonsWidget();
-}
-
-void PythonQtWrapper_QMdiSubWindow::mouseReleaseEvent(QMdiSubWindow* theWrappedObject, QMouseEvent*  mouseEvent)
-{
- (*((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)).mouseReleaseEvent(mouseEvent);
-}
-
-void PythonQtWrapper_QMdiSubWindow::hideEvent(QMdiSubWindow* theWrappedObject, QHideEvent*  hideEvent)
-{
- (*((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)).hideEvent(hideEvent);
-}
-
-QSize  PythonQtWrapper_QMdiSubWindow::sizeHint(QMdiSubWindow* theWrappedObject) const
-{
-return  (*theWrappedObject).sizeHint();
-}
-
-QMdiArea*  PythonQtWrapper_QMdiSubWindow::mdiArea(QMdiSubWindow* theWrappedObject) const
-{
-return  (*theWrappedObject).mdiArea();
-}
-
-bool  PythonQtWrapper_QMdiSubWindow::isShaded(QMdiSubWindow* theWrappedObject) const
-{
-return  (*theWrappedObject).isShaded();
-}
-
-void PythonQtWrapper_QMdiSubWindow::leaveEvent(QMdiSubWindow* theWrappedObject, QEvent*  leaveEvent)
-{
- (*((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)).leaveEvent(leaveEvent);
-}
-
-QMenu*  PythonQtWrapper_QMdiSubWindow::systemMenu(QMdiSubWindow* theWrappedObject) const
-{
-return  (*theWrappedObject).systemMenu();
-}
-
 void PythonQtWrapper_QMdiSubWindow::showEvent(QMdiSubWindow* theWrappedObject, QShowEvent*  showEvent)
 {
- (*((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)).showEvent(showEvent);
-}
-
-int  PythonQtWrapper_QMdiSubWindow::keyboardPageStep(QMdiSubWindow* theWrappedObject) const
-{
-return  (*theWrappedObject).keyboardPageStep();
-}
-
-void PythonQtWrapper_QMdiSubWindow::setSystemMenu(QMdiSubWindow* theWrappedObject, QMenu*  systemMenu)
-{
- (*theWrappedObject).setSystemMenu(systemMenu);
-}
-
-void PythonQtWrapper_QMdiSubWindow::focusInEvent(QMdiSubWindow* theWrappedObject, QFocusEvent*  focusInEvent)
-{
- (*((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)).focusInEvent(focusInEvent);
+ ((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)->promoted_showEvent(showEvent);
 }
 
 void PythonQtWrapper_QMdiSubWindow::setOption(QMdiSubWindow* theWrappedObject, QMdiSubWindow::SubWindowOption  option, bool  on)
 {
- (*theWrappedObject).setOption(option, on);
+ theWrappedObject->setOption(option, on);
 }
 
-void PythonQtWrapper_QMdiSubWindow::setKeyboardSingleStep(QMdiSubWindow* theWrappedObject, int  step)
+QMenu*  PythonQtWrapper_QMdiSubWindow::systemMenu(QMdiSubWindow* theWrappedObject) const
 {
- (*theWrappedObject).setKeyboardSingleStep(step);
+return  theWrappedObject->systemMenu();
 }
 
-QSize  PythonQtWrapper_QMdiSubWindow::minimumSizeHint(QMdiSubWindow* theWrappedObject) const
+void PythonQtWrapper_QMdiSubWindow::setWidget(QMdiSubWindow* theWrappedObject, QWidget*  widget)
 {
-return  (*theWrappedObject).minimumSizeHint();
-}
-
-void PythonQtWrapper_QMdiSubWindow::focusOutEvent(QMdiSubWindow* theWrappedObject, QFocusEvent*  focusOutEvent)
-{
- (*((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)).focusOutEvent(focusOutEvent);
+ theWrappedObject->setWidget(widget);
 }
 
 void PythonQtWrapper_QMdiSubWindow::moveEvent(QMdiSubWindow* theWrappedObject, QMoveEvent*  moveEvent)
 {
- (*((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)).moveEvent(moveEvent);
+ ((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)->promoted_moveEvent(moveEvent);
 }
 
-void PythonQtWrapper_QMdiSubWindow::resizeEvent(QMdiSubWindow* theWrappedObject, QResizeEvent*  resizeEvent)
+void PythonQtWrapper_QMdiSubWindow::mouseReleaseEvent(QMdiSubWindow* theWrappedObject, QMouseEvent*  mouseEvent)
 {
- (*((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)).resizeEvent(resizeEvent);
+ ((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)->promoted_mouseReleaseEvent(mouseEvent);
 }
 
-void PythonQtWrapper_QMdiSubWindow::setKeyboardPageStep(QMdiSubWindow* theWrappedObject, int  step)
+QMdiArea*  PythonQtWrapper_QMdiSubWindow::mdiArea(QMdiSubWindow* theWrappedObject) const
 {
- (*theWrappedObject).setKeyboardPageStep(step);
-}
-
-void PythonQtWrapper_QMdiSubWindow::childEvent(QMdiSubWindow* theWrappedObject, QChildEvent*  childEvent)
-{
- (*((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)).childEvent(childEvent);
-}
-
-void PythonQtWrapper_QMdiSubWindow::mousePressEvent(QMdiSubWindow* theWrappedObject, QMouseEvent*  mouseEvent)
-{
- (*((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)).mousePressEvent(mouseEvent);
-}
-
-bool  PythonQtWrapper_QMdiSubWindow::event(QMdiSubWindow* theWrappedObject, QEvent*  event)
-{
-return  (*((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)).event(event);
-}
-
-void PythonQtWrapper_QMdiSubWindow::closeEvent(QMdiSubWindow* theWrappedObject, QCloseEvent*  closeEvent)
-{
- (*((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)).closeEvent(closeEvent);
-}
-
-void PythonQtWrapper_QMdiSubWindow::changeEvent(QMdiSubWindow* theWrappedObject, QEvent*  changeEvent)
-{
- (*((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)).changeEvent(changeEvent);
-}
-
-void PythonQtWrapper_QMdiSubWindow::keyPressEvent(QMdiSubWindow* theWrappedObject, QKeyEvent*  keyEvent)
-{
- (*((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)).keyPressEvent(keyEvent);
+return  theWrappedObject->mdiArea();
 }
 
 void PythonQtWrapper_QMdiSubWindow::paintEvent(QMdiSubWindow* theWrappedObject, QPaintEvent*  paintEvent)
 {
- (*((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)).paintEvent(paintEvent);
+ ((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)->promoted_paintEvent(paintEvent);
+}
+
+void PythonQtWrapper_QMdiSubWindow::childEvent(QMdiSubWindow* theWrappedObject, QChildEvent*  childEvent)
+{
+ ((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)->promoted_childEvent(childEvent);
+}
+
+bool  PythonQtWrapper_QMdiSubWindow::event(QMdiSubWindow* theWrappedObject, QEvent*  event)
+{
+return  ((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)->promoted_event(event);
+}
+
+void PythonQtWrapper_QMdiSubWindow::mouseDoubleClickEvent(QMdiSubWindow* theWrappedObject, QMouseEvent*  mouseEvent)
+{
+ ((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)->promoted_mouseDoubleClickEvent(mouseEvent);
+}
+
+QWidget*  PythonQtWrapper_QMdiSubWindow::maximizedButtonsWidget(QMdiSubWindow* theWrappedObject) const
+{
+return  theWrappedObject->maximizedButtonsWidget();
+}
+
+void PythonQtWrapper_QMdiSubWindow::setSystemMenu(QMdiSubWindow* theWrappedObject, QMenu*  systemMenu)
+{
+ theWrappedObject->setSystemMenu(systemMenu);
+}
+
+void PythonQtWrapper_QMdiSubWindow::closeEvent(QMdiSubWindow* theWrappedObject, QCloseEvent*  closeEvent)
+{
+ ((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)->promoted_closeEvent(closeEvent);
+}
+
+int  PythonQtWrapper_QMdiSubWindow::keyboardSingleStep(QMdiSubWindow* theWrappedObject) const
+{
+return  theWrappedObject->keyboardSingleStep();
+}
+
+void PythonQtWrapper_QMdiSubWindow::contextMenuEvent(QMdiSubWindow* theWrappedObject, QContextMenuEvent*  contextMenuEvent)
+{
+ ((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)->promoted_contextMenuEvent(contextMenuEvent);
+}
+
+QWidget*  PythonQtWrapper_QMdiSubWindow::widget(QMdiSubWindow* theWrappedObject) const
+{
+return  theWrappedObject->widget();
+}
+
+bool  PythonQtWrapper_QMdiSubWindow::testOption(QMdiSubWindow* theWrappedObject, QMdiSubWindow::SubWindowOption  arg__1) const
+{
+return  theWrappedObject->testOption(arg__1);
+}
+
+QWidget*  PythonQtWrapper_QMdiSubWindow::maximizedSystemMenuIconWidget(QMdiSubWindow* theWrappedObject) const
+{
+return  theWrappedObject->maximizedSystemMenuIconWidget();
+}
+
+void PythonQtWrapper_QMdiSubWindow::timerEvent(QMdiSubWindow* theWrappedObject, QTimerEvent*  timerEvent)
+{
+ ((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)->promoted_timerEvent(timerEvent);
+}
+
+int  PythonQtWrapper_QMdiSubWindow::keyboardPageStep(QMdiSubWindow* theWrappedObject) const
+{
+return  theWrappedObject->keyboardPageStep();
+}
+
+void PythonQtWrapper_QMdiSubWindow::keyPressEvent(QMdiSubWindow* theWrappedObject, QKeyEvent*  keyEvent)
+{
+ ((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)->promoted_keyPressEvent(keyEvent);
+}
+
+void PythonQtWrapper_QMdiSubWindow::mouseMoveEvent(QMdiSubWindow* theWrappedObject, QMouseEvent*  mouseEvent)
+{
+ ((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)->promoted_mouseMoveEvent(mouseEvent);
+}
+
+QSize  PythonQtWrapper_QMdiSubWindow::minimumSizeHint(QMdiSubWindow* theWrappedObject) const
+{
+return  theWrappedObject->minimumSizeHint();
+}
+
+void PythonQtWrapper_QMdiSubWindow::changeEvent(QMdiSubWindow* theWrappedObject, QEvent*  changeEvent)
+{
+ ((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)->promoted_changeEvent(changeEvent);
+}
+
+void PythonQtWrapper_QMdiSubWindow::setKeyboardPageStep(QMdiSubWindow* theWrappedObject, int  step)
+{
+ theWrappedObject->setKeyboardPageStep(step);
+}
+
+void PythonQtWrapper_QMdiSubWindow::resizeEvent(QMdiSubWindow* theWrappedObject, QResizeEvent*  resizeEvent)
+{
+ ((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)->promoted_resizeEvent(resizeEvent);
+}
+
+void PythonQtWrapper_QMdiSubWindow::hideEvent(QMdiSubWindow* theWrappedObject, QHideEvent*  hideEvent)
+{
+ ((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)->promoted_hideEvent(hideEvent);
+}
+
+bool  PythonQtWrapper_QMdiSubWindow::eventFilter(QMdiSubWindow* theWrappedObject, QObject*  object, QEvent*  event)
+{
+return  ((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)->promoted_eventFilter(object, event);
+}
+
+QSize  PythonQtWrapper_QMdiSubWindow::sizeHint(QMdiSubWindow* theWrappedObject) const
+{
+return  theWrappedObject->sizeHint();
+}
+
+void PythonQtWrapper_QMdiSubWindow::setKeyboardSingleStep(QMdiSubWindow* theWrappedObject, int  step)
+{
+ theWrappedObject->setKeyboardSingleStep(step);
+}
+
+bool  PythonQtWrapper_QMdiSubWindow::isShaded(QMdiSubWindow* theWrappedObject) const
+{
+return  theWrappedObject->isShaded();
+}
+
+void PythonQtWrapper_QMdiSubWindow::focusOutEvent(QMdiSubWindow* theWrappedObject, QFocusEvent*  focusOutEvent)
+{
+ ((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)->promoted_focusOutEvent(focusOutEvent);
+}
+
+void PythonQtWrapper_QMdiSubWindow::mousePressEvent(QMdiSubWindow* theWrappedObject, QMouseEvent*  mouseEvent)
+{
+ ((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)->promoted_mousePressEvent(mouseEvent);
+}
+
+void PythonQtWrapper_QMdiSubWindow::leaveEvent(QMdiSubWindow* theWrappedObject, QEvent*  leaveEvent)
+{
+ ((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)->promoted_leaveEvent(leaveEvent);
+}
+
+void PythonQtWrapper_QMdiSubWindow::focusInEvent(QMdiSubWindow* theWrappedObject, QFocusEvent*  focusInEvent)
+{
+ ((PythonQtPublicPromoter_QMdiSubWindow*)theWrappedObject)->promoted_focusInEvent(focusInEvent);
 }
 

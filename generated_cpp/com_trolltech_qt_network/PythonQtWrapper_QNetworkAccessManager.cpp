@@ -148,58 +148,58 @@ QNetworkAccessManager* PythonQtWrapper_QNetworkAccessManager::new_QNetworkAccess
 { 
 return new PythonQtShell_QNetworkAccessManager(parent); }
 
-void PythonQtWrapper_QNetworkAccessManager::setCookieJar(QNetworkAccessManager* theWrappedObject, QNetworkCookieJar*  cookieJar)
-{
- (*theWrappedObject).setCookieJar(cookieJar);
-}
-
-QNetworkCookieJar*  PythonQtWrapper_QNetworkAccessManager::cookieJar(QNetworkAccessManager* theWrappedObject) const
-{
-return  (*theWrappedObject).cookieJar();
-}
-
 QNetworkReply*  PythonQtWrapper_QNetworkAccessManager::get(QNetworkAccessManager* theWrappedObject, const QNetworkRequest&  request)
 {
-return  (*theWrappedObject).get(request);
+return  theWrappedObject->get(request);
 }
 
 QNetworkProxy  PythonQtWrapper_QNetworkAccessManager::proxy(QNetworkAccessManager* theWrappedObject) const
 {
-return  (*theWrappedObject).proxy();
+return  theWrappedObject->proxy();
 }
 
-QNetworkReply*  PythonQtWrapper_QNetworkAccessManager::createRequest(QNetworkAccessManager* theWrappedObject, QNetworkAccessManager::Operation  op, const QNetworkRequest&  request, QIODevice*  outgoingData)
+QNetworkCookieJar*  PythonQtWrapper_QNetworkAccessManager::cookieJar(QNetworkAccessManager* theWrappedObject) const
 {
-return  (*((PythonQtPublicPromoter_QNetworkAccessManager*)theWrappedObject)).createRequest(op, request, outgoingData);
+return  theWrappedObject->cookieJar();
 }
 
-QNetworkReply*  PythonQtWrapper_QNetworkAccessManager::post(QNetworkAccessManager* theWrappedObject, const QNetworkRequest&  request, const QByteArray&  data)
+void PythonQtWrapper_QNetworkAccessManager::setCookieJar(QNetworkAccessManager* theWrappedObject, QNetworkCookieJar*  cookieJar)
 {
-return  (*theWrappedObject).post(request, data);
-}
-
-QNetworkReply*  PythonQtWrapper_QNetworkAccessManager::head(QNetworkAccessManager* theWrappedObject, const QNetworkRequest&  request)
-{
-return  (*theWrappedObject).head(request);
-}
-
-QNetworkReply*  PythonQtWrapper_QNetworkAccessManager::put(QNetworkAccessManager* theWrappedObject, const QNetworkRequest&  request, const QByteArray&  data)
-{
-return  (*theWrappedObject).put(request, data);
+ theWrappedObject->setCookieJar(cookieJar);
 }
 
 QNetworkReply*  PythonQtWrapper_QNetworkAccessManager::post(QNetworkAccessManager* theWrappedObject, const QNetworkRequest&  request, QIODevice*  data)
 {
-return  (*theWrappedObject).post(request, data);
+return  theWrappedObject->post(request, data);
 }
 
-QNetworkReply*  PythonQtWrapper_QNetworkAccessManager::put(QNetworkAccessManager* theWrappedObject, const QNetworkRequest&  request, QIODevice*  data)
+QNetworkReply*  PythonQtWrapper_QNetworkAccessManager::post(QNetworkAccessManager* theWrappedObject, const QNetworkRequest&  request, const QByteArray&  data)
 {
-return  (*theWrappedObject).put(request, data);
+return  theWrappedObject->post(request, data);
+}
+
+QNetworkReply*  PythonQtWrapper_QNetworkAccessManager::put(QNetworkAccessManager* theWrappedObject, const QNetworkRequest&  request, const QByteArray&  data)
+{
+return  theWrappedObject->put(request, data);
 }
 
 void PythonQtWrapper_QNetworkAccessManager::setProxy(QNetworkAccessManager* theWrappedObject, const QNetworkProxy&  proxy)
 {
- (*theWrappedObject).setProxy(proxy);
+ theWrappedObject->setProxy(proxy);
+}
+
+QNetworkReply*  PythonQtWrapper_QNetworkAccessManager::head(QNetworkAccessManager* theWrappedObject, const QNetworkRequest&  request)
+{
+return  theWrappedObject->head(request);
+}
+
+QNetworkReply*  PythonQtWrapper_QNetworkAccessManager::createRequest(QNetworkAccessManager* theWrappedObject, QNetworkAccessManager::Operation  op, const QNetworkRequest&  request, QIODevice*  outgoingData)
+{
+return  ((PythonQtPublicPromoter_QNetworkAccessManager*)theWrappedObject)->promoted_createRequest(op, request, outgoingData);
+}
+
+QNetworkReply*  PythonQtWrapper_QNetworkAccessManager::put(QNetworkAccessManager* theWrappedObject, const QNetworkRequest&  request, QIODevice*  data)
+{
+return  theWrappedObject->put(request, data);
 }
 

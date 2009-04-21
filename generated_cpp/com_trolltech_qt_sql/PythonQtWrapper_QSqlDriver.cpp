@@ -555,98 +555,98 @@ QSqlDriver* PythonQtWrapper_QSqlDriver::new_QSqlDriver(QObject*  parent)
 { 
 return new PythonQtShell_QSqlDriver(parent); }
 
-QString  PythonQtWrapper_QSqlDriver::formatValue(QSqlDriver* theWrappedObject, const QSqlField&  field, bool  trimStrings) const
+bool  PythonQtWrapper_QSqlDriver::commitTransaction(QSqlDriver* theWrappedObject)
 {
-return  (*theWrappedObject).formatValue(field, trimStrings);
+return  ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_commitTransaction();
 }
 
 void PythonQtWrapper_QSqlDriver::setOpenError(QSqlDriver* theWrappedObject, bool  e)
 {
- (*((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)).setOpenError(e);
-}
-
-QString  PythonQtWrapper_QSqlDriver::escapeIdentifier(QSqlDriver* theWrappedObject, const QString&  identifier, QSqlDriver::IdentifierType  type) const
-{
-return  (*theWrappedObject).escapeIdentifier(identifier, type);
-}
-
-bool  PythonQtWrapper_QSqlDriver::unsubscribeFromNotification(QSqlDriver* theWrappedObject, const QString&  name)
-{
-return  (*theWrappedObject).unsubscribeFromNotification(name);
-}
-
-void PythonQtWrapper_QSqlDriver::setOpen(QSqlDriver* theWrappedObject, bool  o)
-{
- (*((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)).setOpen(o);
-}
-
-bool  PythonQtWrapper_QSqlDriver::isOpenError(QSqlDriver* theWrappedObject) const
-{
-return  (*theWrappedObject).isOpenError();
-}
-
-QSqlError  PythonQtWrapper_QSqlDriver::lastError(QSqlDriver* theWrappedObject) const
-{
-return  (*theWrappedObject).lastError();
-}
-
-bool  PythonQtWrapper_QSqlDriver::rollbackTransaction(QSqlDriver* theWrappedObject)
-{
-return  (*theWrappedObject).rollbackTransaction();
-}
-
-bool  PythonQtWrapper_QSqlDriver::subscribeToNotification(QSqlDriver* theWrappedObject, const QString&  name)
-{
-return  (*theWrappedObject).subscribeToNotification(name);
-}
-
-QStringList  PythonQtWrapper_QSqlDriver::subscribedToNotifications(QSqlDriver* theWrappedObject) const
-{
-return  (*theWrappedObject).subscribedToNotifications();
-}
-
-bool  PythonQtWrapper_QSqlDriver::commitTransaction(QSqlDriver* theWrappedObject)
-{
-return  (*theWrappedObject).commitTransaction();
-}
-
-QString  PythonQtWrapper_QSqlDriver::sqlStatement(QSqlDriver* theWrappedObject, QSqlDriver::StatementType  type, const QString&  tableName, const QSqlRecord&  rec, bool  preparedStatement) const
-{
-return  (*theWrappedObject).sqlStatement(type, tableName, rec, preparedStatement);
+ ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_setOpenError(e);
 }
 
 void PythonQtWrapper_QSqlDriver::setLastError(QSqlDriver* theWrappedObject, const QSqlError&  e)
 {
- (*((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)).setLastError(e);
+ ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_setLastError(e);
 }
 
-QVariant  PythonQtWrapper_QSqlDriver::handle(QSqlDriver* theWrappedObject) const
+bool  PythonQtWrapper_QSqlDriver::unsubscribeFromNotification(QSqlDriver* theWrappedObject, const QString&  name)
 {
-return  (*theWrappedObject).handle();
+return  theWrappedObject->unsubscribeFromNotification(name);
 }
 
 bool  PythonQtWrapper_QSqlDriver::beginTransaction(QSqlDriver* theWrappedObject)
 {
-return  (*theWrappedObject).beginTransaction();
+return  ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_beginTransaction();
 }
 
-bool  PythonQtWrapper_QSqlDriver::isOpen(QSqlDriver* theWrappedObject) const
+QSqlError  PythonQtWrapper_QSqlDriver::lastError(QSqlDriver* theWrappedObject) const
 {
-return  (*theWrappedObject).isOpen();
+return  theWrappedObject->lastError();
 }
 
 QSqlRecord  PythonQtWrapper_QSqlDriver::record(QSqlDriver* theWrappedObject, const QString&  tableName) const
 {
-return  (*theWrappedObject).record(tableName);
+return  ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_record(tableName);
 }
 
-QSqlIndex  PythonQtWrapper_QSqlDriver::primaryIndex(QSqlDriver* theWrappedObject, const QString&  tableName) const
+QString  PythonQtWrapper_QSqlDriver::escapeIdentifier(QSqlDriver* theWrappedObject, const QString&  identifier, QSqlDriver::IdentifierType  type) const
 {
-return  (*theWrappedObject).primaryIndex(tableName);
+return  ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_escapeIdentifier(identifier, type);
 }
 
 QStringList  PythonQtWrapper_QSqlDriver::tables(QSqlDriver* theWrappedObject, QSql::TableType  tableType) const
 {
-return  (*theWrappedObject).tables(tableType);
+return  ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_tables(tableType);
+}
+
+QString  PythonQtWrapper_QSqlDriver::sqlStatement(QSqlDriver* theWrappedObject, QSqlDriver::StatementType  type, const QString&  tableName, const QSqlRecord&  rec, bool  preparedStatement) const
+{
+return  ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_sqlStatement(type, tableName, rec, preparedStatement);
+}
+
+QVariant  PythonQtWrapper_QSqlDriver::handle(QSqlDriver* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_handle();
+}
+
+QString  PythonQtWrapper_QSqlDriver::formatValue(QSqlDriver* theWrappedObject, const QSqlField&  field, bool  trimStrings) const
+{
+return  ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_formatValue(field, trimStrings);
+}
+
+bool  PythonQtWrapper_QSqlDriver::isOpen(QSqlDriver* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_isOpen();
+}
+
+bool  PythonQtWrapper_QSqlDriver::rollbackTransaction(QSqlDriver* theWrappedObject)
+{
+return  ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_rollbackTransaction();
+}
+
+void PythonQtWrapper_QSqlDriver::setOpen(QSqlDriver* theWrappedObject, bool  o)
+{
+ ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_setOpen(o);
+}
+
+bool  PythonQtWrapper_QSqlDriver::isOpenError(QSqlDriver* theWrappedObject) const
+{
+return  theWrappedObject->isOpenError();
+}
+
+QSqlIndex  PythonQtWrapper_QSqlDriver::primaryIndex(QSqlDriver* theWrappedObject, const QString&  tableName) const
+{
+return  ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_primaryIndex(tableName);
+}
+
+bool  PythonQtWrapper_QSqlDriver::subscribeToNotification(QSqlDriver* theWrappedObject, const QString&  name)
+{
+return  theWrappedObject->subscribeToNotification(name);
+}
+
+QStringList  PythonQtWrapper_QSqlDriver::subscribedToNotifications(QSqlDriver* theWrappedObject) const
+{
+return  theWrappedObject->subscribedToNotifications();
 }
 

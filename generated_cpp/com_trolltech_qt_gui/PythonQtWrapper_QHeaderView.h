@@ -129,28 +129,31 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QHeaderView : public QHeaderView
 { public:
-inline QSize  sectionSizeFromContents(int  logicalIndex) const { return QHeaderView::sectionSizeFromContents(logicalIndex); }
-inline QRect  visualRect(const QModelIndex&  index) const { return QHeaderView::visualRect(index); }
-inline QModelIndex  indexAt(const QPoint&  p) const { return QHeaderView::indexAt(p); }
-inline bool  isIndexHidden(const QModelIndex&  index) const { return QHeaderView::isIndexHidden(index); }
-inline int  horizontalOffset() const { return QHeaderView::horizontalOffset(); }
-inline void mousePressEvent(QMouseEvent*  e) { QHeaderView::mousePressEvent(e); }
-inline void dataChanged(const QModelIndex&  topLeft, const QModelIndex&  bottomRight) { QHeaderView::dataChanged(topLeft, bottomRight); }
-inline void mouseMoveEvent(QMouseEvent*  e) { QHeaderView::mouseMoveEvent(e); }
-inline void scrollContentsBy(int  dx, int  dy) { QHeaderView::scrollContentsBy(dx, dy); }
-inline int  verticalOffset() const { return QHeaderView::verticalOffset(); }
-inline void mouseReleaseEvent(QMouseEvent*  e) { QHeaderView::mouseReleaseEvent(e); }
-inline void currentChanged(const QModelIndex&  current, const QModelIndex&  old) { QHeaderView::currentChanged(current, old); }
-inline void mouseDoubleClickEvent(QMouseEvent*  e) { QHeaderView::mouseDoubleClickEvent(e); }
-inline bool  event(QEvent*  e) { return QHeaderView::event(e); }
-inline void scrollTo(const QModelIndex&  index, QAbstractItemView::ScrollHint  hint) { QHeaderView::scrollTo(index, hint); }
-inline void updateGeometries() { QHeaderView::updateGeometries(); }
-inline void setSelection(const QRect&  arg__1, QItemSelectionModel::SelectionFlags  arg__2) { QHeaderView::setSelection(arg__1, arg__2); }
-inline void paintEvent(QPaintEvent*  e) { QHeaderView::paintEvent(e); }
-inline bool  viewportEvent(QEvent*  e) { return QHeaderView::viewportEvent(e); }
-inline void rowsInserted(const QModelIndex&  parent, int  start, int  end) { QHeaderView::rowsInserted(parent, start, end); }
-inline void paintSection(QPainter*  painter, const QRect&  rect, int  logicalIndex) const { QHeaderView::paintSection(painter, rect, logicalIndex); }
-inline QRegion  visualRegionForSelection(const QItemSelection&  selection) const { return QHeaderView::visualRegionForSelection(selection); }
+inline bool  promoted_event(QEvent*  e) { return QHeaderView::event(e); }
+inline void promoted_currentChanged(const QModelIndex&  current, const QModelIndex&  old) { QHeaderView::currentChanged(current, old); }
+inline bool  promoted_isIndexHidden(const QModelIndex&  index) const { return QHeaderView::isIndexHidden(index); }
+inline void promoted_mouseDoubleClickEvent(QMouseEvent*  e) { QHeaderView::mouseDoubleClickEvent(e); }
+inline void promoted_setSelection(const QRect&  arg__1, QItemSelectionModel::SelectionFlags  arg__2) { QHeaderView::setSelection(arg__1, arg__2); }
+inline void promoted_mouseReleaseEvent(QMouseEvent*  e) { QHeaderView::mouseReleaseEvent(e); }
+inline void promoted_rowsInserted(const QModelIndex&  parent, int  start, int  end) { QHeaderView::rowsInserted(parent, start, end); }
+inline int  promoted_horizontalOffset() const { return QHeaderView::horizontalOffset(); }
+inline void promoted_paintEvent(QPaintEvent*  e) { QHeaderView::paintEvent(e); }
+inline QRegion  promoted_visualRegionForSelection(const QItemSelection&  selection) const { return QHeaderView::visualRegionForSelection(selection); }
+inline QModelIndex  promoted_indexAt(const QPoint&  p) const { return QHeaderView::indexAt(p); }
+inline void promoted_scrollTo(const QModelIndex&  index, QAbstractItemView::ScrollHint  hint) { QHeaderView::scrollTo(index, hint); }
+inline void promoted_setModel(QAbstractItemModel*  model) { QHeaderView::setModel(model); }
+inline void promoted_reset() { QHeaderView::reset(); }
+inline void promoted_updateGeometries() { QHeaderView::updateGeometries(); }
+inline QRect  promoted_visualRect(const QModelIndex&  index) const { return QHeaderView::visualRect(index); }
+inline int  promoted_verticalOffset() const { return QHeaderView::verticalOffset(); }
+inline void promoted_paintSection(QPainter*  painter, const QRect&  rect, int  logicalIndex) const { QHeaderView::paintSection(painter, rect, logicalIndex); }
+inline void promoted_mousePressEvent(QMouseEvent*  e) { QHeaderView::mousePressEvent(e); }
+inline void promoted_dataChanged(const QModelIndex&  topLeft, const QModelIndex&  bottomRight) { QHeaderView::dataChanged(topLeft, bottomRight); }
+inline void promoted_doItemsLayout() { QHeaderView::doItemsLayout(); }
+inline void promoted_scrollContentsBy(int  dx, int  dy) { QHeaderView::scrollContentsBy(dx, dy); }
+inline void promoted_mouseMoveEvent(QMouseEvent*  e) { QHeaderView::mouseMoveEvent(e); }
+inline bool  promoted_viewportEvent(QEvent*  e) { return QHeaderView::viewportEvent(e); }
+inline QSize  promoted_sectionSizeFromContents(int  logicalIndex) const { return QHeaderView::sectionSizeFromContents(logicalIndex); }
 };
 
 class PythonQtWrapper_QHeaderView : public QObject
@@ -159,84 +162,84 @@ public:
 public slots:
 QHeaderView* new_QHeaderView(Qt::Orientation  orientation, QWidget*  parent = 0);
 void delete_QHeaderView(QHeaderView* obj) { delete obj; } 
-   bool  stretchLastSection(QHeaderView* theWrappedObject) const;
-   void hideSection(QHeaderView* theWrappedObject, int  logicalIndex);
-   int  logicalIndexAt(QHeaderView* theWrappedObject, const QPoint&  pos) const;
-   int  minimumSectionSize(QHeaderView* theWrappedObject) const;
-   int  logicalIndexAt(QHeaderView* theWrappedObject, int  position) const;
-   QSize  sectionSizeFromContents(QHeaderView* theWrappedObject, int  logicalIndex) const;
-   void setMinimumSectionSize(QHeaderView* theWrappedObject, int  size);
-   int  sectionSize(QHeaderView* theWrappedObject, int  logicalIndex) const;
-   bool  isSortIndicatorShown(QHeaderView* theWrappedObject) const;
-   int  offset(QHeaderView* theWrappedObject) const;
-   bool  sectionsMoved(QHeaderView* theWrappedObject) const;
-   int  logicalIndexAt(QHeaderView* theWrappedObject, int  x, int  y) const;
-   QRect  visualRect(QHeaderView* theWrappedObject, const QModelIndex&  index) const;
-   QModelIndex  indexAt(QHeaderView* theWrappedObject, const QPoint&  p) const;
-   QByteArray  saveState(QHeaderView* theWrappedObject) const;
-   int  logicalIndex(QHeaderView* theWrappedObject, int  visualIndex) const;
-   bool  isIndexHidden(QHeaderView* theWrappedObject, const QModelIndex&  index) const;
-   void setSortIndicatorShown(QHeaderView* theWrappedObject, bool  show);
-   void resizeSections(QHeaderView* theWrappedObject, QHeaderView::ResizeMode  mode);
-   Qt::SortOrder  sortIndicatorOrder(QHeaderView* theWrappedObject) const;
-   void setSortIndicator(QHeaderView* theWrappedObject, int  logicalIndex, Qt::SortOrder  order);
-   void swapSections(QHeaderView* theWrappedObject, int  first, int  second);
-   void setStretchLastSection(QHeaderView* theWrappedObject, bool  stretch);
-   QSize  sizeHint(QHeaderView* theWrappedObject) const;
-   bool  restoreState(QHeaderView* theWrappedObject, const QByteArray&  state);
-   int  visualIndex(QHeaderView* theWrappedObject, int  logicalIndex) const;
-   void setDefaultSectionSize(QHeaderView* theWrappedObject, int  size);
-   int  horizontalOffset(QHeaderView* theWrappedObject) const;
-   void mousePressEvent(QHeaderView* theWrappedObject, QMouseEvent*  e);
-   int  sectionSizeHint(QHeaderView* theWrappedObject, int  logicalIndex) const;
-   bool  isMovable(QHeaderView* theWrappedObject) const;
-   void dataChanged(QHeaderView* theWrappedObject, const QModelIndex&  topLeft, const QModelIndex&  bottomRight);
-   void setSectionHidden(QHeaderView* theWrappedObject, int  logicalIndex, bool  hide);
-   void setDefaultAlignment(QHeaderView* theWrappedObject, Qt::Alignment  alignment);
-   QHeaderView::ResizeMode  resizeMode(QHeaderView* theWrappedObject, int  logicalIndex) const;
-   void mouseMoveEvent(QHeaderView* theWrappedObject, QMouseEvent*  e);
-   void scrollContentsBy(QHeaderView* theWrappedObject, int  dx, int  dy);
-   bool  sectionsHidden(QHeaderView* theWrappedObject) const;
-   void setCascadingSectionResizes(QHeaderView* theWrappedObject, bool  enable);
-   int  defaultSectionSize(QHeaderView* theWrappedObject) const;
-   int  verticalOffset(QHeaderView* theWrappedObject) const;
-   void resizeSection(QHeaderView* theWrappedObject, int  logicalIndex, int  size);
-   void mouseReleaseEvent(QHeaderView* theWrappedObject, QMouseEvent*  e);
-   void setMovable(QHeaderView* theWrappedObject, bool  movable);
-   void setModel(QHeaderView* theWrappedObject, QAbstractItemModel*  model);
-   void showSection(QHeaderView* theWrappedObject, int  logicalIndex);
-   int  stretchSectionCount(QHeaderView* theWrappedObject) const;
-   void currentChanged(QHeaderView* theWrappedObject, const QModelIndex&  current, const QModelIndex&  old);
    int  sectionViewportPosition(QHeaderView* theWrappedObject, int  logicalIndex) const;
-   void mouseDoubleClickEvent(QHeaderView* theWrappedObject, QMouseEvent*  e);
-   int  visualIndexAt(QHeaderView* theWrappedObject, int  position) const;
-   void setResizeMode(QHeaderView* theWrappedObject, int  logicalIndex, QHeaderView::ResizeMode  mode);
+   void setMovable(QHeaderView* theWrappedObject, bool  movable);
+   int  sectionSize(QHeaderView* theWrappedObject, int  logicalIndex) const;
+   bool  event(QHeaderView* theWrappedObject, QEvent*  e);
+   bool  isMovable(QHeaderView* theWrappedObject) const;
+   void currentChanged(QHeaderView* theWrappedObject, const QModelIndex&  current, const QModelIndex&  old);
+   QHeaderView::ResizeMode  resizeMode(QHeaderView* theWrappedObject, int  logicalIndex) const;
+   void setResizeMode(QHeaderView* theWrappedObject, QHeaderView::ResizeMode  mode);
    int  count(QHeaderView* theWrappedObject) const;
    bool  isClickable(QHeaderView* theWrappedObject) const;
+   bool  isIndexHidden(QHeaderView* theWrappedObject, const QModelIndex&  index) const;
+   void setDefaultSectionSize(QHeaderView* theWrappedObject, int  size);
+   void mouseDoubleClickEvent(QHeaderView* theWrappedObject, QMouseEvent*  e);
+   int  logicalIndex(QHeaderView* theWrappedObject, int  visualIndex) const;
    Qt::Alignment  defaultAlignment(QHeaderView* theWrappedObject) const;
-   void moveSection(QHeaderView* theWrappedObject, int  from, int  to);
-   bool  isSectionHidden(QHeaderView* theWrappedObject, int  logicalIndex) const;
-   int  hiddenSectionCount(QHeaderView* theWrappedObject) const;
-   int  sortIndicatorSection(QHeaderView* theWrappedObject) const;
-   void setHighlightSections(QHeaderView* theWrappedObject, bool  highlight);
-   void reset(QHeaderView* theWrappedObject);
-   bool  event(QHeaderView* theWrappedObject, QEvent*  e);
-   void scrollTo(QHeaderView* theWrappedObject, const QModelIndex&  index, QAbstractItemView::ScrollHint  hint);
-   void updateGeometries(QHeaderView* theWrappedObject);
+   bool  restoreState(QHeaderView* theWrappedObject, const QByteArray&  state);
+   void setSortIndicatorShown(QHeaderView* theWrappedObject, bool  show);
    void setSelection(QHeaderView* theWrappedObject, const QRect&  arg__1, QItemSelectionModel::SelectionFlags  arg__2);
-   void setClickable(QHeaderView* theWrappedObject, bool  clickable);
-   void setResizeMode(QHeaderView* theWrappedObject, QHeaderView::ResizeMode  mode);
-   void paintEvent(QHeaderView* theWrappedObject, QPaintEvent*  e);
-   int  sectionPosition(QHeaderView* theWrappedObject, int  logicalIndex) const;
-   bool  viewportEvent(QHeaderView* theWrappedObject, QEvent*  e);
-   int  length(QHeaderView* theWrappedObject) const;
+   void mouseReleaseEvent(QHeaderView* theWrappedObject, QMouseEvent*  e);
    void rowsInserted(QHeaderView* theWrappedObject, const QModelIndex&  parent, int  start, int  end);
-   bool  highlightSections(QHeaderView* theWrappedObject) const;
-   void paintSection(QHeaderView* theWrappedObject, QPainter*  painter, const QRect&  rect, int  logicalIndex) const;
-   void doItemsLayout(QHeaderView* theWrappedObject);
+   int  horizontalOffset(QHeaderView* theWrappedObject) const;
+   void setDefaultAlignment(QHeaderView* theWrappedObject, Qt::Alignment  alignment);
+   void setStretchLastSection(QHeaderView* theWrappedObject, bool  stretch);
+   bool  isSectionHidden(QHeaderView* theWrappedObject, int  logicalIndex) const;
+   void setResizeMode(QHeaderView* theWrappedObject, int  logicalIndex, QHeaderView::ResizeMode  mode);
+   void setSectionHidden(QHeaderView* theWrappedObject, int  logicalIndex, bool  hide);
+   void moveSection(QHeaderView* theWrappedObject, int  from, int  to);
+   int  offset(QHeaderView* theWrappedObject) const;
+   int  sectionSizeHint(QHeaderView* theWrappedObject, int  logicalIndex) const;
+   void paintEvent(QHeaderView* theWrappedObject, QPaintEvent*  e);
+   void setMinimumSectionSize(QHeaderView* theWrappedObject, int  size);
    QRegion  visualRegionForSelection(QHeaderView* theWrappedObject, const QItemSelection&  selection) const;
+   int  sectionPosition(QHeaderView* theWrappedObject, int  logicalIndex) const;
+   QModelIndex  indexAt(QHeaderView* theWrappedObject, const QPoint&  p) const;
+   void showSection(QHeaderView* theWrappedObject, int  logicalIndex);
+   void setCascadingSectionResizes(QHeaderView* theWrappedObject, bool  enable);
+   void scrollTo(QHeaderView* theWrappedObject, const QModelIndex&  index, QAbstractItemView::ScrollHint  hint);
+   int  hiddenSectionCount(QHeaderView* theWrappedObject) const;
+   void setModel(QHeaderView* theWrappedObject, QAbstractItemModel*  model);
+   void reset(QHeaderView* theWrappedObject);
+   void hideSection(QHeaderView* theWrappedObject, int  logicalIndex);
+   void updateGeometries(QHeaderView* theWrappedObject);
+   QRect  visualRect(QHeaderView* theWrappedObject, const QModelIndex&  index) const;
+   int  stretchSectionCount(QHeaderView* theWrappedObject) const;
+   int  verticalOffset(QHeaderView* theWrappedObject) const;
+   void resizeSections(QHeaderView* theWrappedObject, QHeaderView::ResizeMode  mode);
+   bool  sectionsMoved(QHeaderView* theWrappedObject) const;
    bool  cascadingSectionResizes(QHeaderView* theWrappedObject) const;
+   int  length(QHeaderView* theWrappedObject) const;
+   void paintSection(QHeaderView* theWrappedObject, QPainter*  painter, const QRect&  rect, int  logicalIndex) const;
+   void setClickable(QHeaderView* theWrappedObject, bool  clickable);
+   int  logicalIndexAt(QHeaderView* theWrappedObject, int  position) const;
+   void swapSections(QHeaderView* theWrappedObject, int  first, int  second);
+   void mousePressEvent(QHeaderView* theWrappedObject, QMouseEvent*  e);
+   void dataChanged(QHeaderView* theWrappedObject, const QModelIndex&  topLeft, const QModelIndex&  bottomRight);
+   void doItemsLayout(QHeaderView* theWrappedObject);
+   void scrollContentsBy(QHeaderView* theWrappedObject, int  dx, int  dy);
+   void mouseMoveEvent(QHeaderView* theWrappedObject, QMouseEvent*  e);
+   void setSortIndicator(QHeaderView* theWrappedObject, int  logicalIndex, Qt::SortOrder  order);
+   void setHighlightSections(QHeaderView* theWrappedObject, bool  highlight);
+   int  visualIndex(QHeaderView* theWrappedObject, int  logicalIndex) const;
+   Qt::SortOrder  sortIndicatorOrder(QHeaderView* theWrappedObject) const;
+   QSize  sizeHint(QHeaderView* theWrappedObject) const;
+   int  logicalIndexAt(QHeaderView* theWrappedObject, int  x, int  y) const;
+   int  sortIndicatorSection(QHeaderView* theWrappedObject) const;
+   void resizeSection(QHeaderView* theWrappedObject, int  logicalIndex, int  size);
+   bool  stretchLastSection(QHeaderView* theWrappedObject) const;
+   int  visualIndexAt(QHeaderView* theWrappedObject, int  position) const;
+   QByteArray  saveState(QHeaderView* theWrappedObject) const;
+   int  logicalIndexAt(QHeaderView* theWrappedObject, const QPoint&  pos) const;
    Qt::Orientation  orientation(QHeaderView* theWrappedObject) const;
+   bool  isSortIndicatorShown(QHeaderView* theWrappedObject) const;
+   bool  highlightSections(QHeaderView* theWrappedObject) const;
+   bool  viewportEvent(QHeaderView* theWrappedObject, QEvent*  e);
+   bool  sectionsHidden(QHeaderView* theWrappedObject) const;
+   int  minimumSectionSize(QHeaderView* theWrappedObject) const;
+   int  defaultSectionSize(QHeaderView* theWrappedObject) const;
+   QSize  sectionSizeFromContents(QHeaderView* theWrappedObject, int  logicalIndex) const;
 };
 
 #endif // PYTHONQTWRAPPER_QHEADERVIEW_H

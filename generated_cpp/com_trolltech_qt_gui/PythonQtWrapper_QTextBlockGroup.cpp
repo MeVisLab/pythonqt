@@ -172,16 +172,16 @@ if (_wrapper) {
 }
 void PythonQtWrapper_QTextBlockGroup::blockInserted(QTextBlockGroup* theWrappedObject, const QTextBlock&  block)
 {
- (*((PythonQtPublicPromoter_QTextBlockGroup*)theWrappedObject)).blockInserted(block);
+ ((PythonQtPublicPromoter_QTextBlockGroup*)theWrappedObject)->promoted_blockInserted(block);
 }
 
 void PythonQtWrapper_QTextBlockGroup::blockFormatChanged(QTextBlockGroup* theWrappedObject, const QTextBlock&  block)
 {
- (*((PythonQtPublicPromoter_QTextBlockGroup*)theWrappedObject)).blockFormatChanged(block);
+ ((PythonQtPublicPromoter_QTextBlockGroup*)theWrappedObject)->promoted_blockFormatChanged(block);
 }
 
 void PythonQtWrapper_QTextBlockGroup::blockRemoved(QTextBlockGroup* theWrappedObject, const QTextBlock&  block)
 {
- (*((PythonQtPublicPromoter_QTextBlockGroup*)theWrappedObject)).blockRemoved(block);
+ ((PythonQtPublicPromoter_QTextBlockGroup*)theWrappedObject)->promoted_blockRemoved(block);
 }
 

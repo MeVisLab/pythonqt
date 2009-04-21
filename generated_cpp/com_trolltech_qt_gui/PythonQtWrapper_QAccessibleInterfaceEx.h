@@ -38,6 +38,11 @@ virtual QVariant  virtual_hook(const QVariant&  data);
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QAccessibleInterfaceEx : public QAccessibleInterfaceEx
+{ public:
+inline QVariant  promoted_virtual_hook(const QVariant&  data) { return QAccessibleInterfaceEx::virtual_hook(data); }
+};
+
 class PythonQtWrapper_QAccessibleInterfaceEx : public QObject
 { Q_OBJECT
 public:

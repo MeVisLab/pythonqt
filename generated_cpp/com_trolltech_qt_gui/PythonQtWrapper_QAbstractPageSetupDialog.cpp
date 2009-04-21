@@ -858,6 +858,6 @@ return new PythonQtShell_QAbstractPageSetupDialog(printer, parent); }
 
 QPrinter*  PythonQtWrapper_QAbstractPageSetupDialog::printer(QAbstractPageSetupDialog* theWrappedObject)
 {
-return  (*theWrappedObject).printer();
+return  theWrappedObject->printer();
 }
 

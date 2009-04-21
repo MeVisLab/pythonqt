@@ -137,29 +137,84 @@ QMovie* PythonQtWrapper_QMovie::new_QMovie(const QString&  fileName, const QByte
 { 
 return new PythonQtShell_QMovie(fileName, format, parent); }
 
-void PythonQtWrapper_QMovie::setDevice(QMovie* theWrappedObject, QIODevice*  device)
-{
- (*theWrappedObject).setDevice(device);
-}
-
-int  PythonQtWrapper_QMovie::loopCount(QMovie* theWrappedObject) const
-{
-return  (*theWrappedObject).loopCount();
-}
-
-void PythonQtWrapper_QMovie::setFormat(QMovie* theWrappedObject, const QByteArray&  format)
-{
- (*theWrappedObject).setFormat(format);
-}
-
 QMovie::CacheMode  PythonQtWrapper_QMovie::cacheMode(QMovie* theWrappedObject) const
 {
-return  (*theWrappedObject).cacheMode();
+return  theWrappedObject->cacheMode();
 }
 
 bool  PythonQtWrapper_QMovie::jumpToFrame(QMovie* theWrappedObject, int  frameNumber)
 {
-return  (*theWrappedObject).jumpToFrame(frameNumber);
+return  theWrappedObject->jumpToFrame(frameNumber);
+}
+
+int  PythonQtWrapper_QMovie::frameCount(QMovie* theWrappedObject) const
+{
+return  theWrappedObject->frameCount();
+}
+
+QMovie::MovieState  PythonQtWrapper_QMovie::state(QMovie* theWrappedObject) const
+{
+return  theWrappedObject->state();
+}
+
+QImage  PythonQtWrapper_QMovie::currentImage(QMovie* theWrappedObject) const
+{
+return  theWrappedObject->currentImage();
+}
+
+int  PythonQtWrapper_QMovie::speed(QMovie* theWrappedObject) const
+{
+return  theWrappedObject->speed();
+}
+
+void PythonQtWrapper_QMovie::setCacheMode(QMovie* theWrappedObject, QMovie::CacheMode  mode)
+{
+ theWrappedObject->setCacheMode(mode);
+}
+
+QSize  PythonQtWrapper_QMovie::scaledSize(QMovie* theWrappedObject)
+{
+return  theWrappedObject->scaledSize();
+}
+
+void PythonQtWrapper_QMovie::setFileName(QMovie* theWrappedObject, const QString&  fileName)
+{
+ theWrappedObject->setFileName(fileName);
+}
+
+QIODevice*  PythonQtWrapper_QMovie::device(QMovie* theWrappedObject) const
+{
+return  theWrappedObject->device();
+}
+
+void PythonQtWrapper_QMovie::setScaledSize(QMovie* theWrappedObject, const QSize&  size)
+{
+ theWrappedObject->setScaledSize(size);
+}
+
+int  PythonQtWrapper_QMovie::currentFrameNumber(QMovie* theWrappedObject) const
+{
+return  theWrappedObject->currentFrameNumber();
+}
+
+int  PythonQtWrapper_QMovie::nextFrameDelay(QMovie* theWrappedObject) const
+{
+return  theWrappedObject->nextFrameDelay();
+}
+
+int  PythonQtWrapper_QMovie::loopCount(QMovie* theWrappedObject) const
+{
+return  theWrappedObject->loopCount();
+}
+
+QString  PythonQtWrapper_QMovie::fileName(QMovie* theWrappedObject) const
+{
+return  theWrappedObject->fileName();
+}
+
+bool  PythonQtWrapper_QMovie::isValid(QMovie* theWrappedObject) const
+{
+return  theWrappedObject->isValid();
 }
 
 QList<QByteArray >  PythonQtWrapper_QMovie::static_QMovie_supportedFormats()
@@ -167,93 +222,38 @@ QList<QByteArray >  PythonQtWrapper_QMovie::static_QMovie_supportedFormats()
 return QMovie::supportedFormats();
 }
 
-int  PythonQtWrapper_QMovie::frameCount(QMovie* theWrappedObject) const
+QRect  PythonQtWrapper_QMovie::frameRect(QMovie* theWrappedObject) const
 {
-return  (*theWrappedObject).frameCount();
+return  theWrappedObject->frameRect();
 }
 
 void PythonQtWrapper_QMovie::setBackgroundColor(QMovie* theWrappedObject, const QColor&  color)
 {
- (*theWrappedObject).setBackgroundColor(color);
-}
-
-QMovie::MovieState  PythonQtWrapper_QMovie::state(QMovie* theWrappedObject) const
-{
-return  (*theWrappedObject).state();
-}
-
-int  PythonQtWrapper_QMovie::speed(QMovie* theWrappedObject) const
-{
-return  (*theWrappedObject).speed();
-}
-
-void PythonQtWrapper_QMovie::setFileName(QMovie* theWrappedObject, const QString&  fileName)
-{
- (*theWrappedObject).setFileName(fileName);
-}
-
-QImage  PythonQtWrapper_QMovie::currentImage(QMovie* theWrappedObject) const
-{
-return  (*theWrappedObject).currentImage();
-}
-
-void PythonQtWrapper_QMovie::setCacheMode(QMovie* theWrappedObject, QMovie::CacheMode  mode)
-{
- (*theWrappedObject).setCacheMode(mode);
-}
-
-QSize  PythonQtWrapper_QMovie::scaledSize(QMovie* theWrappedObject)
-{
-return  (*theWrappedObject).scaledSize();
-}
-
-void PythonQtWrapper_QMovie::setScaledSize(QMovie* theWrappedObject, const QSize&  size)
-{
- (*theWrappedObject).setScaledSize(size);
-}
-
-int  PythonQtWrapper_QMovie::currentFrameNumber(QMovie* theWrappedObject) const
-{
-return  (*theWrappedObject).currentFrameNumber();
-}
-
-int  PythonQtWrapper_QMovie::nextFrameDelay(QMovie* theWrappedObject) const
-{
-return  (*theWrappedObject).nextFrameDelay();
-}
-
-QColor  PythonQtWrapper_QMovie::backgroundColor(QMovie* theWrappedObject) const
-{
-return  (*theWrappedObject).backgroundColor();
-}
-
-QString  PythonQtWrapper_QMovie::fileName(QMovie* theWrappedObject) const
-{
-return  (*theWrappedObject).fileName();
-}
-
-bool  PythonQtWrapper_QMovie::isValid(QMovie* theWrappedObject) const
-{
-return  (*theWrappedObject).isValid();
-}
-
-QIODevice*  PythonQtWrapper_QMovie::device(QMovie* theWrappedObject) const
-{
-return  (*theWrappedObject).device();
-}
-
-QRect  PythonQtWrapper_QMovie::frameRect(QMovie* theWrappedObject) const
-{
-return  (*theWrappedObject).frameRect();
+ theWrappedObject->setBackgroundColor(color);
 }
 
 QPixmap  PythonQtWrapper_QMovie::currentPixmap(QMovie* theWrappedObject) const
 {
-return  (*theWrappedObject).currentPixmap();
+return  theWrappedObject->currentPixmap();
 }
 
 QByteArray  PythonQtWrapper_QMovie::format(QMovie* theWrappedObject) const
 {
-return  (*theWrappedObject).format();
+return  theWrappedObject->format();
+}
+
+QColor  PythonQtWrapper_QMovie::backgroundColor(QMovie* theWrappedObject) const
+{
+return  theWrappedObject->backgroundColor();
+}
+
+void PythonQtWrapper_QMovie::setDevice(QMovie* theWrappedObject, QIODevice*  device)
+{
+ theWrappedObject->setDevice(device);
+}
+
+void PythonQtWrapper_QMovie::setFormat(QMovie* theWrappedObject, const QByteArray&  format)
+{
+ theWrappedObject->setFormat(format);
 }
 

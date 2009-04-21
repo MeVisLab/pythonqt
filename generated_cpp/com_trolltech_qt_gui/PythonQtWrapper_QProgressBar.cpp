@@ -801,98 +801,98 @@ QProgressBar* PythonQtWrapper_QProgressBar::new_QProgressBar(QWidget*  parent)
 { 
 return new PythonQtShell_QProgressBar(parent); }
 
-bool  PythonQtWrapper_QProgressBar::invertedAppearance(QProgressBar* theWrappedObject)
-{
-return  (*theWrappedObject).invertedAppearance();
-}
-
-void PythonQtWrapper_QProgressBar::setTextDirection(QProgressBar* theWrappedObject, QProgressBar::Direction  textDirection)
-{
- (*theWrappedObject).setTextDirection(textDirection);
-}
-
-QString  PythonQtWrapper_QProgressBar::text(QProgressBar* theWrappedObject) const
-{
-return  (*theWrappedObject).text();
-}
-
-bool  PythonQtWrapper_QProgressBar::event(QProgressBar* theWrappedObject, QEvent*  e)
-{
-return  (*((PythonQtPublicPromoter_QProgressBar*)theWrappedObject)).event(e);
-}
-
-QSize  PythonQtWrapper_QProgressBar::minimumSizeHint(QProgressBar* theWrappedObject) const
-{
-return  (*theWrappedObject).minimumSizeHint();
-}
-
-QString  PythonQtWrapper_QProgressBar::format(QProgressBar* theWrappedObject) const
-{
-return  (*theWrappedObject).format();
-}
-
 int  PythonQtWrapper_QProgressBar::maximum(QProgressBar* theWrappedObject) const
 {
-return  (*theWrappedObject).maximum();
-}
-
-QProgressBar::Direction  PythonQtWrapper_QProgressBar::textDirection(QProgressBar* theWrappedObject)
-{
-return  (*theWrappedObject).textDirection();
-}
-
-int  PythonQtWrapper_QProgressBar::minimum(QProgressBar* theWrappedObject) const
-{
-return  (*theWrappedObject).minimum();
-}
-
-void PythonQtWrapper_QProgressBar::paintEvent(QProgressBar* theWrappedObject, QPaintEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QProgressBar*)theWrappedObject)).paintEvent(arg__1);
-}
-
-int  PythonQtWrapper_QProgressBar::value(QProgressBar* theWrappedObject) const
-{
-return  (*theWrappedObject).value();
-}
-
-void PythonQtWrapper_QProgressBar::setFormat(QProgressBar* theWrappedObject, const QString&  format)
-{
- (*theWrappedObject).setFormat(format);
-}
-
-bool  PythonQtWrapper_QProgressBar::isTextVisible(QProgressBar* theWrappedObject) const
-{
-return  (*theWrappedObject).isTextVisible();
-}
-
-void PythonQtWrapper_QProgressBar::setAlignment(QProgressBar* theWrappedObject, Qt::Alignment  alignment)
-{
- (*theWrappedObject).setAlignment(alignment);
-}
-
-QSize  PythonQtWrapper_QProgressBar::sizeHint(QProgressBar* theWrappedObject) const
-{
-return  (*theWrappedObject).sizeHint();
+return  theWrappedObject->maximum();
 }
 
 Qt::Orientation  PythonQtWrapper_QProgressBar::orientation(QProgressBar* theWrappedObject) const
 {
-return  (*theWrappedObject).orientation();
+return  theWrappedObject->orientation();
+}
+
+int  PythonQtWrapper_QProgressBar::minimum(QProgressBar* theWrappedObject) const
+{
+return  theWrappedObject->minimum();
+}
+
+bool  PythonQtWrapper_QProgressBar::isTextVisible(QProgressBar* theWrappedObject) const
+{
+return  theWrappedObject->isTextVisible();
+}
+
+void PythonQtWrapper_QProgressBar::setAlignment(QProgressBar* theWrappedObject, Qt::Alignment  alignment)
+{
+ theWrappedObject->setAlignment(alignment);
 }
 
 Qt::Alignment  PythonQtWrapper_QProgressBar::alignment(QProgressBar* theWrappedObject) const
 {
-return  (*theWrappedObject).alignment();
+return  theWrappedObject->alignment();
 }
 
-void PythonQtWrapper_QProgressBar::setInvertedAppearance(QProgressBar* theWrappedObject, bool  invert)
+bool  PythonQtWrapper_QProgressBar::invertedAppearance(QProgressBar* theWrappedObject)
 {
- (*theWrappedObject).setInvertedAppearance(invert);
+return  theWrappedObject->invertedAppearance();
 }
 
 void PythonQtWrapper_QProgressBar::setTextVisible(QProgressBar* theWrappedObject, bool  visible)
 {
- (*theWrappedObject).setTextVisible(visible);
+ theWrappedObject->setTextVisible(visible);
+}
+
+void PythonQtWrapper_QProgressBar::paintEvent(QProgressBar* theWrappedObject, QPaintEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QProgressBar*)theWrappedObject)->promoted_paintEvent(arg__1);
+}
+
+void PythonQtWrapper_QProgressBar::setInvertedAppearance(QProgressBar* theWrappedObject, bool  invert)
+{
+ theWrappedObject->setInvertedAppearance(invert);
+}
+
+QSize  PythonQtWrapper_QProgressBar::minimumSizeHint(QProgressBar* theWrappedObject) const
+{
+return  theWrappedObject->minimumSizeHint();
+}
+
+QString  PythonQtWrapper_QProgressBar::format(QProgressBar* theWrappedObject) const
+{
+return  theWrappedObject->format();
+}
+
+void PythonQtWrapper_QProgressBar::setTextDirection(QProgressBar* theWrappedObject, QProgressBar::Direction  textDirection)
+{
+ theWrappedObject->setTextDirection(textDirection);
+}
+
+QString  PythonQtWrapper_QProgressBar::text(QProgressBar* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QProgressBar*)theWrappedObject)->promoted_text();
+}
+
+void PythonQtWrapper_QProgressBar::setFormat(QProgressBar* theWrappedObject, const QString&  format)
+{
+ theWrappedObject->setFormat(format);
+}
+
+QProgressBar::Direction  PythonQtWrapper_QProgressBar::textDirection(QProgressBar* theWrappedObject)
+{
+return  theWrappedObject->textDirection();
+}
+
+QSize  PythonQtWrapper_QProgressBar::sizeHint(QProgressBar* theWrappedObject) const
+{
+return  theWrappedObject->sizeHint();
+}
+
+int  PythonQtWrapper_QProgressBar::value(QProgressBar* theWrappedObject) const
+{
+return  theWrappedObject->value();
+}
+
+bool  PythonQtWrapper_QProgressBar::event(QProgressBar* theWrappedObject, QEvent*  e)
+{
+return  ((PythonQtPublicPromoter_QProgressBar*)theWrappedObject)->promoted_event(e);
 }
 

@@ -84,9 +84,9 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QFrame : public QFrame
 { public:
-inline void paintEvent(QPaintEvent*  arg__1) { QFrame::paintEvent(arg__1); }
-inline bool  event(QEvent*  e) { return QFrame::event(e); }
-inline void changeEvent(QEvent*  arg__1) { QFrame::changeEvent(arg__1); }
+inline void promoted_changeEvent(QEvent*  arg__1) { QFrame::changeEvent(arg__1); }
+inline void promoted_paintEvent(QPaintEvent*  arg__1) { QFrame::paintEvent(arg__1); }
+inline bool  promoted_event(QEvent*  e) { return QFrame::event(e); }
 };
 
 class PythonQtWrapper_QFrame : public QObject
@@ -98,23 +98,23 @@ enum StyleMask{
 public slots:
 QFrame* new_QFrame(QWidget*  parent = 0, Qt::WindowFlags  f = 0);
 void delete_QFrame(QFrame* obj) { delete obj; } 
-   int  frameStyle(QFrame* theWrappedObject) const;
-   QFrame::Shape  frameShape(QFrame* theWrappedObject) const;
-   void setMidLineWidth(QFrame* theWrappedObject, int  arg__1);
-   void paintEvent(QFrame* theWrappedObject, QPaintEvent*  arg__1);
-   QSize  sizeHint(QFrame* theWrappedObject) const;
-   int  frameWidth(QFrame* theWrappedObject) const;
-   int  midLineWidth(QFrame* theWrappedObject) const;
-   void setFrameShadow(QFrame* theWrappedObject, QFrame::Shadow  arg__1);
-   void setLineWidth(QFrame* theWrappedObject, int  arg__1);
-   void setFrameStyle(QFrame* theWrappedObject, int  arg__1);
    int  lineWidth(QFrame* theWrappedObject) const;
    void setFrameRect(QFrame* theWrappedObject, const QRect&  arg__1);
    QRect  frameRect(QFrame* theWrappedObject) const;
-   void setFrameShape(QFrame* theWrappedObject, QFrame::Shape  arg__1);
-   bool  event(QFrame* theWrappedObject, QEvent*  e);
    void changeEvent(QFrame* theWrappedObject, QEvent*  arg__1);
    QFrame::Shadow  frameShadow(QFrame* theWrappedObject) const;
+   void paintEvent(QFrame* theWrappedObject, QPaintEvent*  arg__1);
+   QSize  sizeHint(QFrame* theWrappedObject) const;
+   int  frameStyle(QFrame* theWrappedObject) const;
+   QFrame::Shape  frameShape(QFrame* theWrappedObject) const;
+   void setMidLineWidth(QFrame* theWrappedObject, int  arg__1);
+   int  frameWidth(QFrame* theWrappedObject) const;
+   void setLineWidth(QFrame* theWrappedObject, int  arg__1);
+   int  midLineWidth(QFrame* theWrappedObject) const;
+   void setFrameShadow(QFrame* theWrappedObject, QFrame::Shadow  arg__1);
+   void setFrameStyle(QFrame* theWrappedObject, int  arg__1);
+   bool  event(QFrame* theWrappedObject, QEvent*  e);
+   void setFrameShape(QFrame* theWrappedObject, QFrame::Shape  arg__1);
 };
 
 #endif // PYTHONQTWRAPPER_QFRAME_H

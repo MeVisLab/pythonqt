@@ -11,6 +11,6 @@ return new QWhatsThisClickedEvent(href); }
 
 QString  PythonQtWrapper_QWhatsThisClickedEvent::href(QWhatsThisClickedEvent* theWrappedObject) const
 {
-return  (*theWrappedObject).href();
+return  theWrappedObject->href();
 }
 

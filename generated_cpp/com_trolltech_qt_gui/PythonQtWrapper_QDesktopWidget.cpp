@@ -827,66 +827,66 @@ return new PythonQtShell_QDesktopWidget(); }
 
 int  PythonQtWrapper_QDesktopWidget::screenNumber(QDesktopWidget* theWrappedObject, const QPoint&  arg__1) const
 {
-return  (*theWrappedObject).screenNumber(arg__1);
-}
-
-const QRect  PythonQtWrapper_QDesktopWidget::availableGeometry(QDesktopWidget* theWrappedObject, int  screen) const
-{
-return  (*theWrappedObject).availableGeometry(screen);
-}
-
-const QRect  PythonQtWrapper_QDesktopWidget::availableGeometry(QDesktopWidget* theWrappedObject, const QPoint&  point) const
-{
-return  (*theWrappedObject).availableGeometry(point);
-}
-
-const QRect  PythonQtWrapper_QDesktopWidget::screenGeometry(QDesktopWidget* theWrappedObject, int  screen) const
-{
-return  (*theWrappedObject).screenGeometry(screen);
-}
-
-const QRect  PythonQtWrapper_QDesktopWidget::availableGeometry(QDesktopWidget* theWrappedObject, const QWidget*  widget) const
-{
-return  (*theWrappedObject).availableGeometry(widget);
-}
-
-bool  PythonQtWrapper_QDesktopWidget::isVirtualDesktop(QDesktopWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).isVirtualDesktop();
-}
-
-const QRect  PythonQtWrapper_QDesktopWidget::screenGeometry(QDesktopWidget* theWrappedObject, const QPoint&  point) const
-{
-return  (*theWrappedObject).screenGeometry(point);
-}
-
-int  PythonQtWrapper_QDesktopWidget::screenNumber(QDesktopWidget* theWrappedObject, const QWidget*  widget) const
-{
-return  (*theWrappedObject).screenNumber(widget);
-}
-
-int  PythonQtWrapper_QDesktopWidget::numScreens(QDesktopWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).numScreens();
-}
-
-QWidget*  PythonQtWrapper_QDesktopWidget::screen(QDesktopWidget* theWrappedObject, int  screen)
-{
-return  (*theWrappedObject).screen(screen);
-}
-
-const QRect  PythonQtWrapper_QDesktopWidget::screenGeometry(QDesktopWidget* theWrappedObject, const QWidget*  widget) const
-{
-return  (*theWrappedObject).screenGeometry(widget);
-}
-
-int  PythonQtWrapper_QDesktopWidget::primaryScreen(QDesktopWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).primaryScreen();
+return  theWrappedObject->screenNumber(arg__1);
 }
 
 void PythonQtWrapper_QDesktopWidget::resizeEvent(QDesktopWidget* theWrappedObject, QResizeEvent*  e)
 {
- (*((PythonQtPublicPromoter_QDesktopWidget*)theWrappedObject)).resizeEvent(e);
+ ((PythonQtPublicPromoter_QDesktopWidget*)theWrappedObject)->promoted_resizeEvent(e);
+}
+
+int  PythonQtWrapper_QDesktopWidget::screenNumber(QDesktopWidget* theWrappedObject, const QWidget*  widget) const
+{
+return  theWrappedObject->screenNumber(widget);
+}
+
+const QRect  PythonQtWrapper_QDesktopWidget::availableGeometry(QDesktopWidget* theWrappedObject, int  screen) const
+{
+return  theWrappedObject->availableGeometry(screen);
+}
+
+const QRect  PythonQtWrapper_QDesktopWidget::screenGeometry(QDesktopWidget* theWrappedObject, const QPoint&  point) const
+{
+return  theWrappedObject->screenGeometry(point);
+}
+
+const QRect  PythonQtWrapper_QDesktopWidget::availableGeometry(QDesktopWidget* theWrappedObject, const QPoint&  point) const
+{
+return  theWrappedObject->availableGeometry(point);
+}
+
+int  PythonQtWrapper_QDesktopWidget::numScreens(QDesktopWidget* theWrappedObject) const
+{
+return  theWrappedObject->numScreens();
+}
+
+QWidget*  PythonQtWrapper_QDesktopWidget::screen(QDesktopWidget* theWrappedObject, int  screen)
+{
+return  theWrappedObject->screen(screen);
+}
+
+const QRect  PythonQtWrapper_QDesktopWidget::screenGeometry(QDesktopWidget* theWrappedObject, const QWidget*  widget) const
+{
+return  theWrappedObject->screenGeometry(widget);
+}
+
+const QRect  PythonQtWrapper_QDesktopWidget::availableGeometry(QDesktopWidget* theWrappedObject, const QWidget*  widget) const
+{
+return  theWrappedObject->availableGeometry(widget);
+}
+
+bool  PythonQtWrapper_QDesktopWidget::isVirtualDesktop(QDesktopWidget* theWrappedObject) const
+{
+return  theWrappedObject->isVirtualDesktop();
+}
+
+int  PythonQtWrapper_QDesktopWidget::primaryScreen(QDesktopWidget* theWrappedObject) const
+{
+return  theWrappedObject->primaryScreen();
+}
+
+const QRect  PythonQtWrapper_QDesktopWidget::screenGeometry(QDesktopWidget* theWrappedObject, int  screen) const
+{
+return  theWrappedObject->screenGeometry(screen);
 }
 

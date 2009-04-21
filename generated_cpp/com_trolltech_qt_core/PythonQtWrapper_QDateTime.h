@@ -19,13 +19,13 @@ QDateTime* new_QDateTime(const QDate&  arg__1);
 QDateTime* new_QDateTime(const QDate&  arg__1, const QTime&  arg__2, Qt::TimeSpec  spec = Qt::LocalTime);
 QDateTime* new_QDateTime(const QDateTime&  other);
 void delete_QDateTime(QDateTime* obj) { delete obj; } 
+   void readFrom(QDateTime* theWrappedObject, QDataStream&  arg__1);
    QDateTime  static_QDateTime_fromString(const QString&  s, const QString&  format);
    void setTimeSpec(QDateTime* theWrappedObject, Qt::TimeSpec  spec);
-   void writeTo(QDateTime* theWrappedObject, QDataStream&  arg__1);
    QDateTime  addYears(QDateTime* theWrappedObject, int  years) const;
+   void writeTo(QDateTime* theWrappedObject, QDataStream&  arg__1);
    bool  operator_equal(QDateTime* theWrappedObject, const QDateTime&  other) const;
    int  utcOffset(QDateTime* theWrappedObject) const;
-   void readFrom(QDateTime* theWrappedObject, QDataStream&  arg__1);
    void setUtcOffset(QDateTime* theWrappedObject, int  seconds);
    uint  toTime_t(QDateTime* theWrappedObject) const;
    QDateTime  toLocalTime(QDateTime* theWrappedObject) const;

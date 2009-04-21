@@ -837,159 +837,24 @@ QMessageBox* PythonQtWrapper_QMessageBox::new_QMessageBox(QWidget*  parent)
 { 
 return new PythonQtShell_QMessageBox(parent); }
 
-void PythonQtWrapper_QMessageBox::removeButton(QMessageBox* theWrappedObject, QAbstractButton*  button)
+QPushButton*  PythonQtWrapper_QMessageBox::addButton(QMessageBox* theWrappedObject, QMessageBox::StandardButton  button)
 {
- (*theWrappedObject).removeButton(button);
+return  theWrappedObject->addButton(button);
 }
 
-void PythonQtWrapper_QMessageBox::setDefaultButton(QMessageBox* theWrappedObject, QPushButton*  button)
+QAbstractButton*  PythonQtWrapper_QMessageBox::button(QMessageBox* theWrappedObject, QMessageBox::StandardButton  which) const
 {
- (*theWrappedObject).setDefaultButton(button);
+return  theWrappedObject->button(which);
 }
 
-QMessageBox::StandardButton  PythonQtWrapper_QMessageBox::static_QMessageBox_warning(QWidget*  parent, const QString&  title, const QString&  text, QMessageBox::StandardButtons  buttons, QMessageBox::StandardButton  defaultButton)
+QSize  PythonQtWrapper_QMessageBox::sizeHint(QMessageBox* theWrappedObject) const
 {
-return QMessageBox::warning(parent, title, text, buttons, defaultButton);
-}
-
-QMessageBox::StandardButton  PythonQtWrapper_QMessageBox::standardButton(QMessageBox* theWrappedObject, QAbstractButton*  button) const
-{
-return  (*theWrappedObject).standardButton(button);
-}
-
-void PythonQtWrapper_QMessageBox::resizeEvent(QMessageBox* theWrappedObject, QResizeEvent*  event)
-{
- (*((PythonQtPublicPromoter_QMessageBox*)theWrappedObject)).resizeEvent(event);
-}
-
-void PythonQtWrapper_QMessageBox::setDetailedText(QMessageBox* theWrappedObject, const QString&  text)
-{
- (*theWrappedObject).setDetailedText(text);
-}
-
-QPushButton*  PythonQtWrapper_QMessageBox::addButton(QMessageBox* theWrappedObject, const QString&  text, QMessageBox::ButtonRole  role)
-{
-return  (*theWrappedObject).addButton(text, role);
-}
-
-void PythonQtWrapper_QMessageBox::showEvent(QMessageBox* theWrappedObject, QShowEvent*  event)
-{
- (*((PythonQtPublicPromoter_QMessageBox*)theWrappedObject)).showEvent(event);
-}
-
-int  PythonQtWrapper_QMessageBox::static_QMessageBox_critical(QWidget*  parent, const QString&  title, const QString&  text, QMessageBox::StandardButton  button0, QMessageBox::StandardButton  button1)
-{
-return QMessageBox::critical(parent, title, text, button0, button1);
-}
-
-QMessageBox::StandardButton  PythonQtWrapper_QMessageBox::static_QMessageBox_information(QWidget*  parent, const QString&  title, const QString&  text, QMessageBox::StandardButtons  buttons, QMessageBox::StandardButton  defaultButton)
-{
-return QMessageBox::information(parent, title, text, buttons, defaultButton);
-}
-
-void PythonQtWrapper_QMessageBox::static_QMessageBox_about(QWidget*  parent, const QString&  title, const QString&  text)
-{
-QMessageBox::about(parent, title, text);
-}
-
-int  PythonQtWrapper_QMessageBox::static_QMessageBox_question(QWidget*  parent, const QString&  title, const QString&  text, QMessageBox::StandardButton  button0, QMessageBox::StandardButton  button1)
-{
-return QMessageBox::question(parent, title, text, button0, button1);
+return  theWrappedObject->sizeHint();
 }
 
 QAbstractButton*  PythonQtWrapper_QMessageBox::escapeButton(QMessageBox* theWrappedObject) const
 {
-return  (*theWrappedObject).escapeButton();
-}
-
-QString  PythonQtWrapper_QMessageBox::detailedText(QMessageBox* theWrappedObject) const
-{
-return  (*theWrappedObject).detailedText();
-}
-
-QPixmap  PythonQtWrapper_QMessageBox::iconPixmap(QMessageBox* theWrappedObject) const
-{
-return  (*theWrappedObject).iconPixmap();
-}
-
-void PythonQtWrapper_QMessageBox::setInformativeText(QMessageBox* theWrappedObject, const QString&  text)
-{
- (*theWrappedObject).setInformativeText(text);
-}
-
-void PythonQtWrapper_QMessageBox::closeEvent(QMessageBox* theWrappedObject, QCloseEvent*  event)
-{
- (*((PythonQtPublicPromoter_QMessageBox*)theWrappedObject)).closeEvent(event);
-}
-
-QString  PythonQtWrapper_QMessageBox::informativeText(QMessageBox* theWrappedObject) const
-{
-return  (*theWrappedObject).informativeText();
-}
-
-bool  PythonQtWrapper_QMessageBox::event(QMessageBox* theWrappedObject, QEvent*  e)
-{
-return  (*((PythonQtPublicPromoter_QMessageBox*)theWrappedObject)).event(e);
-}
-
-void PythonQtWrapper_QMessageBox::setEscapeButton(QMessageBox* theWrappedObject, QMessageBox::StandardButton  button)
-{
- (*theWrappedObject).setEscapeButton(button);
-}
-
-QMessageBox::Icon  PythonQtWrapper_QMessageBox::icon(QMessageBox* theWrappedObject) const
-{
-return  (*theWrappedObject).icon();
-}
-
-QMessageBox::StandardButtons  PythonQtWrapper_QMessageBox::standardButtons(QMessageBox* theWrappedObject) const
-{
-return  (*theWrappedObject).standardButtons();
-}
-
-void PythonQtWrapper_QMessageBox::setIconPixmap(QMessageBox* theWrappedObject, const QPixmap&  pixmap)
-{
- (*theWrappedObject).setIconPixmap(pixmap);
-}
-
-void PythonQtWrapper_QMessageBox::setText(QMessageBox* theWrappedObject, const QString&  text)
-{
- (*theWrappedObject).setText(text);
-}
-
-void PythonQtWrapper_QMessageBox::addButton(QMessageBox* theWrappedObject, QAbstractButton*  button, QMessageBox::ButtonRole  role)
-{
- (*theWrappedObject).addButton(button, role);
-}
-
-void PythonQtWrapper_QMessageBox::changeEvent(QMessageBox* theWrappedObject, QEvent*  event)
-{
- (*((PythonQtPublicPromoter_QMessageBox*)theWrappedObject)).changeEvent(event);
-}
-
-void PythonQtWrapper_QMessageBox::keyPressEvent(QMessageBox* theWrappedObject, QKeyEvent*  event)
-{
- (*((PythonQtPublicPromoter_QMessageBox*)theWrappedObject)).keyPressEvent(event);
-}
-
-QString  PythonQtWrapper_QMessageBox::text(QMessageBox* theWrappedObject) const
-{
-return  (*theWrappedObject).text();
-}
-
-QPushButton*  PythonQtWrapper_QMessageBox::addButton(QMessageBox* theWrappedObject, QMessageBox::StandardButton  button)
-{
-return  (*theWrappedObject).addButton(button);
-}
-
-void PythonQtWrapper_QMessageBox::setStandardButtons(QMessageBox* theWrappedObject, QMessageBox::StandardButtons  buttons)
-{
- (*theWrappedObject).setStandardButtons(buttons);
-}
-
-QPushButton*  PythonQtWrapper_QMessageBox::defaultButton(QMessageBox* theWrappedObject) const
-{
-return  (*theWrappedObject).defaultButton();
+return  theWrappedObject->escapeButton();
 }
 
 QMessageBox::StandardButton  PythonQtWrapper_QMessageBox::static_QMessageBox_critical(QWidget*  parent, const QString&  title, const QString&  text, QMessageBox::StandardButtons  buttons, QMessageBox::StandardButton  defaultButton)
@@ -997,24 +862,14 @@ QMessageBox::StandardButton  PythonQtWrapper_QMessageBox::static_QMessageBox_cri
 return QMessageBox::critical(parent, title, text, buttons, defaultButton);
 }
 
-void PythonQtWrapper_QMessageBox::static_QMessageBox_aboutQt(QWidget*  parent, const QString&  title)
+QString  PythonQtWrapper_QMessageBox::informativeText(QMessageBox* theWrappedObject) const
 {
-QMessageBox::aboutQt(parent, title);
+return  theWrappedObject->informativeText();
 }
 
-QAbstractButton*  PythonQtWrapper_QMessageBox::button(QMessageBox* theWrappedObject, QMessageBox::StandardButton  which) const
+QString  PythonQtWrapper_QMessageBox::text(QMessageBox* theWrappedObject) const
 {
-return  (*theWrappedObject).button(which);
-}
-
-QSize  PythonQtWrapper_QMessageBox::sizeHint(QMessageBox* theWrappedObject) const
-{
-return  (*theWrappedObject).sizeHint();
-}
-
-QMessageBox::StandardButton  PythonQtWrapper_QMessageBox::static_QMessageBox_question(QWidget*  parent, const QString&  title, const QString&  text, QMessageBox::StandardButtons  buttons, QMessageBox::StandardButton  defaultButton)
-{
-return QMessageBox::question(parent, title, text, buttons, defaultButton);
+return  theWrappedObject->text();
 }
 
 int  PythonQtWrapper_QMessageBox::static_QMessageBox_warning(QWidget*  parent, const QString&  title, const QString&  text, QMessageBox::StandardButton  button0, QMessageBox::StandardButton  button1)
@@ -1024,22 +879,102 @@ return QMessageBox::warning(parent, title, text, button0, button1);
 
 QAbstractButton*  PythonQtWrapper_QMessageBox::clickedButton(QMessageBox* theWrappedObject) const
 {
-return  (*theWrappedObject).clickedButton();
+return  theWrappedObject->clickedButton();
 }
 
 void PythonQtWrapper_QMessageBox::setTextFormat(QMessageBox* theWrappedObject, Qt::TextFormat  format)
 {
- (*theWrappedObject).setTextFormat(format);
+ theWrappedObject->setTextFormat(format);
 }
 
 Qt::TextFormat  PythonQtWrapper_QMessageBox::textFormat(QMessageBox* theWrappedObject) const
 {
-return  (*theWrappedObject).textFormat();
+return  theWrappedObject->textFormat();
+}
+
+QMessageBox::Icon  PythonQtWrapper_QMessageBox::icon(QMessageBox* theWrappedObject) const
+{
+return  theWrappedObject->icon();
+}
+
+void PythonQtWrapper_QMessageBox::setIconPixmap(QMessageBox* theWrappedObject, const QPixmap&  pixmap)
+{
+ theWrappedObject->setIconPixmap(pixmap);
+}
+
+QPixmap  PythonQtWrapper_QMessageBox::iconPixmap(QMessageBox* theWrappedObject) const
+{
+return  theWrappedObject->iconPixmap();
 }
 
 void PythonQtWrapper_QMessageBox::setEscapeButton(QMessageBox* theWrappedObject, QAbstractButton*  button)
 {
- (*theWrappedObject).setEscapeButton(button);
+ theWrappedObject->setEscapeButton(button);
+}
+
+void PythonQtWrapper_QMessageBox::setDefaultButton(QMessageBox* theWrappedObject, QMessageBox::StandardButton  button)
+{
+ theWrappedObject->setDefaultButton(button);
+}
+
+void PythonQtWrapper_QMessageBox::setIcon(QMessageBox* theWrappedObject, QMessageBox::Icon  arg__1)
+{
+ theWrappedObject->setIcon(arg__1);
+}
+
+void PythonQtWrapper_QMessageBox::changeEvent(QMessageBox* theWrappedObject, QEvent*  event)
+{
+ ((PythonQtPublicPromoter_QMessageBox*)theWrappedObject)->promoted_changeEvent(event);
+}
+
+void PythonQtWrapper_QMessageBox::static_QMessageBox_aboutQt(QWidget*  parent, const QString&  title)
+{
+QMessageBox::aboutQt(parent, title);
+}
+
+void PythonQtWrapper_QMessageBox::setDefaultButton(QMessageBox* theWrappedObject, QPushButton*  button)
+{
+ theWrappedObject->setDefaultButton(button);
+}
+
+QMessageBox::StandardButton  PythonQtWrapper_QMessageBox::static_QMessageBox_warning(QWidget*  parent, const QString&  title, const QString&  text, QMessageBox::StandardButtons  buttons, QMessageBox::StandardButton  defaultButton)
+{
+return QMessageBox::warning(parent, title, text, buttons, defaultButton);
+}
+
+int  PythonQtWrapper_QMessageBox::static_QMessageBox_critical(QWidget*  parent, const QString&  title, const QString&  text, QMessageBox::StandardButton  button0, QMessageBox::StandardButton  button1)
+{
+return QMessageBox::critical(parent, title, text, button0, button1);
+}
+
+void PythonQtWrapper_QMessageBox::removeButton(QMessageBox* theWrappedObject, QAbstractButton*  button)
+{
+ theWrappedObject->removeButton(button);
+}
+
+QMessageBox::StandardButton  PythonQtWrapper_QMessageBox::standardButton(QMessageBox* theWrappedObject, QAbstractButton*  button) const
+{
+return  theWrappedObject->standardButton(button);
+}
+
+QMessageBox::StandardButton  PythonQtWrapper_QMessageBox::static_QMessageBox_question(QWidget*  parent, const QString&  title, const QString&  text, QMessageBox::StandardButtons  buttons, QMessageBox::StandardButton  defaultButton)
+{
+return QMessageBox::question(parent, title, text, buttons, defaultButton);
+}
+
+QMessageBox::StandardButton  PythonQtWrapper_QMessageBox::static_QMessageBox_information(QWidget*  parent, const QString&  title, const QString&  text, QMessageBox::StandardButtons  buttons, QMessageBox::StandardButton  defaultButton)
+{
+return QMessageBox::information(parent, title, text, buttons, defaultButton);
+}
+
+void PythonQtWrapper_QMessageBox::showEvent(QMessageBox* theWrappedObject, QShowEvent*  event)
+{
+ ((PythonQtPublicPromoter_QMessageBox*)theWrappedObject)->promoted_showEvent(event);
+}
+
+void PythonQtWrapper_QMessageBox::static_QMessageBox_about(QWidget*  parent, const QString&  title, const QString&  text)
+{
+QMessageBox::about(parent, title, text);
 }
 
 QMessageBox::StandardButton  PythonQtWrapper_QMessageBox::static_QMessageBox_information(QWidget*  parent, const QString&  title, const QString&  text, QMessageBox::StandardButton  button0, QMessageBox::StandardButton  button1)
@@ -1047,13 +982,78 @@ QMessageBox::StandardButton  PythonQtWrapper_QMessageBox::static_QMessageBox_inf
 return QMessageBox::information(parent, title, text, button0, button1);
 }
 
-void PythonQtWrapper_QMessageBox::setDefaultButton(QMessageBox* theWrappedObject, QMessageBox::StandardButton  button)
+void PythonQtWrapper_QMessageBox::setStandardButtons(QMessageBox* theWrappedObject, QMessageBox::StandardButtons  buttons)
 {
- (*theWrappedObject).setDefaultButton(button);
+ theWrappedObject->setStandardButtons(buttons);
 }
 
-void PythonQtWrapper_QMessageBox::setIcon(QMessageBox* theWrappedObject, QMessageBox::Icon  arg__1)
+QPushButton*  PythonQtWrapper_QMessageBox::addButton(QMessageBox* theWrappedObject, const QString&  text, QMessageBox::ButtonRole  role)
 {
- (*theWrappedObject).setIcon(arg__1);
+return  theWrappedObject->addButton(text, role);
+}
+
+QString  PythonQtWrapper_QMessageBox::detailedText(QMessageBox* theWrappedObject) const
+{
+return  theWrappedObject->detailedText();
+}
+
+int  PythonQtWrapper_QMessageBox::static_QMessageBox_question(QWidget*  parent, const QString&  title, const QString&  text, QMessageBox::StandardButton  button0, QMessageBox::StandardButton  button1)
+{
+return QMessageBox::question(parent, title, text, button0, button1);
+}
+
+bool  PythonQtWrapper_QMessageBox::event(QMessageBox* theWrappedObject, QEvent*  e)
+{
+return  ((PythonQtPublicPromoter_QMessageBox*)theWrappedObject)->promoted_event(e);
+}
+
+void PythonQtWrapper_QMessageBox::resizeEvent(QMessageBox* theWrappedObject, QResizeEvent*  event)
+{
+ ((PythonQtPublicPromoter_QMessageBox*)theWrappedObject)->promoted_resizeEvent(event);
+}
+
+void PythonQtWrapper_QMessageBox::closeEvent(QMessageBox* theWrappedObject, QCloseEvent*  event)
+{
+ ((PythonQtPublicPromoter_QMessageBox*)theWrappedObject)->promoted_closeEvent(event);
+}
+
+void PythonQtWrapper_QMessageBox::keyPressEvent(QMessageBox* theWrappedObject, QKeyEvent*  event)
+{
+ ((PythonQtPublicPromoter_QMessageBox*)theWrappedObject)->promoted_keyPressEvent(event);
+}
+
+void PythonQtWrapper_QMessageBox::setEscapeButton(QMessageBox* theWrappedObject, QMessageBox::StandardButton  button)
+{
+ theWrappedObject->setEscapeButton(button);
+}
+
+QMessageBox::StandardButtons  PythonQtWrapper_QMessageBox::standardButtons(QMessageBox* theWrappedObject) const
+{
+return  theWrappedObject->standardButtons();
+}
+
+void PythonQtWrapper_QMessageBox::setDetailedText(QMessageBox* theWrappedObject, const QString&  text)
+{
+ theWrappedObject->setDetailedText(text);
+}
+
+void PythonQtWrapper_QMessageBox::setText(QMessageBox* theWrappedObject, const QString&  text)
+{
+ theWrappedObject->setText(text);
+}
+
+void PythonQtWrapper_QMessageBox::setInformativeText(QMessageBox* theWrappedObject, const QString&  text)
+{
+ theWrappedObject->setInformativeText(text);
+}
+
+void PythonQtWrapper_QMessageBox::addButton(QMessageBox* theWrappedObject, QAbstractButton*  button, QMessageBox::ButtonRole  role)
+{
+ theWrappedObject->addButton(button, role);
+}
+
+QPushButton*  PythonQtWrapper_QMessageBox::defaultButton(QMessageBox* theWrappedObject) const
+{
+return  theWrappedObject->defaultButton();
 }
 

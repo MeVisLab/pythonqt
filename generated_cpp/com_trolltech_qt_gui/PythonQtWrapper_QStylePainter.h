@@ -39,14 +39,14 @@ QStylePainter* new_QStylePainter();
 QStylePainter* new_QStylePainter(QPaintDevice*  pd, QWidget*  w);
 QStylePainter* new_QStylePainter(QWidget*  w);
 void delete_QStylePainter(QStylePainter* obj) { delete obj; } 
+   bool  begin(QStylePainter* theWrappedObject, QPaintDevice*  pd, QWidget*  w);
+   void drawComplexControl(QStylePainter* theWrappedObject, QStyle::ComplexControl  cc, const QStyleOptionComplex&  opt);
+   bool  begin(QStylePainter* theWrappedObject, QWidget*  w);
    void drawItemText(QStylePainter* theWrappedObject, const QRect&  r, int  flags, const QPalette&  pal, bool  enabled, const QString&  text, QPalette::ColorRole  textRole = QPalette::NoRole);
    QStyle*  style(QStylePainter* theWrappedObject) const;
    void drawControl(QStylePainter* theWrappedObject, QStyle::ControlElement  ce, const QStyleOption&  opt);
-   bool  begin(QStylePainter* theWrappedObject, QPaintDevice*  pd, QWidget*  w);
-   bool  begin(QStylePainter* theWrappedObject, QWidget*  w);
-   void drawComplexControl(QStylePainter* theWrappedObject, QStyle::ComplexControl  cc, const QStyleOptionComplex&  opt);
-   void drawItemPixmap(QStylePainter* theWrappedObject, const QRect&  r, int  flags, const QPixmap&  pixmap);
    void drawPrimitive(QStylePainter* theWrappedObject, QStyle::PrimitiveElement  pe, const QStyleOption&  opt);
+   void drawItemPixmap(QStylePainter* theWrappedObject, const QRect&  r, int  flags, const QPixmap&  pixmap);
 };
 
 #endif // PYTHONQTWRAPPER_QSTYLEPAINTER_H

@@ -29,23 +29,23 @@ QSizePolicy* a = new QSizePolicy();
 *((QSizePolicy*)a) = other;
 return a; }
 void delete_QSizePolicy(QSizePolicy* obj) { delete obj; } 
-   void setHeightForWidth(QSizePolicy* theWrappedObject, bool  b);
+   void readFrom(QSizePolicy* theWrappedObject, QDataStream&  arg__1);
    void setHorizontalPolicy(QSizePolicy* theWrappedObject, QSizePolicy::Policy  d);
-   void transpose(QSizePolicy* theWrappedObject);
-   Qt::Orientations  expandingDirections(QSizePolicy* theWrappedObject) const;
-   QSizePolicy::Policy  verticalPolicy(QSizePolicy* theWrappedObject) const;
-   bool  hasHeightForWidth(QSizePolicy* theWrappedObject) const;
+   void setHorizontalStretch(QSizePolicy* theWrappedObject, uchar  stretchFactor);
+   void writeTo(QSizePolicy* theWrappedObject, QDataStream&  arg__1);
+   void setHeightForWidth(QSizePolicy* theWrappedObject, bool  b);
+   bool  operator_equal(QSizePolicy* theWrappedObject, const QSizePolicy&  s) const;
    QSizePolicy::Policy  horizontalPolicy(QSizePolicy* theWrappedObject) const;
    int  verticalStretch(QSizePolicy* theWrappedObject) const;
    QSizePolicy::ControlType  controlType(QSizePolicy* theWrappedObject) const;
    int  horizontalStretch(QSizePolicy* theWrappedObject) const;
-   void setVerticalPolicy(QSizePolicy* theWrappedObject, QSizePolicy::Policy  d);
-   void readFrom(QSizePolicy* theWrappedObject, QDataStream&  arg__1);
-   void writeTo(QSizePolicy* theWrappedObject, QDataStream&  arg__1);
    void setVerticalStretch(QSizePolicy* theWrappedObject, uchar  stretchFactor);
-   bool  operator_equal(QSizePolicy* theWrappedObject, const QSizePolicy&  s) const;
+   void transpose(QSizePolicy* theWrappedObject);
+   Qt::Orientations  expandingDirections(QSizePolicy* theWrappedObject) const;
    void setControlType(QSizePolicy* theWrappedObject, QSizePolicy::ControlType  type);
-   void setHorizontalStretch(QSizePolicy* theWrappedObject, uchar  stretchFactor);
+   QSizePolicy::Policy  verticalPolicy(QSizePolicy* theWrappedObject) const;
+   bool  hasHeightForWidth(QSizePolicy* theWrappedObject) const;
+   void setVerticalPolicy(QSizePolicy* theWrappedObject, QSizePolicy::Policy  d);
 };
 
 #endif // PYTHONQTWRAPPER_QSIZEPOLICY_H

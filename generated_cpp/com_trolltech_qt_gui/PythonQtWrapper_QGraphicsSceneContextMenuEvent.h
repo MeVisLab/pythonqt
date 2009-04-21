@@ -19,16 +19,16 @@ enum Reason{
 public slots:
 QGraphicsSceneContextMenuEvent* new_QGraphicsSceneContextMenuEvent(QEvent::Type  type = QEvent::None);
 void delete_QGraphicsSceneContextMenuEvent(QGraphicsSceneContextMenuEvent* obj) { delete obj; } 
-   void setPos(QGraphicsSceneContextMenuEvent* theWrappedObject, const QPointF&  pos);
-   QPointF  pos(QGraphicsSceneContextMenuEvent* theWrappedObject) const;
-   QGraphicsSceneContextMenuEvent::Reason  reason(QGraphicsSceneContextMenuEvent* theWrappedObject) const;
-   void setScenePos(QGraphicsSceneContextMenuEvent* theWrappedObject, const QPointF&  pos);
    void setScreenPos(QGraphicsSceneContextMenuEvent* theWrappedObject, const QPoint&  pos);
-   QPointF  scenePos(QGraphicsSceneContextMenuEvent* theWrappedObject) const;
-   void setReason(QGraphicsSceneContextMenuEvent* theWrappedObject, QGraphicsSceneContextMenuEvent::Reason  reason);
    QPoint  screenPos(QGraphicsSceneContextMenuEvent* theWrappedObject) const;
-   void setModifiers(QGraphicsSceneContextMenuEvent* theWrappedObject, Qt::KeyboardModifiers  modifiers);
    Qt::KeyboardModifiers  modifiers(QGraphicsSceneContextMenuEvent* theWrappedObject) const;
+   QPointF  scenePos(QGraphicsSceneContextMenuEvent* theWrappedObject) const;
+   void setModifiers(QGraphicsSceneContextMenuEvent* theWrappedObject, Qt::KeyboardModifiers  modifiers);
+   void setReason(QGraphicsSceneContextMenuEvent* theWrappedObject, QGraphicsSceneContextMenuEvent::Reason  reason);
+   void setScenePos(QGraphicsSceneContextMenuEvent* theWrappedObject, const QPointF&  pos);
+   QGraphicsSceneContextMenuEvent::Reason  reason(QGraphicsSceneContextMenuEvent* theWrappedObject) const;
+   QPointF  pos(QGraphicsSceneContextMenuEvent* theWrappedObject) const;
+   void setPos(QGraphicsSceneContextMenuEvent* theWrappedObject, const QPointF&  pos);
 };
 
 #endif // PYTHONQTWRAPPER_QGRAPHICSSCENECONTEXTMENUEVENT_H

@@ -24,8 +24,8 @@ public:
 public slots:
 QRunnable* new_QRunnable();
 void delete_QRunnable(QRunnable* obj) { delete obj; } 
-   void setAutoDelete(QRunnable* theWrappedObject, bool  _autoDelete);
    bool  autoDelete(QRunnable* theWrappedObject) const;
+   void setAutoDelete(QRunnable* theWrappedObject, bool  _autoDelete);
 };
 
 #endif // PYTHONQTWRAPPER_QRUNNABLE_H

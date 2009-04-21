@@ -120,48 +120,48 @@ QActionGroup* PythonQtWrapper_QActionGroup::new_QActionGroup(QObject*  parent)
 { 
 return new PythonQtShell_QActionGroup(parent); }
 
+QAction*  PythonQtWrapper_QActionGroup::checkedAction(QActionGroup* theWrappedObject) const
+{
+return  theWrappedObject->checkedAction();
+}
+
 bool  PythonQtWrapper_QActionGroup::isVisible(QActionGroup* theWrappedObject) const
 {
-return  (*theWrappedObject).isVisible();
-}
-
-QAction*  PythonQtWrapper_QActionGroup::addAction(QActionGroup* theWrappedObject, const QIcon&  icon, const QString&  text)
-{
-return  (*theWrappedObject).addAction(icon, text);
-}
-
-bool  PythonQtWrapper_QActionGroup::isExclusive(QActionGroup* theWrappedObject) const
-{
-return  (*theWrappedObject).isExclusive();
+return  theWrappedObject->isVisible();
 }
 
 void PythonQtWrapper_QActionGroup::removeAction(QActionGroup* theWrappedObject, QAction*  a)
 {
- (*theWrappedObject).removeAction(a);
+ theWrappedObject->removeAction(a);
+}
+
+bool  PythonQtWrapper_QActionGroup::isExclusive(QActionGroup* theWrappedObject) const
+{
+return  theWrappedObject->isExclusive();
+}
+
+QAction*  PythonQtWrapper_QActionGroup::addAction(QActionGroup* theWrappedObject, const QIcon&  icon, const QString&  text)
+{
+return  theWrappedObject->addAction(icon, text);
 }
 
 QAction*  PythonQtWrapper_QActionGroup::addAction(QActionGroup* theWrappedObject, QAction*  a)
 {
-return  (*theWrappedObject).addAction(a);
+return  theWrappedObject->addAction(a);
 }
 
 QAction*  PythonQtWrapper_QActionGroup::addAction(QActionGroup* theWrappedObject, const QString&  text)
 {
-return  (*theWrappedObject).addAction(text);
-}
-
-QList<QAction* >  PythonQtWrapper_QActionGroup::actions(QActionGroup* theWrappedObject) const
-{
-return  (*theWrappedObject).actions();
+return  theWrappedObject->addAction(text);
 }
 
 bool  PythonQtWrapper_QActionGroup::isEnabled(QActionGroup* theWrappedObject) const
 {
-return  (*theWrappedObject).isEnabled();
+return  theWrappedObject->isEnabled();
 }
 
-QAction*  PythonQtWrapper_QActionGroup::checkedAction(QActionGroup* theWrappedObject) const
+QList<QAction* >  PythonQtWrapper_QActionGroup::actions(QActionGroup* theWrappedObject) const
 {
-return  (*theWrappedObject).checkedAction();
+return  theWrappedObject->actions();
 }
 

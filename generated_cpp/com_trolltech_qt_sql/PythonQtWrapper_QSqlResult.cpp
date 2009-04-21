@@ -585,83 +585,83 @@ if (_wrapper) {
 }
   QSqlResult::virtual_hook(id, data);
 }
-bool  PythonQtWrapper_QSqlResult::exec(QSqlResult* theWrappedObject)
-{
-return  (*((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)).exec();
-}
-
-void PythonQtWrapper_QSqlResult::setAt(QSqlResult* theWrappedObject, int  at)
-{
- (*((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)).setAt(at);
-}
-
-void PythonQtWrapper_QSqlResult::bindValue(QSqlResult* theWrappedObject, int  pos, const QVariant&  val, QSql::ParamType  type)
-{
- (*((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)).bindValue(pos, val, type);
-}
-
-bool  PythonQtWrapper_QSqlResult::savePrepare(QSqlResult* theWrappedObject, const QString&  sqlquery)
-{
-return  (*((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)).savePrepare(sqlquery);
-}
-
-QSqlRecord  PythonQtWrapper_QSqlResult::record(QSqlResult* theWrappedObject) const
-{
-return  (*((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)).record();
-}
-
-void PythonQtWrapper_QSqlResult::setQuery(QSqlResult* theWrappedObject, const QString&  query)
-{
- (*((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)).setQuery(query);
-}
-
-void PythonQtWrapper_QSqlResult::bindValue(QSqlResult* theWrappedObject, const QString&  placeholder, const QVariant&  val, QSql::ParamType  type)
-{
- (*((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)).bindValue(placeholder, val, type);
-}
-
-QVariant  PythonQtWrapper_QSqlResult::lastInsertId(QSqlResult* theWrappedObject) const
-{
-return  (*((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)).lastInsertId();
-}
-
-void PythonQtWrapper_QSqlResult::setSelect(QSqlResult* theWrappedObject, bool  s)
-{
- (*((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)).setSelect(s);
-}
-
-void PythonQtWrapper_QSqlResult::setActive(QSqlResult* theWrappedObject, bool  a)
-{
- (*((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)).setActive(a);
-}
-
-void PythonQtWrapper_QSqlResult::setLastError(QSqlResult* theWrappedObject, const QSqlError&  e)
-{
- (*((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)).setLastError(e);
-}
-
-bool  PythonQtWrapper_QSqlResult::prepare(QSqlResult* theWrappedObject, const QString&  query)
-{
-return  (*((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)).prepare(query);
-}
-
-bool  PythonQtWrapper_QSqlResult::fetchNext(QSqlResult* theWrappedObject)
-{
-return  (*((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)).fetchNext();
-}
-
 QVariant  PythonQtWrapper_QSqlResult::handle(QSqlResult* theWrappedObject) const
 {
-return  (*theWrappedObject).handle();
-}
-
-void PythonQtWrapper_QSqlResult::setForwardOnly(QSqlResult* theWrappedObject, bool  forward)
-{
- (*((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)).setForwardOnly(forward);
+return  ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_handle();
 }
 
 bool  PythonQtWrapper_QSqlResult::fetchPrevious(QSqlResult* theWrappedObject)
 {
-return  (*((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)).fetchPrevious();
+return  ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_fetchPrevious();
+}
+
+bool  PythonQtWrapper_QSqlResult::exec(QSqlResult* theWrappedObject)
+{
+return  ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_exec();
+}
+
+void PythonQtWrapper_QSqlResult::setActive(QSqlResult* theWrappedObject, bool  a)
+{
+ ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_setActive(a);
+}
+
+bool  PythonQtWrapper_QSqlResult::fetchNext(QSqlResult* theWrappedObject)
+{
+return  ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_fetchNext();
+}
+
+void PythonQtWrapper_QSqlResult::setAt(QSqlResult* theWrappedObject, int  at)
+{
+ ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_setAt(at);
+}
+
+bool  PythonQtWrapper_QSqlResult::savePrepare(QSqlResult* theWrappedObject, const QString&  sqlquery)
+{
+return  ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_savePrepare(sqlquery);
+}
+
+void PythonQtWrapper_QSqlResult::setForwardOnly(QSqlResult* theWrappedObject, bool  forward)
+{
+ ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_setForwardOnly(forward);
+}
+
+void PythonQtWrapper_QSqlResult::setQuery(QSqlResult* theWrappedObject, const QString&  query)
+{
+ ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_setQuery(query);
+}
+
+void PythonQtWrapper_QSqlResult::bindValue(QSqlResult* theWrappedObject, const QString&  placeholder, const QVariant&  val, QSql::ParamType  type)
+{
+ ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_bindValue(placeholder, val, type);
+}
+
+QVariant  PythonQtWrapper_QSqlResult::lastInsertId(QSqlResult* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_lastInsertId();
+}
+
+QSqlRecord  PythonQtWrapper_QSqlResult::record(QSqlResult* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_record();
+}
+
+void PythonQtWrapper_QSqlResult::bindValue(QSqlResult* theWrappedObject, int  pos, const QVariant&  val, QSql::ParamType  type)
+{
+ ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_bindValue(pos, val, type);
+}
+
+void PythonQtWrapper_QSqlResult::setSelect(QSqlResult* theWrappedObject, bool  s)
+{
+ ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_setSelect(s);
+}
+
+bool  PythonQtWrapper_QSqlResult::prepare(QSqlResult* theWrappedObject, const QString&  query)
+{
+return  ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_prepare(query);
+}
+
+void PythonQtWrapper_QSqlResult::setLastError(QSqlResult* theWrappedObject, const QSqlError&  e)
+{
+ ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_setLastError(e);
 }
 

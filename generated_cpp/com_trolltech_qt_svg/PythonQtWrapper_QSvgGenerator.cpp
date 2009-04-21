@@ -88,53 +88,53 @@ QSvgGenerator* PythonQtWrapper_QSvgGenerator::new_QSvgGenerator()
 { 
 return new PythonQtShell_QSvgGenerator(); }
 
-QSize  PythonQtWrapper_QSvgGenerator::size(QSvgGenerator* theWrappedObject) const
-{
-return  (*theWrappedObject).size();
-}
-
 QIODevice*  PythonQtWrapper_QSvgGenerator::outputDevice(QSvgGenerator* theWrappedObject) const
 {
-return  (*theWrappedObject).outputDevice();
-}
-
-int  PythonQtWrapper_QSvgGenerator::resolution(QSvgGenerator* theWrappedObject) const
-{
-return  (*theWrappedObject).resolution();
-}
-
-QString  PythonQtWrapper_QSvgGenerator::fileName(QSvgGenerator* theWrappedObject) const
-{
-return  (*theWrappedObject).fileName();
-}
-
-void PythonQtWrapper_QSvgGenerator::setSize(QSvgGenerator* theWrappedObject, const QSize&  size)
-{
- (*theWrappedObject).setSize(size);
+return  theWrappedObject->outputDevice();
 }
 
 void PythonQtWrapper_QSvgGenerator::setOutputDevice(QSvgGenerator* theWrappedObject, QIODevice*  outputDevice)
 {
- (*theWrappedObject).setOutputDevice(outputDevice);
+ theWrappedObject->setOutputDevice(outputDevice);
 }
 
-QPaintEngine*  PythonQtWrapper_QSvgGenerator::paintEngine(QSvgGenerator* theWrappedObject) const
+void PythonQtWrapper_QSvgGenerator::setSize(QSvgGenerator* theWrappedObject, const QSize&  size)
 {
-return  (*((PythonQtPublicPromoter_QSvgGenerator*)theWrappedObject)).paintEngine();
-}
-
-void PythonQtWrapper_QSvgGenerator::setResolution(QSvgGenerator* theWrappedObject, int  dpi)
-{
- (*theWrappedObject).setResolution(dpi);
-}
-
-int  PythonQtWrapper_QSvgGenerator::metric(QSvgGenerator* theWrappedObject, QPaintDevice::PaintDeviceMetric  metric) const
-{
-return  (*((PythonQtPublicPromoter_QSvgGenerator*)theWrappedObject)).metric(metric);
+ theWrappedObject->setSize(size);
 }
 
 void PythonQtWrapper_QSvgGenerator::setFileName(QSvgGenerator* theWrappedObject, const QString&  fileName)
 {
- (*theWrappedObject).setFileName(fileName);
+ theWrappedObject->setFileName(fileName);
+}
+
+int  PythonQtWrapper_QSvgGenerator::metric(QSvgGenerator* theWrappedObject, QPaintDevice::PaintDeviceMetric  metric) const
+{
+return  ((PythonQtPublicPromoter_QSvgGenerator*)theWrappedObject)->promoted_metric(metric);
+}
+
+QPaintEngine*  PythonQtWrapper_QSvgGenerator::paintEngine(QSvgGenerator* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QSvgGenerator*)theWrappedObject)->promoted_paintEngine();
+}
+
+int  PythonQtWrapper_QSvgGenerator::resolution(QSvgGenerator* theWrappedObject) const
+{
+return  theWrappedObject->resolution();
+}
+
+void PythonQtWrapper_QSvgGenerator::setResolution(QSvgGenerator* theWrappedObject, int  dpi)
+{
+ theWrappedObject->setResolution(dpi);
+}
+
+QSize  PythonQtWrapper_QSvgGenerator::size(QSvgGenerator* theWrappedObject) const
+{
+return  theWrappedObject->size();
+}
+
+QString  PythonQtWrapper_QSvgGenerator::fileName(QSvgGenerator* theWrappedObject) const
+{
+return  theWrappedObject->fileName();
 }
 

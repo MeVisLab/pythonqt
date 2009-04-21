@@ -79,51 +79,51 @@ return new PythonQtShell_QGraphicsRectItem(x, y, w, h, parent, scene); }
 
 void PythonQtWrapper_QGraphicsRectItem::paint(QGraphicsRectItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget)
 {
- (*theWrappedObject).paint(painter, option, widget);
+ theWrappedObject->paint(painter, option, widget);
 }
 
 QPainterPath  PythonQtWrapper_QGraphicsRectItem::shape(QGraphicsRectItem* theWrappedObject) const
 {
-return  (*theWrappedObject).shape();
-}
-
-int  PythonQtWrapper_QGraphicsRectItem::type(QGraphicsRectItem* theWrappedObject) const
-{
-return  (*theWrappedObject).type();
-}
-
-QRectF  PythonQtWrapper_QGraphicsRectItem::boundingRect(QGraphicsRectItem* theWrappedObject) const
-{
-return  (*theWrappedObject).boundingRect();
-}
-
-void PythonQtWrapper_QGraphicsRectItem::setRect(QGraphicsRectItem* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h)
-{
- (*theWrappedObject).setRect(x, y, w, h);
-}
-
-QRectF  PythonQtWrapper_QGraphicsRectItem::rect(QGraphicsRectItem* theWrappedObject) const
-{
-return  (*theWrappedObject).rect();
-}
-
-bool  PythonQtWrapper_QGraphicsRectItem::contains(QGraphicsRectItem* theWrappedObject, const QPointF&  point) const
-{
-return  (*theWrappedObject).contains(point);
-}
-
-QPainterPath  PythonQtWrapper_QGraphicsRectItem::opaqueArea(QGraphicsRectItem* theWrappedObject) const
-{
-return  (*theWrappedObject).opaqueArea();
-}
-
-bool  PythonQtWrapper_QGraphicsRectItem::isObscuredBy(QGraphicsRectItem* theWrappedObject, const QGraphicsItem*  item) const
-{
-return  (*theWrappedObject).isObscuredBy(item);
+return  theWrappedObject->shape();
 }
 
 void PythonQtWrapper_QGraphicsRectItem::setRect(QGraphicsRectItem* theWrappedObject, const QRectF&  rect)
 {
- (*theWrappedObject).setRect(rect);
+ theWrappedObject->setRect(rect);
+}
+
+QPainterPath  PythonQtWrapper_QGraphicsRectItem::opaqueArea(QGraphicsRectItem* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QGraphicsRectItem*)theWrappedObject)->promoted_opaqueArea();
+}
+
+int  PythonQtWrapper_QGraphicsRectItem::type(QGraphicsRectItem* theWrappedObject) const
+{
+return  theWrappedObject->type();
+}
+
+QRectF  PythonQtWrapper_QGraphicsRectItem::boundingRect(QGraphicsRectItem* theWrappedObject) const
+{
+return  theWrappedObject->boundingRect();
+}
+
+void PythonQtWrapper_QGraphicsRectItem::setRect(QGraphicsRectItem* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h)
+{
+ theWrappedObject->setRect(x, y, w, h);
+}
+
+bool  PythonQtWrapper_QGraphicsRectItem::contains(QGraphicsRectItem* theWrappedObject, const QPointF&  point) const
+{
+return  theWrappedObject->contains(point);
+}
+
+QRectF  PythonQtWrapper_QGraphicsRectItem::rect(QGraphicsRectItem* theWrappedObject) const
+{
+return  theWrappedObject->rect();
+}
+
+bool  PythonQtWrapper_QGraphicsRectItem::isObscuredBy(QGraphicsRectItem* theWrappedObject, const QGraphicsItem*  item) const
+{
+return  ((PythonQtPublicPromoter_QGraphicsRectItem*)theWrappedObject)->promoted_isObscuredBy(item);
 }
 

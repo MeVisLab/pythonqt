@@ -31,6 +31,12 @@ virtual QPainterPath  opaqueArea() const;
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QGraphicsPolygonItem : public QGraphicsPolygonItem
+{ public:
+inline bool  promoted_isObscuredBy(const QGraphicsItem*  item) const { return QGraphicsPolygonItem::isObscuredBy(item); }
+inline QPainterPath  promoted_opaqueArea() const { return QGraphicsPolygonItem::opaqueArea(); }
+};
+
 class PythonQtWrapper_QGraphicsPolygonItem : public QObject
 { Q_OBJECT
 public:
@@ -41,17 +47,17 @@ public slots:
 QGraphicsPolygonItem* new_QGraphicsPolygonItem(QGraphicsItem*  parent = 0, QGraphicsScene*  scene = 0);
 QGraphicsPolygonItem* new_QGraphicsPolygonItem(const QPolygonF&  polygon, QGraphicsItem*  parent = 0, QGraphicsScene*  scene = 0);
 void delete_QGraphicsPolygonItem(QGraphicsPolygonItem* obj) { delete obj; } 
-   QPainterPath  opaqueArea(QGraphicsPolygonItem* theWrappedObject) const;
-   void paint(QGraphicsPolygonItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = 0);
-   QRectF  boundingRect(QGraphicsPolygonItem* theWrappedObject) const;
-   Qt::FillRule  fillRule(QGraphicsPolygonItem* theWrappedObject) const;
    QPolygonF  polygon(QGraphicsPolygonItem* theWrappedObject) const;
-   void setPolygon(QGraphicsPolygonItem* theWrappedObject, const QPolygonF&  polygon);
+   QPainterPath  shape(QGraphicsPolygonItem* theWrappedObject) const;
    int  type(QGraphicsPolygonItem* theWrappedObject) const;
    bool  isObscuredBy(QGraphicsPolygonItem* theWrappedObject, const QGraphicsItem*  item) const;
    void setFillRule(QGraphicsPolygonItem* theWrappedObject, Qt::FillRule  rule);
+   QRectF  boundingRect(QGraphicsPolygonItem* theWrappedObject) const;
    bool  contains(QGraphicsPolygonItem* theWrappedObject, const QPointF&  point) const;
-   QPainterPath  shape(QGraphicsPolygonItem* theWrappedObject) const;
+   Qt::FillRule  fillRule(QGraphicsPolygonItem* theWrappedObject) const;
+   void setPolygon(QGraphicsPolygonItem* theWrappedObject, const QPolygonF&  polygon);
+   QPainterPath  opaqueArea(QGraphicsPolygonItem* theWrappedObject) const;
+   void paint(QGraphicsPolygonItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = 0);
 };
 
 #endif // PYTHONQTWRAPPER_QGRAPHICSPOLYGONITEM_H

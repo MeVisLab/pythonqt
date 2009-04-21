@@ -52,10 +52,10 @@ PythonQtShell_QBitmap* a = new PythonQtShell_QBitmap();
 *((QBitmap*)a) = other;
 return a; }
 void delete_QBitmap(QBitmap* obj) { delete obj; } 
-   QBitmap  static_QBitmap_fromImage(const QImage&  image, Qt::ImageConversionFlags  flags = Qt::AutoColor);
    void clear(QBitmap* theWrappedObject);
    QBitmap  transformed(QBitmap* theWrappedObject, const QMatrix&  arg__1) const;
    QBitmap  transformed(QBitmap* theWrappedObject, const QTransform&  matrix) const;
+   QBitmap  static_QBitmap_fromImage(const QImage&  image, Qt::ImageConversionFlags  flags = Qt::AutoColor);
 };
 
 #endif // PYTHONQTWRAPPER_QBITMAP_H

@@ -118,38 +118,38 @@ QSignalMapper* PythonQtWrapper_QSignalMapper::new_QSignalMapper(QObject*  parent
 { 
 return new PythonQtShell_QSignalMapper(parent); }
 
+QObject*  PythonQtWrapper_QSignalMapper::mapping(QSignalMapper* theWrappedObject, int  id) const
+{
+return  theWrappedObject->mapping(id);
+}
+
 QObject*  PythonQtWrapper_QSignalMapper::mapping(QSignalMapper* theWrappedObject, const QString&  text) const
 {
-return  (*theWrappedObject).mapping(text);
+return  theWrappedObject->mapping(text);
 }
 
 void PythonQtWrapper_QSignalMapper::setMapping(QSignalMapper* theWrappedObject, QObject*  sender, int  id)
 {
- (*theWrappedObject).setMapping(sender, id);
+ theWrappedObject->setMapping(sender, id);
 }
 
 void PythonQtWrapper_QSignalMapper::removeMappings(QSignalMapper* theWrappedObject, QObject*  sender)
 {
- (*theWrappedObject).removeMappings(sender);
+ theWrappedObject->removeMappings(sender);
 }
 
 void PythonQtWrapper_QSignalMapper::setMapping(QSignalMapper* theWrappedObject, QObject*  sender, QObject*  object)
 {
- (*theWrappedObject).setMapping(sender, object);
+ theWrappedObject->setMapping(sender, object);
 }
 
 void PythonQtWrapper_QSignalMapper::setMapping(QSignalMapper* theWrappedObject, QObject*  sender, const QString&  text)
 {
- (*theWrappedObject).setMapping(sender, text);
+ theWrappedObject->setMapping(sender, text);
 }
 
 QObject*  PythonQtWrapper_QSignalMapper::mapping(QSignalMapper* theWrappedObject, QObject*  object) const
 {
-return  (*theWrappedObject).mapping(object);
-}
-
-QObject*  PythonQtWrapper_QSignalMapper::mapping(QSignalMapper* theWrappedObject, int  id) const
-{
-return  (*theWrappedObject).mapping(id);
+return  theWrappedObject->mapping(object);
 }
 

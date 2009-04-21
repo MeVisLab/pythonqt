@@ -37,24 +37,9 @@ QRegion* PythonQtWrapper_QRegion::new_QRegion(int  x, int  y, int  w, int  h, QR
 { 
 return new QRegion(x, y, w, h, t); }
 
-QRegion  PythonQtWrapper_QRegion::intersected(QRegion* theWrappedObject, const QRegion&  r) const
-{
-return  (*theWrappedObject).intersected(r);
-}
-
 bool  PythonQtWrapper_QRegion::isEmpty(QRegion* theWrappedObject) const
 {
-return  (*theWrappedObject).isEmpty();
-}
-
-int  PythonQtWrapper_QRegion::numRects(QRegion* theWrappedObject) const
-{
-return  (*theWrappedObject).numRects();
-}
-
-QRegion  PythonQtWrapper_QRegion::xored(QRegion* theWrappedObject, const QRegion&  r) const
-{
-return  (*theWrappedObject).xored(r);
+return  theWrappedObject->isEmpty();
 }
 
 const QRegion  PythonQtWrapper_QRegion::operator_add(QRegion* theWrappedObject, const QRect&  r) const
@@ -62,39 +47,84 @@ const QRegion  PythonQtWrapper_QRegion::operator_add(QRegion* theWrappedObject, 
 return  (*theWrappedObject)+ r;
 }
 
+void PythonQtWrapper_QRegion::readFrom(QRegion* theWrappedObject, QDataStream&  arg__1)
+{
+arg__1 >>  (*theWrappedObject);
+}
+
+QRegion  PythonQtWrapper_QRegion::subtracted(QRegion* theWrappedObject, const QRegion&  r) const
+{
+return  theWrappedObject->subtracted(r);
+}
+
 void PythonQtWrapper_QRegion::writeTo(QRegion* theWrappedObject, QDataStream&  arg__1)
 {
 arg__1 <<  (*theWrappedObject);
 }
 
-QRegion  PythonQtWrapper_QRegion::subtracted(QRegion* theWrappedObject, const QRegion&  r) const
+QVector<QRect >  PythonQtWrapper_QRegion::rects(QRegion* theWrappedObject) const
 {
-return  (*theWrappedObject).subtracted(r);
-}
-
-QRegion  PythonQtWrapper_QRegion::intersect(QRegion* theWrappedObject, const QRect&  r) const
-{
-return  (*theWrappedObject).intersect(r);
-}
-
-void PythonQtWrapper_QRegion::translate(QRegion* theWrappedObject, int  dx, int  dy)
-{
- (*theWrappedObject).translate(dx, dy);
-}
-
-QRegion  PythonQtWrapper_QRegion::unite(QRegion* theWrappedObject, const QRect&  r) const
-{
-return  (*theWrappedObject).unite(r);
+return  theWrappedObject->rects();
 }
 
 void PythonQtWrapper_QRegion::translate(QRegion* theWrappedObject, const QPoint&  p)
 {
- (*theWrappedObject).translate(p);
+ theWrappedObject->translate(p);
+}
+
+void PythonQtWrapper_QRegion::translate(QRegion* theWrappedObject, int  dx, int  dy)
+{
+ theWrappedObject->translate(dx, dy);
+}
+
+QRegion  PythonQtWrapper_QRegion::translated(QRegion* theWrappedObject, int  dx, int  dy) const
+{
+return  theWrappedObject->translated(dx, dy);
+}
+
+QRegion  PythonQtWrapper_QRegion::unite(QRegion* theWrappedObject, const QRect&  r) const
+{
+return  theWrappedObject->unite(r);
+}
+
+QRegion  PythonQtWrapper_QRegion::intersect(QRegion* theWrappedObject, const QRect&  r) const
+{
+return  theWrappedObject->intersect(r);
+}
+
+int  PythonQtWrapper_QRegion::numRects(QRegion* theWrappedObject) const
+{
+return  theWrappedObject->numRects();
+}
+
+QRegion  PythonQtWrapper_QRegion::translated(QRegion* theWrappedObject, const QPoint&  p) const
+{
+return  theWrappedObject->translated(p);
+}
+
+QRect  PythonQtWrapper_QRegion::boundingRect(QRegion* theWrappedObject) const
+{
+return  theWrappedObject->boundingRect();
+}
+
+QRegion  PythonQtWrapper_QRegion::xored(QRegion* theWrappedObject, const QRegion&  r) const
+{
+return  theWrappedObject->xored(r);
+}
+
+bool  PythonQtWrapper_QRegion::contains(QRegion* theWrappedObject, const QRect&  r) const
+{
+return  theWrappedObject->contains(r);
 }
 
 bool  PythonQtWrapper_QRegion::intersects(QRegion* theWrappedObject, const QRect&  r) const
 {
-return  (*theWrappedObject).intersects(r);
+return  theWrappedObject->intersects(r);
+}
+
+QRegion  PythonQtWrapper_QRegion::intersected(QRegion* theWrappedObject, const QRect&  r) const
+{
+return  theWrappedObject->intersected(r);
 }
 
 const QRegion  PythonQtWrapper_QRegion::operator_and(QRegion* theWrappedObject, const QRect&  r) const
@@ -102,64 +132,34 @@ const QRegion  PythonQtWrapper_QRegion::operator_and(QRegion* theWrappedObject, 
 return  (*theWrappedObject)& r;
 }
 
-QRegion  PythonQtWrapper_QRegion::translated(QRegion* theWrappedObject, int  dx, int  dy) const
+bool  PythonQtWrapper_QRegion::contains(QRegion* theWrappedObject, const QPoint&  p) const
 {
-return  (*theWrappedObject).translated(dx, dy);
-}
-
-QVector<QRect >  PythonQtWrapper_QRegion::rects(QRegion* theWrappedObject) const
-{
-return  (*theWrappedObject).rects();
+return  theWrappedObject->contains(p);
 }
 
 bool  PythonQtWrapper_QRegion::intersects(QRegion* theWrappedObject, const QRegion&  r) const
 {
-return  (*theWrappedObject).intersects(r);
-}
-
-QRegion  PythonQtWrapper_QRegion::translated(QRegion* theWrappedObject, const QPoint&  p) const
-{
-return  (*theWrappedObject).translated(p);
-}
-
-bool  PythonQtWrapper_QRegion::contains(QRegion* theWrappedObject, const QPoint&  p) const
-{
-return  (*theWrappedObject).contains(p);
-}
-
-bool  PythonQtWrapper_QRegion::contains(QRegion* theWrappedObject, const QRect&  r) const
-{
-return  (*theWrappedObject).contains(r);
+return  theWrappedObject->intersects(r);
 }
 
 void PythonQtWrapper_QRegion::setRects(QRegion* theWrappedObject, const QRect*  rect, int  num)
 {
- (*theWrappedObject).setRects(rect, num);
+ theWrappedObject->setRects(rect, num);
 }
 
 QRegion  PythonQtWrapper_QRegion::united(QRegion* theWrappedObject, const QRect&  r) const
 {
-return  (*theWrappedObject).united(r);
+return  theWrappedObject->united(r);
 }
 
 QRegion  PythonQtWrapper_QRegion::united(QRegion* theWrappedObject, const QRegion&  r) const
 {
-return  (*theWrappedObject).united(r);
+return  theWrappedObject->united(r);
 }
 
-QRect  PythonQtWrapper_QRegion::boundingRect(QRegion* theWrappedObject) const
+QRegion  PythonQtWrapper_QRegion::intersected(QRegion* theWrappedObject, const QRegion&  r) const
 {
-return  (*theWrappedObject).boundingRect();
-}
-
-QRegion  PythonQtWrapper_QRegion::intersected(QRegion* theWrappedObject, const QRect&  r) const
-{
-return  (*theWrappedObject).intersected(r);
-}
-
-void PythonQtWrapper_QRegion::readFrom(QRegion* theWrappedObject, QDataStream&  arg__1)
-{
-arg__1 >>  (*theWrappedObject);
+return  theWrappedObject->intersected(r);
 }
 
 bool  PythonQtWrapper_QRegion::operator_equal(QRegion* theWrappedObject, const QRegion&  r) const

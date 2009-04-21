@@ -11,13 +11,13 @@ QTextDecoder* PythonQtWrapper_QTextDecoder::new_QTextDecoder(const QTextCodec*  
 { 
 return new QTextDecoder(codec); }
 
-bool  PythonQtWrapper_QTextDecoder::hasFailure(QTextDecoder* theWrappedObject) const
-{
-return  (*theWrappedObject).hasFailure();
-}
-
 QString  PythonQtWrapper_QTextDecoder::toUnicode(QTextDecoder* theWrappedObject, const QByteArray&  ba)
 {
-return  (*theWrappedObject).toUnicode(ba);
+return  theWrappedObject->toUnicode(ba);
+}
+
+bool  PythonQtWrapper_QTextDecoder::hasFailure(QTextDecoder* theWrappedObject) const
+{
+return  theWrappedObject->hasFailure();
 }
 

@@ -189,88 +189,88 @@ QTcpServer* PythonQtWrapper_QTcpServer::new_QTcpServer(QObject*  parent)
 { 
 return new PythonQtShell_QTcpServer(parent); }
 
-QAbstractSocket::SocketError  PythonQtWrapper_QTcpServer::serverError(QTcpServer* theWrappedObject) const
+bool  PythonQtWrapper_QTcpServer::hasPendingConnections(QTcpServer* theWrappedObject) const
 {
-return  (*theWrappedObject).serverError();
-}
-
-void PythonQtWrapper_QTcpServer::setMaxPendingConnections(QTcpServer* theWrappedObject, int  numConnections)
-{
- (*theWrappedObject).setMaxPendingConnections(numConnections);
-}
-
-int  PythonQtWrapper_QTcpServer::socketDescriptor(QTcpServer* theWrappedObject) const
-{
-return  (*theWrappedObject).socketDescriptor();
-}
-
-QTcpSocket*  PythonQtWrapper_QTcpServer::nextPendingConnection(QTcpServer* theWrappedObject)
-{
-return  (*theWrappedObject).nextPendingConnection();
-}
-
-void PythonQtWrapper_QTcpServer::setProxy(QTcpServer* theWrappedObject, const QNetworkProxy&  networkProxy)
-{
- (*theWrappedObject).setProxy(networkProxy);
-}
-
-bool  PythonQtWrapper_QTcpServer::isListening(QTcpServer* theWrappedObject) const
-{
-return  (*theWrappedObject).isListening();
-}
-
-QNetworkProxy  PythonQtWrapper_QTcpServer::proxy(QTcpServer* theWrappedObject) const
-{
-return  (*theWrappedObject).proxy();
-}
-
-bool  PythonQtWrapper_QTcpServer::waitForNewConnection(QTcpServer* theWrappedObject, int  msec, bool*  timedOut)
-{
-return  (*theWrappedObject).waitForNewConnection(msec, timedOut);
-}
-
-void PythonQtWrapper_QTcpServer::incomingConnection(QTcpServer* theWrappedObject, int  handle)
-{
- (*((PythonQtPublicPromoter_QTcpServer*)theWrappedObject)).incomingConnection(handle);
-}
-
-bool  PythonQtWrapper_QTcpServer::listen(QTcpServer* theWrappedObject, const QHostAddress&  address, unsigned short  port)
-{
-return  (*theWrappedObject).listen(address, port);
-}
-
-unsigned short  PythonQtWrapper_QTcpServer::serverPort(QTcpServer* theWrappedObject) const
-{
-return  (*theWrappedObject).serverPort();
+return  ((PythonQtPublicPromoter_QTcpServer*)theWrappedObject)->promoted_hasPendingConnections();
 }
 
 void PythonQtWrapper_QTcpServer::close(QTcpServer* theWrappedObject)
 {
- (*theWrappedObject).close();
+ theWrappedObject->close();
 }
 
-bool  PythonQtWrapper_QTcpServer::setSocketDescriptor(QTcpServer* theWrappedObject, int  socketDescriptor)
+QAbstractSocket::SocketError  PythonQtWrapper_QTcpServer::serverError(QTcpServer* theWrappedObject) const
 {
-return  (*theWrappedObject).setSocketDescriptor(socketDescriptor);
+return  theWrappedObject->serverError();
 }
 
-QString  PythonQtWrapper_QTcpServer::errorString(QTcpServer* theWrappedObject) const
+void PythonQtWrapper_QTcpServer::incomingConnection(QTcpServer* theWrappedObject, int  handle)
 {
-return  (*theWrappedObject).errorString();
+ ((PythonQtPublicPromoter_QTcpServer*)theWrappedObject)->promoted_incomingConnection(handle);
 }
 
-bool  PythonQtWrapper_QTcpServer::hasPendingConnections(QTcpServer* theWrappedObject) const
+void PythonQtWrapper_QTcpServer::setProxy(QTcpServer* theWrappedObject, const QNetworkProxy&  networkProxy)
 {
-return  (*theWrappedObject).hasPendingConnections();
+ theWrappedObject->setProxy(networkProxy);
 }
 
-int  PythonQtWrapper_QTcpServer::maxPendingConnections(QTcpServer* theWrappedObject) const
+bool  PythonQtWrapper_QTcpServer::listen(QTcpServer* theWrappedObject, const QHostAddress&  address, unsigned short  port)
 {
-return  (*theWrappedObject).maxPendingConnections();
+return  theWrappedObject->listen(address, port);
+}
+
+QTcpSocket*  PythonQtWrapper_QTcpServer::nextPendingConnection(QTcpServer* theWrappedObject)
+{
+return  ((PythonQtPublicPromoter_QTcpServer*)theWrappedObject)->promoted_nextPendingConnection();
+}
+
+void PythonQtWrapper_QTcpServer::setMaxPendingConnections(QTcpServer* theWrappedObject, int  numConnections)
+{
+ theWrappedObject->setMaxPendingConnections(numConnections);
 }
 
 QHostAddress  PythonQtWrapper_QTcpServer::serverAddress(QTcpServer* theWrappedObject) const
 {
-return  (*theWrappedObject).serverAddress();
+return  theWrappedObject->serverAddress();
+}
+
+bool  PythonQtWrapper_QTcpServer::waitForNewConnection(QTcpServer* theWrappedObject, int  msec, bool*  timedOut)
+{
+return  theWrappedObject->waitForNewConnection(msec, timedOut);
+}
+
+int  PythonQtWrapper_QTcpServer::socketDescriptor(QTcpServer* theWrappedObject) const
+{
+return  theWrappedObject->socketDescriptor();
+}
+
+QString  PythonQtWrapper_QTcpServer::errorString(QTcpServer* theWrappedObject) const
+{
+return  theWrappedObject->errorString();
+}
+
+int  PythonQtWrapper_QTcpServer::maxPendingConnections(QTcpServer* theWrappedObject) const
+{
+return  theWrappedObject->maxPendingConnections();
+}
+
+unsigned short  PythonQtWrapper_QTcpServer::serverPort(QTcpServer* theWrappedObject) const
+{
+return  theWrappedObject->serverPort();
+}
+
+bool  PythonQtWrapper_QTcpServer::isListening(QTcpServer* theWrappedObject) const
+{
+return  theWrappedObject->isListening();
+}
+
+QNetworkProxy  PythonQtWrapper_QTcpServer::proxy(QTcpServer* theWrappedObject) const
+{
+return  theWrappedObject->proxy();
+}
+
+bool  PythonQtWrapper_QTcpServer::setSocketDescriptor(QTcpServer* theWrappedObject, int  socketDescriptor)
+{
+return  theWrappedObject->setSocketDescriptor(socketDescriptor);
 }
 

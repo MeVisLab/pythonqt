@@ -85,10 +85,11 @@ virtual void wheelEvent(QWheelEvent*  e);
 
 class PythonQtPublicPromoter_QSlider : public QSlider
 { public:
-inline void paintEvent(QPaintEvent*  ev) { QSlider::paintEvent(ev); }
-inline void mouseMoveEvent(QMouseEvent*  ev) { QSlider::mouseMoveEvent(ev); }
-inline void mousePressEvent(QMouseEvent*  ev) { QSlider::mousePressEvent(ev); }
-inline void mouseReleaseEvent(QMouseEvent*  ev) { QSlider::mouseReleaseEvent(ev); }
+inline void promoted_paintEvent(QPaintEvent*  ev) { QSlider::paintEvent(ev); }
+inline bool  promoted_event(QEvent*  event) { return QSlider::event(event); }
+inline void promoted_mouseReleaseEvent(QMouseEvent*  ev) { QSlider::mouseReleaseEvent(ev); }
+inline void promoted_mousePressEvent(QMouseEvent*  ev) { QSlider::mousePressEvent(ev); }
+inline void promoted_mouseMoveEvent(QMouseEvent*  ev) { QSlider::mouseMoveEvent(ev); }
 };
 
 class PythonQtWrapper_QSlider : public QObject
@@ -98,17 +99,17 @@ public slots:
 QSlider* new_QSlider(QWidget*  parent = 0);
 QSlider* new_QSlider(Qt::Orientation  orientation, QWidget*  parent = 0);
 void delete_QSlider(QSlider* obj) { delete obj; } 
+   void setTickInterval(QSlider* theWrappedObject, int  ti);
    void paintEvent(QSlider* theWrappedObject, QPaintEvent*  ev);
+   void setTickPosition(QSlider* theWrappedObject, QSlider::TickPosition  position);
+   int  tickInterval(QSlider* theWrappedObject) const;
+   QSize  sizeHint(QSlider* theWrappedObject) const;
    QSlider::TickPosition  tickPosition(QSlider* theWrappedObject) const;
    bool  event(QSlider* theWrappedObject, QEvent*  event);
-   void mouseMoveEvent(QSlider* theWrappedObject, QMouseEvent*  ev);
-   QSize  minimumSizeHint(QSlider* theWrappedObject) const;
-   void setTickInterval(QSlider* theWrappedObject, int  ti);
-   void mousePressEvent(QSlider* theWrappedObject, QMouseEvent*  ev);
-   void setTickPosition(QSlider* theWrappedObject, QSlider::TickPosition  position);
    void mouseReleaseEvent(QSlider* theWrappedObject, QMouseEvent*  ev);
-   QSize  sizeHint(QSlider* theWrappedObject) const;
-   int  tickInterval(QSlider* theWrappedObject) const;
+   void mousePressEvent(QSlider* theWrappedObject, QMouseEvent*  ev);
+   QSize  minimumSizeHint(QSlider* theWrappedObject) const;
+   void mouseMoveEvent(QSlider* theWrappedObject, QMouseEvent*  ev);
 };
 
 #endif // PYTHONQTWRAPPER_QSLIDER_H

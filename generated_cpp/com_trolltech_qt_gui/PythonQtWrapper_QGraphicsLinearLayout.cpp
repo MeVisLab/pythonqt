@@ -140,108 +140,108 @@ QGraphicsLinearLayout* PythonQtWrapper_QGraphicsLinearLayout::new_QGraphicsLinea
 { 
 return new PythonQtShell_QGraphicsLinearLayout(orientation, parent); }
 
-Qt::Orientation  PythonQtWrapper_QGraphicsLinearLayout::orientation(QGraphicsLinearLayout* theWrappedObject) const
-{
-return  (*theWrappedObject).orientation();
-}
-
-void PythonQtWrapper_QGraphicsLinearLayout::setItemSpacing(QGraphicsLinearLayout* theWrappedObject, int  index, qreal  spacing)
-{
- (*theWrappedObject).setItemSpacing(index, spacing);
-}
-
-void PythonQtWrapper_QGraphicsLinearLayout::setOrientation(QGraphicsLinearLayout* theWrappedObject, Qt::Orientation  orientation)
-{
- (*theWrappedObject).setOrientation(orientation);
-}
-
-int  PythonQtWrapper_QGraphicsLinearLayout::count(QGraphicsLinearLayout* theWrappedObject) const
-{
-return  (*theWrappedObject).count();
-}
-
 qreal  PythonQtWrapper_QGraphicsLinearLayout::itemSpacing(QGraphicsLinearLayout* theWrappedObject, int  index) const
 {
-return  (*theWrappedObject).itemSpacing(index);
+return  theWrappedObject->itemSpacing(index);
 }
 
 void PythonQtWrapper_QGraphicsLinearLayout::setSpacing(QGraphicsLinearLayout* theWrappedObject, qreal  spacing)
 {
- (*theWrappedObject).setSpacing(spacing);
+ theWrappedObject->setSpacing(spacing);
 }
 
-void PythonQtWrapper_QGraphicsLinearLayout::removeAt(QGraphicsLinearLayout* theWrappedObject, int  index)
+void PythonQtWrapper_QGraphicsLinearLayout::setOrientation(QGraphicsLinearLayout* theWrappedObject, Qt::Orientation  orientation)
 {
- (*theWrappedObject).removeAt(index);
-}
-
-void PythonQtWrapper_QGraphicsLinearLayout::invalidate(QGraphicsLinearLayout* theWrappedObject)
-{
- (*theWrappedObject).invalidate();
-}
-
-int  PythonQtWrapper_QGraphicsLinearLayout::stretchFactor(QGraphicsLinearLayout* theWrappedObject, QGraphicsLayoutItem*  item) const
-{
-return  (*theWrappedObject).stretchFactor(item);
-}
-
-QSizeF  PythonQtWrapper_QGraphicsLinearLayout::sizeHint(QGraphicsLinearLayout* theWrappedObject, Qt::SizeHint  which, const QSizeF&  constraint) const
-{
-return  (*theWrappedObject).sizeHint(which, constraint);
-}
-
-QGraphicsLayoutItem*  PythonQtWrapper_QGraphicsLinearLayout::itemAt(QGraphicsLinearLayout* theWrappedObject, int  index) const
-{
-return  (*theWrappedObject).itemAt(index);
-}
-
-void PythonQtWrapper_QGraphicsLinearLayout::setStretchFactor(QGraphicsLinearLayout* theWrappedObject, QGraphicsLayoutItem*  item, int  stretch)
-{
- (*theWrappedObject).setStretchFactor(item, stretch);
-}
-
-void PythonQtWrapper_QGraphicsLinearLayout::removeItem(QGraphicsLinearLayout* theWrappedObject, QGraphicsLayoutItem*  item)
-{
- (*theWrappedObject).removeItem(item);
-}
-
-void PythonQtWrapper_QGraphicsLinearLayout::setGeometry(QGraphicsLinearLayout* theWrappedObject, const QRectF&  rect)
-{
- (*theWrappedObject).setGeometry(rect);
+ theWrappedObject->setOrientation(orientation);
 }
 
 void PythonQtWrapper_QGraphicsLinearLayout::addItem(QGraphicsLinearLayout* theWrappedObject, QGraphicsLayoutItem*  item)
 {
- (*theWrappedObject).addItem(item);
+ theWrappedObject->addItem(item);
+}
+
+void PythonQtWrapper_QGraphicsLinearLayout::invalidate(QGraphicsLinearLayout* theWrappedObject)
+{
+ ((PythonQtPublicPromoter_QGraphicsLinearLayout*)theWrappedObject)->promoted_invalidate();
+}
+
+int  PythonQtWrapper_QGraphicsLinearLayout::stretchFactor(QGraphicsLinearLayout* theWrappedObject, QGraphicsLayoutItem*  item) const
+{
+return  theWrappedObject->stretchFactor(item);
+}
+
+QGraphicsLayoutItem*  PythonQtWrapper_QGraphicsLinearLayout::itemAt(QGraphicsLinearLayout* theWrappedObject, int  index) const
+{
+return  ((PythonQtPublicPromoter_QGraphicsLinearLayout*)theWrappedObject)->promoted_itemAt(index);
+}
+
+void PythonQtWrapper_QGraphicsLinearLayout::setStretchFactor(QGraphicsLinearLayout* theWrappedObject, QGraphicsLayoutItem*  item, int  stretch)
+{
+ theWrappedObject->setStretchFactor(item, stretch);
+}
+
+void PythonQtWrapper_QGraphicsLinearLayout::removeItem(QGraphicsLinearLayout* theWrappedObject, QGraphicsLayoutItem*  item)
+{
+ theWrappedObject->removeItem(item);
+}
+
+void PythonQtWrapper_QGraphicsLinearLayout::setGeometry(QGraphicsLinearLayout* theWrappedObject, const QRectF&  rect)
+{
+ theWrappedObject->setGeometry(rect);
+}
+
+void PythonQtWrapper_QGraphicsLinearLayout::setItemSpacing(QGraphicsLinearLayout* theWrappedObject, int  index, qreal  spacing)
+{
+ theWrappedObject->setItemSpacing(index, spacing);
 }
 
 qreal  PythonQtWrapper_QGraphicsLinearLayout::spacing(QGraphicsLinearLayout* theWrappedObject) const
 {
-return  (*theWrappedObject).spacing();
+return  theWrappedObject->spacing();
 }
 
 void PythonQtWrapper_QGraphicsLinearLayout::insertStretch(QGraphicsLinearLayout* theWrappedObject, int  index, int  stretch)
 {
- (*theWrappedObject).insertStretch(index, stretch);
+ theWrappedObject->insertStretch(index, stretch);
+}
+
+QSizeF  PythonQtWrapper_QGraphicsLinearLayout::sizeHint(QGraphicsLinearLayout* theWrappedObject, Qt::SizeHint  which, const QSizeF&  constraint) const
+{
+return  theWrappedObject->sizeHint(which, constraint);
+}
+
+int  PythonQtWrapper_QGraphicsLinearLayout::count(QGraphicsLinearLayout* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QGraphicsLinearLayout*)theWrappedObject)->promoted_count();
 }
 
 void PythonQtWrapper_QGraphicsLinearLayout::insertItem(QGraphicsLinearLayout* theWrappedObject, int  index, QGraphicsLayoutItem*  item)
 {
- (*theWrappedObject).insertItem(index, item);
+ theWrappedObject->insertItem(index, item);
 }
 
 void PythonQtWrapper_QGraphicsLinearLayout::addStretch(QGraphicsLinearLayout* theWrappedObject, int  stretch)
 {
- (*theWrappedObject).addStretch(stretch);
+ theWrappedObject->addStretch(stretch);
 }
 
 void PythonQtWrapper_QGraphicsLinearLayout::setAlignment(QGraphicsLinearLayout* theWrappedObject, QGraphicsLayoutItem*  item, Qt::Alignment  alignment)
 {
- (*theWrappedObject).setAlignment(item, alignment);
+ theWrappedObject->setAlignment(item, alignment);
 }
 
 Qt::Alignment  PythonQtWrapper_QGraphicsLinearLayout::alignment(QGraphicsLinearLayout* theWrappedObject, QGraphicsLayoutItem*  item) const
 {
-return  (*theWrappedObject).alignment(item);
+return  theWrappedObject->alignment(item);
+}
+
+Qt::Orientation  PythonQtWrapper_QGraphicsLinearLayout::orientation(QGraphicsLinearLayout* theWrappedObject) const
+{
+return  theWrappedObject->orientation();
+}
+
+void PythonQtWrapper_QGraphicsLinearLayout::removeAt(QGraphicsLinearLayout* theWrappedObject, int  index)
+{
+ ((PythonQtPublicPromoter_QGraphicsLinearLayout*)theWrappedObject)->promoted_removeAt(index);
 }
 

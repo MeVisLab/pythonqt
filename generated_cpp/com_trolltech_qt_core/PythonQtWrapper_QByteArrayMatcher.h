@@ -18,9 +18,9 @@ QByteArrayMatcher* new_QByteArrayMatcher();
 QByteArrayMatcher* new_QByteArrayMatcher(const QByteArray&  pattern);
 QByteArrayMatcher* new_QByteArrayMatcher(const QByteArrayMatcher&  other);
 void delete_QByteArrayMatcher(QByteArrayMatcher* obj) { delete obj; } 
-   QByteArray  pattern(QByteArrayMatcher* theWrappedObject) const;
    void setPattern(QByteArrayMatcher* theWrappedObject, const QByteArray&  pattern);
    int  indexIn(QByteArrayMatcher* theWrappedObject, const QByteArray&  ba, int  from = 0) const;
+   QByteArray  pattern(QByteArrayMatcher* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QBYTEARRAYMATCHER_H

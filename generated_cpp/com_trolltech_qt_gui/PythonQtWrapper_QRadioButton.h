@@ -90,10 +90,10 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QRadioButton : public QRadioButton
 { public:
-inline bool  hitButton(const QPoint&  arg__1) const { return QRadioButton::hitButton(arg__1); }
-inline bool  event(QEvent*  e) { return QRadioButton::event(e); }
-inline void mouseMoveEvent(QMouseEvent*  arg__1) { QRadioButton::mouseMoveEvent(arg__1); }
-inline void paintEvent(QPaintEvent*  arg__1) { QRadioButton::paintEvent(arg__1); }
+inline bool  promoted_event(QEvent*  e) { return QRadioButton::event(e); }
+inline void promoted_mouseMoveEvent(QMouseEvent*  arg__1) { QRadioButton::mouseMoveEvent(arg__1); }
+inline void promoted_paintEvent(QPaintEvent*  arg__1) { QRadioButton::paintEvent(arg__1); }
+inline bool  promoted_hitButton(const QPoint&  arg__1) const { return QRadioButton::hitButton(arg__1); }
 };
 
 class PythonQtWrapper_QRadioButton : public QObject
@@ -103,11 +103,11 @@ public slots:
 QRadioButton* new_QRadioButton(QWidget*  parent = 0);
 QRadioButton* new_QRadioButton(const QString&  text, QWidget*  parent = 0);
 void delete_QRadioButton(QRadioButton* obj) { delete obj; } 
-   bool  hitButton(QRadioButton* theWrappedObject, const QPoint&  arg__1) const;
-   QSize  sizeHint(QRadioButton* theWrappedObject) const;
    bool  event(QRadioButton* theWrappedObject, QEvent*  e);
    void mouseMoveEvent(QRadioButton* theWrappedObject, QMouseEvent*  arg__1);
    void paintEvent(QRadioButton* theWrappedObject, QPaintEvent*  arg__1);
+   bool  hitButton(QRadioButton* theWrappedObject, const QPoint&  arg__1) const;
+   QSize  sizeHint(QRadioButton* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QRADIOBUTTON_H

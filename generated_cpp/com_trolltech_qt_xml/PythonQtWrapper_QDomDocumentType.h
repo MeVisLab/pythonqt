@@ -18,11 +18,11 @@ QDomDocumentType* new_QDomDocumentType();
 QDomDocumentType* new_QDomDocumentType(const QDomDocumentType&  x);
 void delete_QDomDocumentType(QDomDocumentType* obj) { delete obj; } 
    QDomNamedNodeMap  entities(QDomDocumentType* theWrappedObject) const;
-   QDomNamedNodeMap  notations(QDomDocumentType* theWrappedObject) const;
    QString  systemId(QDomDocumentType* theWrappedObject) const;
    QString  name(QDomDocumentType* theWrappedObject) const;
-   QString  internalSubset(QDomDocumentType* theWrappedObject) const;
+   QDomNamedNodeMap  notations(QDomDocumentType* theWrappedObject) const;
    QString  publicId(QDomDocumentType* theWrappedObject) const;
+   QString  internalSubset(QDomDocumentType* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QDOMDOCUMENTTYPE_H

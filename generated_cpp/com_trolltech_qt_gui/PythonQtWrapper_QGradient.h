@@ -29,15 +29,15 @@ QGradient* a = new QGradient();
 *((QGradient*)a) = other;
 return a; }
 void delete_QGradient(QGradient* obj) { delete obj; } 
-   bool  operator_equal(QGradient* theWrappedObject, const QGradient&  gradient) const;
    QGradient::CoordinateMode  coordinateMode(QGradient* theWrappedObject) const;
-   void setCoordinateMode(QGradient* theWrappedObject, QGradient::CoordinateMode  mode);
-   QGradient::Type  type(QGradient* theWrappedObject) const;
-   void setStops(QGradient* theWrappedObject, const QVector<QPair<qreal , QColor >  >&  stops);
-   QVector<QPair<qreal , QColor >  >  stops(QGradient* theWrappedObject) const;
+   bool  operator_equal(QGradient* theWrappedObject, const QGradient&  gradient) const;
    void setColorAt(QGradient* theWrappedObject, qreal  pos, const QColor&  color);
-   void setSpread(QGradient* theWrappedObject, QGradient::Spread  spread);
    QGradient::Spread  spread(QGradient* theWrappedObject) const;
+   QGradient::Type  type(QGradient* theWrappedObject) const;
+   void setSpread(QGradient* theWrappedObject, QGradient::Spread  spread);
+   void setCoordinateMode(QGradient* theWrappedObject, QGradient::CoordinateMode  mode);
+   QVector<QPair<qreal , QColor >  >  stops(QGradient* theWrappedObject) const;
+   void setStops(QGradient* theWrappedObject, const QVector<QPair<qreal , QColor >  >&  stops);
 };
 
 #endif // PYTHONQTWRAPPER_QGRADIENT_H

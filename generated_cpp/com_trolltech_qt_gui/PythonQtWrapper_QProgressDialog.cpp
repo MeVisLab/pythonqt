@@ -836,93 +836,93 @@ QProgressDialog* PythonQtWrapper_QProgressDialog::new_QProgressDialog(const QStr
 { 
 return new PythonQtShell_QProgressDialog(labelText, cancelButtonText, minimum, maximum, parent, f); }
 
-void PythonQtWrapper_QProgressDialog::changeEvent(QProgressDialog* theWrappedObject, QEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QProgressDialog*)theWrappedObject)).changeEvent(arg__1);
-}
-
-void PythonQtWrapper_QProgressDialog::setAutoReset(QProgressDialog* theWrappedObject, bool  b)
-{
- (*theWrappedObject).setAutoReset(b);
-}
-
-bool  PythonQtWrapper_QProgressDialog::autoClose(QProgressDialog* theWrappedObject) const
-{
-return  (*theWrappedObject).autoClose();
-}
-
 int  PythonQtWrapper_QProgressDialog::maximum(QProgressDialog* theWrappedObject) const
 {
-return  (*theWrappedObject).maximum();
-}
-
-bool  PythonQtWrapper_QProgressDialog::autoReset(QProgressDialog* theWrappedObject) const
-{
-return  (*theWrappedObject).autoReset();
+return  theWrappedObject->maximum();
 }
 
 int  PythonQtWrapper_QProgressDialog::value(QProgressDialog* theWrappedObject) const
 {
-return  (*theWrappedObject).value();
-}
-
-bool  PythonQtWrapper_QProgressDialog::wasCanceled(QProgressDialog* theWrappedObject) const
-{
-return  (*theWrappedObject).wasCanceled();
-}
-
-QSize  PythonQtWrapper_QProgressDialog::sizeHint(QProgressDialog* theWrappedObject) const
-{
-return  (*theWrappedObject).sizeHint();
-}
-
-void PythonQtWrapper_QProgressDialog::setCancelButton(QProgressDialog* theWrappedObject, QPushButton*  button)
-{
- (*theWrappedObject).setCancelButton(button);
+return  theWrappedObject->value();
 }
 
 int  PythonQtWrapper_QProgressDialog::minimumDuration(QProgressDialog* theWrappedObject) const
 {
-return  (*theWrappedObject).minimumDuration();
-}
-
-void PythonQtWrapper_QProgressDialog::setLabel(QProgressDialog* theWrappedObject, QLabel*  label)
-{
- (*theWrappedObject).setLabel(label);
-}
-
-void PythonQtWrapper_QProgressDialog::closeEvent(QProgressDialog* theWrappedObject, QCloseEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QProgressDialog*)theWrappedObject)).closeEvent(arg__1);
-}
-
-int  PythonQtWrapper_QProgressDialog::minimum(QProgressDialog* theWrappedObject) const
-{
-return  (*theWrappedObject).minimum();
-}
-
-QString  PythonQtWrapper_QProgressDialog::labelText(QProgressDialog* theWrappedObject) const
-{
-return  (*theWrappedObject).labelText();
+return  theWrappedObject->minimumDuration();
 }
 
 void PythonQtWrapper_QProgressDialog::setBar(QProgressDialog* theWrappedObject, QProgressBar*  bar)
 {
- (*theWrappedObject).setBar(bar);
+ theWrappedObject->setBar(bar);
 }
 
-void PythonQtWrapper_QProgressDialog::resizeEvent(QProgressDialog* theWrappedObject, QResizeEvent*  arg__1)
+void PythonQtWrapper_QProgressDialog::closeEvent(QProgressDialog* theWrappedObject, QCloseEvent*  arg__1)
 {
- (*((PythonQtPublicPromoter_QProgressDialog*)theWrappedObject)).resizeEvent(arg__1);
+ ((PythonQtPublicPromoter_QProgressDialog*)theWrappedObject)->promoted_closeEvent(arg__1);
 }
 
-void PythonQtWrapper_QProgressDialog::showEvent(QProgressDialog* theWrappedObject, QShowEvent*  e)
+void PythonQtWrapper_QProgressDialog::changeEvent(QProgressDialog* theWrappedObject, QEvent*  arg__1)
 {
- (*((PythonQtPublicPromoter_QProgressDialog*)theWrappedObject)).showEvent(e);
+ ((PythonQtPublicPromoter_QProgressDialog*)theWrappedObject)->promoted_changeEvent(arg__1);
+}
+
+QSize  PythonQtWrapper_QProgressDialog::sizeHint(QProgressDialog* theWrappedObject) const
+{
+return  theWrappedObject->sizeHint();
+}
+
+bool  PythonQtWrapper_QProgressDialog::autoClose(QProgressDialog* theWrappedObject) const
+{
+return  theWrappedObject->autoClose();
 }
 
 void PythonQtWrapper_QProgressDialog::setAutoClose(QProgressDialog* theWrappedObject, bool  b)
 {
- (*theWrappedObject).setAutoClose(b);
+ theWrappedObject->setAutoClose(b);
+}
+
+int  PythonQtWrapper_QProgressDialog::minimum(QProgressDialog* theWrappedObject) const
+{
+return  theWrappedObject->minimum();
+}
+
+QString  PythonQtWrapper_QProgressDialog::labelText(QProgressDialog* theWrappedObject) const
+{
+return  theWrappedObject->labelText();
+}
+
+void PythonQtWrapper_QProgressDialog::setCancelButton(QProgressDialog* theWrappedObject, QPushButton*  button)
+{
+ theWrappedObject->setCancelButton(button);
+}
+
+bool  PythonQtWrapper_QProgressDialog::autoReset(QProgressDialog* theWrappedObject) const
+{
+return  theWrappedObject->autoReset();
+}
+
+void PythonQtWrapper_QProgressDialog::showEvent(QProgressDialog* theWrappedObject, QShowEvent*  e)
+{
+ ((PythonQtPublicPromoter_QProgressDialog*)theWrappedObject)->promoted_showEvent(e);
+}
+
+void PythonQtWrapper_QProgressDialog::resizeEvent(QProgressDialog* theWrappedObject, QResizeEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QProgressDialog*)theWrappedObject)->promoted_resizeEvent(arg__1);
+}
+
+void PythonQtWrapper_QProgressDialog::setLabel(QProgressDialog* theWrappedObject, QLabel*  label)
+{
+ theWrappedObject->setLabel(label);
+}
+
+bool  PythonQtWrapper_QProgressDialog::wasCanceled(QProgressDialog* theWrappedObject) const
+{
+return  theWrappedObject->wasCanceled();
+}
+
+void PythonQtWrapper_QProgressDialog::setAutoReset(QProgressDialog* theWrappedObject, bool  b)
+{
+ theWrappedObject->setAutoReset(b);
 }
 

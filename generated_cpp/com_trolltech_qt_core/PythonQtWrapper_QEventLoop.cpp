@@ -117,33 +117,33 @@ QEventLoop* PythonQtWrapper_QEventLoop::new_QEventLoop(QObject*  parent)
 { 
 return new PythonQtShell_QEventLoop(parent); }
 
-bool  PythonQtWrapper_QEventLoop::processEvents(QEventLoop* theWrappedObject, QEventLoop::ProcessEventsFlags  flags)
-{
-return  (*theWrappedObject).processEvents(flags);
-}
-
-void PythonQtWrapper_QEventLoop::exit(QEventLoop* theWrappedObject, int  returnCode)
-{
- (*theWrappedObject).exit(returnCode);
-}
-
 bool  PythonQtWrapper_QEventLoop::isRunning(QEventLoop* theWrappedObject) const
 {
-return  (*theWrappedObject).isRunning();
-}
-
-void PythonQtWrapper_QEventLoop::wakeUp(QEventLoop* theWrappedObject)
-{
- (*theWrappedObject).wakeUp();
-}
-
-int  PythonQtWrapper_QEventLoop::exec(QEventLoop* theWrappedObject, QEventLoop::ProcessEventsFlags  flags)
-{
-return  (*theWrappedObject).exec(flags);
+return  theWrappedObject->isRunning();
 }
 
 void PythonQtWrapper_QEventLoop::processEvents(QEventLoop* theWrappedObject, QEventLoop::ProcessEventsFlags  flags, int  maximumTime)
 {
- (*theWrappedObject).processEvents(flags, maximumTime);
+ theWrappedObject->processEvents(flags, maximumTime);
+}
+
+bool  PythonQtWrapper_QEventLoop::processEvents(QEventLoop* theWrappedObject, QEventLoop::ProcessEventsFlags  flags)
+{
+return  theWrappedObject->processEvents(flags);
+}
+
+int  PythonQtWrapper_QEventLoop::exec(QEventLoop* theWrappedObject, QEventLoop::ProcessEventsFlags  flags)
+{
+return  theWrappedObject->exec(flags);
+}
+
+void PythonQtWrapper_QEventLoop::exit(QEventLoop* theWrappedObject, int  returnCode)
+{
+ theWrappedObject->exit(returnCode);
+}
+
+void PythonQtWrapper_QEventLoop::wakeUp(QEventLoop* theWrappedObject)
+{
+ theWrappedObject->wakeUp();
 }
 

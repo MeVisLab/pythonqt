@@ -22,14 +22,9 @@ QXmlStreamAttribute* PythonQtWrapper_QXmlStreamAttribute::new_QXmlStreamAttribut
 { 
 return new QXmlStreamAttribute(arg__1); }
 
-QStringRef  PythonQtWrapper_QXmlStreamAttribute::namespaceUri(QXmlStreamAttribute* theWrappedObject) const
-{
-return  (*theWrappedObject).namespaceUri();
-}
-
 QStringRef  PythonQtWrapper_QXmlStreamAttribute::value(QXmlStreamAttribute* theWrappedObject) const
 {
-return  (*theWrappedObject).value();
+return  theWrappedObject->value();
 }
 
 bool  PythonQtWrapper_QXmlStreamAttribute::operator_equal(QXmlStreamAttribute* theWrappedObject, const QXmlStreamAttribute&  other) const
@@ -37,23 +32,28 @@ bool  PythonQtWrapper_QXmlStreamAttribute::operator_equal(QXmlStreamAttribute* t
 return  (*theWrappedObject)== other;
 }
 
+QStringRef  PythonQtWrapper_QXmlStreamAttribute::prefix(QXmlStreamAttribute* theWrappedObject) const
+{
+return  theWrappedObject->prefix();
+}
+
 bool  PythonQtWrapper_QXmlStreamAttribute::isDefault(QXmlStreamAttribute* theWrappedObject) const
 {
-return  (*theWrappedObject).isDefault();
+return  theWrappedObject->isDefault();
 }
 
 QStringRef  PythonQtWrapper_QXmlStreamAttribute::name(QXmlStreamAttribute* theWrappedObject) const
 {
-return  (*theWrappedObject).name();
+return  theWrappedObject->name();
 }
 
 QStringRef  PythonQtWrapper_QXmlStreamAttribute::qualifiedName(QXmlStreamAttribute* theWrappedObject) const
 {
-return  (*theWrappedObject).qualifiedName();
+return  theWrappedObject->qualifiedName();
 }
 
-QStringRef  PythonQtWrapper_QXmlStreamAttribute::prefix(QXmlStreamAttribute* theWrappedObject) const
+QStringRef  PythonQtWrapper_QXmlStreamAttribute::namespaceUri(QXmlStreamAttribute* theWrappedObject) const
 {
-return  (*theWrappedObject).prefix();
+return  theWrappedObject->namespaceUri();
 }
 

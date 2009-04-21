@@ -800,88 +800,88 @@ QFrame* PythonQtWrapper_QFrame::new_QFrame(QWidget*  parent, Qt::WindowFlags  f)
 { 
 return new PythonQtShell_QFrame(parent, f); }
 
-int  PythonQtWrapper_QFrame::frameStyle(QFrame* theWrappedObject) const
-{
-return  (*theWrappedObject).frameStyle();
-}
-
-QFrame::Shape  PythonQtWrapper_QFrame::frameShape(QFrame* theWrappedObject) const
-{
-return  (*theWrappedObject).frameShape();
-}
-
-void PythonQtWrapper_QFrame::setMidLineWidth(QFrame* theWrappedObject, int  arg__1)
-{
- (*theWrappedObject).setMidLineWidth(arg__1);
-}
-
-void PythonQtWrapper_QFrame::paintEvent(QFrame* theWrappedObject, QPaintEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QFrame*)theWrappedObject)).paintEvent(arg__1);
-}
-
-QSize  PythonQtWrapper_QFrame::sizeHint(QFrame* theWrappedObject) const
-{
-return  (*theWrappedObject).sizeHint();
-}
-
-int  PythonQtWrapper_QFrame::frameWidth(QFrame* theWrappedObject) const
-{
-return  (*theWrappedObject).frameWidth();
-}
-
-int  PythonQtWrapper_QFrame::midLineWidth(QFrame* theWrappedObject) const
-{
-return  (*theWrappedObject).midLineWidth();
-}
-
-void PythonQtWrapper_QFrame::setFrameShadow(QFrame* theWrappedObject, QFrame::Shadow  arg__1)
-{
- (*theWrappedObject).setFrameShadow(arg__1);
-}
-
-void PythonQtWrapper_QFrame::setLineWidth(QFrame* theWrappedObject, int  arg__1)
-{
- (*theWrappedObject).setLineWidth(arg__1);
-}
-
-void PythonQtWrapper_QFrame::setFrameStyle(QFrame* theWrappedObject, int  arg__1)
-{
- (*theWrappedObject).setFrameStyle(arg__1);
-}
-
 int  PythonQtWrapper_QFrame::lineWidth(QFrame* theWrappedObject) const
 {
-return  (*theWrappedObject).lineWidth();
+return  theWrappedObject->lineWidth();
 }
 
 void PythonQtWrapper_QFrame::setFrameRect(QFrame* theWrappedObject, const QRect&  arg__1)
 {
- (*theWrappedObject).setFrameRect(arg__1);
+ theWrappedObject->setFrameRect(arg__1);
 }
 
 QRect  PythonQtWrapper_QFrame::frameRect(QFrame* theWrappedObject) const
 {
-return  (*theWrappedObject).frameRect();
-}
-
-void PythonQtWrapper_QFrame::setFrameShape(QFrame* theWrappedObject, QFrame::Shape  arg__1)
-{
- (*theWrappedObject).setFrameShape(arg__1);
-}
-
-bool  PythonQtWrapper_QFrame::event(QFrame* theWrappedObject, QEvent*  e)
-{
-return  (*((PythonQtPublicPromoter_QFrame*)theWrappedObject)).event(e);
+return  theWrappedObject->frameRect();
 }
 
 void PythonQtWrapper_QFrame::changeEvent(QFrame* theWrappedObject, QEvent*  arg__1)
 {
- (*((PythonQtPublicPromoter_QFrame*)theWrappedObject)).changeEvent(arg__1);
+ ((PythonQtPublicPromoter_QFrame*)theWrappedObject)->promoted_changeEvent(arg__1);
 }
 
 QFrame::Shadow  PythonQtWrapper_QFrame::frameShadow(QFrame* theWrappedObject) const
 {
-return  (*theWrappedObject).frameShadow();
+return  theWrappedObject->frameShadow();
+}
+
+void PythonQtWrapper_QFrame::paintEvent(QFrame* theWrappedObject, QPaintEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QFrame*)theWrappedObject)->promoted_paintEvent(arg__1);
+}
+
+QSize  PythonQtWrapper_QFrame::sizeHint(QFrame* theWrappedObject) const
+{
+return  theWrappedObject->sizeHint();
+}
+
+int  PythonQtWrapper_QFrame::frameStyle(QFrame* theWrappedObject) const
+{
+return  theWrappedObject->frameStyle();
+}
+
+QFrame::Shape  PythonQtWrapper_QFrame::frameShape(QFrame* theWrappedObject) const
+{
+return  theWrappedObject->frameShape();
+}
+
+void PythonQtWrapper_QFrame::setMidLineWidth(QFrame* theWrappedObject, int  arg__1)
+{
+ theWrappedObject->setMidLineWidth(arg__1);
+}
+
+int  PythonQtWrapper_QFrame::frameWidth(QFrame* theWrappedObject) const
+{
+return  theWrappedObject->frameWidth();
+}
+
+void PythonQtWrapper_QFrame::setLineWidth(QFrame* theWrappedObject, int  arg__1)
+{
+ theWrappedObject->setLineWidth(arg__1);
+}
+
+int  PythonQtWrapper_QFrame::midLineWidth(QFrame* theWrappedObject) const
+{
+return  theWrappedObject->midLineWidth();
+}
+
+void PythonQtWrapper_QFrame::setFrameShadow(QFrame* theWrappedObject, QFrame::Shadow  arg__1)
+{
+ theWrappedObject->setFrameShadow(arg__1);
+}
+
+void PythonQtWrapper_QFrame::setFrameStyle(QFrame* theWrappedObject, int  arg__1)
+{
+ theWrappedObject->setFrameStyle(arg__1);
+}
+
+bool  PythonQtWrapper_QFrame::event(QFrame* theWrappedObject, QEvent*  e)
+{
+return  ((PythonQtPublicPromoter_QFrame*)theWrappedObject)->promoted_event(e);
+}
+
+void PythonQtWrapper_QFrame::setFrameShape(QFrame* theWrappedObject, QFrame::Shape  arg__1)
+{
+ theWrappedObject->setFrameShape(arg__1);
 }
 

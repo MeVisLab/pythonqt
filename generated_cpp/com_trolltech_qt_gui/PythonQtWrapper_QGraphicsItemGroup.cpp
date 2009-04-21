@@ -755,38 +755,38 @@ QGraphicsItemGroup* PythonQtWrapper_QGraphicsItemGroup::new_QGraphicsItemGroup(Q
 { 
 return new PythonQtShell_QGraphicsItemGroup(parent, scene); }
 
-bool  PythonQtWrapper_QGraphicsItemGroup::isObscuredBy(QGraphicsItemGroup* theWrappedObject, const QGraphicsItem*  item) const
-{
-return  (*theWrappedObject).isObscuredBy(item);
-}
-
-void PythonQtWrapper_QGraphicsItemGroup::removeFromGroup(QGraphicsItemGroup* theWrappedObject, QGraphicsItem*  item)
-{
- (*theWrappedObject).removeFromGroup(item);
-}
-
 void PythonQtWrapper_QGraphicsItemGroup::addToGroup(QGraphicsItemGroup* theWrappedObject, QGraphicsItem*  item)
 {
- (*theWrappedObject).addToGroup(item);
-}
-
-void PythonQtWrapper_QGraphicsItemGroup::paint(QGraphicsItemGroup* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget)
-{
- (*theWrappedObject).paint(painter, option, widget);
+ theWrappedObject->addToGroup(item);
 }
 
 int  PythonQtWrapper_QGraphicsItemGroup::type(QGraphicsItemGroup* theWrappedObject) const
 {
-return  (*theWrappedObject).type();
+return  ((PythonQtPublicPromoter_QGraphicsItemGroup*)theWrappedObject)->promoted_type();
 }
 
 QRectF  PythonQtWrapper_QGraphicsItemGroup::boundingRect(QGraphicsItemGroup* theWrappedObject) const
 {
-return  (*theWrappedObject).boundingRect();
+return  ((PythonQtPublicPromoter_QGraphicsItemGroup*)theWrappedObject)->promoted_boundingRect();
+}
+
+void PythonQtWrapper_QGraphicsItemGroup::paint(QGraphicsItemGroup* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget)
+{
+ ((PythonQtPublicPromoter_QGraphicsItemGroup*)theWrappedObject)->promoted_paint(painter, option, widget);
+}
+
+bool  PythonQtWrapper_QGraphicsItemGroup::isObscuredBy(QGraphicsItemGroup* theWrappedObject, const QGraphicsItem*  item) const
+{
+return  ((PythonQtPublicPromoter_QGraphicsItemGroup*)theWrappedObject)->promoted_isObscuredBy(item);
+}
+
+void PythonQtWrapper_QGraphicsItemGroup::removeFromGroup(QGraphicsItemGroup* theWrappedObject, QGraphicsItem*  item)
+{
+ theWrappedObject->removeFromGroup(item);
 }
 
 QPainterPath  PythonQtWrapper_QGraphicsItemGroup::opaqueArea(QGraphicsItemGroup* theWrappedObject) const
 {
-return  (*theWrappedObject).opaqueArea();
+return  ((PythonQtPublicPromoter_QGraphicsItemGroup*)theWrappedObject)->promoted_opaqueArea();
 }
 

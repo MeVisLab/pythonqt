@@ -25,45 +25,52 @@ virtual void updateGeometry();
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QGraphicsLayoutItem : public QGraphicsLayoutItem
+{ public:
+inline void promoted_setGeometry(const QRectF&  rect) { QGraphicsLayoutItem::setGeometry(rect); }
+inline void promoted_getContentsMargins(qreal*  left, qreal*  top, qreal*  right, qreal*  bottom) const { QGraphicsLayoutItem::getContentsMargins(left, top, right, bottom); }
+inline void promoted_updateGeometry() { QGraphicsLayoutItem::updateGeometry(); }
+};
+
 class PythonQtWrapper_QGraphicsLayoutItem : public QObject
 { Q_OBJECT
 public:
 public slots:
 QGraphicsLayoutItem* new_QGraphicsLayoutItem(QGraphicsLayoutItem*  parent = 0, bool  isLayout = false);
 void delete_QGraphicsLayoutItem(QGraphicsLayoutItem* obj) { delete obj; } 
-   QGraphicsLayoutItem*  parentLayoutItem(QGraphicsLayoutItem* theWrappedObject) const;
-   void setPreferredSize(QGraphicsLayoutItem* theWrappedObject, qreal  w, qreal  h);
-   qreal  minimumHeight(QGraphicsLayoutItem* theWrappedObject) const;
-   void setMaximumHeight(QGraphicsLayoutItem* theWrappedObject, qreal  height);
-   QSizeF  effectiveSizeHint(QGraphicsLayoutItem* theWrappedObject, Qt::SizeHint  which, const QSizeF&  constraint = QSizeF()) const;
-   void setSizePolicy(QGraphicsLayoutItem* theWrappedObject, const QSizePolicy&  policy);
-   void updateGeometry(QGraphicsLayoutItem* theWrappedObject);
-   QSizeF  maximumSize(QGraphicsLayoutItem* theWrappedObject) const;
-   void setGeometry(QGraphicsLayoutItem* theWrappedObject, const QRectF&  rect);
-   QRectF  contentsRect(QGraphicsLayoutItem* theWrappedObject) const;
-   QSizeF  preferredSize(QGraphicsLayoutItem* theWrappedObject) const;
+   bool  isLayout(QGraphicsLayoutItem* theWrappedObject) const;
    void setPreferredWidth(QGraphicsLayoutItem* theWrappedObject, qreal  width);
-   void setSizePolicy(QGraphicsLayoutItem* theWrappedObject, QSizePolicy::Policy  hPolicy, QSizePolicy::Policy  vPolicy, QSizePolicy::ControlType  controlType = QSizePolicy::DefaultType);
+   qreal  minimumHeight(QGraphicsLayoutItem* theWrappedObject) const;
+   QRectF  contentsRect(QGraphicsLayoutItem* theWrappedObject) const;
+   void setMaximumWidth(QGraphicsLayoutItem* theWrappedObject, qreal  width);
    void setMinimumHeight(QGraphicsLayoutItem* theWrappedObject, qreal  height);
-   qreal  maximumHeight(QGraphicsLayoutItem* theWrappedObject) const;
+   void setSizePolicy(QGraphicsLayoutItem* theWrappedObject, QSizePolicy::Policy  hPolicy, QSizePolicy::Policy  vPolicy, QSizePolicy::ControlType  controlType = QSizePolicy::DefaultType);
+   void setPreferredSize(QGraphicsLayoutItem* theWrappedObject, qreal  w, qreal  h);
+   void setSizePolicy(QGraphicsLayoutItem* theWrappedObject, const QSizePolicy&  policy);
    QSizeF  minimumSize(QGraphicsLayoutItem* theWrappedObject) const;
    void setMaximumSize(QGraphicsLayoutItem* theWrappedObject, const QSizeF&  size);
    QRectF  geometry(QGraphicsLayoutItem* theWrappedObject) const;
-   void setMaximumSize(QGraphicsLayoutItem* theWrappedObject, qreal  w, qreal  h);
+   QSizeF  preferredSize(QGraphicsLayoutItem* theWrappedObject) const;
    void setMinimumSize(QGraphicsLayoutItem* theWrappedObject, const QSizeF&  size);
-   QSizePolicy  sizePolicy(QGraphicsLayoutItem* theWrappedObject) const;
-   void setParentLayoutItem(QGraphicsLayoutItem* theWrappedObject, QGraphicsLayoutItem*  parent);
-   void setMinimumSize(QGraphicsLayoutItem* theWrappedObject, qreal  w, qreal  h);
-   qreal  maximumWidth(QGraphicsLayoutItem* theWrappedObject) const;
-   qreal  preferredHeight(QGraphicsLayoutItem* theWrappedObject) const;
-   void setPreferredSize(QGraphicsLayoutItem* theWrappedObject, const QSizeF&  size);
-   void getContentsMargins(QGraphicsLayoutItem* theWrappedObject, qreal*  left, qreal*  top, qreal*  right, qreal*  bottom) const;
-   qreal  preferredWidth(QGraphicsLayoutItem* theWrappedObject) const;
-   void setMinimumWidth(QGraphicsLayoutItem* theWrappedObject, qreal  width);
-   void setMaximumWidth(QGraphicsLayoutItem* theWrappedObject, qreal  width);
-   qreal  minimumWidth(QGraphicsLayoutItem* theWrappedObject) const;
    void setPreferredHeight(QGraphicsLayoutItem* theWrappedObject, qreal  height);
-   bool  isLayout(QGraphicsLayoutItem* theWrappedObject) const;
+   void setGeometry(QGraphicsLayoutItem* theWrappedObject, const QRectF&  rect);
+   void setMaximumHeight(QGraphicsLayoutItem* theWrappedObject, qreal  height);
+   void setMinimumSize(QGraphicsLayoutItem* theWrappedObject, qreal  w, qreal  h);
+   void getContentsMargins(QGraphicsLayoutItem* theWrappedObject, qreal*  left, qreal*  top, qreal*  right, qreal*  bottom) const;
+   qreal  maximumHeight(QGraphicsLayoutItem* theWrappedObject) const;
+   qreal  preferredHeight(QGraphicsLayoutItem* theWrappedObject) const;
+   QSizeF  maximumSize(QGraphicsLayoutItem* theWrappedObject) const;
+   void setPreferredSize(QGraphicsLayoutItem* theWrappedObject, const QSizeF&  size);
+   void setMaximumSize(QGraphicsLayoutItem* theWrappedObject, qreal  w, qreal  h);
+   qreal  preferredWidth(QGraphicsLayoutItem* theWrappedObject) const;
+   QSizePolicy  sizePolicy(QGraphicsLayoutItem* theWrappedObject) const;
+   qreal  maximumWidth(QGraphicsLayoutItem* theWrappedObject) const;
+   QGraphicsLayoutItem*  parentLayoutItem(QGraphicsLayoutItem* theWrappedObject) const;
+   void setParentLayoutItem(QGraphicsLayoutItem* theWrappedObject, QGraphicsLayoutItem*  parent);
+   QSizeF  effectiveSizeHint(QGraphicsLayoutItem* theWrappedObject, Qt::SizeHint  which, const QSizeF&  constraint = QSizeF()) const;
+   qreal  minimumWidth(QGraphicsLayoutItem* theWrappedObject) const;
+   void setMinimumWidth(QGraphicsLayoutItem* theWrappedObject, qreal  width);
+   void updateGeometry(QGraphicsLayoutItem* theWrappedObject);
 };
 
 #endif // PYTHONQTWRAPPER_QGRAPHICSLAYOUTITEM_H

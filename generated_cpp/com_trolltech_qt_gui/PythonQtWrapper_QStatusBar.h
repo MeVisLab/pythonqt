@@ -85,10 +85,10 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QStatusBar : public QStatusBar
 { public:
-inline bool  event(QEvent*  arg__1) { return QStatusBar::event(arg__1); }
-inline void resizeEvent(QResizeEvent*  arg__1) { QStatusBar::resizeEvent(arg__1); }
-inline void showEvent(QShowEvent*  arg__1) { QStatusBar::showEvent(arg__1); }
-inline void paintEvent(QPaintEvent*  arg__1) { QStatusBar::paintEvent(arg__1); }
+inline void promoted_resizeEvent(QResizeEvent*  arg__1) { QStatusBar::resizeEvent(arg__1); }
+inline void promoted_showEvent(QShowEvent*  arg__1) { QStatusBar::showEvent(arg__1); }
+inline void promoted_paintEvent(QPaintEvent*  arg__1) { QStatusBar::paintEvent(arg__1); }
+inline bool  promoted_event(QEvent*  arg__1) { return QStatusBar::event(arg__1); }
 };
 
 class PythonQtWrapper_QStatusBar : public QObject
@@ -97,7 +97,6 @@ public:
 public slots:
 QStatusBar* new_QStatusBar(QWidget*  parent = 0);
 void delete_QStatusBar(QStatusBar* obj) { delete obj; } 
-   bool  event(QStatusBar* theWrappedObject, QEvent*  arg__1);
    void resizeEvent(QStatusBar* theWrappedObject, QResizeEvent*  arg__1);
    void showEvent(QStatusBar* theWrappedObject, QShowEvent*  arg__1);
    void addWidget(QStatusBar* theWrappedObject, QWidget*  widget, int  stretch = 0);
@@ -109,6 +108,7 @@ void delete_QStatusBar(QStatusBar* obj) { delete obj; }
    QString  currentMessage(QStatusBar* theWrappedObject) const;
    int  insertWidget(QStatusBar* theWrappedObject, int  index, QWidget*  widget, int  stretch = 0);
    void paintEvent(QStatusBar* theWrappedObject, QPaintEvent*  arg__1);
+   bool  event(QStatusBar* theWrappedObject, QEvent*  arg__1);
 };
 
 #endif // PYTHONQTWRAPPER_QSTATUSBAR_H

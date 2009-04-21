@@ -124,34 +124,44 @@ QGLContext* PythonQtWrapper_QGLContext::new_QGLContext(const QGLFormat&  format,
 { 
 return new PythonQtShell_QGLContext(format, device); }
 
+void PythonQtWrapper_QGLContext::setFormat(QGLContext* theWrappedObject, const QGLFormat&  format)
+{
+ theWrappedObject->setFormat(format);
+}
+
 bool  PythonQtWrapper_QGLContext::isValid(QGLContext* theWrappedObject) const
 {
-return  (*theWrappedObject).isValid();
+return  theWrappedObject->isValid();
+}
+
+int  PythonQtWrapper_QGLContext::static_QGLContext_textureCacheLimit()
+{
+return QGLContext::textureCacheLimit();
 }
 
 void PythonQtWrapper_QGLContext::drawTexture(QGLContext* theWrappedObject, const QPointF&  point, unsigned int  textureId, unsigned int  textureTarget)
 {
- (*theWrappedObject).drawTexture(point, textureId, textureTarget);
+ theWrappedObject->drawTexture(point, textureId, textureTarget);
 }
 
-void PythonQtWrapper_QGLContext::swapBuffers(QGLContext* theWrappedObject) const
+unsigned int  PythonQtWrapper_QGLContext::bindTexture(QGLContext* theWrappedObject, const QString&  fileName)
 {
- (*theWrappedObject).swapBuffers();
-}
-
-QGLFormat  PythonQtWrapper_QGLContext::requestedFormat(QGLContext* theWrappedObject) const
-{
-return  (*theWrappedObject).requestedFormat();
+return  theWrappedObject->bindTexture(fileName);
 }
 
 QColor  PythonQtWrapper_QGLContext::overlayTransparentColor(QGLContext* theWrappedObject) const
 {
-return  (*theWrappedObject).overlayTransparentColor();
+return  theWrappedObject->overlayTransparentColor();
 }
 
-void PythonQtWrapper_QGLContext::static_QGLContext_setTextureCacheLimit(int  size)
+QGLFormat  PythonQtWrapper_QGLContext::format(QGLContext* theWrappedObject) const
 {
-QGLContext::setTextureCacheLimit(size);
+return  theWrappedObject->format();
+}
+
+unsigned int  PythonQtWrapper_QGLContext::bindTexture(QGLContext* theWrappedObject, const QImage&  image, unsigned int  target, int  format)
+{
+return  theWrappedObject->bindTexture(image, target, format);
 }
 
 const QGLContext*  PythonQtWrapper_QGLContext::static_QGLContext_currentContext()
@@ -161,76 +171,66 @@ return QGLContext::currentContext();
 
 void PythonQtWrapper_QGLContext::doneCurrent(QGLContext* theWrappedObject)
 {
- (*theWrappedObject).doneCurrent();
-}
-
-void PythonQtWrapper_QGLContext::reset(QGLContext* theWrappedObject)
-{
- (*theWrappedObject).reset();
-}
-
-unsigned int  PythonQtWrapper_QGLContext::bindTexture(QGLContext* theWrappedObject, const QString&  fileName)
-{
-return  (*theWrappedObject).bindTexture(fileName);
-}
-
-bool  PythonQtWrapper_QGLContext::create(QGLContext* theWrappedObject, const QGLContext*  shareContext)
-{
-return  (*theWrappedObject).create(shareContext);
-}
-
-unsigned int  PythonQtWrapper_QGLContext::bindTexture(QGLContext* theWrappedObject, const QImage&  image, unsigned int  target, int  format)
-{
-return  (*theWrappedObject).bindTexture(image, target, format);
-}
-
-void PythonQtWrapper_QGLContext::makeCurrent(QGLContext* theWrappedObject)
-{
- (*theWrappedObject).makeCurrent();
-}
-
-bool  PythonQtWrapper_QGLContext::chooseContext(QGLContext* theWrappedObject, const QGLContext*  shareContext)
-{
-return  (*((PythonQtPublicPromoter_QGLContext*)theWrappedObject)).chooseContext(shareContext);
-}
-
-void PythonQtWrapper_QGLContext::setFormat(QGLContext* theWrappedObject, const QGLFormat&  format)
-{
- (*theWrappedObject).setFormat(format);
-}
-
-QGLFormat  PythonQtWrapper_QGLContext::format(QGLContext* theWrappedObject) const
-{
-return  (*theWrappedObject).format();
-}
-
-int  PythonQtWrapper_QGLContext::static_QGLContext_textureCacheLimit()
-{
-return QGLContext::textureCacheLimit();
-}
-
-void PythonQtWrapper_QGLContext::deleteTexture(QGLContext* theWrappedObject, unsigned int  tx_id)
-{
- (*theWrappedObject).deleteTexture(tx_id);
-}
-
-void PythonQtWrapper_QGLContext::drawTexture(QGLContext* theWrappedObject, const QRectF&  target, unsigned int  textureId, unsigned int  textureTarget)
-{
- (*theWrappedObject).drawTexture(target, textureId, textureTarget);
-}
-
-QPaintDevice*  PythonQtWrapper_QGLContext::device(QGLContext* theWrappedObject) const
-{
-return  (*theWrappedObject).device();
+ ((PythonQtPublicPromoter_QGLContext*)theWrappedObject)->promoted_doneCurrent();
 }
 
 unsigned int  PythonQtWrapper_QGLContext::bindTexture(QGLContext* theWrappedObject, const QPixmap&  pixmap, unsigned int  target, int  format)
 {
-return  (*theWrappedObject).bindTexture(pixmap, target, format);
+return  theWrappedObject->bindTexture(pixmap, target, format);
+}
+
+void PythonQtWrapper_QGLContext::makeCurrent(QGLContext* theWrappedObject)
+{
+ ((PythonQtPublicPromoter_QGLContext*)theWrappedObject)->promoted_makeCurrent();
+}
+
+void PythonQtWrapper_QGLContext::reset(QGLContext* theWrappedObject)
+{
+ theWrappedObject->reset();
+}
+
+bool  PythonQtWrapper_QGLContext::chooseContext(QGLContext* theWrappedObject, const QGLContext*  shareContext)
+{
+return  ((PythonQtPublicPromoter_QGLContext*)theWrappedObject)->promoted_chooseContext(shareContext);
+}
+
+void PythonQtWrapper_QGLContext::swapBuffers(QGLContext* theWrappedObject) const
+{
+ ((PythonQtPublicPromoter_QGLContext*)theWrappedObject)->promoted_swapBuffers();
 }
 
 bool  PythonQtWrapper_QGLContext::isSharing(QGLContext* theWrappedObject) const
 {
-return  (*theWrappedObject).isSharing();
+return  theWrappedObject->isSharing();
+}
+
+void PythonQtWrapper_QGLContext::deleteTexture(QGLContext* theWrappedObject, unsigned int  tx_id)
+{
+ theWrappedObject->deleteTexture(tx_id);
+}
+
+bool  PythonQtWrapper_QGLContext::create(QGLContext* theWrappedObject, const QGLContext*  shareContext)
+{
+return  ((PythonQtPublicPromoter_QGLContext*)theWrappedObject)->promoted_create(shareContext);
+}
+
+QPaintDevice*  PythonQtWrapper_QGLContext::device(QGLContext* theWrappedObject) const
+{
+return  theWrappedObject->device();
+}
+
+void PythonQtWrapper_QGLContext::drawTexture(QGLContext* theWrappedObject, const QRectF&  target, unsigned int  textureId, unsigned int  textureTarget)
+{
+ theWrappedObject->drawTexture(target, textureId, textureTarget);
+}
+
+void PythonQtWrapper_QGLContext::static_QGLContext_setTextureCacheLimit(int  size)
+{
+QGLContext::setTextureCacheLimit(size);
+}
+
+QGLFormat  PythonQtWrapper_QGLContext::requestedFormat(QGLContext* theWrappedObject) const
+{
+return  theWrappedObject->requestedFormat();
 }
 

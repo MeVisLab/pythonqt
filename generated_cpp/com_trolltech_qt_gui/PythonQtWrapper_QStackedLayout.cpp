@@ -435,78 +435,78 @@ QStackedLayout* PythonQtWrapper_QStackedLayout::new_QStackedLayout(QWidget*  par
 { 
 return new PythonQtShell_QStackedLayout(parent); }
 
-QStackedLayout::StackingMode  PythonQtWrapper_QStackedLayout::stackingMode(QStackedLayout* theWrappedObject) const
+QWidget*  PythonQtWrapper_QStackedLayout::currentWidget(QStackedLayout* theWrappedObject) const
 {
-return  (*theWrappedObject).stackingMode();
-}
-
-int  PythonQtWrapper_QStackedLayout::addWidget(QStackedLayout* theWrappedObject, QWidget*  w)
-{
-return  (*theWrappedObject).addWidget(w);
+return  theWrappedObject->currentWidget();
 }
 
 int  PythonQtWrapper_QStackedLayout::insertWidget(QStackedLayout* theWrappedObject, int  index, QWidget*  w)
 {
-return  (*theWrappedObject).insertWidget(index, w);
-}
-
-QSize  PythonQtWrapper_QStackedLayout::minimumSize(QStackedLayout* theWrappedObject) const
-{
-return  (*theWrappedObject).minimumSize();
-}
-
-QWidget*  PythonQtWrapper_QStackedLayout::widget(QStackedLayout* theWrappedObject, int  arg__1) const
-{
-return  (*theWrappedObject).widget(arg__1);
-}
-
-QLayoutItem*  PythonQtWrapper_QStackedLayout::takeAt(QStackedLayout* theWrappedObject, int  arg__1)
-{
-return  (*theWrappedObject).takeAt(arg__1);
-}
-
-QWidget*  PythonQtWrapper_QStackedLayout::widget(QStackedLayout* theWrappedObject)
-{
-return  (*theWrappedObject).widget();
+return  theWrappedObject->insertWidget(index, w);
 }
 
 void PythonQtWrapper_QStackedLayout::setGeometry(QStackedLayout* theWrappedObject, const QRect&  rect)
 {
- (*theWrappedObject).setGeometry(rect);
+ ((PythonQtPublicPromoter_QStackedLayout*)theWrappedObject)->promoted_setGeometry(rect);
 }
 
-int  PythonQtWrapper_QStackedLayout::currentIndex(QStackedLayout* theWrappedObject) const
+int  PythonQtWrapper_QStackedLayout::addWidget(QStackedLayout* theWrappedObject, QWidget*  w)
 {
-return  (*theWrappedObject).currentIndex();
-}
-
-QLayoutItem*  PythonQtWrapper_QStackedLayout::itemAt(QStackedLayout* theWrappedObject, int  arg__1) const
-{
-return  (*theWrappedObject).itemAt(arg__1);
+return  theWrappedObject->addWidget(w);
 }
 
 int  PythonQtWrapper_QStackedLayout::count(QStackedLayout* theWrappedObject) const
 {
-return  (*theWrappedObject).count();
+return  ((PythonQtPublicPromoter_QStackedLayout*)theWrappedObject)->promoted_count();
+}
+
+QLayoutItem*  PythonQtWrapper_QStackedLayout::itemAt(QStackedLayout* theWrappedObject, int  arg__1) const
+{
+return  ((PythonQtPublicPromoter_QStackedLayout*)theWrappedObject)->promoted_itemAt(arg__1);
 }
 
 void PythonQtWrapper_QStackedLayout::addItem(QStackedLayout* theWrappedObject, QLayoutItem*  item)
 {
- (*theWrappedObject).addItem(item);
+ ((PythonQtPublicPromoter_QStackedLayout*)theWrappedObject)->promoted_addItem(item);
+}
+
+QSize  PythonQtWrapper_QStackedLayout::minimumSize(QStackedLayout* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QStackedLayout*)theWrappedObject)->promoted_minimumSize();
 }
 
 QSize  PythonQtWrapper_QStackedLayout::sizeHint(QStackedLayout* theWrappedObject) const
 {
-return  (*theWrappedObject).sizeHint();
+return  theWrappedObject->sizeHint();
 }
 
-QWidget*  PythonQtWrapper_QStackedLayout::currentWidget(QStackedLayout* theWrappedObject) const
+QWidget*  PythonQtWrapper_QStackedLayout::widget(QStackedLayout* theWrappedObject)
 {
-return  (*theWrappedObject).currentWidget();
+return  theWrappedObject->widget();
+}
+
+int  PythonQtWrapper_QStackedLayout::currentIndex(QStackedLayout* theWrappedObject) const
+{
+return  theWrappedObject->currentIndex();
 }
 
 void PythonQtWrapper_QStackedLayout::setStackingMode(QStackedLayout* theWrappedObject, QStackedLayout::StackingMode  stackingMode)
 {
- (*theWrappedObject).setStackingMode(stackingMode);
+ theWrappedObject->setStackingMode(stackingMode);
+}
+
+QStackedLayout::StackingMode  PythonQtWrapper_QStackedLayout::stackingMode(QStackedLayout* theWrappedObject) const
+{
+return  theWrappedObject->stackingMode();
+}
+
+QLayoutItem*  PythonQtWrapper_QStackedLayout::takeAt(QStackedLayout* theWrappedObject, int  arg__1)
+{
+return  ((PythonQtPublicPromoter_QStackedLayout*)theWrappedObject)->promoted_takeAt(arg__1);
+}
+
+QWidget*  PythonQtWrapper_QStackedLayout::widget(QStackedLayout* theWrappedObject, int  arg__1) const
+{
+return  theWrappedObject->widget(arg__1);
 }
 

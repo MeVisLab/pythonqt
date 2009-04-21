@@ -11,16 +11,16 @@ return new QAccessibleEvent(type, child); }
 
 int  PythonQtWrapper_QAccessibleEvent::child(QAccessibleEvent* theWrappedObject) const
 {
-return  (*theWrappedObject).child();
-}
-
-QString  PythonQtWrapper_QAccessibleEvent::value(QAccessibleEvent* theWrappedObject) const
-{
-return  (*theWrappedObject).value();
+return  theWrappedObject->child();
 }
 
 void PythonQtWrapper_QAccessibleEvent::setValue(QAccessibleEvent* theWrappedObject, const QString&  aText)
 {
- (*theWrappedObject).setValue(aText);
+ theWrappedObject->setValue(aText);
+}
+
+QString  PythonQtWrapper_QAccessibleEvent::value(QAccessibleEvent* theWrappedObject) const
+{
+return  theWrappedObject->value();
 }
 

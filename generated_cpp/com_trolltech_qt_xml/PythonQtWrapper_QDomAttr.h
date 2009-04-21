@@ -18,10 +18,10 @@ QDomAttr* new_QDomAttr();
 QDomAttr* new_QDomAttr(const QDomAttr&  x);
 void delete_QDomAttr(QDomAttr* obj) { delete obj; } 
    void setValue(QDomAttr* theWrappedObject, const QString&  arg__1);
-   QString  value(QDomAttr* theWrappedObject) const;
-   QString  name(QDomAttr* theWrappedObject) const;
-   QDomElement  ownerElement(QDomAttr* theWrappedObject) const;
    bool  specified(QDomAttr* theWrappedObject) const;
+   QString  name(QDomAttr* theWrappedObject) const;
+   QString  value(QDomAttr* theWrappedObject) const;
+   QDomElement  ownerElement(QDomAttr* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QDOMATTR_H

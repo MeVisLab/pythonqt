@@ -36,18 +36,18 @@ QFont  PythonQtWrapper_QFontDialog::static_QFontDialog_getFont(bool*  ok, const 
 return QFontDialog::getFont(ok, def, parent, caption);
 }
 
+QFont  PythonQtWrapper_QFontDialog::static_QFontDialog_getFont(bool*  ok, const QFont&  def, QWidget*  parent)
+{
+return QFontDialog::getFont(ok, def, parent);
+}
+
 void PythonQtWrapper_QFontDialog::changeEvent(QFontDialog* theWrappedObject, QEvent*  e)
 {
- (*((PythonQtPublicPromoter_QFontDialog*)theWrappedObject)).changeEvent(e);
+ ((PythonQtPublicPromoter_QFontDialog*)theWrappedObject)->promoted_changeEvent(e);
 }
 
 QFont  PythonQtWrapper_QFontDialog::static_QFontDialog_getFont(bool*  ok, QWidget*  parent)
 {
 return QFontDialog::getFont(ok, parent);
-}
-
-QFont  PythonQtWrapper_QFontDialog::static_QFontDialog_getFont(bool*  ok, const QFont&  def, QWidget*  parent)
-{
-return QFontDialog::getFont(ok, def, parent);
 }
 

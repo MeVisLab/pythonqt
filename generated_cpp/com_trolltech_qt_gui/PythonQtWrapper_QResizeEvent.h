@@ -24,8 +24,8 @@ public:
 public slots:
 QResizeEvent* new_QResizeEvent(const QSize&  size, const QSize&  oldSize);
 void delete_QResizeEvent(QResizeEvent* obj) { delete obj; } 
-   const QSize&  oldSize(QResizeEvent* theWrappedObject) const;
    const QSize&  size(QResizeEvent* theWrappedObject) const;
+   const QSize&  oldSize(QResizeEvent* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QRESIZEEVENT_H

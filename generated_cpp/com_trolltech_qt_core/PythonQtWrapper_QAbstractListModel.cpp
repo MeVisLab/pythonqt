@@ -730,13 +730,13 @@ QAbstractListModel* PythonQtWrapper_QAbstractListModel::new_QAbstractListModel(Q
 { 
 return new PythonQtShell_QAbstractListModel(parent); }
 
-QModelIndex  PythonQtWrapper_QAbstractListModel::index(QAbstractListModel* theWrappedObject, int  row, int  column, const QModelIndex&  parent) const
-{
-return  (*theWrappedObject).index(row, column, parent);
-}
-
 bool  PythonQtWrapper_QAbstractListModel::dropMimeData(QAbstractListModel* theWrappedObject, const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent)
 {
-return  (*theWrappedObject).dropMimeData(data, action, row, column, parent);
+return  ((PythonQtPublicPromoter_QAbstractListModel*)theWrappedObject)->promoted_dropMimeData(data, action, row, column, parent);
+}
+
+QModelIndex  PythonQtWrapper_QAbstractListModel::index(QAbstractListModel* theWrappedObject, int  row, int  column, const QModelIndex&  parent) const
+{
+return  ((PythonQtPublicPromoter_QAbstractListModel*)theWrappedObject)->promoted_index(row, column, parent);
 }
 

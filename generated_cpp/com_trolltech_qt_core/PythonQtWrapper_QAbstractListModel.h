@@ -58,14 +58,20 @@ virtual void timerEvent(QTimerEvent*  arg__1);
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QAbstractListModel : public QAbstractListModel
+{ public:
+inline bool  promoted_dropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent) { return QAbstractListModel::dropMimeData(data, action, row, column, parent); }
+inline QModelIndex  promoted_index(int  row, int  column = 0, const QModelIndex&  parent = QModelIndex()) const { return QAbstractListModel::index(row, column, parent); }
+};
+
 class PythonQtWrapper_QAbstractListModel : public QObject
 { Q_OBJECT
 public:
 public slots:
 QAbstractListModel* new_QAbstractListModel(QObject*  parent = 0);
 void delete_QAbstractListModel(QAbstractListModel* obj) { delete obj; } 
-   QModelIndex  index(QAbstractListModel* theWrappedObject, int  row, int  column = 0, const QModelIndex&  parent = QModelIndex()) const;
    bool  dropMimeData(QAbstractListModel* theWrappedObject, const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent);
+   QModelIndex  index(QAbstractListModel* theWrappedObject, int  row, int  column = 0, const QModelIndex&  parent = QModelIndex()) const;
 };
 
 #endif // PYTHONQTWRAPPER_QABSTRACTLISTMODEL_H

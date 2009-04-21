@@ -803,86 +803,86 @@ return new PythonQtShell_QWorkspace(parent); }
 
 void PythonQtWrapper_QWorkspace::setBackground(QWorkspace* theWrappedObject, const QBrush&  background)
 {
- (*theWrappedObject).setBackground(background);
+ theWrappedObject->setBackground(background);
 }
 
 void PythonQtWrapper_QWorkspace::changeEvent(QWorkspace* theWrappedObject, QEvent*  arg__1)
 {
- (*((PythonQtPublicPromoter_QWorkspace*)theWrappedObject)).changeEvent(arg__1);
-}
-
-void PythonQtWrapper_QWorkspace::setScrollBarsEnabled(QWorkspace* theWrappedObject, bool  enable)
-{
- (*theWrappedObject).setScrollBarsEnabled(enable);
+ ((PythonQtPublicPromoter_QWorkspace*)theWrappedObject)->promoted_changeEvent(arg__1);
 }
 
 QBrush  PythonQtWrapper_QWorkspace::background(QWorkspace* theWrappedObject) const
 {
-return  (*theWrappedObject).background();
+return  theWrappedObject->background();
 }
 
 void PythonQtWrapper_QWorkspace::hideEvent(QWorkspace* theWrappedObject, QHideEvent*  e)
 {
- (*((PythonQtPublicPromoter_QWorkspace*)theWrappedObject)).hideEvent(e);
+ ((PythonQtPublicPromoter_QWorkspace*)theWrappedObject)->promoted_hideEvent(e);
 }
 
 void PythonQtWrapper_QWorkspace::showEvent(QWorkspace* theWrappedObject, QShowEvent*  e)
 {
- (*((PythonQtPublicPromoter_QWorkspace*)theWrappedObject)).showEvent(e);
+ ((PythonQtPublicPromoter_QWorkspace*)theWrappedObject)->promoted_showEvent(e);
+}
+
+void PythonQtWrapper_QWorkspace::setScrollBarsEnabled(QWorkspace* theWrappedObject, bool  enable)
+{
+ theWrappedObject->setScrollBarsEnabled(enable);
 }
 
 bool  PythonQtWrapper_QWorkspace::eventFilter(QWorkspace* theWrappedObject, QObject*  arg__1, QEvent*  arg__2)
 {
-return  (*((PythonQtPublicPromoter_QWorkspace*)theWrappedObject)).eventFilter(arg__1, arg__2);
+return  ((PythonQtPublicPromoter_QWorkspace*)theWrappedObject)->promoted_eventFilter(arg__1, arg__2);
 }
 
 void PythonQtWrapper_QWorkspace::resizeEvent(QWorkspace* theWrappedObject, QResizeEvent*  arg__1)
 {
- (*((PythonQtPublicPromoter_QWorkspace*)theWrappedObject)).resizeEvent(arg__1);
+ ((PythonQtPublicPromoter_QWorkspace*)theWrappedObject)->promoted_resizeEvent(arg__1);
 }
 
 QWidget*  PythonQtWrapper_QWorkspace::activeWindow(QWorkspace* theWrappedObject) const
 {
-return  (*theWrappedObject).activeWindow();
-}
-
-bool  PythonQtWrapper_QWorkspace::event(QWorkspace* theWrappedObject, QEvent*  e)
-{
-return  (*((PythonQtPublicPromoter_QWorkspace*)theWrappedObject)).event(e);
+return  theWrappedObject->activeWindow();
 }
 
 QList<QWidget* >  PythonQtWrapper_QWorkspace::windowList(QWorkspace* theWrappedObject, QWorkspace::WindowOrder  order) const
 {
-return  (*theWrappedObject).windowList(order);
+return  theWrappedObject->windowList(order);
 }
 
 bool  PythonQtWrapper_QWorkspace::scrollBarsEnabled(QWorkspace* theWrappedObject) const
 {
-return  (*theWrappedObject).scrollBarsEnabled();
+return  theWrappedObject->scrollBarsEnabled();
 }
 
 void PythonQtWrapper_QWorkspace::childEvent(QWorkspace* theWrappedObject, QChildEvent*  arg__1)
 {
- (*((PythonQtPublicPromoter_QWorkspace*)theWrappedObject)).childEvent(arg__1);
+ ((PythonQtPublicPromoter_QWorkspace*)theWrappedObject)->promoted_childEvent(arg__1);
 }
 
 void PythonQtWrapper_QWorkspace::wheelEvent(QWorkspace* theWrappedObject, QWheelEvent*  e)
 {
- (*((PythonQtPublicPromoter_QWorkspace*)theWrappedObject)).wheelEvent(e);
+ ((PythonQtPublicPromoter_QWorkspace*)theWrappedObject)->promoted_wheelEvent(e);
+}
+
+bool  PythonQtWrapper_QWorkspace::event(QWorkspace* theWrappedObject, QEvent*  e)
+{
+return  ((PythonQtPublicPromoter_QWorkspace*)theWrappedObject)->promoted_event(e);
 }
 
 QWidget*  PythonQtWrapper_QWorkspace::addWindow(QWorkspace* theWrappedObject, QWidget*  w, Qt::WindowFlags  flags)
 {
-return  (*theWrappedObject).addWindow(w, flags);
+return  theWrappedObject->addWindow(w, flags);
 }
 
 QSize  PythonQtWrapper_QWorkspace::sizeHint(QWorkspace* theWrappedObject) const
 {
-return  (*theWrappedObject).sizeHint();
+return  theWrappedObject->sizeHint();
 }
 
 void PythonQtWrapper_QWorkspace::paintEvent(QWorkspace* theWrappedObject, QPaintEvent*  e)
 {
- (*((PythonQtPublicPromoter_QWorkspace*)theWrappedObject)).paintEvent(e);
+ ((PythonQtPublicPromoter_QWorkspace*)theWrappedObject)->promoted_paintEvent(e);
 }
 

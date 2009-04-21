@@ -26,17 +26,17 @@ public slots:
 QNetworkRequest* new_QNetworkRequest(const QNetworkRequest&  other);
 QNetworkRequest* new_QNetworkRequest(const QUrl&  url = QUrl());
 void delete_QNetworkRequest(QNetworkRequest* obj) { delete obj; } 
+   void setUrl(QNetworkRequest* theWrappedObject, const QUrl&  url);
    QVariant  attribute(QNetworkRequest* theWrappedObject, QNetworkRequest::Attribute  code, const QVariant&  defaultValue = QVariant()) const;
+   void setHeader(QNetworkRequest* theWrappedObject, QNetworkRequest::KnownHeaders  header, const QVariant&  value);
+   void setAttribute(QNetworkRequest* theWrappedObject, QNetworkRequest::Attribute  code, const QVariant&  value);
+   bool  operator_equal(QNetworkRequest* theWrappedObject, const QNetworkRequest&  other) const;
+   QVariant  header(QNetworkRequest* theWrappedObject, QNetworkRequest::KnownHeaders  header) const;
    void setRawHeader(QNetworkRequest* theWrappedObject, const QByteArray&  headerName, const QByteArray&  value);
    bool  hasRawHeader(QNetworkRequest* theWrappedObject, const QByteArray&  headerName) const;
-   void setHeader(QNetworkRequest* theWrappedObject, QNetworkRequest::KnownHeaders  header, const QVariant&  value);
-   void setUrl(QNetworkRequest* theWrappedObject, const QUrl&  url);
-   QUrl  url(QNetworkRequest* theWrappedObject) const;
    QByteArray  rawHeader(QNetworkRequest* theWrappedObject, const QByteArray&  headerName) const;
-   QVariant  header(QNetworkRequest* theWrappedObject, QNetworkRequest::KnownHeaders  header) const;
-   void setAttribute(QNetworkRequest* theWrappedObject, QNetworkRequest::Attribute  code, const QVariant&  value);
    QList<QByteArray >  rawHeaderList(QNetworkRequest* theWrappedObject) const;
-   bool  operator_equal(QNetworkRequest* theWrappedObject, const QNetworkRequest&  other) const;
+   QUrl  url(QNetworkRequest* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QNETWORKREQUEST_H

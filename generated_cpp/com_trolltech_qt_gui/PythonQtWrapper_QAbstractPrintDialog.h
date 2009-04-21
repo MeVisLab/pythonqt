@@ -97,20 +97,20 @@ enum PrintDialogOption{
 public slots:
 QAbstractPrintDialog* new_QAbstractPrintDialog(QPrinter*  printer, QWidget*  parent = 0);
 void delete_QAbstractPrintDialog(QAbstractPrintDialog* obj) { delete obj; } 
-   int  maxPage(QAbstractPrintDialog* theWrappedObject) const;
-   void setFromTo(QAbstractPrintDialog* theWrappedObject, int  fromPage, int  toPage);
-   QAbstractPrintDialog::PrintRange  printRange(QAbstractPrintDialog* theWrappedObject) const;
+   void setPrintRange(QAbstractPrintDialog* theWrappedObject, QAbstractPrintDialog::PrintRange  range);
    QAbstractPrintDialog::PrintDialogOptions  enabledOptions(QAbstractPrintDialog* theWrappedObject) const;
+   bool  isOptionEnabled(QAbstractPrintDialog* theWrappedObject, QAbstractPrintDialog::PrintDialogOption  option) const;
+   int  maxPage(QAbstractPrintDialog* theWrappedObject) const;
+   QAbstractPrintDialog::PrintRange  printRange(QAbstractPrintDialog* theWrappedObject) const;
    int  fromPage(QAbstractPrintDialog* theWrappedObject) const;
-   QPrinter*  printer(QAbstractPrintDialog* theWrappedObject) const;
-   int  toPage(QAbstractPrintDialog* theWrappedObject) const;
+   void setFromTo(QAbstractPrintDialog* theWrappedObject, int  fromPage, int  toPage);
    void addEnabledOption(QAbstractPrintDialog* theWrappedObject, QAbstractPrintDialog::PrintDialogOption  option);
    int  minPage(QAbstractPrintDialog* theWrappedObject) const;
    void setEnabledOptions(QAbstractPrintDialog* theWrappedObject, QAbstractPrintDialog::PrintDialogOptions  options);
    void setMinMax(QAbstractPrintDialog* theWrappedObject, int  min, int  max);
+   QPrinter*  printer(QAbstractPrintDialog* theWrappedObject) const;
+   int  toPage(QAbstractPrintDialog* theWrappedObject) const;
    void setOptionTabs(QAbstractPrintDialog* theWrappedObject, const QList<QWidget* >&  tabs);
-   void setPrintRange(QAbstractPrintDialog* theWrappedObject, QAbstractPrintDialog::PrintRange  range);
-   bool  isOptionEnabled(QAbstractPrintDialog* theWrappedObject, QAbstractPrintDialog::PrintDialogOption  option) const;
 };
 
 #endif // PYTHONQTWRAPPER_QABSTRACTPRINTDIALOG_H

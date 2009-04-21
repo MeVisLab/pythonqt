@@ -19,8 +19,6 @@ public slots:
 QSqlField* new_QSqlField(const QSqlField&  other);
 QSqlField* new_QSqlField(const QString&  fieldName = QString(), QVariant::Type  type = QVariant::Invalid);
 void delete_QSqlField(QSqlField* obj) { delete obj; } 
-   QString  name(QSqlField* theWrappedObject) const;
-   int  precision(QSqlField* theWrappedObject) const;
    void clear(QSqlField* theWrappedObject);
    void setType(QSqlField* theWrappedObject, QVariant::Type  type);
    QVariant  value(QSqlField* theWrappedObject) const;
@@ -46,6 +44,8 @@ void delete_QSqlField(QSqlField* obj) { delete obj; }
    void setLength(QSqlField* theWrappedObject, int  fieldLength);
    int  length(QSqlField* theWrappedObject) const;
    bool  operator_equal(QSqlField* theWrappedObject, const QSqlField&  other) const;
+   QString  name(QSqlField* theWrappedObject) const;
+   int  precision(QSqlField* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QSQLFIELD_H

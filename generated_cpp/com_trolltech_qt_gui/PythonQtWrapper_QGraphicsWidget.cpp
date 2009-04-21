@@ -1280,29 +1280,94 @@ QGraphicsWidget* PythonQtWrapper_QGraphicsWidget::new_QGraphicsWidget(QGraphicsI
 { 
 return new PythonQtShell_QGraphicsWidget(parent, wFlags); }
 
-void PythonQtWrapper_QGraphicsWidget::changeEvent(QGraphicsWidget* theWrappedObject, QEvent*  event)
+void PythonQtWrapper_QGraphicsWidget::setGeometry(QGraphicsWidget* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h)
 {
- (*((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)).changeEvent(event);
+ theWrappedObject->setGeometry(x, y, w, h);
 }
 
-void PythonQtWrapper_QGraphicsWidget::setFocusPolicy(QGraphicsWidget* theWrappedObject, Qt::FocusPolicy  policy)
+void PythonQtWrapper_QGraphicsWidget::polishEvent(QGraphicsWidget* theWrappedObject)
 {
- (*theWrappedObject).setFocusPolicy(policy);
+ ((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)->promoted_polishEvent();
+}
+
+QGraphicsLayout*  PythonQtWrapper_QGraphicsWidget::layout(QGraphicsWidget* theWrappedObject) const
+{
+return  theWrappedObject->layout();
+}
+
+void PythonQtWrapper_QGraphicsWidget::getContentsMargins(QGraphicsWidget* theWrappedObject, qreal*  left, qreal*  top, qreal*  right, qreal*  bottom) const
+{
+ ((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)->promoted_getContentsMargins(left, top, right, bottom);
 }
 
 void PythonQtWrapper_QGraphicsWidget::setWindowTitle(QGraphicsWidget* theWrappedObject, const QString&  title)
 {
- (*theWrappedObject).setWindowTitle(title);
+ theWrappedObject->setWindowTitle(title);
+}
+
+bool  PythonQtWrapper_QGraphicsWidget::focusNextPrevChild(QGraphicsWidget* theWrappedObject, bool  next)
+{
+return  ((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)->promoted_focusNextPrevChild(next);
+}
+
+QRectF  PythonQtWrapper_QGraphicsWidget::windowFrameRect(QGraphicsWidget* theWrappedObject) const
+{
+return  theWrappedObject->windowFrameRect();
+}
+
+QVariant  PythonQtWrapper_QGraphicsWidget::propertyChange(QGraphicsWidget* theWrappedObject, const QString&  propertyName, const QVariant&  value)
+{
+return  ((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)->promoted_propertyChange(propertyName, value);
+}
+
+QPalette  PythonQtWrapper_QGraphicsWidget::palette(QGraphicsWidget* theWrappedObject) const
+{
+return  theWrappedObject->palette();
 }
 
 bool  PythonQtWrapper_QGraphicsWidget::windowFrameEvent(QGraphicsWidget* theWrappedObject, QEvent*  e)
 {
-return  (*((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)).windowFrameEvent(e);
+return  ((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)->promoted_windowFrameEvent(e);
 }
 
-QSizeF  PythonQtWrapper_QGraphicsWidget::sizeHint(QGraphicsWidget* theWrappedObject, Qt::SizeHint  which, const QSizeF&  constraint) const
+void PythonQtWrapper_QGraphicsWidget::ungrabKeyboardEvent(QGraphicsWidget* theWrappedObject, QEvent*  event)
 {
-return  (*((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)).sizeHint(which, constraint);
+ ((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)->promoted_ungrabKeyboardEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsWidget::setStyle(QGraphicsWidget* theWrappedObject, QStyle*  style)
+{
+ theWrappedObject->setStyle(style);
+}
+
+Qt::LayoutDirection  PythonQtWrapper_QGraphicsWidget::layoutDirection(QGraphicsWidget* theWrappedObject) const
+{
+return  theWrappedObject->layoutDirection();
+}
+
+void PythonQtWrapper_QGraphicsWidget::grabKeyboardEvent(QGraphicsWidget* theWrappedObject, QEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)->promoted_grabKeyboardEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsWidget::resizeEvent(QGraphicsWidget* theWrappedObject, QGraphicsSceneResizeEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)->promoted_resizeEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsWidget::setLayout(QGraphicsWidget* theWrappedObject, QGraphicsLayout*  layout)
+{
+ theWrappedObject->setLayout(layout);
+}
+
+QFont  PythonQtWrapper_QGraphicsWidget::font(QGraphicsWidget* theWrappedObject) const
+{
+return  theWrappedObject->font();
+}
+
+void PythonQtWrapper_QGraphicsWidget::setFocusPolicy(QGraphicsWidget* theWrappedObject, Qt::FocusPolicy  policy)
+{
+ theWrappedObject->setFocusPolicy(policy);
 }
 
 void PythonQtWrapper_QGraphicsWidget::static_QGraphicsWidget_setTabOrder(QGraphicsWidget*  first, QGraphicsWidget*  second)
@@ -1310,308 +1375,243 @@ void PythonQtWrapper_QGraphicsWidget::static_QGraphicsWidget_setTabOrder(QGraphi
 QGraphicsWidget::setTabOrder(first, second);
 }
 
-void PythonQtWrapper_QGraphicsWidget::showEvent(QGraphicsWidget* theWrappedObject, QShowEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)).showEvent(event);
-}
-
-Qt::FocusPolicy  PythonQtWrapper_QGraphicsWidget::focusPolicy(QGraphicsWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).focusPolicy();
-}
-
-void PythonQtWrapper_QGraphicsWidget::hoverLeaveEvent(QGraphicsWidget* theWrappedObject, QGraphicsSceneHoverEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)).hoverLeaveEvent(event);
-}
-
-void PythonQtWrapper_QGraphicsWidget::paintWindowFrame(QGraphicsWidget* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget)
-{
- (*theWrappedObject).paintWindowFrame(painter, option, widget);
-}
-
-void PythonQtWrapper_QGraphicsWidget::setLayout(QGraphicsWidget* theWrappedObject, QGraphicsLayout*  layout)
-{
- (*theWrappedObject).setLayout(layout);
-}
-
-void PythonQtWrapper_QGraphicsWidget::setGeometry(QGraphicsWidget* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h)
-{
- (*theWrappedObject).setGeometry(x, y, w, h);
-}
-
-void PythonQtWrapper_QGraphicsWidget::resize(QGraphicsWidget* theWrappedObject, const QSizeF&  size)
-{
- (*theWrappedObject).resize(size);
-}
-
-QRectF  PythonQtWrapper_QGraphicsWidget::windowFrameGeometry(QGraphicsWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).windowFrameGeometry();
-}
-
-void PythonQtWrapper_QGraphicsWidget::setLayoutDirection(QGraphicsWidget* theWrappedObject, Qt::LayoutDirection  direction)
-{
- (*theWrappedObject).setLayoutDirection(direction);
-}
-
-bool  PythonQtWrapper_QGraphicsWidget::focusNextPrevChild(QGraphicsWidget* theWrappedObject, bool  next)
-{
-return  (*((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)).focusNextPrevChild(next);
-}
-
-void PythonQtWrapper_QGraphicsWidget::updateGeometry(QGraphicsWidget* theWrappedObject)
-{
- (*((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)).updateGeometry();
-}
-
-void PythonQtWrapper_QGraphicsWidget::unsetWindowFrameMargins(QGraphicsWidget* theWrappedObject)
-{
- (*theWrappedObject).unsetWindowFrameMargins();
-}
-
-QVariant  PythonQtWrapper_QGraphicsWidget::itemChange(QGraphicsWidget* theWrappedObject, QGraphicsItem::GraphicsItemChange  change, const QVariant&  value)
-{
-return  (*((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)).itemChange(change, value);
-}
-
-void PythonQtWrapper_QGraphicsWidget::setContentsMargins(QGraphicsWidget* theWrappedObject, qreal  left, qreal  top, qreal  right, qreal  bottom)
-{
- (*theWrappedObject).setContentsMargins(left, top, right, bottom);
-}
-
-void PythonQtWrapper_QGraphicsWidget::closeEvent(QGraphicsWidget* theWrappedObject, QCloseEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)).closeEvent(event);
-}
-
-void PythonQtWrapper_QGraphicsWidget::setAttribute(QGraphicsWidget* theWrappedObject, Qt::WidgetAttribute  attribute, bool  on)
-{
- (*theWrappedObject).setAttribute(attribute, on);
-}
-
-Qt::WindowType  PythonQtWrapper_QGraphicsWidget::windowType(QGraphicsWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).windowType();
-}
-
-void PythonQtWrapper_QGraphicsWidget::setStyle(QGraphicsWidget* theWrappedObject, QStyle*  style)
-{
- (*theWrappedObject).setStyle(style);
-}
-
-Qt::WindowFrameSection  PythonQtWrapper_QGraphicsWidget::windowFrameSectionAt(QGraphicsWidget* theWrappedObject, const QPointF&  pos) const
-{
-return  (*((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)).windowFrameSectionAt(pos);
-}
-
-Qt::WindowFlags  PythonQtWrapper_QGraphicsWidget::windowFlags(QGraphicsWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).windowFlags();
-}
-
-void PythonQtWrapper_QGraphicsWidget::focusInEvent(QGraphicsWidget* theWrappedObject, QFocusEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)).focusInEvent(event);
-}
-
-QSizeF  PythonQtWrapper_QGraphicsWidget::size(QGraphicsWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).size();
-}
-
-void PythonQtWrapper_QGraphicsWidget::ungrabKeyboardEvent(QGraphicsWidget* theWrappedObject, QEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)).ungrabKeyboardEvent(event);
-}
-
-void PythonQtWrapper_QGraphicsWidget::setFont(QGraphicsWidget* theWrappedObject, const QFont&  font)
-{
- (*theWrappedObject).setFont(font);
-}
-
 bool  PythonQtWrapper_QGraphicsWidget::testAttribute(QGraphicsWidget* theWrappedObject, Qt::WidgetAttribute  attribute) const
 {
-return  (*theWrappedObject).testAttribute(attribute);
-}
-
-QString  PythonQtWrapper_QGraphicsWidget::windowTitle(QGraphicsWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).windowTitle();
-}
-
-QPalette  PythonQtWrapper_QGraphicsWidget::palette(QGraphicsWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).palette();
-}
-
-QRectF  PythonQtWrapper_QGraphicsWidget::rect(QGraphicsWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).rect();
-}
-
-void PythonQtWrapper_QGraphicsWidget::resize(QGraphicsWidget* theWrappedObject, qreal  w, qreal  h)
-{
- (*theWrappedObject).resize(w, h);
-}
-
-void PythonQtWrapper_QGraphicsWidget::moveEvent(QGraphicsWidget* theWrappedObject, QGraphicsSceneMoveEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)).moveEvent(event);
-}
-
-void PythonQtWrapper_QGraphicsWidget::setWindowFlags(QGraphicsWidget* theWrappedObject, Qt::WindowFlags  wFlags)
-{
- (*theWrappedObject).setWindowFlags(wFlags);
-}
-
-void PythonQtWrapper_QGraphicsWidget::hideEvent(QGraphicsWidget* theWrappedObject, QHideEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)).hideEvent(event);
-}
-
-QGraphicsWidget*  PythonQtWrapper_QGraphicsWidget::focusWidget(QGraphicsWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).focusWidget();
-}
-
-QFont  PythonQtWrapper_QGraphicsWidget::font(QGraphicsWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).font();
-}
-
-void PythonQtWrapper_QGraphicsWidget::ungrabMouseEvent(QGraphicsWidget* theWrappedObject, QEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)).ungrabMouseEvent(event);
-}
-
-QVariant  PythonQtWrapper_QGraphicsWidget::propertyChange(QGraphicsWidget* theWrappedObject, const QString&  propertyName, const QVariant&  value)
-{
-return  (*((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)).propertyChange(propertyName, value);
-}
-
-void PythonQtWrapper_QGraphicsWidget::paint(QGraphicsWidget* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget)
-{
- (*theWrappedObject).paint(painter, option, widget);
-}
-
-void PythonQtWrapper_QGraphicsWidget::adjustSize(QGraphicsWidget* theWrappedObject)
-{
- (*theWrappedObject).adjustSize();
-}
-
-void PythonQtWrapper_QGraphicsWidget::setGeometry(QGraphicsWidget* theWrappedObject, const QRectF&  rect)
-{
- (*theWrappedObject).setGeometry(rect);
-}
-
-void PythonQtWrapper_QGraphicsWidget::setPalette(QGraphicsWidget* theWrappedObject, const QPalette&  palette)
-{
- (*theWrappedObject).setPalette(palette);
-}
-
-QRectF  PythonQtWrapper_QGraphicsWidget::boundingRect(QGraphicsWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).boundingRect();
-}
-
-void PythonQtWrapper_QGraphicsWidget::grabMouseEvent(QGraphicsWidget* theWrappedObject, QEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)).grabMouseEvent(event);
-}
-
-void PythonQtWrapper_QGraphicsWidget::hoverMoveEvent(QGraphicsWidget* theWrappedObject, QGraphicsSceneHoverEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)).hoverMoveEvent(event);
-}
-
-QPainterPath  PythonQtWrapper_QGraphicsWidget::shape(QGraphicsWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).shape();
-}
-
-bool  PythonQtWrapper_QGraphicsWidget::event(QGraphicsWidget* theWrappedObject, QEvent*  event)
-{
-return  (*((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)).event(event);
-}
-
-QGraphicsLayout*  PythonQtWrapper_QGraphicsWidget::layout(QGraphicsWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).layout();
-}
-
-void PythonQtWrapper_QGraphicsWidget::polishEvent(QGraphicsWidget* theWrappedObject)
-{
- (*((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)).polishEvent();
-}
-
-Qt::LayoutDirection  PythonQtWrapper_QGraphicsWidget::layoutDirection(QGraphicsWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).layoutDirection();
-}
-
-QStyle*  PythonQtWrapper_QGraphicsWidget::style(QGraphicsWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).style();
-}
-
-void PythonQtWrapper_QGraphicsWidget::initStyleOption(QGraphicsWidget* theWrappedObject, QStyleOption*  option) const
-{
- (*((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)).initStyleOption(option);
-}
-
-void PythonQtWrapper_QGraphicsWidget::setWindowFrameMargins(QGraphicsWidget* theWrappedObject, qreal  left, qreal  top, qreal  right, qreal  bottom)
-{
- (*theWrappedObject).setWindowFrameMargins(left, top, right, bottom);
+return  theWrappedObject->testAttribute(attribute);
 }
 
 void PythonQtWrapper_QGraphicsWidget::getWindowFrameMargins(QGraphicsWidget* theWrappedObject, qreal*  left, qreal*  top, qreal*  right, qreal*  bottom) const
 {
- (*theWrappedObject).getWindowFrameMargins(left, top, right, bottom);
+ theWrappedObject->getWindowFrameMargins(left, top, right, bottom);
 }
 
-bool  PythonQtWrapper_QGraphicsWidget::isActiveWindow(QGraphicsWidget* theWrappedObject) const
+void PythonQtWrapper_QGraphicsWidget::showEvent(QGraphicsWidget* theWrappedObject, QShowEvent*  event)
 {
-return  (*theWrappedObject).isActiveWindow();
+ ((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)->promoted_showEvent(event);
 }
 
-void PythonQtWrapper_QGraphicsWidget::grabKeyboardEvent(QGraphicsWidget* theWrappedObject, QEvent*  event)
+void PythonQtWrapper_QGraphicsWidget::unsetWindowFrameMargins(QGraphicsWidget* theWrappedObject)
 {
- (*((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)).grabKeyboardEvent(event);
-}
-
-void PythonQtWrapper_QGraphicsWidget::focusOutEvent(QGraphicsWidget* theWrappedObject, QFocusEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)).focusOutEvent(event);
-}
-
-void PythonQtWrapper_QGraphicsWidget::getContentsMargins(QGraphicsWidget* theWrappedObject, qreal*  left, qreal*  top, qreal*  right, qreal*  bottom) const
-{
- (*theWrappedObject).getContentsMargins(left, top, right, bottom);
-}
-
-QRectF  PythonQtWrapper_QGraphicsWidget::windowFrameRect(QGraphicsWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).windowFrameRect();
+ theWrappedObject->unsetWindowFrameMargins();
 }
 
 int  PythonQtWrapper_QGraphicsWidget::type(QGraphicsWidget* theWrappedObject) const
 {
-return  (*theWrappedObject).type();
+return  ((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)->promoted_type();
+}
+
+void PythonQtWrapper_QGraphicsWidget::resize(QGraphicsWidget* theWrappedObject, qreal  w, qreal  h)
+{
+ theWrappedObject->resize(w, h);
 }
 
 bool  PythonQtWrapper_QGraphicsWidget::sceneEvent(QGraphicsWidget* theWrappedObject, QEvent*  event)
 {
-return  (*((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)).sceneEvent(event);
+return  ((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)->promoted_sceneEvent(event);
 }
 
-void PythonQtWrapper_QGraphicsWidget::resizeEvent(QGraphicsWidget* theWrappedObject, QGraphicsSceneResizeEvent*  event)
+void PythonQtWrapper_QGraphicsWidget::ungrabMouseEvent(QGraphicsWidget* theWrappedObject, QEvent*  event)
 {
- (*((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)).resizeEvent(event);
+ ((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)->promoted_ungrabMouseEvent(event);
+}
+
+Qt::WindowFrameSection  PythonQtWrapper_QGraphicsWidget::windowFrameSectionAt(QGraphicsWidget* theWrappedObject, const QPointF&  pos) const
+{
+return  ((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)->promoted_windowFrameSectionAt(pos);
+}
+
+void PythonQtWrapper_QGraphicsWidget::hideEvent(QGraphicsWidget* theWrappedObject, QHideEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)->promoted_hideEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsWidget::setPalette(QGraphicsWidget* theWrappedObject, const QPalette&  palette)
+{
+ theWrappedObject->setPalette(palette);
+}
+
+void PythonQtWrapper_QGraphicsWidget::moveEvent(QGraphicsWidget* theWrappedObject, QGraphicsSceneMoveEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)->promoted_moveEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsWidget::setWindowFrameMargins(QGraphicsWidget* theWrappedObject, qreal  left, qreal  top, qreal  right, qreal  bottom)
+{
+ theWrappedObject->setWindowFrameMargins(left, top, right, bottom);
+}
+
+QRectF  PythonQtWrapper_QGraphicsWidget::boundingRect(QGraphicsWidget* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)->promoted_boundingRect();
+}
+
+Qt::WindowType  PythonQtWrapper_QGraphicsWidget::windowType(QGraphicsWidget* theWrappedObject) const
+{
+return  theWrappedObject->windowType();
+}
+
+void PythonQtWrapper_QGraphicsWidget::grabMouseEvent(QGraphicsWidget* theWrappedObject, QEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)->promoted_grabMouseEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsWidget::closeEvent(QGraphicsWidget* theWrappedObject, QCloseEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)->promoted_closeEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsWidget::hoverMoveEvent(QGraphicsWidget* theWrappedObject, QGraphicsSceneHoverEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)->promoted_hoverMoveEvent(event);
 }
 
 void PythonQtWrapper_QGraphicsWidget::unsetLayoutDirection(QGraphicsWidget* theWrappedObject)
 {
- (*theWrappedObject).unsetLayoutDirection();
+ theWrappedObject->unsetLayoutDirection();
+}
+
+Qt::WindowFlags  PythonQtWrapper_QGraphicsWidget::windowFlags(QGraphicsWidget* theWrappedObject) const
+{
+return  theWrappedObject->windowFlags();
+}
+
+void PythonQtWrapper_QGraphicsWidget::hoverLeaveEvent(QGraphicsWidget* theWrappedObject, QGraphicsSceneHoverEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)->promoted_hoverLeaveEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsWidget::changeEvent(QGraphicsWidget* theWrappedObject, QEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)->promoted_changeEvent(event);
+}
+
+QRectF  PythonQtWrapper_QGraphicsWidget::rect(QGraphicsWidget* theWrappedObject) const
+{
+return  theWrappedObject->rect();
+}
+
+Qt::FocusPolicy  PythonQtWrapper_QGraphicsWidget::focusPolicy(QGraphicsWidget* theWrappedObject) const
+{
+return  theWrappedObject->focusPolicy();
+}
+
+void PythonQtWrapper_QGraphicsWidget::initStyleOption(QGraphicsWidget* theWrappedObject, QStyleOption*  option) const
+{
+ ((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)->promoted_initStyleOption(option);
+}
+
+void PythonQtWrapper_QGraphicsWidget::setAttribute(QGraphicsWidget* theWrappedObject, Qt::WidgetAttribute  attribute, bool  on)
+{
+ theWrappedObject->setAttribute(attribute, on);
+}
+
+bool  PythonQtWrapper_QGraphicsWidget::event(QGraphicsWidget* theWrappedObject, QEvent*  event)
+{
+return  ((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)->promoted_event(event);
+}
+
+QGraphicsWidget*  PythonQtWrapper_QGraphicsWidget::focusWidget(QGraphicsWidget* theWrappedObject) const
+{
+return  theWrappedObject->focusWidget();
+}
+
+void PythonQtWrapper_QGraphicsWidget::setWindowFlags(QGraphicsWidget* theWrappedObject, Qt::WindowFlags  wFlags)
+{
+ theWrappedObject->setWindowFlags(wFlags);
+}
+
+QString  PythonQtWrapper_QGraphicsWidget::windowTitle(QGraphicsWidget* theWrappedObject) const
+{
+return  theWrappedObject->windowTitle();
+}
+
+void PythonQtWrapper_QGraphicsWidget::focusInEvent(QGraphicsWidget* theWrappedObject, QFocusEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)->promoted_focusInEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsWidget::adjustSize(QGraphicsWidget* theWrappedObject)
+{
+ theWrappedObject->adjustSize();
+}
+
+QRectF  PythonQtWrapper_QGraphicsWidget::windowFrameGeometry(QGraphicsWidget* theWrappedObject) const
+{
+return  theWrappedObject->windowFrameGeometry();
+}
+
+void PythonQtWrapper_QGraphicsWidget::paint(QGraphicsWidget* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget)
+{
+ ((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)->promoted_paint(painter, option, widget);
+}
+
+QStyle*  PythonQtWrapper_QGraphicsWidget::style(QGraphicsWidget* theWrappedObject) const
+{
+return  theWrappedObject->style();
+}
+
+void PythonQtWrapper_QGraphicsWidget::resize(QGraphicsWidget* theWrappedObject, const QSizeF&  size)
+{
+ theWrappedObject->resize(size);
+}
+
+QSizeF  PythonQtWrapper_QGraphicsWidget::size(QGraphicsWidget* theWrappedObject) const
+{
+return  theWrappedObject->size();
+}
+
+QSizeF  PythonQtWrapper_QGraphicsWidget::sizeHint(QGraphicsWidget* theWrappedObject, Qt::SizeHint  which, const QSizeF&  constraint) const
+{
+return  ((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)->promoted_sizeHint(which, constraint);
+}
+
+void PythonQtWrapper_QGraphicsWidget::setFont(QGraphicsWidget* theWrappedObject, const QFont&  font)
+{
+ theWrappedObject->setFont(font);
+}
+
+void PythonQtWrapper_QGraphicsWidget::setContentsMargins(QGraphicsWidget* theWrappedObject, qreal  left, qreal  top, qreal  right, qreal  bottom)
+{
+ theWrappedObject->setContentsMargins(left, top, right, bottom);
+}
+
+QVariant  PythonQtWrapper_QGraphicsWidget::itemChange(QGraphicsWidget* theWrappedObject, QGraphicsItem::GraphicsItemChange  change, const QVariant&  value)
+{
+return  ((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)->promoted_itemChange(change, value);
+}
+
+void PythonQtWrapper_QGraphicsWidget::focusOutEvent(QGraphicsWidget* theWrappedObject, QFocusEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)->promoted_focusOutEvent(event);
+}
+
+bool  PythonQtWrapper_QGraphicsWidget::isActiveWindow(QGraphicsWidget* theWrappedObject) const
+{
+return  theWrappedObject->isActiveWindow();
+}
+
+QPainterPath  PythonQtWrapper_QGraphicsWidget::shape(QGraphicsWidget* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)->promoted_shape();
+}
+
+void PythonQtWrapper_QGraphicsWidget::setLayoutDirection(QGraphicsWidget* theWrappedObject, Qt::LayoutDirection  direction)
+{
+ theWrappedObject->setLayoutDirection(direction);
+}
+
+void PythonQtWrapper_QGraphicsWidget::paintWindowFrame(QGraphicsWidget* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget)
+{
+ ((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)->promoted_paintWindowFrame(painter, option, widget);
+}
+
+void PythonQtWrapper_QGraphicsWidget::updateGeometry(QGraphicsWidget* theWrappedObject)
+{
+ ((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)->promoted_updateGeometry();
+}
+
+void PythonQtWrapper_QGraphicsWidget::setGeometry(QGraphicsWidget* theWrappedObject, const QRectF&  rect)
+{
+ ((PythonQtPublicPromoter_QGraphicsWidget*)theWrappedObject)->promoted_setGeometry(rect);
 }
 

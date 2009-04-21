@@ -87,12 +87,12 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QToolBar : public QToolBar
 { public:
-inline void resizeEvent(QResizeEvent*  event) { QToolBar::resizeEvent(event); }
-inline void changeEvent(QEvent*  event) { QToolBar::changeEvent(event); }
-inline void actionEvent(QActionEvent*  event) { QToolBar::actionEvent(event); }
-inline bool  event(QEvent*  event) { return QToolBar::event(event); }
-inline void paintEvent(QPaintEvent*  event) { QToolBar::paintEvent(event); }
-inline void childEvent(QChildEvent*  event) { QToolBar::childEvent(event); }
+inline void promoted_actionEvent(QActionEvent*  event) { QToolBar::actionEvent(event); }
+inline void promoted_resizeEvent(QResizeEvent*  event) { QToolBar::resizeEvent(event); }
+inline void promoted_paintEvent(QPaintEvent*  event) { QToolBar::paintEvent(event); }
+inline bool  promoted_event(QEvent*  event) { return QToolBar::event(event); }
+inline void promoted_changeEvent(QEvent*  event) { QToolBar::changeEvent(event); }
+inline void promoted_childEvent(QChildEvent*  event) { QToolBar::childEvent(event); }
 };
 
 class PythonQtWrapper_QToolBar : public QObject
@@ -102,36 +102,36 @@ public slots:
 QToolBar* new_QToolBar(QWidget*  parent = 0);
 QToolBar* new_QToolBar(const QString&  title, QWidget*  parent = 0);
 void delete_QToolBar(QToolBar* obj) { delete obj; } 
-   void setFloatable(QToolBar* theWrappedObject, bool  floatable);
+   QAction*  addWidget(QToolBar* theWrappedObject, QWidget*  widget);
+   void actionEvent(QToolBar* theWrappedObject, QActionEvent*  event);
+   QAction*  actionAt(QToolBar* theWrappedObject, int  x, int  y) const;
+   Qt::ToolBarAreas  allowedAreas(QToolBar* theWrappedObject) const;
    void resizeEvent(QToolBar* theWrappedObject, QResizeEvent*  event);
-   QAction*  toggleViewAction(QToolBar* theWrappedObject) const;
-   void setOrientation(QToolBar* theWrappedObject, Qt::Orientation  orientation);
-   QAction*  insertWidget(QToolBar* theWrappedObject, QAction*  before, QWidget*  widget);
-   void clear(QToolBar* theWrappedObject);
+   QWidget*  widgetForAction(QToolBar* theWrappedObject, QAction*  action) const;
+   void paintEvent(QToolBar* theWrappedObject, QPaintEvent*  event);
+   void setMovable(QToolBar* theWrappedObject, bool  movable);
+   QAction*  actionAt(QToolBar* theWrappedObject, const QPoint&  p) const;
+   QSize  iconSize(QToolBar* theWrappedObject) const;
    bool  isAreaAllowed(QToolBar* theWrappedObject, Qt::ToolBarArea  area) const;
+   QAction*  insertSeparator(QToolBar* theWrappedObject, QAction*  before);
+   bool  isMovable(QToolBar* theWrappedObject) const;
+   QAction*  toggleViewAction(QToolBar* theWrappedObject) const;
+   QAction*  addSeparator(QToolBar* theWrappedObject);
+   void clear(QToolBar* theWrappedObject);
+   QAction*  insertWidget(QToolBar* theWrappedObject, QAction*  before, QWidget*  widget);
+   void setFloatable(QToolBar* theWrappedObject, bool  floatable);
+   bool  isFloatable(QToolBar* theWrappedObject) const;
+   void setAllowedAreas(QToolBar* theWrappedObject, Qt::ToolBarAreas  areas);
+   QAction*  addAction(QToolBar* theWrappedObject, const QString&  text);
+   void setOrientation(QToolBar* theWrappedObject, Qt::Orientation  orientation);
+   bool  event(QToolBar* theWrappedObject, QEvent*  event);
    Qt::ToolButtonStyle  toolButtonStyle(QToolBar* theWrappedObject) const;
+   void changeEvent(QToolBar* theWrappedObject, QEvent*  event);
    bool  isFloating(QToolBar* theWrappedObject) const;
    QRect  actionGeometry(QToolBar* theWrappedObject, QAction*  action) const;
    Qt::Orientation  orientation(QToolBar* theWrappedObject) const;
-   void changeEvent(QToolBar* theWrappedObject, QEvent*  event);
-   QAction*  addWidget(QToolBar* theWrappedObject, QWidget*  widget);
-   QAction*  actionAt(QToolBar* theWrappedObject, int  x, int  y) const;
-   Qt::ToolBarAreas  allowedAreas(QToolBar* theWrappedObject) const;
-   void actionEvent(QToolBar* theWrappedObject, QActionEvent*  event);
-   bool  event(QToolBar* theWrappedObject, QEvent*  event);
-   void paintEvent(QToolBar* theWrappedObject, QPaintEvent*  event);
-   QWidget*  widgetForAction(QToolBar* theWrappedObject, QAction*  action) const;
-   QAction*  actionAt(QToolBar* theWrappedObject, const QPoint&  p) const;
-   void setMovable(QToolBar* theWrappedObject, bool  movable);
-   QSize  iconSize(QToolBar* theWrappedObject) const;
-   QAction*  insertSeparator(QToolBar* theWrappedObject, QAction*  before);
-   bool  isMovable(QToolBar* theWrappedObject) const;
-   QAction*  addAction(QToolBar* theWrappedObject, const QString&  text);
-   void childEvent(QToolBar* theWrappedObject, QChildEvent*  event);
-   QAction*  addSeparator(QToolBar* theWrappedObject);
-   bool  isFloatable(QToolBar* theWrappedObject) const;
    QAction*  addAction(QToolBar* theWrappedObject, const QIcon&  icon, const QString&  text);
-   void setAllowedAreas(QToolBar* theWrappedObject, Qt::ToolBarAreas  areas);
+   void childEvent(QToolBar* theWrappedObject, QChildEvent*  event);
 };
 
 #endif // PYTHONQTWRAPPER_QTOOLBAR_H

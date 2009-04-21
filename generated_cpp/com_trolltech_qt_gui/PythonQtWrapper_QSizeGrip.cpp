@@ -800,58 +800,58 @@ QSizeGrip* PythonQtWrapper_QSizeGrip::new_QSizeGrip(QWidget*  parent)
 { 
 return new PythonQtShell_QSizeGrip(parent); }
 
-QSize  PythonQtWrapper_QSizeGrip::sizeHint(QSizeGrip* theWrappedObject) const
-{
-return  (*theWrappedObject).sizeHint();
-}
-
-bool  PythonQtWrapper_QSizeGrip::event(QSizeGrip* theWrappedObject, QEvent*  arg__1)
-{
-return  (*((PythonQtPublicPromoter_QSizeGrip*)theWrappedObject)).event(arg__1);
-}
-
-void PythonQtWrapper_QSizeGrip::showEvent(QSizeGrip* theWrappedObject, QShowEvent*  showEvent)
-{
- (*((PythonQtPublicPromoter_QSizeGrip*)theWrappedObject)).showEvent(showEvent);
-}
-
-void PythonQtWrapper_QSizeGrip::moveEvent(QSizeGrip* theWrappedObject, QMoveEvent*  moveEvent)
-{
- (*((PythonQtPublicPromoter_QSizeGrip*)theWrappedObject)).moveEvent(moveEvent);
-}
-
-void PythonQtWrapper_QSizeGrip::setVisible(QSizeGrip* theWrappedObject, bool  arg__1)
-{
- (*theWrappedObject).setVisible(arg__1);
-}
-
-void PythonQtWrapper_QSizeGrip::hideEvent(QSizeGrip* theWrappedObject, QHideEvent*  hideEvent)
-{
- (*((PythonQtPublicPromoter_QSizeGrip*)theWrappedObject)).hideEvent(hideEvent);
-}
-
-void PythonQtWrapper_QSizeGrip::mousePressEvent(QSizeGrip* theWrappedObject, QMouseEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QSizeGrip*)theWrappedObject)).mousePressEvent(arg__1);
-}
-
 void PythonQtWrapper_QSizeGrip::mouseMoveEvent(QSizeGrip* theWrappedObject, QMouseEvent*  arg__1)
 {
- (*((PythonQtPublicPromoter_QSizeGrip*)theWrappedObject)).mouseMoveEvent(arg__1);
+ ((PythonQtPublicPromoter_QSizeGrip*)theWrappedObject)->promoted_mouseMoveEvent(arg__1);
 }
 
 void PythonQtWrapper_QSizeGrip::mouseReleaseEvent(QSizeGrip* theWrappedObject, QMouseEvent*  mouseEvent)
 {
- (*((PythonQtPublicPromoter_QSizeGrip*)theWrappedObject)).mouseReleaseEvent(mouseEvent);
-}
-
-bool  PythonQtWrapper_QSizeGrip::eventFilter(QSizeGrip* theWrappedObject, QObject*  arg__1, QEvent*  arg__2)
-{
-return  (*((PythonQtPublicPromoter_QSizeGrip*)theWrappedObject)).eventFilter(arg__1, arg__2);
+ ((PythonQtPublicPromoter_QSizeGrip*)theWrappedObject)->promoted_mouseReleaseEvent(mouseEvent);
 }
 
 void PythonQtWrapper_QSizeGrip::paintEvent(QSizeGrip* theWrappedObject, QPaintEvent*  arg__1)
 {
- (*((PythonQtPublicPromoter_QSizeGrip*)theWrappedObject)).paintEvent(arg__1);
+ ((PythonQtPublicPromoter_QSizeGrip*)theWrappedObject)->promoted_paintEvent(arg__1);
+}
+
+void PythonQtWrapper_QSizeGrip::mousePressEvent(QSizeGrip* theWrappedObject, QMouseEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QSizeGrip*)theWrappedObject)->promoted_mousePressEvent(arg__1);
+}
+
+QSize  PythonQtWrapper_QSizeGrip::sizeHint(QSizeGrip* theWrappedObject) const
+{
+return  theWrappedObject->sizeHint();
+}
+
+void PythonQtWrapper_QSizeGrip::showEvent(QSizeGrip* theWrappedObject, QShowEvent*  showEvent)
+{
+ ((PythonQtPublicPromoter_QSizeGrip*)theWrappedObject)->promoted_showEvent(showEvent);
+}
+
+bool  PythonQtWrapper_QSizeGrip::event(QSizeGrip* theWrappedObject, QEvent*  arg__1)
+{
+return  ((PythonQtPublicPromoter_QSizeGrip*)theWrappedObject)->promoted_event(arg__1);
+}
+
+bool  PythonQtWrapper_QSizeGrip::eventFilter(QSizeGrip* theWrappedObject, QObject*  arg__1, QEvent*  arg__2)
+{
+return  ((PythonQtPublicPromoter_QSizeGrip*)theWrappedObject)->promoted_eventFilter(arg__1, arg__2);
+}
+
+void PythonQtWrapper_QSizeGrip::moveEvent(QSizeGrip* theWrappedObject, QMoveEvent*  moveEvent)
+{
+ ((PythonQtPublicPromoter_QSizeGrip*)theWrappedObject)->promoted_moveEvent(moveEvent);
+}
+
+void PythonQtWrapper_QSizeGrip::setVisible(QSizeGrip* theWrappedObject, bool  arg__1)
+{
+ theWrappedObject->setVisible(arg__1);
+}
+
+void PythonQtWrapper_QSizeGrip::hideEvent(QSizeGrip* theWrappedObject, QHideEvent*  hideEvent)
+{
+ ((PythonQtPublicPromoter_QSizeGrip*)theWrappedObject)->promoted_hideEvent(hideEvent);
 }
 

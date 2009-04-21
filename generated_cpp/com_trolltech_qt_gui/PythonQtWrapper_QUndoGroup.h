@@ -35,17 +35,17 @@ public:
 public slots:
 QUndoGroup* new_QUndoGroup(QObject*  parent = 0);
 void delete_QUndoGroup(QUndoGroup* obj) { delete obj; } 
-   QUndoStack*  activeStack(QUndoGroup* theWrappedObject) const;
-   QAction*  createRedoAction(QUndoGroup* theWrappedObject, QObject*  parent, const QString&  prefix = QString()) const;
-   void addStack(QUndoGroup* theWrappedObject, QUndoStack*  stack);
-   void removeStack(QUndoGroup* theWrappedObject, QUndoStack*  stack);
    QString  undoText(QUndoGroup* theWrappedObject) const;
-   bool  canRedo(QUndoGroup* theWrappedObject) const;
-   QString  redoText(QUndoGroup* theWrappedObject) const;
    bool  isClean(QUndoGroup* theWrappedObject) const;
    QAction*  createUndoAction(QUndoGroup* theWrappedObject, QObject*  parent, const QString&  prefix = QString()) const;
-   QList<QUndoStack* >  stacks(QUndoGroup* theWrappedObject) const;
    bool  canUndo(QUndoGroup* theWrappedObject) const;
+   QAction*  createRedoAction(QUndoGroup* theWrappedObject, QObject*  parent, const QString&  prefix = QString()) const;
+   void removeStack(QUndoGroup* theWrappedObject, QUndoStack*  stack);
+   QUndoStack*  activeStack(QUndoGroup* theWrappedObject) const;
+   bool  canRedo(QUndoGroup* theWrappedObject) const;
+   QString  redoText(QUndoGroup* theWrappedObject) const;
+   QList<QUndoStack* >  stacks(QUndoGroup* theWrappedObject) const;
+   void addStack(QUndoGroup* theWrappedObject, QUndoStack*  stack);
 };
 
 #endif // PYTHONQTWRAPPER_QUNDOGROUP_H

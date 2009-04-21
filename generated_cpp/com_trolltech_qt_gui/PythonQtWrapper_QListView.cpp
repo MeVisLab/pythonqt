@@ -1573,298 +1573,298 @@ QListView* PythonQtWrapper_QListView::new_QListView(QWidget*  parent)
 { 
 return new PythonQtShell_QListView(parent); }
 
-void PythonQtWrapper_QListView::rowsInserted(QListView* theWrappedObject, const QModelIndex&  parent, int  start, int  end)
-{
- (*((PythonQtPublicPromoter_QListView*)theWrappedObject)).rowsInserted(parent, start, end);
-}
-
-QListView::LayoutMode  PythonQtWrapper_QListView::layoutMode(QListView* theWrappedObject) const
-{
-return  (*theWrappedObject).layoutMode();
-}
-
-void PythonQtWrapper_QListView::dragLeaveEvent(QListView* theWrappedObject, QDragLeaveEvent*  e)
-{
- (*((PythonQtPublicPromoter_QListView*)theWrappedObject)).dragLeaveEvent(e);
-}
-
-void PythonQtWrapper_QListView::startDrag(QListView* theWrappedObject, Qt::DropActions  supportedActions)
-{
- (*((PythonQtPublicPromoter_QListView*)theWrappedObject)).startDrag(supportedActions);
-}
-
-void PythonQtWrapper_QListView::dragMoveEvent(QListView* theWrappedObject, QDragMoveEvent*  e)
-{
- (*((PythonQtPublicPromoter_QListView*)theWrappedObject)).dragMoveEvent(e);
-}
-
-void PythonQtWrapper_QListView::setMovement(QListView* theWrappedObject, QListView::Movement  movement)
-{
- (*theWrappedObject).setMovement(movement);
-}
-
-void PythonQtWrapper_QListView::clearPropertyFlags(QListView* theWrappedObject)
-{
- (*theWrappedObject).clearPropertyFlags();
-}
-
-void PythonQtWrapper_QListView::scrollTo(QListView* theWrappedObject, const QModelIndex&  index, QAbstractItemView::ScrollHint  hint)
-{
- (*theWrappedObject).scrollTo(index, hint);
-}
-
-void PythonQtWrapper_QListView::setLayoutMode(QListView* theWrappedObject, QListView::LayoutMode  mode)
-{
- (*theWrappedObject).setLayoutMode(mode);
-}
-
-bool  PythonQtWrapper_QListView::isWrapping(QListView* theWrappedObject) const
-{
-return  (*theWrappedObject).isWrapping();
-}
-
 void PythonQtWrapper_QListView::updateGeometries(QListView* theWrappedObject)
 {
- (*((PythonQtPublicPromoter_QListView*)theWrappedObject)).updateGeometries();
+ ((PythonQtPublicPromoter_QListView*)theWrappedObject)->promoted_updateGeometries();
 }
 
 void PythonQtWrapper_QListView::setResizeMode(QListView* theWrappedObject, QListView::ResizeMode  mode)
 {
- (*theWrappedObject).setResizeMode(mode);
+ theWrappedObject->setResizeMode(mode);
 }
 
 QListView::ViewMode  PythonQtWrapper_QListView::viewMode(QListView* theWrappedObject) const
 {
-return  (*theWrappedObject).viewMode();
-}
-
-void PythonQtWrapper_QListView::paintEvent(QListView* theWrappedObject, QPaintEvent*  e)
-{
- (*((PythonQtPublicPromoter_QListView*)theWrappedObject)).paintEvent(e);
+return  theWrappedObject->viewMode();
 }
 
 void PythonQtWrapper_QListView::resizeEvent(QListView* theWrappedObject, QResizeEvent*  e)
 {
- (*((PythonQtPublicPromoter_QListView*)theWrappedObject)).resizeEvent(e);
-}
-
-void PythonQtWrapper_QListView::setSelection(QListView* theWrappedObject, const QRect&  rect, QItemSelectionModel::SelectionFlags  command)
-{
- (*((PythonQtPublicPromoter_QListView*)theWrappedObject)).setSelection(rect, command);
+ ((PythonQtPublicPromoter_QListView*)theWrappedObject)->promoted_resizeEvent(e);
 }
 
 void PythonQtWrapper_QListView::setSpacing(QListView* theWrappedObject, int  space)
 {
- (*theWrappedObject).setSpacing(space);
-}
-
-bool  PythonQtWrapper_QListView::uniformItemSizes(QListView* theWrappedObject) const
-{
-return  (*theWrappedObject).uniformItemSizes();
-}
-
-void PythonQtWrapper_QListView::setGridSize(QListView* theWrappedObject, const QSize&  size)
-{
- (*theWrappedObject).setGridSize(size);
-}
-
-void PythonQtWrapper_QListView::selectionChanged(QListView* theWrappedObject, const QItemSelection&  selected, const QItemSelection&  deselected)
-{
- (*((PythonQtPublicPromoter_QListView*)theWrappedObject)).selectionChanged(selected, deselected);
-}
-
-bool  PythonQtWrapper_QListView::wordWrap(QListView* theWrappedObject) const
-{
-return  (*theWrappedObject).wordWrap();
-}
-
-QStyleOptionViewItem  PythonQtWrapper_QListView::viewOptions(QListView* theWrappedObject) const
-{
-return  (*((PythonQtPublicPromoter_QListView*)theWrappedObject)).viewOptions();
-}
-
-void PythonQtWrapper_QListView::dropEvent(QListView* theWrappedObject, QDropEvent*  e)
-{
- (*((PythonQtPublicPromoter_QListView*)theWrappedObject)).dropEvent(e);
-}
-
-QListView::Movement  PythonQtWrapper_QListView::movement(QListView* theWrappedObject) const
-{
-return  (*theWrappedObject).movement();
-}
-
-QList<QModelIndex >  PythonQtWrapper_QListView::selectedIndexes(QListView* theWrappedObject) const
-{
-return  (*((PythonQtPublicPromoter_QListView*)theWrappedObject)).selectedIndexes();
-}
-
-void PythonQtWrapper_QListView::mouseMoveEvent(QListView* theWrappedObject, QMouseEvent*  e)
-{
- (*((PythonQtPublicPromoter_QListView*)theWrappedObject)).mouseMoveEvent(e);
-}
-
-void PythonQtWrapper_QListView::setFlow(QListView* theWrappedObject, QListView::Flow  flow)
-{
- (*theWrappedObject).setFlow(flow);
-}
-
-QModelIndex  PythonQtWrapper_QListView::indexAt(QListView* theWrappedObject, const QPoint&  p) const
-{
-return  (*theWrappedObject).indexAt(p);
-}
-
-bool  PythonQtWrapper_QListView::isIndexHidden(QListView* theWrappedObject, const QModelIndex&  index) const
-{
-return  (*((PythonQtPublicPromoter_QListView*)theWrappedObject)).isIndexHidden(index);
-}
-
-void PythonQtWrapper_QListView::timerEvent(QListView* theWrappedObject, QTimerEvent*  e)
-{
- (*((PythonQtPublicPromoter_QListView*)theWrappedObject)).timerEvent(e);
-}
-
-int  PythonQtWrapper_QListView::modelColumn(QListView* theWrappedObject) const
-{
-return  (*theWrappedObject).modelColumn();
-}
-
-void PythonQtWrapper_QListView::setBatchSize(QListView* theWrappedObject, int  batchSize)
-{
- (*theWrappedObject).setBatchSize(batchSize);
-}
-
-QListView::ResizeMode  PythonQtWrapper_QListView::resizeMode(QListView* theWrappedObject) const
-{
-return  (*theWrappedObject).resizeMode();
-}
-
-void PythonQtWrapper_QListView::reset(QListView* theWrappedObject)
-{
- (*theWrappedObject).reset();
-}
-
-void PythonQtWrapper_QListView::setViewMode(QListView* theWrappedObject, QListView::ViewMode  mode)
-{
- (*theWrappedObject).setViewMode(mode);
-}
-
-int  PythonQtWrapper_QListView::spacing(QListView* theWrappedObject) const
-{
-return  (*theWrappedObject).spacing();
-}
-
-bool  PythonQtWrapper_QListView::isSelectionRectVisible(QListView* theWrappedObject) const
-{
-return  (*theWrappedObject).isSelectionRectVisible();
-}
-
-void PythonQtWrapper_QListView::setWrapping(QListView* theWrappedObject, bool  enable)
-{
- (*theWrappedObject).setWrapping(enable);
-}
-
-int  PythonQtWrapper_QListView::horizontalOffset(QListView* theWrappedObject) const
-{
-return  (*((PythonQtPublicPromoter_QListView*)theWrappedObject)).horizontalOffset();
-}
-
-QSize  PythonQtWrapper_QListView::gridSize(QListView* theWrappedObject) const
-{
-return  (*theWrappedObject).gridSize();
-}
-
-void PythonQtWrapper_QListView::setRootIndex(QListView* theWrappedObject, const QModelIndex&  index)
-{
- (*theWrappedObject).setRootIndex(index);
-}
-
-void PythonQtWrapper_QListView::setUniformItemSizes(QListView* theWrappedObject, bool  enable)
-{
- (*theWrappedObject).setUniformItemSizes(enable);
-}
-
-void PythonQtWrapper_QListView::mouseReleaseEvent(QListView* theWrappedObject, QMouseEvent*  e)
-{
- (*((PythonQtPublicPromoter_QListView*)theWrappedObject)).mouseReleaseEvent(e);
+ theWrappedObject->setSpacing(space);
 }
 
 QListView::Flow  PythonQtWrapper_QListView::flow(QListView* theWrappedObject) const
 {
-return  (*theWrappedObject).flow();
+return  theWrappedObject->flow();
 }
 
-bool  PythonQtWrapper_QListView::event(QListView* theWrappedObject, QEvent*  e)
+void PythonQtWrapper_QListView::selectionChanged(QListView* theWrappedObject, const QItemSelection&  selected, const QItemSelection&  deselected)
 {
-return  (*((PythonQtPublicPromoter_QListView*)theWrappedObject)).event(e);
+ ((PythonQtPublicPromoter_QListView*)theWrappedObject)->promoted_selectionChanged(selected, deselected);
 }
 
-void PythonQtWrapper_QListView::scrollContentsBy(QListView* theWrappedObject, int  dx, int  dy)
+void PythonQtWrapper_QListView::setSelection(QListView* theWrappedObject, const QRect&  rect, QItemSelectionModel::SelectionFlags  command)
 {
- (*((PythonQtPublicPromoter_QListView*)theWrappedObject)).scrollContentsBy(dx, dy);
+ ((PythonQtPublicPromoter_QListView*)theWrappedObject)->promoted_setSelection(rect, command);
 }
 
-int  PythonQtWrapper_QListView::verticalOffset(QListView* theWrappedObject) const
+void PythonQtWrapper_QListView::setBatchSize(QListView* theWrappedObject, int  batchSize)
 {
-return  (*((PythonQtPublicPromoter_QListView*)theWrappedObject)).verticalOffset();
+ theWrappedObject->setBatchSize(batchSize);
 }
 
-QRect  PythonQtWrapper_QListView::visualRect(QListView* theWrappedObject, const QModelIndex&  index) const
+bool  PythonQtWrapper_QListView::wordWrap(QListView* theWrappedObject) const
 {
-return  (*theWrappedObject).visualRect(index);
+return  theWrappedObject->wordWrap();
+}
+
+void PythonQtWrapper_QListView::setViewMode(QListView* theWrappedObject, QListView::ViewMode  mode)
+{
+ theWrappedObject->setViewMode(mode);
+}
+
+void PythonQtWrapper_QListView::dragLeaveEvent(QListView* theWrappedObject, QDragLeaveEvent*  e)
+{
+ ((PythonQtPublicPromoter_QListView*)theWrappedObject)->promoted_dragLeaveEvent(e);
+}
+
+void PythonQtWrapper_QListView::dropEvent(QListView* theWrappedObject, QDropEvent*  e)
+{
+ ((PythonQtPublicPromoter_QListView*)theWrappedObject)->promoted_dropEvent(e);
+}
+
+QListView::Movement  PythonQtWrapper_QListView::movement(QListView* theWrappedObject) const
+{
+return  theWrappedObject->movement();
+}
+
+QList<QModelIndex >  PythonQtWrapper_QListView::selectedIndexes(QListView* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QListView*)theWrappedObject)->promoted_selectedIndexes();
+}
+
+void PythonQtWrapper_QListView::mouseMoveEvent(QListView* theWrappedObject, QMouseEvent*  e)
+{
+ ((PythonQtPublicPromoter_QListView*)theWrappedObject)->promoted_mouseMoveEvent(e);
 }
 
 void PythonQtWrapper_QListView::dataChanged(QListView* theWrappedObject, const QModelIndex&  topLeft, const QModelIndex&  bottomRight)
 {
- (*((PythonQtPublicPromoter_QListView*)theWrappedObject)).dataChanged(topLeft, bottomRight);
+ ((PythonQtPublicPromoter_QListView*)theWrappedObject)->promoted_dataChanged(topLeft, bottomRight);
+}
+
+void PythonQtWrapper_QListView::timerEvent(QListView* theWrappedObject, QTimerEvent*  e)
+{
+ ((PythonQtPublicPromoter_QListView*)theWrappedObject)->promoted_timerEvent(e);
+}
+
+void PythonQtWrapper_QListView::setFlow(QListView* theWrappedObject, QListView::Flow  flow)
+{
+ theWrappedObject->setFlow(flow);
+}
+
+QModelIndex  PythonQtWrapper_QListView::indexAt(QListView* theWrappedObject, const QPoint&  p) const
+{
+return  ((PythonQtPublicPromoter_QListView*)theWrappedObject)->promoted_indexAt(p);
+}
+
+void PythonQtWrapper_QListView::scrollContentsBy(QListView* theWrappedObject, int  dx, int  dy)
+{
+ ((PythonQtPublicPromoter_QListView*)theWrappedObject)->promoted_scrollContentsBy(dx, dy);
+}
+
+bool  PythonQtWrapper_QListView::isIndexHidden(QListView* theWrappedObject, const QModelIndex&  index) const
+{
+return  ((PythonQtPublicPromoter_QListView*)theWrappedObject)->promoted_isIndexHidden(index);
+}
+
+QListView::ResizeMode  PythonQtWrapper_QListView::resizeMode(QListView* theWrappedObject) const
+{
+return  theWrappedObject->resizeMode();
+}
+
+void PythonQtWrapper_QListView::reset(QListView* theWrappedObject)
+{
+ ((PythonQtPublicPromoter_QListView*)theWrappedObject)->promoted_reset();
+}
+
+void PythonQtWrapper_QListView::setWrapping(QListView* theWrappedObject, bool  enable)
+{
+ theWrappedObject->setWrapping(enable);
+}
+
+int  PythonQtWrapper_QListView::spacing(QListView* theWrappedObject) const
+{
+return  theWrappedObject->spacing();
+}
+
+bool  PythonQtWrapper_QListView::event(QListView* theWrappedObject, QEvent*  e)
+{
+return  ((PythonQtPublicPromoter_QListView*)theWrappedObject)->promoted_event(e);
+}
+
+int  PythonQtWrapper_QListView::horizontalOffset(QListView* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QListView*)theWrappedObject)->promoted_horizontalOffset();
+}
+
+int  PythonQtWrapper_QListView::modelColumn(QListView* theWrappedObject) const
+{
+return  theWrappedObject->modelColumn();
+}
+
+void PythonQtWrapper_QListView::setRootIndex(QListView* theWrappedObject, const QModelIndex&  index)
+{
+ ((PythonQtPublicPromoter_QListView*)theWrappedObject)->promoted_setRootIndex(index);
+}
+
+QRect  PythonQtWrapper_QListView::visualRect(QListView* theWrappedObject, const QModelIndex&  index) const
+{
+return  ((PythonQtPublicPromoter_QListView*)theWrappedObject)->promoted_visualRect(index);
+}
+
+void PythonQtWrapper_QListView::mouseReleaseEvent(QListView* theWrappedObject, QMouseEvent*  e)
+{
+ ((PythonQtPublicPromoter_QListView*)theWrappedObject)->promoted_mouseReleaseEvent(e);
 }
 
 bool  PythonQtWrapper_QListView::isRowHidden(QListView* theWrappedObject, int  row) const
 {
-return  (*theWrappedObject).isRowHidden(row);
+return  theWrappedObject->isRowHidden(row);
 }
 
-void PythonQtWrapper_QListView::currentChanged(QListView* theWrappedObject, const QModelIndex&  current, const QModelIndex&  previous)
+void PythonQtWrapper_QListView::setUniformItemSizes(QListView* theWrappedObject, bool  enable)
 {
- (*((PythonQtPublicPromoter_QListView*)theWrappedObject)).currentChanged(current, previous);
+ theWrappedObject->setUniformItemSizes(enable);
 }
 
 void PythonQtWrapper_QListView::setModelColumn(QListView* theWrappedObject, int  column)
 {
- (*theWrappedObject).setModelColumn(column);
+ theWrappedObject->setModelColumn(column);
 }
 
 void PythonQtWrapper_QListView::rowsAboutToBeRemoved(QListView* theWrappedObject, const QModelIndex&  parent, int  start, int  end)
 {
- (*((PythonQtPublicPromoter_QListView*)theWrappedObject)).rowsAboutToBeRemoved(parent, start, end);
+ ((PythonQtPublicPromoter_QListView*)theWrappedObject)->promoted_rowsAboutToBeRemoved(parent, start, end);
 }
 
 QRegion  PythonQtWrapper_QListView::visualRegionForSelection(QListView* theWrappedObject, const QItemSelection&  selection) const
 {
-return  (*((PythonQtPublicPromoter_QListView*)theWrappedObject)).visualRegionForSelection(selection);
+return  ((PythonQtPublicPromoter_QListView*)theWrappedObject)->promoted_visualRegionForSelection(selection);
 }
 
 int  PythonQtWrapper_QListView::batchSize(QListView* theWrappedObject) const
 {
-return  (*theWrappedObject).batchSize();
+return  theWrappedObject->batchSize();
 }
 
 void PythonQtWrapper_QListView::setRowHidden(QListView* theWrappedObject, int  row, bool  hide)
 {
- (*theWrappedObject).setRowHidden(row, hide);
+ theWrappedObject->setRowHidden(row, hide);
 }
 
-void PythonQtWrapper_QListView::doItemsLayout(QListView* theWrappedObject)
+bool  PythonQtWrapper_QListView::isSelectionRectVisible(QListView* theWrappedObject) const
 {
- (*theWrappedObject).doItemsLayout();
+return  theWrappedObject->isSelectionRectVisible();
 }
 
-void PythonQtWrapper_QListView::setWordWrap(QListView* theWrappedObject, bool  on)
+bool  PythonQtWrapper_QListView::isWrapping(QListView* theWrappedObject) const
 {
- (*theWrappedObject).setWordWrap(on);
+return  theWrappedObject->isWrapping();
 }
 
 void PythonQtWrapper_QListView::setSelectionRectVisible(QListView* theWrappedObject, bool  show)
 {
- (*theWrappedObject).setSelectionRectVisible(show);
+ theWrappedObject->setSelectionRectVisible(show);
+}
+
+void PythonQtWrapper_QListView::setWordWrap(QListView* theWrappedObject, bool  on)
+{
+ theWrappedObject->setWordWrap(on);
+}
+
+bool  PythonQtWrapper_QListView::uniformItemSizes(QListView* theWrappedObject) const
+{
+return  theWrappedObject->uniformItemSizes();
+}
+
+void PythonQtWrapper_QListView::scrollTo(QListView* theWrappedObject, const QModelIndex&  index, QAbstractItemView::ScrollHint  hint)
+{
+ ((PythonQtPublicPromoter_QListView*)theWrappedObject)->promoted_scrollTo(index, hint);
+}
+
+void PythonQtWrapper_QListView::paintEvent(QListView* theWrappedObject, QPaintEvent*  e)
+{
+ ((PythonQtPublicPromoter_QListView*)theWrappedObject)->promoted_paintEvent(e);
+}
+
+void PythonQtWrapper_QListView::doItemsLayout(QListView* theWrappedObject)
+{
+ ((PythonQtPublicPromoter_QListView*)theWrappedObject)->promoted_doItemsLayout();
+}
+
+void PythonQtWrapper_QListView::rowsInserted(QListView* theWrappedObject, const QModelIndex&  parent, int  start, int  end)
+{
+ ((PythonQtPublicPromoter_QListView*)theWrappedObject)->promoted_rowsInserted(parent, start, end);
+}
+
+QListView::LayoutMode  PythonQtWrapper_QListView::layoutMode(QListView* theWrappedObject) const
+{
+return  theWrappedObject->layoutMode();
+}
+
+void PythonQtWrapper_QListView::currentChanged(QListView* theWrappedObject, const QModelIndex&  current, const QModelIndex&  previous)
+{
+ ((PythonQtPublicPromoter_QListView*)theWrappedObject)->promoted_currentChanged(current, previous);
+}
+
+void PythonQtWrapper_QListView::startDrag(QListView* theWrappedObject, Qt::DropActions  supportedActions)
+{
+ ((PythonQtPublicPromoter_QListView*)theWrappedObject)->promoted_startDrag(supportedActions);
+}
+
+void PythonQtWrapper_QListView::setGridSize(QListView* theWrappedObject, const QSize&  size)
+{
+ theWrappedObject->setGridSize(size);
+}
+
+void PythonQtWrapper_QListView::dragMoveEvent(QListView* theWrappedObject, QDragMoveEvent*  e)
+{
+ ((PythonQtPublicPromoter_QListView*)theWrappedObject)->promoted_dragMoveEvent(e);
+}
+
+void PythonQtWrapper_QListView::clearPropertyFlags(QListView* theWrappedObject)
+{
+ theWrappedObject->clearPropertyFlags();
+}
+
+void PythonQtWrapper_QListView::setMovement(QListView* theWrappedObject, QListView::Movement  movement)
+{
+ theWrappedObject->setMovement(movement);
+}
+
+QSize  PythonQtWrapper_QListView::gridSize(QListView* theWrappedObject) const
+{
+return  theWrappedObject->gridSize();
+}
+
+void PythonQtWrapper_QListView::setLayoutMode(QListView* theWrappedObject, QListView::LayoutMode  mode)
+{
+ theWrappedObject->setLayoutMode(mode);
+}
+
+int  PythonQtWrapper_QListView::verticalOffset(QListView* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QListView*)theWrappedObject)->promoted_verticalOffset();
+}
+
+QStyleOptionViewItem  PythonQtWrapper_QListView::viewOptions(QListView* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QListView*)theWrappedObject)->promoted_viewOptions();
 }
 

@@ -831,36 +831,36 @@ return new PythonQtShell_QPrintPreviewWidget(parent, flags); }
 
 int  PythonQtWrapper_QPrintPreviewWidget::numPages(QPrintPreviewWidget* theWrappedObject) const
 {
-return  (*theWrappedObject).numPages();
+return  theWrappedObject->numPages();
 }
 
 void PythonQtWrapper_QPrintPreviewWidget::setVisible(QPrintPreviewWidget* theWrappedObject, bool  visible)
 {
- (*theWrappedObject).setVisible(visible);
+ theWrappedObject->setVisible(visible);
 }
 
 QPrinter::Orientation  PythonQtWrapper_QPrintPreviewWidget::orientation(QPrintPreviewWidget* theWrappedObject) const
 {
-return  (*theWrappedObject).orientation();
+return  theWrappedObject->orientation();
 }
 
 int  PythonQtWrapper_QPrintPreviewWidget::currentPage(QPrintPreviewWidget* theWrappedObject) const
 {
-return  (*theWrappedObject).currentPage();
+return  theWrappedObject->currentPage();
 }
 
 QPrintPreviewWidget::ViewMode  PythonQtWrapper_QPrintPreviewWidget::viewMode(QPrintPreviewWidget* theWrappedObject) const
 {
-return  (*theWrappedObject).viewMode();
+return  theWrappedObject->viewMode();
 }
 
 qreal  PythonQtWrapper_QPrintPreviewWidget::zoomFactor(QPrintPreviewWidget* theWrappedObject) const
 {
-return  (*theWrappedObject).zoomFactor();
+return  theWrappedObject->zoomFactor();
 }
 
 QPrintPreviewWidget::ZoomMode  PythonQtWrapper_QPrintPreviewWidget::zoomMode(QPrintPreviewWidget* theWrappedObject) const
 {
-return  (*theWrappedObject).zoomMode();
+return  theWrappedObject->zoomMode();
 }
 

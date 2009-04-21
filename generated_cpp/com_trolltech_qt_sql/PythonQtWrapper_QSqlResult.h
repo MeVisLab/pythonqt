@@ -54,21 +54,22 @@ virtual void virtual_hook(int  id, void*  data);
 
 class PythonQtPublicPromoter_QSqlResult : public QSqlResult
 { public:
-inline bool  exec() { return QSqlResult::exec(); }
-inline void setAt(int  at) { QSqlResult::setAt(at); }
-inline void bindValue(int  pos, const QVariant&  val, QSql::ParamType  type) { QSqlResult::bindValue(pos, val, type); }
-inline bool  savePrepare(const QString&  sqlquery) { return QSqlResult::savePrepare(sqlquery); }
-inline QSqlRecord  record() const { return QSqlResult::record(); }
-inline void setQuery(const QString&  query) { QSqlResult::setQuery(query); }
-inline void bindValue(const QString&  placeholder, const QVariant&  val, QSql::ParamType  type) { QSqlResult::bindValue(placeholder, val, type); }
-inline QVariant  lastInsertId() const { return QSqlResult::lastInsertId(); }
-inline void setSelect(bool  s) { QSqlResult::setSelect(s); }
-inline void setActive(bool  a) { QSqlResult::setActive(a); }
-inline void setLastError(const QSqlError&  e) { QSqlResult::setLastError(e); }
-inline bool  prepare(const QString&  query) { return QSqlResult::prepare(query); }
-inline bool  fetchNext() { return QSqlResult::fetchNext(); }
-inline void setForwardOnly(bool  forward) { QSqlResult::setForwardOnly(forward); }
-inline bool  fetchPrevious() { return QSqlResult::fetchPrevious(); }
+inline QVariant  promoted_handle() const { return QSqlResult::handle(); }
+inline bool  promoted_fetchPrevious() { return QSqlResult::fetchPrevious(); }
+inline bool  promoted_exec() { return QSqlResult::exec(); }
+inline void promoted_setActive(bool  a) { QSqlResult::setActive(a); }
+inline bool  promoted_fetchNext() { return QSqlResult::fetchNext(); }
+inline void promoted_setAt(int  at) { QSqlResult::setAt(at); }
+inline bool  promoted_savePrepare(const QString&  sqlquery) { return QSqlResult::savePrepare(sqlquery); }
+inline void promoted_setForwardOnly(bool  forward) { QSqlResult::setForwardOnly(forward); }
+inline void promoted_setQuery(const QString&  query) { QSqlResult::setQuery(query); }
+inline void promoted_bindValue(const QString&  placeholder, const QVariant&  val, QSql::ParamType  type) { QSqlResult::bindValue(placeholder, val, type); }
+inline QVariant  promoted_lastInsertId() const { return QSqlResult::lastInsertId(); }
+inline QSqlRecord  promoted_record() const { return QSqlResult::record(); }
+inline void promoted_bindValue(int  pos, const QVariant&  val, QSql::ParamType  type) { QSqlResult::bindValue(pos, val, type); }
+inline void promoted_setSelect(bool  s) { QSqlResult::setSelect(s); }
+inline bool  promoted_prepare(const QString&  query) { return QSqlResult::prepare(query); }
+inline void promoted_setLastError(const QSqlError&  e) { QSqlResult::setLastError(e); }
 };
 
 class PythonQtWrapper_QSqlResult : public QObject
@@ -76,22 +77,22 @@ class PythonQtWrapper_QSqlResult : public QObject
 public:
 public slots:
 void delete_QSqlResult(QSqlResult* obj) { delete obj; } 
+   QVariant  handle(QSqlResult* theWrappedObject) const;
+   bool  fetchPrevious(QSqlResult* theWrappedObject);
    bool  exec(QSqlResult* theWrappedObject);
+   void setActive(QSqlResult* theWrappedObject, bool  a);
+   bool  fetchNext(QSqlResult* theWrappedObject);
    void setAt(QSqlResult* theWrappedObject, int  at);
-   void bindValue(QSqlResult* theWrappedObject, int  pos, const QVariant&  val, QSql::ParamType  type);
    bool  savePrepare(QSqlResult* theWrappedObject, const QString&  sqlquery);
-   QSqlRecord  record(QSqlResult* theWrappedObject) const;
+   void setForwardOnly(QSqlResult* theWrappedObject, bool  forward);
    void setQuery(QSqlResult* theWrappedObject, const QString&  query);
    void bindValue(QSqlResult* theWrappedObject, const QString&  placeholder, const QVariant&  val, QSql::ParamType  type);
    QVariant  lastInsertId(QSqlResult* theWrappedObject) const;
+   QSqlRecord  record(QSqlResult* theWrappedObject) const;
+   void bindValue(QSqlResult* theWrappedObject, int  pos, const QVariant&  val, QSql::ParamType  type);
    void setSelect(QSqlResult* theWrappedObject, bool  s);
-   void setActive(QSqlResult* theWrappedObject, bool  a);
-   void setLastError(QSqlResult* theWrappedObject, const QSqlError&  e);
    bool  prepare(QSqlResult* theWrappedObject, const QString&  query);
-   bool  fetchNext(QSqlResult* theWrappedObject);
-   QVariant  handle(QSqlResult* theWrappedObject) const;
-   void setForwardOnly(QSqlResult* theWrappedObject, bool  forward);
-   bool  fetchPrevious(QSqlResult* theWrappedObject);
+   void setLastError(QSqlResult* theWrappedObject, const QSqlError&  e);
 };
 
 #endif // PYTHONQTWRAPPER_QSQLRESULT_H

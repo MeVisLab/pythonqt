@@ -86,6 +86,11 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QPrintDialog : public QPrintDialog
+{ public:
+inline int  promoted_exec() { return QPrintDialog::exec(); }
+};
+
 class PythonQtWrapper_QPrintDialog : public QObject
 { Q_OBJECT
 public:

@@ -61,11 +61,11 @@ return new PythonQtShell_QXmlStreamEntityResolver(); }
 
 QString  PythonQtWrapper_QXmlStreamEntityResolver::resolveEntity(QXmlStreamEntityResolver* theWrappedObject, const QString&  publicId, const QString&  systemId)
 {
-return  (*theWrappedObject).resolveEntity(publicId, systemId);
+return  ((PythonQtPublicPromoter_QXmlStreamEntityResolver*)theWrappedObject)->promoted_resolveEntity(publicId, systemId);
 }
 
 QString  PythonQtWrapper_QXmlStreamEntityResolver::resolveUndeclaredEntity(QXmlStreamEntityResolver* theWrappedObject, const QString&  name)
 {
-return  (*theWrappedObject).resolveUndeclaredEntity(name);
+return  ((PythonQtPublicPromoter_QXmlStreamEntityResolver*)theWrappedObject)->promoted_resolveUndeclaredEntity(name);
 }
 

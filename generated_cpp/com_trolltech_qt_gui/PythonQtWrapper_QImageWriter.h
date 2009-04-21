@@ -24,25 +24,25 @@ QImageWriter* new_QImageWriter();
 QImageWriter* new_QImageWriter(QIODevice*  device, const QByteArray&  format);
 QImageWriter* new_QImageWriter(const QString&  fileName, const QByteArray&  format = QByteArray());
 void delete_QImageWriter(QImageWriter* obj) { delete obj; } 
-   QByteArray  format(QImageWriter* theWrappedObject) const;
-   bool  supportsOption(QImageWriter* theWrappedObject, QImageIOHandler::ImageOption  option) const;
-   QString  fileName(QImageWriter* theWrappedObject) const;
    QIODevice*  device(QImageWriter* theWrappedObject) const;
    QList<QByteArray >  static_QImageWriter_supportedImageFormats();
-   float  gamma(QImageWriter* theWrappedObject) const;
-   void setGamma(QImageWriter* theWrappedObject, float  gamma);
+   QByteArray  format(QImageWriter* theWrappedObject) const;
+   bool  supportsOption(QImageWriter* theWrappedObject, QImageIOHandler::ImageOption  option) const;
    void setFormat(QImageWriter* theWrappedObject, const QByteArray&  format);
-   bool  canWrite(QImageWriter* theWrappedObject) const;
    QImageWriter::ImageWriterError  error(QImageWriter* theWrappedObject) const;
-   void setQuality(QImageWriter* theWrappedObject, int  quality);
+   QString  fileName(QImageWriter* theWrappedObject) const;
    void setDevice(QImageWriter* theWrappedObject, QIODevice*  device);
    void setText(QImageWriter* theWrappedObject, const QString&  key, const QString&  text);
    int  quality(QImageWriter* theWrappedObject) const;
+   float  gamma(QImageWriter* theWrappedObject) const;
+   void setGamma(QImageWriter* theWrappedObject, float  gamma);
    int  compression(QImageWriter* theWrappedObject) const;
+   bool  canWrite(QImageWriter* theWrappedObject) const;
    QString  errorString(QImageWriter* theWrappedObject) const;
+   bool  write(QImageWriter* theWrappedObject, const QImage&  image);
+   void setQuality(QImageWriter* theWrappedObject, int  quality);
    void setFileName(QImageWriter* theWrappedObject, const QString&  fileName);
    void setCompression(QImageWriter* theWrappedObject, int  compression);
-   bool  write(QImageWriter* theWrappedObject, const QImage&  image);
 };
 
 #endif // PYTHONQTWRAPPER_QIMAGEWRITER_H

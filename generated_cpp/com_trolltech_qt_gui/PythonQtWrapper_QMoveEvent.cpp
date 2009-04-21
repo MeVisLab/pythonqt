@@ -10,13 +10,13 @@ QMoveEvent* PythonQtWrapper_QMoveEvent::new_QMoveEvent(const QPoint&  pos, const
 { 
 return new PythonQtShell_QMoveEvent(pos, oldPos); }
 
-const QPoint&  PythonQtWrapper_QMoveEvent::oldPos(QMoveEvent* theWrappedObject) const
-{
-return  (*theWrappedObject).oldPos();
-}
-
 const QPoint&  PythonQtWrapper_QMoveEvent::pos(QMoveEvent* theWrappedObject) const
 {
-return  (*theWrappedObject).pos();
+return  theWrappedObject->pos();
+}
+
+const QPoint&  PythonQtWrapper_QMoveEvent::oldPos(QMoveEvent* theWrappedObject) const
+{
+return  theWrappedObject->oldPos();
 }
 

@@ -16,12 +16,12 @@ public slots:
 QXmlStreamEntityDeclaration* new_QXmlStreamEntityDeclaration();
 QXmlStreamEntityDeclaration* new_QXmlStreamEntityDeclaration(const QXmlStreamEntityDeclaration&  arg__1);
 void delete_QXmlStreamEntityDeclaration(QXmlStreamEntityDeclaration* obj) { delete obj; } 
-   QStringRef  value(QXmlStreamEntityDeclaration* theWrappedObject) const;
-   QStringRef  notationName(QXmlStreamEntityDeclaration* theWrappedObject) const;
-   QStringRef  name(QXmlStreamEntityDeclaration* theWrappedObject) const;
    QStringRef  publicId(QXmlStreamEntityDeclaration* theWrappedObject) const;
    bool  operator_equal(QXmlStreamEntityDeclaration* theWrappedObject, const QXmlStreamEntityDeclaration&  other) const;
+   QStringRef  value(QXmlStreamEntityDeclaration* theWrappedObject) const;
    QStringRef  systemId(QXmlStreamEntityDeclaration* theWrappedObject) const;
+   QStringRef  notationName(QXmlStreamEntityDeclaration* theWrappedObject) const;
+   QStringRef  name(QXmlStreamEntityDeclaration* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QXMLSTREAMENTITYDECLARATION_H

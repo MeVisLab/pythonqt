@@ -58,6 +58,19 @@ virtual void unpolish(QWidget*  arg__1);
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QStyle : public QStyle
+{ public:
+inline QRect  promoted_itemPixmapRect(const QRect&  r, int  flags, const QPixmap&  pixmap) const { return QStyle::itemPixmapRect(r, flags, pixmap); }
+inline QPalette  promoted_standardPalette() const { return QStyle::standardPalette(); }
+inline void promoted_polish(QWidget*  arg__1) { QStyle::polish(arg__1); }
+inline void promoted_drawItemText(QPainter*  painter, const QRect&  rect, int  flags, const QPalette&  pal, bool  enabled, const QString&  text, QPalette::ColorRole  textRole = QPalette::NoRole) const { QStyle::drawItemText(painter, rect, flags, pal, enabled, text, textRole); }
+inline void promoted_unpolish(QApplication*  arg__1) { QStyle::unpolish(arg__1); }
+inline void promoted_drawItemPixmap(QPainter*  painter, const QRect&  rect, int  alignment, const QPixmap&  pixmap) const { QStyle::drawItemPixmap(painter, rect, alignment, pixmap); }
+inline void promoted_polish(QApplication*  arg__1) { QStyle::polish(arg__1); }
+inline void promoted_unpolish(QWidget*  arg__1) { QStyle::unpolish(arg__1); }
+inline void promoted_polish(QPalette&  arg__1) { QStyle::polish(arg__1); }
+};
+
 class PythonQtWrapper_QStyle : public QObject
 { Q_OBJECT
 public:
@@ -85,22 +98,22 @@ enum SubElement{
 public slots:
 QStyle* new_QStyle();
 void delete_QStyle(QStyle* obj) { delete obj; } 
-   void drawItemPixmap(QStyle* theWrappedObject, QPainter*  painter, const QRect&  rect, int  alignment, const QPixmap&  pixmap) const;
-   QPoint  static_QStyle_visualPos(Qt::LayoutDirection  direction, const QRect&  boundingRect, const QPoint&  logicalPos);
-   QRect  static_QStyle_alignedRect(Qt::LayoutDirection  direction, Qt::Alignment  alignment, const QSize&  size, const QRect&  rectangle);
-   void polish(QStyle* theWrappedObject, QPalette&  arg__1);
-   QPalette  standardPalette(QStyle* theWrappedObject) const;
    QRect  itemPixmapRect(QStyle* theWrappedObject, const QRect&  r, int  flags, const QPixmap&  pixmap) const;
+   QPalette  standardPalette(QStyle* theWrappedObject) const;
+   int  combinedLayoutSpacing(QStyle* theWrappedObject, QSizePolicy::ControlTypes  controls1, QSizePolicy::ControlTypes  controls2, Qt::Orientation  orientation, QStyleOption*  option = 0, QWidget*  widget = 0) const;
+   QPoint  static_QStyle_visualPos(Qt::LayoutDirection  direction, const QRect&  boundingRect, const QPoint&  logicalPos);
+   void polish(QStyle* theWrappedObject, QWidget*  arg__1);
+   void drawItemText(QStyle* theWrappedObject, QPainter*  painter, const QRect&  rect, int  flags, const QPalette&  pal, bool  enabled, const QString&  text, QPalette::ColorRole  textRole = QPalette::NoRole) const;
+   void unpolish(QStyle* theWrappedObject, QApplication*  arg__1);
+   void drawItemPixmap(QStyle* theWrappedObject, QPainter*  painter, const QRect&  rect, int  alignment, const QPixmap&  pixmap) const;
    void polish(QStyle* theWrappedObject, QApplication*  arg__1);
    void unpolish(QStyle* theWrappedObject, QWidget*  arg__1);
-   int  combinedLayoutSpacing(QStyle* theWrappedObject, QSizePolicy::ControlTypes  controls1, QSizePolicy::ControlTypes  controls2, Qt::Orientation  orientation, QStyleOption*  option = 0, QWidget*  widget = 0) const;
    Qt::Alignment  static_QStyle_visualAlignment(Qt::LayoutDirection  direction, Qt::Alignment  alignment);
-   void polish(QStyle* theWrappedObject, QWidget*  arg__1);
-   void unpolish(QStyle* theWrappedObject, QApplication*  arg__1);
    int  static_QStyle_sliderPositionFromValue(int  min, int  max, int  val, int  space, bool  upsideDown = false);
+   void polish(QStyle* theWrappedObject, QPalette&  arg__1);
    int  static_QStyle_sliderValueFromPosition(int  min, int  max, int  pos, int  space, bool  upsideDown = false);
    QIcon  standardIcon(QStyle* theWrappedObject, QStyle::StandardPixmap  standardIcon, const QStyleOption*  option = 0, const QWidget*  widget = 0) const;
-   void drawItemText(QStyle* theWrappedObject, QPainter*  painter, const QRect&  rect, int  flags, const QPalette&  pal, bool  enabled, const QString&  text, QPalette::ColorRole  textRole = QPalette::NoRole) const;
+   QRect  static_QStyle_alignedRect(Qt::LayoutDirection  direction, Qt::Alignment  alignment, const QSize&  size, const QRect&  rectangle);
    int  layoutSpacing(QStyle* theWrappedObject, QSizePolicy::ControlType  control1, QSizePolicy::ControlType  control2, Qt::Orientation  orientation, const QStyleOption*  option = 0, const QWidget*  widget = 0) const;
    QRect  static_QStyle_visualRect(Qt::LayoutDirection  direction, const QRect&  boundingRect, const QRect&  logicalRect);
 };

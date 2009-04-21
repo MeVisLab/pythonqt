@@ -827,233 +827,233 @@ QGraphicsTextItem* PythonQtWrapper_QGraphicsTextItem::new_QGraphicsTextItem(cons
 { 
 return new PythonQtShell_QGraphicsTextItem(text, parent, scene); }
 
-void PythonQtWrapper_QGraphicsTextItem::adjustSize(QGraphicsTextItem* theWrappedObject)
-{
- (*theWrappedObject).adjustSize();
-}
-
-bool  PythonQtWrapper_QGraphicsTextItem::openExternalLinks(QGraphicsTextItem* theWrappedObject) const
-{
-return  (*theWrappedObject).openExternalLinks();
-}
-
-QString  PythonQtWrapper_QGraphicsTextItem::toPlainText(QGraphicsTextItem* theWrappedObject) const
-{
-return  (*theWrappedObject).toPlainText();
-}
-
-int  PythonQtWrapper_QGraphicsTextItem::type(QGraphicsTextItem* theWrappedObject) const
-{
-return  (*theWrappedObject).type();
-}
-
-void PythonQtWrapper_QGraphicsTextItem::keyReleaseEvent(QGraphicsTextItem* theWrappedObject, QKeyEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).keyReleaseEvent(event);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::hoverLeaveEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneHoverEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).hoverLeaveEvent(event);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::hoverMoveEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneHoverEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).hoverMoveEvent(event);
-}
-
 QTextCursor  PythonQtWrapper_QGraphicsTextItem::textCursor(QGraphicsTextItem* theWrappedObject) const
 {
-return  (*theWrappedObject).textCursor();
+return  theWrappedObject->textCursor();
 }
 
 void PythonQtWrapper_QGraphicsTextItem::setTextInteractionFlags(QGraphicsTextItem* theWrappedObject, Qt::TextInteractionFlags  flags)
 {
- (*theWrappedObject).setTextInteractionFlags(flags);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::dropEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneDragDropEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).dropEvent(event);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setDocument(QGraphicsTextItem* theWrappedObject, QTextDocument*  document)
-{
- (*theWrappedObject).setDocument(document);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::inputMethodEvent(QGraphicsTextItem* theWrappedObject, QInputMethodEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).inputMethodEvent(event);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::contextMenuEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneContextMenuEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).contextMenuEvent(event);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::keyPressEvent(QGraphicsTextItem* theWrappedObject, QKeyEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).keyPressEvent(event);
-}
-
-bool  PythonQtWrapper_QGraphicsTextItem::contains(QGraphicsTextItem* theWrappedObject, const QPointF&  point) const
-{
-return  (*theWrappedObject).contains(point);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setDefaultTextColor(QGraphicsTextItem* theWrappedObject, const QColor&  c)
-{
- (*theWrappedObject).setDefaultTextColor(c);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::focusOutEvent(QGraphicsTextItem* theWrappedObject, QFocusEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).focusOutEvent(event);
-}
-
-QFont  PythonQtWrapper_QGraphicsTextItem::font(QGraphicsTextItem* theWrappedObject) const
-{
-return  (*theWrappedObject).font();
-}
-
-QRectF  PythonQtWrapper_QGraphicsTextItem::boundingRect(QGraphicsTextItem* theWrappedObject) const
-{
-return  (*theWrappedObject).boundingRect();
-}
-
-void PythonQtWrapper_QGraphicsTextItem::hoverEnterEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneHoverEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).hoverEnterEvent(event);
-}
-
-Qt::TextInteractionFlags  PythonQtWrapper_QGraphicsTextItem::textInteractionFlags(QGraphicsTextItem* theWrappedObject) const
-{
-return  (*theWrappedObject).textInteractionFlags();
-}
-
-QPainterPath  PythonQtWrapper_QGraphicsTextItem::opaqueArea(QGraphicsTextItem* theWrappedObject) const
-{
-return  (*theWrappedObject).opaqueArea();
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setPlainText(QGraphicsTextItem* theWrappedObject, const QString&  text)
-{
- (*theWrappedObject).setPlainText(text);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setTextCursor(QGraphicsTextItem* theWrappedObject, const QTextCursor&  cursor)
-{
- (*theWrappedObject).setTextCursor(cursor);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::dragLeaveEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneDragDropEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).dragLeaveEvent(event);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setOpenExternalLinks(QGraphicsTextItem* theWrappedObject, bool  open)
-{
- (*theWrappedObject).setOpenExternalLinks(open);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::dragMoveEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneDragDropEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).dragMoveEvent(event);
+ theWrappedObject->setTextInteractionFlags(flags);
 }
 
 QVariant  PythonQtWrapper_QGraphicsTextItem::inputMethodQuery(QGraphicsTextItem* theWrappedObject, Qt::InputMethodQuery  query) const
 {
-return  (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).inputMethodQuery(query);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::focusInEvent(QGraphicsTextItem* theWrappedObject, QFocusEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).focusInEvent(event);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::paint(QGraphicsTextItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget)
-{
- (*theWrappedObject).paint(painter, option, widget);
+return  ((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)->promoted_inputMethodQuery(query);
 }
 
 QVariant  PythonQtWrapper_QGraphicsTextItem::extension(QGraphicsTextItem* theWrappedObject, const QVariant&  variant) const
 {
-return  (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).extension(variant);
+return  ((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)->promoted_extension(variant);
 }
 
-QColor  PythonQtWrapper_QGraphicsTextItem::defaultTextColor(QGraphicsTextItem* theWrappedObject) const
+void PythonQtWrapper_QGraphicsTextItem::dragMoveEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneDragDropEvent*  event)
 {
-return  (*theWrappedObject).defaultTextColor();
-}
-
-bool  PythonQtWrapper_QGraphicsTextItem::isObscuredBy(QGraphicsTextItem* theWrappedObject, const QGraphicsItem*  item) const
-{
-return  (*theWrappedObject).isObscuredBy(item);
-}
-
-QString  PythonQtWrapper_QGraphicsTextItem::toHtml(QGraphicsTextItem* theWrappedObject) const
-{
-return  (*theWrappedObject).toHtml();
-}
-
-void PythonQtWrapper_QGraphicsTextItem::mouseReleaseEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneMouseEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).mouseReleaseEvent(event);
+ ((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)->promoted_dragMoveEvent(event);
 }
 
 void PythonQtWrapper_QGraphicsTextItem::dragEnterEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneDragDropEvent*  event)
 {
- (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).dragEnterEvent(event);
+ ((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)->promoted_dragEnterEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsTextItem::setDefaultTextColor(QGraphicsTextItem* theWrappedObject, const QColor&  c)
+{
+ theWrappedObject->setDefaultTextColor(c);
 }
 
 void PythonQtWrapper_QGraphicsTextItem::setTextWidth(QGraphicsTextItem* theWrappedObject, qreal  width)
 {
- (*theWrappedObject).setTextWidth(width);
+ theWrappedObject->setTextWidth(width);
 }
 
-void PythonQtWrapper_QGraphicsTextItem::mousePressEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneMouseEvent*  event)
+bool  PythonQtWrapper_QGraphicsTextItem::contains(QGraphicsTextItem* theWrappedObject, const QPointF&  point) const
 {
- (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).mousePressEvent(event);
+return  ((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)->promoted_contains(point);
 }
 
-void PythonQtWrapper_QGraphicsTextItem::mouseDoubleClickEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneMouseEvent*  event)
+void PythonQtWrapper_QGraphicsTextItem::keyReleaseEvent(QGraphicsTextItem* theWrappedObject, QKeyEvent*  event)
 {
- (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).mouseDoubleClickEvent(event);
+ ((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)->promoted_keyReleaseEvent(event);
 }
 
-qreal  PythonQtWrapper_QGraphicsTextItem::textWidth(QGraphicsTextItem* theWrappedObject) const
+void PythonQtWrapper_QGraphicsTextItem::hoverEnterEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneHoverEvent*  event)
 {
-return  (*theWrappedObject).textWidth();
+ ((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)->promoted_hoverEnterEvent(event);
 }
 
-void PythonQtWrapper_QGraphicsTextItem::setFont(QGraphicsTextItem* theWrappedObject, const QFont&  font)
+bool  PythonQtWrapper_QGraphicsTextItem::openExternalLinks(QGraphicsTextItem* theWrappedObject) const
 {
- (*theWrappedObject).setFont(font);
+return  theWrappedObject->openExternalLinks();
 }
 
-void PythonQtWrapper_QGraphicsTextItem::mouseMoveEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneMouseEvent*  event)
+void PythonQtWrapper_QGraphicsTextItem::setOpenExternalLinks(QGraphicsTextItem* theWrappedObject, bool  open)
 {
- (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).mouseMoveEvent(event);
+ theWrappedObject->setOpenExternalLinks(open);
 }
 
-bool  PythonQtWrapper_QGraphicsTextItem::sceneEvent(QGraphicsTextItem* theWrappedObject, QEvent*  event)
+void PythonQtWrapper_QGraphicsTextItem::hoverMoveEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneHoverEvent*  event)
 {
-return  (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).sceneEvent(event);
+ ((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)->promoted_hoverMoveEvent(event);
 }
 
-void PythonQtWrapper_QGraphicsTextItem::setHtml(QGraphicsTextItem* theWrappedObject, const QString&  html)
+void PythonQtWrapper_QGraphicsTextItem::contextMenuEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneContextMenuEvent*  event)
 {
- (*theWrappedObject).setHtml(html);
+ ((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)->promoted_contextMenuEvent(event);
+}
+
+QColor  PythonQtWrapper_QGraphicsTextItem::defaultTextColor(QGraphicsTextItem* theWrappedObject) const
+{
+return  theWrappedObject->defaultTextColor();
 }
 
 QTextDocument*  PythonQtWrapper_QGraphicsTextItem::document(QGraphicsTextItem* theWrappedObject) const
 {
-return  (*theWrappedObject).document();
+return  theWrappedObject->document();
+}
+
+int  PythonQtWrapper_QGraphicsTextItem::type(QGraphicsTextItem* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)->promoted_type();
+}
+
+void PythonQtWrapper_QGraphicsTextItem::mouseDoubleClickEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneMouseEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)->promoted_mouseDoubleClickEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsTextItem::setFont(QGraphicsTextItem* theWrappedObject, const QFont&  font)
+{
+ theWrappedObject->setFont(font);
+}
+
+void PythonQtWrapper_QGraphicsTextItem::mouseReleaseEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneMouseEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)->promoted_mouseReleaseEvent(event);
+}
+
+Qt::TextInteractionFlags  PythonQtWrapper_QGraphicsTextItem::textInteractionFlags(QGraphicsTextItem* theWrappedObject) const
+{
+return  theWrappedObject->textInteractionFlags();
+}
+
+void PythonQtWrapper_QGraphicsTextItem::keyPressEvent(QGraphicsTextItem* theWrappedObject, QKeyEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)->promoted_keyPressEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsTextItem::mousePressEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneMouseEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)->promoted_mousePressEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsTextItem::setHtml(QGraphicsTextItem* theWrappedObject, const QString&  html)
+{
+ theWrappedObject->setHtml(html);
+}
+
+void PythonQtWrapper_QGraphicsTextItem::setPlainText(QGraphicsTextItem* theWrappedObject, const QString&  text)
+{
+ theWrappedObject->setPlainText(text);
+}
+
+void PythonQtWrapper_QGraphicsTextItem::dragLeaveEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneDragDropEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)->promoted_dragLeaveEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsTextItem::inputMethodEvent(QGraphicsTextItem* theWrappedObject, QInputMethodEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)->promoted_inputMethodEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsTextItem::focusInEvent(QGraphicsTextItem* theWrappedObject, QFocusEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)->promoted_focusInEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsTextItem::setTextCursor(QGraphicsTextItem* theWrappedObject, const QTextCursor&  cursor)
+{
+ theWrappedObject->setTextCursor(cursor);
+}
+
+void PythonQtWrapper_QGraphicsTextItem::adjustSize(QGraphicsTextItem* theWrappedObject)
+{
+ theWrappedObject->adjustSize();
+}
+
+QPainterPath  PythonQtWrapper_QGraphicsTextItem::opaqueArea(QGraphicsTextItem* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)->promoted_opaqueArea();
+}
+
+void PythonQtWrapper_QGraphicsTextItem::setDocument(QGraphicsTextItem* theWrappedObject, QTextDocument*  document)
+{
+ theWrappedObject->setDocument(document);
+}
+
+QRectF  PythonQtWrapper_QGraphicsTextItem::boundingRect(QGraphicsTextItem* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)->promoted_boundingRect();
+}
+
+void PythonQtWrapper_QGraphicsTextItem::mouseMoveEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneMouseEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)->promoted_mouseMoveEvent(event);
+}
+
+bool  PythonQtWrapper_QGraphicsTextItem::sceneEvent(QGraphicsTextItem* theWrappedObject, QEvent*  event)
+{
+return  ((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)->promoted_sceneEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsTextItem::focusOutEvent(QGraphicsTextItem* theWrappedObject, QFocusEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)->promoted_focusOutEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsTextItem::paint(QGraphicsTextItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget)
+{
+ ((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)->promoted_paint(painter, option, widget);
 }
 
 QPainterPath  PythonQtWrapper_QGraphicsTextItem::shape(QGraphicsTextItem* theWrappedObject) const
 {
-return  (*theWrappedObject).shape();
+return  ((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)->promoted_shape();
+}
+
+QFont  PythonQtWrapper_QGraphicsTextItem::font(QGraphicsTextItem* theWrappedObject) const
+{
+return  theWrappedObject->font();
+}
+
+QString  PythonQtWrapper_QGraphicsTextItem::toHtml(QGraphicsTextItem* theWrappedObject) const
+{
+return  theWrappedObject->toHtml();
+}
+
+void PythonQtWrapper_QGraphicsTextItem::hoverLeaveEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneHoverEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)->promoted_hoverLeaveEvent(event);
+}
+
+QString  PythonQtWrapper_QGraphicsTextItem::toPlainText(QGraphicsTextItem* theWrappedObject) const
+{
+return  theWrappedObject->toPlainText();
+}
+
+bool  PythonQtWrapper_QGraphicsTextItem::isObscuredBy(QGraphicsTextItem* theWrappedObject, const QGraphicsItem*  item) const
+{
+return  ((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)->promoted_isObscuredBy(item);
+}
+
+void PythonQtWrapper_QGraphicsTextItem::dropEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneDragDropEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)->promoted_dropEvent(event);
+}
+
+qreal  PythonQtWrapper_QGraphicsTextItem::textWidth(QGraphicsTextItem* theWrappedObject) const
+{
+return  theWrappedObject->textWidth();
 }
 

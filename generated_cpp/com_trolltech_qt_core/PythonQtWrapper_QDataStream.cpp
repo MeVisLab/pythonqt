@@ -24,59 +24,24 @@ QDataStream* PythonQtWrapper_QDataStream::new_QDataStream(const QByteArray&  arg
 { 
 return new PythonQtShell_QDataStream(arg__1); }
 
-void PythonQtWrapper_QDataStream::setStatus(QDataStream* theWrappedObject, QDataStream::Status  status)
-{
- (*theWrappedObject).setStatus(status);
-}
-
-QDataStream&  PythonQtWrapper_QDataStream::readUInt(QDataStream* theWrappedObject, unsigned int&  i)
+QDataStream&  PythonQtWrapper_QDataStream::readByte(QDataStream* theWrappedObject, unsigned char&  i)
 {
 return  (*theWrappedObject) >>i;
 }
 
-QDataStream&  PythonQtWrapper_QDataStream::readULongLong(QDataStream* theWrappedObject, quint64&  i)
+QDataStream::Status  PythonQtWrapper_QDataStream::status(QDataStream* theWrappedObject) const
 {
-return  (*theWrappedObject) >>i;
+return  theWrappedObject->status();
 }
 
-bool  PythonQtWrapper_QDataStream::atEnd(QDataStream* theWrappedObject) const
+QIODevice*  PythonQtWrapper_QDataStream::device(QDataStream* theWrappedObject) const
 {
-return  (*theWrappedObject).atEnd();
-}
-
-void PythonQtWrapper_QDataStream::setDevice(QDataStream* theWrappedObject, QIODevice*  arg__1)
-{
- (*theWrappedObject).setDevice(arg__1);
-}
-
-int  PythonQtWrapper_QDataStream::version(QDataStream* theWrappedObject) const
-{
-return  (*theWrappedObject).version();
-}
-
-QDataStream&  PythonQtWrapper_QDataStream::readUShort(QDataStream* theWrappedObject, unsigned short&  i)
-{
-return  (*theWrappedObject) >>i;
-}
-
-QDataStream&  PythonQtWrapper_QDataStream::readDouble(QDataStream* theWrappedObject, double&  f)
-{
-return  (*theWrappedObject) >>f;
-}
-
-void PythonQtWrapper_QDataStream::resetStatus(QDataStream* theWrappedObject)
-{
- (*theWrappedObject).resetStatus();
+return  theWrappedObject->device();
 }
 
 void PythonQtWrapper_QDataStream::setVersion(QDataStream* theWrappedObject, int  arg__1)
 {
- (*theWrappedObject).setVersion(arg__1);
-}
-
-QDataStream&  PythonQtWrapper_QDataStream::readBoolean(QDataStream* theWrappedObject, bool&  i)
-{
-return  (*theWrappedObject) >>i;
+ theWrappedObject->setVersion(arg__1);
 }
 
 QDataStream&  PythonQtWrapper_QDataStream::readLongLong(QDataStream* theWrappedObject, qint64&  i)
@@ -84,29 +49,14 @@ QDataStream&  PythonQtWrapper_QDataStream::readLongLong(QDataStream* theWrappedO
 return  (*theWrappedObject) >>i;
 }
 
-QDataStream&  PythonQtWrapper_QDataStream::readFloat(QDataStream* theWrappedObject, float&  f)
-{
-return  (*theWrappedObject) >>f;
-}
-
-QDataStream&  PythonQtWrapper_QDataStream::writeFloat(QDataStream* theWrappedObject, float  f)
-{
-return  (*theWrappedObject) <<f;
-}
-
-QDataStream&  PythonQtWrapper_QDataStream::readByte(QDataStream* theWrappedObject, unsigned char&  i)
+QDataStream&  PythonQtWrapper_QDataStream::readShort(QDataStream* theWrappedObject, short&  i)
 {
 return  (*theWrappedObject) >>i;
 }
 
-QDataStream&  PythonQtWrapper_QDataStream::writeDouble(QDataStream* theWrappedObject, double  f)
+void PythonQtWrapper_QDataStream::unsetDevice(QDataStream* theWrappedObject)
 {
-return  (*theWrappedObject) <<f;
-}
-
-QDataStream&  PythonQtWrapper_QDataStream::writeShort(QDataStream* theWrappedObject, short  i)
-{
-return  (*theWrappedObject) <<i;
+ theWrappedObject->unsetDevice();
 }
 
 QDataStream&  PythonQtWrapper_QDataStream::writeLongLong(QDataStream* theWrappedObject, qint64  i)
@@ -114,14 +64,64 @@ QDataStream&  PythonQtWrapper_QDataStream::writeLongLong(QDataStream* theWrapped
 return  (*theWrappedObject) <<i;
 }
 
+QDataStream&  PythonQtWrapper_QDataStream::readDouble(QDataStream* theWrappedObject, double&  f)
+{
+return  (*theWrappedObject) >>f;
+}
+
+QDataStream&  PythonQtWrapper_QDataStream::writeDouble(QDataStream* theWrappedObject, double  f)
+{
+return  (*theWrappedObject) <<f;
+}
+
+QDataStream&  PythonQtWrapper_QDataStream::writeByte(QDataStream* theWrappedObject, unsigned char  i)
+{
+return  (*theWrappedObject) <<i;
+}
+
+QDataStream&  PythonQtWrapper_QDataStream::readFloat(QDataStream* theWrappedObject, float&  f)
+{
+return  (*theWrappedObject) >>f;
+}
+
+QDataStream&  PythonQtWrapper_QDataStream::readUShort(QDataStream* theWrappedObject, unsigned short&  i)
+{
+return  (*theWrappedObject) >>i;
+}
+
+int  PythonQtWrapper_QDataStream::skipRawData(QDataStream* theWrappedObject, int  len)
+{
+return  theWrappedObject->skipRawData(len);
+}
+
+int  PythonQtWrapper_QDataStream::version(QDataStream* theWrappedObject) const
+{
+return  theWrappedObject->version();
+}
+
+QDataStream&  PythonQtWrapper_QDataStream::readULongLong(QDataStream* theWrappedObject, quint64&  i)
+{
+return  (*theWrappedObject) >>i;
+}
+
+void PythonQtWrapper_QDataStream::resetStatus(QDataStream* theWrappedObject)
+{
+ theWrappedObject->resetStatus();
+}
+
 QDataStream&  PythonQtWrapper_QDataStream::writeBoolean(QDataStream* theWrappedObject, bool  i)
 {
 return  (*theWrappedObject) <<i;
 }
 
-QIODevice*  PythonQtWrapper_QDataStream::device(QDataStream* theWrappedObject) const
+QDataStream&  PythonQtWrapper_QDataStream::writeShort(QDataStream* theWrappedObject, short  i)
 {
-return  (*theWrappedObject).device();
+return  (*theWrappedObject) <<i;
+}
+
+void PythonQtWrapper_QDataStream::setStatus(QDataStream* theWrappedObject, QDataStream::Status  status)
+{
+ theWrappedObject->setStatus(status);
 }
 
 QDataStream&  PythonQtWrapper_QDataStream::writeInt(QDataStream* theWrappedObject, int  i)
@@ -129,24 +129,9 @@ QDataStream&  PythonQtWrapper_QDataStream::writeInt(QDataStream* theWrappedObjec
 return  (*theWrappedObject) <<i;
 }
 
-QDataStream&  PythonQtWrapper_QDataStream::readShort(QDataStream* theWrappedObject, short&  i)
+QDataStream&  PythonQtWrapper_QDataStream::readBoolean(QDataStream* theWrappedObject, bool&  i)
 {
 return  (*theWrappedObject) >>i;
-}
-
-int  PythonQtWrapper_QDataStream::skipRawData(QDataStream* theWrappedObject, int  len)
-{
-return  (*theWrappedObject).skipRawData(len);
-}
-
-void PythonQtWrapper_QDataStream::unsetDevice(QDataStream* theWrappedObject)
-{
- (*theWrappedObject).unsetDevice();
-}
-
-QDataStream::Status  PythonQtWrapper_QDataStream::status(QDataStream* theWrappedObject) const
-{
-return  (*theWrappedObject).status();
 }
 
 QDataStream&  PythonQtWrapper_QDataStream::readInt(QDataStream* theWrappedObject, int&  i)
@@ -154,8 +139,23 @@ QDataStream&  PythonQtWrapper_QDataStream::readInt(QDataStream* theWrappedObject
 return  (*theWrappedObject) >>i;
 }
 
-QDataStream&  PythonQtWrapper_QDataStream::writeByte(QDataStream* theWrappedObject, unsigned char  i)
+QDataStream&  PythonQtWrapper_QDataStream::readUInt(QDataStream* theWrappedObject, unsigned int&  i)
 {
-return  (*theWrappedObject) <<i;
+return  (*theWrappedObject) >>i;
+}
+
+void PythonQtWrapper_QDataStream::setDevice(QDataStream* theWrappedObject, QIODevice*  arg__1)
+{
+ theWrappedObject->setDevice(arg__1);
+}
+
+bool  PythonQtWrapper_QDataStream::atEnd(QDataStream* theWrappedObject) const
+{
+return  theWrappedObject->atEnd();
+}
+
+QDataStream&  PythonQtWrapper_QDataStream::writeFloat(QDataStream* theWrappedObject, float  f)
+{
+return  (*theWrappedObject) <<f;
 }
 

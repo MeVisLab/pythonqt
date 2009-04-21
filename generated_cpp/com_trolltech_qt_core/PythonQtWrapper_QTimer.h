@@ -29,7 +29,7 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QTimer : public QTimer
 { public:
-inline void timerEvent(QTimerEvent*  arg__1) { QTimer::timerEvent(arg__1); }
+inline void promoted_timerEvent(QTimerEvent*  arg__1) { QTimer::timerEvent(arg__1); }
 };
 
 class PythonQtWrapper_QTimer : public QObject

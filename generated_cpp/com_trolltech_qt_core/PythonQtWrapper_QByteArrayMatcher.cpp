@@ -19,18 +19,18 @@ QByteArrayMatcher* PythonQtWrapper_QByteArrayMatcher::new_QByteArrayMatcher(cons
 { 
 return new QByteArrayMatcher(other); }
 
-QByteArray  PythonQtWrapper_QByteArrayMatcher::pattern(QByteArrayMatcher* theWrappedObject) const
-{
-return  (*theWrappedObject).pattern();
-}
-
 void PythonQtWrapper_QByteArrayMatcher::setPattern(QByteArrayMatcher* theWrappedObject, const QByteArray&  pattern)
 {
- (*theWrappedObject).setPattern(pattern);
+ theWrappedObject->setPattern(pattern);
 }
 
 int  PythonQtWrapper_QByteArrayMatcher::indexIn(QByteArrayMatcher* theWrappedObject, const QByteArray&  ba, int  from) const
 {
-return  (*theWrappedObject).indexIn(ba, from);
+return  theWrappedObject->indexIn(ba, from);
+}
+
+QByteArray  PythonQtWrapper_QByteArrayMatcher::pattern(QByteArrayMatcher* theWrappedObject) const
+{
+return  theWrappedObject->pattern();
 }
 

@@ -38,25 +38,33 @@ virtual void timerEvent(QTimerEvent*  arg__1);
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QUiLoader : public QUiLoader
+{ public:
+inline QWidget*  promoted_createWidget(const QString&  className, QWidget*  parent = 0, const QString&  name = QString()) { return QUiLoader::createWidget(className, parent, name); }
+inline QAction*  promoted_createAction(QObject*  parent = 0, const QString&  name = QString()) { return QUiLoader::createAction(parent, name); }
+inline QActionGroup*  promoted_createActionGroup(QObject*  parent = 0, const QString&  name = QString()) { return QUiLoader::createActionGroup(parent, name); }
+inline QLayout*  promoted_createLayout(const QString&  className, QObject*  parent = 0, const QString&  name = QString()) { return QUiLoader::createLayout(className, parent, name); }
+};
+
 class PythonQtWrapper_QUiLoader : public QObject
 { Q_OBJECT
 public:
 public slots:
 QUiLoader* new_QUiLoader(QObject*  parent = 0);
 void delete_QUiLoader(QUiLoader* obj) { delete obj; } 
-   bool  isScriptingEnabled(QUiLoader* theWrappedObject) const;
-   void setWorkingDirectory(QUiLoader* theWrappedObject, const QDir&  dir);
-   QDir  workingDirectory(QUiLoader* theWrappedObject) const;
    QWidget*  createWidget(QUiLoader* theWrappedObject, const QString&  className, QWidget*  parent = 0, const QString&  name = QString());
-   void addPluginPath(QUiLoader* theWrappedObject, const QString&  path);
    QStringList  availableWidgets(QUiLoader* theWrappedObject) const;
-   QWidget*  load(QUiLoader* theWrappedObject, QIODevice*  device, QWidget*  parentWidget = 0);
    QStringList  pluginPaths(QUiLoader* theWrappedObject) const;
    void clearPluginPaths(QUiLoader* theWrappedObject);
    QAction*  createAction(QUiLoader* theWrappedObject, QObject*  parent = 0, const QString&  name = QString());
    void setScriptingEnabled(QUiLoader* theWrappedObject, bool  enabled);
    QActionGroup*  createActionGroup(QUiLoader* theWrappedObject, QObject*  parent = 0, const QString&  name = QString());
    QLayout*  createLayout(QUiLoader* theWrappedObject, const QString&  className, QObject*  parent = 0, const QString&  name = QString());
+   bool  isScriptingEnabled(QUiLoader* theWrappedObject) const;
+   void setWorkingDirectory(QUiLoader* theWrappedObject, const QDir&  dir);
+   void addPluginPath(QUiLoader* theWrappedObject, const QString&  path);
+   QWidget*  load(QUiLoader* theWrappedObject, QIODevice*  device, QWidget*  parentWidget = 0);
+   QDir  workingDirectory(QUiLoader* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QUILOADER_H

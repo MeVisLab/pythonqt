@@ -1657,178 +1657,178 @@ QListWidget* PythonQtWrapper_QListWidget::new_QListWidget(QWidget*  parent)
 { 
 return new PythonQtShell_QListWidget(parent); }
 
-void PythonQtWrapper_QListWidget::setCurrentItem(QListWidget* theWrappedObject, QListWidgetItem*  item)
-{
- (*theWrappedObject).setCurrentItem(item);
-}
-
-int  PythonQtWrapper_QListWidget::count(QListWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).count();
-}
-
-Qt::DropActions  PythonQtWrapper_QListWidget::supportedDropActions(QListWidget* theWrappedObject) const
-{
-return  (*((PythonQtPublicPromoter_QListWidget*)theWrappedObject)).supportedDropActions();
-}
-
-void PythonQtWrapper_QListWidget::insertItems(QListWidget* theWrappedObject, int  row, const QStringList&  labels)
-{
- (*theWrappedObject).insertItems(row, labels);
-}
-
-int  PythonQtWrapper_QListWidget::row(QListWidget* theWrappedObject, const QListWidgetItem*  item) const
-{
-return  (*theWrappedObject).row(item);
-}
-
 bool  PythonQtWrapper_QListWidget::event(QListWidget* theWrappedObject, QEvent*  e)
 {
-return  (*((PythonQtPublicPromoter_QListWidget*)theWrappedObject)).event(e);
-}
-
-void PythonQtWrapper_QListWidget::setItemWidget(QListWidget* theWrappedObject, QListWidgetItem*  item, QWidget*  widget)
-{
- (*theWrappedObject).setItemWidget(item, widget);
-}
-
-QList<QListWidgetItem* >  PythonQtWrapper_QListWidget::selectedItems(QListWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).selectedItems();
-}
-
-void PythonQtWrapper_QListWidget::setCurrentRow(QListWidget* theWrappedObject, int  row, QItemSelectionModel::SelectionFlags  command)
-{
- (*theWrappedObject).setCurrentRow(row, command);
-}
-
-QRect  PythonQtWrapper_QListWidget::visualItemRect(QListWidget* theWrappedObject, const QListWidgetItem*  item) const
-{
-return  (*theWrappedObject).visualItemRect(item);
-}
-
-void PythonQtWrapper_QListWidget::addItem(QListWidget* theWrappedObject, const QString&  label)
-{
- (*theWrappedObject).addItem(label);
-}
-
-void PythonQtWrapper_QListWidget::editItem(QListWidget* theWrappedObject, QListWidgetItem*  item)
-{
- (*theWrappedObject).editItem(item);
-}
-
-QListWidgetItem*  PythonQtWrapper_QListWidget::itemAt(QListWidget* theWrappedObject, const QPoint&  p) const
-{
-return  (*theWrappedObject).itemAt(p);
-}
-
-QListWidgetItem*  PythonQtWrapper_QListWidget::currentItem(QListWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).currentItem();
-}
-
-QListWidgetItem*  PythonQtWrapper_QListWidget::item(QListWidget* theWrappedObject, int  row) const
-{
-return  (*theWrappedObject).item(row);
-}
-
-QListWidgetItem*  PythonQtWrapper_QListWidget::takeItem(QListWidget* theWrappedObject, int  row)
-{
-return  (*theWrappedObject).takeItem(row);
-}
-
-void PythonQtWrapper_QListWidget::insertItem(QListWidget* theWrappedObject, int  row, QListWidgetItem*  item)
-{
- (*theWrappedObject).insertItem(row, item);
-}
-
-int  PythonQtWrapper_QListWidget::currentRow(QListWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).currentRow();
-}
-
-void PythonQtWrapper_QListWidget::sortItems(QListWidget* theWrappedObject, Qt::SortOrder  order)
-{
- (*theWrappedObject).sortItems(order);
-}
-
-void PythonQtWrapper_QListWidget::addItems(QListWidget* theWrappedObject, const QStringList&  labels)
-{
- (*theWrappedObject).addItems(labels);
-}
-
-bool  PythonQtWrapper_QListWidget::isSortingEnabled(QListWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).isSortingEnabled();
-}
-
-void PythonQtWrapper_QListWidget::openPersistentEditor(QListWidget* theWrappedObject, QListWidgetItem*  item)
-{
- (*theWrappedObject).openPersistentEditor(item);
-}
-
-void PythonQtWrapper_QListWidget::addItem(QListWidget* theWrappedObject, QListWidgetItem*  item)
-{
- (*theWrappedObject).addItem(item);
+return  ((PythonQtPublicPromoter_QListWidget*)theWrappedObject)->promoted_event(e);
 }
 
 QListWidgetItem*  PythonQtWrapper_QListWidget::itemAt(QListWidget* theWrappedObject, int  x, int  y) const
 {
-return  (*theWrappedObject).itemAt(x, y);
-}
-
-QWidget*  PythonQtWrapper_QListWidget::itemWidget(QListWidget* theWrappedObject, QListWidgetItem*  item) const
-{
-return  (*theWrappedObject).itemWidget(item);
-}
-
-void PythonQtWrapper_QListWidget::setCurrentItem(QListWidget* theWrappedObject, QListWidgetItem*  item, QItemSelectionModel::SelectionFlags  command)
-{
- (*theWrappedObject).setCurrentItem(item, command);
-}
-
-QStringList  PythonQtWrapper_QListWidget::mimeTypes(QListWidget* theWrappedObject) const
-{
-return  (*((PythonQtPublicPromoter_QListWidget*)theWrappedObject)).mimeTypes();
-}
-
-void PythonQtWrapper_QListWidget::closePersistentEditor(QListWidget* theWrappedObject, QListWidgetItem*  item)
-{
- (*theWrappedObject).closePersistentEditor(item);
-}
-
-QList<QListWidgetItem* >  PythonQtWrapper_QListWidget::findItems(QListWidget* theWrappedObject, const QString&  text, Qt::MatchFlags  flags) const
-{
-return  (*theWrappedObject).findItems(text, flags);
-}
-
-bool  PythonQtWrapper_QListWidget::dropMimeData(QListWidget* theWrappedObject, int  index, const QMimeData*  data, Qt::DropAction  action)
-{
-return  (*((PythonQtPublicPromoter_QListWidget*)theWrappedObject)).dropMimeData(index, data, action);
+return  theWrappedObject->itemAt(x, y);
 }
 
 void PythonQtWrapper_QListWidget::removeItemWidget(QListWidget* theWrappedObject, QListWidgetItem*  item)
 {
- (*theWrappedObject).removeItemWidget(item);
-}
-
-void PythonQtWrapper_QListWidget::setCurrentRow(QListWidget* theWrappedObject, int  row)
-{
- (*theWrappedObject).setCurrentRow(row);
+ theWrappedObject->removeItemWidget(item);
 }
 
 void PythonQtWrapper_QListWidget::setSortingEnabled(QListWidget* theWrappedObject, bool  enable)
 {
- (*theWrappedObject).setSortingEnabled(enable);
+ theWrappedObject->setSortingEnabled(enable);
 }
 
-void PythonQtWrapper_QListWidget::dropEvent(QListWidget* theWrappedObject, QDropEvent*  event)
+QListWidgetItem*  PythonQtWrapper_QListWidget::itemAt(QListWidget* theWrappedObject, const QPoint&  p) const
 {
- (*theWrappedObject).dropEvent(event);
+return  theWrappedObject->itemAt(p);
+}
+
+void PythonQtWrapper_QListWidget::setCurrentItem(QListWidget* theWrappedObject, QListWidgetItem*  item)
+{
+ theWrappedObject->setCurrentItem(item);
+}
+
+void PythonQtWrapper_QListWidget::setCurrentRow(QListWidget* theWrappedObject, int  row, QItemSelectionModel::SelectionFlags  command)
+{
+ theWrappedObject->setCurrentRow(row, command);
+}
+
+bool  PythonQtWrapper_QListWidget::dropMimeData(QListWidget* theWrappedObject, int  index, const QMimeData*  data, Qt::DropAction  action)
+{
+return  ((PythonQtPublicPromoter_QListWidget*)theWrappedObject)->promoted_dropMimeData(index, data, action);
 }
 
 void PythonQtWrapper_QListWidget::insertItem(QListWidget* theWrappedObject, int  row, const QString&  label)
 {
- (*theWrappedObject).insertItem(row, label);
+ theWrappedObject->insertItem(row, label);
+}
+
+void PythonQtWrapper_QListWidget::addItem(QListWidget* theWrappedObject, QListWidgetItem*  item)
+{
+ theWrappedObject->addItem(item);
+}
+
+void PythonQtWrapper_QListWidget::insertItems(QListWidget* theWrappedObject, int  row, const QStringList&  labels)
+{
+ theWrappedObject->insertItems(row, labels);
+}
+
+void PythonQtWrapper_QListWidget::addItems(QListWidget* theWrappedObject, const QStringList&  labels)
+{
+ theWrappedObject->addItems(labels);
+}
+
+void PythonQtWrapper_QListWidget::setCurrentItem(QListWidget* theWrappedObject, QListWidgetItem*  item, QItemSelectionModel::SelectionFlags  command)
+{
+ theWrappedObject->setCurrentItem(item, command);
+}
+
+QWidget*  PythonQtWrapper_QListWidget::itemWidget(QListWidget* theWrappedObject, QListWidgetItem*  item) const
+{
+return  theWrappedObject->itemWidget(item);
+}
+
+void PythonQtWrapper_QListWidget::setCurrentRow(QListWidget* theWrappedObject, int  row)
+{
+ theWrappedObject->setCurrentRow(row);
+}
+
+void PythonQtWrapper_QListWidget::setItemWidget(QListWidget* theWrappedObject, QListWidgetItem*  item, QWidget*  widget)
+{
+ theWrappedObject->setItemWidget(item, widget);
+}
+
+int  PythonQtWrapper_QListWidget::count(QListWidget* theWrappedObject) const
+{
+return  theWrappedObject->count();
+}
+
+void PythonQtWrapper_QListWidget::dropEvent(QListWidget* theWrappedObject, QDropEvent*  event)
+{
+ ((PythonQtPublicPromoter_QListWidget*)theWrappedObject)->promoted_dropEvent(event);
+}
+
+QList<QListWidgetItem* >  PythonQtWrapper_QListWidget::findItems(QListWidget* theWrappedObject, const QString&  text, Qt::MatchFlags  flags) const
+{
+return  theWrappedObject->findItems(text, flags);
+}
+
+QList<QListWidgetItem* >  PythonQtWrapper_QListWidget::selectedItems(QListWidget* theWrappedObject) const
+{
+return  theWrappedObject->selectedItems();
+}
+
+QRect  PythonQtWrapper_QListWidget::visualItemRect(QListWidget* theWrappedObject, const QListWidgetItem*  item) const
+{
+return  theWrappedObject->visualItemRect(item);
+}
+
+QListWidgetItem*  PythonQtWrapper_QListWidget::takeItem(QListWidget* theWrappedObject, int  row)
+{
+return  theWrappedObject->takeItem(row);
+}
+
+QListWidgetItem*  PythonQtWrapper_QListWidget::currentItem(QListWidget* theWrappedObject) const
+{
+return  theWrappedObject->currentItem();
+}
+
+void PythonQtWrapper_QListWidget::insertItem(QListWidget* theWrappedObject, int  row, QListWidgetItem*  item)
+{
+ theWrappedObject->insertItem(row, item);
+}
+
+Qt::DropActions  PythonQtWrapper_QListWidget::supportedDropActions(QListWidget* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QListWidget*)theWrappedObject)->promoted_supportedDropActions();
+}
+
+void PythonQtWrapper_QListWidget::closePersistentEditor(QListWidget* theWrappedObject, QListWidgetItem*  item)
+{
+ theWrappedObject->closePersistentEditor(item);
+}
+
+bool  PythonQtWrapper_QListWidget::isSortingEnabled(QListWidget* theWrappedObject) const
+{
+return  theWrappedObject->isSortingEnabled();
+}
+
+int  PythonQtWrapper_QListWidget::currentRow(QListWidget* theWrappedObject) const
+{
+return  theWrappedObject->currentRow();
+}
+
+QListWidgetItem*  PythonQtWrapper_QListWidget::item(QListWidget* theWrappedObject, int  row) const
+{
+return  theWrappedObject->item(row);
+}
+
+void PythonQtWrapper_QListWidget::openPersistentEditor(QListWidget* theWrappedObject, QListWidgetItem*  item)
+{
+ theWrappedObject->openPersistentEditor(item);
+}
+
+int  PythonQtWrapper_QListWidget::row(QListWidget* theWrappedObject, const QListWidgetItem*  item) const
+{
+return  theWrappedObject->row(item);
+}
+
+void PythonQtWrapper_QListWidget::addItem(QListWidget* theWrappedObject, const QString&  label)
+{
+ theWrappedObject->addItem(label);
+}
+
+QStringList  PythonQtWrapper_QListWidget::mimeTypes(QListWidget* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QListWidget*)theWrappedObject)->promoted_mimeTypes();
+}
+
+void PythonQtWrapper_QListWidget::sortItems(QListWidget* theWrappedObject, Qt::SortOrder  order)
+{
+ theWrappedObject->sortItems(order);
+}
+
+void PythonQtWrapper_QListWidget::editItem(QListWidget* theWrappedObject, QListWidgetItem*  item)
+{
+ theWrappedObject->editItem(item);
 }
 

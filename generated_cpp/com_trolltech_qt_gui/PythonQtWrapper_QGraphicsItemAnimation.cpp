@@ -160,133 +160,133 @@ QGraphicsItemAnimation* PythonQtWrapper_QGraphicsItemAnimation::new_QGraphicsIte
 { 
 return new PythonQtShell_QGraphicsItemAnimation(parent); }
 
-void PythonQtWrapper_QGraphicsItemAnimation::setItem(QGraphicsItemAnimation* theWrappedObject, QGraphicsItem*  item)
-{
- (*theWrappedObject).setItem(item);
-}
-
-QMatrix  PythonQtWrapper_QGraphicsItemAnimation::matrixAt(QGraphicsItemAnimation* theWrappedObject, qreal  step) const
-{
-return  (*theWrappedObject).matrixAt(step);
-}
-
-void PythonQtWrapper_QGraphicsItemAnimation::setShearAt(QGraphicsItemAnimation* theWrappedObject, qreal  step, qreal  sh, qreal  sv)
-{
- (*theWrappedObject).setShearAt(step, sh, sv);
-}
-
-QList<QPair<qreal , QPointF >  >  PythonQtWrapper_QGraphicsItemAnimation::translationList(QGraphicsItemAnimation* theWrappedObject) const
-{
-return  (*theWrappedObject).translationList();
-}
-
-qreal  PythonQtWrapper_QGraphicsItemAnimation::horizontalScaleAt(QGraphicsItemAnimation* theWrappedObject, qreal  step) const
-{
-return  (*theWrappedObject).horizontalScaleAt(step);
-}
-
 void PythonQtWrapper_QGraphicsItemAnimation::setPosAt(QGraphicsItemAnimation* theWrappedObject, qreal  step, const QPointF&  pos)
 {
- (*theWrappedObject).setPosAt(step, pos);
-}
-
-qreal  PythonQtWrapper_QGraphicsItemAnimation::verticalShearAt(QGraphicsItemAnimation* theWrappedObject, qreal  step) const
-{
-return  (*theWrappedObject).verticalShearAt(step);
-}
-
-QGraphicsItem*  PythonQtWrapper_QGraphicsItemAnimation::item(QGraphicsItemAnimation* theWrappedObject) const
-{
-return  (*theWrappedObject).item();
-}
-
-QPointF  PythonQtWrapper_QGraphicsItemAnimation::posAt(QGraphicsItemAnimation* theWrappedObject, qreal  step) const
-{
-return  (*theWrappedObject).posAt(step);
-}
-
-void PythonQtWrapper_QGraphicsItemAnimation::afterAnimationStep(QGraphicsItemAnimation* theWrappedObject, qreal  step)
-{
- (*((PythonQtPublicPromoter_QGraphicsItemAnimation*)theWrappedObject)).afterAnimationStep(step);
-}
-
-qreal  PythonQtWrapper_QGraphicsItemAnimation::verticalScaleAt(QGraphicsItemAnimation* theWrappedObject, qreal  step) const
-{
-return  (*theWrappedObject).verticalScaleAt(step);
-}
-
-QList<QPair<qreal , QPointF >  >  PythonQtWrapper_QGraphicsItemAnimation::scaleList(QGraphicsItemAnimation* theWrappedObject) const
-{
-return  (*theWrappedObject).scaleList();
-}
-
-void PythonQtWrapper_QGraphicsItemAnimation::setTranslationAt(QGraphicsItemAnimation* theWrappedObject, qreal  step, qreal  dx, qreal  dy)
-{
- (*theWrappedObject).setTranslationAt(step, dx, dy);
-}
-
-qreal  PythonQtWrapper_QGraphicsItemAnimation::yTranslationAt(QGraphicsItemAnimation* theWrappedObject, qreal  step) const
-{
-return  (*theWrappedObject).yTranslationAt(step);
-}
-
-qreal  PythonQtWrapper_QGraphicsItemAnimation::horizontalShearAt(QGraphicsItemAnimation* theWrappedObject, qreal  step) const
-{
-return  (*theWrappedObject).horizontalShearAt(step);
-}
-
-qreal  PythonQtWrapper_QGraphicsItemAnimation::xTranslationAt(QGraphicsItemAnimation* theWrappedObject, qreal  step) const
-{
-return  (*theWrappedObject).xTranslationAt(step);
-}
-
-qreal  PythonQtWrapper_QGraphicsItemAnimation::rotationAt(QGraphicsItemAnimation* theWrappedObject, qreal  step) const
-{
-return  (*theWrappedObject).rotationAt(step);
-}
-
-void PythonQtWrapper_QGraphicsItemAnimation::beforeAnimationStep(QGraphicsItemAnimation* theWrappedObject, qreal  step)
-{
- (*((PythonQtPublicPromoter_QGraphicsItemAnimation*)theWrappedObject)).beforeAnimationStep(step);
-}
-
-QList<QPair<qreal , QPointF >  >  PythonQtWrapper_QGraphicsItemAnimation::shearList(QGraphicsItemAnimation* theWrappedObject) const
-{
-return  (*theWrappedObject).shearList();
-}
-
-QList<QPair<qreal , qreal >  >  PythonQtWrapper_QGraphicsItemAnimation::rotationList(QGraphicsItemAnimation* theWrappedObject) const
-{
-return  (*theWrappedObject).rotationList();
-}
-
-void PythonQtWrapper_QGraphicsItemAnimation::clear(QGraphicsItemAnimation* theWrappedObject)
-{
- (*theWrappedObject).clear();
+ theWrappedObject->setPosAt(step, pos);
 }
 
 void PythonQtWrapper_QGraphicsItemAnimation::setTimeLine(QGraphicsItemAnimation* theWrappedObject, QTimeLine*  timeLine)
 {
- (*theWrappedObject).setTimeLine(timeLine);
+ theWrappedObject->setTimeLine(timeLine);
 }
 
 QList<QPair<qreal , QPointF >  >  PythonQtWrapper_QGraphicsItemAnimation::posList(QGraphicsItemAnimation* theWrappedObject) const
 {
-return  (*theWrappedObject).posList();
-}
-
-void PythonQtWrapper_QGraphicsItemAnimation::setRotationAt(QGraphicsItemAnimation* theWrappedObject, qreal  step, qreal  angle)
-{
- (*theWrappedObject).setRotationAt(step, angle);
+return  theWrappedObject->posList();
 }
 
 void PythonQtWrapper_QGraphicsItemAnimation::setScaleAt(QGraphicsItemAnimation* theWrappedObject, qreal  step, qreal  sx, qreal  sy)
 {
- (*theWrappedObject).setScaleAt(step, sx, sy);
+ theWrappedObject->setScaleAt(step, sx, sy);
 }
 
 QTimeLine*  PythonQtWrapper_QGraphicsItemAnimation::timeLine(QGraphicsItemAnimation* theWrappedObject) const
 {
-return  (*theWrappedObject).timeLine();
+return  theWrappedObject->timeLine();
+}
+
+void PythonQtWrapper_QGraphicsItemAnimation::setItem(QGraphicsItemAnimation* theWrappedObject, QGraphicsItem*  item)
+{
+ theWrappedObject->setItem(item);
+}
+
+QList<QPair<qreal , qreal >  >  PythonQtWrapper_QGraphicsItemAnimation::rotationList(QGraphicsItemAnimation* theWrappedObject) const
+{
+return  theWrappedObject->rotationList();
+}
+
+QMatrix  PythonQtWrapper_QGraphicsItemAnimation::matrixAt(QGraphicsItemAnimation* theWrappedObject, qreal  step) const
+{
+return  theWrappedObject->matrixAt(step);
+}
+
+QGraphicsItem*  PythonQtWrapper_QGraphicsItemAnimation::item(QGraphicsItemAnimation* theWrappedObject) const
+{
+return  theWrappedObject->item();
+}
+
+qreal  PythonQtWrapper_QGraphicsItemAnimation::rotationAt(QGraphicsItemAnimation* theWrappedObject, qreal  step) const
+{
+return  theWrappedObject->rotationAt(step);
+}
+
+QList<QPair<qreal , QPointF >  >  PythonQtWrapper_QGraphicsItemAnimation::translationList(QGraphicsItemAnimation* theWrappedObject) const
+{
+return  theWrappedObject->translationList();
+}
+
+qreal  PythonQtWrapper_QGraphicsItemAnimation::horizontalScaleAt(QGraphicsItemAnimation* theWrappedObject, qreal  step) const
+{
+return  theWrappedObject->horizontalScaleAt(step);
+}
+
+qreal  PythonQtWrapper_QGraphicsItemAnimation::horizontalShearAt(QGraphicsItemAnimation* theWrappedObject, qreal  step) const
+{
+return  theWrappedObject->horizontalShearAt(step);
+}
+
+QPointF  PythonQtWrapper_QGraphicsItemAnimation::posAt(QGraphicsItemAnimation* theWrappedObject, qreal  step) const
+{
+return  theWrappedObject->posAt(step);
+}
+
+void PythonQtWrapper_QGraphicsItemAnimation::setShearAt(QGraphicsItemAnimation* theWrappedObject, qreal  step, qreal  sh, qreal  sv)
+{
+ theWrappedObject->setShearAt(step, sh, sv);
+}
+
+void PythonQtWrapper_QGraphicsItemAnimation::afterAnimationStep(QGraphicsItemAnimation* theWrappedObject, qreal  step)
+{
+ ((PythonQtPublicPromoter_QGraphicsItemAnimation*)theWrappedObject)->promoted_afterAnimationStep(step);
+}
+
+qreal  PythonQtWrapper_QGraphicsItemAnimation::verticalScaleAt(QGraphicsItemAnimation* theWrappedObject, qreal  step) const
+{
+return  theWrappedObject->verticalScaleAt(step);
+}
+
+QList<QPair<qreal , QPointF >  >  PythonQtWrapper_QGraphicsItemAnimation::scaleList(QGraphicsItemAnimation* theWrappedObject) const
+{
+return  theWrappedObject->scaleList();
+}
+
+QList<QPair<qreal , QPointF >  >  PythonQtWrapper_QGraphicsItemAnimation::shearList(QGraphicsItemAnimation* theWrappedObject) const
+{
+return  theWrappedObject->shearList();
+}
+
+qreal  PythonQtWrapper_QGraphicsItemAnimation::yTranslationAt(QGraphicsItemAnimation* theWrappedObject, qreal  step) const
+{
+return  theWrappedObject->yTranslationAt(step);
+}
+
+void PythonQtWrapper_QGraphicsItemAnimation::clear(QGraphicsItemAnimation* theWrappedObject)
+{
+ theWrappedObject->clear();
+}
+
+void PythonQtWrapper_QGraphicsItemAnimation::setTranslationAt(QGraphicsItemAnimation* theWrappedObject, qreal  step, qreal  dx, qreal  dy)
+{
+ theWrappedObject->setTranslationAt(step, dx, dy);
+}
+
+qreal  PythonQtWrapper_QGraphicsItemAnimation::xTranslationAt(QGraphicsItemAnimation* theWrappedObject, qreal  step) const
+{
+return  theWrappedObject->xTranslationAt(step);
+}
+
+void PythonQtWrapper_QGraphicsItemAnimation::setRotationAt(QGraphicsItemAnimation* theWrappedObject, qreal  step, qreal  angle)
+{
+ theWrappedObject->setRotationAt(step, angle);
+}
+
+void PythonQtWrapper_QGraphicsItemAnimation::beforeAnimationStep(QGraphicsItemAnimation* theWrappedObject, qreal  step)
+{
+ ((PythonQtPublicPromoter_QGraphicsItemAnimation*)theWrappedObject)->promoted_beforeAnimationStep(step);
+}
+
+qreal  PythonQtWrapper_QGraphicsItemAnimation::verticalShearAt(QGraphicsItemAnimation* theWrappedObject, qreal  step) const
+{
+return  theWrappedObject->verticalShearAt(step);
 }
 

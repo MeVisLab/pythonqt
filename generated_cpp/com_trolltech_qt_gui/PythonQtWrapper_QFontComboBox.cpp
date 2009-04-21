@@ -821,36 +821,36 @@ return new PythonQtShell_QFontComboBox(parent); }
 
 void PythonQtWrapper_QFontComboBox::setFontFilters(QFontComboBox* theWrappedObject, QFontComboBox::FontFilters  filters)
 {
- (*theWrappedObject).setFontFilters(filters);
+ theWrappedObject->setFontFilters(filters);
 }
 
 bool  PythonQtWrapper_QFontComboBox::event(QFontComboBox* theWrappedObject, QEvent*  e)
 {
-return  (*((PythonQtPublicPromoter_QFontComboBox*)theWrappedObject)).event(e);
+return  ((PythonQtPublicPromoter_QFontComboBox*)theWrappedObject)->promoted_event(e);
 }
 
 void PythonQtWrapper_QFontComboBox::setWritingSystem(QFontComboBox* theWrappedObject, QFontDatabase::WritingSystem  arg__1)
 {
- (*theWrappedObject).setWritingSystem(arg__1);
+ theWrappedObject->setWritingSystem(arg__1);
 }
 
 QSize  PythonQtWrapper_QFontComboBox::sizeHint(QFontComboBox* theWrappedObject) const
 {
-return  (*theWrappedObject).sizeHint();
+return  theWrappedObject->sizeHint();
 }
 
 QFont  PythonQtWrapper_QFontComboBox::currentFont(QFontComboBox* theWrappedObject) const
 {
-return  (*theWrappedObject).currentFont();
+return  theWrappedObject->currentFont();
 }
 
 QFontDatabase::WritingSystem  PythonQtWrapper_QFontComboBox::writingSystem(QFontComboBox* theWrappedObject) const
 {
-return  (*theWrappedObject).writingSystem();
+return  theWrappedObject->writingSystem();
 }
 
 QFontComboBox::FontFilters  PythonQtWrapper_QFontComboBox::fontFilters(QFontComboBox* theWrappedObject) const
 {
-return  (*theWrappedObject).fontFilters();
+return  theWrappedObject->fontFilters();
 }
 

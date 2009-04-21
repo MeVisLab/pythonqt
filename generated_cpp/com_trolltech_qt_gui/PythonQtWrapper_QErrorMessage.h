@@ -86,8 +86,8 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QErrorMessage : public QErrorMessage
 { public:
-inline void done(int  arg__1) { QErrorMessage::done(arg__1); }
-inline void changeEvent(QEvent*  e) { QErrorMessage::changeEvent(e); }
+inline void promoted_changeEvent(QEvent*  e) { QErrorMessage::changeEvent(e); }
+inline void promoted_done(int  arg__1) { QErrorMessage::done(arg__1); }
 };
 
 class PythonQtWrapper_QErrorMessage : public QObject
@@ -96,9 +96,9 @@ public:
 public slots:
 QErrorMessage* new_QErrorMessage(QWidget*  parent = 0);
 void delete_QErrorMessage(QErrorMessage* obj) { delete obj; } 
-   void done(QErrorMessage* theWrappedObject, int  arg__1);
-   void changeEvent(QErrorMessage* theWrappedObject, QEvent*  e);
    QErrorMessage*  static_QErrorMessage_qtHandler();
+   void changeEvent(QErrorMessage* theWrappedObject, QEvent*  e);
+   void done(QErrorMessage* theWrappedObject, int  arg__1);
 };
 
 #endif // PYTHONQTWRAPPER_QERRORMESSAGE_H

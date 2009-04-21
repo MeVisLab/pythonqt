@@ -248,6 +248,6 @@ return new PythonQtShell_QAbstractXmlReceiver(); }
 
 void PythonQtWrapper_QAbstractXmlReceiver::whitespaceOnly(QAbstractXmlReceiver* theWrappedObject, const QStringRef&  value)
 {
- (*theWrappedObject).whitespaceOnly(value);
+ ((PythonQtPublicPromoter_QAbstractXmlReceiver*)theWrappedObject)->promoted_whitespaceOnly(value);
 }
 

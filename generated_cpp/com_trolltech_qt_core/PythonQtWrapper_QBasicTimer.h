@@ -19,8 +19,8 @@ QBasicTimer* a = new QBasicTimer();
 *((QBasicTimer*)a) = other;
 return a; }
 void delete_QBasicTimer(QBasicTimer* obj) { delete obj; } 
-   void stop(QBasicTimer* theWrappedObject);
    bool  isActive(QBasicTimer* theWrappedObject) const;
+   void stop(QBasicTimer* theWrappedObject);
    int  timerId(QBasicTimer* theWrappedObject) const;
    void start(QBasicTimer* theWrappedObject, int  msec, QObject*  obj);
 };

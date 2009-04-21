@@ -808,18 +808,18 @@ QSvgWidget* PythonQtWrapper_QSvgWidget::new_QSvgWidget(const QString&  file, QWi
 { 
 return new PythonQtShell_QSvgWidget(file, parent); }
 
-void PythonQtWrapper_QSvgWidget::paintEvent(QSvgWidget* theWrappedObject, QPaintEvent*  event)
-{
- (*((PythonQtPublicPromoter_QSvgWidget*)theWrappedObject)).paintEvent(event);
-}
-
 QSvgRenderer*  PythonQtWrapper_QSvgWidget::renderer(QSvgWidget* theWrappedObject) const
 {
-return  (*theWrappedObject).renderer();
+return  theWrappedObject->renderer();
 }
 
 QSize  PythonQtWrapper_QSvgWidget::sizeHint(QSvgWidget* theWrappedObject) const
 {
-return  (*theWrappedObject).sizeHint();
+return  theWrappedObject->sizeHint();
+}
+
+void PythonQtWrapper_QSvgWidget::paintEvent(QSvgWidget* theWrappedObject, QPaintEvent*  event)
+{
+ ((PythonQtPublicPromoter_QSvgWidget*)theWrappedObject)->promoted_paintEvent(event);
 }
 

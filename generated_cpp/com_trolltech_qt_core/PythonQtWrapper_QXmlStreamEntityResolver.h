@@ -19,6 +19,12 @@ virtual QString  resolveUndeclaredEntity(const QString&  name);
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QXmlStreamEntityResolver : public QXmlStreamEntityResolver
+{ public:
+inline QString  promoted_resolveEntity(const QString&  publicId, const QString&  systemId) { return QXmlStreamEntityResolver::resolveEntity(publicId, systemId); }
+inline QString  promoted_resolveUndeclaredEntity(const QString&  name) { return QXmlStreamEntityResolver::resolveUndeclaredEntity(name); }
+};
+
 class PythonQtWrapper_QXmlStreamEntityResolver : public QObject
 { Q_OBJECT
 public:

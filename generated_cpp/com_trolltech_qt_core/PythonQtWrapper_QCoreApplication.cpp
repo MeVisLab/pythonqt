@@ -142,9 +142,54 @@ if (_wrapper) {
 }
   QCoreApplication::timerEvent(arg__1);
 }
-qint64  PythonQtWrapper_QCoreApplication::static_QCoreApplication_applicationPid()
+QString  PythonQtWrapper_QCoreApplication::static_QCoreApplication_applicationFilePath()
 {
-return QCoreApplication::applicationPid();
+return QCoreApplication::applicationFilePath();
+}
+
+void PythonQtWrapper_QCoreApplication::static_QCoreApplication_processEvents(QEventLoop::ProcessEventsFlags  flags, int  maxtime)
+{
+QCoreApplication::processEvents(flags, maxtime);
+}
+
+void PythonQtWrapper_QCoreApplication::static_QCoreApplication_addLibraryPath(const QString&  arg__1)
+{
+QCoreApplication::addLibraryPath(arg__1);
+}
+
+void PythonQtWrapper_QCoreApplication::static_QCoreApplication_sendPostedEvents(QObject*  receiver, int  event_type)
+{
+QCoreApplication::sendPostedEvents(receiver, event_type);
+}
+
+QStringList  PythonQtWrapper_QCoreApplication::static_QCoreApplication_libraryPaths()
+{
+return QCoreApplication::libraryPaths();
+}
+
+QString  PythonQtWrapper_QCoreApplication::static_QCoreApplication_translate(const char*  context, const char*  key, const char*  comment, QCoreApplication::Encoding  encoding)
+{
+return QCoreApplication::translate(context, key, comment, encoding);
+}
+
+void PythonQtWrapper_QCoreApplication::static_QCoreApplication_removeTranslator(QTranslator*  messageFile)
+{
+QCoreApplication::removeTranslator(messageFile);
+}
+
+void PythonQtWrapper_QCoreApplication::static_QCoreApplication_setApplicationName(const QString&  application)
+{
+QCoreApplication::setApplicationName(application);
+}
+
+bool  PythonQtWrapper_QCoreApplication::notify(QCoreApplication* theWrappedObject, QObject*  arg__1, QEvent*  arg__2)
+{
+return  ((PythonQtPublicPromoter_QCoreApplication*)theWrappedObject)->promoted_notify(arg__1, arg__2);
+}
+
+QCoreApplication*  PythonQtWrapper_QCoreApplication::static_QCoreApplication_instance()
+{
+return QCoreApplication::instance();
 }
 
 void PythonQtWrapper_QCoreApplication::static_QCoreApplication_setApplicationVersion(const QString&  version)
@@ -157,174 +202,9 @@ QString  PythonQtWrapper_QCoreApplication::static_QCoreApplication_applicationNa
 return QCoreApplication::applicationName();
 }
 
-void PythonQtWrapper_QCoreApplication::static_QCoreApplication_postEvent(QObject*  receiver, QEvent*  event, int  priority)
-{
-QCoreApplication::postEvent(receiver, event, priority);
-}
-
-void PythonQtWrapper_QCoreApplication::static_QCoreApplication_setApplicationName(const QString&  application)
-{
-QCoreApplication::setApplicationName(application);
-}
-
-void PythonQtWrapper_QCoreApplication::static_QCoreApplication_setOrganizationName(const QString&  orgName)
-{
-QCoreApplication::setOrganizationName(orgName);
-}
-
-void PythonQtWrapper_QCoreApplication::static_QCoreApplication_flush()
-{
-QCoreApplication::flush();
-}
-
-void PythonQtWrapper_QCoreApplication::static_QCoreApplication_setAttribute(Qt::ApplicationAttribute  attribute, bool  on)
-{
-QCoreApplication::setAttribute(attribute, on);
-}
-
-void PythonQtWrapper_QCoreApplication::static_QCoreApplication_removePostedEvents(QObject*  receiver, int  eventType)
-{
-QCoreApplication::removePostedEvents(receiver, eventType);
-}
-
-void PythonQtWrapper_QCoreApplication::static_QCoreApplication_removeLibraryPath(const QString&  arg__1)
-{
-QCoreApplication::removeLibraryPath(arg__1);
-}
-
-void PythonQtWrapper_QCoreApplication::static_QCoreApplication_removeTranslator(QTranslator*  messageFile)
-{
-QCoreApplication::removeTranslator(messageFile);
-}
-
-void PythonQtWrapper_QCoreApplication::static_QCoreApplication_sendPostedEvents(QObject*  receiver, int  event_type)
-{
-QCoreApplication::sendPostedEvents(receiver, event_type);
-}
-
-void PythonQtWrapper_QCoreApplication::static_QCoreApplication_postEvent(QObject*  receiver, QEvent*  event)
-{
-QCoreApplication::postEvent(receiver, event);
-}
-
-QString  PythonQtWrapper_QCoreApplication::static_QCoreApplication_organizationName()
-{
-return QCoreApplication::organizationName();
-}
-
-QCoreApplication*  PythonQtWrapper_QCoreApplication::static_QCoreApplication_instance()
-{
-return QCoreApplication::instance();
-}
-
-bool  PythonQtWrapper_QCoreApplication::static_QCoreApplication_testAttribute(Qt::ApplicationAttribute  attribute)
-{
-return QCoreApplication::testAttribute(attribute);
-}
-
-void PythonQtWrapper_QCoreApplication::static_QCoreApplication_processEvents(QEventLoop::ProcessEventsFlags  flags, int  maxtime)
-{
-QCoreApplication::processEvents(flags, maxtime);
-}
-
-bool  PythonQtWrapper_QCoreApplication::static_QCoreApplication_sendEvent(QObject*  receiver, QEvent*  event)
-{
-return QCoreApplication::sendEvent(receiver, event);
-}
-
-bool  PythonQtWrapper_QCoreApplication::event(QCoreApplication* theWrappedObject, QEvent*  arg__1)
-{
-return  (*((PythonQtPublicPromoter_QCoreApplication*)theWrappedObject)).event(arg__1);
-}
-
-QString  PythonQtWrapper_QCoreApplication::static_QCoreApplication_applicationDirPath()
-{
-return QCoreApplication::applicationDirPath();
-}
-
 void PythonQtWrapper_QCoreApplication::static_QCoreApplication_exit(int  retcode)
 {
 QCoreApplication::exit(retcode);
-}
-
-void PythonQtWrapper_QCoreApplication::static_QCoreApplication_processEvents(QEventLoop::ProcessEventsFlags  flags)
-{
-QCoreApplication::processEvents(flags);
-}
-
-bool  PythonQtWrapper_QCoreApplication::static_QCoreApplication_closingDown()
-{
-return QCoreApplication::closingDown();
-}
-
-void PythonQtWrapper_QCoreApplication::static_QCoreApplication_sendPostedEvents()
-{
-QCoreApplication::sendPostedEvents();
-}
-
-void PythonQtWrapper_QCoreApplication::static_QCoreApplication_setOrganizationDomain(const QString&  orgDomain)
-{
-QCoreApplication::setOrganizationDomain(orgDomain);
-}
-
-int  PythonQtWrapper_QCoreApplication::static_QCoreApplication_exec()
-{
-return QCoreApplication::exec();
-}
-
-bool  PythonQtWrapper_QCoreApplication::notify(QCoreApplication* theWrappedObject, QObject*  arg__1, QEvent*  arg__2)
-{
-return  (*theWrappedObject).notify(arg__1, arg__2);
-}
-
-QString  PythonQtWrapper_QCoreApplication::static_QCoreApplication_applicationFilePath()
-{
-return QCoreApplication::applicationFilePath();
-}
-
-bool  PythonQtWrapper_QCoreApplication::static_QCoreApplication_startingUp()
-{
-return QCoreApplication::startingUp();
-}
-
-QStringList  PythonQtWrapper_QCoreApplication::static_QCoreApplication_libraryPaths()
-{
-return QCoreApplication::libraryPaths();
-}
-
-QString  PythonQtWrapper_QCoreApplication::static_QCoreApplication_organizationDomain()
-{
-return QCoreApplication::organizationDomain();
-}
-
-QString  PythonQtWrapper_QCoreApplication::static_QCoreApplication_translate(const char*  context, const char*  key, const char*  comment, QCoreApplication::Encoding  encoding)
-{
-return QCoreApplication::translate(context, key, comment, encoding);
-}
-
-QString  PythonQtWrapper_QCoreApplication::static_QCoreApplication_translate(const char*  context, const char*  key, const char*  comment, QCoreApplication::Encoding  encoding, int  n)
-{
-return QCoreApplication::translate(context, key, comment, encoding, n);
-}
-
-bool  PythonQtWrapper_QCoreApplication::static_QCoreApplication_hasPendingEvents()
-{
-return QCoreApplication::hasPendingEvents();
-}
-
-void PythonQtWrapper_QCoreApplication::static_QCoreApplication_setLibraryPaths(const QStringList&  arg__1)
-{
-QCoreApplication::setLibraryPaths(arg__1);
-}
-
-void PythonQtWrapper_QCoreApplication::static_QCoreApplication_addLibraryPath(const QString&  arg__1)
-{
-QCoreApplication::addLibraryPath(arg__1);
-}
-
-void PythonQtWrapper_QCoreApplication::static_QCoreApplication_removePostedEvents(QObject*  receiver)
-{
-QCoreApplication::removePostedEvents(receiver);
 }
 
 QString  PythonQtWrapper_QCoreApplication::static_QCoreApplication_applicationVersion()
@@ -332,8 +212,128 @@ QString  PythonQtWrapper_QCoreApplication::static_QCoreApplication_applicationVe
 return QCoreApplication::applicationVersion();
 }
 
+bool  PythonQtWrapper_QCoreApplication::static_QCoreApplication_closingDown()
+{
+return QCoreApplication::closingDown();
+}
+
+void PythonQtWrapper_QCoreApplication::static_QCoreApplication_postEvent(QObject*  receiver, QEvent*  event, int  priority)
+{
+QCoreApplication::postEvent(receiver, event, priority);
+}
+
+void PythonQtWrapper_QCoreApplication::static_QCoreApplication_postEvent(QObject*  receiver, QEvent*  event)
+{
+QCoreApplication::postEvent(receiver, event);
+}
+
+void PythonQtWrapper_QCoreApplication::static_QCoreApplication_removePostedEvents(QObject*  receiver)
+{
+QCoreApplication::removePostedEvents(receiver);
+}
+
+void PythonQtWrapper_QCoreApplication::static_QCoreApplication_flush()
+{
+QCoreApplication::flush();
+}
+
+void PythonQtWrapper_QCoreApplication::static_QCoreApplication_removePostedEvents(QObject*  receiver, int  eventType)
+{
+QCoreApplication::removePostedEvents(receiver, eventType);
+}
+
 void PythonQtWrapper_QCoreApplication::static_QCoreApplication_installTranslator(QTranslator*  messageFile)
 {
 QCoreApplication::installTranslator(messageFile);
+}
+
+qint64  PythonQtWrapper_QCoreApplication::static_QCoreApplication_applicationPid()
+{
+return QCoreApplication::applicationPid();
+}
+
+void PythonQtWrapper_QCoreApplication::static_QCoreApplication_removeLibraryPath(const QString&  arg__1)
+{
+QCoreApplication::removeLibraryPath(arg__1);
+}
+
+bool  PythonQtWrapper_QCoreApplication::static_QCoreApplication_sendEvent(QObject*  receiver, QEvent*  event)
+{
+return QCoreApplication::sendEvent(receiver, event);
+}
+
+void PythonQtWrapper_QCoreApplication::static_QCoreApplication_setAttribute(Qt::ApplicationAttribute  attribute, bool  on)
+{
+QCoreApplication::setAttribute(attribute, on);
+}
+
+QString  PythonQtWrapper_QCoreApplication::static_QCoreApplication_organizationName()
+{
+return QCoreApplication::organizationName();
+}
+
+bool  PythonQtWrapper_QCoreApplication::static_QCoreApplication_hasPendingEvents()
+{
+return QCoreApplication::hasPendingEvents();
+}
+
+bool  PythonQtWrapper_QCoreApplication::event(QCoreApplication* theWrappedObject, QEvent*  arg__1)
+{
+return  ((PythonQtPublicPromoter_QCoreApplication*)theWrappedObject)->promoted_event(arg__1);
+}
+
+void PythonQtWrapper_QCoreApplication::static_QCoreApplication_sendPostedEvents()
+{
+QCoreApplication::sendPostedEvents();
+}
+
+void PythonQtWrapper_QCoreApplication::static_QCoreApplication_setOrganizationName(const QString&  orgName)
+{
+QCoreApplication::setOrganizationName(orgName);
+}
+
+QString  PythonQtWrapper_QCoreApplication::static_QCoreApplication_applicationDirPath()
+{
+return QCoreApplication::applicationDirPath();
+}
+
+QString  PythonQtWrapper_QCoreApplication::static_QCoreApplication_organizationDomain()
+{
+return QCoreApplication::organizationDomain();
+}
+
+bool  PythonQtWrapper_QCoreApplication::static_QCoreApplication_startingUp()
+{
+return QCoreApplication::startingUp();
+}
+
+bool  PythonQtWrapper_QCoreApplication::static_QCoreApplication_testAttribute(Qt::ApplicationAttribute  attribute)
+{
+return QCoreApplication::testAttribute(attribute);
+}
+
+QString  PythonQtWrapper_QCoreApplication::static_QCoreApplication_translate(const char*  context, const char*  key, const char*  comment, QCoreApplication::Encoding  encoding, int  n)
+{
+return QCoreApplication::translate(context, key, comment, encoding, n);
+}
+
+void PythonQtWrapper_QCoreApplication::static_QCoreApplication_processEvents(QEventLoop::ProcessEventsFlags  flags)
+{
+QCoreApplication::processEvents(flags);
+}
+
+int  PythonQtWrapper_QCoreApplication::static_QCoreApplication_exec()
+{
+return QCoreApplication::exec();
+}
+
+void PythonQtWrapper_QCoreApplication::static_QCoreApplication_setOrganizationDomain(const QString&  orgDomain)
+{
+QCoreApplication::setOrganizationDomain(orgDomain);
+}
+
+void PythonQtWrapper_QCoreApplication::static_QCoreApplication_setLibraryPaths(const QStringList&  arg__1)
+{
+QCoreApplication::setLibraryPaths(arg__1);
 }
 

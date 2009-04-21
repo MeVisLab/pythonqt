@@ -123,68 +123,68 @@ QShortcut* PythonQtWrapper_QShortcut::new_QShortcut(const QKeySequence&  key, QW
 { 
 return new PythonQtShell_QShortcut(key, parent, member, ambiguousMember, context); }
 
-QWidget*  PythonQtWrapper_QShortcut::parentWidget(QShortcut* theWrappedObject) const
-{
-return  (*theWrappedObject).parentWidget();
-}
-
-bool  PythonQtWrapper_QShortcut::event(QShortcut* theWrappedObject, QEvent*  e)
-{
-return  (*((PythonQtPublicPromoter_QShortcut*)theWrappedObject)).event(e);
-}
-
 bool  PythonQtWrapper_QShortcut::autoRepeat(QShortcut* theWrappedObject) const
 {
-return  (*theWrappedObject).autoRepeat();
+return  theWrappedObject->autoRepeat();
 }
 
-void PythonQtWrapper_QShortcut::setContext(QShortcut* theWrappedObject, Qt::ShortcutContext  context)
+QWidget*  PythonQtWrapper_QShortcut::parentWidget(QShortcut* theWrappedObject) const
 {
- (*theWrappedObject).setContext(context);
-}
-
-void PythonQtWrapper_QShortcut::setKey(QShortcut* theWrappedObject, const QKeySequence&  key)
-{
- (*theWrappedObject).setKey(key);
-}
-
-bool  PythonQtWrapper_QShortcut::isEnabled(QShortcut* theWrappedObject) const
-{
-return  (*theWrappedObject).isEnabled();
+return  theWrappedObject->parentWidget();
 }
 
 void PythonQtWrapper_QShortcut::setAutoRepeat(QShortcut* theWrappedObject, bool  on)
 {
- (*theWrappedObject).setAutoRepeat(on);
-}
-
-int  PythonQtWrapper_QShortcut::id(QShortcut* theWrappedObject) const
-{
-return  (*theWrappedObject).id();
+ theWrappedObject->setAutoRepeat(on);
 }
 
 QKeySequence  PythonQtWrapper_QShortcut::key(QShortcut* theWrappedObject) const
 {
-return  (*theWrappedObject).key();
+return  theWrappedObject->key();
 }
 
-QString  PythonQtWrapper_QShortcut::whatsThis(QShortcut* theWrappedObject) const
+void PythonQtWrapper_QShortcut::setKey(QShortcut* theWrappedObject, const QKeySequence&  key)
 {
-return  (*theWrappedObject).whatsThis();
+ theWrappedObject->setKey(key);
 }
 
-void PythonQtWrapper_QShortcut::setWhatsThis(QShortcut* theWrappedObject, const QString&  text)
+bool  PythonQtWrapper_QShortcut::isEnabled(QShortcut* theWrappedObject) const
 {
- (*theWrappedObject).setWhatsThis(text);
+return  theWrappedObject->isEnabled();
 }
 
-Qt::ShortcutContext  PythonQtWrapper_QShortcut::context(QShortcut* theWrappedObject)
+void PythonQtWrapper_QShortcut::setContext(QShortcut* theWrappedObject, Qt::ShortcutContext  context)
 {
-return  (*theWrappedObject).context();
+ theWrappedObject->setContext(context);
 }
 
 void PythonQtWrapper_QShortcut::setEnabled(QShortcut* theWrappedObject, bool  enable)
 {
- (*theWrappedObject).setEnabled(enable);
+ theWrappedObject->setEnabled(enable);
+}
+
+void PythonQtWrapper_QShortcut::setWhatsThis(QShortcut* theWrappedObject, const QString&  text)
+{
+ theWrappedObject->setWhatsThis(text);
+}
+
+QString  PythonQtWrapper_QShortcut::whatsThis(QShortcut* theWrappedObject) const
+{
+return  theWrappedObject->whatsThis();
+}
+
+bool  PythonQtWrapper_QShortcut::event(QShortcut* theWrappedObject, QEvent*  e)
+{
+return  ((PythonQtPublicPromoter_QShortcut*)theWrappedObject)->promoted_event(e);
+}
+
+Qt::ShortcutContext  PythonQtWrapper_QShortcut::context(QShortcut* theWrappedObject)
+{
+return  theWrappedObject->context();
+}
+
+int  PythonQtWrapper_QShortcut::id(QShortcut* theWrappedObject) const
+{
+return  theWrappedObject->id();
 }
 

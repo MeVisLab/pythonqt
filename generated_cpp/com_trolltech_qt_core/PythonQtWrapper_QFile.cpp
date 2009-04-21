@@ -548,29 +548,24 @@ QFile* PythonQtWrapper_QFile::new_QFile(const QString&  name, QObject*  parent)
 { 
 return new PythonQtShell_QFile(name, parent); }
 
+bool  PythonQtWrapper_QFile::static_QFile_link(const QString&  oldname, const QString&  newName)
+{
+return QFile::link(oldname, newName);
+}
+
+bool  PythonQtWrapper_QFile::resize(QFile* theWrappedObject, qint64  sz)
+{
+return  theWrappedObject->resize(sz);
+}
+
 bool  PythonQtWrapper_QFile::setPermissions(QFile* theWrappedObject, QFile::Permissions  permissionSpec)
 {
-return  (*theWrappedObject).setPermissions(permissionSpec);
+return  theWrappedObject->setPermissions(permissionSpec);
 }
 
-QFile::FileError  PythonQtWrapper_QFile::error(QFile* theWrappedObject) const
+QString  PythonQtWrapper_QFile::fileName(QFile* theWrappedObject) const
 {
-return  (*theWrappedObject).error();
-}
-
-bool  PythonQtWrapper_QFile::rename(QFile* theWrappedObject, const QString&  newName)
-{
-return  (*theWrappedObject).rename(newName);
-}
-
-void PythonQtWrapper_QFile::setFileName(QFile* theWrappedObject, const QString&  name)
-{
- (*theWrappedObject).setFileName(name);
-}
-
-qint64  PythonQtWrapper_QFile::pos(QFile* theWrappedObject) const
-{
-return  (*theWrappedObject).pos();
+return  theWrappedObject->fileName();
 }
 
 bool  PythonQtWrapper_QFile::static_QFile_rename(const QString&  oldName, const QString&  newName)
@@ -578,69 +573,19 @@ bool  PythonQtWrapper_QFile::static_QFile_rename(const QString&  oldName, const 
 return QFile::rename(oldName, newName);
 }
 
-QString  PythonQtWrapper_QFile::symLinkTarget(QFile* theWrappedObject) const
+bool  PythonQtWrapper_QFile::static_QFile_resize(const QString&  filename, qint64  sz)
 {
-return  (*theWrappedObject).symLinkTarget();
+return QFile::resize(filename, sz);
 }
 
-bool  PythonQtWrapper_QFile::static_QFile_exists(const QString&  fileName)
+qint64  PythonQtWrapper_QFile::readLineData(QFile* theWrappedObject, char*  data, qint64  maxlen)
 {
-return QFile::exists(fileName);
+return  ((PythonQtPublicPromoter_QFile*)theWrappedObject)->promoted_readLineData(data, maxlen);
 }
 
-qint64  PythonQtWrapper_QFile::writeData(QFile* theWrappedObject, const char*  data, qint64  len)
+void PythonQtWrapper_QFile::unsetError(QFile* theWrappedObject)
 {
-return  (*((PythonQtPublicPromoter_QFile*)theWrappedObject)).writeData(data, len);
-}
-
-bool  PythonQtWrapper_QFile::atEnd(QFile* theWrappedObject) const
-{
-return  (*theWrappedObject).atEnd();
-}
-
-QAbstractFileEngine*  PythonQtWrapper_QFile::fileEngine(QFile* theWrappedObject) const
-{
-return  (*theWrappedObject).fileEngine();
-}
-
-QString  PythonQtWrapper_QFile::fileName(QFile* theWrappedObject) const
-{
-return  (*theWrappedObject).fileName();
-}
-
-bool  PythonQtWrapper_QFile::open(QFile* theWrappedObject, QIODevice::OpenMode  flags)
-{
-return  (*theWrappedObject).open(flags);
-}
-
-qint64  PythonQtWrapper_QFile::readData(QFile* theWrappedObject, char*  data, qint64  maxlen)
-{
-return  (*((PythonQtPublicPromoter_QFile*)theWrappedObject)).readData(data, maxlen);
-}
-
-bool  PythonQtWrapper_QFile::exists(QFile* theWrappedObject) const
-{
-return  (*theWrappedObject).exists();
-}
-
-bool  PythonQtWrapper_QFile::flush(QFile* theWrappedObject)
-{
-return  (*theWrappedObject).flush();
-}
-
-bool  PythonQtWrapper_QFile::static_QFile_remove(const QString&  fileName)
-{
-return QFile::remove(fileName);
-}
-
-bool  PythonQtWrapper_QFile::resize(QFile* theWrappedObject, qint64  sz)
-{
-return  (*theWrappedObject).resize(sz);
-}
-
-int  PythonQtWrapper_QFile::handle(QFile* theWrappedObject) const
-{
-return  (*theWrappedObject).handle();
+ theWrappedObject->unsetError();
 }
 
 QString  PythonQtWrapper_QFile::static_QFile_decodeName(const QByteArray&  localFileName)
@@ -648,34 +593,19 @@ QString  PythonQtWrapper_QFile::static_QFile_decodeName(const QByteArray&  local
 return QFile::decodeName(localFileName);
 }
 
-qint64  PythonQtWrapper_QFile::readLineData(QFile* theWrappedObject, char*  data, qint64  maxlen)
+bool  PythonQtWrapper_QFile::isSequential(QFile* theWrappedObject) const
 {
-return  (*((PythonQtPublicPromoter_QFile*)theWrappedObject)).readLineData(data, maxlen);
+return  ((PythonQtPublicPromoter_QFile*)theWrappedObject)->promoted_isSequential();
 }
 
-bool  PythonQtWrapper_QFile::remove(QFile* theWrappedObject)
+int  PythonQtWrapper_QFile::handle(QFile* theWrappedObject) const
 {
-return  (*theWrappedObject).remove();
-}
-
-bool  PythonQtWrapper_QFile::copy(QFile* theWrappedObject, const QString&  newName)
-{
-return  (*theWrappedObject).copy(newName);
-}
-
-qint64  PythonQtWrapper_QFile::size(QFile* theWrappedObject) const
-{
-return  (*theWrappedObject).size();
-}
-
-bool  PythonQtWrapper_QFile::link(QFile* theWrappedObject, const QString&  newName)
-{
-return  (*theWrappedObject).link(newName);
+return  theWrappedObject->handle();
 }
 
 bool  PythonQtWrapper_QFile::seek(QFile* theWrappedObject, qint64  offset)
 {
-return  (*theWrappedObject).seek(offset);
+return  ((PythonQtPublicPromoter_QFile*)theWrappedObject)->promoted_seek(offset);
 }
 
 QFile::Permissions  PythonQtWrapper_QFile::static_QFile_permissions(const QString&  filename)
@@ -683,24 +613,14 @@ QFile::Permissions  PythonQtWrapper_QFile::static_QFile_permissions(const QStrin
 return QFile::permissions(filename);
 }
 
-void PythonQtWrapper_QFile::unsetError(QFile* theWrappedObject)
+QByteArray  PythonQtWrapper_QFile::static_QFile_encodeName(const QString&  fileName)
 {
- (*theWrappedObject).unsetError();
+return QFile::encodeName(fileName);
 }
 
-bool  PythonQtWrapper_QFile::static_QFile_link(const QString&  oldname, const QString&  newName)
+void PythonQtWrapper_QFile::close(QFile* theWrappedObject)
 {
-return QFile::link(oldname, newName);
-}
-
-bool  PythonQtWrapper_QFile::static_QFile_resize(const QString&  filename, qint64  sz)
-{
-return QFile::resize(filename, sz);
-}
-
-QFile::Permissions  PythonQtWrapper_QFile::permissions(QFile* theWrappedObject) const
-{
-return  (*theWrappedObject).permissions();
+ ((PythonQtPublicPromoter_QFile*)theWrappedObject)->promoted_close();
 }
 
 QString  PythonQtWrapper_QFile::static_QFile_symLinkTarget(const QString&  fileName)
@@ -708,9 +628,24 @@ QString  PythonQtWrapper_QFile::static_QFile_symLinkTarget(const QString&  fileN
 return QFile::symLinkTarget(fileName);
 }
 
-bool  PythonQtWrapper_QFile::static_QFile_copy(const QString&  fileName, const QString&  newName)
+bool  PythonQtWrapper_QFile::copy(QFile* theWrappedObject, const QString&  newName)
 {
-return QFile::copy(fileName, newName);
+return  theWrappedObject->copy(newName);
+}
+
+QFile::Permissions  PythonQtWrapper_QFile::permissions(QFile* theWrappedObject) const
+{
+return  theWrappedObject->permissions();
+}
+
+bool  PythonQtWrapper_QFile::atEnd(QFile* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QFile*)theWrappedObject)->promoted_atEnd();
+}
+
+void PythonQtWrapper_QFile::setFileName(QFile* theWrappedObject, const QString&  name)
+{
+ theWrappedObject->setFileName(name);
 }
 
 bool  PythonQtWrapper_QFile::static_QFile_setPermissions(const QString&  filename, QFile::Permissions  permissionSpec)
@@ -718,18 +653,83 @@ bool  PythonQtWrapper_QFile::static_QFile_setPermissions(const QString&  filenam
 return QFile::setPermissions(filename, permissionSpec);
 }
 
-bool  PythonQtWrapper_QFile::isSequential(QFile* theWrappedObject) const
+qint64  PythonQtWrapper_QFile::size(QFile* theWrappedObject) const
 {
-return  (*theWrappedObject).isSequential();
+return  ((PythonQtPublicPromoter_QFile*)theWrappedObject)->promoted_size();
 }
 
-void PythonQtWrapper_QFile::close(QFile* theWrappedObject)
+QFile::FileError  PythonQtWrapper_QFile::error(QFile* theWrappedObject) const
 {
- (*theWrappedObject).close();
+return  theWrappedObject->error();
 }
 
-QByteArray  PythonQtWrapper_QFile::static_QFile_encodeName(const QString&  fileName)
+QAbstractFileEngine*  PythonQtWrapper_QFile::fileEngine(QFile* theWrappedObject) const
 {
-return QFile::encodeName(fileName);
+return  ((PythonQtPublicPromoter_QFile*)theWrappedObject)->promoted_fileEngine();
+}
+
+qint64  PythonQtWrapper_QFile::pos(QFile* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QFile*)theWrappedObject)->promoted_pos();
+}
+
+QString  PythonQtWrapper_QFile::symLinkTarget(QFile* theWrappedObject) const
+{
+return  theWrappedObject->symLinkTarget();
+}
+
+qint64  PythonQtWrapper_QFile::writeData(QFile* theWrappedObject, const char*  data, qint64  len)
+{
+return  ((PythonQtPublicPromoter_QFile*)theWrappedObject)->promoted_writeData(data, len);
+}
+
+qint64  PythonQtWrapper_QFile::readData(QFile* theWrappedObject, char*  data, qint64  maxlen)
+{
+return  ((PythonQtPublicPromoter_QFile*)theWrappedObject)->promoted_readData(data, maxlen);
+}
+
+bool  PythonQtWrapper_QFile::static_QFile_remove(const QString&  fileName)
+{
+return QFile::remove(fileName);
+}
+
+bool  PythonQtWrapper_QFile::static_QFile_copy(const QString&  fileName, const QString&  newName)
+{
+return QFile::copy(fileName, newName);
+}
+
+bool  PythonQtWrapper_QFile::static_QFile_exists(const QString&  fileName)
+{
+return QFile::exists(fileName);
+}
+
+bool  PythonQtWrapper_QFile::flush(QFile* theWrappedObject)
+{
+return  theWrappedObject->flush();
+}
+
+bool  PythonQtWrapper_QFile::link(QFile* theWrappedObject, const QString&  newName)
+{
+return  theWrappedObject->link(newName);
+}
+
+bool  PythonQtWrapper_QFile::rename(QFile* theWrappedObject, const QString&  newName)
+{
+return  theWrappedObject->rename(newName);
+}
+
+bool  PythonQtWrapper_QFile::remove(QFile* theWrappedObject)
+{
+return  theWrappedObject->remove();
+}
+
+bool  PythonQtWrapper_QFile::exists(QFile* theWrappedObject) const
+{
+return  theWrappedObject->exists();
+}
+
+bool  PythonQtWrapper_QFile::open(QFile* theWrappedObject, QIODevice::OpenMode  flags)
+{
+return  ((PythonQtPublicPromoter_QFile*)theWrappedObject)->promoted_open(flags);
 }
 

@@ -758,11 +758,11 @@ return new PythonQtShell_QAbstractTableModel(parent); }
 
 QModelIndex  PythonQtWrapper_QAbstractTableModel::index(QAbstractTableModel* theWrappedObject, int  row, int  column, const QModelIndex&  parent) const
 {
-return  (*theWrappedObject).index(row, column, parent);
+return  ((PythonQtPublicPromoter_QAbstractTableModel*)theWrappedObject)->promoted_index(row, column, parent);
 }
 
 bool  PythonQtWrapper_QAbstractTableModel::dropMimeData(QAbstractTableModel* theWrappedObject, const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent)
 {
-return  (*theWrappedObject).dropMimeData(data, action, row, column, parent);
+return  ((PythonQtPublicPromoter_QAbstractTableModel*)theWrappedObject)->promoted_dropMimeData(data, action, row, column, parent);
 }
 

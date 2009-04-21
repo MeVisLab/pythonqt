@@ -12,11 +12,11 @@ return new PythonQtShell_QHoverEvent(type, pos, oldPos); }
 
 const QPoint&  PythonQtWrapper_QHoverEvent::oldPos(QHoverEvent* theWrappedObject) const
 {
-return  (*theWrappedObject).oldPos();
+return  theWrappedObject->oldPos();
 }
 
 const QPoint&  PythonQtWrapper_QHoverEvent::pos(QHoverEvent* theWrappedObject) const
 {
-return  (*theWrappedObject).pos();
+return  theWrappedObject->pos();
 }
 

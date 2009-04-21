@@ -14,24 +14,9 @@ QXmlStreamEntityDeclaration* PythonQtWrapper_QXmlStreamEntityDeclaration::new_QX
 { 
 return new QXmlStreamEntityDeclaration(arg__1); }
 
-QStringRef  PythonQtWrapper_QXmlStreamEntityDeclaration::value(QXmlStreamEntityDeclaration* theWrappedObject) const
-{
-return  (*theWrappedObject).value();
-}
-
-QStringRef  PythonQtWrapper_QXmlStreamEntityDeclaration::notationName(QXmlStreamEntityDeclaration* theWrappedObject) const
-{
-return  (*theWrappedObject).notationName();
-}
-
-QStringRef  PythonQtWrapper_QXmlStreamEntityDeclaration::name(QXmlStreamEntityDeclaration* theWrappedObject) const
-{
-return  (*theWrappedObject).name();
-}
-
 QStringRef  PythonQtWrapper_QXmlStreamEntityDeclaration::publicId(QXmlStreamEntityDeclaration* theWrappedObject) const
 {
-return  (*theWrappedObject).publicId();
+return  theWrappedObject->publicId();
 }
 
 bool  PythonQtWrapper_QXmlStreamEntityDeclaration::operator_equal(QXmlStreamEntityDeclaration* theWrappedObject, const QXmlStreamEntityDeclaration&  other) const
@@ -39,8 +24,23 @@ bool  PythonQtWrapper_QXmlStreamEntityDeclaration::operator_equal(QXmlStreamEnti
 return  (*theWrappedObject)== other;
 }
 
+QStringRef  PythonQtWrapper_QXmlStreamEntityDeclaration::value(QXmlStreamEntityDeclaration* theWrappedObject) const
+{
+return  theWrappedObject->value();
+}
+
 QStringRef  PythonQtWrapper_QXmlStreamEntityDeclaration::systemId(QXmlStreamEntityDeclaration* theWrappedObject) const
 {
-return  (*theWrappedObject).systemId();
+return  theWrappedObject->systemId();
+}
+
+QStringRef  PythonQtWrapper_QXmlStreamEntityDeclaration::notationName(QXmlStreamEntityDeclaration* theWrappedObject) const
+{
+return  theWrappedObject->notationName();
+}
+
+QStringRef  PythonQtWrapper_QXmlStreamEntityDeclaration::name(QXmlStreamEntityDeclaration* theWrappedObject) const
+{
+return  theWrappedObject->name();
 }
 

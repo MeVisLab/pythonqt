@@ -867,28 +867,28 @@ QRadioButton* PythonQtWrapper_QRadioButton::new_QRadioButton(const QString&  tex
 { 
 return new PythonQtShell_QRadioButton(text, parent); }
 
-bool  PythonQtWrapper_QRadioButton::hitButton(QRadioButton* theWrappedObject, const QPoint&  arg__1) const
-{
-return  (*((PythonQtPublicPromoter_QRadioButton*)theWrappedObject)).hitButton(arg__1);
-}
-
-QSize  PythonQtWrapper_QRadioButton::sizeHint(QRadioButton* theWrappedObject) const
-{
-return  (*theWrappedObject).sizeHint();
-}
-
 bool  PythonQtWrapper_QRadioButton::event(QRadioButton* theWrappedObject, QEvent*  e)
 {
-return  (*((PythonQtPublicPromoter_QRadioButton*)theWrappedObject)).event(e);
+return  ((PythonQtPublicPromoter_QRadioButton*)theWrappedObject)->promoted_event(e);
 }
 
 void PythonQtWrapper_QRadioButton::mouseMoveEvent(QRadioButton* theWrappedObject, QMouseEvent*  arg__1)
 {
- (*((PythonQtPublicPromoter_QRadioButton*)theWrappedObject)).mouseMoveEvent(arg__1);
+ ((PythonQtPublicPromoter_QRadioButton*)theWrappedObject)->promoted_mouseMoveEvent(arg__1);
 }
 
 void PythonQtWrapper_QRadioButton::paintEvent(QRadioButton* theWrappedObject, QPaintEvent*  arg__1)
 {
- (*((PythonQtPublicPromoter_QRadioButton*)theWrappedObject)).paintEvent(arg__1);
+ ((PythonQtPublicPromoter_QRadioButton*)theWrappedObject)->promoted_paintEvent(arg__1);
+}
+
+bool  PythonQtWrapper_QRadioButton::hitButton(QRadioButton* theWrappedObject, const QPoint&  arg__1) const
+{
+return  ((PythonQtPublicPromoter_QRadioButton*)theWrappedObject)->promoted_hitButton(arg__1);
+}
+
+QSize  PythonQtWrapper_QRadioButton::sizeHint(QRadioButton* theWrappedObject) const
+{
+return  theWrappedObject->sizeHint();
 }
 

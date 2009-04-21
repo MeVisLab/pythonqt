@@ -15,8 +15,8 @@ public slots:
 QAccessibleEvent* new_QAccessibleEvent(QEvent::Type  type, int  child);
 void delete_QAccessibleEvent(QAccessibleEvent* obj) { delete obj; } 
    int  child(QAccessibleEvent* theWrappedObject) const;
-   QString  value(QAccessibleEvent* theWrappedObject) const;
    void setValue(QAccessibleEvent* theWrappedObject, const QString&  aText);
+   QString  value(QAccessibleEvent* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QACCESSIBLEEVENT_H

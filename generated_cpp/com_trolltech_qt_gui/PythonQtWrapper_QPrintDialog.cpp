@@ -857,6 +857,6 @@ return new PythonQtShell_QPrintDialog(printer, parent); }
 
 int  PythonQtWrapper_QPrintDialog::exec(QPrintDialog* theWrappedObject)
 {
-return  (*theWrappedObject).exec();
+return  ((PythonQtPublicPromoter_QPrintDialog*)theWrappedObject)->promoted_exec();
 }
 

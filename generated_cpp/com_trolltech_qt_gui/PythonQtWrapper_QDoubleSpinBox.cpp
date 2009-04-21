@@ -931,98 +931,98 @@ QDoubleSpinBox* PythonQtWrapper_QDoubleSpinBox::new_QDoubleSpinBox(QWidget*  par
 { 
 return new PythonQtShell_QDoubleSpinBox(parent); }
 
-double  PythonQtWrapper_QDoubleSpinBox::singleStep(QDoubleSpinBox* theWrappedObject) const
-{
-return  (*theWrappedObject).singleStep();
-}
-
-double  PythonQtWrapper_QDoubleSpinBox::minimum(QDoubleSpinBox* theWrappedObject) const
-{
-return  (*theWrappedObject).minimum();
-}
-
-QString  PythonQtWrapper_QDoubleSpinBox::suffix(QDoubleSpinBox* theWrappedObject) const
-{
-return  (*theWrappedObject).suffix();
-}
-
-int  PythonQtWrapper_QDoubleSpinBox::decimals(QDoubleSpinBox* theWrappedObject) const
-{
-return  (*theWrappedObject).decimals();
-}
-
-void PythonQtWrapper_QDoubleSpinBox::fixup(QDoubleSpinBox* theWrappedObject, QString&  str) const
-{
- (*theWrappedObject).fixup(str);
-}
-
-void PythonQtWrapper_QDoubleSpinBox::setSingleStep(QDoubleSpinBox* theWrappedObject, double  val)
-{
- (*theWrappedObject).setSingleStep(val);
-}
-
-void PythonQtWrapper_QDoubleSpinBox::setMinimum(QDoubleSpinBox* theWrappedObject, double  min)
-{
- (*theWrappedObject).setMinimum(min);
-}
-
-QString  PythonQtWrapper_QDoubleSpinBox::textFromValue(QDoubleSpinBox* theWrappedObject, double  val) const
-{
-return  (*theWrappedObject).textFromValue(val);
-}
-
-QString  PythonQtWrapper_QDoubleSpinBox::cleanText(QDoubleSpinBox* theWrappedObject) const
-{
-return  (*theWrappedObject).cleanText();
-}
-
-QString  PythonQtWrapper_QDoubleSpinBox::prefix(QDoubleSpinBox* theWrappedObject) const
-{
-return  (*theWrappedObject).prefix();
-}
-
-double  PythonQtWrapper_QDoubleSpinBox::maximum(QDoubleSpinBox* theWrappedObject) const
-{
-return  (*theWrappedObject).maximum();
-}
-
-void PythonQtWrapper_QDoubleSpinBox::setRange(QDoubleSpinBox* theWrappedObject, double  min, double  max)
-{
- (*theWrappedObject).setRange(min, max);
-}
-
-void PythonQtWrapper_QDoubleSpinBox::setMaximum(QDoubleSpinBox* theWrappedObject, double  max)
-{
- (*theWrappedObject).setMaximum(max);
-}
-
-void PythonQtWrapper_QDoubleSpinBox::setDecimals(QDoubleSpinBox* theWrappedObject, int  prec)
-{
- (*theWrappedObject).setDecimals(prec);
-}
-
 void PythonQtWrapper_QDoubleSpinBox::setPrefix(QDoubleSpinBox* theWrappedObject, const QString&  prefix)
 {
- (*theWrappedObject).setPrefix(prefix);
+ theWrappedObject->setPrefix(prefix);
 }
 
 void PythonQtWrapper_QDoubleSpinBox::setSuffix(QDoubleSpinBox* theWrappedObject, const QString&  suffix)
 {
- (*theWrappedObject).setSuffix(suffix);
+ theWrappedObject->setSuffix(suffix);
 }
 
 QValidator::State  PythonQtWrapper_QDoubleSpinBox::validate(QDoubleSpinBox* theWrappedObject, QString&  input, int&  pos) const
 {
-return  (*theWrappedObject).validate(input, pos);
+return  ((PythonQtPublicPromoter_QDoubleSpinBox*)theWrappedObject)->promoted_validate(input, pos);
 }
 
 double  PythonQtWrapper_QDoubleSpinBox::valueFromText(QDoubleSpinBox* theWrappedObject, const QString&  text) const
 {
-return  (*theWrappedObject).valueFromText(text);
+return  ((PythonQtPublicPromoter_QDoubleSpinBox*)theWrappedObject)->promoted_valueFromText(text);
 }
 
 double  PythonQtWrapper_QDoubleSpinBox::value(QDoubleSpinBox* theWrappedObject) const
 {
-return  (*theWrappedObject).value();
+return  theWrappedObject->value();
+}
+
+double  PythonQtWrapper_QDoubleSpinBox::singleStep(QDoubleSpinBox* theWrappedObject) const
+{
+return  theWrappedObject->singleStep();
+}
+
+double  PythonQtWrapper_QDoubleSpinBox::minimum(QDoubleSpinBox* theWrappedObject) const
+{
+return  theWrappedObject->minimum();
+}
+
+QString  PythonQtWrapper_QDoubleSpinBox::suffix(QDoubleSpinBox* theWrappedObject) const
+{
+return  theWrappedObject->suffix();
+}
+
+int  PythonQtWrapper_QDoubleSpinBox::decimals(QDoubleSpinBox* theWrappedObject) const
+{
+return  theWrappedObject->decimals();
+}
+
+void PythonQtWrapper_QDoubleSpinBox::fixup(QDoubleSpinBox* theWrappedObject, QString&  str) const
+{
+ ((PythonQtPublicPromoter_QDoubleSpinBox*)theWrappedObject)->promoted_fixup(str);
+}
+
+void PythonQtWrapper_QDoubleSpinBox::setSingleStep(QDoubleSpinBox* theWrappedObject, double  val)
+{
+ theWrappedObject->setSingleStep(val);
+}
+
+void PythonQtWrapper_QDoubleSpinBox::setMinimum(QDoubleSpinBox* theWrappedObject, double  min)
+{
+ theWrappedObject->setMinimum(min);
+}
+
+QString  PythonQtWrapper_QDoubleSpinBox::textFromValue(QDoubleSpinBox* theWrappedObject, double  val) const
+{
+return  ((PythonQtPublicPromoter_QDoubleSpinBox*)theWrappedObject)->promoted_textFromValue(val);
+}
+
+QString  PythonQtWrapper_QDoubleSpinBox::cleanText(QDoubleSpinBox* theWrappedObject) const
+{
+return  theWrappedObject->cleanText();
+}
+
+QString  PythonQtWrapper_QDoubleSpinBox::prefix(QDoubleSpinBox* theWrappedObject) const
+{
+return  theWrappedObject->prefix();
+}
+
+double  PythonQtWrapper_QDoubleSpinBox::maximum(QDoubleSpinBox* theWrappedObject) const
+{
+return  theWrappedObject->maximum();
+}
+
+void PythonQtWrapper_QDoubleSpinBox::setRange(QDoubleSpinBox* theWrappedObject, double  min, double  max)
+{
+ theWrappedObject->setRange(min, max);
+}
+
+void PythonQtWrapper_QDoubleSpinBox::setMaximum(QDoubleSpinBox* theWrappedObject, double  max)
+{
+ theWrappedObject->setMaximum(max);
+}
+
+void PythonQtWrapper_QDoubleSpinBox::setDecimals(QDoubleSpinBox* theWrappedObject, int  prec)
+{
+ theWrappedObject->setDecimals(prec);
 }
 

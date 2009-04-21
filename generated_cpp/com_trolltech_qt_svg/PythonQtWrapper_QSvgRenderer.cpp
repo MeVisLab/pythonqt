@@ -133,78 +133,78 @@ QSvgRenderer* PythonQtWrapper_QSvgRenderer::new_QSvgRenderer(const QString&  fil
 { 
 return new PythonQtShell_QSvgRenderer(filename, parent); }
 
-bool  PythonQtWrapper_QSvgRenderer::animated(QSvgRenderer* theWrappedObject) const
-{
-return  (*theWrappedObject).animated();
-}
-
-QSize  PythonQtWrapper_QSvgRenderer::defaultSize(QSvgRenderer* theWrappedObject) const
-{
-return  (*theWrappedObject).defaultSize();
-}
-
-void PythonQtWrapper_QSvgRenderer::setFramesPerSecond(QSvgRenderer* theWrappedObject, int  num)
-{
- (*theWrappedObject).setFramesPerSecond(num);
-}
-
-bool  PythonQtWrapper_QSvgRenderer::elementExists(QSvgRenderer* theWrappedObject, const QString&  id) const
-{
-return  (*theWrappedObject).elementExists(id);
-}
-
-QRectF  PythonQtWrapper_QSvgRenderer::boundsOnElement(QSvgRenderer* theWrappedObject, const QString&  id) const
-{
-return  (*theWrappedObject).boundsOnElement(id);
-}
-
-bool  PythonQtWrapper_QSvgRenderer::isValid(QSvgRenderer* theWrappedObject) const
-{
-return  (*theWrappedObject).isValid();
-}
-
-QMatrix  PythonQtWrapper_QSvgRenderer::matrixForElement(QSvgRenderer* theWrappedObject, const QString&  id) const
-{
-return  (*theWrappedObject).matrixForElement(id);
-}
-
-QRectF  PythonQtWrapper_QSvgRenderer::viewBoxF(QSvgRenderer* theWrappedObject) const
-{
-return  (*theWrappedObject).viewBoxF();
-}
-
-void PythonQtWrapper_QSvgRenderer::setViewBox(QSvgRenderer* theWrappedObject, const QRect&  viewbox)
-{
- (*theWrappedObject).setViewBox(viewbox);
-}
-
 int  PythonQtWrapper_QSvgRenderer::currentFrame(QSvgRenderer* theWrappedObject) const
 {
-return  (*theWrappedObject).currentFrame();
-}
-
-QRect  PythonQtWrapper_QSvgRenderer::viewBox(QSvgRenderer* theWrappedObject) const
-{
-return  (*theWrappedObject).viewBox();
+return  theWrappedObject->currentFrame();
 }
 
 int  PythonQtWrapper_QSvgRenderer::framesPerSecond(QSvgRenderer* theWrappedObject) const
 {
-return  (*theWrappedObject).framesPerSecond();
+return  theWrappedObject->framesPerSecond();
 }
 
 void PythonQtWrapper_QSvgRenderer::setViewBox(QSvgRenderer* theWrappedObject, const QRectF&  viewbox)
 {
- (*theWrappedObject).setViewBox(viewbox);
-}
-
-void PythonQtWrapper_QSvgRenderer::setCurrentFrame(QSvgRenderer* theWrappedObject, int  arg__1)
-{
- (*theWrappedObject).setCurrentFrame(arg__1);
+ theWrappedObject->setViewBox(viewbox);
 }
 
 int  PythonQtWrapper_QSvgRenderer::animationDuration(QSvgRenderer* theWrappedObject) const
 {
-return  (*theWrappedObject).animationDuration();
+return  theWrappedObject->animationDuration();
+}
+
+bool  PythonQtWrapper_QSvgRenderer::animated(QSvgRenderer* theWrappedObject) const
+{
+return  theWrappedObject->animated();
+}
+
+QSize  PythonQtWrapper_QSvgRenderer::defaultSize(QSvgRenderer* theWrappedObject) const
+{
+return  theWrappedObject->defaultSize();
+}
+
+void PythonQtWrapper_QSvgRenderer::setFramesPerSecond(QSvgRenderer* theWrappedObject, int  num)
+{
+ theWrappedObject->setFramesPerSecond(num);
+}
+
+bool  PythonQtWrapper_QSvgRenderer::elementExists(QSvgRenderer* theWrappedObject, const QString&  id) const
+{
+return  theWrappedObject->elementExists(id);
+}
+
+QRectF  PythonQtWrapper_QSvgRenderer::boundsOnElement(QSvgRenderer* theWrappedObject, const QString&  id) const
+{
+return  theWrappedObject->boundsOnElement(id);
+}
+
+bool  PythonQtWrapper_QSvgRenderer::isValid(QSvgRenderer* theWrappedObject) const
+{
+return  theWrappedObject->isValid();
+}
+
+QMatrix  PythonQtWrapper_QSvgRenderer::matrixForElement(QSvgRenderer* theWrappedObject, const QString&  id) const
+{
+return  theWrappedObject->matrixForElement(id);
+}
+
+QRect  PythonQtWrapper_QSvgRenderer::viewBox(QSvgRenderer* theWrappedObject) const
+{
+return  theWrappedObject->viewBox();
+}
+
+QRectF  PythonQtWrapper_QSvgRenderer::viewBoxF(QSvgRenderer* theWrappedObject) const
+{
+return  theWrappedObject->viewBoxF();
+}
+
+void PythonQtWrapper_QSvgRenderer::setViewBox(QSvgRenderer* theWrappedObject, const QRect&  viewbox)
+{
+ theWrappedObject->setViewBox(viewbox);
+}
+
+void PythonQtWrapper_QSvgRenderer::setCurrentFrame(QSvgRenderer* theWrappedObject, int  arg__1)
+{
+ theWrappedObject->setCurrentFrame(arg__1);
 }
 

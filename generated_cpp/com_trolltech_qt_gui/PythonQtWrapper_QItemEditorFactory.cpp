@@ -64,7 +64,7 @@ return new PythonQtShell_QItemEditorFactory(); }
 
 QWidget*  PythonQtWrapper_QItemEditorFactory::createEditor(QItemEditorFactory* theWrappedObject, QVariant::Type  type, QWidget*  parent) const
 {
-return  (*theWrappedObject).createEditor(type, parent);
+return  ((PythonQtPublicPromoter_QItemEditorFactory*)theWrappedObject)->promoted_createEditor(type, parent);
 }
 
 void PythonQtWrapper_QItemEditorFactory::static_QItemEditorFactory_setDefaultFactory(QItemEditorFactory*  factory)
@@ -79,11 +79,11 @@ return QItemEditorFactory::defaultFactory();
 
 void PythonQtWrapper_QItemEditorFactory::registerEditor(QItemEditorFactory* theWrappedObject, QVariant::Type  type, QItemEditorCreatorBase*  creator)
 {
- (*theWrappedObject).registerEditor(type, creator);
+ theWrappedObject->registerEditor(type, creator);
 }
 
 QByteArray  PythonQtWrapper_QItemEditorFactory::valuePropertyName(QItemEditorFactory* theWrappedObject, QVariant::Type  type) const
 {
-return  (*theWrappedObject).valuePropertyName(type);
+return  ((PythonQtPublicPromoter_QItemEditorFactory*)theWrappedObject)->promoted_valuePropertyName(type);
 }
 

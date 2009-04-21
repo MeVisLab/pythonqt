@@ -23,26 +23,26 @@ QLine* a = new QLine();
 *((QLine*)a) = other;
 return a; }
 void delete_QLine(QLine* obj) { delete obj; } 
-   int  dx(QLine* theWrappedObject) const;
-   void setP1(QLine* theWrappedObject, const QPoint&  p1);
-   int  x1(QLine* theWrappedObject) const;
-   void translate(QLine* theWrappedObject, int  dx, int  dy);
-   int  x2(QLine* theWrappedObject) const;
-   bool  operator_equal(QLine* theWrappedObject, const QLine&  d) const;
-   void setPoints(QLine* theWrappedObject, const QPoint&  p1, const QPoint&  p2);
-   void readFrom(QLine* theWrappedObject, QDataStream&  arg__1);
    int  y1(QLine* theWrappedObject) const;
-   QPoint  p2(QLine* theWrappedObject) const;
    void translate(QLine* theWrappedObject, const QPoint&  p);
+   QLine  translated(QLine* theWrappedObject, const QPoint&  p) const;
    void setP2(QLine* theWrappedObject, const QPoint&  p2);
    bool  isNull(QLine* theWrappedObject) const;
-   QLine  translated(QLine* theWrappedObject, const QPoint&  p) const;
-   void setLine(QLine* theWrappedObject, int  x1, int  y1, int  x2, int  y2);
+   void setPoints(QLine* theWrappedObject, const QPoint&  p1, const QPoint&  p2);
    int  dy(QLine* theWrappedObject) const;
-   void writeTo(QLine* theWrappedObject, QDataStream&  arg__1);
-   QPoint  p1(QLine* theWrappedObject) const;
-   QLine  translated(QLine* theWrappedObject, int  dx, int  dy) const;
+   QPoint  p2(QLine* theWrappedObject) const;
    int  y2(QLine* theWrappedObject) const;
+   int  dx(QLine* theWrappedObject) const;
+   void setP1(QLine* theWrappedObject, const QPoint&  p1);
+   QLine  translated(QLine* theWrappedObject, int  dx, int  dy) const;
+   void setLine(QLine* theWrappedObject, int  x1, int  y1, int  x2, int  y2);
+   void writeTo(QLine* theWrappedObject, QDataStream&  arg__1);
+   void translate(QLine* theWrappedObject, int  dx, int  dy);
+   int  x1(QLine* theWrappedObject) const;
+   void readFrom(QLine* theWrappedObject, QDataStream&  arg__1);
+   int  x2(QLine* theWrappedObject) const;
+   QPoint  p1(QLine* theWrappedObject) const;
+   bool  operator_equal(QLine* theWrappedObject, const QLine&  d) const;
 };
 
 #endif // PYTHONQTWRAPPER_QLINE_H

@@ -103,73 +103,73 @@ QGLFramebufferObject* PythonQtWrapper_QGLFramebufferObject::new_QGLFramebufferOb
 { 
 return new PythonQtShell_QGLFramebufferObject(width, height, target); }
 
-unsigned int  PythonQtWrapper_QGLFramebufferObject::handle(QGLFramebufferObject* theWrappedObject) const
+unsigned int  PythonQtWrapper_QGLFramebufferObject::texture(QGLFramebufferObject* theWrappedObject) const
 {
-return  (*theWrappedObject).handle();
-}
-
-bool  PythonQtWrapper_QGLFramebufferObject::bind(QGLFramebufferObject* theWrappedObject)
-{
-return  (*theWrappedObject).bind();
-}
-
-void PythonQtWrapper_QGLFramebufferObject::drawTexture(QGLFramebufferObject* theWrappedObject, const QPointF&  point, unsigned int  textureId, unsigned int  textureTarget)
-{
- (*theWrappedObject).drawTexture(point, textureId, textureTarget);
-}
-
-bool  PythonQtWrapper_QGLFramebufferObject::release(QGLFramebufferObject* theWrappedObject)
-{
-return  (*theWrappedObject).release();
+return  theWrappedObject->texture();
 }
 
 int  PythonQtWrapper_QGLFramebufferObject::devType(QGLFramebufferObject* theWrappedObject) const
 {
-return  (*((PythonQtPublicPromoter_QGLFramebufferObject*)theWrappedObject)).devType();
+return  ((PythonQtPublicPromoter_QGLFramebufferObject*)theWrappedObject)->promoted_devType();
+}
+
+bool  PythonQtWrapper_QGLFramebufferObject::bind(QGLFramebufferObject* theWrappedObject)
+{
+return  theWrappedObject->bind();
+}
+
+void PythonQtWrapper_QGLFramebufferObject::drawTexture(QGLFramebufferObject* theWrappedObject, const QPointF&  point, unsigned int  textureId, unsigned int  textureTarget)
+{
+ theWrappedObject->drawTexture(point, textureId, textureTarget);
+}
+
+bool  PythonQtWrapper_QGLFramebufferObject::release(QGLFramebufferObject* theWrappedObject)
+{
+return  theWrappedObject->release();
 }
 
 bool  PythonQtWrapper_QGLFramebufferObject::isValid(QGLFramebufferObject* theWrappedObject) const
 {
-return  (*theWrappedObject).isValid();
+return  theWrappedObject->isValid();
+}
+
+QSize  PythonQtWrapper_QGLFramebufferObject::size(QGLFramebufferObject* theWrappedObject) const
+{
+return  theWrappedObject->size();
 }
 
 QImage  PythonQtWrapper_QGLFramebufferObject::toImage(QGLFramebufferObject* theWrappedObject) const
 {
-return  (*theWrappedObject).toImage();
+return  theWrappedObject->toImage();
 }
 
 int  PythonQtWrapper_QGLFramebufferObject::metric(QGLFramebufferObject* theWrappedObject, QPaintDevice::PaintDeviceMetric  metric) const
 {
-return  (*((PythonQtPublicPromoter_QGLFramebufferObject*)theWrappedObject)).metric(metric);
+return  ((PythonQtPublicPromoter_QGLFramebufferObject*)theWrappedObject)->promoted_metric(metric);
 }
 
 QPaintEngine*  PythonQtWrapper_QGLFramebufferObject::paintEngine(QGLFramebufferObject* theWrappedObject) const
 {
-return  (*theWrappedObject).paintEngine();
+return  ((PythonQtPublicPromoter_QGLFramebufferObject*)theWrappedObject)->promoted_paintEngine();
 }
 
 QGLFramebufferObject::Attachment  PythonQtWrapper_QGLFramebufferObject::attachment(QGLFramebufferObject* theWrappedObject) const
 {
-return  (*theWrappedObject).attachment();
+return  theWrappedObject->attachment();
 }
 
 void PythonQtWrapper_QGLFramebufferObject::drawTexture(QGLFramebufferObject* theWrappedObject, const QRectF&  target, unsigned int  textureId, unsigned int  textureTarget)
 {
- (*theWrappedObject).drawTexture(target, textureId, textureTarget);
+ theWrappedObject->drawTexture(target, textureId, textureTarget);
+}
+
+unsigned int  PythonQtWrapper_QGLFramebufferObject::handle(QGLFramebufferObject* theWrappedObject) const
+{
+return  theWrappedObject->handle();
 }
 
 bool  PythonQtWrapper_QGLFramebufferObject::static_QGLFramebufferObject_hasOpenGLFramebufferObjects()
 {
 return QGLFramebufferObject::hasOpenGLFramebufferObjects();
-}
-
-QSize  PythonQtWrapper_QGLFramebufferObject::size(QGLFramebufferObject* theWrappedObject) const
-{
-return  (*theWrappedObject).size();
-}
-
-unsigned int  PythonQtWrapper_QGLFramebufferObject::texture(QGLFramebufferObject* theWrappedObject) const
-{
-return  (*theWrappedObject).texture();
 }
 

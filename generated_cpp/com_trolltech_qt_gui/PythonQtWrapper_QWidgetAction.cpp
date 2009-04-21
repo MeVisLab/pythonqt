@@ -167,43 +167,43 @@ QWidgetAction* PythonQtWrapper_QWidgetAction::new_QWidgetAction(QObject*  parent
 { 
 return new PythonQtShell_QWidgetAction(parent); }
 
-void PythonQtWrapper_QWidgetAction::releaseWidget(QWidgetAction* theWrappedObject, QWidget*  widget)
-{
- (*theWrappedObject).releaseWidget(widget);
-}
-
-void PythonQtWrapper_QWidgetAction::deleteWidget(QWidgetAction* theWrappedObject, QWidget*  widget)
-{
- (*((PythonQtPublicPromoter_QWidgetAction*)theWrappedObject)).deleteWidget(widget);
-}
-
-QWidget*  PythonQtWrapper_QWidgetAction::defaultWidget(QWidgetAction* theWrappedObject) const
-{
-return  (*theWrappedObject).defaultWidget();
-}
-
-QWidget*  PythonQtWrapper_QWidgetAction::createWidget(QWidgetAction* theWrappedObject, QWidget*  parent)
-{
-return  (*((PythonQtPublicPromoter_QWidgetAction*)theWrappedObject)).createWidget(parent);
-}
-
-bool  PythonQtWrapper_QWidgetAction::eventFilter(QWidgetAction* theWrappedObject, QObject*  arg__1, QEvent*  arg__2)
-{
-return  (*((PythonQtPublicPromoter_QWidgetAction*)theWrappedObject)).eventFilter(arg__1, arg__2);
-}
-
 bool  PythonQtWrapper_QWidgetAction::event(QWidgetAction* theWrappedObject, QEvent*  arg__1)
 {
-return  (*((PythonQtPublicPromoter_QWidgetAction*)theWrappedObject)).event(arg__1);
-}
-
-QWidget*  PythonQtWrapper_QWidgetAction::requestWidget(QWidgetAction* theWrappedObject, QWidget*  parent)
-{
-return  (*theWrappedObject).requestWidget(parent);
+return  ((PythonQtPublicPromoter_QWidgetAction*)theWrappedObject)->promoted_event(arg__1);
 }
 
 void PythonQtWrapper_QWidgetAction::setDefaultWidget(QWidgetAction* theWrappedObject, QWidget*  w)
 {
- (*theWrappedObject).setDefaultWidget(w);
+ theWrappedObject->setDefaultWidget(w);
+}
+
+QWidget*  PythonQtWrapper_QWidgetAction::requestWidget(QWidgetAction* theWrappedObject, QWidget*  parent)
+{
+return  theWrappedObject->requestWidget(parent);
+}
+
+void PythonQtWrapper_QWidgetAction::deleteWidget(QWidgetAction* theWrappedObject, QWidget*  widget)
+{
+ ((PythonQtPublicPromoter_QWidgetAction*)theWrappedObject)->promoted_deleteWidget(widget);
+}
+
+void PythonQtWrapper_QWidgetAction::releaseWidget(QWidgetAction* theWrappedObject, QWidget*  widget)
+{
+ theWrappedObject->releaseWidget(widget);
+}
+
+QWidget*  PythonQtWrapper_QWidgetAction::defaultWidget(QWidgetAction* theWrappedObject) const
+{
+return  theWrappedObject->defaultWidget();
+}
+
+QWidget*  PythonQtWrapper_QWidgetAction::createWidget(QWidgetAction* theWrappedObject, QWidget*  parent)
+{
+return  ((PythonQtPublicPromoter_QWidgetAction*)theWrappedObject)->promoted_createWidget(parent);
+}
+
+bool  PythonQtWrapper_QWidgetAction::eventFilter(QWidgetAction* theWrappedObject, QObject*  arg__1, QEvent*  arg__2)
+{
+return  ((PythonQtPublicPromoter_QWidgetAction*)theWrappedObject)->promoted_eventFilter(arg__1, arg__2);
 }
 

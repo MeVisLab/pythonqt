@@ -855,28 +855,28 @@ QPageSetupDialog* PythonQtWrapper_QPageSetupDialog::new_QPageSetupDialog(QPrinte
 { 
 return new PythonQtShell_QPageSetupDialog(printer, parent); }
 
-QPageSetupDialog::PageSetupDialogOptions  PythonQtWrapper_QPageSetupDialog::enabledOptions(QPageSetupDialog* theWrappedObject) const
-{
-return  (*theWrappedObject).enabledOptions();
-}
-
-int  PythonQtWrapper_QPageSetupDialog::exec(QPageSetupDialog* theWrappedObject)
-{
-return  (*theWrappedObject).exec();
-}
-
 void PythonQtWrapper_QPageSetupDialog::addEnabledOption(QPageSetupDialog* theWrappedObject, QPageSetupDialog::PageSetupDialogOption  option)
 {
- (*theWrappedObject).addEnabledOption(option);
+ theWrappedObject->addEnabledOption(option);
 }
 
 bool  PythonQtWrapper_QPageSetupDialog::isOptionEnabled(QPageSetupDialog* theWrappedObject, QPageSetupDialog::PageSetupDialogOption  option) const
 {
-return  (*theWrappedObject).isOptionEnabled(option);
+return  theWrappedObject->isOptionEnabled(option);
+}
+
+int  PythonQtWrapper_QPageSetupDialog::exec(QPageSetupDialog* theWrappedObject)
+{
+return  ((PythonQtPublicPromoter_QPageSetupDialog*)theWrappedObject)->promoted_exec();
+}
+
+QPageSetupDialog::PageSetupDialogOptions  PythonQtWrapper_QPageSetupDialog::enabledOptions(QPageSetupDialog* theWrappedObject) const
+{
+return  theWrappedObject->enabledOptions();
 }
 
 void PythonQtWrapper_QPageSetupDialog::setEnabledOptions(QPageSetupDialog* theWrappedObject, QPageSetupDialog::PageSetupDialogOptions  options)
 {
- (*theWrappedObject).setEnabledOptions(options);
+ theWrappedObject->setEnabledOptions(options);
 }
 

@@ -35,12 +35,12 @@ enum ProcessEventsFlag{
 public slots:
 QEventLoop* new_QEventLoop(QObject*  parent = 0);
 void delete_QEventLoop(QEventLoop* obj) { delete obj; } 
-   bool  processEvents(QEventLoop* theWrappedObject, QEventLoop::ProcessEventsFlags  flags = QEventLoop::AllEvents);
-   void exit(QEventLoop* theWrappedObject, int  returnCode = 0);
    bool  isRunning(QEventLoop* theWrappedObject) const;
-   void wakeUp(QEventLoop* theWrappedObject);
-   int  exec(QEventLoop* theWrappedObject, QEventLoop::ProcessEventsFlags  flags = QEventLoop::AllEvents);
    void processEvents(QEventLoop* theWrappedObject, QEventLoop::ProcessEventsFlags  flags, int  maximumTime);
+   bool  processEvents(QEventLoop* theWrappedObject, QEventLoop::ProcessEventsFlags  flags = QEventLoop::AllEvents);
+   int  exec(QEventLoop* theWrappedObject, QEventLoop::ProcessEventsFlags  flags = QEventLoop::AllEvents);
+   void exit(QEventLoop* theWrappedObject, int  returnCode = 0);
+   void wakeUp(QEventLoop* theWrappedObject);
 };
 
 #endif // PYTHONQTWRAPPER_QEVENTLOOP_H

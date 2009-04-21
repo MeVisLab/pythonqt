@@ -1583,33 +1583,33 @@ QUndoView* PythonQtWrapper_QUndoView::new_QUndoView(QWidget*  parent)
 { 
 return new PythonQtShell_QUndoView(parent); }
 
-void PythonQtWrapper_QUndoView::setCleanIcon(QUndoView* theWrappedObject, const QIcon&  icon)
-{
- (*theWrappedObject).setCleanIcon(icon);
-}
-
-void PythonQtWrapper_QUndoView::setEmptyLabel(QUndoView* theWrappedObject, const QString&  label)
-{
- (*theWrappedObject).setEmptyLabel(label);
-}
-
 QIcon  PythonQtWrapper_QUndoView::cleanIcon(QUndoView* theWrappedObject) const
 {
-return  (*theWrappedObject).cleanIcon();
+return  theWrappedObject->cleanIcon();
 }
 
 QUndoGroup*  PythonQtWrapper_QUndoView::group(QUndoView* theWrappedObject) const
 {
-return  (*theWrappedObject).group();
+return  theWrappedObject->group();
 }
 
 QString  PythonQtWrapper_QUndoView::emptyLabel(QUndoView* theWrappedObject) const
 {
-return  (*theWrappedObject).emptyLabel();
+return  theWrappedObject->emptyLabel();
 }
 
 QUndoStack*  PythonQtWrapper_QUndoView::stack(QUndoView* theWrappedObject) const
 {
-return  (*theWrappedObject).stack();
+return  theWrappedObject->stack();
+}
+
+void PythonQtWrapper_QUndoView::setCleanIcon(QUndoView* theWrappedObject, const QIcon&  icon)
+{
+ theWrappedObject->setCleanIcon(icon);
+}
+
+void PythonQtWrapper_QUndoView::setEmptyLabel(QUndoView* theWrappedObject, const QString&  label)
+{
+ theWrappedObject->setEmptyLabel(label);
 }
 

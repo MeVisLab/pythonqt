@@ -125,38 +125,38 @@ QHttpRequestHeader* PythonQtWrapper_QHttpRequestHeader::new_QHttpRequestHeader(c
 { 
 return new PythonQtShell_QHttpRequestHeader(str); }
 
-int  PythonQtWrapper_QHttpRequestHeader::minorVersion(QHttpRequestHeader* theWrappedObject) const
-{
-return  (*theWrappedObject).minorVersion();
-}
-
-QString  PythonQtWrapper_QHttpRequestHeader::path(QHttpRequestHeader* theWrappedObject) const
-{
-return  (*theWrappedObject).path();
-}
-
-void PythonQtWrapper_QHttpRequestHeader::setRequest(QHttpRequestHeader* theWrappedObject, const QString&  method, const QString&  path, int  majorVer, int  minorVer)
-{
- (*theWrappedObject).setRequest(method, path, majorVer, minorVer);
-}
-
 QString  PythonQtWrapper_QHttpRequestHeader::method(QHttpRequestHeader* theWrappedObject) const
 {
-return  (*theWrappedObject).method();
+return  theWrappedObject->method();
 }
 
 int  PythonQtWrapper_QHttpRequestHeader::majorVersion(QHttpRequestHeader* theWrappedObject) const
 {
-return  (*theWrappedObject).majorVersion();
+return  ((PythonQtPublicPromoter_QHttpRequestHeader*)theWrappedObject)->promoted_majorVersion();
+}
+
+void PythonQtWrapper_QHttpRequestHeader::setRequest(QHttpRequestHeader* theWrappedObject, const QString&  method, const QString&  path, int  majorVer, int  minorVer)
+{
+ theWrappedObject->setRequest(method, path, majorVer, minorVer);
 }
 
 bool  PythonQtWrapper_QHttpRequestHeader::parseLine(QHttpRequestHeader* theWrappedObject, const QString&  line, int  number)
 {
-return  (*((PythonQtPublicPromoter_QHttpRequestHeader*)theWrappedObject)).parseLine(line, number);
+return  ((PythonQtPublicPromoter_QHttpRequestHeader*)theWrappedObject)->promoted_parseLine(line, number);
+}
+
+QString  PythonQtWrapper_QHttpRequestHeader::path(QHttpRequestHeader* theWrappedObject) const
+{
+return  theWrappedObject->path();
 }
 
 QString  PythonQtWrapper_QHttpRequestHeader::toString(QHttpRequestHeader* theWrappedObject) const
 {
-return  (*theWrappedObject).toString();
+return  ((PythonQtPublicPromoter_QHttpRequestHeader*)theWrappedObject)->promoted_toString();
+}
+
+int  PythonQtWrapper_QHttpRequestHeader::minorVersion(QHttpRequestHeader* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QHttpRequestHeader*)theWrappedObject)->promoted_minorVersion();
 }
 

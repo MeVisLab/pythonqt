@@ -1694,213 +1694,213 @@ QTreeWidget* PythonQtWrapper_QTreeWidget::new_QTreeWidget(QWidget*  parent)
 { 
 return new PythonQtShell_QTreeWidget(parent); }
 
-QTreeWidgetItem*  PythonQtWrapper_QTreeWidget::currentItem(QTreeWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).currentItem();
-}
-
-void PythonQtWrapper_QTreeWidget::setCurrentItem(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item, int  column)
-{
- (*theWrappedObject).setCurrentItem(item, column);
-}
-
-QStringList  PythonQtWrapper_QTreeWidget::mimeTypes(QTreeWidget* theWrappedObject) const
-{
-return  (*((PythonQtPublicPromoter_QTreeWidget*)theWrappedObject)).mimeTypes();
-}
-
-void PythonQtWrapper_QTreeWidget::removeItemWidget(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item, int  column)
-{
- (*theWrappedObject).removeItemWidget(item, column);
-}
-
 void PythonQtWrapper_QTreeWidget::setColumnCount(QTreeWidget* theWrappedObject, int  columns)
 {
- (*theWrappedObject).setColumnCount(columns);
-}
-
-void PythonQtWrapper_QTreeWidget::setCurrentItem(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item)
-{
- (*theWrappedObject).setCurrentItem(item);
-}
-
-void PythonQtWrapper_QTreeWidget::sortItems(QTreeWidget* theWrappedObject, int  column, Qt::SortOrder  order)
-{
- (*theWrappedObject).sortItems(column, order);
-}
-
-int  PythonQtWrapper_QTreeWidget::columnCount(QTreeWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).columnCount();
-}
-
-void PythonQtWrapper_QTreeWidget::setItemWidget(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item, int  column, QWidget*  widget)
-{
- (*theWrappedObject).setItemWidget(item, column, widget);
-}
-
-void PythonQtWrapper_QTreeWidget::openPersistentEditor(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item, int  column)
-{
- (*theWrappedObject).openPersistentEditor(item, column);
-}
-
-int  PythonQtWrapper_QTreeWidget::sortColumn(QTreeWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).sortColumn();
-}
-
-QList<QTreeWidgetItem* >  PythonQtWrapper_QTreeWidget::selectedItems(QTreeWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).selectedItems();
-}
-
-QTreeWidgetItem*  PythonQtWrapper_QTreeWidget::headerItem(QTreeWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).headerItem();
-}
-
-QTreeWidgetItem*  PythonQtWrapper_QTreeWidget::itemAt(QTreeWidget* theWrappedObject, const QPoint&  p) const
-{
-return  (*theWrappedObject).itemAt(p);
-}
-
-QRect  PythonQtWrapper_QTreeWidget::visualItemRect(QTreeWidget* theWrappedObject, const QTreeWidgetItem*  item) const
-{
-return  (*theWrappedObject).visualItemRect(item);
-}
-
-bool  PythonQtWrapper_QTreeWidget::event(QTreeWidget* theWrappedObject, QEvent*  e)
-{
-return  (*((PythonQtPublicPromoter_QTreeWidget*)theWrappedObject)).event(e);
-}
-
-QTreeWidgetItem*  PythonQtWrapper_QTreeWidget::itemAbove(QTreeWidget* theWrappedObject, const QTreeWidgetItem*  item) const
-{
-return  (*theWrappedObject).itemAbove(item);
-}
-
-QTreeWidgetItem*  PythonQtWrapper_QTreeWidget::topLevelItem(QTreeWidget* theWrappedObject, int  index) const
-{
-return  (*theWrappedObject).topLevelItem(index);
+ theWrappedObject->setColumnCount(columns);
 }
 
 QTreeWidgetItem*  PythonQtWrapper_QTreeWidget::takeTopLevelItem(QTreeWidget* theWrappedObject, int  index)
 {
-return  (*theWrappedObject).takeTopLevelItem(index);
-}
-
-int  PythonQtWrapper_QTreeWidget::currentColumn(QTreeWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).currentColumn();
-}
-
-void PythonQtWrapper_QTreeWidget::insertTopLevelItems(QTreeWidget* theWrappedObject, int  index, const QList<QTreeWidgetItem* >&  items)
-{
- (*theWrappedObject).insertTopLevelItems(index, items);
-}
-
-QTreeWidgetItem*  PythonQtWrapper_QTreeWidget::invisibleRootItem(QTreeWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).invisibleRootItem();
-}
-
-QWidget*  PythonQtWrapper_QTreeWidget::itemWidget(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item, int  column) const
-{
-return  (*theWrappedObject).itemWidget(item, column);
-}
-
-void PythonQtWrapper_QTreeWidget::setCurrentItem(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item, int  column, QItemSelectionModel::SelectionFlags  command)
-{
- (*theWrappedObject).setCurrentItem(item, column, command);
-}
-
-QList<QTreeWidgetItem* >  PythonQtWrapper_QTreeWidget::findItems(QTreeWidget* theWrappedObject, const QString&  text, Qt::MatchFlags  flags, int  column) const
-{
-return  (*theWrappedObject).findItems(text, flags, column);
-}
-
-void PythonQtWrapper_QTreeWidget::dropEvent(QTreeWidget* theWrappedObject, QDropEvent*  event)
-{
- (*((PythonQtPublicPromoter_QTreeWidget*)theWrappedObject)).dropEvent(event);
-}
-
-void PythonQtWrapper_QTreeWidget::setHeaderItem(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item)
-{
- (*theWrappedObject).setHeaderItem(item);
-}
-
-void PythonQtWrapper_QTreeWidget::setHeaderLabel(QTreeWidget* theWrappedObject, const QString&  label)
-{
- (*theWrappedObject).setHeaderLabel(label);
-}
-
-QTreeWidgetItem*  PythonQtWrapper_QTreeWidget::itemBelow(QTreeWidget* theWrappedObject, const QTreeWidgetItem*  item) const
-{
-return  (*theWrappedObject).itemBelow(item);
-}
-
-int  PythonQtWrapper_QTreeWidget::indexOfTopLevelItem(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item) const
-{
-return  (*theWrappedObject).indexOfTopLevelItem(item);
+return  theWrappedObject->takeTopLevelItem(index);
 }
 
 void PythonQtWrapper_QTreeWidget::addTopLevelItems(QTreeWidget* theWrappedObject, const QList<QTreeWidgetItem* >&  items)
 {
- (*theWrappedObject).addTopLevelItems(items);
-}
-
-bool  PythonQtWrapper_QTreeWidget::dropMimeData(QTreeWidget* theWrappedObject, QTreeWidgetItem*  parent, int  index, const QMimeData*  data, Qt::DropAction  action)
-{
-return  (*((PythonQtPublicPromoter_QTreeWidget*)theWrappedObject)).dropMimeData(parent, index, data, action);
-}
-
-void PythonQtWrapper_QTreeWidget::addTopLevelItem(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item)
-{
- (*theWrappedObject).addTopLevelItem(item);
-}
-
-bool  PythonQtWrapper_QTreeWidget::isFirstItemColumnSpanned(QTreeWidget* theWrappedObject, const QTreeWidgetItem*  item) const
-{
-return  (*theWrappedObject).isFirstItemColumnSpanned(item);
+ theWrappedObject->addTopLevelItems(items);
 }
 
 Qt::DropActions  PythonQtWrapper_QTreeWidget::supportedDropActions(QTreeWidget* theWrappedObject) const
 {
-return  (*((PythonQtPublicPromoter_QTreeWidget*)theWrappedObject)).supportedDropActions();
+return  ((PythonQtPublicPromoter_QTreeWidget*)theWrappedObject)->promoted_supportedDropActions();
 }
 
 void PythonQtWrapper_QTreeWidget::setFirstItemColumnSpanned(QTreeWidget* theWrappedObject, const QTreeWidgetItem*  item, bool  span)
 {
- (*theWrappedObject).setFirstItemColumnSpanned(item, span);
-}
-
-int  PythonQtWrapper_QTreeWidget::topLevelItemCount(QTreeWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).topLevelItemCount();
-}
-
-void PythonQtWrapper_QTreeWidget::setHeaderLabels(QTreeWidget* theWrappedObject, const QStringList&  labels)
-{
- (*theWrappedObject).setHeaderLabels(labels);
-}
-
-void PythonQtWrapper_QTreeWidget::editItem(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item, int  column)
-{
- (*theWrappedObject).editItem(item, column);
-}
-
-void PythonQtWrapper_QTreeWidget::closePersistentEditor(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item, int  column)
-{
- (*theWrappedObject).closePersistentEditor(item, column);
+ theWrappedObject->setFirstItemColumnSpanned(item, span);
 }
 
 QTreeWidgetItem*  PythonQtWrapper_QTreeWidget::itemAt(QTreeWidget* theWrappedObject, int  x, int  y) const
 {
-return  (*theWrappedObject).itemAt(x, y);
+return  theWrappedObject->itemAt(x, y);
+}
+
+void PythonQtWrapper_QTreeWidget::setHeaderLabels(QTreeWidget* theWrappedObject, const QStringList&  labels)
+{
+ theWrappedObject->setHeaderLabels(labels);
+}
+
+void PythonQtWrapper_QTreeWidget::openPersistentEditor(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item, int  column)
+{
+ theWrappedObject->openPersistentEditor(item, column);
+}
+
+QTreeWidgetItem*  PythonQtWrapper_QTreeWidget::currentItem(QTreeWidget* theWrappedObject) const
+{
+return  theWrappedObject->currentItem();
+}
+
+void PythonQtWrapper_QTreeWidget::setCurrentItem(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item, int  column)
+{
+ theWrappedObject->setCurrentItem(item, column);
+}
+
+bool  PythonQtWrapper_QTreeWidget::event(QTreeWidget* theWrappedObject, QEvent*  e)
+{
+return  ((PythonQtPublicPromoter_QTreeWidget*)theWrappedObject)->promoted_event(e);
+}
+
+QStringList  PythonQtWrapper_QTreeWidget::mimeTypes(QTreeWidget* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QTreeWidget*)theWrappedObject)->promoted_mimeTypes();
+}
+
+int  PythonQtWrapper_QTreeWidget::columnCount(QTreeWidget* theWrappedObject) const
+{
+return  theWrappedObject->columnCount();
+}
+
+void PythonQtWrapper_QTreeWidget::setCurrentItem(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item)
+{
+ theWrappedObject->setCurrentItem(item);
+}
+
+void PythonQtWrapper_QTreeWidget::setItemWidget(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item, int  column, QWidget*  widget)
+{
+ theWrappedObject->setItemWidget(item, column, widget);
+}
+
+bool  PythonQtWrapper_QTreeWidget::isFirstItemColumnSpanned(QTreeWidget* theWrappedObject, const QTreeWidgetItem*  item) const
+{
+return  theWrappedObject->isFirstItemColumnSpanned(item);
+}
+
+void PythonQtWrapper_QTreeWidget::editItem(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item, int  column)
+{
+ theWrappedObject->editItem(item, column);
+}
+
+void PythonQtWrapper_QTreeWidget::sortItems(QTreeWidget* theWrappedObject, int  column, Qt::SortOrder  order)
+{
+ theWrappedObject->sortItems(column, order);
+}
+
+QTreeWidgetItem*  PythonQtWrapper_QTreeWidget::itemAbove(QTreeWidget* theWrappedObject, const QTreeWidgetItem*  item) const
+{
+return  theWrappedObject->itemAbove(item);
+}
+
+QTreeWidgetItem*  PythonQtWrapper_QTreeWidget::itemBelow(QTreeWidget* theWrappedObject, const QTreeWidgetItem*  item) const
+{
+return  theWrappedObject->itemBelow(item);
+}
+
+int  PythonQtWrapper_QTreeWidget::sortColumn(QTreeWidget* theWrappedObject) const
+{
+return  theWrappedObject->sortColumn();
+}
+
+QList<QTreeWidgetItem* >  PythonQtWrapper_QTreeWidget::selectedItems(QTreeWidget* theWrappedObject) const
+{
+return  theWrappedObject->selectedItems();
+}
+
+void PythonQtWrapper_QTreeWidget::removeItemWidget(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item, int  column)
+{
+ theWrappedObject->removeItemWidget(item, column);
+}
+
+QTreeWidgetItem*  PythonQtWrapper_QTreeWidget::topLevelItem(QTreeWidget* theWrappedObject, int  index) const
+{
+return  theWrappedObject->topLevelItem(index);
+}
+
+QTreeWidgetItem*  PythonQtWrapper_QTreeWidget::headerItem(QTreeWidget* theWrappedObject) const
+{
+return  theWrappedObject->headerItem();
+}
+
+void PythonQtWrapper_QTreeWidget::insertTopLevelItems(QTreeWidget* theWrappedObject, int  index, const QList<QTreeWidgetItem* >&  items)
+{
+ theWrappedObject->insertTopLevelItems(index, items);
 }
 
 void PythonQtWrapper_QTreeWidget::insertTopLevelItem(QTreeWidget* theWrappedObject, int  index, QTreeWidgetItem*  item)
 {
- (*theWrappedObject).insertTopLevelItem(index, item);
+ theWrappedObject->insertTopLevelItem(index, item);
+}
+
+QTreeWidgetItem*  PythonQtWrapper_QTreeWidget::itemAt(QTreeWidget* theWrappedObject, const QPoint&  p) const
+{
+return  theWrappedObject->itemAt(p);
+}
+
+int  PythonQtWrapper_QTreeWidget::currentColumn(QTreeWidget* theWrappedObject) const
+{
+return  theWrappedObject->currentColumn();
+}
+
+QTreeWidgetItem*  PythonQtWrapper_QTreeWidget::invisibleRootItem(QTreeWidget* theWrappedObject) const
+{
+return  theWrappedObject->invisibleRootItem();
+}
+
+void PythonQtWrapper_QTreeWidget::setCurrentItem(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item, int  column, QItemSelectionModel::SelectionFlags  command)
+{
+ theWrappedObject->setCurrentItem(item, column, command);
+}
+
+QList<QTreeWidgetItem* >  PythonQtWrapper_QTreeWidget::findItems(QTreeWidget* theWrappedObject, const QString&  text, Qt::MatchFlags  flags, int  column) const
+{
+return  theWrappedObject->findItems(text, flags, column);
+}
+
+void PythonQtWrapper_QTreeWidget::setHeaderItem(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item)
+{
+ theWrappedObject->setHeaderItem(item);
+}
+
+void PythonQtWrapper_QTreeWidget::dropEvent(QTreeWidget* theWrappedObject, QDropEvent*  event)
+{
+ ((PythonQtPublicPromoter_QTreeWidget*)theWrappedObject)->promoted_dropEvent(event);
+}
+
+void PythonQtWrapper_QTreeWidget::closePersistentEditor(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item, int  column)
+{
+ theWrappedObject->closePersistentEditor(item, column);
+}
+
+int  PythonQtWrapper_QTreeWidget::indexOfTopLevelItem(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item) const
+{
+return  theWrappedObject->indexOfTopLevelItem(item);
+}
+
+QWidget*  PythonQtWrapper_QTreeWidget::itemWidget(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item, int  column) const
+{
+return  theWrappedObject->itemWidget(item, column);
+}
+
+void PythonQtWrapper_QTreeWidget::setHeaderLabel(QTreeWidget* theWrappedObject, const QString&  label)
+{
+ theWrappedObject->setHeaderLabel(label);
+}
+
+QRect  PythonQtWrapper_QTreeWidget::visualItemRect(QTreeWidget* theWrappedObject, const QTreeWidgetItem*  item) const
+{
+return  theWrappedObject->visualItemRect(item);
+}
+
+int  PythonQtWrapper_QTreeWidget::topLevelItemCount(QTreeWidget* theWrappedObject) const
+{
+return  theWrappedObject->topLevelItemCount();
+}
+
+bool  PythonQtWrapper_QTreeWidget::dropMimeData(QTreeWidget* theWrappedObject, QTreeWidgetItem*  parent, int  index, const QMimeData*  data, Qt::DropAction  action)
+{
+return  ((PythonQtPublicPromoter_QTreeWidget*)theWrappedObject)->promoted_dropMimeData(parent, index, data, action);
+}
+
+void PythonQtWrapper_QTreeWidget::addTopLevelItem(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item)
+{
+ theWrappedObject->addTopLevelItem(item);
 }
 

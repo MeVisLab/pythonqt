@@ -27,12 +27,12 @@ enum RenderFlag{
 public slots:
 QTextItem* new_QTextItem();
 void delete_QTextItem(QTextItem* obj) { delete obj; } 
-   qreal  descent(QTextItem* theWrappedObject) const;
-   QTextItem::RenderFlags  renderFlags(QTextItem* theWrappedObject) const;
    qreal  ascent(QTextItem* theWrappedObject) const;
-   QString  text(QTextItem* theWrappedObject) const;
+   qreal  descent(QTextItem* theWrappedObject) const;
    qreal  width(QTextItem* theWrappedObject) const;
+   QString  text(QTextItem* theWrappedObject) const;
    QFont  font(QTextItem* theWrappedObject) const;
+   QTextItem::RenderFlags  renderFlags(QTextItem* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QTEXTITEM_H

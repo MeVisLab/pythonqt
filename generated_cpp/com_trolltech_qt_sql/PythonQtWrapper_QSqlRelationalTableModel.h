@@ -83,10 +83,19 @@ virtual bool  updateRowInTable(int  row, const QSqlRecord&  values);
 
 class PythonQtPublicPromoter_QSqlRelationalTableModel : public QSqlRelationalTableModel
 { public:
-inline bool  insertRowIntoTable(const QSqlRecord&  values) { return QSqlRelationalTableModel::insertRowIntoTable(values); }
-inline QString  selectStatement() const { return QSqlRelationalTableModel::selectStatement(); }
-inline QString  orderByClause() const { return QSqlRelationalTableModel::orderByClause(); }
-inline bool  updateRowInTable(int  row, const QSqlRecord&  values) { return QSqlRelationalTableModel::updateRowInTable(row, values); }
+inline bool  promoted_select() { return QSqlRelationalTableModel::select(); }
+inline QSqlTableModel*  promoted_relationModel(int  column) const { return QSqlRelationalTableModel::relationModel(column); }
+inline void promoted_revertRow(int  row) { QSqlRelationalTableModel::revertRow(row); }
+inline bool  promoted_setData(const QModelIndex&  item, const QVariant&  value, int  role = Qt::EditRole) { return QSqlRelationalTableModel::setData(item, value, role); }
+inline bool  promoted_removeColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex()) { return QSqlRelationalTableModel::removeColumns(column, count, parent); }
+inline QString  promoted_selectStatement() const { return QSqlRelationalTableModel::selectStatement(); }
+inline bool  promoted_updateRowInTable(int  row, const QSqlRecord&  values) { return QSqlRelationalTableModel::updateRowInTable(row, values); }
+inline void promoted_setRelation(int  column, const QSqlRelation&  relation) { QSqlRelationalTableModel::setRelation(column, relation); }
+inline void promoted_clear() { QSqlRelationalTableModel::clear(); }
+inline void promoted_setTable(const QString&  tableName) { QSqlRelationalTableModel::setTable(tableName); }
+inline QString  promoted_orderByClause() const { return QSqlRelationalTableModel::orderByClause(); }
+inline bool  promoted_insertRowIntoTable(const QSqlRecord&  values) { return QSqlRelationalTableModel::insertRowIntoTable(values); }
+inline QVariant  promoted_data(const QModelIndex&  item, int  role = Qt::DisplayRole) const { return QSqlRelationalTableModel::data(item, role); }
 };
 
 class PythonQtWrapper_QSqlRelationalTableModel : public QObject
@@ -95,19 +104,19 @@ public:
 public slots:
 QSqlRelationalTableModel* new_QSqlRelationalTableModel(QObject*  parent = 0, QSqlDatabase  db = QSqlDatabase());
 void delete_QSqlRelationalTableModel(QSqlRelationalTableModel* obj) { delete obj; } 
-   bool  insertRowIntoTable(QSqlRelationalTableModel* theWrappedObject, const QSqlRecord&  values);
-   QSqlRelation  relation(QSqlRelationalTableModel* theWrappedObject, int  column) const;
    bool  select(QSqlRelationalTableModel* theWrappedObject);
-   QString  selectStatement(QSqlRelationalTableModel* theWrappedObject) const;
    QSqlTableModel*  relationModel(QSqlRelationalTableModel* theWrappedObject, int  column) const;
-   QVariant  data(QSqlRelationalTableModel* theWrappedObject, const QModelIndex&  item, int  role = Qt::DisplayRole) const;
    bool  setData(QSqlRelationalTableModel* theWrappedObject, const QModelIndex&  item, const QVariant&  value, int  role = Qt::EditRole);
    bool  removeColumns(QSqlRelationalTableModel* theWrappedObject, int  column, int  count, const QModelIndex&  parent = QModelIndex());
-   QString  orderByClause(QSqlRelationalTableModel* theWrappedObject) const;
+   QString  selectStatement(QSqlRelationalTableModel* theWrappedObject) const;
    bool  updateRowInTable(QSqlRelationalTableModel* theWrappedObject, int  row, const QSqlRecord&  values);
-   void clear(QSqlRelationalTableModel* theWrappedObject);
    void setRelation(QSqlRelationalTableModel* theWrappedObject, int  column, const QSqlRelation&  relation);
+   void clear(QSqlRelationalTableModel* theWrappedObject);
    void setTable(QSqlRelationalTableModel* theWrappedObject, const QString&  tableName);
+   QString  orderByClause(QSqlRelationalTableModel* theWrappedObject) const;
+   bool  insertRowIntoTable(QSqlRelationalTableModel* theWrappedObject, const QSqlRecord&  values);
+   QSqlRelation  relation(QSqlRelationalTableModel* theWrappedObject, int  column) const;
+   QVariant  data(QSqlRelationalTableModel* theWrappedObject, const QModelIndex&  item, int  role = Qt::DisplayRole) const;
 };
 
 #endif // PYTHONQTWRAPPER_QSQLRELATIONALTABLEMODEL_H

@@ -143,113 +143,113 @@ QTimeLine* PythonQtWrapper_QTimeLine::new_QTimeLine(int  duration, QObject*  par
 { 
 return new PythonQtShell_QTimeLine(duration, parent); }
 
-int  PythonQtWrapper_QTimeLine::endFrame(QTimeLine* theWrappedObject) const
+void PythonQtWrapper_QTimeLine::setEndFrame(QTimeLine* theWrappedObject, int  frame)
 {
-return  (*theWrappedObject).endFrame();
-}
-
-QTimeLine::CurveShape  PythonQtWrapper_QTimeLine::curveShape(QTimeLine* theWrappedObject) const
-{
-return  (*theWrappedObject).curveShape();
+ theWrappedObject->setEndFrame(frame);
 }
 
 void PythonQtWrapper_QTimeLine::setStartFrame(QTimeLine* theWrappedObject, int  frame)
 {
- (*theWrappedObject).setStartFrame(frame);
-}
-
-qreal  PythonQtWrapper_QTimeLine::valueForTime(QTimeLine* theWrappedObject, int  msec) const
-{
-return  (*theWrappedObject).valueForTime(msec);
-}
-
-int  PythonQtWrapper_QTimeLine::currentTime(QTimeLine* theWrappedObject) const
-{
-return  (*theWrappedObject).currentTime();
-}
-
-void PythonQtWrapper_QTimeLine::setFrameRange(QTimeLine* theWrappedObject, int  startFrame, int  endFrame)
-{
- (*theWrappedObject).setFrameRange(startFrame, endFrame);
-}
-
-qreal  PythonQtWrapper_QTimeLine::currentValue(QTimeLine* theWrappedObject) const
-{
-return  (*theWrappedObject).currentValue();
-}
-
-int  PythonQtWrapper_QTimeLine::updateInterval(QTimeLine* theWrappedObject) const
-{
-return  (*theWrappedObject).updateInterval();
-}
-
-QTimeLine::State  PythonQtWrapper_QTimeLine::state(QTimeLine* theWrappedObject) const
-{
-return  (*theWrappedObject).state();
-}
-
-void PythonQtWrapper_QTimeLine::setCurveShape(QTimeLine* theWrappedObject, QTimeLine::CurveShape  shape)
-{
- (*theWrappedObject).setCurveShape(shape);
-}
-
-int  PythonQtWrapper_QTimeLine::frameForTime(QTimeLine* theWrappedObject, int  msec) const
-{
-return  (*theWrappedObject).frameForTime(msec);
-}
-
-int  PythonQtWrapper_QTimeLine::duration(QTimeLine* theWrappedObject) const
-{
-return  (*theWrappedObject).duration();
-}
-
-int  PythonQtWrapper_QTimeLine::currentFrame(QTimeLine* theWrappedObject) const
-{
-return  (*theWrappedObject).currentFrame();
-}
-
-int  PythonQtWrapper_QTimeLine::loopCount(QTimeLine* theWrappedObject) const
-{
-return  (*theWrappedObject).loopCount();
-}
-
-void PythonQtWrapper_QTimeLine::setDirection(QTimeLine* theWrappedObject, QTimeLine::Direction  direction)
-{
- (*theWrappedObject).setDirection(direction);
-}
-
-void PythonQtWrapper_QTimeLine::setDuration(QTimeLine* theWrappedObject, int  duration)
-{
- (*theWrappedObject).setDuration(duration);
-}
-
-void PythonQtWrapper_QTimeLine::setEndFrame(QTimeLine* theWrappedObject, int  frame)
-{
- (*theWrappedObject).setEndFrame(frame);
-}
-
-int  PythonQtWrapper_QTimeLine::startFrame(QTimeLine* theWrappedObject) const
-{
-return  (*theWrappedObject).startFrame();
-}
-
-QTimeLine::Direction  PythonQtWrapper_QTimeLine::direction(QTimeLine* theWrappedObject) const
-{
-return  (*theWrappedObject).direction();
-}
-
-void PythonQtWrapper_QTimeLine::setUpdateInterval(QTimeLine* theWrappedObject, int  interval)
-{
- (*theWrappedObject).setUpdateInterval(interval);
+ theWrappedObject->setStartFrame(frame);
 }
 
 void PythonQtWrapper_QTimeLine::timerEvent(QTimeLine* theWrappedObject, QTimerEvent*  event)
 {
- (*((PythonQtPublicPromoter_QTimeLine*)theWrappedObject)).timerEvent(event);
+ ((PythonQtPublicPromoter_QTimeLine*)theWrappedObject)->promoted_timerEvent(event);
+}
+
+void PythonQtWrapper_QTimeLine::setUpdateInterval(QTimeLine* theWrappedObject, int  interval)
+{
+ theWrappedObject->setUpdateInterval(interval);
+}
+
+int  PythonQtWrapper_QTimeLine::updateInterval(QTimeLine* theWrappedObject) const
+{
+return  theWrappedObject->updateInterval();
+}
+
+int  PythonQtWrapper_QTimeLine::duration(QTimeLine* theWrappedObject) const
+{
+return  theWrappedObject->duration();
+}
+
+QTimeLine::Direction  PythonQtWrapper_QTimeLine::direction(QTimeLine* theWrappedObject) const
+{
+return  theWrappedObject->direction();
+}
+
+qreal  PythonQtWrapper_QTimeLine::currentValue(QTimeLine* theWrappedObject) const
+{
+return  theWrappedObject->currentValue();
+}
+
+int  PythonQtWrapper_QTimeLine::loopCount(QTimeLine* theWrappedObject) const
+{
+return  theWrappedObject->loopCount();
+}
+
+void PythonQtWrapper_QTimeLine::setDirection(QTimeLine* theWrappedObject, QTimeLine::Direction  direction)
+{
+ theWrappedObject->setDirection(direction);
+}
+
+int  PythonQtWrapper_QTimeLine::endFrame(QTimeLine* theWrappedObject) const
+{
+return  theWrappedObject->endFrame();
+}
+
+void PythonQtWrapper_QTimeLine::setDuration(QTimeLine* theWrappedObject, int  duration)
+{
+ theWrappedObject->setDuration(duration);
+}
+
+QTimeLine::CurveShape  PythonQtWrapper_QTimeLine::curveShape(QTimeLine* theWrappedObject) const
+{
+return  theWrappedObject->curveShape();
+}
+
+QTimeLine::State  PythonQtWrapper_QTimeLine::state(QTimeLine* theWrappedObject) const
+{
+return  theWrappedObject->state();
+}
+
+qreal  PythonQtWrapper_QTimeLine::valueForTime(QTimeLine* theWrappedObject, int  msec) const
+{
+return  ((PythonQtPublicPromoter_QTimeLine*)theWrappedObject)->promoted_valueForTime(msec);
 }
 
 void PythonQtWrapper_QTimeLine::setLoopCount(QTimeLine* theWrappedObject, int  count)
 {
- (*theWrappedObject).setLoopCount(count);
+ theWrappedObject->setLoopCount(count);
+}
+
+int  PythonQtWrapper_QTimeLine::frameForTime(QTimeLine* theWrappedObject, int  msec) const
+{
+return  theWrappedObject->frameForTime(msec);
+}
+
+void PythonQtWrapper_QTimeLine::setCurveShape(QTimeLine* theWrappedObject, QTimeLine::CurveShape  shape)
+{
+ theWrappedObject->setCurveShape(shape);
+}
+
+void PythonQtWrapper_QTimeLine::setFrameRange(QTimeLine* theWrappedObject, int  startFrame, int  endFrame)
+{
+ theWrappedObject->setFrameRange(startFrame, endFrame);
+}
+
+int  PythonQtWrapper_QTimeLine::startFrame(QTimeLine* theWrappedObject) const
+{
+return  theWrappedObject->startFrame();
+}
+
+int  PythonQtWrapper_QTimeLine::currentTime(QTimeLine* theWrappedObject) const
+{
+return  theWrappedObject->currentTime();
+}
+
+int  PythonQtWrapper_QTimeLine::currentFrame(QTimeLine* theWrappedObject) const
+{
+return  theWrappedObject->currentFrame();
 }
 

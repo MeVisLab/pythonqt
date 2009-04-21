@@ -20,22 +20,22 @@ Q_ENUMS(RestartHint )
 enum RestartHint{
   RestartIfRunning = QSessionManager::RestartIfRunning,   RestartAnyway = QSessionManager::RestartAnyway,   RestartImmediately = QSessionManager::RestartImmediately,   RestartNever = QSessionManager::RestartNever};
 public slots:
-   QStringList  restartCommand(QSessionManager* theWrappedObject) const;
-   void requestPhase2(QSessionManager* theWrappedObject);
-   QSessionManager::RestartHint  restartHint(QSessionManager* theWrappedObject) const;
    QStringList  discardCommand(QSessionManager* theWrappedObject) const;
-   void setDiscardCommand(QSessionManager* theWrappedObject, const QStringList&  arg__1);
-   void setManagerProperty(QSessionManager* theWrappedObject, const QString&  name, const QStringList&  value);
    QString  sessionKey(QSessionManager* theWrappedObject) const;
-   void setRestartCommand(QSessionManager* theWrappedObject, const QStringList&  arg__1);
+   void setDiscardCommand(QSessionManager* theWrappedObject, const QStringList&  arg__1);
    bool  allowsErrorInteraction(QSessionManager* theWrappedObject);
+   QSessionManager::RestartHint  restartHint(QSessionManager* theWrappedObject) const;
+   void setRestartCommand(QSessionManager* theWrappedObject, const QStringList&  arg__1);
+   void requestPhase2(QSessionManager* theWrappedObject);
    void release(QSessionManager* theWrappedObject);
-   QString  sessionId(QSessionManager* theWrappedObject) const;
    bool  allowsInteraction(QSessionManager* theWrappedObject);
    bool  isPhase2(QSessionManager* theWrappedObject) const;
+   QString  sessionId(QSessionManager* theWrappedObject) const;
    void setManagerProperty(QSessionManager* theWrappedObject, const QString&  name, const QString&  value);
+   void setManagerProperty(QSessionManager* theWrappedObject, const QString&  name, const QStringList&  value);
    void cancel(QSessionManager* theWrappedObject);
    void setRestartHint(QSessionManager* theWrappedObject, QSessionManager::RestartHint  arg__1);
+   QStringList  restartCommand(QSessionManager* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QSESSIONMANAGER_H

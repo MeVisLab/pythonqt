@@ -22,19 +22,19 @@ QSize* a = new QSize();
 return a; }
 void delete_QSize(QSize* obj) { delete obj; } 
    bool  isEmpty(QSize* theWrappedObject) const;
+   bool  operator_equal(QSize* theWrappedObject, const QSize&  s2);
    void transpose(QSize* theWrappedObject);
    int  height(QSize* theWrappedObject) const;
    bool  isNull(QSize* theWrappedObject) const;
+   void writeTo(QSize* theWrappedObject, QDataStream&  arg__1);
    QSize&  operator_subtract_assign(QSize* theWrappedObject, const QSize&  arg__1);
    bool  isValid(QSize* theWrappedObject) const;
-   void writeTo(QSize* theWrappedObject, QDataStream&  arg__1);
    void readFrom(QSize* theWrappedObject, QDataStream&  arg__1);
    QSize  expandedTo(QSize* theWrappedObject, const QSize&  arg__1) const;
    QSize&  operator_add_assign(QSize* theWrappedObject, const QSize&  arg__1);
    QSize&  operator_multiply_assign(QSize* theWrappedObject, qreal  c);
    QSize&  operator_divide_assign(QSize* theWrappedObject, qreal  c);
    QSize  boundedTo(QSize* theWrappedObject, const QSize&  arg__1) const;
-   bool  operator_equal(QSize* theWrappedObject, const QSize&  s2);
    void setHeight(QSize* theWrappedObject, int  h);
    void setWidth(QSize* theWrappedObject, int  w);
    void scale(QSize* theWrappedObject, const QSize&  s, Qt::AspectRatioMode  mode);

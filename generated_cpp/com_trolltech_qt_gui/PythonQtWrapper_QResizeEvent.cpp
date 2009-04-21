@@ -10,13 +10,13 @@ QResizeEvent* PythonQtWrapper_QResizeEvent::new_QResizeEvent(const QSize&  size,
 { 
 return new PythonQtShell_QResizeEvent(size, oldSize); }
 
-const QSize&  PythonQtWrapper_QResizeEvent::oldSize(QResizeEvent* theWrappedObject) const
-{
-return  (*theWrappedObject).oldSize();
-}
-
 const QSize&  PythonQtWrapper_QResizeEvent::size(QResizeEvent* theWrappedObject) const
 {
-return  (*theWrappedObject).size();
+return  theWrappedObject->size();
+}
+
+const QSize&  PythonQtWrapper_QResizeEvent::oldSize(QResizeEvent* theWrappedObject) const
+{
+return  theWrappedObject->oldSize();
 }
 

@@ -39,17 +39,17 @@ public:
 public slots:
 QDrag* new_QDrag(QWidget*  dragSource);
 void delete_QDrag(QDrag* obj) { delete obj; } 
+   QMimeData*  mimeData(QDrag* theWrappedObject) const;
    Qt::DropAction  exec(QDrag* theWrappedObject, Qt::DropActions  supportedActions, Qt::DropAction  defaultAction);
    QWidget*  target(QDrag* theWrappedObject) const;
-   void setHotSpot(QDrag* theWrappedObject, const QPoint&  hotspot);
-   QPixmap  pixmap(QDrag* theWrappedObject) const;
-   void setMimeData(QDrag* theWrappedObject, QMimeData*  data);
-   void setPixmap(QDrag* theWrappedObject, const QPixmap&  arg__1);
-   QWidget*  source(QDrag* theWrappedObject) const;
    Qt::DropAction  exec(QDrag* theWrappedObject, Qt::DropActions  supportedActions = Qt::MoveAction);
-   QMimeData*  mimeData(QDrag* theWrappedObject) const;
+   QPixmap  pixmap(QDrag* theWrappedObject) const;
    QPoint  hotSpot(QDrag* theWrappedObject) const;
+   void setPixmap(QDrag* theWrappedObject, const QPixmap&  arg__1);
    void setDragCursor(QDrag* theWrappedObject, const QPixmap&  cursor, Qt::DropAction  action);
+   void setHotSpot(QDrag* theWrappedObject, const QPoint&  hotspot);
+   void setMimeData(QDrag* theWrappedObject, QMimeData*  data);
+   QWidget*  source(QDrag* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QDRAG_H

@@ -115,129 +115,154 @@ QImage* PythonQtWrapper_QImage::new_QImage(int  width, int  height, QImage::Form
 { 
 return new PythonQtShell_QImage(width, height, format); }
 
+void PythonQtWrapper_QImage::setOffset(QImage* theWrappedObject, const QPoint&  arg__1)
+{
+ theWrappedObject->setOffset(arg__1);
+}
+
+QImage  PythonQtWrapper_QImage::convertToFormat(QImage* theWrappedObject, QImage::Format  f, Qt::ImageConversionFlags  flags) const
+{
+return  theWrappedObject->convertToFormat(f, flags);
+}
+
+QRect  PythonQtWrapper_QImage::rect(QImage* theWrappedObject) const
+{
+return  theWrappedObject->rect();
+}
+
 int  PythonQtWrapper_QImage::devType(QImage* theWrappedObject) const
 {
-return  (*theWrappedObject).devType();
-}
-
-QString  PythonQtWrapper_QImage::text(QImage* theWrappedObject, const QString&  key) const
-{
-return  (*theWrappedObject).text(key);
-}
-
-bool  PythonQtWrapper_QImage::save(QImage* theWrappedObject, const QString&  fileName, const char*  format, int  quality) const
-{
-return  (*theWrappedObject).save(fileName, format, quality);
-}
-
-QImage  PythonQtWrapper_QImage::transformed(QImage* theWrappedObject, const QTransform&  matrix, Qt::TransformationMode  mode) const
-{
-return  (*theWrappedObject).transformed(matrix, mode);
+return  ((PythonQtPublicPromoter_QImage*)theWrappedObject)->promoted_devType();
 }
 
 QImage  PythonQtWrapper_QImage::transformed(QImage* theWrappedObject, const QMatrix&  matrix, Qt::TransformationMode  mode) const
 {
-return  (*theWrappedObject).transformed(matrix, mode);
+return  theWrappedObject->transformed(matrix, mode);
 }
 
-bool  PythonQtWrapper_QImage::valid(QImage* theWrappedObject, int  x, int  y) const
+unsigned int  PythonQtWrapper_QImage::color(QImage* theWrappedObject, int  i) const
 {
-return  (*theWrappedObject).valid(x, y);
+return  theWrappedObject->color(i);
 }
 
-int  PythonQtWrapper_QImage::pixelIndex(QImage* theWrappedObject, int  x, int  y) const
+bool  PythonQtWrapper_QImage::allGray(QImage* theWrappedObject) const
 {
-return  (*theWrappedObject).pixelIndex(x, y);
+return  theWrappedObject->allGray();
 }
 
-QImage  PythonQtWrapper_QImage::createAlphaMask(QImage* theWrappedObject, Qt::ImageConversionFlags  flags) const
+QImage  PythonQtWrapper_QImage::scaled(QImage* theWrappedObject, int  w, int  h, Qt::AspectRatioMode  aspectMode, Qt::TransformationMode  mode) const
 {
-return  (*theWrappedObject).createAlphaMask(flags);
+return  theWrappedObject->scaled(w, h, aspectMode, mode);
 }
 
-bool  PythonQtWrapper_QImage::isNull(QImage* theWrappedObject) const
+bool  PythonQtWrapper_QImage::save(QImage* theWrappedObject, QIODevice*  device, const char*  format, int  quality) const
 {
-return  (*theWrappedObject).isNull();
-}
-
-QImage  PythonQtWrapper_QImage::copy(QImage* theWrappedObject, const QRect&  rect) const
-{
-return  (*theWrappedObject).copy(rect);
-}
-
-QImage  PythonQtWrapper_QImage::scaledToWidth(QImage* theWrappedObject, int  w, Qt::TransformationMode  mode) const
-{
-return  (*theWrappedObject).scaledToWidth(w, mode);
-}
-
-bool  PythonQtWrapper_QImage::load(QImage* theWrappedObject, const QString&  fileName, const char*  format)
-{
-return  (*theWrappedObject).load(fileName, format);
-}
-
-int  PythonQtWrapper_QImage::width(QImage* theWrappedObject) const
-{
-return  (*theWrappedObject).width();
-}
-
-int  PythonQtWrapper_QImage::dotsPerMeterY(QImage* theWrappedObject) const
-{
-return  (*theWrappedObject).dotsPerMeterY();
-}
-
-unsigned int  PythonQtWrapper_QImage::pixel(QImage* theWrappedObject, int  x, int  y) const
-{
-return  (*theWrappedObject).pixel(x, y);
-}
-
-QPoint  PythonQtWrapper_QImage::offset(QImage* theWrappedObject) const
-{
-return  (*theWrappedObject).offset();
-}
-
-void PythonQtWrapper_QImage::writeTo(QImage* theWrappedObject, QDataStream&  arg__1)
-{
-arg__1 <<  (*theWrappedObject);
-}
-
-bool  PythonQtWrapper_QImage::load(QImage* theWrappedObject, QIODevice*  device, const char*  format)
-{
-return  (*theWrappedObject).load(device, format);
-}
-
-void PythonQtWrapper_QImage::setPixel(QImage* theWrappedObject, int  x, int  y, uint  index_or_rgb)
-{
- (*theWrappedObject).setPixel(x, y, index_or_rgb);
-}
-
-QImage::Format  PythonQtWrapper_QImage::format(QImage* theWrappedObject) const
-{
-return  (*theWrappedObject).format();
-}
-
-QImage  PythonQtWrapper_QImage::static_QImage_fromData(const QByteArray&  data, const char*  format)
-{
-return QImage::fromData(data, format);
+return  theWrappedObject->save(device, format, quality);
 }
 
 void PythonQtWrapper_QImage::setAlphaChannel(QImage* theWrappedObject, const QImage&  alphaChannel)
 {
- (*theWrappedObject).setAlphaChannel(alphaChannel);
+ theWrappedObject->setAlphaChannel(alphaChannel);
 }
 
-int  PythonQtWrapper_QImage::height(QImage* theWrappedObject) const
+void PythonQtWrapper_QImage::setPixel(QImage* theWrappedObject, const QPoint&  pt, uint  index_or_rgb)
 {
-return  (*theWrappedObject).height();
+ theWrappedObject->setPixel(pt, index_or_rgb);
 }
 
-void PythonQtWrapper_QImage::readFrom(QImage* theWrappedObject, QDataStream&  arg__1)
+QImage  PythonQtWrapper_QImage::convertToFormat(QImage* theWrappedObject, QImage::Format  f, const QVector<unsigned int >&  colorTable, Qt::ImageConversionFlags  flags) const
 {
-arg__1 >>  (*theWrappedObject);
+return  theWrappedObject->convertToFormat(f, colorTable, flags);
 }
 
-QImage  PythonQtWrapper_QImage::copy(QImage* theWrappedObject, int  x, int  y, int  w, int  h) const
+int  PythonQtWrapper_QImage::numColors(QImage* theWrappedObject) const
 {
-return  (*theWrappedObject).copy(x, y, w, h);
+return  theWrappedObject->numColors();
+}
+
+qint64  PythonQtWrapper_QImage::cacheKey(QImage* theWrappedObject) const
+{
+return  theWrappedObject->cacheKey();
+}
+
+void PythonQtWrapper_QImage::setPixel(QImage* theWrappedObject, int  x, int  y, uint  index_or_rgb)
+{
+ theWrappedObject->setPixel(x, y, index_or_rgb);
+}
+
+QPaintEngine*  PythonQtWrapper_QImage::paintEngine(QImage* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QImage*)theWrappedObject)->promoted_paintEngine();
+}
+
+bool  PythonQtWrapper_QImage::save(QImage* theWrappedObject, const QString&  fileName, const char*  format, int  quality) const
+{
+return  theWrappedObject->save(fileName, format, quality);
+}
+
+bool  PythonQtWrapper_QImage::valid(QImage* theWrappedObject, const QPoint&  pt) const
+{
+return  theWrappedObject->valid(pt);
+}
+
+QImage  PythonQtWrapper_QImage::createHeuristicMask(QImage* theWrappedObject, bool  clipTight) const
+{
+return  theWrappedObject->createHeuristicMask(clipTight);
+}
+
+void PythonQtWrapper_QImage::setColor(QImage* theWrappedObject, int  i, unsigned int  c)
+{
+ theWrappedObject->setColor(i, c);
+}
+
+bool  PythonQtWrapper_QImage::isGrayscale(QImage* theWrappedObject) const
+{
+return  theWrappedObject->isGrayscale();
+}
+
+void PythonQtWrapper_QImage::setDotsPerMeterY(QImage* theWrappedObject, int  arg__1)
+{
+ theWrappedObject->setDotsPerMeterY(arg__1);
+}
+
+int  PythonQtWrapper_QImage::pixelIndex(QImage* theWrappedObject, const QPoint&  pt) const
+{
+return  theWrappedObject->pixelIndex(pt);
+}
+
+void PythonQtWrapper_QImage::invertPixels(QImage* theWrappedObject, QImage::InvertMode  arg__1)
+{
+ theWrappedObject->invertPixels(arg__1);
+}
+
+void PythonQtWrapper_QImage::setNumColors(QImage* theWrappedObject, int  arg__1)
+{
+ theWrappedObject->setNumColors(arg__1);
+}
+
+QImage  PythonQtWrapper_QImage::copy(QImage* theWrappedObject, const QRect&  rect) const
+{
+return  theWrappedObject->copy(rect);
+}
+
+int  PythonQtWrapper_QImage::bytesPerLine(QImage* theWrappedObject) const
+{
+return  theWrappedObject->bytesPerLine();
+}
+
+QImage  PythonQtWrapper_QImage::mirrored(QImage* theWrappedObject, bool  horizontally, bool  vertically) const
+{
+return  theWrappedObject->mirrored(horizontally, vertically);
+}
+
+QString  PythonQtWrapper_QImage::text(QImage* theWrappedObject, const QString&  key) const
+{
+return  theWrappedObject->text(key);
+}
+
+QImage  PythonQtWrapper_QImage::transformed(QImage* theWrappedObject, const QTransform&  matrix, Qt::TransformationMode  mode) const
+{
+return  theWrappedObject->transformed(matrix, mode);
 }
 
 QMatrix  PythonQtWrapper_QImage::static_QImage_trueMatrix(const QMatrix&  arg__1, int  w, int  h)
@@ -245,9 +270,14 @@ QMatrix  PythonQtWrapper_QImage::static_QImage_trueMatrix(const QMatrix&  arg__1
 return QImage::trueMatrix(arg__1, w, h);
 }
 
-QStringList  PythonQtWrapper_QImage::textKeys(QImage* theWrappedObject) const
+void PythonQtWrapper_QImage::setText(QImage* theWrappedObject, const QString&  key, const QString&  value)
 {
-return  (*theWrappedObject).textKeys();
+ theWrappedObject->setText(key, value);
+}
+
+int  PythonQtWrapper_QImage::width(QImage* theWrappedObject) const
+{
+return  theWrappedObject->width();
 }
 
 bool  PythonQtWrapper_QImage::operator_equal(QImage* theWrappedObject, const QImage&  arg__1) const
@@ -255,9 +285,89 @@ bool  PythonQtWrapper_QImage::operator_equal(QImage* theWrappedObject, const QIm
 return  (*theWrappedObject)== arg__1;
 }
 
-QImage  PythonQtWrapper_QImage::createHeuristicMask(QImage* theWrappedObject, bool  clipTight) const
+int  PythonQtWrapper_QImage::height(QImage* theWrappedObject) const
 {
-return  (*theWrappedObject).createHeuristicMask(clipTight);
+return  theWrappedObject->height();
+}
+
+int  PythonQtWrapper_QImage::pixelIndex(QImage* theWrappedObject, int  x, int  y) const
+{
+return  theWrappedObject->pixelIndex(x, y);
+}
+
+QSize  PythonQtWrapper_QImage::size(QImage* theWrappedObject) const
+{
+return  theWrappedObject->size();
+}
+
+bool  PythonQtWrapper_QImage::valid(QImage* theWrappedObject, int  x, int  y) const
+{
+return  theWrappedObject->valid(x, y);
+}
+
+bool  PythonQtWrapper_QImage::loadFromData(QImage* theWrappedObject, const QByteArray&  data, const char*  aformat)
+{
+return  theWrappedObject->loadFromData(data, aformat);
+}
+
+bool  PythonQtWrapper_QImage::hasAlphaChannel(QImage* theWrappedObject) const
+{
+return  theWrappedObject->hasAlphaChannel();
+}
+
+unsigned int  PythonQtWrapper_QImage::pixel(QImage* theWrappedObject, const QPoint&  pt) const
+{
+return  theWrappedObject->pixel(pt);
+}
+
+int  PythonQtWrapper_QImage::metric(QImage* theWrappedObject, QPaintDevice::PaintDeviceMetric  metric) const
+{
+return  ((PythonQtPublicPromoter_QImage*)theWrappedObject)->promoted_metric(metric);
+}
+
+void PythonQtWrapper_QImage::fill(QImage* theWrappedObject, uint  pixel)
+{
+ theWrappedObject->fill(pixel);
+}
+
+int  PythonQtWrapper_QImage::depth(QImage* theWrappedObject) const
+{
+return  theWrappedObject->depth();
+}
+
+QImage  PythonQtWrapper_QImage::scaled(QImage* theWrappedObject, const QSize&  s, Qt::AspectRatioMode  aspectMode, Qt::TransformationMode  mode) const
+{
+return  theWrappedObject->scaled(s, aspectMode, mode);
+}
+
+int  PythonQtWrapper_QImage::dotsPerMeterY(QImage* theWrappedObject) const
+{
+return  theWrappedObject->dotsPerMeterY();
+}
+
+QVector<unsigned int >  PythonQtWrapper_QImage::colorTable(QImage* theWrappedObject) const
+{
+return  theWrappedObject->colorTable();
+}
+
+QImage  PythonQtWrapper_QImage::createMaskFromColor(QImage* theWrappedObject, unsigned int  color, Qt::MaskMode  mode) const
+{
+return  theWrappedObject->createMaskFromColor(color, mode);
+}
+
+bool  PythonQtWrapper_QImage::isNull(QImage* theWrappedObject) const
+{
+return  theWrappedObject->isNull();
+}
+
+unsigned int  PythonQtWrapper_QImage::pixel(QImage* theWrappedObject, int  x, int  y) const
+{
+return  theWrappedObject->pixel(x, y);
+}
+
+QStringList  PythonQtWrapper_QImage::textKeys(QImage* theWrappedObject) const
+{
+return  theWrappedObject->textKeys();
 }
 
 QTransform  PythonQtWrapper_QImage::static_QImage_trueMatrix(const QTransform&  arg__1, int  w, int  h)
@@ -265,193 +375,83 @@ QTransform  PythonQtWrapper_QImage::static_QImage_trueMatrix(const QTransform&  
 return QImage::trueMatrix(arg__1, w, h);
 }
 
-bool  PythonQtWrapper_QImage::hasAlphaChannel(QImage* theWrappedObject) const
+void PythonQtWrapper_QImage::writeTo(QImage* theWrappedObject, QDataStream&  arg__1)
 {
-return  (*theWrappedObject).hasAlphaChannel();
+arg__1 <<  (*theWrappedObject);
 }
 
-int  PythonQtWrapper_QImage::bytesPerLine(QImage* theWrappedObject) const
+QImage::Format  PythonQtWrapper_QImage::format(QImage* theWrappedObject) const
 {
-return  (*theWrappedObject).bytesPerLine();
-}
-
-void PythonQtWrapper_QImage::setPixel(QImage* theWrappedObject, const QPoint&  pt, uint  index_or_rgb)
-{
- (*theWrappedObject).setPixel(pt, index_or_rgb);
-}
-
-int  PythonQtWrapper_QImage::pixelIndex(QImage* theWrappedObject, const QPoint&  pt) const
-{
-return  (*theWrappedObject).pixelIndex(pt);
-}
-
-QRect  PythonQtWrapper_QImage::rect(QImage* theWrappedObject) const
-{
-return  (*theWrappedObject).rect();
-}
-
-QImage  PythonQtWrapper_QImage::scaled(QImage* theWrappedObject, const QSize&  s, Qt::AspectRatioMode  aspectMode, Qt::TransformationMode  mode) const
-{
-return  (*theWrappedObject).scaled(s, aspectMode, mode);
-}
-
-void PythonQtWrapper_QImage::invertPixels(QImage* theWrappedObject, QImage::InvertMode  arg__1)
-{
- (*theWrappedObject).invertPixels(arg__1);
-}
-
-QImage  PythonQtWrapper_QImage::alphaChannel(QImage* theWrappedObject) const
-{
-return  (*theWrappedObject).alphaChannel();
-}
-
-bool  PythonQtWrapper_QImage::save(QImage* theWrappedObject, QIODevice*  device, const char*  format, int  quality) const
-{
-return  (*theWrappedObject).save(device, format, quality);
-}
-
-int  PythonQtWrapper_QImage::numBytes(QImage* theWrappedObject) const
-{
-return  (*theWrappedObject).numBytes();
-}
-
-QSize  PythonQtWrapper_QImage::size(QImage* theWrappedObject) const
-{
-return  (*theWrappedObject).size();
-}
-
-int  PythonQtWrapper_QImage::metric(QImage* theWrappedObject, QPaintDevice::PaintDeviceMetric  metric) const
-{
-return  (*((PythonQtPublicPromoter_QImage*)theWrappedObject)).metric(metric);
-}
-
-void PythonQtWrapper_QImage::setOffset(QImage* theWrappedObject, const QPoint&  arg__1)
-{
- (*theWrappedObject).setOffset(arg__1);
-}
-
-QImage  PythonQtWrapper_QImage::createMaskFromColor(QImage* theWrappedObject, unsigned int  color, Qt::MaskMode  mode) const
-{
-return  (*theWrappedObject).createMaskFromColor(color, mode);
-}
-
-int  PythonQtWrapper_QImage::depth(QImage* theWrappedObject) const
-{
-return  (*theWrappedObject).depth();
-}
-
-QImage  PythonQtWrapper_QImage::convertToFormat(QImage* theWrappedObject, QImage::Format  f, Qt::ImageConversionFlags  flags) const
-{
-return  (*theWrappedObject).convertToFormat(f, flags);
-}
-
-QImage  PythonQtWrapper_QImage::rgbSwapped(QImage* theWrappedObject) const
-{
-return  (*theWrappedObject).rgbSwapped();
-}
-
-bool  PythonQtWrapper_QImage::valid(QImage* theWrappedObject, const QPoint&  pt) const
-{
-return  (*theWrappedObject).valid(pt);
-}
-
-bool  PythonQtWrapper_QImage::loadFromData(QImage* theWrappedObject, const QByteArray&  data, const char*  aformat)
-{
-return  (*theWrappedObject).loadFromData(data, aformat);
-}
-
-QImage  PythonQtWrapper_QImage::scaledToHeight(QImage* theWrappedObject, int  h, Qt::TransformationMode  mode) const
-{
-return  (*theWrappedObject).scaledToHeight(h, mode);
-}
-
-bool  PythonQtWrapper_QImage::isGrayscale(QImage* theWrappedObject) const
-{
-return  (*theWrappedObject).isGrayscale();
-}
-
-unsigned int  PythonQtWrapper_QImage::color(QImage* theWrappedObject, int  i) const
-{
-return  (*theWrappedObject).color(i);
-}
-
-QVector<unsigned int >  PythonQtWrapper_QImage::colorTable(QImage* theWrappedObject) const
-{
-return  (*theWrappedObject).colorTable();
-}
-
-void PythonQtWrapper_QImage::setDotsPerMeterX(QImage* theWrappedObject, int  arg__1)
-{
- (*theWrappedObject).setDotsPerMeterX(arg__1);
-}
-
-void PythonQtWrapper_QImage::setDotsPerMeterY(QImage* theWrappedObject, int  arg__1)
-{
- (*theWrappedObject).setDotsPerMeterY(arg__1);
-}
-
-int  PythonQtWrapper_QImage::numColors(QImage* theWrappedObject) const
-{
-return  (*theWrappedObject).numColors();
+return  theWrappedObject->format();
 }
 
 int  PythonQtWrapper_QImage::dotsPerMeterX(QImage* theWrappedObject) const
 {
-return  (*theWrappedObject).dotsPerMeterX();
+return  theWrappedObject->dotsPerMeterX();
 }
 
-void PythonQtWrapper_QImage::setNumColors(QImage* theWrappedObject, int  arg__1)
+bool  PythonQtWrapper_QImage::load(QImage* theWrappedObject, const QString&  fileName, const char*  format)
 {
- (*theWrappedObject).setNumColors(arg__1);
+return  theWrappedObject->load(fileName, format);
 }
 
-QImage  PythonQtWrapper_QImage::scaled(QImage* theWrappedObject, int  w, int  h, Qt::AspectRatioMode  aspectMode, Qt::TransformationMode  mode) const
+void PythonQtWrapper_QImage::setDotsPerMeterX(QImage* theWrappedObject, int  arg__1)
 {
-return  (*theWrappedObject).scaled(w, h, aspectMode, mode);
+ theWrappedObject->setDotsPerMeterX(arg__1);
 }
 
-QImage  PythonQtWrapper_QImage::convertToFormat(QImage* theWrappedObject, QImage::Format  f, const QVector<unsigned int >&  colorTable, Qt::ImageConversionFlags  flags) const
+QImage  PythonQtWrapper_QImage::static_QImage_fromData(const QByteArray&  data, const char*  format)
 {
-return  (*theWrappedObject).convertToFormat(f, colorTable, flags);
+return QImage::fromData(data, format);
 }
 
-bool  PythonQtWrapper_QImage::allGray(QImage* theWrappedObject) const
+QImage  PythonQtWrapper_QImage::copy(QImage* theWrappedObject, int  x, int  y, int  w, int  h) const
 {
-return  (*theWrappedObject).allGray();
+return  theWrappedObject->copy(x, y, w, h);
 }
 
-void PythonQtWrapper_QImage::fill(QImage* theWrappedObject, uint  pixel)
+QImage  PythonQtWrapper_QImage::createAlphaMask(QImage* theWrappedObject, Qt::ImageConversionFlags  flags) const
 {
- (*theWrappedObject).fill(pixel);
+return  theWrappedObject->createAlphaMask(flags);
 }
 
-QImage  PythonQtWrapper_QImage::mirrored(QImage* theWrappedObject, bool  horizontally, bool  vertically) const
+QPoint  PythonQtWrapper_QImage::offset(QImage* theWrappedObject) const
 {
-return  (*theWrappedObject).mirrored(horizontally, vertically);
+return  theWrappedObject->offset();
 }
 
-void PythonQtWrapper_QImage::setText(QImage* theWrappedObject, const QString&  key, const QString&  value)
+QImage  PythonQtWrapper_QImage::alphaChannel(QImage* theWrappedObject) const
 {
- (*theWrappedObject).setText(key, value);
+return  theWrappedObject->alphaChannel();
 }
 
-qint64  PythonQtWrapper_QImage::cacheKey(QImage* theWrappedObject) const
+QImage  PythonQtWrapper_QImage::scaledToHeight(QImage* theWrappedObject, int  h, Qt::TransformationMode  mode) const
 {
-return  (*theWrappedObject).cacheKey();
+return  theWrappedObject->scaledToHeight(h, mode);
 }
 
-unsigned int  PythonQtWrapper_QImage::pixel(QImage* theWrappedObject, const QPoint&  pt) const
+void PythonQtWrapper_QImage::readFrom(QImage* theWrappedObject, QDataStream&  arg__1)
 {
-return  (*theWrappedObject).pixel(pt);
+arg__1 >>  (*theWrappedObject);
 }
 
-QPaintEngine*  PythonQtWrapper_QImage::paintEngine(QImage* theWrappedObject) const
+int  PythonQtWrapper_QImage::numBytes(QImage* theWrappedObject) const
 {
-return  (*theWrappedObject).paintEngine();
+return  theWrappedObject->numBytes();
 }
 
-void PythonQtWrapper_QImage::setColor(QImage* theWrappedObject, int  i, unsigned int  c)
+QImage  PythonQtWrapper_QImage::rgbSwapped(QImage* theWrappedObject) const
 {
- (*theWrappedObject).setColor(i, c);
+return  theWrappedObject->rgbSwapped();
+}
+
+bool  PythonQtWrapper_QImage::load(QImage* theWrappedObject, QIODevice*  device, const char*  format)
+{
+return  theWrappedObject->load(device, format);
+}
+
+QImage  PythonQtWrapper_QImage::scaledToWidth(QImage* theWrappedObject, int  w, Qt::TransformationMode  mode) const
+{
+return  theWrappedObject->scaledToWidth(w, mode);
 }
 

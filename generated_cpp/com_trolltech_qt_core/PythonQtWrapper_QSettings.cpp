@@ -136,89 +136,59 @@ QSettings* PythonQtWrapper_QSettings::new_QSettings(const QString&  organization
 { 
 return new PythonQtShell_QSettings(organization, application, parent); }
 
-void PythonQtWrapper_QSettings::setArrayIndex(QSettings* theWrappedObject, int  i)
+bool  PythonQtWrapper_QSettings::fallbacksEnabled(QSettings* theWrappedObject) const
 {
- (*theWrappedObject).setArrayIndex(i);
-}
-
-QSettings::Format  PythonQtWrapper_QSettings::format(QSettings* theWrappedObject) const
-{
-return  (*theWrappedObject).format();
-}
-
-bool  PythonQtWrapper_QSettings::contains(QSettings* theWrappedObject, const QString&  key) const
-{
-return  (*theWrappedObject).contains(key);
-}
-
-void PythonQtWrapper_QSettings::setValue(QSettings* theWrappedObject, const QString&  key, const QVariant&  value)
-{
- (*theWrappedObject).setValue(key, value);
-}
-
-void PythonQtWrapper_QSettings::sync(QSettings* theWrappedObject)
-{
- (*theWrappedObject).sync();
-}
-
-void PythonQtWrapper_QSettings::endGroup(QSettings* theWrappedObject)
-{
- (*theWrappedObject).endGroup();
+return  theWrappedObject->fallbacksEnabled();
 }
 
 QString  PythonQtWrapper_QSettings::fileName(QSettings* theWrappedObject) const
 {
-return  (*theWrappedObject).fileName();
+return  theWrappedObject->fileName();
 }
 
-QStringList  PythonQtWrapper_QSettings::childGroups(QSettings* theWrappedObject) const
+void PythonQtWrapper_QSettings::sync(QSettings* theWrappedObject)
 {
-return  (*theWrappedObject).childGroups();
+ theWrappedObject->sync();
 }
 
-QSettings::Status  PythonQtWrapper_QSettings::status(QSettings* theWrappedObject) const
+QSettings::Format  PythonQtWrapper_QSettings::format(QSettings* theWrappedObject) const
 {
-return  (*theWrappedObject).status();
+return  theWrappedObject->format();
 }
 
-void PythonQtWrapper_QSettings::beginGroup(QSettings* theWrappedObject, const QString&  prefix)
+bool  PythonQtWrapper_QSettings::contains(QSettings* theWrappedObject, const QString&  key) const
 {
- (*theWrappedObject).beginGroup(prefix);
+return  theWrappedObject->contains(key);
+}
+
+void PythonQtWrapper_QSettings::endArray(QSettings* theWrappedObject)
+{
+ theWrappedObject->endArray();
+}
+
+QString  PythonQtWrapper_QSettings::applicationName(QSettings* theWrappedObject) const
+{
+return  theWrappedObject->applicationName();
 }
 
 QString  PythonQtWrapper_QSettings::group(QSettings* theWrappedObject) const
 {
-return  (*theWrappedObject).group();
+return  theWrappedObject->group();
 }
 
-QString  PythonQtWrapper_QSettings::organizationName(QSettings* theWrappedObject) const
+QSettings::Scope  PythonQtWrapper_QSettings::scope(QSettings* theWrappedObject) const
 {
-return  (*theWrappedObject).organizationName();
+return  theWrappedObject->scope();
+}
+
+void PythonQtWrapper_QSettings::static_QSettings_setPath(QSettings::Format  format, QSettings::Scope  scope, const QString&  path)
+{
+QSettings::setPath(format, scope, path);
 }
 
 bool  PythonQtWrapper_QSettings::event(QSettings* theWrappedObject, QEvent*  event)
 {
-return  (*((PythonQtPublicPromoter_QSettings*)theWrappedObject)).event(event);
-}
-
-int  PythonQtWrapper_QSettings::beginReadArray(QSettings* theWrappedObject, const QString&  prefix)
-{
-return  (*theWrappedObject).beginReadArray(prefix);
-}
-
-void PythonQtWrapper_QSettings::setFallbacksEnabled(QSettings* theWrappedObject, bool  b)
-{
- (*theWrappedObject).setFallbacksEnabled(b);
-}
-
-void PythonQtWrapper_QSettings::static_QSettings_setDefaultFormat(QSettings::Format  format)
-{
-QSettings::setDefaultFormat(format);
-}
-
-void PythonQtWrapper_QSettings::remove(QSettings* theWrappedObject, const QString&  key)
-{
- (*theWrappedObject).remove(key);
+return  ((PythonQtPublicPromoter_QSettings*)theWrappedObject)->promoted_event(event);
 }
 
 QSettings::Format  PythonQtWrapper_QSettings::static_QSettings_defaultFormat()
@@ -226,58 +196,88 @@ QSettings::Format  PythonQtWrapper_QSettings::static_QSettings_defaultFormat()
 return QSettings::defaultFormat();
 }
 
-void PythonQtWrapper_QSettings::endArray(QSettings* theWrappedObject)
+void PythonQtWrapper_QSettings::setFallbacksEnabled(QSettings* theWrappedObject, bool  b)
 {
- (*theWrappedObject).endArray();
+ theWrappedObject->setFallbacksEnabled(b);
 }
 
-void PythonQtWrapper_QSettings::beginWriteArray(QSettings* theWrappedObject, const QString&  prefix, int  size)
+int  PythonQtWrapper_QSettings::beginReadArray(QSettings* theWrappedObject, const QString&  prefix)
 {
- (*theWrappedObject).beginWriteArray(prefix, size);
-}
-
-QString  PythonQtWrapper_QSettings::applicationName(QSettings* theWrappedObject) const
-{
-return  (*theWrappedObject).applicationName();
-}
-
-void PythonQtWrapper_QSettings::clear(QSettings* theWrappedObject)
-{
- (*theWrappedObject).clear();
-}
-
-QVariant  PythonQtWrapper_QSettings::value(QSettings* theWrappedObject, const QString&  key, const QVariant&  defaultValue) const
-{
-return  (*theWrappedObject).value(key, defaultValue);
-}
-
-QStringList  PythonQtWrapper_QSettings::allKeys(QSettings* theWrappedObject) const
-{
-return  (*theWrappedObject).allKeys();
-}
-
-QStringList  PythonQtWrapper_QSettings::childKeys(QSettings* theWrappedObject) const
-{
-return  (*theWrappedObject).childKeys();
-}
-
-bool  PythonQtWrapper_QSettings::fallbacksEnabled(QSettings* theWrappedObject) const
-{
-return  (*theWrappedObject).fallbacksEnabled();
+return  theWrappedObject->beginReadArray(prefix);
 }
 
 bool  PythonQtWrapper_QSettings::isWritable(QSettings* theWrappedObject) const
 {
-return  (*theWrappedObject).isWritable();
+return  theWrappedObject->isWritable();
 }
 
-QSettings::Scope  PythonQtWrapper_QSettings::scope(QSettings* theWrappedObject) const
+void PythonQtWrapper_QSettings::static_QSettings_setDefaultFormat(QSettings::Format  format)
 {
-return  (*theWrappedObject).scope();
+QSettings::setDefaultFormat(format);
 }
 
-void PythonQtWrapper_QSettings::static_QSettings_setPath(QSettings::Format  format, QSettings::Scope  scope, const QString&  path)
+QStringList  PythonQtWrapper_QSettings::childGroups(QSettings* theWrappedObject) const
 {
-QSettings::setPath(format, scope, path);
+return  theWrappedObject->childGroups();
+}
+
+void PythonQtWrapper_QSettings::setArrayIndex(QSettings* theWrappedObject, int  i)
+{
+ theWrappedObject->setArrayIndex(i);
+}
+
+void PythonQtWrapper_QSettings::setValue(QSettings* theWrappedObject, const QString&  key, const QVariant&  value)
+{
+ theWrappedObject->setValue(key, value);
+}
+
+QSettings::Status  PythonQtWrapper_QSettings::status(QSettings* theWrappedObject) const
+{
+return  theWrappedObject->status();
+}
+
+void PythonQtWrapper_QSettings::endGroup(QSettings* theWrappedObject)
+{
+ theWrappedObject->endGroup();
+}
+
+void PythonQtWrapper_QSettings::remove(QSettings* theWrappedObject, const QString&  key)
+{
+ theWrappedObject->remove(key);
+}
+
+QVariant  PythonQtWrapper_QSettings::value(QSettings* theWrappedObject, const QString&  key, const QVariant&  defaultValue) const
+{
+return  theWrappedObject->value(key, defaultValue);
+}
+
+QStringList  PythonQtWrapper_QSettings::allKeys(QSettings* theWrappedObject) const
+{
+return  theWrappedObject->allKeys();
+}
+
+void PythonQtWrapper_QSettings::beginWriteArray(QSettings* theWrappedObject, const QString&  prefix, int  size)
+{
+ theWrappedObject->beginWriteArray(prefix, size);
+}
+
+void PythonQtWrapper_QSettings::clear(QSettings* theWrappedObject)
+{
+ theWrappedObject->clear();
+}
+
+QStringList  PythonQtWrapper_QSettings::childKeys(QSettings* theWrappedObject) const
+{
+return  theWrappedObject->childKeys();
+}
+
+QString  PythonQtWrapper_QSettings::organizationName(QSettings* theWrappedObject) const
+{
+return  theWrappedObject->organizationName();
+}
+
+void PythonQtWrapper_QSettings::beginGroup(QSettings* theWrappedObject, const QString&  prefix)
+{
+ theWrappedObject->beginGroup(prefix);
 }
 

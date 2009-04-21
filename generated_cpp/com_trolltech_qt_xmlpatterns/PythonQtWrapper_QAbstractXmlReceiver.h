@@ -33,6 +33,11 @@ virtual void whitespaceOnly(const QStringRef&  value);
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QAbstractXmlReceiver : public QAbstractXmlReceiver
+{ public:
+inline void promoted_whitespaceOnly(const QStringRef&  value) { QAbstractXmlReceiver::whitespaceOnly(value); }
+};
+
 class PythonQtWrapper_QAbstractXmlReceiver : public QObject
 { Q_OBJECT
 public:

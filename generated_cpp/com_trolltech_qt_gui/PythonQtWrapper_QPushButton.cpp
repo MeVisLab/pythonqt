@@ -849,76 +849,76 @@ return new PythonQtShell_QPushButton(text, parent); }
 
 QSize  PythonQtWrapper_QPushButton::minimumSizeHint(QPushButton* theWrappedObject) const
 {
-return  (*theWrappedObject).minimumSizeHint();
-}
-
-void PythonQtWrapper_QPushButton::focusOutEvent(QPushButton* theWrappedObject, QFocusEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QPushButton*)theWrappedObject)).focusOutEvent(arg__1);
-}
-
-void PythonQtWrapper_QPushButton::setAutoDefault(QPushButton* theWrappedObject, bool  arg__1)
-{
- (*theWrappedObject).setAutoDefault(arg__1);
-}
-
-bool  PythonQtWrapper_QPushButton::isDefault(QPushButton* theWrappedObject) const
-{
-return  (*theWrappedObject).isDefault();
-}
-
-void PythonQtWrapper_QPushButton::paintEvent(QPushButton* theWrappedObject, QPaintEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QPushButton*)theWrappedObject)).paintEvent(arg__1);
-}
-
-void PythonQtWrapper_QPushButton::setMenu(QPushButton* theWrappedObject, QMenu*  menu)
-{
- (*theWrappedObject).setMenu(menu);
-}
-
-bool  PythonQtWrapper_QPushButton::isFlat(QPushButton* theWrappedObject) const
-{
-return  (*theWrappedObject).isFlat();
-}
-
-QMenu*  PythonQtWrapper_QPushButton::menu(QPushButton* theWrappedObject) const
-{
-return  (*theWrappedObject).menu();
-}
-
-void PythonQtWrapper_QPushButton::setFlat(QPushButton* theWrappedObject, bool  arg__1)
-{
- (*theWrappedObject).setFlat(arg__1);
-}
-
-void PythonQtWrapper_QPushButton::focusInEvent(QPushButton* theWrappedObject, QFocusEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QPushButton*)theWrappedObject)).focusInEvent(arg__1);
-}
-
-void PythonQtWrapper_QPushButton::keyPressEvent(QPushButton* theWrappedObject, QKeyEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QPushButton*)theWrappedObject)).keyPressEvent(arg__1);
-}
-
-bool  PythonQtWrapper_QPushButton::event(QPushButton* theWrappedObject, QEvent*  e)
-{
-return  (*((PythonQtPublicPromoter_QPushButton*)theWrappedObject)).event(e);
-}
-
-bool  PythonQtWrapper_QPushButton::autoDefault(QPushButton* theWrappedObject) const
-{
-return  (*theWrappedObject).autoDefault();
+return  theWrappedObject->minimumSizeHint();
 }
 
 void PythonQtWrapper_QPushButton::setDefault(QPushButton* theWrappedObject, bool  arg__1)
 {
- (*theWrappedObject).setDefault(arg__1);
+ theWrappedObject->setDefault(arg__1);
+}
+
+bool  PythonQtWrapper_QPushButton::event(QPushButton* theWrappedObject, QEvent*  e)
+{
+return  ((PythonQtPublicPromoter_QPushButton*)theWrappedObject)->promoted_event(e);
+}
+
+void PythonQtWrapper_QPushButton::setAutoDefault(QPushButton* theWrappedObject, bool  arg__1)
+{
+ theWrappedObject->setAutoDefault(arg__1);
+}
+
+QMenu*  PythonQtWrapper_QPushButton::menu(QPushButton* theWrappedObject) const
+{
+return  theWrappedObject->menu();
+}
+
+void PythonQtWrapper_QPushButton::paintEvent(QPushButton* theWrappedObject, QPaintEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QPushButton*)theWrappedObject)->promoted_paintEvent(arg__1);
+}
+
+void PythonQtWrapper_QPushButton::setFlat(QPushButton* theWrappedObject, bool  arg__1)
+{
+ theWrappedObject->setFlat(arg__1);
+}
+
+void PythonQtWrapper_QPushButton::focusOutEvent(QPushButton* theWrappedObject, QFocusEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QPushButton*)theWrappedObject)->promoted_focusOutEvent(arg__1);
+}
+
+bool  PythonQtWrapper_QPushButton::isDefault(QPushButton* theWrappedObject) const
+{
+return  theWrappedObject->isDefault();
+}
+
+bool  PythonQtWrapper_QPushButton::isFlat(QPushButton* theWrappedObject) const
+{
+return  theWrappedObject->isFlat();
+}
+
+bool  PythonQtWrapper_QPushButton::autoDefault(QPushButton* theWrappedObject) const
+{
+return  theWrappedObject->autoDefault();
+}
+
+void PythonQtWrapper_QPushButton::setMenu(QPushButton* theWrappedObject, QMenu*  menu)
+{
+ theWrappedObject->setMenu(menu);
+}
+
+void PythonQtWrapper_QPushButton::keyPressEvent(QPushButton* theWrappedObject, QKeyEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QPushButton*)theWrappedObject)->promoted_keyPressEvent(arg__1);
 }
 
 QSize  PythonQtWrapper_QPushButton::sizeHint(QPushButton* theWrappedObject) const
 {
-return  (*theWrappedObject).sizeHint();
+return  theWrappedObject->sizeHint();
+}
+
+void PythonQtWrapper_QPushButton::focusInEvent(QPushButton* theWrappedObject, QFocusEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QPushButton*)theWrappedObject)->promoted_focusInEvent(arg__1);
 }
 

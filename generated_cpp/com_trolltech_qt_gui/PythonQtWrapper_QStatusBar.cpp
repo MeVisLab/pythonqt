@@ -825,63 +825,63 @@ QStatusBar* PythonQtWrapper_QStatusBar::new_QStatusBar(QWidget*  parent)
 { 
 return new PythonQtShell_QStatusBar(parent); }
 
-bool  PythonQtWrapper_QStatusBar::event(QStatusBar* theWrappedObject, QEvent*  arg__1)
-{
-return  (*((PythonQtPublicPromoter_QStatusBar*)theWrappedObject)).event(arg__1);
-}
-
 void PythonQtWrapper_QStatusBar::resizeEvent(QStatusBar* theWrappedObject, QResizeEvent*  arg__1)
 {
- (*((PythonQtPublicPromoter_QStatusBar*)theWrappedObject)).resizeEvent(arg__1);
+ ((PythonQtPublicPromoter_QStatusBar*)theWrappedObject)->promoted_resizeEvent(arg__1);
 }
 
 void PythonQtWrapper_QStatusBar::showEvent(QStatusBar* theWrappedObject, QShowEvent*  arg__1)
 {
- (*((PythonQtPublicPromoter_QStatusBar*)theWrappedObject)).showEvent(arg__1);
+ ((PythonQtPublicPromoter_QStatusBar*)theWrappedObject)->promoted_showEvent(arg__1);
 }
 
 void PythonQtWrapper_QStatusBar::addWidget(QStatusBar* theWrappedObject, QWidget*  widget, int  stretch)
 {
- (*theWrappedObject).addWidget(widget, stretch);
+ theWrappedObject->addWidget(widget, stretch);
 }
 
 void PythonQtWrapper_QStatusBar::removeWidget(QStatusBar* theWrappedObject, QWidget*  widget)
 {
- (*theWrappedObject).removeWidget(widget);
+ theWrappedObject->removeWidget(widget);
 }
 
 void PythonQtWrapper_QStatusBar::setSizeGripEnabled(QStatusBar* theWrappedObject, bool  arg__1)
 {
- (*theWrappedObject).setSizeGripEnabled(arg__1);
+ theWrappedObject->setSizeGripEnabled(arg__1);
 }
 
 bool  PythonQtWrapper_QStatusBar::isSizeGripEnabled(QStatusBar* theWrappedObject) const
 {
-return  (*theWrappedObject).isSizeGripEnabled();
+return  theWrappedObject->isSizeGripEnabled();
 }
 
 void PythonQtWrapper_QStatusBar::addPermanentWidget(QStatusBar* theWrappedObject, QWidget*  widget, int  stretch)
 {
- (*theWrappedObject).addPermanentWidget(widget, stretch);
+ theWrappedObject->addPermanentWidget(widget, stretch);
 }
 
 int  PythonQtWrapper_QStatusBar::insertPermanentWidget(QStatusBar* theWrappedObject, int  index, QWidget*  widget, int  stretch)
 {
-return  (*theWrappedObject).insertPermanentWidget(index, widget, stretch);
+return  theWrappedObject->insertPermanentWidget(index, widget, stretch);
 }
 
 QString  PythonQtWrapper_QStatusBar::currentMessage(QStatusBar* theWrappedObject) const
 {
-return  (*theWrappedObject).currentMessage();
+return  theWrappedObject->currentMessage();
 }
 
 int  PythonQtWrapper_QStatusBar::insertWidget(QStatusBar* theWrappedObject, int  index, QWidget*  widget, int  stretch)
 {
-return  (*theWrappedObject).insertWidget(index, widget, stretch);
+return  theWrappedObject->insertWidget(index, widget, stretch);
 }
 
 void PythonQtWrapper_QStatusBar::paintEvent(QStatusBar* theWrappedObject, QPaintEvent*  arg__1)
 {
- (*((PythonQtPublicPromoter_QStatusBar*)theWrappedObject)).paintEvent(arg__1);
+ ((PythonQtPublicPromoter_QStatusBar*)theWrappedObject)->promoted_paintEvent(arg__1);
+}
+
+bool  PythonQtWrapper_QStatusBar::event(QStatusBar* theWrappedObject, QEvent*  arg__1)
+{
+return  ((PythonQtPublicPromoter_QStatusBar*)theWrappedObject)->promoted_event(arg__1);
 }
 

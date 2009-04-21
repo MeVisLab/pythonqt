@@ -134,11 +134,11 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QTableWidget : public QTableWidget
 { public:
-inline bool  event(QEvent*  e) { return QTableWidget::event(e); }
-inline void dropEvent(QDropEvent*  event) { QTableWidget::dropEvent(event); }
-inline bool  dropMimeData(int  row, int  column, const QMimeData*  data, Qt::DropAction  action) { return QTableWidget::dropMimeData(row, column, data, action); }
-inline QStringList  mimeTypes() const { return QTableWidget::mimeTypes(); }
-inline Qt::DropActions  supportedDropActions() const { return QTableWidget::supportedDropActions(); }
+inline bool  promoted_event(QEvent*  e) { return QTableWidget::event(e); }
+inline bool  promoted_dropMimeData(int  row, int  column, const QMimeData*  data, Qt::DropAction  action) { return QTableWidget::dropMimeData(row, column, data, action); }
+inline QStringList  promoted_mimeTypes() const { return QTableWidget::mimeTypes(); }
+inline Qt::DropActions  promoted_supportedDropActions() const { return QTableWidget::supportedDropActions(); }
+inline void promoted_dropEvent(QDropEvent*  event) { QTableWidget::dropEvent(event); }
 };
 
 class PythonQtWrapper_QTableWidget : public QObject
@@ -148,53 +148,53 @@ public slots:
 QTableWidget* new_QTableWidget(QWidget*  parent = 0);
 QTableWidget* new_QTableWidget(int  rows, int  columns, QWidget*  parent = 0);
 void delete_QTableWidget(QTableWidget* obj) { delete obj; } 
-   void setHorizontalHeaderItem(QTableWidget* theWrappedObject, int  column, QTableWidgetItem*  item);
-   void setRangeSelected(QTableWidget* theWrappedObject, const QTableWidgetSelectionRange&  range, bool  select);
-   void editItem(QTableWidget* theWrappedObject, QTableWidgetItem*  item);
-   QList<QTableWidgetItem* >  findItems(QTableWidget* theWrappedObject, const QString&  text, Qt::MatchFlags  flags) const;
-   int  rowCount(QTableWidget* theWrappedObject) const;
-   QTableWidgetItem*  verticalHeaderItem(QTableWidget* theWrappedObject, int  row) const;
-   bool  event(QTableWidget* theWrappedObject, QEvent*  e);
-   QTableWidgetItem*  horizontalHeaderItem(QTableWidget* theWrappedObject, int  column) const;
-   const QTableWidgetItem*  itemPrototype(QTableWidget* theWrappedObject) const;
-   int  row(QTableWidget* theWrappedObject, const QTableWidgetItem*  item) const;
-   void setItem(QTableWidget* theWrappedObject, int  row, int  column, QTableWidgetItem*  item);
-   void setVerticalHeaderItem(QTableWidget* theWrappedObject, int  row, QTableWidgetItem*  item);
-   int  currentRow(QTableWidget* theWrappedObject) const;
-   int  visualColumn(QTableWidget* theWrappedObject, int  logicalColumn) const;
-   void setVerticalHeaderLabels(QTableWidget* theWrappedObject, const QStringList&  labels);
-   void dropEvent(QTableWidget* theWrappedObject, QDropEvent*  event);
-   QWidget*  cellWidget(QTableWidget* theWrappedObject, int  row, int  column) const;
-   int  columnCount(QTableWidget* theWrappedObject) const;
-   void removeCellWidget(QTableWidget* theWrappedObject, int  row, int  column);
-   QTableWidgetItem*  takeHorizontalHeaderItem(QTableWidget* theWrappedObject, int  column);
-   bool  dropMimeData(QTableWidget* theWrappedObject, int  row, int  column, const QMimeData*  data, Qt::DropAction  action);
-   QTableWidgetItem*  itemAt(QTableWidget* theWrappedObject, int  x, int  y) const;
-   void sortItems(QTableWidget* theWrappedObject, int  column, Qt::SortOrder  order = Qt::AscendingOrder);
-   QList<QTableWidgetItem* >  selectedItems(QTableWidget* theWrappedObject);
-   QRect  visualItemRect(QTableWidget* theWrappedObject, const QTableWidgetItem*  item) const;
    QTableWidgetItem*  takeVerticalHeaderItem(QTableWidget* theWrappedObject, int  row);
+   int  columnCount(QTableWidget* theWrappedObject) const;
+   void setCurrentCell(QTableWidget* theWrappedObject, int  row, int  column, QItemSelectionModel::SelectionFlags  command);
+   void setItemPrototype(QTableWidget* theWrappedObject, const QTableWidgetItem*  item);
+   void setColumnCount(QTableWidget* theWrappedObject, int  columns);
+   bool  event(QTableWidget* theWrappedObject, QEvent*  e);
+   void setItem(QTableWidget* theWrappedObject, int  row, int  column, QTableWidgetItem*  item);
+   QTableWidgetItem*  itemAt(QTableWidget* theWrappedObject, const QPoint&  p) const;
    void closePersistentEditor(QTableWidget* theWrappedObject, QTableWidgetItem*  item);
+   void setVerticalHeaderLabels(QTableWidget* theWrappedObject, const QStringList&  labels);
+   int  currentRow(QTableWidget* theWrappedObject) const;
+   QList<QTableWidgetItem* >  findItems(QTableWidget* theWrappedObject, const QString&  text, Qt::MatchFlags  flags) const;
+   QList<QTableWidgetSelectionRange >  selectedRanges(QTableWidget* theWrappedObject) const;
+   QWidget*  cellWidget(QTableWidget* theWrappedObject, int  row, int  column) const;
+   QRect  visualItemRect(QTableWidget* theWrappedObject, const QTableWidgetItem*  item) const;
+   QTableWidgetItem*  itemAt(QTableWidget* theWrappedObject, int  x, int  y) const;
+   int  rowCount(QTableWidget* theWrappedObject) const;
+   void setCurrentCell(QTableWidget* theWrappedObject, int  row, int  column);
+   QTableWidgetItem*  verticalHeaderItem(QTableWidget* theWrappedObject, int  row) const;
+   int  column(QTableWidget* theWrappedObject, const QTableWidgetItem*  item) const;
+   int  row(QTableWidget* theWrappedObject, const QTableWidgetItem*  item) const;
+   QTableWidgetItem*  horizontalHeaderItem(QTableWidget* theWrappedObject, int  column) const;
+   void setVerticalHeaderItem(QTableWidget* theWrappedObject, int  row, QTableWidgetItem*  item);
+   bool  dropMimeData(QTableWidget* theWrappedObject, int  row, int  column, const QMimeData*  data, Qt::DropAction  action);
+   int  visualColumn(QTableWidget* theWrappedObject, int  logicalColumn) const;
+   void setCurrentItem(QTableWidget* theWrappedObject, QTableWidgetItem*  item);
+   QTableWidgetItem*  item(QTableWidget* theWrappedObject, int  row, int  column) const;
+   QList<QTableWidgetItem* >  selectedItems(QTableWidget* theWrappedObject);
+   const QTableWidgetItem*  itemPrototype(QTableWidget* theWrappedObject) const;
+   void removeCellWidget(QTableWidget* theWrappedObject, int  row, int  column);
+   void openPersistentEditor(QTableWidget* theWrappedObject, QTableWidgetItem*  item);
+   QStringList  mimeTypes(QTableWidget* theWrappedObject) const;
+   Qt::DropActions  supportedDropActions(QTableWidget* theWrappedObject) const;
+   void sortItems(QTableWidget* theWrappedObject, int  column, Qt::SortOrder  order = Qt::AscendingOrder);
+   int  visualRow(QTableWidget* theWrappedObject, int  logicalRow) const;
    void setCurrentItem(QTableWidget* theWrappedObject, QTableWidgetItem*  item, QItemSelectionModel::SelectionFlags  command);
    QTableWidgetItem*  currentItem(QTableWidget* theWrappedObject) const;
-   QList<QTableWidgetSelectionRange >  selectedRanges(QTableWidget* theWrappedObject) const;
-   void setRowCount(QTableWidget* theWrappedObject, int  rows);
-   QTableWidgetItem*  itemAt(QTableWidget* theWrappedObject, const QPoint&  p) const;
-   int  visualRow(QTableWidget* theWrappedObject, int  logicalRow) const;
-   QStringList  mimeTypes(QTableWidget* theWrappedObject) const;
-   int  column(QTableWidget* theWrappedObject, const QTableWidgetItem*  item) const;
-   void setCurrentItem(QTableWidget* theWrappedObject, QTableWidgetItem*  item);
-   void setCurrentCell(QTableWidget* theWrappedObject, int  row, int  column, QItemSelectionModel::SelectionFlags  command);
-   Qt::DropActions  supportedDropActions(QTableWidget* theWrappedObject) const;
-   void openPersistentEditor(QTableWidget* theWrappedObject, QTableWidgetItem*  item);
-   QTableWidgetItem*  item(QTableWidget* theWrappedObject, int  row, int  column) const;
-   void setColumnCount(QTableWidget* theWrappedObject, int  columns);
+   void dropEvent(QTableWidget* theWrappedObject, QDropEvent*  event);
    QTableWidgetItem*  takeItem(QTableWidget* theWrappedObject, int  row, int  column);
+   void editItem(QTableWidget* theWrappedObject, QTableWidgetItem*  item);
+   QTableWidgetItem*  takeHorizontalHeaderItem(QTableWidget* theWrappedObject, int  column);
    void setCellWidget(QTableWidget* theWrappedObject, int  row, int  column, QWidget*  widget);
-   void setCurrentCell(QTableWidget* theWrappedObject, int  row, int  column);
-   void setHorizontalHeaderLabels(QTableWidget* theWrappedObject, const QStringList&  labels);
-   void setItemPrototype(QTableWidget* theWrappedObject, const QTableWidgetItem*  item);
    int  currentColumn(QTableWidget* theWrappedObject) const;
+   void setRowCount(QTableWidget* theWrappedObject, int  rows);
+   void setHorizontalHeaderItem(QTableWidget* theWrappedObject, int  column, QTableWidgetItem*  item);
+   void setHorizontalHeaderLabels(QTableWidget* theWrappedObject, const QStringList&  labels);
+   void setRangeSelected(QTableWidget* theWrappedObject, const QTableWidgetSelectionRange&  range, bool  select);
 };
 
 #endif // PYTHONQTWRAPPER_QTABLEWIDGET_H

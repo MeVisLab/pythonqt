@@ -515,58 +515,58 @@ QBuffer* PythonQtWrapper_QBuffer::new_QBuffer(QObject*  parent)
 { 
 return new PythonQtShell_QBuffer(parent); }
 
-bool  PythonQtWrapper_QBuffer::open(QBuffer* theWrappedObject, QIODevice::OpenMode  openMode)
-{
-return  (*theWrappedObject).open(openMode);
-}
-
-qint64  PythonQtWrapper_QBuffer::size(QBuffer* theWrappedObject) const
-{
-return  (*theWrappedObject).size();
-}
-
-bool  PythonQtWrapper_QBuffer::canReadLine(QBuffer* theWrappedObject) const
-{
-return  (*theWrappedObject).canReadLine();
-}
-
 void PythonQtWrapper_QBuffer::close(QBuffer* theWrappedObject)
 {
- (*theWrappedObject).close();
+ ((PythonQtPublicPromoter_QBuffer*)theWrappedObject)->promoted_close();
 }
 
 qint64  PythonQtWrapper_QBuffer::pos(QBuffer* theWrappedObject) const
 {
-return  (*theWrappedObject).pos();
-}
-
-qint64  PythonQtWrapper_QBuffer::readData(QBuffer* theWrappedObject, char*  data, qint64  maxlen)
-{
-return  (*((PythonQtPublicPromoter_QBuffer*)theWrappedObject)).readData(data, maxlen);
-}
-
-bool  PythonQtWrapper_QBuffer::atEnd(QBuffer* theWrappedObject) const
-{
-return  (*theWrappedObject).atEnd();
+return  ((PythonQtPublicPromoter_QBuffer*)theWrappedObject)->promoted_pos();
 }
 
 bool  PythonQtWrapper_QBuffer::seek(QBuffer* theWrappedObject, qint64  off)
 {
-return  (*theWrappedObject).seek(off);
+return  ((PythonQtPublicPromoter_QBuffer*)theWrappedObject)->promoted_seek(off);
 }
 
-void PythonQtWrapper_QBuffer::setData(QBuffer* theWrappedObject, const QByteArray&  data)
+bool  PythonQtWrapper_QBuffer::canReadLine(QBuffer* theWrappedObject) const
 {
- (*theWrappedObject).setData(data);
+return  ((PythonQtPublicPromoter_QBuffer*)theWrappedObject)->promoted_canReadLine();
 }
 
-qint64  PythonQtWrapper_QBuffer::writeData(QBuffer* theWrappedObject, const char*  data, qint64  len)
+qint64  PythonQtWrapper_QBuffer::readData(QBuffer* theWrappedObject, char*  data, qint64  maxlen)
 {
-return  (*((PythonQtPublicPromoter_QBuffer*)theWrappedObject)).writeData(data, len);
+return  ((PythonQtPublicPromoter_QBuffer*)theWrappedObject)->promoted_readData(data, maxlen);
+}
+
+bool  PythonQtWrapper_QBuffer::atEnd(QBuffer* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QBuffer*)theWrappedObject)->promoted_atEnd();
+}
+
+bool  PythonQtWrapper_QBuffer::open(QBuffer* theWrappedObject, QIODevice::OpenMode  openMode)
+{
+return  ((PythonQtPublicPromoter_QBuffer*)theWrappedObject)->promoted_open(openMode);
 }
 
 void PythonQtWrapper_QBuffer::setBuffer(QBuffer* theWrappedObject, QByteArray*  a)
 {
- (*theWrappedObject).setBuffer(a);
+ theWrappedObject->setBuffer(a);
+}
+
+void PythonQtWrapper_QBuffer::setData(QBuffer* theWrappedObject, const QByteArray&  data)
+{
+ theWrappedObject->setData(data);
+}
+
+qint64  PythonQtWrapper_QBuffer::writeData(QBuffer* theWrappedObject, const char*  data, qint64  len)
+{
+return  ((PythonQtPublicPromoter_QBuffer*)theWrappedObject)->promoted_writeData(data, len);
+}
+
+qint64  PythonQtWrapper_QBuffer::size(QBuffer* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QBuffer*)theWrappedObject)->promoted_size();
 }
 

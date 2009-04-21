@@ -350,53 +350,53 @@ QWidgetItem* PythonQtWrapper_QWidgetItem::new_QWidgetItem(QWidget*  w)
 { 
 return new PythonQtShell_QWidgetItem(w); }
 
-QRect  PythonQtWrapper_QWidgetItem::geometry(QWidgetItem* theWrappedObject) const
-{
-return  (*theWrappedObject).geometry();
-}
-
-int  PythonQtWrapper_QWidgetItem::heightForWidth(QWidgetItem* theWrappedObject, int  arg__1) const
-{
-return  (*theWrappedObject).heightForWidth(arg__1);
-}
-
-QSize  PythonQtWrapper_QWidgetItem::minimumSize(QWidgetItem* theWrappedObject) const
-{
-return  (*theWrappedObject).minimumSize();
-}
-
-bool  PythonQtWrapper_QWidgetItem::hasHeightForWidth(QWidgetItem* theWrappedObject) const
-{
-return  (*theWrappedObject).hasHeightForWidth();
-}
-
-QWidget*  PythonQtWrapper_QWidgetItem::widget(QWidgetItem* theWrappedObject)
-{
-return  (*theWrappedObject).widget();
-}
-
 QSize  PythonQtWrapper_QWidgetItem::maximumSize(QWidgetItem* theWrappedObject) const
 {
-return  (*theWrappedObject).maximumSize();
+return  ((PythonQtPublicPromoter_QWidgetItem*)theWrappedObject)->promoted_maximumSize();
 }
 
 bool  PythonQtWrapper_QWidgetItem::isEmpty(QWidgetItem* theWrappedObject) const
 {
-return  (*theWrappedObject).isEmpty();
+return  ((PythonQtPublicPromoter_QWidgetItem*)theWrappedObject)->promoted_isEmpty();
 }
 
 void PythonQtWrapper_QWidgetItem::setGeometry(QWidgetItem* theWrappedObject, const QRect&  arg__1)
 {
- (*theWrappedObject).setGeometry(arg__1);
-}
-
-QSize  PythonQtWrapper_QWidgetItem::sizeHint(QWidgetItem* theWrappedObject) const
-{
-return  (*theWrappedObject).sizeHint();
+ ((PythonQtPublicPromoter_QWidgetItem*)theWrappedObject)->promoted_setGeometry(arg__1);
 }
 
 Qt::Orientations  PythonQtWrapper_QWidgetItem::expandingDirections(QWidgetItem* theWrappedObject) const
 {
-return  (*theWrappedObject).expandingDirections();
+return  ((PythonQtPublicPromoter_QWidgetItem*)theWrappedObject)->promoted_expandingDirections();
+}
+
+QSize  PythonQtWrapper_QWidgetItem::sizeHint(QWidgetItem* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QWidgetItem*)theWrappedObject)->promoted_sizeHint();
+}
+
+QRect  PythonQtWrapper_QWidgetItem::geometry(QWidgetItem* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QWidgetItem*)theWrappedObject)->promoted_geometry();
+}
+
+bool  PythonQtWrapper_QWidgetItem::hasHeightForWidth(QWidgetItem* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QWidgetItem*)theWrappedObject)->promoted_hasHeightForWidth();
+}
+
+QWidget*  PythonQtWrapper_QWidgetItem::widget(QWidgetItem* theWrappedObject)
+{
+return  ((PythonQtPublicPromoter_QWidgetItem*)theWrappedObject)->promoted_widget();
+}
+
+QSize  PythonQtWrapper_QWidgetItem::minimumSize(QWidgetItem* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QWidgetItem*)theWrappedObject)->promoted_minimumSize();
+}
+
+int  PythonQtWrapper_QWidgetItem::heightForWidth(QWidgetItem* theWrappedObject, int  arg__1) const
+{
+return  ((PythonQtPublicPromoter_QWidgetItem*)theWrappedObject)->promoted_heightForWidth(arg__1);
 }
 

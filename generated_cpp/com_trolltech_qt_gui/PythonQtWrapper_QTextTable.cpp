@@ -124,88 +124,88 @@ QTextTable* PythonQtWrapper_QTextTable::new_QTextTable(QTextDocument*  doc)
 { 
 return new PythonQtShell_QTextTable(doc); }
 
-int  PythonQtWrapper_QTextTable::columns(QTextTable* theWrappedObject) const
+void PythonQtWrapper_QTextTable::removeRows(QTextTable* theWrappedObject, int  pos, int  num)
 {
-return  (*theWrappedObject).columns();
-}
-
-void PythonQtWrapper_QTextTable::insertRows(QTextTable* theWrappedObject, int  pos, int  num)
-{
- (*theWrappedObject).insertRows(pos, num);
-}
-
-QTextCursor  PythonQtWrapper_QTextTable::rowEnd(QTextTable* theWrappedObject, const QTextCursor&  c) const
-{
-return  (*theWrappedObject).rowEnd(c);
-}
-
-void PythonQtWrapper_QTextTable::setFormat(QTextTable* theWrappedObject, const QTextTableFormat&  format)
-{
- (*theWrappedObject).setFormat(format);
-}
-
-QTextTableFormat  PythonQtWrapper_QTextTable::format(QTextTable* theWrappedObject) const
-{
-return  (*theWrappedObject).format();
-}
-
-void PythonQtWrapper_QTextTable::insertColumns(QTextTable* theWrappedObject, int  pos, int  num)
-{
- (*theWrappedObject).insertColumns(pos, num);
-}
-
-void PythonQtWrapper_QTextTable::resize(QTextTable* theWrappedObject, int  rows, int  cols)
-{
- (*theWrappedObject).resize(rows, cols);
-}
-
-QTextCursor  PythonQtWrapper_QTextTable::rowStart(QTextTable* theWrappedObject, const QTextCursor&  c) const
-{
-return  (*theWrappedObject).rowStart(c);
-}
-
-void PythonQtWrapper_QTextTable::splitCell(QTextTable* theWrappedObject, int  row, int  col, int  numRows, int  numCols)
-{
- (*theWrappedObject).splitCell(row, col, numRows, numCols);
-}
-
-void PythonQtWrapper_QTextTable::removeColumns(QTextTable* theWrappedObject, int  pos, int  num)
-{
- (*theWrappedObject).removeColumns(pos, num);
-}
-
-QTextTableCell  PythonQtWrapper_QTextTable::cellAt(QTextTable* theWrappedObject, int  position) const
-{
-return  (*theWrappedObject).cellAt(position);
+ theWrappedObject->removeRows(pos, num);
 }
 
 QTextTableCell  PythonQtWrapper_QTextTable::cellAt(QTextTable* theWrappedObject, int  row, int  col) const
 {
-return  (*theWrappedObject).cellAt(row, col);
-}
-
-void PythonQtWrapper_QTextTable::removeRows(QTextTable* theWrappedObject, int  pos, int  num)
-{
- (*theWrappedObject).removeRows(pos, num);
-}
-
-void PythonQtWrapper_QTextTable::mergeCells(QTextTable* theWrappedObject, int  row, int  col, int  numRows, int  numCols)
-{
- (*theWrappedObject).mergeCells(row, col, numRows, numCols);
-}
-
-int  PythonQtWrapper_QTextTable::rows(QTextTable* theWrappedObject) const
-{
-return  (*theWrappedObject).rows();
-}
-
-QTextTableCell  PythonQtWrapper_QTextTable::cellAt(QTextTable* theWrappedObject, const QTextCursor&  c) const
-{
-return  (*theWrappedObject).cellAt(c);
+return  theWrappedObject->cellAt(row, col);
 }
 
 void PythonQtWrapper_QTextTable::mergeCells(QTextTable* theWrappedObject, const QTextCursor&  cursor)
 {
- (*theWrappedObject).mergeCells(cursor);
+ theWrappedObject->mergeCells(cursor);
+}
+
+QTextTableCell  PythonQtWrapper_QTextTable::cellAt(QTextTable* theWrappedObject, const QTextCursor&  c) const
+{
+return  theWrappedObject->cellAt(c);
+}
+
+int  PythonQtWrapper_QTextTable::rows(QTextTable* theWrappedObject) const
+{
+return  theWrappedObject->rows();
+}
+
+void PythonQtWrapper_QTextTable::insertRows(QTextTable* theWrappedObject, int  pos, int  num)
+{
+ theWrappedObject->insertRows(pos, num);
+}
+
+void PythonQtWrapper_QTextTable::mergeCells(QTextTable* theWrappedObject, int  row, int  col, int  numRows, int  numCols)
+{
+ theWrappedObject->mergeCells(row, col, numRows, numCols);
+}
+
+int  PythonQtWrapper_QTextTable::columns(QTextTable* theWrappedObject) const
+{
+return  theWrappedObject->columns();
+}
+
+QTextCursor  PythonQtWrapper_QTextTable::rowStart(QTextTable* theWrappedObject, const QTextCursor&  c) const
+{
+return  theWrappedObject->rowStart(c);
+}
+
+QTextTableFormat  PythonQtWrapper_QTextTable::format(QTextTable* theWrappedObject) const
+{
+return  theWrappedObject->format();
+}
+
+void PythonQtWrapper_QTextTable::insertColumns(QTextTable* theWrappedObject, int  pos, int  num)
+{
+ theWrappedObject->insertColumns(pos, num);
+}
+
+QTextCursor  PythonQtWrapper_QTextTable::rowEnd(QTextTable* theWrappedObject, const QTextCursor&  c) const
+{
+return  theWrappedObject->rowEnd(c);
+}
+
+void PythonQtWrapper_QTextTable::setFormat(QTextTable* theWrappedObject, const QTextTableFormat&  format)
+{
+ theWrappedObject->setFormat(format);
+}
+
+void PythonQtWrapper_QTextTable::splitCell(QTextTable* theWrappedObject, int  row, int  col, int  numRows, int  numCols)
+{
+ theWrappedObject->splitCell(row, col, numRows, numCols);
+}
+
+QTextTableCell  PythonQtWrapper_QTextTable::cellAt(QTextTable* theWrappedObject, int  position) const
+{
+return  theWrappedObject->cellAt(position);
+}
+
+void PythonQtWrapper_QTextTable::removeColumns(QTextTable* theWrappedObject, int  pos, int  num)
+{
+ theWrappedObject->removeColumns(pos, num);
+}
+
+void PythonQtWrapper_QTextTable::resize(QTextTable* theWrappedObject, int  rows, int  cols)
+{
+ theWrappedObject->resize(rows, cols);
 }
 

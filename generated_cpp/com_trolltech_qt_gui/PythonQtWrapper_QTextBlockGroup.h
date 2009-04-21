@@ -34,9 +34,9 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QTextBlockGroup : public QTextBlockGroup
 { public:
-inline void blockInserted(const QTextBlock&  block) { QTextBlockGroup::blockInserted(block); }
-inline void blockFormatChanged(const QTextBlock&  block) { QTextBlockGroup::blockFormatChanged(block); }
-inline void blockRemoved(const QTextBlock&  block) { QTextBlockGroup::blockRemoved(block); }
+inline void promoted_blockInserted(const QTextBlock&  block) { QTextBlockGroup::blockInserted(block); }
+inline void promoted_blockFormatChanged(const QTextBlock&  block) { QTextBlockGroup::blockFormatChanged(block); }
+inline void promoted_blockRemoved(const QTextBlock&  block) { QTextBlockGroup::blockRemoved(block); }
 };
 
 class PythonQtWrapper_QTextBlockGroup : public QObject

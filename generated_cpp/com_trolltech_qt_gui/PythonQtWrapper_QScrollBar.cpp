@@ -805,43 +805,43 @@ QScrollBar* PythonQtWrapper_QScrollBar::new_QScrollBar(Qt::Orientation  arg__1, 
 { 
 return new PythonQtShell_QScrollBar(arg__1, parent); }
 
-QSize  PythonQtWrapper_QScrollBar::sizeHint(QScrollBar* theWrappedObject) const
-{
-return  (*theWrappedObject).sizeHint();
-}
-
-void PythonQtWrapper_QScrollBar::mousePressEvent(QScrollBar* theWrappedObject, QMouseEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QScrollBar*)theWrappedObject)).mousePressEvent(arg__1);
-}
-
-void PythonQtWrapper_QScrollBar::mouseReleaseEvent(QScrollBar* theWrappedObject, QMouseEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QScrollBar*)theWrappedObject)).mouseReleaseEvent(arg__1);
-}
-
 bool  PythonQtWrapper_QScrollBar::event(QScrollBar* theWrappedObject, QEvent*  event)
 {
-return  (*theWrappedObject).event(event);
-}
-
-void PythonQtWrapper_QScrollBar::contextMenuEvent(QScrollBar* theWrappedObject, QContextMenuEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QScrollBar*)theWrappedObject)).contextMenuEvent(arg__1);
+return  ((PythonQtPublicPromoter_QScrollBar*)theWrappedObject)->promoted_event(event);
 }
 
 void PythonQtWrapper_QScrollBar::mouseMoveEvent(QScrollBar* theWrappedObject, QMouseEvent*  arg__1)
 {
- (*((PythonQtPublicPromoter_QScrollBar*)theWrappedObject)).mouseMoveEvent(arg__1);
+ ((PythonQtPublicPromoter_QScrollBar*)theWrappedObject)->promoted_mouseMoveEvent(arg__1);
 }
 
 void PythonQtWrapper_QScrollBar::hideEvent(QScrollBar* theWrappedObject, QHideEvent*  arg__1)
 {
- (*((PythonQtPublicPromoter_QScrollBar*)theWrappedObject)).hideEvent(arg__1);
+ ((PythonQtPublicPromoter_QScrollBar*)theWrappedObject)->promoted_hideEvent(arg__1);
+}
+
+QSize  PythonQtWrapper_QScrollBar::sizeHint(QScrollBar* theWrappedObject) const
+{
+return  theWrappedObject->sizeHint();
+}
+
+void PythonQtWrapper_QScrollBar::mousePressEvent(QScrollBar* theWrappedObject, QMouseEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QScrollBar*)theWrappedObject)->promoted_mousePressEvent(arg__1);
 }
 
 void PythonQtWrapper_QScrollBar::paintEvent(QScrollBar* theWrappedObject, QPaintEvent*  arg__1)
 {
- (*((PythonQtPublicPromoter_QScrollBar*)theWrappedObject)).paintEvent(arg__1);
+ ((PythonQtPublicPromoter_QScrollBar*)theWrappedObject)->promoted_paintEvent(arg__1);
+}
+
+void PythonQtWrapper_QScrollBar::mouseReleaseEvent(QScrollBar* theWrappedObject, QMouseEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QScrollBar*)theWrappedObject)->promoted_mouseReleaseEvent(arg__1);
+}
+
+void PythonQtWrapper_QScrollBar::contextMenuEvent(QScrollBar* theWrappedObject, QContextMenuEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QScrollBar*)theWrappedObject)->promoted_contextMenuEvent(arg__1);
 }
 
