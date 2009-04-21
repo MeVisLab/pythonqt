@@ -173,7 +173,16 @@ void PythonQtScriptingConsole::executeCode(const QString& code)
   _stdOut = "";
   _stdErr = "";
   PythonQtObjectPtr p;
-  p.setNewRef(PyRun_String(code.toLatin1().data(), Py_single_input, PyModule_GetDict(_context), PyModule_GetDict(_context)));
+  PyObject* dict = NULL;
+  if (PyModule_Check(_context)) {
+    dict = PyModule_GetDict(_context);
+  } else if (PyDict_Check(_context)) {
+    dict = _context;
+  }
+  if (dict) {
+    p.setNewRef(PyRun_String(code.toLatin1().data(), Py_single_input, dict, dict));
+  }
+
   if (!p) {
     PythonQt::self()->handleError();
   }
