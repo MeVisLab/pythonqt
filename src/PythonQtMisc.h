@@ -51,6 +51,13 @@
    ptr = (void*)item; \
 }
 
+#define PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedPtr,store, type, value, ptr) \
+{ \
+  type* item = (type*)(alreadyAllocatedPtr?alreadyAllocatedPtr:store.nextValuePtr()); \
+  *item = value; \
+  ptr = (void*)item; \
+}
+
 //! stores a position in the PythonQtValueStorage
 class PythonQtValueStoragePosition {
 

@@ -68,10 +68,12 @@ struct PythonQtMemberInfo {
     _property = prop;
   }
 
+  Type              _type;
+
+  // TODO: this could be a union...
   PythonQtSlotInfo* _slot;
   unsigned int      _enumValue;
   QMetaProperty     _property;
-  Type              _type;
 };
 
 //! a class that stores all required information about a Qt object (and an optional associated C++ class name)
@@ -80,20 +82,51 @@ struct PythonQtMemberInfo {
 class PythonQtClassInfo {
 
 public:
-  PythonQtClassInfo(const QMetaObject* meta, const QByteArray& wrappedClassName = QByteArray());
-
+  PythonQtClassInfo();
   ~PythonQtClassInfo();
+
+  //! store information about parent classes
+  struct ParentClassInfo {
+    ParentClassInfo(PythonQtClassInfo* parent, int upcastingOffset=0):_parent(parent),_upcastingOffset(upcastingOffset)
+    {};
+
+    PythonQtClassInfo* _parent;
+    int                _upcastingOffset;
+  };
+
+
+  //! setup as a QObject, taking the meta object as meta information about the QObject
+  void setupQObject(const QMetaObject* meta);
+
+  //! setup as a CPP (non-QObject), taking the classname
+  void setupCPPObject(const QByteArray& classname);
 
   //! get the Python method definition for a given slot name (without return type and signature)
   PythonQtMemberInfo member(const char* member);
 
+  //! get access to the constructor slot (which may be overloaded if there are multiple constructors)
   PythonQtSlotInfo* constructors();
   
+  //! get access to the destructor slot
+  PythonQtSlotInfo* destructor();
+
+  //! add a constructor, ownership is passed to classinfo
+  void addConstructor(PythonQtSlotInfo* info);
+
+  //! set a destructor, ownership is passed to classinfo
+  void setDestructor(PythonQtSlotInfo* info);
+
+  //! add a decorator slot, ownership is passed to classinfo
+  void addDecoratorSlot(PythonQtSlotInfo* info);
+
   //! get the classname (either of the QObject or of the wrapped CPP object)
   const char* className();
 
-  //! returns if the object is a CPP wrapper
-  bool isCPPWrapper() { return !_wrappedClassName.isEmpty(); }
+  //! returns if the QObject
+  bool isQObject() { return _isQObject; }
+
+  //! returns if the class is a CPP wrapper
+  bool isCPPWrapper() { return !_isQObject; }
 
   //! get the meta object
   const QMetaObject* metaObject() { return _meta; }
@@ -101,9 +134,17 @@ public:
   //! set the meta object, this will reset the caching
   void setMetaObject(const QMetaObject* meta);
 
-  //! returns if the meta object inherits the given classname
-  bool inherits(const char* name);
+  //! returns if this class inherits from the given classname
+  bool inherits(const char* classname);
   
+  //! returns if this class inherits from the given classinfo
+  bool inherits(PythonQtClassInfo* info);
+
+  //! casts the given \c ptr to an object of type \c classname, returns the new pointer
+  //! which might be different to \c ptr due to C++ multiple inheritance
+  //! (if the cast is not possible or if ptr is NULL, NULL is returned)
+  void* castTo(void* ptr, const char* classname);
+
   //! get help string for the metaobject
   QString help();
 
@@ -119,8 +160,8 @@ public:
   //! get the decorator qobject instance
   QObject* decorator();
   
-  //! set the parent class name of a wrapped CPP pointer
-  void setWrappedParentClassName(const QByteArray& name) { _wrappedParentClassName = name; _parentClassInfo = NULL; _parentClassInfoResolved = false; }
+  //! add the parent class info of a CPP object
+  void addParentClass(const ParentClassInfo& info) { _parentClasses.append(info); }
 
   //! check if the special method "hasOwner" is implemented and if it returns false, which means that the object may be destroyed
   bool hasOwnerMethodButNoOwner(void* object);
@@ -130,36 +171,56 @@ public:
 
   //! get the associated PythonQtClassWrapper (which handles instance creation of this type)
   PyObject* pythonQtClassWrapper() { return _pythonQtClassWrapper; }
-  
-private:
-  //! resolve the parent class from either meta object or cpp parent class name
-  void resolveParentClassInfo();
-  
+
+  //! set the shell set instance wrapper cb
+  void setShellSetInstanceWrapperCB(PythonQtShellSetInstanceWrapperCB* cb) {
+    _shellSetInstanceWrapperCB = cb;
+  }
+
+  //! get the shell set instance wrapper cb
+  PythonQtShellSetInstanceWrapperCB* shellSetInstanceWrapperCB() {
+    return _shellSetInstanceWrapperCB;
+  }
+
+private:  
   //! clear all cached members
   void clearCachedMembers();
 
-  PythonQtSlotInfo* findDecoratorSlotsFromDecoratorProvider(const char* memberName, PythonQtSlotInfo* inputInfo, bool &found, QHash<QByteArray, PythonQtMemberInfo>& memberCache);
+  PythonQtSlotInfo* findDecoratorSlotsFromDecoratorProvider(const char* memberName, PythonQtSlotInfo* inputInfo, bool &found, QHash<QByteArray, PythonQtMemberInfo>& memberCache, int upcastingOffset);
   void listDecoratorSlotsFromDecoratorProvider(QStringList& list, bool metaOnly);
+  PythonQtSlotInfo* recursiveFindDecoratorSlotsFromDecoratorProvider(const char* memberName, PythonQtSlotInfo* inputInfo, bool &found, QHash<QByteArray, PythonQtMemberInfo>& memberCache, int upcastingOffset);
+
+  void recursiveCollectClassInfos(QList<PythonQtClassInfo*>& classInfoObjects);
+  void recursiveCollectDecoratorObjects(QList<QObject*>& decoratorObjects);
 
   bool lookForPropertyAndCache(const char* memberName);
   bool lookForMethodAndCache(const char* memberName);
   bool lookForEnumAndCache(const QMetaObject* m, const char* memberName);
 
-  PythonQtSlotInfo* findDecoratorSlots(const char* classname, const char* memberName, int memberNameLen, PythonQtSlotInfo* tail, bool &found);
+  PythonQtSlotInfo* findDecoratorSlots(const char* memberName, int memberNameLen, PythonQtSlotInfo* tail, bool &found, QHash<QByteArray, PythonQtMemberInfo>& memberCache, int upcastingOffset);
   int findCharOffset(const char* sigStart, char someChar);
+
   QHash<QByteArray, PythonQtMemberInfo> _cachedMembers;
+
   PythonQtSlotInfo*                    _constructors;
+  PythonQtSlotInfo*                    _destructor;
+  QList<PythonQtSlotInfo*>             _decoratorSlots;
+
   const QMetaObject*                   _meta;
+
   QByteArray                           _wrappedClassName;
-  QByteArray                           _wrappedParentClassName;
+  QList<ParentClassInfo>               _parentClasses;
+
   QObject*                             _decoratorProvider;
   PythonQtQObjectCreatorFunctionCB*    _decoratorProviderCB;
-  PythonQtClassInfo*                   _parentClassInfo;
   
   PyObject*                            _pythonQtClassWrapper;
-
-  bool                                 _parentClassInfoResolved;
+  
+  PythonQtShellSetInstanceWrapperCB*   _shellSetInstanceWrapperCB;
+  
   int                                  _metaTypeId;
+
+  bool                                 _isQObject;
   
 };
 

@@ -67,7 +67,7 @@ class PyExampleDecorators : public QObject
 
 public slots:
   // add a constructor to QSize variant that takes a QPoint
-  QVariant new_QSize(const QPoint& p) { return QSize(p.x(), p.y()); }
+  QSize* new_QSize(const QPoint& p) { return new QSize(p.x(), p.y()); }
 
   // add a constructor for QPushButton that takes a text and a parent widget
   QPushButton* new_QPushButton(const QString& text, QWidget* parent=NULL) { return new QPushButton(text, parent); }

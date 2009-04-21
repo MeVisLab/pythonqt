@@ -1,5 +1,8 @@
 #include "PythonQtWrapper_QDynamicPropertyChangeEvent.h"
 
+#include <PythonQtSignalReceiver.h>
+#include <PythonQtMethodInfo.h>
+#include <PythonQtConversion.h>
 #include <QVariant>
 #include <qbytearray.h>
 
@@ -9,6 +12,6 @@ return new QDynamicPropertyChangeEvent(name); }
 
 QByteArray  PythonQtWrapper_QDynamicPropertyChangeEvent::propertyName(QDynamicPropertyChangeEvent* theWrappedObject) const
 {
-return theWrappedObject->propertyName();
+return  (*theWrappedObject).propertyName();
 }
 

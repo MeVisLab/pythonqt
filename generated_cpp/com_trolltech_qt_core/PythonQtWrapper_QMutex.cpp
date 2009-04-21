@@ -1,5 +1,8 @@
 #include "PythonQtWrapper_QMutex.h"
 
+#include <PythonQtSignalReceiver.h>
+#include <PythonQtMethodInfo.h>
+#include <PythonQtConversion.h>
 #include <QVariant>
 #include <qmutex.h>
 
@@ -9,21 +12,21 @@ return new QMutex(mode); }
 
 void PythonQtWrapper_QMutex::lock(QMutex* theWrappedObject)
 {
-theWrappedObject->lock();
-}
-
-bool  PythonQtWrapper_QMutex::tryLock(QMutex* theWrappedObject)
-{
-return theWrappedObject->tryLock();
+ (*theWrappedObject).lock();
 }
 
 bool  PythonQtWrapper_QMutex::tryLock(QMutex* theWrappedObject, int  timeout)
 {
-return theWrappedObject->tryLock(timeout);
+return  (*theWrappedObject).tryLock(timeout);
 }
 
 void PythonQtWrapper_QMutex::unlock(QMutex* theWrappedObject)
 {
-theWrappedObject->unlock();
+ (*theWrappedObject).unlock();
+}
+
+bool  PythonQtWrapper_QMutex::tryLock(QMutex* theWrappedObject)
+{
+return  (*theWrappedObject).tryLock();
 }
 

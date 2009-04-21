@@ -1,5 +1,8 @@
 #include "PythonQtWrapper_QTextDocumentFragment.h"
 
+#include <PythonQtSignalReceiver.h>
+#include <PythonQtMethodInfo.h>
+#include <PythonQtConversion.h>
 #include <QVariant>
 #include <qbytearray.h>
 #include <qtextcursor.h>
@@ -32,6 +35,21 @@ QTextDocumentFragment  PythonQtWrapper_QTextDocumentFragment::static_QTextDocume
 return QTextDocumentFragment::fromHtml(html, resourceProvider);
 }
 
+QString  PythonQtWrapper_QTextDocumentFragment::toHtml(QTextDocumentFragment* theWrappedObject, const QByteArray&  encoding) const
+{
+return  (*theWrappedObject).toHtml(encoding);
+}
+
+QString  PythonQtWrapper_QTextDocumentFragment::toPlainText(QTextDocumentFragment* theWrappedObject) const
+{
+return  (*theWrappedObject).toPlainText();
+}
+
+QString  PythonQtWrapper_QTextDocumentFragment::toHtml(QTextDocumentFragment* theWrappedObject) const
+{
+return  (*theWrappedObject).toHtml();
+}
+
 QTextDocumentFragment  PythonQtWrapper_QTextDocumentFragment::static_QTextDocumentFragment_fromPlainText(const QString&  plainText)
 {
 return QTextDocumentFragment::fromPlainText(plainText);
@@ -39,21 +57,6 @@ return QTextDocumentFragment::fromPlainText(plainText);
 
 bool  PythonQtWrapper_QTextDocumentFragment::isEmpty(QTextDocumentFragment* theWrappedObject) const
 {
-return theWrappedObject->isEmpty();
-}
-
-QString  PythonQtWrapper_QTextDocumentFragment::toHtml(QTextDocumentFragment* theWrappedObject) const
-{
-return theWrappedObject->toHtml();
-}
-
-QString  PythonQtWrapper_QTextDocumentFragment::toHtml(QTextDocumentFragment* theWrappedObject, const QByteArray&  encoding) const
-{
-return theWrappedObject->toHtml(encoding);
-}
-
-QString  PythonQtWrapper_QTextDocumentFragment::toPlainText(QTextDocumentFragment* theWrappedObject) const
-{
-return theWrappedObject->toPlainText();
+return  (*theWrappedObject).isEmpty();
 }
 

@@ -4,6 +4,8 @@
 #include <qwebframe.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qpixmap.h>
 #include <qpoint.h>
@@ -17,19 +19,19 @@ public slots:
 QWebHitTestResult* new_QWebHitTestResult();
 QWebHitTestResult* new_QWebHitTestResult(const QWebHitTestResult&  other);
 void delete_QWebHitTestResult(QWebHitTestResult* obj) { delete obj; } 
-   QString  alternateText(QWebHitTestResult* theWrappedObject) const;
    QWebFrame*  frame(QWebHitTestResult* theWrappedObject) const;
+   QUrl  linkTitle(QWebHitTestResult* theWrappedObject) const;
    QUrl  imageUrl(QWebHitTestResult* theWrappedObject) const;
-   bool  isContentEditable(QWebHitTestResult* theWrappedObject) const;
    bool  isContentSelected(QWebHitTestResult* theWrappedObject) const;
    bool  isNull(QWebHitTestResult* theWrappedObject) const;
+   QString  alternateText(QWebHitTestResult* theWrappedObject) const;
+   QPixmap  pixmap(QWebHitTestResult* theWrappedObject) const;
+   QUrl  linkUrl(QWebHitTestResult* theWrappedObject) const;
    QWebFrame*  linkTargetFrame(QWebHitTestResult* theWrappedObject) const;
    QString  linkText(QWebHitTestResult* theWrappedObject) const;
-   QUrl  linkTitle(QWebHitTestResult* theWrappedObject) const;
-   QUrl  linkUrl(QWebHitTestResult* theWrappedObject) const;
-   QPixmap  pixmap(QWebHitTestResult* theWrappedObject) const;
    QPoint  pos(QWebHitTestResult* theWrappedObject) const;
    QString  title(QWebHitTestResult* theWrappedObject) const;
+   bool  isContentEditable(QWebHitTestResult* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QWEBHITTESTRESULT_H

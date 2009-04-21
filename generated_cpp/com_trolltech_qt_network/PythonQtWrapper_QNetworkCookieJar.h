@@ -4,6 +4,8 @@
 #include <qnetworkcookie.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qbytearray.h>
 #include <qcoreevent.h>
@@ -11,6 +13,22 @@
 #include <qnetworkcookie.h>
 #include <qobject.h>
 #include <qurl.h>
+
+class PythonQtShell_QNetworkCookieJar : public QNetworkCookieJar
+{
+public:
+    PythonQtShell_QNetworkCookieJar(QObject*  parent = 0):QNetworkCookieJar(parent),_wrapper(NULL) {};
+
+virtual void childEvent(QChildEvent*  arg__1);
+virtual QList<QNetworkCookie >  cookiesForUrl(const QUrl&  url) const;
+virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
+virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual bool  setCookiesFromUrl(const QList<QNetworkCookie >&  cookieList, const QUrl&  url);
+virtual void timerEvent(QTimerEvent*  arg__1);
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
 
 class PythonQtWrapper_QNetworkCookieJar : public QObject
 { Q_OBJECT

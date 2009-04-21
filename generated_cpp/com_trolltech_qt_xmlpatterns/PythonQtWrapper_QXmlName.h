@@ -4,6 +4,8 @@
 #include <qxmlname.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qxmlname.h>
 #include <qxmlnamepool.h>
@@ -14,14 +16,18 @@ public:
 public slots:
 QXmlName* new_QXmlName();
 QXmlName* new_QXmlName(QXmlNamePool&  namePool, const QString&  localName, const QString&  namespaceURI = QString(), const QString&  prefix = QString());
+QXmlName* new_QXmlName(const QXmlName& other) {
+QXmlName* a = new QXmlName();
+*((QXmlName*)a) = other;
+return a; }
 void delete_QXmlName(QXmlName* obj) { delete obj; } 
-   bool  static_QXmlName_isNCName(const QString&  candidate);
-   bool  isNull(QXmlName* theWrappedObject) const;
-   QString  localName(QXmlName* theWrappedObject, const QXmlNamePool&  query) const;
-   QString  namespaceUri(QXmlName* theWrappedObject, const QXmlNamePool&  query) const;
    bool  operator_equal(QXmlName* theWrappedObject, const QXmlName&  other) const;
+   QString  namespaceUri(QXmlName* theWrappedObject, const QXmlNamePool&  query) const;
+   bool  isNull(QXmlName* theWrappedObject) const;
    QString  prefix(QXmlName* theWrappedObject, const QXmlNamePool&  query) const;
    QString  toClarkName(QXmlName* theWrappedObject, const QXmlNamePool&  query) const;
+   bool  static_QXmlName_isNCName(const QString&  candidate);
+   QString  localName(QXmlName* theWrappedObject, const QXmlNamePool&  query) const;
 };
 
 #endif // PYTHONQTWRAPPER_QXMLNAME_H

@@ -4,7 +4,18 @@
 #include <qcoreevent.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
+
+class PythonQtShell_QTimerEvent : public QTimerEvent
+{
+public:
+    PythonQtShell_QTimerEvent(int  timerId):QTimerEvent(timerId),_wrapper(NULL) {};
+
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
 
 class PythonQtWrapper_QTimerEvent : public QObject
 { Q_OBJECT

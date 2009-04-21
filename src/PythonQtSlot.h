@@ -43,11 +43,12 @@
 //----------------------------------------------------------------------------------
 
 #include "Python.h"
+#include "PythonQtSystem.h"
 #include "structmember.h"
 
 class PythonQtSlotInfo;
 
-extern PyTypeObject PythonQtSlotFunction_Type;
+extern PYTHONQT_EXPORT PyTypeObject PythonQtSlotFunction_Type;
 
 #define PythonQtSlotFunction_Check(op) ((op)->ob_type == &PythonQtSlotFunction_Type)
 

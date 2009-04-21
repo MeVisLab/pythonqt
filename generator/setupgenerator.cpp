@@ -22,7 +22,7 @@
 ****************************************************************************/
 
 #include "setupgenerator.h"
-#include "classgenerator.h"
+#include "shellgenerator.h"
 #include "reporthandler.h"
 #include "fileout.h"
 
@@ -87,7 +87,7 @@ void SetupGenerator::generate()
             s << "#include <PythonQt.h>" << endl;
 
           foreach (const AbstractMetaClass *cls, list) {
-            s << "#include \"PythonQtWrapper_" << cls->name() << ".h\"" << endl;
+            s << "#include \"" << ShellGenerator::wrapperClassName(cls) << ".h\"" << endl;
           }
           s << endl;
 
@@ -95,13 +95,23 @@ void SetupGenerator::generate()
             s << "void PythonQt_init_" << shortPackName << "() {" << endl;
           QStringList cppClassNames;
           foreach (const AbstractMetaClass *cls, list) {
-            if (ClassGenerator::isBuiltIn(cls->name())) { continue; }
+            if (ShellGenerator::isBuiltIn(cls->name())) { continue; }
 
+            QString shellCreator;
+            if (cls->generateShellClass()) {
+              shellCreator = ", PythonQtSetInstanceWrapperOnShell<" + ShellGenerator::shellClassName(cls) + ">";
+            }
             if (cls->isQObject()) {
-              s << "PythonQt::self()->registerClass(&" << cls->qualifiedCppName() << "::staticMetaObject, \"" << shortPackName <<"\", PythonQtCreateObject<PythonQtWrapper_" << cls->name() << ">);" << endl;
+              s << "PythonQt::self()->registerClass(&" << cls->qualifiedCppName() << "::staticMetaObject, \"" << shortPackName <<"\", PythonQtCreateObject<PythonQtWrapper_" << cls->name() << ">" << shellCreator << ");" << endl;
             } else {
               QString baseName = cls->baseClass()?cls->baseClass()->qualifiedCppName():"";
-              s << "PythonQt::self()->registerCPPClass(\""<< cls->qualifiedCppName() << "\", \"" << baseName << "\", \"" << shortPackName <<"\", PythonQtCreateObject<PythonQtWrapper_" << cls->name() << ">);" << endl;
+              s << "PythonQt::self()->registerCPPClass(\""<< cls->qualifiedCppName() << "\", \"" << baseName << "\", \"" << shortPackName <<"\", PythonQtCreateObject<PythonQtWrapper_" << cls->name() << ">" << shellCreator << ");" << endl;
+            }
+            foreach(AbstractMetaClass* interface, cls->interfaces()) {
+              // the interface might be our own class... (e.g. QPaintDevice)
+              if (interface->qualifiedCppName() != cls->qualifiedCppName()) {
+                s << "PythonQt::self()->addParentClass(\""<< cls->qualifiedCppName() << "\", \"" << interface->qualifiedCppName() << "\",PythonQtUpcastingOffset<" << cls->qualifiedCppName() <<","<<interface->qualifiedCppName()<<">());" << endl;
+              }
             }
           }
           s << endl;

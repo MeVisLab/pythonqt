@@ -4,8 +4,19 @@
 #include <qevent.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qpoint.h>
+
+class PythonQtShell_QMoveEvent : public QMoveEvent
+{
+public:
+    PythonQtShell_QMoveEvent(const QPoint&  pos, const QPoint&  oldPos):QMoveEvent(pos, oldPos),_wrapper(NULL) {};
+
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
 
 class PythonQtWrapper_QMoveEvent : public QObject
 { Q_OBJECT

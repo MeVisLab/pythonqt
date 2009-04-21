@@ -4,6 +4,8 @@
 #include <qkeysequence.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qdatastream.h>
 #include <qkeysequence.h>
@@ -26,19 +28,19 @@ QKeySequence* new_QKeySequence(const QKeySequence&  ks);
 QKeySequence* new_QKeySequence(const QString&  key);
 QKeySequence* new_QKeySequence(int  k1, int  k2 = 0, int  k3 = 0, int  k4 = 0);
 void delete_QKeySequence(QKeySequence* obj) { delete obj; } 
-   uint  count(QKeySequence* theWrappedObject) const;
-   QKeySequence  static_QKeySequence_fromString(const QString&  str, QKeySequence::SequenceFormat  format = QKeySequence::PortableText);
-   bool  isEmpty(QKeySequence* theWrappedObject) const;
-   QList<QKeySequence >  static_QKeySequence_keyBindings(QKeySequence::StandardKey  key);
-   QKeySequence::SequenceMatch  matches(QKeySequence* theWrappedObject, const QKeySequence&  seq) const;
-   QKeySequence  static_QKeySequence_mnemonic(const QString&  text);
    int  operator_cast_int(QKeySequence* theWrappedObject) const;
+   QList<QKeySequence >  static_QKeySequence_keyBindings(QKeySequence::StandardKey  key);
    bool  operator_less(QKeySequence* theWrappedObject, const QKeySequence&  ks) const;
+   QKeySequence  static_QKeySequence_mnemonic(const QString&  text);
    void writeTo(QKeySequence* theWrappedObject, QDataStream&  in);
-   bool  operator_equal(QKeySequence* theWrappedObject, const QKeySequence&  other) const;
-   void readFrom(QKeySequence* theWrappedObject, QDataStream&  out);
    int  operator_subscript(QKeySequence* theWrappedObject, uint  i) const;
+   bool  operator_equal(QKeySequence* theWrappedObject, const QKeySequence&  other) const;
    QString  toString(QKeySequence* theWrappedObject, QKeySequence::SequenceFormat  format = QKeySequence::PortableText) const;
+   uint  count(QKeySequence* theWrappedObject) const;
+   bool  isEmpty(QKeySequence* theWrappedObject) const;
+   void readFrom(QKeySequence* theWrappedObject, QDataStream&  out);
+   QKeySequence  static_QKeySequence_fromString(const QString&  str, QKeySequence::SequenceFormat  format = QKeySequence::PortableText);
+   QKeySequence::SequenceMatch  matches(QKeySequence* theWrappedObject, const QKeySequence&  seq) const;
 };
 
 #endif // PYTHONQTWRAPPER_QKEYSEQUENCE_H

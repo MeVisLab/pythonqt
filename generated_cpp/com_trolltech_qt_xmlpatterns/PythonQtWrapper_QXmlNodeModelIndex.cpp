@@ -1,5 +1,8 @@
 #include "PythonQtWrapper_QXmlNodeModelIndex.h"
 
+#include <PythonQtSignalReceiver.h>
+#include <PythonQtMethodInfo.h>
+#include <PythonQtConversion.h>
 #include <QVariant>
 #include <qabstractxmlnodemodel.h>
 
@@ -11,28 +14,28 @@ QXmlNodeModelIndex* PythonQtWrapper_QXmlNodeModelIndex::new_QXmlNodeModelIndex(c
 { 
 return new QXmlNodeModelIndex(other); }
 
-qint64  PythonQtWrapper_QXmlNodeModelIndex::additionalData(QXmlNodeModelIndex* theWrappedObject) const
-{
-return theWrappedObject->additionalData();
-}
-
 qint64  PythonQtWrapper_QXmlNodeModelIndex::data(QXmlNodeModelIndex* theWrappedObject) const
 {
-return theWrappedObject->data();
+return  (*theWrappedObject).data();
+}
+
+qint64  PythonQtWrapper_QXmlNodeModelIndex::additionalData(QXmlNodeModelIndex* theWrappedObject) const
+{
+return  (*theWrappedObject).additionalData();
 }
 
 bool  PythonQtWrapper_QXmlNodeModelIndex::isNull(QXmlNodeModelIndex* theWrappedObject) const
 {
-return theWrappedObject->isNull();
-}
-
-const QAbstractXmlNodeModel*  PythonQtWrapper_QXmlNodeModelIndex::model(QXmlNodeModelIndex* theWrappedObject) const
-{
-return theWrappedObject->model();
+return  (*theWrappedObject).isNull();
 }
 
 bool  PythonQtWrapper_QXmlNodeModelIndex::operator_equal(QXmlNodeModelIndex* theWrappedObject, const QXmlNodeModelIndex&  other) const
 {
-return *theWrappedObject == other;
+return  (*theWrappedObject)== other;
+}
+
+const QAbstractXmlNodeModel*  PythonQtWrapper_QXmlNodeModelIndex::model(QXmlNodeModelIndex* theWrappedObject) const
+{
+return  (*theWrappedObject).model();
 }
 

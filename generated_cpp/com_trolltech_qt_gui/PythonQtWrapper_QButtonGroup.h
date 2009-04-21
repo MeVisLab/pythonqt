@@ -4,6 +4,8 @@
 #include <qbuttongroup.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qabstractbutton.h>
 #include <qbuttongroup.h>
@@ -12,6 +14,20 @@
 #include <qlist.h>
 #include <qobject.h>
 
+class PythonQtShell_QButtonGroup : public QButtonGroup
+{
+public:
+    PythonQtShell_QButtonGroup(QObject*  parent = 0):QButtonGroup(parent),_wrapper(NULL) {};
+
+virtual void childEvent(QChildEvent*  arg__1);
+virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
+virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void timerEvent(QTimerEvent*  arg__1);
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
 class PythonQtWrapper_QButtonGroup : public QObject
 { Q_OBJECT
 public:
@@ -19,16 +35,16 @@ public slots:
 QButtonGroup* new_QButtonGroup(QObject*  parent = 0);
 void delete_QButtonGroup(QButtonGroup* obj) { delete obj; } 
    void addButton(QButtonGroup* theWrappedObject, QAbstractButton*  arg__1);
-   void addButton(QButtonGroup* theWrappedObject, QAbstractButton*  arg__1, int  id);
-   QAbstractButton*  button(QButtonGroup* theWrappedObject, int  id) const;
-   QList<QAbstractButton* >  buttons(QButtonGroup* theWrappedObject) const;
-   QAbstractButton*  checkedButton(QButtonGroup* theWrappedObject) const;
-   int  checkedId(QButtonGroup* theWrappedObject) const;
-   bool  exclusive(QButtonGroup* theWrappedObject) const;
    int  id(QButtonGroup* theWrappedObject, QAbstractButton*  button) const;
    void removeButton(QButtonGroup* theWrappedObject, QAbstractButton*  arg__1);
+   void addButton(QButtonGroup* theWrappedObject, QAbstractButton*  arg__1, int  id);
    void setExclusive(QButtonGroup* theWrappedObject, bool  arg__1);
+   QList<QAbstractButton* >  buttons(QButtonGroup* theWrappedObject) const;
+   int  checkedId(QButtonGroup* theWrappedObject) const;
+   bool  exclusive(QButtonGroup* theWrappedObject) const;
    void setId(QButtonGroup* theWrappedObject, QAbstractButton*  button, int  id);
+   QAbstractButton*  button(QButtonGroup* theWrappedObject, int  id) const;
+   QAbstractButton*  checkedButton(QButtonGroup* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QBUTTONGROUP_H

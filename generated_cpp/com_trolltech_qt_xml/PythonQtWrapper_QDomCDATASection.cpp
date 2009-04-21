@@ -1,5 +1,8 @@
 #include "PythonQtWrapper_QDomCDATASection.h"
 
+#include <PythonQtSignalReceiver.h>
+#include <PythonQtMethodInfo.h>
+#include <PythonQtConversion.h>
 #include <QVariant>
 #include <qdom.h>
 #include <qtextstream.h>

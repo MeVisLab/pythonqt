@@ -47,14 +47,21 @@
 #include <QMetaMethod>
 #include "funcobject.h"
 
-void PythonQtSignalTarget::call(void **arguments) const
+void PythonQtSignalTarget::call(void **arguments) const {
+  PyObject* result = call(_callable, methodInfo(), arguments, false);
+  if (result) {
+    Py_DECREF(result);
+  }
+}
+
+PyObject* PythonQtSignalTarget::call(PyObject* callable, const PythonQtMethodInfo* methodInfos, void **arguments, bool skipFirstArgumentOfMethodInfo)
 {
   // Note: we check if the callable is a PyFunctionObject and has a fixed number of arguments
   // if that is the case, we only pass these arguments to python and skip the additional arguments from the signal
   
   int numPythonArgs = -1;
-  if (PyFunction_Check(_callable)) {
-    PyObject* o = _callable;
+  if (PyFunction_Check(callable)) {
+    PyObject* o = callable;
     PyFunctionObject* func = (PyFunctionObject*)o;
     PyCodeObject* code = (PyCodeObject*)func->func_code;
     if (!(code->co_flags & 0x04)) {
@@ -62,8 +69,8 @@ void PythonQtSignalTarget::call(void **arguments) const
     } else {
       // variable numbers of arguments allowed
     }
-  } else if (PyMethod_Check(_callable)) {
-    PyObject* o = _callable;
+  } else if (PyMethod_Check(callable)) {
+    PyObject* o = callable;
     PyMethodObject* method = (PyMethodObject*)o;
     if (PyFunction_Check(method->im_func)) {
       PyFunctionObject* func = (PyFunctionObject*)method->im_func;
@@ -76,9 +83,12 @@ void PythonQtSignalTarget::call(void **arguments) const
     }
   }
 
-  const PythonQtMethodInfo* m = methodInfo();
+  const PythonQtMethodInfo* m = methodInfos;
   // parameterCount includes return value:
   int count = m->parameterCount();
+  if (skipFirstArgumentOfMethodInfo) {
+    count--;
+  }
   if (numPythonArgs!=-1) {
     if (count>numPythonArgs+1) {
       // take less arguments
@@ -93,8 +103,12 @@ void PythonQtSignalTarget::call(void **arguments) const
   bool err = false;
   // transform Qt values to Python
   const QList<PythonQtMethodInfo::ParameterInfo>& params = m->parameters();
+  int skipFirstOffset = 0;
+  if (skipFirstArgumentOfMethodInfo) {
+    skipFirstOffset = 1;
+  }
   for (int i = 1; i < count; i++) {
-    const PythonQtMethodInfo::ParameterInfo& param = params.at(i);
+    const PythonQtMethodInfo::ParameterInfo& param = params.at(i + skipFirstOffset);
     PyObject* arg = PythonQtConv::ConvertQtValueToPython(param, arguments[i]);
     if (arg) {
       // steals reference, no unref
@@ -105,12 +119,12 @@ void PythonQtSignalTarget::call(void **arguments) const
     }
   }
 
+  PyObject* result = NULL;
   if (!err) {
     PyErr_Clear();
-    PyObject* result = PyObject_CallObject(_callable, pargs);
+    result = PyObject_CallObject(callable, pargs);
     if (result) {
       // ok
-      Py_DECREF(result);
     } else {
       PythonQt::self()->handleError();
     }
@@ -119,6 +133,8 @@ void PythonQtSignalTarget::call(void **arguments) const
     // free the arguments again
     Py_DECREF(pargs);
   }
+
+  return result;
 }
 
 //------------------------------------------------------------------------------

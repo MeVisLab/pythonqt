@@ -4,6 +4,8 @@
 #include <qprinter.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QPrinterInfo>
 #include <QVariant>
 #include <qlist.h>
@@ -13,6 +15,24 @@
 #include <qprinter.h>
 #include <qrect.h>
 #include <qsize.h>
+
+class PythonQtShell_QPrinter : public QPrinter
+{
+public:
+    PythonQtShell_QPrinter(QPrinter::PrinterMode  mode = QPrinter::ScreenResolution):QPrinter(mode),_wrapper(NULL) {};
+    PythonQtShell_QPrinter(const QPrinterInfo&  printer, QPrinter::PrinterMode  mode = QPrinter::ScreenResolution):QPrinter(printer, mode),_wrapper(NULL) {};
+
+virtual int  devType() const;
+virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
+virtual QPaintEngine*  paintEngine() const;
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtPublicPromoter_QPrinter : public QPrinter
+{ public:
+inline int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const { return QPrinter::metric(arg__1); }
+};
 
 class PythonQtWrapper_QPrinter : public QObject
 { Q_OBJECT
@@ -44,76 +64,66 @@ public slots:
 QPrinter* new_QPrinter(QPrinter::PrinterMode  mode = QPrinter::ScreenResolution);
 QPrinter* new_QPrinter(const QPrinterInfo&  printer, QPrinter::PrinterMode  mode = QPrinter::ScreenResolution);
 void delete_QPrinter(QPrinter* obj) { delete obj; } 
-   bool  abort(QPrinter* theWrappedObject);
-   bool  collateCopies(QPrinter* theWrappedObject) const;
-   QPrinter::ColorMode  colorMode(QPrinter* theWrappedObject) const;
    QString  creator(QPrinter* theWrappedObject) const;
-   int  depth(QPrinter* theWrappedObject) const;
-   int  devType(QPrinter* theWrappedObject) const;
-   QString  docName(QPrinter* theWrappedObject) const;
-   bool  doubleSidedPrinting(QPrinter* theWrappedObject) const;
-   QPrinter::DuplexMode  duplex(QPrinter* theWrappedObject) const;
-   bool  fontEmbeddingEnabled(QPrinter* theWrappedObject) const;
-   int  fromPage(QPrinter* theWrappedObject) const;
+   QRect  paperRect(QPrinter* theWrappedObject) const;
    bool  fullPage(QPrinter* theWrappedObject) const;
-   void getPageMargins(QPrinter* theWrappedObject, qreal*  left, qreal*  top, qreal*  right, qreal*  bottom, QPrinter::Unit  unit) const;
-   int  height(QPrinter* theWrappedObject) const;
-   int  heightMM(QPrinter* theWrappedObject) const;
-   bool  isValid(QPrinter* theWrappedObject) const;
-   int  logicalDpiX(QPrinter* theWrappedObject) const;
-   int  logicalDpiY(QPrinter* theWrappedObject) const;
    bool  newPage(QPrinter* theWrappedObject);
-   int  numColors(QPrinter* theWrappedObject) const;
-   int  numCopies(QPrinter* theWrappedObject) const;
-   QPrinter::Orientation  orientation(QPrinter* theWrappedObject) const;
-   QString  outputFileName(QPrinter* theWrappedObject) const;
-   QPrinter::OutputFormat  outputFormat(QPrinter* theWrappedObject) const;
-   QPrinter::PageOrder  pageOrder(QPrinter* theWrappedObject) const;
-   QRect  pageRect(QPrinter* theWrappedObject) const;
-   QRectF  pageRect(QPrinter* theWrappedObject, QPrinter::Unit  arg__1) const;
+   QRectF  paperRect(QPrinter* theWrappedObject, QPrinter::Unit  arg__1) const;
+   QPrinter::DuplexMode  duplex(QPrinter* theWrappedObject) const;
+   void setColorMode(QPrinter* theWrappedObject, QPrinter::ColorMode  arg__1);
    QPrinter::PageSize  pageSize(QPrinter* theWrappedObject) const;
    QPaintEngine*  paintEngine(QPrinter* theWrappedObject) const;
-   bool  paintingActive(QPrinter* theWrappedObject) const;
-   QRect  paperRect(QPrinter* theWrappedObject) const;
-   QRectF  paperRect(QPrinter* theWrappedObject, QPrinter::Unit  arg__1) const;
-   QPrinter::PageSize  paperSize(QPrinter* theWrappedObject) const;
-   QSizeF  paperSize(QPrinter* theWrappedObject, QPrinter::Unit  unit) const;
-   QPrinter::PaperSource  paperSource(QPrinter* theWrappedObject) const;
-   int  physicalDpiX(QPrinter* theWrappedObject) const;
-   int  physicalDpiY(QPrinter* theWrappedObject) const;
    QPrintEngine*  printEngine(QPrinter* theWrappedObject) const;
-   QString  printProgram(QPrinter* theWrappedObject) const;
-   QPrinter::PrintRange  printRange(QPrinter* theWrappedObject) const;
-   QString  printerName(QPrinter* theWrappedObject) const;
-   QPrinter::PrinterState  printerState(QPrinter* theWrappedObject) const;
-   int  resolution(QPrinter* theWrappedObject) const;
-   void setCollateCopies(QPrinter* theWrappedObject, bool  collate);
-   void setColorMode(QPrinter* theWrappedObject, QPrinter::ColorMode  arg__1);
-   void setCreator(QPrinter* theWrappedObject, const QString&  arg__1);
-   void setDocName(QPrinter* theWrappedObject, const QString&  arg__1);
-   void setDoubleSidedPrinting(QPrinter* theWrappedObject, bool  enable);
-   void setDuplex(QPrinter* theWrappedObject, QPrinter::DuplexMode  duplex);
-   void setFontEmbeddingEnabled(QPrinter* theWrappedObject, bool  enable);
-   void setFromTo(QPrinter* theWrappedObject, int  fromPage, int  toPage);
-   void setFullPage(QPrinter* theWrappedObject, bool  arg__1);
-   void setNumCopies(QPrinter* theWrappedObject, int  arg__1);
-   void setOrientation(QPrinter* theWrappedObject, QPrinter::Orientation  arg__1);
-   void setOutputFileName(QPrinter* theWrappedObject, const QString&  arg__1);
-   void setOutputFormat(QPrinter* theWrappedObject, QPrinter::OutputFormat  format);
-   void setPageMargins(QPrinter* theWrappedObject, qreal  left, qreal  top, qreal  right, qreal  bottom, QPrinter::Unit  unit);
-   void setPageOrder(QPrinter* theWrappedObject, QPrinter::PageOrder  arg__1);
-   void setPageSize(QPrinter* theWrappedObject, QPrinter::PageSize  arg__1);
-   void setPaperSize(QPrinter* theWrappedObject, QPrinter::PageSize  arg__1);
-   void setPaperSize(QPrinter* theWrappedObject, const QSizeF&  paperSize, QPrinter::Unit  unit);
-   void setPaperSource(QPrinter* theWrappedObject, QPrinter::PaperSource  arg__1);
-   void setPrintProgram(QPrinter* theWrappedObject, const QString&  arg__1);
-   void setPrintRange(QPrinter* theWrappedObject, QPrinter::PrintRange  range);
    void setPrinterName(QPrinter* theWrappedObject, const QString&  arg__1);
+   void setNumCopies(QPrinter* theWrappedObject, int  arg__1);
+   QPrinter::ColorMode  colorMode(QPrinter* theWrappedObject) const;
+   QString  docName(QPrinter* theWrappedObject) const;
+   int  fromPage(QPrinter* theWrappedObject) const;
+   QString  outputFileName(QPrinter* theWrappedObject) const;
+   void setPageMargins(QPrinter* theWrappedObject, qreal  left, qreal  top, qreal  right, qreal  bottom, QPrinter::Unit  unit);
+   int  metric(QPrinter* theWrappedObject, QPaintDevice::PaintDeviceMetric  arg__1) const;
+   bool  fontEmbeddingEnabled(QPrinter* theWrappedObject) const;
+   QPrinter::PageSize  paperSize(QPrinter* theWrappedObject) const;
    void setResolution(QPrinter* theWrappedObject, int  arg__1);
-   QList<int >  supportedResolutions(QPrinter* theWrappedObject) const;
+   void setOutputFormat(QPrinter* theWrappedObject, QPrinter::OutputFormat  format);
+   QRectF  pageRect(QPrinter* theWrappedObject, QPrinter::Unit  arg__1) const;
+   QString  printProgram(QPrinter* theWrappedObject) const;
+   void setFromTo(QPrinter* theWrappedObject, int  fromPage, int  toPage);
    int  toPage(QPrinter* theWrappedObject) const;
-   int  width(QPrinter* theWrappedObject) const;
-   int  widthMM(QPrinter* theWrappedObject) const;
+   QSizeF  paperSize(QPrinter* theWrappedObject, QPrinter::Unit  unit) const;
+   void setPaperSource(QPrinter* theWrappedObject, QPrinter::PaperSource  arg__1);
+   QPrinter::PaperSource  paperSource(QPrinter* theWrappedObject) const;
+   void setPageOrder(QPrinter* theWrappedObject, QPrinter::PageOrder  arg__1);
+   void setDocName(QPrinter* theWrappedObject, const QString&  arg__1);
+   void setPrintRange(QPrinter* theWrappedObject, QPrinter::PrintRange  range);
+   void setCollateCopies(QPrinter* theWrappedObject, bool  collate);
+   int  numCopies(QPrinter* theWrappedObject) const;
+   QPrinter::OutputFormat  outputFormat(QPrinter* theWrappedObject) const;
+   QRect  pageRect(QPrinter* theWrappedObject) const;
+   void setDuplex(QPrinter* theWrappedObject, QPrinter::DuplexMode  duplex);
+   bool  collateCopies(QPrinter* theWrappedObject) const;
+   QList<int >  supportedResolutions(QPrinter* theWrappedObject) const;
+   void setPageSize(QPrinter* theWrappedObject, QPrinter::PageSize  arg__1);
+   QString  printerName(QPrinter* theWrappedObject) const;
+   void setPrintProgram(QPrinter* theWrappedObject, const QString&  arg__1);
+   void setCreator(QPrinter* theWrappedObject, const QString&  arg__1);
+   bool  doubleSidedPrinting(QPrinter* theWrappedObject) const;
+   QPrinter::PrintRange  printRange(QPrinter* theWrappedObject) const;
+   int  resolution(QPrinter* theWrappedObject) const;
+   int  devType(QPrinter* theWrappedObject) const;
+   void setFontEmbeddingEnabled(QPrinter* theWrappedObject, bool  enable);
+   void setPaperSize(QPrinter* theWrappedObject, const QSizeF&  paperSize, QPrinter::Unit  unit);
+   bool  abort(QPrinter* theWrappedObject);
+   QPrinter::PageOrder  pageOrder(QPrinter* theWrappedObject) const;
+   void setOrientation(QPrinter* theWrappedObject, QPrinter::Orientation  arg__1);
+   void setPaperSize(QPrinter* theWrappedObject, QPrinter::PageSize  arg__1);
+   void setDoubleSidedPrinting(QPrinter* theWrappedObject, bool  enable);
+   void getPageMargins(QPrinter* theWrappedObject, qreal*  left, qreal*  top, qreal*  right, qreal*  bottom, QPrinter::Unit  unit) const;
+   QPrinter::Orientation  orientation(QPrinter* theWrappedObject) const;
+   QPrinter::PrinterState  printerState(QPrinter* theWrappedObject) const;
+   bool  isValid(QPrinter* theWrappedObject) const;
+   void setFullPage(QPrinter* theWrappedObject, bool  arg__1);
+   void setOutputFileName(QPrinter* theWrappedObject, const QString&  arg__1);
 };
 
 #endif // PYTHONQTWRAPPER_QPRINTER_H

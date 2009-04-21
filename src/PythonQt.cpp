@@ -203,46 +203,11 @@ PythonQt::~PythonQt() {
 PythonQtPrivate::~PythonQtPrivate() {
   delete _defaultImporter;
   _defaultImporter = NULL;
+
   {
-    QHashIterator<QByteArray, PythonQtSlotInfo *> i(_knownQtDecoratorSlots);
+    QHashIterator<QByteArray, PythonQtClassInfo *> i(_knownClassInfos);
     while (i.hasNext()) {
       delete i.next().value();
-    }
-  }
-  {
-    QHashIterator<QByteArray, PythonQtClassInfo *> i(_knownQtClasses);
-    while (i.hasNext()) {
-      delete i.next().value();
-    }
-  }
-  {
-    QHashIterator<QByteArray, PythonQtClassInfo *> i(_knownQtWrapperClasses);
-    while (i.hasNext()) {
-      delete i.next().value();
-    }
-  }
-  {
-    QHashIterator<QByteArray, PythonQtSlotInfo *> i(_constructorSlots);
-    while (i.hasNext()) {
-      PythonQtSlotInfo* cur = i.next().value();
-      while(cur->nextInfo()) {
-        PythonQtSlotInfo* next = cur->nextInfo();
-        delete cur;
-        cur = next;
-      }
-      delete cur;
-    }
-  }
-  {
-    QHashIterator<QByteArray, PythonQtSlotInfo *> i(_destructorSlots);
-    while (i.hasNext()) {
-      PythonQtSlotInfo* cur = i.next().value();
-      while(cur->nextInfo()) {
-        PythonQtSlotInfo* next = cur->nextInfo();
-        delete cur;
-        cur = next;
-      }
-      delete cur;
     }
   }
   PythonQtConv::global_valueStorage.clear();
@@ -264,46 +229,51 @@ void PythonQt::qObjectNoLongerWrappedCB(QObject* o)
   };
 }
 
-void PythonQt::registerClass(const QMetaObject* metaobject, const char* package, PythonQtQObjectCreatorFunctionCB* wrapperCreator)
+void PythonQt::registerClass(const QMetaObject* metaobject, const char* package, PythonQtQObjectCreatorFunctionCB* wrapperCreator, PythonQtShellSetInstanceWrapperCB* shell)
 {
-  _p->registerClass(metaobject, package, wrapperCreator);
+  _p->registerClass(metaobject, package, wrapperCreator, shell);
 }
 
-void PythonQtPrivate::registerClass(const QMetaObject* metaobject, const char* package, PythonQtQObjectCreatorFunctionCB* wrapperCreator)
+void PythonQtPrivate::registerClass(const QMetaObject* metaobject, const char* package, PythonQtQObjectCreatorFunctionCB* wrapperCreator, PythonQtShellSetInstanceWrapperCB* shell)
 {
   // we register all classes in the hierarchy
   const QMetaObject* m = metaobject;
   bool first = true;
   while (m) {
-    PythonQtClassInfo* info = _knownQtClasses.value(m->className());
-    if (!info) {
-      info = createPythonQtClassInfo(m, NULL, package);
-      _knownQtClasses.insert(m->className(), info);
+    PythonQtClassInfo* info = lookupClassInfoAndCreateIfNotPresent(m->className());
+    if (!info->pythonQtClassWrapper()) {
+      info->setupQObject(m);
+      createPythonQtClassWrapper(info, package);
+      if (m->superClass()) {
+        PythonQtClassInfo* parentInfo = lookupClassInfoAndCreateIfNotPresent(m->superClass()->className());
+        info->addParentClass(PythonQtClassInfo::ParentClassInfo(parentInfo));
+      }
     }
     if (first) {
       first = false;
       if (wrapperCreator) {
         info->setDecoratorProvider(wrapperCreator);
       }
+      if (shell) {
+        info->setShellSetInstanceWrapperCB(shell);
+      }
     }
     m = m->superClass();
   }
 }
 
-PythonQtClassInfo* PythonQtPrivate::createPythonQtClassInfo(const QMetaObject* meta, const char* cppClassName, const char* package)
+void PythonQtPrivate::createPythonQtClassWrapper(PythonQtClassInfo* info, const char* package)
 {
-  PythonQtClassInfo* info = new PythonQtClassInfo(meta, cppClassName);
   PyObject* pack = packageByName(package);
   PyObject* pyobj = (PyObject*)createNewPythonQtClassWrapper(info, package);
-  PyModule_AddObject(pack, meta?meta->className():cppClassName, pyobj);
+  PyModule_AddObject(pack, info->className(), pyobj);
   if (package && strncmp(package,"Qt",2)==0) {
     // since PyModule_AddObject steals the reference, we need a incref once more...
     Py_INCREF(pyobj);
     // put all qt objects into Qt as well
-    PyModule_AddObject(packageByName("Qt"), meta?meta->className():cppClassName, pyobj);
+    PyModule_AddObject(packageByName("Qt"), info->className(), pyobj);
   }
   info->setPythonQtClassWrapper(pyobj);
-  return info;
 }
 
 bool PythonQtPrivate::isEnumType(const QMetaObject* meta, const QByteArray& name) {
@@ -323,7 +293,7 @@ bool PythonQtPrivate::isEnumType(const QMetaObject* meta, const QByteArray& name
       } else {
         // look for known classes as scope
         // TODO: Q_GADGETS are not yet handled
-        PythonQtClassInfo* info = _knownQtClasses.value(enumScope);
+        PythonQtClassInfo* info = _knownClassInfos.value(enumScope);
         if (info) {
           return isEnumType(info->metaObject(), enumName);
         }
@@ -342,10 +312,10 @@ PyObject* PythonQtPrivate::wrapQObject(QObject* obj)
   PythonQtInstanceWrapper* wrap = findWrapperAndRemoveUnused(obj);
   if (!wrap) {
     // smuggling it in...
-    PythonQtClassInfo* classInfo = _knownQtClasses.value(obj->metaObject()->className());
-    if (!classInfo) {
+    PythonQtClassInfo* classInfo = _knownClassInfos.value(obj->metaObject()->className());
+    if (!classInfo || classInfo->pythonQtClassWrapper()==NULL) {
       registerClass(obj->metaObject());
-      classInfo = _knownQtClasses.value(obj->metaObject()->className());
+      classInfo = _knownClassInfos.value(obj->metaObject()->className());
     }
     wrap = createNewPythonQtInstanceWrapper(obj, classInfo);
     //    mlabDebugConst("MLABPython","new qobject wrapper added " << " " << wrap->_obj->className() << " " << wrap->classInfo()->wrappedClassName().latin1());
@@ -362,53 +332,57 @@ PyObject* PythonQtPrivate::wrapPtr(void* ptr, const QByteArray& name)
     Py_INCREF(Py_None);
     return Py_None;
   }
+
   PythonQtInstanceWrapper* wrap = findWrapperAndRemoveUnused(ptr);
   if (!wrap) {
-    PythonQtClassInfo* info = _knownQtClasses.value(name);
+    PythonQtClassInfo* info = _knownClassInfos.value(name);
     if (!info) {
-      // we do not know the metaobject yet, but we might know it by it's name:
-      if (_knownQObjectClassNames.find(name)!=_knownQObjectClassNames.end()) {
-        // yes, we know it, so we can convert to QObject
-        QObject* qptr = (QObject*)ptr;
-        registerClass(qptr->metaObject());
-        info = _knownQtClasses.value(qptr->metaObject()->className());
-      }
-    }
-    if (info) {
-      QObject* qptr = (QObject*)ptr;
-      // if the object is a derived object, we want to switch the class info to the one of the derived class:
-      if (name!=(qptr->metaObject()->className())) {
-        registerClass(qptr->metaObject());
-        info = _knownQtClasses.value(qptr->metaObject()->className());
-      }
-      wrap = createNewPythonQtInstanceWrapper(qptr, info);
-      //    mlabDebugConst("MLABPython","new qobject wrapper added " << " " << wrap->_obj->className() << " " << wrap->classInfo()->wrappedClassName().latin1());
-    } else {
       // maybe it is a PyObject, which we can return directly
       if (name == "PyObject") {
         PyObject* p = (PyObject*)ptr;
         Py_INCREF(p);
         return p;
       }
-        // not a known QObject, so try our wrapper factory:
-      QObject* wrapper = NULL;
-      for (int i=0; i<_cppWrapperFactories.size(); i++) {
-        wrapper = _cppWrapperFactories.at(i)->create(name, ptr);
-        if (wrapper) {
-          break;
-        }
+
+      // we do not know the metaobject yet, but we might know it by it's name:
+      if (_knownQObjectClassNames.find(name)!=_knownQObjectClassNames.end()) {
+        // yes, we know it, so we can convert to QObject
+        QObject* qptr = (QObject*)ptr;
+        registerClass(qptr->metaObject());
+        info = _knownClassInfos.value(qptr->metaObject()->className());
       }
-      PythonQtClassInfo* info = _knownQtWrapperClasses.value(name);
-      if (!info) {
-        registerCPPClass(name.constData());
-        info = _knownQtWrapperClasses.value(name);
-      }
-      if (wrapper && (info->metaObject() != wrapper->metaObject())) {
-        info->setMetaObject(wrapper->metaObject());
-      }
-      wrap = createNewPythonQtInstanceWrapper(wrapper, info, ptr);
-      //          mlabDebugConst("MLABPython","new c++ wrapper added " << wrap->_wrappedPtr << " " << wrap->_obj->className() << " " << wrap->classInfo()->wrappedClassName().latin1());
     }
+    if (info && info->isQObject()) {
+      QObject* qptr = (QObject*)ptr;
+      // if the object is a derived object, we want to switch the class info to the one of the derived class:
+      if (name!=(qptr->metaObject()->className())) {
+        registerClass(qptr->metaObject());
+        info = _knownClassInfos.value(qptr->metaObject()->className());
+      }
+      wrap = createNewPythonQtInstanceWrapper(qptr, info);
+      //    mlabDebugConst("MLABPython","new qobject wrapper added " << " " << wrap->_obj->className() << " " << wrap->classInfo()->wrappedClassName().latin1());
+      return (PyObject*)wrap;
+    }
+
+    // not a known QObject, so try our wrapper factory:
+    QObject* wrapper = NULL;
+    for (int i=0; i<_cppWrapperFactories.size(); i++) {
+      wrapper = _cppWrapperFactories.at(i)->create(name, ptr);
+      if (wrapper) {
+        break;
+      }
+    }
+    if (!info || info->pythonQtClassWrapper()==NULL) {
+      // still unknown, register as CPP class
+      registerCPPClass(name.constData());
+      info = _knownClassInfos.value(name);
+    }
+    if (wrapper && (info->metaObject() != wrapper->metaObject())) {
+      // if we a have a QObject wrapper and the metaobjects do not match, set the metaobject again!
+      info->setMetaObject(wrapper->metaObject());
+    }
+    wrap = createNewPythonQtInstanceWrapper(wrapper, info, ptr);
+    //          mlabDebugConst("MLABPython","new c++ wrapper added " << wrap->_wrappedPtr << " " << wrap->_obj->className() << " " << wrap->classInfo()->wrappedClassName().latin1());
   } else {
     Py_INCREF(wrap);
     //mlabDebugConst("MLABPython","c++ wrapper reused " << wrap->_wrappedPtr << " " << wrap->_obj->className() << " " << wrap->classInfo()->wrappedClassName().latin1());
@@ -889,35 +863,33 @@ void PythonQtPrivate::addDecorators(QObject* o, int decoTypes)
         if ((info->parameters().at(0).isPointer || isVariantReturn)) {
           QByteArray signature = m.signature();
           QByteArray nameOfClass = signature.mid(4, signature.indexOf('(')-4);
-          PythonQtSlotInfo* prev = _constructorSlots.value(nameOfClass);
+          PythonQtClassInfo* classInfo = lookupClassInfoAndCreateIfNotPresent(nameOfClass);
           PythonQtSlotInfo* newSlot = new PythonQtSlotInfo(m, i, o, PythonQtSlotInfo::ClassDecorator);
-          if (prev) {
-            newSlot->setNextInfo(prev->nextInfo());
-            prev->setNextInfo(newSlot);
-          } else {
-            _constructorSlots.insert(nameOfClass, newSlot);
-          }
+          classInfo->addConstructor(newSlot);
         }
       } else if (qstrncmp(m.signature(), "delete_", 7)==0) {
         if ((decoTypes & DestructorDecorator) == 0) continue; 
         QByteArray signature = m.signature();
         QByteArray nameOfClass = signature.mid(7, signature.indexOf('(')-7);
+        PythonQtClassInfo* classInfo = lookupClassInfoAndCreateIfNotPresent(nameOfClass);
         PythonQtSlotInfo* newSlot = new PythonQtSlotInfo(m, i, o, PythonQtSlotInfo::ClassDecorator);
-        _destructorSlots.insert(nameOfClass, newSlot);
+        classInfo->setDestructor(newSlot);
       } else if (qstrncmp(m.signature(), "static_", 7)==0) {
         if ((decoTypes & StaticDecorator) == 0) continue; 
         QByteArray signature = m.signature();
         QByteArray nameOfClass = signature.mid(signature.indexOf('_')+1);
         nameOfClass = nameOfClass.mid(0, nameOfClass.indexOf('_'));
-        PythonQtSlotInfo* slotCopy = new PythonQtSlotInfo(m, i, o, PythonQtSlotInfo::ClassDecorator);
-        _knownQtDecoratorSlots.insert(nameOfClass, slotCopy);
+        PythonQtClassInfo* classInfo = lookupClassInfoAndCreateIfNotPresent(nameOfClass);
+        PythonQtSlotInfo* newSlot = new PythonQtSlotInfo(m, i, o, PythonQtSlotInfo::ClassDecorator);
+        classInfo->addDecoratorSlot(newSlot);
       } else {
         if ((decoTypes & InstanceDecorator) == 0) continue; 
         if (info->parameters().count()>1) {
           PythonQtMethodInfo::ParameterInfo p = info->parameters().at(1);
           if (p.isPointer) {
-            PythonQtSlotInfo* slotCopy = new PythonQtSlotInfo(m, i, o, PythonQtSlotInfo::InstanceDecorator);
-            _knownQtDecoratorSlots.insert(p.name, slotCopy);
+            PythonQtClassInfo* classInfo = lookupClassInfoAndCreateIfNotPresent(p.name);
+            PythonQtSlotInfo* newSlot = new PythonQtSlotInfo(m, i, o, PythonQtSlotInfo::InstanceDecorator);
+            classInfo->addDecoratorSlot(newSlot);
           }
         }
       }
@@ -930,11 +902,6 @@ void PythonQtPrivate::registerQObjectClassNames(const QStringList& names)
   foreach(QString name, names) {
     _knownQObjectClassNames.insert(name.toLatin1(), true);
   }
-}
-
-QList<PythonQtSlotInfo*> PythonQtPrivate::getDecoratorSlots(const QByteArray& className)
-{
-  return _knownQtDecoratorSlots.values(className);
 }
 
 void PythonQtPrivate::removeSignalEmitter(QObject* obj)
@@ -1033,24 +1000,55 @@ void PythonQt::initPythonQtModule(bool redirectStdOut)
   }
 }
 
-void PythonQt::registerCPPClass(const char* typeName, const char* parentTypeName, const char* package, PythonQtQObjectCreatorFunctionCB* wrapperCreator)
+void PythonQt::registerCPPClass(const char* typeName, const char* parentTypeName, const char* package, PythonQtQObjectCreatorFunctionCB* wrapperCreator,  PythonQtShellSetInstanceWrapperCB* shell)
 {
-  _p->registerCPPClass(typeName, parentTypeName, package, wrapperCreator);
+  _p->registerCPPClass(typeName, parentTypeName, package, wrapperCreator, shell);
 }
 
 
-void PythonQtPrivate::registerCPPClass(const char* typeName, const char* parentTypeName, const char* package, PythonQtQObjectCreatorFunctionCB* wrapperCreator)
+PythonQtClassInfo* PythonQtPrivate::lookupClassInfoAndCreateIfNotPresent(const char* typeName)
 {
-  PythonQtClassInfo* info = _knownQtWrapperClasses.value(typeName);
+  PythonQtClassInfo* info = _knownClassInfos.value(typeName);
   if (!info) {
-    info = createPythonQtClassInfo(NULL, typeName, package);
-    _knownQtWrapperClasses.insert(typeName, info);
+    info = new PythonQtClassInfo();
+    info->setupCPPObject(typeName);
+    _knownClassInfos.insert(typeName, info);
   }
-  if (parentTypeName) {
-    info->setWrappedParentClassName(parentTypeName);
+  return info;
+}
+
+bool PythonQt::addParentClass(const char* typeName, const char* parentTypeName, int upcastingOffset)
+{
+  return _p->addParentClass(typeName, parentTypeName, upcastingOffset);
+}
+
+bool PythonQtPrivate::addParentClass(const char* typeName, const char* parentTypeName, int upcastingOffset)
+{
+  PythonQtClassInfo* info = _knownClassInfos.value(typeName);
+  if (info) {
+    PythonQtClassInfo* parentInfo = lookupClassInfoAndCreateIfNotPresent(parentTypeName);
+    info->addParentClass(PythonQtClassInfo::ParentClassInfo(parentInfo, upcastingOffset));
+    return true;
+  } else {
+    return false;
+  }
+}
+
+void PythonQtPrivate::registerCPPClass(const char* typeName, const char* parentTypeName, const char* package, PythonQtQObjectCreatorFunctionCB* wrapperCreator,  PythonQtShellSetInstanceWrapperCB* shell)
+{
+  PythonQtClassInfo* info = lookupClassInfoAndCreateIfNotPresent(typeName);
+  if (!info->pythonQtClassWrapper()) {
+    info->setupCPPObject(typeName);
+    createPythonQtClassWrapper(info, package);
+  }
+  if (parentTypeName && strcmp(parentTypeName,"")!=0) {
+    addParentClass(typeName, parentTypeName, 0);
   }
   if (wrapperCreator) {
     info->setDecoratorProvider(wrapperCreator);
+  }
+  if (shell) {
+    info->setShellSetInstanceWrapperCB(shell);
   }
 }
 

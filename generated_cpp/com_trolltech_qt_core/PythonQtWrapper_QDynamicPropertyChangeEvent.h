@@ -4,6 +4,8 @@
 #include <qcoreevent.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qbytearray.h>
 

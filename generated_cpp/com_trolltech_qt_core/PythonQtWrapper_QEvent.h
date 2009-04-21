@@ -4,7 +4,18 @@
 #include <qcoreevent.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
+
+class PythonQtShell_QEvent : public QEvent
+{
+public:
+    PythonQtShell_QEvent(QEvent::Type  type):QEvent(type),_wrapper(NULL) {};
+
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
 
 class PythonQtWrapper_QEvent : public QObject
 { Q_OBJECT
@@ -15,13 +26,13 @@ enum Type{
 public slots:
 QEvent* new_QEvent(QEvent::Type  type);
 void delete_QEvent(QEvent* obj) { delete obj; } 
-   void accept(QEvent* theWrappedObject);
-   void ignore(QEvent* theWrappedObject);
-   bool  isAccepted(QEvent* theWrappedObject) const;
-   int  static_QEvent_registerEventType(int  hint = -1);
-   void setAccepted(QEvent* theWrappedObject, bool  accepted);
    bool  spontaneous(QEvent* theWrappedObject) const;
+   bool  isAccepted(QEvent* theWrappedObject) const;
+   void accept(QEvent* theWrappedObject);
    QEvent::Type  type(QEvent* theWrappedObject) const;
+   void setAccepted(QEvent* theWrappedObject, bool  accepted);
+   void ignore(QEvent* theWrappedObject);
+   int  static_QEvent_registerEventType(int  hint = -1);
 };
 
 #endif // PYTHONQTWRAPPER_QEVENT_H

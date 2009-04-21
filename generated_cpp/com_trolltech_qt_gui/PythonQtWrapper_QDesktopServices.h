@@ -4,9 +4,20 @@
 #include <qdesktopservices.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qobject.h>
 #include <qurl.h>
+
+class PythonQtShell_QDesktopServices : public QDesktopServices
+{
+public:
+    PythonQtShell_QDesktopServices():QDesktopServices(),_wrapper(NULL) {};
+
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
 
 class PythonQtWrapper_QDesktopServices : public QObject
 { Q_OBJECT
@@ -18,10 +29,10 @@ public slots:
 QDesktopServices* new_QDesktopServices();
 void delete_QDesktopServices(QDesktopServices* obj) { delete obj; } 
    QString  static_QDesktopServices_displayName(QDesktopServices::StandardLocation  type);
-   bool  static_QDesktopServices_openUrl(const QUrl&  url);
    void static_QDesktopServices_setUrlHandler(const QString&  scheme, QObject*  receiver, const char*  method);
-   QString  static_QDesktopServices_storageLocation(QDesktopServices::StandardLocation  type);
    void static_QDesktopServices_unsetUrlHandler(const QString&  scheme);
+   bool  static_QDesktopServices_openUrl(const QUrl&  url);
+   QString  static_QDesktopServices_storageLocation(QDesktopServices::StandardLocation  type);
 };
 
 #endif // PYTHONQTWRAPPER_QDESKTOPSERVICES_H

@@ -1,5 +1,8 @@
 #include "PythonQtWrapper_QGraphicsTextItem.h"
 
+#include <PythonQtSignalReceiver.h>
+#include <PythonQtMethodInfo.h>
+#include <PythonQtConversion.h>
 #include <QTextCursor>
 #include <QVariant>
 #include <qbytearray.h>
@@ -27,776 +30,1030 @@
 #include <qtransform.h>
 #include <qwidget.h>
 
+void PythonQtShell_QGraphicsTextItem::advance(int  phase)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "advance");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "advance(QGraphicsTextItem*,int )");
+    void* args[2] = {NULL, (void*)&phase};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QGraphicsTextItem::advance(phase);
+}
+QRectF  PythonQtShell_QGraphicsTextItem::boundingRect() const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "boundingRect");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "boundingRect(QGraphicsTextItem*)");
+      QRectF  returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((QRectF *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QGraphicsTextItem::boundingRect();
+}
+void PythonQtShell_QGraphicsTextItem::childEvent(QChildEvent*  arg__1)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "childEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "childEvent(QGraphicsTextItem*,QChildEvent* )");
+    void* args[2] = {NULL, (void*)&arg__1};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QGraphicsTextItem::childEvent(arg__1);
+}
+bool  PythonQtShell_QGraphicsTextItem::collidesWithItem(const QGraphicsItem*  other, Qt::ItemSelectionMode  mode) const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "collidesWithItem");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "collidesWithItem(QGraphicsTextItem*,const QGraphicsItem* ,Qt::ItemSelectionMode )");
+      bool  returnValue;
+    void* args[3] = {NULL, (void*)&other, (void*)&mode};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((bool *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QGraphicsTextItem::collidesWithItem(other, mode);
+}
+bool  PythonQtShell_QGraphicsTextItem::collidesWithPath(const QPainterPath&  path, Qt::ItemSelectionMode  mode) const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "collidesWithPath");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "collidesWithPath(QGraphicsTextItem*,const QPainterPath& ,Qt::ItemSelectionMode )");
+      bool  returnValue;
+    void* args[3] = {NULL, (void*)&path, (void*)&mode};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((bool *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QGraphicsTextItem::collidesWithPath(path, mode);
+}
+bool  PythonQtShell_QGraphicsTextItem::contains(const QPointF&  point) const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "contains");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "contains(QGraphicsTextItem*,const QPointF& )");
+      bool  returnValue;
+    void* args[2] = {NULL, (void*)&point};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((bool *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QGraphicsTextItem::contains(point);
+}
+void PythonQtShell_QGraphicsTextItem::contextMenuEvent(QGraphicsSceneContextMenuEvent*  event)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "contextMenuEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "contextMenuEvent(QGraphicsTextItem*,QGraphicsSceneContextMenuEvent* )");
+    void* args[2] = {NULL, (void*)&event};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QGraphicsTextItem::contextMenuEvent(event);
+}
+void PythonQtShell_QGraphicsTextItem::customEvent(QEvent*  arg__1)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "customEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "customEvent(QGraphicsTextItem*,QEvent* )");
+    void* args[2] = {NULL, (void*)&arg__1};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QGraphicsTextItem::customEvent(arg__1);
+}
+void PythonQtShell_QGraphicsTextItem::dragEnterEvent(QGraphicsSceneDragDropEvent*  event)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "dragEnterEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "dragEnterEvent(QGraphicsTextItem*,QGraphicsSceneDragDropEvent* )");
+    void* args[2] = {NULL, (void*)&event};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QGraphicsTextItem::dragEnterEvent(event);
+}
+void PythonQtShell_QGraphicsTextItem::dragLeaveEvent(QGraphicsSceneDragDropEvent*  event)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "dragLeaveEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "dragLeaveEvent(QGraphicsTextItem*,QGraphicsSceneDragDropEvent* )");
+    void* args[2] = {NULL, (void*)&event};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QGraphicsTextItem::dragLeaveEvent(event);
+}
+void PythonQtShell_QGraphicsTextItem::dragMoveEvent(QGraphicsSceneDragDropEvent*  event)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "dragMoveEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "dragMoveEvent(QGraphicsTextItem*,QGraphicsSceneDragDropEvent* )");
+    void* args[2] = {NULL, (void*)&event};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QGraphicsTextItem::dragMoveEvent(event);
+}
+void PythonQtShell_QGraphicsTextItem::dropEvent(QGraphicsSceneDragDropEvent*  event)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "dropEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "dropEvent(QGraphicsTextItem*,QGraphicsSceneDragDropEvent* )");
+    void* args[2] = {NULL, (void*)&event};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QGraphicsTextItem::dropEvent(event);
+}
+bool  PythonQtShell_QGraphicsTextItem::event(QEvent*  arg__1)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "event");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "event(QGraphicsTextItem*,QEvent* )");
+      bool  returnValue;
+    void* args[2] = {NULL, (void*)&arg__1};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((bool *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QGraphicsTextItem::event(arg__1);
+}
+bool  PythonQtShell_QGraphicsTextItem::eventFilter(QObject*  arg__1, QEvent*  arg__2)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "eventFilter");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "eventFilter(QGraphicsTextItem*,QObject* ,QEvent* )");
+      bool  returnValue;
+    void* args[3] = {NULL, (void*)&arg__1, (void*)&arg__2};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((bool *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QGraphicsTextItem::eventFilter(arg__1, arg__2);
+}
+QVariant  PythonQtShell_QGraphicsTextItem::extension(const QVariant&  variant) const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "extension");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "extension(QGraphicsTextItem*,const QVariant& )");
+      QVariant  returnValue;
+    void* args[2] = {NULL, (void*)&variant};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((QVariant *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QGraphicsTextItem::extension(variant);
+}
+void PythonQtShell_QGraphicsTextItem::focusInEvent(QFocusEvent*  event)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "focusInEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "focusInEvent(QGraphicsTextItem*,QFocusEvent* )");
+    void* args[2] = {NULL, (void*)&event};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QGraphicsTextItem::focusInEvent(event);
+}
+void PythonQtShell_QGraphicsTextItem::focusOutEvent(QFocusEvent*  event)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "focusOutEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "focusOutEvent(QGraphicsTextItem*,QFocusEvent* )");
+    void* args[2] = {NULL, (void*)&event};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QGraphicsTextItem::focusOutEvent(event);
+}
+void PythonQtShell_QGraphicsTextItem::hoverEnterEvent(QGraphicsSceneHoverEvent*  event)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "hoverEnterEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "hoverEnterEvent(QGraphicsTextItem*,QGraphicsSceneHoverEvent* )");
+    void* args[2] = {NULL, (void*)&event};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QGraphicsTextItem::hoverEnterEvent(event);
+}
+void PythonQtShell_QGraphicsTextItem::hoverLeaveEvent(QGraphicsSceneHoverEvent*  event)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "hoverLeaveEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "hoverLeaveEvent(QGraphicsTextItem*,QGraphicsSceneHoverEvent* )");
+    void* args[2] = {NULL, (void*)&event};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QGraphicsTextItem::hoverLeaveEvent(event);
+}
+void PythonQtShell_QGraphicsTextItem::hoverMoveEvent(QGraphicsSceneHoverEvent*  event)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "hoverMoveEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "hoverMoveEvent(QGraphicsTextItem*,QGraphicsSceneHoverEvent* )");
+    void* args[2] = {NULL, (void*)&event};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QGraphicsTextItem::hoverMoveEvent(event);
+}
+void PythonQtShell_QGraphicsTextItem::inputMethodEvent(QInputMethodEvent*  event)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "inputMethodEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "inputMethodEvent(QGraphicsTextItem*,QInputMethodEvent* )");
+    void* args[2] = {NULL, (void*)&event};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QGraphicsTextItem::inputMethodEvent(event);
+}
+QVariant  PythonQtShell_QGraphicsTextItem::inputMethodQuery(Qt::InputMethodQuery  query) const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "inputMethodQuery");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "inputMethodQuery(QGraphicsTextItem*,Qt::InputMethodQuery )");
+      QVariant  returnValue;
+    void* args[2] = {NULL, (void*)&query};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((QVariant *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QGraphicsTextItem::inputMethodQuery(query);
+}
+bool  PythonQtShell_QGraphicsTextItem::isObscuredBy(const QGraphicsItem*  item) const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "isObscuredBy");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "isObscuredBy(QGraphicsTextItem*,const QGraphicsItem* )");
+      bool  returnValue;
+    void* args[2] = {NULL, (void*)&item};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((bool *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QGraphicsTextItem::isObscuredBy(item);
+}
+QVariant  PythonQtShell_QGraphicsTextItem::itemChange(QGraphicsItem::GraphicsItemChange  change, const QVariant&  value)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "itemChange");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "itemChange(QGraphicsTextItem*,QGraphicsItem::GraphicsItemChange ,const QVariant& )");
+      QVariant  returnValue;
+    void* args[3] = {NULL, (void*)&change, (void*)&value};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((QVariant *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QGraphicsTextItem::itemChange(change, value);
+}
+void PythonQtShell_QGraphicsTextItem::keyPressEvent(QKeyEvent*  event)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "keyPressEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "keyPressEvent(QGraphicsTextItem*,QKeyEvent* )");
+    void* args[2] = {NULL, (void*)&event};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QGraphicsTextItem::keyPressEvent(event);
+}
+void PythonQtShell_QGraphicsTextItem::keyReleaseEvent(QKeyEvent*  event)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "keyReleaseEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "keyReleaseEvent(QGraphicsTextItem*,QKeyEvent* )");
+    void* args[2] = {NULL, (void*)&event};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QGraphicsTextItem::keyReleaseEvent(event);
+}
+void PythonQtShell_QGraphicsTextItem::mouseDoubleClickEvent(QGraphicsSceneMouseEvent*  event)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "mouseDoubleClickEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "mouseDoubleClickEvent(QGraphicsTextItem*,QGraphicsSceneMouseEvent* )");
+    void* args[2] = {NULL, (void*)&event};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QGraphicsTextItem::mouseDoubleClickEvent(event);
+}
+void PythonQtShell_QGraphicsTextItem::mouseMoveEvent(QGraphicsSceneMouseEvent*  event)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "mouseMoveEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "mouseMoveEvent(QGraphicsTextItem*,QGraphicsSceneMouseEvent* )");
+    void* args[2] = {NULL, (void*)&event};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QGraphicsTextItem::mouseMoveEvent(event);
+}
+void PythonQtShell_QGraphicsTextItem::mousePressEvent(QGraphicsSceneMouseEvent*  event)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "mousePressEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "mousePressEvent(QGraphicsTextItem*,QGraphicsSceneMouseEvent* )");
+    void* args[2] = {NULL, (void*)&event};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QGraphicsTextItem::mousePressEvent(event);
+}
+void PythonQtShell_QGraphicsTextItem::mouseReleaseEvent(QGraphicsSceneMouseEvent*  event)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "mouseReleaseEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "mouseReleaseEvent(QGraphicsTextItem*,QGraphicsSceneMouseEvent* )");
+    void* args[2] = {NULL, (void*)&event};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QGraphicsTextItem::mouseReleaseEvent(event);
+}
+QPainterPath  PythonQtShell_QGraphicsTextItem::opaqueArea() const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "opaqueArea");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "opaqueArea(QGraphicsTextItem*)");
+      QPainterPath  returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((QPainterPath *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QGraphicsTextItem::opaqueArea();
+}
+void PythonQtShell_QGraphicsTextItem::paint(QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "paint");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "paint(QGraphicsTextItem*,QPainter* ,const QStyleOptionGraphicsItem* ,QWidget* )");
+    void* args[4] = {NULL, (void*)&painter, (void*)&option, (void*)&widget};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QGraphicsTextItem::paint(painter, option, widget);
+}
+bool  PythonQtShell_QGraphicsTextItem::sceneEvent(QEvent*  event)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "sceneEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "sceneEvent(QGraphicsTextItem*,QEvent* )");
+      bool  returnValue;
+    void* args[2] = {NULL, (void*)&event};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((bool *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QGraphicsTextItem::sceneEvent(event);
+}
+bool  PythonQtShell_QGraphicsTextItem::sceneEventFilter(QGraphicsItem*  watched, QEvent*  event)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "sceneEventFilter");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "sceneEventFilter(QGraphicsTextItem*,QGraphicsItem* ,QEvent* )");
+      bool  returnValue;
+    void* args[3] = {NULL, (void*)&watched, (void*)&event};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((bool *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QGraphicsTextItem::sceneEventFilter(watched, event);
+}
+QPainterPath  PythonQtShell_QGraphicsTextItem::shape() const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "shape");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "shape(QGraphicsTextItem*)");
+      QPainterPath  returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((QPainterPath *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QGraphicsTextItem::shape();
+}
+void PythonQtShell_QGraphicsTextItem::timerEvent(QTimerEvent*  arg__1)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "timerEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "timerEvent(QGraphicsTextItem*,QTimerEvent* )");
+    void* args[2] = {NULL, (void*)&arg__1};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QGraphicsTextItem::timerEvent(arg__1);
+}
+int  PythonQtShell_QGraphicsTextItem::type() const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "type");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "type(QGraphicsTextItem*)");
+      int  returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+      returnValue = *((int *)args[0]);
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QGraphicsTextItem::type();
+}
+void PythonQtShell_QGraphicsTextItem::wheelEvent(QGraphicsSceneWheelEvent*  event)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "wheelEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
+      &PythonQtWrapper_QGraphicsTextItem::staticMetaObject,
+      "wheelEvent(QGraphicsTextItem*,QGraphicsSceneWheelEvent* )");
+    void* args[2] = {NULL, (void*)&event};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QGraphicsTextItem::wheelEvent(event);
+}
 QGraphicsTextItem* PythonQtWrapper_QGraphicsTextItem::new_QGraphicsTextItem(QGraphicsItem*  parent, QGraphicsScene*  scene)
 { 
-return new QGraphicsTextItem(parent, scene); }
+return new PythonQtShell_QGraphicsTextItem(parent, scene); }
 
 QGraphicsTextItem* PythonQtWrapper_QGraphicsTextItem::new_QGraphicsTextItem(const QString&  text, QGraphicsItem*  parent, QGraphicsScene*  scene)
 { 
-return new QGraphicsTextItem(text, parent, scene); }
-
-bool  PythonQtWrapper_QGraphicsTextItem::acceptDrops(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->acceptDrops();
-}
-
-bool  PythonQtWrapper_QGraphicsTextItem::acceptHoverEvents(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->acceptHoverEvents();
-}
-
-Qt::MouseButtons  PythonQtWrapper_QGraphicsTextItem::acceptedMouseButtons(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->acceptedMouseButtons();
-}
-
-bool  PythonQtWrapper_QGraphicsTextItem::acceptsHoverEvents(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->acceptsHoverEvents();
-}
+return new PythonQtShell_QGraphicsTextItem(text, parent, scene); }
 
 void PythonQtWrapper_QGraphicsTextItem::adjustSize(QGraphicsTextItem* theWrappedObject)
 {
-theWrappedObject->adjustSize();
-}
-
-void PythonQtWrapper_QGraphicsTextItem::advance(QGraphicsTextItem* theWrappedObject, int  phase)
-{
-theWrappedObject->advance(phase);
-}
-
-QRectF  PythonQtWrapper_QGraphicsTextItem::boundingRect(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->boundingRect();
-}
-
-QRegion  PythonQtWrapper_QGraphicsTextItem::boundingRegion(QGraphicsTextItem* theWrappedObject, const QTransform&  itemToDeviceTransform) const
-{
-return theWrappedObject->boundingRegion(itemToDeviceTransform);
-}
-
-qreal  PythonQtWrapper_QGraphicsTextItem::boundingRegionGranularity(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->boundingRegionGranularity();
-}
-
-QGraphicsItem::CacheMode  PythonQtWrapper_QGraphicsTextItem::cacheMode(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->cacheMode();
-}
-
-QList<QGraphicsItem* >  PythonQtWrapper_QGraphicsTextItem::childItems(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->childItems();
-}
-
-QRectF  PythonQtWrapper_QGraphicsTextItem::childrenBoundingRect(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->childrenBoundingRect();
-}
-
-void PythonQtWrapper_QGraphicsTextItem::clearFocus(QGraphicsTextItem* theWrappedObject)
-{
-theWrappedObject->clearFocus();
-}
-
-bool  PythonQtWrapper_QGraphicsTextItem::collidesWithItem(QGraphicsTextItem* theWrappedObject, const QGraphicsItem*  other, Qt::ItemSelectionMode  mode) const
-{
-return theWrappedObject->collidesWithItem(other, mode);
-}
-
-bool  PythonQtWrapper_QGraphicsTextItem::collidesWithPath(QGraphicsTextItem* theWrappedObject, const QPainterPath&  path, Qt::ItemSelectionMode  mode) const
-{
-return theWrappedObject->collidesWithPath(path, mode);
-}
-
-QList<QGraphicsItem* >  PythonQtWrapper_QGraphicsTextItem::collidingItems(QGraphicsTextItem* theWrappedObject, Qt::ItemSelectionMode  mode) const
-{
-return theWrappedObject->collidingItems(mode);
-}
-
-QGraphicsItem*  PythonQtWrapper_QGraphicsTextItem::commonAncestorItem(QGraphicsTextItem* theWrappedObject, const QGraphicsItem*  other) const
-{
-return theWrappedObject->commonAncestorItem(other);
-}
-
-bool  PythonQtWrapper_QGraphicsTextItem::contains(QGraphicsTextItem* theWrappedObject, const QPointF&  point) const
-{
-return theWrappedObject->contains(point);
-}
-
-QCursor  PythonQtWrapper_QGraphicsTextItem::cursor(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->cursor();
-}
-
-QVariant  PythonQtWrapper_QGraphicsTextItem::data(QGraphicsTextItem* theWrappedObject, int  key) const
-{
-return theWrappedObject->data(key);
-}
-
-QColor  PythonQtWrapper_QGraphicsTextItem::defaultTextColor(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->defaultTextColor();
-}
-
-QTransform  PythonQtWrapper_QGraphicsTextItem::deviceTransform(QGraphicsTextItem* theWrappedObject, const QTransform&  viewportTransform) const
-{
-return theWrappedObject->deviceTransform(viewportTransform);
-}
-
-QTextDocument*  PythonQtWrapper_QGraphicsTextItem::document(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->document();
-}
-
-void PythonQtWrapper_QGraphicsTextItem::ensureVisible(QGraphicsTextItem* theWrappedObject, const QRectF&  rect, int  xmargin, int  ymargin)
-{
-theWrappedObject->ensureVisible(rect, xmargin, ymargin);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::ensureVisible(QGraphicsTextItem* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h, int  xmargin, int  ymargin)
-{
-theWrappedObject->ensureVisible(x, y, w, h, xmargin, ymargin);
-}
-
-QGraphicsItem::GraphicsItemFlags  PythonQtWrapper_QGraphicsTextItem::flags(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->flags();
-}
-
-QFont  PythonQtWrapper_QGraphicsTextItem::font(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->font();
-}
-
-void PythonQtWrapper_QGraphicsTextItem::grabKeyboard(QGraphicsTextItem* theWrappedObject)
-{
-theWrappedObject->grabKeyboard();
-}
-
-void PythonQtWrapper_QGraphicsTextItem::grabMouse(QGraphicsTextItem* theWrappedObject)
-{
-theWrappedObject->grabMouse();
-}
-
-QGraphicsItemGroup*  PythonQtWrapper_QGraphicsTextItem::group(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->group();
-}
-
-bool  PythonQtWrapper_QGraphicsTextItem::handlesChildEvents(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->handlesChildEvents();
-}
-
-bool  PythonQtWrapper_QGraphicsTextItem::hasCursor(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->hasCursor();
-}
-
-bool  PythonQtWrapper_QGraphicsTextItem::hasFocus(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->hasFocus();
-}
-
-void PythonQtWrapper_QGraphicsTextItem::hide(QGraphicsTextItem* theWrappedObject)
-{
-theWrappedObject->hide();
-}
-
-void PythonQtWrapper_QGraphicsTextItem::installSceneEventFilter(QGraphicsTextItem* theWrappedObject, QGraphicsItem*  filterItem)
-{
-theWrappedObject->installSceneEventFilter(filterItem);
-}
-
-bool  PythonQtWrapper_QGraphicsTextItem::isAncestorOf(QGraphicsTextItem* theWrappedObject, const QGraphicsItem*  child) const
-{
-return theWrappedObject->isAncestorOf(child);
-}
-
-bool  PythonQtWrapper_QGraphicsTextItem::isEnabled(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->isEnabled();
-}
-
-bool  PythonQtWrapper_QGraphicsTextItem::isObscured(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->isObscured();
-}
-
-bool  PythonQtWrapper_QGraphicsTextItem::isObscured(QGraphicsTextItem* theWrappedObject, const QRectF&  rect) const
-{
-return theWrappedObject->isObscured(rect);
-}
-
-bool  PythonQtWrapper_QGraphicsTextItem::isObscured(QGraphicsTextItem* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h) const
-{
-return theWrappedObject->isObscured(x, y, w, h);
-}
-
-bool  PythonQtWrapper_QGraphicsTextItem::isObscuredBy(QGraphicsTextItem* theWrappedObject, const QGraphicsItem*  item) const
-{
-return theWrappedObject->isObscuredBy(item);
-}
-
-bool  PythonQtWrapper_QGraphicsTextItem::isSelected(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->isSelected();
-}
-
-bool  PythonQtWrapper_QGraphicsTextItem::isUnderMouse(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->isUnderMouse();
-}
-
-bool  PythonQtWrapper_QGraphicsTextItem::isVisible(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->isVisible();
-}
-
-bool  PythonQtWrapper_QGraphicsTextItem::isVisibleTo(QGraphicsTextItem* theWrappedObject, const QGraphicsItem*  parent) const
-{
-return theWrappedObject->isVisibleTo(parent);
-}
-
-bool  PythonQtWrapper_QGraphicsTextItem::isWidget(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->isWidget();
-}
-
-bool  PythonQtWrapper_QGraphicsTextItem::isWindow(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->isWindow();
-}
-
-QPainterPath  PythonQtWrapper_QGraphicsTextItem::mapFromItem(QGraphicsTextItem* theWrappedObject, const QGraphicsItem*  item, const QPainterPath&  path) const
-{
-return theWrappedObject->mapFromItem(item, path);
-}
-
-QPointF  PythonQtWrapper_QGraphicsTextItem::mapFromItem(QGraphicsTextItem* theWrappedObject, const QGraphicsItem*  item, const QPointF&  point) const
-{
-return theWrappedObject->mapFromItem(item, point);
-}
-
-QPolygonF  PythonQtWrapper_QGraphicsTextItem::mapFromItem(QGraphicsTextItem* theWrappedObject, const QGraphicsItem*  item, const QPolygonF&  polygon) const
-{
-return theWrappedObject->mapFromItem(item, polygon);
-}
-
-QPolygonF  PythonQtWrapper_QGraphicsTextItem::mapFromItem(QGraphicsTextItem* theWrappedObject, const QGraphicsItem*  item, const QRectF&  rect) const
-{
-return theWrappedObject->mapFromItem(item, rect);
-}
-
-QPointF  PythonQtWrapper_QGraphicsTextItem::mapFromItem(QGraphicsTextItem* theWrappedObject, const QGraphicsItem*  item, qreal  x, qreal  y) const
-{
-return theWrappedObject->mapFromItem(item, x, y);
-}
-
-QPolygonF  PythonQtWrapper_QGraphicsTextItem::mapFromItem(QGraphicsTextItem* theWrappedObject, const QGraphicsItem*  item, qreal  x, qreal  y, qreal  w, qreal  h) const
-{
-return theWrappedObject->mapFromItem(item, x, y, w, h);
-}
-
-QPainterPath  PythonQtWrapper_QGraphicsTextItem::mapFromParent(QGraphicsTextItem* theWrappedObject, const QPainterPath&  path) const
-{
-return theWrappedObject->mapFromParent(path);
-}
-
-QPointF  PythonQtWrapper_QGraphicsTextItem::mapFromParent(QGraphicsTextItem* theWrappedObject, const QPointF&  point) const
-{
-return theWrappedObject->mapFromParent(point);
-}
-
-QPolygonF  PythonQtWrapper_QGraphicsTextItem::mapFromParent(QGraphicsTextItem* theWrappedObject, const QPolygonF&  polygon) const
-{
-return theWrappedObject->mapFromParent(polygon);
-}
-
-QPolygonF  PythonQtWrapper_QGraphicsTextItem::mapFromParent(QGraphicsTextItem* theWrappedObject, const QRectF&  rect) const
-{
-return theWrappedObject->mapFromParent(rect);
-}
-
-QPointF  PythonQtWrapper_QGraphicsTextItem::mapFromParent(QGraphicsTextItem* theWrappedObject, qreal  x, qreal  y) const
-{
-return theWrappedObject->mapFromParent(x, y);
-}
-
-QPolygonF  PythonQtWrapper_QGraphicsTextItem::mapFromParent(QGraphicsTextItem* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h) const
-{
-return theWrappedObject->mapFromParent(x, y, w, h);
-}
-
-QPainterPath  PythonQtWrapper_QGraphicsTextItem::mapFromScene(QGraphicsTextItem* theWrappedObject, const QPainterPath&  path) const
-{
-return theWrappedObject->mapFromScene(path);
-}
-
-QPointF  PythonQtWrapper_QGraphicsTextItem::mapFromScene(QGraphicsTextItem* theWrappedObject, const QPointF&  point) const
-{
-return theWrappedObject->mapFromScene(point);
-}
-
-QPolygonF  PythonQtWrapper_QGraphicsTextItem::mapFromScene(QGraphicsTextItem* theWrappedObject, const QPolygonF&  polygon) const
-{
-return theWrappedObject->mapFromScene(polygon);
-}
-
-QPolygonF  PythonQtWrapper_QGraphicsTextItem::mapFromScene(QGraphicsTextItem* theWrappedObject, const QRectF&  rect) const
-{
-return theWrappedObject->mapFromScene(rect);
-}
-
-QPointF  PythonQtWrapper_QGraphicsTextItem::mapFromScene(QGraphicsTextItem* theWrappedObject, qreal  x, qreal  y) const
-{
-return theWrappedObject->mapFromScene(x, y);
-}
-
-QPolygonF  PythonQtWrapper_QGraphicsTextItem::mapFromScene(QGraphicsTextItem* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h) const
-{
-return theWrappedObject->mapFromScene(x, y, w, h);
-}
-
-QPainterPath  PythonQtWrapper_QGraphicsTextItem::mapToItem(QGraphicsTextItem* theWrappedObject, const QGraphicsItem*  item, const QPainterPath&  path) const
-{
-return theWrappedObject->mapToItem(item, path);
-}
-
-QPointF  PythonQtWrapper_QGraphicsTextItem::mapToItem(QGraphicsTextItem* theWrappedObject, const QGraphicsItem*  item, const QPointF&  point) const
-{
-return theWrappedObject->mapToItem(item, point);
-}
-
-QPolygonF  PythonQtWrapper_QGraphicsTextItem::mapToItem(QGraphicsTextItem* theWrappedObject, const QGraphicsItem*  item, const QPolygonF&  polygon) const
-{
-return theWrappedObject->mapToItem(item, polygon);
-}
-
-QPolygonF  PythonQtWrapper_QGraphicsTextItem::mapToItem(QGraphicsTextItem* theWrappedObject, const QGraphicsItem*  item, const QRectF&  rect) const
-{
-return theWrappedObject->mapToItem(item, rect);
-}
-
-QPointF  PythonQtWrapper_QGraphicsTextItem::mapToItem(QGraphicsTextItem* theWrappedObject, const QGraphicsItem*  item, qreal  x, qreal  y) const
-{
-return theWrappedObject->mapToItem(item, x, y);
-}
-
-QPolygonF  PythonQtWrapper_QGraphicsTextItem::mapToItem(QGraphicsTextItem* theWrappedObject, const QGraphicsItem*  item, qreal  x, qreal  y, qreal  w, qreal  h) const
-{
-return theWrappedObject->mapToItem(item, x, y, w, h);
-}
-
-QPainterPath  PythonQtWrapper_QGraphicsTextItem::mapToParent(QGraphicsTextItem* theWrappedObject, const QPainterPath&  path) const
-{
-return theWrappedObject->mapToParent(path);
-}
-
-QPointF  PythonQtWrapper_QGraphicsTextItem::mapToParent(QGraphicsTextItem* theWrappedObject, const QPointF&  point) const
-{
-return theWrappedObject->mapToParent(point);
-}
-
-QPolygonF  PythonQtWrapper_QGraphicsTextItem::mapToParent(QGraphicsTextItem* theWrappedObject, const QPolygonF&  polygon) const
-{
-return theWrappedObject->mapToParent(polygon);
-}
-
-QPolygonF  PythonQtWrapper_QGraphicsTextItem::mapToParent(QGraphicsTextItem* theWrappedObject, const QRectF&  rect) const
-{
-return theWrappedObject->mapToParent(rect);
-}
-
-QPointF  PythonQtWrapper_QGraphicsTextItem::mapToParent(QGraphicsTextItem* theWrappedObject, qreal  x, qreal  y) const
-{
-return theWrappedObject->mapToParent(x, y);
-}
-
-QPolygonF  PythonQtWrapper_QGraphicsTextItem::mapToParent(QGraphicsTextItem* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h) const
-{
-return theWrappedObject->mapToParent(x, y, w, h);
-}
-
-QPainterPath  PythonQtWrapper_QGraphicsTextItem::mapToScene(QGraphicsTextItem* theWrappedObject, const QPainterPath&  path) const
-{
-return theWrappedObject->mapToScene(path);
-}
-
-QPointF  PythonQtWrapper_QGraphicsTextItem::mapToScene(QGraphicsTextItem* theWrappedObject, const QPointF&  point) const
-{
-return theWrappedObject->mapToScene(point);
-}
-
-QPolygonF  PythonQtWrapper_QGraphicsTextItem::mapToScene(QGraphicsTextItem* theWrappedObject, const QPolygonF&  polygon) const
-{
-return theWrappedObject->mapToScene(polygon);
-}
-
-QPolygonF  PythonQtWrapper_QGraphicsTextItem::mapToScene(QGraphicsTextItem* theWrappedObject, const QRectF&  rect) const
-{
-return theWrappedObject->mapToScene(rect);
-}
-
-QPointF  PythonQtWrapper_QGraphicsTextItem::mapToScene(QGraphicsTextItem* theWrappedObject, qreal  x, qreal  y) const
-{
-return theWrappedObject->mapToScene(x, y);
-}
-
-QPolygonF  PythonQtWrapper_QGraphicsTextItem::mapToScene(QGraphicsTextItem* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h) const
-{
-return theWrappedObject->mapToScene(x, y, w, h);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::moveBy(QGraphicsTextItem* theWrappedObject, qreal  dx, qreal  dy)
-{
-theWrappedObject->moveBy(dx, dy);
-}
-
-QPainterPath  PythonQtWrapper_QGraphicsTextItem::opaqueArea(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->opaqueArea();
+ (*theWrappedObject).adjustSize();
 }
 
 bool  PythonQtWrapper_QGraphicsTextItem::openExternalLinks(QGraphicsTextItem* theWrappedObject) const
 {
-return theWrappedObject->openExternalLinks();
-}
-
-void PythonQtWrapper_QGraphicsTextItem::paint(QGraphicsTextItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget)
-{
-theWrappedObject->paint(painter, option, widget);
-}
-
-QGraphicsItem*  PythonQtWrapper_QGraphicsTextItem::parentItem(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->parentItem();
-}
-
-QGraphicsWidget*  PythonQtWrapper_QGraphicsTextItem::parentWidget(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->parentWidget();
-}
-
-QPointF  PythonQtWrapper_QGraphicsTextItem::pos(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->pos();
-}
-
-void PythonQtWrapper_QGraphicsTextItem::removeSceneEventFilter(QGraphicsTextItem* theWrappedObject, QGraphicsItem*  filterItem)
-{
-theWrappedObject->removeSceneEventFilter(filterItem);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::resetTransform(QGraphicsTextItem* theWrappedObject)
-{
-theWrappedObject->resetTransform();
-}
-
-void PythonQtWrapper_QGraphicsTextItem::rotate(QGraphicsTextItem* theWrappedObject, qreal  angle)
-{
-theWrappedObject->rotate(angle);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::scale(QGraphicsTextItem* theWrappedObject, qreal  sx, qreal  sy)
-{
-theWrappedObject->scale(sx, sy);
-}
-
-QGraphicsScene*  PythonQtWrapper_QGraphicsTextItem::scene(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->scene();
-}
-
-QRectF  PythonQtWrapper_QGraphicsTextItem::sceneBoundingRect(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->sceneBoundingRect();
-}
-
-QPointF  PythonQtWrapper_QGraphicsTextItem::scenePos(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->scenePos();
-}
-
-QTransform  PythonQtWrapper_QGraphicsTextItem::sceneTransform(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->sceneTransform();
-}
-
-void PythonQtWrapper_QGraphicsTextItem::scroll(QGraphicsTextItem* theWrappedObject, qreal  dx, qreal  dy, const QRectF&  rect)
-{
-theWrappedObject->scroll(dx, dy, rect);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setAcceptDrops(QGraphicsTextItem* theWrappedObject, bool  on)
-{
-theWrappedObject->setAcceptDrops(on);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setAcceptHoverEvents(QGraphicsTextItem* theWrappedObject, bool  enabled)
-{
-theWrappedObject->setAcceptHoverEvents(enabled);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setAcceptedMouseButtons(QGraphicsTextItem* theWrappedObject, Qt::MouseButtons  buttons)
-{
-theWrappedObject->setAcceptedMouseButtons(buttons);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setAcceptsHoverEvents(QGraphicsTextItem* theWrappedObject, bool  enabled)
-{
-theWrappedObject->setAcceptsHoverEvents(enabled);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setBoundingRegionGranularity(QGraphicsTextItem* theWrappedObject, qreal  granularity)
-{
-theWrappedObject->setBoundingRegionGranularity(granularity);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setCacheMode(QGraphicsTextItem* theWrappedObject, QGraphicsItem::CacheMode  mode, const QSize&  cacheSize)
-{
-theWrappedObject->setCacheMode(mode, cacheSize);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setCursor(QGraphicsTextItem* theWrappedObject, const QCursor&  cursor)
-{
-theWrappedObject->setCursor(cursor);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setData(QGraphicsTextItem* theWrappedObject, int  key, const QVariant&  value)
-{
-theWrappedObject->setData(key, value);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setDefaultTextColor(QGraphicsTextItem* theWrappedObject, const QColor&  c)
-{
-theWrappedObject->setDefaultTextColor(c);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setDocument(QGraphicsTextItem* theWrappedObject, QTextDocument*  document)
-{
-theWrappedObject->setDocument(document);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setEnabled(QGraphicsTextItem* theWrappedObject, bool  enabled)
-{
-theWrappedObject->setEnabled(enabled);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setFlag(QGraphicsTextItem* theWrappedObject, QGraphicsItem::GraphicsItemFlag  flag, bool  enabled)
-{
-theWrappedObject->setFlag(flag, enabled);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setFlags(QGraphicsTextItem* theWrappedObject, QGraphicsItem::GraphicsItemFlags  flags)
-{
-theWrappedObject->setFlags(flags);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setFocus(QGraphicsTextItem* theWrappedObject, Qt::FocusReason  focusReason)
-{
-theWrappedObject->setFocus(focusReason);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setFont(QGraphicsTextItem* theWrappedObject, const QFont&  font)
-{
-theWrappedObject->setFont(font);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setGroup(QGraphicsTextItem* theWrappedObject, QGraphicsItemGroup*  group)
-{
-theWrappedObject->setGroup(group);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setHandlesChildEvents(QGraphicsTextItem* theWrappedObject, bool  enabled)
-{
-theWrappedObject->setHandlesChildEvents(enabled);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setHtml(QGraphicsTextItem* theWrappedObject, const QString&  html)
-{
-theWrappedObject->setHtml(html);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setOpenExternalLinks(QGraphicsTextItem* theWrappedObject, bool  open)
-{
-theWrappedObject->setOpenExternalLinks(open);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setParentItem(QGraphicsTextItem* theWrappedObject, QGraphicsItem*  parent)
-{
-theWrappedObject->setParentItem(parent);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setPlainText(QGraphicsTextItem* theWrappedObject, const QString&  text)
-{
-theWrappedObject->setPlainText(text);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setPos(QGraphicsTextItem* theWrappedObject, const QPointF&  pos)
-{
-theWrappedObject->setPos(pos);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setPos(QGraphicsTextItem* theWrappedObject, qreal  x, qreal  y)
-{
-theWrappedObject->setPos(x, y);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setSelected(QGraphicsTextItem* theWrappedObject, bool  selected)
-{
-theWrappedObject->setSelected(selected);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setTextCursor(QGraphicsTextItem* theWrappedObject, const QTextCursor&  cursor)
-{
-theWrappedObject->setTextCursor(cursor);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setTextInteractionFlags(QGraphicsTextItem* theWrappedObject, Qt::TextInteractionFlags  flags)
-{
-theWrappedObject->setTextInteractionFlags(flags);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setTextWidth(QGraphicsTextItem* theWrappedObject, qreal  width)
-{
-theWrappedObject->setTextWidth(width);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setToolTip(QGraphicsTextItem* theWrappedObject, const QString&  toolTip)
-{
-theWrappedObject->setToolTip(toolTip);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setTransform(QGraphicsTextItem* theWrappedObject, const QTransform&  matrix, bool  combine)
-{
-theWrappedObject->setTransform(matrix, combine);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setVisible(QGraphicsTextItem* theWrappedObject, bool  visible)
-{
-theWrappedObject->setVisible(visible);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::setZValue(QGraphicsTextItem* theWrappedObject, qreal  z)
-{
-theWrappedObject->setZValue(z);
-}
-
-QPainterPath  PythonQtWrapper_QGraphicsTextItem::shape(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->shape();
-}
-
-void PythonQtWrapper_QGraphicsTextItem::shear(QGraphicsTextItem* theWrappedObject, qreal  sh, qreal  sv)
-{
-theWrappedObject->shear(sh, sv);
-}
-
-void PythonQtWrapper_QGraphicsTextItem::show(QGraphicsTextItem* theWrappedObject)
-{
-theWrappedObject->show();
-}
-
-QTextCursor  PythonQtWrapper_QGraphicsTextItem::textCursor(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->textCursor();
-}
-
-Qt::TextInteractionFlags  PythonQtWrapper_QGraphicsTextItem::textInteractionFlags(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->textInteractionFlags();
-}
-
-qreal  PythonQtWrapper_QGraphicsTextItem::textWidth(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->textWidth();
-}
-
-QString  PythonQtWrapper_QGraphicsTextItem::toHtml(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->toHtml();
+return  (*theWrappedObject).openExternalLinks();
 }
 
 QString  PythonQtWrapper_QGraphicsTextItem::toPlainText(QGraphicsTextItem* theWrappedObject) const
 {
-return theWrappedObject->toPlainText();
-}
-
-QString  PythonQtWrapper_QGraphicsTextItem::toolTip(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->toolTip();
-}
-
-QGraphicsItem*  PythonQtWrapper_QGraphicsTextItem::topLevelItem(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->topLevelItem();
-}
-
-QGraphicsWidget*  PythonQtWrapper_QGraphicsTextItem::topLevelWidget(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->topLevelWidget();
-}
-
-QTransform  PythonQtWrapper_QGraphicsTextItem::transform(QGraphicsTextItem* theWrappedObject) const
-{
-return theWrappedObject->transform();
-}
-
-void PythonQtWrapper_QGraphicsTextItem::translate(QGraphicsTextItem* theWrappedObject, qreal  dx, qreal  dy)
-{
-theWrappedObject->translate(dx, dy);
+return  (*theWrappedObject).toPlainText();
 }
 
 int  PythonQtWrapper_QGraphicsTextItem::type(QGraphicsTextItem* theWrappedObject) const
 {
-return theWrappedObject->type();
+return  (*theWrappedObject).type();
 }
 
-void PythonQtWrapper_QGraphicsTextItem::ungrabKeyboard(QGraphicsTextItem* theWrappedObject)
+void PythonQtWrapper_QGraphicsTextItem::keyReleaseEvent(QGraphicsTextItem* theWrappedObject, QKeyEvent*  event)
 {
-theWrappedObject->ungrabKeyboard();
+ (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).keyReleaseEvent(event);
 }
 
-void PythonQtWrapper_QGraphicsTextItem::ungrabMouse(QGraphicsTextItem* theWrappedObject)
+void PythonQtWrapper_QGraphicsTextItem::hoverLeaveEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneHoverEvent*  event)
 {
-theWrappedObject->ungrabMouse();
+ (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).hoverLeaveEvent(event);
 }
 
-void PythonQtWrapper_QGraphicsTextItem::unsetCursor(QGraphicsTextItem* theWrappedObject)
+void PythonQtWrapper_QGraphicsTextItem::hoverMoveEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneHoverEvent*  event)
 {
-theWrappedObject->unsetCursor();
+ (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).hoverMoveEvent(event);
 }
 
-void PythonQtWrapper_QGraphicsTextItem::update(QGraphicsTextItem* theWrappedObject, const QRectF&  rect)
+QTextCursor  PythonQtWrapper_QGraphicsTextItem::textCursor(QGraphicsTextItem* theWrappedObject) const
 {
-theWrappedObject->update(rect);
+return  (*theWrappedObject).textCursor();
 }
 
-void PythonQtWrapper_QGraphicsTextItem::update(QGraphicsTextItem* theWrappedObject, qreal  x, qreal  y, qreal  width, qreal  height)
+void PythonQtWrapper_QGraphicsTextItem::setTextInteractionFlags(QGraphicsTextItem* theWrappedObject, Qt::TextInteractionFlags  flags)
 {
-theWrappedObject->update(x, y, width, height);
+ (*theWrappedObject).setTextInteractionFlags(flags);
 }
 
-QGraphicsWidget*  PythonQtWrapper_QGraphicsTextItem::window(QGraphicsTextItem* theWrappedObject) const
+void PythonQtWrapper_QGraphicsTextItem::dropEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneDragDropEvent*  event)
 {
-return theWrappedObject->window();
+ (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).dropEvent(event);
 }
 
-qreal  PythonQtWrapper_QGraphicsTextItem::x(QGraphicsTextItem* theWrappedObject) const
+void PythonQtWrapper_QGraphicsTextItem::setDocument(QGraphicsTextItem* theWrappedObject, QTextDocument*  document)
 {
-return theWrappedObject->x();
+ (*theWrappedObject).setDocument(document);
 }
 
-qreal  PythonQtWrapper_QGraphicsTextItem::y(QGraphicsTextItem* theWrappedObject) const
+void PythonQtWrapper_QGraphicsTextItem::inputMethodEvent(QGraphicsTextItem* theWrappedObject, QInputMethodEvent*  event)
 {
-return theWrappedObject->y();
+ (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).inputMethodEvent(event);
 }
 
-qreal  PythonQtWrapper_QGraphicsTextItem::zValue(QGraphicsTextItem* theWrappedObject) const
+void PythonQtWrapper_QGraphicsTextItem::contextMenuEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneContextMenuEvent*  event)
 {
-return theWrappedObject->zValue();
+ (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).contextMenuEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsTextItem::keyPressEvent(QGraphicsTextItem* theWrappedObject, QKeyEvent*  event)
+{
+ (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).keyPressEvent(event);
+}
+
+bool  PythonQtWrapper_QGraphicsTextItem::contains(QGraphicsTextItem* theWrappedObject, const QPointF&  point) const
+{
+return  (*theWrappedObject).contains(point);
+}
+
+void PythonQtWrapper_QGraphicsTextItem::setDefaultTextColor(QGraphicsTextItem* theWrappedObject, const QColor&  c)
+{
+ (*theWrappedObject).setDefaultTextColor(c);
+}
+
+void PythonQtWrapper_QGraphicsTextItem::focusOutEvent(QGraphicsTextItem* theWrappedObject, QFocusEvent*  event)
+{
+ (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).focusOutEvent(event);
+}
+
+QFont  PythonQtWrapper_QGraphicsTextItem::font(QGraphicsTextItem* theWrappedObject) const
+{
+return  (*theWrappedObject).font();
+}
+
+QRectF  PythonQtWrapper_QGraphicsTextItem::boundingRect(QGraphicsTextItem* theWrappedObject) const
+{
+return  (*theWrappedObject).boundingRect();
+}
+
+void PythonQtWrapper_QGraphicsTextItem::hoverEnterEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneHoverEvent*  event)
+{
+ (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).hoverEnterEvent(event);
+}
+
+Qt::TextInteractionFlags  PythonQtWrapper_QGraphicsTextItem::textInteractionFlags(QGraphicsTextItem* theWrappedObject) const
+{
+return  (*theWrappedObject).textInteractionFlags();
+}
+
+QPainterPath  PythonQtWrapper_QGraphicsTextItem::opaqueArea(QGraphicsTextItem* theWrappedObject) const
+{
+return  (*theWrappedObject).opaqueArea();
+}
+
+void PythonQtWrapper_QGraphicsTextItem::setPlainText(QGraphicsTextItem* theWrappedObject, const QString&  text)
+{
+ (*theWrappedObject).setPlainText(text);
+}
+
+void PythonQtWrapper_QGraphicsTextItem::setTextCursor(QGraphicsTextItem* theWrappedObject, const QTextCursor&  cursor)
+{
+ (*theWrappedObject).setTextCursor(cursor);
+}
+
+void PythonQtWrapper_QGraphicsTextItem::dragLeaveEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneDragDropEvent*  event)
+{
+ (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).dragLeaveEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsTextItem::setOpenExternalLinks(QGraphicsTextItem* theWrappedObject, bool  open)
+{
+ (*theWrappedObject).setOpenExternalLinks(open);
+}
+
+void PythonQtWrapper_QGraphicsTextItem::dragMoveEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneDragDropEvent*  event)
+{
+ (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).dragMoveEvent(event);
+}
+
+QVariant  PythonQtWrapper_QGraphicsTextItem::inputMethodQuery(QGraphicsTextItem* theWrappedObject, Qt::InputMethodQuery  query) const
+{
+return  (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).inputMethodQuery(query);
+}
+
+void PythonQtWrapper_QGraphicsTextItem::focusInEvent(QGraphicsTextItem* theWrappedObject, QFocusEvent*  event)
+{
+ (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).focusInEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsTextItem::paint(QGraphicsTextItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget)
+{
+ (*theWrappedObject).paint(painter, option, widget);
+}
+
+QVariant  PythonQtWrapper_QGraphicsTextItem::extension(QGraphicsTextItem* theWrappedObject, const QVariant&  variant) const
+{
+return  (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).extension(variant);
+}
+
+QColor  PythonQtWrapper_QGraphicsTextItem::defaultTextColor(QGraphicsTextItem* theWrappedObject) const
+{
+return  (*theWrappedObject).defaultTextColor();
+}
+
+bool  PythonQtWrapper_QGraphicsTextItem::isObscuredBy(QGraphicsTextItem* theWrappedObject, const QGraphicsItem*  item) const
+{
+return  (*theWrappedObject).isObscuredBy(item);
+}
+
+QString  PythonQtWrapper_QGraphicsTextItem::toHtml(QGraphicsTextItem* theWrappedObject) const
+{
+return  (*theWrappedObject).toHtml();
+}
+
+void PythonQtWrapper_QGraphicsTextItem::mouseReleaseEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneMouseEvent*  event)
+{
+ (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).mouseReleaseEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsTextItem::dragEnterEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneDragDropEvent*  event)
+{
+ (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).dragEnterEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsTextItem::setTextWidth(QGraphicsTextItem* theWrappedObject, qreal  width)
+{
+ (*theWrappedObject).setTextWidth(width);
+}
+
+void PythonQtWrapper_QGraphicsTextItem::mousePressEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneMouseEvent*  event)
+{
+ (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).mousePressEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsTextItem::mouseDoubleClickEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneMouseEvent*  event)
+{
+ (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).mouseDoubleClickEvent(event);
+}
+
+qreal  PythonQtWrapper_QGraphicsTextItem::textWidth(QGraphicsTextItem* theWrappedObject) const
+{
+return  (*theWrappedObject).textWidth();
+}
+
+void PythonQtWrapper_QGraphicsTextItem::setFont(QGraphicsTextItem* theWrappedObject, const QFont&  font)
+{
+ (*theWrappedObject).setFont(font);
+}
+
+void PythonQtWrapper_QGraphicsTextItem::mouseMoveEvent(QGraphicsTextItem* theWrappedObject, QGraphicsSceneMouseEvent*  event)
+{
+ (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).mouseMoveEvent(event);
+}
+
+bool  PythonQtWrapper_QGraphicsTextItem::sceneEvent(QGraphicsTextItem* theWrappedObject, QEvent*  event)
+{
+return  (*((PythonQtPublicPromoter_QGraphicsTextItem*)theWrappedObject)).sceneEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsTextItem::setHtml(QGraphicsTextItem* theWrappedObject, const QString&  html)
+{
+ (*theWrappedObject).setHtml(html);
+}
+
+QTextDocument*  PythonQtWrapper_QGraphicsTextItem::document(QGraphicsTextItem* theWrappedObject) const
+{
+return  (*theWrappedObject).document();
+}
+
+QPainterPath  PythonQtWrapper_QGraphicsTextItem::shape(QGraphicsTextItem* theWrappedObject) const
+{
+return  (*theWrappedObject).shape();
 }
 

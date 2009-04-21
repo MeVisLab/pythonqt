@@ -1459,7 +1459,8 @@ void AbstractMetaClass::addInterface(AbstractMetaClass *interface)
     foreach (AbstractMetaFunction *function, interface->functions())
         if (!hasFunction(function) && !function->isConstructor()) {
             AbstractMetaFunction *cpy = function->copy();
-            cpy->setImplementingClass(this);
+            // We do not want this in PythonQt:
+            //cpy->setImplementingClass(this);
 
             // Setup that this function is an interface class.
             cpy->setInterfaceClass(interface);

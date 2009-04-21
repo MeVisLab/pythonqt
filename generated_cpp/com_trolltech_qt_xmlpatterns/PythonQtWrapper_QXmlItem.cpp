@@ -1,5 +1,8 @@
 #include "PythonQtWrapper_QXmlItem.h"
 
+#include <PythonQtSignalReceiver.h>
+#include <PythonQtMethodInfo.h>
+#include <PythonQtConversion.h>
 #include <QVariant>
 #include <qabstractxmlnodemodel.h>
 
@@ -19,28 +22,28 @@ QXmlItem* PythonQtWrapper_QXmlItem::new_QXmlItem(const QXmlNodeModelIndex&  node
 { 
 return new QXmlItem(node); }
 
-bool  PythonQtWrapper_QXmlItem::isAtomicValue(QXmlItem* theWrappedObject) const
-{
-return theWrappedObject->isAtomicValue();
-}
-
 bool  PythonQtWrapper_QXmlItem::isNode(QXmlItem* theWrappedObject) const
 {
-return theWrappedObject->isNode();
+return  (*theWrappedObject).isNode();
 }
 
-bool  PythonQtWrapper_QXmlItem::isNull(QXmlItem* theWrappedObject) const
+bool  PythonQtWrapper_QXmlItem::isAtomicValue(QXmlItem* theWrappedObject) const
 {
-return theWrappedObject->isNull();
+return  (*theWrappedObject).isAtomicValue();
 }
 
 QVariant  PythonQtWrapper_QXmlItem::toAtomicValue(QXmlItem* theWrappedObject) const
 {
-return theWrappedObject->toAtomicValue();
+return  (*theWrappedObject).toAtomicValue();
 }
 
 QXmlNodeModelIndex  PythonQtWrapper_QXmlItem::toNodeModelIndex(QXmlItem* theWrappedObject) const
 {
-return theWrappedObject->toNodeModelIndex();
+return  (*theWrappedObject).toNodeModelIndex();
+}
+
+bool  PythonQtWrapper_QXmlItem::isNull(QXmlItem* theWrappedObject) const
+{
+return  (*theWrappedObject).isNull();
 }
 

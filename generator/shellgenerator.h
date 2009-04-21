@@ -53,8 +53,25 @@ public:
     bool shouldGenerate(const AbstractMetaClass *meta_class) const;
 
     static QString shellClassName(const AbstractMetaClass *meta_class) {
+      return "PythonQtShell_" + meta_class->name();
+    }
+    static QString wrapperClassName(const AbstractMetaClass *meta_class) {
       return "PythonQtWrapper_" + meta_class->name();
     }
+    static QString promoterClassName(const AbstractMetaClass *meta_class) {
+      return "PythonQtPublicPromoter_" + meta_class->name();
+    }
+
+    static AbstractMetaFunctionList getFunctionsToWrap(const AbstractMetaClass* cls);
+    static AbstractMetaFunctionList getVirtualFunctionsForShell(const AbstractMetaClass* cls);
+    static AbstractMetaFunctionList getProtectedFunctionsThatNeedPromotion(const AbstractMetaClass* cls);
+
+    // PythonQt builtins..., dont put them in pri files and dont register them, but generate the code
+    static bool isBuiltIn(const QString& name);
+
+    static bool isSpecialStreamingOperator(const AbstractMetaFunction *fun);
+
+    static void writeInclude(QTextStream &stream, const Include &inc);
 
  protected:
     PriGenerator *priGenerator;

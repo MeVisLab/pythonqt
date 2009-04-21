@@ -4,6 +4,8 @@
 #include <qxmlstream.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qbytearray.h>
 #include <qiodevice.h>
@@ -24,57 +26,57 @@ QXmlStreamReader* new_QXmlStreamReader(QIODevice*  device);
 QXmlStreamReader* new_QXmlStreamReader(const QByteArray&  data);
 QXmlStreamReader* new_QXmlStreamReader(const QString&  data);
 void delete_QXmlStreamReader(QXmlStreamReader* obj) { delete obj; } 
-   void addData(QXmlStreamReader* theWrappedObject, const QByteArray&  data);
-   void addData(QXmlStreamReader* theWrappedObject, const QString&  data);
-   void addExtraNamespaceDeclaration(QXmlStreamReader* theWrappedObject, const QXmlStreamNamespaceDeclaration&  extraNamespaceDeclaraction);
-   void addExtraNamespaceDeclarations(QXmlStreamReader* theWrappedObject, const QVector<QXmlStreamNamespaceDeclaration >&  extraNamespaceDeclaractions);
-   bool  atEnd(QXmlStreamReader* theWrappedObject) const;
-   QXmlStreamAttributes  attributes(QXmlStreamReader* theWrappedObject) const;
-   qint64  characterOffset(QXmlStreamReader* theWrappedObject) const;
-   void clear(QXmlStreamReader* theWrappedObject);
-   qint64  columnNumber(QXmlStreamReader* theWrappedObject) const;
-   QIODevice*  device(QXmlStreamReader* theWrappedObject) const;
-   QStringRef  documentEncoding(QXmlStreamReader* theWrappedObject) const;
-   QStringRef  documentVersion(QXmlStreamReader* theWrappedObject) const;
-   QStringRef  dtdName(QXmlStreamReader* theWrappedObject) const;
-   QStringRef  dtdPublicId(QXmlStreamReader* theWrappedObject) const;
-   QStringRef  dtdSystemId(QXmlStreamReader* theWrappedObject) const;
-   QVector<QXmlStreamEntityDeclaration >  entityDeclarations(QXmlStreamReader* theWrappedObject) const;
-   QXmlStreamEntityResolver*  entityResolver(QXmlStreamReader* theWrappedObject) const;
-   QXmlStreamReader::Error  error(QXmlStreamReader* theWrappedObject) const;
-   QString  errorString(QXmlStreamReader* theWrappedObject) const;
-   bool  hasError(QXmlStreamReader* theWrappedObject) const;
-   bool  isCDATA(QXmlStreamReader* theWrappedObject) const;
-   bool  isCharacters(QXmlStreamReader* theWrappedObject) const;
    bool  isComment(QXmlStreamReader* theWrappedObject) const;
-   bool  isDTD(QXmlStreamReader* theWrappedObject) const;
-   bool  isEndDocument(QXmlStreamReader* theWrappedObject) const;
-   bool  isEndElement(QXmlStreamReader* theWrappedObject) const;
-   bool  isEntityReference(QXmlStreamReader* theWrappedObject) const;
-   bool  isProcessingInstruction(QXmlStreamReader* theWrappedObject) const;
-   bool  isStandaloneDocument(QXmlStreamReader* theWrappedObject) const;
-   bool  isStartDocument(QXmlStreamReader* theWrappedObject) const;
-   bool  isStartElement(QXmlStreamReader* theWrappedObject) const;
-   bool  isWhitespace(QXmlStreamReader* theWrappedObject) const;
-   qint64  lineNumber(QXmlStreamReader* theWrappedObject) const;
-   QStringRef  name(QXmlStreamReader* theWrappedObject) const;
-   QVector<QXmlStreamNamespaceDeclaration >  namespaceDeclarations(QXmlStreamReader* theWrappedObject) const;
-   bool  namespaceProcessing(QXmlStreamReader* theWrappedObject) const;
-   QStringRef  namespaceUri(QXmlStreamReader* theWrappedObject) const;
-   QVector<QXmlStreamNotationDeclaration >  notationDeclarations(QXmlStreamReader* theWrappedObject) const;
-   QStringRef  prefix(QXmlStreamReader* theWrappedObject) const;
-   QStringRef  processingInstructionData(QXmlStreamReader* theWrappedObject) const;
-   QStringRef  processingInstructionTarget(QXmlStreamReader* theWrappedObject) const;
-   QStringRef  qualifiedName(QXmlStreamReader* theWrappedObject) const;
-   void raiseError(QXmlStreamReader* theWrappedObject, const QString&  message = QString());
    QString  readElementText(QXmlStreamReader* theWrappedObject);
-   QXmlStreamReader::TokenType  readNext(QXmlStreamReader* theWrappedObject);
-   void setDevice(QXmlStreamReader* theWrappedObject, QIODevice*  device);
-   void setEntityResolver(QXmlStreamReader* theWrappedObject, QXmlStreamEntityResolver*  resolver);
-   void setNamespaceProcessing(QXmlStreamReader* theWrappedObject, bool  arg__1);
-   QStringRef  text(QXmlStreamReader* theWrappedObject) const;
+   QStringRef  dtdName(QXmlStreamReader* theWrappedObject) const;
    QString  tokenString(QXmlStreamReader* theWrappedObject) const;
+   QStringRef  processingInstructionTarget(QXmlStreamReader* theWrappedObject) const;
+   void setEntityResolver(QXmlStreamReader* theWrappedObject, QXmlStreamEntityResolver*  resolver);
+   QXmlStreamAttributes  attributes(QXmlStreamReader* theWrappedObject) const;
+   QVector<QXmlStreamEntityDeclaration >  entityDeclarations(QXmlStreamReader* theWrappedObject) const;
+   bool  isEndDocument(QXmlStreamReader* theWrappedObject) const;
+   QXmlStreamReader::TokenType  readNext(QXmlStreamReader* theWrappedObject);
+   void addExtraNamespaceDeclarations(QXmlStreamReader* theWrappedObject, const QVector<QXmlStreamNamespaceDeclaration >&  extraNamespaceDeclaractions);
+   bool  isEndElement(QXmlStreamReader* theWrappedObject) const;
+   bool  isStartElement(QXmlStreamReader* theWrappedObject) const;
+   QStringRef  dtdSystemId(QXmlStreamReader* theWrappedObject) const;
+   bool  isStandaloneDocument(QXmlStreamReader* theWrappedObject) const;
+   QStringRef  name(QXmlStreamReader* theWrappedObject) const;
+   void setDevice(QXmlStreamReader* theWrappedObject, QIODevice*  device);
+   bool  namespaceProcessing(QXmlStreamReader* theWrappedObject) const;
+   bool  isCharacters(QXmlStreamReader* theWrappedObject) const;
+   QStringRef  text(QXmlStreamReader* theWrappedObject) const;
+   qint64  lineNumber(QXmlStreamReader* theWrappedObject) const;
+   QStringRef  namespaceUri(QXmlStreamReader* theWrappedObject) const;
+   bool  isProcessingInstruction(QXmlStreamReader* theWrappedObject) const;
+   qint64  characterOffset(QXmlStreamReader* theWrappedObject) const;
+   QXmlStreamReader::Error  error(QXmlStreamReader* theWrappedObject) const;
+   bool  isEntityReference(QXmlStreamReader* theWrappedObject) const;
+   void addData(QXmlStreamReader* theWrappedObject, const QByteArray&  data);
+   QStringRef  documentEncoding(QXmlStreamReader* theWrappedObject) const;
+   bool  hasError(QXmlStreamReader* theWrappedObject) const;
+   void raiseError(QXmlStreamReader* theWrappedObject, const QString&  message = QString());
+   void addData(QXmlStreamReader* theWrappedObject, const QString&  data);
+   qint64  columnNumber(QXmlStreamReader* theWrappedObject) const;
+   void addExtraNamespaceDeclaration(QXmlStreamReader* theWrappedObject, const QXmlStreamNamespaceDeclaration&  extraNamespaceDeclaraction);
+   QStringRef  prefix(QXmlStreamReader* theWrappedObject) const;
+   QStringRef  qualifiedName(QXmlStreamReader* theWrappedObject) const;
+   bool  isWhitespace(QXmlStreamReader* theWrappedObject) const;
+   void clear(QXmlStreamReader* theWrappedObject);
+   bool  isStartDocument(QXmlStreamReader* theWrappedObject) const;
+   QVector<QXmlStreamNamespaceDeclaration >  namespaceDeclarations(QXmlStreamReader* theWrappedObject) const;
+   bool  isCDATA(QXmlStreamReader* theWrappedObject) const;
    QXmlStreamReader::TokenType  tokenType(QXmlStreamReader* theWrappedObject) const;
+   QIODevice*  device(QXmlStreamReader* theWrappedObject) const;
+   QStringRef  documentVersion(QXmlStreamReader* theWrappedObject) const;
+   QVector<QXmlStreamNotationDeclaration >  notationDeclarations(QXmlStreamReader* theWrappedObject) const;
+   QStringRef  processingInstructionData(QXmlStreamReader* theWrappedObject) const;
+   QXmlStreamEntityResolver*  entityResolver(QXmlStreamReader* theWrappedObject) const;
+   bool  isDTD(QXmlStreamReader* theWrappedObject) const;
+   QString  errorString(QXmlStreamReader* theWrappedObject) const;
+   QStringRef  dtdPublicId(QXmlStreamReader* theWrappedObject) const;
+   bool  atEnd(QXmlStreamReader* theWrappedObject) const;
+   void setNamespaceProcessing(QXmlStreamReader* theWrappedObject, bool  arg__1);
 };
 
 #endif // PYTHONQTWRAPPER_QXMLSTREAMREADER_H

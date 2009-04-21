@@ -78,7 +78,7 @@ public:
   static PyObject* ConvertQtValueToPython(const PythonQtMethodInfo::ParameterInfo& info, const void* data);
 
   //! convert python object to Qt (according to the given parameter) and if the conversion should be strict, the meta object is passed in for enum resolving
-  static void* ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& info, PyObject* obj, bool strict, const QMetaObject* meta);
+  static void* ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& info, PyObject* obj, bool strict, const QMetaObject* meta, void* alreadyAllocatedCPPObject = NULL);
 
   //! creates a data storage for the passed parameter type and returns a void pointer to be set as arg[0] of qt_metacall
   static void* CreateQtReturnValue(const PythonQtMethodInfo::ParameterInfo& info);
@@ -157,6 +157,9 @@ protected:
   static PyObject* ConvertQListOfPointerTypeToPythonList(QList<void*>* list, const QByteArray& type);
   //! tries to convert the python object to a QList of pointers to \c type objects, returns true on success
   static bool      ConvertPythonListToQListOfPointerType(PyObject* obj, QList<void*>* list, const QByteArray& type, bool strict);
+
+  //! cast wrapper to given className if possible
+  static void* castWrapperTo(PythonQtInstanceWrapper* wrapper, const QByteArray& className, bool& ok);
 };
 
 template<class ListType, class T>

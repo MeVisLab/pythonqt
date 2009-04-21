@@ -4,6 +4,8 @@
 #include <qbrush.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qbrush.h>
 #include <qcolor.h>
@@ -18,12 +20,16 @@ public slots:
 QLinearGradient* new_QLinearGradient();
 QLinearGradient* new_QLinearGradient(const QPointF&  start, const QPointF&  finalStop);
 QLinearGradient* new_QLinearGradient(qreal  xStart, qreal  yStart, qreal  xFinalStop, qreal  yFinalStop);
+QLinearGradient* new_QLinearGradient(const QLinearGradient& other) {
+QLinearGradient* a = new QLinearGradient();
+*((QLinearGradient*)a) = other;
+return a; }
 void delete_QLinearGradient(QLinearGradient* obj) { delete obj; } 
    QPointF  finalStop(QLinearGradient* theWrappedObject) const;
    void setFinalStop(QLinearGradient* theWrappedObject, const QPointF&  stop);
    void setFinalStop(QLinearGradient* theWrappedObject, qreal  x, qreal  y);
-   void setStart(QLinearGradient* theWrappedObject, const QPointF&  start);
    void setStart(QLinearGradient* theWrappedObject, qreal  x, qreal  y);
+   void setStart(QLinearGradient* theWrappedObject, const QPointF&  start);
    QPointF  start(QLinearGradient* theWrappedObject) const;
 };
 

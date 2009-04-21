@@ -219,8 +219,28 @@ return Py_None;
    }
    return ptr;
  }
- 
- void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& info, PyObject* obj, bool strict, const QMetaObject* meta)
+
+ void* PythonQtConv::castWrapperTo(PythonQtInstanceWrapper* wrapper, const QByteArray& className, bool& ok)
+ {
+   void* object;
+   if (wrapper->classInfo()->isCPPWrapper()) {
+     object = wrapper->_wrappedPtr;
+   } else {
+     QObject* tmp = wrapper->_obj;
+     object = tmp;
+   }
+   if (object) {
+     // if we can be upcasted to the given name, we pass the casted pointer in:
+     object = wrapper->classInfo()->castTo(object, className);
+     ok = object!=NULL;
+   } else {
+     // if it is a NULL ptr, we need to check if it inherits, so that we might pass the NULL ptr
+     ok = wrapper->classInfo()->inherits(className);
+   }
+   return object;
+ }
+
+ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& info, PyObject* obj, bool strict, const QMetaObject* meta, void* alreadyAllocatedCPPObject)
  {
    bool ok;
    void* ptr = NULL;
@@ -230,17 +250,12 @@ return Py_None;
  
      // a C++ wrapper (can be passed as pointer or reference)
      PythonQtInstanceWrapper* wrap = (PythonQtInstanceWrapper*)obj;
-     if (wrap->classInfo()->inherits(info.name)) {
-       void* object;
-       if (wrap->classInfo()->isCPPWrapper()) {
-         object = wrap->_wrappedPtr;
-       } else {
-         QObject* tmp = wrap->_obj;
-         object = tmp;
-       }
+     bool ok;
+     void* object = castWrapperTo(wrap, info.name, ok);
+     if (ok) {
        if (info.isPointer) {
          // store the wrapped pointer in an extra pointer and let ptr point to the extra pointer
-         PythonQtValueStorage_ADD_VALUE(global_ptrStorage, void*, object, ptr);
+         PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_ptrStorage, void*, object, ptr);
        } else {
          // store the wrapped pointer directly, since we are a reference
          ptr = object;
@@ -255,22 +270,22 @@ return Py_None;
        QString str = PyObjGetString(obj, strict, ok);
        if (ok) {
          void* ptr2 = NULL;
-         PythonQtValueStorage_ADD_VALUE(global_variantStorage, QVariant, QVariant(str.toUtf8()), ptr2);
-         PythonQtValueStorage_ADD_VALUE(global_ptrStorage, void*, (((QByteArray*)((QVariant*)ptr2)->constData())->data()), ptr);
+         PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_variantStorage, QVariant, QVariant(str.toUtf8()), ptr2);
+         PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_ptrStorage, void*, (((QByteArray*)((QVariant*)ptr2)->constData())->data()), ptr);
        }
      } else if (info.name == "PyObject") {
        // handle low level PyObject directly
-       PythonQtValueStorage_ADD_VALUE(global_ptrStorage, void*, obj, ptr);
+       PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_ptrStorage, void*, obj, ptr);
      } else if (obj == Py_None) {
        // None is treated as a NULL ptr
-       PythonQtValueStorage_ADD_VALUE(global_ptrStorage, void*, NULL, ptr);
+       PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_ptrStorage, void*, NULL, ptr);
      } else {
        // if we are not strict, we try if we are passed a 0 integer
        if (!strict) {
          bool ok;
          int value = PyObjGetInt(obj, true, ok);
          if (ok && value==0) {
-           PythonQtValueStorage_ADD_VALUE(global_ptrStorage, void*, NULL, ptr);
+           PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_ptrStorage, void*, NULL, ptr);
          }
        }
      }
@@ -281,7 +296,7 @@ return Py_None;
        {
          int val = PyObjGetInt(obj, strict, ok);
          if (ok) {
-           PythonQtValueStorage_ADD_VALUE(global_valueStorage, char, val, ptr);
+           PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_valueStorage, char, val, ptr);
          }
        }
        break;
@@ -289,7 +304,7 @@ return Py_None;
        {
          int val = PyObjGetInt(obj, strict, ok);
          if (ok) {
-           PythonQtValueStorage_ADD_VALUE(global_valueStorage, unsigned char, val, ptr);
+           PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_valueStorage, unsigned char, val, ptr);
          }
        }
        break;
@@ -297,7 +312,7 @@ return Py_None;
        {
          int val = PyObjGetInt(obj, strict, ok);
          if (ok) {
-           PythonQtValueStorage_ADD_VALUE(global_valueStorage, short, val, ptr);
+           PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_valueStorage, short, val, ptr);
          }
        }
        break;
@@ -305,7 +320,7 @@ return Py_None;
        {
          int val = PyObjGetInt(obj, strict, ok);
          if (ok) {
-           PythonQtValueStorage_ADD_VALUE(global_valueStorage, unsigned short, val, ptr);
+           PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_valueStorage, unsigned short, val, ptr);
          }
        }
        break;
@@ -313,7 +328,7 @@ return Py_None;
        {
          long val = (long)PyObjGetLongLong(obj, strict, ok);
          if (ok) {
-           PythonQtValueStorage_ADD_VALUE(global_valueStorage, long, val, ptr);
+           PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_valueStorage, long, val, ptr);
          }
        }
        break;
@@ -321,7 +336,7 @@ return Py_None;
        {
          unsigned long val = (unsigned long)PyObjGetLongLong(obj, strict, ok);
          if (ok) {
-           PythonQtValueStorage_ADD_VALUE(global_valueStorage, unsigned long, val, ptr);
+           PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_valueStorage, unsigned long, val, ptr);
          }
        }
        break;
@@ -329,7 +344,7 @@ return Py_None;
        {
          bool val = PyObjGetBool(obj, strict, ok);
          if (ok) {
-           PythonQtValueStorage_ADD_VALUE(global_valueStorage, bool, val, ptr);
+           PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_valueStorage, bool, val, ptr);
          }
        }
        break;
@@ -337,7 +352,7 @@ return Py_None;
        {
          int val = PyObjGetInt(obj, strict, ok);
          if (ok) {
-           PythonQtValueStorage_ADD_VALUE(global_valueStorage, int, val, ptr);
+           PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_valueStorage, int, val, ptr);
          }
        }
        break;
@@ -345,7 +360,7 @@ return Py_None;
        {
          unsigned int val = (unsigned int)PyObjGetLongLong(obj, strict, ok);
          if (ok) {
-           PythonQtValueStorage_ADD_VALUE(global_valueStorage, unsigned int, val, ptr);
+           PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_valueStorage, unsigned int, val, ptr);
          }
        }
        break;
@@ -353,7 +368,7 @@ return Py_None;
        {
          int val = PyObjGetInt(obj, strict, ok);
          if (ok) {
-           PythonQtValueStorage_ADD_VALUE(global_valueStorage, short, val, ptr);
+           PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_valueStorage, short, val, ptr);
          }
        }
        break;
@@ -361,7 +376,7 @@ return Py_None;
        {
          float val = (float)PyObjGetDouble(obj, strict, ok);
          if (ok) {
-           PythonQtValueStorage_ADD_VALUE(global_valueStorage, float, val, ptr);
+           PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_valueStorage, float, val, ptr);
          }
        }
        break;
@@ -369,7 +384,7 @@ return Py_None;
        {
          double val = (double)PyObjGetDouble(obj, strict, ok);
          if (ok) {
-           PythonQtValueStorage_ADD_VALUE(global_valueStorage, double, val, ptr);
+           PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_valueStorage, double, val, ptr);
          }
        }
        break;
@@ -377,7 +392,7 @@ return Py_None;
        {
          qint64 val = PyObjGetLongLong(obj, strict, ok);
          if (ok) {
-           PythonQtValueStorage_ADD_VALUE(global_valueStorage, qint64, val, ptr);
+           PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_valueStorage, qint64, val, ptr);
          }
        }
        break;
@@ -385,7 +400,7 @@ return Py_None;
        {
          quint64 val = PyObjGetULongLong(obj, strict, ok);
          if (ok) {
-           PythonQtValueStorage_ADD_VALUE(global_valueStorage, quint64, val, ptr);
+           PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_valueStorage, quint64, val, ptr);
          }
        }
        break;
@@ -393,7 +408,7 @@ return Py_None;
        {
          QByteArray bytes = PyObjGetBytes(obj, strict, ok);
          if (ok) {
-           PythonQtValueStorage_ADD_VALUE(global_variantStorage, QVariant, QVariant(bytes), ptr);
+           PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_variantStorage, QVariant, QVariant(bytes), ptr);
            ptr = (void*)((QVariant*)ptr)->constData();
          }
        }
@@ -402,7 +417,7 @@ return Py_None;
        {
          QString str = PyObjGetString(obj, strict, ok);
          if (ok) {
-           PythonQtValueStorage_ADD_VALUE(global_variantStorage, QVariant, QVariant(str), ptr);
+           PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_variantStorage, QVariant, QVariant(str), ptr);
            ptr = (void*)((QVariant*)ptr)->constData();
          }
        }
@@ -411,7 +426,7 @@ return Py_None;
        {
          QStringList l = PyObjToStringList(obj, strict, ok);
          if (ok) {
-           PythonQtValueStorage_ADD_VALUE(global_variantStorage, QVariant, QVariant(l), ptr);
+           PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_variantStorage, QVariant, QVariant(l), ptr);
            ptr = (void*)((QVariant*)ptr)->constData();
          }
        }
@@ -421,7 +436,7 @@ return Py_None;
        {
          QVariant v = PyObjToQVariant(obj);
          if (v.isValid()) {
-           PythonQtValueStorage_ADD_VALUE(global_variantStorage, QVariant, v, ptr);
+           PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_variantStorage, QVariant, v, ptr);
          }
        }
        break;
@@ -429,10 +444,10 @@ return Py_None;
        {
          if (info.typeId == PythonQtMethodInfo::Unknown) {
            // check for enum case
-           if (PythonQt::priv()->isEnumType(meta, info.name)) {
+           if (meta && PythonQt::priv()->isEnumType(meta, info.name)) {
              unsigned int val = (unsigned int)PyObjGetLongLong(obj, strict, ok);
              if (ok) {
-               PythonQtValueStorage_ADD_VALUE(global_valueStorage, unsigned int, val, ptr);
+               PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_valueStorage, unsigned int, val, ptr);
                return ptr;
              } else {
                return NULL;
@@ -446,8 +461,12 @@ return Py_None;
              if (innerType.endsWith("*")) {
                innerType.truncate(innerType.length()-1);
                static int id = QMetaType::type("QList<void*>");
-               PythonQtValueStorage_ADD_VALUE(global_variantStorage, QVariant, QVariant::Type(id), ptr);
-               ptr = (void*)((QVariant*)ptr)->constData();
+               if (!alreadyAllocatedCPPObject) {
+                 PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_variantStorage, QVariant, QVariant::Type(id), ptr);
+                 ptr = (void*)((QVariant*)ptr)->constData();
+               } else {
+                 ptr = alreadyAllocatedCPPObject;
+               }
                ok = ConvertPythonListToQListOfPointerType(obj, (QList<void*>*)ptr, innerType, strict);
                if (ok) {
                  return ptr;
@@ -463,9 +482,13 @@ return Py_None;
            // Maybe we have a special converter that is registered for that type:
            PythonQtConvertPythonToMetaTypeCB* converter = _pythonToMetaTypeConverters.value(info.typeId);
            if (converter) {
-             // create a new empty variant of concrete type:
-             PythonQtValueStorage_ADD_VALUE(global_variantStorage, QVariant, QVariant::Type(info.typeId), ptr);
-             ptr = (void*)((QVariant*)ptr)->constData();
+             if (!alreadyAllocatedCPPObject) {
+               // create a new empty variant of concrete type:
+               PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_variantStorage, QVariant, QVariant::Type(info.typeId), ptr);
+               ptr = (void*)((QVariant*)ptr)->constData();
+             } else {
+               ptr = alreadyAllocatedCPPObject;
+             }
              // now call the converter, passing the internal object of the variant
              ok = (*converter)(obj, ptr, info.typeId, strict);
              if (ok) {
@@ -479,7 +502,7 @@ return Py_None;
          // for all other types, we use the same qvariant conversion and pass out the constData of the variant:
          QVariant v = PyObjToQVariant(obj, info.typeId);
          if (v.isValid()) {
-           PythonQtValueStorage_ADD_VALUE(global_variantStorage, QVariant, v, ptr);
+           PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_variantStorage, QVariant, v, ptr);
            ptr = (void*)((QVariant*)ptr)->constData();
          }
        }
@@ -958,14 +981,10 @@ bool PythonQtConv::ConvertPythonListToQListOfPointerType(PyObject* obj, QList<vo
       value = PySequence_GetItem(obj,i);
       if (PyObject_TypeCheck(value, &PythonQtInstanceWrapper_Type)) {
         PythonQtInstanceWrapper* wrap = (PythonQtInstanceWrapper*)value;
-        // both QObjects and CPP wrappers support inherits, so we use that to check of we match
-        if (wrap->classInfo()->inherits(type)) {
-          if (wrap->classInfo()->isCPPWrapper()) {
-            list->append(wrap->_wrappedPtr);
-          } else {
-            QObject* myObject = wrap->_obj;
-            list->append((void*)myObject);
-          }
+        bool ok;
+        void* object = castWrapperTo(wrap, type, ok);
+        if (ok) {
+          list->append(object);
         } else {
           result = false;
           break;

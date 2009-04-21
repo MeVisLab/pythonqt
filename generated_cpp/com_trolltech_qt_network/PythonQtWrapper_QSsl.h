@@ -4,6 +4,8 @@
 #include <qssl.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 
 class PythonQtWrapper_QSsl : public QObject

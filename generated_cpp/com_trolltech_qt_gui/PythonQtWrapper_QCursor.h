@@ -4,6 +4,8 @@
 #include <qcursor.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QPixmap>
 #include <QVariant>
 #include <qbitmap.h>
@@ -22,17 +24,17 @@ QCursor* new_QCursor(const QBitmap&  bitmap, const QBitmap&  mask, int  hotX = -
 QCursor* new_QCursor(const QCursor&  cursor);
 QCursor* new_QCursor(const QPixmap&  pixmap, int  hotX = -1, int  hotY = -1);
 void delete_QCursor(QCursor* obj) { delete obj; } 
-   const QBitmap*  bitmap(QCursor* theWrappedObject) const;
-   QPoint  hotSpot(QCursor* theWrappedObject) const;
-   const QBitmap*  mask(QCursor* theWrappedObject) const;
-   void writeTo(QCursor* theWrappedObject, QDataStream&  outS);
-   void readFrom(QCursor* theWrappedObject, QDataStream&  inS);
-   QPixmap  pixmap(QCursor* theWrappedObject) const;
-   QPoint  static_QCursor_pos();
-   void static_QCursor_setPos(const QPoint&  p);
-   void static_QCursor_setPos(int  x, int  y);
-   void setShape(QCursor* theWrappedObject, Qt::CursorShape  newShape);
    Qt::CursorShape  shape(QCursor* theWrappedObject) const;
+   QPoint  static_QCursor_pos();
+   const QBitmap*  mask(QCursor* theWrappedObject) const;
+   void readFrom(QCursor* theWrappedObject, QDataStream&  inS);
+   const QBitmap*  bitmap(QCursor* theWrappedObject) const;
+   void static_QCursor_setPos(const QPoint&  p);
+   QPoint  hotSpot(QCursor* theWrappedObject) const;
+   void writeTo(QCursor* theWrappedObject, QDataStream&  outS);
+   QPixmap  pixmap(QCursor* theWrappedObject) const;
+   void setShape(QCursor* theWrappedObject, Qt::CursorShape  newShape);
+   void static_QCursor_setPos(int  x, int  y);
 };
 
 #endif // PYTHONQTWRAPPER_QCURSOR_H

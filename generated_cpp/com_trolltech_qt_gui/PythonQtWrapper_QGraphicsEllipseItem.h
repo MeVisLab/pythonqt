@@ -4,27 +4,32 @@
 #include <qgraphicsitem.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qbrush.h>
-#include <qcoreevent.h>
-#include <qcursor.h>
-#include <qevent.h>
 #include <qgraphicsitem.h>
 #include <qgraphicsscene.h>
-#include <qgraphicssceneevent.h>
-#include <qgraphicswidget.h>
-#include <qlist.h>
 #include <qpainter.h>
 #include <qpainterpath.h>
 #include <qpen.h>
 #include <qpoint.h>
-#include <qpolygon.h>
 #include <qrect.h>
-#include <qregion.h>
-#include <qsize.h>
 #include <qstyleoption.h>
-#include <qtransform.h>
 #include <qwidget.h>
+
+class PythonQtShell_QGraphicsEllipseItem : public QGraphicsEllipseItem
+{
+public:
+    PythonQtShell_QGraphicsEllipseItem(QGraphicsItem*  parent = 0, QGraphicsScene*  scene = 0):QGraphicsEllipseItem(parent, scene),_wrapper(NULL) {};
+    PythonQtShell_QGraphicsEllipseItem(const QRectF&  rect, QGraphicsItem*  parent = 0, QGraphicsScene*  scene = 0):QGraphicsEllipseItem(rect, parent, scene),_wrapper(NULL) {};
+    PythonQtShell_QGraphicsEllipseItem(qreal  x, qreal  y, qreal  w, qreal  h, QGraphicsItem*  parent = 0, QGraphicsScene*  scene = 0):QGraphicsEllipseItem(x, y, w, h, parent, scene),_wrapper(NULL) {};
+
+virtual bool  isObscuredBy(const QGraphicsItem*  item) const;
+virtual QPainterPath  opaqueArea() const;
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
 
 class PythonQtWrapper_QGraphicsEllipseItem : public QObject
 { Q_OBJECT
@@ -37,19 +42,19 @@ QGraphicsEllipseItem* new_QGraphicsEllipseItem(QGraphicsItem*  parent = 0, QGrap
 QGraphicsEllipseItem* new_QGraphicsEllipseItem(const QRectF&  rect, QGraphicsItem*  parent = 0, QGraphicsScene*  scene = 0);
 QGraphicsEllipseItem* new_QGraphicsEllipseItem(qreal  x, qreal  y, qreal  w, qreal  h, QGraphicsItem*  parent = 0, QGraphicsScene*  scene = 0);
 void delete_QGraphicsEllipseItem(QGraphicsEllipseItem* obj) { delete obj; } 
-   QRectF  boundingRect(QGraphicsEllipseItem* theWrappedObject) const;
-   bool  contains(QGraphicsEllipseItem* theWrappedObject, const QPointF&  point) const;
    bool  isObscuredBy(QGraphicsEllipseItem* theWrappedObject, const QGraphicsItem*  item) const;
+   void setRect(QGraphicsEllipseItem* theWrappedObject, const QRectF&  rect);
    QPainterPath  opaqueArea(QGraphicsEllipseItem* theWrappedObject) const;
    void paint(QGraphicsEllipseItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = 0);
    QRectF  rect(QGraphicsEllipseItem* theWrappedObject) const;
-   void setRect(QGraphicsEllipseItem* theWrappedObject, const QRectF&  rect);
-   void setRect(QGraphicsEllipseItem* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h);
+   bool  contains(QGraphicsEllipseItem* theWrappedObject, const QPointF&  point) const;
    void setSpanAngle(QGraphicsEllipseItem* theWrappedObject, int  angle);
    void setStartAngle(QGraphicsEllipseItem* theWrappedObject, int  angle);
-   QPainterPath  shape(QGraphicsEllipseItem* theWrappedObject) const;
-   int  spanAngle(QGraphicsEllipseItem* theWrappedObject) const;
    int  startAngle(QGraphicsEllipseItem* theWrappedObject) const;
+   int  spanAngle(QGraphicsEllipseItem* theWrappedObject) const;
+   QRectF  boundingRect(QGraphicsEllipseItem* theWrappedObject) const;
+   void setRect(QGraphicsEllipseItem* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h);
+   QPainterPath  shape(QGraphicsEllipseItem* theWrappedObject) const;
    int  type(QGraphicsEllipseItem* theWrappedObject) const;
 };
 

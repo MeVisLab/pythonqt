@@ -1,5 +1,8 @@
 #include "PythonQtWrapper_QTextBoundaryFinder.h"
 
+#include <PythonQtSignalReceiver.h>
+#include <PythonQtMethodInfo.h>
+#include <PythonQtConversion.h>
 #include <QVariant>
 #include <qtextboundaryfinder.h>
 
@@ -17,56 +20,56 @@ return new QTextBoundaryFinder(other); }
 
 QTextBoundaryFinder::BoundaryReasons  PythonQtWrapper_QTextBoundaryFinder::boundaryReasons(QTextBoundaryFinder* theWrappedObject) const
 {
-return theWrappedObject->boundaryReasons();
-}
-
-bool  PythonQtWrapper_QTextBoundaryFinder::isAtBoundary(QTextBoundaryFinder* theWrappedObject) const
-{
-return theWrappedObject->isAtBoundary();
-}
-
-bool  PythonQtWrapper_QTextBoundaryFinder::isValid(QTextBoundaryFinder* theWrappedObject) const
-{
-return theWrappedObject->isValid();
-}
-
-int  PythonQtWrapper_QTextBoundaryFinder::position(QTextBoundaryFinder* theWrappedObject) const
-{
-return theWrappedObject->position();
+return  (*theWrappedObject).boundaryReasons();
 }
 
 void PythonQtWrapper_QTextBoundaryFinder::setPosition(QTextBoundaryFinder* theWrappedObject, int  position)
 {
-theWrappedObject->setPosition(position);
+ (*theWrappedObject).setPosition(position);
+}
+
+bool  PythonQtWrapper_QTextBoundaryFinder::isValid(QTextBoundaryFinder* theWrappedObject) const
+{
+return  (*theWrappedObject).isValid();
 }
 
 QString  PythonQtWrapper_QTextBoundaryFinder::string(QTextBoundaryFinder* theWrappedObject) const
 {
-return theWrappedObject->string();
+return  (*theWrappedObject).string();
 }
 
-void PythonQtWrapper_QTextBoundaryFinder::toEnd(QTextBoundaryFinder* theWrappedObject)
+bool  PythonQtWrapper_QTextBoundaryFinder::isAtBoundary(QTextBoundaryFinder* theWrappedObject) const
 {
-theWrappedObject->toEnd();
+return  (*theWrappedObject).isAtBoundary();
 }
 
 int  PythonQtWrapper_QTextBoundaryFinder::toNextBoundary(QTextBoundaryFinder* theWrappedObject)
 {
-return theWrappedObject->toNextBoundary();
+return  (*theWrappedObject).toNextBoundary();
 }
 
 int  PythonQtWrapper_QTextBoundaryFinder::toPreviousBoundary(QTextBoundaryFinder* theWrappedObject)
 {
-return theWrappedObject->toPreviousBoundary();
-}
-
-void PythonQtWrapper_QTextBoundaryFinder::toStart(QTextBoundaryFinder* theWrappedObject)
-{
-theWrappedObject->toStart();
+return  (*theWrappedObject).toPreviousBoundary();
 }
 
 QTextBoundaryFinder::BoundaryType  PythonQtWrapper_QTextBoundaryFinder::type(QTextBoundaryFinder* theWrappedObject) const
 {
-return theWrappedObject->type();
+return  (*theWrappedObject).type();
+}
+
+int  PythonQtWrapper_QTextBoundaryFinder::position(QTextBoundaryFinder* theWrappedObject) const
+{
+return  (*theWrappedObject).position();
+}
+
+void PythonQtWrapper_QTextBoundaryFinder::toEnd(QTextBoundaryFinder* theWrappedObject)
+{
+ (*theWrappedObject).toEnd();
+}
+
+void PythonQtWrapper_QTextBoundaryFinder::toStart(QTextBoundaryFinder* theWrappedObject)
+{
+ (*theWrappedObject).toStart();
 }
 

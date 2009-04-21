@@ -4,6 +4,8 @@
 #include <qgraphicssceneevent.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qsize.h>
 #include <qwidget.h>
@@ -14,8 +16,8 @@ public:
 public slots:
 QGraphicsSceneResizeEvent* new_QGraphicsSceneResizeEvent();
 void delete_QGraphicsSceneResizeEvent(QGraphicsSceneResizeEvent* obj) { delete obj; } 
-   QSizeF  newSize(QGraphicsSceneResizeEvent* theWrappedObject) const;
    QSizeF  oldSize(QGraphicsSceneResizeEvent* theWrappedObject) const;
+   QSizeF  newSize(QGraphicsSceneResizeEvent* theWrappedObject) const;
    void setNewSize(QGraphicsSceneResizeEvent* theWrappedObject, const QSizeF&  size);
    void setOldSize(QGraphicsSceneResizeEvent* theWrappedObject, const QSizeF&  size);
 };

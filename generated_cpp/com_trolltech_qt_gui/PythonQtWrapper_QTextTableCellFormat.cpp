@@ -1,5 +1,8 @@
 #include "PythonQtWrapper_QTextTableCellFormat.h"
 
+#include <PythonQtSignalReceiver.h>
+#include <PythonQtMethodInfo.h>
+#include <PythonQtConversion.h>
 #include <QVariant>
 #include <qbrush.h>
 #include <qcolor.h>
@@ -11,55 +14,55 @@
 
 QTextTableCellFormat* PythonQtWrapper_QTextTableCellFormat::new_QTextTableCellFormat()
 { 
-return new QTextTableCellFormat(); }
+return new PythonQtShell_QTextTableCellFormat(); }
 
-qreal  PythonQtWrapper_QTextTableCellFormat::bottomPadding(QTextTableCellFormat* theWrappedObject) const
+void PythonQtWrapper_QTextTableCellFormat::setTopPadding(QTextTableCellFormat* theWrappedObject, qreal  padding)
 {
-return theWrappedObject->bottomPadding();
-}
-
-bool  PythonQtWrapper_QTextTableCellFormat::isValid(QTextTableCellFormat* theWrappedObject) const
-{
-return theWrappedObject->isValid();
-}
-
-qreal  PythonQtWrapper_QTextTableCellFormat::leftPadding(QTextTableCellFormat* theWrappedObject) const
-{
-return theWrappedObject->leftPadding();
-}
-
-qreal  PythonQtWrapper_QTextTableCellFormat::rightPadding(QTextTableCellFormat* theWrappedObject) const
-{
-return theWrappedObject->rightPadding();
-}
-
-void PythonQtWrapper_QTextTableCellFormat::setBottomPadding(QTextTableCellFormat* theWrappedObject, qreal  padding)
-{
-theWrappedObject->setBottomPadding(padding);
+ (*theWrappedObject).setTopPadding(padding);
 }
 
 void PythonQtWrapper_QTextTableCellFormat::setLeftPadding(QTextTableCellFormat* theWrappedObject, qreal  padding)
 {
-theWrappedObject->setLeftPadding(padding);
+ (*theWrappedObject).setLeftPadding(padding);
 }
 
 void PythonQtWrapper_QTextTableCellFormat::setPadding(QTextTableCellFormat* theWrappedObject, qreal  padding)
 {
-theWrappedObject->setPadding(padding);
+ (*theWrappedObject).setPadding(padding);
 }
 
-void PythonQtWrapper_QTextTableCellFormat::setRightPadding(QTextTableCellFormat* theWrappedObject, qreal  padding)
+bool  PythonQtWrapper_QTextTableCellFormat::isValid(QTextTableCellFormat* theWrappedObject) const
 {
-theWrappedObject->setRightPadding(padding);
+return  (*theWrappedObject).isValid();
 }
 
-void PythonQtWrapper_QTextTableCellFormat::setTopPadding(QTextTableCellFormat* theWrappedObject, qreal  padding)
+void PythonQtWrapper_QTextTableCellFormat::setBottomPadding(QTextTableCellFormat* theWrappedObject, qreal  padding)
 {
-theWrappedObject->setTopPadding(padding);
+ (*theWrappedObject).setBottomPadding(padding);
 }
 
 qreal  PythonQtWrapper_QTextTableCellFormat::topPadding(QTextTableCellFormat* theWrappedObject) const
 {
-return theWrappedObject->topPadding();
+return  (*theWrappedObject).topPadding();
+}
+
+qreal  PythonQtWrapper_QTextTableCellFormat::rightPadding(QTextTableCellFormat* theWrappedObject) const
+{
+return  (*theWrappedObject).rightPadding();
+}
+
+qreal  PythonQtWrapper_QTextTableCellFormat::leftPadding(QTextTableCellFormat* theWrappedObject) const
+{
+return  (*theWrappedObject).leftPadding();
+}
+
+qreal  PythonQtWrapper_QTextTableCellFormat::bottomPadding(QTextTableCellFormat* theWrappedObject) const
+{
+return  (*theWrappedObject).bottomPadding();
+}
+
+void PythonQtWrapper_QTextTableCellFormat::setRightPadding(QTextTableCellFormat* theWrappedObject, qreal  padding)
+{
+ (*theWrappedObject).setRightPadding(padding);
 }
 

@@ -1,5 +1,8 @@
 #include "PythonQtWrapper_QPictureIO.h"
 
+#include <PythonQtSignalReceiver.h>
+#include <PythonQtMethodInfo.h>
+#include <PythonQtConversion.h>
 #include <QVariant>
 #include <qbytearray.h>
 #include <qiodevice.h>
@@ -18,24 +21,29 @@ QPictureIO* PythonQtWrapper_QPictureIO::new_QPictureIO(const QString&  fileName,
 { 
 return new QPictureIO(fileName, format); }
 
+int  PythonQtWrapper_QPictureIO::status(QPictureIO* theWrappedObject) const
+{
+return  (*theWrappedObject).status();
+}
+
+void PythonQtWrapper_QPictureIO::setStatus(QPictureIO* theWrappedObject, int  arg__1)
+{
+ (*theWrappedObject).setStatus(arg__1);
+}
+
 QString  PythonQtWrapper_QPictureIO::description(QPictureIO* theWrappedObject) const
 {
-return theWrappedObject->description();
+return  (*theWrappedObject).description();
 }
 
-QString  PythonQtWrapper_QPictureIO::fileName(QPictureIO* theWrappedObject) const
+void PythonQtWrapper_QPictureIO::setGamma(QPictureIO* theWrappedObject, float  arg__1)
 {
-return theWrappedObject->fileName();
+ (*theWrappedObject).setGamma(arg__1);
 }
 
-const char*  PythonQtWrapper_QPictureIO::format(QPictureIO* theWrappedObject) const
+void PythonQtWrapper_QPictureIO::setPicture(QPictureIO* theWrappedObject, const QPicture&  arg__1)
 {
-return theWrappedObject->format();
-}
-
-float  PythonQtWrapper_QPictureIO::gamma(QPictureIO* theWrappedObject) const
-{
-return theWrappedObject->gamma();
+ (*theWrappedObject).setPicture(arg__1);
 }
 
 QList<QByteArray >  PythonQtWrapper_QPictureIO::static_QPictureIO_inputFormats()
@@ -43,9 +51,19 @@ QList<QByteArray >  PythonQtWrapper_QPictureIO::static_QPictureIO_inputFormats()
 return QPictureIO::inputFormats();
 }
 
-QIODevice*  PythonQtWrapper_QPictureIO::ioDevice(QPictureIO* theWrappedObject) const
+const char*  PythonQtWrapper_QPictureIO::parameters(QPictureIO* theWrappedObject) const
 {
-return theWrappedObject->ioDevice();
+return  (*theWrappedObject).parameters();
+}
+
+void PythonQtWrapper_QPictureIO::setDescription(QPictureIO* theWrappedObject, const QString&  arg__1)
+{
+ (*theWrappedObject).setDescription(arg__1);
+}
+
+void PythonQtWrapper_QPictureIO::setParameters(QPictureIO* theWrappedObject, const char*  arg__1)
+{
+ (*theWrappedObject).setParameters(arg__1);
 }
 
 QList<QByteArray >  PythonQtWrapper_QPictureIO::static_QPictureIO_outputFormats()
@@ -53,19 +71,14 @@ QList<QByteArray >  PythonQtWrapper_QPictureIO::static_QPictureIO_outputFormats(
 return QPictureIO::outputFormats();
 }
 
-const char*  PythonQtWrapper_QPictureIO::parameters(QPictureIO* theWrappedObject) const
+QString  PythonQtWrapper_QPictureIO::fileName(QPictureIO* theWrappedObject) const
 {
-return theWrappedObject->parameters();
+return  (*theWrappedObject).fileName();
 }
 
-const QPicture&  PythonQtWrapper_QPictureIO::picture(QPictureIO* theWrappedObject) const
+int  PythonQtWrapper_QPictureIO::quality(QPictureIO* theWrappedObject) const
 {
-return theWrappedObject->picture();
-}
-
-QByteArray  PythonQtWrapper_QPictureIO::static_QPictureIO_pictureFormat(QIODevice*  arg__1)
-{
-return QPictureIO::pictureFormat(arg__1);
+return  (*theWrappedObject).quality();
 }
 
 QByteArray  PythonQtWrapper_QPictureIO::static_QPictureIO_pictureFormat(const QString&  fileName)
@@ -73,68 +86,58 @@ QByteArray  PythonQtWrapper_QPictureIO::static_QPictureIO_pictureFormat(const QS
 return QPictureIO::pictureFormat(fileName);
 }
 
-int  PythonQtWrapper_QPictureIO::quality(QPictureIO* theWrappedObject) const
+void PythonQtWrapper_QPictureIO::setFormat(QPictureIO* theWrappedObject, const char*  arg__1)
 {
-return theWrappedObject->quality();
+ (*theWrappedObject).setFormat(arg__1);
+}
+
+float  PythonQtWrapper_QPictureIO::gamma(QPictureIO* theWrappedObject) const
+{
+return  (*theWrappedObject).gamma();
+}
+
+const QPicture&  PythonQtWrapper_QPictureIO::picture(QPictureIO* theWrappedObject) const
+{
+return  (*theWrappedObject).picture();
 }
 
 bool  PythonQtWrapper_QPictureIO::read(QPictureIO* theWrappedObject)
 {
-return theWrappedObject->read();
-}
-
-void PythonQtWrapper_QPictureIO::setDescription(QPictureIO* theWrappedObject, const QString&  arg__1)
-{
-theWrappedObject->setDescription(arg__1);
+return  (*theWrappedObject).read();
 }
 
 void PythonQtWrapper_QPictureIO::setFileName(QPictureIO* theWrappedObject, const QString&  arg__1)
 {
-theWrappedObject->setFileName(arg__1);
-}
-
-void PythonQtWrapper_QPictureIO::setFormat(QPictureIO* theWrappedObject, const char*  arg__1)
-{
-theWrappedObject->setFormat(arg__1);
-}
-
-void PythonQtWrapper_QPictureIO::setGamma(QPictureIO* theWrappedObject, float  arg__1)
-{
-theWrappedObject->setGamma(arg__1);
-}
-
-void PythonQtWrapper_QPictureIO::setIODevice(QPictureIO* theWrappedObject, QIODevice*  arg__1)
-{
-theWrappedObject->setIODevice(arg__1);
-}
-
-void PythonQtWrapper_QPictureIO::setParameters(QPictureIO* theWrappedObject, const char*  arg__1)
-{
-theWrappedObject->setParameters(arg__1);
-}
-
-void PythonQtWrapper_QPictureIO::setPicture(QPictureIO* theWrappedObject, const QPicture&  arg__1)
-{
-theWrappedObject->setPicture(arg__1);
+ (*theWrappedObject).setFileName(arg__1);
 }
 
 void PythonQtWrapper_QPictureIO::setQuality(QPictureIO* theWrappedObject, int  arg__1)
 {
-theWrappedObject->setQuality(arg__1);
+ (*theWrappedObject).setQuality(arg__1);
 }
 
-void PythonQtWrapper_QPictureIO::setStatus(QPictureIO* theWrappedObject, int  arg__1)
+QIODevice*  PythonQtWrapper_QPictureIO::ioDevice(QPictureIO* theWrappedObject) const
 {
-theWrappedObject->setStatus(arg__1);
-}
-
-int  PythonQtWrapper_QPictureIO::status(QPictureIO* theWrappedObject) const
-{
-return theWrappedObject->status();
+return  (*theWrappedObject).ioDevice();
 }
 
 bool  PythonQtWrapper_QPictureIO::write(QPictureIO* theWrappedObject)
 {
-return theWrappedObject->write();
+return  (*theWrappedObject).write();
+}
+
+const char*  PythonQtWrapper_QPictureIO::format(QPictureIO* theWrappedObject) const
+{
+return  (*theWrappedObject).format();
+}
+
+QByteArray  PythonQtWrapper_QPictureIO::static_QPictureIO_pictureFormat(QIODevice*  arg__1)
+{
+return QPictureIO::pictureFormat(arg__1);
+}
+
+void PythonQtWrapper_QPictureIO::setIODevice(QPictureIO* theWrappedObject, QIODevice*  arg__1)
+{
+ (*theWrappedObject).setIODevice(arg__1);
 }
 

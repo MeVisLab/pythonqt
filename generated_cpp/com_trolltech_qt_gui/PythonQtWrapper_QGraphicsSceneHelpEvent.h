@@ -4,6 +4,8 @@
 #include <qgraphicssceneevent.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qpoint.h>
 #include <qwidget.h>
@@ -15,9 +17,9 @@ public slots:
 QGraphicsSceneHelpEvent* new_QGraphicsSceneHelpEvent(QEvent::Type  type = QEvent::None);
 void delete_QGraphicsSceneHelpEvent(QGraphicsSceneHelpEvent* obj) { delete obj; } 
    QPointF  scenePos(QGraphicsSceneHelpEvent* theWrappedObject) const;
-   QPoint  screenPos(QGraphicsSceneHelpEvent* theWrappedObject) const;
-   void setScenePos(QGraphicsSceneHelpEvent* theWrappedObject, const QPointF&  pos);
    void setScreenPos(QGraphicsSceneHelpEvent* theWrappedObject, const QPoint&  pos);
+   void setScenePos(QGraphicsSceneHelpEvent* theWrappedObject, const QPointF&  pos);
+   QPoint  screenPos(QGraphicsSceneHelpEvent* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QGRAPHICSSCENEHELPEVENT_H

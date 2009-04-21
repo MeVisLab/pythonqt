@@ -4,6 +4,8 @@
 #include <qtextcodec.h>
 #include <QObject>
 
+#include <PythonQt.h>
+
 #include <QVariant>
 #include <qbytearray.h>
 #include <qtextcodec.h>
