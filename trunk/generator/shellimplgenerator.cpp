@@ -199,6 +199,8 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
     }
   }
 
+  QString wrappedObject = " (*theWrappedObject)";
+
   // write member functions
   for (int i = 0; i < functions.size(); ++i) {
     AbstractMetaFunction *fun = functions.at(i);
@@ -208,12 +210,7 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
       Option(FirstArgIsWrappedObject | OriginalName | ShowStatic | UnderscoreSpaces),
       "PythonQtWrapper_");
     s << endl << "{" << endl;
-    QString wrappedObject;
-    if (fun->wasPublic()) {
-      wrappedObject = " (*theWrappedObject)";
-    } else {
-      wrappedObject = " (*((" + promoterClassName(meta_class) + "*)theWrappedObject))";
-    }
+    s << "  ";
     if (ShellGenerator::isSpecialStreamingOperator(fun)) {
       s << fun->arguments().at(0)->argumentName();
       if (fun->originalName().startsWith("operator>>")) {
@@ -241,9 +238,13 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
         if (fun->isStatic()) {
           s << meta_class->qualifiedCppName() << "::";
         } else {
-          s << wrappedObject << ".";
+          if (!fun->isPublic() || fun->isVirtual()) {
+            s << " (("  << promoterClassName(meta_class) << "*)theWrappedObject)->promoted_";
+          } else {
+            s << " theWrappedObject->";
+          }
         }
-        s << fun->originalName() << "(";
+        s  << fun->originalName() << "(";
         for (int i = 0; i < args.size(); ++i) {
           if (i > 0)
             s << ", ";

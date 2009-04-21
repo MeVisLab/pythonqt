@@ -68,6 +68,7 @@ QString GeneratorSetQtScript::generate() {
     SetupGenerator setupGenerator;
     setupGenerator.setOutputDirectory(outDir);
     setupGenerator.setQtMetaTypeDeclaredTypeNames(declaredTypeNames);
+    setupGenerator.setClasses(classes);
 
     /*
     ClassGenerator classGenerator(&priGenerator, &setupGenerator);

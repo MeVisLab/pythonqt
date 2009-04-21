@@ -117,7 +117,7 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
 
     foreach(AbstractMetaFunction* fun, promoteFunctions) {
       s << "inline ";
-      writeFunctionSignature(s, fun, 0, QString(),
+      writeFunctionSignature(s, fun, 0, "promoted_",
         Option(IncludeDefaultExpression | OriginalName | ShowStatic | UnderscoreSpaces));
       s << " { ";
       QString scriptFunctionName = fun->originalName();
