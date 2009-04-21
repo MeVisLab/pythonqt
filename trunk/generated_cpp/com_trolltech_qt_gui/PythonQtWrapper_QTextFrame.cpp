@@ -123,53 +123,53 @@ QTextFrame* PythonQtWrapper_QTextFrame::new_QTextFrame(QTextDocument*  doc)
 { 
 return new PythonQtShell_QTextFrame(doc); }
 
-QTextFrame*  PythonQtWrapper_QTextFrame::parentFrame(QTextFrame* theWrappedObject) const
+QList<QTextFrame* >  PythonQtWrapper_QTextFrame::childFrames(QTextFrame* theWrappedObject) const
 {
-return  (*theWrappedObject).parentFrame();
-}
-
-void PythonQtWrapper_QTextFrame::setFrameFormat(QTextFrame* theWrappedObject, const QTextFrameFormat&  format)
-{
- (*theWrappedObject).setFrameFormat(format);
-}
-
-QTextCursor  PythonQtWrapper_QTextFrame::lastCursorPosition(QTextFrame* theWrappedObject) const
-{
-return  (*theWrappedObject).lastCursorPosition();
-}
-
-QTextFrame::iterator  PythonQtWrapper_QTextFrame::begin(QTextFrame* theWrappedObject) const
-{
-return  (*theWrappedObject).begin();
+return  theWrappedObject->childFrames();
 }
 
 QTextCursor  PythonQtWrapper_QTextFrame::firstCursorPosition(QTextFrame* theWrappedObject) const
 {
-return  (*theWrappedObject).firstCursorPosition();
-}
-
-QList<QTextFrame* >  PythonQtWrapper_QTextFrame::childFrames(QTextFrame* theWrappedObject) const
-{
-return  (*theWrappedObject).childFrames();
-}
-
-QTextFrame::iterator  PythonQtWrapper_QTextFrame::end(QTextFrame* theWrappedObject) const
-{
-return  (*theWrappedObject).end();
+return  theWrappedObject->firstCursorPosition();
 }
 
 int  PythonQtWrapper_QTextFrame::firstPosition(QTextFrame* theWrappedObject) const
 {
-return  (*theWrappedObject).firstPosition();
+return  theWrappedObject->firstPosition();
+}
+
+void PythonQtWrapper_QTextFrame::setFrameFormat(QTextFrame* theWrappedObject, const QTextFrameFormat&  format)
+{
+ theWrappedObject->setFrameFormat(format);
+}
+
+QTextCursor  PythonQtWrapper_QTextFrame::lastCursorPosition(QTextFrame* theWrappedObject) const
+{
+return  theWrappedObject->lastCursorPosition();
 }
 
 QTextFrameFormat  PythonQtWrapper_QTextFrame::frameFormat(QTextFrame* theWrappedObject) const
 {
-return  (*theWrappedObject).frameFormat();
+return  theWrappedObject->frameFormat();
+}
+
+QTextFrame::iterator  PythonQtWrapper_QTextFrame::end(QTextFrame* theWrappedObject) const
+{
+return  theWrappedObject->end();
+}
+
+QTextFrame*  PythonQtWrapper_QTextFrame::parentFrame(QTextFrame* theWrappedObject) const
+{
+return  theWrappedObject->parentFrame();
+}
+
+QTextFrame::iterator  PythonQtWrapper_QTextFrame::begin(QTextFrame* theWrappedObject) const
+{
+return  theWrappedObject->begin();
 }
 
 int  PythonQtWrapper_QTextFrame::lastPosition(QTextFrame* theWrappedObject) const
 {
-return  (*theWrappedObject).lastPosition();
+return  theWrappedObject->lastPosition();
 }
 

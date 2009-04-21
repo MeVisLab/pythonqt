@@ -11,6 +11,6 @@ return new PythonQtShell_QTimerEvent(timerId); }
 
 int  PythonQtWrapper_QTimerEvent::timerId(QTimerEvent* theWrappedObject) const
 {
-return  (*theWrappedObject).timerId();
+return  theWrappedObject->timerId();
 }
 

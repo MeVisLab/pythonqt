@@ -24,11 +24,11 @@ public:
 public slots:
 QPixmapCache* new_QPixmapCache();
 void delete_QPixmapCache(QPixmapCache* obj) { delete obj; } 
-   int  static_QPixmapCache_cacheLimit();
    void static_QPixmapCache_remove(const QString&  key);
+   int  static_QPixmapCache_cacheLimit();
+   bool  static_QPixmapCache_find(const QString&  key, QPixmap&  arg__2);
    bool  static_QPixmapCache_insert(const QString&  key, const QPixmap&  arg__2);
    void static_QPixmapCache_setCacheLimit(int  arg__1);
-   bool  static_QPixmapCache_find(const QString&  key, QPixmap&  arg__2);
    void static_QPixmapCache_clear();
 };
 

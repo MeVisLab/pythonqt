@@ -139,93 +139,93 @@ QDataWidgetMapper* PythonQtWrapper_QDataWidgetMapper::new_QDataWidgetMapper(QObj
 { 
 return new PythonQtShell_QDataWidgetMapper(parent); }
 
-QByteArray  PythonQtWrapper_QDataWidgetMapper::mappedPropertyName(QDataWidgetMapper* theWrappedObject, QWidget*  widget) const
-{
-return  (*theWrappedObject).mappedPropertyName(widget);
-}
-
-QAbstractItemDelegate*  PythonQtWrapper_QDataWidgetMapper::itemDelegate(QDataWidgetMapper* theWrappedObject) const
-{
-return  (*theWrappedObject).itemDelegate();
-}
-
-void PythonQtWrapper_QDataWidgetMapper::removeMapping(QDataWidgetMapper* theWrappedObject, QWidget*  widget)
-{
- (*theWrappedObject).removeMapping(widget);
-}
-
-void PythonQtWrapper_QDataWidgetMapper::setSubmitPolicy(QDataWidgetMapper* theWrappedObject, QDataWidgetMapper::SubmitPolicy  policy)
-{
- (*theWrappedObject).setSubmitPolicy(policy);
-}
-
-QWidget*  PythonQtWrapper_QDataWidgetMapper::mappedWidgetAt(QDataWidgetMapper* theWrappedObject, int  section) const
-{
-return  (*theWrappedObject).mappedWidgetAt(section);
-}
-
 QDataWidgetMapper::SubmitPolicy  PythonQtWrapper_QDataWidgetMapper::submitPolicy(QDataWidgetMapper* theWrappedObject) const
 {
-return  (*theWrappedObject).submitPolicy();
-}
-
-void PythonQtWrapper_QDataWidgetMapper::addMapping(QDataWidgetMapper* theWrappedObject, QWidget*  widget, int  section)
-{
- (*theWrappedObject).addMapping(widget, section);
-}
-
-Qt::Orientation  PythonQtWrapper_QDataWidgetMapper::orientation(QDataWidgetMapper* theWrappedObject) const
-{
-return  (*theWrappedObject).orientation();
+return  theWrappedObject->submitPolicy();
 }
 
 void PythonQtWrapper_QDataWidgetMapper::setModel(QDataWidgetMapper* theWrappedObject, QAbstractItemModel*  model)
 {
- (*theWrappedObject).setModel(model);
+ theWrappedObject->setModel(model);
+}
+
+QAbstractItemDelegate*  PythonQtWrapper_QDataWidgetMapper::itemDelegate(QDataWidgetMapper* theWrappedObject) const
+{
+return  theWrappedObject->itemDelegate();
 }
 
 void PythonQtWrapper_QDataWidgetMapper::setItemDelegate(QDataWidgetMapper* theWrappedObject, QAbstractItemDelegate*  delegate)
 {
- (*theWrappedObject).setItemDelegate(delegate);
-}
-
-int  PythonQtWrapper_QDataWidgetMapper::currentIndex(QDataWidgetMapper* theWrappedObject) const
-{
-return  (*theWrappedObject).currentIndex();
-}
-
-QAbstractItemModel*  PythonQtWrapper_QDataWidgetMapper::model(QDataWidgetMapper* theWrappedObject) const
-{
-return  (*theWrappedObject).model();
-}
-
-void PythonQtWrapper_QDataWidgetMapper::setRootIndex(QDataWidgetMapper* theWrappedObject, const QModelIndex&  index)
-{
- (*theWrappedObject).setRootIndex(index);
+ theWrappedObject->setItemDelegate(delegate);
 }
 
 void PythonQtWrapper_QDataWidgetMapper::addMapping(QDataWidgetMapper* theWrappedObject, QWidget*  widget, int  section, const QByteArray&  propertyName)
 {
- (*theWrappedObject).addMapping(widget, section, propertyName);
-}
-
-void PythonQtWrapper_QDataWidgetMapper::setOrientation(QDataWidgetMapper* theWrappedObject, Qt::Orientation  aOrientation)
-{
- (*theWrappedObject).setOrientation(aOrientation);
-}
-
-QModelIndex  PythonQtWrapper_QDataWidgetMapper::rootIndex(QDataWidgetMapper* theWrappedObject) const
-{
-return  (*theWrappedObject).rootIndex();
-}
-
-void PythonQtWrapper_QDataWidgetMapper::clearMapping(QDataWidgetMapper* theWrappedObject)
-{
- (*theWrappedObject).clearMapping();
+ theWrappedObject->addMapping(widget, section, propertyName);
 }
 
 int  PythonQtWrapper_QDataWidgetMapper::mappedSection(QDataWidgetMapper* theWrappedObject, QWidget*  widget) const
 {
-return  (*theWrappedObject).mappedSection(widget);
+return  theWrappedObject->mappedSection(widget);
+}
+
+QAbstractItemModel*  PythonQtWrapper_QDataWidgetMapper::model(QDataWidgetMapper* theWrappedObject) const
+{
+return  theWrappedObject->model();
+}
+
+void PythonQtWrapper_QDataWidgetMapper::addMapping(QDataWidgetMapper* theWrappedObject, QWidget*  widget, int  section)
+{
+ theWrappedObject->addMapping(widget, section);
+}
+
+void PythonQtWrapper_QDataWidgetMapper::setRootIndex(QDataWidgetMapper* theWrappedObject, const QModelIndex&  index)
+{
+ theWrappedObject->setRootIndex(index);
+}
+
+void PythonQtWrapper_QDataWidgetMapper::setOrientation(QDataWidgetMapper* theWrappedObject, Qt::Orientation  aOrientation)
+{
+ theWrappedObject->setOrientation(aOrientation);
+}
+
+QModelIndex  PythonQtWrapper_QDataWidgetMapper::rootIndex(QDataWidgetMapper* theWrappedObject) const
+{
+return  theWrappedObject->rootIndex();
+}
+
+void PythonQtWrapper_QDataWidgetMapper::setSubmitPolicy(QDataWidgetMapper* theWrappedObject, QDataWidgetMapper::SubmitPolicy  policy)
+{
+ theWrappedObject->setSubmitPolicy(policy);
+}
+
+void PythonQtWrapper_QDataWidgetMapper::clearMapping(QDataWidgetMapper* theWrappedObject)
+{
+ theWrappedObject->clearMapping();
+}
+
+QByteArray  PythonQtWrapper_QDataWidgetMapper::mappedPropertyName(QDataWidgetMapper* theWrappedObject, QWidget*  widget) const
+{
+return  theWrappedObject->mappedPropertyName(widget);
+}
+
+int  PythonQtWrapper_QDataWidgetMapper::currentIndex(QDataWidgetMapper* theWrappedObject) const
+{
+return  theWrappedObject->currentIndex();
+}
+
+QWidget*  PythonQtWrapper_QDataWidgetMapper::mappedWidgetAt(QDataWidgetMapper* theWrappedObject, int  section) const
+{
+return  theWrappedObject->mappedWidgetAt(section);
+}
+
+Qt::Orientation  PythonQtWrapper_QDataWidgetMapper::orientation(QDataWidgetMapper* theWrappedObject) const
+{
+return  theWrappedObject->orientation();
+}
+
+void PythonQtWrapper_QDataWidgetMapper::removeMapping(QDataWidgetMapper* theWrappedObject, QWidget*  widget)
+{
+ theWrappedObject->removeMapping(widget);
 }
 

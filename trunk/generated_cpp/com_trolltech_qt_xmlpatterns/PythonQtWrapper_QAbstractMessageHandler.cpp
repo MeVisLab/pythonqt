@@ -136,6 +136,6 @@ if (_wrapper) {
 }
 void PythonQtWrapper_QAbstractMessageHandler::message(QAbstractMessageHandler* theWrappedObject, QtMsgType  type, const QString&  description, const QUrl&  identifier, const QSourceLocation&  sourceLocation)
 {
- (*theWrappedObject).message(type, description, identifier, sourceLocation);
+ theWrappedObject->message(type, description, identifier, sourceLocation);
 }
 

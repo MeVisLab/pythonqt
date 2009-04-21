@@ -31,39 +31,14 @@ QHostAddress* PythonQtWrapper_QHostAddress::new_QHostAddress(unsigned int  ip4Ad
 { 
 return new QHostAddress(ip4Addr); }
 
-QString  PythonQtWrapper_QHostAddress::scopeId(QHostAddress* theWrappedObject) const
-{
-return  (*theWrappedObject).scopeId();
-}
-
-QIPv6Address  PythonQtWrapper_QHostAddress::toIPv6Address(QHostAddress* theWrappedObject) const
-{
-return  (*theWrappedObject).toIPv6Address();
-}
-
-void PythonQtWrapper_QHostAddress::setScopeId(QHostAddress* theWrappedObject, const QString&  id)
-{
- (*theWrappedObject).setScopeId(id);
-}
-
 void PythonQtWrapper_QHostAddress::clear(QHostAddress* theWrappedObject)
 {
- (*theWrappedObject).clear();
+ theWrappedObject->clear();
 }
 
-unsigned int  PythonQtWrapper_QHostAddress::toIPv4Address(QHostAddress* theWrappedObject) const
+void PythonQtWrapper_QHostAddress::setAddress(QHostAddress* theWrappedObject, const QIPv6Address&  ip6Addr)
 {
-return  (*theWrappedObject).toIPv4Address();
-}
-
-QString  PythonQtWrapper_QHostAddress::toString(QHostAddress* theWrappedObject) const
-{
-return  (*theWrappedObject).toString();
-}
-
-bool  PythonQtWrapper_QHostAddress::isNull(QHostAddress* theWrappedObject) const
-{
-return  (*theWrappedObject).isNull();
+ theWrappedObject->setAddress(ip6Addr);
 }
 
 void PythonQtWrapper_QHostAddress::readFrom(QHostAddress* theWrappedObject, QDataStream&  arg__1)
@@ -71,9 +46,39 @@ void PythonQtWrapper_QHostAddress::readFrom(QHostAddress* theWrappedObject, QDat
 arg__1 >>  (*theWrappedObject);
 }
 
+void PythonQtWrapper_QHostAddress::setScopeId(QHostAddress* theWrappedObject, const QString&  id)
+{
+ theWrappedObject->setScopeId(id);
+}
+
+QAbstractSocket::NetworkLayerProtocol  PythonQtWrapper_QHostAddress::protocol(QHostAddress* theWrappedObject) const
+{
+return  theWrappedObject->protocol();
+}
+
 bool  PythonQtWrapper_QHostAddress::setAddress(QHostAddress* theWrappedObject, const QString&  address)
 {
-return  (*theWrappedObject).setAddress(address);
+return  theWrappedObject->setAddress(address);
+}
+
+bool  PythonQtWrapper_QHostAddress::isNull(QHostAddress* theWrappedObject) const
+{
+return  theWrappedObject->isNull();
+}
+
+QIPv6Address  PythonQtWrapper_QHostAddress::toIPv6Address(QHostAddress* theWrappedObject) const
+{
+return  theWrappedObject->toIPv6Address();
+}
+
+QString  PythonQtWrapper_QHostAddress::scopeId(QHostAddress* theWrappedObject) const
+{
+return  theWrappedObject->scopeId();
+}
+
+void PythonQtWrapper_QHostAddress::setAddress(QHostAddress* theWrappedObject, unsigned int  ip4Addr)
+{
+ theWrappedObject->setAddress(ip4Addr);
 }
 
 void PythonQtWrapper_QHostAddress::writeTo(QHostAddress* theWrappedObject, QDataStream&  arg__1)
@@ -81,27 +86,22 @@ void PythonQtWrapper_QHostAddress::writeTo(QHostAddress* theWrappedObject, QData
 arg__1 <<  (*theWrappedObject);
 }
 
-void PythonQtWrapper_QHostAddress::setAddress(QHostAddress* theWrappedObject, unsigned int  ip4Addr)
-{
- (*theWrappedObject).setAddress(ip4Addr);
-}
-
-bool  PythonQtWrapper_QHostAddress::operator_equal(QHostAddress* theWrappedObject, QHostAddress::SpecialAddress  address) const
+bool  PythonQtWrapper_QHostAddress::operator_equal(QHostAddress* theWrappedObject, const QHostAddress&  address) const
 {
 return  (*theWrappedObject)== address;
 }
 
-QAbstractSocket::NetworkLayerProtocol  PythonQtWrapper_QHostAddress::protocol(QHostAddress* theWrappedObject) const
+QString  PythonQtWrapper_QHostAddress::toString(QHostAddress* theWrappedObject) const
 {
-return  (*theWrappedObject).protocol();
+return  theWrappedObject->toString();
 }
 
-void PythonQtWrapper_QHostAddress::setAddress(QHostAddress* theWrappedObject, const QIPv6Address&  ip6Addr)
+unsigned int  PythonQtWrapper_QHostAddress::toIPv4Address(QHostAddress* theWrappedObject) const
 {
- (*theWrappedObject).setAddress(ip6Addr);
+return  theWrappedObject->toIPv4Address();
 }
 
-bool  PythonQtWrapper_QHostAddress::operator_equal(QHostAddress* theWrappedObject, const QHostAddress&  address) const
+bool  PythonQtWrapper_QHostAddress::operator_equal(QHostAddress* theWrappedObject, QHostAddress::SpecialAddress  address) const
 {
 return  (*theWrappedObject)== address;
 }

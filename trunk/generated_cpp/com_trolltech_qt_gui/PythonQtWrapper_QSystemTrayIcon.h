@@ -33,7 +33,7 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QSystemTrayIcon : public QSystemTrayIcon
 { public:
-inline bool  event(QEvent*  event) { return QSystemTrayIcon::event(event); }
+inline bool  promoted_event(QEvent*  event) { return QSystemTrayIcon::event(event); }
 };
 
 class PythonQtWrapper_QSystemTrayIcon : public QObject
@@ -48,18 +48,18 @@ public slots:
 QSystemTrayIcon* new_QSystemTrayIcon(QObject*  parent = 0);
 QSystemTrayIcon* new_QSystemTrayIcon(const QIcon&  icon, QObject*  parent = 0);
 void delete_QSystemTrayIcon(QSystemTrayIcon* obj) { delete obj; } 
-   void setContextMenu(QSystemTrayIcon* theWrappedObject, QMenu*  menu);
-   void setIcon(QSystemTrayIcon* theWrappedObject, const QIcon&  icon);
-   QMenu*  contextMenu(QSystemTrayIcon* theWrappedObject) const;
-   void setToolTip(QSystemTrayIcon* theWrappedObject, const QString&  tip);
-   bool  static_QSystemTrayIcon_isSystemTrayAvailable();
-   QString  toolTip(QSystemTrayIcon* theWrappedObject) const;
    bool  static_QSystemTrayIcon_supportsMessages();
-   QIcon  icon(QSystemTrayIcon* theWrappedObject) const;
-   QRect  geometry(QSystemTrayIcon* theWrappedObject) const;
-   bool  isVisible(QSystemTrayIcon* theWrappedObject) const;
-   bool  event(QSystemTrayIcon* theWrappedObject, QEvent*  event);
+   QMenu*  contextMenu(QSystemTrayIcon* theWrappedObject) const;
+   void setContextMenu(QSystemTrayIcon* theWrappedObject, QMenu*  menu);
+   void setToolTip(QSystemTrayIcon* theWrappedObject, const QString&  tip);
    void showMessage(QSystemTrayIcon* theWrappedObject, const QString&  title, const QString&  msg, QSystemTrayIcon::MessageIcon  icon = QSystemTrayIcon::Information, int  msecs = 10000);
+   QRect  geometry(QSystemTrayIcon* theWrappedObject) const;
+   QString  toolTip(QSystemTrayIcon* theWrappedObject) const;
+   bool  event(QSystemTrayIcon* theWrappedObject, QEvent*  event);
+   QIcon  icon(QSystemTrayIcon* theWrappedObject) const;
+   bool  isVisible(QSystemTrayIcon* theWrappedObject) const;
+   bool  static_QSystemTrayIcon_isSystemTrayAvailable();
+   void setIcon(QSystemTrayIcon* theWrappedObject, const QIcon&  icon);
 };
 
 #endif // PYTHONQTWRAPPER_QSYSTEMTRAYICON_H

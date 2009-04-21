@@ -86,11 +86,11 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QSplitter : public QSplitter
 { public:
-inline bool  event(QEvent*  arg__1) { return QSplitter::event(arg__1); }
-inline void changeEvent(QEvent*  arg__1) { QSplitter::changeEvent(arg__1); }
-inline void resizeEvent(QResizeEvent*  arg__1) { QSplitter::resizeEvent(arg__1); }
-inline void childEvent(QChildEvent*  arg__1) { QSplitter::childEvent(arg__1); }
-inline QSplitterHandle*  createHandle() { return QSplitter::createHandle(); }
+inline bool  promoted_event(QEvent*  arg__1) { return QSplitter::event(arg__1); }
+inline void promoted_changeEvent(QEvent*  arg__1) { QSplitter::changeEvent(arg__1); }
+inline void promoted_resizeEvent(QResizeEvent*  arg__1) { QSplitter::resizeEvent(arg__1); }
+inline void promoted_childEvent(QChildEvent*  arg__1) { QSplitter::childEvent(arg__1); }
+inline QSplitterHandle*  promoted_createHandle() { return QSplitter::createHandle(); }
 };
 
 class PythonQtWrapper_QSplitter : public QObject
@@ -100,38 +100,38 @@ public slots:
 QSplitter* new_QSplitter(QWidget*  parent = 0);
 QSplitter* new_QSplitter(Qt::Orientation  arg__1, QWidget*  parent = 0);
 void delete_QSplitter(QSplitter* obj) { delete obj; } 
-   void setOpaqueResize(QSplitter* theWrappedObject, bool  opaque = true);
+   bool  restoreState(QSplitter* theWrappedObject, const QByteArray&  state);
    bool  event(QSplitter* theWrappedObject, QEvent*  arg__1);
    void setHandleWidth(QSplitter* theWrappedObject, int  arg__1);
    QWidget*  widget(QSplitter* theWrappedObject, int  index) const;
+   bool  isCollapsible(QSplitter* theWrappedObject, int  index) const;
    void setCollapsible(QSplitter* theWrappedObject, int  index, bool  arg__2);
-   void setOrientation(QSplitter* theWrappedObject, Qt::Orientation  arg__1);
-   void addWidget(QSplitter* theWrappedObject, QWidget*  widget);
-   void readFrom(QSplitter* theWrappedObject, QTextStream&  arg__1);
    void changeEvent(QSplitter* theWrappedObject, QEvent*  arg__1);
    int  count(QSplitter* theWrappedObject) const;
    void resizeEvent(QSplitter* theWrappedObject, QResizeEvent*  arg__1);
    void refresh(QSplitter* theWrappedObject);
+   void setOpaqueResize(QSplitter* theWrappedObject, bool  opaque = true);
+   Qt::Orientation  orientation(QSplitter* theWrappedObject) const;
+   void readFrom(QSplitter* theWrappedObject, QTextStream&  arg__1);
+   void getRange(QSplitter* theWrappedObject, int  index, int*  arg__2, int*  arg__3) const;
+   int  handleWidth(QSplitter* theWrappedObject) const;
+   void insertWidget(QSplitter* theWrappedObject, int  index, QWidget*  widget);
+   QSize  minimumSizeHint(QSplitter* theWrappedObject) const;
+   void setOrientation(QSplitter* theWrappedObject, Qt::Orientation  arg__1);
+   void childEvent(QSplitter* theWrappedObject, QChildEvent*  arg__1);
    void setSizes(QSplitter* theWrappedObject, const QList<int >&  list);
+   bool  opaqueResize(QSplitter* theWrappedObject) const;
    QSize  sizeHint(QSplitter* theWrappedObject) const;
+   bool  childrenCollapsible(QSplitter* theWrappedObject) const;
    QSplitterHandle*  handle(QSplitter* theWrappedObject, int  index) const;
    void setChildrenCollapsible(QSplitter* theWrappedObject, bool  arg__1);
-   int  indexOf(QSplitter* theWrappedObject, QWidget*  w) const;
-   Qt::Orientation  orientation(QSplitter* theWrappedObject) const;
-   bool  childrenCollapsible(QSplitter* theWrappedObject) const;
-   int  handleWidth(QSplitter* theWrappedObject) const;
-   QSize  minimumSizeHint(QSplitter* theWrappedObject) const;
-   void writeTo(QSplitter* theWrappedObject, QTextStream&  arg__1);
    QList<int >  sizes(QSplitter* theWrappedObject) const;
+   int  indexOf(QSplitter* theWrappedObject, QWidget*  w) const;
    QByteArray  saveState(QSplitter* theWrappedObject) const;
-   void childEvent(QSplitter* theWrappedObject, QChildEvent*  arg__1);
-   bool  opaqueResize(QSplitter* theWrappedObject) const;
-   bool  restoreState(QSplitter* theWrappedObject, const QByteArray&  state);
-   bool  isCollapsible(QSplitter* theWrappedObject, int  index) const;
    QSplitterHandle*  createHandle(QSplitter* theWrappedObject);
+   void addWidget(QSplitter* theWrappedObject, QWidget*  widget);
+   void writeTo(QSplitter* theWrappedObject, QTextStream&  arg__1);
    void setStretchFactor(QSplitter* theWrappedObject, int  index, int  stretch);
-   void getRange(QSplitter* theWrappedObject, int  index, int*  arg__2, int*  arg__3) const;
-   void insertWidget(QSplitter* theWrappedObject, int  index, QWidget*  widget);
 };
 
 #endif // PYTHONQTWRAPPER_QSPLITTER_H

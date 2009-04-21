@@ -129,15 +129,22 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QColumnView : public QColumnView
 { public:
-inline void currentChanged(const QModelIndex&  current, const QModelIndex&  previous) { QColumnView::currentChanged(current, previous); }
-inline void resizeEvent(QResizeEvent*  event) { QColumnView::resizeEvent(event); }
-inline bool  isIndexHidden(const QModelIndex&  index) const { return QColumnView::isIndexHidden(index); }
-inline void setSelection(const QRect&  rect, QItemSelectionModel::SelectionFlags  command) { QColumnView::setSelection(rect, command); }
-inline QAbstractItemView*  createColumn(const QModelIndex&  rootIndex) { return QColumnView::createColumn(rootIndex); }
-inline int  horizontalOffset() const { return QColumnView::horizontalOffset(); }
-inline int  verticalOffset() const { return QColumnView::verticalOffset(); }
-inline void scrollContentsBy(int  dx, int  dy) { QColumnView::scrollContentsBy(dx, dy); }
-inline QRegion  visualRegionForSelection(const QItemSelection&  selection) const { return QColumnView::visualRegionForSelection(selection); }
+inline bool  promoted_isIndexHidden(const QModelIndex&  index) const { return QColumnView::isIndexHidden(index); }
+inline void promoted_resizeEvent(QResizeEvent*  event) { QColumnView::resizeEvent(event); }
+inline void promoted_setSelectionModel(QItemSelectionModel*  selectionModel) { QColumnView::setSelectionModel(selectionModel); }
+inline QAbstractItemView*  promoted_createColumn(const QModelIndex&  rootIndex) { return QColumnView::createColumn(rootIndex); }
+inline void promoted_scrollContentsBy(int  dx, int  dy) { QColumnView::scrollContentsBy(dx, dy); }
+inline void promoted_scrollTo(const QModelIndex&  index, QAbstractItemView::ScrollHint  hint = QAbstractItemView::EnsureVisible) { QColumnView::scrollTo(index, hint); }
+inline void promoted_currentChanged(const QModelIndex&  current, const QModelIndex&  previous) { QColumnView::currentChanged(current, previous); }
+inline void promoted_setSelection(const QRect&  rect, QItemSelectionModel::SelectionFlags  command) { QColumnView::setSelection(rect, command); }
+inline QRegion  promoted_visualRegionForSelection(const QItemSelection&  selection) const { return QColumnView::visualRegionForSelection(selection); }
+inline int  promoted_verticalOffset() const { return QColumnView::verticalOffset(); }
+inline QModelIndex  promoted_indexAt(const QPoint&  point) const { return QColumnView::indexAt(point); }
+inline int  promoted_horizontalOffset() const { return QColumnView::horizontalOffset(); }
+inline void promoted_setModel(QAbstractItemModel*  model) { QColumnView::setModel(model); }
+inline void promoted_selectAll() { QColumnView::selectAll(); }
+inline void promoted_setRootIndex(const QModelIndex&  index) { QColumnView::setRootIndex(index); }
+inline QRect  promoted_visualRect(const QModelIndex&  index) const { return QColumnView::visualRect(index); }
 };
 
 class PythonQtWrapper_QColumnView : public QObject
@@ -146,28 +153,28 @@ public:
 public slots:
 QColumnView* new_QColumnView(QWidget*  parent = 0);
 void delete_QColumnView(QColumnView* obj) { delete obj; } 
-   void setColumnWidths(QColumnView* theWrappedObject, const QList<int >&  list);
-   void selectAll(QColumnView* theWrappedObject);
-   void resizeEvent(QColumnView* theWrappedObject, QResizeEvent*  event);
-   QList<int >  columnWidths(QColumnView* theWrappedObject) const;
-   void setResizeGripsVisible(QColumnView* theWrappedObject, bool  visible);
-   bool  isIndexHidden(QColumnView* theWrappedObject, const QModelIndex&  index) const;
-   void setSelectionModel(QColumnView* theWrappedObject, QItemSelectionModel*  selectionModel);
-   void setSelection(QColumnView* theWrappedObject, const QRect&  rect, QItemSelectionModel::SelectionFlags  command);
    void setPreviewWidget(QColumnView* theWrappedObject, QWidget*  widget);
-   void setRootIndex(QColumnView* theWrappedObject, const QModelIndex&  index);
-   void setModel(QColumnView* theWrappedObject, QAbstractItemModel*  model);
+   bool  isIndexHidden(QColumnView* theWrappedObject, const QModelIndex&  index) const;
+   void resizeEvent(QColumnView* theWrappedObject, QResizeEvent*  event);
+   void setSelectionModel(QColumnView* theWrappedObject, QItemSelectionModel*  selectionModel);
+   QList<int >  columnWidths(QColumnView* theWrappedObject) const;
    QAbstractItemView*  createColumn(QColumnView* theWrappedObject, const QModelIndex&  rootIndex);
-   void scrollTo(QColumnView* theWrappedObject, const QModelIndex&  index, QAbstractItemView::ScrollHint  hint = QAbstractItemView::EnsureVisible);
+   void setColumnWidths(QColumnView* theWrappedObject, const QList<int >&  list);
+   void scrollContentsBy(QColumnView* theWrappedObject, int  dx, int  dy);
    QSize  sizeHint(QColumnView* theWrappedObject) const;
-   int  horizontalOffset(QColumnView* theWrappedObject) const;
+   void scrollTo(QColumnView* theWrappedObject, const QModelIndex&  index, QAbstractItemView::ScrollHint  hint = QAbstractItemView::EnsureVisible);
    QWidget*  previewWidget(QColumnView* theWrappedObject) const;
-   QRect  visualRect(QColumnView* theWrappedObject, const QModelIndex&  index) const;
+   void setSelection(QColumnView* theWrappedObject, const QRect&  rect, QItemSelectionModel::SelectionFlags  command);
+   QRegion  visualRegionForSelection(QColumnView* theWrappedObject, const QItemSelection&  selection) const;
    int  verticalOffset(QColumnView* theWrappedObject) const;
    QModelIndex  indexAt(QColumnView* theWrappedObject, const QPoint&  point) const;
    bool  resizeGripsVisible(QColumnView* theWrappedObject) const;
-   void scrollContentsBy(QColumnView* theWrappedObject, int  dx, int  dy);
-   QRegion  visualRegionForSelection(QColumnView* theWrappedObject, const QItemSelection&  selection) const;
+   int  horizontalOffset(QColumnView* theWrappedObject) const;
+   void setModel(QColumnView* theWrappedObject, QAbstractItemModel*  model);
+   void selectAll(QColumnView* theWrappedObject);
+   void setRootIndex(QColumnView* theWrappedObject, const QModelIndex&  index);
+   QRect  visualRect(QColumnView* theWrappedObject, const QModelIndex&  index) const;
+   void setResizeGripsVisible(QColumnView* theWrappedObject, bool  visible);
 };
 
 #endif // PYTHONQTWRAPPER_QCOLUMNVIEW_H

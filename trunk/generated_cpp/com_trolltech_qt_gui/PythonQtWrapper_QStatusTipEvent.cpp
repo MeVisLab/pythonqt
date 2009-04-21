@@ -11,6 +11,6 @@ return new QStatusTipEvent(tip); }
 
 QString  PythonQtWrapper_QStatusTipEvent::tip(QStatusTipEvent* theWrappedObject) const
 {
-return  (*theWrappedObject).tip();
+return  theWrappedObject->tip();
 }
 

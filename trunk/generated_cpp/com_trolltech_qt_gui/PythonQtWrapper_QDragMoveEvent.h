@@ -27,9 +27,9 @@ public:
 public slots:
 QDragMoveEvent* new_QDragMoveEvent(const QPoint&  pos, Qt::DropActions  actions, const QMimeData*  data, Qt::MouseButtons  buttons, Qt::KeyboardModifiers  modifiers, QEvent::Type  type = QEvent::DragMove);
 void delete_QDragMoveEvent(QDragMoveEvent* obj) { delete obj; } 
+   QRect  answerRect(QDragMoveEvent* theWrappedObject) const;
    void ignore(QDragMoveEvent* theWrappedObject, const QRect&  r);
    void accept(QDragMoveEvent* theWrappedObject, const QRect&  r);
-   QRect  answerRect(QDragMoveEvent* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QDRAGMOVEEVENT_H

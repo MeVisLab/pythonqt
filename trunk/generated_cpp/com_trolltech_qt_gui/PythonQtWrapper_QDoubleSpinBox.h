@@ -90,12 +90,25 @@ virtual void wheelEvent(QWheelEvent*  event);
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QDoubleSpinBox : public QDoubleSpinBox
+{ public:
+inline QValidator::State  promoted_validate(QString&  input, int&  pos) const { return QDoubleSpinBox::validate(input, pos); }
+inline double  promoted_valueFromText(const QString&  text) const { return QDoubleSpinBox::valueFromText(text); }
+inline void promoted_fixup(QString&  str) const { QDoubleSpinBox::fixup(str); }
+inline QString  promoted_textFromValue(double  val) const { return QDoubleSpinBox::textFromValue(val); }
+};
+
 class PythonQtWrapper_QDoubleSpinBox : public QObject
 { Q_OBJECT
 public:
 public slots:
 QDoubleSpinBox* new_QDoubleSpinBox(QWidget*  parent = 0);
 void delete_QDoubleSpinBox(QDoubleSpinBox* obj) { delete obj; } 
+   void setPrefix(QDoubleSpinBox* theWrappedObject, const QString&  prefix);
+   void setSuffix(QDoubleSpinBox* theWrappedObject, const QString&  suffix);
+   QValidator::State  validate(QDoubleSpinBox* theWrappedObject, QString&  input, int&  pos) const;
+   double  valueFromText(QDoubleSpinBox* theWrappedObject, const QString&  text) const;
+   double  value(QDoubleSpinBox* theWrappedObject) const;
    double  singleStep(QDoubleSpinBox* theWrappedObject) const;
    double  minimum(QDoubleSpinBox* theWrappedObject) const;
    QString  suffix(QDoubleSpinBox* theWrappedObject) const;
@@ -110,11 +123,6 @@ void delete_QDoubleSpinBox(QDoubleSpinBox* obj) { delete obj; }
    void setRange(QDoubleSpinBox* theWrappedObject, double  min, double  max);
    void setMaximum(QDoubleSpinBox* theWrappedObject, double  max);
    void setDecimals(QDoubleSpinBox* theWrappedObject, int  prec);
-   void setPrefix(QDoubleSpinBox* theWrappedObject, const QString&  prefix);
-   void setSuffix(QDoubleSpinBox* theWrappedObject, const QString&  suffix);
-   QValidator::State  validate(QDoubleSpinBox* theWrappedObject, QString&  input, int&  pos) const;
-   double  valueFromText(QDoubleSpinBox* theWrappedObject, const QString&  text) const;
-   double  value(QDoubleSpinBox* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QDOUBLESPINBOX_H

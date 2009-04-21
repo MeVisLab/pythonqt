@@ -35,7 +35,7 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QSettings : public QSettings
 { public:
-inline bool  event(QEvent*  event) { return QSettings::event(event); }
+inline bool  promoted_event(QEvent*  event) { return QSettings::event(event); }
 };
 
 class PythonQtWrapper_QSettings : public QObject
@@ -55,35 +55,35 @@ QSettings* new_QSettings(QSettings::Scope  scope, const QString&  organization, 
 QSettings* new_QSettings(const QString&  fileName, QSettings::Format  format, QObject*  parent = 0);
 QSettings* new_QSettings(const QString&  organization, const QString&  application = QString(), QObject*  parent = 0);
 void delete_QSettings(QSettings* obj) { delete obj; } 
-   void setArrayIndex(QSettings* theWrappedObject, int  i);
+   bool  fallbacksEnabled(QSettings* theWrappedObject) const;
+   QString  fileName(QSettings* theWrappedObject) const;
+   void sync(QSettings* theWrappedObject);
    QSettings::Format  format(QSettings* theWrappedObject) const;
    bool  contains(QSettings* theWrappedObject, const QString&  key) const;
-   void setValue(QSettings* theWrappedObject, const QString&  key, const QVariant&  value);
-   void sync(QSettings* theWrappedObject);
-   void endGroup(QSettings* theWrappedObject);
-   QString  fileName(QSettings* theWrappedObject) const;
-   QStringList  childGroups(QSettings* theWrappedObject) const;
-   QSettings::Status  status(QSettings* theWrappedObject) const;
-   void beginGroup(QSettings* theWrappedObject, const QString&  prefix);
-   QString  group(QSettings* theWrappedObject) const;
-   QString  organizationName(QSettings* theWrappedObject) const;
-   bool  event(QSettings* theWrappedObject, QEvent*  event);
-   int  beginReadArray(QSettings* theWrappedObject, const QString&  prefix);
-   void setFallbacksEnabled(QSettings* theWrappedObject, bool  b);
-   void static_QSettings_setDefaultFormat(QSettings::Format  format);
-   void remove(QSettings* theWrappedObject, const QString&  key);
-   QSettings::Format  static_QSettings_defaultFormat();
    void endArray(QSettings* theWrappedObject);
-   void beginWriteArray(QSettings* theWrappedObject, const QString&  prefix, int  size = -1);
    QString  applicationName(QSettings* theWrappedObject) const;
-   void clear(QSettings* theWrappedObject);
-   QVariant  value(QSettings* theWrappedObject, const QString&  key, const QVariant&  defaultValue = QVariant()) const;
-   QStringList  allKeys(QSettings* theWrappedObject) const;
-   QStringList  childKeys(QSettings* theWrappedObject) const;
-   bool  fallbacksEnabled(QSettings* theWrappedObject) const;
-   bool  isWritable(QSettings* theWrappedObject) const;
+   QString  group(QSettings* theWrappedObject) const;
    QSettings::Scope  scope(QSettings* theWrappedObject) const;
    void static_QSettings_setPath(QSettings::Format  format, QSettings::Scope  scope, const QString&  path);
+   bool  event(QSettings* theWrappedObject, QEvent*  event);
+   QSettings::Format  static_QSettings_defaultFormat();
+   void setFallbacksEnabled(QSettings* theWrappedObject, bool  b);
+   int  beginReadArray(QSettings* theWrappedObject, const QString&  prefix);
+   bool  isWritable(QSettings* theWrappedObject) const;
+   void static_QSettings_setDefaultFormat(QSettings::Format  format);
+   QStringList  childGroups(QSettings* theWrappedObject) const;
+   void setArrayIndex(QSettings* theWrappedObject, int  i);
+   void setValue(QSettings* theWrappedObject, const QString&  key, const QVariant&  value);
+   QSettings::Status  status(QSettings* theWrappedObject) const;
+   void endGroup(QSettings* theWrappedObject);
+   void remove(QSettings* theWrappedObject, const QString&  key);
+   QVariant  value(QSettings* theWrappedObject, const QString&  key, const QVariant&  defaultValue = QVariant()) const;
+   QStringList  allKeys(QSettings* theWrappedObject) const;
+   void beginWriteArray(QSettings* theWrappedObject, const QString&  prefix, int  size = -1);
+   void clear(QSettings* theWrappedObject);
+   QStringList  childKeys(QSettings* theWrappedObject) const;
+   QString  organizationName(QSettings* theWrappedObject) const;
+   void beginGroup(QSettings* theWrappedObject, const QString&  prefix);
 };
 
 #endif // PYTHONQTWRAPPER_QSETTINGS_H

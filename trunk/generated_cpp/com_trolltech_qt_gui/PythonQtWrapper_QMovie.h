@@ -48,30 +48,30 @@ QMovie* new_QMovie(QIODevice*  device, const QByteArray&  format = QByteArray(),
 QMovie* new_QMovie(QObject*  parent = 0);
 QMovie* new_QMovie(const QString&  fileName, const QByteArray&  format = QByteArray(), QObject*  parent = 0);
 void delete_QMovie(QMovie* obj) { delete obj; } 
-   void setDevice(QMovie* theWrappedObject, QIODevice*  device);
-   int  loopCount(QMovie* theWrappedObject) const;
-   void setFormat(QMovie* theWrappedObject, const QByteArray&  format);
    QMovie::CacheMode  cacheMode(QMovie* theWrappedObject) const;
    bool  jumpToFrame(QMovie* theWrappedObject, int  frameNumber);
-   QList<QByteArray >  static_QMovie_supportedFormats();
    int  frameCount(QMovie* theWrappedObject) const;
-   void setBackgroundColor(QMovie* theWrappedObject, const QColor&  color);
    QMovie::MovieState  state(QMovie* theWrappedObject) const;
-   int  speed(QMovie* theWrappedObject) const;
-   void setFileName(QMovie* theWrappedObject, const QString&  fileName);
    QImage  currentImage(QMovie* theWrappedObject) const;
+   int  speed(QMovie* theWrappedObject) const;
    void setCacheMode(QMovie* theWrappedObject, QMovie::CacheMode  mode);
    QSize  scaledSize(QMovie* theWrappedObject);
+   void setFileName(QMovie* theWrappedObject, const QString&  fileName);
+   QIODevice*  device(QMovie* theWrappedObject) const;
    void setScaledSize(QMovie* theWrappedObject, const QSize&  size);
    int  currentFrameNumber(QMovie* theWrappedObject) const;
    int  nextFrameDelay(QMovie* theWrappedObject) const;
-   QColor  backgroundColor(QMovie* theWrappedObject) const;
+   int  loopCount(QMovie* theWrappedObject) const;
    QString  fileName(QMovie* theWrappedObject) const;
    bool  isValid(QMovie* theWrappedObject) const;
-   QIODevice*  device(QMovie* theWrappedObject) const;
+   QList<QByteArray >  static_QMovie_supportedFormats();
    QRect  frameRect(QMovie* theWrappedObject) const;
+   void setBackgroundColor(QMovie* theWrappedObject, const QColor&  color);
    QPixmap  currentPixmap(QMovie* theWrappedObject) const;
    QByteArray  format(QMovie* theWrappedObject) const;
+   QColor  backgroundColor(QMovie* theWrappedObject) const;
+   void setDevice(QMovie* theWrappedObject, QIODevice*  device);
+   void setFormat(QMovie* theWrappedObject, const QByteArray&  format);
 };
 
 #endif // PYTHONQTWRAPPER_QMOVIE_H

@@ -181,143 +181,143 @@ QCompleter* PythonQtWrapper_QCompleter::new_QCompleter(const QStringList&  compl
 { 
 return new PythonQtShell_QCompleter(completions, parent); }
 
-QString  PythonQtWrapper_QCompleter::currentCompletion(QCompleter* theWrappedObject) const
+QAbstractItemView*  PythonQtWrapper_QCompleter::popup(QCompleter* theWrappedObject) const
 {
-return  (*theWrappedObject).currentCompletion();
-}
-
-QWidget*  PythonQtWrapper_QCompleter::widget(QCompleter* theWrappedObject) const
-{
-return  (*theWrappedObject).widget();
+return  theWrappedObject->popup();
 }
 
 QStringList  PythonQtWrapper_QCompleter::splitPath(QCompleter* theWrappedObject, const QString&  path) const
 {
-return  (*theWrappedObject).splitPath(path);
-}
-
-bool  PythonQtWrapper_QCompleter::event(QCompleter* theWrappedObject, QEvent*  arg__1)
-{
-return  (*((PythonQtPublicPromoter_QCompleter*)theWrappedObject)).event(arg__1);
-}
-
-QCompleter::CompletionMode  PythonQtWrapper_QCompleter::completionMode(QCompleter* theWrappedObject) const
-{
-return  (*theWrappedObject).completionMode();
-}
-
-void PythonQtWrapper_QCompleter::setCompletionMode(QCompleter* theWrappedObject, QCompleter::CompletionMode  mode)
-{
- (*theWrappedObject).setCompletionMode(mode);
-}
-
-QModelIndex  PythonQtWrapper_QCompleter::currentIndex(QCompleter* theWrappedObject) const
-{
-return  (*theWrappedObject).currentIndex();
-}
-
-void PythonQtWrapper_QCompleter::setCompletionRole(QCompleter* theWrappedObject, int  role)
-{
- (*theWrappedObject).setCompletionRole(role);
-}
-
-void PythonQtWrapper_QCompleter::setCaseSensitivity(QCompleter* theWrappedObject, Qt::CaseSensitivity  caseSensitivity)
-{
- (*theWrappedObject).setCaseSensitivity(caseSensitivity);
-}
-
-QString  PythonQtWrapper_QCompleter::pathFromIndex(QCompleter* theWrappedObject, const QModelIndex&  index) const
-{
-return  (*theWrappedObject).pathFromIndex(index);
-}
-
-void PythonQtWrapper_QCompleter::setModel(QCompleter* theWrappedObject, QAbstractItemModel*  c)
-{
- (*theWrappedObject).setModel(c);
-}
-
-void PythonQtWrapper_QCompleter::setCompletionColumn(QCompleter* theWrappedObject, int  column)
-{
- (*theWrappedObject).setCompletionColumn(column);
-}
-
-QAbstractItemModel*  PythonQtWrapper_QCompleter::completionModel(QCompleter* theWrappedObject) const
-{
-return  (*theWrappedObject).completionModel();
-}
-
-bool  PythonQtWrapper_QCompleter::eventFilter(QCompleter* theWrappedObject, QObject*  o, QEvent*  e)
-{
-return  (*((PythonQtPublicPromoter_QCompleter*)theWrappedObject)).eventFilter(o, e);
-}
-
-QCompleter::ModelSorting  PythonQtWrapper_QCompleter::modelSorting(QCompleter* theWrappedObject) const
-{
-return  (*theWrappedObject).modelSorting();
-}
-
-QAbstractItemView*  PythonQtWrapper_QCompleter::popup(QCompleter* theWrappedObject) const
-{
-return  (*theWrappedObject).popup();
+return  ((PythonQtPublicPromoter_QCompleter*)theWrappedObject)->promoted_splitPath(path);
 }
 
 Qt::CaseSensitivity  PythonQtWrapper_QCompleter::caseSensitivity(QCompleter* theWrappedObject) const
 {
-return  (*theWrappedObject).caseSensitivity();
+return  theWrappedObject->caseSensitivity();
 }
 
 void PythonQtWrapper_QCompleter::setModelSorting(QCompleter* theWrappedObject, QCompleter::ModelSorting  sorting)
 {
- (*theWrappedObject).setModelSorting(sorting);
-}
-
-bool  PythonQtWrapper_QCompleter::wrapAround(QCompleter* theWrappedObject) const
-{
-return  (*theWrappedObject).wrapAround();
+ theWrappedObject->setModelSorting(sorting);
 }
 
 int  PythonQtWrapper_QCompleter::completionColumn(QCompleter* theWrappedObject) const
 {
-return  (*theWrappedObject).completionColumn();
-}
-
-QAbstractItemModel*  PythonQtWrapper_QCompleter::model(QCompleter* theWrappedObject) const
-{
-return  (*theWrappedObject).model();
+return  theWrappedObject->completionColumn();
 }
 
 void PythonQtWrapper_QCompleter::setWidget(QCompleter* theWrappedObject, QWidget*  widget)
 {
- (*theWrappedObject).setWidget(widget);
+ theWrappedObject->setWidget(widget);
 }
 
 QString  PythonQtWrapper_QCompleter::completionPrefix(QCompleter* theWrappedObject) const
 {
-return  (*theWrappedObject).completionPrefix();
+return  theWrappedObject->completionPrefix();
 }
 
 int  PythonQtWrapper_QCompleter::currentRow(QCompleter* theWrappedObject) const
 {
-return  (*theWrappedObject).currentRow();
-}
-
-int  PythonQtWrapper_QCompleter::completionCount(QCompleter* theWrappedObject) const
-{
-return  (*theWrappedObject).completionCount();
+return  theWrappedObject->currentRow();
 }
 
 int  PythonQtWrapper_QCompleter::completionRole(QCompleter* theWrappedObject) const
 {
-return  (*theWrappedObject).completionRole();
+return  theWrappedObject->completionRole();
 }
 
 bool  PythonQtWrapper_QCompleter::setCurrentRow(QCompleter* theWrappedObject, int  row)
 {
-return  (*theWrappedObject).setCurrentRow(row);
+return  theWrappedObject->setCurrentRow(row);
 }
 
 void PythonQtWrapper_QCompleter::setPopup(QCompleter* theWrappedObject, QAbstractItemView*  popup)
 {
- (*theWrappedObject).setPopup(popup);
+ theWrappedObject->setPopup(popup);
+}
+
+bool  PythonQtWrapper_QCompleter::wrapAround(QCompleter* theWrappedObject) const
+{
+return  theWrappedObject->wrapAround();
+}
+
+QAbstractItemModel*  PythonQtWrapper_QCompleter::model(QCompleter* theWrappedObject) const
+{
+return  theWrappedObject->model();
+}
+
+QWidget*  PythonQtWrapper_QCompleter::widget(QCompleter* theWrappedObject) const
+{
+return  theWrappedObject->widget();
+}
+
+bool  PythonQtWrapper_QCompleter::event(QCompleter* theWrappedObject, QEvent*  arg__1)
+{
+return  ((PythonQtPublicPromoter_QCompleter*)theWrappedObject)->promoted_event(arg__1);
+}
+
+QCompleter::CompletionMode  PythonQtWrapper_QCompleter::completionMode(QCompleter* theWrappedObject) const
+{
+return  theWrappedObject->completionMode();
+}
+
+QModelIndex  PythonQtWrapper_QCompleter::currentIndex(QCompleter* theWrappedObject) const
+{
+return  theWrappedObject->currentIndex();
+}
+
+void PythonQtWrapper_QCompleter::setCompletionRole(QCompleter* theWrappedObject, int  role)
+{
+ theWrappedObject->setCompletionRole(role);
+}
+
+QString  PythonQtWrapper_QCompleter::currentCompletion(QCompleter* theWrappedObject) const
+{
+return  theWrappedObject->currentCompletion();
+}
+
+void PythonQtWrapper_QCompleter::setCaseSensitivity(QCompleter* theWrappedObject, Qt::CaseSensitivity  caseSensitivity)
+{
+ theWrappedObject->setCaseSensitivity(caseSensitivity);
+}
+
+QString  PythonQtWrapper_QCompleter::pathFromIndex(QCompleter* theWrappedObject, const QModelIndex&  index) const
+{
+return  ((PythonQtPublicPromoter_QCompleter*)theWrappedObject)->promoted_pathFromIndex(index);
+}
+
+void PythonQtWrapper_QCompleter::setCompletionMode(QCompleter* theWrappedObject, QCompleter::CompletionMode  mode)
+{
+ theWrappedObject->setCompletionMode(mode);
+}
+
+void PythonQtWrapper_QCompleter::setModel(QCompleter* theWrappedObject, QAbstractItemModel*  c)
+{
+ theWrappedObject->setModel(c);
+}
+
+void PythonQtWrapper_QCompleter::setCompletionColumn(QCompleter* theWrappedObject, int  column)
+{
+ theWrappedObject->setCompletionColumn(column);
+}
+
+int  PythonQtWrapper_QCompleter::completionCount(QCompleter* theWrappedObject) const
+{
+return  theWrappedObject->completionCount();
+}
+
+QAbstractItemModel*  PythonQtWrapper_QCompleter::completionModel(QCompleter* theWrappedObject) const
+{
+return  theWrappedObject->completionModel();
+}
+
+bool  PythonQtWrapper_QCompleter::eventFilter(QCompleter* theWrappedObject, QObject*  o, QEvent*  e)
+{
+return  ((PythonQtPublicPromoter_QCompleter*)theWrappedObject)->promoted_eventFilter(o, e);
+}
+
+QCompleter::ModelSorting  PythonQtWrapper_QCompleter::modelSorting(QCompleter* theWrappedObject) const
+{
+return  theWrappedObject->modelSorting();
 }
 

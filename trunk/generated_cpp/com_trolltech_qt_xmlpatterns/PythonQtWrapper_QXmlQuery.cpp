@@ -27,54 +27,29 @@ QXmlQuery* PythonQtWrapper_QXmlQuery::new_QXmlQuery(const QXmlQuery&  other)
 { 
 return new QXmlQuery(other); }
 
-void PythonQtWrapper_QXmlQuery::setQuery(QXmlQuery* theWrappedObject, QIODevice*  sourceCode, const QUrl&  documentURI)
+const QAbstractUriResolver*  PythonQtWrapper_QXmlQuery::uriResolver(QXmlQuery* theWrappedObject) const
 {
- (*theWrappedObject).setQuery(sourceCode, documentURI);
+return  theWrappedObject->uriResolver();
 }
 
 void PythonQtWrapper_QXmlQuery::setQuery(QXmlQuery* theWrappedObject, const QString&  sourceCode, const QUrl&  documentURI)
 {
- (*theWrappedObject).setQuery(sourceCode, documentURI);
-}
-
-QXmlNamePool  PythonQtWrapper_QXmlQuery::namePool(QXmlQuery* theWrappedObject) const
-{
-return  (*theWrappedObject).namePool();
-}
-
-void PythonQtWrapper_QXmlQuery::setQuery(QXmlQuery* theWrappedObject, const QUrl&  queryURI, const QUrl&  baseURI)
-{
- (*theWrappedObject).setQuery(queryURI, baseURI);
-}
-
-bool  PythonQtWrapper_QXmlQuery::evaluateTo(QXmlQuery* theWrappedObject, QAbstractXmlReceiver*  callback) const
-{
-return  (*theWrappedObject).evaluateTo(callback);
-}
-
-void PythonQtWrapper_QXmlQuery::evaluateTo(QXmlQuery* theWrappedObject, QXmlResultItems*  result) const
-{
- (*theWrappedObject).evaluateTo(result);
+ theWrappedObject->setQuery(sourceCode, documentURI);
 }
 
 void PythonQtWrapper_QXmlQuery::bindVariable(QXmlQuery* theWrappedObject, const QXmlName&  name, QIODevice*  arg__2)
 {
- (*theWrappedObject).bindVariable(name, arg__2);
-}
-
-void PythonQtWrapper_QXmlQuery::bindVariable(QXmlQuery* theWrappedObject, const QXmlName&  name, const QXmlItem&  value)
-{
- (*theWrappedObject).bindVariable(name, value);
+ theWrappedObject->bindVariable(name, arg__2);
 }
 
 QAbstractMessageHandler*  PythonQtWrapper_QXmlQuery::messageHandler(QXmlQuery* theWrappedObject) const
 {
-return  (*theWrappedObject).messageHandler();
+return  theWrappedObject->messageHandler();
 }
 
-bool  PythonQtWrapper_QXmlQuery::isValid(QXmlQuery* theWrappedObject) const
+void PythonQtWrapper_QXmlQuery::setQuery(QXmlQuery* theWrappedObject, const QUrl&  queryURI, const QUrl&  baseURI)
 {
-return  (*theWrappedObject).isValid();
+ theWrappedObject->setQuery(queryURI, baseURI);
 }
 
 QXmlQuery&  PythonQtWrapper_QXmlQuery::operator_assign(QXmlQuery* theWrappedObject, const QXmlQuery&  other)
@@ -82,33 +57,58 @@ QXmlQuery&  PythonQtWrapper_QXmlQuery::operator_assign(QXmlQuery* theWrappedObje
 return  (*theWrappedObject)= other;
 }
 
-void PythonQtWrapper_QXmlQuery::bindVariable(QXmlQuery* theWrappedObject, const QString&  localName, const QXmlItem&  value)
+bool  PythonQtWrapper_QXmlQuery::evaluateTo(QXmlQuery* theWrappedObject, QAbstractXmlReceiver*  callback) const
 {
- (*theWrappedObject).bindVariable(localName, value);
+return  theWrappedObject->evaluateTo(callback);
 }
 
-const QAbstractUriResolver*  PythonQtWrapper_QXmlQuery::uriResolver(QXmlQuery* theWrappedObject) const
+void PythonQtWrapper_QXmlQuery::evaluateTo(QXmlQuery* theWrappedObject, QXmlResultItems*  result) const
 {
-return  (*theWrappedObject).uriResolver();
+ theWrappedObject->evaluateTo(result);
 }
 
-void PythonQtWrapper_QXmlQuery::setFocus(QXmlQuery* theWrappedObject, const QXmlItem&  item)
+void PythonQtWrapper_QXmlQuery::bindVariable(QXmlQuery* theWrappedObject, const QXmlName&  name, const QXmlItem&  value)
 {
- (*theWrappedObject).setFocus(item);
+ theWrappedObject->bindVariable(name, value);
+}
+
+QXmlNamePool  PythonQtWrapper_QXmlQuery::namePool(QXmlQuery* theWrappedObject) const
+{
+return  theWrappedObject->namePool();
 }
 
 void PythonQtWrapper_QXmlQuery::setUriResolver(QXmlQuery* theWrappedObject, const QAbstractUriResolver*  resolver)
 {
- (*theWrappedObject).setUriResolver(resolver);
+ theWrappedObject->setUriResolver(resolver);
+}
+
+void PythonQtWrapper_QXmlQuery::setQuery(QXmlQuery* theWrappedObject, QIODevice*  sourceCode, const QUrl&  documentURI)
+{
+ theWrappedObject->setQuery(sourceCode, documentURI);
+}
+
+bool  PythonQtWrapper_QXmlQuery::isValid(QXmlQuery* theWrappedObject) const
+{
+return  theWrappedObject->isValid();
 }
 
 void PythonQtWrapper_QXmlQuery::bindVariable(QXmlQuery* theWrappedObject, const QString&  localName, QIODevice*  arg__2)
 {
- (*theWrappedObject).bindVariable(localName, arg__2);
+ theWrappedObject->bindVariable(localName, arg__2);
+}
+
+void PythonQtWrapper_QXmlQuery::setFocus(QXmlQuery* theWrappedObject, const QXmlItem&  item)
+{
+ theWrappedObject->setFocus(item);
+}
+
+void PythonQtWrapper_QXmlQuery::bindVariable(QXmlQuery* theWrappedObject, const QString&  localName, const QXmlItem&  value)
+{
+ theWrappedObject->bindVariable(localName, value);
 }
 
 void PythonQtWrapper_QXmlQuery::setMessageHandler(QXmlQuery* theWrappedObject, QAbstractMessageHandler*  messageHandler)
 {
- (*theWrappedObject).setMessageHandler(messageHandler);
+ theWrappedObject->setMessageHandler(messageHandler);
 }
 

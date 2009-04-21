@@ -86,12 +86,15 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QDialog : public QDialog
 { public:
-inline void keyPressEvent(QKeyEvent*  arg__1) { QDialog::keyPressEvent(arg__1); }
-inline bool  eventFilter(QObject*  arg__1, QEvent*  arg__2) { return QDialog::eventFilter(arg__1, arg__2); }
-inline void showEvent(QShowEvent*  arg__1) { QDialog::showEvent(arg__1); }
-inline void resizeEvent(QResizeEvent*  arg__1) { QDialog::resizeEvent(arg__1); }
-inline void contextMenuEvent(QContextMenuEvent*  arg__1) { QDialog::contextMenuEvent(arg__1); }
-inline void closeEvent(QCloseEvent*  arg__1) { QDialog::closeEvent(arg__1); }
+inline void promoted_accept() { QDialog::accept(); }
+inline void promoted_reject() { QDialog::reject(); }
+inline void promoted_closeEvent(QCloseEvent*  arg__1) { QDialog::closeEvent(arg__1); }
+inline void promoted_keyPressEvent(QKeyEvent*  arg__1) { QDialog::keyPressEvent(arg__1); }
+inline void promoted_resizeEvent(QResizeEvent*  arg__1) { QDialog::resizeEvent(arg__1); }
+inline void promoted_showEvent(QShowEvent*  arg__1) { QDialog::showEvent(arg__1); }
+inline void promoted_done(int  arg__1) { QDialog::done(arg__1); }
+inline bool  promoted_eventFilter(QObject*  arg__1, QEvent*  arg__2) { return QDialog::eventFilter(arg__1, arg__2); }
+inline void promoted_contextMenuEvent(QContextMenuEvent*  arg__1) { QDialog::contextMenuEvent(arg__1); }
 };
 
 class PythonQtWrapper_QDialog : public QObject
@@ -103,20 +106,20 @@ enum DialogCode{
 public slots:
 QDialog* new_QDialog(QWidget*  parent = 0, Qt::WindowFlags  f = 0);
 void delete_QDialog(QDialog* obj) { delete obj; } 
-   void keyPressEvent(QDialog* theWrappedObject, QKeyEvent*  arg__1);
-   void setModal(QDialog* theWrappedObject, bool  modal);
-   bool  eventFilter(QDialog* theWrappedObject, QObject*  arg__1, QEvent*  arg__2);
-   void showEvent(QDialog* theWrappedObject, QShowEvent*  arg__1);
-   QSize  minimumSizeHint(QDialog* theWrappedObject) const;
-   bool  isSizeGripEnabled(QDialog* theWrappedObject) const;
-   void setSizeGripEnabled(QDialog* theWrappedObject, bool  arg__1);
-   void resizeEvent(QDialog* theWrappedObject, QResizeEvent*  arg__1);
-   void setResult(QDialog* theWrappedObject, int  r);
-   int  result(QDialog* theWrappedObject) const;
-   void contextMenuEvent(QDialog* theWrappedObject, QContextMenuEvent*  arg__1);
-   QSize  sizeHint(QDialog* theWrappedObject) const;
    void setVisible(QDialog* theWrappedObject, bool  visible);
+   void setResult(QDialog* theWrappedObject, int  r);
    void closeEvent(QDialog* theWrappedObject, QCloseEvent*  arg__1);
+   bool  isSizeGripEnabled(QDialog* theWrappedObject) const;
+   void keyPressEvent(QDialog* theWrappedObject, QKeyEvent*  arg__1);
+   void resizeEvent(QDialog* theWrappedObject, QResizeEvent*  arg__1);
+   void showEvent(QDialog* theWrappedObject, QShowEvent*  arg__1);
+   void setSizeGripEnabled(QDialog* theWrappedObject, bool  arg__1);
+   bool  eventFilter(QDialog* theWrappedObject, QObject*  arg__1, QEvent*  arg__2);
+   QSize  minimumSizeHint(QDialog* theWrappedObject) const;
+   void setModal(QDialog* theWrappedObject, bool  modal);
+   int  result(QDialog* theWrappedObject) const;
+   QSize  sizeHint(QDialog* theWrappedObject) const;
+   void contextMenuEvent(QDialog* theWrappedObject, QContextMenuEvent*  arg__1);
 };
 
 #endif // PYTHONQTWRAPPER_QDIALOG_H

@@ -565,78 +565,78 @@ if (_wrapper) {
 }
   return QNetworkReply::writeData(data, len);
 }
-QNetworkRequest  PythonQtWrapper_QNetworkReply::request(QNetworkReply* theWrappedObject) const
-{
-return  (*theWrappedObject).request();
-}
-
-void PythonQtWrapper_QNetworkReply::close(QNetworkReply* theWrappedObject)
-{
- (*theWrappedObject).close();
-}
-
-QNetworkReply::NetworkError  PythonQtWrapper_QNetworkReply::error(QNetworkReply* theWrappedObject) const
-{
-return  (*theWrappedObject).error();
-}
-
 QUrl  PythonQtWrapper_QNetworkReply::url(QNetworkReply* theWrappedObject) const
 {
-return  (*theWrappedObject).url();
+return  theWrappedObject->url();
 }
 
 bool  PythonQtWrapper_QNetworkReply::hasRawHeader(QNetworkReply* theWrappedObject, const QByteArray&  headerName) const
 {
-return  (*theWrappedObject).hasRawHeader(headerName);
+return  theWrappedObject->hasRawHeader(headerName);
 }
 
 QList<QByteArray >  PythonQtWrapper_QNetworkReply::rawHeaderList(QNetworkReply* theWrappedObject) const
 {
-return  (*theWrappedObject).rawHeaderList();
+return  theWrappedObject->rawHeaderList();
 }
 
 QByteArray  PythonQtWrapper_QNetworkReply::rawHeader(QNetworkReply* theWrappedObject, const QByteArray&  headerName) const
 {
-return  (*theWrappedObject).rawHeader(headerName);
+return  theWrappedObject->rawHeader(headerName);
 }
 
 QNetworkAccessManager::Operation  PythonQtWrapper_QNetworkReply::operation(QNetworkReply* theWrappedObject) const
 {
-return  (*theWrappedObject).operation();
+return  theWrappedObject->operation();
 }
 
 bool  PythonQtWrapper_QNetworkReply::isSequential(QNetworkReply* theWrappedObject) const
 {
-return  (*theWrappedObject).isSequential();
+return  ((PythonQtPublicPromoter_QNetworkReply*)theWrappedObject)->promoted_isSequential();
 }
 
 void PythonQtWrapper_QNetworkReply::setReadBufferSize(QNetworkReply* theWrappedObject, qint64  size)
 {
- (*theWrappedObject).setReadBufferSize(size);
+ ((PythonQtPublicPromoter_QNetworkReply*)theWrappedObject)->promoted_setReadBufferSize(size);
 }
 
 QVariant  PythonQtWrapper_QNetworkReply::attribute(QNetworkReply* theWrappedObject, QNetworkRequest::Attribute  code) const
 {
-return  (*theWrappedObject).attribute(code);
+return  theWrappedObject->attribute(code);
 }
 
 qint64  PythonQtWrapper_QNetworkReply::writeData(QNetworkReply* theWrappedObject, const char*  data, qint64  len)
 {
-return  (*((PythonQtPublicPromoter_QNetworkReply*)theWrappedObject)).writeData(data, len);
+return  ((PythonQtPublicPromoter_QNetworkReply*)theWrappedObject)->promoted_writeData(data, len);
 }
 
 qint64  PythonQtWrapper_QNetworkReply::readBufferSize(QNetworkReply* theWrappedObject) const
 {
-return  (*theWrappedObject).readBufferSize();
+return  theWrappedObject->readBufferSize();
 }
 
 QVariant  PythonQtWrapper_QNetworkReply::header(QNetworkReply* theWrappedObject, QNetworkRequest::KnownHeaders  header) const
 {
-return  (*theWrappedObject).header(header);
+return  theWrappedObject->header(header);
 }
 
 QNetworkAccessManager*  PythonQtWrapper_QNetworkReply::manager(QNetworkReply* theWrappedObject) const
 {
-return  (*theWrappedObject).manager();
+return  theWrappedObject->manager();
+}
+
+QNetworkRequest  PythonQtWrapper_QNetworkReply::request(QNetworkReply* theWrappedObject) const
+{
+return  theWrappedObject->request();
+}
+
+void PythonQtWrapper_QNetworkReply::close(QNetworkReply* theWrappedObject)
+{
+ ((PythonQtPublicPromoter_QNetworkReply*)theWrappedObject)->promoted_close();
+}
+
+QNetworkReply::NetworkError  PythonQtWrapper_QNetworkReply::error(QNetworkReply* theWrappedObject) const
+{
+return  theWrappedObject->error();
 }
 

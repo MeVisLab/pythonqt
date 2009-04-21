@@ -89,11 +89,13 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QCalendarWidget : public QCalendarWidget
 { public:
-inline void keyPressEvent(QKeyEvent*  event) { QCalendarWidget::keyPressEvent(event); }
-inline bool  event(QEvent*  event) { return QCalendarWidget::event(event); }
-inline void paintCell(QPainter*  painter, const QRect&  rect, const QDate&  date) const { QCalendarWidget::paintCell(painter, rect, date); }
-inline void mousePressEvent(QMouseEvent*  event) { QCalendarWidget::mousePressEvent(event); }
-inline void resizeEvent(QResizeEvent*  event) { QCalendarWidget::resizeEvent(event); }
+inline bool  promoted_event(QEvent*  event) { return QCalendarWidget::event(event); }
+inline QSize  promoted_sizeHint() const { return QCalendarWidget::sizeHint(); }
+inline void promoted_resizeEvent(QResizeEvent*  event) { QCalendarWidget::resizeEvent(event); }
+inline QSize  promoted_minimumSizeHint() const { return QCalendarWidget::minimumSizeHint(); }
+inline void promoted_keyPressEvent(QKeyEvent*  event) { QCalendarWidget::keyPressEvent(event); }
+inline void promoted_mousePressEvent(QMouseEvent*  event) { QCalendarWidget::mousePressEvent(event); }
+inline void promoted_paintCell(QPainter*  painter, const QRect&  rect, const QDate&  date) const { QCalendarWidget::paintCell(painter, rect, date); }
 };
 
 class PythonQtWrapper_QCalendarWidget : public QObject
@@ -102,41 +104,41 @@ public:
 public slots:
 QCalendarWidget* new_QCalendarWidget(QWidget*  parent = 0);
 void delete_QCalendarWidget(QCalendarWidget* obj) { delete obj; } 
-   bool  isGridVisible(QCalendarWidget* theWrappedObject) const;
-   int  monthShown(QCalendarWidget* theWrappedObject) const;
-   void setHorizontalHeaderFormat(QCalendarWidget* theWrappedObject, QCalendarWidget::HorizontalHeaderFormat  format);
-   QCalendarWidget::VerticalHeaderFormat  verticalHeaderFormat(QCalendarWidget* theWrappedObject) const;
-   int  yearShown(QCalendarWidget* theWrappedObject) const;
-   QDate  maximumDate(QCalendarWidget* theWrappedObject) const;
-   void keyPressEvent(QCalendarWidget* theWrappedObject, QKeyEvent*  event);
-   bool  event(QCalendarWidget* theWrappedObject, QEvent*  event);
-   QTextCharFormat  headerTextFormat(QCalendarWidget* theWrappedObject) const;
-   QSize  minimumSizeHint(QCalendarWidget* theWrappedObject) const;
-   QDate  selectedDate(QCalendarWidget* theWrappedObject) const;
-   int  dateEditAcceptDelay(QCalendarWidget* theWrappedObject) const;
-   QDate  minimumDate(QCalendarWidget* theWrappedObject) const;
    void setFirstDayOfWeek(QCalendarWidget* theWrappedObject, Qt::DayOfWeek  dayOfWeek);
+   QTextCharFormat  dateTextFormat(QCalendarWidget* theWrappedObject, const QDate&  date) const;
+   QDate  minimumDate(QCalendarWidget* theWrappedObject) const;
+   bool  event(QCalendarWidget* theWrappedObject, QEvent*  event);
+   QSize  sizeHint(QCalendarWidget* theWrappedObject) const;
+   int  dateEditAcceptDelay(QCalendarWidget* theWrappedObject) const;
+   int  monthShown(QCalendarWidget* theWrappedObject) const;
+   void resizeEvent(QCalendarWidget* theWrappedObject, QResizeEvent*  event);
+   void setWeekdayTextFormat(QCalendarWidget* theWrappedObject, Qt::DayOfWeek  dayOfWeek, const QTextCharFormat&  format);
+   QCalendarWidget::VerticalHeaderFormat  verticalHeaderFormat(QCalendarWidget* theWrappedObject) const;
+   void setHorizontalHeaderFormat(QCalendarWidget* theWrappedObject, QCalendarWidget::HorizontalHeaderFormat  format);
+   QSize  minimumSizeHint(QCalendarWidget* theWrappedObject) const;
+   void keyPressEvent(QCalendarWidget* theWrappedObject, QKeyEvent*  event);
+   QTextCharFormat  headerTextFormat(QCalendarWidget* theWrappedObject) const;
+   QDate  maximumDate(QCalendarWidget* theWrappedObject) const;
+   QCalendarWidget::HorizontalHeaderFormat  horizontalHeaderFormat(QCalendarWidget* theWrappedObject) const;
+   void mousePressEvent(QCalendarWidget* theWrappedObject, QMouseEvent*  event);
    void setHeaderTextFormat(QCalendarWidget* theWrappedObject, const QTextCharFormat&  format);
    void setDateEditEnabled(QCalendarWidget* theWrappedObject, bool  enable);
-   Qt::DayOfWeek  firstDayOfWeek(QCalendarWidget* theWrappedObject) const;
    void setMaximumDate(QCalendarWidget* theWrappedObject, const QDate&  date);
+   QDate  selectedDate(QCalendarWidget* theWrappedObject) const;
+   Qt::DayOfWeek  firstDayOfWeek(QCalendarWidget* theWrappedObject) const;
    QCalendarWidget::SelectionMode  selectionMode(QCalendarWidget* theWrappedObject) const;
-   void setSelectionMode(QCalendarWidget* theWrappedObject, QCalendarWidget::SelectionMode  mode);
-   bool  isNavigationBarVisible(QCalendarWidget* theWrappedObject) const;
-   void paintCell(QCalendarWidget* theWrappedObject, QPainter*  painter, const QRect&  rect, const QDate&  date) const;
-   QCalendarWidget::HorizontalHeaderFormat  horizontalHeaderFormat(QCalendarWidget* theWrappedObject) const;
-   void setWeekdayTextFormat(QCalendarWidget* theWrappedObject, Qt::DayOfWeek  dayOfWeek, const QTextCharFormat&  format);
-   void mousePressEvent(QCalendarWidget* theWrappedObject, QMouseEvent*  event);
-   QTextCharFormat  weekdayTextFormat(QCalendarWidget* theWrappedObject, Qt::DayOfWeek  dayOfWeek) const;
-   void setDateTextFormat(QCalendarWidget* theWrappedObject, const QDate&  date, const QTextCharFormat&  format);
-   QMap<QDate , QTextCharFormat >  dateTextFormat(QCalendarWidget* theWrappedObject) const;
-   bool  isDateEditEnabled(QCalendarWidget* theWrappedObject) const;
-   void setDateEditAcceptDelay(QCalendarWidget* theWrappedObject, int  delay);
-   void setVerticalHeaderFormat(QCalendarWidget* theWrappedObject, QCalendarWidget::VerticalHeaderFormat  format);
-   void resizeEvent(QCalendarWidget* theWrappedObject, QResizeEvent*  event);
    void setMinimumDate(QCalendarWidget* theWrappedObject, const QDate&  date);
-   QTextCharFormat  dateTextFormat(QCalendarWidget* theWrappedObject, const QDate&  date) const;
-   QSize  sizeHint(QCalendarWidget* theWrappedObject) const;
+   void setSelectionMode(QCalendarWidget* theWrappedObject, QCalendarWidget::SelectionMode  mode);
+   void setDateEditAcceptDelay(QCalendarWidget* theWrappedObject, int  delay);
+   bool  isDateEditEnabled(QCalendarWidget* theWrappedObject) const;
+   void paintCell(QCalendarWidget* theWrappedObject, QPainter*  painter, const QRect&  rect, const QDate&  date) const;
+   bool  isNavigationBarVisible(QCalendarWidget* theWrappedObject) const;
+   bool  isGridVisible(QCalendarWidget* theWrappedObject) const;
+   QTextCharFormat  weekdayTextFormat(QCalendarWidget* theWrappedObject, Qt::DayOfWeek  dayOfWeek) const;
+   int  yearShown(QCalendarWidget* theWrappedObject) const;
+   QMap<QDate , QTextCharFormat >  dateTextFormat(QCalendarWidget* theWrappedObject) const;
+   void setDateTextFormat(QCalendarWidget* theWrappedObject, const QDate&  date, const QTextCharFormat&  format);
+   void setVerticalHeaderFormat(QCalendarWidget* theWrappedObject, QCalendarWidget::VerticalHeaderFormat  format);
 };
 
 #endif // PYTHONQTWRAPPER_QCALENDARWIDGET_H

@@ -85,8 +85,8 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QLCDNumber : public QLCDNumber
 { public:
-inline void paintEvent(QPaintEvent*  arg__1) { QLCDNumber::paintEvent(arg__1); }
-inline bool  event(QEvent*  e) { return QLCDNumber::event(e); }
+inline bool  promoted_event(QEvent*  e) { return QLCDNumber::event(e); }
+inline void promoted_paintEvent(QPaintEvent*  arg__1) { QLCDNumber::paintEvent(arg__1); }
 };
 
 class PythonQtWrapper_QLCDNumber : public QObject
@@ -96,19 +96,19 @@ public slots:
 QLCDNumber* new_QLCDNumber(QWidget*  parent = 0);
 QLCDNumber* new_QLCDNumber(uint  numDigits, QWidget*  parent = 0);
 void delete_QLCDNumber(QLCDNumber* obj) { delete obj; } 
-   int  numDigits(QLCDNumber* theWrappedObject) const;
    QLCDNumber::SegmentStyle  segmentStyle(QLCDNumber* theWrappedObject) const;
-   double  value(QLCDNumber* theWrappedObject) const;
-   void paintEvent(QLCDNumber* theWrappedObject, QPaintEvent*  arg__1);
-   int  intValue(QLCDNumber* theWrappedObject) const;
+   void setSegmentStyle(QLCDNumber* theWrappedObject, QLCDNumber::SegmentStyle  arg__1);
+   bool  checkOverflow(QLCDNumber* theWrappedObject, double  num) const;
+   QSize  sizeHint(QLCDNumber* theWrappedObject) const;
+   bool  checkOverflow(QLCDNumber* theWrappedObject, int  num) const;
    void setNumDigits(QLCDNumber* theWrappedObject, int  nDigits);
    bool  event(QLCDNumber* theWrappedObject, QEvent*  e);
    bool  smallDecimalPoint(QLCDNumber* theWrappedObject) const;
-   bool  checkOverflow(QLCDNumber* theWrappedObject, int  num) const;
-   void setSegmentStyle(QLCDNumber* theWrappedObject, QLCDNumber::SegmentStyle  arg__1);
-   QSize  sizeHint(QLCDNumber* theWrappedObject) const;
    QLCDNumber::Mode  mode(QLCDNumber* theWrappedObject) const;
-   bool  checkOverflow(QLCDNumber* theWrappedObject, double  num) const;
+   void paintEvent(QLCDNumber* theWrappedObject, QPaintEvent*  arg__1);
+   double  value(QLCDNumber* theWrappedObject) const;
+   int  intValue(QLCDNumber* theWrappedObject) const;
+   int  numDigits(QLCDNumber* theWrappedObject) const;
    void setMode(QLCDNumber* theWrappedObject, QLCDNumber::Mode  arg__1);
 };
 

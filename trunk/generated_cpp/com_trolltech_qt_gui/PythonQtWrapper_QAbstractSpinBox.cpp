@@ -881,223 +881,223 @@ QAbstractSpinBox* PythonQtWrapper_QAbstractSpinBox::new_QAbstractSpinBox(QWidget
 { 
 return new PythonQtShell_QAbstractSpinBox(parent); }
 
-void PythonQtWrapper_QAbstractSpinBox::keyPressEvent(QAbstractSpinBox* theWrappedObject, QKeyEvent*  event)
+bool  PythonQtWrapper_QAbstractSpinBox::wrapping(QAbstractSpinBox* theWrappedObject) const
 {
- (*((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)).keyPressEvent(event);
-}
-
-bool  PythonQtWrapper_QAbstractSpinBox::hasAcceptableInput(QAbstractSpinBox* theWrappedObject) const
-{
-return  (*theWrappedObject).hasAcceptableInput();
+return  theWrappedObject->wrapping();
 }
 
 void PythonQtWrapper_QAbstractSpinBox::setFrame(QAbstractSpinBox* theWrappedObject, bool  arg__1)
 {
- (*theWrappedObject).setFrame(arg__1);
-}
-
-QSize  PythonQtWrapper_QAbstractSpinBox::minimumSizeHint(QAbstractSpinBox* theWrappedObject) const
-{
-return  (*theWrappedObject).minimumSizeHint();
-}
-
-void PythonQtWrapper_QAbstractSpinBox::mousePressEvent(QAbstractSpinBox* theWrappedObject, QMouseEvent*  event)
-{
- (*((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)).mousePressEvent(event);
-}
-
-QString  PythonQtWrapper_QAbstractSpinBox::specialValueText(QAbstractSpinBox* theWrappedObject) const
-{
-return  (*theWrappedObject).specialValueText();
-}
-
-void PythonQtWrapper_QAbstractSpinBox::fixup(QAbstractSpinBox* theWrappedObject, QString&  input) const
-{
- (*theWrappedObject).fixup(input);
-}
-
-void PythonQtWrapper_QAbstractSpinBox::setReadOnly(QAbstractSpinBox* theWrappedObject, bool  r)
-{
- (*theWrappedObject).setReadOnly(r);
-}
-
-void PythonQtWrapper_QAbstractSpinBox::setAccelerated(QAbstractSpinBox* theWrappedObject, bool  on)
-{
- (*theWrappedObject).setAccelerated(on);
-}
-
-void PythonQtWrapper_QAbstractSpinBox::paintEvent(QAbstractSpinBox* theWrappedObject, QPaintEvent*  event)
-{
- (*((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)).paintEvent(event);
-}
-
-void PythonQtWrapper_QAbstractSpinBox::focusOutEvent(QAbstractSpinBox* theWrappedObject, QFocusEvent*  event)
-{
- (*((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)).focusOutEvent(event);
-}
-
-void PythonQtWrapper_QAbstractSpinBox::mouseReleaseEvent(QAbstractSpinBox* theWrappedObject, QMouseEvent*  event)
-{
- (*((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)).mouseReleaseEvent(event);
-}
-
-void PythonQtWrapper_QAbstractSpinBox::contextMenuEvent(QAbstractSpinBox* theWrappedObject, QContextMenuEvent*  event)
-{
- (*((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)).contextMenuEvent(event);
-}
-
-QString  PythonQtWrapper_QAbstractSpinBox::text(QAbstractSpinBox* theWrappedObject) const
-{
-return  (*theWrappedObject).text();
-}
-
-void PythonQtWrapper_QAbstractSpinBox::setWrapping(QAbstractSpinBox* theWrappedObject, bool  w)
-{
- (*theWrappedObject).setWrapping(w);
-}
-
-bool  PythonQtWrapper_QAbstractSpinBox::event(QAbstractSpinBox* theWrappedObject, QEvent*  event)
-{
-return  (*theWrappedObject).event(event);
-}
-
-void PythonQtWrapper_QAbstractSpinBox::setKeyboardTracking(QAbstractSpinBox* theWrappedObject, bool  kt)
-{
- (*theWrappedObject).setKeyboardTracking(kt);
-}
-
-void PythonQtWrapper_QAbstractSpinBox::mouseMoveEvent(QAbstractSpinBox* theWrappedObject, QMouseEvent*  event)
-{
- (*((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)).mouseMoveEvent(event);
-}
-
-QSize  PythonQtWrapper_QAbstractSpinBox::sizeHint(QAbstractSpinBox* theWrappedObject) const
-{
-return  (*theWrappedObject).sizeHint();
-}
-
-void PythonQtWrapper_QAbstractSpinBox::keyReleaseEvent(QAbstractSpinBox* theWrappedObject, QKeyEvent*  event)
-{
- (*((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)).keyReleaseEvent(event);
-}
-
-void PythonQtWrapper_QAbstractSpinBox::showEvent(QAbstractSpinBox* theWrappedObject, QShowEvent*  event)
-{
- (*((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)).showEvent(event);
-}
-
-bool  PythonQtWrapper_QAbstractSpinBox::isAccelerated(QAbstractSpinBox* theWrappedObject) const
-{
-return  (*theWrappedObject).isAccelerated();
-}
-
-void PythonQtWrapper_QAbstractSpinBox::setAlignment(QAbstractSpinBox* theWrappedObject, Qt::Alignment  flag)
-{
- (*theWrappedObject).setAlignment(flag);
-}
-
-void PythonQtWrapper_QAbstractSpinBox::stepBy(QAbstractSpinBox* theWrappedObject, int  steps)
-{
- (*theWrappedObject).stepBy(steps);
-}
-
-void PythonQtWrapper_QAbstractSpinBox::wheelEvent(QAbstractSpinBox* theWrappedObject, QWheelEvent*  event)
-{
- (*((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)).wheelEvent(event);
-}
-
-void PythonQtWrapper_QAbstractSpinBox::closeEvent(QAbstractSpinBox* theWrappedObject, QCloseEvent*  event)
-{
- (*((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)).closeEvent(event);
-}
-
-void PythonQtWrapper_QAbstractSpinBox::setCorrectionMode(QAbstractSpinBox* theWrappedObject, QAbstractSpinBox::CorrectionMode  cm)
-{
- (*theWrappedObject).setCorrectionMode(cm);
-}
-
-void PythonQtWrapper_QAbstractSpinBox::setButtonSymbols(QAbstractSpinBox* theWrappedObject, QAbstractSpinBox::ButtonSymbols  bs)
-{
- (*theWrappedObject).setButtonSymbols(bs);
-}
-
-bool  PythonQtWrapper_QAbstractSpinBox::isReadOnly(QAbstractSpinBox* theWrappedObject) const
-{
-return  (*theWrappedObject).isReadOnly();
-}
-
-void PythonQtWrapper_QAbstractSpinBox::resizeEvent(QAbstractSpinBox* theWrappedObject, QResizeEvent*  event)
-{
- (*((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)).resizeEvent(event);
-}
-
-QAbstractSpinBox::CorrectionMode  PythonQtWrapper_QAbstractSpinBox::correctionMode(QAbstractSpinBox* theWrappedObject) const
-{
-return  (*theWrappedObject).correctionMode();
-}
-
-bool  PythonQtWrapper_QAbstractSpinBox::wrapping(QAbstractSpinBox* theWrappedObject) const
-{
-return  (*theWrappedObject).wrapping();
+ theWrappedObject->setFrame(arg__1);
 }
 
 void PythonQtWrapper_QAbstractSpinBox::interpretText(QAbstractSpinBox* theWrappedObject)
 {
- (*theWrappedObject).interpretText();
+ theWrappedObject->interpretText();
 }
 
 QValidator::State  PythonQtWrapper_QAbstractSpinBox::validate(QAbstractSpinBox* theWrappedObject, QString&  input, int&  pos) const
 {
-return  (*theWrappedObject).validate(input, pos);
+return  ((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)->promoted_validate(input, pos);
 }
 
-QAbstractSpinBox::StepEnabled  PythonQtWrapper_QAbstractSpinBox::stepEnabled(QAbstractSpinBox* theWrappedObject) const
+void PythonQtWrapper_QAbstractSpinBox::setKeyboardTracking(QAbstractSpinBox* theWrappedObject, bool  kt)
 {
-return  (*((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)).stepEnabled();
+ theWrappedObject->setKeyboardTracking(kt);
 }
 
-void PythonQtWrapper_QAbstractSpinBox::hideEvent(QAbstractSpinBox* theWrappedObject, QHideEvent*  event)
+void PythonQtWrapper_QAbstractSpinBox::keyReleaseEvent(QAbstractSpinBox* theWrappedObject, QKeyEvent*  event)
 {
- (*((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)).hideEvent(event);
-}
-
-bool  PythonQtWrapper_QAbstractSpinBox::hasFrame(QAbstractSpinBox* theWrappedObject) const
-{
-return  (*theWrappedObject).hasFrame();
+ ((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)->promoted_keyReleaseEvent(event);
 }
 
 Qt::Alignment  PythonQtWrapper_QAbstractSpinBox::alignment(QAbstractSpinBox* theWrappedObject) const
 {
-return  (*theWrappedObject).alignment();
+return  theWrappedObject->alignment();
 }
 
-QAbstractSpinBox::ButtonSymbols  PythonQtWrapper_QAbstractSpinBox::buttonSymbols(QAbstractSpinBox* theWrappedObject) const
+void PythonQtWrapper_QAbstractSpinBox::setReadOnly(QAbstractSpinBox* theWrappedObject, bool  r)
 {
-return  (*theWrappedObject).buttonSymbols();
+ theWrappedObject->setReadOnly(r);
+}
+
+void PythonQtWrapper_QAbstractSpinBox::hideEvent(QAbstractSpinBox* theWrappedObject, QHideEvent*  event)
+{
+ ((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)->promoted_hideEvent(event);
 }
 
 bool  PythonQtWrapper_QAbstractSpinBox::keyboardTracking(QAbstractSpinBox* theWrappedObject) const
 {
-return  (*theWrappedObject).keyboardTracking();
+return  theWrappedObject->keyboardTracking();
+}
+
+void PythonQtWrapper_QAbstractSpinBox::paintEvent(QAbstractSpinBox* theWrappedObject, QPaintEvent*  event)
+{
+ ((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)->promoted_paintEvent(event);
+}
+
+void PythonQtWrapper_QAbstractSpinBox::resizeEvent(QAbstractSpinBox* theWrappedObject, QResizeEvent*  event)
+{
+ ((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)->promoted_resizeEvent(event);
 }
 
 void PythonQtWrapper_QAbstractSpinBox::setSpecialValueText(QAbstractSpinBox* theWrappedObject, const QString&  txt)
 {
- (*theWrappedObject).setSpecialValueText(txt);
+ theWrappedObject->setSpecialValueText(txt);
 }
 
-void PythonQtWrapper_QAbstractSpinBox::changeEvent(QAbstractSpinBox* theWrappedObject, QEvent*  event)
+void PythonQtWrapper_QAbstractSpinBox::setAlignment(QAbstractSpinBox* theWrappedObject, Qt::Alignment  flag)
 {
- (*((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)).changeEvent(event);
+ theWrappedObject->setAlignment(flag);
+}
+
+QSize  PythonQtWrapper_QAbstractSpinBox::minimumSizeHint(QAbstractSpinBox* theWrappedObject) const
+{
+return  theWrappedObject->minimumSizeHint();
 }
 
 void PythonQtWrapper_QAbstractSpinBox::timerEvent(QAbstractSpinBox* theWrappedObject, QTimerEvent*  event)
 {
- (*((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)).timerEvent(event);
+ ((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)->promoted_timerEvent(event);
+}
+
+void PythonQtWrapper_QAbstractSpinBox::focusOutEvent(QAbstractSpinBox* theWrappedObject, QFocusEvent*  event)
+{
+ ((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)->promoted_focusOutEvent(event);
 }
 
 void PythonQtWrapper_QAbstractSpinBox::focusInEvent(QAbstractSpinBox* theWrappedObject, QFocusEvent*  event)
 {
- (*((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)).focusInEvent(event);
+ ((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)->promoted_focusInEvent(event);
+}
+
+QString  PythonQtWrapper_QAbstractSpinBox::text(QAbstractSpinBox* theWrappedObject) const
+{
+return  theWrappedObject->text();
+}
+
+QString  PythonQtWrapper_QAbstractSpinBox::specialValueText(QAbstractSpinBox* theWrappedObject) const
+{
+return  theWrappedObject->specialValueText();
+}
+
+void PythonQtWrapper_QAbstractSpinBox::fixup(QAbstractSpinBox* theWrappedObject, QString&  input) const
+{
+ ((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)->promoted_fixup(input);
+}
+
+void PythonQtWrapper_QAbstractSpinBox::setAccelerated(QAbstractSpinBox* theWrappedObject, bool  on)
+{
+ theWrappedObject->setAccelerated(on);
+}
+
+void PythonQtWrapper_QAbstractSpinBox::mouseReleaseEvent(QAbstractSpinBox* theWrappedObject, QMouseEvent*  event)
+{
+ ((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)->promoted_mouseReleaseEvent(event);
+}
+
+void PythonQtWrapper_QAbstractSpinBox::contextMenuEvent(QAbstractSpinBox* theWrappedObject, QContextMenuEvent*  event)
+{
+ ((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)->promoted_contextMenuEvent(event);
+}
+
+void PythonQtWrapper_QAbstractSpinBox::setWrapping(QAbstractSpinBox* theWrappedObject, bool  w)
+{
+ theWrappedObject->setWrapping(w);
+}
+
+void PythonQtWrapper_QAbstractSpinBox::mouseMoveEvent(QAbstractSpinBox* theWrappedObject, QMouseEvent*  event)
+{
+ ((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)->promoted_mouseMoveEvent(event);
+}
+
+QSize  PythonQtWrapper_QAbstractSpinBox::sizeHint(QAbstractSpinBox* theWrappedObject) const
+{
+return  theWrappedObject->sizeHint();
+}
+
+void PythonQtWrapper_QAbstractSpinBox::showEvent(QAbstractSpinBox* theWrappedObject, QShowEvent*  event)
+{
+ ((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)->promoted_showEvent(event);
+}
+
+bool  PythonQtWrapper_QAbstractSpinBox::isAccelerated(QAbstractSpinBox* theWrappedObject) const
+{
+return  theWrappedObject->isAccelerated();
+}
+
+void PythonQtWrapper_QAbstractSpinBox::stepBy(QAbstractSpinBox* theWrappedObject, int  steps)
+{
+ ((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)->promoted_stepBy(steps);
+}
+
+void PythonQtWrapper_QAbstractSpinBox::wheelEvent(QAbstractSpinBox* theWrappedObject, QWheelEvent*  event)
+{
+ ((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)->promoted_wheelEvent(event);
+}
+
+QAbstractSpinBox::StepEnabled  PythonQtWrapper_QAbstractSpinBox::stepEnabled(QAbstractSpinBox* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)->promoted_stepEnabled();
+}
+
+void PythonQtWrapper_QAbstractSpinBox::keyPressEvent(QAbstractSpinBox* theWrappedObject, QKeyEvent*  event)
+{
+ ((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)->promoted_keyPressEvent(event);
+}
+
+void PythonQtWrapper_QAbstractSpinBox::closeEvent(QAbstractSpinBox* theWrappedObject, QCloseEvent*  event)
+{
+ ((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)->promoted_closeEvent(event);
+}
+
+void PythonQtWrapper_QAbstractSpinBox::setCorrectionMode(QAbstractSpinBox* theWrappedObject, QAbstractSpinBox::CorrectionMode  cm)
+{
+ theWrappedObject->setCorrectionMode(cm);
+}
+
+void PythonQtWrapper_QAbstractSpinBox::setButtonSymbols(QAbstractSpinBox* theWrappedObject, QAbstractSpinBox::ButtonSymbols  bs)
+{
+ theWrappedObject->setButtonSymbols(bs);
+}
+
+void PythonQtWrapper_QAbstractSpinBox::changeEvent(QAbstractSpinBox* theWrappedObject, QEvent*  event)
+{
+ ((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)->promoted_changeEvent(event);
+}
+
+bool  PythonQtWrapper_QAbstractSpinBox::hasAcceptableInput(QAbstractSpinBox* theWrappedObject) const
+{
+return  theWrappedObject->hasAcceptableInput();
+}
+
+bool  PythonQtWrapper_QAbstractSpinBox::isReadOnly(QAbstractSpinBox* theWrappedObject) const
+{
+return  theWrappedObject->isReadOnly();
+}
+
+QAbstractSpinBox::ButtonSymbols  PythonQtWrapper_QAbstractSpinBox::buttonSymbols(QAbstractSpinBox* theWrappedObject) const
+{
+return  theWrappedObject->buttonSymbols();
+}
+
+bool  PythonQtWrapper_QAbstractSpinBox::event(QAbstractSpinBox* theWrappedObject, QEvent*  event)
+{
+return  ((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)->promoted_event(event);
+}
+
+void PythonQtWrapper_QAbstractSpinBox::mousePressEvent(QAbstractSpinBox* theWrappedObject, QMouseEvent*  event)
+{
+ ((PythonQtPublicPromoter_QAbstractSpinBox*)theWrappedObject)->promoted_mousePressEvent(event);
+}
+
+QAbstractSpinBox::CorrectionMode  PythonQtWrapper_QAbstractSpinBox::correctionMode(QAbstractSpinBox* theWrappedObject) const
+{
+return  theWrappedObject->correctionMode();
+}
+
+bool  PythonQtWrapper_QAbstractSpinBox::hasFrame(QAbstractSpinBox* theWrappedObject) const
+{
+return  theWrappedObject->hasFrame();
 }
 

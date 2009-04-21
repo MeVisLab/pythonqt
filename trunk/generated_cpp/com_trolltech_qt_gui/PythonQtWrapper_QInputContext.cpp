@@ -369,46 +369,46 @@ return new PythonQtShell_QInputContext(parent); }
 
 void PythonQtWrapper_QInputContext::sendEvent(QInputContext* theWrappedObject, const QInputMethodEvent&  event)
 {
- (*theWrappedObject).sendEvent(event);
+ theWrappedObject->sendEvent(event);
 }
 
 void PythonQtWrapper_QInputContext::widgetDestroyed(QInputContext* theWrappedObject, QWidget*  w)
 {
- (*theWrappedObject).widgetDestroyed(w);
+ ((PythonQtPublicPromoter_QInputContext*)theWrappedObject)->promoted_widgetDestroyed(w);
 }
 
 QTextFormat  PythonQtWrapper_QInputContext::standardFormat(QInputContext* theWrappedObject, QInputContext::StandardFormat  s) const
 {
-return  (*theWrappedObject).standardFormat(s);
+return  theWrappedObject->standardFormat(s);
 }
 
 QWidget*  PythonQtWrapper_QInputContext::focusWidget(QInputContext* theWrappedObject) const
 {
-return  (*theWrappedObject).focusWidget();
+return  theWrappedObject->focusWidget();
 }
 
 bool  PythonQtWrapper_QInputContext::filterEvent(QInputContext* theWrappedObject, const QEvent*  event)
 {
-return  (*theWrappedObject).filterEvent(event);
+return  ((PythonQtPublicPromoter_QInputContext*)theWrappedObject)->promoted_filterEvent(event);
 }
 
 QFont  PythonQtWrapper_QInputContext::font(QInputContext* theWrappedObject) const
 {
-return  (*theWrappedObject).font();
+return  ((PythonQtPublicPromoter_QInputContext*)theWrappedObject)->promoted_font();
 }
 
 void PythonQtWrapper_QInputContext::mouseHandler(QInputContext* theWrappedObject, int  x, QMouseEvent*  event)
 {
- (*theWrappedObject).mouseHandler(x, event);
+ ((PythonQtPublicPromoter_QInputContext*)theWrappedObject)->promoted_mouseHandler(x, event);
 }
 
 QList<QAction* >  PythonQtWrapper_QInputContext::actions(QInputContext* theWrappedObject)
 {
-return  (*theWrappedObject).actions();
+return  ((PythonQtPublicPromoter_QInputContext*)theWrappedObject)->promoted_actions();
 }
 
 void PythonQtWrapper_QInputContext::update(QInputContext* theWrappedObject)
 {
- (*theWrappedObject).update();
+ ((PythonQtPublicPromoter_QInputContext*)theWrappedObject)->promoted_update();
 }
 

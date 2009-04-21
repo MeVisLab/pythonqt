@@ -197,49 +197,14 @@ if (_wrapper) {
 }
   QApplication::timerEvent(arg__1);
 }
-bool  PythonQtWrapper_QApplication::static_QApplication_desktopSettingsAware()
+void PythonQtWrapper_QApplication::static_QApplication_restoreOverrideCursor()
 {
-return QApplication::desktopSettingsAware();
+QApplication::restoreOverrideCursor();
 }
 
-QWidget*  PythonQtWrapper_QApplication::static_QApplication_activeModalWidget()
+QString  PythonQtWrapper_QApplication::sessionId(QApplication* theWrappedObject) const
 {
-return QApplication::activeModalWidget();
-}
-
-QPalette  PythonQtWrapper_QApplication::static_QApplication_palette()
-{
-return QApplication::palette();
-}
-
-void PythonQtWrapper_QApplication::static_QApplication_setEffectEnabled(Qt::UIEffect  arg__1, bool  enable)
-{
-QApplication::setEffectEnabled(arg__1, enable);
-}
-
-void PythonQtWrapper_QApplication::static_QApplication_setKeyboardInputInterval(int  arg__1)
-{
-QApplication::setKeyboardInputInterval(arg__1);
-}
-
-QIcon  PythonQtWrapper_QApplication::static_QApplication_windowIcon()
-{
-return QApplication::windowIcon();
-}
-
-void PythonQtWrapper_QApplication::static_QApplication_beep()
-{
-QApplication::beep();
-}
-
-void PythonQtWrapper_QApplication::static_QApplication_changeOverrideCursor(const QCursor&  arg__1)
-{
-QApplication::changeOverrideCursor(arg__1);
-}
-
-QWidget*  PythonQtWrapper_QApplication::static_QApplication_widgetAt(int  x, int  y)
-{
-return QApplication::widgetAt(x, y);
+return  theWrappedObject->sessionId();
 }
 
 int  PythonQtWrapper_QApplication::static_QApplication_doubleClickInterval()
@@ -247,59 +212,24 @@ int  PythonQtWrapper_QApplication::static_QApplication_doubleClickInterval()
 return QApplication::doubleClickInterval();
 }
 
-int  PythonQtWrapper_QApplication::static_QApplication_startDragDistance()
+void PythonQtWrapper_QApplication::static_QApplication_setDoubleClickInterval(int  arg__1)
 {
-return QApplication::startDragDistance();
+QApplication::setDoubleClickInterval(arg__1);
 }
 
-QWidget*  PythonQtWrapper_QApplication::static_QApplication_activeWindow()
+void PythonQtWrapper_QApplication::static_QApplication_setCursorFlashTime(int  arg__1)
 {
-return QApplication::activeWindow();
+QApplication::setCursorFlashTime(arg__1);
 }
 
-void PythonQtWrapper_QApplication::static_QApplication_setWindowIcon(const QIcon&  icon)
+bool  PythonQtWrapper_QApplication::static_QApplication_isRightToLeft()
 {
-QApplication::setWindowIcon(icon);
+return QApplication::isRightToLeft();
 }
 
-void PythonQtWrapper_QApplication::static_QApplication_syncX()
+QString  PythonQtWrapper_QApplication::styleSheet(QApplication* theWrappedObject) const
 {
-QApplication::syncX();
-}
-
-QWidget*  PythonQtWrapper_QApplication::static_QApplication_topLevelAt(int  x, int  y)
-{
-return QApplication::topLevelAt(x, y);
-}
-
-QStyle*  PythonQtWrapper_QApplication::static_QApplication_setStyle(const QString&  arg__1)
-{
-return QApplication::setStyle(arg__1);
-}
-
-QString  PythonQtWrapper_QApplication::sessionKey(QApplication* theWrappedObject) const
-{
-return  (*theWrappedObject).sessionKey();
-}
-
-QLocale  PythonQtWrapper_QApplication::static_QApplication_keyboardInputLocale()
-{
-return QApplication::keyboardInputLocale();
-}
-
-void PythonQtWrapper_QApplication::static_QApplication_setGlobalStrut(const QSize&  arg__1)
-{
-QApplication::setGlobalStrut(arg__1);
-}
-
-bool  PythonQtWrapper_QApplication::event(QApplication* theWrappedObject, QEvent*  arg__1)
-{
-return  (*((PythonQtPublicPromoter_QApplication*)theWrappedObject)).event(arg__1);
-}
-
-QFont  PythonQtWrapper_QApplication::static_QApplication_font(const QWidget*  arg__1)
-{
-return QApplication::font(arg__1);
+return  theWrappedObject->styleSheet();
 }
 
 QWidget*  PythonQtWrapper_QApplication::static_QApplication_topLevelAt(const QPoint&  p)
@@ -307,14 +237,239 @@ QWidget*  PythonQtWrapper_QApplication::static_QApplication_topLevelAt(const QPo
 return QApplication::topLevelAt(p);
 }
 
-bool  PythonQtWrapper_QApplication::static_QApplication_quitOnLastWindowClosed()
+void PythonQtWrapper_QApplication::static_QApplication_setActiveWindow(QWidget*  act)
 {
-return QApplication::quitOnLastWindowClosed();
+QApplication::setActiveWindow(act);
+}
+
+bool  PythonQtWrapper_QApplication::notify(QApplication* theWrappedObject, QObject*  arg__1, QEvent*  arg__2)
+{
+return  ((PythonQtPublicPromoter_QApplication*)theWrappedObject)->promoted_notify(arg__1, arg__2);
+}
+
+Qt::MouseButtons  PythonQtWrapper_QApplication::static_QApplication_mouseButtons()
+{
+return QApplication::mouseButtons();
+}
+
+void PythonQtWrapper_QApplication::setInputContext(QApplication* theWrappedObject, QInputContext*  arg__1)
+{
+ theWrappedObject->setInputContext(arg__1);
+}
+
+void PythonQtWrapper_QApplication::static_QApplication_setStartDragTime(int  ms)
+{
+QApplication::setStartDragTime(ms);
+}
+
+void PythonQtWrapper_QApplication::static_QApplication_setColorSpec(int  arg__1)
+{
+QApplication::setColorSpec(arg__1);
+}
+
+QWidget*  PythonQtWrapper_QApplication::static_QApplication_activeModalWidget()
+{
+return QApplication::activeModalWidget();
+}
+
+QSize  PythonQtWrapper_QApplication::static_QApplication_globalStrut()
+{
+return QApplication::globalStrut();
+}
+
+void PythonQtWrapper_QApplication::static_QApplication_setFont(const QFont&  arg__1, const char*  className)
+{
+QApplication::setFont(arg__1, className);
+}
+
+QInputContext*  PythonQtWrapper_QApplication::inputContext(QApplication* theWrappedObject) const
+{
+return  theWrappedObject->inputContext();
+}
+
+int  PythonQtWrapper_QApplication::static_QApplication_keyboardInputInterval()
+{
+return QApplication::keyboardInputInterval();
+}
+
+int  PythonQtWrapper_QApplication::static_QApplication_exec()
+{
+return QApplication::exec();
+}
+
+void PythonQtWrapper_QApplication::static_QApplication_syncX()
+{
+QApplication::syncX();
+}
+
+QFont  PythonQtWrapper_QApplication::static_QApplication_font()
+{
+return QApplication::font();
+}
+
+bool  PythonQtWrapper_QApplication::static_QApplication_desktopSettingsAware()
+{
+return QApplication::desktopSettingsAware();
+}
+
+int  PythonQtWrapper_QApplication::static_QApplication_startDragTime()
+{
+return QApplication::startDragTime();
+}
+
+void PythonQtWrapper_QApplication::static_QApplication_setEffectEnabled(Qt::UIEffect  arg__1, bool  enable)
+{
+QApplication::setEffectEnabled(arg__1, enable);
+}
+
+bool  PythonQtWrapper_QApplication::isSessionRestored(QApplication* theWrappedObject) const
+{
+return  theWrappedObject->isSessionRestored();
+}
+
+bool  PythonQtWrapper_QApplication::static_QApplication_isEffectEnabled(Qt::UIEffect  arg__1)
+{
+return QApplication::isEffectEnabled(arg__1);
+}
+
+int  PythonQtWrapper_QApplication::static_QApplication_wheelScrollLines()
+{
+return QApplication::wheelScrollLines();
+}
+
+void PythonQtWrapper_QApplication::static_QApplication_setOverrideCursor(const QCursor&  arg__1)
+{
+QApplication::setOverrideCursor(arg__1);
+}
+
+void PythonQtWrapper_QApplication::static_QApplication_setPalette(const QPalette&  arg__1, const char*  className)
+{
+QApplication::setPalette(arg__1, className);
+}
+
+void PythonQtWrapper_QApplication::static_QApplication_changeOverrideCursor(const QCursor&  arg__1)
+{
+QApplication::changeOverrideCursor(arg__1);
 }
 
 QWidget*  PythonQtWrapper_QApplication::static_QApplication_activePopupWidget()
 {
 return QApplication::activePopupWidget();
+}
+
+QString  PythonQtWrapper_QApplication::sessionKey(QApplication* theWrappedObject) const
+{
+return  theWrappedObject->sessionKey();
+}
+
+QLocale  PythonQtWrapper_QApplication::static_QApplication_keyboardInputLocale()
+{
+return QApplication::keyboardInputLocale();
+}
+
+void PythonQtWrapper_QApplication::static_QApplication_setKeyboardInputInterval(int  arg__1)
+{
+QApplication::setKeyboardInputInterval(arg__1);
+}
+
+bool  PythonQtWrapper_QApplication::static_QApplication_isLeftToRight()
+{
+return QApplication::isLeftToRight();
+}
+
+QWidget*  PythonQtWrapper_QApplication::static_QApplication_activeWindow()
+{
+return QApplication::activeWindow();
+}
+
+bool  PythonQtWrapper_QApplication::event(QApplication* theWrappedObject, QEvent*  arg__1)
+{
+return  ((PythonQtPublicPromoter_QApplication*)theWrappedObject)->promoted_event(arg__1);
+}
+
+QClipboard*  PythonQtWrapper_QApplication::static_QApplication_clipboard()
+{
+return QApplication::clipboard();
+}
+
+QList<QWidget* >  PythonQtWrapper_QApplication::static_QApplication_allWidgets()
+{
+return QApplication::allWidgets();
+}
+
+void PythonQtWrapper_QApplication::static_QApplication_setWheelScrollLines(int  arg__1)
+{
+QApplication::setWheelScrollLines(arg__1);
+}
+
+QApplication::Type  PythonQtWrapper_QApplication::static_QApplication_type()
+{
+return QApplication::type();
+}
+
+int  PythonQtWrapper_QApplication::static_QApplication_cursorFlashTime()
+{
+return QApplication::cursorFlashTime();
+}
+
+QWidget*  PythonQtWrapper_QApplication::static_QApplication_focusWidget()
+{
+return QApplication::focusWidget();
+}
+
+void PythonQtWrapper_QApplication::static_QApplication_setStartDragDistance(int  l)
+{
+QApplication::setStartDragDistance(l);
+}
+
+QStyle*  PythonQtWrapper_QApplication::static_QApplication_setStyle(const QString&  arg__1)
+{
+return QApplication::setStyle(arg__1);
+}
+
+void PythonQtWrapper_QApplication::static_QApplication_setWindowIcon(const QIcon&  icon)
+{
+QApplication::setWindowIcon(icon);
+}
+
+Qt::LayoutDirection  PythonQtWrapper_QApplication::static_QApplication_keyboardInputDirection()
+{
+return QApplication::keyboardInputDirection();
+}
+
+void PythonQtWrapper_QApplication::static_QApplication_alert(QWidget*  widget, int  duration)
+{
+QApplication::alert(widget, duration);
+}
+
+void PythonQtWrapper_QApplication::static_QApplication_beep()
+{
+QApplication::beep();
+}
+
+QFont  PythonQtWrapper_QApplication::static_QApplication_font(const QWidget*  arg__1)
+{
+return QApplication::font(arg__1);
+}
+
+QWidget*  PythonQtWrapper_QApplication::static_QApplication_widgetAt(const QPoint&  p)
+{
+return QApplication::widgetAt(p);
+}
+
+QList<QWidget* >  PythonQtWrapper_QApplication::static_QApplication_topLevelWidgets()
+{
+return QApplication::topLevelWidgets();
+}
+
+void PythonQtWrapper_QApplication::static_QApplication_setGlobalStrut(const QSize&  arg__1)
+{
+QApplication::setGlobalStrut(arg__1);
+}
+
+bool  PythonQtWrapper_QApplication::static_QApplication_quitOnLastWindowClosed()
+{
+return QApplication::quitOnLastWindowClosed();
 }
 
 void PythonQtWrapper_QApplication::static_QApplication_setLayoutDirection(Qt::LayoutDirection  direction)
@@ -327,109 +482,9 @@ QCursor*  PythonQtWrapper_QApplication::static_QApplication_overrideCursor()
 return QApplication::overrideCursor();
 }
 
-void PythonQtWrapper_QApplication::static_QApplication_setCursorFlashTime(int  arg__1)
-{
-QApplication::setCursorFlashTime(arg__1);
-}
-
-QList<QWidget* >  PythonQtWrapper_QApplication::static_QApplication_allWidgets()
-{
-return QApplication::allWidgets();
-}
-
-Qt::LayoutDirection  PythonQtWrapper_QApplication::static_QApplication_layoutDirection()
-{
-return QApplication::layoutDirection();
-}
-
 Qt::KeyboardModifiers  PythonQtWrapper_QApplication::static_QApplication_keyboardModifiers()
 {
 return QApplication::keyboardModifiers();
-}
-
-void PythonQtWrapper_QApplication::static_QApplication_setQuitOnLastWindowClosed(bool  quit)
-{
-QApplication::setQuitOnLastWindowClosed(quit);
-}
-
-void PythonQtWrapper_QApplication::static_QApplication_alert(QWidget*  widget, int  duration)
-{
-QApplication::alert(widget, duration);
-}
-
-void PythonQtWrapper_QApplication::static_QApplication_setColorSpec(int  arg__1)
-{
-QApplication::setColorSpec(arg__1);
-}
-
-QWidget*  PythonQtWrapper_QApplication::static_QApplication_widgetAt(const QPoint&  p)
-{
-return QApplication::widgetAt(p);
-}
-
-bool  PythonQtWrapper_QApplication::static_QApplication_isLeftToRight()
-{
-return QApplication::isLeftToRight();
-}
-
-QApplication::Type  PythonQtWrapper_QApplication::static_QApplication_type()
-{
-return QApplication::type();
-}
-
-int  PythonQtWrapper_QApplication::static_QApplication_startDragTime()
-{
-return QApplication::startDragTime();
-}
-
-void PythonQtWrapper_QApplication::setInputContext(QApplication* theWrappedObject, QInputContext*  arg__1)
-{
- (*theWrappedObject).setInputContext(arg__1);
-}
-
-QFont  PythonQtWrapper_QApplication::static_QApplication_font()
-{
-return QApplication::font();
-}
-
-void PythonQtWrapper_QApplication::static_QApplication_setDoubleClickInterval(int  arg__1)
-{
-QApplication::setDoubleClickInterval(arg__1);
-}
-
-bool  PythonQtWrapper_QApplication::static_QApplication_isEffectEnabled(Qt::UIEffect  arg__1)
-{
-return QApplication::isEffectEnabled(arg__1);
-}
-
-QDesktopWidget*  PythonQtWrapper_QApplication::static_QApplication_desktop()
-{
-return QApplication::desktop();
-}
-
-int  PythonQtWrapper_QApplication::static_QApplication_keyboardInputInterval()
-{
-return QApplication::keyboardInputInterval();
-}
-
-QWidget*  PythonQtWrapper_QApplication::static_QApplication_focusWidget()
-{
-return QApplication::focusWidget();
-}
-
-bool  PythonQtWrapper_QApplication::notify(QApplication* theWrappedObject, QObject*  arg__1, QEvent*  arg__2)
-{
-return  (*theWrappedObject).notify(arg__1, arg__2);
-}
-
-void PythonQtWrapper_QApplication::static_QApplication_setOverrideCursor(const QCursor&  arg__1)
-{
-QApplication::setOverrideCursor(arg__1);
-}
-
-int  PythonQtWrapper_QApplication::static_QApplication_wheelScrollLines()
-{
-return QApplication::wheelScrollLines();
 }
 
 QPalette  PythonQtWrapper_QApplication::static_QApplication_palette(const QWidget*  arg__1)
@@ -437,84 +492,44 @@ QPalette  PythonQtWrapper_QApplication::static_QApplication_palette(const QWidge
 return QApplication::palette(arg__1);
 }
 
-void PythonQtWrapper_QApplication::static_QApplication_setStyle(QStyle*  arg__1)
-{
-QApplication::setStyle(arg__1);
-}
-
-bool  PythonQtWrapper_QApplication::isSessionRestored(QApplication* theWrappedObject) const
-{
-return  (*theWrappedObject).isSessionRestored();
-}
-
-void PythonQtWrapper_QApplication::static_QApplication_setStartDragDistance(int  l)
-{
-QApplication::setStartDragDistance(l);
-}
-
-void PythonQtWrapper_QApplication::static_QApplication_setStartDragTime(int  ms)
-{
-QApplication::setStartDragTime(ms);
-}
-
-bool  PythonQtWrapper_QApplication::static_QApplication_isRightToLeft()
-{
-return QApplication::isRightToLeft();
-}
-
-QString  PythonQtWrapper_QApplication::styleSheet(QApplication* theWrappedObject) const
-{
-return  (*theWrappedObject).styleSheet();
-}
-
-int  PythonQtWrapper_QApplication::static_QApplication_cursorFlashTime()
-{
-return QApplication::cursorFlashTime();
-}
-
-Qt::MouseButtons  PythonQtWrapper_QApplication::static_QApplication_mouseButtons()
-{
-return QApplication::mouseButtons();
-}
-
-void PythonQtWrapper_QApplication::static_QApplication_setFont(const QFont&  arg__1, const char*  className)
-{
-QApplication::setFont(arg__1, className);
-}
-
-QClipboard*  PythonQtWrapper_QApplication::static_QApplication_clipboard()
-{
-return QApplication::clipboard();
-}
-
-void PythonQtWrapper_QApplication::static_QApplication_setWheelScrollLines(int  arg__1)
-{
-QApplication::setWheelScrollLines(arg__1);
-}
-
-void PythonQtWrapper_QApplication::static_QApplication_restoreOverrideCursor()
-{
-QApplication::restoreOverrideCursor();
-}
-
 QStyle*  PythonQtWrapper_QApplication::static_QApplication_style()
 {
 return QApplication::style();
 }
 
-void PythonQtWrapper_QApplication::static_QApplication_setPalette(const QPalette&  arg__1, const char*  className)
+Qt::LayoutDirection  PythonQtWrapper_QApplication::static_QApplication_layoutDirection()
 {
-QApplication::setPalette(arg__1, className);
+return QApplication::layoutDirection();
 }
 
-QSize  PythonQtWrapper_QApplication::static_QApplication_globalStrut()
+void PythonQtWrapper_QApplication::static_QApplication_setQuitOnLastWindowClosed(bool  quit)
 {
-return QApplication::globalStrut();
+QApplication::setQuitOnLastWindowClosed(quit);
 }
 
-void PythonQtWrapper_QApplication::static_QApplication_setActiveWindow(QWidget*  act)
+QWidget*  PythonQtWrapper_QApplication::static_QApplication_topLevelAt(int  x, int  y)
 {
-QApplication::setActiveWindow(act);
+return QApplication::topLevelAt(x, y);
+}
+
+QPalette  PythonQtWrapper_QApplication::static_QApplication_palette()
+{
+return QApplication::palette();
+}
+
+int  PythonQtWrapper_QApplication::static_QApplication_startDragDistance()
+{
+return QApplication::startDragDistance();
+}
+
+QDesktopWidget*  PythonQtWrapper_QApplication::static_QApplication_desktop()
+{
+return QApplication::desktop();
+}
+
+void PythonQtWrapper_QApplication::static_QApplication_setStyle(QStyle*  arg__1)
+{
+QApplication::setStyle(arg__1);
 }
 
 void PythonQtWrapper_QApplication::static_QApplication_setDesktopSettingsAware(bool  arg__1)
@@ -522,33 +537,18 @@ void PythonQtWrapper_QApplication::static_QApplication_setDesktopSettingsAware(b
 QApplication::setDesktopSettingsAware(arg__1);
 }
 
+QWidget*  PythonQtWrapper_QApplication::static_QApplication_widgetAt(int  x, int  y)
+{
+return QApplication::widgetAt(x, y);
+}
+
+QIcon  PythonQtWrapper_QApplication::static_QApplication_windowIcon()
+{
+return QApplication::windowIcon();
+}
+
 int  PythonQtWrapper_QApplication::static_QApplication_colorSpec()
 {
 return QApplication::colorSpec();
-}
-
-Qt::LayoutDirection  PythonQtWrapper_QApplication::static_QApplication_keyboardInputDirection()
-{
-return QApplication::keyboardInputDirection();
-}
-
-QList<QWidget* >  PythonQtWrapper_QApplication::static_QApplication_topLevelWidgets()
-{
-return QApplication::topLevelWidgets();
-}
-
-QString  PythonQtWrapper_QApplication::sessionId(QApplication* theWrappedObject) const
-{
-return  (*theWrappedObject).sessionId();
-}
-
-int  PythonQtWrapper_QApplication::static_QApplication_exec()
-{
-return QApplication::exec();
-}
-
-QInputContext*  PythonQtWrapper_QApplication::inputContext(QApplication* theWrappedObject) const
-{
-return  (*theWrappedObject).inputContext();
 }
 

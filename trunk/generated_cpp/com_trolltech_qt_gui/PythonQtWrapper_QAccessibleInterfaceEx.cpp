@@ -448,6 +448,6 @@ return new PythonQtShell_QAccessibleInterfaceEx(); }
 
 QVariant  PythonQtWrapper_QAccessibleInterfaceEx::virtual_hook(QAccessibleInterfaceEx* theWrappedObject, const QVariant&  data)
 {
-return  (*theWrappedObject).virtual_hook(data);
+return  ((PythonQtPublicPromoter_QAccessibleInterfaceEx*)theWrappedObject)->promoted_virtual_hook(data);
 }
 

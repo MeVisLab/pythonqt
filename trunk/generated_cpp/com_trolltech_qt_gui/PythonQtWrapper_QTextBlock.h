@@ -21,20 +21,6 @@ public slots:
 QTextBlock* new_QTextBlock();
 QTextBlock* new_QTextBlock(const QTextBlock&  o);
 void delete_QTextBlock(QTextBlock* obj) { delete obj; } 
-   QTextBlock::iterator  begin(QTextBlock* theWrappedObject) const;
-   void clearLayout(QTextBlock* theWrappedObject);
-   void setUserState(QTextBlock* theWrappedObject, int  state);
-   QTextBlock::iterator  end(QTextBlock* theWrappedObject) const;
-   int  userState(QTextBlock* theWrappedObject) const;
-   const QTextDocument*  document(QTextBlock* theWrappedObject) const;
-   bool  isVisible(QTextBlock* theWrappedObject) const;
-   int  charFormatIndex(QTextBlock* theWrappedObject) const;
-   bool  contains(QTextBlock* theWrappedObject, int  position) const;
-   void setRevision(QTextBlock* theWrappedObject, int  rev);
-   void setVisible(QTextBlock* theWrappedObject, bool  visible);
-   int  length(QTextBlock* theWrappedObject) const;
-   QTextList*  textList(QTextBlock* theWrappedObject) const;
-   QTextCharFormat  charFormat(QTextBlock* theWrappedObject) const;
    bool  isValid(QTextBlock* theWrappedObject) const;
    bool  operator_less(QTextBlock* theWrappedObject, const QTextBlock&  o) const;
    QTextBlock  previous(QTextBlock* theWrappedObject) const;
@@ -49,6 +35,20 @@ void delete_QTextBlock(QTextBlock* obj) { delete obj; }
    int  position(QTextBlock* theWrappedObject) const;
    QString  text(QTextBlock* theWrappedObject) const;
    QTextBlockFormat  blockFormat(QTextBlock* theWrappedObject) const;
+   QTextBlock::iterator  begin(QTextBlock* theWrappedObject) const;
+   void clearLayout(QTextBlock* theWrappedObject);
+   void setUserState(QTextBlock* theWrappedObject, int  state);
+   QTextBlock::iterator  end(QTextBlock* theWrappedObject) const;
+   int  userState(QTextBlock* theWrappedObject) const;
+   const QTextDocument*  document(QTextBlock* theWrappedObject) const;
+   bool  isVisible(QTextBlock* theWrappedObject) const;
+   int  charFormatIndex(QTextBlock* theWrappedObject) const;
+   bool  contains(QTextBlock* theWrappedObject, int  position) const;
+   void setRevision(QTextBlock* theWrappedObject, int  rev);
+   void setVisible(QTextBlock* theWrappedObject, bool  visible);
+   int  length(QTextBlock* theWrappedObject) const;
+   QTextList*  textList(QTextBlock* theWrappedObject) const;
+   QTextCharFormat  charFormat(QTextBlock* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QTEXTBLOCK_H

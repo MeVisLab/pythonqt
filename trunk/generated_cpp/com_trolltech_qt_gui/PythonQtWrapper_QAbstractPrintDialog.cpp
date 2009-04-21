@@ -856,73 +856,73 @@ QAbstractPrintDialog* PythonQtWrapper_QAbstractPrintDialog::new_QAbstractPrintDi
 { 
 return new PythonQtShell_QAbstractPrintDialog(printer, parent); }
 
-int  PythonQtWrapper_QAbstractPrintDialog::maxPage(QAbstractPrintDialog* theWrappedObject) const
+void PythonQtWrapper_QAbstractPrintDialog::setPrintRange(QAbstractPrintDialog* theWrappedObject, QAbstractPrintDialog::PrintRange  range)
 {
-return  (*theWrappedObject).maxPage();
-}
-
-void PythonQtWrapper_QAbstractPrintDialog::setFromTo(QAbstractPrintDialog* theWrappedObject, int  fromPage, int  toPage)
-{
- (*theWrappedObject).setFromTo(fromPage, toPage);
-}
-
-QAbstractPrintDialog::PrintRange  PythonQtWrapper_QAbstractPrintDialog::printRange(QAbstractPrintDialog* theWrappedObject) const
-{
-return  (*theWrappedObject).printRange();
+ theWrappedObject->setPrintRange(range);
 }
 
 QAbstractPrintDialog::PrintDialogOptions  PythonQtWrapper_QAbstractPrintDialog::enabledOptions(QAbstractPrintDialog* theWrappedObject) const
 {
-return  (*theWrappedObject).enabledOptions();
-}
-
-int  PythonQtWrapper_QAbstractPrintDialog::fromPage(QAbstractPrintDialog* theWrappedObject) const
-{
-return  (*theWrappedObject).fromPage();
-}
-
-QPrinter*  PythonQtWrapper_QAbstractPrintDialog::printer(QAbstractPrintDialog* theWrappedObject) const
-{
-return  (*theWrappedObject).printer();
-}
-
-int  PythonQtWrapper_QAbstractPrintDialog::toPage(QAbstractPrintDialog* theWrappedObject) const
-{
-return  (*theWrappedObject).toPage();
-}
-
-void PythonQtWrapper_QAbstractPrintDialog::addEnabledOption(QAbstractPrintDialog* theWrappedObject, QAbstractPrintDialog::PrintDialogOption  option)
-{
- (*theWrappedObject).addEnabledOption(option);
-}
-
-int  PythonQtWrapper_QAbstractPrintDialog::minPage(QAbstractPrintDialog* theWrappedObject) const
-{
-return  (*theWrappedObject).minPage();
-}
-
-void PythonQtWrapper_QAbstractPrintDialog::setEnabledOptions(QAbstractPrintDialog* theWrappedObject, QAbstractPrintDialog::PrintDialogOptions  options)
-{
- (*theWrappedObject).setEnabledOptions(options);
-}
-
-void PythonQtWrapper_QAbstractPrintDialog::setMinMax(QAbstractPrintDialog* theWrappedObject, int  min, int  max)
-{
- (*theWrappedObject).setMinMax(min, max);
-}
-
-void PythonQtWrapper_QAbstractPrintDialog::setOptionTabs(QAbstractPrintDialog* theWrappedObject, const QList<QWidget* >&  tabs)
-{
- (*theWrappedObject).setOptionTabs(tabs);
-}
-
-void PythonQtWrapper_QAbstractPrintDialog::setPrintRange(QAbstractPrintDialog* theWrappedObject, QAbstractPrintDialog::PrintRange  range)
-{
- (*theWrappedObject).setPrintRange(range);
+return  theWrappedObject->enabledOptions();
 }
 
 bool  PythonQtWrapper_QAbstractPrintDialog::isOptionEnabled(QAbstractPrintDialog* theWrappedObject, QAbstractPrintDialog::PrintDialogOption  option) const
 {
-return  (*theWrappedObject).isOptionEnabled(option);
+return  theWrappedObject->isOptionEnabled(option);
+}
+
+int  PythonQtWrapper_QAbstractPrintDialog::maxPage(QAbstractPrintDialog* theWrappedObject) const
+{
+return  theWrappedObject->maxPage();
+}
+
+QAbstractPrintDialog::PrintRange  PythonQtWrapper_QAbstractPrintDialog::printRange(QAbstractPrintDialog* theWrappedObject) const
+{
+return  theWrappedObject->printRange();
+}
+
+int  PythonQtWrapper_QAbstractPrintDialog::fromPage(QAbstractPrintDialog* theWrappedObject) const
+{
+return  theWrappedObject->fromPage();
+}
+
+void PythonQtWrapper_QAbstractPrintDialog::setFromTo(QAbstractPrintDialog* theWrappedObject, int  fromPage, int  toPage)
+{
+ theWrappedObject->setFromTo(fromPage, toPage);
+}
+
+void PythonQtWrapper_QAbstractPrintDialog::addEnabledOption(QAbstractPrintDialog* theWrappedObject, QAbstractPrintDialog::PrintDialogOption  option)
+{
+ theWrappedObject->addEnabledOption(option);
+}
+
+int  PythonQtWrapper_QAbstractPrintDialog::minPage(QAbstractPrintDialog* theWrappedObject) const
+{
+return  theWrappedObject->minPage();
+}
+
+void PythonQtWrapper_QAbstractPrintDialog::setEnabledOptions(QAbstractPrintDialog* theWrappedObject, QAbstractPrintDialog::PrintDialogOptions  options)
+{
+ theWrappedObject->setEnabledOptions(options);
+}
+
+void PythonQtWrapper_QAbstractPrintDialog::setMinMax(QAbstractPrintDialog* theWrappedObject, int  min, int  max)
+{
+ theWrappedObject->setMinMax(min, max);
+}
+
+QPrinter*  PythonQtWrapper_QAbstractPrintDialog::printer(QAbstractPrintDialog* theWrappedObject) const
+{
+return  theWrappedObject->printer();
+}
+
+int  PythonQtWrapper_QAbstractPrintDialog::toPage(QAbstractPrintDialog* theWrappedObject) const
+{
+return  theWrappedObject->toPage();
+}
+
+void PythonQtWrapper_QAbstractPrintDialog::setOptionTabs(QAbstractPrintDialog* theWrappedObject, const QList<QWidget* >&  tabs)
+{
+ theWrappedObject->setOptionTabs(tabs);
 }
 

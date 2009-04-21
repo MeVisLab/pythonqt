@@ -20,19 +20,19 @@ QTextInlineObject* a = new QTextInlineObject();
 *((QTextInlineObject*)a) = other;
 return a; }
 void delete_QTextInlineObject(QTextInlineObject* obj) { delete obj; } 
-   qreal  width(QTextInlineObject* theWrappedObject) const;
-   QRectF  rect(QTextInlineObject* theWrappedObject) const;
-   qreal  descent(QTextInlineObject* theWrappedObject) const;
-   int  formatIndex(QTextInlineObject* theWrappedObject) const;
-   QTextFormat  format(QTextInlineObject* theWrappedObject) const;
-   Qt::LayoutDirection  textDirection(QTextInlineObject* theWrappedObject) const;
    bool  isValid(QTextInlineObject* theWrappedObject) const;
+   qreal  ascent(QTextInlineObject* theWrappedObject) const;
+   void setAscent(QTextInlineObject* theWrappedObject, qreal  a);
+   Qt::LayoutDirection  textDirection(QTextInlineObject* theWrappedObject) const;
+   int  formatIndex(QTextInlineObject* theWrappedObject) const;
+   void setDescent(QTextInlineObject* theWrappedObject, qreal  d);
+   qreal  width(QTextInlineObject* theWrappedObject) const;
+   qreal  descent(QTextInlineObject* theWrappedObject) const;
+   QTextFormat  format(QTextInlineObject* theWrappedObject) const;
    qreal  height(QTextInlineObject* theWrappedObject) const;
    void setWidth(QTextInlineObject* theWrappedObject, qreal  w);
-   void setAscent(QTextInlineObject* theWrappedObject, qreal  a);
-   qreal  ascent(QTextInlineObject* theWrappedObject) const;
-   void setDescent(QTextInlineObject* theWrappedObject, qreal  d);
    int  textPosition(QTextInlineObject* theWrappedObject) const;
+   QRectF  rect(QTextInlineObject* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QTEXTINLINEOBJECT_H

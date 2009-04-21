@@ -29,7 +29,7 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QSocketNotifier : public QSocketNotifier
 { public:
-inline bool  event(QEvent*  arg__1) { return QSocketNotifier::event(arg__1); }
+inline bool  promoted_event(QEvent*  arg__1) { return QSocketNotifier::event(arg__1); }
 };
 
 class PythonQtWrapper_QSocketNotifier : public QObject
@@ -41,10 +41,10 @@ enum Type{
 public slots:
 QSocketNotifier* new_QSocketNotifier(int  socket, QSocketNotifier::Type  arg__2, QObject*  parent = 0);
 void delete_QSocketNotifier(QSocketNotifier* obj) { delete obj; } 
-   bool  event(QSocketNotifier* theWrappedObject, QEvent*  arg__1);
-   int  socket(QSocketNotifier* theWrappedObject) const;
    bool  isEnabled(QSocketNotifier* theWrappedObject) const;
    QSocketNotifier::Type  type(QSocketNotifier* theWrappedObject) const;
+   bool  event(QSocketNotifier* theWrappedObject, QEvent*  arg__1);
+   int  socket(QSocketNotifier* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QSOCKETNOTIFIER_H

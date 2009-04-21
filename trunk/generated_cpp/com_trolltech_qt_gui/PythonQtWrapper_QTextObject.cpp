@@ -118,21 +118,21 @@ if (_wrapper) {
 }
 int  PythonQtWrapper_QTextObject::objectIndex(QTextObject* theWrappedObject) const
 {
-return  (*theWrappedObject).objectIndex();
+return  theWrappedObject->objectIndex();
 }
 
 QTextDocument*  PythonQtWrapper_QTextObject::document(QTextObject* theWrappedObject) const
 {
-return  (*theWrappedObject).document();
+return  theWrappedObject->document();
 }
 
 QTextFormat  PythonQtWrapper_QTextObject::format(QTextObject* theWrappedObject) const
 {
-return  (*theWrappedObject).format();
+return  theWrappedObject->format();
 }
 
 int  PythonQtWrapper_QTextObject::formatIndex(QTextObject* theWrappedObject) const
 {
-return  (*theWrappedObject).formatIndex();
+return  theWrappedObject->formatIndex();
 }
 

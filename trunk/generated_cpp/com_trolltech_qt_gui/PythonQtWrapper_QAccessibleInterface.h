@@ -42,8 +42,8 @@ public:
 public slots:
 QAccessibleInterface* new_QAccessibleInterface();
 void delete_QAccessibleInterface(QAccessibleInterface* obj) { delete obj; } 
-   QVariant  invokeMethod(QAccessibleInterface* theWrappedObject, QAccessible::Method  method, int  child = 0, const QList<QVariant >&  params = QVariantList());
    QSet<QAccessible::Method >  supportedMethods(QAccessibleInterface* theWrappedObject);
+   QVariant  invokeMethod(QAccessibleInterface* theWrappedObject, QAccessible::Method  method, int  child = 0, const QList<QVariant >&  params = QVariantList());
 };
 
 #endif // PYTHONQTWRAPPER_QACCESSIBLEINTERFACE_H

@@ -782,183 +782,183 @@ QLabel* PythonQtWrapper_QLabel::new_QLabel(const QString&  text, QWidget*  paren
 { 
 return new PythonQtShell_QLabel(text, parent, f); }
 
-void PythonQtWrapper_QLabel::contextMenuEvent(QLabel* theWrappedObject, QContextMenuEvent*  ev)
-{
- (*((PythonQtPublicPromoter_QLabel*)theWrappedObject)).contextMenuEvent(ev);
-}
-
-const QPicture*  PythonQtWrapper_QLabel::picture(QLabel* theWrappedObject) const
-{
-return  (*theWrappedObject).picture();
-}
-
-void PythonQtWrapper_QLabel::setBuddy(QLabel* theWrappedObject, QWidget*  arg__1)
-{
- (*theWrappedObject).setBuddy(arg__1);
-}
-
-bool  PythonQtWrapper_QLabel::wordWrap(QLabel* theWrappedObject) const
-{
-return  (*theWrappedObject).wordWrap();
-}
-
-Qt::TextFormat  PythonQtWrapper_QLabel::textFormat(QLabel* theWrappedObject) const
-{
-return  (*theWrappedObject).textFormat();
-}
-
-Qt::TextInteractionFlags  PythonQtWrapper_QLabel::textInteractionFlags(QLabel* theWrappedObject) const
-{
-return  (*theWrappedObject).textInteractionFlags();
-}
-
-void PythonQtWrapper_QLabel::setTextFormat(QLabel* theWrappedObject, Qt::TextFormat  arg__1)
-{
- (*theWrappedObject).setTextFormat(arg__1);
-}
-
-void PythonQtWrapper_QLabel::mouseMoveEvent(QLabel* theWrappedObject, QMouseEvent*  ev)
-{
- (*((PythonQtPublicPromoter_QLabel*)theWrappedObject)).mouseMoveEvent(ev);
-}
-
-QWidget*  PythonQtWrapper_QLabel::buddy(QLabel* theWrappedObject) const
-{
-return  (*theWrappedObject).buddy();
-}
-
-bool  PythonQtWrapper_QLabel::hasScaledContents(QLabel* theWrappedObject) const
-{
-return  (*theWrappedObject).hasScaledContents();
-}
-
-void PythonQtWrapper_QLabel::setWordWrap(QLabel* theWrappedObject, bool  on)
-{
- (*theWrappedObject).setWordWrap(on);
-}
-
 void PythonQtWrapper_QLabel::focusInEvent(QLabel* theWrappedObject, QFocusEvent*  ev)
 {
- (*((PythonQtPublicPromoter_QLabel*)theWrappedObject)).focusInEvent(ev);
-}
-
-void PythonQtWrapper_QLabel::keyPressEvent(QLabel* theWrappedObject, QKeyEvent*  ev)
-{
- (*((PythonQtPublicPromoter_QLabel*)theWrappedObject)).keyPressEvent(ev);
-}
-
-void PythonQtWrapper_QLabel::focusOutEvent(QLabel* theWrappedObject, QFocusEvent*  ev)
-{
- (*((PythonQtPublicPromoter_QLabel*)theWrappedObject)).focusOutEvent(ev);
-}
-
-int  PythonQtWrapper_QLabel::indent(QLabel* theWrappedObject) const
-{
-return  (*theWrappedObject).indent();
-}
-
-void PythonQtWrapper_QLabel::changeEvent(QLabel* theWrappedObject, QEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QLabel*)theWrappedObject)).changeEvent(arg__1);
-}
-
-bool  PythonQtWrapper_QLabel::event(QLabel* theWrappedObject, QEvent*  e)
-{
-return  (*((PythonQtPublicPromoter_QLabel*)theWrappedObject)).event(e);
-}
-
-void PythonQtWrapper_QLabel::mouseReleaseEvent(QLabel* theWrappedObject, QMouseEvent*  ev)
-{
- (*((PythonQtPublicPromoter_QLabel*)theWrappedObject)).mouseReleaseEvent(ev);
-}
-
-QString  PythonQtWrapper_QLabel::text(QLabel* theWrappedObject) const
-{
-return  (*theWrappedObject).text();
-}
-
-void PythonQtWrapper_QLabel::mousePressEvent(QLabel* theWrappedObject, QMouseEvent*  ev)
-{
- (*((PythonQtPublicPromoter_QLabel*)theWrappedObject)).mousePressEvent(ev);
-}
-
-void PythonQtWrapper_QLabel::setScaledContents(QLabel* theWrappedObject, bool  arg__1)
-{
- (*theWrappedObject).setScaledContents(arg__1);
-}
-
-void PythonQtWrapper_QLabel::setAlignment(QLabel* theWrappedObject, Qt::Alignment  arg__1)
-{
- (*theWrappedObject).setAlignment(arg__1);
-}
-
-QSize  PythonQtWrapper_QLabel::minimumSizeHint(QLabel* theWrappedObject) const
-{
-return  (*theWrappedObject).minimumSizeHint();
+ ((PythonQtPublicPromoter_QLabel*)theWrappedObject)->promoted_focusInEvent(ev);
 }
 
 bool  PythonQtWrapper_QLabel::focusNextPrevChild(QLabel* theWrappedObject, bool  next)
 {
-return  (*((PythonQtPublicPromoter_QLabel*)theWrappedObject)).focusNextPrevChild(next);
+return  ((PythonQtPublicPromoter_QLabel*)theWrappedObject)->promoted_focusNextPrevChild(next);
 }
 
-void PythonQtWrapper_QLabel::setTextInteractionFlags(QLabel* theWrappedObject, Qt::TextInteractionFlags  flags)
+int  PythonQtWrapper_QLabel::indent(QLabel* theWrappedObject) const
 {
- (*theWrappedObject).setTextInteractionFlags(flags);
+return  theWrappedObject->indent();
 }
 
-QSize  PythonQtWrapper_QLabel::sizeHint(QLabel* theWrappedObject) const
+void PythonQtWrapper_QLabel::changeEvent(QLabel* theWrappedObject, QEvent*  arg__1)
 {
-return  (*theWrappedObject).sizeHint();
+ ((PythonQtPublicPromoter_QLabel*)theWrappedObject)->promoted_changeEvent(arg__1);
 }
 
-void PythonQtWrapper_QLabel::setMargin(QLabel* theWrappedObject, int  arg__1)
+void PythonQtWrapper_QLabel::mouseReleaseEvent(QLabel* theWrappedObject, QMouseEvent*  ev)
 {
- (*theWrappedObject).setMargin(arg__1);
+ ((PythonQtPublicPromoter_QLabel*)theWrappedObject)->promoted_mouseReleaseEvent(ev);
 }
 
 int  PythonQtWrapper_QLabel::margin(QLabel* theWrappedObject) const
 {
-return  (*theWrappedObject).margin();
+return  theWrappedObject->margin();
 }
 
-const QPixmap*  PythonQtWrapper_QLabel::pixmap(QLabel* theWrappedObject) const
+bool  PythonQtWrapper_QLabel::event(QLabel* theWrappedObject, QEvent*  e)
 {
-return  (*theWrappedObject).pixmap();
-}
-
-void PythonQtWrapper_QLabel::paintEvent(QLabel* theWrappedObject, QPaintEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QLabel*)theWrappedObject)).paintEvent(arg__1);
+return  ((PythonQtPublicPromoter_QLabel*)theWrappedObject)->promoted_event(e);
 }
 
 bool  PythonQtWrapper_QLabel::openExternalLinks(QLabel* theWrappedObject) const
 {
-return  (*theWrappedObject).openExternalLinks();
+return  theWrappedObject->openExternalLinks();
 }
 
-void PythonQtWrapper_QLabel::setOpenExternalLinks(QLabel* theWrappedObject, bool  open)
+void PythonQtWrapper_QLabel::setScaledContents(QLabel* theWrappedObject, bool  arg__1)
 {
- (*theWrappedObject).setOpenExternalLinks(open);
+ theWrappedObject->setScaledContents(arg__1);
+}
+
+void PythonQtWrapper_QLabel::setAlignment(QLabel* theWrappedObject, Qt::Alignment  arg__1)
+{
+ theWrappedObject->setAlignment(arg__1);
+}
+
+QSize  PythonQtWrapper_QLabel::minimumSizeHint(QLabel* theWrappedObject) const
+{
+return  theWrappedObject->minimumSizeHint();
 }
 
 void PythonQtWrapper_QLabel::setIndent(QLabel* theWrappedObject, int  arg__1)
 {
- (*theWrappedObject).setIndent(arg__1);
+ theWrappedObject->setIndent(arg__1);
 }
 
-QMovie*  PythonQtWrapper_QLabel::movie(QLabel* theWrappedObject) const
+void PythonQtWrapper_QLabel::setTextInteractionFlags(QLabel* theWrappedObject, Qt::TextInteractionFlags  flags)
 {
-return  (*theWrappedObject).movie();
+ theWrappedObject->setTextInteractionFlags(flags);
 }
 
-int  PythonQtWrapper_QLabel::heightForWidth(QLabel* theWrappedObject, int  arg__1) const
+QSize  PythonQtWrapper_QLabel::sizeHint(QLabel* theWrappedObject) const
 {
-return  (*theWrappedObject).heightForWidth(arg__1);
+return  theWrappedObject->sizeHint();
+}
+
+QString  PythonQtWrapper_QLabel::text(QLabel* theWrappedObject) const
+{
+return  theWrappedObject->text();
+}
+
+void PythonQtWrapper_QLabel::setMargin(QLabel* theWrappedObject, int  arg__1)
+{
+ theWrappedObject->setMargin(arg__1);
 }
 
 Qt::Alignment  PythonQtWrapper_QLabel::alignment(QLabel* theWrappedObject) const
 {
-return  (*theWrappedObject).alignment();
+return  theWrappedObject->alignment();
+}
+
+const QPixmap*  PythonQtWrapper_QLabel::pixmap(QLabel* theWrappedObject) const
+{
+return  theWrappedObject->pixmap();
+}
+
+void PythonQtWrapper_QLabel::paintEvent(QLabel* theWrappedObject, QPaintEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QLabel*)theWrappedObject)->promoted_paintEvent(arg__1);
+}
+
+void PythonQtWrapper_QLabel::contextMenuEvent(QLabel* theWrappedObject, QContextMenuEvent*  ev)
+{
+ ((PythonQtPublicPromoter_QLabel*)theWrappedObject)->promoted_contextMenuEvent(ev);
+}
+
+bool  PythonQtWrapper_QLabel::wordWrap(QLabel* theWrappedObject) const
+{
+return  theWrappedObject->wordWrap();
+}
+
+Qt::TextFormat  PythonQtWrapper_QLabel::textFormat(QLabel* theWrappedObject) const
+{
+return  theWrappedObject->textFormat();
+}
+
+void PythonQtWrapper_QLabel::setOpenExternalLinks(QLabel* theWrappedObject, bool  open)
+{
+ theWrappedObject->setOpenExternalLinks(open);
+}
+
+QMovie*  PythonQtWrapper_QLabel::movie(QLabel* theWrappedObject) const
+{
+return  theWrappedObject->movie();
+}
+
+int  PythonQtWrapper_QLabel::heightForWidth(QLabel* theWrappedObject, int  arg__1) const
+{
+return  ((PythonQtPublicPromoter_QLabel*)theWrappedObject)->promoted_heightForWidth(arg__1);
+}
+
+void PythonQtWrapper_QLabel::mousePressEvent(QLabel* theWrappedObject, QMouseEvent*  ev)
+{
+ ((PythonQtPublicPromoter_QLabel*)theWrappedObject)->promoted_mousePressEvent(ev);
+}
+
+const QPicture*  PythonQtWrapper_QLabel::picture(QLabel* theWrappedObject) const
+{
+return  theWrappedObject->picture();
+}
+
+void PythonQtWrapper_QLabel::focusOutEvent(QLabel* theWrappedObject, QFocusEvent*  ev)
+{
+ ((PythonQtPublicPromoter_QLabel*)theWrappedObject)->promoted_focusOutEvent(ev);
+}
+
+void PythonQtWrapper_QLabel::keyPressEvent(QLabel* theWrappedObject, QKeyEvent*  ev)
+{
+ ((PythonQtPublicPromoter_QLabel*)theWrappedObject)->promoted_keyPressEvent(ev);
+}
+
+void PythonQtWrapper_QLabel::setTextFormat(QLabel* theWrappedObject, Qt::TextFormat  arg__1)
+{
+ theWrappedObject->setTextFormat(arg__1);
+}
+
+void PythonQtWrapper_QLabel::mouseMoveEvent(QLabel* theWrappedObject, QMouseEvent*  ev)
+{
+ ((PythonQtPublicPromoter_QLabel*)theWrappedObject)->promoted_mouseMoveEvent(ev);
+}
+
+QWidget*  PythonQtWrapper_QLabel::buddy(QLabel* theWrappedObject) const
+{
+return  theWrappedObject->buddy();
+}
+
+Qt::TextInteractionFlags  PythonQtWrapper_QLabel::textInteractionFlags(QLabel* theWrappedObject) const
+{
+return  theWrappedObject->textInteractionFlags();
+}
+
+void PythonQtWrapper_QLabel::setWordWrap(QLabel* theWrappedObject, bool  on)
+{
+ theWrappedObject->setWordWrap(on);
+}
+
+void PythonQtWrapper_QLabel::setBuddy(QLabel* theWrappedObject, QWidget*  arg__1)
+{
+ theWrappedObject->setBuddy(arg__1);
+}
+
+bool  PythonQtWrapper_QLabel::hasScaledContents(QLabel* theWrappedObject) const
+{
+return  theWrappedObject->hasScaledContents();
 }
 

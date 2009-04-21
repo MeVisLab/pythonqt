@@ -17,14 +17,14 @@ public slots:
 QDomCharacterData* new_QDomCharacterData();
 QDomCharacterData* new_QDomCharacterData(const QDomCharacterData&  x);
 void delete_QDomCharacterData(QDomCharacterData* obj) { delete obj; } 
-   QString  data(QDomCharacterData* theWrappedObject) const;
+   void insertData(QDomCharacterData* theWrappedObject, unsigned long  offset, const QString&  arg);
    void deleteData(QDomCharacterData* theWrappedObject, unsigned long  offset, unsigned long  count);
+   void replaceData(QDomCharacterData* theWrappedObject, unsigned long  offset, unsigned long  count, const QString&  arg);
    void appendData(QDomCharacterData* theWrappedObject, const QString&  arg);
    void setData(QDomCharacterData* theWrappedObject, const QString&  arg__1);
    uint  length(QDomCharacterData* theWrappedObject) const;
-   void insertData(QDomCharacterData* theWrappedObject, unsigned long  offset, const QString&  arg);
    QString  substringData(QDomCharacterData* theWrappedObject, unsigned long  offset, unsigned long  count);
-   void replaceData(QDomCharacterData* theWrappedObject, unsigned long  offset, unsigned long  count, const QString&  arg);
+   QString  data(QDomCharacterData* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QDOMCHARACTERDATA_H

@@ -37,10 +37,10 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QWidgetAction : public QWidgetAction
 { public:
-inline void deleteWidget(QWidget*  widget) { QWidgetAction::deleteWidget(widget); }
-inline QWidget*  createWidget(QWidget*  parent) { return QWidgetAction::createWidget(parent); }
-inline bool  eventFilter(QObject*  arg__1, QEvent*  arg__2) { return QWidgetAction::eventFilter(arg__1, arg__2); }
-inline bool  event(QEvent*  arg__1) { return QWidgetAction::event(arg__1); }
+inline bool  promoted_event(QEvent*  arg__1) { return QWidgetAction::event(arg__1); }
+inline void promoted_deleteWidget(QWidget*  widget) { QWidgetAction::deleteWidget(widget); }
+inline QWidget*  promoted_createWidget(QWidget*  parent) { return QWidgetAction::createWidget(parent); }
+inline bool  promoted_eventFilter(QObject*  arg__1, QEvent*  arg__2) { return QWidgetAction::eventFilter(arg__1, arg__2); }
 };
 
 class PythonQtWrapper_QWidgetAction : public QObject
@@ -49,14 +49,14 @@ public:
 public slots:
 QWidgetAction* new_QWidgetAction(QObject*  parent);
 void delete_QWidgetAction(QWidgetAction* obj) { delete obj; } 
-   void releaseWidget(QWidgetAction* theWrappedObject, QWidget*  widget);
+   bool  event(QWidgetAction* theWrappedObject, QEvent*  arg__1);
+   void setDefaultWidget(QWidgetAction* theWrappedObject, QWidget*  w);
+   QWidget*  requestWidget(QWidgetAction* theWrappedObject, QWidget*  parent);
    void deleteWidget(QWidgetAction* theWrappedObject, QWidget*  widget);
+   void releaseWidget(QWidgetAction* theWrappedObject, QWidget*  widget);
    QWidget*  defaultWidget(QWidgetAction* theWrappedObject) const;
    QWidget*  createWidget(QWidgetAction* theWrappedObject, QWidget*  parent);
    bool  eventFilter(QWidgetAction* theWrappedObject, QObject*  arg__1, QEvent*  arg__2);
-   bool  event(QWidgetAction* theWrappedObject, QEvent*  arg__1);
-   QWidget*  requestWidget(QWidgetAction* theWrappedObject, QWidget*  parent);
-   void setDefaultWidget(QWidgetAction* theWrappedObject, QWidget*  w);
 };
 
 #endif // PYTHONQTWRAPPER_QWIDGETACTION_H

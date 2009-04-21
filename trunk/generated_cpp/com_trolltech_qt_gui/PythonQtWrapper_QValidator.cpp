@@ -165,16 +165,16 @@ return new PythonQtShell_QValidator(parent); }
 
 void PythonQtWrapper_QValidator::fixup(QValidator* theWrappedObject, QString&  arg__1) const
 {
- (*theWrappedObject).fixup(arg__1);
-}
-
-QLocale  PythonQtWrapper_QValidator::locale(QValidator* theWrappedObject) const
-{
-return  (*theWrappedObject).locale();
+ ((PythonQtPublicPromoter_QValidator*)theWrappedObject)->promoted_fixup(arg__1);
 }
 
 void PythonQtWrapper_QValidator::setLocale(QValidator* theWrappedObject, const QLocale&  locale)
 {
- (*theWrappedObject).setLocale(locale);
+ theWrappedObject->setLocale(locale);
+}
+
+QLocale  PythonQtWrapper_QValidator::locale(QValidator* theWrappedObject) const
+{
+return  theWrappedObject->locale();
 }
 

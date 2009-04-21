@@ -11,6 +11,16 @@ QDesktopServices* PythonQtWrapper_QDesktopServices::new_QDesktopServices()
 { 
 return new PythonQtShell_QDesktopServices(); }
 
+QString  PythonQtWrapper_QDesktopServices::static_QDesktopServices_storageLocation(QDesktopServices::StandardLocation  type)
+{
+return QDesktopServices::storageLocation(type);
+}
+
+void PythonQtWrapper_QDesktopServices::static_QDesktopServices_unsetUrlHandler(const QString&  scheme)
+{
+QDesktopServices::unsetUrlHandler(scheme);
+}
+
 QString  PythonQtWrapper_QDesktopServices::static_QDesktopServices_displayName(QDesktopServices::StandardLocation  type)
 {
 return QDesktopServices::displayName(type);
@@ -21,18 +31,8 @@ void PythonQtWrapper_QDesktopServices::static_QDesktopServices_setUrlHandler(con
 QDesktopServices::setUrlHandler(scheme, receiver, method);
 }
 
-void PythonQtWrapper_QDesktopServices::static_QDesktopServices_unsetUrlHandler(const QString&  scheme)
-{
-QDesktopServices::unsetUrlHandler(scheme);
-}
-
 bool  PythonQtWrapper_QDesktopServices::static_QDesktopServices_openUrl(const QUrl&  url)
 {
 return QDesktopServices::openUrl(url);
-}
-
-QString  PythonQtWrapper_QDesktopServices::static_QDesktopServices_storageLocation(QDesktopServices::StandardLocation  type)
-{
-return QDesktopServices::storageLocation(type);
 }
 

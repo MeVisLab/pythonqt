@@ -33,6 +33,12 @@ virtual void timerEvent(QTimerEvent*  arg__1);
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QWebPluginFactory : public QWebPluginFactory
+{ public:
+inline bool  promoted_supportsExtension(QWebPluginFactory::Extension  extension) const { return QWebPluginFactory::supportsExtension(extension); }
+inline void promoted_refreshPlugins() { QWebPluginFactory::refreshPlugins(); }
+};
+
 class PythonQtWrapper_QWebPluginFactory : public QObject
 { Q_OBJECT
 public:

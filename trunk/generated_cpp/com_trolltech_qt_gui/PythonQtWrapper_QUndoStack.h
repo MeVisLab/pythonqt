@@ -34,25 +34,25 @@ public:
 public slots:
 QUndoStack* new_QUndoStack(QObject*  parent = 0);
 void delete_QUndoStack(QUndoStack* obj) { delete obj; } 
+   bool  canUndo(QUndoStack* theWrappedObject) const;
    QString  redoText(QUndoStack* theWrappedObject) const;
-   int  cleanIndex(QUndoStack* theWrappedObject) const;
    QAction*  createRedoAction(QUndoStack* theWrappedObject, QObject*  parent, const QString&  prefix = QString()) const;
+   void endMacro(QUndoStack* theWrappedObject);
+   QString  undoText(QUndoStack* theWrappedObject) const;
+   QString  text(QUndoStack* theWrappedObject, int  idx) const;
+   QAction*  createUndoAction(QUndoStack* theWrappedObject, QObject*  parent, const QString&  prefix = QString()) const;
+   bool  isActive(QUndoStack* theWrappedObject) const;
+   int  index(QUndoStack* theWrappedObject) const;
+   void beginMacro(QUndoStack* theWrappedObject, const QString&  text);
+   const QUndoCommand*  command(QUndoStack* theWrappedObject, int  index) const;
+   bool  canRedo(QUndoStack* theWrappedObject) const;
+   void push(QUndoStack* theWrappedObject, QUndoCommand*  cmd);
+   int  count(QUndoStack* theWrappedObject) const;
+   int  cleanIndex(QUndoStack* theWrappedObject) const;
+   void clear(QUndoStack* theWrappedObject);
    int  undoLimit(QUndoStack* theWrappedObject) const;
    bool  isClean(QUndoStack* theWrappedObject) const;
    void setUndoLimit(QUndoStack* theWrappedObject, int  limit);
-   bool  canUndo(QUndoStack* theWrappedObject) const;
-   void push(QUndoStack* theWrappedObject, QUndoCommand*  cmd);
-   void endMacro(QUndoStack* theWrappedObject);
-   void clear(QUndoStack* theWrappedObject);
-   bool  isActive(QUndoStack* theWrappedObject) const;
-   const QUndoCommand*  command(QUndoStack* theWrappedObject, int  index) const;
-   QString  text(QUndoStack* theWrappedObject, int  idx) const;
-   bool  canRedo(QUndoStack* theWrappedObject) const;
-   int  index(QUndoStack* theWrappedObject) const;
-   int  count(QUndoStack* theWrappedObject) const;
-   QString  undoText(QUndoStack* theWrappedObject) const;
-   QAction*  createUndoAction(QUndoStack* theWrappedObject, QObject*  parent, const QString&  prefix = QString()) const;
-   void beginMacro(QUndoStack* theWrappedObject, const QString&  text);
 };
 
 #endif // PYTHONQTWRAPPER_QUNDOSTACK_H

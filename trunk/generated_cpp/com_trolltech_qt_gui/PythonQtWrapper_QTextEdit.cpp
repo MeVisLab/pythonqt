@@ -926,428 +926,428 @@ QTextEdit* PythonQtWrapper_QTextEdit::new_QTextEdit(const QString&  text, QWidge
 { 
 return new PythonQtShell_QTextEdit(text, parent); }
 
-Qt::Alignment  PythonQtWrapper_QTextEdit::alignment(QTextEdit* theWrappedObject) const
+QString  PythonQtWrapper_QTextEdit::anchorAt(QTextEdit* theWrappedObject, const QPoint&  pos) const
 {
-return  (*theWrappedObject).alignment();
-}
-
-void PythonQtWrapper_QTextEdit::setTabStopWidth(QTextEdit* theWrappedObject, int  width)
-{
- (*theWrappedObject).setTabStopWidth(width);
-}
-
-void PythonQtWrapper_QTextEdit::dragEnterEvent(QTextEdit* theWrappedObject, QDragEnterEvent*  e)
-{
- (*((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)).dragEnterEvent(e);
-}
-
-QColor  PythonQtWrapper_QTextEdit::textBackgroundColor(QTextEdit* theWrappedObject) const
-{
-return  (*theWrappedObject).textBackgroundColor();
-}
-
-QVariant  PythonQtWrapper_QTextEdit::inputMethodQuery(QTextEdit* theWrappedObject, Qt::InputMethodQuery  property) const
-{
-return  (*((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)).inputMethodQuery(property);
-}
-
-bool  PythonQtWrapper_QTextEdit::find(QTextEdit* theWrappedObject, const QString&  exp, QTextDocument::FindFlags  options)
-{
-return  (*theWrappedObject).find(exp, options);
-}
-
-QString  PythonQtWrapper_QTextEdit::toHtml(QTextEdit* theWrappedObject) const
-{
-return  (*theWrappedObject).toHtml();
+return  theWrappedObject->anchorAt(pos);
 }
 
 QTextCharFormat  PythonQtWrapper_QTextEdit::currentCharFormat(QTextEdit* theWrappedObject) const
 {
-return  (*theWrappedObject).currentCharFormat();
+return  theWrappedObject->currentCharFormat();
 }
 
-void PythonQtWrapper_QTextEdit::scrollContentsBy(QTextEdit* theWrappedObject, int  dx, int  dy)
+QString  PythonQtWrapper_QTextEdit::toHtml(QTextEdit* theWrappedObject) const
 {
- (*((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)).scrollContentsBy(dx, dy);
-}
-
-QTextOption::WrapMode  PythonQtWrapper_QTextEdit::wordWrapMode(QTextEdit* theWrappedObject) const
-{
-return  (*theWrappedObject).wordWrapMode();
-}
-
-bool  PythonQtWrapper_QTextEdit::fontUnderline(QTextEdit* theWrappedObject) const
-{
-return  (*theWrappedObject).fontUnderline();
-}
-
-bool  PythonQtWrapper_QTextEdit::canInsertFromMimeData(QTextEdit* theWrappedObject, const QMimeData*  source) const
-{
-return  (*((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)).canInsertFromMimeData(source);
-}
-
-QTextEdit::AutoFormatting  PythonQtWrapper_QTextEdit::autoFormatting(QTextEdit* theWrappedObject) const
-{
-return  (*theWrappedObject).autoFormatting();
-}
-
-QString  PythonQtWrapper_QTextEdit::toPlainText(QTextEdit* theWrappedObject) const
-{
-return  (*theWrappedObject).toPlainText();
-}
-
-void PythonQtWrapper_QTextEdit::dragLeaveEvent(QTextEdit* theWrappedObject, QDragLeaveEvent*  e)
-{
- (*((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)).dragLeaveEvent(e);
-}
-
-void PythonQtWrapper_QTextEdit::setReadOnly(QTextEdit* theWrappedObject, bool  ro)
-{
- (*theWrappedObject).setReadOnly(ro);
-}
-
-bool  PythonQtWrapper_QTextEdit::isReadOnly(QTextEdit* theWrappedObject) const
-{
-return  (*theWrappedObject).isReadOnly();
-}
-
-void PythonQtWrapper_QTextEdit::setWordWrapMode(QTextEdit* theWrappedObject, QTextOption::WrapMode  policy)
-{
- (*theWrappedObject).setWordWrapMode(policy);
-}
-
-QMenu*  PythonQtWrapper_QTextEdit::createStandardContextMenu(QTextEdit* theWrappedObject, const QPoint&  position)
-{
-return  (*theWrappedObject).createStandardContextMenu(position);
-}
-
-QString  PythonQtWrapper_QTextEdit::documentTitle(QTextEdit* theWrappedObject) const
-{
-return  (*theWrappedObject).documentTitle();
-}
-
-void PythonQtWrapper_QTextEdit::setUndoRedoEnabled(QTextEdit* theWrappedObject, bool  enable)
-{
- (*theWrappedObject).setUndoRedoEnabled(enable);
-}
-
-bool  PythonQtWrapper_QTextEdit::fontItalic(QTextEdit* theWrappedObject) const
-{
-return  (*theWrappedObject).fontItalic();
-}
-
-void PythonQtWrapper_QTextEdit::setTextInteractionFlags(QTextEdit* theWrappedObject, Qt::TextInteractionFlags  flags)
-{
- (*theWrappedObject).setTextInteractionFlags(flags);
-}
-
-QTextCursor  PythonQtWrapper_QTextEdit::textCursor(QTextEdit* theWrappedObject) const
-{
-return  (*theWrappedObject).textCursor();
-}
-
-void PythonQtWrapper_QTextEdit::setDocumentTitle(QTextEdit* theWrappedObject, const QString&  title)
-{
- (*theWrappedObject).setDocumentTitle(title);
-}
-
-void PythonQtWrapper_QTextEdit::setOverwriteMode(QTextEdit* theWrappedObject, bool  overwrite)
-{
- (*theWrappedObject).setOverwriteMode(overwrite);
-}
-
-QMimeData*  PythonQtWrapper_QTextEdit::createMimeDataFromSelection(QTextEdit* theWrappedObject) const
-{
-return  (*((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)).createMimeDataFromSelection();
-}
-
-bool  PythonQtWrapper_QTextEdit::overwriteMode(QTextEdit* theWrappedObject) const
-{
-return  (*theWrappedObject).overwriteMode();
-}
-
-QTextDocument*  PythonQtWrapper_QTextEdit::document(QTextEdit* theWrappedObject) const
-{
-return  (*theWrappedObject).document();
-}
-
-void PythonQtWrapper_QTextEdit::contextMenuEvent(QTextEdit* theWrappedObject, QContextMenuEvent*  e)
-{
- (*((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)).contextMenuEvent(e);
-}
-
-QVariant  PythonQtWrapper_QTextEdit::loadResource(QTextEdit* theWrappedObject, int  type, const QUrl&  name)
-{
-return  (*theWrappedObject).loadResource(type, name);
-}
-
-void PythonQtWrapper_QTextEdit::focusInEvent(QTextEdit* theWrappedObject, QFocusEvent*  e)
-{
- (*((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)).focusInEvent(e);
-}
-
-bool  PythonQtWrapper_QTextEdit::isUndoRedoEnabled(QTextEdit* theWrappedObject) const
-{
-return  (*theWrappedObject).isUndoRedoEnabled();
-}
-
-bool  PythonQtWrapper_QTextEdit::event(QTextEdit* theWrappedObject, QEvent*  e)
-{
-return  (*((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)).event(e);
-}
-
-Qt::TextInteractionFlags  PythonQtWrapper_QTextEdit::textInteractionFlags(QTextEdit* theWrappedObject) const
-{
-return  (*theWrappedObject).textInteractionFlags();
-}
-
-QColor  PythonQtWrapper_QTextEdit::textColor(QTextEdit* theWrappedObject) const
-{
-return  (*theWrappedObject).textColor();
-}
-
-QString  PythonQtWrapper_QTextEdit::fontFamily(QTextEdit* theWrappedObject) const
-{
-return  (*theWrappedObject).fontFamily();
-}
-
-void PythonQtWrapper_QTextEdit::dragMoveEvent(QTextEdit* theWrappedObject, QDragMoveEvent*  e)
-{
- (*((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)).dragMoveEvent(e);
-}
-
-QMenu*  PythonQtWrapper_QTextEdit::createStandardContextMenu(QTextEdit* theWrappedObject)
-{
-return  (*theWrappedObject).createStandardContextMenu();
-}
-
-void PythonQtWrapper_QTextEdit::wheelEvent(QTextEdit* theWrappedObject, QWheelEvent*  e)
-{
- (*((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)).wheelEvent(e);
-}
-
-int  PythonQtWrapper_QTextEdit::tabStopWidth(QTextEdit* theWrappedObject) const
-{
-return  (*theWrappedObject).tabStopWidth();
-}
-
-QRect  PythonQtWrapper_QTextEdit::cursorRect(QTextEdit* theWrappedObject) const
-{
-return  (*theWrappedObject).cursorRect();
-}
-
-bool  PythonQtWrapper_QTextEdit::tabChangesFocus(QTextEdit* theWrappedObject) const
-{
-return  (*theWrappedObject).tabChangesFocus();
-}
-
-QTextCursor  PythonQtWrapper_QTextEdit::cursorForPosition(QTextEdit* theWrappedObject, const QPoint&  pos) const
-{
-return  (*theWrappedObject).cursorForPosition(pos);
-}
-
-void PythonQtWrapper_QTextEdit::moveCursor(QTextEdit* theWrappedObject, QTextCursor::MoveOperation  operation, QTextCursor::MoveMode  mode)
-{
- (*theWrappedObject).moveCursor(operation, mode);
-}
-
-bool  PythonQtWrapper_QTextEdit::focusNextPrevChild(QTextEdit* theWrappedObject, bool  next)
-{
-return  (*((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)).focusNextPrevChild(next);
-}
-
-QFont  PythonQtWrapper_QTextEdit::currentFont(QTextEdit* theWrappedObject) const
-{
-return  (*theWrappedObject).currentFont();
-}
-
-void PythonQtWrapper_QTextEdit::ensureCursorVisible(QTextEdit* theWrappedObject)
-{
- (*theWrappedObject).ensureCursorVisible();
-}
-
-void PythonQtWrapper_QTextEdit::setLineWrapColumnOrWidth(QTextEdit* theWrappedObject, int  w)
-{
- (*theWrappedObject).setLineWrapColumnOrWidth(w);
-}
-
-void PythonQtWrapper_QTextEdit::setCurrentCharFormat(QTextEdit* theWrappedObject, const QTextCharFormat&  format)
-{
- (*theWrappedObject).setCurrentCharFormat(format);
-}
-
-void PythonQtWrapper_QTextEdit::focusOutEvent(QTextEdit* theWrappedObject, QFocusEvent*  e)
-{
- (*((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)).focusOutEvent(e);
-}
-
-void PythonQtWrapper_QTextEdit::timerEvent(QTextEdit* theWrappedObject, QTimerEvent*  e)
-{
- (*((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)).timerEvent(e);
-}
-
-void PythonQtWrapper_QTextEdit::setAutoFormatting(QTextEdit* theWrappedObject, QTextEdit::AutoFormatting  features)
-{
- (*theWrappedObject).setAutoFormatting(features);
-}
-
-void PythonQtWrapper_QTextEdit::setTextCursor(QTextEdit* theWrappedObject, const QTextCursor&  cursor)
-{
- (*theWrappedObject).setTextCursor(cursor);
-}
-
-void PythonQtWrapper_QTextEdit::inputMethodEvent(QTextEdit* theWrappedObject, QInputMethodEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)).inputMethodEvent(arg__1);
-}
-
-void PythonQtWrapper_QTextEdit::changeEvent(QTextEdit* theWrappedObject, QEvent*  e)
-{
- (*((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)).changeEvent(e);
-}
-
-QList<QTextEdit::ExtraSelection >  PythonQtWrapper_QTextEdit::extraSelections(QTextEdit* theWrappedObject) const
-{
-return  (*theWrappedObject).extraSelections();
-}
-
-QRect  PythonQtWrapper_QTextEdit::cursorRect(QTextEdit* theWrappedObject, const QTextCursor&  cursor) const
-{
-return  (*theWrappedObject).cursorRect(cursor);
-}
-
-QTextEdit::LineWrapMode  PythonQtWrapper_QTextEdit::lineWrapMode(QTextEdit* theWrappedObject) const
-{
-return  (*theWrappedObject).lineWrapMode();
-}
-
-void PythonQtWrapper_QTextEdit::mouseMoveEvent(QTextEdit* theWrappedObject, QMouseEvent*  e)
-{
- (*((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)).mouseMoveEvent(e);
-}
-
-void PythonQtWrapper_QTextEdit::dropEvent(QTextEdit* theWrappedObject, QDropEvent*  e)
-{
- (*((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)).dropEvent(e);
-}
-
-bool  PythonQtWrapper_QTextEdit::acceptRichText(QTextEdit* theWrappedObject) const
-{
-return  (*theWrappedObject).acceptRichText();
-}
-
-void PythonQtWrapper_QTextEdit::insertFromMimeData(QTextEdit* theWrappedObject, const QMimeData*  source)
-{
- (*((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)).insertFromMimeData(source);
-}
-
-void PythonQtWrapper_QTextEdit::setLineWrapMode(QTextEdit* theWrappedObject, QTextEdit::LineWrapMode  mode)
-{
- (*theWrappedObject).setLineWrapMode(mode);
-}
-
-QString  PythonQtWrapper_QTextEdit::anchorAt(QTextEdit* theWrappedObject, const QPoint&  pos) const
-{
-return  (*theWrappedObject).anchorAt(pos);
-}
-
-int  PythonQtWrapper_QTextEdit::cursorWidth(QTextEdit* theWrappedObject) const
-{
-return  (*theWrappedObject).cursorWidth();
+return  theWrappedObject->toHtml();
 }
 
 void PythonQtWrapper_QTextEdit::mousePressEvent(QTextEdit* theWrappedObject, QMouseEvent*  e)
 {
- (*((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)).mousePressEvent(e);
-}
-
-qreal  PythonQtWrapper_QTextEdit::fontPointSize(QTextEdit* theWrappedObject) const
-{
-return  (*theWrappedObject).fontPointSize();
+ ((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)->promoted_mousePressEvent(e);
 }
 
 void PythonQtWrapper_QTextEdit::setExtraSelections(QTextEdit* theWrappedObject, const QList<QTextEdit::ExtraSelection >&  selections)
 {
- (*theWrappedObject).setExtraSelections(selections);
+ theWrappedObject->setExtraSelections(selections);
+}
+
+void PythonQtWrapper_QTextEdit::contextMenuEvent(QTextEdit* theWrappedObject, QContextMenuEvent*  e)
+{
+ ((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)->promoted_contextMenuEvent(e);
 }
 
 void PythonQtWrapper_QTextEdit::setDocument(QTextEdit* theWrappedObject, QTextDocument*  document)
 {
- (*theWrappedObject).setDocument(document);
+ theWrappedObject->setDocument(document);
 }
 
-void PythonQtWrapper_QTextEdit::setAcceptRichText(QTextEdit* theWrappedObject, bool  accept)
+QTextDocument*  PythonQtWrapper_QTextEdit::document(QTextEdit* theWrappedObject) const
 {
- (*theWrappedObject).setAcceptRichText(accept);
-}
-
-void PythonQtWrapper_QTextEdit::showEvent(QTextEdit* theWrappedObject, QShowEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)).showEvent(arg__1);
-}
-
-int  PythonQtWrapper_QTextEdit::fontWeight(QTextEdit* theWrappedObject) const
-{
-return  (*theWrappedObject).fontWeight();
-}
-
-void PythonQtWrapper_QTextEdit::keyPressEvent(QTextEdit* theWrappedObject, QKeyEvent*  e)
-{
- (*((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)).keyPressEvent(e);
-}
-
-void PythonQtWrapper_QTextEdit::setCursorWidth(QTextEdit* theWrappedObject, int  width)
-{
- (*theWrappedObject).setCursorWidth(width);
-}
-
-void PythonQtWrapper_QTextEdit::print(QTextEdit* theWrappedObject, QPrinter*  printer) const
-{
- (*theWrappedObject).print(printer);
-}
-
-void PythonQtWrapper_QTextEdit::keyReleaseEvent(QTextEdit* theWrappedObject, QKeyEvent*  e)
-{
- (*((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)).keyReleaseEvent(e);
-}
-
-void PythonQtWrapper_QTextEdit::mergeCurrentCharFormat(QTextEdit* theWrappedObject, const QTextCharFormat&  modifier)
-{
- (*theWrappedObject).mergeCurrentCharFormat(modifier);
+return  theWrappedObject->document();
 }
 
 void PythonQtWrapper_QTextEdit::paintEvent(QTextEdit* theWrappedObject, QPaintEvent*  e)
 {
- (*((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)).paintEvent(e);
+ ((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)->promoted_paintEvent(e);
 }
 
-void PythonQtWrapper_QTextEdit::resizeEvent(QTextEdit* theWrappedObject, QResizeEvent*  e)
+QColor  PythonQtWrapper_QTextEdit::textBackgroundColor(QTextEdit* theWrappedObject) const
 {
- (*((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)).resizeEvent(e);
+return  theWrappedObject->textBackgroundColor();
 }
 
-bool  PythonQtWrapper_QTextEdit::canPaste(QTextEdit* theWrappedObject) const
+void PythonQtWrapper_QTextEdit::showEvent(QTextEdit* theWrappedObject, QShowEvent*  arg__1)
 {
-return  (*theWrappedObject).canPaste();
+ ((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)->promoted_showEvent(arg__1);
 }
 
-void PythonQtWrapper_QTextEdit::mouseDoubleClickEvent(QTextEdit* theWrappedObject, QMouseEvent*  e)
+void PythonQtWrapper_QTextEdit::moveCursor(QTextEdit* theWrappedObject, QTextCursor::MoveOperation  operation, QTextCursor::MoveMode  mode)
 {
- (*((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)).mouseDoubleClickEvent(e);
+ theWrappedObject->moveCursor(operation, mode);
 }
 
-int  PythonQtWrapper_QTextEdit::lineWrapColumnOrWidth(QTextEdit* theWrappedObject) const
+void PythonQtWrapper_QTextEdit::timerEvent(QTextEdit* theWrappedObject, QTimerEvent*  e)
 {
-return  (*theWrappedObject).lineWrapColumnOrWidth();
+ ((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)->promoted_timerEvent(e);
+}
+
+bool  PythonQtWrapper_QTextEdit::fontUnderline(QTextEdit* theWrappedObject) const
+{
+return  theWrappedObject->fontUnderline();
+}
+
+QTextCursor  PythonQtWrapper_QTextEdit::textCursor(QTextEdit* theWrappedObject) const
+{
+return  theWrappedObject->textCursor();
+}
+
+void PythonQtWrapper_QTextEdit::focusInEvent(QTextEdit* theWrappedObject, QFocusEvent*  e)
+{
+ ((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)->promoted_focusInEvent(e);
+}
+
+void PythonQtWrapper_QTextEdit::changeEvent(QTextEdit* theWrappedObject, QEvent*  e)
+{
+ ((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)->promoted_changeEvent(e);
+}
+
+Qt::Alignment  PythonQtWrapper_QTextEdit::alignment(QTextEdit* theWrappedObject) const
+{
+return  theWrappedObject->alignment();
+}
+
+QString  PythonQtWrapper_QTextEdit::documentTitle(QTextEdit* theWrappedObject) const
+{
+return  theWrappedObject->documentTitle();
+}
+
+bool  PythonQtWrapper_QTextEdit::event(QTextEdit* theWrappedObject, QEvent*  e)
+{
+return  ((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)->promoted_event(e);
+}
+
+QMenu*  PythonQtWrapper_QTextEdit::createStandardContextMenu(QTextEdit* theWrappedObject, const QPoint&  position)
+{
+return  theWrappedObject->createStandardContextMenu(position);
+}
+
+void PythonQtWrapper_QTextEdit::setUndoRedoEnabled(QTextEdit* theWrappedObject, bool  enable)
+{
+ theWrappedObject->setUndoRedoEnabled(enable);
+}
+
+void PythonQtWrapper_QTextEdit::setWordWrapMode(QTextEdit* theWrappedObject, QTextOption::WrapMode  policy)
+{
+ theWrappedObject->setWordWrapMode(policy);
+}
+
+void PythonQtWrapper_QTextEdit::dragLeaveEvent(QTextEdit* theWrappedObject, QDragLeaveEvent*  e)
+{
+ ((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)->promoted_dragLeaveEvent(e);
+}
+
+void PythonQtWrapper_QTextEdit::wheelEvent(QTextEdit* theWrappedObject, QWheelEvent*  e)
+{
+ ((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)->promoted_wheelEvent(e);
+}
+
+QTextCursor  PythonQtWrapper_QTextEdit::cursorForPosition(QTextEdit* theWrappedObject, const QPoint&  pos) const
+{
+return  theWrappedObject->cursorForPosition(pos);
+}
+
+void PythonQtWrapper_QTextEdit::setTextCursor(QTextEdit* theWrappedObject, const QTextCursor&  cursor)
+{
+ theWrappedObject->setTextCursor(cursor);
+}
+
+QVariant  PythonQtWrapper_QTextEdit::loadResource(QTextEdit* theWrappedObject, int  type, const QUrl&  name)
+{
+return  ((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)->promoted_loadResource(type, name);
+}
+
+void PythonQtWrapper_QTextEdit::setLineWrapMode(QTextEdit* theWrappedObject, QTextEdit::LineWrapMode  mode)
+{
+ theWrappedObject->setLineWrapMode(mode);
+}
+
+void PythonQtWrapper_QTextEdit::dropEvent(QTextEdit* theWrappedObject, QDropEvent*  e)
+{
+ ((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)->promoted_dropEvent(e);
+}
+
+QTextOption::WrapMode  PythonQtWrapper_QTextEdit::wordWrapMode(QTextEdit* theWrappedObject) const
+{
+return  theWrappedObject->wordWrapMode();
+}
+
+void PythonQtWrapper_QTextEdit::setLineWrapColumnOrWidth(QTextEdit* theWrappedObject, int  w)
+{
+ theWrappedObject->setLineWrapColumnOrWidth(w);
+}
+
+int  PythonQtWrapper_QTextEdit::fontWeight(QTextEdit* theWrappedObject) const
+{
+return  theWrappedObject->fontWeight();
+}
+
+QList<QTextEdit::ExtraSelection >  PythonQtWrapper_QTextEdit::extraSelections(QTextEdit* theWrappedObject) const
+{
+return  theWrappedObject->extraSelections();
+}
+
+QRect  PythonQtWrapper_QTextEdit::cursorRect(QTextEdit* theWrappedObject, const QTextCursor&  cursor) const
+{
+return  theWrappedObject->cursorRect(cursor);
+}
+
+bool  PythonQtWrapper_QTextEdit::find(QTextEdit* theWrappedObject, const QString&  exp, QTextDocument::FindFlags  options)
+{
+return  theWrappedObject->find(exp, options);
+}
+
+void PythonQtWrapper_QTextEdit::setReadOnly(QTextEdit* theWrappedObject, bool  ro)
+{
+ theWrappedObject->setReadOnly(ro);
+}
+
+bool  PythonQtWrapper_QTextEdit::isUndoRedoEnabled(QTextEdit* theWrappedObject) const
+{
+return  theWrappedObject->isUndoRedoEnabled();
+}
+
+bool  PythonQtWrapper_QTextEdit::acceptRichText(QTextEdit* theWrappedObject) const
+{
+return  theWrappedObject->acceptRichText();
 }
 
 void PythonQtWrapper_QTextEdit::setTabChangesFocus(QTextEdit* theWrappedObject, bool  b)
 {
- (*theWrappedObject).setTabChangesFocus(b);
+ theWrappedObject->setTabChangesFocus(b);
+}
+
+QMimeData*  PythonQtWrapper_QTextEdit::createMimeDataFromSelection(QTextEdit* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)->promoted_createMimeDataFromSelection();
+}
+
+bool  PythonQtWrapper_QTextEdit::canPaste(QTextEdit* theWrappedObject) const
+{
+return  theWrappedObject->canPaste();
+}
+
+QRect  PythonQtWrapper_QTextEdit::cursorRect(QTextEdit* theWrappedObject) const
+{
+return  theWrappedObject->cursorRect();
+}
+
+void PythonQtWrapper_QTextEdit::setCurrentCharFormat(QTextEdit* theWrappedObject, const QTextCharFormat&  format)
+{
+ theWrappedObject->setCurrentCharFormat(format);
+}
+
+QTextEdit::LineWrapMode  PythonQtWrapper_QTextEdit::lineWrapMode(QTextEdit* theWrappedObject) const
+{
+return  theWrappedObject->lineWrapMode();
+}
+
+int  PythonQtWrapper_QTextEdit::cursorWidth(QTextEdit* theWrappedObject) const
+{
+return  theWrappedObject->cursorWidth();
+}
+
+void PythonQtWrapper_QTextEdit::focusOutEvent(QTextEdit* theWrappedObject, QFocusEvent*  e)
+{
+ ((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)->promoted_focusOutEvent(e);
+}
+
+void PythonQtWrapper_QTextEdit::mouseDoubleClickEvent(QTextEdit* theWrappedObject, QMouseEvent*  e)
+{
+ ((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)->promoted_mouseDoubleClickEvent(e);
+}
+
+Qt::TextInteractionFlags  PythonQtWrapper_QTextEdit::textInteractionFlags(QTextEdit* theWrappedObject) const
+{
+return  theWrappedObject->textInteractionFlags();
+}
+
+QColor  PythonQtWrapper_QTextEdit::textColor(QTextEdit* theWrappedObject) const
+{
+return  theWrappedObject->textColor();
+}
+
+void PythonQtWrapper_QTextEdit::mouseMoveEvent(QTextEdit* theWrappedObject, QMouseEvent*  e)
+{
+ ((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)->promoted_mouseMoveEvent(e);
+}
+
+QTextEdit::AutoFormatting  PythonQtWrapper_QTextEdit::autoFormatting(QTextEdit* theWrappedObject) const
+{
+return  theWrappedObject->autoFormatting();
+}
+
+void PythonQtWrapper_QTextEdit::keyReleaseEvent(QTextEdit* theWrappedObject, QKeyEvent*  e)
+{
+ ((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)->promoted_keyReleaseEvent(e);
+}
+
+void PythonQtWrapper_QTextEdit::setOverwriteMode(QTextEdit* theWrappedObject, bool  overwrite)
+{
+ theWrappedObject->setOverwriteMode(overwrite);
+}
+
+void PythonQtWrapper_QTextEdit::dragMoveEvent(QTextEdit* theWrappedObject, QDragMoveEvent*  e)
+{
+ ((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)->promoted_dragMoveEvent(e);
+}
+
+void PythonQtWrapper_QTextEdit::mergeCurrentCharFormat(QTextEdit* theWrappedObject, const QTextCharFormat&  modifier)
+{
+ theWrappedObject->mergeCurrentCharFormat(modifier);
+}
+
+bool  PythonQtWrapper_QTextEdit::tabChangesFocus(QTextEdit* theWrappedObject) const
+{
+return  theWrappedObject->tabChangesFocus();
+}
+
+qreal  PythonQtWrapper_QTextEdit::fontPointSize(QTextEdit* theWrappedObject) const
+{
+return  theWrappedObject->fontPointSize();
+}
+
+void PythonQtWrapper_QTextEdit::setAcceptRichText(QTextEdit* theWrappedObject, bool  accept)
+{
+ theWrappedObject->setAcceptRichText(accept);
+}
+
+void PythonQtWrapper_QTextEdit::ensureCursorVisible(QTextEdit* theWrappedObject)
+{
+ theWrappedObject->ensureCursorVisible();
+}
+
+void PythonQtWrapper_QTextEdit::resizeEvent(QTextEdit* theWrappedObject, QResizeEvent*  e)
+{
+ ((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)->promoted_resizeEvent(e);
+}
+
+bool  PythonQtWrapper_QTextEdit::fontItalic(QTextEdit* theWrappedObject) const
+{
+return  theWrappedObject->fontItalic();
+}
+
+QString  PythonQtWrapper_QTextEdit::toPlainText(QTextEdit* theWrappedObject) const
+{
+return  theWrappedObject->toPlainText();
+}
+
+void PythonQtWrapper_QTextEdit::scrollContentsBy(QTextEdit* theWrappedObject, int  dx, int  dy)
+{
+ ((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)->promoted_scrollContentsBy(dx, dy);
+}
+
+QMenu*  PythonQtWrapper_QTextEdit::createStandardContextMenu(QTextEdit* theWrappedObject)
+{
+return  theWrappedObject->createStandardContextMenu();
+}
+
+QFont  PythonQtWrapper_QTextEdit::currentFont(QTextEdit* theWrappedObject) const
+{
+return  theWrappedObject->currentFont();
+}
+
+int  PythonQtWrapper_QTextEdit::tabStopWidth(QTextEdit* theWrappedObject) const
+{
+return  theWrappedObject->tabStopWidth();
 }
 
 void PythonQtWrapper_QTextEdit::mouseReleaseEvent(QTextEdit* theWrappedObject, QMouseEvent*  e)
 {
- (*((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)).mouseReleaseEvent(e);
+ ((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)->promoted_mouseReleaseEvent(e);
+}
+
+bool  PythonQtWrapper_QTextEdit::isReadOnly(QTextEdit* theWrappedObject) const
+{
+return  theWrappedObject->isReadOnly();
+}
+
+bool  PythonQtWrapper_QTextEdit::overwriteMode(QTextEdit* theWrappedObject) const
+{
+return  theWrappedObject->overwriteMode();
+}
+
+bool  PythonQtWrapper_QTextEdit::focusNextPrevChild(QTextEdit* theWrappedObject, bool  next)
+{
+return  ((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)->promoted_focusNextPrevChild(next);
+}
+
+bool  PythonQtWrapper_QTextEdit::canInsertFromMimeData(QTextEdit* theWrappedObject, const QMimeData*  source) const
+{
+return  ((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)->promoted_canInsertFromMimeData(source);
+}
+
+void PythonQtWrapper_QTextEdit::dragEnterEvent(QTextEdit* theWrappedObject, QDragEnterEvent*  e)
+{
+ ((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)->promoted_dragEnterEvent(e);
+}
+
+void PythonQtWrapper_QTextEdit::setAutoFormatting(QTextEdit* theWrappedObject, QTextEdit::AutoFormatting  features)
+{
+ theWrappedObject->setAutoFormatting(features);
+}
+
+void PythonQtWrapper_QTextEdit::setCursorWidth(QTextEdit* theWrappedObject, int  width)
+{
+ theWrappedObject->setCursorWidth(width);
+}
+
+QVariant  PythonQtWrapper_QTextEdit::inputMethodQuery(QTextEdit* theWrappedObject, Qt::InputMethodQuery  property) const
+{
+return  ((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)->promoted_inputMethodQuery(property);
+}
+
+void PythonQtWrapper_QTextEdit::insertFromMimeData(QTextEdit* theWrappedObject, const QMimeData*  source)
+{
+ ((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)->promoted_insertFromMimeData(source);
+}
+
+void PythonQtWrapper_QTextEdit::setTextInteractionFlags(QTextEdit* theWrappedObject, Qt::TextInteractionFlags  flags)
+{
+ theWrappedObject->setTextInteractionFlags(flags);
+}
+
+void PythonQtWrapper_QTextEdit::setTabStopWidth(QTextEdit* theWrappedObject, int  width)
+{
+ theWrappedObject->setTabStopWidth(width);
+}
+
+void PythonQtWrapper_QTextEdit::setDocumentTitle(QTextEdit* theWrappedObject, const QString&  title)
+{
+ theWrappedObject->setDocumentTitle(title);
+}
+
+void PythonQtWrapper_QTextEdit::inputMethodEvent(QTextEdit* theWrappedObject, QInputMethodEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)->promoted_inputMethodEvent(arg__1);
+}
+
+void PythonQtWrapper_QTextEdit::print(QTextEdit* theWrappedObject, QPrinter*  printer) const
+{
+ theWrappedObject->print(printer);
+}
+
+int  PythonQtWrapper_QTextEdit::lineWrapColumnOrWidth(QTextEdit* theWrappedObject) const
+{
+return  theWrappedObject->lineWrapColumnOrWidth();
+}
+
+QString  PythonQtWrapper_QTextEdit::fontFamily(QTextEdit* theWrappedObject) const
+{
+return  theWrappedObject->fontFamily();
+}
+
+void PythonQtWrapper_QTextEdit::keyPressEvent(QTextEdit* theWrappedObject, QKeyEvent*  e)
+{
+ ((PythonQtPublicPromoter_QTextEdit*)theWrappedObject)->promoted_keyPressEvent(e);
 }
 

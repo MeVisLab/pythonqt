@@ -9,18 +9,18 @@ QFocusEvent* PythonQtWrapper_QFocusEvent::new_QFocusEvent(QEvent::Type  type, Qt
 { 
 return new QFocusEvent(type, reason); }
 
-bool  PythonQtWrapper_QFocusEvent::gotFocus(QFocusEvent* theWrappedObject) const
+bool  PythonQtWrapper_QFocusEvent::lostFocus(QFocusEvent* theWrappedObject) const
 {
-return  (*theWrappedObject).gotFocus();
+return  theWrappedObject->lostFocus();
 }
 
 Qt::FocusReason  PythonQtWrapper_QFocusEvent::reason(QFocusEvent* theWrappedObject)
 {
-return  (*theWrappedObject).reason();
+return  theWrappedObject->reason();
 }
 
-bool  PythonQtWrapper_QFocusEvent::lostFocus(QFocusEvent* theWrappedObject) const
+bool  PythonQtWrapper_QFocusEvent::gotFocus(QFocusEvent* theWrappedObject) const
 {
-return  (*theWrappedObject).lostFocus();
+return  theWrappedObject->gotFocus();
 }
 

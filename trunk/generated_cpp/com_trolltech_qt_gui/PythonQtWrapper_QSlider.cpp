@@ -780,58 +780,58 @@ QSlider* PythonQtWrapper_QSlider::new_QSlider(Qt::Orientation  orientation, QWid
 { 
 return new PythonQtShell_QSlider(orientation, parent); }
 
-void PythonQtWrapper_QSlider::paintEvent(QSlider* theWrappedObject, QPaintEvent*  ev)
-{
- (*((PythonQtPublicPromoter_QSlider*)theWrappedObject)).paintEvent(ev);
-}
-
-QSlider::TickPosition  PythonQtWrapper_QSlider::tickPosition(QSlider* theWrappedObject) const
-{
-return  (*theWrappedObject).tickPosition();
-}
-
-bool  PythonQtWrapper_QSlider::event(QSlider* theWrappedObject, QEvent*  event)
-{
-return  (*theWrappedObject).event(event);
-}
-
-void PythonQtWrapper_QSlider::mouseMoveEvent(QSlider* theWrappedObject, QMouseEvent*  ev)
-{
- (*((PythonQtPublicPromoter_QSlider*)theWrappedObject)).mouseMoveEvent(ev);
-}
-
-QSize  PythonQtWrapper_QSlider::minimumSizeHint(QSlider* theWrappedObject) const
-{
-return  (*theWrappedObject).minimumSizeHint();
-}
-
 void PythonQtWrapper_QSlider::setTickInterval(QSlider* theWrappedObject, int  ti)
 {
- (*theWrappedObject).setTickInterval(ti);
+ theWrappedObject->setTickInterval(ti);
 }
 
-void PythonQtWrapper_QSlider::mousePressEvent(QSlider* theWrappedObject, QMouseEvent*  ev)
+void PythonQtWrapper_QSlider::paintEvent(QSlider* theWrappedObject, QPaintEvent*  ev)
 {
- (*((PythonQtPublicPromoter_QSlider*)theWrappedObject)).mousePressEvent(ev);
+ ((PythonQtPublicPromoter_QSlider*)theWrappedObject)->promoted_paintEvent(ev);
 }
 
 void PythonQtWrapper_QSlider::setTickPosition(QSlider* theWrappedObject, QSlider::TickPosition  position)
 {
- (*theWrappedObject).setTickPosition(position);
-}
-
-void PythonQtWrapper_QSlider::mouseReleaseEvent(QSlider* theWrappedObject, QMouseEvent*  ev)
-{
- (*((PythonQtPublicPromoter_QSlider*)theWrappedObject)).mouseReleaseEvent(ev);
-}
-
-QSize  PythonQtWrapper_QSlider::sizeHint(QSlider* theWrappedObject) const
-{
-return  (*theWrappedObject).sizeHint();
+ theWrappedObject->setTickPosition(position);
 }
 
 int  PythonQtWrapper_QSlider::tickInterval(QSlider* theWrappedObject) const
 {
-return  (*theWrappedObject).tickInterval();
+return  theWrappedObject->tickInterval();
+}
+
+QSize  PythonQtWrapper_QSlider::sizeHint(QSlider* theWrappedObject) const
+{
+return  theWrappedObject->sizeHint();
+}
+
+QSlider::TickPosition  PythonQtWrapper_QSlider::tickPosition(QSlider* theWrappedObject) const
+{
+return  theWrappedObject->tickPosition();
+}
+
+bool  PythonQtWrapper_QSlider::event(QSlider* theWrappedObject, QEvent*  event)
+{
+return  ((PythonQtPublicPromoter_QSlider*)theWrappedObject)->promoted_event(event);
+}
+
+void PythonQtWrapper_QSlider::mouseReleaseEvent(QSlider* theWrappedObject, QMouseEvent*  ev)
+{
+ ((PythonQtPublicPromoter_QSlider*)theWrappedObject)->promoted_mouseReleaseEvent(ev);
+}
+
+void PythonQtWrapper_QSlider::mousePressEvent(QSlider* theWrappedObject, QMouseEvent*  ev)
+{
+ ((PythonQtPublicPromoter_QSlider*)theWrappedObject)->promoted_mousePressEvent(ev);
+}
+
+QSize  PythonQtWrapper_QSlider::minimumSizeHint(QSlider* theWrappedObject) const
+{
+return  theWrappedObject->minimumSizeHint();
+}
+
+void PythonQtWrapper_QSlider::mouseMoveEvent(QSlider* theWrappedObject, QMouseEvent*  ev)
+{
+ ((PythonQtPublicPromoter_QSlider*)theWrappedObject)->promoted_mouseMoveEvent(ev);
 }
 

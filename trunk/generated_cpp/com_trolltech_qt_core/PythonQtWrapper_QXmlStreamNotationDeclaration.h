@@ -16,10 +16,10 @@ public slots:
 QXmlStreamNotationDeclaration* new_QXmlStreamNotationDeclaration();
 QXmlStreamNotationDeclaration* new_QXmlStreamNotationDeclaration(const QXmlStreamNotationDeclaration&  arg__1);
 void delete_QXmlStreamNotationDeclaration(QXmlStreamNotationDeclaration* obj) { delete obj; } 
-   bool  operator_equal(QXmlStreamNotationDeclaration* theWrappedObject, const QXmlStreamNotationDeclaration&  other) const;
-   QStringRef  systemId(QXmlStreamNotationDeclaration* theWrappedObject) const;
-   QStringRef  name(QXmlStreamNotationDeclaration* theWrappedObject) const;
    QStringRef  publicId(QXmlStreamNotationDeclaration* theWrappedObject) const;
+   bool  operator_equal(QXmlStreamNotationDeclaration* theWrappedObject, const QXmlStreamNotationDeclaration&  other) const;
+   QStringRef  name(QXmlStreamNotationDeclaration* theWrappedObject) const;
+   QStringRef  systemId(QXmlStreamNotationDeclaration* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QXMLSTREAMNOTATIONDECLARATION_H

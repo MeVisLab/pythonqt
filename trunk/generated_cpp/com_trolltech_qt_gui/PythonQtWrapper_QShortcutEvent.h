@@ -24,9 +24,9 @@ public:
 public slots:
 QShortcutEvent* new_QShortcutEvent(const QKeySequence&  key, int  id, bool  ambiguous = false);
 void delete_QShortcutEvent(QShortcutEvent* obj) { delete obj; } 
-   int  shortcutId(QShortcutEvent* theWrappedObject) const;
    bool  isAmbiguous(QShortcutEvent* theWrappedObject) const;
    const QKeySequence&  key(QShortcutEvent* theWrappedObject) const;
+   int  shortcutId(QShortcutEvent* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QSHORTCUTEVENT_H

@@ -17,31 +17,31 @@ return new QDomDocumentType(x); }
 
 QDomNamedNodeMap  PythonQtWrapper_QDomDocumentType::entities(QDomDocumentType* theWrappedObject) const
 {
-return  (*theWrappedObject).entities();
-}
-
-QDomNamedNodeMap  PythonQtWrapper_QDomDocumentType::notations(QDomDocumentType* theWrappedObject) const
-{
-return  (*theWrappedObject).notations();
+return  theWrappedObject->entities();
 }
 
 QString  PythonQtWrapper_QDomDocumentType::systemId(QDomDocumentType* theWrappedObject) const
 {
-return  (*theWrappedObject).systemId();
+return  theWrappedObject->systemId();
 }
 
 QString  PythonQtWrapper_QDomDocumentType::name(QDomDocumentType* theWrappedObject) const
 {
-return  (*theWrappedObject).name();
+return  theWrappedObject->name();
 }
 
-QString  PythonQtWrapper_QDomDocumentType::internalSubset(QDomDocumentType* theWrappedObject) const
+QDomNamedNodeMap  PythonQtWrapper_QDomDocumentType::notations(QDomDocumentType* theWrappedObject) const
 {
-return  (*theWrappedObject).internalSubset();
+return  theWrappedObject->notations();
 }
 
 QString  PythonQtWrapper_QDomDocumentType::publicId(QDomDocumentType* theWrappedObject) const
 {
-return  (*theWrappedObject).publicId();
+return  theWrappedObject->publicId();
+}
+
+QString  PythonQtWrapper_QDomDocumentType::internalSubset(QDomDocumentType* theWrappedObject) const
+{
+return  theWrappedObject->internalSubset();
 }
 

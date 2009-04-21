@@ -138,6 +138,86 @@ if (_wrapper) {
   QByteArray  result;
 return result;
 }
+QList<QByteArray >  PythonQtWrapper_QTextCodec::static_QTextCodec_availableCodecs()
+{
+return QTextCodec::availableCodecs();
+}
+
+QTextCodec*  PythonQtWrapper_QTextCodec::static_QTextCodec_codecForLocale()
+{
+return QTextCodec::codecForLocale();
+}
+
+void PythonQtWrapper_QTextCodec::static_QTextCodec_setCodecForCStrings(QTextCodec*  c)
+{
+QTextCodec::setCodecForCStrings(c);
+}
+
+QTextCodec*  PythonQtWrapper_QTextCodec::static_QTextCodec_codecForHtml(const QByteArray&  ba)
+{
+return QTextCodec::codecForHtml(ba);
+}
+
+QByteArray  PythonQtWrapper_QTextCodec::fromUnicode(QTextCodec* theWrappedObject, const QString&  uc) const
+{
+return  theWrappedObject->fromUnicode(uc);
+}
+
+QTextCodec*  PythonQtWrapper_QTextCodec::static_QTextCodec_codecForCStrings()
+{
+return QTextCodec::codecForCStrings();
+}
+
+void PythonQtWrapper_QTextCodec::static_QTextCodec_setCodecForTr(QTextCodec*  c)
+{
+QTextCodec::setCodecForTr(c);
+}
+
+bool  PythonQtWrapper_QTextCodec::canEncode(QTextCodec* theWrappedObject, const QString&  arg__1) const
+{
+return  theWrappedObject->canEncode(arg__1);
+}
+
+QList<int >  PythonQtWrapper_QTextCodec::static_QTextCodec_availableMibs()
+{
+return QTextCodec::availableMibs();
+}
+
+bool  PythonQtWrapper_QTextCodec::canEncode(QTextCodec* theWrappedObject, QChar  arg__1) const
+{
+return  theWrappedObject->canEncode(arg__1);
+}
+
+QTextEncoder*  PythonQtWrapper_QTextCodec::makeEncoder(QTextCodec* theWrappedObject) const
+{
+return  theWrappedObject->makeEncoder();
+}
+
+QString  PythonQtWrapper_QTextCodec::toUnicode(QTextCodec* theWrappedObject, const QByteArray&  arg__1) const
+{
+return  theWrappedObject->toUnicode(arg__1);
+}
+
+QTextCodec*  PythonQtWrapper_QTextCodec::static_QTextCodec_codecForName(const QByteArray&  name)
+{
+return QTextCodec::codecForName(name);
+}
+
+QList<QByteArray >  PythonQtWrapper_QTextCodec::aliases(QTextCodec* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QTextCodec*)theWrappedObject)->promoted_aliases();
+}
+
+QTextDecoder*  PythonQtWrapper_QTextCodec::makeDecoder(QTextCodec* theWrappedObject) const
+{
+return  theWrappedObject->makeDecoder();
+}
+
+QTextCodec*  PythonQtWrapper_QTextCodec::static_QTextCodec_codecForName(const char*  name)
+{
+return QTextCodec::codecForName(name);
+}
+
 void PythonQtWrapper_QTextCodec::static_QTextCodec_setCodecForLocale(QTextCodec*  c)
 {
 QTextCodec::setCodecForLocale(c);
@@ -148,88 +228,8 @@ QTextCodec*  PythonQtWrapper_QTextCodec::static_QTextCodec_codecForHtml(const QB
 return QTextCodec::codecForHtml(ba, defaultCodec);
 }
 
-bool  PythonQtWrapper_QTextCodec::canEncode(QTextCodec* theWrappedObject, QChar  arg__1) const
-{
-return  (*theWrappedObject).canEncode(arg__1);
-}
-
-QTextCodec*  PythonQtWrapper_QTextCodec::static_QTextCodec_codecForLocale()
-{
-return QTextCodec::codecForLocale();
-}
-
-QList<QByteArray >  PythonQtWrapper_QTextCodec::static_QTextCodec_availableCodecs()
-{
-return QTextCodec::availableCodecs();
-}
-
-QTextCodec*  PythonQtWrapper_QTextCodec::static_QTextCodec_codecForCStrings()
-{
-return QTextCodec::codecForCStrings();
-}
-
-QTextCodec*  PythonQtWrapper_QTextCodec::static_QTextCodec_codecForName(const QByteArray&  name)
-{
-return QTextCodec::codecForName(name);
-}
-
-QList<int >  PythonQtWrapper_QTextCodec::static_QTextCodec_availableMibs()
-{
-return QTextCodec::availableMibs();
-}
-
-void PythonQtWrapper_QTextCodec::static_QTextCodec_setCodecForCStrings(QTextCodec*  c)
-{
-QTextCodec::setCodecForCStrings(c);
-}
-
-QByteArray  PythonQtWrapper_QTextCodec::fromUnicode(QTextCodec* theWrappedObject, const QString&  uc) const
-{
-return  (*theWrappedObject).fromUnicode(uc);
-}
-
-QString  PythonQtWrapper_QTextCodec::toUnicode(QTextCodec* theWrappedObject, const QByteArray&  arg__1) const
-{
-return  (*theWrappedObject).toUnicode(arg__1);
-}
-
-QTextEncoder*  PythonQtWrapper_QTextCodec::makeEncoder(QTextCodec* theWrappedObject) const
-{
-return  (*theWrappedObject).makeEncoder();
-}
-
-QList<QByteArray >  PythonQtWrapper_QTextCodec::aliases(QTextCodec* theWrappedObject) const
-{
-return  (*theWrappedObject).aliases();
-}
-
-void PythonQtWrapper_QTextCodec::static_QTextCodec_setCodecForTr(QTextCodec*  c)
-{
-QTextCodec::setCodecForTr(c);
-}
-
-QTextCodec*  PythonQtWrapper_QTextCodec::static_QTextCodec_codecForName(const char*  name)
-{
-return QTextCodec::codecForName(name);
-}
-
-QTextDecoder*  PythonQtWrapper_QTextCodec::makeDecoder(QTextCodec* theWrappedObject) const
-{
-return  (*theWrappedObject).makeDecoder();
-}
-
 QTextCodec*  PythonQtWrapper_QTextCodec::static_QTextCodec_codecForMib(int  mib)
 {
 return QTextCodec::codecForMib(mib);
-}
-
-QTextCodec*  PythonQtWrapper_QTextCodec::static_QTextCodec_codecForHtml(const QByteArray&  ba)
-{
-return QTextCodec::codecForHtml(ba);
-}
-
-bool  PythonQtWrapper_QTextCodec::canEncode(QTextCodec* theWrappedObject, const QString&  arg__1) const
-{
-return  (*theWrappedObject).canEncode(arg__1);
 }
 

@@ -857,243 +857,243 @@ QTabBar* PythonQtWrapper_QTabBar::new_QTabBar(QWidget*  parent)
 { 
 return new PythonQtShell_QTabBar(parent); }
 
-QColor  PythonQtWrapper_QTabBar::tabTextColor(QTabBar* theWrappedObject, int  index) const
-{
-return  (*theWrappedObject).tabTextColor(index);
-}
-
-int  PythonQtWrapper_QTabBar::tabAt(QTabBar* theWrappedObject, const QPoint&  pos) const
-{
-return  (*theWrappedObject).tabAt(pos);
-}
-
-void PythonQtWrapper_QTabBar::setTabToolTip(QTabBar* theWrappedObject, int  index, const QString&  tip)
-{
- (*theWrappedObject).setTabToolTip(index, tip);
-}
-
-QTabBar::Shape  PythonQtWrapper_QTabBar::shape(QTabBar* theWrappedObject) const
-{
-return  (*theWrappedObject).shape();
-}
-
-bool  PythonQtWrapper_QTabBar::isTabEnabled(QTabBar* theWrappedObject, int  index) const
-{
-return  (*theWrappedObject).isTabEnabled(index);
-}
-
-int  PythonQtWrapper_QTabBar::insertTab(QTabBar* theWrappedObject, int  index, const QString&  text)
-{
-return  (*theWrappedObject).insertTab(index, text);
-}
-
 void PythonQtWrapper_QTabBar::setElideMode(QTabBar* theWrappedObject, Qt::TextElideMode  arg__1)
 {
- (*theWrappedObject).setElideMode(arg__1);
-}
-
-void PythonQtWrapper_QTabBar::paintEvent(QTabBar* theWrappedObject, QPaintEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QTabBar*)theWrappedObject)).paintEvent(arg__1);
-}
-
-void PythonQtWrapper_QTabBar::resizeEvent(QTabBar* theWrappedObject, QResizeEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QTabBar*)theWrappedObject)).resizeEvent(arg__1);
-}
-
-void PythonQtWrapper_QTabBar::setShape(QTabBar* theWrappedObject, QTabBar::Shape  shape)
-{
- (*theWrappedObject).setShape(shape);
-}
-
-QRect  PythonQtWrapper_QTabBar::tabRect(QTabBar* theWrappedObject, int  index) const
-{
-return  (*theWrappedObject).tabRect(index);
-}
-
-int  PythonQtWrapper_QTabBar::addTab(QTabBar* theWrappedObject, const QString&  text)
-{
-return  (*theWrappedObject).addTab(text);
-}
-
-int  PythonQtWrapper_QTabBar::addTab(QTabBar* theWrappedObject, const QIcon&  icon, const QString&  text)
-{
-return  (*theWrappedObject).addTab(icon, text);
-}
-
-void PythonQtWrapper_QTabBar::tabRemoved(QTabBar* theWrappedObject, int  index)
-{
- (*((PythonQtPublicPromoter_QTabBar*)theWrappedObject)).tabRemoved(index);
-}
-
-void PythonQtWrapper_QTabBar::showEvent(QTabBar* theWrappedObject, QShowEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QTabBar*)theWrappedObject)).showEvent(arg__1);
-}
-
-QSize  PythonQtWrapper_QTabBar::minimumSizeHint(QTabBar* theWrappedObject) const
-{
-return  (*theWrappedObject).minimumSizeHint();
-}
-
-QSize  PythonQtWrapper_QTabBar::iconSize(QTabBar* theWrappedObject) const
-{
-return  (*theWrappedObject).iconSize();
-}
-
-QString  PythonQtWrapper_QTabBar::tabWhatsThis(QTabBar* theWrappedObject, int  index) const
-{
-return  (*theWrappedObject).tabWhatsThis(index);
-}
-
-void PythonQtWrapper_QTabBar::setTabText(QTabBar* theWrappedObject, int  index, const QString&  text)
-{
- (*theWrappedObject).setTabText(index, text);
-}
-
-void PythonQtWrapper_QTabBar::setTabIcon(QTabBar* theWrappedObject, int  index, const QIcon&  icon)
-{
- (*theWrappedObject).setTabIcon(index, icon);
-}
-
-bool  PythonQtWrapper_QTabBar::event(QTabBar* theWrappedObject, QEvent*  arg__1)
-{
-return  (*((PythonQtPublicPromoter_QTabBar*)theWrappedObject)).event(arg__1);
-}
-
-QSize  PythonQtWrapper_QTabBar::tabSizeHint(QTabBar* theWrappedObject, int  index) const
-{
-return  (*((PythonQtPublicPromoter_QTabBar*)theWrappedObject)).tabSizeHint(index);
-}
-
-int  PythonQtWrapper_QTabBar::currentIndex(QTabBar* theWrappedObject) const
-{
-return  (*theWrappedObject).currentIndex();
-}
-
-bool  PythonQtWrapper_QTabBar::usesScrollButtons(QTabBar* theWrappedObject) const
-{
-return  (*theWrappedObject).usesScrollButtons();
-}
-
-void PythonQtWrapper_QTabBar::setTabData(QTabBar* theWrappedObject, int  index, const QVariant&  data)
-{
- (*theWrappedObject).setTabData(index, data);
-}
-
-void PythonQtWrapper_QTabBar::setTabTextColor(QTabBar* theWrappedObject, int  index, const QColor&  color)
-{
- (*theWrappedObject).setTabTextColor(index, color);
-}
-
-Qt::TextElideMode  PythonQtWrapper_QTabBar::elideMode(QTabBar* theWrappedObject) const
-{
-return  (*theWrappedObject).elideMode();
+ theWrappedObject->setElideMode(arg__1);
 }
 
 void PythonQtWrapper_QTabBar::mouseMoveEvent(QTabBar* theWrappedObject, QMouseEvent*  arg__1)
 {
- (*((PythonQtPublicPromoter_QTabBar*)theWrappedObject)).mouseMoveEvent(arg__1);
-}
-
-void PythonQtWrapper_QTabBar::mouseReleaseEvent(QTabBar* theWrappedObject, QMouseEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QTabBar*)theWrappedObject)).mouseReleaseEvent(arg__1);
-}
-
-void PythonQtWrapper_QTabBar::tabLayoutChange(QTabBar* theWrappedObject)
-{
- (*((PythonQtPublicPromoter_QTabBar*)theWrappedObject)).tabLayoutChange();
-}
-
-QSize  PythonQtWrapper_QTabBar::sizeHint(QTabBar* theWrappedObject) const
-{
-return  (*theWrappedObject).sizeHint();
-}
-
-int  PythonQtWrapper_QTabBar::count(QTabBar* theWrappedObject) const
-{
-return  (*theWrappedObject).count();
-}
-
-void PythonQtWrapper_QTabBar::mousePressEvent(QTabBar* theWrappedObject, QMouseEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QTabBar*)theWrappedObject)).mousePressEvent(arg__1);
-}
-
-bool  PythonQtWrapper_QTabBar::drawBase(QTabBar* theWrappedObject) const
-{
-return  (*theWrappedObject).drawBase();
-}
-
-void PythonQtWrapper_QTabBar::setTabEnabled(QTabBar* theWrappedObject, int  index, bool  arg__2)
-{
- (*theWrappedObject).setTabEnabled(index, arg__2);
-}
-
-QIcon  PythonQtWrapper_QTabBar::tabIcon(QTabBar* theWrappedObject, int  index) const
-{
-return  (*theWrappedObject).tabIcon(index);
-}
-
-void PythonQtWrapper_QTabBar::setTabWhatsThis(QTabBar* theWrappedObject, int  index, const QString&  text)
-{
- (*theWrappedObject).setTabWhatsThis(index, text);
-}
-
-void PythonQtWrapper_QTabBar::changeEvent(QTabBar* theWrappedObject, QEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QTabBar*)theWrappedObject)).changeEvent(arg__1);
-}
-
-void PythonQtWrapper_QTabBar::setIconSize(QTabBar* theWrappedObject, const QSize&  size)
-{
- (*theWrappedObject).setIconSize(size);
+ ((PythonQtPublicPromoter_QTabBar*)theWrappedObject)->promoted_mouseMoveEvent(arg__1);
 }
 
 void PythonQtWrapper_QTabBar::tabInserted(QTabBar* theWrappedObject, int  index)
 {
- (*((PythonQtPublicPromoter_QTabBar*)theWrappedObject)).tabInserted(index);
+ ((PythonQtPublicPromoter_QTabBar*)theWrappedObject)->promoted_tabInserted(index);
 }
 
-void PythonQtWrapper_QTabBar::setUsesScrollButtons(QTabBar* theWrappedObject, bool  useButtons)
+int  PythonQtWrapper_QTabBar::tabAt(QTabBar* theWrappedObject, const QPoint&  pos) const
 {
- (*theWrappedObject).setUsesScrollButtons(useButtons);
+return  theWrappedObject->tabAt(pos);
 }
 
-void PythonQtWrapper_QTabBar::removeTab(QTabBar* theWrappedObject, int  index)
+bool  PythonQtWrapper_QTabBar::drawBase(QTabBar* theWrappedObject) const
 {
- (*theWrappedObject).removeTab(index);
+return  theWrappedObject->drawBase();
 }
 
-int  PythonQtWrapper_QTabBar::insertTab(QTabBar* theWrappedObject, int  index, const QIcon&  icon, const QString&  text)
+QTabBar::Shape  PythonQtWrapper_QTabBar::shape(QTabBar* theWrappedObject) const
 {
-return  (*theWrappedObject).insertTab(index, icon, text);
+return  theWrappedObject->shape();
 }
 
-QString  PythonQtWrapper_QTabBar::tabToolTip(QTabBar* theWrappedObject, int  index) const
+void PythonQtWrapper_QTabBar::paintEvent(QTabBar* theWrappedObject, QPaintEvent*  arg__1)
 {
-return  (*theWrappedObject).tabToolTip(index);
+ ((PythonQtPublicPromoter_QTabBar*)theWrappedObject)->promoted_paintEvent(arg__1);
+}
+
+void PythonQtWrapper_QTabBar::setIconSize(QTabBar* theWrappedObject, const QSize&  size)
+{
+ theWrappedObject->setIconSize(size);
+}
+
+int  PythonQtWrapper_QTabBar::count(QTabBar* theWrappedObject) const
+{
+return  theWrappedObject->count();
+}
+
+void PythonQtWrapper_QTabBar::setShape(QTabBar* theWrappedObject, QTabBar::Shape  shape)
+{
+ theWrappedObject->setShape(shape);
+}
+
+bool  PythonQtWrapper_QTabBar::event(QTabBar* theWrappedObject, QEvent*  arg__1)
+{
+return  ((PythonQtPublicPromoter_QTabBar*)theWrappedObject)->promoted_event(arg__1);
+}
+
+void PythonQtWrapper_QTabBar::setTabText(QTabBar* theWrappedObject, int  index, const QString&  text)
+{
+ theWrappedObject->setTabText(index, text);
 }
 
 void PythonQtWrapper_QTabBar::keyPressEvent(QTabBar* theWrappedObject, QKeyEvent*  arg__1)
 {
- (*((PythonQtPublicPromoter_QTabBar*)theWrappedObject)).keyPressEvent(arg__1);
+ ((PythonQtPublicPromoter_QTabBar*)theWrappedObject)->promoted_keyPressEvent(arg__1);
+}
+
+void PythonQtWrapper_QTabBar::mousePressEvent(QTabBar* theWrappedObject, QMouseEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QTabBar*)theWrappedObject)->promoted_mousePressEvent(arg__1);
+}
+
+void PythonQtWrapper_QTabBar::setTabEnabled(QTabBar* theWrappedObject, int  index, bool  arg__2)
+{
+ theWrappedObject->setTabEnabled(index, arg__2);
+}
+
+QString  PythonQtWrapper_QTabBar::tabWhatsThis(QTabBar* theWrappedObject, int  index) const
+{
+return  theWrappedObject->tabWhatsThis(index);
+}
+
+QSize  PythonQtWrapper_QTabBar::iconSize(QTabBar* theWrappedObject) const
+{
+return  theWrappedObject->iconSize();
+}
+
+void PythonQtWrapper_QTabBar::tabLayoutChange(QTabBar* theWrappedObject)
+{
+ ((PythonQtPublicPromoter_QTabBar*)theWrappedObject)->promoted_tabLayoutChange();
+}
+
+int  PythonQtWrapper_QTabBar::insertTab(QTabBar* theWrappedObject, int  index, const QIcon&  icon, const QString&  text)
+{
+return  theWrappedObject->insertTab(index, icon, text);
+}
+
+QIcon  PythonQtWrapper_QTabBar::tabIcon(QTabBar* theWrappedObject, int  index) const
+{
+return  theWrappedObject->tabIcon(index);
+}
+
+void PythonQtWrapper_QTabBar::showEvent(QTabBar* theWrappedObject, QShowEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QTabBar*)theWrappedObject)->promoted_showEvent(arg__1);
+}
+
+QColor  PythonQtWrapper_QTabBar::tabTextColor(QTabBar* theWrappedObject, int  index) const
+{
+return  theWrappedObject->tabTextColor(index);
+}
+
+Qt::TextElideMode  PythonQtWrapper_QTabBar::elideMode(QTabBar* theWrappedObject) const
+{
+return  theWrappedObject->elideMode();
+}
+
+void PythonQtWrapper_QTabBar::removeTab(QTabBar* theWrappedObject, int  index)
+{
+ theWrappedObject->removeTab(index);
+}
+
+QSize  PythonQtWrapper_QTabBar::minimumSizeHint(QTabBar* theWrappedObject) const
+{
+return  theWrappedObject->minimumSizeHint();
+}
+
+void PythonQtWrapper_QTabBar::setTabToolTip(QTabBar* theWrappedObject, int  index, const QString&  tip)
+{
+ theWrappedObject->setTabToolTip(index, tip);
+}
+
+QString  PythonQtWrapper_QTabBar::tabToolTip(QTabBar* theWrappedObject, int  index) const
+{
+return  theWrappedObject->tabToolTip(index);
+}
+
+void PythonQtWrapper_QTabBar::resizeEvent(QTabBar* theWrappedObject, QResizeEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QTabBar*)theWrappedObject)->promoted_resizeEvent(arg__1);
+}
+
+void PythonQtWrapper_QTabBar::tabRemoved(QTabBar* theWrappedObject, int  index)
+{
+ ((PythonQtPublicPromoter_QTabBar*)theWrappedObject)->promoted_tabRemoved(index);
+}
+
+void PythonQtWrapper_QTabBar::setUsesScrollButtons(QTabBar* theWrappedObject, bool  useButtons)
+{
+ theWrappedObject->setUsesScrollButtons(useButtons);
+}
+
+void PythonQtWrapper_QTabBar::changeEvent(QTabBar* theWrappedObject, QEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QTabBar*)theWrappedObject)->promoted_changeEvent(arg__1);
 }
 
 QVariant  PythonQtWrapper_QTabBar::tabData(QTabBar* theWrappedObject, int  index) const
 {
-return  (*theWrappedObject).tabData(index);
+return  theWrappedObject->tabData(index);
 }
 
-void PythonQtWrapper_QTabBar::setDrawBase(QTabBar* theWrappedObject, bool  drawTheBase)
+QRect  PythonQtWrapper_QTabBar::tabRect(QTabBar* theWrappedObject, int  index) const
 {
- (*theWrappedObject).setDrawBase(drawTheBase);
+return  theWrappedObject->tabRect(index);
+}
+
+bool  PythonQtWrapper_QTabBar::isTabEnabled(QTabBar* theWrappedObject, int  index) const
+{
+return  theWrappedObject->isTabEnabled(index);
+}
+
+int  PythonQtWrapper_QTabBar::addTab(QTabBar* theWrappedObject, const QString&  text)
+{
+return  theWrappedObject->addTab(text);
+}
+
+QSize  PythonQtWrapper_QTabBar::sizeHint(QTabBar* theWrappedObject) const
+{
+return  theWrappedObject->sizeHint();
+}
+
+int  PythonQtWrapper_QTabBar::addTab(QTabBar* theWrappedObject, const QIcon&  icon, const QString&  text)
+{
+return  theWrappedObject->addTab(icon, text);
+}
+
+void PythonQtWrapper_QTabBar::mouseReleaseEvent(QTabBar* theWrappedObject, QMouseEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QTabBar*)theWrappedObject)->promoted_mouseReleaseEvent(arg__1);
+}
+
+QSize  PythonQtWrapper_QTabBar::tabSizeHint(QTabBar* theWrappedObject, int  index) const
+{
+return  ((PythonQtPublicPromoter_QTabBar*)theWrappedObject)->promoted_tabSizeHint(index);
+}
+
+bool  PythonQtWrapper_QTabBar::usesScrollButtons(QTabBar* theWrappedObject) const
+{
+return  theWrappedObject->usesScrollButtons();
+}
+
+void PythonQtWrapper_QTabBar::setTabIcon(QTabBar* theWrappedObject, int  index, const QIcon&  icon)
+{
+ theWrappedObject->setTabIcon(index, icon);
+}
+
+int  PythonQtWrapper_QTabBar::insertTab(QTabBar* theWrappedObject, int  index, const QString&  text)
+{
+return  theWrappedObject->insertTab(index, text);
 }
 
 QString  PythonQtWrapper_QTabBar::tabText(QTabBar* theWrappedObject, int  index) const
 {
-return  (*theWrappedObject).tabText(index);
+return  theWrappedObject->tabText(index);
+}
+
+void PythonQtWrapper_QTabBar::setDrawBase(QTabBar* theWrappedObject, bool  drawTheBase)
+{
+ theWrappedObject->setDrawBase(drawTheBase);
+}
+
+void PythonQtWrapper_QTabBar::setTabTextColor(QTabBar* theWrappedObject, int  index, const QColor&  color)
+{
+ theWrappedObject->setTabTextColor(index, color);
+}
+
+void PythonQtWrapper_QTabBar::setTabData(QTabBar* theWrappedObject, int  index, const QVariant&  data)
+{
+ theWrappedObject->setTabData(index, data);
+}
+
+void PythonQtWrapper_QTabBar::setTabWhatsThis(QTabBar* theWrappedObject, int  index, const QString&  text)
+{
+ theWrappedObject->setTabWhatsThis(index, text);
+}
+
+int  PythonQtWrapper_QTabBar::currentIndex(QTabBar* theWrappedObject) const
+{
+return  theWrappedObject->currentIndex();
 }
 

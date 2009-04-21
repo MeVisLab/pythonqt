@@ -44,6 +44,10 @@ QSvgRenderer* new_QSvgRenderer(QObject*  parent = 0);
 QSvgRenderer* new_QSvgRenderer(const QByteArray&  contents, QObject*  parent = 0);
 QSvgRenderer* new_QSvgRenderer(const QString&  filename, QObject*  parent = 0);
 void delete_QSvgRenderer(QSvgRenderer* obj) { delete obj; } 
+   int  currentFrame(QSvgRenderer* theWrappedObject) const;
+   int  framesPerSecond(QSvgRenderer* theWrappedObject) const;
+   void setViewBox(QSvgRenderer* theWrappedObject, const QRectF&  viewbox);
+   int  animationDuration(QSvgRenderer* theWrappedObject) const;
    bool  animated(QSvgRenderer* theWrappedObject) const;
    QSize  defaultSize(QSvgRenderer* theWrappedObject) const;
    void setFramesPerSecond(QSvgRenderer* theWrappedObject, int  num);
@@ -51,14 +55,10 @@ void delete_QSvgRenderer(QSvgRenderer* obj) { delete obj; }
    QRectF  boundsOnElement(QSvgRenderer* theWrappedObject, const QString&  id) const;
    bool  isValid(QSvgRenderer* theWrappedObject) const;
    QMatrix  matrixForElement(QSvgRenderer* theWrappedObject, const QString&  id) const;
+   QRect  viewBox(QSvgRenderer* theWrappedObject) const;
    QRectF  viewBoxF(QSvgRenderer* theWrappedObject) const;
    void setViewBox(QSvgRenderer* theWrappedObject, const QRect&  viewbox);
-   int  currentFrame(QSvgRenderer* theWrappedObject) const;
-   QRect  viewBox(QSvgRenderer* theWrappedObject) const;
-   int  framesPerSecond(QSvgRenderer* theWrappedObject) const;
-   void setViewBox(QSvgRenderer* theWrappedObject, const QRectF&  viewbox);
    void setCurrentFrame(QSvgRenderer* theWrappedObject, int  arg__1);
-   int  animationDuration(QSvgRenderer* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QSVGRENDERER_H

@@ -217,11 +217,11 @@ return new PythonQtShell_QWebPluginFactory(parent); }
 
 bool  PythonQtWrapper_QWebPluginFactory::supportsExtension(QWebPluginFactory* theWrappedObject, QWebPluginFactory::Extension  extension) const
 {
-return  (*theWrappedObject).supportsExtension(extension);
+return  ((PythonQtPublicPromoter_QWebPluginFactory*)theWrappedObject)->promoted_supportsExtension(extension);
 }
 
 void PythonQtWrapper_QWebPluginFactory::refreshPlugins(QWebPluginFactory* theWrappedObject)
 {
- (*theWrappedObject).refreshPlugins();
+ ((PythonQtPublicPromoter_QWebPluginFactory*)theWrappedObject)->promoted_refreshPlugins();
 }
 

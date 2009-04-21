@@ -46,7 +46,20 @@ virtual qint64  writeData(const char*  data, qint64  len);
 
 class PythonQtPublicPromoter_QIODevice : public QIODevice
 { public:
-inline qint64  readLineData(char*  data, qint64  maxlen) { return QIODevice::readLineData(data, maxlen); }
+inline bool  promoted_open(QIODevice::OpenMode  mode) { return QIODevice::open(mode); }
+inline qint64  promoted_size() const { return QIODevice::size(); }
+inline qint64  promoted_readLineData(char*  data, qint64  maxlen) { return QIODevice::readLineData(data, maxlen); }
+inline void promoted_close() { QIODevice::close(); }
+inline qint64  promoted_bytesAvailable() const { return QIODevice::bytesAvailable(); }
+inline bool  promoted_isSequential() const { return QIODevice::isSequential(); }
+inline bool  promoted_atEnd() const { return QIODevice::atEnd(); }
+inline bool  promoted_seek(qint64  pos) { return QIODevice::seek(pos); }
+inline bool  promoted_canReadLine() const { return QIODevice::canReadLine(); }
+inline bool  promoted_reset() { return QIODevice::reset(); }
+inline bool  promoted_waitForReadyRead(int  msecs) { return QIODevice::waitForReadyRead(msecs); }
+inline qint64  promoted_bytesToWrite() const { return QIODevice::bytesToWrite(); }
+inline qint64  promoted_pos() const { return QIODevice::pos(); }
+inline bool  promoted_waitForBytesWritten(int  msecs) { return QIODevice::waitForBytesWritten(msecs); }
 };
 
 class PythonQtWrapper_QIODevice : public QObject
@@ -59,35 +72,35 @@ public slots:
 QIODevice* new_QIODevice();
 QIODevice* new_QIODevice(QObject*  parent);
 void delete_QIODevice(QIODevice* obj) { delete obj; } 
-   bool  isWritable(QIODevice* theWrappedObject) const;
-   qint64  pos(QIODevice* theWrappedObject) const;
-   bool  putChar(QIODevice* theWrappedObject, char  c);
-   QByteArray  read(QIODevice* theWrappedObject, qint64  maxlen);
-   QString  errorString(QIODevice* theWrappedObject) const;
-   bool  isSequential(QIODevice* theWrappedObject) const;
    QByteArray  peek(QIODevice* theWrappedObject, qint64  maxlen);
+   bool  open(QIODevice* theWrappedObject, QIODevice::OpenMode  mode);
    qint64  size(QIODevice* theWrappedObject) const;
-   bool  isTextModeEnabled(QIODevice* theWrappedObject) const;
    qint64  readLineData(QIODevice* theWrappedObject, char*  data, qint64  maxlen);
    bool  isOpen(QIODevice* theWrappedObject) const;
    void close(QIODevice* theWrappedObject);
-   bool  reset(QIODevice* theWrappedObject);
    qint64  bytesAvailable(QIODevice* theWrappedObject) const;
    QIODevice::OpenMode  openMode(QIODevice* theWrappedObject) const;
-   qint64  bytesToWrite(QIODevice* theWrappedObject) const;
+   QByteArray  read(QIODevice* theWrappedObject, qint64  maxlen);
+   bool  isTextModeEnabled(QIODevice* theWrappedObject) const;
    bool  isReadable(QIODevice* theWrappedObject) const;
-   void setTextModeEnabled(QIODevice* theWrappedObject, bool  enabled);
-   bool  waitForBytesWritten(QIODevice* theWrappedObject, int  msecs);
-   bool  open(QIODevice* theWrappedObject, QIODevice::OpenMode  mode);
-   QByteArray  readAll(QIODevice* theWrappedObject);
+   bool  isSequential(QIODevice* theWrappedObject) const;
    bool  atEnd(QIODevice* theWrappedObject) const;
    bool  seek(QIODevice* theWrappedObject, qint64  pos);
    bool  getChar(QIODevice* theWrappedObject, char*  c);
    QByteArray  readLine(QIODevice* theWrappedObject, qint64  maxlen = 0);
-   qint64  write(QIODevice* theWrappedObject, const QByteArray&  data);
    bool  canReadLine(QIODevice* theWrappedObject) const;
+   qint64  write(QIODevice* theWrappedObject, const QByteArray&  data);
+   bool  reset(QIODevice* theWrappedObject);
+   void setTextModeEnabled(QIODevice* theWrappedObject, bool  enabled);
    void ungetChar(QIODevice* theWrappedObject, char  c);
    bool  waitForReadyRead(QIODevice* theWrappedObject, int  msecs);
+   qint64  bytesToWrite(QIODevice* theWrappedObject) const;
+   bool  isWritable(QIODevice* theWrappedObject) const;
+   qint64  pos(QIODevice* theWrappedObject) const;
+   bool  putChar(QIODevice* theWrappedObject, char  c);
+   bool  waitForBytesWritten(QIODevice* theWrappedObject, int  msecs);
+   QString  errorString(QIODevice* theWrappedObject) const;
+   QByteArray  readAll(QIODevice* theWrappedObject);
 };
 
 #endif // PYTHONQTWRAPPER_QIODEVICE_H

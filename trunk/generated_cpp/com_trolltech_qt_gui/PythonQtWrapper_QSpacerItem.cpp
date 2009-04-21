@@ -350,48 +350,48 @@ QSpacerItem* PythonQtWrapper_QSpacerItem::new_QSpacerItem(int  w, int  h, QSizeP
 { 
 return new PythonQtShell_QSpacerItem(w, h, hData, vData); }
 
-void PythonQtWrapper_QSpacerItem::changeSize(QSpacerItem* theWrappedObject, int  w, int  h, QSizePolicy::Policy  hData, QSizePolicy::Policy  vData)
-{
- (*theWrappedObject).changeSize(w, h, hData, vData);
-}
-
-QSize  PythonQtWrapper_QSpacerItem::sizeHint(QSpacerItem* theWrappedObject) const
-{
-return  (*theWrappedObject).sizeHint();
-}
-
-QSize  PythonQtWrapper_QSpacerItem::maximumSize(QSpacerItem* theWrappedObject) const
-{
-return  (*theWrappedObject).maximumSize();
-}
-
-bool  PythonQtWrapper_QSpacerItem::isEmpty(QSpacerItem* theWrappedObject) const
-{
-return  (*theWrappedObject).isEmpty();
-}
-
-QSize  PythonQtWrapper_QSpacerItem::minimumSize(QSpacerItem* theWrappedObject) const
-{
-return  (*theWrappedObject).minimumSize();
-}
-
-QSpacerItem*  PythonQtWrapper_QSpacerItem::spacerItem(QSpacerItem* theWrappedObject)
-{
-return  (*theWrappedObject).spacerItem();
-}
-
 QRect  PythonQtWrapper_QSpacerItem::geometry(QSpacerItem* theWrappedObject) const
 {
-return  (*theWrappedObject).geometry();
+return  ((PythonQtPublicPromoter_QSpacerItem*)theWrappedObject)->promoted_geometry();
 }
 
 void PythonQtWrapper_QSpacerItem::setGeometry(QSpacerItem* theWrappedObject, const QRect&  arg__1)
 {
- (*theWrappedObject).setGeometry(arg__1);
+ ((PythonQtPublicPromoter_QSpacerItem*)theWrappedObject)->promoted_setGeometry(arg__1);
 }
 
 Qt::Orientations  PythonQtWrapper_QSpacerItem::expandingDirections(QSpacerItem* theWrappedObject) const
 {
-return  (*theWrappedObject).expandingDirections();
+return  ((PythonQtPublicPromoter_QSpacerItem*)theWrappedObject)->promoted_expandingDirections();
+}
+
+QSize  PythonQtWrapper_QSpacerItem::sizeHint(QSpacerItem* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QSpacerItem*)theWrappedObject)->promoted_sizeHint();
+}
+
+QSize  PythonQtWrapper_QSpacerItem::maximumSize(QSpacerItem* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QSpacerItem*)theWrappedObject)->promoted_maximumSize();
+}
+
+bool  PythonQtWrapper_QSpacerItem::isEmpty(QSpacerItem* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QSpacerItem*)theWrappedObject)->promoted_isEmpty();
+}
+
+void PythonQtWrapper_QSpacerItem::changeSize(QSpacerItem* theWrappedObject, int  w, int  h, QSizePolicy::Policy  hData, QSizePolicy::Policy  vData)
+{
+ theWrappedObject->changeSize(w, h, hData, vData);
+}
+
+QSize  PythonQtWrapper_QSpacerItem::minimumSize(QSpacerItem* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QSpacerItem*)theWrappedObject)->promoted_minimumSize();
+}
+
+QSpacerItem*  PythonQtWrapper_QSpacerItem::spacerItem(QSpacerItem* theWrappedObject)
+{
+return  ((PythonQtPublicPromoter_QSpacerItem*)theWrappedObject)->promoted_spacerItem();
 }
 

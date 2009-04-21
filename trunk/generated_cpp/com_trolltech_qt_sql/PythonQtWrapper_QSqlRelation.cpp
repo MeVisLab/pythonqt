@@ -15,21 +15,21 @@ return new QSqlRelation(aTableName, indexCol, displayCol); }
 
 bool  PythonQtWrapper_QSqlRelation::isValid(QSqlRelation* theWrappedObject) const
 {
-return  (*theWrappedObject).isValid();
+return  theWrappedObject->isValid();
 }
 
 QString  PythonQtWrapper_QSqlRelation::tableName(QSqlRelation* theWrappedObject) const
 {
-return  (*theWrappedObject).tableName();
+return  theWrappedObject->tableName();
 }
 
 QString  PythonQtWrapper_QSqlRelation::indexColumn(QSqlRelation* theWrappedObject) const
 {
-return  (*theWrappedObject).indexColumn();
+return  theWrappedObject->indexColumn();
 }
 
 QString  PythonQtWrapper_QSqlRelation::displayColumn(QSqlRelation* theWrappedObject) const
 {
-return  (*theWrappedObject).displayColumn();
+return  theWrappedObject->displayColumn();
 }
 

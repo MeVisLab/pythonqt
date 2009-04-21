@@ -92,12 +92,14 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QWizard : public QWizard
 { public:
-inline void done(int  result) { QWizard::done(result); }
-inline void paintEvent(QPaintEvent*  event) { QWizard::paintEvent(event); }
-inline bool  event(QEvent*  event) { return QWizard::event(event); }
-inline void initializePage(int  id) { QWizard::initializePage(id); }
-inline void resizeEvent(QResizeEvent*  event) { QWizard::resizeEvent(event); }
-inline void cleanupPage(int  id) { QWizard::cleanupPage(id); }
+inline void promoted_done(int  result) { QWizard::done(result); }
+inline void promoted_resizeEvent(QResizeEvent*  event) { QWizard::resizeEvent(event); }
+inline bool  promoted_validateCurrentPage() { return QWizard::validateCurrentPage(); }
+inline void promoted_cleanupPage(int  id) { QWizard::cleanupPage(id); }
+inline bool  promoted_event(QEvent*  event) { return QWizard::event(event); }
+inline void promoted_paintEvent(QPaintEvent*  event) { QWizard::paintEvent(event); }
+inline int  promoted_nextId() const { return QWizard::nextId(); }
+inline void promoted_initializePage(int  id) { QWizard::initializePage(id); }
 };
 
 class PythonQtWrapper_QWizard : public QObject
@@ -111,44 +113,44 @@ enum WizardPixmap{
 public slots:
 QWizard* new_QWizard(QWidget*  parent = 0, Qt::WindowFlags  flags = 0);
 void delete_QWizard(QWizard* obj) { delete obj; } 
-   Qt::TextFormat  titleFormat(QWizard* theWrappedObject) const;
-   bool  validateCurrentPage(QWizard* theWrappedObject);
    void setWizardStyle(QWizard* theWrappedObject, QWizard::WizardStyle  style);
-   QAbstractButton*  button(QWizard* theWrappedObject, QWizard::WizardButton  which) const;
-   bool  testOption(QWizard* theWrappedObject, QWizard::WizardOption  option) const;
-   void done(QWizard* theWrappedObject, int  result);
    void setField(QWizard* theWrappedObject, const QString&  name, const QVariant&  value);
-   QWizardPage*  currentPage(QWizard* theWrappedObject) const;
-   QSize  sizeHint(QWizard* theWrappedObject) const;
-   QWizard::WizardOptions  options(QWizard* theWrappedObject) const;
-   void setButtonText(QWizard* theWrappedObject, QWizard::WizardButton  which, const QString&  text);
-   int  currentId(QWizard* theWrappedObject) const;
    void setOption(QWizard* theWrappedObject, QWizard::WizardOption  option, bool  on = true);
+   void done(QWizard* theWrappedObject, int  result);
+   QWizard::WizardStyle  wizardStyle(QWizard* theWrappedObject) const;
+   QWizard::WizardOptions  options(QWizard* theWrappedObject) const;
+   void setVisible(QWizard* theWrappedObject, bool  visible);
+   bool  testOption(QWizard* theWrappedObject, QWizard::WizardOption  option) const;
+   QSize  sizeHint(QWizard* theWrappedObject) const;
+   void resizeEvent(QWizard* theWrappedObject, QResizeEvent*  event);
+   bool  hasVisitedPage(QWizard* theWrappedObject, int  id) const;
+   bool  validateCurrentPage(QWizard* theWrappedObject);
+   void cleanupPage(QWizard* theWrappedObject, int  id);
+   int  currentId(QWizard* theWrappedObject) const;
+   void setTitleFormat(QWizard* theWrappedObject, Qt::TextFormat  format);
+   void setOptions(QWizard* theWrappedObject, QWizard::WizardOptions  options);
+   Qt::TextFormat  titleFormat(QWizard* theWrappedObject) const;
+   Qt::TextFormat  subTitleFormat(QWizard* theWrappedObject) const;
+   QWizardPage*  currentPage(QWizard* theWrappedObject) const;
+   QVariant  field(QWizard* theWrappedObject, const QString&  name) const;
+   QWizardPage*  page(QWizard* theWrappedObject, int  id) const;
+   QPixmap  pixmap(QWizard* theWrappedObject, QWizard::WizardPixmap  which) const;
+   bool  event(QWizard* theWrappedObject, QEvent*  event);
+   void setPage(QWizard* theWrappedObject, int  id, QWizardPage*  page);
+   void setSubTitleFormat(QWizard* theWrappedObject, Qt::TextFormat  format);
+   void setButton(QWizard* theWrappedObject, QWizard::WizardButton  which, QAbstractButton*  button);
+   QList<int >  visitedPages(QWizard* theWrappedObject) const;
    void paintEvent(QWizard* theWrappedObject, QPaintEvent*  event);
    void setPixmap(QWizard* theWrappedObject, QWizard::WizardPixmap  which, const QPixmap&  pixmap);
-   void setPage(QWizard* theWrappedObject, int  id, QWizardPage*  page);
-   bool  event(QWizard* theWrappedObject, QEvent*  event);
-   QList<int >  visitedPages(QWizard* theWrappedObject) const;
-   void setButtonLayout(QWizard* theWrappedObject, const QList<QWizard::WizardButton >&  layout);
-   void setSubTitleFormat(QWizard* theWrappedObject, Qt::TextFormat  format);
    int  nextId(QWizard* theWrappedObject) const;
-   QPixmap  pixmap(QWizard* theWrappedObject, QWizard::WizardPixmap  which) const;
+   QAbstractButton*  button(QWizard* theWrappedObject, QWizard::WizardButton  which) const;
    QString  buttonText(QWizard* theWrappedObject, QWizard::WizardButton  which) const;
-   void initializePage(QWizard* theWrappedObject, int  id);
-   void resizeEvent(QWizard* theWrappedObject, QResizeEvent*  event);
-   QVariant  field(QWizard* theWrappedObject, const QString&  name) const;
-   void setTitleFormat(QWizard* theWrappedObject, Qt::TextFormat  format);
-   QWizard::WizardStyle  wizardStyle(QWizard* theWrappedObject) const;
-   QWizardPage*  page(QWizard* theWrappedObject, int  id) const;
-   bool  hasVisitedPage(QWizard* theWrappedObject, int  id) const;
-   void setOptions(QWizard* theWrappedObject, QWizard::WizardOptions  options);
-   int  startId(QWizard* theWrappedObject) const;
-   void setVisible(QWizard* theWrappedObject, bool  visible);
-   void setButton(QWizard* theWrappedObject, QWizard::WizardButton  which, QAbstractButton*  button);
-   void cleanupPage(QWizard* theWrappedObject, int  id);
-   Qt::TextFormat  subTitleFormat(QWizard* theWrappedObject) const;
-   void setStartId(QWizard* theWrappedObject, int  id);
    int  addPage(QWizard* theWrappedObject, QWizardPage*  page);
+   void setButtonLayout(QWizard* theWrappedObject, const QList<QWizard::WizardButton >&  layout);
+   void setButtonText(QWizard* theWrappedObject, QWizard::WizardButton  which, const QString&  text);
+   void initializePage(QWizard* theWrappedObject, int  id);
+   void setStartId(QWizard* theWrappedObject, int  id);
+   int  startId(QWizard* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QWIZARD_H

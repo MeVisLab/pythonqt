@@ -31,7 +31,7 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QShortcut : public QShortcut
 { public:
-inline bool  event(QEvent*  e) { return QShortcut::event(e); }
+inline bool  promoted_event(QEvent*  e) { return QShortcut::event(e); }
 };
 
 class PythonQtWrapper_QShortcut : public QObject
@@ -41,19 +41,19 @@ public slots:
 QShortcut* new_QShortcut(QWidget*  parent);
 QShortcut* new_QShortcut(const QKeySequence&  key, QWidget*  parent, const char*  member = 0, const char*  ambiguousMember = 0, Qt::ShortcutContext  context = Qt::WindowShortcut);
 void delete_QShortcut(QShortcut* obj) { delete obj; } 
-   QWidget*  parentWidget(QShortcut* theWrappedObject) const;
-   bool  event(QShortcut* theWrappedObject, QEvent*  e);
    bool  autoRepeat(QShortcut* theWrappedObject) const;
-   void setContext(QShortcut* theWrappedObject, Qt::ShortcutContext  context);
+   QWidget*  parentWidget(QShortcut* theWrappedObject) const;
+   void setAutoRepeat(QShortcut* theWrappedObject, bool  on);
+   QKeySequence  key(QShortcut* theWrappedObject) const;
    void setKey(QShortcut* theWrappedObject, const QKeySequence&  key);
    bool  isEnabled(QShortcut* theWrappedObject) const;
-   void setAutoRepeat(QShortcut* theWrappedObject, bool  on);
-   int  id(QShortcut* theWrappedObject) const;
-   QKeySequence  key(QShortcut* theWrappedObject) const;
-   QString  whatsThis(QShortcut* theWrappedObject) const;
-   void setWhatsThis(QShortcut* theWrappedObject, const QString&  text);
-   Qt::ShortcutContext  context(QShortcut* theWrappedObject);
+   void setContext(QShortcut* theWrappedObject, Qt::ShortcutContext  context);
    void setEnabled(QShortcut* theWrappedObject, bool  enable);
+   void setWhatsThis(QShortcut* theWrappedObject, const QString&  text);
+   QString  whatsThis(QShortcut* theWrappedObject) const;
+   bool  event(QShortcut* theWrappedObject, QEvent*  e);
+   Qt::ShortcutContext  context(QShortcut* theWrappedObject);
+   int  id(QShortcut* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QSHORTCUT_H

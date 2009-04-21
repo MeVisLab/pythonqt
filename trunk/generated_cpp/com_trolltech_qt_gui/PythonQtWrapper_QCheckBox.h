@@ -90,12 +90,12 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QCheckBox : public QCheckBox
 { public:
-inline void paintEvent(QPaintEvent*  arg__1) { QCheckBox::paintEvent(arg__1); }
-inline void mouseMoveEvent(QMouseEvent*  arg__1) { QCheckBox::mouseMoveEvent(arg__1); }
-inline void nextCheckState() { QCheckBox::nextCheckState(); }
-inline void checkStateSet() { QCheckBox::checkStateSet(); }
-inline bool  hitButton(const QPoint&  pos) const { return QCheckBox::hitButton(pos); }
-inline bool  event(QEvent*  e) { return QCheckBox::event(e); }
+inline void promoted_mouseMoveEvent(QMouseEvent*  arg__1) { QCheckBox::mouseMoveEvent(arg__1); }
+inline void promoted_nextCheckState() { QCheckBox::nextCheckState(); }
+inline void promoted_checkStateSet() { QCheckBox::checkStateSet(); }
+inline bool  promoted_hitButton(const QPoint&  pos) const { return QCheckBox::hitButton(pos); }
+inline void promoted_paintEvent(QPaintEvent*  arg__1) { QCheckBox::paintEvent(arg__1); }
+inline bool  promoted_event(QEvent*  e) { return QCheckBox::event(e); }
 };
 
 class PythonQtWrapper_QCheckBox : public QObject
@@ -105,17 +105,17 @@ public slots:
 QCheckBox* new_QCheckBox(QWidget*  parent = 0);
 QCheckBox* new_QCheckBox(const QString&  text, QWidget*  parent = 0);
 void delete_QCheckBox(QCheckBox* obj) { delete obj; } 
+   Qt::CheckState  checkState(QCheckBox* theWrappedObject) const;
    void setTristate(QCheckBox* theWrappedObject, bool  y = true);
-   void paintEvent(QCheckBox* theWrappedObject, QPaintEvent*  arg__1);
    void mouseMoveEvent(QCheckBox* theWrappedObject, QMouseEvent*  arg__1);
    void nextCheckState(QCheckBox* theWrappedObject);
    QSize  sizeHint(QCheckBox* theWrappedObject) const;
-   bool  isTristate(QCheckBox* theWrappedObject) const;
    void checkStateSet(QCheckBox* theWrappedObject);
    bool  hitButton(QCheckBox* theWrappedObject, const QPoint&  pos) const;
+   void paintEvent(QCheckBox* theWrappedObject, QPaintEvent*  arg__1);
    void setCheckState(QCheckBox* theWrappedObject, Qt::CheckState  state);
    bool  event(QCheckBox* theWrappedObject, QEvent*  e);
-   Qt::CheckState  checkState(QCheckBox* theWrappedObject) const;
+   bool  isTristate(QCheckBox* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QCHECKBOX_H

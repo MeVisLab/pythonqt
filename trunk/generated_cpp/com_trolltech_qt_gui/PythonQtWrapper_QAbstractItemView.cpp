@@ -1605,373 +1605,373 @@ QAbstractItemView* PythonQtWrapper_QAbstractItemView::new_QAbstractItemView(QWid
 { 
 return new PythonQtShell_QAbstractItemView(parent); }
 
-void PythonQtWrapper_QAbstractItemView::setIconSize(QAbstractItemView* theWrappedObject, const QSize&  size)
+void PythonQtWrapper_QAbstractItemView::setVerticalScrollMode(QAbstractItemView* theWrappedObject, QAbstractItemView::ScrollMode  mode)
 {
- (*theWrappedObject).setIconSize(size);
-}
-
-QAbstractItemView::DragDropMode  PythonQtWrapper_QAbstractItemView::dragDropMode(QAbstractItemView* theWrappedObject) const
-{
-return  (*theWrappedObject).dragDropMode();
-}
-
-void PythonQtWrapper_QAbstractItemView::setAutoScroll(QAbstractItemView* theWrappedObject, bool  enable)
-{
- (*theWrappedObject).setAutoScroll(enable);
-}
-
-void PythonQtWrapper_QAbstractItemView::dropEvent(QAbstractItemView* theWrappedObject, QDropEvent*  event)
-{
- (*((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)).dropEvent(event);
-}
-
-QList<QModelIndex >  PythonQtWrapper_QAbstractItemView::selectedIndexes(QAbstractItemView* theWrappedObject) const
-{
-return  (*((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)).selectedIndexes();
-}
-
-void PythonQtWrapper_QAbstractItemView::dragMoveEvent(QAbstractItemView* theWrappedObject, QDragMoveEvent*  event)
-{
- (*((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)).dragMoveEvent(event);
-}
-
-QAbstractItemView::SelectionMode  PythonQtWrapper_QAbstractItemView::selectionMode(QAbstractItemView* theWrappedObject) const
-{
-return  (*theWrappedObject).selectionMode();
-}
-
-QWidget*  PythonQtWrapper_QAbstractItemView::indexWidget(QAbstractItemView* theWrappedObject, const QModelIndex&  index) const
-{
-return  (*theWrappedObject).indexWidget(index);
-}
-
-void PythonQtWrapper_QAbstractItemView::setAlternatingRowColors(QAbstractItemView* theWrappedObject, bool  enable)
-{
- (*theWrappedObject).setAlternatingRowColors(enable);
-}
-
-void PythonQtWrapper_QAbstractItemView::mouseDoubleClickEvent(QAbstractItemView* theWrappedObject, QMouseEvent*  event)
-{
- (*((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)).mouseDoubleClickEvent(event);
-}
-
-QModelIndex  PythonQtWrapper_QAbstractItemView::currentIndex(QAbstractItemView* theWrappedObject) const
-{
-return  (*theWrappedObject).currentIndex();
-}
-
-QAbstractItemDelegate*  PythonQtWrapper_QAbstractItemView::itemDelegate(QAbstractItemView* theWrappedObject, const QModelIndex&  index) const
-{
-return  (*theWrappedObject).itemDelegate(index);
-}
-
-void PythonQtWrapper_QAbstractItemView::mouseMoveEvent(QAbstractItemView* theWrappedObject, QMouseEvent*  event)
-{
- (*((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)).mouseMoveEvent(event);
-}
-
-QAbstractItemView::ScrollMode  PythonQtWrapper_QAbstractItemView::horizontalScrollMode(QAbstractItemView* theWrappedObject) const
-{
-return  (*theWrappedObject).horizontalScrollMode();
-}
-
-void PythonQtWrapper_QAbstractItemView::focusInEvent(QAbstractItemView* theWrappedObject, QFocusEvent*  event)
-{
- (*((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)).focusInEvent(event);
-}
-
-void PythonQtWrapper_QAbstractItemView::setIndexWidget(QAbstractItemView* theWrappedObject, const QModelIndex&  index, QWidget*  widget)
-{
- (*theWrappedObject).setIndexWidget(index, widget);
-}
-
-bool  PythonQtWrapper_QAbstractItemView::hasAutoScroll(QAbstractItemView* theWrappedObject) const
-{
-return  (*theWrappedObject).hasAutoScroll();
-}
-
-void PythonQtWrapper_QAbstractItemView::setEditTriggers(QAbstractItemView* theWrappedObject, QAbstractItemView::EditTriggers  triggers)
-{
- (*theWrappedObject).setEditTriggers(triggers);
-}
-
-QAbstractItemDelegate*  PythonQtWrapper_QAbstractItemView::itemDelegateForRow(QAbstractItemView* theWrappedObject, int  row) const
-{
-return  (*theWrappedObject).itemDelegateForRow(row);
-}
-
-void PythonQtWrapper_QAbstractItemView::setHorizontalScrollMode(QAbstractItemView* theWrappedObject, QAbstractItemView::ScrollMode  mode)
-{
- (*theWrappedObject).setHorizontalScrollMode(mode);
-}
-
-void PythonQtWrapper_QAbstractItemView::closePersistentEditor(QAbstractItemView* theWrappedObject, const QModelIndex&  index)
-{
- (*theWrappedObject).closePersistentEditor(index);
-}
-
-QAbstractItemModel*  PythonQtWrapper_QAbstractItemView::model(QAbstractItemView* theWrappedObject) const
-{
-return  (*theWrappedObject).model();
-}
-
-QVariant  PythonQtWrapper_QAbstractItemView::inputMethodQuery(QAbstractItemView* theWrappedObject, Qt::InputMethodQuery  query) const
-{
-return  (*theWrappedObject).inputMethodQuery(query);
-}
-
-bool  PythonQtWrapper_QAbstractItemView::edit(QAbstractItemView* theWrappedObject, const QModelIndex&  index, QAbstractItemView::EditTrigger  trigger, QEvent*  event)
-{
-return  (*((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)).edit(index, trigger, event);
-}
-
-int  PythonQtWrapper_QAbstractItemView::autoScrollMargin(QAbstractItemView* theWrappedObject) const
-{
-return  (*theWrappedObject).autoScrollMargin();
-}
-
-bool  PythonQtWrapper_QAbstractItemView::viewportEvent(QAbstractItemView* theWrappedObject, QEvent*  event)
-{
-return  (*((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)).viewportEvent(event);
-}
-
-void PythonQtWrapper_QAbstractItemView::setTabKeyNavigation(QAbstractItemView* theWrappedObject, bool  enable)
-{
- (*theWrappedObject).setTabKeyNavigation(enable);
-}
-
-QModelIndex  PythonQtWrapper_QAbstractItemView::rootIndex(QAbstractItemView* theWrappedObject) const
-{
-return  (*theWrappedObject).rootIndex();
-}
-
-void PythonQtWrapper_QAbstractItemView::setDropIndicatorShown(QAbstractItemView* theWrappedObject, bool  enable)
-{
- (*theWrappedObject).setDropIndicatorShown(enable);
-}
-
-bool  PythonQtWrapper_QAbstractItemView::alternatingRowColors(QAbstractItemView* theWrappedObject) const
-{
-return  (*theWrappedObject).alternatingRowColors();
-}
-
-QAbstractItemView::ScrollMode  PythonQtWrapper_QAbstractItemView::verticalScrollMode(QAbstractItemView* theWrappedObject) const
-{
-return  (*theWrappedObject).verticalScrollMode();
-}
-
-QItemSelectionModel::SelectionFlags  PythonQtWrapper_QAbstractItemView::selectionCommand(QAbstractItemView* theWrappedObject, const QModelIndex&  index, const QEvent*  event) const
-{
-return  (*((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)).selectionCommand(index, event);
-}
-
-QAbstractItemDelegate*  PythonQtWrapper_QAbstractItemView::itemDelegate(QAbstractItemView* theWrappedObject) const
-{
-return  (*theWrappedObject).itemDelegate();
-}
-
-int  PythonQtWrapper_QAbstractItemView::sizeHintForColumn(QAbstractItemView* theWrappedObject, int  column) const
-{
-return  (*theWrappedObject).sizeHintForColumn(column);
-}
-
-QSize  PythonQtWrapper_QAbstractItemView::iconSize(QAbstractItemView* theWrappedObject) const
-{
-return  (*theWrappedObject).iconSize();
-}
-
-void PythonQtWrapper_QAbstractItemView::setSelectionMode(QAbstractItemView* theWrappedObject, QAbstractItemView::SelectionMode  mode)
-{
- (*theWrappedObject).setSelectionMode(mode);
-}
-
-bool  PythonQtWrapper_QAbstractItemView::tabKeyNavigation(QAbstractItemView* theWrappedObject) const
-{
-return  (*theWrappedObject).tabKeyNavigation();
-}
-
-void PythonQtWrapper_QAbstractItemView::dragEnterEvent(QAbstractItemView* theWrappedObject, QDragEnterEvent*  event)
-{
- (*((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)).dragEnterEvent(event);
-}
-
-bool  PythonQtWrapper_QAbstractItemView::dragDropOverwriteMode(QAbstractItemView* theWrappedObject) const
-{
-return  (*theWrappedObject).dragDropOverwriteMode();
-}
-
-void PythonQtWrapper_QAbstractItemView::openPersistentEditor(QAbstractItemView* theWrappedObject, const QModelIndex&  index)
-{
- (*theWrappedObject).openPersistentEditor(index);
-}
-
-void PythonQtWrapper_QAbstractItemView::keyboardSearch(QAbstractItemView* theWrappedObject, const QString&  search)
-{
- (*theWrappedObject).keyboardSearch(search);
-}
-
-void PythonQtWrapper_QAbstractItemView::mousePressEvent(QAbstractItemView* theWrappedObject, QMouseEvent*  event)
-{
- (*((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)).mousePressEvent(event);
-}
-
-QAbstractItemView::EditTriggers  PythonQtWrapper_QAbstractItemView::editTriggers(QAbstractItemView* theWrappedObject) const
-{
-return  (*theWrappedObject).editTriggers();
-}
-
-void PythonQtWrapper_QAbstractItemView::keyPressEvent(QAbstractItemView* theWrappedObject, QKeyEvent*  event)
-{
- (*((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)).keyPressEvent(event);
-}
-
-void PythonQtWrapper_QAbstractItemView::setDragDropMode(QAbstractItemView* theWrappedObject, QAbstractItemView::DragDropMode  behavior)
-{
- (*theWrappedObject).setDragDropMode(behavior);
-}
-
-void PythonQtWrapper_QAbstractItemView::setDragEnabled(QAbstractItemView* theWrappedObject, bool  enable)
-{
- (*theWrappedObject).setDragEnabled(enable);
-}
-
-void PythonQtWrapper_QAbstractItemView::setItemDelegateForColumn(QAbstractItemView* theWrappedObject, int  column, QAbstractItemDelegate*  delegate)
-{
- (*theWrappedObject).setItemDelegateForColumn(column, delegate);
-}
-
-void PythonQtWrapper_QAbstractItemView::focusOutEvent(QAbstractItemView* theWrappedObject, QFocusEvent*  event)
-{
- (*((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)).focusOutEvent(event);
-}
-
-void PythonQtWrapper_QAbstractItemView::mouseReleaseEvent(QAbstractItemView* theWrappedObject, QMouseEvent*  event)
-{
- (*((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)).mouseReleaseEvent(event);
-}
-
-bool  PythonQtWrapper_QAbstractItemView::showDropIndicator(QAbstractItemView* theWrappedObject) const
-{
-return  (*theWrappedObject).showDropIndicator();
-}
-
-void PythonQtWrapper_QAbstractItemView::setAutoScrollMargin(QAbstractItemView* theWrappedObject, int  margin)
-{
- (*theWrappedObject).setAutoScrollMargin(margin);
-}
-
-QStyleOptionViewItem  PythonQtWrapper_QAbstractItemView::viewOptions(QAbstractItemView* theWrappedObject) const
-{
-return  (*((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)).viewOptions();
-}
-
-bool  PythonQtWrapper_QAbstractItemView::dragEnabled(QAbstractItemView* theWrappedObject) const
-{
-return  (*theWrappedObject).dragEnabled();
-}
-
-void PythonQtWrapper_QAbstractItemView::inputMethodEvent(QAbstractItemView* theWrappedObject, QInputMethodEvent*  event)
-{
- (*((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)).inputMethodEvent(event);
-}
-
-bool  PythonQtWrapper_QAbstractItemView::focusNextPrevChild(QAbstractItemView* theWrappedObject, bool  next)
-{
-return  (*((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)).focusNextPrevChild(next);
-}
-
-void PythonQtWrapper_QAbstractItemView::timerEvent(QAbstractItemView* theWrappedObject, QTimerEvent*  event)
-{
- (*((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)).timerEvent(event);
-}
-
-void PythonQtWrapper_QAbstractItemView::setItemDelegate(QAbstractItemView* theWrappedObject, QAbstractItemDelegate*  delegate)
-{
- (*theWrappedObject).setItemDelegate(delegate);
-}
-
-QAbstractItemView::SelectionBehavior  PythonQtWrapper_QAbstractItemView::selectionBehavior(QAbstractItemView* theWrappedObject) const
-{
-return  (*theWrappedObject).selectionBehavior();
-}
-
-void PythonQtWrapper_QAbstractItemView::setItemDelegateForRow(QAbstractItemView* theWrappedObject, int  row, QAbstractItemDelegate*  delegate)
-{
- (*theWrappedObject).setItemDelegateForRow(row, delegate);
-}
-
-void PythonQtWrapper_QAbstractItemView::setSelectionBehavior(QAbstractItemView* theWrappedObject, QAbstractItemView::SelectionBehavior  behavior)
-{
- (*theWrappedObject).setSelectionBehavior(behavior);
-}
-
-void PythonQtWrapper_QAbstractItemView::setDragDropOverwriteMode(QAbstractItemView* theWrappedObject, bool  overwrite)
-{
- (*theWrappedObject).setDragDropOverwriteMode(overwrite);
-}
-
-QSize  PythonQtWrapper_QAbstractItemView::sizeHintForIndex(QAbstractItemView* theWrappedObject, const QModelIndex&  index) const
-{
-return  (*theWrappedObject).sizeHintForIndex(index);
-}
-
-int  PythonQtWrapper_QAbstractItemView::sizeHintForRow(QAbstractItemView* theWrappedObject, int  row) const
-{
-return  (*theWrappedObject).sizeHintForRow(row);
-}
-
-void PythonQtWrapper_QAbstractItemView::setTextElideMode(QAbstractItemView* theWrappedObject, Qt::TextElideMode  mode)
-{
- (*theWrappedObject).setTextElideMode(mode);
-}
-
-void PythonQtWrapper_QAbstractItemView::dragLeaveEvent(QAbstractItemView* theWrappedObject, QDragLeaveEvent*  event)
-{
- (*((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)).dragLeaveEvent(event);
-}
-
-void PythonQtWrapper_QAbstractItemView::setSelectionModel(QAbstractItemView* theWrappedObject, QItemSelectionModel*  selectionModel)
-{
- (*theWrappedObject).setSelectionModel(selectionModel);
-}
-
-bool  PythonQtWrapper_QAbstractItemView::event(QAbstractItemView* theWrappedObject, QEvent*  event)
-{
-return  (*((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)).event(event);
+ theWrappedObject->setVerticalScrollMode(mode);
 }
 
 QAbstractItemDelegate*  PythonQtWrapper_QAbstractItemView::itemDelegateForColumn(QAbstractItemView* theWrappedObject, int  column) const
 {
-return  (*theWrappedObject).itemDelegateForColumn(column);
-}
-
-void PythonQtWrapper_QAbstractItemView::setVerticalScrollMode(QAbstractItemView* theWrappedObject, QAbstractItemView::ScrollMode  mode)
-{
- (*theWrappedObject).setVerticalScrollMode(mode);
-}
-
-Qt::TextElideMode  PythonQtWrapper_QAbstractItemView::textElideMode(QAbstractItemView* theWrappedObject) const
-{
-return  (*theWrappedObject).textElideMode();
-}
-
-void PythonQtWrapper_QAbstractItemView::resizeEvent(QAbstractItemView* theWrappedObject, QResizeEvent*  event)
-{
- (*((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)).resizeEvent(event);
+return  theWrappedObject->itemDelegateForColumn(column);
 }
 
 QItemSelectionModel*  PythonQtWrapper_QAbstractItemView::selectionModel(QAbstractItemView* theWrappedObject) const
 {
-return  (*theWrappedObject).selectionModel();
+return  theWrappedObject->selectionModel();
+}
+
+bool  PythonQtWrapper_QAbstractItemView::dragDropOverwriteMode(QAbstractItemView* theWrappedObject) const
+{
+return  theWrappedObject->dragDropOverwriteMode();
+}
+
+void PythonQtWrapper_QAbstractItemView::inputMethodEvent(QAbstractItemView* theWrappedObject, QInputMethodEvent*  event)
+{
+ ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_inputMethodEvent(event);
 }
 
 void PythonQtWrapper_QAbstractItemView::startDrag(QAbstractItemView* theWrappedObject, Qt::DropActions  supportedActions)
 {
- (*((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)).startDrag(supportedActions);
+ ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_startDrag(supportedActions);
+}
+
+void PythonQtWrapper_QAbstractItemView::setIconSize(QAbstractItemView* theWrappedObject, const QSize&  size)
+{
+ theWrappedObject->setIconSize(size);
+}
+
+void PythonQtWrapper_QAbstractItemView::setAutoScroll(QAbstractItemView* theWrappedObject, bool  enable)
+{
+ theWrappedObject->setAutoScroll(enable);
+}
+
+void PythonQtWrapper_QAbstractItemView::dropEvent(QAbstractItemView* theWrappedObject, QDropEvent*  event)
+{
+ ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_dropEvent(event);
+}
+
+void PythonQtWrapper_QAbstractItemView::setIndexWidget(QAbstractItemView* theWrappedObject, const QModelIndex&  index, QWidget*  widget)
+{
+ theWrappedObject->setIndexWidget(index, widget);
+}
+
+QList<QModelIndex >  PythonQtWrapper_QAbstractItemView::selectedIndexes(QAbstractItemView* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_selectedIndexes();
+}
+
+QAbstractItemModel*  PythonQtWrapper_QAbstractItemView::model(QAbstractItemView* theWrappedObject) const
+{
+return  theWrappedObject->model();
+}
+
+void PythonQtWrapper_QAbstractItemView::dragMoveEvent(QAbstractItemView* theWrappedObject, QDragMoveEvent*  event)
+{
+ ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_dragMoveEvent(event);
+}
+
+QWidget*  PythonQtWrapper_QAbstractItemView::indexWidget(QAbstractItemView* theWrappedObject, const QModelIndex&  index) const
+{
+return  theWrappedObject->indexWidget(index);
+}
+
+QAbstractItemView::SelectionMode  PythonQtWrapper_QAbstractItemView::selectionMode(QAbstractItemView* theWrappedObject) const
+{
+return  theWrappedObject->selectionMode();
+}
+
+void PythonQtWrapper_QAbstractItemView::setAlternatingRowColors(QAbstractItemView* theWrappedObject, bool  enable)
+{
+ theWrappedObject->setAlternatingRowColors(enable);
+}
+
+void PythonQtWrapper_QAbstractItemView::focusInEvent(QAbstractItemView* theWrappedObject, QFocusEvent*  event)
+{
+ ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_focusInEvent(event);
+}
+
+void PythonQtWrapper_QAbstractItemView::mouseDoubleClickEvent(QAbstractItemView* theWrappedObject, QMouseEvent*  event)
+{
+ ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_mouseDoubleClickEvent(event);
+}
+
+QModelIndex  PythonQtWrapper_QAbstractItemView::currentIndex(QAbstractItemView* theWrappedObject) const
+{
+return  theWrappedObject->currentIndex();
+}
+
+bool  PythonQtWrapper_QAbstractItemView::viewportEvent(QAbstractItemView* theWrappedObject, QEvent*  event)
+{
+return  ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_viewportEvent(event);
+}
+
+void PythonQtWrapper_QAbstractItemView::mouseMoveEvent(QAbstractItemView* theWrappedObject, QMouseEvent*  event)
+{
+ ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_mouseMoveEvent(event);
+}
+
+QAbstractItemView::ScrollMode  PythonQtWrapper_QAbstractItemView::horizontalScrollMode(QAbstractItemView* theWrappedObject) const
+{
+return  theWrappedObject->horizontalScrollMode();
+}
+
+bool  PythonQtWrapper_QAbstractItemView::tabKeyNavigation(QAbstractItemView* theWrappedObject) const
+{
+return  theWrappedObject->tabKeyNavigation();
 }
 
 void PythonQtWrapper_QAbstractItemView::setModel(QAbstractItemView* theWrappedObject, QAbstractItemModel*  model)
 {
- (*theWrappedObject).setModel(model);
+ ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_setModel(model);
+}
+
+void PythonQtWrapper_QAbstractItemView::setHorizontalScrollMode(QAbstractItemView* theWrappedObject, QAbstractItemView::ScrollMode  mode)
+{
+ theWrappedObject->setHorizontalScrollMode(mode);
+}
+
+bool  PythonQtWrapper_QAbstractItemView::dragEnabled(QAbstractItemView* theWrappedObject) const
+{
+return  theWrappedObject->dragEnabled();
+}
+
+QAbstractItemView::SelectionBehavior  PythonQtWrapper_QAbstractItemView::selectionBehavior(QAbstractItemView* theWrappedObject) const
+{
+return  theWrappedObject->selectionBehavior();
+}
+
+void PythonQtWrapper_QAbstractItemView::setEditTriggers(QAbstractItemView* theWrappedObject, QAbstractItemView::EditTriggers  triggers)
+{
+ theWrappedObject->setEditTriggers(triggers);
+}
+
+QAbstractItemDelegate*  PythonQtWrapper_QAbstractItemView::itemDelegateForRow(QAbstractItemView* theWrappedObject, int  row) const
+{
+return  theWrappedObject->itemDelegateForRow(row);
+}
+
+void PythonQtWrapper_QAbstractItemView::closePersistentEditor(QAbstractItemView* theWrappedObject, const QModelIndex&  index)
+{
+ theWrappedObject->closePersistentEditor(index);
+}
+
+bool  PythonQtWrapper_QAbstractItemView::edit(QAbstractItemView* theWrappedObject, const QModelIndex&  index, QAbstractItemView::EditTrigger  trigger, QEvent*  event)
+{
+return  ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_edit(index, trigger, event);
+}
+
+void PythonQtWrapper_QAbstractItemView::setItemDelegate(QAbstractItemView* theWrappedObject, QAbstractItemDelegate*  delegate)
+{
+ theWrappedObject->setItemDelegate(delegate);
+}
+
+void PythonQtWrapper_QAbstractItemView::setTabKeyNavigation(QAbstractItemView* theWrappedObject, bool  enable)
+{
+ theWrappedObject->setTabKeyNavigation(enable);
+}
+
+void PythonQtWrapper_QAbstractItemView::setDropIndicatorShown(QAbstractItemView* theWrappedObject, bool  enable)
+{
+ theWrappedObject->setDropIndicatorShown(enable);
+}
+
+QItemSelectionModel::SelectionFlags  PythonQtWrapper_QAbstractItemView::selectionCommand(QAbstractItemView* theWrappedObject, const QModelIndex&  index, const QEvent*  event) const
+{
+return  ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_selectionCommand(index, event);
+}
+
+bool  PythonQtWrapper_QAbstractItemView::alternatingRowColors(QAbstractItemView* theWrappedObject) const
+{
+return  theWrappedObject->alternatingRowColors();
+}
+
+void PythonQtWrapper_QAbstractItemView::resizeEvent(QAbstractItemView* theWrappedObject, QResizeEvent*  event)
+{
+ ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_resizeEvent(event);
+}
+
+int  PythonQtWrapper_QAbstractItemView::sizeHintForColumn(QAbstractItemView* theWrappedObject, int  column) const
+{
+return  ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_sizeHintForColumn(column);
+}
+
+QSize  PythonQtWrapper_QAbstractItemView::iconSize(QAbstractItemView* theWrappedObject) const
+{
+return  theWrappedObject->iconSize();
+}
+
+void PythonQtWrapper_QAbstractItemView::setSelectionMode(QAbstractItemView* theWrappedObject, QAbstractItemView::SelectionMode  mode)
+{
+ theWrappedObject->setSelectionMode(mode);
+}
+
+bool  PythonQtWrapper_QAbstractItemView::focusNextPrevChild(QAbstractItemView* theWrappedObject, bool  next)
+{
+return  ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_focusNextPrevChild(next);
+}
+
+void PythonQtWrapper_QAbstractItemView::dragEnterEvent(QAbstractItemView* theWrappedObject, QDragEnterEvent*  event)
+{
+ ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_dragEnterEvent(event);
+}
+
+QAbstractItemView::EditTriggers  PythonQtWrapper_QAbstractItemView::editTriggers(QAbstractItemView* theWrappedObject) const
+{
+return  theWrappedObject->editTriggers();
+}
+
+QAbstractItemDelegate*  PythonQtWrapper_QAbstractItemView::itemDelegate(QAbstractItemView* theWrappedObject, const QModelIndex&  index) const
+{
+return  theWrappedObject->itemDelegate(index);
+}
+
+void PythonQtWrapper_QAbstractItemView::openPersistentEditor(QAbstractItemView* theWrappedObject, const QModelIndex&  index)
+{
+ theWrappedObject->openPersistentEditor(index);
+}
+
+void PythonQtWrapper_QAbstractItemView::keyboardSearch(QAbstractItemView* theWrappedObject, const QString&  search)
+{
+ ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_keyboardSearch(search);
+}
+
+void PythonQtWrapper_QAbstractItemView::keyPressEvent(QAbstractItemView* theWrappedObject, QKeyEvent*  event)
+{
+ ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_keyPressEvent(event);
+}
+
+void PythonQtWrapper_QAbstractItemView::setSelectionBehavior(QAbstractItemView* theWrappedObject, QAbstractItemView::SelectionBehavior  behavior)
+{
+ theWrappedObject->setSelectionBehavior(behavior);
+}
+
+void PythonQtWrapper_QAbstractItemView::timerEvent(QAbstractItemView* theWrappedObject, QTimerEvent*  event)
+{
+ ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_timerEvent(event);
+}
+
+Qt::TextElideMode  PythonQtWrapper_QAbstractItemView::textElideMode(QAbstractItemView* theWrappedObject) const
+{
+return  theWrappedObject->textElideMode();
+}
+
+QAbstractItemView::ScrollMode  PythonQtWrapper_QAbstractItemView::verticalScrollMode(QAbstractItemView* theWrappedObject) const
+{
+return  theWrappedObject->verticalScrollMode();
+}
+
+void PythonQtWrapper_QAbstractItemView::setDragDropMode(QAbstractItemView* theWrappedObject, QAbstractItemView::DragDropMode  behavior)
+{
+ theWrappedObject->setDragDropMode(behavior);
+}
+
+void PythonQtWrapper_QAbstractItemView::setDragEnabled(QAbstractItemView* theWrappedObject, bool  enable)
+{
+ theWrappedObject->setDragEnabled(enable);
+}
+
+QAbstractItemView::DragDropMode  PythonQtWrapper_QAbstractItemView::dragDropMode(QAbstractItemView* theWrappedObject) const
+{
+return  theWrappedObject->dragDropMode();
+}
+
+void PythonQtWrapper_QAbstractItemView::mousePressEvent(QAbstractItemView* theWrappedObject, QMouseEvent*  event)
+{
+ ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_mousePressEvent(event);
+}
+
+void PythonQtWrapper_QAbstractItemView::setItemDelegateForColumn(QAbstractItemView* theWrappedObject, int  column, QAbstractItemDelegate*  delegate)
+{
+ theWrappedObject->setItemDelegateForColumn(column, delegate);
+}
+
+void PythonQtWrapper_QAbstractItemView::focusOutEvent(QAbstractItemView* theWrappedObject, QFocusEvent*  event)
+{
+ ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_focusOutEvent(event);
+}
+
+void PythonQtWrapper_QAbstractItemView::mouseReleaseEvent(QAbstractItemView* theWrappedObject, QMouseEvent*  event)
+{
+ ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_mouseReleaseEvent(event);
+}
+
+QVariant  PythonQtWrapper_QAbstractItemView::inputMethodQuery(QAbstractItemView* theWrappedObject, Qt::InputMethodQuery  query) const
+{
+return  ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_inputMethodQuery(query);
+}
+
+bool  PythonQtWrapper_QAbstractItemView::showDropIndicator(QAbstractItemView* theWrappedObject) const
+{
+return  theWrappedObject->showDropIndicator();
+}
+
+void PythonQtWrapper_QAbstractItemView::setAutoScrollMargin(QAbstractItemView* theWrappedObject, int  margin)
+{
+ theWrappedObject->setAutoScrollMargin(margin);
+}
+
+QStyleOptionViewItem  PythonQtWrapper_QAbstractItemView::viewOptions(QAbstractItemView* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_viewOptions();
+}
+
+QModelIndex  PythonQtWrapper_QAbstractItemView::rootIndex(QAbstractItemView* theWrappedObject) const
+{
+return  theWrappedObject->rootIndex();
+}
+
+bool  PythonQtWrapper_QAbstractItemView::event(QAbstractItemView* theWrappedObject, QEvent*  event)
+{
+return  ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_event(event);
+}
+
+bool  PythonQtWrapper_QAbstractItemView::hasAutoScroll(QAbstractItemView* theWrappedObject) const
+{
+return  theWrappedObject->hasAutoScroll();
+}
+
+void PythonQtWrapper_QAbstractItemView::setItemDelegateForRow(QAbstractItemView* theWrappedObject, int  row, QAbstractItemDelegate*  delegate)
+{
+ theWrappedObject->setItemDelegateForRow(row, delegate);
+}
+
+void PythonQtWrapper_QAbstractItemView::setDragDropOverwriteMode(QAbstractItemView* theWrappedObject, bool  overwrite)
+{
+ theWrappedObject->setDragDropOverwriteMode(overwrite);
+}
+
+QAbstractItemDelegate*  PythonQtWrapper_QAbstractItemView::itemDelegate(QAbstractItemView* theWrappedObject) const
+{
+return  theWrappedObject->itemDelegate();
+}
+
+void PythonQtWrapper_QAbstractItemView::setSelectionModel(QAbstractItemView* theWrappedObject, QItemSelectionModel*  selectionModel)
+{
+ ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_setSelectionModel(selectionModel);
+}
+
+int  PythonQtWrapper_QAbstractItemView::autoScrollMargin(QAbstractItemView* theWrappedObject) const
+{
+return  theWrappedObject->autoScrollMargin();
+}
+
+int  PythonQtWrapper_QAbstractItemView::sizeHintForRow(QAbstractItemView* theWrappedObject, int  row) const
+{
+return  ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_sizeHintForRow(row);
+}
+
+QSize  PythonQtWrapper_QAbstractItemView::sizeHintForIndex(QAbstractItemView* theWrappedObject, const QModelIndex&  index) const
+{
+return  theWrappedObject->sizeHintForIndex(index);
+}
+
+void PythonQtWrapper_QAbstractItemView::setTextElideMode(QAbstractItemView* theWrappedObject, Qt::TextElideMode  mode)
+{
+ theWrappedObject->setTextElideMode(mode);
+}
+
+void PythonQtWrapper_QAbstractItemView::dragLeaveEvent(QAbstractItemView* theWrappedObject, QDragLeaveEvent*  event)
+{
+ ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_dragLeaveEvent(event);
 }
 

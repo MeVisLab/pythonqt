@@ -87,18 +87,18 @@ QFileIconProvider* PythonQtWrapper_QFileIconProvider::new_QFileIconProvider()
 { 
 return new PythonQtShell_QFileIconProvider(); }
 
-QIcon  PythonQtWrapper_QFileIconProvider::icon(QFileIconProvider* theWrappedObject, const QFileInfo&  info) const
-{
-return  (*theWrappedObject).icon(info);
-}
-
 QIcon  PythonQtWrapper_QFileIconProvider::icon(QFileIconProvider* theWrappedObject, QFileIconProvider::IconType  type) const
 {
-return  (*theWrappedObject).icon(type);
+return  ((PythonQtPublicPromoter_QFileIconProvider*)theWrappedObject)->promoted_icon(type);
 }
 
 QString  PythonQtWrapper_QFileIconProvider::type(QFileIconProvider* theWrappedObject, const QFileInfo&  info) const
 {
-return  (*theWrappedObject).type(info);
+return  ((PythonQtPublicPromoter_QFileIconProvider*)theWrappedObject)->promoted_type(info);
+}
+
+QIcon  PythonQtWrapper_QFileIconProvider::icon(QFileIconProvider* theWrappedObject, const QFileInfo&  info) const
+{
+return  ((PythonQtPublicPromoter_QFileIconProvider*)theWrappedObject)->promoted_icon(info);
 }
 

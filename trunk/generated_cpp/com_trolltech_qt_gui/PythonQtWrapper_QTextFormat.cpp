@@ -23,134 +23,109 @@ QTextFormat* PythonQtWrapper_QTextFormat::new_QTextFormat(int  type)
 { 
 return new QTextFormat(type); }
 
-bool  PythonQtWrapper_QTextFormat::hasProperty(QTextFormat* theWrappedObject, int  propertyId) const
-{
-return  (*theWrappedObject).hasProperty(propertyId);
-}
-
-bool  PythonQtWrapper_QTextFormat::isTableFormat(QTextFormat* theWrappedObject) const
-{
-return  (*theWrappedObject).isTableFormat();
-}
-
-QString  PythonQtWrapper_QTextFormat::stringProperty(QTextFormat* theWrappedObject, int  propertyId) const
-{
-return  (*theWrappedObject).stringProperty(propertyId);
-}
-
 bool  PythonQtWrapper_QTextFormat::boolProperty(QTextFormat* theWrappedObject, int  propertyId) const
 {
-return  (*theWrappedObject).boolProperty(propertyId);
-}
-
-bool  PythonQtWrapper_QTextFormat::isFrameFormat(QTextFormat* theWrappedObject) const
-{
-return  (*theWrappedObject).isFrameFormat();
-}
-
-QVariant  PythonQtWrapper_QTextFormat::property(QTextFormat* theWrappedObject, int  propertyId) const
-{
-return  (*theWrappedObject).property(propertyId);
-}
-
-void PythonQtWrapper_QTextFormat::setObjectIndex(QTextFormat* theWrappedObject, int  object)
-{
- (*theWrappedObject).setObjectIndex(object);
-}
-
-void PythonQtWrapper_QTextFormat::readFrom(QTextFormat* theWrappedObject, QDataStream&  arg__1)
-{
-arg__1 >>  (*theWrappedObject);
-}
-
-QVector<QTextLength >  PythonQtWrapper_QTextFormat::lengthVectorProperty(QTextFormat* theWrappedObject, int  propertyId) const
-{
-return  (*theWrappedObject).lengthVectorProperty(propertyId);
-}
-
-int  PythonQtWrapper_QTextFormat::type(QTextFormat* theWrappedObject) const
-{
-return  (*theWrappedObject).type();
-}
-
-QTextImageFormat  PythonQtWrapper_QTextFormat::toImageFormat(QTextFormat* theWrappedObject) const
-{
-return  (*theWrappedObject).toImageFormat();
-}
-
-QTextLength  PythonQtWrapper_QTextFormat::lengthProperty(QTextFormat* theWrappedObject, int  propertyId) const
-{
-return  (*theWrappedObject).lengthProperty(propertyId);
-}
-
-void PythonQtWrapper_QTextFormat::merge(QTextFormat* theWrappedObject, const QTextFormat&  other)
-{
- (*theWrappedObject).merge(other);
-}
-
-void PythonQtWrapper_QTextFormat::writeTo(QTextFormat* theWrappedObject, QDataStream&  arg__1)
-{
-arg__1 <<  (*theWrappedObject);
-}
-
-qreal  PythonQtWrapper_QTextFormat::doubleProperty(QTextFormat* theWrappedObject, int  propertyId) const
-{
-return  (*theWrappedObject).doubleProperty(propertyId);
-}
-
-void PythonQtWrapper_QTextFormat::setForeground(QTextFormat* theWrappedObject, const QBrush&  brush)
-{
- (*theWrappedObject).setForeground(brush);
-}
-
-QTextFrameFormat  PythonQtWrapper_QTextFormat::toFrameFormat(QTextFormat* theWrappedObject) const
-{
-return  (*theWrappedObject).toFrameFormat();
-}
-
-void PythonQtWrapper_QTextFormat::setObjectType(QTextFormat* theWrappedObject, int  type)
-{
- (*theWrappedObject).setObjectType(type);
-}
-
-void PythonQtWrapper_QTextFormat::clearForeground(QTextFormat* theWrappedObject)
-{
- (*theWrappedObject).clearForeground();
-}
-
-bool  PythonQtWrapper_QTextFormat::isTableCellFormat(QTextFormat* theWrappedObject) const
-{
-return  (*theWrappedObject).isTableCellFormat();
+return  theWrappedObject->boolProperty(propertyId);
 }
 
 void PythonQtWrapper_QTextFormat::setProperty(QTextFormat* theWrappedObject, int  propertyId, const QVariant&  value)
 {
- (*theWrappedObject).setProperty(propertyId, value);
+ theWrappedObject->setProperty(propertyId, value);
 }
 
-Qt::LayoutDirection  PythonQtWrapper_QTextFormat::layoutDirection(QTextFormat* theWrappedObject) const
+QTextFrameFormat  PythonQtWrapper_QTextFormat::toFrameFormat(QTextFormat* theWrappedObject) const
 {
-return  (*theWrappedObject).layoutDirection();
+return  theWrappedObject->toFrameFormat();
 }
 
-QTextTableFormat  PythonQtWrapper_QTextFormat::toTableFormat(QTextFormat* theWrappedObject) const
+void PythonQtWrapper_QTextFormat::clearForeground(QTextFormat* theWrappedObject)
 {
-return  (*theWrappedObject).toTableFormat();
+ theWrappedObject->clearForeground();
 }
 
-int  PythonQtWrapper_QTextFormat::objectIndex(QTextFormat* theWrappedObject) const
+QTextListFormat  PythonQtWrapper_QTextFormat::toListFormat(QTextFormat* theWrappedObject) const
 {
-return  (*theWrappedObject).objectIndex();
+return  theWrappedObject->toListFormat();
 }
 
-bool  PythonQtWrapper_QTextFormat::isListFormat(QTextFormat* theWrappedObject) const
+void PythonQtWrapper_QTextFormat::setObjectIndex(QTextFormat* theWrappedObject, int  object)
 {
-return  (*theWrappedObject).isListFormat();
+ theWrappedObject->setObjectIndex(object);
 }
 
 void PythonQtWrapper_QTextFormat::setProperty(QTextFormat* theWrappedObject, int  propertyId, const QVector<QTextLength >&  lengths)
 {
- (*theWrappedObject).setProperty(propertyId, lengths);
+ theWrappedObject->setProperty(propertyId, lengths);
+}
+
+bool  PythonQtWrapper_QTextFormat::hasProperty(QTextFormat* theWrappedObject, int  propertyId) const
+{
+return  theWrappedObject->hasProperty(propertyId);
+}
+
+QPen  PythonQtWrapper_QTextFormat::penProperty(QTextFormat* theWrappedObject, int  propertyId) const
+{
+return  theWrappedObject->penProperty(propertyId);
+}
+
+bool  PythonQtWrapper_QTextFormat::isCharFormat(QTextFormat* theWrappedObject) const
+{
+return  theWrappedObject->isCharFormat();
+}
+
+bool  PythonQtWrapper_QTextFormat::isImageFormat(QTextFormat* theWrappedObject) const
+{
+return  theWrappedObject->isImageFormat();
+}
+
+void PythonQtWrapper_QTextFormat::setLayoutDirection(QTextFormat* theWrappedObject, Qt::LayoutDirection  direction)
+{
+ theWrappedObject->setLayoutDirection(direction);
+}
+
+QBrush  PythonQtWrapper_QTextFormat::brushProperty(QTextFormat* theWrappedObject, int  propertyId) const
+{
+return  theWrappedObject->brushProperty(propertyId);
+}
+
+QTextLength  PythonQtWrapper_QTextFormat::lengthProperty(QTextFormat* theWrappedObject, int  propertyId) const
+{
+return  theWrappedObject->lengthProperty(propertyId);
+}
+
+void PythonQtWrapper_QTextFormat::setObjectType(QTextFormat* theWrappedObject, int  type)
+{
+ theWrappedObject->setObjectType(type);
+}
+
+bool  PythonQtWrapper_QTextFormat::isValid(QTextFormat* theWrappedObject) const
+{
+return  theWrappedObject->isValid();
+}
+
+int  PythonQtWrapper_QTextFormat::objectType(QTextFormat* theWrappedObject) const
+{
+return  theWrappedObject->objectType();
+}
+
+int  PythonQtWrapper_QTextFormat::intProperty(QTextFormat* theWrappedObject, int  propertyId) const
+{
+return  theWrappedObject->intProperty(propertyId);
+}
+
+QTextTableFormat  PythonQtWrapper_QTextFormat::toTableFormat(QTextFormat* theWrappedObject) const
+{
+return  theWrappedObject->toTableFormat();
+}
+
+qreal  PythonQtWrapper_QTextFormat::doubleProperty(QTextFormat* theWrappedObject, int  propertyId) const
+{
+return  theWrappedObject->doubleProperty(propertyId);
+}
+
+QVariant  PythonQtWrapper_QTextFormat::property(QTextFormat* theWrappedObject, int  propertyId) const
+{
+return  theWrappedObject->property(propertyId);
 }
 
 bool  PythonQtWrapper_QTextFormat::operator_equal(QTextFormat* theWrappedObject, const QTextFormat&  rhs) const
@@ -158,108 +133,133 @@ bool  PythonQtWrapper_QTextFormat::operator_equal(QTextFormat* theWrappedObject,
 return  (*theWrappedObject)== rhs;
 }
 
-void PythonQtWrapper_QTextFormat::setLayoutDirection(QTextFormat* theWrappedObject, Qt::LayoutDirection  direction)
+QMap<int , QVariant >  PythonQtWrapper_QTextFormat::properties(QTextFormat* theWrappedObject) const
 {
- (*theWrappedObject).setLayoutDirection(direction);
-}
-
-QTextListFormat  PythonQtWrapper_QTextFormat::toListFormat(QTextFormat* theWrappedObject) const
-{
-return  (*theWrappedObject).toListFormat();
-}
-
-int  PythonQtWrapper_QTextFormat::propertyCount(QTextFormat* theWrappedObject) const
-{
-return  (*theWrappedObject).propertyCount();
-}
-
-void PythonQtWrapper_QTextFormat::setBackground(QTextFormat* theWrappedObject, const QBrush&  brush)
-{
- (*theWrappedObject).setBackground(brush);
-}
-
-int  PythonQtWrapper_QTextFormat::intProperty(QTextFormat* theWrappedObject, int  propertyId) const
-{
-return  (*theWrappedObject).intProperty(propertyId);
-}
-
-QPen  PythonQtWrapper_QTextFormat::penProperty(QTextFormat* theWrappedObject, int  propertyId) const
-{
-return  (*theWrappedObject).penProperty(propertyId);
-}
-
-QTextTableCellFormat  PythonQtWrapper_QTextFormat::toTableCellFormat(QTextFormat* theWrappedObject) const
-{
-return  (*theWrappedObject).toTableCellFormat();
-}
-
-QTextBlockFormat  PythonQtWrapper_QTextFormat::toBlockFormat(QTextFormat* theWrappedObject) const
-{
-return  (*theWrappedObject).toBlockFormat();
-}
-
-void PythonQtWrapper_QTextFormat::clearProperty(QTextFormat* theWrappedObject, int  propertyId)
-{
- (*theWrappedObject).clearProperty(propertyId);
-}
-
-bool  PythonQtWrapper_QTextFormat::isCharFormat(QTextFormat* theWrappedObject) const
-{
-return  (*theWrappedObject).isCharFormat();
-}
-
-bool  PythonQtWrapper_QTextFormat::isValid(QTextFormat* theWrappedObject) const
-{
-return  (*theWrappedObject).isValid();
+return  theWrappedObject->properties();
 }
 
 QBrush  PythonQtWrapper_QTextFormat::background(QTextFormat* theWrappedObject) const
 {
-return  (*theWrappedObject).background();
+return  theWrappedObject->background();
 }
 
-bool  PythonQtWrapper_QTextFormat::isBlockFormat(QTextFormat* theWrappedObject) const
+Qt::LayoutDirection  PythonQtWrapper_QTextFormat::layoutDirection(QTextFormat* theWrappedObject) const
 {
-return  (*theWrappedObject).isBlockFormat();
+return  theWrappedObject->layoutDirection();
 }
 
-bool  PythonQtWrapper_QTextFormat::isImageFormat(QTextFormat* theWrappedObject) const
+void PythonQtWrapper_QTextFormat::setBackground(QTextFormat* theWrappedObject, const QBrush&  brush)
 {
-return  (*theWrappedObject).isImageFormat();
+ theWrappedObject->setBackground(brush);
 }
 
-QBrush  PythonQtWrapper_QTextFormat::brushProperty(QTextFormat* theWrappedObject, int  propertyId) const
+QTextTableCellFormat  PythonQtWrapper_QTextFormat::toTableCellFormat(QTextFormat* theWrappedObject) const
 {
-return  (*theWrappedObject).brushProperty(propertyId);
+return  theWrappedObject->toTableCellFormat();
 }
 
 QBrush  PythonQtWrapper_QTextFormat::foreground(QTextFormat* theWrappedObject) const
 {
-return  (*theWrappedObject).foreground();
+return  theWrappedObject->foreground();
+}
+
+QString  PythonQtWrapper_QTextFormat::stringProperty(QTextFormat* theWrappedObject, int  propertyId) const
+{
+return  theWrappedObject->stringProperty(propertyId);
+}
+
+bool  PythonQtWrapper_QTextFormat::isBlockFormat(QTextFormat* theWrappedObject) const
+{
+return  theWrappedObject->isBlockFormat();
+}
+
+void PythonQtWrapper_QTextFormat::readFrom(QTextFormat* theWrappedObject, QDataStream&  arg__1)
+{
+arg__1 >>  (*theWrappedObject);
+}
+
+int  PythonQtWrapper_QTextFormat::propertyCount(QTextFormat* theWrappedObject) const
+{
+return  theWrappedObject->propertyCount();
 }
 
 void PythonQtWrapper_QTextFormat::clearBackground(QTextFormat* theWrappedObject)
 {
- (*theWrappedObject).clearBackground();
+ theWrappedObject->clearBackground();
 }
 
-int  PythonQtWrapper_QTextFormat::objectType(QTextFormat* theWrappedObject) const
+void PythonQtWrapper_QTextFormat::clearProperty(QTextFormat* theWrappedObject, int  propertyId)
 {
-return  (*theWrappedObject).objectType();
+ theWrappedObject->clearProperty(propertyId);
 }
 
-QMap<int , QVariant >  PythonQtWrapper_QTextFormat::properties(QTextFormat* theWrappedObject) const
+void PythonQtWrapper_QTextFormat::writeTo(QTextFormat* theWrappedObject, QDataStream&  arg__1)
 {
-return  (*theWrappedObject).properties();
+arg__1 <<  (*theWrappedObject);
 }
 
-QColor  PythonQtWrapper_QTextFormat::colorProperty(QTextFormat* theWrappedObject, int  propertyId) const
+int  PythonQtWrapper_QTextFormat::objectIndex(QTextFormat* theWrappedObject) const
 {
-return  (*theWrappedObject).colorProperty(propertyId);
+return  theWrappedObject->objectIndex();
 }
 
 QTextCharFormat  PythonQtWrapper_QTextFormat::toCharFormat(QTextFormat* theWrappedObject) const
 {
-return  (*theWrappedObject).toCharFormat();
+return  theWrappedObject->toCharFormat();
+}
+
+QVector<QTextLength >  PythonQtWrapper_QTextFormat::lengthVectorProperty(QTextFormat* theWrappedObject, int  propertyId) const
+{
+return  theWrappedObject->lengthVectorProperty(propertyId);
+}
+
+bool  PythonQtWrapper_QTextFormat::isTableFormat(QTextFormat* theWrappedObject) const
+{
+return  theWrappedObject->isTableFormat();
+}
+
+int  PythonQtWrapper_QTextFormat::type(QTextFormat* theWrappedObject) const
+{
+return  theWrappedObject->type();
+}
+
+void PythonQtWrapper_QTextFormat::merge(QTextFormat* theWrappedObject, const QTextFormat&  other)
+{
+ theWrappedObject->merge(other);
+}
+
+QColor  PythonQtWrapper_QTextFormat::colorProperty(QTextFormat* theWrappedObject, int  propertyId) const
+{
+return  theWrappedObject->colorProperty(propertyId);
+}
+
+bool  PythonQtWrapper_QTextFormat::isTableCellFormat(QTextFormat* theWrappedObject) const
+{
+return  theWrappedObject->isTableCellFormat();
+}
+
+QTextImageFormat  PythonQtWrapper_QTextFormat::toImageFormat(QTextFormat* theWrappedObject) const
+{
+return  theWrappedObject->toImageFormat();
+}
+
+bool  PythonQtWrapper_QTextFormat::isFrameFormat(QTextFormat* theWrappedObject) const
+{
+return  theWrappedObject->isFrameFormat();
+}
+
+void PythonQtWrapper_QTextFormat::setForeground(QTextFormat* theWrappedObject, const QBrush&  brush)
+{
+ theWrappedObject->setForeground(brush);
+}
+
+QTextBlockFormat  PythonQtWrapper_QTextFormat::toBlockFormat(QTextFormat* theWrappedObject) const
+{
+return  theWrappedObject->toBlockFormat();
+}
+
+bool  PythonQtWrapper_QTextFormat::isListFormat(QTextFormat* theWrappedObject) const
+{
+return  theWrappedObject->isListFormat();
 }
 

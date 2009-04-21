@@ -168,23 +168,23 @@ QTranslator* PythonQtWrapper_QTranslator::new_QTranslator(QObject*  parent)
 { 
 return new PythonQtShell_QTranslator(parent); }
 
-QString  PythonQtWrapper_QTranslator::translate(QTranslator* theWrappedObject, const char*  context, const char*  sourceText, const char*  comment) const
-{
-return  (*theWrappedObject).translate(context, sourceText, comment);
-}
-
 bool  PythonQtWrapper_QTranslator::load(QTranslator* theWrappedObject, const uchar*  data, int  len)
 {
-return  (*theWrappedObject).load(data, len);
+return  theWrappedObject->load(data, len);
 }
 
 bool  PythonQtWrapper_QTranslator::isEmpty(QTranslator* theWrappedObject) const
 {
-return  (*theWrappedObject).isEmpty();
+return  ((PythonQtPublicPromoter_QTranslator*)theWrappedObject)->promoted_isEmpty();
+}
+
+QString  PythonQtWrapper_QTranslator::translate(QTranslator* theWrappedObject, const char*  context, const char*  sourceText, const char*  comment) const
+{
+return  ((PythonQtPublicPromoter_QTranslator*)theWrappedObject)->promoted_translate(context, sourceText, comment);
 }
 
 bool  PythonQtWrapper_QTranslator::load(QTranslator* theWrappedObject, const QString&  filename, const QString&  directory, const QString&  search_delimiters, const QString&  suffix)
 {
-return  (*theWrappedObject).load(filename, directory, search_delimiters, suffix);
+return  theWrappedObject->load(filename, directory, search_delimiters, suffix);
 }
 

@@ -32,6 +32,12 @@ virtual QValidator::State  validate(QString&  arg__1, int&  arg__2) const;
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QIntValidator : public QIntValidator
+{ public:
+inline void promoted_setRange(int  bottom, int  top) { QIntValidator::setRange(bottom, top); }
+inline QValidator::State  promoted_validate(QString&  arg__1, int&  arg__2) const { return QIntValidator::validate(arg__1, arg__2); }
+};
+
 class PythonQtWrapper_QIntValidator : public QObject
 { Q_OBJECT
 public:
@@ -40,10 +46,10 @@ QIntValidator* new_QIntValidator(QObject*  parent);
 QIntValidator* new_QIntValidator(int  bottom, int  top, QObject*  parent);
 void delete_QIntValidator(QIntValidator* obj) { delete obj; } 
    void setBottom(QIntValidator* theWrappedObject, int  arg__1);
-   void setTop(QIntValidator* theWrappedObject, int  arg__1);
-   int  top(QIntValidator* theWrappedObject) const;
-   QValidator::State  validate(QIntValidator* theWrappedObject, QString&  arg__1, int&  arg__2) const;
    void setRange(QIntValidator* theWrappedObject, int  bottom, int  top);
+   QValidator::State  validate(QIntValidator* theWrappedObject, QString&  arg__1, int&  arg__2) const;
+   int  top(QIntValidator* theWrappedObject) const;
+   void setTop(QIntValidator* theWrappedObject, int  arg__1);
    int  bottom(QIntValidator* theWrappedObject) const;
 };
 

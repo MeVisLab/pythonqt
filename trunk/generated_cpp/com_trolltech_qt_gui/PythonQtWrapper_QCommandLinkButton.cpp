@@ -849,26 +849,26 @@ return new PythonQtShell_QCommandLinkButton(text, description, parent); }
 
 bool  PythonQtWrapper_QCommandLinkButton::event(QCommandLinkButton* theWrappedObject, QEvent*  e)
 {
-return  (*((PythonQtPublicPromoter_QCommandLinkButton*)theWrappedObject)).event(e);
+return  ((PythonQtPublicPromoter_QCommandLinkButton*)theWrappedObject)->promoted_event(e);
 }
 
 void PythonQtWrapper_QCommandLinkButton::setDescription(QCommandLinkButton* theWrappedObject, const QString&  description)
 {
- (*theWrappedObject).setDescription(description);
+ theWrappedObject->setDescription(description);
 }
 
 int  PythonQtWrapper_QCommandLinkButton::heightForWidth(QCommandLinkButton* theWrappedObject, int  arg__1) const
 {
-return  (*((PythonQtPublicPromoter_QCommandLinkButton*)theWrappedObject)).heightForWidth(arg__1);
+return  ((PythonQtPublicPromoter_QCommandLinkButton*)theWrappedObject)->promoted_heightForWidth(arg__1);
 }
 
 void PythonQtWrapper_QCommandLinkButton::paintEvent(QCommandLinkButton* theWrappedObject, QPaintEvent*  arg__1)
 {
- (*((PythonQtPublicPromoter_QCommandLinkButton*)theWrappedObject)).paintEvent(arg__1);
+ ((PythonQtPublicPromoter_QCommandLinkButton*)theWrappedObject)->promoted_paintEvent(arg__1);
 }
 
 QString  PythonQtWrapper_QCommandLinkButton::description(QCommandLinkButton* theWrappedObject) const
 {
-return  (*theWrappedObject).description();
+return  theWrappedObject->description();
 }
 

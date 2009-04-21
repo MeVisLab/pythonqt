@@ -43,7 +43,9 @@ virtual QPaintEngine*  paintEngine() const;
 
 class PythonQtPublicPromoter_QPixmap : public QPixmap
 { public:
-inline int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const { return QPixmap::metric(arg__1); }
+inline int  promoted_metric(QPaintDevice::PaintDeviceMetric  arg__1) const { return QPixmap::metric(arg__1); }
+inline QPaintEngine*  promoted_paintEngine() const { return QPixmap::paintEngine(); }
+inline int  promoted_devType() const { return QPixmap::devType(); }
 };
 
 class PythonQtWrapper_QPixmap : public QObject
@@ -57,51 +59,51 @@ QPixmap* new_QPixmap(const QString&  fileName, const char*  format = 0, Qt::Imag
 QPixmap* new_QPixmap(const char**  xpm);
 QPixmap* new_QPixmap(int  w, int  h);
 void delete_QPixmap(QPixmap* obj) { delete obj; } 
-   QBitmap  createMaskFromColor(QPixmap* theWrappedObject, const QColor&  maskColor) const;
-   QPixmap  transformed(QPixmap* theWrappedObject, const QMatrix&  arg__1, Qt::TransformationMode  mode = Qt::FastTransformation) const;
-   QPixmap  static_QPixmap_fromImage(const QImage&  image, Qt::ImageConversionFlags  flags = Qt::AutoColor);
-   qint64  cacheKey(QPixmap* theWrappedObject) const;
-   int  width(QPixmap* theWrappedObject) const;
    int  height(QPixmap* theWrappedObject) const;
-   bool  save(QPixmap* theWrappedObject, QIODevice*  device, const char*  format = 0, int  quality = -1) const;
-   bool  hasAlphaChannel(QPixmap* theWrappedObject) const;
-   void writeTo(QPixmap* theWrappedObject, QDataStream&  arg__1);
-   QPaintEngine*  paintEngine(QPixmap* theWrappedObject) const;
-   int  metric(QPixmap* theWrappedObject, QPaintDevice::PaintDeviceMetric  arg__1) const;
    QBitmap  mask(QPixmap* theWrappedObject) const;
-   QSize  size(QPixmap* theWrappedObject) const;
-   bool  loadFromData(QPixmap* theWrappedObject, const QByteArray&  data, const char*  format = 0, Qt::ImageConversionFlags  flags = Qt::AutoColor);
-   QPixmap  scaledToWidth(QPixmap* theWrappedObject, int  w, Qt::TransformationMode  mode = Qt::FastTransformation) const;
-   bool  save(QPixmap* theWrappedObject, const QString&  fileName, const char*  format = 0, int  quality = -1) const;
-   void readFrom(QPixmap* theWrappedObject, QDataStream&  arg__1);
-   bool  isQBitmap(QPixmap* theWrappedObject) const;
-   QPixmap  scaledToHeight(QPixmap* theWrappedObject, int  h, Qt::TransformationMode  mode = Qt::FastTransformation) const;
-   void setAlphaChannel(QPixmap* theWrappedObject, const QPixmap&  arg__1);
-   QPixmap  transformed(QPixmap* theWrappedObject, const QTransform&  arg__1, Qt::TransformationMode  mode = Qt::FastTransformation) const;
-   QBitmap  createHeuristicMask(QPixmap* theWrappedObject, bool  clipTight = true) const;
-   QRect  rect(QPixmap* theWrappedObject) const;
-   int  devType(QPixmap* theWrappedObject) const;
-   QPixmap  static_QPixmap_grabWidget(QWidget*  widget, const QRect&  rect);
-   QPixmap  static_QPixmap_grabWindow(WId  arg__1, int  x = 0, int  y = 0, int  w = -1, int  h = -1);
-   int  static_QPixmap_defaultDepth();
-   void fill(QPixmap* theWrappedObject, const QWidget*  widget, const QPoint&  ofs);
-   bool  load(QPixmap* theWrappedObject, const QString&  fileName, const char*  format = 0, Qt::ImageConversionFlags  flags = Qt::AutoColor);
-   void setMask(QPixmap* theWrappedObject, const QBitmap&  arg__1);
-   QPixmap  static_QPixmap_grabWidget(QWidget*  widget, int  x = 0, int  y = 0, int  w = -1, int  h = -1);
    QPixmap  copy(QPixmap* theWrappedObject, int  x, int  y, int  width, int  height) const;
-   QBitmap  createMaskFromColor(QPixmap* theWrappedObject, const QColor&  maskColor, Qt::MaskMode  mode) const;
-   void fill(QPixmap* theWrappedObject, const QWidget*  widget, int  xofs, int  yofs);
-   QImage  toImage(QPixmap* theWrappedObject) const;
+   QRect  rect(QPixmap* theWrappedObject) const;
+   bool  hasAlpha(QPixmap* theWrappedObject) const;
+   bool  save(QPixmap* theWrappedObject, const QString&  fileName, const char*  format = 0, int  quality = -1) const;
+   bool  isQBitmap(QPixmap* theWrappedObject) const;
    QPixmap  scaled(QPixmap* theWrappedObject, int  w, int  h, Qt::AspectRatioMode  aspectMode = Qt::IgnoreAspectRatio, Qt::TransformationMode  mode = Qt::FastTransformation) const;
-   QPixmap  alphaChannel(QPixmap* theWrappedObject) const;
+   void readFrom(QPixmap* theWrappedObject, QDataStream&  arg__1);
+   void setMask(QPixmap* theWrappedObject, const QBitmap&  arg__1);
+   void fill(QPixmap* theWrappedObject, const QWidget*  widget, const QPoint&  ofs);
+   QPixmap  copy(QPixmap* theWrappedObject, const QRect&  rect = QRect()) const;
+   QBitmap  createHeuristicMask(QPixmap* theWrappedObject, bool  clipTight = true) const;
+   QImage  toImage(QPixmap* theWrappedObject) const;
+   bool  load(QPixmap* theWrappedObject, const QString&  fileName, const char*  format = 0, Qt::ImageConversionFlags  flags = Qt::AutoColor);
+   QPixmap  static_QPixmap_fromImage(const QImage&  image, Qt::ImageConversionFlags  flags = Qt::AutoColor);
+   int  static_QPixmap_defaultDepth();
+   QPixmap  static_QPixmap_grabWidget(QWidget*  widget, const QRect&  rect);
    void fill(QPixmap* theWrappedObject, const QColor&  fillColor = Qt::white);
+   QSize  size(QPixmap* theWrappedObject) const;
+   QPixmap  static_QPixmap_grabWindow(WId  arg__1, int  x = 0, int  y = 0, int  w = -1, int  h = -1);
+   bool  save(QPixmap* theWrappedObject, QIODevice*  device, const char*  format = 0, int  quality = -1) const;
+   int  width(QPixmap* theWrappedObject) const;
+   QBitmap  createMaskFromColor(QPixmap* theWrappedObject, const QColor&  maskColor, Qt::MaskMode  mode) const;
    QPixmap  scaled(QPixmap* theWrappedObject, const QSize&  s, Qt::AspectRatioMode  aspectMode = Qt::IgnoreAspectRatio, Qt::TransformationMode  mode = Qt::FastTransformation) const;
    QMatrix  static_QPixmap_trueMatrix(const QMatrix&  m, int  w, int  h);
    QTransform  static_QPixmap_trueMatrix(const QTransform&  m, int  w, int  h);
+   QPixmap  static_QPixmap_grabWidget(QWidget*  widget, int  x = 0, int  y = 0, int  w = -1, int  h = -1);
+   void writeTo(QPixmap* theWrappedObject, QDataStream&  arg__1);
+   QBitmap  createMaskFromColor(QPixmap* theWrappedObject, const QColor&  maskColor) const;
+   bool  hasAlphaChannel(QPixmap* theWrappedObject) const;
+   bool  loadFromData(QPixmap* theWrappedObject, const QByteArray&  data, const char*  format = 0, Qt::ImageConversionFlags  flags = Qt::AutoColor);
+   void setAlphaChannel(QPixmap* theWrappedObject, const QPixmap&  arg__1);
+   QPixmap  transformed(QPixmap* theWrappedObject, const QMatrix&  arg__1, Qt::TransformationMode  mode = Qt::FastTransformation) const;
    int  depth(QPixmap* theWrappedObject) const;
-   QPixmap  copy(QPixmap* theWrappedObject, const QRect&  rect = QRect()) const;
-   bool  hasAlpha(QPixmap* theWrappedObject) const;
+   QPixmap  scaledToHeight(QPixmap* theWrappedObject, int  h, Qt::TransformationMode  mode = Qt::FastTransformation) const;
+   int  metric(QPixmap* theWrappedObject, QPaintDevice::PaintDeviceMetric  arg__1) const;
+   qint64  cacheKey(QPixmap* theWrappedObject) const;
+   QPaintEngine*  paintEngine(QPixmap* theWrappedObject) const;
+   QPixmap  transformed(QPixmap* theWrappedObject, const QTransform&  arg__1, Qt::TransformationMode  mode = Qt::FastTransformation) const;
+   QPixmap  alphaChannel(QPixmap* theWrappedObject) const;
    bool  isNull(QPixmap* theWrappedObject) const;
+   void fill(QPixmap* theWrappedObject, const QWidget*  widget, int  xofs, int  yofs);
+   QPixmap  scaledToWidth(QPixmap* theWrappedObject, int  w, Qt::TransformationMode  mode = Qt::FastTransformation) const;
+   int  devType(QPixmap* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QPIXMAP_H

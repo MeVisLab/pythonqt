@@ -16,13 +16,13 @@ public slots:
 QDomNodeList* new_QDomNodeList();
 QDomNodeList* new_QDomNodeList(const QDomNodeList&  arg__1);
 void delete_QDomNodeList(QDomNodeList* obj) { delete obj; } 
-   uint  length(QDomNodeList* theWrappedObject) const;
-   bool  operator_equal(QDomNodeList* theWrappedObject, const QDomNodeList&  arg__1) const;
-   QDomNode  item(QDomNodeList* theWrappedObject, int  index) const;
    bool  isEmpty(QDomNodeList* theWrappedObject) const;
-   QDomNode  at(QDomNodeList* theWrappedObject, int  index) const;
    int  count(QDomNodeList* theWrappedObject) const;
+   QDomNode  item(QDomNodeList* theWrappedObject, int  index) const;
    int  size(QDomNodeList* theWrappedObject) const;
+   uint  length(QDomNodeList* theWrappedObject) const;
+   QDomNode  at(QDomNodeList* theWrappedObject, int  index) const;
+   bool  operator_equal(QDomNodeList* theWrappedObject, const QDomNodeList&  arg__1) const;
 };
 
 #endif // PYTHONQTWRAPPER_QDOMNODELIST_H

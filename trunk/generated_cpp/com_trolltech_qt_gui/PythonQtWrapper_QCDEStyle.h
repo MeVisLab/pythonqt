@@ -57,16 +57,24 @@ virtual void unpolish(QWidget*  arg__1);
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QCDEStyle : public QCDEStyle
+{ public:
+inline void promoted_drawControl(QStyle::ControlElement  element, const QStyleOption*  opt, QPainter*  p, const QWidget*  w = 0) const { QCDEStyle::drawControl(element, opt, p, w); }
+inline void promoted_drawPrimitive(QStyle::PrimitiveElement  pe, const QStyleOption*  opt, QPainter*  p, const QWidget*  w = 0) const { QCDEStyle::drawPrimitive(pe, opt, p, w); }
+inline int  promoted_pixelMetric(QStyle::PixelMetric  metric, const QStyleOption*  option = 0, const QWidget*  widget = 0) const { return QCDEStyle::pixelMetric(metric, option, widget); }
+inline QPalette  promoted_standardPalette() const { return QCDEStyle::standardPalette(); }
+};
+
 class PythonQtWrapper_QCDEStyle : public QObject
 { Q_OBJECT
 public:
 public slots:
 QCDEStyle* new_QCDEStyle(bool  useHighlightCols = false);
 void delete_QCDEStyle(QCDEStyle* obj) { delete obj; } 
-   int  pixelMetric(QCDEStyle* theWrappedObject, QStyle::PixelMetric  metric, const QStyleOption*  option = 0, const QWidget*  widget = 0) const;
-   QPalette  standardPalette(QCDEStyle* theWrappedObject) const;
    void drawControl(QCDEStyle* theWrappedObject, QStyle::ControlElement  element, const QStyleOption*  opt, QPainter*  p, const QWidget*  w = 0) const;
    void drawPrimitive(QCDEStyle* theWrappedObject, QStyle::PrimitiveElement  pe, const QStyleOption*  opt, QPainter*  p, const QWidget*  w = 0) const;
+   int  pixelMetric(QCDEStyle* theWrappedObject, QStyle::PixelMetric  metric, const QStyleOption*  option = 0, const QWidget*  widget = 0) const;
+   QPalette  standardPalette(QCDEStyle* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QCDESTYLE_H

@@ -805,39 +805,64 @@ QSplitter* PythonQtWrapper_QSplitter::new_QSplitter(Qt::Orientation  arg__1, QWi
 { 
 return new PythonQtShell_QSplitter(arg__1, parent); }
 
-void PythonQtWrapper_QSplitter::setOpaqueResize(QSplitter* theWrappedObject, bool  opaque)
+bool  PythonQtWrapper_QSplitter::restoreState(QSplitter* theWrappedObject, const QByteArray&  state)
 {
- (*theWrappedObject).setOpaqueResize(opaque);
+return  theWrappedObject->restoreState(state);
 }
 
 bool  PythonQtWrapper_QSplitter::event(QSplitter* theWrappedObject, QEvent*  arg__1)
 {
-return  (*((PythonQtPublicPromoter_QSplitter*)theWrappedObject)).event(arg__1);
+return  ((PythonQtPublicPromoter_QSplitter*)theWrappedObject)->promoted_event(arg__1);
 }
 
 void PythonQtWrapper_QSplitter::setHandleWidth(QSplitter* theWrappedObject, int  arg__1)
 {
- (*theWrappedObject).setHandleWidth(arg__1);
+ theWrappedObject->setHandleWidth(arg__1);
 }
 
 QWidget*  PythonQtWrapper_QSplitter::widget(QSplitter* theWrappedObject, int  index) const
 {
-return  (*theWrappedObject).widget(index);
+return  theWrappedObject->widget(index);
+}
+
+bool  PythonQtWrapper_QSplitter::isCollapsible(QSplitter* theWrappedObject, int  index) const
+{
+return  theWrappedObject->isCollapsible(index);
 }
 
 void PythonQtWrapper_QSplitter::setCollapsible(QSplitter* theWrappedObject, int  index, bool  arg__2)
 {
- (*theWrappedObject).setCollapsible(index, arg__2);
+ theWrappedObject->setCollapsible(index, arg__2);
 }
 
-void PythonQtWrapper_QSplitter::setOrientation(QSplitter* theWrappedObject, Qt::Orientation  arg__1)
+void PythonQtWrapper_QSplitter::changeEvent(QSplitter* theWrappedObject, QEvent*  arg__1)
 {
- (*theWrappedObject).setOrientation(arg__1);
+ ((PythonQtPublicPromoter_QSplitter*)theWrappedObject)->promoted_changeEvent(arg__1);
 }
 
-void PythonQtWrapper_QSplitter::addWidget(QSplitter* theWrappedObject, QWidget*  widget)
+int  PythonQtWrapper_QSplitter::count(QSplitter* theWrappedObject) const
 {
- (*theWrappedObject).addWidget(widget);
+return  theWrappedObject->count();
+}
+
+void PythonQtWrapper_QSplitter::resizeEvent(QSplitter* theWrappedObject, QResizeEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QSplitter*)theWrappedObject)->promoted_resizeEvent(arg__1);
+}
+
+void PythonQtWrapper_QSplitter::refresh(QSplitter* theWrappedObject)
+{
+ theWrappedObject->refresh();
+}
+
+void PythonQtWrapper_QSplitter::setOpaqueResize(QSplitter* theWrappedObject, bool  opaque)
+{
+ theWrappedObject->setOpaqueResize(opaque);
+}
+
+Qt::Orientation  PythonQtWrapper_QSplitter::orientation(QSplitter* theWrappedObject) const
+{
+return  theWrappedObject->orientation();
 }
 
 void PythonQtWrapper_QSplitter::readFrom(QSplitter* theWrappedObject, QTextStream&  arg__1)
@@ -845,69 +870,89 @@ void PythonQtWrapper_QSplitter::readFrom(QSplitter* theWrappedObject, QTextStrea
 arg__1 >>  (*theWrappedObject);
 }
 
-void PythonQtWrapper_QSplitter::changeEvent(QSplitter* theWrappedObject, QEvent*  arg__1)
+void PythonQtWrapper_QSplitter::getRange(QSplitter* theWrappedObject, int  index, int*  arg__2, int*  arg__3) const
 {
- (*((PythonQtPublicPromoter_QSplitter*)theWrappedObject)).changeEvent(arg__1);
-}
-
-int  PythonQtWrapper_QSplitter::count(QSplitter* theWrappedObject) const
-{
-return  (*theWrappedObject).count();
-}
-
-void PythonQtWrapper_QSplitter::resizeEvent(QSplitter* theWrappedObject, QResizeEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QSplitter*)theWrappedObject)).resizeEvent(arg__1);
-}
-
-void PythonQtWrapper_QSplitter::refresh(QSplitter* theWrappedObject)
-{
- (*theWrappedObject).refresh();
-}
-
-void PythonQtWrapper_QSplitter::setSizes(QSplitter* theWrappedObject, const QList<int >&  list)
-{
- (*theWrappedObject).setSizes(list);
-}
-
-QSize  PythonQtWrapper_QSplitter::sizeHint(QSplitter* theWrappedObject) const
-{
-return  (*theWrappedObject).sizeHint();
-}
-
-QSplitterHandle*  PythonQtWrapper_QSplitter::handle(QSplitter* theWrappedObject, int  index) const
-{
-return  (*theWrappedObject).handle(index);
-}
-
-void PythonQtWrapper_QSplitter::setChildrenCollapsible(QSplitter* theWrappedObject, bool  arg__1)
-{
- (*theWrappedObject).setChildrenCollapsible(arg__1);
-}
-
-int  PythonQtWrapper_QSplitter::indexOf(QSplitter* theWrappedObject, QWidget*  w) const
-{
-return  (*theWrappedObject).indexOf(w);
-}
-
-Qt::Orientation  PythonQtWrapper_QSplitter::orientation(QSplitter* theWrappedObject) const
-{
-return  (*theWrappedObject).orientation();
-}
-
-bool  PythonQtWrapper_QSplitter::childrenCollapsible(QSplitter* theWrappedObject) const
-{
-return  (*theWrappedObject).childrenCollapsible();
+ theWrappedObject->getRange(index, arg__2, arg__3);
 }
 
 int  PythonQtWrapper_QSplitter::handleWidth(QSplitter* theWrappedObject) const
 {
-return  (*theWrappedObject).handleWidth();
+return  theWrappedObject->handleWidth();
+}
+
+void PythonQtWrapper_QSplitter::insertWidget(QSplitter* theWrappedObject, int  index, QWidget*  widget)
+{
+ theWrappedObject->insertWidget(index, widget);
 }
 
 QSize  PythonQtWrapper_QSplitter::minimumSizeHint(QSplitter* theWrappedObject) const
 {
-return  (*theWrappedObject).minimumSizeHint();
+return  theWrappedObject->minimumSizeHint();
+}
+
+void PythonQtWrapper_QSplitter::setOrientation(QSplitter* theWrappedObject, Qt::Orientation  arg__1)
+{
+ theWrappedObject->setOrientation(arg__1);
+}
+
+void PythonQtWrapper_QSplitter::childEvent(QSplitter* theWrappedObject, QChildEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QSplitter*)theWrappedObject)->promoted_childEvent(arg__1);
+}
+
+void PythonQtWrapper_QSplitter::setSizes(QSplitter* theWrappedObject, const QList<int >&  list)
+{
+ theWrappedObject->setSizes(list);
+}
+
+bool  PythonQtWrapper_QSplitter::opaqueResize(QSplitter* theWrappedObject) const
+{
+return  theWrappedObject->opaqueResize();
+}
+
+QSize  PythonQtWrapper_QSplitter::sizeHint(QSplitter* theWrappedObject) const
+{
+return  theWrappedObject->sizeHint();
+}
+
+bool  PythonQtWrapper_QSplitter::childrenCollapsible(QSplitter* theWrappedObject) const
+{
+return  theWrappedObject->childrenCollapsible();
+}
+
+QSplitterHandle*  PythonQtWrapper_QSplitter::handle(QSplitter* theWrappedObject, int  index) const
+{
+return  theWrappedObject->handle(index);
+}
+
+void PythonQtWrapper_QSplitter::setChildrenCollapsible(QSplitter* theWrappedObject, bool  arg__1)
+{
+ theWrappedObject->setChildrenCollapsible(arg__1);
+}
+
+QList<int >  PythonQtWrapper_QSplitter::sizes(QSplitter* theWrappedObject) const
+{
+return  theWrappedObject->sizes();
+}
+
+int  PythonQtWrapper_QSplitter::indexOf(QSplitter* theWrappedObject, QWidget*  w) const
+{
+return  theWrappedObject->indexOf(w);
+}
+
+QByteArray  PythonQtWrapper_QSplitter::saveState(QSplitter* theWrappedObject) const
+{
+return  theWrappedObject->saveState();
+}
+
+QSplitterHandle*  PythonQtWrapper_QSplitter::createHandle(QSplitter* theWrappedObject)
+{
+return  ((PythonQtPublicPromoter_QSplitter*)theWrappedObject)->promoted_createHandle();
+}
+
+void PythonQtWrapper_QSplitter::addWidget(QSplitter* theWrappedObject, QWidget*  widget)
+{
+ theWrappedObject->addWidget(widget);
 }
 
 void PythonQtWrapper_QSplitter::writeTo(QSplitter* theWrappedObject, QTextStream&  arg__1)
@@ -915,53 +960,8 @@ void PythonQtWrapper_QSplitter::writeTo(QSplitter* theWrappedObject, QTextStream
 arg__1 <<  (*theWrappedObject);
 }
 
-QList<int >  PythonQtWrapper_QSplitter::sizes(QSplitter* theWrappedObject) const
-{
-return  (*theWrappedObject).sizes();
-}
-
-QByteArray  PythonQtWrapper_QSplitter::saveState(QSplitter* theWrappedObject) const
-{
-return  (*theWrappedObject).saveState();
-}
-
-void PythonQtWrapper_QSplitter::childEvent(QSplitter* theWrappedObject, QChildEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QSplitter*)theWrappedObject)).childEvent(arg__1);
-}
-
-bool  PythonQtWrapper_QSplitter::opaqueResize(QSplitter* theWrappedObject) const
-{
-return  (*theWrappedObject).opaqueResize();
-}
-
-bool  PythonQtWrapper_QSplitter::restoreState(QSplitter* theWrappedObject, const QByteArray&  state)
-{
-return  (*theWrappedObject).restoreState(state);
-}
-
-bool  PythonQtWrapper_QSplitter::isCollapsible(QSplitter* theWrappedObject, int  index) const
-{
-return  (*theWrappedObject).isCollapsible(index);
-}
-
-QSplitterHandle*  PythonQtWrapper_QSplitter::createHandle(QSplitter* theWrappedObject)
-{
-return  (*((PythonQtPublicPromoter_QSplitter*)theWrappedObject)).createHandle();
-}
-
 void PythonQtWrapper_QSplitter::setStretchFactor(QSplitter* theWrappedObject, int  index, int  stretch)
 {
- (*theWrappedObject).setStretchFactor(index, stretch);
-}
-
-void PythonQtWrapper_QSplitter::getRange(QSplitter* theWrappedObject, int  index, int*  arg__2, int*  arg__3) const
-{
- (*theWrappedObject).getRange(index, arg__2, arg__3);
-}
-
-void PythonQtWrapper_QSplitter::insertWidget(QSplitter* theWrappedObject, int  index, QWidget*  widget)
-{
- (*theWrappedObject).insertWidget(index, widget);
+ theWrappedObject->setStretchFactor(index, stretch);
 }
 

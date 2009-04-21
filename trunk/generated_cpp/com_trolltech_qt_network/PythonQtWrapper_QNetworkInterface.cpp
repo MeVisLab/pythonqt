@@ -18,17 +18,7 @@ return new QNetworkInterface(other); }
 
 QList<QNetworkAddressEntry >  PythonQtWrapper_QNetworkInterface::addressEntries(QNetworkInterface* theWrappedObject) const
 {
-return  (*theWrappedObject).addressEntries();
-}
-
-QNetworkInterface  PythonQtWrapper_QNetworkInterface::static_QNetworkInterface_interfaceFromIndex(int  index)
-{
-return QNetworkInterface::interfaceFromIndex(index);
-}
-
-QNetworkInterface  PythonQtWrapper_QNetworkInterface::static_QNetworkInterface_interfaceFromName(const QString&  name)
-{
-return QNetworkInterface::interfaceFromName(name);
+return  theWrappedObject->addressEntries();
 }
 
 QList<QNetworkInterface >  PythonQtWrapper_QNetworkInterface::static_QNetworkInterface_allInterfaces()
@@ -38,17 +28,12 @@ return QNetworkInterface::allInterfaces();
 
 QNetworkInterface::InterfaceFlags  PythonQtWrapper_QNetworkInterface::flags(QNetworkInterface* theWrappedObject) const
 {
-return  (*theWrappedObject).flags();
+return  theWrappedObject->flags();
 }
 
-QString  PythonQtWrapper_QNetworkInterface::name(QNetworkInterface* theWrappedObject) const
+QNetworkInterface  PythonQtWrapper_QNetworkInterface::static_QNetworkInterface_interfaceFromName(const QString&  name)
 {
-return  (*theWrappedObject).name();
-}
-
-bool  PythonQtWrapper_QNetworkInterface::isValid(QNetworkInterface* theWrappedObject) const
-{
-return  (*theWrappedObject).isValid();
+return QNetworkInterface::interfaceFromName(name);
 }
 
 QList<QHostAddress >  PythonQtWrapper_QNetworkInterface::static_QNetworkInterface_allAddresses()
@@ -56,8 +41,23 @@ QList<QHostAddress >  PythonQtWrapper_QNetworkInterface::static_QNetworkInterfac
 return QNetworkInterface::allAddresses();
 }
 
+bool  PythonQtWrapper_QNetworkInterface::isValid(QNetworkInterface* theWrappedObject) const
+{
+return  theWrappedObject->isValid();
+}
+
+QString  PythonQtWrapper_QNetworkInterface::name(QNetworkInterface* theWrappedObject) const
+{
+return  theWrappedObject->name();
+}
+
 QString  PythonQtWrapper_QNetworkInterface::hardwareAddress(QNetworkInterface* theWrappedObject) const
 {
-return  (*theWrappedObject).hardwareAddress();
+return  theWrappedObject->hardwareAddress();
+}
+
+QNetworkInterface  PythonQtWrapper_QNetworkInterface::static_QNetworkInterface_interfaceFromIndex(int  index)
+{
+return QNetworkInterface::interfaceFromIndex(index);
 }
 

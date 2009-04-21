@@ -27,13 +27,13 @@ QRunnable* PythonQtWrapper_QRunnable::new_QRunnable()
 { 
 return new PythonQtShell_QRunnable(); }
 
-void PythonQtWrapper_QRunnable::setAutoDelete(QRunnable* theWrappedObject, bool  _autoDelete)
-{
- (*theWrappedObject).setAutoDelete(_autoDelete);
-}
-
 bool  PythonQtWrapper_QRunnable::autoDelete(QRunnable* theWrappedObject) const
 {
-return  (*theWrappedObject).autoDelete();
+return  theWrappedObject->autoDelete();
+}
+
+void PythonQtWrapper_QRunnable::setAutoDelete(QRunnable* theWrappedObject, bool  _autoDelete)
+{
+ theWrappedObject->setAutoDelete(_autoDelete);
 }
 

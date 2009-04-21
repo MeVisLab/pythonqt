@@ -36,11 +36,11 @@ PythonQtShell_QTextListFormat* a = new PythonQtShell_QTextListFormat();
 *((QTextListFormat*)a) = other;
 return a; }
 void delete_QTextListFormat(QTextListFormat* obj) { delete obj; } 
-   bool  isValid(QTextListFormat* theWrappedObject) const;
    void setIndent(QTextListFormat* theWrappedObject, int  indent);
    QTextListFormat::Style  style(QTextListFormat* theWrappedObject) const;
    int  indent(QTextListFormat* theWrappedObject) const;
    void setStyle(QTextListFormat* theWrappedObject, QTextListFormat::Style  style);
+   bool  isValid(QTextListFormat* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QTEXTLISTFORMAT_H

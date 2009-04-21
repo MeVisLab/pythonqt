@@ -14,38 +14,38 @@ QReadWriteLock* PythonQtWrapper_QReadWriteLock::new_QReadWriteLock(QReadWriteLoc
 { 
 return new QReadWriteLock(recursionMode); }
 
-void PythonQtWrapper_QReadWriteLock::lockForRead(QReadWriteLock* theWrappedObject)
+bool  PythonQtWrapper_QReadWriteLock::tryLockForWrite(QReadWriteLock* theWrappedObject)
 {
- (*theWrappedObject).lockForRead();
-}
-
-bool  PythonQtWrapper_QReadWriteLock::tryLockForWrite(QReadWriteLock* theWrappedObject, int  timeout)
-{
-return  (*theWrappedObject).tryLockForWrite(timeout);
+return  theWrappedObject->tryLockForWrite();
 }
 
 void PythonQtWrapper_QReadWriteLock::lockForWrite(QReadWriteLock* theWrappedObject)
 {
- (*theWrappedObject).lockForWrite();
+ theWrappedObject->lockForWrite();
 }
 
-bool  PythonQtWrapper_QReadWriteLock::tryLockForRead(QReadWriteLock* theWrappedObject)
+void PythonQtWrapper_QReadWriteLock::lockForRead(QReadWriteLock* theWrappedObject)
 {
-return  (*theWrappedObject).tryLockForRead();
-}
-
-void PythonQtWrapper_QReadWriteLock::unlock(QReadWriteLock* theWrappedObject)
-{
- (*theWrappedObject).unlock();
+ theWrappedObject->lockForRead();
 }
 
 bool  PythonQtWrapper_QReadWriteLock::tryLockForRead(QReadWriteLock* theWrappedObject, int  timeout)
 {
-return  (*theWrappedObject).tryLockForRead(timeout);
+return  theWrappedObject->tryLockForRead(timeout);
 }
 
-bool  PythonQtWrapper_QReadWriteLock::tryLockForWrite(QReadWriteLock* theWrappedObject)
+bool  PythonQtWrapper_QReadWriteLock::tryLockForRead(QReadWriteLock* theWrappedObject)
 {
-return  (*theWrappedObject).tryLockForWrite();
+return  theWrappedObject->tryLockForRead();
+}
+
+bool  PythonQtWrapper_QReadWriteLock::tryLockForWrite(QReadWriteLock* theWrappedObject, int  timeout)
+{
+return  theWrappedObject->tryLockForWrite(timeout);
+}
+
+void PythonQtWrapper_QReadWriteLock::unlock(QReadWriteLock* theWrappedObject)
+{
+ theWrappedObject->unlock();
 }
 

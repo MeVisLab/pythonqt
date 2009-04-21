@@ -841,116 +841,116 @@ return new PythonQtShell_QToolButton(parent); }
 
 QSize  PythonQtWrapper_QToolButton::sizeHint(QToolButton* theWrappedObject) const
 {
-return  (*theWrappedObject).sizeHint();
+return  theWrappedObject->sizeHint();
 }
 
 void PythonQtWrapper_QToolButton::nextCheckState(QToolButton* theWrappedObject)
 {
- (*((PythonQtPublicPromoter_QToolButton*)theWrappedObject)).nextCheckState();
-}
-
-bool  PythonQtWrapper_QToolButton::event(QToolButton* theWrappedObject, QEvent*  e)
-{
-return  (*((PythonQtPublicPromoter_QToolButton*)theWrappedObject)).event(e);
-}
-
-QAction*  PythonQtWrapper_QToolButton::defaultAction(QToolButton* theWrappedObject) const
-{
-return  (*theWrappedObject).defaultAction();
-}
-
-Qt::ArrowType  PythonQtWrapper_QToolButton::arrowType(QToolButton* theWrappedObject) const
-{
-return  (*theWrappedObject).arrowType();
-}
-
-bool  PythonQtWrapper_QToolButton::hitButton(QToolButton* theWrappedObject, const QPoint&  pos) const
-{
-return  (*((PythonQtPublicPromoter_QToolButton*)theWrappedObject)).hitButton(pos);
+ ((PythonQtPublicPromoter_QToolButton*)theWrappedObject)->promoted_nextCheckState();
 }
 
 void PythonQtWrapper_QToolButton::enterEvent(QToolButton* theWrappedObject, QEvent*  arg__1)
 {
- (*((PythonQtPublicPromoter_QToolButton*)theWrappedObject)).enterEvent(arg__1);
+ ((PythonQtPublicPromoter_QToolButton*)theWrappedObject)->promoted_enterEvent(arg__1);
 }
 
-void PythonQtWrapper_QToolButton::timerEvent(QToolButton* theWrappedObject, QTimerEvent*  arg__1)
+bool  PythonQtWrapper_QToolButton::event(QToolButton* theWrappedObject, QEvent*  e)
 {
- (*((PythonQtPublicPromoter_QToolButton*)theWrappedObject)).timerEvent(arg__1);
+return  ((PythonQtPublicPromoter_QToolButton*)theWrappedObject)->promoted_event(e);
 }
 
-QToolButton::ToolButtonPopupMode  PythonQtWrapper_QToolButton::popupMode(QToolButton* theWrappedObject) const
+QAction*  PythonQtWrapper_QToolButton::defaultAction(QToolButton* theWrappedObject) const
 {
-return  (*theWrappedObject).popupMode();
-}
-
-void PythonQtWrapper_QToolButton::actionEvent(QToolButton* theWrappedObject, QActionEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QToolButton*)theWrappedObject)).actionEvent(arg__1);
-}
-
-void PythonQtWrapper_QToolButton::setAutoRaise(QToolButton* theWrappedObject, bool  enable)
-{
- (*theWrappedObject).setAutoRaise(enable);
-}
-
-void PythonQtWrapper_QToolButton::paintEvent(QToolButton* theWrappedObject, QPaintEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QToolButton*)theWrappedObject)).paintEvent(arg__1);
-}
-
-Qt::ToolButtonStyle  PythonQtWrapper_QToolButton::toolButtonStyle(QToolButton* theWrappedObject) const
-{
-return  (*theWrappedObject).toolButtonStyle();
-}
-
-void PythonQtWrapper_QToolButton::setArrowType(QToolButton* theWrappedObject, Qt::ArrowType  type)
-{
- (*theWrappedObject).setArrowType(type);
-}
-
-void PythonQtWrapper_QToolButton::changeEvent(QToolButton* theWrappedObject, QEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QToolButton*)theWrappedObject)).changeEvent(arg__1);
-}
-
-void PythonQtWrapper_QToolButton::setPopupMode(QToolButton* theWrappedObject, QToolButton::ToolButtonPopupMode  mode)
-{
- (*theWrappedObject).setPopupMode(mode);
-}
-
-void PythonQtWrapper_QToolButton::mouseReleaseEvent(QToolButton* theWrappedObject, QMouseEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QToolButton*)theWrappedObject)).mouseReleaseEvent(arg__1);
-}
-
-QMenu*  PythonQtWrapper_QToolButton::menu(QToolButton* theWrappedObject) const
-{
-return  (*theWrappedObject).menu();
-}
-
-void PythonQtWrapper_QToolButton::setMenu(QToolButton* theWrappedObject, QMenu*  menu)
-{
- (*theWrappedObject).setMenu(menu);
-}
-
-void PythonQtWrapper_QToolButton::leaveEvent(QToolButton* theWrappedObject, QEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QToolButton*)theWrappedObject)).leaveEvent(arg__1);
-}
-
-bool  PythonQtWrapper_QToolButton::autoRaise(QToolButton* theWrappedObject) const
-{
-return  (*theWrappedObject).autoRaise();
+return  theWrappedObject->defaultAction();
 }
 
 QSize  PythonQtWrapper_QToolButton::minimumSizeHint(QToolButton* theWrappedObject) const
 {
-return  (*theWrappedObject).minimumSizeHint();
+return  theWrappedObject->minimumSizeHint();
+}
+
+void PythonQtWrapper_QToolButton::timerEvent(QToolButton* theWrappedObject, QTimerEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QToolButton*)theWrappedObject)->promoted_timerEvent(arg__1);
+}
+
+void PythonQtWrapper_QToolButton::setPopupMode(QToolButton* theWrappedObject, QToolButton::ToolButtonPopupMode  mode)
+{
+ theWrappedObject->setPopupMode(mode);
+}
+
+bool  PythonQtWrapper_QToolButton::hitButton(QToolButton* theWrappedObject, const QPoint&  pos) const
+{
+return  ((PythonQtPublicPromoter_QToolButton*)theWrappedObject)->promoted_hitButton(pos);
+}
+
+QToolButton::ToolButtonPopupMode  PythonQtWrapper_QToolButton::popupMode(QToolButton* theWrappedObject) const
+{
+return  theWrappedObject->popupMode();
+}
+
+void PythonQtWrapper_QToolButton::actionEvent(QToolButton* theWrappedObject, QActionEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QToolButton*)theWrappedObject)->promoted_actionEvent(arg__1);
+}
+
+void PythonQtWrapper_QToolButton::paintEvent(QToolButton* theWrappedObject, QPaintEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QToolButton*)theWrappedObject)->promoted_paintEvent(arg__1);
+}
+
+void PythonQtWrapper_QToolButton::setAutoRaise(QToolButton* theWrappedObject, bool  enable)
+{
+ theWrappedObject->setAutoRaise(enable);
+}
+
+void PythonQtWrapper_QToolButton::setArrowType(QToolButton* theWrappedObject, Qt::ArrowType  type)
+{
+ theWrappedObject->setArrowType(type);
+}
+
+void PythonQtWrapper_QToolButton::changeEvent(QToolButton* theWrappedObject, QEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QToolButton*)theWrappedObject)->promoted_changeEvent(arg__1);
+}
+
+Qt::ToolButtonStyle  PythonQtWrapper_QToolButton::toolButtonStyle(QToolButton* theWrappedObject) const
+{
+return  theWrappedObject->toolButtonStyle();
+}
+
+QMenu*  PythonQtWrapper_QToolButton::menu(QToolButton* theWrappedObject) const
+{
+return  theWrappedObject->menu();
+}
+
+void PythonQtWrapper_QToolButton::setMenu(QToolButton* theWrappedObject, QMenu*  menu)
+{
+ theWrappedObject->setMenu(menu);
+}
+
+Qt::ArrowType  PythonQtWrapper_QToolButton::arrowType(QToolButton* theWrappedObject) const
+{
+return  theWrappedObject->arrowType();
+}
+
+void PythonQtWrapper_QToolButton::leaveEvent(QToolButton* theWrappedObject, QEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QToolButton*)theWrappedObject)->promoted_leaveEvent(arg__1);
+}
+
+void PythonQtWrapper_QToolButton::mouseReleaseEvent(QToolButton* theWrappedObject, QMouseEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QToolButton*)theWrappedObject)->promoted_mouseReleaseEvent(arg__1);
+}
+
+bool  PythonQtWrapper_QToolButton::autoRaise(QToolButton* theWrappedObject) const
+{
+return  theWrappedObject->autoRaise();
 }
 
 void PythonQtWrapper_QToolButton::mousePressEvent(QToolButton* theWrappedObject, QMouseEvent*  arg__1)
 {
- (*((PythonQtPublicPromoter_QToolButton*)theWrappedObject)).mousePressEvent(arg__1);
+ ((PythonQtPublicPromoter_QToolButton*)theWrappedObject)->promoted_mousePressEvent(arg__1);
 }
 

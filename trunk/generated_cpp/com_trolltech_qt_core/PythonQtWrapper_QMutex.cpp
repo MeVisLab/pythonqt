@@ -12,21 +12,21 @@ return new QMutex(mode); }
 
 void PythonQtWrapper_QMutex::lock(QMutex* theWrappedObject)
 {
- (*theWrappedObject).lock();
+ theWrappedObject->lock();
 }
 
 bool  PythonQtWrapper_QMutex::tryLock(QMutex* theWrappedObject, int  timeout)
 {
-return  (*theWrappedObject).tryLock(timeout);
+return  theWrappedObject->tryLock(timeout);
 }
 
 void PythonQtWrapper_QMutex::unlock(QMutex* theWrappedObject)
 {
- (*theWrappedObject).unlock();
+ theWrappedObject->unlock();
 }
 
 bool  PythonQtWrapper_QMutex::tryLock(QMutex* theWrappedObject)
 {
-return  (*theWrappedObject).tryLock();
+return  theWrappedObject->tryLock();
 }
 

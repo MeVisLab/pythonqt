@@ -37,18 +37,29 @@ virtual int  userActionCount(int  child) const;
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QAccessibleObject : public QAccessibleObject
+{ public:
+inline QObject*  promoted_object() const { return QAccessibleObject::object(); }
+inline int  promoted_userActionCount(int  child) const { return QAccessibleObject::userActionCount(child); }
+inline bool  promoted_isValid() const { return QAccessibleObject::isValid(); }
+inline QString  promoted_actionText(int  action, QAccessible::Text  t, int  child) const { return QAccessibleObject::actionText(action, t, child); }
+inline bool  promoted_doAction(int  action, int  child, const QList<QVariant >&  params) { return QAccessibleObject::doAction(action, child, params); }
+inline void promoted_setText(QAccessible::Text  t, int  child, const QString&  text) { QAccessibleObject::setText(t, child, text); }
+inline QRect  promoted_rect(int  child) const { return QAccessibleObject::rect(child); }
+};
+
 class PythonQtWrapper_QAccessibleObject : public QObject
 { Q_OBJECT
 public:
 public slots:
 QAccessibleObject* new_QAccessibleObject(QObject*  object);
+   QObject*  object(QAccessibleObject* theWrappedObject) const;
+   int  userActionCount(QAccessibleObject* theWrappedObject, int  child) const;
+   bool  isValid(QAccessibleObject* theWrappedObject) const;
    QString  actionText(QAccessibleObject* theWrappedObject, int  action, QAccessible::Text  t, int  child) const;
    bool  doAction(QAccessibleObject* theWrappedObject, int  action, int  child, const QList<QVariant >&  params);
    void setText(QAccessibleObject* theWrappedObject, QAccessible::Text  t, int  child, const QString&  text);
    QRect  rect(QAccessibleObject* theWrappedObject, int  child) const;
-   QObject*  object(QAccessibleObject* theWrappedObject) const;
-   int  userActionCount(QAccessibleObject* theWrappedObject, int  child) const;
-   bool  isValid(QAccessibleObject* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QACCESSIBLEOBJECT_H

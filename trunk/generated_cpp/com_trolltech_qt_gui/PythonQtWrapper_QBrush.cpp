@@ -49,14 +49,24 @@ QBrush* PythonQtWrapper_QBrush::new_QBrush(const QPixmap&  pixmap)
 { 
 return new QBrush(pixmap); }
 
-bool  PythonQtWrapper_QBrush::operator_equal(QBrush* theWrappedObject, const QBrush&  b) const
+const QGradient*  PythonQtWrapper_QBrush::gradient(QBrush* theWrappedObject) const
 {
-return  (*theWrappedObject)== b;
+return  theWrappedObject->gradient();
 }
 
-void PythonQtWrapper_QBrush::setColor(QBrush* theWrappedObject, Qt::GlobalColor  color)
+void PythonQtWrapper_QBrush::setTextureImage(QBrush* theWrappedObject, const QImage&  image)
 {
- (*theWrappedObject).setColor(color);
+ theWrappedObject->setTextureImage(image);
+}
+
+void PythonQtWrapper_QBrush::setTransform(QBrush* theWrappedObject, const QTransform&  arg__1)
+{
+ theWrappedObject->setTransform(arg__1);
+}
+
+const QMatrix&  PythonQtWrapper_QBrush::matrix(QBrush* theWrappedObject) const
+{
+return  theWrappedObject->matrix();
 }
 
 void PythonQtWrapper_QBrush::writeTo(QBrush* theWrappedObject, QDataStream&  arg__1)
@@ -64,78 +74,68 @@ void PythonQtWrapper_QBrush::writeTo(QBrush* theWrappedObject, QDataStream&  arg
 arg__1 <<  (*theWrappedObject);
 }
 
-void PythonQtWrapper_QBrush::setTexture(QBrush* theWrappedObject, const QPixmap&  pixmap)
-{
- (*theWrappedObject).setTexture(pixmap);
-}
-
-const QColor&  PythonQtWrapper_QBrush::color(QBrush* theWrappedObject) const
-{
-return  (*theWrappedObject).color();
-}
-
-Qt::BrushStyle  PythonQtWrapper_QBrush::style(QBrush* theWrappedObject) const
-{
-return  (*theWrappedObject).style();
-}
-
-QPixmap  PythonQtWrapper_QBrush::texture(QBrush* theWrappedObject) const
-{
-return  (*theWrappedObject).texture();
-}
-
-QImage  PythonQtWrapper_QBrush::textureImage(QBrush* theWrappedObject) const
-{
-return  (*theWrappedObject).textureImage();
-}
-
-const QGradient*  PythonQtWrapper_QBrush::gradient(QBrush* theWrappedObject) const
-{
-return  (*theWrappedObject).gradient();
-}
-
-void PythonQtWrapper_QBrush::setTextureImage(QBrush* theWrappedObject, const QImage&  image)
-{
- (*theWrappedObject).setTextureImage(image);
-}
-
-void PythonQtWrapper_QBrush::setTransform(QBrush* theWrappedObject, const QTransform&  arg__1)
-{
- (*theWrappedObject).setTransform(arg__1);
-}
-
-const QMatrix&  PythonQtWrapper_QBrush::matrix(QBrush* theWrappedObject) const
-{
-return  (*theWrappedObject).matrix();
-}
-
-void PythonQtWrapper_QBrush::setMatrix(QBrush* theWrappedObject, const QMatrix&  mat)
-{
- (*theWrappedObject).setMatrix(mat);
-}
-
-QTransform  PythonQtWrapper_QBrush::transform(QBrush* theWrappedObject) const
-{
-return  (*theWrappedObject).transform();
-}
-
-void PythonQtWrapper_QBrush::setStyle(QBrush* theWrappedObject, Qt::BrushStyle  arg__1)
-{
- (*theWrappedObject).setStyle(arg__1);
-}
-
 void PythonQtWrapper_QBrush::setColor(QBrush* theWrappedObject, const QColor&  color)
 {
- (*theWrappedObject).setColor(color);
-}
-
-bool  PythonQtWrapper_QBrush::isOpaque(QBrush* theWrappedObject) const
-{
-return  (*theWrappedObject).isOpaque();
+ theWrappedObject->setColor(color);
 }
 
 void PythonQtWrapper_QBrush::readFrom(QBrush* theWrappedObject, QDataStream&  arg__1)
 {
 arg__1 >>  (*theWrappedObject);
+}
+
+void PythonQtWrapper_QBrush::setMatrix(QBrush* theWrappedObject, const QMatrix&  mat)
+{
+ theWrappedObject->setMatrix(mat);
+}
+
+QImage  PythonQtWrapper_QBrush::textureImage(QBrush* theWrappedObject) const
+{
+return  theWrappedObject->textureImage();
+}
+
+QTransform  PythonQtWrapper_QBrush::transform(QBrush* theWrappedObject) const
+{
+return  theWrappedObject->transform();
+}
+
+const QColor&  PythonQtWrapper_QBrush::color(QBrush* theWrappedObject) const
+{
+return  theWrappedObject->color();
+}
+
+void PythonQtWrapper_QBrush::setStyle(QBrush* theWrappedObject, Qt::BrushStyle  arg__1)
+{
+ theWrappedObject->setStyle(arg__1);
+}
+
+bool  PythonQtWrapper_QBrush::isOpaque(QBrush* theWrappedObject) const
+{
+return  theWrappedObject->isOpaque();
+}
+
+bool  PythonQtWrapper_QBrush::operator_equal(QBrush* theWrappedObject, const QBrush&  b) const
+{
+return  (*theWrappedObject)== b;
+}
+
+void PythonQtWrapper_QBrush::setTexture(QBrush* theWrappedObject, const QPixmap&  pixmap)
+{
+ theWrappedObject->setTexture(pixmap);
+}
+
+QPixmap  PythonQtWrapper_QBrush::texture(QBrush* theWrappedObject) const
+{
+return  theWrappedObject->texture();
+}
+
+void PythonQtWrapper_QBrush::setColor(QBrush* theWrappedObject, Qt::GlobalColor  color)
+{
+ theWrappedObject->setColor(color);
+}
+
+Qt::BrushStyle  PythonQtWrapper_QBrush::style(QBrush* theWrappedObject) const
+{
+return  theWrappedObject->style();
 }
 

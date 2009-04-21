@@ -58,6 +58,18 @@ virtual void timerEvent(QTimerEvent*  arg__1);
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QStringListModel : public QStringListModel
+{ public:
+inline QVariant  promoted_data(const QModelIndex&  index, int  role) const { return QStringListModel::data(index, role); }
+inline Qt::DropActions  promoted_supportedDropActions() const { return QStringListModel::supportedDropActions(); }
+inline void promoted_sort(int  column, Qt::SortOrder  order = Qt::AscendingOrder) { QStringListModel::sort(column, order); }
+inline Qt::ItemFlags  promoted_flags(const QModelIndex&  index) const { return QStringListModel::flags(index); }
+inline bool  promoted_setData(const QModelIndex&  index, const QVariant&  value, int  role = Qt::EditRole) { return QStringListModel::setData(index, value, role); }
+inline bool  promoted_removeRows(int  row, int  count, const QModelIndex&  parent = QModelIndex()) { return QStringListModel::removeRows(row, count, parent); }
+inline int  promoted_rowCount(const QModelIndex&  parent = QModelIndex()) const { return QStringListModel::rowCount(parent); }
+inline bool  promoted_insertRows(int  row, int  count, const QModelIndex&  parent = QModelIndex()) { return QStringListModel::insertRows(row, count, parent); }
+};
+
 class PythonQtWrapper_QStringListModel : public QObject
 { Q_OBJECT
 public:
@@ -65,6 +77,9 @@ public slots:
 QStringListModel* new_QStringListModel(QObject*  parent = 0);
 QStringListModel* new_QStringListModel(const QStringList&  strings, QObject*  parent = 0);
 void delete_QStringListModel(QStringListModel* obj) { delete obj; } 
+   QStringList  stringList(QStringListModel* theWrappedObject) const;
+   QVariant  data(QStringListModel* theWrappedObject, const QModelIndex&  index, int  role) const;
+   Qt::DropActions  supportedDropActions(QStringListModel* theWrappedObject) const;
    void sort(QStringListModel* theWrappedObject, int  column, Qt::SortOrder  order = Qt::AscendingOrder);
    Qt::ItemFlags  flags(QStringListModel* theWrappedObject, const QModelIndex&  index) const;
    bool  setData(QStringListModel* theWrappedObject, const QModelIndex&  index, const QVariant&  value, int  role = Qt::EditRole);
@@ -72,9 +87,6 @@ void delete_QStringListModel(QStringListModel* obj) { delete obj; }
    int  rowCount(QStringListModel* theWrappedObject, const QModelIndex&  parent = QModelIndex()) const;
    bool  insertRows(QStringListModel* theWrappedObject, int  row, int  count, const QModelIndex&  parent = QModelIndex());
    void setStringList(QStringListModel* theWrappedObject, const QStringList&  strings);
-   QStringList  stringList(QStringListModel* theWrappedObject) const;
-   QVariant  data(QStringListModel* theWrappedObject, const QModelIndex&  index, int  role) const;
-   Qt::DropActions  supportedDropActions(QStringListModel* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QSTRINGLISTMODEL_H

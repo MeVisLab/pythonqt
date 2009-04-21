@@ -24,69 +24,9 @@ QItemSelectionRange* PythonQtWrapper_QItemSelectionRange::new_QItemSelectionRang
 { 
 return new QItemSelectionRange(topLeft, bottomRight); }
 
-int  PythonQtWrapper_QItemSelectionRange::width(QItemSelectionRange* theWrappedObject) const
-{
-return  (*theWrappedObject).width();
-}
-
-QItemSelectionRange  PythonQtWrapper_QItemSelectionRange::intersected(QItemSelectionRange* theWrappedObject, const QItemSelectionRange&  other) const
-{
-return  (*theWrappedObject).intersected(other);
-}
-
-const QAbstractItemModel*  PythonQtWrapper_QItemSelectionRange::model(QItemSelectionRange* theWrappedObject) const
-{
-return  (*theWrappedObject).model();
-}
-
-int  PythonQtWrapper_QItemSelectionRange::right(QItemSelectionRange* theWrappedObject) const
-{
-return  (*theWrappedObject).right();
-}
-
-int  PythonQtWrapper_QItemSelectionRange::top(QItemSelectionRange* theWrappedObject) const
-{
-return  (*theWrappedObject).top();
-}
-
-bool  PythonQtWrapper_QItemSelectionRange::contains(QItemSelectionRange* theWrappedObject, int  row, int  column, const QModelIndex&  parentIndex) const
-{
-return  (*theWrappedObject).contains(row, column, parentIndex);
-}
-
-QList<QModelIndex >  PythonQtWrapper_QItemSelectionRange::indexes(QItemSelectionRange* theWrappedObject) const
-{
-return  (*theWrappedObject).indexes();
-}
-
-QModelIndex  PythonQtWrapper_QItemSelectionRange::bottomRight(QItemSelectionRange* theWrappedObject) const
-{
-return  (*theWrappedObject).bottomRight();
-}
-
-int  PythonQtWrapper_QItemSelectionRange::left(QItemSelectionRange* theWrappedObject) const
-{
-return  (*theWrappedObject).left();
-}
-
-QModelIndex  PythonQtWrapper_QItemSelectionRange::topLeft(QItemSelectionRange* theWrappedObject) const
-{
-return  (*theWrappedObject).topLeft();
-}
-
 int  PythonQtWrapper_QItemSelectionRange::bottom(QItemSelectionRange* theWrappedObject) const
 {
-return  (*theWrappedObject).bottom();
-}
-
-bool  PythonQtWrapper_QItemSelectionRange::contains(QItemSelectionRange* theWrappedObject, const QModelIndex&  index) const
-{
-return  (*theWrappedObject).contains(index);
-}
-
-int  PythonQtWrapper_QItemSelectionRange::height(QItemSelectionRange* theWrappedObject) const
-{
-return  (*theWrappedObject).height();
+return  theWrappedObject->bottom();
 }
 
 bool  PythonQtWrapper_QItemSelectionRange::operator_equal(QItemSelectionRange* theWrappedObject, const QItemSelectionRange&  other) const
@@ -94,18 +34,78 @@ bool  PythonQtWrapper_QItemSelectionRange::operator_equal(QItemSelectionRange* t
 return  (*theWrappedObject)== other;
 }
 
-bool  PythonQtWrapper_QItemSelectionRange::intersects(QItemSelectionRange* theWrappedObject, const QItemSelectionRange&  other) const
+int  PythonQtWrapper_QItemSelectionRange::left(QItemSelectionRange* theWrappedObject) const
 {
-return  (*theWrappedObject).intersects(other);
+return  theWrappedObject->left();
 }
 
 bool  PythonQtWrapper_QItemSelectionRange::isValid(QItemSelectionRange* theWrappedObject) const
 {
-return  (*theWrappedObject).isValid();
+return  theWrappedObject->isValid();
 }
 
 QModelIndex  PythonQtWrapper_QItemSelectionRange::parent(QItemSelectionRange* theWrappedObject) const
 {
-return  (*theWrappedObject).parent();
+return  theWrappedObject->parent();
+}
+
+bool  PythonQtWrapper_QItemSelectionRange::contains(QItemSelectionRange* theWrappedObject, const QModelIndex&  index) const
+{
+return  theWrappedObject->contains(index);
+}
+
+int  PythonQtWrapper_QItemSelectionRange::height(QItemSelectionRange* theWrappedObject) const
+{
+return  theWrappedObject->height();
+}
+
+QItemSelectionRange  PythonQtWrapper_QItemSelectionRange::intersected(QItemSelectionRange* theWrappedObject, const QItemSelectionRange&  other) const
+{
+return  theWrappedObject->intersected(other);
+}
+
+bool  PythonQtWrapper_QItemSelectionRange::contains(QItemSelectionRange* theWrappedObject, int  row, int  column, const QModelIndex&  parentIndex) const
+{
+return  theWrappedObject->contains(row, column, parentIndex);
+}
+
+const QAbstractItemModel*  PythonQtWrapper_QItemSelectionRange::model(QItemSelectionRange* theWrappedObject) const
+{
+return  theWrappedObject->model();
+}
+
+int  PythonQtWrapper_QItemSelectionRange::right(QItemSelectionRange* theWrappedObject) const
+{
+return  theWrappedObject->right();
+}
+
+bool  PythonQtWrapper_QItemSelectionRange::intersects(QItemSelectionRange* theWrappedObject, const QItemSelectionRange&  other) const
+{
+return  theWrappedObject->intersects(other);
+}
+
+int  PythonQtWrapper_QItemSelectionRange::width(QItemSelectionRange* theWrappedObject) const
+{
+return  theWrappedObject->width();
+}
+
+QList<QModelIndex >  PythonQtWrapper_QItemSelectionRange::indexes(QItemSelectionRange* theWrappedObject) const
+{
+return  theWrappedObject->indexes();
+}
+
+int  PythonQtWrapper_QItemSelectionRange::top(QItemSelectionRange* theWrappedObject) const
+{
+return  theWrappedObject->top();
+}
+
+QModelIndex  PythonQtWrapper_QItemSelectionRange::bottomRight(QItemSelectionRange* theWrappedObject) const
+{
+return  theWrappedObject->bottomRight();
+}
+
+QModelIndex  PythonQtWrapper_QItemSelectionRange::topLeft(QItemSelectionRange* theWrappedObject) const
+{
+return  theWrappedObject->topLeft();
 }
 

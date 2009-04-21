@@ -886,508 +886,508 @@ QGraphicsView* PythonQtWrapper_QGraphicsView::new_QGraphicsView(QWidget*  parent
 { 
 return new PythonQtShell_QGraphicsView(parent); }
 
-bool  PythonQtWrapper_QGraphicsView::viewportEvent(QGraphicsView* theWrappedObject, QEvent*  event)
+void PythonQtWrapper_QGraphicsView::centerOn(QGraphicsView* theWrappedObject, const QGraphicsItem*  item)
 {
-return  (*((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)).viewportEvent(event);
-}
-
-void PythonQtWrapper_QGraphicsView::wheelEvent(QGraphicsView* theWrappedObject, QWheelEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)).wheelEvent(event);
-}
-
-void PythonQtWrapper_QGraphicsView::fitInView(QGraphicsView* theWrappedObject, const QGraphicsItem*  item, Qt::AspectRatioMode  aspectRadioMode)
-{
- (*theWrappedObject).fitInView(item, aspectRadioMode);
-}
-
-QList<QGraphicsItem* >  PythonQtWrapper_QGraphicsView::items(QGraphicsView* theWrappedObject) const
-{
-return  (*theWrappedObject).items();
-}
-
-void PythonQtWrapper_QGraphicsView::setBackgroundBrush(QGraphicsView* theWrappedObject, const QBrush&  brush)
-{
- (*theWrappedObject).setBackgroundBrush(brush);
-}
-
-void PythonQtWrapper_QGraphicsView::resetMatrix(QGraphicsView* theWrappedObject)
-{
- (*theWrappedObject).resetMatrix();
-}
-
-void PythonQtWrapper_QGraphicsView::setTransformationAnchor(QGraphicsView* theWrappedObject, QGraphicsView::ViewportAnchor  anchor)
-{
- (*theWrappedObject).setTransformationAnchor(anchor);
-}
-
-QTransform  PythonQtWrapper_QGraphicsView::transform(QGraphicsView* theWrappedObject) const
-{
-return  (*theWrappedObject).transform();
-}
-
-void PythonQtWrapper_QGraphicsView::drawItems(QGraphicsView* theWrappedObject, QPainter*  painter, int  numItems, QGraphicsItem**  items, const QStyleOptionGraphicsItem*  options)
-{
- (*((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)).drawItems(painter, numItems, items, options);
-}
-
-void PythonQtWrapper_QGraphicsView::keyReleaseEvent(QGraphicsView* theWrappedObject, QKeyEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)).keyReleaseEvent(event);
-}
-
-void PythonQtWrapper_QGraphicsView::setRenderHints(QGraphicsView* theWrappedObject, QPainter::RenderHints  hints)
-{
- (*theWrappedObject).setRenderHints(hints);
-}
-
-void PythonQtWrapper_QGraphicsView::shear(QGraphicsView* theWrappedObject, qreal  sh, qreal  sv)
-{
- (*theWrappedObject).shear(sh, sv);
-}
-
-QVariant  PythonQtWrapper_QGraphicsView::inputMethodQuery(QGraphicsView* theWrappedObject, Qt::InputMethodQuery  query) const
-{
-return  (*theWrappedObject).inputMethodQuery(query);
-}
-
-void PythonQtWrapper_QGraphicsView::dragLeaveEvent(QGraphicsView* theWrappedObject, QDragLeaveEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)).dragLeaveEvent(event);
-}
-
-QGraphicsView::ViewportUpdateMode  PythonQtWrapper_QGraphicsView::viewportUpdateMode(QGraphicsView* theWrappedObject) const
-{
-return  (*theWrappedObject).viewportUpdateMode();
-}
-
-QList<QGraphicsItem* >  PythonQtWrapper_QGraphicsView::items(QGraphicsView* theWrappedObject, int  x, int  y) const
-{
-return  (*theWrappedObject).items(x, y);
-}
-
-void PythonQtWrapper_QGraphicsView::render(QGraphicsView* theWrappedObject, QPainter*  painter, const QRectF&  target, const QRect&  source, Qt::AspectRatioMode  aspectRatioMode)
-{
- (*theWrappedObject).render(painter, target, source, aspectRatioMode);
-}
-
-void PythonQtWrapper_QGraphicsView::ensureVisible(QGraphicsView* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h, int  xmargin, int  ymargin)
-{
- (*theWrappedObject).ensureVisible(x, y, w, h, xmargin, ymargin);
-}
-
-void PythonQtWrapper_QGraphicsView::setOptimizationFlag(QGraphicsView* theWrappedObject, QGraphicsView::OptimizationFlag  flag, bool  enabled)
-{
- (*theWrappedObject).setOptimizationFlag(flag, enabled);
-}
-
-QGraphicsItem*  PythonQtWrapper_QGraphicsView::itemAt(QGraphicsView* theWrappedObject, const QPoint&  pos) const
-{
-return  (*theWrappedObject).itemAt(pos);
-}
-
-QList<QGraphicsItem* >  PythonQtWrapper_QGraphicsView::items(QGraphicsView* theWrappedObject, const QRect&  rect, Qt::ItemSelectionMode  mode) const
-{
-return  (*theWrappedObject).items(rect, mode);
-}
-
-void PythonQtWrapper_QGraphicsView::setCacheMode(QGraphicsView* theWrappedObject, QGraphicsView::CacheMode  mode)
-{
- (*theWrappedObject).setCacheMode(mode);
-}
-
-void PythonQtWrapper_QGraphicsView::translate(QGraphicsView* theWrappedObject, qreal  dx, qreal  dy)
-{
- (*theWrappedObject).translate(dx, dy);
-}
-
-bool  PythonQtWrapper_QGraphicsView::event(QGraphicsView* theWrappedObject, QEvent*  event)
-{
-return  (*((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)).event(event);
-}
-
-void PythonQtWrapper_QGraphicsView::focusInEvent(QGraphicsView* theWrappedObject, QFocusEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)).focusInEvent(event);
-}
-
-void PythonQtWrapper_QGraphicsView::setTransform(QGraphicsView* theWrappedObject, const QTransform&  matrix, bool  combine)
-{
- (*theWrappedObject).setTransform(matrix, combine);
-}
-
-void PythonQtWrapper_QGraphicsView::focusOutEvent(QGraphicsView* theWrappedObject, QFocusEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)).focusOutEvent(event);
-}
-
-QList<QGraphicsItem* >  PythonQtWrapper_QGraphicsView::items(QGraphicsView* theWrappedObject, int  x, int  y, int  w, int  h, Qt::ItemSelectionMode  mode) const
-{
-return  (*theWrappedObject).items(x, y, w, h, mode);
-}
-
-void PythonQtWrapper_QGraphicsView::setInteractive(QGraphicsView* theWrappedObject, bool  allowed)
-{
- (*theWrappedObject).setInteractive(allowed);
-}
-
-void PythonQtWrapper_QGraphicsView::setViewportUpdateMode(QGraphicsView* theWrappedObject, QGraphicsView::ViewportUpdateMode  mode)
-{
- (*theWrappedObject).setViewportUpdateMode(mode);
-}
-
-QTransform  PythonQtWrapper_QGraphicsView::viewportTransform(QGraphicsView* theWrappedObject) const
-{
-return  (*theWrappedObject).viewportTransform();
-}
-
-void PythonQtWrapper_QGraphicsView::mouseDoubleClickEvent(QGraphicsView* theWrappedObject, QMouseEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)).mouseDoubleClickEvent(event);
-}
-
-void PythonQtWrapper_QGraphicsView::fitInView(QGraphicsView* theWrappedObject, const QRectF&  rect, Qt::AspectRatioMode  aspectRadioMode)
-{
- (*theWrappedObject).fitInView(rect, aspectRadioMode);
-}
-
-Qt::ItemSelectionMode  PythonQtWrapper_QGraphicsView::rubberBandSelectionMode(QGraphicsView* theWrappedObject) const
-{
-return  (*theWrappedObject).rubberBandSelectionMode();
-}
-
-void PythonQtWrapper_QGraphicsView::drawForeground(QGraphicsView* theWrappedObject, QPainter*  painter, const QRectF&  rect)
-{
- (*((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)).drawForeground(painter, rect);
-}
-
-void PythonQtWrapper_QGraphicsView::mouseMoveEvent(QGraphicsView* theWrappedObject, QMouseEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)).mouseMoveEvent(event);
-}
-
-QBrush  PythonQtWrapper_QGraphicsView::foregroundBrush(QGraphicsView* theWrappedObject) const
-{
-return  (*theWrappedObject).foregroundBrush();
-}
-
-QSize  PythonQtWrapper_QGraphicsView::sizeHint(QGraphicsView* theWrappedObject) const
-{
-return  (*theWrappedObject).sizeHint();
-}
-
-QList<QGraphicsItem* >  PythonQtWrapper_QGraphicsView::items(QGraphicsView* theWrappedObject, const QPainterPath&  path, Qt::ItemSelectionMode  mode) const
-{
-return  (*theWrappedObject).items(path, mode);
-}
-
-bool  PythonQtWrapper_QGraphicsView::focusNextPrevChild(QGraphicsView* theWrappedObject, bool  next)
-{
-return  (*((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)).focusNextPrevChild(next);
-}
-
-void PythonQtWrapper_QGraphicsView::dragMoveEvent(QGraphicsView* theWrappedObject, QDragMoveEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)).dragMoveEvent(event);
-}
-
-void PythonQtWrapper_QGraphicsView::centerOn(QGraphicsView* theWrappedObject, qreal  x, qreal  y)
-{
- (*theWrappedObject).centerOn(x, y);
-}
-
-void PythonQtWrapper_QGraphicsView::setRenderHint(QGraphicsView* theWrappedObject, QPainter::RenderHint  hint, bool  enabled)
-{
- (*theWrappedObject).setRenderHint(hint, enabled);
-}
-
-void PythonQtWrapper_QGraphicsView::setRubberBandSelectionMode(QGraphicsView* theWrappedObject, Qt::ItemSelectionMode  mode)
-{
- (*theWrappedObject).setRubberBandSelectionMode(mode);
-}
-
-void PythonQtWrapper_QGraphicsView::ensureVisible(QGraphicsView* theWrappedObject, const QRectF&  rect, int  xmargin, int  ymargin)
-{
- (*theWrappedObject).ensureVisible(rect, xmargin, ymargin);
-}
-
-QGraphicsView::ViewportAnchor  PythonQtWrapper_QGraphicsView::transformationAnchor(QGraphicsView* theWrappedObject) const
-{
-return  (*theWrappedObject).transformationAnchor();
-}
-
-void PythonQtWrapper_QGraphicsView::ensureVisible(QGraphicsView* theWrappedObject, const QGraphicsItem*  item, int  xmargin, int  ymargin)
-{
- (*theWrappedObject).ensureVisible(item, xmargin, ymargin);
-}
-
-QMatrix  PythonQtWrapper_QGraphicsView::matrix(QGraphicsView* theWrappedObject) const
-{
-return  (*theWrappedObject).matrix();
-}
-
-void PythonQtWrapper_QGraphicsView::setOptimizationFlags(QGraphicsView* theWrappedObject, QGraphicsView::OptimizationFlags  flags)
-{
- (*theWrappedObject).setOptimizationFlags(flags);
-}
-
-void PythonQtWrapper_QGraphicsView::showEvent(QGraphicsView* theWrappedObject, QShowEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)).showEvent(event);
-}
-
-Qt::Alignment  PythonQtWrapper_QGraphicsView::alignment(QGraphicsView* theWrappedObject) const
-{
-return  (*theWrappedObject).alignment();
-}
-
-QGraphicsScene*  PythonQtWrapper_QGraphicsView::scene(QGraphicsView* theWrappedObject) const
-{
-return  (*theWrappedObject).scene();
-}
-
-void PythonQtWrapper_QGraphicsView::setSceneRect(QGraphicsView* theWrappedObject, const QRectF&  rect)
-{
- (*theWrappedObject).setSceneRect(rect);
-}
-
-void PythonQtWrapper_QGraphicsView::contextMenuEvent(QGraphicsView* theWrappedObject, QContextMenuEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)).contextMenuEvent(event);
-}
-
-void PythonQtWrapper_QGraphicsView::resizeEvent(QGraphicsView* theWrappedObject, QResizeEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)).resizeEvent(event);
-}
-
-QPoint  PythonQtWrapper_QGraphicsView::mapFromScene(QGraphicsView* theWrappedObject, qreal  x, qreal  y) const
-{
-return  (*theWrappedObject).mapFromScene(x, y);
-}
-
-void PythonQtWrapper_QGraphicsView::dropEvent(QGraphicsView* theWrappedObject, QDropEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)).dropEvent(event);
-}
-
-QPolygon  PythonQtWrapper_QGraphicsView::mapFromScene(QGraphicsView* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h) const
-{
-return  (*theWrappedObject).mapFromScene(x, y, w, h);
-}
-
-QPolygonF  PythonQtWrapper_QGraphicsView::mapToScene(QGraphicsView* theWrappedObject, int  x, int  y, int  w, int  h) const
-{
-return  (*theWrappedObject).mapToScene(x, y, w, h);
-}
-
-QGraphicsView::ViewportAnchor  PythonQtWrapper_QGraphicsView::resizeAnchor(QGraphicsView* theWrappedObject) const
-{
-return  (*theWrappedObject).resizeAnchor();
-}
-
-QGraphicsView::DragMode  PythonQtWrapper_QGraphicsView::dragMode(QGraphicsView* theWrappedObject) const
-{
-return  (*theWrappedObject).dragMode();
-}
-
-void PythonQtWrapper_QGraphicsView::scrollContentsBy(QGraphicsView* theWrappedObject, int  dx, int  dy)
-{
- (*((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)).scrollContentsBy(dx, dy);
-}
-
-QList<QGraphicsItem* >  PythonQtWrapper_QGraphicsView::items(QGraphicsView* theWrappedObject, const QPolygon&  polygon, Qt::ItemSelectionMode  mode) const
-{
-return  (*theWrappedObject).items(polygon, mode);
-}
-
-void PythonQtWrapper_QGraphicsView::rotate(QGraphicsView* theWrappedObject, qreal  angle)
-{
- (*theWrappedObject).rotate(angle);
-}
-
-QPainterPath  PythonQtWrapper_QGraphicsView::mapFromScene(QGraphicsView* theWrappedObject, const QPainterPath&  path) const
-{
-return  (*theWrappedObject).mapFromScene(path);
+ theWrappedObject->centerOn(item);
 }
 
 void PythonQtWrapper_QGraphicsView::setAlignment(QGraphicsView* theWrappedObject, Qt::Alignment  alignment)
 {
- (*theWrappedObject).setAlignment(alignment);
-}
-
-void PythonQtWrapper_QGraphicsView::drawBackground(QGraphicsView* theWrappedObject, QPainter*  painter, const QRectF&  rect)
-{
- (*((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)).drawBackground(painter, rect);
-}
-
-void PythonQtWrapper_QGraphicsView::mousePressEvent(QGraphicsView* theWrappedObject, QMouseEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)).mousePressEvent(event);
-}
-
-void PythonQtWrapper_QGraphicsView::mouseReleaseEvent(QGraphicsView* theWrappedObject, QMouseEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)).mouseReleaseEvent(event);
-}
-
-QGraphicsView::CacheMode  PythonQtWrapper_QGraphicsView::cacheMode(QGraphicsView* theWrappedObject) const
-{
-return  (*theWrappedObject).cacheMode();
-}
-
-QGraphicsItem*  PythonQtWrapper_QGraphicsView::itemAt(QGraphicsView* theWrappedObject, int  x, int  y) const
-{
-return  (*theWrappedObject).itemAt(x, y);
-}
-
-void PythonQtWrapper_QGraphicsView::setMatrix(QGraphicsView* theWrappedObject, const QMatrix&  matrix, bool  combine)
-{
- (*theWrappedObject).setMatrix(matrix, combine);
-}
-
-QBrush  PythonQtWrapper_QGraphicsView::backgroundBrush(QGraphicsView* theWrappedObject) const
-{
-return  (*theWrappedObject).backgroundBrush();
-}
-
-QGraphicsView::OptimizationFlags  PythonQtWrapper_QGraphicsView::optimizationFlags(QGraphicsView* theWrappedObject) const
-{
-return  (*theWrappedObject).optimizationFlags();
-}
-
-void PythonQtWrapper_QGraphicsView::setScene(QGraphicsView* theWrappedObject, QGraphicsScene*  scene)
-{
- (*theWrappedObject).setScene(scene);
-}
-
-QList<QGraphicsItem* >  PythonQtWrapper_QGraphicsView::items(QGraphicsView* theWrappedObject, const QPoint&  pos) const
-{
-return  (*theWrappedObject).items(pos);
-}
-
-void PythonQtWrapper_QGraphicsView::setDragMode(QGraphicsView* theWrappedObject, QGraphicsView::DragMode  mode)
-{
- (*theWrappedObject).setDragMode(mode);
-}
-
-QPointF  PythonQtWrapper_QGraphicsView::mapToScene(QGraphicsView* theWrappedObject, const QPoint&  point) const
-{
-return  (*theWrappedObject).mapToScene(point);
-}
-
-void PythonQtWrapper_QGraphicsView::setResizeAnchor(QGraphicsView* theWrappedObject, QGraphicsView::ViewportAnchor  anchor)
-{
- (*theWrappedObject).setResizeAnchor(anchor);
-}
-
-void PythonQtWrapper_QGraphicsView::resetCachedContent(QGraphicsView* theWrappedObject)
-{
- (*theWrappedObject).resetCachedContent();
-}
-
-void PythonQtWrapper_QGraphicsView::resetTransform(QGraphicsView* theWrappedObject)
-{
- (*theWrappedObject).resetTransform();
+ theWrappedObject->setAlignment(alignment);
 }
 
 void PythonQtWrapper_QGraphicsView::centerOn(QGraphicsView* theWrappedObject, const QPointF&  pos)
 {
- (*theWrappedObject).centerOn(pos);
+ theWrappedObject->centerOn(pos);
 }
 
-QPolygonF  PythonQtWrapper_QGraphicsView::mapToScene(QGraphicsView* theWrappedObject, const QPolygon&  polygon) const
+QMatrix  PythonQtWrapper_QGraphicsView::matrix(QGraphicsView* theWrappedObject) const
 {
-return  (*theWrappedObject).mapToScene(polygon);
+return  theWrappedObject->matrix();
 }
 
-void PythonQtWrapper_QGraphicsView::scale(QGraphicsView* theWrappedObject, qreal  sx, qreal  sy)
+QBrush  PythonQtWrapper_QGraphicsView::foregroundBrush(QGraphicsView* theWrappedObject) const
 {
- (*theWrappedObject).scale(sx, sy);
+return  theWrappedObject->foregroundBrush();
 }
 
-void PythonQtWrapper_QGraphicsView::setForegroundBrush(QGraphicsView* theWrappedObject, const QBrush&  brush)
+void PythonQtWrapper_QGraphicsView::rotate(QGraphicsView* theWrappedObject, qreal  angle)
 {
- (*theWrappedObject).setForegroundBrush(brush);
+ theWrappedObject->rotate(angle);
 }
 
-bool  PythonQtWrapper_QGraphicsView::isInteractive(QGraphicsView* theWrappedObject) const
+void PythonQtWrapper_QGraphicsView::setRubberBandSelectionMode(QGraphicsView* theWrappedObject, Qt::ItemSelectionMode  mode)
 {
-return  (*theWrappedObject).isInteractive();
+ theWrappedObject->setRubberBandSelectionMode(mode);
 }
 
-QPolygonF  PythonQtWrapper_QGraphicsView::mapToScene(QGraphicsView* theWrappedObject, const QRect&  rect) const
+void PythonQtWrapper_QGraphicsView::scrollContentsBy(QGraphicsView* theWrappedObject, int  dx, int  dy)
 {
-return  (*theWrappedObject).mapToScene(rect);
+ ((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)->promoted_scrollContentsBy(dx, dy);
 }
 
-void PythonQtWrapper_QGraphicsView::paintEvent(QGraphicsView* theWrappedObject, QPaintEvent*  event)
+void PythonQtWrapper_QGraphicsView::setTransformationAnchor(QGraphicsView* theWrappedObject, QGraphicsView::ViewportAnchor  anchor)
 {
- (*((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)).paintEvent(event);
+ theWrappedObject->setTransformationAnchor(anchor);
 }
 
-QRectF  PythonQtWrapper_QGraphicsView::sceneRect(QGraphicsView* theWrappedObject) const
+QGraphicsView::OptimizationFlags  PythonQtWrapper_QGraphicsView::optimizationFlags(QGraphicsView* theWrappedObject) const
 {
-return  (*theWrappedObject).sceneRect();
+return  theWrappedObject->optimizationFlags();
 }
 
-void PythonQtWrapper_QGraphicsView::inputMethodEvent(QGraphicsView* theWrappedObject, QInputMethodEvent*  event)
+bool  PythonQtWrapper_QGraphicsView::focusNextPrevChild(QGraphicsView* theWrappedObject, bool  next)
 {
- (*((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)).inputMethodEvent(event);
+return  ((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)->promoted_focusNextPrevChild(next);
 }
 
-QPointF  PythonQtWrapper_QGraphicsView::mapToScene(QGraphicsView* theWrappedObject, int  x, int  y) const
+QList<QGraphicsItem* >  PythonQtWrapper_QGraphicsView::items(QGraphicsView* theWrappedObject, const QPoint&  pos) const
 {
-return  (*theWrappedObject).mapToScene(x, y);
+return  theWrappedObject->items(pos);
 }
 
-QPoint  PythonQtWrapper_QGraphicsView::mapFromScene(QGraphicsView* theWrappedObject, const QPointF&  point) const
+QList<QGraphicsItem* >  PythonQtWrapper_QGraphicsView::items(QGraphicsView* theWrappedObject, int  x, int  y, int  w, int  h, Qt::ItemSelectionMode  mode) const
 {
-return  (*theWrappedObject).mapFromScene(point);
+return  theWrappedObject->items(x, y, w, h, mode);
 }
 
-void PythonQtWrapper_QGraphicsView::dragEnterEvent(QGraphicsView* theWrappedObject, QDragEnterEvent*  event)
+void PythonQtWrapper_QGraphicsView::dropEvent(QGraphicsView* theWrappedObject, QDropEvent*  event)
 {
- (*((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)).dragEnterEvent(event);
+ ((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)->promoted_dropEvent(event);
 }
 
-void PythonQtWrapper_QGraphicsView::keyPressEvent(QGraphicsView* theWrappedObject, QKeyEvent*  event)
+void PythonQtWrapper_QGraphicsView::contextMenuEvent(QGraphicsView* theWrappedObject, QContextMenuEvent*  event)
 {
- (*((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)).keyPressEvent(event);
+ ((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)->promoted_contextMenuEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsView::setOptimizationFlags(QGraphicsView* theWrappedObject, QGraphicsView::OptimizationFlags  flags)
+{
+ theWrappedObject->setOptimizationFlags(flags);
+}
+
+QGraphicsView::ViewportUpdateMode  PythonQtWrapper_QGraphicsView::viewportUpdateMode(QGraphicsView* theWrappedObject) const
+{
+return  theWrappedObject->viewportUpdateMode();
 }
 
 void PythonQtWrapper_QGraphicsView::setSceneRect(QGraphicsView* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h)
 {
- (*theWrappedObject).setSceneRect(x, y, w, h);
+ theWrappedObject->setSceneRect(x, y, w, h);
+}
+
+void PythonQtWrapper_QGraphicsView::render(QGraphicsView* theWrappedObject, QPainter*  painter, const QRectF&  target, const QRect&  source, Qt::AspectRatioMode  aspectRatioMode)
+{
+ theWrappedObject->render(painter, target, source, aspectRatioMode);
+}
+
+QVariant  PythonQtWrapper_QGraphicsView::inputMethodQuery(QGraphicsView* theWrappedObject, Qt::InputMethodQuery  query) const
+{
+return  ((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)->promoted_inputMethodQuery(query);
+}
+
+void PythonQtWrapper_QGraphicsView::ensureVisible(QGraphicsView* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h, int  xmargin, int  ymargin)
+{
+ theWrappedObject->ensureVisible(x, y, w, h, xmargin, ymargin);
 }
 
 void PythonQtWrapper_QGraphicsView::fitInView(QGraphicsView* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h, Qt::AspectRatioMode  aspectRadioMode)
 {
- (*theWrappedObject).fitInView(x, y, w, h, aspectRadioMode);
+ theWrappedObject->fitInView(x, y, w, h, aspectRadioMode);
 }
 
-QPainter::RenderHints  PythonQtWrapper_QGraphicsView::renderHints(QGraphicsView* theWrappedObject) const
+QTransform  PythonQtWrapper_QGraphicsView::transform(QGraphicsView* theWrappedObject) const
 {
-return  (*theWrappedObject).renderHints();
+return  theWrappedObject->transform();
+}
+
+void PythonQtWrapper_QGraphicsView::setOptimizationFlag(QGraphicsView* theWrappedObject, QGraphicsView::OptimizationFlag  flag, bool  enabled)
+{
+ theWrappedObject->setOptimizationFlag(flag, enabled);
+}
+
+QPointF  PythonQtWrapper_QGraphicsView::mapToScene(QGraphicsView* theWrappedObject, int  x, int  y) const
+{
+return  theWrappedObject->mapToScene(x, y);
+}
+
+void PythonQtWrapper_QGraphicsView::dragMoveEvent(QGraphicsView* theWrappedObject, QDragMoveEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)->promoted_dragMoveEvent(event);
+}
+
+QPainterPath  PythonQtWrapper_QGraphicsView::mapFromScene(QGraphicsView* theWrappedObject, const QPainterPath&  path) const
+{
+return  theWrappedObject->mapFromScene(path);
+}
+
+void PythonQtWrapper_QGraphicsView::setForegroundBrush(QGraphicsView* theWrappedObject, const QBrush&  brush)
+{
+ theWrappedObject->setForegroundBrush(brush);
+}
+
+void PythonQtWrapper_QGraphicsView::inputMethodEvent(QGraphicsView* theWrappedObject, QInputMethodEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)->promoted_inputMethodEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsView::resetCachedContent(QGraphicsView* theWrappedObject)
+{
+ theWrappedObject->resetCachedContent();
+}
+
+void PythonQtWrapper_QGraphicsView::mouseDoubleClickEvent(QGraphicsView* theWrappedObject, QMouseEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)->promoted_mouseDoubleClickEvent(event);
+}
+
+bool  PythonQtWrapper_QGraphicsView::viewportEvent(QGraphicsView* theWrappedObject, QEvent*  event)
+{
+return  ((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)->promoted_viewportEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsView::setTransform(QGraphicsView* theWrappedObject, const QTransform&  matrix, bool  combine)
+{
+ theWrappedObject->setTransform(matrix, combine);
+}
+
+void PythonQtWrapper_QGraphicsView::setRenderHint(QGraphicsView* theWrappedObject, QPainter::RenderHint  hint, bool  enabled)
+{
+ theWrappedObject->setRenderHint(hint, enabled);
+}
+
+QList<QGraphicsItem* >  PythonQtWrapper_QGraphicsView::items(QGraphicsView* theWrappedObject, int  x, int  y) const
+{
+return  theWrappedObject->items(x, y);
+}
+
+void PythonQtWrapper_QGraphicsView::setInteractive(QGraphicsView* theWrappedObject, bool  allowed)
+{
+ theWrappedObject->setInteractive(allowed);
+}
+
+void PythonQtWrapper_QGraphicsView::setViewportUpdateMode(QGraphicsView* theWrappedObject, QGraphicsView::ViewportUpdateMode  mode)
+{
+ theWrappedObject->setViewportUpdateMode(mode);
+}
+
+void PythonQtWrapper_QGraphicsView::translate(QGraphicsView* theWrappedObject, qreal  dx, qreal  dy)
+{
+ theWrappedObject->translate(dx, dy);
 }
 
 QPolygon  PythonQtWrapper_QGraphicsView::mapFromScene(QGraphicsView* theWrappedObject, const QPolygonF&  polygon) const
 {
-return  (*theWrappedObject).mapFromScene(polygon);
+return  theWrappedObject->mapFromScene(polygon);
+}
+
+QPainter::RenderHints  PythonQtWrapper_QGraphicsView::renderHints(QGraphicsView* theWrappedObject) const
+{
+return  theWrappedObject->renderHints();
+}
+
+QSize  PythonQtWrapper_QGraphicsView::sizeHint(QGraphicsView* theWrappedObject) const
+{
+return  theWrappedObject->sizeHint();
+}
+
+QList<QGraphicsItem* >  PythonQtWrapper_QGraphicsView::items(QGraphicsView* theWrappedObject, const QRect&  rect, Qt::ItemSelectionMode  mode) const
+{
+return  theWrappedObject->items(rect, mode);
+}
+
+void PythonQtWrapper_QGraphicsView::setSceneRect(QGraphicsView* theWrappedObject, const QRectF&  rect)
+{
+ theWrappedObject->setSceneRect(rect);
+}
+
+void PythonQtWrapper_QGraphicsView::dragEnterEvent(QGraphicsView* theWrappedObject, QDragEnterEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)->promoted_dragEnterEvent(event);
+}
+
+QList<QGraphicsItem* >  PythonQtWrapper_QGraphicsView::items(QGraphicsView* theWrappedObject, const QPolygon&  polygon, Qt::ItemSelectionMode  mode) const
+{
+return  theWrappedObject->items(polygon, mode);
+}
+
+void PythonQtWrapper_QGraphicsView::wheelEvent(QGraphicsView* theWrappedObject, QWheelEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)->promoted_wheelEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsView::mouseMoveEvent(QGraphicsView* theWrappedObject, QMouseEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)->promoted_mouseMoveEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsView::ensureVisible(QGraphicsView* theWrappedObject, const QRectF&  rect, int  xmargin, int  ymargin)
+{
+ theWrappedObject->ensureVisible(rect, xmargin, ymargin);
+}
+
+void PythonQtWrapper_QGraphicsView::resetMatrix(QGraphicsView* theWrappedObject)
+{
+ theWrappedObject->resetMatrix();
+}
+
+void PythonQtWrapper_QGraphicsView::focusOutEvent(QGraphicsView* theWrappedObject, QFocusEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)->promoted_focusOutEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsView::paintEvent(QGraphicsView* theWrappedObject, QPaintEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)->promoted_paintEvent(event);
+}
+
+bool  PythonQtWrapper_QGraphicsView::event(QGraphicsView* theWrappedObject, QEvent*  event)
+{
+return  ((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)->promoted_event(event);
 }
 
 QPolygon  PythonQtWrapper_QGraphicsView::mapFromScene(QGraphicsView* theWrappedObject, const QRectF&  rect) const
 {
-return  (*theWrappedObject).mapFromScene(rect);
+return  theWrappedObject->mapFromScene(rect);
 }
 
-void PythonQtWrapper_QGraphicsView::centerOn(QGraphicsView* theWrappedObject, const QGraphicsItem*  item)
+void PythonQtWrapper_QGraphicsView::ensureVisible(QGraphicsView* theWrappedObject, const QGraphicsItem*  item, int  xmargin, int  ymargin)
 {
- (*theWrappedObject).centerOn(item);
+ theWrappedObject->ensureVisible(item, xmargin, ymargin);
+}
+
+void PythonQtWrapper_QGraphicsView::showEvent(QGraphicsView* theWrappedObject, QShowEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)->promoted_showEvent(event);
+}
+
+QList<QGraphicsItem* >  PythonQtWrapper_QGraphicsView::items(QGraphicsView* theWrappedObject) const
+{
+return  theWrappedObject->items();
+}
+
+QBrush  PythonQtWrapper_QGraphicsView::backgroundBrush(QGraphicsView* theWrappedObject) const
+{
+return  theWrappedObject->backgroundBrush();
+}
+
+void PythonQtWrapper_QGraphicsView::drawItems(QGraphicsView* theWrappedObject, QPainter*  painter, int  numItems, QGraphicsItem**  items, const QStyleOptionGraphicsItem*  options)
+{
+ ((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)->promoted_drawItems(painter, numItems, items, options);
+}
+
+QPolygonF  PythonQtWrapper_QGraphicsView::mapToScene(QGraphicsView* theWrappedObject, const QPolygon&  polygon) const
+{
+return  theWrappedObject->mapToScene(polygon);
+}
+
+QPoint  PythonQtWrapper_QGraphicsView::mapFromScene(QGraphicsView* theWrappedObject, const QPointF&  point) const
+{
+return  theWrappedObject->mapFromScene(point);
+}
+
+QGraphicsItem*  PythonQtWrapper_QGraphicsView::itemAt(QGraphicsView* theWrappedObject, int  x, int  y) const
+{
+return  theWrappedObject->itemAt(x, y);
+}
+
+void PythonQtWrapper_QGraphicsView::setCacheMode(QGraphicsView* theWrappedObject, QGraphicsView::CacheMode  mode)
+{
+ theWrappedObject->setCacheMode(mode);
+}
+
+QGraphicsItem*  PythonQtWrapper_QGraphicsView::itemAt(QGraphicsView* theWrappedObject, const QPoint&  pos) const
+{
+return  theWrappedObject->itemAt(pos);
 }
 
 QPainterPath  PythonQtWrapper_QGraphicsView::mapToScene(QGraphicsView* theWrappedObject, const QPainterPath&  path) const
 {
-return  (*theWrappedObject).mapToScene(path);
+return  theWrappedObject->mapToScene(path);
+}
+
+Qt::Alignment  PythonQtWrapper_QGraphicsView::alignment(QGraphicsView* theWrappedObject) const
+{
+return  theWrappedObject->alignment();
+}
+
+void PythonQtWrapper_QGraphicsView::mousePressEvent(QGraphicsView* theWrappedObject, QMouseEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)->promoted_mousePressEvent(event);
+}
+
+QGraphicsView::DragMode  PythonQtWrapper_QGraphicsView::dragMode(QGraphicsView* theWrappedObject) const
+{
+return  theWrappedObject->dragMode();
+}
+
+void PythonQtWrapper_QGraphicsView::setMatrix(QGraphicsView* theWrappedObject, const QMatrix&  matrix, bool  combine)
+{
+ theWrappedObject->setMatrix(matrix, combine);
+}
+
+void PythonQtWrapper_QGraphicsView::centerOn(QGraphicsView* theWrappedObject, qreal  x, qreal  y)
+{
+ theWrappedObject->centerOn(x, y);
+}
+
+QGraphicsScene*  PythonQtWrapper_QGraphicsView::scene(QGraphicsView* theWrappedObject) const
+{
+return  theWrappedObject->scene();
+}
+
+QPointF  PythonQtWrapper_QGraphicsView::mapToScene(QGraphicsView* theWrappedObject, const QPoint&  point) const
+{
+return  theWrappedObject->mapToScene(point);
+}
+
+void PythonQtWrapper_QGraphicsView::setBackgroundBrush(QGraphicsView* theWrappedObject, const QBrush&  brush)
+{
+ theWrappedObject->setBackgroundBrush(brush);
+}
+
+void PythonQtWrapper_QGraphicsView::fitInView(QGraphicsView* theWrappedObject, const QGraphicsItem*  item, Qt::AspectRatioMode  aspectRadioMode)
+{
+ theWrappedObject->fitInView(item, aspectRadioMode);
+}
+
+void PythonQtWrapper_QGraphicsView::mouseReleaseEvent(QGraphicsView* theWrappedObject, QMouseEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)->promoted_mouseReleaseEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsView::scale(QGraphicsView* theWrappedObject, qreal  sx, qreal  sy)
+{
+ theWrappedObject->scale(sx, sy);
+}
+
+void PythonQtWrapper_QGraphicsView::drawBackground(QGraphicsView* theWrappedObject, QPainter*  painter, const QRectF&  rect)
+{
+ ((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)->promoted_drawBackground(painter, rect);
+}
+
+QGraphicsView::ViewportAnchor  PythonQtWrapper_QGraphicsView::transformationAnchor(QGraphicsView* theWrappedObject) const
+{
+return  theWrappedObject->transformationAnchor();
+}
+
+QPolygon  PythonQtWrapper_QGraphicsView::mapFromScene(QGraphicsView* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h) const
+{
+return  theWrappedObject->mapFromScene(x, y, w, h);
+}
+
+void PythonQtWrapper_QGraphicsView::setScene(QGraphicsView* theWrappedObject, QGraphicsScene*  scene)
+{
+ theWrappedObject->setScene(scene);
+}
+
+void PythonQtWrapper_QGraphicsView::fitInView(QGraphicsView* theWrappedObject, const QRectF&  rect, Qt::AspectRatioMode  aspectRadioMode)
+{
+ theWrappedObject->fitInView(rect, aspectRadioMode);
+}
+
+QList<QGraphicsItem* >  PythonQtWrapper_QGraphicsView::items(QGraphicsView* theWrappedObject, const QPainterPath&  path, Qt::ItemSelectionMode  mode) const
+{
+return  theWrappedObject->items(path, mode);
+}
+
+void PythonQtWrapper_QGraphicsView::dragLeaveEvent(QGraphicsView* theWrappedObject, QDragLeaveEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)->promoted_dragLeaveEvent(event);
+}
+
+QPolygonF  PythonQtWrapper_QGraphicsView::mapToScene(QGraphicsView* theWrappedObject, int  x, int  y, int  w, int  h) const
+{
+return  theWrappedObject->mapToScene(x, y, w, h);
+}
+
+void PythonQtWrapper_QGraphicsView::resetTransform(QGraphicsView* theWrappedObject)
+{
+ theWrappedObject->resetTransform();
+}
+
+void PythonQtWrapper_QGraphicsView::setDragMode(QGraphicsView* theWrappedObject, QGraphicsView::DragMode  mode)
+{
+ theWrappedObject->setDragMode(mode);
+}
+
+void PythonQtWrapper_QGraphicsView::setResizeAnchor(QGraphicsView* theWrappedObject, QGraphicsView::ViewportAnchor  anchor)
+{
+ theWrappedObject->setResizeAnchor(anchor);
+}
+
+QGraphicsView::ViewportAnchor  PythonQtWrapper_QGraphicsView::resizeAnchor(QGraphicsView* theWrappedObject) const
+{
+return  theWrappedObject->resizeAnchor();
+}
+
+QPolygonF  PythonQtWrapper_QGraphicsView::mapToScene(QGraphicsView* theWrappedObject, const QRect&  rect) const
+{
+return  theWrappedObject->mapToScene(rect);
+}
+
+Qt::ItemSelectionMode  PythonQtWrapper_QGraphicsView::rubberBandSelectionMode(QGraphicsView* theWrappedObject) const
+{
+return  theWrappedObject->rubberBandSelectionMode();
+}
+
+bool  PythonQtWrapper_QGraphicsView::isInteractive(QGraphicsView* theWrappedObject) const
+{
+return  theWrappedObject->isInteractive();
+}
+
+void PythonQtWrapper_QGraphicsView::focusInEvent(QGraphicsView* theWrappedObject, QFocusEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)->promoted_focusInEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsView::drawForeground(QGraphicsView* theWrappedObject, QPainter*  painter, const QRectF&  rect)
+{
+ ((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)->promoted_drawForeground(painter, rect);
+}
+
+QPoint  PythonQtWrapper_QGraphicsView::mapFromScene(QGraphicsView* theWrappedObject, qreal  x, qreal  y) const
+{
+return  theWrappedObject->mapFromScene(x, y);
+}
+
+void PythonQtWrapper_QGraphicsView::setRenderHints(QGraphicsView* theWrappedObject, QPainter::RenderHints  hints)
+{
+ theWrappedObject->setRenderHints(hints);
+}
+
+QRectF  PythonQtWrapper_QGraphicsView::sceneRect(QGraphicsView* theWrappedObject) const
+{
+return  theWrappedObject->sceneRect();
+}
+
+void PythonQtWrapper_QGraphicsView::resizeEvent(QGraphicsView* theWrappedObject, QResizeEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)->promoted_resizeEvent(event);
+}
+
+QGraphicsView::CacheMode  PythonQtWrapper_QGraphicsView::cacheMode(QGraphicsView* theWrappedObject) const
+{
+return  theWrappedObject->cacheMode();
+}
+
+void PythonQtWrapper_QGraphicsView::keyPressEvent(QGraphicsView* theWrappedObject, QKeyEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)->promoted_keyPressEvent(event);
+}
+
+QTransform  PythonQtWrapper_QGraphicsView::viewportTransform(QGraphicsView* theWrappedObject) const
+{
+return  theWrappedObject->viewportTransform();
+}
+
+void PythonQtWrapper_QGraphicsView::keyReleaseEvent(QGraphicsView* theWrappedObject, QKeyEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsView*)theWrappedObject)->promoted_keyReleaseEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsView::shear(QGraphicsView* theWrappedObject, qreal  sh, qreal  sv)
+{
+ theWrappedObject->shear(sh, sv);
 }
 

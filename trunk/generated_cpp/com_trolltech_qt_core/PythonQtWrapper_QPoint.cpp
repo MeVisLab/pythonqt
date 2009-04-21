@@ -15,19 +15,14 @@ QPoint* PythonQtWrapper_QPoint::new_QPoint(int  xpos, int  ypos)
 { 
 return new QPoint(xpos, ypos); }
 
-int  PythonQtWrapper_QPoint::manhattanLength(QPoint* theWrappedObject) const
-{
-return  (*theWrappedObject).manhattanLength();
-}
-
-void PythonQtWrapper_QPoint::setY(QPoint* theWrappedObject, int  y)
-{
- (*theWrappedObject).setY(y);
-}
-
 QPoint&  PythonQtWrapper_QPoint::operator_subtract_assign(QPoint* theWrappedObject, const QPoint&  p)
 {
 return  (*theWrappedObject)-= p;
+}
+
+void PythonQtWrapper_QPoint::setX(QPoint* theWrappedObject, int  x)
+{
+ theWrappedObject->setX(x);
 }
 
 QPoint&  PythonQtWrapper_QPoint::operator_add_assign(QPoint* theWrappedObject, const QPoint&  p)
@@ -37,17 +32,7 @@ return  (*theWrappedObject)+= p;
 
 int  PythonQtWrapper_QPoint::x(QPoint* theWrappedObject) const
 {
-return  (*theWrappedObject).x();
-}
-
-bool  PythonQtWrapper_QPoint::isNull(QPoint* theWrappedObject) const
-{
-return  (*theWrappedObject).isNull();
-}
-
-void PythonQtWrapper_QPoint::setX(QPoint* theWrappedObject, int  x)
-{
- (*theWrappedObject).setX(x);
+return  theWrappedObject->x();
 }
 
 QPoint&  PythonQtWrapper_QPoint::operator_multiply_assign(QPoint* theWrappedObject, qreal  c)
@@ -55,9 +40,14 @@ QPoint&  PythonQtWrapper_QPoint::operator_multiply_assign(QPoint* theWrappedObje
 return  (*theWrappedObject)*= c;
 }
 
-void PythonQtWrapper_QPoint::readFrom(QPoint* theWrappedObject, QDataStream&  arg__1)
+void PythonQtWrapper_QPoint::setY(QPoint* theWrappedObject, int  y)
 {
-arg__1 >>  (*theWrappedObject);
+ theWrappedObject->setY(y);
+}
+
+bool  PythonQtWrapper_QPoint::isNull(QPoint* theWrappedObject) const
+{
+return  theWrappedObject->isNull();
 }
 
 void PythonQtWrapper_QPoint::writeTo(QPoint* theWrappedObject, QDataStream&  arg__1)
@@ -65,9 +55,9 @@ void PythonQtWrapper_QPoint::writeTo(QPoint* theWrappedObject, QDataStream&  arg
 arg__1 <<  (*theWrappedObject);
 }
 
-QPoint&  PythonQtWrapper_QPoint::operator_divide_assign(QPoint* theWrappedObject, qreal  c)
+int  PythonQtWrapper_QPoint::y(QPoint* theWrappedObject) const
 {
-return  (*theWrappedObject)/= c;
+return  theWrappedObject->y();
 }
 
 bool  PythonQtWrapper_QPoint::operator_equal(QPoint* theWrappedObject, const QPoint&  p2)
@@ -75,8 +65,18 @@ bool  PythonQtWrapper_QPoint::operator_equal(QPoint* theWrappedObject, const QPo
 return  (*theWrappedObject)== p2;
 }
 
-int  PythonQtWrapper_QPoint::y(QPoint* theWrappedObject) const
+QPoint&  PythonQtWrapper_QPoint::operator_divide_assign(QPoint* theWrappedObject, qreal  c)
 {
-return  (*theWrappedObject).y();
+return  (*theWrappedObject)/= c;
+}
+
+void PythonQtWrapper_QPoint::readFrom(QPoint* theWrappedObject, QDataStream&  arg__1)
+{
+arg__1 >>  (*theWrappedObject);
+}
+
+int  PythonQtWrapper_QPoint::manhattanLength(QPoint* theWrappedObject) const
+{
+return  theWrappedObject->manhattanLength();
 }
 

@@ -431,203 +431,203 @@ QGridLayout* PythonQtWrapper_QGridLayout::new_QGridLayout(QWidget*  parent)
 { 
 return new PythonQtShell_QGridLayout(parent); }
 
-int  PythonQtWrapper_QGridLayout::spacing(QGridLayout* theWrappedObject) const
-{
-return  (*theWrappedObject).spacing();
-}
-
-void PythonQtWrapper_QGridLayout::getItemPosition(QGridLayout* theWrappedObject, int  idx, int*  row, int*  column, int*  rowSpan, int*  columnSpan)
-{
- (*theWrappedObject).getItemPosition(idx, row, column, rowSpan, columnSpan);
-}
-
-void PythonQtWrapper_QGridLayout::setHorizontalSpacing(QGridLayout* theWrappedObject, int  spacing)
-{
- (*theWrappedObject).setHorizontalSpacing(spacing);
-}
-
-QLayoutItem*  PythonQtWrapper_QGridLayout::itemAtPosition(QGridLayout* theWrappedObject, int  row, int  column) const
-{
-return  (*theWrappedObject).itemAtPosition(row, column);
-}
-
-int  PythonQtWrapper_QGridLayout::verticalSpacing(QGridLayout* theWrappedObject) const
-{
-return  (*theWrappedObject).verticalSpacing();
-}
-
-int  PythonQtWrapper_QGridLayout::columnStretch(QGridLayout* theWrappedObject, int  column) const
-{
-return  (*theWrappedObject).columnStretch(column);
-}
-
-QSize  PythonQtWrapper_QGridLayout::maximumSize(QGridLayout* theWrappedObject) const
-{
-return  (*theWrappedObject).maximumSize();
-}
-
-void PythonQtWrapper_QGridLayout::addItem(QGridLayout* theWrappedObject, QLayoutItem*  arg__1)
-{
- (*((PythonQtPublicPromoter_QGridLayout*)theWrappedObject)).addItem(arg__1);
-}
-
-int  PythonQtWrapper_QGridLayout::rowCount(QGridLayout* theWrappedObject) const
-{
-return  (*theWrappedObject).rowCount();
-}
-
-void PythonQtWrapper_QGridLayout::setRowMinimumHeight(QGridLayout* theWrappedObject, int  row, int  minSize)
-{
- (*theWrappedObject).setRowMinimumHeight(row, minSize);
-}
-
-int  PythonQtWrapper_QGridLayout::count(QGridLayout* theWrappedObject) const
-{
-return  (*theWrappedObject).count();
-}
-
-void PythonQtWrapper_QGridLayout::addItem(QGridLayout* theWrappedObject, QLayoutItem*  item, int  row, int  column, int  rowSpan, int  columnSpan, Qt::Alignment  arg__6)
-{
- (*theWrappedObject).addItem(item, row, column, rowSpan, columnSpan, arg__6);
-}
-
-QRect  PythonQtWrapper_QGridLayout::cellRect(QGridLayout* theWrappedObject, int  row, int  column) const
-{
-return  (*theWrappedObject).cellRect(row, column);
-}
-
-int  PythonQtWrapper_QGridLayout::rowMinimumHeight(QGridLayout* theWrappedObject, int  row) const
-{
-return  (*theWrappedObject).rowMinimumHeight(row);
-}
-
-void PythonQtWrapper_QGridLayout::addLayout(QGridLayout* theWrappedObject, QLayout*  arg__1, int  row, int  column, Qt::Alignment  arg__4)
-{
- (*theWrappedObject).addLayout(arg__1, row, column, arg__4);
-}
-
 void PythonQtWrapper_QGridLayout::setGeometry(QGridLayout* theWrappedObject, const QRect&  arg__1)
 {
- (*theWrappedObject).setGeometry(arg__1);
-}
-
-void PythonQtWrapper_QGridLayout::setSpacing(QGridLayout* theWrappedObject, int  spacing)
-{
- (*theWrappedObject).setSpacing(spacing);
-}
-
-void PythonQtWrapper_QGridLayout::setDefaultPositioning(QGridLayout* theWrappedObject, int  n, Qt::Orientation  orient)
-{
- (*theWrappedObject).setDefaultPositioning(n, orient);
-}
-
-int  PythonQtWrapper_QGridLayout::columnMinimumWidth(QGridLayout* theWrappedObject, int  column) const
-{
-return  (*theWrappedObject).columnMinimumWidth(column);
-}
-
-void PythonQtWrapper_QGridLayout::setRowStretch(QGridLayout* theWrappedObject, int  row, int  stretch)
-{
- (*theWrappedObject).setRowStretch(row, stretch);
-}
-
-QLayoutItem*  PythonQtWrapper_QGridLayout::takeAt(QGridLayout* theWrappedObject, int  index)
-{
-return  (*theWrappedObject).takeAt(index);
-}
-
-int  PythonQtWrapper_QGridLayout::minimumHeightForWidth(QGridLayout* theWrappedObject, int  arg__1) const
-{
-return  (*theWrappedObject).minimumHeightForWidth(arg__1);
-}
-
-int  PythonQtWrapper_QGridLayout::rowStretch(QGridLayout* theWrappedObject, int  row) const
-{
-return  (*theWrappedObject).rowStretch(row);
-}
-
-int  PythonQtWrapper_QGridLayout::heightForWidth(QGridLayout* theWrappedObject, int  arg__1) const
-{
-return  (*theWrappedObject).heightForWidth(arg__1);
-}
-
-QLayoutItem*  PythonQtWrapper_QGridLayout::itemAt(QGridLayout* theWrappedObject, int  index) const
-{
-return  (*theWrappedObject).itemAt(index);
+ ((PythonQtPublicPromoter_QGridLayout*)theWrappedObject)->promoted_setGeometry(arg__1);
 }
 
 void PythonQtWrapper_QGridLayout::setVerticalSpacing(QGridLayout* theWrappedObject, int  spacing)
 {
- (*theWrappedObject).setVerticalSpacing(spacing);
+ theWrappedObject->setVerticalSpacing(spacing);
 }
 
-int  PythonQtWrapper_QGridLayout::columnCount(QGridLayout* theWrappedObject) const
+int  PythonQtWrapper_QGridLayout::rowCount(QGridLayout* theWrappedObject) const
 {
-return  (*theWrappedObject).columnCount();
+return  theWrappedObject->rowCount();
 }
 
-int  PythonQtWrapper_QGridLayout::horizontalSpacing(QGridLayout* theWrappedObject) const
+int  PythonQtWrapper_QGridLayout::verticalSpacing(QGridLayout* theWrappedObject) const
 {
-return  (*theWrappedObject).horizontalSpacing();
+return  theWrappedObject->verticalSpacing();
 }
 
-void PythonQtWrapper_QGridLayout::addLayout(QGridLayout* theWrappedObject, QLayout*  arg__1, int  row, int  column, int  rowSpan, int  columnSpan, Qt::Alignment  arg__6)
+void PythonQtWrapper_QGridLayout::getItemPosition(QGridLayout* theWrappedObject, int  idx, int*  row, int*  column, int*  rowSpan, int*  columnSpan)
 {
- (*theWrappedObject).addLayout(arg__1, row, column, rowSpan, columnSpan, arg__6);
+ theWrappedObject->getItemPosition(idx, row, column, rowSpan, columnSpan);
 }
 
-void PythonQtWrapper_QGridLayout::addWidget(QGridLayout* theWrappedObject, QWidget*  arg__1, int  row, int  column, Qt::Alignment  arg__4)
+void PythonQtWrapper_QGridLayout::addLayout(QGridLayout* theWrappedObject, QLayout*  arg__1, int  row, int  column, Qt::Alignment  arg__4)
 {
- (*theWrappedObject).addWidget(arg__1, row, column, arg__4);
-}
-
-bool  PythonQtWrapper_QGridLayout::hasHeightForWidth(QGridLayout* theWrappedObject) const
-{
-return  (*theWrappedObject).hasHeightForWidth();
-}
-
-void PythonQtWrapper_QGridLayout::setOriginCorner(QGridLayout* theWrappedObject, Qt::Corner  arg__1)
-{
- (*theWrappedObject).setOriginCorner(arg__1);
+ theWrappedObject->addLayout(arg__1, row, column, arg__4);
 }
 
 QSize  PythonQtWrapper_QGridLayout::minimumSize(QGridLayout* theWrappedObject) const
 {
-return  (*theWrappedObject).minimumSize();
+return  ((PythonQtPublicPromoter_QGridLayout*)theWrappedObject)->promoted_minimumSize();
 }
 
-Qt::Orientations  PythonQtWrapper_QGridLayout::expandingDirections(QGridLayout* theWrappedObject) const
+void PythonQtWrapper_QGridLayout::setOriginCorner(QGridLayout* theWrappedObject, Qt::Corner  arg__1)
 {
-return  (*theWrappedObject).expandingDirections();
+ theWrappedObject->setOriginCorner(arg__1);
 }
 
-void PythonQtWrapper_QGridLayout::setColumnStretch(QGridLayout* theWrappedObject, int  column, int  stretch)
+void PythonQtWrapper_QGridLayout::setRowStretch(QGridLayout* theWrappedObject, int  row, int  stretch)
 {
- (*theWrappedObject).setColumnStretch(column, stretch);
+ theWrappedObject->setRowStretch(row, stretch);
 }
 
-void PythonQtWrapper_QGridLayout::setColumnMinimumWidth(QGridLayout* theWrappedObject, int  column, int  minSize)
+int  PythonQtWrapper_QGridLayout::minimumHeightForWidth(QGridLayout* theWrappedObject, int  arg__1) const
 {
- (*theWrappedObject).setColumnMinimumWidth(column, minSize);
+return  theWrappedObject->minimumHeightForWidth(arg__1);
 }
 
 Qt::Corner  PythonQtWrapper_QGridLayout::originCorner(QGridLayout* theWrappedObject) const
 {
-return  (*theWrappedObject).originCorner();
+return  theWrappedObject->originCorner();
 }
 
-void PythonQtWrapper_QGridLayout::invalidate(QGridLayout* theWrappedObject)
+void PythonQtWrapper_QGridLayout::addItem(QGridLayout* theWrappedObject, QLayoutItem*  arg__1)
 {
- (*theWrappedObject).invalidate();
+ ((PythonQtPublicPromoter_QGridLayout*)theWrappedObject)->promoted_addItem(arg__1);
+}
+
+int  PythonQtWrapper_QGridLayout::spacing(QGridLayout* theWrappedObject) const
+{
+return  theWrappedObject->spacing();
+}
+
+void PythonQtWrapper_QGridLayout::setColumnStretch(QGridLayout* theWrappedObject, int  column, int  stretch)
+{
+ theWrappedObject->setColumnStretch(column, stretch);
+}
+
+void PythonQtWrapper_QGridLayout::setHorizontalSpacing(QGridLayout* theWrappedObject, int  spacing)
+{
+ theWrappedObject->setHorizontalSpacing(spacing);
+}
+
+QLayoutItem*  PythonQtWrapper_QGridLayout::takeAt(QGridLayout* theWrappedObject, int  index)
+{
+return  ((PythonQtPublicPromoter_QGridLayout*)theWrappedObject)->promoted_takeAt(index);
+}
+
+void PythonQtWrapper_QGridLayout::setRowMinimumHeight(QGridLayout* theWrappedObject, int  row, int  minSize)
+{
+ theWrappedObject->setRowMinimumHeight(row, minSize);
+}
+
+void PythonQtWrapper_QGridLayout::addWidget(QGridLayout* theWrappedObject, QWidget*  arg__1, int  row, int  column, Qt::Alignment  arg__4)
+{
+ theWrappedObject->addWidget(arg__1, row, column, arg__4);
 }
 
 QSize  PythonQtWrapper_QGridLayout::sizeHint(QGridLayout* theWrappedObject) const
 {
-return  (*theWrappedObject).sizeHint();
+return  theWrappedObject->sizeHint();
+}
+
+void PythonQtWrapper_QGridLayout::addLayout(QGridLayout* theWrappedObject, QLayout*  arg__1, int  row, int  column, int  rowSpan, int  columnSpan, Qt::Alignment  arg__6)
+{
+ theWrappedObject->addLayout(arg__1, row, column, rowSpan, columnSpan, arg__6);
+}
+
+bool  PythonQtWrapper_QGridLayout::hasHeightForWidth(QGridLayout* theWrappedObject) const
+{
+return  theWrappedObject->hasHeightForWidth();
+}
+
+void PythonQtWrapper_QGridLayout::invalidate(QGridLayout* theWrappedObject)
+{
+ ((PythonQtPublicPromoter_QGridLayout*)theWrappedObject)->promoted_invalidate();
+}
+
+int  PythonQtWrapper_QGridLayout::horizontalSpacing(QGridLayout* theWrappedObject) const
+{
+return  theWrappedObject->horizontalSpacing();
 }
 
 void PythonQtWrapper_QGridLayout::addWidget(QGridLayout* theWrappedObject, QWidget*  arg__1, int  row, int  column, int  rowSpan, int  columnSpan, Qt::Alignment  arg__6)
 {
- (*theWrappedObject).addWidget(arg__1, row, column, rowSpan, columnSpan, arg__6);
+ theWrappedObject->addWidget(arg__1, row, column, rowSpan, columnSpan, arg__6);
+}
+
+int  PythonQtWrapper_QGridLayout::columnStretch(QGridLayout* theWrappedObject, int  column) const
+{
+return  theWrappedObject->columnStretch(column);
+}
+
+void PythonQtWrapper_QGridLayout::setDefaultPositioning(QGridLayout* theWrappedObject, int  n, Qt::Orientation  orient)
+{
+ theWrappedObject->setDefaultPositioning(n, orient);
+}
+
+int  PythonQtWrapper_QGridLayout::columnCount(QGridLayout* theWrappedObject) const
+{
+return  theWrappedObject->columnCount();
+}
+
+QLayoutItem*  PythonQtWrapper_QGridLayout::itemAt(QGridLayout* theWrappedObject, int  index) const
+{
+return  ((PythonQtPublicPromoter_QGridLayout*)theWrappedObject)->promoted_itemAt(index);
+}
+
+QRect  PythonQtWrapper_QGridLayout::cellRect(QGridLayout* theWrappedObject, int  row, int  column) const
+{
+return  theWrappedObject->cellRect(row, column);
+}
+
+int  PythonQtWrapper_QGridLayout::heightForWidth(QGridLayout* theWrappedObject, int  arg__1) const
+{
+return  theWrappedObject->heightForWidth(arg__1);
+}
+
+QSize  PythonQtWrapper_QGridLayout::maximumSize(QGridLayout* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QGridLayout*)theWrappedObject)->promoted_maximumSize();
+}
+
+void PythonQtWrapper_QGridLayout::setColumnMinimumWidth(QGridLayout* theWrappedObject, int  column, int  minSize)
+{
+ theWrappedObject->setColumnMinimumWidth(column, minSize);
+}
+
+int  PythonQtWrapper_QGridLayout::rowMinimumHeight(QGridLayout* theWrappedObject, int  row) const
+{
+return  theWrappedObject->rowMinimumHeight(row);
+}
+
+int  PythonQtWrapper_QGridLayout::rowStretch(QGridLayout* theWrappedObject, int  row) const
+{
+return  theWrappedObject->rowStretch(row);
+}
+
+void PythonQtWrapper_QGridLayout::addItem(QGridLayout* theWrappedObject, QLayoutItem*  item, int  row, int  column, int  rowSpan, int  columnSpan, Qt::Alignment  arg__6)
+{
+ theWrappedObject->addItem(item, row, column, rowSpan, columnSpan, arg__6);
+}
+
+int  PythonQtWrapper_QGridLayout::columnMinimumWidth(QGridLayout* theWrappedObject, int  column) const
+{
+return  theWrappedObject->columnMinimumWidth(column);
+}
+
+Qt::Orientations  PythonQtWrapper_QGridLayout::expandingDirections(QGridLayout* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QGridLayout*)theWrappedObject)->promoted_expandingDirections();
+}
+
+int  PythonQtWrapper_QGridLayout::count(QGridLayout* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QGridLayout*)theWrappedObject)->promoted_count();
+}
+
+QLayoutItem*  PythonQtWrapper_QGridLayout::itemAtPosition(QGridLayout* theWrappedObject, int  row, int  column) const
+{
+return  theWrappedObject->itemAtPosition(row, column);
+}
+
+void PythonQtWrapper_QGridLayout::setSpacing(QGridLayout* theWrappedObject, int  spacing)
+{
+ theWrappedObject->setSpacing(spacing);
 }
 

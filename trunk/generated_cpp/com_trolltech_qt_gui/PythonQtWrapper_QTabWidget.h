@@ -87,14 +87,14 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QTabWidget : public QTabWidget
 { public:
-inline void changeEvent(QEvent*  arg__1) { QTabWidget::changeEvent(arg__1); }
-inline void resizeEvent(QResizeEvent*  arg__1) { QTabWidget::resizeEvent(arg__1); }
-inline void keyPressEvent(QKeyEvent*  arg__1) { QTabWidget::keyPressEvent(arg__1); }
-inline void tabInserted(int  index) { QTabWidget::tabInserted(index); }
-inline void showEvent(QShowEvent*  arg__1) { QTabWidget::showEvent(arg__1); }
-inline bool  event(QEvent*  arg__1) { return QTabWidget::event(arg__1); }
-inline void tabRemoved(int  index) { QTabWidget::tabRemoved(index); }
-inline void paintEvent(QPaintEvent*  arg__1) { QTabWidget::paintEvent(arg__1); }
+inline void promoted_paintEvent(QPaintEvent*  arg__1) { QTabWidget::paintEvent(arg__1); }
+inline void promoted_keyPressEvent(QKeyEvent*  arg__1) { QTabWidget::keyPressEvent(arg__1); }
+inline bool  promoted_event(QEvent*  arg__1) { return QTabWidget::event(arg__1); }
+inline void promoted_tabRemoved(int  index) { QTabWidget::tabRemoved(index); }
+inline void promoted_resizeEvent(QResizeEvent*  arg__1) { QTabWidget::resizeEvent(arg__1); }
+inline void promoted_showEvent(QShowEvent*  arg__1) { QTabWidget::showEvent(arg__1); }
+inline void promoted_changeEvent(QEvent*  arg__1) { QTabWidget::changeEvent(arg__1); }
+inline void promoted_tabInserted(int  index) { QTabWidget::tabInserted(index); }
 };
 
 class PythonQtWrapper_QTabWidget : public QObject
@@ -103,49 +103,49 @@ public:
 public slots:
 QTabWidget* new_QTabWidget(QWidget*  parent = 0);
 void delete_QTabWidget(QTabWidget* obj) { delete obj; } 
-   int  addTab(QTabWidget* theWrappedObject, QWidget*  widget, const QIcon&  icon, const QString&  label);
-   void changeEvent(QTabWidget* theWrappedObject, QEvent*  arg__1);
-   void resizeEvent(QTabWidget* theWrappedObject, QResizeEvent*  arg__1);
-   void keyPressEvent(QTabWidget* theWrappedObject, QKeyEvent*  arg__1);
-   void setTabWhatsThis(QTabWidget* theWrappedObject, int  index, const QString&  text);
-   void tabInserted(QTabWidget* theWrappedObject, int  index);
-   QString  tabToolTip(QTabWidget* theWrappedObject, int  index) const;
-   bool  isTabEnabled(QTabWidget* theWrappedObject, int  index) const;
-   int  insertTab(QTabWidget* theWrappedObject, int  index, QWidget*  widget, const QString&  arg__3);
-   Qt::TextElideMode  elideMode(QTabWidget* theWrappedObject) const;
+   void paintEvent(QTabWidget* theWrappedObject, QPaintEvent*  arg__1);
+   QTabWidget::TabShape  tabShape(QTabWidget* theWrappedObject) const;
+   QSize  sizeHint(QTabWidget* theWrappedObject) const;
    QString  tabText(QTabWidget* theWrappedObject, int  index) const;
-   void showEvent(QTabWidget* theWrappedObject, QShowEvent*  arg__1);
-   void removeTab(QTabWidget* theWrappedObject, int  index);
+   int  insertTab(QTabWidget* theWrappedObject, int  index, QWidget*  widget, const QIcon&  icon, const QString&  label);
    QTabWidget::TabPosition  tabPosition(QTabWidget* theWrappedObject) const;
-   void setElideMode(QTabWidget* theWrappedObject, Qt::TextElideMode  arg__1);
+   void keyPressEvent(QTabWidget* theWrappedObject, QKeyEvent*  arg__1);
+   bool  isTabEnabled(QTabWidget* theWrappedObject, int  index) const;
    bool  event(QTabWidget* theWrappedObject, QEvent*  arg__1);
+   int  indexOf(QTabWidget* theWrappedObject, QWidget*  widget) const;
+   QWidget*  cornerWidget(QTabWidget* theWrappedObject, Qt::Corner  corner = Qt::TopRightCorner) const;
+   void tabRemoved(QTabWidget* theWrappedObject, int  index);
+   int  addTab(QTabWidget* theWrappedObject, QWidget*  widget, const QIcon&  icon, const QString&  label);
+   void clear(QTabWidget* theWrappedObject);
+   QIcon  tabIcon(QTabWidget* theWrappedObject, int  index) const;
+   QSize  minimumSizeHint(QTabWidget* theWrappedObject) const;
+   QString  tabWhatsThis(QTabWidget* theWrappedObject, int  index) const;
+   void setCornerWidget(QTabWidget* theWrappedObject, QWidget*  w, Qt::Corner  corner = Qt::TopRightCorner);
    void setTabShape(QTabWidget* theWrappedObject, QTabWidget::TabShape  s);
    void setUsesScrollButtons(QTabWidget* theWrappedObject, bool  useButtons);
-   QWidget*  currentWidget(QTabWidget* theWrappedObject) const;
-   QWidget*  widget(QTabWidget* theWrappedObject, int  index) const;
-   bool  usesScrollButtons(QTabWidget* theWrappedObject) const;
-   void setCornerWidget(QTabWidget* theWrappedObject, QWidget*  w, Qt::Corner  corner = Qt::TopRightCorner);
-   void setTabPosition(QTabWidget* theWrappedObject, QTabWidget::TabPosition  arg__1);
-   QSize  minimumSizeHint(QTabWidget* theWrappedObject) const;
-   void clear(QTabWidget* theWrappedObject);
-   void setTabIcon(QTabWidget* theWrappedObject, int  index, const QIcon&  icon);
-   QIcon  tabIcon(QTabWidget* theWrappedObject, int  index) const;
-   QString  tabWhatsThis(QTabWidget* theWrappedObject, int  index) const;
-   QSize  iconSize(QTabWidget* theWrappedObject) const;
+   QString  tabToolTip(QTabWidget* theWrappedObject, int  index) const;
    void setTabEnabled(QTabWidget* theWrappedObject, int  index, bool  arg__2);
-   QSize  sizeHint(QTabWidget* theWrappedObject) const;
-   int  addTab(QTabWidget* theWrappedObject, QWidget*  widget, const QString&  arg__2);
-   void tabRemoved(QTabWidget* theWrappedObject, int  index);
    void setIconSize(QTabWidget* theWrappedObject, const QSize&  size);
-   int  indexOf(QTabWidget* theWrappedObject, QWidget*  widget) const;
-   void paintEvent(QTabWidget* theWrappedObject, QPaintEvent*  arg__1);
-   int  insertTab(QTabWidget* theWrappedObject, int  index, QWidget*  widget, const QIcon&  icon, const QString&  label);
-   int  count(QTabWidget* theWrappedObject) const;
-   QTabWidget::TabShape  tabShape(QTabWidget* theWrappedObject) const;
-   int  currentIndex(QTabWidget* theWrappedObject) const;
+   QSize  iconSize(QTabWidget* theWrappedObject) const;
+   void setTabWhatsThis(QTabWidget* theWrappedObject, int  index, const QString&  text);
+   void resizeEvent(QTabWidget* theWrappedObject, QResizeEvent*  arg__1);
+   void showEvent(QTabWidget* theWrappedObject, QShowEvent*  arg__1);
+   QWidget*  widget(QTabWidget* theWrappedObject, int  index) const;
    void setTabToolTip(QTabWidget* theWrappedObject, int  index, const QString&  tip);
-   QWidget*  cornerWidget(QTabWidget* theWrappedObject, Qt::Corner  corner = Qt::TopRightCorner) const;
    void setTabText(QTabWidget* theWrappedObject, int  index, const QString&  arg__2);
+   int  insertTab(QTabWidget* theWrappedObject, int  index, QWidget*  widget, const QString&  arg__3);
+   bool  usesScrollButtons(QTabWidget* theWrappedObject) const;
+   int  currentIndex(QTabWidget* theWrappedObject) const;
+   Qt::TextElideMode  elideMode(QTabWidget* theWrappedObject) const;
+   void changeEvent(QTabWidget* theWrappedObject, QEvent*  arg__1);
+   void removeTab(QTabWidget* theWrappedObject, int  index);
+   void tabInserted(QTabWidget* theWrappedObject, int  index);
+   QWidget*  currentWidget(QTabWidget* theWrappedObject) const;
+   void setElideMode(QTabWidget* theWrappedObject, Qt::TextElideMode  arg__1);
+   int  addTab(QTabWidget* theWrappedObject, QWidget*  widget, const QString&  arg__2);
+   void setTabIcon(QTabWidget* theWrappedObject, int  index, const QIcon&  icon);
+   void setTabPosition(QTabWidget* theWrappedObject, QTabWidget::TabPosition  arg__1);
+   int  count(QTabWidget* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QTABWIDGET_H

@@ -806,153 +806,153 @@ QAbstractItemModel* PythonQtWrapper_QAbstractItemModel::new_QAbstractItemModel(Q
 { 
 return new PythonQtShell_QAbstractItemModel(parent); }
 
-void PythonQtWrapper_QAbstractItemModel::setSupportedDragActions(QAbstractItemModel* theWrappedObject, Qt::DropActions  arg__1)
-{
- (*theWrappedObject).setSupportedDragActions(arg__1);
-}
-
-Qt::DropActions  PythonQtWrapper_QAbstractItemModel::supportedDragActions(QAbstractItemModel* theWrappedObject) const
-{
-return  (*theWrappedObject).supportedDragActions();
-}
-
-bool  PythonQtWrapper_QAbstractItemModel::setItemData(QAbstractItemModel* theWrappedObject, const QModelIndex&  index, const QMap<int , QVariant >&  roles)
-{
-return  (*theWrappedObject).setItemData(index, roles);
-}
-
-void PythonQtWrapper_QAbstractItemModel::fetchMore(QAbstractItemModel* theWrappedObject, const QModelIndex&  parent)
-{
- (*theWrappedObject).fetchMore(parent);
-}
-
-bool  PythonQtWrapper_QAbstractItemModel::insertRow(QAbstractItemModel* theWrappedObject, int  row, const QModelIndex&  parent)
-{
-return  (*theWrappedObject).insertRow(row, parent);
-}
-
-bool  PythonQtWrapper_QAbstractItemModel::canFetchMore(QAbstractItemModel* theWrappedObject, const QModelIndex&  parent) const
-{
-return  (*theWrappedObject).canFetchMore(parent);
-}
-
-bool  PythonQtWrapper_QAbstractItemModel::dropMimeData(QAbstractItemModel* theWrappedObject, const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent)
-{
-return  (*theWrappedObject).dropMimeData(data, action, row, column, parent);
-}
-
-bool  PythonQtWrapper_QAbstractItemModel::insertColumn(QAbstractItemModel* theWrappedObject, int  column, const QModelIndex&  parent)
-{
-return  (*theWrappedObject).insertColumn(column, parent);
-}
-
-bool  PythonQtWrapper_QAbstractItemModel::hasIndex(QAbstractItemModel* theWrappedObject, int  row, int  column, const QModelIndex&  parent) const
-{
-return  (*theWrappedObject).hasIndex(row, column, parent);
-}
-
-Qt::ItemFlags  PythonQtWrapper_QAbstractItemModel::flags(QAbstractItemModel* theWrappedObject, const QModelIndex&  index) const
-{
-return  (*theWrappedObject).flags(index);
-}
-
-QObject*  PythonQtWrapper_QAbstractItemModel::parent(QAbstractItemModel* theWrappedObject) const
-{
-return  (*theWrappedObject).parent();
-}
-
-bool  PythonQtWrapper_QAbstractItemModel::hasChildren(QAbstractItemModel* theWrappedObject, const QModelIndex&  parent) const
-{
-return  (*theWrappedObject).hasChildren(parent);
-}
-
-QStringList  PythonQtWrapper_QAbstractItemModel::mimeTypes(QAbstractItemModel* theWrappedObject) const
-{
-return  (*theWrappedObject).mimeTypes();
-}
-
 bool  PythonQtWrapper_QAbstractItemModel::removeColumns(QAbstractItemModel* theWrappedObject, int  column, int  count, const QModelIndex&  parent)
 {
-return  (*theWrappedObject).removeColumns(column, count, parent);
-}
-
-bool  PythonQtWrapper_QAbstractItemModel::removeColumn(QAbstractItemModel* theWrappedObject, int  column, const QModelIndex&  parent)
-{
-return  (*theWrappedObject).removeColumn(column, parent);
-}
-
-QModelIndex  PythonQtWrapper_QAbstractItemModel::buddy(QAbstractItemModel* theWrappedObject, const QModelIndex&  index) const
-{
-return  (*theWrappedObject).buddy(index);
-}
-
-Qt::DropActions  PythonQtWrapper_QAbstractItemModel::supportedDropActions(QAbstractItemModel* theWrappedObject) const
-{
-return  (*theWrappedObject).supportedDropActions();
-}
-
-bool  PythonQtWrapper_QAbstractItemModel::removeRows(QAbstractItemModel* theWrappedObject, int  row, int  count, const QModelIndex&  parent)
-{
-return  (*theWrappedObject).removeRows(row, count, parent);
-}
-
-QSize  PythonQtWrapper_QAbstractItemModel::span(QAbstractItemModel* theWrappedObject, const QModelIndex&  index) const
-{
-return  (*theWrappedObject).span(index);
-}
-
-bool  PythonQtWrapper_QAbstractItemModel::insertRows(QAbstractItemModel* theWrappedObject, int  row, int  count, const QModelIndex&  parent)
-{
-return  (*theWrappedObject).insertRows(row, count, parent);
-}
-
-QVariant  PythonQtWrapper_QAbstractItemModel::headerData(QAbstractItemModel* theWrappedObject, int  section, Qt::Orientation  orientation, int  role) const
-{
-return  (*theWrappedObject).headerData(section, orientation, role);
-}
-
-QMap<int , QVariant >  PythonQtWrapper_QAbstractItemModel::itemData(QAbstractItemModel* theWrappedObject, const QModelIndex&  index) const
-{
-return  (*theWrappedObject).itemData(index);
-}
-
-bool  PythonQtWrapper_QAbstractItemModel::removeRow(QAbstractItemModel* theWrappedObject, int  row, const QModelIndex&  parent)
-{
-return  (*theWrappedObject).removeRow(row, parent);
-}
-
-bool  PythonQtWrapper_QAbstractItemModel::setData(QAbstractItemModel* theWrappedObject, const QModelIndex&  index, const QVariant&  value, int  role)
-{
-return  (*theWrappedObject).setData(index, value, role);
-}
-
-QMimeData*  PythonQtWrapper_QAbstractItemModel::mimeData(QAbstractItemModel* theWrappedObject, const QList<QModelIndex >&  indexes) const
-{
-return  (*theWrappedObject).mimeData(indexes);
-}
-
-QList<QModelIndex >  PythonQtWrapper_QAbstractItemModel::match(QAbstractItemModel* theWrappedObject, const QModelIndex&  start, int  role, const QVariant&  value, int  hits, Qt::MatchFlags  flags) const
-{
-return  (*theWrappedObject).match(start, role, value, hits, flags);
-}
-
-QModelIndex  PythonQtWrapper_QAbstractItemModel::sibling(QAbstractItemModel* theWrappedObject, int  row, int  column, const QModelIndex&  idx) const
-{
-return  (*theWrappedObject).sibling(row, column, idx);
-}
-
-bool  PythonQtWrapper_QAbstractItemModel::insertColumns(QAbstractItemModel* theWrappedObject, int  column, int  count, const QModelIndex&  parent)
-{
-return  (*theWrappedObject).insertColumns(column, count, parent);
-}
-
-void PythonQtWrapper_QAbstractItemModel::sort(QAbstractItemModel* theWrappedObject, int  column, Qt::SortOrder  order)
-{
- (*theWrappedObject).sort(column, order);
+return  ((PythonQtPublicPromoter_QAbstractItemModel*)theWrappedObject)->promoted_removeColumns(column, count, parent);
 }
 
 bool  PythonQtWrapper_QAbstractItemModel::setHeaderData(QAbstractItemModel* theWrappedObject, int  section, Qt::Orientation  orientation, const QVariant&  value, int  role)
 {
-return  (*theWrappedObject).setHeaderData(section, orientation, value, role);
+return  ((PythonQtPublicPromoter_QAbstractItemModel*)theWrappedObject)->promoted_setHeaderData(section, orientation, value, role);
+}
+
+QModelIndex  PythonQtWrapper_QAbstractItemModel::sibling(QAbstractItemModel* theWrappedObject, int  row, int  column, const QModelIndex&  idx) const
+{
+return  theWrappedObject->sibling(row, column, idx);
+}
+
+bool  PythonQtWrapper_QAbstractItemModel::removeRow(QAbstractItemModel* theWrappedObject, int  row, const QModelIndex&  parent)
+{
+return  theWrappedObject->removeRow(row, parent);
+}
+
+QModelIndex  PythonQtWrapper_QAbstractItemModel::buddy(QAbstractItemModel* theWrappedObject, const QModelIndex&  index) const
+{
+return  ((PythonQtPublicPromoter_QAbstractItemModel*)theWrappedObject)->promoted_buddy(index);
+}
+
+Qt::ItemFlags  PythonQtWrapper_QAbstractItemModel::flags(QAbstractItemModel* theWrappedObject, const QModelIndex&  index) const
+{
+return  ((PythonQtPublicPromoter_QAbstractItemModel*)theWrappedObject)->promoted_flags(index);
+}
+
+bool  PythonQtWrapper_QAbstractItemModel::hasIndex(QAbstractItemModel* theWrappedObject, int  row, int  column, const QModelIndex&  parent) const
+{
+return  theWrappedObject->hasIndex(row, column, parent);
+}
+
+bool  PythonQtWrapper_QAbstractItemModel::insertColumn(QAbstractItemModel* theWrappedObject, int  column, const QModelIndex&  parent)
+{
+return  theWrappedObject->insertColumn(column, parent);
+}
+
+QMimeData*  PythonQtWrapper_QAbstractItemModel::mimeData(QAbstractItemModel* theWrappedObject, const QList<QModelIndex >&  indexes) const
+{
+return  ((PythonQtPublicPromoter_QAbstractItemModel*)theWrappedObject)->promoted_mimeData(indexes);
+}
+
+bool  PythonQtWrapper_QAbstractItemModel::insertRow(QAbstractItemModel* theWrappedObject, int  row, const QModelIndex&  parent)
+{
+return  theWrappedObject->insertRow(row, parent);
+}
+
+bool  PythonQtWrapper_QAbstractItemModel::hasChildren(QAbstractItemModel* theWrappedObject, const QModelIndex&  parent) const
+{
+return  ((PythonQtPublicPromoter_QAbstractItemModel*)theWrappedObject)->promoted_hasChildren(parent);
+}
+
+QList<QModelIndex >  PythonQtWrapper_QAbstractItemModel::match(QAbstractItemModel* theWrappedObject, const QModelIndex&  start, int  role, const QVariant&  value, int  hits, Qt::MatchFlags  flags) const
+{
+return  ((PythonQtPublicPromoter_QAbstractItemModel*)theWrappedObject)->promoted_match(start, role, value, hits, flags);
+}
+
+bool  PythonQtWrapper_QAbstractItemModel::insertColumns(QAbstractItemModel* theWrappedObject, int  column, int  count, const QModelIndex&  parent)
+{
+return  ((PythonQtPublicPromoter_QAbstractItemModel*)theWrappedObject)->promoted_insertColumns(column, count, parent);
+}
+
+bool  PythonQtWrapper_QAbstractItemModel::setData(QAbstractItemModel* theWrappedObject, const QModelIndex&  index, const QVariant&  value, int  role)
+{
+return  ((PythonQtPublicPromoter_QAbstractItemModel*)theWrappedObject)->promoted_setData(index, value, role);
+}
+
+Qt::DropActions  PythonQtWrapper_QAbstractItemModel::supportedDropActions(QAbstractItemModel* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QAbstractItemModel*)theWrappedObject)->promoted_supportedDropActions();
+}
+
+void PythonQtWrapper_QAbstractItemModel::sort(QAbstractItemModel* theWrappedObject, int  column, Qt::SortOrder  order)
+{
+ ((PythonQtPublicPromoter_QAbstractItemModel*)theWrappedObject)->promoted_sort(column, order);
+}
+
+bool  PythonQtWrapper_QAbstractItemModel::setItemData(QAbstractItemModel* theWrappedObject, const QModelIndex&  index, const QMap<int , QVariant >&  roles)
+{
+return  ((PythonQtPublicPromoter_QAbstractItemModel*)theWrappedObject)->promoted_setItemData(index, roles);
+}
+
+QObject*  PythonQtWrapper_QAbstractItemModel::parent(QAbstractItemModel* theWrappedObject) const
+{
+return  theWrappedObject->parent();
+}
+
+Qt::DropActions  PythonQtWrapper_QAbstractItemModel::supportedDragActions(QAbstractItemModel* theWrappedObject) const
+{
+return  theWrappedObject->supportedDragActions();
+}
+
+bool  PythonQtWrapper_QAbstractItemModel::removeColumn(QAbstractItemModel* theWrappedObject, int  column, const QModelIndex&  parent)
+{
+return  theWrappedObject->removeColumn(column, parent);
+}
+
+bool  PythonQtWrapper_QAbstractItemModel::canFetchMore(QAbstractItemModel* theWrappedObject, const QModelIndex&  parent) const
+{
+return  ((PythonQtPublicPromoter_QAbstractItemModel*)theWrappedObject)->promoted_canFetchMore(parent);
+}
+
+bool  PythonQtWrapper_QAbstractItemModel::dropMimeData(QAbstractItemModel* theWrappedObject, const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent)
+{
+return  ((PythonQtPublicPromoter_QAbstractItemModel*)theWrappedObject)->promoted_dropMimeData(data, action, row, column, parent);
+}
+
+void PythonQtWrapper_QAbstractItemModel::fetchMore(QAbstractItemModel* theWrappedObject, const QModelIndex&  parent)
+{
+ ((PythonQtPublicPromoter_QAbstractItemModel*)theWrappedObject)->promoted_fetchMore(parent);
+}
+
+QSize  PythonQtWrapper_QAbstractItemModel::span(QAbstractItemModel* theWrappedObject, const QModelIndex&  index) const
+{
+return  ((PythonQtPublicPromoter_QAbstractItemModel*)theWrappedObject)->promoted_span(index);
+}
+
+bool  PythonQtWrapper_QAbstractItemModel::insertRows(QAbstractItemModel* theWrappedObject, int  row, int  count, const QModelIndex&  parent)
+{
+return  ((PythonQtPublicPromoter_QAbstractItemModel*)theWrappedObject)->promoted_insertRows(row, count, parent);
+}
+
+QVariant  PythonQtWrapper_QAbstractItemModel::headerData(QAbstractItemModel* theWrappedObject, int  section, Qt::Orientation  orientation, int  role) const
+{
+return  ((PythonQtPublicPromoter_QAbstractItemModel*)theWrappedObject)->promoted_headerData(section, orientation, role);
+}
+
+QStringList  PythonQtWrapper_QAbstractItemModel::mimeTypes(QAbstractItemModel* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QAbstractItemModel*)theWrappedObject)->promoted_mimeTypes();
+}
+
+QMap<int , QVariant >  PythonQtWrapper_QAbstractItemModel::itemData(QAbstractItemModel* theWrappedObject, const QModelIndex&  index) const
+{
+return  ((PythonQtPublicPromoter_QAbstractItemModel*)theWrappedObject)->promoted_itemData(index);
+}
+
+bool  PythonQtWrapper_QAbstractItemModel::removeRows(QAbstractItemModel* theWrappedObject, int  row, int  count, const QModelIndex&  parent)
+{
+return  ((PythonQtPublicPromoter_QAbstractItemModel*)theWrappedObject)->promoted_removeRows(row, count, parent);
+}
+
+void PythonQtWrapper_QAbstractItemModel::setSupportedDragActions(QAbstractItemModel* theWrappedObject, Qt::DropActions  arg__1)
+{
+ theWrappedObject->setSupportedDragActions(arg__1);
 }
 

@@ -44,6 +44,16 @@ virtual void widgetDestroyed(QWidget*  w);
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QInputContext : public QInputContext
+{ public:
+inline void promoted_widgetDestroyed(QWidget*  w) { QInputContext::widgetDestroyed(w); }
+inline bool  promoted_filterEvent(const QEvent*  event) { return QInputContext::filterEvent(event); }
+inline QFont  promoted_font() const { return QInputContext::font(); }
+inline void promoted_mouseHandler(int  x, QMouseEvent*  event) { QInputContext::mouseHandler(x, event); }
+inline QList<QAction* >  promoted_actions() { return QInputContext::actions(); }
+inline void promoted_update() { QInputContext::update(); }
+};
+
 class PythonQtWrapper_QInputContext : public QObject
 { Q_OBJECT
 public:

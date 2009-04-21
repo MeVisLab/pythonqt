@@ -1610,368 +1610,368 @@ QTreeView* PythonQtWrapper_QTreeView::new_QTreeView(QWidget*  parent)
 { 
 return new PythonQtShell_QTreeView(parent); }
 
-void PythonQtWrapper_QTreeView::setRootIndex(QTreeView* theWrappedObject, const QModelIndex&  index)
-{
- (*theWrappedObject).setRootIndex(index);
-}
-
-void PythonQtWrapper_QTreeView::paintEvent(QTreeView* theWrappedObject, QPaintEvent*  event)
-{
- (*((PythonQtPublicPromoter_QTreeView*)theWrappedObject)).paintEvent(event);
-}
-
-int  PythonQtWrapper_QTreeView::sizeHintForColumn(QTreeView* theWrappedObject, int  column) const
-{
-return  (*((PythonQtPublicPromoter_QTreeView*)theWrappedObject)).sizeHintForColumn(column);
-}
-
-void PythonQtWrapper_QTreeView::setColumnHidden(QTreeView* theWrappedObject, int  column, bool  hide)
-{
- (*theWrappedObject).setColumnHidden(column, hide);
-}
-
-int  PythonQtWrapper_QTreeView::columnViewportPosition(QTreeView* theWrappedObject, int  column) const
-{
-return  (*theWrappedObject).columnViewportPosition(column);
-}
-
-void PythonQtWrapper_QTreeView::mousePressEvent(QTreeView* theWrappedObject, QMouseEvent*  event)
-{
- (*((PythonQtPublicPromoter_QTreeView*)theWrappedObject)).mousePressEvent(event);
-}
-
-bool  PythonQtWrapper_QTreeView::uniformRowHeights(QTreeView* theWrappedObject) const
-{
-return  (*theWrappedObject).uniformRowHeights();
-}
-
-void PythonQtWrapper_QTreeView::selectionChanged(QTreeView* theWrappedObject, const QItemSelection&  selected, const QItemSelection&  deselected)
-{
- (*((PythonQtPublicPromoter_QTreeView*)theWrappedObject)).selectionChanged(selected, deselected);
-}
-
-void PythonQtWrapper_QTreeView::setAutoExpandDelay(QTreeView* theWrappedObject, int  delay)
-{
- (*theWrappedObject).setAutoExpandDelay(delay);
-}
-
-void PythonQtWrapper_QTreeView::setAllColumnsShowFocus(QTreeView* theWrappedObject, bool  enable)
-{
- (*theWrappedObject).setAllColumnsShowFocus(enable);
-}
-
-bool  PythonQtWrapper_QTreeView::isHeaderHidden(QTreeView* theWrappedObject) const
-{
-return  (*theWrappedObject).isHeaderHidden();
-}
-
-void PythonQtWrapper_QTreeView::mouseReleaseEvent(QTreeView* theWrappedObject, QMouseEvent*  event)
-{
- (*((PythonQtPublicPromoter_QTreeView*)theWrappedObject)).mouseReleaseEvent(event);
-}
-
-QModelIndex  PythonQtWrapper_QTreeView::indexBelow(QTreeView* theWrappedObject, const QModelIndex&  index) const
-{
-return  (*theWrappedObject).indexBelow(index);
-}
-
-void PythonQtWrapper_QTreeView::setHeader(QTreeView* theWrappedObject, QHeaderView*  header)
-{
- (*theWrappedObject).setHeader(header);
-}
-
-void PythonQtWrapper_QTreeView::setHeaderHidden(QTreeView* theWrappedObject, bool  hide)
-{
- (*theWrappedObject).setHeaderHidden(hide);
-}
-
-void PythonQtWrapper_QTreeView::dragMoveEvent(QTreeView* theWrappedObject, QDragMoveEvent*  event)
-{
- (*((PythonQtPublicPromoter_QTreeView*)theWrappedObject)).dragMoveEvent(event);
-}
-
-void PythonQtWrapper_QTreeView::setModel(QTreeView* theWrappedObject, QAbstractItemModel*  model)
-{
- (*theWrappedObject).setModel(model);
-}
-
-void PythonQtWrapper_QTreeView::setExpandsOnDoubleClick(QTreeView* theWrappedObject, bool  enable)
-{
- (*theWrappedObject).setExpandsOnDoubleClick(enable);
-}
-
-void PythonQtWrapper_QTreeView::setAnimated(QTreeView* theWrappedObject, bool  enable)
-{
- (*theWrappedObject).setAnimated(enable);
-}
-
 bool  PythonQtWrapper_QTreeView::isAnimated(QTreeView* theWrappedObject) const
 {
-return  (*theWrappedObject).isAnimated();
-}
-
-void PythonQtWrapper_QTreeView::setExpanded(QTreeView* theWrappedObject, const QModelIndex&  index, bool  expand)
-{
- (*theWrappedObject).setExpanded(index, expand);
-}
-
-bool  PythonQtWrapper_QTreeView::allColumnsShowFocus(QTreeView* theWrappedObject) const
-{
-return  (*theWrappedObject).allColumnsShowFocus();
-}
-
-void PythonQtWrapper_QTreeView::setFirstColumnSpanned(QTreeView* theWrappedObject, int  row, const QModelIndex&  parent, bool  span)
-{
- (*theWrappedObject).setFirstColumnSpanned(row, parent, span);
-}
-
-void PythonQtWrapper_QTreeView::drawBranches(QTreeView* theWrappedObject, QPainter*  painter, const QRect&  rect, const QModelIndex&  index) const
-{
- (*((PythonQtPublicPromoter_QTreeView*)theWrappedObject)).drawBranches(painter, rect, index);
-}
-
-bool  PythonQtWrapper_QTreeView::isSortingEnabled(QTreeView* theWrappedObject) const
-{
-return  (*theWrappedObject).isSortingEnabled();
-}
-
-int  PythonQtWrapper_QTreeView::horizontalOffset(QTreeView* theWrappedObject) const
-{
-return  (*((PythonQtPublicPromoter_QTreeView*)theWrappedObject)).horizontalOffset();
-}
-
-bool  PythonQtWrapper_QTreeView::isExpanded(QTreeView* theWrappedObject, const QModelIndex&  index) const
-{
-return  (*theWrappedObject).isExpanded(index);
-}
-
-void PythonQtWrapper_QTreeView::setIndentation(QTreeView* theWrappedObject, int  i)
-{
- (*theWrappedObject).setIndentation(i);
-}
-
-bool  PythonQtWrapper_QTreeView::itemsExpandable(QTreeView* theWrappedObject) const
-{
-return  (*theWrappedObject).itemsExpandable();
-}
-
-void PythonQtWrapper_QTreeView::drawRow(QTreeView* theWrappedObject, QPainter*  painter, const QStyleOptionViewItem&  options, const QModelIndex&  index) const
-{
- (*((PythonQtPublicPromoter_QTreeView*)theWrappedObject)).drawRow(painter, options, index);
-}
-
-QModelIndex  PythonQtWrapper_QTreeView::indexAt(QTreeView* theWrappedObject, const QPoint&  p) const
-{
-return  (*theWrappedObject).indexAt(p);
-}
-
-bool  PythonQtWrapper_QTreeView::isIndexHidden(QTreeView* theWrappedObject, const QModelIndex&  index) const
-{
-return  (*((PythonQtPublicPromoter_QTreeView*)theWrappedObject)).isIndexHidden(index);
-}
-
-void PythonQtWrapper_QTreeView::mouseMoveEvent(QTreeView* theWrappedObject, QMouseEvent*  event)
-{
- (*((PythonQtPublicPromoter_QTreeView*)theWrappedObject)).mouseMoveEvent(event);
-}
-
-void PythonQtWrapper_QTreeView::horizontalScrollbarAction(QTreeView* theWrappedObject, int  action)
-{
- (*((PythonQtPublicPromoter_QTreeView*)theWrappedObject)).horizontalScrollbarAction(action);
-}
-
-void PythonQtWrapper_QTreeView::setUniformRowHeights(QTreeView* theWrappedObject, bool  uniform)
-{
- (*theWrappedObject).setUniformRowHeights(uniform);
-}
-
-void PythonQtWrapper_QTreeView::mouseDoubleClickEvent(QTreeView* theWrappedObject, QMouseEvent*  event)
-{
- (*((PythonQtPublicPromoter_QTreeView*)theWrappedObject)).mouseDoubleClickEvent(event);
-}
-
-int  PythonQtWrapper_QTreeView::columnAt(QTreeView* theWrappedObject, int  x) const
-{
-return  (*theWrappedObject).columnAt(x);
-}
-
-int  PythonQtWrapper_QTreeView::verticalOffset(QTreeView* theWrappedObject) const
-{
-return  (*((PythonQtPublicPromoter_QTreeView*)theWrappedObject)).verticalOffset();
-}
-
-void PythonQtWrapper_QTreeView::setSortingEnabled(QTreeView* theWrappedObject, bool  enable)
-{
- (*theWrappedObject).setSortingEnabled(enable);
+return  theWrappedObject->isAnimated();
 }
 
 QRect  PythonQtWrapper_QTreeView::visualRect(QTreeView* theWrappedObject, const QModelIndex&  index) const
 {
-return  (*theWrappedObject).visualRect(index);
+return  ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_visualRect(index);
 }
 
-void PythonQtWrapper_QTreeView::sortByColumn(QTreeView* theWrappedObject, int  column, Qt::SortOrder  order)
+int  PythonQtWrapper_QTreeView::columnViewportPosition(QTreeView* theWrappedObject, int  column) const
 {
- (*theWrappedObject).sortByColumn(column, order);
+return  theWrappedObject->columnViewportPosition(column);
 }
 
-void PythonQtWrapper_QTreeView::setSelection(QTreeView* theWrappedObject, const QRect&  rect, QItemSelectionModel::SelectionFlags  command)
+void PythonQtWrapper_QTreeView::setSortingEnabled(QTreeView* theWrappedObject, bool  enable)
 {
- (*((PythonQtPublicPromoter_QTreeView*)theWrappedObject)).setSelection(rect, command);
-}
-
-int  PythonQtWrapper_QTreeView::indentation(QTreeView* theWrappedObject) const
-{
-return  (*theWrappedObject).indentation();
-}
-
-void PythonQtWrapper_QTreeView::scrollTo(QTreeView* theWrappedObject, const QModelIndex&  index, QAbstractItemView::ScrollHint  hint)
-{
- (*theWrappedObject).scrollTo(index, hint);
-}
-
-bool  PythonQtWrapper_QTreeView::viewportEvent(QTreeView* theWrappedObject, QEvent*  event)
-{
-return  (*((PythonQtPublicPromoter_QTreeView*)theWrappedObject)).viewportEvent(event);
-}
-
-int  PythonQtWrapper_QTreeView::columnWidth(QTreeView* theWrappedObject, int  column) const
-{
-return  (*theWrappedObject).columnWidth(column);
-}
-
-void PythonQtWrapper_QTreeView::timerEvent(QTreeView* theWrappedObject, QTimerEvent*  event)
-{
- (*((PythonQtPublicPromoter_QTreeView*)theWrappedObject)).timerEvent(event);
-}
-
-void PythonQtWrapper_QTreeView::setItemsExpandable(QTreeView* theWrappedObject, bool  enable)
-{
- (*theWrappedObject).setItemsExpandable(enable);
-}
-
-void PythonQtWrapper_QTreeView::setColumnWidth(QTreeView* theWrappedObject, int  column, int  width)
-{
- (*theWrappedObject).setColumnWidth(column, width);
-}
-
-bool  PythonQtWrapper_QTreeView::rootIsDecorated(QTreeView* theWrappedObject) const
-{
-return  (*theWrappedObject).rootIsDecorated();
-}
-
-void PythonQtWrapper_QTreeView::scrollContentsBy(QTreeView* theWrappedObject, int  dx, int  dy)
-{
- (*((PythonQtPublicPromoter_QTreeView*)theWrappedObject)).scrollContentsBy(dx, dy);
-}
-
-QRegion  PythonQtWrapper_QTreeView::visualRegionForSelection(QTreeView* theWrappedObject, const QItemSelection&  selection) const
-{
-return  (*((PythonQtPublicPromoter_QTreeView*)theWrappedObject)).visualRegionForSelection(selection);
-}
-
-void PythonQtWrapper_QTreeView::currentChanged(QTreeView* theWrappedObject, const QModelIndex&  current, const QModelIndex&  previous)
-{
- (*((PythonQtPublicPromoter_QTreeView*)theWrappedObject)).currentChanged(current, previous);
-}
-
-void PythonQtWrapper_QTreeView::setRootIsDecorated(QTreeView* theWrappedObject, bool  show)
-{
- (*theWrappedObject).setRootIsDecorated(show);
-}
-
-void PythonQtWrapper_QTreeView::rowsAboutToBeRemoved(QTreeView* theWrappedObject, const QModelIndex&  parent, int  start, int  end)
-{
- (*((PythonQtPublicPromoter_QTreeView*)theWrappedObject)).rowsAboutToBeRemoved(parent, start, end);
-}
-
-void PythonQtWrapper_QTreeView::setRowHidden(QTreeView* theWrappedObject, int  row, const QModelIndex&  parent, bool  hide)
-{
- (*theWrappedObject).setRowHidden(row, parent, hide);
-}
-
-void PythonQtWrapper_QTreeView::keyboardSearch(QTreeView* theWrappedObject, const QString&  search)
-{
- (*theWrappedObject).keyboardSearch(search);
-}
-
-void PythonQtWrapper_QTreeView::keyPressEvent(QTreeView* theWrappedObject, QKeyEvent*  event)
-{
- (*((PythonQtPublicPromoter_QTreeView*)theWrappedObject)).keyPressEvent(event);
-}
-
-void PythonQtWrapper_QTreeView::setSelectionModel(QTreeView* theWrappedObject, QItemSelectionModel*  selectionModel)
-{
- (*theWrappedObject).setSelectionModel(selectionModel);
-}
-
-void PythonQtWrapper_QTreeView::setWordWrap(QTreeView* theWrappedObject, bool  on)
-{
- (*theWrappedObject).setWordWrap(on);
-}
-
-bool  PythonQtWrapper_QTreeView::isRowHidden(QTreeView* theWrappedObject, int  row, const QModelIndex&  parent) const
-{
-return  (*theWrappedObject).isRowHidden(row, parent);
-}
-
-bool  PythonQtWrapper_QTreeView::isColumnHidden(QTreeView* theWrappedObject, int  column) const
-{
-return  (*theWrappedObject).isColumnHidden(column);
-}
-
-bool  PythonQtWrapper_QTreeView::wordWrap(QTreeView* theWrappedObject) const
-{
-return  (*theWrappedObject).wordWrap();
-}
-
-void PythonQtWrapper_QTreeView::doItemsLayout(QTreeView* theWrappedObject)
-{
- (*theWrappedObject).doItemsLayout();
-}
-
-bool  PythonQtWrapper_QTreeView::expandsOnDoubleClick(QTreeView* theWrappedObject) const
-{
-return  (*theWrappedObject).expandsOnDoubleClick();
-}
-
-QModelIndex  PythonQtWrapper_QTreeView::indexAbove(QTreeView* theWrappedObject, const QModelIndex&  index) const
-{
-return  (*theWrappedObject).indexAbove(index);
-}
-
-void PythonQtWrapper_QTreeView::rowsInserted(QTreeView* theWrappedObject, const QModelIndex&  parent, int  start, int  end)
-{
- (*((PythonQtPublicPromoter_QTreeView*)theWrappedObject)).rowsInserted(parent, start, end);
-}
-
-void PythonQtWrapper_QTreeView::updateGeometries(QTreeView* theWrappedObject)
-{
- (*((PythonQtPublicPromoter_QTreeView*)theWrappedObject)).updateGeometries();
-}
-
-QHeaderView*  PythonQtWrapper_QTreeView::header(QTreeView* theWrappedObject) const
-{
-return  (*theWrappedObject).header();
+ theWrappedObject->setSortingEnabled(enable);
 }
 
 void PythonQtWrapper_QTreeView::reset(QTreeView* theWrappedObject)
 {
- (*theWrappedObject).reset();
+ ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_reset();
+}
+
+void PythonQtWrapper_QTreeView::setAnimated(QTreeView* theWrappedObject, bool  enable)
+{
+ theWrappedObject->setAnimated(enable);
+}
+
+void PythonQtWrapper_QTreeView::setItemsExpandable(QTreeView* theWrappedObject, bool  enable)
+{
+ theWrappedObject->setItemsExpandable(enable);
+}
+
+int  PythonQtWrapper_QTreeView::indentation(QTreeView* theWrappedObject) const
+{
+return  theWrappedObject->indentation();
+}
+
+void PythonQtWrapper_QTreeView::mousePressEvent(QTreeView* theWrappedObject, QMouseEvent*  event)
+{
+ ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_mousePressEvent(event);
+}
+
+bool  PythonQtWrapper_QTreeView::isColumnHidden(QTreeView* theWrappedObject, int  column) const
+{
+return  theWrappedObject->isColumnHidden(column);
 }
 
 QList<QModelIndex >  PythonQtWrapper_QTreeView::selectedIndexes(QTreeView* theWrappedObject) const
 {
-return  (*((PythonQtPublicPromoter_QTreeView*)theWrappedObject)).selectedIndexes();
+return  ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_selectedIndexes();
+}
+
+bool  PythonQtWrapper_QTreeView::isHeaderHidden(QTreeView* theWrappedObject) const
+{
+return  theWrappedObject->isHeaderHidden();
+}
+
+void PythonQtWrapper_QTreeView::paintEvent(QTreeView* theWrappedObject, QPaintEvent*  event)
+{
+ ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_paintEvent(event);
+}
+
+bool  PythonQtWrapper_QTreeView::wordWrap(QTreeView* theWrappedObject) const
+{
+return  theWrappedObject->wordWrap();
+}
+
+void PythonQtWrapper_QTreeView::setSelectionModel(QTreeView* theWrappedObject, QItemSelectionModel*  selectionModel)
+{
+ ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_setSelectionModel(selectionModel);
+}
+
+bool  PythonQtWrapper_QTreeView::isIndexHidden(QTreeView* theWrappedObject, const QModelIndex&  index) const
+{
+return  ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_isIndexHidden(index);
+}
+
+void PythonQtWrapper_QTreeView::setHeaderHidden(QTreeView* theWrappedObject, bool  hide)
+{
+ theWrappedObject->setHeaderHidden(hide);
+}
+
+void PythonQtWrapper_QTreeView::selectionChanged(QTreeView* theWrappedObject, const QItemSelection&  selected, const QItemSelection&  deselected)
+{
+ ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_selectionChanged(selected, deselected);
+}
+
+void PythonQtWrapper_QTreeView::setExpandsOnDoubleClick(QTreeView* theWrappedObject, bool  enable)
+{
+ theWrappedObject->setExpandsOnDoubleClick(enable);
+}
+
+QModelIndex  PythonQtWrapper_QTreeView::indexAt(QTreeView* theWrappedObject, const QPoint&  p) const
+{
+return  ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_indexAt(p);
+}
+
+bool  PythonQtWrapper_QTreeView::uniformRowHeights(QTreeView* theWrappedObject) const
+{
+return  theWrappedObject->uniformRowHeights();
+}
+
+bool  PythonQtWrapper_QTreeView::viewportEvent(QTreeView* theWrappedObject, QEvent*  event)
+{
+return  ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_viewportEvent(event);
+}
+
+bool  PythonQtWrapper_QTreeView::expandsOnDoubleClick(QTreeView* theWrappedObject) const
+{
+return  theWrappedObject->expandsOnDoubleClick();
+}
+
+void PythonQtWrapper_QTreeView::rowsInserted(QTreeView* theWrappedObject, const QModelIndex&  parent, int  start, int  end)
+{
+ ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_rowsInserted(parent, start, end);
+}
+
+QRegion  PythonQtWrapper_QTreeView::visualRegionForSelection(QTreeView* theWrappedObject, const QItemSelection&  selection) const
+{
+return  ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_visualRegionForSelection(selection);
+}
+
+void PythonQtWrapper_QTreeView::keyPressEvent(QTreeView* theWrappedObject, QKeyEvent*  event)
+{
+ ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_keyPressEvent(event);
+}
+
+QHeaderView*  PythonQtWrapper_QTreeView::header(QTreeView* theWrappedObject) const
+{
+return  theWrappedObject->header();
+}
+
+int  PythonQtWrapper_QTreeView::verticalOffset(QTreeView* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_verticalOffset();
 }
 
 bool  PythonQtWrapper_QTreeView::isFirstColumnSpanned(QTreeView* theWrappedObject, int  row, const QModelIndex&  parent) const
 {
-return  (*theWrappedObject).isFirstColumnSpanned(row, parent);
+return  theWrappedObject->isFirstColumnSpanned(row, parent);
+}
+
+void PythonQtWrapper_QTreeView::setModel(QTreeView* theWrappedObject, QAbstractItemModel*  model)
+{
+ ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_setModel(model);
 }
 
 int  PythonQtWrapper_QTreeView::autoExpandDelay(QTreeView* theWrappedObject) const
 {
-return  (*theWrappedObject).autoExpandDelay();
+return  theWrappedObject->autoExpandDelay();
+}
+
+bool  PythonQtWrapper_QTreeView::isExpanded(QTreeView* theWrappedObject, const QModelIndex&  index) const
+{
+return  theWrappedObject->isExpanded(index);
+}
+
+void PythonQtWrapper_QTreeView::setSelection(QTreeView* theWrappedObject, const QRect&  rect, QItemSelectionModel::SelectionFlags  command)
+{
+ ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_setSelection(rect, command);
+}
+
+void PythonQtWrapper_QTreeView::setAllColumnsShowFocus(QTreeView* theWrappedObject, bool  enable)
+{
+ theWrappedObject->setAllColumnsShowFocus(enable);
+}
+
+QModelIndex  PythonQtWrapper_QTreeView::indexAbove(QTreeView* theWrappedObject, const QModelIndex&  index) const
+{
+return  theWrappedObject->indexAbove(index);
+}
+
+void PythonQtWrapper_QTreeView::setAutoExpandDelay(QTreeView* theWrappedObject, int  delay)
+{
+ theWrappedObject->setAutoExpandDelay(delay);
+}
+
+bool  PythonQtWrapper_QTreeView::isSortingEnabled(QTreeView* theWrappedObject) const
+{
+return  theWrappedObject->isSortingEnabled();
+}
+
+void PythonQtWrapper_QTreeView::setColumnHidden(QTreeView* theWrappedObject, int  column, bool  hide)
+{
+ theWrappedObject->setColumnHidden(column, hide);
+}
+
+void PythonQtWrapper_QTreeView::setIndentation(QTreeView* theWrappedObject, int  i)
+{
+ theWrappedObject->setIndentation(i);
+}
+
+QModelIndex  PythonQtWrapper_QTreeView::indexBelow(QTreeView* theWrappedObject, const QModelIndex&  index) const
+{
+return  theWrappedObject->indexBelow(index);
+}
+
+void PythonQtWrapper_QTreeView::horizontalScrollbarAction(QTreeView* theWrappedObject, int  action)
+{
+ ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_horizontalScrollbarAction(action);
+}
+
+bool  PythonQtWrapper_QTreeView::isRowHidden(QTreeView* theWrappedObject, int  row, const QModelIndex&  parent) const
+{
+return  theWrappedObject->isRowHidden(row, parent);
+}
+
+void PythonQtWrapper_QTreeView::mouseDoubleClickEvent(QTreeView* theWrappedObject, QMouseEvent*  event)
+{
+ ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_mouseDoubleClickEvent(event);
+}
+
+void PythonQtWrapper_QTreeView::scrollContentsBy(QTreeView* theWrappedObject, int  dx, int  dy)
+{
+ ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_scrollContentsBy(dx, dy);
+}
+
+void PythonQtWrapper_QTreeView::setRootIndex(QTreeView* theWrappedObject, const QModelIndex&  index)
+{
+ ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_setRootIndex(index);
+}
+
+void PythonQtWrapper_QTreeView::drawBranches(QTreeView* theWrappedObject, QPainter*  painter, const QRect&  rect, const QModelIndex&  index) const
+{
+ ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_drawBranches(painter, rect, index);
+}
+
+bool  PythonQtWrapper_QTreeView::itemsExpandable(QTreeView* theWrappedObject) const
+{
+return  theWrappedObject->itemsExpandable();
+}
+
+void PythonQtWrapper_QTreeView::setExpanded(QTreeView* theWrappedObject, const QModelIndex&  index, bool  expand)
+{
+ theWrappedObject->setExpanded(index, expand);
+}
+
+void PythonQtWrapper_QTreeView::dragMoveEvent(QTreeView* theWrappedObject, QDragMoveEvent*  event)
+{
+ ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_dragMoveEvent(event);
+}
+
+int  PythonQtWrapper_QTreeView::columnAt(QTreeView* theWrappedObject, int  x) const
+{
+return  theWrappedObject->columnAt(x);
+}
+
+void PythonQtWrapper_QTreeView::setWordWrap(QTreeView* theWrappedObject, bool  on)
+{
+ theWrappedObject->setWordWrap(on);
+}
+
+void PythonQtWrapper_QTreeView::scrollTo(QTreeView* theWrappedObject, const QModelIndex&  index, QAbstractItemView::ScrollHint  hint)
+{
+ ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_scrollTo(index, hint);
+}
+
+void PythonQtWrapper_QTreeView::setUniformRowHeights(QTreeView* theWrappedObject, bool  uniform)
+{
+ theWrappedObject->setUniformRowHeights(uniform);
+}
+
+void PythonQtWrapper_QTreeView::mouseReleaseEvent(QTreeView* theWrappedObject, QMouseEvent*  event)
+{
+ ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_mouseReleaseEvent(event);
+}
+
+bool  PythonQtWrapper_QTreeView::rootIsDecorated(QTreeView* theWrappedObject) const
+{
+return  theWrappedObject->rootIsDecorated();
+}
+
+bool  PythonQtWrapper_QTreeView::allColumnsShowFocus(QTreeView* theWrappedObject) const
+{
+return  theWrappedObject->allColumnsShowFocus();
+}
+
+void PythonQtWrapper_QTreeView::setColumnWidth(QTreeView* theWrappedObject, int  column, int  width)
+{
+ theWrappedObject->setColumnWidth(column, width);
+}
+
+void PythonQtWrapper_QTreeView::sortByColumn(QTreeView* theWrappedObject, int  column, Qt::SortOrder  order)
+{
+ theWrappedObject->sortByColumn(column, order);
+}
+
+void PythonQtWrapper_QTreeView::rowsAboutToBeRemoved(QTreeView* theWrappedObject, const QModelIndex&  parent, int  start, int  end)
+{
+ ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_rowsAboutToBeRemoved(parent, start, end);
+}
+
+int  PythonQtWrapper_QTreeView::horizontalOffset(QTreeView* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_horizontalOffset();
+}
+
+int  PythonQtWrapper_QTreeView::sizeHintForColumn(QTreeView* theWrappedObject, int  column) const
+{
+return  ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_sizeHintForColumn(column);
+}
+
+void PythonQtWrapper_QTreeView::drawRow(QTreeView* theWrappedObject, QPainter*  painter, const QStyleOptionViewItem&  options, const QModelIndex&  index) const
+{
+ ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_drawRow(painter, options, index);
+}
+
+void PythonQtWrapper_QTreeView::setRowHidden(QTreeView* theWrappedObject, int  row, const QModelIndex&  parent, bool  hide)
+{
+ theWrappedObject->setRowHidden(row, parent, hide);
+}
+
+void PythonQtWrapper_QTreeView::doItemsLayout(QTreeView* theWrappedObject)
+{
+ ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_doItemsLayout();
+}
+
+void PythonQtWrapper_QTreeView::mouseMoveEvent(QTreeView* theWrappedObject, QMouseEvent*  event)
+{
+ ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_mouseMoveEvent(event);
+}
+
+void PythonQtWrapper_QTreeView::keyboardSearch(QTreeView* theWrappedObject, const QString&  search)
+{
+ ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_keyboardSearch(search);
+}
+
+void PythonQtWrapper_QTreeView::setFirstColumnSpanned(QTreeView* theWrappedObject, int  row, const QModelIndex&  parent, bool  span)
+{
+ theWrappedObject->setFirstColumnSpanned(row, parent, span);
+}
+
+void PythonQtWrapper_QTreeView::currentChanged(QTreeView* theWrappedObject, const QModelIndex&  current, const QModelIndex&  previous)
+{
+ ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_currentChanged(current, previous);
+}
+
+void PythonQtWrapper_QTreeView::setRootIsDecorated(QTreeView* theWrappedObject, bool  show)
+{
+ theWrappedObject->setRootIsDecorated(show);
+}
+
+int  PythonQtWrapper_QTreeView::columnWidth(QTreeView* theWrappedObject, int  column) const
+{
+return  theWrappedObject->columnWidth(column);
+}
+
+void PythonQtWrapper_QTreeView::updateGeometries(QTreeView* theWrappedObject)
+{
+ ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_updateGeometries();
+}
+
+void PythonQtWrapper_QTreeView::setHeader(QTreeView* theWrappedObject, QHeaderView*  header)
+{
+ theWrappedObject->setHeader(header);
+}
+
+void PythonQtWrapper_QTreeView::timerEvent(QTreeView* theWrappedObject, QTimerEvent*  event)
+{
+ ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_timerEvent(event);
 }
 

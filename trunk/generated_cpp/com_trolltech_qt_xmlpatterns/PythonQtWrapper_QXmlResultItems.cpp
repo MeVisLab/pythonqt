@@ -11,18 +11,18 @@ QXmlResultItems* PythonQtWrapper_QXmlResultItems::new_QXmlResultItems()
 { 
 return new PythonQtShell_QXmlResultItems(); }
 
-QXmlItem  PythonQtWrapper_QXmlResultItems::current(QXmlResultItems* theWrappedObject) const
-{
-return  (*theWrappedObject).current();
-}
-
 QXmlItem  PythonQtWrapper_QXmlResultItems::next(QXmlResultItems* theWrappedObject)
 {
-return  (*theWrappedObject).next();
+return  theWrappedObject->next();
 }
 
 bool  PythonQtWrapper_QXmlResultItems::hasError(QXmlResultItems* theWrappedObject) const
 {
-return  (*theWrappedObject).hasError();
+return  theWrappedObject->hasError();
+}
+
+QXmlItem  PythonQtWrapper_QXmlResultItems::current(QXmlResultItems* theWrappedObject) const
+{
+return  theWrappedObject->current();
 }
 

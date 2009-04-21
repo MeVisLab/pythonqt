@@ -175,48 +175,48 @@ QTextList* PythonQtWrapper_QTextList::new_QTextList(QTextDocument*  doc)
 { 
 return new PythonQtShell_QTextList(doc); }
 
-void PythonQtWrapper_QTextList::add(QTextList* theWrappedObject, const QTextBlock&  block)
-{
- (*theWrappedObject).add(block);
-}
-
-int  PythonQtWrapper_QTextList::itemNumber(QTextList* theWrappedObject, const QTextBlock&  arg__1) const
-{
-return  (*theWrappedObject).itemNumber(arg__1);
-}
-
-void PythonQtWrapper_QTextList::setFormat(QTextList* theWrappedObject, const QTextListFormat&  format)
-{
- (*theWrappedObject).setFormat(format);
-}
-
 QString  PythonQtWrapper_QTextList::itemText(QTextList* theWrappedObject, const QTextBlock&  arg__1) const
 {
-return  (*theWrappedObject).itemText(arg__1);
+return  theWrappedObject->itemText(arg__1);
 }
 
 QTextListFormat  PythonQtWrapper_QTextList::format(QTextList* theWrappedObject) const
 {
-return  (*theWrappedObject).format();
+return  theWrappedObject->format();
 }
 
 void PythonQtWrapper_QTextList::remove(QTextList* theWrappedObject, const QTextBlock&  arg__1)
 {
- (*theWrappedObject).remove(arg__1);
+ theWrappedObject->remove(arg__1);
 }
 
 int  PythonQtWrapper_QTextList::count(QTextList* theWrappedObject) const
 {
-return  (*theWrappedObject).count();
+return  theWrappedObject->count();
 }
 
 QTextBlock  PythonQtWrapper_QTextList::item(QTextList* theWrappedObject, int  i) const
 {
-return  (*theWrappedObject).item(i);
+return  theWrappedObject->item(i);
 }
 
 void PythonQtWrapper_QTextList::removeItem(QTextList* theWrappedObject, int  i)
 {
- (*theWrappedObject).removeItem(i);
+ theWrappedObject->removeItem(i);
+}
+
+void PythonQtWrapper_QTextList::add(QTextList* theWrappedObject, const QTextBlock&  block)
+{
+ theWrappedObject->add(block);
+}
+
+int  PythonQtWrapper_QTextList::itemNumber(QTextList* theWrappedObject, const QTextBlock&  arg__1) const
+{
+return  theWrappedObject->itemNumber(arg__1);
+}
+
+void PythonQtWrapper_QTextList::setFormat(QTextList* theWrappedObject, const QTextListFormat&  format)
+{
+ theWrappedObject->setFormat(format);
 }
 

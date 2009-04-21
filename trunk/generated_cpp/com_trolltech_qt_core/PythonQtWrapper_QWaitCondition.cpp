@@ -12,23 +12,23 @@ QWaitCondition* PythonQtWrapper_QWaitCondition::new_QWaitCondition()
 { 
 return new QWaitCondition(); }
 
+bool  PythonQtWrapper_QWaitCondition::wait(QWaitCondition* theWrappedObject, QReadWriteLock*  readWriteLock, unsigned long  time)
+{
+return  theWrappedObject->wait(readWriteLock, time);
+}
+
 void PythonQtWrapper_QWaitCondition::wakeAll(QWaitCondition* theWrappedObject)
 {
- (*theWrappedObject).wakeAll();
+ theWrappedObject->wakeAll();
 }
 
 void PythonQtWrapper_QWaitCondition::wakeOne(QWaitCondition* theWrappedObject)
 {
- (*theWrappedObject).wakeOne();
+ theWrappedObject->wakeOne();
 }
 
 bool  PythonQtWrapper_QWaitCondition::wait(QWaitCondition* theWrappedObject, QMutex*  mutex, unsigned long  time)
 {
-return  (*theWrappedObject).wait(mutex, time);
-}
-
-bool  PythonQtWrapper_QWaitCondition::wait(QWaitCondition* theWrappedObject, QReadWriteLock*  readWriteLock, unsigned long  time)
-{
-return  (*theWrappedObject).wait(readWriteLock, time);
+return  theWrappedObject->wait(mutex, time);
 }
 

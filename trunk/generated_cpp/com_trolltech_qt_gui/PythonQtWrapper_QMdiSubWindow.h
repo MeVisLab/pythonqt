@@ -85,26 +85,26 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QMdiSubWindow : public QMdiSubWindow
 { public:
-inline void timerEvent(QTimerEvent*  timerEvent) { QMdiSubWindow::timerEvent(timerEvent); }
-inline void mouseMoveEvent(QMouseEvent*  mouseEvent) { QMdiSubWindow::mouseMoveEvent(mouseEvent); }
-inline void contextMenuEvent(QContextMenuEvent*  contextMenuEvent) { QMdiSubWindow::contextMenuEvent(contextMenuEvent); }
-inline bool  eventFilter(QObject*  object, QEvent*  event) { return QMdiSubWindow::eventFilter(object, event); }
-inline void mouseDoubleClickEvent(QMouseEvent*  mouseEvent) { QMdiSubWindow::mouseDoubleClickEvent(mouseEvent); }
-inline void mouseReleaseEvent(QMouseEvent*  mouseEvent) { QMdiSubWindow::mouseReleaseEvent(mouseEvent); }
-inline void hideEvent(QHideEvent*  hideEvent) { QMdiSubWindow::hideEvent(hideEvent); }
-inline void leaveEvent(QEvent*  leaveEvent) { QMdiSubWindow::leaveEvent(leaveEvent); }
-inline void showEvent(QShowEvent*  showEvent) { QMdiSubWindow::showEvent(showEvent); }
-inline void focusInEvent(QFocusEvent*  focusInEvent) { QMdiSubWindow::focusInEvent(focusInEvent); }
-inline void focusOutEvent(QFocusEvent*  focusOutEvent) { QMdiSubWindow::focusOutEvent(focusOutEvent); }
-inline void moveEvent(QMoveEvent*  moveEvent) { QMdiSubWindow::moveEvent(moveEvent); }
-inline void resizeEvent(QResizeEvent*  resizeEvent) { QMdiSubWindow::resizeEvent(resizeEvent); }
-inline void childEvent(QChildEvent*  childEvent) { QMdiSubWindow::childEvent(childEvent); }
-inline void mousePressEvent(QMouseEvent*  mouseEvent) { QMdiSubWindow::mousePressEvent(mouseEvent); }
-inline bool  event(QEvent*  event) { return QMdiSubWindow::event(event); }
-inline void closeEvent(QCloseEvent*  closeEvent) { QMdiSubWindow::closeEvent(closeEvent); }
-inline void changeEvent(QEvent*  changeEvent) { QMdiSubWindow::changeEvent(changeEvent); }
-inline void keyPressEvent(QKeyEvent*  keyEvent) { QMdiSubWindow::keyPressEvent(keyEvent); }
-inline void paintEvent(QPaintEvent*  paintEvent) { QMdiSubWindow::paintEvent(paintEvent); }
+inline void promoted_showEvent(QShowEvent*  showEvent) { QMdiSubWindow::showEvent(showEvent); }
+inline void promoted_moveEvent(QMoveEvent*  moveEvent) { QMdiSubWindow::moveEvent(moveEvent); }
+inline void promoted_mouseReleaseEvent(QMouseEvent*  mouseEvent) { QMdiSubWindow::mouseReleaseEvent(mouseEvent); }
+inline void promoted_paintEvent(QPaintEvent*  paintEvent) { QMdiSubWindow::paintEvent(paintEvent); }
+inline void promoted_childEvent(QChildEvent*  childEvent) { QMdiSubWindow::childEvent(childEvent); }
+inline bool  promoted_event(QEvent*  event) { return QMdiSubWindow::event(event); }
+inline void promoted_mouseDoubleClickEvent(QMouseEvent*  mouseEvent) { QMdiSubWindow::mouseDoubleClickEvent(mouseEvent); }
+inline void promoted_closeEvent(QCloseEvent*  closeEvent) { QMdiSubWindow::closeEvent(closeEvent); }
+inline void promoted_contextMenuEvent(QContextMenuEvent*  contextMenuEvent) { QMdiSubWindow::contextMenuEvent(contextMenuEvent); }
+inline void promoted_timerEvent(QTimerEvent*  timerEvent) { QMdiSubWindow::timerEvent(timerEvent); }
+inline void promoted_keyPressEvent(QKeyEvent*  keyEvent) { QMdiSubWindow::keyPressEvent(keyEvent); }
+inline void promoted_mouseMoveEvent(QMouseEvent*  mouseEvent) { QMdiSubWindow::mouseMoveEvent(mouseEvent); }
+inline void promoted_changeEvent(QEvent*  changeEvent) { QMdiSubWindow::changeEvent(changeEvent); }
+inline void promoted_resizeEvent(QResizeEvent*  resizeEvent) { QMdiSubWindow::resizeEvent(resizeEvent); }
+inline void promoted_hideEvent(QHideEvent*  hideEvent) { QMdiSubWindow::hideEvent(hideEvent); }
+inline bool  promoted_eventFilter(QObject*  object, QEvent*  event) { return QMdiSubWindow::eventFilter(object, event); }
+inline void promoted_focusOutEvent(QFocusEvent*  focusOutEvent) { QMdiSubWindow::focusOutEvent(focusOutEvent); }
+inline void promoted_mousePressEvent(QMouseEvent*  mouseEvent) { QMdiSubWindow::mousePressEvent(mouseEvent); }
+inline void promoted_leaveEvent(QEvent*  leaveEvent) { QMdiSubWindow::leaveEvent(leaveEvent); }
+inline void promoted_focusInEvent(QFocusEvent*  focusInEvent) { QMdiSubWindow::focusInEvent(focusInEvent); }
 };
 
 class PythonQtWrapper_QMdiSubWindow : public QObject
@@ -116,42 +116,42 @@ enum SubWindowOption{
 public slots:
 QMdiSubWindow* new_QMdiSubWindow(QWidget*  parent = 0, Qt::WindowFlags  flags = 0);
 void delete_QMdiSubWindow(QMdiSubWindow* obj) { delete obj; } 
-   void timerEvent(QMdiSubWindow* theWrappedObject, QTimerEvent*  timerEvent);
-   void mouseMoveEvent(QMdiSubWindow* theWrappedObject, QMouseEvent*  mouseEvent);
-   int  keyboardSingleStep(QMdiSubWindow* theWrappedObject) const;
-   void contextMenuEvent(QMdiSubWindow* theWrappedObject, QContextMenuEvent*  contextMenuEvent);
-   QWidget*  maximizedSystemMenuIconWidget(QMdiSubWindow* theWrappedObject) const;
-   QWidget*  widget(QMdiSubWindow* theWrappedObject) const;
-   bool  testOption(QMdiSubWindow* theWrappedObject, QMdiSubWindow::SubWindowOption  arg__1) const;
+   void showEvent(QMdiSubWindow* theWrappedObject, QShowEvent*  showEvent);
+   void setOption(QMdiSubWindow* theWrappedObject, QMdiSubWindow::SubWindowOption  option, bool  on = true);
+   QMenu*  systemMenu(QMdiSubWindow* theWrappedObject) const;
    void setWidget(QMdiSubWindow* theWrappedObject, QWidget*  widget);
-   bool  eventFilter(QMdiSubWindow* theWrappedObject, QObject*  object, QEvent*  event);
+   void moveEvent(QMdiSubWindow* theWrappedObject, QMoveEvent*  moveEvent);
+   void mouseReleaseEvent(QMdiSubWindow* theWrappedObject, QMouseEvent*  mouseEvent);
+   QMdiArea*  mdiArea(QMdiSubWindow* theWrappedObject) const;
+   void paintEvent(QMdiSubWindow* theWrappedObject, QPaintEvent*  paintEvent);
+   void childEvent(QMdiSubWindow* theWrappedObject, QChildEvent*  childEvent);
+   bool  event(QMdiSubWindow* theWrappedObject, QEvent*  event);
    void mouseDoubleClickEvent(QMdiSubWindow* theWrappedObject, QMouseEvent*  mouseEvent);
    QWidget*  maximizedButtonsWidget(QMdiSubWindow* theWrappedObject) const;
-   void mouseReleaseEvent(QMdiSubWindow* theWrappedObject, QMouseEvent*  mouseEvent);
-   void hideEvent(QMdiSubWindow* theWrappedObject, QHideEvent*  hideEvent);
-   QSize  sizeHint(QMdiSubWindow* theWrappedObject) const;
-   QMdiArea*  mdiArea(QMdiSubWindow* theWrappedObject) const;
-   bool  isShaded(QMdiSubWindow* theWrappedObject) const;
-   void leaveEvent(QMdiSubWindow* theWrappedObject, QEvent*  leaveEvent);
-   QMenu*  systemMenu(QMdiSubWindow* theWrappedObject) const;
-   void showEvent(QMdiSubWindow* theWrappedObject, QShowEvent*  showEvent);
-   int  keyboardPageStep(QMdiSubWindow* theWrappedObject) const;
    void setSystemMenu(QMdiSubWindow* theWrappedObject, QMenu*  systemMenu);
-   void focusInEvent(QMdiSubWindow* theWrappedObject, QFocusEvent*  focusInEvent);
-   void setOption(QMdiSubWindow* theWrappedObject, QMdiSubWindow::SubWindowOption  option, bool  on = true);
-   void setKeyboardSingleStep(QMdiSubWindow* theWrappedObject, int  step);
-   QSize  minimumSizeHint(QMdiSubWindow* theWrappedObject) const;
-   void focusOutEvent(QMdiSubWindow* theWrappedObject, QFocusEvent*  focusOutEvent);
-   void moveEvent(QMdiSubWindow* theWrappedObject, QMoveEvent*  moveEvent);
-   void resizeEvent(QMdiSubWindow* theWrappedObject, QResizeEvent*  resizeEvent);
-   void setKeyboardPageStep(QMdiSubWindow* theWrappedObject, int  step);
-   void childEvent(QMdiSubWindow* theWrappedObject, QChildEvent*  childEvent);
-   void mousePressEvent(QMdiSubWindow* theWrappedObject, QMouseEvent*  mouseEvent);
-   bool  event(QMdiSubWindow* theWrappedObject, QEvent*  event);
    void closeEvent(QMdiSubWindow* theWrappedObject, QCloseEvent*  closeEvent);
-   void changeEvent(QMdiSubWindow* theWrappedObject, QEvent*  changeEvent);
+   int  keyboardSingleStep(QMdiSubWindow* theWrappedObject) const;
+   void contextMenuEvent(QMdiSubWindow* theWrappedObject, QContextMenuEvent*  contextMenuEvent);
+   QWidget*  widget(QMdiSubWindow* theWrappedObject) const;
+   bool  testOption(QMdiSubWindow* theWrappedObject, QMdiSubWindow::SubWindowOption  arg__1) const;
+   QWidget*  maximizedSystemMenuIconWidget(QMdiSubWindow* theWrappedObject) const;
+   void timerEvent(QMdiSubWindow* theWrappedObject, QTimerEvent*  timerEvent);
+   int  keyboardPageStep(QMdiSubWindow* theWrappedObject) const;
    void keyPressEvent(QMdiSubWindow* theWrappedObject, QKeyEvent*  keyEvent);
-   void paintEvent(QMdiSubWindow* theWrappedObject, QPaintEvent*  paintEvent);
+   void mouseMoveEvent(QMdiSubWindow* theWrappedObject, QMouseEvent*  mouseEvent);
+   QSize  minimumSizeHint(QMdiSubWindow* theWrappedObject) const;
+   void changeEvent(QMdiSubWindow* theWrappedObject, QEvent*  changeEvent);
+   void setKeyboardPageStep(QMdiSubWindow* theWrappedObject, int  step);
+   void resizeEvent(QMdiSubWindow* theWrappedObject, QResizeEvent*  resizeEvent);
+   void hideEvent(QMdiSubWindow* theWrappedObject, QHideEvent*  hideEvent);
+   bool  eventFilter(QMdiSubWindow* theWrappedObject, QObject*  object, QEvent*  event);
+   QSize  sizeHint(QMdiSubWindow* theWrappedObject) const;
+   void setKeyboardSingleStep(QMdiSubWindow* theWrappedObject, int  step);
+   bool  isShaded(QMdiSubWindow* theWrappedObject) const;
+   void focusOutEvent(QMdiSubWindow* theWrappedObject, QFocusEvent*  focusOutEvent);
+   void mousePressEvent(QMdiSubWindow* theWrappedObject, QMouseEvent*  mouseEvent);
+   void leaveEvent(QMdiSubWindow* theWrappedObject, QEvent*  leaveEvent);
+   void focusInEvent(QMdiSubWindow* theWrappedObject, QFocusEvent*  focusInEvent);
 };
 
 #endif // PYTHONQTWRAPPER_QMDISUBWINDOW_H

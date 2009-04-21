@@ -86,9 +86,9 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QFocusFrame : public QFocusFrame
 { public:
-inline void paintEvent(QPaintEvent*  arg__1) { QFocusFrame::paintEvent(arg__1); }
-inline bool  eventFilter(QObject*  arg__1, QEvent*  arg__2) { return QFocusFrame::eventFilter(arg__1, arg__2); }
-inline bool  event(QEvent*  e) { return QFocusFrame::event(e); }
+inline void promoted_paintEvent(QPaintEvent*  arg__1) { QFocusFrame::paintEvent(arg__1); }
+inline bool  promoted_event(QEvent*  e) { return QFocusFrame::event(e); }
+inline bool  promoted_eventFilter(QObject*  arg__1, QEvent*  arg__2) { return QFocusFrame::eventFilter(arg__1, arg__2); }
 };
 
 class PythonQtWrapper_QFocusFrame : public QObject
@@ -97,11 +97,11 @@ public:
 public slots:
 QFocusFrame* new_QFocusFrame(QWidget*  parent = 0);
 void delete_QFocusFrame(QFocusFrame* obj) { delete obj; } 
-   void paintEvent(QFocusFrame* theWrappedObject, QPaintEvent*  arg__1);
    void setWidget(QFocusFrame* theWrappedObject, QWidget*  widget);
+   void paintEvent(QFocusFrame* theWrappedObject, QPaintEvent*  arg__1);
    QWidget*  widget(QFocusFrame* theWrappedObject) const;
-   bool  eventFilter(QFocusFrame* theWrappedObject, QObject*  arg__1, QEvent*  arg__2);
    bool  event(QFocusFrame* theWrappedObject, QEvent*  e);
+   bool  eventFilter(QFocusFrame* theWrappedObject, QObject*  arg__1, QEvent*  arg__2);
 };
 
 #endif // PYTHONQTWRAPPER_QFOCUSFRAME_H

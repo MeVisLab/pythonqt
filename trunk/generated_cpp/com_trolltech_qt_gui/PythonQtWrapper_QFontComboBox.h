@@ -93,7 +93,7 @@ virtual void wheelEvent(QWheelEvent*  e);
 
 class PythonQtPublicPromoter_QFontComboBox : public QFontComboBox
 { public:
-inline bool  event(QEvent*  e) { return QFontComboBox::event(e); }
+inline bool  promoted_event(QEvent*  e) { return QFontComboBox::event(e); }
 };
 
 class PythonQtWrapper_QFontComboBox : public QObject

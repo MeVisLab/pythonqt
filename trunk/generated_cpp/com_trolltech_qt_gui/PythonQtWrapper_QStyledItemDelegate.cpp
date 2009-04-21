@@ -317,63 +317,63 @@ QStyledItemDelegate* PythonQtWrapper_QStyledItemDelegate::new_QStyledItemDelegat
 { 
 return new PythonQtShell_QStyledItemDelegate(parent); }
 
-QString  PythonQtWrapper_QStyledItemDelegate::displayText(QStyledItemDelegate* theWrappedObject, const QVariant&  value, const QLocale&  locale) const
+bool  PythonQtWrapper_QStyledItemDelegate::editorEvent(QStyledItemDelegate* theWrappedObject, QEvent*  event, QAbstractItemModel*  model, const QStyleOptionViewItem&  option, const QModelIndex&  index)
 {
-return  (*theWrappedObject).displayText(value, locale);
-}
-
-void PythonQtWrapper_QStyledItemDelegate::initStyleOption(QStyledItemDelegate* theWrappedObject, QStyleOptionViewItem*  option, const QModelIndex&  index) const
-{
- (*((PythonQtPublicPromoter_QStyledItemDelegate*)theWrappedObject)).initStyleOption(option, index);
-}
-
-bool  PythonQtWrapper_QStyledItemDelegate::eventFilter(QStyledItemDelegate* theWrappedObject, QObject*  object, QEvent*  event)
-{
-return  (*((PythonQtPublicPromoter_QStyledItemDelegate*)theWrappedObject)).eventFilter(object, event);
+return  ((PythonQtPublicPromoter_QStyledItemDelegate*)theWrappedObject)->promoted_editorEvent(event, model, option, index);
 }
 
 QItemEditorFactory*  PythonQtWrapper_QStyledItemDelegate::itemEditorFactory(QStyledItemDelegate* theWrappedObject) const
 {
-return  (*theWrappedObject).itemEditorFactory();
-}
-
-QWidget*  PythonQtWrapper_QStyledItemDelegate::createEditor(QStyledItemDelegate* theWrappedObject, QWidget*  parent, const QStyleOptionViewItem&  option, const QModelIndex&  index) const
-{
-return  (*theWrappedObject).createEditor(parent, option, index);
-}
-
-void PythonQtWrapper_QStyledItemDelegate::setItemEditorFactory(QStyledItemDelegate* theWrappedObject, QItemEditorFactory*  factory)
-{
- (*theWrappedObject).setItemEditorFactory(factory);
-}
-
-void PythonQtWrapper_QStyledItemDelegate::setEditorData(QStyledItemDelegate* theWrappedObject, QWidget*  editor, const QModelIndex&  index) const
-{
- (*theWrappedObject).setEditorData(editor, index);
-}
-
-QSize  PythonQtWrapper_QStyledItemDelegate::sizeHint(QStyledItemDelegate* theWrappedObject, const QStyleOptionViewItem&  option, const QModelIndex&  index) const
-{
-return  (*theWrappedObject).sizeHint(option, index);
-}
-
-bool  PythonQtWrapper_QStyledItemDelegate::editorEvent(QStyledItemDelegate* theWrappedObject, QEvent*  event, QAbstractItemModel*  model, const QStyleOptionViewItem&  option, const QModelIndex&  index)
-{
-return  (*((PythonQtPublicPromoter_QStyledItemDelegate*)theWrappedObject)).editorEvent(event, model, option, index);
+return  theWrappedObject->itemEditorFactory();
 }
 
 void PythonQtWrapper_QStyledItemDelegate::setModelData(QStyledItemDelegate* theWrappedObject, QWidget*  editor, QAbstractItemModel*  model, const QModelIndex&  index) const
 {
- (*theWrappedObject).setModelData(editor, model, index);
-}
-
-void PythonQtWrapper_QStyledItemDelegate::updateEditorGeometry(QStyledItemDelegate* theWrappedObject, QWidget*  editor, const QStyleOptionViewItem&  option, const QModelIndex&  index) const
-{
- (*theWrappedObject).updateEditorGeometry(editor, option, index);
+ ((PythonQtPublicPromoter_QStyledItemDelegate*)theWrappedObject)->promoted_setModelData(editor, model, index);
 }
 
 void PythonQtWrapper_QStyledItemDelegate::paint(QStyledItemDelegate* theWrappedObject, QPainter*  painter, const QStyleOptionViewItem&  option, const QModelIndex&  index) const
 {
- (*theWrappedObject).paint(painter, option, index);
+ ((PythonQtPublicPromoter_QStyledItemDelegate*)theWrappedObject)->promoted_paint(painter, option, index);
+}
+
+void PythonQtWrapper_QStyledItemDelegate::initStyleOption(QStyledItemDelegate* theWrappedObject, QStyleOptionViewItem*  option, const QModelIndex&  index) const
+{
+ ((PythonQtPublicPromoter_QStyledItemDelegate*)theWrappedObject)->promoted_initStyleOption(option, index);
+}
+
+bool  PythonQtWrapper_QStyledItemDelegate::eventFilter(QStyledItemDelegate* theWrappedObject, QObject*  object, QEvent*  event)
+{
+return  ((PythonQtPublicPromoter_QStyledItemDelegate*)theWrappedObject)->promoted_eventFilter(object, event);
+}
+
+QWidget*  PythonQtWrapper_QStyledItemDelegate::createEditor(QStyledItemDelegate* theWrappedObject, QWidget*  parent, const QStyleOptionViewItem&  option, const QModelIndex&  index) const
+{
+return  ((PythonQtPublicPromoter_QStyledItemDelegate*)theWrappedObject)->promoted_createEditor(parent, option, index);
+}
+
+QString  PythonQtWrapper_QStyledItemDelegate::displayText(QStyledItemDelegate* theWrappedObject, const QVariant&  value, const QLocale&  locale) const
+{
+return  ((PythonQtPublicPromoter_QStyledItemDelegate*)theWrappedObject)->promoted_displayText(value, locale);
+}
+
+void PythonQtWrapper_QStyledItemDelegate::setItemEditorFactory(QStyledItemDelegate* theWrappedObject, QItemEditorFactory*  factory)
+{
+ theWrappedObject->setItemEditorFactory(factory);
+}
+
+void PythonQtWrapper_QStyledItemDelegate::setEditorData(QStyledItemDelegate* theWrappedObject, QWidget*  editor, const QModelIndex&  index) const
+{
+ ((PythonQtPublicPromoter_QStyledItemDelegate*)theWrappedObject)->promoted_setEditorData(editor, index);
+}
+
+QSize  PythonQtWrapper_QStyledItemDelegate::sizeHint(QStyledItemDelegate* theWrappedObject, const QStyleOptionViewItem&  option, const QModelIndex&  index) const
+{
+return  ((PythonQtPublicPromoter_QStyledItemDelegate*)theWrappedObject)->promoted_sizeHint(option, index);
+}
+
+void PythonQtWrapper_QStyledItemDelegate::updateEditorGeometry(QStyledItemDelegate* theWrappedObject, QWidget*  editor, const QStyleOptionViewItem&  option, const QModelIndex&  index) const
+{
+ ((PythonQtPublicPromoter_QStyledItemDelegate*)theWrappedObject)->promoted_updateEditorGeometry(editor, option, index);
 }
 

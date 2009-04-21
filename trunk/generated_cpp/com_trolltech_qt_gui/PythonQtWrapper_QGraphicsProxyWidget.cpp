@@ -761,103 +761,103 @@ QGraphicsProxyWidget* PythonQtWrapper_QGraphicsProxyWidget::new_QGraphicsProxyWi
 { 
 return new PythonQtShell_QGraphicsProxyWidget(parent, wFlags); }
 
-void PythonQtWrapper_QGraphicsProxyWidget::focusOutEvent(QGraphicsProxyWidget* theWrappedObject, QFocusEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsProxyWidget*)theWrappedObject)).focusOutEvent(event);
-}
-
-QWidget*  PythonQtWrapper_QGraphicsProxyWidget::widget(QGraphicsProxyWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).widget();
-}
-
-void PythonQtWrapper_QGraphicsProxyWidget::showEvent(QGraphicsProxyWidget* theWrappedObject, QShowEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsProxyWidget*)theWrappedObject)).showEvent(event);
-}
-
-void PythonQtWrapper_QGraphicsProxyWidget::hoverLeaveEvent(QGraphicsProxyWidget* theWrappedObject, QGraphicsSceneHoverEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsProxyWidget*)theWrappedObject)).hoverLeaveEvent(event);
-}
-
-bool  PythonQtWrapper_QGraphicsProxyWidget::event(QGraphicsProxyWidget* theWrappedObject, QEvent*  event)
-{
-return  (*((PythonQtPublicPromoter_QGraphicsProxyWidget*)theWrappedObject)).event(event);
-}
-
-void PythonQtWrapper_QGraphicsProxyWidget::hoverMoveEvent(QGraphicsProxyWidget* theWrappedObject, QGraphicsSceneHoverEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsProxyWidget*)theWrappedObject)).hoverMoveEvent(event);
-}
-
-void PythonQtWrapper_QGraphicsProxyWidget::setGeometry(QGraphicsProxyWidget* theWrappedObject, const QRectF&  rect)
-{
- (*theWrappedObject).setGeometry(rect);
-}
-
-QSizeF  PythonQtWrapper_QGraphicsProxyWidget::sizeHint(QGraphicsProxyWidget* theWrappedObject, Qt::SizeHint  which, const QSizeF&  constraint) const
-{
-return  (*((PythonQtPublicPromoter_QGraphicsProxyWidget*)theWrappedObject)).sizeHint(which, constraint);
-}
-
-void PythonQtWrapper_QGraphicsProxyWidget::focusInEvent(QGraphicsProxyWidget* theWrappedObject, QFocusEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsProxyWidget*)theWrappedObject)).focusInEvent(event);
-}
-
-void PythonQtWrapper_QGraphicsProxyWidget::grabMouseEvent(QGraphicsProxyWidget* theWrappedObject, QEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsProxyWidget*)theWrappedObject)).grabMouseEvent(event);
-}
-
 void PythonQtWrapper_QGraphicsProxyWidget::resizeEvent(QGraphicsProxyWidget* theWrappedObject, QGraphicsSceneResizeEvent*  event)
 {
- (*((PythonQtPublicPromoter_QGraphicsProxyWidget*)theWrappedObject)).resizeEvent(event);
-}
-
-bool  PythonQtWrapper_QGraphicsProxyWidget::focusNextPrevChild(QGraphicsProxyWidget* theWrappedObject, bool  next)
-{
-return  (*((PythonQtPublicPromoter_QGraphicsProxyWidget*)theWrappedObject)).focusNextPrevChild(next);
-}
-
-void PythonQtWrapper_QGraphicsProxyWidget::paint(QGraphicsProxyWidget* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget)
-{
- (*theWrappedObject).paint(painter, option, widget);
-}
-
-int  PythonQtWrapper_QGraphicsProxyWidget::type(QGraphicsProxyWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).type();
-}
-
-void PythonQtWrapper_QGraphicsProxyWidget::setWidget(QGraphicsProxyWidget* theWrappedObject, QWidget*  widget)
-{
- (*theWrappedObject).setWidget(widget);
-}
-
-void PythonQtWrapper_QGraphicsProxyWidget::ungrabMouseEvent(QGraphicsProxyWidget* theWrappedObject, QEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsProxyWidget*)theWrappedObject)).ungrabMouseEvent(event);
-}
-
-QVariant  PythonQtWrapper_QGraphicsProxyWidget::itemChange(QGraphicsProxyWidget* theWrappedObject, QGraphicsItem::GraphicsItemChange  change, const QVariant&  value)
-{
-return  (*((PythonQtPublicPromoter_QGraphicsProxyWidget*)theWrappedObject)).itemChange(change, value);
-}
-
-void PythonQtWrapper_QGraphicsProxyWidget::hideEvent(QGraphicsProxyWidget* theWrappedObject, QHideEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsProxyWidget*)theWrappedObject)).hideEvent(event);
-}
-
-QRectF  PythonQtWrapper_QGraphicsProxyWidget::subWidgetRect(QGraphicsProxyWidget* theWrappedObject, const QWidget*  widget) const
-{
-return  (*theWrappedObject).subWidgetRect(widget);
+ ((PythonQtPublicPromoter_QGraphicsProxyWidget*)theWrappedObject)->promoted_resizeEvent(event);
 }
 
 bool  PythonQtWrapper_QGraphicsProxyWidget::eventFilter(QGraphicsProxyWidget* theWrappedObject, QObject*  object, QEvent*  event)
 {
-return  (*((PythonQtPublicPromoter_QGraphicsProxyWidget*)theWrappedObject)).eventFilter(object, event);
+return  ((PythonQtPublicPromoter_QGraphicsProxyWidget*)theWrappedObject)->promoted_eventFilter(object, event);
+}
+
+bool  PythonQtWrapper_QGraphicsProxyWidget::event(QGraphicsProxyWidget* theWrappedObject, QEvent*  event)
+{
+return  ((PythonQtPublicPromoter_QGraphicsProxyWidget*)theWrappedObject)->promoted_event(event);
+}
+
+void PythonQtWrapper_QGraphicsProxyWidget::grabMouseEvent(QGraphicsProxyWidget* theWrappedObject, QEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsProxyWidget*)theWrappedObject)->promoted_grabMouseEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsProxyWidget::focusOutEvent(QGraphicsProxyWidget* theWrappedObject, QFocusEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsProxyWidget*)theWrappedObject)->promoted_focusOutEvent(event);
+}
+
+QVariant  PythonQtWrapper_QGraphicsProxyWidget::itemChange(QGraphicsProxyWidget* theWrappedObject, QGraphicsItem::GraphicsItemChange  change, const QVariant&  value)
+{
+return  ((PythonQtPublicPromoter_QGraphicsProxyWidget*)theWrappedObject)->promoted_itemChange(change, value);
+}
+
+QWidget*  PythonQtWrapper_QGraphicsProxyWidget::widget(QGraphicsProxyWidget* theWrappedObject) const
+{
+return  theWrappedObject->widget();
+}
+
+void PythonQtWrapper_QGraphicsProxyWidget::showEvent(QGraphicsProxyWidget* theWrappedObject, QShowEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsProxyWidget*)theWrappedObject)->promoted_showEvent(event);
+}
+
+int  PythonQtWrapper_QGraphicsProxyWidget::type(QGraphicsProxyWidget* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QGraphicsProxyWidget*)theWrappedObject)->promoted_type();
+}
+
+void PythonQtWrapper_QGraphicsProxyWidget::setGeometry(QGraphicsProxyWidget* theWrappedObject, const QRectF&  rect)
+{
+ ((PythonQtPublicPromoter_QGraphicsProxyWidget*)theWrappedObject)->promoted_setGeometry(rect);
+}
+
+void PythonQtWrapper_QGraphicsProxyWidget::focusInEvent(QGraphicsProxyWidget* theWrappedObject, QFocusEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsProxyWidget*)theWrappedObject)->promoted_focusInEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsProxyWidget::ungrabMouseEvent(QGraphicsProxyWidget* theWrappedObject, QEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsProxyWidget*)theWrappedObject)->promoted_ungrabMouseEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsProxyWidget::hoverMoveEvent(QGraphicsProxyWidget* theWrappedObject, QGraphicsSceneHoverEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsProxyWidget*)theWrappedObject)->promoted_hoverMoveEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsProxyWidget::hideEvent(QGraphicsProxyWidget* theWrappedObject, QHideEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsProxyWidget*)theWrappedObject)->promoted_hideEvent(event);
+}
+
+QSizeF  PythonQtWrapper_QGraphicsProxyWidget::sizeHint(QGraphicsProxyWidget* theWrappedObject, Qt::SizeHint  which, const QSizeF&  constraint) const
+{
+return  ((PythonQtPublicPromoter_QGraphicsProxyWidget*)theWrappedObject)->promoted_sizeHint(which, constraint);
+}
+
+void PythonQtWrapper_QGraphicsProxyWidget::setWidget(QGraphicsProxyWidget* theWrappedObject, QWidget*  widget)
+{
+ theWrappedObject->setWidget(widget);
+}
+
+bool  PythonQtWrapper_QGraphicsProxyWidget::focusNextPrevChild(QGraphicsProxyWidget* theWrappedObject, bool  next)
+{
+return  ((PythonQtPublicPromoter_QGraphicsProxyWidget*)theWrappedObject)->promoted_focusNextPrevChild(next);
+}
+
+void PythonQtWrapper_QGraphicsProxyWidget::hoverLeaveEvent(QGraphicsProxyWidget* theWrappedObject, QGraphicsSceneHoverEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsProxyWidget*)theWrappedObject)->promoted_hoverLeaveEvent(event);
+}
+
+QRectF  PythonQtWrapper_QGraphicsProxyWidget::subWidgetRect(QGraphicsProxyWidget* theWrappedObject, const QWidget*  widget) const
+{
+return  theWrappedObject->subWidgetRect(widget);
+}
+
+void PythonQtWrapper_QGraphicsProxyWidget::paint(QGraphicsProxyWidget* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget)
+{
+ ((PythonQtPublicPromoter_QGraphicsProxyWidget*)theWrappedObject)->promoted_paint(painter, option, widget);
 }
 

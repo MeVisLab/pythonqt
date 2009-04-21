@@ -123,33 +123,33 @@ QFileSystemWatcher* PythonQtWrapper_QFileSystemWatcher::new_QFileSystemWatcher(c
 { 
 return new PythonQtShell_QFileSystemWatcher(paths, parent); }
 
-void PythonQtWrapper_QFileSystemWatcher::removePaths(QFileSystemWatcher* theWrappedObject, const QStringList&  files)
-{
- (*theWrappedObject).removePaths(files);
-}
-
 void PythonQtWrapper_QFileSystemWatcher::addPaths(QFileSystemWatcher* theWrappedObject, const QStringList&  files)
 {
- (*theWrappedObject).addPaths(files);
+ theWrappedObject->addPaths(files);
 }
 
 QStringList  PythonQtWrapper_QFileSystemWatcher::directories(QFileSystemWatcher* theWrappedObject) const
 {
-return  (*theWrappedObject).directories();
+return  theWrappedObject->directories();
 }
 
 void PythonQtWrapper_QFileSystemWatcher::removePath(QFileSystemWatcher* theWrappedObject, const QString&  file)
 {
- (*theWrappedObject).removePath(file);
+ theWrappedObject->removePath(file);
 }
 
-void PythonQtWrapper_QFileSystemWatcher::addPath(QFileSystemWatcher* theWrappedObject, const QString&  file)
+void PythonQtWrapper_QFileSystemWatcher::removePaths(QFileSystemWatcher* theWrappedObject, const QStringList&  files)
 {
- (*theWrappedObject).addPath(file);
+ theWrappedObject->removePaths(files);
 }
 
 QStringList  PythonQtWrapper_QFileSystemWatcher::files(QFileSystemWatcher* theWrappedObject) const
 {
-return  (*theWrappedObject).files();
+return  theWrappedObject->files();
+}
+
+void PythonQtWrapper_QFileSystemWatcher::addPath(QFileSystemWatcher* theWrappedObject, const QString&  file)
+{
+ theWrappedObject->addPath(file);
 }
 

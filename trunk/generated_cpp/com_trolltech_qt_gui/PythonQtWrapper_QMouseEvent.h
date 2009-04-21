@@ -27,6 +27,9 @@ public slots:
 QMouseEvent* new_QMouseEvent(QEvent::Type  type, const QPoint&  pos, Qt::MouseButton  button, Qt::MouseButtons  buttons, Qt::KeyboardModifiers  modifiers);
 QMouseEvent* new_QMouseEvent(QEvent::Type  type, const QPoint&  pos, const QPoint&  globalPos, Qt::MouseButton  button, Qt::MouseButtons  buttons, Qt::KeyboardModifiers  modifiers);
 void delete_QMouseEvent(QMouseEvent* obj) { delete obj; } 
+   QPointF  posF(QMouseEvent* theWrappedObject) const;
+   int  x(QMouseEvent* theWrappedObject) const;
+   bool  hasExtendedInfo(QMouseEvent* theWrappedObject) const;
    const QPoint&  globalPos(QMouseEvent* theWrappedObject) const;
    int  y(QMouseEvent* theWrappedObject) const;
    Qt::MouseButton  button(QMouseEvent* theWrappedObject) const;
@@ -35,9 +38,6 @@ void delete_QMouseEvent(QMouseEvent* obj) { delete obj; }
    Qt::MouseButtons  buttons(QMouseEvent* theWrappedObject) const;
    QMouseEvent*  static_QMouseEvent_createExtendedMouseEvent(QEvent::Type  type, const QPointF&  pos, const QPoint&  globalPos, Qt::MouseButton  button, Qt::MouseButtons  buttons, Qt::KeyboardModifiers  modifiers);
    const QPoint&  pos(QMouseEvent* theWrappedObject) const;
-   QPointF  posF(QMouseEvent* theWrappedObject) const;
-   int  x(QMouseEvent* theWrappedObject) const;
-   bool  hasExtendedInfo(QMouseEvent* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QMOUSEEVENT_H

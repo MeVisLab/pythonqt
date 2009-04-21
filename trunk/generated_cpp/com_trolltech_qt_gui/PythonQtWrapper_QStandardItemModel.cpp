@@ -808,248 +808,248 @@ QStandardItemModel* PythonQtWrapper_QStandardItemModel::new_QStandardItemModel(i
 { 
 return new PythonQtShell_QStandardItemModel(rows, columns, parent); }
 
-QStandardItem*  PythonQtWrapper_QStandardItemModel::horizontalHeaderItem(QStandardItemModel* theWrappedObject, int  column) const
-{
-return  (*theWrappedObject).horizontalHeaderItem(column);
-}
-
-void PythonQtWrapper_QStandardItemModel::setItem(QStandardItemModel* theWrappedObject, int  row, QStandardItem*  item)
-{
- (*theWrappedObject).setItem(row, item);
-}
-
-QModelIndex  PythonQtWrapper_QStandardItemModel::indexFromItem(QStandardItemModel* theWrappedObject, const QStandardItem*  item) const
-{
-return  (*theWrappedObject).indexFromItem(item);
-}
-
-void PythonQtWrapper_QStandardItemModel::setItemPrototype(QStandardItemModel* theWrappedObject, const QStandardItem*  item)
-{
- (*theWrappedObject).setItemPrototype(item);
-}
-
-void PythonQtWrapper_QStandardItemModel::setSortRole(QStandardItemModel* theWrappedObject, int  role)
-{
- (*theWrappedObject).setSortRole(role);
-}
-
-QVariant  PythonQtWrapper_QStandardItemModel::headerData(QStandardItemModel* theWrappedObject, int  section, Qt::Orientation  orientation, int  role) const
-{
-return  (*theWrappedObject).headerData(section, orientation, role);
-}
-
-void PythonQtWrapper_QStandardItemModel::insertColumn(QStandardItemModel* theWrappedObject, int  column, const QList<QStandardItem* >&  items)
-{
- (*theWrappedObject).insertColumn(column, items);
-}
-
-QStandardItem*  PythonQtWrapper_QStandardItemModel::invisibleRootItem(QStandardItemModel* theWrappedObject) const
-{
-return  (*theWrappedObject).invisibleRootItem();
-}
-
-bool  PythonQtWrapper_QStandardItemModel::removeRows(QStandardItemModel* theWrappedObject, int  row, int  count, const QModelIndex&  parent)
-{
-return  (*theWrappedObject).removeRows(row, count, parent);
-}
-
-QStandardItem*  PythonQtWrapper_QStandardItemModel::takeVerticalHeaderItem(QStandardItemModel* theWrappedObject, int  row)
-{
-return  (*theWrappedObject).takeVerticalHeaderItem(row);
-}
-
-QModelIndex  PythonQtWrapper_QStandardItemModel::parent(QStandardItemModel* theWrappedObject, const QModelIndex&  child) const
-{
-return  (*theWrappedObject).parent(child);
-}
-
-bool  PythonQtWrapper_QStandardItemModel::insertRows(QStandardItemModel* theWrappedObject, int  row, int  count, const QModelIndex&  parent)
-{
-return  (*theWrappedObject).insertRows(row, count, parent);
-}
-
-QStandardItem*  PythonQtWrapper_QStandardItemModel::itemFromIndex(QStandardItemModel* theWrappedObject, const QModelIndex&  index) const
-{
-return  (*theWrappedObject).itemFromIndex(index);
-}
-
-void PythonQtWrapper_QStandardItemModel::setHorizontalHeaderItem(QStandardItemModel* theWrappedObject, int  column, QStandardItem*  item)
-{
- (*theWrappedObject).setHorizontalHeaderItem(column, item);
-}
-
-Qt::DropActions  PythonQtWrapper_QStandardItemModel::supportedDropActions(QStandardItemModel* theWrappedObject) const
-{
-return  (*theWrappedObject).supportedDropActions();
-}
-
-bool  PythonQtWrapper_QStandardItemModel::removeColumns(QStandardItemModel* theWrappedObject, int  column, int  count, const QModelIndex&  parent)
-{
-return  (*theWrappedObject).removeColumns(column, count, parent);
-}
-
-QStandardItem*  PythonQtWrapper_QStandardItemModel::verticalHeaderItem(QStandardItemModel* theWrappedObject, int  row) const
-{
-return  (*theWrappedObject).verticalHeaderItem(row);
-}
-
-void PythonQtWrapper_QStandardItemModel::setVerticalHeaderLabels(QStandardItemModel* theWrappedObject, const QStringList&  labels)
-{
- (*theWrappedObject).setVerticalHeaderLabels(labels);
-}
-
-int  PythonQtWrapper_QStandardItemModel::sortRole(QStandardItemModel* theWrappedObject) const
-{
-return  (*theWrappedObject).sortRole();
-}
-
-QStandardItem*  PythonQtWrapper_QStandardItemModel::takeHorizontalHeaderItem(QStandardItemModel* theWrappedObject, int  column)
-{
-return  (*theWrappedObject).takeHorizontalHeaderItem(column);
-}
-
-void PythonQtWrapper_QStandardItemModel::appendRow(QStandardItemModel* theWrappedObject, QStandardItem*  item)
-{
- (*theWrappedObject).appendRow(item);
-}
-
-int  PythonQtWrapper_QStandardItemModel::columnCount(QStandardItemModel* theWrappedObject, const QModelIndex&  parent) const
-{
-return  (*theWrappedObject).columnCount(parent);
-}
-
-int  PythonQtWrapper_QStandardItemModel::rowCount(QStandardItemModel* theWrappedObject, const QModelIndex&  parent) const
-{
-return  (*theWrappedObject).rowCount(parent);
-}
-
-void PythonQtWrapper_QStandardItemModel::insertRow(QStandardItemModel* theWrappedObject, int  row, QStandardItem*  item)
-{
- (*theWrappedObject).insertRow(row, item);
-}
-
-QModelIndex  PythonQtWrapper_QStandardItemModel::index(QStandardItemModel* theWrappedObject, int  row, int  column, const QModelIndex&  parent) const
-{
-return  (*theWrappedObject).index(row, column, parent);
-}
-
-void PythonQtWrapper_QStandardItemModel::setVerticalHeaderItem(QStandardItemModel* theWrappedObject, int  row, QStandardItem*  item)
-{
- (*theWrappedObject).setVerticalHeaderItem(row, item);
-}
-
-void PythonQtWrapper_QStandardItemModel::appendRow(QStandardItemModel* theWrappedObject, const QList<QStandardItem* >&  items)
-{
- (*theWrappedObject).appendRow(items);
-}
-
-void PythonQtWrapper_QStandardItemModel::appendColumn(QStandardItemModel* theWrappedObject, const QList<QStandardItem* >&  items)
-{
- (*theWrappedObject).appendColumn(items);
-}
-
-QStandardItem*  PythonQtWrapper_QStandardItemModel::item(QStandardItemModel* theWrappedObject, int  row, int  column) const
-{
-return  (*theWrappedObject).item(row, column);
-}
-
-void PythonQtWrapper_QStandardItemModel::setColumnCount(QStandardItemModel* theWrappedObject, int  columns)
-{
- (*theWrappedObject).setColumnCount(columns);
-}
-
-void PythonQtWrapper_QStandardItemModel::setHorizontalHeaderLabels(QStandardItemModel* theWrappedObject, const QStringList&  labels)
-{
- (*theWrappedObject).setHorizontalHeaderLabels(labels);
-}
-
-QList<QStandardItem* >  PythonQtWrapper_QStandardItemModel::takeRow(QStandardItemModel* theWrappedObject, int  row)
-{
-return  (*theWrappedObject).takeRow(row);
-}
-
-bool  PythonQtWrapper_QStandardItemModel::insertColumns(QStandardItemModel* theWrappedObject, int  column, int  count, const QModelIndex&  parent)
-{
-return  (*theWrappedObject).insertColumns(column, count, parent);
-}
-
-void PythonQtWrapper_QStandardItemModel::sort(QStandardItemModel* theWrappedObject, int  column, Qt::SortOrder  order)
-{
- (*theWrappedObject).sort(column, order);
-}
-
-bool  PythonQtWrapper_QStandardItemModel::hasChildren(QStandardItemModel* theWrappedObject, const QModelIndex&  parent) const
-{
-return  (*theWrappedObject).hasChildren(parent);
-}
-
-QList<QStandardItem* >  PythonQtWrapper_QStandardItemModel::findItems(QStandardItemModel* theWrappedObject, const QString&  text, Qt::MatchFlags  flags, int  column) const
-{
-return  (*theWrappedObject).findItems(text, flags, column);
-}
-
-Qt::ItemFlags  PythonQtWrapper_QStandardItemModel::flags(QStandardItemModel* theWrappedObject, const QModelIndex&  index) const
-{
-return  (*theWrappedObject).flags(index);
-}
-
-QList<QStandardItem* >  PythonQtWrapper_QStandardItemModel::takeColumn(QStandardItemModel* theWrappedObject, int  column)
-{
-return  (*theWrappedObject).takeColumn(column);
-}
-
-const QStandardItem*  PythonQtWrapper_QStandardItemModel::itemPrototype(QStandardItemModel* theWrappedObject) const
-{
-return  (*theWrappedObject).itemPrototype();
-}
-
-QVariant  PythonQtWrapper_QStandardItemModel::data(QStandardItemModel* theWrappedObject, const QModelIndex&  index, int  role) const
-{
-return  (*theWrappedObject).data(index, role);
-}
-
-void PythonQtWrapper_QStandardItemModel::insertRow(QStandardItemModel* theWrappedObject, int  row, const QList<QStandardItem* >&  items)
-{
- (*theWrappedObject).insertRow(row, items);
-}
-
-bool  PythonQtWrapper_QStandardItemModel::setItemData(QStandardItemModel* theWrappedObject, const QModelIndex&  index, const QMap<int , QVariant >&  roles)
-{
-return  (*theWrappedObject).setItemData(index, roles);
-}
-
-void PythonQtWrapper_QStandardItemModel::setItem(QStandardItemModel* theWrappedObject, int  row, int  column, QStandardItem*  item)
-{
- (*theWrappedObject).setItem(row, column, item);
-}
-
-bool  PythonQtWrapper_QStandardItemModel::setHeaderData(QStandardItemModel* theWrappedObject, int  section, Qt::Orientation  orientation, const QVariant&  value, int  role)
-{
-return  (*theWrappedObject).setHeaderData(section, orientation, value, role);
-}
-
-void PythonQtWrapper_QStandardItemModel::clear(QStandardItemModel* theWrappedObject)
-{
- (*theWrappedObject).clear();
-}
-
 QMap<int , QVariant >  PythonQtWrapper_QStandardItemModel::itemData(QStandardItemModel* theWrappedObject, const QModelIndex&  index) const
 {
-return  (*theWrappedObject).itemData(index);
-}
-
-bool  PythonQtWrapper_QStandardItemModel::setData(QStandardItemModel* theWrappedObject, const QModelIndex&  index, const QVariant&  value, int  role)
-{
-return  (*theWrappedObject).setData(index, value, role);
+return  ((PythonQtPublicPromoter_QStandardItemModel*)theWrappedObject)->promoted_itemData(index);
 }
 
 QStandardItem*  PythonQtWrapper_QStandardItemModel::takeItem(QStandardItemModel* theWrappedObject, int  row, int  column)
 {
-return  (*theWrappedObject).takeItem(row, column);
+return  theWrappedObject->takeItem(row, column);
+}
+
+QStandardItem*  PythonQtWrapper_QStandardItemModel::item(QStandardItemModel* theWrappedObject, int  row, int  column) const
+{
+return  theWrappedObject->item(row, column);
+}
+
+Qt::DropActions  PythonQtWrapper_QStandardItemModel::supportedDropActions(QStandardItemModel* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QStandardItemModel*)theWrappedObject)->promoted_supportedDropActions();
+}
+
+bool  PythonQtWrapper_QStandardItemModel::setData(QStandardItemModel* theWrappedObject, const QModelIndex&  index, const QVariant&  value, int  role)
+{
+return  ((PythonQtPublicPromoter_QStandardItemModel*)theWrappedObject)->promoted_setData(index, value, role);
+}
+
+QModelIndex  PythonQtWrapper_QStandardItemModel::index(QStandardItemModel* theWrappedObject, int  row, int  column, const QModelIndex&  parent) const
+{
+return  ((PythonQtPublicPromoter_QStandardItemModel*)theWrappedObject)->promoted_index(row, column, parent);
+}
+
+const QStandardItem*  PythonQtWrapper_QStandardItemModel::itemPrototype(QStandardItemModel* theWrappedObject) const
+{
+return  theWrappedObject->itemPrototype();
+}
+
+void PythonQtWrapper_QStandardItemModel::setHorizontalHeaderLabels(QStandardItemModel* theWrappedObject, const QStringList&  labels)
+{
+ theWrappedObject->setHorizontalHeaderLabels(labels);
+}
+
+QList<QStandardItem* >  PythonQtWrapper_QStandardItemModel::takeRow(QStandardItemModel* theWrappedObject, int  row)
+{
+return  theWrappedObject->takeRow(row);
+}
+
+void PythonQtWrapper_QStandardItemModel::insertRow(QStandardItemModel* theWrappedObject, int  row, QStandardItem*  item)
+{
+ theWrappedObject->insertRow(row, item);
+}
+
+QStandardItem*  PythonQtWrapper_QStandardItemModel::itemFromIndex(QStandardItemModel* theWrappedObject, const QModelIndex&  index) const
+{
+return  theWrappedObject->itemFromIndex(index);
+}
+
+QStandardItem*  PythonQtWrapper_QStandardItemModel::horizontalHeaderItem(QStandardItemModel* theWrappedObject, int  column) const
+{
+return  theWrappedObject->horizontalHeaderItem(column);
+}
+
+void PythonQtWrapper_QStandardItemModel::insertRow(QStandardItemModel* theWrappedObject, int  row, const QList<QStandardItem* >&  items)
+{
+ theWrappedObject->insertRow(row, items);
+}
+
+QStandardItem*  PythonQtWrapper_QStandardItemModel::takeHorizontalHeaderItem(QStandardItemModel* theWrappedObject, int  column)
+{
+return  theWrappedObject->takeHorizontalHeaderItem(column);
+}
+
+QStandardItem*  PythonQtWrapper_QStandardItemModel::takeVerticalHeaderItem(QStandardItemModel* theWrappedObject, int  row)
+{
+return  theWrappedObject->takeVerticalHeaderItem(row);
+}
+
+Qt::ItemFlags  PythonQtWrapper_QStandardItemModel::flags(QStandardItemModel* theWrappedObject, const QModelIndex&  index) const
+{
+return  ((PythonQtPublicPromoter_QStandardItemModel*)theWrappedObject)->promoted_flags(index);
+}
+
+int  PythonQtWrapper_QStandardItemModel::sortRole(QStandardItemModel* theWrappedObject) const
+{
+return  theWrappedObject->sortRole();
 }
 
 void PythonQtWrapper_QStandardItemModel::setRowCount(QStandardItemModel* theWrappedObject, int  rows)
 {
- (*theWrappedObject).setRowCount(rows);
+ theWrappedObject->setRowCount(rows);
+}
+
+void PythonQtWrapper_QStandardItemModel::appendRow(QStandardItemModel* theWrappedObject, const QList<QStandardItem* >&  items)
+{
+ theWrappedObject->appendRow(items);
+}
+
+void PythonQtWrapper_QStandardItemModel::setItemPrototype(QStandardItemModel* theWrappedObject, const QStandardItem*  item)
+{
+ theWrappedObject->setItemPrototype(item);
+}
+
+QModelIndex  PythonQtWrapper_QStandardItemModel::indexFromItem(QStandardItemModel* theWrappedObject, const QStandardItem*  item) const
+{
+return  theWrappedObject->indexFromItem(item);
+}
+
+QStandardItem*  PythonQtWrapper_QStandardItemModel::invisibleRootItem(QStandardItemModel* theWrappedObject) const
+{
+return  theWrappedObject->invisibleRootItem();
+}
+
+bool  PythonQtWrapper_QStandardItemModel::removeRows(QStandardItemModel* theWrappedObject, int  row, int  count, const QModelIndex&  parent)
+{
+return  ((PythonQtPublicPromoter_QStandardItemModel*)theWrappedObject)->promoted_removeRows(row, count, parent);
+}
+
+void PythonQtWrapper_QStandardItemModel::setSortRole(QStandardItemModel* theWrappedObject, int  role)
+{
+ theWrappedObject->setSortRole(role);
+}
+
+QList<QStandardItem* >  PythonQtWrapper_QStandardItemModel::takeColumn(QStandardItemModel* theWrappedObject, int  column)
+{
+return  theWrappedObject->takeColumn(column);
+}
+
+void PythonQtWrapper_QStandardItemModel::appendColumn(QStandardItemModel* theWrappedObject, const QList<QStandardItem* >&  items)
+{
+ theWrappedObject->appendColumn(items);
+}
+
+void PythonQtWrapper_QStandardItemModel::clear(QStandardItemModel* theWrappedObject)
+{
+ theWrappedObject->clear();
+}
+
+QStandardItem*  PythonQtWrapper_QStandardItemModel::verticalHeaderItem(QStandardItemModel* theWrappedObject, int  row) const
+{
+return  theWrappedObject->verticalHeaderItem(row);
+}
+
+void PythonQtWrapper_QStandardItemModel::appendRow(QStandardItemModel* theWrappedObject, QStandardItem*  item)
+{
+ theWrappedObject->appendRow(item);
+}
+
+void PythonQtWrapper_QStandardItemModel::setItem(QStandardItemModel* theWrappedObject, int  row, int  column, QStandardItem*  item)
+{
+ theWrappedObject->setItem(row, column, item);
+}
+
+void PythonQtWrapper_QStandardItemModel::setItem(QStandardItemModel* theWrappedObject, int  row, QStandardItem*  item)
+{
+ theWrappedObject->setItem(row, item);
+}
+
+bool  PythonQtWrapper_QStandardItemModel::insertColumns(QStandardItemModel* theWrappedObject, int  column, int  count, const QModelIndex&  parent)
+{
+return  ((PythonQtPublicPromoter_QStandardItemModel*)theWrappedObject)->promoted_insertColumns(column, count, parent);
+}
+
+bool  PythonQtWrapper_QStandardItemModel::setHeaderData(QStandardItemModel* theWrappedObject, int  section, Qt::Orientation  orientation, const QVariant&  value, int  role)
+{
+return  ((PythonQtPublicPromoter_QStandardItemModel*)theWrappedObject)->promoted_setHeaderData(section, orientation, value, role);
+}
+
+QVariant  PythonQtWrapper_QStandardItemModel::data(QStandardItemModel* theWrappedObject, const QModelIndex&  index, int  role) const
+{
+return  ((PythonQtPublicPromoter_QStandardItemModel*)theWrappedObject)->promoted_data(index, role);
+}
+
+QModelIndex  PythonQtWrapper_QStandardItemModel::parent(QStandardItemModel* theWrappedObject, const QModelIndex&  child) const
+{
+return  ((PythonQtPublicPromoter_QStandardItemModel*)theWrappedObject)->promoted_parent(child);
+}
+
+void PythonQtWrapper_QStandardItemModel::setColumnCount(QStandardItemModel* theWrappedObject, int  columns)
+{
+ theWrappedObject->setColumnCount(columns);
+}
+
+void PythonQtWrapper_QStandardItemModel::sort(QStandardItemModel* theWrappedObject, int  column, Qt::SortOrder  order)
+{
+ ((PythonQtPublicPromoter_QStandardItemModel*)theWrappedObject)->promoted_sort(column, order);
+}
+
+void PythonQtWrapper_QStandardItemModel::setVerticalHeaderItem(QStandardItemModel* theWrappedObject, int  row, QStandardItem*  item)
+{
+ theWrappedObject->setVerticalHeaderItem(row, item);
+}
+
+QList<QStandardItem* >  PythonQtWrapper_QStandardItemModel::findItems(QStandardItemModel* theWrappedObject, const QString&  text, Qt::MatchFlags  flags, int  column) const
+{
+return  theWrappedObject->findItems(text, flags, column);
+}
+
+bool  PythonQtWrapper_QStandardItemModel::hasChildren(QStandardItemModel* theWrappedObject, const QModelIndex&  parent) const
+{
+return  ((PythonQtPublicPromoter_QStandardItemModel*)theWrappedObject)->promoted_hasChildren(parent);
+}
+
+void PythonQtWrapper_QStandardItemModel::setHorizontalHeaderItem(QStandardItemModel* theWrappedObject, int  column, QStandardItem*  item)
+{
+ theWrappedObject->setHorizontalHeaderItem(column, item);
+}
+
+int  PythonQtWrapper_QStandardItemModel::columnCount(QStandardItemModel* theWrappedObject, const QModelIndex&  parent) const
+{
+return  ((PythonQtPublicPromoter_QStandardItemModel*)theWrappedObject)->promoted_columnCount(parent);
+}
+
+void PythonQtWrapper_QStandardItemModel::insertColumn(QStandardItemModel* theWrappedObject, int  column, const QList<QStandardItem* >&  items)
+{
+ theWrappedObject->insertColumn(column, items);
+}
+
+QVariant  PythonQtWrapper_QStandardItemModel::headerData(QStandardItemModel* theWrappedObject, int  section, Qt::Orientation  orientation, int  role) const
+{
+return  ((PythonQtPublicPromoter_QStandardItemModel*)theWrappedObject)->promoted_headerData(section, orientation, role);
+}
+
+bool  PythonQtWrapper_QStandardItemModel::removeColumns(QStandardItemModel* theWrappedObject, int  column, int  count, const QModelIndex&  parent)
+{
+return  ((PythonQtPublicPromoter_QStandardItemModel*)theWrappedObject)->promoted_removeColumns(column, count, parent);
+}
+
+void PythonQtWrapper_QStandardItemModel::setVerticalHeaderLabels(QStandardItemModel* theWrappedObject, const QStringList&  labels)
+{
+ theWrappedObject->setVerticalHeaderLabels(labels);
+}
+
+bool  PythonQtWrapper_QStandardItemModel::insertRows(QStandardItemModel* theWrappedObject, int  row, int  count, const QModelIndex&  parent)
+{
+return  ((PythonQtPublicPromoter_QStandardItemModel*)theWrappedObject)->promoted_insertRows(row, count, parent);
+}
+
+int  PythonQtWrapper_QStandardItemModel::rowCount(QStandardItemModel* theWrappedObject, const QModelIndex&  parent) const
+{
+return  ((PythonQtPublicPromoter_QStandardItemModel*)theWrappedObject)->promoted_rowCount(parent);
+}
+
+bool  PythonQtWrapper_QStandardItemModel::setItemData(QStandardItemModel* theWrappedObject, const QModelIndex&  index, const QMap<int , QVariant >&  roles)
+{
+return  ((PythonQtPublicPromoter_QStandardItemModel*)theWrappedObject)->promoted_setItemData(index, roles);
 }
 

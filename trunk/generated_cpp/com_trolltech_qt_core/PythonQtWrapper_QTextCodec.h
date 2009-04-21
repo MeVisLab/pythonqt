@@ -26,6 +26,11 @@ virtual QByteArray  name() const;
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QTextCodec : public QTextCodec
+{ public:
+inline QList<QByteArray >  promoted_aliases() const { return QTextCodec::aliases(); }
+};
+
 class PythonQtWrapper_QTextCodec : public QObject
 { Q_OBJECT
 public:
@@ -33,25 +38,25 @@ Q_ENUMS(ConversionFlag )
 enum ConversionFlag{
   DefaultConversion = QTextCodec::DefaultConversion,   ConvertInvalidToNull = QTextCodec::ConvertInvalidToNull,   IgnoreHeader = QTextCodec::IgnoreHeader};
 public slots:
+   QList<QByteArray >  static_QTextCodec_availableCodecs();
+   QTextCodec*  static_QTextCodec_codecForLocale();
+   void static_QTextCodec_setCodecForCStrings(QTextCodec*  c);
+   QTextCodec*  static_QTextCodec_codecForHtml(const QByteArray&  ba);
+   QByteArray  fromUnicode(QTextCodec* theWrappedObject, const QString&  uc) const;
+   QTextCodec*  static_QTextCodec_codecForCStrings();
+   void static_QTextCodec_setCodecForTr(QTextCodec*  c);
+   bool  canEncode(QTextCodec* theWrappedObject, const QString&  arg__1) const;
+   QList<int >  static_QTextCodec_availableMibs();
+   bool  canEncode(QTextCodec* theWrappedObject, QChar  arg__1) const;
+   QTextEncoder*  makeEncoder(QTextCodec* theWrappedObject) const;
+   QString  toUnicode(QTextCodec* theWrappedObject, const QByteArray&  arg__1) const;
+   QTextCodec*  static_QTextCodec_codecForName(const QByteArray&  name);
+   QList<QByteArray >  aliases(QTextCodec* theWrappedObject) const;
+   QTextDecoder*  makeDecoder(QTextCodec* theWrappedObject) const;
+   QTextCodec*  static_QTextCodec_codecForName(const char*  name);
    void static_QTextCodec_setCodecForLocale(QTextCodec*  c);
    QTextCodec*  static_QTextCodec_codecForHtml(const QByteArray&  ba, QTextCodec*  defaultCodec);
-   bool  canEncode(QTextCodec* theWrappedObject, QChar  arg__1) const;
-   QTextCodec*  static_QTextCodec_codecForLocale();
-   QList<QByteArray >  static_QTextCodec_availableCodecs();
-   QTextCodec*  static_QTextCodec_codecForCStrings();
-   QTextCodec*  static_QTextCodec_codecForName(const QByteArray&  name);
-   QList<int >  static_QTextCodec_availableMibs();
-   void static_QTextCodec_setCodecForCStrings(QTextCodec*  c);
-   QByteArray  fromUnicode(QTextCodec* theWrappedObject, const QString&  uc) const;
-   QString  toUnicode(QTextCodec* theWrappedObject, const QByteArray&  arg__1) const;
-   QTextEncoder*  makeEncoder(QTextCodec* theWrappedObject) const;
-   QList<QByteArray >  aliases(QTextCodec* theWrappedObject) const;
-   void static_QTextCodec_setCodecForTr(QTextCodec*  c);
-   QTextCodec*  static_QTextCodec_codecForName(const char*  name);
-   QTextDecoder*  makeDecoder(QTextCodec* theWrappedObject) const;
    QTextCodec*  static_QTextCodec_codecForMib(int  mib);
-   QTextCodec*  static_QTextCodec_codecForHtml(const QByteArray&  ba);
-   bool  canEncode(QTextCodec* theWrappedObject, const QString&  arg__1) const;
 };
 
 #endif // PYTHONQTWRAPPER_QTEXTCODEC_H

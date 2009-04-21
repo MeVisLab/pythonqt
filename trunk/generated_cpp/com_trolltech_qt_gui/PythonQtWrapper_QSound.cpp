@@ -122,9 +122,14 @@ void PythonQtWrapper_QSound::static_QSound_play(const QString&  filename)
 QSound::play(filename);
 }
 
-QString  PythonQtWrapper_QSound::fileName(QSound* theWrappedObject) const
+int  PythonQtWrapper_QSound::loops(QSound* theWrappedObject) const
 {
-return  (*theWrappedObject).fileName();
+return  theWrappedObject->loops();
+}
+
+bool  PythonQtWrapper_QSound::isFinished(QSound* theWrappedObject) const
+{
+return  theWrappedObject->isFinished();
 }
 
 bool  PythonQtWrapper_QSound::static_QSound_isAvailable()
@@ -132,23 +137,18 @@ bool  PythonQtWrapper_QSound::static_QSound_isAvailable()
 return QSound::isAvailable();
 }
 
-void PythonQtWrapper_QSound::setLoops(QSound* theWrappedObject, int  arg__1)
+QString  PythonQtWrapper_QSound::fileName(QSound* theWrappedObject) const
 {
- (*theWrappedObject).setLoops(arg__1);
-}
-
-bool  PythonQtWrapper_QSound::isFinished(QSound* theWrappedObject) const
-{
-return  (*theWrappedObject).isFinished();
-}
-
-int  PythonQtWrapper_QSound::loops(QSound* theWrappedObject) const
-{
-return  (*theWrappedObject).loops();
+return  theWrappedObject->fileName();
 }
 
 int  PythonQtWrapper_QSound::loopsRemaining(QSound* theWrappedObject) const
 {
-return  (*theWrappedObject).loopsRemaining();
+return  theWrappedObject->loopsRemaining();
+}
+
+void PythonQtWrapper_QSound::setLoops(QSound* theWrappedObject, int  arg__1)
+{
+ theWrappedObject->setLoops(arg__1);
 }
 

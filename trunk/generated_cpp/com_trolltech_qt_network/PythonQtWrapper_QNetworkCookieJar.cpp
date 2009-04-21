@@ -171,11 +171,11 @@ return new PythonQtShell_QNetworkCookieJar(parent); }
 
 QList<QNetworkCookie >  PythonQtWrapper_QNetworkCookieJar::cookiesForUrl(QNetworkCookieJar* theWrappedObject, const QUrl&  url) const
 {
-return  (*theWrappedObject).cookiesForUrl(url);
+return  ((PythonQtPublicPromoter_QNetworkCookieJar*)theWrappedObject)->promoted_cookiesForUrl(url);
 }
 
 bool  PythonQtWrapper_QNetworkCookieJar::setCookiesFromUrl(QNetworkCookieJar* theWrappedObject, const QList<QNetworkCookie >&  cookieList, const QUrl&  url)
 {
-return  (*theWrappedObject).setCookiesFromUrl(cookieList, url);
+return  ((PythonQtPublicPromoter_QNetworkCookieJar*)theWrappedObject)->promoted_setCookiesFromUrl(cookieList, url);
 }
 

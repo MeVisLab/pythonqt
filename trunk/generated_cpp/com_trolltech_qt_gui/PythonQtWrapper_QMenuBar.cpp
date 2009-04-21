@@ -795,168 +795,168 @@ QMenuBar* PythonQtWrapper_QMenuBar::new_QMenuBar(QWidget*  parent)
 { 
 return new PythonQtShell_QMenuBar(parent); }
 
-void PythonQtWrapper_QMenuBar::mousePressEvent(QMenuBar* theWrappedObject, QMouseEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)).mousePressEvent(arg__1);
-}
-
-void PythonQtWrapper_QMenuBar::paintEvent(QMenuBar* theWrappedObject, QPaintEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)).paintEvent(arg__1);
-}
-
-void PythonQtWrapper_QMenuBar::actionEvent(QMenuBar* theWrappedObject, QActionEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)).actionEvent(arg__1);
-}
-
-void PythonQtWrapper_QMenuBar::setActiveAction(QMenuBar* theWrappedObject, QAction*  action)
-{
- (*theWrappedObject).setActiveAction(action);
-}
-
-void PythonQtWrapper_QMenuBar::timerEvent(QMenuBar* theWrappedObject, QTimerEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)).timerEvent(arg__1);
-}
-
-QAction*  PythonQtWrapper_QMenuBar::insertMenu(QMenuBar* theWrappedObject, QAction*  before, QMenu*  menu)
-{
-return  (*theWrappedObject).insertMenu(before, menu);
-}
-
-void PythonQtWrapper_QMenuBar::leaveEvent(QMenuBar* theWrappedObject, QEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)).leaveEvent(arg__1);
-}
-
 QRect  PythonQtWrapper_QMenuBar::actionGeometry(QMenuBar* theWrappedObject, QAction*  arg__1) const
 {
-return  (*theWrappedObject).actionGeometry(arg__1);
-}
-
-void PythonQtWrapper_QMenuBar::focusInEvent(QMenuBar* theWrappedObject, QFocusEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)).focusInEvent(arg__1);
-}
-
-QAction*  PythonQtWrapper_QMenuBar::addMenu(QMenuBar* theWrappedObject, QMenu*  menu)
-{
-return  (*theWrappedObject).addMenu(menu);
-}
-
-QWidget*  PythonQtWrapper_QMenuBar::cornerWidget(QMenuBar* theWrappedObject, Qt::Corner  corner) const
-{
-return  (*theWrappedObject).cornerWidget(corner);
-}
-
-QMenu*  PythonQtWrapper_QMenuBar::addMenu(QMenuBar* theWrappedObject, const QString&  title)
-{
-return  (*theWrappedObject).addMenu(title);
+return  theWrappedObject->actionGeometry(arg__1);
 }
 
 QAction*  PythonQtWrapper_QMenuBar::activeAction(QMenuBar* theWrappedObject) const
 {
-return  (*theWrappedObject).activeAction();
-}
-
-QAction*  PythonQtWrapper_QMenuBar::addAction(QMenuBar* theWrappedObject, const QString&  text)
-{
-return  (*theWrappedObject).addAction(text);
-}
-
-bool  PythonQtWrapper_QMenuBar::isDefaultUp(QMenuBar* theWrappedObject) const
-{
-return  (*theWrappedObject).isDefaultUp();
-}
-
-void PythonQtWrapper_QMenuBar::keyPressEvent(QMenuBar* theWrappedObject, QKeyEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)).keyPressEvent(arg__1);
+return  theWrappedObject->activeAction();
 }
 
 void PythonQtWrapper_QMenuBar::focusOutEvent(QMenuBar* theWrappedObject, QFocusEvent*  arg__1)
 {
- (*((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)).focusOutEvent(arg__1);
-}
-
-QSize  PythonQtWrapper_QMenuBar::minimumSizeHint(QMenuBar* theWrappedObject) const
-{
-return  (*theWrappedObject).minimumSizeHint();
-}
-
-void PythonQtWrapper_QMenuBar::mouseMoveEvent(QMenuBar* theWrappedObject, QMouseEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)).mouseMoveEvent(arg__1);
-}
-
-QAction*  PythonQtWrapper_QMenuBar::addSeparator(QMenuBar* theWrappedObject)
-{
-return  (*theWrappedObject).addSeparator();
-}
-
-void PythonQtWrapper_QMenuBar::setDefaultUp(QMenuBar* theWrappedObject, bool  arg__1)
-{
- (*theWrappedObject).setDefaultUp(arg__1);
-}
-
-QSize  PythonQtWrapper_QMenuBar::sizeHint(QMenuBar* theWrappedObject) const
-{
-return  (*theWrappedObject).sizeHint();
-}
-
-void PythonQtWrapper_QMenuBar::setCornerWidget(QMenuBar* theWrappedObject, QWidget*  w, Qt::Corner  corner)
-{
- (*theWrappedObject).setCornerWidget(w, corner);
-}
-
-bool  PythonQtWrapper_QMenuBar::eventFilter(QMenuBar* theWrappedObject, QObject*  arg__1, QEvent*  arg__2)
-{
-return  (*((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)).eventFilter(arg__1, arg__2);
-}
-
-QAction*  PythonQtWrapper_QMenuBar::actionAt(QMenuBar* theWrappedObject, const QPoint&  arg__1) const
-{
-return  (*theWrappedObject).actionAt(arg__1);
-}
-
-QMenu*  PythonQtWrapper_QMenuBar::addMenu(QMenuBar* theWrappedObject, const QIcon&  icon, const QString&  title)
-{
-return  (*theWrappedObject).addMenu(icon, title);
-}
-
-int  PythonQtWrapper_QMenuBar::heightForWidth(QMenuBar* theWrappedObject, int  arg__1) const
-{
-return  (*theWrappedObject).heightForWidth(arg__1);
-}
-
-QAction*  PythonQtWrapper_QMenuBar::insertSeparator(QMenuBar* theWrappedObject, QAction*  before)
-{
-return  (*theWrappedObject).insertSeparator(before);
-}
-
-void PythonQtWrapper_QMenuBar::mouseReleaseEvent(QMenuBar* theWrappedObject, QMouseEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)).mouseReleaseEvent(arg__1);
-}
-
-void PythonQtWrapper_QMenuBar::clear(QMenuBar* theWrappedObject)
-{
- (*theWrappedObject).clear();
+ ((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)->promoted_focusOutEvent(arg__1);
 }
 
 void PythonQtWrapper_QMenuBar::resizeEvent(QMenuBar* theWrappedObject, QResizeEvent*  arg__1)
 {
- (*((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)).resizeEvent(arg__1);
+ ((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)->promoted_resizeEvent(arg__1);
+}
+
+QAction*  PythonQtWrapper_QMenuBar::actionAt(QMenuBar* theWrappedObject, const QPoint&  arg__1) const
+{
+return  theWrappedObject->actionAt(arg__1);
+}
+
+QMenu*  PythonQtWrapper_QMenuBar::addMenu(QMenuBar* theWrappedObject, const QIcon&  icon, const QString&  title)
+{
+return  theWrappedObject->addMenu(icon, title);
+}
+
+void PythonQtWrapper_QMenuBar::setCornerWidget(QMenuBar* theWrappedObject, QWidget*  w, Qt::Corner  corner)
+{
+ theWrappedObject->setCornerWidget(w, corner);
+}
+
+QAction*  PythonQtWrapper_QMenuBar::addAction(QMenuBar* theWrappedObject, const QString&  text)
+{
+return  theWrappedObject->addAction(text);
+}
+
+bool  PythonQtWrapper_QMenuBar::isDefaultUp(QMenuBar* theWrappedObject) const
+{
+return  theWrappedObject->isDefaultUp();
+}
+
+void PythonQtWrapper_QMenuBar::focusInEvent(QMenuBar* theWrappedObject, QFocusEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)->promoted_focusInEvent(arg__1);
+}
+
+QAction*  PythonQtWrapper_QMenuBar::addSeparator(QMenuBar* theWrappedObject)
+{
+return  theWrappedObject->addSeparator();
+}
+
+void PythonQtWrapper_QMenuBar::clear(QMenuBar* theWrappedObject)
+{
+ theWrappedObject->clear();
+}
+
+void PythonQtWrapper_QMenuBar::setActiveAction(QMenuBar* theWrappedObject, QAction*  action)
+{
+ theWrappedObject->setActiveAction(action);
+}
+
+QWidget*  PythonQtWrapper_QMenuBar::cornerWidget(QMenuBar* theWrappedObject, Qt::Corner  corner) const
+{
+return  theWrappedObject->cornerWidget(corner);
+}
+
+void PythonQtWrapper_QMenuBar::mousePressEvent(QMenuBar* theWrappedObject, QMouseEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)->promoted_mousePressEvent(arg__1);
+}
+
+void PythonQtWrapper_QMenuBar::paintEvent(QMenuBar* theWrappedObject, QPaintEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)->promoted_paintEvent(arg__1);
+}
+
+void PythonQtWrapper_QMenuBar::timerEvent(QMenuBar* theWrappedObject, QTimerEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)->promoted_timerEvent(arg__1);
+}
+
+QAction*  PythonQtWrapper_QMenuBar::insertMenu(QMenuBar* theWrappedObject, QAction*  before, QMenu*  menu)
+{
+return  theWrappedObject->insertMenu(before, menu);
+}
+
+void PythonQtWrapper_QMenuBar::actionEvent(QMenuBar* theWrappedObject, QActionEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)->promoted_actionEvent(arg__1);
+}
+
+QSize  PythonQtWrapper_QMenuBar::minimumSizeHint(QMenuBar* theWrappedObject) const
+{
+return  theWrappedObject->minimumSizeHint();
+}
+
+void PythonQtWrapper_QMenuBar::keyPressEvent(QMenuBar* theWrappedObject, QKeyEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)->promoted_keyPressEvent(arg__1);
+}
+
+void PythonQtWrapper_QMenuBar::mouseMoveEvent(QMenuBar* theWrappedObject, QMouseEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)->promoted_mouseMoveEvent(arg__1);
+}
+
+void PythonQtWrapper_QMenuBar::leaveEvent(QMenuBar* theWrappedObject, QEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)->promoted_leaveEvent(arg__1);
+}
+
+QSize  PythonQtWrapper_QMenuBar::sizeHint(QMenuBar* theWrappedObject) const
+{
+return  theWrappedObject->sizeHint();
+}
+
+bool  PythonQtWrapper_QMenuBar::eventFilter(QMenuBar* theWrappedObject, QObject*  arg__1, QEvent*  arg__2)
+{
+return  ((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)->promoted_eventFilter(arg__1, arg__2);
+}
+
+int  PythonQtWrapper_QMenuBar::heightForWidth(QMenuBar* theWrappedObject, int  arg__1) const
+{
+return  ((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)->promoted_heightForWidth(arg__1);
+}
+
+QAction*  PythonQtWrapper_QMenuBar::addMenu(QMenuBar* theWrappedObject, QMenu*  menu)
+{
+return  theWrappedObject->addMenu(menu);
+}
+
+QAction*  PythonQtWrapper_QMenuBar::insertSeparator(QMenuBar* theWrappedObject, QAction*  before)
+{
+return  theWrappedObject->insertSeparator(before);
+}
+
+void PythonQtWrapper_QMenuBar::mouseReleaseEvent(QMenuBar* theWrappedObject, QMouseEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)->promoted_mouseReleaseEvent(arg__1);
+}
+
+QMenu*  PythonQtWrapper_QMenuBar::addMenu(QMenuBar* theWrappedObject, const QString&  title)
+{
+return  theWrappedObject->addMenu(title);
+}
+
+void PythonQtWrapper_QMenuBar::setDefaultUp(QMenuBar* theWrappedObject, bool  arg__1)
+{
+ theWrappedObject->setDefaultUp(arg__1);
 }
 
 void PythonQtWrapper_QMenuBar::changeEvent(QMenuBar* theWrappedObject, QEvent*  arg__1)
 {
- (*((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)).changeEvent(arg__1);
+ ((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)->promoted_changeEvent(arg__1);
 }
 
 bool  PythonQtWrapper_QMenuBar::event(QMenuBar* theWrappedObject, QEvent*  arg__1)
 {
-return  (*((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)).event(arg__1);
+return  ((PythonQtPublicPromoter_QMenuBar*)theWrappedObject)->promoted_event(arg__1);
 }
 

@@ -183,209 +183,224 @@ QStandardItem* PythonQtWrapper_QStandardItem::new_QStandardItem(int  rows, int  
 { 
 return new PythonQtShell_QStandardItem(rows, columns); }
 
-bool  PythonQtWrapper_QStandardItem::isEnabled(QStandardItem* theWrappedObject) const
+QStandardItem*  PythonQtWrapper_QStandardItem::child(QStandardItem* theWrappedObject, int  row, int  column) const
 {
-return  (*theWrappedObject).isEnabled();
-}
-
-void PythonQtWrapper_QStandardItem::setForeground(QStandardItem* theWrappedObject, const QBrush&  brush)
-{
- (*theWrappedObject).setForeground(brush);
-}
-
-void PythonQtWrapper_QStandardItem::removeRow(QStandardItem* theWrappedObject, int  row)
-{
- (*theWrappedObject).removeRow(row);
-}
-
-void PythonQtWrapper_QStandardItem::setEditable(QStandardItem* theWrappedObject, bool  editable)
-{
- (*theWrappedObject).setEditable(editable);
-}
-
-void PythonQtWrapper_QStandardItem::setStatusTip(QStandardItem* theWrappedObject, const QString&  statusTip)
-{
- (*theWrappedObject).setStatusTip(statusTip);
-}
-
-QList<QStandardItem* >  PythonQtWrapper_QStandardItem::takeRow(QStandardItem* theWrappedObject, int  row)
-{
-return  (*theWrappedObject).takeRow(row);
-}
-
-QStandardItem*  PythonQtWrapper_QStandardItem::takeChild(QStandardItem* theWrappedObject, int  row, int  column)
-{
-return  (*theWrappedObject).takeChild(row, column);
-}
-
-QStandardItemModel*  PythonQtWrapper_QStandardItem::model(QStandardItem* theWrappedObject) const
-{
-return  (*theWrappedObject).model();
-}
-
-void PythonQtWrapper_QStandardItem::setIcon(QStandardItem* theWrappedObject, const QIcon&  icon)
-{
- (*theWrappedObject).setIcon(icon);
-}
-
-void PythonQtWrapper_QStandardItem::setToolTip(QStandardItem* theWrappedObject, const QString&  toolTip)
-{
- (*theWrappedObject).setToolTip(toolTip);
-}
-
-void PythonQtWrapper_QStandardItem::insertRow(QStandardItem* theWrappedObject, int  row, QStandardItem*  item)
-{
- (*theWrappedObject).insertRow(row, item);
-}
-
-void PythonQtWrapper_QStandardItem::appendRow(QStandardItem* theWrappedObject, const QList<QStandardItem* >&  items)
-{
- (*theWrappedObject).appendRow(items);
-}
-
-QVariant  PythonQtWrapper_QStandardItem::data(QStandardItem* theWrappedObject, int  role) const
-{
-return  (*theWrappedObject).data(role);
-}
-
-Qt::ItemFlags  PythonQtWrapper_QStandardItem::flags(QStandardItem* theWrappedObject) const
-{
-return  (*theWrappedObject).flags();
-}
-
-void PythonQtWrapper_QStandardItem::setChild(QStandardItem* theWrappedObject, int  row, QStandardItem*  item)
-{
- (*theWrappedObject).setChild(row, item);
+return  theWrappedObject->child(row, column);
 }
 
 void PythonQtWrapper_QStandardItem::insertColumns(QStandardItem* theWrappedObject, int  column, int  count)
 {
- (*theWrappedObject).insertColumns(column, count);
-}
-
-QString  PythonQtWrapper_QStandardItem::text(QStandardItem* theWrappedObject) const
-{
-return  (*theWrappedObject).text();
-}
-
-void PythonQtWrapper_QStandardItem::insertRows(QStandardItem* theWrappedObject, int  row, const QList<QStandardItem* >&  items)
-{
- (*theWrappedObject).insertRows(row, items);
-}
-
-void PythonQtWrapper_QStandardItem::readFrom(QStandardItem* theWrappedObject, QDataStream&  in)
-{
-in >>  (*theWrappedObject);
-}
-
-QBrush  PythonQtWrapper_QStandardItem::background(QStandardItem* theWrappedObject) const
-{
-return  (*theWrappedObject).background();
-}
-
-void PythonQtWrapper_QStandardItem::setAccessibleDescription(QStandardItem* theWrappedObject, const QString&  accessibleDescription)
-{
- (*theWrappedObject).setAccessibleDescription(accessibleDescription);
-}
-
-QStandardItem*  PythonQtWrapper_QStandardItem::child(QStandardItem* theWrappedObject, int  row, int  column) const
-{
-return  (*theWrappedObject).child(row, column);
-}
-
-QModelIndex  PythonQtWrapper_QStandardItem::index(QStandardItem* theWrappedObject) const
-{
-return  (*theWrappedObject).index();
-}
-
-void PythonQtWrapper_QStandardItem::setRowCount(QStandardItem* theWrappedObject, int  rows)
-{
- (*theWrappedObject).setRowCount(rows);
-}
-
-void PythonQtWrapper_QStandardItem::removeColumns(QStandardItem* theWrappedObject, int  column, int  count)
-{
- (*theWrappedObject).removeColumns(column, count);
-}
-
-void PythonQtWrapper_QStandardItem::removeColumn(QStandardItem* theWrappedObject, int  column)
-{
- (*theWrappedObject).removeColumn(column);
-}
-
-void PythonQtWrapper_QStandardItem::setData(QStandardItem* theWrappedObject, const QVariant&  value, int  role)
-{
- (*theWrappedObject).setData(value, role);
-}
-
-int  PythonQtWrapper_QStandardItem::rowCount(QStandardItem* theWrappedObject) const
-{
-return  (*theWrappedObject).rowCount();
-}
-
-void PythonQtWrapper_QStandardItem::setText(QStandardItem* theWrappedObject, const QString&  text)
-{
- (*theWrappedObject).setText(text);
-}
-
-QString  PythonQtWrapper_QStandardItem::statusTip(QStandardItem* theWrappedObject) const
-{
-return  (*theWrappedObject).statusTip();
+ theWrappedObject->insertColumns(column, count);
 }
 
 void PythonQtWrapper_QStandardItem::setSizeHint(QStandardItem* theWrappedObject, const QSize&  sizeHint)
 {
- (*theWrappedObject).setSizeHint(sizeHint);
+ theWrappedObject->setSizeHint(sizeHint);
 }
 
-Qt::CheckState  PythonQtWrapper_QStandardItem::checkState(QStandardItem* theWrappedObject) const
+QFont  PythonQtWrapper_QStandardItem::font(QStandardItem* theWrappedObject) const
 {
-return  (*theWrappedObject).checkState();
+return  theWrappedObject->font();
 }
 
-int  PythonQtWrapper_QStandardItem::row(QStandardItem* theWrappedObject) const
+void PythonQtWrapper_QStandardItem::setCheckable(QStandardItem* theWrappedObject, bool  checkable)
 {
-return  (*theWrappedObject).row();
+ theWrappedObject->setCheckable(checkable);
 }
 
-void PythonQtWrapper_QStandardItem::setDragEnabled(QStandardItem* theWrappedObject, bool  dragEnabled)
+void PythonQtWrapper_QStandardItem::setTextAlignment(QStandardItem* theWrappedObject, Qt::Alignment  textAlignment)
 {
- (*theWrappedObject).setDragEnabled(dragEnabled);
+ theWrappedObject->setTextAlignment(textAlignment);
 }
 
-void PythonQtWrapper_QStandardItem::appendRows(QStandardItem* theWrappedObject, const QList<QStandardItem* >&  items)
+QString  PythonQtWrapper_QStandardItem::accessibleDescription(QStandardItem* theWrappedObject) const
 {
- (*theWrappedObject).appendRows(items);
+return  theWrappedObject->accessibleDescription();
 }
 
-void PythonQtWrapper_QStandardItem::setFont(QStandardItem* theWrappedObject, const QFont&  font)
+void PythonQtWrapper_QStandardItem::setFlags(QStandardItem* theWrappedObject, Qt::ItemFlags  flags)
 {
- (*theWrappedObject).setFont(font);
+ theWrappedObject->setFlags(flags);
 }
 
-QList<QStandardItem* >  PythonQtWrapper_QStandardItem::takeColumn(QStandardItem* theWrappedObject, int  column)
+bool  PythonQtWrapper_QStandardItem::hasChildren(QStandardItem* theWrappedObject) const
 {
-return  (*theWrappedObject).takeColumn(column);
+return  theWrappedObject->hasChildren();
 }
 
-QString  PythonQtWrapper_QStandardItem::whatsThis(QStandardItem* theWrappedObject) const
+void PythonQtWrapper_QStandardItem::setAccessibleText(QStandardItem* theWrappedObject, const QString&  accessibleText)
 {
-return  (*theWrappedObject).whatsThis();
+ theWrappedObject->setAccessibleText(accessibleText);
 }
 
-void PythonQtWrapper_QStandardItem::appendColumn(QStandardItem* theWrappedObject, const QList<QStandardItem* >&  items)
+void PythonQtWrapper_QStandardItem::setEditable(QStandardItem* theWrappedObject, bool  editable)
 {
- (*theWrappedObject).appendColumn(items);
+ theWrappedObject->setEditable(editable);
 }
 
-void PythonQtWrapper_QStandardItem::setEnabled(QStandardItem* theWrappedObject, bool  enabled)
+QBrush  PythonQtWrapper_QStandardItem::foreground(QStandardItem* theWrappedObject) const
 {
- (*theWrappedObject).setEnabled(enabled);
+return  theWrappedObject->foreground();
+}
+
+QSize  PythonQtWrapper_QStandardItem::sizeHint(QStandardItem* theWrappedObject) const
+{
+return  theWrappedObject->sizeHint();
+}
+
+void PythonQtWrapper_QStandardItem::removeColumn(QStandardItem* theWrappedObject, int  column)
+{
+ theWrappedObject->removeColumn(column);
+}
+
+void PythonQtWrapper_QStandardItem::setData(QStandardItem* theWrappedObject, const QVariant&  value, int  role)
+{
+ ((PythonQtPublicPromoter_QStandardItem*)theWrappedObject)->promoted_setData(value, role);
+}
+
+QModelIndex  PythonQtWrapper_QStandardItem::index(QStandardItem* theWrappedObject) const
+{
+return  theWrappedObject->index();
+}
+
+int  PythonQtWrapper_QStandardItem::type(QStandardItem* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QStandardItem*)theWrappedObject)->promoted_type();
+}
+
+void PythonQtWrapper_QStandardItem::insertRows(QStandardItem* theWrappedObject, int  row, const QList<QStandardItem* >&  items)
+{
+ theWrappedObject->insertRows(row, items);
 }
 
 int  PythonQtWrapper_QStandardItem::column(QStandardItem* theWrappedObject) const
 {
-return  (*theWrappedObject).column();
+return  theWrappedObject->column();
+}
+
+void PythonQtWrapper_QStandardItem::appendRow(QStandardItem* theWrappedObject, const QList<QStandardItem* >&  items)
+{
+ theWrappedObject->appendRow(items);
+}
+
+void PythonQtWrapper_QStandardItem::insertRow(QStandardItem* theWrappedObject, int  row, const QList<QStandardItem* >&  items)
+{
+ theWrappedObject->insertRow(row, items);
+}
+
+void PythonQtWrapper_QStandardItem::insertColumn(QStandardItem* theWrappedObject, int  column, const QList<QStandardItem* >&  items)
+{
+ theWrappedObject->insertColumn(column, items);
+}
+
+void PythonQtWrapper_QStandardItem::insertRows(QStandardItem* theWrappedObject, int  row, int  count)
+{
+ theWrappedObject->insertRows(row, count);
+}
+
+void PythonQtWrapper_QStandardItem::setChild(QStandardItem* theWrappedObject, int  row, int  column, QStandardItem*  item)
+{
+ theWrappedObject->setChild(row, column, item);
+}
+
+Qt::Alignment  PythonQtWrapper_QStandardItem::textAlignment(QStandardItem* theWrappedObject) const
+{
+return  theWrappedObject->textAlignment();
+}
+
+void PythonQtWrapper_QStandardItem::setWhatsThis(QStandardItem* theWrappedObject, const QString&  whatsThis)
+{
+ theWrappedObject->setWhatsThis(whatsThis);
+}
+
+void PythonQtWrapper_QStandardItem::setFont(QStandardItem* theWrappedObject, const QFont&  font)
+{
+ theWrappedObject->setFont(font);
+}
+
+void PythonQtWrapper_QStandardItem::setEnabled(QStandardItem* theWrappedObject, bool  enabled)
+{
+ theWrappedObject->setEnabled(enabled);
+}
+
+void PythonQtWrapper_QStandardItem::setRowCount(QStandardItem* theWrappedObject, int  rows)
+{
+ theWrappedObject->setRowCount(rows);
+}
+
+void PythonQtWrapper_QStandardItem::removeRow(QStandardItem* theWrappedObject, int  row)
+{
+ theWrappedObject->removeRow(row);
+}
+
+void PythonQtWrapper_QStandardItem::setStatusTip(QStandardItem* theWrappedObject, const QString&  statusTip)
+{
+ theWrappedObject->setStatusTip(statusTip);
+}
+
+QStandardItemModel*  PythonQtWrapper_QStandardItem::model(QStandardItem* theWrappedObject) const
+{
+return  theWrappedObject->model();
+}
+
+void PythonQtWrapper_QStandardItem::setTristate(QStandardItem* theWrappedObject, bool  tristate)
+{
+ theWrappedObject->setTristate(tristate);
+}
+
+int  PythonQtWrapper_QStandardItem::columnCount(QStandardItem* theWrappedObject) const
+{
+return  theWrappedObject->columnCount();
+}
+
+void PythonQtWrapper_QStandardItem::setSelectable(QStandardItem* theWrappedObject, bool  selectable)
+{
+ theWrappedObject->setSelectable(selectable);
+}
+
+void PythonQtWrapper_QStandardItem::setText(QStandardItem* theWrappedObject, const QString&  text)
+{
+ theWrappedObject->setText(text);
+}
+
+QIcon  PythonQtWrapper_QStandardItem::icon(QStandardItem* theWrappedObject) const
+{
+return  theWrappedObject->icon();
+}
+
+bool  PythonQtWrapper_QStandardItem::isEditable(QStandardItem* theWrappedObject) const
+{
+return  theWrappedObject->isEditable();
+}
+
+void PythonQtWrapper_QStandardItem::sortChildren(QStandardItem* theWrappedObject, int  column, Qt::SortOrder  order)
+{
+ theWrappedObject->sortChildren(column, order);
+}
+
+QString  PythonQtWrapper_QStandardItem::accessibleText(QStandardItem* theWrappedObject) const
+{
+return  theWrappedObject->accessibleText();
+}
+
+void PythonQtWrapper_QStandardItem::appendRows(QStandardItem* theWrappedObject, const QList<QStandardItem* >&  items)
+{
+ theWrappedObject->appendRows(items);
+}
+
+bool  PythonQtWrapper_QStandardItem::isSelectable(QStandardItem* theWrappedObject) const
+{
+return  theWrappedObject->isSelectable();
+}
+
+bool  PythonQtWrapper_QStandardItem::isDropEnabled(QStandardItem* theWrappedObject) const
+{
+return  theWrappedObject->isDropEnabled();
+}
+
+QString  PythonQtWrapper_QStandardItem::toolTip(QStandardItem* theWrappedObject) const
+{
+return  theWrappedObject->toolTip();
 }
 
 void PythonQtWrapper_QStandardItem::writeTo(QStandardItem* theWrappedObject, QDataStream&  out)
@@ -393,188 +408,173 @@ void PythonQtWrapper_QStandardItem::writeTo(QStandardItem* theWrappedObject, QDa
 out <<  (*theWrappedObject);
 }
 
-bool  PythonQtWrapper_QStandardItem::isCheckable(QStandardItem* theWrappedObject) const
+void PythonQtWrapper_QStandardItem::setChild(QStandardItem* theWrappedObject, int  row, QStandardItem*  item)
 {
-return  (*theWrappedObject).isCheckable();
+ theWrappedObject->setChild(row, item);
 }
 
-QString  PythonQtWrapper_QStandardItem::accessibleText(QStandardItem* theWrappedObject) const
+void PythonQtWrapper_QStandardItem::insertRow(QStandardItem* theWrappedObject, int  row, QStandardItem*  item)
 {
-return  (*theWrappedObject).accessibleText();
+ theWrappedObject->insertRow(row, item);
 }
 
-QString  PythonQtWrapper_QStandardItem::accessibleDescription(QStandardItem* theWrappedObject) const
+int  PythonQtWrapper_QStandardItem::row(QStandardItem* theWrappedObject) const
 {
-return  (*theWrappedObject).accessibleDescription();
+return  theWrappedObject->row();
 }
 
-int  PythonQtWrapper_QStandardItem::type(QStandardItem* theWrappedObject) const
+QString  PythonQtWrapper_QStandardItem::whatsThis(QStandardItem* theWrappedObject) const
 {
-return  (*theWrappedObject).type();
+return  theWrappedObject->whatsThis();
 }
 
-bool  PythonQtWrapper_QStandardItem::isEditable(QStandardItem* theWrappedObject) const
+QString  PythonQtWrapper_QStandardItem::statusTip(QStandardItem* theWrappedObject) const
 {
-return  (*theWrappedObject).isEditable();
-}
-
-void PythonQtWrapper_QStandardItem::setAccessibleText(QStandardItem* theWrappedObject, const QString&  accessibleText)
-{
- (*theWrappedObject).setAccessibleText(accessibleText);
-}
-
-void PythonQtWrapper_QStandardItem::setFlags(QStandardItem* theWrappedObject, Qt::ItemFlags  flags)
-{
- (*theWrappedObject).setFlags(flags);
-}
-
-QFont  PythonQtWrapper_QStandardItem::font(QStandardItem* theWrappedObject) const
-{
-return  (*theWrappedObject).font();
-}
-
-QString  PythonQtWrapper_QStandardItem::toolTip(QStandardItem* theWrappedObject) const
-{
-return  (*theWrappedObject).toolTip();
-}
-
-void PythonQtWrapper_QStandardItem::setChild(QStandardItem* theWrappedObject, int  row, int  column, QStandardItem*  item)
-{
- (*theWrappedObject).setChild(row, column, item);
-}
-
-void PythonQtWrapper_QStandardItem::setSelectable(QStandardItem* theWrappedObject, bool  selectable)
-{
- (*theWrappedObject).setSelectable(selectable);
-}
-
-void PythonQtWrapper_QStandardItem::setTextAlignment(QStandardItem* theWrappedObject, Qt::Alignment  textAlignment)
-{
- (*theWrappedObject).setTextAlignment(textAlignment);
-}
-
-void PythonQtWrapper_QStandardItem::sortChildren(QStandardItem* theWrappedObject, int  column, Qt::SortOrder  order)
-{
- (*theWrappedObject).sortChildren(column, order);
-}
-
-void PythonQtWrapper_QStandardItem::appendRow(QStandardItem* theWrappedObject, QStandardItem*  item)
-{
- (*theWrappedObject).appendRow(item);
-}
-
-bool  PythonQtWrapper_QStandardItem::isDragEnabled(QStandardItem* theWrappedObject) const
-{
-return  (*theWrappedObject).isDragEnabled();
-}
-
-void PythonQtWrapper_QStandardItem::setTristate(QStandardItem* theWrappedObject, bool  tristate)
-{
- (*theWrappedObject).setTristate(tristate);
-}
-
-void PythonQtWrapper_QStandardItem::setDropEnabled(QStandardItem* theWrappedObject, bool  dropEnabled)
-{
- (*theWrappedObject).setDropEnabled(dropEnabled);
-}
-
-void PythonQtWrapper_QStandardItem::insertRow(QStandardItem* theWrappedObject, int  row, const QList<QStandardItem* >&  items)
-{
- (*theWrappedObject).insertRow(row, items);
-}
-
-void PythonQtWrapper_QStandardItem::setBackground(QStandardItem* theWrappedObject, const QBrush&  brush)
-{
- (*theWrappedObject).setBackground(brush);
-}
-
-void PythonQtWrapper_QStandardItem::setWhatsThis(QStandardItem* theWrappedObject, const QString&  whatsThis)
-{
- (*theWrappedObject).setWhatsThis(whatsThis);
-}
-
-void PythonQtWrapper_QStandardItem::setColumnCount(QStandardItem* theWrappedObject, int  columns)
-{
- (*theWrappedObject).setColumnCount(columns);
-}
-
-void PythonQtWrapper_QStandardItem::setCheckable(QStandardItem* theWrappedObject, bool  checkable)
-{
- (*theWrappedObject).setCheckable(checkable);
-}
-
-QIcon  PythonQtWrapper_QStandardItem::icon(QStandardItem* theWrappedObject) const
-{
-return  (*theWrappedObject).icon();
-}
-
-void PythonQtWrapper_QStandardItem::setCheckState(QStandardItem* theWrappedObject, Qt::CheckState  checkState)
-{
- (*theWrappedObject).setCheckState(checkState);
-}
-
-bool  PythonQtWrapper_QStandardItem::isSelectable(QStandardItem* theWrappedObject) const
-{
-return  (*theWrappedObject).isSelectable();
-}
-
-QStandardItem*  PythonQtWrapper_QStandardItem::parent(QStandardItem* theWrappedObject) const
-{
-return  (*theWrappedObject).parent();
-}
-
-QBrush  PythonQtWrapper_QStandardItem::foreground(QStandardItem* theWrappedObject) const
-{
-return  (*theWrappedObject).foreground();
-}
-
-bool  PythonQtWrapper_QStandardItem::hasChildren(QStandardItem* theWrappedObject) const
-{
-return  (*theWrappedObject).hasChildren();
-}
-
-bool  PythonQtWrapper_QStandardItem::isTristate(QStandardItem* theWrappedObject) const
-{
-return  (*theWrappedObject).isTristate();
-}
-
-void PythonQtWrapper_QStandardItem::insertRows(QStandardItem* theWrappedObject, int  row, int  count)
-{
- (*theWrappedObject).insertRows(row, count);
+return  theWrappedObject->statusTip();
 }
 
 void PythonQtWrapper_QStandardItem::removeRows(QStandardItem* theWrappedObject, int  row, int  count)
 {
- (*theWrappedObject).removeRows(row, count);
+ theWrappedObject->removeRows(row, count);
 }
 
-bool  PythonQtWrapper_QStandardItem::isDropEnabled(QStandardItem* theWrappedObject) const
+void PythonQtWrapper_QStandardItem::setDropEnabled(QStandardItem* theWrappedObject, bool  dropEnabled)
 {
-return  (*theWrappedObject).isDropEnabled();
+ theWrappedObject->setDropEnabled(dropEnabled);
 }
 
-int  PythonQtWrapper_QStandardItem::columnCount(QStandardItem* theWrappedObject) const
+void PythonQtWrapper_QStandardItem::setBackground(QStandardItem* theWrappedObject, const QBrush&  brush)
 {
-return  (*theWrappedObject).columnCount();
+ theWrappedObject->setBackground(brush);
 }
 
-void PythonQtWrapper_QStandardItem::insertColumn(QStandardItem* theWrappedObject, int  column, const QList<QStandardItem* >&  items)
+void PythonQtWrapper_QStandardItem::appendColumn(QStandardItem* theWrappedObject, const QList<QStandardItem* >&  items)
 {
- (*theWrappedObject).insertColumn(column, items);
+ theWrappedObject->appendColumn(items);
+}
+
+void PythonQtWrapper_QStandardItem::setForeground(QStandardItem* theWrappedObject, const QBrush&  brush)
+{
+ theWrappedObject->setForeground(brush);
+}
+
+QBrush  PythonQtWrapper_QStandardItem::background(QStandardItem* theWrappedObject) const
+{
+return  theWrappedObject->background();
+}
+
+int  PythonQtWrapper_QStandardItem::rowCount(QStandardItem* theWrappedObject) const
+{
+return  theWrappedObject->rowCount();
+}
+
+void PythonQtWrapper_QStandardItem::readFrom(QStandardItem* theWrappedObject, QDataStream&  in)
+{
+in >>  (*theWrappedObject);
+}
+
+Qt::ItemFlags  PythonQtWrapper_QStandardItem::flags(QStandardItem* theWrappedObject) const
+{
+return  theWrappedObject->flags();
+}
+
+void PythonQtWrapper_QStandardItem::setColumnCount(QStandardItem* theWrappedObject, int  columns)
+{
+ theWrappedObject->setColumnCount(columns);
 }
 
 QStandardItem*  PythonQtWrapper_QStandardItem::clone(QStandardItem* theWrappedObject) const
 {
-return  (*theWrappedObject).clone();
+return  ((PythonQtPublicPromoter_QStandardItem*)theWrappedObject)->promoted_clone();
 }
 
-Qt::Alignment  PythonQtWrapper_QStandardItem::textAlignment(QStandardItem* theWrappedObject) const
+QStandardItem*  PythonQtWrapper_QStandardItem::parent(QStandardItem* theWrappedObject) const
 {
-return  (*theWrappedObject).textAlignment();
+return  theWrappedObject->parent();
 }
 
-QSize  PythonQtWrapper_QStandardItem::sizeHint(QStandardItem* theWrappedObject) const
+bool  PythonQtWrapper_QStandardItem::isTristate(QStandardItem* theWrappedObject) const
 {
-return  (*theWrappedObject).sizeHint();
+return  theWrappedObject->isTristate();
+}
+
+void PythonQtWrapper_QStandardItem::appendRow(QStandardItem* theWrappedObject, QStandardItem*  item)
+{
+ theWrappedObject->appendRow(item);
+}
+
+bool  PythonQtWrapper_QStandardItem::isEnabled(QStandardItem* theWrappedObject) const
+{
+return  theWrappedObject->isEnabled();
+}
+
+QString  PythonQtWrapper_QStandardItem::text(QStandardItem* theWrappedObject) const
+{
+return  theWrappedObject->text();
+}
+
+QList<QStandardItem* >  PythonQtWrapper_QStandardItem::takeColumn(QStandardItem* theWrappedObject, int  column)
+{
+return  theWrappedObject->takeColumn(column);
+}
+
+void PythonQtWrapper_QStandardItem::setCheckState(QStandardItem* theWrappedObject, Qt::CheckState  checkState)
+{
+ theWrappedObject->setCheckState(checkState);
+}
+
+QStandardItem*  PythonQtWrapper_QStandardItem::takeChild(QStandardItem* theWrappedObject, int  row, int  column)
+{
+return  theWrappedObject->takeChild(row, column);
+}
+
+void PythonQtWrapper_QStandardItem::setIcon(QStandardItem* theWrappedObject, const QIcon&  icon)
+{
+ theWrappedObject->setIcon(icon);
+}
+
+void PythonQtWrapper_QStandardItem::setToolTip(QStandardItem* theWrappedObject, const QString&  toolTip)
+{
+ theWrappedObject->setToolTip(toolTip);
+}
+
+bool  PythonQtWrapper_QStandardItem::isDragEnabled(QStandardItem* theWrappedObject) const
+{
+return  theWrappedObject->isDragEnabled();
+}
+
+QVariant  PythonQtWrapper_QStandardItem::data(QStandardItem* theWrappedObject, int  role) const
+{
+return  ((PythonQtPublicPromoter_QStandardItem*)theWrappedObject)->promoted_data(role);
+}
+
+void PythonQtWrapper_QStandardItem::removeColumns(QStandardItem* theWrappedObject, int  column, int  count)
+{
+ theWrappedObject->removeColumns(column, count);
+}
+
+Qt::CheckState  PythonQtWrapper_QStandardItem::checkState(QStandardItem* theWrappedObject) const
+{
+return  theWrappedObject->checkState();
+}
+
+void PythonQtWrapper_QStandardItem::setAccessibleDescription(QStandardItem* theWrappedObject, const QString&  accessibleDescription)
+{
+ theWrappedObject->setAccessibleDescription(accessibleDescription);
+}
+
+bool  PythonQtWrapper_QStandardItem::isCheckable(QStandardItem* theWrappedObject) const
+{
+return  theWrappedObject->isCheckable();
+}
+
+QList<QStandardItem* >  PythonQtWrapper_QStandardItem::takeRow(QStandardItem* theWrappedObject, int  row)
+{
+return  theWrappedObject->takeRow(row);
+}
+
+void PythonQtWrapper_QStandardItem::setDragEnabled(QStandardItem* theWrappedObject, bool  dragEnabled)
+{
+ theWrappedObject->setDragEnabled(dragEnabled);
 }
 

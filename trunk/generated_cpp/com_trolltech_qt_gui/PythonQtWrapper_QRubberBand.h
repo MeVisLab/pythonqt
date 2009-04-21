@@ -85,12 +85,12 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QRubberBand : public QRubberBand
 { public:
-inline void paintEvent(QPaintEvent*  arg__1) { QRubberBand::paintEvent(arg__1); }
-inline void resizeEvent(QResizeEvent*  arg__1) { QRubberBand::resizeEvent(arg__1); }
-inline void changeEvent(QEvent*  arg__1) { QRubberBand::changeEvent(arg__1); }
-inline bool  event(QEvent*  e) { return QRubberBand::event(e); }
-inline void showEvent(QShowEvent*  arg__1) { QRubberBand::showEvent(arg__1); }
-inline void moveEvent(QMoveEvent*  arg__1) { QRubberBand::moveEvent(arg__1); }
+inline void promoted_paintEvent(QPaintEvent*  arg__1) { QRubberBand::paintEvent(arg__1); }
+inline bool  promoted_event(QEvent*  e) { return QRubberBand::event(e); }
+inline void promoted_changeEvent(QEvent*  arg__1) { QRubberBand::changeEvent(arg__1); }
+inline void promoted_showEvent(QShowEvent*  arg__1) { QRubberBand::showEvent(arg__1); }
+inline void promoted_moveEvent(QMoveEvent*  arg__1) { QRubberBand::moveEvent(arg__1); }
+inline void promoted_resizeEvent(QResizeEvent*  arg__1) { QRubberBand::resizeEvent(arg__1); }
 };
 
 class PythonQtWrapper_QRubberBand : public QObject
@@ -102,19 +102,19 @@ enum Shape{
 public slots:
 QRubberBand* new_QRubberBand(QRubberBand::Shape  arg__1, QWidget*  arg__2 = 0);
 void delete_QRubberBand(QRubberBand* obj) { delete obj; } 
-   void resize(QRubberBand* theWrappedObject, int  w, int  h);
-   void paintEvent(QRubberBand* theWrappedObject, QPaintEvent*  arg__1);
-   QRubberBand::Shape  shape(QRubberBand* theWrappedObject) const;
-   void resizeEvent(QRubberBand* theWrappedObject, QResizeEvent*  arg__1);
-   void setGeometry(QRubberBand* theWrappedObject, int  x, int  y, int  w, int  h);
-   void changeEvent(QRubberBand* theWrappedObject, QEvent*  arg__1);
-   bool  event(QRubberBand* theWrappedObject, QEvent*  e);
-   void move(QRubberBand* theWrappedObject, int  x, int  y);
    void setGeometry(QRubberBand* theWrappedObject, const QRect&  r);
+   void paintEvent(QRubberBand* theWrappedObject, QPaintEvent*  arg__1);
+   void move(QRubberBand* theWrappedObject, const QPoint&  p);
+   void resize(QRubberBand* theWrappedObject, const QSize&  s);
+   QRubberBand::Shape  shape(QRubberBand* theWrappedObject) const;
+   bool  event(QRubberBand* theWrappedObject, QEvent*  e);
+   void setGeometry(QRubberBand* theWrappedObject, int  x, int  y, int  w, int  h);
+   void resize(QRubberBand* theWrappedObject, int  w, int  h);
+   void move(QRubberBand* theWrappedObject, int  x, int  y);
+   void changeEvent(QRubberBand* theWrappedObject, QEvent*  arg__1);
    void showEvent(QRubberBand* theWrappedObject, QShowEvent*  arg__1);
    void moveEvent(QRubberBand* theWrappedObject, QMoveEvent*  arg__1);
-   void resize(QRubberBand* theWrappedObject, const QSize&  s);
-   void move(QRubberBand* theWrappedObject, const QPoint&  p);
+   void resizeEvent(QRubberBand* theWrappedObject, QResizeEvent*  arg__1);
 };
 
 #endif // PYTHONQTWRAPPER_QRUBBERBAND_H

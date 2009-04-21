@@ -38,6 +38,13 @@ virtual void write(QDataStream&  out) const;
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QTreeWidgetItem : public QTreeWidgetItem
+{ public:
+inline void promoted_setData(int  column, int  role, const QVariant&  value) { QTreeWidgetItem::setData(column, role, value); }
+inline QVariant  promoted_data(int  column, int  role) const { return QTreeWidgetItem::data(column, role); }
+inline QTreeWidgetItem*  promoted_clone() const { return QTreeWidgetItem::clone(); }
+};
+
 class PythonQtWrapper_QTreeWidgetItem : public QObject
 { Q_OBJECT
 public:
@@ -57,62 +64,62 @@ QTreeWidgetItem* new_QTreeWidgetItem(const QStringList&  strings, int  type = Ty
 QTreeWidgetItem* new_QTreeWidgetItem(int  type = Type);
 void delete_QTreeWidgetItem(QTreeWidgetItem* obj) { delete obj; } 
 bool hasOwner(QTreeWidgetItem* theWrappedObject) { return theWrappedObject->treeWidget()!=NULL || theWrappedObject->parent()!=NULL; }
-   Qt::CheckState  checkState(QTreeWidgetItem* theWrappedObject, int  column) const;
-   void writeTo(QTreeWidgetItem* theWrappedObject, QDataStream&  out);
-   QBrush  background(QTreeWidgetItem* theWrappedObject, int  column) const;
-   void setFlags(QTreeWidgetItem* theWrappedObject, Qt::ItemFlags  flags);
-   void setFont(QTreeWidgetItem* theWrappedObject, int  column, const QFont&  font);
-   void setSelected(QTreeWidgetItem* theWrappedObject, bool  select);
-   Qt::ItemFlags  flags(QTreeWidgetItem* theWrappedObject) const;
-   bool  isHidden(QTreeWidgetItem* theWrappedObject) const;
-   void setWhatsThis(QTreeWidgetItem* theWrappedObject, int  column, const QString&  whatsThis);
-   QTreeWidgetItem::ChildIndicatorPolicy  childIndicatorPolicy(QTreeWidgetItem* theWrappedObject) const;
-   bool  isDisabled(QTreeWidgetItem* theWrappedObject) const;
-   QString  text(QTreeWidgetItem* theWrappedObject, int  column) const;
-   int  type(QTreeWidgetItem* theWrappedObject) const;
-   QSize  sizeHint(QTreeWidgetItem* theWrappedObject, int  column) const;
-   void addChildren(QTreeWidgetItem* theWrappedObject, const QList<QTreeWidgetItem* >&  children);
-   void setCheckState(QTreeWidgetItem* theWrappedObject, int  column, Qt::CheckState  state);
-   void addChild(QTreeWidgetItem* theWrappedObject, QTreeWidgetItem*  child);
-   void setToolTip(QTreeWidgetItem* theWrappedObject, int  column, const QString&  toolTip);
-   bool  isSelected(QTreeWidgetItem* theWrappedObject) const;
-   QList<QTreeWidgetItem* >  takeChildren(QTreeWidgetItem* theWrappedObject);
-   void sortChildren(QTreeWidgetItem* theWrappedObject, int  column, Qt::SortOrder  order);
-   void insertChild(QTreeWidgetItem* theWrappedObject, int  index, QTreeWidgetItem*  child);
-   void setStatusTip(QTreeWidgetItem* theWrappedObject, int  column, const QString&  statusTip);
-   int  childCount(QTreeWidgetItem* theWrappedObject) const;
-   void setData(QTreeWidgetItem* theWrappedObject, int  column, int  role, const QVariant&  value);
-   void setFirstColumnSpanned(QTreeWidgetItem* theWrappedObject, bool  span);
-   void setText(QTreeWidgetItem* theWrappedObject, int  column, const QString&  text);
-   QString  whatsThis(QTreeWidgetItem* theWrappedObject, int  column) const;
-   bool  isFirstColumnSpanned(QTreeWidgetItem* theWrappedObject) const;
-   void setBackground(QTreeWidgetItem* theWrappedObject, int  column, const QBrush&  brush);
-   QTreeWidgetItem*  child(QTreeWidgetItem* theWrappedObject, int  index) const;
-   QFont  font(QTreeWidgetItem* theWrappedObject, int  column) const;
-   int  indexOfChild(QTreeWidgetItem* theWrappedObject, QTreeWidgetItem*  child) const;
-   QString  toolTip(QTreeWidgetItem* theWrappedObject, int  column) const;
-   QIcon  icon(QTreeWidgetItem* theWrappedObject, int  column) const;
-   void setHidden(QTreeWidgetItem* theWrappedObject, bool  hide);
-   void setExpanded(QTreeWidgetItem* theWrappedObject, bool  expand);
-   void setTextAlignment(QTreeWidgetItem* theWrappedObject, int  column, int  alignment);
-   void setDisabled(QTreeWidgetItem* theWrappedObject, bool  disabled);
-   QBrush  foreground(QTreeWidgetItem* theWrappedObject, int  column) const;
-   QTreeWidget*  treeWidget(QTreeWidgetItem* theWrappedObject) const;
-   QVariant  data(QTreeWidgetItem* theWrappedObject, int  column, int  role) const;
-   int  columnCount(QTreeWidgetItem* theWrappedObject) const;
    void setForeground(QTreeWidgetItem* theWrappedObject, int  column, const QBrush&  brush);
-   QTreeWidgetItem*  clone(QTreeWidgetItem* theWrappedObject) const;
-   void insertChildren(QTreeWidgetItem* theWrappedObject, int  index, const QList<QTreeWidgetItem* >&  children);
-   int  textAlignment(QTreeWidgetItem* theWrappedObject, int  column) const;
-   void setIcon(QTreeWidgetItem* theWrappedObject, int  column, const QIcon&  icon);
-   void removeChild(QTreeWidgetItem* theWrappedObject, QTreeWidgetItem*  child);
-   bool  isExpanded(QTreeWidgetItem* theWrappedObject) const;
-   QTreeWidgetItem*  takeChild(QTreeWidgetItem* theWrappedObject, int  index);
-   void readFrom(QTreeWidgetItem* theWrappedObject, QDataStream&  in);
-   void setChildIndicatorPolicy(QTreeWidgetItem* theWrappedObject, QTreeWidgetItem::ChildIndicatorPolicy  policy);
-   QTreeWidgetItem*  parent(QTreeWidgetItem* theWrappedObject) const;
-   void setSizeHint(QTreeWidgetItem* theWrappedObject, int  column, const QSize&  size);
    QString  statusTip(QTreeWidgetItem* theWrappedObject, int  column) const;
+   void setWhatsThis(QTreeWidgetItem* theWrappedObject, int  column, const QString&  whatsThis);
+   void insertChildren(QTreeWidgetItem* theWrappedObject, int  index, const QList<QTreeWidgetItem* >&  children);
+   QTreeWidget*  treeWidget(QTreeWidgetItem* theWrappedObject) const;
+   bool  isSelected(QTreeWidgetItem* theWrappedObject) const;
+   int  type(QTreeWidgetItem* theWrappedObject) const;
+   void setHidden(QTreeWidgetItem* theWrappedObject, bool  hide);
+   QBrush  background(QTreeWidgetItem* theWrappedObject, int  column) const;
+   void setData(QTreeWidgetItem* theWrappedObject, int  column, int  role, const QVariant&  value);
+   Qt::CheckState  checkState(QTreeWidgetItem* theWrappedObject, int  column) const;
+   QString  text(QTreeWidgetItem* theWrappedObject, int  column) const;
+   int  columnCount(QTreeWidgetItem* theWrappedObject) const;
+   void insertChild(QTreeWidgetItem* theWrappedObject, int  index, QTreeWidgetItem*  child);
+   void removeChild(QTreeWidgetItem* theWrappedObject, QTreeWidgetItem*  child);
+   void setSelected(QTreeWidgetItem* theWrappedObject, bool  select);
+   void writeTo(QTreeWidgetItem* theWrappedObject, QDataStream&  out);
+   QBrush  foreground(QTreeWidgetItem* theWrappedObject, int  column) const;
+   bool  isDisabled(QTreeWidgetItem* theWrappedObject) const;
+   void setFont(QTreeWidgetItem* theWrappedObject, int  column, const QFont&  font);
+   QIcon  icon(QTreeWidgetItem* theWrappedObject, int  column) const;
+   bool  isHidden(QTreeWidgetItem* theWrappedObject) const;
+   void setStatusTip(QTreeWidgetItem* theWrappedObject, int  column, const QString&  statusTip);
+   void addChild(QTreeWidgetItem* theWrappedObject, QTreeWidgetItem*  child);
+   int  indexOfChild(QTreeWidgetItem* theWrappedObject, QTreeWidgetItem*  child) const;
+   void setSizeHint(QTreeWidgetItem* theWrappedObject, int  column, const QSize&  size);
+   void setBackground(QTreeWidgetItem* theWrappedObject, int  column, const QBrush&  brush);
+   int  childCount(QTreeWidgetItem* theWrappedObject) const;
+   QVariant  data(QTreeWidgetItem* theWrappedObject, int  column, int  role) const;
+   int  textAlignment(QTreeWidgetItem* theWrappedObject, int  column) const;
+   QTreeWidgetItem*  clone(QTreeWidgetItem* theWrappedObject) const;
+   void readFrom(QTreeWidgetItem* theWrappedObject, QDataStream&  in);
+   void sortChildren(QTreeWidgetItem* theWrappedObject, int  column, Qt::SortOrder  order);
+   QTreeWidgetItem*  child(QTreeWidgetItem* theWrappedObject, int  index) const;
+   void setTextAlignment(QTreeWidgetItem* theWrappedObject, int  column, int  alignment);
+   void setToolTip(QTreeWidgetItem* theWrappedObject, int  column, const QString&  toolTip);
+   QString  whatsThis(QTreeWidgetItem* theWrappedObject, int  column) const;
+   Qt::ItemFlags  flags(QTreeWidgetItem* theWrappedObject) const;
+   QTreeWidgetItem*  takeChild(QTreeWidgetItem* theWrappedObject, int  index);
+   void setChildIndicatorPolicy(QTreeWidgetItem* theWrappedObject, QTreeWidgetItem::ChildIndicatorPolicy  policy);
+   void setFirstColumnSpanned(QTreeWidgetItem* theWrappedObject, bool  span);
+   QSize  sizeHint(QTreeWidgetItem* theWrappedObject, int  column) const;
+   bool  isExpanded(QTreeWidgetItem* theWrappedObject) const;
+   void setDisabled(QTreeWidgetItem* theWrappedObject, bool  disabled);
+   QFont  font(QTreeWidgetItem* theWrappedObject, int  column) const;
+   void setExpanded(QTreeWidgetItem* theWrappedObject, bool  expand);
+   void addChildren(QTreeWidgetItem* theWrappedObject, const QList<QTreeWidgetItem* >&  children);
+   QTreeWidgetItem*  parent(QTreeWidgetItem* theWrappedObject) const;
+   QTreeWidgetItem::ChildIndicatorPolicy  childIndicatorPolicy(QTreeWidgetItem* theWrappedObject) const;
+   void setCheckState(QTreeWidgetItem* theWrappedObject, int  column, Qt::CheckState  state);
+   QList<QTreeWidgetItem* >  takeChildren(QTreeWidgetItem* theWrappedObject);
+   void setText(QTreeWidgetItem* theWrappedObject, int  column, const QString&  text);
+   QString  toolTip(QTreeWidgetItem* theWrappedObject, int  column) const;
+   bool  isFirstColumnSpanned(QTreeWidgetItem* theWrappedObject) const;
+   void setFlags(QTreeWidgetItem* theWrappedObject, Qt::ItemFlags  flags);
+   void setIcon(QTreeWidgetItem* theWrappedObject, int  column, const QIcon&  icon);
 };
 
 #endif // PYTHONQTWRAPPER_QTREEWIDGETITEM_H

@@ -22,6 +22,12 @@ virtual QByteArray  valuePropertyName(QVariant::Type  type) const;
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QItemEditorFactory : public QItemEditorFactory
+{ public:
+inline QWidget*  promoted_createEditor(QVariant::Type  type, QWidget*  parent) const { return QItemEditorFactory::createEditor(type, parent); }
+inline QByteArray  promoted_valuePropertyName(QVariant::Type  type) const { return QItemEditorFactory::valuePropertyName(type); }
+};
+
 class PythonQtWrapper_QItemEditorFactory : public QObject
 { Q_OBJECT
 public:

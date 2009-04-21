@@ -89,7 +89,7 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QSvgWidget : public QSvgWidget
 { public:
-inline void paintEvent(QPaintEvent*  event) { QSvgWidget::paintEvent(event); }
+inline void promoted_paintEvent(QPaintEvent*  event) { QSvgWidget::paintEvent(event); }
 };
 
 class PythonQtWrapper_QSvgWidget : public QObject
@@ -99,9 +99,9 @@ public slots:
 QSvgWidget* new_QSvgWidget(QWidget*  parent = 0);
 QSvgWidget* new_QSvgWidget(const QString&  file, QWidget*  parent = 0);
 void delete_QSvgWidget(QSvgWidget* obj) { delete obj; } 
-   void paintEvent(QSvgWidget* theWrappedObject, QPaintEvent*  event);
    QSvgRenderer*  renderer(QSvgWidget* theWrappedObject) const;
    QSize  sizeHint(QSvgWidget* theWrappedObject) const;
+   void paintEvent(QSvgWidget* theWrappedObject, QPaintEvent*  event);
 };
 
 #endif // PYTHONQTWRAPPER_QSVGWIDGET_H

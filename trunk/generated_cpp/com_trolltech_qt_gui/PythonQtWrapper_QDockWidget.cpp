@@ -830,83 +830,83 @@ QDockWidget* PythonQtWrapper_QDockWidget::new_QDockWidget(const QString&  title,
 { 
 return new PythonQtShell_QDockWidget(title, parent, flags); }
 
-void PythonQtWrapper_QDockWidget::setFeatures(QDockWidget* theWrappedObject, QDockWidget::DockWidgetFeatures  features)
-{
- (*theWrappedObject).setFeatures(features);
-}
-
-bool  PythonQtWrapper_QDockWidget::isAreaAllowed(QDockWidget* theWrappedObject, Qt::DockWidgetArea  area) const
-{
-return  (*theWrappedObject).isAreaAllowed(area);
-}
-
-void PythonQtWrapper_QDockWidget::setFloating(QDockWidget* theWrappedObject, bool  floating)
-{
- (*theWrappedObject).setFloating(floating);
-}
-
-QWidget*  PythonQtWrapper_QDockWidget::titleBarWidget(QDockWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).titleBarWidget();
-}
-
-QAction*  PythonQtWrapper_QDockWidget::toggleViewAction(QDockWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).toggleViewAction();
-}
-
-bool  PythonQtWrapper_QDockWidget::isFloating(QDockWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).isFloating();
-}
-
-QDockWidget::DockWidgetFeatures  PythonQtWrapper_QDockWidget::features(QDockWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).features();
-}
-
 bool  PythonQtWrapper_QDockWidget::event(QDockWidget* theWrappedObject, QEvent*  event)
 {
-return  (*((PythonQtPublicPromoter_QDockWidget*)theWrappedObject)).event(event);
+return  ((PythonQtPublicPromoter_QDockWidget*)theWrappedObject)->promoted_event(event);
 }
 
 QWidget*  PythonQtWrapper_QDockWidget::widget(QDockWidget* theWrappedObject) const
 {
-return  (*theWrappedObject).widget();
-}
-
-Qt::DockWidgetAreas  PythonQtWrapper_QDockWidget::allowedAreas(QDockWidget* theWrappedObject) const
-{
-return  (*theWrappedObject).allowedAreas();
+return  theWrappedObject->widget();
 }
 
 void PythonQtWrapper_QDockWidget::setTitleBarWidget(QDockWidget* theWrappedObject, QWidget*  widget)
 {
- (*theWrappedObject).setTitleBarWidget(widget);
+ theWrappedObject->setTitleBarWidget(widget);
 }
 
-void PythonQtWrapper_QDockWidget::setWidget(QDockWidget* theWrappedObject, QWidget*  widget)
+Qt::DockWidgetAreas  PythonQtWrapper_QDockWidget::allowedAreas(QDockWidget* theWrappedObject) const
 {
- (*theWrappedObject).setWidget(widget);
+return  theWrappedObject->allowedAreas();
 }
 
-void PythonQtWrapper_QDockWidget::setAllowedAreas(QDockWidget* theWrappedObject, Qt::DockWidgetAreas  areas)
+void PythonQtWrapper_QDockWidget::setFeatures(QDockWidget* theWrappedObject, QDockWidget::DockWidgetFeatures  features)
 {
- (*theWrappedObject).setAllowedAreas(areas);
-}
-
-void PythonQtWrapper_QDockWidget::changeEvent(QDockWidget* theWrappedObject, QEvent*  event)
-{
- (*((PythonQtPublicPromoter_QDockWidget*)theWrappedObject)).changeEvent(event);
-}
-
-void PythonQtWrapper_QDockWidget::closeEvent(QDockWidget* theWrappedObject, QCloseEvent*  event)
-{
- (*((PythonQtPublicPromoter_QDockWidget*)theWrappedObject)).closeEvent(event);
+ theWrappedObject->setFeatures(features);
 }
 
 void PythonQtWrapper_QDockWidget::paintEvent(QDockWidget* theWrappedObject, QPaintEvent*  event)
 {
- (*((PythonQtPublicPromoter_QDockWidget*)theWrappedObject)).paintEvent(event);
+ ((PythonQtPublicPromoter_QDockWidget*)theWrappedObject)->promoted_paintEvent(event);
+}
+
+bool  PythonQtWrapper_QDockWidget::isAreaAllowed(QDockWidget* theWrappedObject, Qt::DockWidgetArea  area) const
+{
+return  theWrappedObject->isAreaAllowed(area);
+}
+
+void PythonQtWrapper_QDockWidget::setAllowedAreas(QDockWidget* theWrappedObject, Qt::DockWidgetAreas  areas)
+{
+ theWrappedObject->setAllowedAreas(areas);
+}
+
+bool  PythonQtWrapper_QDockWidget::isFloating(QDockWidget* theWrappedObject) const
+{
+return  theWrappedObject->isFloating();
+}
+
+QWidget*  PythonQtWrapper_QDockWidget::titleBarWidget(QDockWidget* theWrappedObject) const
+{
+return  theWrappedObject->titleBarWidget();
+}
+
+void PythonQtWrapper_QDockWidget::changeEvent(QDockWidget* theWrappedObject, QEvent*  event)
+{
+ ((PythonQtPublicPromoter_QDockWidget*)theWrappedObject)->promoted_changeEvent(event);
+}
+
+void PythonQtWrapper_QDockWidget::closeEvent(QDockWidget* theWrappedObject, QCloseEvent*  event)
+{
+ ((PythonQtPublicPromoter_QDockWidget*)theWrappedObject)->promoted_closeEvent(event);
+}
+
+QDockWidget::DockWidgetFeatures  PythonQtWrapper_QDockWidget::features(QDockWidget* theWrappedObject) const
+{
+return  theWrappedObject->features();
+}
+
+void PythonQtWrapper_QDockWidget::setFloating(QDockWidget* theWrappedObject, bool  floating)
+{
+ theWrappedObject->setFloating(floating);
+}
+
+void PythonQtWrapper_QDockWidget::setWidget(QDockWidget* theWrappedObject, QWidget*  widget)
+{
+ theWrappedObject->setWidget(widget);
+}
+
+QAction*  PythonQtWrapper_QDockWidget::toggleViewAction(QDockWidget* theWrappedObject) const
+{
+return  theWrappedObject->toggleViewAction();
 }
 

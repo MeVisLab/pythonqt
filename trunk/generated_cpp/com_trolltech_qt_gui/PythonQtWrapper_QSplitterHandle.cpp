@@ -800,53 +800,53 @@ QSplitterHandle* PythonQtWrapper_QSplitterHandle::new_QSplitterHandle(Qt::Orient
 { 
 return new PythonQtShell_QSplitterHandle(o, parent); }
 
-bool  PythonQtWrapper_QSplitterHandle::opaqueResize(QSplitterHandle* theWrappedObject) const
+QSplitter*  PythonQtWrapper_QSplitterHandle::splitter(QSplitterHandle* theWrappedObject) const
 {
-return  (*theWrappedObject).opaqueResize();
+return  theWrappedObject->splitter();
 }
 
 void PythonQtWrapper_QSplitterHandle::setOrientation(QSplitterHandle* theWrappedObject, Qt::Orientation  o)
 {
- (*theWrappedObject).setOrientation(o);
-}
-
-void PythonQtWrapper_QSplitterHandle::mouseReleaseEvent(QSplitterHandle* theWrappedObject, QMouseEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QSplitterHandle*)theWrappedObject)).mouseReleaseEvent(arg__1);
-}
-
-void PythonQtWrapper_QSplitterHandle::paintEvent(QSplitterHandle* theWrappedObject, QPaintEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QSplitterHandle*)theWrappedObject)).paintEvent(arg__1);
-}
-
-void PythonQtWrapper_QSplitterHandle::mousePressEvent(QSplitterHandle* theWrappedObject, QMouseEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QSplitterHandle*)theWrappedObject)).mousePressEvent(arg__1);
-}
-
-void PythonQtWrapper_QSplitterHandle::mouseMoveEvent(QSplitterHandle* theWrappedObject, QMouseEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QSplitterHandle*)theWrappedObject)).mouseMoveEvent(arg__1);
-}
-
-QSplitter*  PythonQtWrapper_QSplitterHandle::splitter(QSplitterHandle* theWrappedObject) const
-{
-return  (*theWrappedObject).splitter();
+ theWrappedObject->setOrientation(o);
 }
 
 bool  PythonQtWrapper_QSplitterHandle::event(QSplitterHandle* theWrappedObject, QEvent*  arg__1)
 {
-return  (*((PythonQtPublicPromoter_QSplitterHandle*)theWrappedObject)).event(arg__1);
-}
-
-QSize  PythonQtWrapper_QSplitterHandle::sizeHint(QSplitterHandle* theWrappedObject) const
-{
-return  (*theWrappedObject).sizeHint();
+return  ((PythonQtPublicPromoter_QSplitterHandle*)theWrappedObject)->promoted_event(arg__1);
 }
 
 Qt::Orientation  PythonQtWrapper_QSplitterHandle::orientation(QSplitterHandle* theWrappedObject) const
 {
-return  (*theWrappedObject).orientation();
+return  theWrappedObject->orientation();
+}
+
+QSize  PythonQtWrapper_QSplitterHandle::sizeHint(QSplitterHandle* theWrappedObject) const
+{
+return  theWrappedObject->sizeHint();
+}
+
+void PythonQtWrapper_QSplitterHandle::paintEvent(QSplitterHandle* theWrappedObject, QPaintEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QSplitterHandle*)theWrappedObject)->promoted_paintEvent(arg__1);
+}
+
+void PythonQtWrapper_QSplitterHandle::mouseReleaseEvent(QSplitterHandle* theWrappedObject, QMouseEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QSplitterHandle*)theWrappedObject)->promoted_mouseReleaseEvent(arg__1);
+}
+
+void PythonQtWrapper_QSplitterHandle::mousePressEvent(QSplitterHandle* theWrappedObject, QMouseEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QSplitterHandle*)theWrappedObject)->promoted_mousePressEvent(arg__1);
+}
+
+bool  PythonQtWrapper_QSplitterHandle::opaqueResize(QSplitterHandle* theWrappedObject) const
+{
+return  theWrappedObject->opaqueResize();
+}
+
+void PythonQtWrapper_QSplitterHandle::mouseMoveEvent(QSplitterHandle* theWrappedObject, QMouseEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QSplitterHandle*)theWrappedObject)->promoted_mouseMoveEvent(arg__1);
 }
 

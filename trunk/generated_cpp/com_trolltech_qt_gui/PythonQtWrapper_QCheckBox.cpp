@@ -867,58 +867,58 @@ QCheckBox* PythonQtWrapper_QCheckBox::new_QCheckBox(const QString&  text, QWidge
 { 
 return new PythonQtShell_QCheckBox(text, parent); }
 
-void PythonQtWrapper_QCheckBox::setTristate(QCheckBox* theWrappedObject, bool  y)
+Qt::CheckState  PythonQtWrapper_QCheckBox::checkState(QCheckBox* theWrappedObject) const
 {
- (*theWrappedObject).setTristate(y);
+return  theWrappedObject->checkState();
 }
 
-void PythonQtWrapper_QCheckBox::paintEvent(QCheckBox* theWrappedObject, QPaintEvent*  arg__1)
+void PythonQtWrapper_QCheckBox::setTristate(QCheckBox* theWrappedObject, bool  y)
 {
- (*((PythonQtPublicPromoter_QCheckBox*)theWrappedObject)).paintEvent(arg__1);
+ theWrappedObject->setTristate(y);
 }
 
 void PythonQtWrapper_QCheckBox::mouseMoveEvent(QCheckBox* theWrappedObject, QMouseEvent*  arg__1)
 {
- (*((PythonQtPublicPromoter_QCheckBox*)theWrappedObject)).mouseMoveEvent(arg__1);
+ ((PythonQtPublicPromoter_QCheckBox*)theWrappedObject)->promoted_mouseMoveEvent(arg__1);
 }
 
 void PythonQtWrapper_QCheckBox::nextCheckState(QCheckBox* theWrappedObject)
 {
- (*((PythonQtPublicPromoter_QCheckBox*)theWrappedObject)).nextCheckState();
+ ((PythonQtPublicPromoter_QCheckBox*)theWrappedObject)->promoted_nextCheckState();
 }
 
 QSize  PythonQtWrapper_QCheckBox::sizeHint(QCheckBox* theWrappedObject) const
 {
-return  (*theWrappedObject).sizeHint();
-}
-
-bool  PythonQtWrapper_QCheckBox::isTristate(QCheckBox* theWrappedObject) const
-{
-return  (*theWrappedObject).isTristate();
+return  theWrappedObject->sizeHint();
 }
 
 void PythonQtWrapper_QCheckBox::checkStateSet(QCheckBox* theWrappedObject)
 {
- (*((PythonQtPublicPromoter_QCheckBox*)theWrappedObject)).checkStateSet();
+ ((PythonQtPublicPromoter_QCheckBox*)theWrappedObject)->promoted_checkStateSet();
 }
 
 bool  PythonQtWrapper_QCheckBox::hitButton(QCheckBox* theWrappedObject, const QPoint&  pos) const
 {
-return  (*((PythonQtPublicPromoter_QCheckBox*)theWrappedObject)).hitButton(pos);
+return  ((PythonQtPublicPromoter_QCheckBox*)theWrappedObject)->promoted_hitButton(pos);
+}
+
+void PythonQtWrapper_QCheckBox::paintEvent(QCheckBox* theWrappedObject, QPaintEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QCheckBox*)theWrappedObject)->promoted_paintEvent(arg__1);
 }
 
 void PythonQtWrapper_QCheckBox::setCheckState(QCheckBox* theWrappedObject, Qt::CheckState  state)
 {
- (*theWrappedObject).setCheckState(state);
+ theWrappedObject->setCheckState(state);
 }
 
 bool  PythonQtWrapper_QCheckBox::event(QCheckBox* theWrappedObject, QEvent*  e)
 {
-return  (*((PythonQtPublicPromoter_QCheckBox*)theWrappedObject)).event(e);
+return  ((PythonQtPublicPromoter_QCheckBox*)theWrappedObject)->promoted_event(e);
 }
 
-Qt::CheckState  PythonQtWrapper_QCheckBox::checkState(QCheckBox* theWrappedObject) const
+bool  PythonQtWrapper_QCheckBox::isTristate(QCheckBox* theWrappedObject) const
 {
-return  (*theWrappedObject).checkState();
+return  theWrappedObject->isTristate();
 }
 

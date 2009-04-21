@@ -89,19 +89,19 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QAbstractButton : public QAbstractButton
 { public:
-inline void nextCheckState() { QAbstractButton::nextCheckState(); }
-inline void focusInEvent(QFocusEvent*  e) { QAbstractButton::focusInEvent(e); }
-inline bool  event(QEvent*  e) { return QAbstractButton::event(e); }
-inline void mouseMoveEvent(QMouseEvent*  e) { QAbstractButton::mouseMoveEvent(e); }
-inline void keyReleaseEvent(QKeyEvent*  e) { QAbstractButton::keyReleaseEvent(e); }
-inline void keyPressEvent(QKeyEvent*  e) { QAbstractButton::keyPressEvent(e); }
-inline void changeEvent(QEvent*  e) { QAbstractButton::changeEvent(e); }
-inline void timerEvent(QTimerEvent*  e) { QAbstractButton::timerEvent(e); }
-inline void checkStateSet() { QAbstractButton::checkStateSet(); }
-inline bool  hitButton(const QPoint&  pos) const { return QAbstractButton::hitButton(pos); }
-inline void focusOutEvent(QFocusEvent*  e) { QAbstractButton::focusOutEvent(e); }
-inline void mouseReleaseEvent(QMouseEvent*  e) { QAbstractButton::mouseReleaseEvent(e); }
-inline void mousePressEvent(QMouseEvent*  e) { QAbstractButton::mousePressEvent(e); }
+inline bool  promoted_event(QEvent*  e) { return QAbstractButton::event(e); }
+inline void promoted_keyPressEvent(QKeyEvent*  e) { QAbstractButton::keyPressEvent(e); }
+inline void promoted_mouseMoveEvent(QMouseEvent*  e) { QAbstractButton::mouseMoveEvent(e); }
+inline void promoted_focusInEvent(QFocusEvent*  e) { QAbstractButton::focusInEvent(e); }
+inline void promoted_focusOutEvent(QFocusEvent*  e) { QAbstractButton::focusOutEvent(e); }
+inline void promoted_timerEvent(QTimerEvent*  e) { QAbstractButton::timerEvent(e); }
+inline void promoted_changeEvent(QEvent*  e) { QAbstractButton::changeEvent(e); }
+inline void promoted_keyReleaseEvent(QKeyEvent*  e) { QAbstractButton::keyReleaseEvent(e); }
+inline void promoted_mousePressEvent(QMouseEvent*  e) { QAbstractButton::mousePressEvent(e); }
+inline void promoted_checkStateSet() { QAbstractButton::checkStateSet(); }
+inline bool  promoted_hitButton(const QPoint&  pos) const { return QAbstractButton::hitButton(pos); }
+inline void promoted_mouseReleaseEvent(QMouseEvent*  e) { QAbstractButton::mouseReleaseEvent(e); }
+inline void promoted_nextCheckState() { QAbstractButton::nextCheckState(); }
 };
 
 class PythonQtWrapper_QAbstractButton : public QObject
@@ -110,40 +110,40 @@ public:
 public slots:
 QAbstractButton* new_QAbstractButton(QWidget*  parent = 0);
 void delete_QAbstractButton(QAbstractButton* obj) { delete obj; } 
-   bool  isDown(QAbstractButton* theWrappedObject) const;
-   void nextCheckState(QAbstractButton* theWrappedObject);
+   int  autoRepeatInterval(QAbstractButton* theWrappedObject) const;
    void setDown(QAbstractButton* theWrappedObject, bool  arg__1);
    void setAutoRepeat(QAbstractButton* theWrappedObject, bool  arg__1);
-   void focusInEvent(QAbstractButton* theWrappedObject, QFocusEvent*  e);
    bool  isChecked(QAbstractButton* theWrappedObject) const;
-   bool  autoExclusive(QAbstractButton* theWrappedObject) const;
+   void setShortcut(QAbstractButton* theWrappedObject, const QKeySequence&  key);
    bool  autoRepeat(QAbstractButton* theWrappedObject) const;
    bool  event(QAbstractButton* theWrappedObject, QEvent*  e);
-   void mouseMoveEvent(QAbstractButton* theWrappedObject, QMouseEvent*  e);
-   void keyReleaseEvent(QAbstractButton* theWrappedObject, QKeyEvent*  e);
    void keyPressEvent(QAbstractButton* theWrappedObject, QKeyEvent*  e);
+   void setIcon(QAbstractButton* theWrappedObject, const QIcon&  icon);
+   void mouseMoveEvent(QAbstractButton* theWrappedObject, QMouseEvent*  e);
+   void setAutoRepeatDelay(QAbstractButton* theWrappedObject, int  arg__1);
+   bool  isCheckable(QAbstractButton* theWrappedObject) const;
+   void focusInEvent(QAbstractButton* theWrappedObject, QFocusEvent*  e);
+   int  autoRepeatDelay(QAbstractButton* theWrappedObject) const;
+   void focusOutEvent(QAbstractButton* theWrappedObject, QFocusEvent*  e);
+   void timerEvent(QAbstractButton* theWrappedObject, QTimerEvent*  e);
+   void setAutoExclusive(QAbstractButton* theWrappedObject, bool  arg__1);
    QIcon  icon(QAbstractButton* theWrappedObject) const;
    void changeEvent(QAbstractButton* theWrappedObject, QEvent*  e);
-   bool  isCheckable(QAbstractButton* theWrappedObject) const;
-   void setAutoRepeatDelay(QAbstractButton* theWrappedObject, int  arg__1);
-   int  autoRepeatDelay(QAbstractButton* theWrappedObject) const;
-   void setIcon(QAbstractButton* theWrappedObject, const QIcon&  icon);
+   bool  autoExclusive(QAbstractButton* theWrappedObject) const;
+   void keyReleaseEvent(QAbstractButton* theWrappedObject, QKeyEvent*  e);
    QButtonGroup*  group(QAbstractButton* theWrappedObject) const;
+   void mousePressEvent(QAbstractButton* theWrappedObject, QMouseEvent*  e);
    void setAutoRepeatInterval(QAbstractButton* theWrappedObject, int  arg__1);
-   void timerEvent(QAbstractButton* theWrappedObject, QTimerEvent*  e);
    void checkStateSet(QAbstractButton* theWrappedObject);
    bool  hitButton(QAbstractButton* theWrappedObject, const QPoint&  pos) const;
-   void focusOutEvent(QAbstractButton* theWrappedObject, QFocusEvent*  e);
-   QString  text(QAbstractButton* theWrappedObject) const;
    void mouseReleaseEvent(QAbstractButton* theWrappedObject, QMouseEvent*  e);
    void setText(QAbstractButton* theWrappedObject, const QString&  text);
-   void setAutoExclusive(QAbstractButton* theWrappedObject, bool  arg__1);
    void setCheckable(QAbstractButton* theWrappedObject, bool  arg__1);
    QSize  iconSize(QAbstractButton* theWrappedObject) const;
+   bool  isDown(QAbstractButton* theWrappedObject) const;
+   QString  text(QAbstractButton* theWrappedObject) const;
    QKeySequence  shortcut(QAbstractButton* theWrappedObject) const;
-   int  autoRepeatInterval(QAbstractButton* theWrappedObject) const;
-   void setShortcut(QAbstractButton* theWrappedObject, const QKeySequence&  key);
-   void mousePressEvent(QAbstractButton* theWrappedObject, QMouseEvent*  e);
+   void nextCheckState(QAbstractButton* theWrappedObject);
 };
 
 #endif // PYTHONQTWRAPPER_QABSTRACTBUTTON_H

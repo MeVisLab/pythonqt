@@ -86,6 +86,11 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QPageSetupDialog : public QPageSetupDialog
+{ public:
+inline int  promoted_exec() { return QPageSetupDialog::exec(); }
+};
+
 class PythonQtWrapper_QPageSetupDialog : public QObject
 { Q_OBJECT
 public:
@@ -95,10 +100,10 @@ enum PageSetupDialogOption{
 public slots:
 QPageSetupDialog* new_QPageSetupDialog(QPrinter*  printer, QWidget*  parent = 0);
 void delete_QPageSetupDialog(QPageSetupDialog* obj) { delete obj; } 
-   QPageSetupDialog::PageSetupDialogOptions  enabledOptions(QPageSetupDialog* theWrappedObject) const;
-   int  exec(QPageSetupDialog* theWrappedObject);
    void addEnabledOption(QPageSetupDialog* theWrappedObject, QPageSetupDialog::PageSetupDialogOption  option);
    bool  isOptionEnabled(QPageSetupDialog* theWrappedObject, QPageSetupDialog::PageSetupDialogOption  option) const;
+   int  exec(QPageSetupDialog* theWrappedObject);
+   QPageSetupDialog::PageSetupDialogOptions  enabledOptions(QPageSetupDialog* theWrappedObject) const;
    void setEnabledOptions(QPageSetupDialog* theWrappedObject, QPageSetupDialog::PageSetupDialogOptions  options);
 };
 

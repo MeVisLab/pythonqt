@@ -152,11 +152,11 @@ return new PythonQtShell_QSyntaxHighlighter(parent); }
 
 QTextDocument*  PythonQtWrapper_QSyntaxHighlighter::document(QSyntaxHighlighter* theWrappedObject) const
 {
-return  (*theWrappedObject).document();
+return  theWrappedObject->document();
 }
 
 void PythonQtWrapper_QSyntaxHighlighter::setDocument(QSyntaxHighlighter* theWrappedObject, QTextDocument*  doc)
 {
- (*theWrappedObject).setDocument(doc);
+ theWrappedObject->setDocument(doc);
 }
 

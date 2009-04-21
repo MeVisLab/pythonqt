@@ -24,10 +24,10 @@ public:
 public slots:
 QChildEvent* new_QChildEvent(QEvent::Type  type, QObject*  child);
 void delete_QChildEvent(QChildEvent* obj) { delete obj; } 
-   bool  polished(QChildEvent* theWrappedObject) const;
+   bool  added(QChildEvent* theWrappedObject) const;
    QObject*  child(QChildEvent* theWrappedObject) const;
    bool  removed(QChildEvent* theWrappedObject) const;
-   bool  added(QChildEvent* theWrappedObject) const;
+   bool  polished(QChildEvent* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QCHILDEVENT_H

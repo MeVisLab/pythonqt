@@ -120,84 +120,44 @@ QPixmap* PythonQtWrapper_QPixmap::new_QPixmap(int  w, int  h)
 { 
 return new PythonQtShell_QPixmap(w, h); }
 
-QBitmap  PythonQtWrapper_QPixmap::createMaskFromColor(QPixmap* theWrappedObject, const QColor&  maskColor) const
-{
-return  (*theWrappedObject).createMaskFromColor(maskColor);
-}
-
-QPixmap  PythonQtWrapper_QPixmap::transformed(QPixmap* theWrappedObject, const QMatrix&  arg__1, Qt::TransformationMode  mode) const
-{
-return  (*theWrappedObject).transformed(arg__1, mode);
-}
-
-QPixmap  PythonQtWrapper_QPixmap::static_QPixmap_fromImage(const QImage&  image, Qt::ImageConversionFlags  flags)
-{
-return QPixmap::fromImage(image, flags);
-}
-
-qint64  PythonQtWrapper_QPixmap::cacheKey(QPixmap* theWrappedObject) const
-{
-return  (*theWrappedObject).cacheKey();
-}
-
-int  PythonQtWrapper_QPixmap::width(QPixmap* theWrappedObject) const
-{
-return  (*theWrappedObject).width();
-}
-
 int  PythonQtWrapper_QPixmap::height(QPixmap* theWrappedObject) const
 {
-return  (*theWrappedObject).height();
-}
-
-bool  PythonQtWrapper_QPixmap::save(QPixmap* theWrappedObject, QIODevice*  device, const char*  format, int  quality) const
-{
-return  (*theWrappedObject).save(device, format, quality);
-}
-
-bool  PythonQtWrapper_QPixmap::hasAlphaChannel(QPixmap* theWrappedObject) const
-{
-return  (*theWrappedObject).hasAlphaChannel();
-}
-
-void PythonQtWrapper_QPixmap::writeTo(QPixmap* theWrappedObject, QDataStream&  arg__1)
-{
-arg__1 <<  (*theWrappedObject);
-}
-
-QPaintEngine*  PythonQtWrapper_QPixmap::paintEngine(QPixmap* theWrappedObject) const
-{
-return  (*theWrappedObject).paintEngine();
-}
-
-int  PythonQtWrapper_QPixmap::metric(QPixmap* theWrappedObject, QPaintDevice::PaintDeviceMetric  arg__1) const
-{
-return  (*((PythonQtPublicPromoter_QPixmap*)theWrappedObject)).metric(arg__1);
+return  theWrappedObject->height();
 }
 
 QBitmap  PythonQtWrapper_QPixmap::mask(QPixmap* theWrappedObject) const
 {
-return  (*theWrappedObject).mask();
+return  theWrappedObject->mask();
 }
 
-QSize  PythonQtWrapper_QPixmap::size(QPixmap* theWrappedObject) const
+QPixmap  PythonQtWrapper_QPixmap::copy(QPixmap* theWrappedObject, int  x, int  y, int  width, int  height) const
 {
-return  (*theWrappedObject).size();
+return  theWrappedObject->copy(x, y, width, height);
 }
 
-bool  PythonQtWrapper_QPixmap::loadFromData(QPixmap* theWrappedObject, const QByteArray&  data, const char*  format, Qt::ImageConversionFlags  flags)
+QRect  PythonQtWrapper_QPixmap::rect(QPixmap* theWrappedObject) const
 {
-return  (*theWrappedObject).loadFromData(data, format, flags);
+return  theWrappedObject->rect();
 }
 
-QPixmap  PythonQtWrapper_QPixmap::scaledToWidth(QPixmap* theWrappedObject, int  w, Qt::TransformationMode  mode) const
+bool  PythonQtWrapper_QPixmap::hasAlpha(QPixmap* theWrappedObject) const
 {
-return  (*theWrappedObject).scaledToWidth(w, mode);
+return  theWrappedObject->hasAlpha();
 }
 
 bool  PythonQtWrapper_QPixmap::save(QPixmap* theWrappedObject, const QString&  fileName, const char*  format, int  quality) const
 {
-return  (*theWrappedObject).save(fileName, format, quality);
+return  theWrappedObject->save(fileName, format, quality);
+}
+
+bool  PythonQtWrapper_QPixmap::isQBitmap(QPixmap* theWrappedObject) const
+{
+return  theWrappedObject->isQBitmap();
+}
+
+QPixmap  PythonQtWrapper_QPixmap::scaled(QPixmap* theWrappedObject, int  w, int  h, Qt::AspectRatioMode  aspectMode, Qt::TransformationMode  mode) const
+{
+return  theWrappedObject->scaled(w, h, aspectMode, mode);
 }
 
 void PythonQtWrapper_QPixmap::readFrom(QPixmap* theWrappedObject, QDataStream&  arg__1)
@@ -205,49 +165,39 @@ void PythonQtWrapper_QPixmap::readFrom(QPixmap* theWrappedObject, QDataStream&  
 arg__1 >>  (*theWrappedObject);
 }
 
-bool  PythonQtWrapper_QPixmap::isQBitmap(QPixmap* theWrappedObject) const
+void PythonQtWrapper_QPixmap::setMask(QPixmap* theWrappedObject, const QBitmap&  arg__1)
 {
-return  (*theWrappedObject).isQBitmap();
+ theWrappedObject->setMask(arg__1);
 }
 
-QPixmap  PythonQtWrapper_QPixmap::scaledToHeight(QPixmap* theWrappedObject, int  h, Qt::TransformationMode  mode) const
+void PythonQtWrapper_QPixmap::fill(QPixmap* theWrappedObject, const QWidget*  widget, const QPoint&  ofs)
 {
-return  (*theWrappedObject).scaledToHeight(h, mode);
+ theWrappedObject->fill(widget, ofs);
 }
 
-void PythonQtWrapper_QPixmap::setAlphaChannel(QPixmap* theWrappedObject, const QPixmap&  arg__1)
+QPixmap  PythonQtWrapper_QPixmap::copy(QPixmap* theWrappedObject, const QRect&  rect) const
 {
- (*theWrappedObject).setAlphaChannel(arg__1);
-}
-
-QPixmap  PythonQtWrapper_QPixmap::transformed(QPixmap* theWrappedObject, const QTransform&  arg__1, Qt::TransformationMode  mode) const
-{
-return  (*theWrappedObject).transformed(arg__1, mode);
+return  theWrappedObject->copy(rect);
 }
 
 QBitmap  PythonQtWrapper_QPixmap::createHeuristicMask(QPixmap* theWrappedObject, bool  clipTight) const
 {
-return  (*theWrappedObject).createHeuristicMask(clipTight);
+return  theWrappedObject->createHeuristicMask(clipTight);
 }
 
-QRect  PythonQtWrapper_QPixmap::rect(QPixmap* theWrappedObject) const
+QImage  PythonQtWrapper_QPixmap::toImage(QPixmap* theWrappedObject) const
 {
-return  (*theWrappedObject).rect();
+return  theWrappedObject->toImage();
 }
 
-int  PythonQtWrapper_QPixmap::devType(QPixmap* theWrappedObject) const
+bool  PythonQtWrapper_QPixmap::load(QPixmap* theWrappedObject, const QString&  fileName, const char*  format, Qt::ImageConversionFlags  flags)
 {
-return  (*theWrappedObject).devType();
+return  theWrappedObject->load(fileName, format, flags);
 }
 
-QPixmap  PythonQtWrapper_QPixmap::static_QPixmap_grabWidget(QWidget*  widget, const QRect&  rect)
+QPixmap  PythonQtWrapper_QPixmap::static_QPixmap_fromImage(const QImage&  image, Qt::ImageConversionFlags  flags)
 {
-return QPixmap::grabWidget(widget, rect);
-}
-
-QPixmap  PythonQtWrapper_QPixmap::static_QPixmap_grabWindow(WId  arg__1, int  x, int  y, int  w, int  h)
-{
-return QPixmap::grabWindow(arg__1, x, y, w, h);
+return QPixmap::fromImage(image, flags);
 }
 
 int  PythonQtWrapper_QPixmap::static_QPixmap_defaultDepth()
@@ -255,64 +205,44 @@ int  PythonQtWrapper_QPixmap::static_QPixmap_defaultDepth()
 return QPixmap::defaultDepth();
 }
 
-void PythonQtWrapper_QPixmap::fill(QPixmap* theWrappedObject, const QWidget*  widget, const QPoint&  ofs)
+QPixmap  PythonQtWrapper_QPixmap::static_QPixmap_grabWidget(QWidget*  widget, const QRect&  rect)
 {
- (*theWrappedObject).fill(widget, ofs);
-}
-
-bool  PythonQtWrapper_QPixmap::load(QPixmap* theWrappedObject, const QString&  fileName, const char*  format, Qt::ImageConversionFlags  flags)
-{
-return  (*theWrappedObject).load(fileName, format, flags);
-}
-
-void PythonQtWrapper_QPixmap::setMask(QPixmap* theWrappedObject, const QBitmap&  arg__1)
-{
- (*theWrappedObject).setMask(arg__1);
-}
-
-QPixmap  PythonQtWrapper_QPixmap::static_QPixmap_grabWidget(QWidget*  widget, int  x, int  y, int  w, int  h)
-{
-return QPixmap::grabWidget(widget, x, y, w, h);
-}
-
-QPixmap  PythonQtWrapper_QPixmap::copy(QPixmap* theWrappedObject, int  x, int  y, int  width, int  height) const
-{
-return  (*theWrappedObject).copy(x, y, width, height);
-}
-
-QBitmap  PythonQtWrapper_QPixmap::createMaskFromColor(QPixmap* theWrappedObject, const QColor&  maskColor, Qt::MaskMode  mode) const
-{
-return  (*theWrappedObject).createMaskFromColor(maskColor, mode);
-}
-
-void PythonQtWrapper_QPixmap::fill(QPixmap* theWrappedObject, const QWidget*  widget, int  xofs, int  yofs)
-{
- (*theWrappedObject).fill(widget, xofs, yofs);
-}
-
-QImage  PythonQtWrapper_QPixmap::toImage(QPixmap* theWrappedObject) const
-{
-return  (*theWrappedObject).toImage();
-}
-
-QPixmap  PythonQtWrapper_QPixmap::scaled(QPixmap* theWrappedObject, int  w, int  h, Qt::AspectRatioMode  aspectMode, Qt::TransformationMode  mode) const
-{
-return  (*theWrappedObject).scaled(w, h, aspectMode, mode);
-}
-
-QPixmap  PythonQtWrapper_QPixmap::alphaChannel(QPixmap* theWrappedObject) const
-{
-return  (*theWrappedObject).alphaChannel();
+return QPixmap::grabWidget(widget, rect);
 }
 
 void PythonQtWrapper_QPixmap::fill(QPixmap* theWrappedObject, const QColor&  fillColor)
 {
- (*theWrappedObject).fill(fillColor);
+ theWrappedObject->fill(fillColor);
+}
+
+QSize  PythonQtWrapper_QPixmap::size(QPixmap* theWrappedObject) const
+{
+return  theWrappedObject->size();
+}
+
+QPixmap  PythonQtWrapper_QPixmap::static_QPixmap_grabWindow(WId  arg__1, int  x, int  y, int  w, int  h)
+{
+return QPixmap::grabWindow(arg__1, x, y, w, h);
+}
+
+bool  PythonQtWrapper_QPixmap::save(QPixmap* theWrappedObject, QIODevice*  device, const char*  format, int  quality) const
+{
+return  theWrappedObject->save(device, format, quality);
+}
+
+int  PythonQtWrapper_QPixmap::width(QPixmap* theWrappedObject) const
+{
+return  theWrappedObject->width();
+}
+
+QBitmap  PythonQtWrapper_QPixmap::createMaskFromColor(QPixmap* theWrappedObject, const QColor&  maskColor, Qt::MaskMode  mode) const
+{
+return  theWrappedObject->createMaskFromColor(maskColor, mode);
 }
 
 QPixmap  PythonQtWrapper_QPixmap::scaled(QPixmap* theWrappedObject, const QSize&  s, Qt::AspectRatioMode  aspectMode, Qt::TransformationMode  mode) const
 {
-return  (*theWrappedObject).scaled(s, aspectMode, mode);
+return  theWrappedObject->scaled(s, aspectMode, mode);
 }
 
 QMatrix  PythonQtWrapper_QPixmap::static_QPixmap_trueMatrix(const QMatrix&  m, int  w, int  h)
@@ -325,23 +255,93 @@ QTransform  PythonQtWrapper_QPixmap::static_QPixmap_trueMatrix(const QTransform&
 return QPixmap::trueMatrix(m, w, h);
 }
 
+QPixmap  PythonQtWrapper_QPixmap::static_QPixmap_grabWidget(QWidget*  widget, int  x, int  y, int  w, int  h)
+{
+return QPixmap::grabWidget(widget, x, y, w, h);
+}
+
+void PythonQtWrapper_QPixmap::writeTo(QPixmap* theWrappedObject, QDataStream&  arg__1)
+{
+arg__1 <<  (*theWrappedObject);
+}
+
+QBitmap  PythonQtWrapper_QPixmap::createMaskFromColor(QPixmap* theWrappedObject, const QColor&  maskColor) const
+{
+return  theWrappedObject->createMaskFromColor(maskColor);
+}
+
+bool  PythonQtWrapper_QPixmap::hasAlphaChannel(QPixmap* theWrappedObject) const
+{
+return  theWrappedObject->hasAlphaChannel();
+}
+
+bool  PythonQtWrapper_QPixmap::loadFromData(QPixmap* theWrappedObject, const QByteArray&  data, const char*  format, Qt::ImageConversionFlags  flags)
+{
+return  theWrappedObject->loadFromData(data, format, flags);
+}
+
+void PythonQtWrapper_QPixmap::setAlphaChannel(QPixmap* theWrappedObject, const QPixmap&  arg__1)
+{
+ theWrappedObject->setAlphaChannel(arg__1);
+}
+
+QPixmap  PythonQtWrapper_QPixmap::transformed(QPixmap* theWrappedObject, const QMatrix&  arg__1, Qt::TransformationMode  mode) const
+{
+return  theWrappedObject->transformed(arg__1, mode);
+}
+
 int  PythonQtWrapper_QPixmap::depth(QPixmap* theWrappedObject) const
 {
-return  (*theWrappedObject).depth();
+return  theWrappedObject->depth();
 }
 
-QPixmap  PythonQtWrapper_QPixmap::copy(QPixmap* theWrappedObject, const QRect&  rect) const
+QPixmap  PythonQtWrapper_QPixmap::scaledToHeight(QPixmap* theWrappedObject, int  h, Qt::TransformationMode  mode) const
 {
-return  (*theWrappedObject).copy(rect);
+return  theWrappedObject->scaledToHeight(h, mode);
 }
 
-bool  PythonQtWrapper_QPixmap::hasAlpha(QPixmap* theWrappedObject) const
+int  PythonQtWrapper_QPixmap::metric(QPixmap* theWrappedObject, QPaintDevice::PaintDeviceMetric  arg__1) const
 {
-return  (*theWrappedObject).hasAlpha();
+return  ((PythonQtPublicPromoter_QPixmap*)theWrappedObject)->promoted_metric(arg__1);
+}
+
+qint64  PythonQtWrapper_QPixmap::cacheKey(QPixmap* theWrappedObject) const
+{
+return  theWrappedObject->cacheKey();
+}
+
+QPaintEngine*  PythonQtWrapper_QPixmap::paintEngine(QPixmap* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QPixmap*)theWrappedObject)->promoted_paintEngine();
+}
+
+QPixmap  PythonQtWrapper_QPixmap::transformed(QPixmap* theWrappedObject, const QTransform&  arg__1, Qt::TransformationMode  mode) const
+{
+return  theWrappedObject->transformed(arg__1, mode);
+}
+
+QPixmap  PythonQtWrapper_QPixmap::alphaChannel(QPixmap* theWrappedObject) const
+{
+return  theWrappedObject->alphaChannel();
 }
 
 bool  PythonQtWrapper_QPixmap::isNull(QPixmap* theWrappedObject) const
 {
-return  (*theWrappedObject).isNull();
+return  theWrappedObject->isNull();
+}
+
+void PythonQtWrapper_QPixmap::fill(QPixmap* theWrappedObject, const QWidget*  widget, int  xofs, int  yofs)
+{
+ theWrappedObject->fill(widget, xofs, yofs);
+}
+
+QPixmap  PythonQtWrapper_QPixmap::scaledToWidth(QPixmap* theWrappedObject, int  w, Qt::TransformationMode  mode) const
+{
+return  theWrappedObject->scaledToWidth(w, mode);
+}
+
+int  PythonQtWrapper_QPixmap::devType(QPixmap* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QPixmap*)theWrappedObject)->promoted_devType();
 }
 

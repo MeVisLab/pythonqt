@@ -28,56 +28,64 @@ virtual void widgetEvent(QEvent*  e);
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QGraphicsGridLayout : public QGraphicsGridLayout
+{ public:
+inline QGraphicsLayoutItem*  promoted_itemAt(int  index) const { return QGraphicsGridLayout::itemAt(index); }
+inline void promoted_invalidate() { QGraphicsGridLayout::invalidate(); }
+inline int  promoted_count() const { return QGraphicsGridLayout::count(); }
+inline void promoted_removeAt(int  index) { QGraphicsGridLayout::removeAt(index); }
+};
+
 class PythonQtWrapper_QGraphicsGridLayout : public QObject
 { Q_OBJECT
 public:
 public slots:
 QGraphicsGridLayout* new_QGraphicsGridLayout(QGraphicsLayoutItem*  parent = 0);
 void delete_QGraphicsGridLayout(QGraphicsGridLayout* obj) { delete obj; } 
-   qreal  rowMaximumHeight(QGraphicsGridLayout* theWrappedObject, int  row) const;
-   int  columnCount(QGraphicsGridLayout* theWrappedObject) const;
-   int  count(QGraphicsGridLayout* theWrappedObject) const;
-   void setHorizontalSpacing(QGraphicsGridLayout* theWrappedObject, qreal  spacing);
-   void addItem(QGraphicsGridLayout* theWrappedObject, QGraphicsLayoutItem*  item, int  row, int  column, Qt::Alignment  alignment = 0);
-   void setRowSpacing(QGraphicsGridLayout* theWrappedObject, int  row, qreal  spacing);
-   void setColumnAlignment(QGraphicsGridLayout* theWrappedObject, int  column, Qt::Alignment  alignment);
-   void setRowFixedHeight(QGraphicsGridLayout* theWrappedObject, int  row, qreal  height);
-   void setRowPreferredHeight(QGraphicsGridLayout* theWrappedObject, int  row, qreal  height);
-   void setVerticalSpacing(QGraphicsGridLayout* theWrappedObject, qreal  spacing);
-   int  columnStretchFactor(QGraphicsGridLayout* theWrappedObject, int  column) const;
-   void setColumnPreferredWidth(QGraphicsGridLayout* theWrappedObject, int  column, qreal  width);
-   qreal  verticalSpacing(QGraphicsGridLayout* theWrappedObject) const;
-   qreal  columnSpacing(QGraphicsGridLayout* theWrappedObject, int  column) const;
-   int  rowStretchFactor(QGraphicsGridLayout* theWrappedObject, int  row) const;
-   qreal  rowPreferredHeight(QGraphicsGridLayout* theWrappedObject, int  row) const;
-   qreal  rowSpacing(QGraphicsGridLayout* theWrappedObject, int  row) const;
-   Qt::Alignment  columnAlignment(QGraphicsGridLayout* theWrappedObject, int  column) const;
-   qreal  columnMaximumWidth(QGraphicsGridLayout* theWrappedObject, int  column) const;
-   void invalidate(QGraphicsGridLayout* theWrappedObject);
-   Qt::Alignment  rowAlignment(QGraphicsGridLayout* theWrappedObject, int  row) const;
-   void setColumnMinimumWidth(QGraphicsGridLayout* theWrappedObject, int  column, qreal  width);
-   void addItem(QGraphicsGridLayout* theWrappedObject, QGraphicsLayoutItem*  item, int  row, int  column, int  rowSpan, int  columnSpan, Qt::Alignment  alignment = 0);
-   void setColumnMaximumWidth(QGraphicsGridLayout* theWrappedObject, int  column, qreal  width);
-   void setColumnFixedWidth(QGraphicsGridLayout* theWrappedObject, int  column, qreal  width);
-   Qt::Alignment  alignment(QGraphicsGridLayout* theWrappedObject, QGraphicsLayoutItem*  item) const;
-   qreal  columnMinimumWidth(QGraphicsGridLayout* theWrappedObject, int  column) const;
-   void setAlignment(QGraphicsGridLayout* theWrappedObject, QGraphicsLayoutItem*  item, Qt::Alignment  alignment);
-   void removeAt(QGraphicsGridLayout* theWrappedObject, int  index);
-   qreal  rowMinimumHeight(QGraphicsGridLayout* theWrappedObject, int  row) const;
-   void setRowStretchFactor(QGraphicsGridLayout* theWrappedObject, int  row, int  stretch);
-   QGraphicsLayoutItem*  itemAt(QGraphicsGridLayout* theWrappedObject, int  index) const;
-   void setRowMaximumHeight(QGraphicsGridLayout* theWrappedObject, int  row, qreal  height);
-   void setSpacing(QGraphicsGridLayout* theWrappedObject, qreal  spacing);
-   qreal  horizontalSpacing(QGraphicsGridLayout* theWrappedObject) const;
-   void setRowAlignment(QGraphicsGridLayout* theWrappedObject, int  row, Qt::Alignment  alignment);
-   qreal  columnPreferredWidth(QGraphicsGridLayout* theWrappedObject, int  column) const;
    void setGeometry(QGraphicsGridLayout* theWrappedObject, const QRectF&  rect);
    QSizeF  sizeHint(QGraphicsGridLayout* theWrappedObject, Qt::SizeHint  which, const QSizeF&  constraint = QSizeF()) const;
-   int  rowCount(QGraphicsGridLayout* theWrappedObject) const;
+   QGraphicsLayoutItem*  itemAt(QGraphicsGridLayout* theWrappedObject, int  index) const;
    void setColumnSpacing(QGraphicsGridLayout* theWrappedObject, int  column, qreal  spacing);
-   void setColumnStretchFactor(QGraphicsGridLayout* theWrappedObject, int  column, int  stretch);
+   qreal  rowMaximumHeight(QGraphicsGridLayout* theWrappedObject, int  row) const;
+   void setAlignment(QGraphicsGridLayout* theWrappedObject, QGraphicsLayoutItem*  item, Qt::Alignment  alignment);
+   qreal  horizontalSpacing(QGraphicsGridLayout* theWrappedObject) const;
+   void setColumnPreferredWidth(QGraphicsGridLayout* theWrappedObject, int  column, qreal  width);
+   qreal  rowPreferredHeight(QGraphicsGridLayout* theWrappedObject, int  row) const;
+   Qt::Alignment  rowAlignment(QGraphicsGridLayout* theWrappedObject, int  row) const;
+   int  rowCount(QGraphicsGridLayout* theWrappedObject) const;
+   int  rowStretchFactor(QGraphicsGridLayout* theWrappedObject, int  row) const;
+   void setColumnMinimumWidth(QGraphicsGridLayout* theWrappedObject, int  column, qreal  width);
+   void setVerticalSpacing(QGraphicsGridLayout* theWrappedObject, qreal  spacing);
+   qreal  rowMinimumHeight(QGraphicsGridLayout* theWrappedObject, int  row) const;
+   void setRowMaximumHeight(QGraphicsGridLayout* theWrappedObject, int  row, qreal  height);
+   void setSpacing(QGraphicsGridLayout* theWrappedObject, qreal  spacing);
+   Qt::Alignment  columnAlignment(QGraphicsGridLayout* theWrappedObject, int  column) const;
+   void setColumnMaximumWidth(QGraphicsGridLayout* theWrappedObject, int  column, qreal  width);
+   void setRowPreferredHeight(QGraphicsGridLayout* theWrappedObject, int  row, qreal  height);
    void setRowMinimumHeight(QGraphicsGridLayout* theWrappedObject, int  row, qreal  height);
+   qreal  columnMinimumWidth(QGraphicsGridLayout* theWrappedObject, int  column) const;
+   void setRowStretchFactor(QGraphicsGridLayout* theWrappedObject, int  row, int  stretch);
+   void setRowFixedHeight(QGraphicsGridLayout* theWrappedObject, int  row, qreal  height);
+   void invalidate(QGraphicsGridLayout* theWrappedObject);
+   qreal  columnMaximumWidth(QGraphicsGridLayout* theWrappedObject, int  column) const;
+   int  count(QGraphicsGridLayout* theWrappedObject) const;
+   int  columnStretchFactor(QGraphicsGridLayout* theWrappedObject, int  column) const;
+   void addItem(QGraphicsGridLayout* theWrappedObject, QGraphicsLayoutItem*  item, int  row, int  column, Qt::Alignment  alignment = 0);
+   Qt::Alignment  alignment(QGraphicsGridLayout* theWrappedObject, QGraphicsLayoutItem*  item) const;
+   int  columnCount(QGraphicsGridLayout* theWrappedObject) const;
+   void setRowAlignment(QGraphicsGridLayout* theWrappedObject, int  row, Qt::Alignment  alignment);
+   qreal  rowSpacing(QGraphicsGridLayout* theWrappedObject, int  row) const;
+   qreal  columnSpacing(QGraphicsGridLayout* theWrappedObject, int  column) const;
+   void setColumnStretchFactor(QGraphicsGridLayout* theWrappedObject, int  column, int  stretch);
+   void setRowSpacing(QGraphicsGridLayout* theWrappedObject, int  row, qreal  spacing);
    QGraphicsLayoutItem*  itemAt(QGraphicsGridLayout* theWrappedObject, int  row, int  column) const;
+   void addItem(QGraphicsGridLayout* theWrappedObject, QGraphicsLayoutItem*  item, int  row, int  column, int  rowSpan, int  columnSpan, Qt::Alignment  alignment = 0);
+   void setColumnFixedWidth(QGraphicsGridLayout* theWrappedObject, int  column, qreal  width);
+   void setHorizontalSpacing(QGraphicsGridLayout* theWrappedObject, qreal  spacing);
+   void removeAt(QGraphicsGridLayout* theWrappedObject, int  index);
+   void setColumnAlignment(QGraphicsGridLayout* theWrappedObject, int  column, Qt::Alignment  alignment);
+   qreal  columnPreferredWidth(QGraphicsGridLayout* theWrappedObject, int  column) const;
+   qreal  verticalSpacing(QGraphicsGridLayout* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QGRAPHICSGRIDLAYOUT_H

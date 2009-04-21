@@ -125,24 +125,54 @@ QSystemTrayIcon* PythonQtWrapper_QSystemTrayIcon::new_QSystemTrayIcon(const QIco
 { 
 return new PythonQtShell_QSystemTrayIcon(icon, parent); }
 
-void PythonQtWrapper_QSystemTrayIcon::setContextMenu(QSystemTrayIcon* theWrappedObject, QMenu*  menu)
+bool  PythonQtWrapper_QSystemTrayIcon::static_QSystemTrayIcon_supportsMessages()
 {
- (*theWrappedObject).setContextMenu(menu);
-}
-
-void PythonQtWrapper_QSystemTrayIcon::setIcon(QSystemTrayIcon* theWrappedObject, const QIcon&  icon)
-{
- (*theWrappedObject).setIcon(icon);
+return QSystemTrayIcon::supportsMessages();
 }
 
 QMenu*  PythonQtWrapper_QSystemTrayIcon::contextMenu(QSystemTrayIcon* theWrappedObject) const
 {
-return  (*theWrappedObject).contextMenu();
+return  theWrappedObject->contextMenu();
+}
+
+void PythonQtWrapper_QSystemTrayIcon::setContextMenu(QSystemTrayIcon* theWrappedObject, QMenu*  menu)
+{
+ theWrappedObject->setContextMenu(menu);
 }
 
 void PythonQtWrapper_QSystemTrayIcon::setToolTip(QSystemTrayIcon* theWrappedObject, const QString&  tip)
 {
- (*theWrappedObject).setToolTip(tip);
+ theWrappedObject->setToolTip(tip);
+}
+
+void PythonQtWrapper_QSystemTrayIcon::showMessage(QSystemTrayIcon* theWrappedObject, const QString&  title, const QString&  msg, QSystemTrayIcon::MessageIcon  icon, int  msecs)
+{
+ theWrappedObject->showMessage(title, msg, icon, msecs);
+}
+
+QRect  PythonQtWrapper_QSystemTrayIcon::geometry(QSystemTrayIcon* theWrappedObject) const
+{
+return  theWrappedObject->geometry();
+}
+
+QString  PythonQtWrapper_QSystemTrayIcon::toolTip(QSystemTrayIcon* theWrappedObject) const
+{
+return  theWrappedObject->toolTip();
+}
+
+bool  PythonQtWrapper_QSystemTrayIcon::event(QSystemTrayIcon* theWrappedObject, QEvent*  event)
+{
+return  ((PythonQtPublicPromoter_QSystemTrayIcon*)theWrappedObject)->promoted_event(event);
+}
+
+QIcon  PythonQtWrapper_QSystemTrayIcon::icon(QSystemTrayIcon* theWrappedObject) const
+{
+return  theWrappedObject->icon();
+}
+
+bool  PythonQtWrapper_QSystemTrayIcon::isVisible(QSystemTrayIcon* theWrappedObject) const
+{
+return  theWrappedObject->isVisible();
 }
 
 bool  PythonQtWrapper_QSystemTrayIcon::static_QSystemTrayIcon_isSystemTrayAvailable()
@@ -150,38 +180,8 @@ bool  PythonQtWrapper_QSystemTrayIcon::static_QSystemTrayIcon_isSystemTrayAvaila
 return QSystemTrayIcon::isSystemTrayAvailable();
 }
 
-QString  PythonQtWrapper_QSystemTrayIcon::toolTip(QSystemTrayIcon* theWrappedObject) const
+void PythonQtWrapper_QSystemTrayIcon::setIcon(QSystemTrayIcon* theWrappedObject, const QIcon&  icon)
 {
-return  (*theWrappedObject).toolTip();
-}
-
-bool  PythonQtWrapper_QSystemTrayIcon::static_QSystemTrayIcon_supportsMessages()
-{
-return QSystemTrayIcon::supportsMessages();
-}
-
-QIcon  PythonQtWrapper_QSystemTrayIcon::icon(QSystemTrayIcon* theWrappedObject) const
-{
-return  (*theWrappedObject).icon();
-}
-
-QRect  PythonQtWrapper_QSystemTrayIcon::geometry(QSystemTrayIcon* theWrappedObject) const
-{
-return  (*theWrappedObject).geometry();
-}
-
-bool  PythonQtWrapper_QSystemTrayIcon::isVisible(QSystemTrayIcon* theWrappedObject) const
-{
-return  (*theWrappedObject).isVisible();
-}
-
-bool  PythonQtWrapper_QSystemTrayIcon::event(QSystemTrayIcon* theWrappedObject, QEvent*  event)
-{
-return  (*((PythonQtPublicPromoter_QSystemTrayIcon*)theWrappedObject)).event(event);
-}
-
-void PythonQtWrapper_QSystemTrayIcon::showMessage(QSystemTrayIcon* theWrappedObject, const QString&  title, const QString&  msg, QSystemTrayIcon::MessageIcon  icon, int  msecs)
-{
- (*theWrappedObject).showMessage(title, msg, icon, msecs);
+ theWrappedObject->setIcon(icon);
 }
 

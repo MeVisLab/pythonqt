@@ -395,13 +395,13 @@ QAccessibleInterface* PythonQtWrapper_QAccessibleInterface::new_QAccessibleInter
 { 
 return new PythonQtShell_QAccessibleInterface(); }
 
-QVariant  PythonQtWrapper_QAccessibleInterface::invokeMethod(QAccessibleInterface* theWrappedObject, QAccessible::Method  method, int  child, const QList<QVariant >&  params)
-{
-return  (*theWrappedObject).invokeMethod(method, child, params);
-}
-
 QSet<QAccessible::Method >  PythonQtWrapper_QAccessibleInterface::supportedMethods(QAccessibleInterface* theWrappedObject)
 {
-return  (*theWrappedObject).supportedMethods();
+return  theWrappedObject->supportedMethods();
+}
+
+QVariant  PythonQtWrapper_QAccessibleInterface::invokeMethod(QAccessibleInterface* theWrappedObject, QAccessible::Method  method, int  child, const QList<QVariant >&  params)
+{
+return  theWrappedObject->invokeMethod(method, child, params);
 }
 

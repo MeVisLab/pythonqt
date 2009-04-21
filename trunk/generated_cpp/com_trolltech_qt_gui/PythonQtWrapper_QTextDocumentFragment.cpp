@@ -30,26 +30,6 @@ QTextDocumentFragment  PythonQtWrapper_QTextDocumentFragment::static_QTextDocume
 return QTextDocumentFragment::fromHtml(html);
 }
 
-QTextDocumentFragment  PythonQtWrapper_QTextDocumentFragment::static_QTextDocumentFragment_fromHtml(const QString&  html, const QTextDocument*  resourceProvider)
-{
-return QTextDocumentFragment::fromHtml(html, resourceProvider);
-}
-
-QString  PythonQtWrapper_QTextDocumentFragment::toHtml(QTextDocumentFragment* theWrappedObject, const QByteArray&  encoding) const
-{
-return  (*theWrappedObject).toHtml(encoding);
-}
-
-QString  PythonQtWrapper_QTextDocumentFragment::toPlainText(QTextDocumentFragment* theWrappedObject) const
-{
-return  (*theWrappedObject).toPlainText();
-}
-
-QString  PythonQtWrapper_QTextDocumentFragment::toHtml(QTextDocumentFragment* theWrappedObject) const
-{
-return  (*theWrappedObject).toHtml();
-}
-
 QTextDocumentFragment  PythonQtWrapper_QTextDocumentFragment::static_QTextDocumentFragment_fromPlainText(const QString&  plainText)
 {
 return QTextDocumentFragment::fromPlainText(plainText);
@@ -57,6 +37,26 @@ return QTextDocumentFragment::fromPlainText(plainText);
 
 bool  PythonQtWrapper_QTextDocumentFragment::isEmpty(QTextDocumentFragment* theWrappedObject) const
 {
-return  (*theWrappedObject).isEmpty();
+return  theWrappedObject->isEmpty();
+}
+
+QString  PythonQtWrapper_QTextDocumentFragment::toHtml(QTextDocumentFragment* theWrappedObject, const QByteArray&  encoding) const
+{
+return  theWrappedObject->toHtml(encoding);
+}
+
+QTextDocumentFragment  PythonQtWrapper_QTextDocumentFragment::static_QTextDocumentFragment_fromHtml(const QString&  html, const QTextDocument*  resourceProvider)
+{
+return QTextDocumentFragment::fromHtml(html, resourceProvider);
+}
+
+QString  PythonQtWrapper_QTextDocumentFragment::toPlainText(QTextDocumentFragment* theWrappedObject) const
+{
+return  theWrappedObject->toPlainText();
+}
+
+QString  PythonQtWrapper_QTextDocumentFragment::toHtml(QTextDocumentFragment* theWrappedObject) const
+{
+return  theWrappedObject->toHtml();
 }
 

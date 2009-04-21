@@ -29,15 +29,21 @@ virtual QString  translate(const char*  context, const char*  sourceText, const 
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QTranslator : public QTranslator
+{ public:
+inline bool  promoted_isEmpty() const { return QTranslator::isEmpty(); }
+inline QString  promoted_translate(const char*  context, const char*  sourceText, const char*  comment = 0) const { return QTranslator::translate(context, sourceText, comment); }
+};
+
 class PythonQtWrapper_QTranslator : public QObject
 { Q_OBJECT
 public:
 public slots:
 QTranslator* new_QTranslator(QObject*  parent = 0);
 void delete_QTranslator(QTranslator* obj) { delete obj; } 
-   QString  translate(QTranslator* theWrappedObject, const char*  context, const char*  sourceText, const char*  comment = 0) const;
    bool  load(QTranslator* theWrappedObject, const uchar*  data, int  len);
    bool  isEmpty(QTranslator* theWrappedObject) const;
+   QString  translate(QTranslator* theWrappedObject, const char*  context, const char*  sourceText, const char*  comment = 0) const;
    bool  load(QTranslator* theWrappedObject, const QString&  filename, const QString&  directory = QString(), const QString&  search_delimiters = QString(), const QString&  suffix = QString());
 };
 

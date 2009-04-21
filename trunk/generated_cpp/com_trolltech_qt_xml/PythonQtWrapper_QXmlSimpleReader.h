@@ -40,34 +40,60 @@ virtual void setProperty(const QString&  name, void*  value);
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QXmlSimpleReader : public QXmlSimpleReader
+{ public:
+inline QXmlDeclHandler*  promoted_declHandler() const { return QXmlSimpleReader::declHandler(); }
+inline void promoted_setEntityResolver(QXmlEntityResolver*  handler) { QXmlSimpleReader::setEntityResolver(handler); }
+inline bool  promoted_parse(const QXmlInputSource&  input) { return QXmlSimpleReader::parse(input); }
+inline void promoted_setLexicalHandler(QXmlLexicalHandler*  handler) { QXmlSimpleReader::setLexicalHandler(handler); }
+inline QXmlLexicalHandler*  promoted_lexicalHandler() const { return QXmlSimpleReader::lexicalHandler(); }
+inline bool  promoted_parse(const QXmlInputSource*  input, bool  incremental) { return QXmlSimpleReader::parse(input, incremental); }
+inline bool  promoted_parseContinue() { return QXmlSimpleReader::parseContinue(); }
+inline void*  promoted_property(const QString&  name, bool*  ok = 0) const { return QXmlSimpleReader::property(name, ok); }
+inline void promoted_setFeature(const QString&  name, bool  value) { QXmlSimpleReader::setFeature(name, value); }
+inline bool  promoted_feature(const QString&  name, bool*  ok = 0) const { return QXmlSimpleReader::feature(name, ok); }
+inline void promoted_setProperty(const QString&  name, void*  value) { QXmlSimpleReader::setProperty(name, value); }
+inline QXmlContentHandler*  promoted_contentHandler() const { return QXmlSimpleReader::contentHandler(); }
+inline QXmlEntityResolver*  promoted_entityResolver() const { return QXmlSimpleReader::entityResolver(); }
+inline bool  promoted_hasProperty(const QString&  name) const { return QXmlSimpleReader::hasProperty(name); }
+inline void promoted_setErrorHandler(QXmlErrorHandler*  handler) { QXmlSimpleReader::setErrorHandler(handler); }
+inline QXmlDTDHandler*  promoted_DTDHandler() const { return QXmlSimpleReader::DTDHandler(); }
+inline QXmlErrorHandler*  promoted_errorHandler() const { return QXmlSimpleReader::errorHandler(); }
+inline bool  promoted_parse(const QXmlInputSource*  input) { return QXmlSimpleReader::parse(input); }
+inline void promoted_setContentHandler(QXmlContentHandler*  handler) { QXmlSimpleReader::setContentHandler(handler); }
+inline void promoted_setDTDHandler(QXmlDTDHandler*  handler) { QXmlSimpleReader::setDTDHandler(handler); }
+inline void promoted_setDeclHandler(QXmlDeclHandler*  handler) { QXmlSimpleReader::setDeclHandler(handler); }
+inline bool  promoted_hasFeature(const QString&  name) const { return QXmlSimpleReader::hasFeature(name); }
+};
+
 class PythonQtWrapper_QXmlSimpleReader : public QObject
 { Q_OBJECT
 public:
 public slots:
 QXmlSimpleReader* new_QXmlSimpleReader();
 void delete_QXmlSimpleReader(QXmlSimpleReader* obj) { delete obj; } 
-   bool  hasFeature(QXmlSimpleReader* theWrappedObject, const QString&  name) const;
-   void setEntityResolver(QXmlSimpleReader* theWrappedObject, QXmlEntityResolver*  handler);
-   QXmlLexicalHandler*  lexicalHandler(QXmlSimpleReader* theWrappedObject) const;
-   bool  parse(QXmlSimpleReader* theWrappedObject, const QXmlInputSource&  input);
-   bool  hasProperty(QXmlSimpleReader* theWrappedObject, const QString&  name) const;
-   bool  parse(QXmlSimpleReader* theWrappedObject, const QXmlInputSource*  input);
-   void setDTDHandler(QXmlSimpleReader* theWrappedObject, QXmlDTDHandler*  handler);
-   void setLexicalHandler(QXmlSimpleReader* theWrappedObject, QXmlLexicalHandler*  handler);
-   void setContentHandler(QXmlSimpleReader* theWrappedObject, QXmlContentHandler*  handler);
    QXmlDeclHandler*  declHandler(QXmlSimpleReader* theWrappedObject) const;
-   bool  feature(QXmlSimpleReader* theWrappedObject, const QString&  name, bool*  ok = 0) const;
-   QXmlDTDHandler*  DTDHandler(QXmlSimpleReader* theWrappedObject) const;
+   void setEntityResolver(QXmlSimpleReader* theWrappedObject, QXmlEntityResolver*  handler);
+   bool  parse(QXmlSimpleReader* theWrappedObject, const QXmlInputSource&  input);
+   void setLexicalHandler(QXmlSimpleReader* theWrappedObject, QXmlLexicalHandler*  handler);
+   QXmlLexicalHandler*  lexicalHandler(QXmlSimpleReader* theWrappedObject) const;
+   bool  parse(QXmlSimpleReader* theWrappedObject, const QXmlInputSource*  input, bool  incremental);
    bool  parseContinue(QXmlSimpleReader* theWrappedObject);
    void*  property(QXmlSimpleReader* theWrappedObject, const QString&  name, bool*  ok = 0) const;
    void setFeature(QXmlSimpleReader* theWrappedObject, const QString&  name, bool  value);
+   bool  feature(QXmlSimpleReader* theWrappedObject, const QString&  name, bool*  ok = 0) const;
    void setProperty(QXmlSimpleReader* theWrappedObject, const QString&  name, void*  value);
-   QXmlEntityResolver*  entityResolver(QXmlSimpleReader* theWrappedObject) const;
-   void setDeclHandler(QXmlSimpleReader* theWrappedObject, QXmlDeclHandler*  handler);
    QXmlContentHandler*  contentHandler(QXmlSimpleReader* theWrappedObject) const;
-   QXmlErrorHandler*  errorHandler(QXmlSimpleReader* theWrappedObject) const;
+   QXmlEntityResolver*  entityResolver(QXmlSimpleReader* theWrappedObject) const;
+   bool  hasProperty(QXmlSimpleReader* theWrappedObject, const QString&  name) const;
    void setErrorHandler(QXmlSimpleReader* theWrappedObject, QXmlErrorHandler*  handler);
-   bool  parse(QXmlSimpleReader* theWrappedObject, const QXmlInputSource*  input, bool  incremental);
+   QXmlDTDHandler*  DTDHandler(QXmlSimpleReader* theWrappedObject) const;
+   QXmlErrorHandler*  errorHandler(QXmlSimpleReader* theWrappedObject) const;
+   bool  parse(QXmlSimpleReader* theWrappedObject, const QXmlInputSource*  input);
+   void setContentHandler(QXmlSimpleReader* theWrappedObject, QXmlContentHandler*  handler);
+   void setDTDHandler(QXmlSimpleReader* theWrappedObject, QXmlDTDHandler*  handler);
+   void setDeclHandler(QXmlSimpleReader* theWrappedObject, QXmlDeclHandler*  handler);
+   bool  hasFeature(QXmlSimpleReader* theWrappedObject, const QString&  name) const;
 };
 
 #endif // PYTHONQTWRAPPER_QXMLSIMPLEREADER_H

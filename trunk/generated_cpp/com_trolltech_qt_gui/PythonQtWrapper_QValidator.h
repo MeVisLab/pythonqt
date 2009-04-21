@@ -30,6 +30,11 @@ virtual QValidator::State  validate(QString&  arg__1, int&  arg__2) const;
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QValidator : public QValidator
+{ public:
+inline void promoted_fixup(QString&  arg__1) const { QValidator::fixup(arg__1); }
+};
+
 class PythonQtWrapper_QValidator : public QObject
 { Q_OBJECT
 public:
@@ -40,8 +45,8 @@ public slots:
 QValidator* new_QValidator(QObject*  parent);
 void delete_QValidator(QValidator* obj) { delete obj; } 
    void fixup(QValidator* theWrappedObject, QString&  arg__1) const;
-   QLocale  locale(QValidator* theWrappedObject) const;
    void setLocale(QValidator* theWrappedObject, const QLocale&  locale);
+   QLocale  locale(QValidator* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QVALIDATOR_H

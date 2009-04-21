@@ -128,43 +128,53 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QAbstractItemView : public QAbstractItemView
 { public:
-inline void dropEvent(QDropEvent*  event) { QAbstractItemView::dropEvent(event); }
-inline QList<QModelIndex >  selectedIndexes() const { return QAbstractItemView::selectedIndexes(); }
-inline void rowsAboutToBeRemoved(const QModelIndex&  parent, int  start, int  end) { QAbstractItemView::rowsAboutToBeRemoved(parent, start, end); }
-inline void verticalScrollbarValueChanged(int  value) { QAbstractItemView::verticalScrollbarValueChanged(value); }
-inline void dragMoveEvent(QDragMoveEvent*  event) { QAbstractItemView::dragMoveEvent(event); }
-inline void horizontalScrollbarAction(int  action) { QAbstractItemView::horizontalScrollbarAction(action); }
-inline void mouseDoubleClickEvent(QMouseEvent*  event) { QAbstractItemView::mouseDoubleClickEvent(event); }
-inline void mouseMoveEvent(QMouseEvent*  event) { QAbstractItemView::mouseMoveEvent(event); }
-inline void focusInEvent(QFocusEvent*  event) { QAbstractItemView::focusInEvent(event); }
-inline void selectionChanged(const QItemSelection&  selected, const QItemSelection&  deselected) { QAbstractItemView::selectionChanged(selected, deselected); }
-inline void updateEditorData() { QAbstractItemView::updateEditorData(); }
-inline void horizontalScrollbarValueChanged(int  value) { QAbstractItemView::horizontalScrollbarValueChanged(value); }
-inline bool  edit(const QModelIndex&  index, QAbstractItemView::EditTrigger  trigger, QEvent*  event) { return QAbstractItemView::edit(index, trigger, event); }
-inline void closeEditor(QWidget*  editor, QAbstractItemDelegate::EndEditHint  hint) { QAbstractItemView::closeEditor(editor, hint); }
-inline bool  viewportEvent(QEvent*  event) { return QAbstractItemView::viewportEvent(event); }
-inline void updateEditorGeometries() { QAbstractItemView::updateEditorGeometries(); }
-inline QItemSelectionModel::SelectionFlags  selectionCommand(const QModelIndex&  index, const QEvent*  event = 0) const { return QAbstractItemView::selectionCommand(index, event); }
-inline void currentChanged(const QModelIndex&  current, const QModelIndex&  previous) { QAbstractItemView::currentChanged(current, previous); }
-inline void commitData(QWidget*  editor) { QAbstractItemView::commitData(editor); }
-inline void dragEnterEvent(QDragEnterEvent*  event) { QAbstractItemView::dragEnterEvent(event); }
-inline void editorDestroyed(QObject*  editor) { QAbstractItemView::editorDestroyed(editor); }
-inline void mousePressEvent(QMouseEvent*  event) { QAbstractItemView::mousePressEvent(event); }
-inline void keyPressEvent(QKeyEvent*  event) { QAbstractItemView::keyPressEvent(event); }
-inline void dataChanged(const QModelIndex&  topLeft, const QModelIndex&  bottomRight) { QAbstractItemView::dataChanged(topLeft, bottomRight); }
-inline void focusOutEvent(QFocusEvent*  event) { QAbstractItemView::focusOutEvent(event); }
-inline void mouseReleaseEvent(QMouseEvent*  event) { QAbstractItemView::mouseReleaseEvent(event); }
-inline QStyleOptionViewItem  viewOptions() const { return QAbstractItemView::viewOptions(); }
-inline void inputMethodEvent(QInputMethodEvent*  event) { QAbstractItemView::inputMethodEvent(event); }
-inline bool  focusNextPrevChild(bool  next) { return QAbstractItemView::focusNextPrevChild(next); }
-inline void verticalScrollbarAction(int  action) { QAbstractItemView::verticalScrollbarAction(action); }
-inline void timerEvent(QTimerEvent*  event) { QAbstractItemView::timerEvent(event); }
-inline void rowsInserted(const QModelIndex&  parent, int  start, int  end) { QAbstractItemView::rowsInserted(parent, start, end); }
-inline void dragLeaveEvent(QDragLeaveEvent*  event) { QAbstractItemView::dragLeaveEvent(event); }
-inline bool  event(QEvent*  event) { return QAbstractItemView::event(event); }
-inline void resizeEvent(QResizeEvent*  event) { QAbstractItemView::resizeEvent(event); }
-inline void startDrag(Qt::DropActions  supportedActions) { QAbstractItemView::startDrag(supportedActions); }
-inline void updateGeometries() { QAbstractItemView::updateGeometries(); }
+inline void promoted_updateGeometries() { QAbstractItemView::updateGeometries(); }
+inline void promoted_inputMethodEvent(QInputMethodEvent*  event) { QAbstractItemView::inputMethodEvent(event); }
+inline void promoted_startDrag(Qt::DropActions  supportedActions) { QAbstractItemView::startDrag(supportedActions); }
+inline void promoted_verticalScrollbarValueChanged(int  value) { QAbstractItemView::verticalScrollbarValueChanged(value); }
+inline void promoted_dropEvent(QDropEvent*  event) { QAbstractItemView::dropEvent(event); }
+inline QList<QModelIndex >  promoted_selectedIndexes() const { return QAbstractItemView::selectedIndexes(); }
+inline void promoted_rowsAboutToBeRemoved(const QModelIndex&  parent, int  start, int  end) { QAbstractItemView::rowsAboutToBeRemoved(parent, start, end); }
+inline void promoted_setRootIndex(const QModelIndex&  index) { QAbstractItemView::setRootIndex(index); }
+inline void promoted_dragMoveEvent(QDragMoveEvent*  event) { QAbstractItemView::dragMoveEvent(event); }
+inline void promoted_horizontalScrollbarAction(int  action) { QAbstractItemView::horizontalScrollbarAction(action); }
+inline void promoted_focusInEvent(QFocusEvent*  event) { QAbstractItemView::focusInEvent(event); }
+inline void promoted_mouseDoubleClickEvent(QMouseEvent*  event) { QAbstractItemView::mouseDoubleClickEvent(event); }
+inline bool  promoted_viewportEvent(QEvent*  event) { return QAbstractItemView::viewportEvent(event); }
+inline void promoted_mouseMoveEvent(QMouseEvent*  event) { QAbstractItemView::mouseMoveEvent(event); }
+inline void promoted_setModel(QAbstractItemModel*  model) { QAbstractItemView::setModel(model); }
+inline void promoted_selectionChanged(const QItemSelection&  selected, const QItemSelection&  deselected) { QAbstractItemView::selectionChanged(selected, deselected); }
+inline void promoted_selectAll() { QAbstractItemView::selectAll(); }
+inline void promoted_updateEditorData() { QAbstractItemView::updateEditorData(); }
+inline void promoted_horizontalScrollbarValueChanged(int  value) { QAbstractItemView::horizontalScrollbarValueChanged(value); }
+inline void promoted_reset() { QAbstractItemView::reset(); }
+inline void promoted_verticalScrollbarAction(int  action) { QAbstractItemView::verticalScrollbarAction(action); }
+inline bool  promoted_edit(const QModelIndex&  index, QAbstractItemView::EditTrigger  trigger, QEvent*  event) { return QAbstractItemView::edit(index, trigger, event); }
+inline void promoted_closeEditor(QWidget*  editor, QAbstractItemDelegate::EndEditHint  hint) { QAbstractItemView::closeEditor(editor, hint); }
+inline void promoted_updateEditorGeometries() { QAbstractItemView::updateEditorGeometries(); }
+inline QItemSelectionModel::SelectionFlags  promoted_selectionCommand(const QModelIndex&  index, const QEvent*  event = 0) const { return QAbstractItemView::selectionCommand(index, event); }
+inline void promoted_resizeEvent(QResizeEvent*  event) { QAbstractItemView::resizeEvent(event); }
+inline void promoted_currentChanged(const QModelIndex&  current, const QModelIndex&  previous) { QAbstractItemView::currentChanged(current, previous); }
+inline int  promoted_sizeHintForColumn(int  column) const { return QAbstractItemView::sizeHintForColumn(column); }
+inline void promoted_commitData(QWidget*  editor) { QAbstractItemView::commitData(editor); }
+inline bool  promoted_focusNextPrevChild(bool  next) { return QAbstractItemView::focusNextPrevChild(next); }
+inline void promoted_dragEnterEvent(QDragEnterEvent*  event) { QAbstractItemView::dragEnterEvent(event); }
+inline void promoted_editorDestroyed(QObject*  editor) { QAbstractItemView::editorDestroyed(editor); }
+inline void promoted_keyboardSearch(const QString&  search) { QAbstractItemView::keyboardSearch(search); }
+inline void promoted_keyPressEvent(QKeyEvent*  event) { QAbstractItemView::keyPressEvent(event); }
+inline void promoted_timerEvent(QTimerEvent*  event) { QAbstractItemView::timerEvent(event); }
+inline void promoted_mousePressEvent(QMouseEvent*  event) { QAbstractItemView::mousePressEvent(event); }
+inline void promoted_focusOutEvent(QFocusEvent*  event) { QAbstractItemView::focusOutEvent(event); }
+inline void promoted_mouseReleaseEvent(QMouseEvent*  event) { QAbstractItemView::mouseReleaseEvent(event); }
+inline QVariant  promoted_inputMethodQuery(Qt::InputMethodQuery  query) const { return QAbstractItemView::inputMethodQuery(query); }
+inline QStyleOptionViewItem  promoted_viewOptions() const { return QAbstractItemView::viewOptions(); }
+inline bool  promoted_event(QEvent*  event) { return QAbstractItemView::event(event); }
+inline void promoted_doItemsLayout() { QAbstractItemView::doItemsLayout(); }
+inline void promoted_dataChanged(const QModelIndex&  topLeft, const QModelIndex&  bottomRight) { QAbstractItemView::dataChanged(topLeft, bottomRight); }
+inline void promoted_rowsInserted(const QModelIndex&  parent, int  start, int  end) { QAbstractItemView::rowsInserted(parent, start, end); }
+inline void promoted_setSelectionModel(QItemSelectionModel*  selectionModel) { QAbstractItemView::setSelectionModel(selectionModel); }
+inline int  promoted_sizeHintForRow(int  row) const { return QAbstractItemView::sizeHintForRow(row); }
+inline void promoted_dragLeaveEvent(QDragLeaveEvent*  event) { QAbstractItemView::dragLeaveEvent(event); }
 };
 
 class PythonQtWrapper_QAbstractItemView : public QObject
@@ -176,80 +186,80 @@ enum EditTrigger{
 public slots:
 QAbstractItemView* new_QAbstractItemView(QWidget*  parent = 0);
 void delete_QAbstractItemView(QAbstractItemView* obj) { delete obj; } 
+   void setVerticalScrollMode(QAbstractItemView* theWrappedObject, QAbstractItemView::ScrollMode  mode);
+   QAbstractItemDelegate*  itemDelegateForColumn(QAbstractItemView* theWrappedObject, int  column) const;
+   QItemSelectionModel*  selectionModel(QAbstractItemView* theWrappedObject) const;
+   bool  dragDropOverwriteMode(QAbstractItemView* theWrappedObject) const;
+   void inputMethodEvent(QAbstractItemView* theWrappedObject, QInputMethodEvent*  event);
+   void startDrag(QAbstractItemView* theWrappedObject, Qt::DropActions  supportedActions);
    void setIconSize(QAbstractItemView* theWrappedObject, const QSize&  size);
-   QAbstractItemView::DragDropMode  dragDropMode(QAbstractItemView* theWrappedObject) const;
    void setAutoScroll(QAbstractItemView* theWrappedObject, bool  enable);
    void dropEvent(QAbstractItemView* theWrappedObject, QDropEvent*  event);
+   void setIndexWidget(QAbstractItemView* theWrappedObject, const QModelIndex&  index, QWidget*  widget);
    QList<QModelIndex >  selectedIndexes(QAbstractItemView* theWrappedObject) const;
+   QAbstractItemModel*  model(QAbstractItemView* theWrappedObject) const;
    void dragMoveEvent(QAbstractItemView* theWrappedObject, QDragMoveEvent*  event);
-   QAbstractItemView::SelectionMode  selectionMode(QAbstractItemView* theWrappedObject) const;
    QWidget*  indexWidget(QAbstractItemView* theWrappedObject, const QModelIndex&  index) const;
+   QAbstractItemView::SelectionMode  selectionMode(QAbstractItemView* theWrappedObject) const;
    void setAlternatingRowColors(QAbstractItemView* theWrappedObject, bool  enable);
+   void focusInEvent(QAbstractItemView* theWrappedObject, QFocusEvent*  event);
    void mouseDoubleClickEvent(QAbstractItemView* theWrappedObject, QMouseEvent*  event);
    QModelIndex  currentIndex(QAbstractItemView* theWrappedObject) const;
-   QAbstractItemDelegate*  itemDelegate(QAbstractItemView* theWrappedObject, const QModelIndex&  index) const;
+   bool  viewportEvent(QAbstractItemView* theWrappedObject, QEvent*  event);
    void mouseMoveEvent(QAbstractItemView* theWrappedObject, QMouseEvent*  event);
    QAbstractItemView::ScrollMode  horizontalScrollMode(QAbstractItemView* theWrappedObject) const;
-   void focusInEvent(QAbstractItemView* theWrappedObject, QFocusEvent*  event);
-   void setIndexWidget(QAbstractItemView* theWrappedObject, const QModelIndex&  index, QWidget*  widget);
-   bool  hasAutoScroll(QAbstractItemView* theWrappedObject) const;
+   bool  tabKeyNavigation(QAbstractItemView* theWrappedObject) const;
+   void setModel(QAbstractItemView* theWrappedObject, QAbstractItemModel*  model);
+   void setHorizontalScrollMode(QAbstractItemView* theWrappedObject, QAbstractItemView::ScrollMode  mode);
+   bool  dragEnabled(QAbstractItemView* theWrappedObject) const;
+   QAbstractItemView::SelectionBehavior  selectionBehavior(QAbstractItemView* theWrappedObject) const;
    void setEditTriggers(QAbstractItemView* theWrappedObject, QAbstractItemView::EditTriggers  triggers);
    QAbstractItemDelegate*  itemDelegateForRow(QAbstractItemView* theWrappedObject, int  row) const;
-   void setHorizontalScrollMode(QAbstractItemView* theWrappedObject, QAbstractItemView::ScrollMode  mode);
    void closePersistentEditor(QAbstractItemView* theWrappedObject, const QModelIndex&  index);
-   QAbstractItemModel*  model(QAbstractItemView* theWrappedObject) const;
-   QVariant  inputMethodQuery(QAbstractItemView* theWrappedObject, Qt::InputMethodQuery  query) const;
    bool  edit(QAbstractItemView* theWrappedObject, const QModelIndex&  index, QAbstractItemView::EditTrigger  trigger, QEvent*  event);
-   int  autoScrollMargin(QAbstractItemView* theWrappedObject) const;
-   bool  viewportEvent(QAbstractItemView* theWrappedObject, QEvent*  event);
+   void setItemDelegate(QAbstractItemView* theWrappedObject, QAbstractItemDelegate*  delegate);
    void setTabKeyNavigation(QAbstractItemView* theWrappedObject, bool  enable);
-   QModelIndex  rootIndex(QAbstractItemView* theWrappedObject) const;
    void setDropIndicatorShown(QAbstractItemView* theWrappedObject, bool  enable);
-   bool  alternatingRowColors(QAbstractItemView* theWrappedObject) const;
-   QAbstractItemView::ScrollMode  verticalScrollMode(QAbstractItemView* theWrappedObject) const;
    QItemSelectionModel::SelectionFlags  selectionCommand(QAbstractItemView* theWrappedObject, const QModelIndex&  index, const QEvent*  event = 0) const;
-   QAbstractItemDelegate*  itemDelegate(QAbstractItemView* theWrappedObject) const;
+   bool  alternatingRowColors(QAbstractItemView* theWrappedObject) const;
+   void resizeEvent(QAbstractItemView* theWrappedObject, QResizeEvent*  event);
    int  sizeHintForColumn(QAbstractItemView* theWrappedObject, int  column) const;
    QSize  iconSize(QAbstractItemView* theWrappedObject) const;
    void setSelectionMode(QAbstractItemView* theWrappedObject, QAbstractItemView::SelectionMode  mode);
-   bool  tabKeyNavigation(QAbstractItemView* theWrappedObject) const;
+   bool  focusNextPrevChild(QAbstractItemView* theWrappedObject, bool  next);
    void dragEnterEvent(QAbstractItemView* theWrappedObject, QDragEnterEvent*  event);
-   bool  dragDropOverwriteMode(QAbstractItemView* theWrappedObject) const;
+   QAbstractItemView::EditTriggers  editTriggers(QAbstractItemView* theWrappedObject) const;
+   QAbstractItemDelegate*  itemDelegate(QAbstractItemView* theWrappedObject, const QModelIndex&  index) const;
    void openPersistentEditor(QAbstractItemView* theWrappedObject, const QModelIndex&  index);
    void keyboardSearch(QAbstractItemView* theWrappedObject, const QString&  search);
-   void mousePressEvent(QAbstractItemView* theWrappedObject, QMouseEvent*  event);
-   QAbstractItemView::EditTriggers  editTriggers(QAbstractItemView* theWrappedObject) const;
    void keyPressEvent(QAbstractItemView* theWrappedObject, QKeyEvent*  event);
+   void setSelectionBehavior(QAbstractItemView* theWrappedObject, QAbstractItemView::SelectionBehavior  behavior);
+   void timerEvent(QAbstractItemView* theWrappedObject, QTimerEvent*  event);
+   Qt::TextElideMode  textElideMode(QAbstractItemView* theWrappedObject) const;
+   QAbstractItemView::ScrollMode  verticalScrollMode(QAbstractItemView* theWrappedObject) const;
    void setDragDropMode(QAbstractItemView* theWrappedObject, QAbstractItemView::DragDropMode  behavior);
    void setDragEnabled(QAbstractItemView* theWrappedObject, bool  enable);
+   QAbstractItemView::DragDropMode  dragDropMode(QAbstractItemView* theWrappedObject) const;
+   void mousePressEvent(QAbstractItemView* theWrappedObject, QMouseEvent*  event);
    void setItemDelegateForColumn(QAbstractItemView* theWrappedObject, int  column, QAbstractItemDelegate*  delegate);
    void focusOutEvent(QAbstractItemView* theWrappedObject, QFocusEvent*  event);
    void mouseReleaseEvent(QAbstractItemView* theWrappedObject, QMouseEvent*  event);
+   QVariant  inputMethodQuery(QAbstractItemView* theWrappedObject, Qt::InputMethodQuery  query) const;
    bool  showDropIndicator(QAbstractItemView* theWrappedObject) const;
    void setAutoScrollMargin(QAbstractItemView* theWrappedObject, int  margin);
    QStyleOptionViewItem  viewOptions(QAbstractItemView* theWrappedObject) const;
-   bool  dragEnabled(QAbstractItemView* theWrappedObject) const;
-   void inputMethodEvent(QAbstractItemView* theWrappedObject, QInputMethodEvent*  event);
-   bool  focusNextPrevChild(QAbstractItemView* theWrappedObject, bool  next);
-   void timerEvent(QAbstractItemView* theWrappedObject, QTimerEvent*  event);
-   void setItemDelegate(QAbstractItemView* theWrappedObject, QAbstractItemDelegate*  delegate);
-   QAbstractItemView::SelectionBehavior  selectionBehavior(QAbstractItemView* theWrappedObject) const;
+   QModelIndex  rootIndex(QAbstractItemView* theWrappedObject) const;
+   bool  event(QAbstractItemView* theWrappedObject, QEvent*  event);
+   bool  hasAutoScroll(QAbstractItemView* theWrappedObject) const;
    void setItemDelegateForRow(QAbstractItemView* theWrappedObject, int  row, QAbstractItemDelegate*  delegate);
-   void setSelectionBehavior(QAbstractItemView* theWrappedObject, QAbstractItemView::SelectionBehavior  behavior);
    void setDragDropOverwriteMode(QAbstractItemView* theWrappedObject, bool  overwrite);
-   QSize  sizeHintForIndex(QAbstractItemView* theWrappedObject, const QModelIndex&  index) const;
+   QAbstractItemDelegate*  itemDelegate(QAbstractItemView* theWrappedObject) const;
+   void setSelectionModel(QAbstractItemView* theWrappedObject, QItemSelectionModel*  selectionModel);
+   int  autoScrollMargin(QAbstractItemView* theWrappedObject) const;
    int  sizeHintForRow(QAbstractItemView* theWrappedObject, int  row) const;
+   QSize  sizeHintForIndex(QAbstractItemView* theWrappedObject, const QModelIndex&  index) const;
    void setTextElideMode(QAbstractItemView* theWrappedObject, Qt::TextElideMode  mode);
    void dragLeaveEvent(QAbstractItemView* theWrappedObject, QDragLeaveEvent*  event);
-   void setSelectionModel(QAbstractItemView* theWrappedObject, QItemSelectionModel*  selectionModel);
-   bool  event(QAbstractItemView* theWrappedObject, QEvent*  event);
-   QAbstractItemDelegate*  itemDelegateForColumn(QAbstractItemView* theWrappedObject, int  column) const;
-   void setVerticalScrollMode(QAbstractItemView* theWrappedObject, QAbstractItemView::ScrollMode  mode);
-   Qt::TextElideMode  textElideMode(QAbstractItemView* theWrappedObject) const;
-   void resizeEvent(QAbstractItemView* theWrappedObject, QResizeEvent*  event);
-   QItemSelectionModel*  selectionModel(QAbstractItemView* theWrappedObject) const;
-   void startDrag(QAbstractItemView* theWrappedObject, Qt::DropActions  supportedActions);
-   void setModel(QAbstractItemView* theWrappedObject, QAbstractItemModel*  model);
 };
 
 #endif // PYTHONQTWRAPPER_QABSTRACTITEMVIEW_H

@@ -48,6 +48,25 @@ virtual void updateState(const QPaintEngineState&  state);
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QPaintEngine : public QPaintEngine
+{ public:
+inline void promoted_drawImage(const QRectF&  r, const QImage&  pm, const QRectF&  sr, Qt::ImageConversionFlags  flags = Qt::AutoColor) { QPaintEngine::drawImage(r, pm, sr, flags); }
+inline void promoted_drawPath(const QPainterPath&  path) { QPaintEngine::drawPath(path); }
+inline void promoted_drawPoints(const QPoint*  points, int  pointCount) { QPaintEngine::drawPoints(points, pointCount); }
+inline void promoted_drawLines(const QLine*  lines, int  lineCount) { QPaintEngine::drawLines(lines, lineCount); }
+inline void promoted_drawTiledPixmap(const QRectF&  r, const QPixmap&  pixmap, const QPointF&  s) { QPaintEngine::drawTiledPixmap(r, pixmap, s); }
+inline QPoint  promoted_coordinateOffset() const { return QPaintEngine::coordinateOffset(); }
+inline void promoted_drawPolygon(const QPointF*  points, int  pointCount, QPaintEngine::PolygonDrawMode  mode) { QPaintEngine::drawPolygon(points, pointCount, mode); }
+inline void promoted_drawEllipse(const QRect&  r) { QPaintEngine::drawEllipse(r); }
+inline void promoted_drawPoints(const QPointF*  points, int  pointCount) { QPaintEngine::drawPoints(points, pointCount); }
+inline void promoted_drawTextItem(const QPointF&  p, const QTextItem&  textItem) { QPaintEngine::drawTextItem(p, textItem); }
+inline void promoted_drawRects(const QRectF*  rects, int  rectCount) { QPaintEngine::drawRects(rects, rectCount); }
+inline void promoted_drawRects(const QRect*  rects, int  rectCount) { QPaintEngine::drawRects(rects, rectCount); }
+inline void promoted_drawEllipse(const QRectF&  r) { QPaintEngine::drawEllipse(r); }
+inline void promoted_drawLines(const QLineF*  lines, int  lineCount) { QPaintEngine::drawLines(lines, lineCount); }
+inline void promoted_drawPolygon(const QPoint*  points, int  pointCount, QPaintEngine::PolygonDrawMode  mode) { QPaintEngine::drawPolygon(points, pointCount, mode); }
+};
+
 class PythonQtWrapper_QPaintEngine : public QObject
 { Q_OBJECT
 public:
@@ -63,34 +82,34 @@ enum DirtyFlag{
 public slots:
 QPaintEngine* new_QPaintEngine(QPaintEngine::PaintEngineFeatures  features = 0);
 void delete_QPaintEngine(QPaintEngine* obj) { delete obj; } 
-   void setDirty(QPaintEngine* theWrappedObject, QPaintEngine::DirtyFlags  df);
    void drawImage(QPaintEngine* theWrappedObject, const QRectF&  r, const QImage&  pm, const QRectF&  sr, Qt::ImageConversionFlags  flags = Qt::AutoColor);
-   void drawPoints(QPaintEngine* theWrappedObject, const QPoint*  points, int  pointCount);
-   bool  hasFeature(QPaintEngine* theWrappedObject, QPaintEngine::PaintEngineFeatures  feature) const;
-   void drawPolygon(QPaintEngine* theWrappedObject, const QPoint*  points, int  pointCount, QPaintEngine::PolygonDrawMode  mode);
-   void setSystemClip(QPaintEngine* theWrappedObject, const QRegion&  baseClip);
-   QPaintDevice*  paintDevice(QPaintEngine* theWrappedObject) const;
-   void drawLines(QPaintEngine* theWrappedObject, const QLineF*  lines, int  lineCount);
-   void drawTextItem(QPaintEngine* theWrappedObject, const QPointF&  p, const QTextItem&  textItem);
-   void drawPoints(QPaintEngine* theWrappedObject, const QPointF*  points, int  pointCount);
-   void syncState(QPaintEngine* theWrappedObject);
    void drawPath(QPaintEngine* theWrappedObject, const QPainterPath&  path);
-   QPainter*  painter(QPaintEngine* theWrappedObject) const;
-   bool  testDirty(QPaintEngine* theWrappedObject, QPaintEngine::DirtyFlags  df);
-   bool  isActive(QPaintEngine* theWrappedObject) const;
-   void drawEllipse(QPaintEngine* theWrappedObject, const QRect&  r);
-   void drawTiledPixmap(QPaintEngine* theWrappedObject, const QRectF&  r, const QPixmap&  pixmap, const QPointF&  s);
-   void drawPolygon(QPaintEngine* theWrappedObject, const QPointF*  points, int  pointCount, QPaintEngine::PolygonDrawMode  mode);
-   void drawRects(QPaintEngine* theWrappedObject, const QRect*  rects, int  rectCount);
-   QRect  systemRect(QPaintEngine* theWrappedObject) const;
+   void setSystemClip(QPaintEngine* theWrappedObject, const QRegion&  baseClip);
+   void drawPoints(QPaintEngine* theWrappedObject, const QPoint*  points, int  pointCount);
    QRegion  systemClip(QPaintEngine* theWrappedObject) const;
+   QPaintDevice*  paintDevice(QPaintEngine* theWrappedObject) const;
    void drawLines(QPaintEngine* theWrappedObject, const QLine*  lines, int  lineCount);
-   void clearDirty(QPaintEngine* theWrappedObject, QPaintEngine::DirtyFlags  df);
-   void setActive(QPaintEngine* theWrappedObject, bool  newState);
-   void drawRects(QPaintEngine* theWrappedObject, const QRectF*  rects, int  rectCount);
+   bool  isActive(QPaintEngine* theWrappedObject) const;
+   QPainter*  painter(QPaintEngine* theWrappedObject) const;
+   void drawTiledPixmap(QPaintEngine* theWrappedObject, const QRectF&  r, const QPixmap&  pixmap, const QPointF&  s);
+   void syncState(QPaintEngine* theWrappedObject);
    QPoint  coordinateOffset(QPaintEngine* theWrappedObject) const;
-   void drawEllipse(QPaintEngine* theWrappedObject, const QRectF&  r);
+   void drawPolygon(QPaintEngine* theWrappedObject, const QPointF*  points, int  pointCount, QPaintEngine::PolygonDrawMode  mode);
+   bool  hasFeature(QPaintEngine* theWrappedObject, QPaintEngine::PaintEngineFeatures  feature) const;
+   void drawEllipse(QPaintEngine* theWrappedObject, const QRect&  r);
+   void drawPoints(QPaintEngine* theWrappedObject, const QPointF*  points, int  pointCount);
+   void drawTextItem(QPaintEngine* theWrappedObject, const QPointF&  p, const QTextItem&  textItem);
+   QRect  systemRect(QPaintEngine* theWrappedObject) const;
+   void drawRects(QPaintEngine* theWrappedObject, const QRectF*  rects, int  rectCount);
+   bool  testDirty(QPaintEngine* theWrappedObject, QPaintEngine::DirtyFlags  df);
+   void drawRects(QPaintEngine* theWrappedObject, const QRect*  rects, int  rectCount);
    void setSystemRect(QPaintEngine* theWrappedObject, const QRect&  rect);
+   void drawEllipse(QPaintEngine* theWrappedObject, const QRectF&  r);
+   void drawLines(QPaintEngine* theWrappedObject, const QLineF*  lines, int  lineCount);
+   void setActive(QPaintEngine* theWrappedObject, bool  newState);
+   void clearDirty(QPaintEngine* theWrappedObject, QPaintEngine::DirtyFlags  df);
+   void drawPolygon(QPaintEngine* theWrappedObject, const QPoint*  points, int  pointCount, QPaintEngine::PolygonDrawMode  mode);
+   void setDirty(QPaintEngine* theWrappedObject, QPaintEngine::DirtyFlags  df);
 };
 
 #endif // PYTHONQTWRAPPER_QPAINTENGINE_H

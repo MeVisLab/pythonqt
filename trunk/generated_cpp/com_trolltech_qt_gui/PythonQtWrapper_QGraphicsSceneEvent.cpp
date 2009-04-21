@@ -12,6 +12,6 @@ return new QGraphicsSceneEvent(type); }
 
 QWidget*  PythonQtWrapper_QGraphicsSceneEvent::widget(QGraphicsSceneEvent* theWrappedObject) const
 {
-return  (*theWrappedObject).widget();
+return  theWrappedObject->widget();
 }
 

@@ -86,10 +86,11 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QScrollArea : public QScrollArea
 { public:
-inline void resizeEvent(QResizeEvent*  arg__1) { QScrollArea::resizeEvent(arg__1); }
-inline void scrollContentsBy(int  dx, int  dy) { QScrollArea::scrollContentsBy(dx, dy); }
-inline bool  event(QEvent*  arg__1) { return QScrollArea::event(arg__1); }
-inline bool  eventFilter(QObject*  arg__1, QEvent*  arg__2) { return QScrollArea::eventFilter(arg__1, arg__2); }
+inline void promoted_resizeEvent(QResizeEvent*  arg__1) { QScrollArea::resizeEvent(arg__1); }
+inline bool  promoted_focusNextPrevChild(bool  next) { return QScrollArea::focusNextPrevChild(next); }
+inline void promoted_scrollContentsBy(int  dx, int  dy) { QScrollArea::scrollContentsBy(dx, dy); }
+inline bool  promoted_eventFilter(QObject*  arg__1, QEvent*  arg__2) { return QScrollArea::eventFilter(arg__1, arg__2); }
+inline bool  promoted_event(QEvent*  arg__1) { return QScrollArea::event(arg__1); }
 };
 
 class PythonQtWrapper_QScrollArea : public QObject
@@ -98,20 +99,20 @@ public:
 public slots:
 QScrollArea* new_QScrollArea(QWidget*  parent = 0);
 void delete_QScrollArea(QScrollArea* obj) { delete obj; } 
-   void resizeEvent(QScrollArea* theWrappedObject, QResizeEvent*  arg__1);
-   void setAlignment(QScrollArea* theWrappedObject, Qt::Alignment  arg__1);
-   void scrollContentsBy(QScrollArea* theWrappedObject, int  dx, int  dy);
-   Qt::Alignment  alignment(QScrollArea* theWrappedObject) const;
    void setWidget(QScrollArea* theWrappedObject, QWidget*  widget);
-   void setWidgetResizable(QScrollArea* theWrappedObject, bool  resizable);
+   void resizeEvent(QScrollArea* theWrappedObject, QResizeEvent*  arg__1);
+   Qt::Alignment  alignment(QScrollArea* theWrappedObject) const;
    QSize  sizeHint(QScrollArea* theWrappedObject) const;
    bool  focusNextPrevChild(QScrollArea* theWrappedObject, bool  next);
-   bool  event(QScrollArea* theWrappedObject, QEvent*  arg__1);
    void ensureVisible(QScrollArea* theWrappedObject, int  x, int  y, int  xmargin = 50, int  ymargin = 50);
    QWidget*  widget(QScrollArea* theWrappedObject) const;
+   void scrollContentsBy(QScrollArea* theWrappedObject, int  dx, int  dy);
+   void ensureWidgetVisible(QScrollArea* theWrappedObject, QWidget*  childWidget, int  xmargin = 50, int  ymargin = 50);
    bool  eventFilter(QScrollArea* theWrappedObject, QObject*  arg__1, QEvent*  arg__2);
    bool  widgetResizable(QScrollArea* theWrappedObject) const;
-   void ensureWidgetVisible(QScrollArea* theWrappedObject, QWidget*  childWidget, int  xmargin = 50, int  ymargin = 50);
+   bool  event(QScrollArea* theWrappedObject, QEvent*  arg__1);
+   void setAlignment(QScrollArea* theWrappedObject, Qt::Alignment  arg__1);
+   void setWidgetResizable(QScrollArea* theWrappedObject, bool  resizable);
    QWidget*  takeWidget(QScrollArea* theWrappedObject);
 };
 

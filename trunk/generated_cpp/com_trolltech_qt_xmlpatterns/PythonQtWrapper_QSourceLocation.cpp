@@ -19,43 +19,43 @@ QSourceLocation* PythonQtWrapper_QSourceLocation::new_QSourceLocation(const QUrl
 { 
 return new QSourceLocation(uri, line, column); }
 
-qint64  PythonQtWrapper_QSourceLocation::line(QSourceLocation* theWrappedObject) const
-{
-return  (*theWrappedObject).line();
-}
-
-qint64  PythonQtWrapper_QSourceLocation::column(QSourceLocation* theWrappedObject) const
-{
-return  (*theWrappedObject).column();
-}
-
-void PythonQtWrapper_QSourceLocation::setLine(QSourceLocation* theWrappedObject, qint64  newLine)
-{
- (*theWrappedObject).setLine(newLine);
-}
-
 void PythonQtWrapper_QSourceLocation::setColumn(QSourceLocation* theWrappedObject, qint64  newColumn)
 {
- (*theWrappedObject).setColumn(newColumn);
-}
-
-bool  PythonQtWrapper_QSourceLocation::isNull(QSourceLocation* theWrappedObject) const
-{
-return  (*theWrappedObject).isNull();
-}
-
-void PythonQtWrapper_QSourceLocation::setUri(QSourceLocation* theWrappedObject, const QUrl&  newUri)
-{
- (*theWrappedObject).setUri(newUri);
-}
-
-QUrl  PythonQtWrapper_QSourceLocation::uri(QSourceLocation* theWrappedObject) const
-{
-return  (*theWrappedObject).uri();
+ theWrappedObject->setColumn(newColumn);
 }
 
 bool  PythonQtWrapper_QSourceLocation::operator_equal(QSourceLocation* theWrappedObject, const QSourceLocation&  other) const
 {
 return  (*theWrappedObject)== other;
+}
+
+QUrl  PythonQtWrapper_QSourceLocation::uri(QSourceLocation* theWrappedObject) const
+{
+return  theWrappedObject->uri();
+}
+
+void PythonQtWrapper_QSourceLocation::setLine(QSourceLocation* theWrappedObject, qint64  newLine)
+{
+ theWrappedObject->setLine(newLine);
+}
+
+bool  PythonQtWrapper_QSourceLocation::isNull(QSourceLocation* theWrappedObject) const
+{
+return  theWrappedObject->isNull();
+}
+
+qint64  PythonQtWrapper_QSourceLocation::line(QSourceLocation* theWrappedObject) const
+{
+return  theWrappedObject->line();
+}
+
+void PythonQtWrapper_QSourceLocation::setUri(QSourceLocation* theWrappedObject, const QUrl&  newUri)
+{
+ theWrappedObject->setUri(newUri);
+}
+
+qint64  PythonQtWrapper_QSourceLocation::column(QSourceLocation* theWrappedObject) const
+{
+return  theWrappedObject->column();
 }
 

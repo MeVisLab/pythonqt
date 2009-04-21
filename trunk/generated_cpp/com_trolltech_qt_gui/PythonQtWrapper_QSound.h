@@ -33,12 +33,12 @@ public slots:
 QSound* new_QSound(const QString&  filename, QObject*  parent = 0);
 void delete_QSound(QSound* obj) { delete obj; } 
    void static_QSound_play(const QString&  filename);
-   QString  fileName(QSound* theWrappedObject) const;
-   bool  static_QSound_isAvailable();
-   void setLoops(QSound* theWrappedObject, int  arg__1);
-   bool  isFinished(QSound* theWrappedObject) const;
    int  loops(QSound* theWrappedObject) const;
+   bool  isFinished(QSound* theWrappedObject) const;
+   bool  static_QSound_isAvailable();
+   QString  fileName(QSound* theWrappedObject) const;
    int  loopsRemaining(QSound* theWrappedObject) const;
+   void setLoops(QSound* theWrappedObject, int  arg__1);
 };
 
 #endif // PYTHONQTWRAPPER_QSOUND_H

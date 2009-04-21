@@ -88,15 +88,15 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QMdiArea : public QMdiArea
 { public:
-inline bool  viewportEvent(QEvent*  event) { return QMdiArea::viewportEvent(event); }
-inline void timerEvent(QTimerEvent*  timerEvent) { QMdiArea::timerEvent(timerEvent); }
-inline void paintEvent(QPaintEvent*  paintEvent) { QMdiArea::paintEvent(paintEvent); }
-inline void scrollContentsBy(int  dx, int  dy) { QMdiArea::scrollContentsBy(dx, dy); }
-inline void childEvent(QChildEvent*  childEvent) { QMdiArea::childEvent(childEvent); }
-inline bool  event(QEvent*  event) { return QMdiArea::event(event); }
-inline bool  eventFilter(QObject*  object, QEvent*  event) { return QMdiArea::eventFilter(object, event); }
-inline void showEvent(QShowEvent*  showEvent) { QMdiArea::showEvent(showEvent); }
-inline void resizeEvent(QResizeEvent*  resizeEvent) { QMdiArea::resizeEvent(resizeEvent); }
+inline bool  promoted_event(QEvent*  event) { return QMdiArea::event(event); }
+inline void promoted_resizeEvent(QResizeEvent*  resizeEvent) { QMdiArea::resizeEvent(resizeEvent); }
+inline void promoted_childEvent(QChildEvent*  childEvent) { QMdiArea::childEvent(childEvent); }
+inline void promoted_timerEvent(QTimerEvent*  timerEvent) { QMdiArea::timerEvent(timerEvent); }
+inline bool  promoted_viewportEvent(QEvent*  event) { return QMdiArea::viewportEvent(event); }
+inline bool  promoted_eventFilter(QObject*  object, QEvent*  event) { return QMdiArea::eventFilter(object, event); }
+inline void promoted_scrollContentsBy(int  dx, int  dy) { QMdiArea::scrollContentsBy(dx, dy); }
+inline void promoted_paintEvent(QPaintEvent*  paintEvent) { QMdiArea::paintEvent(paintEvent); }
+inline void promoted_showEvent(QShowEvent*  showEvent) { QMdiArea::showEvent(showEvent); }
 };
 
 class PythonQtWrapper_QMdiArea : public QObject
@@ -108,34 +108,34 @@ enum AreaOption{
 public slots:
 QMdiArea* new_QMdiArea(QWidget*  parent = 0);
 void delete_QMdiArea(QMdiArea* obj) { delete obj; } 
-   bool  viewportEvent(QMdiArea* theWrappedObject, QEvent*  event);
-   QMdiArea::ViewMode  viewMode(QMdiArea* theWrappedObject) const;
+   bool  event(QMdiArea* theWrappedObject, QEvent*  event);
+   void resizeEvent(QMdiArea* theWrappedObject, QResizeEvent*  resizeEvent);
+   void removeSubWindow(QMdiArea* theWrappedObject, QWidget*  widget);
+   QBrush  background(QMdiArea* theWrappedObject) const;
+   void setActivationOrder(QMdiArea* theWrappedObject, QMdiArea::WindowOrder  order);
    QTabWidget::TabPosition  tabPosition(QMdiArea* theWrappedObject) const;
    bool  testOption(QMdiArea* theWrappedObject, QMdiArea::AreaOption  opton) const;
+   void childEvent(QMdiArea* theWrappedObject, QChildEvent*  childEvent);
    void timerEvent(QMdiArea* theWrappedObject, QTimerEvent*  timerEvent);
-   QMdiArea::WindowOrder  activationOrder(QMdiArea* theWrappedObject) const;
-   void paintEvent(QMdiArea* theWrappedObject, QPaintEvent*  paintEvent);
    void setViewMode(QMdiArea* theWrappedObject, QMdiArea::ViewMode  mode);
+   void setTabPosition(QMdiArea* theWrappedObject, QTabWidget::TabPosition  position);
+   bool  viewportEvent(QMdiArea* theWrappedObject, QEvent*  event);
+   bool  eventFilter(QMdiArea* theWrappedObject, QObject*  object, QEvent*  event);
    void scrollContentsBy(QMdiArea* theWrappedObject, int  dx, int  dy);
-   QTabWidget::TabShape  tabShape(QMdiArea* theWrappedObject) const;
    QSize  sizeHint(QMdiArea* theWrappedObject) const;
-   void setActivationOrder(QMdiArea* theWrappedObject, QMdiArea::WindowOrder  order);
-   QBrush  background(QMdiArea* theWrappedObject) const;
+   void paintEvent(QMdiArea* theWrappedObject, QPaintEvent*  paintEvent);
    QMdiSubWindow*  addSubWindow(QMdiArea* theWrappedObject, QWidget*  widget, Qt::WindowFlags  flags = 0);
    void setBackground(QMdiArea* theWrappedObject, const QBrush&  background);
-   void childEvent(QMdiArea* theWrappedObject, QChildEvent*  childEvent);
-   void removeSubWindow(QMdiArea* theWrappedObject, QWidget*  widget);
-   QMdiSubWindow*  currentSubWindow(QMdiArea* theWrappedObject) const;
    QSize  minimumSizeHint(QMdiArea* theWrappedObject) const;
-   void setTabPosition(QMdiArea* theWrappedObject, QTabWidget::TabPosition  position);
+   QMdiArea::ViewMode  viewMode(QMdiArea* theWrappedObject) const;
+   QTabWidget::TabShape  tabShape(QMdiArea* theWrappedObject) const;
+   QMdiArea::WindowOrder  activationOrder(QMdiArea* theWrappedObject) const;
+   QMdiSubWindow*  currentSubWindow(QMdiArea* theWrappedObject) const;
    QList<QMdiSubWindow* >  subWindowList(QMdiArea* theWrappedObject, QMdiArea::WindowOrder  order = QMdiArea::CreationOrder) const;
    void setTabShape(QMdiArea* theWrappedObject, QTabWidget::TabShape  shape);
-   bool  event(QMdiArea* theWrappedObject, QEvent*  event);
-   bool  eventFilter(QMdiArea* theWrappedObject, QObject*  object, QEvent*  event);
    void showEvent(QMdiArea* theWrappedObject, QShowEvent*  showEvent);
    QMdiSubWindow*  activeSubWindow(QMdiArea* theWrappedObject) const;
    void setOption(QMdiArea* theWrappedObject, QMdiArea::AreaOption  option, bool  on = true);
-   void resizeEvent(QMdiArea* theWrappedObject, QResizeEvent*  resizeEvent);
 };
 
 #endif // PYTHONQTWRAPPER_QMDIAREA_H

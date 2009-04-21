@@ -805,98 +805,98 @@ QGroupBox* PythonQtWrapper_QGroupBox::new_QGroupBox(const QString&  title, QWidg
 { 
 return new PythonQtShell_QGroupBox(title, parent); }
 
-void PythonQtWrapper_QGroupBox::setTitle(QGroupBox* theWrappedObject, const QString&  title)
-{
- (*theWrappedObject).setTitle(title);
-}
-
-bool  PythonQtWrapper_QGroupBox::event(QGroupBox* theWrappedObject, QEvent*  event)
-{
-return  (*((PythonQtPublicPromoter_QGroupBox*)theWrappedObject)).event(event);
-}
-
-Qt::Alignment  PythonQtWrapper_QGroupBox::alignment(QGroupBox* theWrappedObject) const
-{
-return  (*theWrappedObject).alignment();
-}
-
-QSize  PythonQtWrapper_QGroupBox::minimumSizeHint(QGroupBox* theWrappedObject) const
-{
-return  (*theWrappedObject).minimumSizeHint();
-}
-
 bool  PythonQtWrapper_QGroupBox::isFlat(QGroupBox* theWrappedObject) const
 {
-return  (*theWrappedObject).isFlat();
+return  theWrappedObject->isFlat();
 }
 
 void PythonQtWrapper_QGroupBox::setAlignment(QGroupBox* theWrappedObject, int  alignment)
 {
- (*theWrappedObject).setAlignment(alignment);
+ theWrappedObject->setAlignment(alignment);
 }
 
 void PythonQtWrapper_QGroupBox::changeEvent(QGroupBox* theWrappedObject, QEvent*  event)
 {
- (*((PythonQtPublicPromoter_QGroupBox*)theWrappedObject)).changeEvent(event);
+ ((PythonQtPublicPromoter_QGroupBox*)theWrappedObject)->promoted_changeEvent(event);
 }
 
 QString  PythonQtWrapper_QGroupBox::title(QGroupBox* theWrappedObject) const
 {
-return  (*theWrappedObject).title();
+return  theWrappedObject->title();
 }
 
-void PythonQtWrapper_QGroupBox::mouseReleaseEvent(QGroupBox* theWrappedObject, QMouseEvent*  event)
+QSize  PythonQtWrapper_QGroupBox::minimumSizeHint(QGroupBox* theWrappedObject) const
 {
- (*((PythonQtPublicPromoter_QGroupBox*)theWrappedObject)).mouseReleaseEvent(event);
-}
-
-void PythonQtWrapper_QGroupBox::mousePressEvent(QGroupBox* theWrappedObject, QMouseEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGroupBox*)theWrappedObject)).mousePressEvent(event);
+return  theWrappedObject->minimumSizeHint();
 }
 
 void PythonQtWrapper_QGroupBox::focusInEvent(QGroupBox* theWrappedObject, QFocusEvent*  event)
 {
- (*((PythonQtPublicPromoter_QGroupBox*)theWrappedObject)).focusInEvent(event);
+ ((PythonQtPublicPromoter_QGroupBox*)theWrappedObject)->promoted_focusInEvent(event);
 }
 
-void PythonQtWrapper_QGroupBox::paintEvent(QGroupBox* theWrappedObject, QPaintEvent*  event)
+void PythonQtWrapper_QGroupBox::mouseReleaseEvent(QGroupBox* theWrappedObject, QMouseEvent*  event)
 {
- (*((PythonQtPublicPromoter_QGroupBox*)theWrappedObject)).paintEvent(event);
-}
-
-void PythonQtWrapper_QGroupBox::mouseMoveEvent(QGroupBox* theWrappedObject, QMouseEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGroupBox*)theWrappedObject)).mouseMoveEvent(event);
+ ((PythonQtPublicPromoter_QGroupBox*)theWrappedObject)->promoted_mouseReleaseEvent(event);
 }
 
 void PythonQtWrapper_QGroupBox::setCheckable(QGroupBox* theWrappedObject, bool  checkable)
 {
- (*theWrappedObject).setCheckable(checkable);
+ theWrappedObject->setCheckable(checkable);
 }
 
-void PythonQtWrapper_QGroupBox::resizeEvent(QGroupBox* theWrappedObject, QResizeEvent*  event)
+void PythonQtWrapper_QGroupBox::mousePressEvent(QGroupBox* theWrappedObject, QMouseEvent*  event)
 {
- (*((PythonQtPublicPromoter_QGroupBox*)theWrappedObject)).resizeEvent(event);
-}
-
-void PythonQtWrapper_QGroupBox::setFlat(QGroupBox* theWrappedObject, bool  flat)
-{
- (*theWrappedObject).setFlat(flat);
+ ((PythonQtPublicPromoter_QGroupBox*)theWrappedObject)->promoted_mousePressEvent(event);
 }
 
 void PythonQtWrapper_QGroupBox::childEvent(QGroupBox* theWrappedObject, QChildEvent*  event)
 {
- (*((PythonQtPublicPromoter_QGroupBox*)theWrappedObject)).childEvent(event);
+ ((PythonQtPublicPromoter_QGroupBox*)theWrappedObject)->promoted_childEvent(event);
+}
+
+void PythonQtWrapper_QGroupBox::mouseMoveEvent(QGroupBox* theWrappedObject, QMouseEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGroupBox*)theWrappedObject)->promoted_mouseMoveEvent(event);
+}
+
+void PythonQtWrapper_QGroupBox::setFlat(QGroupBox* theWrappedObject, bool  flat)
+{
+ theWrappedObject->setFlat(flat);
+}
+
+void PythonQtWrapper_QGroupBox::paintEvent(QGroupBox* theWrappedObject, QPaintEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGroupBox*)theWrappedObject)->promoted_paintEvent(event);
 }
 
 bool  PythonQtWrapper_QGroupBox::isChecked(QGroupBox* theWrappedObject) const
 {
-return  (*theWrappedObject).isChecked();
+return  theWrappedObject->isChecked();
 }
 
 bool  PythonQtWrapper_QGroupBox::isCheckable(QGroupBox* theWrappedObject) const
 {
-return  (*theWrappedObject).isCheckable();
+return  theWrappedObject->isCheckable();
+}
+
+bool  PythonQtWrapper_QGroupBox::event(QGroupBox* theWrappedObject, QEvent*  event)
+{
+return  ((PythonQtPublicPromoter_QGroupBox*)theWrappedObject)->promoted_event(event);
+}
+
+void PythonQtWrapper_QGroupBox::resizeEvent(QGroupBox* theWrappedObject, QResizeEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGroupBox*)theWrappedObject)->promoted_resizeEvent(event);
+}
+
+Qt::Alignment  PythonQtWrapper_QGroupBox::alignment(QGroupBox* theWrappedObject) const
+{
+return  theWrappedObject->alignment();
+}
+
+void PythonQtWrapper_QGroupBox::setTitle(QGroupBox* theWrappedObject, const QString&  title)
+{
+ theWrappedObject->setTitle(title);
 }
 

@@ -849,33 +849,33 @@ QSplashScreen* PythonQtWrapper_QSplashScreen::new_QSplashScreen(const QPixmap&  
 { 
 return new PythonQtShell_QSplashScreen(pixmap, f); }
 
-void PythonQtWrapper_QSplashScreen::finish(QSplashScreen* theWrappedObject, QWidget*  w)
+bool  PythonQtWrapper_QSplashScreen::event(QSplashScreen* theWrappedObject, QEvent*  e)
 {
- (*theWrappedObject).finish(w);
+return  ((PythonQtPublicPromoter_QSplashScreen*)theWrappedObject)->promoted_event(e);
 }
 
 void PythonQtWrapper_QSplashScreen::mousePressEvent(QSplashScreen* theWrappedObject, QMouseEvent*  arg__1)
 {
- (*((PythonQtPublicPromoter_QSplashScreen*)theWrappedObject)).mousePressEvent(arg__1);
-}
-
-const QPixmap  PythonQtWrapper_QSplashScreen::pixmap(QSplashScreen* theWrappedObject) const
-{
-return  (*theWrappedObject).pixmap();
-}
-
-void PythonQtWrapper_QSplashScreen::drawContents(QSplashScreen* theWrappedObject, QPainter*  painter)
-{
- (*((PythonQtPublicPromoter_QSplashScreen*)theWrappedObject)).drawContents(painter);
-}
-
-bool  PythonQtWrapper_QSplashScreen::event(QSplashScreen* theWrappedObject, QEvent*  e)
-{
-return  (*((PythonQtPublicPromoter_QSplashScreen*)theWrappedObject)).event(e);
+ ((PythonQtPublicPromoter_QSplashScreen*)theWrappedObject)->promoted_mousePressEvent(arg__1);
 }
 
 void PythonQtWrapper_QSplashScreen::setPixmap(QSplashScreen* theWrappedObject, const QPixmap&  pixmap)
 {
- (*theWrappedObject).setPixmap(pixmap);
+ theWrappedObject->setPixmap(pixmap);
+}
+
+void PythonQtWrapper_QSplashScreen::finish(QSplashScreen* theWrappedObject, QWidget*  w)
+{
+ theWrappedObject->finish(w);
+}
+
+const QPixmap  PythonQtWrapper_QSplashScreen::pixmap(QSplashScreen* theWrappedObject) const
+{
+return  theWrappedObject->pixmap();
+}
+
+void PythonQtWrapper_QSplashScreen::drawContents(QSplashScreen* theWrappedObject, QPainter*  painter)
+{
+ ((PythonQtPublicPromoter_QSplashScreen*)theWrappedObject)->promoted_drawContents(painter);
 }
 

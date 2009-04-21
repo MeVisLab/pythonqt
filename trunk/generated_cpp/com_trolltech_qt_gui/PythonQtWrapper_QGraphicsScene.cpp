@@ -514,418 +514,418 @@ QGraphicsScene* PythonQtWrapper_QGraphicsScene::new_QGraphicsScene(qreal  x, qre
 { 
 return new PythonQtShell_QGraphicsScene(x, y, width, height, parent); }
 
-void PythonQtWrapper_QGraphicsScene::update(QGraphicsScene* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h)
+void PythonQtWrapper_QGraphicsScene::setSceneRect(QGraphicsScene* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h)
 {
- (*theWrappedObject).update(x, y, w, h);
-}
-
-void PythonQtWrapper_QGraphicsScene::setSceneRect(QGraphicsScene* theWrappedObject, const QRectF&  rect)
-{
- (*theWrappedObject).setSceneRect(rect);
-}
-
-QGraphicsLineItem*  PythonQtWrapper_QGraphicsScene::addLine(QGraphicsScene* theWrappedObject, qreal  x1, qreal  y1, qreal  x2, qreal  y2, const QPen&  pen)
-{
-return  (*theWrappedObject).addLine(x1, y1, x2, y2, pen);
-}
-
-void PythonQtWrapper_QGraphicsScene::setBackgroundBrush(QGraphicsScene* theWrappedObject, const QBrush&  brush)
-{
- (*theWrappedObject).setBackgroundBrush(brush);
-}
-
-bool  PythonQtWrapper_QGraphicsScene::eventFilter(QGraphicsScene* theWrappedObject, QObject*  watched, QEvent*  event)
-{
-return  (*((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)).eventFilter(watched, event);
-}
-
-QGraphicsSimpleTextItem*  PythonQtWrapper_QGraphicsScene::addSimpleText(QGraphicsScene* theWrappedObject, const QString&  text, const QFont&  font)
-{
-return  (*theWrappedObject).addSimpleText(text, font);
-}
-
-QGraphicsWidget*  PythonQtWrapper_QGraphicsScene::activeWindow(QGraphicsScene* theWrappedObject) const
-{
-return  (*theWrappedObject).activeWindow();
-}
-
-void PythonQtWrapper_QGraphicsScene::mouseMoveEvent(QGraphicsScene* theWrappedObject, QGraphicsSceneMouseEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)).mouseMoveEvent(event);
-}
-
-void PythonQtWrapper_QGraphicsScene::setSelectionArea(QGraphicsScene* theWrappedObject, const QPainterPath&  path, Qt::ItemSelectionMode  arg__2)
-{
- (*theWrappedObject).setSelectionArea(path, arg__2);
-}
-
-void PythonQtWrapper_QGraphicsScene::mouseDoubleClickEvent(QGraphicsScene* theWrappedObject, QGraphicsSceneMouseEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)).mouseDoubleClickEvent(event);
-}
-
-void PythonQtWrapper_QGraphicsScene::helpEvent(QGraphicsScene* theWrappedObject, QGraphicsSceneHelpEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)).helpEvent(event);
-}
-
-QList<QGraphicsItem* >  PythonQtWrapper_QGraphicsScene::items(QGraphicsScene* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h, Qt::ItemSelectionMode  mode) const
-{
-return  (*theWrappedObject).items(x, y, w, h, mode);
-}
-
-QGraphicsPolygonItem*  PythonQtWrapper_QGraphicsScene::addPolygon(QGraphicsScene* theWrappedObject, const QPolygonF&  polygon, const QPen&  pen, const QBrush&  brush)
-{
-return  (*theWrappedObject).addPolygon(polygon, pen, brush);
-}
-
-QPalette  PythonQtWrapper_QGraphicsScene::palette(QGraphicsScene* theWrappedObject) const
-{
-return  (*theWrappedObject).palette();
-}
-
-void PythonQtWrapper_QGraphicsScene::drawBackground(QGraphicsScene* theWrappedObject, QPainter*  painter, const QRectF&  rect)
-{
- (*((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)).drawBackground(painter, rect);
-}
-
-QRectF  PythonQtWrapper_QGraphicsScene::sceneRect(QGraphicsScene* theWrappedObject) const
-{
-return  (*theWrappedObject).sceneRect();
-}
-
-void PythonQtWrapper_QGraphicsScene::keyReleaseEvent(QGraphicsScene* theWrappedObject, QKeyEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)).keyReleaseEvent(event);
-}
-
-void PythonQtWrapper_QGraphicsScene::setFocusItem(QGraphicsScene* theWrappedObject, QGraphicsItem*  item, Qt::FocusReason  focusReason)
-{
- (*theWrappedObject).setFocusItem(item, focusReason);
-}
-
-void PythonQtWrapper_QGraphicsScene::focusOutEvent(QGraphicsScene* theWrappedObject, QFocusEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)).focusOutEvent(event);
-}
-
-QGraphicsRectItem*  PythonQtWrapper_QGraphicsScene::addRect(QGraphicsScene* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h, const QPen&  pen, const QBrush&  brush)
-{
-return  (*theWrappedObject).addRect(x, y, w, h, pen, brush);
-}
-
-void PythonQtWrapper_QGraphicsScene::dragLeaveEvent(QGraphicsScene* theWrappedObject, QGraphicsSceneDragDropEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)).dragLeaveEvent(event);
-}
-
-void PythonQtWrapper_QGraphicsScene::drawItems(QGraphicsScene* theWrappedObject, QPainter*  painter, int  numItems, QGraphicsItem**  items, const QStyleOptionGraphicsItem*  options, QWidget*  widget)
-{
- (*((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)).drawItems(painter, numItems, items, options, widget);
-}
-
-qreal  PythonQtWrapper_QGraphicsScene::width(QGraphicsScene* theWrappedObject) const
-{
-return  (*theWrappedObject).width();
-}
-
-void PythonQtWrapper_QGraphicsScene::contextMenuEvent(QGraphicsScene* theWrappedObject, QGraphicsSceneContextMenuEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)).contextMenuEvent(event);
-}
-
-QList<QGraphicsItem* >  PythonQtWrapper_QGraphicsScene::items(QGraphicsScene* theWrappedObject, const QPainterPath&  path, Qt::ItemSelectionMode  mode) const
-{
-return  (*theWrappedObject).items(path, mode);
-}
-
-QList<QGraphicsItem* >  PythonQtWrapper_QGraphicsScene::selectedItems(QGraphicsScene* theWrappedObject) const
-{
-return  (*theWrappedObject).selectedItems();
-}
-
-QGraphicsScene::ItemIndexMethod  PythonQtWrapper_QGraphicsScene::itemIndexMethod(QGraphicsScene* theWrappedObject) const
-{
-return  (*theWrappedObject).itemIndexMethod();
-}
-
-QBrush  PythonQtWrapper_QGraphicsScene::backgroundBrush(QGraphicsScene* theWrappedObject) const
-{
-return  (*theWrappedObject).backgroundBrush();
-}
-
-QGraphicsPixmapItem*  PythonQtWrapper_QGraphicsScene::addPixmap(QGraphicsScene* theWrappedObject, const QPixmap&  pixmap)
-{
-return  (*theWrappedObject).addPixmap(pixmap);
-}
-
-void PythonQtWrapper_QGraphicsScene::setItemIndexMethod(QGraphicsScene* theWrappedObject, QGraphicsScene::ItemIndexMethod  method)
-{
- (*theWrappedObject).setItemIndexMethod(method);
-}
-
-void PythonQtWrapper_QGraphicsScene::setForegroundBrush(QGraphicsScene* theWrappedObject, const QBrush&  brush)
-{
- (*theWrappedObject).setForegroundBrush(brush);
-}
-
-void PythonQtWrapper_QGraphicsScene::setActiveWindow(QGraphicsScene* theWrappedObject, QGraphicsWidget*  widget)
-{
- (*theWrappedObject).setActiveWindow(widget);
-}
-
-int  PythonQtWrapper_QGraphicsScene::bspTreeDepth(QGraphicsScene* theWrappedObject) const
-{
-return  (*theWrappedObject).bspTreeDepth();
-}
-
-void PythonQtWrapper_QGraphicsScene::removeItem(QGraphicsScene* theWrappedObject, QGraphicsItem*  item)
-{
- (*theWrappedObject).removeItem(item);
-}
-
-QList<QGraphicsItem* >  PythonQtWrapper_QGraphicsScene::collidingItems(QGraphicsScene* theWrappedObject, const QGraphicsItem*  item, Qt::ItemSelectionMode  mode) const
-{
-return  (*theWrappedObject).collidingItems(item, mode);
+ theWrappedObject->setSceneRect(x, y, w, h);
 }
 
 void PythonQtWrapper_QGraphicsScene::dragMoveEvent(QGraphicsScene* theWrappedObject, QGraphicsSceneDragDropEvent*  event)
 {
- (*((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)).dragMoveEvent(event);
+ ((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)->promoted_dragMoveEvent(event);
 }
 
-void PythonQtWrapper_QGraphicsScene::setStyle(QGraphicsScene* theWrappedObject, QStyle*  style)
+void PythonQtWrapper_QGraphicsScene::keyReleaseEvent(QGraphicsScene* theWrappedObject, QKeyEvent*  event)
 {
- (*theWrappedObject).setStyle(style);
+ ((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)->promoted_keyReleaseEvent(event);
 }
 
-QList<QGraphicsItem* >  PythonQtWrapper_QGraphicsScene::items(QGraphicsScene* theWrappedObject, const QPointF&  pos) const
+QList<QGraphicsItem* >  PythonQtWrapper_QGraphicsScene::items(QGraphicsScene* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h, Qt::ItemSelectionMode  mode) const
 {
-return  (*theWrappedObject).items(pos);
+return  theWrappedObject->items(x, y, w, h, mode);
 }
 
-void PythonQtWrapper_QGraphicsScene::setSceneRect(QGraphicsScene* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h)
+void PythonQtWrapper_QGraphicsScene::mouseMoveEvent(QGraphicsScene* theWrappedObject, QGraphicsSceneMouseEvent*  event)
 {
- (*theWrappedObject).setSceneRect(x, y, w, h);
+ ((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)->promoted_mouseMoveEvent(event);
 }
 
-QPainterPath  PythonQtWrapper_QGraphicsScene::selectionArea(QGraphicsScene* theWrappedObject) const
+void PythonQtWrapper_QGraphicsScene::setSelectionArea(QGraphicsScene* theWrappedObject, const QPainterPath&  path, Qt::ItemSelectionMode  arg__2)
 {
-return  (*theWrappedObject).selectionArea();
-}
-
-QRectF  PythonQtWrapper_QGraphicsScene::itemsBoundingRect(QGraphicsScene* theWrappedObject) const
-{
-return  (*theWrappedObject).itemsBoundingRect();
-}
-
-QGraphicsItem*  PythonQtWrapper_QGraphicsScene::itemAt(QGraphicsScene* theWrappedObject, const QPointF&  pos) const
-{
-return  (*theWrappedObject).itemAt(pos);
-}
-
-QGraphicsItemGroup*  PythonQtWrapper_QGraphicsScene::createItemGroup(QGraphicsScene* theWrappedObject, const QList<QGraphicsItem* >&  items)
-{
-return  (*theWrappedObject).createItemGroup(items);
-}
-
-QStyle*  PythonQtWrapper_QGraphicsScene::style(QGraphicsScene* theWrappedObject) const
-{
-return  (*theWrappedObject).style();
-}
-
-QGraphicsItem*  PythonQtWrapper_QGraphicsScene::itemAt(QGraphicsScene* theWrappedObject, qreal  x, qreal  y) const
-{
-return  (*theWrappedObject).itemAt(x, y);
-}
-
-void PythonQtWrapper_QGraphicsScene::setFocus(QGraphicsScene* theWrappedObject, Qt::FocusReason  focusReason)
-{
- (*theWrappedObject).setFocus(focusReason);
-}
-
-QGraphicsRectItem*  PythonQtWrapper_QGraphicsScene::addRect(QGraphicsScene* theWrappedObject, const QRectF&  rect, const QPen&  pen, const QBrush&  brush)
-{
-return  (*theWrappedObject).addRect(rect, pen, brush);
-}
-
-QGraphicsItem*  PythonQtWrapper_QGraphicsScene::focusItem(QGraphicsScene* theWrappedObject) const
-{
-return  (*theWrappedObject).focusItem();
-}
-
-void PythonQtWrapper_QGraphicsScene::drawForeground(QGraphicsScene* theWrappedObject, QPainter*  painter, const QRectF&  rect)
-{
- (*((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)).drawForeground(painter, rect);
-}
-
-QBrush  PythonQtWrapper_QGraphicsScene::foregroundBrush(QGraphicsScene* theWrappedObject) const
-{
-return  (*theWrappedObject).foregroundBrush();
-}
-
-QGraphicsProxyWidget*  PythonQtWrapper_QGraphicsScene::addWidget(QGraphicsScene* theWrappedObject, QWidget*  widget, Qt::WindowFlags  wFlags)
-{
-return  (*theWrappedObject).addWidget(widget, wFlags);
-}
-
-QGraphicsPathItem*  PythonQtWrapper_QGraphicsScene::addPath(QGraphicsScene* theWrappedObject, const QPainterPath&  path, const QPen&  pen, const QBrush&  brush)
-{
-return  (*theWrappedObject).addPath(path, pen, brush);
-}
-
-qreal  PythonQtWrapper_QGraphicsScene::height(QGraphicsScene* theWrappedObject) const
-{
-return  (*theWrappedObject).height();
-}
-
-void PythonQtWrapper_QGraphicsScene::setFont(QGraphicsScene* theWrappedObject, const QFont&  font)
-{
- (*theWrappedObject).setFont(font);
-}
-
-void PythonQtWrapper_QGraphicsScene::destroyItemGroup(QGraphicsScene* theWrappedObject, QGraphicsItemGroup*  group)
-{
- (*theWrappedObject).destroyItemGroup(group);
-}
-
-bool  PythonQtWrapper_QGraphicsScene::event(QGraphicsScene* theWrappedObject, QEvent*  event)
-{
-return  (*((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)).event(event);
-}
-
-void PythonQtWrapper_QGraphicsScene::inputMethodEvent(QGraphicsScene* theWrappedObject, QInputMethodEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)).inputMethodEvent(event);
-}
-
-void PythonQtWrapper_QGraphicsScene::setSelectionArea(QGraphicsScene* theWrappedObject, const QPainterPath&  path)
-{
- (*theWrappedObject).setSelectionArea(path);
-}
-
-QList<QGraphicsView* >  PythonQtWrapper_QGraphicsScene::views(QGraphicsScene* theWrappedObject) const
-{
-return  (*theWrappedObject).views();
-}
-
-QList<QGraphicsItem* >  PythonQtWrapper_QGraphicsScene::items(QGraphicsScene* theWrappedObject, const QRectF&  rect, Qt::ItemSelectionMode  mode) const
-{
-return  (*theWrappedObject).items(rect, mode);
-}
-
-QGraphicsEllipseItem*  PythonQtWrapper_QGraphicsScene::addEllipse(QGraphicsScene* theWrappedObject, const QRectF&  rect, const QPen&  pen, const QBrush&  brush)
-{
-return  (*theWrappedObject).addEllipse(rect, pen, brush);
-}
-
-void PythonQtWrapper_QGraphicsScene::keyPressEvent(QGraphicsScene* theWrappedObject, QKeyEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)).keyPressEvent(event);
-}
-
-void PythonQtWrapper_QGraphicsScene::setPalette(QGraphicsScene* theWrappedObject, const QPalette&  palette)
-{
- (*theWrappedObject).setPalette(palette);
-}
-
-QGraphicsTextItem*  PythonQtWrapper_QGraphicsScene::addText(QGraphicsScene* theWrappedObject, const QString&  text, const QFont&  font)
-{
-return  (*theWrappedObject).addText(text, font);
-}
-
-void PythonQtWrapper_QGraphicsScene::mousePressEvent(QGraphicsScene* theWrappedObject, QGraphicsSceneMouseEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)).mousePressEvent(event);
-}
-
-bool  PythonQtWrapper_QGraphicsScene::hasFocus(QGraphicsScene* theWrappedObject) const
-{
-return  (*theWrappedObject).hasFocus();
-}
-
-void PythonQtWrapper_QGraphicsScene::addItem(QGraphicsScene* theWrappedObject, QGraphicsItem*  item)
-{
- (*theWrappedObject).addItem(item);
-}
-
-void PythonQtWrapper_QGraphicsScene::render(QGraphicsScene* theWrappedObject, QPainter*  painter, const QRectF&  target, const QRectF&  source, Qt::AspectRatioMode  aspectRatioMode)
-{
- (*theWrappedObject).render(painter, target, source, aspectRatioMode);
-}
-
-QList<QGraphicsItem* >  PythonQtWrapper_QGraphicsScene::items(QGraphicsScene* theWrappedObject, const QPolygonF&  polygon, Qt::ItemSelectionMode  mode) const
-{
-return  (*theWrappedObject).items(polygon, mode);
-}
-
-void PythonQtWrapper_QGraphicsScene::mouseReleaseEvent(QGraphicsScene* theWrappedObject, QGraphicsSceneMouseEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)).mouseReleaseEvent(event);
-}
-
-void PythonQtWrapper_QGraphicsScene::focusInEvent(QGraphicsScene* theWrappedObject, QFocusEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)).focusInEvent(event);
-}
-
-QGraphicsEllipseItem*  PythonQtWrapper_QGraphicsScene::addEllipse(QGraphicsScene* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h, const QPen&  pen, const QBrush&  brush)
-{
-return  (*theWrappedObject).addEllipse(x, y, w, h, pen, brush);
-}
-
-QGraphicsItem*  PythonQtWrapper_QGraphicsScene::mouseGrabberItem(QGraphicsScene* theWrappedObject) const
-{
-return  (*theWrappedObject).mouseGrabberItem();
-}
-
-void PythonQtWrapper_QGraphicsScene::dropEvent(QGraphicsScene* theWrappedObject, QGraphicsSceneDragDropEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)).dropEvent(event);
-}
-
-void PythonQtWrapper_QGraphicsScene::wheelEvent(QGraphicsScene* theWrappedObject, QGraphicsSceneWheelEvent*  event)
-{
- (*((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)).wheelEvent(event);
-}
-
-QGraphicsLineItem*  PythonQtWrapper_QGraphicsScene::addLine(QGraphicsScene* theWrappedObject, const QLineF&  line, const QPen&  pen)
-{
-return  (*theWrappedObject).addLine(line, pen);
-}
-
-void PythonQtWrapper_QGraphicsScene::clearFocus(QGraphicsScene* theWrappedObject)
-{
- (*theWrappedObject).clearFocus();
+ theWrappedObject->setSelectionArea(path, arg__2);
 }
 
 void PythonQtWrapper_QGraphicsScene::setBspTreeDepth(QGraphicsScene* theWrappedObject, int  depth)
 {
- (*theWrappedObject).setBspTreeDepth(depth);
+ theWrappedObject->setBspTreeDepth(depth);
 }
 
-QFont  PythonQtWrapper_QGraphicsScene::font(QGraphicsScene* theWrappedObject) const
+void PythonQtWrapper_QGraphicsScene::mousePressEvent(QGraphicsScene* theWrappedObject, QGraphicsSceneMouseEvent*  event)
 {
-return  (*theWrappedObject).font();
+ ((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)->promoted_mousePressEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsScene::setActiveWindow(QGraphicsScene* theWrappedObject, QGraphicsWidget*  widget)
+{
+ theWrappedObject->setActiveWindow(widget);
+}
+
+bool  PythonQtWrapper_QGraphicsScene::eventFilter(QGraphicsScene* theWrappedObject, QObject*  watched, QEvent*  event)
+{
+return  ((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)->promoted_eventFilter(watched, event);
+}
+
+QBrush  PythonQtWrapper_QGraphicsScene::foregroundBrush(QGraphicsScene* theWrappedObject) const
+{
+return  theWrappedObject->foregroundBrush();
+}
+
+QGraphicsItemGroup*  PythonQtWrapper_QGraphicsScene::createItemGroup(QGraphicsScene* theWrappedObject, const QList<QGraphicsItem* >&  items)
+{
+return  theWrappedObject->createItemGroup(items);
+}
+
+void PythonQtWrapper_QGraphicsScene::setFocusItem(QGraphicsScene* theWrappedObject, QGraphicsItem*  item, Qt::FocusReason  focusReason)
+{
+ theWrappedObject->setFocusItem(item, focusReason);
+}
+
+QPainterPath  PythonQtWrapper_QGraphicsScene::selectionArea(QGraphicsScene* theWrappedObject) const
+{
+return  theWrappedObject->selectionArea();
+}
+
+QGraphicsSimpleTextItem*  PythonQtWrapper_QGraphicsScene::addSimpleText(QGraphicsScene* theWrappedObject, const QString&  text, const QFont&  font)
+{
+return  theWrappedObject->addSimpleText(text, font);
+}
+
+void PythonQtWrapper_QGraphicsScene::contextMenuEvent(QGraphicsScene* theWrappedObject, QGraphicsSceneContextMenuEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)->promoted_contextMenuEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsScene::setSelectionArea(QGraphicsScene* theWrappedObject, const QPainterPath&  path)
+{
+ theWrappedObject->setSelectionArea(path);
+}
+
+void PythonQtWrapper_QGraphicsScene::drawItems(QGraphicsScene* theWrappedObject, QPainter*  painter, int  numItems, QGraphicsItem**  items, const QStyleOptionGraphicsItem*  options, QWidget*  widget)
+{
+ ((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)->promoted_drawItems(painter, numItems, items, options, widget);
+}
+
+QGraphicsItem*  PythonQtWrapper_QGraphicsScene::mouseGrabberItem(QGraphicsScene* theWrappedObject) const
+{
+return  theWrappedObject->mouseGrabberItem();
+}
+
+QGraphicsTextItem*  PythonQtWrapper_QGraphicsScene::addText(QGraphicsScene* theWrappedObject, const QString&  text, const QFont&  font)
+{
+return  theWrappedObject->addText(text, font);
+}
+
+QList<QGraphicsItem* >  PythonQtWrapper_QGraphicsScene::items(QGraphicsScene* theWrappedObject, const QPolygonF&  polygon, Qt::ItemSelectionMode  mode) const
+{
+return  theWrappedObject->items(polygon, mode);
+}
+
+void PythonQtWrapper_QGraphicsScene::setFont(QGraphicsScene* theWrappedObject, const QFont&  font)
+{
+ theWrappedObject->setFont(font);
+}
+
+void PythonQtWrapper_QGraphicsScene::render(QGraphicsScene* theWrappedObject, QPainter*  painter, const QRectF&  target, const QRectF&  source, Qt::AspectRatioMode  aspectRatioMode)
+{
+ theWrappedObject->render(painter, target, source, aspectRatioMode);
+}
+
+QPalette  PythonQtWrapper_QGraphicsScene::palette(QGraphicsScene* theWrappedObject) const
+{
+return  theWrappedObject->palette();
+}
+
+void PythonQtWrapper_QGraphicsScene::inputMethodEvent(QGraphicsScene* theWrappedObject, QInputMethodEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)->promoted_inputMethodEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsScene::setStyle(QGraphicsScene* theWrappedObject, QStyle*  style)
+{
+ theWrappedObject->setStyle(style);
+}
+
+QGraphicsItem*  PythonQtWrapper_QGraphicsScene::itemAt(QGraphicsScene* theWrappedObject, qreal  x, qreal  y) const
+{
+return  theWrappedObject->itemAt(x, y);
+}
+
+void PythonQtWrapper_QGraphicsScene::dropEvent(QGraphicsScene* theWrappedObject, QGraphicsSceneDragDropEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)->promoted_dropEvent(event);
+}
+
+QGraphicsPathItem*  PythonQtWrapper_QGraphicsScene::addPath(QGraphicsScene* theWrappedObject, const QPainterPath&  path, const QPen&  pen, const QBrush&  brush)
+{
+return  theWrappedObject->addPath(path, pen, brush);
+}
+
+QGraphicsItem*  PythonQtWrapper_QGraphicsScene::focusItem(QGraphicsScene* theWrappedObject) const
+{
+return  theWrappedObject->focusItem();
+}
+
+QList<QGraphicsItem* >  PythonQtWrapper_QGraphicsScene::items(QGraphicsScene* theWrappedObject, const QPainterPath&  path, Qt::ItemSelectionMode  mode) const
+{
+return  theWrappedObject->items(path, mode);
+}
+
+void PythonQtWrapper_QGraphicsScene::setBackgroundBrush(QGraphicsScene* theWrappedObject, const QBrush&  brush)
+{
+ theWrappedObject->setBackgroundBrush(brush);
+}
+
+QStyle*  PythonQtWrapper_QGraphicsScene::style(QGraphicsScene* theWrappedObject) const
+{
+return  theWrappedObject->style();
+}
+
+void PythonQtWrapper_QGraphicsScene::clearFocus(QGraphicsScene* theWrappedObject)
+{
+ theWrappedObject->clearFocus();
+}
+
+void PythonQtWrapper_QGraphicsScene::destroyItemGroup(QGraphicsScene* theWrappedObject, QGraphicsItemGroup*  group)
+{
+ theWrappedObject->destroyItemGroup(group);
+}
+
+qreal  PythonQtWrapper_QGraphicsScene::width(QGraphicsScene* theWrappedObject) const
+{
+return  theWrappedObject->width();
+}
+
+QGraphicsItem*  PythonQtWrapper_QGraphicsScene::itemAt(QGraphicsScene* theWrappedObject, const QPointF&  pos) const
+{
+return  theWrappedObject->itemAt(pos);
+}
+
+void PythonQtWrapper_QGraphicsScene::setItemIndexMethod(QGraphicsScene* theWrappedObject, QGraphicsScene::ItemIndexMethod  method)
+{
+ theWrappedObject->setItemIndexMethod(method);
+}
+
+void PythonQtWrapper_QGraphicsScene::update(QGraphicsScene* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h)
+{
+ theWrappedObject->update(x, y, w, h);
+}
+
+QList<QGraphicsView* >  PythonQtWrapper_QGraphicsScene::views(QGraphicsScene* theWrappedObject) const
+{
+return  theWrappedObject->views();
+}
+
+void PythonQtWrapper_QGraphicsScene::mouseDoubleClickEvent(QGraphicsScene* theWrappedObject, QGraphicsSceneMouseEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)->promoted_mouseDoubleClickEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsScene::drawBackground(QGraphicsScene* theWrappedObject, QPainter*  painter, const QRectF&  rect)
+{
+ ((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)->promoted_drawBackground(painter, rect);
+}
+
+QGraphicsProxyWidget*  PythonQtWrapper_QGraphicsScene::addWidget(QGraphicsScene* theWrappedObject, QWidget*  widget, Qt::WindowFlags  wFlags)
+{
+return  theWrappedObject->addWidget(widget, wFlags);
+}
+
+int  PythonQtWrapper_QGraphicsScene::bspTreeDepth(QGraphicsScene* theWrappedObject) const
+{
+return  theWrappedObject->bspTreeDepth();
 }
 
 void PythonQtWrapper_QGraphicsScene::dragEnterEvent(QGraphicsScene* theWrappedObject, QGraphicsSceneDragDropEvent*  event)
 {
- (*((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)).dragEnterEvent(event);
+ ((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)->promoted_dragEnterEvent(event);
 }
 
-QVariant  PythonQtWrapper_QGraphicsScene::inputMethodQuery(QGraphicsScene* theWrappedObject, Qt::InputMethodQuery  query) const
+void PythonQtWrapper_QGraphicsScene::drawForeground(QGraphicsScene* theWrappedObject, QPainter*  painter, const QRectF&  rect)
 {
-return  (*theWrappedObject).inputMethodQuery(query);
+ ((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)->promoted_drawForeground(painter, rect);
 }
 
-void PythonQtWrapper_QGraphicsScene::invalidate(QGraphicsScene* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h, QGraphicsScene::SceneLayers  layers)
+QGraphicsEllipseItem*  PythonQtWrapper_QGraphicsScene::addEllipse(QGraphicsScene* theWrappedObject, const QRectF&  rect, const QPen&  pen, const QBrush&  brush)
 {
- (*theWrappedObject).invalidate(x, y, w, h, layers);
+return  theWrappedObject->addEllipse(rect, pen, brush);
+}
+
+QRectF  PythonQtWrapper_QGraphicsScene::itemsBoundingRect(QGraphicsScene* theWrappedObject) const
+{
+return  theWrappedObject->itemsBoundingRect();
+}
+
+QGraphicsLineItem*  PythonQtWrapper_QGraphicsScene::addLine(QGraphicsScene* theWrappedObject, const QLineF&  line, const QPen&  pen)
+{
+return  theWrappedObject->addLine(line, pen);
+}
+
+qreal  PythonQtWrapper_QGraphicsScene::height(QGraphicsScene* theWrappedObject) const
+{
+return  theWrappedObject->height();
+}
+
+void PythonQtWrapper_QGraphicsScene::wheelEvent(QGraphicsScene* theWrappedObject, QGraphicsSceneWheelEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)->promoted_wheelEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsScene::focusInEvent(QGraphicsScene* theWrappedObject, QFocusEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)->promoted_focusInEvent(event);
+}
+
+QGraphicsPolygonItem*  PythonQtWrapper_QGraphicsScene::addPolygon(QGraphicsScene* theWrappedObject, const QPolygonF&  polygon, const QPen&  pen, const QBrush&  brush)
+{
+return  theWrappedObject->addPolygon(polygon, pen, brush);
+}
+
+QFont  PythonQtWrapper_QGraphicsScene::font(QGraphicsScene* theWrappedObject) const
+{
+return  theWrappedObject->font();
+}
+
+QBrush  PythonQtWrapper_QGraphicsScene::backgroundBrush(QGraphicsScene* theWrappedObject) const
+{
+return  theWrappedObject->backgroundBrush();
+}
+
+QRectF  PythonQtWrapper_QGraphicsScene::sceneRect(QGraphicsScene* theWrappedObject) const
+{
+return  theWrappedObject->sceneRect();
+}
+
+QGraphicsWidget*  PythonQtWrapper_QGraphicsScene::activeWindow(QGraphicsScene* theWrappedObject) const
+{
+return  theWrappedObject->activeWindow();
+}
+
+QGraphicsRectItem*  PythonQtWrapper_QGraphicsScene::addRect(QGraphicsScene* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h, const QPen&  pen, const QBrush&  brush)
+{
+return  theWrappedObject->addRect(x, y, w, h, pen, brush);
+}
+
+QGraphicsEllipseItem*  PythonQtWrapper_QGraphicsScene::addEllipse(QGraphicsScene* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h, const QPen&  pen, const QBrush&  brush)
+{
+return  theWrappedObject->addEllipse(x, y, w, h, pen, brush);
+}
+
+QGraphicsPixmapItem*  PythonQtWrapper_QGraphicsScene::addPixmap(QGraphicsScene* theWrappedObject, const QPixmap&  pixmap)
+{
+return  theWrappedObject->addPixmap(pixmap);
+}
+
+void PythonQtWrapper_QGraphicsScene::dragLeaveEvent(QGraphicsScene* theWrappedObject, QGraphicsSceneDragDropEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)->promoted_dragLeaveEvent(event);
 }
 
 QList<QGraphicsItem* >  PythonQtWrapper_QGraphicsScene::items(QGraphicsScene* theWrappedObject) const
 {
-return  (*theWrappedObject).items();
+return  theWrappedObject->items();
+}
+
+void PythonQtWrapper_QGraphicsScene::invalidate(QGraphicsScene* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h, QGraphicsScene::SceneLayers  layers)
+{
+ theWrappedObject->invalidate(x, y, w, h, layers);
+}
+
+QList<QGraphicsItem* >  PythonQtWrapper_QGraphicsScene::selectedItems(QGraphicsScene* theWrappedObject) const
+{
+return  theWrappedObject->selectedItems();
+}
+
+QGraphicsLineItem*  PythonQtWrapper_QGraphicsScene::addLine(QGraphicsScene* theWrappedObject, qreal  x1, qreal  y1, qreal  x2, qreal  y2, const QPen&  pen)
+{
+return  theWrappedObject->addLine(x1, y1, x2, y2, pen);
+}
+
+void PythonQtWrapper_QGraphicsScene::addItem(QGraphicsScene* theWrappedObject, QGraphicsItem*  item)
+{
+ theWrappedObject->addItem(item);
+}
+
+QGraphicsRectItem*  PythonQtWrapper_QGraphicsScene::addRect(QGraphicsScene* theWrappedObject, const QRectF&  rect, const QPen&  pen, const QBrush&  brush)
+{
+return  theWrappedObject->addRect(rect, pen, brush);
+}
+
+void PythonQtWrapper_QGraphicsScene::setPalette(QGraphicsScene* theWrappedObject, const QPalette&  palette)
+{
+ theWrappedObject->setPalette(palette);
+}
+
+void PythonQtWrapper_QGraphicsScene::setFocus(QGraphicsScene* theWrappedObject, Qt::FocusReason  focusReason)
+{
+ theWrappedObject->setFocus(focusReason);
+}
+
+QVariant  PythonQtWrapper_QGraphicsScene::inputMethodQuery(QGraphicsScene* theWrappedObject, Qt::InputMethodQuery  query) const
+{
+return  ((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)->promoted_inputMethodQuery(query);
+}
+
+bool  PythonQtWrapper_QGraphicsScene::hasFocus(QGraphicsScene* theWrappedObject) const
+{
+return  theWrappedObject->hasFocus();
+}
+
+void PythonQtWrapper_QGraphicsScene::helpEvent(QGraphicsScene* theWrappedObject, QGraphicsSceneHelpEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)->promoted_helpEvent(event);
+}
+
+void PythonQtWrapper_QGraphicsScene::setSceneRect(QGraphicsScene* theWrappedObject, const QRectF&  rect)
+{
+ theWrappedObject->setSceneRect(rect);
+}
+
+QList<QGraphicsItem* >  PythonQtWrapper_QGraphicsScene::items(QGraphicsScene* theWrappedObject, const QPointF&  pos) const
+{
+return  theWrappedObject->items(pos);
+}
+
+void PythonQtWrapper_QGraphicsScene::removeItem(QGraphicsScene* theWrappedObject, QGraphicsItem*  item)
+{
+ theWrappedObject->removeItem(item);
+}
+
+void PythonQtWrapper_QGraphicsScene::keyPressEvent(QGraphicsScene* theWrappedObject, QKeyEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)->promoted_keyPressEvent(event);
+}
+
+bool  PythonQtWrapper_QGraphicsScene::event(QGraphicsScene* theWrappedObject, QEvent*  event)
+{
+return  ((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)->promoted_event(event);
+}
+
+QGraphicsScene::ItemIndexMethod  PythonQtWrapper_QGraphicsScene::itemIndexMethod(QGraphicsScene* theWrappedObject) const
+{
+return  theWrappedObject->itemIndexMethod();
+}
+
+void PythonQtWrapper_QGraphicsScene::mouseReleaseEvent(QGraphicsScene* theWrappedObject, QGraphicsSceneMouseEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)->promoted_mouseReleaseEvent(event);
+}
+
+QList<QGraphicsItem* >  PythonQtWrapper_QGraphicsScene::items(QGraphicsScene* theWrappedObject, const QRectF&  rect, Qt::ItemSelectionMode  mode) const
+{
+return  theWrappedObject->items(rect, mode);
+}
+
+void PythonQtWrapper_QGraphicsScene::setForegroundBrush(QGraphicsScene* theWrappedObject, const QBrush&  brush)
+{
+ theWrappedObject->setForegroundBrush(brush);
+}
+
+QList<QGraphicsItem* >  PythonQtWrapper_QGraphicsScene::collidingItems(QGraphicsScene* theWrappedObject, const QGraphicsItem*  item, Qt::ItemSelectionMode  mode) const
+{
+return  theWrappedObject->collidingItems(item, mode);
+}
+
+void PythonQtWrapper_QGraphicsScene::focusOutEvent(QGraphicsScene* theWrappedObject, QFocusEvent*  event)
+{
+ ((PythonQtPublicPromoter_QGraphicsScene*)theWrappedObject)->promoted_focusOutEvent(event);
 }
 

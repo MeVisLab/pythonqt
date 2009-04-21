@@ -39,23 +39,23 @@ public:
 public slots:
 QTextTable* new_QTextTable(QTextDocument*  doc);
 void delete_QTextTable(QTextTable* obj) { delete obj; } 
-   int  columns(QTextTable* theWrappedObject) const;
+   void removeRows(QTextTable* theWrappedObject, int  pos, int  num);
+   QTextTableCell  cellAt(QTextTable* theWrappedObject, int  row, int  col) const;
+   void mergeCells(QTextTable* theWrappedObject, const QTextCursor&  cursor);
+   QTextTableCell  cellAt(QTextTable* theWrappedObject, const QTextCursor&  c) const;
+   int  rows(QTextTable* theWrappedObject) const;
    void insertRows(QTextTable* theWrappedObject, int  pos, int  num);
-   QTextCursor  rowEnd(QTextTable* theWrappedObject, const QTextCursor&  c) const;
-   void setFormat(QTextTable* theWrappedObject, const QTextTableFormat&  format);
+   void mergeCells(QTextTable* theWrappedObject, int  row, int  col, int  numRows, int  numCols);
+   int  columns(QTextTable* theWrappedObject) const;
+   QTextCursor  rowStart(QTextTable* theWrappedObject, const QTextCursor&  c) const;
    QTextTableFormat  format(QTextTable* theWrappedObject) const;
    void insertColumns(QTextTable* theWrappedObject, int  pos, int  num);
-   void resize(QTextTable* theWrappedObject, int  rows, int  cols);
-   QTextCursor  rowStart(QTextTable* theWrappedObject, const QTextCursor&  c) const;
+   QTextCursor  rowEnd(QTextTable* theWrappedObject, const QTextCursor&  c) const;
+   void setFormat(QTextTable* theWrappedObject, const QTextTableFormat&  format);
    void splitCell(QTextTable* theWrappedObject, int  row, int  col, int  numRows, int  numCols);
-   void removeColumns(QTextTable* theWrappedObject, int  pos, int  num);
    QTextTableCell  cellAt(QTextTable* theWrappedObject, int  position) const;
-   QTextTableCell  cellAt(QTextTable* theWrappedObject, int  row, int  col) const;
-   void removeRows(QTextTable* theWrappedObject, int  pos, int  num);
-   void mergeCells(QTextTable* theWrappedObject, int  row, int  col, int  numRows, int  numCols);
-   int  rows(QTextTable* theWrappedObject) const;
-   QTextTableCell  cellAt(QTextTable* theWrappedObject, const QTextCursor&  c) const;
-   void mergeCells(QTextTable* theWrappedObject, const QTextCursor&  cursor);
+   void removeColumns(QTextTable* theWrappedObject, int  pos, int  num);
+   void resize(QTextTable* theWrappedObject, int  rows, int  cols);
 };
 
 #endif // PYTHONQTWRAPPER_QTEXTTABLE_H

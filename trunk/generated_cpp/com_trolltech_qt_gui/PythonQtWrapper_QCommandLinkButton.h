@@ -91,9 +91,9 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QCommandLinkButton : public QCommandLinkButton
 { public:
-inline bool  event(QEvent*  e) { return QCommandLinkButton::event(e); }
-inline int  heightForWidth(int  arg__1) const { return QCommandLinkButton::heightForWidth(arg__1); }
-inline void paintEvent(QPaintEvent*  arg__1) { QCommandLinkButton::paintEvent(arg__1); }
+inline bool  promoted_event(QEvent*  e) { return QCommandLinkButton::event(e); }
+inline int  promoted_heightForWidth(int  arg__1) const { return QCommandLinkButton::heightForWidth(arg__1); }
+inline void promoted_paintEvent(QPaintEvent*  arg__1) { QCommandLinkButton::paintEvent(arg__1); }
 };
 
 class PythonQtWrapper_QCommandLinkButton : public QObject

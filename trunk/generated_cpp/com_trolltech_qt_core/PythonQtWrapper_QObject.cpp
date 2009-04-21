@@ -118,128 +118,128 @@ QObject* PythonQtWrapper_QObject::new_QObject(QObject*  parent)
 { 
 return new PythonQtShell_QObject(parent); }
 
-bool  PythonQtWrapper_QObject::signalsBlocked(QObject* theWrappedObject) const
+void PythonQtWrapper_QObject::customEvent(QObject* theWrappedObject, QEvent*  arg__1)
 {
-return  (*theWrappedObject).signalsBlocked();
-}
-
-bool  PythonQtWrapper_QObject::setProperty(QObject* theWrappedObject, const char*  name, const QVariant&  value)
-{
-return  (*theWrappedObject).setProperty(name, value);
-}
-
-void PythonQtWrapper_QObject::killTimer(QObject* theWrappedObject, int  id)
-{
- (*theWrappedObject).killTimer(id);
-}
-
-void PythonQtWrapper_QObject::dumpObjectTree(QObject* theWrappedObject)
-{
- (*theWrappedObject).dumpObjectTree();
-}
-
-QVariant  PythonQtWrapper_QObject::property(QObject* theWrappedObject, const char*  name) const
-{
-return  (*theWrappedObject).property(name);
-}
-
-void PythonQtWrapper_QObject::timerEvent(QObject* theWrappedObject, QTimerEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QObject*)theWrappedObject)).timerEvent(arg__1);
-}
-
-void PythonQtWrapper_QObject::installEventFilter(QObject* theWrappedObject, QObject*  arg__1)
-{
- (*theWrappedObject).installEventFilter(arg__1);
-}
-
-QObject*  PythonQtWrapper_QObject::parent(QObject* theWrappedObject) const
-{
-return  (*theWrappedObject).parent();
-}
-
-void PythonQtWrapper_QObject::setParent(QObject* theWrappedObject, QObject*  arg__1)
-{
- (*theWrappedObject).setParent(arg__1);
+ ((PythonQtPublicPromoter_QObject*)theWrappedObject)->promoted_customEvent(arg__1);
 }
 
 void PythonQtWrapper_QObject::childEvent(QObject* theWrappedObject, QChildEvent*  arg__1)
 {
- (*((PythonQtPublicPromoter_QObject*)theWrappedObject)).childEvent(arg__1);
-}
-
-bool  PythonQtWrapper_QObject::blockSignals(QObject* theWrappedObject, bool  b)
-{
-return  (*theWrappedObject).blockSignals(b);
-}
-
-int  PythonQtWrapper_QObject::startTimer(QObject* theWrappedObject, int  interval)
-{
-return  (*theWrappedObject).startTimer(interval);
-}
-
-QString  PythonQtWrapper_QObject::objectName(QObject* theWrappedObject) const
-{
-return  (*theWrappedObject).objectName();
-}
-
-QList<QByteArray >  PythonQtWrapper_QObject::dynamicPropertyNames(QObject* theWrappedObject) const
-{
-return  (*theWrappedObject).dynamicPropertyNames();
-}
-
-bool  PythonQtWrapper_QObject::event(QObject* theWrappedObject, QEvent*  arg__1)
-{
-return  (*theWrappedObject).event(arg__1);
-}
-
-void PythonQtWrapper_QObject::removeEventFilter(QObject* theWrappedObject, QObject*  arg__1)
-{
- (*theWrappedObject).removeEventFilter(arg__1);
-}
-
-void PythonQtWrapper_QObject::setObjectName(QObject* theWrappedObject, const QString&  name)
-{
- (*theWrappedObject).setObjectName(name);
-}
-
-bool  PythonQtWrapper_QObject::inherits(QObject* theWrappedObject, const char*  classname) const
-{
-return  (*theWrappedObject).inherits(classname);
-}
-
-void PythonQtWrapper_QObject::customEvent(QObject* theWrappedObject, QEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QObject*)theWrappedObject)).customEvent(arg__1);
-}
-
-bool  PythonQtWrapper_QObject::eventFilter(QObject* theWrappedObject, QObject*  arg__1, QEvent*  arg__2)
-{
-return  (*theWrappedObject).eventFilter(arg__1, arg__2);
+ ((PythonQtPublicPromoter_QObject*)theWrappedObject)->promoted_childEvent(arg__1);
 }
 
 bool  PythonQtWrapper_QObject::isWidgetType(QObject* theWrappedObject) const
 {
-return  (*theWrappedObject).isWidgetType();
+return  theWrappedObject->isWidgetType();
 }
 
 QThread*  PythonQtWrapper_QObject::thread(QObject* theWrappedObject) const
 {
-return  (*theWrappedObject).thread();
-}
-
-void PythonQtWrapper_QObject::moveToThread(QObject* theWrappedObject, QThread*  thread)
-{
- (*theWrappedObject).moveToThread(thread);
-}
-
-void PythonQtWrapper_QObject::dumpObjectInfo(QObject* theWrappedObject)
-{
- (*theWrappedObject).dumpObjectInfo();
+return  theWrappedObject->thread();
 }
 
 const QList<QObject* >&  PythonQtWrapper_QObject::children(QObject* theWrappedObject) const
 {
-return  (*theWrappedObject).children();
+return  theWrappedObject->children();
+}
+
+bool  PythonQtWrapper_QObject::signalsBlocked(QObject* theWrappedObject) const
+{
+return  theWrappedObject->signalsBlocked();
+}
+
+bool  PythonQtWrapper_QObject::setProperty(QObject* theWrappedObject, const char*  name, const QVariant&  value)
+{
+return  theWrappedObject->setProperty(name, value);
+}
+
+void PythonQtWrapper_QObject::killTimer(QObject* theWrappedObject, int  id)
+{
+ theWrappedObject->killTimer(id);
+}
+
+void PythonQtWrapper_QObject::dumpObjectTree(QObject* theWrappedObject)
+{
+ theWrappedObject->dumpObjectTree();
+}
+
+QVariant  PythonQtWrapper_QObject::property(QObject* theWrappedObject, const char*  name) const
+{
+return  theWrappedObject->property(name);
+}
+
+void PythonQtWrapper_QObject::timerEvent(QObject* theWrappedObject, QTimerEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QObject*)theWrappedObject)->promoted_timerEvent(arg__1);
+}
+
+void PythonQtWrapper_QObject::moveToThread(QObject* theWrappedObject, QThread*  thread)
+{
+ theWrappedObject->moveToThread(thread);
+}
+
+QObject*  PythonQtWrapper_QObject::parent(QObject* theWrappedObject) const
+{
+return  theWrappedObject->parent();
+}
+
+void PythonQtWrapper_QObject::setParent(QObject* theWrappedObject, QObject*  arg__1)
+{
+ theWrappedObject->setParent(arg__1);
+}
+
+void PythonQtWrapper_QObject::dumpObjectInfo(QObject* theWrappedObject)
+{
+ theWrappedObject->dumpObjectInfo();
+}
+
+bool  PythonQtWrapper_QObject::blockSignals(QObject* theWrappedObject, bool  b)
+{
+return  theWrappedObject->blockSignals(b);
+}
+
+int  PythonQtWrapper_QObject::startTimer(QObject* theWrappedObject, int  interval)
+{
+return  theWrappedObject->startTimer(interval);
+}
+
+bool  PythonQtWrapper_QObject::eventFilter(QObject* theWrappedObject, QObject*  arg__1, QEvent*  arg__2)
+{
+return  ((PythonQtPublicPromoter_QObject*)theWrappedObject)->promoted_eventFilter(arg__1, arg__2);
+}
+
+bool  PythonQtWrapper_QObject::event(QObject* theWrappedObject, QEvent*  arg__1)
+{
+return  ((PythonQtPublicPromoter_QObject*)theWrappedObject)->promoted_event(arg__1);
+}
+
+void PythonQtWrapper_QObject::installEventFilter(QObject* theWrappedObject, QObject*  arg__1)
+{
+ theWrappedObject->installEventFilter(arg__1);
+}
+
+void PythonQtWrapper_QObject::removeEventFilter(QObject* theWrappedObject, QObject*  arg__1)
+{
+ theWrappedObject->removeEventFilter(arg__1);
+}
+
+QString  PythonQtWrapper_QObject::objectName(QObject* theWrappedObject) const
+{
+return  theWrappedObject->objectName();
+}
+
+QList<QByteArray >  PythonQtWrapper_QObject::dynamicPropertyNames(QObject* theWrappedObject) const
+{
+return  theWrappedObject->dynamicPropertyNames();
+}
+
+void PythonQtWrapper_QObject::setObjectName(QObject* theWrappedObject, const QString&  name)
+{
+ theWrappedObject->setObjectName(name);
+}
+
+bool  PythonQtWrapper_QObject::inherits(QObject* theWrappedObject, const char*  classname) const
+{
+return  theWrappedObject->inherits(classname);
 }
 

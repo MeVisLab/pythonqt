@@ -87,10 +87,10 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QDockWidget : public QDockWidget
 { public:
-inline bool  event(QEvent*  event) { return QDockWidget::event(event); }
-inline void changeEvent(QEvent*  event) { QDockWidget::changeEvent(event); }
-inline void closeEvent(QCloseEvent*  event) { QDockWidget::closeEvent(event); }
-inline void paintEvent(QPaintEvent*  event) { QDockWidget::paintEvent(event); }
+inline bool  promoted_event(QEvent*  event) { return QDockWidget::event(event); }
+inline void promoted_paintEvent(QPaintEvent*  event) { QDockWidget::paintEvent(event); }
+inline void promoted_changeEvent(QEvent*  event) { QDockWidget::changeEvent(event); }
+inline void promoted_closeEvent(QCloseEvent*  event) { QDockWidget::closeEvent(event); }
 };
 
 class PythonQtWrapper_QDockWidget : public QObject
@@ -103,22 +103,22 @@ public slots:
 QDockWidget* new_QDockWidget(QWidget*  parent = 0, Qt::WindowFlags  flags = 0);
 QDockWidget* new_QDockWidget(const QString&  title, QWidget*  parent = 0, Qt::WindowFlags  flags = 0);
 void delete_QDockWidget(QDockWidget* obj) { delete obj; } 
-   void setFeatures(QDockWidget* theWrappedObject, QDockWidget::DockWidgetFeatures  features);
-   bool  isAreaAllowed(QDockWidget* theWrappedObject, Qt::DockWidgetArea  area) const;
-   void setFloating(QDockWidget* theWrappedObject, bool  floating);
-   QWidget*  titleBarWidget(QDockWidget* theWrappedObject) const;
-   QAction*  toggleViewAction(QDockWidget* theWrappedObject) const;
-   bool  isFloating(QDockWidget* theWrappedObject) const;
-   QDockWidget::DockWidgetFeatures  features(QDockWidget* theWrappedObject) const;
    bool  event(QDockWidget* theWrappedObject, QEvent*  event);
    QWidget*  widget(QDockWidget* theWrappedObject) const;
-   Qt::DockWidgetAreas  allowedAreas(QDockWidget* theWrappedObject) const;
    void setTitleBarWidget(QDockWidget* theWrappedObject, QWidget*  widget);
-   void setWidget(QDockWidget* theWrappedObject, QWidget*  widget);
+   Qt::DockWidgetAreas  allowedAreas(QDockWidget* theWrappedObject) const;
+   void setFeatures(QDockWidget* theWrappedObject, QDockWidget::DockWidgetFeatures  features);
+   void paintEvent(QDockWidget* theWrappedObject, QPaintEvent*  event);
+   bool  isAreaAllowed(QDockWidget* theWrappedObject, Qt::DockWidgetArea  area) const;
    void setAllowedAreas(QDockWidget* theWrappedObject, Qt::DockWidgetAreas  areas);
+   bool  isFloating(QDockWidget* theWrappedObject) const;
+   QWidget*  titleBarWidget(QDockWidget* theWrappedObject) const;
    void changeEvent(QDockWidget* theWrappedObject, QEvent*  event);
    void closeEvent(QDockWidget* theWrappedObject, QCloseEvent*  event);
-   void paintEvent(QDockWidget* theWrappedObject, QPaintEvent*  event);
+   QDockWidget::DockWidgetFeatures  features(QDockWidget* theWrappedObject) const;
+   void setFloating(QDockWidget* theWrappedObject, bool  floating);
+   void setWidget(QDockWidget* theWrappedObject, QWidget*  widget);
+   QAction*  toggleViewAction(QDockWidget* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QDOCKWIDGET_H

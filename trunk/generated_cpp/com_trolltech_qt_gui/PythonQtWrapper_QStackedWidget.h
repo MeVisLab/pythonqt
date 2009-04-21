@@ -84,7 +84,7 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QStackedWidget : public QStackedWidget
 { public:
-inline bool  event(QEvent*  e) { return QStackedWidget::event(e); }
+inline bool  promoted_event(QEvent*  e) { return QStackedWidget::event(e); }
 };
 
 class PythonQtWrapper_QStackedWidget : public QObject
@@ -93,15 +93,15 @@ public:
 public slots:
 QStackedWidget* new_QStackedWidget(QWidget*  parent = 0);
 void delete_QStackedWidget(QStackedWidget* obj) { delete obj; } 
-   QWidget*  widget(QStackedWidget* theWrappedObject, int  arg__1) const;
-   int  indexOf(QStackedWidget* theWrappedObject, QWidget*  arg__1) const;
-   bool  event(QStackedWidget* theWrappedObject, QEvent*  e);
-   int  currentIndex(QStackedWidget* theWrappedObject) const;
-   int  insertWidget(QStackedWidget* theWrappedObject, int  index, QWidget*  w);
-   void removeWidget(QStackedWidget* theWrappedObject, QWidget*  w);
-   int  addWidget(QStackedWidget* theWrappedObject, QWidget*  w);
    QWidget*  currentWidget(QStackedWidget* theWrappedObject) const;
+   int  indexOf(QStackedWidget* theWrappedObject, QWidget*  arg__1) const;
+   QWidget*  widget(QStackedWidget* theWrappedObject, int  arg__1) const;
+   int  addWidget(QStackedWidget* theWrappedObject, QWidget*  w);
+   int  currentIndex(QStackedWidget* theWrappedObject) const;
+   void removeWidget(QStackedWidget* theWrappedObject, QWidget*  w);
+   bool  event(QStackedWidget* theWrappedObject, QEvent*  e);
    int  count(QStackedWidget* theWrappedObject) const;
+   int  insertWidget(QStackedWidget* theWrappedObject, int  index, QWidget*  w);
 };
 
 #endif // PYTHONQTWRAPPER_QSTACKEDWIDGET_H

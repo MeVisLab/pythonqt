@@ -826,28 +826,28 @@ QFocusFrame* PythonQtWrapper_QFocusFrame::new_QFocusFrame(QWidget*  parent)
 { 
 return new PythonQtShell_QFocusFrame(parent); }
 
-void PythonQtWrapper_QFocusFrame::paintEvent(QFocusFrame* theWrappedObject, QPaintEvent*  arg__1)
-{
- (*((PythonQtPublicPromoter_QFocusFrame*)theWrappedObject)).paintEvent(arg__1);
-}
-
 void PythonQtWrapper_QFocusFrame::setWidget(QFocusFrame* theWrappedObject, QWidget*  widget)
 {
- (*theWrappedObject).setWidget(widget);
+ theWrappedObject->setWidget(widget);
+}
+
+void PythonQtWrapper_QFocusFrame::paintEvent(QFocusFrame* theWrappedObject, QPaintEvent*  arg__1)
+{
+ ((PythonQtPublicPromoter_QFocusFrame*)theWrappedObject)->promoted_paintEvent(arg__1);
 }
 
 QWidget*  PythonQtWrapper_QFocusFrame::widget(QFocusFrame* theWrappedObject) const
 {
-return  (*theWrappedObject).widget();
-}
-
-bool  PythonQtWrapper_QFocusFrame::eventFilter(QFocusFrame* theWrappedObject, QObject*  arg__1, QEvent*  arg__2)
-{
-return  (*((PythonQtPublicPromoter_QFocusFrame*)theWrappedObject)).eventFilter(arg__1, arg__2);
+return  theWrappedObject->widget();
 }
 
 bool  PythonQtWrapper_QFocusFrame::event(QFocusFrame* theWrappedObject, QEvent*  e)
 {
-return  (*((PythonQtPublicPromoter_QFocusFrame*)theWrappedObject)).event(e);
+return  ((PythonQtPublicPromoter_QFocusFrame*)theWrappedObject)->promoted_event(e);
+}
+
+bool  PythonQtWrapper_QFocusFrame::eventFilter(QFocusFrame* theWrappedObject, QObject*  arg__1, QEvent*  arg__2)
+{
+return  ((PythonQtPublicPromoter_QFocusFrame*)theWrappedObject)->promoted_eventFilter(arg__1, arg__2);
 }
 

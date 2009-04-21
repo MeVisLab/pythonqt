@@ -17,9 +17,9 @@ QXmlStreamNamespaceDeclaration* new_QXmlStreamNamespaceDeclaration();
 QXmlStreamNamespaceDeclaration* new_QXmlStreamNamespaceDeclaration(const QString&  prefix, const QString&  namespaceUri);
 QXmlStreamNamespaceDeclaration* new_QXmlStreamNamespaceDeclaration(const QXmlStreamNamespaceDeclaration&  arg__1);
 void delete_QXmlStreamNamespaceDeclaration(QXmlStreamNamespaceDeclaration* obj) { delete obj; } 
-   bool  operator_equal(QXmlStreamNamespaceDeclaration* theWrappedObject, const QXmlStreamNamespaceDeclaration&  other) const;
    QStringRef  prefix(QXmlStreamNamespaceDeclaration* theWrappedObject) const;
    QStringRef  namespaceUri(QXmlStreamNamespaceDeclaration* theWrappedObject) const;
+   bool  operator_equal(QXmlStreamNamespaceDeclaration* theWrappedObject, const QXmlStreamNamespaceDeclaration&  other) const;
 };
 
 #endif // PYTHONQTWRAPPER_QXMLSTREAMNAMESPACEDECLARATION_H

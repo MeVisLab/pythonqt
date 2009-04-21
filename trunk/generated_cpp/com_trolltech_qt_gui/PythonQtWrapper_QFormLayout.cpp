@@ -428,236 +428,236 @@ return new PythonQtShell_QFormLayout(parent); }
 
 Qt::Alignment  PythonQtWrapper_QFormLayout::formAlignment(QFormLayout* theWrappedObject) const
 {
-return  (*theWrappedObject).formAlignment();
-}
-
-Qt::Alignment  PythonQtWrapper_QFormLayout::labelAlignment(QFormLayout* theWrappedObject) const
-{
-return  (*theWrappedObject).labelAlignment();
-}
-
-void PythonQtWrapper_QFormLayout::setLabelAlignment(QFormLayout* theWrappedObject, Qt::Alignment  alignment)
-{
- (*theWrappedObject).setLabelAlignment(alignment);
-}
-
-QSize  PythonQtWrapper_QFormLayout::sizeHint(QFormLayout* theWrappedObject) const
-{
-return  (*theWrappedObject).sizeHint();
-}
-
-QWidget*  PythonQtWrapper_QFormLayout::labelForField(QFormLayout* theWrappedObject, QLayout*  field) const
-{
-return  (*theWrappedObject).labelForField(field);
-}
-
-QSize  PythonQtWrapper_QFormLayout::minimumSize(QFormLayout* theWrappedObject) const
-{
-return  (*theWrappedObject).minimumSize();
-}
-
-void PythonQtWrapper_QFormLayout::insertRow(QFormLayout* theWrappedObject, int  row, QWidget*  widget)
-{
- (*theWrappedObject).insertRow(row, widget);
-}
-
-void PythonQtWrapper_QFormLayout::addItem(QFormLayout* theWrappedObject, QLayoutItem*  item)
-{
- (*theWrappedObject).addItem(item);
-}
-
-void PythonQtWrapper_QFormLayout::insertRow(QFormLayout* theWrappedObject, int  row, QWidget*  label, QWidget*  field)
-{
- (*theWrappedObject).insertRow(row, label, field);
-}
-
-int  PythonQtWrapper_QFormLayout::horizontalSpacing(QFormLayout* theWrappedObject) const
-{
-return  (*theWrappedObject).horizontalSpacing();
-}
-
-void PythonQtWrapper_QFormLayout::insertRow(QFormLayout* theWrappedObject, int  row, QWidget*  label, QLayout*  field)
-{
- (*theWrappedObject).insertRow(row, label, field);
-}
-
-void PythonQtWrapper_QFormLayout::setItem(QFormLayout* theWrappedObject, int  row, QFormLayout::ItemRole  role, QLayoutItem*  item)
-{
- (*theWrappedObject).setItem(row, role, item);
-}
-
-void PythonQtWrapper_QFormLayout::addRow(QFormLayout* theWrappedObject, QLayout*  layout)
-{
- (*theWrappedObject).addRow(layout);
-}
-
-void PythonQtWrapper_QFormLayout::addRow(QFormLayout* theWrappedObject, QWidget*  label, QLayout*  field)
-{
- (*theWrappedObject).addRow(label, field);
-}
-
-void PythonQtWrapper_QFormLayout::addRow(QFormLayout* theWrappedObject, QWidget*  widget)
-{
- (*theWrappedObject).addRow(widget);
-}
-
-void PythonQtWrapper_QFormLayout::setFieldGrowthPolicy(QFormLayout* theWrappedObject, QFormLayout::FieldGrowthPolicy  policy)
-{
- (*theWrappedObject).setFieldGrowthPolicy(policy);
-}
-
-void PythonQtWrapper_QFormLayout::setFormAlignment(QFormLayout* theWrappedObject, Qt::Alignment  alignment)
-{
- (*theWrappedObject).setFormAlignment(alignment);
-}
-
-void PythonQtWrapper_QFormLayout::insertRow(QFormLayout* theWrappedObject, int  row, const QString&  labelText, QLayout*  field)
-{
- (*theWrappedObject).insertRow(row, labelText, field);
-}
-
-void PythonQtWrapper_QFormLayout::getItemPosition(QFormLayout* theWrappedObject, int  index, int*  rowPtr, QFormLayout::ItemRole*  rolePtr) const
-{
- (*theWrappedObject).getItemPosition(index, rowPtr, rolePtr);
-}
-
-int  PythonQtWrapper_QFormLayout::heightForWidth(QFormLayout* theWrappedObject, int  width) const
-{
-return  (*theWrappedObject).heightForWidth(width);
-}
-
-void PythonQtWrapper_QFormLayout::getWidgetPosition(QFormLayout* theWrappedObject, QWidget*  widget, int*  rowPtr, QFormLayout::ItemRole*  rolePtr) const
-{
- (*theWrappedObject).getWidgetPosition(widget, rowPtr, rolePtr);
-}
-
-void PythonQtWrapper_QFormLayout::addRow(QFormLayout* theWrappedObject, QWidget*  label, QWidget*  field)
-{
- (*theWrappedObject).addRow(label, field);
-}
-
-int  PythonQtWrapper_QFormLayout::verticalSpacing(QFormLayout* theWrappedObject) const
-{
-return  (*theWrappedObject).verticalSpacing();
-}
-
-void PythonQtWrapper_QFormLayout::addRow(QFormLayout* theWrappedObject, const QString&  labelText, QWidget*  field)
-{
- (*theWrappedObject).addRow(labelText, field);
-}
-
-void PythonQtWrapper_QFormLayout::setSpacing(QFormLayout* theWrappedObject, int  arg__1)
-{
- (*theWrappedObject).setSpacing(arg__1);
-}
-
-void PythonQtWrapper_QFormLayout::insertRow(QFormLayout* theWrappedObject, int  row, const QString&  labelText, QWidget*  field)
-{
- (*theWrappedObject).insertRow(row, labelText, field);
-}
-
-QLayoutItem*  PythonQtWrapper_QFormLayout::itemAt(QFormLayout* theWrappedObject, int  row, QFormLayout::ItemRole  role) const
-{
-return  (*theWrappedObject).itemAt(row, role);
-}
-
-QFormLayout::RowWrapPolicy  PythonQtWrapper_QFormLayout::rowWrapPolicy(QFormLayout* theWrappedObject) const
-{
-return  (*theWrappedObject).rowWrapPolicy();
-}
-
-void PythonQtWrapper_QFormLayout::setVerticalSpacing(QFormLayout* theWrappedObject, int  spacing)
-{
- (*theWrappedObject).setVerticalSpacing(spacing);
-}
-
-int  PythonQtWrapper_QFormLayout::spacing(QFormLayout* theWrappedObject) const
-{
-return  (*theWrappedObject).spacing();
-}
-
-void PythonQtWrapper_QFormLayout::getLayoutPosition(QFormLayout* theWrappedObject, QLayout*  layout, int*  rowPtr, QFormLayout::ItemRole*  rolePtr) const
-{
- (*theWrappedObject).getLayoutPosition(layout, rowPtr, rolePtr);
-}
-
-void PythonQtWrapper_QFormLayout::setGeometry(QFormLayout* theWrappedObject, const QRect&  rect)
-{
- (*theWrappedObject).setGeometry(rect);
-}
-
-void PythonQtWrapper_QFormLayout::setWidget(QFormLayout* theWrappedObject, int  row, QFormLayout::ItemRole  role, QWidget*  widget)
-{
- (*theWrappedObject).setWidget(row, role, widget);
-}
-
-bool  PythonQtWrapper_QFormLayout::hasHeightForWidth(QFormLayout* theWrappedObject) const
-{
-return  (*theWrappedObject).hasHeightForWidth();
-}
-
-void PythonQtWrapper_QFormLayout::invalidate(QFormLayout* theWrappedObject)
-{
- (*theWrappedObject).invalidate();
-}
-
-int  PythonQtWrapper_QFormLayout::count(QFormLayout* theWrappedObject) const
-{
-return  (*theWrappedObject).count();
+return  theWrappedObject->formAlignment();
 }
 
 QFormLayout::FieldGrowthPolicy  PythonQtWrapper_QFormLayout::fieldGrowthPolicy(QFormLayout* theWrappedObject) const
 {
-return  (*theWrappedObject).fieldGrowthPolicy();
-}
-
-QLayoutItem*  PythonQtWrapper_QFormLayout::takeAt(QFormLayout* theWrappedObject, int  index)
-{
-return  (*theWrappedObject).takeAt(index);
-}
-
-int  PythonQtWrapper_QFormLayout::rowCount(QFormLayout* theWrappedObject) const
-{
-return  (*theWrappedObject).rowCount();
+return  theWrappedObject->fieldGrowthPolicy();
 }
 
 void PythonQtWrapper_QFormLayout::setRowWrapPolicy(QFormLayout* theWrappedObject, QFormLayout::RowWrapPolicy  policy)
 {
- (*theWrappedObject).setRowWrapPolicy(policy);
+ theWrappedObject->setRowWrapPolicy(policy);
 }
 
-void PythonQtWrapper_QFormLayout::addRow(QFormLayout* theWrappedObject, const QString&  labelText, QLayout*  field)
+QWidget*  PythonQtWrapper_QFormLayout::labelForField(QFormLayout* theWrappedObject, QLayout*  field) const
 {
- (*theWrappedObject).addRow(labelText, field);
+return  theWrappedObject->labelForField(field);
 }
 
-void PythonQtWrapper_QFormLayout::setHorizontalSpacing(QFormLayout* theWrappedObject, int  spacing)
+QSize  PythonQtWrapper_QFormLayout::minimumSize(QFormLayout* theWrappedObject) const
 {
- (*theWrappedObject).setHorizontalSpacing(spacing);
+return  ((PythonQtPublicPromoter_QFormLayout*)theWrappedObject)->promoted_minimumSize();
 }
 
-QWidget*  PythonQtWrapper_QFormLayout::labelForField(QFormLayout* theWrappedObject, QWidget*  field) const
+void PythonQtWrapper_QFormLayout::addRow(QFormLayout* theWrappedObject, const QString&  labelText, QWidget*  field)
 {
-return  (*theWrappedObject).labelForField(field);
+ theWrappedObject->addRow(labelText, field);
 }
 
-void PythonQtWrapper_QFormLayout::setLayout(QFormLayout* theWrappedObject, int  row, QFormLayout::ItemRole  role, QLayout*  layout)
+void PythonQtWrapper_QFormLayout::getItemPosition(QFormLayout* theWrappedObject, int  index, int*  rowPtr, QFormLayout::ItemRole*  rolePtr) const
 {
- (*theWrappedObject).setLayout(row, role, layout);
+ theWrappedObject->getItemPosition(index, rowPtr, rolePtr);
 }
 
-void PythonQtWrapper_QFormLayout::insertRow(QFormLayout* theWrappedObject, int  row, QLayout*  layout)
+void PythonQtWrapper_QFormLayout::setSpacing(QFormLayout* theWrappedObject, int  arg__1)
 {
- (*theWrappedObject).insertRow(row, layout);
+ theWrappedObject->setSpacing(arg__1);
+}
+
+QLayoutItem*  PythonQtWrapper_QFormLayout::takeAt(QFormLayout* theWrappedObject, int  index)
+{
+return  ((PythonQtPublicPromoter_QFormLayout*)theWrappedObject)->promoted_takeAt(index);
+}
+
+void PythonQtWrapper_QFormLayout::addRow(QFormLayout* theWrappedObject, QLayout*  layout)
+{
+ theWrappedObject->addRow(layout);
+}
+
+int  PythonQtWrapper_QFormLayout::horizontalSpacing(QFormLayout* theWrappedObject) const
+{
+return  theWrappedObject->horizontalSpacing();
+}
+
+void PythonQtWrapper_QFormLayout::insertRow(QFormLayout* theWrappedObject, int  row, QWidget*  label, QLayout*  field)
+{
+ theWrappedObject->insertRow(row, label, field);
+}
+
+void PythonQtWrapper_QFormLayout::addRow(QFormLayout* theWrappedObject, QWidget*  label, QWidget*  field)
+{
+ theWrappedObject->addRow(label, field);
+}
+
+void PythonQtWrapper_QFormLayout::addRow(QFormLayout* theWrappedObject, QWidget*  widget)
+{
+ theWrappedObject->addRow(widget);
+}
+
+bool  PythonQtWrapper_QFormLayout::hasHeightForWidth(QFormLayout* theWrappedObject) const
+{
+return  theWrappedObject->hasHeightForWidth();
 }
 
 QLayoutItem*  PythonQtWrapper_QFormLayout::itemAt(QFormLayout* theWrappedObject, int  index) const
 {
-return  (*theWrappedObject).itemAt(index);
+return  ((PythonQtPublicPromoter_QFormLayout*)theWrappedObject)->promoted_itemAt(index);
+}
+
+QFormLayout::RowWrapPolicy  PythonQtWrapper_QFormLayout::rowWrapPolicy(QFormLayout* theWrappedObject) const
+{
+return  theWrappedObject->rowWrapPolicy();
+}
+
+void PythonQtWrapper_QFormLayout::setHorizontalSpacing(QFormLayout* theWrappedObject, int  spacing)
+{
+ theWrappedObject->setHorizontalSpacing(spacing);
+}
+
+void PythonQtWrapper_QFormLayout::setWidget(QFormLayout* theWrappedObject, int  row, QFormLayout::ItemRole  role, QWidget*  widget)
+{
+ theWrappedObject->setWidget(row, role, widget);
+}
+
+void PythonQtWrapper_QFormLayout::insertRow(QFormLayout* theWrappedObject, int  row, const QString&  labelText, QWidget*  field)
+{
+ theWrappedObject->insertRow(row, labelText, field);
+}
+
+void PythonQtWrapper_QFormLayout::setLabelAlignment(QFormLayout* theWrappedObject, Qt::Alignment  alignment)
+{
+ theWrappedObject->setLabelAlignment(alignment);
+}
+
+Qt::Alignment  PythonQtWrapper_QFormLayout::labelAlignment(QFormLayout* theWrappedObject) const
+{
+return  theWrappedObject->labelAlignment();
+}
+
+void PythonQtWrapper_QFormLayout::getLayoutPosition(QFormLayout* theWrappedObject, QLayout*  layout, int*  rowPtr, QFormLayout::ItemRole*  rolePtr) const
+{
+ theWrappedObject->getLayoutPosition(layout, rowPtr, rolePtr);
+}
+
+int  PythonQtWrapper_QFormLayout::rowCount(QFormLayout* theWrappedObject) const
+{
+return  theWrappedObject->rowCount();
+}
+
+void PythonQtWrapper_QFormLayout::setItem(QFormLayout* theWrappedObject, int  row, QFormLayout::ItemRole  role, QLayoutItem*  item)
+{
+ theWrappedObject->setItem(row, role, item);
+}
+
+int  PythonQtWrapper_QFormLayout::verticalSpacing(QFormLayout* theWrappedObject) const
+{
+return  theWrappedObject->verticalSpacing();
+}
+
+void PythonQtWrapper_QFormLayout::invalidate(QFormLayout* theWrappedObject)
+{
+ ((PythonQtPublicPromoter_QFormLayout*)theWrappedObject)->promoted_invalidate();
+}
+
+void PythonQtWrapper_QFormLayout::getWidgetPosition(QFormLayout* theWrappedObject, QWidget*  widget, int*  rowPtr, QFormLayout::ItemRole*  rolePtr) const
+{
+ theWrappedObject->getWidgetPosition(widget, rowPtr, rolePtr);
+}
+
+void PythonQtWrapper_QFormLayout::addRow(QFormLayout* theWrappedObject, const QString&  labelText, QLayout*  field)
+{
+ theWrappedObject->addRow(labelText, field);
+}
+
+int  PythonQtWrapper_QFormLayout::spacing(QFormLayout* theWrappedObject) const
+{
+return  theWrappedObject->spacing();
+}
+
+void PythonQtWrapper_QFormLayout::setFormAlignment(QFormLayout* theWrappedObject, Qt::Alignment  alignment)
+{
+ theWrappedObject->setFormAlignment(alignment);
+}
+
+void PythonQtWrapper_QFormLayout::setGeometry(QFormLayout* theWrappedObject, const QRect&  rect)
+{
+ ((PythonQtPublicPromoter_QFormLayout*)theWrappedObject)->promoted_setGeometry(rect);
+}
+
+void PythonQtWrapper_QFormLayout::insertRow(QFormLayout* theWrappedObject, int  row, QWidget*  label, QWidget*  field)
+{
+ theWrappedObject->insertRow(row, label, field);
+}
+
+void PythonQtWrapper_QFormLayout::setLayout(QFormLayout* theWrappedObject, int  row, QFormLayout::ItemRole  role, QLayout*  layout)
+{
+ theWrappedObject->setLayout(row, role, layout);
 }
 
 Qt::Orientations  PythonQtWrapper_QFormLayout::expandingDirections(QFormLayout* theWrappedObject) const
 {
-return  (*theWrappedObject).expandingDirections();
+return  ((PythonQtPublicPromoter_QFormLayout*)theWrappedObject)->promoted_expandingDirections();
+}
+
+int  PythonQtWrapper_QFormLayout::heightForWidth(QFormLayout* theWrappedObject, int  width) const
+{
+return  theWrappedObject->heightForWidth(width);
+}
+
+void PythonQtWrapper_QFormLayout::insertRow(QFormLayout* theWrappedObject, int  row, const QString&  labelText, QLayout*  field)
+{
+ theWrappedObject->insertRow(row, labelText, field);
+}
+
+int  PythonQtWrapper_QFormLayout::count(QFormLayout* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QFormLayout*)theWrappedObject)->promoted_count();
+}
+
+QLayoutItem*  PythonQtWrapper_QFormLayout::itemAt(QFormLayout* theWrappedObject, int  row, QFormLayout::ItemRole  role) const
+{
+return  theWrappedObject->itemAt(row, role);
+}
+
+void PythonQtWrapper_QFormLayout::setVerticalSpacing(QFormLayout* theWrappedObject, int  spacing)
+{
+ theWrappedObject->setVerticalSpacing(spacing);
+}
+
+QSize  PythonQtWrapper_QFormLayout::sizeHint(QFormLayout* theWrappedObject) const
+{
+return  theWrappedObject->sizeHint();
+}
+
+void PythonQtWrapper_QFormLayout::insertRow(QFormLayout* theWrappedObject, int  row, QWidget*  widget)
+{
+ theWrappedObject->insertRow(row, widget);
+}
+
+void PythonQtWrapper_QFormLayout::addItem(QFormLayout* theWrappedObject, QLayoutItem*  item)
+{
+ ((PythonQtPublicPromoter_QFormLayout*)theWrappedObject)->promoted_addItem(item);
+}
+
+QWidget*  PythonQtWrapper_QFormLayout::labelForField(QFormLayout* theWrappedObject, QWidget*  field) const
+{
+return  theWrappedObject->labelForField(field);
+}
+
+void PythonQtWrapper_QFormLayout::addRow(QFormLayout* theWrappedObject, QWidget*  label, QLayout*  field)
+{
+ theWrappedObject->addRow(label, field);
+}
+
+void PythonQtWrapper_QFormLayout::insertRow(QFormLayout* theWrappedObject, int  row, QLayout*  layout)
+{
+ theWrappedObject->insertRow(row, layout);
+}
+
+void PythonQtWrapper_QFormLayout::setFieldGrowthPolicy(QFormLayout* theWrappedObject, QFormLayout::FieldGrowthPolicy  policy)
+{
+ theWrappedObject->setFieldGrowthPolicy(policy);
 }
 

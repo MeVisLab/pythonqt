@@ -32,6 +32,11 @@ virtual QValidator::State  validate(QString&  input, int&  pos) const;
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QRegExpValidator : public QRegExpValidator
+{ public:
+inline QValidator::State  promoted_validate(QString&  input, int&  pos) const { return QRegExpValidator::validate(input, pos); }
+};
+
 class PythonQtWrapper_QRegExpValidator : public QObject
 { Q_OBJECT
 public:
@@ -39,9 +44,9 @@ public slots:
 QRegExpValidator* new_QRegExpValidator(QObject*  parent);
 QRegExpValidator* new_QRegExpValidator(const QRegExp&  rx, QObject*  parent);
 void delete_QRegExpValidator(QRegExpValidator* obj) { delete obj; } 
-   void setRegExp(QRegExpValidator* theWrappedObject, const QRegExp&  rx);
-   const QRegExp&  regExp(QRegExpValidator* theWrappedObject) const;
    QValidator::State  validate(QRegExpValidator* theWrappedObject, QString&  input, int&  pos) const;
+   const QRegExp&  regExp(QRegExpValidator* theWrappedObject) const;
+   void setRegExp(QRegExpValidator* theWrappedObject, const QRegExp&  rx);
 };
 
 #endif // PYTHONQTWRAPPER_QREGEXPVALIDATOR_H

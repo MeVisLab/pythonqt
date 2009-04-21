@@ -829,18 +829,18 @@ QErrorMessage* PythonQtWrapper_QErrorMessage::new_QErrorMessage(QWidget*  parent
 { 
 return new PythonQtShell_QErrorMessage(parent); }
 
-void PythonQtWrapper_QErrorMessage::done(QErrorMessage* theWrappedObject, int  arg__1)
+QErrorMessage*  PythonQtWrapper_QErrorMessage::static_QErrorMessage_qtHandler()
 {
- (*((PythonQtPublicPromoter_QErrorMessage*)theWrappedObject)).done(arg__1);
+return QErrorMessage::qtHandler();
 }
 
 void PythonQtWrapper_QErrorMessage::changeEvent(QErrorMessage* theWrappedObject, QEvent*  e)
 {
- (*((PythonQtPublicPromoter_QErrorMessage*)theWrappedObject)).changeEvent(e);
+ ((PythonQtPublicPromoter_QErrorMessage*)theWrappedObject)->promoted_changeEvent(e);
 }
 
-QErrorMessage*  PythonQtWrapper_QErrorMessage::static_QErrorMessage_qtHandler()
+void PythonQtWrapper_QErrorMessage::done(QErrorMessage* theWrappedObject, int  arg__1)
 {
-return QErrorMessage::qtHandler();
+ ((PythonQtPublicPromoter_QErrorMessage*)theWrappedObject)->promoted_done(arg__1);
 }
 

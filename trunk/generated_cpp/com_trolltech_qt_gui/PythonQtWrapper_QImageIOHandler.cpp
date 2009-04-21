@@ -360,78 +360,78 @@ QImageIOHandler* PythonQtWrapper_QImageIOHandler::new_QImageIOHandler()
 { 
 return new PythonQtShell_QImageIOHandler(); }
 
-void PythonQtWrapper_QImageIOHandler::setDevice(QImageIOHandler* theWrappedObject, QIODevice*  device)
+int  PythonQtWrapper_QImageIOHandler::loopCount(QImageIOHandler* theWrappedObject) const
 {
- (*theWrappedObject).setDevice(device);
-}
-
-int  PythonQtWrapper_QImageIOHandler::currentImageNumber(QImageIOHandler* theWrappedObject) const
-{
-return  (*theWrappedObject).currentImageNumber();
-}
-
-QVariant  PythonQtWrapper_QImageIOHandler::option(QImageIOHandler* theWrappedObject, QImageIOHandler::ImageOption  option) const
-{
-return  (*theWrappedObject).option(option);
-}
-
-QRect  PythonQtWrapper_QImageIOHandler::currentImageRect(QImageIOHandler* theWrappedObject) const
-{
-return  (*theWrappedObject).currentImageRect();
-}
-
-int  PythonQtWrapper_QImageIOHandler::nextImageDelay(QImageIOHandler* theWrappedObject) const
-{
-return  (*theWrappedObject).nextImageDelay();
+return  ((PythonQtPublicPromoter_QImageIOHandler*)theWrappedObject)->promoted_loopCount();
 }
 
 void PythonQtWrapper_QImageIOHandler::setOption(QImageIOHandler* theWrappedObject, QImageIOHandler::ImageOption  option, const QVariant&  value)
 {
- (*theWrappedObject).setOption(option, value);
-}
-
-bool  PythonQtWrapper_QImageIOHandler::jumpToNextImage(QImageIOHandler* theWrappedObject)
-{
-return  (*theWrappedObject).jumpToNextImage();
-}
-
-void PythonQtWrapper_QImageIOHandler::setFormat(QImageIOHandler* theWrappedObject, const QByteArray&  format)
-{
- (*theWrappedObject).setFormat(format);
-}
-
-QByteArray  PythonQtWrapper_QImageIOHandler::format(QImageIOHandler* theWrappedObject) const
-{
-return  (*theWrappedObject).format();
+ ((PythonQtPublicPromoter_QImageIOHandler*)theWrappedObject)->promoted_setOption(option, value);
 }
 
 int  PythonQtWrapper_QImageIOHandler::imageCount(QImageIOHandler* theWrappedObject) const
 {
-return  (*theWrappedObject).imageCount();
-}
-
-bool  PythonQtWrapper_QImageIOHandler::jumpToImage(QImageIOHandler* theWrappedObject, int  imageNumber)
-{
-return  (*theWrappedObject).jumpToImage(imageNumber);
-}
-
-int  PythonQtWrapper_QImageIOHandler::loopCount(QImageIOHandler* theWrappedObject) const
-{
-return  (*theWrappedObject).loopCount();
+return  ((PythonQtPublicPromoter_QImageIOHandler*)theWrappedObject)->promoted_imageCount();
 }
 
 QIODevice*  PythonQtWrapper_QImageIOHandler::device(QImageIOHandler* theWrappedObject) const
 {
-return  (*theWrappedObject).device();
+return  theWrappedObject->device();
 }
 
-bool  PythonQtWrapper_QImageIOHandler::supportsOption(QImageIOHandler* theWrappedObject, QImageIOHandler::ImageOption  option) const
+QVariant  PythonQtWrapper_QImageIOHandler::option(QImageIOHandler* theWrappedObject, QImageIOHandler::ImageOption  option) const
 {
-return  (*theWrappedObject).supportsOption(option);
+return  ((PythonQtPublicPromoter_QImageIOHandler*)theWrappedObject)->promoted_option(option);
+}
+
+bool  PythonQtWrapper_QImageIOHandler::jumpToNextImage(QImageIOHandler* theWrappedObject)
+{
+return  ((PythonQtPublicPromoter_QImageIOHandler*)theWrappedObject)->promoted_jumpToNextImage();
+}
+
+int  PythonQtWrapper_QImageIOHandler::nextImageDelay(QImageIOHandler* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QImageIOHandler*)theWrappedObject)->promoted_nextImageDelay();
 }
 
 bool  PythonQtWrapper_QImageIOHandler::write(QImageIOHandler* theWrappedObject, const QImage&  image)
 {
-return  (*theWrappedObject).write(image);
+return  ((PythonQtPublicPromoter_QImageIOHandler*)theWrappedObject)->promoted_write(image);
+}
+
+QByteArray  PythonQtWrapper_QImageIOHandler::format(QImageIOHandler* theWrappedObject) const
+{
+return  theWrappedObject->format();
+}
+
+void PythonQtWrapper_QImageIOHandler::setDevice(QImageIOHandler* theWrappedObject, QIODevice*  device)
+{
+ theWrappedObject->setDevice(device);
+}
+
+int  PythonQtWrapper_QImageIOHandler::currentImageNumber(QImageIOHandler* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QImageIOHandler*)theWrappedObject)->promoted_currentImageNumber();
+}
+
+QRect  PythonQtWrapper_QImageIOHandler::currentImageRect(QImageIOHandler* theWrappedObject) const
+{
+return  ((PythonQtPublicPromoter_QImageIOHandler*)theWrappedObject)->promoted_currentImageRect();
+}
+
+bool  PythonQtWrapper_QImageIOHandler::jumpToImage(QImageIOHandler* theWrappedObject, int  imageNumber)
+{
+return  ((PythonQtPublicPromoter_QImageIOHandler*)theWrappedObject)->promoted_jumpToImage(imageNumber);
+}
+
+bool  PythonQtWrapper_QImageIOHandler::supportsOption(QImageIOHandler* theWrappedObject, QImageIOHandler::ImageOption  option) const
+{
+return  ((PythonQtPublicPromoter_QImageIOHandler*)theWrappedObject)->promoted_supportsOption(option);
+}
+
+void PythonQtWrapper_QImageIOHandler::setFormat(QImageIOHandler* theWrappedObject, const QByteArray&  format)
+{
+ theWrappedObject->setFormat(format);
 }
 

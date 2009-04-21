@@ -16,10 +16,10 @@ public:
 public slots:
 QGraphicsSceneMoveEvent* new_QGraphicsSceneMoveEvent();
 void delete_QGraphicsSceneMoveEvent(QGraphicsSceneMoveEvent* obj) { delete obj; } 
-   QPointF  oldPos(QGraphicsSceneMoveEvent* theWrappedObject) const;
    void setOldPos(QGraphicsSceneMoveEvent* theWrappedObject, const QPointF&  pos);
    QPointF  newPos(QGraphicsSceneMoveEvent* theWrappedObject) const;
    void setNewPos(QGraphicsSceneMoveEvent* theWrappedObject, const QPointF&  pos);
+   QPointF  oldPos(QGraphicsSceneMoveEvent* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QGRAPHICSSCENEMOVEEVENT_H
