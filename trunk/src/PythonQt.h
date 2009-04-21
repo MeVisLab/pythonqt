@@ -159,13 +159,13 @@ public:
 
   //! evaluates the given code and returns the result value (use Py_Compile etc. to create pycode from string)
   //! If pycode is NULL, a python error is printed.
-  QVariant evalCode(PyObject* module, PyObject* pycode);
+  QVariant evalCode(PyObject* object, PyObject* pycode);
 
   //! evaluates the given script code and returns the result value
-  QVariant evalScript(PyObject* module, const QString& script, int start = Py_file_input);
+  QVariant evalScript(PyObject* object, const QString& script, int start = Py_file_input);
 
   //! evaluates the given script code from file
-  void evalFile(PyObject* module, const QString& filename);
+  void evalFile(PyObject* object, const QString& filename);
 
   //! creates the new module \c name and evaluates the given file in the context of that module
   //! If the \c script is empty, the module contains no initial code. You can use evalScript/evalCode to add code
@@ -201,24 +201,24 @@ public:
 
   //@{ Variable access
 
-  //! add the given \c object to the \c module as a variable with \c name (it can be removed via clearVariable)
-  void addObject(PyObject* module, const QString& name, QObject* object);
+  //! add the given \c qObject to the python \c object as a variable with \c name (it can be removed via clearVariable)
+  void addObject(PyObject* object, const QString& name, QObject* qObject);
 
-  //! add the given variable to the module
-  void addVariable(PyObject* module, const QString& name, const QVariant& v);
+  //! add the given variable to the object
+  void addVariable(PyObject* object, const QString& name, const QVariant& v);
 
   //! remove the given variable
   void removeVariable(PyObject* module, const QString& name);
 
-  //! get the variable with the \c name of the \c module, returns an invalid QVariant on error
-  QVariant getVariable(PyObject* module, const QString& name);
+  //! get the variable with the \c name of the \c object, returns an invalid QVariant on error
+  QVariant getVariable(PyObject* object, const QString& name);
 
-  //! read vars etc. in scope of a module, optional looking inside of an object \c objectname
-  QStringList introspection(PyObject* module, const QString& objectname, ObjectType type);
+  //! read vars etc. in scope of an \c object, optional looking inside of an object \c objectname
+  QStringList introspection(PyObject* object, const QString& objectname, ObjectType type);
 
   //! returns the found callable object or NULL
   //! @return new reference
-  PythonQtObjectPtr lookupCallable(PyObject* module, const QString& name);
+  PythonQtObjectPtr lookupCallable(PyObject* object, const QString& name);
 
   //@}
 

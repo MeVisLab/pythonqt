@@ -536,7 +536,11 @@ PythonQtObjectPtr PythonQt::lookupObject(PyObject* module, const QString& name)
   for (QStringList::ConstIterator i = l.begin(); i!=l.end() && p; ++i) {
     prev = p;
     b = (*i).toLatin1();
-    p.setNewRef(PyObject_GetAttrString(p, b.data()));
+    if (PyDict_Check(p)) {
+      p = PyDict_GetItemString(p, b.data());
+    } else {
+      p.setNewRef(PyObject_GetAttrString(p, b.data()));
+    }
   }
   PyErr_Clear();
   return p;
@@ -548,10 +552,19 @@ PythonQtObjectPtr PythonQt::getMainModule() {
   return PyDict_GetItemString(dict, "__main__");
 }
 
-QVariant PythonQt::evalCode(PyObject* module, PyObject* pycode) {
+QVariant PythonQt::evalCode(PyObject* object, PyObject* pycode) {
   QVariant result;
   if (pycode) {
-    PyObject* r = PyEval_EvalCode((PyCodeObject*)pycode, PyModule_GetDict((PyObject*)module) , PyModule_GetDict((PyObject*)module));
+    PyObject* dict = NULL;
+    if (PyModule_Check(object)) {
+      dict = PyModule_GetDict(object);
+    } else if (PyDict_Check(object)) {
+      dict = object;
+    }
+    PyObject* r = NULL;
+    if (dict) {
+      r = PyEval_EvalCode((PyCodeObject*)pycode, dict , dict);
+    }
     if (r) {
       result = PythonQtConv::PyObjToQVariant(r);
       Py_DECREF(r);
@@ -564,11 +577,19 @@ QVariant PythonQt::evalCode(PyObject* module, PyObject* pycode) {
   return result;
 }
 
-QVariant PythonQt::evalScript(PyObject* module, const QString& script, int start)
+QVariant PythonQt::evalScript(PyObject* object, const QString& script, int start)
 {
   QVariant result;
   PythonQtObjectPtr p;
-  p.setNewRef(PyRun_String(script.toLatin1().data(), start, PyModule_GetDict(module), PyModule_GetDict(module)));
+  PyObject* dict = NULL;
+  if (PyModule_Check(object)) {
+    dict = PyModule_GetDict(object);
+  } else if (PyDict_Check(object)) {
+    dict = object;
+  }
+  if (dict) {
+    p.setNewRef(PyRun_String(script.toLatin1().data(), start, dict, dict));
+  }
   if (p) {
     result = PythonQtConv::PyObjToQVariant(p);
   } else {
@@ -625,25 +646,41 @@ PythonQtObjectPtr PythonQt::createUniqueModule()
   return createModuleFromScript(moduleName);
 }
 
-void PythonQt::addObject(PyObject* module, const QString& name, QObject* object)
+void PythonQt::addObject(PyObject* object, const QString& name, QObject* qObject)
 {
-  PyModule_AddObject(module, name.toLatin1().data(), _p->wrapQObject(object));
+  if (PyModule_Check(object)) {
+    PyModule_AddObject(object, name.toLatin1().data(), _p->wrapQObject(qObject));
+  } else if (PyDict_Check(object)) {
+    PyDict_SetItemString(object, name.toLatin1().data(), _p->wrapQObject(qObject));
+  } else {
+    PyObject_SetAttrString(object, name.toLatin1().data(), _p->wrapQObject(qObject));
+  }
 }
 
-void PythonQt::addVariable(PyObject* module, const QString& name, const QVariant& v)
+void PythonQt::addVariable(PyObject* object, const QString& name, const QVariant& v)
 {
-  PyModule_AddObject(module, name.toLatin1().data(), PythonQtConv::QVariantToPyObject(v));
+  if (PyModule_Check(object)) {
+    PyModule_AddObject(object, name.toLatin1().data(), PythonQtConv::QVariantToPyObject(v));
+  } else if (PyDict_Check(object)) {
+    PyDict_SetItemString(object, name.toLatin1().data(), PythonQtConv::QVariantToPyObject(v));
+  } else {
+    PyObject_SetAttrString(object, name.toLatin1().data(), PythonQtConv::QVariantToPyObject(v));
+  }
 }
 
-void PythonQt::removeVariable(PyObject* module, const QString& name)
+void PythonQt::removeVariable(PyObject* object, const QString& name)
 {
-  PyObject_DelAttrString(module, name.toLatin1().data());
+  if (PyDict_Check(object)) {
+    PyDict_DelItemString(object, name.toLatin1().data());
+  } else {
+    PyObject_DelAttrString(object, name.toLatin1().data());
+  }
 }
 
-QVariant PythonQt::getVariable(PyObject* module, const QString& objectname)
+QVariant PythonQt::getVariable(PyObject* object, const QString& objectname)
 {
   QVariant result;
-  PythonQtObjectPtr obj = lookupObject(module, objectname);
+  PythonQtObjectPtr obj = lookupObject(object, objectname);
   if (obj) {
     result = PythonQtConv::PyObjToQVariant(obj);
   }
@@ -694,7 +731,14 @@ QStringList PythonQt::introspection(PyObject* module, const QString& objectname,
         }
       }
     } else {
-      PyObject* keys = PyObject_Dir(object);
+      PyObject* keys = NULL;
+      bool isDict = false;
+      if (PyDict_Check(object)) {
+        keys = PyDict_Keys(object);
+        isDict = true;
+      } else {
+        keys = PyObject_Dir(object);
+      }
       if (keys) {
         int count = PyList_Size(keys);
         PyObject* key;
@@ -702,7 +746,12 @@ QStringList PythonQt::introspection(PyObject* module, const QString& objectname,
         QString keystr;
         for (int i = 0;i<count;i++) {
           key = PyList_GetItem(keys,i);
-          value = PyObject_GetAttr(object, key);
+          if (isDict) {
+            value = PyDict_GetItem(object, key);
+            Py_INCREF(value);
+          } else {
+            value = PyObject_GetAttr(object, key);
+          }
           if (!value) continue;
           keystr = PyString_AsString(key);
           static const QString underscoreStr("__tmp");
