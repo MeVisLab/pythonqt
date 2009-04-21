@@ -183,14 +183,14 @@ int PythonQtInstanceWrapper_init(PythonQtInstanceWrapper * self, PyObject * args
   return 0;
 }
 
-static PyObject *PythonQtInstanceWrapper_classname(PythonQtInstanceWrapper* type)
+static PyObject *PythonQtInstanceWrapper_classname(PythonQtInstanceWrapper* obj)
 {
-  return PyString_FromString(type->classInfo()->className());
+  return PyString_FromString(obj->ob_type->tp_name);
 }
 
-static PyObject *PythonQtInstanceWrapper_help(PythonQtInstanceWrapper* type)
+static PyObject *PythonQtInstanceWrapper_help(PythonQtInstanceWrapper* obj)
 {
-  return PythonQt::self()->helpCalled(type->classInfo());
+  return PythonQt::self()->helpCalled(obj->classInfo());
 }
 
 static PyObject *PythonQtInstanceWrapper_delete(PythonQtInstanceWrapper * self)
@@ -232,6 +232,10 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
       PyDict_SetItemString(dict, name.toLatin1().data(), o);
       Py_DECREF(o);
     }
+    // TODO xxx:
+    // this does include python member methods, but not attributes, from where can we get
+    // the correct dict with the attributes of the derive
+
     // Note: we do not put children into the dict, is would look confusing?!
     return dict;
   }
@@ -338,13 +342,21 @@ static int PythonQtInstanceWrapper_setattro(PyObject *obj,PyObject *name,PyObjec
           + QString(value->ob_type->tp_name) + " (" + PythonQtConv::PyObjGetRepresentation(value) + ")";
       }
     } else {
-      error = QString("Property '") + attributeName + "' of " + wrapper->classInfo()->className() + " object is not writable";
+      error = QString("Property '") + attributeName + "' of " + obj->ob_type->tp_name + " object is not writable";
     }
-  } else {
-    if (member._type == PythonQtMemberInfo::Slot) {
-      error = QString("Slot '") + attributeName + "' can not be overwritten on " + wrapper->classInfo()->className() + " object";
-    } else if (member._type == PythonQtMemberInfo::EnumValue) {
-      error = QString("EnumValue '") + attributeName + "' can not be overwritten on " + wrapper->classInfo()->className() + " object";
+  } else if (member._type == PythonQtMemberInfo::Slot) {
+    error = QString("Slot '") + attributeName + "' can not be overwritten on " + obj->ob_type->tp_name + " object";
+  } else if (member._type == PythonQtMemberInfo::EnumValue) {
+    error = QString("EnumValue '") + attributeName + "' can not be overwritten on " + obj->ob_type->tp_name + " object";
+  } else if (member._type == PythonQtMemberInfo::NotFound) {
+    // if we are a derived python class, we allow setting attributes.
+    // if we are a direct CPP wrapper, we do NOT allow it, since
+    // it would be confusing to allow it because a wrapper will go away when it is not seen by python anymore
+    // and when it is recreated from a CPP pointer the attributes are gone...
+    if (obj->ob_type->tp_base != &PythonQtInstanceWrapper_Type) {
+      return PyBaseObject_Type.tp_setattro(obj,name,value);
+    } else {
+      error = QString("'") + attributeName + "' does not exist on " + obj->ob_type->tp_name + " and creating new attributes on C++ objects is not allowed";
     }
   }
 
@@ -389,7 +401,7 @@ static PyObject * PythonQtInstanceWrapper_repr(PyObject * obj)
       return PyString_FromFormat("%s (C++ Object %p)", typeName, wrapper->_wrappedPtr);
     }
   } else {
-    return PyString_FromFormat("%s (QObject %p)", wrapper->classInfo()->className(), qobj);
+    return PyString_FromFormat("%s (QObject %p)", typeName, wrapper->classInfo()->className(), qobj);
   }
 }
 

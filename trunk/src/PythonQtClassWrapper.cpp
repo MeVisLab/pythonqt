@@ -209,17 +209,9 @@ static PyObject *PythonQtClassWrapper_getattro(PyObject *obj, PyObject *name)
   return NULL;
 }
 
-static int PythonQtClassWrapper_setattro(PyObject *obj,PyObject *name,PyObject * /*value*/)
+static int PythonQtClassWrapper_setattro(PyObject *obj,PyObject *name,PyObject *value)
 {
-  QString error;
-  char *attributeName;
-  if ((attributeName = PyString_AsString(name)) == NULL) {
-    return -1;
-  }
-  PythonQtClassWrapper *wrapper = (PythonQtClassWrapper *)obj;
-
-  // TODO
-  return -1;
+  return PyType_Type.tp_setattro(obj,name,value);
 }
 
 /*
