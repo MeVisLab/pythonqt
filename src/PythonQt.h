@@ -65,8 +65,9 @@ class PythonQtImportFileInterface;
 class PythonQtCppWrapperFactory;
 class PythonQtQFileImporter;
 
-typedef void PythonQtQObjectWrappedCB(QObject* object);
-typedef void PythonQtQObjectNoLongerWrappedCB(QObject* object);
+typedef void  PythonQtQObjectWrappedCB(QObject* object);
+typedef void  PythonQtQObjectNoLongerWrappedCB(QObject* object);
+typedef void* PythonQtPolymorphicHandlerCB(const void *ptr, char **class_name);
 
 typedef void PythonQtShellSetInstanceWrapperCB(void* object, PythonQtInstanceWrapper* wrapper);
 
@@ -153,6 +154,9 @@ public:
   //! type is really derived from parentType.
   //! Returns false if the typeName was not yet registered.
   bool addParentClass(const char* typeName, const char* parentTypeName, int upcastingOffset=0);
+
+  //! add a handler for polymorphic downcasting
+  void addPolymorphicHandler(const char* typeName, PythonQtPolymorphicHandlerCB* cb);
 
   //! parses the given file and returns the python code object, this can then be used to call evalCode()
   PythonQtObjectPtr parseFile(const QString& filename);
@@ -399,6 +403,9 @@ public:
   //! add parent class relation
   bool addParentClass(const char* typeName, const char* parentTypeName, int upcastingOffset);
 
+  //! add a handler for polymorphic downcasting
+  void addPolymorphicHandler(const char* typeName, PythonQtPolymorphicHandlerCB* cb);
+ 
   //! lookup existing classinfo and return new if not yet present
   PythonQtClassInfo* lookupClassInfoAndCreateIfNotPresent(const char* typeName);
 

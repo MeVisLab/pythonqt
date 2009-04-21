@@ -182,9 +182,17 @@ public:
     return _shellSetInstanceWrapperCB;
   }
 
+  //! add a handler for polymorphic downcasting
+  void addPolymorphicHandler(PythonQtPolymorphicHandlerCB* cb) { _polymorphicHandlers.append(cb); }
+
+  //! cast the pointer down in the class hierarchy if a polymorphic handler allows to do that
+  void* castDownIfPossible(void* ptr, PythonQtClassInfo** resultClassInfo);
+
 private:  
   //! clear all cached members
   void clearCachedMembers();
+
+  void* recursiveCastDownIfPossible(void* ptr, char** resultClassName);
 
   PythonQtSlotInfo* findDecoratorSlotsFromDecoratorProvider(const char* memberName, PythonQtSlotInfo* inputInfo, bool &found, QHash<QByteArray, PythonQtMemberInfo>& memberCache, int upcastingOffset);
   void listDecoratorSlotsFromDecoratorProvider(QStringList& list, bool metaOnly);
@@ -210,6 +218,8 @@ private:
 
   QByteArray                           _wrappedClassName;
   QList<ParentClassInfo>               _parentClasses;
+
+  QList<PythonQtPolymorphicHandlerCB*> _polymorphicHandlers;
 
   QObject*                             _decoratorProvider;
   PythonQtQObjectCreatorFunctionCB*    _decoratorProviderCB;
