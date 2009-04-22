@@ -695,7 +695,19 @@ void* PythonQtClassInfo::recursiveCastDownIfPossible(void* ptr, char** resultCla
 void* PythonQtClassInfo::castDownIfPossible(void* ptr, PythonQtClassInfo** resultClassInfo)
 {
   char* className;
-  void* resultPtr = recursiveCastDownIfPossible(ptr, &className);
+  // this would do downcasting recursively...
+  // void* resultPtr = recursiveCastDownIfPossible(ptr, &className);
+
+  // we only do downcasting on the base object, not on the whole inheritance tree...
+  void* resultPtr = NULL;
+  if (!_polymorphicHandlers.isEmpty()) {
+    foreach(PythonQtPolymorphicHandlerCB* cb, _polymorphicHandlers) {
+      resultPtr = (*cb)(ptr, &className);
+      if (resultPtr) {
+        break;
+      }
+    }
+  }
   if (resultPtr) {
     *resultClassInfo = PythonQt::priv()->getClassInfo(className);
   } else {
