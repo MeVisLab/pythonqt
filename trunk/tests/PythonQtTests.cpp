@@ -45,10 +45,83 @@ void PythonQtTestSlotCalling::initTestCase()
 {
   _helper = new PythonQtTestSlotCallingHelper(this);
   PythonQtObjectPtr main = PythonQt::self()->getMainModule();
+  main.evalScript("import PythonQt");
   PythonQt::self()->addObject(main, "obj", _helper);
 }
 
 void PythonQtTestSlotCalling::init() {
+
+}
+
+void* polymorphic_ClassB_Handler(const void* ptr, char** className) {
+  ClassB* o = (ClassB*)ptr;
+  if (o->type()==2) {
+    *className = "ClassB";
+    return (ClassB*)o;
+  }
+  if (o->type()==3) {
+    *className = "ClassC";
+    return (ClassC*)o;
+  }
+  if (o->type()==4) {
+    *className = "ClassD";
+    return (ClassD*)o;
+  }
+  return NULL;
+}
+
+void PythonQtTestSlotCalling::testInheritance() {
+  PythonQt::self()->registerCPPClass("ClassA",NULL,NULL, PythonQtCreateObject<ClassAWrapper>);
+  PythonQt::self()->registerCPPClass("ClassB",NULL,NULL, PythonQtCreateObject<ClassBWrapper>);
+  PythonQt::self()->registerCPPClass("ClassC",NULL,NULL, PythonQtCreateObject<ClassCWrapper>);
+  PythonQt::self()->addParentClass("ClassC", "ClassA", PythonQtUpcastingOffset<ClassC,ClassA>());
+  PythonQt::self()->addParentClass("ClassC", "ClassB", PythonQtUpcastingOffset<ClassC,ClassB>());
+  PythonQt::self()->registerClass(&ClassD::staticMetaObject, NULL, PythonQtCreateObject<ClassDWrapper>);
+  PythonQt::self()->addParentClass("ClassD", "ClassA", PythonQtUpcastingOffset<ClassD,ClassA>());
+  PythonQt::self()->addParentClass("ClassD", "ClassB", PythonQtUpcastingOffset<ClassD,ClassB>());
+
+  PythonQtObjectPtr classA = PythonQt::self()->getMainModule().getVariable("PythonQt.ClassA");
+  PythonQtObjectPtr classB = PythonQt::self()->getMainModule().getVariable("PythonQt.ClassB");
+  PythonQtObjectPtr classC = PythonQt::self()->getMainModule().getVariable("PythonQt.ClassC");
+  PythonQtObjectPtr classD = PythonQt::self()->getMainModule().getVariable("PythonQt.ClassD");
+  QVERIFY(classA);
+  QVERIFY(classB);
+  QVERIFY(classC);
+  QVERIFY(classD);
+
+  QVERIFY(_helper->runScript("a = PythonQt.ClassA();\nif obj.getClassAPtr(a).getX()==1: obj.setPassed();\n"));
+  QEXPECT_FAIL("", "ClassB can not be converted to ClassA", Continue);
+  QVERIFY(_helper->runScript("a = PythonQt.ClassB();\nif obj.getClassAPtr(a).getX()==1: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("a = PythonQt.ClassC();\nif obj.getClassAPtr(a).getX()==1: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("a = PythonQt.ClassD();\nif obj.getClassAPtr(a).getX()==1: obj.setPassed();\n"));
+
+  QEXPECT_FAIL("", "ClassA can not be converted to ClassB", Continue);
+  QVERIFY(_helper->runScript("a = PythonQt.ClassA();\nif obj.getClassBPtr(a).getY()==2: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("a = PythonQt.ClassB();\nif obj.getClassBPtr(a).getY()==2: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("a = PythonQt.ClassC();\nif obj.getClassBPtr(a).getY()==2: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("a = PythonQt.ClassD();\nif obj.getClassBPtr(a).getY()==2: obj.setPassed();\n"));
+
+  QEXPECT_FAIL("", "ClassA can not be converted to ClassC", Continue);
+  QVERIFY(_helper->runScript("a = PythonQt.ClassA();\nif obj.getClassCPtr(a).getX()==1: obj.setPassed();\n"));
+  QEXPECT_FAIL("", "ClassB can not be converted to ClassC", Continue);
+  QVERIFY(_helper->runScript("a = PythonQt.ClassB();\nif obj.getClassCPtr(a).getX()==1: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("a = PythonQt.ClassC();\nif obj.getClassCPtr(a).getX()==1: obj.setPassed();\n"));
+  QEXPECT_FAIL("", "ClassD can not be converted to ClassC", Continue);
+  QVERIFY(_helper->runScript("a = PythonQt.ClassD();\nif obj.getClassCPtr(a).getX()==1: obj.setPassed();\n"));
+
+  QVERIFY(_helper->runScript("if type(obj.createClassA())==PythonQt.ClassA: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if type(obj.createClassB())==PythonQt.ClassB: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if type(obj.createClassCAsA())==PythonQt.ClassA: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if type(obj.createClassCAsB())==PythonQt.ClassB: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if type(obj.createClassD())==PythonQt.ClassD: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if type(obj.createClassDAsA())==PythonQt.ClassA: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if type(obj.createClassDAsB())==PythonQt.ClassB: obj.setPassed();\n"));
+
+  PythonQt::self()->addPolymorphicHandler("ClassB", polymorphic_ClassB_Handler);
+
+  QVERIFY(_helper->runScript("if type(obj.getClassBPtr(obj.createClassB()))==PythonQt.ClassB: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if type(obj.createClassCAsB())==PythonQt.ClassC: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if type(obj.createClassDAsB())==PythonQt.ClassD: obj.setPassed();\n"));
 
 }
 
@@ -68,6 +141,29 @@ void PythonQtTestSlotCalling::testOverloadedCall()
   QVERIFY(_helper->runScript("obj.overload(('test','test2')); obj.setPassed();\n", 4));
   QVERIFY(_helper->runScript("obj.overload(obj); obj.setPassed();\n", 5));
   QVERIFY(_helper->runScript("obj.overload(12,13); obj.setPassed();\n", 6));
+}
+
+void PythonQtTestSlotCalling::testPyObjectSlotCall()
+{
+  QVERIFY(_helper->runScript("if obj.getPyObject(PythonQt)==PythonQt: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if obj.getPyObject('Hello')=='Hello': obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if obj.getPyObjectFromVariant(PythonQt)==PythonQt: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if obj.getPyObjectFromVariant2(PythonQt)==PythonQt: obj.setPassed();\n"));
+//  QVERIFY(_helper->runScript("if obj.getPyObjectFromPtr(PythonQt)==PythonQt: obj.setPassed();\n"));
+}
+
+void PythonQtTestSlotCalling::testCPPSlotCalls()
+{
+  // test QColor compare operation
+  QVERIFY(_helper->runScript("if PythonQt.QtGui.QColor(1,2,3)==PythonQt.QtGui.QColor(1,2,3): obj.setPassed();obj.testNoArg()\n"));
+  QVERIFY(_helper->runScript("if PythonQt.QtGui.QColor(1,2,3)!=PythonQt.QtGui.QColor(3,2,1): obj.setPassed();obj.testNoArg()\n"));
+
+  // test passing/returning QColors
+  QVERIFY(_helper->runScript("if obj.getQColor1(PythonQt.QtGui.QColor(1,2,3))==PythonQt.QtGui.QColor(1,2,3): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if obj.getQColor2(PythonQt.QtGui.QColor(1,2,3))==PythonQt.QtGui.QColor(1,2,3): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if obj.getQColor3(PythonQt.QtGui.QColor(1,2,3))==PythonQt.QtGui.QColor(1,2,3): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if obj.getQColor4(PythonQt.QtGui.QColor(1,2,3))==PythonQt.QtGui.QColor(1,2,3): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if obj.getQColor5()==PythonQt.QtGui.QColor(1,2,3): obj.setPassed();\n"));
 }
 
 void PythonQtTestSlotCalling::testPODSlotCalls()
@@ -209,8 +305,9 @@ void PythonQtTestSignalHandler::testRecursiveSignalHandler()
 void PythonQtTestApi::initTestCase()
 {
   _helper = new PythonQtTestApiHelper();
-  PythonQtObjectPtr main = PythonQt::self()->getMainModule();
-  PythonQt::self()->addObject(main, "obj", _helper);
+  _main = PythonQt::self()->getMainModule();
+  _main.evalScript("import PythonQt");
+  _main.addObject("obj", _helper);
 }
 
 bool PythonQtTestApiHelper::call(const QString& function, const QVariantList& args, const QVariant& expectedResult) {
@@ -273,6 +370,42 @@ void PythonQtTestApi::testImporter()
   PythonQt::self()->setImporter(_helper);
   PythonQt::self()->overwriteSysPath(QStringList() << "c:\\test");
   PyRun_SimpleString("import bla\n");
+}
+
+void PythonQtTestApi::testQtNamespace()
+{
+  QVERIFY(!_main.getVariable("PythonQt.QtCore.Qt.red").toInt()==Qt::red);
+  QVERIFY(_main.getVariable("PythonQt.QtCore.Qt.FlatCap").toInt()==Qt::FlatCap);
+  QVERIFY(PythonQtObjectPtr(_main.getVariable("PythonQt.QtCore.Qt.escape")));
+}
+
+void PythonQtTestApi::testQColorDecorators()
+{
+  PythonQtObjectPtr colorClass = _main.getVariable("PythonQt.QtGui.QColor");
+  QVERIFY(colorClass);
+  // verify that the class is in the correct module
+  QVERIFY(colorClass.getVariable("__module__") == "PythonQt.QtGui");
+  // test on Qt module as well:
+  colorClass = _main.getVariable("PythonQt.Qt.QColor");
+  QVERIFY(colorClass);
+  // constructors
+  QVERIFY(qVariantValue<QColor>(colorClass.call(QVariantList() << 1 << 2 << 3)) == QColor(1,2,3));
+  QVERIFY(qVariantValue<QColor>(colorClass.call()) == QColor());
+  QEXPECT_FAIL("", "Testing non-existing constructor", Continue);
+  QVERIFY(colorClass.call(QVariantList() << 1 << 2) != QVariant());
+
+  // check for decorated Cmyk enum value
+  QVERIFY(colorClass.getVariable("Cmyk").toInt() == QColor::Cmyk);
+  PythonQtObjectPtr staticMethod = colorClass.getVariable("fromRgb");
+  QVERIFY(staticMethod);
+  // direct call of static method via class
+  QVERIFY(qVariantValue<QColor>(colorClass.call("fromRgb", QVariantList() << 1 << 2 << 3)) == QColor(1,2,3));
+  // direct call of static method
+  QVERIFY(qVariantValue<QColor>(staticMethod.call(QVariantList() << 1 << 2 << 3)) == QColor(1,2,3));
+  PythonQtObjectPtr publicMethod = colorClass.getVariable("red");
+  QVERIFY(publicMethod);
+  // call with passing self in:
+  QVERIFY(colorClass.call("red", QVariantList() << QColor(255,0,0)).toInt() == 255);
 }
 
 QByteArray PythonQtTestApiHelper::readFileAsBytes(const QString& filename)

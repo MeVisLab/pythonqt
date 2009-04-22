@@ -63,11 +63,76 @@ private slots:
   void testVariables();
   void testRedirect();
   void testImporter();
+  void testQColorDecorators();
+  void testQtNamespace();
 
 private:
   PythonQtTestApiHelper* _helper;
+  PythonQtObjectPtr _main;
 
 };
+
+class ClassA {
+public:
+  ClassA() { x = 1; }
+  int x;
+};
+
+class ClassB {
+public:
+  ClassB() { y = 2; }
+  int y;
+
+  virtual int type() { return 2; }
+};
+
+class ClassC : public ClassA, public ClassB {
+public:
+  ClassC() { z = 3; }
+  int z;
+
+  virtual int type() { return 3; }
+};
+
+class ClassD : public QObject, public ClassA, public ClassB {
+  Q_OBJECT
+public:
+  ClassD() { d = 4; }
+  public slots:
+    int getD() { return d; }
+private:
+  int d;
+
+  virtual int type() { return 4; }
+};
+
+class ClassAWrapper : public QObject {
+  Q_OBJECT
+public slots:
+  ClassA* new_ClassA() { return new ClassA; }
+  int getX(ClassA* o) { return o->x; }
+};
+
+class ClassBWrapper : public QObject {
+  Q_OBJECT
+public slots:
+  ClassB* new_ClassB() { return new ClassB; }
+  int getY(ClassB* o) { return o->y; }
+};
+
+class ClassCWrapper : public QObject {
+  Q_OBJECT
+public slots:
+  ClassC* new_ClassC() { return new ClassC; }
+  int getZ(ClassC* o) { return o->z; }
+};
+
+class ClassDWrapper : public QObject {
+  Q_OBJECT
+    public slots:
+      ClassD* new_ClassD() { return new ClassD; }
+};
+
 
 //! test the PythonQt api (helper)
 class PythonQtTestApiHelper : public QObject , public PythonQtImportFileInterface
@@ -98,6 +163,7 @@ public slots:
 private:
   bool _passed;
 };
+
 
 // test implementation of the wrapper factory
 class PythonQtTestCppFactory : public PythonQtCppWrapperFactory 
@@ -174,13 +240,14 @@ private slots:
 
   void testNoArgSlotCall();
   void testPODSlotCalls();
+  void testCPPSlotCalls();
   void testQVariantSlotCalls();
   void testObjectSlotCalls();
   void testMultiArgsSlotCall();
-
+  void testPyObjectSlotCall();
   void testOverloadedCall();
-
   void testCppFactory();
+  void testInheritance();
 
 private:
   PythonQtTestSlotCallingHelper* _helper;
@@ -236,6 +303,19 @@ public slots:
   QStringList getQStringList(const QStringList& l) { _called = true;  return l; }
   QVariant getQVariant(const QVariant& var) { _called = true;  return var; }
 
+  // QColor as representative for C++ value classes
+  QColor  getQColor1(const QColor& var) { _called = true;  return var; }
+  QColor  getQColor2(QColor& var) { _called = true;  return var; }
+  QColor  getQColor3(QColor* col) { _called = true;  return *col; }
+  QColor  getQColor4(const QVariant& color) { _called = true;  return qVariantValue<QColor>(color); }
+  QColor* getQColor5() { _called = true; static QColor c(1,2,3); return &c; }
+
+  PyObject* getPyObject(PyObject* obj) { _called = true; return obj; }
+  PyObject* getPyObjectFromVariant(const QVariant& val) { _called = true; return PythonQtObjectPtr(val); };
+  QVariant  getPyObjectFromVariant2(const QVariant& val) { _called = true; return val; };
+  // this does not yet work but is not required to work:
+  //PyObject* getPyObjectFromPtr(const PythonQtObjectPtr& val) { _called = true; return val; };
+
   //! testing pointer passing
   PythonQtTestSlotCallingHelper* getTestObject(PythonQtTestSlotCallingHelper* obj) {  _called = true; return obj; }
   //! testing inheritance checking
@@ -245,9 +325,6 @@ public slots:
   QObject* getNewObject() { _called = true; return new PythonQtTestSlotCallingHelper(NULL); }
 
   QVariantList getMultiArgs(int a, double b, const QString& str) { _called = true; return (QVariantList() << a << b << str); }
-  // more exotic, not yet tested
-  //void setByteArray(QByteArray array) { qDebug() << array.data(); }
-  //void setCharPtr(char* data) { qDebug() << data; }
 
   //! cpp wrapper factory test
   PQCppObject* createPQCppObject(int h) { _called = true; return new PQCppObject(h); }
@@ -260,6 +337,20 @@ public slots:
 
   //! cpp wrapper factory test
   PQCppObjectNoWrap* getPQCppObjectNoWrap(PQCppObjectNoWrap* p) { _called = true; return p; }
+
+  ClassA* getClassAPtr(ClassA* o) { _called = true; return o; }
+  ClassB* getClassBPtr(ClassB* o) { _called = true; return o; }
+  ClassC* getClassCPtr(ClassC* o) { _called = true; return o; }
+  ClassD* getClassDPtr(ClassD* o) { _called = true; return o; }
+
+  ClassA* createClassA() { _called = true; return new ClassA; }
+  ClassB* createClassB() { _called = true; return new ClassB; }
+  ClassC* createClassC() { _called = true; return new ClassC; }
+  ClassD* createClassD() { _called = true; return new ClassD; }
+  ClassA* createClassCAsA() { _called = true; return new ClassC; }
+  ClassB* createClassCAsB() { _called = true; return new ClassC; }
+  ClassA* createClassDAsA() { _called = true; return new ClassD; }
+  ClassB* createClassDAsB() { _called = true; return new ClassD; }
 
 private:
   bool _passed;
