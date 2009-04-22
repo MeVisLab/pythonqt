@@ -148,6 +148,9 @@ public:
   //! get help string for the metaobject
   QString help();
 
+  //! get list of all properties (on QObjects only, otherwise the list is empty)
+  QStringList propertyList();
+
   //! get list of all members
   QStringList memberList(bool metaOnly = false);
 
