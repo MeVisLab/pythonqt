@@ -82,6 +82,11 @@ QVariant PythonQtObjectPtr::call(const QString& callable, const QVariantList& ar
   return PythonQt::self()->call(_object, callable, args);
 }
 
+QVariant PythonQtObjectPtr::call(const QVariantList& args)
+{
+  return PythonQt::self()->call(_object, args);
+}
+
 bool PythonQtObjectPtr::fromVariant(const QVariant& variant) 
 {
   if (!variant.isNull()) {

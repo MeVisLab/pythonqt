@@ -718,9 +718,11 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
       // c++ wrapper, check if the class names of the c++ objects match
       if (wrap->classInfo()->isCPPWrapper()) {
         if (wrap->classInfo()->metaTypeId()>0) {
-          // construct a new variant from the C++ object if it has a meta type
+          // construct a new variant from the C++ object if it has a meta type (this will COPY the object!)
           v = QVariant(wrap->classInfo()->metaTypeId(), wrap->_wrappedPtr);
         } else {
+          // TODOXXX we could as well check if there is a registered meta type for "classname*", so that we may pass
+          // the pointer here...
           // is this worth anything? we loose the knowledge of the cpp object type
           v = qVariantFromValue(wrap->_wrappedPtr);
         }

@@ -805,11 +805,19 @@ QStringList PythonQt::introspection(PyObject* module, const QString& objectname,
   return results;
 }
 
-QVariant PythonQt::call(PyObject* module, const QString& name, const QVariantList& args)
+QVariant PythonQt::call(PyObject* object, const QString& name, const QVariantList& args)
+{
+  PythonQtObjectPtr callable = lookupCallable(object, name);
+  if (callable) {
+    return call(callable, args);
+  } else {
+    return QVariant();
+  }
+}
+
+QVariant PythonQt::call(PyObject* callable, const QVariantList& args)
 {
   QVariant r;
-  
-  PythonQtObjectPtr callable = lookupCallable(module, name);
   if (callable) {
     PythonQtObjectPtr pargs;
     int count = args.size();

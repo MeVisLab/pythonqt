@@ -228,8 +228,11 @@ public:
 
   //@{ Calling of python callables
 
-  //! call the given python method, returns the result converted to a QVariant
-  QVariant call(PyObject* module, const QString& callable, const QVariantList& args = QVariantList());
+  //! call the given python \c callable in the scope of object, returns the result converted to a QVariant
+  QVariant call(PyObject* object, const QString& callable, const QVariantList& args = QVariantList());
+
+  //! call the given python object, returns the result converted to a QVariant
+  QVariant call(PyObject* callable, const QVariantList& args = QVariantList());
 
   //@}
 
