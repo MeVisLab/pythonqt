@@ -382,8 +382,6 @@
   <rejection class="QObject" function-name="disconnect"/>
   <rejection class="QObject" function-name="disconnectNotify"/>
   <rejection class="QObject" function-name="registerUserData"/>
-  <rejection class="QObject" function-name="sender"/>
-  <rejection class="QTimer" function-name="singleShot"/>
   <rejection class="QProcess" function-name="pid"/>
   <rejection class="QRegion" function-name="cleanUp"/>
   <rejection class="QSettings" function-name="registerFormat"/>
@@ -406,10 +404,6 @@
   
 
   <namespace-type name="Qt">
-    <modify-function signature="codecForHtml(const QByteArray &amp;)" remove="all"/>
-    <modify-function signature="mightBeRichText(const QString &amp;)" remove="all"/>
-    <modify-function signature="escape(const QString&amp;)" remove="all"/>
-    <modify-function signature="convertFromPlainText(const QString &amp;, Qt::WhiteSpaceMode)" remove="all"/>
   
     <extra-includes>
         <include file-name="QTextDocument" location="global"/>
@@ -1861,7 +1855,7 @@
   </object-type>
 
   <object-type name="QFSFileEngine">
-	<extra-includes>
+  <extra-includes>
            <include file-name="QDateTime" location="global"/>
         </extra-includes>
   </object-type>
