@@ -8,6 +8,8 @@
 
 #include <QTextDocument>
 #include <QVariant>
+#include <qbytearray.h>
+#include <qtextcodec.h>
 
 class PythonQtWrapper_Qt : public QObject
 { Q_OBJECT
@@ -140,6 +142,10 @@ enum ItemFlag{
 enum HitTestAccuracy{
   ExactHit = Qt::ExactHit,   FuzzyHit = Qt::FuzzyHit};
 public slots:
+   bool  static_Qt_mightBeRichText(const QString&  arg__1);
+   QString  static_Qt_convertFromPlainText(const QString&  plain, Qt::WhiteSpaceMode  mode = Qt::WhiteSpacePre);
+   QTextCodec*  static_Qt_codecForHtml(const QByteArray&  ba);
+   QString  static_Qt_escape(const QString&  plain);
 };
 
 #endif // PYTHONQTWRAPPER_QT_H
