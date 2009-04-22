@@ -403,7 +403,21 @@ void PythonQtClassInfo::listDecoratorSlotsFromDecoratorProvider(QStringList& lis
     }
   }
 }
- 
+
+QStringList PythonQtClassInfo::propertyList()
+{
+  QStringList l;
+  if (_isQObject && _meta) {
+    int i;
+    int numProperties = _meta->propertyCount();
+    for (i = 0; i < numProperties; i++) {
+      QMetaProperty p = _meta->property(i);
+      l << QString(p.name());
+    }
+  }
+  return l;
+}
+
 QStringList PythonQtClassInfo::memberList(bool metaOnly)
 {
   decorator();
@@ -411,12 +425,7 @@ QStringList PythonQtClassInfo::memberList(bool metaOnly)
   QStringList l;
   QString h;
   if (_isQObject && _meta && !metaOnly) {
-    int i;
-    int numProperties = _meta->propertyCount();
-    for (i = 0; i < numProperties; i++) {
-      QMetaProperty p = _meta->property(i);
-      l << QString(p.name());
-    }
+    l = propertyList();
   }
   
   // normal slots of QObject (or wrapper QObject)

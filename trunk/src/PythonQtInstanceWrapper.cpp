@@ -225,17 +225,21 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
   }
 
   if (qstrcmp(attributeName, "__dict__")==0) {
-    QStringList l = wrapper->classInfo()->memberList(false);
-    PyObject* dict = PyDict_New();
+    PyObject* dict = PyBaseObject_Type.tp_getattro(obj, name);
+    dict = PyDict_Copy(dict);
+
+    // only the properties are missing, the rest is already available from
+    // PythonQtClassWrapper...
+    QStringList l = wrapper->classInfo()->propertyList();
     foreach (QString name, l) {
       PyObject* o = PyObject_GetAttrString(obj, name.toLatin1().data());
-      PyDict_SetItemString(dict, name.toLatin1().data(), o);
-      Py_DECREF(o);
+      if (o) {
+        PyDict_SetItemString(dict, name.toLatin1().data(), o);
+        Py_DECREF(o);
+      } else {
+        std::cerr << "PythonQtInstanceWrapper: something is wrong, could not get attribute " << name.toLatin1().data();
+      }
     }
-    // TODO xxx:
-    // this does include python member methods, but not attributes, from where can we get
-    // the correct dict with the attributes of the derive
-
     // Note: we do not put children into the dict, is would look confusing?!
     return dict;
   }
