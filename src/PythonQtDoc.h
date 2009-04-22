@@ -144,6 +144,7 @@
  - PythonQt allows to communicate in both directions, e.g. calling a Python object from C++ AND calling a C++ method from Python, while PyQt only handles the Python->C++ direction
  - PythonQt offers properties as Python attributes, while PyQt offers them as setter/getter methods (e.g. QWidget.width is a property in PythonQt and a method in PyQt)
  - PythonQt does not auto-convert objects, e.g. when a QPainter expects a QBrush and you pass a QColor, it is rejected, you will need to write QBrush(QColor(1,2,3)) instead
+ - PythonQt returns/handles enums/flags as integers, which can cause problems on overloads that take ints and enums, a future version might use an own enum type (like PyQt does)
  - Probably there are lots of details that differ, I do not know PyQt that well to list them all.
 
 

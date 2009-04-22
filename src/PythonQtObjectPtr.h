@@ -150,8 +150,8 @@ public:
   //! call the given python object (in the scope of the current object), returns the result converted to a QVariant
   QVariant call(const QString& callable, const QVariantList& args = QVariantList());
 
-  
-  
+  //! call the contained python object directly, returns the result converted to a QVariant
+  QVariant call(const QVariantList& args = QVariantList());
 
 protected:
 
