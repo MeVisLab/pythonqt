@@ -47,7 +47,7 @@ struct PythonQtMemberInfo {
     Invalid, Slot, EnumValue, Property, NotFound 
   };
 
-  PythonQtMemberInfo():_slot(NULL),_enumValue(0),_type(Invalid) { }
+  PythonQtMemberInfo():_type(Invalid),_slot(NULL),_enumValue(0) { }
   
   PythonQtMemberInfo(PythonQtSlotInfo* info) {
     _type = Slot;
