@@ -113,33 +113,29 @@ PythonQtImport::module_info PythonQtImport::getModuleInfo(PythonQtImporter* self
 
 
 /* PythonQtImporter.__init__
-  Just store the path argument
+  Just store the path argument (or reject if it is in the ignorePaths list
 */
 int PythonQtImporter_init(PythonQtImporter *self, PyObject *args, PyObject * /*kwds*/)
 {
   self->_path = NULL;
 
-  const char* path;
+  const char* cpath;
   if (!PyArg_ParseTuple(args, "s",
-    &path))
+    &cpath))
     return -1;
 
+  QString path(cpath);
   if (PythonQt::importInterface()->exists(path)) {
-    //qDebug("path %s", path);
-    QString p(path);
     const QStringList& ignorePaths = PythonQt::self()->getImporterIgnorePaths();
-    foreach(QString a, ignorePaths) {
-      if (a==p) {
+    foreach(QString ignorePath, ignorePaths) {
+      if (path.startsWith(ignorePath)) {
         PyErr_SetString(PythonQtImportError,
           "path ignored");
         return -1;
       }
     }
 
-    self->_path = new QString(p);
-
-    //mlabDebugConst("MLABPython", "PythonQtImporter init: " << *self->_path);
-
+    self->_path = new QString(path);
     return 0;
   } else {
     PyErr_SetString(PythonQtImportError,
