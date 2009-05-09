@@ -276,33 +276,6 @@ void PythonQtPrivate::createPythonQtClassWrapper(PythonQtClassInfo* info, const 
   info->setPythonQtClassWrapper(pyobj);
 }
 
-bool PythonQtPrivate::isEnumType(const QMetaObject* meta, const QByteArray& name) {
-  int i = meta?meta->indexOfEnumerator(name.constData()):-1;
-  if (i!=-1) {
-    return true;
-  } else {
-    // look for scope
-    int scopePos = name.indexOf("::");
-    if (scopePos != -1) {
-      // slit into scope and enum name
-      QByteArray enumScope = name.mid(0,scopePos);
-      QByteArray enumName = name.mid(scopePos+2);
-      if (enumScope == "Qt") {
-        // special qt namespace case
-        return isEnumType(&staticQtMetaObject, enumName);
-      } else {
-        // look for known classes as scope
-        // TODO: Q_GADGETS are not yet handled
-        PythonQtClassInfo* info = _knownClassInfos.value(enumScope);
-        if (info) {
-          return isEnumType(info->metaObject(), enumName);
-        }
-      }
-    }
-  }
-  return false;
-}
-
 PyObject* PythonQtPrivate::wrapQObject(QObject* obj)
 {
   if (!obj) {

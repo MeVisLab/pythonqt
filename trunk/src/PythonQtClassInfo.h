@@ -191,7 +191,13 @@ public:
   //! cast the pointer down in the class hierarchy if a polymorphic handler allows to do that
   void* castDownIfPossible(void* ptr, PythonQtClassInfo** resultClassInfo);
 
+  //! returns if the localScope has an enum of that type name or if the enum contains a :: scope, if that class contails the enum
+  static bool hasEnum(const QByteArray& name, PythonQtClassInfo* localScope);
+  
 private:  
+  //! checks if the enum is part of this class (without any leading scope!) 
+  bool hasEnum(const QByteArray& name);
+
   //! clear all cached members
   void clearCachedMembers();
 

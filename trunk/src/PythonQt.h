@@ -443,10 +443,6 @@ public:
   //! add a decorator object
   void addDecorators(QObject* o, int decoTypes);
 
-  //! check if the enum is either part of the \c meta class or contains a scope and is
-  //! an enum of another known metaobject (and as last resort, of the Qt namespace)
-  bool isEnumType(const QMetaObject* meta, const QByteArray& name);
-
   //! helper method that creates a PythonQtClassWrapper object
   PythonQtClassWrapper* createNewPythonQtClassWrapper(PythonQtClassInfo* info, const char* package = NULL);
 

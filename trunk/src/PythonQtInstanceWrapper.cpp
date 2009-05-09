@@ -145,7 +145,7 @@ int PythonQtInstanceWrapper_init(PythonQtInstanceWrapper * self, PyObject * args
   // we are called from python, try to construct our object
   if (self->classInfo()->constructors()) {
     void* directCPPPointer = NULL;
-    PythonQtSlotFunction_CallImpl(NULL, self->classInfo()->constructors(), args, kwds, NULL, &directCPPPointer);
+    PythonQtSlotFunction_CallImpl(self->classInfo(), NULL, self->classInfo()->constructors(), args, kwds, NULL, &directCPPPointer);
     if (PyErr_Occurred()) {
       return -1;
     }

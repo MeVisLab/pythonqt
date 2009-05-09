@@ -50,7 +50,7 @@
 #define PYTHONQT_MAX_ARGS 32
 
 
-bool PythonQtCallSlot(QObject* objectToCall, PyObject* args, bool strict, PythonQtSlotInfo* info, void* firstArgument, PyObject** pythonReturnValue, void** directReturnValuePointer)
+bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObject* args, bool strict, PythonQtSlotInfo* info, void* firstArgument, PyObject** pythonReturnValue, void** directReturnValuePointer)
 {
   static unsigned int recursiveEntry = 0;
   
@@ -82,7 +82,7 @@ bool PythonQtCallSlot(QObject* objectToCall, PyObject* args, bool strict, Python
   if (returnValueParam.typeId != QMetaType::Void) {
     // extra handling of enum return value
     if (!returnValueParam.isPointer && returnValueParam.typeId == PythonQtMethodInfo::Unknown) {
-      returnValueIsEnum = PythonQt::priv()->isEnumType(objectToCall->metaObject(), returnValueParam.name);
+      returnValueIsEnum = PythonQtClassInfo::hasEnum(returnValueParam.name, classInfo);
       if (returnValueIsEnum) {
         // create enum return value
         PythonQtValueStorage_ADD_VALUE(PythonQtConv::global_valueStorage, long, 0, argList[0]);
@@ -100,7 +100,6 @@ bool PythonQtCallSlot(QObject* objectToCall, PyObject* args, bool strict, Python
     }
   }
   
-  const QMetaObject* meta = objectToCall?objectToCall->metaObject():NULL;
   bool ok = true;
   bool skipFirst = false;
   if (info->isInstanceDecorator()) {
@@ -121,7 +120,7 @@ bool PythonQtCallSlot(QObject* objectToCall, PyObject* args, bool strict, Python
       for (int i = 2; i<argc && ok; i++) {
         const PythonQtSlotInfo::ParameterInfo& param = params.at(i);
         //std::cout << param.name.data() << " " << param.typeId << (param.isPointer?"*":"") << (param.isConst?" const":"") << std::endl;
-        argList[i] = PythonQtConv::ConvertPythonToQt(param, PyTuple_GET_ITEM(args, i-2), strict, meta);
+        argList[i] = PythonQtConv::ConvertPythonToQt(param, PyTuple_GET_ITEM(args, i-2), strict, classInfo);
         if (argList[i]==NULL) {
           ok = false;
           break;
@@ -132,7 +131,7 @@ bool PythonQtCallSlot(QObject* objectToCall, PyObject* args, bool strict, Python
     for (int i = 1; i<argc && ok; i++) {
       const PythonQtSlotInfo::ParameterInfo& param = params.at(i);
       //std::cout << param.name.data() << " " << param.typeId << (param.isPointer?"*":"") << (param.isConst?" const":"") << std::endl;
-      argList[i] = PythonQtConv::ConvertPythonToQt(param, PyTuple_GET_ITEM(args, i-1), strict, meta);
+      argList[i] = PythonQtConv::ConvertPythonToQt(param, PyTuple_GET_ITEM(args, i-1), strict, classInfo);
       if (argList[i]==NULL) {
         ok = false;
         break;
@@ -181,13 +180,13 @@ PyObject *PythonQtSlotFunction_Call(PyObject *func, PyObject *args, PyObject *kw
   PythonQtSlotInfo*    info = f->m_ml;
   if (PyObject_TypeCheck(f->m_self, &PythonQtInstanceWrapper_Type)) {
     PythonQtInstanceWrapper* self = (PythonQtInstanceWrapper*) f->m_self;
-    return PythonQtSlotFunction_CallImpl(self->_obj, info, args, kw, self->_wrappedPtr);
+    return PythonQtSlotFunction_CallImpl(self->classInfo(), self->_obj, info, args, kw, self->_wrappedPtr);
   } else if (f->m_self->ob_type == &PythonQtClassWrapper_Type) {
+    PythonQtClassWrapper* type = (PythonQtClassWrapper*) f->m_self;
     if (info->isClassDecorator()) {
-      return PythonQtSlotFunction_CallImpl(NULL, info, args, kw);
+      return PythonQtSlotFunction_CallImpl(type->classInfo(), NULL, info, args, kw);
     } else {
       // otherwise, it is an unbound call and we have an instanceDecorator or normal slot...
-      PythonQtClassWrapper* type = (PythonQtClassWrapper*) f->m_self;
       Py_ssize_t argc = PyTuple_Size(args);
       if (argc>0) {
         PyObject* firstArg = PyTuple_GET_ITEM(args, 0);
@@ -196,7 +195,7 @@ PyObject *PythonQtSlotFunction_Call(PyObject *func, PyObject *args, PyObject *kw
           PythonQtInstanceWrapper* self = (PythonQtInstanceWrapper*)firstArg;
           // strip the first argument...
           PyObject* newargs = PyTuple_GetSlice(args, 1, argc);
-          PyObject* result = PythonQtSlotFunction_CallImpl(self->_obj, info, newargs, kw, self->_wrappedPtr);
+          PyObject* result = PythonQtSlotFunction_CallImpl(self->classInfo(), self->_obj, info, newargs, kw, self->_wrappedPtr);
           Py_DECREF(newargs);
           return result;
         } else {
@@ -216,7 +215,7 @@ PyObject *PythonQtSlotFunction_Call(PyObject *func, PyObject *args, PyObject *kw
   return NULL;
 }
 
-PyObject *PythonQtSlotFunction_CallImpl(QObject* objectToCall, PythonQtSlotInfo* info, PyObject *args, PyObject * /*kw*/, void* firstArg, void** directReturnValuePointer)
+PyObject *PythonQtSlotFunction_CallImpl(PythonQtClassInfo* classInfo, QObject* objectToCall, PythonQtSlotInfo* info, PyObject *args, PyObject * /*kw*/, void* firstArg, void** directReturnValuePointer)
 {
   int argc = PyTuple_Size(args);
 
@@ -237,7 +236,7 @@ PyObject *PythonQtSlotFunction_CallImpl(QObject* objectToCall, PythonQtSlotInfo*
       bool skipFirst = i->isInstanceDecorator();
       if (i->parameterCount()-1-(skipFirst?1:0) == argc) {
         PyErr_Clear();
-        ok = PythonQtCallSlot(objectToCall, args, strict, i, firstArg, &r, directReturnValuePointer);
+        ok = PythonQtCallSlot(classInfo, objectToCall, args, strict, i, firstArg, &r, directReturnValuePointer);
         if (PyErr_Occurred() || ok) break;
       }
       i = i->nextInfo();
@@ -263,7 +262,7 @@ PyObject *PythonQtSlotFunction_CallImpl(QObject* objectToCall, PythonQtSlotInfo*
     bool skipFirst = info->isInstanceDecorator();
     if (info->parameterCount()-1-(skipFirst?1:0) == argc) {
       PyErr_Clear();
-      ok = PythonQtCallSlot(objectToCall, args, false, info, firstArg, &r, directReturnValuePointer);
+      ok = PythonQtCallSlot(classInfo, objectToCall, args, false, info, firstArg, &r, directReturnValuePointer);
       if (!ok && !PyErr_Occurred()) {
         QString e = QString("Called ") + info->fullSignature() + " with wrong arguments: " + PythonQtConv::PyObjGetString(args);
         PyErr_SetString(PyExc_ValueError, e.toLatin1().data());

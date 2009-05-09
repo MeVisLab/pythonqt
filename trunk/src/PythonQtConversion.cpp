@@ -240,7 +240,7 @@ return Py_None;
    return object;
  }
 
- void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& info, PyObject* obj, bool strict, const QMetaObject* meta, void* alreadyAllocatedCPPObject)
+ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& info, PyObject* obj, bool strict, PythonQtClassInfo* meta, void* alreadyAllocatedCPPObject)
  {
    bool ok;
    void* ptr = NULL;
@@ -444,7 +444,7 @@ return Py_None;
        {
          if (info.typeId == PythonQtMethodInfo::Unknown) {
            // check for enum case
-           if (meta && PythonQt::priv()->isEnumType(meta, info.name)) {
+           if (PythonQtClassInfo::hasEnum(info.name, meta)) {
              unsigned int val = (unsigned int)PyObjGetLongLong(obj, strict, ok);
              if (ok) {
                PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_valueStorage, unsigned int, val, ptr);
