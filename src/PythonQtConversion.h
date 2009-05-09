@@ -78,7 +78,7 @@ public:
   static PyObject* ConvertQtValueToPython(const PythonQtMethodInfo::ParameterInfo& info, const void* data);
 
   //! convert python object to Qt (according to the given parameter) and if the conversion should be strict, the meta object is passed in for enum resolving
-  static void* ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& info, PyObject* obj, bool strict, const QMetaObject* meta, void* alreadyAllocatedCPPObject = NULL);
+  static void* ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& info, PyObject* obj, bool strict, PythonQtClassInfo* meta, void* alreadyAllocatedCPPObject = NULL);
 
   //! creates a data storage for the passed parameter type and returns a void pointer to be set as arg[0] of qt_metacall
   static void* CreateQtReturnValue(const PythonQtMethodInfo::ParameterInfo& info);

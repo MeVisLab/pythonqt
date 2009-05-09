@@ -725,3 +725,46 @@ void* PythonQtClassInfo::castDownIfPossible(void* ptr, PythonQtClassInfo** resul
   }
   return resultPtr;
 }
+
+bool PythonQtClassInfo::hasEnum(const QByteArray& name, PythonQtClassInfo* localScope)
+{
+  int scopePos = name.lastIndexOf("::");
+  if (scopePos != -1) {
+    // slit into scope and enum name
+    QByteArray enumScope = name.mid(0,scopePos);
+    QByteArray enumName = name.mid(scopePos+2);
+    PythonQtClassInfo* info = PythonQt::priv()->getClassInfo(enumScope);
+    if (info) {
+      return info->hasEnum(enumName);
+    } else{
+      return false;
+    }
+  }
+  if (localScope) {
+    return localScope->hasEnum(name);
+  } else {
+    return false;
+  }
+}
+
+bool PythonQtClassInfo::hasEnum(const QByteArray& name)
+{
+  bool found = false;
+  if (_meta) {
+    found = _meta->indexOfEnumerator(name)!=-1;
+  }
+  if (!found) {
+    // check enums in the class hierachy of CPP classes
+    // look for dynamic decorators in this class and in derived classes
+    QList<QObject*> decoObjects;
+    recursiveCollectDecoratorObjects(decoObjects);
+    foreach(QObject* deco, decoObjects) {
+      found = deco->metaObject()->indexOfEnumerator(name)!=-1;
+      if (found) {
+        break;
+      }
+    }
+  }
+  return found;
+}
+
