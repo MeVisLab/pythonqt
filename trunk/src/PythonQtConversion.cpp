@@ -498,12 +498,14 @@ return Py_None;
              }
            }
          }
-
-         // for all other types, we use the same qvariant conversion and pass out the constData of the variant:
-         QVariant v = PyObjToQVariant(obj, info.typeId);
-         if (v.isValid()) {
-           PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_variantStorage, QVariant, v, ptr);
-           ptr = (void*)((QVariant*)ptr)->constData();
+         // if no type id is available, conversion to a QVariant makes no sense/is not possible
+         if (info.typeId != PythonQtMethodInfo::Unknown) {
+           // for all other types, we use the same qvariant conversion and pass out the constData of the variant:
+           QVariant v = PyObjToQVariant(obj, info.typeId);
+           if (v.isValid()) {
+             PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_variantStorage, QVariant, v, ptr);
+             ptr = (void*)((QVariant*)ptr)->constData();
+           }
          }
        }
     }
