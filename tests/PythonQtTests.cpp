@@ -213,7 +213,7 @@ void PythonQtTestSlotCalling::testCppFactory()
 {
   PythonQtTestCppFactory* f = new PythonQtTestCppFactory;
   PythonQt::self()->addInstanceDecorators(new PQCppObjectDecorator);
-  PythonQt::self()->addInstanceDecorators(new PQCppObjectNoWrapDecorator);
+  PythonQt::self()->addDecorators(new PQCppObjectNoWrapDecorator);
 
   PythonQt::self()->addWrapperFactory(f);
   QVERIFY(_helper->runScript("if obj.createPQCppObject(12).getHeight()==12: obj.setPassed();\n"));
@@ -226,6 +226,14 @@ void PythonQtTestSlotCalling::testCppFactory()
     ));
 
   QVERIFY(_helper->runScript("if obj.createPQCppObjectNoWrap(12).getH()==12: obj.setPassed();\n"));
+  
+  
+  // expect to get strict call to double overload
+  QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt import PQCppObjectNoWrap\na = PQCppObjectNoWrap(22.2)\nif a.getH()==2: obj.setPassed();\n"));
+  // expect to get un-strict call to double overload
+  QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt import PQCppObjectNoWrap\na = PQCppObjectNoWrap(22)\nif a.getH()==2: obj.setPassed();\n"));
+  // expect to get strict call to copy constructor overload
+  QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt import PQCppObjectNoWrap\na = PQCppObjectNoWrap(PQCppObjectNoWrap())\nprint a.getH()\nif a.getH()==1: obj.setPassed();\n"));
 }
 
 
