@@ -224,6 +224,16 @@ private:
 class PQCppObjectNoWrapDecorator : public QObject {
   Q_OBJECT
 public slots:
+  PQCppObjectNoWrap* new_PQCppObjectNoWrap() {
+    return new PQCppObjectNoWrap(0);
+  }
+  PQCppObjectNoWrap* new_PQCppObjectNoWrap(const PQCppObjectNoWrap& other) {
+    return new PQCppObjectNoWrap(1);
+  }
+  PQCppObjectNoWrap* new_PQCppObjectNoWrap(double value) {
+    return new PQCppObjectNoWrap(2);
+  }
+
   int  getH(PQCppObjectNoWrap* obj) { return obj->getHeight(); }
 
 };
