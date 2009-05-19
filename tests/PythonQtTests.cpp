@@ -213,6 +213,7 @@ void PythonQtTestSlotCalling::testCppFactory()
 {
   PythonQtTestCppFactory* f = new PythonQtTestCppFactory;
   PythonQt::self()->addInstanceDecorators(new PQCppObjectDecorator);
+  qRegisterMetaType<PQCppObjectNoWrap>("PQCppObjectNoWrap");
   PythonQt::self()->addDecorators(new PQCppObjectNoWrapDecorator);
 
   PythonQt::self()->addWrapperFactory(f);
@@ -227,6 +228,13 @@ void PythonQtTestSlotCalling::testCppFactory()
 
   QVERIFY(_helper->runScript("if obj.createPQCppObjectNoWrap(12).getH()==12: obj.setPassed();\n"));
   
+  QVERIFY(_helper->runScript("if obj.getPQCppObjectNoWrapAsValue().getH()==47: obj.setPassed();\n"));
+  
+  qRegisterMetaType<PQUnknownButRegisteredValueObject>("PQUnknownButRegisteredValueObject");
+  QVERIFY(_helper->runScript("a = obj.getUnknownButRegisteredValueObjectAsPtr();print a;\nif a!=None: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("a = obj.getUnknownButRegisteredValueObjectAsValue();print a;\nif a!=None: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("a = obj.getUnknownValueObjectAsPtr();print a;\nif a!=None: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("a = obj.getUnknownValueObjectAsValue();print a;\nif a!=None: obj.setPassed();\n"));
   
   // expect to get strict call to double overload
   QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt import PQCppObjectNoWrap\na = PQCppObjectNoWrap(22.2)\nif a.getH()==2: obj.setPassed();\n"));
