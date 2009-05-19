@@ -213,7 +213,8 @@ void PythonQtTestSlotCalling::testCppFactory()
 {
   PythonQtTestCppFactory* f = new PythonQtTestCppFactory;
   PythonQt::self()->addInstanceDecorators(new PQCppObjectDecorator);
-  qRegisterMetaType<PQCppObjectNoWrap>("PQCppObjectNoWrap");
+  // do not register, since we want to know if that works as well
+  //qRegisterMetaType<PQCppObjectNoWrap>("PQCppObjectNoWrap");
   PythonQt::self()->addDecorators(new PQCppObjectNoWrapDecorator);
 
   PythonQt::self()->addWrapperFactory(f);
@@ -234,6 +235,7 @@ void PythonQtTestSlotCalling::testCppFactory()
   QVERIFY(_helper->runScript("a = obj.getUnknownButRegisteredValueObjectAsPtr();print a;\nif a!=None: obj.setPassed();\n"));
   QVERIFY(_helper->runScript("a = obj.getUnknownButRegisteredValueObjectAsValue();print a;\nif a!=None: obj.setPassed();\n"));
   QVERIFY(_helper->runScript("a = obj.getUnknownValueObjectAsPtr();print a;\nif a!=None: obj.setPassed();\n"));
+  QEXPECT_FAIL("", "Testing by value return without the object being registered as QMetaType or having registered a default constructor decorator", Continue);
   QVERIFY(_helper->runScript("a = obj.getUnknownValueObjectAsValue();print a;\nif a!=None: obj.setPassed();\n"));
   
   // expect to get strict call to double overload
