@@ -209,8 +209,8 @@ return Py_None;
          }
        }
 
-       if (!ptr) {
-         // everything else is stored in a QVariant...
+      if (!ptr && info.typeId!=PythonQtMethodInfo::Unknown) {
+         // everything else is stored in a QVariant, if we know the meta type...
          PythonQtValueStorage_ADD_VALUE(global_variantStorage, QVariant, QVariant::Type(info.typeId), ptr);
          // return the constData pointer that will be filled with the result value later on
          ptr = (void*)((QVariant*)ptr)->constData();

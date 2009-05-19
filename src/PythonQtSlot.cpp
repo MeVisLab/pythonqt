@@ -78,27 +78,6 @@ bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObj
   const PythonQtSlotInfo::ParameterInfo& returnValueParam = params.at(0);
   // set return argument to NULL
   argList[0] = NULL;
-
-  if (returnValueParam.typeId != QMetaType::Void) {
-    // extra handling of enum return value
-    if (!returnValueParam.isPointer && returnValueParam.typeId == PythonQtMethodInfo::Unknown) {
-      returnValueIsEnum = PythonQtClassInfo::hasEnum(returnValueParam.name, classInfo);
-      if (returnValueIsEnum) {
-        // create enum return value
-        PythonQtValueStorage_ADD_VALUE(PythonQtConv::global_valueStorage, long, 0, argList[0]);
-      }
-    }
-    if (argList[0]==NULL) {
-      // create empty default value for the return value
-      if (!directReturnValuePointer) {
-        // create empty default value for the return value
-        argList[0] = PythonQtConv::CreateQtReturnValue(returnValueParam);
-      } else {
-        // we can use our pointer directly!
-        argList[0] = directReturnValuePointer;
-      }
-    }
-  }
   
   bool ok = true;
   bool skipFirst = false;
@@ -140,8 +119,32 @@ bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObj
   }
   
   if (ok) {
+    // parameters are ok, now create the qt return value which is assigned to by metacall
+    if (returnValueParam.typeId != QMetaType::Void) {
+      // extra handling of enum return value
+      if (!returnValueParam.isPointer && returnValueParam.typeId == PythonQtMethodInfo::Unknown) {
+        returnValueIsEnum = PythonQtClassInfo::hasEnum(returnValueParam.name, classInfo);
+        if (returnValueIsEnum) {
+          // create enum return value
+          PythonQtValueStorage_ADD_VALUE(PythonQtConv::global_valueStorage, long, 0, argList[0]);
+        }
+      }
+      if (argList[0]==NULL) {
+        // create empty default value for the return value
+        if (!directReturnValuePointer) {
+          // create empty default value for the return value
+          argList[0] = PythonQtConv::CreateQtReturnValue(returnValueParam);
+        } else {
+          // we can use our pointer directly!
+          argList[0] = directReturnValuePointer;
+        }
+      }
+    }
+
+    // invoke the slot via metacall
     (info->decorator()?info->decorator():objectToCall)->qt_metacall(QMetaObject::InvokeMetaMethod, info->slotIndex(), argList);
-    
+
+    // handle the return value (which in most cases still needs to be converted to a Python object)
     if (argList[0] || returnValueParam.typeId == QMetaType::Void) {
       if (directReturnValuePointer) {
         result = NULL;
@@ -153,7 +156,7 @@ bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObj
         }
       }
     } else {
-      QString e = QString("Called ") + info->fullSignature() + ", return type is ignored because it is unknown to PythonQt.";
+      QString e = QString("Called ") + info->fullSignature() + ", return type '" + returnValueParam.name + "' is ignored because it is unknown to PythonQt. Probaby you should register it using qRegisterMetaType().";
       PyErr_SetString(PyExc_ValueError, e.toLatin1().data());
       result = NULL;
     }
