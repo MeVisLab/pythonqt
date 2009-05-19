@@ -212,6 +212,7 @@ public slots:
 class PQCppObjectNoWrap {
 
 public:
+  PQCppObjectNoWrap() { _height = 0; }
   PQCppObjectNoWrap(int h) { _height = h; }
 
   int getHeight() { return _height; }
@@ -238,6 +239,17 @@ public slots:
 
 };
 
+class PQUnknownValueObject
+{
+public:
+  PQUnknownValueObject() {};
+};
+
+class PQUnknownButRegisteredValueObject
+{
+public:
+  PQUnknownButRegisteredValueObject() {};
+};
 
 //! test the calling of slots
 class PythonQtTestSlotCalling : public QObject
@@ -347,6 +359,15 @@ public slots:
 
   //! cpp wrapper factory test
   PQCppObjectNoWrap* getPQCppObjectNoWrap(PQCppObjectNoWrap* p) { _called = true; return p; }
+
+  //! get a return by value PQCppObjectNoWrap
+  PQCppObjectNoWrap getPQCppObjectNoWrapAsValue() { _called = true; return PQCppObjectNoWrap(47); }
+  
+  PQUnknownButRegisteredValueObject getUnknownButRegisteredValueObjectAsValue() { _called = true; return PQUnknownButRegisteredValueObject(); }
+  PQUnknownValueObject              getUnknownValueObjectAsValue() { _called = true; return PQUnknownValueObject(); }
+
+  PQUnknownButRegisteredValueObject* getUnknownButRegisteredValueObjectAsPtr() { _called = true; return new PQUnknownButRegisteredValueObject(); }
+  PQUnknownValueObject*              getUnknownValueObjectAsPtr() { _called = true; return new PQUnknownValueObject(); }
 
   ClassA* getClassAPtr(ClassA* o) { _called = true; return o; }
   ClassB* getClassBPtr(ClassB* o) { _called = true; return o; }
