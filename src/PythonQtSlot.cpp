@@ -134,6 +134,20 @@ bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObj
         if (!directReturnValuePointer) {
           // create empty default value for the return value
           argList[0] = PythonQtConv::CreateQtReturnValue(returnValueParam);
+          if (argList[0]==NULL) {
+            // return value could not be created, maybe we have a registered class with a default constructor, so that we can construct the pythonqt wrapper object and
+            // pass its internal pointer
+            PythonQtClassInfo* info = PythonQt::priv()->getClassInfo(returnValueParam.name);
+            if (info && info->pythonQtClassWrapper()) {
+              PyObject* emptyTuple = PyTuple_New(0);
+              // 1) default construct an empty object as python object (owned by PythonQt), by calling the meta class with empty arguments
+              result = PyObject_Call((PyObject*)info->pythonQtClassWrapper(), emptyTuple, NULL);
+              if (result) {
+                argList[0] = ((PythonQtInstanceWrapper*)result)->_wrappedPtr;
+              }
+              Py_DECREF(emptyTuple);            
+            } 
+          }
         } else {
           // we can use our pointer directly!
           argList[0] = directReturnValuePointer;
@@ -150,13 +164,16 @@ bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObj
         result = NULL;
       } else {
         if (!returnValueIsEnum) {
-          result = PythonQtConv::ConvertQtValueToPython(returnValueParam, argList[0]);
+          // the resulting object maybe present already, because we created it above at 1)...
+          if (!result) {
+            result = PythonQtConv::ConvertQtValueToPython(returnValueParam, argList[0]);
+          }
         } else {
           result = PyInt_FromLong(*((unsigned int*)argList[0]));
         }
       }
     } else {
-      QString e = QString("Called ") + info->fullSignature() + ", return type '" + returnValueParam.name + "' is ignored because it is unknown to PythonQt. Probaby you should register it using qRegisterMetaType().";
+      QString e = QString("Called ") + info->fullSignature() + ", return type '" + returnValueParam.name + "' is ignored because it is unknown to PythonQt. Probably you should register it using qRegisterMetaType() or add a default constructor decorator to the class.";
       PyErr_SetString(PyExc_ValueError, e.toLatin1().data());
       result = NULL;
     }
