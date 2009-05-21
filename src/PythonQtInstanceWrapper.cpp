@@ -316,14 +316,15 @@ static int PythonQtInstanceWrapper_setattro(PyObject *obj,PyObject *name,PyObjec
   if ((attributeName = PyString_AsString(name)) == NULL)
     return -1;
 
-  if (!wrapper->_obj) {
-    error = QString("Trying to set attribute '") + attributeName + "' on a destroyed " + wrapper->classInfo()->className() + " object";
-    PyErr_SetString(PyExc_AttributeError, error.toLatin1().data());
-    return -1;
-  }
-
   PythonQtMemberInfo member = wrapper->classInfo()->member(attributeName);
   if (member._type == PythonQtMemberInfo::Property) {
+
+    if (!wrapper->_obj) {
+      error = QString("Trying to set property '") + attributeName + "' on a destroyed " + wrapper->classInfo()->className() + " object";
+      PyErr_SetString(PyExc_AttributeError, error.toLatin1().data());
+      return -1;
+    }
+    
     QMetaProperty prop = member._property;
     if (prop.isWritable()) {
       QVariant v;
