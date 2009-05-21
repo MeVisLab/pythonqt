@@ -147,10 +147,14 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
 
   AbstractMetaEnumList enums1 = meta_class->enums();
   AbstractMetaEnumList enums;
+  QList<FlagsTypeEntry*> flags;
   foreach(AbstractMetaEnum* enum1, enums1) {
     // catch gadgets and enums that are not exported on QObjects...
     if (enum1->wasPublic() && (!meta_class->isQObject() || !enum1->hasQEnumsDeclaration())) {
       enums << enum1;
+      if (enum1->typeEntry()->flags()) {
+        flags << enum1->typeEntry()->flags();
+      }
     }
   }
   if (enums.count()) {
@@ -159,7 +163,20 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
       s << enum1->name() << " ";
     }
     s << ")" << endl;
-
+    
+    if (flags.count()) {
+      s << "Q_FLAGS(";
+      foreach(FlagsTypeEntry* flag1, flags) {
+        QString origName = flag1->originalName();
+        int idx = origName.lastIndexOf("::");
+        if (idx!= -1) {
+          origName = origName.mid(idx+2);
+        }
+        s << origName << " ";
+      }
+      s << ")" << endl;
+    }
+    
     foreach(AbstractMetaEnum* enum1, enums) {
       s << "enum " << enum1->name() << "{" << endl;
       bool first = true;
@@ -170,8 +187,19 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
       }
       s << "};" << endl;
     }
+    if (flags.count()) {
+      foreach(AbstractMetaEnum* enum1, enums) {
+        if (enum1->typeEntry()->flags()) {
+          QString origName = enum1->typeEntry()->flags()->originalName();
+          int idx = origName.lastIndexOf("::");
+          if (idx!= -1) {
+            origName = origName.mid(idx+2);
+          }
+          s << "Q_DECLARE_FLAGS("<< origName << ", " << enum1->name() <<")"<<endl;
+        }
+      }
+    }
   }
-
   s << "public slots:" << endl;
   if (meta_class->generateShellClass() || !meta_class->isAbstract()) {
 
