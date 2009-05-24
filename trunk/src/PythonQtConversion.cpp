@@ -635,12 +635,15 @@ int PythonQtConv::PyObjGetInt(PyObject* val, bool strict, bool &ok) {
 qint64 PythonQtConv::PyObjGetLongLong(PyObject* val, bool strict, bool &ok) {
   qint64 d = 0;
   ok = true;
-  if (PyObject_TypeCheck(val, &PyInt_Type)) {
+  if (val->ob_type == &PyInt_Type) {
     d = PyInt_AS_LONG(val);
   } else if (val->ob_type == &PyLong_Type) {
     d = PyLong_AsLongLong(val);
   } else if (!strict) {
-    if (val->ob_type == &PyFloat_Type) {
+    if (PyObject_TypeCheck(val, &PyInt_Type)) {
+      // support for derived int classes, e.g. for our enums
+      d = PyInt_AS_LONG(val);
+    } else if (val->ob_type == &PyFloat_Type) {
       d = floor(PyFloat_AS_DOUBLE(val));
     } else if (val == Py_False) {
       d = 0;
@@ -663,7 +666,10 @@ quint64 PythonQtConv::PyObjGetULongLong(PyObject* val, bool strict, bool &ok) {
   } else if (val->ob_type == &PyLong_Type) {
     d = PyLong_AsLongLong(val);
   } else if (!strict) {
-    if (val->ob_type == &PyFloat_Type) {
+    if (PyObject_TypeCheck(val, &PyInt_Type)) {
+      // support for derived int classes, e.g. for our enums
+      d = PyInt_AS_LONG(val);
+    } else if (val->ob_type == &PyFloat_Type) {
       d = floor(PyFloat_AS_DOUBLE(val));
     } else if (val == Py_False) {
       d = 0;
