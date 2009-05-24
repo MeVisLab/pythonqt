@@ -273,14 +273,14 @@ public:
     return new PQCppObject2();
   }
 
-  TestEnumFlag testEnumFlag1(PQCppObject2* obj, TestEnumFlag flag) { return flag; }
+  TestEnumFlag testEnumFlag1(PQCppObject2* obj, TestEnumFlag flag);
 
-  PQCppObject2::TestEnumFlag testEnumFlag2(PQCppObject2* obj, PQCppObject2::TestEnumFlag flag) { return flag; }
-  
+  PQCppObject2::TestEnumFlag testEnumFlag2(PQCppObject2* obj, PQCppObject2::TestEnumFlag flag);
+    
   // with int overload
-  TestEnumFlag testEnumFlag3(PQCppObject2* obj, int flag) { return (TestEnumFlag)-1; }
-  TestEnumFlag testEnumFlag3(PQCppObject2* obj, TestEnumFlag flag) { return flag; }
-  
+  TestEnumFlag testEnumFlag3(PQCppObject2* obj, int flag);
+  TestEnumFlag testEnumFlag3(PQCppObject2* obj, TestEnumFlag flag);
+
 };
 
 class PQUnknownValueObject
