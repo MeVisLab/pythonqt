@@ -183,9 +183,14 @@ static PyObject *PythonQtClassWrapper_getattro(PyObject *obj, PyObject *name)
   if (wrapper->classInfo()) {
     PythonQtMemberInfo member = wrapper->classInfo()->member(attributeName);
     if (member._type == PythonQtMemberInfo::EnumValue) {
-      return PyInt_FromLong(member._enumValue);
-    } else
-    if (member._type == PythonQtMemberInfo::Slot) {
+      PyObject* enumValue = member._enumValue;
+      Py_INCREF(enumValue);
+      return enumValue;
+    } else if (member._type == PythonQtMemberInfo::EnumWrapper) {
+      PyObject* enumWrapper = member._enumWrapper;
+      Py_INCREF(enumWrapper);
+      return enumWrapper;
+    } else if (member._type == PythonQtMemberInfo::Slot) {
       // we return all slots, even the instance slots, since they are callable as unbound slots with self argument
       return PythonQtSlotFunction_New(member._slot, obj, NULL);
     }

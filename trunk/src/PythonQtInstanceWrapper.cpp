@@ -277,7 +277,14 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
     return PythonQtSlotFunction_New(member._slot, obj, NULL);
     break;
   case PythonQtMemberInfo::EnumValue:
-    return PyInt_FromLong(member._enumValue);
+    PyObject* enumValue = member._enumValue;
+    Py_INCREF(enumValue);
+    return enumValue;
+    break;
+  case PythonQtMemberInfo::EnumWrapper:
+    PyObject* enumWrapper = member._enumWrapper;
+    Py_INCREF(enumWrapper);
+    return enumWrapper;
     break;
     default:
       // is an invalid type, go on
@@ -353,6 +360,8 @@ static int PythonQtInstanceWrapper_setattro(PyObject *obj,PyObject *name,PyObjec
     error = QString("Slot '") + attributeName + "' can not be overwritten on " + obj->ob_type->tp_name + " object";
   } else if (member._type == PythonQtMemberInfo::EnumValue) {
     error = QString("EnumValue '") + attributeName + "' can not be overwritten on " + obj->ob_type->tp_name + " object";
+  } else if (member._type == PythonQtMemberInfo::EnumWrapper) {
+    error = QString("Enum '") + attributeName + "' can not be overwritten on " + obj->ob_type->tp_name + " object";
   } else if (member._type == PythonQtMemberInfo::NotFound) {
     // if we are a derived python class, we allow setting attributes.
     // if we are a direct CPP wrapper, we do NOT allow it, since

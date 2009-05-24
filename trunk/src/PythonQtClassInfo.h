@@ -44,35 +44,38 @@ class PythonQtSlotInfo;
 
 struct PythonQtMemberInfo {
   enum Type {
-    Invalid, Slot, EnumValue, Property, NotFound 
+    Invalid, Slot, EnumValue, EnumWrapper, Property, NotFound 
   };
 
-  PythonQtMemberInfo():_type(Invalid),_slot(NULL),_enumValue(0) { }
+  PythonQtMemberInfo():_type(Invalid),_slot(NULL),_enumWrapper(NULL),_enumValue(0) { }
   
   PythonQtMemberInfo(PythonQtSlotInfo* info) {
     _type = Slot;
     _slot = info;
-    _enumValue = 0;
+    _enumValue = NULL;
   }
 
-  PythonQtMemberInfo(unsigned int enumValue) {
+  PythonQtMemberInfo(const PythonQtObjectPtr& enumValue) {
     _type = EnumValue;
     _slot = NULL;
     _enumValue = enumValue;
+    _enumWrapper = NULL;
   }
 
   PythonQtMemberInfo(const QMetaProperty& prop) {
     _type = Property;
     _slot = NULL;
-    _enumValue = 0;
+    _enumValue = NULL;
     _property = prop;
+    _enumWrapper = NULL;
   }
 
   Type              _type;
 
   // TODO: this could be a union...
   PythonQtSlotInfo* _slot;
-  unsigned int      _enumValue;
+  PyObject*         _enumWrapper;
+  PythonQtObjectPtr _enumValue;
   QMetaProperty     _property;
 };
 
@@ -194,7 +197,11 @@ public:
   //! returns if the localScope has an enum of that type name or if the enum contains a :: scope, if that class contails the enum
   static bool hasEnum(const QByteArray& name, PythonQtClassInfo* localScope);
   
-private:  
+private:
+  void createEnumWrappers();
+  void createEnumWrappers(const QMetaObject* meta);
+  PyObject* findEnumWrapper(const char* name);
+
   //! checks if the enum is part of this class (without any leading scope!) 
   bool hasEnum(const QByteArray& name);
 
@@ -223,6 +230,8 @@ private:
   PythonQtSlotInfo*                    _destructor;
   QList<PythonQtSlotInfo*>             _decoratorSlots;
 
+  QList<PythonQtObjectPtr>             _enumWrappers;
+
   const QMetaObject*                   _meta;
 
   QByteArray                           _wrappedClassName;
@@ -240,6 +249,7 @@ private:
   int                                  _metaTypeId;
 
   bool                                 _isQObject;
+  bool                                 _enumsCreated;
   
 };
 
