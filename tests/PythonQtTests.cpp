@@ -244,6 +244,17 @@ void PythonQtTestSlotCalling::testCppFactory()
   QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt import PQCppObjectNoWrap\na = PQCppObjectNoWrap(22)\nif a.getH()==2: obj.setPassed();\n"));
   // expect to get strict call to copy constructor overload
   QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt import PQCppObjectNoWrap\na = PQCppObjectNoWrap(PQCppObjectNoWrap())\nprint a.getH()\nif a.getH()==1: obj.setPassed();\n"));
+
+  // test decorated enums
+  PythonQt::self()->registerCPPClass("PQCppObject2",NULL,NULL, PythonQtCreateObject<PQCppObject2Decorator>);
+  
+  // enum with namespace (decorated)
+  QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt import PQCppObject2\na = PQCppObject2()\nif a.testEnumFlag2(PQCppObject2.TestEnumValue2)==PQCppObject2.TestEnumValue2: obj.setPassed();\n"));
+  // local enum (decorated)
+  QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt import PQCppObject2\na = PQCppObject2()\nif a.testEnumFlag1(PQCppObject2.TestEnumValue2)==PQCppObject2.TestEnumValue2: obj.setPassed();\n"));
+  // with int overload to check overloading
+  QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt import PQCppObject2\na = PQCppObject2()\nif a.testEnumFlag3(PQCppObject2.TestEnumValue2)==PQCppObject2.TestEnumValue2: obj.setPassed();\n"));
+
 }
 
 
@@ -280,6 +291,13 @@ void PythonQtTestSignalHandler::testSignalHandler()
   QVERIFY(PythonQt::self()->addSignalHandler(_helper, SIGNAL(floatSignal(float)), main, "testFloatSignal"));
   QVERIFY(_helper->emitFloatSignal(12));
 
+  // test decorated enums
+  PythonQt::self()->registerCPPClass("PQCppObject2",NULL,NULL, PythonQtCreateObject<PQCppObject2Decorator>);
+
+  PyRun_SimpleString("def testEnumSignal(a):\n  if a==1: obj.setPassed();\n");
+  QVERIFY(PythonQt::self()->addSignalHandler(_helper, SIGNAL(enumSignal(PQCppObject2::TestEnumFlag)), main, "testEnumSignal"));
+  QVERIFY(_helper->emitEnumSignal(PQCppObject2::TestEnumValue2));
+  
   PyRun_SimpleString("def testVariantSignal(a):\n  if a==obj.expectedVariant(): obj.setPassed();\n");
   QVERIFY(PythonQt::self()->addSignalHandler(_helper, SIGNAL(variantSignal(QVariant)), main, "testVariantSignal"));
   _helper->setExpectedVariant(QString("Test"));
@@ -304,6 +322,7 @@ void PythonQtTestSignalHandler::testSignalHandler()
   QVERIFY(PythonQt::self()->removeSignalHandler(_helper, SIGNAL(intSignal(int)), main, "testIntSignal"));
   QVERIFY(PythonQt::self()->removeSignalHandler(_helper, SIGNAL(floatSignal(float)), main, "testFloatSignal"));
   QVERIFY(PythonQt::self()->removeSignalHandler(_helper, SIGNAL(variantSignal(QVariant)), main, "testVariantSignal"));
+  QVERIFY(PythonQt::self()->removeSignalHandler(_helper, SIGNAL(enumSignal(PQCppObject2::TestEnumFlag)), main, "testEnumSignal"));
 
 }
 
@@ -392,7 +411,7 @@ void PythonQtTestApi::testImporter()
 
 void PythonQtTestApi::testQtNamespace()
 {
-  QVERIFY(!_main.getVariable("PythonQt.QtCore.Qt.red").toInt()==Qt::red);
+  QVERIFY(_main.getVariable("PythonQt.QtCore.Qt.red").toInt()==Qt::red);
   QVERIFY(_main.getVariable("PythonQt.QtCore.Qt.FlatCap").toInt()==Qt::FlatCap);
   QVERIFY(PythonQtObjectPtr(_main.getVariable("PythonQt.QtCore.Qt.escape")));
 }

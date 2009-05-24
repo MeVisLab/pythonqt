@@ -224,6 +224,7 @@ private:
 
 class PQCppObjectNoWrapDecorator : public QObject {
   Q_OBJECT
+  
 public slots:
   PQCppObjectNoWrap* new_PQCppObjectNoWrap() {
     return new PQCppObjectNoWrap(0);
@@ -237,6 +238,49 @@ public slots:
 
   int  getH(PQCppObjectNoWrap* obj) { return obj->getHeight(); }
 
+};
+
+
+//! an cpp object that is to be wrapped by decorators only
+class PQCppObject2 {
+  
+public:
+  enum TestEnumFlag {
+    TestEnumValue1 = 0,
+    TestEnumValue2 = 1
+  };
+  
+  PQCppObject2() {}
+  
+};
+
+class PQCppObject2Decorator : public QObject {
+  Q_OBJECT
+  
+public:
+  Q_ENUMS(TestEnumFlag)
+  Q_FLAGS(TestEnum)
+  
+  enum TestEnumFlag {
+    TestEnumValue1 = 0,
+    TestEnumValue2 = 1
+  };
+  
+  Q_DECLARE_FLAGS(TestEnum, TestEnumFlag)
+  
+  public slots:
+  PQCppObject2* new_PQCppObject2() {
+    return new PQCppObject2();
+  }
+
+  TestEnumFlag testEnumFlag1(PQCppObject2* obj, TestEnumFlag flag) { return flag; }
+
+  PQCppObject2::TestEnumFlag testEnumFlag2(PQCppObject2* obj, PQCppObject2::TestEnumFlag flag) { return flag; }
+  
+  // with int overload
+  TestEnumFlag testEnumFlag3(PQCppObject2* obj, int flag) { return (TestEnumFlag)-1; }
+  TestEnumFlag testEnumFlag3(PQCppObject2* obj, TestEnumFlag flag) { return flag; }
+  
 };
 
 class PQUnknownValueObject
@@ -423,6 +467,7 @@ public slots:
 
   bool emitIntSignal(int a) { _passed = false; emit intSignal(a); return _passed; };
   bool emitFloatSignal(float a) { _passed = false; emit floatSignal(a); return _passed; };
+  bool emitEnumSignal(PQCppObject2::TestEnumFlag flag) { _passed = false; emit enumSignal(flag); return _passed; };
 
   bool emitVariantSignal(const QVariant& v) { _passed = false; emit variantSignal(v); return _passed; };
   QVariant expectedVariant() { return _v; }
@@ -439,6 +484,7 @@ signals:
   void floatSignal(float);
   void variantSignal(const QVariant& v);
   void complexSignal(int a, float b, const QStringList& l, QObject* obj);
+  void enumSignal(PQCppObject2::TestEnumFlag flag);
 
   void signal1(int);
   void signal2(const QString&);
