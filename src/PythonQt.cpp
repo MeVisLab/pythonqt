@@ -431,6 +431,30 @@ PythonQtClassWrapper* PythonQtPrivate::createNewPythonQtClassWrapper(PythonQtCla
   return result;
 }
 
+PyObject* PythonQtPrivate::createNewPythonQtEnumWrapper(const char* enumName, PyObject* parentObject) {
+  PyObject* result;
+  
+  PyObject* className = PyString_FromString(enumName);
+  
+  PyObject* baseClasses = PyTuple_New(1);
+  PyTuple_SET_ITEM(baseClasses, 0, (PyObject*)&PyInt_Type);
+  
+  PyObject* module = PyObject_GetAttrString(parentObject, "__module__");
+  PyObject* typeDict = PyDict_New();
+  PyDict_SetItemString(typeDict, "__module__", module);
+  
+  PyObject* args  = Py_BuildValue("OOO", className, baseClasses, typeDict);
+  
+  // create the new int derived type object by calling the core type
+  result = PyObject_Call((PyObject *)&PyType_Type, args, NULL);
+
+  Py_DECREF(baseClasses);
+  Py_DECREF(typeDict);
+  Py_DECREF(args);
+  Py_DECREF(className);
+  
+  return result;
+}
 
 PythonQtSignalReceiver* PythonQt::getSignalReceiver(QObject* obj)
 {

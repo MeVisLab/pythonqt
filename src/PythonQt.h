@@ -446,6 +446,9 @@ public:
   //! helper method that creates a PythonQtClassWrapper object
   PythonQtClassWrapper* createNewPythonQtClassWrapper(PythonQtClassInfo* info, const char* package = NULL);
 
+  //! helper that creates a new int derived class that represents the enum of the given name
+  PyObject* createNewPythonQtEnumWrapper(const char* enumName, PyObject* parentObject);
+
   //! helper method that creates a PythonQtInstanceWrapper object and registers it in the object map
   PythonQtInstanceWrapper* createNewPythonQtInstanceWrapper(QObject* obj, PythonQtClassInfo* info, void* wrappedPtr = NULL);
 

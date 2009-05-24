@@ -43,6 +43,8 @@
 #include "PythonQtMethodInfo.h"
 #include "PythonQt.h"
 #include <QMetaMethod>
+#include <QMetaObject>
+#include <QMetaEnum>
 
 QHash<QByteArray, int> PythonQtMethodInfo::_parameterTypeDict;
 
@@ -56,6 +58,7 @@ PythonQtClassInfo::PythonQtClassInfo() {
   _shellSetInstanceWrapperCB = NULL;
   _metaTypeId = -1;
   _isQObject = false;
+  _enumsCreated = false;
 }
 
 PythonQtClassInfo::~PythonQtClassInfo()
@@ -250,13 +253,23 @@ bool PythonQtClassInfo::lookForEnumAndCache(const QMetaObject* meta, const char*
     QMetaEnum e = meta->enumerator(i);
     for (int j=0; j < e.keyCount(); j++) {
       if (qstrcmp(e.key(j), memberName)==0) {
-        PythonQtMemberInfo newInfo(e.value(j));
-        _cachedMembers.insert(memberName, newInfo);
+        PyObject* enumType = findEnumWrapper(e.name());
+        if (enumType) {
+          PyObject* args = Py_BuildValue("(i)", e.value(j));
+          PyObject* enumValue = PyObject_Call(enumType, args, NULL);
+          Py_DECREF(args);
+          PythonQtObjectPtr enumValuePtr;
+          enumValuePtr.setNewRef(enumValue);
+          PythonQtMemberInfo newInfo(enumValuePtr);
+          _cachedMembers.insert(memberName, newInfo);
   #ifdef PYTHONQT_DEBUG
-        std::cout << "caching enum " << memberName << " on " << meta->className() << std::endl;
+          std::cout << "caching enum " << memberName << " on " << meta->className() << std::endl;
   #endif
-        found = true;
-        break;
+          found = true;
+          break;
+        } else {
+          std::cout << "enum " << e.name() << " not found on " << className() << std::endl;
+        }
       }
     }
   }
@@ -292,6 +305,15 @@ PythonQtMemberInfo PythonQtClassInfo::member(const char* memberName)
             break;
           }
         }
+      }
+    }
+    if (!found) {
+      PyObject* p = findEnumWrapper(memberName);
+      if (p) {
+        info._type = PythonQtMemberInfo::EnumWrapper;
+        info._enumWrapper = p;
+        _cachedMembers.insert(memberName, info);
+        found = true;
       }
     }
     if (!found) {
@@ -470,6 +492,7 @@ QStringList PythonQtClassInfo::memberList(bool metaOnly)
   foreach(const QMetaObject* meta, enumMetaObjects) {
     for (int i = 0; i<meta->enumeratorCount(); i++) {
       QMetaEnum e = meta->enumerator(i);
+      l << e.name();
       for (int j=0; j < e.keyCount(); j++) {
         l << QString(e.key(j));
       }
@@ -661,6 +684,9 @@ QObject* PythonQtClassInfo::decorator()
       PythonQt::priv()->addDecorators(_decoratorProvider, PythonQtPrivate::ConstructorDecorator | PythonQtPrivate::DestructorDecorator);
     }
   }
+  if (!_enumsCreated) {
+    createEnumWrappers();
+  }
   return _decoratorProvider;
 }
 
@@ -766,5 +792,45 @@ bool PythonQtClassInfo::hasEnum(const QByteArray& name)
     }
   }
   return found;
+}
+
+void PythonQtClassInfo::createEnumWrappers(const QMetaObject* meta)
+{
+  for (int i = meta->enumeratorOffset();i<meta->enumeratorCount();i++) {
+    QMetaEnum e = meta->enumerator(i);
+    PythonQtObjectPtr p;
+    p.setNewRef(PythonQt::priv()->createNewPythonQtEnumWrapper(e.name(), _pythonQtClassWrapper));
+    _enumWrappers.append(p);
+  }
+}
+
+void PythonQtClassInfo::createEnumWrappers()
+{
+  if (!_enumsCreated) {
+    _enumsCreated = true;
+    if (_meta) {
+      createEnumWrappers(_meta);
+    }
+    if (decorator()) {
+      createEnumWrappers(decorator()->metaObject());
+    }
+    foreach(const ParentClassInfo& info, _parentClasses) {
+      info._parent->createEnumWrappers();
+    }
+  }
+}
+
+PyObject* PythonQtClassInfo::findEnumWrapper(const char* name) {
+  foreach(const PythonQtObjectPtr& p, _enumWrappers) {
+    const char* className = ((PyTypeObject*)p.object())->tp_name;
+    if (qstrcmp(className, name)==0) {
+      return p.object();
+    }
+  }
+  foreach(const ParentClassInfo& info, _parentClasses) {
+    PyObject* p = info._parent->findEnumWrapper(name);
+    if (p) return p;
+  }
+  return NULL;
 }
 

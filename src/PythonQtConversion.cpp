@@ -611,7 +611,10 @@ int PythonQtConv::PyObjGetInt(PyObject* val, bool strict, bool &ok) {
   if (val->ob_type == &PyInt_Type) {
     d = PyInt_AS_LONG(val);
   } else if (!strict) {
-    if (val->ob_type == &PyFloat_Type) {
+    if (PyObject_TypeCheck(val, &PyInt_Type)) {
+      // support for derived int classes, e.g. for our enums
+      d = PyInt_AS_LONG(val);
+    } else if (val->ob_type == &PyFloat_Type) {
       d = floor(PyFloat_AS_DOUBLE(val));
     } else if (val->ob_type == &PyLong_Type) {
       // handle error on overflow!
@@ -632,7 +635,7 @@ int PythonQtConv::PyObjGetInt(PyObject* val, bool strict, bool &ok) {
 qint64 PythonQtConv::PyObjGetLongLong(PyObject* val, bool strict, bool &ok) {
   qint64 d = 0;
   ok = true;
-  if (val->ob_type == &PyInt_Type) {
+  if (PyObject_TypeCheck(val, &PyInt_Type)) {
     d = PyInt_AS_LONG(val);
   } else if (val->ob_type == &PyLong_Type) {
     d = PyLong_AsLongLong(val);
@@ -655,7 +658,7 @@ qint64 PythonQtConv::PyObjGetLongLong(PyObject* val, bool strict, bool &ok) {
 quint64 PythonQtConv::PyObjGetULongLong(PyObject* val, bool strict, bool &ok) {
   quint64 d = 0;
   ok = true;
-  if (val->ob_type == &PyInt_Type) {
+  if (PyObject_TypeCheck(val, &PyInt_Type)) {
     d = PyInt_AS_LONG(val);
   } else if (val->ob_type == &PyLong_Type) {
     d = PyLong_AsLongLong(val);
@@ -681,7 +684,7 @@ double PythonQtConv::PyObjGetDouble(PyObject* val, bool strict, bool &ok) {
   if (val->ob_type == &PyFloat_Type) {
     d = PyFloat_AS_DOUBLE(val);
   } else if (!strict) {
-    if (val->ob_type == &PyInt_Type) {
+    if (PyObject_TypeCheck(val, &PyInt_Type)) {
       d = PyInt_AS_LONG(val);
     } else if (val->ob_type == &PyLong_Type) {
       d = PyLong_AsLong(val);
@@ -707,7 +710,7 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
     // no special type requested
     if (val->ob_type==&PyString_Type || val->ob_type==&PyUnicode_Type) {
       type = QVariant::String;
-    } else if (val->ob_type==&PyInt_Type) {
+    } else if (PyObject_TypeCheck(val, &PyInt_Type)) {
       type = QVariant::Int;
     } else if (val->ob_type==&PyLong_Type) {
       type = QVariant::LongLong;
