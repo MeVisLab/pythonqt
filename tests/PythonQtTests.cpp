@@ -125,6 +125,16 @@ void PythonQtTestSlotCalling::testInheritance() {
 
 }
 
+void PythonQtTestSlotCalling::testAutoConversion() {
+  QVERIFY(_helper->runScript("if obj.setAutoConvertColor(PythonQt.QtCore.Qt.red)==PythonQt.Qt.QColor(PythonQt.QtCore.Qt.red): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if obj.setAutoConvertBrush(PythonQt.QtCore.Qt.red)==PythonQt.Qt.QBrush(PythonQt.QtCore.Qt.red): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if obj.setAutoConvertPen(PythonQt.QtCore.Qt.red)==PythonQt.Qt.QPen(PythonQt.QtCore.Qt.red): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if obj.setAutoConvertBrush(PythonQt.Qt.QColor(PythonQt.QtCore.Qt.red))==PythonQt.Qt.QBrush(PythonQt.QtCore.Qt.red): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if obj.setAutoConvertPen(PythonQt.Qt.QColor(PythonQt.QtCore.Qt.red))==PythonQt.Qt.QPen(PythonQt.QtCore.Qt.red): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if obj.setAutoConvertCursor(PythonQt.Qt.QCursor(PythonQt.QtCore.Qt.UpArrowCursor)).shape()==PythonQt.Qt.QCursor(PythonQt.QtCore.Qt.UpArrowCursor).shape(): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if obj.setAutoConvertCursor(PythonQt.QtCore.Qt.UpArrowCursor).shape()==PythonQt.Qt.QCursor(PythonQt.QtCore.Qt.UpArrowCursor).shape(): obj.setPassed();\n"));
+}
+
 void PythonQtTestSlotCalling::testNoArgSlotCall()
 {
   QVERIFY(_helper->runScript("obj.testNoArg(); obj.setPassed();\n"));
@@ -434,6 +444,12 @@ void PythonQtTestApi::testQtNamespace()
   QVERIFY(PythonQtObjectPtr(_main.getVariable("PythonQt.QtCore.Qt.AlignmentFlag")));
   // check for a flags type wrapper
   QVERIFY(PythonQtObjectPtr(_main.getVariable("PythonQt.QtCore.Qt.Alignment")));
+}
+
+void PythonQtTestApi::testConnects()
+{
+//  QVERIFY(qVariantValue<QColor>(_main.evalScript("PythonQt.Qt.QColor(PythonQt.Qt.Qt.red)" ,Py_eval_input)) == QColor(Qt::red));
+  //TODO: add signal/slot connect both with QObject.connect and connect
 }
 
 void PythonQtTestApi::testQColorDecorators()

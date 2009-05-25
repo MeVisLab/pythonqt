@@ -48,6 +48,11 @@
 #include "PythonQtImportFileInterface.h"
 #include "PythonQtCppWrapperFactory.h"
 
+#include <QPen>
+#include <QColor>
+#include <QBrush>
+#include <QCursor>
+
 class PythonQtTestSlotCallingHelper;
 class PythonQtTestApiHelper;
 class QWidget;
@@ -65,6 +70,7 @@ private slots:
   void testImporter();
   void testQColorDecorators();
   void testQtNamespace();
+  void testConnects();
 
 private:
   PythonQtTestApiHelper* _helper;
@@ -314,6 +320,7 @@ private slots:
   void testOverloadedCall();
   void testCppFactory();
   void testInheritance();
+  void testAutoConversion();
 
 private:
   PythonQtTestSlotCallingHelper* _helper;
@@ -427,6 +434,11 @@ public slots:
   ClassA* createClassDAsA() { _called = true; return new ClassD; }
   ClassB* createClassDAsB() { _called = true; return new ClassD; }
 
+  QColor  setAutoConvertColor(const QColor& color) { _called = true; return color; };
+  QBrush  setAutoConvertBrush(const QBrush& brush) { _called = true; return brush; };
+  QPen    setAutoConvertPen(const QPen& pen) { _called = true; return pen; };
+  QCursor setAutoConvertCursor(const QCursor& cursor) { _called = true; return cursor; };
+  
 private:
   bool _passed;
   bool _called;
