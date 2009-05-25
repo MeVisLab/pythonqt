@@ -1137,7 +1137,7 @@ static PyObject *PythonQt_SIGNAL(PyObject * /*type*/, PyObject *args)
     return NULL;
   }
   // we do not prepend 0,1 or 2, why should we?
-  return PyString_FromString(value);
+  return PyString_FromString(QByteArray("2") + value);
 }
 
 static PyObject *PythonQt_SLOT(PyObject * /*type*/, PyObject *args)
@@ -1147,7 +1147,7 @@ static PyObject *PythonQt_SLOT(PyObject * /*type*/, PyObject *args)
     return NULL;
   }
   // we do not prepend 0,1 or 2, why should we?
-  return PyString_FromString(value);
+  return PyString_FromString(QByteArray("1") + value);
 }
 
 static PyMethodDef PythonQt_Qt_methods[] = {
