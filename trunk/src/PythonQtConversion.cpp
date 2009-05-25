@@ -256,7 +256,7 @@ return Py_None;
 
  void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& info, PyObject* obj, bool strict, PythonQtClassInfo* /*classInfo*/, void* alreadyAllocatedCPPObject)
  {
-   bool ok;
+   bool ok = false;
    void* ptr = NULL;
    if (PyObject_TypeCheck(obj, &PythonQtInstanceWrapper_Type) && info.typeId != PythonQtMethodInfo::Variant) {
      // if we have a Qt wrapper object and if we do not need a QVariant, we do the following:
@@ -264,7 +264,6 @@ return Py_None;
  
      // a C++ wrapper (can be passed as pointer or reference)
      PythonQtInstanceWrapper* wrap = (PythonQtInstanceWrapper*)obj;
-     bool ok;
      void* object = castWrapperTo(wrap, info.name, ok);
      if (ok) {
        if (info.isPointer) {
@@ -460,6 +459,7 @@ return Py_None;
          // check for enum case
          if (info.enumWrapper) {
            unsigned int val;
+           ok = false;
            if ((PyObject*)obj->ob_type == info.enumWrapper) {
              // we have a exact enum type match:
              val = PyInt_AS_LONG(obj);
