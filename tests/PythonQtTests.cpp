@@ -430,6 +430,10 @@ void PythonQtTestApi::testQtNamespace()
   QVERIFY(_main.getVariable("PythonQt.QtCore.Qt.red").toInt()==Qt::red);
   QVERIFY(_main.getVariable("PythonQt.QtCore.Qt.FlatCap").toInt()==Qt::FlatCap);
   QVERIFY(PythonQtObjectPtr(_main.getVariable("PythonQt.QtCore.Qt.escape")));
+  // check for an enum type wrapper
+  QVERIFY(PythonQtObjectPtr(_main.getVariable("PythonQt.QtCore.Qt.AlignmentFlag")));
+  // check for a flags type wrapper
+  QVERIFY(PythonQtObjectPtr(_main.getVariable("PythonQt.QtCore.Qt.Alignment")));
 }
 
 void PythonQtTestApi::testQColorDecorators()
@@ -446,6 +450,11 @@ void PythonQtTestApi::testQColorDecorators()
   QVERIFY(qVariantValue<QColor>(colorClass.call()) == QColor());
   QEXPECT_FAIL("", "Testing non-existing constructor", Continue);
   QVERIFY(colorClass.call(QVariantList() << 1 << 2) != QVariant());
+
+  // check that enum overload is taken over int
+  QVERIFY(qVariantValue<QColor>(_main.evalScript("PythonQt.Qt.QColor(PythonQt.Qt.Qt.red)" ,Py_eval_input)) == QColor(Qt::red));
+  // check that int overload is taken over enum
+  QVERIFY(qVariantValue<QColor>(_main.evalScript("PythonQt.Qt.QColor(0x112233)" ,Py_eval_input)) == QColor(0x112233));
 
   // check for decorated Cmyk enum value
   QVERIFY(colorClass.getVariable("Cmyk").toInt() == QColor::Cmyk);
