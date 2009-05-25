@@ -56,12 +56,12 @@ PythonQtMethodInfo::PythonQtMethodInfo(const QMetaMethod& meta, PythonQtClassInf
 #endif
 
   ParameterInfo type;
-  fillParameterInfo(type, QByteArray(meta.typeName()));
+  fillParameterInfo(type, QByteArray(meta.typeName()), classInfo);
   _parameters.append(type);
   QByteArray name;
   QList<QByteArray> names = meta.parameterTypes();
   foreach (name, names) {
-    fillParameterInfo(type, name);
+    fillParameterInfo(type, name, classInfo);
     _parameters.append(type);
   }
 }
@@ -87,10 +87,12 @@ const PythonQtMethodInfo* PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectA
   return PythonQtMethodInfo::getCachedMethodInfo(meta, NULL);
 }
 
-void PythonQtMethodInfo::fillParameterInfo(ParameterInfo& type, const QByteArray& orgName)
+void PythonQtMethodInfo::fillParameterInfo(ParameterInfo& type, const QByteArray& orgName, PythonQtClassInfo* classInfo)
 {
   QByteArray name = orgName;
 
+  type.enumWrapper = NULL;
+  
   int len = name.length();
   if (len>0) {
     if (strncmp(name.constData(), "const ", 6)==0) {
@@ -129,6 +131,12 @@ void PythonQtMethodInfo::fillParameterInfo(ParameterInfo& type, const QByteArray
       }
     }
     type.name = name;
+
+    if (type.typeId == PythonQtMethodInfo::Unknown || type.typeId >= QMetaType::User) {
+      bool isLocalEnum;
+      // TODOXXX: make use of this flag!
+      type.enumWrapper = PythonQtClassInfo::findEnumWrapper(type.name, classInfo, isLocalEnum);
+    }
   } else {
     type.typeId = QMetaType::Void;
     type.isPointer = false;

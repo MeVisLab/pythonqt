@@ -50,6 +50,8 @@
 #include <QMetaMethod>
 
 class PythonQtClassInfo;
+struct _object;
+typedef struct _object PyObject;
 
 //! stores information about a specific signal/slot/method
 class PYTHONQT_EXPORT PythonQtMethodInfo
@@ -62,8 +64,9 @@ public:
 
   //! stores the QVariant id (if available) and the name of the type
   struct ParameterInfo {
-    int typeId; // a mixture from QMetaType and ParameterType
     QByteArray name;
+    PyObject*  enumWrapper; // if it is an enum, a pointer to the enum wrapper
+    int typeId; // a mixture from QMetaType and ParameterType
     bool isPointer;
     bool isConst;
   };
@@ -98,7 +101,7 @@ public:
   static void addParameterTypeAlias(const QByteArray& alias, const QByteArray& name);
 
   protected:
-  static void fillParameterInfo(ParameterInfo& type, const QByteArray& name);
+  static void fillParameterInfo(ParameterInfo& type, const QByteArray& name, PythonQtClassInfo* classInfo);
 
   static QHash<QByteArray, int> _parameterTypeDict;
   static QHash<QByteArray, QByteArray> _parameterNameAliases;

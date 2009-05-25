@@ -251,6 +251,9 @@ bool PythonQtClassInfo::lookForEnumAndCache(const QMetaObject* meta, const char*
   int enumCount = meta->enumeratorCount();
   for (int i=0;i<enumCount; i++) {
     QMetaEnum e = meta->enumerator(i);
+    // we do not want flags, they will cause our values to appear two times
+    if (e.isFlag()) continue;
+    
     for (int j=0; j < e.keyCount(); j++) {
       if (qstrcmp(e.key(j), memberName)==0) {
         PyObject* enumType = findEnumWrapper(e.name());
@@ -490,6 +493,9 @@ QStringList PythonQtClassInfo::memberList(bool metaOnly)
     for (int i = 0; i<meta->enumeratorCount(); i++) {
       QMetaEnum e = meta->enumerator(i);
       l << e.name();
+      // we do not want flags, they will cause our values to appear two times
+      if (e.isFlag()) continue;
+
       for (int j=0; j < e.keyCount(); j++) {
         l << QString(e.key(j));
       }
@@ -750,46 +756,27 @@ void* PythonQtClassInfo::castDownIfPossible(void* ptr, PythonQtClassInfo** resul
   return resultPtr;
 }
 
-bool PythonQtClassInfo::hasEnum(const QByteArray& name, PythonQtClassInfo* localScope)
+PyObject* PythonQtClassInfo::findEnumWrapper(const QByteArray& name, PythonQtClassInfo* localScope, bool& isLocalEnum)
 {
+  isLocalEnum = true;
   int scopePos = name.lastIndexOf("::");
   if (scopePos != -1) {
+    isLocalEnum = false;
     // slit into scope and enum name
     QByteArray enumScope = name.mid(0,scopePos);
     QByteArray enumName = name.mid(scopePos+2);
     PythonQtClassInfo* info = PythonQt::priv()->getClassInfo(enumScope);
     if (info) {
-      return info->hasEnum(enumName);
+      return info->findEnumWrapper(enumName);
     } else{
-      return false;
+      return NULL;
     }
   }
   if (localScope) {
-    return localScope->hasEnum(name);
+    return localScope->findEnumWrapper(name);
   } else {
-    return false;
+    return NULL;
   }
-}
-
-bool PythonQtClassInfo::hasEnum(const QByteArray& name)
-{
-  bool found = false;
-  if (_meta) {
-    found = _meta->indexOfEnumerator(name)!=-1;
-  }
-  if (!found) {
-    // check enums in the class hierachy of CPP classes
-    // look for dynamic decorators in this class and in derived classes
-    QList<QObject*> decoObjects;
-    recursiveCollectDecoratorObjects(decoObjects);
-    foreach(QObject* deco, decoObjects) {
-      found = deco->metaObject()->indexOfEnumerator(name)!=-1;
-      if (found) {
-        break;
-      }
-    }
-  }
-  return found;
 }
 
 void PythonQtClassInfo::createEnumWrappers(const QMetaObject* meta)
