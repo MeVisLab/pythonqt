@@ -47,6 +47,7 @@
 #include "PythonQtObjectPtr.h"
 
 class PythonQtMethodInfo;
+class PythonQtClassInfo;
 
 //! stores information about a signal target
 /*! copy construction and assignment works fine with the C++ standard behaviour and are thus not implemented
@@ -130,6 +131,7 @@ private:
   int getSignalIndex(const char* signal);
 
   QObject* _obj;
+  PythonQtClassInfo* _objClassInfo;
   int _slotCount;
   // linear list may get slow on multiple targets, but I think typically we have many objects and just a few signals
   QList<PythonQtSignalTarget> _targets;
