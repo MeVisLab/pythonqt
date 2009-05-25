@@ -62,12 +62,15 @@ public slots:
   bool disconnect(QObject* sender, const QByteArray& signal, PyObject* callable);
   bool disconnect(QObject* sender, const QByteArray& signal, QObject* receiver, const QByteArray& slot);
 
+  bool static_QObject_connect(QObject* sender, const QByteArray& signal, PyObject* callable) { return connect(sender, signal, callable); }
+  bool static_QObject_connect(QObject* sender, const QByteArray& signal, QObject* receiver, const QByteArray& slot) { return connect(sender, signal, receiver, slot); }
+  bool static_QObject_disconnect(QObject* sender, const QByteArray& signal, PyObject* callable) { return disconnect(sender, signal, callable); }
+  bool static_QObject_disconnect(QObject* sender, const QByteArray& signal, QObject* receiver, const QByteArray& slot) { return disconnect(sender, signal, receiver, slot); };
+  
   QObject* parent(QObject* o);
   void setParent(QObject* o, QObject* parent);
 
   QVariantList children(QObject* o);
-
-  QString static_Qt_escape(const QString& s) { return Qt::escape(s); }
 
   //TODO: add findChild/findChildren/children/...
 };
