@@ -186,7 +186,7 @@ PythonQtSlotInfo* PythonQtClassInfo::findDecoratorSlotsFromDecoratorProvider(con
         // check if same length and same name
         if (memberNameLen == offset && qstrncmp(memberName, sigStart, offset)==0) {
           found = true;
-          PythonQtSlotInfo* info = new PythonQtSlotInfo(m, i, decoratorProvider, isClassDeco?PythonQtSlotInfo::ClassDecorator:PythonQtSlotInfo::InstanceDecorator);
+          PythonQtSlotInfo* info = new PythonQtSlotInfo(this, m, i, decoratorProvider, isClassDeco?PythonQtSlotInfo::ClassDecorator:PythonQtSlotInfo::InstanceDecorator);
           info->setUpcastingOffset(upcastingOffset);
           //qDebug()<< "adding " << decoratorProvider->metaObject()->className() << " " << memberName << " " << upcastingOffset;
           if (tail) {
@@ -225,7 +225,7 @@ bool PythonQtClassInfo::lookForMethodAndCache(const char* memberName)
         // check if same length and same name
         if (memberNameLen == offset && qstrncmp(memberName, sigStart, offset)==0) {
           found = true;
-          PythonQtSlotInfo* info = new PythonQtSlotInfo(m, i);
+          PythonQtSlotInfo* info = new PythonQtSlotInfo(this, m, i);
           if (tail) {
             tail->setNextInfo(info);
           } else {
@@ -458,12 +458,9 @@ QStringList PythonQtClassInfo::memberList(bool metaOnly)
       QMetaMethod m = _meta->method(i);
       if ((m.methodType() == QMetaMethod::Method ||
         m.methodType() == QMetaMethod::Slot) && m.access() == QMetaMethod::Public) {
-        QByteArray signa(m.signature()); 
-        if (signa.startsWith("new_")) continue;
-        if (signa.startsWith("delete_")) continue;
-        if (signa.startsWith("static_")) continue;
-        PythonQtSlotInfo slot(m, i);
-        l << slot.slotName();
+        QByteArray signa(m.signature());
+        signa = signa.left(signa.indexOf('('));
+        l << signa;
       }
     }
   }
@@ -586,11 +583,7 @@ QString PythonQtClassInfo::help()
       QMetaMethod m = _meta->method(i);
       if ((m.methodType() == QMetaMethod::Method ||
         m.methodType() == QMetaMethod::Slot) && m.access() == QMetaMethod::Public) {
-        QByteArray signa(m.signature()); 
-        if (signa.startsWith("new_")) continue;
-        if (signa.startsWith("delete_")) continue;
-        if (signa.startsWith("static_")) continue;
-        PythonQtSlotInfo slot(m, i);
+        PythonQtSlotInfo slot(this, m, i);
         h += slot.fullSignature()+ "\n";
       }
     }
@@ -681,9 +674,14 @@ QObject* PythonQtClassInfo::decorator()
     _decoratorProvider = (*_decoratorProviderCB)();
     if (_decoratorProvider) {
       _decoratorProvider->setParent(PythonQt::priv());
+      // setup enums early, since they might be needed by the constructor decorators:
+      if (!_enumsCreated) {
+        createEnumWrappers();
+      }
       PythonQt::priv()->addDecorators(_decoratorProvider, PythonQtPrivate::ConstructorDecorator | PythonQtPrivate::DestructorDecorator);
     }
   }
+  // check if enums need to be created and create them if they are not yet created
   if (!_enumsCreated) {
     createEnumWrappers();
   }

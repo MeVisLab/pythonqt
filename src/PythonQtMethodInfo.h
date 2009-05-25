@@ -49,6 +49,8 @@
 #include <QList>
 #include <QMetaMethod>
 
+class PythonQtClassInfo;
+
 //! stores information about a specific signal/slot/method
 class PYTHONQT_EXPORT PythonQtMethodInfo
 {
@@ -68,16 +70,16 @@ public:
 
   PythonQtMethodInfo() {};
   ~PythonQtMethodInfo() {};
-  PythonQtMethodInfo(const QMetaMethod& meta);
+  PythonQtMethodInfo(const QMetaMethod& meta, PythonQtClassInfo* classInfo);
   PythonQtMethodInfo(const PythonQtMethodInfo& other) {
     _parameters = other._parameters;
   }
 
   //! returns the method info of the signature, uses a cache internally to speed up
-  //! multiple requests for the same method
-  static const PythonQtMethodInfo* getCachedMethodInfo(const QMetaMethod& method);
+  //! multiple requests for the same method, classInfo is passed to allow local enum resolution (if NULL is passed, no local enums are recognized)
+  static const PythonQtMethodInfo* getCachedMethodInfo(const QMetaMethod& method, PythonQtClassInfo* classInfo);
 
-  //! get the cached method info by finding the meta method on the meta object via its signature
+  //! get the cached method info by finding the meta method on the meta object via its signature, enums are only supported with leading namespace::
   static const PythonQtMethodInfo* getCachedMethodInfoFromMetaObjectAndSignature(const QMetaObject* metaObject, const char* signature);
 
   //! cleanup the cache
@@ -125,9 +127,9 @@ public:
     _upcastingOffset = 0;
   }
 
-  PythonQtSlotInfo(const QMetaMethod& meta, int slotIndex, QObject* decorator = NULL, Type type = MemberSlot ):PythonQtMethodInfo()
+  PythonQtSlotInfo(PythonQtClassInfo* classInfo, const QMetaMethod& meta, int slotIndex, QObject* decorator = NULL, Type type = MemberSlot ):PythonQtMethodInfo()
   { 
-    const PythonQtMethodInfo* info = getCachedMethodInfo(meta);
+    const PythonQtMethodInfo* info = getCachedMethodInfo(meta, classInfo);
     _meta = meta;
     _parameters = info->parameters();
     _slotIndex = slotIndex;

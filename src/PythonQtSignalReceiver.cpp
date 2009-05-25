@@ -142,6 +142,17 @@ PyObject* PythonQtSignalTarget::call(PyObject* callable, const PythonQtMethodInf
 PythonQtSignalReceiver::PythonQtSignalReceiver(QObject* obj):PythonQtSignalReceiverBase(obj)
 {
   _obj = obj;
+  
+  // fetch the class info for object, since we will need to for correct enum resolution in
+  // signals
+  _objClassInfo = PythonQt::priv()->getClassInfo(obj->metaObject());
+  if (!_objClassInfo || !_objClassInfo->isQObject()) {
+    PythonQt::self()->registerClass(obj->metaObject());
+    _objClassInfo = PythonQt::priv()->getClassInfo(obj->metaObject());
+  }
+  // force decorator/enum creation
+  _objClassInfo->decorator();
+
   _slotCount = staticMetaObject.methodOffset();
 }
 
@@ -158,7 +169,7 @@ bool PythonQtSignalReceiver::addSignalHandler(const char* signal, PyObject* call
   if (sigId>=0) {
     // create PythonQtMethodInfo from signal
     QMetaMethod meta = _obj->metaObject()->method(sigId);
-    const PythonQtMethodInfo* signalInfo = PythonQtMethodInfo::getCachedMethodInfo(meta);
+    const PythonQtMethodInfo* signalInfo = PythonQtMethodInfo::getCachedMethodInfo(meta, _objClassInfo);
     PythonQtSignalTarget t(sigId, signalInfo, _slotCount, callable);
     _targets.append(t);
     // now connect to ourselves with the new slot id

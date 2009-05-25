@@ -40,12 +40,13 @@
 //----------------------------------------------------------------------------------
 
 #include "PythonQtMethodInfo.h"
+#include "PythonQtClassInfo.h"
 #include <iostream>
 
 QHash<QByteArray, PythonQtMethodInfo*> PythonQtMethodInfo::_cachedSignatures;
 QHash<QByteArray, QByteArray> PythonQtMethodInfo::_parameterNameAliases;
 
-PythonQtMethodInfo::PythonQtMethodInfo(const QMetaMethod& meta)
+PythonQtMethodInfo::PythonQtMethodInfo(const QMetaMethod& meta, PythonQtClassInfo* classInfo)
 {
 #ifdef PYTHONQT_DEBUG
   QByteArray sig(meta.signature());
@@ -65,14 +66,14 @@ PythonQtMethodInfo::PythonQtMethodInfo(const QMetaMethod& meta)
   }
 }
 
-const PythonQtMethodInfo* PythonQtMethodInfo::getCachedMethodInfo(const QMetaMethod& signal)
+const PythonQtMethodInfo* PythonQtMethodInfo::getCachedMethodInfo(const QMetaMethod& signal, PythonQtClassInfo* classInfo)
 {
   QByteArray sig(signal.signature());
   sig = sig.mid(sig.indexOf('('));
   QByteArray fullSig = QByteArray(signal.typeName()) + " " + sig;
   PythonQtMethodInfo* result = _cachedSignatures.value(fullSig);
   if (!result) {
-    result = new PythonQtMethodInfo(signal);
+    result = new PythonQtMethodInfo(signal, classInfo);
     _cachedSignatures.insert(fullSig, result);
   }
   return result;
@@ -83,7 +84,7 @@ const PythonQtMethodInfo* PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectA
   QByteArray sig = QMetaObject::normalizedSignature(signature);
   int idx = metaObject->indexOfMethod(sig);
   QMetaMethod meta = metaObject->method(idx);
-  return PythonQtMethodInfo::getCachedMethodInfo(meta);
+  return PythonQtMethodInfo::getCachedMethodInfo(meta, NULL);
 }
 
 void PythonQtMethodInfo::fillParameterInfo(ParameterInfo& type, const QByteArray& orgName)
