@@ -299,6 +299,7 @@ return Py_None;
          bool ok;
          int value = PyObjGetInt(obj, true, ok);
          if (ok && value==0) {
+           // TODOXXX is this wise? or should it be expected from the programmer to use None?
            PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_ptrStorage, void*, NULL, ptr);
          }
        }
@@ -460,12 +461,13 @@ return Py_None;
          if (info.enumWrapper) {
            unsigned int val;
            if ((PyObject*)obj->ob_type == info.enumWrapper) {
-             // we have a direct enum type match:
+             // we have a exact enum type match:
              val = PyInt_AS_LONG(obj);
              ok = true;
-           } else {
-             // we try to get an integer, and in strict mode, it may not be a derived int class, so that no other enum can be taken as an int
-             val = (unsigned int)PyObjGetLongLong(obj, strict, ok);
+           } else if (!strict) {
+             // we try to get any integer, when not being strict. If we are strict, integers are not wanted because
+             // we want an integer overload to be taken first! 
+             val = (unsigned int)PyObjGetLongLong(obj, false, ok);
            }
            if (ok) {
              PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_valueStorage, unsigned int, val, ptr);
