@@ -140,11 +140,13 @@
 
  \section Comparision Comparision with PyQt
 
- - PythonQt is not as Pythonic as PyQt in many details (e.g. operator mapping, pickling, translation support, ...) and it is maily thought for embedding and intercommunication between Qt/Cpp and Python
+ - PythonQt is not as Pythonic as PyQt in many details (e.g. operator mapping, pickling, translation support, ...) and it is mainly thought for embedding and intercommunication between Qt/Cpp and Python
  - PythonQt allows to communicate in both directions, e.g. calling a Python object from C++ AND calling a C++ method from Python, while PyQt only handles the Python->C++ direction
  - PythonQt offers properties as Python attributes, while PyQt offers them as setter/getter methods (e.g. QWidget.width is a property in PythonQt and a method in PyQt)
- - PythonQt does not (yet?) offer QtCore.SIGNAL() and QtCore.SLOT() methods, connect and disconnect just take strings for signals and slots 
- - QObject.emit to emit Qt signals from Python is not yet possible
+ - PythonQt offer QtCore.SIGNAL() and QtCore.SLOT() methods for compability, but no 0/1/3 is prepended
+ - PythonQt does not support instanceof checks for Qt classes, except for the exact match and derived Python classes
+ - QObject.emit to emit Qt signals from Python is not yet implemented
+ - PythonQt does not offer to add new signals to Python/C++ objects
  - Ownership of objects is a bit different in PythonQt, currently Python classes derived from a C++ class need to be manually references in PythonQt to not get deleted too early (this will be fixed)
  - Probably there are lots of details that differ, I do not know PyQt that well to list them all.
 

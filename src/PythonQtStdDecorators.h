@@ -62,6 +62,11 @@ public slots:
   bool disconnect(QObject* sender, const QByteArray& signal, PyObject* callable);
   bool disconnect(QObject* sender, const QByteArray& signal, QObject* receiver, const QByteArray& slot);
 
+#undef emit
+  void emit(QObject* sender, const QByteArray& signal, PyObject* arg1 = NULL,PyObject* arg2 = NULL,
+            PyObject* arg3 = NULL,PyObject* arg4 = NULL,PyObject* arg5 = NULL,PyObject* arg6 = NULL,PyObject* arg7 = NULL);
+#define emit
+  
   bool static_QObject_connect(QObject* sender, const QByteArray& signal, PyObject* callable) { return connect(sender, signal, callable); }
   bool static_QObject_connect(QObject* sender, const QByteArray& signal, QObject* receiver, const QByteArray& slot) { return connect(sender, signal, receiver, slot); }
   bool static_QObject_disconnect(QObject* sender, const QByteArray& signal, PyObject* callable) { return disconnect(sender, signal, callable); }
