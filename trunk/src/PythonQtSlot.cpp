@@ -74,7 +74,6 @@ bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObj
   int argc = info->parameterCount();
   const QList<PythonQtSlotInfo::ParameterInfo>& params = info->parameters();
   
-  bool returnValueIsEnum = false;
   const PythonQtSlotInfo::ParameterInfo& returnValueParam = params.at(0);
   // set return argument to NULL
   argList[0] = NULL;
@@ -119,17 +118,16 @@ bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObj
   }
   
   if (ok) {
+    bool returnValueIsEnum = false;
+
     // parameters are ok, now create the qt return value which is assigned to by metacall
     if (returnValueParam.typeId != QMetaType::Void) {
       // extra handling of enum return value
-      if (!returnValueParam.isPointer && returnValueParam.typeId == PythonQtMethodInfo::Unknown) {
-        returnValueIsEnum = PythonQtClassInfo::hasEnum(returnValueParam.name, classInfo);
-        if (returnValueIsEnum) {
-          // create enum return value
-          PythonQtValueStorage_ADD_VALUE(PythonQtConv::global_valueStorage, long, 0, argList[0]);
-        }
-      }
-      if (argList[0]==NULL) {
+      if (!returnValueParam.isPointer && returnValueParam.enumWrapper) {
+        // create enum return value
+        PythonQtValueStorage_ADD_VALUE(PythonQtConv::global_valueStorage, long, 0, argList[0]);
+        returnValueIsEnum = true;
+      } else {
         // create empty default value for the return value
         if (!directReturnValuePointer) {
           // create empty default value for the return value

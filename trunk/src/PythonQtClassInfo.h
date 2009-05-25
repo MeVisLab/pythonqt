@@ -195,15 +195,12 @@ public:
   void* castDownIfPossible(void* ptr, PythonQtClassInfo** resultClassInfo);
 
   //! returns if the localScope has an enum of that type name or if the enum contains a :: scope, if that class contails the enum
-  static bool hasEnum(const QByteArray& name, PythonQtClassInfo* localScope);
+  static PyObject* findEnumWrapper(const QByteArray& name, PythonQtClassInfo* localScope, bool& isLocalEnum);
   
 private:
   void createEnumWrappers();
   void createEnumWrappers(const QMetaObject* meta);
   PyObject* findEnumWrapper(const char* name);
-
-  //! checks if the enum is part of this class (without any leading scope!) 
-  bool hasEnum(const QByteArray& name);
 
   //! clear all cached members
   void clearCachedMembers();

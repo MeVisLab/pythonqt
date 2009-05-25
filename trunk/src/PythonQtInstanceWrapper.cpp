@@ -114,7 +114,7 @@ static void PythonQtInstanceWrapper_dealloc(PythonQtInstanceWrapper* self)
   self->ob_type->tp_free((PyObject*)self);
 }
 
-static PyObject* PythonQtInstanceWrapper_new(PyTypeObject *type, PyObject * args, PyObject * /*kwds*/)
+static PyObject* PythonQtInstanceWrapper_new(PyTypeObject *type, PyObject * /*args*/, PyObject * /*kwds*/)
 {
   //PythonQtClassWrapper    *classType = (PythonQtClassWrapper*)type;
   PythonQtInstanceWrapper *self;
@@ -415,7 +415,7 @@ static PyObject * PythonQtInstanceWrapper_repr(PyObject * obj)
       return PyString_FromFormat("%s (C++ Object %p)", typeName, wrapper->_wrappedPtr);
     }
   } else {
-    return PyString_FromFormat("%s (QObject %p)", typeName, wrapper->classInfo()->className(), qobj);
+    return PyString_FromFormat("%s (%s %p)", typeName, wrapper->classInfo()->className(), qobj);
   }
 }
 

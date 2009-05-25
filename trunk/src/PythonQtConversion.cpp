@@ -240,7 +240,7 @@ return Py_None;
    return object;
  }
 
- void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& info, PyObject* obj, bool strict, PythonQtClassInfo* meta, void* alreadyAllocatedCPPObject)
+ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& info, PyObject* obj, bool strict, PythonQtClassInfo* /*classInfo*/, void* alreadyAllocatedCPPObject)
  {
    bool ok;
    void* ptr = NULL;
@@ -442,18 +442,25 @@ return Py_None;
        break;
        default:
        {
-         if (info.typeId == PythonQtMethodInfo::Unknown) {
-           // check for enum case
-           if (PythonQtClassInfo::hasEnum(info.name, meta)) {
-             unsigned int val = (unsigned int)PyObjGetLongLong(obj, strict, ok);
-             if (ok) {
-               PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_valueStorage, unsigned int, val, ptr);
-               return ptr;
-             } else {
-               return NULL;
-             }
+         // check for enum case
+         if (info.enumWrapper) {
+           unsigned int val;
+           if ((PyObject*)obj->ob_type == info.enumWrapper) {
+             // we have a direct enum type match:
+             val = PyInt_AS_LONG(obj);
+             ok = true;
+           } else {
+             // we try to get an integer, and in strict mode, it may not be a derived int class, so that no other enum can be taken as an int
+             val = (unsigned int)PyObjGetLongLong(obj, strict, ok);
+           }
+           if (ok) {
+             PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_valueStorage, unsigned int, val, ptr);
+             return ptr;
+           } else {
+             return NULL;
            }
          }
+
          if (info.typeId == PythonQtMethodInfo::Unknown || info.typeId >= QMetaType::User) {
            // check for QList<AnyPtr*> case, where we will use a QList<void*> QVariant
            if (info.name.startsWith("QList<")) {
