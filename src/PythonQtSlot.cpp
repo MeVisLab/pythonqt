@@ -118,38 +118,29 @@ bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObj
   }
   
   if (ok) {
-    bool returnValueIsEnum = false;
-
     // parameters are ok, now create the qt return value which is assigned to by metacall
     if (returnValueParam.typeId != QMetaType::Void) {
-      // extra handling of enum return value
-      if (!returnValueParam.isPointer && returnValueParam.enumWrapper) {
-        // create enum return value
-        PythonQtValueStorage_ADD_VALUE(PythonQtConv::global_valueStorage, long, 0, argList[0]);
-        returnValueIsEnum = true;
-      } else {
+      // create empty default value for the return value
+      if (!directReturnValuePointer) {
         // create empty default value for the return value
-        if (!directReturnValuePointer) {
-          // create empty default value for the return value
-          argList[0] = PythonQtConv::CreateQtReturnValue(returnValueParam);
-          if (argList[0]==NULL) {
-            // return value could not be created, maybe we have a registered class with a default constructor, so that we can construct the pythonqt wrapper object and
-            // pass its internal pointer
-            PythonQtClassInfo* info = PythonQt::priv()->getClassInfo(returnValueParam.name);
-            if (info && info->pythonQtClassWrapper()) {
-              PyObject* emptyTuple = PyTuple_New(0);
-              // 1) default construct an empty object as python object (owned by PythonQt), by calling the meta class with empty arguments
-              result = PyObject_Call((PyObject*)info->pythonQtClassWrapper(), emptyTuple, NULL);
-              if (result) {
-                argList[0] = ((PythonQtInstanceWrapper*)result)->_wrappedPtr;
-              }
-              Py_DECREF(emptyTuple);            
-            } 
-          }
-        } else {
-          // we can use our pointer directly!
-          argList[0] = directReturnValuePointer;
+        argList[0] = PythonQtConv::CreateQtReturnValue(returnValueParam);
+        if (argList[0]==NULL) {
+          // return value could not be created, maybe we have a registered class with a default constructor, so that we can construct the pythonqt wrapper object and
+          // pass its internal pointer
+          PythonQtClassInfo* info = PythonQt::priv()->getClassInfo(returnValueParam.name);
+          if (info && info->pythonQtClassWrapper()) {
+            PyObject* emptyTuple = PyTuple_New(0);
+            // 1) default construct an empty object as python object (owned by PythonQt), by calling the meta class with empty arguments
+            result = PyObject_Call((PyObject*)info->pythonQtClassWrapper(), emptyTuple, NULL);
+            if (result) {
+              argList[0] = ((PythonQtInstanceWrapper*)result)->_wrappedPtr;
+            }
+            Py_DECREF(emptyTuple);            
+          } 
         }
+      } else {
+        // we can use our pointer directly!
+        argList[0] = directReturnValuePointer;
       }
     }
 
@@ -161,13 +152,9 @@ bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObj
       if (directReturnValuePointer) {
         result = NULL;
       } else {
-        if (!returnValueIsEnum) {
-          // the resulting object maybe present already, because we created it above at 1)...
-          if (!result) {
-            result = PythonQtConv::ConvertQtValueToPython(returnValueParam, argList[0]);
-          }
-        } else {
-          result = PyInt_FromLong(*((unsigned int*)argList[0]));
+        // the resulting object maybe present already, because we created it above at 1)...
+        if (!result) {
+          result = PythonQtConv::ConvertQtValueToPython(returnValueParam, argList[0]);
         }
       }
     } else {

@@ -443,11 +443,14 @@ public:
   //! add a decorator object
   void addDecorators(QObject* o, int decoTypes);
 
-  //! helper method that creates a PythonQtClassWrapper object
+  //! helper method that creates a PythonQtClassWrapper object  (returns a new reference)
   PythonQtClassWrapper* createNewPythonQtClassWrapper(PythonQtClassInfo* info, const char* package = NULL);
 
-  //! helper that creates a new int derived class that represents the enum of the given name
-  PyObject* createNewPythonQtEnumWrapper(const char* enumName, PyObject* parentObject);
+  //! create a new instance of the given enum type with given value (returns a new reference)
+  static PyObject*  createEnumValueInstance(PyObject* enumType, unsigned int enumValue);
+
+  //! helper that creates a new int derived class that represents the enum of the given name  (returns a new reference)
+  static PyObject* createNewPythonQtEnumWrapper(const char* enumName, PyObject* parentObject);
 
   //! helper method that creates a PythonQtInstanceWrapper object and registers it in the object map
   PythonQtInstanceWrapper* createNewPythonQtInstanceWrapper(QObject* obj, PythonQtClassInfo* info, void* wrappedPtr = NULL);

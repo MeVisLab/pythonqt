@@ -258,11 +258,8 @@ bool PythonQtClassInfo::lookForEnumAndCache(const QMetaObject* meta, const char*
       if (qstrcmp(e.key(j), memberName)==0) {
         PyObject* enumType = findEnumWrapper(e.name());
         if (enumType) {
-          PyObject* args = Py_BuildValue("(i)", e.value(j));
-          PyObject* enumValue = PyObject_Call(enumType, args, NULL);
-          Py_DECREF(args);
           PythonQtObjectPtr enumValuePtr;
-          enumValuePtr.setNewRef(enumValue);
+          enumValuePtr.setNewRef(PythonQtPrivate::createEnumValueInstance(enumType, e.value(j)));
           PythonQtMemberInfo newInfo(enumValuePtr);
           _cachedMembers.insert(memberName, newInfo);
   #ifdef PYTHONQT_DEBUG
@@ -784,7 +781,7 @@ void PythonQtClassInfo::createEnumWrappers(const QMetaObject* meta)
   for (int i = meta->enumeratorOffset();i<meta->enumeratorCount();i++) {
     QMetaEnum e = meta->enumerator(i);
     PythonQtObjectPtr p;
-    p.setNewRef(PythonQt::priv()->createNewPythonQtEnumWrapper(e.name(), _pythonQtClassWrapper));
+    p.setNewRef(PythonQtPrivate::createNewPythonQtEnumWrapper(e.name(), _pythonQtClassWrapper));
     _enumWrappers.append(p);
   }
 }
@@ -806,6 +803,10 @@ void PythonQtClassInfo::createEnumWrappers()
 }
 
 PyObject* PythonQtClassInfo::findEnumWrapper(const char* name) {
+  // force enum creation
+  if (!_enumsCreated) {
+    createEnumWrappers();
+  }
   foreach(const PythonQtObjectPtr& p, _enumWrappers) {
     const char* className = ((PyTypeObject*)p.object())->tp_name;
     if (qstrcmp(className, name)==0) {
