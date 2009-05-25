@@ -431,6 +431,14 @@ PythonQtClassWrapper* PythonQtPrivate::createNewPythonQtClassWrapper(PythonQtCla
   return result;
 }
 
+PyObject*  PythonQtPrivate::createEnumValueInstance(PyObject* enumType, unsigned int enumValue)
+{
+  PyObject* args = Py_BuildValue("(i)", enumValue);
+  PyObject* result = PyObject_Call(enumType, args, NULL);
+  Py_DECREF(args);
+  return result;
+}
+
 PyObject* PythonQtPrivate::createNewPythonQtEnumWrapper(const char* enumName, PyObject* parentObject) {
   PyObject* result;
   

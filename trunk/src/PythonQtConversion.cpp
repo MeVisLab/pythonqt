@@ -60,6 +60,17 @@ PyObject* PythonQtConv::GetPyBool(bool val)
 }
 
 PyObject* PythonQtConv::ConvertQtValueToPython(const PythonQtMethodInfo::ParameterInfo& info, const void* data) {
+  // is it an enum value?
+  if (info.enumWrapper) {
+    if (!info.isPointer) {
+      return PythonQtPrivate::createEnumValueInstance(info.enumWrapper, *((unsigned int*)data));
+    } else {
+      // we do not support pointers to enums (who needs them?)
+      Py_INCREF(Py_None);
+      return Py_None;
+    }
+  }
+
   if (info.typeId == QMetaType::Void) {
     Py_INCREF(Py_None);
     return Py_None;
@@ -175,6 +186,9 @@ return Py_None;
    void* ptr = NULL;
    if (info.isPointer) {
      PythonQtValueStorage_ADD_VALUE(global_ptrStorage, void*, NULL, ptr);
+   } else if (info.enumWrapper) {
+     // create enum return value
+     PythonQtValueStorage_ADD_VALUE(PythonQtConv::global_valueStorage, long, 0, ptr);
    } else {
      switch (info.typeId) {
      case QMetaType::Char:
