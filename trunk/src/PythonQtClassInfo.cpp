@@ -753,13 +753,17 @@ void* PythonQtClassInfo::castDownIfPossible(void* ptr, PythonQtClassInfo** resul
   return resultPtr;
 }
 
-PyObject* PythonQtClassInfo::findEnumWrapper(const QByteArray& name, PythonQtClassInfo* localScope, bool& isLocalEnum)
+PyObject* PythonQtClassInfo::findEnumWrapper(const QByteArray& name, PythonQtClassInfo* localScope, bool* isLocalEnum)
 {
-  isLocalEnum = true;
+  if (isLocalEnum) {
+    *isLocalEnum = true;
+  }
   int scopePos = name.lastIndexOf("::");
   if (scopePos != -1) {
-    isLocalEnum = false;
-    // slit into scope and enum name
+    if (isLocalEnum) {
+      *isLocalEnum = false;
+    }
+    // split into scope and enum name
     QByteArray enumScope = name.mid(0,scopePos);
     QByteArray enumName = name.mid(scopePos+2);
     PythonQtClassInfo* info = PythonQt::priv()->getClassInfo(enumScope);

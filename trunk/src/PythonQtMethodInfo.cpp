@@ -135,7 +135,7 @@ void PythonQtMethodInfo::fillParameterInfo(ParameterInfo& type, const QByteArray
     if (type.typeId == PythonQtMethodInfo::Unknown || type.typeId >= QMetaType::User) {
       bool isLocalEnum;
       // TODOXXX: make use of this flag!
-      type.enumWrapper = PythonQtClassInfo::findEnumWrapper(type.name, classInfo, isLocalEnum);
+      type.enumWrapper = PythonQtClassInfo::findEnumWrapper(type.name, classInfo, &isLocalEnum);
     }
   } else {
     type.typeId = QMetaType::Void;

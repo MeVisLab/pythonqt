@@ -152,6 +152,9 @@ public:
 protected:
   static QHash<int, PythonQtConvertMetaTypeToPythonCB*> _metaTypeToPythonConverters; 
   static QHash<int, PythonQtConvertPythonToMetaTypeCB*> _pythonToMetaTypeConverters; 
+ 
+  //! handle automatic conversion of some special types (QColor, QBrush, ...)
+  static void* handlePythonToQtAutoConversion(int typeId, PyObject* obj, void* alreadyAllocatedCPPObject);
 
   //! converts the list of pointers of given type to Python
   static PyObject* ConvertQListOfPointerTypeToPythonList(QList<void*>* list, const QByteArray& type);

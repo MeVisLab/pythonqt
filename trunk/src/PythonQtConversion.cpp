@@ -254,10 +254,92 @@ return Py_None;
    return object;
  }
 
- void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& info, PyObject* obj, bool strict, PythonQtClassInfo* /*classInfo*/, void* alreadyAllocatedCPPObject)
+void* PythonQtConv::handlePythonToQtAutoConversion(int typeId, PyObject* obj, void* alreadyAllocatedCPPObject)
+{
+  void* ptr = alreadyAllocatedCPPObject;
+    
+  static int penId = QMetaType::type("QPen");
+  static int brushId = QMetaType::type("QBrush");
+  static int cursorId = QMetaType::type("QCursor");
+  static int colorId = QMetaType::type("QColor");
+  static PyObject* qtGlobalColorEnum = PythonQtClassInfo::findEnumWrapper("Qt::GlobalColor", NULL);
+  if (typeId == cursorId) {
+    static PyObject* qtCursorShapeEnum = PythonQtClassInfo::findEnumWrapper("Qt::CursorShape", NULL);
+    if ((PyObject*)obj->ob_type == qtCursorShapeEnum) {
+      Qt::CursorShape val = (Qt::CursorShape)PyInt_AS_LONG(obj);
+      if (!ptr) {
+        PythonQtValueStorage_ADD_VALUE(global_variantStorage, QVariant, QCursor(), ptr);
+        ptr = (void*)((QVariant*)ptr)->constData();
+      }
+      *((QCursor*)ptr) = QCursor(val);
+      return ptr;
+    }
+  } else if (typeId == penId) {
+    // brushes can be created from QColor and from Qt::GlobalColor (and from brushes, but that's the default)
+    static PyObject* qtColorClass = PythonQt::priv()->getClassInfo("QColor")->pythonQtClassWrapper();
+    if ((PyObject*)obj->ob_type == qtGlobalColorEnum) {
+      Qt::GlobalColor val = (Qt::GlobalColor)PyInt_AS_LONG(obj);
+      if (!ptr) {
+        PythonQtValueStorage_ADD_VALUE(global_variantStorage, QVariant, QPen(), ptr);
+        ptr = (void*)((QVariant*)ptr)->constData();
+      }
+      *((QPen*)ptr) = QPen(QColor(val));
+      return ptr;
+    } else if ((PyObject*)obj->ob_type == qtColorClass) {
+      if (!ptr) {
+        PythonQtValueStorage_ADD_VALUE(global_variantStorage, QVariant, QPen(), ptr);
+        ptr = (void*)((QVariant*)ptr)->constData();
+      }
+      *((QPen*)ptr) = QPen(*((QColor*)((PythonQtInstanceWrapper*)obj)->_wrappedPtr));
+      return ptr;
+    }
+  } else if (typeId == brushId) {
+    // brushes can be created from QColor and from Qt::GlobalColor (and from brushes, but that's the default)
+    static PyObject* qtColorClass = PythonQt::priv()->getClassInfo("QColor")->pythonQtClassWrapper();
+    if ((PyObject*)obj->ob_type == qtGlobalColorEnum) {
+      Qt::GlobalColor val = (Qt::GlobalColor)PyInt_AS_LONG(obj);
+      if (!ptr) {
+        PythonQtValueStorage_ADD_VALUE(global_variantStorage, QVariant, QBrush(), ptr);
+        ptr = (void*)((QVariant*)ptr)->constData();
+      }
+      *((QBrush*)ptr) = QBrush(QColor(val));
+      return ptr;
+    } else if ((PyObject*)obj->ob_type == qtColorClass) {
+      if (!ptr) {
+        PythonQtValueStorage_ADD_VALUE(global_variantStorage, QVariant, QBrush(), ptr);
+        ptr = (void*)((QVariant*)ptr)->constData();
+      }
+      *((QBrush*)ptr) = QBrush(*((QColor*)((PythonQtInstanceWrapper*)obj)->_wrappedPtr));
+      return ptr;
+    }
+  } else if (typeId == colorId) {
+    // colors can be created from Qt::GlobalColor (and from colors, but that's the default)
+    if ((PyObject*)obj->ob_type == qtGlobalColorEnum) {
+      Qt::GlobalColor val = (Qt::GlobalColor)PyInt_AS_LONG(obj);
+      if (!ptr) {
+        PythonQtValueStorage_ADD_VALUE(global_variantStorage, QVariant, QColor(), ptr);
+        ptr = (void*)((QVariant*)ptr)->constData();
+      }
+      *((QColor*)ptr) = QColor(val);
+      return ptr;
+    }
+  }
+  return NULL;
+}
+
+void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& info, PyObject* obj, bool strict, PythonQtClassInfo* /*classInfo*/, void* alreadyAllocatedCPPObject)
  {
    bool ok = false;
    void* ptr = NULL;
+
+   // autoconversion of QPen/QBrush/QCursor/QColor from different type
+   if (!info.isPointer && !strict) {
+     ptr = handlePythonToQtAutoConversion(info.typeId, obj, alreadyAllocatedCPPObject);
+     if (ptr) {
+       return ptr;
+     }
+   }
+   
    if (PyObject_TypeCheck(obj, &PythonQtInstanceWrapper_Type) && info.typeId != PythonQtMethodInfo::Variant) {
      // if we have a Qt wrapper object and if we do not need a QVariant, we do the following:
      // (the Variant case is handled below in a switch)
