@@ -1130,6 +1130,35 @@ void PythonQtPrivate::registerCPPClass(const char* typeName, const char* parentT
   }
 }
 
+static PyObject *PythonQt_SIGNAL(PyObject * /*type*/, PyObject *args)
+{
+  const char* value;
+  if (!PyArg_ParseTuple(args, "s", &value)) {
+    return NULL;
+  }
+  // we do not prepend 0,1 or 2, why should we?
+  return PyString_FromString(value);
+}
+
+static PyObject *PythonQt_SLOT(PyObject * /*type*/, PyObject *args)
+{
+  const char* value;
+  if (!PyArg_ParseTuple(args, "s", &value)) {
+    return NULL;
+  }
+  // we do not prepend 0,1 or 2, why should we?
+  return PyString_FromString(value);
+}
+
+static PyMethodDef PythonQt_Qt_methods[] = {
+{"SIGNAL", (PyCFunction)PythonQt_SIGNAL, METH_VARARGS,
+"Returns a signal string"
+},
+{"SLOT", (PyCFunction)PythonQt_SLOT, METH_VARARGS,
+"Returns a slot string"
+}
+};
+
 PyObject* PythonQtPrivate::packageByName(const char* name)
 {
   if (name==NULL || name[0]==0) {
@@ -1138,6 +1167,11 @@ PyObject* PythonQtPrivate::packageByName(const char* name)
   PyObject* v = _packages.value(name);
   if (!v) {
     v = PyImport_AddModule((QByteArray("PythonQt.") + name).constData());
+    if (strcmp(name,"Qt")==0 || strcmp(name,"QtCore")==0) {
+      // add SIGNAL and SLOT functions
+      PyModule_AddObject(v, "SIGNAL", PyCFunction_New(PythonQt_Qt_methods, v));
+      PyModule_AddObject(v, "SLOT", PyCFunction_New(PythonQt_Qt_methods+1, v));
+    }
     _packages.insert(name, v);
     // AddObject steals the reference, so increment it!
     Py_INCREF(v);

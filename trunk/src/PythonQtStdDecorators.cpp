@@ -96,6 +96,15 @@ bool PythonQtStdDecorators::disconnect(QObject* sender, const QByteArray& signal
   return r;
 }
 
+#undef emit
+void PythonQtStdDecorators::emit(QObject* sender, const QByteArray& signal, PyObject* arg1 ,PyObject* arg2 ,
+          PyObject* arg3 ,PyObject* arg4 ,PyObject* arg5 ,PyObject* arg6 ,PyObject* arg7 )
+{
+  // TODO xxx
+  // use normal PythonQtSlot calling code, add "allowSignal" to member lookup?!
+}
+#define emit
+
 QObject* PythonQtStdDecorators::parent(QObject* o) {
   return o->parent();
 }
