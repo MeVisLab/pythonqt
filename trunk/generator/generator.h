@@ -65,6 +65,7 @@ public:
         NoBlockedSlot            = 0x00100000,
         SuperCall                = 0x00200000,
         FirstArgIsWrappedObject  = 0x00400000,
+        ConvertReferenceToPtr    = 0x00800000,
 
         GlobalRefJObject         = 0x00100000,
 

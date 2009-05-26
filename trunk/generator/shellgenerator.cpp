@@ -88,8 +88,13 @@ void ShellGenerator::writeTypeInfo(QTextStream &s, const AbstractMetaType *type,
 
     s << QString(type->indirections(), '*');
 
-    if (type->isReference() && !(options & ExcludeReference))
+    if (type->isReference() && !(options & ExcludeReference) && !(options & ConvertReferenceToPtr))
         s << "&";
+  
+    if (type->isReference() && (options & ConvertReferenceToPtr)) {
+      s << "*";
+    }
+    
 
     if (!(options & SkipName))
         s << ' ';
@@ -216,7 +221,7 @@ void ShellGenerator::writeFunctionSignature(QTextStream &s,
     }
   }
   
-   writeFunctionArguments(s, meta_function->ownerClass(), meta_function->arguments(), option, numArguments);
+   writeFunctionArguments(s, meta_function->ownerClass(), meta_function->arguments(), Option(option & Option(~ConvertReferenceToPtr)), numArguments);
 
     // The extra arguments...
     for (int i=0; i<extra_arguments.size(); ++i) {
