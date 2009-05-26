@@ -72,7 +72,7 @@ public:
     static bool isSpecialStreamingOperator(const AbstractMetaFunction *fun);
 
     static void writeInclude(QTextStream &stream, const Include &inc);
-
+  
  protected:
     PriGenerator *priGenerator;
 

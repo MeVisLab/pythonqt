@@ -98,24 +98,26 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
         "PythonQtShell_");
       s << endl << "{" << endl;
 
-      Option typeOptions = Option(OriginalName | UnderscoreSpaces);
+      Option typeOptions = Option(OriginalName | UnderscoreSpaces | SkipName);
       AbstractMetaArgumentList args = fun->arguments();
 
       s << "if (_wrapper) {" << endl;
       s << "  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, \"" << fun->name() << "\");" << endl;
       s << "  PyErr_Clear();" << endl;
       s << "  if (obj && !PythonQtSlotFunction_Check(obj)) {" << endl;
-      s << "    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(" << endl;
-      s << "      &" << wrapperClassName(meta_class) << "::staticMetaObject," << endl;
-      s << "      \"";
-      // write the signature
-      s << fun->name() << "(" << meta_class->qualifiedCppName() << "*";
-      for (int i = 0; i < args.size(); ++i) {
-        s << ",";
-        writeTypeInfo(s, args.at(i)->type(), typeOptions);
+      s << "    static const char* argumentList[] ={\"";
+      if (hasReturnValue) {
+        // write the arguments, return type first
+        writeTypeInfo(s, fun->type(), typeOptions);
       }
-      s << ")";
-      s << "\");" << endl;
+      s << "\"";
+      for (int i = 0; i < args.size(); ++i) {
+        s << " , \"";
+        writeTypeInfo(s, args.at(i)->type(), typeOptions);
+        s << "\"";
+      }
+      s << "};" << endl;
+      s << "    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(" << QString::number(args.size()+1) << ", argumentList);" << endl;
 
       if (hasReturnValue) {
         s << "      ";
@@ -134,9 +136,13 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
         s << "    if (result) {" << endl;
         s << "      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);" << endl;
         s << "      if (args[0]!=&returnValue) {" << endl;
-        s << "      returnValue = *((";
+        s << "        if (args[0]==NULL) {" << endl;
+        s << "          PythonQt::priv()->handleVirtualOverloadReturnError(\"" << fun->name() << "\", methodInfo, result);" << endl;
+        s << "        } else {" << endl;
+        s << "          returnValue = *((";
         writeTypeInfo(s, fun->type(), typeOptions);
         s << "*)args[0]);" << endl;
+        s << "        }" << endl;
         s << "      }" << endl;
         s << "    }" << endl;
       }
