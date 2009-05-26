@@ -215,8 +215,9 @@ bool PythonQtClassInfo::lookForMethodAndCache(const char* memberName)
     int numMethods = _meta->methodCount();
     for (int i = 0; i < numMethods; i++) {
       QMetaMethod m = _meta->method(i);
-      if ((m.methodType() == QMetaMethod::Method ||
-           m.methodType() == QMetaMethod::Slot) && m.access() == QMetaMethod::Public) {
+      if (((m.methodType() == QMetaMethod::Method ||
+           m.methodType() == QMetaMethod::Slot) && m.access() == QMetaMethod::Public)
+        || m.methodType()==QMetaMethod::Signal) {
         
         const char* sigStart = m.signature();
         // find the first '('
@@ -471,8 +472,9 @@ QStringList PythonQtClassInfo::memberList(bool metaOnly)
     bool skipQObj = !_isQObject;
     for (int i = skipQObj?QObject::staticMetaObject.methodCount():0; i < numMethods; i++) {
       QMetaMethod m = _meta->method(i);
-      if ((m.methodType() == QMetaMethod::Method ||
-        m.methodType() == QMetaMethod::Slot) && m.access() == QMetaMethod::Public) {
+      if (((m.methodType() == QMetaMethod::Method ||
+        m.methodType() == QMetaMethod::Slot) && m.access() == QMetaMethod::Public)
+          || m.methodType()==QMetaMethod::Signal) {
         QByteArray signa(m.signature());
         signa = signa.left(signa.indexOf('('));
         l << signa;
