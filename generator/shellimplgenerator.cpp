@@ -169,7 +169,6 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
         if (fun->type()) {
           s << "return ";
         }
-        // call the C++ implementation
         s << meta_class->qualifiedCppName() << "::";
         s << fun->originalName() << "(";
         for (int i = 0; i < args.size(); ++i) {
@@ -213,7 +212,7 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
     if (fun->isSlot()) continue;
 
     writeFunctionSignature(s, fun, meta_class, QString(),
-      Option(FirstArgIsWrappedObject | OriginalName | ShowStatic | UnderscoreSpaces),
+      Option(ConvertReferenceToPtr | FirstArgIsWrappedObject | OriginalName | ShowStatic | UnderscoreSpaces),
       "PythonQtWrapper_");
     s << endl << "{" << endl;
     s << "  ";
@@ -229,8 +228,14 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
       QString scriptFunctionName = fun->originalName();
       AbstractMetaArgumentList args = fun->arguments();
       // call the C++ implementation
-      if (fun->type())
+      if (fun->type()) {
         s << "return ";
+        // call the C++ implementation
+        if (fun->type()->isReference()) {
+          s << "&";
+        }
+      }
+      s << "(";
       if (scriptFunctionName.startsWith("operator>>")) {
         s << wrappedObject << " >>" << args.at(0)->argumentName();
       } else if (scriptFunctionName.startsWith("operator<<")) {
@@ -258,11 +263,25 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
         }
         s << ")";
       }
+      s << ")";
     }
     s << ";" << endl;
 
     s << "}" << endl << endl;
   }
+
+  if (!meta_class->hasDefaultToStringFunction() && meta_class->hasToStringCapability()) {
+    FunctionModelItem fun = meta_class->hasToStringCapability();
+    int indirections = fun->arguments().at(1)->type().indirections();
+    QString deref = QLatin1String(indirections == 0 ? "*" : "");
+    s << "QString PythonQtWrapper_" << meta_class->name() << "::toString(" << meta_class->qualifiedCppName() << "* obj) {" << endl; 
+    s << "  QString result;" << endl;
+    s << "  QDebug d(&result);" << endl;
+    s << "  d << " << deref  << "obj;" << endl;
+    s << "  return result;" << endl;
+    s << "}" << endl << endl;
+  }
+  
 }
 
 void ShellImplGenerator::writeInjectedCode(QTextStream &s, const AbstractMetaClass *meta_class)

@@ -244,9 +244,12 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
     if (!function->isSlot()) {
       s << "   ";
       writeFunctionSignature(s, function, 0, QString(),
-        Option(FirstArgIsWrappedObject| IncludeDefaultExpression | OriginalName | ShowStatic | UnderscoreSpaces));
+        Option(ConvertReferenceToPtr | FirstArgIsWrappedObject| IncludeDefaultExpression | OriginalName | ShowStatic | UnderscoreSpaces));
       s << ";" << endl;
     }
+  }
+  if (!meta_class->hasDefaultToStringFunction() && meta_class->hasToStringCapability()) {
+    s << "    QString toString(" << meta_class->qualifiedCppName() << "*);" << endl; 
   }
 
   //    writeInjectedCode(s, meta_class);

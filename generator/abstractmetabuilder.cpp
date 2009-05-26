@@ -502,6 +502,7 @@ bool AbstractMetaBuilder::build()
             traverseCompareOperator(item);
         }
     }
+    // TODO XXX search and add operator+ etc. to the classes here!
 
     {
         FunctionList stream_operators = m_dom->findFunctions("operator<<") + m_dom->findFunctions("operator>>");
