@@ -42,7 +42,7 @@
 #include "PythonQtStdDecorators.h"
 #include "PythonQt.h"
 #include "PythonQtClassInfo.h"
-
+#include <QCoreApplication>
 
 bool PythonQtStdDecorators::connect(QObject* sender, const QByteArray& signal, PyObject* callable)
 {
@@ -153,3 +153,9 @@ QVariantList PythonQtStdDecorators::children(QObject* o)
   }
   return v;
 }
+
+QString PythonQtStdDecorators::tr(QObject* obj, const QByteArray& text, const QByteArray& ambig, int n)
+{
+  return QCoreApplication::translate(obj->metaObject()->className(), text.constData(), ambig.constData(), QCoreApplication::CodecForTr, n);
+}
+
