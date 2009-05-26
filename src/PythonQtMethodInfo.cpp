@@ -58,10 +58,20 @@ PythonQtMethodInfo::PythonQtMethodInfo(const QMetaMethod& meta, PythonQtClassInf
   ParameterInfo type;
   fillParameterInfo(type, QByteArray(meta.typeName()), classInfo);
   _parameters.append(type);
-  QByteArray name;
   QList<QByteArray> names = meta.parameterTypes();
-  foreach (name, names) {
+  foreach (const QByteArray& name, names) {
     fillParameterInfo(type, name, classInfo);
+    _parameters.append(type);
+  }
+}
+
+PythonQtMethodInfo::PythonQtMethodInfo(const QByteArray& typeName, const QList<QByteArray>& args)
+{
+  ParameterInfo type;
+  fillParameterInfo(type, typeName, NULL);
+  _parameters.append(type);
+  foreach (const QByteArray& name, args) {
+    fillParameterInfo(type, name, NULL);
     _parameters.append(type);
   }
 }
@@ -79,12 +89,25 @@ const PythonQtMethodInfo* PythonQtMethodInfo::getCachedMethodInfo(const QMetaMet
   return result;
 }
 
-const PythonQtMethodInfo* PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(const QMetaObject* metaObject, const char* signature)
+const PythonQtMethodInfo* PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(int numArgs, const char** args)
 {
-  QByteArray sig = QMetaObject::normalizedSignature(signature);
-  int idx = metaObject->indexOfMethod(sig);
-  QMetaMethod meta = metaObject->method(idx);
-  return PythonQtMethodInfo::getCachedMethodInfo(meta, NULL);
+  QByteArray typeName = args[0];
+  QList<QByteArray> arguments;
+  QByteArray fullSig = typeName;
+  fullSig += "(";
+  for (int i =1;i<numArgs; i++) {
+    if (i>1) {
+      fullSig += ",";
+    }
+    arguments << QByteArray(args[i]);
+  }
+  fullSig += ")";
+  PythonQtMethodInfo* result = _cachedSignatures.value(fullSig);
+  if (!result) {
+    result = new PythonQtMethodInfo(typeName, arguments);
+    _cachedSignatures.insert(fullSig, result);
+  }
+  return result;
 }
 
 void PythonQtMethodInfo::fillParameterInfo(ParameterInfo& type, const QByteArray& orgName, PythonQtClassInfo* classInfo)

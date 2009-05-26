@@ -470,6 +470,9 @@ public:
   //! the dummy tuple (which is empty and may be used to detected that a wrapper is called from internal wrapper creation
   static PyObject* dummyTuple();
 
+  //! called by virtual overloads when a python return value can not be converted to the required Qt type
+  void handleVirtualOverloadReturnError(const char* signature, const PythonQtMethodInfo* methodInfo, PyObject* result);
+  
 private:
 
   //! create a new pythonqt class wrapper and place it in the pythonqt module

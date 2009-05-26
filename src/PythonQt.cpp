@@ -140,6 +140,22 @@ void PythonQt::init(int flags)
   PythonQtRegisterToolClassesTemplateConverter(QTextFormat);
   PythonQtRegisterToolClassesTemplateConverter(QMatrix);
 
+  
+  PyObject* pack = PythonQt::priv()->packageByName("QtCore");
+  PyObject* pack2 = PythonQt::priv()->packageByName("Qt");
+  PyObject* qtNamespace = PythonQt::priv()->getClassInfo("Qt")->pythonQtClassWrapper();
+  const char* names[16] = {"SIGNAL", "SLOT", "qAbs", "qBound","qDebug","qWarning","qCritical","qFatal"
+                        ,"qFuzzyCompare", "qMax","qMin","qRound","qRound64","qVersion","qrand","qsrand"};
+  for (unsigned int i = 0;i<16; i++) {
+    PyObject* obj = PyObject_GetAttrString(qtNamespace, names[i]);
+    if (obj) {
+      PyModule_AddObject(pack, names[i], obj);
+      Py_INCREF(obj);
+      PyModule_AddObject(pack2, names[i], obj);
+    } else {
+      std::cerr << "method not found " << names[i];
+    }
+  }
 }
 
 void PythonQt::cleanup()
@@ -1130,35 +1146,6 @@ void PythonQtPrivate::registerCPPClass(const char* typeName, const char* parentT
   }
 }
 
-static PyObject *PythonQt_SIGNAL(PyObject * /*type*/, PyObject *args)
-{
-  const char* value;
-  if (!PyArg_ParseTuple(args, "s", &value)) {
-    return NULL;
-  }
-  // we do not prepend 0,1 or 2, why should we?
-  return PyString_FromString(QByteArray("2") + value);
-}
-
-static PyObject *PythonQt_SLOT(PyObject * /*type*/, PyObject *args)
-{
-  const char* value;
-  if (!PyArg_ParseTuple(args, "s", &value)) {
-    return NULL;
-  }
-  // we do not prepend 0,1 or 2, why should we?
-  return PyString_FromString(QByteArray("1") + value);
-}
-
-static PyMethodDef PythonQt_Qt_methods[] = {
-{"SIGNAL", (PyCFunction)PythonQt_SIGNAL, METH_VARARGS,
-"Returns a signal string"
-},
-{"SLOT", (PyCFunction)PythonQt_SLOT, METH_VARARGS,
-"Returns a slot string"
-}
-};
-
 PyObject* PythonQtPrivate::packageByName(const char* name)
 {
   if (name==NULL || name[0]==0) {
@@ -1167,11 +1154,6 @@ PyObject* PythonQtPrivate::packageByName(const char* name)
   PyObject* v = _packages.value(name);
   if (!v) {
     v = PyImport_AddModule((QByteArray("PythonQt.") + name).constData());
-    if (strcmp(name,"Qt")==0 || strcmp(name,"QtCore")==0) {
-      // add SIGNAL and SLOT functions
-      PyModule_AddObject(v, "SIGNAL", PyCFunction_New(PythonQt_Qt_methods, v));
-      PyModule_AddObject(v, "SLOT", PyCFunction_New(PythonQt_Qt_methods+1, v));
-    }
     _packages.insert(name, v);
     // AddObject steals the reference, so increment it!
     Py_INCREF(v);
@@ -1180,6 +1162,12 @@ PyObject* PythonQtPrivate::packageByName(const char* name)
   return v;
 }
 
+void PythonQtPrivate::handleVirtualOverloadReturnError(const char* signature, const PythonQtMethodInfo* methodInfo, PyObject* result)
+{
+  QString error = "Return value '" + PythonQtConv::PyObjGetString(result) + "' can not be converted to expected C++ type '" + methodInfo->parameters().at(0).name + "' as return value of virtual method " + signature;
+  PyErr_SetString(PyExc_AttributeError, error.toLatin1().data());
+  PythonQt::self()->handleError();
+}
 
 PyObject* PythonQt::helpCalled(PythonQtClassInfo* info)
 { 

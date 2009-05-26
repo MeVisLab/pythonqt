@@ -48,7 +48,7 @@
 #include "funcobject.h"
 
 void PythonQtSignalTarget::call(void **arguments) const {
-  PyObject* result = call(_callable, methodInfo(), arguments, false);
+  PyObject* result = call(_callable, methodInfo(), arguments);
   if (result) {
     Py_DECREF(result);
   }
@@ -86,9 +86,6 @@ PyObject* PythonQtSignalTarget::call(PyObject* callable, const PythonQtMethodInf
   const PythonQtMethodInfo* m = methodInfos;
   // parameterCount includes return value:
   int count = m->parameterCount();
-  if (skipFirstArgumentOfMethodInfo) {
-    count--;
-  }
   if (numPythonArgs!=-1) {
     if (count>numPythonArgs+1) {
       // take less arguments
@@ -103,12 +100,8 @@ PyObject* PythonQtSignalTarget::call(PyObject* callable, const PythonQtMethodInf
   bool err = false;
   // transform Qt values to Python
   const QList<PythonQtMethodInfo::ParameterInfo>& params = m->parameters();
-  int skipFirstOffset = 0;
-  if (skipFirstArgumentOfMethodInfo) {
-    skipFirstOffset = 1;
-  }
   for (int i = 1; i < count; i++) {
-    const PythonQtMethodInfo::ParameterInfo& param = params.at(i + skipFirstOffset);
+    const PythonQtMethodInfo::ParameterInfo& param = params.at(i);
     PyObject* arg = PythonQtConv::ConvertQtValueToPython(param, arguments[i]);
     if (arg) {
       // steals reference, no unref
