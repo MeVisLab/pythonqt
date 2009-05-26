@@ -308,12 +308,27 @@ PythonQtMemberInfo PythonQtClassInfo::member(const char* memberName)
       }
     }
     if (!found) {
+      // maybe it is an enum wrapper?
       PyObject* p = findEnumWrapper(memberName);
       if (p) {
         info._type = PythonQtMemberInfo::EnumWrapper;
         info._enumWrapper = p;
         _cachedMembers.insert(memberName, info);
         found = true;
+      }
+    }
+    if (!found) {
+      // since python keywords can not be looked up, we check if the name contains a single trailing _
+      // and remove that and look again, so that we e.g. find exec on an exec_ lookup
+      QByteArray mbrName(memberName);
+      if ((mbrName.length()>2) && 
+          (mbrName.at(mbrName.length()-1) == '_') &&
+          (mbrName.at(mbrName.length()-2) != '_')) {
+        mbrName = mbrName.mid(0,mbrName.length()-1);
+        found = lookForMethodAndCache(mbrName.constData());
+        if (found) {
+          return _cachedMembers.value(mbrName);
+        }
       }
     }
     if (!found) {

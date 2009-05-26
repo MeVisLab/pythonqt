@@ -74,6 +74,7 @@ public:
   PythonQtMethodInfo() {};
   ~PythonQtMethodInfo() {};
   PythonQtMethodInfo(const QMetaMethod& meta, PythonQtClassInfo* classInfo);
+  PythonQtMethodInfo(const QByteArray& typeName, const QList<QByteArray>& args);
   PythonQtMethodInfo(const PythonQtMethodInfo& other) {
     _parameters = other._parameters;
   }
@@ -82,8 +83,8 @@ public:
   //! multiple requests for the same method, classInfo is passed to allow local enum resolution (if NULL is passed, no local enums are recognized)
   static const PythonQtMethodInfo* getCachedMethodInfo(const QMetaMethod& method, PythonQtClassInfo* classInfo);
 
-  //! get the cached method info by finding the meta method on the meta object via its signature, enums are only supported with leading namespace::
-  static const PythonQtMethodInfo* getCachedMethodInfoFromMetaObjectAndSignature(const QMetaObject* metaObject, const char* signature);
+  //! get the cached method info using the passed in list of return value and arguments, return value needs to be passed as first arg
+  static const PythonQtMethodInfo* getCachedMethodInfoFromArgumentList(int numArgs, const char** args);
 
   //! cleanup the cache
   static void cleanupCachedMethodInfos();

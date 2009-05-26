@@ -71,6 +71,28 @@ public slots:
   void setParent(QObject* o, QObject* parent);
 
   QVariantList children(QObject* o);
+  
+  double static_Qt_qAbs(double a) { return qAbs(a); }
+  double static_Qt_qBound(double a,double b,double c) { return qBound(a,b,c); }
+  void static_Qt_qDebug(const QByteArray& msg) { qDebug(msg.constData()); }
+  // TODO: multi arg qDebug...
+  void static_Qt_qWarning(const QByteArray& msg) { qWarning(msg.constData()); }
+  // TODO: multi arg qWarning...
+  void static_Qt_qCritical(const QByteArray& msg) { qCritical(msg.constData()); }
+  // TODO: multi arg qCritical...
+  void static_Qt_qFatal(const QByteArray& msg) { qFatal(msg.constData()); }
+  // TODO: multi arg qFatal...
+  bool static_Qt_qFuzzyCompare(double a, double b) { return qFuzzyCompare(a, b); }
+  double static_Qt_qMax(double a, double b) { return qMax(a, b); }
+  double static_Qt_qMin(double a, double b) { return qMin(a, b); }
+  int static_Qt_qRound(double a) { return qRound(a); }
+  qint64 static_Qt_qRound64(double a) { return qRound64(a); }
+  const char* static_Qt_qVersion() { return qVersion(); }
+  int static_Qt_qrand() { return qrand(); }
+  void static_Qt_qsrand(uint a) { qsrand(a); }
+
+  QByteArray static_Qt_SIGNAL(const QByteArray& s) { return QByteArray("2") + s; }
+  QByteArray static_Qt_SLOT(const QByteArray& s) { return QByteArray("1") + s; }
 
   //TODO: add findChild/findChildren/children/...
 };
