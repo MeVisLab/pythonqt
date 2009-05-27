@@ -17,9 +17,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "childEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QPictureFormatPlugin::staticMetaObject,
-      "childEvent(QPictureFormatPlugin*,QChildEvent* )");
+    static const char* argumentList[] ={"" , "QChildEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -35,9 +34,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "customEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QPictureFormatPlugin::staticMetaObject,
-      "customEvent(QPictureFormatPlugin*,QEvent* )");
+    static const char* argumentList[] ={"" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -53,16 +51,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "event");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QPictureFormatPlugin::staticMetaObject,
-      "event(QPictureFormatPlugin*,QEvent* )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      bool returnValue;
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -78,16 +79,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "eventFilter");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QPictureFormatPlugin::staticMetaObject,
-      "eventFilter(QPictureFormatPlugin*,QObject* ,QEvent* )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
+      bool returnValue;
     void* args[3] = {NULL, (void*)&arg__1, (void*)&arg__2};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("eventFilter", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -103,16 +107,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "installIOHandler");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QPictureFormatPlugin::staticMetaObject,
-      "installIOHandler(QPictureFormatPlugin*,const QString& )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "const QString&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      bool returnValue;
     void* args[2] = {NULL, (void*)&format};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("installIOHandler", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -120,7 +127,7 @@ if (_wrapper) {
     return returnValue;
   }
 }
-  bool  result;
+  bool result;
 return result;
 }
 QStringList  PythonQtShell_QPictureFormatPlugin::keys() const
@@ -129,16 +136,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "keys");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QPictureFormatPlugin::staticMetaObject,
-      "keys(QPictureFormatPlugin*)");
-      QStringList  returnValue;
+    static const char* argumentList[] ={"QStringList"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      QStringList returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QStringList *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("keys", methodInfo, result);
+        } else {
+          returnValue = *((QStringList*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -146,7 +156,7 @@ if (_wrapper) {
     return returnValue;
   }
 }
-  QStringList  result;
+  QStringList result;
 return result;
 }
 bool  PythonQtShell_QPictureFormatPlugin::loadPicture(const QString&  format, const QString&  filename, QPicture*  pic)
@@ -155,16 +165,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "loadPicture");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QPictureFormatPlugin::staticMetaObject,
-      "loadPicture(QPictureFormatPlugin*,const QString& ,const QString& ,QPicture* )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "const QString&" , "const QString&" , "QPicture*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
+      bool returnValue;
     void* args[4] = {NULL, (void*)&format, (void*)&filename, (void*)&pic};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("loadPicture", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -180,16 +193,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "savePicture");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QPictureFormatPlugin::staticMetaObject,
-      "savePicture(QPictureFormatPlugin*,const QString& ,const QString& ,const QPicture& )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "const QString&" , "const QString&" , "const QPicture&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
+      bool returnValue;
     void* args[4] = {NULL, (void*)&format, (void*)&filename, (void*)&pic};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("savePicture", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -205,9 +221,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "timerEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QPictureFormatPlugin::staticMetaObject,
-      "timerEvent(QPictureFormatPlugin*,QTimerEvent* )");
+    static const char* argumentList[] ={"" , "QTimerEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -223,11 +238,11 @@ return new PythonQtShell_QPictureFormatPlugin(parent); }
 
 bool  PythonQtWrapper_QPictureFormatPlugin::loadPicture(QPictureFormatPlugin* theWrappedObject, const QString&  format, const QString&  filename, QPicture*  pic)
 {
-return  ((PythonQtPublicPromoter_QPictureFormatPlugin*)theWrappedObject)->promoted_loadPicture(format, filename, pic);
+  return ( ((PythonQtPublicPromoter_QPictureFormatPlugin*)theWrappedObject)->promoted_loadPicture(format, filename, pic));
 }
 
 bool  PythonQtWrapper_QPictureFormatPlugin::savePicture(QPictureFormatPlugin* theWrappedObject, const QString&  format, const QString&  filename, const QPicture&  pic)
 {
-return  ((PythonQtPublicPromoter_QPictureFormatPlugin*)theWrappedObject)->promoted_savePicture(format, filename, pic);
+  return ( ((PythonQtPublicPromoter_QPictureFormatPlugin*)theWrappedObject)->promoted_savePicture(format, filename, pic));
 }
 

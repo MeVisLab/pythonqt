@@ -42,9 +42,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "actionEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "actionEvent(QHeaderView*,QActionEvent* )");
+    static const char* argumentList[] ={"" , "QActionEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -60,9 +59,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "changeEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "changeEvent(QHeaderView*,QEvent* )");
+    static const char* argumentList[] ={"" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -78,9 +76,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "childEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "childEvent(QHeaderView*,QChildEvent* )");
+    static const char* argumentList[] ={"" , "QChildEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -96,9 +93,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "closeEditor");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "closeEditor(QHeaderView*,QWidget* ,QAbstractItemDelegate::EndEditHint )");
+    static const char* argumentList[] ={"" , "QWidget*" , "QAbstractItemDelegate::EndEditHint"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
     void* args[3] = {NULL, (void*)&editor, (void*)&hint};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -114,9 +110,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "closeEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "closeEvent(QHeaderView*,QCloseEvent* )");
+    static const char* argumentList[] ={"" , "QCloseEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -132,9 +127,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "commitData");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "commitData(QHeaderView*,QWidget* )");
+    static const char* argumentList[] ={"" , "QWidget*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&editor};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -150,9 +144,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "contextMenuEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "contextMenuEvent(QHeaderView*,QContextMenuEvent* )");
+    static const char* argumentList[] ={"" , "QContextMenuEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -168,9 +161,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "currentChanged");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "currentChanged(QHeaderView*,const QModelIndex& ,const QModelIndex& )");
+    static const char* argumentList[] ={"" , "const QModelIndex&" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
     void* args[3] = {NULL, (void*)&current, (void*)&old};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -186,9 +178,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "customEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "customEvent(QHeaderView*,QEvent* )");
+    static const char* argumentList[] ={"" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -204,9 +195,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "dataChanged");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "dataChanged(QHeaderView*,const QModelIndex& ,const QModelIndex& )");
+    static const char* argumentList[] ={"" , "const QModelIndex&" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
     void* args[3] = {NULL, (void*)&topLeft, (void*)&bottomRight};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -222,16 +212,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "devType");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "devType(QHeaderView*)");
-      int  returnValue;
+    static const char* argumentList[] ={"int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      int returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((int *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("devType", methodInfo, result);
+        } else {
+          returnValue = *((int*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -247,9 +240,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "doItemsLayout");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "doItemsLayout(QHeaderView*)");
+    static const char* argumentList[] ={""};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -265,9 +257,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "dragEnterEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "dragEnterEvent(QHeaderView*,QDragEnterEvent* )");
+    static const char* argumentList[] ={"" , "QDragEnterEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&event};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -283,9 +274,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "dragLeaveEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "dragLeaveEvent(QHeaderView*,QDragLeaveEvent* )");
+    static const char* argumentList[] ={"" , "QDragLeaveEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&event};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -301,9 +291,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "dragMoveEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "dragMoveEvent(QHeaderView*,QDragMoveEvent* )");
+    static const char* argumentList[] ={"" , "QDragMoveEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&event};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -319,9 +308,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "dropEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "dropEvent(QHeaderView*,QDropEvent* )");
+    static const char* argumentList[] ={"" , "QDropEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&event};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -337,16 +325,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "edit");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "edit(QHeaderView*,const QModelIndex& ,QAbstractItemView::EditTrigger ,QEvent* )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "const QModelIndex&" , "QAbstractItemView::EditTrigger" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
+      bool returnValue;
     void* args[4] = {NULL, (void*)&index, (void*)&trigger, (void*)&event};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("edit", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -362,9 +353,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "editorDestroyed");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "editorDestroyed(QHeaderView*,QObject* )");
+    static const char* argumentList[] ={"" , "QObject*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&editor};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -380,9 +370,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "enterEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "enterEvent(QHeaderView*,QEvent* )");
+    static const char* argumentList[] ={"" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -398,16 +387,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "event");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "event(QHeaderView*,QEvent* )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      bool returnValue;
     void* args[2] = {NULL, (void*)&e};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -423,16 +415,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "eventFilter");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "eventFilter(QHeaderView*,QObject* ,QEvent* )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
+      bool returnValue;
     void* args[3] = {NULL, (void*)&arg__1, (void*)&arg__2};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("eventFilter", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -448,9 +443,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "focusInEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "focusInEvent(QHeaderView*,QFocusEvent* )");
+    static const char* argumentList[] ={"" , "QFocusEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&event};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -466,16 +460,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "focusNextPrevChild");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "focusNextPrevChild(QHeaderView*,bool )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "bool"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      bool returnValue;
     void* args[2] = {NULL, (void*)&next};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("focusNextPrevChild", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -491,9 +488,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "focusOutEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "focusOutEvent(QHeaderView*,QFocusEvent* )");
+    static const char* argumentList[] ={"" , "QFocusEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&event};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -509,16 +505,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "heightForWidth");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "heightForWidth(QHeaderView*,int )");
-      int  returnValue;
+    static const char* argumentList[] ={"int" , "int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      int returnValue;
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((int *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("heightForWidth", methodInfo, result);
+        } else {
+          returnValue = *((int*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -534,9 +533,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "hideEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "hideEvent(QHeaderView*,QHideEvent* )");
+    static const char* argumentList[] ={"" , "QHideEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -552,16 +550,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "horizontalOffset");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "horizontalOffset(QHeaderView*)");
-      int  returnValue;
+    static const char* argumentList[] ={"int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      int returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((int *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("horizontalOffset", methodInfo, result);
+        } else {
+          returnValue = *((int*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -577,9 +578,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "horizontalScrollbarAction");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "horizontalScrollbarAction(QHeaderView*,int )");
+    static const char* argumentList[] ={"" , "int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&action};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -595,9 +595,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "horizontalScrollbarValueChanged");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "horizontalScrollbarValueChanged(QHeaderView*,int )");
+    static const char* argumentList[] ={"" , "int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&value};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -613,16 +612,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "indexAt");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "indexAt(QHeaderView*,const QPoint& )");
-      QModelIndex  returnValue;
+    static const char* argumentList[] ={"QModelIndex" , "const QPoint&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      QModelIndex returnValue;
     void* args[2] = {NULL, (void*)&p};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QModelIndex *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("indexAt", methodInfo, result);
+        } else {
+          returnValue = *((QModelIndex*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -638,9 +640,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "inputMethodEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "inputMethodEvent(QHeaderView*,QInputMethodEvent* )");
+    static const char* argumentList[] ={"" , "QInputMethodEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&event};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -656,16 +657,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "inputMethodQuery");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "inputMethodQuery(QHeaderView*,Qt::InputMethodQuery )");
-      QVariant  returnValue;
+    static const char* argumentList[] ={"QVariant" , "Qt::InputMethodQuery"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      QVariant returnValue;
     void* args[2] = {NULL, (void*)&query};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QVariant *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("inputMethodQuery", methodInfo, result);
+        } else {
+          returnValue = *((QVariant*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -681,16 +685,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "isIndexHidden");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "isIndexHidden(QHeaderView*,const QModelIndex& )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      bool returnValue;
     void* args[2] = {NULL, (void*)&index};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("isIndexHidden", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -706,9 +713,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "keyPressEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "keyPressEvent(QHeaderView*,QKeyEvent* )");
+    static const char* argumentList[] ={"" , "QKeyEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&event};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -724,9 +730,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "keyReleaseEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "keyReleaseEvent(QHeaderView*,QKeyEvent* )");
+    static const char* argumentList[] ={"" , "QKeyEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -742,9 +747,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "keyboardSearch");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "keyboardSearch(QHeaderView*,const QString& )");
+    static const char* argumentList[] ={"" , "const QString&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&search};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -760,9 +764,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "languageChange");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "languageChange(QHeaderView*)");
+    static const char* argumentList[] ={""};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -778,9 +781,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "leaveEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "leaveEvent(QHeaderView*,QEvent* )");
+    static const char* argumentList[] ={"" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -796,16 +798,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "metric");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "metric(QHeaderView*,QPaintDevice::PaintDeviceMetric )");
-      int  returnValue;
+    static const char* argumentList[] ={"int" , "QPaintDevice::PaintDeviceMetric"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      int returnValue;
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((int *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("metric", methodInfo, result);
+        } else {
+          returnValue = *((int*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -821,9 +826,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "mouseDoubleClickEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "mouseDoubleClickEvent(QHeaderView*,QMouseEvent* )");
+    static const char* argumentList[] ={"" , "QMouseEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&e};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -839,9 +843,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "mouseMoveEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "mouseMoveEvent(QHeaderView*,QMouseEvent* )");
+    static const char* argumentList[] ={"" , "QMouseEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&e};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -857,9 +860,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "mousePressEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "mousePressEvent(QHeaderView*,QMouseEvent* )");
+    static const char* argumentList[] ={"" , "QMouseEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&e};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -875,9 +877,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "mouseReleaseEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "mouseReleaseEvent(QHeaderView*,QMouseEvent* )");
+    static const char* argumentList[] ={"" , "QMouseEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&e};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -893,9 +894,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "moveEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "moveEvent(QHeaderView*,QMoveEvent* )");
+    static const char* argumentList[] ={"" , "QMoveEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -911,16 +911,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "paintEngine");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "paintEngine(QHeaderView*)");
-      QPaintEngine*  returnValue;
+    static const char* argumentList[] ={"QPaintEngine*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      QPaintEngine* returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QPaintEngine* *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("paintEngine", methodInfo, result);
+        } else {
+          returnValue = *((QPaintEngine**)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -936,9 +939,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "paintEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "paintEvent(QHeaderView*,QPaintEvent* )");
+    static const char* argumentList[] ={"" , "QPaintEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&e};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -954,9 +956,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "paintSection");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "paintSection(QHeaderView*,QPainter* ,const QRect& ,int )");
+    static const char* argumentList[] ={"" , "QPainter*" , "const QRect&" , "int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
     void* args[4] = {NULL, (void*)&painter, (void*)&rect, (void*)&logicalIndex};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -972,9 +973,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "reset");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "reset(QHeaderView*)");
+    static const char* argumentList[] ={""};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -990,9 +990,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "resizeEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "resizeEvent(QHeaderView*,QResizeEvent* )");
+    static const char* argumentList[] ={"" , "QResizeEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&event};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -1008,9 +1007,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "rowsAboutToBeRemoved");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "rowsAboutToBeRemoved(QHeaderView*,const QModelIndex& ,int ,int )");
+    static const char* argumentList[] ={"" , "const QModelIndex&" , "int" , "int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
     void* args[4] = {NULL, (void*)&parent, (void*)&start, (void*)&end};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -1026,9 +1024,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "rowsInserted");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "rowsInserted(QHeaderView*,const QModelIndex& ,int ,int )");
+    static const char* argumentList[] ={"" , "const QModelIndex&" , "int" , "int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
     void* args[4] = {NULL, (void*)&parent, (void*)&start, (void*)&end};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -1044,9 +1041,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "scrollContentsBy");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "scrollContentsBy(QHeaderView*,int ,int )");
+    static const char* argumentList[] ={"" , "int" , "int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
     void* args[3] = {NULL, (void*)&dx, (void*)&dy};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -1062,9 +1058,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "scrollTo");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "scrollTo(QHeaderView*,const QModelIndex& ,QAbstractItemView::ScrollHint )");
+    static const char* argumentList[] ={"" , "const QModelIndex&" , "QAbstractItemView::ScrollHint"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
     void* args[3] = {NULL, (void*)&index, (void*)&hint};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -1080,16 +1075,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "sectionSizeFromContents");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "sectionSizeFromContents(QHeaderView*,int )");
-      QSize  returnValue;
+    static const char* argumentList[] ={"QSize" , "int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      QSize returnValue;
     void* args[2] = {NULL, (void*)&logicalIndex};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QSize *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("sectionSizeFromContents", methodInfo, result);
+        } else {
+          returnValue = *((QSize*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -1105,9 +1103,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "selectAll");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "selectAll(QHeaderView*)");
+    static const char* argumentList[] ={""};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -1123,16 +1120,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "selectedIndexes");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "selectedIndexes(QHeaderView*)");
-      QList<QModelIndex >  returnValue;
+    static const char* argumentList[] ={"QList<QModelIndex >"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      QList<QModelIndex > returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QList<QModelIndex > *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("selectedIndexes", methodInfo, result);
+        } else {
+          returnValue = *((QList<QModelIndex >*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -1148,9 +1148,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "selectionChanged");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "selectionChanged(QHeaderView*,const QItemSelection& ,const QItemSelection& )");
+    static const char* argumentList[] ={"" , "const QItemSelection&" , "const QItemSelection&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
     void* args[3] = {NULL, (void*)&selected, (void*)&deselected};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -1166,16 +1165,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "selectionCommand");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "selectionCommand(QHeaderView*,const QModelIndex& ,const QEvent* )");
-      QItemSelectionModel::SelectionFlags  returnValue;
+    static const char* argumentList[] ={"QItemSelectionModel::SelectionFlags" , "const QModelIndex&" , "const QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
+      QItemSelectionModel::SelectionFlags returnValue;
     void* args[3] = {NULL, (void*)&index, (void*)&event};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QItemSelectionModel::SelectionFlags *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("selectionCommand", methodInfo, result);
+        } else {
+          returnValue = *((QItemSelectionModel::SelectionFlags*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -1191,9 +1193,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setModel");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "setModel(QHeaderView*,QAbstractItemModel* )");
+    static const char* argumentList[] ={"" , "QAbstractItemModel*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&model};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -1209,9 +1210,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setRootIndex");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "setRootIndex(QHeaderView*,const QModelIndex& )");
+    static const char* argumentList[] ={"" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&index};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -1227,9 +1227,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setSelection");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "setSelection(QHeaderView*,const QRect& ,QItemSelectionModel::SelectionFlags )");
+    static const char* argumentList[] ={"" , "const QRect&" , "QItemSelectionModel::SelectionFlags"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
     void* args[3] = {NULL, (void*)&arg__1, (void*)&arg__2};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -1245,9 +1244,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setSelectionModel");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "setSelectionModel(QHeaderView*,QItemSelectionModel* )");
+    static const char* argumentList[] ={"" , "QItemSelectionModel*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&selectionModel};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -1263,9 +1261,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "showEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "showEvent(QHeaderView*,QShowEvent* )");
+    static const char* argumentList[] ={"" , "QShowEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -1281,16 +1278,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "sizeHintForColumn");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "sizeHintForColumn(QHeaderView*,int )");
-      int  returnValue;
+    static const char* argumentList[] ={"int" , "int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      int returnValue;
     void* args[2] = {NULL, (void*)&column};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((int *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("sizeHintForColumn", methodInfo, result);
+        } else {
+          returnValue = *((int*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -1306,16 +1306,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "sizeHintForRow");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "sizeHintForRow(QHeaderView*,int )");
-      int  returnValue;
+    static const char* argumentList[] ={"int" , "int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      int returnValue;
     void* args[2] = {NULL, (void*)&row};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((int *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("sizeHintForRow", methodInfo, result);
+        } else {
+          returnValue = *((int*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -1331,9 +1334,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "startDrag");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "startDrag(QHeaderView*,Qt::DropActions )");
+    static const char* argumentList[] ={"" , "Qt::DropActions"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&supportedActions};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -1349,9 +1351,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "tabletEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "tabletEvent(QHeaderView*,QTabletEvent* )");
+    static const char* argumentList[] ={"" , "QTabletEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -1367,9 +1368,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "timerEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "timerEvent(QHeaderView*,QTimerEvent* )");
+    static const char* argumentList[] ={"" , "QTimerEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&event};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -1385,9 +1385,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "updateEditorData");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "updateEditorData(QHeaderView*)");
+    static const char* argumentList[] ={""};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -1403,9 +1402,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "updateEditorGeometries");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "updateEditorGeometries(QHeaderView*)");
+    static const char* argumentList[] ={""};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -1421,9 +1419,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "updateGeometries");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "updateGeometries(QHeaderView*)");
+    static const char* argumentList[] ={""};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -1439,16 +1436,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "verticalOffset");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "verticalOffset(QHeaderView*)");
-      int  returnValue;
+    static const char* argumentList[] ={"int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      int returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((int *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("verticalOffset", methodInfo, result);
+        } else {
+          returnValue = *((int*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -1464,9 +1464,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "verticalScrollbarAction");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "verticalScrollbarAction(QHeaderView*,int )");
+    static const char* argumentList[] ={"" , "int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&action};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -1482,9 +1481,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "verticalScrollbarValueChanged");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "verticalScrollbarValueChanged(QHeaderView*,int )");
+    static const char* argumentList[] ={"" , "int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&value};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -1500,16 +1498,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "viewOptions");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "viewOptions(QHeaderView*)");
-      QStyleOptionViewItem  returnValue;
+    static const char* argumentList[] ={"QStyleOptionViewItem"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      QStyleOptionViewItem returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QStyleOptionViewItem *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("viewOptions", methodInfo, result);
+        } else {
+          returnValue = *((QStyleOptionViewItem*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -1525,16 +1526,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "viewportEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "viewportEvent(QHeaderView*,QEvent* )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      bool returnValue;
     void* args[2] = {NULL, (void*)&e};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("viewportEvent", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -1550,16 +1554,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "visualRect");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "visualRect(QHeaderView*,const QModelIndex& )");
-      QRect  returnValue;
+    static const char* argumentList[] ={"QRect" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      QRect returnValue;
     void* args[2] = {NULL, (void*)&index};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QRect *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("visualRect", methodInfo, result);
+        } else {
+          returnValue = *((QRect*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -1575,16 +1582,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "visualRegionForSelection");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "visualRegionForSelection(QHeaderView*,const QItemSelection& )");
-      QRegion  returnValue;
+    static const char* argumentList[] ={"QRegion" , "const QItemSelection&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      QRegion returnValue;
     void* args[2] = {NULL, (void*)&selection};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QRegion *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("visualRegionForSelection", methodInfo, result);
+        } else {
+          returnValue = *((QRegion*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -1600,9 +1610,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "wheelEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QHeaderView::staticMetaObject,
-      "wheelEvent(QHeaderView*,QWheelEvent* )");
+    static const char* argumentList[] ={"" , "QWheelEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -1616,393 +1625,393 @@ QHeaderView* PythonQtWrapper_QHeaderView::new_QHeaderView(Qt::Orientation  orien
 { 
 return new PythonQtShell_QHeaderView(orientation, parent); }
 
-int  PythonQtWrapper_QHeaderView::sectionViewportPosition(QHeaderView* theWrappedObject, int  logicalIndex) const
-{
-return  theWrappedObject->sectionViewportPosition(logicalIndex);
-}
-
-void PythonQtWrapper_QHeaderView::setMovable(QHeaderView* theWrappedObject, bool  movable)
-{
- theWrappedObject->setMovable(movable);
-}
-
-int  PythonQtWrapper_QHeaderView::sectionSize(QHeaderView* theWrappedObject, int  logicalIndex) const
-{
-return  theWrappedObject->sectionSize(logicalIndex);
-}
-
-bool  PythonQtWrapper_QHeaderView::event(QHeaderView* theWrappedObject, QEvent*  e)
-{
-return  ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_event(e);
-}
-
-bool  PythonQtWrapper_QHeaderView::isMovable(QHeaderView* theWrappedObject) const
-{
-return  theWrappedObject->isMovable();
-}
-
-void PythonQtWrapper_QHeaderView::currentChanged(QHeaderView* theWrappedObject, const QModelIndex&  current, const QModelIndex&  old)
-{
- ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_currentChanged(current, old);
-}
-
-QHeaderView::ResizeMode  PythonQtWrapper_QHeaderView::resizeMode(QHeaderView* theWrappedObject, int  logicalIndex) const
-{
-return  theWrappedObject->resizeMode(logicalIndex);
-}
-
-void PythonQtWrapper_QHeaderView::setResizeMode(QHeaderView* theWrappedObject, QHeaderView::ResizeMode  mode)
-{
- theWrappedObject->setResizeMode(mode);
-}
-
-int  PythonQtWrapper_QHeaderView::count(QHeaderView* theWrappedObject) const
-{
-return  theWrappedObject->count();
-}
-
-bool  PythonQtWrapper_QHeaderView::isClickable(QHeaderView* theWrappedObject) const
-{
-return  theWrappedObject->isClickable();
-}
-
-bool  PythonQtWrapper_QHeaderView::isIndexHidden(QHeaderView* theWrappedObject, const QModelIndex&  index) const
-{
-return  ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_isIndexHidden(index);
-}
-
-void PythonQtWrapper_QHeaderView::setDefaultSectionSize(QHeaderView* theWrappedObject, int  size)
-{
- theWrappedObject->setDefaultSectionSize(size);
-}
-
-void PythonQtWrapper_QHeaderView::mouseDoubleClickEvent(QHeaderView* theWrappedObject, QMouseEvent*  e)
-{
- ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_mouseDoubleClickEvent(e);
-}
-
-int  PythonQtWrapper_QHeaderView::logicalIndex(QHeaderView* theWrappedObject, int  visualIndex) const
-{
-return  theWrappedObject->logicalIndex(visualIndex);
-}
-
-Qt::Alignment  PythonQtWrapper_QHeaderView::defaultAlignment(QHeaderView* theWrappedObject) const
-{
-return  theWrappedObject->defaultAlignment();
-}
-
-bool  PythonQtWrapper_QHeaderView::restoreState(QHeaderView* theWrappedObject, const QByteArray&  state)
-{
-return  theWrappedObject->restoreState(state);
-}
-
-void PythonQtWrapper_QHeaderView::setSortIndicatorShown(QHeaderView* theWrappedObject, bool  show)
-{
- theWrappedObject->setSortIndicatorShown(show);
-}
-
-void PythonQtWrapper_QHeaderView::setSelection(QHeaderView* theWrappedObject, const QRect&  arg__1, QItemSelectionModel::SelectionFlags  arg__2)
-{
- ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_setSelection(arg__1, arg__2);
-}
-
-void PythonQtWrapper_QHeaderView::mouseReleaseEvent(QHeaderView* theWrappedObject, QMouseEvent*  e)
-{
- ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_mouseReleaseEvent(e);
-}
-
-void PythonQtWrapper_QHeaderView::rowsInserted(QHeaderView* theWrappedObject, const QModelIndex&  parent, int  start, int  end)
-{
- ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_rowsInserted(parent, start, end);
-}
-
-int  PythonQtWrapper_QHeaderView::horizontalOffset(QHeaderView* theWrappedObject) const
-{
-return  ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_horizontalOffset();
-}
-
-void PythonQtWrapper_QHeaderView::setDefaultAlignment(QHeaderView* theWrappedObject, Qt::Alignment  alignment)
-{
- theWrappedObject->setDefaultAlignment(alignment);
-}
-
-void PythonQtWrapper_QHeaderView::setStretchLastSection(QHeaderView* theWrappedObject, bool  stretch)
-{
- theWrappedObject->setStretchLastSection(stretch);
-}
-
-bool  PythonQtWrapper_QHeaderView::isSectionHidden(QHeaderView* theWrappedObject, int  logicalIndex) const
-{
-return  theWrappedObject->isSectionHidden(logicalIndex);
-}
-
-void PythonQtWrapper_QHeaderView::setResizeMode(QHeaderView* theWrappedObject, int  logicalIndex, QHeaderView::ResizeMode  mode)
-{
- theWrappedObject->setResizeMode(logicalIndex, mode);
-}
-
-void PythonQtWrapper_QHeaderView::setSectionHidden(QHeaderView* theWrappedObject, int  logicalIndex, bool  hide)
-{
- theWrappedObject->setSectionHidden(logicalIndex, hide);
-}
-
-void PythonQtWrapper_QHeaderView::moveSection(QHeaderView* theWrappedObject, int  from, int  to)
-{
- theWrappedObject->moveSection(from, to);
-}
-
-int  PythonQtWrapper_QHeaderView::offset(QHeaderView* theWrappedObject) const
-{
-return  theWrappedObject->offset();
-}
-
-int  PythonQtWrapper_QHeaderView::sectionSizeHint(QHeaderView* theWrappedObject, int  logicalIndex) const
-{
-return  theWrappedObject->sectionSizeHint(logicalIndex);
-}
-
-void PythonQtWrapper_QHeaderView::paintEvent(QHeaderView* theWrappedObject, QPaintEvent*  e)
-{
- ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_paintEvent(e);
-}
-
-void PythonQtWrapper_QHeaderView::setMinimumSectionSize(QHeaderView* theWrappedObject, int  size)
-{
- theWrappedObject->setMinimumSectionSize(size);
-}
-
-QRegion  PythonQtWrapper_QHeaderView::visualRegionForSelection(QHeaderView* theWrappedObject, const QItemSelection&  selection) const
-{
-return  ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_visualRegionForSelection(selection);
-}
-
-int  PythonQtWrapper_QHeaderView::sectionPosition(QHeaderView* theWrappedObject, int  logicalIndex) const
-{
-return  theWrappedObject->sectionPosition(logicalIndex);
-}
-
-QModelIndex  PythonQtWrapper_QHeaderView::indexAt(QHeaderView* theWrappedObject, const QPoint&  p) const
-{
-return  ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_indexAt(p);
-}
-
 void PythonQtWrapper_QHeaderView::showSection(QHeaderView* theWrappedObject, int  logicalIndex)
 {
- theWrappedObject->showSection(logicalIndex);
-}
-
-void PythonQtWrapper_QHeaderView::setCascadingSectionResizes(QHeaderView* theWrappedObject, bool  enable)
-{
- theWrappedObject->setCascadingSectionResizes(enable);
-}
-
-void PythonQtWrapper_QHeaderView::scrollTo(QHeaderView* theWrappedObject, const QModelIndex&  index, QAbstractItemView::ScrollHint  hint)
-{
- ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_scrollTo(index, hint);
-}
-
-int  PythonQtWrapper_QHeaderView::hiddenSectionCount(QHeaderView* theWrappedObject) const
-{
-return  theWrappedObject->hiddenSectionCount();
-}
-
-void PythonQtWrapper_QHeaderView::setModel(QHeaderView* theWrappedObject, QAbstractItemModel*  model)
-{
- ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_setModel(model);
-}
-
-void PythonQtWrapper_QHeaderView::reset(QHeaderView* theWrappedObject)
-{
- ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_reset();
-}
-
-void PythonQtWrapper_QHeaderView::hideSection(QHeaderView* theWrappedObject, int  logicalIndex)
-{
- theWrappedObject->hideSection(logicalIndex);
-}
-
-void PythonQtWrapper_QHeaderView::updateGeometries(QHeaderView* theWrappedObject)
-{
- ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_updateGeometries();
-}
-
-QRect  PythonQtWrapper_QHeaderView::visualRect(QHeaderView* theWrappedObject, const QModelIndex&  index) const
-{
-return  ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_visualRect(index);
-}
-
-int  PythonQtWrapper_QHeaderView::stretchSectionCount(QHeaderView* theWrappedObject) const
-{
-return  theWrappedObject->stretchSectionCount();
-}
-
-int  PythonQtWrapper_QHeaderView::verticalOffset(QHeaderView* theWrappedObject) const
-{
-return  ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_verticalOffset();
-}
-
-void PythonQtWrapper_QHeaderView::resizeSections(QHeaderView* theWrappedObject, QHeaderView::ResizeMode  mode)
-{
- theWrappedObject->resizeSections(mode);
-}
-
-bool  PythonQtWrapper_QHeaderView::sectionsMoved(QHeaderView* theWrappedObject) const
-{
-return  theWrappedObject->sectionsMoved();
-}
-
-bool  PythonQtWrapper_QHeaderView::cascadingSectionResizes(QHeaderView* theWrappedObject) const
-{
-return  theWrappedObject->cascadingSectionResizes();
-}
-
-int  PythonQtWrapper_QHeaderView::length(QHeaderView* theWrappedObject) const
-{
-return  theWrappedObject->length();
-}
-
-void PythonQtWrapper_QHeaderView::paintSection(QHeaderView* theWrappedObject, QPainter*  painter, const QRect&  rect, int  logicalIndex) const
-{
- ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_paintSection(painter, rect, logicalIndex);
-}
-
-void PythonQtWrapper_QHeaderView::setClickable(QHeaderView* theWrappedObject, bool  clickable)
-{
- theWrappedObject->setClickable(clickable);
-}
-
-int  PythonQtWrapper_QHeaderView::logicalIndexAt(QHeaderView* theWrappedObject, int  position) const
-{
-return  theWrappedObject->logicalIndexAt(position);
-}
-
-void PythonQtWrapper_QHeaderView::swapSections(QHeaderView* theWrappedObject, int  first, int  second)
-{
- theWrappedObject->swapSections(first, second);
-}
-
-void PythonQtWrapper_QHeaderView::mousePressEvent(QHeaderView* theWrappedObject, QMouseEvent*  e)
-{
- ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_mousePressEvent(e);
-}
-
-void PythonQtWrapper_QHeaderView::dataChanged(QHeaderView* theWrappedObject, const QModelIndex&  topLeft, const QModelIndex&  bottomRight)
-{
- ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_dataChanged(topLeft, bottomRight);
-}
-
-void PythonQtWrapper_QHeaderView::doItemsLayout(QHeaderView* theWrappedObject)
-{
- ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_doItemsLayout();
-}
-
-void PythonQtWrapper_QHeaderView::scrollContentsBy(QHeaderView* theWrappedObject, int  dx, int  dy)
-{
- ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_scrollContentsBy(dx, dy);
-}
-
-void PythonQtWrapper_QHeaderView::mouseMoveEvent(QHeaderView* theWrappedObject, QMouseEvent*  e)
-{
- ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_mouseMoveEvent(e);
-}
-
-void PythonQtWrapper_QHeaderView::setSortIndicator(QHeaderView* theWrappedObject, int  logicalIndex, Qt::SortOrder  order)
-{
- theWrappedObject->setSortIndicator(logicalIndex, order);
-}
-
-void PythonQtWrapper_QHeaderView::setHighlightSections(QHeaderView* theWrappedObject, bool  highlight)
-{
- theWrappedObject->setHighlightSections(highlight);
-}
-
-int  PythonQtWrapper_QHeaderView::visualIndex(QHeaderView* theWrappedObject, int  logicalIndex) const
-{
-return  theWrappedObject->visualIndex(logicalIndex);
-}
-
-Qt::SortOrder  PythonQtWrapper_QHeaderView::sortIndicatorOrder(QHeaderView* theWrappedObject) const
-{
-return  theWrappedObject->sortIndicatorOrder();
-}
-
-QSize  PythonQtWrapper_QHeaderView::sizeHint(QHeaderView* theWrappedObject) const
-{
-return  theWrappedObject->sizeHint();
-}
-
-int  PythonQtWrapper_QHeaderView::logicalIndexAt(QHeaderView* theWrappedObject, int  x, int  y) const
-{
-return  theWrappedObject->logicalIndexAt(x, y);
-}
-
-int  PythonQtWrapper_QHeaderView::sortIndicatorSection(QHeaderView* theWrappedObject) const
-{
-return  theWrappedObject->sortIndicatorSection();
-}
-
-void PythonQtWrapper_QHeaderView::resizeSection(QHeaderView* theWrappedObject, int  logicalIndex, int  size)
-{
- theWrappedObject->resizeSection(logicalIndex, size);
-}
-
-bool  PythonQtWrapper_QHeaderView::stretchLastSection(QHeaderView* theWrappedObject) const
-{
-return  theWrappedObject->stretchLastSection();
-}
-
-int  PythonQtWrapper_QHeaderView::visualIndexAt(QHeaderView* theWrappedObject, int  position) const
-{
-return  theWrappedObject->visualIndexAt(position);
-}
-
-QByteArray  PythonQtWrapper_QHeaderView::saveState(QHeaderView* theWrappedObject) const
-{
-return  theWrappedObject->saveState();
-}
-
-int  PythonQtWrapper_QHeaderView::logicalIndexAt(QHeaderView* theWrappedObject, const QPoint&  pos) const
-{
-return  theWrappedObject->logicalIndexAt(pos);
-}
-
-Qt::Orientation  PythonQtWrapper_QHeaderView::orientation(QHeaderView* theWrappedObject) const
-{
-return  theWrappedObject->orientation();
+  ( theWrappedObject->showSection(logicalIndex));
 }
 
 bool  PythonQtWrapper_QHeaderView::isSortIndicatorShown(QHeaderView* theWrappedObject) const
 {
-return  theWrappedObject->isSortIndicatorShown();
+  return ( theWrappedObject->isSortIndicatorShown());
+}
+
+int  PythonQtWrapper_QHeaderView::count(QHeaderView* theWrappedObject) const
+{
+  return ( theWrappedObject->count());
 }
 
 bool  PythonQtWrapper_QHeaderView::highlightSections(QHeaderView* theWrappedObject) const
 {
-return  theWrappedObject->highlightSections();
+  return ( theWrappedObject->highlightSections());
 }
 
-bool  PythonQtWrapper_QHeaderView::viewportEvent(QHeaderView* theWrappedObject, QEvent*  e)
+Qt::SortOrder  PythonQtWrapper_QHeaderView::sortIndicatorOrder(QHeaderView* theWrappedObject) const
 {
-return  ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_viewportEvent(e);
+  return ( theWrappedObject->sortIndicatorOrder());
 }
 
-bool  PythonQtWrapper_QHeaderView::sectionsHidden(QHeaderView* theWrappedObject) const
+void PythonQtWrapper_QHeaderView::dataChanged(QHeaderView* theWrappedObject, const QModelIndex&  topLeft, const QModelIndex&  bottomRight)
 {
-return  theWrappedObject->sectionsHidden();
+  ( ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_dataChanged(topLeft, bottomRight));
 }
 
-int  PythonQtWrapper_QHeaderView::minimumSectionSize(QHeaderView* theWrappedObject) const
+void PythonQtWrapper_QHeaderView::currentChanged(QHeaderView* theWrappedObject, const QModelIndex&  current, const QModelIndex&  old)
 {
-return  theWrappedObject->minimumSectionSize();
+  ( ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_currentChanged(current, old));
 }
 
-int  PythonQtWrapper_QHeaderView::defaultSectionSize(QHeaderView* theWrappedObject) const
+void PythonQtWrapper_QHeaderView::setHighlightSections(QHeaderView* theWrappedObject, bool  highlight)
 {
-return  theWrappedObject->defaultSectionSize();
+  ( theWrappedObject->setHighlightSections(highlight));
+}
+
+void PythonQtWrapper_QHeaderView::setSortIndicatorShown(QHeaderView* theWrappedObject, bool  show)
+{
+  ( theWrappedObject->setSortIndicatorShown(show));
+}
+
+int  PythonQtWrapper_QHeaderView::visualIndexAt(QHeaderView* theWrappedObject, int  position) const
+{
+  return ( theWrappedObject->visualIndexAt(position));
+}
+
+void PythonQtWrapper_QHeaderView::setCascadingSectionResizes(QHeaderView* theWrappedObject, bool  enable)
+{
+  ( theWrappedObject->setCascadingSectionResizes(enable));
+}
+
+void PythonQtWrapper_QHeaderView::reset(QHeaderView* theWrappedObject)
+{
+  ( ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_reset());
+}
+
+int  PythonQtWrapper_QHeaderView::sortIndicatorSection(QHeaderView* theWrappedObject) const
+{
+  return ( theWrappedObject->sortIndicatorSection());
+}
+
+int  PythonQtWrapper_QHeaderView::sectionSize(QHeaderView* theWrappedObject, int  logicalIndex) const
+{
+  return ( theWrappedObject->sectionSize(logicalIndex));
+}
+
+int  PythonQtWrapper_QHeaderView::verticalOffset(QHeaderView* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_verticalOffset());
+}
+
+void PythonQtWrapper_QHeaderView::setResizeMode(QHeaderView* theWrappedObject, int  logicalIndex, QHeaderView::ResizeMode  mode)
+{
+  ( theWrappedObject->setResizeMode(logicalIndex, mode));
+}
+
+void PythonQtWrapper_QHeaderView::moveSection(QHeaderView* theWrappedObject, int  from, int  to)
+{
+  ( theWrappedObject->moveSection(from, to));
 }
 
 QSize  PythonQtWrapper_QHeaderView::sectionSizeFromContents(QHeaderView* theWrappedObject, int  logicalIndex) const
 {
-return  ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_sectionSizeFromContents(logicalIndex);
+  return ( ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_sectionSizeFromContents(logicalIndex));
+}
+
+int  PythonQtWrapper_QHeaderView::sectionPosition(QHeaderView* theWrappedObject, int  logicalIndex) const
+{
+  return ( theWrappedObject->sectionPosition(logicalIndex));
+}
+
+void PythonQtWrapper_QHeaderView::setDefaultSectionSize(QHeaderView* theWrappedObject, int  size)
+{
+  ( theWrappedObject->setDefaultSectionSize(size));
+}
+
+void PythonQtWrapper_QHeaderView::mousePressEvent(QHeaderView* theWrappedObject, QMouseEvent*  e)
+{
+  ( ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_mousePressEvent(e));
+}
+
+void PythonQtWrapper_QHeaderView::setStretchLastSection(QHeaderView* theWrappedObject, bool  stretch)
+{
+  ( theWrappedObject->setStretchLastSection(stretch));
+}
+
+bool  PythonQtWrapper_QHeaderView::isSectionHidden(QHeaderView* theWrappedObject, int  logicalIndex) const
+{
+  return ( theWrappedObject->isSectionHidden(logicalIndex));
+}
+
+void PythonQtWrapper_QHeaderView::rowsInserted(QHeaderView* theWrappedObject, const QModelIndex&  parent, int  start, int  end)
+{
+  ( ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_rowsInserted(parent, start, end));
+}
+
+int  PythonQtWrapper_QHeaderView::stretchSectionCount(QHeaderView* theWrappedObject) const
+{
+  return ( theWrappedObject->stretchSectionCount());
+}
+
+int  PythonQtWrapper_QHeaderView::offset(QHeaderView* theWrappedObject) const
+{
+  return ( theWrappedObject->offset());
+}
+
+void PythonQtWrapper_QHeaderView::mouseDoubleClickEvent(QHeaderView* theWrappedObject, QMouseEvent*  e)
+{
+  ( ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_mouseDoubleClickEvent(e));
+}
+
+QRegion  PythonQtWrapper_QHeaderView::visualRegionForSelection(QHeaderView* theWrappedObject, const QItemSelection&  selection) const
+{
+  return ( ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_visualRegionForSelection(selection));
+}
+
+void PythonQtWrapper_QHeaderView::hideSection(QHeaderView* theWrappedObject, int  logicalIndex)
+{
+  ( theWrappedObject->hideSection(logicalIndex));
+}
+
+int  PythonQtWrapper_QHeaderView::minimumSectionSize(QHeaderView* theWrappedObject) const
+{
+  return ( theWrappedObject->minimumSectionSize());
+}
+
+void PythonQtWrapper_QHeaderView::mouseMoveEvent(QHeaderView* theWrappedObject, QMouseEvent*  e)
+{
+  ( ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_mouseMoveEvent(e));
+}
+
+bool  PythonQtWrapper_QHeaderView::stretchLastSection(QHeaderView* theWrappedObject) const
+{
+  return ( theWrappedObject->stretchLastSection());
+}
+
+QSize  PythonQtWrapper_QHeaderView::sizeHint(QHeaderView* theWrappedObject) const
+{
+  return ( theWrappedObject->sizeHint());
+}
+
+Qt::Alignment  PythonQtWrapper_QHeaderView::defaultAlignment(QHeaderView* theWrappedObject) const
+{
+  return ( theWrappedObject->defaultAlignment());
+}
+
+void PythonQtWrapper_QHeaderView::mouseReleaseEvent(QHeaderView* theWrappedObject, QMouseEvent*  e)
+{
+  ( ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_mouseReleaseEvent(e));
+}
+
+int  PythonQtWrapper_QHeaderView::length(QHeaderView* theWrappedObject) const
+{
+  return ( theWrappedObject->length());
+}
+
+void PythonQtWrapper_QHeaderView::setModel(QHeaderView* theWrappedObject, QAbstractItemModel*  model)
+{
+  ( ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_setModel(model));
+}
+
+void PythonQtWrapper_QHeaderView::resizeSection(QHeaderView* theWrappedObject, int  logicalIndex, int  size)
+{
+  ( theWrappedObject->resizeSection(logicalIndex, size));
+}
+
+int  PythonQtWrapper_QHeaderView::hiddenSectionCount(QHeaderView* theWrappedObject) const
+{
+  return ( theWrappedObject->hiddenSectionCount());
+}
+
+int  PythonQtWrapper_QHeaderView::horizontalOffset(QHeaderView* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_horizontalOffset());
+}
+
+bool  PythonQtWrapper_QHeaderView::isMovable(QHeaderView* theWrappedObject) const
+{
+  return ( theWrappedObject->isMovable());
+}
+
+void PythonQtWrapper_QHeaderView::resizeSections(QHeaderView* theWrappedObject, QHeaderView::ResizeMode  mode)
+{
+  ( theWrappedObject->resizeSections(mode));
+}
+
+void PythonQtWrapper_QHeaderView::scrollContentsBy(QHeaderView* theWrappedObject, int  dx, int  dy)
+{
+  ( ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_scrollContentsBy(dx, dy));
+}
+
+int  PythonQtWrapper_QHeaderView::logicalIndexAt(QHeaderView* theWrappedObject, int  x, int  y) const
+{
+  return ( theWrappedObject->logicalIndexAt(x, y));
+}
+
+int  PythonQtWrapper_QHeaderView::logicalIndexAt(QHeaderView* theWrappedObject, int  position) const
+{
+  return ( theWrappedObject->logicalIndexAt(position));
+}
+
+void PythonQtWrapper_QHeaderView::setSelection(QHeaderView* theWrappedObject, const QRect&  arg__1, QItemSelectionModel::SelectionFlags  arg__2)
+{
+  ( ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_setSelection(arg__1, arg__2));
+}
+
+void PythonQtWrapper_QHeaderView::doItemsLayout(QHeaderView* theWrappedObject)
+{
+  ( ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_doItemsLayout());
+}
+
+QRect  PythonQtWrapper_QHeaderView::visualRect(QHeaderView* theWrappedObject, const QModelIndex&  index) const
+{
+  return ( ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_visualRect(index));
+}
+
+int  PythonQtWrapper_QHeaderView::logicalIndexAt(QHeaderView* theWrappedObject, const QPoint&  pos) const
+{
+  return ( theWrappedObject->logicalIndexAt(pos));
+}
+
+QHeaderView::ResizeMode  PythonQtWrapper_QHeaderView::resizeMode(QHeaderView* theWrappedObject, int  logicalIndex) const
+{
+  return ( theWrappedObject->resizeMode(logicalIndex));
+}
+
+void PythonQtWrapper_QHeaderView::setSortIndicator(QHeaderView* theWrappedObject, int  logicalIndex, Qt::SortOrder  order)
+{
+  ( theWrappedObject->setSortIndicator(logicalIndex, order));
+}
+
+bool  PythonQtWrapper_QHeaderView::isIndexHidden(QHeaderView* theWrappedObject, const QModelIndex&  index) const
+{
+  return ( ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_isIndexHidden(index));
+}
+
+void PythonQtWrapper_QHeaderView::scrollTo(QHeaderView* theWrappedObject, const QModelIndex&  index, QAbstractItemView::ScrollHint  hint)
+{
+  ( ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_scrollTo(index, hint));
+}
+
+bool  PythonQtWrapper_QHeaderView::isClickable(QHeaderView* theWrappedObject) const
+{
+  return ( theWrappedObject->isClickable());
+}
+
+int  PythonQtWrapper_QHeaderView::defaultSectionSize(QHeaderView* theWrappedObject) const
+{
+  return ( theWrappedObject->defaultSectionSize());
+}
+
+int  PythonQtWrapper_QHeaderView::sectionSizeHint(QHeaderView* theWrappedObject, int  logicalIndex) const
+{
+  return ( theWrappedObject->sectionSizeHint(logicalIndex));
+}
+
+Qt::Orientation  PythonQtWrapper_QHeaderView::orientation(QHeaderView* theWrappedObject) const
+{
+  return ( theWrappedObject->orientation());
+}
+
+void PythonQtWrapper_QHeaderView::setSectionHidden(QHeaderView* theWrappedObject, int  logicalIndex, bool  hide)
+{
+  ( theWrappedObject->setSectionHidden(logicalIndex, hide));
+}
+
+bool  PythonQtWrapper_QHeaderView::restoreState(QHeaderView* theWrappedObject, const QByteArray&  state)
+{
+  return ( theWrappedObject->restoreState(state));
+}
+
+void PythonQtWrapper_QHeaderView::setMinimumSectionSize(QHeaderView* theWrappedObject, int  size)
+{
+  ( theWrappedObject->setMinimumSectionSize(size));
+}
+
+QByteArray  PythonQtWrapper_QHeaderView::saveState(QHeaderView* theWrappedObject) const
+{
+  return ( theWrappedObject->saveState());
+}
+
+void PythonQtWrapper_QHeaderView::setDefaultAlignment(QHeaderView* theWrappedObject, Qt::Alignment  alignment)
+{
+  ( theWrappedObject->setDefaultAlignment(alignment));
+}
+
+void PythonQtWrapper_QHeaderView::paintEvent(QHeaderView* theWrappedObject, QPaintEvent*  e)
+{
+  ( ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_paintEvent(e));
+}
+
+int  PythonQtWrapper_QHeaderView::visualIndex(QHeaderView* theWrappedObject, int  logicalIndex) const
+{
+  return ( theWrappedObject->visualIndex(logicalIndex));
+}
+
+bool  PythonQtWrapper_QHeaderView::viewportEvent(QHeaderView* theWrappedObject, QEvent*  e)
+{
+  return ( ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_viewportEvent(e));
+}
+
+void PythonQtWrapper_QHeaderView::setClickable(QHeaderView* theWrappedObject, bool  clickable)
+{
+  ( theWrappedObject->setClickable(clickable));
+}
+
+bool  PythonQtWrapper_QHeaderView::event(QHeaderView* theWrappedObject, QEvent*  e)
+{
+  return ( ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_event(e));
+}
+
+int  PythonQtWrapper_QHeaderView::logicalIndex(QHeaderView* theWrappedObject, int  visualIndex) const
+{
+  return ( theWrappedObject->logicalIndex(visualIndex));
+}
+
+int  PythonQtWrapper_QHeaderView::sectionViewportPosition(QHeaderView* theWrappedObject, int  logicalIndex) const
+{
+  return ( theWrappedObject->sectionViewportPosition(logicalIndex));
+}
+
+bool  PythonQtWrapper_QHeaderView::sectionsHidden(QHeaderView* theWrappedObject) const
+{
+  return ( theWrappedObject->sectionsHidden());
+}
+
+void PythonQtWrapper_QHeaderView::setResizeMode(QHeaderView* theWrappedObject, QHeaderView::ResizeMode  mode)
+{
+  ( theWrappedObject->setResizeMode(mode));
+}
+
+void PythonQtWrapper_QHeaderView::swapSections(QHeaderView* theWrappedObject, int  first, int  second)
+{
+  ( theWrappedObject->swapSections(first, second));
+}
+
+void PythonQtWrapper_QHeaderView::updateGeometries(QHeaderView* theWrappedObject)
+{
+  ( ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_updateGeometries());
+}
+
+bool  PythonQtWrapper_QHeaderView::sectionsMoved(QHeaderView* theWrappedObject) const
+{
+  return ( theWrappedObject->sectionsMoved());
+}
+
+void PythonQtWrapper_QHeaderView::paintSection(QHeaderView* theWrappedObject, QPainter*  painter, const QRect&  rect, int  logicalIndex) const
+{
+  ( ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_paintSection(painter, rect, logicalIndex));
+}
+
+QModelIndex  PythonQtWrapper_QHeaderView::indexAt(QHeaderView* theWrappedObject, const QPoint&  p) const
+{
+  return ( ((PythonQtPublicPromoter_QHeaderView*)theWrappedObject)->promoted_indexAt(p));
+}
+
+bool  PythonQtWrapper_QHeaderView::cascadingSectionResizes(QHeaderView* theWrappedObject) const
+{
+  return ( theWrappedObject->cascadingSectionResizes());
+}
+
+void PythonQtWrapper_QHeaderView::setMovable(QHeaderView* theWrappedObject, bool  movable)
+{
+  ( theWrappedObject->setMovable(movable));
 }
 

@@ -135,11 +135,11 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QTreeWidget : public QTreeWidget
 { public:
-inline Qt::DropActions  promoted_supportedDropActions() const { return QTreeWidget::supportedDropActions(); }
-inline bool  promoted_event(QEvent*  e) { return QTreeWidget::event(e); }
 inline QStringList  promoted_mimeTypes() const { return QTreeWidget::mimeTypes(); }
-inline void promoted_dropEvent(QDropEvent*  event) { QTreeWidget::dropEvent(event); }
 inline bool  promoted_dropMimeData(QTreeWidgetItem*  parent, int  index, const QMimeData*  data, Qt::DropAction  action) { return QTreeWidget::dropMimeData(parent, index, data, action); }
+inline Qt::DropActions  promoted_supportedDropActions() const { return QTreeWidget::supportedDropActions(); }
+inline void promoted_dropEvent(QDropEvent*  event) { QTreeWidget::dropEvent(event); }
+inline bool  promoted_event(QEvent*  e) { return QTreeWidget::event(e); }
 };
 
 class PythonQtWrapper_QTreeWidget : public QObject
@@ -148,48 +148,48 @@ public:
 public slots:
 QTreeWidget* new_QTreeWidget(QWidget*  parent = 0);
 void delete_QTreeWidget(QTreeWidget* obj) { delete obj; } 
-   void setColumnCount(QTreeWidget* theWrappedObject, int  columns);
-   QTreeWidgetItem*  takeTopLevelItem(QTreeWidget* theWrappedObject, int  index);
-   void addTopLevelItems(QTreeWidget* theWrappedObject, const QList<QTreeWidgetItem* >&  items);
-   Qt::DropActions  supportedDropActions(QTreeWidget* theWrappedObject) const;
-   void setFirstItemColumnSpanned(QTreeWidget* theWrappedObject, const QTreeWidgetItem*  item, bool  span);
-   QTreeWidgetItem*  itemAt(QTreeWidget* theWrappedObject, int  x, int  y) const;
-   void setHeaderLabels(QTreeWidget* theWrappedObject, const QStringList&  labels);
-   void openPersistentEditor(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item, int  column = 0);
-   QTreeWidgetItem*  currentItem(QTreeWidget* theWrappedObject) const;
-   void setCurrentItem(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item, int  column);
-   bool  event(QTreeWidget* theWrappedObject, QEvent*  e);
    QStringList  mimeTypes(QTreeWidget* theWrappedObject) const;
-   int  columnCount(QTreeWidget* theWrappedObject) const;
-   void setCurrentItem(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item);
-   void setItemWidget(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item, int  column, QWidget*  widget);
-   bool  isFirstItemColumnSpanned(QTreeWidget* theWrappedObject, const QTreeWidgetItem*  item) const;
-   void editItem(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item, int  column = 0);
-   void sortItems(QTreeWidget* theWrappedObject, int  column, Qt::SortOrder  order);
    QTreeWidgetItem*  itemAbove(QTreeWidget* theWrappedObject, const QTreeWidgetItem*  item) const;
-   QTreeWidgetItem*  itemBelow(QTreeWidget* theWrappedObject, const QTreeWidgetItem*  item) const;
+   int  indexOfTopLevelItem(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item) const;
+   void setFirstItemColumnSpanned(QTreeWidget* theWrappedObject, const QTreeWidgetItem*  item, bool  span);
+   void setHeaderLabels(QTreeWidget* theWrappedObject, const QStringList&  labels);
    int  sortColumn(QTreeWidget* theWrappedObject) const;
    QList<QTreeWidgetItem* >  selectedItems(QTreeWidget* theWrappedObject) const;
-   void removeItemWidget(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item, int  column);
-   QTreeWidgetItem*  topLevelItem(QTreeWidget* theWrappedObject, int  index) const;
-   QTreeWidgetItem*  headerItem(QTreeWidget* theWrappedObject) const;
-   void insertTopLevelItems(QTreeWidget* theWrappedObject, int  index, const QList<QTreeWidgetItem* >&  items);
-   void insertTopLevelItem(QTreeWidget* theWrappedObject, int  index, QTreeWidgetItem*  item);
-   QTreeWidgetItem*  itemAt(QTreeWidget* theWrappedObject, const QPoint&  p) const;
+   int  columnCount(QTreeWidget* theWrappedObject) const;
+   void addTopLevelItems(QTreeWidget* theWrappedObject, const QList<QTreeWidgetItem* >&  items);
    int  currentColumn(QTreeWidget* theWrappedObject) const;
    QTreeWidgetItem*  invisibleRootItem(QTreeWidget* theWrappedObject) const;
-   void setCurrentItem(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item, int  column, QItemSelectionModel::SelectionFlags  command);
-   QList<QTreeWidgetItem* >  findItems(QTreeWidget* theWrappedObject, const QString&  text, Qt::MatchFlags  flags, int  column = 0) const;
-   void setHeaderItem(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item);
+   QTreeWidgetItem*  takeTopLevelItem(QTreeWidget* theWrappedObject, int  index);
+   bool  dropMimeData(QTreeWidget* theWrappedObject, QTreeWidgetItem*  parent, int  index, const QMimeData*  data, Qt::DropAction  action);
+   Qt::DropActions  supportedDropActions(QTreeWidget* theWrappedObject) const;
+   bool  isFirstItemColumnSpanned(QTreeWidget* theWrappedObject, const QTreeWidgetItem*  item) const;
+   QTreeWidgetItem*  itemAt(QTreeWidget* theWrappedObject, int  x, int  y) const;
+   QTreeWidgetItem*  currentItem(QTreeWidget* theWrappedObject) const;
+   void setCurrentItem(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item, int  column);
+   void sortItems(QTreeWidget* theWrappedObject, int  column, Qt::SortOrder  order);
    void dropEvent(QTreeWidget* theWrappedObject, QDropEvent*  event);
    void closePersistentEditor(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item, int  column = 0);
-   int  indexOfTopLevelItem(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item) const;
-   QWidget*  itemWidget(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item, int  column) const;
+   void openPersistentEditor(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item, int  column = 0);
+   void setCurrentItem(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item);
+   QTreeWidgetItem*  headerItem(QTreeWidget* theWrappedObject) const;
    void setHeaderLabel(QTreeWidget* theWrappedObject, const QString&  label);
-   QRect  visualItemRect(QTreeWidget* theWrappedObject, const QTreeWidgetItem*  item) const;
-   int  topLevelItemCount(QTreeWidget* theWrappedObject) const;
-   bool  dropMimeData(QTreeWidget* theWrappedObject, QTreeWidgetItem*  parent, int  index, const QMimeData*  data, Qt::DropAction  action);
+   void setItemWidget(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item, int  column, QWidget*  widget);
+   void insertTopLevelItem(QTreeWidget* theWrappedObject, int  index, QTreeWidgetItem*  item);
+   void insertTopLevelItems(QTreeWidget* theWrappedObject, int  index, const QList<QTreeWidgetItem* >&  items);
+   void setColumnCount(QTreeWidget* theWrappedObject, int  columns);
+   QTreeWidgetItem*  itemAt(QTreeWidget* theWrappedObject, const QPoint&  p) const;
+   void removeItemWidget(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item, int  column);
+   void editItem(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item, int  column = 0);
+   void setCurrentItem(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item, int  column, QItemSelectionModel::SelectionFlags  command);
+   bool  event(QTreeWidget* theWrappedObject, QEvent*  e);
    void addTopLevelItem(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item);
+   int  topLevelItemCount(QTreeWidget* theWrappedObject) const;
+   QTreeWidgetItem*  itemBelow(QTreeWidget* theWrappedObject, const QTreeWidgetItem*  item) const;
+   QWidget*  itemWidget(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item, int  column) const;
+   QTreeWidgetItem*  topLevelItem(QTreeWidget* theWrappedObject, int  index) const;
+   QList<QTreeWidgetItem* >  findItems(QTreeWidget* theWrappedObject, const QString&  text, Qt::MatchFlags  flags, int  column = 0) const;
+   void setHeaderItem(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item);
+   QRect  visualItemRect(QTreeWidget* theWrappedObject, const QTreeWidgetItem*  item) const;
 };
 
 #endif // PYTHONQTWRAPPER_QTREEWIDGET_H

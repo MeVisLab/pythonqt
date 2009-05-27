@@ -38,17 +38,17 @@ virtual void whitespaceOnly(const QStringRef&  value);
 
 class PythonQtPublicPromoter_QXmlFormatter : public QXmlFormatter
 { public:
-inline void promoted_attribute(const QXmlName&  name, const QStringRef&  value) { QXmlFormatter::attribute(name, value); }
-inline void promoted_endDocument() { QXmlFormatter::endDocument(); }
-inline void promoted_endOfSequence() { QXmlFormatter::endOfSequence(); }
 inline void promoted_startOfSequence() { QXmlFormatter::startOfSequence(); }
 inline void promoted_characters(const QStringRef&  value) { QXmlFormatter::characters(value); }
+inline void promoted_atomicValue(const QVariant&  value) { QXmlFormatter::atomicValue(value); }
+inline void promoted_endElement() { QXmlFormatter::endElement(); }
+inline void promoted_attribute(const QXmlName&  name, const QStringRef&  value) { QXmlFormatter::attribute(name, value); }
 inline void promoted_startDocument() { QXmlFormatter::startDocument(); }
+inline void promoted_endDocument() { QXmlFormatter::endDocument(); }
 inline void promoted_processingInstruction(const QXmlName&  name, const QString&  value) { QXmlFormatter::processingInstruction(name, value); }
 inline void promoted_startElement(const QXmlName&  name) { QXmlFormatter::startElement(name); }
-inline void promoted_atomicValue(const QVariant&  value) { QXmlFormatter::atomicValue(value); }
 inline void promoted_comment(const QString&  value) { QXmlFormatter::comment(value); }
-inline void promoted_endElement() { QXmlFormatter::endElement(); }
+inline void promoted_endOfSequence() { QXmlFormatter::endOfSequence(); }
 };
 
 class PythonQtWrapper_QXmlFormatter : public QObject
@@ -57,19 +57,19 @@ public:
 public slots:
 QXmlFormatter* new_QXmlFormatter(const QXmlQuery&  query, QIODevice*  outputDevice);
 void delete_QXmlFormatter(QXmlFormatter* obj) { delete obj; } 
-   void attribute(QXmlFormatter* theWrappedObject, const QXmlName&  name, const QStringRef&  value);
-   void endDocument(QXmlFormatter* theWrappedObject);
-   int  indentationDepth(QXmlFormatter* theWrappedObject) const;
-   void endOfSequence(QXmlFormatter* theWrappedObject);
-   void startOfSequence(QXmlFormatter* theWrappedObject);
    void setIndentationDepth(QXmlFormatter* theWrappedObject, int  depth);
+   int  indentationDepth(QXmlFormatter* theWrappedObject) const;
+   void startOfSequence(QXmlFormatter* theWrappedObject);
    void characters(QXmlFormatter* theWrappedObject, const QStringRef&  value);
+   void atomicValue(QXmlFormatter* theWrappedObject, const QVariant&  value);
+   void endElement(QXmlFormatter* theWrappedObject);
+   void attribute(QXmlFormatter* theWrappedObject, const QXmlName&  name, const QStringRef&  value);
    void startDocument(QXmlFormatter* theWrappedObject);
+   void endDocument(QXmlFormatter* theWrappedObject);
    void processingInstruction(QXmlFormatter* theWrappedObject, const QXmlName&  name, const QString&  value);
    void startElement(QXmlFormatter* theWrappedObject, const QXmlName&  name);
-   void atomicValue(QXmlFormatter* theWrappedObject, const QVariant&  value);
    void comment(QXmlFormatter* theWrappedObject, const QString&  value);
-   void endElement(QXmlFormatter* theWrappedObject);
+   void endOfSequence(QXmlFormatter* theWrappedObject);
 };
 
 #endif // PYTHONQTWRAPPER_QXMLFORMATTER_H

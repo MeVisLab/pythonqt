@@ -30,16 +30,16 @@ public:
 public slots:
 QPlainTextDocumentLayout* new_QPlainTextDocumentLayout(QTextDocument*  document);
 void delete_QPlainTextDocumentLayout(QPlainTextDocumentLayout* obj) { delete obj; } 
+   void draw(QPlainTextDocumentLayout* theWrappedObject, QPainter*  arg__1, const QAbstractTextDocumentLayout::PaintContext&  arg__2);
+   int  pageCount(QPlainTextDocumentLayout* theWrappedObject) const;
+   int  hitTest(QPlainTextDocumentLayout* theWrappedObject, const QPointF&  arg__1, Qt::HitTestAccuracy  arg__2) const;
+   QSizeF  documentSize(QPlainTextDocumentLayout* theWrappedObject) const;
+   QRectF  frameBoundingRect(QPlainTextDocumentLayout* theWrappedObject, QTextFrame*  arg__1) const;
+   void setCursorWidth(QPlainTextDocumentLayout* theWrappedObject, int  width);
    QRectF  blockBoundingRect(QPlainTextDocumentLayout* theWrappedObject, const QTextBlock&  block) const;
    int  cursorWidth(QPlainTextDocumentLayout* theWrappedObject) const;
    void ensureBlockLayout(QPlainTextDocumentLayout* theWrappedObject, const QTextBlock&  block) const;
    void requestUpdate(QPlainTextDocumentLayout* theWrappedObject);
-   void draw(QPlainTextDocumentLayout* theWrappedObject, QPainter*  arg__1, const QAbstractTextDocumentLayout::PaintContext&  arg__2);
-   int  hitTest(QPlainTextDocumentLayout* theWrappedObject, const QPointF&  arg__1, Qt::HitTestAccuracy  arg__2) const;
-   int  pageCount(QPlainTextDocumentLayout* theWrappedObject) const;
-   QSizeF  documentSize(QPlainTextDocumentLayout* theWrappedObject) const;
-   void setCursorWidth(QPlainTextDocumentLayout* theWrappedObject, int  width);
-   QRectF  frameBoundingRect(QPlainTextDocumentLayout* theWrappedObject, QTextFrame*  arg__1) const;
 };
 
 #endif // PYTHONQTWRAPPER_QPLAINTEXTDOCUMENTLAYOUT_H

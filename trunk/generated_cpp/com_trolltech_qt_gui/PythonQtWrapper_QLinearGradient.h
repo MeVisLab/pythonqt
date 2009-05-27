@@ -25,12 +25,12 @@ QLinearGradient* a = new QLinearGradient();
 *((QLinearGradient*)a) = other;
 return a; }
 void delete_QLinearGradient(QLinearGradient* obj) { delete obj; } 
-   void setStart(QLinearGradient* theWrappedObject, qreal  x, qreal  y);
+   QPointF  finalStop(QLinearGradient* theWrappedObject) const;
    void setFinalStop(QLinearGradient* theWrappedObject, const QPointF&  stop);
    void setFinalStop(QLinearGradient* theWrappedObject, qreal  x, qreal  y);
-   QPointF  start(QLinearGradient* theWrappedObject) const;
+   void setStart(QLinearGradient* theWrappedObject, qreal  x, qreal  y);
    void setStart(QLinearGradient* theWrappedObject, const QPointF&  start);
-   QPointF  finalStop(QLinearGradient* theWrappedObject) const;
+   QPointF  start(QLinearGradient* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QLINEARGRADIENT_H

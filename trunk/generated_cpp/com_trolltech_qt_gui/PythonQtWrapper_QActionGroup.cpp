@@ -18,9 +18,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "childEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QActionGroup::staticMetaObject,
-      "childEvent(QActionGroup*,QChildEvent* )");
+    static const char* argumentList[] ={"" , "QChildEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -36,9 +35,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "customEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QActionGroup::staticMetaObject,
-      "customEvent(QActionGroup*,QEvent* )");
+    static const char* argumentList[] ={"" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -54,16 +52,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "event");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QActionGroup::staticMetaObject,
-      "event(QActionGroup*,QEvent* )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      bool returnValue;
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -79,16 +80,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "eventFilter");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QActionGroup::staticMetaObject,
-      "eventFilter(QActionGroup*,QObject* ,QEvent* )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
+      bool returnValue;
     void* args[3] = {NULL, (void*)&arg__1, (void*)&arg__2};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("eventFilter", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -104,9 +108,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "timerEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QActionGroup::staticMetaObject,
-      "timerEvent(QActionGroup*,QTimerEvent* )");
+    static const char* argumentList[] ={"" , "QTimerEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -122,46 +125,46 @@ return new PythonQtShell_QActionGroup(parent); }
 
 QAction*  PythonQtWrapper_QActionGroup::checkedAction(QActionGroup* theWrappedObject) const
 {
-return  theWrappedObject->checkedAction();
-}
-
-bool  PythonQtWrapper_QActionGroup::isVisible(QActionGroup* theWrappedObject) const
-{
-return  theWrappedObject->isVisible();
-}
-
-void PythonQtWrapper_QActionGroup::removeAction(QActionGroup* theWrappedObject, QAction*  a)
-{
- theWrappedObject->removeAction(a);
-}
-
-bool  PythonQtWrapper_QActionGroup::isExclusive(QActionGroup* theWrappedObject) const
-{
-return  theWrappedObject->isExclusive();
-}
-
-QAction*  PythonQtWrapper_QActionGroup::addAction(QActionGroup* theWrappedObject, const QIcon&  icon, const QString&  text)
-{
-return  theWrappedObject->addAction(icon, text);
+  return ( theWrappedObject->checkedAction());
 }
 
 QAction*  PythonQtWrapper_QActionGroup::addAction(QActionGroup* theWrappedObject, QAction*  a)
 {
-return  theWrappedObject->addAction(a);
+  return ( theWrappedObject->addAction(a));
 }
 
 QAction*  PythonQtWrapper_QActionGroup::addAction(QActionGroup* theWrappedObject, const QString&  text)
 {
-return  theWrappedObject->addAction(text);
+  return ( theWrappedObject->addAction(text));
 }
 
 bool  PythonQtWrapper_QActionGroup::isEnabled(QActionGroup* theWrappedObject) const
 {
-return  theWrappedObject->isEnabled();
+  return ( theWrappedObject->isEnabled());
+}
+
+bool  PythonQtWrapper_QActionGroup::isExclusive(QActionGroup* theWrappedObject) const
+{
+  return ( theWrappedObject->isExclusive());
+}
+
+bool  PythonQtWrapper_QActionGroup::isVisible(QActionGroup* theWrappedObject) const
+{
+  return ( theWrappedObject->isVisible());
 }
 
 QList<QAction* >  PythonQtWrapper_QActionGroup::actions(QActionGroup* theWrappedObject) const
 {
-return  theWrappedObject->actions();
+  return ( theWrappedObject->actions());
+}
+
+QAction*  PythonQtWrapper_QActionGroup::addAction(QActionGroup* theWrappedObject, const QIcon&  icon, const QString&  text)
+{
+  return ( theWrappedObject->addAction(icon, text));
+}
+
+void PythonQtWrapper_QActionGroup::removeAction(QActionGroup* theWrappedObject, QAction*  a)
+{
+  ( theWrappedObject->removeAction(a));
 }
 

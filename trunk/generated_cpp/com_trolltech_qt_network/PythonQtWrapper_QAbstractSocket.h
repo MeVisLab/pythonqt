@@ -48,16 +48,16 @@ virtual qint64  writeData(const char*  data, qint64  len);
 
 class PythonQtPublicPromoter_QAbstractSocket : public QAbstractSocket
 { public:
+inline bool  promoted_waitForReadyRead(int  msecs = 30000) { return QAbstractSocket::waitForReadyRead(msecs); }
+inline qint64  promoted_writeData(const char*  data, qint64  len) { return QAbstractSocket::writeData(data, len); }
+inline bool  promoted_atEnd() const { return QAbstractSocket::atEnd(); }
+inline void promoted_close() { QAbstractSocket::close(); }
+inline qint64  promoted_readData(char*  data, qint64  maxlen) { return QAbstractSocket::readData(data, maxlen); }
+inline bool  promoted_canReadLine() const { return QAbstractSocket::canReadLine(); }
+inline bool  promoted_isSequential() const { return QAbstractSocket::isSequential(); }
 inline qint64  promoted_readLineData(char*  data, qint64  maxlen) { return QAbstractSocket::readLineData(data, maxlen); }
 inline qint64  promoted_bytesAvailable() const { return QAbstractSocket::bytesAvailable(); }
-inline bool  promoted_waitForReadyRead(int  msecs = 30000) { return QAbstractSocket::waitForReadyRead(msecs); }
 inline qint64  promoted_bytesToWrite() const { return QAbstractSocket::bytesToWrite(); }
-inline bool  promoted_atEnd() const { return QAbstractSocket::atEnd(); }
-inline qint64  promoted_writeData(const char*  data, qint64  len) { return QAbstractSocket::writeData(data, len); }
-inline bool  promoted_isSequential() const { return QAbstractSocket::isSequential(); }
-inline bool  promoted_canReadLine() const { return QAbstractSocket::canReadLine(); }
-inline qint64  promoted_readData(char*  data, qint64  maxlen) { return QAbstractSocket::readData(data, maxlen); }
-inline void promoted_close() { QAbstractSocket::close(); }
 inline bool  promoted_waitForBytesWritten(int  msecs = 30000) { return QAbstractSocket::waitForBytesWritten(msecs); }
 };
 
@@ -76,38 +76,38 @@ enum SocketState{
 public slots:
 QAbstractSocket* new_QAbstractSocket(QAbstractSocket::SocketType  socketType, QObject*  parent);
 void delete_QAbstractSocket(QAbstractSocket* obj) { delete obj; } 
+   bool  waitForReadyRead(QAbstractSocket* theWrappedObject, int  msecs = 30000);
+   qint64  writeData(QAbstractSocket* theWrappedObject, const char*  data, qint64  len);
+   QHostAddress  localAddress(QAbstractSocket* theWrappedObject) const;
+   void setProxy(QAbstractSocket* theWrappedObject, const QNetworkProxy&  networkProxy);
+   bool  setSocketDescriptor(QAbstractSocket* theWrappedObject, int  socketDescriptor, QAbstractSocket::SocketState  state = QAbstractSocket::ConnectedState, QIODevice::OpenMode  openMode = QIODevice::ReadWrite);
+   bool  atEnd(QAbstractSocket* theWrappedObject) const;
+   void close(QAbstractSocket* theWrappedObject);
+   unsigned short  localPort(QAbstractSocket* theWrappedObject) const;
+   unsigned short  peerPort(QAbstractSocket* theWrappedObject) const;
+   qint64  readData(QAbstractSocket* theWrappedObject, char*  data, qint64  maxlen);
+   void connectToHost(QAbstractSocket* theWrappedObject, const QString&  hostName, unsigned short  port, QIODevice::OpenMode  mode = QIODevice::ReadWrite);
+   bool  flush(QAbstractSocket* theWrappedObject);
+   void setReadBufferSize(QAbstractSocket* theWrappedObject, qint64  size);
+   bool  canReadLine(QAbstractSocket* theWrappedObject) const;
+   void connectToHost(QAbstractSocket* theWrappedObject, const QHostAddress&  address, unsigned short  port, QIODevice::OpenMode  mode = QIODevice::ReadWrite);
+   QNetworkProxy  proxy(QAbstractSocket* theWrappedObject) const;
+   qint64  readBufferSize(QAbstractSocket* theWrappedObject) const;
+   bool  isSequential(QAbstractSocket* theWrappedObject) const;
+   QAbstractSocket::SocketState  state(QAbstractSocket* theWrappedObject) const;
    int  socketDescriptor(QAbstractSocket* theWrappedObject) const;
    QAbstractSocket::SocketError  error(QAbstractSocket* theWrappedObject) const;
    qint64  readLineData(QAbstractSocket* theWrappedObject, char*  data, qint64  maxlen);
    QString  peerName(QAbstractSocket* theWrappedObject) const;
-   unsigned short  peerPort(QAbstractSocket* theWrappedObject) const;
-   qint64  readBufferSize(QAbstractSocket* theWrappedObject) const;
-   qint64  bytesAvailable(QAbstractSocket* theWrappedObject) const;
-   void disconnectFromHost(QAbstractSocket* theWrappedObject);
-   bool  waitForDisconnected(QAbstractSocket* theWrappedObject, int  msecs = 30000);
-   void connectToHost(QAbstractSocket* theWrappedObject, const QHostAddress&  address, unsigned short  port, QIODevice::OpenMode  mode = QIODevice::ReadWrite);
-   bool  waitForReadyRead(QAbstractSocket* theWrappedObject, int  msecs = 30000);
-   qint64  bytesToWrite(QAbstractSocket* theWrappedObject) const;
-   bool  isValid(QAbstractSocket* theWrappedObject) const;
-   void connectToHost(QAbstractSocket* theWrappedObject, const QString&  hostName, unsigned short  port, QIODevice::OpenMode  mode = QIODevice::ReadWrite);
-   void abort(QAbstractSocket* theWrappedObject);
-   unsigned short  localPort(QAbstractSocket* theWrappedObject) const;
-   bool  atEnd(QAbstractSocket* theWrappedObject) const;
    bool  waitForConnected(QAbstractSocket* theWrappedObject, int  msecs = 30000);
-   void setProxy(QAbstractSocket* theWrappedObject, const QNetworkProxy&  networkProxy);
-   QAbstractSocket::SocketType  socketType(QAbstractSocket* theWrappedObject) const;
-   QAbstractSocket::SocketState  state(QAbstractSocket* theWrappedObject) const;
-   bool  flush(QAbstractSocket* theWrappedObject);
-   QHostAddress  localAddress(QAbstractSocket* theWrappedObject) const;
-   qint64  writeData(QAbstractSocket* theWrappedObject, const char*  data, qint64  len);
-   bool  setSocketDescriptor(QAbstractSocket* theWrappedObject, int  socketDescriptor, QAbstractSocket::SocketState  state = QAbstractSocket::ConnectedState, QIODevice::OpenMode  openMode = QIODevice::ReadWrite);
-   bool  isSequential(QAbstractSocket* theWrappedObject) const;
-   bool  canReadLine(QAbstractSocket* theWrappedObject) const;
-   void setReadBufferSize(QAbstractSocket* theWrappedObject, qint64  size);
-   qint64  readData(QAbstractSocket* theWrappedObject, char*  data, qint64  maxlen);
-   QNetworkProxy  proxy(QAbstractSocket* theWrappedObject) const;
-   void close(QAbstractSocket* theWrappedObject);
+   qint64  bytesAvailable(QAbstractSocket* theWrappedObject) const;
+   void abort(QAbstractSocket* theWrappedObject);
    QHostAddress  peerAddress(QAbstractSocket* theWrappedObject) const;
+   qint64  bytesToWrite(QAbstractSocket* theWrappedObject) const;
+   void disconnectFromHost(QAbstractSocket* theWrappedObject);
+   bool  isValid(QAbstractSocket* theWrappedObject) const;
+   bool  waitForDisconnected(QAbstractSocket* theWrappedObject, int  msecs = 30000);
+   QAbstractSocket::SocketType  socketType(QAbstractSocket* theWrappedObject) const;
    bool  waitForBytesWritten(QAbstractSocket* theWrappedObject, int  msecs = 30000);
 };
 

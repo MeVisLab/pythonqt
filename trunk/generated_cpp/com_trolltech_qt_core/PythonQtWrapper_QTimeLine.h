@@ -30,8 +30,8 @@ virtual qreal  valueForTime(int  msec) const;
 
 class PythonQtPublicPromoter_QTimeLine : public QTimeLine
 { public:
-inline void promoted_timerEvent(QTimerEvent*  event) { QTimeLine::timerEvent(event); }
 inline qreal  promoted_valueForTime(int  msec) const { return QTimeLine::valueForTime(msec); }
+inline void promoted_timerEvent(QTimerEvent*  event) { QTimeLine::timerEvent(event); }
 };
 
 class PythonQtWrapper_QTimeLine : public QObject
@@ -47,27 +47,27 @@ enum State{
 public slots:
 QTimeLine* new_QTimeLine(int  duration = 1000, QObject*  parent = 0);
 void delete_QTimeLine(QTimeLine* obj) { delete obj; } 
-   void setEndFrame(QTimeLine* theWrappedObject, int  frame);
-   void setStartFrame(QTimeLine* theWrappedObject, int  frame);
+   int  frameForTime(QTimeLine* theWrappedObject, int  msec) const;
+   qreal  valueForTime(QTimeLine* theWrappedObject, int  msec) const;
    void timerEvent(QTimeLine* theWrappedObject, QTimerEvent*  event);
-   void setUpdateInterval(QTimeLine* theWrappedObject, int  interval);
-   int  updateInterval(QTimeLine* theWrappedObject) const;
+   QTimeLine::CurveShape  curveShape(QTimeLine* theWrappedObject) const;
+   void setDuration(QTimeLine* theWrappedObject, int  duration);
+   QTimeLine::State  state(QTimeLine* theWrappedObject) const;
+   void setStartFrame(QTimeLine* theWrappedObject, int  frame);
+   void setFrameRange(QTimeLine* theWrappedObject, int  startFrame, int  endFrame);
+   void setEndFrame(QTimeLine* theWrappedObject, int  frame);
+   void setLoopCount(QTimeLine* theWrappedObject, int  count);
    int  duration(QTimeLine* theWrappedObject) const;
-   QTimeLine::Direction  direction(QTimeLine* theWrappedObject) const;
-   qreal  currentValue(QTimeLine* theWrappedObject) const;
    int  loopCount(QTimeLine* theWrappedObject) const;
    void setDirection(QTimeLine* theWrappedObject, QTimeLine::Direction  direction);
-   int  endFrame(QTimeLine* theWrappedObject) const;
-   void setDuration(QTimeLine* theWrappedObject, int  duration);
-   QTimeLine::CurveShape  curveShape(QTimeLine* theWrappedObject) const;
-   QTimeLine::State  state(QTimeLine* theWrappedObject) const;
-   qreal  valueForTime(QTimeLine* theWrappedObject, int  msec) const;
-   void setLoopCount(QTimeLine* theWrappedObject, int  count);
-   int  frameForTime(QTimeLine* theWrappedObject, int  msec) const;
+   QTimeLine::Direction  direction(QTimeLine* theWrappedObject) const;
    void setCurveShape(QTimeLine* theWrappedObject, QTimeLine::CurveShape  shape);
-   void setFrameRange(QTimeLine* theWrappedObject, int  startFrame, int  endFrame);
+   void setUpdateInterval(QTimeLine* theWrappedObject, int  interval);
    int  startFrame(QTimeLine* theWrappedObject) const;
    int  currentTime(QTimeLine* theWrappedObject) const;
+   qreal  currentValue(QTimeLine* theWrappedObject) const;
+   int  endFrame(QTimeLine* theWrappedObject) const;
+   int  updateInterval(QTimeLine* theWrappedObject) const;
    int  currentFrame(QTimeLine* theWrappedObject) const;
 };
 

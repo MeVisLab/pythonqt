@@ -14,9 +14,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setDir");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QUrlInfo::staticMetaObject,
-      "setDir(QUrlInfo*,bool )");
+    static const char* argumentList[] ={"" , "bool"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&b};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -32,9 +31,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setFile");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QUrlInfo::staticMetaObject,
-      "setFile(QUrlInfo*,bool )");
+    static const char* argumentList[] ={"" , "bool"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&b};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -50,9 +48,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setGroup");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QUrlInfo::staticMetaObject,
-      "setGroup(QUrlInfo*,const QString& )");
+    static const char* argumentList[] ={"" , "const QString&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&s};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -68,9 +65,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setLastModified");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QUrlInfo::staticMetaObject,
-      "setLastModified(QUrlInfo*,const QDateTime& )");
+    static const char* argumentList[] ={"" , "const QDateTime&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&dt};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -86,9 +82,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setName");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QUrlInfo::staticMetaObject,
-      "setName(QUrlInfo*,const QString& )");
+    static const char* argumentList[] ={"" , "const QString&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&name};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -104,9 +99,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setOwner");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QUrlInfo::staticMetaObject,
-      "setOwner(QUrlInfo*,const QString& )");
+    static const char* argumentList[] ={"" , "const QString&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&s};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -122,9 +116,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setPermissions");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QUrlInfo::staticMetaObject,
-      "setPermissions(QUrlInfo*,int )");
+    static const char* argumentList[] ={"" , "int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&p};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -140,9 +133,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setReadable");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QUrlInfo::staticMetaObject,
-      "setReadable(QUrlInfo*,bool )");
+    static const char* argumentList[] ={"" , "bool"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&b};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -158,9 +150,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setSize");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QUrlInfo::staticMetaObject,
-      "setSize(QUrlInfo*,qint64 )");
+    static const char* argumentList[] ={"" , "qint64"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&size};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -176,9 +167,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setSymLink");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QUrlInfo::staticMetaObject,
-      "setSymLink(QUrlInfo*,bool )");
+    static const char* argumentList[] ={"" , "bool"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&b};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -194,9 +184,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setWritable");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QUrlInfo::staticMetaObject,
-      "setWritable(QUrlInfo*,bool )");
+    static const char* argumentList[] ={"" , "bool"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&b};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -222,153 +211,153 @@ QUrlInfo* PythonQtWrapper_QUrlInfo::new_QUrlInfo(const QUrlInfo&  ui)
 { 
 return new PythonQtShell_QUrlInfo(ui); }
 
-bool  PythonQtWrapper_QUrlInfo::isExecutable(QUrlInfo* theWrappedObject) const
-{
-return  theWrappedObject->isExecutable();
-}
-
-void PythonQtWrapper_QUrlInfo::setFile(QUrlInfo* theWrappedObject, bool  b)
-{
- ((PythonQtPublicPromoter_QUrlInfo*)theWrappedObject)->promoted_setFile(b);
-}
-
-QString  PythonQtWrapper_QUrlInfo::owner(QUrlInfo* theWrappedObject) const
-{
-return  theWrappedObject->owner();
-}
-
-QDateTime  PythonQtWrapper_QUrlInfo::lastRead(QUrlInfo* theWrappedObject) const
-{
-return  theWrappedObject->lastRead();
-}
-
-void PythonQtWrapper_QUrlInfo::setGroup(QUrlInfo* theWrappedObject, const QString&  s)
-{
- ((PythonQtPublicPromoter_QUrlInfo*)theWrappedObject)->promoted_setGroup(s);
-}
-
-bool  PythonQtWrapper_QUrlInfo::operator_equal(QUrlInfo* theWrappedObject, const QUrlInfo&  i) const
-{
-return  (*theWrappedObject)== i;
-}
-
 bool  PythonQtWrapper_QUrlInfo::static_QUrlInfo_greaterThan(const QUrlInfo&  i1, const QUrlInfo&  i2, int  sortBy)
 {
-return QUrlInfo::greaterThan(i1, i2, sortBy);
-}
-
-bool  PythonQtWrapper_QUrlInfo::isSymLink(QUrlInfo* theWrappedObject) const
-{
-return  theWrappedObject->isSymLink();
-}
-
-qint64  PythonQtWrapper_QUrlInfo::size(QUrlInfo* theWrappedObject) const
-{
-return  theWrappedObject->size();
-}
-
-int  PythonQtWrapper_QUrlInfo::permissions(QUrlInfo* theWrappedObject) const
-{
-return  theWrappedObject->permissions();
-}
-
-void PythonQtWrapper_QUrlInfo::setPermissions(QUrlInfo* theWrappedObject, int  p)
-{
- ((PythonQtPublicPromoter_QUrlInfo*)theWrappedObject)->promoted_setPermissions(p);
-}
-
-bool  PythonQtWrapper_QUrlInfo::isValid(QUrlInfo* theWrappedObject) const
-{
-return  theWrappedObject->isValid();
-}
-
-void PythonQtWrapper_QUrlInfo::setSize(QUrlInfo* theWrappedObject, qint64  size)
-{
- ((PythonQtPublicPromoter_QUrlInfo*)theWrappedObject)->promoted_setSize(size);
-}
-
-QDateTime  PythonQtWrapper_QUrlInfo::lastModified(QUrlInfo* theWrappedObject) const
-{
-return  theWrappedObject->lastModified();
-}
-
-bool  PythonQtWrapper_QUrlInfo::isDir(QUrlInfo* theWrappedObject) const
-{
-return  theWrappedObject->isDir();
+  return (QUrlInfo::greaterThan(i1, i2, sortBy));
 }
 
 bool  PythonQtWrapper_QUrlInfo::static_QUrlInfo_lessThan(const QUrlInfo&  i1, const QUrlInfo&  i2, int  sortBy)
 {
-return QUrlInfo::lessThan(i1, i2, sortBy);
+  return (QUrlInfo::lessThan(i1, i2, sortBy));
 }
 
-bool  PythonQtWrapper_QUrlInfo::isFile(QUrlInfo* theWrappedObject) const
+bool  PythonQtWrapper_QUrlInfo::isSymLink(QUrlInfo* theWrappedObject) const
 {
-return  theWrappedObject->isFile();
+  return ( theWrappedObject->isSymLink());
 }
 
-void PythonQtWrapper_QUrlInfo::setOwner(QUrlInfo* theWrappedObject, const QString&  s)
+bool  PythonQtWrapper_QUrlInfo::isValid(QUrlInfo* theWrappedObject) const
 {
- ((PythonQtPublicPromoter_QUrlInfo*)theWrappedObject)->promoted_setOwner(s);
-}
-
-bool  PythonQtWrapper_QUrlInfo::static_QUrlInfo_equal(const QUrlInfo&  i1, const QUrlInfo&  i2, int  sortBy)
-{
-return QUrlInfo::equal(i1, i2, sortBy);
-}
-
-void PythonQtWrapper_QUrlInfo::setDir(QUrlInfo* theWrappedObject, bool  b)
-{
- ((PythonQtPublicPromoter_QUrlInfo*)theWrappedObject)->promoted_setDir(b);
-}
-
-void PythonQtWrapper_QUrlInfo::setSymLink(QUrlInfo* theWrappedObject, bool  b)
-{
- ((PythonQtPublicPromoter_QUrlInfo*)theWrappedObject)->promoted_setSymLink(b);
-}
-
-bool  PythonQtWrapper_QUrlInfo::isReadable(QUrlInfo* theWrappedObject) const
-{
-return  theWrappedObject->isReadable();
-}
-
-void PythonQtWrapper_QUrlInfo::setLastModified(QUrlInfo* theWrappedObject, const QDateTime&  dt)
-{
- ((PythonQtPublicPromoter_QUrlInfo*)theWrappedObject)->promoted_setLastModified(dt);
+  return ( theWrappedObject->isValid());
 }
 
 QString  PythonQtWrapper_QUrlInfo::group(QUrlInfo* theWrappedObject) const
 {
-return  theWrappedObject->group();
+  return ( theWrappedObject->group());
+}
+
+bool  PythonQtWrapper_QUrlInfo::isReadable(QUrlInfo* theWrappedObject) const
+{
+  return ( theWrappedObject->isReadable());
+}
+
+void PythonQtWrapper_QUrlInfo::setSize(QUrlInfo* theWrappedObject, qint64  size)
+{
+  ( ((PythonQtPublicPromoter_QUrlInfo*)theWrappedObject)->promoted_setSize(size));
+}
+
+QDateTime  PythonQtWrapper_QUrlInfo::lastModified(QUrlInfo* theWrappedObject) const
+{
+  return ( theWrappedObject->lastModified());
+}
+
+void PythonQtWrapper_QUrlInfo::setSymLink(QUrlInfo* theWrappedObject, bool  b)
+{
+  ( ((PythonQtPublicPromoter_QUrlInfo*)theWrappedObject)->promoted_setSymLink(b));
+}
+
+bool  PythonQtWrapper_QUrlInfo::isDir(QUrlInfo* theWrappedObject) const
+{
+  return ( theWrappedObject->isDir());
+}
+
+bool  PythonQtWrapper_QUrlInfo::isFile(QUrlInfo* theWrappedObject) const
+{
+  return ( theWrappedObject->isFile());
+}
+
+bool  PythonQtWrapper_QUrlInfo::static_QUrlInfo_equal(const QUrlInfo&  i1, const QUrlInfo&  i2, int  sortBy)
+{
+  return (QUrlInfo::equal(i1, i2, sortBy));
+}
+
+QDateTime  PythonQtWrapper_QUrlInfo::lastRead(QUrlInfo* theWrappedObject) const
+{
+  return ( theWrappedObject->lastRead());
+}
+
+void PythonQtWrapper_QUrlInfo::setDir(QUrlInfo* theWrappedObject, bool  b)
+{
+  ( ((PythonQtPublicPromoter_QUrlInfo*)theWrappedObject)->promoted_setDir(b));
+}
+
+void PythonQtWrapper_QUrlInfo::setLastModified(QUrlInfo* theWrappedObject, const QDateTime&  dt)
+{
+  ( ((PythonQtPublicPromoter_QUrlInfo*)theWrappedObject)->promoted_setLastModified(dt));
 }
 
 void PythonQtWrapper_QUrlInfo::setName(QUrlInfo* theWrappedObject, const QString&  name)
 {
- ((PythonQtPublicPromoter_QUrlInfo*)theWrappedObject)->promoted_setName(name);
+  ( ((PythonQtPublicPromoter_QUrlInfo*)theWrappedObject)->promoted_setName(name));
 }
 
 void PythonQtWrapper_QUrlInfo::setReadable(QUrlInfo* theWrappedObject, bool  b)
 {
- ((PythonQtPublicPromoter_QUrlInfo*)theWrappedObject)->promoted_setReadable(b);
+  ( ((PythonQtPublicPromoter_QUrlInfo*)theWrappedObject)->promoted_setReadable(b));
 }
 
 QString  PythonQtWrapper_QUrlInfo::name(QUrlInfo* theWrappedObject) const
 {
-return  theWrappedObject->name();
+  return ( theWrappedObject->name());
 }
 
 void PythonQtWrapper_QUrlInfo::setWritable(QUrlInfo* theWrappedObject, bool  b)
 {
- ((PythonQtPublicPromoter_QUrlInfo*)theWrappedObject)->promoted_setWritable(b);
+  ( ((PythonQtPublicPromoter_QUrlInfo*)theWrappedObject)->promoted_setWritable(b));
 }
 
 bool  PythonQtWrapper_QUrlInfo::isWritable(QUrlInfo* theWrappedObject) const
 {
-return  theWrappedObject->isWritable();
+  return ( theWrappedObject->isWritable());
 }
 
 void PythonQtWrapper_QUrlInfo::setLastRead(QUrlInfo* theWrappedObject, const QDateTime&  dt)
 {
- theWrappedObject->setLastRead(dt);
+  ( theWrappedObject->setLastRead(dt));
+}
+
+void PythonQtWrapper_QUrlInfo::setPermissions(QUrlInfo* theWrappedObject, int  p)
+{
+  ( ((PythonQtPublicPromoter_QUrlInfo*)theWrappedObject)->promoted_setPermissions(p));
+}
+
+bool  PythonQtWrapper_QUrlInfo::isExecutable(QUrlInfo* theWrappedObject) const
+{
+  return ( theWrappedObject->isExecutable());
+}
+
+void PythonQtWrapper_QUrlInfo::setFile(QUrlInfo* theWrappedObject, bool  b)
+{
+  ( ((PythonQtPublicPromoter_QUrlInfo*)theWrappedObject)->promoted_setFile(b));
+}
+
+qint64  PythonQtWrapper_QUrlInfo::size(QUrlInfo* theWrappedObject) const
+{
+  return ( theWrappedObject->size());
+}
+
+QString  PythonQtWrapper_QUrlInfo::owner(QUrlInfo* theWrappedObject) const
+{
+  return ( theWrappedObject->owner());
+}
+
+int  PythonQtWrapper_QUrlInfo::permissions(QUrlInfo* theWrappedObject) const
+{
+  return ( theWrappedObject->permissions());
+}
+
+void PythonQtWrapper_QUrlInfo::setGroup(QUrlInfo* theWrappedObject, const QString&  s)
+{
+  ( ((PythonQtPublicPromoter_QUrlInfo*)theWrappedObject)->promoted_setGroup(s));
+}
+
+bool  PythonQtWrapper_QUrlInfo::operator_equal(QUrlInfo* theWrappedObject, const QUrlInfo&  i) const
+{
+  return ( (*theWrappedObject)== i);
+}
+
+void PythonQtWrapper_QUrlInfo::setOwner(QUrlInfo* theWrappedObject, const QString&  s)
+{
+  ( ((PythonQtPublicPromoter_QUrlInfo*)theWrappedObject)->promoted_setOwner(s));
 }
 

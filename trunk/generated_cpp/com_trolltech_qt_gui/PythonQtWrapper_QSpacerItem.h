@@ -57,10 +57,10 @@ void delete_QSpacerItem(QSpacerItem* obj) { delete obj; }
    QRect  geometry(QSpacerItem* theWrappedObject) const;
    void setGeometry(QSpacerItem* theWrappedObject, const QRect&  arg__1);
    Qt::Orientations  expandingDirections(QSpacerItem* theWrappedObject) const;
+   void changeSize(QSpacerItem* theWrappedObject, int  w, int  h, QSizePolicy::Policy  hData = QSizePolicy::Minimum, QSizePolicy::Policy  vData = QSizePolicy::Minimum);
    QSize  sizeHint(QSpacerItem* theWrappedObject) const;
    QSize  maximumSize(QSpacerItem* theWrappedObject) const;
    bool  isEmpty(QSpacerItem* theWrappedObject) const;
-   void changeSize(QSpacerItem* theWrappedObject, int  w, int  h, QSizePolicy::Policy  hData = QSizePolicy::Minimum, QSizePolicy::Policy  vData = QSizePolicy::Minimum);
    QSize  minimumSize(QSpacerItem* theWrappedObject) const;
    QSpacerItem*  spacerItem(QSpacerItem* theWrappedObject);
 };

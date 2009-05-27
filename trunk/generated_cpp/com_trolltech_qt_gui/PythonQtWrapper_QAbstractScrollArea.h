@@ -86,22 +86,22 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QAbstractScrollArea : public QAbstractScrollArea
 { public:
-inline void promoted_dropEvent(QDropEvent*  arg__1) { QAbstractScrollArea::dropEvent(arg__1); }
-inline void promoted_scrollContentsBy(int  dx, int  dy) { QAbstractScrollArea::scrollContentsBy(dx, dy); }
+inline void promoted_mouseMoveEvent(QMouseEvent*  arg__1) { QAbstractScrollArea::mouseMoveEvent(arg__1); }
 inline void promoted_dragEnterEvent(QDragEnterEvent*  arg__1) { QAbstractScrollArea::dragEnterEvent(arg__1); }
-inline void promoted_wheelEvent(QWheelEvent*  arg__1) { QAbstractScrollArea::wheelEvent(arg__1); }
-inline void promoted_keyPressEvent(QKeyEvent*  arg__1) { QAbstractScrollArea::keyPressEvent(arg__1); }
-inline void promoted_mousePressEvent(QMouseEvent*  arg__1) { QAbstractScrollArea::mousePressEvent(arg__1); }
-inline bool  promoted_viewportEvent(QEvent*  arg__1) { return QAbstractScrollArea::viewportEvent(arg__1); }
+inline void promoted_mouseDoubleClickEvent(QMouseEvent*  arg__1) { QAbstractScrollArea::mouseDoubleClickEvent(arg__1); }
 inline void promoted_dragMoveEvent(QDragMoveEvent*  arg__1) { QAbstractScrollArea::dragMoveEvent(arg__1); }
 inline bool  promoted_event(QEvent*  arg__1) { return QAbstractScrollArea::event(arg__1); }
-inline void promoted_mouseReleaseEvent(QMouseEvent*  arg__1) { QAbstractScrollArea::mouseReleaseEvent(arg__1); }
-inline void promoted_mouseMoveEvent(QMouseEvent*  arg__1) { QAbstractScrollArea::mouseMoveEvent(arg__1); }
+inline void promoted_scrollContentsBy(int  dx, int  dy) { QAbstractScrollArea::scrollContentsBy(dx, dy); }
+inline void promoted_mousePressEvent(QMouseEvent*  arg__1) { QAbstractScrollArea::mousePressEvent(arg__1); }
 inline void promoted_paintEvent(QPaintEvent*  arg__1) { QAbstractScrollArea::paintEvent(arg__1); }
+inline void promoted_dropEvent(QDropEvent*  arg__1) { QAbstractScrollArea::dropEvent(arg__1); }
 inline void promoted_resizeEvent(QResizeEvent*  arg__1) { QAbstractScrollArea::resizeEvent(arg__1); }
-inline void promoted_contextMenuEvent(QContextMenuEvent*  arg__1) { QAbstractScrollArea::contextMenuEvent(arg__1); }
-inline void promoted_mouseDoubleClickEvent(QMouseEvent*  arg__1) { QAbstractScrollArea::mouseDoubleClickEvent(arg__1); }
 inline void promoted_dragLeaveEvent(QDragLeaveEvent*  arg__1) { QAbstractScrollArea::dragLeaveEvent(arg__1); }
+inline void promoted_keyPressEvent(QKeyEvent*  arg__1) { QAbstractScrollArea::keyPressEvent(arg__1); }
+inline bool  promoted_viewportEvent(QEvent*  arg__1) { return QAbstractScrollArea::viewportEvent(arg__1); }
+inline void promoted_mouseReleaseEvent(QMouseEvent*  arg__1) { QAbstractScrollArea::mouseReleaseEvent(arg__1); }
+inline void promoted_wheelEvent(QWheelEvent*  arg__1) { QAbstractScrollArea::wheelEvent(arg__1); }
+inline void promoted_contextMenuEvent(QContextMenuEvent*  arg__1) { QAbstractScrollArea::contextMenuEvent(arg__1); }
 };
 
 class PythonQtWrapper_QAbstractScrollArea : public QObject
@@ -110,39 +110,39 @@ public:
 public slots:
 QAbstractScrollArea* new_QAbstractScrollArea(QWidget*  parent = 0);
 void delete_QAbstractScrollArea(QAbstractScrollArea* obj) { delete obj; } 
-   QSize  sizeHint(QAbstractScrollArea* theWrappedObject) const;
+   Qt::ScrollBarPolicy  horizontalScrollBarPolicy(QAbstractScrollArea* theWrappedObject) const;
    QSize  minimumSizeHint(QAbstractScrollArea* theWrappedObject) const;
-   void setCornerWidget(QAbstractScrollArea* theWrappedObject, QWidget*  widget);
-   void dropEvent(QAbstractScrollArea* theWrappedObject, QDropEvent*  arg__1);
-   QScrollBar*  verticalScrollBar(QAbstractScrollArea* theWrappedObject) const;
-   void setHorizontalScrollBar(QAbstractScrollArea* theWrappedObject, QScrollBar*  scrollbar);
-   void setVerticalScrollBarPolicy(QAbstractScrollArea* theWrappedObject, Qt::ScrollBarPolicy  arg__1);
-   void setHorizontalScrollBarPolicy(QAbstractScrollArea* theWrappedObject, Qt::ScrollBarPolicy  arg__1);
-   Qt::ScrollBarPolicy  verticalScrollBarPolicy(QAbstractScrollArea* theWrappedObject) const;
-   QSize  maximumViewportSize(QAbstractScrollArea* theWrappedObject) const;
-   void scrollContentsBy(QAbstractScrollArea* theWrappedObject, int  dx, int  dy);
-   QScrollBar*  horizontalScrollBar(QAbstractScrollArea* theWrappedObject) const;
-   void dragEnterEvent(QAbstractScrollArea* theWrappedObject, QDragEnterEvent*  arg__1);
-   void wheelEvent(QAbstractScrollArea* theWrappedObject, QWheelEvent*  arg__1);
+   QWidget*  viewport(QAbstractScrollArea* theWrappedObject) const;
+   void mouseMoveEvent(QAbstractScrollArea* theWrappedObject, QMouseEvent*  arg__1);
    QWidget*  cornerWidget(QAbstractScrollArea* theWrappedObject) const;
-   void keyPressEvent(QAbstractScrollArea* theWrappedObject, QKeyEvent*  arg__1);
-   void mousePressEvent(QAbstractScrollArea* theWrappedObject, QMouseEvent*  arg__1);
-   bool  viewportEvent(QAbstractScrollArea* theWrappedObject, QEvent*  arg__1);
+   void setHorizontalScrollBar(QAbstractScrollArea* theWrappedObject, QScrollBar*  scrollbar);
+   Qt::ScrollBarPolicy  verticalScrollBarPolicy(QAbstractScrollArea* theWrappedObject) const;
+   void setHorizontalScrollBarPolicy(QAbstractScrollArea* theWrappedObject, Qt::ScrollBarPolicy  arg__1);
+   void dragEnterEvent(QAbstractScrollArea* theWrappedObject, QDragEnterEvent*  arg__1);
+   void mouseDoubleClickEvent(QAbstractScrollArea* theWrappedObject, QMouseEvent*  arg__1);
+   QScrollBar*  verticalScrollBar(QAbstractScrollArea* theWrappedObject) const;
+   void setVerticalScrollBarPolicy(QAbstractScrollArea* theWrappedObject, Qt::ScrollBarPolicy  arg__1);
+   QSize  maximumViewportSize(QAbstractScrollArea* theWrappedObject) const;
    void dragMoveEvent(QAbstractScrollArea* theWrappedObject, QDragMoveEvent*  arg__1);
    bool  event(QAbstractScrollArea* theWrappedObject, QEvent*  arg__1);
    QList<QWidget* >  scrollBarWidgets(QAbstractScrollArea* theWrappedObject, Qt::Alignment  alignment);
-   void mouseReleaseEvent(QAbstractScrollArea* theWrappedObject, QMouseEvent*  arg__1);
-   void mouseMoveEvent(QAbstractScrollArea* theWrappedObject, QMouseEvent*  arg__1);
+   QSize  sizeHint(QAbstractScrollArea* theWrappedObject) const;
+   void scrollContentsBy(QAbstractScrollArea* theWrappedObject, int  dx, int  dy);
+   void mousePressEvent(QAbstractScrollArea* theWrappedObject, QMouseEvent*  arg__1);
    void paintEvent(QAbstractScrollArea* theWrappedObject, QPaintEvent*  arg__1);
+   void dropEvent(QAbstractScrollArea* theWrappedObject, QDropEvent*  arg__1);
    void resizeEvent(QAbstractScrollArea* theWrappedObject, QResizeEvent*  arg__1);
-   void setVerticalScrollBar(QAbstractScrollArea* theWrappedObject, QScrollBar*  scrollbar);
-   void contextMenuEvent(QAbstractScrollArea* theWrappedObject, QContextMenuEvent*  arg__1);
-   void mouseDoubleClickEvent(QAbstractScrollArea* theWrappedObject, QMouseEvent*  arg__1);
-   QWidget*  viewport(QAbstractScrollArea* theWrappedObject) const;
-   void setViewport(QAbstractScrollArea* theWrappedObject, QWidget*  widget);
-   void addScrollBarWidget(QAbstractScrollArea* theWrappedObject, QWidget*  widget, Qt::Alignment  alignment);
-   Qt::ScrollBarPolicy  horizontalScrollBarPolicy(QAbstractScrollArea* theWrappedObject) const;
    void dragLeaveEvent(QAbstractScrollArea* theWrappedObject, QDragLeaveEvent*  arg__1);
+   void addScrollBarWidget(QAbstractScrollArea* theWrappedObject, QWidget*  widget, Qt::Alignment  alignment);
+   void keyPressEvent(QAbstractScrollArea* theWrappedObject, QKeyEvent*  arg__1);
+   bool  viewportEvent(QAbstractScrollArea* theWrappedObject, QEvent*  arg__1);
+   QScrollBar*  horizontalScrollBar(QAbstractScrollArea* theWrappedObject) const;
+   void mouseReleaseEvent(QAbstractScrollArea* theWrappedObject, QMouseEvent*  arg__1);
+   void wheelEvent(QAbstractScrollArea* theWrappedObject, QWheelEvent*  arg__1);
+   void setCornerWidget(QAbstractScrollArea* theWrappedObject, QWidget*  widget);
+   void setVerticalScrollBar(QAbstractScrollArea* theWrappedObject, QScrollBar*  scrollbar);
+   void setViewport(QAbstractScrollArea* theWrappedObject, QWidget*  widget);
+   void contextMenuEvent(QAbstractScrollArea* theWrappedObject, QContextMenuEvent*  arg__1);
 };
 
 #endif // PYTHONQTWRAPPER_QABSTRACTSCROLLAREA_H

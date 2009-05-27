@@ -32,9 +32,9 @@ class PythonQtPublicPromoter_QXmlInputSource : public QXmlInputSource
 inline void promoted_fetchData() { QXmlInputSource::fetchData(); }
 inline void promoted_setData(const QByteArray&  dat) { QXmlInputSource::setData(dat); }
 inline void promoted_setData(const QString&  dat) { QXmlInputSource::setData(dat); }
+inline QChar  promoted_next() { return QXmlInputSource::next(); }
 inline QString  promoted_fromRawData(const QByteArray&  data, bool  beginning = false) { return QXmlInputSource::fromRawData(data, beginning); }
 inline QString  promoted_data() const { return QXmlInputSource::data(); }
-inline QChar  promoted_next() { return QXmlInputSource::next(); }
 inline void promoted_reset() { QXmlInputSource::reset(); }
 };
 
@@ -48,9 +48,9 @@ void delete_QXmlInputSource(QXmlInputSource* obj) { delete obj; }
    void fetchData(QXmlInputSource* theWrappedObject);
    void setData(QXmlInputSource* theWrappedObject, const QByteArray&  dat);
    void setData(QXmlInputSource* theWrappedObject, const QString&  dat);
+   QChar  next(QXmlInputSource* theWrappedObject);
    QString  fromRawData(QXmlInputSource* theWrappedObject, const QByteArray&  data, bool  beginning = false);
    QString  data(QXmlInputSource* theWrappedObject) const;
-   QChar  next(QXmlInputSource* theWrappedObject);
    void reset(QXmlInputSource* theWrappedObject);
 };
 

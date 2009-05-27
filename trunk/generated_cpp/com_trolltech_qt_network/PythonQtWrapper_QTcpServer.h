@@ -35,8 +35,8 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QTcpServer : public QTcpServer
 { public:
-inline bool  promoted_hasPendingConnections() const { return QTcpServer::hasPendingConnections(); }
 inline void promoted_incomingConnection(int  handle) { QTcpServer::incomingConnection(handle); }
+inline bool  promoted_hasPendingConnections() const { return QTcpServer::hasPendingConnections(); }
 inline QTcpSocket*  promoted_nextPendingConnection() { return QTcpServer::nextPendingConnection(); }
 };
 
@@ -46,23 +46,23 @@ public:
 public slots:
 QTcpServer* new_QTcpServer(QObject*  parent = 0);
 void delete_QTcpServer(QTcpServer* obj) { delete obj; } 
-   bool  hasPendingConnections(QTcpServer* theWrappedObject) const;
-   void close(QTcpServer* theWrappedObject);
+   int  socketDescriptor(QTcpServer* theWrappedObject) const;
    QAbstractSocket::SocketError  serverError(QTcpServer* theWrappedObject) const;
+   unsigned short  serverPort(QTcpServer* theWrappedObject) const;
+   bool  isListening(QTcpServer* theWrappedObject) const;
+   QString  errorString(QTcpServer* theWrappedObject) const;
+   QNetworkProxy  proxy(QTcpServer* theWrappedObject) const;
+   bool  waitForNewConnection(QTcpServer* theWrappedObject, int  msec = 0, bool*  timedOut = 0);
+   bool  setSocketDescriptor(QTcpServer* theWrappedObject, int  socketDescriptor);
    void incomingConnection(QTcpServer* theWrappedObject, int  handle);
-   void setProxy(QTcpServer* theWrappedObject, const QNetworkProxy&  networkProxy);
+   int  maxPendingConnections(QTcpServer* theWrappedObject) const;
+   void close(QTcpServer* theWrappedObject);
    bool  listen(QTcpServer* theWrappedObject, const QHostAddress&  address = QHostAddress::Any, unsigned short  port = 0);
+   void setProxy(QTcpServer* theWrappedObject, const QNetworkProxy&  networkProxy);
+   bool  hasPendingConnections(QTcpServer* theWrappedObject) const;
    QTcpSocket*  nextPendingConnection(QTcpServer* theWrappedObject);
    void setMaxPendingConnections(QTcpServer* theWrappedObject, int  numConnections);
    QHostAddress  serverAddress(QTcpServer* theWrappedObject) const;
-   bool  waitForNewConnection(QTcpServer* theWrappedObject, int  msec = 0, bool*  timedOut = 0);
-   int  socketDescriptor(QTcpServer* theWrappedObject) const;
-   QString  errorString(QTcpServer* theWrappedObject) const;
-   int  maxPendingConnections(QTcpServer* theWrappedObject) const;
-   unsigned short  serverPort(QTcpServer* theWrappedObject) const;
-   bool  isListening(QTcpServer* theWrappedObject) const;
-   QNetworkProxy  proxy(QTcpServer* theWrappedObject) const;
-   bool  setSocketDescriptor(QTcpServer* theWrappedObject, int  socketDescriptor);
 };
 
 #endif // PYTHONQTWRAPPER_QTCPSERVER_H

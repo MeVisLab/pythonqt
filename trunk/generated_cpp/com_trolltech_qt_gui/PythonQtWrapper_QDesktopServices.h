@@ -28,11 +28,11 @@ enum StandardLocation{
 public slots:
 QDesktopServices* new_QDesktopServices();
 void delete_QDesktopServices(QDesktopServices* obj) { delete obj; } 
-   QString  static_QDesktopServices_storageLocation(QDesktopServices::StandardLocation  type);
+   bool  static_QDesktopServices_openUrl(const QUrl&  url);
    void static_QDesktopServices_unsetUrlHandler(const QString&  scheme);
+   QString  static_QDesktopServices_storageLocation(QDesktopServices::StandardLocation  type);
    QString  static_QDesktopServices_displayName(QDesktopServices::StandardLocation  type);
    void static_QDesktopServices_setUrlHandler(const QString&  scheme, QObject*  receiver, const char*  method);
-   bool  static_QDesktopServices_openUrl(const QUrl&  url);
 };
 
 #endif // PYTHONQTWRAPPER_QDESKTOPSERVICES_H

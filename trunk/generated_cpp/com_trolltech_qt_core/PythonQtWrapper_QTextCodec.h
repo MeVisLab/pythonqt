@@ -35,12 +35,11 @@ class PythonQtWrapper_QTextCodec : public QObject
 { Q_OBJECT
 public:
 Q_ENUMS(ConversionFlag )
+Q_FLAGS(ConversionFlags )
 enum ConversionFlag{
   DefaultConversion = QTextCodec::DefaultConversion,   ConvertInvalidToNull = QTextCodec::ConvertInvalidToNull,   IgnoreHeader = QTextCodec::IgnoreHeader};
+Q_DECLARE_FLAGS(ConversionFlags, ConversionFlag)
 public slots:
-   QList<QByteArray >  static_QTextCodec_availableCodecs();
-   QTextCodec*  static_QTextCodec_codecForLocale();
-   void static_QTextCodec_setCodecForCStrings(QTextCodec*  c);
    QTextCodec*  static_QTextCodec_codecForHtml(const QByteArray&  ba);
    QByteArray  fromUnicode(QTextCodec* theWrappedObject, const QString&  uc) const;
    QTextCodec*  static_QTextCodec_codecForCStrings();
@@ -57,6 +56,9 @@ public slots:
    void static_QTextCodec_setCodecForLocale(QTextCodec*  c);
    QTextCodec*  static_QTextCodec_codecForHtml(const QByteArray&  ba, QTextCodec*  defaultCodec);
    QTextCodec*  static_QTextCodec_codecForMib(int  mib);
+   QList<QByteArray >  static_QTextCodec_availableCodecs();
+   QTextCodec*  static_QTextCodec_codecForLocale();
+   void static_QTextCodec_setCodecForCStrings(QTextCodec*  c);
 };
 
 #endif // PYTHONQTWRAPPER_QTEXTCODEC_H

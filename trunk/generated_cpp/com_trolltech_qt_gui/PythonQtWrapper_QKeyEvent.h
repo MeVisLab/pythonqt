@@ -24,15 +24,15 @@ public:
 public slots:
 QKeyEvent* new_QKeyEvent(QEvent::Type  type, int  key, Qt::KeyboardModifiers  modifiers, const QString&  text = QString(), bool  autorep = false, ushort  count = 1);
 void delete_QKeyEvent(QKeyEvent* obj) { delete obj; } 
-   unsigned int  nativeScanCode(QKeyEvent* theWrappedObject) const;
+   QString  text(QKeyEvent* theWrappedObject) const;
    unsigned int  nativeVirtualKey(QKeyEvent* theWrappedObject) const;
+   unsigned int  nativeModifiers(QKeyEvent* theWrappedObject) const;
    bool  hasExtendedInfo(QKeyEvent* theWrappedObject) const;
    int  key(QKeyEvent* theWrappedObject) const;
    QKeyEvent*  static_QKeyEvent_createExtendedKeyEvent(QEvent::Type  type, int  key, Qt::KeyboardModifiers  modifiers, unsigned int  nativeScanCode, unsigned int  nativeVirtualKey, unsigned int  nativeModifiers, const QString&  text = QString(), bool  autorep = false, ushort  count = 1);
    bool  isAutoRepeat(QKeyEvent* theWrappedObject) const;
    Qt::KeyboardModifiers  modifiers(QKeyEvent* theWrappedObject) const;
-   QString  text(QKeyEvent* theWrappedObject) const;
-   unsigned int  nativeModifiers(QKeyEvent* theWrappedObject) const;
+   unsigned int  nativeScanCode(QKeyEvent* theWrappedObject) const;
    int  count(QKeyEvent* theWrappedObject) const;
    bool  matches(QKeyEvent* theWrappedObject, QKeySequence::StandardKey  key) const;
 };

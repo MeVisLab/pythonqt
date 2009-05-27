@@ -15,28 +15,28 @@ QDomAttr* PythonQtWrapper_QDomAttr::new_QDomAttr(const QDomAttr&  x)
 { 
 return new QDomAttr(x); }
 
+QString  PythonQtWrapper_QDomAttr::name(QDomAttr* theWrappedObject) const
+{
+  return ( theWrappedObject->name());
+}
+
 void PythonQtWrapper_QDomAttr::setValue(QDomAttr* theWrappedObject, const QString&  arg__1)
 {
- theWrappedObject->setValue(arg__1);
+  ( theWrappedObject->setValue(arg__1));
 }
 
 bool  PythonQtWrapper_QDomAttr::specified(QDomAttr* theWrappedObject) const
 {
-return  theWrappedObject->specified();
-}
-
-QString  PythonQtWrapper_QDomAttr::name(QDomAttr* theWrappedObject) const
-{
-return  theWrappedObject->name();
-}
-
-QString  PythonQtWrapper_QDomAttr::value(QDomAttr* theWrappedObject) const
-{
-return  theWrappedObject->value();
+  return ( theWrappedObject->specified());
 }
 
 QDomElement  PythonQtWrapper_QDomAttr::ownerElement(QDomAttr* theWrappedObject) const
 {
-return  theWrappedObject->ownerElement();
+  return ( theWrappedObject->ownerElement());
+}
+
+QString  PythonQtWrapper_QDomAttr::value(QDomAttr* theWrappedObject) const
+{
+  return ( theWrappedObject->value());
 }
 

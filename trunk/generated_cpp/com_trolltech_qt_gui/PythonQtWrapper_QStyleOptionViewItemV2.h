@@ -26,10 +26,12 @@ class PythonQtWrapper_QStyleOptionViewItemV2 : public QObject
 { Q_OBJECT
 public:
 Q_ENUMS(StyleOptionVersion ViewItemFeature )
+Q_FLAGS(ViewItemFeatures )
 enum StyleOptionVersion{
   Version = QStyleOptionViewItemV2::Version};
 enum ViewItemFeature{
   None = QStyleOptionViewItemV2::None,   WrapText = QStyleOptionViewItemV2::WrapText,   Alternate = QStyleOptionViewItemV2::Alternate,   HasCheckIndicator = QStyleOptionViewItemV2::HasCheckIndicator,   HasDisplay = QStyleOptionViewItemV2::HasDisplay,   HasDecoration = QStyleOptionViewItemV2::HasDecoration};
+Q_DECLARE_FLAGS(ViewItemFeatures, ViewItemFeature)
 public slots:
 QStyleOptionViewItemV2* new_QStyleOptionViewItemV2();
 QStyleOptionViewItemV2* new_QStyleOptionViewItemV2(const QStyleOptionViewItem&  other);

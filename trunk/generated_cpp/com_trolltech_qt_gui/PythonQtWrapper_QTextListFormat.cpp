@@ -14,28 +14,28 @@ QTextListFormat* PythonQtWrapper_QTextListFormat::new_QTextListFormat()
 { 
 return new PythonQtShell_QTextListFormat(); }
 
-void PythonQtWrapper_QTextListFormat::setIndent(QTextListFormat* theWrappedObject, int  indent)
-{
- theWrappedObject->setIndent(indent);
-}
-
-QTextListFormat::Style  PythonQtWrapper_QTextListFormat::style(QTextListFormat* theWrappedObject) const
-{
-return  theWrappedObject->style();
-}
-
-int  PythonQtWrapper_QTextListFormat::indent(QTextListFormat* theWrappedObject) const
-{
-return  theWrappedObject->indent();
-}
-
 void PythonQtWrapper_QTextListFormat::setStyle(QTextListFormat* theWrappedObject, QTextListFormat::Style  style)
 {
- theWrappedObject->setStyle(style);
+  ( theWrappedObject->setStyle(style));
+}
+
+void PythonQtWrapper_QTextListFormat::setIndent(QTextListFormat* theWrappedObject, int  indent)
+{
+  ( theWrappedObject->setIndent(indent));
 }
 
 bool  PythonQtWrapper_QTextListFormat::isValid(QTextListFormat* theWrappedObject) const
 {
-return  theWrappedObject->isValid();
+  return ( theWrappedObject->isValid());
+}
+
+QTextListFormat::Style  PythonQtWrapper_QTextListFormat::style(QTextListFormat* theWrappedObject) const
+{
+  return ( theWrappedObject->style());
+}
+
+int  PythonQtWrapper_QTextListFormat::indent(QTextListFormat* theWrappedObject) const
+{
+  return ( theWrappedObject->indent());
 }
 

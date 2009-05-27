@@ -96,8 +96,8 @@ public:
 public slots:
 QErrorMessage* new_QErrorMessage(QWidget*  parent = 0);
 void delete_QErrorMessage(QErrorMessage* obj) { delete obj; } 
-   QErrorMessage*  static_QErrorMessage_qtHandler();
    void changeEvent(QErrorMessage* theWrappedObject, QEvent*  e);
+   QErrorMessage*  static_QErrorMessage_qtHandler();
    void done(QErrorMessage* theWrappedObject, int  arg__1);
 };
 

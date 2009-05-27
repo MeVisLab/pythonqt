@@ -15,11 +15,11 @@ public:
 public slots:
 QSemaphore* new_QSemaphore(int  n = 0);
 void delete_QSemaphore(QSemaphore* obj) { delete obj; } 
-   int  available(QSemaphore* theWrappedObject) const;
-   void acquire(QSemaphore* theWrappedObject, int  n = 1);
    bool  tryAcquire(QSemaphore* theWrappedObject, int  n = 1);
-   bool  tryAcquire(QSemaphore* theWrappedObject, int  n, int  timeout);
    void release(QSemaphore* theWrappedObject, int  n = 1);
+   int  available(QSemaphore* theWrappedObject) const;
+   bool  tryAcquire(QSemaphore* theWrappedObject, int  n, int  timeout);
+   void acquire(QSemaphore* theWrappedObject, int  n = 1);
 };
 
 #endif // PYTHONQTWRAPPER_QSEMAPHORE_H

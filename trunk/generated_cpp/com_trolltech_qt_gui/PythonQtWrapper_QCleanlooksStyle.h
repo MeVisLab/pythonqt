@@ -59,25 +59,25 @@ virtual void unpolish(QWidget*  widget);
 
 class PythonQtPublicPromoter_QCleanlooksStyle : public QCleanlooksStyle
 { public:
-inline void promoted_drawItemPixmap(QPainter*  painter, const QRect&  rect, int  alignment, const QPixmap&  pixmap) const { QCleanlooksStyle::drawItemPixmap(painter, rect, alignment, pixmap); }
-inline void promoted_unpolish(QWidget*  widget) { QCleanlooksStyle::unpolish(widget); }
-inline QPixmap  promoted_generatedIconPixmap(QIcon::Mode  iconMode, const QPixmap&  pixmap, const QStyleOption*  opt) const { return QCleanlooksStyle::generatedIconPixmap(iconMode, pixmap, opt); }
-inline QRect  promoted_itemPixmapRect(const QRect&  r, int  flags, const QPixmap&  pixmap) const { return QCleanlooksStyle::itemPixmapRect(r, flags, pixmap); }
-inline void promoted_drawPrimitive(QStyle::PrimitiveElement  elem, const QStyleOption*  option, QPainter*  painter, const QWidget*  widget = 0) const { QCleanlooksStyle::drawPrimitive(elem, option, painter, widget); }
+inline int  promoted_pixelMetric(QStyle::PixelMetric  metric, const QStyleOption*  option = 0, const QWidget*  widget = 0) const { return QCleanlooksStyle::pixelMetric(metric, option, widget); }
 inline void promoted_unpolish(QApplication*  app) { QCleanlooksStyle::unpolish(app); }
 inline void promoted_drawComplexControl(QStyle::ComplexControl  control, const QStyleOptionComplex*  option, QPainter*  painter, const QWidget*  widget) const { QCleanlooksStyle::drawComplexControl(control, option, painter, widget); }
-inline int  promoted_pixelMetric(QStyle::PixelMetric  metric, const QStyleOption*  option = 0, const QWidget*  widget = 0) const { return QCleanlooksStyle::pixelMetric(metric, option, widget); }
-inline QRect  promoted_subElementRect(QStyle::SubElement  r, const QStyleOption*  opt, const QWidget*  widget = 0) const { return QCleanlooksStyle::subElementRect(r, opt, widget); }
+inline QRect  promoted_itemPixmapRect(const QRect&  r, int  flags, const QPixmap&  pixmap) const { return QCleanlooksStyle::itemPixmapRect(r, flags, pixmap); }
 inline QRect  promoted_subControlRect(QStyle::ComplexControl  cc, const QStyleOptionComplex*  opt, QStyle::SubControl  sc, const QWidget*  widget) const { return QCleanlooksStyle::subControlRect(cc, opt, sc, widget); }
 inline void promoted_drawItemText(QPainter*  painter, const QRect&  rect, int  flags, const QPalette&  pal, bool  enabled, const QString&  text, QPalette::ColorRole  textRole = QPalette::NoRole) const { QCleanlooksStyle::drawItemText(painter, rect, flags, pal, enabled, text, textRole); }
 inline void promoted_polish(QPalette&  pal) { QCleanlooksStyle::polish(pal); }
+inline QSize  promoted_sizeFromContents(QStyle::ContentsType  type, const QStyleOption*  option, const QSize&  size, const QWidget*  widget) const { return QCleanlooksStyle::sizeFromContents(type, option, size, widget); }
 inline void promoted_polish(QApplication*  app) { QCleanlooksStyle::polish(app); }
 inline QPalette  promoted_standardPalette() const { return QCleanlooksStyle::standardPalette(); }
-inline void promoted_drawControl(QStyle::ControlElement  ce, const QStyleOption*  option, QPainter*  painter, const QWidget*  widget) const { QCleanlooksStyle::drawControl(ce, option, painter, widget); }
-inline QSize  promoted_sizeFromContents(QStyle::ContentsType  type, const QStyleOption*  option, const QSize&  size, const QWidget*  widget) const { return QCleanlooksStyle::sizeFromContents(type, option, size, widget); }
+inline QRect  promoted_subElementRect(QStyle::SubElement  r, const QStyleOption*  opt, const QWidget*  widget = 0) const { return QCleanlooksStyle::subElementRect(r, opt, widget); }
 inline int  promoted_styleHint(QStyle::StyleHint  hint, const QStyleOption*  option = 0, const QWidget*  widget = 0, QStyleHintReturn*  returnData = 0) const { return QCleanlooksStyle::styleHint(hint, option, widget, returnData); }
+inline void promoted_drawControl(QStyle::ControlElement  ce, const QStyleOption*  option, QPainter*  painter, const QWidget*  widget) const { QCleanlooksStyle::drawControl(ce, option, painter, widget); }
+inline void promoted_drawItemPixmap(QPainter*  painter, const QRect&  rect, int  alignment, const QPixmap&  pixmap) const { QCleanlooksStyle::drawItemPixmap(painter, rect, alignment, pixmap); }
 inline void promoted_polish(QWidget*  widget) { QCleanlooksStyle::polish(widget); }
 inline QStyle::SubControl  promoted_hitTestComplexControl(QStyle::ComplexControl  cc, const QStyleOptionComplex*  opt, const QPoint&  pt, const QWidget*  w = 0) const { return QCleanlooksStyle::hitTestComplexControl(cc, opt, pt, w); }
+inline QPixmap  promoted_generatedIconPixmap(QIcon::Mode  iconMode, const QPixmap&  pixmap, const QStyleOption*  opt) const { return QCleanlooksStyle::generatedIconPixmap(iconMode, pixmap, opt); }
+inline void promoted_drawPrimitive(QStyle::PrimitiveElement  elem, const QStyleOption*  option, QPainter*  painter, const QWidget*  widget = 0) const { QCleanlooksStyle::drawPrimitive(elem, option, painter, widget); }
+inline void promoted_unpolish(QWidget*  widget) { QCleanlooksStyle::unpolish(widget); }
 };
 
 class PythonQtWrapper_QCleanlooksStyle : public QObject
@@ -86,25 +86,25 @@ public:
 public slots:
 QCleanlooksStyle* new_QCleanlooksStyle();
 void delete_QCleanlooksStyle(QCleanlooksStyle* obj) { delete obj; } 
-   void drawItemPixmap(QCleanlooksStyle* theWrappedObject, QPainter*  painter, const QRect&  rect, int  alignment, const QPixmap&  pixmap) const;
-   void unpolish(QCleanlooksStyle* theWrappedObject, QWidget*  widget);
-   QPixmap  generatedIconPixmap(QCleanlooksStyle* theWrappedObject, QIcon::Mode  iconMode, const QPixmap&  pixmap, const QStyleOption*  opt) const;
-   QRect  itemPixmapRect(QCleanlooksStyle* theWrappedObject, const QRect&  r, int  flags, const QPixmap&  pixmap) const;
-   void drawPrimitive(QCleanlooksStyle* theWrappedObject, QStyle::PrimitiveElement  elem, const QStyleOption*  option, QPainter*  painter, const QWidget*  widget = 0) const;
+   int  pixelMetric(QCleanlooksStyle* theWrappedObject, QStyle::PixelMetric  metric, const QStyleOption*  option = 0, const QWidget*  widget = 0) const;
    void unpolish(QCleanlooksStyle* theWrappedObject, QApplication*  app);
    void drawComplexControl(QCleanlooksStyle* theWrappedObject, QStyle::ComplexControl  control, const QStyleOptionComplex*  option, QPainter*  painter, const QWidget*  widget) const;
-   int  pixelMetric(QCleanlooksStyle* theWrappedObject, QStyle::PixelMetric  metric, const QStyleOption*  option = 0, const QWidget*  widget = 0) const;
-   QRect  subElementRect(QCleanlooksStyle* theWrappedObject, QStyle::SubElement  r, const QStyleOption*  opt, const QWidget*  widget = 0) const;
+   QRect  itemPixmapRect(QCleanlooksStyle* theWrappedObject, const QRect&  r, int  flags, const QPixmap&  pixmap) const;
    QRect  subControlRect(QCleanlooksStyle* theWrappedObject, QStyle::ComplexControl  cc, const QStyleOptionComplex*  opt, QStyle::SubControl  sc, const QWidget*  widget) const;
    void drawItemText(QCleanlooksStyle* theWrappedObject, QPainter*  painter, const QRect&  rect, int  flags, const QPalette&  pal, bool  enabled, const QString&  text, QPalette::ColorRole  textRole = QPalette::NoRole) const;
    void polish(QCleanlooksStyle* theWrappedObject, QPalette&  pal);
+   QSize  sizeFromContents(QCleanlooksStyle* theWrappedObject, QStyle::ContentsType  type, const QStyleOption*  option, const QSize&  size, const QWidget*  widget) const;
    void polish(QCleanlooksStyle* theWrappedObject, QApplication*  app);
    QPalette  standardPalette(QCleanlooksStyle* theWrappedObject) const;
-   void drawControl(QCleanlooksStyle* theWrappedObject, QStyle::ControlElement  ce, const QStyleOption*  option, QPainter*  painter, const QWidget*  widget) const;
-   QSize  sizeFromContents(QCleanlooksStyle* theWrappedObject, QStyle::ContentsType  type, const QStyleOption*  option, const QSize&  size, const QWidget*  widget) const;
+   QRect  subElementRect(QCleanlooksStyle* theWrappedObject, QStyle::SubElement  r, const QStyleOption*  opt, const QWidget*  widget = 0) const;
    int  styleHint(QCleanlooksStyle* theWrappedObject, QStyle::StyleHint  hint, const QStyleOption*  option = 0, const QWidget*  widget = 0, QStyleHintReturn*  returnData = 0) const;
+   void drawControl(QCleanlooksStyle* theWrappedObject, QStyle::ControlElement  ce, const QStyleOption*  option, QPainter*  painter, const QWidget*  widget) const;
+   void drawItemPixmap(QCleanlooksStyle* theWrappedObject, QPainter*  painter, const QRect&  rect, int  alignment, const QPixmap&  pixmap) const;
    void polish(QCleanlooksStyle* theWrappedObject, QWidget*  widget);
    QStyle::SubControl  hitTestComplexControl(QCleanlooksStyle* theWrappedObject, QStyle::ComplexControl  cc, const QStyleOptionComplex*  opt, const QPoint&  pt, const QWidget*  w = 0) const;
+   QPixmap  generatedIconPixmap(QCleanlooksStyle* theWrappedObject, QIcon::Mode  iconMode, const QPixmap&  pixmap, const QStyleOption*  opt) const;
+   void drawPrimitive(QCleanlooksStyle* theWrappedObject, QStyle::PrimitiveElement  elem, const QStyleOption*  option, QPainter*  painter, const QWidget*  widget = 0) const;
+   void unpolish(QCleanlooksStyle* theWrappedObject, QWidget*  widget);
 };
 
 #endif // PYTHONQTWRAPPER_QCLEANLOOKSSTYLE_H

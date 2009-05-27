@@ -15,18 +15,18 @@ QDomEntity* PythonQtWrapper_QDomEntity::new_QDomEntity(const QDomEntity&  x)
 { 
 return new QDomEntity(x); }
 
-QString  PythonQtWrapper_QDomEntity::publicId(QDomEntity* theWrappedObject) const
-{
-return  theWrappedObject->publicId();
-}
-
 QString  PythonQtWrapper_QDomEntity::notationName(QDomEntity* theWrappedObject) const
 {
-return  theWrappedObject->notationName();
+  return ( theWrappedObject->notationName());
+}
+
+QString  PythonQtWrapper_QDomEntity::publicId(QDomEntity* theWrappedObject) const
+{
+  return ( theWrappedObject->publicId());
 }
 
 QString  PythonQtWrapper_QDomEntity::systemId(QDomEntity* theWrappedObject) const
 {
-return  theWrappedObject->systemId();
+  return ( theWrappedObject->systemId());
 }
 

@@ -61,8 +61,8 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QAbstractTableModel : public QAbstractTableModel
 { public:
-inline QModelIndex  promoted_index(int  row, int  column, const QModelIndex&  parent = QModelIndex()) const { return QAbstractTableModel::index(row, column, parent); }
 inline bool  promoted_dropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent) { return QAbstractTableModel::dropMimeData(data, action, row, column, parent); }
+inline QModelIndex  promoted_index(int  row, int  column, const QModelIndex&  parent = QModelIndex()) const { return QAbstractTableModel::index(row, column, parent); }
 };
 
 class PythonQtWrapper_QAbstractTableModel : public QObject
@@ -71,8 +71,8 @@ public:
 public slots:
 QAbstractTableModel* new_QAbstractTableModel(QObject*  parent = 0);
 void delete_QAbstractTableModel(QAbstractTableModel* obj) { delete obj; } 
-   QModelIndex  index(QAbstractTableModel* theWrappedObject, int  row, int  column, const QModelIndex&  parent = QModelIndex()) const;
    bool  dropMimeData(QAbstractTableModel* theWrappedObject, const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent);
+   QModelIndex  index(QAbstractTableModel* theWrappedObject, int  row, int  column, const QModelIndex&  parent = QModelIndex()) const;
 };
 
 #endif // PYTHONQTWRAPPER_QABSTRACTTABLEMODEL_H

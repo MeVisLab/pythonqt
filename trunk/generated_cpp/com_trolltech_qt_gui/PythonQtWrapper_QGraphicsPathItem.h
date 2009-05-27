@@ -49,11 +49,11 @@ void delete_QGraphicsPathItem(QGraphicsPathItem* obj) { delete obj; }
    QPainterPath  opaqueArea(QGraphicsPathItem* theWrappedObject) const;
    void paint(QGraphicsPathItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = 0);
    QPainterPath  path(QGraphicsPathItem* theWrappedObject) const;
+   QPainterPath  shape(QGraphicsPathItem* theWrappedObject) const;
    int  type(QGraphicsPathItem* theWrappedObject) const;
    QRectF  boundingRect(QGraphicsPathItem* theWrappedObject) const;
    bool  isObscuredBy(QGraphicsPathItem* theWrappedObject, const QGraphicsItem*  item) const;
    void setPath(QGraphicsPathItem* theWrappedObject, const QPainterPath&  path);
-   QPainterPath  shape(QGraphicsPathItem* theWrappedObject) const;
    bool  contains(QGraphicsPathItem* theWrappedObject, const QPointF&  point) const;
 };
 

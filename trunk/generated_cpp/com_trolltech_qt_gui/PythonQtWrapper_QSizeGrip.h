@@ -84,15 +84,15 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QSizeGrip : public QSizeGrip
 { public:
-inline void promoted_mouseMoveEvent(QMouseEvent*  arg__1) { QSizeGrip::mouseMoveEvent(arg__1); }
-inline void promoted_mouseReleaseEvent(QMouseEvent*  mouseEvent) { QSizeGrip::mouseReleaseEvent(mouseEvent); }
+inline bool  promoted_eventFilter(QObject*  arg__1, QEvent*  arg__2) { return QSizeGrip::eventFilter(arg__1, arg__2); }
 inline void promoted_paintEvent(QPaintEvent*  arg__1) { QSizeGrip::paintEvent(arg__1); }
 inline void promoted_mousePressEvent(QMouseEvent*  arg__1) { QSizeGrip::mousePressEvent(arg__1); }
 inline void promoted_showEvent(QShowEvent*  showEvent) { QSizeGrip::showEvent(showEvent); }
 inline bool  promoted_event(QEvent*  arg__1) { return QSizeGrip::event(arg__1); }
-inline bool  promoted_eventFilter(QObject*  arg__1, QEvent*  arg__2) { return QSizeGrip::eventFilter(arg__1, arg__2); }
 inline void promoted_moveEvent(QMoveEvent*  moveEvent) { QSizeGrip::moveEvent(moveEvent); }
 inline void promoted_hideEvent(QHideEvent*  hideEvent) { QSizeGrip::hideEvent(hideEvent); }
+inline void promoted_mouseMoveEvent(QMouseEvent*  arg__1) { QSizeGrip::mouseMoveEvent(arg__1); }
+inline void promoted_mouseReleaseEvent(QMouseEvent*  mouseEvent) { QSizeGrip::mouseReleaseEvent(mouseEvent); }
 };
 
 class PythonQtWrapper_QSizeGrip : public QObject
@@ -101,17 +101,17 @@ public:
 public slots:
 QSizeGrip* new_QSizeGrip(QWidget*  parent);
 void delete_QSizeGrip(QSizeGrip* obj) { delete obj; } 
-   void mouseMoveEvent(QSizeGrip* theWrappedObject, QMouseEvent*  arg__1);
-   void mouseReleaseEvent(QSizeGrip* theWrappedObject, QMouseEvent*  mouseEvent);
+   QSize  sizeHint(QSizeGrip* theWrappedObject) const;
+   bool  eventFilter(QSizeGrip* theWrappedObject, QObject*  arg__1, QEvent*  arg__2);
    void paintEvent(QSizeGrip* theWrappedObject, QPaintEvent*  arg__1);
    void mousePressEvent(QSizeGrip* theWrappedObject, QMouseEvent*  arg__1);
-   QSize  sizeHint(QSizeGrip* theWrappedObject) const;
    void showEvent(QSizeGrip* theWrappedObject, QShowEvent*  showEvent);
    bool  event(QSizeGrip* theWrappedObject, QEvent*  arg__1);
-   bool  eventFilter(QSizeGrip* theWrappedObject, QObject*  arg__1, QEvent*  arg__2);
    void moveEvent(QSizeGrip* theWrappedObject, QMoveEvent*  moveEvent);
    void setVisible(QSizeGrip* theWrappedObject, bool  arg__1);
    void hideEvent(QSizeGrip* theWrappedObject, QHideEvent*  hideEvent);
+   void mouseMoveEvent(QSizeGrip* theWrappedObject, QMouseEvent*  arg__1);
+   void mouseReleaseEvent(QSizeGrip* theWrappedObject, QMouseEvent*  mouseEvent);
 };
 
 #endif // PYTHONQTWRAPPER_QSIZEGRIP_H

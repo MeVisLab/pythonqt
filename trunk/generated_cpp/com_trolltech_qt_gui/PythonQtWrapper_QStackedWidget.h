@@ -95,13 +95,13 @@ QStackedWidget* new_QStackedWidget(QWidget*  parent = 0);
 void delete_QStackedWidget(QStackedWidget* obj) { delete obj; } 
    QWidget*  currentWidget(QStackedWidget* theWrappedObject) const;
    int  indexOf(QStackedWidget* theWrappedObject, QWidget*  arg__1) const;
-   QWidget*  widget(QStackedWidget* theWrappedObject, int  arg__1) const;
-   int  addWidget(QStackedWidget* theWrappedObject, QWidget*  w);
-   int  currentIndex(QStackedWidget* theWrappedObject) const;
-   void removeWidget(QStackedWidget* theWrappedObject, QWidget*  w);
-   bool  event(QStackedWidget* theWrappedObject, QEvent*  e);
-   int  count(QStackedWidget* theWrappedObject) const;
    int  insertWidget(QStackedWidget* theWrappedObject, int  index, QWidget*  w);
+   int  currentIndex(QStackedWidget* theWrappedObject) const;
+   QWidget*  widget(QStackedWidget* theWrappedObject, int  arg__1) const;
+   bool  event(QStackedWidget* theWrappedObject, QEvent*  e);
+   int  addWidget(QStackedWidget* theWrappedObject, QWidget*  w);
+   int  count(QStackedWidget* theWrappedObject) const;
+   void removeWidget(QStackedWidget* theWrappedObject, QWidget*  w);
 };
 
 #endif // PYTHONQTWRAPPER_QSTACKEDWIDGET_H

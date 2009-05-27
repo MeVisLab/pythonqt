@@ -10,33 +10,33 @@ QTextItem* PythonQtWrapper_QTextItem::new_QTextItem()
 { 
 return new PythonQtShell_QTextItem(); }
 
-qreal  PythonQtWrapper_QTextItem::ascent(QTextItem* theWrappedObject) const
-{
-return  theWrappedObject->ascent();
-}
-
 qreal  PythonQtWrapper_QTextItem::descent(QTextItem* theWrappedObject) const
 {
-return  theWrappedObject->descent();
-}
-
-qreal  PythonQtWrapper_QTextItem::width(QTextItem* theWrappedObject) const
-{
-return  theWrappedObject->width();
+  return ( theWrappedObject->descent());
 }
 
 QString  PythonQtWrapper_QTextItem::text(QTextItem* theWrappedObject) const
 {
-return  theWrappedObject->text();
-}
-
-QFont  PythonQtWrapper_QTextItem::font(QTextItem* theWrappedObject) const
-{
-return  theWrappedObject->font();
+  return ( theWrappedObject->text());
 }
 
 QTextItem::RenderFlags  PythonQtWrapper_QTextItem::renderFlags(QTextItem* theWrappedObject) const
 {
-return  theWrappedObject->renderFlags();
+  return ( theWrappedObject->renderFlags());
+}
+
+QFont  PythonQtWrapper_QTextItem::font(QTextItem* theWrappedObject) const
+{
+  return ( theWrappedObject->font());
+}
+
+qreal  PythonQtWrapper_QTextItem::ascent(QTextItem* theWrappedObject) const
+{
+  return ( theWrappedObject->ascent());
+}
+
+qreal  PythonQtWrapper_QTextItem::width(QTextItem* theWrappedObject) const
+{
+  return ( theWrappedObject->width());
 }
 

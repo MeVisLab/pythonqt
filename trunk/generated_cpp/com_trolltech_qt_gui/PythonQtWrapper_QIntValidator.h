@@ -45,12 +45,12 @@ public slots:
 QIntValidator* new_QIntValidator(QObject*  parent);
 QIntValidator* new_QIntValidator(int  bottom, int  top, QObject*  parent);
 void delete_QIntValidator(QIntValidator* obj) { delete obj; } 
-   void setBottom(QIntValidator* theWrappedObject, int  arg__1);
    void setRange(QIntValidator* theWrappedObject, int  bottom, int  top);
    QValidator::State  validate(QIntValidator* theWrappedObject, QString&  arg__1, int&  arg__2) const;
    int  top(QIntValidator* theWrappedObject) const;
    void setTop(QIntValidator* theWrappedObject, int  arg__1);
    int  bottom(QIntValidator* theWrappedObject) const;
+   void setBottom(QIntValidator* theWrappedObject, int  arg__1);
 };
 
 #endif // PYTHONQTWRAPPER_QINTVALIDATOR_H

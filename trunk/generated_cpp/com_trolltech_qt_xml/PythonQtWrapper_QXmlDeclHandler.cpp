@@ -11,16 +11,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "attributeDecl");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QXmlDeclHandler::staticMetaObject,
-      "attributeDecl(QXmlDeclHandler*,const QString& ,const QString& ,const QString& ,const QString& ,const QString& )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "const QString&" , "const QString&" , "const QString&" , "const QString&" , "const QString&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(6, argumentList);
+      bool returnValue;
     void* args[6] = {NULL, (void*)&eName, (void*)&aName, (void*)&type, (void*)&valueDefault, (void*)&value};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("attributeDecl", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -28,7 +31,7 @@ if (_wrapper) {
     return returnValue;
   }
 }
-  bool  result;
+  bool result;
 return result;
 }
 QString  PythonQtShell_QXmlDeclHandler::errorString() const
@@ -37,16 +40,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "errorString");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QXmlDeclHandler::staticMetaObject,
-      "errorString(QXmlDeclHandler*)");
-      QString  returnValue;
+    static const char* argumentList[] ={"QString"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      QString returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QString *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("errorString", methodInfo, result);
+        } else {
+          returnValue = *((QString*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -54,7 +60,7 @@ if (_wrapper) {
     return returnValue;
   }
 }
-  QString  result;
+  QString result;
 return result;
 }
 bool  PythonQtShell_QXmlDeclHandler::externalEntityDecl(const QString&  name, const QString&  publicId, const QString&  systemId)
@@ -63,16 +69,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "externalEntityDecl");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QXmlDeclHandler::staticMetaObject,
-      "externalEntityDecl(QXmlDeclHandler*,const QString& ,const QString& ,const QString& )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "const QString&" , "const QString&" , "const QString&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
+      bool returnValue;
     void* args[4] = {NULL, (void*)&name, (void*)&publicId, (void*)&systemId};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("externalEntityDecl", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -80,7 +89,7 @@ if (_wrapper) {
     return returnValue;
   }
 }
-  bool  result;
+  bool result;
 return result;
 }
 bool  PythonQtShell_QXmlDeclHandler::internalEntityDecl(const QString&  name, const QString&  value)
@@ -89,16 +98,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "internalEntityDecl");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QXmlDeclHandler::staticMetaObject,
-      "internalEntityDecl(QXmlDeclHandler*,const QString& ,const QString& )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "const QString&" , "const QString&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
+      bool returnValue;
     void* args[3] = {NULL, (void*)&name, (void*)&value};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("internalEntityDecl", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -106,7 +118,7 @@ if (_wrapper) {
     return returnValue;
   }
 }
-  bool  result;
+  bool result;
 return result;
 }
 QXmlDeclHandler* PythonQtWrapper_QXmlDeclHandler::new_QXmlDeclHandler()

@@ -50,7 +50,7 @@ public:
 public slots:
 QSimpleXmlNodeModel* new_QSimpleXmlNodeModel(const QXmlNamePool&  namePool);
 void delete_QSimpleXmlNodeModel(QSimpleXmlNodeModel* obj) { delete obj; } 
-   QXmlNamePool&  namePool(QSimpleXmlNodeModel* theWrappedObject) const;
+   QXmlNamePool*  namePool(QSimpleXmlNodeModel* theWrappedObject) const;
    QString  stringValue(QSimpleXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  node) const;
    QXmlNodeModelIndex  elementById(QSimpleXmlNodeModel* theWrappedObject, const QXmlName&  id) const;
    QUrl  baseUri(QSimpleXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  node) const;

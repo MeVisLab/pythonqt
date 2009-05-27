@@ -13,16 +13,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "data");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QXmlInputSource::staticMetaObject,
-      "data(QXmlInputSource*)");
-      QString  returnValue;
+    static const char* argumentList[] ={"QString"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      QString returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QString *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("data", methodInfo, result);
+        } else {
+          returnValue = *((QString*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -38,9 +41,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "fetchData");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QXmlInputSource::staticMetaObject,
-      "fetchData(QXmlInputSource*)");
+    static const char* argumentList[] ={""};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -56,16 +58,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "fromRawData");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QXmlInputSource::staticMetaObject,
-      "fromRawData(QXmlInputSource*,const QByteArray& ,bool )");
-      QString  returnValue;
+    static const char* argumentList[] ={"QString" , "const QByteArray&" , "bool"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
+      QString returnValue;
     void* args[3] = {NULL, (void*)&data, (void*)&beginning};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QString *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("fromRawData", methodInfo, result);
+        } else {
+          returnValue = *((QString*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -81,16 +86,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "next");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QXmlInputSource::staticMetaObject,
-      "next(QXmlInputSource*)");
-      QChar  returnValue;
+    static const char* argumentList[] ={"QChar"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      QChar returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QChar *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("next", methodInfo, result);
+        } else {
+          returnValue = *((QChar*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -106,9 +114,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "reset");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QXmlInputSource::staticMetaObject,
-      "reset(QXmlInputSource*)");
+    static const char* argumentList[] ={""};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -124,9 +131,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setData");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QXmlInputSource::staticMetaObject,
-      "setData(QXmlInputSource*,const QByteArray& )");
+    static const char* argumentList[] ={"" , "const QByteArray&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&dat};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -142,9 +148,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setData");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QXmlInputSource::staticMetaObject,
-      "setData(QXmlInputSource*,const QString& )");
+    static const char* argumentList[] ={"" , "const QString&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&dat};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -164,36 +169,36 @@ return new PythonQtShell_QXmlInputSource(dev); }
 
 void PythonQtWrapper_QXmlInputSource::fetchData(QXmlInputSource* theWrappedObject)
 {
- ((PythonQtPublicPromoter_QXmlInputSource*)theWrappedObject)->promoted_fetchData();
+  ( ((PythonQtPublicPromoter_QXmlInputSource*)theWrappedObject)->promoted_fetchData());
 }
 
 void PythonQtWrapper_QXmlInputSource::setData(QXmlInputSource* theWrappedObject, const QByteArray&  dat)
 {
- ((PythonQtPublicPromoter_QXmlInputSource*)theWrappedObject)->promoted_setData(dat);
+  ( ((PythonQtPublicPromoter_QXmlInputSource*)theWrappedObject)->promoted_setData(dat));
 }
 
 void PythonQtWrapper_QXmlInputSource::setData(QXmlInputSource* theWrappedObject, const QString&  dat)
 {
- ((PythonQtPublicPromoter_QXmlInputSource*)theWrappedObject)->promoted_setData(dat);
-}
-
-QString  PythonQtWrapper_QXmlInputSource::fromRawData(QXmlInputSource* theWrappedObject, const QByteArray&  data, bool  beginning)
-{
-return  ((PythonQtPublicPromoter_QXmlInputSource*)theWrappedObject)->promoted_fromRawData(data, beginning);
-}
-
-QString  PythonQtWrapper_QXmlInputSource::data(QXmlInputSource* theWrappedObject) const
-{
-return  ((PythonQtPublicPromoter_QXmlInputSource*)theWrappedObject)->promoted_data();
+  ( ((PythonQtPublicPromoter_QXmlInputSource*)theWrappedObject)->promoted_setData(dat));
 }
 
 QChar  PythonQtWrapper_QXmlInputSource::next(QXmlInputSource* theWrappedObject)
 {
-return  ((PythonQtPublicPromoter_QXmlInputSource*)theWrappedObject)->promoted_next();
+  return ( ((PythonQtPublicPromoter_QXmlInputSource*)theWrappedObject)->promoted_next());
+}
+
+QString  PythonQtWrapper_QXmlInputSource::fromRawData(QXmlInputSource* theWrappedObject, const QByteArray&  data, bool  beginning)
+{
+  return ( ((PythonQtPublicPromoter_QXmlInputSource*)theWrappedObject)->promoted_fromRawData(data, beginning));
+}
+
+QString  PythonQtWrapper_QXmlInputSource::data(QXmlInputSource* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QXmlInputSource*)theWrappedObject)->promoted_data());
 }
 
 void PythonQtWrapper_QXmlInputSource::reset(QXmlInputSource* theWrappedObject)
 {
- ((PythonQtPublicPromoter_QXmlInputSource*)theWrappedObject)->promoted_reset();
+  ( ((PythonQtPublicPromoter_QXmlInputSource*)theWrappedObject)->promoted_reset());
 }
 

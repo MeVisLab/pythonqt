@@ -16,16 +16,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "expandingDirections");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QWidgetItem::staticMetaObject,
-      "expandingDirections(QWidgetItem*)");
-      Qt::Orientations  returnValue;
+    static const char* argumentList[] ={"Qt::Orientations"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      Qt::Orientations returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((Qt::Orientations *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("expandingDirections", methodInfo, result);
+        } else {
+          returnValue = *((Qt::Orientations*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -41,16 +44,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "geometry");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QWidgetItem::staticMetaObject,
-      "geometry(QWidgetItem*)");
-      QRect  returnValue;
+    static const char* argumentList[] ={"QRect"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      QRect returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QRect *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("geometry", methodInfo, result);
+        } else {
+          returnValue = *((QRect*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -66,16 +72,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "hasHeightForWidth");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QWidgetItem::staticMetaObject,
-      "hasHeightForWidth(QWidgetItem*)");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      bool returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("hasHeightForWidth", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -91,16 +100,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "heightForWidth");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QWidgetItem::staticMetaObject,
-      "heightForWidth(QWidgetItem*,int )");
-      int  returnValue;
+    static const char* argumentList[] ={"int" , "int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      int returnValue;
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((int *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("heightForWidth", methodInfo, result);
+        } else {
+          returnValue = *((int*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -116,9 +128,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "invalidate");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QWidgetItem::staticMetaObject,
-      "invalidate(QWidgetItem*)");
+    static const char* argumentList[] ={""};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -134,16 +145,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "isEmpty");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QWidgetItem::staticMetaObject,
-      "isEmpty(QWidgetItem*)");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      bool returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("isEmpty", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -159,16 +173,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "layout");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QWidgetItem::staticMetaObject,
-      "layout(QWidgetItem*)");
-      QLayout*  returnValue;
+    static const char* argumentList[] ={"QLayout*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      QLayout* returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QLayout* *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("layout", methodInfo, result);
+        } else {
+          returnValue = *((QLayout**)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -184,16 +201,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "maximumSize");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QWidgetItem::staticMetaObject,
-      "maximumSize(QWidgetItem*)");
-      QSize  returnValue;
+    static const char* argumentList[] ={"QSize"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      QSize returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QSize *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("maximumSize", methodInfo, result);
+        } else {
+          returnValue = *((QSize*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -209,16 +229,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "minimumHeightForWidth");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QWidgetItem::staticMetaObject,
-      "minimumHeightForWidth(QWidgetItem*,int )");
-      int  returnValue;
+    static const char* argumentList[] ={"int" , "int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      int returnValue;
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((int *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("minimumHeightForWidth", methodInfo, result);
+        } else {
+          returnValue = *((int*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -234,16 +257,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "minimumSize");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QWidgetItem::staticMetaObject,
-      "minimumSize(QWidgetItem*)");
-      QSize  returnValue;
+    static const char* argumentList[] ={"QSize"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      QSize returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QSize *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("minimumSize", methodInfo, result);
+        } else {
+          returnValue = *((QSize*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -259,9 +285,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setGeometry");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QWidgetItem::staticMetaObject,
-      "setGeometry(QWidgetItem*,const QRect& )");
+    static const char* argumentList[] ={"" , "const QRect&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -277,16 +302,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "sizeHint");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QWidgetItem::staticMetaObject,
-      "sizeHint(QWidgetItem*)");
-      QSize  returnValue;
+    static const char* argumentList[] ={"QSize"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      QSize returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QSize *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("sizeHint", methodInfo, result);
+        } else {
+          returnValue = *((QSize*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -302,16 +330,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "spacerItem");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QWidgetItem::staticMetaObject,
-      "spacerItem(QWidgetItem*)");
-      QSpacerItem*  returnValue;
+    static const char* argumentList[] ={"QSpacerItem*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      QSpacerItem* returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QSpacerItem* *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("spacerItem", methodInfo, result);
+        } else {
+          returnValue = *((QSpacerItem**)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -327,16 +358,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "widget");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QWidgetItem::staticMetaObject,
-      "widget(QWidgetItem*)");
-      QWidget*  returnValue;
+    static const char* argumentList[] ={"QWidget*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      QWidget* returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QWidget* *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("widget", methodInfo, result);
+        } else {
+          returnValue = *((QWidget**)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -352,51 +386,51 @@ return new PythonQtShell_QWidgetItem(w); }
 
 QSize  PythonQtWrapper_QWidgetItem::maximumSize(QWidgetItem* theWrappedObject) const
 {
-return  ((PythonQtPublicPromoter_QWidgetItem*)theWrappedObject)->promoted_maximumSize();
-}
-
-bool  PythonQtWrapper_QWidgetItem::isEmpty(QWidgetItem* theWrappedObject) const
-{
-return  ((PythonQtPublicPromoter_QWidgetItem*)theWrappedObject)->promoted_isEmpty();
-}
-
-void PythonQtWrapper_QWidgetItem::setGeometry(QWidgetItem* theWrappedObject, const QRect&  arg__1)
-{
- ((PythonQtPublicPromoter_QWidgetItem*)theWrappedObject)->promoted_setGeometry(arg__1);
-}
-
-Qt::Orientations  PythonQtWrapper_QWidgetItem::expandingDirections(QWidgetItem* theWrappedObject) const
-{
-return  ((PythonQtPublicPromoter_QWidgetItem*)theWrappedObject)->promoted_expandingDirections();
+  return ( ((PythonQtPublicPromoter_QWidgetItem*)theWrappedObject)->promoted_maximumSize());
 }
 
 QSize  PythonQtWrapper_QWidgetItem::sizeHint(QWidgetItem* theWrappedObject) const
 {
-return  ((PythonQtPublicPromoter_QWidgetItem*)theWrappedObject)->promoted_sizeHint();
+  return ( ((PythonQtPublicPromoter_QWidgetItem*)theWrappedObject)->promoted_sizeHint());
+}
+
+bool  PythonQtWrapper_QWidgetItem::isEmpty(QWidgetItem* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QWidgetItem*)theWrappedObject)->promoted_isEmpty());
+}
+
+void PythonQtWrapper_QWidgetItem::setGeometry(QWidgetItem* theWrappedObject, const QRect&  arg__1)
+{
+  ( ((PythonQtPublicPromoter_QWidgetItem*)theWrappedObject)->promoted_setGeometry(arg__1));
+}
+
+Qt::Orientations  PythonQtWrapper_QWidgetItem::expandingDirections(QWidgetItem* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QWidgetItem*)theWrappedObject)->promoted_expandingDirections());
 }
 
 QRect  PythonQtWrapper_QWidgetItem::geometry(QWidgetItem* theWrappedObject) const
 {
-return  ((PythonQtPublicPromoter_QWidgetItem*)theWrappedObject)->promoted_geometry();
+  return ( ((PythonQtPublicPromoter_QWidgetItem*)theWrappedObject)->promoted_geometry());
 }
 
 bool  PythonQtWrapper_QWidgetItem::hasHeightForWidth(QWidgetItem* theWrappedObject) const
 {
-return  ((PythonQtPublicPromoter_QWidgetItem*)theWrappedObject)->promoted_hasHeightForWidth();
+  return ( ((PythonQtPublicPromoter_QWidgetItem*)theWrappedObject)->promoted_hasHeightForWidth());
 }
 
 QWidget*  PythonQtWrapper_QWidgetItem::widget(QWidgetItem* theWrappedObject)
 {
-return  ((PythonQtPublicPromoter_QWidgetItem*)theWrappedObject)->promoted_widget();
+  return ( ((PythonQtPublicPromoter_QWidgetItem*)theWrappedObject)->promoted_widget());
 }
 
 QSize  PythonQtWrapper_QWidgetItem::minimumSize(QWidgetItem* theWrappedObject) const
 {
-return  ((PythonQtPublicPromoter_QWidgetItem*)theWrappedObject)->promoted_minimumSize();
+  return ( ((PythonQtPublicPromoter_QWidgetItem*)theWrappedObject)->promoted_minimumSize());
 }
 
 int  PythonQtWrapper_QWidgetItem::heightForWidth(QWidgetItem* theWrappedObject, int  arg__1) const
 {
-return  ((PythonQtPublicPromoter_QWidgetItem*)theWrappedObject)->promoted_heightForWidth(arg__1);
+  return ( ((PythonQtPublicPromoter_QWidgetItem*)theWrappedObject)->promoted_heightForWidth(arg__1));
 }
 

@@ -12,16 +12,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "error");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QXmlErrorHandler::staticMetaObject,
-      "error(QXmlErrorHandler*,const QXmlParseException& )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "const QXmlParseException&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      bool returnValue;
     void* args[2] = {NULL, (void*)&exception};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("error", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -29,7 +32,7 @@ if (_wrapper) {
     return returnValue;
   }
 }
-  bool  result;
+  bool result;
 return result;
 }
 QString  PythonQtShell_QXmlErrorHandler::errorString() const
@@ -38,16 +41,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "errorString");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QXmlErrorHandler::staticMetaObject,
-      "errorString(QXmlErrorHandler*)");
-      QString  returnValue;
+    static const char* argumentList[] ={"QString"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      QString returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QString *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("errorString", methodInfo, result);
+        } else {
+          returnValue = *((QString*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -55,7 +61,7 @@ if (_wrapper) {
     return returnValue;
   }
 }
-  QString  result;
+  QString result;
 return result;
 }
 bool  PythonQtShell_QXmlErrorHandler::fatalError(const QXmlParseException&  exception)
@@ -64,16 +70,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "fatalError");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QXmlErrorHandler::staticMetaObject,
-      "fatalError(QXmlErrorHandler*,const QXmlParseException& )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "const QXmlParseException&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      bool returnValue;
     void* args[2] = {NULL, (void*)&exception};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("fatalError", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -81,7 +90,7 @@ if (_wrapper) {
     return returnValue;
   }
 }
-  bool  result;
+  bool result;
 return result;
 }
 bool  PythonQtShell_QXmlErrorHandler::warning(const QXmlParseException&  exception)
@@ -90,16 +99,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "warning");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QXmlErrorHandler::staticMetaObject,
-      "warning(QXmlErrorHandler*,const QXmlParseException& )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "const QXmlParseException&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      bool returnValue;
     void* args[2] = {NULL, (void*)&exception};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("warning", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -107,7 +119,7 @@ if (_wrapper) {
     return returnValue;
   }
 }
-  bool  result;
+  bool result;
 return result;
 }
 QXmlErrorHandler* PythonQtWrapper_QXmlErrorHandler::new_QXmlErrorHandler()

@@ -30,24 +30,25 @@ QBrush* new_QBrush(const QGradient&  gradient);
 QBrush* new_QBrush(const QImage&  image);
 QBrush* new_QBrush(const QPixmap&  pixmap);
 void delete_QBrush(QBrush* obj) { delete obj; } 
-   const QGradient*  gradient(QBrush* theWrappedObject) const;
-   void setTextureImage(QBrush* theWrappedObject, const QImage&  image);
-   void setTransform(QBrush* theWrappedObject, const QTransform&  arg__1);
-   const QMatrix&  matrix(QBrush* theWrappedObject) const;
-   void writeTo(QBrush* theWrappedObject, QDataStream&  arg__1);
    void setColor(QBrush* theWrappedObject, const QColor&  color);
-   void readFrom(QBrush* theWrappedObject, QDataStream&  arg__1);
-   void setMatrix(QBrush* theWrappedObject, const QMatrix&  mat);
-   QImage  textureImage(QBrush* theWrappedObject) const;
-   QTransform  transform(QBrush* theWrappedObject) const;
-   const QColor&  color(QBrush* theWrappedObject) const;
+   const QColor*  color(QBrush* theWrappedObject) const;
    void setStyle(QBrush* theWrappedObject, Qt::BrushStyle  arg__1);
    bool  isOpaque(QBrush* theWrappedObject) const;
-   bool  operator_equal(QBrush* theWrappedObject, const QBrush&  b) const;
    void setTexture(QBrush* theWrappedObject, const QPixmap&  pixmap);
-   QPixmap  texture(QBrush* theWrappedObject) const;
-   void setColor(QBrush* theWrappedObject, Qt::GlobalColor  color);
+   QImage  textureImage(QBrush* theWrappedObject) const;
+   bool  operator_equal(QBrush* theWrappedObject, const QBrush&  b) const;
+   void setMatrix(QBrush* theWrappedObject, const QMatrix&  mat);
+   void writeTo(QBrush* theWrappedObject, QDataStream&  arg__1);
+   void setTextureImage(QBrush* theWrappedObject, const QImage&  image);
    Qt::BrushStyle  style(QBrush* theWrappedObject) const;
+   const QGradient*  gradient(QBrush* theWrappedObject) const;
+   void setColor(QBrush* theWrappedObject, Qt::GlobalColor  color);
+   void setTransform(QBrush* theWrappedObject, const QTransform&  arg__1);
+   void readFrom(QBrush* theWrappedObject, QDataStream&  arg__1);
+   const QMatrix*  matrix(QBrush* theWrappedObject) const;
+   QPixmap  texture(QBrush* theWrappedObject) const;
+   QTransform  transform(QBrush* theWrappedObject) const;
+    QString toString(QBrush*);
 };
 
 #endif // PYTHONQTWRAPPER_QBRUSH_H

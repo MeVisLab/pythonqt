@@ -20,6 +20,7 @@ QPictureIO* new_QPictureIO();
 QPictureIO* new_QPictureIO(QIODevice*  ioDevice, const char*  format);
 QPictureIO* new_QPictureIO(const QString&  fileName, const char*  format);
 void delete_QPictureIO(QPictureIO* obj) { delete obj; } 
+   void setPicture(QPictureIO* theWrappedObject, const QPicture&  arg__1);
    const char*  format(QPictureIO* theWrappedObject) const;
    QByteArray  static_QPictureIO_pictureFormat(QIODevice*  arg__1);
    void setDescription(QPictureIO* theWrappedObject, const QString&  arg__1);
@@ -31,9 +32,9 @@ void delete_QPictureIO(QPictureIO* obj) { delete obj; }
    const char*  parameters(QPictureIO* theWrappedObject) const;
    int  quality(QPictureIO* theWrappedObject) const;
    void setParameters(QPictureIO* theWrappedObject, const char*  arg__1);
-   QString  fileName(QPictureIO* theWrappedObject) const;
    void setFormat(QPictureIO* theWrappedObject, const char*  arg__1);
-   const QPicture&  picture(QPictureIO* theWrappedObject) const;
+   QString  fileName(QPictureIO* theWrappedObject) const;
+   const QPicture*  picture(QPictureIO* theWrappedObject) const;
    QByteArray  static_QPictureIO_pictureFormat(const QString&  fileName);
    bool  read(QPictureIO* theWrappedObject);
    float  gamma(QPictureIO* theWrappedObject) const;
@@ -43,7 +44,6 @@ void delete_QPictureIO(QPictureIO* obj) { delete obj; }
    void setQuality(QPictureIO* theWrappedObject, int  arg__1);
    QIODevice*  ioDevice(QPictureIO* theWrappedObject) const;
    void setStatus(QPictureIO* theWrappedObject, int  arg__1);
-   void setPicture(QPictureIO* theWrappedObject, const QPicture&  arg__1);
 };
 
 #endif // PYTHONQTWRAPPER_QPICTUREIO_H

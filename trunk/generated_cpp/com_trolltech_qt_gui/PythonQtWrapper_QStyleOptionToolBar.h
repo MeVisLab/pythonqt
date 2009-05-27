@@ -25,6 +25,7 @@ class PythonQtWrapper_QStyleOptionToolBar : public QObject
 { Q_OBJECT
 public:
 Q_ENUMS(StyleOptionVersion StyleOptionType ToolBarPosition ToolBarFeature )
+Q_FLAGS(ToolBarFeatures )
 enum StyleOptionVersion{
   Version = QStyleOptionToolBar::Version};
 enum StyleOptionType{
@@ -33,6 +34,7 @@ enum ToolBarPosition{
   Beginning = QStyleOptionToolBar::Beginning,   Middle = QStyleOptionToolBar::Middle,   End = QStyleOptionToolBar::End,   OnlyOne = QStyleOptionToolBar::OnlyOne};
 enum ToolBarFeature{
   None = QStyleOptionToolBar::None,   Movable = QStyleOptionToolBar::Movable};
+Q_DECLARE_FLAGS(ToolBarFeatures, ToolBarFeature)
 public slots:
 QStyleOptionToolBar* new_QStyleOptionToolBar();
 QStyleOptionToolBar* new_QStyleOptionToolBar(const QStyleOptionToolBar&  other);

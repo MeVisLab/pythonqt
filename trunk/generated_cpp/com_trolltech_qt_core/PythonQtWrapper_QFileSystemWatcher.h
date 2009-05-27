@@ -36,11 +36,11 @@ public slots:
 QFileSystemWatcher* new_QFileSystemWatcher(QObject*  parent = 0);
 QFileSystemWatcher* new_QFileSystemWatcher(const QStringList&  paths, QObject*  parent = 0);
 void delete_QFileSystemWatcher(QFileSystemWatcher* obj) { delete obj; } 
+   void removePaths(QFileSystemWatcher* theWrappedObject, const QStringList&  files);
    void addPaths(QFileSystemWatcher* theWrappedObject, const QStringList&  files);
    QStringList  directories(QFileSystemWatcher* theWrappedObject) const;
-   void removePath(QFileSystemWatcher* theWrappedObject, const QString&  file);
-   void removePaths(QFileSystemWatcher* theWrappedObject, const QStringList&  files);
    QStringList  files(QFileSystemWatcher* theWrappedObject) const;
+   void removePath(QFileSystemWatcher* theWrappedObject, const QString&  file);
    void addPath(QFileSystemWatcher* theWrappedObject, const QString&  file);
 };
 

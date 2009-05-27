@@ -28,8 +28,10 @@ class PythonQtWrapper_QDirIterator : public QObject
 { Q_OBJECT
 public:
 Q_ENUMS(IteratorFlag )
+Q_FLAGS(IteratorFlags )
 enum IteratorFlag{
   NoIteratorFlags = QDirIterator::NoIteratorFlags,   FollowSymlinks = QDirIterator::FollowSymlinks,   Subdirectories = QDirIterator::Subdirectories};
+Q_DECLARE_FLAGS(IteratorFlags, IteratorFlag)
 public slots:
 QDirIterator* new_QDirIterator(const QDir&  dir, QDirIterator::IteratorFlags  flags = QDirIterator::NoIteratorFlags);
 QDirIterator* new_QDirIterator(const QString&  path, QDir::Filters  filter, QDirIterator::IteratorFlags  flags = QDirIterator::NoIteratorFlags);
@@ -38,8 +40,8 @@ QDirIterator* new_QDirIterator(const QString&  path, const QStringList&  nameFil
 void delete_QDirIterator(QDirIterator* obj) { delete obj; } 
    QString  next(QDirIterator* theWrappedObject);
    QString  fileName(QDirIterator* theWrappedObject) const;
-   QString  filePath(QDirIterator* theWrappedObject) const;
    QFileInfo  fileInfo(QDirIterator* theWrappedObject) const;
+   QString  filePath(QDirIterator* theWrappedObject) const;
    bool  hasNext(QDirIterator* theWrappedObject) const;
    QString  path(QDirIterator* theWrappedObject) const;
 };

@@ -63,16 +63,16 @@ QTemporaryFile* new_QTemporaryFile(QObject*  parent);
 QTemporaryFile* new_QTemporaryFile(const QString&  templateName);
 QTemporaryFile* new_QTemporaryFile(const QString&  templateName, QObject*  parent);
 void delete_QTemporaryFile(QTemporaryFile* obj) { delete obj; } 
-   QAbstractFileEngine*  fileEngine(QTemporaryFile* theWrappedObject) const;
-   bool  open(QTemporaryFile* theWrappedObject);
-   bool  autoRemove(QTemporaryFile* theWrappedObject) const;
-   bool  open(QTemporaryFile* theWrappedObject, QIODevice::OpenMode  flags);
-   void setFileTemplate(QTemporaryFile* theWrappedObject, const QString&  name);
+   QString  fileTemplate(QTemporaryFile* theWrappedObject) const;
    QTemporaryFile*  static_QTemporaryFile_createLocalFile(const QString&  fileName);
    QString  fileName(QTemporaryFile* theWrappedObject) const;
-   QString  fileTemplate(QTemporaryFile* theWrappedObject) const;
+   bool  autoRemove(QTemporaryFile* theWrappedObject) const;
    QTemporaryFile*  static_QTemporaryFile_createLocalFile(QFile&  file);
+   QAbstractFileEngine*  fileEngine(QTemporaryFile* theWrappedObject) const;
+   void setFileTemplate(QTemporaryFile* theWrappedObject, const QString&  name);
+   bool  open(QTemporaryFile* theWrappedObject);
    void setAutoRemove(QTemporaryFile* theWrappedObject, bool  b);
+   bool  open(QTemporaryFile* theWrappedObject, QIODevice::OpenMode  flags);
 };
 
 #endif // PYTHONQTWRAPPER_QTEMPORARYFILE_H

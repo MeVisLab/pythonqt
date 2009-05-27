@@ -91,70 +91,72 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QMessageBox : public QMessageBox
 { public:
-inline void promoted_changeEvent(QEvent*  event) { QMessageBox::changeEvent(event); }
 inline void promoted_showEvent(QShowEvent*  event) { QMessageBox::showEvent(event); }
 inline bool  promoted_event(QEvent*  e) { return QMessageBox::event(e); }
-inline void promoted_resizeEvent(QResizeEvent*  event) { QMessageBox::resizeEvent(event); }
 inline void promoted_closeEvent(QCloseEvent*  event) { QMessageBox::closeEvent(event); }
+inline void promoted_changeEvent(QEvent*  event) { QMessageBox::changeEvent(event); }
 inline void promoted_keyPressEvent(QKeyEvent*  event) { QMessageBox::keyPressEvent(event); }
+inline void promoted_resizeEvent(QResizeEvent*  event) { QMessageBox::resizeEvent(event); }
 };
 
 class PythonQtWrapper_QMessageBox : public QObject
 { Q_OBJECT
 public:
 Q_ENUMS(ButtonRole StandardButton )
+Q_FLAGS(StandardButtons )
 enum ButtonRole{
   InvalidRole = QMessageBox::InvalidRole,   AcceptRole = QMessageBox::AcceptRole,   RejectRole = QMessageBox::RejectRole,   DestructiveRole = QMessageBox::DestructiveRole,   ActionRole = QMessageBox::ActionRole,   HelpRole = QMessageBox::HelpRole,   YesRole = QMessageBox::YesRole,   NoRole = QMessageBox::NoRole,   ResetRole = QMessageBox::ResetRole,   ApplyRole = QMessageBox::ApplyRole,   NRoles = QMessageBox::NRoles};
 enum StandardButton{
   NoButton = QMessageBox::NoButton,   Ok = QMessageBox::Ok,   Save = QMessageBox::Save,   SaveAll = QMessageBox::SaveAll,   Open = QMessageBox::Open,   Yes = QMessageBox::Yes,   YesToAll = QMessageBox::YesToAll,   No = QMessageBox::No,   NoToAll = QMessageBox::NoToAll,   Abort = QMessageBox::Abort,   Retry = QMessageBox::Retry,   Ignore = QMessageBox::Ignore,   Close = QMessageBox::Close,   Cancel = QMessageBox::Cancel,   Discard = QMessageBox::Discard,   Help = QMessageBox::Help,   Apply = QMessageBox::Apply,   Reset = QMessageBox::Reset,   RestoreDefaults = QMessageBox::RestoreDefaults,   FirstButton = QMessageBox::FirstButton,   LastButton = QMessageBox::LastButton,   YesAll = QMessageBox::YesAll,   NoAll = QMessageBox::NoAll,   Default = QMessageBox::Default,   Escape = QMessageBox::Escape,   FlagMask = QMessageBox::FlagMask,   ButtonMask = QMessageBox::ButtonMask};
+Q_DECLARE_FLAGS(StandardButtons, StandardButton)
 public slots:
 QMessageBox* new_QMessageBox(QMessageBox::Icon  icon, const QString&  title, const QString&  text, QMessageBox::StandardButtons  buttons = QMessageBox::NoButton, QWidget*  parent = 0, Qt::WindowFlags  f = Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint);
 QMessageBox* new_QMessageBox(QWidget*  parent = 0);
 void delete_QMessageBox(QMessageBox* obj) { delete obj; } 
-   QPushButton*  addButton(QMessageBox* theWrappedObject, QMessageBox::StandardButton  button);
-   QAbstractButton*  button(QMessageBox* theWrappedObject, QMessageBox::StandardButton  which) const;
-   QSize  sizeHint(QMessageBox* theWrappedObject) const;
-   QAbstractButton*  escapeButton(QMessageBox* theWrappedObject) const;
-   QMessageBox::StandardButton  static_QMessageBox_critical(QWidget*  parent, const QString&  title, const QString&  text, QMessageBox::StandardButtons  buttons = QMessageBox::Ok, QMessageBox::StandardButton  defaultButton = QMessageBox::NoButton);
-   QString  informativeText(QMessageBox* theWrappedObject) const;
-   QString  text(QMessageBox* theWrappedObject) const;
-   int  static_QMessageBox_warning(QWidget*  parent, const QString&  title, const QString&  text, QMessageBox::StandardButton  button0, QMessageBox::StandardButton  button1);
-   QAbstractButton*  clickedButton(QMessageBox* theWrappedObject) const;
-   void setTextFormat(QMessageBox* theWrappedObject, Qt::TextFormat  format);
-   Qt::TextFormat  textFormat(QMessageBox* theWrappedObject) const;
-   QMessageBox::Icon  icon(QMessageBox* theWrappedObject) const;
-   void setIconPixmap(QMessageBox* theWrappedObject, const QPixmap&  pixmap);
-   QPixmap  iconPixmap(QMessageBox* theWrappedObject) const;
-   void setEscapeButton(QMessageBox* theWrappedObject, QAbstractButton*  button);
-   void setDefaultButton(QMessageBox* theWrappedObject, QMessageBox::StandardButton  button);
-   void setIcon(QMessageBox* theWrappedObject, QMessageBox::Icon  arg__1);
-   void changeEvent(QMessageBox* theWrappedObject, QEvent*  event);
-   void static_QMessageBox_aboutQt(QWidget*  parent, const QString&  title = QString());
-   void setDefaultButton(QMessageBox* theWrappedObject, QPushButton*  button);
-   QMessageBox::StandardButton  static_QMessageBox_warning(QWidget*  parent, const QString&  title, const QString&  text, QMessageBox::StandardButtons  buttons = QMessageBox::Ok, QMessageBox::StandardButton  defaultButton = QMessageBox::NoButton);
-   int  static_QMessageBox_critical(QWidget*  parent, const QString&  title, const QString&  text, QMessageBox::StandardButton  button0, QMessageBox::StandardButton  button1);
-   void removeButton(QMessageBox* theWrappedObject, QAbstractButton*  button);
-   QMessageBox::StandardButton  standardButton(QMessageBox* theWrappedObject, QAbstractButton*  button) const;
-   QMessageBox::StandardButton  static_QMessageBox_question(QWidget*  parent, const QString&  title, const QString&  text, QMessageBox::StandardButtons  buttons = QMessageBox::Ok, QMessageBox::StandardButton  defaultButton = QMessageBox::NoButton);
    QMessageBox::StandardButton  static_QMessageBox_information(QWidget*  parent, const QString&  title, const QString&  text, QMessageBox::StandardButtons  buttons = QMessageBox::Ok, QMessageBox::StandardButton  defaultButton = QMessageBox::NoButton);
+   int  static_QMessageBox_question(QWidget*  parent, const QString&  title, const QString&  text, QMessageBox::StandardButton  button0, QMessageBox::StandardButton  button1);
+   void setIconPixmap(QMessageBox* theWrappedObject, const QPixmap&  pixmap);
    void showEvent(QMessageBox* theWrappedObject, QShowEvent*  event);
    void static_QMessageBox_about(QWidget*  parent, const QString&  title, const QString&  text);
-   QMessageBox::StandardButton  static_QMessageBox_information(QWidget*  parent, const QString&  title, const QString&  text, QMessageBox::StandardButton  button0, QMessageBox::StandardButton  button1 = QMessageBox::NoButton);
-   void setStandardButtons(QMessageBox* theWrappedObject, QMessageBox::StandardButtons  buttons);
-   QPushButton*  addButton(QMessageBox* theWrappedObject, const QString&  text, QMessageBox::ButtonRole  role);
-   QString  detailedText(QMessageBox* theWrappedObject) const;
-   int  static_QMessageBox_question(QWidget*  parent, const QString&  title, const QString&  text, QMessageBox::StandardButton  button0, QMessageBox::StandardButton  button1);
+   QSize  sizeHint(QMessageBox* theWrappedObject) const;
+   QString  text(QMessageBox* theWrappedObject) const;
+   void setTextFormat(QMessageBox* theWrappedObject, Qt::TextFormat  format);
    bool  event(QMessageBox* theWrappedObject, QEvent*  e);
-   void resizeEvent(QMessageBox* theWrappedObject, QResizeEvent*  event);
    void closeEvent(QMessageBox* theWrappedObject, QCloseEvent*  event);
-   void keyPressEvent(QMessageBox* theWrappedObject, QKeyEvent*  event);
+   void setDefaultButton(QMessageBox* theWrappedObject, QMessageBox::StandardButton  button);
    void setEscapeButton(QMessageBox* theWrappedObject, QMessageBox::StandardButton  button);
-   QMessageBox::StandardButtons  standardButtons(QMessageBox* theWrappedObject) const;
-   void setDetailedText(QMessageBox* theWrappedObject, const QString&  text);
-   void setText(QMessageBox* theWrappedObject, const QString&  text);
-   void setInformativeText(QMessageBox* theWrappedObject, const QString&  text);
    void addButton(QMessageBox* theWrappedObject, QAbstractButton*  button, QMessageBox::ButtonRole  role);
+   void setStandardButtons(QMessageBox* theWrappedObject, QMessageBox::StandardButtons  buttons);
+   void changeEvent(QMessageBox* theWrappedObject, QEvent*  event);
+   void setDetailedText(QMessageBox* theWrappedObject, const QString&  text);
+   QPushButton*  addButton(QMessageBox* theWrappedObject, QMessageBox::StandardButton  button);
+   void setDefaultButton(QMessageBox* theWrappedObject, QPushButton*  button);
+   void setText(QMessageBox* theWrappedObject, const QString&  text);
+   QMessageBox::StandardButton  static_QMessageBox_critical(QWidget*  parent, const QString&  title, const QString&  text, QMessageBox::StandardButtons  buttons = QMessageBox::Ok, QMessageBox::StandardButton  defaultButton = QMessageBox::NoButton);
+   void static_QMessageBox_aboutQt(QWidget*  parent, const QString&  title = QString());
    QPushButton*  defaultButton(QMessageBox* theWrappedObject) const;
+   QMessageBox::StandardButton  standardButton(QMessageBox* theWrappedObject, QAbstractButton*  button) const;
+   QAbstractButton*  button(QMessageBox* theWrappedObject, QMessageBox::StandardButton  which) const;
+   QMessageBox::StandardButton  static_QMessageBox_question(QWidget*  parent, const QString&  title, const QString&  text, QMessageBox::StandardButtons  buttons = QMessageBox::Ok, QMessageBox::StandardButton  defaultButton = QMessageBox::NoButton);
+   QAbstractButton*  escapeButton(QMessageBox* theWrappedObject) const;
+   QString  informativeText(QMessageBox* theWrappedObject) const;
+   void keyPressEvent(QMessageBox* theWrappedObject, QKeyEvent*  event);
+   int  static_QMessageBox_warning(QWidget*  parent, const QString&  title, const QString&  text, QMessageBox::StandardButton  button0, QMessageBox::StandardButton  button1);
+   QAbstractButton*  clickedButton(QMessageBox* theWrappedObject) const;
+   Qt::TextFormat  textFormat(QMessageBox* theWrappedObject) const;
+   QMessageBox::Icon  icon(QMessageBox* theWrappedObject) const;
+   QMessageBox::StandardButton  static_QMessageBox_information(QWidget*  parent, const QString&  title, const QString&  text, QMessageBox::StandardButton  button0, QMessageBox::StandardButton  button1 = QMessageBox::NoButton);
+   void setEscapeButton(QMessageBox* theWrappedObject, QAbstractButton*  button);
+   void setIcon(QMessageBox* theWrappedObject, QMessageBox::Icon  arg__1);
+   QString  detailedText(QMessageBox* theWrappedObject) const;
+   QPixmap  iconPixmap(QMessageBox* theWrappedObject) const;
+   void removeButton(QMessageBox* theWrappedObject, QAbstractButton*  button);
+   void setInformativeText(QMessageBox* theWrappedObject, const QString&  text);
+   QMessageBox::StandardButton  static_QMessageBox_warning(QWidget*  parent, const QString&  title, const QString&  text, QMessageBox::StandardButtons  buttons = QMessageBox::Ok, QMessageBox::StandardButton  defaultButton = QMessageBox::NoButton);
+   int  static_QMessageBox_critical(QWidget*  parent, const QString&  title, const QString&  text, QMessageBox::StandardButton  button0, QMessageBox::StandardButton  button1);
+   void resizeEvent(QMessageBox* theWrappedObject, QResizeEvent*  event);
+   QMessageBox::StandardButtons  standardButtons(QMessageBox* theWrappedObject) const;
+   QPushButton*  addButton(QMessageBox* theWrappedObject, const QString&  text, QMessageBox::ButtonRole  role);
 };
 
 #endif // PYTHONQTWRAPPER_QMESSAGEBOX_H

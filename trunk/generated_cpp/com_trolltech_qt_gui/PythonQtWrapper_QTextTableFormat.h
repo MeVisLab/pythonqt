@@ -33,8 +33,6 @@ PythonQtShell_QTextTableFormat* a = new PythonQtShell_QTextTableFormat();
 *((QTextTableFormat*)a) = other;
 return a; }
 void delete_QTextTableFormat(QTextTableFormat* obj) { delete obj; } 
-   qreal  cellPadding(QTextTableFormat* theWrappedObject) const;
-   int  columns(QTextTableFormat* theWrappedObject) const;
    QVector<QTextLength >  columnWidthConstraints(QTextTableFormat* theWrappedObject) const;
    void setCellPadding(QTextTableFormat* theWrappedObject, qreal  padding);
    int  headerRowCount(QTextTableFormat* theWrappedObject) const;
@@ -47,6 +45,8 @@ void delete_QTextTableFormat(QTextTableFormat* obj) { delete obj; }
    void setColumns(QTextTableFormat* theWrappedObject, int  columns);
    qreal  cellSpacing(QTextTableFormat* theWrappedObject) const;
    void clearColumnWidthConstraints(QTextTableFormat* theWrappedObject);
+   qreal  cellPadding(QTextTableFormat* theWrappedObject) const;
+   int  columns(QTextTableFormat* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QTEXTTABLEFORMAT_H

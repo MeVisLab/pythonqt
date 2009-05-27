@@ -36,14 +36,14 @@ public slots:
 QActionGroup* new_QActionGroup(QObject*  parent);
 void delete_QActionGroup(QActionGroup* obj) { delete obj; } 
    QAction*  checkedAction(QActionGroup* theWrappedObject) const;
-   bool  isVisible(QActionGroup* theWrappedObject) const;
-   void removeAction(QActionGroup* theWrappedObject, QAction*  a);
-   bool  isExclusive(QActionGroup* theWrappedObject) const;
-   QAction*  addAction(QActionGroup* theWrappedObject, const QIcon&  icon, const QString&  text);
    QAction*  addAction(QActionGroup* theWrappedObject, QAction*  a);
    QAction*  addAction(QActionGroup* theWrappedObject, const QString&  text);
    bool  isEnabled(QActionGroup* theWrappedObject) const;
+   bool  isExclusive(QActionGroup* theWrappedObject) const;
+   bool  isVisible(QActionGroup* theWrappedObject) const;
    QList<QAction* >  actions(QActionGroup* theWrappedObject) const;
+   QAction*  addAction(QActionGroup* theWrappedObject, const QIcon&  icon, const QString&  text);
+   void removeAction(QActionGroup* theWrappedObject, QAction*  a);
 };
 
 #endif // PYTHONQTWRAPPER_QACTIONGROUP_H

@@ -19,9 +19,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "childEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QSystemTrayIcon::staticMetaObject,
-      "childEvent(QSystemTrayIcon*,QChildEvent* )");
+    static const char* argumentList[] ={"" , "QChildEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -37,9 +36,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "customEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QSystemTrayIcon::staticMetaObject,
-      "customEvent(QSystemTrayIcon*,QEvent* )");
+    static const char* argumentList[] ={"" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -55,16 +53,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "event");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QSystemTrayIcon::staticMetaObject,
-      "event(QSystemTrayIcon*,QEvent* )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      bool returnValue;
     void* args[2] = {NULL, (void*)&event};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -80,16 +81,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "eventFilter");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QSystemTrayIcon::staticMetaObject,
-      "eventFilter(QSystemTrayIcon*,QObject* ,QEvent* )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
+      bool returnValue;
     void* args[3] = {NULL, (void*)&arg__1, (void*)&arg__2};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("eventFilter", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -105,9 +109,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "timerEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QSystemTrayIcon::staticMetaObject,
-      "timerEvent(QSystemTrayIcon*,QTimerEvent* )");
+    static const char* argumentList[] ={"" , "QTimerEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -125,63 +128,63 @@ QSystemTrayIcon* PythonQtWrapper_QSystemTrayIcon::new_QSystemTrayIcon(const QIco
 { 
 return new PythonQtShell_QSystemTrayIcon(icon, parent); }
 
-bool  PythonQtWrapper_QSystemTrayIcon::static_QSystemTrayIcon_supportsMessages()
+bool  PythonQtWrapper_QSystemTrayIcon::static_QSystemTrayIcon_isSystemTrayAvailable()
 {
-return QSystemTrayIcon::supportsMessages();
-}
-
-QMenu*  PythonQtWrapper_QSystemTrayIcon::contextMenu(QSystemTrayIcon* theWrappedObject) const
-{
-return  theWrappedObject->contextMenu();
-}
-
-void PythonQtWrapper_QSystemTrayIcon::setContextMenu(QSystemTrayIcon* theWrappedObject, QMenu*  menu)
-{
- theWrappedObject->setContextMenu(menu);
-}
-
-void PythonQtWrapper_QSystemTrayIcon::setToolTip(QSystemTrayIcon* theWrappedObject, const QString&  tip)
-{
- theWrappedObject->setToolTip(tip);
-}
-
-void PythonQtWrapper_QSystemTrayIcon::showMessage(QSystemTrayIcon* theWrappedObject, const QString&  title, const QString&  msg, QSystemTrayIcon::MessageIcon  icon, int  msecs)
-{
- theWrappedObject->showMessage(title, msg, icon, msecs);
-}
-
-QRect  PythonQtWrapper_QSystemTrayIcon::geometry(QSystemTrayIcon* theWrappedObject) const
-{
-return  theWrappedObject->geometry();
-}
-
-QString  PythonQtWrapper_QSystemTrayIcon::toolTip(QSystemTrayIcon* theWrappedObject) const
-{
-return  theWrappedObject->toolTip();
-}
-
-bool  PythonQtWrapper_QSystemTrayIcon::event(QSystemTrayIcon* theWrappedObject, QEvent*  event)
-{
-return  ((PythonQtPublicPromoter_QSystemTrayIcon*)theWrappedObject)->promoted_event(event);
+  return (QSystemTrayIcon::isSystemTrayAvailable());
 }
 
 QIcon  PythonQtWrapper_QSystemTrayIcon::icon(QSystemTrayIcon* theWrappedObject) const
 {
-return  theWrappedObject->icon();
+  return ( theWrappedObject->icon());
 }
 
 bool  PythonQtWrapper_QSystemTrayIcon::isVisible(QSystemTrayIcon* theWrappedObject) const
 {
-return  theWrappedObject->isVisible();
+  return ( theWrappedObject->isVisible());
 }
 
-bool  PythonQtWrapper_QSystemTrayIcon::static_QSystemTrayIcon_isSystemTrayAvailable()
+void PythonQtWrapper_QSystemTrayIcon::showMessage(QSystemTrayIcon* theWrappedObject, const QString&  title, const QString&  msg, QSystemTrayIcon::MessageIcon  icon, int  msecs)
 {
-return QSystemTrayIcon::isSystemTrayAvailable();
+  ( theWrappedObject->showMessage(title, msg, icon, msecs));
 }
 
 void PythonQtWrapper_QSystemTrayIcon::setIcon(QSystemTrayIcon* theWrappedObject, const QIcon&  icon)
 {
- theWrappedObject->setIcon(icon);
+  ( theWrappedObject->setIcon(icon));
+}
+
+bool  PythonQtWrapper_QSystemTrayIcon::static_QSystemTrayIcon_supportsMessages()
+{
+  return (QSystemTrayIcon::supportsMessages());
+}
+
+void PythonQtWrapper_QSystemTrayIcon::setContextMenu(QSystemTrayIcon* theWrappedObject, QMenu*  menu)
+{
+  ( theWrappedObject->setContextMenu(menu));
+}
+
+QMenu*  PythonQtWrapper_QSystemTrayIcon::contextMenu(QSystemTrayIcon* theWrappedObject) const
+{
+  return ( theWrappedObject->contextMenu());
+}
+
+void PythonQtWrapper_QSystemTrayIcon::setToolTip(QSystemTrayIcon* theWrappedObject, const QString&  tip)
+{
+  ( theWrappedObject->setToolTip(tip));
+}
+
+bool  PythonQtWrapper_QSystemTrayIcon::event(QSystemTrayIcon* theWrappedObject, QEvent*  event)
+{
+  return ( ((PythonQtPublicPromoter_QSystemTrayIcon*)theWrappedObject)->promoted_event(event));
+}
+
+QRect  PythonQtWrapper_QSystemTrayIcon::geometry(QSystemTrayIcon* theWrappedObject) const
+{
+  return ( theWrappedObject->geometry());
+}
+
+QString  PythonQtWrapper_QSystemTrayIcon::toolTip(QSystemTrayIcon* theWrappedObject) const
+{
+  return ( theWrappedObject->toolTip());
 }
 

@@ -30,43 +30,43 @@ QRadialGradient* PythonQtWrapper_QRadialGradient::new_QRadialGradient(qreal  cx,
 { 
 return new QRadialGradient(cx, cy, radius, fx, fy); }
 
-QPointF  PythonQtWrapper_QRadialGradient::center(QRadialGradient* theWrappedObject) const
+void PythonQtWrapper_QRadialGradient::setCenter(QRadialGradient* theWrappedObject, const QPointF&  center)
 {
-return  theWrappedObject->center();
-}
-
-QPointF  PythonQtWrapper_QRadialGradient::focalPoint(QRadialGradient* theWrappedObject) const
-{
-return  theWrappedObject->focalPoint();
-}
-
-void PythonQtWrapper_QRadialGradient::setFocalPoint(QRadialGradient* theWrappedObject, qreal  x, qreal  y)
-{
- theWrappedObject->setFocalPoint(x, y);
+  ( theWrappedObject->setCenter(center));
 }
 
 qreal  PythonQtWrapper_QRadialGradient::radius(QRadialGradient* theWrappedObject) const
 {
-return  theWrappedObject->radius();
+  return ( theWrappedObject->radius());
+}
+
+void PythonQtWrapper_QRadialGradient::setFocalPoint(QRadialGradient* theWrappedObject, qreal  x, qreal  y)
+{
+  ( theWrappedObject->setFocalPoint(x, y));
 }
 
 void PythonQtWrapper_QRadialGradient::setCenter(QRadialGradient* theWrappedObject, qreal  x, qreal  y)
 {
- theWrappedObject->setCenter(x, y);
+  ( theWrappedObject->setCenter(x, y));
 }
 
 void PythonQtWrapper_QRadialGradient::setFocalPoint(QRadialGradient* theWrappedObject, const QPointF&  focalPoint)
 {
- theWrappedObject->setFocalPoint(focalPoint);
+  ( theWrappedObject->setFocalPoint(focalPoint));
 }
 
 void PythonQtWrapper_QRadialGradient::setRadius(QRadialGradient* theWrappedObject, qreal  radius)
 {
- theWrappedObject->setRadius(radius);
+  ( theWrappedObject->setRadius(radius));
 }
 
-void PythonQtWrapper_QRadialGradient::setCenter(QRadialGradient* theWrappedObject, const QPointF&  center)
+QPointF  PythonQtWrapper_QRadialGradient::center(QRadialGradient* theWrappedObject) const
 {
- theWrappedObject->setCenter(center);
+  return ( theWrappedObject->center());
+}
+
+QPointF  PythonQtWrapper_QRadialGradient::focalPoint(QRadialGradient* theWrappedObject) const
+{
+  return ( theWrappedObject->focalPoint());
 }
 

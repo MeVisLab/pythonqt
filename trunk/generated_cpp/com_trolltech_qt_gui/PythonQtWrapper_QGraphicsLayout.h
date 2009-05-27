@@ -34,9 +34,9 @@ virtual void widgetEvent(QEvent*  e);
 
 class PythonQtPublicPromoter_QGraphicsLayout : public QGraphicsLayout
 { public:
-inline void promoted_invalidate() { QGraphicsLayout::invalidate(); }
 inline void promoted_getContentsMargins(qreal*  left, qreal*  top, qreal*  right, qreal*  bottom) const { QGraphicsLayout::getContentsMargins(left, top, right, bottom); }
 inline void promoted_widgetEvent(QEvent*  e) { QGraphicsLayout::widgetEvent(e); }
+inline void promoted_invalidate() { QGraphicsLayout::invalidate(); }
 };
 
 class PythonQtWrapper_QGraphicsLayout : public QObject
@@ -45,12 +45,12 @@ public:
 public slots:
 QGraphicsLayout* new_QGraphicsLayout(QGraphicsLayoutItem*  parent = 0);
 void delete_QGraphicsLayout(QGraphicsLayout* obj) { delete obj; } 
+   void getContentsMargins(QGraphicsLayout* theWrappedObject, qreal*  left, qreal*  top, qreal*  right, qreal*  bottom) const;
+   void activate(QGraphicsLayout* theWrappedObject);
+   void widgetEvent(QGraphicsLayout* theWrappedObject, QEvent*  e);
    bool  isActivated(QGraphicsLayout* theWrappedObject) const;
    void setContentsMargins(QGraphicsLayout* theWrappedObject, qreal  left, qreal  top, qreal  right, qreal  bottom);
    void invalidate(QGraphicsLayout* theWrappedObject);
-   void activate(QGraphicsLayout* theWrappedObject);
-   void getContentsMargins(QGraphicsLayout* theWrappedObject, qreal*  left, qreal*  top, qreal*  right, qreal*  bottom) const;
-   void widgetEvent(QGraphicsLayout* theWrappedObject, QEvent*  e);
 };
 
 #endif // PYTHONQTWRAPPER_QGRAPHICSLAYOUT_H

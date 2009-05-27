@@ -103,11 +103,11 @@ public slots:
 QRadioButton* new_QRadioButton(QWidget*  parent = 0);
 QRadioButton* new_QRadioButton(const QString&  text, QWidget*  parent = 0);
 void delete_QRadioButton(QRadioButton* obj) { delete obj; } 
+   QSize  sizeHint(QRadioButton* theWrappedObject) const;
    bool  event(QRadioButton* theWrappedObject, QEvent*  e);
    void mouseMoveEvent(QRadioButton* theWrappedObject, QMouseEvent*  arg__1);
    void paintEvent(QRadioButton* theWrappedObject, QPaintEvent*  arg__1);
    bool  hitButton(QRadioButton* theWrappedObject, const QPoint&  arg__1) const;
-   QSize  sizeHint(QRadioButton* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QRADIOBUTTON_H

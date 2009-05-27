@@ -25,6 +25,7 @@ class PythonQtWrapper_QStyleOptionTab : public QObject
 { Q_OBJECT
 public:
 Q_ENUMS(StyleOptionVersion CornerWidget TabPosition SelectedPosition StyleOptionType )
+Q_FLAGS(CornerWidgets )
 enum StyleOptionVersion{
   Version = QStyleOptionTab::Version};
 enum CornerWidget{
@@ -35,6 +36,7 @@ enum SelectedPosition{
   NotAdjacent = QStyleOptionTab::NotAdjacent,   NextIsSelected = QStyleOptionTab::NextIsSelected,   PreviousIsSelected = QStyleOptionTab::PreviousIsSelected};
 enum StyleOptionType{
   Type = QStyleOptionTab::Type};
+Q_DECLARE_FLAGS(CornerWidgets, CornerWidget)
 public slots:
 QStyleOptionTab* new_QStyleOptionTab();
 QStyleOptionTab* new_QStyleOptionTab(const QStyleOptionTab&  other);

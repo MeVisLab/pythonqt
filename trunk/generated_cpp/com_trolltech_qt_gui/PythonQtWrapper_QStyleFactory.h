@@ -25,8 +25,8 @@ public:
 public slots:
 QStyleFactory* new_QStyleFactory();
 void delete_QStyleFactory(QStyleFactory* obj) { delete obj; } 
-   QStringList  static_QStyleFactory_keys();
    QStyle*  static_QStyleFactory_create(const QString&  arg__1);
+   QStringList  static_QStyleFactory_keys();
 };
 
 #endif // PYTHONQTWRAPPER_QSTYLEFACTORY_H

@@ -26,10 +26,12 @@ class PythonQtWrapper_QStyleOptionFrameV2 : public QObject
 { Q_OBJECT
 public:
 Q_ENUMS(StyleOptionVersion FrameFeature )
+Q_FLAGS(FrameFeatures )
 enum StyleOptionVersion{
   Version = QStyleOptionFrameV2::Version};
 enum FrameFeature{
   None = QStyleOptionFrameV2::None,   Flat = QStyleOptionFrameV2::Flat};
+Q_DECLARE_FLAGS(FrameFeatures, FrameFeature)
 public slots:
 QStyleOptionFrameV2* new_QStyleOptionFrameV2();
 QStyleOptionFrameV2* new_QStyleOptionFrameV2(const QStyleOptionFrame&  other);

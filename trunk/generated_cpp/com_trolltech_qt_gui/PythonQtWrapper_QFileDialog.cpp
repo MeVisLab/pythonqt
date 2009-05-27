@@ -43,9 +43,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "accept");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "accept(QFileDialog*)");
+    static const char* argumentList[] ={""};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -61,9 +60,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "actionEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "actionEvent(QFileDialog*,QActionEvent* )");
+    static const char* argumentList[] ={"" , "QActionEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -79,9 +77,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "changeEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "changeEvent(QFileDialog*,QEvent* )");
+    static const char* argumentList[] ={"" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&e};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -97,9 +94,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "childEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "childEvent(QFileDialog*,QChildEvent* )");
+    static const char* argumentList[] ={"" , "QChildEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -115,9 +111,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "closeEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "closeEvent(QFileDialog*,QCloseEvent* )");
+    static const char* argumentList[] ={"" , "QCloseEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -133,9 +128,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "contextMenuEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "contextMenuEvent(QFileDialog*,QContextMenuEvent* )");
+    static const char* argumentList[] ={"" , "QContextMenuEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -151,9 +145,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "customEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "customEvent(QFileDialog*,QEvent* )");
+    static const char* argumentList[] ={"" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -169,16 +162,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "devType");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "devType(QFileDialog*)");
-      int  returnValue;
+    static const char* argumentList[] ={"int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      int returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((int *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("devType", methodInfo, result);
+        } else {
+          returnValue = *((int*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -194,9 +190,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "done");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "done(QFileDialog*,int )");
+    static const char* argumentList[] ={"" , "int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&result};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -212,9 +207,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "dragEnterEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "dragEnterEvent(QFileDialog*,QDragEnterEvent* )");
+    static const char* argumentList[] ={"" , "QDragEnterEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -230,9 +224,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "dragLeaveEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "dragLeaveEvent(QFileDialog*,QDragLeaveEvent* )");
+    static const char* argumentList[] ={"" , "QDragLeaveEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -248,9 +241,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "dragMoveEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "dragMoveEvent(QFileDialog*,QDragMoveEvent* )");
+    static const char* argumentList[] ={"" , "QDragMoveEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -266,9 +258,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "dropEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "dropEvent(QFileDialog*,QDropEvent* )");
+    static const char* argumentList[] ={"" , "QDropEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -284,9 +275,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "enterEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "enterEvent(QFileDialog*,QEvent* )");
+    static const char* argumentList[] ={"" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -302,16 +292,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "event");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "event(QFileDialog*,QEvent* )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      bool returnValue;
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -327,16 +320,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "eventFilter");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "eventFilter(QFileDialog*,QObject* ,QEvent* )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
+      bool returnValue;
     void* args[3] = {NULL, (void*)&arg__1, (void*)&arg__2};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("eventFilter", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -352,9 +348,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "focusInEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "focusInEvent(QFileDialog*,QFocusEvent* )");
+    static const char* argumentList[] ={"" , "QFocusEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -370,16 +365,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "focusNextPrevChild");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "focusNextPrevChild(QFileDialog*,bool )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "bool"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      bool returnValue;
     void* args[2] = {NULL, (void*)&next};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("focusNextPrevChild", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -395,9 +393,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "focusOutEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "focusOutEvent(QFileDialog*,QFocusEvent* )");
+    static const char* argumentList[] ={"" , "QFocusEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -413,16 +410,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "heightForWidth");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "heightForWidth(QFileDialog*,int )");
-      int  returnValue;
+    static const char* argumentList[] ={"int" , "int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      int returnValue;
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((int *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("heightForWidth", methodInfo, result);
+        } else {
+          returnValue = *((int*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -438,9 +438,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "hideEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "hideEvent(QFileDialog*,QHideEvent* )");
+    static const char* argumentList[] ={"" , "QHideEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -456,9 +455,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "inputMethodEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "inputMethodEvent(QFileDialog*,QInputMethodEvent* )");
+    static const char* argumentList[] ={"" , "QInputMethodEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -474,16 +472,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "inputMethodQuery");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "inputMethodQuery(QFileDialog*,Qt::InputMethodQuery )");
-      QVariant  returnValue;
+    static const char* argumentList[] ={"QVariant" , "Qt::InputMethodQuery"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      QVariant returnValue;
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QVariant *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("inputMethodQuery", methodInfo, result);
+        } else {
+          returnValue = *((QVariant*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -499,9 +500,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "keyPressEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "keyPressEvent(QFileDialog*,QKeyEvent* )");
+    static const char* argumentList[] ={"" , "QKeyEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -517,9 +517,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "keyReleaseEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "keyReleaseEvent(QFileDialog*,QKeyEvent* )");
+    static const char* argumentList[] ={"" , "QKeyEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -535,9 +534,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "languageChange");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "languageChange(QFileDialog*)");
+    static const char* argumentList[] ={""};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -553,9 +551,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "leaveEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "leaveEvent(QFileDialog*,QEvent* )");
+    static const char* argumentList[] ={"" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -571,16 +568,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "metric");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "metric(QFileDialog*,QPaintDevice::PaintDeviceMetric )");
-      int  returnValue;
+    static const char* argumentList[] ={"int" , "QPaintDevice::PaintDeviceMetric"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      int returnValue;
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((int *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("metric", methodInfo, result);
+        } else {
+          returnValue = *((int*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -596,9 +596,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "mouseDoubleClickEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "mouseDoubleClickEvent(QFileDialog*,QMouseEvent* )");
+    static const char* argumentList[] ={"" , "QMouseEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -614,9 +613,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "mouseMoveEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "mouseMoveEvent(QFileDialog*,QMouseEvent* )");
+    static const char* argumentList[] ={"" , "QMouseEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -632,9 +630,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "mousePressEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "mousePressEvent(QFileDialog*,QMouseEvent* )");
+    static const char* argumentList[] ={"" , "QMouseEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -650,9 +647,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "mouseReleaseEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "mouseReleaseEvent(QFileDialog*,QMouseEvent* )");
+    static const char* argumentList[] ={"" , "QMouseEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -668,9 +664,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "moveEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "moveEvent(QFileDialog*,QMoveEvent* )");
+    static const char* argumentList[] ={"" , "QMoveEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -686,16 +681,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "paintEngine");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "paintEngine(QFileDialog*)");
-      QPaintEngine*  returnValue;
+    static const char* argumentList[] ={"QPaintEngine*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      QPaintEngine* returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QPaintEngine* *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("paintEngine", methodInfo, result);
+        } else {
+          returnValue = *((QPaintEngine**)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -711,9 +709,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "paintEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "paintEvent(QFileDialog*,QPaintEvent* )");
+    static const char* argumentList[] ={"" , "QPaintEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -729,9 +726,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "reject");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "reject(QFileDialog*)");
+    static const char* argumentList[] ={""};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -747,9 +743,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "resizeEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "resizeEvent(QFileDialog*,QResizeEvent* )");
+    static const char* argumentList[] ={"" , "QResizeEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -765,9 +760,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "showEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "showEvent(QFileDialog*,QShowEvent* )");
+    static const char* argumentList[] ={"" , "QShowEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -783,9 +777,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "tabletEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "tabletEvent(QFileDialog*,QTabletEvent* )");
+    static const char* argumentList[] ={"" , "QTabletEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -801,9 +794,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "timerEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "timerEvent(QFileDialog*,QTimerEvent* )");
+    static const char* argumentList[] ={"" , "QTimerEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -819,9 +811,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "wheelEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileDialog::staticMetaObject,
-      "wheelEvent(QFileDialog*,QWheelEvent* )");
+    static const char* argumentList[] ={"" , "QWheelEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -839,273 +830,273 @@ QFileDialog* PythonQtWrapper_QFileDialog::new_QFileDialog(QWidget*  parent, cons
 { 
 return new PythonQtShell_QFileDialog(parent, caption, directory, filter); }
 
-bool  PythonQtWrapper_QFileDialog::resolveSymlinks(QFileDialog* theWrappedObject) const
+void PythonQtWrapper_QFileDialog::accept(QFileDialog* theWrappedObject)
 {
-return  theWrappedObject->resolveSymlinks();
-}
-
-QString  PythonQtWrapper_QFileDialog::static_QFileDialog_getExistingDirectory(QWidget*  parent, const QString&  caption, const QString&  dir, QFileDialog::Options  options)
-{
-return QFileDialog::getExistingDirectory(parent, caption, dir, options);
+  ( ((PythonQtPublicPromoter_QFileDialog*)theWrappedObject)->promoted_accept());
 }
 
 QFileIconProvider*  PythonQtWrapper_QFileDialog::iconProvider(QFileDialog* theWrappedObject) const
 {
-return  theWrappedObject->iconProvider();
-}
-
-void PythonQtWrapper_QFileDialog::setSidebarUrls(QFileDialog* theWrappedObject, const QList<QUrl >&  urls)
-{
- theWrappedObject->setSidebarUrls(urls);
-}
-
-QDir::Filters  PythonQtWrapper_QFileDialog::filter(QFileDialog* theWrappedObject) const
-{
-return  theWrappedObject->filter();
-}
-
-QString  PythonQtWrapper_QFileDialog::labelText(QFileDialog* theWrappedObject, QFileDialog::DialogLabel  label) const
-{
-return  theWrappedObject->labelText(label);
-}
-
-QString  PythonQtWrapper_QFileDialog::selectedNameFilter(QFileDialog* theWrappedObject) const
-{
-return  theWrappedObject->selectedNameFilter();
-}
-
-void PythonQtWrapper_QFileDialog::accept(QFileDialog* theWrappedObject)
-{
- ((PythonQtPublicPromoter_QFileDialog*)theWrappedObject)->promoted_accept();
-}
-
-void PythonQtWrapper_QFileDialog::setDirectory(QFileDialog* theWrappedObject, const QDir&  directory)
-{
- theWrappedObject->setDirectory(directory);
-}
-
-QString  PythonQtWrapper_QFileDialog::defaultSuffix(QFileDialog* theWrappedObject) const
-{
-return  theWrappedObject->defaultSuffix();
-}
-
-void PythonQtWrapper_QFileDialog::setItemDelegate(QFileDialog* theWrappedObject, QAbstractItemDelegate*  delegate)
-{
- theWrappedObject->setItemDelegate(delegate);
-}
-
-QStringList  PythonQtWrapper_QFileDialog::selectedFiles(QFileDialog* theWrappedObject) const
-{
-return  theWrappedObject->selectedFiles();
+  return ( theWrappedObject->iconProvider());
 }
 
 void PythonQtWrapper_QFileDialog::setConfirmOverwrite(QFileDialog* theWrappedObject, bool  enabled)
 {
- theWrappedObject->setConfirmOverwrite(enabled);
-}
-
-void PythonQtWrapper_QFileDialog::setDefaultSuffix(QFileDialog* theWrappedObject, const QString&  suffix)
-{
- theWrappedObject->setDefaultSuffix(suffix);
-}
-
-void PythonQtWrapper_QFileDialog::setResolveSymlinks(QFileDialog* theWrappedObject, bool  enabled)
-{
- theWrappedObject->setResolveSymlinks(enabled);
+  ( theWrappedObject->setConfirmOverwrite(enabled));
 }
 
 QString  PythonQtWrapper_QFileDialog::static_QFileDialog_getSaveFileName(QWidget*  parent, const QString&  caption, const QString&  dir, const QString&  filter, QString*  selectedFilter, QFileDialog::Options  options)
 {
-return QFileDialog::getSaveFileName(parent, caption, dir, filter, selectedFilter, options);
-}
-
-bool  PythonQtWrapper_QFileDialog::confirmOverwrite(QFileDialog* theWrappedObject) const
-{
-return  theWrappedObject->confirmOverwrite();
+  return (QFileDialog::getSaveFileName(parent, caption, dir, filter, selectedFilter, options));
 }
 
 void PythonQtWrapper_QFileDialog::setFilters(QFileDialog* theWrappedObject, const QStringList&  filters)
 {
- theWrappedObject->setFilters(filters);
+  ( theWrappedObject->setFilters(filters));
+}
+
+bool  PythonQtWrapper_QFileDialog::confirmOverwrite(QFileDialog* theWrappedObject) const
+{
+  return ( theWrappedObject->confirmOverwrite());
 }
 
 void PythonQtWrapper_QFileDialog::done(QFileDialog* theWrappedObject, int  result)
 {
- ((PythonQtPublicPromoter_QFileDialog*)theWrappedObject)->promoted_done(result);
+  ( ((PythonQtPublicPromoter_QFileDialog*)theWrappedObject)->promoted_done(result));
 }
 
 QFileDialog::FileMode  PythonQtWrapper_QFileDialog::fileMode(QFileDialog* theWrappedObject) const
 {
-return  theWrappedObject->fileMode();
+  return ( theWrappedObject->fileMode());
 }
 
 void PythonQtWrapper_QFileDialog::setHistory(QFileDialog* theWrappedObject, const QStringList&  paths)
 {
- theWrappedObject->setHistory(paths);
+  ( theWrappedObject->setHistory(paths));
 }
 
 void PythonQtWrapper_QFileDialog::setProxyModel(QFileDialog* theWrappedObject, QAbstractProxyModel*  model)
 {
- theWrappedObject->setProxyModel(model);
+  ( theWrappedObject->setProxyModel(model));
 }
 
-QFileDialog::AcceptMode  PythonQtWrapper_QFileDialog::acceptMode(QFileDialog* theWrappedObject) const
+QDir::Filters  PythonQtWrapper_QFileDialog::filter(QFileDialog* theWrappedObject) const
 {
-return  theWrappedObject->acceptMode();
+  return ( theWrappedObject->filter());
 }
 
-QStringList  PythonQtWrapper_QFileDialog::history(QFileDialog* theWrappedObject) const
+void PythonQtWrapper_QFileDialog::setDefaultSuffix(QFileDialog* theWrappedObject, const QString&  suffix)
 {
-return  theWrappedObject->history();
-}
-
-void PythonQtWrapper_QFileDialog::changeEvent(QFileDialog* theWrappedObject, QEvent*  e)
-{
- ((PythonQtPublicPromoter_QFileDialog*)theWrappedObject)->promoted_changeEvent(e);
-}
-
-void PythonQtWrapper_QFileDialog::setFileMode(QFileDialog* theWrappedObject, QFileDialog::FileMode  mode)
-{
- theWrappedObject->setFileMode(mode);
-}
-
-void PythonQtWrapper_QFileDialog::setIconProvider(QFileDialog* theWrappedObject, QFileIconProvider*  provider)
-{
- theWrappedObject->setIconProvider(provider);
-}
-
-QString  PythonQtWrapper_QFileDialog::static_QFileDialog_getOpenFileName(QWidget*  parent, const QString&  caption, const QString&  dir, const QString&  filter, QString*  selectedFilter, QFileDialog::Options  options)
-{
-return QFileDialog::getOpenFileName(parent, caption, dir, filter, selectedFilter, options);
-}
-
-void PythonQtWrapper_QFileDialog::setFilter(QFileDialog* theWrappedObject, const QString&  filter)
-{
- theWrappedObject->setFilter(filter);
-}
-
-QStringList  PythonQtWrapper_QFileDialog::filters(QFileDialog* theWrappedObject) const
-{
-return  theWrappedObject->filters();
-}
-
-QDir  PythonQtWrapper_QFileDialog::directory(QFileDialog* theWrappedObject) const
-{
-return  theWrappedObject->directory();
-}
-
-void PythonQtWrapper_QFileDialog::setDirectory(QFileDialog* theWrappedObject, const QString&  directory)
-{
- theWrappedObject->setDirectory(directory);
-}
-
-QList<QUrl >  PythonQtWrapper_QFileDialog::sidebarUrls(QFileDialog* theWrappedObject) const
-{
-return  theWrappedObject->sidebarUrls();
-}
-
-QString  PythonQtWrapper_QFileDialog::selectedFilter(QFileDialog* theWrappedObject) const
-{
-return  theWrappedObject->selectedFilter();
-}
-
-void PythonQtWrapper_QFileDialog::setLabelText(QFileDialog* theWrappedObject, QFileDialog::DialogLabel  label, const QString&  text)
-{
- theWrappedObject->setLabelText(label, text);
+  ( theWrappedObject->setDefaultSuffix(suffix));
 }
 
 void PythonQtWrapper_QFileDialog::setNameFilterDetailsVisible(QFileDialog* theWrappedObject, bool  enabled)
 {
- theWrappedObject->setNameFilterDetailsVisible(enabled);
+  ( theWrappedObject->setNameFilterDetailsVisible(enabled));
 }
 
-void PythonQtWrapper_QFileDialog::setFilter(QFileDialog* theWrappedObject, QDir::Filters  filters)
+void PythonQtWrapper_QFileDialog::setResolveSymlinks(QFileDialog* theWrappedObject, bool  enabled)
 {
- theWrappedObject->setFilter(filters);
+  ( theWrappedObject->setResolveSymlinks(enabled));
 }
 
-void PythonQtWrapper_QFileDialog::setReadOnly(QFileDialog* theWrappedObject, bool  enabled)
+QStringList  PythonQtWrapper_QFileDialog::history(QFileDialog* theWrappedObject) const
 {
- theWrappedObject->setReadOnly(enabled);
-}
-
-QStringList  PythonQtWrapper_QFileDialog::nameFilters(QFileDialog* theWrappedObject) const
-{
-return  theWrappedObject->nameFilters();
-}
-
-QByteArray  PythonQtWrapper_QFileDialog::saveState(QFileDialog* theWrappedObject) const
-{
-return  theWrappedObject->saveState();
-}
-
-void PythonQtWrapper_QFileDialog::selectNameFilter(QFileDialog* theWrappedObject, const QString&  filter)
-{
- theWrappedObject->selectNameFilter(filter);
-}
-
-QAbstractItemDelegate*  PythonQtWrapper_QFileDialog::itemDelegate(QFileDialog* theWrappedObject) const
-{
-return  theWrappedObject->itemDelegate();
-}
-
-bool  PythonQtWrapper_QFileDialog::restoreState(QFileDialog* theWrappedObject, const QByteArray&  state)
-{
-return  theWrappedObject->restoreState(state);
-}
-
-void PythonQtWrapper_QFileDialog::setNameFilters(QFileDialog* theWrappedObject, const QStringList&  filters)
-{
- theWrappedObject->setNameFilters(filters);
-}
-
-void PythonQtWrapper_QFileDialog::setNameFilter(QFileDialog* theWrappedObject, const QString&  filter)
-{
- theWrappedObject->setNameFilter(filter);
-}
-
-QAbstractProxyModel*  PythonQtWrapper_QFileDialog::proxyModel(QFileDialog* theWrappedObject) const
-{
-return  theWrappedObject->proxyModel();
-}
-
-void PythonQtWrapper_QFileDialog::setViewMode(QFileDialog* theWrappedObject, QFileDialog::ViewMode  mode)
-{
- theWrappedObject->setViewMode(mode);
-}
-
-QStringList  PythonQtWrapper_QFileDialog::static_QFileDialog_getOpenFileNames(QWidget*  parent, const QString&  caption, const QString&  dir, const QString&  filter, QString*  selectedFilter, QFileDialog::Options  options)
-{
-return QFileDialog::getOpenFileNames(parent, caption, dir, filter, selectedFilter, options);
-}
-
-bool  PythonQtWrapper_QFileDialog::isNameFilterDetailsVisible(QFileDialog* theWrappedObject) const
-{
-return  theWrappedObject->isNameFilterDetailsVisible();
-}
-
-void PythonQtWrapper_QFileDialog::selectFilter(QFileDialog* theWrappedObject, const QString&  filter)
-{
- theWrappedObject->selectFilter(filter);
+  return ( theWrappedObject->history());
 }
 
 void PythonQtWrapper_QFileDialog::selectFile(QFileDialog* theWrappedObject, const QString&  filename)
 {
- theWrappedObject->selectFile(filename);
+  ( theWrappedObject->selectFile(filename));
 }
 
-bool  PythonQtWrapper_QFileDialog::isReadOnly(QFileDialog* theWrappedObject) const
+QString  PythonQtWrapper_QFileDialog::defaultSuffix(QFileDialog* theWrappedObject) const
 {
-return  theWrappedObject->isReadOnly();
+  return ( theWrappedObject->defaultSuffix());
 }
 
-void PythonQtWrapper_QFileDialog::setAcceptMode(QFileDialog* theWrappedObject, QFileDialog::AcceptMode  mode)
+QString  PythonQtWrapper_QFileDialog::static_QFileDialog_getOpenFileName(QWidget*  parent, const QString&  caption, const QString&  dir, const QString&  filter, QString*  selectedFilter, QFileDialog::Options  options)
 {
- theWrappedObject->setAcceptMode(mode);
+  return (QFileDialog::getOpenFileName(parent, caption, dir, filter, selectedFilter, options));
+}
+
+QFileDialog::AcceptMode  PythonQtWrapper_QFileDialog::acceptMode(QFileDialog* theWrappedObject) const
+{
+  return ( theWrappedObject->acceptMode());
+}
+
+QStringList  PythonQtWrapper_QFileDialog::nameFilters(QFileDialog* theWrappedObject) const
+{
+  return ( theWrappedObject->nameFilters());
+}
+
+void PythonQtWrapper_QFileDialog::setFilter(QFileDialog* theWrappedObject, const QString&  filter)
+{
+  ( theWrappedObject->setFilter(filter));
 }
 
 QFileDialog::ViewMode  PythonQtWrapper_QFileDialog::viewMode(QFileDialog* theWrappedObject) const
 {
-return  theWrappedObject->viewMode();
+  return ( theWrappedObject->viewMode());
+}
+
+QString  PythonQtWrapper_QFileDialog::selectedFilter(QFileDialog* theWrappedObject) const
+{
+  return ( theWrappedObject->selectedFilter());
+}
+
+void PythonQtWrapper_QFileDialog::setFilter(QFileDialog* theWrappedObject, QDir::Filters  filters)
+{
+  ( theWrappedObject->setFilter(filters));
+}
+
+void PythonQtWrapper_QFileDialog::setNameFilters(QFileDialog* theWrappedObject, const QStringList&  filters)
+{
+  ( theWrappedObject->setNameFilters(filters));
+}
+
+void PythonQtWrapper_QFileDialog::setReadOnly(QFileDialog* theWrappedObject, bool  enabled)
+{
+  ( theWrappedObject->setReadOnly(enabled));
+}
+
+QStringList  PythonQtWrapper_QFileDialog::filters(QFileDialog* theWrappedObject) const
+{
+  return ( theWrappedObject->filters());
+}
+
+void PythonQtWrapper_QFileDialog::changeEvent(QFileDialog* theWrappedObject, QEvent*  e)
+{
+  ( ((PythonQtPublicPromoter_QFileDialog*)theWrappedObject)->promoted_changeEvent(e));
+}
+
+void PythonQtWrapper_QFileDialog::setFileMode(QFileDialog* theWrappedObject, QFileDialog::FileMode  mode)
+{
+  ( theWrappedObject->setFileMode(mode));
+}
+
+QString  PythonQtWrapper_QFileDialog::labelText(QFileDialog* theWrappedObject, QFileDialog::DialogLabel  label) const
+{
+  return ( theWrappedObject->labelText(label));
+}
+
+void PythonQtWrapper_QFileDialog::setIconProvider(QFileDialog* theWrappedObject, QFileIconProvider*  provider)
+{
+  ( theWrappedObject->setIconProvider(provider));
+}
+
+QDir  PythonQtWrapper_QFileDialog::directory(QFileDialog* theWrappedObject) const
+{
+  return ( theWrappedObject->directory());
+}
+
+QList<QUrl >  PythonQtWrapper_QFileDialog::sidebarUrls(QFileDialog* theWrappedObject) const
+{
+  return ( theWrappedObject->sidebarUrls());
+}
+
+QString  PythonQtWrapper_QFileDialog::selectedNameFilter(QFileDialog* theWrappedObject) const
+{
+  return ( theWrappedObject->selectedNameFilter());
+}
+
+void PythonQtWrapper_QFileDialog::setDirectory(QFileDialog* theWrappedObject, const QDir&  directory)
+{
+  ( theWrappedObject->setDirectory(directory));
+}
+
+QByteArray  PythonQtWrapper_QFileDialog::saveState(QFileDialog* theWrappedObject) const
+{
+  return ( theWrappedObject->saveState());
+}
+
+void PythonQtWrapper_QFileDialog::selectFilter(QFileDialog* theWrappedObject, const QString&  filter)
+{
+  ( theWrappedObject->selectFilter(filter));
+}
+
+void PythonQtWrapper_QFileDialog::selectNameFilter(QFileDialog* theWrappedObject, const QString&  filter)
+{
+  ( theWrappedObject->selectNameFilter(filter));
+}
+
+bool  PythonQtWrapper_QFileDialog::restoreState(QFileDialog* theWrappedObject, const QByteArray&  state)
+{
+  return ( theWrappedObject->restoreState(state));
+}
+
+void PythonQtWrapper_QFileDialog::setLabelText(QFileDialog* theWrappedObject, QFileDialog::DialogLabel  label, const QString&  text)
+{
+  ( theWrappedObject->setLabelText(label, text));
+}
+
+void PythonQtWrapper_QFileDialog::setNameFilter(QFileDialog* theWrappedObject, const QString&  filter)
+{
+  ( theWrappedObject->setNameFilter(filter));
+}
+
+QAbstractProxyModel*  PythonQtWrapper_QFileDialog::proxyModel(QFileDialog* theWrappedObject) const
+{
+  return ( theWrappedObject->proxyModel());
+}
+
+void PythonQtWrapper_QFileDialog::setItemDelegate(QFileDialog* theWrappedObject, QAbstractItemDelegate*  delegate)
+{
+  ( theWrappedObject->setItemDelegate(delegate));
+}
+
+void PythonQtWrapper_QFileDialog::setViewMode(QFileDialog* theWrappedObject, QFileDialog::ViewMode  mode)
+{
+  ( theWrappedObject->setViewMode(mode));
+}
+
+QStringList  PythonQtWrapper_QFileDialog::static_QFileDialog_getOpenFileNames(QWidget*  parent, const QString&  caption, const QString&  dir, const QString&  filter, QString*  selectedFilter, QFileDialog::Options  options)
+{
+  return (QFileDialog::getOpenFileNames(parent, caption, dir, filter, selectedFilter, options));
+}
+
+bool  PythonQtWrapper_QFileDialog::isNameFilterDetailsVisible(QFileDialog* theWrappedObject) const
+{
+  return ( theWrappedObject->isNameFilterDetailsVisible());
+}
+
+QAbstractItemDelegate*  PythonQtWrapper_QFileDialog::itemDelegate(QFileDialog* theWrappedObject) const
+{
+  return ( theWrappedObject->itemDelegate());
+}
+
+void PythonQtWrapper_QFileDialog::setDirectory(QFileDialog* theWrappedObject, const QString&  directory)
+{
+  ( theWrappedObject->setDirectory(directory));
+}
+
+void PythonQtWrapper_QFileDialog::setSidebarUrls(QFileDialog* theWrappedObject, const QList<QUrl >&  urls)
+{
+  ( theWrappedObject->setSidebarUrls(urls));
+}
+
+bool  PythonQtWrapper_QFileDialog::isReadOnly(QFileDialog* theWrappedObject) const
+{
+  return ( theWrappedObject->isReadOnly());
+}
+
+QStringList  PythonQtWrapper_QFileDialog::selectedFiles(QFileDialog* theWrappedObject) const
+{
+  return ( theWrappedObject->selectedFiles());
+}
+
+void PythonQtWrapper_QFileDialog::setAcceptMode(QFileDialog* theWrappedObject, QFileDialog::AcceptMode  mode)
+{
+  ( theWrappedObject->setAcceptMode(mode));
+}
+
+QString  PythonQtWrapper_QFileDialog::static_QFileDialog_getExistingDirectory(QWidget*  parent, const QString&  caption, const QString&  dir, QFileDialog::Options  options)
+{
+  return (QFileDialog::getExistingDirectory(parent, caption, dir, options));
+}
+
+bool  PythonQtWrapper_QFileDialog::resolveSymlinks(QFileDialog* theWrappedObject) const
+{
+  return ( theWrappedObject->resolveSymlinks());
 }
 

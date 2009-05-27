@@ -22,9 +22,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "childEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QAbstractItemDelegate::staticMetaObject,
-      "childEvent(QAbstractItemDelegate*,QChildEvent* )");
+    static const char* argumentList[] ={"" , "QChildEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -40,16 +39,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "createEditor");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QAbstractItemDelegate::staticMetaObject,
-      "createEditor(QAbstractItemDelegate*,QWidget* ,const QStyleOptionViewItem& ,const QModelIndex& )");
-      QWidget*  returnValue;
+    static const char* argumentList[] ={"QWidget*" , "QWidget*" , "const QStyleOptionViewItem&" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
+      QWidget* returnValue;
     void* args[4] = {NULL, (void*)&parent, (void*)&option, (void*)&index};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QWidget* *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("createEditor", methodInfo, result);
+        } else {
+          returnValue = *((QWidget**)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -65,9 +67,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "customEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QAbstractItemDelegate::staticMetaObject,
-      "customEvent(QAbstractItemDelegate*,QEvent* )");
+    static const char* argumentList[] ={"" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -83,16 +84,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "editorEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QAbstractItemDelegate::staticMetaObject,
-      "editorEvent(QAbstractItemDelegate*,QEvent* ,QAbstractItemModel* ,const QStyleOptionViewItem& ,const QModelIndex& )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "QEvent*" , "QAbstractItemModel*" , "const QStyleOptionViewItem&" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(5, argumentList);
+      bool returnValue;
     void* args[5] = {NULL, (void*)&event, (void*)&model, (void*)&option, (void*)&index};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("editorEvent", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -108,16 +112,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "event");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QAbstractItemDelegate::staticMetaObject,
-      "event(QAbstractItemDelegate*,QEvent* )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      bool returnValue;
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -133,16 +140,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "eventFilter");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QAbstractItemDelegate::staticMetaObject,
-      "eventFilter(QAbstractItemDelegate*,QObject* ,QEvent* )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
+      bool returnValue;
     void* args[3] = {NULL, (void*)&arg__1, (void*)&arg__2};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("eventFilter", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -158,9 +168,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "paint");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QAbstractItemDelegate::staticMetaObject,
-      "paint(QAbstractItemDelegate*,QPainter* ,const QStyleOptionViewItem& ,const QModelIndex& )");
+    static const char* argumentList[] ={"" , "QPainter*" , "const QStyleOptionViewItem&" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
     void* args[4] = {NULL, (void*)&painter, (void*)&option, (void*)&index};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -176,9 +185,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setEditorData");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QAbstractItemDelegate::staticMetaObject,
-      "setEditorData(QAbstractItemDelegate*,QWidget* ,const QModelIndex& )");
+    static const char* argumentList[] ={"" , "QWidget*" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
     void* args[3] = {NULL, (void*)&editor, (void*)&index};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -194,9 +202,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setModelData");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QAbstractItemDelegate::staticMetaObject,
-      "setModelData(QAbstractItemDelegate*,QWidget* ,QAbstractItemModel* ,const QModelIndex& )");
+    static const char* argumentList[] ={"" , "QWidget*" , "QAbstractItemModel*" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
     void* args[4] = {NULL, (void*)&editor, (void*)&model, (void*)&index};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -212,16 +219,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "sizeHint");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QAbstractItemDelegate::staticMetaObject,
-      "sizeHint(QAbstractItemDelegate*,const QStyleOptionViewItem& ,const QModelIndex& )");
-      QSize  returnValue;
+    static const char* argumentList[] ={"QSize" , "const QStyleOptionViewItem&" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
+      QSize returnValue;
     void* args[3] = {NULL, (void*)&option, (void*)&index};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QSize *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("sizeHint", methodInfo, result);
+        } else {
+          returnValue = *((QSize*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -229,7 +239,7 @@ if (_wrapper) {
     return returnValue;
   }
 }
-  QSize  result;
+  QSize result;
 return result;
 }
 void PythonQtShell_QAbstractItemDelegate::timerEvent(QTimerEvent*  arg__1)
@@ -238,9 +248,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "timerEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QAbstractItemDelegate::staticMetaObject,
-      "timerEvent(QAbstractItemDelegate*,QTimerEvent* )");
+    static const char* argumentList[] ={"" , "QTimerEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -256,9 +265,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "updateEditorGeometry");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QAbstractItemDelegate::staticMetaObject,
-      "updateEditorGeometry(QAbstractItemDelegate*,QWidget* ,const QStyleOptionViewItem& ,const QModelIndex& )");
+    static const char* argumentList[] ={"" , "QWidget*" , "const QStyleOptionViewItem&" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
     void* args[4] = {NULL, (void*)&editor, (void*)&option, (void*)&index};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -272,28 +280,28 @@ QAbstractItemDelegate* PythonQtWrapper_QAbstractItemDelegate::new_QAbstractItemD
 { 
 return new PythonQtShell_QAbstractItemDelegate(parent); }
 
-void PythonQtWrapper_QAbstractItemDelegate::updateEditorGeometry(QAbstractItemDelegate* theWrappedObject, QWidget*  editor, const QStyleOptionViewItem&  option, const QModelIndex&  index) const
-{
- ((PythonQtPublicPromoter_QAbstractItemDelegate*)theWrappedObject)->promoted_updateEditorGeometry(editor, option, index);
-}
-
-void PythonQtWrapper_QAbstractItemDelegate::setEditorData(QAbstractItemDelegate* theWrappedObject, QWidget*  editor, const QModelIndex&  index) const
-{
- ((PythonQtPublicPromoter_QAbstractItemDelegate*)theWrappedObject)->promoted_setEditorData(editor, index);
-}
-
-void PythonQtWrapper_QAbstractItemDelegate::setModelData(QAbstractItemDelegate* theWrappedObject, QWidget*  editor, QAbstractItemModel*  model, const QModelIndex&  index) const
-{
- ((PythonQtPublicPromoter_QAbstractItemDelegate*)theWrappedObject)->promoted_setModelData(editor, model, index);
-}
-
 QWidget*  PythonQtWrapper_QAbstractItemDelegate::createEditor(QAbstractItemDelegate* theWrappedObject, QWidget*  parent, const QStyleOptionViewItem&  option, const QModelIndex&  index) const
 {
-return  ((PythonQtPublicPromoter_QAbstractItemDelegate*)theWrappedObject)->promoted_createEditor(parent, option, index);
+  return ( ((PythonQtPublicPromoter_QAbstractItemDelegate*)theWrappedObject)->promoted_createEditor(parent, option, index));
 }
 
 bool  PythonQtWrapper_QAbstractItemDelegate::editorEvent(QAbstractItemDelegate* theWrappedObject, QEvent*  event, QAbstractItemModel*  model, const QStyleOptionViewItem&  option, const QModelIndex&  index)
 {
-return  ((PythonQtPublicPromoter_QAbstractItemDelegate*)theWrappedObject)->promoted_editorEvent(event, model, option, index);
+  return ( ((PythonQtPublicPromoter_QAbstractItemDelegate*)theWrappedObject)->promoted_editorEvent(event, model, option, index));
+}
+
+void PythonQtWrapper_QAbstractItemDelegate::setEditorData(QAbstractItemDelegate* theWrappedObject, QWidget*  editor, const QModelIndex&  index) const
+{
+  ( ((PythonQtPublicPromoter_QAbstractItemDelegate*)theWrappedObject)->promoted_setEditorData(editor, index));
+}
+
+void PythonQtWrapper_QAbstractItemDelegate::updateEditorGeometry(QAbstractItemDelegate* theWrappedObject, QWidget*  editor, const QStyleOptionViewItem&  option, const QModelIndex&  index) const
+{
+  ( ((PythonQtPublicPromoter_QAbstractItemDelegate*)theWrappedObject)->promoted_updateEditorGeometry(editor, option, index));
+}
+
+void PythonQtWrapper_QAbstractItemDelegate::setModelData(QAbstractItemDelegate* theWrappedObject, QWidget*  editor, QAbstractItemModel*  model, const QModelIndex&  index) const
+{
+  ( ((PythonQtPublicPromoter_QAbstractItemDelegate*)theWrappedObject)->promoted_setModelData(editor, model, index));
 }
 

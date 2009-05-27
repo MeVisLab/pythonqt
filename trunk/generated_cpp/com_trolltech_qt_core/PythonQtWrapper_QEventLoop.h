@@ -30,17 +30,19 @@ class PythonQtWrapper_QEventLoop : public QObject
 { Q_OBJECT
 public:
 Q_ENUMS(ProcessEventsFlag )
+Q_FLAGS(ProcessEventsFlags )
 enum ProcessEventsFlag{
   AllEvents = QEventLoop::AllEvents,   ExcludeUserInputEvents = QEventLoop::ExcludeUserInputEvents,   ExcludeSocketNotifiers = QEventLoop::ExcludeSocketNotifiers,   WaitForMoreEvents = QEventLoop::WaitForMoreEvents,   X11ExcludeTimers = QEventLoop::X11ExcludeTimers,   DeferredDeletion = QEventLoop::DeferredDeletion};
+Q_DECLARE_FLAGS(ProcessEventsFlags, ProcessEventsFlag)
 public slots:
 QEventLoop* new_QEventLoop(QObject*  parent = 0);
 void delete_QEventLoop(QEventLoop* obj) { delete obj; } 
-   bool  isRunning(QEventLoop* theWrappedObject) const;
    void processEvents(QEventLoop* theWrappedObject, QEventLoop::ProcessEventsFlags  flags, int  maximumTime);
-   bool  processEvents(QEventLoop* theWrappedObject, QEventLoop::ProcessEventsFlags  flags = QEventLoop::AllEvents);
-   int  exec(QEventLoop* theWrappedObject, QEventLoop::ProcessEventsFlags  flags = QEventLoop::AllEvents);
-   void exit(QEventLoop* theWrappedObject, int  returnCode = 0);
    void wakeUp(QEventLoop* theWrappedObject);
+   void exit(QEventLoop* theWrappedObject, int  returnCode = 0);
+   int  exec(QEventLoop* theWrappedObject, QEventLoop::ProcessEventsFlags  flags = QEventLoop::AllEvents);
+   bool  isRunning(QEventLoop* theWrappedObject) const;
+   bool  processEvents(QEventLoop* theWrappedObject, QEventLoop::ProcessEventsFlags  flags = QEventLoop::AllEvents);
 };
 
 #endif // PYTHONQTWRAPPER_QEVENTLOOP_H

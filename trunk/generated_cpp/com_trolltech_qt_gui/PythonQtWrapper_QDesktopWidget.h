@@ -94,19 +94,19 @@ public:
 public slots:
 QDesktopWidget* new_QDesktopWidget();
 void delete_QDesktopWidget(QDesktopWidget* obj) { delete obj; } 
-   int  screenNumber(QDesktopWidget* theWrappedObject, const QPoint&  arg__1) const;
    void resizeEvent(QDesktopWidget* theWrappedObject, QResizeEvent*  e);
-   int  screenNumber(QDesktopWidget* theWrappedObject, const QWidget*  widget = 0) const;
+   int  primaryScreen(QDesktopWidget* theWrappedObject) const;
    const QRect  availableGeometry(QDesktopWidget* theWrappedObject, int  screen = -1) const;
+   int  screenNumber(QDesktopWidget* theWrappedObject, const QPoint&  arg__1) const;
    const QRect  screenGeometry(QDesktopWidget* theWrappedObject, const QPoint&  point) const;
-   const QRect  availableGeometry(QDesktopWidget* theWrappedObject, const QPoint&  point) const;
+   const QRect  availableGeometry(QDesktopWidget* theWrappedObject, const QWidget*  widget) const;
+   bool  isVirtualDesktop(QDesktopWidget* theWrappedObject) const;
    int  numScreens(QDesktopWidget* theWrappedObject) const;
    QWidget*  screen(QDesktopWidget* theWrappedObject, int  screen = -1);
    const QRect  screenGeometry(QDesktopWidget* theWrappedObject, const QWidget*  widget) const;
-   const QRect  availableGeometry(QDesktopWidget* theWrappedObject, const QWidget*  widget) const;
-   bool  isVirtualDesktop(QDesktopWidget* theWrappedObject) const;
-   int  primaryScreen(QDesktopWidget* theWrappedObject) const;
+   const QRect  availableGeometry(QDesktopWidget* theWrappedObject, const QPoint&  point) const;
    const QRect  screenGeometry(QDesktopWidget* theWrappedObject, int  screen = -1) const;
+   int  screenNumber(QDesktopWidget* theWrappedObject, const QWidget*  widget = 0) const;
 };
 
 #endif // PYTHONQTWRAPPER_QDESKTOPWIDGET_H

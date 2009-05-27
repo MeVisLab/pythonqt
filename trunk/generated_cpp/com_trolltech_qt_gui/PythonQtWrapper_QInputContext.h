@@ -50,8 +50,8 @@ inline void promoted_widgetDestroyed(QWidget*  w) { QInputContext::widgetDestroy
 inline bool  promoted_filterEvent(const QEvent*  event) { return QInputContext::filterEvent(event); }
 inline QFont  promoted_font() const { return QInputContext::font(); }
 inline void promoted_mouseHandler(int  x, QMouseEvent*  event) { QInputContext::mouseHandler(x, event); }
-inline QList<QAction* >  promoted_actions() { return QInputContext::actions(); }
 inline void promoted_update() { QInputContext::update(); }
+inline QList<QAction* >  promoted_actions() { return QInputContext::actions(); }
 };
 
 class PythonQtWrapper_QInputContext : public QObject
@@ -63,15 +63,15 @@ enum StandardFormat{
 public slots:
 QInputContext* new_QInputContext(QObject*  parent = 0);
 void delete_QInputContext(QInputContext* obj) { delete obj; } 
-   void sendEvent(QInputContext* theWrappedObject, const QInputMethodEvent&  event);
    void widgetDestroyed(QInputContext* theWrappedObject, QWidget*  w);
-   QTextFormat  standardFormat(QInputContext* theWrappedObject, QInputContext::StandardFormat  s) const;
    QWidget*  focusWidget(QInputContext* theWrappedObject) const;
    bool  filterEvent(QInputContext* theWrappedObject, const QEvent*  event);
    QFont  font(QInputContext* theWrappedObject) const;
    void mouseHandler(QInputContext* theWrappedObject, int  x, QMouseEvent*  event);
-   QList<QAction* >  actions(QInputContext* theWrappedObject);
    void update(QInputContext* theWrappedObject);
+   QList<QAction* >  actions(QInputContext* theWrappedObject);
+   void sendEvent(QInputContext* theWrappedObject, const QInputMethodEvent&  event);
+   QTextFormat  standardFormat(QInputContext* theWrappedObject, QInputContext::StandardFormat  s) const;
 };
 
 #endif // PYTHONQTWRAPPER_QINPUTCONTEXT_H

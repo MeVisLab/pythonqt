@@ -49,20 +49,20 @@ QGLFramebufferObject* new_QGLFramebufferObject(const QSize&  size, unsigned int 
 QGLFramebufferObject* new_QGLFramebufferObject(int  width, int  height, QGLFramebufferObject::Attachment  attachment, unsigned int  target = 0x0DE1, unsigned int  internal_format = 0x8058);
 QGLFramebufferObject* new_QGLFramebufferObject(int  width, int  height, unsigned int  target = 0x0DE1);
 void delete_QGLFramebufferObject(QGLFramebufferObject* obj) { delete obj; } 
-   unsigned int  texture(QGLFramebufferObject* theWrappedObject) const;
-   int  devType(QGLFramebufferObject* theWrappedObject) const;
-   bool  bind(QGLFramebufferObject* theWrappedObject);
-   void drawTexture(QGLFramebufferObject* theWrappedObject, const QPointF&  point, unsigned int  textureId, unsigned int  textureTarget = 0x0DE1);
    bool  release(QGLFramebufferObject* theWrappedObject);
+   int  devType(QGLFramebufferObject* theWrappedObject) const;
    bool  isValid(QGLFramebufferObject* theWrappedObject) const;
-   QSize  size(QGLFramebufferObject* theWrappedObject) const;
    QImage  toImage(QGLFramebufferObject* theWrappedObject) const;
    int  metric(QGLFramebufferObject* theWrappedObject, QPaintDevice::PaintDeviceMetric  metric) const;
    QPaintEngine*  paintEngine(QGLFramebufferObject* theWrappedObject) const;
    QGLFramebufferObject::Attachment  attachment(QGLFramebufferObject* theWrappedObject) const;
    void drawTexture(QGLFramebufferObject* theWrappedObject, const QRectF&  target, unsigned int  textureId, unsigned int  textureTarget = 0x0DE1);
-   unsigned int  handle(QGLFramebufferObject* theWrappedObject) const;
    bool  static_QGLFramebufferObject_hasOpenGLFramebufferObjects();
+   QSize  size(QGLFramebufferObject* theWrappedObject) const;
+   unsigned int  texture(QGLFramebufferObject* theWrappedObject) const;
+   unsigned int  handle(QGLFramebufferObject* theWrappedObject) const;
+   bool  bind(QGLFramebufferObject* theWrappedObject);
+   void drawTexture(QGLFramebufferObject* theWrappedObject, const QPointF&  point, unsigned int  textureId, unsigned int  textureTarget = 0x0DE1);
 };
 
 #endif // PYTHONQTWRAPPER_QGLFRAMEBUFFEROBJECT_H

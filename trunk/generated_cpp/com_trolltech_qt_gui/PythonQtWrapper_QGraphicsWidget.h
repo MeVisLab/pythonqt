@@ -106,38 +106,38 @@ virtual Qt::WindowFrameSection  windowFrameSectionAt(const QPointF&  pos) const;
 
 class PythonQtPublicPromoter_QGraphicsWidget : public QGraphicsWidget
 { public:
-inline void promoted_polishEvent() { QGraphicsWidget::polishEvent(); }
-inline void promoted_getContentsMargins(qreal*  left, qreal*  top, qreal*  right, qreal*  bottom) const { QGraphicsWidget::getContentsMargins(left, top, right, bottom); }
-inline bool  promoted_focusNextPrevChild(bool  next) { return QGraphicsWidget::focusNextPrevChild(next); }
-inline QVariant  promoted_propertyChange(const QString&  propertyName, const QVariant&  value) { return QGraphicsWidget::propertyChange(propertyName, value); }
-inline bool  promoted_windowFrameEvent(QEvent*  e) { return QGraphicsWidget::windowFrameEvent(e); }
-inline void promoted_ungrabKeyboardEvent(QEvent*  event) { QGraphicsWidget::ungrabKeyboardEvent(event); }
-inline void promoted_grabKeyboardEvent(QEvent*  event) { QGraphicsWidget::grabKeyboardEvent(event); }
-inline void promoted_resizeEvent(QGraphicsSceneResizeEvent*  event) { QGraphicsWidget::resizeEvent(event); }
+inline QPainterPath  promoted_shape() const { return QGraphicsWidget::shape(); }
+inline void promoted_paint(QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = 0) { QGraphicsWidget::paint(painter, option, widget); }
 inline void promoted_showEvent(QShowEvent*  event) { QGraphicsWidget::showEvent(event); }
-inline int  promoted_type() const { return QGraphicsWidget::type(); }
+inline void promoted_updateGeometry() { QGraphicsWidget::updateGeometry(); }
+inline QSizeF  promoted_sizeHint(Qt::SizeHint  which, const QSizeF&  constraint = QSizeF()) const { return QGraphicsWidget::sizeHint(which, constraint); }
 inline bool  promoted_sceneEvent(QEvent*  event) { return QGraphicsWidget::sceneEvent(event); }
-inline void promoted_ungrabMouseEvent(QEvent*  event) { QGraphicsWidget::ungrabMouseEvent(event); }
-inline Qt::WindowFrameSection  promoted_windowFrameSectionAt(const QPointF&  pos) const { return QGraphicsWidget::windowFrameSectionAt(pos); }
+inline void promoted_ungrabKeyboardEvent(QEvent*  event) { QGraphicsWidget::ungrabKeyboardEvent(event); }
+inline void promoted_paintWindowFrame(QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = 0) { QGraphicsWidget::paintWindowFrame(painter, option, widget); }
+inline bool  promoted_focusNextPrevChild(bool  next) { return QGraphicsWidget::focusNextPrevChild(next); }
+inline void promoted_changeEvent(QEvent*  event) { QGraphicsWidget::changeEvent(event); }
+inline void promoted_getContentsMargins(qreal*  left, qreal*  top, qreal*  right, qreal*  bottom) const { QGraphicsWidget::getContentsMargins(left, top, right, bottom); }
+inline QVariant  promoted_itemChange(QGraphicsItem::GraphicsItemChange  change, const QVariant&  value) { return QGraphicsWidget::itemChange(change, value); }
+inline void promoted_resizeEvent(QGraphicsSceneResizeEvent*  event) { QGraphicsWidget::resizeEvent(event); }
+inline void promoted_closeEvent(QCloseEvent*  event) { QGraphicsWidget::closeEvent(event); }
+inline void promoted_polishEvent() { QGraphicsWidget::polishEvent(); }
 inline void promoted_hideEvent(QHideEvent*  event) { QGraphicsWidget::hideEvent(event); }
-inline void promoted_moveEvent(QGraphicsSceneMoveEvent*  event) { QGraphicsWidget::moveEvent(event); }
+inline bool  promoted_windowFrameEvent(QEvent*  e) { return QGraphicsWidget::windowFrameEvent(e); }
+inline void promoted_setGeometry(const QRectF&  rect) { QGraphicsWidget::setGeometry(rect); }
+inline void promoted_hoverLeaveEvent(QGraphicsSceneHoverEvent*  event) { QGraphicsWidget::hoverLeaveEvent(event); }
+inline void promoted_grabKeyboardEvent(QEvent*  event) { QGraphicsWidget::grabKeyboardEvent(event); }
+inline void promoted_ungrabMouseEvent(QEvent*  event) { QGraphicsWidget::ungrabMouseEvent(event); }
+inline void promoted_focusInEvent(QFocusEvent*  event) { QGraphicsWidget::focusInEvent(event); }
 inline QRectF  promoted_boundingRect() const { return QGraphicsWidget::boundingRect(); }
 inline void promoted_grabMouseEvent(QEvent*  event) { QGraphicsWidget::grabMouseEvent(event); }
-inline void promoted_closeEvent(QCloseEvent*  event) { QGraphicsWidget::closeEvent(event); }
 inline void promoted_hoverMoveEvent(QGraphicsSceneHoverEvent*  event) { QGraphicsWidget::hoverMoveEvent(event); }
-inline void promoted_hoverLeaveEvent(QGraphicsSceneHoverEvent*  event) { QGraphicsWidget::hoverLeaveEvent(event); }
-inline void promoted_changeEvent(QEvent*  event) { QGraphicsWidget::changeEvent(event); }
+inline void promoted_moveEvent(QGraphicsSceneMoveEvent*  event) { QGraphicsWidget::moveEvent(event); }
 inline void promoted_initStyleOption(QStyleOption*  option) const { QGraphicsWidget::initStyleOption(option); }
-inline bool  promoted_event(QEvent*  event) { return QGraphicsWidget::event(event); }
-inline void promoted_focusInEvent(QFocusEvent*  event) { QGraphicsWidget::focusInEvent(event); }
-inline void promoted_paint(QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = 0) { QGraphicsWidget::paint(painter, option, widget); }
-inline QSizeF  promoted_sizeHint(Qt::SizeHint  which, const QSizeF&  constraint = QSizeF()) const { return QGraphicsWidget::sizeHint(which, constraint); }
-inline QVariant  promoted_itemChange(QGraphicsItem::GraphicsItemChange  change, const QVariant&  value) { return QGraphicsWidget::itemChange(change, value); }
+inline Qt::WindowFrameSection  promoted_windowFrameSectionAt(const QPointF&  pos) const { return QGraphicsWidget::windowFrameSectionAt(pos); }
+inline QVariant  promoted_propertyChange(const QString&  propertyName, const QVariant&  value) { return QGraphicsWidget::propertyChange(propertyName, value); }
 inline void promoted_focusOutEvent(QFocusEvent*  event) { QGraphicsWidget::focusOutEvent(event); }
-inline QPainterPath  promoted_shape() const { return QGraphicsWidget::shape(); }
-inline void promoted_paintWindowFrame(QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = 0) { QGraphicsWidget::paintWindowFrame(painter, option, widget); }
-inline void promoted_updateGeometry() { QGraphicsWidget::updateGeometry(); }
-inline void promoted_setGeometry(const QRectF&  rect) { QGraphicsWidget::setGeometry(rect); }
+inline bool  promoted_event(QEvent*  event) { return QGraphicsWidget::event(event); }
+inline int  promoted_type() const { return QGraphicsWidget::type(); }
 };
 
 class PythonQtWrapper_QGraphicsWidget : public QObject
@@ -149,73 +149,73 @@ enum enum_1{
 public slots:
 QGraphicsWidget* new_QGraphicsWidget(QGraphicsItem*  parent = 0, Qt::WindowFlags  wFlags = 0);
 void delete_QGraphicsWidget(QGraphicsWidget* obj) { delete obj; } 
-   void setGeometry(QGraphicsWidget* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h);
-   void polishEvent(QGraphicsWidget* theWrappedObject);
-   QGraphicsLayout*  layout(QGraphicsWidget* theWrappedObject) const;
-   void getContentsMargins(QGraphicsWidget* theWrappedObject, qreal*  left, qreal*  top, qreal*  right, qreal*  bottom) const;
-   void setWindowTitle(QGraphicsWidget* theWrappedObject, const QString&  title);
-   bool  focusNextPrevChild(QGraphicsWidget* theWrappedObject, bool  next);
-   QRectF  windowFrameRect(QGraphicsWidget* theWrappedObject) const;
-   QVariant  propertyChange(QGraphicsWidget* theWrappedObject, const QString&  propertyName, const QVariant&  value);
-   QPalette  palette(QGraphicsWidget* theWrappedObject) const;
-   bool  windowFrameEvent(QGraphicsWidget* theWrappedObject, QEvent*  e);
-   void ungrabKeyboardEvent(QGraphicsWidget* theWrappedObject, QEvent*  event);
-   void setStyle(QGraphicsWidget* theWrappedObject, QStyle*  style);
-   Qt::LayoutDirection  layoutDirection(QGraphicsWidget* theWrappedObject) const;
-   void grabKeyboardEvent(QGraphicsWidget* theWrappedObject, QEvent*  event);
-   void resizeEvent(QGraphicsWidget* theWrappedObject, QGraphicsSceneResizeEvent*  event);
-   void setLayout(QGraphicsWidget* theWrappedObject, QGraphicsLayout*  layout);
-   QFont  font(QGraphicsWidget* theWrappedObject) const;
-   void setFocusPolicy(QGraphicsWidget* theWrappedObject, Qt::FocusPolicy  policy);
-   void static_QGraphicsWidget_setTabOrder(QGraphicsWidget*  first, QGraphicsWidget*  second);
-   bool  testAttribute(QGraphicsWidget* theWrappedObject, Qt::WidgetAttribute  attribute) const;
-   void getWindowFrameMargins(QGraphicsWidget* theWrappedObject, qreal*  left, qreal*  top, qreal*  right, qreal*  bottom) const;
-   void showEvent(QGraphicsWidget* theWrappedObject, QShowEvent*  event);
-   void unsetWindowFrameMargins(QGraphicsWidget* theWrappedObject);
-   int  type(QGraphicsWidget* theWrappedObject) const;
-   void resize(QGraphicsWidget* theWrappedObject, qreal  w, qreal  h);
-   bool  sceneEvent(QGraphicsWidget* theWrappedObject, QEvent*  event);
-   void ungrabMouseEvent(QGraphicsWidget* theWrappedObject, QEvent*  event);
-   Qt::WindowFrameSection  windowFrameSectionAt(QGraphicsWidget* theWrappedObject, const QPointF&  pos) const;
-   void hideEvent(QGraphicsWidget* theWrappedObject, QHideEvent*  event);
-   void setPalette(QGraphicsWidget* theWrappedObject, const QPalette&  palette);
-   void moveEvent(QGraphicsWidget* theWrappedObject, QGraphicsSceneMoveEvent*  event);
-   void setWindowFrameMargins(QGraphicsWidget* theWrappedObject, qreal  left, qreal  top, qreal  right, qreal  bottom);
-   QRectF  boundingRect(QGraphicsWidget* theWrappedObject) const;
-   Qt::WindowType  windowType(QGraphicsWidget* theWrappedObject) const;
-   void grabMouseEvent(QGraphicsWidget* theWrappedObject, QEvent*  event);
-   void closeEvent(QGraphicsWidget* theWrappedObject, QCloseEvent*  event);
-   void hoverMoveEvent(QGraphicsWidget* theWrappedObject, QGraphicsSceneHoverEvent*  event);
-   void unsetLayoutDirection(QGraphicsWidget* theWrappedObject);
-   Qt::WindowFlags  windowFlags(QGraphicsWidget* theWrappedObject) const;
-   void hoverLeaveEvent(QGraphicsWidget* theWrappedObject, QGraphicsSceneHoverEvent*  event);
-   void changeEvent(QGraphicsWidget* theWrappedObject, QEvent*  event);
-   QRectF  rect(QGraphicsWidget* theWrappedObject) const;
    Qt::FocusPolicy  focusPolicy(QGraphicsWidget* theWrappedObject) const;
-   void initStyleOption(QGraphicsWidget* theWrappedObject, QStyleOption*  option) const;
-   void setAttribute(QGraphicsWidget* theWrappedObject, Qt::WidgetAttribute  attribute, bool  on = true);
-   bool  event(QGraphicsWidget* theWrappedObject, QEvent*  event);
-   QGraphicsWidget*  focusWidget(QGraphicsWidget* theWrappedObject) const;
-   void setWindowFlags(QGraphicsWidget* theWrappedObject, Qt::WindowFlags  wFlags);
-   QString  windowTitle(QGraphicsWidget* theWrappedObject) const;
-   void focusInEvent(QGraphicsWidget* theWrappedObject, QFocusEvent*  event);
-   void adjustSize(QGraphicsWidget* theWrappedObject);
-   QRectF  windowFrameGeometry(QGraphicsWidget* theWrappedObject) const;
-   void paint(QGraphicsWidget* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = 0);
-   QStyle*  style(QGraphicsWidget* theWrappedObject) const;
-   void resize(QGraphicsWidget* theWrappedObject, const QSizeF&  size);
-   QSizeF  size(QGraphicsWidget* theWrappedObject) const;
-   QSizeF  sizeHint(QGraphicsWidget* theWrappedObject, Qt::SizeHint  which, const QSizeF&  constraint = QSizeF()) const;
-   void setFont(QGraphicsWidget* theWrappedObject, const QFont&  font);
-   void setContentsMargins(QGraphicsWidget* theWrappedObject, qreal  left, qreal  top, qreal  right, qreal  bottom);
-   QVariant  itemChange(QGraphicsWidget* theWrappedObject, QGraphicsItem::GraphicsItemChange  change, const QVariant&  value);
-   void focusOutEvent(QGraphicsWidget* theWrappedObject, QFocusEvent*  event);
-   bool  isActiveWindow(QGraphicsWidget* theWrappedObject) const;
+   bool  testAttribute(QGraphicsWidget* theWrappedObject, Qt::WidgetAttribute  attribute) const;
+   void resize(QGraphicsWidget* theWrappedObject, qreal  w, qreal  h);
    QPainterPath  shape(QGraphicsWidget* theWrappedObject) const;
    void setLayoutDirection(QGraphicsWidget* theWrappedObject, Qt::LayoutDirection  direction);
-   void paintWindowFrame(QGraphicsWidget* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = 0);
+   void paint(QGraphicsWidget* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = 0);
+   void showEvent(QGraphicsWidget* theWrappedObject, QShowEvent*  event);
    void updateGeometry(QGraphicsWidget* theWrappedObject);
+   QSizeF  sizeHint(QGraphicsWidget* theWrappedObject, Qt::SizeHint  which, const QSizeF&  constraint = QSizeF()) const;
+   bool  sceneEvent(QGraphicsWidget* theWrappedObject, QEvent*  event);
+   Qt::WindowType  windowType(QGraphicsWidget* theWrappedObject) const;
+   void ungrabKeyboardEvent(QGraphicsWidget* theWrappedObject, QEvent*  event);
+   QStyle*  style(QGraphicsWidget* theWrappedObject) const;
+   void setWindowFrameMargins(QGraphicsWidget* theWrappedObject, qreal  left, qreal  top, qreal  right, qreal  bottom);
+   void setPalette(QGraphicsWidget* theWrappedObject, const QPalette&  palette);
+   void paintWindowFrame(QGraphicsWidget* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = 0);
+   QGraphicsLayout*  layout(QGraphicsWidget* theWrappedObject) const;
+   QString  windowTitle(QGraphicsWidget* theWrappedObject) const;
+   bool  focusNextPrevChild(QGraphicsWidget* theWrappedObject, bool  next);
+   QRectF  rect(QGraphicsWidget* theWrappedObject) const;
+   QRectF  windowFrameRect(QGraphicsWidget* theWrappedObject) const;
+   bool  isActiveWindow(QGraphicsWidget* theWrappedObject) const;
+   void changeEvent(QGraphicsWidget* theWrappedObject, QEvent*  event);
+   void getContentsMargins(QGraphicsWidget* theWrappedObject, qreal*  left, qreal*  top, qreal*  right, qreal*  bottom) const;
+   QVariant  itemChange(QGraphicsWidget* theWrappedObject, QGraphicsItem::GraphicsItemChange  change, const QVariant&  value);
+   void resizeEvent(QGraphicsWidget* theWrappedObject, QGraphicsSceneResizeEvent*  event);
+   void setWindowTitle(QGraphicsWidget* theWrappedObject, const QString&  title);
+   void closeEvent(QGraphicsWidget* theWrappedObject, QCloseEvent*  event);
+   void polishEvent(QGraphicsWidget* theWrappedObject);
+   void hideEvent(QGraphicsWidget* theWrappedObject, QHideEvent*  event);
+   QPalette  palette(QGraphicsWidget* theWrappedObject) const;
+   void unsetWindowFrameMargins(QGraphicsWidget* theWrappedObject);
+   bool  windowFrameEvent(QGraphicsWidget* theWrappedObject, QEvent*  e);
    void setGeometry(QGraphicsWidget* theWrappedObject, const QRectF&  rect);
+   void hoverLeaveEvent(QGraphicsWidget* theWrappedObject, QGraphicsSceneHoverEvent*  event);
+   QRectF  windowFrameGeometry(QGraphicsWidget* theWrappedObject) const;
+   void resize(QGraphicsWidget* theWrappedObject, const QSizeF&  size);
+   void setLayout(QGraphicsWidget* theWrappedObject, QGraphicsLayout*  layout);
+   void grabKeyboardEvent(QGraphicsWidget* theWrappedObject, QEvent*  event);
+   void setGeometry(QGraphicsWidget* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h);
+   void ungrabMouseEvent(QGraphicsWidget* theWrappedObject, QEvent*  event);
+   void setFont(QGraphicsWidget* theWrappedObject, const QFont&  font);
+   QFont  font(QGraphicsWidget* theWrappedObject) const;
+   void focusInEvent(QGraphicsWidget* theWrappedObject, QFocusEvent*  event);
+   QSizeF  size(QGraphicsWidget* theWrappedObject) const;
+   QRectF  boundingRect(QGraphicsWidget* theWrappedObject) const;
+   void grabMouseEvent(QGraphicsWidget* theWrappedObject, QEvent*  event);
+   void static_QGraphicsWidget_setTabOrder(QGraphicsWidget*  first, QGraphicsWidget*  second);
+   Qt::WindowFlags  windowFlags(QGraphicsWidget* theWrappedObject) const;
+   void hoverMoveEvent(QGraphicsWidget* theWrappedObject, QGraphicsSceneHoverEvent*  event);
+   void setContentsMargins(QGraphicsWidget* theWrappedObject, qreal  left, qreal  top, qreal  right, qreal  bottom);
+   void moveEvent(QGraphicsWidget* theWrappedObject, QGraphicsSceneMoveEvent*  event);
+   void adjustSize(QGraphicsWidget* theWrappedObject);
+   void initStyleOption(QGraphicsWidget* theWrappedObject, QStyleOption*  option) const;
+   Qt::LayoutDirection  layoutDirection(QGraphicsWidget* theWrappedObject) const;
+   void setStyle(QGraphicsWidget* theWrappedObject, QStyle*  style);
+   Qt::WindowFrameSection  windowFrameSectionAt(QGraphicsWidget* theWrappedObject, const QPointF&  pos) const;
+   QVariant  propertyChange(QGraphicsWidget* theWrappedObject, const QString&  propertyName, const QVariant&  value);
+   void focusOutEvent(QGraphicsWidget* theWrappedObject, QFocusEvent*  event);
+   void setFocusPolicy(QGraphicsWidget* theWrappedObject, Qt::FocusPolicy  policy);
+   QGraphicsWidget*  focusWidget(QGraphicsWidget* theWrappedObject) const;
+   bool  event(QGraphicsWidget* theWrappedObject, QEvent*  event);
+   void setAttribute(QGraphicsWidget* theWrappedObject, Qt::WidgetAttribute  attribute, bool  on = true);
+   int  type(QGraphicsWidget* theWrappedObject) const;
+   void unsetLayoutDirection(QGraphicsWidget* theWrappedObject);
+   void setWindowFlags(QGraphicsWidget* theWrappedObject, Qt::WindowFlags  wFlags);
+   void getWindowFrameMargins(QGraphicsWidget* theWrappedObject, qreal*  left, qreal*  top, qreal*  right, qreal*  bottom) const;
 };
 
 #endif // PYTHONQTWRAPPER_QGRAPHICSWIDGET_H

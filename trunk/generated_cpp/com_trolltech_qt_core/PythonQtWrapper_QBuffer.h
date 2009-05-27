@@ -46,14 +46,14 @@ virtual qint64  writeData(const char*  data, qint64  len);
 
 class PythonQtPublicPromoter_QBuffer : public QBuffer
 { public:
-inline void promoted_close() { QBuffer::close(); }
-inline qint64  promoted_pos() const { return QBuffer::pos(); }
-inline bool  promoted_seek(qint64  off) { return QBuffer::seek(off); }
 inline bool  promoted_canReadLine() const { return QBuffer::canReadLine(); }
+inline void promoted_close() { QBuffer::close(); }
+inline bool  promoted_seek(qint64  off) { return QBuffer::seek(off); }
 inline qint64  promoted_readData(char*  data, qint64  maxlen) { return QBuffer::readData(data, maxlen); }
 inline bool  promoted_atEnd() const { return QBuffer::atEnd(); }
-inline bool  promoted_open(QIODevice::OpenMode  openMode) { return QBuffer::open(openMode); }
 inline qint64  promoted_writeData(const char*  data, qint64  len) { return QBuffer::writeData(data, len); }
+inline qint64  promoted_pos() const { return QBuffer::pos(); }
+inline bool  promoted_open(QIODevice::OpenMode  openMode) { return QBuffer::open(openMode); }
 inline qint64  promoted_size() const { return QBuffer::size(); }
 };
 
@@ -64,16 +64,16 @@ public slots:
 QBuffer* new_QBuffer(QByteArray*  buf, QObject*  parent = 0);
 QBuffer* new_QBuffer(QObject*  parent = 0);
 void delete_QBuffer(QBuffer* obj) { delete obj; } 
-   void close(QBuffer* theWrappedObject);
-   qint64  pos(QBuffer* theWrappedObject) const;
-   bool  seek(QBuffer* theWrappedObject, qint64  off);
    bool  canReadLine(QBuffer* theWrappedObject) const;
+   void close(QBuffer* theWrappedObject);
+   bool  seek(QBuffer* theWrappedObject, qint64  off);
    qint64  readData(QBuffer* theWrappedObject, char*  data, qint64  maxlen);
    bool  atEnd(QBuffer* theWrappedObject) const;
-   bool  open(QBuffer* theWrappedObject, QIODevice::OpenMode  openMode);
-   void setBuffer(QBuffer* theWrappedObject, QByteArray*  a);
    void setData(QBuffer* theWrappedObject, const QByteArray&  data);
    qint64  writeData(QBuffer* theWrappedObject, const char*  data, qint64  len);
+   qint64  pos(QBuffer* theWrappedObject) const;
+   void setBuffer(QBuffer* theWrappedObject, QByteArray*  a);
+   bool  open(QBuffer* theWrappedObject, QIODevice::OpenMode  openMode);
    qint64  size(QBuffer* theWrappedObject) const;
 };
 

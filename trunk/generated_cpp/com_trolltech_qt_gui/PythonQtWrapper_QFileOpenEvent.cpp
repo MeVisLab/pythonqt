@@ -11,6 +11,6 @@ return new QFileOpenEvent(file); }
 
 QString  PythonQtWrapper_QFileOpenEvent::file(QFileOpenEvent* theWrappedObject) const
 {
-return  theWrappedObject->file();
+  return ( theWrappedObject->file());
 }
 

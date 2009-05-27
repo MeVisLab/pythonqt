@@ -89,9 +89,9 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QSplashScreen : public QSplashScreen
 { public:
+inline void promoted_drawContents(QPainter*  painter) { QSplashScreen::drawContents(painter); }
 inline bool  promoted_event(QEvent*  e) { return QSplashScreen::event(e); }
 inline void promoted_mousePressEvent(QMouseEvent*  arg__1) { QSplashScreen::mousePressEvent(arg__1); }
-inline void promoted_drawContents(QPainter*  painter) { QSplashScreen::drawContents(painter); }
 };
 
 class PythonQtWrapper_QSplashScreen : public QObject
@@ -101,12 +101,12 @@ public slots:
 QSplashScreen* new_QSplashScreen(QWidget*  parent, const QPixmap&  pixmap = QPixmap(), Qt::WindowFlags  f = 0);
 QSplashScreen* new_QSplashScreen(const QPixmap&  pixmap = QPixmap(), Qt::WindowFlags  f = 0);
 void delete_QSplashScreen(QSplashScreen* obj) { delete obj; } 
-   bool  event(QSplashScreen* theWrappedObject, QEvent*  e);
-   void mousePressEvent(QSplashScreen* theWrappedObject, QMouseEvent*  arg__1);
    void setPixmap(QSplashScreen* theWrappedObject, const QPixmap&  pixmap);
-   void finish(QSplashScreen* theWrappedObject, QWidget*  w);
    const QPixmap  pixmap(QSplashScreen* theWrappedObject) const;
    void drawContents(QSplashScreen* theWrappedObject, QPainter*  painter);
+   bool  event(QSplashScreen* theWrappedObject, QEvent*  e);
+   void finish(QSplashScreen* theWrappedObject, QWidget*  w);
+   void mousePressEvent(QSplashScreen* theWrappedObject, QMouseEvent*  arg__1);
 };
 
 #endif // PYTHONQTWRAPPER_QSPLASHSCREEN_H

@@ -26,13 +26,14 @@ enum Type{
 public slots:
 QEvent* new_QEvent(QEvent::Type  type);
 void delete_QEvent(QEvent* obj) { delete obj; } 
-   bool  isAccepted(QEvent* theWrappedObject) const;
+   void accept(QEvent* theWrappedObject);
+   QEvent::Type  type(QEvent* theWrappedObject) const;
    void setAccepted(QEvent* theWrappedObject, bool  accepted);
    void ignore(QEvent* theWrappedObject);
    int  static_QEvent_registerEventType(int  hint = -1);
    bool  spontaneous(QEvent* theWrappedObject) const;
-   void accept(QEvent* theWrappedObject);
-   QEvent::Type  type(QEvent* theWrappedObject) const;
+   bool  isAccepted(QEvent* theWrappedObject) const;
+    QString toString(QEvent*);
 };
 
 #endif // PYTHONQTWRAPPER_QEVENT_H

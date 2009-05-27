@@ -13,48 +13,48 @@ QGradient* PythonQtWrapper_QGradient::new_QGradient()
 { 
 return new QGradient(); }
 
+QVector<QPair<qreal , QColor >  >  PythonQtWrapper_QGradient::stops(QGradient* theWrappedObject) const
+{
+  return ( theWrappedObject->stops());
+}
+
 QGradient::CoordinateMode  PythonQtWrapper_QGradient::coordinateMode(QGradient* theWrappedObject) const
 {
-return  theWrappedObject->coordinateMode();
-}
-
-bool  PythonQtWrapper_QGradient::operator_equal(QGradient* theWrappedObject, const QGradient&  gradient) const
-{
-return  (*theWrappedObject)== gradient;
-}
-
-void PythonQtWrapper_QGradient::setColorAt(QGradient* theWrappedObject, qreal  pos, const QColor&  color)
-{
- theWrappedObject->setColorAt(pos, color);
+  return ( theWrappedObject->coordinateMode());
 }
 
 QGradient::Spread  PythonQtWrapper_QGradient::spread(QGradient* theWrappedObject) const
 {
-return  theWrappedObject->spread();
+  return ( theWrappedObject->spread());
 }
 
-QGradient::Type  PythonQtWrapper_QGradient::type(QGradient* theWrappedObject) const
+void PythonQtWrapper_QGradient::setColorAt(QGradient* theWrappedObject, qreal  pos, const QColor&  color)
 {
-return  theWrappedObject->type();
+  ( theWrappedObject->setColorAt(pos, color));
 }
 
 void PythonQtWrapper_QGradient::setSpread(QGradient* theWrappedObject, QGradient::Spread  spread)
 {
- theWrappedObject->setSpread(spread);
+  ( theWrappedObject->setSpread(spread));
+}
+
+QGradient::Type  PythonQtWrapper_QGradient::type(QGradient* theWrappedObject) const
+{
+  return ( theWrappedObject->type());
 }
 
 void PythonQtWrapper_QGradient::setCoordinateMode(QGradient* theWrappedObject, QGradient::CoordinateMode  mode)
 {
- theWrappedObject->setCoordinateMode(mode);
-}
-
-QVector<QPair<qreal , QColor >  >  PythonQtWrapper_QGradient::stops(QGradient* theWrappedObject) const
-{
-return  theWrappedObject->stops();
+  ( theWrappedObject->setCoordinateMode(mode));
 }
 
 void PythonQtWrapper_QGradient::setStops(QGradient* theWrappedObject, const QVector<QPair<qreal , QColor >  >&  stops)
 {
- theWrappedObject->setStops(stops);
+  ( theWrappedObject->setStops(stops));
+}
+
+bool  PythonQtWrapper_QGradient::operator_equal(QGradient* theWrappedObject, const QGradient&  gradient) const
+{
+  return ( (*theWrappedObject)== gradient);
 }
 

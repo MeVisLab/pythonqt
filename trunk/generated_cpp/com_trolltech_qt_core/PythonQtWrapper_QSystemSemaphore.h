@@ -20,12 +20,12 @@ enum SystemSemaphoreError{
 public slots:
 QSystemSemaphore* new_QSystemSemaphore(const QString&  key, int  initialValue = 0, QSystemSemaphore::AccessMode  mode = QSystemSemaphore::Open);
 void delete_QSystemSemaphore(QSystemSemaphore* obj) { delete obj; } 
+   QSystemSemaphore::SystemSemaphoreError  error(QSystemSemaphore* theWrappedObject) const;
    bool  release(QSystemSemaphore* theWrappedObject, int  n = 1);
    QString  errorString(QSystemSemaphore* theWrappedObject) const;
    bool  acquire(QSystemSemaphore* theWrappedObject);
    void setKey(QSystemSemaphore* theWrappedObject, const QString&  key, int  initialValue = 0, QSystemSemaphore::AccessMode  mode = QSystemSemaphore::Open);
    QString  key(QSystemSemaphore* theWrappedObject) const;
-   QSystemSemaphore::SystemSemaphoreError  error(QSystemSemaphore* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QSYSTEMSEMAPHORE_H

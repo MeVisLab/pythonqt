@@ -17,7 +17,6 @@ public slots:
 QDomElement* new_QDomElement();
 QDomElement* new_QDomElement(const QDomElement&  x);
 void delete_QDomElement(QDomElement* obj) { delete obj; } 
-   void setAttributeNS(QDomElement* theWrappedObject, const QString  nsURI, const QString&  qName, double  value);
    void removeAttribute(QDomElement* theWrappedObject, const QString&  name);
    QString  tagName(QDomElement* theWrappedObject) const;
    void setAttribute(QDomElement* theWrappedObject, const QString&  name, qlonglong  value);
@@ -43,6 +42,7 @@ void delete_QDomElement(QDomElement* obj) { delete obj; }
    QDomNodeList  elementsByTagNameNS(QDomElement* theWrappedObject, const QString&  nsURI, const QString&  localName) const;
    QDomAttr  setAttributeNode(QDomElement* theWrappedObject, const QDomAttr&  newAttr);
    QDomAttr  setAttributeNodeNS(QDomElement* theWrappedObject, const QDomAttr&  newAttr);
+   void setAttributeNS(QDomElement* theWrappedObject, const QString  nsURI, const QString&  qName, double  value);
 };
 
 #endif // PYTHONQTWRAPPER_QDOMELEMENT_H

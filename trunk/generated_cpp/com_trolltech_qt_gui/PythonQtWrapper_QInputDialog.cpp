@@ -32,23 +32,23 @@
 #include <qstyle.h>
 #include <qwidget.h>
 
+QString  PythonQtWrapper_QInputDialog::static_QInputDialog_getText(QWidget*  parent, const QString&  title, const QString&  label, QLineEdit::EchoMode  echo, const QString&  text, bool*  ok, Qt::WindowFlags  f)
+{
+  return (QInputDialog::getText(parent, title, label, echo, text, ok, f));
+}
+
 QString  PythonQtWrapper_QInputDialog::static_QInputDialog_getItem(QWidget*  parent, const QString&  title, const QString&  label, const QStringList&  list, int  current, bool  editable, bool*  ok, Qt::WindowFlags  f)
 {
-return QInputDialog::getItem(parent, title, label, list, current, editable, ok, f);
+  return (QInputDialog::getItem(parent, title, label, list, current, editable, ok, f));
 }
 
 int  PythonQtWrapper_QInputDialog::static_QInputDialog_getInteger(QWidget*  parent, const QString&  title, const QString&  label, int  value, int  minValue, int  maxValue, int  step, bool*  ok, Qt::WindowFlags  f)
 {
-return QInputDialog::getInteger(parent, title, label, value, minValue, maxValue, step, ok, f);
+  return (QInputDialog::getInteger(parent, title, label, value, minValue, maxValue, step, ok, f));
 }
 
 double  PythonQtWrapper_QInputDialog::static_QInputDialog_getDouble(QWidget*  parent, const QString&  title, const QString&  label, double  value, double  minValue, double  maxValue, int  decimals, bool*  ok, Qt::WindowFlags  f)
 {
-return QInputDialog::getDouble(parent, title, label, value, minValue, maxValue, decimals, ok, f);
-}
-
-QString  PythonQtWrapper_QInputDialog::static_QInputDialog_getText(QWidget*  parent, const QString&  title, const QString&  label, QLineEdit::EchoMode  echo, const QString&  text, bool*  ok, Qt::WindowFlags  f)
-{
-return QInputDialog::getText(parent, title, label, echo, text, ok, f);
+  return (QInputDialog::getDouble(parent, title, label, value, minValue, maxValue, decimals, ok, f));
 }
 

@@ -44,8 +44,8 @@ public slots:
 QRegExpValidator* new_QRegExpValidator(QObject*  parent);
 QRegExpValidator* new_QRegExpValidator(const QRegExp&  rx, QObject*  parent);
 void delete_QRegExpValidator(QRegExpValidator* obj) { delete obj; } 
+   const QRegExp*  regExp(QRegExpValidator* theWrappedObject) const;
    QValidator::State  validate(QRegExpValidator* theWrappedObject, QString&  input, int&  pos) const;
-   const QRegExp&  regExp(QRegExpValidator* theWrappedObject) const;
    void setRegExp(QRegExpValidator* theWrappedObject, const QRegExp&  rx);
 };
 

@@ -21,16 +21,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "isObscuredBy");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QGraphicsPathItem::staticMetaObject,
-      "isObscuredBy(QGraphicsPathItem*,const QGraphicsItem* )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "const QGraphicsItem*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      bool returnValue;
     void* args[2] = {NULL, (void*)&item};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("isObscuredBy", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -46,16 +49,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "opaqueArea");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QGraphicsPathItem::staticMetaObject,
-      "opaqueArea(QGraphicsPathItem*)");
-      QPainterPath  returnValue;
+    static const char* argumentList[] ={"QPainterPath"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      QPainterPath returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QPainterPath *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("opaqueArea", methodInfo, result);
+        } else {
+          returnValue = *((QPainterPath*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -75,46 +81,46 @@ return new PythonQtShell_QGraphicsPathItem(path, parent, scene); }
 
 QPainterPath  PythonQtWrapper_QGraphicsPathItem::opaqueArea(QGraphicsPathItem* theWrappedObject) const
 {
-return  ((PythonQtPublicPromoter_QGraphicsPathItem*)theWrappedObject)->promoted_opaqueArea();
+  return ( ((PythonQtPublicPromoter_QGraphicsPathItem*)theWrappedObject)->promoted_opaqueArea());
 }
 
 void PythonQtWrapper_QGraphicsPathItem::paint(QGraphicsPathItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget)
 {
- theWrappedObject->paint(painter, option, widget);
+  ( theWrappedObject->paint(painter, option, widget));
 }
 
 QPainterPath  PythonQtWrapper_QGraphicsPathItem::path(QGraphicsPathItem* theWrappedObject) const
 {
-return  theWrappedObject->path();
-}
-
-int  PythonQtWrapper_QGraphicsPathItem::type(QGraphicsPathItem* theWrappedObject) const
-{
-return  theWrappedObject->type();
-}
-
-QRectF  PythonQtWrapper_QGraphicsPathItem::boundingRect(QGraphicsPathItem* theWrappedObject) const
-{
-return  theWrappedObject->boundingRect();
-}
-
-bool  PythonQtWrapper_QGraphicsPathItem::isObscuredBy(QGraphicsPathItem* theWrappedObject, const QGraphicsItem*  item) const
-{
-return  ((PythonQtPublicPromoter_QGraphicsPathItem*)theWrappedObject)->promoted_isObscuredBy(item);
-}
-
-void PythonQtWrapper_QGraphicsPathItem::setPath(QGraphicsPathItem* theWrappedObject, const QPainterPath&  path)
-{
- theWrappedObject->setPath(path);
+  return ( theWrappedObject->path());
 }
 
 QPainterPath  PythonQtWrapper_QGraphicsPathItem::shape(QGraphicsPathItem* theWrappedObject) const
 {
-return  theWrappedObject->shape();
+  return ( theWrappedObject->shape());
+}
+
+int  PythonQtWrapper_QGraphicsPathItem::type(QGraphicsPathItem* theWrappedObject) const
+{
+  return ( theWrappedObject->type());
+}
+
+QRectF  PythonQtWrapper_QGraphicsPathItem::boundingRect(QGraphicsPathItem* theWrappedObject) const
+{
+  return ( theWrappedObject->boundingRect());
+}
+
+bool  PythonQtWrapper_QGraphicsPathItem::isObscuredBy(QGraphicsPathItem* theWrappedObject, const QGraphicsItem*  item) const
+{
+  return ( ((PythonQtPublicPromoter_QGraphicsPathItem*)theWrappedObject)->promoted_isObscuredBy(item));
+}
+
+void PythonQtWrapper_QGraphicsPathItem::setPath(QGraphicsPathItem* theWrappedObject, const QPainterPath&  path)
+{
+  ( theWrappedObject->setPath(path));
 }
 
 bool  PythonQtWrapper_QGraphicsPathItem::contains(QGraphicsPathItem* theWrappedObject, const QPointF&  point) const
 {
-return  theWrappedObject->contains(point);
+  return ( theWrappedObject->contains(point));
 }
 

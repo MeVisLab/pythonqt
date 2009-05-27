@@ -15,6 +15,7 @@ class PythonQtWrapper_Qt : public QObject
 { Q_OBJECT
 public:
 Q_ENUMS(CursorShape Corner Axis Orientation LayoutDirection BGMode AspectRatioMode TextElideMode SizeMode WindowType ItemDataRole SortOrder MatchFlag PenJoinStyle CaseSensitivity BrushStyle ClipOperation FocusReason ToolBarArea KeyboardModifier WhiteSpaceMode DayOfWeek EventPriority DateFormat MaskMode UIEffect ContextMenuPolicy AnchorAttribute ScrollBarPolicy ToolButtonStyle TextFlag ItemSelectionMode SizeHint Key ToolBarAreaSizes ArrowType FocusPolicy WindowFrameSection InputMethodQuery DropAction FillRule GlobalColor ConnectionType PenCapStyle TransformationMode DockWidgetAreaSizes ApplicationAttribute ShortcutContext TextInteractionFlag CheckState DockWidgetArea TimeSpec ImageConversionFlag WindowModality Modifier AlignmentFlag WidgetAttribute TextFormat MouseButton WindowState PenStyle ItemFlag HitTestAccuracy )
+Q_FLAGS(Orientations WindowFlags MatchFlags ToolBarAreas KeyboardModifiers DropActions TextInteractionFlags DockWidgetAreas ImageConversionFlags Alignment MouseButtons WindowStates ItemFlags )
 enum CursorShape{
   ArrowCursor = Qt::ArrowCursor,   UpArrowCursor = Qt::UpArrowCursor,   CrossCursor = Qt::CrossCursor,   WaitCursor = Qt::WaitCursor,   IBeamCursor = Qt::IBeamCursor,   SizeVerCursor = Qt::SizeVerCursor,   SizeHorCursor = Qt::SizeHorCursor,   SizeBDiagCursor = Qt::SizeBDiagCursor,   SizeFDiagCursor = Qt::SizeFDiagCursor,   SizeAllCursor = Qt::SizeAllCursor,   BlankCursor = Qt::BlankCursor,   SplitVCursor = Qt::SplitVCursor,   SplitHCursor = Qt::SplitHCursor,   PointingHandCursor = Qt::PointingHandCursor,   ForbiddenCursor = Qt::ForbiddenCursor,   WhatsThisCursor = Qt::WhatsThisCursor,   BusyCursor = Qt::BusyCursor,   OpenHandCursor = Qt::OpenHandCursor,   ClosedHandCursor = Qt::ClosedHandCursor,   LastCursor = Qt::LastCursor,   BitmapCursor = Qt::BitmapCursor,   CustomCursor = Qt::CustomCursor};
 enum Corner{
@@ -141,11 +142,24 @@ enum ItemFlag{
   NoItemFlags = Qt::NoItemFlags,   ItemIsSelectable = Qt::ItemIsSelectable,   ItemIsEditable = Qt::ItemIsEditable,   ItemIsDragEnabled = Qt::ItemIsDragEnabled,   ItemIsDropEnabled = Qt::ItemIsDropEnabled,   ItemIsUserCheckable = Qt::ItemIsUserCheckable,   ItemIsEnabled = Qt::ItemIsEnabled,   ItemIsTristate = Qt::ItemIsTristate};
 enum HitTestAccuracy{
   ExactHit = Qt::ExactHit,   FuzzyHit = Qt::FuzzyHit};
+Q_DECLARE_FLAGS(Orientations, Orientation)
+Q_DECLARE_FLAGS(WindowFlags, WindowType)
+Q_DECLARE_FLAGS(MatchFlags, MatchFlag)
+Q_DECLARE_FLAGS(ToolBarAreas, ToolBarArea)
+Q_DECLARE_FLAGS(KeyboardModifiers, KeyboardModifier)
+Q_DECLARE_FLAGS(DropActions, DropAction)
+Q_DECLARE_FLAGS(TextInteractionFlags, TextInteractionFlag)
+Q_DECLARE_FLAGS(DockWidgetAreas, DockWidgetArea)
+Q_DECLARE_FLAGS(ImageConversionFlags, ImageConversionFlag)
+Q_DECLARE_FLAGS(Alignment, AlignmentFlag)
+Q_DECLARE_FLAGS(MouseButtons, MouseButton)
+Q_DECLARE_FLAGS(WindowStates, WindowState)
+Q_DECLARE_FLAGS(ItemFlags, ItemFlag)
 public slots:
-   bool  static_Qt_mightBeRichText(const QString&  arg__1);
    QString  static_Qt_convertFromPlainText(const QString&  plain, Qt::WhiteSpaceMode  mode = Qt::WhiteSpacePre);
-   QTextCodec*  static_Qt_codecForHtml(const QByteArray&  ba);
    QString  static_Qt_escape(const QString&  plain);
+   bool  static_Qt_mightBeRichText(const QString&  arg__1);
+   QTextCodec*  static_Qt_codecForHtml(const QByteArray&  ba);
 };
 
 #endif // PYTHONQTWRAPPER_QT_H

@@ -92,10 +92,10 @@ virtual void wheelEvent(QWheelEvent*  event);
 
 class PythonQtPublicPromoter_QSpinBox : public QSpinBox
 { public:
-inline bool  promoted_event(QEvent*  event) { return QSpinBox::event(event); }
 inline QString  promoted_textFromValue(int  val) const { return QSpinBox::textFromValue(val); }
 inline void promoted_fixup(QString&  str) const { QSpinBox::fixup(str); }
 inline int  promoted_valueFromText(const QString&  text) const { return QSpinBox::valueFromText(text); }
+inline bool  promoted_event(QEvent*  event) { return QSpinBox::event(event); }
 inline QValidator::State  promoted_validate(QString&  input, int&  pos) const { return QSpinBox::validate(input, pos); }
 };
 
@@ -105,24 +105,24 @@ public:
 public slots:
 QSpinBox* new_QSpinBox(QWidget*  parent = 0);
 void delete_QSpinBox(QSpinBox* obj) { delete obj; } 
+   int  minimum(QSpinBox* theWrappedObject) const;
+   void setMaximum(QSpinBox* theWrappedObject, int  max);
+   QString  textFromValue(QSpinBox* theWrappedObject, int  val) const;
+   void setMinimum(QSpinBox* theWrappedObject, int  min);
+   void fixup(QSpinBox* theWrappedObject, QString&  str) const;
+   int  valueFromText(QSpinBox* theWrappedObject, const QString&  text) const;
+   int  value(QSpinBox* theWrappedObject) const;
+   int  maximum(QSpinBox* theWrappedObject) const;
+   QString  cleanText(QSpinBox* theWrappedObject) const;
+   void setSingleStep(QSpinBox* theWrappedObject, int  val);
+   QString  prefix(QSpinBox* theWrappedObject) const;
+   void setSuffix(QSpinBox* theWrappedObject, const QString&  suffix);
    QString  suffix(QSpinBox* theWrappedObject) const;
    void setRange(QSpinBox* theWrappedObject, int  min, int  max);
    bool  event(QSpinBox* theWrappedObject, QEvent*  event);
-   QString  cleanText(QSpinBox* theWrappedObject) const;
-   int  singleStep(QSpinBox* theWrappedObject) const;
-   void setPrefix(QSpinBox* theWrappedObject, const QString&  prefix);
-   int  minimum(QSpinBox* theWrappedObject) const;
-   void setMaximum(QSpinBox* theWrappedObject, int  max);
-   int  maximum(QSpinBox* theWrappedObject) const;
-   QString  prefix(QSpinBox* theWrappedObject) const;
-   void setMinimum(QSpinBox* theWrappedObject, int  min);
-   QString  textFromValue(QSpinBox* theWrappedObject, int  val) const;
-   void setSuffix(QSpinBox* theWrappedObject, const QString&  suffix);
-   void fixup(QSpinBox* theWrappedObject, QString&  str) const;
-   void setSingleStep(QSpinBox* theWrappedObject, int  val);
-   int  valueFromText(QSpinBox* theWrappedObject, const QString&  text) const;
-   int  value(QSpinBox* theWrappedObject) const;
    QValidator::State  validate(QSpinBox* theWrappedObject, QString&  input, int&  pos) const;
+   void setPrefix(QSpinBox* theWrappedObject, const QString&  prefix);
+   int  singleStep(QSpinBox* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QSPINBOX_H

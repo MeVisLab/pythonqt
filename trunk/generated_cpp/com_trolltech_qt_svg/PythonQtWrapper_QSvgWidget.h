@@ -99,9 +99,9 @@ public slots:
 QSvgWidget* new_QSvgWidget(QWidget*  parent = 0);
 QSvgWidget* new_QSvgWidget(const QString&  file, QWidget*  parent = 0);
 void delete_QSvgWidget(QSvgWidget* obj) { delete obj; } 
-   QSvgRenderer*  renderer(QSvgWidget* theWrappedObject) const;
    QSize  sizeHint(QSvgWidget* theWrappedObject) const;
    void paintEvent(QSvgWidget* theWrappedObject, QPaintEvent*  event);
+   QSvgRenderer*  renderer(QSvgWidget* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QSVGWIDGET_H

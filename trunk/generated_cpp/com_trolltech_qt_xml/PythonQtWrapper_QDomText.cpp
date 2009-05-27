@@ -17,6 +17,6 @@ return new QDomText(x); }
 
 QDomText  PythonQtWrapper_QDomText::splitText(QDomText* theWrappedObject, int  offset)
 {
-return  theWrappedObject->splitText(offset);
+  return ( theWrappedObject->splitText(offset));
 }
 

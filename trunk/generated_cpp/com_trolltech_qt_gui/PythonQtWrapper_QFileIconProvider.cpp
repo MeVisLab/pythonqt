@@ -14,16 +14,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "icon");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileIconProvider::staticMetaObject,
-      "icon(QFileIconProvider*,QFileIconProvider::IconType )");
-      QIcon  returnValue;
+    static const char* argumentList[] ={"QIcon" , "QFileIconProvider::IconType"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      QIcon returnValue;
     void* args[2] = {NULL, (void*)&type};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QIcon *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("icon", methodInfo, result);
+        } else {
+          returnValue = *((QIcon*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -39,16 +42,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "icon");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileIconProvider::staticMetaObject,
-      "icon(QFileIconProvider*,const QFileInfo& )");
-      QIcon  returnValue;
+    static const char* argumentList[] ={"QIcon" , "const QFileInfo&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      QIcon returnValue;
     void* args[2] = {NULL, (void*)&info};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QIcon *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("icon", methodInfo, result);
+        } else {
+          returnValue = *((QIcon*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -64,16 +70,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "type");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QFileIconProvider::staticMetaObject,
-      "type(QFileIconProvider*,const QFileInfo& )");
-      QString  returnValue;
+    static const char* argumentList[] ={"QString" , "const QFileInfo&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      QString returnValue;
     void* args[2] = {NULL, (void*)&info};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QString *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("type", methodInfo, result);
+        } else {
+          returnValue = *((QString*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -89,16 +98,16 @@ return new PythonQtShell_QFileIconProvider(); }
 
 QIcon  PythonQtWrapper_QFileIconProvider::icon(QFileIconProvider* theWrappedObject, QFileIconProvider::IconType  type) const
 {
-return  ((PythonQtPublicPromoter_QFileIconProvider*)theWrappedObject)->promoted_icon(type);
+  return ( ((PythonQtPublicPromoter_QFileIconProvider*)theWrappedObject)->promoted_icon(type));
 }
 
 QString  PythonQtWrapper_QFileIconProvider::type(QFileIconProvider* theWrappedObject, const QFileInfo&  info) const
 {
-return  ((PythonQtPublicPromoter_QFileIconProvider*)theWrappedObject)->promoted_type(info);
+  return ( ((PythonQtPublicPromoter_QFileIconProvider*)theWrappedObject)->promoted_type(info));
 }
 
 QIcon  PythonQtWrapper_QFileIconProvider::icon(QFileIconProvider* theWrappedObject, const QFileInfo&  info) const
 {
-return  ((PythonQtPublicPromoter_QFileIconProvider*)theWrappedObject)->promoted_icon(info);
+  return ( ((PythonQtPublicPromoter_QFileIconProvider*)theWrappedObject)->promoted_icon(info));
 }
 

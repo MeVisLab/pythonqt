@@ -95,16 +95,18 @@ class PythonQtWrapper_QPageSetupDialog : public QObject
 { Q_OBJECT
 public:
 Q_ENUMS(PageSetupDialogOption )
+Q_FLAGS(PageSetupDialogOptions )
 enum PageSetupDialogOption{
   None = QPageSetupDialog::None,   DontUseSheet = QPageSetupDialog::DontUseSheet};
+Q_DECLARE_FLAGS(PageSetupDialogOptions, PageSetupDialogOption)
 public slots:
 QPageSetupDialog* new_QPageSetupDialog(QPrinter*  printer, QWidget*  parent = 0);
 void delete_QPageSetupDialog(QPageSetupDialog* obj) { delete obj; } 
+   void setEnabledOptions(QPageSetupDialog* theWrappedObject, QPageSetupDialog::PageSetupDialogOptions  options);
+   QPageSetupDialog::PageSetupDialogOptions  enabledOptions(QPageSetupDialog* theWrappedObject) const;
+   int  exec(QPageSetupDialog* theWrappedObject);
    void addEnabledOption(QPageSetupDialog* theWrappedObject, QPageSetupDialog::PageSetupDialogOption  option);
    bool  isOptionEnabled(QPageSetupDialog* theWrappedObject, QPageSetupDialog::PageSetupDialogOption  option) const;
-   int  exec(QPageSetupDialog* theWrappedObject);
-   QPageSetupDialog::PageSetupDialogOptions  enabledOptions(QPageSetupDialog* theWrappedObject) const;
-   void setEnabledOptions(QPageSetupDialog* theWrappedObject, QPageSetupDialog::PageSetupDialogOptions  options);
 };
 
 #endif // PYTHONQTWRAPPER_QPAGESETUPDIALOG_H

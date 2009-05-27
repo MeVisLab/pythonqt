@@ -42,9 +42,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "actionEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "actionEvent(QMainWindow*,QActionEvent* )");
+    static const char* argumentList[] ={"" , "QActionEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -60,9 +59,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "changeEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "changeEvent(QMainWindow*,QEvent* )");
+    static const char* argumentList[] ={"" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -78,9 +76,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "childEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "childEvent(QMainWindow*,QChildEvent* )");
+    static const char* argumentList[] ={"" , "QChildEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -96,9 +93,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "closeEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "closeEvent(QMainWindow*,QCloseEvent* )");
+    static const char* argumentList[] ={"" , "QCloseEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -114,9 +110,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "contextMenuEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "contextMenuEvent(QMainWindow*,QContextMenuEvent* )");
+    static const char* argumentList[] ={"" , "QContextMenuEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&event};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -132,16 +127,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "createPopupMenu");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "createPopupMenu(QMainWindow*)");
-      QMenu*  returnValue;
+    static const char* argumentList[] ={"QMenu*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      QMenu* returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QMenu* *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("createPopupMenu", methodInfo, result);
+        } else {
+          returnValue = *((QMenu**)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -157,9 +155,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "customEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "customEvent(QMainWindow*,QEvent* )");
+    static const char* argumentList[] ={"" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -175,16 +172,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "devType");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "devType(QMainWindow*)");
-      int  returnValue;
+    static const char* argumentList[] ={"int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      int returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((int *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("devType", methodInfo, result);
+        } else {
+          returnValue = *((int*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -200,9 +200,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "dragEnterEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "dragEnterEvent(QMainWindow*,QDragEnterEvent* )");
+    static const char* argumentList[] ={"" , "QDragEnterEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -218,9 +217,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "dragLeaveEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "dragLeaveEvent(QMainWindow*,QDragLeaveEvent* )");
+    static const char* argumentList[] ={"" , "QDragLeaveEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -236,9 +234,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "dragMoveEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "dragMoveEvent(QMainWindow*,QDragMoveEvent* )");
+    static const char* argumentList[] ={"" , "QDragMoveEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -254,9 +251,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "dropEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "dropEvent(QMainWindow*,QDropEvent* )");
+    static const char* argumentList[] ={"" , "QDropEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -272,9 +268,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "enterEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "enterEvent(QMainWindow*,QEvent* )");
+    static const char* argumentList[] ={"" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -290,16 +285,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "event");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "event(QMainWindow*,QEvent* )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      bool returnValue;
     void* args[2] = {NULL, (void*)&event};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -315,16 +313,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "eventFilter");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "eventFilter(QMainWindow*,QObject* ,QEvent* )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
+      bool returnValue;
     void* args[3] = {NULL, (void*)&arg__1, (void*)&arg__2};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("eventFilter", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -340,9 +341,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "focusInEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "focusInEvent(QMainWindow*,QFocusEvent* )");
+    static const char* argumentList[] ={"" , "QFocusEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -358,16 +358,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "focusNextPrevChild");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "focusNextPrevChild(QMainWindow*,bool )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "bool"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      bool returnValue;
     void* args[2] = {NULL, (void*)&next};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("focusNextPrevChild", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -383,9 +386,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "focusOutEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "focusOutEvent(QMainWindow*,QFocusEvent* )");
+    static const char* argumentList[] ={"" , "QFocusEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -401,16 +403,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "heightForWidth");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "heightForWidth(QMainWindow*,int )");
-      int  returnValue;
+    static const char* argumentList[] ={"int" , "int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      int returnValue;
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((int *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("heightForWidth", methodInfo, result);
+        } else {
+          returnValue = *((int*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -426,9 +431,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "hideEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "hideEvent(QMainWindow*,QHideEvent* )");
+    static const char* argumentList[] ={"" , "QHideEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -444,9 +448,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "inputMethodEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "inputMethodEvent(QMainWindow*,QInputMethodEvent* )");
+    static const char* argumentList[] ={"" , "QInputMethodEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -462,16 +465,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "inputMethodQuery");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "inputMethodQuery(QMainWindow*,Qt::InputMethodQuery )");
-      QVariant  returnValue;
+    static const char* argumentList[] ={"QVariant" , "Qt::InputMethodQuery"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      QVariant returnValue;
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QVariant *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("inputMethodQuery", methodInfo, result);
+        } else {
+          returnValue = *((QVariant*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -487,9 +493,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "keyPressEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "keyPressEvent(QMainWindow*,QKeyEvent* )");
+    static const char* argumentList[] ={"" , "QKeyEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -505,9 +510,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "keyReleaseEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "keyReleaseEvent(QMainWindow*,QKeyEvent* )");
+    static const char* argumentList[] ={"" , "QKeyEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -523,9 +527,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "languageChange");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "languageChange(QMainWindow*)");
+    static const char* argumentList[] ={""};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -541,9 +544,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "leaveEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "leaveEvent(QMainWindow*,QEvent* )");
+    static const char* argumentList[] ={"" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -559,16 +561,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "metric");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "metric(QMainWindow*,QPaintDevice::PaintDeviceMetric )");
-      int  returnValue;
+    static const char* argumentList[] ={"int" , "QPaintDevice::PaintDeviceMetric"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      int returnValue;
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((int *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("metric", methodInfo, result);
+        } else {
+          returnValue = *((int*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -584,16 +589,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "getMinimumSizeHint");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "getMinimumSizeHint(QMainWindow*)");
-      QSize  returnValue;
+    static const char* argumentList[] ={"QSize"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      QSize returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QSize *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("getMinimumSizeHint", methodInfo, result);
+        } else {
+          returnValue = *((QSize*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -609,9 +617,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "mouseDoubleClickEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "mouseDoubleClickEvent(QMainWindow*,QMouseEvent* )");
+    static const char* argumentList[] ={"" , "QMouseEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -627,9 +634,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "mouseMoveEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "mouseMoveEvent(QMainWindow*,QMouseEvent* )");
+    static const char* argumentList[] ={"" , "QMouseEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -645,9 +651,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "mousePressEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "mousePressEvent(QMainWindow*,QMouseEvent* )");
+    static const char* argumentList[] ={"" , "QMouseEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -663,9 +668,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "mouseReleaseEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "mouseReleaseEvent(QMainWindow*,QMouseEvent* )");
+    static const char* argumentList[] ={"" , "QMouseEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -681,9 +685,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "moveEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "moveEvent(QMainWindow*,QMoveEvent* )");
+    static const char* argumentList[] ={"" , "QMoveEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -699,16 +702,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "paintEngine");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "paintEngine(QMainWindow*)");
-      QPaintEngine*  returnValue;
+    static const char* argumentList[] ={"QPaintEngine*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      QPaintEngine* returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QPaintEngine* *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("paintEngine", methodInfo, result);
+        } else {
+          returnValue = *((QPaintEngine**)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -724,9 +730,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "paintEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "paintEvent(QMainWindow*,QPaintEvent* )");
+    static const char* argumentList[] ={"" , "QPaintEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -742,9 +747,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "resizeEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "resizeEvent(QMainWindow*,QResizeEvent* )");
+    static const char* argumentList[] ={"" , "QResizeEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -760,9 +764,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "showEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "showEvent(QMainWindow*,QShowEvent* )");
+    static const char* argumentList[] ={"" , "QShowEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -778,16 +781,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "getSizeHint");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "getSizeHint(QMainWindow*)");
-      QSize  returnValue;
+    static const char* argumentList[] ={"QSize"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      QSize returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QSize *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("getSizeHint", methodInfo, result);
+        } else {
+          returnValue = *((QSize*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -803,9 +809,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "tabletEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "tabletEvent(QMainWindow*,QTabletEvent* )");
+    static const char* argumentList[] ={"" , "QTabletEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -821,9 +826,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "timerEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "timerEvent(QMainWindow*,QTimerEvent* )");
+    static const char* argumentList[] ={"" , "QTimerEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -839,9 +843,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "wheelEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QMainWindow::staticMetaObject,
-      "wheelEvent(QMainWindow*,QWheelEvent* )");
+    static const char* argumentList[] ={"" , "QWheelEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -855,218 +858,218 @@ QMainWindow* PythonQtWrapper_QMainWindow::new_QMainWindow(QWidget*  parent, Qt::
 { 
 return new PythonQtShell_QMainWindow(parent, flags); }
 
-bool  PythonQtWrapper_QMainWindow::isDockNestingEnabled(QMainWindow* theWrappedObject) const
+QToolBar*  PythonQtWrapper_QMainWindow::addToolBar(QMainWindow* theWrappedObject, const QString&  title)
 {
-return  theWrappedObject->isDockNestingEnabled();
-}
-
-void PythonQtWrapper_QMainWindow::removeToolBar(QMainWindow* theWrappedObject, QToolBar*  toolbar)
-{
- theWrappedObject->removeToolBar(toolbar);
-}
-
-QMenuBar*  PythonQtWrapper_QMainWindow::menuBar(QMainWindow* theWrappedObject) const
-{
-return  theWrappedObject->menuBar();
-}
-
-Qt::DockWidgetArea  PythonQtWrapper_QMainWindow::corner(QMainWindow* theWrappedObject, Qt::Corner  corner) const
-{
-return  theWrappedObject->corner(corner);
-}
-
-bool  PythonQtWrapper_QMainWindow::isAnimated(QMainWindow* theWrappedObject) const
-{
-return  theWrappedObject->isAnimated();
-}
-
-void PythonQtWrapper_QMainWindow::setToolButtonStyle(QMainWindow* theWrappedObject, Qt::ToolButtonStyle  toolButtonStyle)
-{
- theWrappedObject->setToolButtonStyle(toolButtonStyle);
-}
-
-void PythonQtWrapper_QMainWindow::setIconSize(QMainWindow* theWrappedObject, const QSize&  iconSize)
-{
- theWrappedObject->setIconSize(iconSize);
-}
-
-void PythonQtWrapper_QMainWindow::splitDockWidget(QMainWindow* theWrappedObject, QDockWidget*  after, QDockWidget*  dockwidget, Qt::Orientation  orientation)
-{
- theWrappedObject->splitDockWidget(after, dockwidget, orientation);
-}
-
-bool  PythonQtWrapper_QMainWindow::event(QMainWindow* theWrappedObject, QEvent*  event)
-{
-return  ((PythonQtPublicPromoter_QMainWindow*)theWrappedObject)->promoted_event(event);
-}
-
-void PythonQtWrapper_QMainWindow::addToolBar(QMainWindow* theWrappedObject, QToolBar*  toolbar)
-{
- theWrappedObject->addToolBar(toolbar);
-}
-
-void PythonQtWrapper_QMainWindow::removeToolBarBreak(QMainWindow* theWrappedObject, QToolBar*  before)
-{
- theWrappedObject->removeToolBarBreak(before);
-}
-
-void PythonQtWrapper_QMainWindow::insertToolBarBreak(QMainWindow* theWrappedObject, QToolBar*  before)
-{
- theWrappedObject->insertToolBarBreak(before);
-}
-
-void PythonQtWrapper_QMainWindow::tabifyDockWidget(QMainWindow* theWrappedObject, QDockWidget*  first, QDockWidget*  second)
-{
- theWrappedObject->tabifyDockWidget(first, second);
-}
-
-void PythonQtWrapper_QMainWindow::addToolBarBreak(QMainWindow* theWrappedObject, Qt::ToolBarArea  area)
-{
- theWrappedObject->addToolBarBreak(area);
-}
-
-void PythonQtWrapper_QMainWindow::setMenuBar(QMainWindow* theWrappedObject, QMenuBar*  menubar)
-{
- theWrappedObject->setMenuBar(menubar);
-}
-
-Qt::ToolBarArea  PythonQtWrapper_QMainWindow::toolBarArea(QMainWindow* theWrappedObject, QToolBar*  toolbar) const
-{
-return  theWrappedObject->toolBarArea(toolbar);
-}
-
-bool  PythonQtWrapper_QMainWindow::restoreState(QMainWindow* theWrappedObject, const QByteArray&  state, int  version)
-{
-return  theWrappedObject->restoreState(state, version);
+  return ( theWrappedObject->addToolBar(title));
 }
 
 QWidget*  PythonQtWrapper_QMainWindow::menuWidget(QMainWindow* theWrappedObject) const
 {
-return  theWrappedObject->menuWidget();
-}
-
-bool  PythonQtWrapper_QMainWindow::unifiedTitleAndToolBarOnMac(QMainWindow* theWrappedObject) const
-{
-return  theWrappedObject->unifiedTitleAndToolBarOnMac();
-}
-
-QSize  PythonQtWrapper_QMainWindow::iconSize(QMainWindow* theWrappedObject) const
-{
-return  theWrappedObject->iconSize();
-}
-
-bool  PythonQtWrapper_QMainWindow::restoreDockWidget(QMainWindow* theWrappedObject, QDockWidget*  dockwidget)
-{
-return  theWrappedObject->restoreDockWidget(dockwidget);
-}
-
-Qt::ToolButtonStyle  PythonQtWrapper_QMainWindow::toolButtonStyle(QMainWindow* theWrappedObject) const
-{
-return  theWrappedObject->toolButtonStyle();
-}
-
-void PythonQtWrapper_QMainWindow::setCorner(QMainWindow* theWrappedObject, Qt::Corner  corner, Qt::DockWidgetArea  area)
-{
- theWrappedObject->setCorner(corner, area);
-}
-
-QStatusBar*  PythonQtWrapper_QMainWindow::statusBar(QMainWindow* theWrappedObject) const
-{
-return  theWrappedObject->statusBar();
-}
-
-bool  PythonQtWrapper_QMainWindow::isSeparator(QMainWindow* theWrappedObject, const QPoint&  pos) const
-{
-return  theWrappedObject->isSeparator(pos);
-}
-
-void PythonQtWrapper_QMainWindow::setDockOptions(QMainWindow* theWrappedObject, QMainWindow::DockOptions  options)
-{
- theWrappedObject->setDockOptions(options);
-}
-
-void PythonQtWrapper_QMainWindow::addDockWidget(QMainWindow* theWrappedObject, Qt::DockWidgetArea  area, QDockWidget*  dockwidget)
-{
- theWrappedObject->addDockWidget(area, dockwidget);
-}
-
-QMenu*  PythonQtWrapper_QMainWindow::createPopupMenu(QMainWindow* theWrappedObject)
-{
-return  ((PythonQtPublicPromoter_QMainWindow*)theWrappedObject)->promoted_createPopupMenu();
-}
-
-Qt::DockWidgetArea  PythonQtWrapper_QMainWindow::dockWidgetArea(QMainWindow* theWrappedObject, QDockWidget*  dockwidget) const
-{
-return  theWrappedObject->dockWidgetArea(dockwidget);
-}
-
-void PythonQtWrapper_QMainWindow::removeDockWidget(QMainWindow* theWrappedObject, QDockWidget*  dockwidget)
-{
- theWrappedObject->removeDockWidget(dockwidget);
-}
-
-void PythonQtWrapper_QMainWindow::setCentralWidget(QMainWindow* theWrappedObject, QWidget*  widget)
-{
- theWrappedObject->setCentralWidget(widget);
-}
-
-bool  PythonQtWrapper_QMainWindow::toolBarBreak(QMainWindow* theWrappedObject, QToolBar*  toolbar) const
-{
-return  theWrappedObject->toolBarBreak(toolbar);
-}
-
-QWidget*  PythonQtWrapper_QMainWindow::centralWidget(QMainWindow* theWrappedObject) const
-{
-return  theWrappedObject->centralWidget();
-}
-
-void PythonQtWrapper_QMainWindow::addDockWidget(QMainWindow* theWrappedObject, Qt::DockWidgetArea  area, QDockWidget*  dockwidget, Qt::Orientation  orientation)
-{
- theWrappedObject->addDockWidget(area, dockwidget, orientation);
-}
-
-void PythonQtWrapper_QMainWindow::addToolBar(QMainWindow* theWrappedObject, Qt::ToolBarArea  area, QToolBar*  toolbar)
-{
- theWrappedObject->addToolBar(area, toolbar);
+  return ( theWrappedObject->menuWidget());
 }
 
 QMainWindow::DockOptions  PythonQtWrapper_QMainWindow::dockOptions(QMainWindow* theWrappedObject) const
 {
-return  theWrappedObject->dockOptions();
+  return ( theWrappedObject->dockOptions());
+}
+
+QSize  PythonQtWrapper_QMainWindow::iconSize(QMainWindow* theWrappedObject) const
+{
+  return ( theWrappedObject->iconSize());
+}
+
+void PythonQtWrapper_QMainWindow::setCorner(QMainWindow* theWrappedObject, Qt::Corner  corner, Qt::DockWidgetArea  area)
+{
+  ( theWrappedObject->setCorner(corner, area));
 }
 
 void PythonQtWrapper_QMainWindow::contextMenuEvent(QMainWindow* theWrappedObject, QContextMenuEvent*  event)
 {
- ((PythonQtPublicPromoter_QMainWindow*)theWrappedObject)->promoted_contextMenuEvent(event);
+  ( ((PythonQtPublicPromoter_QMainWindow*)theWrappedObject)->promoted_contextMenuEvent(event));
+}
+
+void PythonQtWrapper_QMainWindow::setMenuBar(QMainWindow* theWrappedObject, QMenuBar*  menubar)
+{
+  ( theWrappedObject->setMenuBar(menubar));
+}
+
+void PythonQtWrapper_QMainWindow::addToolBar(QMainWindow* theWrappedObject, QToolBar*  toolbar)
+{
+  ( theWrappedObject->addToolBar(toolbar));
+}
+
+bool  PythonQtWrapper_QMainWindow::toolBarBreak(QMainWindow* theWrappedObject, QToolBar*  toolbar) const
+{
+  return ( theWrappedObject->toolBarBreak(toolbar));
+}
+
+QStatusBar*  PythonQtWrapper_QMainWindow::statusBar(QMainWindow* theWrappedObject) const
+{
+  return ( theWrappedObject->statusBar());
+}
+
+bool  PythonQtWrapper_QMainWindow::isSeparator(QMainWindow* theWrappedObject, const QPoint&  pos) const
+{
+  return ( theWrappedObject->isSeparator(pos));
+}
+
+void PythonQtWrapper_QMainWindow::addDockWidget(QMainWindow* theWrappedObject, Qt::DockWidgetArea  area, QDockWidget*  dockwidget)
+{
+  ( theWrappedObject->addDockWidget(area, dockwidget));
+}
+
+void PythonQtWrapper_QMainWindow::addToolBarBreak(QMainWindow* theWrappedObject, Qt::ToolBarArea  area)
+{
+  ( theWrappedObject->addToolBarBreak(area));
+}
+
+QWidget*  PythonQtWrapper_QMainWindow::centralWidget(QMainWindow* theWrappedObject) const
+{
+  return ( theWrappedObject->centralWidget());
+}
+
+void PythonQtWrapper_QMainWindow::setCentralWidget(QMainWindow* theWrappedObject, QWidget*  widget)
+{
+  ( theWrappedObject->setCentralWidget(widget));
+}
+
+bool  PythonQtWrapper_QMainWindow::isDockNestingEnabled(QMainWindow* theWrappedObject) const
+{
+  return ( theWrappedObject->isDockNestingEnabled());
+}
+
+void PythonQtWrapper_QMainWindow::removeDockWidget(QMainWindow* theWrappedObject, QDockWidget*  dockwidget)
+{
+  ( theWrappedObject->removeDockWidget(dockwidget));
+}
+
+void PythonQtWrapper_QMainWindow::removeToolBar(QMainWindow* theWrappedObject, QToolBar*  toolbar)
+{
+  ( theWrappedObject->removeToolBar(toolbar));
 }
 
 QByteArray  PythonQtWrapper_QMainWindow::saveState(QMainWindow* theWrappedObject, int  version) const
 {
-return  theWrappedObject->saveState(version);
+  return ( theWrappedObject->saveState(version));
 }
 
-void PythonQtWrapper_QMainWindow::setStatusBar(QMainWindow* theWrappedObject, QStatusBar*  statusbar)
+bool  PythonQtWrapper_QMainWindow::restoreState(QMainWindow* theWrappedObject, const QByteArray&  state, int  version)
 {
- theWrappedObject->setStatusBar(statusbar);
-}
-
-QToolBar*  PythonQtWrapper_QMainWindow::addToolBar(QMainWindow* theWrappedObject, const QString&  title)
-{
-return  theWrappedObject->addToolBar(title);
+  return ( theWrappedObject->restoreState(state, version));
 }
 
 void PythonQtWrapper_QMainWindow::setMenuWidget(QMainWindow* theWrappedObject, QWidget*  menubar)
 {
- theWrappedObject->setMenuWidget(menubar);
+  ( theWrappedObject->setMenuWidget(menubar));
+}
+
+bool  PythonQtWrapper_QMainWindow::unifiedTitleAndToolBarOnMac(QMainWindow* theWrappedObject) const
+{
+  return ( theWrappedObject->unifiedTitleAndToolBarOnMac());
 }
 
 void PythonQtWrapper_QMainWindow::insertToolBar(QMainWindow* theWrappedObject, QToolBar*  before, QToolBar*  toolbar)
 {
- theWrappedObject->insertToolBar(before, toolbar);
+  ( theWrappedObject->insertToolBar(before, toolbar));
+}
+
+bool  PythonQtWrapper_QMainWindow::isAnimated(QMainWindow* theWrappedObject) const
+{
+  return ( theWrappedObject->isAnimated());
+}
+
+void PythonQtWrapper_QMainWindow::setToolButtonStyle(QMainWindow* theWrappedObject, Qt::ToolButtonStyle  toolButtonStyle)
+{
+  ( theWrappedObject->setToolButtonStyle(toolButtonStyle));
+}
+
+Qt::DockWidgetArea  PythonQtWrapper_QMainWindow::dockWidgetArea(QMainWindow* theWrappedObject, QDockWidget*  dockwidget) const
+{
+  return ( theWrappedObject->dockWidgetArea(dockwidget));
+}
+
+void PythonQtWrapper_QMainWindow::setDockOptions(QMainWindow* theWrappedObject, QMainWindow::DockOptions  options)
+{
+  ( theWrappedObject->setDockOptions(options));
+}
+
+void PythonQtWrapper_QMainWindow::setIconSize(QMainWindow* theWrappedObject, const QSize&  iconSize)
+{
+  ( theWrappedObject->setIconSize(iconSize));
+}
+
+void PythonQtWrapper_QMainWindow::splitDockWidget(QMainWindow* theWrappedObject, QDockWidget*  after, QDockWidget*  dockwidget, Qt::Orientation  orientation)
+{
+  ( theWrappedObject->splitDockWidget(after, dockwidget, orientation));
+}
+
+bool  PythonQtWrapper_QMainWindow::event(QMainWindow* theWrappedObject, QEvent*  event)
+{
+  return ( ((PythonQtPublicPromoter_QMainWindow*)theWrappedObject)->promoted_event(event));
+}
+
+void PythonQtWrapper_QMainWindow::setStatusBar(QMainWindow* theWrappedObject, QStatusBar*  statusbar)
+{
+  ( theWrappedObject->setStatusBar(statusbar));
+}
+
+QMenu*  PythonQtWrapper_QMainWindow::createPopupMenu(QMainWindow* theWrappedObject)
+{
+  return ( ((PythonQtPublicPromoter_QMainWindow*)theWrappedObject)->promoted_createPopupMenu());
+}
+
+Qt::DockWidgetArea  PythonQtWrapper_QMainWindow::corner(QMainWindow* theWrappedObject, Qt::Corner  corner) const
+{
+  return ( theWrappedObject->corner(corner));
+}
+
+QMenuBar*  PythonQtWrapper_QMainWindow::menuBar(QMainWindow* theWrappedObject) const
+{
+  return ( theWrappedObject->menuBar());
+}
+
+void PythonQtWrapper_QMainWindow::removeToolBarBreak(QMainWindow* theWrappedObject, QToolBar*  before)
+{
+  ( theWrappedObject->removeToolBarBreak(before));
+}
+
+bool  PythonQtWrapper_QMainWindow::restoreDockWidget(QMainWindow* theWrappedObject, QDockWidget*  dockwidget)
+{
+  return ( theWrappedObject->restoreDockWidget(dockwidget));
+}
+
+void PythonQtWrapper_QMainWindow::tabifyDockWidget(QMainWindow* theWrappedObject, QDockWidget*  first, QDockWidget*  second)
+{
+  ( theWrappedObject->tabifyDockWidget(first, second));
+}
+
+Qt::ToolButtonStyle  PythonQtWrapper_QMainWindow::toolButtonStyle(QMainWindow* theWrappedObject) const
+{
+  return ( theWrappedObject->toolButtonStyle());
+}
+
+void PythonQtWrapper_QMainWindow::addDockWidget(QMainWindow* theWrappedObject, Qt::DockWidgetArea  area, QDockWidget*  dockwidget, Qt::Orientation  orientation)
+{
+  ( theWrappedObject->addDockWidget(area, dockwidget, orientation));
+}
+
+void PythonQtWrapper_QMainWindow::addToolBar(QMainWindow* theWrappedObject, Qt::ToolBarArea  area, QToolBar*  toolbar)
+{
+  ( theWrappedObject->addToolBar(area, toolbar));
+}
+
+void PythonQtWrapper_QMainWindow::insertToolBarBreak(QMainWindow* theWrappedObject, QToolBar*  before)
+{
+  ( theWrappedObject->insertToolBarBreak(before));
 }
 
 void PythonQtWrapper_QMainWindow::setUnifiedTitleAndToolBarOnMac(QMainWindow* theWrappedObject, bool  set)
 {
- theWrappedObject->setUnifiedTitleAndToolBarOnMac(set);
+  ( theWrappedObject->setUnifiedTitleAndToolBarOnMac(set));
+}
+
+Qt::ToolBarArea  PythonQtWrapper_QMainWindow::toolBarArea(QMainWindow* theWrappedObject, QToolBar*  toolbar) const
+{
+  return ( theWrappedObject->toolBarArea(toolbar));
 }
 

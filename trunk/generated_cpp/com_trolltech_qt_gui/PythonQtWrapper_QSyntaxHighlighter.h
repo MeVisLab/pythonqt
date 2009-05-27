@@ -44,8 +44,8 @@ QSyntaxHighlighter* new_QSyntaxHighlighter(QObject*  parent);
 QSyntaxHighlighter* new_QSyntaxHighlighter(QTextDocument*  parent);
 QSyntaxHighlighter* new_QSyntaxHighlighter(QTextEdit*  parent);
 void delete_QSyntaxHighlighter(QSyntaxHighlighter* obj) { delete obj; } 
-   QTextDocument*  document(QSyntaxHighlighter* theWrappedObject) const;
    void setDocument(QSyntaxHighlighter* theWrappedObject, QTextDocument*  doc);
+   QTextDocument*  document(QSyntaxHighlighter* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QSYNTAXHIGHLIGHTER_H

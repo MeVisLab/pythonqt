@@ -41,9 +41,9 @@ public:
 public slots:
 QTranslator* new_QTranslator(QObject*  parent = 0);
 void delete_QTranslator(QTranslator* obj) { delete obj; } 
-   bool  load(QTranslator* theWrappedObject, const uchar*  data, int  len);
    bool  isEmpty(QTranslator* theWrappedObject) const;
    QString  translate(QTranslator* theWrappedObject, const char*  context, const char*  sourceText, const char*  comment = 0) const;
+   bool  load(QTranslator* theWrappedObject, const uchar*  data, int  len);
    bool  load(QTranslator* theWrappedObject, const QString&  filename, const QString&  directory = QString(), const QString&  search_delimiters = QString(), const QString&  suffix = QString());
 };
 

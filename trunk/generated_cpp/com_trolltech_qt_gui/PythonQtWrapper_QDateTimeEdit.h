@@ -98,20 +98,20 @@ virtual void wheelEvent(QWheelEvent*  event);
 
 class PythonQtPublicPromoter_QDateTimeEdit : public QDateTimeEdit
 { public:
-inline void promoted_wheelEvent(QWheelEvent*  event) { QDateTimeEdit::wheelEvent(event); }
-inline void promoted_focusInEvent(QFocusEvent*  event) { QDateTimeEdit::focusInEvent(event); }
-inline QDateTime  promoted_dateTimeFromText(const QString&  text) const { return QDateTimeEdit::dateTimeFromText(text); }
-inline void promoted_stepBy(int  steps) { QDateTimeEdit::stepBy(steps); }
-inline bool  promoted_event(QEvent*  event) { return QDateTimeEdit::event(event); }
-inline bool  promoted_focusNextPrevChild(bool  next) { return QDateTimeEdit::focusNextPrevChild(next); }
-inline void promoted_paintEvent(QPaintEvent*  event) { QDateTimeEdit::paintEvent(event); }
-inline QValidator::State  promoted_validate(QString&  input, int&  pos) const { return QDateTimeEdit::validate(input, pos); }
 inline QAbstractSpinBox::StepEnabled  promoted_stepEnabled() const { return QDateTimeEdit::stepEnabled(); }
-inline QString  promoted_textFromDateTime(const QDateTime&  dt) const { return QDateTimeEdit::textFromDateTime(dt); }
-inline void promoted_fixup(QString&  input) const { QDateTimeEdit::fixup(input); }
-inline void promoted_clear() { QDateTimeEdit::clear(); }
 inline void promoted_keyPressEvent(QKeyEvent*  event) { QDateTimeEdit::keyPressEvent(event); }
 inline void promoted_mousePressEvent(QMouseEvent*  event) { QDateTimeEdit::mousePressEvent(event); }
+inline void promoted_fixup(QString&  input) const { QDateTimeEdit::fixup(input); }
+inline QString  promoted_textFromDateTime(const QDateTime&  dt) const { return QDateTimeEdit::textFromDateTime(dt); }
+inline bool  promoted_event(QEvent*  event) { return QDateTimeEdit::event(event); }
+inline void promoted_wheelEvent(QWheelEvent*  event) { QDateTimeEdit::wheelEvent(event); }
+inline QDateTime  promoted_dateTimeFromText(const QString&  text) const { return QDateTimeEdit::dateTimeFromText(text); }
+inline void promoted_paintEvent(QPaintEvent*  event) { QDateTimeEdit::paintEvent(event); }
+inline bool  promoted_focusNextPrevChild(bool  next) { return QDateTimeEdit::focusNextPrevChild(next); }
+inline void promoted_stepBy(int  steps) { QDateTimeEdit::stepBy(steps); }
+inline void promoted_focusInEvent(QFocusEvent*  event) { QDateTimeEdit::focusInEvent(event); }
+inline QValidator::State  promoted_validate(QString&  input, int&  pos) const { return QDateTimeEdit::validate(input, pos); }
+inline void promoted_clear() { QDateTimeEdit::clear(); }
 };
 
 class PythonQtWrapper_QDateTimeEdit : public QObject
@@ -123,62 +123,62 @@ QDateTimeEdit* new_QDateTimeEdit(const QDate&  d, QWidget*  parent = 0);
 QDateTimeEdit* new_QDateTimeEdit(const QDateTime&  dt, QWidget*  parent = 0);
 QDateTimeEdit* new_QDateTimeEdit(const QTime&  t, QWidget*  parent = 0);
 void delete_QDateTimeEdit(QDateTimeEdit* obj) { delete obj; } 
+   void setCurrentSectionIndex(QDateTimeEdit* theWrappedObject, int  index);
+   QAbstractSpinBox::StepEnabled  stepEnabled(QDateTimeEdit* theWrappedObject) const;
+   QDateTimeEdit::Sections  displayedSections(QDateTimeEdit* theWrappedObject) const;
+   void setCalendarWidget(QDateTimeEdit* theWrappedObject, QCalendarWidget*  calendarWidget);
+   void keyPressEvent(QDateTimeEdit* theWrappedObject, QKeyEvent*  event);
+   void setDateTimeRange(QDateTimeEdit* theWrappedObject, const QDateTime&  min, const QDateTime&  max);
+   QDateTimeEdit::Section  sectionAt(QDateTimeEdit* theWrappedObject, int  index) const;
+   void mousePressEvent(QDateTimeEdit* theWrappedObject, QMouseEvent*  event);
+   QDateTime  minimumDateTime(QDateTimeEdit* theWrappedObject) const;
    void clearMaximumDateTime(QDateTimeEdit* theWrappedObject);
-   void wheelEvent(QDateTimeEdit* theWrappedObject, QWheelEvent*  event);
-   QDateTime  maximumDateTime(QDateTimeEdit* theWrappedObject) const;
-   bool  calendarPopup(QDateTimeEdit* theWrappedObject) const;
-   void focusInEvent(QDateTimeEdit* theWrappedObject, QFocusEvent*  event);
+   QString  sectionText(QDateTimeEdit* theWrappedObject, QDateTimeEdit::Section  section) const;
+   void fixup(QDateTimeEdit* theWrappedObject, QString&  input) const;
+   void clearMaximumTime(QDateTimeEdit* theWrappedObject);
    void clearMaximumDate(QDateTimeEdit* theWrappedObject);
-   QDate  maximumDate(QDateTimeEdit* theWrappedObject) const;
    void clearMinimumDateTime(QDateTimeEdit* theWrappedObject);
+   QTime  minimumTime(QDateTimeEdit* theWrappedObject) const;
+   QString  textFromDateTime(QDateTimeEdit* theWrappedObject, const QDateTime&  dt) const;
+   void setSelectedSection(QDateTimeEdit* theWrappedObject, QDateTimeEdit::Section  section);
+   void clearMinimumDate(QDateTimeEdit* theWrappedObject);
+   QDate  date(QDateTimeEdit* theWrappedObject) const;
+   bool  event(QDateTimeEdit* theWrappedObject, QEvent*  event);
+   Qt::TimeSpec  timeSpec(QDateTimeEdit* theWrappedObject) const;
+   void clearMinimumTime(QDateTimeEdit* theWrappedObject);
+   void wheelEvent(QDateTimeEdit* theWrappedObject, QWheelEvent*  event);
+   void setDateRange(QDateTimeEdit* theWrappedObject, const QDate&  min, const QDate&  max);
+   QDate  maximumDate(QDateTimeEdit* theWrappedObject) const;
+   void setCalendarPopup(QDateTimeEdit* theWrappedObject, bool  enable);
    QTime  time(QDateTimeEdit* theWrappedObject) const;
    QDateTime  dateTimeFromText(QDateTimeEdit* theWrappedObject, const QString&  text) const;
    void setDisplayFormat(QDateTimeEdit* theWrappedObject, const QString&  format);
-   void setSelectedSection(QDateTimeEdit* theWrappedObject, QDateTimeEdit::Section  section);
-   void clearMinimumDate(QDateTimeEdit* theWrappedObject);
-   void setMaximumTime(QDateTimeEdit* theWrappedObject, const QTime&  max);
-   void setTimeRange(QDateTimeEdit* theWrappedObject, const QTime&  min, const QTime&  max);
-   int  sectionCount(QDateTimeEdit* theWrappedObject) const;
-   void setMinimumDateTime(QDateTimeEdit* theWrappedObject, const QDateTime&  dt);
-   int  currentSectionIndex(QDateTimeEdit* theWrappedObject) const;
-   QTime  maximumTime(QDateTimeEdit* theWrappedObject) const;
-   void setMaximumDate(QDateTimeEdit* theWrappedObject, const QDate&  max);
-   void setMinimumTime(QDateTimeEdit* theWrappedObject, const QTime&  min);
-   void stepBy(QDateTimeEdit* theWrappedObject, int  steps);
-   bool  event(QDateTimeEdit* theWrappedObject, QEvent*  event);
-   void setCurrentSectionIndex(QDateTimeEdit* theWrappedObject, int  index);
-   bool  focusNextPrevChild(QDateTimeEdit* theWrappedObject, bool  next);
+   QDateTime  dateTime(QDateTimeEdit* theWrappedObject) const;
    void paintEvent(QDateTimeEdit* theWrappedObject, QPaintEvent*  event);
-   void setCurrentSection(QDateTimeEdit* theWrappedObject, QDateTimeEdit::Section  section);
-   void setMinimumDate(QDateTimeEdit* theWrappedObject, const QDate&  min);
-   QValidator::State  validate(QDateTimeEdit* theWrappedObject, QString&  input, int&  pos) const;
    QDate  minimumDate(QDateTimeEdit* theWrappedObject) const;
-   QCalendarWidget*  calendarWidget(QDateTimeEdit* theWrappedObject) const;
-   void setCalendarWidget(QDateTimeEdit* theWrappedObject, QCalendarWidget*  calendarWidget);
-   QAbstractSpinBox::StepEnabled  stepEnabled(QDateTimeEdit* theWrappedObject) const;
-   QDateTimeEdit::Sections  displayedSections(QDateTimeEdit* theWrappedObject) const;
-   QString  textFromDateTime(QDateTimeEdit* theWrappedObject, const QDateTime&  dt) const;
+   void setMaximumDateTime(QDateTimeEdit* theWrappedObject, const QDateTime&  dt);
+   bool  focusNextPrevChild(QDateTimeEdit* theWrappedObject, bool  next);
+   void setMaximumDate(QDateTimeEdit* theWrappedObject, const QDate&  max);
+   void setMinimumDateTime(QDateTimeEdit* theWrappedObject, const QDateTime&  dt);
+   void setTimeRange(QDateTimeEdit* theWrappedObject, const QTime&  min, const QTime&  max);
+   QTime  maximumTime(QDateTimeEdit* theWrappedObject) const;
+   int  currentSectionIndex(QDateTimeEdit* theWrappedObject) const;
+   int  sectionCount(QDateTimeEdit* theWrappedObject) const;
+   QSize  sizeHint(QDateTimeEdit* theWrappedObject) const;
+   bool  calendarPopup(QDateTimeEdit* theWrappedObject) const;
    QDateTimeEdit::Section  currentSection(QDateTimeEdit* theWrappedObject) const;
    QString  displayFormat(QDateTimeEdit* theWrappedObject) const;
-   QDateTime  minimumDateTime(QDateTimeEdit* theWrappedObject) const;
-   void fixup(QDateTimeEdit* theWrappedObject, QString&  input) const;
-   QString  sectionText(QDateTimeEdit* theWrappedObject, QDateTimeEdit::Section  section) const;
+   void setMinimumTime(QDateTimeEdit* theWrappedObject, const QTime&  min);
+   void stepBy(QDateTimeEdit* theWrappedObject, int  steps);
+   void setCurrentSection(QDateTimeEdit* theWrappedObject, QDateTimeEdit::Section  section);
+   void focusInEvent(QDateTimeEdit* theWrappedObject, QFocusEvent*  event);
+   QValidator::State  validate(QDateTimeEdit* theWrappedObject, QString&  input, int&  pos) const;
    void clear(QDateTimeEdit* theWrappedObject);
-   void setDateTimeRange(QDateTimeEdit* theWrappedObject, const QDateTime&  min, const QDateTime&  max);
-   Qt::TimeSpec  timeSpec(QDateTimeEdit* theWrappedObject) const;
+   void setMaximumTime(QDateTimeEdit* theWrappedObject, const QTime&  max);
+   void setMinimumDate(QDateTimeEdit* theWrappedObject, const QDate&  min);
+   QCalendarWidget*  calendarWidget(QDateTimeEdit* theWrappedObject) const;
+   QDateTime  maximumDateTime(QDateTimeEdit* theWrappedObject) const;
    void setTimeSpec(QDateTimeEdit* theWrappedObject, Qt::TimeSpec  spec);
-   void clearMaximumTime(QDateTimeEdit* theWrappedObject);
-   void setCalendarPopup(QDateTimeEdit* theWrappedObject, bool  enable);
-   QTime  minimumTime(QDateTimeEdit* theWrappedObject) const;
-   QSize  sizeHint(QDateTimeEdit* theWrappedObject) const;
-   void keyPressEvent(QDateTimeEdit* theWrappedObject, QKeyEvent*  event);
-   QDate  date(QDateTimeEdit* theWrappedObject) const;
-   void setDateRange(QDateTimeEdit* theWrappedObject, const QDate&  min, const QDate&  max);
-   void clearMinimumTime(QDateTimeEdit* theWrappedObject);
-   void setMaximumDateTime(QDateTimeEdit* theWrappedObject, const QDateTime&  dt);
-   QDateTime  dateTime(QDateTimeEdit* theWrappedObject) const;
-   QDateTimeEdit::Section  sectionAt(QDateTimeEdit* theWrappedObject, int  index) const;
-   void mousePressEvent(QDateTimeEdit* theWrappedObject, QMouseEvent*  event);
 };
 
 #endif // PYTHONQTWRAPPER_QDATETIMEEDIT_H

@@ -22,16 +22,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "isObscuredBy");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QGraphicsPolygonItem::staticMetaObject,
-      "isObscuredBy(QGraphicsPolygonItem*,const QGraphicsItem* )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "const QGraphicsItem*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      bool returnValue;
     void* args[2] = {NULL, (void*)&item};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("isObscuredBy", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -47,16 +50,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "opaqueArea");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QGraphicsPolygonItem::staticMetaObject,
-      "opaqueArea(QGraphicsPolygonItem*)");
-      QPainterPath  returnValue;
+    static const char* argumentList[] ={"QPainterPath"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      QPainterPath returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QPainterPath *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("opaqueArea", methodInfo, result);
+        } else {
+          returnValue = *((QPainterPath*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -74,58 +80,58 @@ QGraphicsPolygonItem* PythonQtWrapper_QGraphicsPolygonItem::new_QGraphicsPolygon
 { 
 return new PythonQtShell_QGraphicsPolygonItem(polygon, parent, scene); }
 
-QPolygonF  PythonQtWrapper_QGraphicsPolygonItem::polygon(QGraphicsPolygonItem* theWrappedObject) const
-{
-return  theWrappedObject->polygon();
-}
-
-QPainterPath  PythonQtWrapper_QGraphicsPolygonItem::shape(QGraphicsPolygonItem* theWrappedObject) const
-{
-return  theWrappedObject->shape();
-}
-
-int  PythonQtWrapper_QGraphicsPolygonItem::type(QGraphicsPolygonItem* theWrappedObject) const
-{
-return  theWrappedObject->type();
-}
-
 bool  PythonQtWrapper_QGraphicsPolygonItem::isObscuredBy(QGraphicsPolygonItem* theWrappedObject, const QGraphicsItem*  item) const
 {
-return  ((PythonQtPublicPromoter_QGraphicsPolygonItem*)theWrappedObject)->promoted_isObscuredBy(item);
+  return ( ((PythonQtPublicPromoter_QGraphicsPolygonItem*)theWrappedObject)->promoted_isObscuredBy(item));
 }
 
 void PythonQtWrapper_QGraphicsPolygonItem::setFillRule(QGraphicsPolygonItem* theWrappedObject, Qt::FillRule  rule)
 {
- theWrappedObject->setFillRule(rule);
-}
-
-QRectF  PythonQtWrapper_QGraphicsPolygonItem::boundingRect(QGraphicsPolygonItem* theWrappedObject) const
-{
-return  theWrappedObject->boundingRect();
+  ( theWrappedObject->setFillRule(rule));
 }
 
 bool  PythonQtWrapper_QGraphicsPolygonItem::contains(QGraphicsPolygonItem* theWrappedObject, const QPointF&  point) const
 {
-return  theWrappedObject->contains(point);
+  return ( theWrappedObject->contains(point));
+}
+
+QRectF  PythonQtWrapper_QGraphicsPolygonItem::boundingRect(QGraphicsPolygonItem* theWrappedObject) const
+{
+  return ( theWrappedObject->boundingRect());
 }
 
 Qt::FillRule  PythonQtWrapper_QGraphicsPolygonItem::fillRule(QGraphicsPolygonItem* theWrappedObject) const
 {
-return  theWrappedObject->fillRule();
+  return ( theWrappedObject->fillRule());
 }
 
 void PythonQtWrapper_QGraphicsPolygonItem::setPolygon(QGraphicsPolygonItem* theWrappedObject, const QPolygonF&  polygon)
 {
- theWrappedObject->setPolygon(polygon);
-}
-
-QPainterPath  PythonQtWrapper_QGraphicsPolygonItem::opaqueArea(QGraphicsPolygonItem* theWrappedObject) const
-{
-return  ((PythonQtPublicPromoter_QGraphicsPolygonItem*)theWrappedObject)->promoted_opaqueArea();
+  ( theWrappedObject->setPolygon(polygon));
 }
 
 void PythonQtWrapper_QGraphicsPolygonItem::paint(QGraphicsPolygonItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget)
 {
- theWrappedObject->paint(painter, option, widget);
+  ( theWrappedObject->paint(painter, option, widget));
+}
+
+QPainterPath  PythonQtWrapper_QGraphicsPolygonItem::opaqueArea(QGraphicsPolygonItem* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QGraphicsPolygonItem*)theWrappedObject)->promoted_opaqueArea());
+}
+
+QPolygonF  PythonQtWrapper_QGraphicsPolygonItem::polygon(QGraphicsPolygonItem* theWrappedObject) const
+{
+  return ( theWrappedObject->polygon());
+}
+
+QPainterPath  PythonQtWrapper_QGraphicsPolygonItem::shape(QGraphicsPolygonItem* theWrappedObject) const
+{
+  return ( theWrappedObject->shape());
+}
+
+int  PythonQtWrapper_QGraphicsPolygonItem::type(QGraphicsPolygonItem* theWrappedObject) const
+{
+  return ( theWrappedObject->type());
 }
 

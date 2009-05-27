@@ -25,12 +25,14 @@ class PythonQtWrapper_QStyleOptionButton : public QObject
 { Q_OBJECT
 public:
 Q_ENUMS(StyleOptionVersion ButtonFeature StyleOptionType )
+Q_FLAGS(ButtonFeatures )
 enum StyleOptionVersion{
   Version = QStyleOptionButton::Version};
 enum ButtonFeature{
   None = QStyleOptionButton::None,   Flat = QStyleOptionButton::Flat,   HasMenu = QStyleOptionButton::HasMenu,   DefaultButton = QStyleOptionButton::DefaultButton,   AutoDefaultButton = QStyleOptionButton::AutoDefaultButton,   CommandLinkButton = QStyleOptionButton::CommandLinkButton};
 enum StyleOptionType{
   Type = QStyleOptionButton::Type};
+Q_DECLARE_FLAGS(ButtonFeatures, ButtonFeature)
 public slots:
 QStyleOptionButton* new_QStyleOptionButton();
 QStyleOptionButton* new_QStyleOptionButton(const QStyleOptionButton&  other);

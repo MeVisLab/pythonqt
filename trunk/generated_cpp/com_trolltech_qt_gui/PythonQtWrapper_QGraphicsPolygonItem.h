@@ -47,17 +47,17 @@ public slots:
 QGraphicsPolygonItem* new_QGraphicsPolygonItem(QGraphicsItem*  parent = 0, QGraphicsScene*  scene = 0);
 QGraphicsPolygonItem* new_QGraphicsPolygonItem(const QPolygonF&  polygon, QGraphicsItem*  parent = 0, QGraphicsScene*  scene = 0);
 void delete_QGraphicsPolygonItem(QGraphicsPolygonItem* obj) { delete obj; } 
+   bool  isObscuredBy(QGraphicsPolygonItem* theWrappedObject, const QGraphicsItem*  item) const;
+   void setFillRule(QGraphicsPolygonItem* theWrappedObject, Qt::FillRule  rule);
+   bool  contains(QGraphicsPolygonItem* theWrappedObject, const QPointF&  point) const;
+   QRectF  boundingRect(QGraphicsPolygonItem* theWrappedObject) const;
+   Qt::FillRule  fillRule(QGraphicsPolygonItem* theWrappedObject) const;
+   void setPolygon(QGraphicsPolygonItem* theWrappedObject, const QPolygonF&  polygon);
+   void paint(QGraphicsPolygonItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = 0);
+   QPainterPath  opaqueArea(QGraphicsPolygonItem* theWrappedObject) const;
    QPolygonF  polygon(QGraphicsPolygonItem* theWrappedObject) const;
    QPainterPath  shape(QGraphicsPolygonItem* theWrappedObject) const;
    int  type(QGraphicsPolygonItem* theWrappedObject) const;
-   bool  isObscuredBy(QGraphicsPolygonItem* theWrappedObject, const QGraphicsItem*  item) const;
-   void setFillRule(QGraphicsPolygonItem* theWrappedObject, Qt::FillRule  rule);
-   QRectF  boundingRect(QGraphicsPolygonItem* theWrappedObject) const;
-   bool  contains(QGraphicsPolygonItem* theWrappedObject, const QPointF&  point) const;
-   Qt::FillRule  fillRule(QGraphicsPolygonItem* theWrappedObject) const;
-   void setPolygon(QGraphicsPolygonItem* theWrappedObject, const QPolygonF&  polygon);
-   QPainterPath  opaqueArea(QGraphicsPolygonItem* theWrappedObject) const;
-   void paint(QGraphicsPolygonItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = 0);
 };
 
 #endif // PYTHONQTWRAPPER_QGRAPHICSPOLYGONITEM_H

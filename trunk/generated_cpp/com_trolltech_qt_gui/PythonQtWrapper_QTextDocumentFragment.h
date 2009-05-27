@@ -21,13 +21,13 @@ QTextDocumentFragment* new_QTextDocumentFragment(const QTextCursor&  range);
 QTextDocumentFragment* new_QTextDocumentFragment(const QTextDocument*  document);
 QTextDocumentFragment* new_QTextDocumentFragment(const QTextDocumentFragment&  rhs);
 void delete_QTextDocumentFragment(QTextDocumentFragment* obj) { delete obj; } 
-   QTextDocumentFragment  static_QTextDocumentFragment_fromHtml(const QString&  html);
-   QTextDocumentFragment  static_QTextDocumentFragment_fromPlainText(const QString&  plainText);
-   bool  isEmpty(QTextDocumentFragment* theWrappedObject) const;
-   QString  toHtml(QTextDocumentFragment* theWrappedObject, const QByteArray&  encoding) const;
    QTextDocumentFragment  static_QTextDocumentFragment_fromHtml(const QString&  html, const QTextDocument*  resourceProvider);
    QString  toPlainText(QTextDocumentFragment* theWrappedObject) const;
    QString  toHtml(QTextDocumentFragment* theWrappedObject) const;
+   bool  isEmpty(QTextDocumentFragment* theWrappedObject) const;
+   QTextDocumentFragment  static_QTextDocumentFragment_fromPlainText(const QString&  plainText);
+   QTextDocumentFragment  static_QTextDocumentFragment_fromHtml(const QString&  html);
+   QString  toHtml(QTextDocumentFragment* theWrappedObject, const QByteArray&  encoding) const;
 };
 
 #endif // PYTHONQTWRAPPER_QTEXTDOCUMENTFRAGMENT_H

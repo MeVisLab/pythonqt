@@ -91,9 +91,9 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QMainWindow : public QMainWindow
 { public:
+inline void promoted_contextMenuEvent(QContextMenuEvent*  event) { QMainWindow::contextMenuEvent(event); }
 inline bool  promoted_event(QEvent*  event) { return QMainWindow::event(event); }
 inline QMenu*  promoted_createPopupMenu() { return QMainWindow::createPopupMenu(); }
-inline void promoted_contextMenuEvent(QContextMenuEvent*  event) { QMainWindow::contextMenuEvent(event); }
 };
 
 class PythonQtWrapper_QMainWindow : public QObject
@@ -102,49 +102,49 @@ public:
 public slots:
 QMainWindow* new_QMainWindow(QWidget*  parent = 0, Qt::WindowFlags  flags = 0);
 void delete_QMainWindow(QMainWindow* obj) { delete obj; } 
+   QToolBar*  addToolBar(QMainWindow* theWrappedObject, const QString&  title);
+   QWidget*  menuWidget(QMainWindow* theWrappedObject) const;
+   QMainWindow::DockOptions  dockOptions(QMainWindow* theWrappedObject) const;
+   QSize  iconSize(QMainWindow* theWrappedObject) const;
+   void setCorner(QMainWindow* theWrappedObject, Qt::Corner  corner, Qt::DockWidgetArea  area);
+   void contextMenuEvent(QMainWindow* theWrappedObject, QContextMenuEvent*  event);
+   void setMenuBar(QMainWindow* theWrappedObject, QMenuBar*  menubar);
+   void addToolBar(QMainWindow* theWrappedObject, QToolBar*  toolbar);
+   bool  toolBarBreak(QMainWindow* theWrappedObject, QToolBar*  toolbar) const;
+   QStatusBar*  statusBar(QMainWindow* theWrappedObject) const;
+   bool  isSeparator(QMainWindow* theWrappedObject, const QPoint&  pos) const;
+   void addDockWidget(QMainWindow* theWrappedObject, Qt::DockWidgetArea  area, QDockWidget*  dockwidget);
+   void addToolBarBreak(QMainWindow* theWrappedObject, Qt::ToolBarArea  area = Qt::TopToolBarArea);
+   QWidget*  centralWidget(QMainWindow* theWrappedObject) const;
+   void setCentralWidget(QMainWindow* theWrappedObject, QWidget*  widget);
    bool  isDockNestingEnabled(QMainWindow* theWrappedObject) const;
+   void removeDockWidget(QMainWindow* theWrappedObject, QDockWidget*  dockwidget);
    void removeToolBar(QMainWindow* theWrappedObject, QToolBar*  toolbar);
-   QMenuBar*  menuBar(QMainWindow* theWrappedObject) const;
-   Qt::DockWidgetArea  corner(QMainWindow* theWrappedObject, Qt::Corner  corner) const;
+   QByteArray  saveState(QMainWindow* theWrappedObject, int  version = 0) const;
+   bool  restoreState(QMainWindow* theWrappedObject, const QByteArray&  state, int  version = 0);
+   void setMenuWidget(QMainWindow* theWrappedObject, QWidget*  menubar);
+   bool  unifiedTitleAndToolBarOnMac(QMainWindow* theWrappedObject) const;
+   void insertToolBar(QMainWindow* theWrappedObject, QToolBar*  before, QToolBar*  toolbar);
    bool  isAnimated(QMainWindow* theWrappedObject) const;
    void setToolButtonStyle(QMainWindow* theWrappedObject, Qt::ToolButtonStyle  toolButtonStyle);
+   Qt::DockWidgetArea  dockWidgetArea(QMainWindow* theWrappedObject, QDockWidget*  dockwidget) const;
+   void setDockOptions(QMainWindow* theWrappedObject, QMainWindow::DockOptions  options);
    void setIconSize(QMainWindow* theWrappedObject, const QSize&  iconSize);
    void splitDockWidget(QMainWindow* theWrappedObject, QDockWidget*  after, QDockWidget*  dockwidget, Qt::Orientation  orientation);
    bool  event(QMainWindow* theWrappedObject, QEvent*  event);
-   void addToolBar(QMainWindow* theWrappedObject, QToolBar*  toolbar);
-   void removeToolBarBreak(QMainWindow* theWrappedObject, QToolBar*  before);
-   void insertToolBarBreak(QMainWindow* theWrappedObject, QToolBar*  before);
-   void tabifyDockWidget(QMainWindow* theWrappedObject, QDockWidget*  first, QDockWidget*  second);
-   void addToolBarBreak(QMainWindow* theWrappedObject, Qt::ToolBarArea  area = Qt::TopToolBarArea);
-   void setMenuBar(QMainWindow* theWrappedObject, QMenuBar*  menubar);
-   Qt::ToolBarArea  toolBarArea(QMainWindow* theWrappedObject, QToolBar*  toolbar) const;
-   bool  restoreState(QMainWindow* theWrappedObject, const QByteArray&  state, int  version = 0);
-   QWidget*  menuWidget(QMainWindow* theWrappedObject) const;
-   bool  unifiedTitleAndToolBarOnMac(QMainWindow* theWrappedObject) const;
-   QSize  iconSize(QMainWindow* theWrappedObject) const;
-   bool  restoreDockWidget(QMainWindow* theWrappedObject, QDockWidget*  dockwidget);
-   Qt::ToolButtonStyle  toolButtonStyle(QMainWindow* theWrappedObject) const;
-   void setCorner(QMainWindow* theWrappedObject, Qt::Corner  corner, Qt::DockWidgetArea  area);
-   QStatusBar*  statusBar(QMainWindow* theWrappedObject) const;
-   bool  isSeparator(QMainWindow* theWrappedObject, const QPoint&  pos) const;
-   void setDockOptions(QMainWindow* theWrappedObject, QMainWindow::DockOptions  options);
-   void addDockWidget(QMainWindow* theWrappedObject, Qt::DockWidgetArea  area, QDockWidget*  dockwidget);
+   void setStatusBar(QMainWindow* theWrappedObject, QStatusBar*  statusbar);
    QMenu*  createPopupMenu(QMainWindow* theWrappedObject);
-   Qt::DockWidgetArea  dockWidgetArea(QMainWindow* theWrappedObject, QDockWidget*  dockwidget) const;
-   void removeDockWidget(QMainWindow* theWrappedObject, QDockWidget*  dockwidget);
-   void setCentralWidget(QMainWindow* theWrappedObject, QWidget*  widget);
-   bool  toolBarBreak(QMainWindow* theWrappedObject, QToolBar*  toolbar) const;
-   QWidget*  centralWidget(QMainWindow* theWrappedObject) const;
+   Qt::DockWidgetArea  corner(QMainWindow* theWrappedObject, Qt::Corner  corner) const;
+   QMenuBar*  menuBar(QMainWindow* theWrappedObject) const;
+   void removeToolBarBreak(QMainWindow* theWrappedObject, QToolBar*  before);
+   bool  restoreDockWidget(QMainWindow* theWrappedObject, QDockWidget*  dockwidget);
+   void tabifyDockWidget(QMainWindow* theWrappedObject, QDockWidget*  first, QDockWidget*  second);
+   Qt::ToolButtonStyle  toolButtonStyle(QMainWindow* theWrappedObject) const;
    void addDockWidget(QMainWindow* theWrappedObject, Qt::DockWidgetArea  area, QDockWidget*  dockwidget, Qt::Orientation  orientation);
    void addToolBar(QMainWindow* theWrappedObject, Qt::ToolBarArea  area, QToolBar*  toolbar);
-   QMainWindow::DockOptions  dockOptions(QMainWindow* theWrappedObject) const;
-   void contextMenuEvent(QMainWindow* theWrappedObject, QContextMenuEvent*  event);
-   QByteArray  saveState(QMainWindow* theWrappedObject, int  version = 0) const;
-   void setStatusBar(QMainWindow* theWrappedObject, QStatusBar*  statusbar);
-   QToolBar*  addToolBar(QMainWindow* theWrappedObject, const QString&  title);
-   void setMenuWidget(QMainWindow* theWrappedObject, QWidget*  menubar);
-   void insertToolBar(QMainWindow* theWrappedObject, QToolBar*  before, QToolBar*  toolbar);
+   void insertToolBarBreak(QMainWindow* theWrappedObject, QToolBar*  before);
    void setUnifiedTitleAndToolBarOnMac(QMainWindow* theWrappedObject, bool  set);
+   Qt::ToolBarArea  toolBarArea(QMainWindow* theWrappedObject, QToolBar*  toolbar) const;
 };
 
 #endif // PYTHONQTWRAPPER_QMAINWINDOW_H

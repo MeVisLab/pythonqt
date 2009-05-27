@@ -26,15 +26,15 @@ public slots:
 QWheelEvent* new_QWheelEvent(const QPoint&  pos, const QPoint&  globalPos, int  delta, Qt::MouseButtons  buttons, Qt::KeyboardModifiers  modifiers, Qt::Orientation  orient = Qt::Vertical);
 QWheelEvent* new_QWheelEvent(const QPoint&  pos, int  delta, Qt::MouseButtons  buttons, Qt::KeyboardModifiers  modifiers, Qt::Orientation  orient = Qt::Vertical);
 void delete_QWheelEvent(QWheelEvent* obj) { delete obj; } 
-   int  y(QWheelEvent* theWrappedObject) const;
-   int  x(QWheelEvent* theWrappedObject) const;
    int  globalY(QWheelEvent* theWrappedObject) const;
-   const QPoint&  pos(QWheelEvent* theWrappedObject) const;
-   int  delta(QWheelEvent* theWrappedObject) const;
+   const QPoint*  pos(QWheelEvent* theWrappedObject) const;
+   int  x(QWheelEvent* theWrappedObject) const;
+   const QPoint*  globalPos(QWheelEvent* theWrappedObject) const;
    Qt::Orientation  orientation(QWheelEvent* theWrappedObject) const;
-   const QPoint&  globalPos(QWheelEvent* theWrappedObject) const;
+   int  y(QWheelEvent* theWrappedObject) const;
    Qt::MouseButtons  buttons(QWheelEvent* theWrappedObject) const;
    int  globalX(QWheelEvent* theWrappedObject) const;
+   int  delta(QWheelEvent* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QWHEELEVENT_H

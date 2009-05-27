@@ -85,15 +85,15 @@ virtual void wheelEvent(QWheelEvent*  e);
 
 class PythonQtPublicPromoter_QWorkspace : public QWorkspace
 { public:
+inline bool  promoted_eventFilter(QObject*  arg__1, QEvent*  arg__2) { return QWorkspace::eventFilter(arg__1, arg__2); }
+inline void promoted_wheelEvent(QWheelEvent*  e) { QWorkspace::wheelEvent(e); }
+inline void promoted_resizeEvent(QResizeEvent*  arg__1) { QWorkspace::resizeEvent(arg__1); }
 inline void promoted_changeEvent(QEvent*  arg__1) { QWorkspace::changeEvent(arg__1); }
+inline void promoted_paintEvent(QPaintEvent*  e) { QWorkspace::paintEvent(e); }
+inline bool  promoted_event(QEvent*  e) { return QWorkspace::event(e); }
+inline void promoted_childEvent(QChildEvent*  arg__1) { QWorkspace::childEvent(arg__1); }
 inline void promoted_hideEvent(QHideEvent*  e) { QWorkspace::hideEvent(e); }
 inline void promoted_showEvent(QShowEvent*  e) { QWorkspace::showEvent(e); }
-inline bool  promoted_eventFilter(QObject*  arg__1, QEvent*  arg__2) { return QWorkspace::eventFilter(arg__1, arg__2); }
-inline void promoted_resizeEvent(QResizeEvent*  arg__1) { QWorkspace::resizeEvent(arg__1); }
-inline void promoted_childEvent(QChildEvent*  arg__1) { QWorkspace::childEvent(arg__1); }
-inline void promoted_wheelEvent(QWheelEvent*  e) { QWorkspace::wheelEvent(e); }
-inline bool  promoted_event(QEvent*  e) { return QWorkspace::event(e); }
-inline void promoted_paintEvent(QPaintEvent*  e) { QWorkspace::paintEvent(e); }
 };
 
 class PythonQtWrapper_QWorkspace : public QObject
@@ -106,22 +106,22 @@ public slots:
 QWorkspace* new_QWorkspace(QWidget*  parent = 0);
 void delete_QWorkspace(QWorkspace* obj) { delete obj; } 
    void setBackground(QWorkspace* theWrappedObject, const QBrush&  background);
+   QList<QWidget* >  windowList(QWorkspace* theWrappedObject, QWorkspace::WindowOrder  order = QWorkspace::CreationOrder) const;
+   bool  eventFilter(QWorkspace* theWrappedObject, QObject*  arg__1, QEvent*  arg__2);
+   bool  scrollBarsEnabled(QWorkspace* theWrappedObject) const;
+   void wheelEvent(QWorkspace* theWrappedObject, QWheelEvent*  e);
+   void resizeEvent(QWorkspace* theWrappedObject, QResizeEvent*  arg__1);
+   QSize  sizeHint(QWorkspace* theWrappedObject) const;
    void changeEvent(QWorkspace* theWrappedObject, QEvent*  arg__1);
+   void setScrollBarsEnabled(QWorkspace* theWrappedObject, bool  enable);
+   void paintEvent(QWorkspace* theWrappedObject, QPaintEvent*  e);
+   QWidget*  activeWindow(QWorkspace* theWrappedObject) const;
+   bool  event(QWorkspace* theWrappedObject, QEvent*  e);
+   void childEvent(QWorkspace* theWrappedObject, QChildEvent*  arg__1);
    QBrush  background(QWorkspace* theWrappedObject) const;
    void hideEvent(QWorkspace* theWrappedObject, QHideEvent*  e);
    void showEvent(QWorkspace* theWrappedObject, QShowEvent*  e);
-   void setScrollBarsEnabled(QWorkspace* theWrappedObject, bool  enable);
-   bool  eventFilter(QWorkspace* theWrappedObject, QObject*  arg__1, QEvent*  arg__2);
-   void resizeEvent(QWorkspace* theWrappedObject, QResizeEvent*  arg__1);
-   QWidget*  activeWindow(QWorkspace* theWrappedObject) const;
-   QList<QWidget* >  windowList(QWorkspace* theWrappedObject, QWorkspace::WindowOrder  order = QWorkspace::CreationOrder) const;
-   bool  scrollBarsEnabled(QWorkspace* theWrappedObject) const;
-   void childEvent(QWorkspace* theWrappedObject, QChildEvent*  arg__1);
-   void wheelEvent(QWorkspace* theWrappedObject, QWheelEvent*  e);
-   bool  event(QWorkspace* theWrappedObject, QEvent*  e);
    QWidget*  addWindow(QWorkspace* theWrappedObject, QWidget*  w, Qt::WindowFlags  flags = 0);
-   QSize  sizeHint(QWorkspace* theWrappedObject) const;
-   void paintEvent(QWorkspace* theWrappedObject, QPaintEvent*  e);
 };
 
 #endif // PYTHONQTWRAPPER_QWORKSPACE_H

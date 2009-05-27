@@ -44,12 +44,12 @@ class PythonQtWrapper_QColorDialog : public QObject
 { Q_OBJECT
 public:
 public slots:
+   void static_QColorDialog_setCustomColor(int  arg__1, unsigned int  arg__2);
    QColor  static_QColorDialog_getColor(const QColor&  init = Qt::white, QWidget*  parent = 0);
    void static_QColorDialog_setStandardColor(int  arg__1, unsigned int  arg__2);
    void changeEvent(QColorDialog* theWrappedObject, QEvent*  e);
-   unsigned int  static_QColorDialog_customColor(int  arg__1);
    int  static_QColorDialog_customCount();
-   void static_QColorDialog_setCustomColor(int  arg__1, unsigned int  arg__2);
+   unsigned int  static_QColorDialog_customColor(int  arg__1);
 };
 
 #endif // PYTHONQTWRAPPER_QCOLORDIALOG_H

@@ -44,9 +44,9 @@ class PythonQtWrapper_QFontDialog : public QObject
 public:
 public slots:
    QFont  static_QFontDialog_getFont(bool*  ok, const QFont&  def, QWidget*  parent, const QString&  caption);
-   QFont  static_QFontDialog_getFont(bool*  ok, const QFont&  def, QWidget*  parent = 0);
    void changeEvent(QFontDialog* theWrappedObject, QEvent*  e);
    QFont  static_QFontDialog_getFont(bool*  ok, QWidget*  parent = 0);
+   QFont  static_QFontDialog_getFont(bool*  ok, const QFont&  def, QWidget*  parent = 0);
 };
 
 #endif // PYTHONQTWRAPPER_QFONTDIALOG_H

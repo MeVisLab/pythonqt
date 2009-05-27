@@ -38,10 +38,10 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QCompleter : public QCompleter
 { public:
-inline QStringList  promoted_splitPath(const QString&  path) const { return QCompleter::splitPath(path); }
-inline bool  promoted_event(QEvent*  arg__1) { return QCompleter::event(arg__1); }
 inline QString  promoted_pathFromIndex(const QModelIndex&  index) const { return QCompleter::pathFromIndex(index); }
 inline bool  promoted_eventFilter(QObject*  o, QEvent*  e) { return QCompleter::eventFilter(o, e); }
+inline QStringList  promoted_splitPath(const QString&  path) const { return QCompleter::splitPath(path); }
+inline bool  promoted_event(QEvent*  arg__1) { return QCompleter::event(arg__1); }
 };
 
 class PythonQtWrapper_QCompleter : public QObject
@@ -57,6 +57,15 @@ QCompleter* new_QCompleter(QAbstractItemModel*  model, QObject*  parent = 0);
 QCompleter* new_QCompleter(QObject*  parent = 0);
 QCompleter* new_QCompleter(const QStringList&  completions, QObject*  parent = 0);
 void delete_QCompleter(QCompleter* obj) { delete obj; } 
+   void setCaseSensitivity(QCompleter* theWrappedObject, Qt::CaseSensitivity  caseSensitivity);
+   QString  pathFromIndex(QCompleter* theWrappedObject, const QModelIndex&  index) const;
+   void setCompletionMode(QCompleter* theWrappedObject, QCompleter::CompletionMode  mode);
+   void setModel(QCompleter* theWrappedObject, QAbstractItemModel*  c);
+   void setCompletionColumn(QCompleter* theWrappedObject, int  column);
+   int  completionCount(QCompleter* theWrappedObject) const;
+   QAbstractItemModel*  completionModel(QCompleter* theWrappedObject) const;
+   bool  eventFilter(QCompleter* theWrappedObject, QObject*  o, QEvent*  e);
+   QCompleter::ModelSorting  modelSorting(QCompleter* theWrappedObject) const;
    QAbstractItemView*  popup(QCompleter* theWrappedObject) const;
    QStringList  splitPath(QCompleter* theWrappedObject, const QString&  path) const;
    Qt::CaseSensitivity  caseSensitivity(QCompleter* theWrappedObject) const;
@@ -76,15 +85,6 @@ void delete_QCompleter(QCompleter* obj) { delete obj; }
    QModelIndex  currentIndex(QCompleter* theWrappedObject) const;
    void setCompletionRole(QCompleter* theWrappedObject, int  role);
    QString  currentCompletion(QCompleter* theWrappedObject) const;
-   void setCaseSensitivity(QCompleter* theWrappedObject, Qt::CaseSensitivity  caseSensitivity);
-   QString  pathFromIndex(QCompleter* theWrappedObject, const QModelIndex&  index) const;
-   void setCompletionMode(QCompleter* theWrappedObject, QCompleter::CompletionMode  mode);
-   void setModel(QCompleter* theWrappedObject, QAbstractItemModel*  c);
-   void setCompletionColumn(QCompleter* theWrappedObject, int  column);
-   int  completionCount(QCompleter* theWrappedObject) const;
-   QAbstractItemModel*  completionModel(QCompleter* theWrappedObject) const;
-   bool  eventFilter(QCompleter* theWrappedObject, QObject*  o, QEvent*  e);
-   QCompleter::ModelSorting  modelSorting(QCompleter* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QCOMPLETER_H

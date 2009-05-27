@@ -25,9 +25,9 @@ public:
 public slots:
 QXmlResultItems* new_QXmlResultItems();
 void delete_QXmlResultItems(QXmlResultItems* obj) { delete obj; } 
+   QXmlItem  current(QXmlResultItems* theWrappedObject) const;
    QXmlItem  next(QXmlResultItems* theWrappedObject);
    bool  hasError(QXmlResultItems* theWrappedObject) const;
-   QXmlItem  current(QXmlResultItems* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QXMLRESULTITEMS_H

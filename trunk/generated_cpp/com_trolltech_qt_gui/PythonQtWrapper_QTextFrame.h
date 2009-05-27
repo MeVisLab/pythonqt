@@ -38,16 +38,16 @@ public:
 public slots:
 QTextFrame* new_QTextFrame(QTextDocument*  doc);
 void delete_QTextFrame(QTextFrame* obj) { delete obj; } 
-   QList<QTextFrame* >  childFrames(QTextFrame* theWrappedObject) const;
+   void setFrameFormat(QTextFrame* theWrappedObject, const QTextFrameFormat&  format);
+   QTextFrame::iterator  begin(QTextFrame* theWrappedObject) const;
+   QTextFrameFormat  frameFormat(QTextFrame* theWrappedObject) const;
+   int  lastPosition(QTextFrame* theWrappedObject) const;
+   QTextCursor  lastCursorPosition(QTextFrame* theWrappedObject) const;
+   QTextFrame*  parentFrame(QTextFrame* theWrappedObject) const;
+   QTextFrame::iterator  end(QTextFrame* theWrappedObject) const;
    QTextCursor  firstCursorPosition(QTextFrame* theWrappedObject) const;
    int  firstPosition(QTextFrame* theWrappedObject) const;
-   void setFrameFormat(QTextFrame* theWrappedObject, const QTextFrameFormat&  format);
-   QTextCursor  lastCursorPosition(QTextFrame* theWrappedObject) const;
-   QTextFrameFormat  frameFormat(QTextFrame* theWrappedObject) const;
-   QTextFrame::iterator  end(QTextFrame* theWrappedObject) const;
-   QTextFrame*  parentFrame(QTextFrame* theWrappedObject) const;
-   QTextFrame::iterator  begin(QTextFrame* theWrappedObject) const;
-   int  lastPosition(QTextFrame* theWrappedObject) const;
+   QList<QTextFrame* >  childFrames(QTextFrame* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QTEXTFRAME_H

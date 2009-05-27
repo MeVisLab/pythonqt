@@ -17,15 +17,15 @@ public slots:
 QTextFragment* new_QTextFragment();
 QTextFragment* new_QTextFragment(const QTextFragment&  o);
 void delete_QTextFragment(QTextFragment* obj) { delete obj; } 
-   bool  operator_equal(QTextFragment* theWrappedObject, const QTextFragment&  o) const;
-   int  position(QTextFragment* theWrappedObject) const;
-   QTextCharFormat  charFormat(QTextFragment* theWrappedObject) const;
-   int  length(QTextFragment* theWrappedObject) const;
-   QString  text(QTextFragment* theWrappedObject) const;
-   bool  operator_less(QTextFragment* theWrappedObject, const QTextFragment&  o) const;
-   int  charFormatIndex(QTextFragment* theWrappedObject) const;
    bool  contains(QTextFragment* theWrappedObject, int  position) const;
+   int  charFormatIndex(QTextFragment* theWrappedObject) const;
+   bool  operator_less(QTextFragment* theWrappedObject, const QTextFragment&  o) const;
+   int  length(QTextFragment* theWrappedObject) const;
+   bool  operator_equal(QTextFragment* theWrappedObject, const QTextFragment&  o) const;
    bool  isValid(QTextFragment* theWrappedObject) const;
+   int  position(QTextFragment* theWrappedObject) const;
+   QString  text(QTextFragment* theWrappedObject) const;
+   QTextCharFormat  charFormat(QTextFragment* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QTEXTFRAGMENT_H

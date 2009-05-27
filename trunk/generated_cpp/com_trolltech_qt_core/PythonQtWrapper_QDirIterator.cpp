@@ -27,31 +27,31 @@ return new PythonQtShell_QDirIterator(path, nameFilters, filters, flags); }
 
 QString  PythonQtWrapper_QDirIterator::next(QDirIterator* theWrappedObject)
 {
-return  theWrappedObject->next();
+  return ( theWrappedObject->next());
 }
 
 QString  PythonQtWrapper_QDirIterator::fileName(QDirIterator* theWrappedObject) const
 {
-return  theWrappedObject->fileName();
-}
-
-QString  PythonQtWrapper_QDirIterator::filePath(QDirIterator* theWrappedObject) const
-{
-return  theWrappedObject->filePath();
+  return ( theWrappedObject->fileName());
 }
 
 QFileInfo  PythonQtWrapper_QDirIterator::fileInfo(QDirIterator* theWrappedObject) const
 {
-return  theWrappedObject->fileInfo();
+  return ( theWrappedObject->fileInfo());
+}
+
+QString  PythonQtWrapper_QDirIterator::filePath(QDirIterator* theWrappedObject) const
+{
+  return ( theWrappedObject->filePath());
 }
 
 bool  PythonQtWrapper_QDirIterator::hasNext(QDirIterator* theWrappedObject) const
 {
-return  theWrappedObject->hasNext();
+  return ( theWrappedObject->hasNext());
 }
 
 QString  PythonQtWrapper_QDirIterator::path(QDirIterator* theWrappedObject) const
 {
-return  theWrappedObject->path();
+  return ( theWrappedObject->path());
 }
 
