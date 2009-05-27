@@ -105,10 +105,10 @@ QCommandLinkButton* new_QCommandLinkButton(const QString&  text, QWidget*  paren
 QCommandLinkButton* new_QCommandLinkButton(const QString&  text, const QString&  description, QWidget*  parent = 0);
 void delete_QCommandLinkButton(QCommandLinkButton* obj) { delete obj; } 
    bool  event(QCommandLinkButton* theWrappedObject, QEvent*  e);
+   QString  description(QCommandLinkButton* theWrappedObject) const;
    void setDescription(QCommandLinkButton* theWrappedObject, const QString&  description);
    int  heightForWidth(QCommandLinkButton* theWrappedObject, int  arg__1) const;
    void paintEvent(QCommandLinkButton* theWrappedObject, QPaintEvent*  arg__1);
-   QString  description(QCommandLinkButton* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QCOMMANDLINKBUTTON_H

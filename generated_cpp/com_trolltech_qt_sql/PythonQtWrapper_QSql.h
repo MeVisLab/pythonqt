@@ -12,6 +12,7 @@ class PythonQtWrapper_QSql : public QObject
 { Q_OBJECT
 public:
 Q_ENUMS(NumericalPrecisionPolicy Location ParamTypeFlag TableType )
+Q_FLAGS(ParamType )
 enum NumericalPrecisionPolicy{
   LowPrecisionInt32 = QSql::LowPrecisionInt32,   LowPrecisionInt64 = QSql::LowPrecisionInt64,   LowPrecisionDouble = QSql::LowPrecisionDouble,   HighPrecision = QSql::HighPrecision};
 enum Location{
@@ -20,6 +21,7 @@ enum ParamTypeFlag{
   In = QSql::In,   Out = QSql::Out,   InOut = QSql::InOut,   Binary = QSql::Binary};
 enum TableType{
   Tables = QSql::Tables,   SystemTables = QSql::SystemTables,   Views = QSql::Views,   AllTables = QSql::AllTables};
+Q_DECLARE_FLAGS(ParamType, ParamTypeFlag)
 public slots:
 };
 

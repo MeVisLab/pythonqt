@@ -16,19 +16,19 @@ public slots:
 QDomNamedNodeMap* new_QDomNamedNodeMap();
 QDomNamedNodeMap* new_QDomNamedNodeMap(const QDomNamedNodeMap&  arg__1);
 void delete_QDomNamedNodeMap(QDomNamedNodeMap* obj) { delete obj; } 
-   QDomNode  setNamedItemNS(QDomNamedNodeMap* theWrappedObject, const QDomNode&  newNode);
+   QDomNode  removeNamedItemNS(QDomNamedNodeMap* theWrappedObject, const QString&  nsURI, const QString&  localName);
    QDomNode  namedItem(QDomNamedNodeMap* theWrappedObject, const QString&  name) const;
    bool  operator_equal(QDomNamedNodeMap* theWrappedObject, const QDomNamedNodeMap&  arg__1) const;
-   int  size(QDomNamedNodeMap* theWrappedObject) const;
-   int  count(QDomNamedNodeMap* theWrappedObject) const;
-   bool  isEmpty(QDomNamedNodeMap* theWrappedObject) const;
-   QDomNode  removeNamedItem(QDomNamedNodeMap* theWrappedObject, const QString&  name);
+   QDomNode  setNamedItemNS(QDomNamedNodeMap* theWrappedObject, const QDomNode&  newNode);
    QDomNode  item(QDomNamedNodeMap* theWrappedObject, int  index) const;
-   bool  contains(QDomNamedNodeMap* theWrappedObject, const QString&  name) const;
-   QDomNode  namedItemNS(QDomNamedNodeMap* theWrappedObject, const QString&  nsURI, const QString&  localName) const;
-   QDomNode  setNamedItem(QDomNamedNodeMap* theWrappedObject, const QDomNode&  newNode);
+   int  count(QDomNamedNodeMap* theWrappedObject) const;
    uint  length(QDomNamedNodeMap* theWrappedObject) const;
-   QDomNode  removeNamedItemNS(QDomNamedNodeMap* theWrappedObject, const QString&  nsURI, const QString&  localName);
+   QDomNode  namedItemNS(QDomNamedNodeMap* theWrappedObject, const QString&  nsURI, const QString&  localName) const;
+   QDomNode  removeNamedItem(QDomNamedNodeMap* theWrappedObject, const QString&  name);
+   QDomNode  setNamedItem(QDomNamedNodeMap* theWrappedObject, const QDomNode&  newNode);
+   int  size(QDomNamedNodeMap* theWrappedObject) const;
+   bool  isEmpty(QDomNamedNodeMap* theWrappedObject) const;
+   bool  contains(QDomNamedNodeMap* theWrappedObject, const QString&  name) const;
 };
 
 #endif // PYTHONQTWRAPPER_QDOMNAMEDNODEMAP_H

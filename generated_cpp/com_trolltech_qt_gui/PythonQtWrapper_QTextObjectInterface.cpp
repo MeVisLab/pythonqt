@@ -16,9 +16,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "drawObject");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QTextObjectInterface::staticMetaObject,
-      "drawObject(QTextObjectInterface*,QPainter* ,const QRectF& ,QTextDocument* ,int ,const QTextFormat& )");
+    static const char* argumentList[] ={"" , "QPainter*" , "const QRectF&" , "QTextDocument*" , "int" , "const QTextFormat&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(6, argumentList);
     void* args[6] = {NULL, (void*)&painter, (void*)&rect, (void*)&doc, (void*)&posInDocument, (void*)&format};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -34,16 +33,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "intrinsicSize");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QTextObjectInterface::staticMetaObject,
-      "intrinsicSize(QTextObjectInterface*,QTextDocument* ,int ,const QTextFormat& )");
-      QSizeF  returnValue;
+    static const char* argumentList[] ={"QSizeF" , "QTextDocument*" , "int" , "const QTextFormat&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
+      QSizeF returnValue;
     void* args[4] = {NULL, (void*)&doc, (void*)&posInDocument, (void*)&format};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QSizeF *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("intrinsicSize", methodInfo, result);
+        } else {
+          returnValue = *((QSizeF*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -51,7 +53,7 @@ if (_wrapper) {
     return returnValue;
   }
 }
-  QSizeF  result;
+  QSizeF result;
 return result;
 }
 QTextObjectInterface* PythonQtWrapper_QTextObjectInterface::new_QTextObjectInterface()

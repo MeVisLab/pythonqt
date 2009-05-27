@@ -35,16 +35,16 @@ PythonQtShell_QTextTableCellFormat* a = new PythonQtShell_QTextTableCellFormat()
 *((QTextTableCellFormat*)a) = other;
 return a; }
 void delete_QTextTableCellFormat(QTextTableCellFormat* obj) { delete obj; } 
-   void setRightPadding(QTextTableCellFormat* theWrappedObject, qreal  padding);
-   void setTopPadding(QTextTableCellFormat* theWrappedObject, qreal  padding);
-   void setLeftPadding(QTextTableCellFormat* theWrappedObject, qreal  padding);
-   void setPadding(QTextTableCellFormat* theWrappedObject, qreal  padding);
    bool  isValid(QTextTableCellFormat* theWrappedObject) const;
    void setBottomPadding(QTextTableCellFormat* theWrappedObject, qreal  padding);
    qreal  topPadding(QTextTableCellFormat* theWrappedObject) const;
    qreal  rightPadding(QTextTableCellFormat* theWrappedObject) const;
    qreal  leftPadding(QTextTableCellFormat* theWrappedObject) const;
    qreal  bottomPadding(QTextTableCellFormat* theWrappedObject) const;
+   void setRightPadding(QTextTableCellFormat* theWrappedObject, qreal  padding);
+   void setTopPadding(QTextTableCellFormat* theWrappedObject, qreal  padding);
+   void setLeftPadding(QTextTableCellFormat* theWrappedObject, qreal  padding);
+   void setPadding(QTextTableCellFormat* theWrappedObject, qreal  padding);
 };
 
 #endif // PYTHONQTWRAPPER_QTEXTTABLECELLFORMAT_H

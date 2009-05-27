@@ -77,7 +77,6 @@ public slots:
 QStringListModel* new_QStringListModel(QObject*  parent = 0);
 QStringListModel* new_QStringListModel(const QStringList&  strings, QObject*  parent = 0);
 void delete_QStringListModel(QStringListModel* obj) { delete obj; } 
-   QStringList  stringList(QStringListModel* theWrappedObject) const;
    QVariant  data(QStringListModel* theWrappedObject, const QModelIndex&  index, int  role) const;
    Qt::DropActions  supportedDropActions(QStringListModel* theWrappedObject) const;
    void sort(QStringListModel* theWrappedObject, int  column, Qt::SortOrder  order = Qt::AscendingOrder);
@@ -87,6 +86,7 @@ void delete_QStringListModel(QStringListModel* obj) { delete obj; }
    int  rowCount(QStringListModel* theWrappedObject, const QModelIndex&  parent = QModelIndex()) const;
    bool  insertRows(QStringListModel* theWrappedObject, int  row, int  count, const QModelIndex&  parent = QModelIndex());
    void setStringList(QStringListModel* theWrappedObject, const QStringList&  strings);
+   QStringList  stringList(QStringListModel* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QSTRINGLISTMODEL_H

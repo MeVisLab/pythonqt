@@ -11,53 +11,53 @@ QGraphicsSceneContextMenuEvent* PythonQtWrapper_QGraphicsSceneContextMenuEvent::
 { 
 return new QGraphicsSceneContextMenuEvent(type); }
 
-void PythonQtWrapper_QGraphicsSceneContextMenuEvent::setScreenPos(QGraphicsSceneContextMenuEvent* theWrappedObject, const QPoint&  pos)
+QPointF  PythonQtWrapper_QGraphicsSceneContextMenuEvent::scenePos(QGraphicsSceneContextMenuEvent* theWrappedObject) const
 {
- theWrappedObject->setScreenPos(pos);
+  return ( theWrappedObject->scenePos());
 }
 
-QPoint  PythonQtWrapper_QGraphicsSceneContextMenuEvent::screenPos(QGraphicsSceneContextMenuEvent* theWrappedObject) const
+void PythonQtWrapper_QGraphicsSceneContextMenuEvent::setScreenPos(QGraphicsSceneContextMenuEvent* theWrappedObject, const QPoint&  pos)
 {
-return  theWrappedObject->screenPos();
+  ( theWrappedObject->setScreenPos(pos));
 }
 
 Qt::KeyboardModifiers  PythonQtWrapper_QGraphicsSceneContextMenuEvent::modifiers(QGraphicsSceneContextMenuEvent* theWrappedObject) const
 {
-return  theWrappedObject->modifiers();
-}
-
-QPointF  PythonQtWrapper_QGraphicsSceneContextMenuEvent::scenePos(QGraphicsSceneContextMenuEvent* theWrappedObject) const
-{
-return  theWrappedObject->scenePos();
-}
-
-void PythonQtWrapper_QGraphicsSceneContextMenuEvent::setModifiers(QGraphicsSceneContextMenuEvent* theWrappedObject, Qt::KeyboardModifiers  modifiers)
-{
- theWrappedObject->setModifiers(modifiers);
-}
-
-void PythonQtWrapper_QGraphicsSceneContextMenuEvent::setReason(QGraphicsSceneContextMenuEvent* theWrappedObject, QGraphicsSceneContextMenuEvent::Reason  reason)
-{
- theWrappedObject->setReason(reason);
-}
-
-void PythonQtWrapper_QGraphicsSceneContextMenuEvent::setScenePos(QGraphicsSceneContextMenuEvent* theWrappedObject, const QPointF&  pos)
-{
- theWrappedObject->setScenePos(pos);
-}
-
-QGraphicsSceneContextMenuEvent::Reason  PythonQtWrapper_QGraphicsSceneContextMenuEvent::reason(QGraphicsSceneContextMenuEvent* theWrappedObject) const
-{
-return  theWrappedObject->reason();
+  return ( theWrappedObject->modifiers());
 }
 
 QPointF  PythonQtWrapper_QGraphicsSceneContextMenuEvent::pos(QGraphicsSceneContextMenuEvent* theWrappedObject) const
 {
-return  theWrappedObject->pos();
+  return ( theWrappedObject->pos());
+}
+
+void PythonQtWrapper_QGraphicsSceneContextMenuEvent::setModifiers(QGraphicsSceneContextMenuEvent* theWrappedObject, Qt::KeyboardModifiers  modifiers)
+{
+  ( theWrappedObject->setModifiers(modifiers));
+}
+
+QGraphicsSceneContextMenuEvent::Reason  PythonQtWrapper_QGraphicsSceneContextMenuEvent::reason(QGraphicsSceneContextMenuEvent* theWrappedObject) const
+{
+  return ( theWrappedObject->reason());
 }
 
 void PythonQtWrapper_QGraphicsSceneContextMenuEvent::setPos(QGraphicsSceneContextMenuEvent* theWrappedObject, const QPointF&  pos)
 {
- theWrappedObject->setPos(pos);
+  ( theWrappedObject->setPos(pos));
+}
+
+void PythonQtWrapper_QGraphicsSceneContextMenuEvent::setScenePos(QGraphicsSceneContextMenuEvent* theWrappedObject, const QPointF&  pos)
+{
+  ( theWrappedObject->setScenePos(pos));
+}
+
+void PythonQtWrapper_QGraphicsSceneContextMenuEvent::setReason(QGraphicsSceneContextMenuEvent* theWrappedObject, QGraphicsSceneContextMenuEvent::Reason  reason)
+{
+  ( theWrappedObject->setReason(reason));
+}
+
+QPoint  PythonQtWrapper_QGraphicsSceneContextMenuEvent::screenPos(QGraphicsSceneContextMenuEvent* theWrappedObject) const
+{
+  return ( theWrappedObject->screenPos());
 }
 

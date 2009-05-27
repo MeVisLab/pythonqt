@@ -17,11 +17,11 @@ return new QDomNotation(x); }
 
 QString  PythonQtWrapper_QDomNotation::systemId(QDomNotation* theWrappedObject) const
 {
-return  theWrappedObject->systemId();
+  return ( theWrappedObject->systemId());
 }
 
 QString  PythonQtWrapper_QDomNotation::publicId(QDomNotation* theWrappedObject) const
 {
-return  theWrappedObject->publicId();
+  return ( theWrappedObject->publicId());
 }
 

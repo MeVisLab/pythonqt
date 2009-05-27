@@ -17,9 +17,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "childEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QThreadPool::staticMetaObject,
-      "childEvent(QThreadPool*,QChildEvent* )");
+    static const char* argumentList[] ={"" , "QChildEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -35,9 +34,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "customEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QThreadPool::staticMetaObject,
-      "customEvent(QThreadPool*,QEvent* )");
+    static const char* argumentList[] ={"" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -53,16 +51,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "event");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QThreadPool::staticMetaObject,
-      "event(QThreadPool*,QEvent* )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      bool returnValue;
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -78,16 +79,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "eventFilter");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QThreadPool::staticMetaObject,
-      "eventFilter(QThreadPool*,QObject* ,QEvent* )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
+      bool returnValue;
     void* args[3] = {NULL, (void*)&arg__1, (void*)&arg__2};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("eventFilter", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -103,9 +107,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "timerEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QThreadPool::staticMetaObject,
-      "timerEvent(QThreadPool*,QTimerEvent* )");
+    static const char* argumentList[] ={"" , "QTimerEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -119,58 +122,58 @@ QThreadPool* PythonQtWrapper_QThreadPool::new_QThreadPool(QObject*  parent)
 { 
 return new PythonQtShell_QThreadPool(parent); }
 
-int  PythonQtWrapper_QThreadPool::activeThreadCount(QThreadPool* theWrappedObject) const
-{
-return  theWrappedObject->activeThreadCount();
-}
-
-void PythonQtWrapper_QThreadPool::reserveThread(QThreadPool* theWrappedObject)
-{
- theWrappedObject->reserveThread();
-}
-
-int  PythonQtWrapper_QThreadPool::expiryTimeout(QThreadPool* theWrappedObject) const
-{
-return  theWrappedObject->expiryTimeout();
-}
-
-void PythonQtWrapper_QThreadPool::start(QThreadPool* theWrappedObject, QRunnable*  runnable, int  priority)
-{
- theWrappedObject->start(runnable, priority);
-}
-
-bool  PythonQtWrapper_QThreadPool::tryStart(QThreadPool* theWrappedObject, QRunnable*  runnable)
-{
-return  theWrappedObject->tryStart(runnable);
-}
-
-int  PythonQtWrapper_QThreadPool::maxThreadCount(QThreadPool* theWrappedObject) const
-{
-return  theWrappedObject->maxThreadCount();
-}
-
-void PythonQtWrapper_QThreadPool::waitForDone(QThreadPool* theWrappedObject)
-{
- theWrappedObject->waitForDone();
-}
-
 QThreadPool*  PythonQtWrapper_QThreadPool::static_QThreadPool_globalInstance()
 {
-return QThreadPool::globalInstance();
+  return (QThreadPool::globalInstance());
 }
 
 void PythonQtWrapper_QThreadPool::releaseThread(QThreadPool* theWrappedObject)
 {
- theWrappedObject->releaseThread();
+  ( theWrappedObject->releaseThread());
+}
+
+void PythonQtWrapper_QThreadPool::waitForDone(QThreadPool* theWrappedObject)
+{
+  ( theWrappedObject->waitForDone());
 }
 
 void PythonQtWrapper_QThreadPool::setExpiryTimeout(QThreadPool* theWrappedObject, int  expiryTimeout)
 {
- theWrappedObject->setExpiryTimeout(expiryTimeout);
+  ( theWrappedObject->setExpiryTimeout(expiryTimeout));
 }
 
 void PythonQtWrapper_QThreadPool::setMaxThreadCount(QThreadPool* theWrappedObject, int  maxThreadCount)
 {
- theWrappedObject->setMaxThreadCount(maxThreadCount);
+  ( theWrappedObject->setMaxThreadCount(maxThreadCount));
+}
+
+int  PythonQtWrapper_QThreadPool::activeThreadCount(QThreadPool* theWrappedObject) const
+{
+  return ( theWrappedObject->activeThreadCount());
+}
+
+void PythonQtWrapper_QThreadPool::reserveThread(QThreadPool* theWrappedObject)
+{
+  ( theWrappedObject->reserveThread());
+}
+
+int  PythonQtWrapper_QThreadPool::expiryTimeout(QThreadPool* theWrappedObject) const
+{
+  return ( theWrappedObject->expiryTimeout());
+}
+
+void PythonQtWrapper_QThreadPool::start(QThreadPool* theWrappedObject, QRunnable*  runnable, int  priority)
+{
+  ( theWrappedObject->start(runnable, priority));
+}
+
+bool  PythonQtWrapper_QThreadPool::tryStart(QThreadPool* theWrappedObject, QRunnable*  runnable)
+{
+  return ( theWrappedObject->tryStart(runnable));
+}
+
+int  PythonQtWrapper_QThreadPool::maxThreadCount(QThreadPool* theWrappedObject) const
+{
+  return ( theWrappedObject->maxThreadCount());
 }
 

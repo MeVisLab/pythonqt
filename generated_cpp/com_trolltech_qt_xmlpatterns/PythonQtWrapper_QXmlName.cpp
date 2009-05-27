@@ -15,38 +15,38 @@ QXmlName* PythonQtWrapper_QXmlName::new_QXmlName(QXmlNamePool&  namePool, const 
 { 
 return new QXmlName(namePool, localName, namespaceURI, prefix); }
 
+bool  PythonQtWrapper_QXmlName::operator_equal(QXmlName* theWrappedObject, const QXmlName&  other) const
+{
+  return ( (*theWrappedObject)== other);
+}
+
 QString  PythonQtWrapper_QXmlName::toClarkName(QXmlName* theWrappedObject, const QXmlNamePool&  query) const
 {
-return  theWrappedObject->toClarkName(query);
+  return ( theWrappedObject->toClarkName(query));
 }
 
 QString  PythonQtWrapper_QXmlName::prefix(QXmlName* theWrappedObject, const QXmlNamePool&  query) const
 {
-return  theWrappedObject->prefix(query);
-}
-
-QString  PythonQtWrapper_QXmlName::localName(QXmlName* theWrappedObject, const QXmlNamePool&  query) const
-{
-return  theWrappedObject->localName(query);
-}
-
-bool  PythonQtWrapper_QXmlName::static_QXmlName_isNCName(const QString&  candidate)
-{
-return QXmlName::isNCName(candidate);
+  return ( theWrappedObject->prefix(query));
 }
 
 bool  PythonQtWrapper_QXmlName::isNull(QXmlName* theWrappedObject) const
 {
-return  theWrappedObject->isNull();
+  return ( theWrappedObject->isNull());
+}
+
+QString  PythonQtWrapper_QXmlName::localName(QXmlName* theWrappedObject, const QXmlNamePool&  query) const
+{
+  return ( theWrappedObject->localName(query));
 }
 
 QString  PythonQtWrapper_QXmlName::namespaceUri(QXmlName* theWrappedObject, const QXmlNamePool&  query) const
 {
-return  theWrappedObject->namespaceUri(query);
+  return ( theWrappedObject->namespaceUri(query));
 }
 
-bool  PythonQtWrapper_QXmlName::operator_equal(QXmlName* theWrappedObject, const QXmlName&  other) const
+bool  PythonQtWrapper_QXmlName::static_QXmlName_isNCName(const QString&  candidate)
 {
-return  (*theWrappedObject)== other;
+  return (QXmlName::isNCName(candidate));
 }
 

@@ -26,8 +26,8 @@ virtual QPaintEngine*  paintEngine() const;
 
 class PythonQtPublicPromoter_QSvgGenerator : public QSvgGenerator
 { public:
-inline int  promoted_metric(QPaintDevice::PaintDeviceMetric  metric) const { return QSvgGenerator::metric(metric); }
 inline QPaintEngine*  promoted_paintEngine() const { return QSvgGenerator::paintEngine(); }
+inline int  promoted_metric(QPaintDevice::PaintDeviceMetric  metric) const { return QSvgGenerator::metric(metric); }
 };
 
 class PythonQtWrapper_QSvgGenerator : public QObject
@@ -36,16 +36,16 @@ public:
 public slots:
 QSvgGenerator* new_QSvgGenerator();
 void delete_QSvgGenerator(QSvgGenerator* obj) { delete obj; } 
-   QIODevice*  outputDevice(QSvgGenerator* theWrappedObject) const;
+   QString  fileName(QSvgGenerator* theWrappedObject) const;
    void setOutputDevice(QSvgGenerator* theWrappedObject, QIODevice*  outputDevice);
-   void setSize(QSvgGenerator* theWrappedObject, const QSize&  size);
-   void setFileName(QSvgGenerator* theWrappedObject, const QString&  fileName);
-   int  metric(QSvgGenerator* theWrappedObject, QPaintDevice::PaintDeviceMetric  metric) const;
    QPaintEngine*  paintEngine(QSvgGenerator* theWrappedObject) const;
    int  resolution(QSvgGenerator* theWrappedObject) const;
    void setResolution(QSvgGenerator* theWrappedObject, int  dpi);
+   void setSize(QSvgGenerator* theWrappedObject, const QSize&  size);
+   QIODevice*  outputDevice(QSvgGenerator* theWrappedObject) const;
    QSize  size(QSvgGenerator* theWrappedObject) const;
-   QString  fileName(QSvgGenerator* theWrappedObject) const;
+   int  metric(QSvgGenerator* theWrappedObject, QPaintDevice::PaintDeviceMetric  metric) const;
+   void setFileName(QSvgGenerator* theWrappedObject, const QString&  fileName);
 };
 
 #endif // PYTHONQTWRAPPER_QSVGGENERATOR_H

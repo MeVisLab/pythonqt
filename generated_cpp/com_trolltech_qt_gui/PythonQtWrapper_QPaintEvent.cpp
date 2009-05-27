@@ -15,13 +15,13 @@ QPaintEvent* PythonQtWrapper_QPaintEvent::new_QPaintEvent(const QRegion&  paintR
 { 
 return new PythonQtShell_QPaintEvent(paintRegion); }
 
-const QRegion&  PythonQtWrapper_QPaintEvent::region(QPaintEvent* theWrappedObject) const
+const QRegion*  PythonQtWrapper_QPaintEvent::region(QPaintEvent* theWrappedObject) const
 {
-return  theWrappedObject->region();
+  return &( theWrappedObject->region());
 }
 
-const QRect&  PythonQtWrapper_QPaintEvent::rect(QPaintEvent* theWrappedObject) const
+const QRect*  PythonQtWrapper_QPaintEvent::rect(QPaintEvent* theWrappedObject) const
 {
-return  theWrappedObject->rect();
+  return &( theWrappedObject->rect());
 }
 

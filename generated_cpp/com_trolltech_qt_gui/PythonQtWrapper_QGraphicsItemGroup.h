@@ -72,11 +72,11 @@ virtual void wheelEvent(QGraphicsSceneWheelEvent*  event);
 
 class PythonQtPublicPromoter_QGraphicsItemGroup : public QGraphicsItemGroup
 { public:
-inline int  promoted_type() const { return QGraphicsItemGroup::type(); }
 inline QRectF  promoted_boundingRect() const { return QGraphicsItemGroup::boundingRect(); }
-inline void promoted_paint(QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = 0) { QGraphicsItemGroup::paint(painter, option, widget); }
 inline bool  promoted_isObscuredBy(const QGraphicsItem*  item) const { return QGraphicsItemGroup::isObscuredBy(item); }
+inline void promoted_paint(QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = 0) { QGraphicsItemGroup::paint(painter, option, widget); }
 inline QPainterPath  promoted_opaqueArea() const { return QGraphicsItemGroup::opaqueArea(); }
+inline int  promoted_type() const { return QGraphicsItemGroup::type(); }
 };
 
 class PythonQtWrapper_QGraphicsItemGroup : public QObject
@@ -88,13 +88,13 @@ enum enum_1{
 public slots:
 QGraphicsItemGroup* new_QGraphicsItemGroup(QGraphicsItem*  parent = 0, QGraphicsScene*  scene = 0);
 void delete_QGraphicsItemGroup(QGraphicsItemGroup* obj) { delete obj; } 
+   QRectF  boundingRect(QGraphicsItemGroup* theWrappedObject) const;
+   bool  isObscuredBy(QGraphicsItemGroup* theWrappedObject, const QGraphicsItem*  item) const;
+   void paint(QGraphicsItemGroup* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = 0);
+   QPainterPath  opaqueArea(QGraphicsItemGroup* theWrappedObject) const;
+   void removeFromGroup(QGraphicsItemGroup* theWrappedObject, QGraphicsItem*  item);
    void addToGroup(QGraphicsItemGroup* theWrappedObject, QGraphicsItem*  item);
    int  type(QGraphicsItemGroup* theWrappedObject) const;
-   QRectF  boundingRect(QGraphicsItemGroup* theWrappedObject) const;
-   void paint(QGraphicsItemGroup* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = 0);
-   bool  isObscuredBy(QGraphicsItemGroup* theWrappedObject, const QGraphicsItem*  item) const;
-   void removeFromGroup(QGraphicsItemGroup* theWrappedObject, QGraphicsItem*  item);
-   QPainterPath  opaqueArea(QGraphicsItemGroup* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QGRAPHICSITEMGROUP_H

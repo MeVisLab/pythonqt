@@ -39,9 +39,6 @@ public:
 public slots:
 QTextTable* new_QTextTable(QTextDocument*  doc);
 void delete_QTextTable(QTextTable* obj) { delete obj; } 
-   void removeRows(QTextTable* theWrappedObject, int  pos, int  num);
-   QTextTableCell  cellAt(QTextTable* theWrappedObject, int  row, int  col) const;
-   void mergeCells(QTextTable* theWrappedObject, const QTextCursor&  cursor);
    QTextTableCell  cellAt(QTextTable* theWrappedObject, const QTextCursor&  c) const;
    int  rows(QTextTable* theWrappedObject) const;
    void insertRows(QTextTable* theWrappedObject, int  pos, int  num);
@@ -55,7 +52,10 @@ void delete_QTextTable(QTextTable* obj) { delete obj; }
    void splitCell(QTextTable* theWrappedObject, int  row, int  col, int  numRows, int  numCols);
    QTextTableCell  cellAt(QTextTable* theWrappedObject, int  position) const;
    void removeColumns(QTextTable* theWrappedObject, int  pos, int  num);
+   void removeRows(QTextTable* theWrappedObject, int  pos, int  num);
    void resize(QTextTable* theWrappedObject, int  rows, int  cols);
+   QTextTableCell  cellAt(QTextTable* theWrappedObject, int  row, int  col) const;
+   void mergeCells(QTextTable* theWrappedObject, const QTextCursor&  cursor);
 };
 
 #endif // PYTHONQTWRAPPER_QTEXTTABLE_H

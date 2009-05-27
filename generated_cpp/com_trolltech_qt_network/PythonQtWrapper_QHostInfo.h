@@ -22,20 +22,20 @@ public slots:
 QHostInfo* new_QHostInfo(const QHostInfo&  d);
 QHostInfo* new_QHostInfo(int  lookupId = -1);
 void delete_QHostInfo(QHostInfo* obj) { delete obj; } 
+   int  static_QHostInfo_lookupHost(const QString&  name, QObject*  receiver, const char*  member);
    QString  errorString(QHostInfo* theWrappedObject) const;
-   QHostInfo  static_QHostInfo_fromName(const QString&  name);
-   int  lookupId(QHostInfo* theWrappedObject) const;
    QString  hostName(QHostInfo* theWrappedObject) const;
    void setAddresses(QHostInfo* theWrappedObject, const QList<QHostAddress >&  addresses);
    void setLookupId(QHostInfo* theWrappedObject, int  id);
    QList<QHostAddress >  addresses(QHostInfo* theWrappedObject) const;
-   QHostInfo::HostInfoError  error(QHostInfo* theWrappedObject) const;
    QString  static_QHostInfo_localHostName();
+   void setErrorString(QHostInfo* theWrappedObject, const QString&  errorString);
+   QHostInfo  static_QHostInfo_fromName(const QString&  name);
+   int  lookupId(QHostInfo* theWrappedObject) const;
+   QHostInfo::HostInfoError  error(QHostInfo* theWrappedObject) const;
    void setError(QHostInfo* theWrappedObject, QHostInfo::HostInfoError  error);
    void setHostName(QHostInfo* theWrappedObject, const QString&  name);
    void static_QHostInfo_abortHostLookup(int  lookupId);
-   void setErrorString(QHostInfo* theWrappedObject, const QString&  errorString);
-   int  static_QHostInfo_lookupHost(const QString&  name, QObject*  receiver, const char*  member);
 };
 
 #endif // PYTHONQTWRAPPER_QHOSTINFO_H

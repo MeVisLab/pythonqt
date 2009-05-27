@@ -23,6 +23,7 @@ class PythonQtWrapper_QAccessible : public QObject
 { Q_OBJECT
 public:
 Q_ENUMS(Method Role Action Event RelationFlag StateFlag Text )
+Q_FLAGS(Relation State )
 enum Method{
   ListSupportedMethods = QAccessible::ListSupportedMethods,   SetCursorPosition = QAccessible::SetCursorPosition,   GetCursorPosition = QAccessible::GetCursorPosition,   ForegroundColor = QAccessible::ForegroundColor,   BackgroundColor = QAccessible::BackgroundColor};
 enum Role{
@@ -37,13 +38,15 @@ enum StateFlag{
   Normal = QAccessible::Normal,   Unavailable = QAccessible::Unavailable,   Selected = QAccessible::Selected,   Focused = QAccessible::Focused,   Pressed = QAccessible::Pressed,   Checked = QAccessible::Checked,   Mixed = QAccessible::Mixed,   ReadOnly = QAccessible::ReadOnly,   HotTracked = QAccessible::HotTracked,   DefaultButton = QAccessible::DefaultButton,   Expanded = QAccessible::Expanded,   Collapsed = QAccessible::Collapsed,   Busy = QAccessible::Busy,   Marqueed = QAccessible::Marqueed,   Animated = QAccessible::Animated,   Invisible = QAccessible::Invisible,   Offscreen = QAccessible::Offscreen,   Sizeable = QAccessible::Sizeable,   Movable = QAccessible::Movable,   SelfVoicing = QAccessible::SelfVoicing,   Focusable = QAccessible::Focusable,   Selectable = QAccessible::Selectable,   Linked = QAccessible::Linked,   Traversed = QAccessible::Traversed,   MultiSelectable = QAccessible::MultiSelectable,   ExtSelectable = QAccessible::ExtSelectable,   Protected = QAccessible::Protected,   HasPopup = QAccessible::HasPopup,   Modal = QAccessible::Modal,   HasInvokeExtension = QAccessible::HasInvokeExtension};
 enum Text{
   Name = QAccessible::Name,   Description = QAccessible::Description,   Value = QAccessible::Value,   Help = QAccessible::Help,   Accelerator = QAccessible::Accelerator,   UserText = QAccessible::UserText};
+Q_DECLARE_FLAGS(Relation, RelationFlag)
+Q_DECLARE_FLAGS(State, StateFlag)
 public slots:
 QAccessible* new_QAccessible();
 void delete_QAccessible(QAccessible* obj) { delete obj; } 
+   bool  static_QAccessible_isActive();
    void static_QAccessible_setRootObject(QObject*  arg__1);
    void static_QAccessible_updateAccessibility(QObject*  arg__1, int  who, QAccessible::Event  reason);
    QAccessibleInterface*  static_QAccessible_queryAccessibleInterface(QObject*  arg__1);
-   bool  static_QAccessible_isActive();
 };
 
 #endif // PYTHONQTWRAPPER_QACCESSIBLE_H

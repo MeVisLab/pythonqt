@@ -42,28 +42,28 @@ virtual void setProperty(const QString&  name, void*  value);
 
 class PythonQtPublicPromoter_QXmlSimpleReader : public QXmlSimpleReader
 { public:
-inline QXmlDeclHandler*  promoted_declHandler() const { return QXmlSimpleReader::declHandler(); }
-inline void promoted_setEntityResolver(QXmlEntityResolver*  handler) { QXmlSimpleReader::setEntityResolver(handler); }
-inline bool  promoted_parse(const QXmlInputSource&  input) { return QXmlSimpleReader::parse(input); }
-inline void promoted_setLexicalHandler(QXmlLexicalHandler*  handler) { QXmlSimpleReader::setLexicalHandler(handler); }
-inline QXmlLexicalHandler*  promoted_lexicalHandler() const { return QXmlSimpleReader::lexicalHandler(); }
-inline bool  promoted_parse(const QXmlInputSource*  input, bool  incremental) { return QXmlSimpleReader::parse(input, incremental); }
-inline bool  promoted_parseContinue() { return QXmlSimpleReader::parseContinue(); }
-inline void*  promoted_property(const QString&  name, bool*  ok = 0) const { return QXmlSimpleReader::property(name, ok); }
-inline void promoted_setFeature(const QString&  name, bool  value) { QXmlSimpleReader::setFeature(name, value); }
-inline bool  promoted_feature(const QString&  name, bool*  ok = 0) const { return QXmlSimpleReader::feature(name, ok); }
-inline void promoted_setProperty(const QString&  name, void*  value) { QXmlSimpleReader::setProperty(name, value); }
-inline QXmlContentHandler*  promoted_contentHandler() const { return QXmlSimpleReader::contentHandler(); }
-inline QXmlEntityResolver*  promoted_entityResolver() const { return QXmlSimpleReader::entityResolver(); }
-inline bool  promoted_hasProperty(const QString&  name) const { return QXmlSimpleReader::hasProperty(name); }
-inline void promoted_setErrorHandler(QXmlErrorHandler*  handler) { QXmlSimpleReader::setErrorHandler(handler); }
-inline QXmlDTDHandler*  promoted_DTDHandler() const { return QXmlSimpleReader::DTDHandler(); }
-inline QXmlErrorHandler*  promoted_errorHandler() const { return QXmlSimpleReader::errorHandler(); }
 inline bool  promoted_parse(const QXmlInputSource*  input) { return QXmlSimpleReader::parse(input); }
 inline void promoted_setContentHandler(QXmlContentHandler*  handler) { QXmlSimpleReader::setContentHandler(handler); }
-inline void promoted_setDTDHandler(QXmlDTDHandler*  handler) { QXmlSimpleReader::setDTDHandler(handler); }
 inline void promoted_setDeclHandler(QXmlDeclHandler*  handler) { QXmlSimpleReader::setDeclHandler(handler); }
+inline void*  promoted_property(const QString&  name, bool*  ok = 0) const { return QXmlSimpleReader::property(name, ok); }
+inline bool  promoted_feature(const QString&  name, bool*  ok = 0) const { return QXmlSimpleReader::feature(name, ok); }
+inline void promoted_setFeature(const QString&  name, bool  value) { QXmlSimpleReader::setFeature(name, value); }
+inline QXmlLexicalHandler*  promoted_lexicalHandler() const { return QXmlSimpleReader::lexicalHandler(); }
+inline void promoted_setEntityResolver(QXmlEntityResolver*  handler) { QXmlSimpleReader::setEntityResolver(handler); }
+inline bool  promoted_parse(const QXmlInputSource&  input) { return QXmlSimpleReader::parse(input); }
+inline QXmlContentHandler*  promoted_contentHandler() const { return QXmlSimpleReader::contentHandler(); }
+inline void promoted_setErrorHandler(QXmlErrorHandler*  handler) { QXmlSimpleReader::setErrorHandler(handler); }
+inline void promoted_setLexicalHandler(QXmlLexicalHandler*  handler) { QXmlSimpleReader::setLexicalHandler(handler); }
+inline bool  promoted_parseContinue() { return QXmlSimpleReader::parseContinue(); }
 inline bool  promoted_hasFeature(const QString&  name) const { return QXmlSimpleReader::hasFeature(name); }
+inline QXmlDeclHandler*  promoted_declHandler() const { return QXmlSimpleReader::declHandler(); }
+inline QXmlEntityResolver*  promoted_entityResolver() const { return QXmlSimpleReader::entityResolver(); }
+inline bool  promoted_parse(const QXmlInputSource*  input, bool  incremental) { return QXmlSimpleReader::parse(input, incremental); }
+inline void promoted_setProperty(const QString&  name, void*  value) { QXmlSimpleReader::setProperty(name, value); }
+inline bool  promoted_hasProperty(const QString&  name) const { return QXmlSimpleReader::hasProperty(name); }
+inline QXmlDTDHandler*  promoted_DTDHandler() const { return QXmlSimpleReader::DTDHandler(); }
+inline QXmlErrorHandler*  promoted_errorHandler() const { return QXmlSimpleReader::errorHandler(); }
+inline void promoted_setDTDHandler(QXmlDTDHandler*  handler) { QXmlSimpleReader::setDTDHandler(handler); }
 };
 
 class PythonQtWrapper_QXmlSimpleReader : public QObject
@@ -72,28 +72,28 @@ public:
 public slots:
 QXmlSimpleReader* new_QXmlSimpleReader();
 void delete_QXmlSimpleReader(QXmlSimpleReader* obj) { delete obj; } 
-   QXmlDeclHandler*  declHandler(QXmlSimpleReader* theWrappedObject) const;
-   void setEntityResolver(QXmlSimpleReader* theWrappedObject, QXmlEntityResolver*  handler);
-   bool  parse(QXmlSimpleReader* theWrappedObject, const QXmlInputSource&  input);
-   void setLexicalHandler(QXmlSimpleReader* theWrappedObject, QXmlLexicalHandler*  handler);
-   QXmlLexicalHandler*  lexicalHandler(QXmlSimpleReader* theWrappedObject) const;
-   bool  parse(QXmlSimpleReader* theWrappedObject, const QXmlInputSource*  input, bool  incremental);
-   bool  parseContinue(QXmlSimpleReader* theWrappedObject);
-   void*  property(QXmlSimpleReader* theWrappedObject, const QString&  name, bool*  ok = 0) const;
-   void setFeature(QXmlSimpleReader* theWrappedObject, const QString&  name, bool  value);
-   bool  feature(QXmlSimpleReader* theWrappedObject, const QString&  name, bool*  ok = 0) const;
-   void setProperty(QXmlSimpleReader* theWrappedObject, const QString&  name, void*  value);
-   QXmlContentHandler*  contentHandler(QXmlSimpleReader* theWrappedObject) const;
-   QXmlEntityResolver*  entityResolver(QXmlSimpleReader* theWrappedObject) const;
-   bool  hasProperty(QXmlSimpleReader* theWrappedObject, const QString&  name) const;
-   void setErrorHandler(QXmlSimpleReader* theWrappedObject, QXmlErrorHandler*  handler);
-   QXmlDTDHandler*  DTDHandler(QXmlSimpleReader* theWrappedObject) const;
-   QXmlErrorHandler*  errorHandler(QXmlSimpleReader* theWrappedObject) const;
    bool  parse(QXmlSimpleReader* theWrappedObject, const QXmlInputSource*  input);
    void setContentHandler(QXmlSimpleReader* theWrappedObject, QXmlContentHandler*  handler);
-   void setDTDHandler(QXmlSimpleReader* theWrappedObject, QXmlDTDHandler*  handler);
    void setDeclHandler(QXmlSimpleReader* theWrappedObject, QXmlDeclHandler*  handler);
+   void*  property(QXmlSimpleReader* theWrappedObject, const QString&  name, bool*  ok = 0) const;
+   bool  feature(QXmlSimpleReader* theWrappedObject, const QString&  name, bool*  ok = 0) const;
+   void setFeature(QXmlSimpleReader* theWrappedObject, const QString&  name, bool  value);
+   QXmlLexicalHandler*  lexicalHandler(QXmlSimpleReader* theWrappedObject) const;
+   void setEntityResolver(QXmlSimpleReader* theWrappedObject, QXmlEntityResolver*  handler);
+   bool  parse(QXmlSimpleReader* theWrappedObject, const QXmlInputSource&  input);
+   QXmlContentHandler*  contentHandler(QXmlSimpleReader* theWrappedObject) const;
+   void setErrorHandler(QXmlSimpleReader* theWrappedObject, QXmlErrorHandler*  handler);
+   void setLexicalHandler(QXmlSimpleReader* theWrappedObject, QXmlLexicalHandler*  handler);
+   bool  parseContinue(QXmlSimpleReader* theWrappedObject);
    bool  hasFeature(QXmlSimpleReader* theWrappedObject, const QString&  name) const;
+   QXmlDeclHandler*  declHandler(QXmlSimpleReader* theWrappedObject) const;
+   QXmlEntityResolver*  entityResolver(QXmlSimpleReader* theWrappedObject) const;
+   bool  parse(QXmlSimpleReader* theWrappedObject, const QXmlInputSource*  input, bool  incremental);
+   void setProperty(QXmlSimpleReader* theWrappedObject, const QString&  name, void*  value);
+   bool  hasProperty(QXmlSimpleReader* theWrappedObject, const QString&  name) const;
+   QXmlDTDHandler*  DTDHandler(QXmlSimpleReader* theWrappedObject) const;
+   QXmlErrorHandler*  errorHandler(QXmlSimpleReader* theWrappedObject) const;
+   void setDTDHandler(QXmlSimpleReader* theWrappedObject, QXmlDTDHandler*  handler);
 };
 
 #endif // PYTHONQTWRAPPER_QXMLSIMPLEREADER_H

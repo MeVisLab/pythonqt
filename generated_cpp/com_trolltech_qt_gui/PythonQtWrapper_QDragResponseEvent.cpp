@@ -11,6 +11,6 @@ return new PythonQtShell_QDragResponseEvent(accepted); }
 
 bool  PythonQtWrapper_QDragResponseEvent::dragAccepted(QDragResponseEvent* theWrappedObject) const
 {
-return  theWrappedObject->dragAccepted();
+  return ( theWrappedObject->dragAccepted());
 }
 

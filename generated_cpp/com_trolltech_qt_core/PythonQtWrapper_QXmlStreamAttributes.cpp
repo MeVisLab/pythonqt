@@ -12,158 +12,158 @@ QXmlStreamAttributes* PythonQtWrapper_QXmlStreamAttributes::new_QXmlStreamAttrib
 { 
 return new PythonQtShell_QXmlStreamAttributes(); }
 
-void PythonQtWrapper_QXmlStreamAttributes::append(QXmlStreamAttributes* theWrappedObject, const QXmlStreamAttribute&  attribute)
+void PythonQtWrapper_QXmlStreamAttributes::setSharable(QXmlStreamAttributes* theWrappedObject, bool  sharable)
 {
- theWrappedObject->append(attribute);
-}
-
-const QXmlStreamAttribute&  PythonQtWrapper_QXmlStreamAttributes::at(QXmlStreamAttributes* theWrappedObject, int  i) const
-{
-return  theWrappedObject->at(i);
-}
-
-void PythonQtWrapper_QXmlStreamAttributes::remove(QXmlStreamAttributes* theWrappedObject, int  i, int  n)
-{
- theWrappedObject->remove(i, n);
-}
-
-int  PythonQtWrapper_QXmlStreamAttributes::capacity(QXmlStreamAttributes* theWrappedObject) const
-{
-return  theWrappedObject->capacity();
-}
-
-QVector<QXmlStreamAttribute >&  PythonQtWrapper_QXmlStreamAttributes::fill(QXmlStreamAttributes* theWrappedObject, const QXmlStreamAttribute&  t, int  size)
-{
-return  theWrappedObject->fill(t, size);
-}
-
-void PythonQtWrapper_QXmlStreamAttributes::clear(QXmlStreamAttributes* theWrappedObject)
-{
- theWrappedObject->clear();
-}
-
-bool  PythonQtWrapper_QXmlStreamAttributes::contains(QXmlStreamAttributes* theWrappedObject, const QXmlStreamAttribute&  t) const
-{
-return  theWrappedObject->contains(t);
-}
-
-QStringRef  PythonQtWrapper_QXmlStreamAttributes::value(QXmlStreamAttributes* theWrappedObject, const QString&  qualifiedName) const
-{
-return  theWrappedObject->value(qualifiedName);
-}
-
-int  PythonQtWrapper_QXmlStreamAttributes::count(QXmlStreamAttributes* theWrappedObject) const
-{
-return  theWrappedObject->count();
-}
-
-const QXmlStreamAttribute&  PythonQtWrapper_QXmlStreamAttributes::last(QXmlStreamAttributes* theWrappedObject) const
-{
-return  theWrappedObject->last();
-}
-
-bool  PythonQtWrapper_QXmlStreamAttributes::empty(QXmlStreamAttributes* theWrappedObject) const
-{
-return  theWrappedObject->empty();
-}
-
-QVector<QXmlStreamAttribute >  PythonQtWrapper_QXmlStreamAttributes::mid(QXmlStreamAttributes* theWrappedObject, int  pos, int  length) const
-{
-return  theWrappedObject->mid(pos, length);
-}
-
-void PythonQtWrapper_QXmlStreamAttributes::remove(QXmlStreamAttributes* theWrappedObject, int  i)
-{
- theWrappedObject->remove(i);
-}
-
-QVector<QXmlStreamAttribute >  PythonQtWrapper_QXmlStreamAttributes::static_QXmlStreamAttributes_fromList(const QList<QXmlStreamAttribute >&  list)
-{
-return QXmlStreamAttributes::fromList(list);
-}
-
-bool  PythonQtWrapper_QXmlStreamAttributes::isEmpty(QXmlStreamAttributes* theWrappedObject) const
-{
-return  theWrappedObject->isEmpty();
+  ( theWrappedObject->setSharable(sharable));
 }
 
 void PythonQtWrapper_QXmlStreamAttributes::squeeze(QXmlStreamAttributes* theWrappedObject)
 {
- theWrappedObject->squeeze();
-}
-
-QList<QXmlStreamAttribute >  PythonQtWrapper_QXmlStreamAttributes::toList(QXmlStreamAttributes* theWrappedObject) const
-{
-return  theWrappedObject->toList();
-}
-
-void PythonQtWrapper_QXmlStreamAttributes::resize(QXmlStreamAttributes* theWrappedObject, int  size)
-{
- theWrappedObject->resize(size);
-}
-
-bool  PythonQtWrapper_QXmlStreamAttributes::operator_equal(QXmlStreamAttributes* theWrappedObject, const QVector<QXmlStreamAttribute >&  v) const
-{
-return  (*theWrappedObject)== v;
+  ( theWrappedObject->squeeze());
 }
 
 void PythonQtWrapper_QXmlStreamAttributes::append(QXmlStreamAttributes* theWrappedObject, const QString&  namespaceUri, const QString&  name, const QString&  value)
 {
- theWrappedObject->append(namespaceUri, name, value);
+  ( theWrappedObject->append(namespaceUri, name, value));
 }
 
-int  PythonQtWrapper_QXmlStreamAttributes::indexOf(QXmlStreamAttributes* theWrappedObject, const QXmlStreamAttribute&  t, int  from) const
+int  PythonQtWrapper_QXmlStreamAttributes::count(QXmlStreamAttributes* theWrappedObject) const
 {
-return  theWrappedObject->indexOf(t, from);
-}
-
-int  PythonQtWrapper_QXmlStreamAttributes::size(QXmlStreamAttributes* theWrappedObject) const
-{
-return  theWrappedObject->size();
+  return ( theWrappedObject->count());
 }
 
 void PythonQtWrapper_QXmlStreamAttributes::append(QXmlStreamAttributes* theWrappedObject, const QString&  qualifiedName, const QString&  value)
 {
- theWrappedObject->append(qualifiedName, value);
+  ( theWrappedObject->append(qualifiedName, value));
 }
 
-int  PythonQtWrapper_QXmlStreamAttributes::count(QXmlStreamAttributes* theWrappedObject, const QXmlStreamAttribute&  t) const
+bool  PythonQtWrapper_QXmlStreamAttributes::contains(QXmlStreamAttributes* theWrappedObject, const QXmlStreamAttribute&  t) const
 {
-return  theWrappedObject->count(t);
+  return ( theWrappedObject->contains(t));
+}
+
+QList<QXmlStreamAttribute >  PythonQtWrapper_QXmlStreamAttributes::toList(QXmlStreamAttributes* theWrappedObject) const
+{
+  return ( theWrappedObject->toList());
+}
+
+bool  PythonQtWrapper_QXmlStreamAttributes::operator_equal(QXmlStreamAttributes* theWrappedObject, const QVector<QXmlStreamAttribute >&  v) const
+{
+  return ( (*theWrappedObject)== v);
+}
+
+const QXmlStreamAttribute*  PythonQtWrapper_QXmlStreamAttributes::at(QXmlStreamAttributes* theWrappedObject, int  i) const
+{
+  return &( theWrappedObject->at(i));
+}
+
+void PythonQtWrapper_QXmlStreamAttributes::clear(QXmlStreamAttributes* theWrappedObject)
+{
+  ( theWrappedObject->clear());
+}
+
+int  PythonQtWrapper_QXmlStreamAttributes::indexOf(QXmlStreamAttributes* theWrappedObject, const QXmlStreamAttribute&  t, int  from) const
+{
+  return ( theWrappedObject->indexOf(t, from));
+}
+
+QVector<QXmlStreamAttribute >  PythonQtWrapper_QXmlStreamAttributes::static_QXmlStreamAttributes_fromList(const QList<QXmlStreamAttribute >&  list)
+{
+  return (QXmlStreamAttributes::fromList(list));
+}
+
+const QXmlStreamAttribute*  PythonQtWrapper_QXmlStreamAttributes::last(QXmlStreamAttributes* theWrappedObject) const
+{
+  return &( theWrappedObject->last());
+}
+
+const QXmlStreamAttribute*  PythonQtWrapper_QXmlStreamAttributes::first(QXmlStreamAttributes* theWrappedObject) const
+{
+  return &( theWrappedObject->first());
+}
+
+void PythonQtWrapper_QXmlStreamAttributes::remove(QXmlStreamAttributes* theWrappedObject, int  i)
+{
+  ( theWrappedObject->remove(i));
 }
 
 void PythonQtWrapper_QXmlStreamAttributes::reserve(QXmlStreamAttributes* theWrappedObject, int  size)
 {
- theWrappedObject->reserve(size);
-}
-
-void PythonQtWrapper_QXmlStreamAttributes::prepend(QXmlStreamAttributes* theWrappedObject, const QXmlStreamAttribute&  t)
-{
- theWrappedObject->prepend(t);
+  ( theWrappedObject->reserve(size));
 }
 
 void PythonQtWrapper_QXmlStreamAttributes::replace(QXmlStreamAttributes* theWrappedObject, int  i, const QXmlStreamAttribute&  t)
 {
- theWrappedObject->replace(i, t);
+  ( theWrappedObject->replace(i, t));
 }
 
-const QXmlStreamAttribute&  PythonQtWrapper_QXmlStreamAttributes::first(QXmlStreamAttributes* theWrappedObject) const
+bool  PythonQtWrapper_QXmlStreamAttributes::empty(QXmlStreamAttributes* theWrappedObject) const
 {
-return  theWrappedObject->first();
+  return ( theWrappedObject->empty());
 }
 
-void PythonQtWrapper_QXmlStreamAttributes::setSharable(QXmlStreamAttributes* theWrappedObject, bool  sharable)
+int  PythonQtWrapper_QXmlStreamAttributes::count(QXmlStreamAttributes* theWrappedObject, const QXmlStreamAttribute&  t) const
 {
- theWrappedObject->setSharable(sharable);
+  return ( theWrappedObject->count(t));
+}
+
+void PythonQtWrapper_QXmlStreamAttributes::prepend(QXmlStreamAttributes* theWrappedObject, const QXmlStreamAttribute&  t)
+{
+  ( theWrappedObject->prepend(t));
+}
+
+void PythonQtWrapper_QXmlStreamAttributes::remove(QXmlStreamAttributes* theWrappedObject, int  i, int  n)
+{
+  ( theWrappedObject->remove(i, n));
+}
+
+void PythonQtWrapper_QXmlStreamAttributes::append(QXmlStreamAttributes* theWrappedObject, const QXmlStreamAttribute&  attribute)
+{
+  ( theWrappedObject->append(attribute));
+}
+
+int  PythonQtWrapper_QXmlStreamAttributes::capacity(QXmlStreamAttributes* theWrappedObject) const
+{
+  return ( theWrappedObject->capacity());
+}
+
+QStringRef  PythonQtWrapper_QXmlStreamAttributes::value(QXmlStreamAttributes* theWrappedObject, const QString&  qualifiedName) const
+{
+  return ( theWrappedObject->value(qualifiedName));
+}
+
+QVector<QXmlStreamAttribute >  PythonQtWrapper_QXmlStreamAttributes::mid(QXmlStreamAttributes* theWrappedObject, int  pos, int  length) const
+{
+  return ( theWrappedObject->mid(pos, length));
 }
 
 QStringRef  PythonQtWrapper_QXmlStreamAttributes::value(QXmlStreamAttributes* theWrappedObject, const QString&  namespaceUri, const QString&  name) const
 {
-return  theWrappedObject->value(namespaceUri, name);
+  return ( theWrappedObject->value(namespaceUri, name));
+}
+
+QVector<QXmlStreamAttribute >*  PythonQtWrapper_QXmlStreamAttributes::fill(QXmlStreamAttributes* theWrappedObject, const QXmlStreamAttribute&  t, int  size)
+{
+  return &( theWrappedObject->fill(t, size));
+}
+
+bool  PythonQtWrapper_QXmlStreamAttributes::isEmpty(QXmlStreamAttributes* theWrappedObject) const
+{
+  return ( theWrappedObject->isEmpty());
+}
+
+int  PythonQtWrapper_QXmlStreamAttributes::size(QXmlStreamAttributes* theWrappedObject) const
+{
+  return ( theWrappedObject->size());
+}
+
+void PythonQtWrapper_QXmlStreamAttributes::resize(QXmlStreamAttributes* theWrappedObject, int  size)
+{
+  ( theWrappedObject->resize(size));
 }
 
 int  PythonQtWrapper_QXmlStreamAttributes::lastIndexOf(QXmlStreamAttributes* theWrappedObject, const QXmlStreamAttribute&  t, int  from) const
 {
-return  theWrappedObject->lastIndexOf(t, from);
+  return ( theWrappedObject->lastIndexOf(t, from));
 }
 

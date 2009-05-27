@@ -86,22 +86,22 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QMenuBar : public QMenuBar
 { public:
-inline void promoted_focusOutEvent(QFocusEvent*  arg__1) { QMenuBar::focusOutEvent(arg__1); }
-inline void promoted_resizeEvent(QResizeEvent*  arg__1) { QMenuBar::resizeEvent(arg__1); }
-inline void promoted_focusInEvent(QFocusEvent*  arg__1) { QMenuBar::focusInEvent(arg__1); }
-inline void promoted_mousePressEvent(QMouseEvent*  arg__1) { QMenuBar::mousePressEvent(arg__1); }
-inline void promoted_paintEvent(QPaintEvent*  arg__1) { QMenuBar::paintEvent(arg__1); }
 inline void promoted_timerEvent(QTimerEvent*  arg__1) { QMenuBar::timerEvent(arg__1); }
+inline void promoted_mouseReleaseEvent(QMouseEvent*  arg__1) { QMenuBar::mouseReleaseEvent(arg__1); }
+inline void promoted_mouseMoveEvent(QMouseEvent*  arg__1) { QMenuBar::mouseMoveEvent(arg__1); }
+inline int  promoted_heightForWidth(int  arg__1) const { return QMenuBar::heightForWidth(arg__1); }
 inline void promoted_setVisible(bool  visible) { QMenuBar::setVisible(visible); }
+inline void promoted_changeEvent(QEvent*  arg__1) { QMenuBar::changeEvent(arg__1); }
+inline void promoted_focusInEvent(QFocusEvent*  arg__1) { QMenuBar::focusInEvent(arg__1); }
+inline void promoted_resizeEvent(QResizeEvent*  arg__1) { QMenuBar::resizeEvent(arg__1); }
+inline bool  promoted_eventFilter(QObject*  arg__1, QEvent*  arg__2) { return QMenuBar::eventFilter(arg__1, arg__2); }
+inline void promoted_focusOutEvent(QFocusEvent*  arg__1) { QMenuBar::focusOutEvent(arg__1); }
 inline void promoted_actionEvent(QActionEvent*  arg__1) { QMenuBar::actionEvent(arg__1); }
 inline void promoted_keyPressEvent(QKeyEvent*  arg__1) { QMenuBar::keyPressEvent(arg__1); }
-inline void promoted_mouseMoveEvent(QMouseEvent*  arg__1) { QMenuBar::mouseMoveEvent(arg__1); }
-inline void promoted_leaveEvent(QEvent*  arg__1) { QMenuBar::leaveEvent(arg__1); }
-inline bool  promoted_eventFilter(QObject*  arg__1, QEvent*  arg__2) { return QMenuBar::eventFilter(arg__1, arg__2); }
-inline int  promoted_heightForWidth(int  arg__1) const { return QMenuBar::heightForWidth(arg__1); }
-inline void promoted_mouseReleaseEvent(QMouseEvent*  arg__1) { QMenuBar::mouseReleaseEvent(arg__1); }
-inline void promoted_changeEvent(QEvent*  arg__1) { QMenuBar::changeEvent(arg__1); }
+inline void promoted_paintEvent(QPaintEvent*  arg__1) { QMenuBar::paintEvent(arg__1); }
 inline bool  promoted_event(QEvent*  arg__1) { return QMenuBar::event(arg__1); }
+inline void promoted_leaveEvent(QEvent*  arg__1) { QMenuBar::leaveEvent(arg__1); }
+inline void promoted_mousePressEvent(QMouseEvent*  arg__1) { QMenuBar::mousePressEvent(arg__1); }
 };
 
 class PythonQtWrapper_QMenuBar : public QObject
@@ -110,39 +110,39 @@ public:
 public slots:
 QMenuBar* new_QMenuBar(QWidget*  parent = 0);
 void delete_QMenuBar(QMenuBar* obj) { delete obj; } 
-   QRect  actionGeometry(QMenuBar* theWrappedObject, QAction*  arg__1) const;
-   QAction*  activeAction(QMenuBar* theWrappedObject) const;
-   void focusOutEvent(QMenuBar* theWrappedObject, QFocusEvent*  arg__1);
-   void resizeEvent(QMenuBar* theWrappedObject, QResizeEvent*  arg__1);
-   QAction*  actionAt(QMenuBar* theWrappedObject, const QPoint&  arg__1) const;
-   QMenu*  addMenu(QMenuBar* theWrappedObject, const QIcon&  icon, const QString&  title);
-   void setCornerWidget(QMenuBar* theWrappedObject, QWidget*  w, Qt::Corner  corner = Qt::TopRightCorner);
-   QAction*  addAction(QMenuBar* theWrappedObject, const QString&  text);
-   bool  isDefaultUp(QMenuBar* theWrappedObject) const;
-   void focusInEvent(QMenuBar* theWrappedObject, QFocusEvent*  arg__1);
-   QAction*  addSeparator(QMenuBar* theWrappedObject);
-   void clear(QMenuBar* theWrappedObject);
-   void setActiveAction(QMenuBar* theWrappedObject, QAction*  action);
-   QWidget*  cornerWidget(QMenuBar* theWrappedObject, Qt::Corner  corner = Qt::TopRightCorner) const;
-   void mousePressEvent(QMenuBar* theWrappedObject, QMouseEvent*  arg__1);
-   void paintEvent(QMenuBar* theWrappedObject, QPaintEvent*  arg__1);
    void timerEvent(QMenuBar* theWrappedObject, QTimerEvent*  arg__1);
-   QAction*  insertMenu(QMenuBar* theWrappedObject, QAction*  before, QMenu*  menu);
-   void actionEvent(QMenuBar* theWrappedObject, QActionEvent*  arg__1);
-   QSize  minimumSizeHint(QMenuBar* theWrappedObject) const;
-   void keyPressEvent(QMenuBar* theWrappedObject, QKeyEvent*  arg__1);
-   void mouseMoveEvent(QMenuBar* theWrappedObject, QMouseEvent*  arg__1);
-   void leaveEvent(QMenuBar* theWrappedObject, QEvent*  arg__1);
-   QSize  sizeHint(QMenuBar* theWrappedObject) const;
-   bool  eventFilter(QMenuBar* theWrappedObject, QObject*  arg__1, QEvent*  arg__2);
-   int  heightForWidth(QMenuBar* theWrappedObject, int  arg__1) const;
-   QAction*  addMenu(QMenuBar* theWrappedObject, QMenu*  menu);
-   QAction*  insertSeparator(QMenuBar* theWrappedObject, QAction*  before);
    void mouseReleaseEvent(QMenuBar* theWrappedObject, QMouseEvent*  arg__1);
    QMenu*  addMenu(QMenuBar* theWrappedObject, const QString&  title);
+   QAction*  addSeparator(QMenuBar* theWrappedObject);
+   void mouseMoveEvent(QMenuBar* theWrappedObject, QMouseEvent*  arg__1);
+   QSize  sizeHint(QMenuBar* theWrappedObject) const;
+   void setActiveAction(QMenuBar* theWrappedObject, QAction*  action);
+   int  heightForWidth(QMenuBar* theWrappedObject, int  arg__1) const;
+   QAction*  insertSeparator(QMenuBar* theWrappedObject, QAction*  before);
    void setDefaultUp(QMenuBar* theWrappedObject, bool  arg__1);
+   QAction*  addMenu(QMenuBar* theWrappedObject, QMenu*  menu);
+   void setCornerWidget(QMenuBar* theWrappedObject, QWidget*  w, Qt::Corner  corner = Qt::TopRightCorner);
    void changeEvent(QMenuBar* theWrappedObject, QEvent*  arg__1);
+   QAction*  actionAt(QMenuBar* theWrappedObject, const QPoint&  arg__1) const;
+   QRect  actionGeometry(QMenuBar* theWrappedObject, QAction*  arg__1) const;
+   QSize  minimumSizeHint(QMenuBar* theWrappedObject) const;
+   QMenu*  addMenu(QMenuBar* theWrappedObject, const QIcon&  icon, const QString&  title);
+   void focusInEvent(QMenuBar* theWrappedObject, QFocusEvent*  arg__1);
+   void resizeEvent(QMenuBar* theWrappedObject, QResizeEvent*  arg__1);
+   QAction*  activeAction(QMenuBar* theWrappedObject) const;
+   void clear(QMenuBar* theWrappedObject);
+   bool  eventFilter(QMenuBar* theWrappedObject, QObject*  arg__1, QEvent*  arg__2);
+   void focusOutEvent(QMenuBar* theWrappedObject, QFocusEvent*  arg__1);
+   bool  isDefaultUp(QMenuBar* theWrappedObject) const;
+   QWidget*  cornerWidget(QMenuBar* theWrappedObject, Qt::Corner  corner = Qt::TopRightCorner) const;
+   QAction*  insertMenu(QMenuBar* theWrappedObject, QAction*  before, QMenu*  menu);
+   QAction*  addAction(QMenuBar* theWrappedObject, const QString&  text);
+   void actionEvent(QMenuBar* theWrappedObject, QActionEvent*  arg__1);
+   void keyPressEvent(QMenuBar* theWrappedObject, QKeyEvent*  arg__1);
+   void paintEvent(QMenuBar* theWrappedObject, QPaintEvent*  arg__1);
    bool  event(QMenuBar* theWrappedObject, QEvent*  arg__1);
+   void leaveEvent(QMenuBar* theWrappedObject, QEvent*  arg__1);
+   void mousePressEvent(QMenuBar* theWrappedObject, QMouseEvent*  arg__1);
 };
 
 #endif // PYTHONQTWRAPPER_QMENUBAR_H

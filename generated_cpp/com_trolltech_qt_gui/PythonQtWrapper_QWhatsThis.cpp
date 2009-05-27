@@ -9,33 +9,33 @@
 #include <qpoint.h>
 #include <qwidget.h>
 
-void PythonQtWrapper_QWhatsThis::static_QWhatsThis_enterWhatsThisMode()
+void PythonQtWrapper_QWhatsThis::static_QWhatsThis_hideText()
 {
-QWhatsThis::enterWhatsThisMode();
+  (QWhatsThis::hideText());
 }
 
 bool  PythonQtWrapper_QWhatsThis::static_QWhatsThis_inWhatsThisMode()
 {
-return QWhatsThis::inWhatsThisMode();
-}
-
-QAction*  PythonQtWrapper_QWhatsThis::static_QWhatsThis_createAction(QObject*  parent)
-{
-return QWhatsThis::createAction(parent);
-}
-
-void PythonQtWrapper_QWhatsThis::static_QWhatsThis_hideText()
-{
-QWhatsThis::hideText();
-}
-
-void PythonQtWrapper_QWhatsThis::static_QWhatsThis_leaveWhatsThisMode()
-{
-QWhatsThis::leaveWhatsThisMode();
+  return (QWhatsThis::inWhatsThisMode());
 }
 
 void PythonQtWrapper_QWhatsThis::static_QWhatsThis_showText(const QPoint&  pos, const QString&  text, QWidget*  w)
 {
-QWhatsThis::showText(pos, text, w);
+  (QWhatsThis::showText(pos, text, w));
+}
+
+QAction*  PythonQtWrapper_QWhatsThis::static_QWhatsThis_createAction(QObject*  parent)
+{
+  return (QWhatsThis::createAction(parent));
+}
+
+void PythonQtWrapper_QWhatsThis::static_QWhatsThis_enterWhatsThisMode()
+{
+  (QWhatsThis::enterWhatsThisMode());
+}
+
+void PythonQtWrapper_QWhatsThis::static_QWhatsThis_leaveWhatsThisMode()
+{
+  (QWhatsThis::leaveWhatsThisMode());
 }
 

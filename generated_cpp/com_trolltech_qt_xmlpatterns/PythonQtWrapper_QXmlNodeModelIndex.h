@@ -23,11 +23,11 @@ public slots:
 QXmlNodeModelIndex* new_QXmlNodeModelIndex();
 QXmlNodeModelIndex* new_QXmlNodeModelIndex(const QXmlNodeModelIndex&  other);
 void delete_QXmlNodeModelIndex(QXmlNodeModelIndex* obj) { delete obj; } 
-   bool  isNull(QXmlNodeModelIndex* theWrappedObject) const;
+   bool  operator_equal(QXmlNodeModelIndex* theWrappedObject, const QXmlNodeModelIndex&  other) const;
    qint64  data(QXmlNodeModelIndex* theWrappedObject) const;
    const QAbstractXmlNodeModel*  model(QXmlNodeModelIndex* theWrappedObject) const;
-   bool  operator_equal(QXmlNodeModelIndex* theWrappedObject, const QXmlNodeModelIndex&  other) const;
    qint64  additionalData(QXmlNodeModelIndex* theWrappedObject) const;
+   bool  isNull(QXmlNodeModelIndex* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QXMLNODEMODELINDEX_H

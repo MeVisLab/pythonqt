@@ -52,19 +52,19 @@ public:
 public slots:
 QUiLoader* new_QUiLoader(QObject*  parent = 0);
 void delete_QUiLoader(QUiLoader* obj) { delete obj; } 
+   bool  isScriptingEnabled(QUiLoader* theWrappedObject) const;
+   void setWorkingDirectory(QUiLoader* theWrappedObject, const QDir&  dir);
+   QDir  workingDirectory(QUiLoader* theWrappedObject) const;
    QWidget*  createWidget(QUiLoader* theWrappedObject, const QString&  className, QWidget*  parent = 0, const QString&  name = QString());
    QStringList  availableWidgets(QUiLoader* theWrappedObject) const;
    QStringList  pluginPaths(QUiLoader* theWrappedObject) const;
    void clearPluginPaths(QUiLoader* theWrappedObject);
    QAction*  createAction(QUiLoader* theWrappedObject, QObject*  parent = 0, const QString&  name = QString());
    void setScriptingEnabled(QUiLoader* theWrappedObject, bool  enabled);
-   QActionGroup*  createActionGroup(QUiLoader* theWrappedObject, QObject*  parent = 0, const QString&  name = QString());
-   QLayout*  createLayout(QUiLoader* theWrappedObject, const QString&  className, QObject*  parent = 0, const QString&  name = QString());
-   bool  isScriptingEnabled(QUiLoader* theWrappedObject) const;
-   void setWorkingDirectory(QUiLoader* theWrappedObject, const QDir&  dir);
    void addPluginPath(QUiLoader* theWrappedObject, const QString&  path);
    QWidget*  load(QUiLoader* theWrappedObject, QIODevice*  device, QWidget*  parentWidget = 0);
-   QDir  workingDirectory(QUiLoader* theWrappedObject) const;
+   QActionGroup*  createActionGroup(QUiLoader* theWrappedObject, QObject*  parent = 0, const QString&  name = QString());
+   QLayout*  createLayout(QUiLoader* theWrappedObject, const QString&  className, QObject*  parent = 0, const QString&  name = QString());
 };
 
 #endif // PYTHONQTWRAPPER_QUILOADER_H

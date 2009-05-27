@@ -15,16 +15,16 @@ return new PythonQtShell_QDragMoveEvent(pos, actions, data, buttons, modifiers, 
 
 QRect  PythonQtWrapper_QDragMoveEvent::answerRect(QDragMoveEvent* theWrappedObject) const
 {
-return  theWrappedObject->answerRect();
+  return ( theWrappedObject->answerRect());
 }
 
 void PythonQtWrapper_QDragMoveEvent::ignore(QDragMoveEvent* theWrappedObject, const QRect&  r)
 {
- theWrappedObject->ignore(r);
+  ( theWrappedObject->ignore(r));
 }
 
 void PythonQtWrapper_QDragMoveEvent::accept(QDragMoveEvent* theWrappedObject, const QRect&  r)
 {
- theWrappedObject->accept(r);
+  ( theWrappedObject->accept(r));
 }
 

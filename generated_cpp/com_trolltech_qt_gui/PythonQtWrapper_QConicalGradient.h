@@ -25,11 +25,11 @@ QConicalGradient* a = new QConicalGradient();
 *((QConicalGradient*)a) = other;
 return a; }
 void delete_QConicalGradient(QConicalGradient* obj) { delete obj; } 
-   void setAngle(QConicalGradient* theWrappedObject, qreal  angle);
-   void setCenter(QConicalGradient* theWrappedObject, qreal  x, qreal  y);
-   void setCenter(QConicalGradient* theWrappedObject, const QPointF&  center);
-   qreal  angle(QConicalGradient* theWrappedObject) const;
    QPointF  center(QConicalGradient* theWrappedObject) const;
+   qreal  angle(QConicalGradient* theWrappedObject) const;
+   void setAngle(QConicalGradient* theWrappedObject, qreal  angle);
+   void setCenter(QConicalGradient* theWrappedObject, const QPointF&  center);
+   void setCenter(QConicalGradient* theWrappedObject, qreal  x, qreal  y);
 };
 
 #endif // PYTHONQTWRAPPER_QCONICALGRADIENT_H

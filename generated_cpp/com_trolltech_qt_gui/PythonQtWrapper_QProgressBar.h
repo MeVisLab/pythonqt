@@ -96,24 +96,24 @@ public:
 public slots:
 QProgressBar* new_QProgressBar(QWidget*  parent = 0);
 void delete_QProgressBar(QProgressBar* obj) { delete obj; } 
-   int  maximum(QProgressBar* theWrappedObject) const;
-   Qt::Orientation  orientation(QProgressBar* theWrappedObject) const;
-   int  minimum(QProgressBar* theWrappedObject) const;
-   bool  isTextVisible(QProgressBar* theWrappedObject) const;
    void setAlignment(QProgressBar* theWrappedObject, Qt::Alignment  alignment);
-   Qt::Alignment  alignment(QProgressBar* theWrappedObject) const;
-   bool  invertedAppearance(QProgressBar* theWrappedObject);
-   void setTextVisible(QProgressBar* theWrappedObject, bool  visible);
-   void paintEvent(QProgressBar* theWrappedObject, QPaintEvent*  arg__1);
-   void setInvertedAppearance(QProgressBar* theWrappedObject, bool  invert);
-   QSize  minimumSizeHint(QProgressBar* theWrappedObject) const;
-   QString  format(QProgressBar* theWrappedObject) const;
-   void setTextDirection(QProgressBar* theWrappedObject, QProgressBar::Direction  textDirection);
-   QString  text(QProgressBar* theWrappedObject) const;
-   void setFormat(QProgressBar* theWrappedObject, const QString&  format);
-   QProgressBar::Direction  textDirection(QProgressBar* theWrappedObject);
-   QSize  sizeHint(QProgressBar* theWrappedObject) const;
    int  value(QProgressBar* theWrappedObject) const;
+   int  minimum(QProgressBar* theWrappedObject) const;
+   Qt::Alignment  alignment(QProgressBar* theWrappedObject) const;
+   QString  format(QProgressBar* theWrappedObject) const;
+   bool  invertedAppearance(QProgressBar* theWrappedObject);
+   QProgressBar::Direction  textDirection(QProgressBar* theWrappedObject);
+   void setFormat(QProgressBar* theWrappedObject, const QString&  format);
+   QSize  minimumSizeHint(QProgressBar* theWrappedObject) const;
+   void paintEvent(QProgressBar* theWrappedObject, QPaintEvent*  arg__1);
+   QSize  sizeHint(QProgressBar* theWrappedObject) const;
+   Qt::Orientation  orientation(QProgressBar* theWrappedObject) const;
+   void setInvertedAppearance(QProgressBar* theWrappedObject, bool  invert);
+   int  maximum(QProgressBar* theWrappedObject) const;
+   void setTextDirection(QProgressBar* theWrappedObject, QProgressBar::Direction  textDirection);
+   void setTextVisible(QProgressBar* theWrappedObject, bool  visible);
+   QString  text(QProgressBar* theWrappedObject) const;
+   bool  isTextVisible(QProgressBar* theWrappedObject) const;
    bool  event(QProgressBar* theWrappedObject, QEvent*  e);
 };
 

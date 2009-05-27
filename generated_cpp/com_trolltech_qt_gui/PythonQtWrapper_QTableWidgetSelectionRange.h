@@ -17,12 +17,12 @@ QTableWidgetSelectionRange* new_QTableWidgetSelectionRange();
 QTableWidgetSelectionRange* new_QTableWidgetSelectionRange(const QTableWidgetSelectionRange&  other);
 QTableWidgetSelectionRange* new_QTableWidgetSelectionRange(int  top, int  left, int  bottom, int  right);
 void delete_QTableWidgetSelectionRange(QTableWidgetSelectionRange* obj) { delete obj; } 
-   int  rowCount(QTableWidgetSelectionRange* theWrappedObject) const;
-   int  topRow(QTableWidgetSelectionRange* theWrappedObject) const;
-   int  leftColumn(QTableWidgetSelectionRange* theWrappedObject) const;
    int  bottomRow(QTableWidgetSelectionRange* theWrappedObject) const;
    int  rightColumn(QTableWidgetSelectionRange* theWrappedObject) const;
    int  columnCount(QTableWidgetSelectionRange* theWrappedObject) const;
+   int  rowCount(QTableWidgetSelectionRange* theWrappedObject) const;
+   int  topRow(QTableWidgetSelectionRange* theWrappedObject) const;
+   int  leftColumn(QTableWidgetSelectionRange* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QTABLEWIDGETSELECTIONRANGE_H

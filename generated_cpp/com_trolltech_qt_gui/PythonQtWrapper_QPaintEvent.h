@@ -27,8 +27,8 @@ public slots:
 QPaintEvent* new_QPaintEvent(const QRect&  paintRect);
 QPaintEvent* new_QPaintEvent(const QRegion&  paintRegion);
 void delete_QPaintEvent(QPaintEvent* obj) { delete obj; } 
-   const QRegion&  region(QPaintEvent* theWrappedObject) const;
-   const QRect&  rect(QPaintEvent* theWrappedObject) const;
+   const QRegion*  region(QPaintEvent* theWrappedObject) const;
+   const QRect*  rect(QPaintEvent* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QPAINTEVENT_H

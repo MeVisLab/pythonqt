@@ -25,8 +25,6 @@ enum FontFamily{
 enum WebAttribute{
   AutoLoadImages = QWebSettings::AutoLoadImages,   JavascriptEnabled = QWebSettings::JavascriptEnabled,   JavaEnabled = QWebSettings::JavaEnabled,   PluginsEnabled = QWebSettings::PluginsEnabled,   PrivateBrowsingEnabled = QWebSettings::PrivateBrowsingEnabled,   JavascriptCanOpenWindows = QWebSettings::JavascriptCanOpenWindows,   JavascriptCanAccessClipboard = QWebSettings::JavascriptCanAccessClipboard,   DeveloperExtrasEnabled = QWebSettings::DeveloperExtrasEnabled,   LinksIncludedInFocusChain = QWebSettings::LinksIncludedInFocusChain};
 public slots:
-   QIcon  static_QWebSettings_iconForUrl(const QUrl&  url);
-   int  static_QWebSettings_maximumPagesInCache();
    void setUserStyleSheetUrl(QWebSettings* theWrappedObject, const QUrl&  location);
    void resetAttribute(QWebSettings* theWrappedObject, QWebSettings::WebAttribute  attr);
    void static_QWebSettings_setMaximumPagesInCache(int  pages);
@@ -38,14 +36,16 @@ public slots:
    void setAttribute(QWebSettings* theWrappedObject, QWebSettings::WebAttribute  attr, bool  on);
    void static_QWebSettings_setObjectCacheCapacities(int  cacheMinDeadCapacity, int  cacheMaxDead, int  totalCapacity);
    void resetFontSize(QWebSettings* theWrappedObject, QWebSettings::FontSize  type);
+   void static_QWebSettings_setIconDatabasePath(const QString&  location);
    int  fontSize(QWebSettings* theWrappedObject, QWebSettings::FontSize  type) const;
    QWebSettings*  static_QWebSettings_globalSettings();
    QString  static_QWebSettings_iconDatabasePath();
    bool  testAttribute(QWebSettings* theWrappedObject, QWebSettings::WebAttribute  attr) const;
    QString  fontFamily(QWebSettings* theWrappedObject, QWebSettings::FontFamily  which) const;
-   void static_QWebSettings_setIconDatabasePath(const QString&  location);
    void setFontFamily(QWebSettings* theWrappedObject, QWebSettings::FontFamily  which, const QString&  family);
    QUrl  userStyleSheetUrl(QWebSettings* theWrappedObject) const;
+   QIcon  static_QWebSettings_iconForUrl(const QUrl&  url);
+   int  static_QWebSettings_maximumPagesInCache();
 };
 
 #endif // PYTHONQTWRAPPER_QWEBSETTINGS_H

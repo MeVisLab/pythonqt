@@ -47,16 +47,16 @@ public slots:
 QGraphicsSimpleTextItem* new_QGraphicsSimpleTextItem(QGraphicsItem*  parent = 0, QGraphicsScene*  scene = 0);
 QGraphicsSimpleTextItem* new_QGraphicsSimpleTextItem(const QString&  text, QGraphicsItem*  parent = 0, QGraphicsScene*  scene = 0);
 void delete_QGraphicsSimpleTextItem(QGraphicsSimpleTextItem* obj) { delete obj; } 
+   QRectF  boundingRect(QGraphicsSimpleTextItem* theWrappedObject) const;
    QPainterPath  shape(QGraphicsSimpleTextItem* theWrappedObject) const;
-   QFont  font(QGraphicsSimpleTextItem* theWrappedObject) const;
    bool  isObscuredBy(QGraphicsSimpleTextItem* theWrappedObject, const QGraphicsItem*  item) const;
+   QFont  font(QGraphicsSimpleTextItem* theWrappedObject) const;
    void paint(QGraphicsSimpleTextItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget);
-   void setText(QGraphicsSimpleTextItem* theWrappedObject, const QString&  text);
    int  type(QGraphicsSimpleTextItem* theWrappedObject) const;
    void setFont(QGraphicsSimpleTextItem* theWrappedObject, const QFont&  font);
+   void setText(QGraphicsSimpleTextItem* theWrappedObject, const QString&  text);
    QString  text(QGraphicsSimpleTextItem* theWrappedObject) const;
    bool  contains(QGraphicsSimpleTextItem* theWrappedObject, const QPointF&  point) const;
-   QRectF  boundingRect(QGraphicsSimpleTextItem* theWrappedObject) const;
    QPainterPath  opaqueArea(QGraphicsSimpleTextItem* theWrappedObject) const;
 };
 

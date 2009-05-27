@@ -12,16 +12,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "id");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QUndoCommand::staticMetaObject,
-      "id(QUndoCommand*)");
-      int  returnValue;
+    static const char* argumentList[] ={"int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      int returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((int *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("id", methodInfo, result);
+        } else {
+          returnValue = *((int*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -37,16 +40,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "mergeWith");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QUndoCommand::staticMetaObject,
-      "mergeWith(QUndoCommand*,const QUndoCommand* )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "const QUndoCommand*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      bool returnValue;
     void* args[2] = {NULL, (void*)&other};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("mergeWith", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -62,9 +68,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "redo");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QUndoCommand::staticMetaObject,
-      "redo(QUndoCommand*)");
+    static const char* argumentList[] ={""};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -80,9 +85,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "undo");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QUndoCommand::staticMetaObject,
-      "undo(QUndoCommand*)");
+    static const char* argumentList[] ={""};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -100,43 +104,43 @@ QUndoCommand* PythonQtWrapper_QUndoCommand::new_QUndoCommand(const QString&  tex
 { 
 return new PythonQtShell_QUndoCommand(text, parent); }
 
-void PythonQtWrapper_QUndoCommand::undo(QUndoCommand* theWrappedObject)
-{
- ((PythonQtPublicPromoter_QUndoCommand*)theWrappedObject)->promoted_undo();
-}
-
 void PythonQtWrapper_QUndoCommand::setText(QUndoCommand* theWrappedObject, const QString&  text)
 {
- theWrappedObject->setText(text);
+  ( theWrappedObject->setText(text));
 }
 
 QString  PythonQtWrapper_QUndoCommand::text(QUndoCommand* theWrappedObject) const
 {
-return  theWrappedObject->text();
+  return ( theWrappedObject->text());
 }
 
 bool  PythonQtWrapper_QUndoCommand::mergeWith(QUndoCommand* theWrappedObject, const QUndoCommand*  other)
 {
-return  ((PythonQtPublicPromoter_QUndoCommand*)theWrappedObject)->promoted_mergeWith(other);
+  return ( ((PythonQtPublicPromoter_QUndoCommand*)theWrappedObject)->promoted_mergeWith(other));
 }
 
 void PythonQtWrapper_QUndoCommand::redo(QUndoCommand* theWrappedObject)
 {
- ((PythonQtPublicPromoter_QUndoCommand*)theWrappedObject)->promoted_redo();
+  ( ((PythonQtPublicPromoter_QUndoCommand*)theWrappedObject)->promoted_redo());
 }
 
 const QUndoCommand*  PythonQtWrapper_QUndoCommand::child(QUndoCommand* theWrappedObject, int  index) const
 {
-return  theWrappedObject->child(index);
+  return ( theWrappedObject->child(index));
 }
 
 int  PythonQtWrapper_QUndoCommand::childCount(QUndoCommand* theWrappedObject) const
 {
-return  theWrappedObject->childCount();
+  return ( theWrappedObject->childCount());
 }
 
 int  PythonQtWrapper_QUndoCommand::id(QUndoCommand* theWrappedObject) const
 {
-return  ((PythonQtPublicPromoter_QUndoCommand*)theWrappedObject)->promoted_id();
+  return ( ((PythonQtPublicPromoter_QUndoCommand*)theWrappedObject)->promoted_id());
+}
+
+void PythonQtWrapper_QUndoCommand::undo(QUndoCommand* theWrappedObject)
+{
+  ( ((PythonQtPublicPromoter_QUndoCommand*)theWrappedObject)->promoted_undo());
 }
 

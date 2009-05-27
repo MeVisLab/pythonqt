@@ -84,12 +84,12 @@ public:
 public slots:
 QAbstractGraphicsShapeItem* new_QAbstractGraphicsShapeItem(QGraphicsItem*  parent = 0, QGraphicsScene*  scene = 0);
 void delete_QAbstractGraphicsShapeItem(QAbstractGraphicsShapeItem* obj) { delete obj; } 
-   void setBrush(QAbstractGraphicsShapeItem* theWrappedObject, const QBrush&  brush);
-   QBrush  brush(QAbstractGraphicsShapeItem* theWrappedObject) const;
    QPainterPath  opaqueArea(QAbstractGraphicsShapeItem* theWrappedObject) const;
    bool  isObscuredBy(QAbstractGraphicsShapeItem* theWrappedObject, const QGraphicsItem*  item) const;
    QPen  pen(QAbstractGraphicsShapeItem* theWrappedObject) const;
+   void setBrush(QAbstractGraphicsShapeItem* theWrappedObject, const QBrush&  brush);
    void setPen(QAbstractGraphicsShapeItem* theWrappedObject, const QPen&  pen);
+   QBrush  brush(QAbstractGraphicsShapeItem* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QABSTRACTGRAPHICSSHAPEITEM_H

@@ -96,20 +96,20 @@ public slots:
 QLCDNumber* new_QLCDNumber(QWidget*  parent = 0);
 QLCDNumber* new_QLCDNumber(uint  numDigits, QWidget*  parent = 0);
 void delete_QLCDNumber(QLCDNumber* obj) { delete obj; } 
+   void setNumDigits(QLCDNumber* theWrappedObject, int  nDigits);
+   int  intValue(QLCDNumber* theWrappedObject) const;
+   bool  checkOverflow(QLCDNumber* theWrappedObject, int  num) const;
+   bool  event(QLCDNumber* theWrappedObject, QEvent*  e);
+   bool  smallDecimalPoint(QLCDNumber* theWrappedObject) const;
+   QLCDNumber::Mode  mode(QLCDNumber* theWrappedObject) const;
+   void setMode(QLCDNumber* theWrappedObject, QLCDNumber::Mode  arg__1);
+   double  value(QLCDNumber* theWrappedObject) const;
+   int  numDigits(QLCDNumber* theWrappedObject) const;
    QLCDNumber::SegmentStyle  segmentStyle(QLCDNumber* theWrappedObject) const;
    void setSegmentStyle(QLCDNumber* theWrappedObject, QLCDNumber::SegmentStyle  arg__1);
    bool  checkOverflow(QLCDNumber* theWrappedObject, double  num) const;
    QSize  sizeHint(QLCDNumber* theWrappedObject) const;
-   bool  checkOverflow(QLCDNumber* theWrappedObject, int  num) const;
-   void setNumDigits(QLCDNumber* theWrappedObject, int  nDigits);
-   bool  event(QLCDNumber* theWrappedObject, QEvent*  e);
-   bool  smallDecimalPoint(QLCDNumber* theWrappedObject) const;
-   QLCDNumber::Mode  mode(QLCDNumber* theWrappedObject) const;
    void paintEvent(QLCDNumber* theWrappedObject, QPaintEvent*  arg__1);
-   double  value(QLCDNumber* theWrappedObject) const;
-   int  intValue(QLCDNumber* theWrappedObject) const;
-   int  numDigits(QLCDNumber* theWrappedObject) const;
-   void setMode(QLCDNumber* theWrappedObject, QLCDNumber::Mode  arg__1);
 };
 
 #endif // PYTHONQTWRAPPER_QLCDNUMBER_H

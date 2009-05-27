@@ -54,8 +54,8 @@ return a; }
 void delete_QBitmap(QBitmap* obj) { delete obj; } 
    void clear(QBitmap* theWrappedObject);
    QBitmap  transformed(QBitmap* theWrappedObject, const QMatrix&  arg__1) const;
-   QBitmap  transformed(QBitmap* theWrappedObject, const QTransform&  matrix) const;
    QBitmap  static_QBitmap_fromImage(const QImage&  image, Qt::ImageConversionFlags  flags = Qt::AutoColor);
+   QBitmap  transformed(QBitmap* theWrappedObject, const QTransform&  matrix) const;
 };
 
 #endif // PYTHONQTWRAPPER_QBITMAP_H

@@ -50,11 +50,11 @@ public slots:
 QWidgetAction* new_QWidgetAction(QObject*  parent);
 void delete_QWidgetAction(QWidgetAction* obj) { delete obj; } 
    bool  event(QWidgetAction* theWrappedObject, QEvent*  arg__1);
-   void setDefaultWidget(QWidgetAction* theWrappedObject, QWidget*  w);
    QWidget*  requestWidget(QWidgetAction* theWrappedObject, QWidget*  parent);
    void deleteWidget(QWidgetAction* theWrappedObject, QWidget*  widget);
    void releaseWidget(QWidgetAction* theWrappedObject, QWidget*  widget);
    QWidget*  defaultWidget(QWidgetAction* theWrappedObject) const;
+   void setDefaultWidget(QWidgetAction* theWrappedObject, QWidget*  w);
    QWidget*  createWidget(QWidgetAction* theWrappedObject, QWidget*  parent);
    bool  eventFilter(QWidgetAction* theWrappedObject, QObject*  arg__1, QEvent*  arg__2);
 };

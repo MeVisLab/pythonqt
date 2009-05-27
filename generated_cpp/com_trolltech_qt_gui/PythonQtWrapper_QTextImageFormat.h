@@ -36,12 +36,12 @@ PythonQtShell_QTextImageFormat* a = new PythonQtShell_QTextImageFormat();
 return a; }
 void delete_QTextImageFormat(QTextImageFormat* obj) { delete obj; } 
    qreal  width(QTextImageFormat* theWrappedObject) const;
-   QString  name(QTextImageFormat* theWrappedObject) const;
-   qreal  height(QTextImageFormat* theWrappedObject) const;
-   void setWidth(QTextImageFormat* theWrappedObject, qreal  width);
+   void setHeight(QTextImageFormat* theWrappedObject, qreal  height);
    bool  isValid(QTextImageFormat* theWrappedObject) const;
    void setName(QTextImageFormat* theWrappedObject, const QString&  name);
-   void setHeight(QTextImageFormat* theWrappedObject, qreal  height);
+   void setWidth(QTextImageFormat* theWrappedObject, qreal  width);
+   qreal  height(QTextImageFormat* theWrappedObject) const;
+   QString  name(QTextImageFormat* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QTEXTIMAGEFORMAT_H

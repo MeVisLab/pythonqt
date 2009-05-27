@@ -13,6 +13,6 @@ return new QTextEncoder(codec); }
 
 QByteArray  PythonQtWrapper_QTextEncoder::fromUnicode(QTextEncoder* theWrappedObject, const QString&  str)
 {
-return  theWrappedObject->fromUnicode(str);
+  return ( theWrappedObject->fromUnicode(str));
 }
 

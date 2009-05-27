@@ -11,6 +11,6 @@ return new QToolBarChangeEvent(t); }
 
 bool  PythonQtWrapper_QToolBarChangeEvent::toggle(QToolBarChangeEvent* theWrappedObject) const
 {
-return  theWrappedObject->toggle();
+  return ( theWrappedObject->toggle());
 }
 

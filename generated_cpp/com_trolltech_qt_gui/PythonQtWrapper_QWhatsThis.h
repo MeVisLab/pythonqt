@@ -17,12 +17,12 @@ class PythonQtWrapper_QWhatsThis : public QObject
 public:
 public slots:
 void delete_QWhatsThis(QWhatsThis* obj) { delete obj; } 
-   void static_QWhatsThis_enterWhatsThisMode();
-   bool  static_QWhatsThis_inWhatsThisMode();
-   QAction*  static_QWhatsThis_createAction(QObject*  parent = 0);
    void static_QWhatsThis_hideText();
-   void static_QWhatsThis_leaveWhatsThisMode();
+   bool  static_QWhatsThis_inWhatsThisMode();
    void static_QWhatsThis_showText(const QPoint&  pos, const QString&  text, QWidget*  w = 0);
+   QAction*  static_QWhatsThis_createAction(QObject*  parent = 0);
+   void static_QWhatsThis_enterWhatsThisMode();
+   void static_QWhatsThis_leaveWhatsThisMode();
 };
 
 #endif // PYTHONQTWRAPPER_QWHATSTHIS_H

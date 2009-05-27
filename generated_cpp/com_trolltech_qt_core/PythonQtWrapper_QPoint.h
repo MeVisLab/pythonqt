@@ -21,19 +21,20 @@ QPoint* a = new QPoint();
 *((QPoint*)a) = other;
 return a; }
 void delete_QPoint(QPoint* obj) { delete obj; } 
-   QPoint&  operator_subtract_assign(QPoint* theWrappedObject, const QPoint&  p);
-   void setX(QPoint* theWrappedObject, int  x);
-   QPoint&  operator_add_assign(QPoint* theWrappedObject, const QPoint&  p);
-   int  x(QPoint* theWrappedObject) const;
-   QPoint&  operator_multiply_assign(QPoint* theWrappedObject, qreal  c);
+   bool  operator_equal(QPoint* theWrappedObject, const QPoint&  p2);
    void setY(QPoint* theWrappedObject, int  y);
+   QPoint*  operator_add_assign(QPoint* theWrappedObject, const QPoint&  p);
+   QPoint*  operator_multiply_assign(QPoint* theWrappedObject, qreal  c);
    bool  isNull(QPoint* theWrappedObject) const;
    void writeTo(QPoint* theWrappedObject, QDataStream&  arg__1);
    int  y(QPoint* theWrappedObject) const;
-   bool  operator_equal(QPoint* theWrappedObject, const QPoint&  p2);
-   QPoint&  operator_divide_assign(QPoint* theWrappedObject, qreal  c);
-   void readFrom(QPoint* theWrappedObject, QDataStream&  arg__1);
    int  manhattanLength(QPoint* theWrappedObject) const;
+   QPoint*  operator_subtract_assign(QPoint* theWrappedObject, const QPoint&  p);
+   void setX(QPoint* theWrappedObject, int  x);
+   QPoint*  operator_divide_assign(QPoint* theWrappedObject, qreal  c);
+   int  x(QPoint* theWrappedObject) const;
+   void readFrom(QPoint* theWrappedObject, QDataStream&  arg__1);
+    QString toString(QPoint*);
 };
 
 #endif // PYTHONQTWRAPPER_QPOINT_H

@@ -104,6 +104,8 @@ public:
 public slots:
 QDoubleSpinBox* new_QDoubleSpinBox(QWidget*  parent = 0);
 void delete_QDoubleSpinBox(QDoubleSpinBox* obj) { delete obj; } 
+   void setMaximum(QDoubleSpinBox* theWrappedObject, double  max);
+   void setDecimals(QDoubleSpinBox* theWrappedObject, int  prec);
    void setPrefix(QDoubleSpinBox* theWrappedObject, const QString&  prefix);
    void setSuffix(QDoubleSpinBox* theWrappedObject, const QString&  suffix);
    QValidator::State  validate(QDoubleSpinBox* theWrappedObject, QString&  input, int&  pos) const;
@@ -121,8 +123,6 @@ void delete_QDoubleSpinBox(QDoubleSpinBox* obj) { delete obj; }
    QString  prefix(QDoubleSpinBox* theWrappedObject) const;
    double  maximum(QDoubleSpinBox* theWrappedObject) const;
    void setRange(QDoubleSpinBox* theWrappedObject, double  min, double  max);
-   void setMaximum(QDoubleSpinBox* theWrappedObject, double  max);
-   void setDecimals(QDoubleSpinBox* theWrappedObject, int  prec);
 };
 
 #endif // PYTHONQTWRAPPER_QDOUBLESPINBOX_H

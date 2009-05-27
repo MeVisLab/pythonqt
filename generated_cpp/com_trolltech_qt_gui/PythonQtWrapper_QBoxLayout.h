@@ -47,15 +47,15 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QBoxLayout : public QBoxLayout
 { public:
-inline void promoted_invalidate() { QBoxLayout::invalidate(); }
-inline QLayoutItem*  promoted_itemAt(int  arg__1) const { return QBoxLayout::itemAt(arg__1); }
 inline QLayoutItem*  promoted_takeAt(int  arg__1) { return QBoxLayout::takeAt(arg__1); }
-inline Qt::Orientations  promoted_expandingDirections() const { return QBoxLayout::expandingDirections(); }
-inline void promoted_setGeometry(const QRect&  arg__1) { QBoxLayout::setGeometry(arg__1); }
-inline QSize  promoted_maximumSize() const { return QBoxLayout::maximumSize(); }
-inline QSize  promoted_minimumSize() const { return QBoxLayout::minimumSize(); }
 inline int  promoted_count() const { return QBoxLayout::count(); }
 inline void promoted_addItem(QLayoutItem*  arg__1) { QBoxLayout::addItem(arg__1); }
+inline QSize  promoted_minimumSize() const { return QBoxLayout::minimumSize(); }
+inline QLayoutItem*  promoted_itemAt(int  arg__1) const { return QBoxLayout::itemAt(arg__1); }
+inline Qt::Orientations  promoted_expandingDirections() const { return QBoxLayout::expandingDirections(); }
+inline void promoted_setGeometry(const QRect&  arg__1) { QBoxLayout::setGeometry(arg__1); }
+inline void promoted_invalidate() { QBoxLayout::invalidate(); }
+inline QSize  promoted_maximumSize() const { return QBoxLayout::maximumSize(); }
 };
 
 class PythonQtWrapper_QBoxLayout : public QObject
@@ -67,36 +67,36 @@ enum Direction{
 public slots:
 QBoxLayout* new_QBoxLayout(QBoxLayout::Direction  arg__1, QWidget*  parent = 0);
 void delete_QBoxLayout(QBoxLayout* obj) { delete obj; } 
-   void addStrut(QBoxLayout* theWrappedObject, int  arg__1);
-   void addWidget(QBoxLayout* theWrappedObject, QWidget*  arg__1, int  stretch = 0, Qt::Alignment  alignment = 0);
-   int  heightForWidth(QBoxLayout* theWrappedObject, int  arg__1) const;
-   void invalidate(QBoxLayout* theWrappedObject);
-   QBoxLayout::Direction  direction(QBoxLayout* theWrappedObject) const;
-   void insertSpacerItem(QBoxLayout* theWrappedObject, int  index, QSpacerItem*  spacerItem);
-   QLayoutItem*  itemAt(QBoxLayout* theWrappedObject, int  arg__1) const;
-   QLayoutItem*  takeAt(QBoxLayout* theWrappedObject, int  arg__1);
-   bool  setStretchFactor(QBoxLayout* theWrappedObject, QLayout*  l, int  stretch);
-   void addSpacing(QBoxLayout* theWrappedObject, int  size);
-   int  spacing(QBoxLayout* theWrappedObject) const;
-   bool  setStretchFactor(QBoxLayout* theWrappedObject, QWidget*  w, int  stretch);
-   void setSpacing(QBoxLayout* theWrappedObject, int  spacing);
-   Qt::Orientations  expandingDirections(QBoxLayout* theWrappedObject) const;
-   bool  hasHeightForWidth(QBoxLayout* theWrappedObject) const;
-   void setGeometry(QBoxLayout* theWrappedObject, const QRect&  arg__1);
-   void insertLayout(QBoxLayout* theWrappedObject, int  index, QLayout*  layout, int  stretch = 0);
-   QSize  maximumSize(QBoxLayout* theWrappedObject) const;
-   void addSpacerItem(QBoxLayout* theWrappedObject, QSpacerItem*  spacerItem);
-   QSize  minimumSize(QBoxLayout* theWrappedObject) const;
-   int  minimumHeightForWidth(QBoxLayout* theWrappedObject, int  arg__1) const;
-   int  count(QBoxLayout* theWrappedObject) const;
-   void addLayout(QBoxLayout* theWrappedObject, QLayout*  layout, int  stretch = 0);
-   void insertStretch(QBoxLayout* theWrappedObject, int  index, int  stretch = 0);
    void addStretch(QBoxLayout* theWrappedObject, int  stretch = 0);
+   QLayoutItem*  takeAt(QBoxLayout* theWrappedObject, int  arg__1);
+   void addSpacerItem(QBoxLayout* theWrappedObject, QSpacerItem*  spacerItem);
+   void addStrut(QBoxLayout* theWrappedObject, int  arg__1);
    void insertSpacing(QBoxLayout* theWrappedObject, int  index, int  size);
    void setDirection(QBoxLayout* theWrappedObject, QBoxLayout::Direction  arg__1);
-   QSize  sizeHint(QBoxLayout* theWrappedObject) const;
-   void insertWidget(QBoxLayout* theWrappedObject, int  index, QWidget*  widget, int  stretch = 0, Qt::Alignment  alignment = 0);
+   void insertStretch(QBoxLayout* theWrappedObject, int  index, int  stretch = 0);
+   int  spacing(QBoxLayout* theWrappedObject) const;
+   int  count(QBoxLayout* theWrappedObject) const;
+   int  heightForWidth(QBoxLayout* theWrappedObject, int  arg__1) const;
+   QBoxLayout::Direction  direction(QBoxLayout* theWrappedObject) const;
+   int  minimumHeightForWidth(QBoxLayout* theWrappedObject, int  arg__1) const;
    void addItem(QBoxLayout* theWrappedObject, QLayoutItem*  arg__1);
+   QSize  minimumSize(QBoxLayout* theWrappedObject) const;
+   bool  setStretchFactor(QBoxLayout* theWrappedObject, QLayout*  l, int  stretch);
+   void insertSpacerItem(QBoxLayout* theWrappedObject, int  index, QSpacerItem*  spacerItem);
+   QLayoutItem*  itemAt(QBoxLayout* theWrappedObject, int  arg__1) const;
+   bool  setStretchFactor(QBoxLayout* theWrappedObject, QWidget*  w, int  stretch);
+   Qt::Orientations  expandingDirections(QBoxLayout* theWrappedObject) const;
+   QSize  sizeHint(QBoxLayout* theWrappedObject) const;
+   void setSpacing(QBoxLayout* theWrappedObject, int  spacing);
+   void setGeometry(QBoxLayout* theWrappedObject, const QRect&  arg__1);
+   void insertWidget(QBoxLayout* theWrappedObject, int  index, QWidget*  widget, int  stretch = 0, Qt::Alignment  alignment = 0);
+   void invalidate(QBoxLayout* theWrappedObject);
+   QSize  maximumSize(QBoxLayout* theWrappedObject) const;
+   void addSpacing(QBoxLayout* theWrappedObject, int  size);
+   bool  hasHeightForWidth(QBoxLayout* theWrappedObject) const;
+   void insertLayout(QBoxLayout* theWrappedObject, int  index, QLayout*  layout, int  stretch = 0);
+   void addWidget(QBoxLayout* theWrappedObject, QWidget*  arg__1, int  stretch = 0, Qt::Alignment  alignment = 0);
+   void addLayout(QBoxLayout* theWrappedObject, QLayout*  layout, int  stretch = 0);
 };
 
 #endif // PYTHONQTWRAPPER_QBOXLAYOUT_H

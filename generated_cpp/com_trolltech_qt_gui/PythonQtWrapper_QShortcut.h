@@ -42,18 +42,18 @@ QShortcut* new_QShortcut(QWidget*  parent);
 QShortcut* new_QShortcut(const QKeySequence&  key, QWidget*  parent, const char*  member = 0, const char*  ambiguousMember = 0, Qt::ShortcutContext  context = Qt::WindowShortcut);
 void delete_QShortcut(QShortcut* obj) { delete obj; } 
    bool  autoRepeat(QShortcut* theWrappedObject) const;
-   QWidget*  parentWidget(QShortcut* theWrappedObject) const;
-   void setAutoRepeat(QShortcut* theWrappedObject, bool  on);
+   Qt::ShortcutContext  context(QShortcut* theWrappedObject);
+   bool  event(QShortcut* theWrappedObject, QEvent*  e);
    QKeySequence  key(QShortcut* theWrappedObject) const;
+   void setAutoRepeat(QShortcut* theWrappedObject, bool  on);
    void setKey(QShortcut* theWrappedObject, const QKeySequence&  key);
+   int  id(QShortcut* theWrappedObject) const;
+   QString  whatsThis(QShortcut* theWrappedObject) const;
    bool  isEnabled(QShortcut* theWrappedObject) const;
+   QWidget*  parentWidget(QShortcut* theWrappedObject) const;
    void setContext(QShortcut* theWrappedObject, Qt::ShortcutContext  context);
    void setEnabled(QShortcut* theWrappedObject, bool  enable);
    void setWhatsThis(QShortcut* theWrappedObject, const QString&  text);
-   QString  whatsThis(QShortcut* theWrappedObject) const;
-   bool  event(QShortcut* theWrappedObject, QEvent*  e);
-   Qt::ShortcutContext  context(QShortcut* theWrappedObject);
-   int  id(QShortcut* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QSHORTCUT_H

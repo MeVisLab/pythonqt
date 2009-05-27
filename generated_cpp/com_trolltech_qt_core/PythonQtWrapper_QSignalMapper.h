@@ -33,13 +33,13 @@ public:
 public slots:
 QSignalMapper* new_QSignalMapper(QObject*  parent = 0);
 void delete_QSignalMapper(QSignalMapper* obj) { delete obj; } 
+   void setMapping(QSignalMapper* theWrappedObject, QObject*  sender, QObject*  object);
+   void setMapping(QSignalMapper* theWrappedObject, QObject*  sender, const QString&  text);
+   QObject*  mapping(QSignalMapper* theWrappedObject, QObject*  object) const;
    QObject*  mapping(QSignalMapper* theWrappedObject, int  id) const;
    QObject*  mapping(QSignalMapper* theWrappedObject, const QString&  text) const;
    void setMapping(QSignalMapper* theWrappedObject, QObject*  sender, int  id);
    void removeMappings(QSignalMapper* theWrappedObject, QObject*  sender);
-   void setMapping(QSignalMapper* theWrappedObject, QObject*  sender, QObject*  object);
-   void setMapping(QSignalMapper* theWrappedObject, QObject*  sender, const QString&  text);
-   QObject*  mapping(QSignalMapper* theWrappedObject, QObject*  object) const;
 };
 
 #endif // PYTHONQTWRAPPER_QSIGNALMAPPER_H

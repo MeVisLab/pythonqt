@@ -31,58 +31,58 @@ QCursor* PythonQtWrapper_QCursor::new_QCursor(const QPixmap&  pixmap, int  hotX,
 { 
 return new QCursor(pixmap, hotX, hotY); }
 
-QPoint  PythonQtWrapper_QCursor::hotSpot(QCursor* theWrappedObject) const
+void PythonQtWrapper_QCursor::static_QCursor_setPos(const QPoint&  p)
 {
-return  theWrappedObject->hotSpot();
-}
-
-const QBitmap*  PythonQtWrapper_QCursor::mask(QCursor* theWrappedObject) const
-{
-return  theWrappedObject->mask();
+  (QCursor::setPos(p));
 }
 
 void PythonQtWrapper_QCursor::readFrom(QCursor* theWrappedObject, QDataStream&  inS)
 {
-inS >>  (*theWrappedObject);
+  inS >>  (*theWrappedObject);
 }
 
-void PythonQtWrapper_QCursor::setShape(QCursor* theWrappedObject, Qt::CursorShape  newShape)
+QPoint  PythonQtWrapper_QCursor::hotSpot(QCursor* theWrappedObject) const
 {
- theWrappedObject->setShape(newShape);
-}
-
-void PythonQtWrapper_QCursor::static_QCursor_setPos(int  x, int  y)
-{
-QCursor::setPos(x, y);
-}
-
-void PythonQtWrapper_QCursor::static_QCursor_setPos(const QPoint&  p)
-{
-QCursor::setPos(p);
-}
-
-Qt::CursorShape  PythonQtWrapper_QCursor::shape(QCursor* theWrappedObject) const
-{
-return  theWrappedObject->shape();
-}
-
-QPixmap  PythonQtWrapper_QCursor::pixmap(QCursor* theWrappedObject) const
-{
-return  theWrappedObject->pixmap();
-}
-
-const QBitmap*  PythonQtWrapper_QCursor::bitmap(QCursor* theWrappedObject) const
-{
-return  theWrappedObject->bitmap();
+  return ( theWrappedObject->hotSpot());
 }
 
 void PythonQtWrapper_QCursor::writeTo(QCursor* theWrappedObject, QDataStream&  outS)
 {
-outS <<  (*theWrappedObject);
+  outS <<  (*theWrappedObject);
+}
+
+QPixmap  PythonQtWrapper_QCursor::pixmap(QCursor* theWrappedObject) const
+{
+  return ( theWrappedObject->pixmap());
+}
+
+void PythonQtWrapper_QCursor::setShape(QCursor* theWrappedObject, Qt::CursorShape  newShape)
+{
+  ( theWrappedObject->setShape(newShape));
+}
+
+void PythonQtWrapper_QCursor::static_QCursor_setPos(int  x, int  y)
+{
+  (QCursor::setPos(x, y));
+}
+
+Qt::CursorShape  PythonQtWrapper_QCursor::shape(QCursor* theWrappedObject) const
+{
+  return ( theWrappedObject->shape());
+}
+
+const QBitmap*  PythonQtWrapper_QCursor::bitmap(QCursor* theWrappedObject) const
+{
+  return ( theWrappedObject->bitmap());
 }
 
 QPoint  PythonQtWrapper_QCursor::static_QCursor_pos()
 {
-return QCursor::pos();
+  return (QCursor::pos());
+}
+
+const QBitmap*  PythonQtWrapper_QCursor::mask(QCursor* theWrappedObject) const
+{
+  return ( theWrappedObject->mask());
 }
 

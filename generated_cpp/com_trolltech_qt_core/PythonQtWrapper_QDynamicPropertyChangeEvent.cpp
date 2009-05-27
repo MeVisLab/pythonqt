@@ -12,6 +12,6 @@ return new QDynamicPropertyChangeEvent(name); }
 
 QByteArray  PythonQtWrapper_QDynamicPropertyChangeEvent::propertyName(QDynamicPropertyChangeEvent* theWrappedObject) const
 {
-return  theWrappedObject->propertyName();
+  return ( theWrappedObject->propertyName());
 }
 

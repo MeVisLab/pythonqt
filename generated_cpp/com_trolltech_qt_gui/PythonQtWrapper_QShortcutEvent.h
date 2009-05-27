@@ -25,7 +25,7 @@ public slots:
 QShortcutEvent* new_QShortcutEvent(const QKeySequence&  key, int  id, bool  ambiguous = false);
 void delete_QShortcutEvent(QShortcutEvent* obj) { delete obj; } 
    bool  isAmbiguous(QShortcutEvent* theWrappedObject) const;
-   const QKeySequence&  key(QShortcutEvent* theWrappedObject) const;
+   const QKeySequence*  key(QShortcutEvent* theWrappedObject) const;
    int  shortcutId(QShortcutEvent* theWrappedObject) const;
 };
 

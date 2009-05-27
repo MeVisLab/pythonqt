@@ -87,12 +87,12 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QToolBar : public QToolBar
 { public:
-inline void promoted_actionEvent(QActionEvent*  event) { QToolBar::actionEvent(event); }
-inline void promoted_resizeEvent(QResizeEvent*  event) { QToolBar::resizeEvent(event); }
 inline void promoted_paintEvent(QPaintEvent*  event) { QToolBar::paintEvent(event); }
 inline bool  promoted_event(QEvent*  event) { return QToolBar::event(event); }
 inline void promoted_changeEvent(QEvent*  event) { QToolBar::changeEvent(event); }
 inline void promoted_childEvent(QChildEvent*  event) { QToolBar::childEvent(event); }
+inline void promoted_actionEvent(QActionEvent*  event) { QToolBar::actionEvent(event); }
+inline void promoted_resizeEvent(QResizeEvent*  event) { QToolBar::resizeEvent(event); }
 };
 
 class PythonQtWrapper_QToolBar : public QObject
@@ -102,12 +102,6 @@ public slots:
 QToolBar* new_QToolBar(QWidget*  parent = 0);
 QToolBar* new_QToolBar(const QString&  title, QWidget*  parent = 0);
 void delete_QToolBar(QToolBar* obj) { delete obj; } 
-   QAction*  addWidget(QToolBar* theWrappedObject, QWidget*  widget);
-   void actionEvent(QToolBar* theWrappedObject, QActionEvent*  event);
-   QAction*  actionAt(QToolBar* theWrappedObject, int  x, int  y) const;
-   Qt::ToolBarAreas  allowedAreas(QToolBar* theWrappedObject) const;
-   void resizeEvent(QToolBar* theWrappedObject, QResizeEvent*  event);
-   QWidget*  widgetForAction(QToolBar* theWrappedObject, QAction*  action) const;
    void paintEvent(QToolBar* theWrappedObject, QPaintEvent*  event);
    void setMovable(QToolBar* theWrappedObject, bool  movable);
    QAction*  actionAt(QToolBar* theWrappedObject, const QPoint&  p) const;
@@ -132,6 +126,12 @@ void delete_QToolBar(QToolBar* obj) { delete obj; }
    Qt::Orientation  orientation(QToolBar* theWrappedObject) const;
    QAction*  addAction(QToolBar* theWrappedObject, const QIcon&  icon, const QString&  text);
    void childEvent(QToolBar* theWrappedObject, QChildEvent*  event);
+   QAction*  addWidget(QToolBar* theWrappedObject, QWidget*  widget);
+   void actionEvent(QToolBar* theWrappedObject, QActionEvent*  event);
+   QAction*  actionAt(QToolBar* theWrappedObject, int  x, int  y) const;
+   Qt::ToolBarAreas  allowedAreas(QToolBar* theWrappedObject) const;
+   void resizeEvent(QToolBar* theWrappedObject, QResizeEvent*  event);
+   QWidget*  widgetForAction(QToolBar* theWrappedObject, QAction*  action) const;
 };
 
 #endif // PYTHONQTWRAPPER_QTOOLBAR_H

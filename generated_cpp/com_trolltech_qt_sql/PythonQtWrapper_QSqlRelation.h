@@ -19,10 +19,10 @@ QSqlRelation* a = new QSqlRelation();
 *((QSqlRelation*)a) = other;
 return a; }
 void delete_QSqlRelation(QSqlRelation* obj) { delete obj; } 
-   bool  isValid(QSqlRelation* theWrappedObject) const;
-   QString  tableName(QSqlRelation* theWrappedObject) const;
    QString  indexColumn(QSqlRelation* theWrappedObject) const;
    QString  displayColumn(QSqlRelation* theWrappedObject) const;
+   bool  isValid(QSqlRelation* theWrappedObject) const;
+   QString  tableName(QSqlRelation* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QSQLRELATION_H

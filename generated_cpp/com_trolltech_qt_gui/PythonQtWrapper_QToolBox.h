@@ -86,11 +86,11 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QToolBox : public QToolBox
 { public:
-inline void promoted_itemInserted(int  index) { QToolBox::itemInserted(index); }
-inline bool  promoted_event(QEvent*  e) { return QToolBox::event(e); }
 inline void promoted_showEvent(QShowEvent*  e) { QToolBox::showEvent(e); }
-inline void promoted_changeEvent(QEvent*  arg__1) { QToolBox::changeEvent(arg__1); }
+inline void promoted_itemInserted(int  index) { QToolBox::itemInserted(index); }
 inline void promoted_itemRemoved(int  index) { QToolBox::itemRemoved(index); }
+inline bool  promoted_event(QEvent*  e) { return QToolBox::event(e); }
+inline void promoted_changeEvent(QEvent*  arg__1) { QToolBox::changeEvent(arg__1); }
 };
 
 class PythonQtWrapper_QToolBox : public QObject
@@ -99,29 +99,29 @@ public:
 public slots:
 QToolBox* new_QToolBox(QWidget*  parent = 0, Qt::WindowFlags  f = 0);
 void delete_QToolBox(QToolBox* obj) { delete obj; } 
-   QWidget*  widget(QToolBox* theWrappedObject, int  index) const;
-   void itemInserted(QToolBox* theWrappedObject, int  index);
-   QString  itemToolTip(QToolBox* theWrappedObject, int  index) const;
-   void setItemIcon(QToolBox* theWrappedObject, int  index, const QIcon&  icon);
-   int  currentIndex(QToolBox* theWrappedObject) const;
-   int  addItem(QToolBox* theWrappedObject, QWidget*  widget, const QIcon&  icon, const QString&  text);
-   void setItemEnabled(QToolBox* theWrappedObject, int  index, bool  enabled);
-   bool  isItemEnabled(QToolBox* theWrappedObject, int  index) const;
-   void setItemToolTip(QToolBox* theWrappedObject, int  index, const QString&  toolTip);
-   int  count(QToolBox* theWrappedObject) const;
-   bool  event(QToolBox* theWrappedObject, QEvent*  e);
-   void showEvent(QToolBox* theWrappedObject, QShowEvent*  e);
-   int  insertItem(QToolBox* theWrappedObject, int  index, QWidget*  widget, const QString&  text);
-   int  indexOf(QToolBox* theWrappedObject, QWidget*  widget) const;
-   QIcon  itemIcon(QToolBox* theWrappedObject, int  index) const;
-   void removeItem(QToolBox* theWrappedObject, int  index);
-   QWidget*  currentWidget(QToolBox* theWrappedObject) const;
-   int  insertItem(QToolBox* theWrappedObject, int  index, QWidget*  widget, const QIcon&  icon, const QString&  text);
-   void changeEvent(QToolBox* theWrappedObject, QEvent*  arg__1);
-   QString  itemText(QToolBox* theWrappedObject, int  index) const;
-   void itemRemoved(QToolBox* theWrappedObject, int  index);
    int  addItem(QToolBox* theWrappedObject, QWidget*  widget, const QString&  text);
+   void showEvent(QToolBox* theWrappedObject, QShowEvent*  e);
+   QWidget*  currentWidget(QToolBox* theWrappedObject) const;
+   void setItemToolTip(QToolBox* theWrappedObject, int  index, const QString&  toolTip);
+   bool  isItemEnabled(QToolBox* theWrappedObject, int  index) const;
+   void itemInserted(QToolBox* theWrappedObject, int  index);
+   QIcon  itemIcon(QToolBox* theWrappedObject, int  index) const;
+   QString  itemToolTip(QToolBox* theWrappedObject, int  index) const;
+   int  count(QToolBox* theWrappedObject) const;
+   void itemRemoved(QToolBox* theWrappedObject, int  index);
+   int  addItem(QToolBox* theWrappedObject, QWidget*  widget, const QIcon&  icon, const QString&  text);
+   int  insertItem(QToolBox* theWrappedObject, int  index, QWidget*  widget, const QIcon&  icon, const QString&  text);
    void setItemText(QToolBox* theWrappedObject, int  index, const QString&  text);
+   bool  event(QToolBox* theWrappedObject, QEvent*  e);
+   QString  itemText(QToolBox* theWrappedObject, int  index) const;
+   int  insertItem(QToolBox* theWrappedObject, int  index, QWidget*  widget, const QString&  text);
+   int  currentIndex(QToolBox* theWrappedObject) const;
+   QWidget*  widget(QToolBox* theWrappedObject, int  index) const;
+   void setItemIcon(QToolBox* theWrappedObject, int  index, const QIcon&  icon);
+   int  indexOf(QToolBox* theWrappedObject, QWidget*  widget) const;
+   void setItemEnabled(QToolBox* theWrappedObject, int  index, bool  enabled);
+   void removeItem(QToolBox* theWrappedObject, int  index);
+   void changeEvent(QToolBox* theWrappedObject, QEvent*  arg__1);
 };
 
 #endif // PYTHONQTWRAPPER_QTOOLBOX_H

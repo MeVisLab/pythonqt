@@ -11,6 +11,6 @@ return new PythonQtShell_QInputEvent(type, modifiers); }
 
 Qt::KeyboardModifiers  PythonQtWrapper_QInputEvent::modifiers(QInputEvent* theWrappedObject) const
 {
-return  theWrappedObject->modifiers();
+  return ( theWrappedObject->modifiers());
 }
 

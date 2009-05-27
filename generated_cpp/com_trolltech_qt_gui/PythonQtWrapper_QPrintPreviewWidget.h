@@ -96,13 +96,13 @@ public slots:
 QPrintPreviewWidget* new_QPrintPreviewWidget(QPrinter*  printer, QWidget*  parent = 0, Qt::WindowFlags  flags = 0);
 QPrintPreviewWidget* new_QPrintPreviewWidget(QWidget*  parent = 0, Qt::WindowFlags  flags = 0);
 void delete_QPrintPreviewWidget(QPrintPreviewWidget* obj) { delete obj; } 
-   int  numPages(QPrintPreviewWidget* theWrappedObject) const;
-   void setVisible(QPrintPreviewWidget* theWrappedObject, bool  visible);
-   QPrinter::Orientation  orientation(QPrintPreviewWidget* theWrappedObject) const;
    int  currentPage(QPrintPreviewWidget* theWrappedObject) const;
    QPrintPreviewWidget::ViewMode  viewMode(QPrintPreviewWidget* theWrappedObject) const;
    qreal  zoomFactor(QPrintPreviewWidget* theWrappedObject) const;
    QPrintPreviewWidget::ZoomMode  zoomMode(QPrintPreviewWidget* theWrappedObject) const;
+   int  numPages(QPrintPreviewWidget* theWrappedObject) const;
+   void setVisible(QPrintPreviewWidget* theWrappedObject, bool  visible);
+   QPrinter::Orientation  orientation(QPrintPreviewWidget* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QPRINTPREVIEWWIDGET_H

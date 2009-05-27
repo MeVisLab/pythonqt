@@ -18,10 +18,10 @@ enum RecursionMode{
 public slots:
 QMutex* new_QMutex(QMutex::RecursionMode  mode = QMutex::NonRecursive);
 void delete_QMutex(QMutex* obj) { delete obj; } 
-   void lock(QMutex* theWrappedObject);
    bool  tryLock(QMutex* theWrappedObject, int  timeout);
    void unlock(QMutex* theWrappedObject);
    bool  tryLock(QMutex* theWrappedObject);
+   void lock(QMutex* theWrappedObject);
 };
 
 #endif // PYTHONQTWRAPPER_QMUTEX_H

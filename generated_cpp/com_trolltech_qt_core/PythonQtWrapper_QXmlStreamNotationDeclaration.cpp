@@ -14,23 +14,23 @@ QXmlStreamNotationDeclaration* PythonQtWrapper_QXmlStreamNotationDeclaration::ne
 { 
 return new QXmlStreamNotationDeclaration(arg__1); }
 
-QStringRef  PythonQtWrapper_QXmlStreamNotationDeclaration::publicId(QXmlStreamNotationDeclaration* theWrappedObject) const
-{
-return  theWrappedObject->publicId();
-}
-
 bool  PythonQtWrapper_QXmlStreamNotationDeclaration::operator_equal(QXmlStreamNotationDeclaration* theWrappedObject, const QXmlStreamNotationDeclaration&  other) const
 {
-return  (*theWrappedObject)== other;
+  return ( (*theWrappedObject)== other);
 }
 
 QStringRef  PythonQtWrapper_QXmlStreamNotationDeclaration::name(QXmlStreamNotationDeclaration* theWrappedObject) const
 {
-return  theWrappedObject->name();
+  return ( theWrappedObject->name());
 }
 
 QStringRef  PythonQtWrapper_QXmlStreamNotationDeclaration::systemId(QXmlStreamNotationDeclaration* theWrappedObject) const
 {
-return  theWrappedObject->systemId();
+  return ( theWrappedObject->systemId());
+}
+
+QStringRef  PythonQtWrapper_QXmlStreamNotationDeclaration::publicId(QXmlStreamNotationDeclaration* theWrappedObject) const
+{
+  return ( theWrappedObject->publicId());
 }
 

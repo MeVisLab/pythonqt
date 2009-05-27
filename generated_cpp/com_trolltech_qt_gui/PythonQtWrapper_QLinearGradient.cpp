@@ -22,33 +22,33 @@ QLinearGradient* PythonQtWrapper_QLinearGradient::new_QLinearGradient(qreal  xSt
 { 
 return new QLinearGradient(xStart, yStart, xFinalStop, yFinalStop); }
 
-void PythonQtWrapper_QLinearGradient::setStart(QLinearGradient* theWrappedObject, qreal  x, qreal  y)
+QPointF  PythonQtWrapper_QLinearGradient::finalStop(QLinearGradient* theWrappedObject) const
 {
- theWrappedObject->setStart(x, y);
+  return ( theWrappedObject->finalStop());
 }
 
 void PythonQtWrapper_QLinearGradient::setFinalStop(QLinearGradient* theWrappedObject, const QPointF&  stop)
 {
- theWrappedObject->setFinalStop(stop);
+  ( theWrappedObject->setFinalStop(stop));
 }
 
 void PythonQtWrapper_QLinearGradient::setFinalStop(QLinearGradient* theWrappedObject, qreal  x, qreal  y)
 {
- theWrappedObject->setFinalStop(x, y);
+  ( theWrappedObject->setFinalStop(x, y));
 }
 
-QPointF  PythonQtWrapper_QLinearGradient::start(QLinearGradient* theWrappedObject) const
+void PythonQtWrapper_QLinearGradient::setStart(QLinearGradient* theWrappedObject, qreal  x, qreal  y)
 {
-return  theWrappedObject->start();
+  ( theWrappedObject->setStart(x, y));
 }
 
 void PythonQtWrapper_QLinearGradient::setStart(QLinearGradient* theWrappedObject, const QPointF&  start)
 {
- theWrappedObject->setStart(start);
+  ( theWrappedObject->setStart(start));
 }
 
-QPointF  PythonQtWrapper_QLinearGradient::finalStop(QLinearGradient* theWrappedObject) const
+QPointF  PythonQtWrapper_QLinearGradient::start(QLinearGradient* theWrappedObject) const
 {
-return  theWrappedObject->finalStop();
+  return ( theWrappedObject->start());
 }
 

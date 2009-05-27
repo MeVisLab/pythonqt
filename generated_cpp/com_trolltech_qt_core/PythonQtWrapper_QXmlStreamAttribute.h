@@ -18,13 +18,13 @@ QXmlStreamAttribute* new_QXmlStreamAttribute(const QString&  namespaceUri, const
 QXmlStreamAttribute* new_QXmlStreamAttribute(const QString&  qualifiedName, const QString&  value);
 QXmlStreamAttribute* new_QXmlStreamAttribute(const QXmlStreamAttribute&  arg__1);
 void delete_QXmlStreamAttribute(QXmlStreamAttribute* obj) { delete obj; } 
+   QStringRef  prefix(QXmlStreamAttribute* theWrappedObject) const;
+   QStringRef  namespaceUri(QXmlStreamAttribute* theWrappedObject) const;
    QStringRef  value(QXmlStreamAttribute* theWrappedObject) const;
    bool  operator_equal(QXmlStreamAttribute* theWrappedObject, const QXmlStreamAttribute&  other) const;
-   QStringRef  prefix(QXmlStreamAttribute* theWrappedObject) const;
    bool  isDefault(QXmlStreamAttribute* theWrappedObject) const;
    QStringRef  name(QXmlStreamAttribute* theWrappedObject) const;
    QStringRef  qualifiedName(QXmlStreamAttribute* theWrappedObject) const;
-   QStringRef  namespaceUri(QXmlStreamAttribute* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QXMLSTREAMATTRIBUTE_H

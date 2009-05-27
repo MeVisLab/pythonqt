@@ -36,8 +36,10 @@ class PythonQtWrapper_QImageIOPlugin : public QObject
 { Q_OBJECT
 public:
 Q_ENUMS(Capability )
+Q_FLAGS(Capabilities )
 enum Capability{
   CanRead = QImageIOPlugin::CanRead,   CanWrite = QImageIOPlugin::CanWrite,   CanReadIncremental = QImageIOPlugin::CanReadIncremental};
+Q_DECLARE_FLAGS(Capabilities, Capability)
 public slots:
 QImageIOPlugin* new_QImageIOPlugin(QObject*  parent = 0);
 void delete_QImageIOPlugin(QImageIOPlugin* obj) { delete obj; } 

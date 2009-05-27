@@ -127,36 +127,36 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QListView : public QListView
 { public:
-inline void promoted_updateGeometries() { QListView::updateGeometries(); }
-inline void promoted_resizeEvent(QResizeEvent*  e) { QListView::resizeEvent(e); }
-inline void promoted_selectionChanged(const QItemSelection&  selected, const QItemSelection&  deselected) { QListView::selectionChanged(selected, deselected); }
-inline void promoted_setSelection(const QRect&  rect, QItemSelectionModel::SelectionFlags  command) { QListView::setSelection(rect, command); }
-inline void promoted_dragLeaveEvent(QDragLeaveEvent*  e) { QListView::dragLeaveEvent(e); }
-inline void promoted_dropEvent(QDropEvent*  e) { QListView::dropEvent(e); }
-inline QList<QModelIndex >  promoted_selectedIndexes() const { return QListView::selectedIndexes(); }
-inline void promoted_mouseMoveEvent(QMouseEvent*  e) { QListView::mouseMoveEvent(e); }
-inline void promoted_dataChanged(const QModelIndex&  topLeft, const QModelIndex&  bottomRight) { QListView::dataChanged(topLeft, bottomRight); }
-inline void promoted_timerEvent(QTimerEvent*  e) { QListView::timerEvent(e); }
-inline QModelIndex  promoted_indexAt(const QPoint&  p) const { return QListView::indexAt(p); }
-inline void promoted_scrollContentsBy(int  dx, int  dy) { QListView::scrollContentsBy(dx, dy); }
-inline bool  promoted_isIndexHidden(const QModelIndex&  index) const { return QListView::isIndexHidden(index); }
-inline void promoted_reset() { QListView::reset(); }
-inline bool  promoted_event(QEvent*  e) { return QListView::event(e); }
-inline int  promoted_horizontalOffset() const { return QListView::horizontalOffset(); }
 inline void promoted_setRootIndex(const QModelIndex&  index) { QListView::setRootIndex(index); }
-inline QRect  promoted_visualRect(const QModelIndex&  index) const { return QListView::visualRect(index); }
 inline void promoted_mouseReleaseEvent(QMouseEvent*  e) { QListView::mouseReleaseEvent(e); }
+inline void promoted_paintEvent(QPaintEvent*  e) { QListView::paintEvent(e); }
+inline QRect  promoted_visualRect(const QModelIndex&  index) const { return QListView::visualRect(index); }
+inline QStyleOptionViewItem  promoted_viewOptions() const { return QListView::viewOptions(); }
 inline void promoted_rowsAboutToBeRemoved(const QModelIndex&  parent, int  start, int  end) { QListView::rowsAboutToBeRemoved(parent, start, end); }
 inline QRegion  promoted_visualRegionForSelection(const QItemSelection&  selection) const { return QListView::visualRegionForSelection(selection); }
-inline void promoted_scrollTo(const QModelIndex&  index, QAbstractItemView::ScrollHint  hint = QAbstractItemView::EnsureVisible) { QListView::scrollTo(index, hint); }
-inline void promoted_paintEvent(QPaintEvent*  e) { QListView::paintEvent(e); }
-inline void promoted_doItemsLayout() { QListView::doItemsLayout(); }
 inline void promoted_rowsInserted(const QModelIndex&  parent, int  start, int  end) { QListView::rowsInserted(parent, start, end); }
-inline void promoted_currentChanged(const QModelIndex&  current, const QModelIndex&  previous) { QListView::currentChanged(current, previous); }
+inline void promoted_setSelection(const QRect&  rect, QItemSelectionModel::SelectionFlags  command) { QListView::setSelection(rect, command); }
 inline void promoted_startDrag(Qt::DropActions  supportedActions) { QListView::startDrag(supportedActions); }
+inline void promoted_doItemsLayout() { QListView::doItemsLayout(); }
+inline void promoted_scrollTo(const QModelIndex&  index, QAbstractItemView::ScrollHint  hint = QAbstractItemView::EnsureVisible) { QListView::scrollTo(index, hint); }
+inline void promoted_currentChanged(const QModelIndex&  current, const QModelIndex&  previous) { QListView::currentChanged(current, previous); }
 inline void promoted_dragMoveEvent(QDragMoveEvent*  e) { QListView::dragMoveEvent(e); }
+inline void promoted_dragLeaveEvent(QDragLeaveEvent*  e) { QListView::dragLeaveEvent(e); }
+inline void promoted_dataChanged(const QModelIndex&  topLeft, const QModelIndex&  bottomRight) { QListView::dataChanged(topLeft, bottomRight); }
+inline void promoted_timerEvent(QTimerEvent*  e) { QListView::timerEvent(e); }
+inline void promoted_updateGeometries() { QListView::updateGeometries(); }
+inline void promoted_resizeEvent(QResizeEvent*  e) { QListView::resizeEvent(e); }
+inline void promoted_scrollContentsBy(int  dx, int  dy) { QListView::scrollContentsBy(dx, dy); }
+inline void promoted_selectionChanged(const QItemSelection&  selected, const QItemSelection&  deselected) { QListView::selectionChanged(selected, deselected); }
+inline void promoted_dropEvent(QDropEvent*  e) { QListView::dropEvent(e); }
+inline QList<QModelIndex >  promoted_selectedIndexes() const { return QListView::selectedIndexes(); }
 inline int  promoted_verticalOffset() const { return QListView::verticalOffset(); }
-inline QStyleOptionViewItem  promoted_viewOptions() const { return QListView::viewOptions(); }
+inline void promoted_mouseMoveEvent(QMouseEvent*  e) { QListView::mouseMoveEvent(e); }
+inline bool  promoted_event(QEvent*  e) { return QListView::event(e); }
+inline bool  promoted_isIndexHidden(const QModelIndex&  index) const { return QListView::isIndexHidden(index); }
+inline QModelIndex  promoted_indexAt(const QPoint&  p) const { return QListView::indexAt(p); }
+inline void promoted_reset() { QListView::reset(); }
+inline int  promoted_horizontalOffset() const { return QListView::horizontalOffset(); }
 };
 
 class PythonQtWrapper_QListView : public QObject
@@ -165,65 +165,65 @@ public:
 public slots:
 QListView* new_QListView(QWidget*  parent = 0);
 void delete_QListView(QListView* obj) { delete obj; } 
-   void updateGeometries(QListView* theWrappedObject);
-   void setResizeMode(QListView* theWrappedObject, QListView::ResizeMode  mode);
-   QListView::ViewMode  viewMode(QListView* theWrappedObject) const;
-   void resizeEvent(QListView* theWrappedObject, QResizeEvent*  e);
-   void setSpacing(QListView* theWrappedObject, int  space);
-   QListView::Flow  flow(QListView* theWrappedObject) const;
-   void selectionChanged(QListView* theWrappedObject, const QItemSelection&  selected, const QItemSelection&  deselected);
-   void setSelection(QListView* theWrappedObject, const QRect&  rect, QItemSelectionModel::SelectionFlags  command);
-   void setBatchSize(QListView* theWrappedObject, int  batchSize);
-   bool  wordWrap(QListView* theWrappedObject) const;
-   void setViewMode(QListView* theWrappedObject, QListView::ViewMode  mode);
-   void dragLeaveEvent(QListView* theWrappedObject, QDragLeaveEvent*  e);
-   void dropEvent(QListView* theWrappedObject, QDropEvent*  e);
-   QListView::Movement  movement(QListView* theWrappedObject) const;
-   QList<QModelIndex >  selectedIndexes(QListView* theWrappedObject) const;
-   void mouseMoveEvent(QListView* theWrappedObject, QMouseEvent*  e);
-   void dataChanged(QListView* theWrappedObject, const QModelIndex&  topLeft, const QModelIndex&  bottomRight);
-   void timerEvent(QListView* theWrappedObject, QTimerEvent*  e);
-   void setFlow(QListView* theWrappedObject, QListView::Flow  flow);
-   QModelIndex  indexAt(QListView* theWrappedObject, const QPoint&  p) const;
-   void scrollContentsBy(QListView* theWrappedObject, int  dx, int  dy);
-   bool  isIndexHidden(QListView* theWrappedObject, const QModelIndex&  index) const;
-   QListView::ResizeMode  resizeMode(QListView* theWrappedObject) const;
-   void reset(QListView* theWrappedObject);
-   void setWrapping(QListView* theWrappedObject, bool  enable);
    int  spacing(QListView* theWrappedObject) const;
-   bool  event(QListView* theWrappedObject, QEvent*  e);
-   int  horizontalOffset(QListView* theWrappedObject) const;
-   int  modelColumn(QListView* theWrappedObject) const;
    void setRootIndex(QListView* theWrappedObject, const QModelIndex&  index);
-   QRect  visualRect(QListView* theWrappedObject, const QModelIndex&  index) const;
    void mouseReleaseEvent(QListView* theWrappedObject, QMouseEvent*  e);
+   bool  uniformItemSizes(QListView* theWrappedObject) const;
+   void paintEvent(QListView* theWrappedObject, QPaintEvent*  e);
+   QRect  visualRect(QListView* theWrappedObject, const QModelIndex&  index) const;
+   void setGridSize(QListView* theWrappedObject, const QSize&  size);
    bool  isRowHidden(QListView* theWrappedObject, int  row) const;
-   void setUniformItemSizes(QListView* theWrappedObject, bool  enable);
+   QStyleOptionViewItem  viewOptions(QListView* theWrappedObject) const;
    void setModelColumn(QListView* theWrappedObject, int  column);
    void rowsAboutToBeRemoved(QListView* theWrappedObject, const QModelIndex&  parent, int  start, int  end);
    QRegion  visualRegionForSelection(QListView* theWrappedObject, const QItemSelection&  selection) const;
-   int  batchSize(QListView* theWrappedObject) const;
+   void setUniformItemSizes(QListView* theWrappedObject, bool  enable);
    void setRowHidden(QListView* theWrappedObject, int  row, bool  hide);
-   bool  isSelectionRectVisible(QListView* theWrappedObject) const;
-   bool  isWrapping(QListView* theWrappedObject) const;
+   int  batchSize(QListView* theWrappedObject) const;
    void setSelectionRectVisible(QListView* theWrappedObject, bool  show);
+   bool  isWrapping(QListView* theWrappedObject) const;
    void setWordWrap(QListView* theWrappedObject, bool  on);
-   bool  uniformItemSizes(QListView* theWrappedObject) const;
-   void scrollTo(QListView* theWrappedObject, const QModelIndex&  index, QAbstractItemView::ScrollHint  hint = QAbstractItemView::EnsureVisible);
-   void paintEvent(QListView* theWrappedObject, QPaintEvent*  e);
-   void doItemsLayout(QListView* theWrappedObject);
    void rowsInserted(QListView* theWrappedObject, const QModelIndex&  parent, int  start, int  end);
    QListView::LayoutMode  layoutMode(QListView* theWrappedObject) const;
-   void currentChanged(QListView* theWrappedObject, const QModelIndex&  current, const QModelIndex&  previous);
+   void setSelection(QListView* theWrappedObject, const QRect&  rect, QItemSelectionModel::SelectionFlags  command);
    void startDrag(QListView* theWrappedObject, Qt::DropActions  supportedActions);
-   void setGridSize(QListView* theWrappedObject, const QSize&  size);
+   void doItemsLayout(QListView* theWrappedObject);
+   void setViewMode(QListView* theWrappedObject, QListView::ViewMode  mode);
+   void setMovement(QListView* theWrappedObject, QListView::Movement  movement);
+   void scrollTo(QListView* theWrappedObject, const QModelIndex&  index, QAbstractItemView::ScrollHint  hint = QAbstractItemView::EnsureVisible);
+   void currentChanged(QListView* theWrappedObject, const QModelIndex&  current, const QModelIndex&  previous);
    void dragMoveEvent(QListView* theWrappedObject, QDragMoveEvent*  e);
    void clearPropertyFlags(QListView* theWrappedObject);
-   void setMovement(QListView* theWrappedObject, QListView::Movement  movement);
-   QSize  gridSize(QListView* theWrappedObject) const;
+   void dragLeaveEvent(QListView* theWrappedObject, QDragLeaveEvent*  e);
+   void dataChanged(QListView* theWrappedObject, const QModelIndex&  topLeft, const QModelIndex&  bottomRight);
    void setLayoutMode(QListView* theWrappedObject, QListView::LayoutMode  mode);
+   void timerEvent(QListView* theWrappedObject, QTimerEvent*  e);
+   void updateGeometries(QListView* theWrappedObject);
+   QListView::ViewMode  viewMode(QListView* theWrappedObject) const;
+   void resizeEvent(QListView* theWrappedObject, QResizeEvent*  e);
+   void scrollContentsBy(QListView* theWrappedObject, int  dx, int  dy);
+   void setSpacing(QListView* theWrappedObject, int  space);
+   void setResizeMode(QListView* theWrappedObject, QListView::ResizeMode  mode);
+   void selectionChanged(QListView* theWrappedObject, const QItemSelection&  selected, const QItemSelection&  deselected);
+   void setBatchSize(QListView* theWrappedObject, int  batchSize);
+   int  modelColumn(QListView* theWrappedObject) const;
+   bool  wordWrap(QListView* theWrappedObject) const;
+   QListView::Movement  movement(QListView* theWrappedObject) const;
+   QSize  gridSize(QListView* theWrappedObject) const;
+   void dropEvent(QListView* theWrappedObject, QDropEvent*  e);
+   QList<QModelIndex >  selectedIndexes(QListView* theWrappedObject) const;
    int  verticalOffset(QListView* theWrappedObject) const;
-   QStyleOptionViewItem  viewOptions(QListView* theWrappedObject) const;
+   void mouseMoveEvent(QListView* theWrappedObject, QMouseEvent*  e);
+   QListView::Flow  flow(QListView* theWrappedObject) const;
+   bool  event(QListView* theWrappedObject, QEvent*  e);
+   bool  isIndexHidden(QListView* theWrappedObject, const QModelIndex&  index) const;
+   void setFlow(QListView* theWrappedObject, QListView::Flow  flow);
+   QModelIndex  indexAt(QListView* theWrappedObject, const QPoint&  p) const;
+   void reset(QListView* theWrappedObject);
+   void setWrapping(QListView* theWrappedObject, bool  enable);
+   QListView::ResizeMode  resizeMode(QListView* theWrappedObject) const;
+   int  horizontalOffset(QListView* theWrappedObject) const;
+   bool  isSelectionRectVisible(QListView* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QLISTVIEW_H

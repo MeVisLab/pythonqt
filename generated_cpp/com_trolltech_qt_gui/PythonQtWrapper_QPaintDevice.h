@@ -24,8 +24,8 @@ virtual QPaintEngine*  paintEngine() const;
 
 class PythonQtPublicPromoter_QPaintDevice : public QPaintDevice
 { public:
-inline int  promoted_devType() const { return QPaintDevice::devType(); }
 inline int  promoted_metric(QPaintDevice::PaintDeviceMetric  metric) const { return QPaintDevice::metric(metric); }
+inline int  promoted_devType() const { return QPaintDevice::devType(); }
 };
 
 class PythonQtWrapper_QPaintDevice : public QObject
@@ -37,19 +37,19 @@ enum PaintDeviceMetric{
 public slots:
 QPaintDevice* new_QPaintDevice();
 void delete_QPaintDevice(QPaintDevice* obj) { delete obj; } 
-   bool  paintingActive(QPaintDevice* theWrappedObject) const;
-   int  numColors(QPaintDevice* theWrappedObject) const;
    int  depth(QPaintDevice* theWrappedObject) const;
-   int  logicalDpiX(QPaintDevice* theWrappedObject) const;
-   int  physicalDpiY(QPaintDevice* theWrappedObject) const;
-   int  width(QPaintDevice* theWrappedObject) const;
-   int  widthMM(QPaintDevice* theWrappedObject) const;
    int  logicalDpiY(QPaintDevice* theWrappedObject) const;
+   int  widthMM(QPaintDevice* theWrappedObject) const;
+   int  physicalDpiX(QPaintDevice* theWrappedObject) const;
+   int  logicalDpiX(QPaintDevice* theWrappedObject) const;
+   int  width(QPaintDevice* theWrappedObject) const;
    int  heightMM(QPaintDevice* theWrappedObject) const;
+   int  numColors(QPaintDevice* theWrappedObject) const;
+   bool  paintingActive(QPaintDevice* theWrappedObject) const;
+   int  metric(QPaintDevice* theWrappedObject, QPaintDevice::PaintDeviceMetric  metric) const;
    int  devType(QPaintDevice* theWrappedObject) const;
    int  height(QPaintDevice* theWrappedObject) const;
-   int  metric(QPaintDevice* theWrappedObject, QPaintDevice::PaintDeviceMetric  metric) const;
-   int  physicalDpiX(QPaintDevice* theWrappedObject) const;
+   int  physicalDpiY(QPaintDevice* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QPAINTDEVICE_H

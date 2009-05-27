@@ -84,11 +84,11 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QSplitterHandle : public QSplitterHandle
 { public:
-inline bool  promoted_event(QEvent*  arg__1) { return QSplitterHandle::event(arg__1); }
 inline void promoted_paintEvent(QPaintEvent*  arg__1) { QSplitterHandle::paintEvent(arg__1); }
-inline void promoted_mouseReleaseEvent(QMouseEvent*  arg__1) { QSplitterHandle::mouseReleaseEvent(arg__1); }
-inline void promoted_mousePressEvent(QMouseEvent*  arg__1) { QSplitterHandle::mousePressEvent(arg__1); }
 inline void promoted_mouseMoveEvent(QMouseEvent*  arg__1) { QSplitterHandle::mouseMoveEvent(arg__1); }
+inline void promoted_mousePressEvent(QMouseEvent*  arg__1) { QSplitterHandle::mousePressEvent(arg__1); }
+inline void promoted_mouseReleaseEvent(QMouseEvent*  arg__1) { QSplitterHandle::mouseReleaseEvent(arg__1); }
+inline bool  promoted_event(QEvent*  arg__1) { return QSplitterHandle::event(arg__1); }
 };
 
 class PythonQtWrapper_QSplitterHandle : public QObject
@@ -97,16 +97,16 @@ public:
 public slots:
 QSplitterHandle* new_QSplitterHandle(Qt::Orientation  o, QSplitter*  parent);
 void delete_QSplitterHandle(QSplitterHandle* obj) { delete obj; } 
-   QSplitter*  splitter(QSplitterHandle* theWrappedObject) const;
-   void setOrientation(QSplitterHandle* theWrappedObject, Qt::Orientation  o);
-   bool  event(QSplitterHandle* theWrappedObject, QEvent*  arg__1);
-   Qt::Orientation  orientation(QSplitterHandle* theWrappedObject) const;
-   QSize  sizeHint(QSplitterHandle* theWrappedObject) const;
    void paintEvent(QSplitterHandle* theWrappedObject, QPaintEvent*  arg__1);
-   void mouseReleaseEvent(QSplitterHandle* theWrappedObject, QMouseEvent*  arg__1);
-   void mousePressEvent(QSplitterHandle* theWrappedObject, QMouseEvent*  arg__1);
    bool  opaqueResize(QSplitterHandle* theWrappedObject) const;
+   Qt::Orientation  orientation(QSplitterHandle* theWrappedObject) const;
+   QSplitter*  splitter(QSplitterHandle* theWrappedObject) const;
    void mouseMoveEvent(QSplitterHandle* theWrappedObject, QMouseEvent*  arg__1);
+   void mousePressEvent(QSplitterHandle* theWrappedObject, QMouseEvent*  arg__1);
+   void mouseReleaseEvent(QSplitterHandle* theWrappedObject, QMouseEvent*  arg__1);
+   bool  event(QSplitterHandle* theWrappedObject, QEvent*  arg__1);
+   void setOrientation(QSplitterHandle* theWrappedObject, Qt::Orientation  o);
+   QSize  sizeHint(QSplitterHandle* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QSPLITTERHANDLE_H

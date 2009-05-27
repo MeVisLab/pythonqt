@@ -11,9 +11,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "run");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QRunnable::staticMetaObject,
-      "run(QRunnable*)");
+    static const char* argumentList[] ={""};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -29,11 +28,11 @@ return new PythonQtShell_QRunnable(); }
 
 bool  PythonQtWrapper_QRunnable::autoDelete(QRunnable* theWrappedObject) const
 {
-return  theWrappedObject->autoDelete();
+  return ( theWrappedObject->autoDelete());
 }
 
 void PythonQtWrapper_QRunnable::setAutoDelete(QRunnable* theWrappedObject, bool  _autoDelete)
 {
- theWrappedObject->setAutoDelete(_autoDelete);
+  ( theWrappedObject->setAutoDelete(_autoDelete));
 }
 

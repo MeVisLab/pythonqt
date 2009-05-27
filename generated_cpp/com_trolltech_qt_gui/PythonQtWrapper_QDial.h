@@ -84,11 +84,11 @@ virtual void wheelEvent(QWheelEvent*  e);
 
 class PythonQtPublicPromoter_QDial : public QDial
 { public:
+inline void promoted_mouseMoveEvent(QMouseEvent*  me) { QDial::mouseMoveEvent(me); }
+inline void promoted_resizeEvent(QResizeEvent*  re) { QDial::resizeEvent(re); }
+inline void promoted_mousePressEvent(QMouseEvent*  me) { QDial::mousePressEvent(me); }
 inline void promoted_mouseReleaseEvent(QMouseEvent*  me) { QDial::mouseReleaseEvent(me); }
 inline bool  promoted_event(QEvent*  e) { return QDial::event(e); }
-inline void promoted_mousePressEvent(QMouseEvent*  me) { QDial::mousePressEvent(me); }
-inline void promoted_resizeEvent(QResizeEvent*  re) { QDial::resizeEvent(re); }
-inline void promoted_mouseMoveEvent(QMouseEvent*  me) { QDial::mouseMoveEvent(me); }
 inline void promoted_paintEvent(QPaintEvent*  pe) { QDial::paintEvent(pe); }
 };
 
@@ -98,18 +98,18 @@ public:
 public slots:
 QDial* new_QDial(QWidget*  parent = 0);
 void delete_QDial(QDial* obj) { delete obj; } 
-   QSize  minimumSizeHint(QDial* theWrappedObject) const;
-   int  notchSize(QDial* theWrappedObject) const;
-   void mouseReleaseEvent(QDial* theWrappedObject, QMouseEvent*  me);
-   bool  event(QDial* theWrappedObject, QEvent*  e);
-   void mousePressEvent(QDial* theWrappedObject, QMouseEvent*  me);
-   void resizeEvent(QDial* theWrappedObject, QResizeEvent*  re);
-   void setNotchTarget(QDial* theWrappedObject, double  target);
    bool  notchesVisible(QDial* theWrappedObject) const;
    QSize  sizeHint(QDial* theWrappedObject) const;
    qreal  notchTarget(QDial* theWrappedObject) const;
+   int  notchSize(QDial* theWrappedObject) const;
    void mouseMoveEvent(QDial* theWrappedObject, QMouseEvent*  me);
    bool  wrapping(QDial* theWrappedObject) const;
+   QSize  minimumSizeHint(QDial* theWrappedObject) const;
+   void resizeEvent(QDial* theWrappedObject, QResizeEvent*  re);
+   void mousePressEvent(QDial* theWrappedObject, QMouseEvent*  me);
+   void mouseReleaseEvent(QDial* theWrappedObject, QMouseEvent*  me);
+   bool  event(QDial* theWrappedObject, QEvent*  e);
+   void setNotchTarget(QDial* theWrappedObject, double  target);
    void paintEvent(QDial* theWrappedObject, QPaintEvent*  pe);
 };
 

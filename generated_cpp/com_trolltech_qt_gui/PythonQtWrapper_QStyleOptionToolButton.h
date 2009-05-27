@@ -25,12 +25,14 @@ class PythonQtWrapper_QStyleOptionToolButton : public QObject
 { Q_OBJECT
 public:
 Q_ENUMS(StyleOptionVersion ToolButtonFeature StyleOptionType )
+Q_FLAGS(ToolButtonFeatures )
 enum StyleOptionVersion{
   Version = QStyleOptionToolButton::Version};
 enum ToolButtonFeature{
   None = QStyleOptionToolButton::None,   Arrow = QStyleOptionToolButton::Arrow,   Menu = QStyleOptionToolButton::Menu,   MenuButtonPopup = QStyleOptionToolButton::MenuButtonPopup,   PopupDelay = QStyleOptionToolButton::PopupDelay,   HasMenu = QStyleOptionToolButton::HasMenu};
 enum StyleOptionType{
   Type = QStyleOptionToolButton::Type};
+Q_DECLARE_FLAGS(ToolButtonFeatures, ToolButtonFeature)
 public slots:
 QStyleOptionToolButton* new_QStyleOptionToolButton();
 QStyleOptionToolButton* new_QStyleOptionToolButton(const QStyleOptionToolButton&  other);

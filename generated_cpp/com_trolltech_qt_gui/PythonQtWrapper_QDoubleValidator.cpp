@@ -17,9 +17,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "childEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QDoubleValidator::staticMetaObject,
-      "childEvent(QDoubleValidator*,QChildEvent* )");
+    static const char* argumentList[] ={"" , "QChildEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -35,9 +34,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "customEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QDoubleValidator::staticMetaObject,
-      "customEvent(QDoubleValidator*,QEvent* )");
+    static const char* argumentList[] ={"" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -53,16 +51,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "event");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QDoubleValidator::staticMetaObject,
-      "event(QDoubleValidator*,QEvent* )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      bool returnValue;
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -78,16 +79,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "eventFilter");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QDoubleValidator::staticMetaObject,
-      "eventFilter(QDoubleValidator*,QObject* ,QEvent* )");
-      bool  returnValue;
+    static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
+      bool returnValue;
     void* args[3] = {NULL, (void*)&arg__1, (void*)&arg__2};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((bool *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("eventFilter", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -103,9 +107,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "fixup");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QDoubleValidator::staticMetaObject,
-      "fixup(QDoubleValidator*,QString& )");
+    static const char* argumentList[] ={"" , "QString&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -121,9 +124,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setRange");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QDoubleValidator::staticMetaObject,
-      "setRange(QDoubleValidator*,double ,double ,int )");
+    static const char* argumentList[] ={"" , "double" , "double" , "int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
     void* args[4] = {NULL, (void*)&bottom, (void*)&top, (void*)&decimals};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -139,9 +141,8 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "timerEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QDoubleValidator::staticMetaObject,
-      "timerEvent(QDoubleValidator*,QTimerEvent* )");
+    static const char* argumentList[] ={"" , "QTimerEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
@@ -157,16 +158,19 @@ if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "validate");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromMetaObjectAndSignature(
-      &PythonQtWrapper_QDoubleValidator::staticMetaObject,
-      "validate(QDoubleValidator*,QString& ,int& )");
-      QValidator::State  returnValue;
+    static const char* argumentList[] ={"QValidator::State" , "QString&" , "int&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
+      QValidator::State returnValue;
     void* args[3] = {NULL, (void*)&arg__1, (void*)&arg__2};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
-      returnValue = *((QValidator::State *)args[0]);
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("validate", methodInfo, result);
+        } else {
+          returnValue = *((QValidator::State*)args[0]);
+        }
       }
     }
     if (result) { Py_DECREF(result); } 
@@ -184,53 +188,53 @@ QDoubleValidator* PythonQtWrapper_QDoubleValidator::new_QDoubleValidator(double 
 { 
 return new PythonQtShell_QDoubleValidator(bottom, top, decimals, parent); }
 
-void PythonQtWrapper_QDoubleValidator::setRange(QDoubleValidator* theWrappedObject, double  bottom, double  top, int  decimals)
+void PythonQtWrapper_QDoubleValidator::setBottom(QDoubleValidator* theWrappedObject, double  arg__1)
 {
- ((PythonQtPublicPromoter_QDoubleValidator*)theWrappedObject)->promoted_setRange(bottom, top, decimals);
-}
-
-QValidator::State  PythonQtWrapper_QDoubleValidator::validate(QDoubleValidator* theWrappedObject, QString&  arg__1, int&  arg__2) const
-{
-return  ((PythonQtPublicPromoter_QDoubleValidator*)theWrappedObject)->promoted_validate(arg__1, arg__2);
+  ( theWrappedObject->setBottom(arg__1));
 }
 
 double  PythonQtWrapper_QDoubleValidator::top(QDoubleValidator* theWrappedObject) const
 {
-return  theWrappedObject->top();
-}
-
-void PythonQtWrapper_QDoubleValidator::setDecimals(QDoubleValidator* theWrappedObject, int  arg__1)
-{
- theWrappedObject->setDecimals(arg__1);
+  return ( theWrappedObject->top());
 }
 
 double  PythonQtWrapper_QDoubleValidator::bottom(QDoubleValidator* theWrappedObject) const
 {
-return  theWrappedObject->bottom();
+  return ( theWrappedObject->bottom());
 }
 
 QDoubleValidator::Notation  PythonQtWrapper_QDoubleValidator::notation(QDoubleValidator* theWrappedObject) const
 {
-return  theWrappedObject->notation();
-}
-
-void PythonQtWrapper_QDoubleValidator::setBottom(QDoubleValidator* theWrappedObject, double  arg__1)
-{
- theWrappedObject->setBottom(arg__1);
+  return ( theWrappedObject->notation());
 }
 
 void PythonQtWrapper_QDoubleValidator::setTop(QDoubleValidator* theWrappedObject, double  arg__1)
 {
- theWrappedObject->setTop(arg__1);
+  ( theWrappedObject->setTop(arg__1));
 }
 
 void PythonQtWrapper_QDoubleValidator::setNotation(QDoubleValidator* theWrappedObject, QDoubleValidator::Notation  arg__1)
 {
- theWrappedObject->setNotation(arg__1);
+  ( theWrappedObject->setNotation(arg__1));
 }
 
 int  PythonQtWrapper_QDoubleValidator::decimals(QDoubleValidator* theWrappedObject) const
 {
-return  theWrappedObject->decimals();
+  return ( theWrappedObject->decimals());
+}
+
+void PythonQtWrapper_QDoubleValidator::setDecimals(QDoubleValidator* theWrappedObject, int  arg__1)
+{
+  ( theWrappedObject->setDecimals(arg__1));
+}
+
+void PythonQtWrapper_QDoubleValidator::setRange(QDoubleValidator* theWrappedObject, double  bottom, double  top, int  decimals)
+{
+  ( ((PythonQtPublicPromoter_QDoubleValidator*)theWrappedObject)->promoted_setRange(bottom, top, decimals));
+}
+
+QValidator::State  PythonQtWrapper_QDoubleValidator::validate(QDoubleValidator* theWrappedObject, QString&  arg__1, int&  arg__2) const
+{
+  return ( ((PythonQtPublicPromoter_QDoubleValidator*)theWrappedObject)->promoted_validate(arg__1, arg__2));
 }
 

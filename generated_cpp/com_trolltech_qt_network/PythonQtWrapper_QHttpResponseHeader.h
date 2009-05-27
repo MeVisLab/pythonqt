@@ -30,8 +30,8 @@ virtual QString  toString() const;
 
 class PythonQtPublicPromoter_QHttpResponseHeader : public QHttpResponseHeader
 { public:
-inline QString  promoted_toString() const { return QHttpResponseHeader::toString(); }
 inline int  promoted_majorVersion() const { return QHttpResponseHeader::majorVersion(); }
+inline QString  promoted_toString() const { return QHttpResponseHeader::toString(); }
 inline int  promoted_minorVersion() const { return QHttpResponseHeader::minorVersion(); }
 inline bool  promoted_parseLine(const QString&  line, int  number) { return QHttpResponseHeader::parseLine(line, number); }
 };
@@ -45,11 +45,11 @@ QHttpResponseHeader* new_QHttpResponseHeader(const QHttpResponseHeader&  header)
 QHttpResponseHeader* new_QHttpResponseHeader(const QString&  str);
 QHttpResponseHeader* new_QHttpResponseHeader(int  code, const QString&  text = QString(), int  majorVer = 1, int  minorVer = 1);
 void delete_QHttpResponseHeader(QHttpResponseHeader* obj) { delete obj; } 
+   int  majorVersion(QHttpResponseHeader* theWrappedObject) const;
    int  statusCode(QHttpResponseHeader* theWrappedObject) const;
+   QString  toString(QHttpResponseHeader* theWrappedObject) const;
    QString  reasonPhrase(QHttpResponseHeader* theWrappedObject) const;
    void setStatusLine(QHttpResponseHeader* theWrappedObject, int  code, const QString&  text = QString(), int  majorVer = 1, int  minorVer = 1);
-   QString  toString(QHttpResponseHeader* theWrappedObject) const;
-   int  majorVersion(QHttpResponseHeader* theWrappedObject) const;
    int  minorVersion(QHttpResponseHeader* theWrappedObject) const;
    bool  parseLine(QHttpResponseHeader* theWrappedObject, const QString&  line, int  number);
 };

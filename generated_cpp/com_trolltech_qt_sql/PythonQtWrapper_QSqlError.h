@@ -19,16 +19,17 @@ public slots:
 QSqlError* new_QSqlError(const QSqlError&  other);
 QSqlError* new_QSqlError(const QString&  driverText = QString(), const QString&  databaseText = QString(), QSqlError::ErrorType  type = QSqlError::NoError, int  number = -1);
 void delete_QSqlError(QSqlError* obj) { delete obj; } 
+   QString  text(QSqlError* theWrappedObject) const;
+   QString  databaseText(QSqlError* theWrappedObject) const;
    int  number(QSqlError* theWrappedObject) const;
    void setDriverText(QSqlError* theWrappedObject, const QString&  driverText);
-   QString  text(QSqlError* theWrappedObject) const;
-   bool  isValid(QSqlError* theWrappedObject) const;
-   void setDatabaseText(QSqlError* theWrappedObject, const QString&  databaseText);
    QSqlError::ErrorType  type(QSqlError* theWrappedObject) const;
+   bool  isValid(QSqlError* theWrappedObject) const;
    void setType(QSqlError* theWrappedObject, QSqlError::ErrorType  type);
-   QString  databaseText(QSqlError* theWrappedObject) const;
-   void setNumber(QSqlError* theWrappedObject, int  number);
    QString  driverText(QSqlError* theWrappedObject) const;
+   void setNumber(QSqlError* theWrappedObject, int  number);
+   void setDatabaseText(QSqlError* theWrappedObject, const QString&  databaseText);
+    QString toString(QSqlError*);
 };
 
 #endif // PYTHONQTWRAPPER_QSQLERROR_H

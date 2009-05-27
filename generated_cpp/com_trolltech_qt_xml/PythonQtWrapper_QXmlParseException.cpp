@@ -11,26 +11,26 @@ return new QXmlParseException(name, c, l, p, s); }
 
 int  PythonQtWrapper_QXmlParseException::columnNumber(QXmlParseException* theWrappedObject) const
 {
-return  theWrappedObject->columnNumber();
-}
-
-QString  PythonQtWrapper_QXmlParseException::message(QXmlParseException* theWrappedObject) const
-{
-return  theWrappedObject->message();
-}
-
-QString  PythonQtWrapper_QXmlParseException::systemId(QXmlParseException* theWrappedObject) const
-{
-return  theWrappedObject->systemId();
-}
-
-int  PythonQtWrapper_QXmlParseException::lineNumber(QXmlParseException* theWrappedObject) const
-{
-return  theWrappedObject->lineNumber();
+  return ( theWrappedObject->columnNumber());
 }
 
 QString  PythonQtWrapper_QXmlParseException::publicId(QXmlParseException* theWrappedObject) const
 {
-return  theWrappedObject->publicId();
+  return ( theWrappedObject->publicId());
+}
+
+QString  PythonQtWrapper_QXmlParseException::message(QXmlParseException* theWrappedObject) const
+{
+  return ( theWrappedObject->message());
+}
+
+QString  PythonQtWrapper_QXmlParseException::systemId(QXmlParseException* theWrappedObject) const
+{
+  return ( theWrappedObject->systemId());
+}
+
+int  PythonQtWrapper_QXmlParseException::lineNumber(QXmlParseException* theWrappedObject) const
+{
+  return ( theWrappedObject->lineNumber());
 }
 

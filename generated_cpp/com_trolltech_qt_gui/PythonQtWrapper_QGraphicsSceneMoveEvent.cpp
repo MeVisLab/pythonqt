@@ -11,23 +11,23 @@ QGraphicsSceneMoveEvent* PythonQtWrapper_QGraphicsSceneMoveEvent::new_QGraphicsS
 { 
 return new QGraphicsSceneMoveEvent(); }
 
-void PythonQtWrapper_QGraphicsSceneMoveEvent::setOldPos(QGraphicsSceneMoveEvent* theWrappedObject, const QPointF&  pos)
-{
- theWrappedObject->setOldPos(pos);
-}
-
 QPointF  PythonQtWrapper_QGraphicsSceneMoveEvent::newPos(QGraphicsSceneMoveEvent* theWrappedObject) const
 {
-return  theWrappedObject->newPos();
+  return ( theWrappedObject->newPos());
 }
 
 void PythonQtWrapper_QGraphicsSceneMoveEvent::setNewPos(QGraphicsSceneMoveEvent* theWrappedObject, const QPointF&  pos)
 {
- theWrappedObject->setNewPos(pos);
+  ( theWrappedObject->setNewPos(pos));
 }
 
 QPointF  PythonQtWrapper_QGraphicsSceneMoveEvent::oldPos(QGraphicsSceneMoveEvent* theWrappedObject) const
 {
-return  theWrappedObject->oldPos();
+  return ( theWrappedObject->oldPos());
+}
+
+void PythonQtWrapper_QGraphicsSceneMoveEvent::setOldPos(QGraphicsSceneMoveEvent* theWrappedObject, const QPointF&  pos)
+{
+  ( theWrappedObject->setOldPos(pos));
 }
 

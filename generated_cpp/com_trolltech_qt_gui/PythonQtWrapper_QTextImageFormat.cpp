@@ -18,36 +18,36 @@ return new PythonQtShell_QTextImageFormat(); }
 
 qreal  PythonQtWrapper_QTextImageFormat::width(QTextImageFormat* theWrappedObject) const
 {
-return  theWrappedObject->width();
-}
-
-QString  PythonQtWrapper_QTextImageFormat::name(QTextImageFormat* theWrappedObject) const
-{
-return  theWrappedObject->name();
-}
-
-qreal  PythonQtWrapper_QTextImageFormat::height(QTextImageFormat* theWrappedObject) const
-{
-return  theWrappedObject->height();
-}
-
-void PythonQtWrapper_QTextImageFormat::setWidth(QTextImageFormat* theWrappedObject, qreal  width)
-{
- theWrappedObject->setWidth(width);
-}
-
-bool  PythonQtWrapper_QTextImageFormat::isValid(QTextImageFormat* theWrappedObject) const
-{
-return  theWrappedObject->isValid();
-}
-
-void PythonQtWrapper_QTextImageFormat::setName(QTextImageFormat* theWrappedObject, const QString&  name)
-{
- theWrappedObject->setName(name);
+  return ( theWrappedObject->width());
 }
 
 void PythonQtWrapper_QTextImageFormat::setHeight(QTextImageFormat* theWrappedObject, qreal  height)
 {
- theWrappedObject->setHeight(height);
+  ( theWrappedObject->setHeight(height));
+}
+
+bool  PythonQtWrapper_QTextImageFormat::isValid(QTextImageFormat* theWrappedObject) const
+{
+  return ( theWrappedObject->isValid());
+}
+
+void PythonQtWrapper_QTextImageFormat::setName(QTextImageFormat* theWrappedObject, const QString&  name)
+{
+  ( theWrappedObject->setName(name));
+}
+
+void PythonQtWrapper_QTextImageFormat::setWidth(QTextImageFormat* theWrappedObject, qreal  width)
+{
+  ( theWrappedObject->setWidth(width));
+}
+
+qreal  PythonQtWrapper_QTextImageFormat::height(QTextImageFormat* theWrappedObject) const
+{
+  return ( theWrappedObject->height());
+}
+
+QString  PythonQtWrapper_QTextImageFormat::name(QTextImageFormat* theWrappedObject) const
+{
+  return ( theWrappedObject->name());
 }
 

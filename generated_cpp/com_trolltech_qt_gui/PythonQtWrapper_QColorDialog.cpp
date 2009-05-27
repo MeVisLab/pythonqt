@@ -32,33 +32,33 @@
 #include <qstyle.h>
 #include <qwidget.h>
 
+void PythonQtWrapper_QColorDialog::static_QColorDialog_setCustomColor(int  arg__1, unsigned int  arg__2)
+{
+  (QColorDialog::setCustomColor(arg__1, arg__2));
+}
+
 QColor  PythonQtWrapper_QColorDialog::static_QColorDialog_getColor(const QColor&  init, QWidget*  parent)
 {
-return QColorDialog::getColor(init, parent);
+  return (QColorDialog::getColor(init, parent));
 }
 
 void PythonQtWrapper_QColorDialog::static_QColorDialog_setStandardColor(int  arg__1, unsigned int  arg__2)
 {
-QColorDialog::setStandardColor(arg__1, arg__2);
+  (QColorDialog::setStandardColor(arg__1, arg__2));
 }
 
 void PythonQtWrapper_QColorDialog::changeEvent(QColorDialog* theWrappedObject, QEvent*  e)
 {
- ((PythonQtPublicPromoter_QColorDialog*)theWrappedObject)->promoted_changeEvent(e);
-}
-
-unsigned int  PythonQtWrapper_QColorDialog::static_QColorDialog_customColor(int  arg__1)
-{
-return QColorDialog::customColor(arg__1);
+  ( ((PythonQtPublicPromoter_QColorDialog*)theWrappedObject)->promoted_changeEvent(e));
 }
 
 int  PythonQtWrapper_QColorDialog::static_QColorDialog_customCount()
 {
-return QColorDialog::customCount();
+  return (QColorDialog::customCount());
 }
 
-void PythonQtWrapper_QColorDialog::static_QColorDialog_setCustomColor(int  arg__1, unsigned int  arg__2)
+unsigned int  PythonQtWrapper_QColorDialog::static_QColorDialog_customColor(int  arg__1)
 {
-QColorDialog::setCustomColor(arg__1, arg__2);
+  return (QColorDialog::customColor(arg__1));
 }
 

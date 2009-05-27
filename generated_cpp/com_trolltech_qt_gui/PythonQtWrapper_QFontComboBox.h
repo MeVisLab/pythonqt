@@ -100,18 +100,20 @@ class PythonQtWrapper_QFontComboBox : public QObject
 { Q_OBJECT
 public:
 Q_ENUMS(FontFilter )
+Q_FLAGS(FontFilters )
 enum FontFilter{
   AllFonts = QFontComboBox::AllFonts,   ScalableFonts = QFontComboBox::ScalableFonts,   NonScalableFonts = QFontComboBox::NonScalableFonts,   MonospacedFonts = QFontComboBox::MonospacedFonts,   ProportionalFonts = QFontComboBox::ProportionalFonts};
+Q_DECLARE_FLAGS(FontFilters, FontFilter)
 public slots:
 QFontComboBox* new_QFontComboBox(QWidget*  parent = 0);
 void delete_QFontComboBox(QFontComboBox* obj) { delete obj; } 
+   QFont  currentFont(QFontComboBox* theWrappedObject) const;
+   QFontDatabase::WritingSystem  writingSystem(QFontComboBox* theWrappedObject) const;
+   QFontComboBox::FontFilters  fontFilters(QFontComboBox* theWrappedObject) const;
    void setFontFilters(QFontComboBox* theWrappedObject, QFontComboBox::FontFilters  filters);
    bool  event(QFontComboBox* theWrappedObject, QEvent*  e);
    void setWritingSystem(QFontComboBox* theWrappedObject, QFontDatabase::WritingSystem  arg__1);
    QSize  sizeHint(QFontComboBox* theWrappedObject) const;
-   QFont  currentFont(QFontComboBox* theWrappedObject) const;
-   QFontDatabase::WritingSystem  writingSystem(QFontComboBox* theWrappedObject) const;
-   QFontComboBox::FontFilters  fontFilters(QFontComboBox* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QFONTCOMBOBOX_H

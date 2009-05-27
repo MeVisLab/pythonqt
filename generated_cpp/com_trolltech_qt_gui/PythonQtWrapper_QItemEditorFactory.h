@@ -24,8 +24,8 @@ virtual QByteArray  valuePropertyName(QVariant::Type  type) const;
 
 class PythonQtPublicPromoter_QItemEditorFactory : public QItemEditorFactory
 { public:
-inline QWidget*  promoted_createEditor(QVariant::Type  type, QWidget*  parent) const { return QItemEditorFactory::createEditor(type, parent); }
 inline QByteArray  promoted_valuePropertyName(QVariant::Type  type) const { return QItemEditorFactory::valuePropertyName(type); }
+inline QWidget*  promoted_createEditor(QVariant::Type  type, QWidget*  parent) const { return QItemEditorFactory::createEditor(type, parent); }
 };
 
 class PythonQtWrapper_QItemEditorFactory : public QObject
@@ -34,11 +34,11 @@ public:
 public slots:
 QItemEditorFactory* new_QItemEditorFactory();
 void delete_QItemEditorFactory(QItemEditorFactory* obj) { delete obj; } 
-   QWidget*  createEditor(QItemEditorFactory* theWrappedObject, QVariant::Type  type, QWidget*  parent) const;
    void static_QItemEditorFactory_setDefaultFactory(QItemEditorFactory*  factory);
    const QItemEditorFactory*  static_QItemEditorFactory_defaultFactory();
    void registerEditor(QItemEditorFactory* theWrappedObject, QVariant::Type  type, QItemEditorCreatorBase*  creator);
    QByteArray  valuePropertyName(QItemEditorFactory* theWrappedObject, QVariant::Type  type) const;
+   QWidget*  createEditor(QItemEditorFactory* theWrappedObject, QVariant::Type  type, QWidget*  parent) const;
 };
 
 #endif // PYTHONQTWRAPPER_QITEMEDITORFACTORY_H

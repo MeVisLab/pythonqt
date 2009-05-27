@@ -98,6 +98,7 @@ enum StyleMask{
 public slots:
 QFrame* new_QFrame(QWidget*  parent = 0, Qt::WindowFlags  f = 0);
 void delete_QFrame(QFrame* obj) { delete obj; } 
+   void setFrameShape(QFrame* theWrappedObject, QFrame::Shape  arg__1);
    int  lineWidth(QFrame* theWrappedObject) const;
    void setFrameRect(QFrame* theWrappedObject, const QRect&  arg__1);
    QRect  frameRect(QFrame* theWrappedObject) const;
@@ -114,7 +115,6 @@ void delete_QFrame(QFrame* obj) { delete obj; }
    void setFrameShadow(QFrame* theWrappedObject, QFrame::Shadow  arg__1);
    void setFrameStyle(QFrame* theWrappedObject, int  arg__1);
    bool  event(QFrame* theWrappedObject, QEvent*  e);
-   void setFrameShape(QFrame* theWrappedObject, QFrame::Shape  arg__1);
 };
 
 #endif // PYTHONQTWRAPPER_QFRAME_H

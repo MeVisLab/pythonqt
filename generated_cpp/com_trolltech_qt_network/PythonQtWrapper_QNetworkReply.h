@@ -51,11 +51,11 @@ virtual qint64  writeData(const char*  data, qint64  len);
 
 class PythonQtPublicPromoter_QNetworkReply : public QNetworkReply
 { public:
+inline void promoted_close() { QNetworkReply::close(); }
+inline void promoted_ignoreSslErrors() { QNetworkReply::ignoreSslErrors(); }
 inline bool  promoted_isSequential() const { return QNetworkReply::isSequential(); }
 inline void promoted_setReadBufferSize(qint64  size) { QNetworkReply::setReadBufferSize(size); }
 inline qint64  promoted_writeData(const char*  data, qint64  len) { return QNetworkReply::writeData(data, len); }
-inline void promoted_close() { QNetworkReply::close(); }
-inline void promoted_ignoreSslErrors() { QNetworkReply::ignoreSslErrors(); }
 };
 
 class PythonQtWrapper_QNetworkReply : public QObject
@@ -63,6 +63,9 @@ class PythonQtWrapper_QNetworkReply : public QObject
 public:
 public slots:
 void delete_QNetworkReply(QNetworkReply* obj) { delete obj; } 
+   QNetworkRequest  request(QNetworkReply* theWrappedObject) const;
+   void close(QNetworkReply* theWrappedObject);
+   QNetworkReply::NetworkError  error(QNetworkReply* theWrappedObject) const;
    QUrl  url(QNetworkReply* theWrappedObject) const;
    bool  hasRawHeader(QNetworkReply* theWrappedObject, const QByteArray&  headerName) const;
    QList<QByteArray >  rawHeaderList(QNetworkReply* theWrappedObject) const;
@@ -75,9 +78,6 @@ void delete_QNetworkReply(QNetworkReply* obj) { delete obj; }
    qint64  readBufferSize(QNetworkReply* theWrappedObject) const;
    QVariant  header(QNetworkReply* theWrappedObject, QNetworkRequest::KnownHeaders  header) const;
    QNetworkAccessManager*  manager(QNetworkReply* theWrappedObject) const;
-   QNetworkRequest  request(QNetworkReply* theWrappedObject) const;
-   void close(QNetworkReply* theWrappedObject);
-   QNetworkReply::NetworkError  error(QNetworkReply* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QNETWORKREPLY_H

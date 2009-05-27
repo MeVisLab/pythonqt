@@ -17,6 +17,6 @@ return new PythonQtShell_QStyleOption(version, type); }
 
 void PythonQtWrapper_QStyleOption::initFrom(QStyleOption* theWrappedObject, const QWidget*  w)
 {
- theWrappedObject->initFrom(w);
+  ( theWrappedObject->initFrom(w));
 }
 

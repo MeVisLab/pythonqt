@@ -31,13 +31,13 @@ QContextMenuEvent* new_QContextMenuEvent(QContextMenuEvent::Reason  reason, cons
 QContextMenuEvent* new_QContextMenuEvent(QContextMenuEvent::Reason  reason, const QPoint&  pos, const QPoint&  globalPos);
 QContextMenuEvent* new_QContextMenuEvent(QContextMenuEvent::Reason  reason, const QPoint&  pos, const QPoint&  globalPos, Qt::KeyboardModifiers  modifiers);
 void delete_QContextMenuEvent(QContextMenuEvent* obj) { delete obj; } 
-   const QPoint&  globalPos(QContextMenuEvent* theWrappedObject) const;
+   const QPoint*  globalPos(QContextMenuEvent* theWrappedObject) const;
    int  globalX(QContextMenuEvent* theWrappedObject) const;
    int  globalY(QContextMenuEvent* theWrappedObject) const;
    int  y(QContextMenuEvent* theWrappedObject) const;
    QContextMenuEvent::Reason  reason(QContextMenuEvent* theWrappedObject) const;
    int  x(QContextMenuEvent* theWrappedObject) const;
-   const QPoint&  pos(QContextMenuEvent* theWrappedObject) const;
+   const QPoint*  pos(QContextMenuEvent* theWrappedObject) const;
 };
 
 #endif // PYTHONQTWRAPPER_QCONTEXTMENUEVENT_H

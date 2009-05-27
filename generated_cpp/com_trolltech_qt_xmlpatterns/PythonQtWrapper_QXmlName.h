@@ -21,13 +21,13 @@ QXmlName* a = new QXmlName();
 *((QXmlName*)a) = other;
 return a; }
 void delete_QXmlName(QXmlName* obj) { delete obj; } 
+   bool  operator_equal(QXmlName* theWrappedObject, const QXmlName&  other) const;
    QString  toClarkName(QXmlName* theWrappedObject, const QXmlNamePool&  query) const;
    QString  prefix(QXmlName* theWrappedObject, const QXmlNamePool&  query) const;
-   QString  localName(QXmlName* theWrappedObject, const QXmlNamePool&  query) const;
-   bool  static_QXmlName_isNCName(const QString&  candidate);
    bool  isNull(QXmlName* theWrappedObject) const;
+   QString  localName(QXmlName* theWrappedObject, const QXmlNamePool&  query) const;
    QString  namespaceUri(QXmlName* theWrappedObject, const QXmlNamePool&  query) const;
-   bool  operator_equal(QXmlName* theWrappedObject, const QXmlName&  other) const;
+   bool  static_QXmlName_isNCName(const QString&  candidate);
 };
 
 #endif // PYTHONQTWRAPPER_QXMLNAME_H
