@@ -277,14 +277,18 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
     return PythonQtSlotFunction_New(member._slot, obj, NULL);
     break;
   case PythonQtMemberInfo::EnumValue:
+    {
     PyObject* enumValue = member._enumValue;
     Py_INCREF(enumValue);
     return enumValue;
+    }
     break;
   case PythonQtMemberInfo::EnumWrapper:
+    {
     PyObject* enumWrapper = member._enumWrapper;
     Py_INCREF(enumWrapper);
     return enumWrapper;
+    }
     break;
     default:
       // is an invalid type, go on
