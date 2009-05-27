@@ -91,7 +91,7 @@ public slots:
   int static_Qt_qrand() { return qrand(); }
   void static_Qt_qsrand(uint a) { qsrand(a); }
 
-  QString tr(QObject* obj, const QByteArray& text, const QByteArray& text = QByteArray(), int n = -1);
+  QString tr(QObject* obj, const QByteArray& text, const QByteArray& ambig = QByteArray(), int n = -1);
   
   QByteArray static_Qt_SIGNAL(const QByteArray& s) { return QByteArray("2") + s; }
   QByteArray static_Qt_SLOT(const QByteArray& s) { return QByteArray("1") + s; }
