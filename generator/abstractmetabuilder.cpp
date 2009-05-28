@@ -544,7 +544,11 @@ bool AbstractMetaBuilder::build()
     }
 
     {
-      FunctionList stream_operators = m_dom->findFunctions("operator+") + m_dom->findFunctions("operator-") + m_dom->findFunctions("operator/") + m_dom->findFunctions("operator*");
+      FunctionList stream_operators =
+          m_dom->findFunctions("operator+") + m_dom->findFunctions("operator-")
+        + m_dom->findFunctions("operator/") + m_dom->findFunctions("operator*")
+        + m_dom->findFunctions("operator&") + m_dom->findFunctions("operator|")
+        + m_dom->findFunctions("operator%") + m_dom->findFunctions("operator^");
       foreach (FunctionModelItem item, stream_operators) {
         traverseBinaryArithmeticOperator(item);
       }
