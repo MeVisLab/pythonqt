@@ -294,6 +294,46 @@ void AbstractMetaBuilder::traverseStreamOperator(FunctionModelItem item)
     }
 }
 
+void AbstractMetaBuilder::traverseBinaryArithmeticOperator(FunctionModelItem item)
+{
+  ArgumentList arguments = item->arguments();
+  if (arguments.size() == 2 && item->accessPolicy() == CodeModel::Public) {
+    AbstractMetaClass *aClass = argumentToClass(arguments.at(0));
+    AbstractMetaClass *bClass = argumentToClass(arguments.at(1));
+
+    if (!aClass) return;
+
+    AbstractMetaClass *old_current_class = m_current_class;
+    m_current_class = aClass;
+    AbstractMetaFunction *streamFunction = traverseFunction(item);
+    if (streamFunction != 0 && !streamFunction->isInvalid()) {
+      QString name = rename_operator(item->name().mid(8));
+      if (name.isEmpty()) return;
+
+      streamFunction->setFunctionType(AbstractMetaFunction::GlobalScopeFunction);
+      streamFunction->setName(name);
+
+      // Strip away the first argument, since that is the operator object
+      AbstractMetaArgumentList arguments = streamFunction->arguments();
+      arguments.removeFirst();
+      streamFunction->setArguments(arguments);
+
+      *streamFunction += AbstractMetaAttributes::Final;
+      *streamFunction += AbstractMetaAttributes::Public;
+      streamFunction->setOriginalAttributes(streamFunction->attributes());
+
+      setupFunctionDefaults(streamFunction, aClass);
+
+      aClass->addFunction(streamFunction);
+      if (bClass) {
+        aClass->typeEntry()->addExtraInclude(bClass->typeEntry()->include());
+      }
+
+      m_current_class = old_current_class;
+    }
+  }
+}
+
 void AbstractMetaBuilder::fixQObjectForScope(TypeDatabase *types,
 					 NamespaceModelItem scope)
 {
@@ -502,8 +542,13 @@ bool AbstractMetaBuilder::build()
             traverseCompareOperator(item);
         }
     }
-    // TODO XXX search and add operator+ etc. to the classes here!
 
+    {
+      FunctionList stream_operators = m_dom->findFunctions("operator+") + m_dom->findFunctions("operator-") + m_dom->findFunctions("operator/") + m_dom->findFunctions("operator*");
+      foreach (FunctionModelItem item, stream_operators) {
+        traverseBinaryArithmeticOperator(item);
+      }
+    }
     {
         FunctionList stream_operators = m_dom->findFunctions("operator<<") + m_dom->findFunctions("operator>>");
         foreach (FunctionModelItem item, stream_operators) {

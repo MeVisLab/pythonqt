@@ -80,6 +80,8 @@ public:
     void traverseFields(ScopeModelItem item, AbstractMetaClass *parent);
     void traverseStreamOperator(FunctionModelItem function_item);
     void traverseCompareOperator(FunctionModelItem item);
+    void traverseBinaryArithmeticOperator(FunctionModelItem item);
+
     AbstractMetaFunction *traverseFunction(FunctionModelItem function);
     AbstractMetaField *traverseField(VariableModelItem field, const AbstractMetaClass *cls);
     void checkFunctionModifications();
