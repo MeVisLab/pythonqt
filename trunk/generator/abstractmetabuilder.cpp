@@ -53,30 +53,30 @@ QString rename_operator(const QString &oper)
     if (!operator_names) {
         operator_names = new QHash<QString, QString>;
 
-        operator_names->insert("+", "add");
-        operator_names->insert("-", "subtract");
-        operator_names->insert("*", "multiply");
-        operator_names->insert("/", "divide");
-        operator_names->insert("%", "modulo");
-        operator_names->insert("&", "and");
-        operator_names->insert("|", "or");
-        operator_names->insert("^", "xor");
-        operator_names->insert("~", "negate");
-        operator_names->insert("<<", "shift_left");
-        operator_names->insert(">>", "shift_right");
+        operator_names->insert("+", "__add__");
+        operator_names->insert("-", "__sub__");
+        operator_names->insert("*", "__mul__");
+        operator_names->insert("/", "__div__");
+        operator_names->insert("%", "__mod__");
+        operator_names->insert("&", "__and__");
+        operator_names->insert("|", "__or__");
+        operator_names->insert("^", "__xor__");
+        operator_names->insert("~", "__negate__");
+        operator_names->insert("<<", "__lshift__");
+        operator_names->insert(">>", "__rshift__");
 
         // assigments
         operator_names->insert("=", "assign");
-        operator_names->insert("+=", "add_assign");
-        operator_names->insert("-=", "subtract_assign");
-        operator_names->insert("*=", "multiply_assign");
-        operator_names->insert("/=", "divide_assign");
-        operator_names->insert("%=", "modulo_assign");
-        operator_names->insert("&=", "and_assign");
-        operator_names->insert("|=", "or_assign");
-        operator_names->insert("^=", "xor_assign");
-        operator_names->insert("<<=", "shift_left_assign");
-        operator_names->insert(">>=", "shift_right_assign");
+        operator_names->insert("+=", "__iadd__");
+        operator_names->insert("-=", "__isub__");
+        operator_names->insert("*=", "__imul__");
+        operator_names->insert("/=", "__idiv__");
+        operator_names->insert("%=", "__imod__");
+        operator_names->insert("&=", "__iand__");
+        operator_names->insert("|=", "__ior__");
+        operator_names->insert("^=", "__ixor__");
+        operator_names->insert("<<=", "__ilshift__");
+        operator_names->insert(">>=", "__irshift__");
 
         // Logical
         operator_names->insert("&&", "logical_and");
@@ -117,7 +117,12 @@ QString rename_operator(const QString &oper)
         }
     }
 
-    return "operator_" + operator_names->value(op);
+    QString r = operator_names->value(op);
+    if (r.startsWith("__")) {
+      return r;
+    } else {
+      return "operator_" + r;
+    }
 }
 
 AbstractMetaBuilder::AbstractMetaBuilder()
