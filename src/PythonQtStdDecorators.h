@@ -70,7 +70,7 @@ public slots:
   QObject* parent(QObject* o);
   void setParent(QObject* o, QObject* parent);
 
-  QVariantList children(QObject* o);
+  const QObjectList* children(QObject* o);
   
   double static_Qt_qAbs(double a) { return qAbs(a); }
   double static_Qt_qBound(double a,double b,double c) { return qBound(a,b,c); }

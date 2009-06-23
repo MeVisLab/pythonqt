@@ -185,7 +185,13 @@ PyObject *PythonQtSlotFunction_Call(PyObject *func, PyObject *args, PyObject *kw
   PythonQtSlotInfo*    info = f->m_ml;
   if (PyObject_TypeCheck(f->m_self, &PythonQtInstanceWrapper_Type)) {
     PythonQtInstanceWrapper* self = (PythonQtInstanceWrapper*) f->m_self;
-    return PythonQtSlotFunction_CallImpl(self->classInfo(), self->_obj, info, args, kw, self->_wrappedPtr);
+    if (!info->isClassDecorator() && (self->_obj==NULL && self->_wrappedPtr==NULL)) {
+      QString error = QString("Trying to call '") + f->m_ml->slotName() + "' on a destroyed " + self->classInfo()->className() + " object";
+      PyErr_SetString(PyExc_ValueError, error.toLatin1().data());
+      return NULL;
+    } else {
+      return PythonQtSlotFunction_CallImpl(self->classInfo(), self->_obj, info, args, kw, self->_wrappedPtr);
+    }
   } else if (f->m_self->ob_type == &PythonQtClassWrapper_Type) {
     PythonQtClassWrapper* type = (PythonQtClassWrapper*) f->m_self;
     if (info->isClassDecorator()) {
@@ -198,6 +204,11 @@ PyObject *PythonQtSlotFunction_Call(PyObject *func, PyObject *args, PyObject *kw
         if (PyObject_TypeCheck(firstArg, (PyTypeObject*)&PythonQtInstanceWrapper_Type)
           && ((PythonQtInstanceWrapper*)firstArg)->classInfo()->inherits(type->classInfo())) {
           PythonQtInstanceWrapper* self = (PythonQtInstanceWrapper*)firstArg;
+          if (!info->isClassDecorator() && (self->_obj==NULL && self->_wrappedPtr==NULL)) {
+            QString error = QString("Trying to call '") + f->m_ml->slotName() + "' on a destroyed " + self->classInfo()->className() + " object";
+            PyErr_SetString(PyExc_ValueError, error.toLatin1().data());
+            return NULL;
+          }
           // strip the first argument...
           PyObject* newargs = PyTuple_GetSlice(args, 1, argc);
           PyObject* result = PythonQtSlotFunction_CallImpl(self->classInfo(), self->_obj, info, newargs, kw, self->_wrappedPtr);
