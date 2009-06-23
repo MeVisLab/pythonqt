@@ -80,11 +80,16 @@ PyObject* PythonQtConv::ConvertQtValueToPython(const PythonQtMethodInfo::Paramet
   } else if ((info.typeId == PythonQtMethodInfo::Unknown || info.typeId >= QMetaType::User) &&
              info.name.startsWith("QList<")) {
     // it is a QList template:
-    // (TODO: check what happens if this is a pointer type?!)
     QByteArray innerType = info.name.mid(6,info.name.length()-7);
     if (innerType.endsWith("*")) {
       innerType.truncate(innerType.length()-1);
-      return ConvertQListOfPointerTypeToPythonList((QList<void*>*)data, innerType);
+      QList<void*>* listPtr;
+      if (info.isPointer) {
+        listPtr = *((QList<void*>**)data);
+      } else {
+        listPtr = (QList<void*>*)data;
+      }
+      return ConvertQListOfPointerTypeToPythonList(listPtr, innerType);
     }
   }
   

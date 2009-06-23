@@ -144,14 +144,9 @@ void PythonQtStdDecorators::setParent(QObject* o, QObject* parent)
   o->setParent(parent);
 }
 
-QVariantList PythonQtStdDecorators::children(QObject* o)
+const QObjectList* PythonQtStdDecorators::children(QObject* o)
 {
-  QVariantList v;
-  QListIterator<QObject*> it(o->children());
-  while (it.hasNext()) {
-    v << qVariantFromValue(it.next());
-  }
-  return v;
+  return &o->children();
 }
 
 QString PythonQtStdDecorators::tr(QObject* obj, const QByteArray& text, const QByteArray& ambig, int n)
