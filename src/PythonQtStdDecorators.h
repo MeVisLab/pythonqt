@@ -71,6 +71,9 @@ public slots:
   void setParent(QObject* o, QObject* parent);
 
   const QObjectList* children(QObject* o);
+  QObject* findChild(QObject* parent, PyObject* type, const QString& name = QString());
+  QList<QObject*> findChildren(QObject* parent, PyObject* type, const QString& name= QString());
+  QList<QObject*> findChildren(QObject* parent, PyObject* type, const QRegExp& regExp);
   
   double static_Qt_qAbs(double a) { return qAbs(a); }
   double static_Qt_qBound(double a,double b,double c) { return qBound(a,b,c); }
@@ -96,7 +99,10 @@ public slots:
   QByteArray static_Qt_SIGNAL(const QByteArray& s) { return QByteArray("2") + s; }
   QByteArray static_Qt_SLOT(const QByteArray& s) { return QByteArray("1") + s; }
 
-  //TODO: add findChild/findChildren/children/...
+private:
+  QObject* findChild(QObject* parent, const char* typeName, const QMetaObject* meta, const QString& name);
+  int findChildren(QObject* parent, const char* typeName, const QMetaObject* meta, const QString& name, QList<QObject*>& list);
+  int findChildren(QObject* parent, const char* typeName, const QMetaObject* meta, const QRegExp& regExp, QList<QObject*>& list);
 };
 
 
