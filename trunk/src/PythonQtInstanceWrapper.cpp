@@ -228,16 +228,18 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
     PyObject* dict = PyBaseObject_Type.tp_getattro(obj, name);
     dict = PyDict_Copy(dict);
 
-    // only the properties are missing, the rest is already available from
-    // PythonQtClassWrapper...
-    QStringList l = wrapper->classInfo()->propertyList();
-    foreach (QString name, l) {
-      PyObject* o = PyObject_GetAttrString(obj, name.toLatin1().data());
-      if (o) {
-        PyDict_SetItemString(dict, name.toLatin1().data(), o);
-        Py_DECREF(o);
-      } else {
-        std::cerr << "PythonQtInstanceWrapper: something is wrong, could not get attribute " << name.toLatin1().data();
+    if (wrapper->_obj) {
+      // only the properties are missing, the rest is already available from
+      // PythonQtClassWrapper...
+      QStringList l = wrapper->classInfo()->propertyList();
+      foreach (QString name, l) {
+        PyObject* o = PyObject_GetAttrString(obj, name.toLatin1().data());
+        if (o) {
+          PyDict_SetItemString(dict, name.toLatin1().data(), o);
+          Py_DECREF(o);
+        } else {
+          std::cerr << "PythonQtInstanceWrapper: something is wrong, could not get attribute " << name.toLatin1().data();
+        }
       }
     }
     // Note: we do not put children into the dict, is would look confusing?!
@@ -250,12 +252,6 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
     return superAttr;
   }
   PyErr_Clear();
-
-  if (!wrapper->_obj && !wrapper->_wrappedPtr) {
-    QString error = QString("Trying to read attribute '") + attributeName + "' from a destroyed " + wrapper->classInfo()->className() + " object";
-    PyErr_SetString(PyExc_ValueError, error.toLatin1().data());
-    return NULL;
-  }
 
   //  mlabDebugConst("Python","get " << attributeName);
 
@@ -271,6 +267,10 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
         Py_INCREF(Py_None);
         return Py_None;
       }
+    } else {
+      QString error = QString("Trying to read property '") + attributeName + "' from a destroyed " + wrapper->classInfo()->className() + " object";
+      PyErr_SetString(PyExc_ValueError, error.toLatin1().data());
+      return NULL;
     }
     break;
   case PythonQtMemberInfo::Slot:
@@ -278,24 +278,24 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
     break;
   case PythonQtMemberInfo::EnumValue:
     {
-    PyObject* enumValue = member._enumValue;
-    Py_INCREF(enumValue);
-    return enumValue;
+      PyObject* enumValue = member._enumValue;
+      Py_INCREF(enumValue);
+      return enumValue;
     }
     break;
   case PythonQtMemberInfo::EnumWrapper:
     {
-    PyObject* enumWrapper = member._enumWrapper;
-    Py_INCREF(enumWrapper);
-    return enumWrapper;
+      PyObject* enumWrapper = member._enumWrapper;
+      Py_INCREF(enumWrapper);
+      return enumWrapper;
     }
     break;
-    default:
-      // is an invalid type, go on
+  default:
+    // is an invalid type, go on
     break;
   }
 
-  // look for the interal methods (className(), help())
+  // look for the internal methods (className(), help())
   PyObject* internalMethod = Py_FindMethod( PythonQtInstanceWrapper_methods, obj, (char*)attributeName);
   if (internalMethod) {
     return internalMethod;
