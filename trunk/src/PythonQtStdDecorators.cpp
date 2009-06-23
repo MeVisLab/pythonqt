@@ -154,3 +154,151 @@ QString PythonQtStdDecorators::tr(QObject* obj, const QByteArray& text, const QB
   return QCoreApplication::translate(obj->metaObject()->className(), text.constData(), ambig.constData(), QCoreApplication::CodecForTr, n);
 }
 
+QObject* PythonQtStdDecorators::findChild(QObject* parent, PyObject* type, const QString& name)
+{
+  const QMetaObject* meta = NULL;
+  const char* typeName = NULL;
+
+  if (PyObject_TypeCheck(type, &PythonQtClassWrapper_Type)) {
+    meta = ((PythonQtClassWrapper*)type)->classInfo()->metaObject();
+  } else if (PyObject_TypeCheck(type, &PythonQtInstanceWrapper_Type)) {
+    meta = ((PythonQtInstanceWrapper*)type)->classInfo()->metaObject();
+  } else if (PyString_Check(type)) {
+    typeName = PyString_AsString(type);
+  }
+
+  if (!typeName && !meta)
+    return NULL;
+
+  return findChild(parent, typeName, meta, name);
+}
+
+QList<QObject*> PythonQtStdDecorators::findChildren(QObject* parent, PyObject* type, const QString& name)
+{
+  const QMetaObject* meta = NULL;
+  const char* typeName = NULL;
+
+  if (PyObject_TypeCheck(type, &PythonQtClassWrapper_Type)) {
+    meta = ((PythonQtClassWrapper*)type)->classInfo()->metaObject();
+  } else if (PyObject_TypeCheck(type, &PythonQtInstanceWrapper_Type)) {
+    meta = ((PythonQtInstanceWrapper*)type)->classInfo()->metaObject();
+  } else if (PyString_Check(type)) {
+    typeName = PyString_AsString(type);
+  }
+
+  QList<QObject*> list;
+
+  if (!typeName && !meta)
+    return list;
+
+  findChildren(parent, typeName, meta, name, list);
+
+  return list;
+}
+
+QList<QObject*> PythonQtStdDecorators::findChildren(QObject* parent, PyObject* type, const QRegExp& regExp)
+{
+  const QMetaObject* meta = NULL;
+  const char* typeName = NULL;
+
+  if (PyObject_TypeCheck(type, &PythonQtClassWrapper_Type)) {
+    meta = ((PythonQtClassWrapper*)type)->classInfo()->metaObject();
+  } else if (PyObject_TypeCheck(type, &PythonQtInstanceWrapper_Type)) {
+    meta = ((PythonQtInstanceWrapper*)type)->classInfo()->metaObject();
+  } else if (PyString_Check(type)) {
+    typeName = PyString_AsString(type);
+  }
+
+  QList<QObject*> list;
+
+  if (!typeName && !meta)
+    return list;
+
+  findChildren(parent, typeName, meta, regExp, list);
+
+  return list;
+}
+
+QObject* PythonQtStdDecorators::findChild(QObject* parent, const char* typeName, const QMetaObject* meta, const QString& name)
+{
+  const QObjectList &children = parent->children();
+
+  int i;
+  for (i = 0; i < children.size(); ++i) {
+    QObject* obj = children.at(i);
+
+    if (!obj)
+      return NULL;
+
+    // Skip if the name doesn't match.
+    if (!name.isNull() && obj->objectName() != name)
+      continue;
+
+    if ((typeName && obj->inherits(typeName)) ||        
+      (meta && meta->cast(obj)))
+      return obj;
+  }
+
+  for (i = 0; i < children.size(); ++i) {
+    QObject* obj = findChild(children.at(i), typeName, meta, name);
+
+    if (obj != NULL)
+      return obj;
+  }
+
+  return NULL;
+}
+
+int PythonQtStdDecorators::findChildren(QObject* parent, const char* typeName, const QMetaObject* meta, const QString& name, QList<QObject*>& list)
+{
+  const QObjectList& children = parent->children();
+  int i;
+
+  for (i = 0; i < children.size(); ++i) {
+    QObject* obj = children.at(i);
+
+    if (!obj)
+      return -1;
+
+    // Skip if the name doesn't match.
+    if (!name.isNull() && obj->objectName() != name)
+      continue;
+
+    if ((typeName && obj->inherits(typeName)) ||        
+      (meta && meta->cast(obj))) {
+        list += obj;
+    }
+
+    if (findChildren(obj, typeName, meta, name, list) < 0)
+      return -1;
+  }
+
+  return 0;
+}
+
+int PythonQtStdDecorators::findChildren(QObject* parent, const char* typeName, const QMetaObject* meta, const QRegExp& regExp, QList<QObject*>& list)
+{
+  const QObjectList& children = parent->children();
+  int i;
+
+  for (i = 0; i < children.size(); ++i) {
+    QObject* obj = children.at(i);
+
+    if (!obj)
+      return -1;
+
+    // Skip if the name doesn't match.
+    if (regExp.indexIn(obj->objectName()) == -1)
+      continue;
+
+    if ((typeName && obj->inherits(typeName)) ||        
+      (meta && meta->cast(obj))) {
+        list += obj;
+    }
+
+    if (findChildren(obj, typeName, meta, regExp, list) < 0)
+      return -1;
+  }
+
+  return 0;
+}
