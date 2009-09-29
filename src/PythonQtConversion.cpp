@@ -49,8 +49,8 @@ PythonQtValueStorage<qint64, 128>  PythonQtConv::global_valueStorage;
 PythonQtValueStorage<void*, 128>   PythonQtConv::global_ptrStorage;
 PythonQtValueStorage<QVariant, 32> PythonQtConv::global_variantStorage;
 
-QHash<int, PythonQtConvertMetaTypeToPythonCB*> PythonQtConv::_metaTypeToPythonConverters; 
-QHash<int, PythonQtConvertPythonToMetaTypeCB*> PythonQtConv::_pythonToMetaTypeConverters; 
+QHash<int, PythonQtConvertMetaTypeToPythonCB*> PythonQtConv::_metaTypeToPythonConverters;
+QHash<int, PythonQtConvertPythonToMetaTypeCB*> PythonQtConv::_pythonToMetaTypeConverters;
 
 PyObject* PythonQtConv::GetPyBool(bool val)
 {
@@ -92,7 +92,7 @@ PyObject* PythonQtConv::ConvertQtValueToPython(const PythonQtMethodInfo::Paramet
       return ConvertQListOfPointerTypeToPythonList(listPtr, innerType);
     }
   }
-  
+
   if (info.typeId >= QMetaType::User) {
     // if a converter is registered, we use is:
     PythonQtConvertMetaTypeToPythonCB* converter = _metaTypeToPythonConverters.value(info.typeId);
@@ -134,7 +134,8 @@ PyObject* PythonQtConv::ConvertQtValueToPythonInternal(int type, const void* dat
   case QMetaType::Int:
     return PyInt_FromLong(*((int*)data));
   case QMetaType::UInt:
-    return PyInt_FromLong(*((unsigned int*)data));
+    // does not fit into simple int of python
+    return PyLong_FromUnsignedLong(*((unsigned int*)data));
   case QMetaType::QChar:
     return PyInt_FromLong(*((short*)data));
   case QMetaType::Float:
@@ -157,7 +158,7 @@ PyObject* PythonQtConv::ConvertQtValueToPythonInternal(int type, const void* dat
     return PythonQtConv::QStringToPyObject(*((QString*)data));
   case QMetaType::QStringList:
     return PythonQtConv::QStringListToPyObject(*((QStringList*)data));
-    
+
   case PythonQtMethodInfo::Variant:
     return PythonQtConv::QVariantToPyObject(*((QVariant*)data));
   case QMetaType::QObjectStar:
@@ -186,7 +187,7 @@ PyObject* PythonQtConv::ConvertQtValueToPythonInternal(int type, const void* dat
 Py_INCREF(Py_None);
 return Py_None;
  }
- 
+
  void* PythonQtConv::CreateQtReturnValue(const PythonQtMethodInfo::ParameterInfo& info) {
    void* ptr = NULL;
    if (info.isPointer) {
@@ -208,7 +209,7 @@ return Py_None;
      case QMetaType::QChar:
      case QMetaType::Float:
      case QMetaType::Double:
-       PythonQtValueStorage_ADD_VALUE(global_valueStorage, long, 0, ptr);
+       PythonQtValueStorage_ADD_VALUE(global_valueStorage, qint64, 0, ptr);
        break;
      case PythonQtMethodInfo::Variant:
        PythonQtValueStorage_ADD_VALUE(global_variantStorage, QVariant, 0, ptr);
@@ -262,7 +263,7 @@ return Py_None;
 void* PythonQtConv::handlePythonToQtAutoConversion(int typeId, PyObject* obj, void* alreadyAllocatedCPPObject)
 {
   void* ptr = alreadyAllocatedCPPObject;
-    
+
   static int penId = QMetaType::type("QPen");
   static int brushId = QMetaType::type("QBrush");
   static int cursorId = QMetaType::type("QCursor");
@@ -344,11 +345,11 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
        return ptr;
      }
    }
-   
+
    if (PyObject_TypeCheck(obj, &PythonQtInstanceWrapper_Type) && info.typeId != PythonQtMethodInfo::Variant) {
      // if we have a Qt wrapper object and if we do not need a QVariant, we do the following:
      // (the Variant case is handled below in a switch)
- 
+
      // a C++ wrapper (can be passed as pointer or reference)
      PythonQtInstanceWrapper* wrap = (PythonQtInstanceWrapper*)obj;
      void* object = castWrapperTo(wrap, info.name, ok);
@@ -532,7 +533,7 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
          }
        }
        break;
-       
+
      case PythonQtMethodInfo::Variant:
        {
          QVariant v = PyObjToQVariant(obj);
@@ -553,7 +554,7 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
              ok = true;
            } else if (!strict) {
              // we try to get any integer, when not being strict. If we are strict, integers are not wanted because
-             // we want an integer overload to be taken first! 
+             // we want an integer overload to be taken first!
              val = (unsigned int)PyObjGetLongLong(obj, false, ok);
            }
            if (ok) {
@@ -821,7 +822,7 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
 {
   QVariant v;
   bool ok = true;
-  
+
   if (type==-1) {
     // no special type requested
     if (val->ob_type==&PyString_Type || val->ob_type==&PyUnicode_Type) {
@@ -940,7 +941,7 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
       if (ok) v =  qVariantFromValue(d);
       break;
     }
-    
+
   case QVariant::ByteArray:
   case QVariant::String:
     {
@@ -948,7 +949,7 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
       v = QVariant(PyObjGetString(val, false, ok));
     }
     break;
-    
+
     // these are important for MeVisLab
   case QVariant::Map:
     {
@@ -993,7 +994,7 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
       }
     }
     break;
-    
+
   default:
     if (PyObject_TypeCheck(val, &PythonQtInstanceWrapper_Type)) {
       PythonQtInstanceWrapper* wrap = (PythonQtInstanceWrapper*)val;
