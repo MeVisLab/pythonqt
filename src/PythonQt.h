@@ -234,6 +234,9 @@ public:
   //! call the given python object, returns the result converted to a QVariant
   QVariant call(PyObject* callable, const QVariantList& args = QVariantList());
 
+  //! call the given python object, returns the result as new PyObject
+  PyObject* callAndReturnPyObject(PyObject* callable, const QVariantList& args = QVariantList());
+
   //@}
 
   //@{ Decorations, constructors, wrappers...
@@ -394,7 +397,10 @@ public:
     InstanceDecorator = 8,
     AllDecorators = 0xffff
   };
-  
+
+  //! get the suffixes that are used for shared libraries
+  const QStringList& sharedLibrarySuffixes() { return _sharedLibrarySuffixes; }
+
   //! returns if the id is the id for PythonQtObjectPtr
   bool isPythonQtObjectPtrMetaId(int id) { return _PythonQtObjectPtr_metaId == id; }
 
@@ -474,6 +480,8 @@ public:
   void handleVirtualOverloadReturnError(const char* signature, const PythonQtMethodInfo* methodInfo, PyObject* result);
   
 private:
+  //! Setup the shared library suffixes by getting them from the "imp" module.
+  void setupSharedLibrarySuffixes();
 
   //! create a new pythonqt class wrapper and place it in the pythonqt module
   void createPythonQtClassWrapper(PythonQtClassInfo* info, const char* package);
@@ -509,6 +517,7 @@ private:
   PythonQtQObjectWrappedCB* _wrappedCB;
 
   QStringList _importIgnorePaths;
+  QStringList _sharedLibrarySuffixes;
 
   //! the cpp object wrapper factories
   QList<PythonQtCppWrapperFactory*> _cppWrapperFactories;
