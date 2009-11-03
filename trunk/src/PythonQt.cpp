@@ -209,6 +209,8 @@ PythonQt::PythonQt(int flags)
   
   initPythonQtModule(flags & RedirectStdOut);
 
+  _p->setupSharedLibrarySuffixes();
+
 }
 
 PythonQt::~PythonQt() {
@@ -839,6 +841,19 @@ QVariant PythonQt::call(PyObject* object, const QString& name, const QVariantLis
 QVariant PythonQt::call(PyObject* callable, const QVariantList& args)
 {
   QVariant r;
+  PythonQtObjectPtr result;
+  result.setNewRef(callAndReturnPyObject(callable, args));
+  if (result) {
+    r = PythonQtConv::PyObjToQVariant(result);
+  } else {
+    PythonQt::self()->handleError();
+  }
+  return r;
+}
+
+PyObject* PythonQt::callAndReturnPyObject(PyObject* callable, const QVariantList& args)
+{
+  PyObject* result = NULL;
   if (callable) {
     PythonQtObjectPtr pargs;
     int count = args.size();
@@ -860,17 +875,10 @@ QVariant PythonQt::call(PyObject* callable, const QVariantList& args)
     
     if (!err) {
       PyErr_Clear();
-      PythonQtObjectPtr result;
-      result.setNewRef(PyObject_CallObject(callable, pargs));
-      if (result) {
-        // ok
-        r = PythonQtConv::PyObjToQVariant(result);
-      } else {
-        PythonQt::self()->handleError();
-      }
+      result = PyObject_CallObject(callable, pargs);
     }
   }
-  return r;
+  return result;
 }
 
 void PythonQt::addInstanceDecorators(QObject* o)
@@ -922,6 +930,24 @@ PythonQtPrivate::PythonQtPrivate()
   _noLongerWrappedCB = NULL;
   _wrappedCB = NULL;
   _currentClassInfoForClassWrapperCreation = NULL;
+}
+
+void PythonQtPrivate::setupSharedLibrarySuffixes()
+{
+  _sharedLibrarySuffixes.clear();
+  PythonQtObjectPtr imp;
+  imp.setNewRef(PyImport_ImportModule("imp"));
+  int cExtensionCode = imp.getVariable("C_EXTENSION").toInt();
+  QVariant result = imp.call("get_suffixes");
+  foreach (QVariant entry, result.toList()) {
+    QVariantList suffixEntry = entry.toList();
+    if (suffixEntry.count()==3) {
+      int code = suffixEntry.at(2).toInt();
+      if (code == cExtensionCode) {
+        _sharedLibrarySuffixes << suffixEntry.at(0).toString();
+      }
+    }
+  }
 }
 
 PythonQtClassInfo* PythonQtPrivate::currentClassInfoForClassWrapperCreation()
