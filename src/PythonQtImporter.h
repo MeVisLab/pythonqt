@@ -66,12 +66,21 @@ typedef struct _PythonQtImporter {
 class PythonQtImport
 {
 public:
-  enum module_info {
-    MI_ERROR,
-      MI_NOT_FOUND,
-      MI_MODULE,
-      MI_PACKAGE,
-      MI_SHAREDLIBRARY
+
+  enum ModuleType {
+    MI_NOT_FOUND,
+    MI_MODULE,
+    MI_PACKAGE,
+    MI_SHAREDLIBRARY
+  };
+
+  struct ModuleInfo {
+    ModuleInfo() {
+      type  = MI_NOT_FOUND;
+    }
+    QString    fullPath;   //!< the full path to the found file
+    QString    moduleName; //!< the module name without the package prefix
+    ModuleType type;
   };
 
   //! initialize
@@ -98,15 +107,15 @@ public:
 
   //! Get the code object associated with the module specified by
   //! 'fullname'.
-  static PyObject * getModuleCode(PythonQtImporter *self, char *fullname,
-                             int *p_ispackage, QString& modpath);
+  static PyObject * getModuleCode(PythonQtImporter *self,
+                                  const char* fullname, QString& modpath);
 
 
   //! gets the compiled code for the given *.py file if there is a valid pyc file, otherwise compiles the file and writes the pyc
   static PyObject* getCodeFromPyc(const QString& file);
 
   //! Return if module exists and is a package or a module
-  static module_info getModuleInfo(PythonQtImporter* self, const QString& fullname);
+  static ModuleInfo getModuleInfo(PythonQtImporter* self, const QString& fullname);
 
   //! get the last name of a dot chain (first.second.last)
   static QString getSubName(const QString& str);
