@@ -47,6 +47,7 @@
 #include "PythonQtImporter.h"
 #include "PythonQtImportFileInterface.h"
 #include "PythonQt.h"
+#include "PythonQtConversion.h"
 #include <QFile>
 #include <QFileInfo>
 
@@ -87,8 +88,9 @@ QString PythonQtImport::getSubName(const QString& str)
   }
 }
 
-PythonQtImport::module_info PythonQtImport::getModuleInfo(PythonQtImporter* self, const QString& fullname)
+PythonQtImport::ModuleInfo PythonQtImport::getModuleInfo(PythonQtImporter* self, const QString& fullname)
 {
+  ModuleInfo info;
   QString subname;
   struct st_mlab_searchorder *zso;
 
@@ -99,16 +101,22 @@ PythonQtImport::module_info PythonQtImport::getModuleInfo(PythonQtImporter* self
   for (zso = mlab_searchorder; *zso->suffix; zso++) {
     test = path + zso->suffix;
     if (PythonQt::importInterface()->exists(test)) {
-      if (zso->type & IS_PACKAGE)
-        return MI_PACKAGE;
-      else
-        return MI_MODULE;
+      info.fullPath = test;
+      info.moduleName = subname;
+      info.type = (zso->type & IS_PACKAGE)?MI_PACKAGE:MI_MODULE;
+      return info;
     }
   }
-  if (PythonQt::importInterface()->exists(path+".so")) {
-    return MI_SHAREDLIBRARY;
+  // test if it is a shared library
+  foreach(const QString& suffix, PythonQt::priv()->sharedLibrarySuffixes()) {
+    test = path+suffix;
+    if (PythonQt::importInterface()->exists(test)) {
+      info.fullPath = test;
+      info.moduleName = subname;
+      info.type = MI_SHAREDLIBRARY;
+    }
   }
-  return MI_NOT_FOUND;
+  return info;
 }
 
 
@@ -167,13 +175,10 @@ PythonQtImporter_find_module(PyObject *obj, PyObject *args)
             &fullname, &path))
     return NULL;
 
-  qDebug() << "looking for " << fullname << " at " << *self->_path;
+  //qDebug() << "looking for " << fullname << " at " << *self->_path;
 
-//  mlabDebugConst("MLABPython", "FindModule " << fullname << " in " << *self->_path);
-
-  PythonQtImport::module_info info = PythonQtImport::getModuleInfo(self, fullname);
-  if (info == PythonQtImport::MI_MODULE || info == PythonQtImport::MI_PACKAGE ||
-    info== PythonQtImport::MI_SHAREDLIBRARY) {
+  PythonQtImport::ModuleInfo info = PythonQtImport::getModuleInfo(self, fullname);
+  if (info.type != PythonQtImport::MI_NOT_FOUND) {
     Py_INCREF(self);
     return (PyObject *)self;
   } else {
@@ -187,68 +192,107 @@ PyObject *
 PythonQtImporter_load_module(PyObject *obj, PyObject *args)
 {
   PythonQtImporter *self = (PythonQtImporter *)obj;
-  PyObject *code, *mod, *dict;
+  PyObject *code = NULL, *mod = NULL, *dict = NULL;
   char *fullname;
-  QString modpath;
-  int ispackage;
 
   if (!PyArg_ParseTuple(args, "s:PythonQtImporter.load_module",
             &fullname))
     return NULL;
 
-  code = PythonQtImport::getModuleCode(self, fullname, &ispackage, modpath);
-  if (code == NULL) {
+  PythonQtImport::ModuleInfo info = PythonQtImport::getModuleInfo(self, fullname);
+  if (info.type == PythonQtImport::MI_NOT_FOUND) {
     return NULL;
   }
 
-  mod = PyImport_AddModule(fullname);
-  if (mod == NULL) {
+  if (info.type == PythonQtImport::MI_PACKAGE || info.type == PythonQtImport::MI_MODULE) {
+    QString fullPath;
+    code = PythonQtImport::getModuleCode(self, fullname, fullPath);
+    if (code == NULL) {
+      return NULL;
+    }
+
+    mod = PyImport_AddModule(fullname);
+    if (mod == NULL) {
+      Py_DECREF(code);
+      return NULL;
+    }
+    dict = PyModule_GetDict(mod);
+
+    if (PyDict_SetItemString(dict, "__loader__", (PyObject *)self) != 0) {
+      Py_DECREF(code);
+      Py_DECREF(mod);
+      return NULL;
+    }
+
+    if (info.type == PythonQtImport::MI_PACKAGE) {
+      PyObject *pkgpath, *fullpath;
+      QString subname = info.moduleName;
+      int err;
+
+      fullpath = PyString_FromFormat("%s%c%s",
+        self->_path->toLatin1().constData(),
+        SEP,
+        subname.toLatin1().constData());
+      if (fullpath == NULL) {
+        Py_DECREF(code);
+        Py_DECREF(mod);
+        return NULL;
+      }
+
+      pkgpath = Py_BuildValue("[O]", fullpath);
+      Py_DECREF(fullpath);
+      if (pkgpath == NULL) {
+        Py_DECREF(code);
+        Py_DECREF(mod);
+        return NULL;
+      }
+      err = PyDict_SetItemString(dict, "__path__", pkgpath);
+      Py_DECREF(pkgpath);
+      if (err != 0) {
+        Py_DECREF(code);
+        Py_DECREF(mod);
+        return NULL;
+      }
+    }
+    mod = PyImport_ExecCodeModuleEx(fullname, code, fullPath.toLatin1().data());
     Py_DECREF(code);
-    return NULL;
-  }
-  dict = PyModule_GetDict(mod);
-
-  if (PyDict_SetItemString(dict, "__loader__", (PyObject *)self) != 0) {
-    Py_DECREF(code);
-    Py_DECREF(mod);
-    return NULL;
-  }
-
-  if (ispackage) {
-    PyObject *pkgpath, *fullpath;
-    QString subname = PythonQtImport::getSubName(fullname);
-    int err;
-
-    fullpath = PyString_FromFormat("%s%c%s",
-          self->_path->toLatin1().constData(),
-          SEP,
-          subname.toLatin1().constData());
-    if (fullpath == NULL) {
-      Py_DECREF(code);
-      Py_DECREF(mod);
-      return NULL;
+    if (Py_VerboseFlag) {
+      PySys_WriteStderr("import %s # loaded from %s\n",
+        fullname, fullPath.toLatin1().constData());
     }
+  } else {
+    PythonQtObjectPtr imp;
+    imp.setNewRef(PyImport_ImportModule("imp"));
+    
+    // Create a PyList with the current path as its single element,
+    // which is required for find_module (it won't accept a tuple...)
+    PythonQtObjectPtr pathList;
+    pathList.setNewRef(PythonQtConv::QStringListToPyList(QStringList() << *self->_path));
 
-    pkgpath = Py_BuildValue("[O]", fullpath);
-    Py_DECREF(fullpath);
-    if (pkgpath == NULL) {
-      Py_DECREF(code);
-      Py_DECREF(mod);
-      return NULL;
+    QVariantList args;
+    // Pass the module name without the package prefix
+    args.append(info.moduleName);
+    // And the path where we know that the shared library is
+    args.append(QVariant::fromValue(pathList));
+    QVariant result = imp.call("find_module", args);
+    if (result.isValid()) {
+      // This will return a tuple with (file, pathname, description)
+      QVariantList list = result.toList();
+      if (list.count()==3) {
+        // We prepend the full module name (including package prefix)
+        list.prepend(fullname);
+        // And call "load_module" with (fullname, file, pathname, description)
+        PythonQtObjectPtr module = imp.call("load_module", list);
+        mod = module.object();
+        if (mod) {
+          Py_INCREF(mod);
+        }
+
+        // Finally, we need to close the file again, which find_module opened for us
+        PythonQtObjectPtr file = list.at(1);
+        file.call("close");
+      }
     }
-    err = PyDict_SetItemString(dict, "__path__", pkgpath);
-    Py_DECREF(pkgpath);
-    if (err != 0) {
-      Py_DECREF(code);
-      Py_DECREF(mod);
-      return NULL;
-    }
-  }
-  mod = PyImport_ExecCodeModuleEx(fullname, code, (char*)modpath.toLatin1().data());
-  Py_DECREF(code);
-  if (Py_VerboseFlag) {
-    PySys_WriteStderr("import %s # loaded from %s\n",
-          fullname, modpath.toLatin1().constData());
   }
   return mod;
 }
@@ -271,51 +315,13 @@ PythonQtImporter_get_code(PyObject *obj, PyObject *args)
     return NULL;
 
   QString notused;
-  return PythonQtImport::getModuleCode(self, fullname, NULL, notused);
+  return PythonQtImport::getModuleCode(self, fullname, notused);
 }
 
 PyObject *
 PythonQtImporter_get_source(PyObject * /*obj*/, PyObject * /*args*/)
 {
   // EXTRA, NOT YET IMPLEMENTED
-/*
-  PythonQtImporter *self = (PythonQtImporter *)obj;
-  PyObject *toc_entry;
-  char *fullname, *subname, path[MAXPATHLEN+1];
-  int len;
-  enum module_info mi;
-
-  if (!PyArg_ParseTuple(args, "s:PythonQtImporter.get_source", &fullname))
-    return NULL;
-
-  mi = get_module_info(self, fullname);
-  if (mi == MI_ERROR)
-    return NULL;
-  if (mi == MI_NOT_FOUND) {
-    PyErr_Format(PythonQtImportError, "can't find module '%.200s'",
-           fullname);
-    return NULL;
-  }
-  subname = get_subname(fullname);
-
-  len = make_filename(PyString_AsString(self->prefix), subname, path);
-  if (len < 0)
-    return NULL;
-
-  if (mi == MI_PACKAGE) {
-    path[len] = SEP;
-    strcpy(path + len + 1, "__init__.py");
-  }
-  else
-    strcpy(path + len, ".py");
-
-  toc_entry = PyDict_GetItemString(self->files, path);
-  if (toc_entry != NULL)
-    return get_data(PyString_AsString(self->archive), toc_entry);
-
-  Py_INCREF(Py_None);
-  return Py_None;
-*/
   return NULL;
 }
 
@@ -648,8 +654,7 @@ PythonQtImport::getMTimeOfSource(const QString& path)
 /* Get the code object associated with the module specified by
    'fullname'. */
 PyObject *
-PythonQtImport::getModuleCode(PythonQtImporter *self, char *fullname,
-    int *p_ispackage, QString& modpath)
+PythonQtImport::getModuleCode(PythonQtImporter *self, const char* fullname, QString& modpath)
 {
   QString subname;
   struct st_mlab_searchorder *zso;
@@ -670,17 +675,17 @@ PythonQtImport::getModuleCode(PythonQtImporter *self, char *fullname,
       int ispackage = zso->type & IS_PACKAGE;
       int isbytecode = zso->type & IS_BYTECODE;
 
-      if (isbytecode)
+      if (isbytecode) {
         mtime = getMTimeOfSource(test);
-      if (p_ispackage != NULL)
-        *p_ispackage = ispackage;
+      }
       code = getCodeFromData(test, isbytecode, ispackage, mtime);
       if (code == Py_None) {
         Py_DECREF(code);
         continue;
       }
-      if (code != NULL)
+      if (code != NULL) {
         modpath = test;
+      }
       return code;
     }
   }
