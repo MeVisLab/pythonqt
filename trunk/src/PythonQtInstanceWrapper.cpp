@@ -308,7 +308,7 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
     for (int i = 0; i < children.count(); i++) {
       QObject *child = children.at(i);
       if (child->objectName() == attributeName) {
-        return PythonQt::self()->priv()->wrapQObject(child);
+        return PythonQt::priv()->wrapQObject(child);
       }
     }
   }
