@@ -72,6 +72,9 @@ private slots:
   void testQtNamespace();
   void testConnects();
 
+  void testProperties();
+  void testDynamicProperties();
+  
 private:
   PythonQtTestApiHelper* _helper;
   PythonQtObjectPtr _main;
