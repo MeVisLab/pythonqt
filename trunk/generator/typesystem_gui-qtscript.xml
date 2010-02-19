@@ -24,7 +24,10 @@
   <!-- ### these don't compile -->
   <rejection class="QAbstractProxyModel"/>
   <rejection class="QSortFilterProxyModel"/>
-  <rejection class="QGraphicsSceneDragDropEvent"/>
+  <rejection class="QDirModel"/>
+  <rejection class="QFileSystemModel"/>
+  <rejection class="QPrinterInfo"/>
+  <rejection class="QProxyModel"/>
   <rejection class="QPrinterInfo"/> <!-- ### constructor takes QPrinter&, must become QPrinter* -->
   <rejection class="QTextOption"/> <!-- ### nested class QTextOption::Tab -->
 
@@ -40,6 +43,16 @@
     </inject-code>
   </value-type>
 
+  <value-type name="QBrush">
+    <modify-function signature="QBrush(QGradient)">
+      <modify-argument index="1">
+        <replace-type modified-type="QGradient*"/>
+        <conversion-rule class="native">
+        QGradient &amp; %out% = *qscriptvalue_cast&lt;QGradient*&gt;(%in%);
+        </conversion-rule>            
+      </modify-argument>
+    </modify-function>
+  </value-type>
 
   <interface-type name="QGraphicsItem">
     <modify-function signature="supportsExtension(QGraphicsItem::Extension)const" remove="all"/>
