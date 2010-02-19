@@ -241,6 +241,17 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
           std::cerr << "PythonQtInstanceWrapper: something is wrong, could not get attribute " << name.toLatin1().data();
         }
       }
+
+      QList<QByteArray>	dynamicProps = wrapper->_obj->dynamicPropertyNames();
+      foreach (QByteArray name, dynamicProps) {
+        PyObject* o = PyObject_GetAttrString(obj, name.data());
+        if (o) {
+          PyDict_SetItemString(dict, name.data(), o);
+          Py_DECREF(o);
+        } else {
+          std::cerr << "PythonQtInstanceWrapper: dynamic property could not be read " << name.data();
+        }
+      }
     }
     // Note: we do not put children into the dict, is would look confusing?!
     return dict;
@@ -254,8 +265,6 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
   PyErr_Clear();
 
   //  mlabDebugConst("Python","get " << attributeName);
-
-  // TODO: dynamic properties are missing
 
   PythonQtMemberInfo member = wrapper->classInfo()->member(attributeName);
   switch (member._type) {
@@ -288,6 +297,15 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
       PyObject* enumWrapper = member._enumWrapper;
       Py_INCREF(enumWrapper);
       return enumWrapper;
+    }
+    break;
+  case PythonQtMemberInfo::NotFound:
+    // handle dynamic properties
+    if (wrapper->_obj) {
+      QVariant v = wrapper->_obj->property(attributeName);
+      if (v.isValid()) {
+        return PythonQtConv::QVariantToPyObject(v);
+      }
     }
     break;
   default:
@@ -367,6 +385,23 @@ static int PythonQtInstanceWrapper_setattro(PyObject *obj,PyObject *name,PyObjec
   } else if (member._type == PythonQtMemberInfo::EnumWrapper) {
     error = QString("Enum '") + attributeName + "' can not be overwritten on " + obj->ob_type->tp_name + " object";
   } else if (member._type == PythonQtMemberInfo::NotFound) {
+    // handle dynamic properties
+    if (wrapper->_obj) {
+      QVariant prop = wrapper->_obj->property(attributeName);
+      if (prop.isValid()) {
+        QVariant v = PythonQtConv::PyObjToQVariant(value);
+        if (v.isValid()) {
+          wrapper->_obj->setProperty(attributeName, v);
+          return 0;
+        } else {
+          error = QString("Dynamic property '") + attributeName + "' does not accept an object of type "
+          + QString(value->ob_type->tp_name) + " (" + PythonQtConv::PyObjGetRepresentation(value) + ")";
+          PyErr_SetString(PyExc_AttributeError, error.toLatin1().data());
+          return -1;
+        }
+      }
+    }
+    
     // if we are a derived python class, we allow setting attributes.
     // if we are a direct CPP wrapper, we do NOT allow it, since
     // it would be confusing to allow it because a wrapper will go away when it is not seen by python anymore

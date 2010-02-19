@@ -149,6 +149,16 @@ const QObjectList* PythonQtStdDecorators::children(QObject* o)
   return &o->children();
 }
 
+bool PythonQtStdDecorators::setProperty(QObject* o, const char* name, const QVariant& value)
+{
+  return o->setProperty(name, value);
+}
+
+QVariant PythonQtStdDecorators::property(QObject* o, const char* name)
+{
+  return o->property(name);
+}
+
 QString PythonQtStdDecorators::tr(QObject* obj, const QByteArray& text, const QByteArray& ambig, int n)
 {
   return QCoreApplication::translate(obj->metaObject()->className(), text.constData(), ambig.constData(), QCoreApplication::CodecForTr, n);
