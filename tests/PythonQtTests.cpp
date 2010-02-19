@@ -53,6 +53,7 @@ void PythonQtTestSlotCalling::init() {
 
 }
 
+
 void* polymorphic_ClassB_Handler(const void* ptr, char** className) {
   ClassB* o = (ClassB*)ptr;
   if (o->type()==2) {
@@ -372,6 +373,48 @@ void PythonQtTestApi::initTestCase()
   _main.evalScript("import PythonQt");
   _main.addObject("obj", _helper);
 }
+
+void PythonQtTestApi::testProperties()
+{
+  PythonQtObjectPtr main = PythonQt::self()->getMainModule();
+  // check for name alias (for backward comp to Qt3)
+  main.evalScript("obj.name = 'hello'");
+  QVERIFY(QString("hello") == main.getVariable("obj.name").toString());
+
+  main.evalScript("obj.objectName = 'hello2'");
+  QVERIFY(QString("hello2") == main.getVariable("obj.objectName").toString());
+
+}
+
+void PythonQtTestApi::testDynamicProperties()
+{
+  PythonQtObjectPtr main = PythonQt::self()->getMainModule();
+
+  // this fails and should fail, but how could that be tested?
+  // main.evalScript("obj.testProp = 1");
+  
+  // create a new dynamic property
+  main.evalScript("obj.setProperty('testProp','testValue')");
+
+  // read the property
+  QVERIFY(QString("testValue") == main.getVariable("obj.testProp").toString());
+  // modify and read again
+  main.evalScript("obj.testProp = 12");
+  QVERIFY(12 == main.getVariable("obj.testProp").toInt());
+
+  // check if dynamic property is in dict
+  QVERIFY(12 == main.evalScript("obj.__dict__['testProp']", Py_eval_input).toInt());
+
+  // check if dynamic property is in introspection
+  QStringList l = PythonQt::self()->introspection(PythonQt::self()->getMainModule(), "obj", PythonQt::Anything);
+  QVERIFY(l.contains("testProp"));
+  
+  // check with None, previous value expected
+  main.evalScript("obj.testProp = None");
+  QVERIFY(12 == main.getVariable("obj.testProp").toInt());
+
+}
+
 
 bool PythonQtTestApiHelper::call(const QString& function, const QVariantList& args, const QVariant& expectedResult) {
   _passed = false;
