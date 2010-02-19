@@ -1,23 +1,41 @@
 /****************************************************************************
 **
-** Copyright (C) 1992-2008 Trolltech ASA. All rights reserved.
+** Copyright (C) 2008-2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
 **
-** This file is part of the Qt Script Generator project on Trolltech Labs.
+** This file is part of the Qt Script Generator project on Qt Labs.
 **
-** This file may be used under the terms of the GNU General Public
-** License version 2.0 as published by the Free Software Foundation
-** and appearing in the file LICENSE.GPL included in the packaging of
-** this file.  Please review the following information to ensure GNU
-** General Public Licensing requirements will be met:
-** http://www.trolltech.com/products/qt/opensource.html
+** $QT_BEGIN_LICENSE:LGPL$
+** No Commercial Usage
+** This file contains pre-release code and may not be distributed.
+** You may use this file in accordance with the terms and conditions
+** contained in the Technology Preview License Agreement accompanying
+** this package.
 **
-** If you are unsure which license is appropriate for your use, please
-** review the following information:
-** http://www.trolltech.com/products/qt/licensing.html or contact the
-** sales department at sales@trolltech.com.
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
 **
-** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
-** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+**
+**
+**
+**
+**
+**
+**
+**
+** $QT_END_LICENSE$
 **
 ****************************************************************************/
 
@@ -728,7 +746,10 @@ static void writeCreateFlagsClassHelper(QTextStream &stream)
 static void writeEnumClass(QTextStream &stream, const AbstractMetaClass *meta_class,
                            const AbstractMetaEnum *enom)
 {
-    QString qualifiedEnumName = meta_class->qualifiedCppName() + "::" + enom->name();
+    QString qualifiedCppNameColons;
+    if (meta_class->name() != "Global")
+        qualifiedCppNameColons = meta_class->qualifiedCppName() + "::";
+    QString qualifiedEnumName = qualifiedCppNameColons + enom->name();
     QString qtScriptEnumName = meta_class->name() + "_" + enom->name();
 
     stream << "//" << endl;
@@ -748,7 +769,7 @@ static void writeEnumClass(QTextStream &stream, const AbstractMetaClass *meta_cl
         stream << "    ";
         if (i > 0)
             stream << ", ";
-        stream << meta_class->qualifiedCppName() << "::" << values.at(uniqueIndexes.at(i))->name() << endl;
+        stream << qualifiedCppNameColons << values.at(uniqueIndexes.at(i))->name() << endl;
     }
     stream << "};" << endl << endl;
     stream << "static const char * const qtscript_" << qtScriptEnumName << "_keys[] = {" << endl;
@@ -773,13 +794,13 @@ static void writeEnumClass(QTextStream &stream, const AbstractMetaClass *meta_cl
         stream << "    return QString::fromLatin1(menum.valueToKey(value));" << endl;
     } else {
         if (contiguous) {
-            stream << "    if ((value >= " << meta_class->qualifiedCppName()
-                   << "::" << values.at(uniqueIndexes.first())->name() << ")"
-                   << " && (value <= " << meta_class->qualifiedCppName()
-                   << "::" << values.at(uniqueIndexes.last())->name() << "))" << endl
+            stream << "    if ((value >= " << qualifiedCppNameColons
+                   << values.at(uniqueIndexes.first())->name() << ")"
+                   << " && (value <= " << qualifiedCppNameColons
+                   << values.at(uniqueIndexes.last())->name() << "))" << endl
                    << "        return qtscript_" << qtScriptEnumName
                    << "_keys[static_cast<int>(value)-static_cast<int>("
-                   << meta_class->qualifiedCppName() << "::"
+                   << qualifiedCppNameColons
                    << values.at(uniqueIndexes.first())->name() << ")];" << endl;
         } else {
             stream << "    for (int i = 0; i < " << uniqueIndexes.size() << "; ++i) {" << endl
@@ -825,10 +846,10 @@ static void writeEnumClass(QTextStream &stream, const AbstractMetaClass *meta_cl
                << qualifiedEnumName << ">(arg));" << endl;
     } else {
         if (contiguous) {
-            stream << "    if ((arg >= " << meta_class->qualifiedCppName()
-                   << "::" << values.at(uniqueIndexes.first())->name() << ")"
-                   << " && (arg <= " << meta_class->qualifiedCppName()
-                   << "::" << values.at(uniqueIndexes.last())->name() << "))" << endl;
+            stream << "    if ((arg >= " << qualifiedCppNameColons
+                   << values.at(uniqueIndexes.first())->name() << ")"
+                   << " && (arg <= " << qualifiedCppNameColons
+                   << values.at(uniqueIndexes.last())->name() << "))" << endl;
             stream << "        return qScriptValueFromValue(engine,  static_cast<"
                    << qualifiedEnumName << ">(arg));" << endl;
         } else {
@@ -900,7 +921,7 @@ static void writeEnumClass(QTextStream &stream, const AbstractMetaClass *meta_cl
     if (!flags)
         return;
 
-    QString qualifiedFlagsName = meta_class->qualifiedCppName() + "::" + flags->targetLangName();
+    QString qualifiedFlagsName = qualifiedCppNameColons + flags->targetLangName();
     QString qtScriptFlagsName = meta_class->name() + "_" + flags->targetLangName();
 
     stream << "//" << endl;
@@ -1117,9 +1138,12 @@ void declareEnumMetaTypes(QTextStream &stream, const AbstractMetaClass *meta_cla
         const AbstractMetaEnum *enom = enums.at(i);
         if (shouldIgnoreEnum(enom))
             continue;
-        maybeDeclareMetaType(stream, QString::fromLatin1("%0::%1")
-                             .arg(meta_class->qualifiedCppName()).arg(enom->name()),
-                             registeredTypeNames);
+        if (meta_class->name() == "Global")
+            maybeDeclareMetaType(stream, enom->name(), registeredTypeNames);
+        else
+            maybeDeclareMetaType(stream, QString::fromLatin1("%0::%1")
+                                 .arg(meta_class->qualifiedCppName()).arg(enom->name()),
+                                 registeredTypeNames);
         FlagsTypeEntry *flags = enom->typeEntry()->flags();
         if (flags) {
             maybeDeclareMetaType(stream, QString::fromLatin1("QFlags<%0::%1>")
@@ -1441,9 +1465,6 @@ static void writeFunctionSignaturesString(QTextStream &s, const AbstractMetaFunc
 */
 void ClassGenerator::write(QTextStream &stream, const AbstractMetaClass *meta_class)
 {
-    if (meta_class->name() == "Global") // ### hmmmmmm
-        return;
-
     if (FileOut::license)
         writeQtScriptQtBindingsLicense(stream);
 
@@ -1486,6 +1507,25 @@ void ClassGenerator::write(QTextStream &stream, const AbstractMetaClass *meta_cl
             else
                 ++it;
         }
+    }
+
+    if (meta_class->isNamespace() || meta_class->name() == "Global") {
+        QMap<QString, Include> includes;
+        foreach (AbstractMetaEnum *enom, enums) {
+            Include include = enom->typeEntry()->include();
+            includes.insert(include.toString(), include);
+        }
+
+        foreach (const Include &i, includes) {
+            writeInclude(stream, i);
+        }
+
+        stream << endl;
+    }
+
+    if (meta_class->name() == "Global") {
+            stream << "class Global {};" << endl;
+            stream << endl;
     }
 
     // find constructors
@@ -1547,6 +1587,24 @@ void ClassGenerator::write(QTextStream &stream, const AbstractMetaClass *meta_cl
         }
         if (!meta_class->hasDefaultToStringFunction())
             stream << "\"\"" << endl;
+    }
+    stream << "};" << endl << endl;
+
+    // write table of function lengths
+    stream << "static const int qtscript_" << meta_class->name() << "_function_lengths[] = {" << endl;
+    stream << "    " << maxFunctionLength(ctors) << endl;
+    {
+        QMap<QString, AbstractMetaFunctionList>::const_iterator it;
+        stream << "    // static" << endl;
+        for (it = nameToStaticFunctions.constBegin(); it != nameToStaticFunctions.constEnd(); ++it) {
+            stream << "    , " << maxFunctionLength(it.value()) << endl;
+        }
+        stream << "    // prototype" << endl;
+        for (it = nameToPrototypeFunctions.constBegin(); it != nameToPrototypeFunctions.constEnd(); ++it) {
+            stream << "    , " << maxFunctionLength(it.value()) << endl;
+        }
+        if (!meta_class->hasDefaultToStringFunction())
+            stream << "    , 0" << endl;
     }
     stream << "};" << endl << endl;
 
@@ -1697,24 +1755,6 @@ void ClassGenerator::write(QTextStream &stream, const AbstractMetaClass *meta_cl
            << "_class(QScriptEngine *engine)" << endl;
     stream << "{" << endl;
 
-    // write lengths array
-    stream << "    static const int function_lengths[] = {" << endl;
-    stream << "        " << maxFunctionLength(ctors) << endl;
-    {
-        QMap<QString, AbstractMetaFunctionList>::const_iterator it;
-        stream << "        // static" << endl;
-        for (it = nameToStaticFunctions.constBegin(); it != nameToStaticFunctions.constEnd(); ++it) {
-            stream << "        , " << maxFunctionLength(it.value()) << endl;
-        }
-        stream << "        // prototype" << endl;
-        for (it = nameToPrototypeFunctions.constBegin(); it != nameToPrototypeFunctions.constEnd(); ++it) {
-            stream << "        , " << maxFunctionLength(it.value()) << endl;
-        }
-        if (!meta_class->hasDefaultToStringFunction())
-            stream << "        , 0" << endl;
-    }
-    stream << "    };" << endl;
-
     // setup prototype
     if (!meta_class->isNamespace()) {
         stream << "    engine->setDefaultPrototype(qMetaTypeId<"
@@ -1752,7 +1792,8 @@ void ClassGenerator::write(QTextStream &stream, const AbstractMetaClass *meta_cl
                 ++count;
             stream << "    for (int i = 0; i < " << count << "; ++i) {" << endl
                    << "        QScriptValue fun = engine->newFunction(qtscript_"
-                   << meta_class->name() << "_prototype_call, function_lengths[i+"
+                   << meta_class->name() << "_prototype_call, qtscript_"
+                   << meta_class->name() << "_function_lengths[i+"
                    << prototypeFunctionsOffset << "]);" << endl
                    << "        fun.setData(QScriptValue(engine, uint(0xBABE0000 + i)));" << endl
                    << "        proto.setProperty(QString::fromLatin1(qtscript_"
@@ -1784,7 +1825,7 @@ void ClassGenerator::write(QTextStream &stream, const AbstractMetaClass *meta_cl
 
     // setup constructor
     stream << "    QScriptValue ctor = engine->newFunction(qtscript_" << meta_class->name()
-           << "_static_call, proto, function_lengths[0]);" << endl;
+           << "_static_call, proto, qtscript_" << meta_class->name() << "_function_lengths[0]);" << endl;
     stream << "    ctor.setData(QScriptValue(engine, uint(0xBABE0000 + 0)));" << endl;
     if (!nameToStaticFunctions.isEmpty()) {
         // static functions
@@ -1792,7 +1833,7 @@ void ClassGenerator::write(QTextStream &stream, const AbstractMetaClass *meta_cl
         stream << "    for (int i = 0; i < " << nameToStaticFunctions.size() << "; ++i) {" << endl
                << "        QScriptValue fun = engine->newFunction(qtscript_" << meta_class->name()
                << "_static_call," << endl
-               << "            function_lengths[i+" << staticFunctionsOffset << "]);" << endl
+               << "            qtscript_" << meta_class->name() << "_function_lengths[i+" << staticFunctionsOffset << "]);" << endl
                << "        fun.setData(QScriptValue(engine, uint(0xBABE0000 + i+1)));" << endl
                << "        ctor.setProperty(QString::fromLatin1(qtscript_"
                << meta_class->name() << "_function_names[i+" << staticFunctionsOffset << "])," << endl
@@ -1825,8 +1866,7 @@ void ClassGenerator::write(QTextStream &stream, const AbstractMetaClass *meta_cl
 
     writeInjectedCode(stream, meta_class, CodeSnip::End);
 
-    QString pro_file_name = meta_class->package().replace(".", "_") + "/" + meta_class->package().replace(".", "_") + ".pri";
-    priGenerator->addSource(pro_file_name, fileNameForClass(meta_class));
+    QString packName = meta_class->package().replace(".", "_");
+    priGenerator->addSource(packName, fileNameForClass(meta_class));
     setupGenerator->addClass(meta_class);
 }
-
