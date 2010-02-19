@@ -118,6 +118,8 @@ int PythonQtClassInfo::findCharOffset(const char* sigStart, char someChar)
           
 bool PythonQtClassInfo::lookForPropertyAndCache(const char* memberName)
 {
+  if (!_meta) return false;
+  
   bool found = false;
   bool nameMapped = false;
   const char* attributeName = memberName;

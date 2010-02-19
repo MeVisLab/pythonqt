@@ -75,6 +75,9 @@ public slots:
   QList<QObject*> findChildren(QObject* parent, PyObject* type, const QString& name= QString());
   QList<QObject*> findChildren(QObject* parent, PyObject* type, const QRegExp& regExp);
   
+  bool setProperty(QObject* o, const char* name, const QVariant& value);
+  QVariant property(QObject* o, const char* name);
+
   double static_Qt_qAbs(double a) { return qAbs(a); }
   double static_Qt_qBound(double a,double b,double c) { return qBound(a,b,c); }
   void static_Qt_qDebug(const QByteArray& msg) { qDebug(msg.constData()); }
