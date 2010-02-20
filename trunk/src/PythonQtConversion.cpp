@@ -537,9 +537,9 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
      case PythonQtMethodInfo::Variant:
        {
          QVariant v = PyObjToQVariant(obj);
-         if (v.isValid()) {
-           PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_variantStorage, QVariant, v, ptr);
-         }
+         // the only case where conversion can fail it None and we want to pass that to, e.g. setProperty(),
+         // so we do not check v.isValid() here
+         PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_variantStorage, QVariant, v, ptr);
        }
        break;
        default:
