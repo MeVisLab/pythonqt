@@ -413,6 +413,13 @@ void PythonQtTestApi::testDynamicProperties()
   main.evalScript("obj.testProp = None");
   QVERIFY(12 == main.getVariable("obj.testProp").toInt());
 
+  // remove the dynamic property
+  main.evalScript("obj.setProperty('testProp', None)");
+
+  // check if dynamic property is really gone
+  QStringList l2 = PythonQt::self()->introspection(PythonQt::self()->getMainModule(), "obj", PythonQt::Anything);
+  QVERIFY(!l2.contains("testProp"));
+  
 }
 
 
