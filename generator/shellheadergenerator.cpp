@@ -51,15 +51,11 @@ QString ShellHeaderGenerator::fileNameForClass(const AbstractMetaClass *meta_cla
   return QString("PythonQtWrapper_%1.h").arg(meta_class->name());
 }
 
-void writeQtScriptQtBindingsLicense(QTextStream &stream);
-
 void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_class)
 {
-
-  setupGenerator->addClass(meta_class);
-
-  if (FileOut::license)
-    writeQtScriptQtBindingsLicense(s);
+  if (!ShellGenerator::isBuiltIn(meta_class->name())) {
+    setupGenerator->addClass(meta_class);
+  }
 
   QString include_block = "PYTHONQTWRAPPER_" + meta_class->name().toUpper() + "_H";
 

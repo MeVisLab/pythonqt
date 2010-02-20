@@ -61,12 +61,8 @@ static void writeHelperCode(QTextStream &s, const AbstractMetaClass *)
 {
 }
 
-void writeQtScriptQtBindingsLicense(QTextStream &stream);
-
 void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_class)
 {
-  if (FileOut::license)
-    writeQtScriptQtBindingsLicense(s);
 
   QString pro_file_name = meta_class->package().replace(".", "_") + "/" + meta_class->package().replace(".", "_") + ".pri";
 

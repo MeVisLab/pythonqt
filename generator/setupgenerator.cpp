@@ -51,8 +51,6 @@ void SetupGenerator::addClass(const AbstractMetaClass *cls)
   packHash[cls->package()].append(cls);
 }
 
-void writeQtScriptQtBindingsLicense(QTextStream &stream);
-
 void maybeDeclareMetaType(QTextStream &stream, const QString &typeName,
                           QSet<QString> &registeredTypeNames);
 bool hasDefaultConstructor(const AbstractMetaClass *meta_class);
@@ -113,13 +111,10 @@ void SetupGenerator::generate()
       FileOut initFile(m_out_dir + "/generated_cpp/" + packName + "/" + packKey + "_init.cpp");
       QTextStream &s = initFile.stream;
 
-      if (FileOut::license)
-        writeQtScriptQtBindingsLicense(s);
-
       s << "#include <PythonQt.h>" << endl;
 
-      foreach (const AbstractMetaClass *cls, list) {
-        s << "#include \"" << ShellGenerator::wrapperClassName(cls) << ".h\"" << endl;
+      for (int i=0; i<(list.count()+MAX_CLASSES_PER_FILE-1) / MAX_CLASSES_PER_FILE; i++) {
+        s << "#include \"" << packKey << QString::number(i) << ".h\"" << endl;
       }
       s << endl;
 

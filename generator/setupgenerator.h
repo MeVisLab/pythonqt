@@ -54,6 +54,10 @@ class SetupGenerator : public Generator
 
     void addClass(const AbstractMetaClass *cls);
 
+  static void writeInclude(QTextStream &stream, const Include &inc);
+  
+  static bool isSpecialStreamingOperator(const AbstractMetaFunction *fun);
+  
  private:
    QStringList writePolymorphicHandler(QTextStream &s, const QString &package,
      const AbstractMetaClassList &classes);

@@ -46,6 +46,8 @@
 #include "metaqtscript.h"
 #include "prigenerator.h"
 
+#define MAX_CLASSES_PER_FILE 20
+
 class ShellGenerator : public Generator
 {
     Q_OBJECT
@@ -88,7 +90,7 @@ public:
     static bool isBuiltIn(const QString& name);
 
     static bool isSpecialStreamingOperator(const AbstractMetaFunction *fun);
-
+    
     static void writeInclude(QTextStream &stream, const Include &inc);
   
  protected:
