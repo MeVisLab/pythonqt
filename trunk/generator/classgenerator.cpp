@@ -1388,33 +1388,6 @@ static void writeHelperFunctions(QTextStream &stream, const AbstractMetaClass *m
            << "}" << endl << endl;
 }
 
-void writeQtScriptQtBindingsLicense(QTextStream &stream)
-{
-    stream
-        << "/****************************************************************************" << endl
-        << "**" << endl
-        << "** Copyright (C) 2008 Trolltech ASA. All rights reserved." << endl
-        << "**" << endl
-        << "** This file is part of the Qt Script Qt Bindings project on Trolltech Labs." << endl
-        << "**" << endl
-        << "** This file may be used under the terms of the GNU General Public" << endl
-        << "** License version 2.0 as published by the Free Software Foundation" << endl
-        << "** and appearing in the file LICENSE.GPL included in the packaging of" << endl
-        << "** this file.  Please review the following information to ensure GNU" << endl
-        << "** General Public Licensing requirements will be met:" << endl
-        << "** http://www.trolltech.com/products/qt/opensource.html" << endl
-        << "**" << endl
-        << "** If you are unsure which license is appropriate for your use, please" << endl
-        << "** review the following information:" << endl
-        << "** http://www.trolltech.com/products/qt/licensing.html or contact the" << endl
-        << "** sales department at sales@trolltech.com." << endl
-        << "**" << endl
-        << "** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE" << endl
-        << "** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE." << endl
-        << "**" << endl
-        << "****************************************************************************/" << endl
-        << endl;
-}
 
 /*!
   Finds the functions in \a meta_class that we actually want to
@@ -1465,9 +1438,6 @@ static void writeFunctionSignaturesString(QTextStream &s, const AbstractMetaFunc
 */
 void ClassGenerator::write(QTextStream &stream, const AbstractMetaClass *meta_class)
 {
-    if (FileOut::license)
-        writeQtScriptQtBindingsLicense(stream);
-
     // write common includes
     stream << "#include <QtScript/QScriptEngine>" << endl;
     stream << "#include <QtScript/QScriptContext>" << endl;
