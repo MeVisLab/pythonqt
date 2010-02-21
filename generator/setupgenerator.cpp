@@ -46,9 +46,9 @@
 
 //#define Q_SCRIPT_LAZY_GENERATOR
 
-void SetupGenerator::addClass(const AbstractMetaClass *cls)
+void SetupGenerator::addClass(const QString& package, const AbstractMetaClass *cls)
 {
-  packHash[cls->package()].append(cls);
+  packHash[package].append(cls);
 }
 
 void maybeDeclareMetaType(QTextStream &stream, const QString &typeName,
@@ -80,15 +80,13 @@ void SetupGenerator::generate()
 
     QString packKey = pack.key();
     QString packName = pack.key();
-    QStringList components = packName.split(".");
+    QStringList components = packName.split("_");
     if ((components.size() > 2) && (components.at(0) == "com")
       && (components.at(1) == "trolltech")) {
         // kill com.trolltech in key
         components.removeAt(0);
         components.removeAt(0);
     }
-    packName.replace(".", "_");
-    packKey.replace(".", "_");
 
     QString shortPackName;
     foreach (QString comp, components) {
@@ -118,14 +116,21 @@ void SetupGenerator::generate()
       }
       s << endl;
 
-      QStringList polymorphicHandlers = writePolymorphicHandler(s, list.at(0)->package(), classes_with_polymorphic_id);
-      s << endl;
-
+      QStringList polymorphicHandlers;
+      if (!packName.endsWith("_builtin")) {
+        polymorphicHandlers = writePolymorphicHandler(s, list.at(0)->package(), classes_with_polymorphic_id);
+        s << endl;
+      }
+      
       // declare individual class creation functions
       s << "void PythonQt_init_" << shortPackName << "() {" << endl;
+
+      if (shortPackName.endsWith("Builtin")) {
+        shortPackName = shortPackName.mid(shortPackName.length()-strlen("builtin"));
+      }
+
       QStringList cppClassNames;
       foreach (const AbstractMetaClass *cls, list) {
-        if (ShellGenerator::isBuiltIn(cls->name())) { continue; }
 
         QString shellCreator;
         if (cls->generateShellClass()) {

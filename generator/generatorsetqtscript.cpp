@@ -41,10 +41,8 @@
 
 #include "generatorsetqtscript.h"
 #include "reporthandler.h"
-#include "classgenerator.h"
 #include "shellheadergenerator.h"
 #include "shellimplgenerator.h"
-#include "docgenerator.h"
 
 GeneratorSet *GeneratorSet::getInstance() {
     return new GeneratorSetQtScript();
@@ -88,13 +86,6 @@ QString GeneratorSetQtScript::generate() {
     setupGenerator.setQtMetaTypeDeclaredTypeNames(declaredTypeNames);
     setupGenerator.setClasses(classes);
 
-    /*
-    ClassGenerator classGenerator(&priGenerator, &setupGenerator);
-    classGenerator.setOutputDirectory(outDir);
-    classGenerator.setClasses(classes);
-    classGenerator.setQtMetaTypeDeclaredTypeNames(declaredTypeNames);
-    classGenerator.generate();
-*/
     ShellImplGenerator shellImplGenerator(&priGenerator);
     shellImplGenerator.setOutputDirectory(outDir);
     shellImplGenerator.setClasses(classes);
@@ -105,11 +96,6 @@ QString GeneratorSetQtScript::generate() {
     shellHeaderGenerator.setOutputDirectory(outDir);
     shellHeaderGenerator.setClasses(classes);
     shellHeaderGenerator.generate();
-
-    //DocGenerator docGenerator;
-    //docGenerator.setOutputDirectory(outDir);
-    //docGenerator.setClasses(classes);
-    //docGenerator.generate();
 
     priGenerator.generate();
     setupGenerator.generate();

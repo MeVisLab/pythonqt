@@ -91,6 +91,10 @@ static QStringList compactFiles(const QStringList& list, const QString& ext, con
   QStringList outList;
   int count = list.count();
   int fileNum = 0;
+  QString srcDir = dir;
+  if (dir.endsWith("_builtin")) {
+    srcDir = dir.left(dir.length()-strlen("_builtin"));
+  }
   while (count>0) {
     QString outFileName = prefix + QString::number(fileNum) + ext;
     FileOut file(dir + "/" + outFileName);
@@ -101,7 +105,7 @@ static QStringList compactFiles(const QStringList& list, const QString& ext, con
     QString allText;
     QTextStream ts(&allText);
     for (int i = 0; i<MAX_CLASSES_PER_FILE && count>0; i++) {
-      collectAndRemoveFile(ts,  dir + "/" + list.at(list.length()-count));
+      collectAndRemoveFile(ts,  srcDir + "/" + list.at(list.length()-count));
       count--;
     }
     allText = combineIncludes(allText);
@@ -122,7 +126,8 @@ void PriGenerator::generate()
 
         QString folder = pri.key();
         folder.replace('\\','/');
-        folder = folder.left(folder.indexOf('/'));
+        int idx = folder.indexOf('/');
+        folder = folder.left(idx);
 
         qSort(list.begin(), list.end());
         FileOut file(m_out_dir + "/generated_cpp/" + pri.key());
