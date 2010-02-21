@@ -52,7 +52,7 @@ class SetupGenerator : public Generator
  public:
     virtual void generate();
 
-    void addClass(const AbstractMetaClass *cls);
+    void addClass(const QString& package, const AbstractMetaClass *cls);
 
   static void writeInclude(QTextStream &stream, const Include &inc);
   

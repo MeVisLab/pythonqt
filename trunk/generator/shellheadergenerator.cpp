@@ -53,9 +53,10 @@ QString ShellHeaderGenerator::fileNameForClass(const AbstractMetaClass *meta_cla
 
 void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_class)
 {
-  if (!ShellGenerator::isBuiltIn(meta_class->name())) {
-    setupGenerator->addClass(meta_class);
-  }
+  QString builtIn = ShellGenerator::isBuiltIn(meta_class->name())?"_builtin":"";
+  QString pro_file_name = meta_class->package().replace(".", "_") + builtIn + "/" + meta_class->package().replace(".", "_") + builtIn + ".pri";
+  priGenerator->addHeader(pro_file_name, fileNameForClass(meta_class));
+  setupGenerator->addClass(meta_class->package().replace(".", "_") + builtIn, meta_class);
 
   QString include_block = "PYTHONQTWRAPPER_" + meta_class->name().toUpper() + "_H";
 
@@ -74,14 +75,6 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
     ShellGenerator::writeInclude(s, inc);
   }  
   s << endl;
-
-  QString pro_file_name = meta_class->package().replace(".", "_") + "/" + meta_class->package().replace(".", "_") + ".pri";
-
-  //    if (!meta_class->generateShellClass()) {
-  //        s << "#endif" << endl << endl;
-  //        priGenerator->addHeader(pro_file_name, fileNameForClass(meta_class));
-  //        return ;
-  //    }
 
   AbstractMetaFunctionList ctors = meta_class->queryFunctions(AbstractMetaClass::Constructors
     | AbstractMetaClass::WasVisible
@@ -273,9 +266,6 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
   s  << "};" << endl << endl
     << "#endif // " << include_block << endl;
 
-  if (!ShellGenerator::isBuiltIn(meta_class->name())) {
-    priGenerator->addHeader(pro_file_name, fileNameForClass(meta_class));
-  }
 }
 
 void ShellHeaderGenerator::writeInjectedCode(QTextStream &s, const AbstractMetaClass *meta_class)

@@ -63,12 +63,9 @@ static void writeHelperCode(QTextStream &s, const AbstractMetaClass *)
 
 void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_class)
 {
-
-  QString pro_file_name = meta_class->package().replace(".", "_") + "/" + meta_class->package().replace(".", "_") + ".pri";
-
-  if (!ShellGenerator::isBuiltIn(meta_class->name())) {
-    priGenerator->addSource(pro_file_name, fileNameForClass(meta_class));
-  }
+  QString builtIn = ShellGenerator::isBuiltIn(meta_class->name())?"_builtin":"";
+  QString pro_file_name = meta_class->package().replace(".", "_") + builtIn + "/" + meta_class->package().replace(".", "_") + builtIn + ".pri";
+  priGenerator->addSource(pro_file_name, fileNameForClass(meta_class));
 
   s << "#include \"PythonQtWrapper_" << meta_class->name() << ".h\"" << endl << endl;
 
