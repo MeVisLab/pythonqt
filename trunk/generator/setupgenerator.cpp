@@ -126,7 +126,7 @@ void SetupGenerator::generate()
       s << "void PythonQt_init_" << shortPackName << "() {" << endl;
 
       if (shortPackName.endsWith("Builtin")) {
-        shortPackName = shortPackName.mid(shortPackName.length()-strlen("builtin"));
+        shortPackName = shortPackName.mid(0, shortPackName.length()-strlen("builtin"));
       }
 
       QStringList cppClassNames;
