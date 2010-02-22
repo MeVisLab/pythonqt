@@ -42,40 +42,37 @@
 */
 //----------------------------------------------------------------------------------
 
-#include "../generated_cpp/com_trolltech_qt_core/PythonQtWrapper_Qt.h"
-#include "../generated_cpp/com_trolltech_qt_core/PythonQtWrapper_QBitArray.h"
-#include "../generated_cpp/com_trolltech_qt_core/PythonQtWrapper_QDate.h"
-#include "../generated_cpp/com_trolltech_qt_core/PythonQtWrapper_QTime.h"
-#include "../generated_cpp/com_trolltech_qt_core/PythonQtWrapper_QDateTime.h"
-#include "../generated_cpp/com_trolltech_qt_core/PythonQtWrapper_QUrl.h"
-#include "../generated_cpp/com_trolltech_qt_core/PythonQtWrapper_QLocale.h"
-#include "../generated_cpp/com_trolltech_qt_core/PythonQtWrapper_QRect.h"
-#include "../generated_cpp/com_trolltech_qt_core/PythonQtWrapper_QRectF.h"
-#include "../generated_cpp/com_trolltech_qt_core/PythonQtWrapper_QSize.h"
-#include "../generated_cpp/com_trolltech_qt_core/PythonQtWrapper_QSizeF.h"
-#include "../generated_cpp/com_trolltech_qt_core/PythonQtWrapper_QLine.h"
-#include "../generated_cpp/com_trolltech_qt_core/PythonQtWrapper_QLineF.h"
-#include "../generated_cpp/com_trolltech_qt_core/PythonQtWrapper_QPoint.h"
-#include "../generated_cpp/com_trolltech_qt_core/PythonQtWrapper_QPointF.h"
-#include "../generated_cpp/com_trolltech_qt_core/PythonQtWrapper_QRegExp.h"
+#include <QBitArray>
+#include <QDate>
+#include <QTime>
+#include <QDateTime>
+#include <QUrl>
+#include <QLocale>
+#include <QRect>
+#include <QRectF>
+#include <QLine>
+#include <QLineF>
+#include <QPoint>
+#include <QPointF>
+#include <QRegExp>
 
-#include "../generated_cpp/com_trolltech_qt_gui/PythonQtWrapper_QFont.h"
-#include "../generated_cpp/com_trolltech_qt_gui/PythonQtWrapper_QPixmap.h"
-#include "../generated_cpp/com_trolltech_qt_gui/PythonQtWrapper_QBrush.h"
-#include "../generated_cpp/com_trolltech_qt_gui/PythonQtWrapper_QColor.h"
-#include "../generated_cpp/com_trolltech_qt_gui/PythonQtWrapper_QPalette.h"
-#include "../generated_cpp/com_trolltech_qt_gui/PythonQtWrapper_QIcon.h"
-#include "../generated_cpp/com_trolltech_qt_gui/PythonQtWrapper_QImage.h"
-#include "../generated_cpp/com_trolltech_qt_gui/PythonQtWrapper_QPolygon.h"
-#include "../generated_cpp/com_trolltech_qt_gui/PythonQtWrapper_QRegion.h"
-#include "../generated_cpp/com_trolltech_qt_gui/PythonQtWrapper_QBitmap.h"
-#include "../generated_cpp/com_trolltech_qt_gui/PythonQtWrapper_QCursor.h"
-#include "../generated_cpp/com_trolltech_qt_gui/PythonQtWrapper_QSizePolicy.h"
-#include "../generated_cpp/com_trolltech_qt_gui/PythonQtWrapper_QKeySequence.h"
-#include "../generated_cpp/com_trolltech_qt_gui/PythonQtWrapper_QPen.h"
-#include "../generated_cpp/com_trolltech_qt_gui/PythonQtWrapper_QTextLength.h"
-#include "../generated_cpp/com_trolltech_qt_gui/PythonQtWrapper_QTextFormat.h"
-#include "../generated_cpp/com_trolltech_qt_gui/PythonQtWrapper_QMatrix.h"
+#include <QFont>
+#include <QBitmap>
+#include <QBrush>
+#include <QColor>
+#include <QPalette>
+#include <QIcon>
+#include <QImage>
+#include <QPolygon>
+#include <QRegion>
+#include <QBitmap>
+#include <QCursor>
+#include <QSizePolicy>
+#include <QKeySequence>
+#include <QPen>
+#include <QTextLength>
+#include <QTextFormat>
+#include <QMatrix>
 
 #endif
 
