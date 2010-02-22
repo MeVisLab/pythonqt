@@ -105,7 +105,7 @@ static QStringList compactFiles(const QStringList& list, const QString& ext, con
     QString allText;
     QTextStream ts(&allText);
     for (int i = 0; i<MAX_CLASSES_PER_FILE && count>0; i++) {
-      collectAndRemoveFile(ts,  srcDir + "/" + list.at(list.length()-count));
+      collectAndRemoveFile(ts,  srcDir + "/" + list.at(list.count()-count));
       count--;
     }
     allText = combineIncludes(allText);
