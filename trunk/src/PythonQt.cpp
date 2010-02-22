@@ -1146,7 +1146,7 @@ void PythonQtPrivate::registerCPPClass(const char* typeName, const char* parentT
 PyObject* PythonQtPrivate::packageByName(const char* name)
 {
   if (name==NULL || name[0]==0) {
-    return _pythonQtModule;
+    name = "private";
   }
   PyObject* v = _packages.value(name);
   if (!v) {
