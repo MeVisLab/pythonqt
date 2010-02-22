@@ -56,6 +56,9 @@
 PythonQt* PythonQt::_self = NULL;
 int       PythonQt::_uniqueModuleCount = 0;
 
+void PythonQt_init_QtGuiBuiltin();
+void PythonQt_init_QtCoreBuiltin();
+
 void PythonQt::init(int flags)
 {
   if (!_self) {
@@ -72,23 +75,9 @@ void PythonQt::init(int flags)
 
   PythonQt::self()->addDecorators(new PythonQtStdDecorators());
 
-  PythonQt::self()->registerCPPClass("Qt", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_Qt>);
-  PythonQt::self()->registerCPPClass("QBitArray", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QBitArray>);
-  PythonQt::self()->registerCPPClass("QDate", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QDate>);
-  PythonQt::self()->registerCPPClass("QTime", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QTime>);
-  PythonQt::self()->registerCPPClass("QDateTime", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QDateTime>);
-  PythonQt::self()->registerCPPClass("QUrl", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QUrl>);
-  PythonQt::self()->registerCPPClass("QLocale", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QLocale>);
-  PythonQt::self()->registerCPPClass("QRect", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QRect>);
-  PythonQt::self()->registerCPPClass("QRectF", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QRectF>);
-  PythonQt::self()->registerCPPClass("QSize", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QSize>);
-  PythonQt::self()->registerCPPClass("QSizeF", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QSizeF>);
-  PythonQt::self()->registerCPPClass("QLine", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QLine>);
-  PythonQt::self()->registerCPPClass("QLineF", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QLineF>);
-  PythonQt::self()->registerCPPClass("QPoint", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QPoint>);
-  PythonQt::self()->registerCPPClass("QPointF", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QPointF>);
-  PythonQt::self()->registerCPPClass("QRegExp", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QRegExp>);
-
+  PythonQt_init_QtCoreBuiltin();
+  PythonQt_init_QtGuiBuiltin();
+  
   PythonQtRegisterToolClassesTemplateConverter(QDate);
   PythonQtRegisterToolClassesTemplateConverter(QTime);
   PythonQtRegisterToolClassesTemplateConverter(QDateTime);
@@ -103,24 +92,6 @@ void PythonQt::init(int flags)
   PythonQtRegisterToolClassesTemplateConverter(QPoint);
   PythonQtRegisterToolClassesTemplateConverter(QPointF);
   PythonQtRegisterToolClassesTemplateConverter(QRegExp);
-
-  PythonQt::self()->registerCPPClass("QFont", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QFont>);
-  PythonQt::self()->registerCPPClass("QPixmap", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPixmap>);
-  PythonQt::self()->registerCPPClass("QBrush", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QBrush>);
-  PythonQt::self()->registerCPPClass("QColor", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QColor>);
-  PythonQt::self()->registerCPPClass("QPalette", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPalette>);
-  PythonQt::self()->registerCPPClass("QIcon", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QIcon>);
-  PythonQt::self()->registerCPPClass("QImage", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QImage>);
-  PythonQt::self()->registerCPPClass("QPolygon", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPolygon>);
-  PythonQt::self()->registerCPPClass("QRegion", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QRegion>);
-  PythonQt::self()->registerCPPClass("QBitmap", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QBitmap>);
-  PythonQt::self()->registerCPPClass("QCursor", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QCursor>);
-  PythonQt::self()->registerCPPClass("QSizePolicy", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QSizePolicy>);
-  PythonQt::self()->registerCPPClass("QKeySequence", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QKeySequence>);
-  PythonQt::self()->registerCPPClass("QPen", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPen>);
-  PythonQt::self()->registerCPPClass("QTextLength", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QTextLength>);
-  PythonQt::self()->registerCPPClass("QTextFormat", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QTextFormat>);
-  PythonQt::self()->registerCPPClass("QMatrix", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QMatrix>);
 
   PythonQtRegisterToolClassesTemplateConverter(QFont);
   PythonQtRegisterToolClassesTemplateConverter(QPixmap);
