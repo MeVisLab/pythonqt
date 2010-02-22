@@ -479,6 +479,9 @@ public:
   //! called by virtual overloads when a python return value can not be converted to the required Qt type
   void handleVirtualOverloadReturnError(const char* signature, const PythonQtMethodInfo* methodInfo, PyObject* result);
   
+  //! get access to the PythonQt module
+  PythonQtObjectPtr pythonQtModule() const { return _pythonQtModule; }
+
 private:
   //! Setup the shared library suffixes by getting them from the "imp" module.
   void setupSharedLibrarySuffixes();
