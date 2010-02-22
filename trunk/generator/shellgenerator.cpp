@@ -275,6 +275,7 @@ AbstractMetaFunctionList ShellGenerator::getFunctionsToWrap(const AbstractMetaCl
       resultFunctions << func;
     }
   }
+  qStableSort(resultFunctions);
   return resultFunctions;
 }
 
@@ -284,6 +285,7 @@ AbstractMetaFunctionList ShellGenerator::getVirtualFunctionsForShell(const Abstr
     AbstractMetaClass::VirtualFunctions | AbstractMetaClass::WasVisible
 //    | AbstractMetaClass::NotRemovedFromTargetLang
     );
+  qStableSort(functions);
   return functions;
 }
 
@@ -296,6 +298,7 @@ AbstractMetaFunctionList ShellGenerator::getProtectedFunctionsThatNeedPromotion(
       functions << func;
     }
   }
+  qStableSort(functions);
   return functions;
 }
 
