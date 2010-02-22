@@ -62,6 +62,7 @@ void Generator::generate()
         return;
     }
 
+    qStableSort(m_classes);
 
     foreach (AbstractMetaClass *cls, m_classes) {
         if (!shouldGenerate(cls))
