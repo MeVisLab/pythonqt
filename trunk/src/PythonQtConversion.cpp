@@ -917,6 +917,18 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
       if (ok) v =  qVariantFromValue(d);
       break;
     }
+  case QMetaType::LongLong:
+    {
+      qint64 d = PyObjGetLongLong(val, false, ok);
+      if (ok) v =  qVariantFromValue(d);
+    }
+    break;
+  case QMetaType::ULongLong:
+    {
+      quint64 d = PyObjGetULongLong(val, false, ok);
+      if (ok) v =  qVariantFromValue(d);
+    }
+    break;
   case QMetaType::Short:
     {
       short d = (short) PyObjGetInt(val,false,ok);
