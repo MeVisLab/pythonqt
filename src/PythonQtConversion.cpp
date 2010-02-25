@@ -1145,11 +1145,6 @@ int PythonQtConv::getInnerTemplateMetaType(const QByteArray& typeName)
 }
 
 
-
-QString PythonQtConv::qVariantToString(const QVariant& v) {
-  return CPPObjectToString(v.userType(), v.constData());
-}
-
 QString PythonQtConv::CPPObjectToString(int type, const void* data) {
   QString r;
   switch (type) {
