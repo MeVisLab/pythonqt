@@ -124,9 +124,6 @@ public:
 
   static PyObject* QVariantMapToPyObject(const QVariantMap& m);
   static PyObject* QVariantListToPyObject(const QVariantList& l);
-
-  //! get human readable string from qvariant
-  static QString qVariantToString(const QVariant& v);
   
   //! get human readable string from CPP object (when the metatype is known)
   static QString CPPObjectToString(int type, const void* data);
