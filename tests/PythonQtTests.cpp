@@ -81,48 +81,48 @@ void PythonQtTestSlotCalling::testInheritance() {
   PythonQt::self()->addParentClass("ClassD", "ClassA", PythonQtUpcastingOffset<ClassD,ClassA>());
   PythonQt::self()->addParentClass("ClassD", "ClassB", PythonQtUpcastingOffset<ClassD,ClassB>());
 
-  PythonQtObjectPtr classA = PythonQt::self()->getMainModule().getVariable("PythonQt.ClassA");
-  PythonQtObjectPtr classB = PythonQt::self()->getMainModule().getVariable("PythonQt.ClassB");
-  PythonQtObjectPtr classC = PythonQt::self()->getMainModule().getVariable("PythonQt.ClassC");
-  PythonQtObjectPtr classD = PythonQt::self()->getMainModule().getVariable("PythonQt.ClassD");
+  PythonQtObjectPtr classA = PythonQt::self()->getMainModule().getVariable("PythonQt.private.ClassA");
+  PythonQtObjectPtr classB = PythonQt::self()->getMainModule().getVariable("PythonQt.private.ClassB");
+  PythonQtObjectPtr classC = PythonQt::self()->getMainModule().getVariable("PythonQt.private.ClassC");
+  PythonQtObjectPtr classD = PythonQt::self()->getMainModule().getVariable("PythonQt.private.ClassD");
   QVERIFY(classA);
   QVERIFY(classB);
   QVERIFY(classC);
   QVERIFY(classD);
 
-  QVERIFY(_helper->runScript("a = PythonQt.ClassA();\nif obj.getClassAPtr(a).getX()==1: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("a = PythonQt.private.ClassA();\nif obj.getClassAPtr(a).getX()==1: obj.setPassed();\n"));
   QEXPECT_FAIL("", "ClassB can not be converted to ClassA", Continue);
-  QVERIFY(_helper->runScript("a = PythonQt.ClassB();\nif obj.getClassAPtr(a).getX()==1: obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("a = PythonQt.ClassC();\nif obj.getClassAPtr(a).getX()==1: obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("a = PythonQt.ClassD();\nif obj.getClassAPtr(a).getX()==1: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("a = PythonQt.private.ClassB();\nif obj.getClassAPtr(a).getX()==1: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("a = PythonQt.private.ClassC();\nif obj.getClassAPtr(a).getX()==1: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("a = PythonQt.private.ClassD();\nif obj.getClassAPtr(a).getX()==1: obj.setPassed();\n"));
 
   QEXPECT_FAIL("", "ClassA can not be converted to ClassB", Continue);
-  QVERIFY(_helper->runScript("a = PythonQt.ClassA();\nif obj.getClassBPtr(a).getY()==2: obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("a = PythonQt.ClassB();\nif obj.getClassBPtr(a).getY()==2: obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("a = PythonQt.ClassC();\nif obj.getClassBPtr(a).getY()==2: obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("a = PythonQt.ClassD();\nif obj.getClassBPtr(a).getY()==2: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("a = PythonQt.private.ClassA();\nif obj.getClassBPtr(a).getY()==2: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("a = PythonQt.private.ClassB();\nif obj.getClassBPtr(a).getY()==2: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("a = PythonQt.private.ClassC();\nif obj.getClassBPtr(a).getY()==2: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("a = PythonQt.private.ClassD();\nif obj.getClassBPtr(a).getY()==2: obj.setPassed();\n"));
 
   QEXPECT_FAIL("", "ClassA can not be converted to ClassC", Continue);
-  QVERIFY(_helper->runScript("a = PythonQt.ClassA();\nif obj.getClassCPtr(a).getX()==1: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("a = PythonQt.private.ClassA();\nif obj.getClassCPtr(a).getX()==1: obj.setPassed();\n"));
   QEXPECT_FAIL("", "ClassB can not be converted to ClassC", Continue);
-  QVERIFY(_helper->runScript("a = PythonQt.ClassB();\nif obj.getClassCPtr(a).getX()==1: obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("a = PythonQt.ClassC();\nif obj.getClassCPtr(a).getX()==1: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("a = PythonQt.private.ClassB();\nif obj.getClassCPtr(a).getX()==1: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("a = PythonQt.private.ClassC();\nif obj.getClassCPtr(a).getX()==1: obj.setPassed();\n"));
   QEXPECT_FAIL("", "ClassD can not be converted to ClassC", Continue);
-  QVERIFY(_helper->runScript("a = PythonQt.ClassD();\nif obj.getClassCPtr(a).getX()==1: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("a = PythonQt.private.ClassD();\nif obj.getClassCPtr(a).getX()==1: obj.setPassed();\n"));
 
-  QVERIFY(_helper->runScript("if type(obj.createClassA())==PythonQt.ClassA: obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("if type(obj.createClassB())==PythonQt.ClassB: obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("if type(obj.createClassCAsA())==PythonQt.ClassA: obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("if type(obj.createClassCAsB())==PythonQt.ClassB: obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("if type(obj.createClassD())==PythonQt.ClassD: obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("if type(obj.createClassDAsA())==PythonQt.ClassA: obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("if type(obj.createClassDAsB())==PythonQt.ClassB: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if type(obj.createClassA())==PythonQt.private.ClassA: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if type(obj.createClassB())==PythonQt.private.ClassB: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if type(obj.createClassCAsA())==PythonQt.private.ClassA: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if type(obj.createClassCAsB())==PythonQt.private.ClassB: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if type(obj.createClassD())==PythonQt.private.ClassD: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if type(obj.createClassDAsA())==PythonQt.private.ClassA: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if type(obj.createClassDAsB())==PythonQt.private.ClassB: obj.setPassed();\n"));
 
   PythonQt::self()->addPolymorphicHandler("ClassB", polymorphic_ClassB_Handler);
 
-  QVERIFY(_helper->runScript("if type(obj.getClassBPtr(obj.createClassB()))==PythonQt.ClassB: obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("if type(obj.createClassCAsB())==PythonQt.ClassC: obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("if type(obj.createClassDAsB())==PythonQt.ClassD: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if type(obj.getClassBPtr(obj.createClassB()))==PythonQt.private.ClassB: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if type(obj.createClassCAsB())==PythonQt.private.ClassC: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if type(obj.createClassDAsB())==PythonQt.private.ClassD: obj.setPassed();\n"));
 
 }
 
@@ -250,22 +250,22 @@ void PythonQtTestSlotCalling::testCppFactory()
   QVERIFY(_helper->runScript("a = obj.getUnknownValueObjectAsValue();print a;\nif a!=None: obj.setPassed();\n"));
   
   // expect to get strict call to double overload
-  QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt import PQCppObjectNoWrap\na = PQCppObjectNoWrap(22.2)\nif a.getH()==2: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt.private import PQCppObjectNoWrap\na = PQCppObjectNoWrap(22.2)\nif a.getH()==2: obj.setPassed();\n"));
   // expect to get un-strict call to double overload
-  QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt import PQCppObjectNoWrap\na = PQCppObjectNoWrap(22)\nif a.getH()==2: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt.private import PQCppObjectNoWrap\na = PQCppObjectNoWrap(22)\nif a.getH()==2: obj.setPassed();\n"));
   // expect to get strict call to copy constructor overload
-  QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt import PQCppObjectNoWrap\na = PQCppObjectNoWrap(PQCppObjectNoWrap())\nprint a.getH()\nif a.getH()==1: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt.private import PQCppObjectNoWrap\na = PQCppObjectNoWrap(PQCppObjectNoWrap())\nprint a.getH()\nif a.getH()==1: obj.setPassed();\n"));
 
   // test decorated enums
   // already registered by signals test
   //PythonQt::self()->registerCPPClass("PQCppObject2",NULL,NULL, PythonQtCreateObject<PQCppObject2Decorator>);
   
   // local enum (decorated)
-  QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt import PQCppObject2\na = PQCppObject2()\nprint a.testEnumFlag1\nif a.testEnumFlag1(PQCppObject2.TestEnumValue2)==PQCppObject2.TestEnumValue2: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt.private import PQCppObject2\na = PQCppObject2()\nprint a.testEnumFlag1\nif a.testEnumFlag1(PQCppObject2.TestEnumValue2)==PQCppObject2.TestEnumValue2: obj.setPassed();\n"));
   // enum with namespace (decorated)
-  QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt import PQCppObject2\na = PQCppObject2()\nif a.testEnumFlag2(PQCppObject2.TestEnumValue2)==PQCppObject2.TestEnumValue2: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt.private import PQCppObject2\na = PQCppObject2()\nif a.testEnumFlag2(PQCppObject2.TestEnumValue2)==PQCppObject2.TestEnumValue2: obj.setPassed();\n"));
   // with int overload to check overloading
-  QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt import PQCppObject2\na = PQCppObject2()\nif a.testEnumFlag3(PQCppObject2.TestEnumValue2)==PQCppObject2.TestEnumValue2: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt.private import PQCppObject2\na = PQCppObject2()\nif a.testEnumFlag3(PQCppObject2.TestEnumValue2)==PQCppObject2.TestEnumValue2: obj.setPassed();\n"));
 
 }
 
