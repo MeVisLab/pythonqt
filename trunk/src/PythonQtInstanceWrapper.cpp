@@ -503,7 +503,7 @@ static int PythonQtInstanceWrapper_compare(PyObject * obj1, PyObject * obj2)
           if (w1->_obj && w2->_obj) {
             void* args[2];
             args[0] = &result;
-            args[2] = obj2;  // this is a reference, so it needs the direct pointer
+            args[1] = obj2;  // this is a reference, so it needs the direct pointer
             w1->_obj->qt_metacall(QMetaObject::InvokeMetaMethod, info._slot->slotIndex(), args);
           }
         }
