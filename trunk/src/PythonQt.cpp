@@ -71,6 +71,10 @@ void PythonQt::init(int flags)
   PythonQtRegisterToolClassesTemplateConverter(int);
   PythonQtRegisterToolClassesTemplateConverter(float);
   PythonQtRegisterToolClassesTemplateConverter(double);
+  PythonQtRegisterToolClassesTemplateConverter(qint32);
+  PythonQtRegisterToolClassesTemplateConverter(quint32);
+  PythonQtRegisterToolClassesTemplateConverter(qint64);
+  PythonQtRegisterToolClassesTemplateConverter(quint64);
   // TODO: which other POD types should be available for QList etc.
 
   PythonQt::self()->addDecorators(new PythonQtStdDecorators());
