@@ -96,8 +96,10 @@ public:
     ExternalHelp = 4      //!<< sets if help() calls on PythonQt modules are forwarded to the pythonHelpRequest() signal
   };
 
-  //! initialize the python qt binding (flags are a or combination of InitFlags)
-  static void init(int flags = IgnoreSiteModule | RedirectStdOut);
+  //! initialize the python qt binding (flags are a or combination of InitFlags), if \c pythonQtModuleName is given
+  //! it defines the name of the python module that PythonQt will add, otherwise "PythonQt" is used.
+  //! This can be used to e.g. pass in PySide or PyQt4 to make it more compatible.
+  static void init(int flags = IgnoreSiteModule | RedirectStdOut, const QByteArray& pythonQtModuleName = QByteArray());
 
   //! cleanup
   static void cleanup();
@@ -361,7 +363,7 @@ public:
   PythonQtObjectPtr lookupObject(PyObject* module, const QString& name);
 
 private:
-  void initPythonQtModule(bool redirectStdOut);
+  void initPythonQtModule(bool redirectStdOut, const QByteArray& pythonQtModuleName);
 
   //! callback for stdout redirection, emits pythonStdOut signal
   static void stdOutRedirectCB(const QString& str);
@@ -371,7 +373,7 @@ private:
   //! get (and create if not available) the signal receiver of that QObject, signal receiver is made child of the passed \c obj
   PythonQtSignalReceiver* getSignalReceiver(QObject* obj);
 
-  PythonQt(int flags);
+  PythonQt(int flags, const QByteArray& pythonQtModuleName);
   ~PythonQt();
 
   static PythonQt* _self;
@@ -430,7 +432,7 @@ public:
   //! registers a QObject derived class to PythonQt (this is implicitly called by addObject as well)
   /* Since Qt4 does not offer a way to detect if a given classname is derived from QObject and thus has a QMetaObject,
      you MUST register all your QObject derived classes here when you want them to be detected in signal and slot calls */
-  void registerClass(const QMetaObject* metaobject, const char* package = NULL, PythonQtQObjectCreatorFunctionCB* wrapperCreator = NULL, PythonQtShellSetInstanceWrapperCB* shell = NULL);
+  void registerClass(const QMetaObject* metaobject, const char* package = NULL, PythonQtQObjectCreatorFunctionCB* wrapperCreator = NULL, PythonQtShellSetInstanceWrapperCB* shell = NULL, PyObject* module = NULL);
 
   //! add a wrapper object for the given QMetaType typeName, also does an addClassDecorators() to add constructors for variants
   //! (ownership of wrapper is passed to PythonQt)
@@ -440,7 +442,7 @@ public:
    All slots that take a pointer to typeName as the first argument will be callable from Python on
    a variant object that contains such a type.
    */
-  void registerCPPClass(const char* typeName, const char* parentTypeName = NULL, const char* package = NULL, PythonQtQObjectCreatorFunctionCB* wrapperCreator = NULL, PythonQtShellSetInstanceWrapperCB* shell = NULL);
+  void registerCPPClass(const char* typeName, const char* parentTypeName = NULL, const char* package = NULL, PythonQtQObjectCreatorFunctionCB* wrapperCreator = NULL, PythonQtShellSetInstanceWrapperCB* shell = NULL, PyObject* module = NULL);
   
   //! as an alternative to registerClass, you can tell PythonQt the names of QObject derived classes
   //! and it will register the classes when it first sees a pointer to such a derived class
@@ -450,7 +452,7 @@ public:
   void addDecorators(QObject* o, int decoTypes);
 
   //! helper method that creates a PythonQtClassWrapper object  (returns a new reference)
-  PythonQtClassWrapper* createNewPythonQtClassWrapper(PythonQtClassInfo* info, const char* package = NULL);
+  PythonQtClassWrapper* createNewPythonQtClassWrapper(PythonQtClassInfo* info, PyObject* module);
 
   //! create a new instance of the given enum type with given value (returns a new reference)
   static PyObject*  createEnumValueInstance(PyObject* enumType, unsigned int enumValue);
@@ -487,7 +489,7 @@ private:
   void setupSharedLibrarySuffixes();
 
   //! create a new pythonqt class wrapper and place it in the pythonqt module
-  void createPythonQtClassWrapper(PythonQtClassInfo* info, const char* package);
+  void createPythonQtClassWrapper(PythonQtClassInfo* info, const char* package, PyObject* module = NULL);
 
   //! get/create new package module (the returned object is a borrowed reference)
   PyObject* packageByName(const char* name);
@@ -510,6 +512,9 @@ private:
   //! the PythonQt python module
   PythonQtObjectPtr _pythonQtModule;
 
+  //! the name of the PythonQt python module
+  QByteArray _pythonQtModuleName;
+  
   //! the importer interface (if set)
   PythonQtImportFileInterface* _importInterface;
 
