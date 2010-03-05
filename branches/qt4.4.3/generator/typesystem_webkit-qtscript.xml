@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<typesystem package="com.trolltech.qt.webkit">
+
+    <!-- ### need to work around the fact that QWebHistoryItem doesn't have a default constructor -->
+    <rejection class="QWebHistory"/>
+    <rejection class="QWebHistoryItem"/>
+
+    <rejection class="WebCore"/>
+
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: skipping field 'QWebPluginFactory_Plugin::mimeTypes' with unmatched type 'QList&lt;MimeType&gt;'" />
+
+</typesystem>
