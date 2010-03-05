@@ -32,32 +32,35 @@
 
 #include "PythonQt_QtAll.h"
 
-void PythonQt_init_QtGui();
-void PythonQt_init_QtSvg();
-void PythonQt_init_QtSql();
-void PythonQt_init_QtNetwork();
-void PythonQt_init_QtCore();
-void PythonQt_init_QtWebKit();
-void PythonQt_init_QtOpenGL();
-void PythonQt_init_QtXml();
-void PythonQt_init_QtXmlPatterns();
-void PythonQt_init_QtUiTools();
-//void PythonQt_init_QtPhonon();
+#include "PythonQt.h"
+
+void PythonQt_init_QtGui(PyObject*);
+void PythonQt_init_QtSvg(PyObject*);
+void PythonQt_init_QtSql(PyObject*);
+void PythonQt_init_QtNetwork(PyObject*);
+void PythonQt_init_QtCore(PyObject*);
+void PythonQt_init_QtWebKit(PyObject*);
+void PythonQt_init_QtOpenGL(PyObject*);
+void PythonQt_init_QtXml(PyObject*);
+void PythonQt_init_QtXmlPatterns(PyObject*);
+void PythonQt_init_QtUiTools(PyObject*);
+void PythonQt_init_QtPhonon(PyObject*);
 
 namespace PythonQt_QtAll
 {
   PYTHONQT_QTALL_EXPORT void init() {
-    PythonQt_init_QtCore();
-    PythonQt_init_QtNetwork();
-    PythonQt_init_QtGui();
-    PythonQt_init_QtXml();
-    PythonQt_init_QtXmlPatterns();
-    PythonQt_init_QtSvg();
-    PythonQt_init_QtSql();
-    PythonQt_init_QtWebKit();
-    PythonQt_init_QtOpenGL();
-    PythonQt_init_QtUiTools();
-//    PythonQt_init_QtPhonon();
+    PythonQt_init_QtCore(0);
+    PythonQt_init_QtNetwork(0);
+    PythonQt_init_QtGui(0);
+    PythonQt_init_QtXml(0);
+    PythonQt_init_QtSvg(0);
+    PythonQt_init_QtSql(0);
+    PythonQt_init_QtWebKit(0);
+    PythonQt_init_QtOpenGL(0);
+    PythonQt_init_QtUiTools(0);
+    // Does not compile yet:
+//    PythonQt_init_QtXmlPatterns(0);
+//    PythonQt_init_QtPhonon(0);
   };
 };
 
