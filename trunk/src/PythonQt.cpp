@@ -56,79 +56,79 @@
 PythonQt* PythonQt::_self = NULL;
 int       PythonQt::_uniqueModuleCount = 0;
 
-void PythonQt_init_QtGuiBuiltin();
-void PythonQt_init_QtCoreBuiltin();
+void PythonQt_init_QtGuiBuiltin(PyObject*);
+void PythonQt_init_QtCoreBuiltin(PyObject*);
 
-void PythonQt::init(int flags)
+void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
 {
   if (!_self) {
-    _self = new PythonQt(flags);
-  }
+    _self = new PythonQt(flags, pythonQtModuleName);
 
-  PythonQtMethodInfo::addParameterTypeAlias("QObjectList", "QList<QObject*>");
-  qRegisterMetaType<QList<QObject*> >("QList<void*>");
+    PythonQtMethodInfo::addParameterTypeAlias("QObjectList", "QList<QObject*>");
+    qRegisterMetaType<QList<QObject*> >("QList<void*>");
 
-  PythonQtRegisterToolClassesTemplateConverter(int);
-  PythonQtRegisterToolClassesTemplateConverter(float);
-  PythonQtRegisterToolClassesTemplateConverter(double);
-  PythonQtRegisterToolClassesTemplateConverter(qint32);
-  PythonQtRegisterToolClassesTemplateConverter(quint32);
-  PythonQtRegisterToolClassesTemplateConverter(qint64);
-  PythonQtRegisterToolClassesTemplateConverter(quint64);
-  // TODO: which other POD types should be available for QList etc.
+    PythonQtRegisterToolClassesTemplateConverter(int);
+    PythonQtRegisterToolClassesTemplateConverter(float);
+    PythonQtRegisterToolClassesTemplateConverter(double);
+    PythonQtRegisterToolClassesTemplateConverter(qint32);
+    PythonQtRegisterToolClassesTemplateConverter(quint32);
+    PythonQtRegisterToolClassesTemplateConverter(qint64);
+    PythonQtRegisterToolClassesTemplateConverter(quint64);
+    // TODO: which other POD types should be available for QList etc.
 
-  PythonQt::self()->addDecorators(new PythonQtStdDecorators());
+    PythonQt::self()->addDecorators(new PythonQtStdDecorators());
 
-  PythonQt_init_QtCoreBuiltin();
-  PythonQt_init_QtGuiBuiltin();
+    PythonQt_init_QtCoreBuiltin(NULL);
+    PythonQt_init_QtGuiBuiltin(NULL);
   
-  PythonQtRegisterToolClassesTemplateConverter(QDate);
-  PythonQtRegisterToolClassesTemplateConverter(QTime);
-  PythonQtRegisterToolClassesTemplateConverter(QDateTime);
-  PythonQtRegisterToolClassesTemplateConverter(QUrl);
-  PythonQtRegisterToolClassesTemplateConverter(QLocale);
-  PythonQtRegisterToolClassesTemplateConverter(QRect);
-  PythonQtRegisterToolClassesTemplateConverter(QRectF);
-  PythonQtRegisterToolClassesTemplateConverter(QSize);
-  PythonQtRegisterToolClassesTemplateConverter(QSizeF);
-  PythonQtRegisterToolClassesTemplateConverter(QLine);
-  PythonQtRegisterToolClassesTemplateConverter(QLineF);
-  PythonQtRegisterToolClassesTemplateConverter(QPoint);
-  PythonQtRegisterToolClassesTemplateConverter(QPointF);
-  PythonQtRegisterToolClassesTemplateConverter(QRegExp);
+    PythonQtRegisterToolClassesTemplateConverter(QDate);
+    PythonQtRegisterToolClassesTemplateConverter(QTime);
+    PythonQtRegisterToolClassesTemplateConverter(QDateTime);
+    PythonQtRegisterToolClassesTemplateConverter(QUrl);
+    PythonQtRegisterToolClassesTemplateConverter(QLocale);
+    PythonQtRegisterToolClassesTemplateConverter(QRect);
+    PythonQtRegisterToolClassesTemplateConverter(QRectF);
+    PythonQtRegisterToolClassesTemplateConverter(QSize);
+    PythonQtRegisterToolClassesTemplateConverter(QSizeF);
+    PythonQtRegisterToolClassesTemplateConverter(QLine);
+    PythonQtRegisterToolClassesTemplateConverter(QLineF);
+    PythonQtRegisterToolClassesTemplateConverter(QPoint);
+    PythonQtRegisterToolClassesTemplateConverter(QPointF);
+    PythonQtRegisterToolClassesTemplateConverter(QRegExp);
 
-  PythonQtRegisterToolClassesTemplateConverter(QFont);
-  PythonQtRegisterToolClassesTemplateConverter(QPixmap);
-  PythonQtRegisterToolClassesTemplateConverter(QBrush);
-  PythonQtRegisterToolClassesTemplateConverter(QColor);
-  PythonQtRegisterToolClassesTemplateConverter(QPalette);
-  PythonQtRegisterToolClassesTemplateConverter(QIcon);
-  PythonQtRegisterToolClassesTemplateConverter(QImage);
-  PythonQtRegisterToolClassesTemplateConverter(QPolygon);
-  PythonQtRegisterToolClassesTemplateConverter(QRegion);
-  PythonQtRegisterToolClassesTemplateConverter(QBitmap);
-  PythonQtRegisterToolClassesTemplateConverter(QCursor);
-  PythonQtRegisterToolClassesTemplateConverter(QSizePolicy);
-  PythonQtRegisterToolClassesTemplateConverter(QKeySequence);
-  PythonQtRegisterToolClassesTemplateConverter(QPen);
-  PythonQtRegisterToolClassesTemplateConverter(QTextLength);
-  PythonQtRegisterToolClassesTemplateConverter(QTextFormat);
-  PythonQtRegisterToolClassesTemplateConverter(QMatrix);
+    PythonQtRegisterToolClassesTemplateConverter(QFont);
+    PythonQtRegisterToolClassesTemplateConverter(QPixmap);
+    PythonQtRegisterToolClassesTemplateConverter(QBrush);
+    PythonQtRegisterToolClassesTemplateConverter(QColor);
+    PythonQtRegisterToolClassesTemplateConverter(QPalette);
+    PythonQtRegisterToolClassesTemplateConverter(QIcon);
+    PythonQtRegisterToolClassesTemplateConverter(QImage);
+    PythonQtRegisterToolClassesTemplateConverter(QPolygon);
+    PythonQtRegisterToolClassesTemplateConverter(QRegion);
+    PythonQtRegisterToolClassesTemplateConverter(QBitmap);
+    PythonQtRegisterToolClassesTemplateConverter(QCursor);
+    PythonQtRegisterToolClassesTemplateConverter(QSizePolicy);
+    PythonQtRegisterToolClassesTemplateConverter(QKeySequence);
+    PythonQtRegisterToolClassesTemplateConverter(QPen);
+    PythonQtRegisterToolClassesTemplateConverter(QTextLength);
+    PythonQtRegisterToolClassesTemplateConverter(QTextFormat);
+    PythonQtRegisterToolClassesTemplateConverter(QMatrix);
 
 
-  PyObject* pack = PythonQt::priv()->packageByName("QtCore");
-  PyObject* pack2 = PythonQt::priv()->packageByName("Qt");
-  PyObject* qtNamespace = PythonQt::priv()->getClassInfo("Qt")->pythonQtClassWrapper();
-  const char* names[16] = {"SIGNAL", "SLOT", "qAbs", "qBound","qDebug","qWarning","qCritical","qFatal"
+    PyObject* pack = PythonQt::priv()->packageByName("QtCore");
+    PyObject* pack2 = PythonQt::priv()->packageByName("Qt");
+    PyObject* qtNamespace = PythonQt::priv()->getClassInfo("Qt")->pythonQtClassWrapper();
+    const char* names[16] = {"SIGNAL", "SLOT", "qAbs", "qBound","qDebug","qWarning","qCritical","qFatal"
                         ,"qFuzzyCompare", "qMax","qMin","qRound","qRound64","qVersion","qrand","qsrand"};
-  for (unsigned int i = 0;i<16; i++) {
-    PyObject* obj = PyObject_GetAttrString(qtNamespace, names[i]);
-    if (obj) {
-      PyModule_AddObject(pack, names[i], obj);
-      Py_INCREF(obj);
-      PyModule_AddObject(pack2, names[i], obj);
-    } else {
-      std::cerr << "method not found " << names[i];
+    for (unsigned int i = 0;i<16; i++) {
+      PyObject* obj = PyObject_GetAttrString(qtNamespace, names[i]);
+      if (obj) {
+        PyModule_AddObject(pack, names[i], obj);
+        Py_INCREF(obj);
+        PyModule_AddObject(pack2, names[i], obj);
+      } else {
+        std::cerr << "method not found " << names[i];
+      }
     }
   }
 }
@@ -141,7 +141,7 @@ void PythonQt::cleanup()
   }
 }
 
-PythonQt::PythonQt(int flags)
+PythonQt::PythonQt(int flags, const QByteArray& pythonQtModuleName)
 {
   _p = new PythonQtPrivate;
   _p->_initFlags = flags;
@@ -182,7 +182,7 @@ PythonQt::PythonQt(int flags)
   }
   Py_INCREF(&PythonQtStdOutRedirectType);
 
-  initPythonQtModule(flags & RedirectStdOut);
+  initPythonQtModule(flags & RedirectStdOut, pythonQtModuleName);
 
   _p->setupSharedLibrarySuffixes();
 
@@ -227,7 +227,7 @@ void PythonQt::registerClass(const QMetaObject* metaobject, const char* package,
   _p->registerClass(metaobject, package, wrapperCreator, shell);
 }
 
-void PythonQtPrivate::registerClass(const QMetaObject* metaobject, const char* package, PythonQtQObjectCreatorFunctionCB* wrapperCreator, PythonQtShellSetInstanceWrapperCB* shell)
+void PythonQtPrivate::registerClass(const QMetaObject* metaobject, const char* package, PythonQtQObjectCreatorFunctionCB* wrapperCreator, PythonQtShellSetInstanceWrapperCB* shell, PyObject* module)
 {
   // we register all classes in the hierarchy
   const QMetaObject* m = metaobject;
@@ -236,7 +236,7 @@ void PythonQtPrivate::registerClass(const QMetaObject* metaobject, const char* p
     PythonQtClassInfo* info = lookupClassInfoAndCreateIfNotPresent(m->className());
     if (!info->pythonQtClassWrapper()) {
       info->setupQObject(m);
-      createPythonQtClassWrapper(info, package);
+      createPythonQtClassWrapper(info, package, module);
       if (m->superClass()) {
         PythonQtClassInfo* parentInfo = lookupClassInfoAndCreateIfNotPresent(m->superClass()->className());
         info->addParentClass(PythonQtClassInfo::ParentClassInfo(parentInfo));
@@ -255,12 +255,12 @@ void PythonQtPrivate::registerClass(const QMetaObject* metaobject, const char* p
   }
 }
 
-void PythonQtPrivate::createPythonQtClassWrapper(PythonQtClassInfo* info, const char* package)
+void PythonQtPrivate::createPythonQtClassWrapper(PythonQtClassInfo* info, const char* package, PyObject* module)
 {
-  PyObject* pack = packageByName(package);
-  PyObject* pyobj = (PyObject*)createNewPythonQtClassWrapper(info, package);
+  PyObject* pack = module?module:packageByName(package);
+  PyObject* pyobj = (PyObject*)createNewPythonQtClassWrapper(info, pack);
   PyModule_AddObject(pack, info->className(), pyobj);
-  if (package && strncmp(package,"Qt",2)==0) {
+  if (!module && package && strncmp(package,"Qt",2)==0) {
     // since PyModule_AddObject steals the reference, we need a incref once more...
     Py_INCREF(pyobj);
     // put all qt objects into Qt as well
@@ -393,7 +393,7 @@ PythonQtInstanceWrapper* PythonQtPrivate::createNewPythonQtInstanceWrapper(QObje
   return result;
 }
 
-PythonQtClassWrapper* PythonQtPrivate::createNewPythonQtClassWrapper(PythonQtClassInfo* info, const char* package) {
+PythonQtClassWrapper* PythonQtPrivate::createNewPythonQtClassWrapper(PythonQtClassInfo* info, PyObject* parentModule) {
   PythonQtClassWrapper* result;
 
   PyObject* className = PyString_FromString(info->className());
@@ -402,12 +402,8 @@ PythonQtClassWrapper* PythonQtPrivate::createNewPythonQtClassWrapper(PythonQtCla
   PyTuple_SET_ITEM(baseClasses, 0, (PyObject*)&PythonQtInstanceWrapper_Type);
 
   PyObject* typeDict = PyDict_New();
-  QByteArray moduleName("PythonQt");
-  if (package && strcmp(package, "")!=0) {
-    moduleName += ".";
-    moduleName += package;
-  }
-  PyDict_SetItemString(typeDict, "__module__", PyString_FromString(moduleName.constData()));
+  PyObject* moduleName = PyObject_GetAttrString(parentModule, "__name__");
+  PyDict_SetItemString(typeDict, "__module__", moduleName);
 
   PyObject* args  = Py_BuildValue("OOO", className, baseClasses, typeDict);
 
@@ -1064,10 +1060,15 @@ static PyMethodDef PythonQtMethods[] = {
   {NULL, NULL, 0, NULL}
 };
 
-void PythonQt::initPythonQtModule(bool redirectStdOut)
+void PythonQt::initPythonQtModule(bool redirectStdOut, const QByteArray& pythonQtModuleName)
 {
-  _p->_pythonQtModule = Py_InitModule("PythonQt", PythonQtMethods);
-
+  QByteArray name = "PythonQt";
+  if (!pythonQtModuleName.isEmpty()) {
+    name = pythonQtModuleName;
+  }
+  _p->_pythonQtModule = Py_InitModule(name.constData(), PythonQtMethods);
+  _p->_pythonQtModuleName = name;
+  
   if (redirectStdOut) {
     PythonQtObjectPtr sys;
     PythonQtObjectPtr out;
@@ -1129,12 +1130,12 @@ bool PythonQtPrivate::addParentClass(const char* typeName, const char* parentTyp
   }
 }
 
-void PythonQtPrivate::registerCPPClass(const char* typeName, const char* parentTypeName, const char* package, PythonQtQObjectCreatorFunctionCB* wrapperCreator,  PythonQtShellSetInstanceWrapperCB* shell)
+void PythonQtPrivate::registerCPPClass(const char* typeName, const char* parentTypeName, const char* package, PythonQtQObjectCreatorFunctionCB* wrapperCreator,  PythonQtShellSetInstanceWrapperCB* shell, PyObject* module)
 {
   PythonQtClassInfo* info = lookupClassInfoAndCreateIfNotPresent(typeName);
   if (!info->pythonQtClassWrapper()) {
     info->setupCPPObject(typeName);
-    createPythonQtClassWrapper(info, package);
+    createPythonQtClassWrapper(info, package, module);
   }
   if (parentTypeName && strcmp(parentTypeName,"")!=0) {
     addParentClass(typeName, parentTypeName, 0);
@@ -1154,7 +1155,7 @@ PyObject* PythonQtPrivate::packageByName(const char* name)
   }
   PyObject* v = _packages.value(name);
   if (!v) {
-    v = PyImport_AddModule((QByteArray("PythonQt.") + name).constData());
+    v = PyImport_AddModule((_pythonQtModuleName + "." + name).constData());
     _packages.insert(name, v);
     // AddObject steals the reference, so increment it!
     Py_INCREF(v);
