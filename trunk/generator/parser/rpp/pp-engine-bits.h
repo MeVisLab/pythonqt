@@ -383,6 +383,7 @@ template <typename _InputIterator, typename _OutputIterator>
 _InputIterator pp::handle_include (bool __skip_current_path, _InputIterator __first, _InputIterator __last,
       _OutputIterator __result)
 {
+  std::cout << env.current_file << std::endl;
   if (pp_isalpha (*__first) || *__first == '_')
     {
       pp_macro_expander expand_include (env);
@@ -390,7 +391,8 @@ _InputIterator pp::handle_include (bool __skip_current_path, _InputIterator __fi
       name.reserve (255);
       expand_include (__first, __last, std::back_inserter (name));
       std::string::iterator it = skip_blanks (name.begin (), name.end ());
-      assert (it != name.end () && (*it == '<' || *it == '"'));
+      printf("%s", name.c_str());
+      assert((it != name.end () && (*it == '<' || *it == '"')));
       handle_include (__skip_current_path, it, name.end (), __result);
       return __first;
     }
@@ -416,7 +418,7 @@ _InputIterator pp::handle_include (bool __skip_current_path, _InputIterator __fi
 
   std::string filepath;
   FILE *fp = find_include_file (filename, &filepath, quote == '>' ? INCLUDE_GLOBAL : INCLUDE_LOCAL, __skip_current_path);
-
+  
 #if defined (PP_HOOK_ON_FILE_INCLUDED)
       PP_HOOK_ON_FILE_INCLUDED (env.current_file, fp ? filepath : filename, fp);
 #endif

@@ -42,6 +42,7 @@
 #include "shellimplgenerator.h"
 #include "reporthandler.h"
 #include "fileout.h"
+#include <iostream>
 
 extern void declareFunctionMetaTypes(QTextStream &stream,
                                      const AbstractMetaFunctionList &functions,
@@ -61,12 +62,18 @@ static void writeHelperCode(QTextStream &s, const AbstractMetaClass *)
 {
 }
 
+
+
 void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_class)
 {
   QString builtIn = ShellGenerator::isBuiltIn(meta_class->name())?"_builtin":"";
   QString pro_file_name = meta_class->package().replace(".", "_") + builtIn + "/" + meta_class->package().replace(".", "_") + builtIn + ".pri";
   priGenerator->addSource(pro_file_name, fileNameForClass(meta_class));
 
+  foreach (AbstractMetaField* field, meta_class->fields()) {
+    std::cout << "Not yet generated fields: " << meta_class->qualifiedCppName().toLatin1().data() << "::" << field->name().toLatin1().data() << std::endl;
+  }
+  
   s << "#include \"PythonQtWrapper_" << meta_class->name() << ".h\"" << endl << endl;
 
   s << "#include <PythonQtSignalReceiver.h>" << endl;

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <typesystem>
-    
+
     <rejection class="Phonon::ObjectDescriptionData" />
     <rejection class="Phonon::ObjectDescriptionModelData" />
     <rejection class="Phonon::MediaNodeDestructionHandler" />
@@ -9,19 +9,15 @@
     <rejection class="Phonon::Factory" />
     <rejection class="Phonon::Experimental" />
     <rejection class="Phonon::ObjectDescriptionModel" />
-    <rejection class="AudioOutputAdaptor" />    
+    <rejection class="Phonon::BackendCapabilities::Notifier" />
+    <rejection class="AudioOutputAdaptor" />
     <rejection class="*" field-name="k_ptr" />
-    
     <rejection class="Phonon::AudioOutputInterface40" />
     <rejection class="Phonon::AudioOutputInterface42" />
-    <rejection class="Phonon::AudioOutputInterface" />
 
     <namespace-type name="Phonon" />
     <namespace-type name="Phonon::BackendCapabilities" java-name="BackendCapabilities" />
 
-    <!-- ### causes moc-related linker error -->
-    <!-- <object-type name="Phonon::BackendCapabilities::Notifier" java-name="Notifier" /> -->
-    
     <enum-type name="Phonon::Category">
         <reject-enum-value name="LastCategory" />
     </enum-type>
@@ -32,7 +28,7 @@
     <enum-type name="Phonon::MetaData" />
     <enum-type name="Phonon::ObjectDescriptionType" />
     <enum-type name="Phonon::State" />
-    
+
     <enum-type name="Phonon::AddonInterface::AngleCommand" />
     <enum-type name="Phonon::AddonInterface::ChapterCommand" />
     <enum-type name="Phonon::AddonInterface::Interface" />
@@ -44,16 +40,14 @@
     <enum-type name="Phonon::MediaSource::Type" />
     <enum-type name="Phonon::VideoWidget::AspectRatio" />
     <enum-type name="Phonon::VideoWidget::ScaleMode" />
-    <enum-type name="Phonon::VolumeFaderEffect::FadeCurve" />                         
+    <enum-type name="Phonon::VolumeFaderEffect::FadeCurve" />
 
     <interface-type name="Phonon::AbstractVideoOutput" java-name="AbstractVideoOutput" />
     <interface-type name="Phonon::AddonInterface" java-name="AbstractAddon" />
-    <!-- ### causes compile error with Qt 4.5, the functions in the class aren't picked up by the typesystem -->
-<!--    <interface-type name="Phonon::AudioOutputInterface" java-name="AudioOutputInterface" /> -->
     <interface-type name="Phonon::BackendInterface" java-name="AbstractBackend" />
     <interface-type name="Phonon::EffectInterface" java-name="AbstractEffect" />
     <interface-type name="Phonon::MediaNode" java-name="MediaNode" />
-    
+
     <interface-type name="Phonon::MediaObjectInterface" java-name="AbstractMediaObject" />
     <interface-type name="Phonon::PlatformPlugin" java-name="PlatformPlugin" />
     <interface-type name="Phonon::StreamInterface" java-name="AbstractStream" />
@@ -88,7 +82,7 @@
             <modify-argument index="2">
                 <reference-count action="ignore" />
             </modify-argument>
-        </modify-function>        
+        </modify-function>
         <modify-function signature="removeEffect(Phonon::Effect*)">
             <modify-argument index="1">
                 <reference-count action="remove" variable-name="__rcEffects" />
@@ -98,9 +92,6 @@
     <value-type name="Phonon::ObjectDescription" generate="no" />
     <value-type name="Phonon::EffectDescription" java-name="EffectDescription" />
     <value-type name="Phonon::AudioOutputDevice" java-name="AudioOutputDevice" />
-    <value-type name="Phonon::AudioChannelDescription" java-name="AudioChannelDescription" />
-    <value-type name="Phonon::SubtitleDescription" java-name="SubtitleDescription" />
-    <value-type name="Phonon::AudioCaptureDevice"  java-name="AudioCaptureDevice" />
 
     <object-type name="Phonon::AbstractAudioOutput" java-name="AbstractAudioOutput" />
     <object-type name="Phonon::AbstractMediaStream" java-name="AbstractMediaStream" />
@@ -108,7 +99,7 @@
     <object-type name="Phonon::Effect" java-name="Effect" />
     <object-type name="Phonon::EffectWidget" java-name="EffectWidget" />
     <object-type name="Phonon::MediaController" java-name="MediaController" />
-    <object-type name="Phonon::MediaObject" java-name="MediaObject">     
+    <object-type name="Phonon::MediaObject" java-name="MediaObject">
         <modify-function signature="enqueue(const QList&lt;QUrl&gt; &amp;)" rename="enqueueUrls" />
         <modify-function signature="setQueue(const QList&lt;QUrl&gt; &amp;)" rename="setQueueToUrls" />
     </object-type>
@@ -129,19 +120,28 @@
             </modify-argument>
         </modify-function>
     </object-type>
+    
+     <value-type name="Phonon::AudioChannelDescription" java-name="AudioChannelDescription" />
+     <value-type name="Phonon::SubtitleDescription" java-name="SubtitleDescription" />
+     <value-type name="Phonon::AudioCaptureDevice"  java-name="AudioCaptureDevice" />
 
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'MediaSource' has equals operators but no qHash() function. Hashcode of objects will consistently be 0." />
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'Path' has equals operators but no qHash() function. Hashcode of objects will consistently be 0." />
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'Phonon_ObjectDescription' has equals operators but no qHash() function. Hashcode of objects will consistently be 0." />
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'EffectParameter' has equals operators but no qHash() function. Hashcode of objects will consistently be 0." />
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'EffectDescription' has equals operators but no qHash() function. Hashcode of objects will consistently be 0." />
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'SubtitleDescription' has equals operators but no qHash() function. Hashcode of objects will consistently be 0." />
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'AudioCaptureDevice' has equals operators but no qHash() function. Hashcode of objects will consistently be 0." />
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'AudioOutputDevice' has equals operators but no qHash() function. Hashcode of objects will consistently be 0." />
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'AudioChannelDescription' has equals operators but no qHash() function. Hashcode of objects will consistently be 0." />
+  
     <suppress-warning text="WARNING(MetaJavaBuilder) :: Final class 'AbstractAudioOutput' set to non-final, as it is extended by other classes" />
     <suppress-warning text="WARNING(MetaJavaBuilder) :: namespace 'QDBus' does not have a type entry" />
     <suppress-warning text="WARNING(MetaJavaBuilder) :: private virtual function 'create(const QString &amp; name)' in 'QTextCodecPlugin'" />
     <suppress-warning text="WARNING(MetaJavaBuilder) :: private virtual function 'keys() const' in 'QTextCodecPlugin'" />
-    <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'MediaSource' has equals operators but no qHash() function" />
-    <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'Path' has equals operators but no qHash() function" />
-    <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'EffectParameter' has equals operators but no qHash() function" />
-    <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'Phonon_ObjectDescription' has equals operators but no qHash() function" />
-    <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'EffectDescription' has equals operators but no qHash() function" />
-    <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'AudioOutputDevice' has equals operators but no qHash() function" />
     <suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'Phonon::operator&lt;&lt;', unmatched return type 'QDebug'" />
     <suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'Phonon::ObjectDescription::ObjectDescription', unmatched parameter type 'QExplicitlySharedDataPointer&lt;ObjectDescriptionData&gt; const&amp;'" />
+    <suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'Phonon::BackendCapabilities::notifier', unmatched return type 'Phonon::BackendCapabilities::Notifier*'" />
 
 
 
@@ -200,6 +200,8 @@
   <suppress-warning text="WARNING(MetaJavaBuilder) :: type 'Phonon::AbstractVideoOutput' is specified in typesystem, but not defined. This could potentially lead to compilation errors." />
   <suppress-warning text="WARNING(MetaJavaBuilder) :: type 'Phonon::EffectWidget' is specified in typesystem, but not defined. This could potentially lead to compilation errors." />
   <suppress-warning text="WARNING(MetaJavaBuilder) :: type 'Phonon::VolumeFaderInterface' is specified in typesystem, but not defined. This could potentially lead to compilation errors." />
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: namespace 'com.trolltech.qt.phonon.AbstractAddon' for enum 'AudioChannelCommand' is not declared"/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: namespace 'com.trolltech.qt.phonon.AbstractAddon' for enum 'SubtitleCommand' is not declared"/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'Phonon::qHash', unmatched return type ''" />
 
-  
 </typesystem>
