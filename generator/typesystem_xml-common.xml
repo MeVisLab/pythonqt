@@ -1,20 +1,20 @@
 <?xml-stylesheet type="text/xsl" href="merge.xsl"?>
 <typesystem>
     <rejection class="QXmlAttributes::Attribute" />
-    <rejection class="QDomNode" field-name="impl" />    
-    
+    <rejection class="QDomNode" field-name="impl" />
+
     <enum-type name="QDomNode::NodeType" />
     <enum-type name="QDomNode::EncodingPolicy" />
     <enum-type name="QDomImplementation::InvalidDataPolicy" />
-<!--
     <enum-type name="QXmlStreamReader::Error" />
     <enum-type name="QXmlStreamReader::TokenType" />
--->
+    <enum-type name="QXmlStreamReader::ReadElementTextBehaviour" />
+
 
     <value-type name="QDomAttr">
         <modify-function signature="operator=(QDomAttr)" remove="all"/>
         <modify-function signature="nodeType()const" remove="all"/>
-    </value-type>   
+    </value-type>
 
     <value-type name="QDomCDATASection">
         <modify-function signature="operator=(QDomCDATASection)" remove="all"/>
@@ -39,20 +39,25 @@
         <modify-function signature="setContent(QIODevice*, bool, QString*, int*, int*)">
             <modify-argument index="1">
                 <reference-count action="set" variable-name="__rcContent" />
-            </modify-argument>            
+            </modify-argument>
         </modify-function>
-
 
         <modify-function signature="setContent(QXmlInputSource*,QXmlReader*,QString*,int*,int*)">
             <modify-argument index="1">
                 <reference-count action="set" variable-name="__rcContent" />
             </modify-argument>
         </modify-function>
+                
+        <modify-function signature="setContent(QXmlInputSource*,bool,QString*,int*,int*)">
+            <modify-argument index="1">
+                <reference-count action="set" variable-name="__rcContent" />
+            </modify-argument>
+        </modify-function>        
 
         <modify-function signature="setContent(QIODevice*,QString*,int*,int*)">
             <modify-argument index="1">
                 <reference-count action="set" variable-name="__rcContent" />
-            </modify-argument>            
+            </modify-argument>
         </modify-function>
 
     </value-type>
@@ -111,7 +116,6 @@
 
     <value-type name="QXmlParseException" />
 
-<!--
     <value-type name="QXmlStreamAttribute">
         <modify-function signature="operator=(QXmlStreamAttribute)" remove="all"/>
     </value-type>
@@ -127,13 +131,16 @@
 
         <modify-function signature="value(const QString &amp;, const QLatin1String &amp;)const">
             <remove />
-        </modify-function>            
+        </modify-function>
         <modify-function signature="value(const QLatin1String &amp;, const QLatin1String &amp;)const">
             <remove />
-        </modify-function>            
+        </modify-function>
         <modify-function signature="value(const QLatin1String &amp;)const">
-            <remove />            
-        </modify-function>            
+            <remove />
+        </modify-function>
+        <modify-function signature="hasAttribute(const QLatin1String &amp;)const">
+            <remove />
+        </modify-function>
     </value-type>
 
     <value-type name="QXmlStreamNamespaceDeclaration">
@@ -147,9 +154,8 @@
     <value-type name="QXmlStreamEntityDeclaration">
         <modify-function signature="operator=(QXmlStreamEntityDeclaration)" remove="all"/>
     </value-type>
--->
-    
-    <value-type name="QXmlAttributes">  
+
+    <value-type name="QXmlAttributes">
       <modify-function signature="index(const QLatin1String&amp;) const">
         <remove/>
       </modify-function>
@@ -162,39 +168,39 @@
         <custom-constructor>
             QXmlNamespaceSupport *clone = new QXmlNamespaceSupport;
             clone->setPrefix("", copy->uri(""));
-            
+
             QStringList prefixes = copy->prefixes();
-            for (int i=0; i&lt;prefixes.size(); ++i) 
+            for (int i=0; i&lt;prefixes.size(); ++i)
                 clone->setPrefix(prefixes.at(i), copy->uri(prefixes.at(i)));
-                
+
             return clone;
         </custom-constructor>
         <custom-destructor>
             delete (QXmlNamespaceSupport *)copy;
-        </custom-destructor>           
+        </custom-destructor>
 
-     
+
     </value-type>
 
     <value-type name="QDomElement">
         <modify-function signature="nodeType()const" remove="all"/>
         <modify-function signature="operator=(QDomElement)" remove="all"/>
-        
+
         <modify-function signature="setAttribute(const QString &amp;, unsigned int)">
             <remove />
         </modify-function>
-        <modify-function signature="setAttribute(const QString &amp;, qulonglong)">
+        <modify-function signature="setAttribute(const QString &amp;, unsigned long long)">
             <remove />
-        </modify-function>        
+        </modify-function>
         <modify-function signature="setAttributeNS(const QString, const QString &amp;, unsigned int)">
             <remove />
         </modify-function>
-        <modify-function signature="setAttributeNS(const QString, const QString &amp;, qulonglong)">
+        <modify-function signature="setAttributeNS(const QString, const QString &amp;, unsigned long long)">
             <remove />
-        </modify-function>        
-        
+        </modify-function>
+
     </value-type>
-    
+
     <interface-type name="QXmlContentHandler">
         <modify-function signature="setDocumentLocator(QXmlLocator*)">
             <modify-argument index="1">
@@ -207,21 +213,21 @@
     <interface-type name="QXmlEntityResolver" />
     <interface-type name="QXmlErrorHandler" />
     <interface-type name="QXmlLexicalHandler" />
-    
+
     <object-type name="QXmlDefaultHandler">
         <modify-function signature="setDocumentLocator(QXmlLocator*)">
             <modify-argument index="1">
                 <define-ownership class="shell" owner="c++" />
             </modify-argument>
-        </modify-function>    
+        </modify-function>
     </object-type>
     <object-type name="QXmlInputSource" />
-    <object-type name="QXmlLocator" />        
+    <object-type name="QXmlLocator" />
     <object-type name="QXmlSimpleReader">
         <modify-function signature="parse(const QXmlInputSource*,bool)">
             <modify-argument index="1" invalidate-after-use="yes" />
         </modify-function>
-    
+
         <modify-function signature="setContentHandler(QXmlContentHandler*)">
             <modify-argument index="1">
                 <reference-count action="set" variable-name="__rcContentHandler" />
@@ -254,7 +260,6 @@
         </modify-function>
     </object-type>
 
-<!--
     <object-type name="QXmlStreamReader">
       <modify-function signature="QXmlStreamReader(const char*)" remove="all" />
       <modify-function signature="addData(const char*)" remove="all" />
@@ -262,19 +267,28 @@
         <modify-argument index="1">
             <reference-count action="set" variable-name="__rcEntityResolver" />
         </modify-argument>
-      </modify-function>      
+      </modify-function>
     </object-type>
     <object-type name="QXmlStreamWriter">
         <modify-function signature="QXmlStreamWriter(QString *)">
             <remove />
         </modify-function>
     </object-type>
--->
-    
+
     <object-type name="QXmlReader">
         <modify-function signature="parse(const QXmlInputSource*)">
             <modify-argument index="1" invalidate-after-use="yes" />
         </modify-function>
-    </object-type>    
-    
+    </object-type>
+
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QDomNodeList' has equals operators but no qHash() function. Hashcode of objects will consistently be 0." />
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QXmlStreamNamespaceDeclaration' has equals operators but no qHash() function. Hashcode of objects will consistently be 0." />
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QDomNamedNodeMap' has equals operators but no qHash() function. Hashcode of objects will consistently be 0." />
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QXmlStreamNotationDeclaration' has equals operators but no qHash() function. Hashcode of objects will consistently be 0." />
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QDomNode' has equals operators but no qHash() function. Hashcode of objects will consistently be 0." />
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QDomImplementation' has equals operators but no qHash() function. Hashcode of objects will consistently be 0." />
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QXmlStreamAttribute' has equals operators but no qHash() function. Hashcode of objects will consistently be 0." />
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QXmlStreamAttributes' has equals operators but no qHash() function. Hashcode of objects will consistently be 0." />
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QXmlStreamEntityDeclaration' has equals operators but no qHash() function. Hashcode of objects will consistently be 0." />
+
 </typesystem>

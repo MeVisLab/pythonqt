@@ -52,8 +52,7 @@ bool ShellGenerator::shouldGenerate(const AbstractMetaClass *meta_class) const
     if (meta_class->name().startsWith("Global")) return false;
     if (meta_class->name().startsWith("QStyleOptionComplex")) return false;
     if (meta_class->name().startsWith("QTextLayout")) return false;
-    //if (meta_class->name().startsWith("QTextStream")) return false; // because of >> operators
-    //if (meta_class->name().startsWith("QDataStream")) return false; // "
+    if (meta_class->name().startsWith("QPersistentModelIndex")) return false;
     return ((cg & TypeEntry::GenerateCode) != 0);
 }
 

@@ -6,7 +6,7 @@
   <namespace-type name="QSql">
      <include file-name="qsql.h" location="global" />
   </namespace-type>
-  
+
   <value-type name="QSqlDatabase">
     <extra-includes>
         <include file-name="QSqlQuery" location="global" />
@@ -15,9 +15,9 @@
         <include file-name="QSqlRecord" location="global" />
         <include file-name="QStringList" location="global" />
         <include file-name="QSize" location="global" />
-    </extra-includes>  
+    </extra-includes>
     <modify-function signature="operator=(QSqlDatabase)" remove="all"/>
-  </value-type>  
+  </value-type>
 
   <value-type name="QSqlQuery">
     <extra-includes>
@@ -25,9 +25,9 @@
         <include file-name="QSqlRecord" location="global" />
         <include file-name="QStringList" location="global" />
         <include file-name="QSize" location="global" />
-    </extra-includes>  
+    </extra-includes>
     <modify-function signature="operator=(QSqlQuery)" remove="all"/>
-  </value-type>  
+  </value-type>
 
   <value-type name="QSqlRecord">
     <extra-includes>
@@ -41,7 +41,7 @@
     <modify-function signature="operator=(QSqlError)" remove="all"/>
   </value-type>
 
-  <value-type name="QSqlIndex">  
+  <value-type name="QSqlIndex">
     <modify-function signature="operator=(QSqlIndex)" remove="all"/>
   </value-type>
 
@@ -49,9 +49,9 @@
 
   <value-type name="QSqlField">
     <modify-function signature="operator=(QSqlField)" remove="all"/>
-  </value-type>  
-  
-  <object-type name="QSqlDriver">  
+  </value-type>
+
+  <object-type name="QSqlDriver">
     <extra-includes>
         <include file-name="QSqlQuery" location="global" />
         <include file-name="QSqlError" location="global" />
@@ -59,10 +59,10 @@
         <include file-name="QSqlRecord" location="global" />
         <include file-name="QStringList" location="global" />
         <include file-name="QSize" location="global" />
-    </extra-includes>  
-  </object-type>  
-  
-  <object-type name="QSqlQueryModel">    
+    </extra-includes>
+  </object-type>
+
+  <object-type name="QSqlQueryModel">
     <modify-function signature="indexInQuery(QModelIndex)const" access="non-final"/>
     <modify-function signature="setQuery(QSqlQuery)" access="non-final"/>
     <extra-includes>
@@ -71,13 +71,13 @@
         <include file-name="QSqlRecord" location="global" />
         <include file-name="QStringList" location="global" />
         <include file-name="QSize" location="global" />
-    </extra-includes>  
-  </object-type>      
+    </extra-includes>
+  </object-type>
   <object-type name="QSqlRelationalTableModel">
     <extra-includes>
         <include file-name="QStringList" location="global" />
         <include file-name="QSize" location="global" />
-    </extra-includes>  
+    </extra-includes>
   </object-type>
   <object-type name="QSqlResult">
       <extra-includes>
@@ -90,21 +90,21 @@
       <modify-function signature="virtual_hook(int,void*)">
         <remove />
       </modify-function>
-      
+
   </object-type>
-  <object-type name="QSqlTableModel">  
+  <object-type name="QSqlTableModel">
     <extra-includes>
         <include file-name="QSqlIndex" location="global" />
         <include file-name="QStringList" location="global" />
         <include file-name="QSize" location="global" />
-    </extra-includes>  
-  </object-type>  
+    </extra-includes>
+  </object-type>
   <object-type name="QSqlDriverCreatorBase">
     <extra-includes>
         <include file-name="QSqlDriver" location="global" />
-    </extra-includes>    
+    </extra-includes>
   </object-type>
-  
+
   <enum-type name="QSql::Location" />
   <enum-type name="QSql::ParamTypeFlag" flags="QSql::ParamType" />
   <enum-type name="QSql::TableType" />
@@ -119,10 +119,11 @@
   <enum-type name="QSqlResult::VirtualHookOperation" />
   <enum-type name="QSqlTableModel::EditStrategy" />
 
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QSqlField' has equals operators but no qHash() function. Hashcode of objects will consistently be 0." />
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QSqlRecord' has equals operators but no qHash() function. Hashcode of objects will consistently be 0." />
+
   <suppress-warning text="WARNING(CppImplGenerator) :: protected function '*' in final class '*'" />
-  <suppress-warning text="WARNING(MetaJavaBuilder) :: visibility of function '*' modified in class '*'" />  
-  <suppress-warning text="WARNING(MetaJavaBuilder) :: hiding of function '*' in class '*'" />    
-  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QSqlField' has equals operators but no qHash() function" />
-  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QSqlRecord' has equals operators but no qHash() function" />
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: visibility of function '*' modified in class '*'" />
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: hiding of function '*' in class '*'" />
 
 </typesystem>
