@@ -652,7 +652,10 @@
 
   <value-type name="QPoint"/>
   <value-type name="QPointF"/>
-
+  <enum-type name="QLineF::IntersectType"/>
+  <value-type name="QLineF"/>
+  <value-type name="QLine"/>
+ 
   <value-type name="QRect">
     <modify-function signature="getCoords(int*,int*,int*,int*)const">
       <remove/>
