@@ -225,7 +225,6 @@
   <enum-type name="QLCDNumber::SegmentStyle"/>
   <enum-type name="QLayout::SizeConstraint"/>
   <enum-type name="QLineEdit::EchoMode"/>
-  <enum-type name="QLineF::IntersectType"/>
   <enum-type name="QListView::Flow"/>
   <enum-type name="QListView::LayoutMode"/>
   <enum-type name="QListView::Movement"/>
@@ -655,8 +654,6 @@
   <value-type name="QItemSelectionRange">
       <modify-function signature="intersect(QItemSelectionRange)const" remove="all"/> <!--### Obsolete in 4.3-->
   </value-type>
-  <value-type name="QLine"/>
-  <value-type name="QLineF"/>
 
   <value-type name="QPainterPath">
     <modify-function signature="operator=(QPainterPath)" remove="all"/>
