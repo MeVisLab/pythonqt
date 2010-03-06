@@ -1264,7 +1264,7 @@ const AbstractMetaFunction *AbstractMetaField::setter() const
 {
     if (m_setter == 0) {
         m_setter = createXetter(this,
-                                "set" + upCaseFirst(name()),
+                                name(),
                                 AbstractMetaAttributes::SetterFunction);
         AbstractMetaArgumentList arguments;
         AbstractMetaArgument *argument = new AbstractMetaArgument;

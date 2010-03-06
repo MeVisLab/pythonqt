@@ -62,6 +62,8 @@ public:
     void write(QTextStream &s, const AbstractMetaClass *meta_class);
     void writeInjectedCode(QTextStream &s, const AbstractMetaClass *meta_class);
 
+  void writeFieldAccessors(QTextStream &s, const AbstractMetaField *field);
+
   SetupGenerator* setupGenerator;
 };
 
