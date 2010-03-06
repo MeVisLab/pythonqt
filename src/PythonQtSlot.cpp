@@ -233,7 +233,7 @@ PyObject *PythonQtSlotFunction_Call(PyObject *func, PyObject *args, PyObject *kw
 
 PyObject *PythonQtSlotFunction_CallImpl(PythonQtClassInfo* classInfo, QObject* objectToCall, PythonQtSlotInfo* info, PyObject *args, PyObject * /*kw*/, void* firstArg, void** directReturnValuePointer)
 {
-  int argc = PyTuple_Size(args);
+  int argc = args?PyTuple_Size(args):0;
 
 #ifdef PYTHONQT_DEBUG
   std::cout << "called " << info->metaMethod()->typeName() << " " << info->metaMethod()->signature() << std::endl;
