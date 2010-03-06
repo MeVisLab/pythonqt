@@ -69,10 +69,6 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
   QString builtIn = ShellGenerator::isBuiltIn(meta_class->name())?"_builtin":"";
   QString pro_file_name = meta_class->package().replace(".", "_") + builtIn + "/" + meta_class->package().replace(".", "_") + builtIn + ".pri";
   priGenerator->addSource(pro_file_name, fileNameForClass(meta_class));
-
-  foreach (AbstractMetaField* field, meta_class->fields()) {
-    std::cout << "Not yet generated fields: " << meta_class->qualifiedCppName().toLatin1().data() << "::" << field->name().toLatin1().data() << std::endl;
-  }
   
   s << "#include \"PythonQtWrapper_" << meta_class->name() << ".h\"" << endl << endl;
 

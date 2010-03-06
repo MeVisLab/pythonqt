@@ -222,12 +222,12 @@ void ShellGenerator::writeFunctionSignature(QTextStream &s,
       function_name = meta_function->name();
     }
 
-    s << name_prefix << function_name;
+  if (meta_function->attributes() & AbstractMetaAttributes::SetterFunction)
+    s << "setter_";
+  else if (meta_function->attributes() & AbstractMetaAttributes::GetterFunction)
+    s << "getter_";
 
-    if (meta_function->attributes() & AbstractMetaAttributes::SetterFunction)
-        s << "_setter";
-    else if (meta_function->attributes() & AbstractMetaAttributes::GetterFunction)
-        s << "_getter";
+  s << name_prefix << function_name;
 
     s << "(";
 

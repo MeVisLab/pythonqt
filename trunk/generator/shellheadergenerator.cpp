@@ -51,6 +51,23 @@ QString ShellHeaderGenerator::fileNameForClass(const AbstractMetaClass *meta_cla
   return QString("PythonQtWrapper_%1.h").arg(meta_class->name());
 }
 
+
+void ShellHeaderGenerator::writeFieldAccessors(QTextStream &s, const AbstractMetaField *field)
+{
+  const AbstractMetaFunction *setter = field->setter();
+  const AbstractMetaFunction *getter = field->getter();
+  
+  if (!field->type()->isConstant()) {
+    writeFunctionSignature(s, setter, 0, QString(),
+                           Option(ConvertReferenceToPtr | FirstArgIsWrappedObject| IncludeDefaultExpression | ShowStatic | UnderscoreSpaces));
+    s << "{ theWrappedObject->" << field->name() << " = " << setter->arguments()[0]->argumentName() << "; }\n";
+  }
+  
+  writeFunctionSignature(s, getter, 0, QString(),
+                         Option(ConvertReferenceToPtr | FirstArgIsWrappedObject| IncludeDefaultExpression | OriginalName | ShowStatic | UnderscoreSpaces));
+  s << "{ return theWrappedObject->" << field->name() << "; }\n";
+}
+
 void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_class)
 {
   QString builtIn = ShellGenerator::isBuiltIn(meta_class->name())?"_builtin":"";
@@ -257,6 +274,13 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
   }
   if (!meta_class->hasDefaultToStringFunction() && meta_class->hasToStringCapability()) {
     s << "    QString toString(" << meta_class->qualifiedCppName() << "*);" << endl; 
+  }
+
+  // Field accessors
+  foreach (const AbstractMetaField *field, meta_class->fields()) {
+    if (field->isPublic()) {
+      writeFieldAccessors(s, field);
+    }
   }
 
   //    writeInjectedCode(s, meta_class);
