@@ -421,8 +421,6 @@
   <rejection class="QObject" function-name="disconnect"/>
   <rejection class="QObject" function-name="disconnectNotify"/>
   <rejection class="QObject" function-name="registerUserData"/>
-  <rejection class="QObject" function-name="sender"/>
-  <rejection class="QTimer" function-name="singleShot"/>
   <rejection class="QProcess" function-name="pid"/>
   <rejection class="QRegion" function-name="cleanUp"/>
   <rejection class="QSettings" function-name="registerFormat"/>
@@ -694,7 +692,10 @@
     <modify-function signature="rx()" remove="all"/> 
     <modify-function signature="ry()" remove="all"/> 
   </value-type>
-
+  <enum-type name="QLineF::IntersectType"/>
+  <value-type name="QLineF"/>
+  <value-type name="QLine"/>
+ 
   <value-type name="QRect">
     <modify-function signature="getCoords(int*,int*,int*,int*)const">
       <remove/>
