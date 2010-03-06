@@ -300,11 +300,19 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
     }
     break;
   case PythonQtMemberInfo::NotFound:
-    // handle dynamic properties
-    if (wrapper->_obj) {
-      QVariant v = wrapper->_obj->property(attributeName);
-      if (v.isValid()) {
-        return PythonQtConv::QVariantToPyObject(v);
+    {
+      // check for a getter_
+      PythonQtMemberInfo member = wrapper->classInfo()->member(QByteArray("getter_") + attributeName);
+      if (member._type == PythonQtMemberInfo::Slot) {
+        return PythonQtSlotFunction_CallImpl(wrapper->classInfo(), wrapper->_obj, member._slot, NULL, NULL, wrapper->_wrappedPtr);
+      }
+
+      // handle dynamic properties
+      if (wrapper->_obj) {
+        QVariant v = wrapper->_obj->property(attributeName);
+        if (v.isValid()) {
+          return PythonQtConv::QVariantToPyObject(v);
+        }
       }
     }
     break;
@@ -339,7 +347,7 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
 static int PythonQtInstanceWrapper_setattro(PyObject *obj,PyObject *name,PyObject *value)
 {
   QString error;
-  char *attributeName;
+  const char *attributeName;
   PythonQtInstanceWrapper *wrapper = (PythonQtInstanceWrapper *)obj;
 
   if ((attributeName = PyString_AsString(name)) == NULL)
@@ -385,6 +393,19 @@ static int PythonQtInstanceWrapper_setattro(PyObject *obj,PyObject *name,PyObjec
   } else if (member._type == PythonQtMemberInfo::EnumWrapper) {
     error = QString("Enum '") + attributeName + "' can not be overwritten on " + obj->ob_type->tp_name + " object";
   } else if (member._type == PythonQtMemberInfo::NotFound) {
+    // check for a setter_
+    PythonQtMemberInfo setter = wrapper->classInfo()->member(QByteArray("setter_") + attributeName);
+    if (setter._type == PythonQtMemberInfo::Slot) {
+      // call the setter and ignore the result value
+      void* result;
+      PyObject* args = PyTuple_New(1);
+      Py_INCREF(value);
+      PyTuple_SET_ITEM(args, 0, value);
+      PythonQtSlotFunction_CallImpl(wrapper->classInfo(), wrapper->_obj, setter._slot, args, NULL, wrapper->_wrappedPtr, &result);
+      Py_DECREF(args);
+      return 0;
+    }
+
     // handle dynamic properties
     if (wrapper->_obj) {
       QVariant prop = wrapper->_obj->property(attributeName);
