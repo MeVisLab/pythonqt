@@ -284,11 +284,13 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
     s << "}" << endl << endl;
   }
 
-  if (!meta_class->hasDefaultToStringFunction() && meta_class->hasToStringCapability()) {
+  if (meta_class->hasDefaultToStringFunction()) {
+    s << "QString PythonQtWrapper_" << meta_class->name() << "::py_toString(" << meta_class->qualifiedCppName() << "* obj) { return obj->toString(); }" << endl; 
+  } else if (meta_class->hasToStringCapability()) {
     FunctionModelItem fun = meta_class->hasToStringCapability();
     int indirections = fun->arguments().at(1)->type().indirections();
     QString deref = QLatin1String(indirections == 0 ? "*" : "");
-    s << "QString PythonQtWrapper_" << meta_class->name() << "::toString(" << meta_class->qualifiedCppName() << "* obj) {" << endl; 
+    s << "QString PythonQtWrapper_" << meta_class->name() << "::py_toString(" << meta_class->qualifiedCppName() << "* obj) {" << endl; 
     s << "  QString result;" << endl;
     s << "  QDebug d(&result);" << endl;
     s << "  d << " << deref  << "obj;" << endl;

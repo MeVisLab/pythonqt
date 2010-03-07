@@ -234,7 +234,7 @@ void AbstractMetaBuilder::registerToStringCapability(FunctionModelItem function_
         if (arguments.at(0)->type().toString() == "QDebug"){
             ArgumentModelItem arg = arguments.at(1);
             if (AbstractMetaClass *cls = argumentToClass(arg)) {
-                if (arg->type().indirections() < 2) {
+                if (arg->type().indirections() < 2 && cls->name()!="QObject") {
                     cls->setToStringCapability(function_item);
                 }
             }

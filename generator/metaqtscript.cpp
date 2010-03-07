@@ -44,5 +44,5 @@
 
 bool MetaQtScriptClass::hasDefaultToStringFunction() const
 {
-    return 0 < queryFunctionsByName("toString").size();
+  return AbstractMetaClass::hasDefaultToStringFunction();
 }
