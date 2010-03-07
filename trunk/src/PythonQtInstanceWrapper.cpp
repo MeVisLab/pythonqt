@@ -301,8 +301,9 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
     break;
   case PythonQtMemberInfo::NotFound:
     {
-      // check for a getter_
-      PythonQtMemberInfo member = wrapper->classInfo()->member(QByteArray("getter_") + attributeName);
+      static const QByteArray getterString("py_get_");
+      // check for a getter slot
+      PythonQtMemberInfo member = wrapper->classInfo()->member(getterString + attributeName);
       if (member._type == PythonQtMemberInfo::Slot) {
         return PythonQtSlotFunction_CallImpl(wrapper->classInfo(), wrapper->_obj, member._slot, NULL, NULL, wrapper->_wrappedPtr);
       }
@@ -393,8 +394,9 @@ static int PythonQtInstanceWrapper_setattro(PyObject *obj,PyObject *name,PyObjec
   } else if (member._type == PythonQtMemberInfo::EnumWrapper) {
     error = QString("Enum '") + attributeName + "' can not be overwritten on " + obj->ob_type->tp_name + " object";
   } else if (member._type == PythonQtMemberInfo::NotFound) {
-    // check for a setter_
-    PythonQtMemberInfo setter = wrapper->classInfo()->member(QByteArray("setter_") + attributeName);
+    // check for a setter slot
+    static const QByteArray setterString("py_set_"); 
+    PythonQtMemberInfo setter = wrapper->classInfo()->member(setterString + attributeName);
     if (setter._type == PythonQtMemberInfo::Slot) {
       // call the setter and ignore the result value
       void* result;
@@ -438,16 +440,39 @@ static int PythonQtInstanceWrapper_setattro(PyObject *obj,PyObject *name,PyObjec
   return -1;
 }
 
+static QString getStringFromObject(PythonQtInstanceWrapper* wrapper) {
+  QString result;
+  if (wrapper->_wrappedPtr) {
+    // first try some manually string conversions for some variants
+    int metaid = wrapper->classInfo()->metaTypeId();
+    result = PythonQtConv::CPPObjectToString(metaid, wrapper->_wrappedPtr);
+    if (!result.isEmpty()) {
+      return result;
+    }
+  }
+  // next, try to call py_toString
+  PythonQtMemberInfo info = wrapper->classInfo()->member("py_toString");
+  if (info._type == PythonQtMemberInfo::Slot) {
+    PyObject* resultObj = PythonQtSlotFunction_CallImpl(wrapper->classInfo(), wrapper->_obj, info._slot, NULL, NULL, wrapper->_wrappedPtr);
+    if (resultObj) {
+      // TODO this is one conversion too much, would be nicer to call the slot directly...
+      result = PythonQtConv::PyObjGetString(resultObj);
+      Py_DECREF(resultObj);
+    }
+  }
+  return result;
+}
+
 static PyObject * PythonQtInstanceWrapper_str(PyObject * obj)
 {
   PythonQtInstanceWrapper* wrapper = (PythonQtInstanceWrapper*)obj;
   const char* typeName = obj->ob_type->tp_name;
   QObject *qobj = wrapper->_obj;
+  QString str = getStringFromObject(wrapper);
+  if (!str.isEmpty()) {
+    return PyString_FromFormat("%s", str.toLatin1().constData());
+  }
   if (wrapper->_wrappedPtr) {
-    QString str = PythonQtConv::CPPObjectToString(wrapper->classInfo()->metaTypeId(), wrapper->_wrappedPtr);
-    if (!str.isEmpty()) {
-      return PyString_FromFormat("%s", str.toLatin1().constData());
-    } else
     if (wrapper->_obj) {
       return PyString_FromFormat("%s (C++ Object %p wrapped by %s %p))", typeName, wrapper->_wrappedPtr, wrapper->_obj->metaObject()->className(), qobj);
     } else {
@@ -464,11 +489,15 @@ static PyObject * PythonQtInstanceWrapper_repr(PyObject * obj)
   const char* typeName = obj->ob_type->tp_name;
     
   QObject *qobj = wrapper->_obj;
-  if (wrapper->_wrappedPtr) {
-    QString str = PythonQtConv::CPPObjectToString(wrapper->classInfo()->metaTypeId(), wrapper->_wrappedPtr);
-    if (!str.isEmpty()) {
+  QString str = getStringFromObject(wrapper);
+  if (!str.isEmpty()) {
+    if (str.startsWith(typeName)) {
+      return PyString_FromFormat("%s", str.toLatin1().constData());
+    } else {
       return PyString_FromFormat("%s(%s, %p)", typeName, str.toLatin1().constData(), wrapper->_wrappedPtr);
-    } else
+    }
+  }
+  if (wrapper->_wrappedPtr) {
     if (wrapper->_obj) {
       return PyString_FromFormat("%s (C++ Object %p wrapped by %s %p))", typeName, wrapper->_wrappedPtr, wrapper->_obj->metaObject()->className(), qobj);
     } else {
@@ -526,6 +555,7 @@ static int PythonQtInstanceWrapper_compare(PyObject * obj1, PyObject * obj2)
             args[0] = &result;
             args[1] = obj2;  // this is a reference, so it needs the direct pointer
             w1->_obj->qt_metacall(QMetaObject::InvokeMetaMethod, info._slot->slotIndex(), args);
+            return result?0:-1;
           }
         }
       }
