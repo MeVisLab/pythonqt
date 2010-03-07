@@ -223,9 +223,9 @@ void ShellGenerator::writeFunctionSignature(QTextStream &s,
     }
 
   if (meta_function->attributes() & AbstractMetaAttributes::SetterFunction)
-    s << "setter_";
+    s << "py_set_";
   else if (meta_function->attributes() & AbstractMetaAttributes::GetterFunction)
-    s << "getter_";
+    s << "py_get_";
 
   s << name_prefix << function_name;
 

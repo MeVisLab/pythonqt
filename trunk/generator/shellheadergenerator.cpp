@@ -57,6 +57,9 @@ void ShellHeaderGenerator::writeFieldAccessors(QTextStream &s, const AbstractMet
   const AbstractMetaFunction *setter = field->setter();
   const AbstractMetaFunction *getter = field->getter();
   
+  // Uuid data4 did not work
+  if (field->enclosingClass()->name()=="QUuid" &&  setter->name()=="data4") return;
+  
   if (!field->type()->isConstant()) {
     writeFunctionSignature(s, setter, 0, QString(),
                            Option(ConvertReferenceToPtr | FirstArgIsWrappedObject| IncludeDefaultExpression | ShowStatic | UnderscoreSpaces));
@@ -257,9 +260,9 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
     s << endl;
   }
   if (meta_class->name()=="QTreeWidgetItem") {
-    s << "bool hasOwner(QTreeWidgetItem* theWrappedObject) { return theWrappedObject->treeWidget()!=NULL || theWrappedObject->parent()!=NULL; }" << endl;
+    s << "bool py_hasOwner(QTreeWidgetItem* theWrappedObject) { return theWrappedObject->treeWidget()!=NULL || theWrappedObject->parent()!=NULL; }" << endl;
   } else if (meta_class->name()=="QGraphicsItem") {
-    s << "bool hasOwner(QGraphicsItem* theWrappedObject) { return theWrappedObject->scene()!=NULL || theWrappedObject->parentItem()!=NULL; }" << endl;
+    s << "bool py_hasOwner(QGraphicsItem* theWrappedObject) { return theWrappedObject->scene()!=NULL || theWrappedObject->parentItem()!=NULL; }" << endl;
   }
 
   AbstractMetaFunctionList functions = getFunctionsToWrap(meta_class);
@@ -272,8 +275,8 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
       s << ";" << endl;
     }
   }
-  if (!meta_class->hasDefaultToStringFunction() && meta_class->hasToStringCapability()) {
-    s << "    QString toString(" << meta_class->qualifiedCppName() << "*);" << endl; 
+  if (meta_class->hasDefaultToStringFunction() || meta_class->hasToStringCapability()) {
+    s << "    QString py_toString(" << meta_class->qualifiedCppName() << "*);" << endl; 
   }
 
   // Field accessors
