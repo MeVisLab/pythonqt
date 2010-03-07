@@ -412,6 +412,9 @@ void PythonQtClassInfo::listDecoratorSlotsFromDecoratorProvider(QStringList& lis
           continue;
         } else if (qstrncmp(sigStart, "delete_", 7)==0) {
           continue;
+        } else if (qstrncmp(sigStart, "py_", 3)==0) {
+          // hide everything that starts with py_
+          continue;
         }
         // find the first '('
         int offset = findCharOffset(sigStart, '(');
@@ -712,7 +715,7 @@ QObject* PythonQtClassInfo::decorator()
 
 bool PythonQtClassInfo::hasOwnerMethodButNoOwner(void* object)
 {
-  PythonQtMemberInfo info = member("hasOwner");
+  PythonQtMemberInfo info = member("py_hasOwner");
   if (info._type == PythonQtMemberInfo::Slot) {
     void* obj = object;
     bool result = false;
