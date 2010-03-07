@@ -11,6 +11,14 @@ static void* polymorphichandler_QEvent(const void *ptr, char **class_name)
         *class_name = "QEvent";
         return (QEvent*)object;
     }
+    if (object->type() == QEvent::DynamicPropertyChange) {
+        *class_name = "QDynamicPropertyChangeEvent";
+        return (QDynamicPropertyChangeEvent*)object;
+    }
+    if (object->type() == QEvent::StateMachineSignal) {
+        *class_name = "QStateMachine_SignalEvent";
+        return (QStateMachine::SignalEvent*)object;
+    }
     if (object->type() == QEvent::Timer) {
         *class_name = "QTimerEvent";
         return (QTimerEvent*)object;
@@ -22,14 +30,6 @@ static void* polymorphichandler_QEvent(const void *ptr, char **class_name)
     if (object->type() == QEvent::ChildAdded || object->type() == QEvent::ChildPolished || object->type() == QEvent::ChildRemoved) {
         *class_name = "QChildEvent";
         return (QChildEvent*)object;
-    }
-    if (object->type() == QEvent::DynamicPropertyChange) {
-        *class_name = "QDynamicPropertyChangeEvent";
-        return (QDynamicPropertyChangeEvent*)object;
-    }
-    if (object->type() == QEvent::StateMachineSignal) {
-        *class_name = "QStateMachine_SignalEvent";
-        return (QStateMachine::SignalEvent*)object;
     }
     return NULL;
 }

@@ -56,6 +56,23 @@ if (_wrapper) {
 }
   QTimer::childEvent(arg__1);
 }
+void PythonQtShell_QTimer::customEvent(QEvent*  arg__1)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "customEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+    void* args[2] = {NULL, (void*)&arg__1};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QTimer::customEvent(arg__1);
+}
 bool  PythonQtShell_QTimer::event(QEvent*  arg__1)
 {
 if (_wrapper) {
@@ -83,23 +100,6 @@ if (_wrapper) {
   }
 }
   return QTimer::event(arg__1);
-}
-void PythonQtShell_QTimer::customEvent(QEvent*  arg__1)
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "customEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  }
-}
-  QTimer::customEvent(arg__1);
 }
 bool  PythonQtShell_QTimer::eventFilter(QObject*  arg__1, QEvent*  arg__2)
 {
@@ -166,6 +166,11 @@ int  PythonQtWrapper_QTimer::interval(QTimer* theWrappedObject) const
 void PythonQtWrapper_QTimer::timerEvent(QTimer* theWrappedObject, QTimerEvent*  arg__1)
 {
   ( ((PythonQtPublicPromoter_QTimer*)theWrappedObject)->promoted_timerEvent(arg__1));
+}
+
+void PythonQtWrapper_QTimer::static_QTimer_singleShot(int  msec, QObject*  receiver, const char*  member)
+{
+  (QTimer::singleShot(msec, receiver, member));
 }
 
 
@@ -237,6 +242,23 @@ if (_wrapper) {
 }
   return QTranslator::isEmpty();
 }
+void PythonQtShell_QTranslator::childEvent(QChildEvent*  arg__1)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "childEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"" , "QChildEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+    void* args[2] = {NULL, (void*)&arg__1};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QTranslator::childEvent(arg__1);
+}
 void PythonQtShell_QTranslator::timerEvent(QTimerEvent*  arg__1)
 {
 if (_wrapper) {
@@ -254,13 +276,13 @@ if (_wrapper) {
 }
   QTranslator::timerEvent(arg__1);
 }
-void PythonQtShell_QTranslator::childEvent(QChildEvent*  arg__1)
+void PythonQtShell_QTranslator::customEvent(QEvent*  arg__1)
 {
 if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "childEvent");
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "customEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"" , "QChildEvent*"};
+    static const char* argumentList[] ={"" , "QEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
@@ -269,7 +291,7 @@ if (_wrapper) {
     return;
   }
 }
-  QTranslator::childEvent(arg__1);
+  QTranslator::customEvent(arg__1);
 }
 bool  PythonQtShell_QTranslator::event(QEvent*  arg__1)
 {
@@ -298,23 +320,6 @@ if (_wrapper) {
   }
 }
   return QTranslator::event(arg__1);
-}
-void PythonQtShell_QTranslator::customEvent(QEvent*  arg__1)
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "customEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  }
-}
-  QTranslator::customEvent(arg__1);
 }
 bool  PythonQtShell_QTranslator::eventFilter(QObject*  arg__1, QEvent*  arg__2)
 {
@@ -427,6 +432,7 @@ void PythonQtWrapper_QUuid::readFrom(QUuid* theWrappedObject, QDataStream&  arg_
   arg__1 >>  (*theWrappedObject);
 }
 
+QString PythonQtWrapper_QUuid::py_toString(QUuid* obj) { return obj->toString(); }
 
 
 bool  PythonQtShell_QVariantAnimation::event(QEvent*  event)
@@ -581,23 +587,6 @@ if (_wrapper) {
 }
   QVariantAnimation::updateDirection(direction);
 }
-void PythonQtShell_QVariantAnimation::timerEvent(QTimerEvent*  arg__1)
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "timerEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"" , "QTimerEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  }
-}
-  QVariantAnimation::timerEvent(arg__1);
-}
 void PythonQtShell_QVariantAnimation::childEvent(QChildEvent*  arg__1)
 {
 if (_wrapper) {
@@ -614,6 +603,23 @@ if (_wrapper) {
   }
 }
   QVariantAnimation::childEvent(arg__1);
+}
+void PythonQtShell_QVariantAnimation::timerEvent(QTimerEvent*  arg__1)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "timerEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"" , "QTimerEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+    void* args[2] = {NULL, (void*)&arg__1};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QVariantAnimation::timerEvent(arg__1);
 }
 void PythonQtShell_QVariantAnimation::customEvent(QEvent*  arg__1)
 {

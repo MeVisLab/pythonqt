@@ -66,7 +66,7 @@ void delete_QModelIndex(QModelIndex* obj) { delete obj; }
    QModelIndex  sibling(QModelIndex* theWrappedObject, int  row, int  column) const;
    int  column(QModelIndex* theWrappedObject) const;
    int  row(QModelIndex* theWrappedObject) const;
-    QString toString(QModelIndex*);
+    QString py_toString(QModelIndex*);
 };
 
 
@@ -134,8 +134,8 @@ void delete_QObject(QObject* obj) { delete obj; }
    void killTimer(QObject* theWrappedObject, int  id);
    void setObjectName(QObject* theWrappedObject, const QString&  name);
    QThread*  thread(QObject* theWrappedObject) const;
-   void setParent(QObject* theWrappedObject, QObject*  arg__1);
    bool  signalsBlocked(QObject* theWrappedObject) const;
+   void setParent(QObject* theWrappedObject, QObject*  arg__1);
    void customEvent(QObject* theWrappedObject, QEvent*  arg__1);
    int  startTimer(QObject* theWrappedObject, int  interval);
    bool  blockSignals(QObject* theWrappedObject, bool  b);
@@ -143,9 +143,8 @@ void delete_QObject(QObject* obj) { delete obj; }
    bool  event(QObject* theWrappedObject, QEvent*  arg__1);
    bool  eventFilter(QObject* theWrappedObject, QObject*  arg__1, QEvent*  arg__2);
    QList<QByteArray >  dynamicPropertyNames(QObject* theWrappedObject) const;
-   QString  objectName(QObject* theWrappedObject) const;
    void childEvent(QObject* theWrappedObject, QChildEvent*  arg__1);
-    QString toString(QObject*);
+   QString  objectName(QObject* theWrappedObject) const;
 };
 
 
@@ -162,8 +161,8 @@ virtual void updateCurrentTime(int  currentTime);
 virtual bool  event(QEvent*  event);
 virtual void updateDirection(QAbstractAnimation::Direction  direction);
 virtual void updateState(QAbstractAnimation::State  newState, QAbstractAnimation::State  oldState);
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
@@ -207,8 +206,8 @@ virtual void updateCurrentTime(int  arg__1);
 virtual bool  event(QEvent*  e);
 virtual void updateState(QAbstractAnimation::State  newState, QAbstractAnimation::State  oldState);
 virtual void updateDirection(QAbstractAnimation::Direction  direction);
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
@@ -255,16 +254,16 @@ virtual bool  waitForBytesWritten(int  msecs = 30000);
 virtual qint64  readData(char*  data, qint64  maxlen);
 virtual qint64  writeData(const char*  data, qint64  len);
 virtual qint64  bytesToWrite() const;
+virtual qint64  pos() const;
+virtual qint64  size() const;
 virtual bool  reset();
 virtual bool  open(QIODevice::OpenMode  mode);
 virtual bool  seek(qint64  pos);
 virtual qint64  readLineData(char*  data, qint64  maxlen);
-virtual qint64  size() const;
-virtual qint64  pos() const;
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
   PythonQtInstanceWrapper* _wrapper; 
@@ -364,8 +363,8 @@ void delete_QProcessEnvironment(QProcessEnvironment* obj) { delete obj; }
    QProcessEnvironment  static_QProcessEnvironment_systemEnvironment();
    void clear(QProcessEnvironment* theWrappedObject);
    void insert(QProcessEnvironment* theWrappedObject, const QString&  name, const QString&  value);
-   bool  operator_equal(QProcessEnvironment* theWrappedObject, const QProcessEnvironment&  other) const;
    bool  contains(QProcessEnvironment* theWrappedObject, const QString&  name) const;
+   bool  operator_equal(QProcessEnvironment* theWrappedObject, const QProcessEnvironment&  other) const;
    QString  value(QProcessEnvironment* theWrappedObject, const QString&  name, const QString&  defaultValue = QString()) const;
    bool  isEmpty(QProcessEnvironment* theWrappedObject) const;
 };
@@ -388,8 +387,8 @@ virtual QVariant  interpolated(const QVariant&  from, const QVariant&  to, qreal
 virtual void updateCurrentTime(int  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 virtual void updateDirection(QAbstractAnimation::Direction  direction);
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
 
   PythonQtInstanceWrapper* _wrapper; 
@@ -491,13 +490,13 @@ class PythonQtShell_QSequentialAnimationGroup : public QSequentialAnimationGroup
 public:
     PythonQtShell_QSequentialAnimationGroup(QObject*  parent = 0):QSequentialAnimationGroup(parent),_wrapper(NULL) {};
 
-virtual void updateCurrentTime(int  arg__1);
 virtual int  duration() const;
+virtual void updateCurrentTime(int  arg__1);
 virtual void updateDirection(QAbstractAnimation::Direction  direction);
 virtual bool  event(QEvent*  event);
 virtual void updateState(QAbstractAnimation::State  newState, QAbstractAnimation::State  oldState);
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
@@ -506,8 +505,8 @@ virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
 class PythonQtPublicPromoter_QSequentialAnimationGroup : public QSequentialAnimationGroup
 { public:
-inline void promoted_updateCurrentTime(int  arg__1) { QSequentialAnimationGroup::updateCurrentTime(arg__1); }
 inline int  promoted_duration() const { return QSequentialAnimationGroup::duration(); }
+inline void promoted_updateCurrentTime(int  arg__1) { QSequentialAnimationGroup::updateCurrentTime(arg__1); }
 inline void promoted_updateDirection(QAbstractAnimation::Direction  direction) { QSequentialAnimationGroup::updateDirection(direction); }
 inline bool  promoted_event(QEvent*  event) { return QSequentialAnimationGroup::event(event); }
 inline void promoted_updateState(QAbstractAnimation::State  newState, QAbstractAnimation::State  oldState) { QSequentialAnimationGroup::updateState(newState, oldState); }
@@ -519,9 +518,9 @@ public:
 public slots:
 QSequentialAnimationGroup* new_QSequentialAnimationGroup(QObject*  parent = 0);
 void delete_QSequentialAnimationGroup(QSequentialAnimationGroup* obj) { delete obj; } 
-   void updateCurrentTime(QSequentialAnimationGroup* theWrappedObject, int  arg__1);
    QAbstractAnimation*  currentAnimation(QSequentialAnimationGroup* theWrappedObject) const;
    int  duration(QSequentialAnimationGroup* theWrappedObject) const;
+   void updateCurrentTime(QSequentialAnimationGroup* theWrappedObject, int  arg__1);
    void updateDirection(QSequentialAnimationGroup* theWrappedObject, QAbstractAnimation::Direction  direction);
    bool  event(QSequentialAnimationGroup* theWrappedObject, QEvent*  event);
    QPauseAnimation*  insertPause(QSequentialAnimationGroup* theWrappedObject, int  index, int  msecs);
@@ -543,8 +542,8 @@ public:
     PythonQtShell_QSettings(const QString&  organization, const QString&  application = QString(), QObject*  parent = 0):QSettings(organization, application, parent),_wrapper(NULL) {};
 
 virtual bool  event(QEvent*  event);
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
@@ -616,10 +615,10 @@ class PythonQtShell_QSignalMapper : public QSignalMapper
 public:
     PythonQtShell_QSignalMapper(QObject*  parent = 0):QSignalMapper(parent),_wrapper(NULL) {};
 
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
   PythonQtInstanceWrapper* _wrapper; 
@@ -653,8 +652,8 @@ public:
 virtual bool  event(QEvent*  e);
 virtual void onTransition(QEvent*  event);
 virtual bool  eventTest(QEvent*  event);
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
@@ -694,8 +693,8 @@ public:
     PythonQtShell_QSocketNotifier(int  socket, QSocketNotifier::Type  arg__2, QObject*  parent = 0):QSocketNotifier(socket, arg__2, parent),_wrapper(NULL) {};
 
 virtual bool  event(QEvent*  arg__1);
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
@@ -735,8 +734,8 @@ public:
 virtual bool  event(QEvent*  e);
 virtual void onExit(QEvent*  event);
 virtual void onEntry(QEvent*  event);
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
@@ -790,9 +789,9 @@ virtual void endSelectTransitions(QEvent*  event);
 virtual void beginSelectTransitions(QEvent*  event);
 virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual void endMicrostep(QEvent*  event);
-virtual void customEvent(QEvent*  arg__1);
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void customEvent(QEvent*  arg__1);
 
   PythonQtInstanceWrapper* _wrapper; 
 };
@@ -872,8 +871,8 @@ public:
 public slots:
 QStateMachine::WrappedEvent* new_QStateMachine_WrappedEvent(QObject*  object, QEvent*  event);
 void delete_QStateMachine_WrappedEvent(QStateMachine::WrappedEvent* obj) { delete obj; } 
-   QEvent*  event(QStateMachine::WrappedEvent* theWrappedObject) const;
    QObject*  object(QStateMachine::WrappedEvent* theWrappedObject) const;
+   QEvent*  event(QStateMachine::WrappedEvent* theWrappedObject) const;
 };
 
 
@@ -932,25 +931,25 @@ public:
 
 virtual QAbstractFileEngine*  fileEngine() const;
 virtual bool  open(QIODevice::OpenMode  flags);
-virtual qint64  size() const;
-virtual bool  seek(qint64  offset);
-virtual qint64  pos() const;
+virtual bool  isSequential() const;
 virtual qint64  writeData(const char*  data, qint64  len);
+virtual qint64  size() const;
+virtual qint64  readData(char*  data, qint64  maxlen);
+virtual bool  seek(qint64  offset);
+virtual bool  waitForBytesWritten(int  msecs);
+virtual qint64  pos() const;
 virtual bool  atEnd() const;
 virtual void close();
 virtual qint64  readLineData(char*  data, qint64  maxlen);
-virtual bool  isSequential() const;
-virtual qint64  readData(char*  data, qint64  maxlen);
+virtual qint64  bytesToWrite() const;
+virtual qint64  bytesAvailable() const;
 virtual bool  reset();
 virtual bool  waitForReadyRead(int  msecs);
 virtual bool  canReadLine() const;
-virtual qint64  bytesToWrite() const;
-virtual qint64  bytesAvailable() const;
-virtual bool  waitForBytesWritten(int  msecs);
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
   PythonQtInstanceWrapper* _wrapper; 
@@ -1193,10 +1192,10 @@ class PythonQtShell_QThreadPool : public QThreadPool
 public:
     PythonQtShell_QThreadPool(QObject*  parent = 0):QThreadPool(parent),_wrapper(NULL) {};
 
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
   PythonQtInstanceWrapper* _wrapper; 
@@ -1233,8 +1232,8 @@ public:
 virtual void timerEvent(QTimerEvent*  event);
 virtual qreal  valueForTime(int  msec) const;
 virtual void childEvent(QChildEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
   PythonQtInstanceWrapper* _wrapper; 

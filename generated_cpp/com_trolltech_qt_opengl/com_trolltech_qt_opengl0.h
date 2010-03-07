@@ -118,10 +118,10 @@ void delete_QGLContext(QGLContext* obj) { delete obj; }
    const QGLContext*  static_QGLContext_currentContext();
    QColor  overlayTransparentColor(QGLContext* theWrappedObject) const;
    QPaintDevice*  device(QGLContext* theWrappedObject) const;
+   bool  static_QGLContext_areSharing(const QGLContext*  context1, const QGLContext*  context2);
    void doneCurrent(QGLContext* theWrappedObject);
    QGLFormat  requestedFormat(QGLContext* theWrappedObject) const;
    bool  isSharing(QGLContext* theWrappedObject) const;
-   bool  static_QGLContext_areSharing(const QGLContext*  context1, const QGLContext*  context2);
    void setFormat(QGLContext* theWrappedObject, const QGLFormat&  format);
    void static_QGLContext_setTextureCacheLimit(int  size);
    int  static_QGLContext_textureCacheLimit();
@@ -240,9 +240,9 @@ void delete_QGLPixelBuffer(QGLPixelBuffer* obj) { delete obj; }
    QImage  toImage(QGLPixelBuffer* theWrappedObject) const;
    bool  static_QGLPixelBuffer_hasOpenGLPbuffers();
    QPaintEngine*  paintEngine(QGLPixelBuffer* theWrappedObject) const;
+   QSize  size(QGLPixelBuffer* theWrappedObject) const;
    bool  makeCurrent(QGLPixelBuffer* theWrappedObject);
    bool  doneCurrent(QGLPixelBuffer* theWrappedObject);
-   QSize  size(QGLPixelBuffer* theWrappedObject) const;
    Qt::HANDLE  handle(QGLPixelBuffer* theWrappedObject) const;
    int  devType(QGLPixelBuffer* theWrappedObject) const;
 };
@@ -257,10 +257,10 @@ public:
     PythonQtShell_QGLShader(QGLShader::ShaderType  type, QObject*  parent = 0):QGLShader(type, parent),_wrapper(NULL) {};
     PythonQtShell_QGLShader(QGLShader::ShaderType  type, const QGLContext*  context, QObject*  parent = 0):QGLShader(type, context, parent),_wrapper(NULL) {};
 
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
   PythonQtInstanceWrapper* _wrapper; 
@@ -299,10 +299,10 @@ public:
     PythonQtShell_QGLShaderProgram(const QGLContext*  context, QObject*  parent = 0):QGLShaderProgram(context, parent),_wrapper(NULL) {};
 
 virtual bool  link();
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
   PythonQtInstanceWrapper* _wrapper; 
@@ -359,8 +359,8 @@ void delete_QGLShaderProgram(QGLShaderProgram* obj) { delete obj; }
    bool  addShaderFromSourceCode(QGLShaderProgram* theWrappedObject, QGLShader::ShaderType  type, const QString&  source);
    bool  addShaderFromSourceCode(QGLShaderProgram* theWrappedObject, QGLShader::ShaderType  type, const QByteArray&  source);
    bool  addShaderFromSourceCode(QGLShaderProgram* theWrappedObject, QGLShader::ShaderType  type, const char*  source);
-   void setAttributeValue(QGLShaderProgram* theWrappedObject, const char*  name, const QVector4D&  value);
    void setAttributeValue(QGLShaderProgram* theWrappedObject, const char*  name, const QColor&  value);
+   void setAttributeValue(QGLShaderProgram* theWrappedObject, const char*  name, const QVector4D&  value);
    void setAttributeValue(QGLShaderProgram* theWrappedObject, const char*  name, const QVector3D&  value);
    void setAttributeValue(QGLShaderProgram* theWrappedObject, const char*  name, const QVector2D&  value);
    void setAttributeValue(QGLShaderProgram* theWrappedObject, int  location, const QColor&  value);
@@ -371,8 +371,8 @@ void delete_QGLShaderProgram(QGLShaderProgram* obj) { delete obj; }
    bool  isLinked(QGLShaderProgram* theWrappedObject) const;
    void removeAllShaders(QGLShaderProgram* theWrappedObject);
    QList<QGLShader* >  shaders(QGLShaderProgram* theWrappedObject) const;
-   int  attributeLocation(QGLShaderProgram* theWrappedObject, const QByteArray&  name) const;
    int  attributeLocation(QGLShaderProgram* theWrappedObject, const QString&  name) const;
+   int  attributeLocation(QGLShaderProgram* theWrappedObject, const QByteArray&  name) const;
    int  attributeLocation(QGLShaderProgram* theWrappedObject, const char*  name) const;
    bool  bind(QGLShaderProgram* theWrappedObject);
    int  uniformLocation(QGLShaderProgram* theWrappedObject, const QString&  name) const;
@@ -417,14 +417,14 @@ virtual void paintOverlayGL();
 virtual bool  event(QEvent*  arg__1);
 virtual void paintGL();
 virtual QSize  sizeHint() const;
-virtual void mouseDoubleClickEvent(QMouseEvent*  arg__1);
+virtual void dragEnterEvent(QDragEnterEvent*  arg__1);
 virtual void mouseReleaseEvent(QMouseEvent*  arg__1);
+virtual void closeEvent(QCloseEvent*  arg__1);
 virtual int  heightForWidth(int  arg__1) const;
 virtual void contextMenuEvent(QContextMenuEvent*  arg__1);
 virtual void dragMoveEvent(QDragMoveEvent*  arg__1);
-virtual void closeEvent(QCloseEvent*  arg__1);
 virtual void dropEvent(QDropEvent*  arg__1);
-virtual void dragEnterEvent(QDragEnterEvent*  arg__1);
+virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
 virtual void mousePressEvent(QMouseEvent*  arg__1);
 virtual int  devType() const;
 virtual QSize  minimumSizeHint() const;
@@ -432,7 +432,6 @@ virtual void keyReleaseEvent(QKeyEvent*  arg__1);
 virtual void focusInEvent(QFocusEvent*  arg__1);
 virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const;
 virtual void keyPressEvent(QKeyEvent*  arg__1);
-virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
 virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
 virtual void wheelEvent(QWheelEvent*  arg__1);
 virtual void tabletEvent(QTabletEvent*  arg__1);
@@ -441,15 +440,16 @@ virtual void focusOutEvent(QFocusEvent*  arg__1);
 virtual void mouseMoveEvent(QMouseEvent*  arg__1);
 virtual bool  focusNextPrevChild(bool  next);
 virtual void actionEvent(QActionEvent*  arg__1);
+virtual void leaveEvent(QEvent*  arg__1);
 virtual void moveEvent(QMoveEvent*  arg__1);
 virtual void languageChange();
-virtual void changeEvent(QEvent*  arg__1);
-virtual void hideEvent(QHideEvent*  arg__1);
-virtual void leaveEvent(QEvent*  arg__1);
 virtual void dragLeaveEvent(QDragLeaveEvent*  arg__1);
 virtual void enterEvent(QEvent*  arg__1);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void changeEvent(QEvent*  arg__1);
+virtual void hideEvent(QHideEvent*  arg__1);
+virtual void mouseDoubleClickEvent(QMouseEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
@@ -482,10 +482,10 @@ QGLWidget* new_QGLWidget(QGLContext*  context, QWidget*  parent = 0, const QGLWi
 QGLWidget* new_QGLWidget(QWidget*  parent = 0, const QGLWidget*  shareWidget = 0, Qt::WindowFlags  f = 0);
 QGLWidget* new_QGLWidget(const QGLFormat&  format, QWidget*  parent = 0, const QGLWidget*  shareWidget = 0, Qt::WindowFlags  f = 0);
 void delete_QGLWidget(QGLWidget* obj) { delete obj; } 
-   void glInit(QGLWidget* theWrappedObject);
    const QGLContext*  overlayContext(QGLWidget* theWrappedObject) const;
-   void doneCurrent(QGLWidget* theWrappedObject);
+   void glInit(QGLWidget* theWrappedObject);
    const QGLContext*  context(QGLWidget* theWrappedObject) const;
+   void doneCurrent(QGLWidget* theWrappedObject);
    void setColormap(QGLWidget* theWrappedObject, const QGLColormap&  map);
    void resizeGL(QGLWidget* theWrappedObject, int  w, int  h);
    void initializeGL(QGLWidget* theWrappedObject);

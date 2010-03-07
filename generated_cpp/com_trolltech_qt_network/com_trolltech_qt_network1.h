@@ -43,7 +43,7 @@ void delete_QSslKey(QSslKey* obj) { delete obj; }
    QSsl::KeyType  type(QSslKey* theWrappedObject) const;
    bool  operator_equal(QSslKey* theWrappedObject, const QSslKey&  key) const;
    bool  isNull(QSslKey* theWrappedObject) const;
-    QString toString(QSslKey*);
+    QString py_toString(QSslKey*);
 };
 
 
@@ -64,17 +64,17 @@ virtual bool  waitForBytesWritten(int  msecs = 30000);
 virtual bool  atEnd() const;
 virtual void close();
 virtual bool  waitForReadyRead(int  msecs = 30000);
-virtual bool  isSequential() const;
 virtual qint64  readLineData(char*  data, qint64  maxlen);
+virtual bool  isSequential() const;
+virtual qint64  size() const;
+virtual qint64  pos() const;
 virtual bool  reset();
 virtual bool  open(QIODevice::OpenMode  mode);
 virtual bool  seek(qint64  pos);
-virtual qint64  size() const;
-virtual qint64  pos() const;
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
   PythonQtInstanceWrapper* _wrapper; 
@@ -179,10 +179,10 @@ public:
 virtual QTcpSocket*  nextPendingConnection();
 virtual bool  hasPendingConnections() const;
 virtual void incomingConnection(int  handle);
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
   PythonQtInstanceWrapper* _wrapper; 
@@ -229,8 +229,11 @@ class PythonQtShell_QTcpSocket : public QTcpSocket
 public:
     PythonQtShell_QTcpSocket(QObject*  parent = 0):QTcpSocket(parent),_wrapper(NULL) {};
 
+virtual qint64  bytesAvailable() const;
+virtual bool  waitForBytesWritten(int  msecs);
 virtual bool  isSequential() const;
 virtual qint64  readData(char*  data, qint64  maxlen);
+virtual bool  reset();
 virtual qint64  bytesToWrite() const;
 virtual bool  waitForReadyRead(int  msecs);
 virtual qint64  writeData(const char*  data, qint64  len);
@@ -238,17 +241,14 @@ virtual bool  canReadLine() const;
 virtual void close();
 virtual bool  atEnd() const;
 virtual qint64  readLineData(char*  data, qint64  maxlen);
-virtual qint64  bytesAvailable() const;
-virtual bool  waitForBytesWritten(int  msecs);
-virtual bool  reset();
-virtual bool  open(QIODevice::OpenMode  mode);
-virtual bool  seek(qint64  pos);
 virtual qint64  size() const;
 virtual qint64  pos() const;
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual bool  open(QIODevice::OpenMode  mode);
+virtual bool  seek(qint64  pos);
 virtual void childEvent(QChildEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
   PythonQtInstanceWrapper* _wrapper; 
@@ -271,26 +271,26 @@ class PythonQtShell_QUdpSocket : public QUdpSocket
 public:
     PythonQtShell_QUdpSocket(QObject*  parent = 0):QUdpSocket(parent),_wrapper(NULL) {};
 
+virtual qint64  bytesAvailable() const;
+virtual bool  waitForBytesWritten(int  msecs);
+virtual qint64  size() const;
 virtual bool  isSequential() const;
 virtual qint64  readData(char*  data, qint64  maxlen);
 virtual qint64  bytesToWrite() const;
 virtual bool  waitForReadyRead(int  msecs);
-virtual bool  open(QIODevice::OpenMode  mode);
 virtual qint64  writeData(const char*  data, qint64  len);
 virtual bool  canReadLine() const;
 virtual void close();
 virtual bool  atEnd() const;
 virtual qint64  readLineData(char*  data, qint64  maxlen);
-virtual qint64  bytesAvailable() const;
-virtual bool  waitForBytesWritten(int  msecs);
-virtual bool  reset();
-virtual bool  seek(qint64  pos);
-virtual qint64  size() const;
 virtual qint64  pos() const;
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual bool  reset();
+virtual bool  open(QIODevice::OpenMode  mode);
+virtual bool  seek(qint64  pos);
 virtual void childEvent(QChildEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
   PythonQtInstanceWrapper* _wrapper; 
@@ -374,11 +374,11 @@ void delete_QUrlInfo(QUrlInfo* obj) { delete obj; }
    bool  isValid(QUrlInfo* theWrappedObject) const;
    bool  isWritable(QUrlInfo* theWrappedObject) const;
    void setWritable(QUrlInfo* theWrappedObject, bool  b);
+   bool  static_QUrlInfo_equal(const QUrlInfo&  i1, const QUrlInfo&  i2, int  sortBy);
    void setName(QUrlInfo* theWrappedObject, const QString&  name);
    void setReadable(QUrlInfo* theWrappedObject, bool  b);
-   QString  name(QUrlInfo* theWrappedObject) const;
    bool  isDir(QUrlInfo* theWrappedObject) const;
-   bool  static_QUrlInfo_equal(const QUrlInfo&  i1, const QUrlInfo&  i2, int  sortBy);
+   QString  name(QUrlInfo* theWrappedObject) const;
    void setLastRead(QUrlInfo* theWrappedObject, const QDateTime&  dt);
    void setGroup(QUrlInfo* theWrappedObject, const QString&  s);
    bool  isExecutable(QUrlInfo* theWrappedObject) const;
