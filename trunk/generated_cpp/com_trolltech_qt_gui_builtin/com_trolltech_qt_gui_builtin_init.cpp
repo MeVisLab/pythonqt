@@ -16,11 +16,9 @@ PythonQt::priv()->registerCPPClass("QPen", "", "QtGui", PythonQtCreateObject<Pyt
 PythonQt::priv()->registerCPPClass("QColor", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QColor>, NULL, module);
 PythonQt::priv()->registerCPPClass("QCursor", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QCursor>, NULL, module);
 PythonQt::priv()->registerCPPClass("QKeySequence", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QKeySequence>, NULL, module);
-PythonQt::priv()->registerCPPClass("QLine", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QLine>, NULL, module);
 PythonQt::priv()->registerCPPClass("QSizePolicy", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QSizePolicy>, NULL, module);
 PythonQt::priv()->registerCPPClass("QBitmap", "QPixmap", "QtGui", PythonQtCreateObject<PythonQtWrapper_QBitmap>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QBitmap>, module);
 PythonQt::priv()->registerCPPClass("QTextFormat", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QTextFormat>, NULL, module);
-PythonQt::priv()->registerCPPClass("QLineF", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QLineF>, NULL, module);
 PythonQt::priv()->registerCPPClass("QImage", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QImage>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QImage>, module);
 PythonQt::self()->addParentClass("QImage", "QPaintDevice",PythonQtUpcastingOffset<QImage,QPaintDevice>());
 

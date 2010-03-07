@@ -31,8 +31,8 @@ public:
 
 virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
   PythonQtInstanceWrapper* _wrapper; 
@@ -56,6 +56,7 @@ void delete_QTimer(QTimer* obj) { delete obj; }
    bool  isSingleShot(QTimer* theWrappedObject) const;
    int  interval(QTimer* theWrappedObject) const;
    void timerEvent(QTimer* theWrappedObject, QTimerEvent*  arg__1);
+   void static_QTimer_singleShot(int  msec, QObject*  receiver, const char*  member);
 };
 
 
@@ -91,10 +92,10 @@ public:
 
 virtual QString  translate(const char*  context, const char*  sourceText, const char*  disambiguation = 0) const;
 virtual bool  isEmpty() const;
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
   PythonQtInstanceWrapper* _wrapper; 
@@ -159,6 +160,13 @@ void delete_QUuid(QUuid* obj) { delete obj; }
    QUuid::Variant  variant(QUuid* theWrappedObject) const;
    void writeTo(QUuid* theWrappedObject, QDataStream&  arg__1);
    void readFrom(QUuid* theWrappedObject, QDataStream&  arg__1);
+    QString py_toString(QUuid*);
+void py_set_data1(QUuid* theWrappedObject, uint  data1){ theWrappedObject->data1 = data1; }
+uint  py_get_data1(QUuid* theWrappedObject){ return theWrappedObject->data1; }
+void py_set_data2(QUuid* theWrappedObject, ushort  data2){ theWrappedObject->data2 = data2; }
+ushort  py_get_data2(QUuid* theWrappedObject){ return theWrappedObject->data2; }
+void py_set_data3(QUuid* theWrappedObject, ushort  data3){ theWrappedObject->data3 = data3; }
+ushort  py_get_data3(QUuid* theWrappedObject){ return theWrappedObject->data3; }
 };
 
 
@@ -177,8 +185,8 @@ virtual void updateCurrentTime(int  arg__1);
 virtual void updateCurrentValue(const QVariant&  value);
 virtual void updateState(QAbstractAnimation::State  newState, QAbstractAnimation::State  oldState);
 virtual void updateDirection(QAbstractAnimation::Direction  direction);
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 

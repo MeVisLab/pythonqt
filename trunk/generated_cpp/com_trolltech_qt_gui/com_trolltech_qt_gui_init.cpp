@@ -19,105 +19,77 @@ static void* polymorphichandler_QStyleOption(const void *ptr, char **class_name)
         *class_name = "QStyleOption";
         return (QStyleOption*)object;
     }
-    if (object->type == QStyleOptionViewItem::Type && object->version == QStyleOptionViewItem::Version) {
-        *class_name = "QStyleOptionViewItem";
-        return (QStyleOptionViewItem*)object;
-    }
-    if (object->type == QStyleOptionTab::Type && object->version == QStyleOptionTab::Version) {
-        *class_name = "QStyleOptionTab";
-        return (QStyleOptionTab*)object;
-    }
     if (object->type == QStyleOptionRubberBand::Type && object->version == QStyleOptionRubberBand::Version) {
         *class_name = "QStyleOptionRubberBand";
         return (QStyleOptionRubberBand*)object;
-    }
-    if (object->type == QStyleOptionFocusRect::Type && object->version == QStyleOptionFocusRect::Version) {
-        *class_name = "QStyleOptionFocusRect";
-        return (QStyleOptionFocusRect*)object;
-    }
-    if (object->type == QStyleOptionProgressBar::Type && object->version == QStyleOptionProgressBar::Version) {
-        *class_name = "QStyleOptionProgressBar";
-        return (QStyleOptionProgressBar*)object;
-    }
-    if (object->type == QStyleOptionTabWidgetFrame::Type && object->version == QStyleOptionTabWidgetFrame::Version) {
-        *class_name = "QStyleOptionTabWidgetFrame";
-        return (QStyleOptionTabWidgetFrame*)object;
-    }
-    if (object->type == QStyleOptionButton::Type && object->version == QStyleOptionButton::Version) {
-        *class_name = "QStyleOptionButton";
-        return (QStyleOptionButton*)object;
-    }
-    if (object->type == QStyleOptionDockWidget::Type && object->version == QStyleOptionDockWidget::Version) {
-        *class_name = "QStyleOptionDockWidget";
-        return (QStyleOptionDockWidget*)object;
-    }
-    if (object->type == QStyleOptionHeader::Type && object->version == QStyleOptionHeader::Version) {
-        *class_name = "QStyleOptionHeader";
-        return (QStyleOptionHeader*)object;
-    }
-    if (object->type == QStyleOptionGraphicsItem::Type && object->version == QStyleOptionGraphicsItem::Version) {
-        *class_name = "QStyleOptionGraphicsItem";
-        return (QStyleOptionGraphicsItem*)object;
-    }
-    if (object->type == QStyleOptionMenuItem::Type && object->version == QStyleOptionMenuItem::Version) {
-        *class_name = "QStyleOptionMenuItem";
-        return (QStyleOptionMenuItem*)object;
-    }
-    if (object->type == QStyleOptionFrame::Type && object->version == QStyleOptionFrame::Version) {
-        *class_name = "QStyleOptionFrame";
-        return (QStyleOptionFrame*)object;
-    }
-    if (object->type == QStyleOptionTabBarBase::Type && object->version == QStyleOptionTabBarBase::Version) {
-        *class_name = "QStyleOptionTabBarBase";
-        return (QStyleOptionTabBarBase*)object;
     }
     if (object->type == QStyleOptionToolBox::Type && object->version == QStyleOptionToolBox::Version) {
         *class_name = "QStyleOptionToolBox";
         return (QStyleOptionToolBox*)object;
     }
-    if (object->type == QStyleOptionToolBar::Type && object->version == QStyleOptionToolBar::Version) {
-        *class_name = "QStyleOptionToolBar";
-        return (QStyleOptionToolBar*)object;
+    if (object->type == QStyleOptionTabBarBase::Type && object->version == QStyleOptionTabBarBase::Version) {
+        *class_name = "QStyleOptionTabBarBase";
+        return (QStyleOptionTabBarBase*)object;
     }
     if (object->type == QStyleOptionComplex::Type && object->version == QStyleOptionComplex::Version) {
         *class_name = "QStyleOptionComplex";
         return (QStyleOptionComplex*)object;
     }
+    if (object->type == QStyleOptionHeader::Type && object->version == QStyleOptionHeader::Version) {
+        *class_name = "QStyleOptionHeader";
+        return (QStyleOptionHeader*)object;
+    }
+    if (object->type == QStyleOptionViewItem::Type && object->version == QStyleOptionViewItem::Version) {
+        *class_name = "QStyleOptionViewItem";
+        return (QStyleOptionViewItem*)object;
+    }
+    if (object->type == QStyleOptionTabWidgetFrame::Type && object->version == QStyleOptionTabWidgetFrame::Version) {
+        *class_name = "QStyleOptionTabWidgetFrame";
+        return (QStyleOptionTabWidgetFrame*)object;
+    }
+    if (object->type == QStyleOptionToolBar::Type && object->version == QStyleOptionToolBar::Version) {
+        *class_name = "QStyleOptionToolBar";
+        return (QStyleOptionToolBar*)object;
+    }
+    if (object->type == QStyleOptionTab::Type && object->version == QStyleOptionTab::Version) {
+        *class_name = "QStyleOptionTab";
+        return (QStyleOptionTab*)object;
+    }
+    if (object->type == QStyleOptionProgressBar::Type && object->version == QStyleOptionProgressBar::Version) {
+        *class_name = "QStyleOptionProgressBar";
+        return (QStyleOptionProgressBar*)object;
+    }
+    if (object->type == QStyleOptionButton::Type && object->version == QStyleOptionButton::Version) {
+        *class_name = "QStyleOptionButton";
+        return (QStyleOptionButton*)object;
+    }
+    if (object->type == QStyleOptionFocusRect::Type && object->version == QStyleOptionFocusRect::Version) {
+        *class_name = "QStyleOptionFocusRect";
+        return (QStyleOptionFocusRect*)object;
+    }
+    if (object->type == QStyleOptionMenuItem::Type && object->version == QStyleOptionMenuItem::Version) {
+        *class_name = "QStyleOptionMenuItem";
+        return (QStyleOptionMenuItem*)object;
+    }
+    if (object->type == QStyleOptionDockWidget::Type && object->version == QStyleOptionDockWidget::Version) {
+        *class_name = "QStyleOptionDockWidget";
+        return (QStyleOptionDockWidget*)object;
+    }
+    if (object->type == QStyleOptionFrame::Type && object->version == QStyleOptionFrame::Version) {
+        *class_name = "QStyleOptionFrame";
+        return (QStyleOptionFrame*)object;
+    }
+    if (object->type == QStyleOptionGraphicsItem::Type && object->version == QStyleOptionGraphicsItem::Version) {
+        *class_name = "QStyleOptionGraphicsItem";
+        return (QStyleOptionGraphicsItem*)object;
+    }
     if (object->type == QStyleOptionSpinBox::Type && object->version == QStyleOptionSpinBox::Version) {
         *class_name = "QStyleOptionSpinBox";
         return (QStyleOptionSpinBox*)object;
     }
-    if (object->type == QStyleOptionSizeGrip::Type && object->version == QStyleOptionSizeGrip::Version) {
-        *class_name = "QStyleOptionSizeGrip";
-        return (QStyleOptionSizeGrip*)object;
-    }
-    if (object->type == QStyleOptionToolBoxV2::Type && object->version == QStyleOptionToolBoxV2::Version) {
-        *class_name = "QStyleOptionToolBoxV2";
-        return (QStyleOptionToolBoxV2*)object;
-    }
-    if (object->type == QStyleOptionToolButton::Type && object->version == QStyleOptionToolButton::Version) {
-        *class_name = "QStyleOptionToolButton";
-        return (QStyleOptionToolButton*)object;
-    }
-    if (object->type == QStyleOptionGroupBox::Type && object->version == QStyleOptionGroupBox::Version) {
-        *class_name = "QStyleOptionGroupBox";
-        return (QStyleOptionGroupBox*)object;
-    }
-    if (object->type == QStyleOptionViewItemV2::Type && object->version == QStyleOptionViewItemV2::Version) {
-        *class_name = "QStyleOptionViewItemV2";
-        return (QStyleOptionViewItemV2*)object;
-    }
-    if (object->type == QStyleOptionComboBox::Type && object->version == QStyleOptionComboBox::Version) {
-        *class_name = "QStyleOptionComboBox";
-        return (QStyleOptionComboBox*)object;
-    }
     if (object->type == QStyleOptionProgressBarV2::Type && object->version == QStyleOptionProgressBarV2::Version) {
         *class_name = "QStyleOptionProgressBarV2";
         return (QStyleOptionProgressBarV2*)object;
-    }
-    if (object->type == QStyleOptionTitleBar::Type && object->version == QStyleOptionTitleBar::Version) {
-        *class_name = "QStyleOptionTitleBar";
-        return (QStyleOptionTitleBar*)object;
     }
     if (object->type == QStyleOptionTabBarBaseV2::Type && object->version == QStyleOptionTabBarBaseV2::Version) {
         *class_name = "QStyleOptionTabBarBaseV2";
@@ -127,25 +99,53 @@ static void* polymorphichandler_QStyleOption(const void *ptr, char **class_name)
         *class_name = "QStyleOptionSlider";
         return (QStyleOptionSlider*)object;
     }
-    if (object->type == QStyleOptionTabV2::Type && object->version == QStyleOptionTabV2::Version) {
-        *class_name = "QStyleOptionTabV2";
-        return (QStyleOptionTabV2*)object;
+    if (object->type == QStyleOptionGroupBox::Type && object->version == QStyleOptionGroupBox::Version) {
+        *class_name = "QStyleOptionGroupBox";
+        return (QStyleOptionGroupBox*)object;
     }
     if (object->type == QStyleOptionFrameV2::Type && object->version == QStyleOptionFrameV2::Version) {
         *class_name = "QStyleOptionFrameV2";
         return (QStyleOptionFrameV2*)object;
     }
+    if (object->type == QStyleOptionTabV2::Type && object->version == QStyleOptionTabV2::Version) {
+        *class_name = "QStyleOptionTabV2";
+        return (QStyleOptionTabV2*)object;
+    }
+    if (object->type == QStyleOptionViewItemV2::Type && object->version == QStyleOptionViewItemV2::Version) {
+        *class_name = "QStyleOptionViewItemV2";
+        return (QStyleOptionViewItemV2*)object;
+    }
+    if (object->type == QStyleOptionToolBoxV2::Type && object->version == QStyleOptionToolBoxV2::Version) {
+        *class_name = "QStyleOptionToolBoxV2";
+        return (QStyleOptionToolBoxV2*)object;
+    }
     if (object->type == QStyleOptionDockWidgetV2::Type && object->version == QStyleOptionDockWidgetV2::Version) {
         *class_name = "QStyleOptionDockWidgetV2";
         return (QStyleOptionDockWidgetV2*)object;
     }
-    if (object->type == QStyleOptionTabV3::Type && object->version == QStyleOptionTabV3::Version) {
-        *class_name = "QStyleOptionTabV3";
-        return (QStyleOptionTabV3*)object;
+    if (object->type == QStyleOptionSizeGrip::Type && object->version == QStyleOptionSizeGrip::Version) {
+        *class_name = "QStyleOptionSizeGrip";
+        return (QStyleOptionSizeGrip*)object;
+    }
+    if (object->type == QStyleOptionComboBox::Type && object->version == QStyleOptionComboBox::Version) {
+        *class_name = "QStyleOptionComboBox";
+        return (QStyleOptionComboBox*)object;
+    }
+    if (object->type == QStyleOptionToolButton::Type && object->version == QStyleOptionToolButton::Version) {
+        *class_name = "QStyleOptionToolButton";
+        return (QStyleOptionToolButton*)object;
+    }
+    if (object->type == QStyleOptionTitleBar::Type && object->version == QStyleOptionTitleBar::Version) {
+        *class_name = "QStyleOptionTitleBar";
+        return (QStyleOptionTitleBar*)object;
     }
     if (object->type == QStyleOptionFrameV3::Type && object->version == QStyleOptionFrameV3::Version) {
         *class_name = "QStyleOptionFrameV3";
         return (QStyleOptionFrameV3*)object;
+    }
+    if (object->type == QStyleOptionTabV3::Type && object->version == QStyleOptionTabV3::Version) {
+        *class_name = "QStyleOptionTabV3";
+        return (QStyleOptionTabV3*)object;
     }
     if (object->type == QStyleOptionViewItemV3::Type && object->version == QStyleOptionViewItemV3::Version) {
         *class_name = "QStyleOptionViewItemV3";
@@ -165,13 +165,13 @@ static void* polymorphichandler_QGradient(const void *ptr, char **class_name)
         *class_name = "QGradient";
         return (QGradient*)object;
     }
-    if (object->type() == QGradient::RadialGradient) {
-        *class_name = "QRadialGradient";
-        return (QRadialGradient*)object;
-    }
     if (object->type() == QGradient::LinearGradient) {
         *class_name = "QLinearGradient";
         return (QLinearGradient*)object;
+    }
+    if (object->type() == QGradient::RadialGradient) {
+        *class_name = "QRadialGradient";
+        return (QRadialGradient*)object;
     }
     if (object->type() == QGradient::ConicalGradient) {
         *class_name = "QConicalGradient";
@@ -183,17 +183,21 @@ static void* polymorphichandler_QEvent(const void *ptr, char **class_name)
 {
     Q_ASSERT(ptr != 0);
     QEvent *object = (QEvent *)ptr;
-    if (object->type() == QEvent::WhatsThisClicked) {
-        *class_name = "QWhatsThisClickedEvent";
-        return (QWhatsThisClickedEvent*)object;
+    if (object->type() == QEvent::Clipboard) {
+        *class_name = "QClipboardEvent";
+        return (QClipboardEvent*)object;
     }
     if (object->type() == QEvent::Paint) {
         *class_name = "QPaintEvent";
         return (QPaintEvent*)object;
     }
-    if (object->type() == QEvent::WindowStateChange) {
-        *class_name = "QWindowStateChangeEvent";
-        return (QWindowStateChangeEvent*)object;
+    if (object->type() == QEvent::Close) {
+        *class_name = "QCloseEvent";
+        return (QCloseEvent*)object;
+    }
+    if (object->type() == QEvent::Shortcut) {
+        *class_name = "QShortcutEvent";
+        return (QShortcutEvent*)object;
     }
     if (object->type() == QEvent::FocusIn || object->type() == QEvent::FocusOut) {
         *class_name = "QFocusEvent";
@@ -203,17 +207,13 @@ static void* polymorphichandler_QEvent(const void *ptr, char **class_name)
         *class_name = "QShowEvent";
         return (QShowEvent*)object;
     }
-    if (object->type() == QEvent::ToolBarChange) {
-        *class_name = "QToolBarChangeEvent";
-        return (QToolBarChangeEvent*)object;
+    if (object->type() == QEvent::IconDrag) {
+        *class_name = "QIconDragEvent";
+        return (QIconDragEvent*)object;
     }
-    if (object->type() == QEvent::Close) {
-        *class_name = "QCloseEvent";
-        return (QCloseEvent*)object;
-    }
-    if (object->type() == QEvent::Clipboard) {
-        *class_name = "QClipboardEvent";
-        return (QClipboardEvent*)object;
+    if (object->type() == QEvent::DragResponse) {
+        *class_name = "QDragResponseEvent";
+        return (QDragResponseEvent*)object;
     }
     if (object->type() == QEvent::ActionAdded || object->type() == QEvent::ActionRemoved || object->type() == QEvent::ActionChanged) {
         *class_name = "QActionEvent";
@@ -223,113 +223,113 @@ static void* polymorphichandler_QEvent(const void *ptr, char **class_name)
         *class_name = "QHideEvent";
         return (QHideEvent*)object;
     }
-    if (object->type() == QEvent::Move) {
-        *class_name = "QMoveEvent";
-        return (QMoveEvent*)object;
+    if (object->type() == QEvent::WhatsThisClicked) {
+        *class_name = "QWhatsThisClickedEvent";
+        return (QWhatsThisClickedEvent*)object;
     }
     if (object->type() == QEvent::FileOpen) {
         *class_name = "QFileOpenEvent";
         return (QFileOpenEvent*)object;
     }
-    if (object->type() == QEvent::Resize) {
-        *class_name = "QResizeEvent";
-        return (QResizeEvent*)object;
-    }
     if (object->type() == QEvent::Drop) {
         *class_name = "QDropEvent";
         return (QDropEvent*)object;
     }
-    if (object->type() == QEvent::Shortcut) {
-        *class_name = "QShortcutEvent";
-        return (QShortcutEvent*)object;
+    if (object->type() == QEvent::Move) {
+        *class_name = "QMoveEvent";
+        return (QMoveEvent*)object;
     }
-    if (object->type() == QEvent::IconDrag) {
-        *class_name = "QIconDragEvent";
-        return (QIconDragEvent*)object;
+    if (object->type() == QEvent::ToolBarChange) {
+        *class_name = "QToolBarChangeEvent";
+        return (QToolBarChangeEvent*)object;
+    }
+    if (object->type() == QEvent::Resize) {
+        *class_name = "QResizeEvent";
+        return (QResizeEvent*)object;
     }
     if (object->type() == QEvent::StatusTip) {
         *class_name = "QStatusTipEvent";
         return (QStatusTipEvent*)object;
     }
-    if (object->type() == QEvent::HoverEnter || object->type() == QEvent::HoverLeave || object->type() == QEvent::HoverMove) {
-        *class_name = "QHoverEvent";
-        return (QHoverEvent*)object;
-    }
-    if (object->type() == QEvent::DragResponse) {
-        *class_name = "QDragResponseEvent";
-        return (QDragResponseEvent*)object;
+    if (object->type() == QEvent::AccessibilityDescription || object->type() == QEvent::AccessibilityHelp) {
+        *class_name = "QAccessibleEvent";
+        return (QAccessibleEvent*)object;
     }
     if (object->type() == QEvent::ToolTip || object->type() == QEvent::WhatsThis) {
         *class_name = "QHelpEvent";
         return (QHelpEvent*)object;
     }
-    if (object->type() == QEvent::AccessibilityDescription || object->type() == QEvent::AccessibilityHelp) {
-        *class_name = "QAccessibleEvent";
-        return (QAccessibleEvent*)object;
+    if (object->type() == QEvent::HoverEnter || object->type() == QEvent::HoverLeave || object->type() == QEvent::HoverMove) {
+        *class_name = "QHoverEvent";
+        return (QHoverEvent*)object;
+    }
+    if (object->type() == QEvent::WindowStateChange) {
+        *class_name = "QWindowStateChangeEvent";
+        return (QWindowStateChangeEvent*)object;
     }
     if (object->type() == QEvent::DragLeave) {
         *class_name = "QDragLeaveEvent";
         return (QDragLeaveEvent*)object;
     }
-    if (object->type() == QEvent::GraphicsSceneDragEnter || object->type() == QEvent::GraphicsSceneDragLeave || object->type() == QEvent::GraphicsSceneDragMove || object->type() == QEvent::GraphicsSceneDrop) {
-        *class_name = "QGraphicsSceneDragDropEvent";
-        return (QGraphicsSceneDragDropEvent*)object;
-    }
-    if (object->type() == QEvent::GraphicsSceneMove) {
-        *class_name = "QGraphicsSceneMoveEvent";
-        return (QGraphicsSceneMoveEvent*)object;
-    }
-    if (object->type() == QEvent::GraphicsSceneHoverEnter || object->type() == QEvent::GraphicsSceneHoverLeave || object->type() == QEvent::GraphicsSceneHoverMove) {
-        *class_name = "QGraphicsSceneHoverEvent";
-        return (QGraphicsSceneHoverEvent*)object;
-    }
-    if (object->type() == QEvent::Wheel) {
-        *class_name = "QWheelEvent";
-        return (QWheelEvent*)object;
-    }
-    if (object->type() == QEvent::MouseButtonDblClick || object->type() == QEvent::MouseButtonPress || object->type() == QEvent::MouseButtonRelease || object->type() == QEvent::MouseMove) {
-        *class_name = "QMouseEvent";
-        return (QMouseEvent*)object;
-    }
-    if (object->type() == QEvent::TabletMove || object->type() == QEvent::TabletPress || object->type() == QEvent::TabletRelease) {
-        *class_name = "QTabletEvent";
-        return (QTabletEvent*)object;
-    }
     if (object->type() == QEvent::TouchBegin || object->type() == QEvent::TouchUpdate || object->type() == QEvent::TouchEnd) {
         *class_name = "QTouchEvent";
         return (QTouchEvent*)object;
-    }
-    if (object->type() == QEvent::ContextMenu) {
-        *class_name = "QContextMenuEvent";
-        return (QContextMenuEvent*)object;
-    }
-    if (object->type() == QEvent::GraphicsSceneHelp) {
-        *class_name = "QGraphicsSceneHelpEvent";
-        return (QGraphicsSceneHelpEvent*)object;
-    }
-    if (object->type() == QEvent::GraphicsSceneWheel) {
-        *class_name = "QGraphicsSceneWheelEvent";
-        return (QGraphicsSceneWheelEvent*)object;
     }
     if (object->type() == QEvent::GraphicsSceneContextMenu) {
         *class_name = "QGraphicsSceneContextMenuEvent";
         return (QGraphicsSceneContextMenuEvent*)object;
     }
+    if (object->type() == QEvent::GraphicsSceneDragEnter || object->type() == QEvent::GraphicsSceneDragLeave || object->type() == QEvent::GraphicsSceneDragMove || object->type() == QEvent::GraphicsSceneDrop) {
+        *class_name = "QGraphicsSceneDragDropEvent";
+        return (QGraphicsSceneDragDropEvent*)object;
+    }
     if (object->type() == QEvent::KeyPress || object->type() == QEvent::KeyRelease) {
         *class_name = "QKeyEvent";
         return (QKeyEvent*)object;
     }
-    if (object->type() == QEvent::GraphicsSceneMouseDoubleClick || object->type() == QEvent::GraphicsSceneMouseMove || object->type() == QEvent::GraphicsSceneMousePress || object->type() == QEvent::GraphicsSceneMouseRelease) {
-        *class_name = "QGraphicsSceneMouseEvent";
-        return (QGraphicsSceneMouseEvent*)object;
+    if (object->type() == QEvent::GraphicsSceneResize) {
+        *class_name = "QGraphicsSceneResizeEvent";
+        return (QGraphicsSceneResizeEvent*)object;
+    }
+    if (object->type() == QEvent::Wheel) {
+        *class_name = "QWheelEvent";
+        return (QWheelEvent*)object;
+    }
+    if (object->type() == QEvent::ContextMenu) {
+        *class_name = "QContextMenuEvent";
+        return (QContextMenuEvent*)object;
+    }
+    if (object->type() == QEvent::MouseButtonDblClick || object->type() == QEvent::MouseButtonPress || object->type() == QEvent::MouseButtonRelease || object->type() == QEvent::MouseMove) {
+        *class_name = "QMouseEvent";
+        return (QMouseEvent*)object;
+    }
+    if (object->type() == QEvent::GraphicsSceneHoverEnter || object->type() == QEvent::GraphicsSceneHoverLeave || object->type() == QEvent::GraphicsSceneHoverMove) {
+        *class_name = "QGraphicsSceneHoverEvent";
+        return (QGraphicsSceneHoverEvent*)object;
+    }
+    if (object->type() == QEvent::TabletMove || object->type() == QEvent::TabletPress || object->type() == QEvent::TabletRelease) {
+        *class_name = "QTabletEvent";
+        return (QTabletEvent*)object;
     }
     if (object->type() == QEvent::DragMove) {
         *class_name = "QDragMoveEvent";
         return (QDragMoveEvent*)object;
     }
-    if (object->type() == QEvent::GraphicsSceneResize) {
-        *class_name = "QGraphicsSceneResizeEvent";
-        return (QGraphicsSceneResizeEvent*)object;
+    if (object->type() == QEvent::GraphicsSceneMouseDoubleClick || object->type() == QEvent::GraphicsSceneMouseMove || object->type() == QEvent::GraphicsSceneMousePress || object->type() == QEvent::GraphicsSceneMouseRelease) {
+        *class_name = "QGraphicsSceneMouseEvent";
+        return (QGraphicsSceneMouseEvent*)object;
+    }
+    if (object->type() == QEvent::GraphicsSceneWheel) {
+        *class_name = "QGraphicsSceneWheelEvent";
+        return (QGraphicsSceneWheelEvent*)object;
+    }
+    if (object->type() == QEvent::GraphicsSceneMove) {
+        *class_name = "QGraphicsSceneMoveEvent";
+        return (QGraphicsSceneMoveEvent*)object;
+    }
+    if (object->type() == QEvent::GraphicsSceneHelp) {
+        *class_name = "QGraphicsSceneHelpEvent";
+        return (QGraphicsSceneHelpEvent*)object;
     }
     if (object->type() == QEvent::DragEnter) {
         *class_name = "QDragEnterEvent";

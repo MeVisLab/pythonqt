@@ -16,10 +16,10 @@ public slots:
 QDomAttr* new_QDomAttr();
 QDomAttr* new_QDomAttr(const QDomAttr&  x);
 void delete_QDomAttr(QDomAttr* obj) { delete obj; } 
-   QString  name(QDomAttr* theWrappedObject) const;
    bool  specified(QDomAttr* theWrappedObject) const;
-   QDomElement  ownerElement(QDomAttr* theWrappedObject) const;
    QString  value(QDomAttr* theWrappedObject) const;
+   QDomElement  ownerElement(QDomAttr* theWrappedObject) const;
+   QString  name(QDomAttr* theWrappedObject) const;
    void setValue(QDomAttr* theWrappedObject, const QString&  arg__1);
 };
 
@@ -110,6 +110,7 @@ void delete_QDomDocument(QDomDocument* obj) { delete obj; }
    QDomDocumentType  doctype(QDomDocument* theWrappedObject) const;
    QDomComment  createComment(QDomDocument* theWrappedObject, const QString&  data);
    QDomImplementation  implementation(QDomDocument* theWrappedObject) const;
+    QString py_toString(QDomDocument*);
 };
 
 
@@ -459,8 +460,8 @@ class PythonQtShell_QXmlContentHandler : public QXmlContentHandler
 public:
     PythonQtShell_QXmlContentHandler():QXmlContentHandler(),_wrapper(NULL) {};
 
-virtual QString  errorString() const;
 virtual bool  startDocument();
+virtual QString  errorString() const;
 virtual bool  startPrefixMapping(const QString&  prefix, const QString&  uri);
 virtual bool  endDocument();
 virtual bool  startElement(const QString&  namespaceURI, const QString&  localName, const QString&  qName, const QXmlAttributes&  atts);
@@ -674,9 +675,9 @@ public:
     PythonQtShell_QXmlErrorHandler():QXmlErrorHandler(),_wrapper(NULL) {};
 
 virtual bool  fatalError(const QXmlParseException&  exception);
+virtual bool  warning(const QXmlParseException&  exception);
 virtual bool  error(const QXmlParseException&  exception);
 virtual QString  errorString() const;
-virtual bool  warning(const QXmlParseException&  exception);
 
   PythonQtInstanceWrapper* _wrapper; 
 };
@@ -735,6 +736,8 @@ void delete_QXmlInputSource(QXmlInputSource* obj) { delete obj; }
    QChar  next(QXmlInputSource* theWrappedObject);
    void reset(QXmlInputSource* theWrappedObject);
    QString  data(QXmlInputSource* theWrappedObject) const;
+const ushort  py_get_static_QXmlInputSource_EndOfData(){ return theWrappedObject->EndOfData; }
+const ushort  py_get_static_QXmlInputSource_EndOfDocument(){ return theWrappedObject->EndOfDocument; }
 };
 
 

@@ -89,6 +89,15 @@ virtual void paint(QPainter*  arg__1, const QStyleOptionGraphicsItem*  options, 
 virtual void keyReleaseEvent(QKeyEvent*  arg__1);
 virtual void mousePressEvent(QGraphicsSceneMouseEvent*  arg__1);
 virtual bool  sceneEvent(QEvent*  arg__1);
+virtual void grabMouseEvent(QEvent*  event);
+virtual void paintWindowFrame(QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget);
+virtual Qt::WindowFrameSection  windowFrameSectionAt(const QPointF&  pos) const;
+virtual void ungrabKeyboardEvent(QEvent*  event);
+virtual void getContentsMargins(qreal*  left, qreal*  top, qreal*  right, qreal*  bottom) const;
+virtual void changeEvent(QEvent*  event);
+virtual void initStyleOption(QStyleOption*  option) const;
+virtual void resizeEvent(QGraphicsSceneResizeEvent*  event);
+virtual void closeEvent(QCloseEvent*  event);
 virtual QVariant  propertyChange(const QString&  propertyName, const QVariant&  value);
 virtual void polishEvent();
 virtual void ungrabMouseEvent(QEvent*  event);
@@ -97,17 +106,8 @@ virtual void hideEvent(QHideEvent*  event);
 virtual bool  windowFrameEvent(QEvent*  e);
 virtual void moveEvent(QGraphicsSceneMoveEvent*  event);
 virtual void grabKeyboardEvent(QEvent*  event);
-virtual void grabMouseEvent(QEvent*  event);
-virtual void paintWindowFrame(QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget);
-virtual Qt::WindowFrameSection  windowFrameSectionAt(const QPointF&  pos) const;
-virtual void ungrabKeyboardEvent(QEvent*  event);
-virtual void changeEvent(QEvent*  event);
-virtual void getContentsMargins(qreal*  left, qreal*  top, qreal*  right, qreal*  bottom) const;
-virtual void initStyleOption(QStyleOption*  option) const;
-virtual void resizeEvent(QGraphicsSceneResizeEvent*  event);
-virtual void closeEvent(QCloseEvent*  event);
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
@@ -310,9 +310,9 @@ public slots:
    void render(QWebFrame* theWrappedObject, QPainter*  arg__1, const QRegion&  clip);
    void render(QWebFrame* theWrappedObject, QPainter*  arg__1);
    QSize  contentsSize(QWebFrame* theWrappedObject) const;
-   QWebSecurityOrigin  securityOrigin(QWebFrame* theWrappedObject) const;
-   void setHtml(QWebFrame* theWrappedObject, const QString&  html, const QUrl&  baseUrl = QUrl());
    QList<QWebFrame* >  childFrames(QWebFrame* theWrappedObject) const;
+   void setHtml(QWebFrame* theWrappedObject, const QString&  html, const QUrl&  baseUrl = QUrl());
+   QWebSecurityOrigin  securityOrigin(QWebFrame* theWrappedObject) const;
    int  scrollBarValue(QWebFrame* theWrappedObject, Qt::Orientation  orientation) const;
    QPoint  pos(QWebFrame* theWrappedObject) const;
    QString  toHtml(QWebFrame* theWrappedObject) const;
@@ -365,10 +365,10 @@ public:
 
 virtual bool  historyContains(const QString&  url) const;
 virtual void addHistoryEntry(const QString&  url);
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
   PythonQtInstanceWrapper* _wrapper; 
@@ -395,13 +395,13 @@ public slots:
 QWebHitTestResult* new_QWebHitTestResult();
 QWebHitTestResult* new_QWebHitTestResult(const QWebHitTestResult&  other);
 void delete_QWebHitTestResult(QWebHitTestResult* obj) { delete obj; } 
+   QString  title(QWebHitTestResult* theWrappedObject) const;
    QString  alternateText(QWebHitTestResult* theWrappedObject) const;
    QPoint  pos(QWebHitTestResult* theWrappedObject) const;
-   QString  title(QWebHitTestResult* theWrappedObject) const;
    QWebElement  element(QWebHitTestResult* theWrappedObject) const;
    QWebFrame*  linkTargetFrame(QWebHitTestResult* theWrappedObject) const;
-   QUrl  imageUrl(QWebHitTestResult* theWrappedObject) const;
    QString  linkText(QWebHitTestResult* theWrappedObject) const;
+   QUrl  imageUrl(QWebHitTestResult* theWrappedObject) const;
    bool  isNull(QWebHitTestResult* theWrappedObject) const;
    bool  isContentEditable(QWebHitTestResult* theWrappedObject) const;
    QUrl  linkTitle(QWebHitTestResult* theWrappedObject) const;
@@ -427,23 +427,22 @@ virtual bool  event(QEvent*  arg__1);
 virtual void showEvent(QShowEvent*  event);
 virtual void hideEvent(QHideEvent*  event);
 virtual void resizeEvent(QResizeEvent*  event);
-virtual void mouseDoubleClickEvent(QMouseEvent*  arg__1);
+virtual void dragEnterEvent(QDragEnterEvent*  arg__1);
 virtual void mouseReleaseEvent(QMouseEvent*  arg__1);
+virtual void closeEvent(QCloseEvent*  arg__1);
+virtual QPaintEngine*  paintEngine() const;
 virtual int  heightForWidth(int  arg__1) const;
 virtual void contextMenuEvent(QContextMenuEvent*  arg__1);
 virtual void dragMoveEvent(QDragMoveEvent*  arg__1);
-virtual void closeEvent(QCloseEvent*  arg__1);
 virtual void dropEvent(QDropEvent*  arg__1);
-virtual void dragEnterEvent(QDragEnterEvent*  arg__1);
+virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
 virtual void mousePressEvent(QMouseEvent*  arg__1);
-virtual QPaintEngine*  paintEngine() const;
 virtual int  devType() const;
 virtual QSize  minimumSizeHint() const;
 virtual void keyReleaseEvent(QKeyEvent*  arg__1);
 virtual void focusInEvent(QFocusEvent*  arg__1);
 virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const;
 virtual void keyPressEvent(QKeyEvent*  arg__1);
-virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
 virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
 virtual void wheelEvent(QWheelEvent*  arg__1);
 virtual void tabletEvent(QTabletEvent*  arg__1);
@@ -452,14 +451,15 @@ virtual void mouseMoveEvent(QMouseEvent*  arg__1);
 virtual bool  focusNextPrevChild(bool  next);
 virtual void actionEvent(QActionEvent*  arg__1);
 virtual void paintEvent(QPaintEvent*  arg__1);
+virtual void leaveEvent(QEvent*  arg__1);
 virtual void moveEvent(QMoveEvent*  arg__1);
 virtual void languageChange();
-virtual void changeEvent(QEvent*  arg__1);
-virtual void leaveEvent(QEvent*  arg__1);
 virtual void dragLeaveEvent(QDragLeaveEvent*  arg__1);
 virtual void enterEvent(QEvent*  arg__1);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void changeEvent(QEvent*  arg__1);
+virtual void mouseDoubleClickEvent(QMouseEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
@@ -511,8 +511,8 @@ virtual bool  javaScriptPrompt(QWebFrame*  originatingFrame, const QString&  msg
 virtual QObject*  createPlugin(const QString&  classid, const QUrl&  url, const QStringList&  paramNames, const QStringList&  paramValues);
 virtual QWebPage*  createWindow(QWebPage::WebWindowType  type);
 virtual bool  event(QEvent*  arg__1);
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
@@ -622,6 +622,10 @@ public:
 public slots:
 QWebPage::ChooseMultipleFilesExtensionOption* new_QWebPage_ChooseMultipleFilesExtensionOption();
 void delete_QWebPage_ChooseMultipleFilesExtensionOption(QWebPage::ChooseMultipleFilesExtensionOption* obj) { delete obj; } 
+void py_set_parentFrame(QWebPage::ChooseMultipleFilesExtensionOption* theWrappedObject, QWebFrame*  parentFrame){ theWrappedObject->parentFrame = parentFrame; }
+QWebFrame*  py_get_parentFrame(QWebPage::ChooseMultipleFilesExtensionOption* theWrappedObject){ return theWrappedObject->parentFrame; }
+void py_set_suggestedFileNames(QWebPage::ChooseMultipleFilesExtensionOption* theWrappedObject, QStringList  suggestedFileNames){ theWrappedObject->suggestedFileNames = suggestedFileNames; }
+QStringList  py_get_suggestedFileNames(QWebPage::ChooseMultipleFilesExtensionOption* theWrappedObject){ return theWrappedObject->suggestedFileNames; }
 };
 
 
@@ -643,6 +647,8 @@ public:
 public slots:
 QWebPage::ChooseMultipleFilesExtensionReturn* new_QWebPage_ChooseMultipleFilesExtensionReturn();
 void delete_QWebPage_ChooseMultipleFilesExtensionReturn(QWebPage::ChooseMultipleFilesExtensionReturn* obj) { delete obj; } 
+void py_set_fileNames(QWebPage::ChooseMultipleFilesExtensionReturn* theWrappedObject, QStringList  fileNames){ theWrappedObject->fileNames = fileNames; }
+QStringList  py_get_fileNames(QWebPage::ChooseMultipleFilesExtensionReturn* theWrappedObject){ return theWrappedObject->fileNames; }
 };
 
 
@@ -664,6 +670,16 @@ public:
 public slots:
 QWebPage::ErrorPageExtensionOption* new_QWebPage_ErrorPageExtensionOption();
 void delete_QWebPage_ErrorPageExtensionOption(QWebPage::ErrorPageExtensionOption* obj) { delete obj; } 
+void py_set_error(QWebPage::ErrorPageExtensionOption* theWrappedObject, int  error){ theWrappedObject->error = error; }
+int  py_get_error(QWebPage::ErrorPageExtensionOption* theWrappedObject){ return theWrappedObject->error; }
+void py_set_domain(QWebPage::ErrorPageExtensionOption* theWrappedObject, QWebPage::ErrorDomain  domain){ theWrappedObject->domain = domain; }
+QWebPage::ErrorDomain  py_get_domain(QWebPage::ErrorPageExtensionOption* theWrappedObject){ return theWrappedObject->domain; }
+void py_set_errorString(QWebPage::ErrorPageExtensionOption* theWrappedObject, QString  errorString){ theWrappedObject->errorString = errorString; }
+QString  py_get_errorString(QWebPage::ErrorPageExtensionOption* theWrappedObject){ return theWrappedObject->errorString; }
+void py_set_url(QWebPage::ErrorPageExtensionOption* theWrappedObject, QUrl  url){ theWrappedObject->url = url; }
+QUrl  py_get_url(QWebPage::ErrorPageExtensionOption* theWrappedObject){ return theWrappedObject->url; }
+void py_set_frame(QWebPage::ErrorPageExtensionOption* theWrappedObject, QWebFrame*  frame){ theWrappedObject->frame = frame; }
+QWebFrame*  py_get_frame(QWebPage::ErrorPageExtensionOption* theWrappedObject){ return theWrappedObject->frame; }
 };
 
 
@@ -685,6 +701,14 @@ public:
 public slots:
 QWebPage::ErrorPageExtensionReturn* new_QWebPage_ErrorPageExtensionReturn();
 void delete_QWebPage_ErrorPageExtensionReturn(QWebPage::ErrorPageExtensionReturn* obj) { delete obj; } 
+void py_set_baseUrl(QWebPage::ErrorPageExtensionReturn* theWrappedObject, QUrl  baseUrl){ theWrappedObject->baseUrl = baseUrl; }
+QUrl  py_get_baseUrl(QWebPage::ErrorPageExtensionReturn* theWrappedObject){ return theWrappedObject->baseUrl; }
+void py_set_contentType(QWebPage::ErrorPageExtensionReturn* theWrappedObject, QString  contentType){ theWrappedObject->contentType = contentType; }
+QString  py_get_contentType(QWebPage::ErrorPageExtensionReturn* theWrappedObject){ return theWrappedObject->contentType; }
+void py_set_encoding(QWebPage::ErrorPageExtensionReturn* theWrappedObject, QString  encoding){ theWrappedObject->encoding = encoding; }
+QString  py_get_encoding(QWebPage::ErrorPageExtensionReturn* theWrappedObject){ return theWrappedObject->encoding; }
+void py_set_content(QWebPage::ErrorPageExtensionReturn* theWrappedObject, QByteArray  content){ theWrappedObject->content = content; }
+QByteArray  py_get_content(QWebPage::ErrorPageExtensionReturn* theWrappedObject){ return theWrappedObject->content; }
 };
 
 
@@ -743,10 +767,10 @@ virtual void refreshPlugins();
 virtual QList<QWebPluginFactory::Plugin >  plugins() const;
 virtual bool  extension(QWebPluginFactory::Extension  extension, const QWebPluginFactory::ExtensionOption*  option = 0, QWebPluginFactory::ExtensionReturn*  output = 0);
 virtual QObject*  create(const QString&  mimeType, const QUrl&  arg__2, const QStringList&  argumentNames, const QStringList&  argumentValues) const;
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
   PythonQtInstanceWrapper* _wrapper; 
@@ -839,6 +863,12 @@ PythonQtShell_QWebPluginFactory_MimeType* a = new PythonQtShell_QWebPluginFactor
 return a; }
 void delete_QWebPluginFactory_MimeType(QWebPluginFactory::MimeType* obj) { delete obj; } 
    bool  operator_equal(QWebPluginFactory::MimeType* theWrappedObject, const QWebPluginFactory::MimeType&  other) const;
+void py_set_description(QWebPluginFactory::MimeType* theWrappedObject, QString  description){ theWrappedObject->description = description; }
+QString  py_get_description(QWebPluginFactory::MimeType* theWrappedObject){ return theWrappedObject->description; }
+void py_set_name(QWebPluginFactory::MimeType* theWrappedObject, QString  name){ theWrappedObject->name = name; }
+QString  py_get_name(QWebPluginFactory::MimeType* theWrappedObject){ return theWrappedObject->name; }
+void py_set_fileExtensions(QWebPluginFactory::MimeType* theWrappedObject, QStringList  fileExtensions){ theWrappedObject->fileExtensions = fileExtensions; }
+QStringList  py_get_fileExtensions(QWebPluginFactory::MimeType* theWrappedObject){ return theWrappedObject->fileExtensions; }
 };
 
 
@@ -864,6 +894,10 @@ PythonQtShell_QWebPluginFactory_Plugin* a = new PythonQtShell_QWebPluginFactory_
 *((QWebPluginFactory::Plugin*)a) = other;
 return a; }
 void delete_QWebPluginFactory_Plugin(QWebPluginFactory::Plugin* obj) { delete obj; } 
+void py_set_description(QWebPluginFactory::Plugin* theWrappedObject, QString  description){ theWrappedObject->description = description; }
+QString  py_get_description(QWebPluginFactory::Plugin* theWrappedObject){ return theWrappedObject->description; }
+void py_set_name(QWebPluginFactory::Plugin* theWrappedObject, QString  name){ theWrappedObject->name = name; }
+QString  py_get_name(QWebPluginFactory::Plugin* theWrappedObject){ return theWrappedObject->name; }
 };
 
 
@@ -978,19 +1012,19 @@ virtual void keyReleaseEvent(QKeyEvent*  arg__1);
 virtual void tabletEvent(QTabletEvent*  arg__1);
 virtual void hideEvent(QHideEvent*  arg__1);
 virtual void actionEvent(QActionEvent*  arg__1);
+virtual void showEvent(QShowEvent*  arg__1);
+virtual int  heightForWidth(int  arg__1) const;
+virtual QSize  minimumSizeHint() const;
+virtual void leaveEvent(QEvent*  arg__1);
+virtual void languageChange();
+virtual int  devType() const;
 virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
 virtual QPaintEngine*  paintEngine() const;
 virtual void enterEvent(QEvent*  arg__1);
-virtual void showEvent(QShowEvent*  arg__1);
-virtual void closeEvent(QCloseEvent*  arg__1);
-virtual int  heightForWidth(int  arg__1) const;
-virtual QSize  minimumSizeHint() const;
-virtual void languageChange();
-virtual int  devType() const;
 virtual void moveEvent(QMoveEvent*  arg__1);
-virtual void leaveEvent(QEvent*  arg__1);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void closeEvent(QCloseEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 

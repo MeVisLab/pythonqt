@@ -32,10 +32,10 @@ class PythonQtShell_QAbstractMessageHandler : public QAbstractMessageHandler
 public:
 
 virtual void handleMessage(QtMsgType  type, const QString&  description, const QUrl&  identifier, const QSourceLocation&  sourceLocation);
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
   PythonQtInstanceWrapper* _wrapper; 
@@ -59,10 +59,10 @@ public:
     PythonQtShell_QAbstractUriResolver(QObject*  parent = 0):QAbstractUriResolver(parent),_wrapper(NULL) {};
 
 virtual QUrl  resolve(const QUrl&  relative, const QUrl&  baseURI) const;
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
   PythonQtInstanceWrapper* _wrapper; 
@@ -126,8 +126,8 @@ public:
     PythonQtShell_QAbstractXmlReceiver():QAbstractXmlReceiver(),_wrapper(NULL) {};
 
 virtual void startOfSequence();
-virtual void startElement(const QXmlName&  name);
 virtual void whitespaceOnly(const QStringRef&  value);
+virtual void startElement(const QXmlName&  name);
 virtual void comment(const QString&  value);
 virtual void characters(const QStringRef&  value);
 virtual void startDocument();
@@ -194,14 +194,14 @@ virtual QVector<QXmlNodeModelIndex >  nodesByIdref(const QXmlName&  idref) const
 virtual QXmlNodeModelIndex  elementById(const QXmlName&  id) const;
 virtual QUrl  baseUri(const QXmlNodeModelIndex&  node) const;
 virtual QVector<QXmlName >  namespaceBindings(const QXmlNodeModelIndex&  arg__1) const;
+virtual QXmlNodeModelIndex::DocumentOrder  compareOrder(const QXmlNodeModelIndex&  ni1, const QXmlNodeModelIndex&  ni2) const;
+virtual QUrl  documentUri(const QXmlNodeModelIndex&  ni) const;
+virtual QVector<QXmlNodeModelIndex >  attributes(const QXmlNodeModelIndex&  element) const;
 virtual QVariant  typedValue(const QXmlNodeModelIndex&  n) const;
 virtual QXmlName  name(const QXmlNodeModelIndex&  ni) const;
 virtual QXmlNodeModelIndex  root(const QXmlNodeModelIndex&  n) const;
 virtual QXmlNodeModelIndex  nextFromSimpleAxis(QAbstractXmlNodeModel::SimpleAxis  axis, const QXmlNodeModelIndex&  origin) const;
 virtual QXmlNodeModelIndex::NodeKind  kind(const QXmlNodeModelIndex&  ni) const;
-virtual QXmlNodeModelIndex::DocumentOrder  compareOrder(const QXmlNodeModelIndex&  ni1, const QXmlNodeModelIndex&  ni2) const;
-virtual QUrl  documentUri(const QXmlNodeModelIndex&  ni) const;
-virtual QVector<QXmlNodeModelIndex >  attributes(const QXmlNodeModelIndex&  element) const;
 
   PythonQtInstanceWrapper* _wrapper; 
 };
@@ -249,7 +249,7 @@ void delete_QSourceLocation(QSourceLocation* obj) { delete obj; }
    bool  operator_equal(QSourceLocation* theWrappedObject, const QSourceLocation&  other) const;
    void setUri(QSourceLocation* theWrappedObject, const QUrl&  newUri);
    void setLine(QSourceLocation* theWrappedObject, qint64  newLine);
-    QString toString(QSourceLocation*);
+    QString py_toString(QSourceLocation*);
 };
 
 
@@ -525,8 +525,8 @@ class PythonQtShell_QXmlSerializer : public QXmlSerializer
 public:
     PythonQtShell_QXmlSerializer(const QXmlQuery&  query, QIODevice*  outputDevice):QXmlSerializer(query, outputDevice),_wrapper(NULL) {};
 
-virtual void startOfSequence();
 virtual void startElement(const QXmlName&  name);
+virtual void startOfSequence();
 virtual void comment(const QString&  value);
 virtual void startDocument();
 virtual void namespaceBinding(const QXmlName&  nb);
@@ -544,8 +544,8 @@ virtual void whitespaceOnly(const QStringRef&  value);
 
 class PythonQtPublicPromoter_QXmlSerializer : public QXmlSerializer
 { public:
-inline void promoted_startOfSequence() { QXmlSerializer::startOfSequence(); }
 inline void promoted_startElement(const QXmlName&  name) { QXmlSerializer::startElement(name); }
+inline void promoted_startOfSequence() { QXmlSerializer::startOfSequence(); }
 inline void promoted_comment(const QString&  value) { QXmlSerializer::comment(value); }
 inline void promoted_startDocument() { QXmlSerializer::startDocument(); }
 inline void promoted_namespaceBinding(const QXmlName&  nb) { QXmlSerializer::namespaceBinding(nb); }
@@ -564,8 +564,8 @@ public:
 public slots:
 QXmlSerializer* new_QXmlSerializer(const QXmlQuery&  query, QIODevice*  outputDevice);
 void delete_QXmlSerializer(QXmlSerializer* obj) { delete obj; } 
-   void startOfSequence(QXmlSerializer* theWrappedObject);
    void startElement(QXmlSerializer* theWrappedObject, const QXmlName&  name);
+   void startOfSequence(QXmlSerializer* theWrappedObject);
    void comment(QXmlSerializer* theWrappedObject, const QString&  value);
    void startDocument(QXmlSerializer* theWrappedObject);
    void namespaceBinding(QXmlSerializer* theWrappedObject, const QXmlName&  nb);

@@ -56,8 +56,8 @@ virtual void updateDirection(QAbstractAnimation::Direction  direction);
 virtual int  duration() const;
 virtual void updateCurrentTime(int  currentTime);
 virtual void updateState(QAbstractAnimation::State  newState, QAbstractAnimation::State  oldState);
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
@@ -122,20 +122,20 @@ virtual bool  removeRows(int  row, int  count, const QModelIndex&  parent = QMod
 virtual Qt::DropActions  supportedDropActions() const;
 virtual void fetchMore(const QModelIndex&  parent);
 virtual bool  insertColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex());
-virtual void revert();
 virtual bool  submit();
-virtual bool  canFetchMore(const QModelIndex&  parent) const;
+virtual void revert();
 virtual QModelIndex  buddy(const QModelIndex&  index) const;
+virtual bool  canFetchMore(const QModelIndex&  parent) const;
 virtual int  columnCount(const QModelIndex&  parent = QModelIndex()) const;
 virtual bool  hasChildren(const QModelIndex&  parent = QModelIndex()) const;
 virtual Qt::ItemFlags  flags(const QModelIndex&  index) const;
 virtual QStringList  mimeTypes() const;
 virtual QModelIndex  index(int  row, int  column, const QModelIndex&  parent = QModelIndex()) const;
 virtual bool  setData(const QModelIndex&  index, const QVariant&  value, int  role = Qt::EditRole);
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
   PythonQtInstanceWrapper* _wrapper; 
@@ -158,10 +158,10 @@ inline bool  promoted_removeRows(int  row, int  count, const QModelIndex&  paren
 inline Qt::DropActions  promoted_supportedDropActions() const { return QAbstractItemModel::supportedDropActions(); }
 inline void promoted_fetchMore(const QModelIndex&  parent) { QAbstractItemModel::fetchMore(parent); }
 inline bool  promoted_insertColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex()) { return QAbstractItemModel::insertColumns(column, count, parent); }
-inline void promoted_revert() { QAbstractItemModel::revert(); }
 inline bool  promoted_submit() { return QAbstractItemModel::submit(); }
-inline bool  promoted_canFetchMore(const QModelIndex&  parent) const { return QAbstractItemModel::canFetchMore(parent); }
+inline void promoted_revert() { QAbstractItemModel::revert(); }
 inline QModelIndex  promoted_buddy(const QModelIndex&  index) const { return QAbstractItemModel::buddy(index); }
+inline bool  promoted_canFetchMore(const QModelIndex&  parent) const { return QAbstractItemModel::canFetchMore(parent); }
 inline bool  promoted_hasChildren(const QModelIndex&  parent = QModelIndex()) const { return QAbstractItemModel::hasChildren(parent); }
 inline Qt::ItemFlags  promoted_flags(const QModelIndex&  index) const { return QAbstractItemModel::flags(index); }
 inline QStringList  promoted_mimeTypes() const { return QAbstractItemModel::mimeTypes(); }
@@ -194,9 +194,9 @@ void delete_QAbstractItemModel(QAbstractItemModel* obj) { delete obj; }
    bool  insertColumns(QAbstractItemModel* theWrappedObject, int  column, int  count, const QModelIndex&  parent = QModelIndex());
    QModelIndex  sibling(QAbstractItemModel* theWrappedObject, int  row, int  column, const QModelIndex&  idx) const;
    const QHash<int , QByteArray >*  roleNames(QAbstractItemModel* theWrappedObject) const;
-   bool  canFetchMore(QAbstractItemModel* theWrappedObject, const QModelIndex&  parent) const;
-   bool  insertColumn(QAbstractItemModel* theWrappedObject, int  column, const QModelIndex&  parent = QModelIndex());
    QModelIndex  buddy(QAbstractItemModel* theWrappedObject, const QModelIndex&  index) const;
+   bool  insertColumn(QAbstractItemModel* theWrappedObject, int  column, const QModelIndex&  parent = QModelIndex());
+   bool  canFetchMore(QAbstractItemModel* theWrappedObject, const QModelIndex&  parent) const;
    bool  hasIndex(QAbstractItemModel* theWrappedObject, int  row, int  column, const QModelIndex&  parent = QModelIndex()) const;
    bool  removeRow(QAbstractItemModel* theWrappedObject, int  row, const QModelIndex&  parent = QModelIndex());
    void setSupportedDragActions(QAbstractItemModel* theWrappedObject, Qt::DropActions  arg__1);
@@ -218,33 +218,33 @@ public:
 
 virtual QModelIndex  index(int  row, int  column = 0, const QModelIndex&  parent = QModelIndex()) const;
 virtual bool  dropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent);
-virtual void sort(int  column, Qt::SortOrder  order);
 virtual QStringList  mimeTypes() const;
-virtual bool  insertRows(int  row, int  count, const QModelIndex&  parent);
+virtual bool  submit();
 virtual QMap<int , QVariant >  itemData(const QModelIndex&  index) const;
 virtual Qt::DropActions  supportedDropActions() const;
 virtual bool  setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role);
 virtual QMimeData*  mimeData(const QList<QModelIndex >&  indexes) const;
-virtual bool  setData(const QModelIndex&  index, const QVariant&  value, int  role);
+virtual bool  insertColumns(int  column, int  count, const QModelIndex&  parent);
 virtual QSize  span(const QModelIndex&  index) const;
 virtual void fetchMore(const QModelIndex&  parent);
-virtual bool  submit();
+virtual Qt::ItemFlags  flags(const QModelIndex&  index) const;
+virtual QModelIndex  buddy(const QModelIndex&  index) const;
+virtual bool  canFetchMore(const QModelIndex&  parent) const;
 virtual QList<QModelIndex >  match(const QModelIndex&  start, int  role, const QVariant&  value, int  hits, Qt::MatchFlags  flags) const;
 virtual void revert();
-virtual bool  insertColumns(int  column, int  count, const QModelIndex&  parent);
-virtual Qt::ItemFlags  flags(const QModelIndex&  index) const;
 virtual QVariant  headerData(int  section, Qt::Orientation  orientation, int  role) const;
 virtual bool  setItemData(const QModelIndex&  index, const QMap<int , QVariant >&  roles);
 virtual int  rowCount(const QModelIndex&  parent) const;
 virtual bool  removeRows(int  row, int  count, const QModelIndex&  parent);
 virtual bool  removeColumns(int  column, int  count, const QModelIndex&  parent);
-virtual QModelIndex  buddy(const QModelIndex&  index) const;
 virtual QVariant  data(const QModelIndex&  index, int  role) const;
-virtual bool  canFetchMore(const QModelIndex&  parent) const;
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual bool  setData(const QModelIndex&  index, const QVariant&  value, int  role);
+virtual void sort(int  column, Qt::SortOrder  order);
+virtual bool  insertRows(int  row, int  count, const QModelIndex&  parent);
 virtual void childEvent(QChildEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
   PythonQtInstanceWrapper* _wrapper; 
@@ -278,8 +278,8 @@ public:
 virtual bool  event(QEvent*  e);
 virtual void onEntry(QEvent*  event);
 virtual void onExit(QEvent*  event);
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
@@ -313,8 +313,8 @@ public:
 virtual bool  event(QEvent*  e);
 virtual void onTransition(QEvent*  event);
 virtual bool  eventTest(QEvent*  event);
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
@@ -358,8 +358,8 @@ virtual void updateCurrentTime(int  currentTime);
 virtual void updateState(QAbstractAnimation::State  newState, QAbstractAnimation::State  oldState);
 virtual void updateDirection(QAbstractAnimation::Direction  direction);
 virtual int  duration() const;
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
@@ -427,17 +427,17 @@ virtual qint64  writeData(const char*  data, qint64  len);
 virtual qint64  size() const;
 virtual bool  atEnd() const;
 virtual qint64  readData(char*  data, qint64  maxlen);
-virtual bool  reset();
-virtual bool  waitForReadyRead(int  msecs);
-virtual bool  isSequential() const;
-virtual bool  event(QEvent*  arg__1);
-virtual qint64  readLineData(char*  data, qint64  maxlen);
 virtual qint64  bytesToWrite() const;
 virtual qint64  bytesAvailable() const;
 virtual bool  waitForBytesWritten(int  msecs);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual bool  reset();
+virtual bool  waitForReadyRead(int  msecs);
+virtual bool  isSequential() const;
+virtual qint64  readLineData(char*  data, qint64  maxlen);
 virtual void childEvent(QChildEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
   PythonQtInstanceWrapper* _wrapper; 
@@ -499,9 +499,9 @@ void delete_QByteArray(QByteArray* obj) { delete obj; }
    QByteArray*  replace(QByteArray* theWrappedObject, const QByteArray&  before, const QByteArray&  after);
    QByteArray*  replace(QByteArray* theWrappedObject, char  before, const QByteArray&  after);
    QByteArray*  replace(QByteArray* theWrappedObject, int  index, int  len, const QByteArray&  s);
-   int  indexOf(QByteArray* theWrappedObject, const QString&  s, int  from = 0) const;
-   QByteArray  rightJustified(QByteArray* theWrappedObject, int  width, char  fill = ' ', bool  truncate = false) const;
    void reserve(QByteArray* theWrappedObject, int  size);
+   QByteArray  rightJustified(QByteArray* theWrappedObject, int  width, char  fill = ' ', bool  truncate = false) const;
+   int  indexOf(QByteArray* theWrappedObject, const QString&  s, int  from = 0) const;
    int  indexOf(QByteArray* theWrappedObject, const QByteArray&  a, int  from = 0) const;
    int  indexOf(QByteArray* theWrappedObject, char  c, int  from = 0) const;
    QByteArray  right(QByteArray* theWrappedObject, int  len) const;
@@ -685,8 +685,8 @@ void delete_QCoreApplication(QCoreApplication* obj) { delete obj; }
    bool  static_QCoreApplication_startingUp();
    QString  static_QCoreApplication_translate(const char*  context, const char*  key, const char*  disambiguation, QCoreApplication::Encoding  encoding, int  n);
    QString  static_QCoreApplication_applicationFilePath();
-   QString  static_QCoreApplication_translate(const char*  context, const char*  key, const char*  disambiguation = 0, QCoreApplication::Encoding  encoding = QCoreApplication::CodecForTr);
    int  static_QCoreApplication_exec();
+   QString  static_QCoreApplication_translate(const char*  context, const char*  key, const char*  disambiguation = 0, QCoreApplication::Encoding  encoding = QCoreApplication::CodecForTr);
    void static_QCoreApplication_setAttribute(Qt::ApplicationAttribute  attribute, bool  on = true);
    void static_QCoreApplication_setOrganizationName(const QString&  orgName);
    qint64  static_QCoreApplication_applicationPid();
@@ -797,13 +797,13 @@ QDir* new_QDir(const QString&  path = QString());
 QDir* new_QDir(const QString&  path, const QString&  nameFilter, QDir::SortFlags  sort = QDir::SortFlags(Name | IgnoreCase), QDir::Filters  filter = QDir::AllEntries);
 void delete_QDir(QDir* obj) { delete obj; } 
    QString  static_QDir_toNativeSeparators(const QString&  pathName);
-   QString  static_QDir_cleanPath(const QString&  path);
    bool  rename(QDir* theWrappedObject, const QString&  oldName, const QString&  newName);
+   QString  static_QDir_cleanPath(const QString&  path);
    void static_QDir_addSearchPath(const QString&  prefix, const QString&  path);
    QList<QFileInfo >  entryInfoList(QDir* theWrappedObject, const QStringList&  nameFilters, QDir::Filters  filters = QDir::NoFilter, QDir::SortFlags  sort = QDir::NoSort) const;
    QList<QFileInfo >  entryInfoList(QDir* theWrappedObject, QDir::Filters  filters = QDir::NoFilter, QDir::SortFlags  sort = QDir::NoSort) const;
-   bool  cdUp(QDir* theWrappedObject);
    QDir::Filters  filter(QDir* theWrappedObject) const;
+   bool  cdUp(QDir* theWrappedObject);
    QString  relativeFilePath(QDir* theWrappedObject, const QString&  fileName) const;
    bool  mkpath(QDir* theWrappedObject, const QString&  dirPath) const;
    bool  static_QDir_isRelativePath(const QString&  path);
@@ -856,7 +856,7 @@ void delete_QDir(QDir* obj) { delete obj; }
    QString  absoluteFilePath(QDir* theWrappedObject, const QString&  fileName) const;
    QString  static_QDir_homePath();
    QString  filePath(QDir* theWrappedObject, const QString&  fileName) const;
-    QString toString(QDir*);
+    QString py_toString(QDir*);
 };
 
 
@@ -935,7 +935,7 @@ void delete_QEasingCurve(QEasingCurve* obj) { delete obj; }
    void setAmplitude(QEasingCurve* theWrappedObject, qreal  amplitude);
    QEasingCurve::Type  type(QEasingCurve* theWrappedObject) const;
    qreal  amplitude(QEasingCurve* theWrappedObject) const;
-    QString toString(QEasingCurve*);
+    QString py_toString(QEasingCurve*);
 };
 
 
@@ -967,7 +967,7 @@ void delete_QEvent(QEvent* obj) { delete obj; }
    QEvent::Type  type(QEvent* theWrappedObject) const;
    void setAccepted(QEvent* theWrappedObject, bool  accepted);
    bool  isAccepted(QEvent* theWrappedObject) const;
-    QString toString(QEvent*);
+    QString py_toString(QEvent*);
 };
 
 
@@ -979,10 +979,10 @@ class PythonQtShell_QEventLoop : public QEventLoop
 public:
     PythonQtShell_QEventLoop(QObject*  parent = 0):QEventLoop(parent),_wrapper(NULL) {};
 
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
   PythonQtInstanceWrapper* _wrapper; 
@@ -1020,8 +1020,8 @@ public:
 virtual bool  event(QEvent*  e);
 virtual void onTransition(QEvent*  event);
 virtual bool  eventTest(QEvent*  event);
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
@@ -1042,8 +1042,8 @@ public slots:
 QEventTransition* new_QEventTransition(QObject*  object, QEvent::Type  type, QState*  sourceState = 0);
 QEventTransition* new_QEventTransition(QState*  sourceState = 0);
 void delete_QEventTransition(QEventTransition* obj) { delete obj; } 
-   void setEventType(QEventTransition* theWrappedObject, QEvent::Type  type);
    bool  event(QEventTransition* theWrappedObject, QEvent*  e);
+   void setEventType(QEventTransition* theWrappedObject, QEvent::Type  type);
    void setEventSource(QEventTransition* theWrappedObject, QObject*  object);
    QEvent::Type  eventType(QEventTransition* theWrappedObject) const;
    void onTransition(QEventTransition* theWrappedObject, QEvent*  event);
@@ -1098,14 +1098,14 @@ virtual qint64  readData(char*  data, qint64  maxlen);
 virtual qint64  writeData(const char*  data, qint64  len);
 virtual bool  reset();
 virtual bool  waitForReadyRead(int  msecs);
-virtual bool  canReadLine() const;
 virtual qint64  bytesToWrite() const;
 virtual qint64  bytesAvailable() const;
 virtual bool  waitForBytesWritten(int  msecs);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual bool  canReadLine() const;
 virtual void childEvent(QChildEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
   PythonQtInstanceWrapper* _wrapper; 
@@ -1254,10 +1254,10 @@ public:
     PythonQtShell_QFileSystemWatcher(QObject*  parent = 0):QFileSystemWatcher(parent),_wrapper(NULL) {};
     PythonQtShell_QFileSystemWatcher(const QStringList&  paths, QObject*  parent = 0):QFileSystemWatcher(paths, parent),_wrapper(NULL) {};
 
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
   PythonQtInstanceWrapper* _wrapper; 
@@ -1290,8 +1290,8 @@ public:
 virtual bool  event(QEvent*  e);
 virtual void onEntry(QEvent*  event);
 virtual void onExit(QEvent*  event);
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
@@ -1329,8 +1329,8 @@ public:
 virtual bool  event(QEvent*  e);
 virtual void onEntry(QEvent*  event);
 virtual void onExit(QEvent*  event);
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
@@ -1386,10 +1386,10 @@ virtual qint64  readData(char*  data, qint64  maxlen);
 virtual bool  reset();
 virtual qint64  writeData(const char*  data, qint64  len);
 virtual qint64  bytesToWrite() const;
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
   PythonQtInstanceWrapper* _wrapper; 
@@ -1488,10 +1488,10 @@ public:
 virtual bool  hasFormat(const QString&  mimetype) const;
 virtual QVariant  retrieveData(const QString&  mimetype, QVariant::Type  preferredType) const;
 virtual QStringList  formats() const;
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 
   PythonQtInstanceWrapper* _wrapper; 
