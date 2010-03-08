@@ -174,10 +174,13 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
       if (fun->isAbstract()) {
         if (fun->type()) {
           // return empty default object
-          writeTypeInfo(s, fun->type(), typeOptions);
-          s << " result;" << endl;
-          s << "return result";
-          s << ";";
+          s << "return ";
+          if (fun->type()->indirections()>0) {
+            s << "0;";
+          } else {
+            writeTypeInfo(s, fun->type(), typeOptions);
+            s << "();";
+          }
         }
       } else {
         if (fun->type()) {
