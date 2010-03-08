@@ -56,10 +56,14 @@ void ShellHeaderGenerator::writeFieldAccessors(QTextStream &s, const AbstractMet
 {
   const AbstractMetaFunction *setter = field->setter();
   const AbstractMetaFunction *getter = field->getter();
-  
-  // Uuid data4 did not work
+
+  // static fields are not supported (yet?)
+  if (setter->isStatic()) return;
+
+  // Uuid data4 did not work (TODO: move to typesystem...(
   if (field->enclosingClass()->name()=="QUuid" &&  setter->name()=="data4") return;
-  
+  if (field->enclosingClass()->name()=="QIPv6Address") return;
+
   if (!field->type()->isConstant()) {
     writeFunctionSignature(s, setter, 0, QString(),
                            Option(ConvertReferenceToPtr | FirstArgIsWrappedObject| IncludeDefaultExpression | ShowStatic | UnderscoreSpaces));
