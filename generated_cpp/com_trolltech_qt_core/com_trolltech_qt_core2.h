@@ -30,10 +30,10 @@ public:
     PythonQtShell_QTimer(QObject*  parent = 0):QTimer(parent),_wrapper(NULL) {};
 
 virtual void timerEvent(QTimerEvent*  arg__1);
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
 virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void childEvent(QChildEvent*  arg__1);
+virtual void customEvent(QEvent*  arg__1);
 
   PythonQtInstanceWrapper* _wrapper; 
 };
@@ -49,14 +49,14 @@ public:
 public slots:
 QTimer* new_QTimer(QObject*  parent = 0);
 void delete_QTimer(QTimer* obj) { delete obj; } 
+   void timerEvent(QTimer* theWrappedObject, QTimerEvent*  arg__1);
    int  timerId(QTimer* theWrappedObject) const;
    void setSingleShot(QTimer* theWrappedObject, bool  singleShot);
-   void setInterval(QTimer* theWrappedObject, int  msec);
    bool  isActive(QTimer* theWrappedObject) const;
    bool  isSingleShot(QTimer* theWrappedObject) const;
-   int  interval(QTimer* theWrappedObject) const;
-   void timerEvent(QTimer* theWrappedObject, QTimerEvent*  arg__1);
+   void setInterval(QTimer* theWrappedObject, int  msec);
    void static_QTimer_singleShot(int  msec, QObject*  receiver, const char*  member);
+   int  interval(QTimer* theWrappedObject) const;
 };
 
 
@@ -92,11 +92,11 @@ public:
 
 virtual QString  translate(const char*  context, const char*  sourceText, const char*  disambiguation = 0) const;
 virtual bool  isEmpty() const;
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void timerEvent(QTimerEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
 virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void childEvent(QChildEvent*  arg__1);
+virtual void customEvent(QEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 
   PythonQtInstanceWrapper* _wrapper; 
 };
@@ -151,16 +151,19 @@ PythonQtShell_QUuid* a = new PythonQtShell_QUuid();
 *((QUuid*)a) = other;
 return a; }
 void delete_QUuid(QUuid* obj) { delete obj; } 
-   QUuid  static_QUuid_createUuid();
-   QUuid::Version  version(QUuid* theWrappedObject) const;
-   bool  operator_less(QUuid* theWrappedObject, const QUuid&  other) const;
    QString  toString(QUuid* theWrappedObject) const;
-   bool  operator_equal(QUuid* theWrappedObject, const QUuid&  orig) const;
+   bool  __gt__(QUuid* theWrappedObject, const QUuid&  other) const;
+   bool  __ne__(QUuid* theWrappedObject, const QUuid&  orig) const;
+   bool  __lt__(QUuid* theWrappedObject, const QUuid&  other) const;
+   QUuid::Version  version(QUuid* theWrappedObject) const;
+   QUuid  static_QUuid_createUuid();
+   bool  __eq__(QUuid* theWrappedObject, const QUuid&  orig) const;
    bool  isNull(QUuid* theWrappedObject) const;
    QUuid::Variant  variant(QUuid* theWrappedObject) const;
    void writeTo(QUuid* theWrappedObject, QDataStream&  arg__1);
    void readFrom(QUuid* theWrappedObject, QDataStream&  arg__1);
     QString py_toString(QUuid*);
+    bool __nonzero__(QUuid* obj) { return !obj->isNull(); }
 void py_set_data1(QUuid* theWrappedObject, uint  data1){ theWrappedObject->data1 = data1; }
 uint  py_get_data1(QUuid* theWrappedObject){ return theWrappedObject->data1; }
 void py_set_data2(QUuid* theWrappedObject, ushort  data2){ theWrappedObject->data2 = data2; }
@@ -179,16 +182,16 @@ public:
     PythonQtShell_QVariantAnimation(QObject*  parent = 0):QVariantAnimation(parent),_wrapper(NULL) {};
 
 virtual bool  event(QEvent*  event);
-virtual int  duration() const;
-virtual QVariant  interpolated(const QVariant&  from, const QVariant&  to, qreal  progress) const;
-virtual void updateCurrentTime(int  arg__1);
 virtual void updateCurrentValue(const QVariant&  value);
+virtual int  duration() const;
+virtual void updateCurrentTime(int  arg__1);
+virtual QVariant  interpolated(const QVariant&  from, const QVariant&  to, qreal  progress) const;
 virtual void updateState(QAbstractAnimation::State  newState, QAbstractAnimation::State  oldState);
 virtual void updateDirection(QAbstractAnimation::Direction  direction);
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void timerEvent(QTimerEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void childEvent(QChildEvent*  arg__1);
+virtual void customEvent(QEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 
   PythonQtInstanceWrapper* _wrapper; 
 };
@@ -197,8 +200,8 @@ class PythonQtPublicPromoter_QVariantAnimation : public QVariantAnimation
 { public:
 inline bool  promoted_event(QEvent*  event) { return QVariantAnimation::event(event); }
 inline int  promoted_duration() const { return QVariantAnimation::duration(); }
-inline QVariant  promoted_interpolated(const QVariant&  from, const QVariant&  to, qreal  progress) const { return QVariantAnimation::interpolated(from, to, progress); }
 inline void promoted_updateCurrentTime(int  arg__1) { QVariantAnimation::updateCurrentTime(arg__1); }
+inline QVariant  promoted_interpolated(const QVariant&  from, const QVariant&  to, qreal  progress) const { return QVariantAnimation::interpolated(from, to, progress); }
 inline void promoted_updateState(QAbstractAnimation::State  newState, QAbstractAnimation::State  oldState) { QVariantAnimation::updateState(newState, oldState); }
 };
 
@@ -211,18 +214,18 @@ void delete_QVariantAnimation(QVariantAnimation* obj) { delete obj; }
    QEasingCurve  easingCurve(QVariantAnimation* theWrappedObject) const;
    QVariant  keyValueAt(QVariantAnimation* theWrappedObject, qreal  step) const;
    bool  event(QVariantAnimation* theWrappedObject, QEvent*  event);
-   QVariant  startValue(QVariantAnimation* theWrappedObject) const;
    QVariant  currentValue(QVariantAnimation* theWrappedObject) const;
+   QVariant  startValue(QVariantAnimation* theWrappedObject) const;
    void setEndValue(QVariantAnimation* theWrappedObject, const QVariant&  value);
-   void setKeyValues(QVariantAnimation* theWrappedObject, const QVector<QPair<qreal , QVariant >  >&  values);
-   void setDuration(QVariantAnimation* theWrappedObject, int  msecs);
-   void setStartValue(QVariantAnimation* theWrappedObject, const QVariant&  value);
    int  duration(QVariantAnimation* theWrappedObject) const;
+   void setStartValue(QVariantAnimation* theWrappedObject, const QVariant&  value);
+   void updateCurrentTime(QVariantAnimation* theWrappedObject, int  arg__1);
+   void setDuration(QVariantAnimation* theWrappedObject, int  msecs);
+   QVariant  endValue(QVariantAnimation* theWrappedObject) const;
    QVector<QPair<qreal , QVariant >  >  keyValues(QVariantAnimation* theWrappedObject) const;
    void setEasingCurve(QVariantAnimation* theWrappedObject, const QEasingCurve&  easing);
+   void setKeyValues(QVariantAnimation* theWrappedObject, const QVector<QPair<qreal , QVariant >  >&  values);
    QVariant  interpolated(QVariantAnimation* theWrappedObject, const QVariant&  from, const QVariant&  to, qreal  progress) const;
-   QVariant  endValue(QVariantAnimation* theWrappedObject) const;
-   void updateCurrentTime(QVariantAnimation* theWrappedObject, int  arg__1);
    void setKeyValueAt(QVariantAnimation* theWrappedObject, qreal  step, const QVariant&  value);
    void updateState(QVariantAnimation* theWrappedObject, QAbstractAnimation::State  newState, QAbstractAnimation::State  oldState);
 };
@@ -238,8 +241,8 @@ public slots:
 QWaitCondition* new_QWaitCondition();
 void delete_QWaitCondition(QWaitCondition* obj) { delete obj; } 
    void wakeAll(QWaitCondition* theWrappedObject);
-   bool  wait(QWaitCondition* theWrappedObject, QReadWriteLock*  readWriteLock, unsigned long  time = ULONG_MAX);
-   bool  wait(QWaitCondition* theWrappedObject, QMutex*  mutex, unsigned long  time = ULONG_MAX);
+   bool  wait(QWaitCondition* theWrappedObject, QReadWriteLock*  readWriteLock, unsigned long  time = 0xffffffffUL);
+   bool  wait(QWaitCondition* theWrappedObject, QMutex*  mutex, unsigned long  time = 0xffffffffUL);
    void wakeOne(QWaitCondition* theWrappedObject);
 };
 

@@ -42,24 +42,39 @@ QSqlDatabase* PythonQtWrapper_QSqlDatabase::new_QSqlDatabase(const QSqlDatabase&
 { 
 return new PythonQtShell_QSqlDatabase(other); }
 
-bool  PythonQtWrapper_QSqlDatabase::static_QSqlDatabase_contains(const QString&  connectionName)
-{
-  return (QSqlDatabase::contains(connectionName));
-}
-
 void PythonQtWrapper_QSqlDatabase::setHostName(QSqlDatabase* theWrappedObject, const QString&  host)
 {
   ( theWrappedObject->setHostName(host));
 }
 
-void PythonQtWrapper_QSqlDatabase::static_QSqlDatabase_removeDatabase(const QString&  connectionName)
+QSqlDatabase  PythonQtWrapper_QSqlDatabase::static_QSqlDatabase_cloneDatabase(const QSqlDatabase&  other, const QString&  connectionName)
 {
-  (QSqlDatabase::removeDatabase(connectionName));
+  return (QSqlDatabase::cloneDatabase(other, connectionName));
+}
+
+QString  PythonQtWrapper_QSqlDatabase::hostName(QSqlDatabase* theWrappedObject) const
+{
+  return ( theWrappedObject->hostName());
+}
+
+QString  PythonQtWrapper_QSqlDatabase::connectionName(QSqlDatabase* theWrappedObject) const
+{
+  return ( theWrappedObject->connectionName());
+}
+
+bool  PythonQtWrapper_QSqlDatabase::static_QSqlDatabase_contains(const QString&  connectionName)
+{
+  return (QSqlDatabase::contains(connectionName));
 }
 
 bool  PythonQtWrapper_QSqlDatabase::static_QSqlDatabase_isDriverAvailable(const QString&  name)
 {
   return (QSqlDatabase::isDriverAvailable(name));
+}
+
+void PythonQtWrapper_QSqlDatabase::static_QSqlDatabase_removeDatabase(const QString&  connectionName)
+{
+  (QSqlDatabase::removeDatabase(connectionName));
 }
 
 QString  PythonQtWrapper_QSqlDatabase::databaseName(QSqlDatabase* theWrappedObject) const
@@ -87,19 +102,14 @@ void PythonQtWrapper_QSqlDatabase::setPassword(QSqlDatabase* theWrappedObject, c
   ( theWrappedObject->setPassword(password));
 }
 
-QSqlDatabase  PythonQtWrapper_QSqlDatabase::static_QSqlDatabase_addDatabase(const QString&  type, const QString&  connectionName)
+QString  PythonQtWrapper_QSqlDatabase::connectOptions(QSqlDatabase* theWrappedObject) const
 {
-  return (QSqlDatabase::addDatabase(type, connectionName));
+  return ( theWrappedObject->connectOptions());
 }
 
 bool  PythonQtWrapper_QSqlDatabase::isOpen(QSqlDatabase* theWrappedObject) const
 {
   return ( theWrappedObject->isOpen());
-}
-
-QString  PythonQtWrapper_QSqlDatabase::connectOptions(QSqlDatabase* theWrappedObject) const
-{
-  return ( theWrappedObject->connectOptions());
 }
 
 QSqlError  PythonQtWrapper_QSqlDatabase::lastError(QSqlDatabase* theWrappedObject) const
@@ -117,11 +127,6 @@ void PythonQtWrapper_QSqlDatabase::setDatabaseName(QSqlDatabase* theWrappedObjec
   ( theWrappedObject->setDatabaseName(name));
 }
 
-QStringList  PythonQtWrapper_QSqlDatabase::static_QSqlDatabase_connectionNames()
-{
-  return (QSqlDatabase::connectionNames());
-}
-
 void PythonQtWrapper_QSqlDatabase::close(QSqlDatabase* theWrappedObject)
 {
   ( theWrappedObject->close());
@@ -132,19 +137,19 @@ QSqlRecord  PythonQtWrapper_QSqlDatabase::record(QSqlDatabase* theWrappedObject,
   return ( theWrappedObject->record(tablename));
 }
 
-void PythonQtWrapper_QSqlDatabase::setPort(QSqlDatabase* theWrappedObject, int  p)
-{
-  ( theWrappedObject->setPort(p));
-}
-
 void PythonQtWrapper_QSqlDatabase::static_QSqlDatabase_registerSqlDriver(const QString&  name, QSqlDriverCreatorBase*  creator)
 {
   (QSqlDatabase::registerSqlDriver(name, creator));
 }
 
-QString  PythonQtWrapper_QSqlDatabase::connectionName(QSqlDatabase* theWrappedObject) const
+QStringList  PythonQtWrapper_QSqlDatabase::static_QSqlDatabase_connectionNames()
 {
-  return ( theWrappedObject->connectionName());
+  return (QSqlDatabase::connectionNames());
+}
+
+void PythonQtWrapper_QSqlDatabase::setPort(QSqlDatabase* theWrappedObject, int  p)
+{
+  ( theWrappedObject->setPort(p));
 }
 
 QStringList  PythonQtWrapper_QSqlDatabase::static_QSqlDatabase_drivers()
@@ -157,6 +162,11 @@ QString  PythonQtWrapper_QSqlDatabase::password(QSqlDatabase* theWrappedObject) 
   return ( theWrappedObject->password());
 }
 
+void PythonQtWrapper_QSqlDatabase::setConnectOptions(QSqlDatabase* theWrappedObject, const QString&  options)
+{
+  ( theWrappedObject->setConnectOptions(options));
+}
+
 QSqlDatabase  PythonQtWrapper_QSqlDatabase::static_QSqlDatabase_addDatabase(QSqlDriver*  driver, const QString&  connectionName)
 {
   return (QSqlDatabase::addDatabase(driver, connectionName));
@@ -167,9 +177,9 @@ QSqlIndex  PythonQtWrapper_QSqlDatabase::primaryIndex(QSqlDatabase* theWrappedOb
   return ( theWrappedObject->primaryIndex(tablename));
 }
 
-void PythonQtWrapper_QSqlDatabase::setConnectOptions(QSqlDatabase* theWrappedObject, const QString&  options)
+QSqlDatabase  PythonQtWrapper_QSqlDatabase::static_QSqlDatabase_addDatabase(const QString&  type, const QString&  connectionName)
 {
-  ( theWrappedObject->setConnectOptions(options));
+  return (QSqlDatabase::addDatabase(type, connectionName));
 }
 
 QSql::NumericalPrecisionPolicy  PythonQtWrapper_QSqlDatabase::numericalPrecisionPolicy(QSqlDatabase* theWrappedObject) const
@@ -177,14 +187,19 @@ QSql::NumericalPrecisionPolicy  PythonQtWrapper_QSqlDatabase::numericalPrecision
   return ( theWrappedObject->numericalPrecisionPolicy());
 }
 
+bool  PythonQtWrapper_QSqlDatabase::open(QSqlDatabase* theWrappedObject, const QString&  user, const QString&  password)
+{
+  return ( theWrappedObject->open(user, password));
+}
+
 bool  PythonQtWrapper_QSqlDatabase::open(QSqlDatabase* theWrappedObject)
 {
   return ( theWrappedObject->open());
 }
 
-bool  PythonQtWrapper_QSqlDatabase::open(QSqlDatabase* theWrappedObject, const QString&  user, const QString&  password)
+QString  PythonQtWrapper_QSqlDatabase::driverName(QSqlDatabase* theWrappedObject) const
 {
-  return ( theWrappedObject->open(user, password));
+  return ( theWrappedObject->driverName());
 }
 
 QSqlDriver*  PythonQtWrapper_QSqlDatabase::driver(QSqlDatabase* theWrappedObject) const
@@ -202,11 +217,6 @@ void PythonQtWrapper_QSqlDatabase::setNumericalPrecisionPolicy(QSqlDatabase* the
   ( theWrappedObject->setNumericalPrecisionPolicy(precisionPolicy));
 }
 
-QString  PythonQtWrapper_QSqlDatabase::driverName(QSqlDatabase* theWrappedObject) const
-{
-  return ( theWrappedObject->driverName());
-}
-
 bool  PythonQtWrapper_QSqlDatabase::isOpenError(QSqlDatabase* theWrappedObject) const
 {
   return ( theWrappedObject->isOpenError());
@@ -220,16 +230,6 @@ void PythonQtWrapper_QSqlDatabase::setUserName(QSqlDatabase* theWrappedObject, c
 QString  PythonQtWrapper_QSqlDatabase::userName(QSqlDatabase* theWrappedObject) const
 {
   return ( theWrappedObject->userName());
-}
-
-QSqlDatabase  PythonQtWrapper_QSqlDatabase::static_QSqlDatabase_cloneDatabase(const QSqlDatabase&  other, const QString&  connectionName)
-{
-  return (QSqlDatabase::cloneDatabase(other, connectionName));
-}
-
-QString  PythonQtWrapper_QSqlDatabase::hostName(QSqlDatabase* theWrappedObject) const
-{
-  return ( theWrappedObject->hostName());
 }
 
 bool  PythonQtWrapper_QSqlDatabase::isValid(QSqlDatabase* theWrappedObject) const
@@ -256,6 +256,34 @@ QString PythonQtWrapper_QSqlDatabase::py_toString(QSqlDatabase* obj) {
 
 
 
+QStringList  PythonQtShell_QSqlDriver::tables(QSql::TableType  tableType) const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "tables");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"QStringList" , "QSql::TableType"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      QStringList returnValue;
+    void* args[2] = {NULL, (void*)&tableType};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("tables", methodInfo, result);
+        } else {
+          returnValue = *((QStringList*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlDriver::tables(tableType);
+}
 QVariant  PythonQtShell_QSqlDriver::handle() const
 {
 if (_wrapper) {
@@ -301,34 +329,6 @@ if (_wrapper) {
 }
   QSqlDriver::setOpen(o);
 }
-QStringList  PythonQtShell_QSqlDriver::tables(QSql::TableType  tableType) const
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "tables");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"QStringList" , "QSql::TableType"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      QStringList returnValue;
-    void* args[2] = {NULL, (void*)&tableType};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("tables", methodInfo, result);
-        } else {
-          returnValue = *((QStringList*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlDriver::tables(tableType);
-}
 bool  PythonQtShell_QSqlDriver::isOpen() const
 {
 if (_wrapper) {
@@ -356,6 +356,34 @@ if (_wrapper) {
   }
 }
   return QSqlDriver::isOpen();
+}
+bool  PythonQtShell_QSqlDriver::rollbackTransaction()
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "rollbackTransaction");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"bool"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      bool returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("rollbackTransaction", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlDriver::rollbackTransaction();
 }
 bool  PythonQtShell_QSqlDriver::beginTransaction()
 {
@@ -413,33 +441,22 @@ if (_wrapper) {
 }
   return QSqlDriver::sqlStatement(type, tableName, rec, preparedStatement);
 }
-QString  PythonQtShell_QSqlDriver::escapeIdentifier(const QString&  identifier, QSqlDriver::IdentifierType  type) const
+void PythonQtShell_QSqlDriver::setLastError(const QSqlError&  e)
 {
 if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "escapeIdentifier");
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setLastError");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"QString" , "const QString&" , "QSqlDriver::IdentifierType"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
-      QString returnValue;
-    void* args[3] = {NULL, (void*)&identifier, (void*)&type};
+    static const char* argumentList[] ={"" , "const QSqlError&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+    void* args[2] = {NULL, (void*)&e};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("escapeIdentifier", methodInfo, result);
-        } else {
-          returnValue = *((QString*)args[0]);
-        }
-      }
-    }
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
-    return returnValue;
+    return;
   }
 }
-  return QSqlDriver::escapeIdentifier(identifier, type);
+  QSqlDriver::setLastError(e);
 }
 void PythonQtShell_QSqlDriver::close()
 {
@@ -485,137 +502,6 @@ if (_wrapper) {
   }
 }
   return QSqlDriver::record(tableName);
-}
-QSqlIndex  PythonQtShell_QSqlDriver::primaryIndex(const QString&  tableName) const
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "primaryIndex");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"QSqlIndex" , "const QString&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      QSqlIndex returnValue;
-    void* args[2] = {NULL, (void*)&tableName};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("primaryIndex", methodInfo, result);
-        } else {
-          returnValue = *((QSqlIndex*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlDriver::primaryIndex(tableName);
-}
-bool  PythonQtShell_QSqlDriver::rollbackTransaction()
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "rollbackTransaction");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"bool"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
-      bool returnValue;
-    void* args[1] = {NULL};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("rollbackTransaction", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlDriver::rollbackTransaction();
-}
-void PythonQtShell_QSqlDriver::setOpenError(bool  e)
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setOpenError");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"" , "bool"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&e};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  }
-}
-  QSqlDriver::setOpenError(e);
-}
-QSqlResult*  PythonQtShell_QSqlDriver::createResult() const
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "createResult");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"QSqlResult*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
-      QSqlResult* returnValue;
-    void* args[1] = {NULL};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("createResult", methodInfo, result);
-        } else {
-          returnValue = *((QSqlResult**)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  QSqlResult* result;
-return result;
-}
-bool  PythonQtShell_QSqlDriver::open(const QString&  db, const QString&  user, const QString&  password, const QString&  host, int  port, const QString&  connOpts)
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "open");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"bool" , "const QString&" , "const QString&" , "const QString&" , "const QString&" , "int" , "const QString&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(7, argumentList);
-      bool returnValue;
-    void* args[7] = {NULL, (void*)&db, (void*)&user, (void*)&password, (void*)&host, (void*)&port, (void*)&connOpts};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("open", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  bool result;
-return result;
 }
 bool  PythonQtShell_QSqlDriver::commitTransaction()
 {
@@ -671,16 +557,43 @@ if (_wrapper) {
     return returnValue;
   }
 }
-  bool result;
-return result;
+  return bool();
 }
-void PythonQtShell_QSqlDriver::setLastError(const QSqlError&  e)
+QSqlIndex  PythonQtShell_QSqlDriver::primaryIndex(const QString&  tableName) const
 {
 if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setLastError");
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "primaryIndex");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"" , "const QSqlError&"};
+    static const char* argumentList[] ={"QSqlIndex" , "const QString&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      QSqlIndex returnValue;
+    void* args[2] = {NULL, (void*)&tableName};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("primaryIndex", methodInfo, result);
+        } else {
+          returnValue = *((QSqlIndex*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlDriver::primaryIndex(tableName);
+}
+void PythonQtShell_QSqlDriver::setOpenError(bool  e)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setOpenError");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"" , "bool"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&e};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
@@ -689,7 +602,63 @@ if (_wrapper) {
     return;
   }
 }
-  QSqlDriver::setLastError(e);
+  QSqlDriver::setOpenError(e);
+}
+QSqlResult*  PythonQtShell_QSqlDriver::createResult() const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "createResult");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"QSqlResult*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      QSqlResult* returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("createResult", methodInfo, result);
+        } else {
+          returnValue = *((QSqlResult**)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return 0;
+}
+bool  PythonQtShell_QSqlDriver::open(const QString&  db, const QString&  user, const QString&  password, const QString&  host, int  port, const QString&  connOpts)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "open");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"bool" , "const QString&" , "const QString&" , "const QString&" , "const QString&" , "int" , "const QString&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(7, argumentList);
+      bool returnValue;
+    void* args[7] = {NULL, (void*)&db, (void*)&user, (void*)&password, (void*)&host, (void*)&port, (void*)&connOpts};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("open", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return bool();
 }
 QString  PythonQtShell_QSqlDriver::formatValue(const QSqlField&  field, bool  trimStrings) const
 {
@@ -719,56 +688,33 @@ if (_wrapper) {
 }
   return QSqlDriver::formatValue(field, trimStrings);
 }
-void PythonQtShell_QSqlDriver::childEvent(QChildEvent*  arg__1)
+QString  PythonQtShell_QSqlDriver::escapeIdentifier(const QString&  identifier, QSqlDriver::IdentifierType  type) const
 {
 if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "childEvent");
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "escapeIdentifier");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"" , "QChildEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
+    static const char* argumentList[] ={"QString" , "const QString&" , "QSqlDriver::IdentifierType"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
+      QString returnValue;
+    void* args[3] = {NULL, (void*)&identifier, (void*)&type};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("escapeIdentifier", methodInfo, result);
+        } else {
+          returnValue = *((QString*)args[0]);
+        }
+      }
+    }
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
-    return;
+    return returnValue;
   }
 }
-  QSqlDriver::childEvent(arg__1);
-}
-void PythonQtShell_QSqlDriver::timerEvent(QTimerEvent*  arg__1)
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "timerEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"" , "QTimerEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  }
-}
-  QSqlDriver::timerEvent(arg__1);
-}
-void PythonQtShell_QSqlDriver::customEvent(QEvent*  arg__1)
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "customEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  }
-}
-  QSqlDriver::customEvent(arg__1);
+  return QSqlDriver::escapeIdentifier(identifier, type);
 }
 bool  PythonQtShell_QSqlDriver::event(QEvent*  arg__1)
 {
@@ -826,9 +772,65 @@ if (_wrapper) {
 }
   return QSqlDriver::eventFilter(arg__1, arg__2);
 }
+void PythonQtShell_QSqlDriver::childEvent(QChildEvent*  arg__1)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "childEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"" , "QChildEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+    void* args[2] = {NULL, (void*)&arg__1};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QSqlDriver::childEvent(arg__1);
+}
+void PythonQtShell_QSqlDriver::customEvent(QEvent*  arg__1)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "customEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+    void* args[2] = {NULL, (void*)&arg__1};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QSqlDriver::customEvent(arg__1);
+}
+void PythonQtShell_QSqlDriver::timerEvent(QTimerEvent*  arg__1)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "timerEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"" , "QTimerEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+    void* args[2] = {NULL, (void*)&arg__1};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QSqlDriver::timerEvent(arg__1);
+}
 QSqlDriver* PythonQtWrapper_QSqlDriver::new_QSqlDriver(QObject*  parent)
 { 
 return new PythonQtShell_QSqlDriver(parent); }
+
+QStringList  PythonQtWrapper_QSqlDriver::tables(QSqlDriver* theWrappedObject, QSql::TableType  tableType) const
+{
+  return ( ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_tables(tableType));
+}
 
 QVariant  PythonQtWrapper_QSqlDriver::handle(QSqlDriver* theWrappedObject) const
 {
@@ -840,19 +842,14 @@ void PythonQtWrapper_QSqlDriver::setOpen(QSqlDriver* theWrappedObject, bool  o)
   ( ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_setOpen(o));
 }
 
-QStringList  PythonQtWrapper_QSqlDriver::tables(QSqlDriver* theWrappedObject, QSql::TableType  tableType) const
-{
-  return ( ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_tables(tableType));
-}
-
-bool  PythonQtWrapper_QSqlDriver::subscribeToNotification(QSqlDriver* theWrappedObject, const QString&  name)
-{
-  return ( theWrappedObject->subscribeToNotification(name));
-}
-
 bool  PythonQtWrapper_QSqlDriver::isOpen(QSqlDriver* theWrappedObject) const
 {
   return ( ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_isOpen());
+}
+
+bool  PythonQtWrapper_QSqlDriver::rollbackTransaction(QSqlDriver* theWrappedObject)
+{
+  return ( ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_rollbackTransaction());
 }
 
 QSqlError  PythonQtWrapper_QSqlDriver::lastError(QSqlDriver* theWrappedObject) const
@@ -865,14 +862,19 @@ bool  PythonQtWrapper_QSqlDriver::beginTransaction(QSqlDriver* theWrappedObject)
   return ( ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_beginTransaction());
 }
 
+bool  PythonQtWrapper_QSqlDriver::subscribeToNotification(QSqlDriver* theWrappedObject, const QString&  name)
+{
+  return ( theWrappedObject->subscribeToNotification(name));
+}
+
 QString  PythonQtWrapper_QSqlDriver::sqlStatement(QSqlDriver* theWrappedObject, QSqlDriver::StatementType  type, const QString&  tableName, const QSqlRecord&  rec, bool  preparedStatement) const
 {
   return ( ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_sqlStatement(type, tableName, rec, preparedStatement));
 }
 
-QString  PythonQtWrapper_QSqlDriver::escapeIdentifier(QSqlDriver* theWrappedObject, const QString&  identifier, QSqlDriver::IdentifierType  type) const
+void PythonQtWrapper_QSqlDriver::setLastError(QSqlDriver* theWrappedObject, const QSqlError&  e)
 {
-  return ( ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_escapeIdentifier(identifier, type));
+  ( ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_setLastError(e));
 }
 
 QSqlRecord  PythonQtWrapper_QSqlDriver::record(QSqlDriver* theWrappedObject, const QString&  tableName) const
@@ -885,14 +887,14 @@ QStringList  PythonQtWrapper_QSqlDriver::subscribedToNotifications(QSqlDriver* t
   return ( theWrappedObject->subscribedToNotifications());
 }
 
+bool  PythonQtWrapper_QSqlDriver::commitTransaction(QSqlDriver* theWrappedObject)
+{
+  return ( ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_commitTransaction());
+}
+
 QSqlIndex  PythonQtWrapper_QSqlDriver::primaryIndex(QSqlDriver* theWrappedObject, const QString&  tableName) const
 {
   return ( ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_primaryIndex(tableName));
-}
-
-bool  PythonQtWrapper_QSqlDriver::rollbackTransaction(QSqlDriver* theWrappedObject)
-{
-  return ( ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_rollbackTransaction());
 }
 
 void PythonQtWrapper_QSqlDriver::setOpenError(QSqlDriver* theWrappedObject, bool  e)
@@ -905,9 +907,9 @@ QSql::NumericalPrecisionPolicy  PythonQtWrapper_QSqlDriver::numericalPrecisionPo
   return ( theWrappedObject->numericalPrecisionPolicy());
 }
 
-bool  PythonQtWrapper_QSqlDriver::commitTransaction(QSqlDriver* theWrappedObject)
+bool  PythonQtWrapper_QSqlDriver::isIdentifierEscaped(QSqlDriver* theWrappedObject, const QString&  identifier, QSqlDriver::IdentifierType  type) const
 {
-  return ( ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_commitTransaction());
+  return ( theWrappedObject->isIdentifierEscaped(identifier, type));
 }
 
 QString  PythonQtWrapper_QSqlDriver::stripDelimiters(QSqlDriver* theWrappedObject, const QString&  identifier, QSqlDriver::IdentifierType  type) const
@@ -925,24 +927,19 @@ void PythonQtWrapper_QSqlDriver::setNumericalPrecisionPolicy(QSqlDriver* theWrap
   ( theWrappedObject->setNumericalPrecisionPolicy(precisionPolicy));
 }
 
-bool  PythonQtWrapper_QSqlDriver::isOpenError(QSqlDriver* theWrappedObject) const
-{
-  return ( theWrappedObject->isOpenError());
-}
-
-void PythonQtWrapper_QSqlDriver::setLastError(QSqlDriver* theWrappedObject, const QSqlError&  e)
-{
-  ( ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_setLastError(e));
-}
-
 QString  PythonQtWrapper_QSqlDriver::formatValue(QSqlDriver* theWrappedObject, const QSqlField&  field, bool  trimStrings) const
 {
   return ( ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_formatValue(field, trimStrings));
 }
 
-bool  PythonQtWrapper_QSqlDriver::isIdentifierEscaped(QSqlDriver* theWrappedObject, const QString&  identifier, QSqlDriver::IdentifierType  type) const
+bool  PythonQtWrapper_QSqlDriver::isOpenError(QSqlDriver* theWrappedObject) const
 {
-  return ( theWrappedObject->isIdentifierEscaped(identifier, type));
+  return ( theWrappedObject->isOpenError());
+}
+
+QString  PythonQtWrapper_QSqlDriver::escapeIdentifier(QSqlDriver* theWrappedObject, const QString&  identifier, QSqlDriver::IdentifierType  type) const
+{
+  return ( ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_escapeIdentifier(identifier, type));
 }
 
 
@@ -973,8 +970,7 @@ if (_wrapper) {
     return returnValue;
   }
 }
-  QSqlDriver* result;
-return result;
+  return 0;
 }
 QSqlDriverCreatorBase* PythonQtWrapper_QSqlDriverCreatorBase::new_QSqlDriverCreatorBase()
 { 
@@ -990,29 +986,24 @@ QSqlError* PythonQtWrapper_QSqlError::new_QSqlError(const QString&  driverText, 
 { 
 return new QSqlError(driverText, databaseText, type, number); }
 
-void PythonQtWrapper_QSqlError::setDatabaseText(QSqlError* theWrappedObject, const QString&  databaseText)
+QString  PythonQtWrapper_QSqlError::text(QSqlError* theWrappedObject) const
 {
-  ( theWrappedObject->setDatabaseText(databaseText));
+  return ( theWrappedObject->text());
 }
 
-QString  PythonQtWrapper_QSqlError::driverText(QSqlError* theWrappedObject) const
+void PythonQtWrapper_QSqlError::setNumber(QSqlError* theWrappedObject, int  number)
 {
-  return ( theWrappedObject->driverText());
+  ( theWrappedObject->setNumber(number));
 }
 
-bool  PythonQtWrapper_QSqlError::isValid(QSqlError* theWrappedObject) const
+QString  PythonQtWrapper_QSqlError::databaseText(QSqlError* theWrappedObject) const
 {
-  return ( theWrappedObject->isValid());
+  return ( theWrappedObject->databaseText());
 }
 
 void PythonQtWrapper_QSqlError::setDriverText(QSqlError* theWrappedObject, const QString&  driverText)
 {
   ( theWrappedObject->setDriverText(driverText));
-}
-
-void PythonQtWrapper_QSqlError::setType(QSqlError* theWrappedObject, QSqlError::ErrorType  type)
-{
-  ( theWrappedObject->setType(type));
 }
 
 QSqlError::ErrorType  PythonQtWrapper_QSqlError::type(QSqlError* theWrappedObject) const
@@ -1025,19 +1016,24 @@ int  PythonQtWrapper_QSqlError::number(QSqlError* theWrappedObject) const
   return ( theWrappedObject->number());
 }
 
-void PythonQtWrapper_QSqlError::setNumber(QSqlError* theWrappedObject, int  number)
+void PythonQtWrapper_QSqlError::setType(QSqlError* theWrappedObject, QSqlError::ErrorType  type)
 {
-  ( theWrappedObject->setNumber(number));
+  ( theWrappedObject->setType(type));
 }
 
-QString  PythonQtWrapper_QSqlError::text(QSqlError* theWrappedObject) const
+QString  PythonQtWrapper_QSqlError::driverText(QSqlError* theWrappedObject) const
 {
-  return ( theWrappedObject->text());
+  return ( theWrappedObject->driverText());
 }
 
-QString  PythonQtWrapper_QSqlError::databaseText(QSqlError* theWrappedObject) const
+void PythonQtWrapper_QSqlError::setDatabaseText(QSqlError* theWrappedObject, const QString&  databaseText)
 {
-  return ( theWrappedObject->databaseText());
+  ( theWrappedObject->setDatabaseText(databaseText));
+}
+
+bool  PythonQtWrapper_QSqlError::isValid(QSqlError* theWrappedObject) const
+{
+  return ( theWrappedObject->isValid());
 }
 
 QString PythonQtWrapper_QSqlError::py_toString(QSqlError* obj) {
@@ -1057,9 +1053,9 @@ QSqlField* PythonQtWrapper_QSqlField::new_QSqlField(const QString&  fieldName, Q
 { 
 return new QSqlField(fieldName, type); }
 
-bool  PythonQtWrapper_QSqlField::isValid(QSqlField* theWrappedObject) const
+bool  PythonQtWrapper_QSqlField::isReadOnly(QSqlField* theWrappedObject) const
 {
-  return ( theWrappedObject->isValid());
+  return ( theWrappedObject->isReadOnly());
 }
 
 bool  PythonQtWrapper_QSqlField::isGenerated(QSqlField* theWrappedObject) const
@@ -1067,9 +1063,9 @@ bool  PythonQtWrapper_QSqlField::isGenerated(QSqlField* theWrappedObject) const
   return ( theWrappedObject->isGenerated());
 }
 
-bool  PythonQtWrapper_QSqlField::isReadOnly(QSqlField* theWrappedObject) const
+bool  PythonQtWrapper_QSqlField::isValid(QSqlField* theWrappedObject) const
 {
-  return ( theWrappedObject->isReadOnly());
+  return ( theWrappedObject->isValid());
 }
 
 void PythonQtWrapper_QSqlField::setSqlType(QSqlField* theWrappedObject, int  type)
@@ -1102,11 +1098,6 @@ void PythonQtWrapper_QSqlField::setRequiredStatus(QSqlField* theWrappedObject, Q
   ( theWrappedObject->setRequiredStatus(status));
 }
 
-QString  PythonQtWrapper_QSqlField::name(QSqlField* theWrappedObject) const
-{
-  return ( theWrappedObject->name());
-}
-
 void PythonQtWrapper_QSqlField::setName(QSqlField* theWrappedObject, const QString&  name)
 {
   ( theWrappedObject->setName(name));
@@ -1117,9 +1108,19 @@ void PythonQtWrapper_QSqlField::setGenerated(QSqlField* theWrappedObject, bool  
   ( theWrappedObject->setGenerated(gen));
 }
 
-void PythonQtWrapper_QSqlField::setLength(QSqlField* theWrappedObject, int  fieldLength)
+QString  PythonQtWrapper_QSqlField::name(QSqlField* theWrappedObject) const
 {
-  ( theWrappedObject->setLength(fieldLength));
+  return ( theWrappedObject->name());
+}
+
+bool  PythonQtWrapper_QSqlField::__eq__(QSqlField* theWrappedObject, const QSqlField&  other) const
+{
+  return ( (*theWrappedObject)== other);
+}
+
+bool  PythonQtWrapper_QSqlField::__ne__(QSqlField* theWrappedObject, const QSqlField&  other) const
+{
+  return ( (*theWrappedObject)!= other);
 }
 
 void PythonQtWrapper_QSqlField::setType(QSqlField* theWrappedObject, QVariant::Type  type)
@@ -1127,19 +1128,14 @@ void PythonQtWrapper_QSqlField::setType(QSqlField* theWrappedObject, QVariant::T
   ( theWrappedObject->setType(type));
 }
 
-QVariant  PythonQtWrapper_QSqlField::value(QSqlField* theWrappedObject) const
-{
-  return ( theWrappedObject->value());
-}
-
 QVariant  PythonQtWrapper_QSqlField::defaultValue(QSqlField* theWrappedObject) const
 {
   return ( theWrappedObject->defaultValue());
 }
 
-bool  PythonQtWrapper_QSqlField::operator_equal(QSqlField* theWrappedObject, const QSqlField&  other) const
+QVariant  PythonQtWrapper_QSqlField::value(QSqlField* theWrappedObject) const
 {
-  return ( (*theWrappedObject)== other);
+  return ( theWrappedObject->value());
 }
 
 void PythonQtWrapper_QSqlField::setRequired(QSqlField* theWrappedObject, bool  required)
@@ -1152,9 +1148,19 @@ bool  PythonQtWrapper_QSqlField::isNull(QSqlField* theWrappedObject) const
   return ( theWrappedObject->isNull());
 }
 
+void PythonQtWrapper_QSqlField::setLength(QSqlField* theWrappedObject, int  fieldLength)
+{
+  ( theWrappedObject->setLength(fieldLength));
+}
+
 bool  PythonQtWrapper_QSqlField::isAutoValue(QSqlField* theWrappedObject) const
 {
   return ( theWrappedObject->isAutoValue());
+}
+
+int  PythonQtWrapper_QSqlField::length(QSqlField* theWrappedObject) const
+{
+  return ( theWrappedObject->length());
 }
 
 void PythonQtWrapper_QSqlField::clear(QSqlField* theWrappedObject)
@@ -1162,9 +1168,9 @@ void PythonQtWrapper_QSqlField::clear(QSqlField* theWrappedObject)
   ( theWrappedObject->clear());
 }
 
-int  PythonQtWrapper_QSqlField::length(QSqlField* theWrappedObject) const
+void PythonQtWrapper_QSqlField::setValue(QSqlField* theWrappedObject, const QVariant&  value)
 {
-  return ( theWrappedObject->length());
+  ( theWrappedObject->setValue(value));
 }
 
 int  PythonQtWrapper_QSqlField::typeID(QSqlField* theWrappedObject) const
@@ -1177,19 +1183,14 @@ QVariant::Type  PythonQtWrapper_QSqlField::type(QSqlField* theWrappedObject) con
   return ( theWrappedObject->type());
 }
 
-void PythonQtWrapper_QSqlField::setValue(QSqlField* theWrappedObject, const QVariant&  value)
+void PythonQtWrapper_QSqlField::setDefaultValue(QSqlField* theWrappedObject, const QVariant&  value)
 {
-  ( theWrappedObject->setValue(value));
+  ( theWrappedObject->setDefaultValue(value));
 }
 
 void PythonQtWrapper_QSqlField::setPrecision(QSqlField* theWrappedObject, int  precision)
 {
   ( theWrappedObject->setPrecision(precision));
-}
-
-void PythonQtWrapper_QSqlField::setDefaultValue(QSqlField* theWrappedObject, const QVariant&  value)
-{
-  ( theWrappedObject->setDefaultValue(value));
 }
 
 QString PythonQtWrapper_QSqlField::py_toString(QSqlField* obj) {
@@ -1209,6 +1210,11 @@ QSqlIndex* PythonQtWrapper_QSqlIndex::new_QSqlIndex(const QString&  cursorName, 
 { 
 return new QSqlIndex(cursorName, name); }
 
+void PythonQtWrapper_QSqlIndex::append(QSqlIndex* theWrappedObject, const QSqlField&  field)
+{
+  ( theWrappedObject->append(field));
+}
+
 QString  PythonQtWrapper_QSqlIndex::cursorName(QSqlIndex* theWrappedObject) const
 {
   return ( theWrappedObject->cursorName());
@@ -1219,14 +1225,14 @@ bool  PythonQtWrapper_QSqlIndex::isDescending(QSqlIndex* theWrappedObject, int  
   return ( theWrappedObject->isDescending(i));
 }
 
-void PythonQtWrapper_QSqlIndex::setName(QSqlIndex* theWrappedObject, const QString&  name)
-{
-  ( theWrappedObject->setName(name));
-}
-
 void PythonQtWrapper_QSqlIndex::setDescending(QSqlIndex* theWrappedObject, int  i, bool  desc)
 {
   ( theWrappedObject->setDescending(i, desc));
+}
+
+void PythonQtWrapper_QSqlIndex::setName(QSqlIndex* theWrappedObject, const QString&  name)
+{
+  ( theWrappedObject->setName(name));
 }
 
 void PythonQtWrapper_QSqlIndex::setCursorName(QSqlIndex* theWrappedObject, const QString&  cursorName)
@@ -1237,11 +1243,6 @@ void PythonQtWrapper_QSqlIndex::setCursorName(QSqlIndex* theWrappedObject, const
 void PythonQtWrapper_QSqlIndex::append(QSqlIndex* theWrappedObject, const QSqlField&  field, bool  desc)
 {
   ( theWrappedObject->append(field, desc));
-}
-
-void PythonQtWrapper_QSqlIndex::append(QSqlIndex* theWrappedObject, const QSqlField&  field)
-{
-  ( theWrappedObject->append(field));
 }
 
 QString  PythonQtWrapper_QSqlIndex::name(QSqlIndex* theWrappedObject) const
@@ -1267,34 +1268,9 @@ QSqlQuery* PythonQtWrapper_QSqlQuery::new_QSqlQuery(const QString&  query, QSqlD
 { 
 return new QSqlQuery(query, db); }
 
-void PythonQtWrapper_QSqlQuery::clear(QSqlQuery* theWrappedObject)
-{
-  ( theWrappedObject->clear());
-}
-
-bool  PythonQtWrapper_QSqlQuery::next(QSqlQuery* theWrappedObject)
-{
-  return ( theWrappedObject->next());
-}
-
-bool  PythonQtWrapper_QSqlQuery::seek(QSqlQuery* theWrappedObject, int  i, bool  relative)
-{
-  return ( theWrappedObject->seek(i, relative));
-}
-
 bool  PythonQtWrapper_QSqlQuery::prepare(QSqlQuery* theWrappedObject, const QString&  query)
 {
   return ( theWrappedObject->prepare(query));
-}
-
-void PythonQtWrapper_QSqlQuery::addBindValue(QSqlQuery* theWrappedObject, const QVariant&  val, QSql::ParamType  type)
-{
-  ( theWrappedObject->addBindValue(val, type));
-}
-
-bool  PythonQtWrapper_QSqlQuery::first(QSqlQuery* theWrappedObject)
-{
-  return ( theWrappedObject->first());
 }
 
 QSqlError  PythonQtWrapper_QSqlQuery::lastError(QSqlQuery* theWrappedObject) const
@@ -1302,9 +1278,9 @@ QSqlError  PythonQtWrapper_QSqlQuery::lastError(QSqlQuery* theWrappedObject) con
   return ( theWrappedObject->lastError());
 }
 
-void PythonQtWrapper_QSqlQuery::finish(QSqlQuery* theWrappedObject)
+QString  PythonQtWrapper_QSqlQuery::executedQuery(QSqlQuery* theWrappedObject) const
 {
-  ( theWrappedObject->finish());
+  return ( theWrappedObject->executedQuery());
 }
 
 QString  PythonQtWrapper_QSqlQuery::lastQuery(QSqlQuery* theWrappedObject) const
@@ -1312,24 +1288,44 @@ QString  PythonQtWrapper_QSqlQuery::lastQuery(QSqlQuery* theWrappedObject) const
   return ( theWrappedObject->lastQuery());
 }
 
-QString  PythonQtWrapper_QSqlQuery::executedQuery(QSqlQuery* theWrappedObject) const
+bool  PythonQtWrapper_QSqlQuery::first(QSqlQuery* theWrappedObject)
 {
-  return ( theWrappedObject->executedQuery());
+  return ( theWrappedObject->first());
 }
 
-int  PythonQtWrapper_QSqlQuery::size(QSqlQuery* theWrappedObject) const
+void PythonQtWrapper_QSqlQuery::addBindValue(QSqlQuery* theWrappedObject, const QVariant&  val, QSql::ParamType  type)
 {
-  return ( theWrappedObject->size());
+  ( theWrappedObject->addBindValue(val, type));
 }
 
-bool  PythonQtWrapper_QSqlQuery::isActive(QSqlQuery* theWrappedObject) const
+bool  PythonQtWrapper_QSqlQuery::seek(QSqlQuery* theWrappedObject, int  i, bool  relative)
 {
-  return ( theWrappedObject->isActive());
+  return ( theWrappedObject->seek(i, relative));
+}
+
+bool  PythonQtWrapper_QSqlQuery::next(QSqlQuery* theWrappedObject)
+{
+  return ( theWrappedObject->next());
+}
+
+void PythonQtWrapper_QSqlQuery::clear(QSqlQuery* theWrappedObject)
+{
+  ( theWrappedObject->clear());
 }
 
 const QSqlResult*  PythonQtWrapper_QSqlQuery::result(QSqlQuery* theWrappedObject) const
 {
   return ( theWrappedObject->result());
+}
+
+void PythonQtWrapper_QSqlQuery::finish(QSqlQuery* theWrappedObject)
+{
+  ( theWrappedObject->finish());
+}
+
+int  PythonQtWrapper_QSqlQuery::size(QSqlQuery* theWrappedObject) const
+{
+  return ( theWrappedObject->size());
 }
 
 bool  PythonQtWrapper_QSqlQuery::last(QSqlQuery* theWrappedObject)
@@ -1362,14 +1358,9 @@ void PythonQtWrapper_QSqlQuery::bindValue(QSqlQuery* theWrappedObject, const QSt
   ( theWrappedObject->bindValue(placeholder, val, type));
 }
 
-QSqlRecord  PythonQtWrapper_QSqlQuery::record(QSqlQuery* theWrappedObject) const
+QSql::NumericalPrecisionPolicy  PythonQtWrapper_QSqlQuery::numericalPrecisionPolicy(QSqlQuery* theWrappedObject) const
 {
-  return ( theWrappedObject->record());
-}
-
-QMap<QString , QVariant >  PythonQtWrapper_QSqlQuery::boundValues(QSqlQuery* theWrappedObject) const
-{
-  return ( theWrappedObject->boundValues());
+  return ( theWrappedObject->numericalPrecisionPolicy());
 }
 
 int  PythonQtWrapper_QSqlQuery::numRowsAffected(QSqlQuery* theWrappedObject) const
@@ -1377,29 +1368,24 @@ int  PythonQtWrapper_QSqlQuery::numRowsAffected(QSqlQuery* theWrappedObject) con
   return ( theWrappedObject->numRowsAffected());
 }
 
+QMap<QString , QVariant >  PythonQtWrapper_QSqlQuery::boundValues(QSqlQuery* theWrappedObject) const
+{
+  return ( theWrappedObject->boundValues());
+}
+
+bool  PythonQtWrapper_QSqlQuery::isActive(QSqlQuery* theWrappedObject) const
+{
+  return ( theWrappedObject->isActive());
+}
+
+QSqlRecord  PythonQtWrapper_QSqlQuery::record(QSqlQuery* theWrappedObject) const
+{
+  return ( theWrappedObject->record());
+}
+
 QVariant  PythonQtWrapper_QSqlQuery::boundValue(QSqlQuery* theWrappedObject, int  pos) const
 {
   return ( theWrappedObject->boundValue(pos));
-}
-
-QVariant  PythonQtWrapper_QSqlQuery::boundValue(QSqlQuery* theWrappedObject, const QString&  placeholder) const
-{
-  return ( theWrappedObject->boundValue(placeholder));
-}
-
-QSql::NumericalPrecisionPolicy  PythonQtWrapper_QSqlQuery::numericalPrecisionPolicy(QSqlQuery* theWrappedObject) const
-{
-  return ( theWrappedObject->numericalPrecisionPolicy());
-}
-
-bool  PythonQtWrapper_QSqlQuery::execBatch(QSqlQuery* theWrappedObject, QSqlQuery::BatchExecutionMode  mode)
-{
-  return ( theWrappedObject->execBatch(mode));
-}
-
-const QSqlDriver*  PythonQtWrapper_QSqlQuery::driver(QSqlQuery* theWrappedObject) const
-{
-  return ( theWrappedObject->driver());
 }
 
 bool  PythonQtWrapper_QSqlQuery::exec(QSqlQuery* theWrappedObject, const QString&  query)
@@ -1412,6 +1398,26 @@ bool  PythonQtWrapper_QSqlQuery::exec(QSqlQuery* theWrappedObject)
   return ( theWrappedObject->exec());
 }
 
+QVariant  PythonQtWrapper_QSqlQuery::boundValue(QSqlQuery* theWrappedObject, const QString&  placeholder) const
+{
+  return ( theWrappedObject->boundValue(placeholder));
+}
+
+bool  PythonQtWrapper_QSqlQuery::execBatch(QSqlQuery* theWrappedObject, QSqlQuery::BatchExecutionMode  mode)
+{
+  return ( theWrappedObject->execBatch(mode));
+}
+
+const QSqlDriver*  PythonQtWrapper_QSqlQuery::driver(QSqlQuery* theWrappedObject) const
+{
+  return ( theWrappedObject->driver());
+}
+
+int  PythonQtWrapper_QSqlQuery::at(QSqlQuery* theWrappedObject) const
+{
+  return ( theWrappedObject->at());
+}
+
 QVariant  PythonQtWrapper_QSqlQuery::value(QSqlQuery* theWrappedObject, int  i) const
 {
   return ( theWrappedObject->value(i));
@@ -1422,6 +1428,11 @@ void PythonQtWrapper_QSqlQuery::setNumericalPrecisionPolicy(QSqlQuery* theWrappe
   ( theWrappedObject->setNumericalPrecisionPolicy(precisionPolicy));
 }
 
+bool  PythonQtWrapper_QSqlQuery::isNull(QSqlQuery* theWrappedObject, int  field) const
+{
+  return ( theWrappedObject->isNull(field));
+}
+
 void PythonQtWrapper_QSqlQuery::setForwardOnly(QSqlQuery* theWrappedObject, bool  forward)
 {
   ( theWrappedObject->setForwardOnly(forward));
@@ -1430,16 +1441,6 @@ void PythonQtWrapper_QSqlQuery::setForwardOnly(QSqlQuery* theWrappedObject, bool
 bool  PythonQtWrapper_QSqlQuery::isSelect(QSqlQuery* theWrappedObject) const
 {
   return ( theWrappedObject->isSelect());
-}
-
-bool  PythonQtWrapper_QSqlQuery::isNull(QSqlQuery* theWrappedObject, int  field) const
-{
-  return ( theWrappedObject->isNull(field));
-}
-
-int  PythonQtWrapper_QSqlQuery::at(QSqlQuery* theWrappedObject) const
-{
-  return ( theWrappedObject->at());
 }
 
 bool  PythonQtWrapper_QSqlQuery::isValid(QSqlQuery* theWrappedObject) const
@@ -1454,6 +1455,34 @@ bool  PythonQtWrapper_QSqlQuery::nextResult(QSqlQuery* theWrappedObject)
 
 
 
+bool  PythonQtShell_QSqlQueryModel::setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setHeaderData");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"bool" , "int" , "Qt::Orientation" , "const QVariant&" , "int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(5, argumentList);
+      bool returnValue;
+    void* args[5] = {NULL, (void*)&section, (void*)&orientation, (void*)&value, (void*)&role};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("setHeaderData", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlQueryModel::setHeaderData(section, orientation, value, role);
+}
 bool  PythonQtShell_QSqlQueryModel::insertColumns(int  column, int  count, const QModelIndex&  parent)
 {
 if (_wrapper) {
@@ -1510,6 +1539,23 @@ if (_wrapper) {
 }
   return QSqlQueryModel::data(item, role);
 }
+void PythonQtShell_QSqlQueryModel::queryChange()
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "queryChange");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={""};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QSqlQueryModel::queryChange();
+}
 bool  PythonQtShell_QSqlQueryModel::canFetchMore(const QModelIndex&  parent) const
 {
 if (_wrapper) {
@@ -1537,23 +1583,6 @@ if (_wrapper) {
   }
 }
   return QSqlQueryModel::canFetchMore(parent);
-}
-void PythonQtShell_QSqlQueryModel::queryChange()
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "queryChange");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={""};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
-    void* args[1] = {NULL};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  }
-}
-  QSqlQueryModel::queryChange();
 }
 int  PythonQtShell_QSqlQueryModel::columnCount(const QModelIndex&  parent) const
 {
@@ -1611,24 +1640,24 @@ if (_wrapper) {
 }
   return QSqlQueryModel::removeColumns(column, count, parent);
 }
-bool  PythonQtShell_QSqlQueryModel::setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role)
+int  PythonQtShell_QSqlQueryModel::rowCount(const QModelIndex&  parent) const
 {
 if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setHeaderData");
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "rowCount");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"bool" , "int" , "Qt::Orientation" , "const QVariant&" , "int"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(5, argumentList);
-      bool returnValue;
-    void* args[5] = {NULL, (void*)&section, (void*)&orientation, (void*)&value, (void*)&role};
+    static const char* argumentList[] ={"int" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      int returnValue;
+    void* args[2] = {NULL, (void*)&parent};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
         if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("setHeaderData", methodInfo, result);
+          PythonQt::priv()->handleVirtualOverloadReturnError("rowCount", methodInfo, result);
         } else {
-          returnValue = *((bool*)args[0]);
+          returnValue = *((int*)args[0]);
         }
       }
     }
@@ -1637,7 +1666,7 @@ if (_wrapper) {
     return returnValue;
   }
 }
-  return QSqlQueryModel::setHeaderData(section, orientation, value, role);
+  return QSqlQueryModel::rowCount(parent);
 }
 QVariant  PythonQtShell_QSqlQueryModel::headerData(int  section, Qt::Orientation  orientation, int  role) const
 {
@@ -1666,34 +1695,6 @@ if (_wrapper) {
   }
 }
   return QSqlQueryModel::headerData(section, orientation, role);
-}
-int  PythonQtShell_QSqlQueryModel::rowCount(const QModelIndex&  parent) const
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "rowCount");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"int" , "const QModelIndex&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      int returnValue;
-    void* args[2] = {NULL, (void*)&parent};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("rowCount", methodInfo, result);
-        } else {
-          returnValue = *((int*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlQueryModel::rowCount(parent);
 }
 void PythonQtShell_QSqlQueryModel::fetchMore(const QModelIndex&  parent)
 {
@@ -1729,62 +1730,6 @@ if (_wrapper) {
 }
   QSqlQueryModel::clear();
 }
-QModelIndex  PythonQtShell_QSqlQueryModel::index(int  row, int  column, const QModelIndex&  parent) const
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "index");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"QModelIndex" , "int" , "int" , "const QModelIndex&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
-      QModelIndex returnValue;
-    void* args[4] = {NULL, (void*)&row, (void*)&column, (void*)&parent};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("index", methodInfo, result);
-        } else {
-          returnValue = *((QModelIndex*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlQueryModel::index(row, column, parent);
-}
-QStringList  PythonQtShell_QSqlQueryModel::mimeTypes() const
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "mimeTypes");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"QStringList"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
-      QStringList returnValue;
-    void* args[1] = {NULL};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("mimeTypes", methodInfo, result);
-        } else {
-          returnValue = *((QStringList*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlQueryModel::mimeTypes();
-}
 bool  PythonQtShell_QSqlQueryModel::dropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent)
 {
 if (_wrapper) {
@@ -1813,24 +1758,24 @@ if (_wrapper) {
 }
   return QSqlQueryModel::dropMimeData(data, action, row, column, parent);
 }
-QSize  PythonQtShell_QSqlQueryModel::span(const QModelIndex&  index) const
+QModelIndex  PythonQtShell_QSqlQueryModel::index(int  row, int  column, const QModelIndex&  parent) const
 {
 if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "span");
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "index");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"QSize" , "const QModelIndex&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      QSize returnValue;
-    void* args[2] = {NULL, (void*)&index};
+    static const char* argumentList[] ={"QModelIndex" , "int" , "int" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
+      QModelIndex returnValue;
+    void* args[4] = {NULL, (void*)&row, (void*)&column, (void*)&parent};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
         if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("span", methodInfo, result);
+          PythonQt::priv()->handleVirtualOverloadReturnError("index", methodInfo, result);
         } else {
-          returnValue = *((QSize*)args[0]);
+          returnValue = *((QModelIndex*)args[0]);
         }
       }
     }
@@ -1839,35 +1784,7 @@ if (_wrapper) {
     return returnValue;
   }
 }
-  return QSqlQueryModel::span(index);
-}
-QList<QModelIndex >  PythonQtShell_QSqlQueryModel::match(const QModelIndex&  start, int  role, const QVariant&  value, int  hits, Qt::MatchFlags  flags) const
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "match");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"QList<QModelIndex >" , "const QModelIndex&" , "int" , "const QVariant&" , "int" , "Qt::MatchFlags"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(6, argumentList);
-      QList<QModelIndex > returnValue;
-    void* args[6] = {NULL, (void*)&start, (void*)&role, (void*)&value, (void*)&hits, (void*)&flags};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("match", methodInfo, result);
-        } else {
-          returnValue = *((QList<QModelIndex >*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlQueryModel::match(start, role, value, hits, flags);
+  return QSqlQueryModel::index(row, column, parent);
 }
 bool  PythonQtShell_QSqlQueryModel::removeRows(int  row, int  count, const QModelIndex&  parent)
 {
@@ -1897,22 +1814,33 @@ if (_wrapper) {
 }
   return QSqlQueryModel::removeRows(row, count, parent);
 }
-void PythonQtShell_QSqlQueryModel::revert()
+bool  PythonQtShell_QSqlQueryModel::setItemData(const QModelIndex&  index, const QMap<int , QVariant >&  roles)
 {
 if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "revert");
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setItemData");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={""};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
-    void* args[1] = {NULL};
+    static const char* argumentList[] ={"bool" , "const QModelIndex&" , "const QMap<int , QVariant >&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
+      bool returnValue;
+    void* args[3] = {NULL, (void*)&index, (void*)&roles};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("setItemData", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
-    return;
+    return returnValue;
   }
 }
-  QSqlQueryModel::revert();
+  return QSqlQueryModel::setItemData(index, roles);
 }
 bool  PythonQtShell_QSqlQueryModel::insertRows(int  row, int  count, const QModelIndex&  parent)
 {
@@ -1942,24 +1870,24 @@ if (_wrapper) {
 }
   return QSqlQueryModel::insertRows(row, count, parent);
 }
-bool  PythonQtShell_QSqlQueryModel::setItemData(const QModelIndex&  index, const QMap<int , QVariant >&  roles)
+Qt::DropActions  PythonQtShell_QSqlQueryModel::supportedDropActions() const
 {
 if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setItemData");
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "supportedDropActions");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"bool" , "const QModelIndex&" , "const QMap<int , QVariant >&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
-      bool returnValue;
-    void* args[3] = {NULL, (void*)&index, (void*)&roles};
+    static const char* argumentList[] ={"Qt::DropActions"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      Qt::DropActions returnValue;
+    void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
         if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("setItemData", methodInfo, result);
+          PythonQt::priv()->handleVirtualOverloadReturnError("supportedDropActions", methodInfo, result);
         } else {
-          returnValue = *((bool*)args[0]);
+          returnValue = *((Qt::DropActions*)args[0]);
         }
       }
     }
@@ -1968,26 +1896,26 @@ if (_wrapper) {
     return returnValue;
   }
 }
-  return QSqlQueryModel::setItemData(index, roles);
+  return QSqlQueryModel::supportedDropActions();
 }
-QModelIndex  PythonQtShell_QSqlQueryModel::buddy(const QModelIndex&  index) const
+QStringList  PythonQtShell_QSqlQueryModel::mimeTypes() const
 {
 if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "buddy");
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "mimeTypes");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"QModelIndex" , "const QModelIndex&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      QModelIndex returnValue;
-    void* args[2] = {NULL, (void*)&index};
+    static const char* argumentList[] ={"QStringList"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      QStringList returnValue;
+    void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
         if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("buddy", methodInfo, result);
+          PythonQt::priv()->handleVirtualOverloadReturnError("mimeTypes", methodInfo, result);
         } else {
-          returnValue = *((QModelIndex*)args[0]);
+          returnValue = *((QStringList*)args[0]);
         }
       }
     }
@@ -1996,52 +1924,7 @@ if (_wrapper) {
     return returnValue;
   }
 }
-  return QSqlQueryModel::buddy(index);
-}
-void PythonQtShell_QSqlQueryModel::sort(int  column, Qt::SortOrder  order)
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "sort");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"" , "int" , "Qt::SortOrder"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
-    void* args[3] = {NULL, (void*)&column, (void*)&order};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  }
-}
-  QSqlQueryModel::sort(column, order);
-}
-QMimeData*  PythonQtShell_QSqlQueryModel::mimeData(const QList<QModelIndex >&  indexes) const
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "mimeData");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"QMimeData*" , "const QList<QModelIndex >&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      QMimeData* returnValue;
-    void* args[2] = {NULL, (void*)&indexes};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("mimeData", methodInfo, result);
-        } else {
-          returnValue = *((QMimeData**)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlQueryModel::mimeData(indexes);
+  return QSqlQueryModel::mimeTypes();
 }
 bool  PythonQtShell_QSqlQueryModel::setData(const QModelIndex&  index, const QVariant&  value, int  role)
 {
@@ -2071,6 +1954,23 @@ if (_wrapper) {
 }
   return QSqlQueryModel::setData(index, value, role);
 }
+void PythonQtShell_QSqlQueryModel::revert()
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "revert");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={""};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QSqlQueryModel::revert();
+}
 bool  PythonQtShell_QSqlQueryModel::submit()
 {
 if (_wrapper) {
@@ -2098,62 +1998,6 @@ if (_wrapper) {
   }
 }
   return QSqlQueryModel::submit();
-}
-Qt::ItemFlags  PythonQtShell_QSqlQueryModel::flags(const QModelIndex&  index) const
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "flags");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"Qt::ItemFlags" , "const QModelIndex&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      Qt::ItemFlags returnValue;
-    void* args[2] = {NULL, (void*)&index};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("flags", methodInfo, result);
-        } else {
-          returnValue = *((Qt::ItemFlags*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlQueryModel::flags(index);
-}
-Qt::DropActions  PythonQtShell_QSqlQueryModel::supportedDropActions() const
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "supportedDropActions");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"Qt::DropActions"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
-      Qt::DropActions returnValue;
-    void* args[1] = {NULL};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("supportedDropActions", methodInfo, result);
-        } else {
-          returnValue = *((Qt::DropActions*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlQueryModel::supportedDropActions();
 }
 QMap<int , QVariant >  PythonQtShell_QSqlQueryModel::itemData(const QModelIndex&  index) const
 {
@@ -2183,75 +2027,41 @@ if (_wrapper) {
 }
   return QSqlQueryModel::itemData(index);
 }
-void PythonQtShell_QSqlQueryModel::childEvent(QChildEvent*  arg__1)
+void PythonQtShell_QSqlQueryModel::sort(int  column, Qt::SortOrder  order)
 {
 if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "childEvent");
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "sort");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"" , "QChildEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
+    static const char* argumentList[] ={"" , "int" , "Qt::SortOrder"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
+    void* args[3] = {NULL, (void*)&column, (void*)&order};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
   }
 }
-  QSqlQueryModel::childEvent(arg__1);
+  QSqlQueryModel::sort(column, order);
 }
-void PythonQtShell_QSqlQueryModel::timerEvent(QTimerEvent*  arg__1)
+QList<QModelIndex >  PythonQtShell_QSqlQueryModel::match(const QModelIndex&  start, int  role, const QVariant&  value, int  hits, Qt::MatchFlags  flags) const
 {
 if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "timerEvent");
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "match");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"" , "QTimerEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  }
-}
-  QSqlQueryModel::timerEvent(arg__1);
-}
-void PythonQtShell_QSqlQueryModel::customEvent(QEvent*  arg__1)
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "customEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  }
-}
-  QSqlQueryModel::customEvent(arg__1);
-}
-bool  PythonQtShell_QSqlQueryModel::event(QEvent*  arg__1)
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "event");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"bool" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      bool returnValue;
-    void* args[2] = {NULL, (void*)&arg__1};
+    static const char* argumentList[] ={"QList<QModelIndex >" , "const QModelIndex&" , "int" , "const QVariant&" , "int" , "Qt::MatchFlags"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(6, argumentList);
+      QList<QModelIndex > returnValue;
+    void* args[6] = {NULL, (void*)&start, (void*)&role, (void*)&value, (void*)&hits, (void*)&flags};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
         if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
+          PythonQt::priv()->handleVirtualOverloadReturnError("match", methodInfo, result);
         } else {
-          returnValue = *((bool*)args[0]);
+          returnValue = *((QList<QModelIndex >*)args[0]);
         }
       }
     }
@@ -2260,7 +2070,119 @@ if (_wrapper) {
     return returnValue;
   }
 }
-  return QSqlQueryModel::event(arg__1);
+  return QSqlQueryModel::match(start, role, value, hits, flags);
+}
+QMimeData*  PythonQtShell_QSqlQueryModel::mimeData(const QList<QModelIndex >&  indexes) const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "mimeData");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"QMimeData*" , "const QList<QModelIndex >&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      QMimeData* returnValue;
+    void* args[2] = {NULL, (void*)&indexes};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("mimeData", methodInfo, result);
+        } else {
+          returnValue = *((QMimeData**)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlQueryModel::mimeData(indexes);
+}
+QModelIndex  PythonQtShell_QSqlQueryModel::buddy(const QModelIndex&  index) const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "buddy");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"QModelIndex" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      QModelIndex returnValue;
+    void* args[2] = {NULL, (void*)&index};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("buddy", methodInfo, result);
+        } else {
+          returnValue = *((QModelIndex*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlQueryModel::buddy(index);
+}
+Qt::ItemFlags  PythonQtShell_QSqlQueryModel::flags(const QModelIndex&  index) const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "flags");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"Qt::ItemFlags" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      Qt::ItemFlags returnValue;
+    void* args[2] = {NULL, (void*)&index};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("flags", methodInfo, result);
+        } else {
+          returnValue = *((Qt::ItemFlags*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlQueryModel::flags(index);
+}
+QSize  PythonQtShell_QSqlQueryModel::span(const QModelIndex&  index) const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "span");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"QSize" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      QSize returnValue;
+    void* args[2] = {NULL, (void*)&index};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("span", methodInfo, result);
+        } else {
+          returnValue = *((QSize*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlQueryModel::span(index);
 }
 bool  PythonQtShell_QSqlQueryModel::eventFilter(QObject*  arg__1, QEvent*  arg__2)
 {
@@ -2290,9 +2212,93 @@ if (_wrapper) {
 }
   return QSqlQueryModel::eventFilter(arg__1, arg__2);
 }
+bool  PythonQtShell_QSqlQueryModel::event(QEvent*  arg__1)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "event");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"bool" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      bool returnValue;
+    void* args[2] = {NULL, (void*)&arg__1};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlQueryModel::event(arg__1);
+}
+void PythonQtShell_QSqlQueryModel::childEvent(QChildEvent*  arg__1)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "childEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"" , "QChildEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+    void* args[2] = {NULL, (void*)&arg__1};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QSqlQueryModel::childEvent(arg__1);
+}
+void PythonQtShell_QSqlQueryModel::customEvent(QEvent*  arg__1)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "customEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+    void* args[2] = {NULL, (void*)&arg__1};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QSqlQueryModel::customEvent(arg__1);
+}
+void PythonQtShell_QSqlQueryModel::timerEvent(QTimerEvent*  arg__1)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "timerEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"" , "QTimerEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+    void* args[2] = {NULL, (void*)&arg__1};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QSqlQueryModel::timerEvent(arg__1);
+}
 QSqlQueryModel* PythonQtWrapper_QSqlQueryModel::new_QSqlQueryModel(QObject*  parent)
 { 
 return new PythonQtShell_QSqlQueryModel(parent); }
+
+bool  PythonQtWrapper_QSqlQueryModel::setHeaderData(QSqlQueryModel* theWrappedObject, int  section, Qt::Orientation  orientation, const QVariant&  value, int  role)
+{
+  return ( ((PythonQtPublicPromoter_QSqlQueryModel*)theWrappedObject)->promoted_setHeaderData(section, orientation, value, role));
+}
 
 QSqlQuery  PythonQtWrapper_QSqlQueryModel::query(QSqlQueryModel* theWrappedObject) const
 {
@@ -2309,6 +2315,11 @@ QVariant  PythonQtWrapper_QSqlQueryModel::data(QSqlQueryModel* theWrappedObject,
   return ( ((PythonQtPublicPromoter_QSqlQueryModel*)theWrappedObject)->promoted_data(item, role));
 }
 
+void PythonQtWrapper_QSqlQueryModel::queryChange(QSqlQueryModel* theWrappedObject)
+{
+  ( ((PythonQtPublicPromoter_QSqlQueryModel*)theWrappedObject)->promoted_queryChange());
+}
+
 bool  PythonQtWrapper_QSqlQueryModel::canFetchMore(QSqlQueryModel* theWrappedObject, const QModelIndex&  parent) const
 {
   return ( ((PythonQtPublicPromoter_QSqlQueryModel*)theWrappedObject)->promoted_canFetchMore(parent));
@@ -2317,11 +2328,6 @@ bool  PythonQtWrapper_QSqlQueryModel::canFetchMore(QSqlQueryModel* theWrappedObj
 QSqlError  PythonQtWrapper_QSqlQueryModel::lastError(QSqlQueryModel* theWrappedObject) const
 {
   return ( theWrappedObject->lastError());
-}
-
-void PythonQtWrapper_QSqlQueryModel::queryChange(QSqlQueryModel* theWrappedObject)
-{
-  ( ((PythonQtPublicPromoter_QSqlQueryModel*)theWrappedObject)->promoted_queryChange());
 }
 
 int  PythonQtWrapper_QSqlQueryModel::columnCount(QSqlQueryModel* theWrappedObject, const QModelIndex&  parent) const
@@ -2334,9 +2340,9 @@ bool  PythonQtWrapper_QSqlQueryModel::removeColumns(QSqlQueryModel* theWrappedOb
   return ( ((PythonQtPublicPromoter_QSqlQueryModel*)theWrappedObject)->promoted_removeColumns(column, count, parent));
 }
 
-bool  PythonQtWrapper_QSqlQueryModel::setHeaderData(QSqlQueryModel* theWrappedObject, int  section, Qt::Orientation  orientation, const QVariant&  value, int  role)
+int  PythonQtWrapper_QSqlQueryModel::rowCount(QSqlQueryModel* theWrappedObject, const QModelIndex&  parent) const
 {
-  return ( ((PythonQtPublicPromoter_QSqlQueryModel*)theWrappedObject)->promoted_setHeaderData(section, orientation, value, role));
+  return ( ((PythonQtPublicPromoter_QSqlQueryModel*)theWrappedObject)->promoted_rowCount(parent));
 }
 
 QVariant  PythonQtWrapper_QSqlQueryModel::headerData(QSqlQueryModel* theWrappedObject, int  section, Qt::Orientation  orientation, int  role) const
@@ -2344,19 +2350,9 @@ QVariant  PythonQtWrapper_QSqlQueryModel::headerData(QSqlQueryModel* theWrappedO
   return ( ((PythonQtPublicPromoter_QSqlQueryModel*)theWrappedObject)->promoted_headerData(section, orientation, role));
 }
 
-int  PythonQtWrapper_QSqlQueryModel::rowCount(QSqlQueryModel* theWrappedObject, const QModelIndex&  parent) const
-{
-  return ( ((PythonQtPublicPromoter_QSqlQueryModel*)theWrappedObject)->promoted_rowCount(parent));
-}
-
 void PythonQtWrapper_QSqlQueryModel::setQuery(QSqlQueryModel* theWrappedObject, const QString&  query, const QSqlDatabase&  db)
 {
   ( theWrappedObject->setQuery(query, db));
-}
-
-void PythonQtWrapper_QSqlQueryModel::setQuery(QSqlQueryModel* theWrappedObject, const QSqlQuery&  query)
-{
-  ( theWrappedObject->setQuery(query));
 }
 
 void PythonQtWrapper_QSqlQueryModel::fetchMore(QSqlQueryModel* theWrappedObject, const QModelIndex&  parent)
@@ -2367,6 +2363,11 @@ void PythonQtWrapper_QSqlQueryModel::fetchMore(QSqlQueryModel* theWrappedObject,
 QSqlRecord  PythonQtWrapper_QSqlQueryModel::record(QSqlQueryModel* theWrappedObject) const
 {
   return ( theWrappedObject->record());
+}
+
+void PythonQtWrapper_QSqlQueryModel::setQuery(QSqlQueryModel* theWrappedObject, const QSqlQuery&  query)
+{
+  ( theWrappedObject->setQuery(query));
 }
 
 QSqlRecord  PythonQtWrapper_QSqlQueryModel::record(QSqlQueryModel* theWrappedObject, int  row) const
@@ -2389,54 +2390,9 @@ QSqlRecord* PythonQtWrapper_QSqlRecord::new_QSqlRecord(const QSqlRecord&  other)
 { 
 return new QSqlRecord(other); }
 
-bool  PythonQtWrapper_QSqlRecord::isGenerated(QSqlRecord* theWrappedObject, const QString&  name) const
+QVariant  PythonQtWrapper_QSqlRecord::value(QSqlRecord* theWrappedObject, int  i) const
 {
-  return ( theWrappedObject->isGenerated(name));
-}
-
-bool  PythonQtWrapper_QSqlRecord::isGenerated(QSqlRecord* theWrappedObject, int  i) const
-{
-  return ( theWrappedObject->isGenerated(i));
-}
-
-void PythonQtWrapper_QSqlRecord::setGenerated(QSqlRecord* theWrappedObject, int  i, bool  generated)
-{
-  ( theWrappedObject->setGenerated(i, generated));
-}
-
-void PythonQtWrapper_QSqlRecord::setGenerated(QSqlRecord* theWrappedObject, const QString&  name, bool  generated)
-{
-  ( theWrappedObject->setGenerated(name, generated));
-}
-
-int  PythonQtWrapper_QSqlRecord::indexOf(QSqlRecord* theWrappedObject, const QString&  name) const
-{
-  return ( theWrappedObject->indexOf(name));
-}
-
-void PythonQtWrapper_QSqlRecord::clearValues(QSqlRecord* theWrappedObject)
-{
-  ( theWrappedObject->clearValues());
-}
-
-int  PythonQtWrapper_QSqlRecord::count(QSqlRecord* theWrappedObject) const
-{
-  return ( theWrappedObject->count());
-}
-
-void PythonQtWrapper_QSqlRecord::setNull(QSqlRecord* theWrappedObject, const QString&  name)
-{
-  ( theWrappedObject->setNull(name));
-}
-
-void PythonQtWrapper_QSqlRecord::setNull(QSqlRecord* theWrappedObject, int  i)
-{
-  ( theWrappedObject->setNull(i));
-}
-
-QString  PythonQtWrapper_QSqlRecord::fieldName(QSqlRecord* theWrappedObject, int  i) const
-{
-  return ( theWrappedObject->fieldName(i));
+  return ( theWrappedObject->value(i));
 }
 
 QVariant  PythonQtWrapper_QSqlRecord::value(QSqlRecord* theWrappedObject, const QString&  name) const
@@ -2444,9 +2400,54 @@ QVariant  PythonQtWrapper_QSqlRecord::value(QSqlRecord* theWrappedObject, const 
   return ( theWrappedObject->value(name));
 }
 
-bool  PythonQtWrapper_QSqlRecord::operator_equal(QSqlRecord* theWrappedObject, const QSqlRecord&  other) const
+void PythonQtWrapper_QSqlRecord::setNull(QSqlRecord* theWrappedObject, int  i)
 {
-  return ( (*theWrappedObject)== other);
+  ( theWrappedObject->setNull(i));
+}
+
+void PythonQtWrapper_QSqlRecord::setNull(QSqlRecord* theWrappedObject, const QString&  name)
+{
+  ( theWrappedObject->setNull(name));
+}
+
+int  PythonQtWrapper_QSqlRecord::count(QSqlRecord* theWrappedObject) const
+{
+  return ( theWrappedObject->count());
+}
+
+bool  PythonQtWrapper_QSqlRecord::__ne__(QSqlRecord* theWrappedObject, const QSqlRecord&  other) const
+{
+  return ( (*theWrappedObject)!= other);
+}
+
+void PythonQtWrapper_QSqlRecord::clearValues(QSqlRecord* theWrappedObject)
+{
+  ( theWrappedObject->clearValues());
+}
+
+int  PythonQtWrapper_QSqlRecord::indexOf(QSqlRecord* theWrappedObject, const QString&  name) const
+{
+  return ( theWrappedObject->indexOf(name));
+}
+
+void PythonQtWrapper_QSqlRecord::setGenerated(QSqlRecord* theWrappedObject, const QString&  name, bool  generated)
+{
+  ( theWrappedObject->setGenerated(name, generated));
+}
+
+void PythonQtWrapper_QSqlRecord::setGenerated(QSqlRecord* theWrappedObject, int  i, bool  generated)
+{
+  ( theWrappedObject->setGenerated(i, generated));
+}
+
+bool  PythonQtWrapper_QSqlRecord::isGenerated(QSqlRecord* theWrappedObject, int  i) const
+{
+  return ( theWrappedObject->isGenerated(i));
+}
+
+bool  PythonQtWrapper_QSqlRecord::isGenerated(QSqlRecord* theWrappedObject, const QString&  name) const
+{
+  return ( theWrappedObject->isGenerated(name));
 }
 
 void PythonQtWrapper_QSqlRecord::insert(QSqlRecord* theWrappedObject, int  pos, const QSqlField&  field)
@@ -2454,9 +2455,9 @@ void PythonQtWrapper_QSqlRecord::insert(QSqlRecord* theWrappedObject, int  pos, 
   ( theWrappedObject->insert(pos, field));
 }
 
-QVariant  PythonQtWrapper_QSqlRecord::value(QSqlRecord* theWrappedObject, int  i) const
+bool  PythonQtWrapper_QSqlRecord::__eq__(QSqlRecord* theWrappedObject, const QSqlRecord&  other) const
 {
-  return ( theWrappedObject->value(i));
+  return ( (*theWrappedObject)== other);
 }
 
 void PythonQtWrapper_QSqlRecord::append(QSqlRecord* theWrappedObject, const QSqlField&  field)
@@ -2464,14 +2465,14 @@ void PythonQtWrapper_QSqlRecord::append(QSqlRecord* theWrappedObject, const QSql
   ( theWrappedObject->append(field));
 }
 
+QString  PythonQtWrapper_QSqlRecord::fieldName(QSqlRecord* theWrappedObject, int  i) const
+{
+  return ( theWrappedObject->fieldName(i));
+}
+
 bool  PythonQtWrapper_QSqlRecord::isNull(QSqlRecord* theWrappedObject, const QString&  name) const
 {
   return ( theWrappedObject->isNull(name));
-}
-
-bool  PythonQtWrapper_QSqlRecord::contains(QSqlRecord* theWrappedObject, const QString&  name) const
-{
-  return ( theWrappedObject->contains(name));
 }
 
 bool  PythonQtWrapper_QSqlRecord::isNull(QSqlRecord* theWrappedObject, int  i) const
@@ -2479,9 +2480,9 @@ bool  PythonQtWrapper_QSqlRecord::isNull(QSqlRecord* theWrappedObject, int  i) c
   return ( theWrappedObject->isNull(i));
 }
 
-void PythonQtWrapper_QSqlRecord::replace(QSqlRecord* theWrappedObject, int  pos, const QSqlField&  field)
+bool  PythonQtWrapper_QSqlRecord::contains(QSqlRecord* theWrappedObject, const QString&  name) const
 {
-  ( theWrappedObject->replace(pos, field));
+  return ( theWrappedObject->contains(name));
 }
 
 void PythonQtWrapper_QSqlRecord::remove(QSqlRecord* theWrappedObject, int  pos)
@@ -2489,14 +2490,9 @@ void PythonQtWrapper_QSqlRecord::remove(QSqlRecord* theWrappedObject, int  pos)
   ( theWrappedObject->remove(pos));
 }
 
-QSqlField  PythonQtWrapper_QSqlRecord::field(QSqlRecord* theWrappedObject, const QString&  name) const
+void PythonQtWrapper_QSqlRecord::replace(QSqlRecord* theWrappedObject, int  pos, const QSqlField&  field)
 {
-  return ( theWrappedObject->field(name));
-}
-
-bool  PythonQtWrapper_QSqlRecord::isEmpty(QSqlRecord* theWrappedObject) const
-{
-  return ( theWrappedObject->isEmpty());
+  ( theWrappedObject->replace(pos, field));
 }
 
 QSqlField  PythonQtWrapper_QSqlRecord::field(QSqlRecord* theWrappedObject, int  i) const
@@ -2504,14 +2500,24 @@ QSqlField  PythonQtWrapper_QSqlRecord::field(QSqlRecord* theWrappedObject, int  
   return ( theWrappedObject->field(i));
 }
 
-void PythonQtWrapper_QSqlRecord::clear(QSqlRecord* theWrappedObject)
+QSqlField  PythonQtWrapper_QSqlRecord::field(QSqlRecord* theWrappedObject, const QString&  name) const
 {
-  ( theWrappedObject->clear());
+  return ( theWrappedObject->field(name));
 }
 
 void PythonQtWrapper_QSqlRecord::setValue(QSqlRecord* theWrappedObject, const QString&  name, const QVariant&  val)
 {
   ( theWrappedObject->setValue(name, val));
+}
+
+bool  PythonQtWrapper_QSqlRecord::isEmpty(QSqlRecord* theWrappedObject) const
+{
+  return ( theWrappedObject->isEmpty());
+}
+
+void PythonQtWrapper_QSqlRecord::clear(QSqlRecord* theWrappedObject)
+{
+  ( theWrappedObject->clear());
 }
 
 void PythonQtWrapper_QSqlRecord::setValue(QSqlRecord* theWrappedObject, int  i, const QVariant&  val)
@@ -2536,6 +2542,16 @@ QSqlRelation* PythonQtWrapper_QSqlRelation::new_QSqlRelation(const QString&  aTa
 { 
 return new QSqlRelation(aTableName, indexCol, displayCol); }
 
+QString  PythonQtWrapper_QSqlRelation::displayColumn(QSqlRelation* theWrappedObject) const
+{
+  return ( theWrappedObject->displayColumn());
+}
+
+QString  PythonQtWrapper_QSqlRelation::indexColumn(QSqlRelation* theWrappedObject) const
+{
+  return ( theWrappedObject->indexColumn());
+}
+
 bool  PythonQtWrapper_QSqlRelation::isValid(QSqlRelation* theWrappedObject) const
 {
   return ( theWrappedObject->isValid());
@@ -2544,16 +2560,6 @@ bool  PythonQtWrapper_QSqlRelation::isValid(QSqlRelation* theWrappedObject) cons
 QString  PythonQtWrapper_QSqlRelation::tableName(QSqlRelation* theWrappedObject) const
 {
   return ( theWrappedObject->tableName());
-}
-
-QString  PythonQtWrapper_QSqlRelation::indexColumn(QSqlRelation* theWrappedObject) const
-{
-  return ( theWrappedObject->indexColumn());
-}
-
-QString  PythonQtWrapper_QSqlRelation::displayColumn(QSqlRelation* theWrappedObject) const
-{
-  return ( theWrappedObject->displayColumn());
 }
 
 
@@ -2743,22 +2749,33 @@ if (_wrapper) {
 }
   return QSqlRelationalTableModel::updateRowInTable(row, values);
 }
-void PythonQtShell_QSqlRelationalTableModel::clear()
+QString  PythonQtShell_QSqlRelationalTableModel::orderByClause() const
 {
 if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "clear");
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "orderByClause");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={""};
+    static const char* argumentList[] ={"QString"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      QString returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("orderByClause", methodInfo, result);
+        } else {
+          returnValue = *((QString*)args[0]);
+        }
+      }
+    }
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
-    return;
+    return returnValue;
   }
 }
-  QSqlRelationalTableModel::clear();
+  return QSqlRelationalTableModel::orderByClause();
 }
 QString  PythonQtShell_QSqlRelationalTableModel::selectStatement() const
 {
@@ -2788,50 +2805,22 @@ if (_wrapper) {
 }
   return QSqlRelationalTableModel::selectStatement();
 }
-QString  PythonQtShell_QSqlRelationalTableModel::orderByClause() const
+void PythonQtShell_QSqlRelationalTableModel::clear()
 {
 if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "orderByClause");
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "clear");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"QString"};
+    static const char* argumentList[] ={""};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
-      QString returnValue;
     void* args[1] = {NULL};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("orderByClause", methodInfo, result);
-        } else {
-          returnValue = *((QString*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlRelationalTableModel::orderByClause();
-}
-void PythonQtShell_QSqlRelationalTableModel::revertRow(int  row)
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "revertRow");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"" , "int"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&row};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
   }
 }
-  QSqlRelationalTableModel::revertRow(row);
+  QSqlRelationalTableModel::clear();
 }
 bool  PythonQtShell_QSqlRelationalTableModel::select()
 {
@@ -2878,791 +2867,22 @@ if (_wrapper) {
 }
   QSqlRelationalTableModel::setRelation(column, relation);
 }
-bool  PythonQtShell_QSqlRelationalTableModel::insertRows(int  row, int  count, const QModelIndex&  parent)
+void PythonQtShell_QSqlRelationalTableModel::revertRow(int  row)
 {
 if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "insertRows");
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "revertRow");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"bool" , "int" , "int" , "const QModelIndex&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
-      bool returnValue;
-    void* args[4] = {NULL, (void*)&row, (void*)&count, (void*)&parent};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("insertRows", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlRelationalTableModel::insertRows(row, count, parent);
-}
-QVariant  PythonQtShell_QSqlRelationalTableModel::headerData(int  section, Qt::Orientation  orientation, int  role) const
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "headerData");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"QVariant" , "int" , "Qt::Orientation" , "int"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
-      QVariant returnValue;
-    void* args[4] = {NULL, (void*)&section, (void*)&orientation, (void*)&role};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("headerData", methodInfo, result);
-        } else {
-          returnValue = *((QVariant*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlRelationalTableModel::headerData(section, orientation, role);
-}
-void PythonQtShell_QSqlRelationalTableModel::sort(int  column, Qt::SortOrder  order)
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "sort");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"" , "int" , "Qt::SortOrder"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
-    void* args[3] = {NULL, (void*)&column, (void*)&order};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  }
-}
-  QSqlRelationalTableModel::sort(column, order);
-}
-void PythonQtShell_QSqlRelationalTableModel::setFilter(const QString&  filter)
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setFilter");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"" , "const QString&"};
+    static const char* argumentList[] ={"" , "int"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&filter};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  }
-}
-  QSqlRelationalTableModel::setFilter(filter);
-}
-void PythonQtShell_QSqlRelationalTableModel::setEditStrategy(QSqlTableModel::EditStrategy  strategy)
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setEditStrategy");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"" , "QSqlTableModel::EditStrategy"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&strategy};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  }
-}
-  QSqlRelationalTableModel::setEditStrategy(strategy);
-}
-bool  PythonQtShell_QSqlRelationalTableModel::dropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent)
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "dropMimeData");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"bool" , "const QMimeData*" , "Qt::DropAction" , "int" , "int" , "const QModelIndex&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(6, argumentList);
-      bool returnValue;
-    void* args[6] = {NULL, (void*)&data, (void*)&action, (void*)&row, (void*)&column, (void*)&parent};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("dropMimeData", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlRelationalTableModel::dropMimeData(data, action, row, column, parent);
-}
-bool  PythonQtShell_QSqlRelationalTableModel::removeRows(int  row, int  count, const QModelIndex&  parent)
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "removeRows");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"bool" , "int" , "int" , "const QModelIndex&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
-      bool returnValue;
-    void* args[4] = {NULL, (void*)&row, (void*)&count, (void*)&parent};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("removeRows", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlRelationalTableModel::removeRows(row, count, parent);
-}
-void PythonQtShell_QSqlRelationalTableModel::revert()
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "revert");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={""};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
-    void* args[1] = {NULL};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  }
-}
-  QSqlRelationalTableModel::revert();
-}
-int  PythonQtShell_QSqlRelationalTableModel::rowCount(const QModelIndex&  parent) const
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "rowCount");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"int" , "const QModelIndex&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      int returnValue;
-    void* args[2] = {NULL, (void*)&parent};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("rowCount", methodInfo, result);
-        } else {
-          returnValue = *((int*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlRelationalTableModel::rowCount(parent);
-}
-bool  PythonQtShell_QSqlRelationalTableModel::submit()
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "submit");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"bool"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
-      bool returnValue;
-    void* args[1] = {NULL};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("submit", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlRelationalTableModel::submit();
-}
-Qt::ItemFlags  PythonQtShell_QSqlRelationalTableModel::flags(const QModelIndex&  index) const
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "flags");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"Qt::ItemFlags" , "const QModelIndex&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      Qt::ItemFlags returnValue;
-    void* args[2] = {NULL, (void*)&index};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("flags", methodInfo, result);
-        } else {
-          returnValue = *((Qt::ItemFlags*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlRelationalTableModel::flags(index);
-}
-bool  PythonQtShell_QSqlRelationalTableModel::deleteRowFromTable(int  row)
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "deleteRowFromTable");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"bool" , "int"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      bool returnValue;
     void* args[2] = {NULL, (void*)&row};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("deleteRowFromTable", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlRelationalTableModel::deleteRowFromTable(row);
-}
-void PythonQtShell_QSqlRelationalTableModel::setSort(int  column, Qt::SortOrder  order)
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setSort");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"" , "int" , "Qt::SortOrder"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
-    void* args[3] = {NULL, (void*)&column, (void*)&order};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
   }
 }
-  QSqlRelationalTableModel::setSort(column, order);
-}
-void PythonQtShell_QSqlRelationalTableModel::queryChange()
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "queryChange");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={""};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
-    void* args[1] = {NULL};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  }
-}
-  QSqlRelationalTableModel::queryChange();
-}
-bool  PythonQtShell_QSqlRelationalTableModel::canFetchMore(const QModelIndex&  parent) const
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "canFetchMore");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"bool" , "const QModelIndex&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      bool returnValue;
-    void* args[2] = {NULL, (void*)&parent};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("canFetchMore", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlRelationalTableModel::canFetchMore(parent);
-}
-bool  PythonQtShell_QSqlRelationalTableModel::insertColumns(int  column, int  count, const QModelIndex&  parent)
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "insertColumns");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"bool" , "int" , "int" , "const QModelIndex&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
-      bool returnValue;
-    void* args[4] = {NULL, (void*)&column, (void*)&count, (void*)&parent};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("insertColumns", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlRelationalTableModel::insertColumns(column, count, parent);
-}
-bool  PythonQtShell_QSqlRelationalTableModel::setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role)
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setHeaderData");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"bool" , "int" , "Qt::Orientation" , "const QVariant&" , "int"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(5, argumentList);
-      bool returnValue;
-    void* args[5] = {NULL, (void*)&section, (void*)&orientation, (void*)&value, (void*)&role};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("setHeaderData", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlRelationalTableModel::setHeaderData(section, orientation, value, role);
-}
-int  PythonQtShell_QSqlRelationalTableModel::columnCount(const QModelIndex&  parent) const
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "columnCount");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"int" , "const QModelIndex&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      int returnValue;
-    void* args[2] = {NULL, (void*)&parent};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("columnCount", methodInfo, result);
-        } else {
-          returnValue = *((int*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlRelationalTableModel::columnCount(parent);
-}
-void PythonQtShell_QSqlRelationalTableModel::fetchMore(const QModelIndex&  parent)
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "fetchMore");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"" , "const QModelIndex&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&parent};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  }
-}
-  QSqlRelationalTableModel::fetchMore(parent);
-}
-QModelIndex  PythonQtShell_QSqlRelationalTableModel::index(int  row, int  column, const QModelIndex&  parent) const
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "index");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"QModelIndex" , "int" , "int" , "const QModelIndex&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
-      QModelIndex returnValue;
-    void* args[4] = {NULL, (void*)&row, (void*)&column, (void*)&parent};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("index", methodInfo, result);
-        } else {
-          returnValue = *((QModelIndex*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlRelationalTableModel::index(row, column, parent);
-}
-QSize  PythonQtShell_QSqlRelationalTableModel::span(const QModelIndex&  index) const
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "span");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"QSize" , "const QModelIndex&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      QSize returnValue;
-    void* args[2] = {NULL, (void*)&index};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("span", methodInfo, result);
-        } else {
-          returnValue = *((QSize*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlRelationalTableModel::span(index);
-}
-QList<QModelIndex >  PythonQtShell_QSqlRelationalTableModel::match(const QModelIndex&  start, int  role, const QVariant&  value, int  hits, Qt::MatchFlags  flags) const
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "match");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"QList<QModelIndex >" , "const QModelIndex&" , "int" , "const QVariant&" , "int" , "Qt::MatchFlags"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(6, argumentList);
-      QList<QModelIndex > returnValue;
-    void* args[6] = {NULL, (void*)&start, (void*)&role, (void*)&value, (void*)&hits, (void*)&flags};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("match", methodInfo, result);
-        } else {
-          returnValue = *((QList<QModelIndex >*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlRelationalTableModel::match(start, role, value, hits, flags);
-}
-QStringList  PythonQtShell_QSqlRelationalTableModel::mimeTypes() const
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "mimeTypes");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"QStringList"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
-      QStringList returnValue;
-    void* args[1] = {NULL};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("mimeTypes", methodInfo, result);
-        } else {
-          returnValue = *((QStringList*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlRelationalTableModel::mimeTypes();
-}
-bool  PythonQtShell_QSqlRelationalTableModel::setItemData(const QModelIndex&  index, const QMap<int , QVariant >&  roles)
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setItemData");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"bool" , "const QModelIndex&" , "const QMap<int , QVariant >&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
-      bool returnValue;
-    void* args[3] = {NULL, (void*)&index, (void*)&roles};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("setItemData", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlRelationalTableModel::setItemData(index, roles);
-}
-QModelIndex  PythonQtShell_QSqlRelationalTableModel::buddy(const QModelIndex&  index) const
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "buddy");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"QModelIndex" , "const QModelIndex&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      QModelIndex returnValue;
-    void* args[2] = {NULL, (void*)&index};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("buddy", methodInfo, result);
-        } else {
-          returnValue = *((QModelIndex*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlRelationalTableModel::buddy(index);
-}
-QMimeData*  PythonQtShell_QSqlRelationalTableModel::mimeData(const QList<QModelIndex >&  indexes) const
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "mimeData");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"QMimeData*" , "const QList<QModelIndex >&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      QMimeData* returnValue;
-    void* args[2] = {NULL, (void*)&indexes};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("mimeData", methodInfo, result);
-        } else {
-          returnValue = *((QMimeData**)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlRelationalTableModel::mimeData(indexes);
-}
-Qt::DropActions  PythonQtShell_QSqlRelationalTableModel::supportedDropActions() const
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "supportedDropActions");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"Qt::DropActions"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
-      Qt::DropActions returnValue;
-    void* args[1] = {NULL};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("supportedDropActions", methodInfo, result);
-        } else {
-          returnValue = *((Qt::DropActions*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlRelationalTableModel::supportedDropActions();
-}
-QMap<int , QVariant >  PythonQtShell_QSqlRelationalTableModel::itemData(const QModelIndex&  index) const
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "itemData");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"QMap<int , QVariant >" , "const QModelIndex&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      QMap<int , QVariant > returnValue;
-    void* args[2] = {NULL, (void*)&index};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("itemData", methodInfo, result);
-        } else {
-          returnValue = *((QMap<int , QVariant >*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlRelationalTableModel::itemData(index);
-}
-void PythonQtShell_QSqlRelationalTableModel::childEvent(QChildEvent*  arg__1)
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "childEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"" , "QChildEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  }
-}
-  QSqlRelationalTableModel::childEvent(arg__1);
-}
-void PythonQtShell_QSqlRelationalTableModel::timerEvent(QTimerEvent*  arg__1)
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "timerEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"" , "QTimerEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  }
-}
-  QSqlRelationalTableModel::timerEvent(arg__1);
-}
-void PythonQtShell_QSqlRelationalTableModel::customEvent(QEvent*  arg__1)
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "customEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  }
-}
-  QSqlRelationalTableModel::customEvent(arg__1);
-}
-bool  PythonQtShell_QSqlRelationalTableModel::event(QEvent*  arg__1)
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "event");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"bool" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      bool returnValue;
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlRelationalTableModel::event(arg__1);
+  QSqlRelationalTableModel::revertRow(row);
 }
 bool  PythonQtShell_QSqlRelationalTableModel::eventFilter(QObject*  arg__1, QEvent*  arg__2)
 {
@@ -3692,6 +2912,792 @@ if (_wrapper) {
 }
   return QSqlRelationalTableModel::eventFilter(arg__1, arg__2);
 }
+Qt::ItemFlags  PythonQtShell_QSqlRelationalTableModel::flags(const QModelIndex&  index) const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "flags");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"Qt::ItemFlags" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      Qt::ItemFlags returnValue;
+    void* args[2] = {NULL, (void*)&index};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("flags", methodInfo, result);
+        } else {
+          returnValue = *((Qt::ItemFlags*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlRelationalTableModel::flags(index);
+}
+QVariant  PythonQtShell_QSqlRelationalTableModel::headerData(int  section, Qt::Orientation  orientation, int  role) const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "headerData");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"QVariant" , "int" , "Qt::Orientation" , "int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
+      QVariant returnValue;
+    void* args[4] = {NULL, (void*)&section, (void*)&orientation, (void*)&role};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("headerData", methodInfo, result);
+        } else {
+          returnValue = *((QVariant*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlRelationalTableModel::headerData(section, orientation, role);
+}
+void PythonQtShell_QSqlRelationalTableModel::setEditStrategy(QSqlTableModel::EditStrategy  strategy)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setEditStrategy");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"" , "QSqlTableModel::EditStrategy"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+    void* args[2] = {NULL, (void*)&strategy};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QSqlRelationalTableModel::setEditStrategy(strategy);
+}
+bool  PythonQtShell_QSqlRelationalTableModel::submit()
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "submit");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"bool"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      bool returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("submit", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlRelationalTableModel::submit();
+}
+bool  PythonQtShell_QSqlRelationalTableModel::removeRows(int  row, int  count, const QModelIndex&  parent)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "removeRows");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"bool" , "int" , "int" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
+      bool returnValue;
+    void* args[4] = {NULL, (void*)&row, (void*)&count, (void*)&parent};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("removeRows", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlRelationalTableModel::removeRows(row, count, parent);
+}
+void PythonQtShell_QSqlRelationalTableModel::sort(int  column, Qt::SortOrder  order)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "sort");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"" , "int" , "Qt::SortOrder"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
+    void* args[3] = {NULL, (void*)&column, (void*)&order};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QSqlRelationalTableModel::sort(column, order);
+}
+bool  PythonQtShell_QSqlRelationalTableModel::deleteRowFromTable(int  row)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "deleteRowFromTable");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"bool" , "int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      bool returnValue;
+    void* args[2] = {NULL, (void*)&row};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("deleteRowFromTable", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlRelationalTableModel::deleteRowFromTable(row);
+}
+int  PythonQtShell_QSqlRelationalTableModel::rowCount(const QModelIndex&  parent) const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "rowCount");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"int" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      int returnValue;
+    void* args[2] = {NULL, (void*)&parent};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("rowCount", methodInfo, result);
+        } else {
+          returnValue = *((int*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlRelationalTableModel::rowCount(parent);
+}
+bool  PythonQtShell_QSqlRelationalTableModel::insertRows(int  row, int  count, const QModelIndex&  parent)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "insertRows");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"bool" , "int" , "int" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
+      bool returnValue;
+    void* args[4] = {NULL, (void*)&row, (void*)&count, (void*)&parent};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("insertRows", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlRelationalTableModel::insertRows(row, count, parent);
+}
+void PythonQtShell_QSqlRelationalTableModel::setFilter(const QString&  filter)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setFilter");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"" , "const QString&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+    void* args[2] = {NULL, (void*)&filter};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QSqlRelationalTableModel::setFilter(filter);
+}
+void PythonQtShell_QSqlRelationalTableModel::revert()
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "revert");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={""};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QSqlRelationalTableModel::revert();
+}
+void PythonQtShell_QSqlRelationalTableModel::setSort(int  column, Qt::SortOrder  order)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setSort");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"" , "int" , "Qt::SortOrder"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
+    void* args[3] = {NULL, (void*)&column, (void*)&order};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QSqlRelationalTableModel::setSort(column, order);
+}
+bool  PythonQtShell_QSqlRelationalTableModel::insertColumns(int  column, int  count, const QModelIndex&  parent)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "insertColumns");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"bool" , "int" , "int" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
+      bool returnValue;
+    void* args[4] = {NULL, (void*)&column, (void*)&count, (void*)&parent};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("insertColumns", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlRelationalTableModel::insertColumns(column, count, parent);
+}
+void PythonQtShell_QSqlRelationalTableModel::fetchMore(const QModelIndex&  parent)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "fetchMore");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+    void* args[2] = {NULL, (void*)&parent};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QSqlRelationalTableModel::fetchMore(parent);
+}
+bool  PythonQtShell_QSqlRelationalTableModel::canFetchMore(const QModelIndex&  parent) const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "canFetchMore");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"bool" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      bool returnValue;
+    void* args[2] = {NULL, (void*)&parent};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("canFetchMore", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlRelationalTableModel::canFetchMore(parent);
+}
+int  PythonQtShell_QSqlRelationalTableModel::columnCount(const QModelIndex&  parent) const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "columnCount");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"int" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      int returnValue;
+    void* args[2] = {NULL, (void*)&parent};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("columnCount", methodInfo, result);
+        } else {
+          returnValue = *((int*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlRelationalTableModel::columnCount(parent);
+}
+void PythonQtShell_QSqlRelationalTableModel::queryChange()
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "queryChange");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={""};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QSqlRelationalTableModel::queryChange();
+}
+bool  PythonQtShell_QSqlRelationalTableModel::setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setHeaderData");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"bool" , "int" , "Qt::Orientation" , "const QVariant&" , "int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(5, argumentList);
+      bool returnValue;
+    void* args[5] = {NULL, (void*)&section, (void*)&orientation, (void*)&value, (void*)&role};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("setHeaderData", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlRelationalTableModel::setHeaderData(section, orientation, value, role);
+}
+QModelIndex  PythonQtShell_QSqlRelationalTableModel::index(int  row, int  column, const QModelIndex&  parent) const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "index");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"QModelIndex" , "int" , "int" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
+      QModelIndex returnValue;
+    void* args[4] = {NULL, (void*)&row, (void*)&column, (void*)&parent};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("index", methodInfo, result);
+        } else {
+          returnValue = *((QModelIndex*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlRelationalTableModel::index(row, column, parent);
+}
+bool  PythonQtShell_QSqlRelationalTableModel::dropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "dropMimeData");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"bool" , "const QMimeData*" , "Qt::DropAction" , "int" , "int" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(6, argumentList);
+      bool returnValue;
+    void* args[6] = {NULL, (void*)&data, (void*)&action, (void*)&row, (void*)&column, (void*)&parent};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("dropMimeData", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlRelationalTableModel::dropMimeData(data, action, row, column, parent);
+}
+bool  PythonQtShell_QSqlRelationalTableModel::setItemData(const QModelIndex&  index, const QMap<int , QVariant >&  roles)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setItemData");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"bool" , "const QModelIndex&" , "const QMap<int , QVariant >&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
+      bool returnValue;
+    void* args[3] = {NULL, (void*)&index, (void*)&roles};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("setItemData", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlRelationalTableModel::setItemData(index, roles);
+}
+Qt::DropActions  PythonQtShell_QSqlRelationalTableModel::supportedDropActions() const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "supportedDropActions");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"Qt::DropActions"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      Qt::DropActions returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("supportedDropActions", methodInfo, result);
+        } else {
+          returnValue = *((Qt::DropActions*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlRelationalTableModel::supportedDropActions();
+}
+QStringList  PythonQtShell_QSqlRelationalTableModel::mimeTypes() const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "mimeTypes");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"QStringList"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      QStringList returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("mimeTypes", methodInfo, result);
+        } else {
+          returnValue = *((QStringList*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlRelationalTableModel::mimeTypes();
+}
+QMap<int , QVariant >  PythonQtShell_QSqlRelationalTableModel::itemData(const QModelIndex&  index) const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "itemData");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"QMap<int , QVariant >" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      QMap<int , QVariant > returnValue;
+    void* args[2] = {NULL, (void*)&index};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("itemData", methodInfo, result);
+        } else {
+          returnValue = *((QMap<int , QVariant >*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlRelationalTableModel::itemData(index);
+}
+QList<QModelIndex >  PythonQtShell_QSqlRelationalTableModel::match(const QModelIndex&  start, int  role, const QVariant&  value, int  hits, Qt::MatchFlags  flags) const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "match");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"QList<QModelIndex >" , "const QModelIndex&" , "int" , "const QVariant&" , "int" , "Qt::MatchFlags"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(6, argumentList);
+      QList<QModelIndex > returnValue;
+    void* args[6] = {NULL, (void*)&start, (void*)&role, (void*)&value, (void*)&hits, (void*)&flags};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("match", methodInfo, result);
+        } else {
+          returnValue = *((QList<QModelIndex >*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlRelationalTableModel::match(start, role, value, hits, flags);
+}
+QMimeData*  PythonQtShell_QSqlRelationalTableModel::mimeData(const QList<QModelIndex >&  indexes) const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "mimeData");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"QMimeData*" , "const QList<QModelIndex >&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      QMimeData* returnValue;
+    void* args[2] = {NULL, (void*)&indexes};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("mimeData", methodInfo, result);
+        } else {
+          returnValue = *((QMimeData**)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlRelationalTableModel::mimeData(indexes);
+}
+QModelIndex  PythonQtShell_QSqlRelationalTableModel::buddy(const QModelIndex&  index) const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "buddy");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"QModelIndex" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      QModelIndex returnValue;
+    void* args[2] = {NULL, (void*)&index};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("buddy", methodInfo, result);
+        } else {
+          returnValue = *((QModelIndex*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlRelationalTableModel::buddy(index);
+}
+QSize  PythonQtShell_QSqlRelationalTableModel::span(const QModelIndex&  index) const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "span");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"QSize" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      QSize returnValue;
+    void* args[2] = {NULL, (void*)&index};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("span", methodInfo, result);
+        } else {
+          returnValue = *((QSize*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlRelationalTableModel::span(index);
+}
+bool  PythonQtShell_QSqlRelationalTableModel::event(QEvent*  arg__1)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "event");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"bool" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      bool returnValue;
+    void* args[2] = {NULL, (void*)&arg__1};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlRelationalTableModel::event(arg__1);
+}
+void PythonQtShell_QSqlRelationalTableModel::childEvent(QChildEvent*  arg__1)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "childEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"" , "QChildEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+    void* args[2] = {NULL, (void*)&arg__1};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QSqlRelationalTableModel::childEvent(arg__1);
+}
+void PythonQtShell_QSqlRelationalTableModel::customEvent(QEvent*  arg__1)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "customEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+    void* args[2] = {NULL, (void*)&arg__1};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QSqlRelationalTableModel::customEvent(arg__1);
+}
+void PythonQtShell_QSqlRelationalTableModel::timerEvent(QTimerEvent*  arg__1)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "timerEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"" , "QTimerEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+    void* args[2] = {NULL, (void*)&arg__1};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QSqlRelationalTableModel::timerEvent(arg__1);
+}
 QSqlRelationalTableModel* PythonQtWrapper_QSqlRelationalTableModel::new_QSqlRelationalTableModel(QObject*  parent, QSqlDatabase  db)
 { 
 return new PythonQtShell_QSqlRelationalTableModel(parent, db); }
@@ -3706,6 +3712,11 @@ bool  PythonQtWrapper_QSqlRelationalTableModel::setData(QSqlRelationalTableModel
   return ( ((PythonQtPublicPromoter_QSqlRelationalTableModel*)theWrappedObject)->promoted_setData(item, value, role));
 }
 
+QSqlRelation  PythonQtWrapper_QSqlRelationalTableModel::relation(QSqlRelationalTableModel* theWrappedObject, int  column) const
+{
+  return ( theWrappedObject->relation(column));
+}
+
 bool  PythonQtWrapper_QSqlRelationalTableModel::insertRowIntoTable(QSqlRelationalTableModel* theWrappedObject, const QSqlRecord&  values)
 {
   return ( ((PythonQtPublicPromoter_QSqlRelationalTableModel*)theWrappedObject)->promoted_insertRowIntoTable(values));
@@ -3714,11 +3725,6 @@ bool  PythonQtWrapper_QSqlRelationalTableModel::insertRowIntoTable(QSqlRelationa
 void PythonQtWrapper_QSqlRelationalTableModel::setTable(QSqlRelationalTableModel* theWrappedObject, const QString&  tableName)
 {
   ( ((PythonQtPublicPromoter_QSqlRelationalTableModel*)theWrappedObject)->promoted_setTable(tableName));
-}
-
-QSqlRelation  PythonQtWrapper_QSqlRelationalTableModel::relation(QSqlRelationalTableModel* theWrappedObject, int  column) const
-{
-  return ( theWrappedObject->relation(column));
 }
 
 bool  PythonQtWrapper_QSqlRelationalTableModel::removeColumns(QSqlRelationalTableModel* theWrappedObject, int  column, int  count, const QModelIndex&  parent)
@@ -3736,9 +3742,9 @@ bool  PythonQtWrapper_QSqlRelationalTableModel::updateRowInTable(QSqlRelationalT
   return ( ((PythonQtPublicPromoter_QSqlRelationalTableModel*)theWrappedObject)->promoted_updateRowInTable(row, values));
 }
 
-void PythonQtWrapper_QSqlRelationalTableModel::clear(QSqlRelationalTableModel* theWrappedObject)
+QString  PythonQtWrapper_QSqlRelationalTableModel::orderByClause(QSqlRelationalTableModel* theWrappedObject) const
 {
-  ( ((PythonQtPublicPromoter_QSqlRelationalTableModel*)theWrappedObject)->promoted_clear());
+  return ( ((PythonQtPublicPromoter_QSqlRelationalTableModel*)theWrappedObject)->promoted_orderByClause());
 }
 
 QString  PythonQtWrapper_QSqlRelationalTableModel::selectStatement(QSqlRelationalTableModel* theWrappedObject) const
@@ -3746,9 +3752,9 @@ QString  PythonQtWrapper_QSqlRelationalTableModel::selectStatement(QSqlRelationa
   return ( ((PythonQtPublicPromoter_QSqlRelationalTableModel*)theWrappedObject)->promoted_selectStatement());
 }
 
-QString  PythonQtWrapper_QSqlRelationalTableModel::orderByClause(QSqlRelationalTableModel* theWrappedObject) const
+void PythonQtWrapper_QSqlRelationalTableModel::clear(QSqlRelationalTableModel* theWrappedObject)
 {
-  return ( ((PythonQtPublicPromoter_QSqlRelationalTableModel*)theWrappedObject)->promoted_orderByClause());
+  ( ((PythonQtPublicPromoter_QSqlRelationalTableModel*)theWrappedObject)->promoted_clear());
 }
 
 bool  PythonQtWrapper_QSqlRelationalTableModel::select(QSqlRelationalTableModel* theWrappedObject)
@@ -3836,6 +3842,34 @@ if (_wrapper) {
 }
   return QSqlResult::savePrepare(sqlquery);
 }
+bool  PythonQtShell_QSqlResult::fetchFirst()
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "fetchFirst");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"bool"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      bool returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("fetchFirst", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return bool();
+}
 bool  PythonQtShell_QSqlResult::fetchPrevious()
 {
 if (_wrapper) {
@@ -3864,35 +3898,6 @@ if (_wrapper) {
 }
   return QSqlResult::fetchPrevious();
 }
-bool  PythonQtShell_QSqlResult::fetchFirst()
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "fetchFirst");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"bool"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
-      bool returnValue;
-    void* args[1] = {NULL};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("fetchFirst", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  bool result;
-return result;
-}
 void PythonQtShell_QSqlResult::virtual_hook(int  id, void*  data)
 {
 if (_wrapper) {
@@ -3909,6 +3914,34 @@ if (_wrapper) {
   }
 }
   QSqlResult::virtual_hook(id, data);
+}
+bool  PythonQtShell_QSqlResult::exec()
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "exec");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"bool"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      bool returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("exec", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlResult::exec();
 }
 QVariant  PythonQtShell_QSqlResult::data(int  i)
 {
@@ -3936,8 +3969,7 @@ if (_wrapper) {
     return returnValue;
   }
 }
-  QVariant result;
-return result;
+  return QVariant();
 }
 void PythonQtShell_QSqlResult::setAt(int  at)
 {
@@ -3982,8 +4014,7 @@ if (_wrapper) {
     return returnValue;
   }
 }
-  bool result;
-return result;
+  return bool();
 }
 bool  PythonQtShell_QSqlResult::prepare(const QString&  query)
 {
@@ -4039,8 +4070,7 @@ if (_wrapper) {
     return returnValue;
   }
 }
-  int result;
-return result;
+  return int();
 }
 QVariant  PythonQtShell_QSqlResult::lastInsertId() const
 {
@@ -4158,8 +4188,7 @@ if (_wrapper) {
     return returnValue;
   }
 }
-  int result;
-return result;
+  return int();
 }
 bool  PythonQtShell_QSqlResult::fetchNext()
 {
@@ -4188,34 +4217,6 @@ if (_wrapper) {
   }
 }
   return QSqlResult::fetchNext();
-}
-bool  PythonQtShell_QSqlResult::exec()
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "exec");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"bool"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
-      bool returnValue;
-    void* args[1] = {NULL};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("exec", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlResult::exec();
 }
 void PythonQtShell_QSqlResult::setForwardOnly(bool  forward)
 {
@@ -4260,8 +4261,7 @@ if (_wrapper) {
     return returnValue;
   }
 }
-  bool result;
-return result;
+  return bool();
 }
 bool  PythonQtShell_QSqlResult::isNull(int  i)
 {
@@ -4289,8 +4289,7 @@ if (_wrapper) {
     return returnValue;
   }
 }
-  bool result;
-return result;
+  return bool();
 }
 void PythonQtShell_QSqlResult::setLastError(const QSqlError&  e)
 {
@@ -4308,23 +4307,6 @@ if (_wrapper) {
   }
 }
   QSqlResult::setLastError(e);
-}
-void PythonQtShell_QSqlResult::setQuery(const QString&  query)
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setQuery");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"" , "const QString&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&query};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  }
-}
-  QSqlResult::setQuery(query);
 }
 bool  PythonQtShell_QSqlResult::fetchLast()
 {
@@ -4352,8 +4334,24 @@ if (_wrapper) {
     return returnValue;
   }
 }
-  bool result;
-return result;
+  return bool();
+}
+void PythonQtShell_QSqlResult::setQuery(const QString&  query)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setQuery");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"" , "const QString&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+    void* args[2] = {NULL, (void*)&query};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QSqlResult::setQuery(query);
 }
 void PythonQtShell_QSqlResult::setActive(bool  a)
 {
@@ -4392,6 +4390,11 @@ bool  PythonQtWrapper_QSqlResult::fetchPrevious(QSqlResult* theWrappedObject)
   return ( ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_fetchPrevious());
 }
 
+bool  PythonQtWrapper_QSqlResult::exec(QSqlResult* theWrappedObject)
+{
+  return ( ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_exec());
+}
+
 void PythonQtWrapper_QSqlResult::setAt(QSqlResult* theWrappedObject, int  at)
 {
   ( ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_setAt(at));
@@ -4425,11 +4428,6 @@ QSqlRecord  PythonQtWrapper_QSqlResult::record(QSqlResult* theWrappedObject) con
 bool  PythonQtWrapper_QSqlResult::fetchNext(QSqlResult* theWrappedObject)
 {
   return ( ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_fetchNext());
-}
-
-bool  PythonQtWrapper_QSqlResult::exec(QSqlResult* theWrappedObject)
-{
-  return ( ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_exec());
 }
 
 void PythonQtWrapper_QSqlResult::setForwardOnly(QSqlResult* theWrappedObject, bool  forward)
@@ -4533,34 +4531,6 @@ if (_wrapper) {
 }
   QSqlTableModel::setEditStrategy(strategy);
 }
-Qt::ItemFlags  PythonQtShell_QSqlTableModel::flags(const QModelIndex&  index) const
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "flags");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"Qt::ItemFlags" , "const QModelIndex&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      Qt::ItemFlags returnValue;
-    void* args[2] = {NULL, (void*)&index};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("flags", methodInfo, result);
-        } else {
-          returnValue = *((Qt::ItemFlags*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlTableModel::flags(index);
-}
 QVariant  PythonQtShell_QSqlTableModel::data(const QModelIndex&  idx, int  role) const
 {
 if (_wrapper) {
@@ -4588,23 +4558,6 @@ if (_wrapper) {
   }
 }
   return QSqlTableModel::data(idx, role);
-}
-void PythonQtShell_QSqlTableModel::setTable(const QString&  tableName)
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setTable");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"" , "const QString&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&tableName};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  }
-}
-  QSqlTableModel::setTable(tableName);
 }
 int  PythonQtShell_QSqlTableModel::rowCount(const QModelIndex&  parent) const
 {
@@ -4651,22 +4604,56 @@ if (_wrapper) {
 }
   QSqlTableModel::revertRow(row);
 }
-bool  PythonQtShell_QSqlTableModel::deleteRowFromTable(int  row)
+void PythonQtShell_QSqlTableModel::setTable(const QString&  tableName)
 {
 if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "deleteRowFromTable");
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setTable");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"bool" , "int"};
+    static const char* argumentList[] ={"" , "const QString&"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+    void* args[2] = {NULL, (void*)&tableName};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QSqlTableModel::setTable(tableName);
+}
+void PythonQtShell_QSqlTableModel::sort(int  column, Qt::SortOrder  order)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "sort");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"" , "int" , "Qt::SortOrder"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
+    void* args[3] = {NULL, (void*)&column, (void*)&order};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QSqlTableModel::sort(column, order);
+}
+bool  PythonQtShell_QSqlTableModel::submit()
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "submit");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"bool"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
       bool returnValue;
-    void* args[2] = {NULL, (void*)&row};
+    void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
         if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("deleteRowFromTable", methodInfo, result);
+          PythonQt::priv()->handleVirtualOverloadReturnError("submit", methodInfo, result);
         } else {
           returnValue = *((bool*)args[0]);
         }
@@ -4677,7 +4664,7 @@ if (_wrapper) {
     return returnValue;
   }
 }
-  return QSqlTableModel::deleteRowFromTable(row);
+  return QSqlTableModel::submit();
 }
 bool  PythonQtShell_QSqlTableModel::insertRowIntoTable(const QSqlRecord&  values)
 {
@@ -4735,39 +4722,22 @@ if (_wrapper) {
 }
   return QSqlTableModel::select();
 }
-void PythonQtShell_QSqlTableModel::sort(int  column, Qt::SortOrder  order)
+bool  PythonQtShell_QSqlTableModel::deleteRowFromTable(int  row)
 {
 if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "sort");
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "deleteRowFromTable");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"" , "int" , "Qt::SortOrder"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
-    void* args[3] = {NULL, (void*)&column, (void*)&order};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  }
-}
-  QSqlTableModel::sort(column, order);
-}
-bool  PythonQtShell_QSqlTableModel::submit()
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "submit");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"bool"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+    static const char* argumentList[] ={"bool" , "int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue;
-    void* args[1] = {NULL};
+    void* args[2] = {NULL, (void*)&row};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
         if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("submit", methodInfo, result);
+          PythonQt::priv()->handleVirtualOverloadReturnError("deleteRowFromTable", methodInfo, result);
         } else {
           returnValue = *((bool*)args[0]);
         }
@@ -4778,7 +4748,7 @@ if (_wrapper) {
     return returnValue;
   }
 }
-  return QSqlTableModel::submit();
+  return QSqlTableModel::deleteRowFromTable(row);
 }
 QString  PythonQtShell_QSqlTableModel::selectStatement() const
 {
@@ -4808,6 +4778,34 @@ if (_wrapper) {
 }
   return QSqlTableModel::selectStatement();
 }
+bool  PythonQtShell_QSqlTableModel::removeColumns(int  column, int  count, const QModelIndex&  parent)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "removeColumns");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"bool" , "int" , "int" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
+      bool returnValue;
+    void* args[4] = {NULL, (void*)&column, (void*)&count, (void*)&parent};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("removeColumns", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlTableModel::removeColumns(column, count, parent);
+}
 bool  PythonQtShell_QSqlTableModel::setData(const QModelIndex&  index, const QVariant&  value, int  role)
 {
 if (_wrapper) {
@@ -4836,24 +4834,24 @@ if (_wrapper) {
 }
   return QSqlTableModel::setData(index, value, role);
 }
-bool  PythonQtShell_QSqlTableModel::removeColumns(int  column, int  count, const QModelIndex&  parent)
+Qt::ItemFlags  PythonQtShell_QSqlTableModel::flags(const QModelIndex&  index) const
 {
 if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "removeColumns");
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "flags");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"bool" , "int" , "int" , "const QModelIndex&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
-      bool returnValue;
-    void* args[4] = {NULL, (void*)&column, (void*)&count, (void*)&parent};
+    static const char* argumentList[] ={"Qt::ItemFlags" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      Qt::ItemFlags returnValue;
+    void* args[2] = {NULL, (void*)&index};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
         if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("removeColumns", methodInfo, result);
+          PythonQt::priv()->handleVirtualOverloadReturnError("flags", methodInfo, result);
         } else {
-          returnValue = *((bool*)args[0]);
+          returnValue = *((Qt::ItemFlags*)args[0]);
         }
       }
     }
@@ -4862,7 +4860,7 @@ if (_wrapper) {
     return returnValue;
   }
 }
-  return QSqlTableModel::removeColumns(column, count, parent);
+  return QSqlTableModel::flags(index);
 }
 void PythonQtShell_QSqlTableModel::setFilter(const QString&  filter)
 {
@@ -5010,106 +5008,22 @@ if (_wrapper) {
 }
   return QSqlTableModel::updateRowInTable(row, values);
 }
-QModelIndex  PythonQtShell_QSqlTableModel::index(int  row, int  column, const QModelIndex&  parent) const
+void PythonQtShell_QSqlTableModel::fetchMore(const QModelIndex&  parent)
 {
 if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "index");
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "fetchMore");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"QModelIndex" , "int" , "int" , "const QModelIndex&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
-      QModelIndex returnValue;
-    void* args[4] = {NULL, (void*)&row, (void*)&column, (void*)&parent};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("index", methodInfo, result);
-        } else {
-          returnValue = *((QModelIndex*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlTableModel::index(row, column, parent);
-}
-QList<QModelIndex >  PythonQtShell_QSqlTableModel::match(const QModelIndex&  start, int  role, const QVariant&  value, int  hits, Qt::MatchFlags  flags) const
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "match");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"QList<QModelIndex >" , "const QModelIndex&" , "int" , "const QVariant&" , "int" , "Qt::MatchFlags"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(6, argumentList);
-      QList<QModelIndex > returnValue;
-    void* args[6] = {NULL, (void*)&start, (void*)&role, (void*)&value, (void*)&hits, (void*)&flags};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("match", methodInfo, result);
-        } else {
-          returnValue = *((QList<QModelIndex >*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlTableModel::match(start, role, value, hits, flags);
-}
-void PythonQtShell_QSqlTableModel::queryChange()
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "queryChange");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={""};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
-    void* args[1] = {NULL};
+    static const char* argumentList[] ={"" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+    void* args[2] = {NULL, (void*)&parent};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
   }
 }
-  QSqlTableModel::queryChange();
-}
-bool  PythonQtShell_QSqlTableModel::canFetchMore(const QModelIndex&  parent) const
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "canFetchMore");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"bool" , "const QModelIndex&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      bool returnValue;
-    void* args[2] = {NULL, (void*)&parent};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("canFetchMore", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlTableModel::canFetchMore(parent);
+  QSqlTableModel::fetchMore(parent);
 }
 bool  PythonQtShell_QSqlTableModel::insertColumns(int  column, int  count, const QModelIndex&  parent)
 {
@@ -5139,22 +5053,22 @@ if (_wrapper) {
 }
   return QSqlTableModel::insertColumns(column, count, parent);
 }
-bool  PythonQtShell_QSqlTableModel::setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role)
+bool  PythonQtShell_QSqlTableModel::canFetchMore(const QModelIndex&  parent) const
 {
 if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setHeaderData");
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "canFetchMore");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"bool" , "int" , "Qt::Orientation" , "const QVariant&" , "int"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(5, argumentList);
+    static const char* argumentList[] ={"bool" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue;
-    void* args[5] = {NULL, (void*)&section, (void*)&orientation, (void*)&value, (void*)&role};
+    void* args[2] = {NULL, (void*)&parent};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
         if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("setHeaderData", methodInfo, result);
+          PythonQt::priv()->handleVirtualOverloadReturnError("canFetchMore", methodInfo, result);
         } else {
           returnValue = *((bool*)args[0]);
         }
@@ -5165,7 +5079,7 @@ if (_wrapper) {
     return returnValue;
   }
 }
-  return QSqlTableModel::setHeaderData(section, orientation, value, role);
+  return QSqlTableModel::canFetchMore(parent);
 }
 int  PythonQtShell_QSqlTableModel::columnCount(const QModelIndex&  parent) const
 {
@@ -5195,22 +5109,78 @@ if (_wrapper) {
 }
   return QSqlTableModel::columnCount(parent);
 }
-void PythonQtShell_QSqlTableModel::fetchMore(const QModelIndex&  parent)
+void PythonQtShell_QSqlTableModel::queryChange()
 {
 if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "fetchMore");
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "queryChange");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"" , "const QModelIndex&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&parent};
+    static const char* argumentList[] ={""};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+    void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
   }
 }
-  QSqlTableModel::fetchMore(parent);
+  QSqlTableModel::queryChange();
+}
+bool  PythonQtShell_QSqlTableModel::setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "setHeaderData");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"bool" , "int" , "Qt::Orientation" , "const QVariant&" , "int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(5, argumentList);
+      bool returnValue;
+    void* args[5] = {NULL, (void*)&section, (void*)&orientation, (void*)&value, (void*)&role};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("setHeaderData", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlTableModel::setHeaderData(section, orientation, value, role);
+}
+QModelIndex  PythonQtShell_QSqlTableModel::index(int  row, int  column, const QModelIndex&  parent) const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "index");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"QModelIndex" , "int" , "int" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
+      QModelIndex returnValue;
+    void* args[4] = {NULL, (void*)&row, (void*)&column, (void*)&parent};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("index", methodInfo, result);
+        } else {
+          returnValue = *((QModelIndex*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlTableModel::index(row, column, parent);
 }
 bool  PythonQtShell_QSqlTableModel::dropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent)
 {
@@ -5240,62 +5210,6 @@ if (_wrapper) {
 }
   return QSqlTableModel::dropMimeData(data, action, row, column, parent);
 }
-QSize  PythonQtShell_QSqlTableModel::span(const QModelIndex&  index) const
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "span");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"QSize" , "const QModelIndex&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      QSize returnValue;
-    void* args[2] = {NULL, (void*)&index};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("span", methodInfo, result);
-        } else {
-          returnValue = *((QSize*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlTableModel::span(index);
-}
-QStringList  PythonQtShell_QSqlTableModel::mimeTypes() const
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "mimeTypes");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"QStringList"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
-      QStringList returnValue;
-    void* args[1] = {NULL};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("mimeTypes", methodInfo, result);
-        } else {
-          returnValue = *((QStringList*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlTableModel::mimeTypes();
-}
 bool  PythonQtShell_QSqlTableModel::setItemData(const QModelIndex&  index, const QMap<int , QVariant >&  roles)
 {
 if (_wrapper) {
@@ -5323,62 +5237,6 @@ if (_wrapper) {
   }
 }
   return QSqlTableModel::setItemData(index, roles);
-}
-QModelIndex  PythonQtShell_QSqlTableModel::buddy(const QModelIndex&  index) const
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "buddy");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"QModelIndex" , "const QModelIndex&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      QModelIndex returnValue;
-    void* args[2] = {NULL, (void*)&index};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("buddy", methodInfo, result);
-        } else {
-          returnValue = *((QModelIndex*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlTableModel::buddy(index);
-}
-QMimeData*  PythonQtShell_QSqlTableModel::mimeData(const QList<QModelIndex >&  indexes) const
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "mimeData");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"QMimeData*" , "const QList<QModelIndex >&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      QMimeData* returnValue;
-    void* args[2] = {NULL, (void*)&indexes};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("mimeData", methodInfo, result);
-        } else {
-          returnValue = *((QMimeData**)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  }
-}
-  return QSqlTableModel::mimeData(indexes);
 }
 Qt::DropActions  PythonQtShell_QSqlTableModel::supportedDropActions() const
 {
@@ -5408,6 +5266,34 @@ if (_wrapper) {
 }
   return QSqlTableModel::supportedDropActions();
 }
+QStringList  PythonQtShell_QSqlTableModel::mimeTypes() const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "mimeTypes");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"QStringList"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      QStringList returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("mimeTypes", methodInfo, result);
+        } else {
+          returnValue = *((QStringList*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlTableModel::mimeTypes();
+}
 QMap<int , QVariant >  PythonQtShell_QSqlTableModel::itemData(const QModelIndex&  index) const
 {
 if (_wrapper) {
@@ -5436,75 +5322,24 @@ if (_wrapper) {
 }
   return QSqlTableModel::itemData(index);
 }
-void PythonQtShell_QSqlTableModel::childEvent(QChildEvent*  arg__1)
+QList<QModelIndex >  PythonQtShell_QSqlTableModel::match(const QModelIndex&  start, int  role, const QVariant&  value, int  hits, Qt::MatchFlags  flags) const
 {
 if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "childEvent");
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "match");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"" , "QChildEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  }
-}
-  QSqlTableModel::childEvent(arg__1);
-}
-void PythonQtShell_QSqlTableModel::timerEvent(QTimerEvent*  arg__1)
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "timerEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"" , "QTimerEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  }
-}
-  QSqlTableModel::timerEvent(arg__1);
-}
-void PythonQtShell_QSqlTableModel::customEvent(QEvent*  arg__1)
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "customEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  }
-}
-  QSqlTableModel::customEvent(arg__1);
-}
-bool  PythonQtShell_QSqlTableModel::event(QEvent*  arg__1)
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "event");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"bool" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      bool returnValue;
-    void* args[2] = {NULL, (void*)&arg__1};
+    static const char* argumentList[] ={"QList<QModelIndex >" , "const QModelIndex&" , "int" , "const QVariant&" , "int" , "Qt::MatchFlags"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(6, argumentList);
+      QList<QModelIndex > returnValue;
+    void* args[6] = {NULL, (void*)&start, (void*)&role, (void*)&value, (void*)&hits, (void*)&flags};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
         if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
+          PythonQt::priv()->handleVirtualOverloadReturnError("match", methodInfo, result);
         } else {
-          returnValue = *((bool*)args[0]);
+          returnValue = *((QList<QModelIndex >*)args[0]);
         }
       }
     }
@@ -5513,7 +5348,91 @@ if (_wrapper) {
     return returnValue;
   }
 }
-  return QSqlTableModel::event(arg__1);
+  return QSqlTableModel::match(start, role, value, hits, flags);
+}
+QMimeData*  PythonQtShell_QSqlTableModel::mimeData(const QList<QModelIndex >&  indexes) const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "mimeData");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"QMimeData*" , "const QList<QModelIndex >&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      QMimeData* returnValue;
+    void* args[2] = {NULL, (void*)&indexes};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("mimeData", methodInfo, result);
+        } else {
+          returnValue = *((QMimeData**)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlTableModel::mimeData(indexes);
+}
+QModelIndex  PythonQtShell_QSqlTableModel::buddy(const QModelIndex&  index) const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "buddy");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"QModelIndex" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      QModelIndex returnValue;
+    void* args[2] = {NULL, (void*)&index};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("buddy", methodInfo, result);
+        } else {
+          returnValue = *((QModelIndex*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlTableModel::buddy(index);
+}
+QSize  PythonQtShell_QSqlTableModel::span(const QModelIndex&  index) const
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "span");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"QSize" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      QSize returnValue;
+    void* args[2] = {NULL, (void*)&index};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("span", methodInfo, result);
+        } else {
+          returnValue = *((QSize*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlTableModel::span(index);
 }
 bool  PythonQtShell_QSqlTableModel::eventFilter(QObject*  arg__1, QEvent*  arg__2)
 {
@@ -5543,6 +5462,85 @@ if (_wrapper) {
 }
   return QSqlTableModel::eventFilter(arg__1, arg__2);
 }
+bool  PythonQtShell_QSqlTableModel::event(QEvent*  arg__1)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "event");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"bool" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      bool returnValue;
+    void* args[2] = {NULL, (void*)&arg__1};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QSqlTableModel::event(arg__1);
+}
+void PythonQtShell_QSqlTableModel::childEvent(QChildEvent*  arg__1)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "childEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"" , "QChildEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+    void* args[2] = {NULL, (void*)&arg__1};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QSqlTableModel::childEvent(arg__1);
+}
+void PythonQtShell_QSqlTableModel::customEvent(QEvent*  arg__1)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "customEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+    void* args[2] = {NULL, (void*)&arg__1};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QSqlTableModel::customEvent(arg__1);
+}
+void PythonQtShell_QSqlTableModel::timerEvent(QTimerEvent*  arg__1)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "timerEvent");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"" , "QTimerEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+    void* args[2] = {NULL, (void*)&arg__1};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  }
+}
+  QSqlTableModel::timerEvent(arg__1);
+}
 QSqlTableModel* PythonQtWrapper_QSqlTableModel::new_QSqlTableModel(QObject*  parent, QSqlDatabase  db)
 { 
 return new PythonQtShell_QSqlTableModel(parent, db); }
@@ -5550,11 +5548,6 @@ return new PythonQtShell_QSqlTableModel(parent, db); }
 bool  PythonQtWrapper_QSqlTableModel::setRecord(QSqlTableModel* theWrappedObject, int  row, const QSqlRecord&  record)
 {
   return ( theWrappedObject->setRecord(row, record));
-}
-
-bool  PythonQtWrapper_QSqlTableModel::insertRecord(QSqlTableModel* theWrappedObject, int  row, const QSqlRecord&  record)
-{
-  return ( theWrappedObject->insertRecord(row, record));
 }
 
 void PythonQtWrapper_QSqlTableModel::clear(QSqlTableModel* theWrappedObject)
@@ -5567,14 +5560,14 @@ QString  PythonQtWrapper_QSqlTableModel::orderByClause(QSqlTableModel* theWrappe
   return ( ((PythonQtPublicPromoter_QSqlTableModel*)theWrappedObject)->promoted_orderByClause());
 }
 
+bool  PythonQtWrapper_QSqlTableModel::insertRecord(QSqlTableModel* theWrappedObject, int  row, const QSqlRecord&  record)
+{
+  return ( theWrappedObject->insertRecord(row, record));
+}
+
 bool  PythonQtWrapper_QSqlTableModel::isDirty(QSqlTableModel* theWrappedObject, const QModelIndex&  index) const
 {
   return ( theWrappedObject->isDirty(index));
-}
-
-int  PythonQtWrapper_QSqlTableModel::fieldIndex(QSqlTableModel* theWrappedObject, const QString&  fieldName) const
-{
-  return ( theWrappedObject->fieldIndex(fieldName));
 }
 
 QString  PythonQtWrapper_QSqlTableModel::tableName(QSqlTableModel* theWrappedObject) const
@@ -5587,19 +5580,14 @@ void PythonQtWrapper_QSqlTableModel::setEditStrategy(QSqlTableModel* theWrappedO
   ( ((PythonQtPublicPromoter_QSqlTableModel*)theWrappedObject)->promoted_setEditStrategy(strategy));
 }
 
-Qt::ItemFlags  PythonQtWrapper_QSqlTableModel::flags(QSqlTableModel* theWrappedObject, const QModelIndex&  index) const
+int  PythonQtWrapper_QSqlTableModel::fieldIndex(QSqlTableModel* theWrappedObject, const QString&  fieldName) const
 {
-  return ( ((PythonQtPublicPromoter_QSqlTableModel*)theWrappedObject)->promoted_flags(index));
+  return ( theWrappedObject->fieldIndex(fieldName));
 }
 
 QVariant  PythonQtWrapper_QSqlTableModel::data(QSqlTableModel* theWrappedObject, const QModelIndex&  idx, int  role) const
 {
   return ( ((PythonQtPublicPromoter_QSqlTableModel*)theWrappedObject)->promoted_data(idx, role));
-}
-
-void PythonQtWrapper_QSqlTableModel::setTable(QSqlTableModel* theWrappedObject, const QString&  tableName)
-{
-  ( ((PythonQtPublicPromoter_QSqlTableModel*)theWrappedObject)->promoted_setTable(tableName));
 }
 
 int  PythonQtWrapper_QSqlTableModel::rowCount(QSqlTableModel* theWrappedObject, const QModelIndex&  parent) const
@@ -5612,9 +5600,14 @@ void PythonQtWrapper_QSqlTableModel::revertRow(QSqlTableModel* theWrappedObject,
   ( ((PythonQtPublicPromoter_QSqlTableModel*)theWrappedObject)->promoted_revertRow(row));
 }
 
-bool  PythonQtWrapper_QSqlTableModel::deleteRowFromTable(QSqlTableModel* theWrappedObject, int  row)
+void PythonQtWrapper_QSqlTableModel::setTable(QSqlTableModel* theWrappedObject, const QString&  tableName)
 {
-  return ( ((PythonQtPublicPromoter_QSqlTableModel*)theWrappedObject)->promoted_deleteRowFromTable(row));
+  ( ((PythonQtPublicPromoter_QSqlTableModel*)theWrappedObject)->promoted_setTable(tableName));
+}
+
+void PythonQtWrapper_QSqlTableModel::sort(QSqlTableModel* theWrappedObject, int  column, Qt::SortOrder  order)
+{
+  ( ((PythonQtPublicPromoter_QSqlTableModel*)theWrappedObject)->promoted_sort(column, order));
 }
 
 bool  PythonQtWrapper_QSqlTableModel::insertRowIntoTable(QSqlTableModel* theWrappedObject, const QSqlRecord&  values)
@@ -5627,9 +5620,9 @@ bool  PythonQtWrapper_QSqlTableModel::select(QSqlTableModel* theWrappedObject)
   return ( ((PythonQtPublicPromoter_QSqlTableModel*)theWrappedObject)->promoted_select());
 }
 
-void PythonQtWrapper_QSqlTableModel::sort(QSqlTableModel* theWrappedObject, int  column, Qt::SortOrder  order)
+bool  PythonQtWrapper_QSqlTableModel::deleteRowFromTable(QSqlTableModel* theWrappedObject, int  row)
 {
-  ( ((PythonQtPublicPromoter_QSqlTableModel*)theWrappedObject)->promoted_sort(column, order));
+  return ( ((PythonQtPublicPromoter_QSqlTableModel*)theWrappedObject)->promoted_deleteRowFromTable(row));
 }
 
 QString  PythonQtWrapper_QSqlTableModel::selectStatement(QSqlTableModel* theWrappedObject) const
@@ -5637,14 +5630,19 @@ QString  PythonQtWrapper_QSqlTableModel::selectStatement(QSqlTableModel* theWrap
   return ( ((PythonQtPublicPromoter_QSqlTableModel*)theWrappedObject)->promoted_selectStatement());
 }
 
+bool  PythonQtWrapper_QSqlTableModel::removeColumns(QSqlTableModel* theWrappedObject, int  column, int  count, const QModelIndex&  parent)
+{
+  return ( ((PythonQtPublicPromoter_QSqlTableModel*)theWrappedObject)->promoted_removeColumns(column, count, parent));
+}
+
 bool  PythonQtWrapper_QSqlTableModel::setData(QSqlTableModel* theWrappedObject, const QModelIndex&  index, const QVariant&  value, int  role)
 {
   return ( ((PythonQtPublicPromoter_QSqlTableModel*)theWrappedObject)->promoted_setData(index, value, role));
 }
 
-bool  PythonQtWrapper_QSqlTableModel::removeColumns(QSqlTableModel* theWrappedObject, int  column, int  count, const QModelIndex&  parent)
+Qt::ItemFlags  PythonQtWrapper_QSqlTableModel::flags(QSqlTableModel* theWrappedObject, const QModelIndex&  index) const
 {
-  return ( ((PythonQtPublicPromoter_QSqlTableModel*)theWrappedObject)->promoted_removeColumns(column, count, parent));
+  return ( ((PythonQtPublicPromoter_QSqlTableModel*)theWrappedObject)->promoted_flags(index));
 }
 
 void PythonQtWrapper_QSqlTableModel::setFilter(QSqlTableModel* theWrappedObject, const QString&  filter)
@@ -5657,14 +5655,14 @@ bool  PythonQtWrapper_QSqlTableModel::removeRows(QSqlTableModel* theWrappedObjec
   return ( ((PythonQtPublicPromoter_QSqlTableModel*)theWrappedObject)->promoted_removeRows(row, count, parent));
 }
 
-QSqlTableModel::EditStrategy  PythonQtWrapper_QSqlTableModel::editStrategy(QSqlTableModel* theWrappedObject) const
-{
-  return ( theWrappedObject->editStrategy());
-}
-
 QVariant  PythonQtWrapper_QSqlTableModel::headerData(QSqlTableModel* theWrappedObject, int  section, Qt::Orientation  orientation, int  role) const
 {
   return ( ((PythonQtPublicPromoter_QSqlTableModel*)theWrappedObject)->promoted_headerData(section, orientation, role));
+}
+
+QSqlTableModel::EditStrategy  PythonQtWrapper_QSqlTableModel::editStrategy(QSqlTableModel* theWrappedObject) const
+{
+  return ( theWrappedObject->editStrategy());
 }
 
 QString  PythonQtWrapper_QSqlTableModel::filter(QSqlTableModel* theWrappedObject) const
@@ -5687,14 +5685,14 @@ bool  PythonQtWrapper_QSqlTableModel::updateRowInTable(QSqlTableModel* theWrappe
   return ( ((PythonQtPublicPromoter_QSqlTableModel*)theWrappedObject)->promoted_updateRowInTable(row, values));
 }
 
-QSqlIndex  PythonQtWrapper_QSqlTableModel::primaryKey(QSqlTableModel* theWrappedObject) const
-{
-  return ( theWrappedObject->primaryKey());
-}
-
 QSqlDatabase  PythonQtWrapper_QSqlTableModel::database(QSqlTableModel* theWrappedObject) const
 {
   return ( theWrappedObject->database());
+}
+
+QSqlIndex  PythonQtWrapper_QSqlTableModel::primaryKey(QSqlTableModel* theWrappedObject) const
+{
+  return ( theWrappedObject->primaryKey());
 }
 
 

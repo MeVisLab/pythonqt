@@ -56,42 +56,42 @@ public:
 virtual bool  event(QEvent*  e);
 virtual void changeEvent(QEvent*  arg__1);
 virtual void paintEvent(QPaintEvent*  arg__1);
+virtual void hideEvent(QHideEvent*  arg__1);
 virtual int  heightForWidth(int  arg__1) const;
-virtual void dragEnterEvent(QDragEnterEvent*  arg__1);
-virtual void mouseReleaseEvent(QMouseEvent*  arg__1);
-virtual void closeEvent(QCloseEvent*  arg__1);
-virtual QPaintEngine*  paintEngine() const;
-virtual void contextMenuEvent(QContextMenuEvent*  arg__1);
+virtual void keyReleaseEvent(QKeyEvent*  arg__1);
+virtual void wheelEvent(QWheelEvent*  arg__1);
 virtual void dragMoveEvent(QDragMoveEvent*  arg__1);
-virtual void dropEvent(QDropEvent*  arg__1);
+virtual void leaveEvent(QEvent*  arg__1);
+virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
+virtual void keyPressEvent(QKeyEvent*  arg__1);
+virtual QPaintEngine*  paintEngine() const;
+virtual void moveEvent(QMoveEvent*  arg__1);
+virtual int  devType() const;
+virtual void closeEvent(QCloseEvent*  arg__1);
+virtual void mouseReleaseEvent(QMouseEvent*  arg__1);
+virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const;
+virtual void actionEvent(QActionEvent*  arg__1);
+virtual void mouseDoubleClickEvent(QMouseEvent*  arg__1);
 virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
 virtual void mousePressEvent(QMouseEvent*  arg__1);
-virtual int  devType() const;
-virtual QSize  minimumSizeHint() const;
-virtual void keyReleaseEvent(QKeyEvent*  arg__1);
-virtual void focusInEvent(QFocusEvent*  arg__1);
-virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const;
-virtual void keyPressEvent(QKeyEvent*  arg__1);
-virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
-virtual void resizeEvent(QResizeEvent*  arg__1);
-virtual void wheelEvent(QWheelEvent*  arg__1);
-virtual void tabletEvent(QTabletEvent*  arg__1);
-virtual void showEvent(QShowEvent*  arg__1);
 virtual void focusOutEvent(QFocusEvent*  arg__1);
+virtual void contextMenuEvent(QContextMenuEvent*  arg__1);
+virtual void showEvent(QShowEvent*  arg__1);
+virtual void dragEnterEvent(QDragEnterEvent*  arg__1);
+virtual void tabletEvent(QTabletEvent*  arg__1);
 virtual void mouseMoveEvent(QMouseEvent*  arg__1);
-virtual bool  focusNextPrevChild(bool  next);
-virtual void actionEvent(QActionEvent*  arg__1);
-virtual void leaveEvent(QEvent*  arg__1);
-virtual void moveEvent(QMoveEvent*  arg__1);
-virtual void languageChange();
+virtual void resizeEvent(QResizeEvent*  arg__1);
 virtual void dragLeaveEvent(QDragLeaveEvent*  arg__1);
+virtual bool  focusNextPrevChild(bool  next);
+virtual void dropEvent(QDropEvent*  arg__1);
+virtual void languageChange();
 virtual void enterEvent(QEvent*  arg__1);
-virtual void hideEvent(QHideEvent*  arg__1);
-virtual void mouseDoubleClickEvent(QMouseEvent*  arg__1);
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void timerEvent(QTimerEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
+virtual QSize  minimumSizeHint() const;
+virtual void focusInEvent(QFocusEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void childEvent(QChildEvent*  arg__1);
+virtual void customEvent(QEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 
   PythonQtInstanceWrapper* _wrapper; 
 };
@@ -135,9 +135,9 @@ virtual QVariant  data(int  role = Qt::UserRole + 1) const;
 virtual QStandardItem*  clone() const;
 virtual void write(QDataStream&  out) const;
 virtual void read(QDataStream&  in);
-virtual bool  operator_less(const QStandardItem&  other) const;
-virtual int  type() const;
+virtual bool  __lt__(const QStandardItem&  other) const;
 virtual void setData(const QVariant&  value, int  role = Qt::UserRole + 1);
+virtual int  type() const;
 
   PythonQtInstanceWrapper* _wrapper; 
 };
@@ -146,8 +146,8 @@ class PythonQtPublicPromoter_QStandardItem : public QStandardItem
 { public:
 inline QVariant  promoted_data(int  role = Qt::UserRole + 1) const { return QStandardItem::data(role); }
 inline QStandardItem*  promoted_clone() const { return QStandardItem::clone(); }
-inline int  promoted_type() const { return QStandardItem::type(); }
 inline void promoted_setData(const QVariant&  value, int  role = Qt::UserRole + 1) { QStandardItem::setData(value, role); }
+inline int  promoted_type() const { return QStandardItem::type(); }
 };
 
 class PythonQtWrapper_QStandardItem : public QObject
@@ -162,83 +162,83 @@ QStandardItem* new_QStandardItem(const QIcon&  icon, const QString&  text);
 QStandardItem* new_QStandardItem(const QString&  text);
 QStandardItem* new_QStandardItem(int  rows, int  columns = 1);
 void delete_QStandardItem(QStandardItem* obj) { delete obj; } 
-   void insertRows(QStandardItem* theWrappedObject, int  row, int  count);
    void insertRows(QStandardItem* theWrappedObject, int  row, const QList<QStandardItem* >&  items);
-   QString  whatsThis(QStandardItem* theWrappedObject) const;
+   void insertRows(QStandardItem* theWrappedObject, int  row, int  count);
+   void insertColumns(QStandardItem* theWrappedObject, int  column, int  count);
    void appendColumn(QStandardItem* theWrappedObject, const QList<QStandardItem* >&  items);
+   QString  whatsThis(QStandardItem* theWrappedObject) const;
    QString  accessibleText(QStandardItem* theWrappedObject) const;
+   void setAccessibleText(QStandardItem* theWrappedObject, const QString&  accessibleText);
    void setDropEnabled(QStandardItem* theWrappedObject, bool  dropEnabled);
    bool  isEditable(QStandardItem* theWrappedObject) const;
    void setDragEnabled(QStandardItem* theWrappedObject, bool  dragEnabled);
-   void sortChildren(QStandardItem* theWrappedObject, int  column, Qt::SortOrder  order = Qt::AscendingOrder);
    Qt::CheckState  checkState(QStandardItem* theWrappedObject) const;
    void setIcon(QStandardItem* theWrappedObject, const QIcon&  icon);
+   void sortChildren(QStandardItem* theWrappedObject, int  column, Qt::SortOrder  order = Qt::AscendingOrder);
    QStandardItem*  child(QStandardItem* theWrappedObject, int  row, int  column = 0) const;
    bool  isEnabled(QStandardItem* theWrappedObject) const;
-   void insertRow(QStandardItem* theWrappedObject, int  row, QStandardItem*  item);
    QVariant  data(QStandardItem* theWrappedObject, int  role = Qt::UserRole + 1) const;
-   QStandardItemModel*  model(QStandardItem* theWrappedObject) const;
    QStandardItem*  clone(QStandardItem* theWrappedObject) const;
+   QStandardItemModel*  model(QStandardItem* theWrappedObject) const;
    QString  statusTip(QStandardItem* theWrappedObject) const;
+   void setChild(QStandardItem* theWrappedObject, int  row, int  column, QStandardItem*  item);
    void setEditable(QStandardItem* theWrappedObject, bool  editable);
    void appendRows(QStandardItem* theWrappedObject, const QList<QStandardItem* >&  items);
-   QList<QStandardItem* >  takeRow(QStandardItem* theWrappedObject, int  row);
-   int  row(QStandardItem* theWrappedObject) const;
-   QStandardItem*  parent(QStandardItem* theWrappedObject) const;
-   bool  isTristate(QStandardItem* theWrappedObject) const;
-   void removeColumn(QStandardItem* theWrappedObject, int  column);
-   QBrush  background(QStandardItem* theWrappedObject) const;
+   void insertRow(QStandardItem* theWrappedObject, int  row, QStandardItem*  item);
    QStandardItem*  takeChild(QStandardItem* theWrappedObject, int  row, int  column = 0);
    void setTextAlignment(QStandardItem* theWrappedObject, Qt::Alignment  textAlignment);
+   int  row(QStandardItem* theWrappedObject) const;
+   QBrush  background(QStandardItem* theWrappedObject) const;
+   QList<QStandardItem* >  takeRow(QStandardItem* theWrappedObject, int  row);
+   void removeColumn(QStandardItem* theWrappedObject, int  column);
+   bool  isTristate(QStandardItem* theWrappedObject) const;
+   QStandardItem*  parent(QStandardItem* theWrappedObject) const;
    QString  toolTip(QStandardItem* theWrappedObject) const;
-   void appendRow(QStandardItem* theWrappedObject, const QList<QStandardItem* >&  items);
+   QFont  font(QStandardItem* theWrappedObject) const;
    void insertRow(QStandardItem* theWrappedObject, int  row, const QList<QStandardItem* >&  items);
-   int  rowCount(QStandardItem* theWrappedObject) const;
    void setSizeHint(QStandardItem* theWrappedObject, const QSize&  sizeHint);
+   int  rowCount(QStandardItem* theWrappedObject) const;
    void setTristate(QStandardItem* theWrappedObject, bool  tristate);
    void removeColumns(QStandardItem* theWrappedObject, int  column, int  count);
-   QFont  font(QStandardItem* theWrappedObject) const;
    int  column(QStandardItem* theWrappedObject) const;
    void setChild(QStandardItem* theWrappedObject, int  row, QStandardItem*  item);
-   void setChild(QStandardItem* theWrappedObject, int  row, int  column, QStandardItem*  item);
    void removeRows(QStandardItem* theWrappedObject, int  row, int  count);
+   void setFlags(QStandardItem* theWrappedObject, Qt::ItemFlags  flags);
+   void setCheckable(QStandardItem* theWrappedObject, bool  checkable);
+   void setWhatsThis(QStandardItem* theWrappedObject, const QString&  whatsThis);
    void setToolTip(QStandardItem* theWrappedObject, const QString&  toolTip);
    void setEnabled(QStandardItem* theWrappedObject, bool  enabled);
    void setSelectable(QStandardItem* theWrappedObject, bool  selectable);
-   QSize  sizeHint(QStandardItem* theWrappedObject) const;
-   QString  accessibleDescription(QStandardItem* theWrappedObject) const;
    bool  isDragEnabled(QStandardItem* theWrappedObject) const;
-   void setAccessibleText(QStandardItem* theWrappedObject, const QString&  accessibleText);
-   void setWhatsThis(QStandardItem* theWrappedObject, const QString&  whatsThis);
-   void setFlags(QStandardItem* theWrappedObject, Qt::ItemFlags  flags);
-   void insertColumns(QStandardItem* theWrappedObject, int  column, int  count);
-   void setCheckable(QStandardItem* theWrappedObject, bool  checkable);
+   QString  accessibleDescription(QStandardItem* theWrappedObject) const;
+   QSize  sizeHint(QStandardItem* theWrappedObject) const;
+   void setText(QStandardItem* theWrappedObject, const QString&  text);
    void setRowCount(QStandardItem* theWrappedObject, int  rows);
    void appendRow(QStandardItem* theWrappedObject, QStandardItem*  item);
-   void setCheckState(QStandardItem* theWrappedObject, Qt::CheckState  checkState);
-   void setText(QStandardItem* theWrappedObject, const QString&  text);
    void setFont(QStandardItem* theWrappedObject, const QFont&  font);
+   void appendRow(QStandardItem* theWrappedObject, const QList<QStandardItem* >&  items);
+   void setCheckState(QStandardItem* theWrappedObject, Qt::CheckState  checkState);
+   void setAccessibleDescription(QStandardItem* theWrappedObject, const QString&  accessibleDescription);
+   bool  isSelectable(QStandardItem* theWrappedObject) const;
+   QList<QStandardItem* >  takeColumn(QStandardItem* theWrappedObject, int  column);
+   void setData(QStandardItem* theWrappedObject, const QVariant&  value, int  role = Qt::UserRole + 1);
+   QModelIndex  index(QStandardItem* theWrappedObject) const;
+   QString  text(QStandardItem* theWrappedObject) const;
+   int  type(QStandardItem* theWrappedObject) const;
+   int  columnCount(QStandardItem* theWrappedObject) const;
+   bool  isCheckable(QStandardItem* theWrappedObject) const;
    bool  isDropEnabled(QStandardItem* theWrappedObject) const;
    void setColumnCount(QStandardItem* theWrappedObject, int  columns);
    void setBackground(QStandardItem* theWrappedObject, const QBrush&  brush);
-   bool  isCheckable(QStandardItem* theWrappedObject) const;
-   void setAccessibleDescription(QStandardItem* theWrappedObject, const QString&  accessibleDescription);
    void insertColumn(QStandardItem* theWrappedObject, int  column, const QList<QStandardItem* >&  items);
-   int  columnCount(QStandardItem* theWrappedObject) const;
    void setStatusTip(QStandardItem* theWrappedObject, const QString&  statusTip);
    void removeRow(QStandardItem* theWrappedObject, int  row);
+   bool  hasChildren(QStandardItem* theWrappedObject) const;
    QBrush  foreground(QStandardItem* theWrappedObject) const;
    Qt::Alignment  textAlignment(QStandardItem* theWrappedObject) const;
-   bool  hasChildren(QStandardItem* theWrappedObject) const;
-   void setForeground(QStandardItem* theWrappedObject, const QBrush&  brush);
    Qt::ItemFlags  flags(QStandardItem* theWrappedObject) const;
-   int  type(QStandardItem* theWrappedObject) const;
-   QString  text(QStandardItem* theWrappedObject) const;
-   QModelIndex  index(QStandardItem* theWrappedObject) const;
+   void setForeground(QStandardItem* theWrappedObject, const QBrush&  brush);
    QIcon  icon(QStandardItem* theWrappedObject) const;
-   void setData(QStandardItem* theWrappedObject, const QVariant&  value, int  role = Qt::UserRole + 1);
-   bool  isSelectable(QStandardItem* theWrappedObject) const;
-   QList<QStandardItem* >  takeColumn(QStandardItem* theWrappedObject, int  column);
    void writeTo(QStandardItem* theWrappedObject, QDataStream&  out);
    void readFrom(QStandardItem* theWrappedObject, QDataStream&  in);
 };
@@ -253,62 +253,62 @@ public:
     PythonQtShell_QStandardItemModel(QObject*  parent = 0):QStandardItemModel(parent),_wrapper(NULL) {};
     PythonQtShell_QStandardItemModel(int  rows, int  columns, QObject*  parent = 0):QStandardItemModel(rows, columns, parent),_wrapper(NULL) {};
 
+virtual int  columnCount(const QModelIndex&  parent = QModelIndex()) const;
+virtual QModelIndex  index(int  row, int  column, const QModelIndex&  parent = QModelIndex()) const;
 virtual bool  setItemData(const QModelIndex&  index, const QMap<int , QVariant >&  roles);
 virtual QModelIndex  parent(const QModelIndex&  child) const;
 virtual bool  insertColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex());
 virtual QVariant  data(const QModelIndex&  index, int  role = Qt::DisplayRole) const;
-virtual int  rowCount(const QModelIndex&  parent = QModelIndex()) const;
 virtual QMimeData*  mimeData(const QList<QModelIndex >&  indexes) const;
-virtual QModelIndex  index(int  row, int  column, const QModelIndex&  parent = QModelIndex()) const;
+virtual int  rowCount(const QModelIndex&  parent = QModelIndex()) const;
 virtual void sort(int  column, Qt::SortOrder  order = Qt::AscendingOrder);
 virtual bool  setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role = Qt::EditRole);
-virtual int  columnCount(const QModelIndex&  parent = QModelIndex()) const;
 virtual QMap<int , QVariant >  itemData(const QModelIndex&  index) const;
 virtual bool  dropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent);
 virtual QStringList  mimeTypes() const;
-virtual bool  setData(const QModelIndex&  index, const QVariant&  value, int  role = Qt::EditRole);
-virtual bool  removeColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex());
 virtual Qt::ItemFlags  flags(const QModelIndex&  index) const;
+virtual bool  setData(const QModelIndex&  index, const QVariant&  value, int  role = Qt::EditRole);
 virtual bool  hasChildren(const QModelIndex&  parent = QModelIndex()) const;
+virtual bool  removeColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex());
 virtual bool  removeRows(int  row, int  count, const QModelIndex&  parent = QModelIndex());
 virtual QVariant  headerData(int  section, Qt::Orientation  orientation, int  role = Qt::DisplayRole) const;
 virtual bool  insertRows(int  row, int  count, const QModelIndex&  parent = QModelIndex());
 virtual Qt::DropActions  supportedDropActions() const;
-virtual QSize  span(const QModelIndex&  index) const;
-virtual QList<QModelIndex >  match(const QModelIndex&  start, int  role, const QVariant&  value, int  hits, Qt::MatchFlags  flags) const;
-virtual void revert();
 virtual bool  canFetchMore(const QModelIndex&  parent) const;
-virtual QModelIndex  buddy(const QModelIndex&  index) const;
+virtual void revert();
 virtual bool  submit();
 virtual void fetchMore(const QModelIndex&  parent);
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void timerEvent(QTimerEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
+virtual QList<QModelIndex >  match(const QModelIndex&  start, int  role, const QVariant&  value, int  hits, Qt::MatchFlags  flags) const;
+virtual QModelIndex  buddy(const QModelIndex&  index) const;
+virtual QSize  span(const QModelIndex&  index) const;
 virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void childEvent(QChildEvent*  arg__1);
+virtual void customEvent(QEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 
   PythonQtInstanceWrapper* _wrapper; 
 };
 
 class PythonQtPublicPromoter_QStandardItemModel : public QStandardItemModel
 { public:
+inline int  promoted_columnCount(const QModelIndex&  parent = QModelIndex()) const { return QStandardItemModel::columnCount(parent); }
+inline QModelIndex  promoted_index(int  row, int  column, const QModelIndex&  parent = QModelIndex()) const { return QStandardItemModel::index(row, column, parent); }
 inline bool  promoted_setItemData(const QModelIndex&  index, const QMap<int , QVariant >&  roles) { return QStandardItemModel::setItemData(index, roles); }
 inline QModelIndex  promoted_parent(const QModelIndex&  child) const { return QStandardItemModel::parent(child); }
 inline bool  promoted_insertColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex()) { return QStandardItemModel::insertColumns(column, count, parent); }
 inline QVariant  promoted_data(const QModelIndex&  index, int  role = Qt::DisplayRole) const { return QStandardItemModel::data(index, role); }
-inline int  promoted_rowCount(const QModelIndex&  parent = QModelIndex()) const { return QStandardItemModel::rowCount(parent); }
 inline QMimeData*  promoted_mimeData(const QList<QModelIndex >&  indexes) const { return QStandardItemModel::mimeData(indexes); }
-inline QModelIndex  promoted_index(int  row, int  column, const QModelIndex&  parent = QModelIndex()) const { return QStandardItemModel::index(row, column, parent); }
+inline int  promoted_rowCount(const QModelIndex&  parent = QModelIndex()) const { return QStandardItemModel::rowCount(parent); }
 inline void promoted_sort(int  column, Qt::SortOrder  order = Qt::AscendingOrder) { QStandardItemModel::sort(column, order); }
 inline bool  promoted_setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role = Qt::EditRole) { return QStandardItemModel::setHeaderData(section, orientation, value, role); }
-inline int  promoted_columnCount(const QModelIndex&  parent = QModelIndex()) const { return QStandardItemModel::columnCount(parent); }
 inline QMap<int , QVariant >  promoted_itemData(const QModelIndex&  index) const { return QStandardItemModel::itemData(index); }
 inline bool  promoted_dropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent) { return QStandardItemModel::dropMimeData(data, action, row, column, parent); }
 inline QStringList  promoted_mimeTypes() const { return QStandardItemModel::mimeTypes(); }
-inline bool  promoted_setData(const QModelIndex&  index, const QVariant&  value, int  role = Qt::EditRole) { return QStandardItemModel::setData(index, value, role); }
-inline bool  promoted_removeColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex()) { return QStandardItemModel::removeColumns(column, count, parent); }
 inline Qt::ItemFlags  promoted_flags(const QModelIndex&  index) const { return QStandardItemModel::flags(index); }
+inline bool  promoted_setData(const QModelIndex&  index, const QVariant&  value, int  role = Qt::EditRole) { return QStandardItemModel::setData(index, value, role); }
 inline bool  promoted_hasChildren(const QModelIndex&  parent = QModelIndex()) const { return QStandardItemModel::hasChildren(parent); }
+inline bool  promoted_removeColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex()) { return QStandardItemModel::removeColumns(column, count, parent); }
 inline bool  promoted_removeRows(int  row, int  count, const QModelIndex&  parent = QModelIndex()) { return QStandardItemModel::removeRows(row, count, parent); }
 inline QVariant  promoted_headerData(int  section, Qt::Orientation  orientation, int  role = Qt::DisplayRole) const { return QStandardItemModel::headerData(section, orientation, role); }
 inline bool  promoted_insertRows(int  row, int  count, const QModelIndex&  parent = QModelIndex()) { return QStandardItemModel::insertRows(row, count, parent); }
@@ -322,58 +322,58 @@ public slots:
 QStandardItemModel* new_QStandardItemModel(QObject*  parent = 0);
 QStandardItemModel* new_QStandardItemModel(int  rows, int  columns, QObject*  parent = 0);
 void delete_QStandardItemModel(QStandardItemModel* obj) { delete obj; } 
+   void setSortRole(QStandardItemModel* theWrappedObject, int  role);
+   int  columnCount(QStandardItemModel* theWrappedObject, const QModelIndex&  parent = QModelIndex()) const;
+   QStandardItem*  takeHorizontalHeaderItem(QStandardItemModel* theWrappedObject, int  column);
+   void setVerticalHeaderItem(QStandardItemModel* theWrappedObject, int  row, QStandardItem*  item);
+   QModelIndex  index(QStandardItemModel* theWrappedObject, int  row, int  column, const QModelIndex&  parent = QModelIndex()) const;
    void setVerticalHeaderLabels(QStandardItemModel* theWrappedObject, const QStringList&  labels);
-   QStandardItem*  item(QStandardItemModel* theWrappedObject, int  row, int  column = 0) const;
    void clear(QStandardItemModel* theWrappedObject);
+   QStandardItem*  item(QStandardItemModel* theWrappedObject, int  row, int  column = 0) const;
    QList<QStandardItem* >  takeRow(QStandardItemModel* theWrappedObject, int  row);
+   void setColumnCount(QStandardItemModel* theWrappedObject, int  columns);
    bool  setItemData(QStandardItemModel* theWrappedObject, const QModelIndex&  index, const QMap<int , QVariant >&  roles);
    void setHorizontalHeaderLabels(QStandardItemModel* theWrappedObject, const QStringList&  labels);
    QModelIndex  parent(QStandardItemModel* theWrappedObject, const QModelIndex&  child) const;
    void insertRow(QStandardItemModel* theWrappedObject, int  row, QStandardItem*  item);
    void insertRow(QStandardItemModel* theWrappedObject, int  row, const QList<QStandardItem* >&  items);
-   int  sortRole(QStandardItemModel* theWrappedObject) const;
-   void setRowCount(QStandardItemModel* theWrappedObject, int  rows);
+   void setHorizontalHeaderItem(QStandardItemModel* theWrappedObject, int  column, QStandardItem*  item);
    bool  insertColumns(QStandardItemModel* theWrappedObject, int  column, int  count, const QModelIndex&  parent = QModelIndex());
    QVariant  data(QStandardItemModel* theWrappedObject, const QModelIndex&  index, int  role = Qt::DisplayRole) const;
    QStandardItem*  invisibleRootItem(QStandardItemModel* theWrappedObject) const;
    void insertColumn(QStandardItemModel* theWrappedObject, int  column, const QList<QStandardItem* >&  items);
-   int  rowCount(QStandardItemModel* theWrappedObject, const QModelIndex&  parent = QModelIndex()) const;
    QMimeData*  mimeData(QStandardItemModel* theWrappedObject, const QList<QModelIndex >&  indexes) const;
-   void setColumnCount(QStandardItemModel* theWrappedObject, int  columns);
-   void setHorizontalHeaderItem(QStandardItemModel* theWrappedObject, int  column, QStandardItem*  item);
+   int  rowCount(QStandardItemModel* theWrappedObject, const QModelIndex&  parent = QModelIndex()) const;
    QStandardItem*  takeItem(QStandardItemModel* theWrappedObject, int  row, int  column = 0);
-   QModelIndex  index(QStandardItemModel* theWrappedObject, int  row, int  column, const QModelIndex&  parent = QModelIndex()) const;
    void appendRow(QStandardItemModel* theWrappedObject, QStandardItem*  item);
-   void setItem(QStandardItemModel* theWrappedObject, int  row, QStandardItem*  item);
    void appendRow(QStandardItemModel* theWrappedObject, const QList<QStandardItem* >&  items);
+   void setItem(QStandardItemModel* theWrappedObject, int  row, QStandardItem*  item);
    void setItem(QStandardItemModel* theWrappedObject, int  row, int  column, QStandardItem*  item);
-   void setVerticalHeaderItem(QStandardItemModel* theWrappedObject, int  row, QStandardItem*  item);
+   void setRowCount(QStandardItemModel* theWrappedObject, int  rows);
    void sort(QStandardItemModel* theWrappedObject, int  column, Qt::SortOrder  order = Qt::AscendingOrder);
+   int  sortRole(QStandardItemModel* theWrappedObject) const;
    bool  setHeaderData(QStandardItemModel* theWrappedObject, int  section, Qt::Orientation  orientation, const QVariant&  value, int  role = Qt::EditRole);
-   int  columnCount(QStandardItemModel* theWrappedObject, const QModelIndex&  parent = QModelIndex()) const;
    QMap<int , QVariant >  itemData(QStandardItemModel* theWrappedObject, const QModelIndex&  index) const;
+   QStandardItem*  horizontalHeaderItem(QStandardItemModel* theWrappedObject, int  column) const;
    bool  dropMimeData(QStandardItemModel* theWrappedObject, const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent);
    QStringList  mimeTypes(QStandardItemModel* theWrappedObject) const;
-   QStandardItem*  horizontalHeaderItem(QStandardItemModel* theWrappedObject, int  column) const;
-   bool  setData(QStandardItemModel* theWrappedObject, const QModelIndex&  index, const QVariant&  value, int  role = Qt::EditRole);
+   Qt::ItemFlags  flags(QStandardItemModel* theWrappedObject, const QModelIndex&  index) const;
    const QStandardItem*  itemPrototype(QStandardItemModel* theWrappedObject) const;
+   bool  setData(QStandardItemModel* theWrappedObject, const QModelIndex&  index, const QVariant&  value, int  role = Qt::EditRole);
+   bool  hasChildren(QStandardItemModel* theWrappedObject, const QModelIndex&  parent = QModelIndex()) const;
    bool  removeColumns(QStandardItemModel* theWrappedObject, int  column, int  count, const QModelIndex&  parent = QModelIndex());
    QStandardItem*  takeVerticalHeaderItem(QStandardItemModel* theWrappedObject, int  row);
-   Qt::ItemFlags  flags(QStandardItemModel* theWrappedObject, const QModelIndex&  index) const;
-   bool  hasChildren(QStandardItemModel* theWrappedObject, const QModelIndex&  parent = QModelIndex()) const;
    bool  removeRows(QStandardItemModel* theWrappedObject, int  row, int  count, const QModelIndex&  parent = QModelIndex());
    void setItemPrototype(QStandardItemModel* theWrappedObject, const QStandardItem*  item);
    void appendColumn(QStandardItemModel* theWrappedObject, const QList<QStandardItem* >&  items);
+   QStandardItem*  verticalHeaderItem(QStandardItemModel* theWrappedObject, int  row) const;
    QStandardItem*  itemFromIndex(QStandardItemModel* theWrappedObject, const QModelIndex&  index) const;
    QVariant  headerData(QStandardItemModel* theWrappedObject, int  section, Qt::Orientation  orientation, int  role = Qt::DisplayRole) const;
-   QStandardItem*  takeHorizontalHeaderItem(QStandardItemModel* theWrappedObject, int  column);
    QList<QStandardItem* >  takeColumn(QStandardItemModel* theWrappedObject, int  column);
-   QStandardItem*  verticalHeaderItem(QStandardItemModel* theWrappedObject, int  row) const;
    bool  insertRows(QStandardItemModel* theWrappedObject, int  row, int  count, const QModelIndex&  parent = QModelIndex());
+   QList<QStandardItem* >  findItems(QStandardItemModel* theWrappedObject, const QString&  text, Qt::MatchFlags  flags = Qt::MatchExactly, int  column = 0) const;
    Qt::DropActions  supportedDropActions(QStandardItemModel* theWrappedObject) const;
    QModelIndex  indexFromItem(QStandardItemModel* theWrappedObject, const QStandardItem*  item) const;
-   QList<QStandardItem* >  findItems(QStandardItemModel* theWrappedObject, const QString&  text, Qt::MatchFlags  flags = Qt::MatchExactly, int  column = 0) const;
-   void setSortRole(QStandardItemModel* theWrappedObject, int  role);
 };
 
 
@@ -387,44 +387,44 @@ public:
 
 virtual bool  event(QEvent*  arg__1);
 virtual void showEvent(QShowEvent*  arg__1);
-virtual void resizeEvent(QResizeEvent*  arg__1);
 virtual void paintEvent(QPaintEvent*  arg__1);
-virtual QSize  sizeHint() const;
-virtual void dragEnterEvent(QDragEnterEvent*  arg__1);
-virtual void mouseReleaseEvent(QMouseEvent*  arg__1);
-virtual void closeEvent(QCloseEvent*  arg__1);
-virtual QPaintEngine*  paintEngine() const;
+virtual void resizeEvent(QResizeEvent*  arg__1);
+virtual void hideEvent(QHideEvent*  arg__1);
 virtual int  heightForWidth(int  arg__1) const;
-virtual void contextMenuEvent(QContextMenuEvent*  arg__1);
+virtual void keyReleaseEvent(QKeyEvent*  arg__1);
+virtual void wheelEvent(QWheelEvent*  arg__1);
+virtual QSize  sizeHint() const;
 virtual void dragMoveEvent(QDragMoveEvent*  arg__1);
-virtual void dropEvent(QDropEvent*  arg__1);
+virtual void leaveEvent(QEvent*  arg__1);
+virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
+virtual void keyPressEvent(QKeyEvent*  arg__1);
+virtual QPaintEngine*  paintEngine() const;
+virtual void moveEvent(QMoveEvent*  arg__1);
+virtual int  devType() const;
+virtual void closeEvent(QCloseEvent*  arg__1);
+virtual void mouseReleaseEvent(QMouseEvent*  arg__1);
+virtual void enterEvent(QEvent*  arg__1);
+virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const;
+virtual void actionEvent(QActionEvent*  arg__1);
+virtual void mouseDoubleClickEvent(QMouseEvent*  arg__1);
 virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
 virtual void mousePressEvent(QMouseEvent*  arg__1);
-virtual int  devType() const;
-virtual QSize  minimumSizeHint() const;
-virtual void keyReleaseEvent(QKeyEvent*  arg__1);
-virtual void focusInEvent(QFocusEvent*  arg__1);
-virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const;
-virtual void keyPressEvent(QKeyEvent*  arg__1);
-virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
-virtual void wheelEvent(QWheelEvent*  arg__1);
-virtual void tabletEvent(QTabletEvent*  arg__1);
 virtual void focusOutEvent(QFocusEvent*  arg__1);
+virtual void contextMenuEvent(QContextMenuEvent*  arg__1);
+virtual void dragEnterEvent(QDragEnterEvent*  arg__1);
+virtual void tabletEvent(QTabletEvent*  arg__1);
 virtual void mouseMoveEvent(QMouseEvent*  arg__1);
-virtual bool  focusNextPrevChild(bool  next);
-virtual void actionEvent(QActionEvent*  arg__1);
-virtual void leaveEvent(QEvent*  arg__1);
-virtual void moveEvent(QMoveEvent*  arg__1);
-virtual void languageChange();
 virtual void dragLeaveEvent(QDragLeaveEvent*  arg__1);
-virtual void enterEvent(QEvent*  arg__1);
+virtual bool  focusNextPrevChild(bool  next);
 virtual void changeEvent(QEvent*  arg__1);
-virtual void hideEvent(QHideEvent*  arg__1);
-virtual void mouseDoubleClickEvent(QMouseEvent*  arg__1);
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void timerEvent(QTimerEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
+virtual void dropEvent(QDropEvent*  arg__1);
+virtual void languageChange();
+virtual QSize  minimumSizeHint() const;
+virtual void focusInEvent(QFocusEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void childEvent(QChildEvent*  arg__1);
+virtual void customEvent(QEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 
   PythonQtInstanceWrapper* _wrapper; 
 };
@@ -433,8 +433,8 @@ class PythonQtPublicPromoter_QStatusBar : public QStatusBar
 { public:
 inline bool  promoted_event(QEvent*  arg__1) { return QStatusBar::event(arg__1); }
 inline void promoted_showEvent(QShowEvent*  arg__1) { QStatusBar::showEvent(arg__1); }
-inline void promoted_resizeEvent(QResizeEvent*  arg__1) { QStatusBar::resizeEvent(arg__1); }
 inline void promoted_paintEvent(QPaintEvent*  arg__1) { QStatusBar::paintEvent(arg__1); }
+inline void promoted_resizeEvent(QResizeEvent*  arg__1) { QStatusBar::resizeEvent(arg__1); }
 };
 
 class PythonQtWrapper_QStatusBar : public QObject
@@ -450,11 +450,11 @@ void delete_QStatusBar(QStatusBar* obj) { delete obj; }
    void setSizeGripEnabled(QStatusBar* theWrappedObject, bool  arg__1);
    QString  currentMessage(QStatusBar* theWrappedObject) const;
    int  insertWidget(QStatusBar* theWrappedObject, int  index, QWidget*  widget, int  stretch = 0);
+   void paintEvent(QStatusBar* theWrappedObject, QPaintEvent*  arg__1);
+   int  insertPermanentWidget(QStatusBar* theWrappedObject, int  index, QWidget*  widget, int  stretch = 0);
    bool  isSizeGripEnabled(QStatusBar* theWrappedObject) const;
    void addPermanentWidget(QStatusBar* theWrappedObject, QWidget*  widget, int  stretch = 0);
-   int  insertPermanentWidget(QStatusBar* theWrappedObject, int  index, QWidget*  widget, int  stretch = 0);
    void resizeEvent(QStatusBar* theWrappedObject, QResizeEvent*  arg__1);
-   void paintEvent(QStatusBar* theWrappedObject, QPaintEvent*  arg__1);
 };
 
 
@@ -480,50 +480,50 @@ public:
     PythonQtShell_QStringListModel(QObject*  parent = 0):QStringListModel(parent),_wrapper(NULL) {};
     PythonQtShell_QStringListModel(const QStringList&  strings, QObject*  parent = 0):QStringListModel(strings, parent),_wrapper(NULL) {};
 
-virtual bool  setData(const QModelIndex&  index, const QVariant&  value, int  role = Qt::EditRole);
-virtual Qt::ItemFlags  flags(const QModelIndex&  index) const;
-virtual bool  removeRows(int  row, int  count, const QModelIndex&  parent = QModelIndex());
-virtual int  rowCount(const QModelIndex&  parent = QModelIndex()) const;
 virtual bool  insertRows(int  row, int  count, const QModelIndex&  parent = QModelIndex());
+virtual bool  removeRows(int  row, int  count, const QModelIndex&  parent = QModelIndex());
+virtual Qt::ItemFlags  flags(const QModelIndex&  index) const;
+virtual bool  setData(const QModelIndex&  index, const QVariant&  value, int  role = Qt::EditRole);
+virtual Qt::DropActions  supportedDropActions() const;
+virtual int  rowCount(const QModelIndex&  parent = QModelIndex()) const;
 virtual QVariant  data(const QModelIndex&  index, int  role) const;
 virtual void sort(int  column, Qt::SortOrder  order = Qt::AscendingOrder);
-virtual Qt::DropActions  supportedDropActions() const;
 virtual QModelIndex  index(int  row, int  column, const QModelIndex&  parent) const;
 virtual bool  dropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent);
-virtual QSize  span(const QModelIndex&  index) const;
 virtual bool  removeColumns(int  column, int  count, const QModelIndex&  parent);
-virtual QList<QModelIndex >  match(const QModelIndex&  start, int  role, const QVariant&  value, int  hits, Qt::MatchFlags  flags) const;
-virtual QStringList  mimeTypes() const;
-virtual QVariant  headerData(int  section, Qt::Orientation  orientation, int  role) const;
-virtual void revert();
-virtual bool  canFetchMore(const QModelIndex&  parent) const;
-virtual bool  insertColumns(int  column, int  count, const QModelIndex&  parent);
 virtual bool  setItemData(const QModelIndex&  index, const QMap<int , QVariant >&  roles);
-virtual QModelIndex  buddy(const QModelIndex&  index) const;
 virtual bool  setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role);
-virtual QMimeData*  mimeData(const QList<QModelIndex >&  indexes) const;
+virtual QStringList  mimeTypes() const;
+virtual bool  canFetchMore(const QModelIndex&  parent) const;
+virtual void revert();
 virtual bool  submit();
-virtual void fetchMore(const QModelIndex&  parent);
 virtual QMap<int , QVariant >  itemData(const QModelIndex&  index) const;
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void timerEvent(QTimerEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
+virtual QVariant  headerData(int  section, Qt::Orientation  orientation, int  role) const;
+virtual void fetchMore(const QModelIndex&  parent);
+virtual QList<QModelIndex >  match(const QModelIndex&  start, int  role, const QVariant&  value, int  hits, Qt::MatchFlags  flags) const;
+virtual QMimeData*  mimeData(const QList<QModelIndex >&  indexes) const;
+virtual QModelIndex  buddy(const QModelIndex&  index) const;
+virtual bool  insertColumns(int  column, int  count, const QModelIndex&  parent);
+virtual QSize  span(const QModelIndex&  index) const;
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual bool  event(QEvent*  arg__1);
+virtual void childEvent(QChildEvent*  arg__1);
+virtual void customEvent(QEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 
   PythonQtInstanceWrapper* _wrapper; 
 };
 
 class PythonQtPublicPromoter_QStringListModel : public QStringListModel
 { public:
-inline bool  promoted_setData(const QModelIndex&  index, const QVariant&  value, int  role = Qt::EditRole) { return QStringListModel::setData(index, value, role); }
-inline Qt::ItemFlags  promoted_flags(const QModelIndex&  index) const { return QStringListModel::flags(index); }
-inline bool  promoted_removeRows(int  row, int  count, const QModelIndex&  parent = QModelIndex()) { return QStringListModel::removeRows(row, count, parent); }
-inline int  promoted_rowCount(const QModelIndex&  parent = QModelIndex()) const { return QStringListModel::rowCount(parent); }
 inline bool  promoted_insertRows(int  row, int  count, const QModelIndex&  parent = QModelIndex()) { return QStringListModel::insertRows(row, count, parent); }
+inline bool  promoted_removeRows(int  row, int  count, const QModelIndex&  parent = QModelIndex()) { return QStringListModel::removeRows(row, count, parent); }
+inline Qt::ItemFlags  promoted_flags(const QModelIndex&  index) const { return QStringListModel::flags(index); }
+inline bool  promoted_setData(const QModelIndex&  index, const QVariant&  value, int  role = Qt::EditRole) { return QStringListModel::setData(index, value, role); }
+inline Qt::DropActions  promoted_supportedDropActions() const { return QStringListModel::supportedDropActions(); }
+inline int  promoted_rowCount(const QModelIndex&  parent = QModelIndex()) const { return QStringListModel::rowCount(parent); }
 inline QVariant  promoted_data(const QModelIndex&  index, int  role) const { return QStringListModel::data(index, role); }
 inline void promoted_sort(int  column, Qt::SortOrder  order = Qt::AscendingOrder) { QStringListModel::sort(column, order); }
-inline Qt::DropActions  promoted_supportedDropActions() const { return QStringListModel::supportedDropActions(); }
 };
 
 class PythonQtWrapper_QStringListModel : public QObject
@@ -533,16 +533,16 @@ public slots:
 QStringListModel* new_QStringListModel(QObject*  parent = 0);
 QStringListModel* new_QStringListModel(const QStringList&  strings, QObject*  parent = 0);
 void delete_QStringListModel(QStringListModel* obj) { delete obj; } 
-   bool  setData(QStringListModel* theWrappedObject, const QModelIndex&  index, const QVariant&  value, int  role = Qt::EditRole);
-   QStringList  stringList(QStringListModel* theWrappedObject) const;
-   Qt::ItemFlags  flags(QStringListModel* theWrappedObject, const QModelIndex&  index) const;
-   bool  removeRows(QStringListModel* theWrappedObject, int  row, int  count, const QModelIndex&  parent = QModelIndex());
-   int  rowCount(QStringListModel* theWrappedObject, const QModelIndex&  parent = QModelIndex()) const;
    bool  insertRows(QStringListModel* theWrappedObject, int  row, int  count, const QModelIndex&  parent = QModelIndex());
-   QVariant  data(QStringListModel* theWrappedObject, const QModelIndex&  index, int  role) const;
-   void sort(QStringListModel* theWrappedObject, int  column, Qt::SortOrder  order = Qt::AscendingOrder);
+   bool  removeRows(QStringListModel* theWrappedObject, int  row, int  count, const QModelIndex&  parent = QModelIndex());
+   Qt::ItemFlags  flags(QStringListModel* theWrappedObject, const QModelIndex&  index) const;
+   QStringList  stringList(QStringListModel* theWrappedObject) const;
+   bool  setData(QStringListModel* theWrappedObject, const QModelIndex&  index, const QVariant&  value, int  role = Qt::EditRole);
    Qt::DropActions  supportedDropActions(QStringListModel* theWrappedObject) const;
+   int  rowCount(QStringListModel* theWrappedObject, const QModelIndex&  parent = QModelIndex()) const;
+   QVariant  data(QStringListModel* theWrappedObject, const QModelIndex&  index, int  role) const;
    void setStringList(QStringListModel* theWrappedObject, const QStringList&  strings);
+   void sort(QStringListModel* theWrappedObject, int  column, Qt::SortOrder  order = Qt::AscendingOrder);
 };
 
 
@@ -554,10 +554,12 @@ class PythonQtShell_QStyle : public QStyle
 public:
     PythonQtShell_QStyle():QStyle(),_wrapper(NULL) {};
 
+virtual void polish(QPalette&  arg__1);
 virtual QStyle::SubControl  hitTestComplexControl(QStyle::ComplexControl  cc, const QStyleOptionComplex*  opt, const QPoint&  pt, const QWidget*  widget = 0) const;
-virtual int  styleHint(QStyle::StyleHint  stylehint, const QStyleOption*  opt = 0, const QWidget*  widget = 0, QStyleHintReturn*  returnData = 0) const;
 virtual void drawItemText(QPainter*  painter, const QRect&  rect, int  flags, const QPalette&  pal, bool  enabled, const QString&  text, QPalette::ColorRole  textRole = QPalette::NoRole) const;
+virtual int  styleHint(QStyle::StyleHint  stylehint, const QStyleOption*  opt = 0, const QWidget*  widget = 0, QStyleHintReturn*  returnData = 0) const;
 virtual QPixmap  generatedIconPixmap(QIcon::Mode  iconMode, const QPixmap&  pixmap, const QStyleOption*  opt) const;
+virtual void unpolish(QWidget*  arg__1);
 virtual QPixmap  standardPixmap(QStyle::StandardPixmap  standardPixmap, const QStyleOption*  opt = 0, const QWidget*  widget = 0) const;
 virtual QRect  subElementRect(QStyle::SubElement  subElement, const QStyleOption*  option, const QWidget*  widget = 0) const;
 virtual void drawComplexControl(QStyle::ComplexControl  cc, const QStyleOptionComplex*  opt, QPainter*  p, const QWidget*  widget = 0) const;
@@ -565,36 +567,34 @@ virtual void drawItemPixmap(QPainter*  painter, const QRect&  rect, int  alignme
 virtual void drawControl(QStyle::ControlElement  element, const QStyleOption*  opt, QPainter*  p, const QWidget*  w = 0) const;
 virtual QSize  sizeFromContents(QStyle::ContentsType  ct, const QStyleOption*  opt, const QSize&  contentsSize, const QWidget*  w = 0) const;
 virtual QRect  itemTextRect(const QFontMetrics&  fm, const QRect&  r, int  flags, bool  enabled, const QString&  text) const;
+virtual QRect  itemPixmapRect(const QRect&  r, int  flags, const QPixmap&  pixmap) const;
 virtual QPalette  standardPalette() const;
 virtual int  pixelMetric(QStyle::PixelMetric  metric, const QStyleOption*  option = 0, const QWidget*  widget = 0) const;
-virtual void unpolish(QWidget*  arg__1);
-virtual void polish(QPalette&  arg__1);
 virtual void unpolish(QApplication*  arg__1);
 virtual void polish(QApplication*  arg__1);
 virtual void polish(QWidget*  arg__1);
-virtual QRect  itemPixmapRect(const QRect&  r, int  flags, const QPixmap&  pixmap) const;
 virtual void drawPrimitive(QStyle::PrimitiveElement  pe, const QStyleOption*  opt, QPainter*  p, const QWidget*  w = 0) const;
 virtual QRect  subControlRect(QStyle::ComplexControl  cc, const QStyleOptionComplex*  opt, QStyle::SubControl  sc, const QWidget*  widget = 0) const;
+virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 virtual void childEvent(QChildEvent*  arg__1);
-virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
 virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void timerEvent(QTimerEvent*  arg__1);
 
   PythonQtInstanceWrapper* _wrapper; 
 };
 
 class PythonQtPublicPromoter_QStyle : public QStyle
 { public:
-inline void promoted_drawItemText(QPainter*  painter, const QRect&  rect, int  flags, const QPalette&  pal, bool  enabled, const QString&  text, QPalette::ColorRole  textRole = QPalette::NoRole) const { QStyle::drawItemText(painter, rect, flags, pal, enabled, text, textRole); }
-inline void promoted_drawItemPixmap(QPainter*  painter, const QRect&  rect, int  alignment, const QPixmap&  pixmap) const { QStyle::drawItemPixmap(painter, rect, alignment, pixmap); }
-inline QPalette  promoted_standardPalette() const { return QStyle::standardPalette(); }
-inline void promoted_unpolish(QWidget*  arg__1) { QStyle::unpolish(arg__1); }
 inline void promoted_polish(QPalette&  arg__1) { QStyle::polish(arg__1); }
+inline void promoted_drawItemText(QPainter*  painter, const QRect&  rect, int  flags, const QPalette&  pal, bool  enabled, const QString&  text, QPalette::ColorRole  textRole = QPalette::NoRole) const { QStyle::drawItemText(painter, rect, flags, pal, enabled, text, textRole); }
+inline void promoted_unpolish(QWidget*  arg__1) { QStyle::unpolish(arg__1); }
+inline void promoted_drawItemPixmap(QPainter*  painter, const QRect&  rect, int  alignment, const QPixmap&  pixmap) const { QStyle::drawItemPixmap(painter, rect, alignment, pixmap); }
+inline QRect  promoted_itemPixmapRect(const QRect&  r, int  flags, const QPixmap&  pixmap) const { return QStyle::itemPixmapRect(r, flags, pixmap); }
+inline QPalette  promoted_standardPalette() const { return QStyle::standardPalette(); }
 inline void promoted_unpolish(QApplication*  arg__1) { QStyle::unpolish(arg__1); }
 inline void promoted_polish(QApplication*  arg__1) { QStyle::polish(arg__1); }
 inline void promoted_polish(QWidget*  arg__1) { QStyle::polish(arg__1); }
-inline QRect  promoted_itemPixmapRect(const QRect&  r, int  flags, const QPixmap&  pixmap) const { return QStyle::itemPixmapRect(r, flags, pixmap); }
 };
 
 class PythonQtWrapper_QStyle : public QObject
@@ -629,25 +629,25 @@ Q_DECLARE_FLAGS(State, StateFlag)
 public slots:
 QStyle* new_QStyle();
 void delete_QStyle(QStyle* obj) { delete obj; } 
+   int  combinedLayoutSpacing(QStyle* theWrappedObject, QSizePolicy::ControlTypes  controls1, QSizePolicy::ControlTypes  controls2, Qt::Orientation  orientation, QStyleOption*  option = 0, QWidget*  widget = 0) const;
+   void polish(QStyle* theWrappedObject, QPalette&  arg__1);
    QRect  static_QStyle_alignedRect(Qt::LayoutDirection  direction, Qt::Alignment  alignment, const QSize&  size, const QRect&  rectangle);
    void drawItemText(QStyle* theWrappedObject, QPainter*  painter, const QRect&  rect, int  flags, const QPalette&  pal, bool  enabled, const QString&  text, QPalette::ColorRole  textRole = QPalette::NoRole) const;
    int  static_QStyle_sliderPositionFromValue(int  min, int  max, int  val, int  space, bool  upsideDown = false);
+   void unpolish(QStyle* theWrappedObject, QWidget*  arg__1);
    int  layoutSpacing(QStyle* theWrappedObject, QSizePolicy::ControlType  control1, QSizePolicy::ControlType  control2, Qt::Orientation  orientation, const QStyleOption*  option = 0, const QWidget*  widget = 0) const;
    QRect  static_QStyle_visualRect(Qt::LayoutDirection  direction, const QRect&  boundingRect, const QRect&  logicalRect);
-   int  static_QStyle_sliderValueFromPosition(int  min, int  max, int  pos, int  space, bool  upsideDown = false);
    QIcon  standardIcon(QStyle* theWrappedObject, QStyle::StandardPixmap  standardIcon, const QStyleOption*  option = 0, const QWidget*  widget = 0) const;
-   void drawItemPixmap(QStyle* theWrappedObject, QPainter*  painter, const QRect&  rect, int  alignment, const QPixmap&  pixmap) const;
-   const QStyle*  proxy(QStyle* theWrappedObject) const;
+   int  static_QStyle_sliderValueFromPosition(int  min, int  max, int  pos, int  space, bool  upsideDown = false);
    Qt::Alignment  static_QStyle_visualAlignment(Qt::LayoutDirection  direction, Qt::Alignment  alignment);
+   void drawItemPixmap(QStyle* theWrappedObject, QPainter*  painter, const QRect&  rect, int  alignment, const QPixmap&  pixmap) const;
    QPoint  static_QStyle_visualPos(Qt::LayoutDirection  direction, const QRect&  boundingRect, const QPoint&  logicalPos);
+   const QStyle*  proxy(QStyle* theWrappedObject) const;
+   QRect  itemPixmapRect(QStyle* theWrappedObject, const QRect&  r, int  flags, const QPixmap&  pixmap) const;
    QPalette  standardPalette(QStyle* theWrappedObject) const;
-   void unpolish(QStyle* theWrappedObject, QWidget*  arg__1);
-   void polish(QStyle* theWrappedObject, QPalette&  arg__1);
    void unpolish(QStyle* theWrappedObject, QApplication*  arg__1);
    void polish(QStyle* theWrappedObject, QApplication*  arg__1);
    void polish(QStyle* theWrappedObject, QWidget*  arg__1);
-   QRect  itemPixmapRect(QStyle* theWrappedObject, const QRect&  r, int  flags, const QPixmap&  pixmap) const;
-   int  combinedLayoutSpacing(QStyle* theWrappedObject, QSizePolicy::ControlTypes  controls1, QSizePolicy::ControlTypes  controls2, Qt::Orientation  orientation, QStyleOption*  option = 0, QWidget*  widget = 0) const;
 };
 
 
@@ -669,8 +669,8 @@ public:
 public slots:
 QStyleFactory* new_QStyleFactory();
 void delete_QStyleFactory(QStyleFactory* obj) { delete obj; } 
-   QStringList  static_QStyleFactory_keys();
    QStyle*  static_QStyleFactory_create(const QString&  arg__1);
+   QStringList  static_QStyleFactory_keys();
 };
 
 
