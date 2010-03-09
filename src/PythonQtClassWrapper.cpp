@@ -217,7 +217,9 @@ static PyObject* PythonQtClassWrapper_alloc(PyTypeObject *self, Py_ssize_t nitem
   // take current class type, if we are called via newPythonQtClassWrapper()
   PythonQtClassWrapper* wrap = (PythonQtClassWrapper*)obj;
   wrap->_classInfo = PythonQt::priv()->currentClassInfoForClassWrapperCreation();
-  initializeSlots(wrap);
+  if (wrap->_classInfo) {
+    initializeSlots(wrap);
+  }
 
   return obj;
 }
