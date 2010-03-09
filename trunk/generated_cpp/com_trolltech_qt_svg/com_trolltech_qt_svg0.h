@@ -48,9 +48,9 @@ class PythonQtShell_QSvgGenerator : public QSvgGenerator
 public:
     PythonQtShell_QSvgGenerator():QSvgGenerator(),_wrapper(NULL) {};
 
-virtual int  devType() const;
 virtual int  metric(QPaintDevice::PaintDeviceMetric  metric) const;
 virtual QPaintEngine*  paintEngine() const;
+virtual int  devType() const;
 
   PythonQtInstanceWrapper* _wrapper; 
 };
@@ -67,23 +67,23 @@ public:
 public slots:
 QSvgGenerator* new_QSvgGenerator();
 void delete_QSvgGenerator(QSvgGenerator* obj) { delete obj; } 
-   QString  fileName(QSvgGenerator* theWrappedObject) const;
    QString  title(QSvgGenerator* theWrappedObject) const;
+   QString  fileName(QSvgGenerator* theWrappedObject) const;
    int  metric(QSvgGenerator* theWrappedObject, QPaintDevice::PaintDeviceMetric  metric) const;
+   void setTitle(QSvgGenerator* theWrappedObject, const QString&  title);
+   void setOutputDevice(QSvgGenerator* theWrappedObject, QIODevice*  outputDevice);
    void setFileName(QSvgGenerator* theWrappedObject, const QString&  fileName);
    QString  description(QSvgGenerator* theWrappedObject) const;
    QRect  viewBox(QSvgGenerator* theWrappedObject) const;
    void setResolution(QSvgGenerator* theWrappedObject, int  dpi);
-   void setTitle(QSvgGenerator* theWrappedObject, const QString&  title);
    void setSize(QSvgGenerator* theWrappedObject, const QSize&  size);
-   void setOutputDevice(QSvgGenerator* theWrappedObject, QIODevice*  outputDevice);
-   QPaintEngine*  paintEngine(QSvgGenerator* theWrappedObject) const;
    QIODevice*  outputDevice(QSvgGenerator* theWrappedObject) const;
+   QPaintEngine*  paintEngine(QSvgGenerator* theWrappedObject) const;
    QSize  size(QSvgGenerator* theWrappedObject) const;
    void setDescription(QSvgGenerator* theWrappedObject, const QString&  description);
-   QRectF  viewBoxF(QSvgGenerator* theWrappedObject) const;
    int  resolution(QSvgGenerator* theWrappedObject) const;
    void setViewBox(QSvgGenerator* theWrappedObject, const QRectF&  viewBox);
+   QRectF  viewBoxF(QSvgGenerator* theWrappedObject) const;
    void setViewBox(QSvgGenerator* theWrappedObject, const QRect&  viewBox);
 };
 
@@ -99,11 +99,11 @@ public:
     PythonQtShell_QSvgRenderer(const QByteArray&  contents, QObject*  parent = 0):QSvgRenderer(contents, parent),_wrapper(NULL) {};
     PythonQtShell_QSvgRenderer(const QString&  filename, QObject*  parent = 0):QSvgRenderer(filename, parent),_wrapper(NULL) {};
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void timerEvent(QTimerEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
 virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void childEvent(QChildEvent*  arg__1);
+virtual void customEvent(QEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 
   PythonQtInstanceWrapper* _wrapper; 
 };
@@ -117,21 +117,21 @@ QSvgRenderer* new_QSvgRenderer(QXmlStreamReader*  contents, QObject*  parent = 0
 QSvgRenderer* new_QSvgRenderer(const QByteArray&  contents, QObject*  parent = 0);
 QSvgRenderer* new_QSvgRenderer(const QString&  filename, QObject*  parent = 0);
 void delete_QSvgRenderer(QSvgRenderer* obj) { delete obj; } 
-   bool  animated(QSvgRenderer* theWrappedObject) const;
-   bool  isValid(QSvgRenderer* theWrappedObject) const;
-   int  animationDuration(QSvgRenderer* theWrappedObject) const;
-   QSize  defaultSize(QSvgRenderer* theWrappedObject) const;
-   QMatrix  matrixForElement(QSvgRenderer* theWrappedObject, const QString&  id) const;
-   int  framesPerSecond(QSvgRenderer* theWrappedObject) const;
-   void setFramesPerSecond(QSvgRenderer* theWrappedObject, int  num);
-   QRect  viewBox(QSvgRenderer* theWrappedObject) const;
-   bool  elementExists(QSvgRenderer* theWrappedObject, const QString&  id) const;
    void setCurrentFrame(QSvgRenderer* theWrappedObject, int  arg__1);
-   int  currentFrame(QSvgRenderer* theWrappedObject) const;
-   void setViewBox(QSvgRenderer* theWrappedObject, const QRectF&  viewbox);
+   int  framesPerSecond(QSvgRenderer* theWrappedObject) const;
+   QRect  viewBox(QSvgRenderer* theWrappedObject) const;
+   QMatrix  matrixForElement(QSvgRenderer* theWrappedObject, const QString&  id) const;
+   QSize  defaultSize(QSvgRenderer* theWrappedObject) const;
+   int  animationDuration(QSvgRenderer* theWrappedObject) const;
+   bool  isValid(QSvgRenderer* theWrappedObject) const;
+   bool  animated(QSvgRenderer* theWrappedObject) const;
+   void setFramesPerSecond(QSvgRenderer* theWrappedObject, int  num);
+   bool  elementExists(QSvgRenderer* theWrappedObject, const QString&  id) const;
    void setViewBox(QSvgRenderer* theWrappedObject, const QRect&  viewbox);
-   QRectF  viewBoxF(QSvgRenderer* theWrappedObject) const;
+   int  currentFrame(QSvgRenderer* theWrappedObject) const;
    QRectF  boundsOnElement(QSvgRenderer* theWrappedObject, const QString&  id) const;
+   void setViewBox(QSvgRenderer* theWrappedObject, const QRectF&  viewbox);
+   QRectF  viewBoxF(QSvgRenderer* theWrappedObject) const;
 };
 
 
@@ -145,44 +145,44 @@ public:
     PythonQtShell_QSvgWidget(const QString&  file, QWidget*  parent = 0):QSvgWidget(file, parent),_wrapper(NULL) {};
 
 virtual void paintEvent(QPaintEvent*  event);
-virtual void dragEnterEvent(QDragEnterEvent*  arg__1);
-virtual void mouseReleaseEvent(QMouseEvent*  arg__1);
-virtual void closeEvent(QCloseEvent*  arg__1);
-virtual QPaintEngine*  paintEngine() const;
+virtual void hideEvent(QHideEvent*  arg__1);
 virtual int  heightForWidth(int  arg__1) const;
-virtual void contextMenuEvent(QContextMenuEvent*  arg__1);
+virtual void keyReleaseEvent(QKeyEvent*  arg__1);
+virtual void wheelEvent(QWheelEvent*  arg__1);
 virtual void dragMoveEvent(QDragMoveEvent*  arg__1);
-virtual void dropEvent(QDropEvent*  arg__1);
+virtual void leaveEvent(QEvent*  arg__1);
+virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
+virtual void keyPressEvent(QKeyEvent*  arg__1);
+virtual QPaintEngine*  paintEngine() const;
+virtual void moveEvent(QMoveEvent*  arg__1);
+virtual int  devType() const;
+virtual void closeEvent(QCloseEvent*  arg__1);
+virtual void mouseReleaseEvent(QMouseEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
+virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const;
+virtual void actionEvent(QActionEvent*  arg__1);
+virtual void mouseDoubleClickEvent(QMouseEvent*  arg__1);
 virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
 virtual void mousePressEvent(QMouseEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual int  devType() const;
-virtual QSize  minimumSizeHint() const;
-virtual void keyReleaseEvent(QKeyEvent*  arg__1);
-virtual void focusInEvent(QFocusEvent*  arg__1);
-virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const;
-virtual void keyPressEvent(QKeyEvent*  arg__1);
-virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
-virtual void resizeEvent(QResizeEvent*  arg__1);
-virtual void wheelEvent(QWheelEvent*  arg__1);
-virtual void tabletEvent(QTabletEvent*  arg__1);
-virtual void showEvent(QShowEvent*  arg__1);
 virtual void focusOutEvent(QFocusEvent*  arg__1);
+virtual void contextMenuEvent(QContextMenuEvent*  arg__1);
+virtual void showEvent(QShowEvent*  arg__1);
+virtual void dragEnterEvent(QDragEnterEvent*  arg__1);
+virtual void tabletEvent(QTabletEvent*  arg__1);
 virtual void mouseMoveEvent(QMouseEvent*  arg__1);
-virtual bool  focusNextPrevChild(bool  next);
-virtual void actionEvent(QActionEvent*  arg__1);
-virtual void leaveEvent(QEvent*  arg__1);
-virtual void moveEvent(QMoveEvent*  arg__1);
-virtual void languageChange();
+virtual void resizeEvent(QResizeEvent*  arg__1);
 virtual void dragLeaveEvent(QDragLeaveEvent*  arg__1);
-virtual void enterEvent(QEvent*  arg__1);
+virtual bool  focusNextPrevChild(bool  next);
 virtual void changeEvent(QEvent*  arg__1);
-virtual void hideEvent(QHideEvent*  arg__1);
-virtual void mouseDoubleClickEvent(QMouseEvent*  arg__1);
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void timerEvent(QTimerEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
+virtual void dropEvent(QDropEvent*  arg__1);
+virtual void languageChange();
+virtual void enterEvent(QEvent*  arg__1);
+virtual QSize  minimumSizeHint() const;
+virtual void focusInEvent(QFocusEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void childEvent(QChildEvent*  arg__1);
+virtual void customEvent(QEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  arg__1);
 
   PythonQtInstanceWrapper* _wrapper; 
 };
@@ -199,9 +199,9 @@ public slots:
 QSvgWidget* new_QSvgWidget(QWidget*  parent = 0);
 QSvgWidget* new_QSvgWidget(const QString&  file, QWidget*  parent = 0);
 void delete_QSvgWidget(QSvgWidget* obj) { delete obj; } 
-   QSize  sizeHint(QSvgWidget* theWrappedObject) const;
-   QSvgRenderer*  renderer(QSvgWidget* theWrappedObject) const;
    void paintEvent(QSvgWidget* theWrappedObject, QPaintEvent*  event);
+   QSvgRenderer*  renderer(QSvgWidget* theWrappedObject) const;
+   QSize  sizeHint(QSvgWidget* theWrappedObject) const;
 };
 
 
