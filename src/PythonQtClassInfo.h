@@ -104,6 +104,11 @@ public:
   //! setup as a CPP (non-QObject), taking the classname
   void setupCPPObject(const QByteArray& classname);
 
+  //! set the type capabilities
+  void setTypeSlots(int typeSlots) { _typeSlots = typeSlots; }
+  //! get the type capabilities
+  int typeSlots() const { return _typeSlots; }
+
   //! get the Python method definition for a given slot name (without return type and signature)
   PythonQtMemberInfo member(const char* member);
 
@@ -244,6 +249,7 @@ private:
   PythonQtShellSetInstanceWrapperCB*   _shellSetInstanceWrapperCB;
   
   int                                  _metaTypeId;
+  int                                  _typeSlots;
 
   bool                                 _isQObject;
   bool                                 _enumsCreated;

@@ -796,6 +796,8 @@ public:
     void setHasCloneOperator(bool on) { m_has_clone_operator = on; }
     bool hasCloneOperator() const { return m_has_clone_operator; }
 
+    bool hasDefaultIsNull() const;
+
     void addPropertySpec(QPropertySpec *spec) { m_property_specs << spec; }
     QList<QPropertySpec *> propertySpecs() const { return m_property_specs; }
 

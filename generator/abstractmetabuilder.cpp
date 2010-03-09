@@ -79,7 +79,7 @@ QString rename_operator(const QString &oper)
         operator_names->insert("&", "__and__");
         operator_names->insert("|", "__or__");
         operator_names->insert("^", "__xor__");
-        operator_names->insert("~", "__negate__");
+        operator_names->insert("~", "__invert__");
         operator_names->insert("<<", "__lshift__");
         operator_names->insert(">>", "__rshift__");
 
@@ -106,12 +106,12 @@ QString rename_operator(const QString &oper)
         operator_names->insert("--", "decrement");
 
         // compare
-        operator_names->insert("<", "less");
-        operator_names->insert(">", "greater");
-        operator_names->insert("<=", "less_or_equal");
-        operator_names->insert(">=", "greater_or_equal");
-        operator_names->insert("!=", "not_equal");
-        operator_names->insert("==", "equal");
+        operator_names->insert("<", "__lt__");
+        operator_names->insert(">", "__gt__");
+        operator_names->insert("<=", "__le__");
+        operator_names->insert(">=", "__ge__");
+        operator_names->insert("!=", "__ne__");
+        operator_names->insert("==", "__eq__");
 
         // other
         operator_names->insert("[]", "subscript");

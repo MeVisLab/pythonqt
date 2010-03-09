@@ -55,6 +55,64 @@ void maybeDeclareMetaType(QTextStream &stream, const QString &typeName,
                           QSet<QString> &registeredTypeNames);
 bool hasDefaultConstructor(const AbstractMetaClass *meta_class);
 
+static QStringList getOperatorCodes(const AbstractMetaClass* cls) {
+  QSet<QString> operatorCodes;
+  AbstractMetaFunctionList returned;
+  AbstractMetaFunctionList functions = cls->functions();
+  foreach (AbstractMetaFunction *function, functions) {
+    if (function->originalName().startsWith("operator")) {
+      QString op = function->originalName().mid(8);
+      operatorCodes.insert(op);
+    }
+  }
+  QSet<QString> r;
+  foreach(QString op, operatorCodes.toList()) {
+    if (op == ">" || op == "<" || op == ">=" || op == "<=" || op == "==" || op == "!=") {
+      r.insert("PythonQt::Type_RichCompare");
+    } else if (op == "+") {
+      r.insert("PythonQt::Type_Add");
+    } else if (op == "-") {
+      r.insert("PythonQt::Type_Subtract");
+    } else if (op == "/") {
+      r.insert("PythonQt::Type_Divide");
+    } else if (op == "*") {
+      r.insert("PythonQt::Type_Multiply");
+    } else if (op == "%") {
+      r.insert("PythonQt::Type_Mod");
+    } else if (op == "&") {
+      r.insert("PythonQt::Type_And");
+    } else if (op == "|") {
+      r.insert("PythonQt::Type_Or");
+    } else if (op == "^") {
+      r.insert("PythonQt::Type_Xor");
+    } else if (op == "~") {
+      r.insert("PythonQt::Type_Invert");
+    
+    } else if (op == "+=") {
+      r.insert("PythonQt::Type_InplaceAdd");
+    } else if (op == "-=") {
+      r.insert("PythonQt::Type_InplaceSubtract");
+    } else if (op == "/=") {
+      r.insert("PythonQt::Type_InplaceDivide");
+    } else if (op == "*=") {
+      r.insert("PythonQt::Type_InplaceMultiply");
+    } else if (op == "%=") {
+      r.insert("PythonQt::Type_InplaceMod");
+    } else if (op == "&=") {
+      r.insert("PythonQt::Type_InplaceAnd");
+    } else if (op == "|=") {
+      r.insert("PythonQt::Type_InplaceOr");
+    } else if (op == "^=") {
+      r.insert("PythonQt::Type_InplaceXor");
+    }
+  }
+  if (cls->hasDefaultIsNull()) {
+    r.insert("PythonQt::Type_NonZero");
+  }
+  QStringList result = r.toList();
+  return result;
+}
+
 void SetupGenerator::generate()
 {
   AbstractMetaClassList classes_with_polymorphic_id;
@@ -138,11 +196,15 @@ void SetupGenerator::generate()
         } else {
           shellCreator = ", NULL";
         }
+        QString operatorCodes = getOperatorCodes(cls).join("|");
+        if (operatorCodes.isEmpty()) {
+          operatorCodes = "0";
+        }
         if (cls->isQObject()) {
-          s << "PythonQt::priv()->registerClass(&" << cls->qualifiedCppName() << "::staticMetaObject, \"" << shortPackName <<"\", PythonQtCreateObject<PythonQtWrapper_" << cls->name() << ">" << shellCreator << ", module);" << endl;
+          s << "PythonQt::priv()->registerClass(&" << cls->qualifiedCppName() << "::staticMetaObject, \"" << shortPackName <<"\", PythonQtCreateObject<PythonQtWrapper_" << cls->name() << ">" << shellCreator << ", module, " << operatorCodes <<");" << endl;
         } else {
           QString baseName = cls->baseClass()?cls->baseClass()->qualifiedCppName():"";
-          s << "PythonQt::priv()->registerCPPClass(\""<< cls->qualifiedCppName() << "\", \"" << baseName << "\", \"" << shortPackName <<"\", PythonQtCreateObject<PythonQtWrapper_" << cls->name() << ">" << shellCreator << ", module);" << endl;
+          s << "PythonQt::priv()->registerCPPClass(\""<< cls->qualifiedCppName() << "\", \"" << baseName << "\", \"" << shortPackName <<"\", PythonQtCreateObject<PythonQtWrapper_" << cls->name() << ">" << shellCreator << ", module, " << operatorCodes <<");" << endl;
         }
         foreach(AbstractMetaClass* interface, cls->interfaces()) {
           // the interface might be our own class... (e.g. QPaintDevice)

@@ -96,6 +96,42 @@ public:
     ExternalHelp = 4      //!<< sets if help() calls on PythonQt modules are forwarded to the pythonHelpRequest() signal
   };
 
+  //! flags that tell PythonQt which operators to expect on the registered type
+  enum TypeSlots {
+    Type_Add = 1,
+    Type_Subtract = 1 << 1,
+    Type_Multiply = 1 << 2,
+    Type_Divide = 1 << 3,
+    Type_Mod = 1 << 4,
+    Type_And = 1 << 5,
+    Type_Or = 1 << 6,
+    Type_Xor = 1 << 7,
+    Type_LShift = 1 << 8,
+    Type_RShift = 1 << 9,
+
+    Type_InplaceAdd = 1 << 10,
+    Type_InplaceSubtract = 1 << 11,
+    Type_InplaceMultiply = 1 << 12,
+    Type_InplaceDivide = 1 << 13,
+    Type_InplaceMod = 1 << 14,
+    Type_InplaceAnd = 1 << 15,
+    Type_InplaceOr = 1 << 16,
+    Type_InplaceXor = 1 << 17,
+    Type_InplaceLShift = 1 << 18,
+    Type_InplaceRShift = 1 << 19,
+
+    // Not yet needed/nicely mappable/generated...
+    //Type_Positive = 1 << 29,
+    //Type_Negative = 1 << 29,
+    //Type_Abs = 1 << 29,
+    //Type_Hash = 1 << 29,
+
+    Type_Invert = 1 << 29,
+    Type_RichCompare = 1 << 30,
+    Type_NonZero     = 1 << 31,
+
+  };
+
   //! initialize the python qt binding (flags are a or combination of InitFlags), if \c pythonQtModuleName is given
   //! it defines the name of the python module that PythonQt will add, otherwise "PythonQt" is used.
   //! This can be used to e.g. pass in PySide or PyQt4 to make it more compatible.
@@ -432,7 +468,7 @@ public:
   //! registers a QObject derived class to PythonQt (this is implicitly called by addObject as well)
   /* Since Qt4 does not offer a way to detect if a given classname is derived from QObject and thus has a QMetaObject,
      you MUST register all your QObject derived classes here when you want them to be detected in signal and slot calls */
-  void registerClass(const QMetaObject* metaobject, const char* package = NULL, PythonQtQObjectCreatorFunctionCB* wrapperCreator = NULL, PythonQtShellSetInstanceWrapperCB* shell = NULL, PyObject* module = NULL);
+  void registerClass(const QMetaObject* metaobject, const char* package = NULL, PythonQtQObjectCreatorFunctionCB* wrapperCreator = NULL, PythonQtShellSetInstanceWrapperCB* shell = NULL, PyObject* module = NULL, int typeSlots = 0);
 
   //! add a wrapper object for the given QMetaType typeName, also does an addClassDecorators() to add constructors for variants
   //! (ownership of wrapper is passed to PythonQt)
@@ -442,7 +478,7 @@ public:
    All slots that take a pointer to typeName as the first argument will be callable from Python on
    a variant object that contains such a type.
    */
-  void registerCPPClass(const char* typeName, const char* parentTypeName = NULL, const char* package = NULL, PythonQtQObjectCreatorFunctionCB* wrapperCreator = NULL, PythonQtShellSetInstanceWrapperCB* shell = NULL, PyObject* module = NULL);
+  void registerCPPClass(const char* typeName, const char* parentTypeName = NULL, const char* package = NULL, PythonQtQObjectCreatorFunctionCB* wrapperCreator = NULL, PythonQtShellSetInstanceWrapperCB* shell = NULL, PyObject* module = NULL, int typeSlots = 0);
   
   //! as an alternative to registerClass, you can tell PythonQt the names of QObject derived classes
   //! and it will register the classes when it first sees a pointer to such a derived class

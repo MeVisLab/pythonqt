@@ -57,6 +57,7 @@ PythonQtClassInfo::PythonQtClassInfo() {
   _pythonQtClassWrapper = NULL;
   _shellSetInstanceWrapperCB = NULL;
   _metaTypeId = -1;
+  _typeSlots = 0;
   _isQObject = false;
   _enumsCreated = false;
 }
