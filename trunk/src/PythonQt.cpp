@@ -227,7 +227,7 @@ void PythonQt::registerClass(const QMetaObject* metaobject, const char* package,
   _p->registerClass(metaobject, package, wrapperCreator, shell);
 }
 
-void PythonQtPrivate::registerClass(const QMetaObject* metaobject, const char* package, PythonQtQObjectCreatorFunctionCB* wrapperCreator, PythonQtShellSetInstanceWrapperCB* shell, PyObject* module)
+void PythonQtPrivate::registerClass(const QMetaObject* metaobject, const char* package, PythonQtQObjectCreatorFunctionCB* wrapperCreator, PythonQtShellSetInstanceWrapperCB* shell, PyObject* module, int typeSlots)
 {
   // we register all classes in the hierarchy
   const QMetaObject* m = metaobject;
@@ -235,6 +235,7 @@ void PythonQtPrivate::registerClass(const QMetaObject* metaobject, const char* p
   while (m) {
     PythonQtClassInfo* info = lookupClassInfoAndCreateIfNotPresent(m->className());
     if (!info->pythonQtClassWrapper()) {
+      info->setTypeSlots(typeSlots);
       info->setupQObject(m);
       createPythonQtClassWrapper(info, package, module);
       if (m->superClass()) {
@@ -1130,10 +1131,11 @@ bool PythonQtPrivate::addParentClass(const char* typeName, const char* parentTyp
   }
 }
 
-void PythonQtPrivate::registerCPPClass(const char* typeName, const char* parentTypeName, const char* package, PythonQtQObjectCreatorFunctionCB* wrapperCreator,  PythonQtShellSetInstanceWrapperCB* shell, PyObject* module)
+void PythonQtPrivate::registerCPPClass(const char* typeName, const char* parentTypeName, const char* package, PythonQtQObjectCreatorFunctionCB* wrapperCreator,  PythonQtShellSetInstanceWrapperCB* shell, PyObject* module, int typeSlots)
 {
   PythonQtClassInfo* info = lookupClassInfoAndCreateIfNotPresent(typeName);
   if (!info->pythonQtClassWrapper()) {
+    info->setTypeSlots(typeSlots);
     info->setupCPPObject(typeName);
     createPythonQtClassWrapper(info, package, module);
   }

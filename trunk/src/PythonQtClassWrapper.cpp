@@ -48,6 +48,167 @@
 #include "PythonQtConversion.h"
 #include "PythonQtInstanceWrapper.h"
 
+static PyObject* PythonQtInstanceWrapper_invert(PythonQtInstanceWrapper* wrapper)
+{
+  PyObject* result = NULL;
+  static QByteArray memberName = "__invert__";
+  PythonQtMemberInfo opSlot = wrapper->classInfo()->member(memberName);
+  if (opSlot._type == PythonQtMemberInfo::Slot) {
+    result = PythonQtSlotFunction_CallImpl(wrapper->classInfo(), wrapper->_obj, opSlot._slot, NULL, NULL, wrapper->_wrappedPtr);
+  }
+  return result;
+}
+
+static int PythonQtInstanceWrapper_nonzero(PythonQtInstanceWrapper* wrapper)
+{
+  int result = (wrapper->_wrappedPtr == NULL && wrapper->_obj == NULL)?0:1;
+  if (result) {
+    static QByteArray memberName = "__nonzero__";
+    PythonQtMemberInfo opSlot = wrapper->classInfo()->member(memberName);
+    if (opSlot._type == PythonQtMemberInfo::Slot) {
+      PyObject* resultObj = PythonQtSlotFunction_CallImpl(wrapper->classInfo(), wrapper->_obj, opSlot._slot, NULL, NULL, wrapper->_wrappedPtr);
+      if (resultObj == Py_False) {
+        result = 0;
+      }
+      Py_XDECREF(resultObj);
+    }
+  }
+  return result;
+}
+
+
+static PyObject* PythonQtInstanceWrapper_binaryfunc(PythonQtInstanceWrapper* wrapper, PyObject* other, const QByteArray& opName, const QByteArray& fallbackOpName = QByteArray())
+{
+  PyObject* result = NULL;
+  PythonQtMemberInfo opSlot = wrapper->classInfo()->member(opName);
+  if (opSlot._type == PythonQtMemberInfo::Slot) {
+    // TODO get rid of tuple
+    PyObject* args = PyTuple_New(1);
+    Py_INCREF(other);
+    PyTuple_SET_ITEM(args, 0, other);
+    result = PythonQtSlotFunction_CallImpl(wrapper->classInfo(), wrapper->_obj, opSlot._slot, args, NULL, wrapper->_wrappedPtr);
+    Py_DECREF(args);
+    if (!result && !fallbackOpName.isEmpty()) {
+      // try fallback if we did not get a result
+      result = PythonQtInstanceWrapper_binaryfunc(wrapper, other, fallbackOpName);
+    }
+  }
+  return result;
+}
+
+#define BINARY_OP(NAME) \
+static PyObject* PythonQtInstanceWrapper_ ## NAME(PythonQtInstanceWrapper* wrapper, PyObject* other) \
+{ \
+  static const QByteArray opName("__" #NAME "__"); \
+  return PythonQtInstanceWrapper_binaryfunc(wrapper, other, opName); \
+}
+
+#define BINARY_OP_INPLACE(NAME) \
+  static PyObject* PythonQtInstanceWrapper_i ## NAME(PythonQtInstanceWrapper* wrapper, PyObject* other) \
+{ \
+  static const QByteArray opName("__i" #NAME "__"); \
+  static const QByteArray fallbackName("__" #NAME "__"); \
+  return PythonQtInstanceWrapper_binaryfunc(wrapper, other, opName, fallbackName); \
+}
+
+BINARY_OP(add)
+BINARY_OP(sub)
+BINARY_OP(mul)
+BINARY_OP(div)
+BINARY_OP(and)
+BINARY_OP(or)
+BINARY_OP(xor)
+BINARY_OP(mod)
+BINARY_OP(lshift)
+BINARY_OP(rshift)
+
+BINARY_OP_INPLACE(add)
+BINARY_OP_INPLACE(sub)
+BINARY_OP_INPLACE(mul)
+BINARY_OP_INPLACE(div)
+BINARY_OP_INPLACE(and)
+BINARY_OP_INPLACE(or)
+BINARY_OP_INPLACE(xor)
+BINARY_OP_INPLACE(mod)
+BINARY_OP_INPLACE(lshift)
+BINARY_OP_INPLACE(rshift)
+
+static void initializeSlots(PythonQtClassWrapper* wrap)
+{
+  int typeSlots = wrap->classInfo()->typeSlots();
+  if (typeSlots) {
+    if (typeSlots & PythonQt::Type_Add) {
+      wrap->_base.as_number.nb_add = (binaryfunc)PythonQtInstanceWrapper_add;
+    }
+    if (typeSlots & PythonQt::Type_Subtract) {
+      wrap->_base.as_number.nb_subtract = (binaryfunc)PythonQtInstanceWrapper_sub;
+    }
+    if (typeSlots & PythonQt::Type_Multiply) {
+      wrap->_base.as_number.nb_multiply = (binaryfunc)PythonQtInstanceWrapper_mul;
+    }
+    if (typeSlots & PythonQt::Type_Divide) {
+      wrap->_base.as_number.nb_divide = (binaryfunc)PythonQtInstanceWrapper_div;
+      wrap->_base.as_number.nb_true_divide = (binaryfunc)PythonQtInstanceWrapper_div;
+    }
+    if (typeSlots & PythonQt::Type_And) {
+      wrap->_base.as_number.nb_and = (binaryfunc)PythonQtInstanceWrapper_and;
+    }
+    if (typeSlots & PythonQt::Type_Or) {
+      wrap->_base.as_number.nb_or = (binaryfunc)PythonQtInstanceWrapper_or;
+    }
+    if (typeSlots & PythonQt::Type_Xor) {
+      wrap->_base.as_number.nb_xor = (binaryfunc)PythonQtInstanceWrapper_xor;
+    }
+    if (typeSlots & PythonQt::Type_Mod) {
+      wrap->_base.as_number.nb_remainder = (binaryfunc)PythonQtInstanceWrapper_mod;
+    }
+    if (typeSlots & PythonQt::Type_LShift) {
+      wrap->_base.as_number.nb_lshift = (binaryfunc)PythonQtInstanceWrapper_lshift;
+    }
+    if (typeSlots & PythonQt::Type_RShift) {
+      wrap->_base.as_number.nb_rshift = (binaryfunc)PythonQtInstanceWrapper_rshift;
+    }
+
+    if (typeSlots & PythonQt::Type_InplaceAdd) {
+      wrap->_base.as_number.nb_add = (binaryfunc)PythonQtInstanceWrapper_iadd;
+    }
+    if (typeSlots & PythonQt::Type_InplaceSubtract) {
+      wrap->_base.as_number.nb_subtract = (binaryfunc)PythonQtInstanceWrapper_isub;
+    }
+    if (typeSlots & PythonQt::Type_InplaceMultiply) {
+      wrap->_base.as_number.nb_multiply = (binaryfunc)PythonQtInstanceWrapper_imul;
+    }
+    if (typeSlots & PythonQt::Type_InplaceDivide) {
+      wrap->_base.as_number.nb_inplace_divide = (binaryfunc)PythonQtInstanceWrapper_idiv;
+      wrap->_base.as_number.nb_inplace_true_divide = (binaryfunc)PythonQtInstanceWrapper_idiv;
+    }
+    if (typeSlots & PythonQt::Type_InplaceAnd) {
+      wrap->_base.as_number.nb_inplace_and = (binaryfunc)PythonQtInstanceWrapper_iand;
+    }
+    if (typeSlots & PythonQt::Type_InplaceOr) {
+      wrap->_base.as_number.nb_inplace_or = (binaryfunc)PythonQtInstanceWrapper_ior;
+    }
+    if (typeSlots & PythonQt::Type_InplaceXor) {
+      wrap->_base.as_number.nb_inplace_xor = (binaryfunc)PythonQtInstanceWrapper_ixor;
+    }
+    if (typeSlots & PythonQt::Type_InplaceMod) {
+      wrap->_base.as_number.nb_inplace_remainder = (binaryfunc)PythonQtInstanceWrapper_imod;
+    }
+    if (typeSlots & PythonQt::Type_InplaceLShift) {
+      wrap->_base.as_number.nb_inplace_lshift = (binaryfunc)PythonQtInstanceWrapper_ilshift;
+    }
+    if (typeSlots & PythonQt::Type_InplaceRShift) {
+      wrap->_base.as_number.nb_inplace_rshift = (binaryfunc)PythonQtInstanceWrapper_irshift;
+    }
+    if (typeSlots & PythonQt::Type_Invert) {
+      wrap->_base.as_number.nb_invert = (unaryfunc)PythonQtInstanceWrapper_invert;
+    }
+    if (typeSlots & PythonQt::Type_NonZero) {
+      wrap->_base.as_number.nb_nonzero = (inquiry)PythonQtInstanceWrapper_nonzero;
+    }
+  }
+}
+
 static PyObject* PythonQtClassWrapper_alloc(PyTypeObject *self, Py_ssize_t nitems)
 {
   // call the default type alloc
@@ -56,6 +217,7 @@ static PyObject* PythonQtClassWrapper_alloc(PyTypeObject *self, Py_ssize_t nitem
   // take current class type, if we are called via newPythonQtClassWrapper()
   PythonQtClassWrapper* wrap = (PythonQtClassWrapper*)obj;
   wrap->_classInfo = PythonQt::priv()->currentClassInfoForClassWrapperCreation();
+  initializeSlots(wrap);
 
   return obj;
 }

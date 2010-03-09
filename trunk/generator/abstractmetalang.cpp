@@ -849,6 +849,16 @@ AbstractMetaFunctionList AbstractMetaClass::queryFunctionsByName(const QString &
     return returned;
 }
 
+bool AbstractMetaClass::hasDefaultIsNull() const 
+{
+  foreach(const AbstractMetaFunction* fun, queryFunctionsByName("isNull")) {
+    if (fun->actualMinimumArgumentCount()==0) {
+      return true;
+    }
+  }
+  return false;
+}
+
 /*******************************************************************************
  * Returns all reference count modifications for any function in the class
  */
