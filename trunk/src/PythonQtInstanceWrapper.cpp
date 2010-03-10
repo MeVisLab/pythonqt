@@ -566,6 +566,17 @@ static QString getStringFromObject(PythonQtInstanceWrapper* wrapper) {
 static PyObject * PythonQtInstanceWrapper_str(PyObject * obj)
 {
   PythonQtInstanceWrapper* wrapper = (PythonQtInstanceWrapper*)obj;
+
+  // QByteArray should be directly returned as a str
+  if (wrapper->classInfo()->metaTypeId()==QVariant::ByteArray) {
+    QByteArray* b = (QByteArray*) wrapper->_wrappedPtr;
+    if (b->data()) {
+      return PyString_FromStringAndSize(b->data(), b->size());
+    } else {
+      return PyString_FromString("");
+    }
+  }
+
   const char* typeName = obj->ob_type->tp_name;
   QObject *qobj = wrapper->_obj;
   QString str = getStringFromObject(wrapper);

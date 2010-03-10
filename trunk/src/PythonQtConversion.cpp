@@ -146,10 +146,11 @@ PyObject* PythonQtConv::ConvertQtValueToPythonInternal(int type, const void* dat
     return PyLong_FromLongLong(*((qint64*)data));
   case QMetaType::ULongLong:
     return PyLong_FromUnsignedLongLong(*((quint64*)data));
-  case QMetaType::QByteArray: {
-    QByteArray* v = (QByteArray*) data;
-    return PyString_FromStringAndSize(*v, v->size());
-                              }
+      // implicit conversion from QByteArray to str has been removed:
+  //case QMetaType::QByteArray: {
+  //  QByteArray* v = (QByteArray*) data;
+  //  return PyString_FromStringAndSize(*v, v->size());
+  //                            }
   case QMetaType::QVariantMap:
     return PythonQtConv::QVariantMapToPyObject(*((QVariantMap*)data));
   case QMetaType::QVariantList:
@@ -689,6 +690,7 @@ QString PythonQtConv::PyObjGetString(PyObject* val, bool strict, bool& ok) {
 }
 
 QByteArray PythonQtConv::PyObjGetBytes(PyObject* val, bool /*strict*/, bool& ok) {
+  // TODO: support buffer objects in general
   QByteArray r;
   ok = true;
   if (val->ob_type == &PyString_Type) {

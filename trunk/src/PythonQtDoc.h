@@ -146,7 +146,7 @@
  - QObject.emit to emit Qt signals from Python is not yet implemented but PythonQt allows to just emit a signal by calling it
  - PythonQt does not (yet) offer to add new signals to Python/C++ objects
  - Ownership of objects is a bit different in PythonQt, currently Python classes derived from a C++ class need to be manually referenced in Python to not get deleted too early (this will be fixed)
- - QString and QBytearray are always converted to unicode and str Python objects (PyQt returns QString and QByteArray instead).
+ - QStrings are always converted to unicode Python objects (PyQt returns QString instead), we prefered to return Python strings.
  - Probably there are lots of details that differ, I do not know PyQt that well to list them all.
 
  \section Interface

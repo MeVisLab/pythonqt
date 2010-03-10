@@ -81,6 +81,7 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
     PythonQt_init_QtCoreBuiltin(NULL);
     PythonQt_init_QtGuiBuiltin(NULL);
   
+    PythonQtRegisterToolClassesTemplateConverter(QByteArray);
     PythonQtRegisterToolClassesTemplateConverter(QDate);
     PythonQtRegisterToolClassesTemplateConverter(QTime);
     PythonQtRegisterToolClassesTemplateConverter(QDateTime);
