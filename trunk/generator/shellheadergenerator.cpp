@@ -293,10 +293,9 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
     }
   }
 
-  //    writeInjectedCode(s, meta_class);
+  writeInjectedCode(s, meta_class);
 
-  //  s  << endl << "    QScriptValue __qtscript_self;" << endl;
-
+  
   s  << "};" << endl << endl
     << "#endif // " << include_block << endl;
 
@@ -306,7 +305,7 @@ void ShellHeaderGenerator::writeInjectedCode(QTextStream &s, const AbstractMetaC
 {
   CodeSnipList code_snips = meta_class->typeEntry()->codeSnips();
   foreach (const CodeSnip &cs, code_snips) {
-    if (cs.language == TypeSystem::ShellDeclaration) {
+    if (cs.language == TypeSystem::PyWrapperDeclaration) {
       s << cs.code() << endl;
     }
   }

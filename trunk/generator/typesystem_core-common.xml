@@ -31,6 +31,8 @@
   <rejection class="" enum-name="QtValidLicenseForScriptToolsModule" />
   <rejection class="" enum-name="QtValidLicenseForMultimediaModule" />
   <rejection class="" enum-name="QtValidLicenseForOpenVGModule" />
+  <rejection class="" enum-name="QtValidLicenseForDeclarativeModule" />
+
 
   <rejection class="QtConcurrent" enum-name="enum_1" />
   <rejection class="QtConcurrent" function-name="operator|" />
@@ -898,10 +900,8 @@
     <modify-function signature="operator[](uint)" remove="all"/>
     <modify-function signature="operator[](uint)const" remove="all"/>
     <modify-function signature="push_back(char)" remove="all"/>
-    <modify-function signature="push_back(const QByteArray&amp;)" remove="all"/>
     <modify-function signature="push_back(const char*)" remove="all"/>
     <modify-function signature="push_front(char)" remove="all"/>
-    <modify-function signature="push_front(const QByteArray&amp;)" remove="all"/>
     <modify-function signature="push_front(const char*)" remove="all"/>
     <modify-function signature="setNum(uint,int)" remove="all"/>
     <modify-function signature="setNum(unsigned long long,int)" remove="all"/>
@@ -915,7 +915,6 @@
 
     <!-- functions made private... -->
     <modify-function signature="operator=(QByteArray)" access="private"/>
-    <modify-function signature="operator+=(QByteArray)" remove="all"/>
     <modify-function signature="operator+=(QString)" remove="all"/>
     <modify-function signature="operator+=(char)" remove="all"/>
   </value-type>

@@ -101,6 +101,8 @@ namespace TypeSystem {
         DestructorFunction  = 0x0020,
         Constructors        = 0x0040,
         Interface           = 0x0080,
+        PyWrapperCode       = 0x0100,
+        PyWrapperDeclaration = 0x0200,
 
         // masks
         All                 = TargetLangCode
