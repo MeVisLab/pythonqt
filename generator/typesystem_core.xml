@@ -63,6 +63,8 @@
   <rejection class="" enum-name="QtValidLicenseForScriptToolsModule"/>
   <rejection class="" enum-name="QtValidLicenseForMultimediaModule"/>
   <rejection class="" enum-name="QtValidLicenseForOpenVGModule"/>
+  <rejection class="" enum-name="QtValidLicenseForDeclarativeModule"/>
+
 
   <rejection class="QtConcurrent" enum-name="enum_1"/>
   <rejection class="QtConcurrent" function-name="operator|"/>
@@ -1138,10 +1140,8 @@
     <modify-function signature="operator[](uint)" remove="all"/>
     <modify-function signature="operator[](uint)const" remove="all"/>
     <modify-function signature="push_back(char)" remove="all"/>
-    <modify-function signature="push_back(const QByteArray&amp;)" remove="all"/>
     <modify-function signature="push_back(const char*)" remove="all"/>
     <modify-function signature="push_front(char)" remove="all"/>
-    <modify-function signature="push_front(const QByteArray&amp;)" remove="all"/>
     <modify-function signature="push_front(const char*)" remove="all"/>
     <modify-function signature="setNum(uint,int)" remove="all"/>
     <modify-function signature="setNum(unsigned long long,int)" remove="all"/>
@@ -1155,25 +1155,26 @@
 
     <!-- functions made private... -->
     <modify-function signature="operator=(QByteArray)" access="private"/>
-    <modify-function signature="operator+=(QByteArray)" remove="all"/>
     <modify-function signature="operator+=(QString)" remove="all"/>
     <modify-function signature="operator+=(char)" remove="all"/>
   
-
+    <inject-code class="pywrap-h">
+  PyObject* data(QByteArray* b) {
+    if (b-&gt;data()) {
+      return PyString_FromStringAndSize(b-&gt;data(), b-&gt;size());
+    } else {
+      Py_INCREF(Py_None);
+      return Py_None;
+    }
+  }
+    </inject-code>
+  
     <inject-code class="native" position="beginning">
     Q_DECLARE_METATYPE(QScriptValue)
     </inject-code>
 
-    <modify-function signature="QByteArray(const char*)">
-      <modify-argument index="1">
-        <replace-type modified-type="QString"/>
-        <conversion-rule class="native">
-          <insert-template name="core.convert_string_arg_to_char*"/>
-        </conversion-rule>            
-      </modify-argument>
-    </modify-function>
-
     <modify-function signature="QByteArray(const char*,int)" remove="all"/>
+    <modify-function signature="QByteArray(const char*)" remove="all"/>
 
     <modify-function signature="at(int)const">
       <modify-argument index="1">

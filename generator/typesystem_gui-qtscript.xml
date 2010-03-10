@@ -553,6 +553,56 @@
       </modify-function>
   </value-type>
 
+  <object-type name="QMenu">
+  <inject-code class="pywrap-h">
+  QAction* addAction (QMenu* menu, const QString &amp; text, PyObject* callable, const QKeySequence &amp; shortcut = 0) {
+    QAction* a = menu->addAction(text);
+    a->setShortcut(shortcut);
+    PythonQt::self()->addSignalHandler(a, SIGNAL(triggered(bool)), callable);
+    return a;
+  }
+  
+  QAction* addAction (QMenu* menu, const QIcon&amp; icon, const QString&amp; text, PyObject* callable, const QKeySequence&amp; shortcut = 0)
+  {
+    QAction* a = menu->addAction(text);
+    a->setIcon(icon);
+    a->setShortcut(shortcut);
+    PythonQt::self()->addSignalHandler(a, SIGNAL(triggered(bool)), callable);
+    return a;
+  }
+  </inject-code>
+  </object-type>
+  
+  <object-type name="QMenuBar">
+  <inject-code class="pywrap-h">
+  QAction* addAction (QMenuBar* menu, const QString &amp; text, PyObject* callable)
+  {
+    QAction* a = menu->addAction(text);
+    PythonQt::self()->addSignalHandler(a, SIGNAL(triggered(bool)), callable);
+    return a;
+  }
+  </inject-code>
+  </object-type>
+  
+  <object-type name="QToolBar">
+  <inject-code class="pywrap-h">
+  QAction* addAction (QToolBar* menu, const QString &amp; text, PyObject* callable)
+  {
+    QAction* a = menu->addAction(text);
+    PythonQt::self()->addSignalHandler(a, SIGNAL(triggered(bool)), callable);
+    return a;
+  }
+  
+  QAction* addAction (QToolBar* menu, const QIcon&amp; icon, const QString&amp; text, PyObject* callable)
+  {
+    QAction* a = menu->addAction(text);
+    a->setIcon(icon);
+    PythonQt::self()->addSignalHandler(a, SIGNAL(triggered(bool)), callable);
+    return a;
+  }
+  </inject-code>
+  </object-type>
+
   <suppress-warning text="WARNING(MetaJavaBuilder) :: Rejected enum has no alternative...: QPalette::NColorRoles" />
   <suppress-warning text="WARNING(MetaJavaBuilder) :: Cannot find enum constant for value 'DragMove' in 'QDragMoveEvent' or any of its super classes" />
 

@@ -300,14 +300,16 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
     s << "  return result;" << endl;
     s << "}" << endl << endl;
   }
-  
+
+  writeInjectedCode(s, meta_class);
+
 }
 
 void ShellImplGenerator::writeInjectedCode(QTextStream &s, const AbstractMetaClass *meta_class)
 {
   CodeSnipList code_snips = meta_class->typeEntry()->codeSnips();
   foreach (const CodeSnip &cs, code_snips) {
-    if (cs.language == TypeSystem::ShellCode) {
+    if (cs.language == TypeSystem::PyWrapperCode) {
       s << cs.code() << endl;
     }
   }

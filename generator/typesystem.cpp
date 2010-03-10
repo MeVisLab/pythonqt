@@ -1278,6 +1278,8 @@ bool Handler::startElement(const QString &, const QString &n,
                     languageNames["destructor-function"] = TypeSystem::DestructorFunction;
                     languageNames["constructors"] = TypeSystem::Constructors;
                     languageNames["interface"] = TypeSystem::Interface;
+                  languageNames["pywrap-cpp"] = TypeSystem::PyWrapperCode;
+                  languageNames["pywrap-h"] = TypeSystem::PyWrapperDeclaration;
                 }
 
                 QString className = attributes["class"].toLower();

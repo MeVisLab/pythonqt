@@ -345,6 +345,7 @@ bool ShellGenerator::isBuiltIn(const QString& name) {
     builtIn.insert("QPixmap");
     builtIn.insert("QBrush");
     builtIn.insert("QBitArray");
+    builtIn.insert("QByteArray");
     builtIn.insert("QPalette");
     builtIn.insert("QPen");
     builtIn.insert("QIcon");
