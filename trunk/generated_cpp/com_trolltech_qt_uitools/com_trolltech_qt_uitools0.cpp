@@ -16,33 +16,22 @@
 #include <quiloader.h>
 #include <qwidget.h>
 
-QLayout*  PythonQtShell_QUiLoader::createLayout(const QString&  className, QObject*  parent, const QString&  name)
+void PythonQtShell_QUiLoader::childEvent(QChildEvent*  arg__1)
 {
 if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "createLayout");
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "childEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"QLayout*" , "const QString&" , "QObject*" , "const QString&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
-      QLayout* returnValue;
-    void* args[4] = {NULL, (void*)&className, (void*)&parent, (void*)&name};
+    static const char* argumentList[] ={"" , "QChildEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+    void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("createLayout", methodInfo, result);
-        } else {
-          returnValue = *((QLayout**)args[0]);
-        }
-      }
-    }
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
-    return returnValue;
+    return;
   }
 }
-  return QUiLoader::createLayout(className, parent, name);
+  QUiLoader::childEvent(arg__1);
 }
 QAction*  PythonQtShell_QUiLoader::createAction(QObject*  parent, const QString&  name)
 {
@@ -72,6 +61,62 @@ if (_wrapper) {
 }
   return QUiLoader::createAction(parent, name);
 }
+QActionGroup*  PythonQtShell_QUiLoader::createActionGroup(QObject*  parent, const QString&  name)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "createActionGroup");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"QActionGroup*" , "QObject*" , "const QString&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
+      QActionGroup* returnValue;
+    void* args[3] = {NULL, (void*)&parent, (void*)&name};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("createActionGroup", methodInfo, result);
+        } else {
+          returnValue = *((QActionGroup**)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QUiLoader::createActionGroup(parent, name);
+}
+QLayout*  PythonQtShell_QUiLoader::createLayout(const QString&  className, QObject*  parent, const QString&  name)
+{
+if (_wrapper) {
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "createLayout");
+  PyErr_Clear();
+  if (obj && !PythonQtSlotFunction_Check(obj)) {
+    static const char* argumentList[] ={"QLayout*" , "const QString&" , "QObject*" , "const QString&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
+      QLayout* returnValue;
+    void* args[4] = {NULL, (void*)&className, (void*)&parent, (void*)&name};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("createLayout", methodInfo, result);
+        } else {
+          returnValue = *((QLayout**)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  }
+}
+  return QUiLoader::createLayout(className, parent, name);
+}
 QWidget*  PythonQtShell_QUiLoader::createWidget(const QString&  className, QWidget*  parent, const QString&  name)
 {
 if (_wrapper) {
@@ -100,33 +145,22 @@ if (_wrapper) {
 }
   return QUiLoader::createWidget(className, parent, name);
 }
-QActionGroup*  PythonQtShell_QUiLoader::createActionGroup(QObject*  parent, const QString&  name)
+void PythonQtShell_QUiLoader::customEvent(QEvent*  arg__1)
 {
 if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "createActionGroup");
+  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "customEvent");
   PyErr_Clear();
   if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"QActionGroup*" , "QObject*" , "const QString&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
-      QActionGroup* returnValue;
-    void* args[3] = {NULL, (void*)&parent, (void*)&name};
+    static const char* argumentList[] ={"" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+    void* args[2] = {NULL, (void*)&arg__1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("createActionGroup", methodInfo, result);
-        } else {
-          returnValue = *((QActionGroup**)args[0]);
-        }
-      }
-    }
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
-    return returnValue;
+    return;
   }
 }
-  return QUiLoader::createActionGroup(parent, name);
+  QUiLoader::customEvent(arg__1);
 }
 bool  PythonQtShell_QUiLoader::event(QEvent*  arg__1)
 {
@@ -184,40 +218,6 @@ if (_wrapper) {
 }
   return QUiLoader::eventFilter(arg__1, arg__2);
 }
-void PythonQtShell_QUiLoader::childEvent(QChildEvent*  arg__1)
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "childEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"" , "QChildEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  }
-}
-  QUiLoader::childEvent(arg__1);
-}
-void PythonQtShell_QUiLoader::customEvent(QEvent*  arg__1)
-{
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "customEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
-    static const char* argumentList[] ={"" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  }
-}
-  QUiLoader::customEvent(arg__1);
-}
 void PythonQtShell_QUiLoader::timerEvent(QTimerEvent*  arg__1)
 {
 if (_wrapper) {
@@ -239,81 +239,6 @@ QUiLoader* PythonQtWrapper_QUiLoader::new_QUiLoader(QObject*  parent)
 { 
 return new PythonQtShell_QUiLoader(parent); }
 
-void PythonQtWrapper_QUiLoader::clearPluginPaths(QUiLoader* theWrappedObject)
-{
-  ( theWrappedObject->clearPluginPaths());
-}
-
-bool  PythonQtWrapper_QUiLoader::isTranslationEnabled(QUiLoader* theWrappedObject) const
-{
-  return ( theWrappedObject->isTranslationEnabled());
-}
-
-QLayout*  PythonQtWrapper_QUiLoader::createLayout(QUiLoader* theWrappedObject, const QString&  className, QObject*  parent, const QString&  name)
-{
-  return ( ((PythonQtPublicPromoter_QUiLoader*)theWrappedObject)->promoted_createLayout(className, parent, name));
-}
-
-void PythonQtWrapper_QUiLoader::setScriptingEnabled(QUiLoader* theWrappedObject, bool  enabled)
-{
-  ( theWrappedObject->setScriptingEnabled(enabled));
-}
-
-QAction*  PythonQtWrapper_QUiLoader::createAction(QUiLoader* theWrappedObject, QObject*  parent, const QString&  name)
-{
-  return ( ((PythonQtPublicPromoter_QUiLoader*)theWrappedObject)->promoted_createAction(parent, name));
-}
-
-void PythonQtWrapper_QUiLoader::setTranslationEnabled(QUiLoader* theWrappedObject, bool  enabled)
-{
-  ( theWrappedObject->setTranslationEnabled(enabled));
-}
-
-QWidget*  PythonQtWrapper_QUiLoader::createWidget(QUiLoader* theWrappedObject, const QString&  className, QWidget*  parent, const QString&  name)
-{
-  return ( ((PythonQtPublicPromoter_QUiLoader*)theWrappedObject)->promoted_createWidget(className, parent, name));
-}
-
-QStringList  PythonQtWrapper_QUiLoader::availableWidgets(QUiLoader* theWrappedObject) const
-{
-  return ( theWrappedObject->availableWidgets());
-}
-
-QActionGroup*  PythonQtWrapper_QUiLoader::createActionGroup(QUiLoader* theWrappedObject, QObject*  parent, const QString&  name)
-{
-  return ( ((PythonQtPublicPromoter_QUiLoader*)theWrappedObject)->promoted_createActionGroup(parent, name));
-}
-
-QStringList  PythonQtWrapper_QUiLoader::pluginPaths(QUiLoader* theWrappedObject) const
-{
-  return ( theWrappedObject->pluginPaths());
-}
-
-QWidget*  PythonQtWrapper_QUiLoader::load(QUiLoader* theWrappedObject, QIODevice*  device, QWidget*  parentWidget)
-{
-  return ( theWrappedObject->load(device, parentWidget));
-}
-
-void PythonQtWrapper_QUiLoader::setLanguageChangeEnabled(QUiLoader* theWrappedObject, bool  enabled)
-{
-  ( theWrappedObject->setLanguageChangeEnabled(enabled));
-}
-
-bool  PythonQtWrapper_QUiLoader::isScriptingEnabled(QUiLoader* theWrappedObject) const
-{
-  return ( theWrappedObject->isScriptingEnabled());
-}
-
-void PythonQtWrapper_QUiLoader::setWorkingDirectory(QUiLoader* theWrappedObject, const QDir&  dir)
-{
-  ( theWrappedObject->setWorkingDirectory(dir));
-}
-
-QDir  PythonQtWrapper_QUiLoader::workingDirectory(QUiLoader* theWrappedObject) const
-{
-  return ( theWrappedObject->workingDirectory());
-}
-
 void PythonQtWrapper_QUiLoader::addPluginPath(QUiLoader* theWrappedObject, const QString&  path)
 {
   ( theWrappedObject->addPluginPath(path));
@@ -324,9 +249,84 @@ QStringList  PythonQtWrapper_QUiLoader::availableLayouts(QUiLoader* theWrappedOb
   return ( theWrappedObject->availableLayouts());
 }
 
+QStringList  PythonQtWrapper_QUiLoader::availableWidgets(QUiLoader* theWrappedObject) const
+{
+  return ( theWrappedObject->availableWidgets());
+}
+
+void PythonQtWrapper_QUiLoader::clearPluginPaths(QUiLoader* theWrappedObject)
+{
+  ( theWrappedObject->clearPluginPaths());
+}
+
+QAction*  PythonQtWrapper_QUiLoader::createAction(QUiLoader* theWrappedObject, QObject*  parent, const QString&  name)
+{
+  return ( ((PythonQtPublicPromoter_QUiLoader*)theWrappedObject)->promoted_createAction(parent, name));
+}
+
+QActionGroup*  PythonQtWrapper_QUiLoader::createActionGroup(QUiLoader* theWrappedObject, QObject*  parent, const QString&  name)
+{
+  return ( ((PythonQtPublicPromoter_QUiLoader*)theWrappedObject)->promoted_createActionGroup(parent, name));
+}
+
+QLayout*  PythonQtWrapper_QUiLoader::createLayout(QUiLoader* theWrappedObject, const QString&  className, QObject*  parent, const QString&  name)
+{
+  return ( ((PythonQtPublicPromoter_QUiLoader*)theWrappedObject)->promoted_createLayout(className, parent, name));
+}
+
+QWidget*  PythonQtWrapper_QUiLoader::createWidget(QUiLoader* theWrappedObject, const QString&  className, QWidget*  parent, const QString&  name)
+{
+  return ( ((PythonQtPublicPromoter_QUiLoader*)theWrappedObject)->promoted_createWidget(className, parent, name));
+}
+
 bool  PythonQtWrapper_QUiLoader::isLanguageChangeEnabled(QUiLoader* theWrappedObject) const
 {
   return ( theWrappedObject->isLanguageChangeEnabled());
+}
+
+bool  PythonQtWrapper_QUiLoader::isScriptingEnabled(QUiLoader* theWrappedObject) const
+{
+  return ( theWrappedObject->isScriptingEnabled());
+}
+
+bool  PythonQtWrapper_QUiLoader::isTranslationEnabled(QUiLoader* theWrappedObject) const
+{
+  return ( theWrappedObject->isTranslationEnabled());
+}
+
+QWidget*  PythonQtWrapper_QUiLoader::load(QUiLoader* theWrappedObject, QIODevice*  device, QWidget*  parentWidget)
+{
+  return ( theWrappedObject->load(device, parentWidget));
+}
+
+QStringList  PythonQtWrapper_QUiLoader::pluginPaths(QUiLoader* theWrappedObject) const
+{
+  return ( theWrappedObject->pluginPaths());
+}
+
+void PythonQtWrapper_QUiLoader::setLanguageChangeEnabled(QUiLoader* theWrappedObject, bool  enabled)
+{
+  ( theWrappedObject->setLanguageChangeEnabled(enabled));
+}
+
+void PythonQtWrapper_QUiLoader::setScriptingEnabled(QUiLoader* theWrappedObject, bool  enabled)
+{
+  ( theWrappedObject->setScriptingEnabled(enabled));
+}
+
+void PythonQtWrapper_QUiLoader::setTranslationEnabled(QUiLoader* theWrappedObject, bool  enabled)
+{
+  ( theWrappedObject->setTranslationEnabled(enabled));
+}
+
+void PythonQtWrapper_QUiLoader::setWorkingDirectory(QUiLoader* theWrappedObject, const QDir&  dir)
+{
+  ( theWrappedObject->setWorkingDirectory(dir));
+}
+
+QDir  PythonQtWrapper_QUiLoader::workingDirectory(QUiLoader* theWrappedObject) const
+{
+  return ( theWrappedObject->workingDirectory());
 }
 
 
