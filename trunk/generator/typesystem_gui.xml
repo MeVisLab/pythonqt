@@ -1456,6 +1456,8 @@
   <interface-type name="QPaintDevice"/>
 
   <interface-type name="QGraphicsItem" delete-in-main-thread="yes">
+    <modify-function signature="setCursorForItemOnly(QCursor)" remove="all"/>
+
     <modify-function signature="setMatrix(QMatrix, bool)" remove="all"/>
     <modify-function signature="toGraphicsObject() const" remove="all"/>
 
