@@ -167,6 +167,9 @@ PyObject* PythonQtConvertListOfValueTypeToPythonList(const void* /*QList<T>* */ 
 {
   ListType* list = (ListType*)inList; 
   static const int innerType = PythonQtConv::getInnerTemplateMetaType(QByteArray(QMetaType::typeName(metaTypeId)));
+  if (innerType == QVariant::Invalid) {
+    std::cerr << "PythonQtConvertListOfValueTypeToPythonList: unknown inner type " << QMetaType::typeName(metaTypeId) << std::endl;
+  }
   PyObject* result = PyTuple_New(list->size());
   int i = 0;
   foreach (const T& value, *list) {
@@ -181,6 +184,9 @@ bool PythonQtConvertPythonListToListOfValueType(PyObject* obj, void* /*QList<T>*
 {
   ListType* list = (ListType*)outList; 
   static const int innerType = PythonQtConv::getInnerTemplateMetaType(QByteArray(QMetaType::typeName(metaTypeId)));
+  if (innerType == QVariant::Invalid) {
+    std::cerr << "PythonQtConvertPythonListToListOfValueType: unknown inner type " << QMetaType::typeName(metaTypeId) << std::endl;
+  }
   bool result = false;
   if (PySequence_Check(obj)) {
     result = true;
