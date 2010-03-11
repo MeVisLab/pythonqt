@@ -91,22 +91,23 @@
 
     <value-type name="QWebPluginInfo" />
     <value-type name="QWebElement" />
+    <value-type name="QWebElementCollection" />
     <value-type name="QWebPluginFactory::Plugin" />
     <value-type name="QWebPluginFactory::MimeType" />
     <value-type name="QWebSecurityOrigin">
       <custom-constructor>  
-	return new QWebSecurityOrigin(*copy);
+  return new QWebSecurityOrigin(*copy);
       </custom-constructor>
       <custom-destructor>
-	delete copy;
+  delete copy;
       </custom-destructor>
     </value-type>
     <value-type name="QWebDatabase">
       <custom-constructor>  
-	return new QWebDatabase(*copy);
+  return new QWebDatabase(*copy);
       </custom-constructor>
       <custom-destructor>
-	delete copy;
+  delete copy;
       </custom-destructor>
     </value-type>
     <object-type name="QWebPluginFactory::ExtensionOption" />

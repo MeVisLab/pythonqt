@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
-<typesystem package="com.trolltech.qt.webkit"><rejection class="QWebHistory"/><rejection class="QWebHistoryItem"/><rejection class="WebCore"/><suppress-warning text="WARNING(MetaJavaBuilder) :: skipping field 'QWebPluginFactory_Plugin::mimeTypes' with unmatched type 'QList&lt;MimeType&gt;'"/>
+<typesystem package="com.trolltech.qt.webkit">
+<rejection class="WebCore"/>
+<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping field 'QWebPluginFactory_Plugin::mimeTypes' with unmatched type 'QList&lt;MimeType&gt;'"/>
     <namespace-type name="WebCore"/>
 
     <enum-type name="QWebSettings::FontFamily"/>
@@ -21,6 +23,9 @@
     </enum-type>
     <enum-type name="QWebPage::ErrorDomain"/>
     
+    <object-type name="QWebHistory"/>    
+    <object-type name="QWebHistoryItem"/>    
+    <value-type name="QWebElementCollection"/>    
     
     <object-type name="QGraphicsWebView"/>    
     <object-type name="QWebView">
@@ -95,18 +100,18 @@
     <value-type name="QWebPluginFactory::MimeType"/>
     <value-type name="QWebSecurityOrigin">
       <custom-constructor>  
-	return new QWebSecurityOrigin(*copy);
+  return new QWebSecurityOrigin(*copy);
       </custom-constructor>
       <custom-destructor>
-	delete copy;
+  delete copy;
       </custom-destructor>
     </value-type>
     <value-type name="QWebDatabase">
       <custom-constructor>  
-	return new QWebDatabase(*copy);
+  return new QWebDatabase(*copy);
       </custom-constructor>
       <custom-destructor>
-	delete copy;
+  delete copy;
       </custom-destructor>
     </value-type>
     <object-type name="QWebPluginFactory::ExtensionOption"/>
