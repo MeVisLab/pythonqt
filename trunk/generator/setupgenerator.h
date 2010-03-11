@@ -60,7 +60,7 @@ class SetupGenerator : public Generator
   
  private:
    QStringList writePolymorphicHandler(QTextStream &s, const QString &package,
-     const AbstractMetaClassList &classes);
+     const AbstractMetaClassList &polyBaseClasses, QList<const AbstractMetaClass*>& allClasses);
 
    QHash<QString, QList<const AbstractMetaClass*> > packHash;
 };
