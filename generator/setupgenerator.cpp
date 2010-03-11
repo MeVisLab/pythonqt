@@ -113,6 +113,11 @@ static QStringList getOperatorCodes(const AbstractMetaClass* cls) {
   return result;
 }
 
+static bool class_less_than(const AbstractMetaClass *a, const AbstractMetaClass *b)
+{
+  return a->name() < b->name();
+}
+
 void SetupGenerator::generate()
 {
   AbstractMetaClassList classes_with_polymorphic_id;
@@ -128,6 +133,7 @@ void SetupGenerator::generate()
       }
     }
   }
+  qSort(classes_with_polymorphic_id.begin(), classes_with_polymorphic_id.end(), class_less_than);
 
   QHashIterator<QString, QList<const AbstractMetaClass*> > pack(packHash);
   while (pack.hasNext()) {
@@ -135,6 +141,7 @@ void SetupGenerator::generate()
     QList<const AbstractMetaClass*> list = pack.value();
     if (list.isEmpty())
       continue;
+    qSort(list.begin(), list.end(), class_less_than);
 
     QString packKey = pack.key();
     QString packName = pack.key();
@@ -176,7 +183,7 @@ void SetupGenerator::generate()
 
       QStringList polymorphicHandlers;
       if (!packName.endsWith("_builtin")) {
-        polymorphicHandlers = writePolymorphicHandler(s, list.at(0)->package(), classes_with_polymorphic_id);
+        polymorphicHandlers = writePolymorphicHandler(s, list.at(0)->package(), classes_with_polymorphic_id, list);
         s << endl;
       }
       
@@ -225,18 +232,17 @@ void SetupGenerator::generate()
 }
 
 QStringList SetupGenerator::writePolymorphicHandler(QTextStream &s, const QString &package,
-                                                    const AbstractMetaClassList &classes)
+                                                    const AbstractMetaClassList &polybase, QList<const AbstractMetaClass*>& allClasses)
 {
   QStringList handlers;
-  foreach (AbstractMetaClass *cls, classes) {
+  foreach (AbstractMetaClass *cls, polybase) {
     const ComplexTypeEntry *centry = cls->typeEntry();
     if (!centry->isPolymorphicBase())
       continue;
     bool isGraphicsItem = (cls->qualifiedCppName()=="QGraphicsItem");
 
-    AbstractMetaClassList classList = this->classes();
     bool first = true;
-    foreach (AbstractMetaClass *clazz, classList) {
+    foreach (const AbstractMetaClass *clazz, allClasses) {
       bool inherits = false;
       if (isGraphicsItem) {
         foreach(AbstractMetaClass* interfaze, clazz->interfaces()) {
