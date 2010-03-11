@@ -252,6 +252,8 @@ void ShellGenerator::writeFunctionSignature(QTextStream &s,
         s << " const";
 }
 
+bool function_sorter(AbstractMetaFunction *a, AbstractMetaFunction *b);
+
 AbstractMetaFunctionList ShellGenerator::getFunctionsToWrap(const AbstractMetaClass* meta_class)
 {
   AbstractMetaFunctionList functions = meta_class->queryFunctions( 
@@ -274,7 +276,7 @@ AbstractMetaFunctionList ShellGenerator::getFunctionsToWrap(const AbstractMetaCl
       resultFunctions << func;
     }
   }
-  qStableSort(resultFunctions);
+  qSort(resultFunctions.begin(), resultFunctions.end(), function_sorter);
   return resultFunctions;
 }
 
@@ -284,7 +286,7 @@ AbstractMetaFunctionList ShellGenerator::getVirtualFunctionsForShell(const Abstr
     AbstractMetaClass::VirtualFunctions | AbstractMetaClass::WasVisible
 //    | AbstractMetaClass::NotRemovedFromTargetLang
     );
-  qStableSort(functions);
+  qSort(functions.begin(), functions.end(), function_sorter);
   return functions;
 }
 
@@ -297,7 +299,7 @@ AbstractMetaFunctionList ShellGenerator::getProtectedFunctionsThatNeedPromotion(
       functions << func;
     }
   }
-  qStableSort(functions);
+  qSort(functions.begin(), functions.end(), function_sorter);
   return functions;
 }
 
