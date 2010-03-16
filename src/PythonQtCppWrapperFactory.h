@@ -3,7 +3,7 @@
 
 /*
  *
- *  Copyright (C) 2006 MeVis Research GmbH All Rights Reserved.
+ *  Copyright (C) 2010 MeVis Medical Solutions AG All Rights Reserved.
  *
  *  This library is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU Lesser General Public
@@ -26,7 +26,7 @@
  *  License along with this library; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- *  Contact information: MeVis Research GmbH, Universitaetsallee 29,
+ *  Contact information: MeVis Medical Solutions AG, Universitaetsallee 29,
  *  28359 Bremen, Germany or:
  *
  *  http://www.mevis.de
