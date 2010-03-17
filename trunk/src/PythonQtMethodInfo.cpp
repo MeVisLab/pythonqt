@@ -125,12 +125,12 @@ void PythonQtMethodInfo::fillParameterInfo(ParameterInfo& type, const QByteArray
     } else {
       type.isConst = false;
     }
-    bool hadPointer   = false;
+    char pointerCount = 0;
     bool hadReference = false;
     // remove * and & from the end of the string, handle & and * the same way
     while (name.at(len-1) == '*') {
       len--;
-      hadPointer = true;
+      pointerCount++;
     }
     while (name.at(len-1) == '&') {
       len--;
@@ -139,7 +139,7 @@ void PythonQtMethodInfo::fillParameterInfo(ParameterInfo& type, const QByteArray
     if (len!=name.length()) {
       name = name.left(len);
     }
-    type.isPointer = hadPointer;
+    type.pointerCount = pointerCount;
 
     QByteArray alias = _parameterNameAliases.value(name);
     if (!alias.isEmpty()) {
@@ -147,7 +147,7 @@ void PythonQtMethodInfo::fillParameterInfo(ParameterInfo& type, const QByteArray
     }
 
     type.typeId = nameToType(name);
-    if (!type.isPointer && type.typeId == Unknown) {
+    if ((type.pointerCount == 0) && type.typeId == Unknown) {
       type.typeId = QMetaType::type(name.constData());
       if (type.typeId == QMetaType::Void) {
         type.typeId = Unknown;
@@ -162,7 +162,7 @@ void PythonQtMethodInfo::fillParameterInfo(ParameterInfo& type, const QByteArray
     }
   } else {
     type.typeId = QMetaType::Void;
-    type.isPointer = false;
+    type.pointerCount = 0;
     type.isConst = false;
   }
 }
@@ -315,8 +315,10 @@ QString PythonQtSlotInfo::fullSignature()
       result += "const ";
     }
     result += _parameters.at(i).name;
-    if (_parameters.at(i).isPointer) {
-      result += "*";
+    if (_parameters.at(i).pointerCount) {
+      QByteArray stars;
+      stars.fill('*', _parameters.at(i).pointerCount);
+      result += stars;
     }
     if (!names.at(i-1).isEmpty()) {
       result += " ";

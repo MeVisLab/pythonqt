@@ -941,7 +941,7 @@ void PythonQtPrivate::addDecorators(QObject* o, int decoTypes)
       if (qstrncmp(m.signature(), "new_", 4)==0) {
         if ((decoTypes & ConstructorDecorator) == 0) continue;
         const PythonQtMethodInfo* info = PythonQtMethodInfo::getCachedMethodInfo(m, NULL);
-        if (info->parameters().at(0).isPointer) {
+        if (info->parameters().at(0).pointerCount == 1) {
           QByteArray signature = m.signature();
           QByteArray nameOfClass = signature.mid(4, signature.indexOf('(')-4);
           PythonQtClassInfo* classInfo = lookupClassInfoAndCreateIfNotPresent(nameOfClass);
@@ -968,7 +968,7 @@ void PythonQtPrivate::addDecorators(QObject* o, int decoTypes)
         const PythonQtMethodInfo* info = PythonQtMethodInfo::getCachedMethodInfo(m, NULL);
         if (info->parameters().count()>1) {
           PythonQtMethodInfo::ParameterInfo p = info->parameters().at(1);
-          if (p.isPointer) {
+          if (p.pointerCount==1) {
             PythonQtClassInfo* classInfo = lookupClassInfoAndCreateIfNotPresent(p.name);
             PythonQtSlotInfo* newSlot = new PythonQtSlotInfo(NULL, m, i, o, PythonQtSlotInfo::InstanceDecorator);
             classInfo->addDecoratorSlot(newSlot);

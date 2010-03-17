@@ -62,7 +62,7 @@ PyObject* PythonQtConv::GetPyBool(bool val)
 PyObject* PythonQtConv::ConvertQtValueToPython(const PythonQtMethodInfo::ParameterInfo& info, const void* data) {
   // is it an enum value?
   if (info.enumWrapper) {
-    if (!info.isPointer) {
+    if (info.pointerCount==0) {
       return PythonQtPrivate::createEnumValueInstance(info.enumWrapper, *((unsigned int*)data));
     } else {
       // we do not support pointers to enums (who needs them?)
@@ -74,7 +74,7 @@ PyObject* PythonQtConv::ConvertQtValueToPython(const PythonQtMethodInfo::Paramet
   if (info.typeId == QMetaType::Void) {
     Py_INCREF(Py_None);
     return Py_None;
-  } else if (info.isPointer && (info.typeId == QMetaType::Char)) {
+  } else if ((info.pointerCount == 1) && (info.typeId == QMetaType::Char)) {
     // a char ptr will probably be a null terminated string, so we support that:
     return PyString_FromString(*((char**)data));
   } else if ((info.typeId == PythonQtMethodInfo::Unknown || info.typeId >= QMetaType::User) &&
@@ -83,13 +83,17 @@ PyObject* PythonQtConv::ConvertQtValueToPython(const PythonQtMethodInfo::Paramet
     QByteArray innerType = info.name.mid(6,info.name.length()-7);
     if (innerType.endsWith("*")) {
       innerType.truncate(innerType.length()-1);
-      QList<void*>* listPtr;
-      if (info.isPointer) {
+      QList<void*>* listPtr = NULL;
+      if (info.pointerCount == 1) {
         listPtr = *((QList<void*>**)data);
-      } else {
+      } else if (info.pointerCount == 0) {
         listPtr = (QList<void*>*)data;
       }
-      return ConvertQListOfPointerTypeToPythonList(listPtr, innerType);
+      if (listPtr) {
+        return ConvertQListOfPointerTypeToPythonList(listPtr, innerType);
+      } else {
+        return NULL;
+      }
     }
   }
 
@@ -102,12 +106,14 @@ PyObject* PythonQtConv::ConvertQtValueToPython(const PythonQtMethodInfo::Paramet
   }
 
   // special handling did not match, so we convert the usual way (either pointer or value version):
-  if (info.isPointer) {
+  if (info.pointerCount == 1) {
     // convert the pointer to a Python Object (we can handle ANY C++ object, in the worst case we just know the type and the pointer)
     return PythonQt::priv()->wrapPtr(*((void**)data), info.name);
-  } else {
+  } else if (info.pointerCount == 0) {
     // handle values that are not yet handled and not pointers
     return ConvertQtValueToPythonInternal(info.typeId, data);
+  } else {
+    return NULL;
   }
 }
 
@@ -191,7 +197,9 @@ return Py_None;
 
  void* PythonQtConv::CreateQtReturnValue(const PythonQtMethodInfo::ParameterInfo& info) {
    void* ptr = NULL;
-   if (info.isPointer) {
+   if (info.pointerCount>1) {
+     return NULL;
+   } else if (info.pointerCount==1) {
      PythonQtValueStorage_ADD_VALUE(global_ptrStorage, void*, NULL, ptr);
    } else if (info.enumWrapper) {
      // create enum return value
@@ -340,7 +348,7 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
    void* ptr = NULL;
 
    // autoconversion of QPen/QBrush/QCursor/QColor from different type
-   if (!info.isPointer && !strict) {
+   if (info.pointerCount==0 && !strict) {
      ptr = handlePythonToQtAutoConversion(info.typeId, obj, alreadyAllocatedCPPObject);
      if (ptr) {
        return ptr;
@@ -355,17 +363,17 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
      PythonQtInstanceWrapper* wrap = (PythonQtInstanceWrapper*)obj;
      void* object = castWrapperTo(wrap, info.name, ok);
      if (ok) {
-       if (info.isPointer) {
+       if (info.pointerCount==1) {
          // store the wrapped pointer in an extra pointer and let ptr point to the extra pointer
          PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_ptrStorage, void*, object, ptr);
-       } else {
+       } else if (info.pointerCount==0) {
          // store the wrapped pointer directly, since we are a reference
          ptr = object;
        }
      } else {
       // not matching
      }
-   } else if (info.isPointer) {
+   } else if (info.pointerCount == 1) {
      // a pointer
      if (info.typeId == QMetaType::Char || info.typeId == QMetaType::UChar)
      {
@@ -392,7 +400,7 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
          }
        }
      }
-   } else {
+   } else if (info.pointerCount == 0) {
      // not a pointer
      switch (info.typeId) {
      case QMetaType::Char:

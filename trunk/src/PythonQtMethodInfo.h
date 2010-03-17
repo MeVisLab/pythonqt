@@ -67,7 +67,7 @@ public:
     QByteArray name;
     PyObject*  enumWrapper; // if it is an enum, a pointer to the enum wrapper
     int typeId; // a mixture from QMetaType and ParameterType
-    bool isPointer;
+    char pointerCount; // the number of pointers indirections
     bool isConst;
   };
 
