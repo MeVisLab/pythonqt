@@ -784,7 +784,7 @@
   <value-type name="QPixmap" delete-in-main-thread="yes">
     <modify-function signature="operator=(QPixmap)" remove="all"/>
     <modify-function signature="operator!()const" remove="all"/>
-    <modify-function signature="QPixmap(const char **)" access="private"/>
+    <modify-function signature="QPixmap(const char **)" remove="all"/>
     <modify-function signature="serialNumber()const" remove="all"/> <!--### Obsolete in 4.3-->
   </value-type>
 
