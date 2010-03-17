@@ -97,7 +97,6 @@ bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObj
     if (ok) {
       for (int i = 2; i<argc && ok; i++) {
         const PythonQtSlotInfo::ParameterInfo& param = params.at(i);
-        //std::cout << param.name.data() << " " << param.typeId << (param.isPointer?"*":"") << (param.isConst?" const":"") << std::endl;
         argList[i] = PythonQtConv::ConvertPythonToQt(param, PyTuple_GET_ITEM(args, i-2), strict, classInfo);
         if (argList[i]==NULL) {
           ok = false;
@@ -108,7 +107,6 @@ bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObj
   } else {
     for (int i = 1; i<argc && ok; i++) {
       const PythonQtSlotInfo::ParameterInfo& param = params.at(i);
-      //std::cout << param.name.data() << " " << param.typeId << (param.isPointer?"*":"") << (param.isConst?" const":"") << std::endl;
       argList[i] = PythonQtConv::ConvertPythonToQt(param, PyTuple_GET_ITEM(args, i-1), strict, classInfo);
       if (argList[i]==NULL) {
         ok = false;
