@@ -77,8 +77,16 @@ static int PythonQtInstanceWrapper_nonzero(PythonQtInstanceWrapper* wrapper)
 }
 
 
-static PyObject* PythonQtInstanceWrapper_binaryfunc(PythonQtInstanceWrapper* wrapper, PyObject* other, const QByteArray& opName, const QByteArray& fallbackOpName = QByteArray())
+static PyObject* PythonQtInstanceWrapper_binaryfunc(PyObject* self, PyObject* other, const QByteArray& opName, const QByteArray& fallbackOpName = QByteArray())
 {
+  // since we disabled type checking, we can receive any object as self, but we currently only support
+  // different objects on the right. Otherwise we would need to generate __radd__ etc. methods.
+  if (!PyObject_TypeCheck(self, &PythonQtInstanceWrapper_Type)) {
+    QString error = "Unsupported operation " + opName + "(" + self->ob_type->tp_name + ", " +  other->ob_type->tp_name + ")";
+    PyErr_SetString(PyExc_ArithmeticError, error.toLatin1().data());
+    return NULL;
+  }
+  PythonQtInstanceWrapper* wrapper = (PythonQtInstanceWrapper*)self;
   PyObject* result = NULL;
   PythonQtMemberInfo opSlot = wrapper->classInfo()->member(opName);
   if (opSlot._type == PythonQtMemberInfo::Slot) {
@@ -90,25 +98,25 @@ static PyObject* PythonQtInstanceWrapper_binaryfunc(PythonQtInstanceWrapper* wra
     Py_DECREF(args);
     if (!result && !fallbackOpName.isEmpty()) {
       // try fallback if we did not get a result
-      result = PythonQtInstanceWrapper_binaryfunc(wrapper, other, fallbackOpName);
+      result = PythonQtInstanceWrapper_binaryfunc(self, other, fallbackOpName);
     }
   }
   return result;
 }
 
 #define BINARY_OP(NAME) \
-static PyObject* PythonQtInstanceWrapper_ ## NAME(PythonQtInstanceWrapper* wrapper, PyObject* other) \
+static PyObject* PythonQtInstanceWrapper_ ## NAME(PyObject* self, PyObject* other) \
 { \
   static const QByteArray opName("__" #NAME "__"); \
-  return PythonQtInstanceWrapper_binaryfunc(wrapper, other, opName); \
+  return PythonQtInstanceWrapper_binaryfunc(self, other, opName); \
 }
 
 #define BINARY_OP_INPLACE(NAME) \
-  static PyObject* PythonQtInstanceWrapper_i ## NAME(PythonQtInstanceWrapper* wrapper, PyObject* other) \
+  static PyObject* PythonQtInstanceWrapper_i ## NAME(PyObject* self, PyObject* other) \
 { \
   static const QByteArray opName("__i" #NAME "__"); \
   static const QByteArray fallbackName("__" #NAME "__"); \
-  return PythonQtInstanceWrapper_binaryfunc(wrapper, other, opName, fallbackName); \
+  return PythonQtInstanceWrapper_binaryfunc(self, other, opName, fallbackName); \
 }
 
 BINARY_OP(add)
