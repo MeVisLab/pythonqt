@@ -53,7 +53,7 @@
 
  \b PythonQt is a dynamic Python (http://www.python.org) binding for the Qt framework (http://qt.nokia.com).
  It offers an easy way to embed the Python scripting language into
- your C++ Qt applications. It makes heavy use of the QMetaObject system and thus requires Qt4.x.
+ your C++ Qt applications. It makes heavy use of the QMetaObject system and thus requires Qt 4.x.
 
  The focus of PythonQt is on embedding Python into an existing C++ application, not on writing the whole
  application completely in Python. If you want to write your whole application in Python,
@@ -390,10 +390,10 @@ yourCpp = None
 
  \section Building
 
- PythonQt requires Qt 4.6.1 (or higher) and Python 2.5 or 2.6 on Windows, Linux and MacOS X. It has not yet been tested with Python 3.x, but it should only require minor changes.
+ PythonQt requires at least Qt 4.6.1 (for earlier Qt versions, you will need to run the pythonqt_gerenator, Qt 4.3 is the  absolute minimum) and Python 2.5.x or 2.6.x on Windows, Linux and MacOS X. It has not yet been tested with Python 3.x, but it should only require minor changes.
  To compile PythonQt, you will need a python developer installation which includes Python's header files and
 the python2x.[lib | dll | so | dynlib].
- The build scripts a currently set to use Python 2.5.
+ The build scripts a currently set to use Python 2.6.
  You may need to tweak the \b build/python.prf file to set the correct Python includes and libs on your system.
 
  \subsection Windows
