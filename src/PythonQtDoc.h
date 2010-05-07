@@ -53,19 +53,21 @@
 
  \section Introduction
 
- \b PythonQt is a dynamic Python (http://www.python.org) binding for the Qt framework (http://qt.nokia.com).
+ \b PythonQt is a dynamic <a href="http://www.python.org" target="_blank"> 
+Python</a> binding for the <a href="http://qt.nokia.com" target="_blank"> 
+Qt framework</a>.
  It offers an easy way to embed the Python scripting language into
  your C++ Qt applications. It makes heavy use of the QMetaObject system and thus requires Qt 4.x.
 
  The focus of PythonQt is on embedding Python into an existing C++ application, not on writing the whole
  application completely in Python. If you want to write your whole application in Python,
- you should use <a href="http://www.riverbankcomputing.co.uk/pyqt/">PyQt</a> or <a href="http://www.pyside.org">PySide</a> instead.
+ you should use <a href="http://www.riverbankcomputing.co.uk/pyqt/" target="_blank">PyQt</a> or <a href="http://www.pyside.org" target="_blank">PySide</a> instead.
 
  If you are looking for a simple way to embed Python objects into your C++/Qt Application
  and to script parts of your application via Python, PythonQt is the way to go!
 
  PythonQt is a stable library that was developed to make the
- Image Processing and Visualization platform MeVisLab (http://www.mevislab.de)
+ Image Processing and Visualization platform <a href="http://www.mevislab.de" target="_blank">MeVisLab</a>
  scriptable from Python.
 
  \page Features Features
@@ -115,9 +117,24 @@
  - Polymorphic downcasting on QEvent, QGraphicsItem, QStyleOption, ...
  - Multiple inheritance support (e.g., QGraphicsTextItem is a QObject AND a QGraphicsItem, PythonQt will handle this well)
 
+ \section Comparison Comparison with PyQt/PySide
+
+ - PythonQt is not as pythonic as PyQt in many details (e.g. buffer protocol, pickling, translation support, ...) and it is mainly thought for embedding and intercommunication between Qt/Cpp and Python
+ - PythonQt allows to communicate in both directions, e.g., calling a Python object from C++ AND calling a C++ method from Python, while PyQt only handles the Python->C++ direction
+ - PythonQt offers properties as Python attributes, while PyQt offers them as setter/getter methods (e.g. QWidget.width is a property in PythonQt and a method in PyQt)
+ - PythonQt currently does not support instanceof checks for Qt classes, except for the exact match and derived Python classes
+ - QObject.emit to emit Qt signals from Python is not yet implemented but PythonQt allows to just emit a signal by calling it like a normal slot
+ - PythonQt does not (yet) offer to add new signals to Python/C++ objects and it does not yet support the newstyle PyQt signals (so you need to connect via C++ string signatures)
+ - Ownership of objects is a bit different in PythonQt, currently Python classes derived from a C++ class need to be manually referenced in Python to not get deleted too early (this will be fixed in a future version)
+ - QStrings are always converted to unicode Python objects, QByteArray always stays a QByteArray and can be converted using str()
+ - There are many details in the generated wrappers that could need some polishing, e.g., methods that use pointer arguments for additional return values could return a results tuple.
+ - Not all types of QList/QVector/QHash templates are supported, some Qt methods use those as arguments/return values (but you can add your own handlers to handle them if you need them).
+ - Probably there are lots of details that differ, I do not know PyQt that well to list them all.
+ - In the long run, PythonQt will consider using/extending PySide with the features of PythonQt to get rid of its own generator and typesystem files, alternatively the KDE Smoke generator might be used in the future (this has not yet been decided, the current PythonQt generator works well and there is no hurry to switch). 
+
  \page Download Download
 
- PythonQt is hosted on SourceForge at http://sourceforge.net/projects/pythonqt.
+ PythonQt is hosted on <a href="http://sourceforge.net/projects/pythonqt/" target="_blank">SourceForge</a>.
 
  You can download the source code as a tarball at http://sourceforge.net/projects/pythonqt/files/.
  Alternatively you can get the latest version from the svn repository.
@@ -146,20 +163,6 @@
  You may use the generator to generate C++ bindings for your own C++ classes (e.g., to make them inheritable in Python),
  but this is currently not documented and involves creating your own typesystem files (although the Qt Jambi examples might help you).
 
- \section Comparison Comparison with PyQt/PySide
-
- - PythonQt is not as pythonic as PyQt in many details (e.g. buffer protocol, pickling, translation support, ...) and it is mainly thought for embedding and intercommunication between Qt/Cpp and Python
- - PythonQt allows to communicate in both directions, e.g., calling a Python object from C++ AND calling a C++ method from Python, while PyQt only handles the Python->C++ direction
- - PythonQt offers properties as Python attributes, while PyQt offers them as setter/getter methods (e.g. QWidget.width is a property in PythonQt and a method in PyQt)
- - PythonQt currently does not support instanceof checks for Qt classes, except for the exact match and derived Python classes
- - QObject.emit to emit Qt signals from Python is not yet implemented but PythonQt allows to just emit a signal by calling it like a normal slot
- - PythonQt does not (yet) offer to add new signals to Python/C++ objects and it does not yet support the newstyle PyQt signals (so you need to connect via C++ string signatures)
- - Ownership of objects is a bit different in PythonQt, currently Python classes derived from a C++ class need to be manually referenced in Python to not get deleted too early (this will be fixed in a future version)
- - QStrings are always converted to unicode Python objects, QByteArray always stays a QByteArray and can be converted using str()
- - There are many details in the generated wrappers that could need some polishing, e.g., methods that use pointer arguments for additional return values could return a results tuple.
- - Not all types of QList/QVector/QHash templates are supported, some Qt methods use those as arguments/return values (but you can add your own handlers to handle them if you need them).
- - Probably there are lots of details that differ, I do not know PyQt that well to list them all.
- - In the long run, PythonQt will consider using/extending PySide with the features of PythonQt to get rid of its own generator and typesystem files, alternatively the KDE Smoke generator might be used in the future (this has not yet been decided, the current PythonQt generator works well and there is no hurry to switch). 
 
  \page Developer Developer
 
