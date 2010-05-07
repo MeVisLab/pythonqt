@@ -46,8 +46,10 @@
   \if USE_GLOBAL_DOXYGEN_DOC
   \page PythonQtPage PythonQt Overview
   \else
-  \mainpage PythonQt
+  \mainpage notitle
   \endif
+
+ \image html PythonQt.jpg
 
  \section Introduction
 
