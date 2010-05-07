@@ -149,13 +149,15 @@ PythonQt::PythonQt(int flags, const QByteArray& pythonQtModuleName)
 
   _p->_PythonQtObjectPtr_metaId = qRegisterMetaType<PythonQtObjectPtr>("PythonQtObjectPtr");
 
-  Py_SetProgramName("PythonQt");
-  if (flags & IgnoreSiteModule) {
-    // this prevents the automatic importing of Python site files
-    Py_NoSiteFlag = 1;
+  if (flags & PythonAlreadyInitialized == 0) {
+    Py_SetProgramName("PythonQt");
+    if (flags & IgnoreSiteModule) {
+      // this prevents the automatic importing of Python site files
+      Py_NoSiteFlag = 1;
+    }
+    Py_Initialize();
   }
-  Py_Initialize();
-
+  
   // add our own python object types for qt object slots
   if (PyType_Ready(&PythonQtSlotFunction_Type) < 0) {
     std::cerr << "could not initialize PythonQtSlotFunction_Type" << ", in " << __FILE__ << ":" << __LINE__ << std::endl;
@@ -553,6 +555,14 @@ PythonQtObjectPtr PythonQt::getMainModule() {
   PythonQtObjectPtr dict = PyImport_GetModuleDict();
   return PyDict_GetItemString(dict, "__main__");
 }
+
+PythonQtObjectPtr PythonQt::importModule(const QString& name)
+{
+  PythonQtObjectPtr mod;
+  mod.setNewRef(PyImport_ImportModule(name.toLatin1().constData()));
+  return mod;
+}
+
 
 QVariant PythonQt::evalCode(PyObject* object, PyObject* pycode) {
   QVariant result;
