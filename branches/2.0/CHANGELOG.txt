@@ -1,0 +1,86 @@
+Version 1.2 ChangeLog:
+
+florianlink | 2009-03-30
+- unified wrapping of CPP heap objects and QVariant/MetaTypes stack objects (this made PythonQtVariantWrapper obsolete)
+- added wrapping of the whole Qt API using a modified qtscript generator
+-- this makes all non-slots of QObject derived classes available for scripting
+-- all constructors of QObject/CPP objects are available
+-- comparision based on operator= are mapped to Python compare
+-- C++ (non-QObject) classes are completely wrapped (all public methods, enums, constructors, destructor)
+-- C++ inheritance is captured and supported for automatic upcasting, automatic downcasting is an open topic
+- added delete() method to all wrapped objects to allow C++ deletion (which is handy to remove e.g. QTreeWidgetItems from a QTreeWidget) (use with care!)
+- added support for QList<int>, QList<double>, QList<builtin variants> and QVector/std::vector
+- simple template to register other types for QList/QVector/std::vector
+- added support for custom type conversion between Python<->CPP (to e.g. manually add support for types like QHash<int, QString>, which is currently not supported)
+- remove PythonQtGui, which becomes obsolete because of the complete Qt API wrapping, adapted examples
+- added PythonQt::registerCPPClass()
+- added support for placing classes in packages, default is to place a class directly into PythonQt module
+- Qt packages are called:
+-- PythonQt.Qt - contains all Qt classes that are wrapped (for convenient to avoid using the different packages below)
+-- PythonQt.QtCore - contains the core classes
+-- PythonQt.QtGui - contains the gui classes
+-- PythonQt.QtNetwork - contains the network classes
+-- ...
+- Qt namespace is now located in QtCore, so write PythonQt.QtCore.Qt instead of PythonQt.Qt in your scripts!
+
+Version 1.1 ChangeLog: 
+
+florianlink | 2009-03-30
+- removed warnings
+- fixed some memory leaks (only on library cleanup)
+- fixed bad QString usage as %s argument
+- added PythonQtQFileImporter, which implements a default importer using QFile
+- added PythonQt::self()->installDefaultImporter() to enable the new default importer
+- modified example to make use of new importer
+- removed ugly goto, which was copied from original zip import
+
+florianlink | 2008-09-01
+- merged in features/fixes from the MeVisLab repository:
+- added createModuleFromFile/createModuleFromScript/createUniqueModule
+- switched object destruction to use QPointer and lazy wrapper removal to avoid expensive objectDestroyed signal connections
+- added hash() support for PythonQtWrapper object
+- added support for signal to python function connections where the function has less arguments than the emitted signal
+- added setQObject[NoLonger]WrappedCallback API to support external reference counting on QObjects that are exposed to PythonQt
+- implemented flush on std redirect to support python logging framework
+- improved QVariant printing and fixed print error on MacX
+
+ezust | 2008-29-08
+- Added CHANGELOG
+- Bumped version to 1.1
+- Added PythonQtObjectPtr conversion ctor and operator=(const QVariant&)
+- added examples/CPPPyWrapperExample
+
+florianlink | 2007-11-15 08:38:24 -0800 (Thu, 15 Nov 2007) 
+- added support for mapping Python lists to QList<AnyPtr*> lists on slot calls
+- added support for QList<AnyPtr*> return values and signal signatures
+- changed binary output to lib as well, so that the setting of PATH can be avoided
+- changed profiles to use a new common.prf to facilitate global settings
+- improved docs
+- added _d extension for debug build (see common.prf)
+- added $$PWD, which is important if the file is included from somewhere else (which we do in mevis)
+- added softspace support (implemented by Andre Kramer)
+- updated windows documentation and variables which need to be set
+- changed to use only PYTHON_PATH on Windows
+- added more build docs
+- changed date conversion from/to strings to ISODate
+- fixed return argument initialization to NULL
+- added mevis doc
+- fixed handling of unknown reference types
+- made lookupObject public
+- added overload calls to introspection
+
+marcusbarann | 2007-11-08 06:15:55 -0800 (Thu, 08 Nov 2007)
+-  Added PythonQt.pro, cleaned up build system
+
+akramer | 2007-10-17 08:02:25 -0700 (Wed, 17 Oct 2007) 
+- external variant was missing the "config += qtestlib" needed for using the Qt unit test framework.
+- provide relative path to Gui extension lib
+- added a sentence about using the Windows installer version of Python
+- Fix for converting QByteArray values that include 0 chars.
+  They are still converted to/from Python strings but using 
+  size of contents rather than string 0 (null) termination.
+- bug fix for getMTimeOfSource when PythonQt::importInterface() is null
+- Linux external build improvements
+
+2007-01-30 00:11:25 -0800 (Tue, 30 Jan 2007) | 1 line 
+- Released version 1.0
