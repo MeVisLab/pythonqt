@@ -46,7 +46,7 @@
   \if USE_GLOBAL_DOXYGEN_DOC
   \page PythonQtPage PythonQt Overview
   \else
-  \mainpage PythonQt Overview
+  \mainpage PythonQt
   \endif
 
  \section Introduction
@@ -66,14 +66,9 @@
  Image Processing and Visualization platform MeVisLab (http://www.mevislab.de)
  scriptable from Python.
 
+ \page Features Features
 
- \section Download
-
- PythonQt is hosted on SourceForge at http://sourceforge.net/projects/pythonqt , you can access it via SVN
- or download a tarball.
-
-
- \section Features
+ \section Builtin Built-in Features
 
  The following are the built-in features of the PythonQt library:
 
@@ -96,7 +91,7 @@
  - Extensible handler for Python/C++ conversion of complex types, e.g. mapping of QVector<SomeObject> to/from a Python array
  - Setting of dynamic QObject properties via setProperty(), dynamic properties can be accessed for reading and writing like normal Python attributes (but creating a new property needs to be done with setProperty(), to distinguish from normal Python attributes)
 
- \section FeaturesQtAll Features (with PythonQt_QtAll linked in)
+ \section FeaturesQtAll Features with wrapper generator
 
  Thanks to the new wrapper generator, PythonQt now offers the additional PythonQt_QtAll library which wraps the complete Qt API, including all C++ classes and all non-slots on QObject derived classes.
  This offers the following features:
@@ -118,9 +113,20 @@
  - Polymorphic downcasting on QEvent, QGraphicsItem, QStyleOption, ...
  - Multiple inheritance support (e.g., QGraphicsTextItem is a QObject AND a QGraphicsItem, PythonQt will handle this well)
 
-  
- \section Licensing
+ \page Download Download
 
+ PythonQt is hosted on SourceForge at http://sourceforge.net/projects/pythonqt.
+
+ You can download the source code as a tarball at http://sourceforge.net/projects/pythonqt/files/.
+ Alternatively you can get the latest version from the svn repository.
+ 
+ You can also browse the source code online via ViewVC: http://pythonqt.svn.sourceforge.net/viewvc/pythonqt/trunk/
+
+ \note We do not offer prebuilt binaries, since there are so many possible combinations of
+ platforms (Windows/Linux/MacOs), architectures (32/64 bit) and Python versions.
+
+ \page License License
+  
  PythonQt is distributed under the LGPL license, so it pairs well with the LGPL of the Qt 4.5 release and allows
  to be used in commercial applications when following the LGPL 2.1 obligations.
 
@@ -138,7 +144,6 @@
  You may use the generator to generate C++ bindings for your own C++ classes (e.g., to make them inheritable in Python),
  but this is currently not documented and involves creating your own typesystem files (although the Qt Jambi examples might help you).
 
-
  \section Comparison Comparison with PyQt/PySide
 
  - PythonQt is not as pythonic as PyQt in many details (e.g. buffer protocol, pickling, translation support, ...) and it is mainly thought for embedding and intercommunication between Qt/Cpp and Python
@@ -154,7 +159,9 @@
  - Probably there are lots of details that differ, I do not know PyQt that well to list them all.
  - In the long run, PythonQt will consider using/extending PySide with the features of PythonQt to get rid of its own generator and typesystem files, alternatively the KDE Smoke generator might be used in the future (this has not yet been decided, the current PythonQt generator works well and there is no hurry to switch). 
 
- \section Interface
+ \page Developer Developer
+
+ \section Interface Interface
 
  The main interface to PythonQt is the PythonQt singleton.
  PythonQt needs to be initialized via PythonQt::init() once.
@@ -393,7 +400,7 @@ yourCpp = None
 
 \endcode
 
- \section Building
+ \page Building Building
 
  PythonQt requires at least Qt 4.6.1 (for earlier Qt versions, you will need to run the pythonqt_gerenator, Qt 4.3 is the  absolute minimum) and Python 2.5.x or 2.6.x on Windows, Linux and MacOS X. It has not yet been tested with Python 3.x, but it should only require minor changes.
  To compile PythonQt, you will need a python developer installation which includes Python's header files and
@@ -473,12 +480,12 @@ the python2x.[lib | dll | so | dynlib].
 
  There is a unit test that tests most features of PythonQt, see the \b tests subdirectory for details.
 
- \section Examples
+ \page Examples Examples
 
  Examples are available in the \b examples directory. The PyScriptingConsole implements a simple
- interactive scripting console that shows how to script a simple application.
+ interactive scripting console that shows how to script a simple application. The PyLauncher application can be used to run arbitrary PythonQt scripts given on the commandline.
 
- The following shows how to integrate PythonQt into you Qt application:
+ The following shows a simple example on how to integrate PythonQt into your Qt application:
 
  \code
  #include "PythonQt.h"
@@ -491,22 +498,21 @@ the python2x.[lib | dll | so | dynlib].
   QApplication qapp(argc, argv);
 
   // init PythonQt and Python itself
-  PythonQt::init(PythonQt::IgnoreSiteModule | PythonQt::RedirectStdOut);
-
+  PythonQt::init();
 
   // get a smart pointer to the __main__ module of the Python interpreter
-  PythonQtObjectPtr mainContext = PythonQt::self()->getMainModule();
+  PythonQtObjectPtr context = PythonQt::self()->getMainModule();
 
   // add a QObject as variable of name "example" to the namespace of the __main__ module
   PyExampleObject example;
-  PythonQt::self()->addObject(mainContext, "example", &example);
+  context.addObject("example", &example);
 
   // do something
-  PythonQt::self()->runScript(mainContext, "print example\n");
-  PythonQt::self()->runScript(mainContext, "def multiply(a,b):\n  return a*b;\n");
+  context.evalScript("print example");
+  context.evalScript("def multiply(a,b):\n  return a*b;\n");
   QVariantList args;
   args << 42 << 47;
-  QVariant result = PythonQt::self()->call(mainContext,"multiply", args);
+  QVariant result = context.call("multiply", args);
   ...
  \endcode
 
