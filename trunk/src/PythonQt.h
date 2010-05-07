@@ -84,16 +84,27 @@ typedef QObject* PythonQtQObjectCreatorFunctionCB();
 //! helper template to create a derived QObject class
 template<class T> QObject* PythonQtCreateObject() { return new T(); };
 
-//! the main interface to the Python Qt binding, realized as a singleton
+//! The main interface to the Python Qt binding, realized as a singleton
+/*!
+ Use PythonQt::init() to initialize the singleton and PythonQt::self() to access it.
+ While there can be only one PythonQt instance, you can have any number of Python context to do scripting in.
+ One possibility is to use createModuleFromFile(), createModuleFromScript() or createUniqueModule() to get a context
+ that is separated from the other contexts. Alternatively you can use Python dicts as contexts for script evaluation,
+ but you will need to populate the dict with the __builtins__ instance to have all Pythons available when running
+ code in the scope of a dict.
+ */
 class PYTHONQT_EXPORT PythonQt : public QObject {
 
   Q_OBJECT
 
 public:
+
+  //! flags that can be passed to PythonQt::init()
   enum InitFlags {
     RedirectStdOut = 1,   //!<< sets if the std out/err is redirected to pythonStdOut() and pythonStdErr() signals
     IgnoreSiteModule = 2, //!<< sets if Python should ignore the site module
-    ExternalHelp = 4      //!<< sets if help() calls on PythonQt modules are forwarded to the pythonHelpRequest() signal
+    ExternalHelp = 4,     //!<< sets if help() calls on PythonQt modules are forwarded to the pythonHelpRequest() signal
+    PythonAlreadyInitialized = 8 //!<< sets that PythonQt should not can PyInitialize, since it is already done
   };
 
   //! flags that tell PythonQt which operators to expect on the registered type
@@ -132,20 +143,23 @@ public:
 
   };
 
-  //! initialize the python qt binding (flags are a or combination of InitFlags), if \c pythonQtModuleName is given
+  //---------------------------------------------------------------------------
+  //! \name Singleton Initialization
+  //@{
+  
+  //! initialize the python qt binding (flags are a or combination of PythonQt::InitFlags), if \c pythonQtModuleName is given
   //! it defines the name of the python module that PythonQt will add, otherwise "PythonQt" is used.
   //! This can be used to e.g. pass in PySide or PyQt4 to make it more compatible.
   static void init(int flags = IgnoreSiteModule | RedirectStdOut, const QByteArray& pythonQtModuleName = QByteArray());
 
-  //! cleanup
+  //! cleanup of the singleton
   static void cleanup();
 
   //! get the singleton instance
   static PythonQt* self() { return _self; }
 
-  //-----------------------------------------------------------------------------
-  // Public API:
-
+  //@}
+  
   //! defines the object types for introspection
   enum ObjectType {
     Class,
@@ -156,6 +170,39 @@ public:
     CallOverloads
   };
 
+  //---------------------------------------------------------------------------
+  //! \name Modules
+  //@{
+
+  //! get the __main__ module of python
+  PythonQtObjectPtr getMainModule();
+
+  //! import the given module and return a reference to it (useful to import e.g. "sys" and call something on it)
+  //! If a module is already imported, this returns the already imported module.
+  PythonQtObjectPtr importModule(const QString& name);
+
+  //! creates the new module \c name and evaluates the given file in the context of that module
+  //! If the \c script is empty, the module contains no initial code. You can use evalScript/evalCode to add code
+  //! to a module later on.
+  //! The user needs to make sure that the \c name is unique in the python module dictionary.
+  PythonQtObjectPtr createModuleFromFile(const QString& name, const QString& filename);
+  
+  //! creates the new module \c name and evaluates the given script in the context of that module.
+  //! If the \c script is empty, the module contains no initial code. You can use evalScript/evalCode to add code
+  //! to a module later on.
+  //! The user needs to make sure that the \c name is unique in the python module dictionary.
+  PythonQtObjectPtr createModuleFromScript(const QString& name, const QString& script = QString());
+  
+  //! create a uniquely named module, you can use evalFile or evalScript to populate the module with
+  //! script code
+  PythonQtObjectPtr createUniqueModule();
+
+  //@}
+
+  //---------------------------------------------------------------------------
+  //! \name Importing/Paths
+  //@{
+
   //! overwrite the python sys path (call this directly after PythonQt::init() if you want to change the std python sys path)
   void overwriteSysPath(const QStringList& paths);
 
@@ -165,9 +212,12 @@ public:
   //! sets the __path__ list of a module to the given list (important for local imports)
   void setModuleImportPath(PyObject* module, const QStringList& paths);
 
-  //! get the __main__ module of python
-  PythonQtObjectPtr getMainModule();
-
+  //@}
+  
+  //---------------------------------------------------------------------------
+  //! \name Registering Classes
+  //@{
+  
   //! registers a QObject derived class to PythonQt (this is implicitly called by addObject as well)
   /* Since Qt4 does not offer a way to detect if a given classname is derived from QObject and thus has a QMetaObject,
    you MUST register all your QObject derived classes here when you want them to be detected in signal and slot calls */
@@ -196,6 +246,12 @@ public:
   //! add a handler for polymorphic downcasting
   void addPolymorphicHandler(const char* typeName, PythonQtPolymorphicHandlerCB* cb);
 
+  //@}
+
+  //---------------------------------------------------------------------------
+  //! \name Script Parsing and Evaluation
+  //@{
+  
   //! parses the given file and returns the python code object, this can then be used to call evalCode()
   PythonQtObjectPtr parseFile(const QString& filename);
 
@@ -209,23 +265,11 @@ public:
   //! evaluates the given script code from file
   void evalFile(PyObject* object, const QString& filename);
 
-  //! creates the new module \c name and evaluates the given file in the context of that module
-  //! If the \c script is empty, the module contains no initial code. You can use evalScript/evalCode to add code
-  //! to a module later on.
-  //! The user needs to make sure that the \c name is unique in the python module dictionary.
-  PythonQtObjectPtr createModuleFromFile(const QString& name, const QString& filename);
+  //@}
 
-  //! creates the new module \c name and evaluates the given script in the context of that module.
-  //! If the \c script is empty, the module contains no initial code. You can use evalScript/evalCode to add code
-  //! to a module later on.
-  //! The user needs to make sure that the \c name is unique in the python module dictionary.
-  PythonQtObjectPtr createModuleFromScript(const QString& name, const QString& script = QString());
-
-  //! create a uniquely named module, you can use evalFile or evalScript to populate the module with
-  //! script code
-  PythonQtObjectPtr createUniqueModule();
-
-  //@{ Signal handlers
+  //---------------------------------------------------------------------------
+  //! \name Signal Handlers
+  //@{
 
   //! add a signal handler to the given \c signal of \c obj  and connect it to a callable \c objectname in module
   bool addSignalHandler(QObject* obj, const char* signal, PyObject* module, const QString& objectname);
@@ -241,7 +285,9 @@ public:
 
   //@}
 
-  //@{ Variable access
+  //---------------------------------------------------------------------------
+  //! \name Variable access
+  //@{ 
 
   //! add the given \c qObject to the python \c object as a variable with \c name (it can be removed via clearVariable)
   void addObject(PyObject* object, const QString& name, QObject* qObject);
@@ -264,7 +310,9 @@ public:
 
   //@}
 
-  //@{ Calling of python callables
+  //---------------------------------------------------------------------------
+  //! \name Calling Python Objects
+  //@{ 
 
   //! call the given python \c callable in the scope of object, returns the result converted to a QVariant
   QVariant call(PyObject* object, const QString& callable, const QVariantList& args = QVariantList());
@@ -277,8 +325,9 @@ public:
 
   //@}
 
-  //@{ Decorations, constructors, wrappers...
-
+  //---------------------------------------------------------------------------
+  //! \name Decorations, Constructors, Wrappers...
+  //@{
 
   //! add an object whose slots will be used as decorator slots for
   //! other QObjects or CPP classes. The slots need to follow the
@@ -333,8 +382,10 @@ public:
 
   //@}
 
-  //@{ Custom importer (to replace internal import implementation of python)
-
+  //---------------------------------------------------------------------------
+  //! \name Custom Importer
+  //@{
+  
   //! replace the internal import implementation and use the supplied interface to load files (both py and pyc files)
   //! (this method should be called directly after initialization of init() and before calling overwriteSysPath().
   //! On the first call to this method, it will install a generic PythonQt importer in Pythons "path_hooks". 
@@ -360,13 +411,17 @@ public:
   //! get paths that the importer should ignore
   const QStringList& getImporterIgnorePaths();
 
+  //! get access to the file importer (if set)
+  static PythonQtImportFileInterface* importInterface();
+
   //@}
+
+  //---------------------------------------------------------------------------
+  //! \name Other Stuff
+  //@{
 
   //! get access to internal data (should not be used on the public API, but is used by some C functions)
   static PythonQtPrivate* priv() { return _self->_p; }
-
-  //! get access to the file importer (if set)
-  static PythonQtImportFileInterface* importInterface();
 
   //! handle a python error, call this when a python function fails. If no error occurred, it returns false.
   //! The error is currently just output to the python stderr, future version might implement better trace printing
@@ -380,6 +435,15 @@ public:
   //! call the callback if it is set
   static void qObjectNoLongerWrappedCB(QObject* o);
 
+  //! called by internal help methods
+  PyObject* helpCalled(PythonQtClassInfo* info);
+  
+  //! returns the found object or NULL
+  //! @return new reference
+  PythonQtObjectPtr lookupObject(PyObject* module, const QString& name);
+
+  //@}
+
 signals:
   //! emitted when python outputs something to stdout (and redirection is turned on)
   void pythonStdOut(const QString& str);
@@ -388,15 +452,6 @@ signals:
 
   //! emitted when help() is called on a PythonQt object and \c ExternalHelp is enabled
   void pythonHelpRequest(const QByteArray& cppClassName);
-
-
-public:
-  //! called by internal help methods
-  PyObject* helpCalled(PythonQtClassInfo* info);
-
-  //! returns the found object or NULL
-  //! @return new reference
-  PythonQtObjectPtr lookupObject(PyObject* module, const QString& name);
 
 private:
   void initPythonQtModule(bool redirectStdOut, const QByteArray& pythonQtModuleName);
