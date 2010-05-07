@@ -82,7 +82,7 @@ struct PythonQtMemberInfo {
 //! a class that stores all required information about a Qt object (and an optional associated C++ class name)
 /*! for fast lookup of slots when calling the object from Python
 */
-class PythonQtClassInfo {
+class PYTHONQT_EXPORT PythonQtClassInfo {
 
 public:
   PythonQtClassInfo();

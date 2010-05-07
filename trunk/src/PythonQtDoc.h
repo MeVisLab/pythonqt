@@ -113,6 +113,7 @@
  - Polymorphic downcasting (if e.g. PythonQt sees a QEvent, it can downcast it depending on the type(), so the Python e.g. sees a QPaintEvent instead of a plain QEvent)
  - Deriving C++ objects from Python and overwriting virtual method with a Python implementation (requires usage of wrapper generator or manual work!)
  - Extensible handler for Python/C++ conversion of complex types, e.g. mapping of QVector<SomeObject> to/from a Python array
+ - Setting of dynamic QObject properties via setProperty(), dynamic properties can be accessed for reading and writing like normal Python attributes (but creating a new property needs to be done with setProperty(), to distinguish from normal Python attributes)
 
  \section FeaturesQtAll Features (with PythonQt_QtAll linked in)
 
@@ -130,24 +131,26 @@
   - QtUiTools
   - QtWebKit
   - QtXml
-  - QtXmlPatterns
-  - (phonon, QtHelp, assistant, designer are currently not supported, this would require some additional effort on the code generator)
+  - (QtXmlPatterns, QtScript, QtHelp, phonon, assistant, designer are currently not supported, this would require some additional effort on the code generator)
  - For convenience, all classes are also available in the PythonQt.Qt module, for people who do not care in which module a class is located
- - Any Qt class that has virtual methods can be easily derived from Python and the virtual methods can be reimplemented in Python
+ - Any Qt class that has virtual methods can be easily derived from Python and the virtual methods can be reimplemented in Python (this feature is considered experimental!)
  - Polymorphic downcasting on QEvent, QGraphicsItem, QStyleOption, ...
  - Multiple inheritance support (e.g., QGraphicsTextItem is a QObject AND a QGraphicsItem, PythonQt will handle this well)
   
  \section Comparision Comparision with PyQt/PySide
 
- - PythonQt is not as Pythonic as PyQt in many details (e.g. buffer protocol, pickling, translation support, ...) and it is mainly thought for embedding and intercommunication between Qt/Cpp and Python
+ - PythonQt is not as pythonic as PyQt in many details (e.g. buffer protocol, pickling, translation support, ...) and it is mainly thought for embedding and intercommunication between Qt/Cpp and Python
  - PythonQt allows to communicate in both directions, e.g., calling a Python object from C++ AND calling a C++ method from Python, while PyQt only handles the Python->C++ direction
  - PythonQt offers properties as Python attributes, while PyQt offers them as setter/getter methods (e.g. QWidget.width is a property in PythonQt and a method in PyQt)
- - PythonQt does not support instanceof checks for Qt classes, except for the exact match and derived Python classes
- - QObject.emit to emit Qt signals from Python is not yet implemented but PythonQt allows to just emit a signal by calling it
- - PythonQt does not (yet) offer to add new signals to Python/C++ objects
- - Ownership of objects is a bit different in PythonQt, currently Python classes derived from a C++ class need to be manually referenced in Python to not get deleted too early (this will be fixed)
- - QStrings are always converted to unicode Python objects (PyQt returns QString instead), we prefered to return Python strings.
+ - PythonQt currently does not support instanceof checks for Qt classes, except for the exact match and derived Python classes
+ - QObject.emit to emit Qt signals from Python is not yet implemented but PythonQt allows to just emit a signal by calling it like a normal slot
+ - PythonQt does not (yet) offer to add new signals to Python/C++ objects and it does not yet support the newstyle PyQt signals (so you need to connect via C++ string signatures)
+ - Ownership of objects is a bit different in PythonQt, currently Python classes derived from a C++ class need to be manually referenced in Python to not get deleted too early (this will be fixed in a future version)
+ - QStrings are always converted to unicode Python objects, QByteArray always stays a QByteArray and can be converted using str()
+ - There are many details in the generated wrappers that could need some polishing, e.g., methods that use pointer arguments for additional return values could return a results tuple.
+ - Not all types of QList/QVector/QHash templates are supported, some Qt methods use those as arguments/return values (but you can add your own handlers to handle them if you need them).
  - Probably there are lots of details that differ, I do not know PyQt that well to list them all.
+ - In the long run, PythonQt will consider using/extending PySide with the features of PythonQt to get rid of its own generator and typesystem files, alternatively the KDE Smoke generator might be used in the future (this has not yet been decided, the current PythonQt generator works well and there is no hurry to switch). 
 
  \section Interface
 
