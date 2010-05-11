@@ -70,6 +70,13 @@ Qt framework</a>.
  Image Processing and Visualization platform <a href="http://www.mevislab.de" target="_blank">MeVisLab</a>
  scriptable from Python.
 
+ - \ref Features
+ - \ref Download
+ - \ref License
+ - \ref Developer
+ - \ref Building
+ - \ref Examples
+
  \page Features Features
 
  \section Builtin Built-in Features
