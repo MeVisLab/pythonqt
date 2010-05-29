@@ -55,8 +55,8 @@ int main( int argc, char **argv )
   PythonQtScriptingConsole console(NULL, mainContext);
   
   PythonQt::self()->addDecorators(new PyExampleDecorators());
-  PythonQt::self()->registerClass(&QPushButton::staticMetaObject);
-  PythonQt::self()->registerCPPClass("YourCPPObject");
+  PythonQt::self()->registerClass(&QPushButton::staticMetaObject, "QtGui");
+  PythonQt::self()->registerCPPClass("YourCPPObject","", "example");
 
   mainContext.evalFile(":example.py");
 
