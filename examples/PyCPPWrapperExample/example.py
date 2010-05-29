@@ -1,4 +1,4 @@
-from PythonQt import *
+from PythonQt.example import *
 
 print "alternative 1 : CustomObject wrapped by decorators"
 
