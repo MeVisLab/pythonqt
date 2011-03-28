@@ -56,9 +56,11 @@ void PythonQtSignalTarget::call(void **arguments) const {
 
 PyObject* PythonQtSignalTarget::call(PyObject* callable, const PythonQtMethodInfo* methodInfos, void **arguments, bool skipFirstArgumentOfMethodInfo)
 {
+  Q_UNUSED(skipFirstArgumentOfMethodInfo)
+
   // Note: we check if the callable is a PyFunctionObject and has a fixed number of arguments
   // if that is the case, we only pass these arguments to python and skip the additional arguments from the signal
-  
+
   int numPythonArgs = -1;
   if (PyFunction_Check(callable)) {
     PyObject* o = callable;
@@ -135,7 +137,7 @@ PyObject* PythonQtSignalTarget::call(PyObject* callable, const PythonQtMethodInf
 PythonQtSignalReceiver::PythonQtSignalReceiver(QObject* obj):PythonQtSignalReceiverBase(obj)
 {
   _obj = obj;
-  
+
   // fetch the class info for object, since we will need to for correct enum resolution in
   // signals
   _objClassInfo = PythonQt::priv()->getClassInfo(obj->metaObject());

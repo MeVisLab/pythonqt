@@ -89,13 +89,6 @@ public:
     _chunks.clear();
   }
 
-  //! reset the storage to 0 (without freeing memory, thus caching old entries for reuse)
-  void reset() {
-    _chunkIdx = 0;
-    _chunkOffset = 0;
-    _currentChunk = _chunks.at(0);
-  }
-
   //! get the current position to be restored with setPos
   void getPos(PythonQtValueStoragePosition & pos) {
     pos.chunkIdx = _chunkIdx;
@@ -129,7 +122,7 @@ public:
     return newEntry;
   };
 
-private:
+protected:
   QList<T*> _chunks;
 
   int _chunkIdx;
@@ -138,5 +131,45 @@ private:
 
 };
 
+//! a helper class that stores basic C++ value types in chunks and clears the unused values on setPos() usage.
+template <typename T, int chunkEntries> class PythonQtValueStorageWithCleanup : public PythonQtValueStorage<T, chunkEntries>
+{  
+public:
+  void setPos(const PythonQtValueStoragePosition& pos) {
+    if (_chunkIdx > pos.chunkIdx) {
+      T*  firstChunk = _chunks.at(pos.chunkIdx);
+      // clear region in first chunk
+      for (int i = pos.chunkOffset; i < chunkEntries; i++) {
+        firstChunk[i] = T();
+      }
+      for (int chunk = pos.chunkIdx + 1; chunk < _chunkIdx; chunk++) {
+        // clear the full chunks between the first and last chunk
+        T*  fullChunk = _chunks.at(chunk);
+        for (int i = 0; i < chunkEntries; i++) {
+          fullChunk[i] = T();
+        }
+      }
+      // clear region in last chunk
+      T*  lastChunk = _chunks.at(_chunkIdx);
+      for (int i = 0; i < _chunkOffset; i++) {
+        lastChunk[i] = T();
+      }
+    } else if (_chunkIdx == pos.chunkIdx) {
+      // clear the region in the last chunk only
+      T*  lastChunk = _chunks.at(_chunkIdx);
+      for (int i = pos.chunkOffset; i<_chunkOffset; i++) {
+        lastChunk[i] = T();
+      }
+    }
+
+    PythonQtValueStorage<T, chunkEntries>::setPos(pos);
+  }
+
+private:
+  using PythonQtValueStorage<T, chunkEntries>::_chunks;
+  using PythonQtValueStorage<T, chunkEntries>::_chunkIdx;
+  using PythonQtValueStorage<T, chunkEntries>::_chunkOffset;
+  using PythonQtValueStorage<T, chunkEntries>::_currentChunk;
+};
 
 #endif
