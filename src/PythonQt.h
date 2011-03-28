@@ -75,7 +75,7 @@ template<class T> void PythonQtSetInstanceWrapperOnShell(void* object, PythonQtI
 
 //! returns the offset that needs to be added to upcast an object of type T1 to T2
 template<class T1, class T2> int PythonQtUpcastingOffset() {
-  return (((char*)(static_cast<T2*>(reinterpret_cast<T1*>(0x100)))) - ((char*)reinterpret_cast<T1*>(0x100))); 
+  return (((char*)(static_cast<T2*>(reinterpret_cast<T1*>(0x100)))) - ((char*)reinterpret_cast<T1*>(0x100)));
 }
 
 //! callback to create a QObject lazily
@@ -143,10 +143,20 @@ public:
 
   };
 
+  //! enum for profiling callback
+  enum ProfilingCallbackState {
+    Enter = 1,
+    Leave = 2
+  };
+
+  //! callback for profiling. className and methodName are only passed when state == Enter, otherwise
+  //! they are NULL.
+  typedef void ProfilingCB(ProfilingCallbackState state, const char* className, const char* methodName);
+
   //---------------------------------------------------------------------------
   //! \name Singleton Initialization
   //@{
-  
+
   //! initialize the python qt binding (flags are a or combination of PythonQt::InitFlags), if \c pythonQtModuleName is given
   //! it defines the name of the python module that PythonQt will add, otherwise "PythonQt" is used.
   //! This can be used to e.g. pass in PySide or PyQt4 to make it more compatible.
@@ -159,7 +169,7 @@ public:
   static PythonQt* self() { return _self; }
 
   //@}
-  
+
   //! defines the object types for introspection
   enum ObjectType {
     Class,
@@ -186,13 +196,13 @@ public:
   //! to a module later on.
   //! The user needs to make sure that the \c name is unique in the python module dictionary.
   PythonQtObjectPtr createModuleFromFile(const QString& name, const QString& filename);
-  
+
   //! creates the new module \c name and evaluates the given script in the context of that module.
   //! If the \c script is empty, the module contains no initial code. You can use evalScript/evalCode to add code
   //! to a module later on.
   //! The user needs to make sure that the \c name is unique in the python module dictionary.
   PythonQtObjectPtr createModuleFromScript(const QString& name, const QString& script = QString());
-  
+
   //! create a uniquely named module, you can use evalFile or evalScript to populate the module with
   //! script code
   PythonQtObjectPtr createUniqueModule();
@@ -213,20 +223,20 @@ public:
   void setModuleImportPath(PyObject* module, const QStringList& paths);
 
   //@}
-  
+
   //---------------------------------------------------------------------------
   //! \name Registering Classes
   //@{
-  
+
   //! registers a QObject derived class to PythonQt (this is implicitly called by addObject as well)
   /* Since Qt4 does not offer a way to detect if a given classname is derived from QObject and thus has a QMetaObject,
    you MUST register all your QObject derived classes here when you want them to be detected in signal and slot calls */
   void registerClass(const QMetaObject* metaobject, const char* package = NULL, PythonQtQObjectCreatorFunctionCB* wrapperCreator = NULL, PythonQtShellSetInstanceWrapperCB* shell = NULL);
-  
+
   //! add a wrapper object for the given QMetaType typeName, also does an addClassDecorators() to add constructors for variants
   //! (ownership of wrapper is passed to PythonQt)
   /*! Make sure that you have done a qRegisterMetaType first, if typeName is a user type!
-   
+
    This will add a wrapper object that is used to make calls to the given classname \c typeName.
    All slots that take a pointer to typeName as the first argument will be callable from Python on
    a variant object that contains such a type.
@@ -251,7 +261,7 @@ public:
   //---------------------------------------------------------------------------
   //! \name Script Parsing and Evaluation
   //@{
-  
+
   //! parses the given file and returns the python code object, this can then be used to call evalCode()
   PythonQtObjectPtr parseFile(const QString& filename);
 
@@ -287,7 +297,7 @@ public:
 
   //---------------------------------------------------------------------------
   //! \name Variable access
-  //@{ 
+  //@{
 
   //! add the given \c qObject to the python \c object as a variable with \c name (it can be removed via clearVariable)
   void addObject(PyObject* object, const QString& name, QObject* qObject);
@@ -312,7 +322,7 @@ public:
 
   //---------------------------------------------------------------------------
   //! \name Calling Python Objects
-  //@{ 
+  //@{
 
   //! call the given python \c callable in the scope of object, returns the result converted to a QVariant
   QVariant call(PyObject* object, const QString& callable, const QVariantList& args = QVariantList());
@@ -385,10 +395,10 @@ public:
   //---------------------------------------------------------------------------
   //! \name Custom Importer
   //@{
-  
+
   //! replace the internal import implementation and use the supplied interface to load files (both py and pyc files)
   //! (this method should be called directly after initialization of init() and before calling overwriteSysPath().
-  //! On the first call to this method, it will install a generic PythonQt importer in Pythons "path_hooks". 
+  //! On the first call to this method, it will install a generic PythonQt importer in Pythons "path_hooks".
   //! This is not reversible, so even setting setImporter(NULL) afterwards will
   //! keep the custom PythonQt importer with a QFile default import interface.
   //! Subsequent python import calls will make use of the passed importInterface
@@ -427,6 +437,10 @@ public:
   //! The error is currently just output to the python stderr, future version might implement better trace printing
   bool handleError();
 
+  //! clear all NotFound entries on all class infos, to ensure that
+  //! newly loaded wrappers can add methods even when the object was wrapped by PythonQt before the wrapper was loaded
+  void clearNotFoundCachedMembers();
+
   //! set a callback that is called when a QObject with parent == NULL is wrapped by pythonqt
   void setQObjectWrappedCallback(PythonQtQObjectWrappedCB* cb);
   //! set a callback that is called when a QObject with parent == NULL is no longer wrapped by pythonqt
@@ -437,10 +451,13 @@ public:
 
   //! called by internal help methods
   PyObject* helpCalled(PythonQtClassInfo* info);
-  
+
   //! returns the found object or NULL
   //! @return new reference
   PythonQtObjectPtr lookupObject(PyObject* module, const QString& name);
+
+  //! sets a callback that is called before and after function calls for profiling
+  void setProfilingCallback(ProfilingCB* cb);
 
   //@}
 
@@ -507,7 +524,7 @@ public:
 
   //! add a handler for polymorphic downcasting
   void addPolymorphicHandler(const char* typeName, PythonQtPolymorphicHandlerCB* cb);
- 
+
   //! lookup existing classinfo and return new if not yet present
   PythonQtClassInfo* lookupClassInfoAndCreateIfNotPresent(const char* typeName);
 
@@ -528,13 +545,13 @@ public:
   //! add a wrapper object for the given QMetaType typeName, also does an addClassDecorators() to add constructors for variants
   //! (ownership of wrapper is passed to PythonQt)
   /*! Make sure that you have done a qRegisterMetaType first, if typeName is a user type!
-   
+
    This will add a wrapper object that is used to make calls to the given classname \c typeName.
    All slots that take a pointer to typeName as the first argument will be callable from Python on
    a variant object that contains such a type.
    */
   void registerCPPClass(const char* typeName, const char* parentTypeName = NULL, const char* package = NULL, PythonQtQObjectCreatorFunctionCB* wrapperCreator = NULL, PythonQtShellSetInstanceWrapperCB* shell = NULL, PyObject* module = NULL, int typeSlots = 0);
-  
+
   //! as an alternative to registerClass, you can tell PythonQt the names of QObject derived classes
   //! and it will register the classes when it first sees a pointer to such a derived class
   void registerQObjectClassNames(const QStringList& names);
@@ -571,9 +588,12 @@ public:
 
   //! called by virtual overloads when a python return value can not be converted to the required Qt type
   void handleVirtualOverloadReturnError(const char* signature, const PythonQtMethodInfo* methodInfo, PyObject* result);
-  
+
   //! get access to the PythonQt module
   PythonQtObjectPtr pythonQtModule() const { return _pythonQtModule; }
+
+  //! returns the profiling callback, which may be NULL
+  PythonQt::ProfilingCB* profilingCB() const { return _profilingCB; }
 
 private:
   //! Setup the shared library suffixes by getting them from the "imp" module.
@@ -605,13 +625,13 @@ private:
 
   //! the name of the PythonQt python module
   QByteArray _pythonQtModuleName;
-  
+
   //! the importer interface (if set)
   PythonQtImportFileInterface* _importInterface;
 
   //! the default importer
   PythonQtQFileImporter* _defaultImporter;
-  
+
   PythonQtQObjectNoLongerWrappedCB* _noLongerWrappedCB;
   PythonQtQObjectWrappedCB* _wrappedCB;
 
@@ -624,6 +644,8 @@ private:
   QHash<QByteArray, PyObject*> _packages;
 
   PythonQtClassInfo* _currentClassInfoForClassWrapperCreation;
+
+  PythonQt::ProfilingCB* _profilingCB;
 
   int _initFlags;
   int _PythonQtObjectPtr_metaId;

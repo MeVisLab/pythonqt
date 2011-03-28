@@ -62,11 +62,6 @@ public slots:
   bool disconnect(QObject* sender, const QByteArray& signal, PyObject* callable);
   bool disconnect(QObject* sender, const QByteArray& signal, QObject* receiver, const QByteArray& slot);
 
-#undef emit
-  void emit(QObject* sender, const QByteArray& signal, PyObject* arg1 = NULL,PyObject* arg2 = NULL,
-            PyObject* arg3 = NULL,PyObject* arg4 = NULL,PyObject* arg5 = NULL,PyObject* arg6 = NULL,PyObject* arg7 = NULL);
-#define emit
-  
   QObject* parent(QObject* o);
   void setParent(QObject* o, QObject* parent);
 
@@ -74,19 +69,19 @@ public slots:
   QObject* findChild(QObject* parent, PyObject* type, const QString& name = QString());
   QList<QObject*> findChildren(QObject* parent, PyObject* type, const QString& name= QString());
   QList<QObject*> findChildren(QObject* parent, PyObject* type, const QRegExp& regExp);
-  
+
   bool setProperty(QObject* o, const char* name, const QVariant& value);
   QVariant property(QObject* o, const char* name);
 
   double static_Qt_qAbs(double a) { return qAbs(a); }
   double static_Qt_qBound(double a,double b,double c) { return qBound(a,b,c); }
-  void static_Qt_qDebug(const QByteArray& msg) { qDebug(msg.constData()); }
+  void static_Qt_qDebug(const QByteArray& msg) { qDebug("%s", msg.constData()); }
   // TODO: multi arg qDebug...
-  void static_Qt_qWarning(const QByteArray& msg) { qWarning(msg.constData()); }
+  void static_Qt_qWarning(const QByteArray& msg) { qWarning("%s", msg.constData()); }
   // TODO: multi arg qWarning...
-  void static_Qt_qCritical(const QByteArray& msg) { qCritical(msg.constData()); }
+  void static_Qt_qCritical(const QByteArray& msg) { qCritical("%s", msg.constData()); }
   // TODO: multi arg qCritical...
-  void static_Qt_qFatal(const QByteArray& msg) { qFatal(msg.constData()); }
+  void static_Qt_qFatal(const QByteArray& msg) { qFatal("%s", msg.constData()); }
   // TODO: multi arg qFatal...
   bool static_Qt_qFuzzyCompare(double a, double b) { return qFuzzyCompare(a, b); }
   double static_Qt_qMax(double a, double b) { return qMax(a, b); }
@@ -98,7 +93,7 @@ public slots:
   void static_Qt_qsrand(uint a) { qsrand(a); }
 
   QString tr(QObject* obj, const QByteArray& text, const QByteArray& ambig = QByteArray(), int n = -1);
-  
+
   QByteArray static_Qt_SIGNAL(const QByteArray& s) { return QByteArray("2") + s; }
   QByteArray static_Qt_SLOT(const QByteArray& s) { return QByteArray("1") + s; }
 

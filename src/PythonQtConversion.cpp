@@ -47,7 +47,7 @@
 
 PythonQtValueStorage<qint64, 128>  PythonQtConv::global_valueStorage;
 PythonQtValueStorage<void*, 128>   PythonQtConv::global_ptrStorage;
-PythonQtValueStorage<QVariant, 32> PythonQtConv::global_variantStorage;
+PythonQtValueStorageWithCleanup<QVariant, 128> PythonQtConv::global_variantStorage;
 
 QHash<int, PythonQtConvertMetaTypeToPythonCB*> PythonQtConv::_metaTypeToPythonConverters;
 QHash<int, PythonQtConvertPythonToMetaTypeCB*> PythonQtConv::_pythonToMetaTypeConverters;

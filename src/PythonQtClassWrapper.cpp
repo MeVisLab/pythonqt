@@ -266,6 +266,31 @@ static PyObject *PythonQtClassWrapper_help(PythonQtClassWrapper* type)
   return PythonQt::self()->helpCalled(type->classInfo());
 }
 
+PyObject *PythonQtClassWrapper_delete(PythonQtClassWrapper *type, PyObject *args)
+{
+  Q_UNUSED(type);
+
+  Py_ssize_t argc = PyTuple_Size(args);
+  if (argc>0) {
+    PyObject* self = PyTuple_GET_ITEM(args, 0);
+    if (PyObject_TypeCheck(self, &PythonQtInstanceWrapper_Type)) {
+      return PythonQtInstanceWrapper_delete((PythonQtInstanceWrapper*)self);
+    }
+  }
+  return NULL;
+}
+
+PyObject *PythonQtClassWrapper_inherits(PythonQtClassWrapper *type, PyObject *args)
+{
+  Q_UNUSED(type);
+  PythonQtInstanceWrapper* wrapper = NULL;
+  char *name = NULL;
+  if (!PyArg_ParseTuple(args, "O!s:PythonQtClassWrapper.inherits",&PythonQtInstanceWrapper_Type, &wrapper, &name)) {
+    return NULL;
+  }
+  return PythonQtConv::GetPyBool(wrapper->classInfo()->inherits(name));
+}
+
 PyObject *PythonQtClassWrapper__init__(PythonQtClassWrapper *type, PyObject *args)
 {
   Py_ssize_t argc = PyTuple_Size(args);
@@ -295,15 +320,22 @@ PyObject *PythonQtClassWrapper__init__(PythonQtClassWrapper *type, PyObject *arg
   return NULL;
 }
 
+
 static PyMethodDef PythonQtClassWrapper_methods[] = {
     {"__init__", (PyCFunction)PythonQtClassWrapper__init__, METH_VARARGS,
-    "Return the classname of the object"
+    "Init function"
     },
     {"className", (PyCFunction)PythonQtClassWrapper_classname, METH_NOARGS,
      "Return the classname of the object"
     },
+    {"inherits", (PyCFunction)PythonQtClassWrapper_inherits, METH_VARARGS,
+    "Returns if the class inherits or is of given type name"
+    },
     {"help", (PyCFunction)PythonQtClassWrapper_help, METH_NOARGS,
     "Shows the help of available methods for this class"
+    },
+    {"delete", (PyCFunction)PythonQtClassWrapper_delete, METH_VARARGS,
+    "Deletes the given C++ object"
     },
     {NULL, NULL, 0 , NULL}  /* Sentinel */
 };
@@ -313,7 +345,7 @@ static PyObject *PythonQtClassWrapper_getattro(PyObject *obj, PyObject *name)
 {
   const char *attributeName;
   PythonQtClassWrapper *wrapper = (PythonQtClassWrapper *)obj;
-  
+
   if ((attributeName = PyString_AsString(name)) == NULL) {
     return NULL;
   }
@@ -328,7 +360,7 @@ static PyObject *PythonQtClassWrapper_getattro(PyObject *obj, PyObject *name)
       return dict;
     }
     dict = PyDict_Copy(dict);
-    
+
     QStringList l = wrapper->classInfo()->memberList(false);
     foreach (QString name, l) {
       PyObject* o = PyObject_GetAttrString(obj, name.toLatin1().data());
@@ -344,7 +376,7 @@ static PyObject *PythonQtClassWrapper_getattro(PyObject *obj, PyObject *name)
       PyDict_SetItemString(dict, "__init__", func);
       Py_DECREF(func);
     }
-    for (int i = 1;i<3;i++) {
+    for (int i = 1; PythonQtClassWrapper_methods[i].ml_name != NULL; i++) {
       PyObject* func = PyCFunction_New(&PythonQtClassWrapper_methods[i], obj);
       PyDict_SetItemString(dict, PythonQtClassWrapper_methods[i].ml_name, func);
       Py_DECREF(func);
@@ -396,7 +428,7 @@ static PyObject * PythonQtClassWrapper_repr(PyObject * obj)
 {
   PythonQtClassWrapper* wrapper = (PythonQtClassWrapper*)obj;
   if (wrapper->classInfo()->isCPPWrapper()) {
-    const QMetaObject* meta = wrapper->classInfo()->metaObject(); 
+    const QMetaObject* meta = wrapper->classInfo()->metaObject();
     if (!meta) {
       QObject* decorator = wrapper->classInfo()->decorator();
       if (decorator) {

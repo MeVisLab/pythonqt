@@ -57,21 +57,21 @@ public:
     setObject(p.object());
   }
 
-  //! If the given variant holds a PythonQtObjectPtr, extract the value from it and hold onto the reference. This results in an increment of the reference count. 
+  //! If the given variant holds a PythonQtObjectPtr, extract the value from it and hold onto the reference. This results in an increment of the reference count.
   PythonQtObjectPtr(const QVariant& variant):_object(NULL) {
-      fromVariant(variant); 
+      fromVariant(variant);
   }
-  
+
   PythonQtObjectPtr(PyObject* o) {
     _object = o;
     if (o) Py_INCREF(_object);
   }
 
-  ~PythonQtObjectPtr() { if (_object) Py_DECREF(_object); }
-  
-  //! If the given variant holds a PythonQtObjectPtr, extract the value from it and hold onto the reference. This results in an increment of the reference count.   
+  ~PythonQtObjectPtr() { if (_object) { Py_DECREF(_object); } }
+
+  //! If the given variant holds a PythonQtObjectPtr, extract the value from it and hold onto the reference. This results in an increment of the reference count.
   bool fromVariant(const QVariant& variant);
-  
+
   PythonQtObjectPtr &operator=(const PythonQtObjectPtr &p) {
     setObject(p.object());
     return *this;
@@ -82,13 +82,13 @@ public:
     return *this;
   }
 
-  
+
   PythonQtObjectPtr &operator=(const QVariant& variant) {
       fromVariant(variant);
       return *this;
   }
 
-  
+
   bool operator==( const PythonQtObjectPtr &p ) const {
     return object() == p.object();
   }
@@ -116,7 +116,7 @@ public:
   //! sets the object and passes the ownership (stealing the reference, in Python slang)
   void setNewRef(PyObject* o) {
     if (o != _object) {
-      if (_object) Py_DECREF(_object);
+      if (_object) { Py_DECREF(_object); }
       _object = o;
     }
   }
@@ -157,9 +157,9 @@ protected:
 
   void setObject(PyObject* o) {
     if (o != _object) {
-      if (_object) Py_DECREF(_object);
+      if (_object) { Py_DECREF(_object); }
       _object = o;
-      if (_object) Py_INCREF(_object);
+      if (_object) { Py_INCREF(_object); }
     }
   }
 

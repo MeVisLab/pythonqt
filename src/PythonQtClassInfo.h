@@ -166,7 +166,7 @@ public:
   int metaTypeId() { return _metaTypeId; }
 
   //! set an additional decorator provider that offers additional decorator slots for this class 
-  void setDecoratorProvider(PythonQtQObjectCreatorFunctionCB* cb) { _decoratorProviderCB = cb; _decoratorProvider = NULL; }
+  void setDecoratorProvider(PythonQtQObjectCreatorFunctionCB* cb);
 
   //! get the decorator qobject instance
   QObject* decorator();
@@ -201,7 +201,10 @@ public:
 
   //! returns if the localScope has an enum of that type name or if the enum contains a :: scope, if that class contails the enum
   static PyObject* findEnumWrapper(const QByteArray& name, PythonQtClassInfo* localScope, bool* isLocalEnum = NULL);
-  
+
+  //! clear all members that where cached as "NotFound"
+  void clearNotFoundCachedMembers();
+
 private:
   void createEnumWrappers();
   void createEnumWrappers(const QMetaObject* meta);
@@ -225,7 +228,7 @@ private:
 
   PythonQtSlotInfo* findDecoratorSlots(const char* memberName, int memberNameLen, PythonQtSlotInfo* tail, bool &found, QHash<QByteArray, PythonQtMemberInfo>& memberCache, int upcastingOffset);
   int findCharOffset(const char* sigStart, char someChar);
-
+ 
   QHash<QByteArray, PythonQtMemberInfo> _cachedMembers;
 
   PythonQtSlotInfo*                    _constructors;

@@ -46,7 +46,7 @@
 #include <QString>
 #include <QByteArray>
 
-//! Defines an abstract interface to file access for the Python import statement. 
+//! Defines an abstract interface to file access for the Python import statement.
 //! see PythonQt::setImporter()
 class PythonQtImportFileInterface {
 
@@ -67,6 +67,9 @@ public:
   //! get the last modified data of a file
   virtual QDateTime lastModifiedDate(const QString& filename) = 0;
 
+  //! indicates that *.py files which are newer than their corresponding *.pyc files
+  //! are ignored
+  virtual bool ignoreUpdatedPythonSourceFiles() { return false; }
 };
 
 #endif

@@ -80,7 +80,7 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
 
     PythonQt_init_QtCoreBuiltin(NULL);
     PythonQt_init_QtGuiBuiltin(NULL);
-  
+
     PythonQtRegisterToolClassesTemplateConverter(QByteArray);
     PythonQtRegisterToolClassesTemplateConverter(QDate);
     PythonQtRegisterToolClassesTemplateConverter(QTime);
@@ -157,7 +157,7 @@ PythonQt::PythonQt(int flags, const QByteArray& pythonQtModuleName)
     }
     Py_Initialize();
   }
-  
+
   // add our own python object types for qt object slots
   if (PyType_Ready(&PythonQtSlotFunction_Type) < 0) {
     std::cerr << "could not initialize PythonQtSlotFunction_Type" << ", in " << __FILE__ << ":" << __LINE__ << std::endl;
@@ -245,6 +245,14 @@ void PythonQtPrivate::registerClass(const QMetaObject* metaobject, const char* p
         PythonQtClassInfo* parentInfo = lookupClassInfoAndCreateIfNotPresent(m->superClass()->className());
         info->addParentClass(PythonQtClassInfo::ParentClassInfo(parentInfo));
       }
+    } else if (first && module) {
+      // There is a wrapper already, but if we got a module, we want to place the wrapper into that module as well,
+      // since it might have been placed into "private" earlier on.
+      // If the wrapper was already added to module before, it is just readded, which does no harm.
+      PyObject* classWrapper = info->pythonQtClassWrapper();
+      // AddObject steals a reference, so we need to INCREF
+      Py_INCREF(classWrapper);
+      PyModule_AddObject(module, info->className(), classWrapper);
     }
     if (first) {
       first = false;
@@ -913,6 +921,7 @@ PythonQtPrivate::PythonQtPrivate()
   _noLongerWrappedCB = NULL;
   _wrappedCB = NULL;
   _currentClassInfoForClassWrapperCreation = NULL;
+  _profilingCB = NULL;
 }
 
 void PythonQtPrivate::setupSharedLibrarySuffixes()
@@ -922,6 +931,14 @@ void PythonQtPrivate::setupSharedLibrarySuffixes()
   imp.setNewRef(PyImport_ImportModule("imp"));
   int cExtensionCode = imp.getVariable("C_EXTENSION").toInt();
   QVariant result = imp.call("get_suffixes");
+#ifdef __linux
+  #ifdef _DEBUG
+  // First look for shared libraries with the '_d' suffix in debug mode on Linux.
+  // This is a workaround, because python does not append the '_d' suffix on Linux
+  // and would always load the release library otherwise.
+  _sharedLibrarySuffixes << "_d.so";
+  #endif
+#endif
   foreach (QVariant entry, result.toList()) {
     QVariantList suffixEntry = entry.toList();
     if (suffixEntry.count()==3) {
@@ -1066,6 +1083,10 @@ void PythonQt::setQObjectNoLongerWrappedCallback(PythonQtQObjectNoLongerWrappedC
   _p->_noLongerWrappedCB = cb;
 }
 
+void PythonQt::setProfilingCallback(ProfilingCB* cb)
+{
+  _p->_profilingCB = cb;
+}
 
 
 static PyMethodDef PythonQtMethods[] = {
@@ -1080,7 +1101,7 @@ void PythonQt::initPythonQtModule(bool redirectStdOut, const QByteArray& pythonQ
   }
   _p->_pythonQtModule = Py_InitModule(name.constData(), PythonQtMethods);
   _p->_pythonQtModuleName = name;
-  
+
   if (redirectStdOut) {
     PythonQtObjectPtr sys;
     PythonQtObjectPtr out;
@@ -1191,6 +1212,13 @@ PyObject* PythonQt::helpCalled(PythonQtClassInfo* info)
     return Py_BuildValue("");
   } else {
     return PyString_FromString(info->help().toLatin1().data());
+  }
+}
+
+void PythonQt::clearNotFoundCachedMembers()
+{
+  foreach(PythonQtClassInfo* info, _p->_knownClassInfos) {
+    info->clearNotFoundCachedMembers();
   }
 }
 

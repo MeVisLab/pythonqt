@@ -847,3 +847,22 @@ PyObject* PythonQtClassInfo::findEnumWrapper(const char* name) {
   return NULL;
 }
 
+void PythonQtClassInfo::setDecoratorProvider( PythonQtQObjectCreatorFunctionCB* cb )
+{
+  _decoratorProviderCB = cb;
+  _decoratorProvider = NULL;
+  _enumsCreated = false;
+}
+
+void PythonQtClassInfo::clearNotFoundCachedMembers()
+{
+  // remove all not found entries, since a new decorator means new slots,
+  // which might have been cached as "NotFound" already.
+  QMutableHashIterator<QByteArray, PythonQtMemberInfo> it(_cachedMembers);
+  while (it.hasNext()) {
+    it.next();
+    if (it.value()._type == PythonQtMemberInfo::NotFound) {
+      it.remove();
+    }
+  }
+}

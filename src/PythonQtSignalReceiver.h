@@ -50,7 +50,7 @@ class PythonQtMethodInfo;
 class PythonQtClassInfo;
 
 //! stores information about a signal target
-/*! copy construction and assignment works fine with the C++ standard behaviour and are thus not implemented
+/*! copy construction and assignment works fine with the C++ standard behavior and are thus not implemented
 */
 class PYTHONQT_EXPORT PythonQtSignalTarget {
 public:

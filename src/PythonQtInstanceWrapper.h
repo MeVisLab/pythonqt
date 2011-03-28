@@ -90,9 +90,11 @@ typedef struct PythonQtInstanceWrapperStruct {
 
   //! stores if the object is a shell instance
   bool _isShellInstance;
-  
+
 } PythonQtInstanceWrapper;
 
 int PythonQtInstanceWrapper_init(PythonQtInstanceWrapper * self, PyObject * args, PyObject * kwds);
+
+PyObject *PythonQtInstanceWrapper_delete(PythonQtInstanceWrapper * self);
 
 #endif

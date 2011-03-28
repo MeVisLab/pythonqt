@@ -144,7 +144,7 @@ public:
 
   static PythonQtValueStorage<qint64, 128>  global_valueStorage;
   static PythonQtValueStorage<void*, 128>   global_ptrStorage;
-  static PythonQtValueStorage<QVariant, 32> global_variantStorage;
+  static PythonQtValueStorageWithCleanup<QVariant, 128>  global_variantStorage;
 
 protected:
   static QHash<int, PythonQtConvertMetaTypeToPythonCB*> _metaTypeToPythonConverters; 
