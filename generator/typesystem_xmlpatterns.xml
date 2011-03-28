@@ -24,6 +24,9 @@
   <rejection class="QAbstractXmlNodeModel" function-name="copyNodeTo"/>
   <rejection class="QAbstractXmlNodeModel" function-name="type"/>
   <object-type name="QAbstractXmlNodeModel">
+    <modify-function signature="QAbstractXmlNodeModel()" remove="all"/>
+    <modify-function signature="namespaceForPrefix(QXmlNodeModelIndex,short) const" remove="all"/>
+    <modify-function signature="isDeepEqual(QXmlNodeModelIndex,QXmlNodeModelIndex) const" remove="all"/>
   </object-type>
 
   <rejection class="QAbstractXmlReceiver" function-name="item"/>
@@ -41,6 +44,7 @@
 
   <rejection class="QXmlFormatter" function-name="item"/>
   <object-type name="QXmlFormatter">
+    <modify-function signature="startFormattingContent()" remove="all"/>
   </object-type>
 
   <value-type name="QXmlItem">
@@ -56,7 +60,19 @@
     <remove-default-expression/>
       </modify-argument>
     </modify-function>
+
     <modify-function signature="operator=(QXmlName)" remove="all"/>
+    <modify-function signature="QXmlName(short,short,short)" remove="all"/>
+    <modify-function signature="localName()const" remove="all"/>
+    <modify-function signature="prefix()const" remove="all"/>
+    <modify-function signature="hasPrefix()const" remove="all"/>
+    <modify-function signature="hasNamespace()const" remove="all"/>
+    <modify-function signature="namespaceURI()const" remove="all"/>
+    <modify-function signature="isLexicallyEqual(const QXmlName)const" remove="all"/>
+    <modify-function signature="setPrefix(const short)" remove="all"/>
+    <modify-function signature="setNamespaceURI(const short)" remove="all"/>
+    <modify-function signature="setLocalName(const short)" remove="all"/>
+    <modify-function signature="code()const" remove="all"/>
   </value-type>
 
   <value-type name="QXmlNamePool">
@@ -69,6 +85,19 @@
   <rejection class="QXmlNodeModelIndex" function-name="type"/>
   <rejection class="QXmlNodeModelIndex" enum-name="Axis"/>
   <value-type name="QXmlNodeModelIndex">
+    <modify-function signature="name() const" remove="all"/>
+    <modify-function signature="root() const" remove="all"/>
+    <modify-function signature="documentUri() const" remove="all"/>
+    <modify-function signature="baseUri() const" remove="all"/>
+    <modify-function signature="kind() const" remove="all"/>
+    <modify-function signature="isDeepEqual(QXmlNodeModelIndex) const" remove="all"/>
+    <modify-function signature="compareOrder(QXmlNodeModelIndex) const" remove="all"/>
+    <modify-function signature="namespaceBindings() const" remove="all"/>
+    <modify-function signature="namespaceForPrefix(short) const" remove="all"/>
+    <modify-function signature="stringValue() const" remove="all"/>
+    <modify-function signature="is(QXmlNodeModelIndex) const" remove="all"/>
+    <modify-function signature="reset()" remove="all"/>
+    <modify-function signature="internalPointer()const" remove="all"/>
   </value-type>
 
   <value-type name="QXmlSerializerPointer"/>
@@ -84,6 +113,7 @@
             <reference-count action="set" variable-name="__rcNetworkAccessManager"/>
         </modify-argument>
     </modify-function>
+    <modify-function signature="evaluateTo(QAbstractXmlReceiver *)const" remove="all"/>
     <modify-function signature="evaluateTo(QStringList&lt;QString&gt;*)const" remove="all"/>
     <modify-function signature="setMessageHandler(QAbstractMessageHandler*)">
       <modify-argument index="1">
@@ -105,6 +135,19 @@
 
   <rejection class="QXmlSerializer" function-name="item"/>
   <object-type name="QXmlSerializer">
+    <modify-function signature="atDocumentRoot()const" remove="all"/>
+    <modify-function signature="startContent()" remove="all"/>
+    <modify-function signature="writeEscaped(QString)" remove="all"/>
+    <modify-function signature="writeEscapedAttribute(QString)" remove="all"/>
+    <modify-function signature="write(QString)" remove="all"/>
+    <modify-function signature="write(QXmlName)" remove="all"/>
+    <modify-function signature="write(const char *)" remove="all"/>
+    <modify-function signature="isBindingInScope(QXmlName)const" remove="all"/>
+    <modify-function signature="setCodec(const QTextCodec *)">
+      <modify-argument index="1">
+    <reference-count action="set" variable-name="__rcCodec"/>
+      </modify-argument>
+    </modify-function>
   </object-type>
 
 
