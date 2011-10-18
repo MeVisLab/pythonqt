@@ -132,6 +132,11 @@ PyObject* PythonQtSignalTarget::call(PyObject* callable, const PythonQtMethodInf
   return result;
 }
 
+bool PythonQtSignalTarget::isSame( int signalId, PyObject* callable ) const
+{
+  return PyObject_Compare(callable, _callable) == 0 && signalId==_signalId;
+}
+
 //------------------------------------------------------------------------------
 
 PythonQtSignalReceiver::PythonQtSignalReceiver(QObject* obj):PythonQtSignalReceiverBase(obj)
