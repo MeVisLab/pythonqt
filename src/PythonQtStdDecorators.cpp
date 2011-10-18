@@ -46,6 +46,7 @@
 
 bool PythonQtStdDecorators::connect(QObject* sender, const QByteArray& signal, PyObject* callable)
 {
+  bool result = false;
   QByteArray signalTmp;
   char first = signal.at(0);
   if (first>='0' && first<='9') {
@@ -55,10 +56,14 @@ bool PythonQtStdDecorators::connect(QObject* sender, const QByteArray& signal, P
   }
 
   if (sender) {
-    return PythonQt::self()->addSignalHandler(sender, signalTmp, callable);
-  } else {
-    return false;
+    result = PythonQt::self()->addSignalHandler(sender, signalTmp, callable);
+    if (!result) {
+      if (sender->metaObject()->indexOfSignal(QMetaObject::normalizedSignature(signalTmp.constData()+1)) == -1) {
+        qWarning("PythonQt: QObject::connect() signal '%s' does not exist on %s", signal.constData(), sender->metaObject()->className());
+      }
+    }
   }
+  return result;
 }
 
 bool PythonQtStdDecorators::connect(QObject* sender, const QByteArray& signal, QObject* receiver, const QByteArray& slot)
@@ -87,6 +92,7 @@ bool PythonQtStdDecorators::connect(QObject* sender, const QByteArray& signal, Q
 
 bool PythonQtStdDecorators::disconnect(QObject* sender, const QByteArray& signal, PyObject* callable)
 {
+  bool result = false;
   QByteArray signalTmp;
   char first = signal.at(0);
   if (first>='0' && first<='9') {
@@ -95,10 +101,14 @@ bool PythonQtStdDecorators::disconnect(QObject* sender, const QByteArray& signal
     signalTmp = "2" + signal;
   }
   if (sender) {
-    return PythonQt::self()->removeSignalHandler(sender, signalTmp, callable);
-  } else {
-    return false;
+    result = PythonQt::self()->removeSignalHandler(sender, signalTmp, callable);
+    if (!result) {
+      if (sender->metaObject()->indexOfSignal(QMetaObject::normalizedSignature(signalTmp.constData()+1)) == -1) {
+        qWarning("PythonQt: QObject::disconnect() signal '%s' does not exist on %s", signal.constData(), sender->metaObject()->className());
+      }
+    }
   }
+  return result;
 }
 
 bool PythonQtStdDecorators::disconnect(QObject* sender, const QByteArray& signal, QObject* receiver, const QByteArray& slot)
