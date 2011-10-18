@@ -84,7 +84,7 @@ public:
   void call(void **arguments) const;
 
   //! check if it is the same signal target
-  bool isSame(int signalId, PyObject* callable) const { return callable==_callable && signalId==_signalId; }
+  bool isSame(int signalId, PyObject* callable) const;
 
   //! call the given callable with arguments described by PythonQtMethodInfo, returns a new reference as result value (or NULL)
   static PyObject* call(PyObject* callable, const PythonQtMethodInfo* methodInfo, void **arguments, bool skipFirstArgumentOfMethodInfo = false);
