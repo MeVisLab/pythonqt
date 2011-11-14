@@ -413,6 +413,12 @@ public:
   //! add the given factory to PythonQt (ownership stays with caller)
   void addWrapperFactory(PythonQtForeignWrapperFactory* factory);
 
+  //! remove the wrapper factory
+  void removeWrapperFactory(PythonQtCppWrapperFactory* factory);
+
+  //! remove the wrapper factory
+  void removeWrapperFactory(PythonQtForeignWrapperFactory* factory);
+
   //@}
 
   //---------------------------------------------------------------------------

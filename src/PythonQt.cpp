@@ -1294,6 +1294,16 @@ void PythonQt::clearNotFoundCachedMembers()
   }
 }
 
+void PythonQt::removeWrapperFactory( PythonQtCppWrapperFactory* factory )
+{
+  _p->_cppWrapperFactories.removeAll(factory);
+}
+
+void PythonQt::removeWrapperFactory( PythonQtForeignWrapperFactory* factory )
+{
+  _p->_foreignWrapperFactories.removeAll(factory);
+}
+
 void PythonQtPrivate::removeWrapperPointer(void* obj)
 {
   _wrappedObjects.remove(obj);
