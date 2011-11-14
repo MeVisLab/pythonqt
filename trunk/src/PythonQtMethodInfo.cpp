@@ -288,14 +288,14 @@ QString PythonQtSlotInfo::fullSignature()
 
   if (_type == ClassDecorator) {
     if (sig.startsWith("new_")) {
-      sig = sig.mid(strlen("new_"));
+      sig = sig.mid(4);
       isConstructor = true;
     } else if (sig.startsWith("delete_")) {
-      sig = sig.mid(strlen("delete_"));
+      sig = sig.mid(7);
       isDestructor = true;
     } else if(sig.startsWith("static_")) {
       isStatic = true;
-      sig = sig.mid(strlen("static_"));
+      sig = sig.mid(7);
       int idx = sig.indexOf("_");
       if (idx>=0) {
         sig = sig.mid(idx+1);
