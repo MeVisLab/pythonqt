@@ -42,7 +42,8 @@
 */
 //----------------------------------------------------------------------------------
 
-#include <Python.h>
+#include "PythonQtPythonInclude.h"
+
 #include "PythonQtSystem.h"
 #include "PythonQtObjectPtr.h"
 

@@ -791,7 +791,7 @@ void PythonQtImport::init()
   mod = Py_InitModule4("PythonQtImport", NULL, mlabimport_doc,
            NULL, PYTHON_API_VERSION);
 
-  PythonQtImportError = PyErr_NewException("PythonQtImport.PythonQtImportError",
+  PythonQtImportError = PyErr_NewException(const_cast<char*>("PythonQtImport.PythonQtImportError"),
               PyExc_ImportError, NULL);
   if (PythonQtImportError == NULL)
     return;
@@ -808,7 +808,7 @@ void PythonQtImport::init()
 
   // set our importer into the path_hooks to handle all path on sys.path
   PyObject* classobj = PyDict_GetItemString(PyModule_GetDict(mod), "PythonQtImporter");
-  PyObject* path_hooks = PySys_GetObject("path_hooks");
+  PyObject* path_hooks = PySys_GetObject(const_cast<char*>("path_hooks"));
   PyList_Append(path_hooks, classobj);
 
 #ifndef WIN32

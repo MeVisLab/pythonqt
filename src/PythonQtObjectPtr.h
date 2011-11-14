@@ -42,7 +42,8 @@
 */
 //----------------------------------------------------------------------------------
 
-#include <Python.h>
+#include "PythonQtPythonInclude.h"
+
 #include "PythonQtSystem.h"
 #include <QVariant>
 #include <QVariantList>
@@ -53,7 +54,8 @@ class PYTHONQT_EXPORT PythonQtObjectPtr
 public:
   PythonQtObjectPtr():_object(NULL) {}
 
-  PythonQtObjectPtr(const PythonQtObjectPtr &p):_object(NULL) {
+  PythonQtObjectPtr(const PythonQtObjectPtr &p)
+  :_object(NULL) {
     setObject(p.object());
   }
 
@@ -62,13 +64,10 @@ public:
       fromVariant(variant);
   }
 
-  PythonQtObjectPtr(PyObject* o) {
-    _object = o;
-    if (o) Py_INCREF(_object);
-  }
-
-  ~PythonQtObjectPtr() { if (_object) { Py_DECREF(_object); } }
-
+  PythonQtObjectPtr(PyObject* o);
+  
+  ~PythonQtObjectPtr();
+  
   //! If the given variant holds a PythonQtObjectPtr, extract the value from it and hold onto the reference. This results in an increment of the reference count.
   bool fromVariant(const QVariant& variant);
 
@@ -114,13 +113,8 @@ public:
   operator PyObject*() const { return object(); }
 
   //! sets the object and passes the ownership (stealing the reference, in Python slang)
-  void setNewRef(PyObject* o) {
-    if (o != _object) {
-      if (_object) { Py_DECREF(_object); }
-      _object = o;
-    }
-  }
-
+  void setNewRef(PyObject* o);
+  
   PyObject* object() const {
     return _object;
   }
@@ -155,14 +149,8 @@ public:
 
 protected:
 
-  void setObject(PyObject* o) {
-    if (o != _object) {
-      if (_object) { Py_DECREF(_object); }
-      _object = o;
-      if (_object) { Py_INCREF(_object); }
-    }
-  }
-
+  void setObject(PyObject* o);
+  
 private:
   PyObject* _object;
 };
@@ -172,3 +160,4 @@ private:
 Q_DECLARE_METATYPE(PythonQtObjectPtr)
 
 #endif
+

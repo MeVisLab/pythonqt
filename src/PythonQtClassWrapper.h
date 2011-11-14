@@ -42,7 +42,7 @@
 */
 //----------------------------------------------------------------------------------
 
-#include <Python.h>
+#include "PythonQtPythonInclude.h"
 
 #include "PythonQtSystem.h"
 

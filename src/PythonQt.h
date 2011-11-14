@@ -47,6 +47,7 @@
 #include "PythonQtClassWrapper.h"
 #include "PythonQtSlot.h"
 #include "PythonQtObjectPtr.h"
+#include "PythonQtStdIn.h"
 #include <QObject>
 #include <QVariant>
 #include <QList>
@@ -71,11 +72,14 @@ typedef void* PythonQtPolymorphicHandlerCB(const void *ptr, char **class_name);
 
 typedef void PythonQtShellSetInstanceWrapperCB(void* object, PythonQtInstanceWrapper* wrapper);
 
-template<class T> void PythonQtSetInstanceWrapperOnShell(void* object, PythonQtInstanceWrapper* wrapper) { ((T*)object)->_wrapper = wrapper; };
+template<class T> void PythonQtSetInstanceWrapperOnShell(void* object, PythonQtInstanceWrapper* wrapper) { 
+  (reinterpret_cast<T*>(object))->_wrapper = wrapper;
+}
 
 //! returns the offset that needs to be added to upcast an object of type T1 to T2
 template<class T1, class T2> int PythonQtUpcastingOffset() {
-  return (((char*)(static_cast<T2*>(reinterpret_cast<T1*>(0x100)))) - ((char*)reinterpret_cast<T1*>(0x100)));
+  return ((reinterpret_cast<char*>(static_cast<T2*>(reinterpret_cast<T1*>(0x100)))) 
+          - (reinterpret_cast<char*>(reinterpret_cast<T1*>(0x100))));
 }
 
 //! callback to create a QObject lazily
@@ -166,7 +170,7 @@ public:
   static void cleanup();
 
   //! get the singleton instance
-  static PythonQt* self() { return _self; }
+  static PythonQt* self();
 
   //@}
 
@@ -179,6 +183,21 @@ public:
     Anything,
     CallOverloads
   };
+
+
+  //---------------------------------------------------------------------------
+  //! \name Standard input handling
+  //@{
+
+  //! Overwrite default handling of stdin using a custom callback. It internally backup
+  //! the original 'sys.stdin' into 'sys.pythonqt_original_stdin'
+  void setRedirectStdInCallback(PythonQtInputChangedCB* callback, void * callbackData = 0);
+
+  //! Enable or disable stdin custom callback. It resets 'sys.stdin' using either 'sys.pythonqt_stdin'
+  //! or 'sys.pythonqt_original_stdin'
+  void setRedirectStdInCallbackEnabled(bool enabled);
+
+  //@}
 
   //---------------------------------------------------------------------------
   //! \name Modules

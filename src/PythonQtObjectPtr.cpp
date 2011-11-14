@@ -41,6 +41,25 @@
 
 #include <PythonQt.h>
 
+PythonQtObjectPtr::PythonQtObjectPtr(PyObject* o)
+{
+  _object = o;
+  if (o) Py_INCREF(_object);
+}
+
+PythonQtObjectPtr::~PythonQtObjectPtr()
+{ 
+  if (_object) Py_DECREF(_object); 
+}
+
+void PythonQtObjectPtr::setNewRef(PyObject* o)
+{
+  if (o != _object) {
+    if (_object) Py_DECREF(_object);
+    _object = o;
+  }
+}
+  
 QVariant PythonQtObjectPtr::evalScript(const QString& script, int start)
 {
   return PythonQt::self()->evalScript(_object, script, start);
@@ -96,6 +115,14 @@ bool PythonQtObjectPtr::fromVariant(const QVariant& variant)
   else {
       setObject(0);
       return false;
+  } 
+}
+
+void PythonQtObjectPtr::setObject(PyObject* o)
+{
+  if (o != _object) {
+    if (_object) Py_DECREF(_object);
+    _object = o;
+    if (_object) Py_INCREF(_object);
   }
-  
 }

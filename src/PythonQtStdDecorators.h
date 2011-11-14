@@ -42,8 +42,10 @@
 */
 //----------------------------------------------------------------------------------
 
+#include "PythonQtPythonInclude.h"
+
 #include "PythonQtSystem.h"
-#include <Python.h>
+
 #include <QObject>
 #include <QVariantList>
 #include <QTextDocument>
