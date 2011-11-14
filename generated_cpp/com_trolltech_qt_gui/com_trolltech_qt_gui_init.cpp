@@ -11,7 +11,7 @@
 #include "com_trolltech_qt_gui9.h"
 #include "com_trolltech_qt_gui10.h"
 
-static void* polymorphichandler_QStyleOption(const void *ptr, char **class_name)
+static void* polymorphichandler_QStyleOption(const void *ptr, const char **class_name)
 {
     Q_ASSERT(ptr != 0);
     QStyleOption *object = (QStyleOption *)ptr;
@@ -157,7 +157,7 @@ static void* polymorphichandler_QStyleOption(const void *ptr, char **class_name)
     }
     return NULL;
 }
-static void* polymorphichandler_QGradient(const void *ptr, char **class_name)
+static void* polymorphichandler_QGradient(const void *ptr, const char **class_name)
 {
     Q_ASSERT(ptr != 0);
     QGradient *object = (QGradient *)ptr;
@@ -179,7 +179,7 @@ static void* polymorphichandler_QGradient(const void *ptr, char **class_name)
     }
     return NULL;
 }
-static void* polymorphichandler_QEvent(const void *ptr, char **class_name)
+static void* polymorphichandler_QEvent(const void *ptr, const char **class_name)
 {
     Q_ASSERT(ptr != 0);
     QEvent *object = (QEvent *)ptr;
