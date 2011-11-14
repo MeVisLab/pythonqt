@@ -3,7 +3,7 @@
 #include "com_trolltech_qt_core1.h"
 #include "com_trolltech_qt_core2.h"
 
-static void* polymorphichandler_QEvent(const void *ptr, char **class_name)
+static void* polymorphichandler_QEvent(const void *ptr, const char **class_name)
 {
     Q_ASSERT(ptr != 0);
     QEvent *object = (QEvent *)ptr;
