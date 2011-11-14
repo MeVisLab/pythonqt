@@ -42,6 +42,12 @@
 */
 //----------------------------------------------------------------------------------
 
+#include "PythonQtPythonInclude.h"
+
+#include "PythonQtSystem.h"
+#include <QObject>
+#include <QByteArray>
+
 //! Factory interface for C++ classes that can be wrapped by QObject objects
 /*! To create your own factory, derive PythonQtCppWrapperFactory and implement
 the create() method.
