@@ -159,7 +159,7 @@ PythonQtSlotInfo* PythonQtClassInfo::recursiveFindDecoratorSlotsFromDecoratorPro
 
 PythonQtSlotInfo* PythonQtClassInfo::findDecoratorSlotsFromDecoratorProvider(const char* memberName, PythonQtSlotInfo* tail, bool &found, QHash<QByteArray, PythonQtMemberInfo>& memberCache, int upcastingOffset) {
   QObject* decoratorProvider = decorator();
-  int memberNameLen = strlen(memberName);
+  int memberNameLen = static_cast<int>(strlen(memberName));
   if (decoratorProvider) {
     //qDebug()<< "looking " << decoratorProvider->metaObject()->className() << " " << memberName << " " << upcastingOffset;
     const QMetaObject* meta = decoratorProvider->metaObject();
@@ -212,7 +212,7 @@ PythonQtSlotInfo* PythonQtClassInfo::findDecoratorSlotsFromDecoratorProvider(con
 bool PythonQtClassInfo::lookForMethodAndCache(const char* memberName)
 {
   bool found = false;
-  int memberNameLen = strlen(memberName);
+  int memberNameLen =  static_cast<int>(strlen(memberName));
   PythonQtSlotInfo* tail = NULL;
   if (_meta) {
     int numMethods = _meta->methodCount();
@@ -730,7 +730,7 @@ bool PythonQtClassInfo::hasOwnerMethodButNoOwner(void* object)
   }
 }
 
-void* PythonQtClassInfo::recursiveCastDownIfPossible(void* ptr, char** resultClassName)
+void* PythonQtClassInfo::recursiveCastDownIfPossible(void* ptr, const char** resultClassName)
 {
   if (!_polymorphicHandlers.isEmpty()) {
     foreach(PythonQtPolymorphicHandlerCB* cb, _polymorphicHandlers) {
@@ -753,7 +753,7 @@ void* PythonQtClassInfo::recursiveCastDownIfPossible(void* ptr, char** resultCla
 
 void* PythonQtClassInfo::castDownIfPossible(void* ptr, PythonQtClassInfo** resultClassInfo)
 {
-  char* className;
+  const char* className;
   // this would do downcasting recursively...
   // void* resultPtr = recursiveCastDownIfPossible(ptr, &className);
 

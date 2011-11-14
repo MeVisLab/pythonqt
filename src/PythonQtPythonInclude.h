@@ -1,9 +1,6 @@
-#ifndef _PYTHONQTCPPWRAPPERFACTORY_H
-#define _PYTHONQTCPPWRAPPERFACTORY_H
-
 /*
  *
- *  Copyright (C) 2010 MeVis Medical Solutions AG All Rights Reserved.
+ *  Copyright (C) 2011 MeVis Medical Solutions AG All Rights Reserved.
  *
  *  This library is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU Lesser General Public
@@ -33,30 +30,26 @@
  *
  */
 
-//----------------------------------------------------------------------------------
-/*!
-// \file    PythonQtCppWrapperFactory.h
-// \author  Florian Link
-// \author  Last changed by $Author: florian $
-// \date    2006-06
-*/
-//----------------------------------------------------------------------------------
+#ifndef __PythonQtPythonInclude_h
+#define __PythonQtPythonInclude_h
 
-//! Factory interface for C++ classes that can be wrapped by QObject objects
-/*! To create your own factory, derive PythonQtCppWrapperFactory and implement
-the create() method.
-A factory can be added to PythonQt by PythonQt::addCppWrapperFactory().
-*/
-class PYTHONQT_EXPORT PythonQtCppWrapperFactory
-{
-public:
-  PythonQtCppWrapperFactory() {};
-  virtual ~PythonQtCppWrapperFactory() {};
+// Undefine macros that Python.h defines to avoid redefinition warning.
+#undef _POSIX_C_SOURCE
+#undef _POSIX_THREADS
+#undef _XOPEN_SOURCE
 
-  //! create a wrapper for the given object
-  virtual QObject* create(const QByteArray& name, void *ptr) = 0;
-
-};
-
+// If PYTHONQT_USE_RELEASE_PYTHON_FALLBACK is enabled, try to link
+// release Python DLL if it is available by undefining _DEBUG while
+// including Python.h
+#if defined(PYTHONQT_USE_RELEASE_PYTHON_FALLBACK) && defined(_DEBUG)
+#undef _DEBUG
+#if defined(_MSC_VER) && _MSC_VER >= 1400
+#define _CRT_NOFORCE_MANIFEST 1
+#endif
+#include <Python.h>
+#define _DEBUG
+#else
+#include <Python.h>
 #endif
 
+#endif

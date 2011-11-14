@@ -1,9 +1,9 @@
-#ifndef _PYTHONQTIMPORTFILEINTERFACE_H
-#define _PYTHONQTIMPORTFILEINTERFACE_H
+#ifndef _PYTHONQTSTDIN_H
+#define _PYTHONQTSTDIN_H
 
 /*
  *
- *  Copyright (C) 2010 MeVis Medical Solutions AG All Rights Reserved.
+ *  Copyright (C) 2011 MeVis Medical Solutions AG All Rights Reserved.
  *
  *  This library is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU Lesser General Public
@@ -35,42 +35,29 @@
 
 //----------------------------------------------------------------------------------
 /*!
-// \file    PythonQtImportFileInterface.h
-// \author  Florian Link
-// \author  Last changed by $Author: florian $
-// \date    2006-05
+// \file    PythonQtStdIn.h
+// \author  Jean-Christophe Fillion-Robin
+// \author  Last changed by $Author: jcfr $
+// \date    2011
 */
 //----------------------------------------------------------------------------------
 
-#include <QDateTime>
+
+#include "PythonQtPythonInclude.h"
+#include "structmember.h"
 #include <QString>
-#include <QByteArray>
 
-//! Defines an abstract interface to file access for the Python import statement.
-//! see PythonQt::setImporter()
-class PythonQtImportFileInterface {
+//! declares the type of the stdout redirection class
+extern PyTypeObject PythonQtStdInRedirectType;
 
-public:
-  // get rid of warnings
-  virtual ~PythonQtImportFileInterface() {}
+//! declares the callback that is called from the write() function
+typedef QString PythonQtInputChangedCB(void* callData);
 
-  //! read the given file as byte array, without doing any linefeed translations
-  virtual QByteArray readFileAsBytes(const QString& filename) = 0;
-
-  //! read a source file, expects a readable Python text file with translated line feeds.
-  //! If the file can not be load OR it can not be verified, ok is set to false
-  virtual QByteArray readSourceFile(const QString& filename, bool& ok) = 0;
-
-  //! returns if the file exists
-  virtual bool exists(const QString& filename) = 0;
-
-  //! get the last modified data of a file
-  virtual QDateTime lastModifiedDate(const QString& filename) = 0;
-
-  //! indicates that *.py files which are newer than their corresponding *.pyc files
-  //! are ignored
-  virtual bool ignoreUpdatedPythonSourceFiles() { return false; }
-};
+//! declares the stdin redirection class
+typedef struct {
+  PyObject_HEAD
+  PythonQtInputChangedCB* _cb;
+  void * _callData;
+} PythonQtStdInRedirect;
 
 #endif
-

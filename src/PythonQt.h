@@ -68,7 +68,7 @@ class PythonQtQFileImporter;
 
 typedef void  PythonQtQObjectWrappedCB(QObject* object);
 typedef void  PythonQtQObjectNoLongerWrappedCB(QObject* object);
-typedef void* PythonQtPolymorphicHandlerCB(const void *ptr, char **class_name);
+typedef void* PythonQtPolymorphicHandlerCB(const void *ptr, const char **class_name);
 
 typedef void PythonQtShellSetInstanceWrapperCB(void* object, PythonQtInstanceWrapper* wrapper);
 

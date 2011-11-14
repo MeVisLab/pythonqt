@@ -213,7 +213,7 @@ private:
   //! clear all cached members
   void clearCachedMembers();
 
-  void* recursiveCastDownIfPossible(void* ptr, char** resultClassName);
+  void* recursiveCastDownIfPossible(void* ptr, const char** resultClassName);
 
   PythonQtSlotInfo* findDecoratorSlotsFromDecoratorProvider(const char* memberName, PythonQtSlotInfo* inputInfo, bool &found, QHash<QByteArray, PythonQtMemberInfo>& memberCache, int upcastingOffset);
   void listDecoratorSlotsFromDecoratorProvider(QStringList& list, bool metaOnly);
