@@ -57,7 +57,7 @@ void ReportHandler::warning(const QString &text)
     if (db && db->isSuppressedWarning(warningText)) {
         ++m_suppressed_count;
     } else if (!m_reported_warnings.contains(warningText)) {
-        qDebug(qPrintable(warningText));
+        qDebug("%s", qPrintable(warningText));
         ++m_warning_count;
 
         m_reported_warnings.insert(warningText);

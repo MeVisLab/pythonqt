@@ -171,7 +171,9 @@ void SetupGenerator::generate()
 
 
     {
-      FileOut initFile(m_out_dir + "/generated_cpp/" + packName + "/" + packKey + "_init.cpp");
+      QString fileName(packName + "/" + packKey + "_init.cpp");
+      FileOut initFile(m_out_dir + "/generated_cpp/" + fileName);
+      ReportHandler::debugSparse(QString("generating: %1").arg(fileName));
       QTextStream &s = initFile.stream;
 
       s << "#include <PythonQt.h>" << endl;
@@ -264,7 +266,7 @@ QStringList SetupGenerator::writePolymorphicHandler(QTextStream &s, const QStrin
             handlers.append(handler);
 
             s << "static void* polymorphichandler_" << handler
-              << "(const void *ptr, char **class_name)" << endl
+              << "(const void *ptr, const char **class_name)" << endl
               << "{" << endl
               << "    Q_ASSERT(ptr != 0);" << endl
               << "    " << cls->qualifiedCppName() << " *object = ("
