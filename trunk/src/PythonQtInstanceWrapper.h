@@ -42,7 +42,7 @@
 */
 //----------------------------------------------------------------------------------
 
-#include <Python.h>
+#include "PythonQtPythonInclude.h"
 
 #include "PythonQtSystem.h"
 #include <QPointer>
@@ -98,3 +98,4 @@ int PythonQtInstanceWrapper_init(PythonQtInstanceWrapper * self, PyObject * args
 PyObject *PythonQtInstanceWrapper_delete(PythonQtInstanceWrapper * self);
 
 #endif
+

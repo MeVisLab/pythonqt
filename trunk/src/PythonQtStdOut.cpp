@@ -87,8 +87,8 @@ static PyMethodDef PythonQtStdOutRedirect_methods[] = {
 };
 
 static PyMemberDef PythonQtStdOutRedirect_members[] = {
-  {"softspace", T_INT, offsetof(PythonQtStdOutRedirect, softspace), 0,
-    "soft space flag"
+  {const_cast<char*>("softspace"), T_INT, offsetof(PythonQtStdOutRedirect, softspace), 0,
+    const_cast<char*>("soft space flag")
   },
   {NULL}  /* Sentinel */
 };

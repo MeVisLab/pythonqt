@@ -386,7 +386,9 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
      } else if (info.name == "PyObject") {
        // handle low level PyObject directly
        PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_ptrStorage, void*, obj, ptr);
-     } else if (obj == Py_None) {
+     }
+     // TODO XXX: pass obj and name and add when it returns a pointer
+     else if (obj == Py_None) {
        // None is treated as a NULL ptr
        PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_ptrStorage, void*, NULL, ptr);
      } else {
@@ -673,15 +675,11 @@ QString PythonQtConv::PyObjGetString(PyObject* val, bool strict, bool& ok) {
   if (val->ob_type == &PyString_Type) {
     r = QString(PyString_AS_STRING(val));
   } else if (PyUnicode_Check(val)) {
-#ifdef WIN32
-    r = QString::fromUtf16(PyUnicode_AS_UNICODE(val));
-#else
     PyObject *ptmp = PyUnicode_AsUTF8String(val);
     if(ptmp) {
       r = QString::fromUtf8(PyString_AS_STRING(ptmp));
       Py_DECREF(ptmp);
     }
-#endif
   } else if (!strict) {
     // EXTRA: could also use _Unicode, but why should we?
     PyObject* str =  PyObject_Str(val);
@@ -1038,12 +1036,7 @@ PyObject* PythonQtConv::QStringToPyObject(const QString& str)
   if (str.isNull()) {
     return PyString_FromString("");
   } else {
-#ifdef WIN32
-    //    return PyString_FromString(str.toLatin1().data());
-    return PyUnicode_FromUnicode(str.utf16(), str.length());
-#else
     return PyUnicode_DecodeUTF16((const char*)str.utf16(), str.length()*2, NULL, NULL);
-#endif
   }
 }
 

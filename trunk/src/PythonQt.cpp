@@ -45,6 +45,7 @@
 #include "PythonQtMethodInfo.h"
 #include "PythonQtSignalReceiver.h"
 #include "PythonQtConversion.h"
+#include "PythonQtStdIn.h"
 #include "PythonQtStdOut.h"
 #include "PythonQtCppWrapperFactory.h"
 #include "PythonQtVariants.h"
@@ -142,6 +143,8 @@ void PythonQt::cleanup()
   }
 }
 
+PythonQt* PythonQt::self() { return _self; }
+
 PythonQt::PythonQt(int flags, const QByteArray& pythonQtModuleName)
 {
   _p = new PythonQtPrivate;
@@ -150,7 +153,7 @@ PythonQt::PythonQt(int flags, const QByteArray& pythonQtModuleName)
   _p->_PythonQtObjectPtr_metaId = qRegisterMetaType<PythonQtObjectPtr>("PythonQtObjectPtr");
 
   if ((flags & PythonAlreadyInitialized) == 0) {
-    Py_SetProgramName("PythonQt");
+    Py_SetProgramName(const_cast<char*>("PythonQt"));
     if (flags & IgnoreSiteModule) {
       // this prevents the automatic importing of Python site files
       Py_NoSiteFlag = 1;
@@ -185,6 +188,12 @@ PythonQt::PythonQt(int flags, const QByteArray& pythonQtModuleName)
   }
   Py_INCREF(&PythonQtStdOutRedirectType);
 
+  // add our own python object types for redirection of stdin
+  if (PyType_Ready(&PythonQtStdInRedirectType) < 0) {
+    std::cerr << "could not initialize PythonQtStdInRedirectType" << ", in " << __FILE__ << ":" << __LINE__ << std::endl;
+  }
+  Py_INCREF(&PythonQtStdInRedirectType);
+
   initPythonQtModule(flags & RedirectStdOut, pythonQtModuleName);
 
   _p->setupSharedLibrarySuffixes();
@@ -211,6 +220,46 @@ PythonQtPrivate::~PythonQtPrivate() {
   PythonQtConv::global_variantStorage.clear();
 
   PythonQtMethodInfo::cleanupCachedMethodInfos();
+}
+
+void PythonQt::setRedirectStdInCallback(PythonQtInputChangedCB* callback, void * callbackData)
+{
+  if (!callback)
+    {
+    std::cerr << "PythonQt::setRedirectStdInCallback - callback parameter is NULL !" << std::endl;
+    return;
+    }
+
+  PythonQtObjectPtr sys;
+  PythonQtObjectPtr in;
+  sys.setNewRef(PyImport_ImportModule("sys"));
+
+  // Backup original 'sys.stdin' if not yet done
+  PyRun_SimpleString("if not hasattr(sys, 'pythonqt_original_stdin'):"
+                     "sys.pythonqt_original_stdin = sys.stdin");
+
+  in = PythonQtStdInRedirectType.tp_new(&PythonQtStdInRedirectType, NULL, NULL);
+  ((PythonQtStdInRedirect*)in.object())->_cb = callback;
+  ((PythonQtStdInRedirect*)in.object())->_callData = callbackData;
+  // replace the built in file objects with our own objects
+  PyModule_AddObject(sys, "stdin", in);
+
+  // Backup custom 'stdin' into 'pythonqt_stdin'
+  PyRun_SimpleString("sys.pythonqt_stdin = sys.stdin");
+}
+
+void PythonQt::setRedirectStdInCallbackEnabled(bool enabled)
+{
+  if (enabled)
+    {
+    PyRun_SimpleString("if hasattr(sys, 'pythonqt_stdin'):"
+                       "sys.stdin = sys.pythonqt_stdin");
+    }
+  else
+    {
+    PyRun_SimpleString("if hasattr(sys,'pythonqt_original_stdin'):"
+                       "sys.stdin = sys.pythonqt_original_stdin");
+    }
 }
 
 PythonQtImportFileInterface* PythonQt::importInterface()
@@ -365,6 +414,9 @@ PyObject* PythonQtPrivate::wrapPtr(void* ptr, const QByteArray& name)
       // if we a have a QObject wrapper and the metaobjects do not match, set the metaobject again!
       info->setMetaObject(wrapper->metaObject());
     }
+
+    // TODO XXX: delegate wrapping via CB here (pass name and ptr)
+
     wrap = createNewPythonQtInstanceWrapper(wrapper, info, ptr);
     //          mlabDebugConst("MLABPython","new c++ wrapper added " << wrap->_wrappedPtr << " " << wrap->_obj->className() << " " << wrap->classInfo()->wrappedClassName().latin1());
   } else {
@@ -1065,11 +1117,19 @@ void PythonQt::setModuleImportPath(PyObject* module, const QStringList& paths)
 
 void PythonQt::stdOutRedirectCB(const QString& str)
 {
+  if (!PythonQt::self()) {
+    std::cout << str.toLatin1().data() << std::endl;
+    return;
+  }
   emit PythonQt::self()->pythonStdOut(str);
 }
 
 void PythonQt::stdErrRedirectCB(const QString& str)
 {
+  if (!PythonQt::self()) {
+    std::cerr << str.toLatin1().data() << std::endl;
+    return;
+  }
   emit PythonQt::self()->pythonStdErr(str);
 }
 

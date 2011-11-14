@@ -43,7 +43,8 @@
 //----------------------------------------------------------------------------------
 
 
-#include <Python.h>
+#include "PythonQtPythonInclude.h"
+
 #include "structmember.h"
 #include <QString>
 
