@@ -391,6 +391,15 @@ PyObject* PythonQtPrivate::wrapPtr(void* ptr, const QByteArray& name)
       return (PyObject*)wrap;
     }
 
+    // not a known QObject, try to wrap via foreign wrapper factories 
+    PyObject* foreignWrapper = NULL;
+    for (int i=0; i<_foreignWrapperFactories.size(); i++) {
+      foreignWrapper = _foreignWrapperFactories.at(i)->wrap(name, ptr);
+      if (foreignWrapper) {
+        return foreignWrapper;
+      }
+    }
+
     // not a known QObject, so try our wrapper factory:
     QObject* wrapper = NULL;
     for (int i=0; i<_cppWrapperFactories.size(); i++) {
@@ -414,8 +423,6 @@ PyObject* PythonQtPrivate::wrapPtr(void* ptr, const QByteArray& name)
       // if we a have a QObject wrapper and the metaobjects do not match, set the metaobject again!
       info->setMetaObject(wrapper->metaObject());
     }
-
-    // TODO XXX: delegate wrapping via CB here (pass name and ptr)
 
     wrap = createNewPythonQtInstanceWrapper(wrapper, info, ptr);
     //          mlabDebugConst("MLABPython","new c++ wrapper added " << wrap->_wrappedPtr << " " << wrap->_obj->className() << " " << wrap->classInfo()->wrappedClassName().latin1());
@@ -965,6 +972,11 @@ void PythonQt::addWrapperFactory(PythonQtCppWrapperFactory* factory)
   _p->_cppWrapperFactories.append(factory);
 }
 
+void PythonQt::addWrapperFactory( PythonQtForeignWrapperFactory* factory )
+{
+  _p->_foreignWrapperFactories.append(factory);
+}
+
 //---------------------------------------------------------------------------------------------------
 PythonQtPrivate::PythonQtPrivate()
 {
@@ -1315,4 +1327,16 @@ PythonQtObjectPtr PythonQtPrivate::createModule(const QString& name, PyObject* p
     PythonQt::self()->handleError();
   }
   return result;
+}
+
+void* PythonQtPrivate::unwrapForeignWrapper( const QByteArray& classname, PyObject* obj )
+{
+  void* foreignObject = NULL;
+  for (int i=0; i<_foreignWrapperFactories.size(); i++) {
+    foreignObject = _foreignWrapperFactories.at(i)->unwrap(classname, obj);
+    if (foreignObject) {
+      return foreignObject;
+    }
+  }
+  return NULL;
 }

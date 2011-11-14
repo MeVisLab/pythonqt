@@ -64,6 +64,7 @@ class PythonQtMethodInfo;
 class PythonQtSignalReceiver;
 class PythonQtImportFileInterface;
 class PythonQtCppWrapperFactory;
+class PythonQtForeignWrapperFactory;
 class PythonQtQFileImporter;
 
 typedef void  PythonQtQObjectWrappedCB(QObject* object);
@@ -409,6 +410,9 @@ public:
   //! add the given factory to PythonQt (ownership stays with caller)
   void addWrapperFactory(PythonQtCppWrapperFactory* factory);
 
+  //! add the given factory to PythonQt (ownership stays with caller)
+  void addWrapperFactory(PythonQtForeignWrapperFactory* factory);
+
   //@}
 
   //---------------------------------------------------------------------------
@@ -538,6 +542,9 @@ public:
   //! remove the wrapper ptr again
   void removeWrapperPointer(void* obj);
 
+  //! try to unwrap the given object to a C++ pointer using the foreign wrapper factories
+  void* unwrapForeignWrapper(const QByteArray& classname, PyObject* obj);
+
   //! add parent class relation
   bool addParentClass(const char* typeName, const char* parentTypeName, int upcastingOffset);
 
@@ -659,6 +666,8 @@ private:
 
   //! the cpp object wrapper factories
   QList<PythonQtCppWrapperFactory*> _cppWrapperFactories;
+
+  QList<PythonQtForeignWrapperFactory*> _foreignWrapperFactories;
 
   QHash<QByteArray, PyObject*> _packages;
 

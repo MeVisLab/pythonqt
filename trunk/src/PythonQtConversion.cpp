@@ -386,19 +386,22 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
      } else if (info.name == "PyObject") {
        // handle low level PyObject directly
        PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_ptrStorage, void*, obj, ptr);
-     }
-     // TODO XXX: pass obj and name and add when it returns a pointer
-     else if (obj == Py_None) {
+     } else if (obj == Py_None) {
        // None is treated as a NULL ptr
        PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_ptrStorage, void*, NULL, ptr);
      } else {
-       // if we are not strict, we try if we are passed a 0 integer
-       if (!strict) {
-         bool ok;
-         int value = PyObjGetInt(obj, true, ok);
-         if (ok && value==0) {
-           // TODOXXX is this wise? or should it be expected from the programmer to use None?
-           PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_ptrStorage, void*, NULL, ptr);
+       void* foreignWrapper = PythonQt::priv()->unwrapForeignWrapper(info.name, obj);
+       if (foreignWrapper) {
+         PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_ptrStorage, void*, foreignWrapper, ptr);
+       } else {
+         // if we are not strict, we try if we are passed a 0 integer
+         if (!strict) {
+           bool ok;
+           int value = PyObjGetInt(obj, true, ok);
+           if (ok && value==0) {
+             // TODOXXX is this wise? or should it be expected from the programmer to use None?
+             PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_ptrStorage, void*, NULL, ptr);
+           }
          }
        }
      }

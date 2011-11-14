@@ -54,7 +54,25 @@ public:
   virtual ~PythonQtCppWrapperFactory() {};
 
   //! create a wrapper for the given object
-  virtual QObject* create(const QByteArray& name, void *ptr) = 0;
+  virtual QObject* create(const QByteArray& classname, void *ptr) = 0;
+
+};
+
+//! Factory interface for C++ classes that can be mapped directly from/to
+//! Python with other means than PythonQt/QObjects.
+class PYTHONQT_EXPORT PythonQtForeignWrapperFactory
+{
+public:
+  PythonQtForeignWrapperFactory() {};
+  virtual ~PythonQtForeignWrapperFactory() {};
+
+  //! create a Python object (with new reference count), wrapping the given \p ptr as class of type \p classname
+  //! Return NULL (and not Py_None) if the object could not be wrapped.
+  virtual PyObject* wrap(const QByteArray& classname, void *ptr) = 0;
+
+  //! unwrap the given object to a C++ object of type \p classname if possible
+  //! Return NULL otherwise.
+  virtual void*     unwrap(const QByteArray& classname, PyObject* object) = 0;
 
 };
 
