@@ -52,7 +52,7 @@ void displayHelp(GeneratorSet *generatorSet);
 
 #include <QDebug>
 int main(int argc, char *argv[])
-{ 
+{
     GeneratorSet *gs = GeneratorSet::getInstance();
 
     QString default_file = ":/trolltech/generator/qtscript_masterinclude.h";
@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
     QString typesystemFileName;
     QString pp_file = ".preprocessed.tmp";
     QStringList rebuild_classes;
-     
+
     QMap<QString, QString> args;
 
     int argNum = 0;
@@ -82,12 +82,12 @@ int main(int argc, char *argv[])
             args[QString("arg-%1").arg(argNum)] = arg;
         }
     }
-    
+
     if (args.contains("no-suppress-warnings")) {
         TypeDatabase *db = TypeDatabase::instance();
         db->setSuppressWarnings(false);
     }
-        
+
     if (args.contains("debug-level")) {
         QString level = args.value("debug-level");
         if (level == "sparse")
@@ -96,7 +96,7 @@ int main(int argc, char *argv[])
             ReportHandler::setDebugLevel(ReportHandler::MediumDebug);
         else if (level == "full")
             ReportHandler::setDebugLevel(ReportHandler::FullDebug);
-    }      
+    }
 
     if (args.contains("dummy")) {
         FileOut::dummy = true;
@@ -134,19 +134,25 @@ int main(int argc, char *argv[])
 
     printf("Please wait while source files are being generated...\n");
 
+    printf("Parsing typesystem file [%s]\n", qPrintable(typesystemFileName));
     if (!TypeDatabase::instance()->parseFile(typesystemFileName))
         qFatal("Cannot parse file: '%s'", qPrintable(typesystemFileName));
 
+    printf("PreProcessing - Generate [%s] using [%s] and include-paths [%s]\n",
+      qPrintable(pp_file), qPrintable(fileName), qPrintable(args.value("include-paths")));
     if (!Preprocess::preprocess(fileName, pp_file, args.value("include-paths"))) {
         fprintf(stderr, "Preprocessor failed on file: '%s'\n", qPrintable(fileName));
         return 1;
     }
 
     if (args.contains("ast-to-xml")) {
-	astToXML(pp_file);
-	return 0;
+      printf("Running ast-to-xml on file [%s] using pp_file [%s] and include-paths [%s]\n",
+        qPrintable(fileName), qPrintable(pp_file), qPrintable(args.value("include-paths")));
+      astToXML(pp_file);
+      return 0;
     }
 
+    printf("Building model using [%s]\n", qPrintable(pp_file));
     gs->buildModel(pp_file);
     if (args.contains("dump-object-tree")) {
         gs->dumpObjectTree();
@@ -176,7 +182,7 @@ void displayHelp(GeneratorSet* generatorSet) {
            "  --include-paths=<path>[%c<path>%c...]     \n"
            "  --print-stdout                            \n",
            path_splitter, path_splitter);
-    
+
     printf("%s", qPrintable( generatorSet->usage()));
     exit(0);
 }
