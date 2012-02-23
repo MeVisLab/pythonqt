@@ -5063,7 +5063,10 @@
     <!-- Duplicate function to QObject::children() to override accidental shadowing which is not present in Jambi -->
     <modify-function signature="children()const" remove="all" />
   </object-type>
-  <object-type name="QGraphicsOpacityEffect" />
+  <object-type name="QGraphicsBlurEffect"/>
+  <object-type name="QGraphicsColorizeEffect"/>
+  <object-type name="QGraphicsDropShadowEffect"/>
+  <object-type name="QGraphicsOpacityEffect"/>
   <object-type name="QGraphicsPixelizeEffect" />
   <object-type name="QGraphicsRotation" />
   <object-type name="QGraphicsScale" />
