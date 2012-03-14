@@ -247,17 +247,21 @@ QStringList SetupGenerator::writePolymorphicHandler(QTextStream &s, const QStrin
     foreach (const AbstractMetaClass *clazz, allClasses) {
       bool inherits = false;
       if (isGraphicsItem) {
-        foreach(AbstractMetaClass* interfaze, clazz->interfaces()) {
-          if (interfaze->qualifiedCppName()=="QGraphicsItem") {
-            inherits = true;
-            break;
+        const AbstractMetaClass *currentClazz = clazz;
+        while (!inherits && currentClazz) {
+          foreach(AbstractMetaClass* interfaze, currentClazz->interfaces()) {
+            if (interfaze->qualifiedCppName()=="QGraphicsItem") {
+              inherits = true;
+              break;
+            }
           }
+          currentClazz = currentClazz->baseClass();
         }
       } else {
         inherits = clazz->inheritsFrom(cls);
       }
       if (clazz->package() == package && inherits) {
-        if (!clazz->typeEntry()->polymorphicIdValue().isEmpty() || isGraphicsItem) {
+        if (!clazz->typeEntry()->polymorphicIdValue().isEmpty()) {
           // On first find, open the function
           if (first) {
             first = false;
@@ -275,9 +279,6 @@ QStringList SetupGenerator::writePolymorphicHandler(QTextStream &s, const QStrin
 
           // For each, add case label
           QString polyId = clazz->typeEntry()->polymorphicIdValue();
-          if (isGraphicsItem) {
-            polyId = "%1->type() == " + clazz->qualifiedCppName() + "::Type";
-          }
           s << "    if ("
             << polyId.replace("%1", "object")
             << ") {" << endl
