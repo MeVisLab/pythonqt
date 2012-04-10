@@ -54,7 +54,7 @@ void PythonQtTestSlotCalling::init() {
 }
 
 
-void* polymorphic_ClassB_Handler(const void* ptr, char** className) {
+void* polymorphic_ClassB_Handler(const void* ptr, const char** className) {
   ClassB* o = (ClassB*)ptr;
   if (o->type()==2) {
     *className = "ClassB";
