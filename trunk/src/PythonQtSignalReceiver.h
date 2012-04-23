@@ -118,8 +118,8 @@ public:
   //! add a signal handler
   bool addSignalHandler(const char* signal, PyObject* callable);
 
-  //! remove a signal handler
-  bool removeSignalHandler(const char* signal, PyObject* callable);
+  //! remove a signal handler for given callable (or all callables on that signal if callable is NULL)
+  bool removeSignalHandler(const char* signal, PyObject* callable = NULL);
 
   //! remove all signal handlers
   void removeSignalHandlers();
@@ -140,3 +140,4 @@ private:
 
 
 #endif
+

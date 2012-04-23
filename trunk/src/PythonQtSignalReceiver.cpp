@@ -66,7 +66,7 @@ PyObject* PythonQtSignalTarget::call(PyObject* callable, const PythonQtMethodInf
     PyObject* o = callable;
     PyFunctionObject* func = (PyFunctionObject*)o;
     PyCodeObject* code = (PyCodeObject*)func->func_code;
-    if (!(code->co_flags & 0x04)) {
+    if (!(code->co_flags & CO_VARARGS)) {
       numPythonArgs = code->co_argcount;
     } else {
       // variable numbers of arguments allowed
@@ -77,7 +77,7 @@ PyObject* PythonQtSignalTarget::call(PyObject* callable, const PythonQtMethodInf
     if (PyFunction_Check(method->im_func)) {
       PyFunctionObject* func = (PyFunctionObject*)method->im_func;
       PyCodeObject* code = (PyCodeObject*)func->func_code;
-      if (!(code->co_flags & 0x04)) {
+      if (!(code->co_flags & CO_VARARGS)) {
         numPythonArgs = code->co_argcount - 1; // we subtract one because the first is "self"
       } else {
         // variable numbers of arguments allowed
@@ -187,11 +187,20 @@ bool PythonQtSignalReceiver::removeSignalHandler(const char* signal, PyObject* c
   int sigId = getSignalIndex(signal);
   if (sigId>=0) {
     QMutableListIterator<PythonQtSignalTarget> i(_targets);
-    while (i.hasNext()) {
-      if (i.next().isSame(sigId, callable)) {
-        i.remove();
-        found = true;
-        break;
+    if (callable) {
+      while (i.hasNext()) {
+        if (i.next().isSame(sigId, callable)) {
+          i.remove();
+          found = true;
+          break;
+        }
+      }
+    } else {
+      while (i.hasNext()) {
+        if (i.next().signalId() == sigId) {
+          i.remove();
+          found = true;
+        }
       }
     }
   }

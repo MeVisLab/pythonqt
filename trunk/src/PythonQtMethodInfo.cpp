@@ -99,7 +99,9 @@ const PythonQtMethodInfo* PythonQtMethodInfo::getCachedMethodInfoFromArgumentLis
     if (i>1) {
       fullSig += ",";
     }
-    arguments << QByteArray(args[i]);
+    QByteArray arg(args[i]);
+    fullSig += arg;
+    arguments << arg;
   }
   fullSig += ")";
   PythonQtMethodInfo* result = _cachedSignatures.value(fullSig);

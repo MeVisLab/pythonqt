@@ -43,6 +43,7 @@
 #include <QObject>
 #include "PythonQt.h"
 #include "PythonQtSlot.h"
+#include "PythonQtSignal.h"
 #include "PythonQtClassInfo.h"
 #include "PythonQtConversion.h"
 #include "PythonQtClassWrapper.h"
@@ -413,6 +414,9 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
   case PythonQtMemberInfo::Slot:
     return PythonQtSlotFunction_New(member._slot, obj, NULL);
     break;
+  case PythonQtMemberInfo::Signal:
+    return PythonQtSignalFunction_New(member._slot, obj, NULL);
+    break;
   case PythonQtMemberInfo::EnumValue:
     {
       PyObject* enumValue = member._enumValue;
@@ -529,6 +533,8 @@ static int PythonQtInstanceWrapper_setattro(PyObject *obj,PyObject *name,PyObjec
     }
   } else if (member._type == PythonQtMemberInfo::Slot) {
     error = QString("Slot '") + attributeName + "' can not be overwritten on " + obj->ob_type->tp_name + " object";
+  } else if (member._type == PythonQtMemberInfo::Signal) {
+    error = QString("Signal '") + attributeName + "' can not be overwritten on " + obj->ob_type->tp_name + " object";
   } else if (member._type == PythonQtMemberInfo::EnumValue) {
     error = QString("EnumValue '") + attributeName + "' can not be overwritten on " + obj->ob_type->tp_name + " object";
   } else if (member._type == PythonQtMemberInfo::EnumWrapper) {
@@ -590,14 +596,16 @@ static QString getStringFromObject(PythonQtInstanceWrapper* wrapper) {
       return result;
     }
   }
-  // next, try to call py_toString
-  PythonQtMemberInfo info = wrapper->classInfo()->member("py_toString");
-  if (info._type == PythonQtMemberInfo::Slot) {
-    PyObject* resultObj = PythonQtSlotFunction_CallImpl(wrapper->classInfo(), wrapper->_obj, info._slot, NULL, NULL, wrapper->_wrappedPtr);
-    if (resultObj) {
-      // TODO this is one conversion too much, would be nicer to call the slot directly...
-      result = PythonQtConv::PyObjGetString(resultObj);
-      Py_DECREF(resultObj);
+  if (wrapper->_wrappedPtr || wrapper->_obj) {
+    // next, try to call py_toString
+    PythonQtMemberInfo info = wrapper->classInfo()->member("py_toString");
+    if (info._type == PythonQtMemberInfo::Slot) {
+      PyObject* resultObj = PythonQtSlotFunction_CallImpl(wrapper->classInfo(), wrapper->_obj, info._slot, NULL, NULL, wrapper->_wrappedPtr);
+      if (resultObj) {
+        // TODO this is one conversion too much, would be nicer to call the slot directly...
+        result = PythonQtConv::PyObjGetString(resultObj);
+        Py_DECREF(resultObj);
+      }
     }
   }
   return result;

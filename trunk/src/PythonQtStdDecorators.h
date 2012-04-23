@@ -61,7 +61,7 @@ class PYTHONQT_EXPORT PythonQtStdDecorators : public QObject
 public slots:
   bool connect(QObject* sender, const QByteArray& signal, PyObject* callable);
   bool connect(QObject* sender, const QByteArray& signal, QObject* receiver, const QByteArray& slot);
-  bool disconnect(QObject* sender, const QByteArray& signal, PyObject* callable);
+  bool disconnect(QObject* sender, const QByteArray& signal, PyObject* callable = NULL);
   bool disconnect(QObject* sender, const QByteArray& signal, QObject* receiver, const QByteArray& slot);
 
   QObject* parent(QObject* o);

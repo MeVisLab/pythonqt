@@ -96,7 +96,7 @@ void PythonQtClassInfo::clearCachedMembers()
   QHashIterator<QByteArray, PythonQtMemberInfo> i(_cachedMembers);
   while (i.hasNext()) {
     PythonQtMemberInfo member = i.next().value();
-    if (member._type== PythonQtMemberInfo::Slot) {
+    if (member._type== PythonQtMemberInfo::Slot || member._type== PythonQtMemberInfo::Signal) {
       PythonQtSlotInfo* info = member._slot;
       while (info) {
         PythonQtSlotInfo* next = info->nextInfo();
@@ -462,18 +462,14 @@ QStringList PythonQtClassInfo::propertyList()
   return l;
 }
 
-QStringList PythonQtClassInfo::memberList(bool metaOnly)
+QStringList PythonQtClassInfo::memberList()
 {
   decorator();
 
   QStringList l;
   QString h;
-  if (_isQObject && _meta && !metaOnly) {
-    l = propertyList();
-  }
-  
   // normal slots of QObject (or wrapper QObject)
-  if (!metaOnly && _meta) {
+  if (_meta) {
     int numMethods = _meta->methodCount();
     bool skipQObj = !_isQObject;
     for (int i = skipQObj?QObject::staticMetaObject.methodCount():0; i < numMethods; i++) {
@@ -493,7 +489,7 @@ QStringList PythonQtClassInfo::memberList(bool metaOnly)
     QList<PythonQtClassInfo*> infos;
     recursiveCollectClassInfos(infos);
     foreach(PythonQtClassInfo* info, infos) {
-      info->listDecoratorSlotsFromDecoratorProvider(l, metaOnly);
+      info->listDecoratorSlotsFromDecoratorProvider(l, false);
     }
   }
   
@@ -865,4 +861,34 @@ void PythonQtClassInfo::clearNotFoundCachedMembers()
       it.remove();
     }
   }
+}
+
+//-------------------------------------------------------------------------
+
+PythonQtMemberInfo::PythonQtMemberInfo( PythonQtSlotInfo* info )
+{
+  if (info->metaMethod()->methodType() == QMetaMethod::Signal) {
+    _type = Signal;
+  } else {
+    _type = Slot;
+  }
+  _slot = info;
+  _enumValue = NULL;
+}
+
+PythonQtMemberInfo::PythonQtMemberInfo( const PythonQtObjectPtr& enumValue )
+{
+  _type = EnumValue;
+  _slot = NULL;
+  _enumValue = enumValue;
+  _enumWrapper = NULL;
+}
+
+PythonQtMemberInfo::PythonQtMemberInfo( const QMetaProperty& prop )
+{
+  _type = Property;
+  _slot = NULL;
+  _enumValue = NULL;
+  _property = prop;
+  _enumWrapper = NULL;
 }

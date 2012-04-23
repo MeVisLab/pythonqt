@@ -6,6 +6,7 @@ HEADERS +=                    \
   $$PWD/PythonQtClassInfo.h         \
   $$PWD/PythonQtImporter.h          \
   $$PWD/PythonQtObjectPtr.h         \
+  $$PWD/PythonQtSignal.h            \
   $$PWD/PythonQtSlot.h              \
   $$PWD/PythonQtStdIn.h             \
   $$PWD/PythonQtStdOut.h            \
@@ -31,6 +32,7 @@ SOURCES +=                    \
   $$PWD/PythonQtObjectPtr.cpp       \
   $$PWD/PythonQtStdIn.cpp           \
   $$PWD/PythonQtStdOut.cpp          \
+  $$PWD/PythonQtSignal.cpp          \
   $$PWD/PythonQtSlot.cpp            \
   $$PWD/PythonQtMisc.cpp            \
   $$PWD/PythonQtMethodInfo.cpp      \

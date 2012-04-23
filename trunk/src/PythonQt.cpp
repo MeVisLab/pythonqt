@@ -43,6 +43,7 @@
 #include "PythonQtImporter.h"
 #include "PythonQtClassInfo.h"
 #include "PythonQtMethodInfo.h"
+#include "PythonQtSignal.h"
 #include "PythonQtSignalReceiver.h"
 #include "PythonQtConversion.h"
 #include "PythonQtStdIn.h"
@@ -166,6 +167,11 @@ PythonQt::PythonQt(int flags, const QByteArray& pythonQtModuleName)
     std::cerr << "could not initialize PythonQtSlotFunction_Type" << ", in " << __FILE__ << ":" << __LINE__ << std::endl;
   }
   Py_INCREF(&PythonQtSlotFunction_Type);
+
+  if (PyType_Ready(&PythonQtSignalFunction_Type) < 0) {
+    std::cerr << "could not initialize PythonQtSignalFunction_Type" << ", in " << __FILE__ << ":" << __LINE__ << std::endl;
+  }
+  Py_INCREF(&PythonQtSignalFunction_Type);
 
   // according to Python docs, set the type late here, since it can not safely be stored in the struct when declaring it
   PythonQtClassWrapper_Type.tp_base = &PyType_Type;
@@ -412,6 +418,20 @@ PyObject* PythonQtPrivate::wrapPtr(void* ptr, const QByteArray& name)
     if (info) {
       // try to downcast in the class hierarchy, which will modify info and ptr if it is successfull
       ptr  = info->castDownIfPossible(ptr, &info);
+
+      // if downcasting found out that the object is a QObject,
+      // handle it like one:
+      if (info && info->isQObject()) {
+        QObject* qptr = (QObject*)ptr;
+        // if the object is a derived object, we want to switch the class info to the one of the derived class:
+        if (name!=(qptr->metaObject()->className())) {
+          registerClass(qptr->metaObject());
+          info = _knownClassInfos.value(qptr->metaObject()->className());
+        }
+        wrap = createNewPythonQtInstanceWrapper(qptr, info);
+        //    mlabDebugConst("MLABPython","new qobject wrapper added " << " " << wrap->_obj->className() << " " << wrap->classInfo()->wrappedClassName().latin1());
+        return (PyObject*)wrap;
+      }
     }
 
     if (!info || info->pythonQtClassWrapper()==NULL) {
@@ -602,7 +622,6 @@ PythonQtObjectPtr PythonQt::lookupObject(PyObject* module, const QString& name)
   QStringList l = name.split('.');
   PythonQtObjectPtr p = module;
   PythonQtObjectPtr prev;
-  QString s;
   QByteArray b;
   for (QStringList::ConstIterator i = l.begin(); i!=l.end() && p; ++i) {
     prev = p;
@@ -784,96 +803,170 @@ QStringList PythonQt::introspection(PyObject* module, const QString& objectname,
   }
 
   if (object) {
-    if (type == CallOverloads) {
-      if (PythonQtSlotFunction_Check(object)) {
-        PythonQtSlotFunctionObject* o = (PythonQtSlotFunctionObject*)object.object();
-        PythonQtSlotInfo* info = o->m_ml;
+    results = introspectObject(object, type);
+  }
+  
+  return results;
+}
 
-        while (info) {
-          results << info->fullSignature();
-          info = info->nextInfo();
-        }
-      } else if (object->ob_type == &PythonQtClassWrapper_Type) {
-        PythonQtClassWrapper* o = (PythonQtClassWrapper*)object.object();
-        PythonQtSlotInfo* info = o->classInfo()->constructors();
+QStringList PythonQt::introspectObject(PyObject* object, ObjectType type)
+{
+  QStringList results;
 
-        while (info) {
-          results << info->fullSignature();
-          info = info->nextInfo();
-        }
+  if (type == CallOverloads) {
+    if (PythonQtSlotFunction_Check(object)) {
+      PythonQtSlotFunctionObject* o = (PythonQtSlotFunctionObject*)object;
+      PythonQtSlotInfo* info = o->m_ml;
+
+      while (info) {
+        results << info->fullSignature();
+        info = info->nextInfo();
+      }
+    } else if (PythonQtSignalFunction_Check(object)) {
+      PythonQtSignalFunctionObject* o = (PythonQtSignalFunctionObject*)object;
+      PythonQtSlotInfo* info = o->m_ml;
+
+      while (info) {
+        results << info->fullSignature();
+        info = info->nextInfo();
+      }
+    } else if (object->ob_type == &PythonQtClassWrapper_Type) {
+      PythonQtClassWrapper* o = (PythonQtClassWrapper*)object;
+      PythonQtSlotInfo* info = o->classInfo()->constructors();
+
+      while (info) {
+        results << info->fullSignature();
+        info = info->nextInfo();
+      }
+    } else {
+      QString signature = _p->getSignature(object);
+      if (!signature.isEmpty()) {
+        results << signature;
       } else {
-        //TODO: use pydoc!
         PyObject* doc = PyObject_GetAttrString(object, "__doc__");
         if (doc) {
           results << PyString_AsString(doc);
           Py_DECREF(doc);
         }
       }
-    } else {
-      PyObject* keys = NULL;
-      bool isDict = false;
-      if (PyDict_Check(object)) {
-        keys = PyDict_Keys(object);
-        isDict = true;
-      } else {
-        keys = PyObject_Dir(object);
-      }
-      if (keys) {
-        int count = PyList_Size(keys);
-        PyObject* key;
-        PyObject* value;
-        QString keystr;
-        for (int i = 0;i<count;i++) {
-          key = PyList_GetItem(keys,i);
-          if (isDict) {
-            value = PyDict_GetItem(object, key);
-            Py_INCREF(value);
-          } else {
-            value = PyObject_GetAttr(object, key);
-          }
-          if (!value) continue;
-          keystr = PyString_AsString(key);
-          static const QString underscoreStr("__tmp");
-          if (!keystr.startsWith(underscoreStr)) {
-            switch (type) {
-            case Anything:
-              results << keystr;
-              break;
-            case Class:
-              if (value->ob_type == &PyClass_Type) {
-                results << keystr;
-              }
-              break;
-            case Variable:
-              if (value->ob_type != &PyClass_Type
-                && value->ob_type != &PyCFunction_Type
-                && value->ob_type != &PyFunction_Type
-                && value->ob_type != &PyModule_Type
-                ) {
-                results << keystr;
-              }
-              break;
-            case Function:
-              if (value->ob_type == &PyFunction_Type ||
-                value->ob_type == &PyMethod_Type
-                ) {
-                results << keystr;
-              }
-              break;
-            case Module:
-              if (value->ob_type == &PyModule_Type) {
-                results << keystr;
-              }
-              break;
-            default:
-              std::cerr << "PythonQt: introspection: unknown case" << ", in " << __FILE__ << ":" << __LINE__ << std::endl;
-            }
-          }
-          Py_DECREF(value);
-        }
-        Py_DECREF(keys);
-      }
     }
+  } else {
+    PyObject* keys = NULL;
+    bool isDict = false;
+    if (PyDict_Check(object)) {
+      keys = PyDict_Keys(object);
+      isDict = true;
+    } else {
+      keys = PyObject_Dir(object);
+    }
+    if (keys) {
+      int count = PyList_Size(keys);
+      PyObject* key;
+      PyObject* value;
+      QString keystr;
+      for (int i = 0;i<count;i++) {
+        key = PyList_GetItem(keys,i);
+        if (isDict) {
+          value = PyDict_GetItem(object, key);
+          Py_INCREF(value);
+        } else {
+          value = PyObject_GetAttr(object, key);
+        }
+        if (!value) continue;
+        keystr = PyString_AsString(key);
+        static const QString underscoreStr("__tmp");
+        if (!keystr.startsWith(underscoreStr)) {
+          switch (type) {
+          case Anything:
+            results << keystr;
+            break;
+          case Class:
+            if (value->ob_type == &PyClass_Type || value->ob_type == &PyType_Type) {
+              results << keystr;
+            }
+            break;
+          case Variable:
+            if (value->ob_type != &PyClass_Type
+              && value->ob_type != &PyCFunction_Type
+              && value->ob_type != &PyFunction_Type
+              && value->ob_type != &PyMethod_Type
+              && value->ob_type != &PyModule_Type
+              && value->ob_type != &PyType_Type
+              && value->ob_type != &PythonQtSlotFunction_Type
+              ) {
+              results << keystr;
+            }
+            break;
+          case Function:
+            if (value->ob_type == &PyCFunction_Type ||
+                value->ob_type == &PyFunction_Type ||
+                value->ob_type == &PyMethod_Type ||
+                value->ob_type == &PythonQtSlotFunction_Type
+              ) {
+              results << keystr;
+            }
+            break;
+          case Module:
+            if (value->ob_type == &PyModule_Type) {
+              results << keystr;
+            }
+            break;
+          default:
+            std::cerr << "PythonQt: introspection: unknown case" << ", in " << __FILE__ << ":" << __LINE__ << std::endl;
+          }
+        }
+        Py_DECREF(value);
+      }
+      Py_DECREF(keys);
+    }
+  }
+  return results;
+}
+
+PyObject* PythonQt::getObjectByType(const QString& typeName)
+{
+  PythonQtObjectPtr sys;
+  sys.setNewRef(PyImport_ImportModule("sys"));
+  PythonQtObjectPtr modules = lookupObject(sys, "modules");
+  Q_ASSERT(PyDict_Check(modules));
+  
+  QStringList tmp = typeName.split(".");
+  QString simpleTypeName = tmp.takeLast();
+  QString moduleName = tmp.join(".");
+  
+  PyObject* object = NULL;
+  PyObject* moduleObject = PyDict_GetItemString(modules, moduleName.toLatin1().constData());
+  if (moduleObject) {
+    object = PyObject_GetAttrString(moduleObject, simpleTypeName.toLatin1().constData());
+  }
+  
+  if (!object) {
+    moduleObject = PyDict_GetItemString(modules, "__builtin__");
+    if (moduleObject) {
+      object = PyObject_GetAttrString(moduleObject, simpleTypeName.toLatin1().constData());
+    }
+  }
+  
+  return object;
+}
+  
+QStringList PythonQt::introspectType(const QString& typeName, ObjectType type)
+{
+  QStringList results;
+  PyObject* object = getObjectByType(typeName);
+  if (!object) {
+    // the last item may be a member, split it away and try again
+    QStringList tmp = typeName.split(".");
+    QString memberName = tmp.takeLast();
+    QString typeName = tmp.takeLast();
+    PyObject* typeObject = getObjectByType(typeName);
+    if (typeObject) {
+      object = PyObject_GetAttrString(typeObject, memberName.toLatin1().constData());
+    }
+  }
+  if (object) {
+    results = introspectObject(object, type);
+    Py_DECREF(object);
   }
   return results;
 }
@@ -1190,6 +1283,107 @@ void PythonQt::initPythonQtModule(bool redirectStdOut, const QByteArray& pythonQ
   }
 }
 
+QString PythonQt::getReturnTypeOfWrappedMethod(PyObject* module, const QString& name)
+{
+  QStringList tmp = name.split(".");
+  QString methodName = tmp.takeLast();
+  QString variableName = tmp.join(".");
+  // TODO: the variableName may be a type name, this needs to be handled differently,
+  // because it is not necessarily known in the module context
+  PythonQtObjectPtr variableObject = lookupObject(module, variableName);  
+  if (variableObject.isNull()) {
+    return "";
+  }
+  
+  return getReturnTypeOfWrappedMethodHelper(variableObject, methodName, name);
+}
+
+QString PythonQt::getReturnTypeOfWrappedMethod(const QString& typeName, const QString& methodName)
+{
+  PythonQtObjectPtr typeObject = getObjectByType(typeName);
+  if (typeObject.isNull()) {
+    return "";
+  }
+  return getReturnTypeOfWrappedMethodHelper(typeObject, methodName, typeName + "." + methodName);
+}
+
+QString PythonQt::getReturnTypeOfWrappedMethodHelper(const PythonQtObjectPtr& variableObject, const QString& methodName, const QString& context)
+{
+  PythonQtObjectPtr methodObject;
+  if (PyDict_Check(variableObject)) {
+    methodObject = PyDict_GetItemString(variableObject, methodName.toLatin1().constData());
+  } else {
+    methodObject.setNewRef(PyObject_GetAttrString(variableObject, methodName.toLatin1().constData()));
+  }
+  if (methodObject.isNull()) {
+    return "";
+  }
+    
+  QString type;
+  
+  if (methodObject->ob_type == &PyClass_Type || methodObject->ob_type == &PyType_Type) {
+    // the methodObject is not a method, but the name of a type/class. This means
+    // a constructor is called. Return the context.
+    type = context;
+  } else if (methodObject->ob_type == &PythonQtSlotFunction_Type) {
+    QString className;
+    
+    if (PyObject_TypeCheck(variableObject, &PythonQtInstanceWrapper_Type)) {
+      // the type name of wrapped instance is the class name
+      className = variableObject->ob_type->tp_name;
+    } else {
+      PyObject* classNameObject = PyObject_GetAttrString(variableObject, "__name__");
+      if (classNameObject) {
+        Q_ASSERT(PyString_Check(classNameObject));
+        className = PyString_AsString(classNameObject);
+        Py_DECREF(classNameObject);
+      }
+    }
+
+    if (!className.isEmpty()) {
+      PythonQtClassInfo* info = _p->_knownClassInfos.value(className.toLatin1().constData());
+      if (info) {
+        PythonQtSlotInfo* slotInfo = info->member(methodName.toLatin1().constData())._slot;
+        if (slotInfo) {
+          if (slotInfo->metaMethod()) {
+            type = slotInfo->metaMethod()->typeName();
+            if (!type.isEmpty()) {
+              QChar c = type.at(type.length()-1);
+              while (c == '*' || c == '&') {
+                type.truncate(type.length()-1);
+                if (!type.isEmpty()) {
+                  c = type.at(type.length()-1);
+                } else {
+                  break;
+                }
+              }
+              // split away template arguments
+              type = type.split("<").first();
+              // split away const
+              type = type.split(" ").last().trimmed();
+              
+              // if the type is a known class info, then create the full type name, i.e. include the
+              // module name. For example, the slot may return a QDate, then this looks up the
+              // name _PythonQt.QtCore.QDate.
+              PythonQtClassInfo* typeInfo = _p->_knownClassInfos.value(type.toLatin1().constData());
+              if (typeInfo && typeInfo->pythonQtClassWrapper()) {
+                PyObject* s = PyObject_GetAttrString(typeInfo->pythonQtClassWrapper(), "__module__");
+                Q_ASSERT(PyString_Check(s));
+                type = QString(PyString_AsString(s)) + "." + type;
+                Py_DECREF(s);
+                s = PyObject_GetAttrString(typeInfo->pythonQtClassWrapper(), "__name__");
+                Q_ASSERT(PyString_Check(s));
+                Py_DECREF(s);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  return type;
+}
+
 void PythonQt::registerCPPClass(const char* typeName, const char* parentTypeName, const char* package, PythonQtQObjectCreatorFunctionCB* wrapperCreator,  PythonQtShellSetInstanceWrapperCB* shell)
 {
   _p->registerCPPClass(typeName, parentTypeName, package, wrapperCreator, shell);
@@ -1349,4 +1543,150 @@ void* PythonQtPrivate::unwrapForeignWrapper( const QByteArray& classname, PyObje
     }
   }
   return NULL;
+}
+
+bool PythonQtPrivate::isMethodDescriptor(PyObject* object) const
+{
+  // This implementation is the same as in inspect.ismethoddescriptor(), inspect.py.
+  if (PyObject_HasAttrString(object, "__get__") &&
+      !PyObject_HasAttrString(object, "__set__") &&
+      !PyMethod_Check(object) &&
+      !PyFunction_Check(object) &&
+      !PyClass_Check(object)) {
+    return true;
+  }
+  return false;
+}
+
+QString PythonQtPrivate::getSignature(PyObject* object)
+{
+  QString signature;
+  
+  if (object) {
+    PyMethodObject* method = NULL;
+    PyFunctionObject* func = NULL;
+    
+    bool decrefMethod = false;
+    
+    if (object->ob_type == &PyClass_Type || object->ob_type == &PyType_Type) {
+      method = (PyMethodObject*)PyObject_GetAttrString(object, "__init__");
+      decrefMethod = true;
+    } else if (object->ob_type == &PyFunction_Type) {
+      func = (PyFunctionObject*)object;
+    } else if (object->ob_type == &PyMethod_Type) {
+      method = (PyMethodObject*)object;
+    }
+    if (method)  {
+      if (PyFunction_Check(method->im_func)) {
+        func = (PyFunctionObject*)method->im_func;
+      } else if (isMethodDescriptor((PyObject*)method)) {
+        QString docstr;
+        PyObject* doc = PyObject_GetAttrString(object, "__doc__");
+        if (doc) {
+          docstr = PyString_AsString(doc);
+          Py_DECREF(doc);
+        }
+
+        PyObject* s = PyObject_GetAttrString(object, "__name__");
+        if (s) {
+          Q_ASSERT(PyString_Check(s));
+          signature = PyString_AsString(s);
+          if (docstr.startsWith(signature + "(")) {
+            signature = docstr;
+          } else {
+            signature += "(...)";
+            if (!docstr.isEmpty()) {
+              signature += "\n\n" + docstr;
+            }
+          }
+          Py_DECREF(s);
+        }
+      }
+    }
+    
+    if (func) {
+      QString funcName;
+      PyObject* s = PyObject_GetAttrString((PyObject*)func, "__name__");
+      if (s) {
+        Q_ASSERT(PyString_Check(s));
+        funcName = PyString_AsString(s);
+        Py_DECREF(s);
+      }
+      if (method && funcName == "__init__") {
+        PyObject* s = PyObject_GetAttrString(object, "__name__");
+        if (s) {
+          Q_ASSERT(PyString_Check(s));
+          funcName = PyString_AsString(s);
+          Py_DECREF(s);
+        }
+      }
+        
+      QStringList arguments;
+      QStringList defaults;
+      QString varargs;
+      QString varkeywords;
+      // NOTE: This implementation is based on function getargs() in inspect.py.
+      //       inspect.getargs() can handle anonymous (tuple) arguments, while this code does not.
+      //       It can be implemented, but it may be rarely needed and not necessary.
+      PyCodeObject* code = (PyCodeObject*)func->func_code;
+      if (code->co_varnames) {
+        int nargs = code->co_argcount;
+        Q_ASSERT(PyTuple_Check(code->co_varnames));
+        for (int i=0; i<nargs; i++) {
+          PyObject* name = PyTuple_GetItem(code->co_varnames, i);
+          Q_ASSERT(PyString_Check(name));
+          arguments << PyString_AsString(name);
+        }
+        if (code->co_flags & CO_VARARGS) {
+          PyObject* s = PyTuple_GetItem(code->co_varnames, nargs);
+          Q_ASSERT(PyString_Check(s));
+          varargs = PyString_AsString(s);
+          nargs += 1;
+        }
+        if (code->co_flags & CO_VARKEYWORDS) {
+          PyObject* s = PyTuple_GetItem(code->co_varnames, nargs);
+          Q_ASSERT(PyString_Check(s));
+          varkeywords = PyString_AsString(s);
+        }
+      }
+      
+      PyObject* defaultsTuple = func->func_defaults;
+      if (defaultsTuple) {
+        Q_ASSERT(PyTuple_Check(defaultsTuple));
+        for (Py_ssize_t i=0; i<PyTuple_Size(defaultsTuple); i++) {
+          PyObject* d = PyTuple_GetItem(defaultsTuple, i);
+          PyObject* s = PyObject_Repr(d);
+          Q_ASSERT(PyString_Check(s));
+          defaults << PyString_AsString(s);
+          Py_DECREF(s);
+        }
+      }
+      
+      int firstdefault = arguments.size() - defaults.size();
+      for (int i=0; i<arguments.size(); i++) {
+        if (!signature.isEmpty()) { signature += ", "; }
+        if (!method || i>0 || arguments[i] != "self") {
+          signature += arguments[i];
+          if (i >= firstdefault) {
+            signature += "=" + defaults[i-firstdefault];
+          }
+        }
+      }
+      if (!varargs.isEmpty()) {
+        if (!signature.isEmpty()) { signature += ", "; }
+        signature += "*" + varargs;
+      }
+      if (!varkeywords.isEmpty()) {
+        if (!signature.isEmpty()) { signature += ", "; }
+        signature += "**" + varkeywords;
+      }
+      signature = funcName + "(" + signature + ")";
+    }
+    
+    if (method && decrefMethod) {
+      Py_DECREF(method);
+    }
+  }
+  
+  return signature;
 }
