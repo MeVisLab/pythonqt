@@ -705,18 +705,6 @@
     <modify-function signature="getRect(int*,int*,int*,int*)const">
       <remove/>
     </modify-function>
-    <modify-function signature="operator&amp;=(QRect)">
-      <remove/>
-    </modify-function>
-    <modify-function signature="operator|=(QRect)">
-      <remove/>
-    </modify-function>
-    <modify-function signature="operator&amp;(QRect)const">
-      <remove/>
-    </modify-function>
-    <modify-function signature="operator|(QRect)const">
-      <remove/>
-    </modify-function>
 
     <modify-function signature="intersect(const QRect&amp;)const" remove="all"/>
     <!--### Obsolete in 4.3-->
@@ -729,18 +717,6 @@
       <remove/>
     </modify-function>
     <modify-function signature="getRect(double*,double*,double*,double*)const">
-      <remove/>
-    </modify-function>
-    <modify-function signature="operator&amp;=(QRectF)">
-      <remove/>
-    </modify-function>
-    <modify-function signature="operator|=(QRectF)">
-      <remove/>
-    </modify-function>
-    <modify-function signature="operator&amp;(QRectF)const">
-      <remove/>
-    </modify-function>
-    <modify-function signature="operator|(QRectF)const">
       <remove/>
     </modify-function>
 
