@@ -102,6 +102,9 @@ bool PythonQtStdDecorators::disconnect(QObject* sender, const QByteArray& signal
   }
   if (sender) {
     result = PythonQt::self()->removeSignalHandler(sender, signalTmp, callable);
+    if (callable == NULL) {
+      result |= QObject::disconnect(sender, signalTmp, NULL, NULL);
+    }
     if (!result) {
       if (sender->metaObject()->indexOfSignal(QMetaObject::normalizedSignature(signalTmp.constData()+1)) == -1) {
         qWarning("PythonQt: QObject::disconnect() signal '%s' does not exist on %s", signal.constData(), sender->metaObject()->className());

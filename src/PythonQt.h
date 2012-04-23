@@ -333,11 +333,22 @@ public:
 
   //! read vars etc. in scope of an \c object, optional looking inside of an object \c objectname
   QStringList introspection(PyObject* object, const QString& objectname, ObjectType type);
+  //! read vars etc. in scope of the given \c object
+  QStringList introspectObject(PyObject* object, ObjectType type);
+  //! read vars etc. in scope of the type object called \c typename. First the typename
+  //! of the form module.type is split into module and type. Then the module is looked up
+  //! in sys.modules. If the module or type is not found there, then the type is looked up in
+  //! the __builtin__ module.
+  QStringList introspectType(const QString& typeName, ObjectType type);
 
   //! returns the found callable object or NULL
   //! @return new reference
   PythonQtObjectPtr lookupCallable(PyObject* object, const QString& name);
-
+  
+  //! returns the return type of the method of a wrapped c++ object referenced by \c objectname
+  QString getReturnTypeOfWrappedMethod(PyObject* module, const QString& objectname);  
+  //! returns the return type of the method \c methodName of a wrapped c++ type referenced by \c typeName
+  QString getReturnTypeOfWrappedMethod(const QString& typeName, const QString& methodName);
   //@}
 
   //---------------------------------------------------------------------------
@@ -501,6 +512,10 @@ signals:
 
 private:
   void initPythonQtModule(bool redirectStdOut, const QByteArray& pythonQtModuleName);
+  
+  QString getReturnTypeOfWrappedMethodHelper(const PythonQtObjectPtr& variableObject, const QString& methodName, const QString& context);
+  
+  PyObject* getObjectByType(const QString& typeName);
 
   //! callback for stdout redirection, emits pythonStdOut signal
   static void stdOutRedirectCB(const QString& str);
@@ -626,6 +641,12 @@ public:
 
   //! returns the profiling callback, which may be NULL
   PythonQt::ProfilingCB* profilingCB() const { return _profilingCB; }
+  
+  //! determines the signature of the given callable object (similar as pydoc)
+  QString getSignature(PyObject* object);
+  
+  //! returns true if the object is a method descriptor (same as inspect.ismethoddescriptor() in inspect.py)
+  bool isMethodDescriptor(PyObject* object) const;
 
 private:
   //! Setup the shared library suffixes by getting them from the "imp" module.

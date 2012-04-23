@@ -44,31 +44,16 @@ class PythonQtSlotInfo;
 
 struct PythonQtMemberInfo {
   enum Type {
-    Invalid, Slot, EnumValue, EnumWrapper, Property, NotFound 
+    Invalid, Slot, Signal, EnumValue, EnumWrapper, Property, NotFound 
   };
 
   PythonQtMemberInfo():_type(Invalid),_slot(NULL),_enumWrapper(NULL),_enumValue(0) { }
   
-  PythonQtMemberInfo(PythonQtSlotInfo* info) {
-    _type = Slot;
-    _slot = info;
-    _enumValue = NULL;
-  }
+  PythonQtMemberInfo(PythonQtSlotInfo* info);
 
-  PythonQtMemberInfo(const PythonQtObjectPtr& enumValue) {
-    _type = EnumValue;
-    _slot = NULL;
-    _enumValue = enumValue;
-    _enumWrapper = NULL;
-  }
+  PythonQtMemberInfo(const PythonQtObjectPtr& enumValue);
 
-  PythonQtMemberInfo(const QMetaProperty& prop) {
-    _type = Property;
-    _slot = NULL;
-    _enumValue = NULL;
-    _property = prop;
-    _enumWrapper = NULL;
-  }
+  PythonQtMemberInfo(const QMetaProperty& prop);
 
   Type              _type;
 
@@ -159,8 +144,8 @@ public:
   //! get list of all properties (on QObjects only, otherwise the list is empty)
   QStringList propertyList();
 
-  //! get list of all members
-  QStringList memberList(bool metaOnly = false);
+  //! get list of all members (excluding properties, which can be listed with propertyList())
+  QStringList memberList();
 
   //! get the meta type id of this class (only valid for isCPPWrapper() == true)
   int metaTypeId() { return _metaTypeId; }

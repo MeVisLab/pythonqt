@@ -70,6 +70,11 @@ public:
   //! indicates that *.py files which are newer than their corresponding *.pyc files
   //! are ignored
   virtual bool ignoreUpdatedPythonSourceFiles() { return false; }
+
+  //! called by PythonQt after successful import to allow
+  //! recording of imports
+  virtual void importedModule(const QString& /*module*/) {};
+
 };
 
 #endif

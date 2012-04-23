@@ -255,7 +255,13 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
         return NULL;
       }
     }
+
     mod = PyImport_ExecCodeModuleEx(fullname, code, fullPath.toLatin1().data());
+
+    if (PythonQt::importInterface()) {
+      PythonQt::importInterface()->importedModule(fullname);
+    }
+
     Py_DECREF(code);
     if (Py_VerboseFlag) {
       PySys_WriteStderr("import %s # loaded from %s\n",

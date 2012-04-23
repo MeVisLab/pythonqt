@@ -1,5 +1,5 @@
-#ifndef _PYTHONQTSLOT_H
-#define _PYTHONQTSLOT_H
+#ifndef _PythonQtSignal_H
+#define _PythonQtSignal_H
 
 /*
  *
@@ -35,7 +35,7 @@
 
 //----------------------------------------------------------------------------------
 /*!
-// \file    PythonQtSlot.h
+// \file    PythonQtSignal.h
 // \author  Florian Link
 // \author  Last changed by $Author: florian $
 // \date    2006-05
@@ -49,37 +49,20 @@
 
 class PythonQtSlotInfo;
 
-extern PYTHONQT_EXPORT PyTypeObject PythonQtSlotFunction_Type;
+extern PYTHONQT_EXPORT PyTypeObject PythonQtSignalFunction_Type;
 
-#define PythonQtSlotFunction_Check(op) ((op)->ob_type == &PythonQtSlotFunction_Type)
+#define PythonQtSignalFunction_Check(op) ((op)->ob_type == &PythonQtSignalFunction_Type)
 
-PythonQtSlotInfo* PythonQtSlotFunction_GetSlotInfo(PyObject *);
-PyObject* PythonQtSlotFunction_GetSelf(PyObject *);
-
-/* Macros for direct access to these values. Type checks are *not*
-   done, so use with care. */
-#define PythonQtSlotFunction_GET_SELF(func) \
-  (((PythonQtSlotFunctionObject *)func) -> m_self)
-
-PyObject* PythonQtSlotFunction_Call(PyObject *, PyObject *, PyObject *);
-
-PyObject *PythonQtSlotFunction_CallImpl(PythonQtClassInfo* classInfo, QObject* objectToCall, PythonQtSlotInfo* info, PyObject *args, PyObject *kw, void* firstArg=NULL,  void** directReturnValuePointer=NULL);
-
-PyObject* PythonQtSlotFunction_New(PythonQtSlotInfo *, PyObject *,
+PyObject* PythonQtSignalFunction_New(PythonQtSlotInfo *, PyObject *,
            PyObject *);
 
-PyObject *PythonQtMemberFunction_Call(PythonQtSlotInfo* info, PyObject* m_self, PyObject *args, PyObject *kw);
-PyObject *PythonQtMemberFunction_parameterTypes(PythonQtSlotInfo* theInfo);
-PyObject *PythonQtMemberFunction_parameterNames(PythonQtSlotInfo* theInfo);
-PyObject *PythonQtMemberFunction_typeName(PythonQtSlotInfo* theInfo);
-
-//! defines a python object that stores a Qt slot info
+//! defines a python object that stores a Qt signal info
 typedef struct {
     PyObject_HEAD
     PythonQtSlotInfo *m_ml; /* Description of the C function to call */
     PyObject    *m_self; /* Passed as 'self' arg to the C func, can be NULL */
     PyObject    *m_module; /* The __module__ attribute, can be anything */
-} PythonQtSlotFunctionObject;
+} PythonQtSignalFunctionObject;
 
 
 #endif

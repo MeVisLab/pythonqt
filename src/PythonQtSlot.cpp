@@ -50,6 +50,8 @@
 #include <exception>
 #include <stdexcept>
 
+#include <QByteArray>
+
 #define PYTHONQT_MAX_ARGS 32
 
 
@@ -160,28 +162,34 @@ bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObj
 
     // invoke the slot via metacall
     bool hadException = false;
-    try {
-      (info->decorator()?info->decorator():objectToCall)->qt_metacall(QMetaObject::InvokeMetaMethod, info->slotIndex(), argList);
-    } catch (std::bad_alloc & e) {
+    QObject* obj = info->decorator()?info->decorator():objectToCall;
+    if (!obj) {
       hadException = true;
-      QByteArray what("std::bad_alloc: ");
-      what += e.what();
-      PyErr_SetString(PyExc_MemoryError, what.constData());
-    } catch (std::runtime_error & e) {
-      hadException = true;
-      QByteArray what("std::runtime_error: ");
-      what += e.what();
-      PyErr_SetString(PyExc_RuntimeError, what.constData());
-    } catch (std::logic_error & e) {
-      hadException = true;
-      QByteArray what("std::logic_error: ");
-      what += e.what();
-      PyErr_SetString(PyExc_RuntimeError, what.constData());
-    } catch (std::exception& e) {
-      hadException = true;
-      QByteArray what("std::exception: ");
-      what += e.what();
-      PyErr_SetString(PyExc_StandardError, what.constData());
+      PyErr_SetString(PyExc_RuntimeError, "Trying to call a slot on a deleted QObject!");
+    } else {
+      try {
+        obj->qt_metacall(QMetaObject::InvokeMetaMethod, info->slotIndex(), argList);
+      } catch (std::bad_alloc & e) {
+        hadException = true;
+        QByteArray what("std::bad_alloc: ");
+        what += e.what();
+        PyErr_SetString(PyExc_MemoryError, what.constData());
+      } catch (std::runtime_error & e) {
+        hadException = true;
+        QByteArray what("std::runtime_error: ");
+        what += e.what();
+        PyErr_SetString(PyExc_RuntimeError, what.constData());
+      } catch (std::logic_error & e) {
+        hadException = true;
+        QByteArray what("std::logic_error: ");
+        what += e.what();
+        PyErr_SetString(PyExc_RuntimeError, what.constData());
+      } catch (std::exception& e) {
+        hadException = true;
+        QByteArray what("std::exception: ");
+        what += e.what();
+        PyErr_SetString(PyExc_StandardError, what.constData());
+      }
     }
   
     if (profilingCB) {
@@ -227,18 +235,22 @@ static PythonQtSlotFunctionObject *pythonqtslot_free_list = NULL;
 PyObject *PythonQtSlotFunction_Call(PyObject *func, PyObject *args, PyObject *kw)
 {
   PythonQtSlotFunctionObject* f = (PythonQtSlotFunctionObject*)func;
-  PythonQtSlotInfo*    info = f->m_ml;
-  if (PyObject_TypeCheck(f->m_self, &PythonQtInstanceWrapper_Type)) {
-    PythonQtInstanceWrapper* self = (PythonQtInstanceWrapper*) f->m_self;
+  return PythonQtMemberFunction_Call(f->m_ml, f->m_self, args, kw);
+}
+
+PyObject *PythonQtMemberFunction_Call(PythonQtSlotInfo* info, PyObject* m_self, PyObject *args, PyObject *kw)
+{
+  if (PyObject_TypeCheck(m_self, &PythonQtInstanceWrapper_Type)) {
+    PythonQtInstanceWrapper* self = (PythonQtInstanceWrapper*) m_self;
     if (!info->isClassDecorator() && (self->_obj==NULL && self->_wrappedPtr==NULL)) {
-      QString error = QString("Trying to call '") + f->m_ml->slotName() + "' on a destroyed " + self->classInfo()->className() + " object";
+      QString error = QString("Trying to call '") + info->slotName() + "' on a destroyed " + self->classInfo()->className() + " object";
       PyErr_SetString(PyExc_ValueError, error.toLatin1().data());
       return NULL;
     } else {
       return PythonQtSlotFunction_CallImpl(self->classInfo(), self->_obj, info, args, kw, self->_wrappedPtr);
     }
-  } else if (f->m_self->ob_type == &PythonQtClassWrapper_Type) {
-    PythonQtClassWrapper* type = (PythonQtClassWrapper*) f->m_self;
+  } else if (m_self->ob_type == &PythonQtClassWrapper_Type) {
+    PythonQtClassWrapper* type = (PythonQtClassWrapper*) m_self;
     if (info->isClassDecorator()) {
       return PythonQtSlotFunction_CallImpl(type->classInfo(), NULL, info, args, kw);
     } else {
@@ -250,7 +262,7 @@ PyObject *PythonQtSlotFunction_Call(PyObject *func, PyObject *args, PyObject *kw
           && ((PythonQtInstanceWrapper*)firstArg)->classInfo()->inherits(type->classInfo())) {
           PythonQtInstanceWrapper* self = (PythonQtInstanceWrapper*)firstArg;
           if (!info->isClassDecorator() && (self->_obj==NULL && self->_wrappedPtr==NULL)) {
-            QString error = QString("Trying to call '") + f->m_ml->slotName() + "' on a destroyed " + self->classInfo()->className() + " object";
+            QString error = QString("Trying to call '") + info->slotName() + "' on a destroyed " + self->classInfo()->className() + " object";
             PyErr_SetString(PyExc_ValueError, error.toLatin1().data());
             return NULL;
           }
@@ -456,6 +468,96 @@ static PyMemberDef meth_members[] = {
   {NULL}
 };
 
+static PyObject *PythonQtSlotFunction_parameterTypes(PythonQtSlotFunctionObject* type)
+{
+  return PythonQtMemberFunction_parameterTypes(type->m_ml);
+}
+
+static PyObject *PythonQtSlotFunction_parameterNames(PythonQtSlotFunctionObject* type)
+{
+  return PythonQtMemberFunction_parameterNames(type->m_ml);
+}
+
+static PyObject *PythonQtSlotFunction_typeName(PythonQtSlotFunctionObject* type)
+{
+  return PythonQtMemberFunction_typeName(type->m_ml);
+}
+
+PyObject *PythonQtMemberFunction_parameterTypes(PythonQtSlotInfo* theInfo)
+{
+  PythonQtSlotInfo* info = theInfo;
+  int count = 0;
+  while (info) {
+    info = info->nextInfo();
+    count++;
+  }
+  info = theInfo;
+  PyObject* result = PyTuple_New(count);
+  for (int j = 0;j<count;j++) {
+    QList<QByteArray> types = info->metaMethod()->parameterTypes();
+    PyObject* tuple = PyTuple_New(types.count());
+    for (int i = 0; i<types.count();i++) {
+      PyTuple_SET_ITEM(tuple, i, PyString_FromString(types.at(i).constData()));
+    }
+    info = info->nextInfo();
+    PyTuple_SET_ITEM(result, j, tuple);
+  }
+  return result;
+}
+
+PyObject *PythonQtMemberFunction_parameterNames(PythonQtSlotInfo* theInfo)
+{
+  PythonQtSlotInfo* info = theInfo;
+  int count = 0;
+  while (info) {
+    info = info->nextInfo();
+    count++;
+  }
+  info = theInfo;
+  PyObject* result = PyTuple_New(count);
+  for (int j = 0;j<count;j++) {
+    QList<QByteArray> names = info->metaMethod()->parameterNames();
+    PyObject* tuple = PyTuple_New(names.count());
+    for (int i = 0; i<names.count();i++) {
+      PyTuple_SET_ITEM(tuple, i, PyString_FromString(names.at(i).constData()));
+    }
+    info = info->nextInfo();
+    PyTuple_SET_ITEM(result, j, tuple);
+  }
+  return result;
+}
+
+PyObject *PythonQtMemberFunction_typeName(PythonQtSlotInfo* theInfo)
+{
+  PythonQtSlotInfo* info = theInfo;
+  int count = 0;
+  while (info) {
+    info = info->nextInfo();
+    count++;
+  }
+  info = theInfo;
+  PyObject* result = PyTuple_New(count);
+  for (int j = 0;j<count;j++) {
+    QByteArray name = info->metaMethod()->typeName();
+    PyTuple_SET_ITEM(result, j, PyString_FromString(name.constData()));
+    info = info->nextInfo();
+  }
+  return result;
+}
+
+static PyMethodDef meth_methods[] = {
+  {"parameterTypes", (PyCFunction)PythonQtSlotFunction_parameterTypes, METH_NOARGS,
+  "Returns a tuple of tuples of the C++ parameter types for all overloads of the slot"
+  },
+  {"parameterNames", (PyCFunction)PythonQtSlotFunction_parameterNames, METH_NOARGS,
+  "Returns a tuple of tuples of the C++ parameter type names (if available), for all overloads of the slot"
+  },
+  {"typeName", (PyCFunction)PythonQtSlotFunction_typeName, METH_NOARGS,
+  "Returns a tuple of the C++ return value types of each slot overload"
+  },
+  {NULL, NULL, 0 , NULL}  /* Sentinel */
+};
+
 static PyObject *
 meth_repr(PythonQtSlotFunctionObject *f)
 {
@@ -535,7 +637,7 @@ PyTypeObject PythonQtSlotFunction_Type = {
     0,          /* tp_weaklistoffset */
     0,          /* tp_iter */
     0,          /* tp_iternext */
-    0,          /* tp_methods */
+    meth_methods,          /* tp_methods */
     meth_members,       /* tp_members */
     meth_getsets,       /* tp_getset */
     0,          /* tp_base */

@@ -44,6 +44,7 @@
 
 #include "PythonQt.h"
 #include "PythonQtSlot.h"
+#include "PythonQtSignal.h"
 #include "PythonQtClassInfo.h"
 #include "PythonQtConversion.h"
 #include "PythonQtInstanceWrapper.h"
@@ -291,40 +292,8 @@ PyObject *PythonQtClassWrapper_inherits(PythonQtClassWrapper *type, PyObject *ar
   return PythonQtConv::GetPyBool(wrapper->classInfo()->inherits(name));
 }
 
-PyObject *PythonQtClassWrapper__init__(PythonQtClassWrapper *type, PyObject *args)
-{
-  Py_ssize_t argc = PyTuple_Size(args);
-  if (argc>0) {
-    // we need to call __init__ of the instance
-    PyObject* self = PyTuple_GET_ITEM(args, 0);
-    if (PyObject_TypeCheck(self, (PyTypeObject*)type->classInfo()->pythonQtClassWrapper())) {
-      PyObject* newargs = PyTuple_New(argc-1);
-      for (int i = 0;i<argc-1; i++) {
-        PyTuple_SET_ITEM(newargs, i,PyTuple_GET_ITEM(args, i+1));
-      }
-      PythonQtInstanceWrapper* wrapper = (PythonQtInstanceWrapper*)self;
-      int result = PythonQtInstanceWrapper_init(wrapper, newargs, NULL);
-      Py_DECREF(newargs);
-      if (result==0) {
-        Py_INCREF(Py_None);
-        return Py_None;
-      } else {
-        // init failed!
-      }
-    } else {
-      // self not of correct type!
-    }
-  } else {
-    // wrong number of args
-  }
-  return NULL;
-}
-
 
 static PyMethodDef PythonQtClassWrapper_methods[] = {
-    {"__init__", (PyCFunction)PythonQtClassWrapper__init__, METH_VARARGS,
-    "Init function"
-    },
     {"className", (PyCFunction)PythonQtClassWrapper_classname, METH_NOARGS,
      "Return the classname of the object"
     },
@@ -354,14 +323,14 @@ static PyObject *PythonQtClassWrapper_getattro(PyObject *obj, PyObject *name)
   }
 
   if (qstrcmp(attributeName, "__dict__")==0) {
-    PyObject* dict = ((PyTypeObject *)wrapper)->tp_dict;
+    PyObject* objectDict  = ((PyTypeObject *)wrapper)->tp_dict;
     if (!wrapper->classInfo()) {
-      Py_INCREF(dict);
-      return dict;
+      Py_INCREF(objectDict);
+      return objectDict;
     }
-    dict = PyDict_Copy(dict);
-
-    QStringList l = wrapper->classInfo()->memberList(false);
+    PyObject* dict = PyDict_New();
+      
+    QStringList l = wrapper->classInfo()->memberList();
     foreach (QString name, l) {
       PyObject* o = PyObject_GetAttrString(obj, name.toLatin1().data());
       if (o) {
@@ -369,20 +338,32 @@ static PyObject *PythonQtClassWrapper_getattro(PyObject *obj, PyObject *name)
         Py_DECREF(o);
       } else {
         // it must have been a property or child, which we do not know as a class object...
+        PyErr_Clear();
       }
     }
     if (wrapper->classInfo()->constructors()) {
-      PyObject* func = PyCFunction_New(&PythonQtClassWrapper_methods[0], obj);
+      PyObject* initName = PyString_FromString("__init__");
+      PyObject* func = PyType_Type.tp_getattro(obj, initName);
+      Py_DECREF(initName);
       PyDict_SetItemString(dict, "__init__", func);
       Py_DECREF(func);
     }
-    for (int i = 1; PythonQtClassWrapper_methods[i].ml_name != NULL; i++) {
+    for (int i = 0; PythonQtClassWrapper_methods[i].ml_name != NULL; i++) {
       PyObject* func = PyCFunction_New(&PythonQtClassWrapper_methods[i], obj);
       PyDict_SetItemString(dict, PythonQtClassWrapper_methods[i].ml_name, func);
       Py_DECREF(func);
     }
+
+    PyDict_Update(dict, objectDict);
     return dict;
   }
+
+  // look in Python to support derived Python classes
+  PyObject* superAttr = PyType_Type.tp_getattro(obj, name);
+  if (superAttr) {
+    return superAttr;
+  }
+  PyErr_Clear();
 
   if (wrapper->classInfo()) {
     PythonQtMemberInfo member = wrapper->classInfo()->member(attributeName);
@@ -397,20 +378,16 @@ static PyObject *PythonQtClassWrapper_getattro(PyObject *obj, PyObject *name)
     } else if (member._type == PythonQtMemberInfo::Slot) {
       // we return all slots, even the instance slots, since they are callable as unbound slots with self argument
       return PythonQtSlotFunction_New(member._slot, obj, NULL);
+    } else if (member._type == PythonQtMemberInfo::Signal) {
+      // we return all signals, even the instance signals, since they are callable as unbound signals with self argument
+      return PythonQtSignalFunction_New(member._slot, obj, NULL);
     }
   }
 
-  // look for the interal methods (className(), help())
+  // look for the internal methods (className(), help())
   PyObject* internalMethod = Py_FindMethod( PythonQtClassWrapper_methods, obj, (char*)attributeName);
   if (internalMethod) {
     return internalMethod;
-  }
-  PyErr_Clear();
-
-  // look in super
-  PyObject* superAttr = PyType_Type.tp_getattro(obj, name);
-  if (superAttr) {
-    return superAttr;
   }
 
   QString error = QString(wrapper->classInfo()->className()) + " has no attribute named '" + QString(attributeName) + "'";
