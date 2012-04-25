@@ -31,7 +31,27 @@
           }
     </template><template name="core.convert_stringref_to_string">
             QString %out% = %in%.toString();
-    </template><rejection class="QTextCodec::ConverterState"/><rejection class="QTextCodecFactoryInterface"/><rejection class="QAbstractEventDispatcher"/><rejection class="QAbstractFileEngine"/><rejection class="QAbstractFileEngineHandler"/><rejection class="QAbstractFileEngineIterator"/><rejection class="QFSFileEngine"/><rejection class="QSystemLocale"/><rejection class="QFutureWatcherBase"/><rejection class="QFutureSynchronizer"/><enum-type name="QXmlStreamReader::Error"/><enum-type name="QXmlStreamReader::TokenType"/><primitive-type name="bool"/><primitive-type name="double"/><primitive-type name="qreal"/><primitive-type name="float"/><primitive-type name="qint64"/><primitive-type name="__int64"/><primitive-type name="unsigned __int64"/><primitive-type name="unsigned long long"/><primitive-type name="long long"/><primitive-type name="qlonglong"/><primitive-type name="qulonglong"/><primitive-type name="short"/><primitive-type name="short"/><primitive-type name="signed short"/><primitive-type name="ushort"/><primitive-type name="unsigned short"/><primitive-type name="char"/><primitive-type name="signed char"/><primitive-type name="uchar"/><primitive-type name="unsigned char"/><primitive-type name="int"/><primitive-type name="signed int"/><primitive-type name="uint"/><primitive-type name="ulong"/><primitive-type name="unsigned int"/><primitive-type name="signed long"/><primitive-type name="long"/><primitive-type name="unsigned long"/><primitive-type name="WId"/><primitive-type name="Qt::HANDLE"/><primitive-type name="QVariant::Type"/><primitive-type name="QByteRef"/><primitive-type name="QBitRef"/><primitive-type name="QBool"/><primitive-type name="jobject"/><primitive-type name="quintptr"/><suppress-warning text="WARNING(MetaJavaBuilder) :: signal 'finished' in class 'QProcess' is overloaded."/><suppress-warning text="WARNING(MetaJavaBuilder) :: missing required class for enums: QRegExp"/><suppress-warning text="WARNING(MetaJavaBuilder) :: enum 'QtValidLicenseForScriptToolsModule' does not have a type entry or is not an enum"/><suppress-warning text="WARNING(MetaJavaBuilder) :: Rejected enum has no alternative...: QDataStream::Qt_4_5"/><suppress-warning text="WARNING(MetaJavaBuilder) :: unhandled enum value: Qt::MatchFlags(Qt::MatchStartsWith in Qt::MatchFlag"/><suppress-warning text="WARNING(MetaJavaBuilder) :: unhandled enum value: Qt::MatchWrap) in Qt::MatchFlag"/><suppress-warning text="WARNING(MetaJavaBuilder) :: unmatched enum Qt::MatchFlags(Qt::MatchStartsWith|Qt::MatchWrap) when parsing default value of 'match' in class 'QAbstractItemModel'"/><suppress-warning text="WARNING(MetaJavaBuilder) :: unsupported default value 'QLatin1String(defaultConnection)' of argument in function '*', class '*'"/><suppress-warning text="WARNING(MetaJavaBuilder) :: Class '*' has equals operators but no qHash() function"/><suppress-warning text="WARNING(MetaJavaBuilder) :: type '*' is specified in typesystem, but not defined. This could potentially lead to compilation errors."/><suppress-warning text="WARNING(MetaJavaBuilder) :: namespace '*' for enum '*' is not declared"/><suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function '*', unmatched parameter type '*'"/><suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function '*', unmatched return type '*'"/><suppress-warning text="WARNING(MetaJavaBuilder) :: signature '*' for function modification in '*' not found. Possible candidates: "/><suppress-warning text="WARNING(MetaJavaBuilder) :: namespace '*' does not have a type entry"/><suppress-warning text="WARNING(MetaJavaBuilder) :: unsupported default value '*' of argument in function '*', class '*'"/><suppress-warning text="WARNING(MetaJavaBuilder) :: Shadowing: * and *; Java code will not compile"/><suppress-warning text="WARNING(MetaJavaBuilder) :: enum '*' is specified in typesystem, but not declared"/>
+    </template><rejection class="QTextCodec::ConverterState"/><rejection class="QTextCodecFactoryInterface"/><rejection class="QAbstractEventDispatcher"/><rejection class="QAbstractFileEngine"/><rejection class="QAbstractFileEngineHandler"/><rejection class="QAbstractFileEngineIterator"/><rejection class="QFSFileEngine"/><rejection class="QSystemLocale"/><rejection class="QFutureWatcherBase"/><rejection class="QFutureSynchronizer"/><enum-type name="QXmlStreamReader::Error"/><enum-type name="QXmlStreamReader::TokenType"/>
+  
+  <primitive-type name="qgl_GLsizeiptr"/>
+  <primitive-type name="qgl_GLintptr"/>
+  <primitive-type name="GLint"/>
+  <primitive-type name="GLuint"/>
+  <primitive-type name="GLenum"/>
+  <primitive-type name="GLclampf"/>
+  <primitive-type name="GLsizei"/>
+  <primitive-type name="GLfloat"/>
+  <primitive-type name="GLbitfield"/>
+  <primitive-type name="GLbyte"/>
+  <primitive-type name="GLshort"/>
+  <primitive-type name="GLubyte"/>
+  <primitive-type name="GLushort"/>
+  <primitive-type name="GLdouble"/>
+  <primitive-type name="GLclampd"/>
+  <primitive-type name="GLvoid"/>
+  <primitive-type name="GLboolean"/>
+
+  <primitive-type name="bool"/><primitive-type name="double"/><primitive-type name="qreal"/><primitive-type name="float"/><primitive-type name="qint64"/><primitive-type name="__int64"/><primitive-type name="unsigned __int64"/><primitive-type name="unsigned long long"/><primitive-type name="long long"/><primitive-type name="qlonglong"/><primitive-type name="qulonglong"/><primitive-type name="short"/><primitive-type name="short"/><primitive-type name="signed short"/><primitive-type name="ushort"/><primitive-type name="unsigned short"/><primitive-type name="char"/><primitive-type name="signed char"/><primitive-type name="uchar"/><primitive-type name="unsigned char"/><primitive-type name="int"/><primitive-type name="signed int"/><primitive-type name="uint"/><primitive-type name="ulong"/><primitive-type name="unsigned int"/><primitive-type name="signed long"/><primitive-type name="long"/><primitive-type name="unsigned long"/><primitive-type name="WId"/><primitive-type name="Qt::HANDLE"/><primitive-type name="QVariant::Type"/><primitive-type name="QByteRef"/><primitive-type name="QBitRef"/><primitive-type name="QBool"/><primitive-type name="jobject"/><primitive-type name="quintptr"/><suppress-warning text="WARNING(MetaJavaBuilder) :: signal 'finished' in class 'QProcess' is overloaded."/><suppress-warning text="WARNING(MetaJavaBuilder) :: missing required class for enums: QRegExp"/><suppress-warning text="WARNING(MetaJavaBuilder) :: enum 'QtValidLicenseForScriptToolsModule' does not have a type entry or is not an enum"/><suppress-warning text="WARNING(MetaJavaBuilder) :: Rejected enum has no alternative...: QDataStream::Qt_4_5"/><suppress-warning text="WARNING(MetaJavaBuilder) :: unhandled enum value: Qt::MatchFlags(Qt::MatchStartsWith in Qt::MatchFlag"/><suppress-warning text="WARNING(MetaJavaBuilder) :: unhandled enum value: Qt::MatchWrap) in Qt::MatchFlag"/><suppress-warning text="WARNING(MetaJavaBuilder) :: unmatched enum Qt::MatchFlags(Qt::MatchStartsWith|Qt::MatchWrap) when parsing default value of 'match' in class 'QAbstractItemModel'"/><suppress-warning text="WARNING(MetaJavaBuilder) :: unsupported default value 'QLatin1String(defaultConnection)' of argument in function '*', class '*'"/><suppress-warning text="WARNING(MetaJavaBuilder) :: Class '*' has equals operators but no qHash() function"/><suppress-warning text="WARNING(MetaJavaBuilder) :: type '*' is specified in typesystem, but not defined. This could potentially lead to compilation errors."/><suppress-warning text="WARNING(MetaJavaBuilder) :: namespace '*' for enum '*' is not declared"/><suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function '*', unmatched parameter type '*'"/><suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function '*', unmatched return type '*'"/><suppress-warning text="WARNING(MetaJavaBuilder) :: signature '*' for function modification in '*' not found. Possible candidates: "/><suppress-warning text="WARNING(MetaJavaBuilder) :: namespace '*' does not have a type entry"/><suppress-warning text="WARNING(MetaJavaBuilder) :: unsupported default value '*' of argument in function '*', class '*'"/><suppress-warning text="WARNING(MetaJavaBuilder) :: Shadowing: * and *; Java code will not compile"/><suppress-warning text="WARNING(MetaJavaBuilder) :: enum '*' is specified in typesystem, but not declared"/>
 
   <value-type name="QModelIndex"/>
   <rejection class="*" function-name="d_func"/>
@@ -271,7 +291,6 @@
   <rejection class="QHashNode"/>
   <rejection class="QInternal"/>
   <rejection class="QIncompatibleFlag"/>
-  <rejection class="QLibrary"/>
   <rejection class="QLinkedList"/>
   <rejection class="QLinkedListData"/>
   <rejection class="QLinkedListIterator"/>
@@ -283,13 +302,7 @@
   <rejection class="QMapPayloadNode"/>
   <rejection class="QMapData"/>
   <rejection class="QMapIterator"/>
-  <rejection class="QMetaType"/>
   <rejection class="QMetaTypeId"/>
-  <rejection class="QMetaProperty"/>
-  <rejection class="QMetaObject"/>
-  <rejection class="QMetaClassInfo"/>
-  <rejection class="QMetaMethod"/>
-  <rejection class="QMetaEnum"/>
   <rejection class="QMultiHash"/>
   <rejection class="QMultiMap"/>
   <rejection class="QMutableHashIterator"/>
@@ -305,13 +318,11 @@
   <rejection class="QPluginLoader"/>
   <rejection class="QPointer"/>
   <rejection class="QReadLocker"/>
-  <rejection class="QResource"/>
   <rejection class="QSet"/>
   <rejection class="QSetIterator"/>
   <rejection class="QSharedData"/>
   <rejection class="QSharedDataPointer"/>
   <rejection class="QStack"/>
-  <rejection class="QSysInfo"/>
   <rejection class="QTextStreamManipulator"/>
   <rejection class="QThreadStorage"/>
   <rejection class="QThreadStorageData"/>
@@ -350,7 +361,6 @@
 
   <rejection class="QLocale::Data"/>
   <rejection class="QGlobalStaticDeleter"/>
-  <rejection class="QSharedMemory"/> <!-- Temporarily until we know how to implement it in Java -->
   <rejection class="QVarLengthArray"/>
 
   <!-- DBus -->
@@ -471,7 +481,16 @@
   <enum-type name="Qt::RenderHint"/>
   <enum-type name="Qt::TileRule"/>
   <enum-type name="Qt::TouchPointState" flags="Qt::TouchPointStates"/>
-
+  <enum-type name="QSysInfo::Endian"/>
+  <enum-type name="QSysInfo::Sizes"/>
+  <enum-type name="QMetaMethod::Access"/>
+  <enum-type name="QMetaMethod::Attributes"/>
+  <enum-type name="QMetaMethod::MethodType"/>
+  <enum-type name="QSharedMemory::AccessMode"/>
+  <enum-type name="QSharedMemory::SharedMemoryError"/>
+  <enum-type name="QElapsedTimer::ClockType"/>
+  <enum-type name="QMetaType::Type"/>
+ 
   <enum-type name="QtMsgType">
     <reject-enum-value name="QtSystemMsg"/>
   </enum-type>
@@ -497,11 +516,16 @@
   <enum-type name="QFile::FileError"/>
   <enum-type name="QFile::MemoryMapFlags"/>
   <enum-type name="QFile::Permission" flags="QFile::Permissions"/>
+  <enum-type name="QFile::FileHandleFlag" flags="QFile::FileHandleFlags"/>
   <enum-type name="QIODevice::OpenModeFlag" flags="QIODevice::OpenMode"/>
   <enum-type name="QLibraryInfo::LibraryLocation"/>
+  <enum-type name="QLibrary::LoadHint" flags="QLibrary::LoadHints"/>
   <enum-type name="QLocale::FormatType"/>
   <enum-type name="QLocale::NumberOption" flags="QLocale::NumberOptions"/>
   <enum-type name="QLocale::MeasurementSystem"/>
+  <enum-type name="QLocale::QuotationStyle"/>
+  <enum-type name="QLocale::Script"/>
+  <enum-type name="QLocale::CurrencySymbolFormat"/>
   <enum-type name="QMutex::RecursionMode"/>
   <enum-type name="QProcess::ExitStatus"/>
   <enum-type name="QProcess::ProcessChannel"/>
@@ -550,6 +574,9 @@
   <enum-type name="Qt::FocusPolicy"/>
   <enum-type name="Qt::FocusReason"/>
   <enum-type name="Qt::GlobalColor"/>
+  <enum-type name="Qt::GestureType"/>
+  <enum-type name="Qt::GestureFlag" flags="Qt::GestureFlags"/>
+  <enum-type name="Qt::CursorMoveStyle"/>
   <enum-type name="Qt::HitTestAccuracy"/>
   <enum-type name="Qt::InputMethodQuery"/>
   <enum-type name="Qt::ItemFlag" flags="Qt::ItemFlags"/>
@@ -1698,6 +1725,7 @@
     <modify-function signature="QCoreApplication(int &amp;, char  **)">
       <access modifier="private"/>
     </modify-function>
+    <modify-function signature="QCoreApplication(int &amp;, char  **, int)" remove="all"/>
     <modify-function signature="removePostedEvents(QObject*)">
       <modify-argument index="1">
         <reference-count action="ignore"/>
@@ -2359,6 +2387,18 @@
   <object-type name="QtJambiFutureIterator" generic-class="yes" java-name="QFutureIterator"/>
   <object-type name="QRunnable"/>
 
+  <object-type name="QSysInfo"/>
+  <object-type name="QLibrary"/>
+  <object-type name="QResource"/>
+  <object-type name="QSharedMemory"/>
+  <object-type name="QMetaObject"/>
+  <object-type name="QMetaMethod"/>
+  <object-type name="QMetaEnum"/>
+  <object-type name="QMetaProperty"/>
+  <object-type name="QMetaClassInfo"/>
+  <object-type name="QElapsedTimer"/>
+  <object-type name="QMetaType"/>
+
   <!-- Inefficient hash codes -->
   <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QUuid' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QLocale' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
@@ -2375,7 +2415,6 @@
   <suppress-warning text="WARNING(MetaJavaBuilder) :: skipping * unmatched *type 'std::*'"/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: skipping * unmatched *type '*Private\*'"/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: skipping * unmatched *type '*Private&amp;'"/>
-  <suppress-warning text="WARNING(MetaJavaBuilder) :: skipping * unmatched *type 'QMetaObject'"/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: skipping * unmatched *type 'FILE\*'"/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: skipping * unmatched *type 'QByteArray::Data\*'"/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: skipping * unmatched *type 'QTSMFC'"/>
