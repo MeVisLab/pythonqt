@@ -10,6 +10,11 @@
     <enum-type name="QWebSettings::WebAttribute">
         <reject-enum-value name="LocalStorageEnabled"/>
     </enum-type>
+
+    <enum-type name="QWebFrame::RenderLayer"/>
+
+    <enum-type name="QWebPage::Feature"/>
+    <enum-type name="QWebPage::PermissionPolicy"/>
     <enum-type name="QWebPage::Extension"/>
     <enum-type name="QWebPage::NavigationType"/>
     <enum-type name="QWebPage::WebAction"/>

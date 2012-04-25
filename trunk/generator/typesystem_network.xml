@@ -6,7 +6,6 @@
 
   <enum-type name="QNetworkProxy::Capability" flags="QNetworkProxy::Capabilities"/>
   <enum-type name="QAbstractSocket::NetworkLayerProtocol"/>
-  <enum-type name="QNetworkProxyQuery::QueryType"/>
   <enum-type name="QAbstractSocket::SocketError"/>
   <enum-type name="QAbstractSocket::SocketState"/>
   <enum-type name="QAbstractSocket::SocketType"/>
@@ -30,15 +29,22 @@
   <enum-type name="QSsl::KeyAlgorithm"/>
   <enum-type name="QSsl::AlternateNameEntryType"/>
   <enum-type name="QSsl::SslProtocol"/>
+  <enum-type name="QSsl::SslOption" flags="QSsl::SslOptions"/>
   <enum-type name="QLocalSocket::LocalSocketError"/>
   <enum-type name="QLocalSocket::LocalSocketState"/>
   <enum-type name="QNetworkAccessManager::Operation"/>
+  <enum-type name="QNetworkAccessManager::NetworkAccessibility"/>
   <enum-type name="QNetworkCookie::RawForm"/>
   <enum-type name="QNetworkReply::NetworkError"/>
   <enum-type name="QNetworkRequest::Attribute" extensible="yes"/>
   <enum-type name="QNetworkRequest::CacheLoadControl"/>
   <enum-type name="QNetworkRequest::KnownHeaders"/>
-
+  <enum-type name="QNetworkRequest::Priority"/>
+  <enum-type name="QNetworkRequest::LoadControl"/>
+  <enum-type name="QNetworkProxyQuery::QueryType"/>
+  <enum-type name="QHttpMultiPart::ContentType"/>
+  <object-type name="QHttpMultiPart"/>
+  <object-type name="QHttpPart"/>
   <object-type name="QAbstractNetworkCache"/>
   <object-type name="QNetworkDiskCache">
     <modify-function signature="insert(QIODevice*)">

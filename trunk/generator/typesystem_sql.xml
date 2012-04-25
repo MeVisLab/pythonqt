@@ -119,6 +119,7 @@
   <enum-type name="QSqlResult::BindingSyntax"/>
   <enum-type name="QSqlResult::VirtualHookOperation"/>
   <enum-type name="QSqlTableModel::EditStrategy"/>
+  <enum-type name="QSqlRelationalTableModel::JoinMode"/>
 
   <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QSqlField' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QSqlRecord' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
