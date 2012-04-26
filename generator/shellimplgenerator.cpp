@@ -226,8 +226,10 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
   // write member functions
   for (int i = 0; i < functions.size(); ++i) {
     AbstractMetaFunction *fun = functions.at(i);
-    if (fun->isSlot()) continue;
-
+    bool needsWrapping = (!fun->isSlot() || fun->isVirtual());
+    if (!needsWrapping) {
+      continue;
+    }
     writeFunctionSignature(s, fun, meta_class, QString(),
       Option(ConvertReferenceToPtr | FirstArgIsWrappedObject | OriginalName | ShowStatic | UnderscoreSpaces),
       "PythonQtWrapper_");

@@ -489,8 +489,7 @@
   <enum-type name="QSharedMemory::AccessMode"/>
   <enum-type name="QSharedMemory::SharedMemoryError"/>
   <enum-type name="QElapsedTimer::ClockType"/>
-  <enum-type name="QMetaType::Type"/>
- 
+  
   <enum-type name="QtMsgType">
     <reject-enum-value name="QtSystemMsg"/>
   </enum-type>
