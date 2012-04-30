@@ -127,6 +127,8 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
       s << "),_wrapper(NULL) {};" << endl;
     }
     s << endl;
+    s << "   ~" << shellClassName(meta_class) << "();" << endl;
+    s << endl;
 
     foreach(AbstractMetaFunction* fun, virtualsForShell) {
       s << "virtual ";
