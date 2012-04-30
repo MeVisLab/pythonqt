@@ -104,6 +104,12 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
   }
 
   if (meta_class->generateShellClass()) {
+
+    s << shellClassName(meta_class) << "::~" << shellClassName(meta_class) << "() {" << endl;
+    s << "  PythonQtPrivate* priv = PythonQt::priv();" << endl;
+    s << "  if (priv) { priv->shellClassDeleted(this); }" << endl;
+    s << "}" << endl;
+
     AbstractMetaFunctionList virtualsForShell = getVirtualFunctionsForShell(meta_class);
     foreach (const AbstractMetaFunction *fun, virtualsForShell) {
       bool hasReturnValue = (fun->type());
