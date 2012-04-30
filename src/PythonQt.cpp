@@ -78,10 +78,11 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
     PythonQtRegisterToolClassesTemplateConverter(quint64);
     // TODO: which other POD types should be available for QList etc.
 
-    PythonQt::self()->addDecorators(new PythonQtStdDecorators());
-
     PythonQt_init_QtCoreBuiltin(NULL);
     PythonQt_init_QtGuiBuiltin(NULL);
+
+    PythonQt::self()->addDecorators(new PythonQtStdDecorators());
+    PythonQt::self()->registerCPPClass("QMetaObject",0, "QtCore", PythonQtCreateObject<PythonQtWrapper_QMetaObject>);
 
     PythonQtRegisterToolClassesTemplateConverter(QByteArray);
     PythonQtRegisterToolClassesTemplateConverter(QDate);
@@ -919,6 +920,13 @@ QStringList PythonQt::introspectObject(PyObject* object, ObjectType type)
       }
       Py_DECREF(keys);
     }
+    if ((type == Anything) || (type == Variable)) {
+      if (object->ob_type == &PythonQtClassWrapper_Type) {
+        PythonQtClassWrapper* o = (PythonQtClassWrapper*)object;
+        PythonQtClassInfo* info = o->classInfo();
+        results += info->propertyList();
+      }
+    }
   }
   return results;
 }
@@ -958,7 +966,13 @@ QStringList PythonQt::introspectType(const QString& typeName, ObjectType type)
     // the last item may be a member, split it away and try again
     QStringList tmp = typeName.split(".");
     QString memberName = tmp.takeLast();
-    QString typeName = tmp.takeLast();
+    QString typeName;
+    if (tmp.isEmpty()) {
+      typeName = memberName;
+      memberName.clear();
+    } else {
+      typeName = tmp.takeLast();
+    }
     PyObject* typeObject = getObjectByType(typeName);
     if (typeObject) {
       object = PyObject_GetAttrString(typeObject, memberName.toLatin1().constData());
@@ -1689,4 +1703,19 @@ QString PythonQtPrivate::getSignature(PyObject* object)
   }
   
   return signature;
+}
+
+void PythonQtPrivate::shellClassDeleted( void* shellClass )
+{
+  PythonQtInstanceWrapper* wrap = _wrappedObjects.value(shellClass);
+  if (wrap && wrap->_wrappedPtr) {
+    // this is a pure C++ wrapper and the shell has gone, so we need
+    // to set the _wrappedPtr to NULL on the wrapper
+    wrap->_wrappedPtr = NULL;
+    // and then we remove the wrapper, since the wrapped class is gone
+    _wrappedObjects.remove(shellClass);
+  }
+  // if the wrapper is a QObject, we do not handle this here,
+  // it will be handled by the QPointer<> to the QObject, which becomes NULL
+  // via the QObject destructor.
 }

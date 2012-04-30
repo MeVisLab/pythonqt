@@ -377,11 +377,32 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
      // a pointer
      if (info.typeId == QMetaType::Char || info.typeId == QMetaType::UChar)
      {
+       if (obj->ob_type == &PyString_Type) {
+         // take direct reference to string data
+         const char* data = PyString_AS_STRING(obj);
+         PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_ptrStorage, void*, (void*)data, ptr);
+       } else {
+         // convert to string
+         QString str = PyObjGetString(obj, strict, ok);
+         if (ok) {
+           QByteArray bytes;
+           bytes = str.toUtf8();
+           if (ok) {
+             void* ptr2 = NULL;
+             PythonQtValueStorage_ADD_VALUE_IF_NEEDED(NULL,global_variantStorage, QVariant, QVariant(bytes), ptr2);
+             PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_ptrStorage, void*, (((QByteArray*)((QVariant*)ptr2)->constData())->data()), ptr);
+           }
+         }
+       }
+     } else if (info.typeId == QMetaType::QString) {
+       // TODO: this is a special case for bad Qt APIs which take a QString*, like QtGui.QFileDialog.getSaveFileName
+       // In general we would need to decide to either support * args for all basic types (ignoring the fact that the
+       // result value is not useable in Python), or if all these APIs need to be wrapped manually/differently, like PyQt/PySide do.
        QString str = PyObjGetString(obj, strict, ok);
        if (ok) {
          void* ptr2 = NULL;
-         PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_variantStorage, QVariant, QVariant(str.toUtf8()), ptr2);
-         PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_ptrStorage, void*, (((QByteArray*)((QVariant*)ptr2)->constData())->data()), ptr);
+         PythonQtValueStorage_ADD_VALUE_IF_NEEDED(NULL,global_variantStorage, QVariant, QVariant(str), ptr2);
+         PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_ptrStorage, void*, (void*)((QVariant*)ptr2)->constData(), ptr);
        }
      } else if (info.name == "PyObject") {
        // handle low level PyObject directly
@@ -746,7 +767,13 @@ int PythonQtConv::PyObjGetInt(PyObject* val, bool strict, bool &ok) {
     } else if (val == Py_True) {
       d = 1;
     } else {
-      ok = false;
+      PyErr_Clear();
+      // PyInt_AsLong will try conversion to an int if the object is not an int:
+      d = PyInt_AsLong(val);
+      if (PyErr_Occurred()) {
+        ok = false;
+        PyErr_Clear();
+      }
     }
   } else {
     ok = false;
@@ -772,7 +799,13 @@ qint64 PythonQtConv::PyObjGetLongLong(PyObject* val, bool strict, bool &ok) {
     } else if (val == Py_True) {
       d = 1;
     } else {
-      ok = false;
+      PyErr_Clear();
+      // PyLong_AsLongLong will try conversion to an int if the object is not an int:
+      d = PyLong_AsLongLong(val);
+      if (PyErr_Occurred()) {
+        ok = false;
+        PyErr_Clear();
+      }
     }
   } else {
     ok = false;
@@ -798,7 +831,13 @@ quint64 PythonQtConv::PyObjGetULongLong(PyObject* val, bool strict, bool &ok) {
     } else if (val == Py_True) {
       d = 1;
     } else {
-      ok = false;
+      PyErr_Clear();
+      // PyLong_AsLongLong will try conversion to an int if the object is not an int:
+      d = PyLong_AsLongLong(val);
+      if (PyErr_Occurred()) {
+        PyErr_Clear();
+        ok = false;
+      }
     }
   } else {
     ok = false;
@@ -821,7 +860,13 @@ double PythonQtConv::PyObjGetDouble(PyObject* val, bool strict, bool &ok) {
     } else if (val == Py_True) {
       d = 1;
     } else {
-      ok = false;
+      PyErr_Clear();
+      // PyFloat_AsDouble will try conversion to a double if the object is not a float:
+      d = PyFloat_AsDouble(val);
+      if (PyErr_Occurred()) {
+        PyErr_Clear();
+        ok = false;
+      }
     }
   } else {
     ok = false;

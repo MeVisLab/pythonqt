@@ -159,9 +159,6 @@ public:
   //! add the parent class info of a CPP object
   void addParentClass(const ParentClassInfo& info) { _parentClasses.append(info); }
 
-  //! check if the special method "py_hasOwner" is implemented and if it returns false, which means that the object may be destroyed
-  bool hasOwnerMethodButNoOwner(void* object);
-
   //! set the associated PythonQtClassWrapper (which handles instance creation of this type)
   void setPythonQtClassWrapper(PyObject* obj) { _pythonQtClassWrapper = obj; }
 

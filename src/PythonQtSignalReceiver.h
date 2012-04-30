@@ -121,9 +121,6 @@ public:
   //! remove a signal handler for given callable (or all callables on that signal if callable is NULL)
   bool removeSignalHandler(const char* signal, PyObject* callable = NULL);
 
-  //! remove all signal handlers
-  void removeSignalHandlers();
-
   //! we implement this method to simulate a number of slots that match the ids in _targets
   virtual int qt_metacall(QMetaObject::Call c, int id, void **arguments);
 
@@ -134,8 +131,12 @@ private:
   QObject* _obj;
   PythonQtClassInfo* _objClassInfo;
   int _slotCount;
+  int _destroyedSignalCount;
   // linear list may get slow on multiple targets, but I think typically we have many objects and just a few signals
   QList<PythonQtSignalTarget> _targets;
+
+  static int _destroyedSignal1Id;
+  static int _destroyedSignal2Id;
 };
 
 

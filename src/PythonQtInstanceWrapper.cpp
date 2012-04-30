@@ -64,7 +64,7 @@ static void PythonQtInstanceWrapper_deleteObject(PythonQtInstanceWrapper* self, 
     // we own our qobject, so we delete it now:
     delete self->_obj;
     self->_obj = NULL;
-    if (force || self->classInfo()->hasOwnerMethodButNoOwner(self->_wrappedPtr) || self->_ownedByPythonQt) {
+    if (force || self->_ownedByPythonQt) {
       int type = self->classInfo()->metaTypeId();
       if (self->_useQMetaTypeDestroy && type>=0) {
         // use QMetaType to destroy the object

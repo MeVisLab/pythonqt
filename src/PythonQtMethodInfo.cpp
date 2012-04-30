@@ -197,6 +197,31 @@ int PythonQtMethodInfo::nameToType(const char* name)
     _parameterTypeDict.insert("QString", QMetaType::QString);
     _parameterTypeDict.insert("", QMetaType::Void);
     _parameterTypeDict.insert("void", QMetaType::Void);
+
+    // GL types
+    _parameterTypeDict.insert("GLenum", QMetaType::UInt);
+    _parameterTypeDict.insert("GLboolean", QMetaType::UChar);
+    _parameterTypeDict.insert("GLbitfield", QMetaType::UInt);
+    _parameterTypeDict.insert("GLbyte", QMetaType::Char);
+    _parameterTypeDict.insert("GLubyte", QMetaType::UChar);
+    _parameterTypeDict.insert("GLshort", QMetaType::Short);
+    _parameterTypeDict.insert("GLushort", QMetaType::UShort);
+    _parameterTypeDict.insert("GLint", QMetaType::Int);
+    _parameterTypeDict.insert("GLuint", QMetaType::UInt);
+    _parameterTypeDict.insert("GLsizei", QMetaType::UInt);
+    _parameterTypeDict.insert("GLclampf", QMetaType::Float);
+    _parameterTypeDict.insert("GLfloat", QMetaType::Float);
+    _parameterTypeDict.insert("GLclampd", QMetaType::Double);
+    _parameterTypeDict.insert("GLdouble", QMetaType::Double);
+    _parameterTypeDict.insert("GLvoid", QMetaType::Void);
+    if (QT_POINTER_SIZE == 8) {
+      _parameterTypeDict.insert("qgl_GLintptr", QMetaType::LongLong);
+      _parameterTypeDict.insert("qgl_GLsizeiptr", QMetaType::LongLong);
+    } else {
+      _parameterTypeDict.insert("qgl_GLintptr", QMetaType::Int);
+      _parameterTypeDict.insert("qgl_GLsizeiptr", QMetaType::Int);
+    }
+
     // QVariant names
     _parameterTypeDict.insert("Q_LLONG", QMetaType::LongLong);
     _parameterTypeDict.insert("Q_ULLONG", QMetaType::ULongLong);

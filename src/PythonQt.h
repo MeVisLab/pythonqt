@@ -563,6 +563,9 @@ public:
   //! remove the wrapper ptr again
   void removeWrapperPointer(void* obj);
 
+  //! called by destructor of shells to allow invalidation of the Python wrapper
+  void shellClassDeleted(void* shellClass);
+
   //! try to unwrap the given object to a C++ pointer using the foreign wrapper factories
   void* unwrapForeignWrapper(const QByteArray& classname, PyObject* obj);
 

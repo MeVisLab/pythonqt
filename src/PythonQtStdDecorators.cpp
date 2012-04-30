@@ -66,7 +66,7 @@ bool PythonQtStdDecorators::connect(QObject* sender, const QByteArray& signal, P
   return result;
 }
 
-bool PythonQtStdDecorators::connect(QObject* sender, const QByteArray& signal, QObject* receiver, const QByteArray& slot)
+bool PythonQtStdDecorators::connect(QObject* sender, const QByteArray& signal, QObject* receiver, const QByteArray& slot, Qt::ConnectionType type)
 {
   bool r = false;
   if (sender && receiver) {
@@ -85,7 +85,7 @@ bool PythonQtStdDecorators::connect(QObject* sender, const QByteArray& signal, Q
     } else {
       slotTmp = "1" + slot;
     }
-    r = QObject::connect(sender, signalTmp, receiver, slotTmp);
+    r = QObject::connect(sender, signalTmp, receiver, slotTmp, type);
   }
   return r;
 }
@@ -315,4 +315,9 @@ int PythonQtStdDecorators::findChildren(QObject* parent, const char* typeName, c
   }
 
   return 0;
+}
+
+const QMetaObject* PythonQtStdDecorators::metaObject( QObject* obj )
+{
+  return obj->metaObject();
 }
