@@ -1704,6 +1704,12 @@
         </conversion-rule>            
       </modify-argument>
     </modify-function>
+
+    <!-- These are already decorated in PythonQt Std Decorators, do not generate them! -->
+    <modify-function signature="parent()const" remove="all"/>
+    <modify-function signature="setParent(QObject*)" remove="all"/>
+    <modify-function signature="property(const char*)const" remove="all"/>
+    <modify-function signature="setProperty(const char*,QVariant)" remove="all"/>
   </object-type>
 
   <object-type name="QCoreApplication">
