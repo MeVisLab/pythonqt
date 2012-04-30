@@ -1253,7 +1253,14 @@
         </conversion-rule>            
       </modify-argument>
     </modify-function>
-
+<inject-code class="pywrap-h">
+QImage* new_QImage( const uchar * data, int width, int height, QImage::Format format )
+{
+  QImage* image = new QImage(width, height, format);
+  memcpy(image-&gt;bits(), data, image-&gt;byteCount());
+  return image;
+}
+</inject-code>  
   </value-type>
 
   <value-type name="QColormap" delete-in-main-thread="yes">
