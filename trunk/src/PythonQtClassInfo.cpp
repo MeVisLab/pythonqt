@@ -205,46 +205,53 @@ PythonQtSlotInfo* PythonQtClassInfo::findDecoratorSlotsFromDecoratorProvider(con
   }
 
   tail = findDecoratorSlots(memberName, memberNameLen, tail, found, memberCache, upcastingOffset);
-  
+
+  // now look for slots/signals/methods on this level of the meta object
+  if (_meta) {
+    int numMethods = _meta->methodCount();
+    // start from methodOffset, to only add slots which are located in this class,
+    // and not in the parent class, which is traversed recursively later on.
+    // (if the class in not a QObject, we are working with a script wrapper QObject
+    //  and need to read all slots/signals starting from 0).
+    int methodOffset = _isQObject?_meta->methodOffset():0;
+    for (int i = methodOffset; i < numMethods; i++) {
+      QMetaMethod m = _meta->method(i);
+      if (((m.methodType() == QMetaMethod::Method ||
+        m.methodType() == QMetaMethod::Slot) && m.access() == QMetaMethod::Public)
+        || m.methodType()==QMetaMethod::Signal) {
+
+          const char* sigStart = m.signature();
+          // find the first '('
+          int offset = findCharOffset(sigStart, '(');
+
+          // check if same length and same name
+          if (memberNameLen == offset && qstrncmp(memberName, sigStart, offset)==0) {
+            found = true;
+            PythonQtSlotInfo* info = new PythonQtSlotInfo(this, m, i);
+            if (tail) {
+              tail->setNextInfo(info);
+            } else {
+              PythonQtMemberInfo newInfo(info);
+              memberCache.insert(memberName, newInfo);
+            }
+            tail = info;
+          }
+      }
+    }
+  }
   return tail;
 }
 
 bool PythonQtClassInfo::lookForMethodAndCache(const char* memberName)
 {
   bool found = false;
-  int memberNameLen =  static_cast<int>(strlen(memberName));
   PythonQtSlotInfo* tail = NULL;
-  if (_meta) {
-    int numMethods = _meta->methodCount();
-    for (int i = 0; i < numMethods; i++) {
-      QMetaMethod m = _meta->method(i);
-      if (((m.methodType() == QMetaMethod::Method ||
-           m.methodType() == QMetaMethod::Slot) && m.access() == QMetaMethod::Public)
-        || m.methodType()==QMetaMethod::Signal) {
-        
-        const char* sigStart = m.signature();
-        // find the first '('
-        int offset = findCharOffset(sigStart, '(');
-        
-        // check if same length and same name
-        if (memberNameLen == offset && qstrncmp(memberName, sigStart, offset)==0) {
-          found = true;
-          PythonQtSlotInfo* info = new PythonQtSlotInfo(this, m, i);
-          if (tail) {
-            tail->setNextInfo(info);
-          } else {
-            PythonQtMemberInfo newInfo(info);
-            _cachedMembers.insert(memberName, newInfo);
-          }
-          tail = info;
-        }
-      }
-    }
-  }
   
   // look for dynamic decorators in this class and in derived classes
+  // (do this first to allow overloading of existing slots with generated wrappers,
+  //  e.g. QDialog::accept is overloaded with PythonQtWrapper_QDialog::accept decorator)
   tail = recursiveFindDecoratorSlotsFromDecoratorProvider(memberName, tail, found, _cachedMembers, 0);
-
+  
   return found;
 }
 
@@ -708,22 +715,6 @@ QObject* PythonQtClassInfo::decorator()
     createEnumWrappers();
   }
   return _decoratorProvider;
-}
-
-bool PythonQtClassInfo::hasOwnerMethodButNoOwner(void* object)
-{
-  PythonQtMemberInfo info = member("py_hasOwner");
-  if (info._type == PythonQtMemberInfo::Slot) {
-    void* obj = object;
-    bool result = false;
-    void* args[2];
-    args[0] = &result;
-    args[1] = &obj;
-    info._slot->decorator()->qt_metacall(QMetaObject::InvokeMetaMethod, info._slot->slotIndex(), args);
-    return !result;
-  } else {
-    return false;
-  }
 }
 
 void* PythonQtClassInfo::recursiveCastDownIfPossible(void* ptr, const char** resultClassName)
