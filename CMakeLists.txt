@@ -129,6 +129,7 @@ set(headers
     src/PythonQtQFileImporter.h
     src/PythonQtSignalReceiver.h
     src/PythonQtSlot.h
+    src/PythonQtSignal.h
     src/PythonQtStdDecorators.h
     src/PythonQtStdIn.h
     src/PythonQtStdOut.h
