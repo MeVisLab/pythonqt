@@ -96,6 +96,7 @@ set(sources
     src/PythonQtQFileImporter.cpp
     src/PythonQtSignalReceiver.cpp
     src/PythonQtSlot.cpp
+    src/PythonQtSignal.cpp
     src/PythonQtStdDecorators.cpp
     src/PythonQtStdIn.cpp
     src/PythonQtStdOut.cpp
