@@ -344,6 +344,13 @@ PyObject* PythonQtPrivate::wrapQObject(QObject* obj)
     return Py_None;
   }
   PythonQtInstanceWrapper* wrap = findWrapperAndRemoveUnused(obj);
+  if (wrap && wrap->_wrappedPtr) {
+    // uh oh, we want to wrap a QObject, but have a C++ wrapper at that
+    // address, so probably that C++ wrapper has been deleted earlier and
+    // now we see a QObject with the same address.
+    // Do not use the old wrapper anymore.
+    wrap = NULL;
+  }
   if (!wrap) {
     // smuggling it in...
     PythonQtClassInfo* classInfo = _knownClassInfos.value(obj->metaObject()->className());
@@ -368,6 +375,16 @@ PyObject* PythonQtPrivate::wrapPtr(void* ptr, const QByteArray& name)
   }
 
   PythonQtInstanceWrapper* wrap = findWrapperAndRemoveUnused(ptr);
+  PythonQtInstanceWrapper* possibleStillAliveWrapper = NULL;
+  if (wrap && wrap->_wrappedPtr) {
+    // we have a previous C++ wrapper... if the wrapper is for a C++ object,
+    // we are not sure if it may have been deleted earlier and we just see the same C++
+    // pointer once again. To make sure that we do not reuse a wrapper of the wrong type,
+    // we compare the classInfo() pointer and only reuse the wrapper if it has the same
+    // info. This is only needed for non-QObjects, since we know it when a QObject gets deleted.
+    possibleStillAliveWrapper = wrap;
+    wrap = NULL;
+  }
   if (!wrap) {
     PythonQtClassInfo* info = _knownClassInfos.value(name);
     if (!info) {
@@ -378,7 +395,7 @@ PyObject* PythonQtPrivate::wrapPtr(void* ptr, const QByteArray& name)
         return p;
       }
 
-      // we do not know the metaobject yet, but we might know it by it's name:
+      // we do not know the metaobject yet, but we might know it by its name:
       if (_knownQObjectClassNames.find(name)!=_knownQObjectClassNames.end()) {
         // yes, we know it, so we can convert to QObject
         QObject* qptr = (QObject*)ptr;
@@ -445,7 +462,12 @@ PyObject* PythonQtPrivate::wrapPtr(void* ptr, const QByteArray& name)
       info->setMetaObject(wrapper->metaObject());
     }
 
-    wrap = createNewPythonQtInstanceWrapper(wrapper, info, ptr);
+    if (possibleStillAliveWrapper && possibleStillAliveWrapper->classInfo() == info) {
+      wrap = possibleStillAliveWrapper;
+      Py_INCREF(wrap);
+    } else {
+      wrap = createNewPythonQtInstanceWrapper(wrapper, info, ptr);
+    }
     //          mlabDebugConst("MLABPython","new c++ wrapper added " << wrap->_wrappedPtr << " " << wrap->_obj->className() << " " << wrap->classInfo()->wrappedClassName().latin1());
   } else {
     Py_INCREF(wrap);
