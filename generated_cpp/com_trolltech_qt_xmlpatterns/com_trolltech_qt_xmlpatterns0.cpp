@@ -24,6 +24,10 @@
 #include <qxmlschema.h>
 #include <qxmlschemavalidator.h>
 
+PythonQtShell_QAbstractMessageHandler::~PythonQtShell_QAbstractMessageHandler() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 void PythonQtShell_QAbstractMessageHandler::childEvent(QChildEvent*  arg__1)
 {
 if (_wrapper) {
@@ -148,6 +152,10 @@ if (_wrapper) {
 }
   QAbstractMessageHandler::timerEvent(arg__1);
 }
+QAbstractMessageHandler* PythonQtWrapper_QAbstractMessageHandler::new_QAbstractMessageHandler(QObject*  parent)
+{ 
+return new PythonQtShell_QAbstractMessageHandler(parent); }
+
 void PythonQtWrapper_QAbstractMessageHandler::message(QAbstractMessageHandler* theWrappedObject, QtMsgType  type, const QString&  description, const QUrl&  identifier, const QSourceLocation&  sourceLocation)
 {
   ( theWrappedObject->message(type, description, identifier, sourceLocation));
@@ -155,6 +163,10 @@ void PythonQtWrapper_QAbstractMessageHandler::message(QAbstractMessageHandler* t
 
 
 
+PythonQtShell_QAbstractUriResolver::~PythonQtShell_QAbstractUriResolver() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 void PythonQtShell_QAbstractUriResolver::childEvent(QChildEvent*  arg__1)
 {
 if (_wrapper) {
@@ -296,6 +308,10 @@ return new PythonQtShell_QAbstractUriResolver(parent); }
 
 
 
+PythonQtShell_QAbstractXmlNodeModel::~PythonQtShell_QAbstractXmlNodeModel() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 QVector<QXmlNodeModelIndex >  PythonQtShell_QAbstractXmlNodeModel::attributes(const QXmlNodeModelIndex&  element) const
 {
 if (_wrapper) {
@@ -723,6 +739,10 @@ QSourceLocation  PythonQtWrapper_QAbstractXmlNodeModel::sourceLocation(QAbstract
 
 
 
+PythonQtShell_QAbstractXmlReceiver::~PythonQtShell_QAbstractXmlReceiver() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 void PythonQtShell_QAbstractXmlReceiver::atomicValue(const QVariant&  value)
 {
 if (_wrapper) {
@@ -959,6 +979,10 @@ void PythonQtWrapper_QAbstractXmlReceiver::whitespaceOnly(QAbstractXmlReceiver* 
 
 
 
+PythonQtShell_QSimpleXmlNodeModel::~PythonQtShell_QSimpleXmlNodeModel() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 QVector<QXmlNodeModelIndex >  PythonQtShell_QSimpleXmlNodeModel::attributes(const QXmlNodeModelIndex&  element) const
 {
 if (_wrapper) {
@@ -1425,6 +1449,10 @@ QString PythonQtWrapper_QSourceLocation::py_toString(QSourceLocation* obj) {
 
 
 
+PythonQtShell_QXmlFormatter::~PythonQtShell_QXmlFormatter() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 void PythonQtShell_QXmlFormatter::atomicValue(const QVariant&  value)
 {
 if (_wrapper) {
@@ -2028,6 +2056,10 @@ const QAbstractUriResolver*  PythonQtWrapper_QXmlQuery::uriResolver(QXmlQuery* t
 
 
 
+PythonQtShell_QXmlResultItems::~PythonQtShell_QXmlResultItems() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 QXmlResultItems* PythonQtWrapper_QXmlResultItems::new_QXmlResultItems()
 { 
 return new PythonQtShell_QXmlResultItems(); }
@@ -2189,6 +2221,10 @@ bool  PythonQtWrapper_QXmlSchemaValidator::validate(QXmlSchemaValidator* theWrap
 
 
 
+PythonQtShell_QXmlSerializer::~PythonQtShell_QXmlSerializer() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 void PythonQtShell_QXmlSerializer::atomicValue(const QVariant&  value)
 {
 if (_wrapper) {

@@ -21,6 +21,8 @@ class PythonQtShell_QUiLoader : public QUiLoader
 public:
     PythonQtShell_QUiLoader(QObject*  parent = 0):QUiLoader(parent),_wrapper(NULL) {};
 
+   ~PythonQtShell_QUiLoader();
+
 virtual void childEvent(QChildEvent*  arg__1);
 virtual QAction*  createAction(QObject*  parent = 0, const QString&  name = QString());
 virtual QActionGroup*  createActionGroup(QObject*  parent = 0, const QString&  name = QString());

@@ -34,6 +34,10 @@
 
 
 
+PythonQtShell_QSqlDatabase::~PythonQtShell_QSqlDatabase() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 QSqlDatabase* PythonQtWrapper_QSqlDatabase::new_QSqlDatabase()
 { 
 return new PythonQtShell_QSqlDatabase(); }
@@ -256,6 +260,10 @@ QString PythonQtWrapper_QSqlDatabase::py_toString(QSqlDatabase* obj) {
 
 
 
+PythonQtShell_QSqlDriver::~PythonQtShell_QSqlDriver() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 bool  PythonQtShell_QSqlDriver::beginTransaction()
 {
 if (_wrapper) {
@@ -944,6 +952,10 @@ bool  PythonQtWrapper_QSqlDriver::unsubscribeFromNotification(QSqlDriver* theWra
 
 
 
+PythonQtShell_QSqlDriverCreatorBase::~PythonQtShell_QSqlDriverCreatorBase() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 QSqlDriver*  PythonQtShell_QSqlDriverCreatorBase::createObject() const
 {
 if (_wrapper) {
@@ -1455,6 +1467,10 @@ QVariant  PythonQtWrapper_QSqlQuery::value(QSqlQuery* theWrappedObject, int  i) 
 
 
 
+PythonQtShell_QSqlQueryModel::~PythonQtShell_QSqlQueryModel() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 QModelIndex  PythonQtShell_QSqlQueryModel::buddy(const QModelIndex&  index) const
 {
 if (_wrapper) {
@@ -2564,6 +2580,10 @@ QString  PythonQtWrapper_QSqlRelation::tableName(QSqlRelation* theWrappedObject)
 
 
 
+PythonQtShell_QSqlRelationalTableModel::~PythonQtShell_QSqlRelationalTableModel() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 QModelIndex  PythonQtShell_QSqlRelationalTableModel::buddy(const QModelIndex&  index) const
 {
 if (_wrapper) {
@@ -3737,6 +3757,11 @@ bool  PythonQtWrapper_QSqlRelationalTableModel::removeColumns(QSqlRelationalTabl
   return ( ((PythonQtPublicPromoter_QSqlRelationalTableModel*)theWrappedObject)->promoted_removeColumns(column, count, parent));
 }
 
+void PythonQtWrapper_QSqlRelationalTableModel::revertRow(QSqlRelationalTableModel* theWrappedObject, int  row)
+{
+  ( ((PythonQtPublicPromoter_QSqlRelationalTableModel*)theWrappedObject)->promoted_revertRow(row));
+}
+
 bool  PythonQtWrapper_QSqlRelationalTableModel::select(QSqlRelationalTableModel* theWrappedObject)
 {
   return ( ((PythonQtPublicPromoter_QSqlRelationalTableModel*)theWrappedObject)->promoted_select());
@@ -3750,6 +3775,11 @@ QString  PythonQtWrapper_QSqlRelationalTableModel::selectStatement(QSqlRelationa
 bool  PythonQtWrapper_QSqlRelationalTableModel::setData(QSqlRelationalTableModel* theWrappedObject, const QModelIndex&  item, const QVariant&  value, int  role)
 {
   return ( ((PythonQtPublicPromoter_QSqlRelationalTableModel*)theWrappedObject)->promoted_setData(item, value, role));
+}
+
+void PythonQtWrapper_QSqlRelationalTableModel::setJoinMode(QSqlRelationalTableModel* theWrappedObject, QSqlRelationalTableModel::JoinMode  joinMode)
+{
+  ( theWrappedObject->setJoinMode(joinMode));
 }
 
 void PythonQtWrapper_QSqlRelationalTableModel::setRelation(QSqlRelationalTableModel* theWrappedObject, int  column, const QSqlRelation&  relation)
@@ -3769,6 +3799,10 @@ bool  PythonQtWrapper_QSqlRelationalTableModel::updateRowInTable(QSqlRelationalT
 
 
 
+PythonQtShell_QSqlResult::~PythonQtShell_QSqlResult() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 void PythonQtShell_QSqlResult::bindValue(const QString&  placeholder, const QVariant&  val, QSql::ParamType  type)
 {
 if (_wrapper) {
@@ -4452,6 +4486,10 @@ void PythonQtWrapper_QSqlResult::setSelect(QSqlResult* theWrappedObject, bool  s
 
 
 
+PythonQtShell_QSqlTableModel::~PythonQtShell_QSqlTableModel() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 QModelIndex  PythonQtShell_QSqlTableModel::buddy(const QModelIndex&  index) const
 {
 if (_wrapper) {
@@ -5630,6 +5668,11 @@ bool  PythonQtWrapper_QSqlTableModel::removeRows(QSqlTableModel* theWrappedObjec
   return ( ((PythonQtPublicPromoter_QSqlTableModel*)theWrappedObject)->promoted_removeRows(row, count, parent));
 }
 
+void PythonQtWrapper_QSqlTableModel::revert(QSqlTableModel* theWrappedObject)
+{
+  ( ((PythonQtPublicPromoter_QSqlTableModel*)theWrappedObject)->promoted_revert());
+}
+
 void PythonQtWrapper_QSqlTableModel::revertRow(QSqlTableModel* theWrappedObject, int  row)
 {
   ( ((PythonQtPublicPromoter_QSqlTableModel*)theWrappedObject)->promoted_revertRow(row));
@@ -5683,6 +5726,11 @@ void PythonQtWrapper_QSqlTableModel::setTable(QSqlTableModel* theWrappedObject, 
 void PythonQtWrapper_QSqlTableModel::sort(QSqlTableModel* theWrappedObject, int  column, Qt::SortOrder  order)
 {
   ( ((PythonQtPublicPromoter_QSqlTableModel*)theWrappedObject)->promoted_sort(column, order));
+}
+
+bool  PythonQtWrapper_QSqlTableModel::submit(QSqlTableModel* theWrappedObject)
+{
+  return ( ((PythonQtPublicPromoter_QSqlTableModel*)theWrappedObject)->promoted_submit());
 }
 
 QString  PythonQtWrapper_QSqlTableModel::tableName(QSqlTableModel* theWrappedObject) const

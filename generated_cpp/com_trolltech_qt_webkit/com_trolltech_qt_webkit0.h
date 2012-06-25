@@ -6,6 +6,8 @@
 #include <qbytearray.h>
 #include <qcoreevent.h>
 #include <qcursor.h>
+#include <qdatastream.h>
+#include <qdatetime.h>
 #include <qevent.h>
 #include <qfont.h>
 #include <qgraphicseffect.h>
@@ -47,6 +49,7 @@
 #include <qwebdatabase.h>
 #include <qwebelement.h>
 #include <qwebframe.h>
+#include <qwebhistory.h>
 #include <qwebhistoryinterface.h>
 #include <qwebinspector.h>
 #include <qwebpage.h>
@@ -62,6 +65,8 @@ class PythonQtShell_QGraphicsWebView : public QGraphicsWebView
 {
 public:
     PythonQtShell_QGraphicsWebView(QGraphicsItem*  parent = 0):QGraphicsWebView(parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QGraphicsWebView();
 
 virtual void changeEvent(QEvent*  event);
 virtual void childEvent(QChildEvent*  arg__1);
@@ -167,6 +172,7 @@ void delete_QGraphicsWebView(QGraphicsWebView* obj) { delete obj; }
    void inputMethodEvent(QGraphicsWebView* theWrappedObject, QInputMethodEvent*  arg__1);
    QVariant  inputMethodQuery(QGraphicsWebView* theWrappedObject, Qt::InputMethodQuery  query) const;
    bool  isModified(QGraphicsWebView* theWrappedObject) const;
+   bool  isTiledBackingStoreFrozen(QGraphicsWebView* theWrappedObject) const;
    QVariant  itemChange(QGraphicsWebView* theWrappedObject, QGraphicsItem::GraphicsItemChange  change, const QVariant&  value);
    void keyPressEvent(QGraphicsWebView* theWrappedObject, QKeyEvent*  arg__1);
    void keyReleaseEvent(QGraphicsWebView* theWrappedObject, QKeyEvent*  arg__1);
@@ -179,11 +185,17 @@ void delete_QGraphicsWebView(QGraphicsWebView* obj) { delete obj; }
    QWebPage*  page(QGraphicsWebView* theWrappedObject) const;
    QAction*  pageAction(QGraphicsWebView* theWrappedObject, QWebPage::WebAction  action) const;
    void paint(QGraphicsWebView* theWrappedObject, QPainter*  arg__1, const QStyleOptionGraphicsItem*  options, QWidget*  widget = 0);
+   QPainter::RenderHints  renderHints(QGraphicsWebView* theWrappedObject) const;
+   bool  resizesToContents(QGraphicsWebView* theWrappedObject) const;
    bool  sceneEvent(QGraphicsWebView* theWrappedObject, QEvent*  arg__1);
    void setContent(QGraphicsWebView* theWrappedObject, const QByteArray&  data, const QString&  mimeType = QString(), const QUrl&  baseUrl = QUrl());
    void setGeometry(QGraphicsWebView* theWrappedObject, const QRectF&  rect);
    void setHtml(QGraphicsWebView* theWrappedObject, const QString&  html, const QUrl&  baseUrl = QUrl());
    void setPage(QGraphicsWebView* theWrappedObject, QWebPage*  arg__1);
+   void setRenderHint(QGraphicsWebView* theWrappedObject, QPainter::RenderHint  arg__1, bool  enabled = true);
+   void setRenderHints(QGraphicsWebView* theWrappedObject, QPainter::RenderHints  arg__1);
+   void setResizesToContents(QGraphicsWebView* theWrappedObject, bool  enabled);
+   void setTiledBackingStoreFrozen(QGraphicsWebView* theWrappedObject, bool  frozen);
    void setUrl(QGraphicsWebView* theWrappedObject, const QUrl&  arg__1);
    void setZoomFactor(QGraphicsWebView* theWrappedObject, qreal  arg__1);
    QWebSettings*  settings(QGraphicsWebView* theWrappedObject) const;
@@ -247,6 +259,7 @@ void delete_QWebElement(QWebElement* obj) { delete obj; }
    void encloseWith(QWebElement* theWrappedObject, const QString&  markup);
    void encloseWith(QWebElement* theWrappedObject, const QWebElement&  element);
    QVariant  evaluateJavaScript(QWebElement* theWrappedObject, const QString&  scriptSource);
+   QWebElementCollection  findAll(QWebElement* theWrappedObject, const QString&  selectorQuery) const;
    QWebElement  findFirst(QWebElement* theWrappedObject, const QString&  selectorQuery) const;
    QWebElement  firstChild(QWebElement* theWrappedObject) const;
    QRect  geometry(QWebElement* theWrappedObject) const;
@@ -276,6 +289,7 @@ void delete_QWebElement(QWebElement* obj) { delete obj; }
    void removeClass(QWebElement* theWrappedObject, const QString&  name);
    void removeFromDocument(QWebElement* theWrappedObject);
    void render(QWebElement* theWrappedObject, QPainter*  painter);
+   void render(QWebElement* theWrappedObject, QPainter*  painter, const QRect&  clipRect);
    void replace(QWebElement* theWrappedObject, const QString&  markup);
    void replace(QWebElement* theWrappedObject, const QWebElement&  element);
    void setAttribute(QWebElement* theWrappedObject, const QString&  name, const QString&  value);
@@ -300,6 +314,30 @@ void delete_QWebElement(QWebElement* obj) { delete obj; }
 
 
 
+class PythonQtWrapper_QWebElementCollection : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QWebElementCollection* new_QWebElementCollection();
+QWebElementCollection* new_QWebElementCollection(const QWebElement&  contextElement, const QString&  query);
+QWebElementCollection* new_QWebElementCollection(const QWebElementCollection&  arg__1);
+void delete_QWebElementCollection(QWebElementCollection* obj) { delete obj; } 
+   void append(QWebElementCollection* theWrappedObject, const QWebElementCollection&  collection);
+   QWebElement  at(QWebElementCollection* theWrappedObject, int  i) const;
+   int  count(QWebElementCollection* theWrappedObject) const;
+   QWebElement  first(QWebElementCollection* theWrappedObject) const;
+   QWebElement  last(QWebElementCollection* theWrappedObject) const;
+   QWebElementCollection  __add__(QWebElementCollection* theWrappedObject, const QWebElementCollection&  other) const;
+   QWebElementCollection*  __iadd__(QWebElementCollection* theWrappedObject, const QWebElementCollection&  other);
+   QWebElementCollection*  operator_assign(QWebElementCollection* theWrappedObject, const QWebElementCollection&  arg__1);
+   QWebElement  operator_subscript(QWebElementCollection* theWrappedObject, int  i) const;
+   QList<QWebElement >  toList(QWebElementCollection* theWrappedObject) const;
+};
+
+
+
+
+
 class PythonQtPublicPromoter_QWebFrame : public QWebFrame
 { public:
 inline bool  promoted_event(QEvent*  arg__1) { return QWebFrame::event(arg__1); }
@@ -308,6 +346,9 @@ inline bool  promoted_event(QEvent*  arg__1) { return QWebFrame::event(arg__1); 
 class PythonQtWrapper_QWebFrame : public QObject
 { Q_OBJECT
 public:
+Q_ENUMS(RenderLayer )
+enum RenderLayer{
+  ContentsLayer = QWebFrame::ContentsLayer,   ScrollBarLayer = QWebFrame::ScrollBarLayer,   PanIconLayer = QWebFrame::PanIconLayer,   AllLayers = QWebFrame::AllLayers};
 public slots:
    void addToJavaScriptWindowObject(QWebFrame* theWrappedObject, const QString&  name, QObject*  object);
    QUrl  baseUrl(QWebFrame* theWrappedObject) const;
@@ -315,6 +356,7 @@ public slots:
    QSize  contentsSize(QWebFrame* theWrappedObject) const;
    QWebElement  documentElement(QWebFrame* theWrappedObject) const;
    bool  event(QWebFrame* theWrappedObject, QEvent*  arg__1);
+   QWebElementCollection  findAllElements(QWebFrame* theWrappedObject, const QString&  selectorQuery) const;
    QWebElement  findFirstElement(QWebFrame* theWrappedObject, const QString&  selectorQuery) const;
    QString  frameName(QWebFrame* theWrappedObject) const;
    QRect  geometry(QWebFrame* theWrappedObject) const;
@@ -328,6 +370,7 @@ public slots:
    QWebFrame*  parentFrame(QWebFrame* theWrappedObject) const;
    QPoint  pos(QWebFrame* theWrappedObject) const;
    void render(QWebFrame* theWrappedObject, QPainter*  arg__1);
+   void render(QWebFrame* theWrappedObject, QPainter*  arg__1, QWebFrame::RenderLayer  layer, const QRegion&  clip = QRegion());
    void render(QWebFrame* theWrappedObject, QPainter*  arg__1, const QRegion&  clip);
    QString  renderTreeDump(QWebFrame* theWrappedObject) const;
    QUrl  requestedUrl(QWebFrame* theWrappedObject) const;
@@ -338,6 +381,7 @@ public slots:
    Qt::ScrollBarPolicy  scrollBarPolicy(QWebFrame* theWrappedObject, Qt::Orientation  orientation) const;
    int  scrollBarValue(QWebFrame* theWrappedObject, Qt::Orientation  orientation) const;
    QPoint  scrollPosition(QWebFrame* theWrappedObject) const;
+   void scrollToAnchor(QWebFrame* theWrappedObject, const QString&  anchor);
    QWebSecurityOrigin  securityOrigin(QWebFrame* theWrappedObject) const;
    void setContent(QWebFrame* theWrappedObject, const QByteArray&  data, const QString&  mimeType = QString(), const QUrl&  baseUrl = QUrl());
    void setFocus(QWebFrame* theWrappedObject);
@@ -360,10 +404,41 @@ public slots:
 
 
 
+class PythonQtWrapper_QWebHistory : public QObject
+{ Q_OBJECT
+public:
+public slots:
+   void back(QWebHistory* theWrappedObject);
+   QWebHistoryItem  backItem(QWebHistory* theWrappedObject) const;
+   QList<QWebHistoryItem >  backItems(QWebHistory* theWrappedObject, int  maxItems) const;
+   bool  canGoBack(QWebHistory* theWrappedObject) const;
+   bool  canGoForward(QWebHistory* theWrappedObject) const;
+   void clear(QWebHistory* theWrappedObject);
+   int  count(QWebHistory* theWrappedObject) const;
+   QWebHistoryItem  currentItem(QWebHistory* theWrappedObject) const;
+   int  currentItemIndex(QWebHistory* theWrappedObject) const;
+   void forward(QWebHistory* theWrappedObject);
+   QWebHistoryItem  forwardItem(QWebHistory* theWrappedObject) const;
+   QList<QWebHistoryItem >  forwardItems(QWebHistory* theWrappedObject, int  maxItems) const;
+   void goToItem(QWebHistory* theWrappedObject, const QWebHistoryItem&  item);
+   QWebHistoryItem  itemAt(QWebHistory* theWrappedObject, int  i) const;
+   QList<QWebHistoryItem >  items(QWebHistory* theWrappedObject) const;
+   int  maximumItemCount(QWebHistory* theWrappedObject) const;
+   void writeTo(QWebHistory* theWrappedObject, QDataStream&  stream);
+   void readFrom(QWebHistory* theWrappedObject, QDataStream&  stream);
+   void setMaximumItemCount(QWebHistory* theWrappedObject, int  count);
+};
+
+
+
+
+
 class PythonQtShell_QWebHistoryInterface : public QWebHistoryInterface
 {
 public:
     PythonQtShell_QWebHistoryInterface(QObject*  parent = 0):QWebHistoryInterface(parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QWebHistoryInterface();
 
 virtual void addHistoryEntry(const QString&  url);
 virtual void childEvent(QChildEvent*  arg__1);
@@ -384,6 +459,27 @@ QWebHistoryInterface* new_QWebHistoryInterface(QObject*  parent = 0);
 void delete_QWebHistoryInterface(QWebHistoryInterface* obj) { delete obj; } 
    QWebHistoryInterface*  static_QWebHistoryInterface_defaultInterface();
    void static_QWebHistoryInterface_setDefaultInterface(QWebHistoryInterface*  defaultInterface);
+};
+
+
+
+
+
+class PythonQtWrapper_QWebHistoryItem : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QWebHistoryItem* new_QWebHistoryItem(const QWebHistoryItem&  other);
+void delete_QWebHistoryItem(QWebHistoryItem* obj) { delete obj; } 
+   QIcon  icon(QWebHistoryItem* theWrappedObject) const;
+   bool  isValid(QWebHistoryItem* theWrappedObject) const;
+   QDateTime  lastVisited(QWebHistoryItem* theWrappedObject) const;
+   QWebHistoryItem*  operator_assign(QWebHistoryItem* theWrappedObject, const QWebHistoryItem&  other);
+   QUrl  originalUrl(QWebHistoryItem* theWrappedObject) const;
+   void setUserData(QWebHistoryItem* theWrappedObject, const QVariant&  userData);
+   QString  title(QWebHistoryItem* theWrappedObject) const;
+   QUrl  url(QWebHistoryItem* theWrappedObject) const;
+   QVariant  userData(QWebHistoryItem* theWrappedObject) const;
 };
 
 
@@ -426,10 +522,12 @@ class PythonQtShell_QWebInspector : public QWebInspector
 public:
     PythonQtShell_QWebInspector(QWidget*  parent = 0):QWebInspector(parent),_wrapper(NULL) {};
 
+   ~PythonQtShell_QWebInspector();
+
 virtual void actionEvent(QActionEvent*  arg__1);
 virtual void changeEvent(QEvent*  arg__1);
 virtual void childEvent(QChildEvent*  arg__1);
-virtual void closeEvent(QCloseEvent*  arg__1);
+virtual void closeEvent(QCloseEvent*  event);
 virtual void contextMenuEvent(QContextMenuEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
 virtual int  devType() const;
@@ -471,6 +569,7 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QWebInspector : public QWebInspector
 { public:
+inline void promoted_closeEvent(QCloseEvent*  event) { QWebInspector::closeEvent(event); }
 inline bool  promoted_event(QEvent*  arg__1) { return QWebInspector::event(arg__1); }
 inline void promoted_hideEvent(QHideEvent*  event) { QWebInspector::hideEvent(event); }
 inline void promoted_resizeEvent(QResizeEvent*  event) { QWebInspector::resizeEvent(event); }
@@ -483,6 +582,7 @@ public:
 public slots:
 QWebInspector* new_QWebInspector(QWidget*  parent = 0);
 void delete_QWebInspector(QWebInspector* obj) { delete obj; } 
+   void closeEvent(QWebInspector* theWrappedObject, QCloseEvent*  event);
    bool  event(QWebInspector* theWrappedObject, QEvent*  arg__1);
    void hideEvent(QWebInspector* theWrappedObject, QHideEvent*  event);
    QWebPage*  page(QWebInspector* theWrappedObject) const;
@@ -500,6 +600,8 @@ class PythonQtShell_QWebPage : public QWebPage
 {
 public:
     PythonQtShell_QWebPage(QObject*  parent = 0):QWebPage(parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QWebPage();
 
 virtual bool  acceptNavigationRequest(QWebFrame*  frame, const QNetworkRequest&  request, QWebPage::NavigationType  type);
 virtual void childEvent(QChildEvent*  arg__1);
@@ -542,14 +644,18 @@ inline QString  promoted_userAgentForUrl(const QUrl&  url) const { return QWebPa
 class PythonQtWrapper_QWebPage : public QObject
 { Q_OBJECT
 public:
-Q_ENUMS(ErrorDomain WebWindowType FindFlag Extension )
+Q_ENUMS(ErrorDomain WebWindowType PermissionPolicy FindFlag Feature Extension )
 Q_FLAGS(FindFlags )
 enum ErrorDomain{
   QtNetwork = QWebPage::QtNetwork,   Http = QWebPage::Http,   WebKit = QWebPage::WebKit};
 enum WebWindowType{
   WebBrowserWindow = QWebPage::WebBrowserWindow,   WebModalDialog = QWebPage::WebModalDialog};
+enum PermissionPolicy{
+  PermissionUnknown = QWebPage::PermissionUnknown,   PermissionGrantedByUser = QWebPage::PermissionGrantedByUser,   PermissionDeniedByUser = QWebPage::PermissionDeniedByUser};
 enum FindFlag{
   FindBackward = QWebPage::FindBackward,   FindCaseSensitively = QWebPage::FindCaseSensitively,   FindWrapsAroundDocument = QWebPage::FindWrapsAroundDocument,   HighlightAllOccurrences = QWebPage::HighlightAllOccurrences};
+enum Feature{
+  Notifications = QWebPage::Notifications,   Geolocation = QWebPage::Geolocation};
 enum Extension{
   ChooseMultipleFilesExtension = QWebPage::ChooseMultipleFilesExtension,   ErrorPageExtension = QWebPage::ErrorPageExtension};
 Q_DECLARE_FLAGS(FindFlags, FindFlag)
@@ -570,6 +676,7 @@ void delete_QWebPage(QWebPage* obj) { delete obj; }
    bool  focusNextPrevChild(QWebPage* theWrappedObject, bool  next);
    bool  forwardUnsupportedContent(QWebPage* theWrappedObject) const;
    QWebFrame*  frameAt(QWebPage* theWrappedObject, const QPoint&  pos) const;
+   bool  hasSelection(QWebPage* theWrappedObject) const;
    QWebHistory*  history(QWebPage* theWrappedObject) const;
    QVariant  inputMethodQuery(QWebPage* theWrappedObject, Qt::InputMethodQuery  property) const;
    bool  isContentEditable(QWebPage* theWrappedObject) const;
@@ -584,8 +691,11 @@ void delete_QWebPage(QWebPage* obj) { delete obj; }
    QPalette  palette(QWebPage* theWrappedObject) const;
    QWebPluginFactory*  pluginFactory(QWebPage* theWrappedObject) const;
    QSize  preferredContentsSize(QWebPage* theWrappedObject) const;
+   QString  selectedHtml(QWebPage* theWrappedObject) const;
    QString  selectedText(QWebPage* theWrappedObject) const;
+   void setActualVisibleContentRect(QWebPage* theWrappedObject, const QRect&  rect) const;
    void setContentEditable(QWebPage* theWrappedObject, bool  editable);
+   void setFeaturePermission(QWebPage* theWrappedObject, QWebFrame*  frame, QWebPage::Feature  feature, QWebPage::PermissionPolicy  policy);
    void setForwardUnsupportedContent(QWebPage* theWrappedObject, bool  forward);
    void setLinkDelegationPolicy(QWebPage* theWrappedObject, QWebPage::LinkDelegationPolicy  policy);
    void setNetworkAccessManager(QWebPage* theWrappedObject, QNetworkAccessManager*  manager);
@@ -595,6 +705,8 @@ void delete_QWebPage(QWebPage* obj) { delete obj; }
    void setView(QWebPage* theWrappedObject, QWidget*  view);
    void setViewportSize(QWebPage* theWrappedObject, const QSize&  size) const;
    QWebSettings*  settings(QWebPage* theWrappedObject) const;
+   QStringList  supportedContentTypes(QWebPage* theWrappedObject) const;
+   bool  supportsContentType(QWebPage* theWrappedObject, const QString&  mimeType) const;
    bool  supportsExtension(QWebPage* theWrappedObject, QWebPage::Extension  extension) const;
    bool  swallowContextMenuEvent(QWebPage* theWrappedObject, QContextMenuEvent*  event);
    quint64  totalBytes(QWebPage* theWrappedObject) const;
@@ -614,6 +726,8 @@ class PythonQtShell_QWebPage_ChooseMultipleFilesExtensionOption : public QWebPag
 {
 public:
     PythonQtShell_QWebPage_ChooseMultipleFilesExtensionOption():QWebPage::ChooseMultipleFilesExtensionOption(),_wrapper(NULL) {};
+
+   ~PythonQtShell_QWebPage_ChooseMultipleFilesExtensionOption();
 
 
   PythonQtInstanceWrapper* _wrapper; 
@@ -640,6 +754,8 @@ class PythonQtShell_QWebPage_ChooseMultipleFilesExtensionReturn : public QWebPag
 public:
     PythonQtShell_QWebPage_ChooseMultipleFilesExtensionReturn():QWebPage::ChooseMultipleFilesExtensionReturn(),_wrapper(NULL) {};
 
+   ~PythonQtShell_QWebPage_ChooseMultipleFilesExtensionReturn();
+
 
   PythonQtInstanceWrapper* _wrapper; 
 };
@@ -662,6 +778,8 @@ class PythonQtShell_QWebPage_ErrorPageExtensionOption : public QWebPage::ErrorPa
 {
 public:
     PythonQtShell_QWebPage_ErrorPageExtensionOption():QWebPage::ErrorPageExtensionOption(),_wrapper(NULL) {};
+
+   ~PythonQtShell_QWebPage_ErrorPageExtensionOption();
 
 
   PythonQtInstanceWrapper* _wrapper; 
@@ -694,6 +812,8 @@ class PythonQtShell_QWebPage_ErrorPageExtensionReturn : public QWebPage::ErrorPa
 public:
     PythonQtShell_QWebPage_ErrorPageExtensionReturn():QWebPage::ErrorPageExtensionReturn(),_wrapper(NULL) {};
 
+   ~PythonQtShell_QWebPage_ErrorPageExtensionReturn();
+
 
   PythonQtInstanceWrapper* _wrapper; 
 };
@@ -723,6 +843,8 @@ class PythonQtShell_QWebPage_ExtensionOption : public QWebPage::ExtensionOption
 public:
     PythonQtShell_QWebPage_ExtensionOption():QWebPage::ExtensionOption(),_wrapper(NULL) {};
 
+   ~PythonQtShell_QWebPage_ExtensionOption();
+
 
   PythonQtInstanceWrapper* _wrapper; 
 };
@@ -744,6 +866,8 @@ class PythonQtShell_QWebPage_ExtensionReturn : public QWebPage::ExtensionReturn
 public:
     PythonQtShell_QWebPage_ExtensionReturn():QWebPage::ExtensionReturn(),_wrapper(NULL) {};
 
+   ~PythonQtShell_QWebPage_ExtensionReturn();
+
 
   PythonQtInstanceWrapper* _wrapper; 
 };
@@ -764,6 +888,8 @@ class PythonQtShell_QWebPluginFactory : public QWebPluginFactory
 {
 public:
     PythonQtShell_QWebPluginFactory(QObject*  parent = 0):QWebPluginFactory(parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QWebPluginFactory();
 
 virtual void childEvent(QChildEvent*  arg__1);
 virtual QObject*  create(const QString&  mimeType, const QUrl&  arg__2, const QStringList&  argumentNames, const QStringList&  argumentValues) const;
@@ -809,6 +935,8 @@ class PythonQtShell_QWebPluginFactory_ExtensionOption : public QWebPluginFactory
 public:
     PythonQtShell_QWebPluginFactory_ExtensionOption():QWebPluginFactory::ExtensionOption(),_wrapper(NULL) {};
 
+   ~PythonQtShell_QWebPluginFactory_ExtensionOption();
+
 
   PythonQtInstanceWrapper* _wrapper; 
 };
@@ -830,6 +958,8 @@ class PythonQtShell_QWebPluginFactory_ExtensionReturn : public QWebPluginFactory
 public:
     PythonQtShell_QWebPluginFactory_ExtensionReturn():QWebPluginFactory::ExtensionReturn(),_wrapper(NULL) {};
 
+   ~PythonQtShell_QWebPluginFactory_ExtensionReturn();
+
 
   PythonQtInstanceWrapper* _wrapper; 
 };
@@ -850,6 +980,8 @@ class PythonQtShell_QWebPluginFactory_MimeType : public QWebPluginFactory::MimeT
 {
 public:
     PythonQtShell_QWebPluginFactory_MimeType():QWebPluginFactory::MimeType(),_wrapper(NULL) {};
+
+   ~PythonQtShell_QWebPluginFactory_MimeType();
 
 
   PythonQtInstanceWrapper* _wrapper; 
@@ -883,6 +1015,8 @@ class PythonQtShell_QWebPluginFactory_Plugin : public QWebPluginFactory::Plugin
 {
 public:
     PythonQtShell_QWebPluginFactory_Plugin():QWebPluginFactory::Plugin(),_wrapper(NULL) {};
+
+   ~PythonQtShell_QWebPluginFactory_Plugin();
 
 
   PythonQtInstanceWrapper* _wrapper; 
@@ -925,6 +1059,7 @@ void delete_QWebSecurityOrigin(QWebSecurityOrigin* obj) { delete obj; }
    int  port(QWebSecurityOrigin* theWrappedObject) const;
    void static_QWebSecurityOrigin_removeLocalScheme(const QString&  scheme);
    QString  scheme(QWebSecurityOrigin* theWrappedObject) const;
+   void setApplicationCacheQuota(QWebSecurityOrigin* theWrappedObject, qint64  quota);
    void setDatabaseQuota(QWebSecurityOrigin* theWrappedObject, qint64  quota);
 };
 
@@ -939,11 +1074,11 @@ Q_ENUMS(FontSize WebGraphic FontFamily WebAttribute )
 enum FontSize{
   MinimumFontSize = QWebSettings::MinimumFontSize,   MinimumLogicalFontSize = QWebSettings::MinimumLogicalFontSize,   DefaultFontSize = QWebSettings::DefaultFontSize,   DefaultFixedFontSize = QWebSettings::DefaultFixedFontSize};
 enum WebGraphic{
-  MissingImageGraphic = QWebSettings::MissingImageGraphic,   MissingPluginGraphic = QWebSettings::MissingPluginGraphic,   DefaultFrameIconGraphic = QWebSettings::DefaultFrameIconGraphic,   TextAreaSizeGripCornerGraphic = QWebSettings::TextAreaSizeGripCornerGraphic};
+  MissingImageGraphic = QWebSettings::MissingImageGraphic,   MissingPluginGraphic = QWebSettings::MissingPluginGraphic,   DefaultFrameIconGraphic = QWebSettings::DefaultFrameIconGraphic,   TextAreaSizeGripCornerGraphic = QWebSettings::TextAreaSizeGripCornerGraphic,   DeleteButtonGraphic = QWebSettings::DeleteButtonGraphic,   InputSpeechButtonGraphic = QWebSettings::InputSpeechButtonGraphic,   SearchCancelButtonGraphic = QWebSettings::SearchCancelButtonGraphic,   SearchCancelButtonPressedGraphic = QWebSettings::SearchCancelButtonPressedGraphic};
 enum FontFamily{
   StandardFont = QWebSettings::StandardFont,   FixedFont = QWebSettings::FixedFont,   SerifFont = QWebSettings::SerifFont,   SansSerifFont = QWebSettings::SansSerifFont,   CursiveFont = QWebSettings::CursiveFont,   FantasyFont = QWebSettings::FantasyFont};
 enum WebAttribute{
-  AutoLoadImages = QWebSettings::AutoLoadImages,   JavascriptEnabled = QWebSettings::JavascriptEnabled,   JavaEnabled = QWebSettings::JavaEnabled,   PluginsEnabled = QWebSettings::PluginsEnabled,   PrivateBrowsingEnabled = QWebSettings::PrivateBrowsingEnabled,   JavascriptCanOpenWindows = QWebSettings::JavascriptCanOpenWindows,   JavascriptCanAccessClipboard = QWebSettings::JavascriptCanAccessClipboard,   DeveloperExtrasEnabled = QWebSettings::DeveloperExtrasEnabled,   LinksIncludedInFocusChain = QWebSettings::LinksIncludedInFocusChain,   ZoomTextOnly = QWebSettings::ZoomTextOnly,   PrintElementBackgrounds = QWebSettings::PrintElementBackgrounds,   OfflineStorageDatabaseEnabled = QWebSettings::OfflineStorageDatabaseEnabled,   OfflineWebApplicationCacheEnabled = QWebSettings::OfflineWebApplicationCacheEnabled,   LocalStorageEnabled = QWebSettings::LocalStorageEnabled,   LocalStorageDatabaseEnabled = QWebSettings::LocalStorageDatabaseEnabled,   LocalContentCanAccessRemoteUrls = QWebSettings::LocalContentCanAccessRemoteUrls,   DnsPrefetchEnabled = QWebSettings::DnsPrefetchEnabled};
+  AutoLoadImages = QWebSettings::AutoLoadImages,   JavascriptEnabled = QWebSettings::JavascriptEnabled,   JavaEnabled = QWebSettings::JavaEnabled,   PluginsEnabled = QWebSettings::PluginsEnabled,   PrivateBrowsingEnabled = QWebSettings::PrivateBrowsingEnabled,   JavascriptCanOpenWindows = QWebSettings::JavascriptCanOpenWindows,   JavascriptCanAccessClipboard = QWebSettings::JavascriptCanAccessClipboard,   DeveloperExtrasEnabled = QWebSettings::DeveloperExtrasEnabled,   LinksIncludedInFocusChain = QWebSettings::LinksIncludedInFocusChain,   ZoomTextOnly = QWebSettings::ZoomTextOnly,   PrintElementBackgrounds = QWebSettings::PrintElementBackgrounds,   OfflineStorageDatabaseEnabled = QWebSettings::OfflineStorageDatabaseEnabled,   OfflineWebApplicationCacheEnabled = QWebSettings::OfflineWebApplicationCacheEnabled,   LocalStorageEnabled = QWebSettings::LocalStorageEnabled,   LocalStorageDatabaseEnabled = QWebSettings::LocalStorageDatabaseEnabled,   LocalContentCanAccessRemoteUrls = QWebSettings::LocalContentCanAccessRemoteUrls,   DnsPrefetchEnabled = QWebSettings::DnsPrefetchEnabled,   XSSAuditingEnabled = QWebSettings::XSSAuditingEnabled,   AcceleratedCompositingEnabled = QWebSettings::AcceleratedCompositingEnabled,   SpatialNavigationEnabled = QWebSettings::SpatialNavigationEnabled,   LocalContentCanAccessFileUrls = QWebSettings::LocalContentCanAccessFileUrls,   TiledBackingStoreEnabled = QWebSettings::TiledBackingStoreEnabled,   FrameFlatteningEnabled = QWebSettings::FrameFlatteningEnabled,   SiteSpecificQuirksEnabled = QWebSettings::SiteSpecificQuirksEnabled,   JavascriptCanCloseWindows = QWebSettings::JavascriptCanCloseWindows,   WebGLEnabled = QWebSettings::WebGLEnabled,   HyperlinkAuditingEnabled = QWebSettings::HyperlinkAuditingEnabled};
 public slots:
    void static_QWebSettings_clearIconDatabase();
    void static_QWebSettings_clearMemoryCaches();
@@ -990,6 +1125,8 @@ class PythonQtShell_QWebView : public QWebView
 {
 public:
     PythonQtShell_QWebView(QWidget*  parent = 0):QWebView(parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QWebView();
 
 virtual void actionEvent(QActionEvent*  arg__1);
 virtual void changeEvent(QEvent*  arg__1);
@@ -1079,6 +1216,7 @@ void delete_QWebView(QWebView* obj) { delete obj; }
    void focusInEvent(QWebView* theWrappedObject, QFocusEvent*  arg__1);
    bool  focusNextPrevChild(QWebView* theWrappedObject, bool  next);
    void focusOutEvent(QWebView* theWrappedObject, QFocusEvent*  arg__1);
+   bool  hasSelection(QWebView* theWrappedObject) const;
    QWebHistory*  history(QWebView* theWrappedObject) const;
    QIcon  icon(QWebView* theWrappedObject) const;
    void inputMethodEvent(QWebView* theWrappedObject, QInputMethodEvent*  arg__1);
@@ -1097,6 +1235,7 @@ void delete_QWebView(QWebView* obj) { delete obj; }
    void paintEvent(QWebView* theWrappedObject, QPaintEvent*  arg__1);
    QPainter::RenderHints  renderHints(QWebView* theWrappedObject) const;
    void resizeEvent(QWebView* theWrappedObject, QResizeEvent*  arg__1);
+   QString  selectedHtml(QWebView* theWrappedObject) const;
    QString  selectedText(QWebView* theWrappedObject) const;
    void setContent(QWebView* theWrappedObject, const QByteArray&  data, const QString&  mimeType = QString(), const QUrl&  baseUrl = QUrl());
    void setHtml(QWebView* theWrappedObject, const QString&  html, const QUrl&  baseUrl = QUrl());

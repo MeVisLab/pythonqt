@@ -439,6 +439,8 @@ class PythonQtShell_QXmlAttributes : public QXmlAttributes
 public:
     PythonQtShell_QXmlAttributes():QXmlAttributes(),_wrapper(NULL) {};
 
+   ~PythonQtShell_QXmlAttributes();
+
 
   PythonQtInstanceWrapper* _wrapper; 
 };
@@ -479,6 +481,8 @@ class PythonQtShell_QXmlContentHandler : public QXmlContentHandler
 public:
     PythonQtShell_QXmlContentHandler():QXmlContentHandler(),_wrapper(NULL) {};
 
+   ~PythonQtShell_QXmlContentHandler();
+
 virtual bool  characters(const QString&  ch);
 virtual bool  endDocument();
 virtual bool  endElement(const QString&  namespaceURI, const QString&  localName, const QString&  qName);
@@ -512,6 +516,8 @@ class PythonQtShell_QXmlDTDHandler : public QXmlDTDHandler
 public:
     PythonQtShell_QXmlDTDHandler():QXmlDTDHandler(),_wrapper(NULL) {};
 
+   ~PythonQtShell_QXmlDTDHandler();
+
 virtual QString  errorString() const;
 virtual bool  notationDecl(const QString&  name, const QString&  publicId, const QString&  systemId);
 virtual bool  unparsedEntityDecl(const QString&  name, const QString&  publicId, const QString&  systemId, const QString&  notationName);
@@ -535,6 +541,8 @@ class PythonQtShell_QXmlDeclHandler : public QXmlDeclHandler
 {
 public:
     PythonQtShell_QXmlDeclHandler():QXmlDeclHandler(),_wrapper(NULL) {};
+
+   ~PythonQtShell_QXmlDeclHandler();
 
 virtual bool  attributeDecl(const QString&  eName, const QString&  aName, const QString&  type, const QString&  valueDefault, const QString&  value);
 virtual QString  errorString() const;
@@ -560,6 +568,8 @@ class PythonQtShell_QXmlDefaultHandler : public QXmlDefaultHandler
 {
 public:
     PythonQtShell_QXmlDefaultHandler():QXmlDefaultHandler(),_wrapper(NULL) {};
+
+   ~PythonQtShell_QXmlDefaultHandler();
 
 virtual bool  attributeDecl(const QString&  eName, const QString&  aName, const QString&  type, const QString&  valueDefault, const QString&  value);
 virtual bool  characters(const QString&  ch);
@@ -670,6 +680,8 @@ class PythonQtShell_QXmlEntityResolver : public QXmlEntityResolver
 public:
     PythonQtShell_QXmlEntityResolver():QXmlEntityResolver(),_wrapper(NULL) {};
 
+   ~PythonQtShell_QXmlEntityResolver();
+
 virtual QString  errorString() const;
 virtual bool  resolveEntity(const QString&  publicId, const QString&  systemId, QXmlInputSource*&  ret);
 
@@ -692,6 +704,8 @@ class PythonQtShell_QXmlErrorHandler : public QXmlErrorHandler
 {
 public:
     PythonQtShell_QXmlErrorHandler():QXmlErrorHandler(),_wrapper(NULL) {};
+
+   ~PythonQtShell_QXmlErrorHandler();
 
 virtual bool  error(const QXmlParseException&  exception);
 virtual QString  errorString() const;
@@ -718,6 +732,8 @@ class PythonQtShell_QXmlInputSource : public QXmlInputSource
 public:
     PythonQtShell_QXmlInputSource():QXmlInputSource(),_wrapper(NULL) {};
     PythonQtShell_QXmlInputSource(QIODevice*  dev):QXmlInputSource(dev),_wrapper(NULL) {};
+
+   ~PythonQtShell_QXmlInputSource();
 
 virtual QString  data() const;
 virtual void fetchData();
@@ -766,6 +782,8 @@ class PythonQtShell_QXmlLexicalHandler : public QXmlLexicalHandler
 public:
     PythonQtShell_QXmlLexicalHandler():QXmlLexicalHandler(),_wrapper(NULL) {};
 
+   ~PythonQtShell_QXmlLexicalHandler();
+
 virtual bool  comment(const QString&  ch);
 virtual bool  endCDATA();
 virtual bool  endDTD();
@@ -794,6 +812,8 @@ class PythonQtShell_QXmlLocator : public QXmlLocator
 {
 public:
     PythonQtShell_QXmlLocator():QXmlLocator(),_wrapper(NULL) {};
+
+   ~PythonQtShell_QXmlLocator();
 
 virtual int  columnNumber() const;
 virtual int  lineNumber() const;
@@ -836,6 +856,8 @@ class PythonQtShell_QXmlReader : public QXmlReader
 public:
     PythonQtShell_QXmlReader():QXmlReader(),_wrapper(NULL) {};
 
+   ~PythonQtShell_QXmlReader();
+
 virtual QXmlDTDHandler*  DTDHandler() const;
 virtual QXmlContentHandler*  contentHandler() const;
 virtual QXmlDeclHandler*  declHandler() const;
@@ -876,6 +898,8 @@ class PythonQtShell_QXmlSimpleReader : public QXmlSimpleReader
 {
 public:
     PythonQtShell_QXmlSimpleReader():QXmlSimpleReader(),_wrapper(NULL) {};
+
+   ~PythonQtShell_QXmlSimpleReader();
 
 virtual QXmlDTDHandler*  DTDHandler() const;
 virtual QXmlContentHandler*  contentHandler() const;

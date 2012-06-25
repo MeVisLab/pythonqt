@@ -1,5 +1,6 @@
 #include <PythonQt.h>
 #include "com_trolltech_qt_network0.h"
+#include "com_trolltech_qt_network1.h"
 
 
 void PythonQt_init_QtNetwork(PyObject* module) {
@@ -11,6 +12,8 @@ PythonQt::priv()->registerCPPClass("QHostAddress", "", "QtNetwork", PythonQtCrea
 PythonQt::priv()->registerCPPClass("QHostInfo", "", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QHostInfo>, NULL, module, 0);
 PythonQt::priv()->registerClass(&QHttp::staticMetaObject, "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QHttp>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QHttp>, module, 0);
 PythonQt::priv()->registerCPPClass("QHttpHeader", "", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QHttpHeader>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QHttpHeader>, module, 0);
+PythonQt::priv()->registerClass(&QHttpMultiPart::staticMetaObject, "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QHttpMultiPart>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QHttpMultiPart>, module, 0);
+PythonQt::priv()->registerCPPClass("QHttpPart", "", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QHttpPart>, NULL, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerCPPClass("QHttpRequestHeader", "QHttpHeader", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QHttpRequestHeader>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QHttpRequestHeader>, module, 0);
 PythonQt::priv()->registerCPPClass("QHttpResponseHeader", "QHttpHeader", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QHttpResponseHeader>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QHttpResponseHeader>, module, 0);
 PythonQt::priv()->registerCPPClass("QIPv6Address", "", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QIPv6Address>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QIPv6Address>, module, 0);

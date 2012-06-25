@@ -33,22 +33,13 @@ void delete_QXmlStreamAttribute(QXmlStreamAttribute* obj) { delete obj; }
 
 
 
-class PythonQtShell_QXmlStreamAttributes : public QXmlStreamAttributes
-{
-public:
-    PythonQtShell_QXmlStreamAttributes():QXmlStreamAttributes(),_wrapper(NULL) {};
-
-
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
 class PythonQtWrapper_QXmlStreamAttributes : public QObject
 { Q_OBJECT
 public:
 public slots:
 QXmlStreamAttributes* new_QXmlStreamAttributes();
 QXmlStreamAttributes* new_QXmlStreamAttributes(const QXmlStreamAttributes& other) {
-PythonQtShell_QXmlStreamAttributes* a = new PythonQtShell_QXmlStreamAttributes();
+QXmlStreamAttributes* a = new QXmlStreamAttributes();
 *((QXmlStreamAttributes*)a) = other;
 return a; }
 void delete_QXmlStreamAttributes(QXmlStreamAttributes* obj) { delete obj; } 
@@ -70,6 +61,7 @@ void delete_QXmlStreamAttributes(QXmlStreamAttributes* obj) { delete obj; }
    bool  hasAttribute(QXmlStreamAttributes* theWrappedObject, const QString&  qualifiedName) const;
    int  indexOf(QXmlStreamAttributes* theWrappedObject, const QXmlStreamAttribute&  t, int  from) const;
    bool  isEmpty(QXmlStreamAttributes* theWrappedObject) const;
+   bool  isSharedWith(QXmlStreamAttributes* theWrappedObject, const QVector<QXmlStreamAttribute >&  other) const;
    const QXmlStreamAttribute*  last(QXmlStreamAttributes* theWrappedObject) const;
    int  lastIndexOf(QXmlStreamAttributes* theWrappedObject, const QXmlStreamAttribute&  t, int  from) const;
    QVector<QXmlStreamAttribute >  mid(QXmlStreamAttributes* theWrappedObject, int  pos, int  length) const;
@@ -85,6 +77,7 @@ void delete_QXmlStreamAttributes(QXmlStreamAttributes* obj) { delete obj; }
    int  size(QXmlStreamAttributes* theWrappedObject) const;
    void squeeze(QXmlStreamAttributes* theWrappedObject);
    bool  startsWith(QXmlStreamAttributes* theWrappedObject, const QXmlStreamAttribute&  t) const;
+   void swap(QXmlStreamAttributes* theWrappedObject, QVector<QXmlStreamAttribute >&  other);
    QList<QXmlStreamAttribute >  toList(QXmlStreamAttributes* theWrappedObject) const;
    QStringRef  value(QXmlStreamAttributes* theWrappedObject, const QString&  namespaceUri, const QString&  name) const;
    QStringRef  value(QXmlStreamAttributes* theWrappedObject, const QString&  qualifiedName) const;
@@ -238,6 +231,7 @@ void delete_QXmlStreamWriter(QXmlStreamWriter* obj) { delete obj; }
    int  autoFormattingIndent(QXmlStreamWriter* theWrappedObject) const;
    QTextCodec*  codec(QXmlStreamWriter* theWrappedObject) const;
    QIODevice*  device(QXmlStreamWriter* theWrappedObject) const;
+   bool  hasError(QXmlStreamWriter* theWrappedObject) const;
    void setAutoFormatting(QXmlStreamWriter* theWrappedObject, bool  arg__1);
    void setAutoFormattingIndent(QXmlStreamWriter* theWrappedObject, int  spacesOrTabs);
    void setCodec(QXmlStreamWriter* theWrappedObject, QTextCodec*  codec);

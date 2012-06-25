@@ -16,6 +16,10 @@
 #include <quiloader.h>
 #include <qwidget.h>
 
+PythonQtShell_QUiLoader::~PythonQtShell_QUiLoader() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 void PythonQtShell_QUiLoader::childEvent(QChildEvent*  arg__1)
 {
 if (_wrapper) {
