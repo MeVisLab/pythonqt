@@ -70,7 +70,7 @@ QStringRef  PythonQtWrapper_QXmlStreamAttribute::value(QXmlStreamAttribute* theW
 
 QXmlStreamAttributes* PythonQtWrapper_QXmlStreamAttributes::new_QXmlStreamAttributes()
 { 
-return new PythonQtShell_QXmlStreamAttributes(); }
+return new QXmlStreamAttributes(); }
 
 void PythonQtWrapper_QXmlStreamAttributes::append(QXmlStreamAttributes* theWrappedObject, const QString&  namespaceUri, const QString&  name, const QString&  value)
 {
@@ -162,6 +162,11 @@ bool  PythonQtWrapper_QXmlStreamAttributes::isEmpty(QXmlStreamAttributes* theWra
   return ( theWrappedObject->isEmpty());
 }
 
+bool  PythonQtWrapper_QXmlStreamAttributes::isSharedWith(QXmlStreamAttributes* theWrappedObject, const QVector<QXmlStreamAttribute >&  other) const
+{
+  return ( theWrappedObject->isSharedWith(other));
+}
+
 const QXmlStreamAttribute*  PythonQtWrapper_QXmlStreamAttributes::last(QXmlStreamAttributes* theWrappedObject) const
 {
   return &( theWrappedObject->last());
@@ -235,6 +240,11 @@ void PythonQtWrapper_QXmlStreamAttributes::squeeze(QXmlStreamAttributes* theWrap
 bool  PythonQtWrapper_QXmlStreamAttributes::startsWith(QXmlStreamAttributes* theWrappedObject, const QXmlStreamAttribute&  t) const
 {
   return ( theWrappedObject->startsWith(t));
+}
+
+void PythonQtWrapper_QXmlStreamAttributes::swap(QXmlStreamAttributes* theWrappedObject, QVector<QXmlStreamAttribute >&  other)
+{
+  ( theWrappedObject->swap(other));
 }
 
 QList<QXmlStreamAttribute >  PythonQtWrapper_QXmlStreamAttributes::toList(QXmlStreamAttributes* theWrappedObject) const
@@ -686,6 +696,11 @@ QTextCodec*  PythonQtWrapper_QXmlStreamWriter::codec(QXmlStreamWriter* theWrappe
 QIODevice*  PythonQtWrapper_QXmlStreamWriter::device(QXmlStreamWriter* theWrappedObject) const
 {
   return ( theWrappedObject->device());
+}
+
+bool  PythonQtWrapper_QXmlStreamWriter::hasError(QXmlStreamWriter* theWrappedObject) const
+{
+  return ( theWrappedObject->hasError());
 }
 
 void PythonQtWrapper_QXmlStreamWriter::setAutoFormatting(QXmlStreamWriter* theWrappedObject, bool  arg__1)

@@ -42,6 +42,10 @@
 #include <qwidget.h>
 #include <qxmlstream.h>
 
+PythonQtShell_QSvgGenerator::~PythonQtShell_QSvgGenerator() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 int  PythonQtShell_QSvgGenerator::devType() const
 {
 if (_wrapper) {
@@ -222,6 +226,10 @@ QRectF  PythonQtWrapper_QSvgGenerator::viewBoxF(QSvgGenerator* theWrappedObject)
 
 
 
+PythonQtShell_QSvgRenderer::~PythonQtShell_QSvgRenderer() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 void PythonQtShell_QSvgRenderer::childEvent(QChildEvent*  arg__1)
 {
 if (_wrapper) {
@@ -422,6 +430,10 @@ QRectF  PythonQtWrapper_QSvgRenderer::viewBoxF(QSvgRenderer* theWrappedObject) c
 
 
 
+PythonQtShell_QSvgWidget::~PythonQtShell_QSvgWidget() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 void PythonQtShell_QSvgWidget::actionEvent(QActionEvent*  arg__1)
 {
 if (_wrapper) {

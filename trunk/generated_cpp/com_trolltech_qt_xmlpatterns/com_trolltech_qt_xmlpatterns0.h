@@ -30,6 +30,9 @@
 class PythonQtShell_QAbstractMessageHandler : public QAbstractMessageHandler
 {
 public:
+    PythonQtShell_QAbstractMessageHandler(QObject*  parent = 0):QAbstractMessageHandler(parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QAbstractMessageHandler();
 
 virtual void childEvent(QChildEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
@@ -45,6 +48,7 @@ class PythonQtWrapper_QAbstractMessageHandler : public QObject
 { Q_OBJECT
 public:
 public slots:
+QAbstractMessageHandler* new_QAbstractMessageHandler(QObject*  parent = 0);
 void delete_QAbstractMessageHandler(QAbstractMessageHandler* obj) { delete obj; } 
    void message(QAbstractMessageHandler* theWrappedObject, QtMsgType  type, const QString&  description, const QUrl&  identifier = QUrl(), const QSourceLocation&  sourceLocation = QSourceLocation());
 };
@@ -57,6 +61,8 @@ class PythonQtShell_QAbstractUriResolver : public QAbstractUriResolver
 {
 public:
     PythonQtShell_QAbstractUriResolver(QObject*  parent = 0):QAbstractUriResolver(parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QAbstractUriResolver();
 
 virtual void childEvent(QChildEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
@@ -83,6 +89,8 @@ void delete_QAbstractUriResolver(QAbstractUriResolver* obj) { delete obj; }
 class PythonQtShell_QAbstractXmlNodeModel : public QAbstractXmlNodeModel
 {
 public:
+
+   ~PythonQtShell_QAbstractXmlNodeModel();
 
 virtual QVector<QXmlNodeModelIndex >  attributes(const QXmlNodeModelIndex&  element) const;
 virtual QUrl  baseUri(const QXmlNodeModelIndex&  ni) const;
@@ -124,6 +132,8 @@ class PythonQtShell_QAbstractXmlReceiver : public QAbstractXmlReceiver
 {
 public:
     PythonQtShell_QAbstractXmlReceiver():QAbstractXmlReceiver(),_wrapper(NULL) {};
+
+   ~PythonQtShell_QAbstractXmlReceiver();
 
 virtual void atomicValue(const QVariant&  value);
 virtual void attribute(const QXmlName&  name, const QStringRef&  value);
@@ -188,6 +198,8 @@ class PythonQtShell_QSimpleXmlNodeModel : public QSimpleXmlNodeModel
 {
 public:
     PythonQtShell_QSimpleXmlNodeModel(const QXmlNamePool&  namePool):QSimpleXmlNodeModel(namePool),_wrapper(NULL) {};
+
+   ~PythonQtShell_QSimpleXmlNodeModel();
 
 virtual QVector<QXmlNodeModelIndex >  attributes(const QXmlNodeModelIndex&  element) const;
 virtual QUrl  baseUri(const QXmlNodeModelIndex&  node) const;
@@ -262,6 +274,8 @@ class PythonQtShell_QXmlFormatter : public QXmlFormatter
 {
 public:
     PythonQtShell_QXmlFormatter(const QXmlQuery&  query, QIODevice*  outputDevice):QXmlFormatter(query, outputDevice),_wrapper(NULL) {};
+
+   ~PythonQtShell_QXmlFormatter();
 
 virtual void atomicValue(const QVariant&  value);
 virtual void attribute(const QXmlName&  name, const QStringRef&  value);
@@ -458,6 +472,8 @@ class PythonQtShell_QXmlResultItems : public QXmlResultItems
 public:
     PythonQtShell_QXmlResultItems():QXmlResultItems(),_wrapper(NULL) {};
 
+   ~PythonQtShell_QXmlResultItems();
+
 
   PythonQtInstanceWrapper* _wrapper; 
 };
@@ -531,6 +547,8 @@ class PythonQtShell_QXmlSerializer : public QXmlSerializer
 {
 public:
     PythonQtShell_QXmlSerializer(const QXmlQuery&  query, QIODevice*  outputDevice):QXmlSerializer(query, outputDevice),_wrapper(NULL) {};
+
+   ~PythonQtShell_QXmlSerializer();
 
 virtual void atomicValue(const QVariant&  value);
 virtual void attribute(const QXmlName&  name, const QStringRef&  value);

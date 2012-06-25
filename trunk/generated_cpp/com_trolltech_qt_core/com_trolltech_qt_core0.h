@@ -4,7 +4,6 @@
 #include <QObject>
 #include <QSize>
 #include <QStringList>
-#include <QUrl>
 #include <QVariant>
 #include <qabstractanimation.h>
 #include <qabstractitemmodel.h>
@@ -23,6 +22,7 @@
 #include <qdir.h>
 #include <qdiriterator.h>
 #include <qeasingcurve.h>
+#include <qelapsedtimer.h>
 #include <qeventloop.h>
 #include <qeventtransition.h>
 #include <qfactoryinterface.h>
@@ -32,6 +32,7 @@
 #include <qfinalstate.h>
 #include <qhistorystate.h>
 #include <qiodevice.h>
+#include <qlibrary.h>
 #include <qlibraryinfo.h>
 #include <qlist.h>
 #include <qmimedata.h>
@@ -41,7 +42,6 @@
 #include <qstatemachine.h>
 #include <qstringlist.h>
 #include <qtranslator.h>
-#include <qurl.h>
 
 
 
@@ -49,6 +49,8 @@ class PythonQtShell_QAbstractAnimation : public QAbstractAnimation
 {
 public:
     PythonQtShell_QAbstractAnimation(QObject*  parent = 0):QAbstractAnimation(parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QAbstractAnimation();
 
 virtual void childEvent(QChildEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
@@ -102,6 +104,8 @@ class PythonQtShell_QAbstractItemModel : public QAbstractItemModel
 {
 public:
     PythonQtShell_QAbstractItemModel(QObject*  parent = 0):QAbstractItemModel(parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QAbstractItemModel();
 
 virtual QModelIndex  buddy(const QModelIndex&  index) const;
 virtual bool  canFetchMore(const QModelIndex&  parent) const;
@@ -194,6 +198,7 @@ void delete_QAbstractItemModel(QAbstractItemModel* obj) { delete obj; }
    bool  removeColumns(QAbstractItemModel* theWrappedObject, int  column, int  count, const QModelIndex&  parent = QModelIndex());
    bool  removeRow(QAbstractItemModel* theWrappedObject, int  row, const QModelIndex&  parent = QModelIndex());
    bool  removeRows(QAbstractItemModel* theWrappedObject, int  row, int  count, const QModelIndex&  parent = QModelIndex());
+   void revert(QAbstractItemModel* theWrappedObject);
    const QHash<int , QByteArray >*  roleNames(QAbstractItemModel* theWrappedObject) const;
    bool  setData(QAbstractItemModel* theWrappedObject, const QModelIndex&  index, const QVariant&  value, int  role = Qt::EditRole);
    bool  setHeaderData(QAbstractItemModel* theWrappedObject, int  section, Qt::Orientation  orientation, const QVariant&  value, int  role = Qt::EditRole);
@@ -202,6 +207,7 @@ void delete_QAbstractItemModel(QAbstractItemModel* obj) { delete obj; }
    QModelIndex  sibling(QAbstractItemModel* theWrappedObject, int  row, int  column, const QModelIndex&  idx) const;
    void sort(QAbstractItemModel* theWrappedObject, int  column, Qt::SortOrder  order = Qt::AscendingOrder);
    QSize  span(QAbstractItemModel* theWrappedObject, const QModelIndex&  index) const;
+   bool  submit(QAbstractItemModel* theWrappedObject);
    Qt::DropActions  supportedDragActions(QAbstractItemModel* theWrappedObject) const;
    Qt::DropActions  supportedDropActions(QAbstractItemModel* theWrappedObject) const;
 };
@@ -214,6 +220,8 @@ class PythonQtShell_QAbstractListModel : public QAbstractListModel
 {
 public:
     PythonQtShell_QAbstractListModel(QObject*  parent = 0):QAbstractListModel(parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QAbstractListModel();
 
 virtual QModelIndex  buddy(const QModelIndex&  index) const;
 virtual bool  canFetchMore(const QModelIndex&  parent) const;
@@ -274,6 +282,8 @@ class PythonQtShell_QAbstractState : public QAbstractState
 public:
     PythonQtShell_QAbstractState(QState*  parent = 0):QAbstractState(parent),_wrapper(NULL) {};
 
+   ~PythonQtShell_QAbstractState();
+
 virtual void childEvent(QChildEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
 virtual bool  event(QEvent*  e);
@@ -308,6 +318,8 @@ class PythonQtShell_QAbstractTransition : public QAbstractTransition
 {
 public:
     PythonQtShell_QAbstractTransition(QState*  sourceState = 0):QAbstractTransition(sourceState),_wrapper(NULL) {};
+
+   ~PythonQtShell_QAbstractTransition();
 
 virtual void childEvent(QChildEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
@@ -351,6 +363,8 @@ class PythonQtShell_QAnimationGroup : public QAnimationGroup
 {
 public:
     PythonQtShell_QAnimationGroup(QObject*  parent = 0):QAnimationGroup(parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QAnimationGroup();
 
 virtual void childEvent(QChildEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
@@ -416,6 +430,8 @@ class PythonQtShell_QBuffer : public QBuffer
 public:
     PythonQtShell_QBuffer(QByteArray*  buf, QObject*  parent = 0):QBuffer(buf, parent),_wrapper(NULL) {};
     PythonQtShell_QBuffer(QObject*  parent = 0):QBuffer(parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QBuffer();
 
 virtual bool  atEnd() const;
 virtual qint64  bytesAvailable() const;
@@ -503,6 +519,8 @@ class PythonQtShell_QChildEvent : public QChildEvent
 public:
     PythonQtShell_QChildEvent(QEvent::Type  type, QObject*  child):QChildEvent(type, child),_wrapper(NULL) {};
 
+   ~PythonQtShell_QChildEvent();
+
 
   PythonQtInstanceWrapper* _wrapper; 
 };
@@ -526,6 +544,8 @@ void delete_QChildEvent(QChildEvent* obj) { delete obj; }
 class PythonQtShell_QCoreApplication : public QCoreApplication
 {
 public:
+
+   ~PythonQtShell_QCoreApplication();
 
 virtual void childEvent(QChildEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
@@ -623,6 +643,8 @@ public:
     PythonQtShell_QDataStream(QIODevice*  arg__1):QDataStream(arg__1),_wrapper(NULL) {};
     PythonQtShell_QDataStream(const QByteArray&  arg__1):QDataStream(arg__1),_wrapper(NULL) {};
 
+   ~PythonQtShell_QDataStream();
+
 
   PythonQtInstanceWrapper* _wrapper; 
 };
@@ -634,9 +656,9 @@ Q_ENUMS(FloatingPointPrecision Version Status )
 enum FloatingPointPrecision{
   SinglePrecision = QDataStream::SinglePrecision,   DoublePrecision = QDataStream::DoublePrecision};
 enum Version{
-  Qt_1_0 = QDataStream::Qt_1_0,   Qt_2_0 = QDataStream::Qt_2_0,   Qt_2_1 = QDataStream::Qt_2_1,   Qt_3_0 = QDataStream::Qt_3_0,   Qt_3_1 = QDataStream::Qt_3_1,   Qt_3_3 = QDataStream::Qt_3_3,   Qt_4_0 = QDataStream::Qt_4_0,   Qt_4_1 = QDataStream::Qt_4_1,   Qt_4_2 = QDataStream::Qt_4_2,   Qt_4_3 = QDataStream::Qt_4_3,   Qt_4_4 = QDataStream::Qt_4_4,   Qt_4_5 = QDataStream::Qt_4_5,   Qt_4_6 = QDataStream::Qt_4_6};
+  Qt_1_0 = QDataStream::Qt_1_0,   Qt_2_0 = QDataStream::Qt_2_0,   Qt_2_1 = QDataStream::Qt_2_1,   Qt_3_0 = QDataStream::Qt_3_0,   Qt_3_1 = QDataStream::Qt_3_1,   Qt_3_3 = QDataStream::Qt_3_3,   Qt_4_0 = QDataStream::Qt_4_0,   Qt_4_1 = QDataStream::Qt_4_1,   Qt_4_2 = QDataStream::Qt_4_2,   Qt_4_3 = QDataStream::Qt_4_3,   Qt_4_4 = QDataStream::Qt_4_4,   Qt_4_5 = QDataStream::Qt_4_5,   Qt_4_6 = QDataStream::Qt_4_6,   Qt_4_7 = QDataStream::Qt_4_7,   Qt_4_8 = QDataStream::Qt_4_8};
 enum Status{
-  Ok = QDataStream::Ok,   ReadPastEnd = QDataStream::ReadPastEnd,   ReadCorruptData = QDataStream::ReadCorruptData};
+  Ok = QDataStream::Ok,   ReadPastEnd = QDataStream::ReadPastEnd,   ReadCorruptData = QDataStream::ReadCorruptData,   WriteFailed = QDataStream::WriteFailed};
 public slots:
 QDataStream* new_QDataStream();
 QDataStream* new_QDataStream(QByteArray*  arg__1, QIODevice::OpenMode  flags);
@@ -680,7 +702,7 @@ public:
 Q_ENUMS(Filter SortFlag )
 Q_FLAGS(Filters SortFlags )
 enum Filter{
-  Dirs = QDir::Dirs,   Files = QDir::Files,   Drives = QDir::Drives,   NoSymLinks = QDir::NoSymLinks,   AllEntries = QDir::AllEntries,   TypeMask = QDir::TypeMask,   Readable = QDir::Readable,   Writable = QDir::Writable,   Executable = QDir::Executable,   PermissionMask = QDir::PermissionMask,   Modified = QDir::Modified,   Hidden = QDir::Hidden,   System = QDir::System,   AccessMask = QDir::AccessMask,   AllDirs = QDir::AllDirs,   CaseSensitive = QDir::CaseSensitive,   NoDotAndDotDot = QDir::NoDotAndDotDot,   NoFilter = QDir::NoFilter};
+  Dirs = QDir::Dirs,   Files = QDir::Files,   Drives = QDir::Drives,   NoSymLinks = QDir::NoSymLinks,   AllEntries = QDir::AllEntries,   TypeMask = QDir::TypeMask,   Readable = QDir::Readable,   Writable = QDir::Writable,   Executable = QDir::Executable,   PermissionMask = QDir::PermissionMask,   Modified = QDir::Modified,   Hidden = QDir::Hidden,   System = QDir::System,   AccessMask = QDir::AccessMask,   AllDirs = QDir::AllDirs,   CaseSensitive = QDir::CaseSensitive,   NoDotAndDotDot = QDir::NoDotAndDotDot,   NoDot = QDir::NoDot,   NoDotDot = QDir::NoDotDot,   NoFilter = QDir::NoFilter};
 enum SortFlag{
   Name = QDir::Name,   Time = QDir::Time,   Size = QDir::Size,   Unsorted = QDir::Unsorted,   SortByMask = QDir::SortByMask,   DirsFirst = QDir::DirsFirst,   Reversed = QDir::Reversed,   IgnoreCase = QDir::IgnoreCase,   DirsLast = QDir::DirsLast,   LocaleAware = QDir::LocaleAware,   Type = QDir::Type,   NoSort = QDir::NoSort};
 Q_DECLARE_FLAGS(Filters, Filter)
@@ -766,6 +788,8 @@ public:
     PythonQtShell_QDirIterator(const QString&  path, QDirIterator::IteratorFlags  flags = QDirIterator::NoIteratorFlags):QDirIterator(path, flags),_wrapper(NULL) {};
     PythonQtShell_QDirIterator(const QString&  path, const QStringList&  nameFilters, QDir::Filters  filters = QDir::NoFilter, QDirIterator::IteratorFlags  flags = QDirIterator::NoIteratorFlags):QDirIterator(path, nameFilters, filters, flags),_wrapper(NULL) {};
 
+   ~PythonQtShell_QDirIterator();
+
 
   PythonQtInstanceWrapper* _wrapper; 
 };
@@ -821,8 +845,10 @@ QEasingCurve* new_QEasingCurve(const QEasingCurve&  other);
 void delete_QEasingCurve(QEasingCurve* obj) { delete obj; } 
    qreal  amplitude(QEasingCurve* theWrappedObject) const;
    bool  __ne__(QEasingCurve* theWrappedObject, const QEasingCurve&  other) const;
+   void writeTo(QEasingCurve* theWrappedObject, QDataStream&  arg__1);
    QEasingCurve*  operator_assign(QEasingCurve* theWrappedObject, const QEasingCurve&  other);
    bool  __eq__(QEasingCurve* theWrappedObject, const QEasingCurve&  other) const;
+   void readFrom(QEasingCurve* theWrappedObject, QDataStream&  arg__1);
    qreal  overshoot(QEasingCurve* theWrappedObject) const;
    qreal  period(QEasingCurve* theWrappedObject) const;
    void setAmplitude(QEasingCurve* theWrappedObject, qreal  amplitude);
@@ -838,10 +864,52 @@ void delete_QEasingCurve(QEasingCurve* obj) { delete obj; }
 
 
 
+class PythonQtShell_QElapsedTimer : public QElapsedTimer
+{
+public:
+    PythonQtShell_QElapsedTimer():QElapsedTimer(),_wrapper(NULL) {};
+
+   ~PythonQtShell_QElapsedTimer();
+
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtWrapper_QElapsedTimer : public QObject
+{ Q_OBJECT
+public:
+Q_ENUMS(ClockType )
+enum ClockType{
+  SystemTime = QElapsedTimer::SystemTime,   MonotonicClock = QElapsedTimer::MonotonicClock,   TickCounter = QElapsedTimer::TickCounter,   MachAbsoluteTime = QElapsedTimer::MachAbsoluteTime,   PerformanceCounter = QElapsedTimer::PerformanceCounter};
+public slots:
+QElapsedTimer* new_QElapsedTimer();
+void delete_QElapsedTimer(QElapsedTimer* obj) { delete obj; } 
+   QElapsedTimer::ClockType  static_QElapsedTimer_clockType();
+   qint64  elapsed(QElapsedTimer* theWrappedObject) const;
+   bool  hasExpired(QElapsedTimer* theWrappedObject, qint64  timeout) const;
+   void invalidate(QElapsedTimer* theWrappedObject);
+   bool  static_QElapsedTimer_isMonotonic();
+   bool  isValid(QElapsedTimer* theWrappedObject) const;
+   qint64  msecsSinceReference(QElapsedTimer* theWrappedObject) const;
+   qint64  msecsTo(QElapsedTimer* theWrappedObject, const QElapsedTimer&  other) const;
+   qint64  nsecsElapsed(QElapsedTimer* theWrappedObject) const;
+   bool  __ne__(QElapsedTimer* theWrappedObject, const QElapsedTimer&  other) const;
+   bool  __eq__(QElapsedTimer* theWrappedObject, const QElapsedTimer&  other) const;
+   qint64  restart(QElapsedTimer* theWrappedObject);
+   qint64  secsTo(QElapsedTimer* theWrappedObject, const QElapsedTimer&  other) const;
+   void start(QElapsedTimer* theWrappedObject);
+};
+
+
+
+
+
 class PythonQtShell_QEvent : public QEvent
 {
 public:
     PythonQtShell_QEvent(QEvent::Type  type):QEvent(type),_wrapper(NULL) {};
+
+   ~PythonQtShell_QEvent();
 
 
   PythonQtInstanceWrapper* _wrapper; 
@@ -852,7 +920,7 @@ class PythonQtWrapper_QEvent : public QObject
 public:
 Q_ENUMS(Type )
 enum Type{
-  None = QEvent::None,   Timer = QEvent::Timer,   MouseButtonPress = QEvent::MouseButtonPress,   MouseButtonRelease = QEvent::MouseButtonRelease,   MouseButtonDblClick = QEvent::MouseButtonDblClick,   MouseMove = QEvent::MouseMove,   KeyPress = QEvent::KeyPress,   KeyRelease = QEvent::KeyRelease,   FocusIn = QEvent::FocusIn,   FocusOut = QEvent::FocusOut,   Enter = QEvent::Enter,   Leave = QEvent::Leave,   Paint = QEvent::Paint,   Move = QEvent::Move,   Resize = QEvent::Resize,   Create = QEvent::Create,   Destroy = QEvent::Destroy,   Show = QEvent::Show,   Hide = QEvent::Hide,   Close = QEvent::Close,   Quit = QEvent::Quit,   ParentChange = QEvent::ParentChange,   ParentAboutToChange = QEvent::ParentAboutToChange,   ThreadChange = QEvent::ThreadChange,   WindowActivate = QEvent::WindowActivate,   WindowDeactivate = QEvent::WindowDeactivate,   ShowToParent = QEvent::ShowToParent,   HideToParent = QEvent::HideToParent,   Wheel = QEvent::Wheel,   WindowTitleChange = QEvent::WindowTitleChange,   WindowIconChange = QEvent::WindowIconChange,   ApplicationWindowIconChange = QEvent::ApplicationWindowIconChange,   ApplicationFontChange = QEvent::ApplicationFontChange,   ApplicationLayoutDirectionChange = QEvent::ApplicationLayoutDirectionChange,   ApplicationPaletteChange = QEvent::ApplicationPaletteChange,   PaletteChange = QEvent::PaletteChange,   Clipboard = QEvent::Clipboard,   Speech = QEvent::Speech,   MetaCall = QEvent::MetaCall,   SockAct = QEvent::SockAct,   WinEventAct = QEvent::WinEventAct,   DeferredDelete = QEvent::DeferredDelete,   DragEnter = QEvent::DragEnter,   DragMove = QEvent::DragMove,   DragLeave = QEvent::DragLeave,   Drop = QEvent::Drop,   DragResponse = QEvent::DragResponse,   ChildAdded = QEvent::ChildAdded,   ChildPolished = QEvent::ChildPolished,   ChildRemoved = QEvent::ChildRemoved,   ShowWindowRequest = QEvent::ShowWindowRequest,   PolishRequest = QEvent::PolishRequest,   Polish = QEvent::Polish,   LayoutRequest = QEvent::LayoutRequest,   UpdateRequest = QEvent::UpdateRequest,   UpdateLater = QEvent::UpdateLater,   EmbeddingControl = QEvent::EmbeddingControl,   ActivateControl = QEvent::ActivateControl,   DeactivateControl = QEvent::DeactivateControl,   ContextMenu = QEvent::ContextMenu,   InputMethod = QEvent::InputMethod,   AccessibilityPrepare = QEvent::AccessibilityPrepare,   TabletMove = QEvent::TabletMove,   LocaleChange = QEvent::LocaleChange,   LanguageChange = QEvent::LanguageChange,   LayoutDirectionChange = QEvent::LayoutDirectionChange,   Style = QEvent::Style,   TabletPress = QEvent::TabletPress,   TabletRelease = QEvent::TabletRelease,   OkRequest = QEvent::OkRequest,   HelpRequest = QEvent::HelpRequest,   IconDrag = QEvent::IconDrag,   FontChange = QEvent::FontChange,   EnabledChange = QEvent::EnabledChange,   ActivationChange = QEvent::ActivationChange,   StyleChange = QEvent::StyleChange,   IconTextChange = QEvent::IconTextChange,   ModifiedChange = QEvent::ModifiedChange,   MouseTrackingChange = QEvent::MouseTrackingChange,   WindowBlocked = QEvent::WindowBlocked,   WindowUnblocked = QEvent::WindowUnblocked,   WindowStateChange = QEvent::WindowStateChange,   ToolTip = QEvent::ToolTip,   WhatsThis = QEvent::WhatsThis,   StatusTip = QEvent::StatusTip,   ActionChanged = QEvent::ActionChanged,   ActionAdded = QEvent::ActionAdded,   ActionRemoved = QEvent::ActionRemoved,   FileOpen = QEvent::FileOpen,   Shortcut = QEvent::Shortcut,   ShortcutOverride = QEvent::ShortcutOverride,   WhatsThisClicked = QEvent::WhatsThisClicked,   ToolBarChange = QEvent::ToolBarChange,   ApplicationActivate = QEvent::ApplicationActivate,   ApplicationActivated = QEvent::ApplicationActivated,   ApplicationDeactivate = QEvent::ApplicationDeactivate,   ApplicationDeactivated = QEvent::ApplicationDeactivated,   QueryWhatsThis = QEvent::QueryWhatsThis,   EnterWhatsThisMode = QEvent::EnterWhatsThisMode,   LeaveWhatsThisMode = QEvent::LeaveWhatsThisMode,   ZOrderChange = QEvent::ZOrderChange,   HoverEnter = QEvent::HoverEnter,   HoverLeave = QEvent::HoverLeave,   HoverMove = QEvent::HoverMove,   AccessibilityHelp = QEvent::AccessibilityHelp,   AccessibilityDescription = QEvent::AccessibilityDescription,   AcceptDropsChange = QEvent::AcceptDropsChange,   MenubarUpdated = QEvent::MenubarUpdated,   ZeroTimerEvent = QEvent::ZeroTimerEvent,   GraphicsSceneMouseMove = QEvent::GraphicsSceneMouseMove,   GraphicsSceneMousePress = QEvent::GraphicsSceneMousePress,   GraphicsSceneMouseRelease = QEvent::GraphicsSceneMouseRelease,   GraphicsSceneMouseDoubleClick = QEvent::GraphicsSceneMouseDoubleClick,   GraphicsSceneContextMenu = QEvent::GraphicsSceneContextMenu,   GraphicsSceneHoverEnter = QEvent::GraphicsSceneHoverEnter,   GraphicsSceneHoverMove = QEvent::GraphicsSceneHoverMove,   GraphicsSceneHoverLeave = QEvent::GraphicsSceneHoverLeave,   GraphicsSceneHelp = QEvent::GraphicsSceneHelp,   GraphicsSceneDragEnter = QEvent::GraphicsSceneDragEnter,   GraphicsSceneDragMove = QEvent::GraphicsSceneDragMove,   GraphicsSceneDragLeave = QEvent::GraphicsSceneDragLeave,   GraphicsSceneDrop = QEvent::GraphicsSceneDrop,   GraphicsSceneWheel = QEvent::GraphicsSceneWheel,   KeyboardLayoutChange = QEvent::KeyboardLayoutChange,   DynamicPropertyChange = QEvent::DynamicPropertyChange,   TabletEnterProximity = QEvent::TabletEnterProximity,   TabletLeaveProximity = QEvent::TabletLeaveProximity,   NonClientAreaMouseMove = QEvent::NonClientAreaMouseMove,   NonClientAreaMouseButtonPress = QEvent::NonClientAreaMouseButtonPress,   NonClientAreaMouseButtonRelease = QEvent::NonClientAreaMouseButtonRelease,   NonClientAreaMouseButtonDblClick = QEvent::NonClientAreaMouseButtonDblClick,   MacSizeChange = QEvent::MacSizeChange,   ContentsRectChange = QEvent::ContentsRectChange,   MacGLWindowChange = QEvent::MacGLWindowChange,   FutureCallOut = QEvent::FutureCallOut,   GraphicsSceneResize = QEvent::GraphicsSceneResize,   GraphicsSceneMove = QEvent::GraphicsSceneMove,   CursorChange = QEvent::CursorChange,   ToolTipChange = QEvent::ToolTipChange,   NetworkReplyUpdated = QEvent::NetworkReplyUpdated,   GrabMouse = QEvent::GrabMouse,   UngrabMouse = QEvent::UngrabMouse,   GrabKeyboard = QEvent::GrabKeyboard,   UngrabKeyboard = QEvent::UngrabKeyboard,   /*CocoaRequestModal = QEvent::CocoaRequestModal,*/   MacGLClearDrawable = QEvent::MacGLClearDrawable,   StateMachineSignal = QEvent::StateMachineSignal,   StateMachineWrapped = QEvent::StateMachineWrapped,   TouchBegin = QEvent::TouchBegin,   TouchUpdate = QEvent::TouchUpdate,   TouchEnd = QEvent::TouchEnd,   NativeGesture = QEvent::NativeGesture,   RequestSoftwareInputPanel = QEvent::RequestSoftwareInputPanel,   CloseSoftwareInputPanel = QEvent::CloseSoftwareInputPanel,   UpdateSoftKeys = QEvent::UpdateSoftKeys,   WinIdChange = QEvent::WinIdChange,   Gesture = QEvent::Gesture,   GestureOverride = QEvent::GestureOverride,   User = QEvent::User,   MaxUser = QEvent::MaxUser};
+  None = QEvent::None,   Timer = QEvent::Timer,   MouseButtonPress = QEvent::MouseButtonPress,   MouseButtonRelease = QEvent::MouseButtonRelease,   MouseButtonDblClick = QEvent::MouseButtonDblClick,   MouseMove = QEvent::MouseMove,   KeyPress = QEvent::KeyPress,   KeyRelease = QEvent::KeyRelease,   FocusIn = QEvent::FocusIn,   FocusOut = QEvent::FocusOut,   Enter = QEvent::Enter,   Leave = QEvent::Leave,   Paint = QEvent::Paint,   Move = QEvent::Move,   Resize = QEvent::Resize,   Create = QEvent::Create,   Destroy = QEvent::Destroy,   Show = QEvent::Show,   Hide = QEvent::Hide,   Close = QEvent::Close,   Quit = QEvent::Quit,   ParentChange = QEvent::ParentChange,   ParentAboutToChange = QEvent::ParentAboutToChange,   ThreadChange = QEvent::ThreadChange,   WindowActivate = QEvent::WindowActivate,   WindowDeactivate = QEvent::WindowDeactivate,   ShowToParent = QEvent::ShowToParent,   HideToParent = QEvent::HideToParent,   Wheel = QEvent::Wheel,   WindowTitleChange = QEvent::WindowTitleChange,   WindowIconChange = QEvent::WindowIconChange,   ApplicationWindowIconChange = QEvent::ApplicationWindowIconChange,   ApplicationFontChange = QEvent::ApplicationFontChange,   ApplicationLayoutDirectionChange = QEvent::ApplicationLayoutDirectionChange,   ApplicationPaletteChange = QEvent::ApplicationPaletteChange,   PaletteChange = QEvent::PaletteChange,   Clipboard = QEvent::Clipboard,   Speech = QEvent::Speech,   MetaCall = QEvent::MetaCall,   SockAct = QEvent::SockAct,   WinEventAct = QEvent::WinEventAct,   DeferredDelete = QEvent::DeferredDelete,   DragEnter = QEvent::DragEnter,   DragMove = QEvent::DragMove,   DragLeave = QEvent::DragLeave,   Drop = QEvent::Drop,   DragResponse = QEvent::DragResponse,   ChildAdded = QEvent::ChildAdded,   ChildPolished = QEvent::ChildPolished,   ChildRemoved = QEvent::ChildRemoved,   ShowWindowRequest = QEvent::ShowWindowRequest,   PolishRequest = QEvent::PolishRequest,   Polish = QEvent::Polish,   LayoutRequest = QEvent::LayoutRequest,   UpdateRequest = QEvent::UpdateRequest,   UpdateLater = QEvent::UpdateLater,   EmbeddingControl = QEvent::EmbeddingControl,   ActivateControl = QEvent::ActivateControl,   DeactivateControl = QEvent::DeactivateControl,   ContextMenu = QEvent::ContextMenu,   InputMethod = QEvent::InputMethod,   AccessibilityPrepare = QEvent::AccessibilityPrepare,   TabletMove = QEvent::TabletMove,   LocaleChange = QEvent::LocaleChange,   LanguageChange = QEvent::LanguageChange,   LayoutDirectionChange = QEvent::LayoutDirectionChange,   Style = QEvent::Style,   TabletPress = QEvent::TabletPress,   TabletRelease = QEvent::TabletRelease,   OkRequest = QEvent::OkRequest,   HelpRequest = QEvent::HelpRequest,   IconDrag = QEvent::IconDrag,   FontChange = QEvent::FontChange,   EnabledChange = QEvent::EnabledChange,   ActivationChange = QEvent::ActivationChange,   StyleChange = QEvent::StyleChange,   IconTextChange = QEvent::IconTextChange,   ModifiedChange = QEvent::ModifiedChange,   MouseTrackingChange = QEvent::MouseTrackingChange,   WindowBlocked = QEvent::WindowBlocked,   WindowUnblocked = QEvent::WindowUnblocked,   WindowStateChange = QEvent::WindowStateChange,   ToolTip = QEvent::ToolTip,   WhatsThis = QEvent::WhatsThis,   StatusTip = QEvent::StatusTip,   ActionChanged = QEvent::ActionChanged,   ActionAdded = QEvent::ActionAdded,   ActionRemoved = QEvent::ActionRemoved,   FileOpen = QEvent::FileOpen,   Shortcut = QEvent::Shortcut,   ShortcutOverride = QEvent::ShortcutOverride,   WhatsThisClicked = QEvent::WhatsThisClicked,   ToolBarChange = QEvent::ToolBarChange,   ApplicationActivate = QEvent::ApplicationActivate,   ApplicationActivated = QEvent::ApplicationActivated,   ApplicationDeactivate = QEvent::ApplicationDeactivate,   ApplicationDeactivated = QEvent::ApplicationDeactivated,   QueryWhatsThis = QEvent::QueryWhatsThis,   EnterWhatsThisMode = QEvent::EnterWhatsThisMode,   LeaveWhatsThisMode = QEvent::LeaveWhatsThisMode,   ZOrderChange = QEvent::ZOrderChange,   HoverEnter = QEvent::HoverEnter,   HoverLeave = QEvent::HoverLeave,   HoverMove = QEvent::HoverMove,   AccessibilityHelp = QEvent::AccessibilityHelp,   AccessibilityDescription = QEvent::AccessibilityDescription,   AcceptDropsChange = QEvent::AcceptDropsChange,   MenubarUpdated = QEvent::MenubarUpdated,   ZeroTimerEvent = QEvent::ZeroTimerEvent,   GraphicsSceneMouseMove = QEvent::GraphicsSceneMouseMove,   GraphicsSceneMousePress = QEvent::GraphicsSceneMousePress,   GraphicsSceneMouseRelease = QEvent::GraphicsSceneMouseRelease,   GraphicsSceneMouseDoubleClick = QEvent::GraphicsSceneMouseDoubleClick,   GraphicsSceneContextMenu = QEvent::GraphicsSceneContextMenu,   GraphicsSceneHoverEnter = QEvent::GraphicsSceneHoverEnter,   GraphicsSceneHoverMove = QEvent::GraphicsSceneHoverMove,   GraphicsSceneHoverLeave = QEvent::GraphicsSceneHoverLeave,   GraphicsSceneHelp = QEvent::GraphicsSceneHelp,   GraphicsSceneDragEnter = QEvent::GraphicsSceneDragEnter,   GraphicsSceneDragMove = QEvent::GraphicsSceneDragMove,   GraphicsSceneDragLeave = QEvent::GraphicsSceneDragLeave,   GraphicsSceneDrop = QEvent::GraphicsSceneDrop,   GraphicsSceneWheel = QEvent::GraphicsSceneWheel,   KeyboardLayoutChange = QEvent::KeyboardLayoutChange,   DynamicPropertyChange = QEvent::DynamicPropertyChange,   TabletEnterProximity = QEvent::TabletEnterProximity,   TabletLeaveProximity = QEvent::TabletLeaveProximity,   NonClientAreaMouseMove = QEvent::NonClientAreaMouseMove,   NonClientAreaMouseButtonPress = QEvent::NonClientAreaMouseButtonPress,   NonClientAreaMouseButtonRelease = QEvent::NonClientAreaMouseButtonRelease,   NonClientAreaMouseButtonDblClick = QEvent::NonClientAreaMouseButtonDblClick,   MacSizeChange = QEvent::MacSizeChange,   ContentsRectChange = QEvent::ContentsRectChange,   MacGLWindowChange = QEvent::MacGLWindowChange,   FutureCallOut = QEvent::FutureCallOut,   GraphicsSceneResize = QEvent::GraphicsSceneResize,   GraphicsSceneMove = QEvent::GraphicsSceneMove,   CursorChange = QEvent::CursorChange,   ToolTipChange = QEvent::ToolTipChange,   NetworkReplyUpdated = QEvent::NetworkReplyUpdated,   GrabMouse = QEvent::GrabMouse,   UngrabMouse = QEvent::UngrabMouse,   GrabKeyboard = QEvent::GrabKeyboard,   UngrabKeyboard = QEvent::UngrabKeyboard,   MacGLClearDrawable = QEvent::MacGLClearDrawable,   StateMachineSignal = QEvent::StateMachineSignal,   StateMachineWrapped = QEvent::StateMachineWrapped,   TouchBegin = QEvent::TouchBegin,   TouchUpdate = QEvent::TouchUpdate,   TouchEnd = QEvent::TouchEnd,   NativeGesture = QEvent::NativeGesture,   RequestSoftwareInputPanel = QEvent::RequestSoftwareInputPanel,   CloseSoftwareInputPanel = QEvent::CloseSoftwareInputPanel,   UpdateSoftKeys = QEvent::UpdateSoftKeys,   WinIdChange = QEvent::WinIdChange,   Gesture = QEvent::Gesture,   GestureOverride = QEvent::GestureOverride,   User = QEvent::User,   MaxUser = QEvent::MaxUser};
 public slots:
 QEvent* new_QEvent(QEvent::Type  type);
 void delete_QEvent(QEvent* obj) { delete obj; } 
@@ -874,6 +942,8 @@ class PythonQtShell_QEventLoop : public QEventLoop
 {
 public:
     PythonQtShell_QEventLoop(QObject*  parent = 0):QEventLoop(parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QEventLoop();
 
 virtual void childEvent(QChildEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
@@ -912,6 +982,8 @@ class PythonQtShell_QEventTransition : public QEventTransition
 public:
     PythonQtShell_QEventTransition(QObject*  object, QEvent::Type  type, QState*  sourceState = 0):QEventTransition(object, type, sourceState),_wrapper(NULL) {};
     PythonQtShell_QEventTransition(QState*  sourceState = 0):QEventTransition(sourceState),_wrapper(NULL) {};
+
+   ~PythonQtShell_QEventTransition();
 
 virtual void childEvent(QChildEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
@@ -956,6 +1028,8 @@ class PythonQtShell_QFactoryInterface : public QFactoryInterface
 public:
     PythonQtShell_QFactoryInterface():QFactoryInterface(),_wrapper(NULL) {};
 
+   ~PythonQtShell_QFactoryInterface();
+
 virtual QStringList  keys() const;
 
   PythonQtInstanceWrapper* _wrapper; 
@@ -980,6 +1054,8 @@ public:
     PythonQtShell_QFile(QObject*  parent):QFile(parent),_wrapper(NULL) {};
     PythonQtShell_QFile(const QString&  name):QFile(name),_wrapper(NULL) {};
     PythonQtShell_QFile(const QString&  name, QObject*  parent):QFile(name, parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QFile();
 
 virtual bool  atEnd() const;
 virtual qint64  bytesAvailable() const;
@@ -1025,14 +1101,17 @@ inline qint64  promoted_writeData(const char*  data, qint64  len) { return QFile
 class PythonQtWrapper_QFile : public QObject
 { Q_OBJECT
 public:
-Q_ENUMS(FileError MemoryMapFlags Permission )
-Q_FLAGS(Permissions )
+Q_ENUMS(FileError FileHandleFlag MemoryMapFlags Permission )
+Q_FLAGS(FileHandleFlags Permissions )
 enum FileError{
   NoError = QFile::NoError,   ReadError = QFile::ReadError,   WriteError = QFile::WriteError,   FatalError = QFile::FatalError,   ResourceError = QFile::ResourceError,   OpenError = QFile::OpenError,   AbortError = QFile::AbortError,   TimeOutError = QFile::TimeOutError,   UnspecifiedError = QFile::UnspecifiedError,   RemoveError = QFile::RemoveError,   RenameError = QFile::RenameError,   PositionError = QFile::PositionError,   ResizeError = QFile::ResizeError,   PermissionsError = QFile::PermissionsError,   CopyError = QFile::CopyError};
+enum FileHandleFlag{
+  AutoCloseHandle = QFile::AutoCloseHandle,   DontCloseHandle = QFile::DontCloseHandle};
 enum MemoryMapFlags{
   NoOptions = QFile::NoOptions};
 enum Permission{
   ReadOwner = QFile::ReadOwner,   WriteOwner = QFile::WriteOwner,   ExeOwner = QFile::ExeOwner,   ReadUser = QFile::ReadUser,   WriteUser = QFile::WriteUser,   ExeUser = QFile::ExeUser,   ReadGroup = QFile::ReadGroup,   WriteGroup = QFile::WriteGroup,   ExeGroup = QFile::ExeGroup,   ReadOther = QFile::ReadOther,   WriteOther = QFile::WriteOther,   ExeOther = QFile::ExeOther};
+Q_DECLARE_FLAGS(FileHandleFlags, FileHandleFlag)
 Q_DECLARE_FLAGS(Permissions, Permission)
 public slots:
 QFile* new_QFile();
@@ -1057,6 +1136,7 @@ void delete_QFile(QFile* obj) { delete obj; }
    bool  link(QFile* theWrappedObject, const QString&  newName);
    bool  static_QFile_link(const QString&  oldname, const QString&  newName);
    bool  open(QFile* theWrappedObject, QIODevice::OpenMode  flags);
+   bool  open(QFile* theWrappedObject, int  fd, QIODevice::OpenMode  ioFlags, QFile::FileHandleFlags  handleFlags);
    QFile::Permissions  permissions(QFile* theWrappedObject) const;
    QFile::Permissions  static_QFile_permissions(const QString&  filename);
    qint64  pos(QFile* theWrappedObject) const;
@@ -1151,6 +1231,8 @@ public:
     PythonQtShell_QFileSystemWatcher(QObject*  parent = 0):QFileSystemWatcher(parent),_wrapper(NULL) {};
     PythonQtShell_QFileSystemWatcher(const QStringList&  paths, QObject*  parent = 0):QFileSystemWatcher(paths, parent),_wrapper(NULL) {};
 
+   ~PythonQtShell_QFileSystemWatcher();
+
 virtual void childEvent(QChildEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
 virtual bool  event(QEvent*  arg__1);
@@ -1183,6 +1265,8 @@ class PythonQtShell_QFinalState : public QFinalState
 {
 public:
     PythonQtShell_QFinalState(QState*  parent = 0):QFinalState(parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QFinalState();
 
 virtual void childEvent(QChildEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
@@ -1222,6 +1306,8 @@ class PythonQtShell_QHistoryState : public QHistoryState
 public:
     PythonQtShell_QHistoryState(QHistoryState::HistoryType  type, QState*  parent = 0):QHistoryState(type, parent),_wrapper(NULL) {};
     PythonQtShell_QHistoryState(QState*  parent = 0):QHistoryState(parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QHistoryState();
 
 virtual void childEvent(QChildEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
@@ -1266,6 +1352,8 @@ class PythonQtShell_QIODevice : public QIODevice
 public:
     PythonQtShell_QIODevice():QIODevice(),_wrapper(NULL) {};
     PythonQtShell_QIODevice(QObject*  parent):QIODevice(parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QIODevice();
 
 virtual bool  atEnd() const;
 virtual qint64  bytesAvailable() const;
@@ -1358,12 +1446,66 @@ void delete_QIODevice(QIODevice* obj) { delete obj; }
 
 
 
+class PythonQtShell_QLibrary : public QLibrary
+{
+public:
+    PythonQtShell_QLibrary(QObject*  parent = 0):QLibrary(parent),_wrapper(NULL) {};
+    PythonQtShell_QLibrary(const QString&  fileName, QObject*  parent = 0):QLibrary(fileName, parent),_wrapper(NULL) {};
+    PythonQtShell_QLibrary(const QString&  fileName, const QString&  version, QObject*  parent = 0):QLibrary(fileName, version, parent),_wrapper(NULL) {};
+    PythonQtShell_QLibrary(const QString&  fileName, int  verNum, QObject*  parent = 0):QLibrary(fileName, verNum, parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QLibrary();
+
+virtual void childEvent(QChildEvent*  arg__1);
+virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
+virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void timerEvent(QTimerEvent*  arg__1);
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtWrapper_QLibrary : public QObject
+{ Q_OBJECT
+public:
+Q_ENUMS(LoadHint )
+Q_FLAGS(LoadHints )
+enum LoadHint{
+  ResolveAllSymbolsHint = QLibrary::ResolveAllSymbolsHint,   ExportExternalSymbolsHint = QLibrary::ExportExternalSymbolsHint,   LoadArchiveMemberHint = QLibrary::LoadArchiveMemberHint};
+Q_DECLARE_FLAGS(LoadHints, LoadHint)
+public slots:
+QLibrary* new_QLibrary(QObject*  parent = 0);
+QLibrary* new_QLibrary(const QString&  fileName, QObject*  parent = 0);
+QLibrary* new_QLibrary(const QString&  fileName, const QString&  version, QObject*  parent = 0);
+QLibrary* new_QLibrary(const QString&  fileName, int  verNum, QObject*  parent = 0);
+void delete_QLibrary(QLibrary* obj) { delete obj; } 
+   QString  errorString(QLibrary* theWrappedObject) const;
+   QString  fileName(QLibrary* theWrappedObject) const;
+   bool  static_QLibrary_isLibrary(const QString&  fileName);
+   bool  isLoaded(QLibrary* theWrappedObject) const;
+   bool  load(QLibrary* theWrappedObject);
+   QLibrary::LoadHints  loadHints(QLibrary* theWrappedObject) const;
+   void*  static_QLibrary_resolve(const QString&  fileName, const QString&  version, const char*  symbol);
+   void*  static_QLibrary_resolve(const QString&  fileName, const char*  symbol);
+   void*  static_QLibrary_resolve(const QString&  fileName, int  verNum, const char*  symbol);
+   void*  resolve(QLibrary* theWrappedObject, const char*  symbol);
+   void setFileName(QLibrary* theWrappedObject, const QString&  fileName);
+   void setFileNameAndVersion(QLibrary* theWrappedObject, const QString&  fileName, const QString&  version);
+   void setFileNameAndVersion(QLibrary* theWrappedObject, const QString&  fileName, int  verNum);
+   void setLoadHints(QLibrary* theWrappedObject, QLibrary::LoadHints  hints);
+   bool  unload(QLibrary* theWrappedObject);
+};
+
+
+
+
+
 class PythonQtWrapper_QLibraryInfo : public QObject
 { Q_OBJECT
 public:
 Q_ENUMS(LibraryLocation )
 enum LibraryLocation{
-  PrefixPath = QLibraryInfo::PrefixPath,   DocumentationPath = QLibraryInfo::DocumentationPath,   HeadersPath = QLibraryInfo::HeadersPath,   LibrariesPath = QLibraryInfo::LibrariesPath,   BinariesPath = QLibraryInfo::BinariesPath,   PluginsPath = QLibraryInfo::PluginsPath,   DataPath = QLibraryInfo::DataPath,   TranslationsPath = QLibraryInfo::TranslationsPath,   SettingsPath = QLibraryInfo::SettingsPath,   DemosPath = QLibraryInfo::DemosPath,   ExamplesPath = QLibraryInfo::ExamplesPath};
+  PrefixPath = QLibraryInfo::PrefixPath,   DocumentationPath = QLibraryInfo::DocumentationPath,   HeadersPath = QLibraryInfo::HeadersPath,   LibrariesPath = QLibraryInfo::LibrariesPath,   BinariesPath = QLibraryInfo::BinariesPath,   PluginsPath = QLibraryInfo::PluginsPath,   DataPath = QLibraryInfo::DataPath,   TranslationsPath = QLibraryInfo::TranslationsPath,   SettingsPath = QLibraryInfo::SettingsPath,   DemosPath = QLibraryInfo::DemosPath,   ExamplesPath = QLibraryInfo::ExamplesPath,   ImportsPath = QLibraryInfo::ImportsPath};
 public slots:
 void delete_QLibraryInfo(QLibraryInfo* obj) { delete obj; } 
    QDate  static_QLibraryInfo_buildDate();
@@ -1371,92 +1513,6 @@ void delete_QLibraryInfo(QLibraryInfo* obj) { delete obj; }
    QString  static_QLibraryInfo_licensedProducts();
    QString  static_QLibraryInfo_licensee();
    QString  static_QLibraryInfo_location(QLibraryInfo::LibraryLocation  arg__1);
-};
-
-
-
-
-
-class PythonQtShell_QMimeData : public QMimeData
-{
-public:
-    PythonQtShell_QMimeData():QMimeData(),_wrapper(NULL) {};
-
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual QStringList  formats() const;
-virtual bool  hasFormat(const QString&  mimetype) const;
-virtual QVariant  retrieveData(const QString&  mimetype, QVariant::Type  preferredType) const;
-virtual void timerEvent(QTimerEvent*  arg__1);
-
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
-class PythonQtPublicPromoter_QMimeData : public QMimeData
-{ public:
-inline QStringList  promoted_formats() const { return QMimeData::formats(); }
-inline bool  promoted_hasFormat(const QString&  mimetype) const { return QMimeData::hasFormat(mimetype); }
-inline QVariant  promoted_retrieveData(const QString&  mimetype, QVariant::Type  preferredType) const { return QMimeData::retrieveData(mimetype, preferredType); }
-};
-
-class PythonQtWrapper_QMimeData : public QObject
-{ Q_OBJECT
-public:
-public slots:
-QMimeData* new_QMimeData();
-void delete_QMimeData(QMimeData* obj) { delete obj; } 
-   void clear(QMimeData* theWrappedObject);
-   QVariant  colorData(QMimeData* theWrappedObject) const;
-   QByteArray  data(QMimeData* theWrappedObject, const QString&  mimetype) const;
-   QStringList  formats(QMimeData* theWrappedObject) const;
-   bool  hasColor(QMimeData* theWrappedObject) const;
-   bool  hasFormat(QMimeData* theWrappedObject, const QString&  mimetype) const;
-   bool  hasHtml(QMimeData* theWrappedObject) const;
-   bool  hasImage(QMimeData* theWrappedObject) const;
-   bool  hasText(QMimeData* theWrappedObject) const;
-   bool  hasUrls(QMimeData* theWrappedObject) const;
-   QString  html(QMimeData* theWrappedObject) const;
-   QVariant  imageData(QMimeData* theWrappedObject) const;
-   void removeFormat(QMimeData* theWrappedObject, const QString&  mimetype);
-   QVariant  retrieveData(QMimeData* theWrappedObject, const QString&  mimetype, QVariant::Type  preferredType) const;
-   void setColorData(QMimeData* theWrappedObject, const QVariant&  color);
-   void setData(QMimeData* theWrappedObject, const QString&  mimetype, const QByteArray&  data);
-   void setHtml(QMimeData* theWrappedObject, const QString&  html);
-   void setImageData(QMimeData* theWrappedObject, const QVariant&  image);
-   void setText(QMimeData* theWrappedObject, const QString&  text);
-   void setUrls(QMimeData* theWrappedObject, const QList<QUrl >&  urls);
-   QString  text(QMimeData* theWrappedObject) const;
-   QList<QUrl >  urls(QMimeData* theWrappedObject) const;
-};
-
-
-
-
-
-class PythonQtWrapper_QModelIndex : public QObject
-{ Q_OBJECT
-public:
-public slots:
-QModelIndex* new_QModelIndex();
-QModelIndex* new_QModelIndex(const QModelIndex&  other);
-void delete_QModelIndex(QModelIndex* obj) { delete obj; } 
-   QModelIndex  child(QModelIndex* theWrappedObject, int  row, int  column) const;
-   int  column(QModelIndex* theWrappedObject) const;
-   QVariant  data(QModelIndex* theWrappedObject, int  role = Qt::DisplayRole) const;
-   Qt::ItemFlags  flags(QModelIndex* theWrappedObject) const;
-   qint64  internalId(QModelIndex* theWrappedObject) const;
-   void*  internalPointer(QModelIndex* theWrappedObject) const;
-   bool  isValid(QModelIndex* theWrappedObject) const;
-   const QAbstractItemModel*  model(QModelIndex* theWrappedObject) const;
-   bool  __ne__(QModelIndex* theWrappedObject, const QModelIndex&  other) const;
-   bool  __lt__(QModelIndex* theWrappedObject, const QModelIndex&  other) const;
-   bool  __eq__(QModelIndex* theWrappedObject, const QModelIndex&  other) const;
-   QModelIndex  parent(QModelIndex* theWrappedObject) const;
-   int  row(QModelIndex* theWrappedObject) const;
-   QModelIndex  sibling(QModelIndex* theWrappedObject, int  row, int  column) const;
-    QString py_toString(QModelIndex*);
 };
 
 

@@ -6,8 +6,11 @@ void PythonQt_init_QtWebKit(PyObject* module) {
 PythonQt::priv()->registerClass(&QGraphicsWebView::staticMetaObject, "QtWebKit", PythonQtCreateObject<PythonQtWrapper_QGraphicsWebView>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QGraphicsWebView>, module, 0);
 PythonQt::priv()->registerCPPClass("QWebDatabase", "", "QtWebKit", PythonQtCreateObject<PythonQtWrapper_QWebDatabase>, NULL, module, 0);
 PythonQt::priv()->registerCPPClass("QWebElement", "", "QtWebKit", PythonQtCreateObject<PythonQtWrapper_QWebElement>, NULL, module, PythonQt::Type_NonZero|PythonQt::Type_RichCompare);
+PythonQt::priv()->registerCPPClass("QWebElementCollection", "", "QtWebKit", PythonQtCreateObject<PythonQtWrapper_QWebElementCollection>, NULL, module, PythonQt::Type_InplaceAdd|PythonQt::Type_Add);
 PythonQt::priv()->registerClass(&QWebFrame::staticMetaObject, "QtWebKit", PythonQtCreateObject<PythonQtWrapper_QWebFrame>, NULL, module, 0);
+PythonQt::priv()->registerCPPClass("QWebHistory", "", "QtWebKit", PythonQtCreateObject<PythonQtWrapper_QWebHistory>, NULL, module, 0);
 PythonQt::priv()->registerClass(&QWebHistoryInterface::staticMetaObject, "QtWebKit", PythonQtCreateObject<PythonQtWrapper_QWebHistoryInterface>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QWebHistoryInterface>, module, 0);
+PythonQt::priv()->registerCPPClass("QWebHistoryItem", "", "QtWebKit", PythonQtCreateObject<PythonQtWrapper_QWebHistoryItem>, NULL, module, 0);
 PythonQt::priv()->registerCPPClass("QWebHitTestResult", "", "QtWebKit", PythonQtCreateObject<PythonQtWrapper_QWebHitTestResult>, NULL, module, PythonQt::Type_NonZero);
 PythonQt::priv()->registerClass(&QWebInspector::staticMetaObject, "QtWebKit", PythonQtCreateObject<PythonQtWrapper_QWebInspector>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QWebInspector>, module, 0);
 PythonQt::priv()->registerClass(&QWebPage::staticMetaObject, "QtWebKit", PythonQtCreateObject<PythonQtWrapper_QWebPage>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QWebPage>, module, 0);

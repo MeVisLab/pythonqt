@@ -8,6 +8,8 @@
 #include <qbytearray.h>
 #include <qcoreevent.h>
 #include <qcursor.h>
+#include <qdatastream.h>
+#include <qdatetime.h>
 #include <qevent.h>
 #include <qfont.h>
 #include <qgraphicseffect.h>
@@ -48,6 +50,7 @@
 #include <qwebdatabase.h>
 #include <qwebelement.h>
 #include <qwebframe.h>
+#include <qwebhistory.h>
 #include <qwebhistoryinterface.h>
 #include <qwebpage.h>
 #include <qwebpluginfactory.h>
@@ -56,6 +59,10 @@
 #include <qwebview.h>
 #include <qwidget.h>
 
+PythonQtShell_QGraphicsWebView::~PythonQtShell_QGraphicsWebView() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 void PythonQtShell_QGraphicsWebView::changeEvent(QEvent*  event)
 {
 if (_wrapper) {
@@ -1054,6 +1061,11 @@ bool  PythonQtWrapper_QGraphicsWebView::isModified(QGraphicsWebView* theWrappedO
   return ( theWrappedObject->isModified());
 }
 
+bool  PythonQtWrapper_QGraphicsWebView::isTiledBackingStoreFrozen(QGraphicsWebView* theWrappedObject) const
+{
+  return ( theWrappedObject->isTiledBackingStoreFrozen());
+}
+
 QVariant  PythonQtWrapper_QGraphicsWebView::itemChange(QGraphicsWebView* theWrappedObject, QGraphicsItem::GraphicsItemChange  change, const QVariant&  value)
 {
   return ( ((PythonQtPublicPromoter_QGraphicsWebView*)theWrappedObject)->promoted_itemChange(change, value));
@@ -1114,6 +1126,16 @@ void PythonQtWrapper_QGraphicsWebView::paint(QGraphicsWebView* theWrappedObject,
   ( ((PythonQtPublicPromoter_QGraphicsWebView*)theWrappedObject)->promoted_paint(arg__1, options, widget));
 }
 
+QPainter::RenderHints  PythonQtWrapper_QGraphicsWebView::renderHints(QGraphicsWebView* theWrappedObject) const
+{
+  return ( theWrappedObject->renderHints());
+}
+
+bool  PythonQtWrapper_QGraphicsWebView::resizesToContents(QGraphicsWebView* theWrappedObject) const
+{
+  return ( theWrappedObject->resizesToContents());
+}
+
 bool  PythonQtWrapper_QGraphicsWebView::sceneEvent(QGraphicsWebView* theWrappedObject, QEvent*  arg__1)
 {
   return ( ((PythonQtPublicPromoter_QGraphicsWebView*)theWrappedObject)->promoted_sceneEvent(arg__1));
@@ -1137,6 +1159,26 @@ void PythonQtWrapper_QGraphicsWebView::setHtml(QGraphicsWebView* theWrappedObjec
 void PythonQtWrapper_QGraphicsWebView::setPage(QGraphicsWebView* theWrappedObject, QWebPage*  arg__1)
 {
   ( theWrappedObject->setPage(arg__1));
+}
+
+void PythonQtWrapper_QGraphicsWebView::setRenderHint(QGraphicsWebView* theWrappedObject, QPainter::RenderHint  arg__1, bool  enabled)
+{
+  ( theWrappedObject->setRenderHint(arg__1, enabled));
+}
+
+void PythonQtWrapper_QGraphicsWebView::setRenderHints(QGraphicsWebView* theWrappedObject, QPainter::RenderHints  arg__1)
+{
+  ( theWrappedObject->setRenderHints(arg__1));
+}
+
+void PythonQtWrapper_QGraphicsWebView::setResizesToContents(QGraphicsWebView* theWrappedObject, bool  enabled)
+{
+  ( theWrappedObject->setResizesToContents(enabled));
+}
+
+void PythonQtWrapper_QGraphicsWebView::setTiledBackingStoreFrozen(QGraphicsWebView* theWrappedObject, bool  frozen)
+{
+  ( theWrappedObject->setTiledBackingStoreFrozen(frozen));
 }
 
 void PythonQtWrapper_QGraphicsWebView::setUrl(QGraphicsWebView* theWrappedObject, const QUrl&  arg__1)
@@ -1330,6 +1372,11 @@ QVariant  PythonQtWrapper_QWebElement::evaluateJavaScript(QWebElement* theWrappe
   return ( theWrappedObject->evaluateJavaScript(scriptSource));
 }
 
+QWebElementCollection  PythonQtWrapper_QWebElement::findAll(QWebElement* theWrappedObject, const QString&  selectorQuery) const
+{
+  return ( theWrappedObject->findAll(selectorQuery));
+}
+
 QWebElement  PythonQtWrapper_QWebElement::findFirst(QWebElement* theWrappedObject, const QString&  selectorQuery) const
 {
   return ( theWrappedObject->findFirst(selectorQuery));
@@ -1475,6 +1522,11 @@ void PythonQtWrapper_QWebElement::render(QWebElement* theWrappedObject, QPainter
   ( theWrappedObject->render(painter));
 }
 
+void PythonQtWrapper_QWebElement::render(QWebElement* theWrappedObject, QPainter*  painter, const QRect&  clipRect)
+{
+  ( theWrappedObject->render(painter, clipRect));
+}
+
 void PythonQtWrapper_QWebElement::replace(QWebElement* theWrappedObject, const QString&  markup)
 {
   ( theWrappedObject->replace(markup));
@@ -1562,6 +1614,70 @@ QWebFrame*  PythonQtWrapper_QWebElement::webFrame(QWebElement* theWrappedObject)
 
 
 
+QWebElementCollection* PythonQtWrapper_QWebElementCollection::new_QWebElementCollection()
+{ 
+return new QWebElementCollection(); }
+
+QWebElementCollection* PythonQtWrapper_QWebElementCollection::new_QWebElementCollection(const QWebElement&  contextElement, const QString&  query)
+{ 
+return new QWebElementCollection(contextElement, query); }
+
+QWebElementCollection* PythonQtWrapper_QWebElementCollection::new_QWebElementCollection(const QWebElementCollection&  arg__1)
+{ 
+return new QWebElementCollection(arg__1); }
+
+void PythonQtWrapper_QWebElementCollection::append(QWebElementCollection* theWrappedObject, const QWebElementCollection&  collection)
+{
+  ( theWrappedObject->append(collection));
+}
+
+QWebElement  PythonQtWrapper_QWebElementCollection::at(QWebElementCollection* theWrappedObject, int  i) const
+{
+  return ( theWrappedObject->at(i));
+}
+
+int  PythonQtWrapper_QWebElementCollection::count(QWebElementCollection* theWrappedObject) const
+{
+  return ( theWrappedObject->count());
+}
+
+QWebElement  PythonQtWrapper_QWebElementCollection::first(QWebElementCollection* theWrappedObject) const
+{
+  return ( theWrappedObject->first());
+}
+
+QWebElement  PythonQtWrapper_QWebElementCollection::last(QWebElementCollection* theWrappedObject) const
+{
+  return ( theWrappedObject->last());
+}
+
+QWebElementCollection  PythonQtWrapper_QWebElementCollection::__add__(QWebElementCollection* theWrappedObject, const QWebElementCollection&  other) const
+{
+  return ( (*theWrappedObject)+ other);
+}
+
+QWebElementCollection*  PythonQtWrapper_QWebElementCollection::__iadd__(QWebElementCollection* theWrappedObject, const QWebElementCollection&  other)
+{
+  return &( (*theWrappedObject)+= other);
+}
+
+QWebElementCollection*  PythonQtWrapper_QWebElementCollection::operator_assign(QWebElementCollection* theWrappedObject, const QWebElementCollection&  arg__1)
+{
+  return &( (*theWrappedObject)= arg__1);
+}
+
+QWebElement  PythonQtWrapper_QWebElementCollection::operator_subscript(QWebElementCollection* theWrappedObject, int  i) const
+{
+  return ( (*theWrappedObject)[i]);
+}
+
+QList<QWebElement >  PythonQtWrapper_QWebElementCollection::toList(QWebElementCollection* theWrappedObject) const
+{
+  return ( theWrappedObject->toList());
+}
+
+
+
 void PythonQtWrapper_QWebFrame::addToJavaScriptWindowObject(QWebFrame* theWrappedObject, const QString&  name, QObject*  object)
 {
   ( theWrappedObject->addToJavaScriptWindowObject(name, object));
@@ -1590,6 +1706,11 @@ QWebElement  PythonQtWrapper_QWebFrame::documentElement(QWebFrame* theWrappedObj
 bool  PythonQtWrapper_QWebFrame::event(QWebFrame* theWrappedObject, QEvent*  arg__1)
 {
   return ( ((PythonQtPublicPromoter_QWebFrame*)theWrappedObject)->promoted_event(arg__1));
+}
+
+QWebElementCollection  PythonQtWrapper_QWebFrame::findAllElements(QWebFrame* theWrappedObject, const QString&  selectorQuery) const
+{
+  return ( theWrappedObject->findAllElements(selectorQuery));
 }
 
 QWebElement  PythonQtWrapper_QWebFrame::findFirstElement(QWebFrame* theWrappedObject, const QString&  selectorQuery) const
@@ -1657,6 +1778,11 @@ void PythonQtWrapper_QWebFrame::render(QWebFrame* theWrappedObject, QPainter*  a
   ( theWrappedObject->render(arg__1));
 }
 
+void PythonQtWrapper_QWebFrame::render(QWebFrame* theWrappedObject, QPainter*  arg__1, QWebFrame::RenderLayer  layer, const QRegion&  clip)
+{
+  ( theWrappedObject->render(arg__1, layer, clip));
+}
+
 void PythonQtWrapper_QWebFrame::render(QWebFrame* theWrappedObject, QPainter*  arg__1, const QRegion&  clip)
 {
   ( theWrappedObject->render(arg__1, clip));
@@ -1705,6 +1831,11 @@ int  PythonQtWrapper_QWebFrame::scrollBarValue(QWebFrame* theWrappedObject, Qt::
 QPoint  PythonQtWrapper_QWebFrame::scrollPosition(QWebFrame* theWrappedObject) const
 {
   return ( theWrappedObject->scrollPosition());
+}
+
+void PythonQtWrapper_QWebFrame::scrollToAnchor(QWebFrame* theWrappedObject, const QString&  anchor)
+{
+  ( theWrappedObject->scrollToAnchor(anchor));
 }
 
 QWebSecurityOrigin  PythonQtWrapper_QWebFrame::securityOrigin(QWebFrame* theWrappedObject) const
@@ -1789,6 +1920,107 @@ qreal  PythonQtWrapper_QWebFrame::zoomFactor(QWebFrame* theWrappedObject) const
 
 
 
+void PythonQtWrapper_QWebHistory::back(QWebHistory* theWrappedObject)
+{
+  ( theWrappedObject->back());
+}
+
+QWebHistoryItem  PythonQtWrapper_QWebHistory::backItem(QWebHistory* theWrappedObject) const
+{
+  return ( theWrappedObject->backItem());
+}
+
+QList<QWebHistoryItem >  PythonQtWrapper_QWebHistory::backItems(QWebHistory* theWrappedObject, int  maxItems) const
+{
+  return ( theWrappedObject->backItems(maxItems));
+}
+
+bool  PythonQtWrapper_QWebHistory::canGoBack(QWebHistory* theWrappedObject) const
+{
+  return ( theWrappedObject->canGoBack());
+}
+
+bool  PythonQtWrapper_QWebHistory::canGoForward(QWebHistory* theWrappedObject) const
+{
+  return ( theWrappedObject->canGoForward());
+}
+
+void PythonQtWrapper_QWebHistory::clear(QWebHistory* theWrappedObject)
+{
+  ( theWrappedObject->clear());
+}
+
+int  PythonQtWrapper_QWebHistory::count(QWebHistory* theWrappedObject) const
+{
+  return ( theWrappedObject->count());
+}
+
+QWebHistoryItem  PythonQtWrapper_QWebHistory::currentItem(QWebHistory* theWrappedObject) const
+{
+  return ( theWrappedObject->currentItem());
+}
+
+int  PythonQtWrapper_QWebHistory::currentItemIndex(QWebHistory* theWrappedObject) const
+{
+  return ( theWrappedObject->currentItemIndex());
+}
+
+void PythonQtWrapper_QWebHistory::forward(QWebHistory* theWrappedObject)
+{
+  ( theWrappedObject->forward());
+}
+
+QWebHistoryItem  PythonQtWrapper_QWebHistory::forwardItem(QWebHistory* theWrappedObject) const
+{
+  return ( theWrappedObject->forwardItem());
+}
+
+QList<QWebHistoryItem >  PythonQtWrapper_QWebHistory::forwardItems(QWebHistory* theWrappedObject, int  maxItems) const
+{
+  return ( theWrappedObject->forwardItems(maxItems));
+}
+
+void PythonQtWrapper_QWebHistory::goToItem(QWebHistory* theWrappedObject, const QWebHistoryItem&  item)
+{
+  ( theWrappedObject->goToItem(item));
+}
+
+QWebHistoryItem  PythonQtWrapper_QWebHistory::itemAt(QWebHistory* theWrappedObject, int  i) const
+{
+  return ( theWrappedObject->itemAt(i));
+}
+
+QList<QWebHistoryItem >  PythonQtWrapper_QWebHistory::items(QWebHistory* theWrappedObject) const
+{
+  return ( theWrappedObject->items());
+}
+
+int  PythonQtWrapper_QWebHistory::maximumItemCount(QWebHistory* theWrappedObject) const
+{
+  return ( theWrappedObject->maximumItemCount());
+}
+
+void PythonQtWrapper_QWebHistory::writeTo(QWebHistory* theWrappedObject, QDataStream&  stream)
+{
+  stream <<  (*theWrappedObject);
+}
+
+void PythonQtWrapper_QWebHistory::readFrom(QWebHistory* theWrappedObject, QDataStream&  stream)
+{
+  stream >>  (*theWrappedObject);
+}
+
+void PythonQtWrapper_QWebHistory::setMaximumItemCount(QWebHistory* theWrappedObject, int  count)
+{
+  ( theWrappedObject->setMaximumItemCount(count));
+}
+
+
+
+PythonQtShell_QWebHistoryInterface::~PythonQtShell_QWebHistoryInterface() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 void PythonQtShell_QWebHistoryInterface::addHistoryEntry(const QString&  url)
 {
 if (_wrapper) {
@@ -1957,6 +2189,57 @@ void PythonQtWrapper_QWebHistoryInterface::static_QWebHistoryInterface_setDefaul
 
 
 
+QWebHistoryItem* PythonQtWrapper_QWebHistoryItem::new_QWebHistoryItem(const QWebHistoryItem&  other)
+{ 
+return new QWebHistoryItem(other); }
+
+QIcon  PythonQtWrapper_QWebHistoryItem::icon(QWebHistoryItem* theWrappedObject) const
+{
+  return ( theWrappedObject->icon());
+}
+
+bool  PythonQtWrapper_QWebHistoryItem::isValid(QWebHistoryItem* theWrappedObject) const
+{
+  return ( theWrappedObject->isValid());
+}
+
+QDateTime  PythonQtWrapper_QWebHistoryItem::lastVisited(QWebHistoryItem* theWrappedObject) const
+{
+  return ( theWrappedObject->lastVisited());
+}
+
+QWebHistoryItem*  PythonQtWrapper_QWebHistoryItem::operator_assign(QWebHistoryItem* theWrappedObject, const QWebHistoryItem&  other)
+{
+  return &( (*theWrappedObject)= other);
+}
+
+QUrl  PythonQtWrapper_QWebHistoryItem::originalUrl(QWebHistoryItem* theWrappedObject) const
+{
+  return ( theWrappedObject->originalUrl());
+}
+
+void PythonQtWrapper_QWebHistoryItem::setUserData(QWebHistoryItem* theWrappedObject, const QVariant&  userData)
+{
+  ( theWrappedObject->setUserData(userData));
+}
+
+QString  PythonQtWrapper_QWebHistoryItem::title(QWebHistoryItem* theWrappedObject) const
+{
+  return ( theWrappedObject->title());
+}
+
+QUrl  PythonQtWrapper_QWebHistoryItem::url(QWebHistoryItem* theWrappedObject) const
+{
+  return ( theWrappedObject->url());
+}
+
+QVariant  PythonQtWrapper_QWebHistoryItem::userData(QWebHistoryItem* theWrappedObject) const
+{
+  return ( theWrappedObject->userData());
+}
+
+
+
 QWebHitTestResult* PythonQtWrapper_QWebHitTestResult::new_QWebHitTestResult()
 { 
 return new QWebHitTestResult(); }
@@ -2052,6 +2335,10 @@ QString  PythonQtWrapper_QWebHitTestResult::title(QWebHitTestResult* theWrappedO
 
 
 
+PythonQtShell_QWebInspector::~PythonQtShell_QWebInspector() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 void PythonQtShell_QWebInspector::actionEvent(QActionEvent*  arg__1)
 {
 if (_wrapper) {
@@ -2103,7 +2390,7 @@ if (_wrapper) {
 }
   QWebInspector::childEvent(arg__1);
 }
-void PythonQtShell_QWebInspector::closeEvent(QCloseEvent*  arg__1)
+void PythonQtShell_QWebInspector::closeEvent(QCloseEvent*  event)
 {
 if (_wrapper) {
   PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "closeEvent");
@@ -2111,14 +2398,14 @@ if (_wrapper) {
   if (obj && !PythonQtSlotFunction_Check(obj)) {
     static const char* argumentList[] ={"" , "QCloseEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
+    void* args[2] = {NULL, (void*)&event};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
   }
 }
-  QWebInspector::closeEvent(arg__1);
+  QWebInspector::closeEvent(event);
 }
 void PythonQtShell_QWebInspector::contextMenuEvent(QContextMenuEvent*  arg__1)
 {
@@ -2818,6 +3105,11 @@ QWebInspector* PythonQtWrapper_QWebInspector::new_QWebInspector(QWidget*  parent
 { 
 return new PythonQtShell_QWebInspector(parent); }
 
+void PythonQtWrapper_QWebInspector::closeEvent(QWebInspector* theWrappedObject, QCloseEvent*  event)
+{
+  ( ((PythonQtPublicPromoter_QWebInspector*)theWrappedObject)->promoted_closeEvent(event));
+}
+
 bool  PythonQtWrapper_QWebInspector::event(QWebInspector* theWrappedObject, QEvent*  arg__1)
 {
   return ( ((PythonQtPublicPromoter_QWebInspector*)theWrappedObject)->promoted_event(arg__1));
@@ -2855,6 +3147,10 @@ QSize  PythonQtWrapper_QWebInspector::sizeHint(QWebInspector* theWrappedObject) 
 
 
 
+PythonQtShell_QWebPage::~PythonQtShell_QWebPage() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 bool  PythonQtShell_QWebPage::acceptNavigationRequest(QWebFrame*  frame, const QNetworkRequest&  request, QWebPage::NavigationType  type)
 {
 if (_wrapper) {
@@ -3339,6 +3635,11 @@ QWebFrame*  PythonQtWrapper_QWebPage::frameAt(QWebPage* theWrappedObject, const 
   return ( theWrappedObject->frameAt(pos));
 }
 
+bool  PythonQtWrapper_QWebPage::hasSelection(QWebPage* theWrappedObject) const
+{
+  return ( theWrappedObject->hasSelection());
+}
+
 QWebHistory*  PythonQtWrapper_QWebPage::history(QWebPage* theWrappedObject) const
 {
   return ( theWrappedObject->history());
@@ -3409,14 +3710,29 @@ QSize  PythonQtWrapper_QWebPage::preferredContentsSize(QWebPage* theWrappedObjec
   return ( theWrappedObject->preferredContentsSize());
 }
 
+QString  PythonQtWrapper_QWebPage::selectedHtml(QWebPage* theWrappedObject) const
+{
+  return ( theWrappedObject->selectedHtml());
+}
+
 QString  PythonQtWrapper_QWebPage::selectedText(QWebPage* theWrappedObject) const
 {
   return ( theWrappedObject->selectedText());
 }
 
+void PythonQtWrapper_QWebPage::setActualVisibleContentRect(QWebPage* theWrappedObject, const QRect&  rect) const
+{
+  ( theWrappedObject->setActualVisibleContentRect(rect));
+}
+
 void PythonQtWrapper_QWebPage::setContentEditable(QWebPage* theWrappedObject, bool  editable)
 {
   ( theWrappedObject->setContentEditable(editable));
+}
+
+void PythonQtWrapper_QWebPage::setFeaturePermission(QWebPage* theWrappedObject, QWebFrame*  frame, QWebPage::Feature  feature, QWebPage::PermissionPolicy  policy)
+{
+  ( theWrappedObject->setFeaturePermission(frame, feature, policy));
 }
 
 void PythonQtWrapper_QWebPage::setForwardUnsupportedContent(QWebPage* theWrappedObject, bool  forward)
@@ -3462,6 +3778,16 @@ void PythonQtWrapper_QWebPage::setViewportSize(QWebPage* theWrappedObject, const
 QWebSettings*  PythonQtWrapper_QWebPage::settings(QWebPage* theWrappedObject) const
 {
   return ( theWrappedObject->settings());
+}
+
+QStringList  PythonQtWrapper_QWebPage::supportedContentTypes(QWebPage* theWrappedObject) const
+{
+  return ( theWrappedObject->supportedContentTypes());
+}
+
+bool  PythonQtWrapper_QWebPage::supportsContentType(QWebPage* theWrappedObject, const QString&  mimeType) const
+{
+  return ( theWrappedObject->supportsContentType(mimeType));
 }
 
 bool  PythonQtWrapper_QWebPage::supportsExtension(QWebPage* theWrappedObject, QWebPage::Extension  extension) const
@@ -3511,42 +3837,70 @@ QSize  PythonQtWrapper_QWebPage::viewportSize(QWebPage* theWrappedObject) const
 
 
 
+PythonQtShell_QWebPage_ChooseMultipleFilesExtensionOption::~PythonQtShell_QWebPage_ChooseMultipleFilesExtensionOption() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 QWebPage::ChooseMultipleFilesExtensionOption* PythonQtWrapper_QWebPage_ChooseMultipleFilesExtensionOption::new_QWebPage_ChooseMultipleFilesExtensionOption()
 { 
 return new PythonQtShell_QWebPage_ChooseMultipleFilesExtensionOption(); }
 
 
 
+PythonQtShell_QWebPage_ChooseMultipleFilesExtensionReturn::~PythonQtShell_QWebPage_ChooseMultipleFilesExtensionReturn() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 QWebPage::ChooseMultipleFilesExtensionReturn* PythonQtWrapper_QWebPage_ChooseMultipleFilesExtensionReturn::new_QWebPage_ChooseMultipleFilesExtensionReturn()
 { 
 return new PythonQtShell_QWebPage_ChooseMultipleFilesExtensionReturn(); }
 
 
 
+PythonQtShell_QWebPage_ErrorPageExtensionOption::~PythonQtShell_QWebPage_ErrorPageExtensionOption() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 QWebPage::ErrorPageExtensionOption* PythonQtWrapper_QWebPage_ErrorPageExtensionOption::new_QWebPage_ErrorPageExtensionOption()
 { 
 return new PythonQtShell_QWebPage_ErrorPageExtensionOption(); }
 
 
 
+PythonQtShell_QWebPage_ErrorPageExtensionReturn::~PythonQtShell_QWebPage_ErrorPageExtensionReturn() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 QWebPage::ErrorPageExtensionReturn* PythonQtWrapper_QWebPage_ErrorPageExtensionReturn::new_QWebPage_ErrorPageExtensionReturn()
 { 
 return new PythonQtShell_QWebPage_ErrorPageExtensionReturn(); }
 
 
 
+PythonQtShell_QWebPage_ExtensionOption::~PythonQtShell_QWebPage_ExtensionOption() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 QWebPage::ExtensionOption* PythonQtWrapper_QWebPage_ExtensionOption::new_QWebPage_ExtensionOption()
 { 
 return new PythonQtShell_QWebPage_ExtensionOption(); }
 
 
 
+PythonQtShell_QWebPage_ExtensionReturn::~PythonQtShell_QWebPage_ExtensionReturn() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 QWebPage::ExtensionReturn* PythonQtWrapper_QWebPage_ExtensionReturn::new_QWebPage_ExtensionReturn()
 { 
 return new PythonQtShell_QWebPage_ExtensionReturn(); }
 
 
 
+PythonQtShell_QWebPluginFactory::~PythonQtShell_QWebPluginFactory() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 void PythonQtShell_QWebPluginFactory::childEvent(QChildEvent*  arg__1)
 {
 if (_wrapper) {
@@ -3804,18 +4158,30 @@ bool  PythonQtWrapper_QWebPluginFactory::supportsExtension(QWebPluginFactory* th
 
 
 
+PythonQtShell_QWebPluginFactory_ExtensionOption::~PythonQtShell_QWebPluginFactory_ExtensionOption() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 QWebPluginFactory::ExtensionOption* PythonQtWrapper_QWebPluginFactory_ExtensionOption::new_QWebPluginFactory_ExtensionOption()
 { 
 return new PythonQtShell_QWebPluginFactory_ExtensionOption(); }
 
 
 
+PythonQtShell_QWebPluginFactory_ExtensionReturn::~PythonQtShell_QWebPluginFactory_ExtensionReturn() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 QWebPluginFactory::ExtensionReturn* PythonQtWrapper_QWebPluginFactory_ExtensionReturn::new_QWebPluginFactory_ExtensionReturn()
 { 
 return new PythonQtShell_QWebPluginFactory_ExtensionReturn(); }
 
 
 
+PythonQtShell_QWebPluginFactory_MimeType::~PythonQtShell_QWebPluginFactory_MimeType() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 QWebPluginFactory::MimeType* PythonQtWrapper_QWebPluginFactory_MimeType::new_QWebPluginFactory_MimeType()
 { 
 return new PythonQtShell_QWebPluginFactory_MimeType(); }
@@ -3832,6 +4198,10 @@ bool  PythonQtWrapper_QWebPluginFactory_MimeType::__eq__(QWebPluginFactory::Mime
 
 
 
+PythonQtShell_QWebPluginFactory_Plugin::~PythonQtShell_QWebPluginFactory_Plugin() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 QWebPluginFactory::Plugin* PythonQtWrapper_QWebPluginFactory_Plugin::new_QWebPluginFactory_Plugin()
 { 
 return new PythonQtShell_QWebPluginFactory_Plugin(); }
@@ -3895,6 +4265,11 @@ void PythonQtWrapper_QWebSecurityOrigin::static_QWebSecurityOrigin_removeLocalSc
 QString  PythonQtWrapper_QWebSecurityOrigin::scheme(QWebSecurityOrigin* theWrappedObject) const
 {
   return ( theWrappedObject->scheme());
+}
+
+void PythonQtWrapper_QWebSecurityOrigin::setApplicationCacheQuota(QWebSecurityOrigin* theWrappedObject, qint64  quota)
+{
+  ( theWrappedObject->setApplicationCacheQuota(quota));
 }
 
 void PythonQtWrapper_QWebSecurityOrigin::setDatabaseQuota(QWebSecurityOrigin* theWrappedObject, qint64  quota)
@@ -4081,6 +4456,10 @@ QPixmap  PythonQtWrapper_QWebSettings::static_QWebSettings_webGraphic(QWebSettin
 
 
 
+PythonQtShell_QWebView::~PythonQtShell_QWebView() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 void PythonQtShell_QWebView::actionEvent(QActionEvent*  arg__1)
 {
 if (_wrapper) {
@@ -4935,6 +5314,11 @@ void PythonQtWrapper_QWebView::focusOutEvent(QWebView* theWrappedObject, QFocusE
   ( ((PythonQtPublicPromoter_QWebView*)theWrappedObject)->promoted_focusOutEvent(arg__1));
 }
 
+bool  PythonQtWrapper_QWebView::hasSelection(QWebView* theWrappedObject) const
+{
+  return ( theWrappedObject->hasSelection());
+}
+
 QWebHistory*  PythonQtWrapper_QWebView::history(QWebView* theWrappedObject) const
 {
   return ( theWrappedObject->history());
@@ -5023,6 +5407,11 @@ QPainter::RenderHints  PythonQtWrapper_QWebView::renderHints(QWebView* theWrappe
 void PythonQtWrapper_QWebView::resizeEvent(QWebView* theWrappedObject, QResizeEvent*  arg__1)
 {
   ( ((PythonQtPublicPromoter_QWebView*)theWrappedObject)->promoted_resizeEvent(arg__1));
+}
+
+QString  PythonQtWrapper_QWebView::selectedHtml(QWebView* theWrappedObject) const
+{
+  return ( theWrappedObject->selectedHtml());
 }
 
 QString  PythonQtWrapper_QWebView::selectedText(QWebView* theWrappedObject) const

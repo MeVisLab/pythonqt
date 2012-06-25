@@ -7,29 +7,29 @@ static void* polymorphichandler_QEvent(const void *ptr, const char **class_name)
 {
     Q_ASSERT(ptr != 0);
     QEvent *object = (QEvent *)ptr;
-    if (object->type() == QEvent::None) {
-        *class_name = "QEvent";
-        return (QEvent*)object;
-    }
     if (object->type() == QEvent::ChildAdded || object->type() == QEvent::ChildPolished || object->type() == QEvent::ChildRemoved) {
         *class_name = "QChildEvent";
         return (QChildEvent*)object;
     }
-    if (object->type() == QEvent::StateMachineWrapped) {
-        *class_name = "QStateMachine_WrappedEvent";
-        return (QStateMachine::WrappedEvent*)object;
+    if (object->type() == QEvent::DynamicPropertyChange) {
+        *class_name = "QDynamicPropertyChangeEvent";
+        return (QDynamicPropertyChangeEvent*)object;
+    }
+    if (object->type() == QEvent::None) {
+        *class_name = "QEvent";
+        return (QEvent*)object;
     }
     if (object->type() == QEvent::StateMachineSignal) {
         *class_name = "QStateMachine_SignalEvent";
         return (QStateMachine::SignalEvent*)object;
     }
+    if (object->type() == QEvent::StateMachineWrapped) {
+        *class_name = "QStateMachine_WrappedEvent";
+        return (QStateMachine::WrappedEvent*)object;
+    }
     if (object->type() == QEvent::Timer) {
         *class_name = "QTimerEvent";
         return (QTimerEvent*)object;
-    }
-    if (object->type() == QEvent::DynamicPropertyChange) {
-        *class_name = "QDynamicPropertyChangeEvent";
-        return (QDynamicPropertyChangeEvent*)object;
     }
     return NULL;
 }
@@ -52,6 +52,7 @@ PythonQt::priv()->registerCPPClass("QDir", "", "QtCore", PythonQtCreateObject<Py
 PythonQt::priv()->registerCPPClass("QDirIterator", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QDirIterator>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QDirIterator>, module, 0);
 PythonQt::priv()->registerCPPClass("QDynamicPropertyChangeEvent", "QEvent", "QtCore", PythonQtCreateObject<PythonQtWrapper_QDynamicPropertyChangeEvent>, NULL, module, 0);
 PythonQt::priv()->registerCPPClass("QEasingCurve", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QEasingCurve>, NULL, module, PythonQt::Type_RichCompare);
+PythonQt::priv()->registerCPPClass("QElapsedTimer", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QElapsedTimer>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QElapsedTimer>, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerCPPClass("QEvent", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QEvent>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QEvent>, module, 0);
 PythonQt::priv()->registerClass(&QEventLoop::staticMetaObject, "QtCore", PythonQtCreateObject<PythonQtWrapper_QEventLoop>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QEventLoop>, module, 0);
 PythonQt::priv()->registerClass(&QEventTransition::staticMetaObject, "QtCore", PythonQtCreateObject<PythonQtWrapper_QEventTransition>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QEventTransition>, module, 0);
@@ -62,7 +63,13 @@ PythonQt::priv()->registerClass(&QFileSystemWatcher::staticMetaObject, "QtCore",
 PythonQt::priv()->registerClass(&QFinalState::staticMetaObject, "QtCore", PythonQtCreateObject<PythonQtWrapper_QFinalState>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QFinalState>, module, 0);
 PythonQt::priv()->registerClass(&QHistoryState::staticMetaObject, "QtCore", PythonQtCreateObject<PythonQtWrapper_QHistoryState>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QHistoryState>, module, 0);
 PythonQt::priv()->registerClass(&QIODevice::staticMetaObject, "QtCore", PythonQtCreateObject<PythonQtWrapper_QIODevice>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QIODevice>, module, 0);
+PythonQt::priv()->registerClass(&QLibrary::staticMetaObject, "QtCore", PythonQtCreateObject<PythonQtWrapper_QLibrary>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QLibrary>, module, 0);
 PythonQt::priv()->registerCPPClass("QLibraryInfo", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QLibraryInfo>, NULL, module, 0);
+PythonQt::priv()->registerCPPClass("QMetaClassInfo", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QMetaClassInfo>, NULL, module, 0);
+PythonQt::priv()->registerCPPClass("QMetaEnum", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QMetaEnum>, NULL, module, 0);
+PythonQt::priv()->registerCPPClass("QMetaMethod", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QMetaMethod>, NULL, module, 0);
+PythonQt::priv()->registerCPPClass("QMetaProperty", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QMetaProperty>, NULL, module, 0);
+PythonQt::priv()->registerCPPClass("QMetaType", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QMetaType>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QMetaType>, module, 0);
 PythonQt::priv()->registerClass(&QMimeData::staticMetaObject, "QtCore", PythonQtCreateObject<PythonQtWrapper_QMimeData>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QMimeData>, module, 0);
 PythonQt::priv()->registerCPPClass("QModelIndex", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QModelIndex>, NULL, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerCPPClass("QMutex", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QMutex>, NULL, module, 0);
@@ -73,10 +80,12 @@ PythonQt::priv()->registerClass(&QProcess::staticMetaObject, "QtCore", PythonQtC
 PythonQt::priv()->registerCPPClass("QProcessEnvironment", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QProcessEnvironment>, NULL, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerClass(&QPropertyAnimation::staticMetaObject, "QtCore", PythonQtCreateObject<PythonQtWrapper_QPropertyAnimation>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPropertyAnimation>, module, 0);
 PythonQt::priv()->registerCPPClass("QReadWriteLock", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QReadWriteLock>, NULL, module, 0);
+PythonQt::priv()->registerCPPClass("QResource", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QResource>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QResource>, module, 0);
 PythonQt::priv()->registerCPPClass("QRunnable", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QRunnable>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QRunnable>, module, 0);
 PythonQt::priv()->registerCPPClass("QSemaphore", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QSemaphore>, NULL, module, 0);
 PythonQt::priv()->registerClass(&QSequentialAnimationGroup::staticMetaObject, "QtCore", PythonQtCreateObject<PythonQtWrapper_QSequentialAnimationGroup>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSequentialAnimationGroup>, module, 0);
 PythonQt::priv()->registerClass(&QSettings::staticMetaObject, "QtCore", PythonQtCreateObject<PythonQtWrapper_QSettings>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSettings>, module, 0);
+PythonQt::priv()->registerClass(&QSharedMemory::staticMetaObject, "QtCore", PythonQtCreateObject<PythonQtWrapper_QSharedMemory>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSharedMemory>, module, 0);
 PythonQt::priv()->registerClass(&QSignalMapper::staticMetaObject, "QtCore", PythonQtCreateObject<PythonQtWrapper_QSignalMapper>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSignalMapper>, module, 0);
 PythonQt::priv()->registerClass(&QSignalTransition::staticMetaObject, "QtCore", PythonQtCreateObject<PythonQtWrapper_QSignalTransition>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSignalTransition>, module, 0);
 PythonQt::priv()->registerClass(&QSocketNotifier::staticMetaObject, "QtCore", PythonQtCreateObject<PythonQtWrapper_QSocketNotifier>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSocketNotifier>, module, 0);
@@ -85,6 +94,7 @@ PythonQt::priv()->registerClass(&QStateMachine::staticMetaObject, "QtCore", Pyth
 PythonQt::priv()->registerCPPClass("QStateMachine::SignalEvent", "QEvent", "QtCore", PythonQtCreateObject<PythonQtWrapper_QStateMachine_SignalEvent>, NULL, module, 0);
 PythonQt::priv()->registerCPPClass("QStateMachine::WrappedEvent", "QEvent", "QtCore", PythonQtCreateObject<PythonQtWrapper_QStateMachine_WrappedEvent>, NULL, module, 0);
 PythonQt::priv()->registerCPPClass("QStringMatcher", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QStringMatcher>, NULL, module, 0);
+PythonQt::priv()->registerCPPClass("QSysInfo", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QSysInfo>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSysInfo>, module, 0);
 PythonQt::priv()->registerCPPClass("QSystemSemaphore", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QSystemSemaphore>, NULL, module, 0);
 PythonQt::priv()->registerClass(&QTemporaryFile::staticMetaObject, "QtCore", PythonQtCreateObject<PythonQtWrapper_QTemporaryFile>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QTemporaryFile>, module, 0);
 PythonQt::priv()->registerCPPClass("QTextBoundaryFinder", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QTextBoundaryFinder>, NULL, module, 0);

@@ -1078,6 +1078,10 @@ QDomText  PythonQtWrapper_QDomText::splitText(QDomText* theWrappedObject, int  o
 
 
 
+PythonQtShell_QXmlAttributes::~PythonQtShell_QXmlAttributes() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 QXmlAttributes* PythonQtWrapper_QXmlAttributes::new_QXmlAttributes()
 { 
 return new PythonQtShell_QXmlAttributes(); }
@@ -1159,6 +1163,10 @@ QString  PythonQtWrapper_QXmlAttributes::value(QXmlAttributes* theWrappedObject,
 
 
 
+PythonQtShell_QXmlContentHandler::~PythonQtShell_QXmlContentHandler() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 bool  PythonQtShell_QXmlContentHandler::characters(const QString&  ch)
 {
 if (_wrapper) {
@@ -1490,6 +1498,10 @@ return new PythonQtShell_QXmlContentHandler(); }
 
 
 
+PythonQtShell_QXmlDTDHandler::~PythonQtShell_QXmlDTDHandler() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 QString  PythonQtShell_QXmlDTDHandler::errorString() const
 {
 if (_wrapper) {
@@ -1580,6 +1592,10 @@ return new PythonQtShell_QXmlDTDHandler(); }
 
 
 
+PythonQtShell_QXmlDeclHandler::~PythonQtShell_QXmlDeclHandler() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 bool  PythonQtShell_QXmlDeclHandler::attributeDecl(const QString&  eName, const QString&  aName, const QString&  type, const QString&  valueDefault, const QString&  value)
 {
 if (_wrapper) {
@@ -1698,6 +1714,10 @@ return new PythonQtShell_QXmlDeclHandler(); }
 
 
 
+PythonQtShell_QXmlDefaultHandler::~PythonQtShell_QXmlDefaultHandler() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 bool  PythonQtShell_QXmlDefaultHandler::attributeDecl(const QString&  eName, const QString&  aName, const QString&  type, const QString&  valueDefault, const QString&  value)
 {
 if (_wrapper) {
@@ -2617,6 +2637,10 @@ bool  PythonQtWrapper_QXmlDefaultHandler::warning(QXmlDefaultHandler* theWrapped
 
 
 
+PythonQtShell_QXmlEntityResolver::~PythonQtShell_QXmlEntityResolver() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 QString  PythonQtShell_QXmlEntityResolver::errorString() const
 {
 if (_wrapper) {
@@ -2679,6 +2703,10 @@ return new PythonQtShell_QXmlEntityResolver(); }
 
 
 
+PythonQtShell_QXmlErrorHandler::~PythonQtShell_QXmlErrorHandler() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 bool  PythonQtShell_QXmlErrorHandler::error(const QXmlParseException&  exception)
 {
 if (_wrapper) {
@@ -2797,6 +2825,10 @@ return new PythonQtShell_QXmlErrorHandler(); }
 
 
 
+PythonQtShell_QXmlInputSource::~PythonQtShell_QXmlInputSource() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 QString  PythonQtShell_QXmlInputSource::data() const
 {
 if (_wrapper) {
@@ -2994,6 +3026,10 @@ void PythonQtWrapper_QXmlInputSource::setData(QXmlInputSource* theWrappedObject,
 
 
 
+PythonQtShell_QXmlLexicalHandler::~PythonQtShell_QXmlLexicalHandler() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 bool  PythonQtShell_QXmlLexicalHandler::comment(const QString&  ch)
 {
 if (_wrapper) {
@@ -3224,6 +3260,10 @@ return new PythonQtShell_QXmlLexicalHandler(); }
 
 
 
+PythonQtShell_QXmlLocator::~PythonQtShell_QXmlLocator() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 int  PythonQtShell_QXmlLocator::columnNumber() const
 {
 if (_wrapper) {
@@ -3321,6 +3361,10 @@ QString  PythonQtWrapper_QXmlParseException::systemId(QXmlParseException* theWra
 
 
 
+PythonQtShell_QXmlReader::~PythonQtShell_QXmlReader() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 QXmlDTDHandler*  PythonQtShell_QXmlReader::DTDHandler() const
 {
 if (_wrapper) {
@@ -3799,6 +3843,10 @@ return new PythonQtShell_QXmlReader(); }
 
 
 
+PythonQtShell_QXmlSimpleReader::~PythonQtShell_QXmlSimpleReader() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
 QXmlDTDHandler*  PythonQtShell_QXmlSimpleReader::DTDHandler() const
 {
 if (_wrapper) {

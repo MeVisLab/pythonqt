@@ -10,270 +10,111 @@
 #include "com_trolltech_qt_gui8.h"
 #include "com_trolltech_qt_gui9.h"
 #include "com_trolltech_qt_gui10.h"
+#include "com_trolltech_qt_gui11.h"
 
-static void* polymorphichandler_QStyleOption(const void *ptr, const char **class_name)
-{
-    Q_ASSERT(ptr != 0);
-    QStyleOption *object = (QStyleOption *)ptr;
-    if (object->type == QStyleOption::SO_Default) {
-        *class_name = "QStyleOption";
-        return (QStyleOption*)object;
-    }
-    if (object->type == QStyleOptionDockWidget::Type && object->version == QStyleOptionDockWidget::Version) {
-        *class_name = "QStyleOptionDockWidget";
-        return (QStyleOptionDockWidget*)object;
-    }
-    if (object->type == QStyleOptionToolBar::Type && object->version == QStyleOptionToolBar::Version) {
-        *class_name = "QStyleOptionToolBar";
-        return (QStyleOptionToolBar*)object;
-    }
-    if (object->type == QStyleOptionFrame::Type && object->version == QStyleOptionFrame::Version) {
-        *class_name = "QStyleOptionFrame";
-        return (QStyleOptionFrame*)object;
-    }
-    if (object->type == QStyleOptionComplex::Type && object->version == QStyleOptionComplex::Version) {
-        *class_name = "QStyleOptionComplex";
-        return (QStyleOptionComplex*)object;
-    }
-    if (object->type == QStyleOptionTab::Type && object->version == QStyleOptionTab::Version) {
-        *class_name = "QStyleOptionTab";
-        return (QStyleOptionTab*)object;
-    }
-    if (object->type == QStyleOptionProgressBar::Type && object->version == QStyleOptionProgressBar::Version) {
-        *class_name = "QStyleOptionProgressBar";
-        return (QStyleOptionProgressBar*)object;
-    }
-    if (object->type == QStyleOptionToolBox::Type && object->version == QStyleOptionToolBox::Version) {
-        *class_name = "QStyleOptionToolBox";
-        return (QStyleOptionToolBox*)object;
-    }
-    if (object->type == QStyleOptionGraphicsItem::Type && object->version == QStyleOptionGraphicsItem::Version) {
-        *class_name = "QStyleOptionGraphicsItem";
-        return (QStyleOptionGraphicsItem*)object;
-    }
-    if (object->type == QStyleOptionButton::Type && object->version == QStyleOptionButton::Version) {
-        *class_name = "QStyleOptionButton";
-        return (QStyleOptionButton*)object;
-    }
-    if (object->type == QStyleOptionFocusRect::Type && object->version == QStyleOptionFocusRect::Version) {
-        *class_name = "QStyleOptionFocusRect";
-        return (QStyleOptionFocusRect*)object;
-    }
-    if (object->type == QStyleOptionRubberBand::Type && object->version == QStyleOptionRubberBand::Version) {
-        *class_name = "QStyleOptionRubberBand";
-        return (QStyleOptionRubberBand*)object;
-    }
-    if (object->type == QStyleOptionMenuItem::Type && object->version == QStyleOptionMenuItem::Version) {
-        *class_name = "QStyleOptionMenuItem";
-        return (QStyleOptionMenuItem*)object;
-    }
-    if (object->type == QStyleOptionTabBarBase::Type && object->version == QStyleOptionTabBarBase::Version) {
-        *class_name = "QStyleOptionTabBarBase";
-        return (QStyleOptionTabBarBase*)object;
-    }
-    if (object->type == QStyleOptionViewItem::Type && object->version == QStyleOptionViewItem::Version) {
-        *class_name = "QStyleOptionViewItem";
-        return (QStyleOptionViewItem*)object;
-    }
-    if (object->type == QStyleOptionTabWidgetFrame::Type && object->version == QStyleOptionTabWidgetFrame::Version) {
-        *class_name = "QStyleOptionTabWidgetFrame";
-        return (QStyleOptionTabWidgetFrame*)object;
-    }
-    if (object->type == QStyleOptionHeader::Type && object->version == QStyleOptionHeader::Version) {
-        *class_name = "QStyleOptionHeader";
-        return (QStyleOptionHeader*)object;
-    }
-    if (object->type == QStyleOptionSpinBox::Type && object->version == QStyleOptionSpinBox::Version) {
-        *class_name = "QStyleOptionSpinBox";
-        return (QStyleOptionSpinBox*)object;
-    }
-    if (object->type == QStyleOptionProgressBarV2::Type && object->version == QStyleOptionProgressBarV2::Version) {
-        *class_name = "QStyleOptionProgressBarV2";
-        return (QStyleOptionProgressBarV2*)object;
-    }
-    if (object->type == QStyleOptionDockWidgetV2::Type && object->version == QStyleOptionDockWidgetV2::Version) {
-        *class_name = "QStyleOptionDockWidgetV2";
-        return (QStyleOptionDockWidgetV2*)object;
-    }
-    if (object->type == QStyleOptionTabV2::Type && object->version == QStyleOptionTabV2::Version) {
-        *class_name = "QStyleOptionTabV2";
-        return (QStyleOptionTabV2*)object;
-    }
-    if (object->type == QStyleOptionToolButton::Type && object->version == QStyleOptionToolButton::Version) {
-        *class_name = "QStyleOptionToolButton";
-        return (QStyleOptionToolButton*)object;
-    }
-    if (object->type == QStyleOptionFrameV2::Type && object->version == QStyleOptionFrameV2::Version) {
-        *class_name = "QStyleOptionFrameV2";
-        return (QStyleOptionFrameV2*)object;
-    }
-    if (object->type == QStyleOptionViewItemV2::Type && object->version == QStyleOptionViewItemV2::Version) {
-        *class_name = "QStyleOptionViewItemV2";
-        return (QStyleOptionViewItemV2*)object;
-    }
-    if (object->type == QStyleOptionTitleBar::Type && object->version == QStyleOptionTitleBar::Version) {
-        *class_name = "QStyleOptionTitleBar";
-        return (QStyleOptionTitleBar*)object;
-    }
-    if (object->type == QStyleOptionTabBarBaseV2::Type && object->version == QStyleOptionTabBarBaseV2::Version) {
-        *class_name = "QStyleOptionTabBarBaseV2";
-        return (QStyleOptionTabBarBaseV2*)object;
-    }
-    if (object->type == QStyleOptionSlider::Type && object->version == QStyleOptionSlider::Version) {
-        *class_name = "QStyleOptionSlider";
-        return (QStyleOptionSlider*)object;
-    }
-    if (object->type == QStyleOptionToolBoxV2::Type && object->version == QStyleOptionToolBoxV2::Version) {
-        *class_name = "QStyleOptionToolBoxV2";
-        return (QStyleOptionToolBoxV2*)object;
-    }
-    if (object->type == QStyleOptionComboBox::Type && object->version == QStyleOptionComboBox::Version) {
-        *class_name = "QStyleOptionComboBox";
-        return (QStyleOptionComboBox*)object;
-    }
-    if (object->type == QStyleOptionSizeGrip::Type && object->version == QStyleOptionSizeGrip::Version) {
-        *class_name = "QStyleOptionSizeGrip";
-        return (QStyleOptionSizeGrip*)object;
-    }
-    if (object->type == QStyleOptionGroupBox::Type && object->version == QStyleOptionGroupBox::Version) {
-        *class_name = "QStyleOptionGroupBox";
-        return (QStyleOptionGroupBox*)object;
-    }
-    if (object->type == QStyleOptionViewItemV3::Type && object->version == QStyleOptionViewItemV3::Version) {
-        *class_name = "QStyleOptionViewItemV3";
-        return (QStyleOptionViewItemV3*)object;
-    }
-    if (object->type == QStyleOptionTabV3::Type && object->version == QStyleOptionTabV3::Version) {
-        *class_name = "QStyleOptionTabV3";
-        return (QStyleOptionTabV3*)object;
-    }
-    if (object->type == QStyleOptionFrameV3::Type && object->version == QStyleOptionFrameV3::Version) {
-        *class_name = "QStyleOptionFrameV3";
-        return (QStyleOptionFrameV3*)object;
-    }
-    if (object->type == QStyleOptionViewItemV4::Type && object->version == QStyleOptionViewItemV4::Version) {
-        *class_name = "QStyleOptionViewItemV4";
-        return (QStyleOptionViewItemV4*)object;
-    }
-    return NULL;
-}
-static void* polymorphichandler_QGradient(const void *ptr, const char **class_name)
-{
-    Q_ASSERT(ptr != 0);
-    QGradient *object = (QGradient *)ptr;
-    if (object->type() == QGradient::NoGradient) {
-        *class_name = "QGradient";
-        return (QGradient*)object;
-    }
-    if (object->type() == QGradient::LinearGradient) {
-        *class_name = "QLinearGradient";
-        return (QLinearGradient*)object;
-    }
-    if (object->type() == QGradient::ConicalGradient) {
-        *class_name = "QConicalGradient";
-        return (QConicalGradient*)object;
-    }
-    if (object->type() == QGradient::RadialGradient) {
-        *class_name = "QRadialGradient";
-        return (QRadialGradient*)object;
-    }
-    return NULL;
-}
 static void* polymorphichandler_QEvent(const void *ptr, const char **class_name)
 {
     Q_ASSERT(ptr != 0);
     QEvent *object = (QEvent *)ptr;
-    if (object->type() == QEvent::FocusIn || object->type() == QEvent::FocusOut) {
-        *class_name = "QFocusEvent";
-        return (QFocusEvent*)object;
-    }
-    if (object->type() == QEvent::WhatsThisClicked) {
-        *class_name = "QWhatsThisClickedEvent";
-        return (QWhatsThisClickedEvent*)object;
-    }
-    if (object->type() == QEvent::Move) {
-        *class_name = "QMoveEvent";
-        return (QMoveEvent*)object;
-    }
-    if (object->type() == QEvent::HoverEnter || object->type() == QEvent::HoverLeave || object->type() == QEvent::HoverMove) {
-        *class_name = "QHoverEvent";
-        return (QHoverEvent*)object;
-    }
-    if (object->type() == QEvent::DragResponse) {
-        *class_name = "QDragResponseEvent";
-        return (QDragResponseEvent*)object;
-    }
-    if (object->type() == QEvent::DragLeave) {
-        *class_name = "QDragLeaveEvent";
-        return (QDragLeaveEvent*)object;
-    }
-    if (object->type() == QEvent::ToolTip || object->type() == QEvent::WhatsThis) {
-        *class_name = "QHelpEvent";
-        return (QHelpEvent*)object;
-    }
-    if (object->type() == QEvent::FileOpen) {
-        *class_name = "QFileOpenEvent";
-        return (QFileOpenEvent*)object;
-    }
-    if (object->type() == QEvent::Clipboard) {
-        *class_name = "QClipboardEvent";
-        return (QClipboardEvent*)object;
-    }
-    if (object->type() == QEvent::StatusTip) {
-        *class_name = "QStatusTipEvent";
-        return (QStatusTipEvent*)object;
-    }
-    if (object->type() == QEvent::IconDrag) {
-        *class_name = "QIconDragEvent";
-        return (QIconDragEvent*)object;
-    }
-    if (object->type() == QEvent::Paint) {
-        *class_name = "QPaintEvent";
-        return (QPaintEvent*)object;
-    }
-    if (object->type() == QEvent::Hide) {
-        *class_name = "QHideEvent";
-        return (QHideEvent*)object;
-    }
-    if (object->type() == QEvent::ToolBarChange) {
-        *class_name = "QToolBarChangeEvent";
-        return (QToolBarChangeEvent*)object;
+    if (object->type() == QEvent::AccessibilityDescription || object->type() == QEvent::AccessibilityHelp) {
+        *class_name = "QAccessibleEvent";
+        return (QAccessibleEvent*)object;
     }
     if (object->type() == QEvent::ActionAdded || object->type() == QEvent::ActionRemoved || object->type() == QEvent::ActionChanged) {
         *class_name = "QActionEvent";
         return (QActionEvent*)object;
     }
-    if (object->type() == QEvent::WindowStateChange) {
-        *class_name = "QWindowStateChangeEvent";
-        return (QWindowStateChangeEvent*)object;
-    }
-    if (object->type() == QEvent::Shortcut) {
-        *class_name = "QShortcutEvent";
-        return (QShortcutEvent*)object;
+    if (object->type() == QEvent::Clipboard) {
+        *class_name = "QClipboardEvent";
+        return (QClipboardEvent*)object;
     }
     if (object->type() == QEvent::Close) {
         *class_name = "QCloseEvent";
         return (QCloseEvent*)object;
     }
-    if (object->type() == QEvent::Show) {
-        *class_name = "QShowEvent";
-        return (QShowEvent*)object;
+    if (object->type() == QEvent::ContextMenu) {
+        *class_name = "QContextMenuEvent";
+        return (QContextMenuEvent*)object;
     }
-    if (object->type() == QEvent::AccessibilityDescription || object->type() == QEvent::AccessibilityHelp) {
-        *class_name = "QAccessibleEvent";
-        return (QAccessibleEvent*)object;
+    if (object->type() == QEvent::DragEnter) {
+        *class_name = "QDragEnterEvent";
+        return (QDragEnterEvent*)object;
     }
-    if (object->type() == QEvent::Resize) {
-        *class_name = "QResizeEvent";
-        return (QResizeEvent*)object;
+    if (object->type() == QEvent::DragLeave) {
+        *class_name = "QDragLeaveEvent";
+        return (QDragLeaveEvent*)object;
+    }
+    if (object->type() == QEvent::DragMove) {
+        *class_name = "QDragMoveEvent";
+        return (QDragMoveEvent*)object;
+    }
+    if (object->type() == QEvent::DragResponse) {
+        *class_name = "QDragResponseEvent";
+        return (QDragResponseEvent*)object;
     }
     if (object->type() == QEvent::Drop) {
         *class_name = "QDropEvent";
         return (QDropEvent*)object;
     }
+    if (object->type() == QEvent::FileOpen) {
+        *class_name = "QFileOpenEvent";
+        return (QFileOpenEvent*)object;
+    }
+    if (object->type() == QEvent::FocusIn || object->type() == QEvent::FocusOut) {
+        *class_name = "QFocusEvent";
+        return (QFocusEvent*)object;
+    }
+    if (object->type() == QEvent::Gesture || object->type() == QEvent::GestureOverride) {
+        *class_name = "QGestureEvent";
+        return (QGestureEvent*)object;
+    }
+    if (object->type() == QEvent::GraphicsSceneContextMenu) {
+        *class_name = "QGraphicsSceneContextMenuEvent";
+        return (QGraphicsSceneContextMenuEvent*)object;
+    }
+    if (object->type() == QEvent::GraphicsSceneDragEnter || object->type() == QEvent::GraphicsSceneDragLeave || object->type() == QEvent::GraphicsSceneDragMove || object->type() == QEvent::GraphicsSceneDrop) {
+        *class_name = "QGraphicsSceneDragDropEvent";
+        return (QGraphicsSceneDragDropEvent*)object;
+    }
+    if (object->type() == QEvent::GraphicsSceneHelp) {
+        *class_name = "QGraphicsSceneHelpEvent";
+        return (QGraphicsSceneHelpEvent*)object;
+    }
     if (object->type() == QEvent::GraphicsSceneHoverEnter || object->type() == QEvent::GraphicsSceneHoverLeave || object->type() == QEvent::GraphicsSceneHoverMove) {
         *class_name = "QGraphicsSceneHoverEvent";
         return (QGraphicsSceneHoverEvent*)object;
+    }
+    if (object->type() == QEvent::GraphicsSceneMouseDoubleClick || object->type() == QEvent::GraphicsSceneMouseMove || object->type() == QEvent::GraphicsSceneMousePress || object->type() == QEvent::GraphicsSceneMouseRelease) {
+        *class_name = "QGraphicsSceneMouseEvent";
+        return (QGraphicsSceneMouseEvent*)object;
+    }
+    if (object->type() == QEvent::GraphicsSceneMove) {
+        *class_name = "QGraphicsSceneMoveEvent";
+        return (QGraphicsSceneMoveEvent*)object;
+    }
+    if (object->type() == QEvent::GraphicsSceneResize) {
+        *class_name = "QGraphicsSceneResizeEvent";
+        return (QGraphicsSceneResizeEvent*)object;
+    }
+    if (object->type() == QEvent::GraphicsSceneWheel) {
+        *class_name = "QGraphicsSceneWheelEvent";
+        return (QGraphicsSceneWheelEvent*)object;
+    }
+    if (object->type() == QEvent::ToolTip || object->type() == QEvent::WhatsThis) {
+        *class_name = "QHelpEvent";
+        return (QHelpEvent*)object;
+    }
+    if (object->type() == QEvent::Hide) {
+        *class_name = "QHideEvent";
+        return (QHideEvent*)object;
+    }
+    if (object->type() == QEvent::HoverEnter || object->type() == QEvent::HoverLeave || object->type() == QEvent::HoverMove) {
+        *class_name = "QHoverEvent";
+        return (QHoverEvent*)object;
+    }
+    if (object->type() == QEvent::IconDrag) {
+        *class_name = "QIconDragEvent";
+        return (QIconDragEvent*)object;
     }
     if (object->type() == QEvent::KeyPress || object->type() == QEvent::KeyRelease) {
         *class_name = "QKeyEvent";
@@ -283,57 +124,267 @@ static void* polymorphichandler_QEvent(const void *ptr, const char **class_name)
         *class_name = "QMouseEvent";
         return (QMouseEvent*)object;
     }
-    if (object->type() == QEvent::GraphicsSceneHelp) {
-        *class_name = "QGraphicsSceneHelpEvent";
-        return (QGraphicsSceneHelpEvent*)object;
+    if (object->type() == QEvent::Move) {
+        *class_name = "QMoveEvent";
+        return (QMoveEvent*)object;
     }
-    if (object->type() == QEvent::GraphicsSceneMouseDoubleClick || object->type() == QEvent::GraphicsSceneMouseMove || object->type() == QEvent::GraphicsSceneMousePress || object->type() == QEvent::GraphicsSceneMouseRelease) {
-        *class_name = "QGraphicsSceneMouseEvent";
-        return (QGraphicsSceneMouseEvent*)object;
+    if (object->type() == QEvent::Paint) {
+        *class_name = "QPaintEvent";
+        return (QPaintEvent*)object;
     }
-    if (object->type() == QEvent::TouchBegin || object->type() == QEvent::TouchUpdate || object->type() == QEvent::TouchEnd) {
-        *class_name = "QTouchEvent";
-        return (QTouchEvent*)object;
+    if (object->type() == QEvent::Resize) {
+        *class_name = "QResizeEvent";
+        return (QResizeEvent*)object;
     }
-    if (object->type() == QEvent::GraphicsSceneDragEnter || object->type() == QEvent::GraphicsSceneDragLeave || object->type() == QEvent::GraphicsSceneDragMove || object->type() == QEvent::GraphicsSceneDrop) {
-        *class_name = "QGraphicsSceneDragDropEvent";
-        return (QGraphicsSceneDragDropEvent*)object;
+    if (object->type() == QEvent::Shortcut) {
+        *class_name = "QShortcutEvent";
+        return (QShortcutEvent*)object;
     }
-    if (object->type() == QEvent::GraphicsSceneResize) {
-        *class_name = "QGraphicsSceneResizeEvent";
-        return (QGraphicsSceneResizeEvent*)object;
+    if (object->type() == QEvent::Show) {
+        *class_name = "QShowEvent";
+        return (QShowEvent*)object;
     }
-    if (object->type() == QEvent::GraphicsSceneMove) {
-        *class_name = "QGraphicsSceneMoveEvent";
-        return (QGraphicsSceneMoveEvent*)object;
-    }
-    if (object->type() == QEvent::GraphicsSceneContextMenu) {
-        *class_name = "QGraphicsSceneContextMenuEvent";
-        return (QGraphicsSceneContextMenuEvent*)object;
-    }
-    if (object->type() == QEvent::DragMove) {
-        *class_name = "QDragMoveEvent";
-        return (QDragMoveEvent*)object;
+    if (object->type() == QEvent::StatusTip) {
+        *class_name = "QStatusTipEvent";
+        return (QStatusTipEvent*)object;
     }
     if (object->type() == QEvent::TabletMove || object->type() == QEvent::TabletPress || object->type() == QEvent::TabletRelease) {
         *class_name = "QTabletEvent";
         return (QTabletEvent*)object;
     }
+    if (object->type() == QEvent::ToolBarChange) {
+        *class_name = "QToolBarChangeEvent";
+        return (QToolBarChangeEvent*)object;
+    }
+    if (object->type() == QEvent::TouchBegin || object->type() == QEvent::TouchUpdate || object->type() == QEvent::TouchEnd) {
+        *class_name = "QTouchEvent";
+        return (QTouchEvent*)object;
+    }
+    if (object->type() == QEvent::WhatsThisClicked) {
+        *class_name = "QWhatsThisClickedEvent";
+        return (QWhatsThisClickedEvent*)object;
+    }
     if (object->type() == QEvent::Wheel) {
         *class_name = "QWheelEvent";
         return (QWheelEvent*)object;
     }
-    if (object->type() == QEvent::ContextMenu) {
-        *class_name = "QContextMenuEvent";
-        return (QContextMenuEvent*)object;
+    if (object->type() == QEvent::WindowStateChange) {
+        *class_name = "QWindowStateChangeEvent";
+        return (QWindowStateChangeEvent*)object;
     }
-    if (object->type() == QEvent::GraphicsSceneWheel) {
-        *class_name = "QGraphicsSceneWheelEvent";
-        return (QGraphicsSceneWheelEvent*)object;
+    return NULL;
+}
+static void* polymorphichandler_QGradient(const void *ptr, const char **class_name)
+{
+    Q_ASSERT(ptr != 0);
+    QGradient *object = (QGradient *)ptr;
+    if (object->type() == QGradient::ConicalGradient) {
+        *class_name = "QConicalGradient";
+        return (QConicalGradient*)object;
     }
-    if (object->type() == QEvent::DragEnter) {
-        *class_name = "QDragEnterEvent";
-        return (QDragEnterEvent*)object;
+    if (object->type() == QGradient::NoGradient) {
+        *class_name = "QGradient";
+        return (QGradient*)object;
+    }
+    if (object->type() == QGradient::LinearGradient) {
+        *class_name = "QLinearGradient";
+        return (QLinearGradient*)object;
+    }
+    if (object->type() == QGradient::RadialGradient) {
+        *class_name = "QRadialGradient";
+        return (QRadialGradient*)object;
+    }
+    return NULL;
+}
+static void* polymorphichandler_QGraphicsItem(const void *ptr, const char **class_name)
+{
+    Q_ASSERT(ptr != 0);
+    QGraphicsItem *object = (QGraphicsItem *)ptr;
+    if (object->type() == QGraphicsEllipseItem::Type) {
+        *class_name = "QGraphicsEllipseItem";
+        return (QGraphicsEllipseItem*)object;
+    }
+    if (object->type() == QGraphicsItemGroup::Type) {
+        *class_name = "QGraphicsItemGroup";
+        return (QGraphicsItemGroup*)object;
+    }
+    if (object->type() == QGraphicsLineItem::Type) {
+        *class_name = "QGraphicsLineItem";
+        return (QGraphicsLineItem*)object;
+    }
+    if (object->type() == QGraphicsPathItem::Type) {
+        *class_name = "QGraphicsPathItem";
+        return (QGraphicsPathItem*)object;
+    }
+    if (object->type() == QGraphicsPixmapItem::Type) {
+        *class_name = "QGraphicsPixmapItem";
+        return (QGraphicsPixmapItem*)object;
+    }
+    if (object->type() == QGraphicsPolygonItem::Type) {
+        *class_name = "QGraphicsPolygonItem";
+        return (QGraphicsPolygonItem*)object;
+    }
+    if (object->type() == QGraphicsRectItem::Type) {
+        *class_name = "QGraphicsRectItem";
+        return (QGraphicsRectItem*)object;
+    }
+    if (object->type() == QGraphicsSimpleTextItem::Type) {
+        *class_name = "QGraphicsSimpleTextItem";
+        return (QGraphicsSimpleTextItem*)object;
+    }
+    if (object->type() == QGraphicsTextItem::Type) {
+        *class_name = "QGraphicsTextItem";
+        return (QGraphicsTextItem*)object;
+    }
+    if (object->isWidget()) {
+        *class_name = "QGraphicsWidget";
+        return (QGraphicsWidget*)object;
+    }
+    return NULL;
+}
+static void* polymorphichandler_QStyleOption(const void *ptr, const char **class_name)
+{
+    Q_ASSERT(ptr != 0);
+    QStyleOption *object = (QStyleOption *)ptr;
+    if (object->type == QStyleOption::SO_Default) {
+        *class_name = "QStyleOption";
+        return (QStyleOption*)object;
+    }
+    if (object->type == QStyleOptionButton::Type && object->version == QStyleOptionButton::Version) {
+        *class_name = "QStyleOptionButton";
+        return (QStyleOptionButton*)object;
+    }
+    if (object->type == QStyleOptionComboBox::Type && object->version == QStyleOptionComboBox::Version) {
+        *class_name = "QStyleOptionComboBox";
+        return (QStyleOptionComboBox*)object;
+    }
+    if (object->type == QStyleOptionDockWidget::Type && object->version == QStyleOptionDockWidget::Version) {
+        *class_name = "QStyleOptionDockWidget";
+        return (QStyleOptionDockWidget*)object;
+    }
+    if (object->type == QStyleOptionDockWidgetV2::Type && object->version == QStyleOptionDockWidgetV2::Version) {
+        *class_name = "QStyleOptionDockWidgetV2";
+        return (QStyleOptionDockWidgetV2*)object;
+    }
+    if (object->type == QStyleOptionFocusRect::Type && object->version == QStyleOptionFocusRect::Version) {
+        *class_name = "QStyleOptionFocusRect";
+        return (QStyleOptionFocusRect*)object;
+    }
+    if (object->type == QStyleOptionFrame::Type && object->version == QStyleOptionFrame::Version) {
+        *class_name = "QStyleOptionFrame";
+        return (QStyleOptionFrame*)object;
+    }
+    if (object->type == QStyleOptionFrameV2::Type && object->version == QStyleOptionFrameV2::Version) {
+        *class_name = "QStyleOptionFrameV2";
+        return (QStyleOptionFrameV2*)object;
+    }
+    if (object->type == QStyleOptionFrameV3::Type && object->version == QStyleOptionFrameV3::Version) {
+        *class_name = "QStyleOptionFrameV3";
+        return (QStyleOptionFrameV3*)object;
+    }
+    if (object->type == QStyleOptionGraphicsItem::Type && object->version == QStyleOptionGraphicsItem::Version) {
+        *class_name = "QStyleOptionGraphicsItem";
+        return (QStyleOptionGraphicsItem*)object;
+    }
+    if (object->type == QStyleOptionGroupBox::Type && object->version == QStyleOptionGroupBox::Version) {
+        *class_name = "QStyleOptionGroupBox";
+        return (QStyleOptionGroupBox*)object;
+    }
+    if (object->type == QStyleOptionHeader::Type && object->version == QStyleOptionHeader::Version) {
+        *class_name = "QStyleOptionHeader";
+        return (QStyleOptionHeader*)object;
+    }
+    if (object->type == QStyleOptionMenuItem::Type && object->version == QStyleOptionMenuItem::Version) {
+        *class_name = "QStyleOptionMenuItem";
+        return (QStyleOptionMenuItem*)object;
+    }
+    if (object->type == QStyleOptionProgressBar::Type && object->version == QStyleOptionProgressBar::Version) {
+        *class_name = "QStyleOptionProgressBar";
+        return (QStyleOptionProgressBar*)object;
+    }
+    if (object->type == QStyleOptionProgressBarV2::Type && object->version == QStyleOptionProgressBarV2::Version) {
+        *class_name = "QStyleOptionProgressBarV2";
+        return (QStyleOptionProgressBarV2*)object;
+    }
+    if (object->type == QStyleOptionRubberBand::Type && object->version == QStyleOptionRubberBand::Version) {
+        *class_name = "QStyleOptionRubberBand";
+        return (QStyleOptionRubberBand*)object;
+    }
+    if (object->type == QStyleOptionSizeGrip::Type && object->version == QStyleOptionSizeGrip::Version) {
+        *class_name = "QStyleOptionSizeGrip";
+        return (QStyleOptionSizeGrip*)object;
+    }
+    if (object->type == QStyleOptionSlider::Type && object->version == QStyleOptionSlider::Version) {
+        *class_name = "QStyleOptionSlider";
+        return (QStyleOptionSlider*)object;
+    }
+    if (object->type == QStyleOptionSpinBox::Type && object->version == QStyleOptionSpinBox::Version) {
+        *class_name = "QStyleOptionSpinBox";
+        return (QStyleOptionSpinBox*)object;
+    }
+    if (object->type == QStyleOptionTab::Type && object->version == QStyleOptionTab::Version) {
+        *class_name = "QStyleOptionTab";
+        return (QStyleOptionTab*)object;
+    }
+    if (object->type == QStyleOptionTabBarBase::Type && object->version == QStyleOptionTabBarBase::Version) {
+        *class_name = "QStyleOptionTabBarBase";
+        return (QStyleOptionTabBarBase*)object;
+    }
+    if (object->type == QStyleOptionTabBarBaseV2::Type && object->version == QStyleOptionTabBarBaseV2::Version) {
+        *class_name = "QStyleOptionTabBarBaseV2";
+        return (QStyleOptionTabBarBaseV2*)object;
+    }
+    if (object->type == QStyleOptionTabV2::Type && object->version == QStyleOptionTabV2::Version) {
+        *class_name = "QStyleOptionTabV2";
+        return (QStyleOptionTabV2*)object;
+    }
+    if (object->type == QStyleOptionTabV3::Type && object->version == QStyleOptionTabV3::Version) {
+        *class_name = "QStyleOptionTabV3";
+        return (QStyleOptionTabV3*)object;
+    }
+    if (object->type == QStyleOptionTabWidgetFrame::Type && object->version == QStyleOptionTabWidgetFrame::Version) {
+        *class_name = "QStyleOptionTabWidgetFrame";
+        return (QStyleOptionTabWidgetFrame*)object;
+    }
+    if (object->type == QStyleOptionTabWidgetFrameV2::Type && object->version == QStyleOptionTabWidgetFrameV2::Version) {
+        *class_name = "QStyleOptionTabWidgetFrameV2";
+        return (QStyleOptionTabWidgetFrameV2*)object;
+    }
+    if (object->type == QStyleOptionTitleBar::Type && object->version == QStyleOptionTitleBar::Version) {
+        *class_name = "QStyleOptionTitleBar";
+        return (QStyleOptionTitleBar*)object;
+    }
+    if (object->type == QStyleOptionToolBar::Type && object->version == QStyleOptionToolBar::Version) {
+        *class_name = "QStyleOptionToolBar";
+        return (QStyleOptionToolBar*)object;
+    }
+    if (object->type == QStyleOptionToolBox::Type && object->version == QStyleOptionToolBox::Version) {
+        *class_name = "QStyleOptionToolBox";
+        return (QStyleOptionToolBox*)object;
+    }
+    if (object->type == QStyleOptionToolBoxV2::Type && object->version == QStyleOptionToolBoxV2::Version) {
+        *class_name = "QStyleOptionToolBoxV2";
+        return (QStyleOptionToolBoxV2*)object;
+    }
+    if (object->type == QStyleOptionToolButton::Type && object->version == QStyleOptionToolButton::Version) {
+        *class_name = "QStyleOptionToolButton";
+        return (QStyleOptionToolButton*)object;
+    }
+    if (object->type == QStyleOptionViewItem::Type && object->version == QStyleOptionViewItem::Version) {
+        *class_name = "QStyleOptionViewItem";
+        return (QStyleOptionViewItem*)object;
+    }
+    if (object->type == QStyleOptionViewItemV2::Type && object->version == QStyleOptionViewItemV2::Version) {
+        *class_name = "QStyleOptionViewItemV2";
+        return (QStyleOptionViewItemV2*)object;
+    }
+    if (object->type == QStyleOptionViewItemV3::Type && object->version == QStyleOptionViewItemV3::Version) {
+        *class_name = "QStyleOptionViewItemV3";
+        return (QStyleOptionViewItemV3*)object;
+    }
+    if (object->type == QStyleOptionViewItemV4::Type && object->version == QStyleOptionViewItemV4::Version) {
+        *class_name = "QStyleOptionViewItemV4";
+        return (QStyleOptionViewItemV4*)object;
     }
     return NULL;
 }
@@ -346,6 +397,7 @@ PythonQt::priv()->registerClass(&QAbstractItemDelegate::staticMetaObject, "QtGui
 PythonQt::priv()->registerClass(&QAbstractItemView::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QAbstractItemView>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QAbstractItemView>, module, 0);
 PythonQt::priv()->registerClass(&QAbstractPageSetupDialog::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QAbstractPageSetupDialog>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QAbstractPageSetupDialog>, module, 0);
 PythonQt::priv()->registerClass(&QAbstractPrintDialog::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QAbstractPrintDialog>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QAbstractPrintDialog>, module, 0);
+PythonQt::priv()->registerClass(&QAbstractProxyModel::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QAbstractProxyModel>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QAbstractProxyModel>, module, 0);
 PythonQt::priv()->registerClass(&QAbstractScrollArea::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QAbstractScrollArea>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QAbstractScrollArea>, module, 0);
 PythonQt::priv()->registerClass(&QAbstractSlider::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QAbstractSlider>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QAbstractSlider>, module, 0);
 PythonQt::priv()->registerClass(&QAbstractSpinBox::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QAbstractSpinBox>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QAbstractSpinBox>, module, 0);
@@ -391,6 +443,7 @@ PythonQt::priv()->registerClass(&QDesktopWidget::staticMetaObject, "QtGui", Pyth
 PythonQt::priv()->registerClass(&QDial::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QDial>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QDial>, module, 0);
 PythonQt::priv()->registerClass(&QDialog::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QDialog>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QDialog>, module, 0);
 PythonQt::priv()->registerClass(&QDialogButtonBox::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QDialogButtonBox>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QDialogButtonBox>, module, 0);
+PythonQt::priv()->registerClass(&QDirModel::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QDirModel>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QDirModel>, module, 0);
 PythonQt::priv()->registerClass(&QDockWidget::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QDockWidget>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QDockWidget>, module, 0);
 PythonQt::priv()->registerClass(&QDoubleSpinBox::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QDoubleSpinBox>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QDoubleSpinBox>, module, 0);
 PythonQt::priv()->registerClass(&QDoubleValidator::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QDoubleValidator>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QDoubleValidator>, module, 0);
@@ -404,9 +457,11 @@ PythonQt::priv()->registerClass(&QErrorMessage::staticMetaObject, "QtGui", Pytho
 PythonQt::priv()->registerClass(&QFileDialog::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QFileDialog>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QFileDialog>, module, 0);
 PythonQt::priv()->registerCPPClass("QFileIconProvider", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QFileIconProvider>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QFileIconProvider>, module, 0);
 PythonQt::priv()->registerCPPClass("QFileOpenEvent", "QEvent", "QtGui", PythonQtCreateObject<PythonQtWrapper_QFileOpenEvent>, NULL, module, 0);
+PythonQt::priv()->registerClass(&QFileSystemModel::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QFileSystemModel>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QFileSystemModel>, module, 0);
 PythonQt::priv()->registerCPPClass("QFocusEvent", "QEvent", "QtGui", PythonQtCreateObject<PythonQtWrapper_QFocusEvent>, NULL, module, 0);
 PythonQt::priv()->registerClass(&QFocusFrame::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QFocusFrame>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QFocusFrame>, module, 0);
 PythonQt::priv()->registerClass(&QFontComboBox::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QFontComboBox>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QFontComboBox>, module, 0);
+PythonQt::priv()->registerCPPClass("QFontDatabase", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QFontDatabase>, NULL, module, 0);
 PythonQt::priv()->registerClass(&QFontDialog::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QFontDialog>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QFontDialog>, module, 0);
 PythonQt::priv()->registerCPPClass("QFontInfo", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QFontInfo>, NULL, module, 0);
 PythonQt::priv()->registerCPPClass("QFontMetrics", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QFontMetrics>, NULL, module, PythonQt::Type_RichCompare);
@@ -414,9 +469,14 @@ PythonQt::priv()->registerCPPClass("QFontMetricsF", "", "QtGui", PythonQtCreateO
 PythonQt::priv()->registerClass(&QFormLayout::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QFormLayout>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QFormLayout>, module, 0);
 PythonQt::priv()->registerClass(&QFrame::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QFrame>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QFrame>, module, 0);
 PythonQt::priv()->registerClass(&QGesture::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QGesture>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QGesture>, module, 0);
+PythonQt::priv()->registerCPPClass("QGestureEvent", "QEvent", "QtGui", PythonQtCreateObject<PythonQtWrapper_QGestureEvent>, NULL, module, 0);
+PythonQt::priv()->registerCPPClass("QGestureRecognizer", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QGestureRecognizer>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QGestureRecognizer>, module, 0);
 PythonQt::priv()->registerCPPClass("QGradient", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QGradient>, NULL, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerClass(&QGraphicsAnchor::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QGraphicsAnchor>, NULL, module, 0);
 PythonQt::priv()->registerCPPClass("QGraphicsAnchorLayout", "QGraphicsLayout", "QtGui", PythonQtCreateObject<PythonQtWrapper_QGraphicsAnchorLayout>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QGraphicsAnchorLayout>, module, 0);
+PythonQt::priv()->registerClass(&QGraphicsBlurEffect::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QGraphicsBlurEffect>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QGraphicsBlurEffect>, module, 0);
+PythonQt::priv()->registerClass(&QGraphicsColorizeEffect::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QGraphicsColorizeEffect>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QGraphicsColorizeEffect>, module, 0);
+PythonQt::priv()->registerClass(&QGraphicsDropShadowEffect::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QGraphicsDropShadowEffect>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QGraphicsDropShadowEffect>, module, 0);
 PythonQt::priv()->registerClass(&QGraphicsEffect::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QGraphicsEffect>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QGraphicsEffect>, module, 0);
 PythonQt::priv()->registerCPPClass("QGraphicsEllipseItem", "QAbstractGraphicsShapeItem", "QtGui", PythonQtCreateObject<PythonQtWrapper_QGraphicsEllipseItem>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QGraphicsEllipseItem>, module, 0);
 PythonQt::priv()->registerCPPClass("QGraphicsGridLayout", "QGraphicsLayout", "QtGui", PythonQtCreateObject<PythonQtWrapper_QGraphicsGridLayout>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QGraphicsGridLayout>, module, 0);
@@ -534,8 +594,10 @@ PythonQt::priv()->registerClass(&QPrintPreviewDialog::staticMetaObject, "QtGui",
 PythonQt::priv()->registerClass(&QPrintPreviewWidget::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QPrintPreviewWidget>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPrintPreviewWidget>, module, 0);
 PythonQt::priv()->registerCPPClass("QPrinter", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPrinter>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPrinter>, module, 0);
 PythonQt::self()->addParentClass("QPrinter", "QPaintDevice",PythonQtUpcastingOffset<QPrinter,QPaintDevice>());
+PythonQt::priv()->registerCPPClass("QPrinterInfo", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPrinterInfo>, NULL, module, PythonQt::Type_NonZero);
 PythonQt::priv()->registerClass(&QProgressBar::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QProgressBar>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QProgressBar>, module, 0);
 PythonQt::priv()->registerClass(&QProgressDialog::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QProgressDialog>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QProgressDialog>, module, 0);
+PythonQt::priv()->registerClass(&QProxyModel::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QProxyModel>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QProxyModel>, module, 0);
 PythonQt::priv()->registerClass(&QProxyStyle::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QProxyStyle>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QProxyStyle>, module, 0);
 PythonQt::priv()->registerClass(&QPushButton::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QPushButton>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPushButton>, module, 0);
 PythonQt::priv()->registerCPPClass("QQuaternion", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QQuaternion>, NULL, module, PythonQt::Type_Divide|PythonQt::Type_InplaceDivide|PythonQt::Type_NonZero|PythonQt::Type_InplaceSubtract|PythonQt::Type_InplaceAdd|PythonQt::Type_RichCompare|PythonQt::Type_Subtract|PythonQt::Type_InplaceMultiply|PythonQt::Type_Multiply|PythonQt::Type_Add);
@@ -552,6 +614,7 @@ PythonQt::priv()->registerCPPClass("QShortcutEvent", "QEvent", "QtGui", PythonQt
 PythonQt::priv()->registerCPPClass("QShowEvent", "QEvent", "QtGui", PythonQtCreateObject<PythonQtWrapper_QShowEvent>, NULL, module, 0);
 PythonQt::priv()->registerClass(&QSizeGrip::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QSizeGrip>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSizeGrip>, module, 0);
 PythonQt::priv()->registerClass(&QSlider::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QSlider>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSlider>, module, 0);
+PythonQt::priv()->registerClass(&QSortFilterProxyModel::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QSortFilterProxyModel>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSortFilterProxyModel>, module, 0);
 PythonQt::priv()->registerClass(&QSound::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QSound>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSound>, module, 0);
 PythonQt::priv()->registerCPPClass("QSpacerItem", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QSpacerItem>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSpacerItem>, module, 0);
 PythonQt::self()->addParentClass("QSpacerItem", "QLayoutItem",PythonQtUpcastingOffset<QSpacerItem,QLayoutItem>());
@@ -563,6 +626,7 @@ PythonQt::priv()->registerClass(&QStackedLayout::staticMetaObject, "QtGui", Pyth
 PythonQt::priv()->registerClass(&QStackedWidget::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QStackedWidget>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QStackedWidget>, module, 0);
 PythonQt::priv()->registerCPPClass("QStandardItem", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QStandardItem>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QStandardItem>, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerClass(&QStandardItemModel::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QStandardItemModel>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QStandardItemModel>, module, 0);
+PythonQt::priv()->registerCPPClass("QStaticText", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QStaticText>, NULL, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerClass(&QStatusBar::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QStatusBar>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QStatusBar>, module, 0);
 PythonQt::priv()->registerCPPClass("QStatusTipEvent", "QEvent", "QtGui", PythonQtCreateObject<PythonQtWrapper_QStatusTipEvent>, NULL, module, 0);
 PythonQt::priv()->registerClass(&QStringListModel::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QStringListModel>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QStringListModel>, module, 0);
@@ -596,6 +660,7 @@ PythonQt::priv()->registerCPPClass("QStyleOptionTabBarBaseV2", "QStyleOptionTabB
 PythonQt::priv()->registerCPPClass("QStyleOptionTabV2", "QStyleOptionTab", "QtGui", PythonQtCreateObject<PythonQtWrapper_QStyleOptionTabV2>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QStyleOptionTabV2>, module, 0);
 PythonQt::priv()->registerCPPClass("QStyleOptionTabV3", "QStyleOptionTabV2", "QtGui", PythonQtCreateObject<PythonQtWrapper_QStyleOptionTabV3>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QStyleOptionTabV3>, module, 0);
 PythonQt::priv()->registerCPPClass("QStyleOptionTabWidgetFrame", "QStyleOption", "QtGui", PythonQtCreateObject<PythonQtWrapper_QStyleOptionTabWidgetFrame>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QStyleOptionTabWidgetFrame>, module, 0);
+PythonQt::priv()->registerCPPClass("QStyleOptionTabWidgetFrameV2", "QStyleOptionTabWidgetFrame", "QtGui", PythonQtCreateObject<PythonQtWrapper_QStyleOptionTabWidgetFrameV2>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QStyleOptionTabWidgetFrameV2>, module, 0);
 PythonQt::priv()->registerCPPClass("QStyleOptionTitleBar", "QStyleOptionComplex", "QtGui", PythonQtCreateObject<PythonQtWrapper_QStyleOptionTitleBar>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QStyleOptionTitleBar>, module, 0);
 PythonQt::priv()->registerCPPClass("QStyleOptionToolBar", "QStyleOption", "QtGui", PythonQtCreateObject<PythonQtWrapper_QStyleOptionToolBar>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QStyleOptionToolBar>, module, 0);
 PythonQt::priv()->registerCPPClass("QStyleOptionToolBox", "QStyleOption", "QtGui", PythonQtCreateObject<PythonQtWrapper_QStyleOptionToolBox>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QStyleOptionToolBox>, module, 0);
@@ -618,6 +683,8 @@ PythonQt::priv()->registerClass(&QTableWidget::staticMetaObject, "QtGui", Python
 PythonQt::priv()->registerCPPClass("QTableWidgetItem", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QTableWidgetItem>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QTableWidgetItem>, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerCPPClass("QTableWidgetSelectionRange", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QTableWidgetSelectionRange>, NULL, module, 0);
 PythonQt::priv()->registerCPPClass("QTabletEvent", "QInputEvent", "QtGui", PythonQtCreateObject<PythonQtWrapper_QTabletEvent>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QTabletEvent>, module, 0);
+PythonQt::priv()->registerClass(&QTapAndHoldGesture::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QTapAndHoldGesture>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QTapAndHoldGesture>, module, 0);
+PythonQt::priv()->registerClass(&QTapGesture::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QTapGesture>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QTapGesture>, module, 0);
 PythonQt::priv()->registerCPPClass("QTextBlock", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QTextBlock>, NULL, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerCPPClass("QTextBlockFormat", "QTextFormat", "QtGui", PythonQtCreateObject<PythonQtWrapper_QTextBlockFormat>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QTextBlockFormat>, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerClass(&QTextBlockGroup::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QTextBlockGroup>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QTextBlockGroup>, module, 0);
@@ -640,6 +707,8 @@ PythonQt::priv()->registerCPPClass("QTextLine", "", "QtGui", PythonQtCreateObjec
 PythonQt::priv()->registerClass(&QTextList::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QTextList>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QTextList>, module, 0);
 PythonQt::priv()->registerCPPClass("QTextListFormat", "QTextFormat", "QtGui", PythonQtCreateObject<PythonQtWrapper_QTextListFormat>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QTextListFormat>, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerClass(&QTextObject::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QTextObject>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QTextObject>, module, 0);
+PythonQt::priv()->registerCPPClass("QTextOption", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QTextOption>, NULL, module, 0);
+PythonQt::priv()->registerCPPClass("QTextOption::Tab", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QTextOption_Tab>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QTextOption_Tab>, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerClass(&QTextTable::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QTextTable>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QTextTable>, module, 0);
 PythonQt::priv()->registerCPPClass("QTextTableCell", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QTextTableCell>, NULL, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerCPPClass("QTextTableCellFormat", "QTextCharFormat", "QtGui", PythonQtCreateObject<PythonQtWrapper_QTextTableCellFormat>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QTextTableCellFormat>, module, PythonQt::Type_RichCompare);
@@ -680,7 +749,8 @@ PythonQt::priv()->registerClass(&QWizard::staticMetaObject, "QtGui", PythonQtCre
 PythonQt::priv()->registerClass(&QWizardPage::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QWizardPage>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QWizardPage>, module, 0);
 PythonQt::priv()->registerClass(&QWorkspace::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QWorkspace>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QWorkspace>, module, 0);
 
-PythonQt::self()->addPolymorphicHandler("QStyleOption", polymorphichandler_QStyleOption);
-PythonQt::self()->addPolymorphicHandler("QGradient", polymorphichandler_QGradient);
 PythonQt::self()->addPolymorphicHandler("QEvent", polymorphichandler_QEvent);
+PythonQt::self()->addPolymorphicHandler("QGradient", polymorphichandler_QGradient);
+PythonQt::self()->addPolymorphicHandler("QGraphicsItem", polymorphichandler_QGraphicsItem);
+PythonQt::self()->addPolymorphicHandler("QStyleOption", polymorphichandler_QStyleOption);
 }

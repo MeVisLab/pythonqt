@@ -63,6 +63,8 @@ public:
     PythonQtShell_QSqlDatabase(const QSqlDatabase&  other):QSqlDatabase(other),_wrapper(NULL) {};
     PythonQtShell_QSqlDatabase(const QString&  type):QSqlDatabase(type),_wrapper(NULL) {};
 
+   ~PythonQtShell_QSqlDatabase();
+
 
   PythonQtInstanceWrapper* _wrapper; 
 };
@@ -126,6 +128,8 @@ class PythonQtShell_QSqlDriver : public QSqlDriver
 {
 public:
     PythonQtShell_QSqlDriver(QObject*  parent = 0):QSqlDriver(parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QSqlDriver();
 
 virtual bool  beginTransaction();
 virtual void childEvent(QChildEvent*  arg__1);
@@ -218,6 +222,8 @@ class PythonQtShell_QSqlDriverCreatorBase : public QSqlDriverCreatorBase
 {
 public:
     PythonQtShell_QSqlDriverCreatorBase():QSqlDriverCreatorBase(),_wrapper(NULL) {};
+
+   ~PythonQtShell_QSqlDriverCreatorBase();
 
 virtual QSqlDriver*  createObject() const;
 
@@ -390,6 +396,8 @@ class PythonQtShell_QSqlQueryModel : public QSqlQueryModel
 public:
     PythonQtShell_QSqlQueryModel(QObject*  parent = 0):QSqlQueryModel(parent),_wrapper(NULL) {};
 
+   ~PythonQtShell_QSqlQueryModel();
+
 virtual QModelIndex  buddy(const QModelIndex&  index) const;
 virtual bool  canFetchMore(const QModelIndex&  parent = QModelIndex()) const;
 virtual void childEvent(QChildEvent*  arg__1);
@@ -538,6 +546,8 @@ class PythonQtShell_QSqlRelationalTableModel : public QSqlRelationalTableModel
 public:
     PythonQtShell_QSqlRelationalTableModel(QObject*  parent = 0, QSqlDatabase  db = QSqlDatabase()):QSqlRelationalTableModel(parent, db),_wrapper(NULL) {};
 
+   ~PythonQtShell_QSqlRelationalTableModel();
+
 virtual QModelIndex  buddy(const QModelIndex&  index) const;
 virtual bool  canFetchMore(const QModelIndex&  parent) const;
 virtual void childEvent(QChildEvent*  arg__1);
@@ -608,6 +618,9 @@ inline bool  promoted_updateRowInTable(int  row, const QSqlRecord&  values) { re
 class PythonQtWrapper_QSqlRelationalTableModel : public QObject
 { Q_OBJECT
 public:
+Q_ENUMS(JoinMode )
+enum JoinMode{
+  InnerJoin = QSqlRelationalTableModel::InnerJoin,   LeftJoin = QSqlRelationalTableModel::LeftJoin};
 public slots:
 QSqlRelationalTableModel* new_QSqlRelationalTableModel(QObject*  parent = 0, QSqlDatabase  db = QSqlDatabase());
 void delete_QSqlRelationalTableModel(QSqlRelationalTableModel* obj) { delete obj; } 
@@ -618,9 +631,11 @@ void delete_QSqlRelationalTableModel(QSqlRelationalTableModel* obj) { delete obj
    QSqlRelation  relation(QSqlRelationalTableModel* theWrappedObject, int  column) const;
    QSqlTableModel*  relationModel(QSqlRelationalTableModel* theWrappedObject, int  column) const;
    bool  removeColumns(QSqlRelationalTableModel* theWrappedObject, int  column, int  count, const QModelIndex&  parent = QModelIndex());
+   void revertRow(QSqlRelationalTableModel* theWrappedObject, int  row);
    bool  select(QSqlRelationalTableModel* theWrappedObject);
    QString  selectStatement(QSqlRelationalTableModel* theWrappedObject) const;
    bool  setData(QSqlRelationalTableModel* theWrappedObject, const QModelIndex&  item, const QVariant&  value, int  role = Qt::EditRole);
+   void setJoinMode(QSqlRelationalTableModel* theWrappedObject, QSqlRelationalTableModel::JoinMode  joinMode);
    void setRelation(QSqlRelationalTableModel* theWrappedObject, int  column, const QSqlRelation&  relation);
    void setTable(QSqlRelationalTableModel* theWrappedObject, const QString&  tableName);
    bool  updateRowInTable(QSqlRelationalTableModel* theWrappedObject, int  row, const QSqlRecord&  values);
@@ -634,6 +649,8 @@ class PythonQtShell_QSqlResult : public QSqlResult
 {
 public:
     PythonQtShell_QSqlResult(const QSqlDriver*  db):QSqlResult(db),_wrapper(NULL) {};
+
+   ~PythonQtShell_QSqlResult();
 
 virtual void bindValue(const QString&  placeholder, const QVariant&  val, QSql::ParamType  type);
 virtual void bindValue(int  pos, const QVariant&  val, QSql::ParamType  type);
@@ -715,6 +732,8 @@ class PythonQtShell_QSqlTableModel : public QSqlTableModel
 {
 public:
     PythonQtShell_QSqlTableModel(QObject*  parent = 0, QSqlDatabase  db = QSqlDatabase()):QSqlTableModel(parent, db),_wrapper(NULL) {};
+
+   ~PythonQtShell_QSqlTableModel();
 
 virtual QModelIndex  buddy(const QModelIndex&  index) const;
 virtual bool  canFetchMore(const QModelIndex&  parent) const;
@@ -817,6 +836,7 @@ void delete_QSqlTableModel(QSqlTableModel* obj) { delete obj; }
    QSqlIndex  primaryKey(QSqlTableModel* theWrappedObject) const;
    bool  removeColumns(QSqlTableModel* theWrappedObject, int  column, int  count, const QModelIndex&  parent = QModelIndex());
    bool  removeRows(QSqlTableModel* theWrappedObject, int  row, int  count, const QModelIndex&  parent = QModelIndex());
+   void revert(QSqlTableModel* theWrappedObject);
    void revertRow(QSqlTableModel* theWrappedObject, int  row);
    int  rowCount(QSqlTableModel* theWrappedObject, const QModelIndex&  parent = QModelIndex()) const;
    bool  select(QSqlTableModel* theWrappedObject);
@@ -828,6 +848,7 @@ void delete_QSqlTableModel(QSqlTableModel* obj) { delete obj; }
    void setSort(QSqlTableModel* theWrappedObject, int  column, Qt::SortOrder  order);
    void setTable(QSqlTableModel* theWrappedObject, const QString&  tableName);
    void sort(QSqlTableModel* theWrappedObject, int  column, Qt::SortOrder  order);
+   bool  submit(QSqlTableModel* theWrappedObject);
    QString  tableName(QSqlTableModel* theWrappedObject) const;
    bool  updateRowInTable(QSqlTableModel* theWrappedObject, int  row, const QSqlRecord&  values);
 };

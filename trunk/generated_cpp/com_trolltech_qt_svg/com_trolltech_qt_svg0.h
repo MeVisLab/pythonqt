@@ -48,6 +48,8 @@ class PythonQtShell_QSvgGenerator : public QSvgGenerator
 public:
     PythonQtShell_QSvgGenerator():QSvgGenerator(),_wrapper(NULL) {};
 
+   ~PythonQtShell_QSvgGenerator();
+
 virtual int  devType() const;
 virtual int  metric(QPaintDevice::PaintDeviceMetric  metric) const;
 virtual QPaintEngine*  paintEngine() const;
@@ -99,6 +101,8 @@ public:
     PythonQtShell_QSvgRenderer(const QByteArray&  contents, QObject*  parent = 0):QSvgRenderer(contents, parent),_wrapper(NULL) {};
     PythonQtShell_QSvgRenderer(const QString&  filename, QObject*  parent = 0):QSvgRenderer(filename, parent),_wrapper(NULL) {};
 
+   ~PythonQtShell_QSvgRenderer();
+
 virtual void childEvent(QChildEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
 virtual bool  event(QEvent*  arg__1);
@@ -143,6 +147,8 @@ class PythonQtShell_QSvgWidget : public QSvgWidget
 public:
     PythonQtShell_QSvgWidget(QWidget*  parent = 0):QSvgWidget(parent),_wrapper(NULL) {};
     PythonQtShell_QSvgWidget(const QString&  file, QWidget*  parent = 0):QSvgWidget(file, parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QSvgWidget();
 
 virtual void actionEvent(QActionEvent*  arg__1);
 virtual void changeEvent(QEvent*  arg__1);
