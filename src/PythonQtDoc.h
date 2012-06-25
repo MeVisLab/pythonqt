@@ -420,6 +420,9 @@ the python2x.[lib | dll | so | dynlib].
  The build scripts a currently set to use Python 2.6.
  You may need to tweak the \b build/python.prf file to set the correct Python includes and libs on your system.
 
+ \note In addition to the qmake profiles, PythonQt now offers building via Cmake. Just use the provided
+ CMakeLists.txt in the root directory of the project. This build option has not been well tested yet.
+ 
  \subsection Windows
 
  On Windows, the (non-source) Python Windows installer can be used.
