@@ -96,14 +96,14 @@ QVariant PythonQtObjectPtr::getVariable(const QString& name)
 }
 
 
-QVariant PythonQtObjectPtr::call(const QString& callable, const QVariantList& args)
+QVariant PythonQtObjectPtr::call(const QString& callable, const QVariantList& args, const QVariantMap& kwargs)
 {
-  return PythonQt::self()->call(_object, callable, args);
+  return PythonQt::self()->call(_object, callable, args, kwargs);
 }
 
-QVariant PythonQtObjectPtr::call(const QVariantList& args)
+QVariant PythonQtObjectPtr::call(const QVariantList& args, const QVariantMap& kwargs)
 {
-  return PythonQt::self()->call(_object, args);
+  return PythonQt::self()->call(_object, args, kwargs);
 }
 
 bool PythonQtObjectPtr::fromVariant(const QVariant& variant) 
