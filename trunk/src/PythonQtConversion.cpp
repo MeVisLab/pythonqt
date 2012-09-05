@@ -742,8 +742,10 @@ bool PythonQtConv::PyObjGetBool(PyObject* val, bool strict, bool &ok) {
     d = true;
     ok = true;
   } else if (!strict) {
-    d = PyObjGetInt(val, false, ok)!=0;
-    ok = true;
+    int result = PyObject_IsTrue(val);
+    d = (result == 1);
+    // the result is -1 if an error occurred, handle this:
+    ok = (result != -1);
   }
   return d;
 }
