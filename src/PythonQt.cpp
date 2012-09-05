@@ -1007,21 +1007,21 @@ QStringList PythonQt::introspectType(const QString& typeName, ObjectType type)
   return results;
 }
 
-QVariant PythonQt::call(PyObject* object, const QString& name, const QVariantList& args)
+QVariant PythonQt::call(PyObject* object, const QString& name, const QVariantList& args, const QVariantMap& kwargs)
 {
   PythonQtObjectPtr callable = lookupCallable(object, name);
   if (callable) {
-    return call(callable, args);
+    return call(callable, args, kwargs);
   } else {
     return QVariant();
   }
 }
 
-QVariant PythonQt::call(PyObject* callable, const QVariantList& args)
+QVariant PythonQt::call(PyObject* callable, const QVariantList& args, const QVariantMap& kwargs)
 {
   QVariant r;
   PythonQtObjectPtr result;
-  result.setNewRef(callAndReturnPyObject(callable, args));
+  result.setNewRef(callAndReturnPyObject(callable, args, kwargs));
   if (result) {
     r = PythonQtConv::PyObjToQVariant(result);
   } else {
@@ -1030,31 +1030,54 @@ QVariant PythonQt::call(PyObject* callable, const QVariantList& args)
   return r;
 }
 
-PyObject* PythonQt::callAndReturnPyObject(PyObject* callable, const QVariantList& args)
+PyObject* PythonQt::callAndReturnPyObject(PyObject* callable, const QVariantList& args, const QVariantMap& kwargs)
 {
   PyObject* result = NULL;
   if (callable) {
+    bool err = false;
     PythonQtObjectPtr pargs;
     int count = args.size();
-    if (count>0) {
+    if ((count > 0) || (kwargs.count() > 0)) { // create empty tuple if kwargs are given
       pargs.setNewRef(PyTuple_New(count));
-    }
-    bool err = false;
-    // transform QVariants to Python
-    for (int i = 0; i < count; i++) {
-      PyObject* arg = PythonQtConv::QVariantToPyObject(args.at(i));
-      if (arg) {
-        // steals reference, no unref
-        PyTuple_SetItem(pargs, i,arg);
-      } else {
-        err = true;
-        break;
+
+      // transform QVariant arguments to Python
+      for (int i = 0; i < count; i++) {
+        PyObject* arg = PythonQtConv::QVariantToPyObject(args.at(i));
+        if (arg) {
+          // steals reference, no unref
+          PyTuple_SetItem(pargs, i,arg);
+        } else {
+          err = true;
+          break;
+        }
       }
     }
-
     if (!err) {
-      PyErr_Clear();
-      result = PyObject_CallObject(callable, pargs);
+      if (kwargs.isEmpty()) {
+        // do a direct call if we have no keyword arguments
+        PyErr_Clear();
+        result = PyObject_CallObject(callable, pargs);
+      } else {
+        // convert keyword arguments to Python
+        PythonQtObjectPtr pkwargs;
+        pkwargs.setNewRef(PyDict_New());
+        QMapIterator<QString, QVariant> it(kwargs);
+        while (it.hasNext()) {
+          it.next();
+          PyObject* arg = PythonQtConv::QVariantToPyObject(it.value());
+          if (arg) {
+            PyDict_SetItemString(pkwargs, it.key().toLatin1().constData(), arg);
+          } else {
+            err = true;
+            break;
+          }
+        }
+        if (!err) {
+          // call with arguments and keyword arguments
+          PyErr_Clear();
+          result = PyObject_Call(callable, pargs, pkwargs);
+        }
+      }
     }
   }
   return result;

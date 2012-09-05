@@ -356,13 +356,13 @@ public:
   //@{
 
   //! call the given python \c callable in the scope of object, returns the result converted to a QVariant
-  QVariant call(PyObject* object, const QString& callable, const QVariantList& args = QVariantList());
+  QVariant call(PyObject* object, const QString& callable, const QVariantList& args = QVariantList(), const QVariantMap& kwargs = QVariantMap());
 
   //! call the given python object, returns the result converted to a QVariant
-  QVariant call(PyObject* callable, const QVariantList& args = QVariantList());
+  QVariant call(PyObject* callable, const QVariantList& args = QVariantList(), const QVariantMap& kwargs = QVariantMap());
 
   //! call the given python object, returns the result as new PyObject
-  PyObject* callAndReturnPyObject(PyObject* callable, const QVariantList& args = QVariantList());
+  PyObject* callAndReturnPyObject(PyObject* callable, const QVariantList& args = QVariantList(), const QVariantMap& kwargs = QVariantMap());
 
   //@}
 
