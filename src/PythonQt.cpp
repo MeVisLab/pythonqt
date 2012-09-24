@@ -61,6 +61,12 @@ int       PythonQt::_uniqueModuleCount = 0;
 void PythonQt_init_QtGuiBuiltin(PyObject*);
 void PythonQt_init_QtCoreBuiltin(PyObject*);
 
+
+PyObject* PythonQtConvertFromStringRef(const void* inObject, int /*metaTypeId*/)
+{
+  return PythonQtConv::QStringToPyObject(((QStringRef*)inObject)->toString());
+}
+
 void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
 {
   if (!_self) {
@@ -68,6 +74,9 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
 
     PythonQtMethodInfo::addParameterTypeAlias("QObjectList", "QList<QObject*>");
     qRegisterMetaType<QList<QObject*> >("QList<void*>");
+
+    int stringRefId = qRegisterMetaType<QStringRef>("QStringRef");
+    PythonQtConv::registerMetaTypeToPythonConverter(stringRefId, PythonQtConvertFromStringRef);
 
     PythonQtRegisterToolClassesTemplateConverter(int);
     PythonQtRegisterToolClassesTemplateConverter(float);
@@ -677,14 +686,20 @@ QVariant PythonQt::evalCode(PyObject* object, PyObject* pycode) {
   QVariant result;
   if (pycode) {
     PyObject* dict = NULL;
+    PyObject* globals = NULL;
     if (PyModule_Check(object)) {
       dict = PyModule_GetDict(object);
+      globals = dict;
     } else if (PyDict_Check(object)) {
       dict = object;
+      globals = dict;
+    } else {
+      dict = PyObject_GetAttrString(object, "__dict__");
+      globals = PyObject_GetAttrString(PyImport_ImportModule(PyString_AS_STRING(PyObject_GetAttrString(object, "__module__"))),"__dict__");
     }
     PyObject* r = NULL;
     if (dict) {
-      r = PyEval_EvalCode((PyCodeObject*)pycode, dict , dict);
+      r = PyEval_EvalCode((PyCodeObject*)pycode, globals , dict);
     }
     if (r) {
       result = PythonQtConv::PyObjToQVariant(r);
