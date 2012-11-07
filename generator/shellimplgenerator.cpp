@@ -102,6 +102,9 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
     //    declareFunctionMetaTypes(s, functions, registeredTypeNames);
     //    s << endl;
   }
+  if (meta_class->qualifiedCppName().contains("Ssl")) {
+    s << "#ifndef QT_NO_OPENSSL"  << endl;
+  }
 
   if (meta_class->generateShellClass()) {
 
@@ -311,6 +314,9 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
 
   writeInjectedCode(s, meta_class);
 
+  if (meta_class->qualifiedCppName().contains("Ssl")) {
+    s << "#endif"  << endl;
+  }
 }
 
 void ShellImplGenerator::writeInjectedCode(QTextStream &s, const AbstractMetaClass *meta_class)

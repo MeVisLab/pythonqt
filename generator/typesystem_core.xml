@@ -1163,12 +1163,7 @@
   
     <inject-code class="pywrap-h">
   PyObject* data(QByteArray* b) {
-    if (b-&gt;data()) {
-      return PyString_FromStringAndSize(b-&gt;data(), b-&gt;size());
-    } else {
-      Py_INCREF(Py_None);
-      return Py_None;
-    }
+    return PyString_FromStringAndSize(b-&gt;data(), b-&gt;size());
   }
     </inject-code>
   
@@ -1550,10 +1545,6 @@
     </modify-function>
     <modify-function signature="connectNotify(const char *)" remove="all"/>
     <modify-function signature="disconnectNotify(const char *)" remove="all"/>
-  
-    <!-- ### modify to return value by pointer? -->
-    <modify-function signature="buffer()const" remove="all"/>
-    <modify-function signature="data()const" remove="all"/>
 
     <modify-function signature="setData(const char*,int)" remove="all"/>
   </object-type>

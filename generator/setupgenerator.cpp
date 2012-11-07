@@ -198,7 +198,9 @@ void SetupGenerator::generate()
 
       QStringList cppClassNames;
       foreach (const AbstractMetaClass *cls, list) {
-
+        if (cls->qualifiedCppName().contains("Ssl")) {
+          s << "#ifndef QT_NO_OPENSSL"  << endl;
+        }
         QString shellCreator;
         if (cls->generateShellClass()) {
           shellCreator = ", PythonQtSetInstanceWrapperOnShell<" + ShellGenerator::shellClassName(cls) + ">";
@@ -220,6 +222,9 @@ void SetupGenerator::generate()
           if (interface->qualifiedCppName() != cls->qualifiedCppName()) {
             s << "PythonQt::self()->addParentClass(\""<< cls->qualifiedCppName() << "\", \"" << interface->qualifiedCppName() << "\",PythonQtUpcastingOffset<" << cls->qualifiedCppName() <<","<<interface->qualifiedCppName()<<">());" << endl;
           }
+        }
+        if (cls->qualifiedCppName().contains("Ssl")) {
+          s << "#endif"  << endl;
         }
       }
       s << endl;
