@@ -1823,6 +1823,9 @@
   <object-type name="QDynamicPropertyChangeEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::DynamicPropertyChange"/>
 
   <object-type name="QDataStream">
+    <extra-includes>
+      <include file-name="PythonQtConversion.h" location="global"/>
+    </extra-includes>
     <modify-function signature="setDevice(QIODevice*)">
       <modify-argument index="1">
         <reference-count action="set" variable-name="__rcDevice"/>
@@ -1880,185 +1883,78 @@
       <modify-function signature="operator&gt;&gt;(signed char&amp;)" remove="all"/>
       <modify-function signature="operator&lt;&lt;(signed char)" remove="all"/>
 
-      <modify-function signature="operator&lt;&lt;(bool)"> 
-          <rename to="writeBoolean"/> 
-          <modify-argument index="0" replace-value="this"/>
-      </modify-function>
-      <modify-function signature="operator&lt;&lt;(unsigned char)">  
-          <modify-argument index="0" replace-value="this"/>
-          <rename to="writeByte"/> 
-      </modify-function>
-      <modify-function signature="operator&lt;&lt;(int)">
-          <rename to="writeInt"/>  
-          <modify-argument index="0" replace-value="this"/>
-      </modify-function>
-      <modify-function signature="operator&lt;&lt;(qint64)">
-          <rename to="writeLongLong"/> 
-          <modify-argument index="0" replace-value="this"/>
-      </modify-function>
-      <modify-function signature="operator&lt;&lt;(float)"> 
-          <rename to="writeFloat"/>  
-          <modify-argument index="0" replace-value="this"/>
-      </modify-function>
-      <modify-function signature="operator&lt;&lt;(double)"> 
-          <rename to="writeDouble"/>  
-          <modify-argument index="0" replace-value="this"/>
-      </modify-function> 
-      <modify-function signature="operator&lt;&lt;(short)">
-          <rename to="writeShort"/>  
-          <modify-argument index="0" replace-value="this"/>
-      </modify-function>
+      <modify-function signature="operator&lt;&lt;(bool)" remove="all"/> 
+      <modify-function signature="operator&lt;&lt;(unsigned char)" remove="all"/> 
+      <modify-function signature="operator&lt;&lt;(int)" remove="all"/> 
+      <modify-function signature="operator&lt;&lt;(qint64)" remove="all"/> 
+      <modify-function signature="operator&lt;&lt;(float)" remove="all"/> 
+      <modify-function signature="operator&lt;&lt;(double)" remove="all"/> 
+      <modify-function signature="operator&lt;&lt;(short)" remove="all"/> 
 
-      <modify-function signature="operator&gt;&gt;(bool &amp;)"> 
-          <rename to="readBoolean"/>
-          <modify-argument index="1">
-            <remove-argument/>
-            <conversion-rule class="native">
-            bool __result;
-            bool &amp; %out% = __result;
-            </conversion-rule>            
-          </modify-argument>
-          <modify-argument index="0" replace-value="void">
-            <conversion-rule class="native">
-            bool %out% = __result;
-            </conversion-rule>            
-          </modify-argument>
-      </modify-function>
-      <modify-function signature="operator&gt;&gt;(unsigned char &amp;)">  
-          <rename to="readByte"/>
-          <modify-argument index="1">
-            <remove-argument/>
-            <conversion-rule class="native">
-            unsigned char __result;
-            unsigned char &amp; %out% = __result;
-            </conversion-rule>            
-          </modify-argument>
-          <modify-argument index="0" replace-value="void">
-            <conversion-rule class="native">
-            int %out% = __result;
-            </conversion-rule>            
-          </modify-argument>
-      </modify-function>
-      <modify-function signature="operator&gt;&gt;(int &amp;)">
-          <rename to="readInt"/>
-          <modify-argument index="1">
-            <remove-argument/>
-            <conversion-rule class="native">
-            int __result;
-            int &amp; %out% = __result;
-            </conversion-rule>            
-          </modify-argument>
-          <modify-argument index="0" replace-value="void">
-            <conversion-rule class="native">
-            int %out% = __result;
-            </conversion-rule>            
-          </modify-argument>
-      </modify-function>
-      <modify-function signature="operator&gt;&gt;(uint &amp;)">
-          <rename to="readUInt"/>
-          <modify-argument index="1">
-            <remove-argument/>
-            <conversion-rule class="native">
-            uint __result;
-            uint &amp; %out% = __result;
-            </conversion-rule>            
-          </modify-argument>
-          <modify-argument index="0" replace-value="void">
-            <conversion-rule class="native">
-            uint %out% = __result;
-            </conversion-rule>            
-          </modify-argument>
-      </modify-function>
-      <modify-function signature="operator&gt;&gt;(qint64 &amp;)">
-          <rename to="readLongLong"/>
-          <modify-argument index="1">
-            <remove-argument/>
-            <conversion-rule class="native">
-            qint64 __result;
-            qint64 &amp; %out% = __result;
-            </conversion-rule>            
-          </modify-argument>
-          <modify-argument index="0" replace-value="void">
-            <conversion-rule class="native">
-            qint64 %out% = __result;
-            </conversion-rule>            
-          </modify-argument>
-      </modify-function>
-      <modify-function signature="operator&gt;&gt;(unsigned long long &amp;)">
-          <rename to="readULongLong"/>
-          <modify-argument index="1">
-            <remove-argument/>
-            <conversion-rule class="native">
-            unsigned long long __result;
-            unsigned long long &amp; %out% = __result;
-            </conversion-rule>            
-          </modify-argument>
-          <modify-argument index="0" replace-value="void">
-            <conversion-rule class="native">
-            unsigned long long %out% = __result;
-            </conversion-rule>            
-          </modify-argument>
-      </modify-function>
-      <modify-function signature="operator&gt;&gt;(float &amp;)"> 
-          <rename to="readFloat"/>
-          <modify-argument index="1">
-            <remove-argument/>
-            <conversion-rule class="native">
-            float __result;
-            float &amp; %out% = __result;
-            </conversion-rule>            
-          </modify-argument>
-          <modify-argument index="0" replace-value="void">
-            <conversion-rule class="native">
-            float %out% = __result;
-            </conversion-rule>            
-          </modify-argument>
-      </modify-function>
-      <modify-function signature="operator&gt;&gt;(double &amp;)"> 
-          <rename to="readDouble"/>
-          <modify-argument index="1">
-            <remove-argument/>
-            <conversion-rule class="native">
-            double __result;
-            double &amp; %out% = __result;
-            </conversion-rule>            
-          </modify-argument>
-          <modify-argument index="0" replace-value="void">
-            <conversion-rule class="native">
-            double %out% = __result;
-            </conversion-rule>            
-          </modify-argument>
-      </modify-function> 
-      <modify-function signature="operator&gt;&gt;(short &amp;)">
-          <rename to="readShort"/>
-          <modify-argument index="1">
-            <remove-argument/>
-            <conversion-rule class="native">
-            short __result;
-            short &amp; %out% = __result;
-            </conversion-rule>            
-          </modify-argument>
-          <modify-argument index="0" replace-value="void">
-            <conversion-rule class="native">
-            short %out% = __result;
-            </conversion-rule>            
-          </modify-argument>
-      </modify-function>
-      <modify-function signature="operator&gt;&gt;(unsigned short &amp;)">
-          <rename to="readUShort"/>
-          <modify-argument index="1">
-            <remove-argument/>
-            <conversion-rule class="native">
-            unsigned short __result;
-            unsigned short &amp; %out% = __result;
-            </conversion-rule>            
-          </modify-argument>
-          <modify-argument index="0" replace-value="void">
-            <conversion-rule class="native">
-            unsigned short %out% = __result;
-            </conversion-rule>            
-          </modify-argument>
-      </modify-function>
+      <modify-function signature="operator&gt;&gt;(bool &amp;)" remove="all"/> 
+      <modify-function signature="operator&gt;&gt;(unsigned char &amp;)" remove="all"/>   
+      <modify-function signature="operator&gt;&gt;(int &amp;)" remove="all"/> 
+      <modify-function signature="operator&gt;&gt;(uint &amp;)" remove="all"/> 
+      <modify-function signature="operator&gt;&gt;(qint64 &amp;)" remove="all"/> 
+      <modify-function signature="operator&gt;&gt;(unsigned long long &amp;)" remove="all"/> 
+      <modify-function signature="operator&gt;&gt;(float &amp;)" remove="all"/> 
+      <modify-function signature="operator&gt;&gt;(double &amp;)" remove="all"/> 
+      <modify-function signature="operator&gt;&gt;(short &amp;)" remove="all"/> 
+      <modify-function signature="operator&gt;&gt;(unsigned short &amp;)" remove="all"/> 
+
+      <inject-code class="pywrap-h">
+   QString readQString(QDataStream* d) { QString r; (*d) &gt;&gt; r; return r; }
+   QString readString(QDataStream* d) { QString r; (*d) &gt;&gt; r; return r; }
+   QChar readQChar(QDataStream* d) { QChar r; (*d) &gt;&gt; r; return r; }
+   QStringList readQStringList(QDataStream* d) { QStringList r; (*d) &gt;&gt; r; return r; }
+   QVariant readQVariant(QDataStream* d) { QVariant r; (*d) &gt;&gt; r; return r; }
+   bool readBool(QDataStream* d) { bool r; (*d) &gt;&gt; r; return r; }
+   qint8 readInt8(QDataStream* d) { qint8 r; (*d) &gt;&gt; r; return r; }
+   quint8 readUInt8(QDataStream* d) { quint8 r; (*d) &gt;&gt; r; return r; }
+   qint16 readInt16(QDataStream* d) { qint16 r; (*d) &gt;&gt; r; return r; }
+   quint16 readUInt16(QDataStream* d) { quint16 r; (*d) &gt;&gt; r; return r; }
+   qint32 readInt32(QDataStream* d) { qint32 r; (*d) &gt;&gt; r; return r; }
+   quint32 readUInt32(QDataStream* d) { quint32 r; (*d) &gt;&gt; r; return r; }
+   qint64 readInt64(QDataStream* d) { qint64 r; (*d) &gt;&gt; r; return r; }
+   quint64 readUInt64(QDataStream* d) { quint64 r; (*d) &gt;&gt; r; return r; }
+   float readFloat(QDataStream* d) { float r; (*d) &gt;&gt; r; return r; }
+   double readDouble(QDataStream* d) { double r; (*d) &gt;&gt; r; return r; }
+
+   void writeQString(QDataStream* d, const QString&amp; v) { (*d) &lt;&lt; v; }
+   void writeString(QDataStream* d, const QString&amp; v) { (*d) &lt;&lt; v; }
+   void writeQChar(QDataStream* d, const QChar&amp; v) { (*d) &lt;&lt; v; }
+   void writeQStringList(QDataStream* d, const QStringList&amp; v) { (*d) &lt;&lt; v; }
+   void writeQVariant(QDataStream* d, const QVariant&amp; v) { (*d) &lt;&lt; v; }
+   void writeBool(QDataStream* d, bool v) { (*d) &lt;&lt; v; }
+   void writeInt8(QDataStream* d, qint8 v) { (*d) &lt;&lt; v; }
+   void writeUInt8(QDataStream* d, quint8 v) { (*d) &lt;&lt; v; }
+   void writeInt16(QDataStream* d, qint16 v) { (*d) &lt;&lt; v; }
+   void writeUInt16(QDataStream* d, quint16 v) { (*d) &lt;&lt; v; }
+   void writeInt32(QDataStream* d, qint32 v) { (*d) &lt;&lt; v; }
+   void writeUInt32(QDataStream* d, quint32 v) { (*d) &lt;&lt; v; }
+   void writeInt64(QDataStream* d, qint64 v) { (*d) &lt;&lt; v; }
+   void writeUInt64(QDataStream* d, quint64 v) { (*d) &lt;&lt; v; }
+   void writeFloat(QDataStream* d, float v) { (*d) &lt;&lt; v; }
+   void writeDouble(QDataStream* d, double v) { (*d) &lt;&lt; v; }
+
+   int writeRawData(QDataStream* d, PyObject* o) {
+     bool ok;
+     QByteArray r = PythonQtConv::PyObjGetBytes(o, false, ok);
+     return (*d).writeRawData(r.constData(), r.size());
+   }
+
+   PyObject* readRawData(QDataStream* d, int len) {
+     QByteArray r;
+     r.resize(len);
+     int result = d-&gt;readRawData(r.data(), r.size());
+     if (result&gt;=0) {
+       return PyString_FromStringAndSize(r.data(), result);
+     } else {
+       Py_INCREF(Py_None);
+       return Py_None;
+     }
+   }
+    </inject-code>
   </object-type>
 
   <object-type name="QFSFileEngine">
