@@ -1216,7 +1216,7 @@ void PythonQtPrivate::addDecorators(QObject* o, int decoTypes)
       } else if (qstrncmp(m.signature(), "static_", 7)==0) {
         if ((decoTypes & StaticDecorator) == 0) continue;
         QByteArray signature = m.signature();
-        QByteArray nameOfClass = signature.mid(signature.indexOf('_')+1);
+        QByteArray nameOfClass = signature.mid(7);
         nameOfClass = nameOfClass.mid(0, nameOfClass.indexOf('_'));
         PythonQtClassInfo* classInfo = lookupClassInfoAndCreateIfNotPresent(nameOfClass);
         PythonQtSlotInfo* newSlot = new PythonQtSlotInfo(NULL, m, i, o, PythonQtSlotInfo::ClassDecorator);
@@ -1778,4 +1778,16 @@ void PythonQtPrivate::shellClassDeleted( void* shellClass )
   // if the wrapper is a QObject, we do not handle this here,
   // it will be handled by the QPointer<> to the QObject, which becomes NULL
   // via the QObject destructor.
+}
+
+PyObject* PythonQtPrivate::wrapMemoryAsBuffer( const void* data, Py_ssize_t size )
+{
+  // P3K port needed later on!
+  return PyBuffer_FromMemory((void*)data, size);
+}
+
+PyObject* PythonQtPrivate::wrapMemoryAsBuffer( void* data, Py_ssize_t size )
+{
+  // P3K port needed later on!
+  return PyBuffer_FromReadWriteMemory(data, size);
 }
