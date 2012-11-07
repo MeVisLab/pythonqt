@@ -587,6 +587,12 @@ public:
   //! wrap the given ptr into a Python object (or return existing wrapper!) if there is a known QObject of that name or a known wrapper in the factory
   PyObject* wrapPtr(void* ptr, const QByteArray& name);
 
+  //! create a read-only buffer object from the given memory
+  static PyObject* wrapMemoryAsBuffer(const void* data, Py_ssize_t size);
+
+  //! create a read-write buffer object from the given memory
+  static PyObject* wrapMemoryAsBuffer(void* data, Py_ssize_t size);
+
   //! registers a QObject derived class to PythonQt (this is implicitly called by addObject as well)
   /* Since Qt4 does not offer a way to detect if a given classname is derived from QObject and thus has a QMetaObject,
      you MUST register all your QObject derived classes here when you want them to be detected in signal and slot calls */
