@@ -71,6 +71,8 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
 {
   if (!_self) {
     _self = new PythonQt(flags, pythonQtModuleName);
+    
+    PythonQt::priv()->setupSharedLibrarySuffixes();
 
     PythonQtMethodInfo::addParameterTypeAlias("QObjectList", "QList<QObject*>");
     qRegisterMetaType<QList<QObject*> >("QList<void*>");
@@ -211,8 +213,6 @@ PythonQt::PythonQt(int flags, const QByteArray& pythonQtModuleName)
   Py_INCREF(&PythonQtStdInRedirectType);
 
   initPythonQtModule(flags & RedirectStdOut, pythonQtModuleName);
-
-  _p->setupSharedLibrarySuffixes();
 
 }
 
