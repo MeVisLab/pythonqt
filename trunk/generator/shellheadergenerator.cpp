@@ -104,6 +104,10 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
     | AbstractMetaClass::WasVisible
     | AbstractMetaClass::NotRemovedFromTargetLang);
 
+  if (meta_class->qualifiedCppName().contains("Ssl")) {
+    s << "#ifndef QT_NO_OPENSSL"  << endl;
+  }
+
   // Shell-------------------------------------------------------------------
   if (meta_class->generateShellClass()) {
 
@@ -128,7 +132,6 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
     }
     s << endl;
     s << "   ~" << shellClassName(meta_class) << "();" << endl;
-    s << endl;
 
     foreach(AbstractMetaFunction* fun, virtualsForShell) {
       s << "virtual ";
@@ -293,8 +296,13 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
   writeInjectedCode(s, meta_class);
 
   
-  s  << "};" << endl << endl
-    << "#endif // " << include_block << endl;
+  s  << "};" << endl << endl;
+  if (meta_class->qualifiedCppName().contains("Ssl")) {
+    s << "#endif"  << endl << endl;
+  }
+
+  s  << "#endif // " << include_block << endl;
+
 
 }
 

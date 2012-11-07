@@ -1098,6 +1098,12 @@
     <modify-function signature="scanLine(int)const">
         <remove/>
     </modify-function>
+    <modify-function signature="constBits()const">
+        <remove/>
+    </modify-function>
+    <modify-function signature="constScanLine(int)const">
+        <remove/>
+    </modify-function>
     <modify-function signature="QImage(const unsigned char *, int, int, QImage::Format)">
         <remove/>
     </modify-function>
@@ -1260,6 +1266,27 @@ QImage* new_QImage( const uchar * data, int width, int height, QImage::Format fo
   memcpy(image-&gt;bits(), data, image-&gt;byteCount());
   return image;
 }
+
+PyObject* bits(QImage* image) {
+  return PythonQtPrivate::wrapMemoryAsBuffer(image-&gt;bits(), image-&gt;bytesPerLine()* image-&gt;height());
+}
+
+#if QT_VERSION &gt;= QT_VERSION_CHECK(4,7,0)
+PyObject* constBits(QImage* image) {
+  return PythonQtPrivate::wrapMemoryAsBuffer(image-&gt;constBits(), image-&gt;byteCount());
+}
+#endif
+
+PyObject* scanLine(QImage* image, int line) {
+  return PythonQtPrivate::wrapMemoryAsBuffer(image-&gt;scanLine(line), image-&gt;bytesPerLine());
+}
+
+#if QT_VERSION &gt;= QT_VERSION_CHECK(4,7,0)
+PyObject* constScanLine(QImage* image, int line) {
+  return PythonQtPrivate::wrapMemoryAsBuffer(image-&gt;constScanLine(line), image-&gt;bytesPerLine());
+}
+#endif
+
 </inject-code>  
   </value-type>
 

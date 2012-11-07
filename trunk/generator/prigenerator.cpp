@@ -75,8 +75,8 @@ static QString combineIncludes(const QString& text) {
   foreach(QString line, lines) {
     if (line.startsWith("#include")) {
       includes.insert(line);
-    } else if (line.startsWith("#")) {
-      // skip preprocessor stuff
+    } else if (line.startsWith("#") && line.contains("PYTHONQTWRAPPER_")) {
+      // skip preprocessor defines for single wrapped classes
     } else {
       result += line + "\n";
     }
