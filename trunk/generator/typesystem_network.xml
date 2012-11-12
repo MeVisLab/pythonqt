@@ -120,7 +120,11 @@
     </modify-function>
   </object-type>
   <object-type name="QNetworkCookieJar"/>
-  <object-type name="QNetworkReply"/>
+  <object-type name="QNetworkReply">
+    <modify-function signature="setSslConfiguration(QSslConfiguration)" remove="all"/>
+    <modify-function signature="sslConfiguration() const" remove="all"/>
+    <modify-function signature="ignoreSslErrors(const QList&lt;QSslError&gt;&amp;)" remove="all"/>
+  </object-type>
 
   <value-type name="QHostAddress">
     <modify-function signature="QHostAddress(unsigned char*)" remove="all"/>
@@ -188,6 +192,8 @@
   </value-type>
   <value-type name="QNetworkRequest">
     <modify-function signature="operator=(QNetworkRequest)" remove="all"/>
+    <modify-function signature="setSslConfiguration(QSslConfiguration)" remove="all"/>
+    <modify-function signature="sslConfiguration() const" remove="all"/>
   </value-type>
 
   <enum-type name="QSslError::SslError"/>
