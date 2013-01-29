@@ -1,34 +1,10 @@
 cmake_minimum_required(VERSION 2.8)
 
 #-----------------------------------------------------------------------------
-# See http://cmake.org/cmake/help/cmake-2-8-docs.html#section_Policies for details
-#
-
-SET(project_policies
-  CMP0001 # NEW: CMAKE_BACKWARDS_COMPATIBILITY should no longer be used.
-  CMP0002 # NEW: Logical target names must be globally unique.
-  CMP0003 # NEW: Libraries linked via full path no longer produce linker search paths.
-  CMP0004 # NEW: Libraries linked may NOT have leading or trailing whitespace.
-  CMP0005 # NEW: Preprocessor definition values are now escaped automatically.
-  CMP0006 # NEW: Installing MACOSX_BUNDLE targets requires a BUNDLE DESTINATION.
-  CMP0007 # NEW: List command no longer ignores empty elements.
-  CMP0008 # NEW: Libraries linked by full-path must have a valid library file name.
-  CMP0009 # NEW: FILE GLOB_RECURSE calls should not follow symlinks by default.
-  CMP0010 # NEW: Bad variable reference syntax is an error.
-  CMP0011 # NEW: Included scripts do automatic cmake_policy PUSH and POP.
-  CMP0012 # NEW: if() recognizes numbers and boolean constants.
-  CMP0013 # NEW: Duplicate binary directories are not allowed.
-  CMP0014 # NEW: Input directories must have CMakeLists.txt
-  )
-FOREACH(policy ${project_policies})
-  IF(POLICY ${policy})
-    CMAKE_POLICY(SET ${policy} NEW)
-  ENDIF()
-ENDFOREACH()
-
-#-----------------------------------------------------------------------------
 project(PythonQt)
 #-----------------------------------------------------------------------------
+
+include(CTestUseLaunchers OPTIONAL)
 
 #-----------------------------------------------------------------------------
 # Python libraries
@@ -40,9 +16,23 @@ add_definitions(-DPYTHONQT_USE_RELEASE_PYTHON_FALLBACK)
 #-----------------------------------------------------------------------------
 # Build options
 
-foreach(qtlib core gui network opengl sql svg uitools webkit xml xmlpatterns)
+option(PythonQt_Wrap_QtAll "Make all Qt components available in python" OFF)
+
+set(qtlibs core gui network opengl sql svg uitools webkit xml xmlpatterns)
+foreach(qtlib ${qtlibs})
   OPTION(PythonQt_Wrap_Qt${qtlib} "Make all of Qt${qtlib} available in python" OFF)
 endforeach()
+
+# Force option if it applies
+if(PythonQt_Wrap_QtAll)
+  list(REMOVE_ITEM qtlibs xmlpatterns) # xmlpatterns wrapper does *NOT* build at all :(  
+  foreach(qtlib ${qtlibs})
+    if(NOT ${PythonQt_Wrap_Qt${qtlib}})
+      set(PythonQt_Wrap_Qt${qtlib} ON CACHE BOOL "Make all of Qt${qtlib} available in python" FORCE)
+      message(STATUS "Enabling [PythonQt_Wrap_Qt${qtlib}] because of [PythonQt_Wrap_QtAll] evaluates to True")
+    endif()
+  endforeach()
+endif()
 
 option(PythonQt_DEBUG "Enable/Disable PythonQt debug output" OFF)
 if(PythonQt_DEBUG)
@@ -81,6 +71,17 @@ else()
 endif()
 
 #-----------------------------------------------------------------------------
+# The variable "generated_cpp_suffix" allows to conditionnally compile the generated wrappers 
+# associated with the Qt version being used.
+set(generated_cpp_suffix "_${QT_VERSION_MAJOR}${QT_VERSION_MINOR}")
+if("${generated_cpp_suffix}" STREQUAL "_48")
+  set(generated_cpp_suffix "")
+endif()
+if("${generated_cpp_suffix}" STREQUAL "_46")
+  set(generated_cpp_suffix "_47") # Also use 4.7 wrappers for 4.6.x version
+endif()
+
+#-----------------------------------------------------------------------------
 # Sources
 
 set(sources
@@ -102,12 +103,12 @@ set(sources
     src/PythonQtStdOut.cpp
     src/gui/PythonQtScriptingConsole.cpp
     
-    generated_cpp/PythonQt_QtBindings.cpp
+    generated_cpp${generated_cpp_suffix}/PythonQt_QtBindings.cpp
 
-    generated_cpp/com_trolltech_qt_core_builtin/com_trolltech_qt_core_builtin0.cpp
-    generated_cpp/com_trolltech_qt_core_builtin/com_trolltech_qt_core_builtin_init.cpp
-    generated_cpp/com_trolltech_qt_gui_builtin/com_trolltech_qt_gui_builtin0.cpp
-    generated_cpp/com_trolltech_qt_gui_builtin/com_trolltech_qt_gui_builtin_init.cpp
+    generated_cpp${generated_cpp_suffix}/com_trolltech_qt_core_builtin/com_trolltech_qt_core_builtin0.cpp
+    generated_cpp${generated_cpp_suffix}/com_trolltech_qt_core_builtin/com_trolltech_qt_core_builtin_init.cpp
+    generated_cpp${generated_cpp_suffix}/com_trolltech_qt_gui_builtin/com_trolltech_qt_gui_builtin0.cpp
+    generated_cpp${generated_cpp_suffix}/com_trolltech_qt_gui_builtin/com_trolltech_qt_gui_builtin_init.cpp
 )
 
 #-----------------------------------------------------------------------------
@@ -136,7 +137,7 @@ set(headers
     src/PythonQtSystem.h
     src/PythonQtVariants.h
     src/PythonQtPythonInclude.h
-    generated_cpp/PythonQt_QtBindings.h
+    generated_cpp${generated_cpp_suffix}/PythonQt_QtBindings.h
 )
 
 #-----------------------------------------------------------------------------
@@ -148,8 +149,8 @@ set(moc_sources
     src/PythonQtStdDecorators.h
     src/gui/PythonQtScriptingConsole.h
 
-    generated_cpp/com_trolltech_qt_core_builtin/com_trolltech_qt_core_builtin0.h
-    generated_cpp/com_trolltech_qt_gui_builtin/com_trolltech_qt_gui_builtin0.h
+    generated_cpp${generated_cpp_suffix}/com_trolltech_qt_core_builtin/com_trolltech_qt_core_builtin0.h
+    generated_cpp${generated_cpp_suffix}/com_trolltech_qt_gui_builtin/com_trolltech_qt_gui_builtin0.h
 )
 
 #-----------------------------------------------------------------------------
@@ -160,9 +161,9 @@ foreach(qtlib core gui network opengl sql svg uitools webkit xml xmlpatterns)
     
     ADD_DEFINITIONS(-DPYTHONQT_WRAP_Qt${qtlib})
     
-    set(file_prefix generated_cpp/com_trolltech_qt_${qtlib}/com_trolltech_qt_${qtlib})
+    set(file_prefix generated_cpp${generated_cpp_suffix}/com_trolltech_qt_${qtlib}/com_trolltech_qt_${qtlib})
     
-    foreach(index RANGE 0 10)
+    foreach(index RANGE 0 11)
     
       # Source files
       if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${file_prefix}${index}.cpp)
