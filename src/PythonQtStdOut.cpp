@@ -91,13 +91,20 @@ static PyObject *PythonQtStdOutRedirect_flush(PyObject * /*self*/, PyObject * /*
   return Py_BuildValue("");
 }
 
-
+static PyObject *PythonQtStdOutRedirect_isatty(PyObject * /*self*/, PyObject * /*args*/)
+{
+  Py_INCREF(Py_False);
+  return Py_False;
+}
 
 static PyMethodDef PythonQtStdOutRedirect_methods[] = {
   {"write", (PyCFunction)PythonQtStdOutRedirect_write, METH_VARARGS,
   "redirect the writing to a callback"},
   {"flush", (PyCFunction)PythonQtStdOutRedirect_flush, METH_VARARGS,
   "flush the output, currently not implemented but needed for logging framework"
+  },
+  {"isatty", (PyCFunction)PythonQtStdOutRedirect_isatty,   METH_NOARGS,
+  "return False since this object is not a tty-like device. Needed for logging framework"
   },
   {NULL,    NULL, 0 , NULL} /* sentinel */
 };

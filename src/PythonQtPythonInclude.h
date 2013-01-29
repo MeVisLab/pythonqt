@@ -45,6 +45,7 @@
 #undef _DEBUG
 #if defined(_MSC_VER) && _MSC_VER >= 1400
 #define _CRT_NOFORCE_MANIFEST 1
+#define _STL_NOFORCE_MANIFEST 1
 #endif
 #include <Python.h>
 #define _DEBUG

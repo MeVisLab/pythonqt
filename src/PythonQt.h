@@ -473,17 +473,32 @@ public:
   //! get access to internal data (should not be used on the public API, but is used by some C functions)
   static PythonQtPrivate* priv() { return _self->_p; }
 
-  //! handle a python error, call this when a python function fails. If no error occurred, it returns false.
-  //! The error is currently just output to the python stderr, future version might implement better trace printing
-  bool handleError();
-
   //! clear all NotFound entries on all class infos, to ensure that
   //! newly loaded wrappers can add methods even when the object was wrapped by PythonQt before the wrapper was loaded
   void clearNotFoundCachedMembers();
 
-  //! set a callback that is called when a QObject with parent == NULL is wrapped by pythonqt
+  //! handle a python error, call this when a python function fails. If no error occurred, it returns false.
+  //! The error is currently just output to the python stderr, future version might implement better trace printing
+  bool handleError();
+
+  //! return \a true if \a handleError() has been called and an error occured.
+  bool hadError()const;
+
+  //! reset error flag. After calling this, hadError() will return false.
+  //! \sa hadError()
+  void clearError();
+
+  //! if set to true, the systemExitExceptionRaised signal will be emitted if exception SystemExit is caught
+  //! \sa handleError()
+  void setSystemExitExceptionHandlerEnabled(bool value);
+
+  //! return \a true if SystemExit exception is handled by PythonQt
+  //! \sa setSystemExitExceptionHandlerEnabled()
+  bool systemExitExceptionHandlerEnabled() const;
+
+  //! set a callback that is called when a QObject with parent == NULL is wrapped by PythonQt
   void setQObjectWrappedCallback(PythonQtQObjectWrappedCB* cb);
-  //! set a callback that is called when a QObject with parent == NULL is no longer wrapped by pythonqt
+  //! set a callback that is called when a QObject with parent == NULL is no longer wrapped by PythonQt
   void setQObjectNoLongerWrappedCallback(PythonQtQObjectNoLongerWrappedCB* cb);
 
   //! call the callback if it is set
@@ -509,6 +524,11 @@ signals:
 
   //! emitted when help() is called on a PythonQt object and \c ExternalHelp is enabled
   void pythonHelpRequest(const QByteArray& cppClassName);
+
+  //! emitted when both custom SystemExit exception handler is enabled and a SystemExit
+  //! exception is raised.
+  //! \sa setSystemExitExceptionHandlerEnabled(bool)
+  void systemExitExceptionRaised(int exitCode);
 
 private:
   void initPythonQtModule(bool redirectStdOut, const QByteArray& pythonQtModuleName);
@@ -713,6 +733,9 @@ private:
 
   int _initFlags;
   int _PythonQtObjectPtr_metaId;
+
+  bool _hadError;
+  bool _systemExitExceptionHandlerEnabled;
 
   friend class PythonQt;
 };

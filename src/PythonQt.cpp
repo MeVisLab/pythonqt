@@ -687,6 +687,7 @@ PythonQtObjectPtr PythonQt::importModule(const QString& name)
 
 QVariant PythonQt::evalCode(PyObject* object, PyObject* pycode) {
   QVariant result;
+  clearError();
   if (pycode) {
     PyObject* dict = NULL;
     PyObject* globals = NULL;
@@ -721,6 +722,7 @@ QVariant PythonQt::evalScript(PyObject* object, const QString& script, int start
   QVariant result;
   PythonQtObjectPtr p;
   PyObject* dict = NULL;
+  clearError();
   if (PyModule_Check(object)) {
     dict = PyModule_GetDict(object);
   } else if (PyDict_Check(object)) {
@@ -740,6 +742,7 @@ QVariant PythonQt::evalScript(PyObject* object, const QString& script, int start
 void PythonQt::evalFile(PyObject* module, const QString& filename)
 {
   PythonQtObjectPtr code = parseFile(filename);
+  clearError();
   if (code) {
     evalCode(module, code);
   } else {
@@ -751,6 +754,7 @@ PythonQtObjectPtr PythonQt::parseFile(const QString& filename)
 {
   PythonQtObjectPtr p;
   p.setNewRef(PythonQtImport::getCodeFromPyc(filename));
+  clearError();
   if (!p) {
     handleError();
   }
@@ -1040,6 +1044,7 @@ QVariant PythonQt::call(PyObject* callable, const QVariantList& args, const QVar
   QVariant r;
   PythonQtObjectPtr result;
   result.setNewRef(callAndReturnPyObject(callable, args, kwargs));
+  clearError();
   if (result) {
     r = PythonQtConv::PyObjToQVariant(result);
   } else {
@@ -1156,6 +1161,8 @@ PythonQtPrivate::PythonQtPrivate()
   _wrappedCB = NULL;
   _currentClassInfoForClassWrapperCreation = NULL;
   _profilingCB = NULL;
+  _hadError = false;
+  _systemExitExceptionHandlerEnabled = false;
 }
 
 void PythonQtPrivate::setupSharedLibrarySuffixes()
@@ -1252,29 +1259,117 @@ void PythonQtPrivate::removeSignalEmitter(QObject* obj)
   _signalReceivers.remove(obj);
 }
 
+namespace
+{
+//! adapted from python source file "pythonrun.c", function "handle_system_exit"
+//! return the exitcode instead of calling "Py_Exit".
+//! it gives the application an opportunity to properly terminate.
+int custom_system_exit_exception_handler()
+{
+  PyObject *exception, *value, *tb;
+  int exitcode = 0;
+
+//  if (Py_InspectFlag)
+//    /* Don't exit if -i flag was given. This flag is set to 0
+//     * when entering interactive mode for inspecting. */
+//    return exitcode;
+
+  PyErr_Fetch(&exception, &value, &tb);
+  if (Py_FlushLine())
+    PyErr_Clear();
+  fflush(stdout);
+  if (value == NULL || value == Py_None)
+    goto done;
+  if (PyExceptionInstance_Check(value)) {
+    /* The error code should be in the `code' attribute. */
+    PyObject *code = PyObject_GetAttrString(value, "code");
+    if (code) {
+      Py_DECREF(value);
+      value = code;
+      if (value == Py_None)
+        goto done;
+    }
+    /* If we failed to dig out the 'code' attribute,
+       just let the else clause below print the error. */
+  }
+  if (PyInt_Check(value))
+    exitcode = (int)PyInt_AsLong(value);
+  else {
+    PyObject *sys_stderr = PySys_GetObject(const_cast<char*>("stderr"));
+    if (sys_stderr != NULL && sys_stderr != Py_None) {
+      PyFile_WriteObject(value, sys_stderr, Py_PRINT_RAW);
+    } else {
+      PyObject_Print(value, stderr, Py_PRINT_RAW);
+      fflush(stderr);
+    }
+    PySys_WriteStderr("\n");
+    exitcode = 1;
+  }
+  done:
+    /* Restore and clear the exception info, in order to properly decref
+     * the exception, value, and traceback.      If we just exit instead,
+     * these leak, which confuses PYTHONDUMPREFS output, and may prevent
+     * some finalizers from running.
+     */
+    PyErr_Restore(exception, value, tb);
+    PyErr_Clear();
+    return exitcode;
+    //Py_Exit(exitcode);
+}
+}
+
 bool PythonQt::handleError()
 {
   bool flag = false;
   if (PyErr_Occurred()) {
 
-    // currently we just print the error and the stderr handler parses the errors
-    PyErr_Print();
+    if (_p->_systemExitExceptionHandlerEnabled &&
+        PyErr_ExceptionMatches(PyExc_SystemExit)) {
+      int exitcode = custom_system_exit_exception_handler();
+      emit PythonQt::self()->systemExitExceptionRaised(exitcode);
+      }
+    else
+      {
+      // currently we just print the error and the stderr handler parses the errors
+      PyErr_Print();
 
-    /*
-    // EXTRA: the format of the ptype and ptraceback is not really documented, so I use PyErr_Print() above
-    PyObject *ptype;
-    PyObject *pvalue;
-    PyObject *ptraceback;
-    PyErr_Fetch( &ptype, &pvalue, &ptraceback);
+      /*
+      // EXTRA: the format of the ptype and ptraceback is not really documented, so I use PyErr_Print() above
+      PyObject *ptype;
+      PyObject *pvalue;
+      PyObject *ptraceback;
+      PyErr_Fetch( &ptype, &pvalue, &ptraceback);
 
-      Py_XDECREF(ptype);
-      Py_XDECREF(pvalue);
-      Py_XDECREF(ptraceback);
-    */
-    PyErr_Clear();
+        Py_XDECREF(ptype);
+        Py_XDECREF(pvalue);
+        Py_XDECREF(ptraceback);
+      */
+      PyErr_Clear();
+      }
     flag = true;
   }
+  _p->_hadError = flag;
   return flag;
+}
+
+bool PythonQt::hadError()const
+{
+  return _p->_hadError;
+}
+
+void PythonQt::clearError()
+{
+  _p->_hadError = false;
+}
+
+void PythonQt::setSystemExitExceptionHandlerEnabled(bool value)
+{
+  _p->_systemExitExceptionHandlerEnabled = value;
+}
+
+bool PythonQt::systemExitExceptionHandlerEnabled() const
+{
+  return _p->_systemExitExceptionHandlerEnabled;
 }
 
 void PythonQt::addSysPath(const QString& path)
@@ -1602,6 +1697,7 @@ PythonQtInstanceWrapper* PythonQtPrivate::findWrapperAndRemoveUnused(void* obj)
 PythonQtObjectPtr PythonQtPrivate::createModule(const QString& name, PyObject* pycode)
 {
   PythonQtObjectPtr result;
+  PythonQt::self()->clearError();
   if (pycode) {
     result.setNewRef(PyImport_ExecCodeModule((char*)name.toLatin1().data(), pycode));
   } else {
