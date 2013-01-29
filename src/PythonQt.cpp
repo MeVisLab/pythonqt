@@ -416,8 +416,11 @@ PyObject* PythonQtPrivate::wrapPtr(void* ptr, const QByteArray& name)
       QObject* qptr = (QObject*)ptr;
       // if the object is a derived object, we want to switch the class info to the one of the derived class:
       if (name!=(qptr->metaObject()->className())) {
-        registerClass(qptr->metaObject());
         info = _knownClassInfos.value(qptr->metaObject()->className());
+        if (!info) {
+          registerClass(qptr->metaObject());
+          info = _knownClassInfos.value(qptr->metaObject()->className());
+        }
       }
       wrap = createNewPythonQtInstanceWrapper(qptr, info);
       //    mlabDebugConst("MLABPython","new qobject wrapper added " << " " << wrap->_obj->className() << " " << wrap->classInfo()->wrappedClassName().latin1());
