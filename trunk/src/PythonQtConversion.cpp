@@ -76,7 +76,13 @@ PyObject* PythonQtConv::ConvertQtValueToPython(const PythonQtMethodInfo::Paramet
     return Py_None;
   } else if ((info.pointerCount == 1) && (info.typeId == QMetaType::Char)) {
     // a char ptr will probably be a null terminated string, so we support that:
-    return PyString_FromString(*((char**)data));
+    char* charPtr = *((char**)data);
+    if (charPtr) {
+      return PyString_FromString(charPtr);
+    } else {
+      Py_INCREF(Py_None);
+      return Py_None;
+    }
   } else if ((info.typeId == PythonQtMethodInfo::Unknown || info.typeId >= QMetaType::User) &&
              info.name.startsWith("QList<")) {
     // it is a QList template:
@@ -371,7 +377,11 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
          ptr = object;
        }
      } else {
-      // not matching
+       // not matching, maybe a PyObject*?
+       if (info.name == "PyObject" && info.pointerCount==1) {
+         // handle low level PyObject directly
+         PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_ptrStorage, void*, obj, ptr);
+       }
      }
    } else if (info.pointerCount == 1) {
      // a pointer
@@ -885,14 +895,14 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
     // no special type requested
     if (val->ob_type==&PyString_Type || val->ob_type==&PyUnicode_Type) {
       type = QVariant::String;
+    } else if (val == Py_False || val == Py_True) {
+      type = QVariant::Bool;
     } else if (PyObject_TypeCheck(val, &PyInt_Type)) {
       type = QVariant::Int;
     } else if (val->ob_type==&PyLong_Type) {
       type = QVariant::LongLong;
     } else if (val->ob_type==&PyFloat_Type) {
       type = QVariant::Double;
-    } else if (val == Py_False || val == Py_True) {
-      type = QVariant::Bool;
     } else if (PyObject_TypeCheck(val, &PythonQtInstanceWrapper_Type)) {
       PythonQtInstanceWrapper* wrap = (PythonQtInstanceWrapper*)val;
       // c++ wrapper, check if the class names of the c++ objects match
