@@ -72,7 +72,7 @@
 // release Python DLL if it is available by undefining _DEBUG while
 // including Python.h
 #if defined(PYTHONQT_USE_RELEASE_PYTHON_FALLBACK) && defined(_DEBUG)
-#undef _DEBUG
+# define PYTHONQT_UNDEF_DEBUG
 // Include these low level headers before undefing _DEBUG. Otherwise when doing
 // a debug build against a release build of python the compiler will end up
 // including these low level headers without DEBUG enabled, causing it to try
@@ -92,14 +92,17 @@
 # include <sys/stat.h>
 # include <time.h>
 # include <wchar.h>
-#if defined(_MSC_VER) && _MSC_VER >= 1400
-#define _CRT_NOFORCE_MANIFEST 1
-#define _STL_NOFORCE_MANIFEST 1
+# undef _DEBUG
+# if defined(_MSC_VER) && _MSC_VER >= 1400
+#  define _CRT_NOFORCE_MANIFEST 1
+#  define _STL_NOFORCE_MANIFEST 1
+# endif
 #endif
+
 #include <Python.h>
-#define _DEBUG
-#else
-#include <Python.h>
+
+#ifdef PYTHONQT_UNDEF_DEBUG
+# define _DEBUG
 #endif
 
 // By including Python.h on Linux truncate could have been defined (in unistd.h)
