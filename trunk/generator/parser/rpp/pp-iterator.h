@@ -71,6 +71,14 @@ public:
   explicit pp_output_iterator(std::string &__result):
     _M_result (__result) {}
 
+  // this copy constructor was needed for Visual Studio 2012 release builds:
+  inline pp_output_iterator &operator=(const pp_output_iterator& other)
+  {
+    *(std::iterator<std::output_iterator_tag, void, void, void, void>*)(this) = other;
+    _M_result = other._M_result;
+    return *this;
+  }
+
   inline pp_output_iterator &operator=(typename _Container::const_reference __v)
   {
     if (_M_result.capacity () == _M_result.size ())
