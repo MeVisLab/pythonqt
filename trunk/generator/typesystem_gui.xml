@@ -4539,6 +4539,7 @@ PyObject* constScanLine(QImage* image, int line) {
         <include file-name="QImage" location="global"/>
         <include file-name="QPixmap" location="global"/>
     </extra-includes>
+    <modify-function signature="event(QEvent*)" remove="all"/>
     <modify-function signature="setMimeData(QMimeData *, QClipboard::Mode)">
         <modify-argument index="1">
             <define-ownership class="java" owner="c++"/>
