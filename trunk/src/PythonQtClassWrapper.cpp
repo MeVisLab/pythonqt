@@ -179,13 +179,13 @@ static void initializeSlots(PythonQtClassWrapper* wrap)
     }
 
     if (typeSlots & PythonQt::Type_InplaceAdd) {
-      wrap->_base.as_number.nb_add = (binaryfunc)PythonQtInstanceWrapper_iadd;
+      wrap->_base.as_number.nb_inplace_add = (binaryfunc)PythonQtInstanceWrapper_iadd;
     }
     if (typeSlots & PythonQt::Type_InplaceSubtract) {
-      wrap->_base.as_number.nb_subtract = (binaryfunc)PythonQtInstanceWrapper_isub;
+      wrap->_base.as_number.nb_inplace_subtract = (binaryfunc)PythonQtInstanceWrapper_isub;
     }
     if (typeSlots & PythonQt::Type_InplaceMultiply) {
-      wrap->_base.as_number.nb_multiply = (binaryfunc)PythonQtInstanceWrapper_imul;
+      wrap->_base.as_number.nb_inplace_multiply = (binaryfunc)PythonQtInstanceWrapper_imul;
     }
     if (typeSlots & PythonQt::Type_InplaceDivide) {
       wrap->_base.as_number.nb_inplace_divide = (binaryfunc)PythonQtInstanceWrapper_idiv;
