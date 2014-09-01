@@ -157,7 +157,7 @@ bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObj
         className = objectToCall->metaObject()->className();
       }
 
-      profilingCB(PythonQt::Enter, className, info->metaMethod()->signature());
+      profilingCB(PythonQt::Enter, className, info->metaMethod()->signature(), args);
     }
 
     // invoke the slot via metacall
@@ -169,6 +169,11 @@ bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObj
     } else {
       try {
         obj->qt_metacall(QMetaObject::InvokeMetaMethod, info->slotIndex(), argList);
+      } catch (std::out_of_range & e) {
+        hadException = true;
+        QByteArray what("std::out_of_range: ");
+        what += e.what();
+        PyErr_SetString(PyExc_IndexError, what.constData());
       } catch (std::bad_alloc & e) {
         hadException = true;
         QByteArray what("std::bad_alloc: ");
@@ -193,7 +198,7 @@ bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObj
     }
   
     if (profilingCB) {
-      profilingCB(PythonQt::Leave, NULL, NULL);
+      profilingCB(PythonQt::Leave, NULL, NULL, NULL);
     }
 
     // handle the return value (which in most cases still needs to be converted to a Python object)

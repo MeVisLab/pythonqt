@@ -93,6 +93,13 @@ static void PythonQtInstanceWrapper_deleteObject(PythonQtInstanceWrapper* self, 
       PythonQt::priv()->removeWrapperPointer(self->_objPointerCopy);
     }
     if (self->_obj) {
+      if (self->_isShellInstance) {
+        PythonQtShellSetInstanceWrapperCB* cb = self->classInfo()->shellSetInstanceWrapperCB();
+        if (cb) {
+          // remove the pointer to the Python wrapper from the C++ object:
+          (*cb)(self->_obj, NULL);
+        }
+      }
       if (force || self->_ownedByPythonQt) {
         if (force || !self->_obj->parent()) {
           delete self->_obj;
@@ -387,16 +394,16 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
 
         PythonQt::ProfilingCB* profilingCB = PythonQt::priv()->profilingCB();
         if (profilingCB) {
-          QString methodName = "getProperty(";
+          QString methodName = "getProperty('";
           methodName += attributeName;
-          methodName += ")";
-          profilingCB(PythonQt::Enter, wrapper->_obj->metaObject()->className(), methodName.toLatin1());
+          methodName += "')";
+          profilingCB(PythonQt::Enter, wrapper->_obj->metaObject()->className(), methodName.toLatin1(), NULL);
         }
 
         PyObject* value = PythonQtConv::QVariantToPyObject(member._property.read(wrapper->_obj));
 
         if (profilingCB) {
-          profilingCB(PythonQt::Leave, NULL, NULL);
+          profilingCB(PythonQt::Leave, NULL, NULL, NULL);
         }
 
         return value;
@@ -438,6 +445,26 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
       PythonQtMemberInfo member = wrapper->classInfo()->member(getterString + attributeName);
       if (member._type == PythonQtMemberInfo::Slot) {
         return PythonQtSlotFunction_CallImpl(wrapper->classInfo(), wrapper->_obj, member._slot, NULL, NULL, wrapper->_wrappedPtr);
+      }
+
+      {
+        static const QByteArray dynamicGetterString("py_dynamic_get_attrib");
+        // check for a dynamic getter slot
+        PythonQtMemberInfo member = wrapper->classInfo()->member(dynamicGetterString);
+        if (member._type == PythonQtMemberInfo::Slot) {
+          PyObject* args = PyTuple_New(1);
+          Py_INCREF(name);
+          PyTuple_SET_ITEM(args, 0, name);
+          PyObject* result = PythonQtSlotFunction_CallImpl(wrapper->classInfo(), wrapper->_obj, member._slot, args, NULL, wrapper->_wrappedPtr);
+          Py_DECREF(args);
+          if (result) {
+            return result;
+          } else {
+            // in case of result == NULL, expect that the code as thrown a std::exception
+            // and clear the Python error:
+            PyErr_Clear();
+          }
+        }
       }
 
       // handle dynamic properties
@@ -509,16 +536,16 @@ static int PythonQtInstanceWrapper_setattro(PyObject *obj,PyObject *name,PyObjec
       if (v.isValid()) {
         PythonQt::ProfilingCB* profilingCB = PythonQt::priv()->profilingCB();
         if (profilingCB) {
-          QString methodName = "setProperty(";
+          QString methodName = "setProperty('";
           methodName += attributeName;
-          methodName += ")";
-          profilingCB(PythonQt::Enter, wrapper->_obj->metaObject()->className(), methodName.toLatin1());
+          methodName += "')";
+          profilingCB(PythonQt::Enter, wrapper->_obj->metaObject()->className(), methodName.toLatin1(), NULL);
         }
 
         success = prop.write(wrapper->_obj, v);
 
         if (profilingCB) {
-          profilingCB(PythonQt::Leave, NULL, NULL);
+          profilingCB(PythonQt::Leave, NULL, NULL, NULL);
         }
       }
       if (success) {

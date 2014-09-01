@@ -156,7 +156,7 @@ public:
 
   //! callback for profiling. className and methodName are only passed when state == Enter, otherwise
   //! they are NULL.
-  typedef void ProfilingCB(ProfilingCallbackState state, const char* className, const char* methodName);
+  typedef void ProfilingCB(ProfilingCallbackState state, const char* className, const char* methodName, PyObject* args);
 
   //---------------------------------------------------------------------------
   //! \name Singleton Initialization

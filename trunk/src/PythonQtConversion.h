@@ -122,6 +122,7 @@ public:
   //! convert QVariant from PyObject
   static PyObject* QVariantToPyObject(const QVariant& v);
 
+  static PyObject* QVariantHashToPyObject(const QVariantHash& m);
   static PyObject* QVariantMapToPyObject(const QVariantMap& m);
   static PyObject* QVariantListToPyObject(const QVariantList& l);
   
@@ -160,6 +161,13 @@ protected:
 
   //! cast wrapper to given className if possible
   static void* castWrapperTo(PythonQtInstanceWrapper* wrapper, const QByteArray& className, bool& ok);
+
+  //! helper template method for conversion from Python to QVariantMap/Hash
+  template <typename Map>
+  static void pythonToMapVariant(PyObject* val, QVariant& result);
+  //! helper template function for QVariantMapToPyObject/QVariantHashToPyObject
+  template <typename Map>
+  static PyObject* mapToPython (const Map& m);
 };
 
 template<class ListType, class T>
@@ -189,18 +197,20 @@ bool PythonQtConvertPythonListToListOfValueType(PyObject* obj, void* /*QList<T>*
   }
   bool result = false;
   if (PySequence_Check(obj)) {
-    result = true;
     int count = PySequence_Size(obj);
-    PyObject* value;
-    for (int i = 0;i<count;i++) {
-      value = PySequence_GetItem(obj,i);
-      // this is quite some overhead, but it avoids having another large switch...
-      QVariant v = PythonQtConv::PyObjToQVariant(value, innerType);
-      if (v.isValid()) {
-        list->push_back(qVariantValue<T>(v));
-      } else {
-        result = false;
-        break;
+    if (count >= 0) {
+      result = true;
+      PyObject* value;
+      for (int i = 0;i<count;i++) {
+        value = PySequence_GetItem(obj,i);
+        // this is quite some overhead, but it avoids having another large switch...
+        QVariant v = PythonQtConv::PyObjToQVariant(value, innerType);
+        if (v.isValid()) {
+          list->push_back(qVariantValue<T>(v));
+        } else {
+          result = false;
+          break;
+        }
       }
     }
   }

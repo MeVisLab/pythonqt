@@ -1015,7 +1015,7 @@ QStringList PythonQt::introspectType(const QString& typeName, ObjectType type)
       typeName = memberName;
       memberName.clear();
     } else {
-      typeName = tmp.takeLast();
+      typeName = tmp.join(".");
     }
     PyObject* typeObject = getObjectByType(typeName);
     if (typeObject) {
@@ -1542,9 +1542,6 @@ QString PythonQt::getReturnTypeOfWrappedMethodHelper(const PythonQtObjectPtr& va
                 PyObject* s = PyObject_GetAttrString(typeInfo->pythonQtClassWrapper(), "__module__");
                 Q_ASSERT(PyString_Check(s));
                 type = QString(PyString_AsString(s)) + "." + type;
-                Py_DECREF(s);
-                s = PyObject_GetAttrString(typeInfo->pythonQtClassWrapper(), "__name__");
-                Q_ASSERT(PyString_Check(s));
                 Py_DECREF(s);
               }
             }
