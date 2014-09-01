@@ -516,7 +516,7 @@ public:
 
   //@}
 
-signals:
+Q_SIGNALS:
   //! emitted when python outputs something to stdout (and redirection is turned on)
   void pythonStdOut(const QString& str);
   //! emitted when python outputs something to stderr (and redirection is turned on)

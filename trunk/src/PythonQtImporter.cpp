@@ -108,7 +108,7 @@ PythonQtImport::ModuleInfo PythonQtImport::getModuleInfo(PythonQtImporter* self,
     }
   }
   // test if it is a shared library
-  foreach(const QString& suffix, PythonQt::priv()->sharedLibrarySuffixes()) {
+  Q_FOREACH(const QString& suffix, PythonQt::priv()->sharedLibrarySuffixes()) {
     test = path+suffix;
     if (PythonQt::importInterface()->exists(test)) {
       info.fullPath = test;
@@ -136,7 +136,7 @@ int PythonQtImporter_init(PythonQtImporter *self, PyObject *args, PyObject * /*k
   QString path(cpath);
   if (PythonQt::importInterface()->exists(path)) {
     const QStringList& ignorePaths = PythonQt::self()->getImporterIgnorePaths();
-    foreach(QString ignorePath, ignorePaths) {
+    Q_FOREACH(QString ignorePath, ignorePaths) {
       if (path.startsWith(ignorePath)) {
         PyErr_SetString(PythonQtImportError,
           "path ignored");

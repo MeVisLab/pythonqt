@@ -352,7 +352,7 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
       // only the properties are missing, the rest is already available from
       // PythonQtClassWrapper...
       QStringList l = wrapper->classInfo()->propertyList();
-      foreach (QString name, l) {
+      Q_FOREACH (QString name, l) {
         PyObject* o = PyObject_GetAttrString(obj, name.toLatin1().data());
         if (o) {
           PyDict_SetItemString(dict, name.toLatin1().data(), o);
@@ -363,7 +363,7 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
       }
 
       QList<QByteArray> dynamicProps = wrapper->_obj->dynamicPropertyNames();
-      foreach (QByteArray name, dynamicProps) {
+      Q_FOREACH (QByteArray name, dynamicProps) {
         PyObject* o = PyObject_GetAttrString(obj, name.data());
         if (o) {
           PyDict_SetItemString(dict, name.data(), o);

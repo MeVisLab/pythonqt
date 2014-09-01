@@ -331,7 +331,7 @@ static PyObject *PythonQtClassWrapper_getattro(PyObject *obj, PyObject *name)
     PyObject* dict = PyDict_New();
       
     QStringList l = wrapper->classInfo()->memberList();
-    foreach (QString name, l) {
+    Q_FOREACH (QString name, l) {
       PyObject* o = PyObject_GetAttrString(obj, name.toLatin1().data());
       if (o) {
         PyDict_SetItemString(dict, name.toLatin1().data(), o);
