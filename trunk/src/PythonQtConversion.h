@@ -206,7 +206,7 @@ bool PythonQtConvertPythonListToListOfValueType(PyObject* obj, void* /*QList<T>*
         // this is quite some overhead, but it avoids having another large switch...
         QVariant v = PythonQtConv::PyObjToQVariant(value, innerType);
         if (v.isValid()) {
-          list->push_back(qVariantValue<T>(v));
+          list->push_back(qvariant_cast<T>(v));
         } else {
           result = false;
           break;

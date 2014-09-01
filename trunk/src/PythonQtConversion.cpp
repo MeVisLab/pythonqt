@@ -178,7 +178,9 @@ PyObject* PythonQtConv::ConvertQtValueToPythonInternal(int type, const void* dat
   case PythonQtMethodInfo::Variant:
     return PythonQtConv::QVariantToPyObject(*((QVariant*)data));
   case QMetaType::QObjectStar:
+#if( QT_VERSION < QT_VERSION_CHECK(5,0,0) )
   case QMetaType::QWidgetStar:
+#endif
     return PythonQt::priv()->wrapQObject(*((QObject**)data));
 
   default:
@@ -190,7 +192,11 @@ PyObject* PythonQtConv::ConvertQtValueToPythonInternal(int type, const void* dat
     } else {
       if (type > 0) {
         // if the type is known, we can construct it via QMetaType::construct
+#if( QT_VERSION >= QT_VERSION_CHECK(5,0,0) )
+        void* newCPPObject = QMetaType::create(type, data);
+#else
         void* newCPPObject = QMetaType::construct(type, data);
+#endif
         // XXX this could be optimized by using metatypeid directly
         PythonQtInstanceWrapper* wrap = (PythonQtInstanceWrapper*)PythonQt::priv()->wrapPtr(newCPPObject, QMetaType::typeName(type));
         wrap->_ownedByPythonQt = true;

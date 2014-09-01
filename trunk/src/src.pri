@@ -22,7 +22,8 @@ HEADERS +=                    \
   $$PWD/PythonQtQFileImporter.h     \
   $$PWD/PythonQtVariants.h          \
   $$PWD/gui/PythonQtScriptingConsole.h    \
-  $$PWD/PythonQtSystem.h
+  $$PWD/PythonQtSystem.h \
+  $$PWD/PythonQtUtils.h
   
 SOURCES +=                    \
   $$PWD/PythonQtStdDecorators.cpp   \

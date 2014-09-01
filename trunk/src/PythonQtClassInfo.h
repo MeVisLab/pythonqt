@@ -208,7 +208,7 @@ private:
   bool lookForMethodAndCache(const char* memberName);
   bool lookForEnumAndCache(const QMetaObject* m, const char* memberName);
 
-  PythonQtSlotInfo* findDecoratorSlots(const char* memberName, int memberNameLen, PythonQtSlotInfo* tail, bool &found, QHash<QByteArray, PythonQtMemberInfo>& memberCache, int upcastingOffset);
+  PythonQtSlotInfo* findDecoratorSlots(const char* memberName, PythonQtSlotInfo* tail, bool &found, QHash<QByteArray, PythonQtMemberInfo>& memberCache, int upcastingOffset);
   int findCharOffset(const char* sigStart, char someChar);
  
   QHash<QByteArray, PythonQtMemberInfo> _cachedMembers;
