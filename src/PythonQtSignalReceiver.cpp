@@ -254,7 +254,7 @@ int PythonQtSignalReceiver::qt_metacall(QMetaObject::Call c, int id, void **argu
     QObject::qt_metacall(c, id, arguments);
   }
 
-  foreach(const PythonQtSignalTarget& t, _targets) {
+  Q_FOREACH(const PythonQtSignalTarget& t, _targets) {
     if (t.slotId() == id) {
       t.call(arguments);
       // if the signal is the last destroyed signal, we delete ourselves

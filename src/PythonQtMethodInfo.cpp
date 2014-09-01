@@ -59,7 +59,7 @@ PythonQtMethodInfo::PythonQtMethodInfo(const QMetaMethod& meta, PythonQtClassInf
   fillParameterInfo(type, QByteArray(meta.typeName()), classInfo);
   _parameters.append(type);
   QList<QByteArray> names = meta.parameterTypes();
-  foreach (const QByteArray& name, names) {
+  Q_FOREACH (const QByteArray& name, names) {
     fillParameterInfo(type, name, classInfo);
     _parameters.append(type);
   }
@@ -70,7 +70,7 @@ PythonQtMethodInfo::PythonQtMethodInfo(const QByteArray& typeName, const QList<Q
   ParameterInfo type;
   fillParameterInfo(type, typeName, NULL);
   _parameters.append(type);
-  foreach (const QByteArray& name, args) {
+  Q_FOREACH (const QByteArray& name, args) {
     fillParameterInfo(type, name, NULL);
     _parameters.append(type);
   }

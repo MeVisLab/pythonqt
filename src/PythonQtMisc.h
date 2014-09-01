@@ -83,7 +83,7 @@ public:
   //! clear all memory
   void clear() {
     T* chunk;
-    foreach(chunk, _chunks) {
+    Q_FOREACH(chunk, _chunks) {
       delete[]chunk;
     }
     _chunks.clear();

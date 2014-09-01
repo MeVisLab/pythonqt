@@ -62,7 +62,7 @@ class PYTHONQT_EXPORT PythonQtStdDecorators : public QObject
 {
   Q_OBJECT
 
-public slots:
+public Q_SLOTS:
   bool connect(QObject* sender, const QByteArray& signal, PyObject* callable);
   bool connect(QObject* sender, const QByteArray& signal, QObject* receiver, const QByteArray& slot,  Qt::ConnectionType type = Qt::AutoConnection);
   bool connect(QObject* receiver, QObject* sender, const QByteArray& signal, const QByteArray& slot,  Qt::ConnectionType type = Qt::AutoConnection) { return connect(sender, signal, receiver, slot, type); }
@@ -120,7 +120,7 @@ class PythonQtWrapper_QMetaObject : public QObject
 {
   Q_OBJECT
 
-public slots:
+public Q_SLOTS:
   const char *className(QMetaObject* obj) const { return obj->className(); }
   const QMetaObject *superClass(QMetaObject* obj) const { return obj->superClass(); }
 

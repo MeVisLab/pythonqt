@@ -299,7 +299,7 @@ void PythonQtScriptingConsole::handleTabCompletion()
     compareText = compareText.toLower();
     QStringList found;
     QStringList l = PythonQt::self()->introspection(_context, lookup, PythonQt::Anything);
-    foreach (QString n, l) {
+    Q_FOREACH (QString n, l) {
       if (n.toLower().startsWith(compareText)) {
         found << n;
       }
