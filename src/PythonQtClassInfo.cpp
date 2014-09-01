@@ -664,6 +664,11 @@ PythonQtSlotInfo* PythonQtClassInfo::destructor()
     // force creation of lazy decorator, which will register the decorators
     decorator();
   }
+  if (!_destructor) {
+    if (!_parentClasses.isEmpty()) {
+      _destructor = _parentClasses.at(0)._parent->destructor();
+    }
+  }
   return _destructor;
 }
 
@@ -865,6 +870,7 @@ PythonQtMemberInfo::PythonQtMemberInfo( PythonQtSlotInfo* info )
   }
   _slot = info;
   _enumValue = NULL;
+  _enumWrapper = NULL;
 }
 
 PythonQtMemberInfo::PythonQtMemberInfo( const PythonQtObjectPtr& enumValue )
@@ -879,7 +885,7 @@ PythonQtMemberInfo::PythonQtMemberInfo( const QMetaProperty& prop )
 {
   _type = Property;
   _slot = NULL;
-  _enumValue = NULL;
   _property = prop;
+  _enumValue = NULL;
   _enumWrapper = NULL;
 }

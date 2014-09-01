@@ -229,8 +229,10 @@ int PythonQtMethodInfo::nameToType(const char* name)
     _parameterTypeDict.insert("qulonglong", QMetaType::ULongLong);
     _parameterTypeDict.insert("qint64", QMetaType::LongLong);
     _parameterTypeDict.insert("quint64", QMetaType::ULongLong);
+    _parameterTypeDict.insert("QVariantHash", QMetaType::QVariantHash);
     _parameterTypeDict.insert("QVariantMap", QMetaType::QVariantMap);
     _parameterTypeDict.insert("QVariantList", QMetaType::QVariantList);
+    _parameterTypeDict.insert("QHash<QString,QVariant>", QMetaType::QVariantHash);
     _parameterTypeDict.insert("QMap<QString,QVariant>", QMetaType::QVariantMap);
     _parameterTypeDict.insert("QList<QVariant>", QMetaType::QVariantList);
     _parameterTypeDict.insert("QStringList", QMetaType::QStringList);
@@ -282,7 +284,6 @@ void PythonQtMethodInfo::cleanupCachedMethodInfos()
   while (i.hasNext()) {
     delete i.next().value();
   }
-  _cachedSignatures.clear();
 }
 
 void PythonQtMethodInfo::addParameterTypeAlias(const QByteArray& alias, const QByteArray& name)

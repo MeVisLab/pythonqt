@@ -823,6 +823,9 @@ void PythonQtImport::init()
   PyObject* encodingsModule = PyDict_GetItemString(modules, "encodings");
   if (encodingsModule != NULL) {
     PyImport_ReloadModule(encodingsModule);
+  } else {
+    // import it now, so that the search function is registered (a previous import from the codecs module may have failed and it does not retry to import it)
+    PyImport_ImportModule("encodings");
   }
 #endif
 }
