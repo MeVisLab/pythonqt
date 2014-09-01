@@ -157,7 +157,7 @@ bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObj
         className = objectToCall->metaObject()->className();
       }
 
-      profilingCB(PythonQt::Enter, className, info->metaMethod()->signature(), args);
+      profilingCB(PythonQt::Enter, className, info->signature(), args);
     }
 
     // invoke the slot via metacall
@@ -298,7 +298,7 @@ PyObject *PythonQtSlotFunction_CallImpl(PythonQtClassInfo* classInfo, QObject* o
   int argc = args?PyTuple_Size(args):0;
 
 #ifdef PYTHONQT_DEBUG
-  std::cout << "called " << info->metaMethod()->typeName() << " " << info->metaMethod()->signature() << std::endl;
+  std::cout << "called " << info->metaMethod()->typeName() << " " << info->signature() << std::endl;
 #endif
 
   PyObject* r = NULL;
@@ -419,7 +419,7 @@ meth_get__doc__(PythonQtSlotFunctionObject * /*m*/, void * /*closure*/)
 static PyObject *
 meth_get__name__(PythonQtSlotFunctionObject *m, void * /*closure*/)
 {
-  return PyString_FromString(m->m_ml->metaMethod()->signature());
+  return PyString_FromString(m->m_ml->signature());
 }
 
 static int
@@ -586,7 +586,7 @@ meth_compare(PythonQtSlotFunctionObject *a, PythonQtSlotFunctionObject *b)
     return (a->m_self < b->m_self) ? -1 : 1;
   if (a->m_ml == b->m_ml)
     return 0;
-  if (strcmp(a->m_ml->metaMethod()->signature(), b->m_ml->metaMethod()->signature()) < 0)
+  if (strcmp(a->m_ml->signature().constData(), b->m_ml->signature().constData()) < 0)
     return -1;
   else
     return 1;

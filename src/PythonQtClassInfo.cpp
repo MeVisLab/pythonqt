@@ -159,7 +159,6 @@ PythonQtSlotInfo* PythonQtClassInfo::recursiveFindDecoratorSlotsFromDecoratorPro
 
 PythonQtSlotInfo* PythonQtClassInfo::findDecoratorSlotsFromDecoratorProvider(const char* memberName, PythonQtSlotInfo* tail, bool &found, QHash<QByteArray, PythonQtMemberInfo>& memberCache, int upcastingOffset) {
   QObject* decoratorProvider = decorator();
-  int memberNameLen = static_cast<int>(strlen(memberName));
   if (decoratorProvider) {
     //qDebug()<< "looking " << decoratorProvider->metaObject()->className() << " " << memberName << " " << upcastingOffset;
     const QMetaObject* meta = decoratorProvider->metaObject();
@@ -170,24 +169,21 @@ PythonQtSlotInfo* PythonQtClassInfo::findDecoratorSlotsFromDecoratorProvider(con
       if ((m.methodType() == QMetaMethod::Method ||
            m.methodType() == QMetaMethod::Slot) && m.access() == QMetaMethod::Public) {
         
-        const char* sigStart = m.signature();
+        QByteArray signature = PythonQtUtils::methodName(m);
         bool isClassDeco = false;
-        if (qstrncmp(sigStart, "static_", 7)==0) {
+        if (signature.startsWith("static_")) {
           // skip the static_classname_ part of the string
-          sigStart += 7 + 1 + strlen(className());
+          signature = signature.mid(7 + 1 + strlen(className()));
           isClassDeco = true;
-        } else if (qstrncmp(sigStart, "new_", 4)==0) {
+        } else if (signature.startsWith("new_")) {
           isClassDeco = true;
-        } else if (qstrncmp(sigStart, "delete_", 7)==0) {
+        } else if (signature.startsWith("delete_")) {
           isClassDeco = true;
         }
-        // find the first '('
-        int offset = findCharOffset(sigStart, '(');
-
         // XXX no checking is currently done if the slots have correct first argument or not...
         
         // check if same length and same name
-        if (memberNameLen == offset && qstrncmp(memberName, sigStart, offset)==0) {
+        if (signature == memberName) {
           found = true;
           PythonQtSlotInfo* info = new PythonQtSlotInfo(this, m, i, decoratorProvider, isClassDeco?PythonQtSlotInfo::ClassDecorator:PythonQtSlotInfo::InstanceDecorator);
           info->setUpcastingOffset(upcastingOffset);
@@ -196,7 +192,7 @@ PythonQtSlotInfo* PythonQtClassInfo::findDecoratorSlotsFromDecoratorProvider(con
             tail->setNextInfo(info);
           } else {
             PythonQtMemberInfo newInfo(info);
-            memberCache.insert(memberName, newInfo);
+            memberCache.insert(signature, newInfo);
           }
           tail = info;
         }
@@ -204,7 +200,7 @@ PythonQtSlotInfo* PythonQtClassInfo::findDecoratorSlotsFromDecoratorProvider(con
     }
   }
 
-  tail = findDecoratorSlots(memberName, memberNameLen, tail, found, memberCache, upcastingOffset);
+  tail = findDecoratorSlots(memberName, tail, found, memberCache, upcastingOffset);
 
   // now look for slots/signals/methods on this level of the meta object
   if (_meta) {
@@ -220,19 +216,17 @@ PythonQtSlotInfo* PythonQtClassInfo::findDecoratorSlotsFromDecoratorProvider(con
         m.methodType() == QMetaMethod::Slot) && m.access() == QMetaMethod::Public)
         || m.methodType()==QMetaMethod::Signal) {
 
-          const char* sigStart = m.signature();
-          // find the first '('
-          int offset = findCharOffset(sigStart, '(');
+          QByteArray signature = PythonQtUtils::methodName(m);
 
           // check if same length and same name
-          if (memberNameLen == offset && qstrncmp(memberName, sigStart, offset)==0) {
+          if (signature == memberName) {
             found = true;
             PythonQtSlotInfo* info = new PythonQtSlotInfo(this, m, i);
             if (tail) {
               tail->setNextInfo(info);
             } else {
               PythonQtMemberInfo newInfo(info);
-              memberCache.insert(memberName, newInfo);
+              memberCache.insert(signature, newInfo);
             }
             tail = info;
           }
@@ -369,20 +363,18 @@ void PythonQtClassInfo::recursiveCollectClassInfos(QList<PythonQtClassInfo*>& cl
   }
 }
 
-PythonQtSlotInfo* PythonQtClassInfo::findDecoratorSlots(const char* memberName, int memberNameLen, PythonQtSlotInfo* tail, bool &found, QHash<QByteArray, PythonQtMemberInfo>& memberCache, int upcastingOffset)
+PythonQtSlotInfo* PythonQtClassInfo::findDecoratorSlots(const char* memberName, PythonQtSlotInfo* tail, bool &found, QHash<QByteArray, PythonQtMemberInfo>& memberCache, int upcastingOffset)
 {
   QListIterator<PythonQtSlotInfo*> it(_decoratorSlots);
   while (it.hasNext()) {
 
     PythonQtSlotInfo* infoOrig = it.next();
-          
-    const char* sigStart = infoOrig->metaMethod()->signature();
-    if (qstrncmp("static_", sigStart, 7)==0) {
-      sigStart += 7;
-      sigStart += findCharOffset(sigStart, '_')+1;
+    QByteArray signature = PythonQtUtils::methodName(*infoOrig->metaMethod());
+    if (signature.startsWith("static_")) {
+      int offset = signature.indexOf('_', 7);
+      signature = signature.mid(offset+1);
     }
-    int offset = findCharOffset(sigStart, '(');
-    if (memberNameLen == offset && qstrncmp(memberName, sigStart, offset)==0) {
+    if (signature == memberName) {
       //make a copy, otherwise we will have trouble on overloads!
       PythonQtSlotInfo* info = new PythonQtSlotInfo(*infoOrig);
       info->setUpcastingOffset(upcastingOffset);
@@ -391,7 +383,7 @@ PythonQtSlotInfo* PythonQtClassInfo::findDecoratorSlots(const char* memberName, 
         tail->setNextInfo(info);
       } else {
         PythonQtMemberInfo newInfo(info);
-        memberCache.insert(memberName, newInfo);
+        memberCache.insert(signature, newInfo);
       }
       tail = info;
     }
@@ -410,26 +402,23 @@ void PythonQtClassInfo::listDecoratorSlotsFromDecoratorProvider(QStringList& lis
       if ((m.methodType() == QMetaMethod::Method ||
            m.methodType() == QMetaMethod::Slot) && m.access() == QMetaMethod::Public) {
         
-        const char* sigStart = m.signature();
+        QByteArray signature = PythonQtUtils::methodName(m);
         bool isClassDeco = false;
-        if (qstrncmp(sigStart, "static_", 7)==0) {
+        if (signature.startsWith("static_")) {
           // skip the static_classname_ part of the string
-          sigStart += 7 + 1 + strlen(className());
+          signature = signature.mid(7 + 1 + strlen(className()));
           isClassDeco = true;
-        } else if (qstrncmp(sigStart, "new_", 4)==0) {
+        } else if (signature.startsWith("new_")) {
           continue;
-        } else if (qstrncmp(sigStart, "delete_", 7)==0) {
+        } else if (signature.startsWith("delete_")) {
           continue;
-        } else if (qstrncmp(sigStart, "py_", 3)==0) {
+        } else if (signature.startsWith("py_")) {
           // hide everything that starts with py_
           continue;
         }
-        // find the first '('
-        int offset = findCharOffset(sigStart, '(');
-        
         // XXX no checking is currently done if the slots have correct first argument or not...
         if (!metaOnly || isClassDeco) {
-          list << QString::fromLatin1(sigStart, offset); 
+          list << QString::fromLatin1(signature.constData()); 
         }
       }
     }
@@ -484,9 +473,7 @@ QStringList PythonQtClassInfo::memberList()
       if (((m.methodType() == QMetaMethod::Method ||
         m.methodType() == QMetaMethod::Slot) && m.access() == QMetaMethod::Public)
           || m.methodType()==QMetaMethod::Signal) {
-        QByteArray signa(m.signature());
-        signa = signa.left(signa.indexOf('('));
-        l << signa;
+        l << PythonQtUtils::methodName(m);
       }
     }
   }
@@ -641,7 +628,7 @@ QString PythonQtClassInfo::help()
       for (int i = 0; i < numMethods; i++) {
         QMetaMethod m = _meta->method(i);
         if (m.methodType() == QMetaMethod::Signal) {
-          h += QString(m.signature()) + "\n";
+          h += QString(PythonQtUtils::signature(m)) + "\n";
         }
       }
     }

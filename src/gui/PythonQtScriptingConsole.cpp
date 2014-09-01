@@ -52,6 +52,7 @@
 #include <QCompleter>
 #include <QStringListModel>
 #include <QScrollBar>
+#include <QAbstractItemView>
 
 //-----------------------------------------------------------------------------
 

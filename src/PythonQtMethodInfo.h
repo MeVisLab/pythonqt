@@ -174,8 +174,11 @@ public:
   //! get the full signature including return type
   QString fullSignature();
 
+  //! get the Qt signature of the slot
+  QByteArray signature() const;
+
   //! get the short slot name
-  QByteArray slotName();
+  QByteArray slotName() const;
 
 private:
   int               _slotIndex;

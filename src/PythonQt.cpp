@@ -1204,28 +1204,26 @@ void PythonQtPrivate::addDecorators(QObject* o, int decoTypes)
   int numMethods = o->metaObject()->methodCount();
   for (int i = 0; i < numMethods; i++) {
     QMetaMethod m = o->metaObject()->method(i);
+    QByteArray signature = PythonQtUtils::methodName(m);
     if ((m.methodType() == QMetaMethod::Method ||
       m.methodType() == QMetaMethod::Slot) && m.access() == QMetaMethod::Public) {
-      if (qstrncmp(m.signature(), "new_", 4)==0) {
+      if (signature.startsWith("new_")) {
         if ((decoTypes & ConstructorDecorator) == 0) continue;
         const PythonQtMethodInfo* info = PythonQtMethodInfo::getCachedMethodInfo(m, NULL);
         if (info->parameters().at(0).pointerCount == 1) {
-          QByteArray signature = m.signature();
-          QByteArray nameOfClass = signature.mid(4, signature.indexOf('(')-4);
+          QByteArray nameOfClass = signature.mid(4);
           PythonQtClassInfo* classInfo = lookupClassInfoAndCreateIfNotPresent(nameOfClass);
           PythonQtSlotInfo* newSlot = new PythonQtSlotInfo(NULL, m, i, o, PythonQtSlotInfo::ClassDecorator);
           classInfo->addConstructor(newSlot);
         }
-      } else if (qstrncmp(m.signature(), "delete_", 7)==0) {
+      } else if (signature.startsWith("delete_")) {
         if ((decoTypes & DestructorDecorator) == 0) continue;
-        QByteArray signature = m.signature();
-        QByteArray nameOfClass = signature.mid(7, signature.indexOf('(')-7);
+        QByteArray nameOfClass = signature.mid(7);
         PythonQtClassInfo* classInfo = lookupClassInfoAndCreateIfNotPresent(nameOfClass);
         PythonQtSlotInfo* newSlot = new PythonQtSlotInfo(NULL, m, i, o, PythonQtSlotInfo::ClassDecorator);
         classInfo->setDestructor(newSlot);
-      } else if (qstrncmp(m.signature(), "static_", 7)==0) {
+      } else if (signature.startsWith("static_")) {
         if ((decoTypes & StaticDecorator) == 0) continue;
-        QByteArray signature = m.signature();
         QByteArray nameOfClass = signature.mid(7);
         nameOfClass = nameOfClass.mid(0, nameOfClass.indexOf('_'));
         PythonQtClassInfo* classInfo = lookupClassInfoAndCreateIfNotPresent(nameOfClass);

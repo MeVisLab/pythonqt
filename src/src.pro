@@ -13,6 +13,10 @@ DESTDIR    = ../lib
 CONFIG += qt dll
 CONFIG -= flat
 
+QT += widgets
+
+INCLUDEPATH += $$PWD
+
 include ( ../build/common.prf )  
 include ( ../build/python.prf )  
 

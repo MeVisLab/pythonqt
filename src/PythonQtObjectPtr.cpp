@@ -109,7 +109,7 @@ QVariant PythonQtObjectPtr::call(const QVariantList& args, const QVariantMap& kw
 bool PythonQtObjectPtr::fromVariant(const QVariant& variant) 
 {
   if (!variant.isNull()) {
-      setObject(qVariantValue<PythonQtObjectPtr>(variant));
+      setObject(qvariant_cast<PythonQtObjectPtr>(variant));
       return true;
   }
   else {

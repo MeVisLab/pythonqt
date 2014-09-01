@@ -165,7 +165,11 @@ QVariant PythonQtStdDecorators::property(QObject* o, const char* name)
 
 QString PythonQtStdDecorators::tr(QObject* obj, const QByteArray& text, const QByteArray& ambig, int n)
 {
+#if( QT_VERSION >= QT_VERSION_CHECK(5,0,0) )
+  return QCoreApplication::translate(obj->metaObject()->className(), text.constData(), ambig.constData(), n);
+#else
   return QCoreApplication::translate(obj->metaObject()->className(), text.constData(), ambig.constData(), QCoreApplication::CodecForTr, n);
+#endif
 }
 
 QObject* PythonQtStdDecorators::findChild(QObject* parent, PyObject* type, const QString& name)

@@ -42,6 +42,7 @@
 */
 //----------------------------------------------------------------------------------
 
+#include "PythonQtUtils.h"
 #include "PythonQtSystem.h"
 #include "PythonQtInstanceWrapper.h"
 #include "PythonQtClassWrapper.h"

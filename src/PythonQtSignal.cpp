@@ -109,7 +109,7 @@ meth_get__doc__(PythonQtSignalFunctionObject * /*m*/, void * /*closure*/)
 static PyObject *
 meth_get__name__(PythonQtSignalFunctionObject *m, void * /*closure*/)
 {
-  return PyString_FromString(m->m_ml->metaMethod()->signature());
+  return PyString_FromString(m->m_ml->signature());
 }
 
 static int
@@ -187,7 +187,7 @@ static PyObject *PythonQtSignalFunction_connect(PythonQtSignalFunctionObject* ty
       if (argc==1) {
         // connect with Python callable
         PyObject* callable = PyTuple_GET_ITEM(args, 0);
-        bool result = PythonQt::self()->addSignalHandler(self->_obj, QByteArray("2") + type->m_ml->metaMethod()->signature(), callable);
+        bool result = PythonQt::self()->addSignalHandler(self->_obj, QByteArray("2") + type->m_ml->signature(), callable);
         return PythonQtConv::GetPyBool(result);
       } else {
         PyErr_SetString(PyExc_ValueError, "Called connect with wrong number of arguments");
@@ -203,7 +203,7 @@ static PyObject *PythonQtSignalFunction_disconnect(PythonQtSignalFunctionObject*
     PythonQtInstanceWrapper* self = (PythonQtInstanceWrapper*) type->m_self;
     if (self->_obj) {
       Py_ssize_t argc = PyTuple_Size(args);
-      QByteArray signal = QByteArray("2") + type->m_ml->metaMethod()->signature();
+      QByteArray signal = QByteArray("2") + type->m_ml->signature();
       if (argc==1) {
         // disconnect with Python callable
         PyObject* callable = PyTuple_GET_ITEM(args, 0);
@@ -272,7 +272,7 @@ meth_compare(PythonQtSignalFunctionObject *a, PythonQtSignalFunctionObject *b)
     return (a->m_self < b->m_self) ? -1 : 1;
   if (a->m_ml == b->m_ml)
     return 0;
-  if (strcmp(a->m_ml->metaMethod()->signature(), b->m_ml->metaMethod()->signature()) < 0)
+  if (strcmp(a->m_ml->signature().constData(), b->m_ml->signature().constData()) < 0)
     return -1;
   else
     return 1;
