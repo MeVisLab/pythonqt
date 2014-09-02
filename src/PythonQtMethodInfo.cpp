@@ -312,7 +312,7 @@ void PythonQtSlotInfo::deleteOverloadsAndThis()
 QString PythonQtSlotInfo::fullSignature()
 { 
   bool skipFirstArg = isInstanceDecorator();
-  QString result = _meta.typeName();
+  QString result = PythonQtUtils::typeName(_meta);
   QByteArray sig = slotName();
   QList<QByteArray> names = _meta.parameterNames();
 

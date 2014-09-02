@@ -543,7 +543,7 @@ PyObject *PythonQtMemberFunction_typeName(PythonQtSlotInfo* theInfo)
   info = theInfo;
   PyObject* result = PyTuple_New(count);
   for (int j = 0;j<count;j++) {
-    QByteArray name = info->metaMethod()->typeName();
+    QByteArray name = PythonQtUtils::typeName(*info->metaMethod());
     PyTuple_SET_ITEM(result, j, PyString_FromString(name.constData()));
     info = info->nextInfo();
   }
