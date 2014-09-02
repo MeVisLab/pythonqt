@@ -547,6 +547,8 @@
   <enum-type name="QTimeLine::Direction"/>
   <enum-type name="QTimeLine::State"/>
   <enum-type name="QUrl::FormattingOption" flags="QUrl::FormattingOptions"/>
+  <enum-type name="QUrl::ComponentFormattingOption"/> <!-- Qt 5 -->
+  <enum-type name="QUrl::UrlFormattingOption"/> <!-- Qt 5 -->
   <enum-type name="QUrl::ParsingMode"/>
   <enum-type name="QUuid::Variant"/>
   <enum-type name="QUuid::Version"/>
