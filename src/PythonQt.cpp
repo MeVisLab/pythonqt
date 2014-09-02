@@ -240,42 +240,45 @@ PythonQtPrivate::~PythonQtPrivate() {
 
 void PythonQt::setRedirectStdInCallback(PythonQtInputChangedCB* callback, void * callbackData)
 {
-  if (!callback)
-    {
+  if (!callback) {
     std::cerr << "PythonQt::setRedirectStdInCallback - callback parameter is NULL !" << std::endl;
     return;
-    }
+  }
 
   PythonQtObjectPtr sys;
   PythonQtObjectPtr in;
   sys.setNewRef(PyImport_ImportModule("sys"));
 
   // Backup original 'sys.stdin' if not yet done
-  PyRun_SimpleString("if not hasattr(sys, 'pythonqt_original_stdin'):"
-                     "sys.pythonqt_original_stdin = sys.stdin");
+  if( !PyObject_HasAttrString(sys.object(), "pythonqt_original_stdin") ) {
+    PyObject_SetAttrString(sys.object(), "pythonqt_original_stdin", PyObject_GetAttrString(sys.object(), "stdin"));
+  }
 
   in = PythonQtStdInRedirectType.tp_new(&PythonQtStdInRedirectType, NULL, NULL);
   ((PythonQtStdInRedirect*)in.object())->_cb = callback;
   ((PythonQtStdInRedirect*)in.object())->_callData = callbackData;
   // replace the built in file objects with our own objects
-  PyModule_AddObject(sys, "stdin", in);
+  PyModule_AddObject(sys.object(), "stdin", in);
 
   // Backup custom 'stdin' into 'pythonqt_stdin'
-  PyRun_SimpleString("sys.pythonqt_stdin = sys.stdin");
+  Py_INCREF(in); // AddObject steals the reference, so increment it
+  PyModule_AddObject(sys.object(), "pythonqt_stdin", in);
 }
 
 void PythonQt::setRedirectStdInCallbackEnabled(bool enabled)
 {
-  if (enabled)
-    {
-    PyRun_SimpleString("if hasattr(sys, 'pythonqt_stdin'):"
-                       "sys.stdin = sys.pythonqt_stdin");
+  PythonQtObjectPtr sys;
+  sys.setNewRef(PyImport_ImportModule("sys"));
+
+  if (enabled) {
+    if( !PyObject_HasAttrString(sys.object(), "pythonqt_stdin") ) {
+      PyObject_SetAttrString(sys.object(), "stdin", PyObject_GetAttrString(sys.object(), "pythonqt_stdin"));
     }
-  else
-    {
-    PyRun_SimpleString("if hasattr(sys,'pythonqt_original_stdin'):"
-                       "sys.stdin = sys.pythonqt_original_stdin");
+  } else {
+    if( !PyObject_HasAttrString(sys.object(), "pythonqt_original_stdin") ) {
+      PyObject_SetAttrString(sys.object(), "stdin", PyObject_GetAttrString(sys.object(), "pythonqt_original_stdin"));
     }
+  }
 }
 
 PythonQtImportFileInterface* PythonQt::importInterface()
@@ -1437,8 +1440,10 @@ void PythonQt::initPythonQtModule(bool redirectStdOut, const QByteArray& pythonQ
   _p->_pythonQtModule = Py_InitModule(name.constData(), PythonQtMethods);
   _p->_pythonQtModuleName = name;
 
+  PythonQtObjectPtr sys;
+  sys.setNewRef(PyImport_ImportModule("sys"));
+
   if (redirectStdOut) {
-    PythonQtObjectPtr sys;
     PythonQtObjectPtr out;
     PythonQtObjectPtr err;
     sys.setNewRef(PyImport_ImportModule("sys"));
@@ -1451,6 +1456,19 @@ void PythonQt::initPythonQtModule(bool redirectStdOut, const QByteArray& pythonQ
     PyModule_AddObject(sys, "stdout", out);
     PyModule_AddObject(sys, "stderr", err);
   }
+
+  // add PythonQt to the list of builtin module names
+  PyObject *old_module_names = PyObject_GetAttrString(sys.object(),"builtin_module_names");
+  if (old_module_names && PyTuple_Check(old_module_names)) {
+    Py_ssize_t old_size = PyTuple_Size(old_module_names);
+    PyObject *module_names = PyTuple_New(old_size + 1);
+    for (Py_ssize_t i = 0; i < old_size; i++) {
+      PyTuple_SetItem(module_names, i, PyTuple_GetItem(old_module_names, i));
+    }
+    PyTuple_SetItem(module_names, old_size, PyString_FromString(name.constData()));
+    PyModule_AddObject(sys.object(), "builtin_module_names", module_names);
+  }
+  Py_XDECREF(old_module_names);
 }
 
 QString PythonQt::getReturnTypeOfWrappedMethod(PyObject* module, const QString& name)
