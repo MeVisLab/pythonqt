@@ -107,6 +107,8 @@ private:
 
   void updateItemPosition(CodeModelItem item, AST *node);
 
+  QString exceptionSpecToString(ExceptionSpecificationAST *exception_spec);
+
 private:
   CodeModel *_M_model;
   LocationManager &_M_location;

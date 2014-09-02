@@ -1383,8 +1383,11 @@ void AbstractMetaBuilder::traverseFunctions(ScopeModelItem scope_item, AbstractM
                 }
 
                 meta_class->addFunction(meta_function);
-            } else if (meta_function->isDestructor() && !meta_function->isPublic()) {
-                meta_class->setHasPublicDestructor(false);
+            } else if (meta_function->isDestructor()) {
+                meta_class->setDestructorException(meta_function->exception());
+                if (!meta_function->isPublic()) {
+                  meta_class->setHasPublicDestructor(false);
+                }
             }
         }
     }
@@ -1564,6 +1567,7 @@ AbstractMetaFunction *AbstractMetaBuilder::traverseFunction(FunctionModelItem fu
 
     AbstractMetaFunction *meta_function = createMetaFunction();
     meta_function->setConstant(function_item->isConstant());
+    meta_function->setException(function_item->exception());
 
     ReportHandler::debugMedium(QString(" - %2()").arg(function_name));
 
@@ -1851,7 +1855,7 @@ AbstractMetaType *AbstractMetaBuilder::translateType(const TypeInfo &_typei, boo
                 return t;
 
             ClassModelItem item = m_dom->findClass(contexts.at(0));
-            if (item != 0)
+            if (item)
                 contexts += item->baseClasses();
             contexts.pop_front();
 

@@ -490,7 +490,6 @@ public:
     void setFunctionType(FunctionType type) { m_function_type = type; }
 
     bool isVirtual() const { return !(isFinal() || isSignal() || isStatic()); }
-
     QStringList introspectionCompatibleSignatures(const QStringList &resolvedArguments = QStringList()) const;
     QString signature() const;
     QString targetLangSignature(bool minimal = false) const;
@@ -500,6 +499,8 @@ public:
     bool isConstant() const { return m_constant; }
     void setConstant(bool constant) { m_constant = constant; }
 
+    QString exception() const { return m_exception; }
+    void setException(const QString &exception) { m_exception = exception; }
     QString toString() const { return m_name; }
 
     uint compareTo(const AbstractMetaFunction *other) const;
@@ -559,6 +560,7 @@ private:
     const AbstractMetaClass *m_interface_class;
     QPropertySpec *m_property_spec;
     AbstractMetaArgumentList m_arguments;
+    QString m_exception;
     uint m_constant                 : 1;
     uint m_invalid                  : 1;
 };
@@ -708,6 +710,8 @@ public:
     bool hasPublicDestructor() const { return m_has_public_destructor; }
     void setHasPublicDestructor(bool on) { m_has_public_destructor = on; }
 
+    QString destructorException() const { return m_destructor_exception; }
+    void setDestructorException(const QString &exception) { m_destructor_exception = exception; }
     AbstractMetaFunctionList queryFunctionsByName(const QString &name) const;
     AbstractMetaFunctionList queryFunctions(uint query) const;
     inline AbstractMetaFunctionList allVirtualFunctions() const;
@@ -797,7 +801,6 @@ public:
     bool hasCloneOperator() const { return m_has_clone_operator; }
 
     bool hasDefaultIsNull() const;
-
     void addPropertySpec(QPropertySpec *spec) { m_property_specs << spec; }
     QList<QPropertySpec *> propertySpecs() const { return m_property_specs; }
 
@@ -832,7 +835,6 @@ public:
 
     void setTypeAlias(bool typeAlias) { m_is_type_alias = typeAlias; }
     bool isTypeAlias() const { return m_is_type_alias; }
-
     bool operator <(const AbstractMetaClass &a) const {
       return qualifiedCppName() < a.qualifiedCppName();
     }
@@ -852,6 +854,7 @@ private:
     uint m_has_clone_operator :1;
     uint m_is_type_alias : 1;
     uint m_reserved : 19;
+    QString m_destructor_exception;
 
     const AbstractMetaClass *m_enclosing_class;
     AbstractMetaClass *m_base_class;

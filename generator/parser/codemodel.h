@@ -541,6 +541,9 @@ public:
   CodeModel::FunctionType functionType() const;
   void setFunctionType(CodeModel::FunctionType functionType);
 
+  QString exception() const;
+  void setException(const QString &exception);
+
   bool isVirtual() const;
   void setVirtual(bool isVirtual);
 
@@ -571,6 +574,7 @@ protected:
 private:
   ArgumentList _M_arguments;
   CodeModel::FunctionType _M_functionType;
+  QString _M_exception;
   union
   {
     struct
