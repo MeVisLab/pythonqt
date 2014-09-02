@@ -142,7 +142,7 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
         Py_INCREF(obj);
         PyModule_AddObject(pack2, names[i], obj);
       } else {
-        std::cerr << "method not found " << names[i];
+        std::cerr << "method not found " << names[i] << std::endl;
       }
     }
   }
@@ -1324,7 +1324,7 @@ bool PythonQt::handleError()
     if (_p->_systemExitExceptionHandlerEnabled &&
         PyErr_ExceptionMatches(PyExc_SystemExit)) {
       int exitcode = custom_system_exit_exception_handler();
-      emit PythonQt::self()->systemExitExceptionRaised(exitcode);
+      Q_EMIT PythonQt::self()->systemExitExceptionRaised(exitcode);
       }
     else
       {
@@ -1396,7 +1396,7 @@ void PythonQt::stdOutRedirectCB(const QString& str)
     std::cout << str.toLatin1().data() << std::endl;
     return;
   }
-  emit PythonQt::self()->pythonStdOut(str);
+  Q_EMIT PythonQt::self()->pythonStdOut(str);
 }
 
 void PythonQt::stdErrRedirectCB(const QString& str)
@@ -1405,7 +1405,7 @@ void PythonQt::stdErrRedirectCB(const QString& str)
     std::cerr << str.toLatin1().data() << std::endl;
     return;
   }
-  emit PythonQt::self()->pythonStdErr(str);
+  Q_EMIT PythonQt::self()->pythonStdErr(str);
 }
 
 void PythonQt::setQObjectWrappedCallback(PythonQtQObjectWrappedCB* cb)
@@ -1641,7 +1641,7 @@ void PythonQtPrivate::handleVirtualOverloadReturnError(const char* signature, co
 PyObject* PythonQt::helpCalled(PythonQtClassInfo* info)
 {
   if (_p->_initFlags & ExternalHelp) {
-    emit pythonHelpRequest(QByteArray(info->className()));
+    Q_EMIT pythonHelpRequest(QByteArray(info->className()));
     return Py_BuildValue("");
   } else {
     return PyString_FromString(info->help().toLatin1().data());
