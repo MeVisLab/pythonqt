@@ -49,12 +49,19 @@
 
 #include <QtUiTools/QtUiTools>
 
+#if QT_VERSION >= 0x050000
+#include <QtWidgets/QtWidgets>
+#endif
+
 #ifndef QT_NO_XMLPATTERNS
 #  include <QtXmlPatterns/QtXmlPatterns>
 #endif
 
 #ifndef QT_NO_WEBKIT
 #  include <QtWebKit/QtWebKit>
+#if QT_VERSION >= 0x050000
+#  include <QtWebKitWidgets/QtWebKitWidgets>
+#endif
 #endif
 
 #ifndef QT_NO_PHONON

@@ -313,6 +313,7 @@ AbstractMetaFunction *AbstractMetaFunction::copy() const
     if (type())
         cpy->setType(type()->copy());
     cpy->setConstant(isConstant());
+    cpy->setException(exception());
     cpy->setOriginalAttributes(originalAttributes());
 
     foreach (AbstractMetaArgument *arg, arguments())

@@ -139,6 +139,12 @@ void writeOutFunction(QXmlStreamWriter &s, FunctionModelItem &item) {
     s.writeStartElement("function");
     s.writeAttribute("name", qualified_name);
 
+    if (!item->exception().isEmpty()) {
+        s.writeStartElement("exception");
+        s.writeAttribute("throw", item->exception());
+        s.writeEndElement();
+    }
+
     ArgumentList arguments = item->arguments();
     for(int i=0; i < arguments.size() ; i++) {
         s.writeStartElement("argument");

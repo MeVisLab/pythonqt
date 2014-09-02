@@ -660,6 +660,16 @@ void _FunctionModelItem::setFunctionType(CodeModel::FunctionType functionType)
   _M_functionType = functionType;
 }
 
+QString _FunctionModelItem::exception() const
+{
+  return _M_exception;
+}
+
+void _FunctionModelItem::setException(const QString &exception)
+{
+  _M_exception = exception;
+}
+
 bool _FunctionModelItem::isVariadics() const
 {
   return _M_isVariadics;

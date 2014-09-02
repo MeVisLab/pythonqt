@@ -281,6 +281,8 @@ void Binder::declare_symbol(SimpleDeclarationAST *node, InitDeclaratorAST *init_
       fun->setName(name_cc.name());
       fun->setAbstract(init_declarator->initializer != 0);
       fun->setConstant(declarator->fun_cv != 0);
+      fun->setException(exceptionSpecToString(declarator->exception_spec));
+
       fun->setTemplateParameters(_M_current_template_parameters);
       applyStorageSpecifiers(node->storage_specifiers, model_static_cast<MemberModelItem>(fun));
       applyFunctionSpecifiers(node->function_specifiers, fun);
@@ -389,6 +391,7 @@ void Binder::visitFunctionDefinition(FunctionDefinitionAST *node)
   _M_current_function->setFunctionType(_M_current_function_type);
   _M_current_function->setConstant(declarator->fun_cv != 0);
   _M_current_function->setTemplateParameters(_M_current_template_parameters);
+  _M_current_function->setException(exceptionSpecToString(declarator->exception_spec));
 
   applyStorageSpecifiers(node->storage_specifiers,
                           model_static_cast<MemberModelItem>(_M_current_function));
@@ -745,7 +748,7 @@ static QString strip_preprocessor_lines(const QString &name)
 
 void Binder::visitEnumerator(EnumeratorAST *node)
 {
-  Q_ASSERT(_M_current_enum != 0);
+  Q_ASSERT(_M_current_enum.data() != 0);
   EnumeratorModelItem e = model()->create<EnumeratorModelItem>();
   updateItemPosition (e->toItem(), node);
   e->setName(decode_symbol(node->id)->as_string());
@@ -920,4 +923,16 @@ void Binder::updateItemPosition(CodeModelItem item, AST *node)
   item->setFileName (filename);
 }
 
+QString Binder::exceptionSpecToString(ExceptionSpecificationAST* exception_spec)
+{
+  QString exception;
+  if (exception_spec) {
+    const Token &start_token = _M_token_stream->token((int) exception_spec->start_token);
+    const Token &end_token = _M_token_stream->token((int) exception_spec->end_token);
+
+    exception = QString::fromUtf8(&start_token.text[start_token.position],
+                                  (int)(end_token.position - start_token.position));
+  }
+  return exception;
+}
 // kate: space-indent on; indent-width 2; replace-tabs on;

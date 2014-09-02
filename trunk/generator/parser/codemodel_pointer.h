@@ -119,6 +119,24 @@ private:
     inline T *data() { return (T *) *this; }
     inline const T *data() const { return (const T *) *this; }
     inline const T *constData() const { return (const T *) *this; }
+
+
+#   if QT_VERSION >= 0x050000
+    operator T * () const {
+        return QAtomicPointer<T>::load();
+    }
+    inline bool operator!() const { return !(bool)*this; }
+    operator bool () const {
+        return (bool)QAtomicPointer<T>::load();
+    }
+
+    inline T *operator->() { return QAtomicPointer<T>::load(); }
+    inline const T *operator->() const { return QAtomicPointer<T>::load(); }
+    inline bool operator==(const CodeModelPointer<T> &other) const { return (T*)*this == (T*)other; }
+    inline bool operator!=(const CodeModelPointer<T> &other) const { return (T*)*this != (T*)other; }
+    inline bool operator==(const T *ptr) const { return (T*)*this == ptr; }
+    inline bool operator!=(const T *ptr) const { return (T*)*this != ptr; }
+#   endif
 #endif
 };
 

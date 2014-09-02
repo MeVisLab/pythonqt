@@ -107,7 +107,7 @@ void ShellGenerator::writeTypeInfo(QTextStream &s, const AbstractMetaType *type,
 
     if (type->isReference() && !(options & ExcludeReference) && !(options & ConvertReferenceToPtr))
         s << "&";
-  
+
     if (type->isReference() && (options & ConvertReferenceToPtr)) {
       s << "*";
     }
@@ -135,7 +135,7 @@ void ShellGenerator::writeFunctionArguments(QTextStream &s, const AbstractMetaCl
         if ((option & IncludeDefaultExpression) && !arg->originalDefaultValueExpression().isEmpty()) {
             s << " = "; 
 
-          QString expr = arg->originalDefaultValueExpression();
+            QString expr = arg->originalDefaultValueExpression();
           if (expr != "0") {
             QString qualifier;
             if (arg->type()->typeEntry()->isEnum() && expr.indexOf("::") < 0) {
@@ -153,7 +153,7 @@ void ShellGenerator::writeFunctionArguments(QTextStream &s, const AbstractMetaCl
           if (expr == "MediaSource()") {
             expr = "Phonon::MediaSource()";
           }
-          s << expr; 
+            s << expr; 
         }
     }
 }
@@ -222,9 +222,9 @@ void ShellGenerator::writeFunctionSignature(QTextStream &s,
       function_name = meta_function->name();
     }
 
-  if (meta_function->attributes() & AbstractMetaAttributes::SetterFunction)
+    if (meta_function->attributes() & AbstractMetaAttributes::SetterFunction)
     s << "py_set_";
-  else if (meta_function->attributes() & AbstractMetaAttributes::GetterFunction)
+    else if (meta_function->attributes() & AbstractMetaAttributes::GetterFunction)
     s << "py_get_";
 
   s << name_prefix << function_name;
@@ -250,8 +250,9 @@ void ShellGenerator::writeFunctionSignature(QTextStream &s,
     s << ")";
     if (meta_function->isConstant())
         s << " const";
+    if (!meta_function->exception().isEmpty())
+        s << " " << meta_function->exception();
 }
-
 bool function_sorter(AbstractMetaFunction *a, AbstractMetaFunction *b);
 
 AbstractMetaFunctionList ShellGenerator::getFunctionsToWrap(const AbstractMetaClass* meta_class)
@@ -379,4 +380,3 @@ bool ShellGenerator::isBuiltIn(const QString& name) {
   }
   return builtIn.contains(name);
 }
-
