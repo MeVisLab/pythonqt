@@ -17,19 +17,24 @@ HEADERS +=                \
 SOURCES +=                \
   PythonQt_QtAll.cpp
 
-CONFIG += uitools
-QT += webkit gui svg sql network xml xmlpatterns opengl
-#QT += phonon 
+QT += uitools webkit gui svg sql network xml xmlpatterns opengl
 
-include (../../generated_cpp/com_trolltech_qt_core/com_trolltech_qt_core.pri)
-include (../../generated_cpp/com_trolltech_qt_gui/com_trolltech_qt_gui.pri)
-include (../../generated_cpp/com_trolltech_qt_svg/com_trolltech_qt_svg.pri)
-include (../../generated_cpp/com_trolltech_qt_sql/com_trolltech_qt_sql.pri)
-include (../../generated_cpp/com_trolltech_qt_network/com_trolltech_qt_network.pri)
-include (../../generated_cpp/com_trolltech_qt_opengl/com_trolltech_qt_opengl.pri)
-include (../../generated_cpp/com_trolltech_qt_webkit/com_trolltech_qt_webkit.pri)
-include (../../generated_cpp/com_trolltech_qt_xml/com_trolltech_qt_xml.pri)
-include (../../generated_cpp/com_trolltech_qt_uitools/com_trolltech_qt_uitools.pri)
+contains(QT_MAJOR_VERSION, 5) {
+  QT += widgets webkitwidgets printsupport
+}
 
-#include (../../generated_cpp/com_trolltech_qt_xmlpatterns/com_trolltech_qt_xmlpatterns.pri)
-#include (../../generated_cpp/com_trolltech_qt_phonon/com_trolltech_qt_phonon.pri)
+contains( QT_MAJOR_VERSION, 5 ) {
+  GENERATED_PATH = ../../generated_cpp_50
+} else {
+  GENERATED_PATH = ../../generated_cpp
+}
+
+include ($$GENERATED_PATH/com_trolltech_qt_core/com_trolltech_qt_core.pri)
+include ($$GENERATED_PATH/com_trolltech_qt_gui/com_trolltech_qt_gui.pri)
+include ($$GENERATED_PATH/com_trolltech_qt_svg/com_trolltech_qt_svg.pri)
+include ($$GENERATED_PATH/com_trolltech_qt_sql/com_trolltech_qt_sql.pri)
+include ($$GENERATED_PATH/com_trolltech_qt_network/com_trolltech_qt_network.pri)
+include ($$GENERATED_PATH/com_trolltech_qt_opengl/com_trolltech_qt_opengl.pri)
+include ($$GENERATED_PATH/com_trolltech_qt_webkit/com_trolltech_qt_webkit.pri)
+include ($$GENERATED_PATH/com_trolltech_qt_xml/com_trolltech_qt_xml.pri)
+include ($$GENERATED_PATH/com_trolltech_qt_uitools/com_trolltech_qt_uitools.pri)
