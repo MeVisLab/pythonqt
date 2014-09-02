@@ -288,6 +288,7 @@ void PythonQtMethodInfo::cleanupCachedMethodInfos()
   while (i.hasNext()) {
     delete i.next().value();
   }
+  _cachedSignatures.clear();
 }
 
 void PythonQtMethodInfo::addParameterTypeAlias(const QByteArray& alias, const QByteArray& name)
