@@ -38,6 +38,12 @@
 #undef _POSIX_THREADS
 #undef _XOPEN_SOURCE
 
+// Undefine Qt keywords that conflict with Python headers
+#ifdef slots
+#undef slots
+#define PYTHONQT_RESTORE_KEYWORDS
+#endif
+
 // If PYTHONQT_USE_RELEASE_PYTHON_FALLBACK is enabled, try to link
 // release Python DLL if it is available by undefining _DEBUG while
 // including Python.h
@@ -51,6 +57,16 @@
 #define _DEBUG
 #else
 #include <Python.h>
+#endif
+
+// get Qt keywords back
+#ifdef PYTHONQT_RESTORE_KEYWORDS
+#define slots Q_SLOTS
+#undef PYTHONQT_RESTORE_KEYWORDS
+#endif
+
+#if PY_MAJOR_VERSION >= 3
+#define PY3K
 #endif
 
 #endif
