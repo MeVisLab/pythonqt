@@ -1534,7 +1534,7 @@ QString PythonQt::getReturnTypeOfWrappedMethodHelper(const PythonQtObjectPtr& va
         PythonQtSlotInfo* slotInfo = info->member(methodName.toLatin1().constData())._slot;
         if (slotInfo) {
           if (slotInfo->metaMethod()) {
-            type = slotInfo->metaMethod()->typeName();
+            type = PythonQtUtils::typeName(*slotInfo->metaMethod());
             if (!type.isEmpty()) {
               QChar c = type.at(type.length()-1);
               while (c == '*' || c == '&') {

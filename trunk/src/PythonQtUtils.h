@@ -68,6 +68,19 @@ namespace PythonQtUtils
     return sig;
 #endif
   }
+
+  inline QByteArray typeName(const QMetaMethod& method) {
+#if( QT_VERSION >= QT_VERSION_CHECK(5,0,0) )
+    QByteArray result = method.typeName();
+    if (result == "void") {
+      return QByteArray();
+    } else {
+      return result;
+    }
+#else
+    return method.typeName();
+#endif
+  }
 }
 
 #endif
