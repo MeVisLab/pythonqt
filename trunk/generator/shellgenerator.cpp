@@ -144,6 +144,11 @@ void ShellGenerator::writeFunctionArguments(QTextStream &s, const AbstractMetaCl
               qualifier = ((FlagsTypeEntry *)arg->type()->typeEntry())->originator()->qualifier();
             }
             if (!qualifier.isEmpty()) {
+              int index = expr.indexOf("(");
+              if (index > 0) {
+                // insert qualifier for Flags(Flag) -> Flags(Qualifier::Flag) support
+                expr = expr.mid(0, index + 1) + qualifier + "::" + expr.mid(index + 1);
+              }
               s << qualifier << "::";
             }
           }
