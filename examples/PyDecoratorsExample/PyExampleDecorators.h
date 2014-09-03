@@ -65,7 +65,7 @@ class PyExampleDecorators : public QObject
 {
   Q_OBJECT
 
-public slots:
+public Q_SLOTS:
   // add a constructor to QSize variant that takes a QPoint
   QSize* new_QSize(const QPoint& p) { return new QSize(p.x(), p.y()); }
 

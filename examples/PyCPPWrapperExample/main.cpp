@@ -54,25 +54,8 @@ int main( int argc, char **argv )
   PythonQtObjectPtr  mainContext = PythonQt::self()->getMainModule();
   PythonQtScriptingConsole console(NULL, mainContext);
 
-  // -----------------------------------------------------------------
-  // Alternative 1: make CustomObject known and use decorators for wrapping:
-  // -----------------------------------------------------------------
-  
   // register the new object as a known classname and add it's wrapper object
   PythonQt::self()->registerCPPClass("CustomObject", "","example", PythonQtCreateObject<CustomObjectWrapper>);
-
-  // -----------------------------------------------------------------
-  // Alternative 2: make CustomObject2 known and use a wrapper factory for wrapping:
-  // -----------------------------------------------------------------
-
-  // add a factory that can handle pointers to CustomObject2
-  PythonQt::self()->addWrapperFactory(new CustomFactory());
-
-  // the following is optional and only needed if you want a constructor:
-  // register the new object as a known classname
-  PythonQt::self()->registerCPPClass("CustomObject2", "", "example");
-  // add a constructor for CustomObject2
-  PythonQt::self()->addClassDecorators(new CustomObject2Constructor());
 
   mainContext.evalFile(":example.py");
 

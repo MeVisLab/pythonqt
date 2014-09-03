@@ -74,7 +74,7 @@ QMainWindow* PyExampleObject::createWindow()
 
 QObject* PyExampleObject::findChild(QObject* o, const QString& name)
 {
-  return qFindChild<QObject*>(o, name);
+  return o->findChild<QObject*>(name);
 }
 
 QVariantMap PyExampleObject::testMap()

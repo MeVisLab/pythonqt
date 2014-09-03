@@ -64,7 +64,7 @@ class CustomObjectWrapper : public QObject {
 
   Q_OBJECT
 
-public slots:
+public Q_SLOTS:
   // add a constructor
   CustomObject* new_CustomObject(const QString& first, const QString& last) { return new CustomObject(first, last); }
 
@@ -80,70 +80,6 @@ public slots:
 
   void setLastName(CustomObject* o, const QString& name) { o->_lastName = name; }
 
-};
-
-
-//------------------------------------------------------------------------------------------------
-// alternative: we create a wrapper factory, which creates a wrapper object for each CPP instance:
-//------------------------------------------------------------------------------------------------
-
-// declare our own custom object
-class CustomObject2 {
-public:
-  CustomObject2() {}
-  CustomObject2(const QString& first, const QString& last) { _firstName = first; _lastName = last; }
-
-  QString _firstName;
-  QString _lastName;
-
-};
-
-
-// add a decorator that allows to access the CustomObject from PythonQt
-class CustomObject2Wrapper : public QObject {
-
-  Q_OBJECT
-
-public:
-  CustomObject2Wrapper(CustomObject2* obj) { _ptr = obj; }
-
-public slots:
-  // add access methods
-  QString firstName() { return _ptr->_firstName; }
-
-  QString lastName() { return _ptr->_lastName; }
-
-  void setFirstName(const QString& name) { _ptr->_firstName = name; }
-
-  void setLastName(const QString& name) { _ptr->_lastName = name; }
-
-private:
-  CustomObject2* _ptr;
-};
-
-// additional constructor/destructor for CustomObject2 (optional)
-class CustomObject2Constructor : public QObject {
-
-  Q_OBJECT
-
-public slots:
-  // add a constructor
-  CustomObject2* new_CustomObject2(const QString& first, const QString& last) { return new CustomObject2(first, last); }
-
-  // add a destructor
-  void delete_CustomObject2(CustomObject2* o) { delete o; }
-};
-
-// a factory that can create wrappers for CustomObject2
-class CustomFactory : public PythonQtCppWrapperFactory
-{
-public:
-  virtual QObject* create(const QByteArray& name, void *ptr) {
-    if (name == "CustomObject2") {
-      return new CustomObject2Wrapper((CustomObject2*)ptr);
-    }
-    return NULL;
-  }
 };
 
 #endif

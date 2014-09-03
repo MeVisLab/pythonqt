@@ -65,7 +65,7 @@ class CustomObjectWrapper : public QObject {
 
   Q_OBJECT
 
-public slots:
+public Q_SLOTS:
   // add a constructor
   CustomObject* new_CustomObject(const QString& first, const QString& last) { return new CustomObject(first, last); }
 

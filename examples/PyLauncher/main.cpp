@@ -78,7 +78,7 @@ int main( int argc, char **argv )
   }
   PythonQtScriptingConsole console(NULL, mainContext);
 
-  foreach(QString file, files) {
+  Q_FOREACH(QString file, files) {
     mainContext.evalFile(file);
   }
   if (showConsole || console.hadError()) {

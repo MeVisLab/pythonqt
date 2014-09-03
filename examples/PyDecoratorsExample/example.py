@@ -21,7 +21,7 @@ yourCpp = example.YourCPPObject(2,11.5)
 # call the wrapped method on CPP object
 print yourCpp.doSomething(3);
 
-# show slots available on yourCpp 
+# show Q_SLOTS available on yourCpp 
 print dir(yourCpp)
 
 # destructor will be called:
