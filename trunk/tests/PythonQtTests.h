@@ -62,7 +62,7 @@ class PythonQtTestApi : public QObject
 {
   Q_OBJECT
 
-private slots:
+private Q_SLOTS:
   void initTestCase();
   void testCall();
   void testVariables();
@@ -107,7 +107,7 @@ class ClassD : public QObject, public ClassA, public ClassB {
   Q_OBJECT
 public:
   ClassD() { d = 4; }
-  public slots:
+  public Q_SLOTS:
     int getD() { return d; }
 private:
   int d;
@@ -117,28 +117,28 @@ private:
 
 class ClassAWrapper : public QObject {
   Q_OBJECT
-public slots:
+public Q_SLOTS:
   ClassA* new_ClassA() { return new ClassA; }
   int getX(ClassA* o) { return o->x; }
 };
 
 class ClassBWrapper : public QObject {
   Q_OBJECT
-public slots:
+public Q_SLOTS:
   ClassB* new_ClassB() { return new ClassB; }
   int getY(ClassB* o) { return o->y; }
 };
 
 class ClassCWrapper : public QObject {
   Q_OBJECT
-public slots:
+public Q_SLOTS:
   ClassC* new_ClassC() { return new ClassC; }
   int getZ(ClassC* o) { return o->z; }
 };
 
 class ClassDWrapper : public QObject {
   Q_OBJECT
-    public slots:
+    public Q_SLOTS:
       ClassD* new_ClassD() { return new ClassD; }
 };
 
@@ -161,7 +161,7 @@ public:
 
   virtual QDateTime lastModifiedDate(const QString& filename);
 
-public slots:
+public Q_SLOTS:
 
   //! call to set that the test has passed (from Python!)
   void setPassed() { _passed = true; }
@@ -202,7 +202,7 @@ public:
     _ptr = (PQCppObject*)ptr;
   }
 
-public slots:
+public Q_SLOTS:
   int  getHeight() { return _ptr->getHeight(); }
   void setHeight(int h) { _ptr->setHeight(h); }
 
@@ -212,7 +212,7 @@ private:
 
 class PQCppObjectDecorator : public QObject {
   Q_OBJECT
-public slots:
+public Q_SLOTS:
   int  getH(PQCppObject* obj) { return obj->getHeight(); }
 
 };
@@ -234,7 +234,7 @@ private:
 class PQCppObjectNoWrapDecorator : public QObject {
   Q_OBJECT
   
-public slots:
+public Q_SLOTS:
   PQCppObjectNoWrap* new_PQCppObjectNoWrap() {
     return new PQCppObjectNoWrap(0);
   }
@@ -277,7 +277,7 @@ public:
   
   Q_DECLARE_FLAGS(TestEnum, TestEnumFlag)
   
-  public slots:
+  public Q_SLOTS:
   PQCppObject2* new_PQCppObject2() {
     return new PQCppObject2();
   }
@@ -304,12 +304,12 @@ public:
   PQUnknownButRegisteredValueObject() {};
 };
 
-//! test the calling of slots
+//! test the calling of Q_SLOTS
 class PythonQtTestSlotCalling : public QObject
 {
   Q_OBJECT
 
-private slots:
+private Q_SLOTS:
   void initTestCase();
   void init();
 
@@ -341,7 +341,7 @@ public:
 
   bool runScript(const char* script, int expectedOverload = -1);
 
-public slots:
+public Q_SLOTS:
 
   //! call to set that the test has passed (from Python!)
   void setPassed() { _passed = true; }
@@ -383,7 +383,7 @@ public slots:
   QColor  getQColor1(const QColor& var) { _called = true;  return var; }
   QColor  getQColor2(QColor& var) { _called = true;  return var; }
   QColor  getQColor3(QColor* col) { _called = true;  return *col; }
-  QColor  getQColor4(const QVariant& color) { _called = true;  return qVariantValue<QColor>(color); }
+  QColor  getQColor4(const QVariant& color) { _called = true;  return qvariant_cast<QColor>(color); }
   QColor* getQColor5() { _called = true; static QColor c(1,2,3); return &c; }
 
   PyObject* getPyObject(PyObject* obj) { _called = true; return obj; }
@@ -451,12 +451,12 @@ private:
 
 class PythonQtTestSignalHandlerHelper;
 
-//! test the connection of signals to python
+//! test the connection of Q_SIGNALS to python
 class PythonQtTestSignalHandler : public QObject
 {
   Q_OBJECT
 
-private slots:
+private Q_SLOTS:
   void initTestCase();
 
   void testSignalHandler();
@@ -477,7 +477,7 @@ public:
     _test = test;
   };
 
-public slots:
+public Q_SLOTS:
   void setPassed() { _passed = true; }
 
   bool emitIntSignal(int a) { _passed = false; emit intSignal(a); return _passed; };
@@ -494,7 +494,7 @@ public slots:
   bool emitSignal2(const QString& s) { _passed = false; emit signal2(s); return _passed; };
   bool emitSignal3(float a) { _passed = false; emit signal3(a); return _passed; };
 
-signals:
+Q_SIGNALS:
   void intSignal(int);
   void floatSignal(float);
   void variantSignal(const QVariant& v);

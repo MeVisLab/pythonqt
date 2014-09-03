@@ -257,7 +257,7 @@ void PythonQtTestSlotCalling::testCppFactory()
   QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt.private import PQCppObjectNoWrap\na = PQCppObjectNoWrap(PQCppObjectNoWrap())\nprint a.getH()\nif a.getH()==1: obj.setPassed();\n"));
 
   // test decorated enums
-  // already registered by signals test
+  // already registered by Q_SIGNALS test
   //PythonQt::self()->registerCPPClass("PQCppObject2",NULL,NULL, PythonQtCreateObject<PQCppObject2Decorator>);
   
   // local enum (decorated)
@@ -433,7 +433,7 @@ void PythonQtTestApi::testCall()
 {
   PythonQtObjectPtr main = PythonQt::self()->getMainModule();
 
-  QVERIFY(qVariantValue<QObject*>(PythonQt::self()->getVariable(main, "obj"))==_helper);
+  QVERIFY(qvariant_cast<QObject*>(PythonQt::self()->getVariable(main, "obj"))==_helper);
 
   PyRun_SimpleString("def testCallNoArgs():\n  obj.setPassed();\n");
   QVERIFY(_helper->call("testCallNoArgs", QVariantList(), QVariant()));
@@ -443,7 +443,7 @@ void PythonQtTestApi::testCall()
 
   PyRun_SimpleString("def testCall2(a, b):\n if a=='test' and b==obj: obj.setPassed();\n return obj;\n");
   QVariant r = PythonQt::self()->call(PythonQt::self()->getMainModule(), "testCall2", QVariantList() << QVariant("test") << qVariantFromValue((QObject*)_helper));
-  QObject* p = qVariantValue<QObject*>(r);
+  QObject* p = qvariant_cast<QObject*>(r);
   QVERIFY(p==_helper);
 }
 
@@ -451,7 +451,7 @@ void PythonQtTestApi::testVariables()
 {
   PythonQt::self()->addObject(PythonQt::self()->getMainModule(), "someObject", _helper);
   QVariant v = PythonQt::self()->getVariable(PythonQt::self()->getMainModule(), "someObject");
-  QObject* p = qVariantValue<QObject*>(v);
+  QObject* p = qvariant_cast<QObject*>(v);
   QVERIFY(p==_helper);
   // test for unset variable
   QVariant v2 = PythonQt::self()->getVariable(PythonQt::self()->getMainModule(), "someObject2");
@@ -465,7 +465,7 @@ void PythonQtTestApi::testVariables()
   QSet<QString> s;
   // check that at least these three variables are set
   s << "obj" << "someObject" << "someValue";
-  foreach (QString value, s) {
+  Q_FOREACH (QString value, s) {
     QVERIFY(l.indexOf(value)!=-1);
   }
 
@@ -498,7 +498,7 @@ void PythonQtTestApi::testQtNamespace()
 
 void PythonQtTestApi::testConnects()
 {
-//  QVERIFY(qVariantValue<QColor>(_main.evalScript("PythonQt.Qt.QColor(PythonQt.Qt.Qt.red)" ,Py_eval_input)) == QColor(Qt::red));
+//  QVERIFY(qvariant_cast<QColor>(_main.evalScript("PythonQt.Qt.QColor(PythonQt.Qt.Qt.red)" ,Py_eval_input)) == QColor(Qt::red));
   //TODO: add signal/slot connect both with QObject.connect and connect
 }
 
@@ -512,24 +512,24 @@ void PythonQtTestApi::testQColorDecorators()
   colorClass = _main.getVariable("PythonQt.Qt.QColor");
   QVERIFY(colorClass);
   // constructors
-  QVERIFY(qVariantValue<QColor>(colorClass.call(QVariantList() << 1 << 2 << 3)) == QColor(1,2,3));
-  QVERIFY(qVariantValue<QColor>(colorClass.call()) == QColor());
+  QVERIFY(qvariant_cast<QColor>(colorClass.call(QVariantList() << 1 << 2 << 3)) == QColor(1,2,3));
+  QVERIFY(qvariant_cast<QColor>(colorClass.call()) == QColor());
   QEXPECT_FAIL("", "Testing non-existing constructor", Continue);
   QVERIFY(colorClass.call(QVariantList() << 1 << 2) != QVariant());
 
   // check that enum overload is taken over int
-  QVERIFY(qVariantValue<QColor>(_main.evalScript("PythonQt.Qt.QColor(PythonQt.Qt.Qt.red)" ,Py_eval_input)) == QColor(Qt::red));
+  QVERIFY(qvariant_cast<QColor>(_main.evalScript("PythonQt.Qt.QColor(PythonQt.Qt.Qt.red)" ,Py_eval_input)) == QColor(Qt::red));
   // check that int overload is taken over enum
-  QVERIFY(qVariantValue<QColor>(_main.evalScript("PythonQt.Qt.QColor(0x112233)" ,Py_eval_input)) == QColor(0x112233));
+  QVERIFY(qvariant_cast<QColor>(_main.evalScript("PythonQt.Qt.QColor(0x112233)" ,Py_eval_input)) == QColor(0x112233));
 
   // check for decorated Cmyk enum value
   QVERIFY(colorClass.getVariable("Cmyk").toInt() == QColor::Cmyk);
   PythonQtObjectPtr staticMethod = colorClass.getVariable("fromRgb");
   QVERIFY(staticMethod);
   // direct call of static method via class
-  QVERIFY(qVariantValue<QColor>(colorClass.call("fromRgb", QVariantList() << 1 << 2 << 3)) == QColor(1,2,3));
+  QVERIFY(qvariant_cast<QColor>(colorClass.call("fromRgb", QVariantList() << 1 << 2 << 3)) == QColor(1,2,3));
   // direct call of static method
-  QVERIFY(qVariantValue<QColor>(staticMethod.call(QVariantList() << 1 << 2 << 3)) == QColor(1,2,3));
+  QVERIFY(qvariant_cast<QColor>(staticMethod.call(QVariantList() << 1 << 2 << 3)) == QColor(1,2,3));
   PythonQtObjectPtr publicMethod = colorClass.getVariable("red");
   QVERIFY(publicMethod);
   // call with passing self in:
