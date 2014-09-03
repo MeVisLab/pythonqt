@@ -75,6 +75,11 @@ void ShellHeaderGenerator::writeFieldAccessors(QTextStream &s, const AbstractMet
   s << "{ return theWrappedObject->" << field->name() << "; }\n";
 }
 
+static bool enum_lessThan(const AbstractMetaEnum *a, const AbstractMetaEnum *b)
+{
+  return a->name() < b->name();
+}
+
 void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_class)
 {
   QString builtIn = ShellGenerator::isBuiltIn(meta_class->name())?"_builtin":"";
@@ -183,6 +188,7 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
   s << "public:" << endl;
 
   AbstractMetaEnumList enums1 = meta_class->enums();
+  qSort(enums1.begin(), enums1.end(), enum_lessThan);
   AbstractMetaEnumList enums;
   QList<FlagsTypeEntry*> flags;
   foreach(AbstractMetaEnum* enum1, enums1) {

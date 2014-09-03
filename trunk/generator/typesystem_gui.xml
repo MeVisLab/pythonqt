@@ -535,9 +535,15 @@
   
   <value-type name="QPixmapCache::Key"/>
   <value-type name="QTileRules"/>
-  <value-type name="QVector2D"/>
-  <value-type name="QVector3D"/>
-  <value-type name="QVector4D"/>
+  <value-type name="QVector2D">
+    <modify-function signature="operator[](int)" remove="all"/>
+  </value-type>
+  <value-type name="QVector3D">
+    <modify-function signature="operator[](int)" remove="all"/>
+  </value-type>
+  <value-type name="QVector4D">
+    <modify-function signature="operator[](int)" remove="all"/>
+  </value-type>
   <value-type name="QTouchEvent::TouchPoint"/>
 
 
@@ -1693,10 +1699,6 @@ PyObject* constScanLine(QImage* image, int line) {
     </modify-function>
   </object-type>
   <object-type name="QAccessible2Interface"/>
-  <object-type name="QAccessibleTableInterface">
-    <modify-function signature="qAccessibleTableCastHelper()" remove="all"/>
-  </object-type>
-
   <object-type name="QAccessibleInterface">
     <modify-function signature="indexOfChild(const QAccessibleInterface*)const">
         <modify-argument invalidate-after-use="yes" index="1"/>

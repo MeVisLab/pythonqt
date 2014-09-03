@@ -229,7 +229,9 @@ inline pp::PP_DIRECTIVE_TYPE pp::find_directive (char const *__directive, std::s
       default:
         break;
     }
-  std::cerr << "** WARNING unknown directive '#" << __directive << "' at " << env.current_file << ":" << env.current_line << std::endl;
+  if (strlen(__directive)) {
+    std::cerr << "** WARNING unknown directive '#" << __directive << "' at " << env.current_file << ":" << env.current_line << std::endl;
+  }
   return PP_UNKNOWN_DIRECTIVE;
 }
 
@@ -383,7 +385,8 @@ template <typename _InputIterator, typename _OutputIterator>
 _InputIterator pp::handle_include (bool __skip_current_path, _InputIterator __first, _InputIterator __last,
       _OutputIterator __result)
 {
-  std::cout << env.current_file << std::endl;
+  // uncomment to print included files
+  // std::cout << env.current_file << std::endl;
   if (pp_isalpha (*__first) || *__first == '_')
     {
       pp_macro_expander expand_include (env);
