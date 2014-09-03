@@ -489,7 +489,7 @@ void PythonQtTestApi::testQtNamespace()
 {
   QVERIFY(_main.getVariable("PythonQt.QtCore.Qt.red").toInt()==Qt::red);
   QVERIFY(_main.getVariable("PythonQt.QtCore.Qt.FlatCap").toInt()==Qt::FlatCap);
-  QVERIFY(PythonQtObjectPtr(_main.getVariable("PythonQt.QtCore.Qt.escape")));
+  QVERIFY(PythonQtObjectPtr(_main.getVariable("PythonQt.QtCore.Qt.mightBeRichText")));
   // check for an enum type wrapper
   QVERIFY(PythonQtObjectPtr(_main.getVariable("PythonQt.QtCore.Qt.AlignmentFlag")));
   // check for a flags type wrapper
