@@ -102,6 +102,9 @@ struct Preprocess
             qWarning("QTDIR environment variable not set. This may cause problems with finding the necessary include files.");
 #endif
         } else {
+            std::cout << "-------------------------------------------------------------" << std::endl;
+            std::cout << "Using QT at: " << qtdir.toLocal8Bit().constData() << std::endl;
+            std::cout << "-------------------------------------------------------------" << std::endl;
             qtdir += "/include";
             includes << (qtdir + "/QtXml");
             includes << (qtdir + "/QtNetwork");
@@ -110,7 +113,6 @@ struct Preprocess
             includes << (qtdir + "/QtOpenGL");
             includes << qtdir;
         }
-
         foreach (QString include, includes) {
             preprocess.push_include_path(QDir::toNativeSeparators(include).toStdString());
         }

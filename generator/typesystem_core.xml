@@ -2286,7 +2286,15 @@
   <object-type name="QMetaProperty"/>
   <object-type name="QMetaClassInfo"/>
   <object-type name="QElapsedTimer"/>
-  <object-type name="QMetaType"/>
+  <object-type name="QMetaType">
+    <!-- Qt 5 templates that need to be removed: -->
+    <modify-function signature="hasRegisteredConverterFunction()" remove="all"/> 
+    <modify-function signature="hasRegisteredDebugStreamOperator()" remove="all"/>
+    <modify-function signature="hasRegisteredComparators()" remove="all"/>
+    <modify-function signature="registerComparators()" remove="all"/>
+    <modify-function signature="registerConverter()" remove="all"/>
+    <modify-function signature="registerDebugStreamOperator()" remove="all"/>
+  </object-type>
 
   <!-- Inefficient hash codes -->
   <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QUuid' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
@@ -2383,5 +2391,61 @@
   <suppress-warning text="WARNING(Parser) :: ** WARNING scope not found for function definition:QFutureInterface&lt;void&gt;::future - definition *ignored*"/>
   <suppress-warning text="WARNING(Parser) :: ** WARNING scope not found for function definition:QFutureWatcher&lt;void&gt;::setFuture - definition *ignored*"/>
 
+  <!-- Qt 5 new classes -->
+  <object-type name="QFileDevice"/>
+  <object-type name="QBasicMutex"/>
+  <object-type name="QGuiApplication">
+      <modify-function signature="QGuiApplication(int &amp;, char  **, int)" remove="all"/>
+  </object-type>
+  <object-type name="QPagedPaintDevice"/>
 
-</typesystem>
+  <!-- <object-type name="QAccessibleActionInterface"/> -->
+
+  <enum-type name="QProcess::InputChannelMode"/>
+  <enum-type name="QWebFrame::ValueOwnership"/>
+  <enum-type name="QFileIconProvider::Option"/>
+  <enum-type name="QIconEngine::IconEngineHook"/>
+  <enum-type name="QPagedPaintDevice::PageSize"/>
+  <enum-type name="QStyleOptionFrame::FrameFeature"/>
+  <enum-type name="QWebSettings::ThirdPartyCookiePolicy"/>
+  <enum-type name="QByteArray::Base64Option"/>
+  <enum-type name="QAbstractScrollArea::SizeAdjustPolicy"/>
+  <enum-type name="QSslConfiguration::NextProtocolNegotiationStatus"/>
+  <enum-type name="QFontDatabase::SystemFont"/>
+  <enum-type name="QStyleOptionToolBox::SelectedPosition"/>
+  <enum-type name="QStyleOptionToolBox::TabPosition"/>
+  <enum-type name="QMetaType::TypeFlag"/>
+  <enum-type name="QLineEdit::ActionPosition"/>
+  <enum-type name="QAbstractItemModel::LayoutChangeHint"/>
+  <enum-type name="QWebPage::VisibilityState"/>
+  <enum-type name="QTextCharFormat::FontPropertiesInheritanceBehavior"/>
+  <enum-type name="QSqlDriver::NotificationSource"/>
+  <enum-type name="QTouchEvent::TouchPoint::InfoFlag"/>
+  <enum-type name="QLocalServer::SocketOption"/>
+  <enum-type name="QAbstractSocket::PauseMode"/>
+  <enum-type name="QAbstractSocket::BindFlag"/>
+  <enum-type name="QSound::Loop"/>
+  <enum-type name="QWebSecurityOrigin::SubdomainSetting"/>
+  <enum-type name="QState::RestorePolicy"/>
+  <enum-type name="QAccessible::TextBoundaryType"/>
+  <enum-type name="QAccessible::InterfaceType"/>
+  <enum-type name="QStyleOptionTab::TabFeature"/>
+  <enum-type name="QFileDevice::MemoryMapFlags"/>
+  <enum-type name="QFileDevice::Permission"/>
+  <enum-type name="QFileDevice::FileHandleFlag"/>
+  <enum-type name="QFileDevice::FileError"/>
+  <enum-type name="QColor::NameFormat"/>
+  <enum-type name="QStyleOptionViewItem::ViewItemFeature"/>
+  <enum-type name="QStyleOptionViewItem::ViewItemPosition"/>
+  <enum-type name="QSsl::AlternativeNameEntryType"/>
+  <enum-type name="Qt::ApplicationState"/>
+  <enum-type name="Qt::ScreenOrientation"/>
+  <enum-type name="Qt::MouseEventSource"/>
+  <enum-type name="Qt::NativeGestureType"/>
+  <enum-type name="Qt::FindChildOption"/>
+  <enum-type name="Qt::ScrollPhase"/>
+  <enum-type name="Qt::MouseEventFlag"/>
+  <enum-type name="Qt::TimerType"/>
+  <enum-type name="Qt::Edge"/>
+
+  </typesystem>

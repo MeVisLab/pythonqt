@@ -110,6 +110,7 @@ static QStringList getOperatorCodes(const AbstractMetaClass* cls) {
     r.insert("PythonQt::Type_NonZero");
   }
   QStringList result = r.toList();
+  qSort(result);
   return result;
 }
 
