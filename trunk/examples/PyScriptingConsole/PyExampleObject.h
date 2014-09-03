@@ -59,7 +59,7 @@ class PyExampleObject : public QObject {
 public:
   PyExampleObject();
 
-public slots:
+public Q_SLOTS:
 
   //! example for passing a PyObject directly from Qt to Python (without extra mashalling) 
   PyObject* getMainModule();
