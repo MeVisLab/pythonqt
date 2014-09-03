@@ -46,11 +46,5 @@ SOURCES +=                    \
   $$PWD/PythonQtClassWrapper.cpp    \
   $$PWD/gui/PythonQtScriptingConsole.cpp \
 
-contains( QT_MAJOR_VERSION, 5 ) {
-    include($$PWD/../generated_cpp_50/com_trolltech_qt_core_builtin/com_trolltech_qt_core_builtin.pri)
-    include($$PWD/../generated_cpp_50/com_trolltech_qt_gui_builtin/com_trolltech_qt_gui_builtin.pri)
-} else {
-    include($$PWD/../generated_cpp/com_trolltech_qt_core_builtin/com_trolltech_qt_core_builtin.pri)
-    include($$PWD/../generated_cpp/com_trolltech_qt_gui_builtin/com_trolltech_qt_gui_builtin.pri)
-}
+
 
