@@ -5,6 +5,8 @@
 
   <rejection class="QGLColormap::QGLColormapData"/>
   <rejection class="QGLWidget" function-name="setMouseTracking"/>
+  <rejection class="QGLFunctions" function-name="glBufferData"/>  <!-- Qt 5.0/3 differences -->
+  <rejection class="QGLFunctions" function-name="glBufferSubData"/>  <!-- Qt 5.0/3 differences -->
 
   <enum-type name="QGL::FormatOption" flags="QGL::FormatOptions"/>
   <enum-type name="QGLFormat::OpenGLVersionFlag" flags="QGLFormat::OpenGLVersionFlags"/>

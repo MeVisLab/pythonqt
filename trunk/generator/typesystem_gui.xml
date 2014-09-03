@@ -1674,6 +1674,8 @@ PyObject* constScanLine(QImage* image, int line) {
     </modify-function>
 
   </object-type>
+  
+  <!-- Removed because of problems in Qt5.0
   <object-type name="QAccessible">
     <modify-function signature="initialize()" remove="all"/>
     <modify-function signature="cleanup()" remove="all"/>
@@ -1712,6 +1714,7 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QAccessibleObjectEx"/>
   <object-type name="QAccessibleWidget"/>
   <object-type name="QAccessibleWidgetEx"/>
+  -->
   <object-type name="QActionGroup"/>
   <object-type name="QCDEStyle">
       <modify-function signature="standardIconImplementation(QStyle::StandardPixmap, const QStyleOption *, const QWidget *)const" virtual-slot="yes"/>
@@ -5612,7 +5615,6 @@ PyObject* constScanLine(QImage* image, int line) {
   <interface-type name="QPictureFormatInterface" java-name="QAbstractPictureFormat"/>
 
   <object-type name="QIconEnginePluginV2"/>
-  <object-type name="QAccessiblePlugin"/>
   <object-type name="QImageIOPlugin"/>
   <object-type name="QInputContextPlugin"/>
   <object-type name="QPictureFormatPlugin"/>
