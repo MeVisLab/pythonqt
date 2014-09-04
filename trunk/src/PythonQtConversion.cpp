@@ -162,7 +162,7 @@ PyObject* PythonQtConv::ConvertQtValueToPythonInternal(int type, const void* dat
       // implicit conversion from QByteArray to str has been removed:
   //case QMetaType::QByteArray: {
   //  QByteArray* v = (QByteArray*) data;
-  //  return PyString_FromStringAndSize(*v, v->size());
+  //  return PyBytes_FromStringAndSize(*v, v->size());
   //                            }
   case QMetaType::QVariantHash:
     return PythonQtConv::QVariantHashToPyObject(*((QVariantHash*)data));

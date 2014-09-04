@@ -775,7 +775,7 @@ void delete_QDataStream(QDataStream* obj) { delete obj; }
      r.resize(len);
      int result = d->readRawData(r.data(), r.size());
      if (result>=0) {
-       return PyString_FromStringAndSize(r.data(), result);
+       return PyBytes_FromStringAndSize(r.data(), result);
      } else {
        Py_INCREF(Py_None);
        return Py_None;
