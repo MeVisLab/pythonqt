@@ -482,7 +482,11 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
   }
 
   // look for the internal methods (className(), help())
+#ifdef PY3K
+  PyObject* internalMethod = PyObject_GenericGetAttr(obj, name);
+#else
   PyObject* internalMethod = Py_FindMethod( PythonQtInstanceWrapper_methods, obj, (char*)attributeName);
+#endif
   if (internalMethod) {
     return internalMethod;
   }
@@ -646,11 +650,13 @@ static PyObject * PythonQtInstanceWrapper_str(PyObject * obj)
   if (wrapper->classInfo()->metaTypeId()==QVariant::ByteArray) {
     QByteArray* b = (QByteArray*) wrapper->_wrappedPtr;
 #ifdef PY3K
-    // TODO: check how Python 3 likes str() returning bytes...
+    // Note: In Python 2, this was used to access the data() of a byte array.
+    // Since in Python 3 str() will return a unicode, this is no longer possible.
+    // The user needs to call .data() to get access to the data as bytes.
     if (b->data()) {
-      return PyBytes_FromStringAndSize(b->data(), b->size());
+      return PyUnicode_FromStringAndSize(b->data(), b->size());
     } else {
-      return PyBytes_FromString("");
+      return PyUnicode_New(0, 0);
     }
 #else
     if (b->data()) {
@@ -727,30 +733,38 @@ static PyNumberMethods PythonQtInstanceWrapper_as_number = {
   0,      /* nb_add */
     0,      /* nb_subtract */
     0,      /* nb_multiply */
+#ifndef PY3K
     0,      /* nb_divide */
+#endif
     0,      /* nb_remainder */
     0,      /* nb_divmod */
     0,      /* nb_power */
     0,      /* nb_negative */
     0,      /* nb_positive */
     0,      /* nb_absolute */
-    PythonQtInstanceWrapper_builtin_nonzero,      /* nb_nonzero */
+    PythonQtInstanceWrapper_builtin_nonzero,      /* nb_nonzero / nb_bool in Py3K */
     0,      /* nb_invert */
     0,      /* nb_lshift */
     0,      /* nb_rshift */
     0,    /* nb_and */
     0,    /* nb_xor */
     0,    /* nb_or */
+#ifndef PY3K
     0,      /* nb_coerce */
+#endif
     0,      /* nb_int */
-    0,      /* nb_long */
+    0,      /* nb_long  / nb_reserved in Py3K */
     0,      /* nb_float */
+#ifndef PY3K
     0,      /* nb_oct */
     0,      /* nb_hex */
+#endif
     0,      /* nb_inplace_add */
     0,      /* nb_inplace_subtract */
     0,      /* nb_inplace_multiply */
+#ifndef PY3K
     0,      /* nb_inplace_divide */
+#endif
     0,      /* nb_inplace_remainder */
     0,      /* nb_inplace_power */
     0,      /* nb_inplace_lshift */
@@ -762,10 +776,13 @@ static PyNumberMethods PythonQtInstanceWrapper_as_number = {
     0,      /* nb_true_divide */
     0,      /* nb_inplace_floor_divide */
     0,      /* nb_inplace_true_divide */
+#ifdef PY3K
+    0,      /* nb_index in Py3K */
+#endif
 };
 
 PyTypeObject PythonQtInstanceWrapper_Type = {
-    PyVarObject_HEAD_INIT(&PythonQtClassWrapper_Type, 0),
+    PyVarObject_HEAD_INIT(&PythonQtClassWrapper_Type, 0)
     "PythonQt.PythonQtInstanceWrapper",             /*tp_name*/
     sizeof(PythonQtInstanceWrapper),             /*tp_basicsize*/
     0,                         /*tp_itemsize*/
@@ -784,7 +801,11 @@ PyTypeObject PythonQtInstanceWrapper_Type = {
     PythonQtInstanceWrapper_getattro,                         /*tp_getattro*/
     PythonQtInstanceWrapper_setattro,                         /*tp_setattro*/
     0,                         /*tp_as_buffer*/
-    Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE | Py_TPFLAGS_CHECKTYPES, /*tp_flags*/
+    Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE
+#ifndef PY3K
+    | Py_TPFLAGS_CHECKTYPES
+#endif
+    , /*tp_flags*/
     "PythonQtInstanceWrapper object",           /* tp_doc */
     0,                   /* tp_traverse */
     0,                   /* tp_clear */
@@ -792,7 +813,11 @@ PyTypeObject PythonQtInstanceWrapper_Type = {
     0,                   /* tp_weaklistoffset */
     0,                   /* tp_iter */
     0,                   /* tp_iternext */
+#ifdef PY3K
+    PythonQtInstanceWrapper_methods,
+#else
     0,             /* tp_methods */
+#endif
     0,             /* tp_members */
     0,                         /* tp_getset */
     0,                         /* tp_base */
