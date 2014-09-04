@@ -42,6 +42,8 @@
 #include "PythonQtStdDecorators.h"
 #include "PythonQt.h"
 #include "PythonQtClassInfo.h"
+#include "PythonQtConversion.h"
+
 #include <QCoreApplication>
 
 bool PythonQtStdDecorators::connect(QObject* sender, const QByteArray& signal, PyObject* callable)
@@ -175,18 +177,19 @@ QString PythonQtStdDecorators::tr(QObject* obj, const QByteArray& text, const QB
 QObject* PythonQtStdDecorators::findChild(QObject* parent, PyObject* type, const QString& name)
 {
   const QMetaObject* meta = NULL;
-  const char* typeName = NULL;
+  QByteArray typeName;
 
   if (PyObject_TypeCheck(type, &PythonQtClassWrapper_Type)) {
     meta = ((PythonQtClassWrapper*)type)->classInfo()->metaObject();
   } else if (PyObject_TypeCheck(type, &PythonQtInstanceWrapper_Type)) {
     meta = ((PythonQtInstanceWrapper*)type)->classInfo()->metaObject();
-  } else if (PyString_Check(type)) {
-    typeName = PyString_AsString(type);
+  } else if (PyBytes_Check(type) || PyUnicode_Check(type)) {
+    typeName = PythonQtConv::PyObjGetString(type).toUtf8();
   }
 
-  if (!typeName && !meta)
+  if (typeName.isEmpty() && !meta) {
     return NULL;
+  }
 
   return findChild(parent, typeName, meta, name);
 }
@@ -194,20 +197,23 @@ QObject* PythonQtStdDecorators::findChild(QObject* parent, PyObject* type, const
 QList<QObject*> PythonQtStdDecorators::findChildren(QObject* parent, PyObject* type, const QString& name)
 {
   const QMetaObject* meta = NULL;
-  const char* typeName = NULL;
+  QByteArray typeName;
 
   if (PyObject_TypeCheck(type, &PythonQtClassWrapper_Type)) {
     meta = ((PythonQtClassWrapper*)type)->classInfo()->metaObject();
   } else if (PyObject_TypeCheck(type, &PythonQtInstanceWrapper_Type)) {
     meta = ((PythonQtInstanceWrapper*)type)->classInfo()->metaObject();
-  } else if (PyString_Check(type)) {
-    typeName = PyString_AsString(type);
   }
+  else if (PyBytes_Check(type) || PyUnicode_Check(type)) {
+    typeName = PythonQtConv::PyObjGetString(type).toUtf8();
+  }
+
 
   QList<QObject*> list;
 
-  if (!typeName && !meta)
+  if (typeName.isEmpty() && !meta) {
     return list;
+  }
 
   findChildren(parent, typeName, meta, name, list);
 
@@ -217,20 +223,22 @@ QList<QObject*> PythonQtStdDecorators::findChildren(QObject* parent, PyObject* t
 QList<QObject*> PythonQtStdDecorators::findChildren(QObject* parent, PyObject* type, const QRegExp& regExp)
 {
   const QMetaObject* meta = NULL;
-  const char* typeName = NULL;
+  QByteArray typeName;
 
   if (PyObject_TypeCheck(type, &PythonQtClassWrapper_Type)) {
     meta = ((PythonQtClassWrapper*)type)->classInfo()->metaObject();
   } else if (PyObject_TypeCheck(type, &PythonQtInstanceWrapper_Type)) {
     meta = ((PythonQtInstanceWrapper*)type)->classInfo()->metaObject();
-  } else if (PyString_Check(type)) {
-    typeName = PyString_AsString(type);
+  }
+  else if (PyBytes_Check(type) || PyUnicode_Check(type)) {
+    typeName = PythonQtConv::PyObjGetString(type).toUtf8();
   }
 
   QList<QObject*> list;
 
-  if (!typeName && !meta)
+  if (typeName.isEmpty() && !meta) {
     return list;
+  }
 
   findChildren(parent, typeName, meta, regExp, list);
 

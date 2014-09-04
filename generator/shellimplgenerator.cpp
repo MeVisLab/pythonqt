@@ -124,7 +124,7 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
       Option typeOptions = Option(OriginalName | UnderscoreSpaces | SkipName);
       AbstractMetaArgumentList args = fun->arguments();
 
-      s << "if (_wrapper && (_wrapper->ob_refcnt > 0)) {" << endl;
+      s << "if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {" << endl;
       s << "  static PyObject* name = PyString_FromString(\"" << fun->name() << "\");" << endl;
       s << "  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);" << endl;
       s << "  if (obj) {" << endl;

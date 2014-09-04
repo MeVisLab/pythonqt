@@ -396,9 +396,9 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
      // a pointer
      if (info.typeId == QMetaType::Char || info.typeId == QMetaType::UChar)
      {
-       if (obj->ob_type == &PyString_Type) {
+       if (obj->ob_type == &PyBytes_Type) {
          // take direct reference to string data
-         const char* data = PyString_AS_STRING(obj);
+         const char* data = PyBytes_AS_STRING(obj);
          PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_ptrStorage, void*, (void*)data, ptr);
        } else {
          // convert to string
@@ -685,7 +685,7 @@ QStringList PythonQtConv::PyObjToStringList(PyObject* val, bool strict, bool& ok
   // if we are strict, we do not want to convert a string to a stringlist
   // (strings in python are detected to be sequences)
   if (strict &&
-    (val->ob_type == &PyString_Type ||
+    (val->ob_type == &PyBytes_Type ||
     PyUnicode_Check(val))) {
     return v;
   }
@@ -716,14 +716,18 @@ QString PythonQtConv::PyObjGetRepresentation(PyObject* val)
 QString PythonQtConv::PyObjGetString(PyObject* val, bool strict, bool& ok) {
   QString r;
   ok = true;
-  if (val->ob_type == &PyString_Type) {
-    r = QString(PyString_AS_STRING(val));
+  if (val->ob_type == &PyBytes_Type) {
+    r = QString(PyBytes_AS_STRING(val));
   } else if (PyUnicode_Check(val)) {
+#ifdef PY3K
+    r = QString::fromUtf8(PyUnicode_AsUTF8(val));
+#else
     PyObject *ptmp = PyUnicode_AsUTF8String(val);
     if(ptmp) {
       r = QString::fromUtf8(PyString_AS_STRING(ptmp));
       Py_DECREF(ptmp);
     }
+#endif
   } else if (!strict) {
     // EXTRA: could also use _Unicode, but why should we?
     PyObject* str =  PyObject_Str(val);
@@ -743,9 +747,9 @@ QByteArray PythonQtConv::PyObjGetBytes(PyObject* val, bool /*strict*/, bool& ok)
   // TODO: support buffer objects in general
   QByteArray r;
   ok = true;
-  if (val->ob_type == &PyString_Type) {
-    long size = PyString_GET_SIZE(val);
-    r = QByteArray(PyString_AS_STRING(val), size);
+  if (val->ob_type == &PyBytes_Type) {
+    long size = PyBytes_GET_SIZE(val);
+    r = QByteArray(PyBytes_AS_STRING(val), size);
   } else {
     ok = false;
   }
@@ -927,7 +931,8 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
 
   if (type==-1) {
     // no special type requested
-    if (val->ob_type==&PyString_Type || val->ob_type==&PyUnicode_Type) {
+    if (PyBytes_Check(val) || PyUnicode_Check(val)) {
+      // NOTE: for compatibility reasons between Python 2/3 we don't use ByteArray for PyBytes_Type
       type = QVariant::String;
     } else if (val == Py_False || val == Py_True) {
       type = QVariant::Bool;

@@ -69,6 +69,24 @@
 #define PY3K
 // Helper defines to facilitate porting
 #define PyString_FromString PyUnicode_FromString
+#define PyString_AS_STRING  PyUnicode_AsUTF8
+#define PyString_AsString   PyUnicode_AsUTF8
+#define PyString_FromFormat PyUnicode_FromFormat
+
+#define PyInt_Type     PyLong_Type
+#define PyInt_FromLong PyLong_FromLong
+#define PyInt_AS_LONG  PyLong_AS_LONG
+#define PyInt_Check    PyLong_Check
+#define PyInt_AsLong   PyLong_AsLong
+
+#else
+// Defines to use Python 3 names in Python 2 code
+#define PyBytes_Type      PyString_Type
+#define PyBytes_Check     PyString_Check
+#define PyBytes_AS_STRING PyString_AS_STRING
+#define PyBytes_AsString  PyString_AsString
+#define PyBytes_GET_SIZE  PyString_GET_SIZE
+#define PyBytes_FromStringAndSize PyString_FromStringAndSize
 #endif
 
 #endif
