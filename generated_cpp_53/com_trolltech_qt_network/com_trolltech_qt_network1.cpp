@@ -21,7 +21,7 @@ PythonQtShell_QTcpSocket::~PythonQtShell_QTcpSocket() {
 }
 bool  PythonQtShell_QTcpSocket::atEnd() const
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("atEnd");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -51,7 +51,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 qint64  PythonQtShell_QTcpSocket::bytesAvailable() const
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("bytesAvailable");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -81,7 +81,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 qint64  PythonQtShell_QTcpSocket::bytesToWrite() const
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("bytesToWrite");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -111,7 +111,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 bool  PythonQtShell_QTcpSocket::canReadLine() const
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("canReadLine");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -141,7 +141,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 void PythonQtShell_QTcpSocket::childEvent(QChildEvent*  arg__1)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("childEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -160,7 +160,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 void PythonQtShell_QTcpSocket::close()
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("close");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -179,7 +179,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 void PythonQtShell_QTcpSocket::connectToHost(const QHostAddress&  address, unsigned short  port, QIODevice::OpenMode  mode)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("connectToHost");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -198,7 +198,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 void PythonQtShell_QTcpSocket::connectToHost(const QString&  hostName, unsigned short  port, QIODevice::OpenMode  mode, QAbstractSocket::NetworkLayerProtocol  protocol)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("connectToHost");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -217,7 +217,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 void PythonQtShell_QTcpSocket::customEvent(QEvent*  arg__1)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("customEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -236,7 +236,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 void PythonQtShell_QTcpSocket::disconnectFromHost()
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("disconnectFromHost");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -255,7 +255,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 bool  PythonQtShell_QTcpSocket::event(QEvent*  arg__1)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("event");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -285,7 +285,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 bool  PythonQtShell_QTcpSocket::eventFilter(QObject*  arg__1, QEvent*  arg__2)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("eventFilter");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -315,7 +315,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 bool  PythonQtShell_QTcpSocket::isSequential() const
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("isSequential");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -345,7 +345,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 bool  PythonQtShell_QTcpSocket::open(QIODevice::OpenMode  mode)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("open");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -375,7 +375,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 qint64  PythonQtShell_QTcpSocket::pos() const
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("pos");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -405,7 +405,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 qint64  PythonQtShell_QTcpSocket::readData(char*  data, qint64  maxlen)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("readData");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -435,7 +435,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 qint64  PythonQtShell_QTcpSocket::readLineData(char*  data, qint64  maxlen)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("readLineData");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -465,7 +465,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 bool  PythonQtShell_QTcpSocket::reset()
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("reset");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -495,7 +495,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 void PythonQtShell_QTcpSocket::resume()
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("resume");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -514,7 +514,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 bool  PythonQtShell_QTcpSocket::seek(qint64  pos)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("seek");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -544,7 +544,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 void PythonQtShell_QTcpSocket::setReadBufferSize(qint64  size)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("setReadBufferSize");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -563,7 +563,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 qint64  PythonQtShell_QTcpSocket::size() const
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("size");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -593,7 +593,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 void PythonQtShell_QTcpSocket::timerEvent(QTimerEvent*  arg__1)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("timerEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -612,7 +612,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 bool  PythonQtShell_QTcpSocket::waitForBytesWritten(int  msecs)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("waitForBytesWritten");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -642,7 +642,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 bool  PythonQtShell_QTcpSocket::waitForConnected(int  msecs)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("waitForConnected");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -672,7 +672,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 bool  PythonQtShell_QTcpSocket::waitForDisconnected(int  msecs)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("waitForDisconnected");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -702,7 +702,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 bool  PythonQtShell_QTcpSocket::waitForReadyRead(int  msecs)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("waitForReadyRead");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -732,7 +732,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 qint64  PythonQtShell_QTcpSocket::writeData(const char*  data, qint64  len)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("writeData");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -772,7 +772,7 @@ PythonQtShell_QUdpSocket::~PythonQtShell_QUdpSocket() {
 }
 bool  PythonQtShell_QUdpSocket::atEnd() const
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("atEnd");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -802,7 +802,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 qint64  PythonQtShell_QUdpSocket::bytesAvailable() const
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("bytesAvailable");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -832,7 +832,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 qint64  PythonQtShell_QUdpSocket::bytesToWrite() const
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("bytesToWrite");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -862,7 +862,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 bool  PythonQtShell_QUdpSocket::canReadLine() const
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("canReadLine");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -892,7 +892,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 void PythonQtShell_QUdpSocket::childEvent(QChildEvent*  arg__1)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("childEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -911,7 +911,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 void PythonQtShell_QUdpSocket::close()
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("close");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -930,7 +930,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 void PythonQtShell_QUdpSocket::connectToHost(const QHostAddress&  address, unsigned short  port, QIODevice::OpenMode  mode)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("connectToHost");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -949,7 +949,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 void PythonQtShell_QUdpSocket::connectToHost(const QString&  hostName, unsigned short  port, QIODevice::OpenMode  mode, QAbstractSocket::NetworkLayerProtocol  protocol)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("connectToHost");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -968,7 +968,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 void PythonQtShell_QUdpSocket::customEvent(QEvent*  arg__1)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("customEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -987,7 +987,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 void PythonQtShell_QUdpSocket::disconnectFromHost()
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("disconnectFromHost");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -1006,7 +1006,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 bool  PythonQtShell_QUdpSocket::event(QEvent*  arg__1)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("event");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -1036,7 +1036,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 bool  PythonQtShell_QUdpSocket::eventFilter(QObject*  arg__1, QEvent*  arg__2)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("eventFilter");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -1066,7 +1066,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 bool  PythonQtShell_QUdpSocket::isSequential() const
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("isSequential");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -1096,7 +1096,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 bool  PythonQtShell_QUdpSocket::open(QIODevice::OpenMode  mode)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("open");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -1126,7 +1126,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 qint64  PythonQtShell_QUdpSocket::pos() const
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("pos");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -1156,7 +1156,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 qint64  PythonQtShell_QUdpSocket::readData(char*  data, qint64  maxlen)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("readData");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -1186,7 +1186,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 qint64  PythonQtShell_QUdpSocket::readLineData(char*  data, qint64  maxlen)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("readLineData");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -1216,7 +1216,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 bool  PythonQtShell_QUdpSocket::reset()
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("reset");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -1246,7 +1246,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 void PythonQtShell_QUdpSocket::resume()
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("resume");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -1265,7 +1265,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 bool  PythonQtShell_QUdpSocket::seek(qint64  pos)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("seek");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -1295,7 +1295,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 void PythonQtShell_QUdpSocket::setReadBufferSize(qint64  size)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("setReadBufferSize");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -1314,7 +1314,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 qint64  PythonQtShell_QUdpSocket::size() const
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("size");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -1344,7 +1344,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 void PythonQtShell_QUdpSocket::timerEvent(QTimerEvent*  arg__1)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("timerEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -1363,7 +1363,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 bool  PythonQtShell_QUdpSocket::waitForBytesWritten(int  msecs)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("waitForBytesWritten");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -1393,7 +1393,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 bool  PythonQtShell_QUdpSocket::waitForConnected(int  msecs)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("waitForConnected");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -1423,7 +1423,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 bool  PythonQtShell_QUdpSocket::waitForDisconnected(int  msecs)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("waitForDisconnected");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -1453,7 +1453,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 bool  PythonQtShell_QUdpSocket::waitForReadyRead(int  msecs)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("waitForReadyRead");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -1483,7 +1483,7 @@ if (_wrapper && (_wrapper->ob_refcnt > 0)) {
 }
 qint64  PythonQtShell_QUdpSocket::writeData(const char*  data, qint64  len)
 {
-if (_wrapper && (_wrapper->ob_refcnt > 0)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("writeData");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {

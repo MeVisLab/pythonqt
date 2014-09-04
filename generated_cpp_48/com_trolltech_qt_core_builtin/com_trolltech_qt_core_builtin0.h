@@ -186,7 +186,7 @@ void delete_QByteArray(QByteArray* obj) { delete obj; }
 
   PyObject* data(QByteArray* b) {
     if (b->data()) {
-      return PyString_FromStringAndSize(b->data(), b->size());
+      return PyBytes_FromStringAndSize(b->data(), b->size());
     } else {
       Py_INCREF(Py_None);
       return Py_None;
