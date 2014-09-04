@@ -166,7 +166,6 @@ PythonQt::PythonQt(int flags, const QByteArray& pythonQtModuleName)
   _p->_PythonQtObjectPtr_metaId = qRegisterMetaType<PythonQtObjectPtr>("PythonQtObjectPtr");
 
   if ((flags & PythonAlreadyInitialized) == 0) {
-    Py_SetProgramName(const_cast<char*>("PythonQt"));
     if (flags & IgnoreSiteModule) {
       // this prevents the automatic importing of Python site files
       Py_NoSiteFlag = 1;
@@ -706,7 +705,11 @@ QVariant PythonQt::evalCode(PyObject* object, PyObject* pycode) {
     }
     PyObject* r = NULL;
     if (dict) {
-      r = PyEval_EvalCode((PyCodeObject*)pycode, globals , dict);
+#ifdef PY3K
+      r = PyEval_EvalCode(pycode, globals, dict);
+#else
+      r = PyEval_EvalCode((PyCodeObject*)pycode, globals, dict);
+#endif
     }
     if (r) {
       result = PythonQtConv::PyObjToQVariant(r);
@@ -1279,8 +1282,13 @@ int custom_system_exit_exception_handler()
 //    return exitcode;
 
   PyErr_Fetch(&exception, &value, &tb);
-  if (Py_FlushLine())
+#ifndef PY3K
+  if (Py_FlushLine()) {
     PyErr_Clear();
+  }
+#else
+  // TODO: unclear what to do, since Py_FlushLine is gone...
+#endif
   fflush(stdout);
   if (value == NULL || value == Py_None)
     goto done;
@@ -1740,8 +1748,11 @@ bool PythonQtPrivate::isMethodDescriptor(PyObject* object) const
   if (PyObject_HasAttrString(object, "__get__") &&
       !PyObject_HasAttrString(object, "__set__") &&
       !PyMethod_Check(object) &&
-      !PyFunction_Check(object) &&
-      !PyClass_Check(object)) {
+      !PyFunction_Check(object)
+#ifndef PY3K
+      && !PyClass_Check(object)
+#endif
+      ) {
     return true;
   }
   return false;
@@ -1897,12 +1908,18 @@ void PythonQtPrivate::shellClassDeleted( void* shellClass )
 
 PyObject* PythonQtPrivate::wrapMemoryAsBuffer( const void* data, Py_ssize_t size )
 {
-  // P3K port needed later on!
+#ifdef PY3K
+  return PyMemoryView_FromMemory((char*)data, size, PyBUF_READ);
+#else
   return PyBuffer_FromMemory((void*)data, size);
+#endif
 }
 
 PyObject* PythonQtPrivate::wrapMemoryAsBuffer( void* data, Py_ssize_t size )
 {
-  // P3K port needed later on!
+#ifdef PY3K
+  return PyMemoryView_FromMemory((char*)data, size, PyBUF_READ | PyBUF_WRITE);
+#else
   return PyBuffer_FromReadWriteMemory(data, size);
+#endif
 }

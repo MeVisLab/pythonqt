@@ -133,11 +133,13 @@ static PyObject *
 meth_get__self__(PythonQtSignalFunctionObject *m, void * /*closure*/)
 {
   PyObject *self;
+#ifndef PY3K
   if (PyEval_GetRestricted()) {
     PyErr_SetString(PyExc_RuntimeError,
       "method.__self__ not accessible in restricted mode");
     return NULL;
   }
+#endif
   self = m->m_self;
   if (self == NULL)
     self = Py_None;

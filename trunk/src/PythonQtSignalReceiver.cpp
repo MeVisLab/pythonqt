@@ -138,7 +138,7 @@ PyObject* PythonQtSignalTarget::call(PyObject* callable, const PythonQtMethodInf
 
 bool PythonQtSignalTarget::isSame( int signalId, PyObject* callable ) const
 {
-  return PyObject_Compare(callable, _callable) == 0 && signalId==_signalId;
+  return PyObject_RichCompareBool(callable, _callable, Py_EQ) && (signalId == _signalId);
 }
 
 //------------------------------------------------------------------------------
