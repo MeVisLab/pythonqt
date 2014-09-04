@@ -400,7 +400,7 @@ Create a new PythonQtImporter instance. 'path' must be a valid path on disk/or i
 #define DEFERRED_ADDRESS(ADDR) 0
 
 PyTypeObject PythonQtImporter_Type = {
-  PyVarObject_HEAD_INIT(DEFERRED_ADDRESS(&PyType_Type), 0),
+  PyVarObject_HEAD_INIT(DEFERRED_ADDRESS(&PyType_Type), 0)
   "PythonQtImport.PythonQtImporter",
   sizeof(PythonQtImporter),
   0,          /* tp_itemsize */
@@ -765,6 +765,20 @@ PyObject* PythonQtImport::getCodeFromPyc(const QString& file)
 PyDoc_STRVAR(mlabimport_doc,
 "Imports python files into PythonQt, completely replaces internal python import");
 
+#ifdef PY3K
+static struct PyModuleDef PythonQtImport_def = {
+    PyModuleDef_HEAD_INIT,
+    "PythonQtImport",   /* m_name */
+    mlabimport_doc,     /* m_doc */
+    -1,                 /* m_size */
+    NULL,               /* m_methods */
+    NULL,               /* m_reload */
+    NULL,               /* m_traverse */
+    NULL,               /* m_clear */
+    NULL                /* m_free */
+};
+#endif
+
 void PythonQtImport::init()
 {
   static bool first = true;
@@ -793,8 +807,12 @@ void PythonQtImport::init()
     mlab_searchorder[4] = tmp;
   }
 
+#ifdef PY3K
+  mod = PyModule_Create(&PythonQtImport_def);
+#else
   mod = Py_InitModule4("PythonQtImport", NULL, mlabimport_doc,
            NULL, PYTHON_API_VERSION);
+#endif
 
   PythonQtImportError = PyErr_NewException(const_cast<char*>("PythonQtImport.PythonQtImportError"),
               PyExc_ImportError, NULL);

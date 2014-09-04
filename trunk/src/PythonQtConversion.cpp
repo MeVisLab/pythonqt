@@ -296,7 +296,7 @@ void* PythonQtConv::handlePythonToQtAutoConversion(int typeId, PyObject* obj, vo
   if (typeId == cursorId) {
     static PyObject* qtCursorShapeEnum = PythonQtClassInfo::findEnumWrapper("Qt::CursorShape", NULL);
     if ((PyObject*)obj->ob_type == qtCursorShapeEnum) {
-      Qt::CursorShape val = (Qt::CursorShape)PyInt_AS_LONG(obj);
+      Qt::CursorShape val = (Qt::CursorShape)PyInt_AsLong(obj);
       if (!ptr) {
         PythonQtValueStorage_ADD_VALUE(global_variantStorage, QVariant, QCursor(), ptr);
         ptr = (void*)((QVariant*)ptr)->constData();
@@ -308,7 +308,7 @@ void* PythonQtConv::handlePythonToQtAutoConversion(int typeId, PyObject* obj, vo
     // brushes can be created from QColor and from Qt::GlobalColor (and from brushes, but that's the default)
     static PyObject* qtColorClass = PythonQt::priv()->getClassInfo("QColor")->pythonQtClassWrapper();
     if ((PyObject*)obj->ob_type == qtGlobalColorEnum) {
-      Qt::GlobalColor val = (Qt::GlobalColor)PyInt_AS_LONG(obj);
+      Qt::GlobalColor val = (Qt::GlobalColor)PyInt_AsLong(obj);
       if (!ptr) {
         PythonQtValueStorage_ADD_VALUE(global_variantStorage, QVariant, QPen(), ptr);
         ptr = (void*)((QVariant*)ptr)->constData();
@@ -327,7 +327,7 @@ void* PythonQtConv::handlePythonToQtAutoConversion(int typeId, PyObject* obj, vo
     // brushes can be created from QColor and from Qt::GlobalColor (and from brushes, but that's the default)
     static PyObject* qtColorClass = PythonQt::priv()->getClassInfo("QColor")->pythonQtClassWrapper();
     if ((PyObject*)obj->ob_type == qtGlobalColorEnum) {
-      Qt::GlobalColor val = (Qt::GlobalColor)PyInt_AS_LONG(obj);
+      Qt::GlobalColor val = (Qt::GlobalColor)PyInt_AsLong(obj);
       if (!ptr) {
         PythonQtValueStorage_ADD_VALUE(global_variantStorage, QVariant, QBrush(), ptr);
         ptr = (void*)((QVariant*)ptr)->constData();
@@ -345,7 +345,7 @@ void* PythonQtConv::handlePythonToQtAutoConversion(int typeId, PyObject* obj, vo
   } else if (typeId == colorId) {
     // colors can be created from Qt::GlobalColor (and from colors, but that's the default)
     if ((PyObject*)obj->ob_type == qtGlobalColorEnum) {
-      Qt::GlobalColor val = (Qt::GlobalColor)PyInt_AS_LONG(obj);
+      Qt::GlobalColor val = (Qt::GlobalColor)PyInt_AsLong(obj);
       if (!ptr) {
         PythonQtValueStorage_ADD_VALUE(global_variantStorage, QVariant, QColor(), ptr);
         ptr = (void*)((QVariant*)ptr)->constData();
@@ -707,7 +707,11 @@ QString PythonQtConv::PyObjGetRepresentation(PyObject* val)
   QString r;
   PyObject* str =  PyObject_Repr(val);
   if (str) {
-    r = QString(PyString_AS_STRING(str));
+    #ifdef PY3K
+      r = PyObjGetString(str);
+    #else
+      r = QString(PyString_AS_STRING(str));
+    #endif
     Py_DECREF(str);
   }
   return r;
@@ -729,10 +733,13 @@ QString PythonQtConv::PyObjGetString(PyObject* val, bool strict, bool& ok) {
     }
 #endif
   } else if (!strict) {
-    // EXTRA: could also use _Unicode, but why should we?
     PyObject* str =  PyObject_Str(val);
     if (str) {
+#ifdef PY3K
+      r = QString::fromUtf8(PyUnicode_AsUTF8(val));
+#else
       r = QString(PyString_AS_STRING(str));
+#endif
       Py_DECREF(str);
     } else {
       ok = false;
@@ -747,9 +754,8 @@ QByteArray PythonQtConv::PyObjGetBytes(PyObject* val, bool /*strict*/, bool& ok)
   // TODO: support buffer objects in general
   QByteArray r;
   ok = true;
-  if (val->ob_type == &PyBytes_Type) {
-    long size = PyBytes_GET_SIZE(val);
-    r = QByteArray(PyBytes_AS_STRING(val), size);
+  if (PyBytes_Check(val)) {
+    r = QByteArray(PyBytes_AS_STRING(val), PyBytes_GET_SIZE(val));
   } else {
     ok = false;
   }
@@ -810,9 +816,12 @@ int PythonQtConv::PyObjGetInt(PyObject* val, bool strict, bool &ok) {
 qint64 PythonQtConv::PyObjGetLongLong(PyObject* val, bool strict, bool &ok) {
   qint64 d = 0;
   ok = true;
+#ifndef PY3K
   if (val->ob_type == &PyInt_Type) {
     d = PyInt_AS_LONG(val);
-  } else if (val->ob_type == &PyLong_Type) {
+  } else
+#endif
+  if (val->ob_type == &PyLong_Type) {
     d = PyLong_AsLongLong(val);
   } else if (!strict) {
     if (PyObject_TypeCheck(val, &PyInt_Type)) {
@@ -842,9 +851,12 @@ qint64 PythonQtConv::PyObjGetLongLong(PyObject* val, bool strict, bool &ok) {
 quint64 PythonQtConv::PyObjGetULongLong(PyObject* val, bool strict, bool &ok) {
   quint64 d = 0;
   ok = true;
-  if (PyObject_TypeCheck(val, &PyInt_Type)) {
+#ifndef PY3K
+  if (Py_TYPE(val) == &PyInt_Type) {
     d = PyInt_AS_LONG(val);
-  } else if (val->ob_type == &PyLong_Type) {
+  } else
+#endif
+  if (Py_TYPE(val) == &PyLong_Type) {
     d = PyLong_AsLongLong(val);
   } else if (!strict) {
     if (PyObject_TypeCheck(val, &PyInt_Type)) {
@@ -877,9 +889,12 @@ double PythonQtConv::PyObjGetDouble(PyObject* val, bool strict, bool &ok) {
   if (val->ob_type == &PyFloat_Type) {
     d = PyFloat_AS_DOUBLE(val);
   } else if (!strict) {
+#ifndef PY3K
     if (PyObject_TypeCheck(val, &PyInt_Type)) {
       d = PyInt_AS_LONG(val);
-    } else if (val->ob_type == &PyLong_Type) {
+    } else
+#endif
+    if (PyLong_Check(val)) {
       d = PyLong_AsLong(val);
     } else if (val == Py_False) {
       d = 0;
@@ -936,11 +951,13 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
       type = QVariant::String;
     } else if (val == Py_False || val == Py_True) {
       type = QVariant::Bool;
+#ifndef PY3K
     } else if (PyObject_TypeCheck(val, &PyInt_Type)) {
       type = QVariant::Int;
-    } else if (val->ob_type==&PyLong_Type) {
+#endif
+    } else if (PyLong_Check(val)) {
       type = QVariant::LongLong;
-    } else if (val->ob_type==&PyFloat_Type) {
+    } else if (PyFloat_Check(val)) {
       type = QVariant::Double;
     } else if (PyObject_TypeCheck(val, &PythonQtInstanceWrapper_Type)) {
       PythonQtInstanceWrapper* wrap = (PythonQtInstanceWrapper*)val;
@@ -961,9 +978,9 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
         v = qVariantFromValue(myObject);
       }
       return v;
-    } else if (val->ob_type==&PyDict_Type) {
+    } else if (PyDict_Check(val)) {
       type = QVariant::Map;
-    } else if (val->ob_type==&PyList_Type || val->ob_type==&PyTuple_Type || PySequence_Check(val)) {
+    } else if (PyList_Check(val) || PyTuple_Check(val) || PySequence_Check(val)) {
       type = QVariant::List;
     } else if (val == Py_None) {
       // none is invalid

@@ -156,7 +156,9 @@ static void initializeSlots(PythonQtClassWrapper* wrap)
       wrap->_base.as_number.nb_multiply = (binaryfunc)PythonQtInstanceWrapper_mul;
     }
     if (typeSlots & PythonQt::Type_Divide) {
+#ifndef PY3K
       wrap->_base.as_number.nb_divide = (binaryfunc)PythonQtInstanceWrapper_div;
+#endif
       wrap->_base.as_number.nb_true_divide = (binaryfunc)PythonQtInstanceWrapper_div;
     }
     if (typeSlots & PythonQt::Type_And) {
@@ -188,7 +190,9 @@ static void initializeSlots(PythonQtClassWrapper* wrap)
       wrap->_base.as_number.nb_inplace_multiply = (binaryfunc)PythonQtInstanceWrapper_imul;
     }
     if (typeSlots & PythonQt::Type_InplaceDivide) {
+#ifndef PY3K
       wrap->_base.as_number.nb_inplace_divide = (binaryfunc)PythonQtInstanceWrapper_idiv;
+#endif
       wrap->_base.as_number.nb_inplace_true_divide = (binaryfunc)PythonQtInstanceWrapper_idiv;
     }
     if (typeSlots & PythonQt::Type_InplaceAnd) {
@@ -213,7 +217,11 @@ static void initializeSlots(PythonQtClassWrapper* wrap)
       wrap->_base.as_number.nb_invert = (unaryfunc)PythonQtInstanceWrapper_invert;
     }
     if (typeSlots & PythonQt::Type_NonZero) {
+#ifdef PY3K
+      wrap->_base.as_number.nb_bool = (inquiry)PythonQtInstanceWrapper_nonzero;
+#else
       wrap->_base.as_number.nb_nonzero = (inquiry)PythonQtInstanceWrapper_nonzero;
+#endif
     }
   }
 }
@@ -395,7 +403,11 @@ static PyObject *PythonQtClassWrapper_getattro(PyObject *obj, PyObject *name)
   }
 
   // look for the internal methods (className(), help())
+#ifdef PY3K
+  PyObject* internalMethod = PyObject_GenericGetAttr(obj, name);
+#else
   PyObject* internalMethod = Py_FindMethod( PythonQtClassWrapper_methods, obj, (char*)attributeName);
+#endif
   if (internalMethod) {
     return internalMethod;
   }
@@ -435,7 +447,7 @@ static PyObject * PythonQtClassWrapper_repr(PyObject * obj)
 */
 
 PyTypeObject PythonQtClassWrapper_Type = {
-    PyVarObject_HEAD_INIT(NULL, 0),
+    PyVarObject_HEAD_INIT(NULL, 0)
     "PythonQt.PythonQtClassWrapper",             /*tp_name*/
     sizeof(PythonQtClassWrapper),             /*tp_basicsize*/
     0,                         /*tp_itemsize*/
@@ -462,7 +474,11 @@ PyTypeObject PythonQtClassWrapper_Type = {
     0,                   /* tp_weaklistoffset */
     0,                   /* tp_iter */
     0,                   /* tp_iternext */
+    #ifdef PY3K
+    PythonQtClassWrapper_methods,                   /* tp_methods */
+    #else
     0,                   /* tp_methods */
+    #endif
     0,                   /* tp_members */
     0,                         /* tp_getset */
     0,                         /* tp_base */

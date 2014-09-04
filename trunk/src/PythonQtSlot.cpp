@@ -614,9 +614,32 @@ meth_hash(PythonQtSlotFunctionObject *a)
   return x;
 }
 
+// for python 3.x
+static PyObject*
+meth_richcompare(PythonQtSlotFunctionObject *a, PythonQtSlotFunctionObject *b, int op)
+{
+  int x = meth_compare(a, b);
+  bool r;
+  if (op == Py_LT)
+    r = x < 0;
+  else if (op == Py_LE)
+    r = x < 1;
+  else if (op == Py_EQ)
+    r = x == 0;
+  else if (op == Py_NE)
+    r = x != 0;
+  else if (op == Py_GE)
+    r = x > -1;
+  else if (op == Py_GT)
+    r = x > 0;
+  if (r)
+    Py_RETURN_TRUE;
+  else
+    Py_RETURN_FALSE;
+}
 
 PyTypeObject PythonQtSlotFunction_Type = {
-    PyVarObject_HEAD_INIT(&PyType_Type, 0),
+    PyVarObject_HEAD_INIT(&PyType_Type, 0)
     "builtin_qt_slot",
     sizeof(PythonQtSlotFunctionObject),
     0,
@@ -624,7 +647,11 @@ PyTypeObject PythonQtSlotFunction_Type = {
     0,          /* tp_print */
     0,          /* tp_getattr */
     0,          /* tp_setattr */
+#ifdef PY3K
+    0,
+#else
     (cmpfunc)meth_compare,      /* tp_compare */
+#endif
     (reprfunc)meth_repr,      /* tp_repr */
     0,          /* tp_as_number */
     0,          /* tp_as_sequence */
@@ -639,7 +666,7 @@ PyTypeObject PythonQtSlotFunction_Type = {
     0,          /* tp_doc */
     (traverseproc)meth_traverse,    /* tp_traverse */
     0,          /* tp_clear */
-    0,          /* tp_richcompare */
+    (richcmpfunc)meth_richcompare,          /* tp_richcompare */
     0,          /* tp_weaklistoffset */
     0,          /* tp_iter */
     0,          /* tp_iternext */

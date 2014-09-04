@@ -166,6 +166,11 @@ PythonQt::PythonQt(int flags, const QByteArray& pythonQtModuleName)
   _p->_PythonQtObjectPtr_metaId = qRegisterMetaType<PythonQtObjectPtr>("PythonQtObjectPtr");
 
   if ((flags & PythonAlreadyInitialized) == 0) {
+#ifdef PY3K
+    Py_SetProgramName(const_cast<wchar_t*>(L"PythonQt"));
+#else
+    Py_SetProgramName(const_cast<char*>("PythonQt"));
+#endif
     if (flags & IgnoreSiteModule) {
       // this prevents the automatic importing of Python site files
       Py_NoSiteFlag = 1;
@@ -1442,13 +1447,32 @@ static PyMethodDef PythonQtMethods[] = {
   {NULL, NULL, 0, NULL}
 };
 
+#ifdef PY3K
+static PyModuleDef PythonQtModuleDef = {
+  PyModuleDef_HEAD_INIT,
+  "",
+  NULL,
+  -1,
+  PythonQtMethods,
+  NULL,
+  NULL,
+  NULL,
+  NULL
+};
+#endif
+
 void PythonQt::initPythonQtModule(bool redirectStdOut, const QByteArray& pythonQtModuleName)
 {
   QByteArray name = "PythonQt";
   if (!pythonQtModuleName.isEmpty()) {
     name = pythonQtModuleName;
   }
+#ifdef PY3K
+  PythonQtModuleDef.m_name = name.constData();
+  _p->_pythonQtModule = PyModule_Create(&PythonQtModuleDef);
+#else
   _p->_pythonQtModule = Py_InitModule(name.constData(), PythonQtMethods);
+#endif
   _p->_pythonQtModuleName = name;
 
   PythonQtObjectPtr sys;
@@ -1480,6 +1504,10 @@ void PythonQt::initPythonQtModule(bool redirectStdOut, const QByteArray& pythonQ
     PyModule_AddObject(sys.object(), "builtin_module_names", module_names);
   }
   Py_XDECREF(old_module_names);
+
+#ifdef PY3K
+  PyDict_SetItem(PyObject_GetAttrString(sys.object(), "modules"), PyUnicode_FromString(name.constData()), _p->_pythonQtModule.object());
+#endif
 }
 
 QString PythonQt::getReturnTypeOfWrappedMethod(PyObject* module, const QString& name)
@@ -1911,7 +1939,7 @@ PyObject* PythonQtPrivate::wrapMemoryAsBuffer( const void* data, Py_ssize_t size
 #ifdef PY3K
   return PyMemoryView_FromMemory((char*)data, size, PyBUF_READ);
 #else
-  return PyBuffer_FromMemory((void*)data, size);
+  return PyBuffer_FromMemory((char*)data, size);
 #endif
 }
 
@@ -1920,6 +1948,6 @@ PyObject* PythonQtPrivate::wrapMemoryAsBuffer( void* data, Py_ssize_t size )
 #ifdef PY3K
   return PyMemoryView_FromMemory((char*)data, size, PyBUF_READ | PyBUF_WRITE);
 #else
-  return PyBuffer_FromReadWriteMemory(data, size);
+  return PyBuffer_FromReadWriteMemory((char*)data, size);
 #endif
 }
