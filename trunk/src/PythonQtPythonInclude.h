@@ -72,6 +72,7 @@
 #define PyString_AS_STRING  PyUnicode_AsUTF8
 #define PyString_AsString   PyUnicode_AsUTF8
 #define PyString_FromFormat PyUnicode_FromFormat
+#define PyString_Check      PyUnicode_Check
 
 #define PyInt_Type     PyLong_Type
 #define PyInt_FromLong PyLong_FromLong
