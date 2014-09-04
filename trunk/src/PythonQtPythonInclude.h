@@ -67,6 +67,8 @@
 
 #if PY_MAJOR_VERSION >= 3
 #define PY3K
+// Helper defines to facilitate porting
+#define PyString_FromString PyUnicode_FromString
 #endif
 
 #endif

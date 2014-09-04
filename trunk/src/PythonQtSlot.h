@@ -51,7 +51,7 @@ class PythonQtSlotInfo;
 
 extern PYTHONQT_EXPORT PyTypeObject PythonQtSlotFunction_Type;
 
-#define PythonQtSlotFunction_Check(op) ((op)->ob_type == &PythonQtSlotFunction_Type)
+#define PythonQtSlotFunction_Check(op) (Py_TYPE(op) == &PythonQtSlotFunction_Type)
 
 PythonQtSlotInfo* PythonQtSlotFunction_GetSlotInfo(PyObject *);
 PyObject* PythonQtSlotFunction_GetSelf(PyObject *);

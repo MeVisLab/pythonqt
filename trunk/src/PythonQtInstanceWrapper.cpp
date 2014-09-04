@@ -51,7 +51,7 @@
 PythonQtClassInfo* PythonQtInstanceWrapperStruct::classInfo()
 {
   // take the class info from our type object
-  return ((PythonQtClassWrapper*)ob_type)->_classInfo;
+  return ((PythonQtClassWrapper*)Py_TYPE(this))->_classInfo;
 }
 
 static void PythonQtInstanceWrapper_deleteObject(PythonQtInstanceWrapper* self, bool force = false) {
@@ -119,7 +119,7 @@ static void PythonQtInstanceWrapper_dealloc(PythonQtInstanceWrapper* self)
 {
   PythonQtInstanceWrapper_deleteObject(self);
   self->_obj.~QPointer<QObject>();
-  self->ob_type->tp_free((PyObject*)self);
+  Py_TYPE(this)->tp_free((PyObject*)self);
 }
 
 static PyObject* PythonQtInstanceWrapper_new(PyTypeObject *type, PyObject * /*args*/, PyObject * /*kwds*/)
@@ -293,7 +293,7 @@ static PyObject *PythonQtInstanceWrapper_richcompare(PythonQtInstanceWrapper* wr
 
 static PyObject *PythonQtInstanceWrapper_classname(PythonQtInstanceWrapper* obj)
 {
-  return PyString_FromString(obj->ob_type->tp_name);
+  return PyString_FromString(Py_TYPE(obj)->tp_name);
 }
 
 PyObject *PythonQtInstanceWrapper_inherits(PythonQtInstanceWrapper* obj, PyObject *args)
@@ -645,11 +645,20 @@ static PyObject * PythonQtInstanceWrapper_str(PyObject * obj)
   // QByteArray should be directly returned as a str
   if (wrapper->classInfo()->metaTypeId()==QVariant::ByteArray) {
     QByteArray* b = (QByteArray*) wrapper->_wrappedPtr;
+#ifdef PY3K
+    // TODO: check how Python 3 likes str() returning bytes...
+    if (b->data()) {
+      return PyBytes_FromStringAndSize(b->data(), b->size());
+    } else {
+      return PyBytes_FromString("");
+    }
+#else
     if (b->data()) {
       return PyString_FromStringAndSize(b->data(), b->size());
     } else {
       return PyString_FromString("");
     }
+#endif
   }
 
   const char* typeName = obj->ob_type->tp_name;
@@ -756,8 +765,7 @@ static PyNumberMethods PythonQtInstanceWrapper_as_number = {
 };
 
 PyTypeObject PythonQtInstanceWrapper_Type = {
-    PyObject_HEAD_INIT(&PythonQtClassWrapper_Type)
-    0,                         /*ob_size*/
+    PyVarObject_HEAD_INIT(&PythonQtClassWrapper_Type, 0),
     "PythonQt.PythonQtInstanceWrapper",             /*tp_name*/
     sizeof(PythonQtInstanceWrapper),             /*tp_basicsize*/
     0,                         /*tp_itemsize*/

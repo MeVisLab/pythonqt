@@ -72,8 +72,7 @@ static PyMemberDef PythonQtStdInRedirect_members[] = {
 };
 
 PyTypeObject PythonQtStdInRedirectType = {
-    PyObject_HEAD_INIT(NULL)
-    0,                         /*ob_size*/
+    PyVarObject_HEAD_INIT(NULL, 0),
     "PythonQtStdInRedirect",             /*tp_name*/
     sizeof(PythonQtStdInRedirect),             /*tp_basicsize*/
     0,                         /*tp_itemsize*/

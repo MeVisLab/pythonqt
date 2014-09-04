@@ -300,8 +300,7 @@ meth_hash(PythonQtSignalFunctionObject *a)
 
 
 PyTypeObject PythonQtSignalFunction_Type = {
-  PyObject_HEAD_INIT(&PyType_Type)
-    0,
+    PyVarObject_HEAD_INIT(&PyType_Type, 0),
     "builtin_qt_signal",
     sizeof(PythonQtSignalFunctionObject),
     0,
