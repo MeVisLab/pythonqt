@@ -51,7 +51,7 @@ class PythonQtSlotInfo;
 
 extern PYTHONQT_EXPORT PyTypeObject PythonQtSignalFunction_Type;
 
-#define PythonQtSignalFunction_Check(op) ((op)->ob_type == &PythonQtSignalFunction_Type)
+#define PythonQtSignalFunction_Check(op) (Py_TYPE(op) == &PythonQtSignalFunction_Type)
 
 PyObject* PythonQtSignalFunction_New(PythonQtSlotInfo *, PyObject *,
            PyObject *);

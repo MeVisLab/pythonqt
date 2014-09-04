@@ -929,18 +929,21 @@ QStringList PythonQt::introspectObject(PyObject* object, ObjectType type)
             results << keystr;
             break;
           case Class:
-            if (value->ob_type == &PyClass_Type || value->ob_type == &PyType_Type) {
+            if (PythonQtUtils::isPythonClassType(value)) {
               results << keystr;
             }
             break;
           case Variable:
-            if (value->ob_type != &PyClass_Type
-              && value->ob_type != &PyCFunction_Type
+            if (
+              value->ob_type != &PyCFunction_Type
               && value->ob_type != &PyFunction_Type
               && value->ob_type != &PyMethod_Type
               && value->ob_type != &PyModule_Type
               && value->ob_type != &PyType_Type
               && value->ob_type != &PythonQtSlotFunction_Type
+#ifndef PY3K
+              && value->ob_type != &PyClass_Type
+#endif
               ) {
               results << keystr;
             }
@@ -1509,7 +1512,7 @@ QString PythonQt::getReturnTypeOfWrappedMethodHelper(const PythonQtObjectPtr& va
     
   QString type;
   
-  if (methodObject->ob_type == &PyClass_Type || methodObject->ob_type == &PyType_Type) {
+  if (PythonQtUtils::isPythonClassType(methodObject)) {
     // the methodObject is not a method, but the name of a type/class. This means
     // a constructor is called. Return the context.
     type = context;
@@ -1754,7 +1757,7 @@ QString PythonQtPrivate::getSignature(PyObject* object)
     
     bool decrefMethod = false;
     
-    if (object->ob_type == &PyClass_Type || object->ob_type == &PyType_Type) {
+    if (PythonQtUtils::isPythonClassType(object)) {
       method = (PyMethodObject*)PyObject_GetAttrString(object, "__init__");
       decrefMethod = true;
     } else if (object->ob_type == &PyFunction_Type) {

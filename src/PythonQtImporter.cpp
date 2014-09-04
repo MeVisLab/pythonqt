@@ -159,7 +159,7 @@ PythonQtImporter_dealloc(PythonQtImporter *self)
   // free the stored path
   if (self->_path) delete self->_path;
   // free ourself
-  self->ob_type->tp_free((PyObject *)self);
+  Py_TYPE(self)->tp_free((PyObject *)self);
 }
 
 
@@ -400,8 +400,7 @@ Create a new PythonQtImporter instance. 'path' must be a valid path on disk/or i
 #define DEFERRED_ADDRESS(ADDR) 0
 
 PyTypeObject PythonQtImporter_Type = {
-  PyObject_HEAD_INIT(DEFERRED_ADDRESS(&PyType_Type))
-  0,
+  PyVarObject_HEAD_INIT(DEFERRED_ADDRESS(&PyType_Type), 0),
   "PythonQtImport.PythonQtImporter",
   sizeof(PythonQtImporter),
   0,          /* tp_itemsize */

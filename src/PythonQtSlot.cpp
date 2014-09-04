@@ -614,8 +614,7 @@ meth_hash(PythonQtSlotFunctionObject *a)
 
 
 PyTypeObject PythonQtSlotFunction_Type = {
-  PyObject_HEAD_INIT(&PyType_Type)
-    0,
+    PyVarObject_HEAD_INIT(&PyType_Type, 0),
     "builtin_qt_slot",
     sizeof(PythonQtSlotFunctionObject),
     0,
