@@ -1160,7 +1160,7 @@
   
     <inject-code class="pywrap-h">
   PyObject* data(QByteArray* b) {
-    return PyString_FromStringAndSize(b-&gt;data(), b-&gt;size());
+    return PyBytes_FromStringAndSize(b-&gt;data(), b-&gt;size());
   }
     </inject-code>
   
@@ -1945,7 +1945,7 @@
      r.resize(len);
      int result = d-&gt;readRawData(r.data(), r.size());
      if (result&gt;=0) {
-       return PyString_FromStringAndSize(r.data(), result);
+       return PyBytes_FromStringAndSize(r.data(), result);
      } else {
        Py_INCREF(Py_None);
        return Py_None;
