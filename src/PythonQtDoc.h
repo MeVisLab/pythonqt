@@ -104,7 +104,7 @@ Qt framework</a>.
 
  \section FeaturesQtAll Features with wrapper generator
 
- Thanks to the new wrapper generator, PythonQt now offers the additional PythonQt_QtAll library which wraps the complete Qt API, including all C++ classes and all non-slots on QObject derived classes.
+ PythonQt offers the additional PythonQt_QtAll library which wraps the complete Qt API, including all C++ classes and all non-slots on QObject derived classes.
  This offers the following features:
 
  - Complete Qt API wrapped and accessible
