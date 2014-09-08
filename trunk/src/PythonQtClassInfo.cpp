@@ -173,7 +173,7 @@ PythonQtSlotInfo* PythonQtClassInfo::findDecoratorSlotsFromDecoratorProvider(con
         bool isClassDeco = false;
         if (signature.startsWith("static_")) {
           // skip the static_classname_ part of the string
-          signature = signature.mid(7 + 1 + strlen(className()));
+          signature = signature.mid(7 + 1 + static_cast<int>(strlen(className())));
           isClassDeco = true;
         } else if (signature.startsWith("new_")) {
           isClassDeco = true;
@@ -406,7 +406,7 @@ void PythonQtClassInfo::listDecoratorSlotsFromDecoratorProvider(QStringList& lis
         bool isClassDeco = false;
         if (signature.startsWith("static_")) {
           // skip the static_classname_ part of the string
-          signature = signature.mid(7 + 1 + strlen(className()));
+          signature = signature.mid(7 + 1 + static_cast<int>(strlen(className())));
           isClassDeco = true;
         } else if (signature.startsWith("new_")) {
           continue;
