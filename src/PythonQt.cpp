@@ -145,6 +145,27 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
         std::cerr << "method not found " << names[i] << std::endl;
       }
     }
+    int enumValues[] = {
+      QtDebugMsg,
+      QtWarningMsg,
+      QtCriticalMsg,
+      QtFatalMsg,
+      QtSystemMsg
+    };
+    const char* enumNames[] = {
+      "QtDebugMsg",
+      "QtWarningMsg",
+      "QtCriticalMsg",
+      "QtFatalMsg",
+      "QtSystemMsg"
+    };
+    
+    for (int i = 0; i<sizeof(enumValues)/sizeof(int); i++) {
+      PyObject* obj = PyInt_FromLong(enumValues[i]);
+      PyModule_AddObject(pack, enumNames[i], obj);
+      Py_INCREF(obj);
+      PyModule_AddObject(pack2, enumNames[i], obj);
+    }
   }
 }
 
