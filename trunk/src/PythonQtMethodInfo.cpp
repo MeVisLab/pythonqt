@@ -201,6 +201,7 @@ int PythonQtMethodInfo::nameToType(const char* name)
     _parameterTypeDict.insert("QString", QMetaType::QString);
     _parameterTypeDict.insert("", QMetaType::Void);
     _parameterTypeDict.insert("void", QMetaType::Void);
+    _parameterTypeDict.insert("QtMsgType", QMetaType::Int);
 
     // GL types
     _parameterTypeDict.insert("GLenum", QMetaType::UInt);
