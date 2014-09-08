@@ -736,7 +736,7 @@ QString PythonQtConv::PyObjGetString(PyObject* val, bool strict, bool& ok) {
     PyObject* str =  PyObject_Str(val);
     if (str) {
 #ifdef PY3K
-      r = QString::fromUtf8(PyUnicode_AsUTF8(val));
+      r = QString::fromUtf8(PyUnicode_AsUTF8(str));
 #else
       r = QString(PyString_AS_STRING(str));
 #endif
