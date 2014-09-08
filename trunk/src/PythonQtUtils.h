@@ -88,7 +88,7 @@ namespace PythonQtUtils
     return PyType_Check(obj);
 #else
     // support old-style classes and new style classes
-    return (value->ob_type == &PyClass_Type || value->ob_type == &PyType_Type);
+    return (obj->ob_type == &PyClass_Type || obj->ob_type == &PyType_Type);
 #endif
   }
 }
