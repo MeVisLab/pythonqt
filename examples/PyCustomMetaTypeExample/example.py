@@ -4,11 +4,11 @@ from PythonQt.example import CustomObject
 custom = CustomObject("John","Doe")
 
 # print the methods available
-print dir(custom)
+print (dir(custom))
 
 # set a name
 custom.setFirstName("Mike")
 custom.setLastName("Michels")
 
 # get the name
-print custom.firstName() + " " + custom.lastName();
+print (custom.firstName() + " " + custom.lastName())
