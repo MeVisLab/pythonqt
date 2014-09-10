@@ -776,12 +776,6 @@
   </value-type>
 
   <value-type name="QTreeWidgetItemIterator" delete-in-main-thread="yes">
-    <custom-constructor>
-    return new QTreeWidgetItemIterator(*copy);
-    </custom-constructor>
-    <custom-destructor>
-    delete copy;
-    </custom-destructor>
     <modify-function signature="operator=(QTreeWidgetItemIterator)" remove="all"/>
     <modify-function signature="operator++(int)" remove="all"/>
     <modify-function signature="operator--(int)" remove="all"/>
@@ -832,12 +826,6 @@
 
   <value-type name="QInputMethodEvent::Attribute">
     <include file-name="QInputMethodEvent" location="global"/>
-    <custom-constructor>
-    return new QInputMethodEvent::Attribute(copy-&gt;type, copy-&gt;start, copy-&gt;length, copy-&gt;value);
-    </custom-constructor>
-    <custom-destructor>
-    delete copy;
-    </custom-destructor>
   </value-type>
 
   <value-type name="QItemSelection" delete-in-main-thread="yes">
@@ -884,31 +872,13 @@
   </value-type>
 
   <value-type name="QConicalGradient" polymorphic-id-expression="%1-&gt;type() == QGradient::ConicalGradient">
-    <custom-constructor>
-    return new QConicalGradient(copy-&gt;center(), copy-&gt;angle());
-    </custom-constructor>
-    <custom-destructor>
-    delete copy;
-    </custom-destructor>
   </value-type>
 
   <value-type name="QFontInfo" delete-in-main-thread="yes" expense-cost="1" expense-limit="1000">
-    <custom-constructor>
-    return new QFontInfo(*copy);
-    </custom-constructor>
-    <custom-destructor>
-    delete copy;
-    </custom-destructor>
     <modify-function signature="operator=(QFontInfo)" remove="all"/>
   </value-type>
 
   <value-type name="QRadialGradient" polymorphic-id-expression="%1-&gt;type() == QGradient::RadialGradient">
-    <custom-constructor>
-    return new QRadialGradient(copy-&gt;center(), copy-&gt;radius(), copy-&gt;focalPoint());
-    </custom-constructor>
-    <custom-destructor>
-    delete copy;
-    </custom-destructor>
   </value-type>
 
   <value-type name="QPainterPath::Element">
@@ -1088,12 +1058,6 @@ PyObject* constScanLine(QImage* image, int line) {
     <extra-includes>
         <include file-name="QColor" location="global"/>
     </extra-includes>
-    <custom-constructor>
-    return new QColormap(*copy);
-    </custom-constructor>
-    <custom-destructor>
-    delete copy;
-    </custom-destructor>
   </value-type>
 
   <value-type name="QCursor" delete-in-main-thread="yes">
@@ -1164,12 +1128,6 @@ PyObject* constScanLine(QImage* image, int line) {
   </value-type>
 
   <value-type name="QFontMetricsF" delete-in-main-thread="yes" expense-cost="1" expense-limit="1000">
-    <custom-constructor>
-        return new QFontMetricsF(*copy);
-    </custom-constructor>
-    <custom-destructor>
-        delete copy;
-    </custom-destructor>
     <modify-function signature="operator!=(const QFontMetricsF &amp;)">
         <remove/>
     </modify-function>
@@ -1208,12 +1166,6 @@ PyObject* constScanLine(QImage* image, int line) {
    <value-type name="QTextOption::Tab"/>
 
   <value-type name="QFontMetrics" delete-in-main-thread="yes" expense-cost="1" expense-limit="1000">
-    <custom-constructor>
-        return new QFontMetrics(*copy);
-    </custom-constructor>
-    <custom-destructor>
-        delete copy;
-    </custom-destructor>
     <modify-function signature="operator!=(const QFontMetrics &amp;)">
         <remove/>
     </modify-function>
@@ -1260,29 +1212,12 @@ PyObject* constScanLine(QImage* image, int line) {
   </value-type>
 
   <value-type name="QGradient" force-abstract="yes" polymorphic-base="yes" polymorphic-id-expression="%1-&gt;type() == QGradient::NoGradient">
-    <custom-constructor>
-    Q_UNUSED(copy)
-    qWarning("Copying empty QGradient object");
-    return new QGradient();
-    </custom-constructor>
-    <custom-destructor>
-    delete copy;
-    </custom-destructor>
     <modify-function signature="operator==(const QGradient &amp;)">
         <remove/>
     </modify-function>
   </value-type>
 
   <value-type name="QLinearGradient" polymorphic-id-expression="%1-&gt;type() == QGradient::LinearGradient">
-    <custom-constructor>
-    QLinearGradient *lg = new QLinearGradient(copy-&gt;start(), copy-&gt;finalStop());
-    lg-&gt;setSpread(copy-&gt;spread());
-    lg-&gt;setStops(copy-&gt;stops());
-    return (void *) lg;
-    </custom-constructor>
-    <custom-destructor>
-    delete copy;
-    </custom-destructor>
   </value-type>
 
   <value-type name="QPrinterInfo">

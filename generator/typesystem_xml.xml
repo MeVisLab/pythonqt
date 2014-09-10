@@ -139,21 +139,6 @@
     </value-type>
 
     <value-type name="QXmlNamespaceSupport">
-        <custom-constructor>
-            QXmlNamespaceSupport *clone = new QXmlNamespaceSupport;
-            clone-&gt;setPrefix("", copy-&gt;uri(""));
-
-            QStringList prefixes = copy-&gt;prefixes();
-            for (int i=0; i&lt;prefixes.size(); ++i)
-                clone-&gt;setPrefix(prefixes.at(i), copy-&gt;uri(prefixes.at(i)));
-
-            return clone;
-        </custom-constructor>
-        <custom-destructor>
-            delete (QXmlNamespaceSupport *)copy;
-        </custom-destructor>
-
-
     </value-type>
 
     <value-type name="QDomElement">
