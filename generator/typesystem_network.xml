@@ -47,22 +47,12 @@
   <object-type name="QHttpPart"/>
   <object-type name="QAbstractNetworkCache"/>
   <object-type name="QNetworkDiskCache">
-    <modify-function signature="insert(QIODevice*)">
-        <modify-argument index="1">
-            <reference-count action="ignore"/> <!-- function only has effect on devices retrieved using prepare() -->
-        </modify-argument>
-    </modify-function>
   </object-type>
   <value-type name="QNetworkCacheMetaData">
     <modify-function signature="operator=(QNetworkCacheMetaData)" remove="all"/>
   </value-type>
 
   <object-type name="QNetworkProxyFactory">
-    <modify-function signature="setApplicationProxyFactory(QNetworkProxyFactory*)">
-        <modify-argument index="1">
-            <define-ownership class="java" owner="c++"/>
-        </modify-argument>
-    </modify-function>
   </object-type>
   <value-type name="QNetworkProxyQuery">
     <modify-function signature="operator=(QNetworkProxyQuery)" remove="all"/>
@@ -103,21 +93,6 @@
   </object-type>
   <object-type name="QLocalSocket"/>
   <object-type name="QNetworkAccessManager">
-    <modify-function signature="setCookieJar(QNetworkCookieJar*)">
-        <modify-argument index="1">
-            <define-ownership class="java" owner="c++"/>
-        </modify-argument>
-    </modify-function>
-    <modify-function signature="setCache(QAbstractNetworkCache*)">
-        <modify-argument index="1">
-            <reference-count action="ignore"/>
-        </modify-argument>
-    </modify-function>
-    <modify-function signature="setProxyFactory(QNetworkProxyFactory*)">
-        <modify-argument index="1">
-            <define-ownership class="java" owner="c++"/>
-        </modify-argument>
-    </modify-function>
   </object-type>
   <object-type name="QNetworkCookieJar"/>
   <object-type name="QNetworkReply">
