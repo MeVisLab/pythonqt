@@ -5645,6 +5645,103 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QSwipeGesture"/>
   <object-type name="QTouchEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::TouchBegin || %1-&gt;type() == QEvent::TouchUpdate || %1-&gt;type() == QEvent::TouchEnd"/>
   
+  <!-- Qt 5 additional classes -->
+  <object-type name="QInputMethodEvent"/>
+  <object-type name="QTextObjectInterface"/>
+  <object-type name="QRawFont"/>
+  <object-type name="QBackingStore"/>
+  <object-type name="QEnterEvent"/>
+  <object-type name="QExposeEvent"/>
+  <object-type name="QGlyphRun"/>
+  <object-type name="QInputMethod"/>
+  <object-type name="QInputMethodQueryEvent"/>
+  <object-type name="QNativeGestureEvent"/>
+  <object-type name="QOffscreenSurface"/>
+  <object-type name="QOpenGLBuffer"/>
+  <object-type name="QOpenGLContext"/>
+  <object-type name="QOpenGLContextGroup"/>
+  <object-type name="QOpenGLFramebufferObject"/>
+  <object-type name="QOpenGLFramebufferObjectFormat"/>
+  <object-type name="QOpenGLFunctions"/>
+  <object-type name="QOpenGLShader"/>
+  <object-type name="QOpenGLShaderProgram">
+    <modify-function signature="setUniformValue(const char*,Array)">
+        <remove/>
+    </modify-function>
+    <modify-function signature="setUniformValue(int,Array)">
+        <remove/>
+    </modify-function>
+  </object-type>
+  <object-type name="QOpenGLTexture"/>
+  <object-type name="QOpenGLTimeMonitor"/>
+  <object-type name="QOpenGLTimerQuery"/>
+  <object-type name="QOpenGLVersionProfile"/>
+  <object-type name="QOpenGLVertexArrayObject"/>
+  <object-type name="QPageLayout"/>
+  <object-type name="QPageSize"/>
+  <object-type name="QPdfWriter"/>
+  <object-type name="QRegularExpressionValidator"/>
+  <object-type name="QScreen"/>
+  <object-type name="QScrollEvent"/>
+  <object-type name="QScrollPrepareEvent"/>
+  <object-type name="QStyleHints"/>
+  <object-type name="QTouchDevice"/>
+  <object-type name="QWindow"/>
+  <object-type name="QAbstractTextDocumentLayout"/>
+  
+  <object-type name="QGuiApplication">
+      <modify-function signature="QGuiApplication(int &amp;, char  **, int)" remove="all"/>
+  </object-type>
+  <interface-type name="QPagedPaintDevice"/>
+
+   <interface-type name="QPlatformSurface"/>
+   <interface-type name="QSurface"/>
+   <object-type name="QSurfaceFormat"/>
+   <!-- <object-type name="QOpenGLPaintDevice"/> -->
+  <enum-type name="QSurface::SurfaceType"/>
+  <enum-type name="QSurface::SurfaceClass"/>
+  <enum-type name="QPagedPaintDevice::Margins"/>
+  <enum-type name="QPainter::PixmapFragment"/>
+  <enum-type name="QTextLayout::FormatRange"/>
+  <enum-type name="QGlyphRun::GlyphRunFlag"/>
+  <enum-type name="QInputMethod::Action"/>
+  <enum-type name="QPageSize::Unit"/>
+  <enum-type name="QPageSize::SizeMatchPolicy"/>
+  <enum-type name="QPageSize::PageSizeId"/>
+  <enum-type name="QRawFont::AntialiasingType"/>
+  <enum-type name="QRawFont::LayoutFlag"/>
+  <enum-type name="QOpenGLContext::OpenGLModuleType"/>
+  <enum-type name="QOpenGLTexture::MipMapGeneration"/>
+  <enum-type name="QOpenGLTexture::TextureFormat"/>
+  <enum-type name="QOpenGLTexture::CubeMapFace"/>
+  <enum-type name="QOpenGLTexture::CoordinateDirection"/>
+  <enum-type name="QOpenGLTexture::TextureFormatClass"/>
+  <enum-type name="QOpenGLTexture::DepthStencilMode"/>
+  <enum-type name="QOpenGLTexture::SwizzleValue"/>
+  <enum-type name="QOpenGLTexture::Filter"/>
+  <enum-type name="QOpenGLTexture::PixelFormat"/>
+  <enum-type name="QOpenGLTexture::WrapMode"/>
+  <enum-type name="QOpenGLTexture::TextureUnitReset"/>
+  <enum-type name="QOpenGLTexture::BindingTarget"/>
+  <enum-type name="QOpenGLTexture::SwizzleComponent"/>
+  <enum-type name="QOpenGLTexture::Feature"/>
+  <enum-type name="QOpenGLTexture::Target"/>
+  <enum-type name="QOpenGLTexture::PixelType"/>
+  <enum-type name="QOpenGLBuffer::UsagePattern"/>
+  <enum-type name="QOpenGLBuffer::Type"/>
+  <enum-type name="QOpenGLBuffer::Access"/>
+  <enum-type name="QPageLayout::Unit"/>
+  <enum-type name="QPageLayout::Mode"/>
+  <enum-type name="QPageLayout::Orientation"/>
+  <enum-type name="QOpenGLFramebufferObject::Attachment"/>
+  <enum-type name="QOpenGLShader::ShaderTypeBit"/>
+  <enum-type name="QWindow::Visibility"/>
+  <enum-type name="QWindow::AncestorMode"/>
+  <enum-type name="QOpenGLFunctions::OpenGLFeature"/>
+  <enum-type name="QScrollEvent::ScrollState"/>
+  <enum-type name="QScrollEvent::CapabilityFlag"/>
+  <enum-type name="QScrollEvent::DeviceType"/>
+
   <!-- Inefficient hash codes -->
   <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QTextFrame_iterator' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QTextTableCell' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
