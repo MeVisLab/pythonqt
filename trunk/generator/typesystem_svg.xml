@@ -22,11 +22,6 @@
   </object-type>
 
   <object-type name="QSvgGenerator">
-    <modify-function signature="setOutputDevice(QIODevice*)">
-        <modify-argument index="1">
-            <reference-count action="set" variable-name="__rcOutputDevice"/>
-        </modify-argument>
-    </modify-function>
   </object-type>
 
   <object-type name="QGraphicsSvgItem">

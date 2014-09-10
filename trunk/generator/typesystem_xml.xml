@@ -34,32 +34,6 @@
     <value-type name="QDomDocument">
         <modify-function signature="nodeType()const" remove="all"/>
         <modify-function signature="operator=(QDomDocument)" remove="all"/>
-
-        <!--bool setContent(QIODevice* dev, bool namespaceProcessing, QString *errorMsg=0, int *errorLine=0, int *errorColumn=0 ); -->
-        <modify-function signature="setContent(QIODevice*, bool, QString*, int*, int*)">
-            <modify-argument index="1">
-                <reference-count action="set" variable-name="__rcContent"/>
-            </modify-argument>
-        </modify-function>
-
-        <modify-function signature="setContent(QXmlInputSource*,QXmlReader*,QString*,int*,int*)">
-            <modify-argument index="1">
-                <reference-count action="set" variable-name="__rcContent"/>
-            </modify-argument>
-        </modify-function>
-                
-        <modify-function signature="setContent(QXmlInputSource*,bool,QString*,int*,int*)">
-            <modify-argument index="1">
-                <reference-count action="set" variable-name="__rcContent"/>
-            </modify-argument>
-        </modify-function>        
-
-        <modify-function signature="setContent(QIODevice*,QString*,int*,int*)">
-            <modify-argument index="1">
-                <reference-count action="set" variable-name="__rcContent"/>
-            </modify-argument>
-        </modify-function>
-
     </value-type>
 
     <value-type name="QDomDocumentFragment">
@@ -242,50 +216,11 @@
     <object-type name="QXmlInputSource"/>
     <object-type name="QXmlLocator"/>
     <object-type name="QXmlSimpleReader">
-        <modify-function signature="parse(const QXmlInputSource*,bool)">
-            <modify-argument index="1" invalidate-after-use="yes"/>
-        </modify-function>
-
-        <modify-function signature="setContentHandler(QXmlContentHandler*)">
-            <modify-argument index="1">
-                <reference-count action="set" variable-name="__rcContentHandler"/>
-            </modify-argument>
-        </modify-function>
-        <modify-function signature="setDTDHandler(QXmlDTDHandler*)">
-            <modify-argument index="1">
-                <reference-count action="set" variable-name="__rcDTDHandler"/>
-            </modify-argument>
-        </modify-function>
-        <modify-function signature="setDeclHandler(QXmlDeclHandler*)">
-            <modify-argument index="1">
-                <reference-count action="set" variable-name="__rcDeclHandler"/>
-            </modify-argument>
-        </modify-function>
-        <modify-function signature="setEntityResolver(QXmlEntityResolver*)">
-            <modify-argument index="1">
-                <reference-count action="set" variable-name="__rcEntityResolver"/>
-            </modify-argument>
-        </modify-function>
-        <modify-function signature="setErrorHandler(QXmlErrorHandler*)">
-            <modify-argument index="1">
-                <reference-count action="set" variable-name="__rcErrorHandler"/>
-            </modify-argument>
-        </modify-function>
-        <modify-function signature="setLexicalHandler(QXmlLexicalHandler*)">
-            <modify-argument index="1">
-                <reference-count action="set" variable-name="__rcLexicalHandler"/>
-            </modify-argument>
-        </modify-function>
     </object-type>
 
     <object-type name="QXmlStreamReader">
       <modify-function signature="QXmlStreamReader(const char*)" remove="all"/>
       <modify-function signature="addData(const char*)" remove="all"/>
-      <modify-function signature="setEntityResolver(QXmlStreamEntityResolver*)">
-        <modify-argument index="1">
-            <reference-count action="set" variable-name="__rcEntityResolver"/>
-        </modify-argument>
-      </modify-function>
     </object-type>
     <object-type name="QXmlStreamWriter">
         <modify-function signature="QXmlStreamWriter(QString *)">
@@ -294,10 +229,6 @@
     </object-type>
 
     <object-type name="QXmlReader">
-        <modify-function signature="parse(const QXmlInputSource*)">
-            <modify-argument index="1" invalidate-after-use="yes"/>
-        </modify-function>
-    
         <modify-function signature="feature(QString,bool*)const">
             <modify-argument index="2">
                 <remove-argument/>

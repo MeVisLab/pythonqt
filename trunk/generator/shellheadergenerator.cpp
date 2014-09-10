@@ -80,6 +80,11 @@ static bool enum_lessThan(const AbstractMetaEnum *a, const AbstractMetaEnum *b)
   return a->name() < b->name();
 }
 
+static bool field_lessThan(const AbstractMetaField *a, const AbstractMetaField *b)
+{
+  return a->name() < b->name();
+}
+
 void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_class)
 {
   QString builtIn = ShellGenerator::isBuiltIn(meta_class->name())?"_builtin":"";
@@ -293,8 +298,11 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
     s << "    bool __nonzero__(" << meta_class->qualifiedCppName() << "* obj) { return !obj->isNull(); }" << endl; 
   }
 
+  AbstractMetaFieldList fields = meta_class->fields();
+  qSort(fields.begin(), fields.end(), field_lessThan);
+
   // Field accessors
-  foreach (const AbstractMetaField *field, meta_class->fields()) {
+  foreach (const AbstractMetaField *field, fields ) {
     if (field->isPublic()) {
       writeFieldAccessors(s, field);
     }

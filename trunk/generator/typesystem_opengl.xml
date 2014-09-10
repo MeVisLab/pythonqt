@@ -65,14 +65,6 @@
     <modify-function signature="setUniformValue(const char*, Array)" remove="all"/>
   </object-type>
   <object-type name="QGLContext">
-
-    <modify-function signature="chooseContext(const QGLContext*)">
-        <modify-argument index="1" invalidate-after-use="yes"/>
-    </modify-function>
-    <modify-function signature="create(const QGLContext*)">
-        <modify-argument index="1" invalidate-after-use="yes"/>
-    </modify-function>
-
     <modify-function signature="getProcAddress(QString)const">
         <remove/>
     </modify-function>
