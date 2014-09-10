@@ -2394,13 +2394,51 @@
   <!-- Qt 5 new classes -->
   <object-type name="QFileDevice"/>
   <object-type name="QBasicMutex"/>
-  <object-type name="QGuiApplication">
-      <modify-function signature="QGuiApplication(int &amp;, char  **, int)" remove="all"/>
-  </object-type>
-  <object-type name="QPagedPaintDevice"/>
+  <object-type name="QCollator"/>
+  <object-type name="QCollatorSortKey"/>
+  <object-type name="QCommandLineOption"/>
+  <object-type name="QCommandLineParser"/>
+  <object-type name="QFileSelector"/>
+  <object-type name="QIdentityProxyModel"/>
+  <object-type name="QJsonArray"/>
+  <object-type name="QJsonDocument"/>
+  <object-type name="QJsonObject"/>
+  <object-type name="QJsonParseError"/>
+  <object-type name="QJsonValue"/>
+  <object-type name="QFileSelector"/>
+  <object-type name="QMarginsF"/>
+  <object-type name="QLockFile"/>
+  <object-type name="QMessageAuthenticationCode"/>
+  <object-type name="QMessageLogContext"/>
+  <rejection class="QMessageLogContext" function-name="copy"/>
+
+  <object-type name="QMessageLogger"/>
+  <object-type name="QMimeType"/>
+  <object-type name="QMimeDatabase"/>
+  <object-type name="QRegularExpression"/>
+  <object-type name="QRegularExpressionMatch"/>
+  <object-type name="QRegularExpressionMatchIterator"/>
+  <object-type name="QStandardPaths"/>
+  <object-type name="QSaveFile"/>
+  <object-type name="QTimeZone"/>
+  <object-type name="QUrlQuery"/>
+  <object-type name="QTemporaryDir"/>
 
   <!-- <object-type name="QAccessibleActionInterface"/> -->
-
+  <enum-type name="QJsonValue::Type"/>
+  <enum-type name="QRegularExpression::MatchType"/>
+  <enum-type name="QRegularExpression::PatternOption"/>
+  <enum-type name="QRegularExpression::MatchOption"/>
+  <enum-type name="QMimeDatabase::MatchMode"/>
+  <enum-type name="QCommandLineParser::SingleDashWordOptionMode"/>
+  <enum-type name="QJsonDocument::JsonFormat"/>
+  <enum-type name="QJsonDocument::DataValidation"/>
+  <enum-type name="QJsonParseError::ParseError"/>
+  <enum-type name="QStandardPaths::StandardLocation"/>
+  <enum-type name="QStandardPaths::LocateOption"/>
+  <enum-type name="QLockFile::LockError"/>
+  <enum-type name="QTimeZone::TimeType"/>
+  <enum-type name="QTimeZone::NameType"/>
   <enum-type name="QProcess::InputChannelMode"/>
   <enum-type name="QWebFrame::ValueOwnership"/>
   <enum-type name="QFileIconProvider::Option"/>
