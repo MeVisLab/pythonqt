@@ -31,8 +31,8 @@
 
   <rejection class="QAbstractXmlReceiver" function-name="item"/>
   <rejection class="QAbstractXmlReceiver" function-name="sendAsNode"/>
-  <value-type name="QAbstractXmlReceiver">
-  </value-type>
+  <object-type name="QAbstractXmlReceiver">
+  </object-type>
 
   <object-type name="QSimpleXmlNodeModel"/>
 
@@ -41,7 +41,7 @@
   </value-type>
  <value-type name="QXmlSchema"/>
  <object-type name="QXmlSchemaValidator"/>
-
+  <rejection class="QXmlSchemaValidator" function-name="schema"/>
   <rejection class="QXmlFormatter" function-name="item"/>
   <object-type name="QXmlFormatter">
     <modify-function signature="startFormattingContent()" remove="all"/>
