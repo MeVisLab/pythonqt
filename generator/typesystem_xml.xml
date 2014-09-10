@@ -67,24 +67,6 @@
     <value-type name="QDomNode">
         <modify-function signature="operator=(QDomNode)" remove="all"/>
         <modify-function signature="attributes()const" remove="all"/>
-    
-        <modify-function signature="save(QTextStream&amp;,int)const">
-            <modify-argument index="1">
-                <replace-type modified-type="QTextStream*"/>
-                <conversion-rule class="native">
-                QTextStream &amp; %out% = *qscriptvalue_cast&lt;QTextStream*&gt;(%in%);
-                </conversion-rule>
-            </modify-argument>
-        </modify-function>
-
-        <modify-function signature="save(QTextStream&amp;,int,QDomNode::EncodingPolicy)const">
-            <modify-argument index="1">
-                <replace-type modified-type="QTextStream*"/>
-                <conversion-rule class="native">
-                QTextStream &amp; %out% = *qscriptvalue_cast&lt;QTextStream*&gt;(%in%);
-                </conversion-rule>
-            </modify-argument>
-        </modify-function>
     </value-type>
 
     <value-type name="QDomNodeList">

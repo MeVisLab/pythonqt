@@ -111,15 +111,6 @@
   <value-type name="QHostInfo">
         <modify-function signature="operator=(QHostInfo)" remove="all"/>
         <modify-function signature="lookupHost(QString,QObject*,const char*)" access="private"/>
-  
-    <modify-function signature="lookupHost(QString,QObject*,const char*)">
-      <modify-argument index="3">
-        <replace-type modified-type="QString"/>
-        <conversion-rule class="native">
-          <insert-template name="core.convert_string_arg_to_char*"/>
-        </conversion-rule>            
-      </modify-argument>
-    </modify-function>
   </value-type>
 
   <value-type name="QHttpRequestHeader">
