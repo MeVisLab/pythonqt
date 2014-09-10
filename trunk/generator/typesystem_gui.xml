@@ -772,11 +772,6 @@
 
   <value-type name="QTextBlock" delete-in-main-thread="yes">
     <modify-function signature="operator=(QTextBlock)" remove="all"/>
-    <modify-function signature="setUserData(QTextBlockUserData *)">
-        <modify-argument index="1">
-            <define-ownership class="java" owner="c++"/>
-        </modify-argument>
-     </modify-function>
   </value-type>
   <value-type name="QTextBlockFormat" delete-in-main-thread="yes"/>
   <value-type name="QTextTableCellFormat" delete-in-main-thread="yes"/>
@@ -821,16 +816,6 @@
   <value-type name="QIcon" delete-in-main-thread="yes">
     <modify-function signature="operator=(QIcon)" remove="all"/>
     <modify-function signature="serialNumber()const" remove="all"/> <!--### Obsolete in 4.3-->
-    <modify-function signature="QIcon(QIconEngineV2 *)">
-        <modify-argument index="1">
-            <define-ownership class="java" owner="c++"/>
-        </modify-argument>
-    </modify-function>
-    <modify-function signature="QIcon(QIconEngine *)">
-        <modify-argument index="1">
-            <define-ownership class="java" owner="c++"/>
-        </modify-argument>
-    </modify-function>
   </value-type>
 
   <value-type name="QTextFrame::iterator" delete-in-main-thread="yes">

@@ -34,11 +34,6 @@
     
     <object-type name="QGraphicsWebView"/>    
     <object-type name="QWebView">
-        <modify-function signature="setPage(QWebPage*)">
-            <modify-argument index="1">
-                <define-ownership class="java" owner="c++"/>
-            </modify-argument>
-        </modify-function>
     </object-type>
     <object-type name="QWebFrame">
         <modify-function signature="event(QEvent*)" remove="all"/>
