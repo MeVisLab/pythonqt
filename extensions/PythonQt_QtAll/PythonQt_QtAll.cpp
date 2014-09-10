@@ -42,9 +42,7 @@ void PythonQt_init_QtCore(PyObject*);
 void PythonQt_init_QtWebKit(PyObject*);
 void PythonQt_init_QtOpenGL(PyObject*);
 void PythonQt_init_QtXml(PyObject*);
-void PythonQt_init_QtXmlPatterns(PyObject*);
 void PythonQt_init_QtUiTools(PyObject*);
-void PythonQt_init_QtPhonon(PyObject*);
 
 namespace PythonQt_QtAll
 {
@@ -58,9 +56,6 @@ namespace PythonQt_QtAll
     PythonQt_init_QtWebKit(0);
     PythonQt_init_QtOpenGL(0);
     PythonQt_init_QtUiTools(0);
-    // Does not compile yet:
-//    PythonQt_init_QtXmlPatterns(0);
-//    PythonQt_init_QtPhonon(0);
   };
 };
 
