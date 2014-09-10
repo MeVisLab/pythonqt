@@ -743,14 +743,6 @@
 
   
     <modify-function signature="setProperty(int,QVector&lt;QTextLength&gt;)" rename="setLengthVectorProperty"/>
-    <inject-code class="native" position="constructor">
-    if ((context-&gt;argumentCount() == 1) &amp;&amp; (qMetaTypeId&lt;QTextFormat&gt;() == context-&gt;argument(0).toVariant().userType())) {
-        QTextFormat _q_arg0 = qscriptvalue_cast&lt;QTextFormat&gt;(context-&gt;argument(0));
-        QTextFormat _q_cpp_result(_q_arg0);
-        QScriptValue _q_result = context-&gt;engine()-&gt;newVariant(context-&gt;thisObject(), qVariantFromValue(_q_cpp_result));
-        return _q_result;
-    }
-    </inject-code>
   </value-type>
 
   <value-type name="QTextListFormat" delete-in-main-thread="yes"/>
@@ -883,35 +875,6 @@
             <remove-default-expression/>
         </modify-argument>
       </modify-function>
-
-    <inject-code>
-      <insert-template name="core.unary_other_type">
-        <replace from="%FUNCTION_NAME" to="rotate"/>
-        <replace from="%OUT_TYPE" to="QMatrix"/>
-        <replace from="%IN_TYPE" to="double"/>
-      </insert-template>
-
-      <insert-template name="core.private_function_return_self">
-        <replace from="%RETURN_TYPE" to="QMatrix"/>
-        <replace from="%FUNCTION_NAME" to="scale"/>
-        <replace from="%ARGUMENTS" to="double sx, double sy"/>
-        <replace from="%ARGUMENT_NAMES" to="sx, sy"/>
-      </insert-template>
-
-      <insert-template name="core.private_function_return_self">
-        <replace from="%RETURN_TYPE" to="QMatrix"/>
-        <replace from="%FUNCTION_NAME" to="shear"/>
-        <replace from="%ARGUMENTS" to="double sh, double sv"/>
-        <replace from="%ARGUMENT_NAMES" to="sh, sv"/>
-      </insert-template>
-
-      <insert-template name="core.private_function_return_self">
-        <replace from="%RETURN_TYPE" to="QMatrix"/>
-        <replace from="%FUNCTION_NAME" to="translate"/>
-        <replace from="%ARGUMENTS" to="double dx, double dy"/>
-        <replace from="%ARGUMENT_NAMES" to="dx, dy"/>
-      </insert-template>
-    </inject-code>
   
       <modify-function signature="inverted(bool*)const">
         <modify-argument index="1">
@@ -1348,13 +1311,6 @@ PyObject* constScanLine(QImage* image, int line) {
   </interface-type>
 
   <object-type name="QAbstractGraphicsShapeItem" delete-in-main-thread="yes">
-    <modify-function signature="QAbstractGraphicsShapeItem(QGraphicsItem*,QGraphicsScene*)">
-        <inject-code position="end">
-            <argument-map index="1" meta-name="%1"/>
-            if (%1 != null) disableGarbageCollection();
-        </inject-code>
-    </modify-function>
-
     <modify-function signature="matrix()const" remove="all"/> <!--### Obsolete in 4.3-->
     <modify-function signature="resetMatrix()" remove="all"/> <!--### Obsolete in 4.3-->
     <modify-function signature="sceneMatrix()const" remove="all"/> <!--### Obsolete in 4.3-->
@@ -1370,10 +1326,6 @@ PyObject* constScanLine(QImage* image, int line) {
 
     <!-- ### because the CursorAction enum is protected -->
     <modify-function signature="moveCursor(QAbstractItemView::CursorAction,QFlags&lt;Qt::KeyboardModifier&gt;)" remove="all"/>
-    <inject-code class="shell-declaration">
-    QModelIndex moveCursor(QAbstractItemView::CursorAction, Qt::KeyboardModifiers)
-    { return QModelIndex(); }
-    </inject-code>
   </object-type>
 
   <object-type name="QAbstractPageSetupDialog"/>
@@ -1460,11 +1412,6 @@ PyObject* constScanLine(QImage* image, int line) {
     <modify-function signature="initStyleOption(QStyleOption*)const">
         <access modifier="private"/>
     </modify-function>
-    <inject-code>
-        <insert-template name="gui.init_style_option">
-            <replace from="%TYPE" to="QStyleOption"/>
-        </insert-template>
-    </inject-code>
   </object-type>
   <object-type name="QFontComboBox"/>
   <object-type name="QFontDialog">
@@ -2064,12 +2011,6 @@ PyObject* constScanLine(QImage* image, int line) {
     <extra-includes>
       <include file-name="QTextCursor" location="global"/>
     </extra-includes>
-    <modify-function signature="QGraphicsTextItem(QGraphicsItem*,QGraphicsScene*)">
-        <inject-code position="end">
-            <argument-map index="1" meta-name="%1"/>
-            if (%1 != null) disableGarbageCollection();
-        </inject-code>
-    </modify-function>
 
       <modify-function signature="matrix()const" remove="all"/> <!--### Obsolete in 4.3-->
       <modify-function signature="resetMatrix()" remove="all"/> <!--### Obsolete in 4.3-->
@@ -2250,11 +2191,6 @@ PyObject* constScanLine(QImage* image, int line) {
     <modify-function signature="initStyleOption(QStyleOptionTabWidgetFrame*)const">
         <access modifier="private"/>
     </modify-function>
-    <inject-code>
-        <insert-template name="gui.init_style_option">
-            <replace from="%TYPE" to="QStyleOptionTabWidgetFrame"/>
-        </insert-template>
-    </inject-code>
   </object-type>
   <object-type name="QDrag">
     <extra-includes>
@@ -2520,11 +2456,6 @@ PyObject* constScanLine(QImage* image, int line) {
     <modify-function signature="initStyleOption(QStyleOptionDockWidget*)const">
         <access modifier="private"/>
     </modify-function>
-    <inject-code>
-        <insert-template name="gui.init_style_option">
-            <replace from="%TYPE" to="QStyleOptionDockWidget"/>
-        </insert-template>
-    </inject-code>
   </object-type>
 
   <object-type name="QAbstractProxyModel">
@@ -2624,11 +2555,6 @@ PyObject* constScanLine(QImage* image, int line) {
     <modify-function signature="initStyleOption(QStyleOptionComboBox*)const">
         <access modifier="private"/>
     </modify-function>
-    <inject-code>
-        <insert-template name="gui.init_style_option">
-            <replace from="%TYPE" to="QStyleOptionComboBox"/>
-        </insert-template>
-    </inject-code>
     <modify-function signature="activated(int)">&gt;
         <rename to="activatedIndex"/>
     </modify-function>

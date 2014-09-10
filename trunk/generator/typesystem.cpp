@@ -1470,10 +1470,6 @@ TypeDatabase::TypeDatabase() : m_suppressWarnings(true)
     addType(new ContainerTypeEntry("QQueue", ContainerTypeEntry::QueueContainer));
     addType(new ContainerTypeEntry("QMultiMap", ContainerTypeEntry::MultiMapContainer));
 
-    // Custom types...
-    // ### QtScript: no custom handling of QModelIndex for now
-//    addType(new QModelIndexTypeEntry());
-
     addRemoveFunctionToTemplates(this);
 }
 

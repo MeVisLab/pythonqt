@@ -960,10 +960,6 @@
   }
     </inject-code>
   
-    <inject-code class="native" position="beginning">
-    Q_DECLARE_METATYPE(QScriptValue)
-    </inject-code>
-
     <modify-function signature="QByteArray(const char*,int)" remove="all"/>
     <modify-function signature="QByteArray(const char*)" remove="all"/>
 
@@ -1649,32 +1645,21 @@
     <modify-function signature="operator T() const" remove="all"/>
     <modify-function signature="operator=(const QFuture &amp;)" remove="all"/>
   </value-type>
-  <value-type name="QtJambiVoidFuture" java-name="QFutureVoid">
-    <modify-function signature="resultCount()const" remove="all"/>
-    <modify-function signature="isResultReadyAt(int)const" remove="all"/>
-  </value-type>
-  <value-type name="QtJambiFuture" java-name="QFuture" generic-class="yes"/>
 
   <object-type name="QFutureWatcherBase">
     <modify-function signature="connectNotify(const char *)" remove="all"/>
     <modify-function signature="disconnectNotify(const char *)" remove="all"/>
   </object-type>
-  <object-type name="QtJambiVoidFutureWatcher" java-name="QFutureWatcherVoid"/>
 
   <object-type name="QFutureWatcher" generate="no">
     <modify-function signature="future()const" remove="all"/>
   </object-type>
-  <object-type name="QtJambiFutureWatcher" java-name="QFutureWatcher" generic-class="yes"/>
-
   <object-type name="QFutureSynchronizer" generate="no"/>
-  <object-type name="QtJambiFutureSynchronizer" generic-class="yes" java-name="QFutureSynchronizer"/>
-  <object-type name="QtJambiVoidFutureSynchronizer" java-name="QFutureSynchronizerVoid"/>
   <object-type name="QThreadPool"/>
 
   <object-type name="QFutureIterator" generate="no">
     <modify-function signature="operator=(const QFuture&amp;)" remove="all"/>
   </object-type>
-  <object-type name="QtJambiFutureIterator" generic-class="yes" java-name="QFutureIterator"/>
   <object-type name="QRunnable"/>
 
   <object-type name="QSysInfo"/>

@@ -1052,18 +1052,6 @@ class CustomTypeEntry : public ComplexTypeEntry
 {
 public:
     CustomTypeEntry(const QString &name) : ComplexTypeEntry(name, CustomType) { }
-
-    virtual void generateCppJavaToQt(QTextStream &s,
-                                     const AbstractMetaType *java_type,
-                                     const QString &env_name,
-                                     const QString &qt_name,
-                                     const QString &java_name) const = 0;
-
-    virtual void generateCppQtToJava(QTextStream &s,
-                                     const AbstractMetaType *java_type,
-                                     const QString &env_name,
-                                     const QString &qt_name,
-                                     const QString &java_name) const = 0;
 };
 
 struct TypeRejection
