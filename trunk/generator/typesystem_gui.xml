@@ -312,6 +312,7 @@
   <enum-type name="QStyleOptionFrame::StyleOptionVersion"/>
   <enum-type name="QStyleOptionFrameV2::FrameFeature" flags="QStyleOptionFrameV2::FrameFeatures"/>
   <enum-type name="QStyleOptionFrameV2::StyleOptionVersion"/>
+  <enum-type name="QStyleOptionFrame::FrameFeature" flags="QStyleOptionFrame::FrameFeatures"/> <!-- Qt 5 -->
   <enum-type name="QStyleOptionGraphicsItem::StyleOptionType"/>
   <enum-type name="QStyleOptionGraphicsItem::StyleOptionVersion"/>
   <enum-type name="QStyleOptionGroupBox::StyleOptionType"/>
@@ -342,6 +343,7 @@
   <enum-type name="QStyleOptionTab::StyleOptionType"/>
   <enum-type name="QStyleOptionTab::StyleOptionVersion"/>
   <enum-type name="QStyleOptionTab::TabPosition"/>
+  <enum-type name="QStyleOptionTab::TabFeature" flags="QStyleOptionTab::TabFeatures"/>
   <enum-type name="QStyleOptionTabBarBase::StyleOptionType"/>
   <enum-type name="QStyleOptionTabBarBase::StyleOptionVersion"/>
   <enum-type name="QStyleOptionTabV2::StyleOptionVersion"/>
@@ -363,6 +365,7 @@
   <enum-type name="QStyleOptionViewItem::Position"/>
   <enum-type name="QStyleOptionViewItem::StyleOptionType"/>
   <enum-type name="QStyleOptionViewItem::StyleOptionVersion"/>
+  <enum-type name="QStyleOptionViewItem::ViewItemFeature" flags="QStyleOptionViewItem::ViewItemFeatures"/> <!-- Qt 5 -->
   <enum-type name="QStyleOptionViewItemV2::StyleOptionVersion"/>
   <enum-type name="QStyleOptionViewItemV2::ViewItemFeature" flags="QStyleOptionViewItemV2::ViewItemFeatures"/>
   <enum-type name="QSystemTrayIcon::ActivationReason"/>
@@ -2749,12 +2752,14 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QTextObjectInterface"/>
   <object-type name="QRawFont"/>
   <object-type name="QBackingStore"/>
-  <object-type name="QEnterEvent"/>
-  <object-type name="QExposeEvent"/>
+  <object-type name="QEnterEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::Enter"/>
+  <object-type name="QExposeEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::Expose"/>
+  <object-type name="QInputMethodQueryEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::InputMethodQuery"/>
+  <object-type name="QScrollEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::Scroll"/>
+  <object-type name="QScrollPrepareEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::ScrollPrepare"/>
   <object-type name="QGlyphRun"/>
   <object-type name="QInputMethod"/>
-  <object-type name="QInputMethodQueryEvent"/>
-  <object-type name="QNativeGestureEvent"/>
+  <object-type name="QNativeGestureEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::NativeGesture"/>
   <object-type name="QOffscreenSurface"/>
   <object-type name="QOpenGLBuffer"/>
   <object-type name="QOpenGLContext"/>
@@ -2781,8 +2786,6 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QPdfWriter"/>
   <object-type name="QRegularExpressionValidator"/>
   <object-type name="QScreen"/>
-  <object-type name="QScrollEvent"/>
-  <object-type name="QScrollPrepareEvent"/>
   <object-type name="QStyleHints"/>
   <object-type name="QTouchDevice"/>
   <object-type name="QWindow"/>
@@ -2839,7 +2842,13 @@ PyObject* constScanLine(QImage* image, int line) {
   <enum-type name="QOpenGLFunctions::OpenGLFeature"/>
   <enum-type name="QScrollEvent::ScrollState"/>
   <enum-type name="QScrollEvent::CapabilityFlag"/>
-  <enum-type name="QScrollEvent::DeviceType"/>
+  <enum-type name="QTouchDevice::DeviceType"/>
+  <enum-type name="QTouchDevice::CapabilityFlag"/>
+
+  <enum-type name="QSurfaceFormat::FormatOption"/>
+  <enum-type name="QSurfaceFormat::RenderableType"/>
+  <enum-type name="QSurfaceFormat::SwapBehavior"/>
+  <enum-type name="QSurfaceFormat::OpenGLContextProfile"/>
 
   <!-- Inefficient hash codes -->
   <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QTextFrame_iterator' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
