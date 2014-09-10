@@ -59,12 +59,6 @@
     </value-type>
 
     <value-type name="QWebHistoryItem">
-        <custom-constructor>
-            return new QWebHistoryItem(*copy);
-        </custom-constructor>
-        <custom-destructor>
-            delete copy;
-        </custom-destructor>
         <modify-function signature="operator=(QWebHistoryItem)" remove="all"/>
     </value-type>
 
@@ -80,20 +74,8 @@
     <value-type name="QWebPluginFactory::Plugin"/>
     <value-type name="QWebPluginFactory::MimeType"/>
     <value-type name="QWebSecurityOrigin">
-      <custom-constructor>  
-  return new QWebSecurityOrigin(*copy);
-      </custom-constructor>
-      <custom-destructor>
-  delete copy;
-      </custom-destructor>
     </value-type>
     <value-type name="QWebDatabase">
-      <custom-constructor>  
-  return new QWebDatabase(*copy);
-      </custom-constructor>
-      <custom-destructor>
-  delete copy;
-      </custom-destructor>
     </value-type>
     <object-type name="QWebPluginFactory::ExtensionOption"/>
     <object-type name="QWebPluginFactory::ExtensionReturn"/>
