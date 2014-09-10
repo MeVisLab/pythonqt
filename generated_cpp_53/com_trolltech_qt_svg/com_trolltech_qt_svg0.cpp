@@ -9,6 +9,7 @@
 #include <QSvgRenderer>
 #include <QVariant>
 #include <qaction.h>
+#include <qbackingstore.h>
 #include <qbitmap.h>
 #include <qbytearray.h>
 #include <qcoreevent.h>
@@ -41,6 +42,7 @@
 #include <qsvgrenderer.h>
 #include <qsvgwidget.h>
 #include <qwidget.h>
+#include <qwindow.h>
 #include <qxmlstream.h>
 
 PythonQtShell_QSvgGenerator::~PythonQtShell_QSvgGenerator() {

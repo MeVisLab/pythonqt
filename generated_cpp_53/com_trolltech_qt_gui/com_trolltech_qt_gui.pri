@@ -10,6 +10,7 @@ HEADERS += \
            $$PWD/com_trolltech_qt_gui8.h \
            $$PWD/com_trolltech_qt_gui9.h \
            $$PWD/com_trolltech_qt_gui10.h \
+           $$PWD/com_trolltech_qt_gui11.h \
 
 SOURCES += \
            $$PWD/com_trolltech_qt_gui0.cpp \
@@ -23,4 +24,5 @@ SOURCES += \
            $$PWD/com_trolltech_qt_gui8.cpp \
            $$PWD/com_trolltech_qt_gui9.cpp \
            $$PWD/com_trolltech_qt_gui10.cpp \
+           $$PWD/com_trolltech_qt_gui11.cpp \
            $$PWD/com_trolltech_qt_gui_init.cpp

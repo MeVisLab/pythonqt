@@ -15,11 +15,12 @@
 #include <qbuffer.h>
 #include <qbytearray.h>
 #include <qbytearraymatcher.h>
-#include <qclipboard.h>
+#include <qcollator.h>
+#include <qcommandlineoption.h>
+#include <qcommandlineparser.h>
 #include <qcoreapplication.h>
 #include <qcoreevent.h>
 #include <qcryptographichash.h>
-#include <qcursor.h>
 #include <qdatastream.h>
 #include <qdatetime.h>
 #include <qdir.h>
@@ -32,21 +33,14 @@
 #include <qfile.h>
 #include <qfiledevice.h>
 #include <qfileinfo.h>
-#include <qfilesystemwatcher.h>
-#include <qfinalstate.h>
-#include <qfont.h>
-#include <qguiapplication.h>
-#include <qhistorystate.h>
-#include <qicon.h>
 #include <qiodevice.h>
 #include <qlist.h>
+#include <qlocale.h>
 #include <qmetaobject.h>
 #include <qmimedata.h>
 #include <qmutex.h>
 #include <qobject.h>
-#include <qpalette.h>
 #include <qpoint.h>
-#include <qsessionmanager.h>
 #include <qsize.h>
 #include <qstate.h>
 #include <qstatemachine.h>
@@ -601,6 +595,114 @@ void delete_QChildEvent(QChildEvent* obj) { delete obj; }
    QObject*  child(QChildEvent* theWrappedObject) const;
    bool  polished(QChildEvent* theWrappedObject) const;
    bool  removed(QChildEvent* theWrappedObject) const;
+};
+
+
+
+
+
+class PythonQtWrapper_QCollator : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QCollator* new_QCollator(const QCollator&  arg__1);
+QCollator* new_QCollator(const QLocale&  locale = QLocale());
+void delete_QCollator(QCollator* obj) { delete obj; } 
+   Qt::CaseSensitivity  caseSensitivity(QCollator* theWrappedObject) const;
+   int  compare(QCollator* theWrappedObject, const QChar*  s1, int  len1, const QChar*  s2, int  len2) const;
+   int  compare(QCollator* theWrappedObject, const QString&  s1, const QString&  s2) const;
+   int  compare(QCollator* theWrappedObject, const QStringRef&  s1, const QStringRef&  s2) const;
+   bool  ignorePunctuation(QCollator* theWrappedObject) const;
+   QLocale  locale(QCollator* theWrappedObject) const;
+   bool  numericMode(QCollator* theWrappedObject) const;
+   bool  operator_cast_(QCollator* theWrappedObject, const QString&  s1, const QString&  s2) const;
+   QCollator*  operator_assign(QCollator* theWrappedObject, const QCollator&  arg__1);
+   void setCaseSensitivity(QCollator* theWrappedObject, Qt::CaseSensitivity  cs);
+   void setIgnorePunctuation(QCollator* theWrappedObject, bool  on);
+   void setLocale(QCollator* theWrappedObject, const QLocale&  locale);
+   void setNumericMode(QCollator* theWrappedObject, bool  on);
+   QCollatorSortKey  sortKey(QCollator* theWrappedObject, const QString&  string) const;
+   void swap(QCollator* theWrappedObject, QCollator&  other);
+};
+
+
+
+
+
+class PythonQtWrapper_QCollatorSortKey : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QCollatorSortKey* new_QCollatorSortKey(const QCollatorSortKey&  other);
+void delete_QCollatorSortKey(QCollatorSortKey* obj) { delete obj; } 
+   int  compare(QCollatorSortKey* theWrappedObject, const QCollatorSortKey&  key) const;
+   bool  __lt__(QCollatorSortKey* theWrappedObject, const QCollatorSortKey&  rhs);
+   QCollatorSortKey*  operator_assign(QCollatorSortKey* theWrappedObject, const QCollatorSortKey&  other);
+   void swap(QCollatorSortKey* theWrappedObject, QCollatorSortKey&  other);
+};
+
+
+
+
+
+class PythonQtWrapper_QCommandLineOption : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QCommandLineOption* new_QCommandLineOption(const QCommandLineOption&  other);
+QCommandLineOption* new_QCommandLineOption(const QString&  name, const QString&  description = QString(), const QString&  valueName = QString(), const QString&  defaultValue = QString());
+QCommandLineOption* new_QCommandLineOption(const QStringList&  names, const QString&  description = QString(), const QString&  valueName = QString(), const QString&  defaultValue = QString());
+void delete_QCommandLineOption(QCommandLineOption* obj) { delete obj; } 
+   QStringList  defaultValues(QCommandLineOption* theWrappedObject) const;
+   QString  description(QCommandLineOption* theWrappedObject) const;
+   QStringList  names(QCommandLineOption* theWrappedObject) const;
+   QCommandLineOption*  operator_assign(QCommandLineOption* theWrappedObject, const QCommandLineOption&  other);
+   void setDefaultValue(QCommandLineOption* theWrappedObject, const QString&  defaultValue);
+   void setDefaultValues(QCommandLineOption* theWrappedObject, const QStringList&  defaultValues);
+   void setDescription(QCommandLineOption* theWrappedObject, const QString&  description);
+   void setValueName(QCommandLineOption* theWrappedObject, const QString&  name);
+   void swap(QCommandLineOption* theWrappedObject, QCommandLineOption&  other);
+   QString  valueName(QCommandLineOption* theWrappedObject) const;
+};
+
+
+
+
+
+class PythonQtWrapper_QCommandLineParser : public QObject
+{ Q_OBJECT
+public:
+Q_ENUMS(SingleDashWordOptionMode )
+enum SingleDashWordOptionMode{
+  ParseAsCompactedShortOptions = QCommandLineParser::ParseAsCompactedShortOptions,   ParseAsLongOptions = QCommandLineParser::ParseAsLongOptions};
+public slots:
+QCommandLineParser* new_QCommandLineParser();
+void delete_QCommandLineParser(QCommandLineParser* obj) { delete obj; } 
+   QCommandLineOption  addHelpOption(QCommandLineParser* theWrappedObject);
+   bool  addOption(QCommandLineParser* theWrappedObject, const QCommandLineOption&  commandLineOption);
+   void addPositionalArgument(QCommandLineParser* theWrappedObject, const QString&  name, const QString&  description, const QString&  syntax = QString());
+   QCommandLineOption  addVersionOption(QCommandLineParser* theWrappedObject);
+   QString  applicationDescription(QCommandLineParser* theWrappedObject) const;
+   void clearPositionalArguments(QCommandLineParser* theWrappedObject);
+   QString  errorText(QCommandLineParser* theWrappedObject) const;
+   QString  helpText(QCommandLineParser* theWrappedObject) const;
+   bool  isSet(QCommandLineParser* theWrappedObject, const QCommandLineOption&  option) const;
+   bool  isSet(QCommandLineParser* theWrappedObject, const QString&  name) const;
+   QStringList  optionNames(QCommandLineParser* theWrappedObject) const;
+   bool  parse(QCommandLineParser* theWrappedObject, const QStringList&  arguments);
+   QStringList  positionalArguments(QCommandLineParser* theWrappedObject) const;
+   void process(QCommandLineParser* theWrappedObject, const QCoreApplication&  app);
+   void process(QCommandLineParser* theWrappedObject, const QStringList&  arguments);
+   void setApplicationDescription(QCommandLineParser* theWrappedObject, const QString&  description);
+   void setSingleDashWordOptionMode(QCommandLineParser* theWrappedObject, QCommandLineParser::SingleDashWordOptionMode  parsingMode);
+   void showHelp(QCommandLineParser* theWrappedObject, int  exitCode = 0);
+   QString  static_QCommandLineParser_tr(const char*  sourceText, const char*  disambiguation = 0, int  n = -1);
+   QString  static_QCommandLineParser_trUtf8(const char*  sourceText, const char*  disambiguation = 0, int  n = -1);
+   QStringList  unknownOptionNames(QCommandLineParser* theWrappedObject) const;
+   QString  value(QCommandLineParser* theWrappedObject, const QCommandLineOption&  option) const;
+   QString  value(QCommandLineParser* theWrappedObject, const QString&  name) const;
+   QStringList  values(QCommandLineParser* theWrappedObject, const QCommandLineOption&  option) const;
+   QStringList  values(QCommandLineParser* theWrappedObject, const QString&  name) const;
 };
 
 
@@ -1363,197 +1465,6 @@ void delete_QFileInfo(QFileInfo* obj) { delete obj; }
    QString  suffix(QFileInfo* theWrappedObject) const;
    void swap(QFileInfo* theWrappedObject, QFileInfo&  other);
    QString  symLinkTarget(QFileInfo* theWrappedObject) const;
-};
-
-
-
-
-
-class PythonQtShell_QFileSystemWatcher : public QFileSystemWatcher
-{
-public:
-    PythonQtShell_QFileSystemWatcher(QObject*  parent = 0):QFileSystemWatcher(parent),_wrapper(NULL) {};
-    PythonQtShell_QFileSystemWatcher(const QStringList&  paths, QObject*  parent = 0):QFileSystemWatcher(paths, parent),_wrapper(NULL) {};
-
-   ~PythonQtShell_QFileSystemWatcher();
-
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void timerEvent(QTimerEvent*  arg__1);
-
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
-class PythonQtWrapper_QFileSystemWatcher : public QObject
-{ Q_OBJECT
-public:
-public slots:
-QFileSystemWatcher* new_QFileSystemWatcher(QObject*  parent = 0);
-QFileSystemWatcher* new_QFileSystemWatcher(const QStringList&  paths, QObject*  parent = 0);
-void delete_QFileSystemWatcher(QFileSystemWatcher* obj) { delete obj; } 
-   bool  addPath(QFileSystemWatcher* theWrappedObject, const QString&  file);
-   QStringList  addPaths(QFileSystemWatcher* theWrappedObject, const QStringList&  files);
-   QStringList  directories(QFileSystemWatcher* theWrappedObject) const;
-   QStringList  files(QFileSystemWatcher* theWrappedObject) const;
-   bool  removePath(QFileSystemWatcher* theWrappedObject, const QString&  file);
-   QStringList  removePaths(QFileSystemWatcher* theWrappedObject, const QStringList&  files);
-};
-
-
-
-
-
-class PythonQtShell_QFinalState : public QFinalState
-{
-public:
-    PythonQtShell_QFinalState(QState*  parent = 0):QFinalState(parent),_wrapper(NULL) {};
-
-   ~PythonQtShell_QFinalState();
-
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  e);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void onEntry(QEvent*  event);
-virtual void onExit(QEvent*  event);
-virtual void timerEvent(QTimerEvent*  arg__1);
-
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
-class PythonQtPublicPromoter_QFinalState : public QFinalState
-{ public:
-inline bool  promoted_event(QEvent*  e) { return QFinalState::event(e); }
-inline void promoted_onEntry(QEvent*  event) { QFinalState::onEntry(event); }
-inline void promoted_onExit(QEvent*  event) { QFinalState::onExit(event); }
-};
-
-class PythonQtWrapper_QFinalState : public QObject
-{ Q_OBJECT
-public:
-public slots:
-QFinalState* new_QFinalState(QState*  parent = 0);
-void delete_QFinalState(QFinalState* obj) { delete obj; } 
-   bool  event(QFinalState* theWrappedObject, QEvent*  e);
-   void onEntry(QFinalState* theWrappedObject, QEvent*  event);
-   void onExit(QFinalState* theWrappedObject, QEvent*  event);
-};
-
-
-
-
-
-class PythonQtShell_QGuiApplication : public QGuiApplication
-{
-public:
-
-   ~PythonQtShell_QGuiApplication();
-
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual bool  notify(QObject*  arg__1, QEvent*  arg__2);
-virtual void timerEvent(QTimerEvent*  arg__1);
-
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
-class PythonQtPublicPromoter_QGuiApplication : public QGuiApplication
-{ public:
-inline bool  promoted_event(QEvent*  arg__1) { return QGuiApplication::event(arg__1); }
-inline bool  promoted_notify(QObject*  arg__1, QEvent*  arg__2) { return QGuiApplication::notify(arg__1, arg__2); }
-};
-
-class PythonQtWrapper_QGuiApplication : public QObject
-{ Q_OBJECT
-public:
-public slots:
-void delete_QGuiApplication(QGuiApplication* obj) { delete obj; } 
-   QString  static_QGuiApplication_applicationDisplayName();
-   Qt::ApplicationState  static_QGuiApplication_applicationState();
-   void static_QGuiApplication_changeOverrideCursor(const QCursor&  arg__1);
-   QClipboard*  static_QGuiApplication_clipboard();
-   bool  static_QGuiApplication_desktopSettingsAware();
-   qreal  devicePixelRatio(QGuiApplication* theWrappedObject) const;
-   bool  event(QGuiApplication* theWrappedObject, QEvent*  arg__1);
-   int  static_QGuiApplication_exec();
-   QObject*  static_QGuiApplication_focusObject();
-   QFont  static_QGuiApplication_font();
-   bool  static_QGuiApplication_isLeftToRight();
-   bool  static_QGuiApplication_isRightToLeft();
-   bool  isSavingSession(QGuiApplication* theWrappedObject) const;
-   bool  isSessionRestored(QGuiApplication* theWrappedObject) const;
-   Qt::KeyboardModifiers  static_QGuiApplication_keyboardModifiers();
-   Qt::LayoutDirection  static_QGuiApplication_layoutDirection();
-   Qt::MouseButtons  static_QGuiApplication_mouseButtons();
-   bool  notify(QGuiApplication* theWrappedObject, QObject*  arg__1, QEvent*  arg__2);
-   QCursor*  static_QGuiApplication_overrideCursor();
-   QPalette  static_QGuiApplication_palette();
-   QString  static_QGuiApplication_platformName();
-   Qt::KeyboardModifiers  static_QGuiApplication_queryKeyboardModifiers();
-   bool  static_QGuiApplication_quitOnLastWindowClosed();
-   void static_QGuiApplication_restoreOverrideCursor();
-   QString  sessionId(QGuiApplication* theWrappedObject) const;
-   QString  sessionKey(QGuiApplication* theWrappedObject) const;
-   void static_QGuiApplication_setApplicationDisplayName(const QString&  name);
-   void static_QGuiApplication_setDesktopSettingsAware(bool  on);
-   void static_QGuiApplication_setFont(const QFont&  arg__1);
-   void static_QGuiApplication_setLayoutDirection(Qt::LayoutDirection  direction);
-   void static_QGuiApplication_setOverrideCursor(const QCursor&  arg__1);
-   void static_QGuiApplication_setPalette(const QPalette&  pal);
-   void static_QGuiApplication_setQuitOnLastWindowClosed(bool  quit);
-   void static_QGuiApplication_setWindowIcon(const QIcon&  icon);
-   void static_QGuiApplication_sync();
-   QIcon  static_QGuiApplication_windowIcon();
-};
-
-
-
-
-
-class PythonQtShell_QHistoryState : public QHistoryState
-{
-public:
-    PythonQtShell_QHistoryState(QHistoryState::HistoryType  type, QState*  parent = 0):QHistoryState(type, parent),_wrapper(NULL) {};
-    PythonQtShell_QHistoryState(QState*  parent = 0):QHistoryState(parent),_wrapper(NULL) {};
-
-   ~PythonQtShell_QHistoryState();
-
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  e);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void onEntry(QEvent*  event);
-virtual void onExit(QEvent*  event);
-virtual void timerEvent(QTimerEvent*  arg__1);
-
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
-class PythonQtPublicPromoter_QHistoryState : public QHistoryState
-{ public:
-inline bool  promoted_event(QEvent*  e) { return QHistoryState::event(e); }
-inline void promoted_onEntry(QEvent*  event) { QHistoryState::onEntry(event); }
-inline void promoted_onExit(QEvent*  event) { QHistoryState::onExit(event); }
-};
-
-class PythonQtWrapper_QHistoryState : public QObject
-{ Q_OBJECT
-public:
-public slots:
-QHistoryState* new_QHistoryState(QHistoryState::HistoryType  type, QState*  parent = 0);
-QHistoryState* new_QHistoryState(QState*  parent = 0);
-void delete_QHistoryState(QHistoryState* obj) { delete obj; } 
-   QAbstractState*  defaultState(QHistoryState* theWrappedObject) const;
-   bool  event(QHistoryState* theWrappedObject, QEvent*  e);
-   QHistoryState::HistoryType  historyType(QHistoryState* theWrappedObject) const;
-   void onEntry(QHistoryState* theWrappedObject, QEvent*  event);
-   void onExit(QHistoryState* theWrappedObject, QEvent*  event);
-   void setDefaultState(QHistoryState* theWrappedObject, QAbstractState*  state);
-   void setHistoryType(QHistoryState* theWrappedObject, QHistoryState::HistoryType  type);
 };
 
 

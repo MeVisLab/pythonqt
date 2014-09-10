@@ -27,6 +27,7 @@
 #include <qaction.h>
 #include <qactiongroup.h>
 #include <qapplication.h>
+#include <qbackingstore.h>
 #include <qbitmap.h>
 #include <qboxlayout.h>
 #include <qbrush.h>
@@ -46,7 +47,6 @@
 #include <qcoreevent.h>
 #include <qcursor.h>
 #include <qdatastream.h>
-#include <qdatawidgetmapper.h>
 #include <qdatetime.h>
 #include <qdesktopwidget.h>
 #include <qevent.h>
@@ -60,6 +60,7 @@
 #include <qgraphicswidget.h>
 #include <qicon.h>
 #include <qimage.h>
+#include <qinputmethod.h>
 #include <qitemselectionmodel.h>
 #include <qkeysequence.h>
 #include <qlayout.h>
@@ -85,12 +86,14 @@
 #include <qprinter.h>
 #include <qrect.h>
 #include <qregion.h>
+#include <qscreen.h>
 #include <qscrollbar.h>
 #include <qsessionmanager.h>
 #include <qsize.h>
 #include <qsizepolicy.h>
 #include <qstringlist.h>
 #include <qstyle.h>
+#include <qstylehints.h>
 #include <qstyleoption.h>
 #include <qtextformat.h>
 #include <qtransform.h>
@@ -98,6 +101,7 @@
 #include <qvalidator.h>
 #include <qvector.h>
 #include <qwidget.h>
+#include <qwindow.h>
 
 PythonQtShell_QAbstractButton::~PythonQtShell_QAbstractButton() {
   PythonQtPrivate* priv = PythonQt::priv();
@@ -13211,6 +13215,67 @@ QIcon  PythonQtWrapper_QApplication::static_QApplication_windowIcon()
 
 
 
+QBackingStore* PythonQtWrapper_QBackingStore::new_QBackingStore(QWindow*  window)
+{ 
+return new QBackingStore(window); }
+
+void PythonQtWrapper_QBackingStore::beginPaint(QBackingStore* theWrappedObject, const QRegion&  arg__1)
+{
+  ( theWrappedObject->beginPaint(arg__1));
+}
+
+void PythonQtWrapper_QBackingStore::endPaint(QBackingStore* theWrappedObject)
+{
+  ( theWrappedObject->endPaint());
+}
+
+void PythonQtWrapper_QBackingStore::flush(QBackingStore* theWrappedObject, const QRegion&  region, QWindow*  window, const QPoint&  offset)
+{
+  ( theWrappedObject->flush(region, window, offset));
+}
+
+bool  PythonQtWrapper_QBackingStore::hasStaticContents(QBackingStore* theWrappedObject) const
+{
+  return ( theWrappedObject->hasStaticContents());
+}
+
+QPaintDevice*  PythonQtWrapper_QBackingStore::paintDevice(QBackingStore* theWrappedObject)
+{
+  return ( theWrappedObject->paintDevice());
+}
+
+void PythonQtWrapper_QBackingStore::resize(QBackingStore* theWrappedObject, const QSize&  size)
+{
+  ( theWrappedObject->resize(size));
+}
+
+bool  PythonQtWrapper_QBackingStore::scroll(QBackingStore* theWrappedObject, const QRegion&  area, int  dx, int  dy)
+{
+  return ( theWrappedObject->scroll(area, dx, dy));
+}
+
+void PythonQtWrapper_QBackingStore::setStaticContents(QBackingStore* theWrappedObject, const QRegion&  region)
+{
+  ( theWrappedObject->setStaticContents(region));
+}
+
+QSize  PythonQtWrapper_QBackingStore::size(QBackingStore* theWrappedObject) const
+{
+  return ( theWrappedObject->size());
+}
+
+QRegion  PythonQtWrapper_QBackingStore::staticContents(QBackingStore* theWrappedObject) const
+{
+  return ( theWrappedObject->staticContents());
+}
+
+QWindow*  PythonQtWrapper_QBackingStore::window(QBackingStore* theWrappedObject) const
+{
+  return ( theWrappedObject->window());
+}
+
+
+
 PythonQtShell_QBoxLayout::~PythonQtShell_QBoxLayout() {
   PythonQtPrivate* priv = PythonQt::priv();
   if (priv) { priv->shellClassDeleted(this); }
@@ -23183,247 +23248,6 @@ int  PythonQtWrapper_QContextMenuEvent::x(QContextMenuEvent* theWrappedObject) c
 int  PythonQtWrapper_QContextMenuEvent::y(QContextMenuEvent* theWrappedObject) const
 {
   return ( theWrappedObject->y());
-}
-
-
-
-PythonQtShell_QDataWidgetMapper::~PythonQtShell_QDataWidgetMapper() {
-  PythonQtPrivate* priv = PythonQt::priv();
-  if (priv) { priv->shellClassDeleted(this); }
-}
-void PythonQtShell_QDataWidgetMapper::childEvent(QChildEvent*  arg__1)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("childEvent");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QChildEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QDataWidgetMapper::childEvent(arg__1);
-}
-void PythonQtShell_QDataWidgetMapper::customEvent(QEvent*  arg__1)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("customEvent");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QDataWidgetMapper::customEvent(arg__1);
-}
-bool  PythonQtShell_QDataWidgetMapper::event(QEvent*  arg__1)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("event");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"bool" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      bool returnValue;
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return QDataWidgetMapper::event(arg__1);
-}
-bool  PythonQtShell_QDataWidgetMapper::eventFilter(QObject*  arg__1, QEvent*  arg__2)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("eventFilter");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
-      bool returnValue;
-    void* args[3] = {NULL, (void*)&arg__1, (void*)&arg__2};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("eventFilter", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return QDataWidgetMapper::eventFilter(arg__1, arg__2);
-}
-void PythonQtShell_QDataWidgetMapper::setCurrentIndex(int  index)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("setCurrentIndex");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "int"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&index};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QDataWidgetMapper::setCurrentIndex(index);
-}
-void PythonQtShell_QDataWidgetMapper::timerEvent(QTimerEvent*  arg__1)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("timerEvent");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QTimerEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QDataWidgetMapper::timerEvent(arg__1);
-}
-QDataWidgetMapper* PythonQtWrapper_QDataWidgetMapper::new_QDataWidgetMapper(QObject*  parent)
-{ 
-return new PythonQtShell_QDataWidgetMapper(parent); }
-
-void PythonQtWrapper_QDataWidgetMapper::addMapping(QDataWidgetMapper* theWrappedObject, QWidget*  widget, int  section)
-{
-  ( theWrappedObject->addMapping(widget, section));
-}
-
-void PythonQtWrapper_QDataWidgetMapper::addMapping(QDataWidgetMapper* theWrappedObject, QWidget*  widget, int  section, const QByteArray&  propertyName)
-{
-  ( theWrappedObject->addMapping(widget, section, propertyName));
-}
-
-void PythonQtWrapper_QDataWidgetMapper::clearMapping(QDataWidgetMapper* theWrappedObject)
-{
-  ( theWrappedObject->clearMapping());
-}
-
-int  PythonQtWrapper_QDataWidgetMapper::currentIndex(QDataWidgetMapper* theWrappedObject) const
-{
-  return ( theWrappedObject->currentIndex());
-}
-
-QAbstractItemDelegate*  PythonQtWrapper_QDataWidgetMapper::itemDelegate(QDataWidgetMapper* theWrappedObject) const
-{
-  return ( theWrappedObject->itemDelegate());
-}
-
-QByteArray  PythonQtWrapper_QDataWidgetMapper::mappedPropertyName(QDataWidgetMapper* theWrappedObject, QWidget*  widget) const
-{
-  return ( theWrappedObject->mappedPropertyName(widget));
-}
-
-int  PythonQtWrapper_QDataWidgetMapper::mappedSection(QDataWidgetMapper* theWrappedObject, QWidget*  widget) const
-{
-  return ( theWrappedObject->mappedSection(widget));
-}
-
-QWidget*  PythonQtWrapper_QDataWidgetMapper::mappedWidgetAt(QDataWidgetMapper* theWrappedObject, int  section) const
-{
-  return ( theWrappedObject->mappedWidgetAt(section));
-}
-
-QAbstractItemModel*  PythonQtWrapper_QDataWidgetMapper::model(QDataWidgetMapper* theWrappedObject) const
-{
-  return ( theWrappedObject->model());
-}
-
-Qt::Orientation  PythonQtWrapper_QDataWidgetMapper::orientation(QDataWidgetMapper* theWrappedObject) const
-{
-  return ( theWrappedObject->orientation());
-}
-
-void PythonQtWrapper_QDataWidgetMapper::removeMapping(QDataWidgetMapper* theWrappedObject, QWidget*  widget)
-{
-  ( theWrappedObject->removeMapping(widget));
-}
-
-QModelIndex  PythonQtWrapper_QDataWidgetMapper::rootIndex(QDataWidgetMapper* theWrappedObject) const
-{
-  return ( theWrappedObject->rootIndex());
-}
-
-void PythonQtWrapper_QDataWidgetMapper::setCurrentIndex(QDataWidgetMapper* theWrappedObject, int  index)
-{
-  ( ((PythonQtPublicPromoter_QDataWidgetMapper*)theWrappedObject)->promoted_setCurrentIndex(index));
-}
-
-void PythonQtWrapper_QDataWidgetMapper::setItemDelegate(QDataWidgetMapper* theWrappedObject, QAbstractItemDelegate*  delegate)
-{
-  ( theWrappedObject->setItemDelegate(delegate));
-}
-
-void PythonQtWrapper_QDataWidgetMapper::setModel(QDataWidgetMapper* theWrappedObject, QAbstractItemModel*  model)
-{
-  ( theWrappedObject->setModel(model));
-}
-
-void PythonQtWrapper_QDataWidgetMapper::setOrientation(QDataWidgetMapper* theWrappedObject, Qt::Orientation  aOrientation)
-{
-  ( theWrappedObject->setOrientation(aOrientation));
-}
-
-void PythonQtWrapper_QDataWidgetMapper::setRootIndex(QDataWidgetMapper* theWrappedObject, const QModelIndex&  index)
-{
-  ( theWrappedObject->setRootIndex(index));
-}
-
-void PythonQtWrapper_QDataWidgetMapper::setSubmitPolicy(QDataWidgetMapper* theWrappedObject, QDataWidgetMapper::SubmitPolicy  policy)
-{
-  ( theWrappedObject->setSubmitPolicy(policy));
-}
-
-QDataWidgetMapper::SubmitPolicy  PythonQtWrapper_QDataWidgetMapper::submitPolicy(QDataWidgetMapper* theWrappedObject) const
-{
-  return ( theWrappedObject->submitPolicy());
 }
 
 

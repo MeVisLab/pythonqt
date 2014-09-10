@@ -10,6 +10,7 @@
 #include <qabstractitemview.h>
 #include <qabstractproxymodel.h>
 #include <qaction.h>
+#include <qbackingstore.h>
 #include <qbitmap.h>
 #include <qbytearray.h>
 #include <qcalendarwidget.h>
@@ -17,6 +18,7 @@
 #include <qcoreevent.h>
 #include <qcursor.h>
 #include <qdatastream.h>
+#include <qdatawidgetmapper.h>
 #include <qdatetime.h>
 #include <qdatetimeedit.h>
 #include <qdesktopservices.h>
@@ -41,14 +43,11 @@
 #include <qfontdatabase.h>
 #include <qfontdialog.h>
 #include <qfontinfo.h>
-#include <qfontmetrics.h>
-#include <qformlayout.h>
 #include <qgraphicseffect.h>
 #include <qgraphicsproxywidget.h>
 #include <qicon.h>
 #include <qkeysequence.h>
 #include <qlayout.h>
-#include <qlayoutitem.h>
 #include <qlineedit.h>
 #include <qlist.h>
 #include <qlocale.h>
@@ -75,6 +74,60 @@
 #include <qvalidator.h>
 #include <qvector.h>
 #include <qwidget.h>
+#include <qwindow.h>
+
+
+
+class PythonQtShell_QDataWidgetMapper : public QDataWidgetMapper
+{
+public:
+    PythonQtShell_QDataWidgetMapper(QObject*  parent = 0):QDataWidgetMapper(parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QDataWidgetMapper();
+
+virtual void childEvent(QChildEvent*  arg__1);
+virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
+virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void setCurrentIndex(int  index);
+virtual void timerEvent(QTimerEvent*  arg__1);
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtPublicPromoter_QDataWidgetMapper : public QDataWidgetMapper
+{ public:
+inline void promoted_setCurrentIndex(int  index) { QDataWidgetMapper::setCurrentIndex(index); }
+};
+
+class PythonQtWrapper_QDataWidgetMapper : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QDataWidgetMapper* new_QDataWidgetMapper(QObject*  parent = 0);
+void delete_QDataWidgetMapper(QDataWidgetMapper* obj) { delete obj; } 
+   void addMapping(QDataWidgetMapper* theWrappedObject, QWidget*  widget, int  section);
+   void addMapping(QDataWidgetMapper* theWrappedObject, QWidget*  widget, int  section, const QByteArray&  propertyName);
+   void clearMapping(QDataWidgetMapper* theWrappedObject);
+   int  currentIndex(QDataWidgetMapper* theWrappedObject) const;
+   QAbstractItemDelegate*  itemDelegate(QDataWidgetMapper* theWrappedObject) const;
+   QByteArray  mappedPropertyName(QDataWidgetMapper* theWrappedObject, QWidget*  widget) const;
+   int  mappedSection(QDataWidgetMapper* theWrappedObject, QWidget*  widget) const;
+   QWidget*  mappedWidgetAt(QDataWidgetMapper* theWrappedObject, int  section) const;
+   QAbstractItemModel*  model(QDataWidgetMapper* theWrappedObject) const;
+   Qt::Orientation  orientation(QDataWidgetMapper* theWrappedObject) const;
+   void removeMapping(QDataWidgetMapper* theWrappedObject, QWidget*  widget);
+   QModelIndex  rootIndex(QDataWidgetMapper* theWrappedObject) const;
+   void setCurrentIndex(QDataWidgetMapper* theWrappedObject, int  index);
+   void setItemDelegate(QDataWidgetMapper* theWrappedObject, QAbstractItemDelegate*  delegate);
+   void setModel(QDataWidgetMapper* theWrappedObject, QAbstractItemModel*  model);
+   void setOrientation(QDataWidgetMapper* theWrappedObject, Qt::Orientation  aOrientation);
+   void setRootIndex(QDataWidgetMapper* theWrappedObject, const QModelIndex&  index);
+   void setSubmitPolicy(QDataWidgetMapper* theWrappedObject, QDataWidgetMapper::SubmitPolicy  policy);
+   QDataWidgetMapper::SubmitPolicy  submitPolicy(QDataWidgetMapper* theWrappedObject) const;
+};
+
+
 
 
 
@@ -1212,6 +1265,38 @@ void delete_QDropEvent(QDropEvent* obj) { delete obj; }
 
 
 
+class PythonQtShell_QEnterEvent : public QEnterEvent
+{
+public:
+    PythonQtShell_QEnterEvent(const QPointF&  localPos, const QPointF&  windowPos, const QPointF&  screenPos):QEnterEvent(localPos, windowPos, screenPos),_wrapper(NULL) {};
+
+   ~PythonQtShell_QEnterEvent();
+
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtWrapper_QEnterEvent : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QEnterEvent* new_QEnterEvent(const QPointF&  localPos, const QPointF&  windowPos, const QPointF&  screenPos);
+void delete_QEnterEvent(QEnterEvent* obj) { delete obj; } 
+   QPoint  globalPos(QEnterEvent* theWrappedObject) const;
+   int  globalX(QEnterEvent* theWrappedObject) const;
+   int  globalY(QEnterEvent* theWrappedObject) const;
+   const QPointF*  localPos(QEnterEvent* theWrappedObject) const;
+   QPoint  pos(QEnterEvent* theWrappedObject) const;
+   const QPointF*  screenPos(QEnterEvent* theWrappedObject) const;
+   const QPointF*  windowPos(QEnterEvent* theWrappedObject) const;
+   int  x(QEnterEvent* theWrappedObject) const;
+   int  y(QEnterEvent* theWrappedObject) const;
+};
+
+
+
+
+
 class PythonQtShell_QErrorMessage : public QErrorMessage
 {
 public:
@@ -1285,6 +1370,30 @@ void delete_QErrorMessage(QErrorMessage* obj) { delete obj; }
    void changeEvent(QErrorMessage* theWrappedObject, QEvent*  e);
    void done(QErrorMessage* theWrappedObject, int  arg__1);
    QErrorMessage*  static_QErrorMessage_qtHandler();
+};
+
+
+
+
+
+class PythonQtShell_QExposeEvent : public QExposeEvent
+{
+public:
+    PythonQtShell_QExposeEvent(const QRegion&  rgn):QExposeEvent(rgn),_wrapper(NULL) {};
+
+   ~PythonQtShell_QExposeEvent();
+
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtWrapper_QExposeEvent : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QExposeEvent* new_QExposeEvent(const QRegion&  rgn);
+void delete_QExposeEvent(QExposeEvent* obj) { delete obj; } 
+   const QRegion*  region(QExposeEvent* theWrappedObject) const;
 };
 
 
@@ -1972,190 +2081,6 @@ void delete_QFontInfo(QFontInfo* obj) { delete obj; }
    void swap(QFontInfo* theWrappedObject, QFontInfo&  other);
    bool  underline(QFontInfo* theWrappedObject) const;
    int  weight(QFontInfo* theWrappedObject) const;
-};
-
-
-
-
-
-class PythonQtWrapper_QFontMetrics : public QObject
-{ Q_OBJECT
-public:
-public slots:
-QFontMetrics* new_QFontMetrics(const QFont&  arg__1);
-QFontMetrics* new_QFontMetrics(const QFont&  arg__1, QPaintDevice*  pd);
-void delete_QFontMetrics(QFontMetrics* obj) { delete obj; } 
-   int  ascent(QFontMetrics* theWrappedObject) const;
-   int  averageCharWidth(QFontMetrics* theWrappedObject) const;
-   QRect  boundingRect(QFontMetrics* theWrappedObject, QChar  arg__1) const;
-   QRect  boundingRect(QFontMetrics* theWrappedObject, const QRect&  r, int  flags, const QString&  text, int  tabstops = 0, int*  tabarray = 0) const;
-   QRect  boundingRect(QFontMetrics* theWrappedObject, const QString&  text) const;
-   QRect  boundingRect(QFontMetrics* theWrappedObject, int  x, int  y, int  w, int  h, int  flags, const QString&  text, int  tabstops = 0, int*  tabarray = 0) const;
-   int  charWidth(QFontMetrics* theWrappedObject, const QString&  str, int  pos) const;
-   int  descent(QFontMetrics* theWrappedObject) const;
-   QString  elidedText(QFontMetrics* theWrappedObject, const QString&  text, Qt::TextElideMode  mode, int  width, int  flags = 0) const;
-   int  height(QFontMetrics* theWrappedObject) const;
-   bool  inFont(QFontMetrics* theWrappedObject, QChar  arg__1) const;
-   bool  inFontUcs4(QFontMetrics* theWrappedObject, uint  ucs4) const;
-   int  leading(QFontMetrics* theWrappedObject) const;
-   int  leftBearing(QFontMetrics* theWrappedObject, QChar  arg__1) const;
-   int  lineSpacing(QFontMetrics* theWrappedObject) const;
-   int  lineWidth(QFontMetrics* theWrappedObject) const;
-   int  maxWidth(QFontMetrics* theWrappedObject) const;
-   int  minLeftBearing(QFontMetrics* theWrappedObject) const;
-   int  minRightBearing(QFontMetrics* theWrappedObject) const;
-   int  overlinePos(QFontMetrics* theWrappedObject) const;
-   int  rightBearing(QFontMetrics* theWrappedObject, QChar  arg__1) const;
-   QSize  size(QFontMetrics* theWrappedObject, int  flags, const QString&  str, int  tabstops = 0, int*  tabarray = 0) const;
-   int  strikeOutPos(QFontMetrics* theWrappedObject) const;
-   void swap(QFontMetrics* theWrappedObject, QFontMetrics&  other);
-   QRect  tightBoundingRect(QFontMetrics* theWrappedObject, const QString&  text) const;
-   int  underlinePos(QFontMetrics* theWrappedObject) const;
-   int  width(QFontMetrics* theWrappedObject, QChar  arg__1) const;
-   int  width(QFontMetrics* theWrappedObject, const QString&  arg__1, int  len = -1) const;
-   int  width(QFontMetrics* theWrappedObject, const QString&  arg__1, int  len, int  flags) const;
-   int  xHeight(QFontMetrics* theWrappedObject) const;
-};
-
-
-
-
-
-class PythonQtWrapper_QFontMetricsF : public QObject
-{ Q_OBJECT
-public:
-public slots:
-QFontMetricsF* new_QFontMetricsF(const QFont&  arg__1);
-QFontMetricsF* new_QFontMetricsF(const QFont&  arg__1, QPaintDevice*  pd);
-void delete_QFontMetricsF(QFontMetricsF* obj) { delete obj; } 
-   qreal  ascent(QFontMetricsF* theWrappedObject) const;
-   qreal  averageCharWidth(QFontMetricsF* theWrappedObject) const;
-   QRectF  boundingRect(QFontMetricsF* theWrappedObject, QChar  arg__1) const;
-   QRectF  boundingRect(QFontMetricsF* theWrappedObject, const QRectF&  r, int  flags, const QString&  string, int  tabstops = 0, int*  tabarray = 0) const;
-   QRectF  boundingRect(QFontMetricsF* theWrappedObject, const QString&  string) const;
-   qreal  descent(QFontMetricsF* theWrappedObject) const;
-   QString  elidedText(QFontMetricsF* theWrappedObject, const QString&  text, Qt::TextElideMode  mode, qreal  width, int  flags = 0) const;
-   qreal  height(QFontMetricsF* theWrappedObject) const;
-   bool  inFont(QFontMetricsF* theWrappedObject, QChar  arg__1) const;
-   bool  inFontUcs4(QFontMetricsF* theWrappedObject, uint  ucs4) const;
-   qreal  leading(QFontMetricsF* theWrappedObject) const;
-   qreal  leftBearing(QFontMetricsF* theWrappedObject, QChar  arg__1) const;
-   qreal  lineSpacing(QFontMetricsF* theWrappedObject) const;
-   qreal  lineWidth(QFontMetricsF* theWrappedObject) const;
-   qreal  maxWidth(QFontMetricsF* theWrappedObject) const;
-   qreal  minLeftBearing(QFontMetricsF* theWrappedObject) const;
-   qreal  minRightBearing(QFontMetricsF* theWrappedObject) const;
-   qreal  overlinePos(QFontMetricsF* theWrappedObject) const;
-   qreal  rightBearing(QFontMetricsF* theWrappedObject, QChar  arg__1) const;
-   QSizeF  size(QFontMetricsF* theWrappedObject, int  flags, const QString&  str, int  tabstops = 0, int*  tabarray = 0) const;
-   qreal  strikeOutPos(QFontMetricsF* theWrappedObject) const;
-   void swap(QFontMetricsF* theWrappedObject, QFontMetricsF&  other);
-   QRectF  tightBoundingRect(QFontMetricsF* theWrappedObject, const QString&  text) const;
-   qreal  underlinePos(QFontMetricsF* theWrappedObject) const;
-   qreal  width(QFontMetricsF* theWrappedObject, QChar  arg__1) const;
-   qreal  width(QFontMetricsF* theWrappedObject, const QString&  string) const;
-   qreal  xHeight(QFontMetricsF* theWrappedObject) const;
-};
-
-
-
-
-
-class PythonQtShell_QFormLayout : public QFormLayout
-{
-public:
-    PythonQtShell_QFormLayout(QWidget*  parent = 0):QFormLayout(parent),_wrapper(NULL) {};
-
-   ~PythonQtShell_QFormLayout();
-
-virtual void addItem(QLayoutItem*  item);
-virtual void childEvent(QChildEvent*  e);
-virtual QSizePolicy::ControlTypes  controlTypes() const;
-virtual int  count() const;
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual Qt::Orientations  expandingDirections() const;
-virtual QRect  geometry() const;
-virtual int  indexOf(QWidget*  arg__1) const;
-virtual void invalidate();
-virtual bool  isEmpty() const;
-virtual QLayoutItem*  itemAt(int  index) const;
-virtual QLayout*  layout();
-virtual QSize  maximumSize() const;
-virtual QSize  minimumSize() const;
-virtual void setGeometry(const QRect&  rect);
-virtual QLayoutItem*  takeAt(int  index);
-virtual void timerEvent(QTimerEvent*  arg__1);
-
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
-class PythonQtPublicPromoter_QFormLayout : public QFormLayout
-{ public:
-inline void promoted_addItem(QLayoutItem*  item) { QFormLayout::addItem(item); }
-inline int  promoted_count() const { return QFormLayout::count(); }
-inline Qt::Orientations  promoted_expandingDirections() const { return QFormLayout::expandingDirections(); }
-inline void promoted_invalidate() { QFormLayout::invalidate(); }
-inline QLayoutItem*  promoted_itemAt(int  index) const { return QFormLayout::itemAt(index); }
-inline QSize  promoted_minimumSize() const { return QFormLayout::minimumSize(); }
-inline void promoted_setGeometry(const QRect&  rect) { QFormLayout::setGeometry(rect); }
-inline QLayoutItem*  promoted_takeAt(int  index) { return QFormLayout::takeAt(index); }
-};
-
-class PythonQtWrapper_QFormLayout : public QObject
-{ Q_OBJECT
-public:
-public slots:
-QFormLayout* new_QFormLayout(QWidget*  parent = 0);
-void delete_QFormLayout(QFormLayout* obj) { delete obj; } 
-   void addItem(QFormLayout* theWrappedObject, QLayoutItem*  item);
-   void addRow(QFormLayout* theWrappedObject, QLayout*  layout);
-   void addRow(QFormLayout* theWrappedObject, QWidget*  label, QLayout*  field);
-   void addRow(QFormLayout* theWrappedObject, QWidget*  label, QWidget*  field);
-   void addRow(QFormLayout* theWrappedObject, QWidget*  widget);
-   void addRow(QFormLayout* theWrappedObject, const QString&  labelText, QLayout*  field);
-   void addRow(QFormLayout* theWrappedObject, const QString&  labelText, QWidget*  field);
-   int  count(QFormLayout* theWrappedObject) const;
-   Qt::Orientations  expandingDirections(QFormLayout* theWrappedObject) const;
-   QFormLayout::FieldGrowthPolicy  fieldGrowthPolicy(QFormLayout* theWrappedObject) const;
-   Qt::Alignment  formAlignment(QFormLayout* theWrappedObject) const;
-   void getItemPosition(QFormLayout* theWrappedObject, int  index, int*  rowPtr, QFormLayout::ItemRole*  rolePtr) const;
-   void getLayoutPosition(QFormLayout* theWrappedObject, QLayout*  layout, int*  rowPtr, QFormLayout::ItemRole*  rolePtr) const;
-   void getWidgetPosition(QFormLayout* theWrappedObject, QWidget*  widget, int*  rowPtr, QFormLayout::ItemRole*  rolePtr) const;
-   bool  hasHeightForWidth(QFormLayout* theWrappedObject) const;
-   int  heightForWidth(QFormLayout* theWrappedObject, int  width) const;
-   int  horizontalSpacing(QFormLayout* theWrappedObject) const;
-   void insertRow(QFormLayout* theWrappedObject, int  row, QLayout*  layout);
-   void insertRow(QFormLayout* theWrappedObject, int  row, QWidget*  label, QLayout*  field);
-   void insertRow(QFormLayout* theWrappedObject, int  row, QWidget*  label, QWidget*  field);
-   void insertRow(QFormLayout* theWrappedObject, int  row, QWidget*  widget);
-   void insertRow(QFormLayout* theWrappedObject, int  row, const QString&  labelText, QLayout*  field);
-   void insertRow(QFormLayout* theWrappedObject, int  row, const QString&  labelText, QWidget*  field);
-   void invalidate(QFormLayout* theWrappedObject);
-   QLayoutItem*  itemAt(QFormLayout* theWrappedObject, int  index) const;
-   QLayoutItem*  itemAt(QFormLayout* theWrappedObject, int  row, QFormLayout::ItemRole  role) const;
-   Qt::Alignment  labelAlignment(QFormLayout* theWrappedObject) const;
-   QWidget*  labelForField(QFormLayout* theWrappedObject, QLayout*  field) const;
-   QWidget*  labelForField(QFormLayout* theWrappedObject, QWidget*  field) const;
-   QSize  minimumSize(QFormLayout* theWrappedObject) const;
-   int  rowCount(QFormLayout* theWrappedObject) const;
-   QFormLayout::RowWrapPolicy  rowWrapPolicy(QFormLayout* theWrappedObject) const;
-   void setFieldGrowthPolicy(QFormLayout* theWrappedObject, QFormLayout::FieldGrowthPolicy  policy);
-   void setFormAlignment(QFormLayout* theWrappedObject, Qt::Alignment  alignment);
-   void setGeometry(QFormLayout* theWrappedObject, const QRect&  rect);
-   void setHorizontalSpacing(QFormLayout* theWrappedObject, int  spacing);
-   void setItem(QFormLayout* theWrappedObject, int  row, QFormLayout::ItemRole  role, QLayoutItem*  item);
-   void setLabelAlignment(QFormLayout* theWrappedObject, Qt::Alignment  alignment);
-   void setLayout(QFormLayout* theWrappedObject, int  row, QFormLayout::ItemRole  role, QLayout*  layout);
-   void setRowWrapPolicy(QFormLayout* theWrappedObject, QFormLayout::RowWrapPolicy  policy);
-   void setSpacing(QFormLayout* theWrappedObject, int  arg__1);
-   void setVerticalSpacing(QFormLayout* theWrappedObject, int  spacing);
-   void setWidget(QFormLayout* theWrappedObject, int  row, QFormLayout::ItemRole  role, QWidget*  widget);
-   QSize  sizeHint(QFormLayout* theWrappedObject) const;
-   int  spacing(QFormLayout* theWrappedObject) const;
-   QLayoutItem*  takeAt(QFormLayout* theWrappedObject, int  index);
-   int  verticalSpacing(QFormLayout* theWrappedObject) const;
 };
 
 

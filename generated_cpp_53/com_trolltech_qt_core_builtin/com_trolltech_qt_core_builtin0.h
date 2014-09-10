@@ -21,8 +21,10 @@
 #include <qsize.h>
 #include <qstringlist.h>
 #include <qtextcodec.h>
+#include <qtimezone.h>
 #include <qtransform.h>
 #include <qurl.h>
+#include <qurlquery.h>
 
 
 
@@ -266,6 +268,7 @@ QDateTime* new_QDateTime();
 QDateTime* new_QDateTime(const QDate&  arg__1);
 QDateTime* new_QDateTime(const QDate&  arg__1, const QTime&  arg__2, Qt::TimeSpec  spec = Qt::LocalTime);
 QDateTime* new_QDateTime(const QDate&  date, const QTime&  time, Qt::TimeSpec  spec, int  offsetSeconds);
+QDateTime* new_QDateTime(const QDate&  date, const QTime&  time, const QTimeZone&  timeZone);
 QDateTime* new_QDateTime(const QDateTime&  other);
 void delete_QDateTime(QDateTime* obj) { delete obj; } 
    QDateTime  addDays(QDateTime* theWrappedObject, qint64  days) const;
@@ -280,10 +283,12 @@ void delete_QDateTime(QDateTime* obj) { delete obj; }
    qint64  daysTo(QDateTime* theWrappedObject, const QDateTime&  arg__1) const;
    QDateTime  static_QDateTime_fromMSecsSinceEpoch(qint64  msecs);
    QDateTime  static_QDateTime_fromMSecsSinceEpoch(qint64  msecs, Qt::TimeSpec  spec, int  offsetFromUtc = 0);
+   QDateTime  static_QDateTime_fromMSecsSinceEpoch(qint64  msecs, const QTimeZone&  timeZone);
    QDateTime  static_QDateTime_fromString(const QString&  s, Qt::DateFormat  f = Qt::TextDate);
    QDateTime  static_QDateTime_fromString(const QString&  s, const QString&  format);
    QDateTime  static_QDateTime_fromTime_t(uint  secsSince1Jan1970UTC);
    QDateTime  static_QDateTime_fromTime_t(uint  secsSince1Jan1970UTC, Qt::TimeSpec  spec, int  offsetFromUtc = 0);
+   QDateTime  static_QDateTime_fromTime_t(uint  secsSince1Jan1970UTC, const QTimeZone&  timeZone);
    bool  isDaylightTime(QDateTime* theWrappedObject) const;
    bool  isNull(QDateTime* theWrappedObject) const;
    bool  isValid(QDateTime* theWrappedObject) const;
@@ -303,11 +308,13 @@ void delete_QDateTime(QDateTime* obj) { delete obj; }
    void setOffsetFromUtc(QDateTime* theWrappedObject, int  offsetSeconds);
    void setTime(QDateTime* theWrappedObject, const QTime&  time);
    void setTimeSpec(QDateTime* theWrappedObject, Qt::TimeSpec  spec);
+   void setTimeZone(QDateTime* theWrappedObject, const QTimeZone&  toZone);
    void setTime_t(QDateTime* theWrappedObject, uint  secsSince1Jan1970UTC);
    void setUtcOffset(QDateTime* theWrappedObject, int  seconds);
    void swap(QDateTime* theWrappedObject, QDateTime&  other);
    QTime  time(QDateTime* theWrappedObject) const;
    Qt::TimeSpec  timeSpec(QDateTime* theWrappedObject) const;
+   QTimeZone  timeZone(QDateTime* theWrappedObject) const;
    QString  timeZoneAbbreviation(QDateTime* theWrappedObject) const;
    QDateTime  toLocalTime(QDateTime* theWrappedObject) const;
    qint64  toMSecsSinceEpoch(QDateTime* theWrappedObject) const;
@@ -315,6 +322,7 @@ void delete_QDateTime(QDateTime* obj) { delete obj; }
    QString  toString(QDateTime* theWrappedObject, Qt::DateFormat  f = Qt::TextDate) const;
    QString  toString(QDateTime* theWrappedObject, const QString&  format) const;
    QDateTime  toTimeSpec(QDateTime* theWrappedObject, Qt::TimeSpec  spec) const;
+   QDateTime  toTimeZone(QDateTime* theWrappedObject, const QTimeZone&  toZone) const;
    uint  toTime_t(QDateTime* theWrappedObject) const;
    QDateTime  toUTC(QDateTime* theWrappedObject) const;
    int  utcOffset(QDateTime* theWrappedObject) const;
@@ -764,6 +772,8 @@ void delete_QRectF(QRectF* obj) { delete obj; }
    bool  isNull(QRectF* theWrappedObject) const;
    bool  isValid(QRectF* theWrappedObject) const;
    qreal  left(QRectF* theWrappedObject) const;
+   QRectF  marginsAdded(QRectF* theWrappedObject, const QMarginsF&  margins) const;
+   QRectF  marginsRemoved(QRectF* theWrappedObject, const QMarginsF&  margins) const;
    void moveBottom(QRectF* theWrappedObject, qreal  pos);
    void moveBottomLeft(QRectF* theWrappedObject, const QPointF&  p);
    void moveBottomRight(QRectF* theWrappedObject, const QPointF&  p);
@@ -778,6 +788,10 @@ void delete_QRectF(QRectF* obj) { delete obj; }
    QRectF  normalized(QRectF* theWrappedObject) const;
    QRectF  __and__(QRectF* theWrappedObject, const QRectF&  r) const;
    QRectF*  __iand__(QRectF* theWrappedObject, const QRectF&  r);
+   QRectF  __add__(QRectF* theWrappedObject, const QMarginsF&  rhs);
+   QRectF*  __iadd__(QRectF* theWrappedObject, const QMarginsF&  margins);
+   QRectF  __sub__(QRectF* theWrappedObject, const QMarginsF&  rhs);
+   QRectF*  __isub__(QRectF* theWrappedObject, const QMarginsF&  margins);
    void writeTo(QRectF* theWrappedObject, QDataStream&  arg__1);
    bool  __eq__(QRectF* theWrappedObject, const QRectF&  arg__2);
    void readFrom(QRectF* theWrappedObject, QDataStream&  arg__1);
@@ -1056,6 +1070,7 @@ void delete_QUrl(QUrl* obj) { delete obj; }
    void setPath(QUrl* theWrappedObject, const QString&  path, QUrl::ParsingMode  mode = QUrl::DecodedMode);
    void setPort(QUrl* theWrappedObject, int  port);
    void setQuery(QUrl* theWrappedObject, const QString&  query, QUrl::ParsingMode  mode = QUrl::TolerantMode);
+   void setQuery(QUrl* theWrappedObject, const QUrlQuery&  query);
    void setScheme(QUrl* theWrappedObject, const QString&  scheme);
    void setUrl(QUrl* theWrappedObject, const QString&  url, QUrl::ParsingMode  mode = QUrl::TolerantMode);
    void setUserInfo(QUrl* theWrappedObject, const QString&  userInfo, QUrl::ParsingMode  mode = QUrl::TolerantMode);

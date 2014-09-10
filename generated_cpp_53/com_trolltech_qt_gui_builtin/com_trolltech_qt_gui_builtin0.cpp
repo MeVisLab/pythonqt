@@ -37,12 +37,14 @@
 #include <qpolygon.h>
 #include <qrect.h>
 #include <qregion.h>
+#include <qscreen.h>
 #include <qsize.h>
 #include <qsizepolicy.h>
 #include <qstringlist.h>
 #include <qtextformat.h>
 #include <qtransform.h>
 #include <qvector.h>
+#include <qwindow.h>
 
 PythonQtShell_QBitmap::~PythonQtShell_QBitmap() {
   PythonQtPrivate* priv = PythonQt::priv();
@@ -843,6 +845,21 @@ QPoint  PythonQtWrapper_QCursor::static_QCursor_pos()
   return (QCursor::pos());
 }
 
+QPoint  PythonQtWrapper_QCursor::static_QCursor_pos(const QScreen*  screen)
+{
+  return (QCursor::pos(screen));
+}
+
+void PythonQtWrapper_QCursor::static_QCursor_setPos(QScreen*  screen, const QPoint&  p)
+{
+  (QCursor::setPos(screen, p));
+}
+
+void PythonQtWrapper_QCursor::static_QCursor_setPos(QScreen*  screen, int  x, int  y)
+{
+  (QCursor::setPos(screen, x, y));
+}
+
 void PythonQtWrapper_QCursor::static_QCursor_setPos(const QPoint&  p)
 {
   (QCursor::setPos(p));
@@ -1276,6 +1293,11 @@ QIcon* PythonQtWrapper_QIcon::new_QIcon(const QString&  fileName)
 { 
 return new QIcon(fileName); }
 
+QSize  PythonQtWrapper_QIcon::actualSize(QIcon* theWrappedObject, QWindow*  window, const QSize&  size, QIcon::Mode  mode, QIcon::State  state) const
+{
+  return ( theWrappedObject->actualSize(window, size, mode, state));
+}
+
 QSize  PythonQtWrapper_QIcon::actualSize(QIcon* theWrappedObject, const QSize&  size, QIcon::Mode  mode, QIcon::State  state) const
 {
   return ( theWrappedObject->actualSize(size, mode, state));
@@ -1339,6 +1361,11 @@ void PythonQtWrapper_QIcon::paint(QIcon* theWrappedObject, QPainter*  painter, c
 void PythonQtWrapper_QIcon::paint(QIcon* theWrappedObject, QPainter*  painter, int  x, int  y, int  w, int  h, Qt::Alignment  alignment, QIcon::Mode  mode, QIcon::State  state) const
 {
   ( theWrappedObject->paint(painter, x, y, w, h, alignment, mode, state));
+}
+
+QPixmap  PythonQtWrapper_QIcon::pixmap(QIcon* theWrappedObject, QWindow*  window, const QSize&  size, QIcon::Mode  mode, QIcon::State  state) const
+{
+  return ( theWrappedObject->pixmap(window, size, mode, state));
 }
 
 QPixmap  PythonQtWrapper_QIcon::pixmap(QIcon* theWrappedObject, const QSize&  size, QIcon::Mode  mode, QIcon::State  state) const

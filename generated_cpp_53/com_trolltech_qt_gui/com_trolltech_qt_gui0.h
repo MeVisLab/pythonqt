@@ -25,6 +25,7 @@
 #include <qaction.h>
 #include <qactiongroup.h>
 #include <qapplication.h>
+#include <qbackingstore.h>
 #include <qbitmap.h>
 #include <qboxlayout.h>
 #include <qbrush.h>
@@ -44,7 +45,6 @@
 #include <qcoreevent.h>
 #include <qcursor.h>
 #include <qdatastream.h>
-#include <qdatawidgetmapper.h>
 #include <qdatetime.h>
 #include <qdesktopwidget.h>
 #include <qevent.h>
@@ -58,6 +58,7 @@
 #include <qgraphicswidget.h>
 #include <qicon.h>
 #include <qimage.h>
+#include <qinputmethod.h>
 #include <qitemselectionmodel.h>
 #include <qkeysequence.h>
 #include <qlayout.h>
@@ -83,12 +84,14 @@
 #include <qprinter.h>
 #include <qrect.h>
 #include <qregion.h>
+#include <qscreen.h>
 #include <qscrollbar.h>
 #include <qsessionmanager.h>
 #include <qsize.h>
 #include <qsizepolicy.h>
 #include <qstringlist.h>
 #include <qstyle.h>
+#include <qstylehints.h>
 #include <qstyleoption.h>
 #include <qtextformat.h>
 #include <qtransform.h>
@@ -96,6 +99,7 @@
 #include <qvalidator.h>
 #include <qvector.h>
 #include <qwidget.h>
+#include <qwindow.h>
 
 
 
@@ -1525,6 +1529,29 @@ void delete_QApplication(QApplication* obj) { delete obj; }
 
 
 
+class PythonQtWrapper_QBackingStore : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QBackingStore* new_QBackingStore(QWindow*  window);
+void delete_QBackingStore(QBackingStore* obj) { delete obj; } 
+   void beginPaint(QBackingStore* theWrappedObject, const QRegion&  arg__1);
+   void endPaint(QBackingStore* theWrappedObject);
+   void flush(QBackingStore* theWrappedObject, const QRegion&  region, QWindow*  window = 0, const QPoint&  offset = QPoint());
+   bool  hasStaticContents(QBackingStore* theWrappedObject) const;
+   QPaintDevice*  paintDevice(QBackingStore* theWrappedObject);
+   void resize(QBackingStore* theWrappedObject, const QSize&  size);
+   bool  scroll(QBackingStore* theWrappedObject, const QRegion&  area, int  dx, int  dy);
+   void setStaticContents(QBackingStore* theWrappedObject, const QRegion&  region);
+   QSize  size(QBackingStore* theWrappedObject) const;
+   QRegion  staticContents(QBackingStore* theWrappedObject) const;
+   QWindow*  window(QBackingStore* theWrappedObject) const;
+};
+
+
+
+
+
 class PythonQtShell_QBoxLayout : public QBoxLayout
 {
 public:
@@ -2620,59 +2647,6 @@ void delete_QContextMenuEvent(QContextMenuEvent* obj) { delete obj; }
    QContextMenuEvent::Reason  reason(QContextMenuEvent* theWrappedObject) const;
    int  x(QContextMenuEvent* theWrappedObject) const;
    int  y(QContextMenuEvent* theWrappedObject) const;
-};
-
-
-
-
-
-class PythonQtShell_QDataWidgetMapper : public QDataWidgetMapper
-{
-public:
-    PythonQtShell_QDataWidgetMapper(QObject*  parent = 0):QDataWidgetMapper(parent),_wrapper(NULL) {};
-
-   ~PythonQtShell_QDataWidgetMapper();
-
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void setCurrentIndex(int  index);
-virtual void timerEvent(QTimerEvent*  arg__1);
-
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
-class PythonQtPublicPromoter_QDataWidgetMapper : public QDataWidgetMapper
-{ public:
-inline void promoted_setCurrentIndex(int  index) { QDataWidgetMapper::setCurrentIndex(index); }
-};
-
-class PythonQtWrapper_QDataWidgetMapper : public QObject
-{ Q_OBJECT
-public:
-public slots:
-QDataWidgetMapper* new_QDataWidgetMapper(QObject*  parent = 0);
-void delete_QDataWidgetMapper(QDataWidgetMapper* obj) { delete obj; } 
-   void addMapping(QDataWidgetMapper* theWrappedObject, QWidget*  widget, int  section);
-   void addMapping(QDataWidgetMapper* theWrappedObject, QWidget*  widget, int  section, const QByteArray&  propertyName);
-   void clearMapping(QDataWidgetMapper* theWrappedObject);
-   int  currentIndex(QDataWidgetMapper* theWrappedObject) const;
-   QAbstractItemDelegate*  itemDelegate(QDataWidgetMapper* theWrappedObject) const;
-   QByteArray  mappedPropertyName(QDataWidgetMapper* theWrappedObject, QWidget*  widget) const;
-   int  mappedSection(QDataWidgetMapper* theWrappedObject, QWidget*  widget) const;
-   QWidget*  mappedWidgetAt(QDataWidgetMapper* theWrappedObject, int  section) const;
-   QAbstractItemModel*  model(QDataWidgetMapper* theWrappedObject) const;
-   Qt::Orientation  orientation(QDataWidgetMapper* theWrappedObject) const;
-   void removeMapping(QDataWidgetMapper* theWrappedObject, QWidget*  widget);
-   QModelIndex  rootIndex(QDataWidgetMapper* theWrappedObject) const;
-   void setCurrentIndex(QDataWidgetMapper* theWrappedObject, int  index);
-   void setItemDelegate(QDataWidgetMapper* theWrappedObject, QAbstractItemDelegate*  delegate);
-   void setModel(QDataWidgetMapper* theWrappedObject, QAbstractItemModel*  model);
-   void setOrientation(QDataWidgetMapper* theWrappedObject, Qt::Orientation  aOrientation);
-   void setRootIndex(QDataWidgetMapper* theWrappedObject, const QModelIndex&  index);
-   void setSubmitPolicy(QDataWidgetMapper* theWrappedObject, QDataWidgetMapper::SubmitPolicy  policy);
-   QDataWidgetMapper::SubmitPolicy  submitPolicy(QDataWidgetMapper* theWrappedObject) const;
 };
 
 

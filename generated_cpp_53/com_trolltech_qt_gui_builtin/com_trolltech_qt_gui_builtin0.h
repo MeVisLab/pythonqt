@@ -35,12 +35,14 @@
 #include <qpolygon.h>
 #include <qrect.h>
 #include <qregion.h>
+#include <qscreen.h>
 #include <qsize.h>
 #include <qsizepolicy.h>
 #include <qstringlist.h>
 #include <qtextformat.h>
 #include <qtransform.h>
 #include <qvector.h>
+#include <qwindow.h>
 
 
 
@@ -254,6 +256,9 @@ void delete_QCursor(QCursor* obj) { delete obj; }
    void readFrom(QCursor* theWrappedObject, QDataStream&  inS);
    QPixmap  pixmap(QCursor* theWrappedObject) const;
    QPoint  static_QCursor_pos();
+   QPoint  static_QCursor_pos(const QScreen*  screen);
+   void static_QCursor_setPos(QScreen*  screen, const QPoint&  p);
+   void static_QCursor_setPos(QScreen*  screen, int  x, int  y);
    void static_QCursor_setPos(const QPoint&  p);
    void static_QCursor_setPos(int  x, int  y);
    void setShape(QCursor* theWrappedObject, Qt::CursorShape  newShape);
@@ -386,6 +391,7 @@ QIcon* new_QIcon(const QIcon&  other);
 QIcon* new_QIcon(const QPixmap&  pixmap);
 QIcon* new_QIcon(const QString&  fileName);
 void delete_QIcon(QIcon* obj) { delete obj; } 
+   QSize  actualSize(QIcon* theWrappedObject, QWindow*  window, const QSize&  size, QIcon::Mode  mode = QIcon::Normal, QIcon::State  state = QIcon::Off) const;
    QSize  actualSize(QIcon* theWrappedObject, const QSize&  size, QIcon::Mode  mode = QIcon::Normal, QIcon::State  state = QIcon::Off) const;
    void addFile(QIcon* theWrappedObject, const QString&  fileName, const QSize&  size = QSize(), QIcon::Mode  mode = QIcon::Normal, QIcon::State  state = QIcon::Off);
    void addPixmap(QIcon* theWrappedObject, const QPixmap&  pixmap, QIcon::Mode  mode = QIcon::Normal, QIcon::State  state = QIcon::Off);
@@ -399,6 +405,7 @@ void delete_QIcon(QIcon* obj) { delete obj; }
    void readFrom(QIcon* theWrappedObject, QDataStream&  arg__1);
    void paint(QIcon* theWrappedObject, QPainter*  painter, const QRect&  rect, Qt::Alignment  alignment = Qt::AlignCenter, QIcon::Mode  mode = QIcon::Normal, QIcon::State  state = QIcon::Off) const;
    void paint(QIcon* theWrappedObject, QPainter*  painter, int  x, int  y, int  w, int  h, Qt::Alignment  alignment = Qt::AlignCenter, QIcon::Mode  mode = QIcon::Normal, QIcon::State  state = QIcon::Off) const;
+   QPixmap  pixmap(QIcon* theWrappedObject, QWindow*  window, const QSize&  size, QIcon::Mode  mode = QIcon::Normal, QIcon::State  state = QIcon::Off) const;
    QPixmap  pixmap(QIcon* theWrappedObject, const QSize&  size, QIcon::Mode  mode = QIcon::Normal, QIcon::State  state = QIcon::Off) const;
    QPixmap  pixmap(QIcon* theWrappedObject, int  extent, QIcon::Mode  mode = QIcon::Normal, QIcon::State  state = QIcon::Off) const;
    QPixmap  pixmap(QIcon* theWrappedObject, int  w, int  h, QIcon::Mode  mode = QIcon::Normal, QIcon::State  state = QIcon::Off) const;

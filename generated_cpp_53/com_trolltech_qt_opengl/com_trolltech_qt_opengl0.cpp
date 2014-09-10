@@ -6,6 +6,7 @@
 #include <QPixmap>
 #include <QVariant>
 #include <qaction.h>
+#include <qbackingstore.h>
 #include <qbitmap.h>
 #include <qbytearray.h>
 #include <qcolor.h>
@@ -32,6 +33,7 @@
 #include <qmatrix4x4.h>
 #include <qmetaobject.h>
 #include <qobject.h>
+#include <qopenglcontext.h>
 #include <qpaintdevice.h>
 #include <qpaintengine.h>
 #include <qpainter.h>
@@ -43,11 +45,13 @@
 #include <qsize.h>
 #include <qsizepolicy.h>
 #include <qstyle.h>
+#include <qsurfaceformat.h>
 #include <qtransform.h>
 #include <qvector2d.h>
 #include <qvector3d.h>
 #include <qvector4d.h>
 #include <qwidget.h>
+#include <qwindow.h>
 
 QGLBuffer* PythonQtWrapper_QGLBuffer::new_QGLBuffer()
 { 
@@ -376,6 +380,11 @@ bool  PythonQtWrapper_QGLContext::chooseContext(QGLContext* theWrappedObject, co
   return ( ((PythonQtPublicPromoter_QGLContext*)theWrappedObject)->promoted_chooseContext(shareContext));
 }
 
+QOpenGLContext*  PythonQtWrapper_QGLContext::contextHandle(QGLContext* theWrappedObject) const
+{
+  return ( theWrappedObject->contextHandle());
+}
+
 bool  PythonQtWrapper_QGLContext::create(QGLContext* theWrappedObject, const QGLContext*  shareContext)
 {
   return ( ((PythonQtPublicPromoter_QGLContext*)theWrappedObject)->promoted_create(shareContext));
@@ -414,6 +423,11 @@ void PythonQtWrapper_QGLContext::drawTexture(QGLContext* theWrappedObject, const
 QGLFormat  PythonQtWrapper_QGLContext::format(QGLContext* theWrappedObject) const
 {
   return ( theWrappedObject->format());
+}
+
+QGLContext*  PythonQtWrapper_QGLContext::static_QGLContext_fromOpenGLContext(QOpenGLContext*  platformContext)
+{
+  return (QGLContext::fromOpenGLContext(platformContext));
 }
 
 QGLFunctions*  PythonQtWrapper_QGLContext::functions(QGLContext* theWrappedObject) const
@@ -543,6 +557,11 @@ bool  PythonQtWrapper_QGLFormat::directRendering(QGLFormat* theWrappedObject) co
 bool  PythonQtWrapper_QGLFormat::doubleBuffer(QGLFormat* theWrappedObject) const
 {
   return ( theWrappedObject->doubleBuffer());
+}
+
+QGLFormat  PythonQtWrapper_QGLFormat::static_QGLFormat_fromSurfaceFormat(const QSurfaceFormat&  format)
+{
+  return (QGLFormat::fromSurfaceFormat(format));
 }
 
 int  PythonQtWrapper_QGLFormat::greenBufferSize(QGLFormat* theWrappedObject) const
@@ -763,6 +782,11 @@ int  PythonQtWrapper_QGLFormat::swapInterval(QGLFormat* theWrappedObject) const
 bool  PythonQtWrapper_QGLFormat::testOption(QGLFormat* theWrappedObject, QGL::FormatOptions  opt) const
 {
   return ( theWrappedObject->testOption(opt));
+}
+
+QSurfaceFormat  PythonQtWrapper_QGLFormat::static_QGLFormat_toSurfaceFormat(const QGLFormat&  format)
+{
+  return (QGLFormat::toSurfaceFormat(format));
 }
 
 QString PythonQtWrapper_QGLFormat::py_toString(QGLFormat* obj) {
