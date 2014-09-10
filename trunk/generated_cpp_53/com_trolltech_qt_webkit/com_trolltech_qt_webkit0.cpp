@@ -4,6 +4,7 @@
 #include <PythonQtSignalReceiver.h>
 #include <QVariant>
 #include <qaction.h>
+#include <qbackingstore.h>
 #include <qbitmap.h>
 #include <qbytearray.h>
 #include <qcoreevent.h>
@@ -58,6 +59,7 @@
 #include <qwebsettings.h>
 #include <qwebview.h>
 #include <qwidget.h>
+#include <qwindow.h>
 
 PythonQtShell_QGraphicsWebView::~PythonQtShell_QGraphicsWebView() {
   PythonQtPrivate* priv = PythonQt::priv();

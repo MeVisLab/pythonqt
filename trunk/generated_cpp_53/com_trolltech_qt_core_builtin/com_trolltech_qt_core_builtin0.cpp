@@ -22,8 +22,10 @@
 #include <qsize.h>
 #include <qstringlist.h>
 #include <qtextcodec.h>
+#include <qtimezone.h>
 #include <qtransform.h>
 #include <qurl.h>
+#include <qurlquery.h>
 
 QBitArray* PythonQtWrapper_QBitArray::new_QBitArray()
 { 
@@ -942,6 +944,10 @@ QDateTime* PythonQtWrapper_QDateTime::new_QDateTime(const QDate&  date, const QT
 { 
 return new QDateTime(date, time, spec, offsetSeconds); }
 
+QDateTime* PythonQtWrapper_QDateTime::new_QDateTime(const QDate&  date, const QTime&  time, const QTimeZone&  timeZone)
+{ 
+return new QDateTime(date, time, timeZone); }
+
 QDateTime* PythonQtWrapper_QDateTime::new_QDateTime(const QDateTime&  other)
 { 
 return new QDateTime(other); }
@@ -1006,6 +1012,11 @@ QDateTime  PythonQtWrapper_QDateTime::static_QDateTime_fromMSecsSinceEpoch(qint6
   return (QDateTime::fromMSecsSinceEpoch(msecs, spec, offsetFromUtc));
 }
 
+QDateTime  PythonQtWrapper_QDateTime::static_QDateTime_fromMSecsSinceEpoch(qint64  msecs, const QTimeZone&  timeZone)
+{
+  return (QDateTime::fromMSecsSinceEpoch(msecs, timeZone));
+}
+
 QDateTime  PythonQtWrapper_QDateTime::static_QDateTime_fromString(const QString&  s, Qt::DateFormat  f)
 {
   return (QDateTime::fromString(s, f));
@@ -1024,6 +1035,11 @@ QDateTime  PythonQtWrapper_QDateTime::static_QDateTime_fromTime_t(uint  secsSinc
 QDateTime  PythonQtWrapper_QDateTime::static_QDateTime_fromTime_t(uint  secsSince1Jan1970UTC, Qt::TimeSpec  spec, int  offsetFromUtc)
 {
   return (QDateTime::fromTime_t(secsSince1Jan1970UTC, spec, offsetFromUtc));
+}
+
+QDateTime  PythonQtWrapper_QDateTime::static_QDateTime_fromTime_t(uint  secsSince1Jan1970UTC, const QTimeZone&  timeZone)
+{
+  return (QDateTime::fromTime_t(secsSince1Jan1970UTC, timeZone));
 }
 
 bool  PythonQtWrapper_QDateTime::isDaylightTime(QDateTime* theWrappedObject) const
@@ -1121,6 +1137,11 @@ void PythonQtWrapper_QDateTime::setTimeSpec(QDateTime* theWrappedObject, Qt::Tim
   ( theWrappedObject->setTimeSpec(spec));
 }
 
+void PythonQtWrapper_QDateTime::setTimeZone(QDateTime* theWrappedObject, const QTimeZone&  toZone)
+{
+  ( theWrappedObject->setTimeZone(toZone));
+}
+
 void PythonQtWrapper_QDateTime::setTime_t(QDateTime* theWrappedObject, uint  secsSince1Jan1970UTC)
 {
   ( theWrappedObject->setTime_t(secsSince1Jan1970UTC));
@@ -1144,6 +1165,11 @@ QTime  PythonQtWrapper_QDateTime::time(QDateTime* theWrappedObject) const
 Qt::TimeSpec  PythonQtWrapper_QDateTime::timeSpec(QDateTime* theWrappedObject) const
 {
   return ( theWrappedObject->timeSpec());
+}
+
+QTimeZone  PythonQtWrapper_QDateTime::timeZone(QDateTime* theWrappedObject) const
+{
+  return ( theWrappedObject->timeZone());
 }
 
 QString  PythonQtWrapper_QDateTime::timeZoneAbbreviation(QDateTime* theWrappedObject) const
@@ -1179,6 +1205,11 @@ QString  PythonQtWrapper_QDateTime::toString(QDateTime* theWrappedObject, const 
 QDateTime  PythonQtWrapper_QDateTime::toTimeSpec(QDateTime* theWrappedObject, Qt::TimeSpec  spec) const
 {
   return ( theWrappedObject->toTimeSpec(spec));
+}
+
+QDateTime  PythonQtWrapper_QDateTime::toTimeZone(QDateTime* theWrappedObject, const QTimeZone&  toZone) const
+{
+  return ( theWrappedObject->toTimeZone(toZone));
 }
 
 uint  PythonQtWrapper_QDateTime::toTime_t(QDateTime* theWrappedObject) const
@@ -2777,6 +2808,16 @@ qreal  PythonQtWrapper_QRectF::left(QRectF* theWrappedObject) const
   return ( theWrappedObject->left());
 }
 
+QRectF  PythonQtWrapper_QRectF::marginsAdded(QRectF* theWrappedObject, const QMarginsF&  margins) const
+{
+  return ( theWrappedObject->marginsAdded(margins));
+}
+
+QRectF  PythonQtWrapper_QRectF::marginsRemoved(QRectF* theWrappedObject, const QMarginsF&  margins) const
+{
+  return ( theWrappedObject->marginsRemoved(margins));
+}
+
 void PythonQtWrapper_QRectF::moveBottom(QRectF* theWrappedObject, qreal  pos)
 {
   ( theWrappedObject->moveBottom(pos));
@@ -2845,6 +2886,26 @@ QRectF  PythonQtWrapper_QRectF::__and__(QRectF* theWrappedObject, const QRectF& 
 QRectF*  PythonQtWrapper_QRectF::__iand__(QRectF* theWrappedObject, const QRectF&  r)
 {
   return &( (*theWrappedObject)&= r);
+}
+
+QRectF  PythonQtWrapper_QRectF::__add__(QRectF* theWrappedObject, const QMarginsF&  rhs)
+{
+  return ( (*theWrappedObject)+ rhs);
+}
+
+QRectF*  PythonQtWrapper_QRectF::__iadd__(QRectF* theWrappedObject, const QMarginsF&  margins)
+{
+  return &( (*theWrappedObject)+= margins);
+}
+
+QRectF  PythonQtWrapper_QRectF::__sub__(QRectF* theWrappedObject, const QMarginsF&  rhs)
+{
+  return ( (*theWrappedObject)- rhs);
+}
+
+QRectF*  PythonQtWrapper_QRectF::__isub__(QRectF* theWrappedObject, const QMarginsF&  margins)
+{
+  return &( (*theWrappedObject)-= margins);
 }
 
 void PythonQtWrapper_QRectF::writeTo(QRectF* theWrappedObject, QDataStream&  arg__1)
@@ -3821,6 +3882,11 @@ void PythonQtWrapper_QUrl::setPort(QUrl* theWrappedObject, int  port)
 void PythonQtWrapper_QUrl::setQuery(QUrl* theWrappedObject, const QString&  query, QUrl::ParsingMode  mode)
 {
   ( theWrappedObject->setQuery(query, mode));
+}
+
+void PythonQtWrapper_QUrl::setQuery(QUrl* theWrappedObject, const QUrlQuery&  query)
+{
+  ( theWrappedObject->setQuery(query));
 }
 
 void PythonQtWrapper_QUrl::setScheme(QUrl* theWrappedObject, const QString&  scheme)

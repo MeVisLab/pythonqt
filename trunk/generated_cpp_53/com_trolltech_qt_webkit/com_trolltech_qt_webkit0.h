@@ -2,6 +2,7 @@
 #include <QObject>
 #include <QVariant>
 #include <qaction.h>
+#include <qbackingstore.h>
 #include <qbitmap.h>
 #include <qbytearray.h>
 #include <qcoreevent.h>
@@ -58,6 +59,7 @@
 #include <qwebsettings.h>
 #include <qwebview.h>
 #include <qwidget.h>
+#include <qwindow.h>
 
 
 
@@ -794,16 +796,16 @@ public:
 public slots:
 QWebPage::ErrorPageExtensionOption* new_QWebPage_ErrorPageExtensionOption();
 void delete_QWebPage_ErrorPageExtensionOption(QWebPage::ErrorPageExtensionOption* obj) { delete obj; } 
-void py_set_url(QWebPage::ErrorPageExtensionOption* theWrappedObject, QUrl  url){ theWrappedObject->url = url; }
-QUrl  py_get_url(QWebPage::ErrorPageExtensionOption* theWrappedObject){ return theWrappedObject->url; }
-void py_set_frame(QWebPage::ErrorPageExtensionOption* theWrappedObject, QWebFrame*  frame){ theWrappedObject->frame = frame; }
-QWebFrame*  py_get_frame(QWebPage::ErrorPageExtensionOption* theWrappedObject){ return theWrappedObject->frame; }
-void py_set_errorString(QWebPage::ErrorPageExtensionOption* theWrappedObject, QString  errorString){ theWrappedObject->errorString = errorString; }
-QString  py_get_errorString(QWebPage::ErrorPageExtensionOption* theWrappedObject){ return theWrappedObject->errorString; }
 void py_set_domain(QWebPage::ErrorPageExtensionOption* theWrappedObject, QWebPage::ErrorDomain  domain){ theWrappedObject->domain = domain; }
 QWebPage::ErrorDomain  py_get_domain(QWebPage::ErrorPageExtensionOption* theWrappedObject){ return theWrappedObject->domain; }
 void py_set_error(QWebPage::ErrorPageExtensionOption* theWrappedObject, int  error){ theWrappedObject->error = error; }
 int  py_get_error(QWebPage::ErrorPageExtensionOption* theWrappedObject){ return theWrappedObject->error; }
+void py_set_errorString(QWebPage::ErrorPageExtensionOption* theWrappedObject, QString  errorString){ theWrappedObject->errorString = errorString; }
+QString  py_get_errorString(QWebPage::ErrorPageExtensionOption* theWrappedObject){ return theWrappedObject->errorString; }
+void py_set_frame(QWebPage::ErrorPageExtensionOption* theWrappedObject, QWebFrame*  frame){ theWrappedObject->frame = frame; }
+QWebFrame*  py_get_frame(QWebPage::ErrorPageExtensionOption* theWrappedObject){ return theWrappedObject->frame; }
+void py_set_url(QWebPage::ErrorPageExtensionOption* theWrappedObject, QUrl  url){ theWrappedObject->url = url; }
+QUrl  py_get_url(QWebPage::ErrorPageExtensionOption* theWrappedObject){ return theWrappedObject->url; }
 };
 
 
@@ -827,14 +829,14 @@ public:
 public slots:
 QWebPage::ErrorPageExtensionReturn* new_QWebPage_ErrorPageExtensionReturn();
 void delete_QWebPage_ErrorPageExtensionReturn(QWebPage::ErrorPageExtensionReturn* obj) { delete obj; } 
-void py_set_encoding(QWebPage::ErrorPageExtensionReturn* theWrappedObject, QString  encoding){ theWrappedObject->encoding = encoding; }
-QString  py_get_encoding(QWebPage::ErrorPageExtensionReturn* theWrappedObject){ return theWrappedObject->encoding; }
+void py_set_baseUrl(QWebPage::ErrorPageExtensionReturn* theWrappedObject, QUrl  baseUrl){ theWrappedObject->baseUrl = baseUrl; }
+QUrl  py_get_baseUrl(QWebPage::ErrorPageExtensionReturn* theWrappedObject){ return theWrappedObject->baseUrl; }
 void py_set_content(QWebPage::ErrorPageExtensionReturn* theWrappedObject, QByteArray  content){ theWrappedObject->content = content; }
 QByteArray  py_get_content(QWebPage::ErrorPageExtensionReturn* theWrappedObject){ return theWrappedObject->content; }
 void py_set_contentType(QWebPage::ErrorPageExtensionReturn* theWrappedObject, QString  contentType){ theWrappedObject->contentType = contentType; }
 QString  py_get_contentType(QWebPage::ErrorPageExtensionReturn* theWrappedObject){ return theWrappedObject->contentType; }
-void py_set_baseUrl(QWebPage::ErrorPageExtensionReturn* theWrappedObject, QUrl  baseUrl){ theWrappedObject->baseUrl = baseUrl; }
-QUrl  py_get_baseUrl(QWebPage::ErrorPageExtensionReturn* theWrappedObject){ return theWrappedObject->baseUrl; }
+void py_set_encoding(QWebPage::ErrorPageExtensionReturn* theWrappedObject, QString  encoding){ theWrappedObject->encoding = encoding; }
+QString  py_get_encoding(QWebPage::ErrorPageExtensionReturn* theWrappedObject){ return theWrappedObject->encoding; }
 };
 
 
@@ -1002,12 +1004,12 @@ return a; }
 void delete_QWebPluginFactory_MimeType(QWebPluginFactory::MimeType* obj) { delete obj; } 
    bool  __ne__(QWebPluginFactory::MimeType* theWrappedObject, const QWebPluginFactory::MimeType&  other) const;
    bool  __eq__(QWebPluginFactory::MimeType* theWrappedObject, const QWebPluginFactory::MimeType&  other) const;
-void py_set_name(QWebPluginFactory::MimeType* theWrappedObject, QString  name){ theWrappedObject->name = name; }
-QString  py_get_name(QWebPluginFactory::MimeType* theWrappedObject){ return theWrappedObject->name; }
-void py_set_fileExtensions(QWebPluginFactory::MimeType* theWrappedObject, QStringList  fileExtensions){ theWrappedObject->fileExtensions = fileExtensions; }
-QStringList  py_get_fileExtensions(QWebPluginFactory::MimeType* theWrappedObject){ return theWrappedObject->fileExtensions; }
 void py_set_description(QWebPluginFactory::MimeType* theWrappedObject, QString  description){ theWrappedObject->description = description; }
 QString  py_get_description(QWebPluginFactory::MimeType* theWrappedObject){ return theWrappedObject->description; }
+void py_set_fileExtensions(QWebPluginFactory::MimeType* theWrappedObject, QStringList  fileExtensions){ theWrappedObject->fileExtensions = fileExtensions; }
+QStringList  py_get_fileExtensions(QWebPluginFactory::MimeType* theWrappedObject){ return theWrappedObject->fileExtensions; }
+void py_set_name(QWebPluginFactory::MimeType* theWrappedObject, QString  name){ theWrappedObject->name = name; }
+QString  py_get_name(QWebPluginFactory::MimeType* theWrappedObject){ return theWrappedObject->name; }
 };
 
 
@@ -1035,10 +1037,10 @@ PythonQtShell_QWebPluginFactory_Plugin* a = new PythonQtShell_QWebPluginFactory_
 *((QWebPluginFactory::Plugin*)a) = other;
 return a; }
 void delete_QWebPluginFactory_Plugin(QWebPluginFactory::Plugin* obj) { delete obj; } 
-void py_set_name(QWebPluginFactory::Plugin* theWrappedObject, QString  name){ theWrappedObject->name = name; }
-QString  py_get_name(QWebPluginFactory::Plugin* theWrappedObject){ return theWrappedObject->name; }
 void py_set_description(QWebPluginFactory::Plugin* theWrappedObject, QString  description){ theWrappedObject->description = description; }
 QString  py_get_description(QWebPluginFactory::Plugin* theWrappedObject){ return theWrappedObject->description; }
+void py_set_name(QWebPluginFactory::Plugin* theWrappedObject, QString  name){ theWrappedObject->name = name; }
+QString  py_get_name(QWebPluginFactory::Plugin* theWrappedObject){ return theWrappedObject->name; }
 };
 
 
