@@ -11,6 +11,7 @@
 <file alias="typesystem_xml.txt">typesystem_xml.xml</file>
 <file alias="typesystem_webkit.txt">typesystem_webkit.xml</file>
 <file alias="typesystem_xmlpatterns.txt">typesystem_xmlpatterns.xml</file>
+<file alias="typesystem_multimedia.txt">typesystem_multimedia.xml</file>
 <file>parser/rpp/pp-qt-configuration</file>
 </qresource>
 </RCC>
