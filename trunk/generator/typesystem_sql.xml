@@ -3,6 +3,7 @@
   <rejection class="QSqlDriverCreator"/>
   <rejection class="QSqlDriverPlugin"/>
   <rejection class="QSqlDriverFactoryInterface"/>
+  <enum-type name="QSqlDriver::NotificationSource"/>
 
   <namespace-type name="QSql">
      <include file-name="qsql.h" location="global"/>

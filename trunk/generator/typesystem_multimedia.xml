@@ -5,7 +5,6 @@
 <enum-type name="QAudioFormat::SampleType"/>
 <enum-type name="QSoundEffect::Status"/>
 <enum-type name="QSoundEffect::Loop"/>
-<enum-type name="QAudioFormat::SampleType"/>
 <enum-type name="QAbstractVideoBuffer::HandleType"/>
 <enum-type name="QAbstractVideoBuffer::MapMode"/>
 <enum-type name="QCameraImageCapture::Error"/>
@@ -92,5 +91,9 @@
 <object-type name="QVideoFrame"/>
 <object-type name="QVideoProbe"/>
 <object-type name="QVideoSurfaceFormat"/>
+
+<object-type name="QCameraViewfinder"/>
+<object-type name="QGraphicsVideoItem"/>
+<object-type name="QVideoWidget"/>
 
 </typesystem>
