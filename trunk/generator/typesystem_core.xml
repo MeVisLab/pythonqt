@@ -1844,8 +1844,8 @@
   <enum-type name="QWebPage::VisibilityState"/>
   <enum-type name="QTextCharFormat::FontPropertiesInheritanceBehavior"/>
   <enum-type name="QSqlDriver::NotificationSource"/>
-  <enum-type name="QTouchEvent::TouchPoint::InfoFlag"/>
-  <enum-type name="QLocalServer::SocketOption"/>
+  <enum-type name="QTouchEvent::TouchPoint::InfoFlag" flags="QTouchEvent::TouchPoint::InfoFlags"/>
+  <enum-type name="QLocalServer::SocketOption" flags="QLocalServer::SocketOptions"/>
   <enum-type name="QAbstractSocket::PauseMode"/>
   <enum-type name="QAbstractSocket::BindFlag"/>
   <enum-type name="QSound::Loop"/>
