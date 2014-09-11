@@ -432,8 +432,9 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
     }
     break;
   case PythonQtMemberInfo::EnumWrapper:
-    {
-      PyObject* enumWrapper = member._enumWrapper;
+  case PythonQtMemberInfo::NestedClass:
+  {
+      PyObject* enumWrapper = member._pythonType;
       Py_INCREF(enumWrapper);
       return enumWrapper;
     }
@@ -570,7 +571,10 @@ static int PythonQtInstanceWrapper_setattro(PyObject *obj,PyObject *name,PyObjec
     error = QString("EnumValue '") + attributeName + "' can not be overwritten on " + obj->ob_type->tp_name + " object";
   } else if (member._type == PythonQtMemberInfo::EnumWrapper) {
     error = QString("Enum '") + attributeName + "' can not be overwritten on " + obj->ob_type->tp_name + " object";
-  } else if (member._type == PythonQtMemberInfo::NotFound) {
+  } else if (member._type == PythonQtMemberInfo::NestedClass) {
+    error = QString("Nested class '") + attributeName + "' can not be overwritten on " + obj->ob_type->tp_name + " object";
+  }
+  else if (member._type == PythonQtMemberInfo::NotFound) {
     // check for a setter slot
     static const QByteArray setterString("py_set_");
     PythonQtMemberInfo setter = wrapper->classInfo()->member(setterString + attributeName);

@@ -389,8 +389,9 @@ static PyObject *PythonQtClassWrapper_getattro(PyObject *obj, PyObject *name)
       PyObject* enumValue = member._enumValue;
       Py_INCREF(enumValue);
       return enumValue;
-    } else if (member._type == PythonQtMemberInfo::EnumWrapper) {
-      PyObject* enumWrapper = member._enumWrapper;
+    } else if (member._type == PythonQtMemberInfo::EnumWrapper ||
+               member._type == PythonQtMemberInfo::NestedClass) {
+      PyObject* enumWrapper = member._pythonType;
       Py_INCREF(enumWrapper);
       return enumWrapper;
     } else if (member._type == PythonQtMemberInfo::Slot) {

@@ -44,10 +44,10 @@ class PythonQtSlotInfo;
 
 struct PythonQtMemberInfo {
   enum Type {
-    Invalid, Slot, Signal, EnumValue, EnumWrapper, Property, NotFound 
+    Invalid, Slot, Signal, EnumValue, EnumWrapper, Property, NestedClass, NotFound 
   };
 
-  PythonQtMemberInfo():_type(Invalid),_slot(NULL),_enumWrapper(NULL),_enumValue(0) { }
+  PythonQtMemberInfo():_type(Invalid),_slot(NULL),_pythonType(NULL),_enumValue(0) { }
   
   PythonQtMemberInfo(PythonQtSlotInfo* info);
 
@@ -59,7 +59,7 @@ struct PythonQtMemberInfo {
 
   // TODO: this could be a union...
   PythonQtSlotInfo* _slot;
-  PyObject*         _enumWrapper;
+  PyObject*         _pythonType;
   PythonQtObjectPtr _enumValue;
   QMetaProperty     _property;
 };
@@ -112,8 +112,14 @@ public:
   //! add a decorator slot, ownership is passed to classinfo
   void addDecoratorSlot(PythonQtSlotInfo* info);
 
+  //! add a nested class, so that it can be shown as outer class member
+  void addNestedClass(PythonQtClassInfo* info);
+
   //! get the classname (either of the QObject or of the wrapped CPP object)
-  const char* className();
+  const QByteArray& className() const;
+
+  //! get the unscoped classname (without ParentClass::) for nested classes
+  QByteArray unscopedClassName() const;
 
   //! returns if the QObject
   bool isQObject() { return _isQObject; }
@@ -187,6 +193,9 @@ public:
   //! clear all members that where cached as "NotFound"
   void clearNotFoundCachedMembers();
 
+  //! get nested classes
+  const QList<PythonQtClassInfo*>& nestedClasses() { return _nestedClasses; }
+
 private:
   void createEnumWrappers();
   void createEnumWrappers(const QMetaObject* meta);
@@ -225,6 +234,8 @@ private:
   QList<ParentClassInfo>               _parentClasses;
 
   QList<PythonQtPolymorphicHandlerCB*> _polymorphicHandlers;
+
+  QList<PythonQtClassInfo*>            _nestedClasses;
 
   QObject*                             _decoratorProvider;
   PythonQtQObjectCreatorFunctionCB*    _decoratorProviderCB;

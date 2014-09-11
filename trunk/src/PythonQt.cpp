@@ -362,10 +362,25 @@ void PythonQtPrivate::registerClass(const QMetaObject* metaobject, const char* p
 
 void PythonQtPrivate::createPythonQtClassWrapper(PythonQtClassInfo* info, const char* package, PyObject* module)
 {
+  QByteArray pythonClassName = info->className();
+  int nestedClassIndex = pythonClassName.indexOf("::");
+  bool isNested = false;
+  if (nestedClassIndex>0) {
+    pythonClassName = pythonClassName.mid(nestedClassIndex + 2);
+    isNested = true;
+  }
+
   PyObject* pack = module?module:packageByName(package);
-  PyObject* pyobj = (PyObject*)createNewPythonQtClassWrapper(info, pack);
-  PyModule_AddObject(pack, info->className(), pyobj);
-  if (!module && package && strncmp(package,"Qt",2)==0) {
+  PyObject* pyobj = (PyObject*)createNewPythonQtClassWrapper(info, pack, pythonClassName);
+
+  if (isNested) {
+    QByteArray outerClass = QByteArray(info->className()).mid(0, nestedClassIndex);
+    PythonQtClassInfo* outerClassInfo = lookupClassInfoAndCreateIfNotPresent(outerClass);
+    outerClassInfo->addNestedClass(info);
+  } else {
+    PyModule_AddObject(pack, info->className(), pyobj);
+  }
+  if (!module && package && strncmp(package, "Qt", 2) == 0) {
     // since PyModule_AddObject steals the reference, we need a incref once more...
     Py_INCREF(pyobj);
     // put all qt objects into Qt as well
@@ -547,10 +562,10 @@ PythonQtInstanceWrapper* PythonQtPrivate::createNewPythonQtInstanceWrapper(QObje
   return result;
 }
 
-PythonQtClassWrapper* PythonQtPrivate::createNewPythonQtClassWrapper(PythonQtClassInfo* info, PyObject* parentModule) {
+PythonQtClassWrapper* PythonQtPrivate::createNewPythonQtClassWrapper(PythonQtClassInfo* info, PyObject* parentModule, const QByteArray& pythonClassName) {
   PythonQtClassWrapper* result;
 
-  PyObject* className = PyString_FromString(info->className());
+  PyObject* className = PyString_FromString(pythonClassName.constData());
 
   PyObject* baseClasses = PyTuple_New(1);
   PyTuple_SET_ITEM(baseClasses, 0, (PyObject*)&PythonQtInstanceWrapper_Type);
@@ -1247,6 +1262,7 @@ void PythonQtPrivate::addDecorators(QObject* o, int decoTypes)
         const PythonQtMethodInfo* info = PythonQtMethodInfo::getCachedMethodInfo(m, NULL);
         if (info->parameters().at(0).pointerCount == 1) {
           QByteArray nameOfClass = signature.mid(4);
+          nameOfClass.replace("__", "::");
           PythonQtClassInfo* classInfo = lookupClassInfoAndCreateIfNotPresent(nameOfClass);
           PythonQtSlotInfo* newSlot = new PythonQtSlotInfo(NULL, m, i, o, PythonQtSlotInfo::ClassDecorator);
           classInfo->addConstructor(newSlot);
@@ -1254,6 +1270,7 @@ void PythonQtPrivate::addDecorators(QObject* o, int decoTypes)
       } else if (signature.startsWith("delete_")) {
         if ((decoTypes & DestructorDecorator) == 0) continue;
         QByteArray nameOfClass = signature.mid(7);
+        nameOfClass.replace("__", "::");
         PythonQtClassInfo* classInfo = lookupClassInfoAndCreateIfNotPresent(nameOfClass);
         PythonQtSlotInfo* newSlot = new PythonQtSlotInfo(NULL, m, i, o, PythonQtSlotInfo::ClassDecorator);
         classInfo->setDestructor(newSlot);

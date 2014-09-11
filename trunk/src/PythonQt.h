@@ -637,7 +637,7 @@ public:
   void addDecorators(QObject* o, int decoTypes);
 
   //! helper method that creates a PythonQtClassWrapper object  (returns a new reference)
-  PythonQtClassWrapper* createNewPythonQtClassWrapper(PythonQtClassInfo* info, PyObject* module);
+  PythonQtClassWrapper* createNewPythonQtClassWrapper(PythonQtClassInfo* info, PyObject* module, const QByteArray& pythonClassName);
 
   //! create a new instance of the given enum type with given value (returns a new reference)
   static PyObject*  createEnumValueInstance(PyObject* enumType, unsigned int enumValue);
