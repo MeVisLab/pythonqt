@@ -202,8 +202,12 @@ void SetupGenerator::generate()
         if (cls->qualifiedCppName().contains("Ssl")) {
           s << "#ifndef QT_NO_OPENSSL"  << endl;
         }
+        AbstractMetaFunctionList ctors = cls->queryFunctions(AbstractMetaClass::Constructors
+          | AbstractMetaClass::WasVisible
+          | AbstractMetaClass::NotRemovedFromTargetLang);
+
         QString shellCreator;
-        if (cls->generateShellClass()) {
+        if (cls->generateShellClass() && !ctors.isEmpty()) {
           shellCreator = ", PythonQtSetInstanceWrapperOnShell<" + ShellGenerator::shellClassName(cls) + ">";
         } else {
           shellCreator = ", NULL";

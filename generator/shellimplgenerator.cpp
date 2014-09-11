@@ -106,7 +106,7 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
     s << "#ifndef QT_NO_OPENSSL"  << endl;
   }
 
-  if (meta_class->generateShellClass()) {
+  if (meta_class->generateShellClass() && !ctors.isEmpty()) {
 
     s << shellClassName(meta_class) << "::~" << shellClassName(meta_class) << "() {" << endl;
     s << "  PythonQtPrivate* priv = PythonQt::priv();" << endl;

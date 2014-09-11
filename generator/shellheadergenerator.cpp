@@ -119,7 +119,7 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
   }
 
   // Shell-------------------------------------------------------------------
-  if (meta_class->generateShellClass()) {
+  if (meta_class->generateShellClass() && !ctors.isEmpty()) {
 
     AbstractMetaFunctionList virtualsForShell = getVirtualFunctionsForShell(meta_class);
 
