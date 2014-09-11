@@ -747,7 +747,7 @@ public:
     typedef QFlags<TypeFlag> TypeFlags;
 
     ComplexTypeEntry(const QString &name, Type t)
-        : TypeEntry(QString(name).replace("::", "_"), t),
+        : TypeEntry(QString(name).replace("::", "__"), t),
           m_qualified_cpp_name(name),
           m_qobject(false),
           m_polymorphic_base(false),
