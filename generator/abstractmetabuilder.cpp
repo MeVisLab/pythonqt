@@ -854,6 +854,7 @@ void AbstractMetaBuilder::figureOutEnumValuesForClass(AbstractMetaClass *meta_cl
                 if (current) {
                     bool currentRejected = ete->isEnumValueRejected(current->name());
                     if (!currentRejected && !vRejected) {
+                        /* Removed because I don't see the sense of rejecting duplicate values...
                         ReportHandler::warning(
                             QString("duplicate enum values: %1::%2, %3 and %4 are %5, already rejected: (%6)")
                             .arg(meta_class->name())
@@ -863,6 +864,7 @@ void AbstractMetaBuilder::figureOutEnumValuesForClass(AbstractMetaClass *meta_cl
                             .arg(v->value())
                             .arg(ete->enumValueRejections().join(", ")));
                         continue;
+                        */
                     }
                 }
 

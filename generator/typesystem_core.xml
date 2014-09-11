@@ -841,20 +841,6 @@
   <object-type name="QDirIterator"/>
   <object-type name="QAbstractFileEngineIterator"/>
   <object-type name="QAbstractItemModel">
-    <modify-function signature="rowsAboutToBeInserted(QModelIndex,int,int)" private-signal="yes"/>
-    <modify-function signature="rowsInserted(QModelIndex,int,int)" private-signal="yes"/>
-
-    <modify-function signature="rowsAboutToBeRemoved(QModelIndex,int,int)" private-signal="yes"/>
-    <modify-function signature="rowsRemoved(QModelIndex,int,int)" private-signal="yes"/>
-
-    <modify-function signature="columnsAboutToBeInserted(QModelIndex,int,int)" private-signal="yes"/>
-    <modify-function signature="columnsInserted(QModelIndex,int,int)" private-signal="yes"/>
-
-    <modify-function signature="columnsAboutToBeRemoved(QModelIndex,int,int)" private-signal="yes"/>
-    <modify-function signature="columnsRemoved(QModelIndex,int,int)" private-signal="yes"/>
-
-    <modify-function signature="modelAboutToBeReset()" private-signal="yes"/>
-    <modify-function signature="modelReset()" private-signal="yes"/>
   </object-type>
 
   <object-type name="QAbstractListModel">
@@ -1769,7 +1755,14 @@
   <suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QtConcurrent::run', unmatched parameter type 'T'"/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QtConcurrent::blockingFilter', unmatched parameter type 'Sequence&amp;'"/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QtConcurrent::createFunctor', unmatched return type 'QtConcurrent::SelectMemberFunctor0&lt;T,Class&gt;::type'"/>
-
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: class 'QGraphicsSceneEvent' inherits from polymorphic class 'QEvent', but has no polymorphic id set"/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: class 'QInputEvent' inherits from polymorphic class 'QEvent', but has no polymorphic id set"/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: class 'QAbstractGraphicsShapeItem' inherits from polymorphic class 'QGraphicsItem', but has no polymorphic id set"/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: class 'QGraphicsItem' inherits from polymorphic class 'QGraphicsItem', but has no polymorphic id set"/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: class 'QGraphicsObject' inherits from polymorphic class 'QGraphicsItem', but has no polymorphic id set"/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: class 'QGraphicsProxyWidget' inherits from polymorphic class 'QGraphicsItem', but has no polymorphic id set"/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: class 'QGraphicsVideoItem' inherits from polymorphic class 'QGraphicsItem', but has no polymorphic id set"/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: class 'QGraphicsWebView' inherits from polymorphic class 'QGraphicsItem', but has no polymorphic id set"/>
   <suppress-warning text="WARNING(Parser) :: ** WARNING scope not found for function definition:QFuture&lt;void&gt;::operator= - definition *ignored*"/>
   <suppress-warning text="WARNING(Parser) :: ** WARNING scope not found for function definition:QFutureInterface&lt;void&gt;::future - definition *ignored*"/>
   <suppress-warning text="WARNING(Parser) :: ** WARNING scope not found for function definition:QFutureWatcher&lt;void&gt;::setFuture - definition *ignored*"/>
@@ -1829,7 +1822,6 @@
   <enum-type name="QLocalServer::SocketOption" flags="QLocalServer::SocketOptions"/>
   <enum-type name="QAbstractSocket::PauseMode"/>
   <enum-type name="QAbstractSocket::BindFlag"/>
-  <enum-type name="QSound::Loop"/>
   <enum-type name="QState::RestorePolicy"/>
   <enum-type name="QAccessible::TextBoundaryType"/>
   <enum-type name="QAccessible::InterfaceType"/>
