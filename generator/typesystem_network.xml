@@ -4,6 +4,8 @@
     <include file-name="qssl.h" location="global"/>
   </namespace-type>
 
+  <enum-type name="QSsl::AlternativeNameEntryType"/>
+  <enum-type name="QSslConfiguration::NextProtocolNegotiationStatus"/>
   <enum-type name="QNetworkProxy::Capability" flags="QNetworkProxy::Capabilities"/>
   <enum-type name="QAbstractSocket::NetworkLayerProtocol"/>
   <enum-type name="QAbstractSocket::SocketError"/>

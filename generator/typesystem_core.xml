@@ -11,10 +11,7 @@
   <rejection class="QSystemLocale"/>
   <rejection class="QFutureWatcherBase"/>
   <rejection class="QFutureSynchronizer"/>
-  
-  <enum-type name="QXmlStreamReader::Error"/>
-  <enum-type name="QXmlStreamReader::TokenType"/>
-  
+    
   <primitive-type name="qgl_GLsizeiptr"/>
   <primitive-type name="qgl_GLintptr"/>
   <primitive-type name="GLint"/>
@@ -1784,7 +1781,6 @@
   <object-type name="QCollatorSortKey"/>
   <object-type name="QCommandLineOption"/>
   <object-type name="QCommandLineParser"/>
-  <object-type name="QFileSelector"/>
   <object-type name="QIdentityProxyModel"/>
   <object-type name="QJsonArray"/>
   <object-type name="QJsonDocument"/>
@@ -1826,42 +1822,22 @@
   <enum-type name="QTimeZone::TimeType"/>
   <enum-type name="QTimeZone::NameType"/>
   <enum-type name="QProcess::InputChannelMode"/>
-  <enum-type name="QWebFrame::ValueOwnership"/>
-  <enum-type name="QFileIconProvider::Option"/>
-  <enum-type name="QIconEngine::IconEngineHook"/>
-  <enum-type name="QPagedPaintDevice::PageSize"/>
-  <enum-type name="QStyleOptionFrame::FrameFeature"/>
-  <enum-type name="QWebSettings::ThirdPartyCookiePolicy"/>
   <enum-type name="QByteArray::Base64Option"/>
-  <enum-type name="QAbstractScrollArea::SizeAdjustPolicy"/>
-  <enum-type name="QSslConfiguration::NextProtocolNegotiationStatus"/>
-  <enum-type name="QFontDatabase::SystemFont"/>
-  <enum-type name="QStyleOptionToolBox::SelectedPosition"/>
-  <enum-type name="QStyleOptionToolBox::TabPosition"/>
   <enum-type name="QMetaType::TypeFlag"/>
-  <enum-type name="QLineEdit::ActionPosition"/>
   <enum-type name="QAbstractItemModel::LayoutChangeHint"/>
-  <enum-type name="QWebPage::VisibilityState"/>
   <enum-type name="QTextCharFormat::FontPropertiesInheritanceBehavior"/>
-  <enum-type name="QSqlDriver::NotificationSource"/>
-  <enum-type name="QTouchEvent::TouchPoint::InfoFlag" flags="QTouchEvent::TouchPoint::InfoFlags"/>
   <enum-type name="QLocalServer::SocketOption" flags="QLocalServer::SocketOptions"/>
   <enum-type name="QAbstractSocket::PauseMode"/>
   <enum-type name="QAbstractSocket::BindFlag"/>
   <enum-type name="QSound::Loop"/>
-  <enum-type name="QWebSecurityOrigin::SubdomainSetting"/>
   <enum-type name="QState::RestorePolicy"/>
   <enum-type name="QAccessible::TextBoundaryType"/>
   <enum-type name="QAccessible::InterfaceType"/>
-  <enum-type name="QStyleOptionTab::TabFeature"/>
   <enum-type name="QFileDevice::MemoryMapFlags"/>
   <enum-type name="QFileDevice::Permission"/>
   <enum-type name="QFileDevice::FileHandleFlag"/>
   <enum-type name="QFileDevice::FileError"/>
   <enum-type name="QColor::NameFormat"/>
-  <enum-type name="QStyleOptionViewItem::ViewItemFeature"/>
-  <enum-type name="QStyleOptionViewItem::ViewItemPosition"/>
-  <enum-type name="QSsl::AlternativeNameEntryType"/>
   <enum-type name="Qt::ApplicationState"/>
   <enum-type name="Qt::ScreenOrientation"/>
   <enum-type name="Qt::MouseEventSource"/>

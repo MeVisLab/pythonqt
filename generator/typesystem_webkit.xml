@@ -10,8 +10,12 @@
     <enum-type name="QWebSettings::WebAttribute">
         <reject-enum-value name="LocalStorageEnabled"/>
     </enum-type>
+  <enum-type name="QWebSettings::ThirdPartyCookiePolicy"/>
+  <enum-type name="QWebPage::VisibilityState"/>
+  <enum-type name="QWebFrame::ValueOwnership"/>
+  <enum-type name="QWebSecurityOrigin::SubdomainSetting"/>
 
-    <enum-type name="QWebFrame::RenderLayer"/>
+  <enum-type name="QWebFrame::RenderLayer"/>
 
     <enum-type name="QWebPage::Feature"/>
     <enum-type name="QWebPage::PermissionPolicy"/>
@@ -28,8 +32,6 @@
     </enum-type>
     <enum-type name="QWebPage::ErrorDomain"/>
     
-    <object-type name="QWebHistory"/>    
-    <object-type name="QWebHistoryItem"/>    
     <value-type name="QWebElementCollection"/>    
     
     <object-type name="QGraphicsWebView"/>    

@@ -1,5 +1,19 @@
 <?xml version="1.0"?>
-<typesystem package="com.trolltech.qt.gui"><rejection class="QAbstractTextDocumentLayout"/><rejection class="QColormap"/><rejection class="QIconEngineV2"/><rejection class="QInputMethodEvent"/><rejection class="QPainterPath::Element"/><rejection class="QTextBlock::iterator"/><rejection class="QTextEdit::ExtraSelection"/><rejection class="QTextFrame::iterator"/><rejection class="QTextLayout::FormatRange"/><rejection class="QTreeWidgetItemIterator"/><rejection class="QAccessibleFactoryInterface"/><rejection class="QIconEngineFactoryInterfaceV2"/><rejection class="QImageIOHandlerFactoryInterface"/><rejection class="QInputContextFactoryInterface"/><rejection class="QStyleFactoryInterface"/><rejection class="QPictureFormatInterface"/><suppress-warning text="WARNING(MetaJavaBuilder) :: Rejected enum has no alternative...: QPalette::NColorRoles"/><suppress-warning text="WARNING(MetaJavaBuilder) :: Cannot find enum constant for value 'DragMove' in 'QDragMoveEvent' or any of its super classes"/>
+<typesystem package="com.trolltech.qt.gui">
+  <rejection class="QColormap"/>
+  <rejection class="QIconEngineV2"/>
+  <rejection class="QPainterPath::Element"/>
+  <rejection class="QTextBlock::iterator"/>
+  <rejection class="QTextEdit::ExtraSelection"/>
+  <rejection class="QTextFrame::iterator"/>
+  <rejection class="QTextLayout::FormatRange"/>
+  <rejection class="QTreeWidgetItemIterator"/>
+  <rejection class="QAccessibleFactoryInterface"/>
+  <rejection class="QIconEngineFactoryInterfaceV2"/>
+  <rejection class="QImageIOHandlerFactoryInterface"/>
+  <rejection class="QInputContextFactoryInterface"/>
+  <rejection class="QStyleFactoryInterface"/>
+  <rejection class="QPictureFormatInterface"/>
 
   <rejection class="*" function-name="d_func"/>
 
@@ -525,15 +539,17 @@
   <enum-type name="QGesture::GestureCancelPolicy"/>
   <enum-type name="QTextDocument::Stacks"/>
   <enum-type name="QPainter::PixmapFragmentHint"/>
+  <enum-type name="QLineEdit::ActionPosition"/>
+  <enum-type name="QTouchEvent::TouchPoint::InfoFlag" flags="QTouchEvent::TouchPoint::InfoFlags"/>
+  <enum-type name="QStyleOptionViewItem::ViewItemPosition"/>
+  <enum-type name="QAbstractScrollArea::SizeAdjustPolicy"/>
+  <enum-type name="QFontDatabase::SystemFont"/>
+  <enum-type name="QStyleOptionToolBox::SelectedPosition"/>
+  <enum-type name="QStyleOptionToolBox::TabPosition"/>
+  <enum-type name="QFileIconProvider::Option"/>
+  <enum-type name="QIconEngine::IconEngineHook"/>
+  <enum-type name="QPagedPaintDevice::PageSize"/>
 
-  <object-type name="QAbstractProxyModel"/>
-  <object-type name="QDirModel"/>
-  <object-type name="QFileSystemModel"/>
-  <object-type name="QPrinterInfo"/>
-  <object-type name="QSortFilterProxyModel"/>
-  <object-type name="QProxyModel"/>
-  <object-type name="QTextOption"/>
-  <object-type name="QFontDatabase"/>
   <object-type name="QGestureRecognizer" force-abstract="yes"/>
   
   <value-type name="QPixmapCache::Key"/>
@@ -1320,7 +1336,6 @@ PyObject* constScanLine(QImage* image, int line) {
     <modify-function signature="open()" virtual-slot="yes"/>
     <modify-function signature="setOrientation(Qt::Orientation)" remove="all"/> <!--### Obsolete in 4.3-->
     <modify-function signature="showExtension(bool)" remove="all"/> <!--### Obsolete in 4.3-->
-    <modify-function signature="setVisible(bool)" allow-as-slot="yes"/>
   </object-type>
   <object-type name="QDialogButtonBox">
   </object-type>
@@ -2748,7 +2763,6 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QTouchEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::TouchBegin || %1-&gt;type() == QEvent::TouchUpdate || %1-&gt;type() == QEvent::TouchEnd"/>
   
   <!-- Qt 5 additional classes -->
-  <object-type name="QInputMethodEvent"/>
   <object-type name="QTextObjectInterface"/>
   <object-type name="QRawFont"/>
   <object-type name="QBackingStore"/>
@@ -2789,7 +2803,6 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QStyleHints"/>
   <object-type name="QTouchDevice"/>
   <object-type name="QWindow"/>
-  <object-type name="QAbstractTextDocumentLayout"/>
   
   <object-type name="QGuiApplication">
       <modify-function signature="QGuiApplication(int &amp;, char  **, int)" remove="all"/>
@@ -2799,19 +2812,18 @@ PyObject* constScanLine(QImage* image, int line) {
    <interface-type name="QPlatformSurface"/>
    <interface-type name="QSurface"/>
    <object-type name="QSurfaceFormat"/>
-   <!-- <object-type name="QOpenGLPaintDevice"/> -->
+  <value-type name="QPainter::PixmapFragment"/>
+  <!-- <object-type name="QOpenGLPaintDevice"/> -->
   <enum-type name="QSurface::SurfaceType"/>
   <enum-type name="QSurface::SurfaceClass"/>
   <enum-type name="QPagedPaintDevice::Margins"/>
-  <enum-type name="QPainter::PixmapFragment"/>
-  <enum-type name="QTextLayout::FormatRange"/>
-  <enum-type name="QGlyphRun::GlyphRunFlag"/>
+  <enum-type name="QGlyphRun::GlyphRunFlag" flags="QGlyphRun::GlyphRunFlags"/>
   <enum-type name="QInputMethod::Action"/>
   <enum-type name="QPageSize::Unit"/>
   <enum-type name="QPageSize::SizeMatchPolicy"/>
   <enum-type name="QPageSize::PageSizeId"/>
   <enum-type name="QRawFont::AntialiasingType"/>
-  <enum-type name="QRawFont::LayoutFlag"/>
+  <enum-type name="QRawFont::LayoutFlag" flags="QRawFont::LayoutFlags"/>
   <enum-type name="QOpenGLContext::OpenGLModuleType"/>
   <enum-type name="QOpenGLTexture::MipMapGeneration"/>
   <enum-type name="QOpenGLTexture::TextureFormat"/>
@@ -2826,7 +2838,7 @@ PyObject* constScanLine(QImage* image, int line) {
   <enum-type name="QOpenGLTexture::TextureUnitReset"/>
   <enum-type name="QOpenGLTexture::BindingTarget"/>
   <enum-type name="QOpenGLTexture::SwizzleComponent"/>
-  <enum-type name="QOpenGLTexture::Feature"/>
+  <enum-type name="QOpenGLTexture::Feature" flags="QOpenGLTexture::Features"/>
   <enum-type name="QOpenGLTexture::Target"/>
   <enum-type name="QOpenGLTexture::PixelType"/>
   <enum-type name="QOpenGLBuffer::UsagePattern"/>
@@ -2839,11 +2851,10 @@ PyObject* constScanLine(QImage* image, int line) {
   <enum-type name="QOpenGLShader::ShaderTypeBit"/>
   <enum-type name="QWindow::Visibility"/>
   <enum-type name="QWindow::AncestorMode"/>
-  <enum-type name="QOpenGLFunctions::OpenGLFeature"/>
+  <enum-type name="QOpenGLFunctions::OpenGLFeature" flags="QOpenGLFunctions::OpenGLFeatures"/>
   <enum-type name="QScrollEvent::ScrollState"/>
-  <enum-type name="QScrollEvent::CapabilityFlag"/>
   <enum-type name="QTouchDevice::DeviceType"/>
-  <enum-type name="QTouchDevice::CapabilityFlag"/>
+  <enum-type name="QTouchDevice::CapabilityFlag" flags="QTouchDevice::Capabilities"/>
 
   <enum-type name="QSurfaceFormat::FormatOption"/>
   <enum-type name="QSurfaceFormat::RenderableType"/>
@@ -2926,5 +2937,7 @@ PyObject* constScanLine(QImage* image, int line) {
   <suppress-warning text="WARNING(MetaJavaBuilder) :: Rejected enum has no alternative...: QPalette::NColorRoles"/>
 
   <suppress-warning text="WARNING(MetaJavaBuilder) :: namespace 'QtSharedPointer' does not have a type entry"/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Rejected enum has no alternative...: QPalette::NColorRoles"/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Cannot find enum constant for value 'DragMove' in 'QDragMoveEvent' or any of its super classes"/>
 
 </typesystem>
