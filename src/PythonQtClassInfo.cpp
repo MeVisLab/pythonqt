@@ -268,12 +268,12 @@ bool PythonQtClassInfo::lookForEnumAndCache(const QMetaObject* meta, const char*
           PythonQtMemberInfo newInfo(enumValuePtr);
           _cachedMembers.insert(memberName, newInfo);
   #ifdef PYTHONQT_DEBUG
-          std::cout << "caching enum " << memberName << " on " << meta->className() << std::endl;
+          std::cout << "caching enum " << memberName << " on " << meta->className()->constData() << std::endl;
   #endif
           found = true;
           break;
         } else {
-          std::cout << "enum " << e.name() << " not found on " << className() << std::endl;
+          std::cout << "enum " << e.name() << " not found on " << className().constData() << std::endl;
         }
       }
     }
@@ -317,9 +317,22 @@ PythonQtMemberInfo PythonQtClassInfo::member(const char* memberName)
       PyObject* p = findEnumWrapper(memberName);
       if (p) {
         info._type = PythonQtMemberInfo::EnumWrapper;
-        info._enumWrapper = p;
+        info._pythonType = p;
         _cachedMembers.insert(memberName, info);
         found = true;
+      }
+      // maybe it is a nested class?
+      Q_FOREACH(PythonQtClassInfo* nestedClass, _nestedClasses) {
+        PyObject* pyClass = nestedClass->pythonQtClassWrapper();
+        if (pyClass) {
+          if (strcmp(memberName, nestedClass->unscopedClassName().constData()) == 0) {
+            info._type = PythonQtMemberInfo::NestedClass;
+            info._pythonType = pyClass;
+            _cachedMembers.insert(memberName, info);
+            found = true;
+            break;
+          }
+        }
       }
     }
     if (!found) {
@@ -512,12 +525,20 @@ QStringList PythonQtClassInfo::memberList()
     }
   }
 
+  Q_FOREACH(PythonQtClassInfo* nestedClass, _nestedClasses) {
+    PyObject* pyClass = nestedClass->pythonQtClassWrapper();
+    if (pyClass) {
+      QByteArray name = nestedClass->unscopedClassName();
+      l << QString(name);
+    }
+  }
+
   return QSet<QString>::fromList(l).toList();
 }
 
-const char* PythonQtClassInfo::className()
+const QByteArray& PythonQtClassInfo::className() const
 {
-  return _wrappedClassName.constData();
+  return _wrappedClassName;
 }
 
 void* PythonQtClassInfo::castTo(void* ptr, const char* classname)
@@ -846,6 +867,20 @@ void PythonQtClassInfo::clearNotFoundCachedMembers()
   }
 }
 
+void PythonQtClassInfo::addNestedClass(PythonQtClassInfo* info)
+{
+  _nestedClasses.append(info);
+}
+
+QByteArray PythonQtClassInfo::unscopedClassName() const
+{
+  int index = _wrappedClassName.indexOf("::");
+  if (index > 0) {
+    return _wrappedClassName.mid(index + 2);
+  } else {
+    return _wrappedClassName;
+  }
+}
 //-------------------------------------------------------------------------
 
 PythonQtMemberInfo::PythonQtMemberInfo( PythonQtSlotInfo* info )
@@ -857,7 +892,7 @@ PythonQtMemberInfo::PythonQtMemberInfo( PythonQtSlotInfo* info )
   }
   _slot = info;
   _enumValue = NULL;
-  _enumWrapper = NULL;
+  _pythonType = NULL;
 }
 
 PythonQtMemberInfo::PythonQtMemberInfo( const PythonQtObjectPtr& enumValue )
@@ -865,7 +900,7 @@ PythonQtMemberInfo::PythonQtMemberInfo( const PythonQtObjectPtr& enumValue )
   _type = EnumValue;
   _slot = NULL;
   _enumValue = enumValue;
-  _enumWrapper = NULL;
+  _pythonType = NULL;
 }
 
 PythonQtMemberInfo::PythonQtMemberInfo( const QMetaProperty& prop )
@@ -874,5 +909,5 @@ PythonQtMemberInfo::PythonQtMemberInfo( const QMetaProperty& prop )
   _slot = NULL;
   _property = prop;
   _enumValue = NULL;
-  _enumWrapper = NULL;
+  _pythonType = NULL;
 }
