@@ -525,7 +525,7 @@
   <enum-type name="QTimeLine::Direction"/>
   <enum-type name="QTimeLine::State"/>
   <enum-type name="QUrl::FormattingOption" flags="QUrl::FormattingOptions"/>
-  <enum-type name="QUrl::ComponentFormattingOption"/> <!-- Qt 5 -->
+  <enum-type name="QUrl::ComponentFormattingOption" flags="QUrl::ComponentFormattingOptions"/> <!-- Qt 5 -->
   <enum-type name="QUrl::UrlFormattingOption"/> <!-- Qt 5 -->
   <enum-type name="QUrl::ParsingMode"/>
   <enum-type name="QUuid::Variant"/>
@@ -557,7 +557,7 @@
   <enum-type name="Qt::GestureFlag" flags="Qt::GestureFlags"/>
   <enum-type name="Qt::CursorMoveStyle"/>
   <enum-type name="Qt::HitTestAccuracy"/>
-  <enum-type name="Qt::InputMethodQuery"/>
+  <enum-type name="Qt::InputMethodQuery" flags="Qt::InputMethodQueries"/>
   <enum-type name="Qt::ItemFlag" flags="Qt::ItemFlags"/>
   <enum-type name="Qt::ItemSelectionMode"/>
   <enum-type name="Qt::KeyboardModifier" flags="Qt::KeyboardModifiers"/>
@@ -1800,39 +1800,37 @@
   <!-- <object-type name="QAccessibleActionInterface"/> -->
   <enum-type name="QJsonValue::Type"/>
   <enum-type name="QRegularExpression::MatchType"/>
-  <enum-type name="QRegularExpression::PatternOption"/>
-  <enum-type name="QRegularExpression::MatchOption"/>
+  <enum-type name="QRegularExpression::PatternOption" flags="QRegularExpression::PatternOptions"/>
+  <enum-type name="QRegularExpression::MatchOption" flags="QRegularExpression::MatchOptions"/>
   <enum-type name="QMimeDatabase::MatchMode"/>
   <enum-type name="QCommandLineParser::SingleDashWordOptionMode"/>
   <enum-type name="QJsonDocument::JsonFormat"/>
   <enum-type name="QJsonDocument::DataValidation"/>
   <enum-type name="QJsonParseError::ParseError"/>
   <enum-type name="QStandardPaths::StandardLocation"/>
-  <enum-type name="QStandardPaths::LocateOption"/>
+  <enum-type name="QStandardPaths::LocateOption" flags="QStandardPaths::LocateOptions"/>
   <enum-type name="QLockFile::LockError"/>
   <enum-type name="QTimeZone::TimeType"/>
   <enum-type name="QTimeZone::NameType"/>
   <enum-type name="QProcess::InputChannelMode"/>
-  <enum-type name="QByteArray::Base64Option"/>
+  <enum-type name="QByteArray::Base64Option" flags="QByteArray::Base64Options"/>
   <enum-type name="QMetaType::TypeFlag" flags="QMetaType::TypeFlags"/>
   <enum-type name="QAbstractItemModel::LayoutChangeHint"/>
   <enum-type name="QTextCharFormat::FontPropertiesInheritanceBehavior"/>
   <enum-type name="QLocalServer::SocketOption" flags="QLocalServer::SocketOptions"/>
-  <enum-type name="QAbstractSocket::PauseMode"/>
-  <enum-type name="QAbstractSocket::BindFlag"/>
   <enum-type name="QState::RestorePolicy"/>
   <enum-type name="QAccessible::TextBoundaryType"/>
   <enum-type name="QAccessible::InterfaceType"/>
   <enum-type name="QFileDevice::MemoryMapFlags"/>
-  <enum-type name="QFileDevice::Permission"/>
-  <enum-type name="QFileDevice::FileHandleFlag"/>
+  <enum-type name="QFileDevice::Permission" flags="QFileDevice::Permissions"/>
   <enum-type name="QFileDevice::FileError"/>
+  <enum-type name="QFileDevice::FileHandleFlag" flags="QFileDevice::FileHandleFlags"/>
   <enum-type name="QColor::NameFormat"/>
   <enum-type name="Qt::ApplicationState"/>
-  <enum-type name="Qt::ScreenOrientation"/>
+  <enum-type name="Qt::ScreenOrientation" flags="Qt::ScreenOrientations"/>
   <enum-type name="Qt::MouseEventSource"/>
   <enum-type name="Qt::NativeGestureType"/>
-  <enum-type name="Qt::FindChildOption"/>
+  <enum-type name="Qt::FindChildOption" flags="Qt::FindChildOptions"/>
   <enum-type name="Qt::ScrollPhase"/>
   <enum-type name="Qt::MouseEventFlag"/>
   <enum-type name="Qt::TimerType"/>

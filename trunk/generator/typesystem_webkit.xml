@@ -15,7 +15,7 @@
   <enum-type name="QWebFrame::ValueOwnership"/>
   <enum-type name="QWebSecurityOrigin::SubdomainSetting"/>
 
-  <enum-type name="QWebFrame::RenderLayer"/>
+  <enum-type name="QWebFrame::RenderLayer" flags="QWebFrame::RenderLayers"/>
 
     <enum-type name="QWebPage::Feature"/>
     <enum-type name="QWebPage::PermissionPolicy"/>

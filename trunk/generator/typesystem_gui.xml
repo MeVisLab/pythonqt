@@ -538,7 +538,7 @@
   <enum-type name="QFont::HintingPreference"/>
   <enum-type name="QGesture::GestureCancelPolicy"/>
   <enum-type name="QTextDocument::Stacks"/>
-  <enum-type name="QPainter::PixmapFragmentHint"/>
+  <enum-type name="QPainter::PixmapFragmentHint" flags="QPainter::PixmapFragmentHints"/>
   <enum-type name="QLineEdit::ActionPosition"/>
   <enum-type name="QTouchEvent::TouchPoint::InfoFlag" flags="QTouchEvent::TouchPoint::InfoFlags"/>
   <enum-type name="QStyleOptionViewItem::ViewItemPosition"/>
@@ -546,7 +546,7 @@
   <enum-type name="QFontDatabase::SystemFont"/>
   <enum-type name="QStyleOptionToolBox::SelectedPosition"/>
   <enum-type name="QStyleOptionToolBox::TabPosition"/>
-  <enum-type name="QFileIconProvider::Option"/>
+  <enum-type name="QFileIconProvider::Option" flags="QFileIconProvider::Options"/>
   <enum-type name="QIconEngine::IconEngineHook"/>
   <enum-type name="QPagedPaintDevice::PageSize"/>
 
@@ -2860,7 +2860,7 @@ PyObject* constScanLine(QImage* image, int line) {
   <enum-type name="QPageLayout::Mode"/>
   <enum-type name="QPageLayout::Orientation"/>
   <enum-type name="QOpenGLFramebufferObject::Attachment"/>
-  <enum-type name="QOpenGLShader::ShaderTypeBit"/>
+  <enum-type name="QOpenGLShader::ShaderTypeBit" flags="QOpenGLShader::ShaderType"/>
   <enum-type name="QWindow::Visibility"/>
   <enum-type name="QWindow::AncestorMode"/>
   <enum-type name="QOpenGLFunctions::OpenGLFeature" flags="QOpenGLFunctions::OpenGLFeatures"/>
@@ -2868,7 +2868,7 @@ PyObject* constScanLine(QImage* image, int line) {
   <enum-type name="QTouchDevice::DeviceType"/>
   <enum-type name="QTouchDevice::CapabilityFlag" flags="QTouchDevice::Capabilities"/>
 
-  <enum-type name="QSurfaceFormat::FormatOption"/>
+  <enum-type name="QSurfaceFormat::FormatOption" flags="QSurfaceFormat::FormatOptions"/>
   <enum-type name="QSurfaceFormat::RenderableType"/>
   <enum-type name="QSurfaceFormat::SwapBehavior"/>
   <enum-type name="QSurfaceFormat::OpenGLContextProfile"/>
