@@ -709,7 +709,7 @@ static PyObject * PythonQtInstanceWrapper_repr(PyObject * obj)
       return PyString_FromFormat("%s (C++ object at: %p)", typeName, wrapper->_wrappedPtr);
     }
   } else {
-    return PyString_FromFormat("%s (%s at: %p)", typeName, wrapper->classInfo()->className(), qobj);
+    return PyString_FromFormat("%s (%s at: %p)", typeName, wrapper->classInfo()->className().constData(), qobj);
   }
 }
 

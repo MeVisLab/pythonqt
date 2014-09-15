@@ -572,7 +572,7 @@ meth_repr(PythonQtSlotFunctionObject *f)
     PythonQtClassWrapper* self = (PythonQtClassWrapper*) f->m_self;
     return PyString_FromFormat("<unbound qt slot %s of %s type>",
       f->m_ml->slotName().data(),
-      self->classInfo()->className());
+      self->classInfo()->className().constData());
   } else {
     return PyString_FromFormat("<qt slot %s of %s instance at %p>",
       f->m_ml->slotName().data(),
