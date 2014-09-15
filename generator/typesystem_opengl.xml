@@ -17,7 +17,7 @@
   <enum-type name="QGLBuffer::Access"/>
   <enum-type name="QGLBuffer::Type"/>
   <enum-type name="QGLBuffer::UsagePattern"/>
-  <enum-type name="QGLFunctions::OpenGLFeature"/>
+  <enum-type name="QGLFunctions::OpenGLFeature" flags="QGLFunctions::OpenGLFeature"/>
   <enum-type name="QGLFormat::OpenGLContextProfile"/>
 
   <namespace-type name="QGL">
