@@ -51,8 +51,8 @@ bool ShellGenerator::shouldGenerate(const AbstractMetaClass *meta_class) const
     if (meta_class->name().startsWith("QFuture")) return false;
     if (meta_class->name().startsWith("Global")) return false;
     if (meta_class->name().startsWith("QStyleOptionComplex")) return false;
+    // because of default arg of draw()...
     if (meta_class->name().startsWith("QTextLayout")) return false;
-    if (meta_class->name().startsWith("QPersistentModelIndex")) return false;
     return ((cg & TypeEntry::GenerateCode) != 0);
 }
 
