@@ -431,8 +431,6 @@
   <rejection class="QtConcurrent::ThreadEngineBarrier"/>
 
   <rejection class="QAbstractFileEngineIterator" enum-name="EntryInfoType"/>
-  <rejection class="QDataStream" enum-name="ByteOrder"/>
-
 
   <namespace-type name="Qt">
   
@@ -441,6 +439,7 @@
     </extra-includes>
   </namespace-type>
 
+  <enum-type name="QDataStream::ByteOrder"/>
   <enum-type name="QDate::MonthNameType"/>
   <enum-type name="QAbstractAnimation::DeletionPolicy"/>
   <enum-type name="QAbstractAnimation::Direction"/>
@@ -1687,7 +1686,6 @@
   <suppress-warning text="WARNING(MetaJavaBuilder) :: skipping * unmatched *type 'QTSMFI'"/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: skipping * unmatched *type 'QAbstractFileEngine::ExtensionOption const\*'"/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: skipping * unmatched *type 'QAbstractFileEngine::Iterator\*'"/>
-  <suppress-warning text="WARNING(MetaJavaBuilder) :: skipping * unmatched *type 'QDataStream::ByteOrder'"/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: visibility of function '*' modified in class '*'"/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: hiding of function '*' in class '*'"/>
   <suppress-warning text="WARNING(CppImplGenerator) :: protected function '*' in final class '*'"/>
