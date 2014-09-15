@@ -258,7 +258,7 @@ meth_repr(PythonQtSignalFunctionObject *f)
     PythonQtClassWrapper* self = (PythonQtClassWrapper*) f->m_self;
     return PyString_FromFormat("<unbound qt signal %s of %s type>",
       f->m_ml->slotName().data(),
-      self->classInfo()->className());
+      self->classInfo()->className().constData());
   } else {
     return PyString_FromFormat("<qt signal %s of %s instance at %p>",
       f->m_ml->slotName().data(),
