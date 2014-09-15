@@ -181,8 +181,23 @@
 
   <object-type name="QSslSocket"/>
 
-  <suppress-warning text="*unmatched parameter type 'sockaddr const*"/>
+  <enum-type name="QNetworkSession::State"/>
+  <enum-type name="QNetworkSession::UsagePolicy" flags="QNetworkSession::UsagePolicies"/>
+  <enum-type name="QNetworkSession::SessionError"/>
 
+  <enum-type name="QNetworkConfiguration::BearerType"/>
+  <enum-type name="QNetworkConfiguration::Purpose"/>
+  <enum-type name="QNetworkConfiguration::Type"/>
+  <enum-type name="QNetworkConfiguration::StateFlag" flags="QNetworkConfiguration::StateFlags"/>
+
+  <enum-type name="QNetworkConfigurationManager::Capability" flags="QNetworkConfigurationManager::Capabilities"/>
+
+  <object-type name="QNetworkSession"/>
+  <object-type name="QNetworkConfiguration"/>
+  <object-type name="QNetworkConfigurationManager"/>
+
+  
+  <suppress-warning text="*unmatched parameter type 'sockaddr const*"/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QUrlInfo' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QNetworkCacheMetaData' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QNetworkProxyQuery' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
@@ -191,8 +206,6 @@
   <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QNetworkProxy' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QNetworkRequest' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QAuthenticator' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
-
-  <!-- For people building without SSL support -->
   <suppress-warning text="WARNING(MetaJavaBuilder) :: namespace 'com.trolltech.qt.network.QSslSocket' for enum 'SslMode' is not declared"/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: type 'QSslError' is specified in typesystem, but not defined. This could potentially lead to compilation errors."/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: type 'QSslCipher' is specified in typesystem, but not defined. This could potentially lead to compilation errors."/>
@@ -203,6 +216,5 @@
   <suppress-warning text="WARNING(MetaJavaBuilder) :: namespace 'com.trolltech.qt.network.QSslCertificate' for enum 'SubjectInfo' is not declared"/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: type 'QSslConfiguration' is specified in typesystem, but not defined. This could potentially lead to compilation errors."/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: type 'QSslSocket' is specified in typesystem, but not defined. This could potentially lead to compilation errors."/>
-  <!-- -->
 
 </typesystem>

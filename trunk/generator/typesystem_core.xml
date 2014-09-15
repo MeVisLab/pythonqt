@@ -1816,7 +1816,7 @@
   <enum-type name="QTimeZone::NameType"/>
   <enum-type name="QProcess::InputChannelMode"/>
   <enum-type name="QByteArray::Base64Option"/>
-  <enum-type name="QMetaType::TypeFlag"/>
+  <enum-type name="QMetaType::TypeFlag" flags="QMetaType::TypeFlags"/>
   <enum-type name="QAbstractItemModel::LayoutChangeHint"/>
   <enum-type name="QTextCharFormat::FontPropertiesInheritanceBehavior"/>
   <enum-type name="QLocalServer::SocketOption" flags="QLocalServer::SocketOptions"/>
