@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
-<typesystem package="com.trolltech.qt.svg"><rejection class="QGraphicsSvgItem"/>
-   <namespace-type name="QSvg"/>
+<typesystem package="com.trolltech.qt.svg">
+  
+  <namespace-type name="QSvg"/>
 
   <enum-type name="QGraphicsSvgItem::enum_1"/>
 
@@ -36,5 +37,7 @@
     <modify-function signature="sceneMatrix()const" remove="all"/>
     <modify-function signature="setMatrix(QMatrix, bool)" remove="all"/>
  </object-type>
+
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: class 'QGraphicsSvgItem' inherits from polymorphic class 'QGraphicsItem', but has no polymorphic id seWARNING(MetaJavaBuilder) :: type 'QWebPage::ChooseMultipleFilesExtensionReturn' is specified in typesystem, but not defined. This could potentially lead to compilation errors."/>
 
 </typesystem>
