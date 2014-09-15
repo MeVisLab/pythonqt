@@ -18,7 +18,8 @@
   <enum-type name="QGLBuffer::Type"/>
   <enum-type name="QGLBuffer::UsagePattern"/>
   <enum-type name="QGLFormat::OpenGLContextProfile"/>
-
+  <enum-type name="QGLFunctions::OpenGLFeature" flags="QGLFunctions::OpenGLFeatures"/>
+  
   <namespace-type name="QGL">
      <include file-name="qgl.h" location="global"/>
   </namespace-type>

@@ -47,12 +47,8 @@
 bool ShellGenerator::shouldGenerate(const AbstractMetaClass *meta_class) const
 {
     uint cg = meta_class->typeEntry()->codeGeneration();
-    if (meta_class->name().startsWith("QtScript")) return false;
-    if (meta_class->name().startsWith("QFuture")) return false;
+    // ignore the "Global" namespace, which contains the QtMsgType enum
     if (meta_class->name().startsWith("Global")) return false;
-    if (meta_class->name().startsWith("QStyleOptionComplex")) return false;
-    // because of default arg of draw()...
-    if (meta_class->name().startsWith("QTextLayout")) return false;
     return ((cg & TypeEntry::GenerateCode) != 0);
 }
 

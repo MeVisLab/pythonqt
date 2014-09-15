@@ -593,7 +593,7 @@
   <value-type name="QStyleOptionSizeGrip" delete-in-main-thread="yes" polymorphic-id-expression="%1-&gt;type == QStyleOptionSizeGrip::Type &amp;&amp; %1-&gt;version == QStyleOptionSizeGrip::Version"/>
   <value-type name="QStyleOptionButton" delete-in-main-thread="yes" polymorphic-id-expression="%1-&gt;type == QStyleOptionButton::Type &amp;&amp; %1-&gt;version == QStyleOptionButton::Version"/>
   <value-type name="QStyleOptionComboBox" delete-in-main-thread="yes" polymorphic-id-expression="%1-&gt;type == QStyleOptionComboBox::Type &amp;&amp; %1-&gt;version == QStyleOptionComboBox::Version"/>
-  <value-type name="QStyleOptionComplex" delete-in-main-thread="yes" polymorphic-id-expression="%1-&gt;type == QStyleOptionComplex::Type &amp;&amp; %1-&gt;version == QStyleOptionComplex::Version"/>
+  <value-type name="QStyleOptionComplex" generate="no" delete-in-main-thread="yes" polymorphic-id-expression="%1-&gt;type == QStyleOptionComplex::Type &amp;&amp; %1-&gt;version == QStyleOptionComplex::Version"/>
   <value-type name="QStyleOptionDockWidget" delete-in-main-thread="yes" polymorphic-id-expression="%1-&gt;type == QStyleOptionDockWidget::Type &amp;&amp; %1-&gt;version == QStyleOptionDockWidget::Version"/>
   <value-type name="QStyleOptionDockWidgetV2" delete-in-main-thread="yes" polymorphic-id-expression="%1-&gt;type == QStyleOptionDockWidgetV2::Type &amp;&amp; %1-&gt;version == QStyleOptionDockWidgetV2::Version">
       <modify-function signature="operator=(QStyleOptionDockWidget)" remove="all"/>
@@ -839,7 +839,7 @@
     </modify-function>
   </value-type>
 
-  <value-type name="QTextLayout::FormatRange">
+  <value-type name="QTextLayout::FormatRange" generate="no">
     <include file-name="QTextLayout" location="global"/>
   </value-type>
 
@@ -2335,7 +2335,7 @@ PyObject* constScanLine(QImage* image, int line) {
     <modify-function signature="setGeometry(const QRect &amp;)" rename="setRubberBandGeometry"/>
   </object-type>
 
-  <object-type name="QTextLayout">
+  <object-type name="QTextLayout" generate="no"> <!-- the problem are the draw() default args -->
     <extra-includes>
         <include file-name="QTextOption" location="global"/>
     </extra-includes>
