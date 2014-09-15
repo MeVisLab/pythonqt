@@ -2814,7 +2814,10 @@ PyObject* constScanLine(QImage* image, int line) {
    <interface-type name="QSurface"/>
    <object-type name="QSurfaceFormat"/>
   <value-type name="QPainter::PixmapFragment"/>
-  <!-- <object-type name="QOpenGLPaintDevice"/> -->
+  <object-type name="QOpenGLPaintDevice">
+    <modify-function signature="QOpenGLPaintDevice(const QOpenGLPaintDevice&amp;)" remove="all"/>
+  </object-type>
+
   <enum-type name="QSurface::SurfaceType"/>
   <enum-type name="QSurface::SurfaceClass"/>
   <enum-type name="QPagedPaintDevice::Margins"/>
