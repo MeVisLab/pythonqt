@@ -12,6 +12,8 @@
   <enum-type name="QAbstractSocket::SocketState"/>
   <enum-type name="QAbstractSocket::SocketType"/>
   <enum-type name="QAbstractSocket::SocketOption"/>
+  <enum-type name="QAbstractSocket::PauseMode" flags="QAbstractSocket::PauseModes"/>
+  <enum-type name="QAbstractSocket::BindFlag" flags="QAbstractSocket::BindMode"/>
   <enum-type name="QFtp::Command"/>
   <enum-type name="QFtp::Error"/>
   <enum-type name="QFtp::State"/>
@@ -60,10 +62,7 @@
     <modify-function signature="operator=(QNetworkProxyQuery)" remove="all"/>
   </value-type>
 
-  <object-type name="QAbstractSocket">
-    <modify-function signature="setSocketOption(QAbstractSocket::SocketOption, const QVariant)" remove="all"/>
-    <modify-function signature="socketOption(QAbstractSocket::SocketOption)" remove="all"/>
-  </object-type>
+  <object-type name="QAbstractSocket"/>
   <object-type name="QFtp"/>
 
   <object-type name="QHttp">

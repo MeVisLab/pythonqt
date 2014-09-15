@@ -1631,8 +1631,10 @@ AbstractMetaFunction *AbstractMetaBuilder::traverseFunction(FunctionModelItem fu
                                    .arg(class_name)
                                    .arg(function_item->name())
                                    .arg(function_item->type().toString()));
-            m_rejected_functions[class_name + "::" + function_name] =
+            if (!function_item->type().toString().contains("Private")) {
+              m_rejected_functions[class_name + "::" + function_name + " " + function_item->type().toString()] =
                 UnmatchedReturnType;
+            }
             meta_function->setInvalid(true);
             return meta_function;
         }
@@ -1659,8 +1661,10 @@ AbstractMetaFunction *AbstractMetaBuilder::traverseFunction(FunctionModelItem fu
                                    .arg(class_name)
                                    .arg(function_item->name())
                                    .arg(arg->type().toString()));
-            m_rejected_functions[class_name + "::" + function_name] =
+            if (!arg->type().toString().contains("Private")) {
+              m_rejected_functions[class_name + "::" + function_name + " " + arg->type().toString()] =
                 UnmatchedArgumentType;
+            }
             meta_function->setInvalid(true);
             return meta_function;
         }

@@ -9,7 +9,7 @@
 <enum-type name="QAbstractVideoBuffer::MapMode"/>
 <enum-type name="QCameraImageCapture::Error"/>
 <enum-type name="QCameraImageCapture::DriveMode"/>
-<enum-type name="QCameraImageCapture::CaptureDestination"/>
+<enum-type name="QCameraImageCapture::CaptureDestination" flags="QCameraImageCapture::CaptureDestinations"/>
 <enum-type name="QCameraFocusZone::FocusZoneStatus"/>
 <enum-type name="QMediaRecorder::State"/>
 <enum-type name="QMediaRecorder::Status"/>
@@ -48,11 +48,20 @@
 <enum-type name="QMediaPlayer::State"/>
 <enum-type name="QMediaPlayer::MediaStatus"/>
 <enum-type name="QMediaPlayer::Error"/>
-<enum-type name="QMediaPlayer::Flag"/>
+<enum-type name="QMediaPlayer::Flag" flags="QMediaPlayer::Flags"/>
+<enum-type name="QAudio::Error"/>
+<enum-type name="QAudio::Mode"/>
+<enum-type name="QAudio::State"/>
+<enum-type name="QMultimedia::SupportEstimate"/>
+<enum-type name="QMultimedia::EncodingQuality"/>
+<enum-type name="QMultimedia::EncodingMode"/>
+<enum-type name="QMultimedia::AvailabilityStatus"/>
+
+<namespace-type name="QAudio"/>
+<namespace-type name="QMultimedia"/>
 
 <object-type name="QAbstractVideoBuffer"/>
 <object-type name="QAbstractVideoSurface"/>
-<object-type name="QAudio"/>
 <object-type name="QAudioBuffer"/>
 <object-type name="QAudioDecoder"/>
 <object-type name="QAudioDeviceInfo"/>
