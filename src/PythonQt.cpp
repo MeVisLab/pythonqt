@@ -87,7 +87,21 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
     PythonQtRegisterToolClassesTemplateConverter(quint32);
     PythonQtRegisterToolClassesTemplateConverter(qint64);
     PythonQtRegisterToolClassesTemplateConverter(quint64);
-    // TODO: which other POD types should be available for QList etc.
+
+    PythonQtMethodInfo::addParameterTypeAlias("QList<qreal>", "QList<double>");
+    PythonQtMethodInfo::addParameterTypeAlias("QVector<qreal>", "QVector<double>");
+    PythonQtMethodInfo::addParameterTypeAlias("QList<unsigned int>", "QList<quint32>");
+    PythonQtMethodInfo::addParameterTypeAlias("QVector<unsigned int>", "QVector<quint32>");
+    PythonQtMethodInfo::addParameterTypeAlias("QList<int>", "QList<qint32>");
+    PythonQtMethodInfo::addParameterTypeAlias("QVector<int>", "QVector<qint32>");
+    PythonQtMethodInfo::addParameterTypeAlias("QList<GLint>", "QList<qint32>");
+    PythonQtMethodInfo::addParameterTypeAlias("QVector<GLint>", "QVector<qint32>");
+    PythonQtMethodInfo::addParameterTypeAlias("QList<GLuint>", "QList<qint32>");
+    PythonQtMethodInfo::addParameterTypeAlias("QVector<GLuint>", "QVector<quint32>");
+    PythonQtMethodInfo::addParameterTypeAlias("QList<GLuint64>", "QList<quint64>");
+    PythonQtMethodInfo::addParameterTypeAlias("QVector<GLuint64>", "QVector<quint64>");
+    PythonQtMethodInfo::addParameterTypeAlias("QList<GLint64>", "QList<qint64>");
+    PythonQtMethodInfo::addParameterTypeAlias("QVector<GLint64>", "QVector<qint64>");
 
     PythonQt_init_QtCoreBuiltin(NULL);
     PythonQt_init_QtGuiBuiltin(NULL);
