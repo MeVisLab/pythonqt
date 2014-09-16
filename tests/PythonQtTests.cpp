@@ -211,6 +211,23 @@ void PythonQtTestSlotCalling::testQVariantSlotCalls()
   QVERIFY(_helper->runScript("if obj.getQVariant(obj)==obj: obj.setPassed();\n"));
 }
 
+void PythonQtTestSlotCalling::testQListSlotCalls()
+{
+  QVERIFY(_helper->runScript("if obj.getQListInt()==(1,2,3): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if obj.getQListUnsignedInt()==(1,2,3): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if obj.getQListGLuint()==(1,2,3): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if obj.getQListGLuint64()==(1,2,3): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if obj.getQListqint64()==(1,2,3): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if obj.getQListquint64()==(1,2,3): obj.setPassed();\n"));
+
+  QVERIFY(_helper->runScript("if obj.getQListqreal()==(1.1,2.2,3.3): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if obj.getQListdouble()==(1.1,2.2,3.3): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if obj.getQListfloat()==(1,2,3): obj.setPassed();\n"));
+
+  QVERIFY(_helper->runScript("if obj.getQListQSize()==(PythonQt.QtCore.QSize(1,2), PythonQt.QtCore.QSize(3,4)): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if obj.getQListQSize((PythonQt.QtCore.QSize(1,2), PythonQt.QtCore.QSize(3,4)))==(PythonQt.QtCore.QSize(1,2), PythonQt.QtCore.QSize(3,4)): obj.setPassed();\n"));
+}
+
 void PythonQtTestSlotCalling::testObjectSlotCalls()
 {
   QVERIFY(_helper->runScript("if obj.getQObject(obj)==obj: obj.setPassed();\n"));
