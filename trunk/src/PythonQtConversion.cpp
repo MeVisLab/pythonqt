@@ -1261,6 +1261,18 @@ int PythonQtConv::getInnerTemplateMetaType(const QByteArray& typeName)
   return QMetaType::Void;
 }
 
+QByteArray PythonQtConv::getInnerTemplateTypeName(const QByteArray& typeName)
+{
+  int idx = typeName.indexOf("<");
+  if (idx > 0) {
+    int idx2 = typeName.indexOf(">");
+    if (idx2 > 0) {
+      return typeName.mid(idx + 1, idx2 - idx - 1);
+    }
+  }
+  return QByteArray();
+}
+
 
 QString PythonQtConv::CPPObjectToString(int type, const void* data) {
   QString r;

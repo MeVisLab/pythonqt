@@ -60,6 +60,12 @@ PythonQtConv::registerPythonToMetaTypeConverter(typeId, PythonQtConvertPythonLis
 PythonQtConv::registerMetaTypeToPythonConverter(typeId, PythonQtConvertListOfValueTypeToPythonList<type<innertype>, innertype>); \
 }
 
+#define PythonQtRegisterListTemplateConverterForKnownClass(type, innertype) \
+{ int typeId = qRegisterMetaType<type<innertype> >(#type"<"#innertype">"); \
+  PythonQtConv::registerPythonToMetaTypeConverter(typeId, PythonQtConvertPythonListToListOfKnownClass<type<innertype>, innertype>); \
+  PythonQtConv::registerMetaTypeToPythonConverter(typeId, PythonQtConvertListOfKnownClassToPythonList<type<innertype>, innertype>); \
+}
+
 #define PythonQtRegisterToolClassesTemplateConverter(innertype) \
   PythonQtRegisterListTemplateConverter(QList, innertype); \
   PythonQtRegisterListTemplateConverter(QVector, innertype); \
@@ -138,8 +144,14 @@ public:
   //! returns the inner type id of a simple template of the form SomeObject<InnerType>
   static int getInnerTemplateMetaType(const QByteArray& typeName);
 
+  //! returns the inner type name of a simple template of the form SomeObject<InnerType>
+  static QByteArray getInnerTemplateTypeName(const QByteArray& typeName);
+
   //! converts the Qt parameter given in \c data, interpreting it as a \c type registered qvariant/meta type, into a Python object,
   static PyObject* ConvertQtValueToPythonInternal(int type, const void* data);
+
+  //! cast wrapper to given className if possible
+  static void* castWrapperTo(PythonQtInstanceWrapper* wrapper, const QByteArray& className, bool& ok);
 
 public:
 
@@ -158,9 +170,6 @@ protected:
   static PyObject* ConvertQListOfPointerTypeToPythonList(QList<void*>* list, const QByteArray& type);
   //! tries to convert the python object to a QList of pointers to \c type objects, returns true on success
   static bool      ConvertPythonListToQListOfPointerType(PyObject* obj, QList<void*>* list, const QByteArray& type, bool strict);
-
-  //! cast wrapper to given className if possible
-  static void* castWrapperTo(PythonQtInstanceWrapper* wrapper, const QByteArray& className, bool& ok);
 
   //! helper template method for conversion from Python to QVariantMap/Hash
   template <typename Map>
@@ -207,6 +216,64 @@ bool PythonQtConvertPythonListToListOfValueType(PyObject* obj, void* /*QList<T>*
         QVariant v = PythonQtConv::PyObjToQVariant(value, innerType);
         if (v.isValid()) {
           list->push_back(qvariant_cast<T>(v));
+        } else {
+          result = false;
+          break;
+        }
+      }
+    }
+  }
+  return result;
+}
+
+//--------------------------------------------------------------------------------------------------------------------
+
+template<class ListType, class T>
+PyObject* PythonQtConvertListOfKnownClassToPythonList(const void* /*QList<T>* */ inList, int metaTypeId)
+{
+  ListType* list = (ListType*)inList;
+  static PythonQtClassInfo* innerType = PythonQt::priv()->getClassInfo(PythonQtConv::getInnerTemplateTypeName(QByteArray(QMetaType::typeName(metaTypeId))));
+  if (innerType == NULL) {
+    std::cerr << "PythonQtConvertListOfKnownClassToPythonList: unknown inner type " << innerType->className().constData() << std::endl;
+  }
+  PyObject* result = PyTuple_New(list->size());
+  int i = 0;
+  Q_FOREACH(const T& value, *list) {
+    T* newObject = new T(value);
+    PythonQtInstanceWrapper* wrap = (PythonQtInstanceWrapper*)PythonQt::priv()->wrapPtr(newObject, innerType->className());
+    wrap->_ownedByPythonQt = true;
+    PyTuple_SET_ITEM(result, i, (PyObject*)wrap);
+    i++;
+  }
+  return result;
+}
+
+template<class ListType, class T>
+bool PythonQtConvertPythonListToListOfKnownClass(PyObject* obj, void* /*QList<T>* */ outList, int metaTypeId, bool /*strict*/)
+{
+  ListType* list = (ListType*)outList;
+  static PythonQtClassInfo* innerType = PythonQt::priv()->getClassInfo(PythonQtConv::getInnerTemplateTypeName(QByteArray(QMetaType::typeName(metaTypeId))));
+  if (innerType == NULL) {
+    std::cerr << "PythonQtConvertListOfKnownClassToPythonList: unknown inner type " << innerType->className().constData() << std::endl;
+  }
+  bool result = false;
+  if (PySequence_Check(obj)) {
+    int count = PySequence_Size(obj);
+    if (count >= 0) {
+      result = true;
+      PyObject* value;
+      for (int i = 0; i < count; i++) {
+        value = PySequence_GetItem(obj, i);
+        if (PyObject_TypeCheck(value, &PythonQtInstanceWrapper_Type)) {
+          PythonQtInstanceWrapper* wrap = (PythonQtInstanceWrapper*)value;
+          bool ok;
+          T* object = (T*)PythonQtConv::castWrapperTo(wrap, innerType->className(), ok);
+          if (ok) {
+            list->push_back(*object);
+          } else {
+            result = false;
+            break;
+          }
         } else {
           result = false;
           break;
