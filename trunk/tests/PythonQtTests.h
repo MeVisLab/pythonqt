@@ -394,6 +394,8 @@ public Q_SLOTS:
   QList<QSize> getQListQSize() { _called = true; return QList<QSize>() << QSize(1,2) << QSize(3,4); }
   QList<QSize> getQListQSize(const QList<QSize>& list) { _called = true; return list; }
 
+  QList<Qt::DayOfWeek> getQListDayOfWeek(const QList<Qt::DayOfWeek>& days) { _called = true; return days; }
+
   // QColor as representative for C++ value classes
   QColor  getQColor1(const QColor& var) { _called = true;  return var; }
   QColor  getQColor2(QColor& var) { _called = true;  return var; }
