@@ -224,6 +224,8 @@ void PythonQtTestSlotCalling::testQListSlotCalls()
   QVERIFY(_helper->runScript("if obj.getQListdouble()==(1.1,2.2,3.3): obj.setPassed();\n"));
   QVERIFY(_helper->runScript("if obj.getQListfloat()==(1,2,3): obj.setPassed();\n"));
 
+  QVERIFY(_helper->runScript("if obj.getQListDayOfWeek((PythonQt.QtCore.Qt.Monday, PythonQt.QtCore.Qt.Friday))==(PythonQt.QtCore.Qt.Monday, PythonQt.QtCore.Qt.Friday): obj.setPassed();\n"));
+
   QVERIFY(_helper->runScript("if obj.getQListQSize()==(PythonQt.QtCore.QSize(1,2), PythonQt.QtCore.QSize(3,4)): obj.setPassed();\n"));
   QVERIFY(_helper->runScript("if obj.getQListQSize((PythonQt.QtCore.QSize(1,2), PythonQt.QtCore.QSize(3,4)))==(PythonQt.QtCore.QSize(1,2), PythonQt.QtCore.QSize(3,4)): obj.setPassed();\n"));
 }
