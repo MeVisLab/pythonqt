@@ -70,7 +70,11 @@ PythonQtConv::registerMetaTypeToPythonConverter(typeId, PythonQtConvertListOfVal
   PythonQtRegisterListTemplateConverter(QList, innertype); \
   PythonQtRegisterListTemplateConverter(QVector, innertype); \
   PythonQtRegisterListTemplateConverter(std::vector, innertype);
-// TODO: add QHash etc. here!
+
+#define PythonQtRegisterToolClassesTemplateConverterForKnownClass(innertype) \
+  PythonQtRegisterListTemplateConverterForKnownClass(QList, innertype); \
+  PythonQtRegisterListTemplateConverterForKnownClass(QVector, innertype); \
+  PythonQtRegisterListTemplateConverterForKnownClass(std::vector, innertype);
 
 //! a static class that offers methods for type conversion
 class PYTHONQT_EXPORT PythonQtConv {
