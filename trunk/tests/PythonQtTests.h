@@ -52,6 +52,7 @@
 #include <QColor>
 #include <QBrush>
 #include <QCursor>
+#include <QGLWidget>
 
 class PythonQtTestSlotCallingHelper;
 class PythonQtTestApiHelper;
@@ -317,6 +318,7 @@ private Q_SLOTS:
   void testPODSlotCalls();
   void testCPPSlotCalls();
   void testQVariantSlotCalls();
+  void testQListSlotCalls();
   void testObjectSlotCalls();
   void testMultiArgsSlotCall();
   void testPyObjectSlotCall();
@@ -378,6 +380,19 @@ public Q_SLOTS:
   QString getQString(const QString& s) { _called = true;  return s; }
   QStringList getQStringList(const QStringList& l) { _called = true;  return l; }
   QVariant getQVariant(const QVariant& var) { _called = true;  return var; }
+
+  QList<int> getQListInt() { _called = true; return QList<int>() << 1 << 2 << 3; }
+  QList<unsigned int> getQListUnsignedInt() { _called = true; return QList<unsigned int>() << 1 << 2 << 3; }
+  QList<qreal> getQListqreal() { _called = true; return QList<qreal>() << 1.1 << 2.2 << 3.3; }
+  QList<float> getQListfloat() { _called = true; return QList<float>() << 1 << 2 << 3; }
+  QList<double> getQListdouble() { _called = true; return QList<double>() << 1.1 << 2.2 << 3.3; }
+  QList<quint64> getQListquint64() { _called = true; return QList<quint64>() << 1 << 2 << 3; }
+  QList<qint64> getQListqint64() { _called = true; return QList<qint64>() << 1 << 2 << 3; }
+  QList<GLuint64> getQListGLuint64() { _called = true; return QList<GLuint64>() << 1 << 2 << 3; }
+  QList<GLuint> getQListGLuint() { _called = true; return QList<GLuint>() << 1 << 2 << 3; }
+
+  QList<QSize> getQListQSize() { _called = true; return QList<QSize>() << QSize(1,2) << QSize(3,4); }
+  QList<QSize> getQListQSize(const QList<QSize>& list) { _called = true; return list; }
 
   // QColor as representative for C++ value classes
   QColor  getQColor1(const QColor& var) { _called = true;  return var; }
