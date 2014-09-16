@@ -1252,7 +1252,7 @@ int PythonQtConv::getInnerTemplateMetaType(const QByteArray& typeName)
 {
   int idx = typeName.indexOf("<");
   if (idx>0) {
-    int idx2 = typeName.indexOf(">");
+    int idx2 = typeName.lastIndexOf(">");
     if (idx2>0) {
       QByteArray innerType = typeName.mid(idx+1,idx2-idx-1);
       return QMetaType::type(innerType.constData());
@@ -1265,7 +1265,7 @@ QByteArray PythonQtConv::getInnerTemplateTypeName(const QByteArray& typeName)
 {
   int idx = typeName.indexOf("<");
   if (idx > 0) {
-    int idx2 = typeName.indexOf(">");
+    int idx2 = typeName.lastIndexOf(">");
     if (idx2 > 0) {
       return typeName.mid(idx + 1, idx2 - idx - 1);
     }
