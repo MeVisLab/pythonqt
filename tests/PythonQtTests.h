@@ -319,6 +319,7 @@ private Q_SLOTS:
   void testCPPSlotCalls();
   void testQVariantSlotCalls();
   void testQListSlotCalls();
+  void testQMapSlotCalls();
   void testObjectSlotCalls();
   void testMultiArgsSlotCall();
   void testPyObjectSlotCall();
@@ -395,6 +396,16 @@ public Q_SLOTS:
   QList<QSize> getQListQSize(const QList<QSize>& list) { _called = true; return list; }
 
   QList<Qt::DayOfWeek> getQListDayOfWeek(const QList<Qt::DayOfWeek>& days) { _called = true; return days; }
+  
+  QMap<int, QVariant> getQMapIntVariant(const QMap<int, QVariant>& map) { _called = true; return map; }
+  QMap<int, QString> getQMapIntString(const QMap<int, QString>& map) { _called = true; return map; }
+
+  QVector<QPair<double, QColor >  > getQVectorQPair1(const QVector<QPair<double, QColor >  > &list) { _called = true; return list; }
+  QVector<QPair<qreal, QColor >  > getQVectorQPair2(const QVector<QPair<qreal, QColor >  > &list) { _called = true; return list; }
+  
+  QPair<double, QColor> getQPair(const QPair<double, QColor>& pair) { _called = true; return pair; }
+
+  QPair<double, QVariant> getQPairVariant(const QPair<double, QVariant>& pair) { _called = true; return pair; }
 
   // QColor as representative for C++ value classes
   QColor  getQColor1(const QColor& var) { _called = true;  return var; }
