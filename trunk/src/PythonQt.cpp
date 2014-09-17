@@ -92,6 +92,9 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
     PythonQtMethodInfo::addParameterTypeAlias("QVector<qreal>", "QVector<double>");
     PythonQtMethodInfo::addParameterTypeAlias("QList<unsigned int>", "QList<quint32>");
     PythonQtMethodInfo::addParameterTypeAlias("QVector<unsigned int>", "QVector<quint32>");
+    // Qt 4 uses uint, while Qt 5 uses unsigned int, seems to be a moc change...
+    PythonQtMethodInfo::addParameterTypeAlias("QList<uint>", "QList<quint32>");
+    PythonQtMethodInfo::addParameterTypeAlias("QVector<uint>", "QVector<quint32>");
     PythonQtMethodInfo::addParameterTypeAlias("QList<int>", "QList<qint32>");
     PythonQtMethodInfo::addParameterTypeAlias("QVector<int>", "QVector<qint32>");
     PythonQtMethodInfo::addParameterTypeAlias("QList<GLint>", "QList<qint32>");
@@ -102,6 +105,9 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
     PythonQtMethodInfo::addParameterTypeAlias("QVector<GLuint64>", "QVector<quint64>");
     PythonQtMethodInfo::addParameterTypeAlias("QList<GLint64>", "QList<qint64>");
     PythonQtMethodInfo::addParameterTypeAlias("QVector<GLint64>", "QVector<qint64>");
+
+    PythonQtMethodInfo::addParameterTypeAlias("QList<QLocale::Country>", "QList<int>");
+    PythonQtMethodInfo::addParameterTypeAlias("QList<Qt::DayOfWeek>", "QList<int>");
 
     // register some QPairs that are used in the Qt interfaces:
     PythonQtRegisterQPairConverter(int, int);
