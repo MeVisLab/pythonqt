@@ -226,8 +226,20 @@ void PythonQtTestSlotCalling::testQListSlotCalls()
 
   QVERIFY(_helper->runScript("if obj.getQListDayOfWeek((PythonQt.QtCore.Qt.Monday, PythonQt.QtCore.Qt.Friday))==(PythonQt.QtCore.Qt.Monday, PythonQt.QtCore.Qt.Friday): obj.setPassed();\n"));
 
+  QVERIFY(_helper->runScript("if obj.getQPair((1.2, PythonQt.QtGui.QColor(PythonQt.QtCore.Qt.red)))==(1.2, PythonQt.QtGui.QColor(PythonQt.QtCore.Qt.red)): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if obj.getQPairVariant((1.2, PythonQt.QtGui.QColor(PythonQt.QtCore.Qt.red)))==(1.2, PythonQt.QtGui.QColor(PythonQt.QtCore.Qt.red)): obj.setPassed();\n"));
+
+  QVERIFY(_helper->runScript("if obj.getQVectorQPair1(((1.2, PythonQt.QtGui.QColor(PythonQt.QtCore.Qt.red)),))==((1.2, PythonQt.QtGui.QColor(PythonQt.QtCore.Qt.red)),): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if obj.getQVectorQPair2(((1.2, PythonQt.QtGui.QColor(PythonQt.QtCore.Qt.red)),))==((1.2, PythonQt.QtGui.QColor(PythonQt.QtCore.Qt.red)),): obj.setPassed();\n"));
+
   QVERIFY(_helper->runScript("if obj.getQListQSize()==(PythonQt.QtCore.QSize(1,2), PythonQt.QtCore.QSize(3,4)): obj.setPassed();\n"));
   QVERIFY(_helper->runScript("if obj.getQListQSize((PythonQt.QtCore.QSize(1,2), PythonQt.QtCore.QSize(3,4)))==(PythonQt.QtCore.QSize(1,2), PythonQt.QtCore.QSize(3,4)): obj.setPassed();\n"));
+}
+
+void PythonQtTestSlotCalling::testQMapSlotCalls()
+{
+  QVERIFY(_helper->runScript("if obj.getQMapIntVariant({1:'test', 47:48, 49:47.11})=={1:'test', 47:48, 49:47.11}: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if obj.getQMapIntString({1:'test', 47:'a', 49:'bcd'})=={1:'test', 47:'a', 49:'bcd'}: obj.setPassed();\n"));
 }
 
 void PythonQtTestSlotCalling::testObjectSlotCalls()
