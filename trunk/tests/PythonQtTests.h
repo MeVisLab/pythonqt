@@ -52,7 +52,7 @@
 #include <QColor>
 #include <QBrush>
 #include <QCursor>
-#include <QGLWidget>
+//#include <QGLWidget>
 
 class PythonQtTestSlotCallingHelper;
 class PythonQtTestApiHelper;
@@ -389,8 +389,8 @@ public Q_SLOTS:
   QList<double> getQListdouble() { _called = true; return QList<double>() << 1.1 << 2.2 << 3.3; }
   QList<quint64> getQListquint64() { _called = true; return QList<quint64>() << 1 << 2 << 3; }
   QList<qint64> getQListqint64() { _called = true; return QList<qint64>() << 1 << 2 << 3; }
-  QList<GLuint64> getQListGLuint64() { _called = true; return QList<GLuint64>() << 1 << 2 << 3; }
-  QList<GLuint> getQListGLuint() { _called = true; return QList<GLuint>() << 1 << 2 << 3; }
+  //QList<GLuint64> getQListGLuint64() { _called = true; return QList<GLuint64>() << 1 << 2 << 3; }
+  //QList<GLuint> getQListGLuint() { _called = true; return QList<GLuint>() << 1 << 2 << 3; }
 
   QList<QSize> getQListQSize() { _called = true; return QList<QSize>() << QSize(1,2) << QSize(3,4); }
   QList<QSize> getQListQSize(const QList<QSize>& list) { _called = true; return list; }
