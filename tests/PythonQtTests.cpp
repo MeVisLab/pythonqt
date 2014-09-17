@@ -215,8 +215,8 @@ void PythonQtTestSlotCalling::testQListSlotCalls()
 {
   QVERIFY(_helper->runScript("if obj.getQListInt()==(1,2,3): obj.setPassed();\n"));
   QVERIFY(_helper->runScript("if obj.getQListUnsignedInt()==(1,2,3): obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("if obj.getQListGLuint()==(1,2,3): obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("if obj.getQListGLuint64()==(1,2,3): obj.setPassed();\n"));
+//  QVERIFY(_helper->runScript("if obj.getQListGLuint()==(1,2,3): obj.setPassed();\n"));
+//  QVERIFY(_helper->runScript("if obj.getQListGLuint64()==(1,2,3): obj.setPassed();\n"));
   QVERIFY(_helper->runScript("if obj.getQListqint64()==(1,2,3): obj.setPassed();\n"));
   QVERIFY(_helper->runScript("if obj.getQListquint64()==(1,2,3): obj.setPassed();\n"));
 
