@@ -87,7 +87,7 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
     PythonQtRegisterToolClassesTemplateConverter(quint32);
     PythonQtRegisterToolClassesTemplateConverter(qint64);
     PythonQtRegisterToolClassesTemplateConverter(quint64);
-
+    
     PythonQtMethodInfo::addParameterTypeAlias("QList<qreal>", "QList<double>");
     PythonQtMethodInfo::addParameterTypeAlias("QVector<qreal>", "QVector<double>");
     PythonQtMethodInfo::addParameterTypeAlias("QList<unsigned int>", "QList<quint32>");
@@ -102,6 +102,46 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
     PythonQtMethodInfo::addParameterTypeAlias("QVector<GLuint64>", "QVector<quint64>");
     PythonQtMethodInfo::addParameterTypeAlias("QList<GLint64>", "QList<qint64>");
     PythonQtMethodInfo::addParameterTypeAlias("QVector<GLint64>", "QVector<qint64>");
+
+    // register some QPairs that are used in the Qt interfaces:
+    PythonQtRegisterQPairConverter(int, int);
+    PythonQtRegisterQPairConverter(float, float);
+    PythonQtRegisterQPairConverter(double, double);
+    PythonQtRegisterQPairConverter(QString, QString);
+    PythonQtRegisterQPairConverter(QByteArray, QByteArray);
+    PythonQtRegisterQPairConverter(double, QColor);
+    PythonQtRegisterQPairConverter(double, QPointF);
+    PythonQtRegisterQPairConverter(double, QVariant);
+    PythonQtRegisterQPairConverter(QString, QSizeF);
+    PythonQtMethodInfo::addParameterTypeAlias("QPair<qreal,qreal>", "QPair<double,double>");
+    PythonQtMethodInfo::addParameterTypeAlias("QPair<qreal,QColor>", "QPair<double,QColor>");
+    PythonQtMethodInfo::addParameterTypeAlias("QPair<qreal,QPointF>", "QPair<double,QPointF>");
+    PythonQtMethodInfo::addParameterTypeAlias("QPair<qreal,QVariant>", "QPair<double,QVariant>");
+    PythonQtMethodInfo::addParameterTypeAlias("QPair<QOpenGLTexture::Filter,QOpenGLTexture::Filter>", "QPair<int,int>");
+
+    // register some QList/QVector of QPairs that are used in the Qt interfaces:
+    PythonQtRegisterListTemplateQPairConverter(QVector, double, QVariant);
+    PythonQtRegisterListTemplateQPairConverter(QVector, double, QColor);
+    // NOTE: the extra space between the > is needed (and added by the moc)
+    PythonQtMethodInfo::addParameterTypeAlias("QVector<QPair<qreal,QVariant> >", "QVector<QPair<double,QVariant> >");
+    PythonQtMethodInfo::addParameterTypeAlias("QVector<QPair<qreal,QColor> >", "QVector<QPair<double,QColor> >");
+
+    PythonQtRegisterListTemplateQPairConverter(QList, QByteArray, QByteArray);
+    PythonQtRegisterListTemplateQPairConverter(QList, QString, QString);
+    PythonQtRegisterListTemplateQPairConverter(QList, QString, QSizeF);
+    PythonQtRegisterListTemplateQPairConverter(QList, double, QPointF);
+    PythonQtRegisterListTemplateQPairConverter(QList, double, double);
+    // NOTE: the extra space between the > is needed (and added by the moc)
+    PythonQtMethodInfo::addParameterTypeAlias("QList<QPair<qreal,QPointF> >", "QList<QPair<double,QPointF> >");
+    PythonQtMethodInfo::addParameterTypeAlias("QList<QPair<qreal,qreal> >", "QList<QPair<double,double> >");
+
+    PythonQtRegisterIntegerMapConverter(QMap, QByteArray);
+    PythonQtRegisterIntegerMapConverter(QMap, QVariant);
+    PythonQtRegisterIntegerMapConverter(QMap, QString);
+    PythonQtRegisterIntegerMapConverter(QHash, QByteArray);
+    PythonQtRegisterIntegerMapConverter(QHash, QVariant);
+    PythonQtRegisterIntegerMapConverter(QHash, QString);
+    PythonQtMethodInfo::addParameterTypeAlias("QHash<QNetworkRequest::Attribute,QVariant>", "QHash<int,QVariant>");
 
     PythonQt_init_QtCoreBuiltin(NULL);
     PythonQt_init_QtGuiBuiltin(NULL);

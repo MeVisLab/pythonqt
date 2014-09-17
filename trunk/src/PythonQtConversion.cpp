@@ -176,6 +176,9 @@ PyObject* PythonQtConv::ConvertQtValueToPythonInternal(int type, const void* dat
     return PythonQtConv::QStringListToPyObject(*((QStringList*)data));
 
   case PythonQtMethodInfo::Variant:
+#if QT_VERSION >= 0x040800
+  case QMetaType::QVariant:
+#endif
     return PythonQtConv::QVariantToPyObject(*((QVariant*)data));
   case QMetaType::QObjectStar:
 #if( QT_VERSION < QT_VERSION_CHECK(5,0,0) )
@@ -944,7 +947,11 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
   QVariant v;
   bool ok = true;
 
-  if (type==-1) {
+  if (type == -1 
+#if QT_VERSION >= 0x040800
+    || type == QMetaType::QVariant
+#endif
+    ) {
     // no special type requested
     if (PyBytes_Check(val) || PyUnicode_Check(val)) {
       // NOTE: for compatibility reasons between Python 2/3 we don't use ByteArray for PyBytes_Type
@@ -1179,7 +1186,7 @@ PyObject* PythonQtConv::mapToPython (const Map& m)
   typename Map::const_iterator t = m.constBegin();
   PyObject* key;
   PyObject* val;
-  for (;t!=m.end();t++) {
+  for (;t!=m.constEnd();t++) {
     key = QStringToPyObject(t.key());
     val = QVariantToPyObject(t.value());
     PyDict_SetItem(result, key, val);
@@ -1254,7 +1261,7 @@ int PythonQtConv::getInnerTemplateMetaType(const QByteArray& typeName)
   if (idx>0) {
     int idx2 = typeName.lastIndexOf(">");
     if (idx2>0) {
-      QByteArray innerType = typeName.mid(idx+1,idx2-idx-1);
+      QByteArray innerType = typeName.mid(idx+1,idx2-idx-1).trimmed();
       return QMetaType::type(innerType.constData());
     }
   }
@@ -1267,7 +1274,7 @@ QByteArray PythonQtConv::getInnerTemplateTypeName(const QByteArray& typeName)
   if (idx > 0) {
     int idx2 = typeName.lastIndexOf(">");
     if (idx2 > 0) {
-      return typeName.mid(idx + 1, idx2 - idx - 1);
+      return typeName.mid(idx + 1, idx2 - idx - 1).trimmed();
     }
   }
   return QByteArray();
