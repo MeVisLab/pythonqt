@@ -89,6 +89,7 @@ endif()
 # Sources
 
 set(sources
+    src/PythonQtBoolResult.cpp
     src/PythonQtClassInfo.cpp
     src/PythonQtClassWrapper.cpp
     src/PythonQtConversion.cpp
@@ -119,6 +120,7 @@ set(sources
 # List headers.  This is list is used for the install command.
 
 set(headers
+    src/PythonQtBoolResult.h
     src/PythonQtClassInfo.h
     src/PythonQtClassWrapper.h
     src/PythonQtConversion.h
