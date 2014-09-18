@@ -566,6 +566,13 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
      case QMetaType::QByteArray:
        {
          QByteArray bytes = PyObjGetBytes(obj, strict, ok);
+#ifdef PY3K
+         if (!ok) {
+           // since Qt uses QByteArray in many places for identifier strings,
+           // we need to allow implicit conversion from unicode as well:
+           bytes = PyObjGetString(obj, strict, ok).toUtf8();
+         }
+#endif
          if (ok) {
            PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_variantStorage, QVariant, QVariant(bytes), ptr);
            ptr = (void*)((QVariant*)ptr)->constData();
