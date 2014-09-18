@@ -85,22 +85,18 @@ PyObject* PythonQtConv::ConvertQtValueToPython(const PythonQtMethodInfo::Paramet
       return Py_None;
     }
   } else if ((info.typeId == PythonQtMethodInfo::Unknown || info.typeId >= QMetaType::User) &&
-             info.name.startsWith("QList<")) {
-    // it is a QList template:
-    QByteArray innerType = info.name.mid(6,info.name.length()-7);
-    if (innerType.endsWith("*")) {
-      innerType.truncate(innerType.length()-1);
-      QList<void*>* listPtr = NULL;
-      if (info.pointerCount == 1) {
-        listPtr = *((QList<void*>**)data);
-      } else if (info.pointerCount == 0) {
-        listPtr = (QList<void*>*)data;
-      }
-      if (listPtr) {
-        return ConvertQListOfPointerTypeToPythonList(listPtr, innerType);
-      } else {
-        return NULL;
-      }
+             info.isQList && (info.innerNamePointerCount == 1)) {
+    // it is a QList<Obj*> template:
+    QList<void*>* listPtr = NULL;
+    if (info.pointerCount == 1) {
+      listPtr = *((QList<void*>**)data);
+    } else if (info.pointerCount == 0) {
+      listPtr = (QList<void*>*)data;
+    }
+    if (listPtr) {
+      return ConvertQListOfPointerTypeToPythonList(listPtr, info.innerName);
+    } else {
+      return NULL;
     }
   }
 
@@ -208,9 +204,9 @@ PyObject* PythonQtConv::ConvertQtValueToPythonInternal(int type, const void* dat
       }
       std::cerr << "Unknown type that can not be converted to Python: " << type << ", in " << __FILE__ << ":" << __LINE__ << std::endl;
     }
-}
-Py_INCREF(Py_None);
-return Py_None;
+  }
+  Py_INCREF(Py_None);
+  return Py_None;
  }
 
  void* PythonQtConv::CreateQtReturnValue(const PythonQtMethodInfo::ParameterInfo& info) {
@@ -243,20 +239,15 @@ return Py_None;
        // return the ptr to the variant
        break;
      default:
-       if (info.typeId == PythonQtMethodInfo::Unknown) {
-         // check if we have a QList of pointers, which we can circumvent with a QList<void*>
-         if (info.name.startsWith("QList<")) {
-           QByteArray innerType = info.name.mid(6,info.name.length()-7);
-           if (innerType.endsWith("*")) {
-             static int id = QMetaType::type("QList<void*>");
-             PythonQtValueStorage_ADD_VALUE(global_variantStorage, QVariant, QVariant::Type(id), ptr);
-             // return the constData pointer that will be filled with the result value later on
-             ptr = (void*)((QVariant*)ptr)->constData();
-           }
-         }
+       // check if we have a QList of pointers, which we can circumvent with a QList<void*>
+       if (info.isQList && (info.innerNamePointerCount == 1)) {
+         static int id = QMetaType::type("QList<void*>");
+         PythonQtValueStorage_ADD_VALUE(global_variantStorage, QVariant, QVariant::Type(id), ptr);
+         // return the constData pointer that will be filled with the result value later on
+         ptr = (void*)((QVariant*)ptr)->constData();
        }
 
-      if (!ptr && info.typeId!=PythonQtMethodInfo::Unknown) {
+       if (!ptr && info.typeId != PythonQtMethodInfo::Unknown) {
          // everything else is stored in a QVariant, if we know the meta type...
          PythonQtValueStorage_ADD_VALUE(global_variantStorage, QVariant, QVariant::Type(info.typeId), ptr);
          // return the constData pointer that will be filled with the result value later on
@@ -631,23 +622,19 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
 
          if (info.typeId == PythonQtMethodInfo::Unknown || info.typeId >= QMetaType::User) {
            // check for QList<AnyPtr*> case, where we will use a QList<void*> QVariant
-           if (info.name.startsWith("QList<")) {
-             QByteArray innerType = info.name.mid(6,info.name.length()-7);
-             if (innerType.endsWith("*")) {
-               innerType.truncate(innerType.length()-1);
-               static int id = QMetaType::type("QList<void*>");
-               if (!alreadyAllocatedCPPObject) {
-                 PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_variantStorage, QVariant, QVariant::Type(id), ptr);
-                 ptr = (void*)((QVariant*)ptr)->constData();
-               } else {
-                 ptr = alreadyAllocatedCPPObject;
-               }
-               ok = ConvertPythonListToQListOfPointerType(obj, (QList<void*>*)ptr, innerType, strict);
-               if (ok) {
-                 return ptr;
-               } else {
-                 return NULL;
-               }
+           if (info.isQList && (info.innerNamePointerCount == 1)) {
+             static int id = QMetaType::type("QList<void*>");
+             if (!alreadyAllocatedCPPObject) {
+               PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject, global_variantStorage, QVariant, QVariant::Type(id), ptr);
+               ptr = (void*)((QVariant*)ptr)->constData();
+             } else {
+               ptr = alreadyAllocatedCPPObject;
+             }
+             ok = ConvertPythonListToQListOfPointerType(obj, (QList<void*>*)ptr, info.innerName, strict);
+             if (ok) {
+               return ptr;
+             } else {
+               return NULL;
              }
            }
          }
@@ -1138,10 +1125,48 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
         // construct a new variant from the C++ object if it has the same meta type
         v = QVariant(type, wrap->_wrappedPtr);
       } else {
-        v = QVariant();
+        // Try to convert the object to a QVariant based on the typeName
+        bool ok;
+        bool isPtr = false;
+        QByteArray typeName = QMetaType::typeName(type);
+        if (typeName.endsWith("*")) {
+          isPtr = true;
+          typeName.truncate(typeName.length() - 1);
+        }
+        void* object = castWrapperTo(wrap, typeName, ok);
+        if (ok) {
+          if (isPtr) {
+            v = QVariant(type, &object);
+          }
+          else {
+            v = QVariant(type, object);
+          }
+        }
       }
-    } else {
-      v = QVariant();
+    } else if (type >= QVariant::UserType) {
+      // not an instance wrapper, but there might be other converters 
+      // Maybe we have a special converter that is registered for that type:
+      PythonQtConvertPythonToMetaTypeCB* converter = _pythonToMetaTypeConverters.value(type);
+      if (converter) {
+        // allocate a default object of the needed type:
+        v = QVariant(type, NULL);
+        // now call the converter, passing the internal object of the variant
+        ok = (*converter)(val, (void*)v.constData(), type, true);
+        if (!ok) {
+          v = QVariant();
+        }
+      } else {
+        // try QList<AnyObject*>...
+        const PythonQtMethodInfo::ParameterInfo& info = PythonQtMethodInfo::getParameterInfoForMetaType(type);
+        if (info.isQList && (info.innerNamePointerCount == 1)) {
+          // allocate a default object of the needed type:
+          v = QVariant(type, NULL);
+          ok = ConvertPythonListToQListOfPointerType(val, (QList<void*>*)v.constData(), info.innerName, true);
+          if (!ok) {
+            v = QVariant();
+          }
+        }
+      }
     }
   }
   return v;
@@ -1183,7 +1208,20 @@ PyObject* PythonQtConv::QStringListToPyList(const QStringList& list)
 
 PyObject* PythonQtConv::QVariantToPyObject(const QVariant& v)
 {
-  return ConvertQtValueToPythonInternal(v.userType(), (void*)v.constData());
+  if (!v.isValid()) {
+    Py_INCREF(Py_None);
+    return Py_None;
+  }
+  PyObject* obj = NULL;
+  if (v.userType() >= QMetaType::User && !PythonQt::priv()->isPythonQtObjectPtrMetaId(v.userType())) {
+    // try the slower way, which supports more conversions, e.g. QList<QObject*>
+    const PythonQtMethodInfo::ParameterInfo& info = PythonQtMethodInfo::getParameterInfoForMetaType(v.userType());
+    obj = ConvertQtValueToPython(info, v.constData());
+  } else {
+    // try the quick way to convert it, since it is a built-in type:
+    obj = ConvertQtValueToPythonInternal(v.userType(), (void*)v.constData());
+  }
+  return obj;
 }
 
 template <typename Map>
@@ -1260,31 +1298,6 @@ bool PythonQtConv::ConvertPythonListToQListOfPointerType(PyObject* obj, QList<vo
     }
   }
   return result;
-}
-
-int PythonQtConv::getInnerTemplateMetaType(const QByteArray& typeName)
-{
-  int idx = typeName.indexOf("<");
-  if (idx>0) {
-    int idx2 = typeName.lastIndexOf(">");
-    if (idx2>0) {
-      QByteArray innerType = typeName.mid(idx+1,idx2-idx-1).trimmed();
-      return QMetaType::type(innerType.constData());
-    }
-  }
-  return QMetaType::Void;
-}
-
-QByteArray PythonQtConv::getInnerTemplateTypeName(const QByteArray& typeName)
-{
-  int idx = typeName.indexOf("<");
-  if (idx > 0) {
-    int idx2 = typeName.lastIndexOf(">");
-    if (idx2 > 0) {
-      return typeName.mid(idx + 1, idx2 - idx - 1).trimmed();
-    }
-  }
-  return QByteArray();
 }
 
 

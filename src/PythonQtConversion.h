@@ -165,12 +165,6 @@ public:
   //! register a converter callback from cpp to python for given metatype
   static void registerMetaTypeToPythonConverter(int metaTypeId, PythonQtConvertMetaTypeToPythonCB* cb) { _metaTypeToPythonConverters.insert(metaTypeId, cb); }
 
-  //! returns the inner type id of a simple template of the form SomeObject<InnerType>
-  static int getInnerTemplateMetaType(const QByteArray& typeName);
-
-  //! returns the inner type name of a simple template of the form SomeObject<InnerType>
-  static QByteArray getInnerTemplateTypeName(const QByteArray& typeName);
-
   //! converts the Qt parameter given in \c data, interpreting it as a \c type registered qvariant/meta type, into a Python object,
   static PyObject* ConvertQtValueToPythonInternal(int type, const void* data);
 
@@ -207,7 +201,7 @@ template<class ListType, class T>
 PyObject* PythonQtConvertListOfValueTypeToPythonList(const void* /*QList<T>* */ inList, int metaTypeId)
 {
   ListType* list = (ListType*)inList; 
-  static const int innerType = PythonQtConv::getInnerTemplateMetaType(QByteArray(QMetaType::typeName(metaTypeId)));
+  static const int innerType = PythonQtMethodInfo::getInnerTemplateMetaType(QByteArray(QMetaType::typeName(metaTypeId)));
   if (innerType == QVariant::Invalid) {
     std::cerr << "PythonQtConvertListOfValueTypeToPythonList: unknown inner type " << QMetaType::typeName(metaTypeId) << std::endl;
   }
@@ -224,7 +218,7 @@ template<class ListType, class T>
 bool PythonQtConvertPythonListToListOfValueType(PyObject* obj, void* /*QList<T>* */ outList, int metaTypeId, bool /*strict*/)
 {
   ListType* list = (ListType*)outList; 
-  static const int innerType = PythonQtConv::getInnerTemplateMetaType(QByteArray(QMetaType::typeName(metaTypeId)));
+  static const int innerType = PythonQtMethodInfo::getInnerTemplateMetaType(QByteArray(QMetaType::typeName(metaTypeId)));
   if (innerType == QVariant::Invalid) {
     std::cerr << "PythonQtConvertPythonListToListOfValueType: unknown inner type " << QMetaType::typeName(metaTypeId) << std::endl;
   }
@@ -256,7 +250,7 @@ template<class ListType, class T>
 PyObject* PythonQtConvertListOfKnownClassToPythonList(const void* /*QList<T>* */ inList, int metaTypeId)
 {
   ListType* list = (ListType*)inList;
-  static PythonQtClassInfo* innerType = PythonQt::priv()->getClassInfo(PythonQtConv::getInnerTemplateTypeName(QByteArray(QMetaType::typeName(metaTypeId))));
+  static PythonQtClassInfo* innerType = PythonQt::priv()->getClassInfo(PythonQtMethodInfo::getInnerTemplateTypeName(QByteArray(QMetaType::typeName(metaTypeId))));
   if (innerType == NULL) {
     std::cerr << "PythonQtConvertListOfKnownClassToPythonList: unknown inner type " << innerType->className().constData() << std::endl;
   }
@@ -276,7 +270,7 @@ template<class ListType, class T>
 bool PythonQtConvertPythonListToListOfKnownClass(PyObject* obj, void* /*QList<T>* */ outList, int metaTypeId, bool /*strict*/)
 {
   ListType* list = (ListType*)outList;
-  static PythonQtClassInfo* innerType = PythonQt::priv()->getClassInfo(PythonQtConv::getInnerTemplateTypeName(QByteArray(QMetaType::typeName(metaTypeId))));
+  static PythonQtClassInfo* innerType = PythonQt::priv()->getClassInfo(PythonQtMethodInfo::getInnerTemplateTypeName(QByteArray(QMetaType::typeName(metaTypeId))));
   if (innerType == NULL) {
     std::cerr << "PythonQtConvertListOfKnownClassToPythonList: unknown inner type " << innerType->className().constData() << std::endl;
   }
@@ -317,7 +311,7 @@ PyObject* PythonQtConvertPairToPython(const void* /*QPair<T1,T2>* */ inPair, int
   static int innerType1 = -1;
   static int innerType2 = -1;
   if (innerType1==-1) {
-    QByteArray innerTypes = PythonQtConv::getInnerTemplateTypeName(QByteArray(QMetaType::typeName(metaTypeId)));
+    QByteArray innerTypes = PythonQtMethodInfo::getInnerTemplateTypeName(QByteArray(QMetaType::typeName(metaTypeId)));
     QList<QByteArray> names = innerTypes.split(',');
     innerType1 = QMetaType::type(names.at(0).trimmed());
     innerType2 = QMetaType::type(names.at(1).trimmed());
@@ -338,7 +332,7 @@ bool PythonQtConvertPythonToPair(PyObject* obj, void* /*QPair<T1,T2>* */ outPair
   static int innerType1 = -1;
   static int innerType2 = -1;
   if (innerType1 == -1) {
-    QByteArray innerTypes = PythonQtConv::getInnerTemplateTypeName(QByteArray(QMetaType::typeName(metaTypeId)));
+    QByteArray innerTypes = PythonQtMethodInfo::getInnerTemplateTypeName(QByteArray(QMetaType::typeName(metaTypeId)));
     QList<QByteArray> names = innerTypes.split(',');
     innerType1 = QMetaType::type(names.at(0).trimmed());
     innerType2 = QMetaType::type(names.at(1).trimmed());
@@ -381,7 +375,7 @@ template<class ListType, class T1, class T2>
 PyObject* PythonQtConvertListOfPairToPythonList(const void* /*QList<QPair<T1,T2> >* */ inList, int metaTypeId)
 {
   ListType* list = (ListType*)inList;
-  static int innerType = PythonQtConv::getInnerTemplateMetaType(QByteArray(QMetaType::typeName(metaTypeId)));
+  static int innerType = PythonQtMethodInfo::getInnerTemplateMetaType(QByteArray(QMetaType::typeName(metaTypeId)));
   if (innerType == QVariant::Invalid) {
     std::cerr << "PythonQtConvertListOfPairToPythonList: unknown inner type " << QMetaType::typeName(metaTypeId) << std::endl;
   }
@@ -400,7 +394,7 @@ template<class ListType, class T1, class T2>
 bool PythonQtConvertPythonListToListOfPair(PyObject* obj, void* /*QList<QPair<T1,T2> >* */ outList, int metaTypeId, bool /*strict*/)
 {
   ListType* list = (ListType*)outList;
-  static int innerType = PythonQtConv::getInnerTemplateMetaType(QByteArray(QMetaType::typeName(metaTypeId)));
+  static int innerType = PythonQtMethodInfo::getInnerTemplateMetaType(QByteArray(QMetaType::typeName(metaTypeId)));
   if (innerType == QVariant::Invalid) {
     std::cerr << "PythonQtConvertPythonListToListOfPair: unknown inner type " << QMetaType::typeName(metaTypeId) << std::endl;
   }
@@ -433,7 +427,7 @@ PyObject* PythonQtConvertIntegerMapToPython(const void* /*QMap<int, T>* */ inMap
   MapType* map = (MapType*)inMap;
   static int innerType = -1;
   if (innerType == -1) {
-    QByteArray innerTypes = PythonQtConv::getInnerTemplateTypeName(QByteArray(QMetaType::typeName(metaTypeId)));
+    QByteArray innerTypes = PythonQtMethodInfo::getInnerTemplateTypeName(QByteArray(QMetaType::typeName(metaTypeId)));
     QList<QByteArray> names = innerTypes.split(',');
     innerType = QMetaType::type(names.at(1).trimmed());
   }
@@ -461,7 +455,7 @@ bool PythonQtConvertPythonToIntegerMap(PyObject* val, void* /*QMap<int, T>* */ o
   MapType* map = (MapType*)outMap;
   static int innerType = -1;
   if (innerType == -1) {
-    QByteArray innerTypes = PythonQtConv::getInnerTemplateTypeName(QByteArray(QMetaType::typeName(metaTypeId)));
+    QByteArray innerTypes = PythonQtMethodInfo::getInnerTemplateTypeName(QByteArray(QMetaType::typeName(metaTypeId)));
     QList<QByteArray> names = innerTypes.split(',');
     innerType = QMetaType::type(names.at(1).trimmed());
   }

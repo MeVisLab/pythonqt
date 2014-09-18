@@ -44,6 +44,7 @@
 #include <iostream>
 
 QHash<QByteArray, PythonQtMethodInfo*> PythonQtMethodInfo::_cachedSignatures;
+QHash<int, PythonQtMethodInfo::ParameterInfo> PythonQtMethodInfo::_cachedParameterInfos;
 QHash<QByteArray, QByteArray> PythonQtMethodInfo::_parameterNameAliases;
 
 PythonQtMethodInfo::PythonQtMethodInfo(const QMetaMethod& meta, PythonQtClassInfo* classInfo)
@@ -117,6 +118,8 @@ void PythonQtMethodInfo::fillParameterInfo(ParameterInfo& type, const QByteArray
   QByteArray name = orgName;
 
   type.enumWrapper = NULL;
+  type.innerNamePointerCount = 0;
+  type.isQList = false;
   
   int len = name.length();
   if (len>0) {
@@ -129,7 +132,7 @@ void PythonQtMethodInfo::fillParameterInfo(ParameterInfo& type, const QByteArray
     }
     char pointerCount = 0;
     bool hadReference = false;
-    // remove * and & from the end of the string, handle & and * the same way
+    // remove * and & from the end of the string
     while (name.at(len-1) == '*') {
       len--;
       pointerCount++;
@@ -161,6 +164,18 @@ void PythonQtMethodInfo::fillParameterInfo(ParameterInfo& type, const QByteArray
     }
     type.name = name;
 
+    if (name.startsWith("QList<")) {
+      type.isQList = true;
+    }
+    if (name.contains("<")) {
+      QByteArray innerName = getInnerTemplateTypeName(name);
+      if (innerName.endsWith("*")) {
+        type.innerNamePointerCount = 1;
+        innerName.truncate(innerName.length() - 1);
+      }
+      type.innerName = innerName;
+    }
+
     if (type.typeId == PythonQtMethodInfo::Unknown || type.typeId >= QMetaType::User) {
       bool isLocalEnum;
       // TODOXXX: make use of this flag!
@@ -171,6 +186,31 @@ void PythonQtMethodInfo::fillParameterInfo(ParameterInfo& type, const QByteArray
     type.pointerCount = 0;
     type.isConst = false;
   }
+}
+
+int PythonQtMethodInfo::getInnerTemplateMetaType(const QByteArray& typeName)
+{
+  int idx = typeName.indexOf("<");
+  if (idx > 0) {
+    int idx2 = typeName.lastIndexOf(">");
+    if (idx2 > 0) {
+      QByteArray innerType = typeName.mid(idx + 1, idx2 - idx - 1).trimmed();
+      return QMetaType::type(innerType.constData());
+    }
+  }
+  return QMetaType::Void;
+}
+
+QByteArray PythonQtMethodInfo::getInnerTemplateTypeName(const QByteArray& typeName)
+{
+  int idx = typeName.indexOf("<");
+  if (idx > 0) {
+    int idx2 = typeName.lastIndexOf(">");
+    if (idx2 > 0) {
+      return typeName.mid(idx + 1, idx2 - idx - 1).trimmed();
+    }
+  }
+  return QByteArray();
 }
 
 int PythonQtMethodInfo::nameToType(const char* name)
@@ -290,11 +330,24 @@ void PythonQtMethodInfo::cleanupCachedMethodInfos()
     delete i.next().value();
   }
   _cachedSignatures.clear();
+  _cachedParameterInfos.clear();
 }
 
 void PythonQtMethodInfo::addParameterTypeAlias(const QByteArray& alias, const QByteArray& name)
 {
   _parameterNameAliases.insert(alias, name);
+}
+
+const PythonQtMethodInfo::ParameterInfo& PythonQtMethodInfo::getParameterInfoForMetaType(int type)
+{
+  QHash<int, ParameterInfo>::ConstIterator it = _cachedParameterInfos.find(type);
+  if (it != _cachedParameterInfos.constEnd()) {
+    return it.value();
+  }
+  ParameterInfo info;
+  fillParameterInfo(info, QMetaType::typeName(type));
+  _cachedParameterInfos.insert(type, info);
+  return _cachedParameterInfos[type];
 }
 
 //-------------------------------------------------------------------------------------------------
