@@ -28,7 +28,8 @@ HEADERS +=                    \
   $$PWD/PythonQtVariants.h          \
   $$PWD/gui/PythonQtScriptingConsole.h    \
   $$PWD/PythonQtSystem.h \
-  $$PWD/PythonQtUtils.h
+  $$PWD/PythonQtUtils.h \
+  $$PWD/PythonQtBoolResult.h
   
 SOURCES +=                    \
   $$PWD/PythonQtStdDecorators.cpp   \
@@ -47,6 +48,7 @@ SOURCES +=                    \
   $$PWD/PythonQtInstanceWrapper.cpp \
   $$PWD/PythonQtQFileImporter.cpp   \
   $$PWD/PythonQtClassWrapper.cpp    \
+  $$PWD/PythonQtBoolResult.cpp      \
   $$PWD/gui/PythonQtScriptingConsole.cpp \
 
 

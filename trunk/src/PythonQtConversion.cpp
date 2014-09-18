@@ -41,6 +41,7 @@
 
 #include "PythonQtConversion.h"
 #include "PythonQtVariants.h"
+#include "PythonQtBoolResult.h"
 #include <QDateTime>
 #include <QTime>
 #include <QDate>
@@ -362,6 +363,12 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
      if (ptr) {
        return ptr;
      }
+   }
+   if (info.pointerCount==1 && PythonQtBoolResult_Check(obj) && info.typeId == QMetaType::Bool) {
+     PythonQtBoolResultObject* boolResul = (PythonQtBoolResultObject*)obj;
+     // store the wrapped pointer in an extra pointer and let ptr point to the extra pointer
+     PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_ptrStorage, void*, &boolResul->_value, ptr);
+     return ptr;
    }
 
    if (PyObject_TypeCheck(obj, &PythonQtInstanceWrapper_Type) && info.typeId != PythonQtMethodInfo::Variant) {
