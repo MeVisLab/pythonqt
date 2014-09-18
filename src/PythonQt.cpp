@@ -52,6 +52,7 @@
 #include "PythonQtVariants.h"
 #include "PythonQtStdDecorators.h"
 #include "PythonQtQFileImporter.h"
+#include "PythonQtBoolResult.h"
 #include <pydebug.h>
 #include <vector>
 
@@ -270,6 +271,12 @@ PythonQt::PythonQt(int flags, const QByteArray& pythonQtModuleName)
     std::cerr << "could not initialize PythonQtSignalFunction_Type" << ", in " << __FILE__ << ":" << __LINE__ << std::endl;
   }
   Py_INCREF(&PythonQtSignalFunction_Type);
+
+  PythonQtBoolResult_Type.tp_new = PyType_GenericNew;
+  if (PyType_Ready(&PythonQtBoolResult_Type) < 0) {
+    std::cerr << "could not initialize PythonQtBoolResult_Type" << ", in " << __FILE__ << ":" << __LINE__ << std::endl;
+  }
+  Py_INCREF(&PythonQtBoolResult_Type);
 
   // according to Python docs, set the type late here, since it can not safely be stored in the struct when declaring it
   PythonQtClassWrapper_Type.tp_base = &PyType_Type;
@@ -1573,7 +1580,8 @@ void PythonQt::initPythonQtModule(bool redirectStdOut, const QByteArray& pythonQ
   _p->_pythonQtModule = Py_InitModule(name.constData(), PythonQtMethods);
 #endif
   _p->_pythonQtModuleName = name;
-
+  
+  PyModule_AddObject(_p->pythonQtModule().object(), "BoolResult", (PyObject*)&PythonQtBoolResult_Type);
   PythonQtObjectPtr sys;
   sys.setNewRef(PyImport_ImportModule("sys"));
 
