@@ -944,8 +944,10 @@ class PythonQtWrapper_QMetaType : public QObject
 { Q_OBJECT
 public:
 Q_ENUMS(TypeFlag )
+Q_FLAGS(TypeFlags )
 enum TypeFlag{
   NeedsConstruction = QMetaType::NeedsConstruction,   NeedsDestruction = QMetaType::NeedsDestruction,   MovableType = QMetaType::MovableType,   PointerToQObject = QMetaType::PointerToQObject,   IsEnumeration = QMetaType::IsEnumeration,   SharedPointerToQObject = QMetaType::SharedPointerToQObject,   WeakPointerToQObject = QMetaType::WeakPointerToQObject,   TrackingPointerToQObject = QMetaType::TrackingPointerToQObject,   WasDeclaredAsMetaType = QMetaType::WasDeclaredAsMetaType};
+Q_DECLARE_FLAGS(TypeFlags, TypeFlag)
 public slots:
 QMetaType* new_QMetaType(const int  type);
 void delete_QMetaType(QMetaType* obj) { delete obj; } 
@@ -959,6 +961,7 @@ void delete_QMetaType(QMetaType* obj) { delete obj; }
    void destroy(QMetaType* theWrappedObject, void*  data) const;
    void static_QMetaType_destruct(int  type, void*  where);
    void destruct(QMetaType* theWrappedObject, void*  data) const;
+   QMetaType::TypeFlags  flags(QMetaType* theWrappedObject) const;
    bool  static_QMetaType_hasRegisteredComparators(int  typeId);
    bool  static_QMetaType_hasRegisteredConverterFunction(int  fromTypeId, int  toTypeId);
    bool  static_QMetaType_hasRegisteredDebugStreamOperator(int  typeId);
@@ -974,6 +977,7 @@ void delete_QMetaType(QMetaType* obj) { delete obj; }
    int  sizeOf(QMetaType* theWrappedObject) const;
    int  static_QMetaType_sizeOf(int  type);
    int  static_QMetaType_type(const char*  typeName);
+   QMetaType::TypeFlags  static_QMetaType_typeFlags(int  type);
    const char*  static_QMetaType_typeName(int  type);
 };
 

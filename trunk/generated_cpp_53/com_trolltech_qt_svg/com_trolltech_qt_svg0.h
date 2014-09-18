@@ -1,5 +1,6 @@
 #include <PythonQt.h>
 #include <QByteArray>
+#include <QGraphicsItem>
 #include <QMatrix>
 #include <QObject>
 #include <QRectF>
@@ -15,7 +16,9 @@
 #include <qevent.h>
 #include <qfont.h>
 #include <qgraphicseffect.h>
+#include <qgraphicsitem.h>
 #include <qgraphicsproxywidget.h>
+#include <qgraphicssvgitem.h>
 #include <qicon.h>
 #include <qiodevice.h>
 #include <qkeysequence.h>
@@ -37,12 +40,67 @@
 #include <qsize.h>
 #include <qsizepolicy.h>
 #include <qstyle.h>
+#include <qstyleoption.h>
 #include <qsvggenerator.h>
 #include <qsvgrenderer.h>
 #include <qsvgwidget.h>
 #include <qwidget.h>
 #include <qwindow.h>
 #include <qxmlstream.h>
+
+
+
+class PythonQtShell_QGraphicsSvgItem : public QGraphicsSvgItem
+{
+public:
+    PythonQtShell_QGraphicsSvgItem(QGraphicsItem*  parentItem = 0):QGraphicsSvgItem(parentItem),_wrapper(NULL) {};
+    PythonQtShell_QGraphicsSvgItem(const QString&  fileName, QGraphicsItem*  parentItem = 0):QGraphicsSvgItem(fileName, parentItem),_wrapper(NULL) {};
+
+   ~PythonQtShell_QGraphicsSvgItem();
+
+virtual QRectF  boundingRect() const;
+virtual void childEvent(QChildEvent*  arg__1);
+virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  ev);
+virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void paint(QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = 0);
+virtual void timerEvent(QTimerEvent*  arg__1);
+virtual int  type() const;
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtPublicPromoter_QGraphicsSvgItem : public QGraphicsSvgItem
+{ public:
+inline QRectF  promoted_boundingRect() const { return QGraphicsSvgItem::boundingRect(); }
+inline void promoted_paint(QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = 0) { QGraphicsSvgItem::paint(painter, option, widget); }
+inline int  promoted_type() const { return QGraphicsSvgItem::type(); }
+};
+
+class PythonQtWrapper_QGraphicsSvgItem : public QObject
+{ Q_OBJECT
+public:
+Q_ENUMS(enum_1 )
+enum enum_1{
+  Type = QGraphicsSvgItem::Type};
+public slots:
+QGraphicsSvgItem* new_QGraphicsSvgItem(QGraphicsItem*  parentItem = 0);
+QGraphicsSvgItem* new_QGraphicsSvgItem(const QString&  fileName, QGraphicsItem*  parentItem = 0);
+void delete_QGraphicsSvgItem(QGraphicsSvgItem* obj) { delete obj; } 
+   QRectF  boundingRect(QGraphicsSvgItem* theWrappedObject) const;
+   QString  elementId(QGraphicsSvgItem* theWrappedObject) const;
+   bool  isCachingEnabled(QGraphicsSvgItem* theWrappedObject) const;
+   QSize  maximumCacheSize(QGraphicsSvgItem* theWrappedObject) const;
+   void paint(QGraphicsSvgItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = 0);
+   QSvgRenderer*  renderer(QGraphicsSvgItem* theWrappedObject) const;
+   void setCachingEnabled(QGraphicsSvgItem* theWrappedObject, bool  arg__1);
+   void setElementId(QGraphicsSvgItem* theWrappedObject, const QString&  id);
+   void setMaximumCacheSize(QGraphicsSvgItem* theWrappedObject, const QSize&  size);
+   void setSharedRenderer(QGraphicsSvgItem* theWrappedObject, QSvgRenderer*  renderer);
+   int  type(QGraphicsSvgItem* theWrappedObject) const;
+};
+
+
 
 
 

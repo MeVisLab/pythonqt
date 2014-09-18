@@ -1660,6 +1660,11 @@ void PythonQtWrapper_QGLFunctions::initializeGLFunctions(QGLFunctions* theWrappe
   ( theWrappedObject->initializeGLFunctions(context));
 }
 
+QGLFunctions::OpenGLFeatures  PythonQtWrapper_QGLFunctions::openGLFeatures(QGLFunctions* theWrappedObject) const
+{
+  return ( theWrappedObject->openGLFeatures());
+}
+
 
 
 PythonQtShell_QGLPixelBuffer::~PythonQtShell_QGLPixelBuffer() {

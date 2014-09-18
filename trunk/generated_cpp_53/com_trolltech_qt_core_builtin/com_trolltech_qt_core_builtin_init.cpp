@@ -1,4 +1,5 @@
 #include <PythonQt.h>
+#include <PythonQtConversion.h>
 #include "com_trolltech_qt_core_builtin0.h"
 
 void PythonQt_init_QtCoreBuiltin(PyObject* module) {
@@ -20,4 +21,7 @@ PythonQt::priv()->registerCPPClass("QTime", "", "QtCore", PythonQtCreateObject<P
 PythonQt::priv()->registerCPPClass("QUrl", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QUrl>, NULL, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerCPPClass("Qt", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_Qt>, NULL, module, 0);
 
+
+PythonQtMethodInfo::addParameterTypeAlias("QList<QLocale::Country>", "QList<int>");
+PythonQtMethodInfo::addParameterTypeAlias("QList<Qt::DayOfWeek>", "QList<int>");
 }

@@ -1,7 +1,6 @@
 #include <PythonQt.h>
 #include <QObject>
 #include <QPainterPath>
-#include <QRect>
 #include <QTextCursor>
 #include <QVarLengthArray>
 #include <QVariant>
@@ -18,7 +17,6 @@
 #include <qcoreapplication.h>
 #include <qcoreevent.h>
 #include <qcursor.h>
-#include <qdatastream.h>
 #include <qevent.h>
 #include <qfont.h>
 #include <qgraphicseffect.h>
@@ -36,11 +34,7 @@
 #include <qguiapplication.h>
 #include <qheaderview.h>
 #include <qicon.h>
-#include <qiconengine.h>
-#include <qimage.h>
-#include <qimageiohandler.h>
 #include <qinputmethod.h>
-#include <qiodevice.h>
 #include <qitemselectionmodel.h>
 #include <qkeysequence.h>
 #include <qlayout.h>
@@ -82,6 +76,233 @@
 #include <qvector3d.h>
 #include <qwidget.h>
 #include <qwindow.h>
+
+
+
+class PythonQtShell_QGraphicsPixmapItem : public QGraphicsPixmapItem
+{
+public:
+    PythonQtShell_QGraphicsPixmapItem(QGraphicsItem*  parent = 0):QGraphicsPixmapItem(parent),_wrapper(NULL) {};
+    PythonQtShell_QGraphicsPixmapItem(const QPixmap&  pixmap, QGraphicsItem*  parent = 0):QGraphicsPixmapItem(pixmap, parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QGraphicsPixmapItem();
+
+virtual void advance(int  phase);
+virtual QRectF  boundingRect() const;
+virtual bool  collidesWithItem(const QGraphicsItem*  other, Qt::ItemSelectionMode  mode) const;
+virtual bool  collidesWithPath(const QPainterPath&  path, Qt::ItemSelectionMode  mode) const;
+virtual bool  contains(const QPointF&  point) const;
+virtual void contextMenuEvent(QGraphicsSceneContextMenuEvent*  event);
+virtual void dragEnterEvent(QGraphicsSceneDragDropEvent*  event);
+virtual void dragLeaveEvent(QGraphicsSceneDragDropEvent*  event);
+virtual void dragMoveEvent(QGraphicsSceneDragDropEvent*  event);
+virtual void dropEvent(QGraphicsSceneDragDropEvent*  event);
+virtual QVariant  extension(const QVariant&  variant) const;
+virtual void focusInEvent(QFocusEvent*  event);
+virtual void focusOutEvent(QFocusEvent*  event);
+virtual void hoverEnterEvent(QGraphicsSceneHoverEvent*  event);
+virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent*  event);
+virtual void hoverMoveEvent(QGraphicsSceneHoverEvent*  event);
+virtual void inputMethodEvent(QInputMethodEvent*  event);
+virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  query) const;
+virtual bool  isObscuredBy(const QGraphicsItem*  item) const;
+virtual QVariant  itemChange(QGraphicsItem::GraphicsItemChange  change, const QVariant&  value);
+virtual void keyPressEvent(QKeyEvent*  event);
+virtual void keyReleaseEvent(QKeyEvent*  event);
+virtual void mouseDoubleClickEvent(QGraphicsSceneMouseEvent*  event);
+virtual void mouseMoveEvent(QGraphicsSceneMouseEvent*  event);
+virtual void mousePressEvent(QGraphicsSceneMouseEvent*  event);
+virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent*  event);
+virtual QPainterPath  opaqueArea() const;
+virtual void paint(QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget);
+virtual bool  sceneEvent(QEvent*  event);
+virtual bool  sceneEventFilter(QGraphicsItem*  watched, QEvent*  event);
+virtual QPainterPath  shape() const;
+virtual int  type() const;
+virtual void wheelEvent(QGraphicsSceneWheelEvent*  event);
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtPublicPromoter_QGraphicsPixmapItem : public QGraphicsPixmapItem
+{ public:
+inline QRectF  promoted_boundingRect() const { return QGraphicsPixmapItem::boundingRect(); }
+inline bool  promoted_contains(const QPointF&  point) const { return QGraphicsPixmapItem::contains(point); }
+inline QVariant  promoted_extension(const QVariant&  variant) const { return QGraphicsPixmapItem::extension(variant); }
+inline bool  promoted_isObscuredBy(const QGraphicsItem*  item) const { return QGraphicsPixmapItem::isObscuredBy(item); }
+inline QPainterPath  promoted_opaqueArea() const { return QGraphicsPixmapItem::opaqueArea(); }
+inline void promoted_paint(QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget) { QGraphicsPixmapItem::paint(painter, option, widget); }
+inline QPainterPath  promoted_shape() const { return QGraphicsPixmapItem::shape(); }
+inline int  promoted_type() const { return QGraphicsPixmapItem::type(); }
+};
+
+class PythonQtWrapper_QGraphicsPixmapItem : public QObject
+{ Q_OBJECT
+public:
+Q_ENUMS(ShapeMode enum_1 )
+enum ShapeMode{
+  MaskShape = QGraphicsPixmapItem::MaskShape,   BoundingRectShape = QGraphicsPixmapItem::BoundingRectShape,   HeuristicMaskShape = QGraphicsPixmapItem::HeuristicMaskShape};
+enum enum_1{
+  Type = QGraphicsPixmapItem::Type};
+public slots:
+QGraphicsPixmapItem* new_QGraphicsPixmapItem(QGraphicsItem*  parent = 0);
+QGraphicsPixmapItem* new_QGraphicsPixmapItem(const QPixmap&  pixmap, QGraphicsItem*  parent = 0);
+void delete_QGraphicsPixmapItem(QGraphicsPixmapItem* obj) { delete obj; } 
+   QRectF  boundingRect(QGraphicsPixmapItem* theWrappedObject) const;
+   bool  contains(QGraphicsPixmapItem* theWrappedObject, const QPointF&  point) const;
+   QVariant  extension(QGraphicsPixmapItem* theWrappedObject, const QVariant&  variant) const;
+   bool  isObscuredBy(QGraphicsPixmapItem* theWrappedObject, const QGraphicsItem*  item) const;
+   QPointF  offset(QGraphicsPixmapItem* theWrappedObject) const;
+   QPainterPath  opaqueArea(QGraphicsPixmapItem* theWrappedObject) const;
+   void paint(QGraphicsPixmapItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget);
+   QPixmap  pixmap(QGraphicsPixmapItem* theWrappedObject) const;
+   void setOffset(QGraphicsPixmapItem* theWrappedObject, const QPointF&  offset);
+   void setOffset(QGraphicsPixmapItem* theWrappedObject, qreal  x, qreal  y);
+   void setPixmap(QGraphicsPixmapItem* theWrappedObject, const QPixmap&  pixmap);
+   void setShapeMode(QGraphicsPixmapItem* theWrappedObject, QGraphicsPixmapItem::ShapeMode  mode);
+   void setTransformationMode(QGraphicsPixmapItem* theWrappedObject, Qt::TransformationMode  mode);
+   QPainterPath  shape(QGraphicsPixmapItem* theWrappedObject) const;
+   QGraphicsPixmapItem::ShapeMode  shapeMode(QGraphicsPixmapItem* theWrappedObject) const;
+   Qt::TransformationMode  transformationMode(QGraphicsPixmapItem* theWrappedObject) const;
+   int  type(QGraphicsPixmapItem* theWrappedObject) const;
+};
+
+
+
+
+
+class PythonQtShell_QGraphicsPolygonItem : public QGraphicsPolygonItem
+{
+public:
+    PythonQtShell_QGraphicsPolygonItem(QGraphicsItem*  parent = 0):QGraphicsPolygonItem(parent),_wrapper(NULL) {};
+    PythonQtShell_QGraphicsPolygonItem(const QPolygonF&  polygon, QGraphicsItem*  parent = 0):QGraphicsPolygonItem(polygon, parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QGraphicsPolygonItem();
+
+virtual bool  isObscuredBy(const QGraphicsItem*  item) const;
+virtual QPainterPath  opaqueArea() const;
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtPublicPromoter_QGraphicsPolygonItem : public QGraphicsPolygonItem
+{ public:
+inline bool  promoted_isObscuredBy(const QGraphicsItem*  item) const { return QGraphicsPolygonItem::isObscuredBy(item); }
+inline QPainterPath  promoted_opaqueArea() const { return QGraphicsPolygonItem::opaqueArea(); }
+};
+
+class PythonQtWrapper_QGraphicsPolygonItem : public QObject
+{ Q_OBJECT
+public:
+Q_ENUMS(enum_1 )
+enum enum_1{
+  Type = QGraphicsPolygonItem::Type};
+public slots:
+QGraphicsPolygonItem* new_QGraphicsPolygonItem(QGraphicsItem*  parent = 0);
+QGraphicsPolygonItem* new_QGraphicsPolygonItem(const QPolygonF&  polygon, QGraphicsItem*  parent = 0);
+void delete_QGraphicsPolygonItem(QGraphicsPolygonItem* obj) { delete obj; } 
+   QRectF  boundingRect(QGraphicsPolygonItem* theWrappedObject) const;
+   bool  contains(QGraphicsPolygonItem* theWrappedObject, const QPointF&  point) const;
+   Qt::FillRule  fillRule(QGraphicsPolygonItem* theWrappedObject) const;
+   bool  isObscuredBy(QGraphicsPolygonItem* theWrappedObject, const QGraphicsItem*  item) const;
+   QPainterPath  opaqueArea(QGraphicsPolygonItem* theWrappedObject) const;
+   void paint(QGraphicsPolygonItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = 0);
+   QPolygonF  polygon(QGraphicsPolygonItem* theWrappedObject) const;
+   void setFillRule(QGraphicsPolygonItem* theWrappedObject, Qt::FillRule  rule);
+   void setPolygon(QGraphicsPolygonItem* theWrappedObject, const QPolygonF&  polygon);
+   QPainterPath  shape(QGraphicsPolygonItem* theWrappedObject) const;
+   int  type(QGraphicsPolygonItem* theWrappedObject) const;
+};
+
+
+
+
+
+class PythonQtShell_QGraphicsProxyWidget : public QGraphicsProxyWidget
+{
+public:
+    PythonQtShell_QGraphicsProxyWidget(QGraphicsItem*  parent = 0, Qt::WindowFlags  wFlags = 0):QGraphicsProxyWidget(parent, wFlags),_wrapper(NULL) {};
+
+   ~PythonQtShell_QGraphicsProxyWidget();
+
+virtual void changeEvent(QEvent*  event);
+virtual void childEvent(QChildEvent*  arg__1);
+virtual void closeEvent(QCloseEvent*  event);
+virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  object, QEvent*  event);
+virtual bool  focusNextPrevChild(bool  next);
+virtual void getContentsMargins(qreal*  left, qreal*  top, qreal*  right, qreal*  bottom) const;
+virtual void grabKeyboardEvent(QEvent*  event);
+virtual void grabMouseEvent(QEvent*  event);
+virtual void hideEvent(QHideEvent*  event);
+virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent*  event);
+virtual void hoverMoveEvent(QGraphicsSceneHoverEvent*  event);
+virtual void initStyleOption(QStyleOption*  option) const;
+virtual void moveEvent(QGraphicsSceneMoveEvent*  event);
+virtual void paintWindowFrame(QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget);
+virtual void polishEvent();
+virtual QVariant  propertyChange(const QString&  propertyName, const QVariant&  value);
+virtual void resizeEvent(QGraphicsSceneResizeEvent*  event);
+virtual void setGeometry(const QRectF&  rect);
+virtual void showEvent(QShowEvent*  event);
+virtual QSizeF  sizeHint(Qt::SizeHint  which, const QSizeF&  constraint = QSizeF()) const;
+virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void ungrabKeyboardEvent(QEvent*  event);
+virtual void ungrabMouseEvent(QEvent*  event);
+virtual void updateGeometry();
+virtual bool  windowFrameEvent(QEvent*  e);
+virtual Qt::WindowFrameSection  windowFrameSectionAt(const QPointF&  pos) const;
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtPublicPromoter_QGraphicsProxyWidget : public QGraphicsProxyWidget
+{ public:
+inline bool  promoted_event(QEvent*  event) { return QGraphicsProxyWidget::event(event); }
+inline bool  promoted_eventFilter(QObject*  object, QEvent*  event) { return QGraphicsProxyWidget::eventFilter(object, event); }
+inline bool  promoted_focusNextPrevChild(bool  next) { return QGraphicsProxyWidget::focusNextPrevChild(next); }
+inline void promoted_grabMouseEvent(QEvent*  event) { QGraphicsProxyWidget::grabMouseEvent(event); }
+inline void promoted_hideEvent(QHideEvent*  event) { QGraphicsProxyWidget::hideEvent(event); }
+inline void promoted_hoverLeaveEvent(QGraphicsSceneHoverEvent*  event) { QGraphicsProxyWidget::hoverLeaveEvent(event); }
+inline void promoted_hoverMoveEvent(QGraphicsSceneHoverEvent*  event) { QGraphicsProxyWidget::hoverMoveEvent(event); }
+inline void promoted_resizeEvent(QGraphicsSceneResizeEvent*  event) { QGraphicsProxyWidget::resizeEvent(event); }
+inline void promoted_setGeometry(const QRectF&  rect) { QGraphicsProxyWidget::setGeometry(rect); }
+inline void promoted_showEvent(QShowEvent*  event) { QGraphicsProxyWidget::showEvent(event); }
+inline QSizeF  promoted_sizeHint(Qt::SizeHint  which, const QSizeF&  constraint = QSizeF()) const { return QGraphicsProxyWidget::sizeHint(which, constraint); }
+inline void promoted_ungrabMouseEvent(QEvent*  event) { QGraphicsProxyWidget::ungrabMouseEvent(event); }
+};
+
+class PythonQtWrapper_QGraphicsProxyWidget : public QObject
+{ Q_OBJECT
+public:
+Q_ENUMS(enum_1 )
+enum enum_1{
+  Type = QGraphicsProxyWidget::Type};
+public slots:
+QGraphicsProxyWidget* new_QGraphicsProxyWidget(QGraphicsItem*  parent = 0, Qt::WindowFlags  wFlags = 0);
+void delete_QGraphicsProxyWidget(QGraphicsProxyWidget* obj) { delete obj; } 
+   QGraphicsProxyWidget*  createProxyForChildWidget(QGraphicsProxyWidget* theWrappedObject, QWidget*  child);
+   bool  event(QGraphicsProxyWidget* theWrappedObject, QEvent*  event);
+   bool  eventFilter(QGraphicsProxyWidget* theWrappedObject, QObject*  object, QEvent*  event);
+   bool  focusNextPrevChild(QGraphicsProxyWidget* theWrappedObject, bool  next);
+   void grabMouseEvent(QGraphicsProxyWidget* theWrappedObject, QEvent*  event);
+   void hideEvent(QGraphicsProxyWidget* theWrappedObject, QHideEvent*  event);
+   void hoverLeaveEvent(QGraphicsProxyWidget* theWrappedObject, QGraphicsSceneHoverEvent*  event);
+   void hoverMoveEvent(QGraphicsProxyWidget* theWrappedObject, QGraphicsSceneHoverEvent*  event);
+   void paint(QGraphicsProxyWidget* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget);
+   void resizeEvent(QGraphicsProxyWidget* theWrappedObject, QGraphicsSceneResizeEvent*  event);
+   void setGeometry(QGraphicsProxyWidget* theWrappedObject, const QRectF&  rect);
+   void setWidget(QGraphicsProxyWidget* theWrappedObject, QWidget*  widget);
+   void showEvent(QGraphicsProxyWidget* theWrappedObject, QShowEvent*  event);
+   QSizeF  sizeHint(QGraphicsProxyWidget* theWrappedObject, Qt::SizeHint  which, const QSizeF&  constraint = QSizeF()) const;
+   QRectF  subWidgetRect(QGraphicsProxyWidget* theWrappedObject, const QWidget*  widget) const;
+   int  type(QGraphicsProxyWidget* theWrappedObject) const;
+   void ungrabMouseEvent(QGraphicsProxyWidget* theWrappedObject, QEvent*  event);
+   QWidget*  widget(QGraphicsProxyWidget* theWrappedObject) const;
+};
+
+
 
 
 
@@ -1307,22 +1528,6 @@ void delete_QGroupBox(QGroupBox* obj) { delete obj; }
 
 
 
-class PythonQtShell_QGuiApplication : public QGuiApplication
-{
-public:
-
-   ~PythonQtShell_QGuiApplication();
-
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual bool  notify(QObject*  arg__1, QEvent*  arg__2);
-virtual void timerEvent(QTimerEvent*  arg__1);
-
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
 class PythonQtPublicPromoter_QGuiApplication : public QGuiApplication
 { public:
 inline bool  promoted_event(QEvent*  arg__1) { return QGuiApplication::event(arg__1); }
@@ -1712,173 +1917,6 @@ public:
 public slots:
 QIconDragEvent* new_QIconDragEvent();
 void delete_QIconDragEvent(QIconDragEvent* obj) { delete obj; } 
-};
-
-
-
-
-
-class PythonQtShell_QIconEngine : public QIconEngine
-{
-public:
-    PythonQtShell_QIconEngine():QIconEngine(),_wrapper(NULL) {};
-
-   ~PythonQtShell_QIconEngine();
-
-virtual QSize  actualSize(const QSize&  size, QIcon::Mode  mode, QIcon::State  state);
-virtual void addFile(const QString&  fileName, const QSize&  size, QIcon::Mode  mode, QIcon::State  state);
-virtual void addPixmap(const QPixmap&  pixmap, QIcon::Mode  mode, QIcon::State  state);
-virtual QList<QSize >  availableSizes(QIcon::Mode  mode = QIcon::Normal, QIcon::State  state = QIcon::Off) const;
-virtual QIconEngine*  clone() const;
-virtual QString  iconName() const;
-virtual QString  key() const;
-virtual void paint(QPainter*  painter, const QRect&  rect, QIcon::Mode  mode, QIcon::State  state);
-virtual QPixmap  pixmap(const QSize&  size, QIcon::Mode  mode, QIcon::State  state);
-virtual bool  read(QDataStream&  in);
-virtual void virtual_hook(int  id, void*  data);
-virtual bool  write(QDataStream&  out) const;
-
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
-class PythonQtPublicPromoter_QIconEngine : public QIconEngine
-{ public:
-inline QSize  promoted_actualSize(const QSize&  size, QIcon::Mode  mode, QIcon::State  state) { return QIconEngine::actualSize(size, mode, state); }
-inline void promoted_addFile(const QString&  fileName, const QSize&  size, QIcon::Mode  mode, QIcon::State  state) { QIconEngine::addFile(fileName, size, mode, state); }
-inline void promoted_addPixmap(const QPixmap&  pixmap, QIcon::Mode  mode, QIcon::State  state) { QIconEngine::addPixmap(pixmap, mode, state); }
-inline QList<QSize >  promoted_availableSizes(QIcon::Mode  mode = QIcon::Normal, QIcon::State  state = QIcon::Off) const { return QIconEngine::availableSizes(mode, state); }
-inline QString  promoted_iconName() const { return QIconEngine::iconName(); }
-inline QString  promoted_key() const { return QIconEngine::key(); }
-inline QPixmap  promoted_pixmap(const QSize&  size, QIcon::Mode  mode, QIcon::State  state) { return QIconEngine::pixmap(size, mode, state); }
-inline bool  promoted_read(QDataStream&  in) { return QIconEngine::read(in); }
-inline void promoted_virtual_hook(int  id, void*  data) { QIconEngine::virtual_hook(id, data); }
-inline bool  promoted_write(QDataStream&  out) const { return QIconEngine::write(out); }
-};
-
-class PythonQtWrapper_QIconEngine : public QObject
-{ Q_OBJECT
-public:
-Q_ENUMS(IconEngineHook )
-enum IconEngineHook{
-  AvailableSizesHook = QIconEngine::AvailableSizesHook,   IconNameHook = QIconEngine::IconNameHook};
-public slots:
-QIconEngine* new_QIconEngine();
-void delete_QIconEngine(QIconEngine* obj) { delete obj; } 
-   QSize  actualSize(QIconEngine* theWrappedObject, const QSize&  size, QIcon::Mode  mode, QIcon::State  state);
-   void addFile(QIconEngine* theWrappedObject, const QString&  fileName, const QSize&  size, QIcon::Mode  mode, QIcon::State  state);
-   void addPixmap(QIconEngine* theWrappedObject, const QPixmap&  pixmap, QIcon::Mode  mode, QIcon::State  state);
-   QList<QSize >  availableSizes(QIconEngine* theWrappedObject, QIcon::Mode  mode = QIcon::Normal, QIcon::State  state = QIcon::Off) const;
-   QString  iconName(QIconEngine* theWrappedObject) const;
-   QString  key(QIconEngine* theWrappedObject) const;
-   QPixmap  pixmap(QIconEngine* theWrappedObject, const QSize&  size, QIcon::Mode  mode, QIcon::State  state);
-   bool  read(QIconEngine* theWrappedObject, QDataStream&  in);
-   void virtual_hook(QIconEngine* theWrappedObject, int  id, void*  data);
-   bool  write(QIconEngine* theWrappedObject, QDataStream&  out) const;
-};
-
-
-
-
-
-class PythonQtShell_QImageIOHandler : public QImageIOHandler
-{
-public:
-    PythonQtShell_QImageIOHandler():QImageIOHandler(),_wrapper(NULL) {};
-
-   ~PythonQtShell_QImageIOHandler();
-
-virtual bool  canRead() const;
-virtual int  currentImageNumber() const;
-virtual QRect  currentImageRect() const;
-virtual int  imageCount() const;
-virtual bool  jumpToImage(int  imageNumber);
-virtual bool  jumpToNextImage();
-virtual int  loopCount() const;
-virtual QByteArray  name() const;
-virtual int  nextImageDelay() const;
-virtual QVariant  option(QImageIOHandler::ImageOption  option) const;
-virtual bool  read(QImage*  image);
-virtual void setOption(QImageIOHandler::ImageOption  option, const QVariant&  value);
-virtual bool  supportsOption(QImageIOHandler::ImageOption  option) const;
-virtual bool  write(const QImage&  image);
-
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
-class PythonQtPublicPromoter_QImageIOHandler : public QImageIOHandler
-{ public:
-inline int  promoted_currentImageNumber() const { return QImageIOHandler::currentImageNumber(); }
-inline QRect  promoted_currentImageRect() const { return QImageIOHandler::currentImageRect(); }
-inline int  promoted_imageCount() const { return QImageIOHandler::imageCount(); }
-inline bool  promoted_jumpToImage(int  imageNumber) { return QImageIOHandler::jumpToImage(imageNumber); }
-inline bool  promoted_jumpToNextImage() { return QImageIOHandler::jumpToNextImage(); }
-inline int  promoted_loopCount() const { return QImageIOHandler::loopCount(); }
-inline int  promoted_nextImageDelay() const { return QImageIOHandler::nextImageDelay(); }
-inline QVariant  promoted_option(QImageIOHandler::ImageOption  option) const { return QImageIOHandler::option(option); }
-inline void promoted_setOption(QImageIOHandler::ImageOption  option, const QVariant&  value) { QImageIOHandler::setOption(option, value); }
-inline bool  promoted_supportsOption(QImageIOHandler::ImageOption  option) const { return QImageIOHandler::supportsOption(option); }
-inline bool  promoted_write(const QImage&  image) { return QImageIOHandler::write(image); }
-};
-
-class PythonQtWrapper_QImageIOHandler : public QObject
-{ Q_OBJECT
-public:
-Q_ENUMS(ImageOption )
-enum ImageOption{
-  Size = QImageIOHandler::Size,   ClipRect = QImageIOHandler::ClipRect,   Description = QImageIOHandler::Description,   ScaledClipRect = QImageIOHandler::ScaledClipRect,   ScaledSize = QImageIOHandler::ScaledSize,   CompressionRatio = QImageIOHandler::CompressionRatio,   Gamma = QImageIOHandler::Gamma,   Quality = QImageIOHandler::Quality,   Name = QImageIOHandler::Name,   SubType = QImageIOHandler::SubType,   IncrementalReading = QImageIOHandler::IncrementalReading,   Endianness = QImageIOHandler::Endianness,   Animation = QImageIOHandler::Animation,   BackgroundColor = QImageIOHandler::BackgroundColor,   ImageFormat = QImageIOHandler::ImageFormat};
-public slots:
-QImageIOHandler* new_QImageIOHandler();
-void delete_QImageIOHandler(QImageIOHandler* obj) { delete obj; } 
-   int  currentImageNumber(QImageIOHandler* theWrappedObject) const;
-   QRect  currentImageRect(QImageIOHandler* theWrappedObject) const;
-   QIODevice*  device(QImageIOHandler* theWrappedObject) const;
-   QByteArray  format(QImageIOHandler* theWrappedObject) const;
-   int  imageCount(QImageIOHandler* theWrappedObject) const;
-   bool  jumpToImage(QImageIOHandler* theWrappedObject, int  imageNumber);
-   bool  jumpToNextImage(QImageIOHandler* theWrappedObject);
-   int  loopCount(QImageIOHandler* theWrappedObject) const;
-   int  nextImageDelay(QImageIOHandler* theWrappedObject) const;
-   QVariant  option(QImageIOHandler* theWrappedObject, QImageIOHandler::ImageOption  option) const;
-   void setDevice(QImageIOHandler* theWrappedObject, QIODevice*  device);
-   void setFormat(QImageIOHandler* theWrappedObject, const QByteArray&  format);
-   void setOption(QImageIOHandler* theWrappedObject, QImageIOHandler::ImageOption  option, const QVariant&  value);
-   bool  supportsOption(QImageIOHandler* theWrappedObject, QImageIOHandler::ImageOption  option) const;
-   bool  write(QImageIOHandler* theWrappedObject, const QImage&  image);
-};
-
-
-
-
-
-class PythonQtShell_QImageIOPlugin : public QImageIOPlugin
-{
-public:
-    PythonQtShell_QImageIOPlugin(QObject*  parent = 0):QImageIOPlugin(parent),_wrapper(NULL) {};
-
-   ~PythonQtShell_QImageIOPlugin();
-
-virtual QImageIOPlugin::Capabilities  capabilities(QIODevice*  device, const QByteArray&  format) const;
-virtual void childEvent(QChildEvent*  arg__1);
-virtual QImageIOHandler*  create(QIODevice*  device, const QByteArray&  format = QByteArray()) const;
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void timerEvent(QTimerEvent*  arg__1);
-
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
-class PythonQtWrapper_QImageIOPlugin : public QObject
-{ Q_OBJECT
-public:
-Q_ENUMS(Capability )
-Q_FLAGS(Capabilities )
-enum Capability{
-  CanRead = QImageIOPlugin::CanRead,   CanWrite = QImageIOPlugin::CanWrite,   CanReadIncremental = QImageIOPlugin::CanReadIncremental};
-Q_DECLARE_FLAGS(Capabilities, Capability)
-public slots:
-QImageIOPlugin* new_QImageIOPlugin(QObject*  parent = 0);
-void delete_QImageIOPlugin(QImageIOPlugin* obj) { delete obj; } 
 };
 
 

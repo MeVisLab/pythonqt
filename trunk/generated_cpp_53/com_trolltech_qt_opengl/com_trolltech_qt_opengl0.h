@@ -376,8 +376,10 @@ class PythonQtWrapper_QGLFunctions : public QObject
 { Q_OBJECT
 public:
 Q_ENUMS(OpenGLFeature )
+Q_FLAGS(OpenGLFeatures )
 enum OpenGLFeature{
   Multitexture = QGLFunctions::Multitexture,   Shaders = QGLFunctions::Shaders,   Buffers = QGLFunctions::Buffers,   Framebuffers = QGLFunctions::Framebuffers,   BlendColor = QGLFunctions::BlendColor,   BlendEquation = QGLFunctions::BlendEquation,   BlendEquationSeparate = QGLFunctions::BlendEquationSeparate,   BlendFuncSeparate = QGLFunctions::BlendFuncSeparate,   BlendSubtract = QGLFunctions::BlendSubtract,   CompressedTextures = QGLFunctions::CompressedTextures,   Multisample = QGLFunctions::Multisample,   StencilSeparate = QGLFunctions::StencilSeparate,   NPOTTextures = QGLFunctions::NPOTTextures};
+Q_DECLARE_FLAGS(OpenGLFeatures, OpenGLFeature)
 public slots:
 QGLFunctions* new_QGLFunctions();
 QGLFunctions* new_QGLFunctions(const QGLContext*  context);
@@ -479,6 +481,7 @@ void delete_QGLFunctions(QGLFunctions* obj) { delete obj; }
    void glVertexAttribPointer(QGLFunctions* theWrappedObject, GLuint  indx, GLint  size, GLenum  type, GLboolean  normalized, GLsizei  stride, const void*  ptr);
    bool  hasOpenGLFeature(QGLFunctions* theWrappedObject, QGLFunctions::OpenGLFeature  feature) const;
    void initializeGLFunctions(QGLFunctions* theWrappedObject, const QGLContext*  context = 0);
+   QGLFunctions::OpenGLFeatures  openGLFeatures(QGLFunctions* theWrappedObject) const;
 };
 
 

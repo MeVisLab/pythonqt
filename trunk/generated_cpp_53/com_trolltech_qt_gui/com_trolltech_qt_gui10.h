@@ -8,21 +8,19 @@
 #include <QTextFrame>
 #include <QTextLayout>
 #include <QVariant>
+#include <qabstracttextdocumentlayout.h>
 #include <qaction.h>
 #include <qbackingstore.h>
 #include <qbitmap.h>
 #include <qbrush.h>
-#include <qbuttongroup.h>
 #include <qbytearray.h>
-#include <qcalendarwidget.h>
 #include <qcolor.h>
 #include <qcoreevent.h>
 #include <qcursor.h>
-#include <qdatetime.h>
-#include <qdatetimeedit.h>
-#include <qdrawutil.h>
+#include <qdatastream.h>
 #include <qevent.h>
 #include <qfont.h>
+#include <qgesture.h>
 #include <qglyphrun.h>
 #include <qgraphicseffect.h>
 #include <qgraphicsproxywidget.h>
@@ -31,7 +29,6 @@
 #include <qiodevice.h>
 #include <qkeysequence.h>
 #include <qlayout.h>
-#include <qlineedit.h>
 #include <qlist.h>
 #include <qlocale.h>
 #include <qmargins.h>
@@ -55,7 +52,8 @@
 #include <qsizepolicy.h>
 #include <qstringlist.h>
 #include <qstyle.h>
-#include <qstyleoption.h>
+#include <qtablewidget.h>
+#include <qtextbrowser.h>
 #include <qtextcodec.h>
 #include <qtextcursor.h>
 #include <qtextdocument.h>
@@ -68,15 +66,508 @@
 #include <qtextobject.h>
 #include <qtextoption.h>
 #include <qtexttable.h>
-#include <qtoolbar.h>
-#include <qtoolbox.h>
-#include <qtoolbutton.h>
-#include <qtooltip.h>
-#include <qtouchdevice.h>
 #include <qurl.h>
 #include <qvector.h>
 #include <qwidget.h>
 #include <qwindow.h>
+
+
+
+class PythonQtShell_QTableWidgetItem : public QTableWidgetItem
+{
+public:
+    PythonQtShell_QTableWidgetItem(const QIcon&  icon, const QString&  text, int  type = Type):QTableWidgetItem(icon, text, type),_wrapper(NULL) {};
+    PythonQtShell_QTableWidgetItem(const QString&  text, int  type = Type):QTableWidgetItem(text, type),_wrapper(NULL) {};
+    PythonQtShell_QTableWidgetItem(int  type = Type):QTableWidgetItem(type),_wrapper(NULL) {};
+
+   ~PythonQtShell_QTableWidgetItem();
+
+virtual QTableWidgetItem*  clone() const;
+virtual QVariant  data(int  role) const;
+virtual bool  __lt__(const QTableWidgetItem&  other) const;
+virtual void read(QDataStream&  in);
+virtual void setData(int  role, const QVariant&  value);
+virtual void write(QDataStream&  out) const;
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtPublicPromoter_QTableWidgetItem : public QTableWidgetItem
+{ public:
+inline QTableWidgetItem*  promoted_clone() const { return QTableWidgetItem::clone(); }
+inline QVariant  promoted_data(int  role) const { return QTableWidgetItem::data(role); }
+inline void promoted_setData(int  role, const QVariant&  value) { QTableWidgetItem::setData(role, value); }
+};
+
+class PythonQtWrapper_QTableWidgetItem : public QObject
+{ Q_OBJECT
+public:
+Q_ENUMS(ItemType )
+enum ItemType{
+  Type = QTableWidgetItem::Type,   UserType = QTableWidgetItem::UserType};
+public slots:
+QTableWidgetItem* new_QTableWidgetItem(const QIcon&  icon, const QString&  text, int  type = Type);
+QTableWidgetItem* new_QTableWidgetItem(const QString&  text, int  type = Type);
+QTableWidgetItem* new_QTableWidgetItem(int  type = Type);
+void delete_QTableWidgetItem(QTableWidgetItem* obj) { delete obj; } 
+   QBrush  background(QTableWidgetItem* theWrappedObject) const;
+   Qt::CheckState  checkState(QTableWidgetItem* theWrappedObject) const;
+   QTableWidgetItem*  clone(QTableWidgetItem* theWrappedObject) const;
+   int  column(QTableWidgetItem* theWrappedObject) const;
+   QVariant  data(QTableWidgetItem* theWrappedObject, int  role) const;
+   Qt::ItemFlags  flags(QTableWidgetItem* theWrappedObject) const;
+   QFont  font(QTableWidgetItem* theWrappedObject) const;
+   QBrush  foreground(QTableWidgetItem* theWrappedObject) const;
+   QIcon  icon(QTableWidgetItem* theWrappedObject) const;
+   bool  isSelected(QTableWidgetItem* theWrappedObject) const;
+   void writeTo(QTableWidgetItem* theWrappedObject, QDataStream&  out);
+   void readFrom(QTableWidgetItem* theWrappedObject, QDataStream&  in);
+   int  row(QTableWidgetItem* theWrappedObject) const;
+   void setBackground(QTableWidgetItem* theWrappedObject, const QBrush&  brush);
+   void setCheckState(QTableWidgetItem* theWrappedObject, Qt::CheckState  state);
+   void setData(QTableWidgetItem* theWrappedObject, int  role, const QVariant&  value);
+   void setFlags(QTableWidgetItem* theWrappedObject, Qt::ItemFlags  flags);
+   void setFont(QTableWidgetItem* theWrappedObject, const QFont&  font);
+   void setForeground(QTableWidgetItem* theWrappedObject, const QBrush&  brush);
+   void setIcon(QTableWidgetItem* theWrappedObject, const QIcon&  icon);
+   void setSelected(QTableWidgetItem* theWrappedObject, bool  select);
+   void setSizeHint(QTableWidgetItem* theWrappedObject, const QSize&  size);
+   void setStatusTip(QTableWidgetItem* theWrappedObject, const QString&  statusTip);
+   void setText(QTableWidgetItem* theWrappedObject, const QString&  text);
+   void setTextAlignment(QTableWidgetItem* theWrappedObject, int  alignment);
+   void setToolTip(QTableWidgetItem* theWrappedObject, const QString&  toolTip);
+   void setWhatsThis(QTableWidgetItem* theWrappedObject, const QString&  whatsThis);
+   QSize  sizeHint(QTableWidgetItem* theWrappedObject) const;
+   QString  statusTip(QTableWidgetItem* theWrappedObject) const;
+   QTableWidget*  tableWidget(QTableWidgetItem* theWrappedObject) const;
+   QString  text(QTableWidgetItem* theWrappedObject) const;
+   int  textAlignment(QTableWidgetItem* theWrappedObject) const;
+   QString  toolTip(QTableWidgetItem* theWrappedObject) const;
+   int  type(QTableWidgetItem* theWrappedObject) const;
+   QString  whatsThis(QTableWidgetItem* theWrappedObject) const;
+};
+
+
+
+
+
+class PythonQtWrapper_QTableWidgetSelectionRange : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QTableWidgetSelectionRange* new_QTableWidgetSelectionRange();
+QTableWidgetSelectionRange* new_QTableWidgetSelectionRange(const QTableWidgetSelectionRange&  other);
+QTableWidgetSelectionRange* new_QTableWidgetSelectionRange(int  top, int  left, int  bottom, int  right);
+void delete_QTableWidgetSelectionRange(QTableWidgetSelectionRange* obj) { delete obj; } 
+   int  bottomRow(QTableWidgetSelectionRange* theWrappedObject) const;
+   int  columnCount(QTableWidgetSelectionRange* theWrappedObject) const;
+   int  leftColumn(QTableWidgetSelectionRange* theWrappedObject) const;
+   int  rightColumn(QTableWidgetSelectionRange* theWrappedObject) const;
+   int  rowCount(QTableWidgetSelectionRange* theWrappedObject) const;
+   int  topRow(QTableWidgetSelectionRange* theWrappedObject) const;
+};
+
+
+
+
+
+class PythonQtShell_QTabletEvent : public QTabletEvent
+{
+public:
+    PythonQtShell_QTabletEvent(QEvent::Type  t, const QPointF&  pos, const QPointF&  globalPos, int  device, int  pointerType, qreal  pressure, int  xTilt, int  yTilt, qreal  tangentialPressure, qreal  rotation, int  z, Qt::KeyboardModifiers  keyState, qint64  uniqueID):QTabletEvent(t, pos, globalPos, device, pointerType, pressure, xTilt, yTilt, tangentialPressure, rotation, z, keyState, uniqueID),_wrapper(NULL) {};
+
+   ~PythonQtShell_QTabletEvent();
+
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtWrapper_QTabletEvent : public QObject
+{ Q_OBJECT
+public:
+Q_ENUMS(PointerType TabletDevice )
+enum PointerType{
+  UnknownPointer = QTabletEvent::UnknownPointer,   Pen = QTabletEvent::Pen,   Cursor = QTabletEvent::Cursor,   Eraser = QTabletEvent::Eraser};
+enum TabletDevice{
+  NoDevice = QTabletEvent::NoDevice,   Puck = QTabletEvent::Puck,   Stylus = QTabletEvent::Stylus,   Airbrush = QTabletEvent::Airbrush,   FourDMouse = QTabletEvent::FourDMouse,   XFreeEraser = QTabletEvent::XFreeEraser,   RotationStylus = QTabletEvent::RotationStylus};
+public slots:
+QTabletEvent* new_QTabletEvent(QEvent::Type  t, const QPointF&  pos, const QPointF&  globalPos, int  device, int  pointerType, qreal  pressure, int  xTilt, int  yTilt, qreal  tangentialPressure, qreal  rotation, int  z, Qt::KeyboardModifiers  keyState, qint64  uniqueID);
+void delete_QTabletEvent(QTabletEvent* obj) { delete obj; } 
+   QTabletEvent::TabletDevice  device(QTabletEvent* theWrappedObject) const;
+   QPoint  globalPos(QTabletEvent* theWrappedObject) const;
+   const QPointF*  globalPosF(QTabletEvent* theWrappedObject) const;
+   int  globalX(QTabletEvent* theWrappedObject) const;
+   int  globalY(QTabletEvent* theWrappedObject) const;
+   qreal  hiResGlobalX(QTabletEvent* theWrappedObject) const;
+   qreal  hiResGlobalY(QTabletEvent* theWrappedObject) const;
+   QTabletEvent::PointerType  pointerType(QTabletEvent* theWrappedObject) const;
+   QPoint  pos(QTabletEvent* theWrappedObject) const;
+   const QPointF*  posF(QTabletEvent* theWrappedObject) const;
+   qreal  pressure(QTabletEvent* theWrappedObject) const;
+   qreal  rotation(QTabletEvent* theWrappedObject) const;
+   qreal  tangentialPressure(QTabletEvent* theWrappedObject) const;
+   qint64  uniqueId(QTabletEvent* theWrappedObject) const;
+   int  x(QTabletEvent* theWrappedObject) const;
+   int  xTilt(QTabletEvent* theWrappedObject) const;
+   int  y(QTabletEvent* theWrappedObject) const;
+   int  yTilt(QTabletEvent* theWrappedObject) const;
+   int  z(QTabletEvent* theWrappedObject) const;
+};
+
+
+
+
+
+class PythonQtShell_QTapAndHoldGesture : public QTapAndHoldGesture
+{
+public:
+    PythonQtShell_QTapAndHoldGesture(QObject*  parent = 0):QTapAndHoldGesture(parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QTapAndHoldGesture();
+
+virtual void childEvent(QChildEvent*  arg__1);
+virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
+virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void timerEvent(QTimerEvent*  arg__1);
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtWrapper_QTapAndHoldGesture : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QTapAndHoldGesture* new_QTapAndHoldGesture(QObject*  parent = 0);
+void delete_QTapAndHoldGesture(QTapAndHoldGesture* obj) { delete obj; } 
+   QPointF  position(QTapAndHoldGesture* theWrappedObject) const;
+   void setPosition(QTapAndHoldGesture* theWrappedObject, const QPointF&  pos);
+   void static_QTapAndHoldGesture_setTimeout(int  msecs);
+   int  static_QTapAndHoldGesture_timeout();
+};
+
+
+
+
+
+class PythonQtShell_QTapGesture : public QTapGesture
+{
+public:
+    PythonQtShell_QTapGesture(QObject*  parent = 0):QTapGesture(parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QTapGesture();
+
+virtual void childEvent(QChildEvent*  arg__1);
+virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
+virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void timerEvent(QTimerEvent*  arg__1);
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtWrapper_QTapGesture : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QTapGesture* new_QTapGesture(QObject*  parent = 0);
+void delete_QTapGesture(QTapGesture* obj) { delete obj; } 
+   QPointF  position(QTapGesture* theWrappedObject) const;
+   void setPosition(QTapGesture* theWrappedObject, const QPointF&  pos);
+};
+
+
+
+
+
+class PythonQtWrapper_QTextBlock : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QTextBlock* new_QTextBlock();
+QTextBlock* new_QTextBlock(const QTextBlock&  o);
+void delete_QTextBlock(QTextBlock* obj) { delete obj; } 
+   QTextBlock::iterator  begin(QTextBlock* theWrappedObject) const;
+   QTextBlockFormat  blockFormat(QTextBlock* theWrappedObject) const;
+   int  blockFormatIndex(QTextBlock* theWrappedObject) const;
+   int  blockNumber(QTextBlock* theWrappedObject) const;
+   QTextCharFormat  charFormat(QTextBlock* theWrappedObject) const;
+   int  charFormatIndex(QTextBlock* theWrappedObject) const;
+   void clearLayout(QTextBlock* theWrappedObject);
+   bool  contains(QTextBlock* theWrappedObject, int  position) const;
+   const QTextDocument*  document(QTextBlock* theWrappedObject) const;
+   QTextBlock::iterator  end(QTextBlock* theWrappedObject) const;
+   int  firstLineNumber(QTextBlock* theWrappedObject) const;
+   int  fragmentIndex(QTextBlock* theWrappedObject) const;
+   bool  isValid(QTextBlock* theWrappedObject) const;
+   bool  isVisible(QTextBlock* theWrappedObject) const;
+   QTextLayout*  layout(QTextBlock* theWrappedObject) const;
+   int  length(QTextBlock* theWrappedObject) const;
+   int  lineCount(QTextBlock* theWrappedObject) const;
+   QTextBlock  next(QTextBlock* theWrappedObject) const;
+   bool  __ne__(QTextBlock* theWrappedObject, const QTextBlock&  o) const;
+   bool  __lt__(QTextBlock* theWrappedObject, const QTextBlock&  o) const;
+   bool  __eq__(QTextBlock* theWrappedObject, const QTextBlock&  o) const;
+   int  position(QTextBlock* theWrappedObject) const;
+   QTextBlock  previous(QTextBlock* theWrappedObject) const;
+   int  revision(QTextBlock* theWrappedObject) const;
+   void setLineCount(QTextBlock* theWrappedObject, int  count);
+   void setRevision(QTextBlock* theWrappedObject, int  rev);
+   void setUserData(QTextBlock* theWrappedObject, QTextBlockUserData*  data);
+   void setUserState(QTextBlock* theWrappedObject, int  state);
+   void setVisible(QTextBlock* theWrappedObject, bool  visible);
+   QString  text(QTextBlock* theWrappedObject) const;
+   Qt::LayoutDirection  textDirection(QTextBlock* theWrappedObject) const;
+   QVector<QTextLayout::FormatRange >  textFormats(QTextBlock* theWrappedObject) const;
+   QTextList*  textList(QTextBlock* theWrappedObject) const;
+   QTextBlockUserData*  userData(QTextBlock* theWrappedObject) const;
+   int  userState(QTextBlock* theWrappedObject) const;
+};
+
+
+
+
+
+class PythonQtShell_QTextBlockFormat : public QTextBlockFormat
+{
+public:
+    PythonQtShell_QTextBlockFormat():QTextBlockFormat(),_wrapper(NULL) {};
+    PythonQtShell_QTextBlockFormat(const QTextFormat&  fmt):QTextBlockFormat(fmt),_wrapper(NULL) {};
+
+   ~PythonQtShell_QTextBlockFormat();
+
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtWrapper_QTextBlockFormat : public QObject
+{ Q_OBJECT
+public:
+Q_ENUMS(LineHeightTypes )
+enum LineHeightTypes{
+  SingleHeight = QTextBlockFormat::SingleHeight,   ProportionalHeight = QTextBlockFormat::ProportionalHeight,   FixedHeight = QTextBlockFormat::FixedHeight,   MinimumHeight = QTextBlockFormat::MinimumHeight,   LineDistanceHeight = QTextBlockFormat::LineDistanceHeight};
+public slots:
+QTextBlockFormat* new_QTextBlockFormat();
+QTextBlockFormat* new_QTextBlockFormat(const QTextBlockFormat& other) {
+PythonQtShell_QTextBlockFormat* a = new PythonQtShell_QTextBlockFormat();
+*((QTextBlockFormat*)a) = other;
+return a; }
+void delete_QTextBlockFormat(QTextBlockFormat* obj) { delete obj; } 
+   Qt::Alignment  alignment(QTextBlockFormat* theWrappedObject) const;
+   qreal  bottomMargin(QTextBlockFormat* theWrappedObject) const;
+   int  indent(QTextBlockFormat* theWrappedObject) const;
+   bool  isValid(QTextBlockFormat* theWrappedObject) const;
+   qreal  leftMargin(QTextBlockFormat* theWrappedObject) const;
+   qreal  lineHeight(QTextBlockFormat* theWrappedObject) const;
+   qreal  lineHeight(QTextBlockFormat* theWrappedObject, qreal  scriptLineHeight, qreal  scaling) const;
+   int  lineHeightType(QTextBlockFormat* theWrappedObject) const;
+   bool  nonBreakableLines(QTextBlockFormat* theWrappedObject) const;
+   QTextFormat::PageBreakFlags  pageBreakPolicy(QTextBlockFormat* theWrappedObject) const;
+   qreal  rightMargin(QTextBlockFormat* theWrappedObject) const;
+   void setAlignment(QTextBlockFormat* theWrappedObject, Qt::Alignment  alignment);
+   void setBottomMargin(QTextBlockFormat* theWrappedObject, qreal  margin);
+   void setIndent(QTextBlockFormat* theWrappedObject, int  indent);
+   void setLeftMargin(QTextBlockFormat* theWrappedObject, qreal  margin);
+   void setLineHeight(QTextBlockFormat* theWrappedObject, qreal  height, int  heightType);
+   void setNonBreakableLines(QTextBlockFormat* theWrappedObject, bool  b);
+   void setPageBreakPolicy(QTextBlockFormat* theWrappedObject, QTextFormat::PageBreakFlags  flags);
+   void setRightMargin(QTextBlockFormat* theWrappedObject, qreal  margin);
+   void setTabPositions(QTextBlockFormat* theWrappedObject, const QList<QTextOption::Tab >&  tabs);
+   void setTextIndent(QTextBlockFormat* theWrappedObject, qreal  aindent);
+   void setTopMargin(QTextBlockFormat* theWrappedObject, qreal  margin);
+   QList<QTextOption::Tab >  tabPositions(QTextBlockFormat* theWrappedObject) const;
+   qreal  textIndent(QTextBlockFormat* theWrappedObject) const;
+   qreal  topMargin(QTextBlockFormat* theWrappedObject) const;
+};
+
+
+
+
+
+class PythonQtShell_QTextBlockGroup : public QTextBlockGroup
+{
+public:
+    PythonQtShell_QTextBlockGroup(QTextDocument*  doc):QTextBlockGroup(doc),_wrapper(NULL) {};
+
+   ~PythonQtShell_QTextBlockGroup();
+
+virtual void blockFormatChanged(const QTextBlock&  block);
+virtual void blockInserted(const QTextBlock&  block);
+virtual void blockRemoved(const QTextBlock&  block);
+virtual void childEvent(QChildEvent*  arg__1);
+virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
+virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void timerEvent(QTimerEvent*  arg__1);
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtPublicPromoter_QTextBlockGroup : public QTextBlockGroup
+{ public:
+inline void promoted_blockFormatChanged(const QTextBlock&  block) { QTextBlockGroup::blockFormatChanged(block); }
+inline void promoted_blockInserted(const QTextBlock&  block) { QTextBlockGroup::blockInserted(block); }
+inline void promoted_blockRemoved(const QTextBlock&  block) { QTextBlockGroup::blockRemoved(block); }
+};
+
+class PythonQtWrapper_QTextBlockGroup : public QObject
+{ Q_OBJECT
+public:
+public slots:
+   void blockFormatChanged(QTextBlockGroup* theWrappedObject, const QTextBlock&  block);
+   void blockInserted(QTextBlockGroup* theWrappedObject, const QTextBlock&  block);
+   void blockRemoved(QTextBlockGroup* theWrappedObject, const QTextBlock&  block);
+};
+
+
+
+
+
+class PythonQtShell_QTextBlockUserData : public QTextBlockUserData
+{
+public:
+    PythonQtShell_QTextBlockUserData():QTextBlockUserData(),_wrapper(NULL) {};
+
+   ~PythonQtShell_QTextBlockUserData();
+
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtWrapper_QTextBlockUserData : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QTextBlockUserData* new_QTextBlockUserData();
+void delete_QTextBlockUserData(QTextBlockUserData* obj) { delete obj; } 
+};
+
+
+
+
+
+class PythonQtShell_QTextBrowser : public QTextBrowser
+{
+public:
+    PythonQtShell_QTextBrowser(QWidget*  parent = 0):QTextBrowser(parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QTextBrowser();
+
+virtual void actionEvent(QActionEvent*  arg__1);
+virtual void backward();
+virtual bool  canInsertFromMimeData(const QMimeData*  source) const;
+virtual void changeEvent(QEvent*  e);
+virtual void childEvent(QChildEvent*  arg__1);
+virtual void closeEvent(QCloseEvent*  arg__1);
+virtual void contextMenuEvent(QContextMenuEvent*  e);
+virtual QMimeData*  createMimeDataFromSelection() const;
+virtual void customEvent(QEvent*  arg__1);
+virtual int  devType() const;
+virtual void doSetTextCursor(const QTextCursor&  cursor);
+virtual void dragEnterEvent(QDragEnterEvent*  e);
+virtual void dragLeaveEvent(QDragLeaveEvent*  e);
+virtual void dragMoveEvent(QDragMoveEvent*  e);
+virtual void dropEvent(QDropEvent*  e);
+virtual void enterEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  e);
+virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void focusInEvent(QFocusEvent*  e);
+virtual bool  focusNextPrevChild(bool  next);
+virtual void focusOutEvent(QFocusEvent*  ev);
+virtual void forward();
+virtual bool  hasHeightForWidth() const;
+virtual int  heightForWidth(int  arg__1) const;
+virtual void hideEvent(QHideEvent*  arg__1);
+virtual void home();
+virtual void initPainter(QPainter*  painter) const;
+virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
+virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  property) const;
+virtual void insertFromMimeData(const QMimeData*  source);
+virtual void keyPressEvent(QKeyEvent*  ev);
+virtual void keyReleaseEvent(QKeyEvent*  e);
+virtual void leaveEvent(QEvent*  arg__1);
+virtual QVariant  loadResource(int  type, const QUrl&  name);
+virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
+virtual void mouseDoubleClickEvent(QMouseEvent*  e);
+virtual void mouseMoveEvent(QMouseEvent*  ev);
+virtual void mousePressEvent(QMouseEvent*  ev);
+virtual void mouseReleaseEvent(QMouseEvent*  ev);
+virtual void moveEvent(QMoveEvent*  arg__1);
+virtual bool  nativeEvent(const QByteArray&  eventType, void*  message, long*  result);
+virtual QPaintEngine*  paintEngine() const;
+virtual void paintEvent(QPaintEvent*  e);
+virtual QPaintDevice*  redirected(QPoint*  offset) const;
+virtual void reload();
+virtual void resizeEvent(QResizeEvent*  e);
+virtual void scrollContentsBy(int  dx, int  dy);
+virtual void setSource(const QUrl&  name);
+virtual void setupViewport(QWidget*  viewport);
+virtual QPainter*  sharedPainter() const;
+virtual void showEvent(QShowEvent*  arg__1);
+virtual void tabletEvent(QTabletEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  e);
+virtual bool  viewportEvent(QEvent*  arg__1);
+virtual QSize  viewportSizeHint() const;
+virtual void wheelEvent(QWheelEvent*  e);
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtPublicPromoter_QTextBrowser : public QTextBrowser
+{ public:
+inline void promoted_backward() { QTextBrowser::backward(); }
+inline bool  promoted_event(QEvent*  e) { return QTextBrowser::event(e); }
+inline bool  promoted_focusNextPrevChild(bool  next) { return QTextBrowser::focusNextPrevChild(next); }
+inline void promoted_focusOutEvent(QFocusEvent*  ev) { QTextBrowser::focusOutEvent(ev); }
+inline void promoted_forward() { QTextBrowser::forward(); }
+inline void promoted_home() { QTextBrowser::home(); }
+inline void promoted_keyPressEvent(QKeyEvent*  ev) { QTextBrowser::keyPressEvent(ev); }
+inline QVariant  promoted_loadResource(int  type, const QUrl&  name) { return QTextBrowser::loadResource(type, name); }
+inline void promoted_mouseMoveEvent(QMouseEvent*  ev) { QTextBrowser::mouseMoveEvent(ev); }
+inline void promoted_mousePressEvent(QMouseEvent*  ev) { QTextBrowser::mousePressEvent(ev); }
+inline void promoted_mouseReleaseEvent(QMouseEvent*  ev) { QTextBrowser::mouseReleaseEvent(ev); }
+inline void promoted_paintEvent(QPaintEvent*  e) { QTextBrowser::paintEvent(e); }
+inline void promoted_reload() { QTextBrowser::reload(); }
+inline void promoted_setSource(const QUrl&  name) { QTextBrowser::setSource(name); }
+};
+
+class PythonQtWrapper_QTextBrowser : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QTextBrowser* new_QTextBrowser(QWidget*  parent = 0);
+void delete_QTextBrowser(QTextBrowser* obj) { delete obj; } 
+   void backward(QTextBrowser* theWrappedObject);
+   int  backwardHistoryCount(QTextBrowser* theWrappedObject) const;
+   void clearHistory(QTextBrowser* theWrappedObject);
+   bool  event(QTextBrowser* theWrappedObject, QEvent*  e);
+   bool  focusNextPrevChild(QTextBrowser* theWrappedObject, bool  next);
+   void focusOutEvent(QTextBrowser* theWrappedObject, QFocusEvent*  ev);
+   void forward(QTextBrowser* theWrappedObject);
+   int  forwardHistoryCount(QTextBrowser* theWrappedObject) const;
+   QString  historyTitle(QTextBrowser* theWrappedObject, int  arg__1) const;
+   QUrl  historyUrl(QTextBrowser* theWrappedObject, int  arg__1) const;
+   void home(QTextBrowser* theWrappedObject);
+   bool  isBackwardAvailable(QTextBrowser* theWrappedObject) const;
+   bool  isForwardAvailable(QTextBrowser* theWrappedObject) const;
+   void keyPressEvent(QTextBrowser* theWrappedObject, QKeyEvent*  ev);
+   QVariant  loadResource(QTextBrowser* theWrappedObject, int  type, const QUrl&  name);
+   void mouseMoveEvent(QTextBrowser* theWrappedObject, QMouseEvent*  ev);
+   void mousePressEvent(QTextBrowser* theWrappedObject, QMouseEvent*  ev);
+   void mouseReleaseEvent(QTextBrowser* theWrappedObject, QMouseEvent*  ev);
+   bool  openExternalLinks(QTextBrowser* theWrappedObject) const;
+   bool  openLinks(QTextBrowser* theWrappedObject) const;
+   void paintEvent(QTextBrowser* theWrappedObject, QPaintEvent*  e);
+   void reload(QTextBrowser* theWrappedObject);
+   QStringList  searchPaths(QTextBrowser* theWrappedObject) const;
+   void setOpenExternalLinks(QTextBrowser* theWrappedObject, bool  open);
+   void setOpenLinks(QTextBrowser* theWrappedObject, bool  open);
+   void setSearchPaths(QTextBrowser* theWrappedObject, const QStringList&  paths);
+   void setSource(QTextBrowser* theWrappedObject, const QUrl&  name);
+   QUrl  source(QTextBrowser* theWrappedObject) const;
+};
+
+
 
 
 
@@ -1044,7 +1535,6 @@ QTextOption* new_QTextOption(const QTextOption&  o);
 void delete_QTextOption(QTextOption* obj) { delete obj; } 
    Qt::Alignment  alignment(QTextOption* theWrappedObject) const;
    QTextOption::Flags  flags(QTextOption* theWrappedObject) const;
-   QTextOption*  operator_assign(QTextOption* theWrappedObject, const QTextOption&  o);
    void setAlignment(QTextOption* theWrappedObject, Qt::Alignment  alignment);
    void setFlags(QTextOption* theWrappedObject, QTextOption::Flags  flags);
    void setTabArray(QTextOption* theWrappedObject, const QList<qreal >&  tabStops);
@@ -1065,29 +1555,29 @@ void delete_QTextOption(QTextOption* obj) { delete obj; }
 
 
 
-class PythonQtShell_QTextOption_Tab : public QTextOption::Tab
+class PythonQtShell_QTextOption__Tab : public QTextOption::Tab
 {
 public:
-    PythonQtShell_QTextOption_Tab():QTextOption::Tab(),_wrapper(NULL) {};
-    PythonQtShell_QTextOption_Tab(qreal  pos, QTextOption::TabType  tabType, QChar  delim = QChar()):QTextOption::Tab(pos, tabType, delim),_wrapper(NULL) {};
+    PythonQtShell_QTextOption__Tab():QTextOption::Tab(),_wrapper(NULL) {};
+    PythonQtShell_QTextOption__Tab(qreal  pos, QTextOption::TabType  tabType, QChar  delim = QChar()):QTextOption::Tab(pos, tabType, delim),_wrapper(NULL) {};
 
-   ~PythonQtShell_QTextOption_Tab();
+   ~PythonQtShell_QTextOption__Tab();
 
 
   PythonQtInstanceWrapper* _wrapper; 
 };
 
-class PythonQtWrapper_QTextOption_Tab : public QObject
+class PythonQtWrapper_QTextOption__Tab : public QObject
 { Q_OBJECT
 public:
 public slots:
-QTextOption::Tab* new_QTextOption_Tab();
-QTextOption::Tab* new_QTextOption_Tab(qreal  pos, QTextOption::TabType  tabType, QChar  delim = QChar());
-QTextOption::Tab* new_QTextOption_Tab(const QTextOption::Tab& other) {
-PythonQtShell_QTextOption_Tab* a = new PythonQtShell_QTextOption_Tab();
+QTextOption::Tab* new_QTextOption__Tab();
+QTextOption::Tab* new_QTextOption__Tab(qreal  pos, QTextOption::TabType  tabType, QChar  delim = QChar());
+QTextOption::Tab* new_QTextOption__Tab(const QTextOption::Tab& other) {
+PythonQtShell_QTextOption__Tab* a = new PythonQtShell_QTextOption__Tab();
 *((QTextOption::Tab*)a) = other;
 return a; }
-void delete_QTextOption_Tab(QTextOption::Tab* obj) { delete obj; } 
+void delete_QTextOption__Tab(QTextOption::Tab* obj) { delete obj; } 
    bool  __ne__(QTextOption::Tab* theWrappedObject, const QTextOption::Tab&  other) const;
    bool  __eq__(QTextOption::Tab* theWrappedObject, const QTextOption::Tab&  other) const;
 void py_set_delimiter(QTextOption::Tab* theWrappedObject, QChar  delimiter){ theWrappedObject->delimiter = delimiter; }
@@ -1172,577 +1662,6 @@ void delete_QTextTableCell(QTextTableCell* obj) { delete obj; }
    int  rowSpan(QTextTableCell* theWrappedObject) const;
    void setFormat(QTextTableCell* theWrappedObject, const QTextCharFormat&  format);
    int  tableCellFormatIndex(QTextTableCell* theWrappedObject) const;
-};
-
-
-
-
-
-class PythonQtShell_QTextTableCellFormat : public QTextTableCellFormat
-{
-public:
-    PythonQtShell_QTextTableCellFormat():QTextTableCellFormat(),_wrapper(NULL) {};
-    PythonQtShell_QTextTableCellFormat(const QTextFormat&  fmt):QTextTableCellFormat(fmt),_wrapper(NULL) {};
-
-   ~PythonQtShell_QTextTableCellFormat();
-
-
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
-class PythonQtWrapper_QTextTableCellFormat : public QObject
-{ Q_OBJECT
-public:
-public slots:
-QTextTableCellFormat* new_QTextTableCellFormat();
-QTextTableCellFormat* new_QTextTableCellFormat(const QTextTableCellFormat& other) {
-PythonQtShell_QTextTableCellFormat* a = new PythonQtShell_QTextTableCellFormat();
-*((QTextTableCellFormat*)a) = other;
-return a; }
-void delete_QTextTableCellFormat(QTextTableCellFormat* obj) { delete obj; } 
-   qreal  bottomPadding(QTextTableCellFormat* theWrappedObject) const;
-   bool  isValid(QTextTableCellFormat* theWrappedObject) const;
-   qreal  leftPadding(QTextTableCellFormat* theWrappedObject) const;
-   qreal  rightPadding(QTextTableCellFormat* theWrappedObject) const;
-   void setBottomPadding(QTextTableCellFormat* theWrappedObject, qreal  padding);
-   void setLeftPadding(QTextTableCellFormat* theWrappedObject, qreal  padding);
-   void setPadding(QTextTableCellFormat* theWrappedObject, qreal  padding);
-   void setRightPadding(QTextTableCellFormat* theWrappedObject, qreal  padding);
-   void setTopPadding(QTextTableCellFormat* theWrappedObject, qreal  padding);
-   qreal  topPadding(QTextTableCellFormat* theWrappedObject) const;
-};
-
-
-
-
-
-class PythonQtShell_QTextTableFormat : public QTextTableFormat
-{
-public:
-    PythonQtShell_QTextTableFormat():QTextTableFormat(),_wrapper(NULL) {};
-    PythonQtShell_QTextTableFormat(const QTextFormat&  fmt):QTextTableFormat(fmt),_wrapper(NULL) {};
-
-   ~PythonQtShell_QTextTableFormat();
-
-
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
-class PythonQtWrapper_QTextTableFormat : public QObject
-{ Q_OBJECT
-public:
-public slots:
-QTextTableFormat* new_QTextTableFormat();
-QTextTableFormat* new_QTextTableFormat(const QTextTableFormat& other) {
-PythonQtShell_QTextTableFormat* a = new PythonQtShell_QTextTableFormat();
-*((QTextTableFormat*)a) = other;
-return a; }
-void delete_QTextTableFormat(QTextTableFormat* obj) { delete obj; } 
-   Qt::Alignment  alignment(QTextTableFormat* theWrappedObject) const;
-   qreal  cellPadding(QTextTableFormat* theWrappedObject) const;
-   qreal  cellSpacing(QTextTableFormat* theWrappedObject) const;
-   void clearColumnWidthConstraints(QTextTableFormat* theWrappedObject);
-   QVector<QTextLength >  columnWidthConstraints(QTextTableFormat* theWrappedObject) const;
-   int  columns(QTextTableFormat* theWrappedObject) const;
-   int  headerRowCount(QTextTableFormat* theWrappedObject) const;
-   bool  isValid(QTextTableFormat* theWrappedObject) const;
-   void setAlignment(QTextTableFormat* theWrappedObject, Qt::Alignment  alignment);
-   void setCellPadding(QTextTableFormat* theWrappedObject, qreal  padding);
-   void setCellSpacing(QTextTableFormat* theWrappedObject, qreal  spacing);
-   void setColumnWidthConstraints(QTextTableFormat* theWrappedObject, const QVector<QTextLength >&  constraints);
-   void setColumns(QTextTableFormat* theWrappedObject, int  columns);
-   void setHeaderRowCount(QTextTableFormat* theWrappedObject, int  count);
-};
-
-
-
-
-
-class PythonQtShell_QTileRules : public QTileRules
-{
-public:
-    PythonQtShell_QTileRules(Qt::TileRule  horizontalRule, Qt::TileRule  verticalRule):QTileRules(horizontalRule, verticalRule),_wrapper(NULL) {};
-    PythonQtShell_QTileRules(Qt::TileRule  rule = Qt::StretchTile):QTileRules(rule),_wrapper(NULL) {};
-
-   ~PythonQtShell_QTileRules();
-
-
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
-class PythonQtWrapper_QTileRules : public QObject
-{ Q_OBJECT
-public:
-public slots:
-QTileRules* new_QTileRules(Qt::TileRule  horizontalRule, Qt::TileRule  verticalRule);
-QTileRules* new_QTileRules(Qt::TileRule  rule = Qt::StretchTile);
-void delete_QTileRules(QTileRules* obj) { delete obj; } 
-void py_set_horizontal(QTileRules* theWrappedObject, Qt::TileRule  horizontal){ theWrappedObject->horizontal = horizontal; }
-Qt::TileRule  py_get_horizontal(QTileRules* theWrappedObject){ return theWrappedObject->horizontal; }
-void py_set_vertical(QTileRules* theWrappedObject, Qt::TileRule  vertical){ theWrappedObject->vertical = vertical; }
-Qt::TileRule  py_get_vertical(QTileRules* theWrappedObject){ return theWrappedObject->vertical; }
-};
-
-
-
-
-
-class PythonQtShell_QTimeEdit : public QTimeEdit
-{
-public:
-    PythonQtShell_QTimeEdit(QWidget*  parent = 0):QTimeEdit(parent),_wrapper(NULL) {};
-    PythonQtShell_QTimeEdit(const QTime&  time, QWidget*  parent = 0):QTimeEdit(time, parent),_wrapper(NULL) {};
-
-   ~PythonQtShell_QTimeEdit();
-
-virtual void actionEvent(QActionEvent*  arg__1);
-virtual void changeEvent(QEvent*  event);
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void clear();
-virtual void closeEvent(QCloseEvent*  event);
-virtual void contextMenuEvent(QContextMenuEvent*  event);
-virtual void customEvent(QEvent*  arg__1);
-virtual QDateTime  dateTimeFromText(const QString&  text) const;
-virtual int  devType() const;
-virtual void dragEnterEvent(QDragEnterEvent*  arg__1);
-virtual void dragLeaveEvent(QDragLeaveEvent*  arg__1);
-virtual void dragMoveEvent(QDragMoveEvent*  arg__1);
-virtual void dropEvent(QDropEvent*  arg__1);
-virtual void enterEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void fixup(QString&  input) const;
-virtual void focusInEvent(QFocusEvent*  event);
-virtual bool  focusNextPrevChild(bool  next);
-virtual void focusOutEvent(QFocusEvent*  event);
-virtual bool  hasHeightForWidth() const;
-virtual int  heightForWidth(int  arg__1) const;
-virtual void hideEvent(QHideEvent*  event);
-virtual void initPainter(QPainter*  painter) const;
-virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
-virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const;
-virtual void keyPressEvent(QKeyEvent*  event);
-virtual void keyReleaseEvent(QKeyEvent*  event);
-virtual void leaveEvent(QEvent*  arg__1);
-virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
-virtual void mouseDoubleClickEvent(QMouseEvent*  arg__1);
-virtual void mouseMoveEvent(QMouseEvent*  event);
-virtual void mousePressEvent(QMouseEvent*  event);
-virtual void mouseReleaseEvent(QMouseEvent*  event);
-virtual void moveEvent(QMoveEvent*  arg__1);
-virtual bool  nativeEvent(const QByteArray&  eventType, void*  message, long*  result);
-virtual QPaintEngine*  paintEngine() const;
-virtual void paintEvent(QPaintEvent*  event);
-virtual QPaintDevice*  redirected(QPoint*  offset) const;
-virtual void resizeEvent(QResizeEvent*  event);
-virtual QPainter*  sharedPainter() const;
-virtual void showEvent(QShowEvent*  event);
-virtual void stepBy(int  steps);
-virtual QAbstractSpinBox::StepEnabled  stepEnabled() const;
-virtual void tabletEvent(QTabletEvent*  arg__1);
-virtual QString  textFromDateTime(const QDateTime&  dt) const;
-virtual void timerEvent(QTimerEvent*  event);
-virtual QValidator::State  validate(QString&  input, int&  pos) const;
-virtual void wheelEvent(QWheelEvent*  event);
-
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
-class PythonQtWrapper_QTimeEdit : public QObject
-{ Q_OBJECT
-public:
-public slots:
-QTimeEdit* new_QTimeEdit(QWidget*  parent = 0);
-QTimeEdit* new_QTimeEdit(const QTime&  time, QWidget*  parent = 0);
-void delete_QTimeEdit(QTimeEdit* obj) { delete obj; } 
-};
-
-
-
-
-
-class PythonQtShell_QToolBar : public QToolBar
-{
-public:
-    PythonQtShell_QToolBar(QWidget*  parent = 0):QToolBar(parent),_wrapper(NULL) {};
-    PythonQtShell_QToolBar(const QString&  title, QWidget*  parent = 0):QToolBar(title, parent),_wrapper(NULL) {};
-
-   ~PythonQtShell_QToolBar();
-
-virtual void actionEvent(QActionEvent*  event);
-virtual void changeEvent(QEvent*  event);
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void closeEvent(QCloseEvent*  arg__1);
-virtual void contextMenuEvent(QContextMenuEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual int  devType() const;
-virtual void dragEnterEvent(QDragEnterEvent*  arg__1);
-virtual void dragLeaveEvent(QDragLeaveEvent*  arg__1);
-virtual void dragMoveEvent(QDragMoveEvent*  arg__1);
-virtual void dropEvent(QDropEvent*  arg__1);
-virtual void enterEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void focusInEvent(QFocusEvent*  arg__1);
-virtual bool  focusNextPrevChild(bool  next);
-virtual void focusOutEvent(QFocusEvent*  arg__1);
-virtual bool  hasHeightForWidth() const;
-virtual int  heightForWidth(int  arg__1) const;
-virtual void hideEvent(QHideEvent*  arg__1);
-virtual void initPainter(QPainter*  painter) const;
-virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
-virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const;
-virtual void keyPressEvent(QKeyEvent*  arg__1);
-virtual void keyReleaseEvent(QKeyEvent*  arg__1);
-virtual void leaveEvent(QEvent*  arg__1);
-virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
-virtual QSize  minimumSizeHint() const;
-virtual void mouseDoubleClickEvent(QMouseEvent*  arg__1);
-virtual void mouseMoveEvent(QMouseEvent*  arg__1);
-virtual void mousePressEvent(QMouseEvent*  arg__1);
-virtual void mouseReleaseEvent(QMouseEvent*  arg__1);
-virtual void moveEvent(QMoveEvent*  arg__1);
-virtual bool  nativeEvent(const QByteArray&  eventType, void*  message, long*  result);
-virtual QPaintEngine*  paintEngine() const;
-virtual void paintEvent(QPaintEvent*  event);
-virtual QPaintDevice*  redirected(QPoint*  offset) const;
-virtual void resizeEvent(QResizeEvent*  arg__1);
-virtual QPainter*  sharedPainter() const;
-virtual void showEvent(QShowEvent*  arg__1);
-virtual QSize  sizeHint() const;
-virtual void tabletEvent(QTabletEvent*  arg__1);
-virtual void timerEvent(QTimerEvent*  arg__1);
-virtual void wheelEvent(QWheelEvent*  arg__1);
-
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
-class PythonQtPublicPromoter_QToolBar : public QToolBar
-{ public:
-inline void promoted_actionEvent(QActionEvent*  event) { QToolBar::actionEvent(event); }
-inline void promoted_changeEvent(QEvent*  event) { QToolBar::changeEvent(event); }
-inline bool  promoted_event(QEvent*  event) { return QToolBar::event(event); }
-inline void promoted_paintEvent(QPaintEvent*  event) { QToolBar::paintEvent(event); }
-};
-
-class PythonQtWrapper_QToolBar : public QObject
-{ Q_OBJECT
-public:
-public slots:
-QToolBar* new_QToolBar(QWidget*  parent = 0);
-QToolBar* new_QToolBar(const QString&  title, QWidget*  parent = 0);
-void delete_QToolBar(QToolBar* obj) { delete obj; } 
-   QAction*  actionAt(QToolBar* theWrappedObject, const QPoint&  p) const;
-   QAction*  actionAt(QToolBar* theWrappedObject, int  x, int  y) const;
-   void actionEvent(QToolBar* theWrappedObject, QActionEvent*  event);
-   QRect  actionGeometry(QToolBar* theWrappedObject, QAction*  action) const;
-   void addAction(QToolBar* theWrappedObject, QAction*  action);
-   QAction*  addAction(QToolBar* theWrappedObject, const QIcon&  icon, const QString&  text);
-   QAction*  addAction(QToolBar* theWrappedObject, const QIcon&  icon, const QString&  text, const QObject*  receiver, const char*  member);
-   QAction*  addAction(QToolBar* theWrappedObject, const QString&  text);
-   QAction*  addAction(QToolBar* theWrappedObject, const QString&  text, const QObject*  receiver, const char*  member);
-   QAction*  addSeparator(QToolBar* theWrappedObject);
-   QAction*  addWidget(QToolBar* theWrappedObject, QWidget*  widget);
-   Qt::ToolBarAreas  allowedAreas(QToolBar* theWrappedObject) const;
-   void changeEvent(QToolBar* theWrappedObject, QEvent*  event);
-   void clear(QToolBar* theWrappedObject);
-   bool  event(QToolBar* theWrappedObject, QEvent*  event);
-   QSize  iconSize(QToolBar* theWrappedObject) const;
-   QAction*  insertSeparator(QToolBar* theWrappedObject, QAction*  before);
-   QAction*  insertWidget(QToolBar* theWrappedObject, QAction*  before, QWidget*  widget);
-   bool  isAreaAllowed(QToolBar* theWrappedObject, Qt::ToolBarArea  area) const;
-   bool  isFloatable(QToolBar* theWrappedObject) const;
-   bool  isFloating(QToolBar* theWrappedObject) const;
-   bool  isMovable(QToolBar* theWrappedObject) const;
-   Qt::Orientation  orientation(QToolBar* theWrappedObject) const;
-   void paintEvent(QToolBar* theWrappedObject, QPaintEvent*  event);
-   void setAllowedAreas(QToolBar* theWrappedObject, Qt::ToolBarAreas  areas);
-   void setFloatable(QToolBar* theWrappedObject, bool  floatable);
-   void setMovable(QToolBar* theWrappedObject, bool  movable);
-   void setOrientation(QToolBar* theWrappedObject, Qt::Orientation  orientation);
-   QAction*  toggleViewAction(QToolBar* theWrappedObject) const;
-   Qt::ToolButtonStyle  toolButtonStyle(QToolBar* theWrappedObject) const;
-   QWidget*  widgetForAction(QToolBar* theWrappedObject, QAction*  action) const;
-
-  QAction* addAction (QToolBar* menu, const QString & text, PyObject* callable)
-  {
-    QAction* a = menu->addAction(text);
-    PythonQt::self()->addSignalHandler(a, SIGNAL(triggered(bool)), callable);
-    return a;
-  }
-  
-  QAction* addAction (QToolBar* menu, const QIcon& icon, const QString& text, PyObject* callable)
-  {
-    QAction* a = menu->addAction(text);
-    a->setIcon(icon);
-    PythonQt::self()->addSignalHandler(a, SIGNAL(triggered(bool)), callable);
-    return a;
-  }
-  
-};
-
-
-
-
-
-class PythonQtWrapper_QToolBarChangeEvent : public QObject
-{ Q_OBJECT
-public:
-public slots:
-QToolBarChangeEvent* new_QToolBarChangeEvent(bool  t);
-void delete_QToolBarChangeEvent(QToolBarChangeEvent* obj) { delete obj; } 
-   bool  toggle(QToolBarChangeEvent* theWrappedObject) const;
-};
-
-
-
-
-
-class PythonQtShell_QToolBox : public QToolBox
-{
-public:
-    PythonQtShell_QToolBox(QWidget*  parent = 0, Qt::WindowFlags  f = 0):QToolBox(parent, f),_wrapper(NULL) {};
-
-   ~PythonQtShell_QToolBox();
-
-virtual void actionEvent(QActionEvent*  arg__1);
-virtual void changeEvent(QEvent*  arg__1);
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void closeEvent(QCloseEvent*  arg__1);
-virtual void contextMenuEvent(QContextMenuEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual int  devType() const;
-virtual void dragEnterEvent(QDragEnterEvent*  arg__1);
-virtual void dragLeaveEvent(QDragLeaveEvent*  arg__1);
-virtual void dragMoveEvent(QDragMoveEvent*  arg__1);
-virtual void dropEvent(QDropEvent*  arg__1);
-virtual void enterEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  e);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void focusInEvent(QFocusEvent*  arg__1);
-virtual bool  focusNextPrevChild(bool  next);
-virtual void focusOutEvent(QFocusEvent*  arg__1);
-virtual bool  hasHeightForWidth() const;
-virtual int  heightForWidth(int  arg__1) const;
-virtual void hideEvent(QHideEvent*  arg__1);
-virtual void initPainter(QPainter*  painter) const;
-virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
-virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const;
-virtual void itemInserted(int  index);
-virtual void itemRemoved(int  index);
-virtual void keyPressEvent(QKeyEvent*  arg__1);
-virtual void keyReleaseEvent(QKeyEvent*  arg__1);
-virtual void leaveEvent(QEvent*  arg__1);
-virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
-virtual QSize  minimumSizeHint() const;
-virtual void mouseDoubleClickEvent(QMouseEvent*  arg__1);
-virtual void mouseMoveEvent(QMouseEvent*  arg__1);
-virtual void mousePressEvent(QMouseEvent*  arg__1);
-virtual void mouseReleaseEvent(QMouseEvent*  arg__1);
-virtual void moveEvent(QMoveEvent*  arg__1);
-virtual bool  nativeEvent(const QByteArray&  eventType, void*  message, long*  result);
-virtual QPaintEngine*  paintEngine() const;
-virtual void paintEvent(QPaintEvent*  arg__1);
-virtual QPaintDevice*  redirected(QPoint*  offset) const;
-virtual void resizeEvent(QResizeEvent*  arg__1);
-virtual QPainter*  sharedPainter() const;
-virtual void showEvent(QShowEvent*  e);
-virtual void tabletEvent(QTabletEvent*  arg__1);
-virtual void timerEvent(QTimerEvent*  arg__1);
-virtual void wheelEvent(QWheelEvent*  arg__1);
-
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
-class PythonQtPublicPromoter_QToolBox : public QToolBox
-{ public:
-inline void promoted_changeEvent(QEvent*  arg__1) { QToolBox::changeEvent(arg__1); }
-inline bool  promoted_event(QEvent*  e) { return QToolBox::event(e); }
-inline void promoted_itemInserted(int  index) { QToolBox::itemInserted(index); }
-inline void promoted_itemRemoved(int  index) { QToolBox::itemRemoved(index); }
-inline void promoted_showEvent(QShowEvent*  e) { QToolBox::showEvent(e); }
-};
-
-class PythonQtWrapper_QToolBox : public QObject
-{ Q_OBJECT
-public:
-public slots:
-QToolBox* new_QToolBox(QWidget*  parent = 0, Qt::WindowFlags  f = 0);
-void delete_QToolBox(QToolBox* obj) { delete obj; } 
-   int  addItem(QToolBox* theWrappedObject, QWidget*  widget, const QIcon&  icon, const QString&  text);
-   int  addItem(QToolBox* theWrappedObject, QWidget*  widget, const QString&  text);
-   void changeEvent(QToolBox* theWrappedObject, QEvent*  arg__1);
-   int  count(QToolBox* theWrappedObject) const;
-   int  currentIndex(QToolBox* theWrappedObject) const;
-   QWidget*  currentWidget(QToolBox* theWrappedObject) const;
-   bool  event(QToolBox* theWrappedObject, QEvent*  e);
-   int  indexOf(QToolBox* theWrappedObject, QWidget*  widget) const;
-   int  insertItem(QToolBox* theWrappedObject, int  index, QWidget*  widget, const QIcon&  icon, const QString&  text);
-   int  insertItem(QToolBox* theWrappedObject, int  index, QWidget*  widget, const QString&  text);
-   bool  isItemEnabled(QToolBox* theWrappedObject, int  index) const;
-   QIcon  itemIcon(QToolBox* theWrappedObject, int  index) const;
-   void itemInserted(QToolBox* theWrappedObject, int  index);
-   void itemRemoved(QToolBox* theWrappedObject, int  index);
-   QString  itemText(QToolBox* theWrappedObject, int  index) const;
-   QString  itemToolTip(QToolBox* theWrappedObject, int  index) const;
-   void removeItem(QToolBox* theWrappedObject, int  index);
-   void setItemEnabled(QToolBox* theWrappedObject, int  index, bool  enabled);
-   void setItemIcon(QToolBox* theWrappedObject, int  index, const QIcon&  icon);
-   void setItemText(QToolBox* theWrappedObject, int  index, const QString&  text);
-   void setItemToolTip(QToolBox* theWrappedObject, int  index, const QString&  toolTip);
-   void showEvent(QToolBox* theWrappedObject, QShowEvent*  e);
-   QWidget*  widget(QToolBox* theWrappedObject, int  index) const;
-};
-
-
-
-
-
-class PythonQtShell_QToolButton : public QToolButton
-{
-public:
-    PythonQtShell_QToolButton(QWidget*  parent = 0):QToolButton(parent),_wrapper(NULL) {};
-
-   ~PythonQtShell_QToolButton();
-
-virtual void actionEvent(QActionEvent*  arg__1);
-virtual void changeEvent(QEvent*  arg__1);
-virtual void checkStateSet();
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void closeEvent(QCloseEvent*  arg__1);
-virtual void contextMenuEvent(QContextMenuEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual int  devType() const;
-virtual void dragEnterEvent(QDragEnterEvent*  arg__1);
-virtual void dragLeaveEvent(QDragLeaveEvent*  arg__1);
-virtual void dragMoveEvent(QDragMoveEvent*  arg__1);
-virtual void dropEvent(QDropEvent*  arg__1);
-virtual void enterEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  e);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void focusInEvent(QFocusEvent*  e);
-virtual bool  focusNextPrevChild(bool  next);
-virtual void focusOutEvent(QFocusEvent*  e);
-virtual bool  hasHeightForWidth() const;
-virtual int  heightForWidth(int  arg__1) const;
-virtual void hideEvent(QHideEvent*  arg__1);
-virtual bool  hitButton(const QPoint&  pos) const;
-virtual void initPainter(QPainter*  painter) const;
-virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
-virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const;
-virtual void keyPressEvent(QKeyEvent*  e);
-virtual void keyReleaseEvent(QKeyEvent*  e);
-virtual void leaveEvent(QEvent*  arg__1);
-virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
-virtual void mouseDoubleClickEvent(QMouseEvent*  arg__1);
-virtual void mouseMoveEvent(QMouseEvent*  e);
-virtual void mousePressEvent(QMouseEvent*  arg__1);
-virtual void mouseReleaseEvent(QMouseEvent*  arg__1);
-virtual void moveEvent(QMoveEvent*  arg__1);
-virtual bool  nativeEvent(const QByteArray&  eventType, void*  message, long*  result);
-virtual void nextCheckState();
-virtual QPaintEngine*  paintEngine() const;
-virtual void paintEvent(QPaintEvent*  arg__1);
-virtual QPaintDevice*  redirected(QPoint*  offset) const;
-virtual void resizeEvent(QResizeEvent*  arg__1);
-virtual QPainter*  sharedPainter() const;
-virtual void showEvent(QShowEvent*  arg__1);
-virtual void tabletEvent(QTabletEvent*  arg__1);
-virtual void timerEvent(QTimerEvent*  arg__1);
-virtual void wheelEvent(QWheelEvent*  arg__1);
-
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
-class PythonQtPublicPromoter_QToolButton : public QToolButton
-{ public:
-inline void promoted_actionEvent(QActionEvent*  arg__1) { QToolButton::actionEvent(arg__1); }
-inline void promoted_changeEvent(QEvent*  arg__1) { QToolButton::changeEvent(arg__1); }
-inline void promoted_enterEvent(QEvent*  arg__1) { QToolButton::enterEvent(arg__1); }
-inline bool  promoted_event(QEvent*  e) { return QToolButton::event(e); }
-inline bool  promoted_hitButton(const QPoint&  pos) const { return QToolButton::hitButton(pos); }
-inline void promoted_leaveEvent(QEvent*  arg__1) { QToolButton::leaveEvent(arg__1); }
-inline void promoted_mousePressEvent(QMouseEvent*  arg__1) { QToolButton::mousePressEvent(arg__1); }
-inline void promoted_mouseReleaseEvent(QMouseEvent*  arg__1) { QToolButton::mouseReleaseEvent(arg__1); }
-inline void promoted_nextCheckState() { QToolButton::nextCheckState(); }
-inline void promoted_paintEvent(QPaintEvent*  arg__1) { QToolButton::paintEvent(arg__1); }
-inline void promoted_timerEvent(QTimerEvent*  arg__1) { QToolButton::timerEvent(arg__1); }
-};
-
-class PythonQtWrapper_QToolButton : public QObject
-{ Q_OBJECT
-public:
-public slots:
-QToolButton* new_QToolButton(QWidget*  parent = 0);
-void delete_QToolButton(QToolButton* obj) { delete obj; } 
-   void actionEvent(QToolButton* theWrappedObject, QActionEvent*  arg__1);
-   Qt::ArrowType  arrowType(QToolButton* theWrappedObject) const;
-   bool  autoRaise(QToolButton* theWrappedObject) const;
-   void changeEvent(QToolButton* theWrappedObject, QEvent*  arg__1);
-   QAction*  defaultAction(QToolButton* theWrappedObject) const;
-   void enterEvent(QToolButton* theWrappedObject, QEvent*  arg__1);
-   bool  event(QToolButton* theWrappedObject, QEvent*  e);
-   bool  hitButton(QToolButton* theWrappedObject, const QPoint&  pos) const;
-   void leaveEvent(QToolButton* theWrappedObject, QEvent*  arg__1);
-   QMenu*  menu(QToolButton* theWrappedObject) const;
-   QSize  minimumSizeHint(QToolButton* theWrappedObject) const;
-   void mousePressEvent(QToolButton* theWrappedObject, QMouseEvent*  arg__1);
-   void mouseReleaseEvent(QToolButton* theWrappedObject, QMouseEvent*  arg__1);
-   void nextCheckState(QToolButton* theWrappedObject);
-   void paintEvent(QToolButton* theWrappedObject, QPaintEvent*  arg__1);
-   QToolButton::ToolButtonPopupMode  popupMode(QToolButton* theWrappedObject) const;
-   void setArrowType(QToolButton* theWrappedObject, Qt::ArrowType  type);
-   void setAutoRaise(QToolButton* theWrappedObject, bool  enable);
-   void setMenu(QToolButton* theWrappedObject, QMenu*  menu);
-   void setPopupMode(QToolButton* theWrappedObject, QToolButton::ToolButtonPopupMode  mode);
-   QSize  sizeHint(QToolButton* theWrappedObject) const;
-   void timerEvent(QToolButton* theWrappedObject, QTimerEvent*  arg__1);
-   Qt::ToolButtonStyle  toolButtonStyle(QToolButton* theWrappedObject) const;
-};
-
-
-
-
-
-class PythonQtWrapper_QToolTip : public QObject
-{ Q_OBJECT
-public:
-public slots:
-void delete_QToolTip(QToolTip* obj) { delete obj; } 
-   QFont  static_QToolTip_font();
-   void static_QToolTip_hideText();
-   bool  static_QToolTip_isVisible();
-   QPalette  static_QToolTip_palette();
-   void static_QToolTip_setFont(const QFont&  arg__1);
-   void static_QToolTip_setPalette(const QPalette&  arg__1);
-   void static_QToolTip_showText(const QPoint&  pos, const QString&  text, QWidget*  w = 0);
-   void static_QToolTip_showText(const QPoint&  pos, const QString&  text, QWidget*  w, const QRect&  rect);
-   void static_QToolTip_showText(const QPoint&  pos, const QString&  text, QWidget*  w, const QRect&  rect, int  msecShowTime);
-   QString  static_QToolTip_text();
-};
-
-
-
-
-
-class PythonQtWrapper_QTouchDevice : public QObject
-{ Q_OBJECT
-public:
-Q_ENUMS(CapabilityFlag DeviceType )
-enum CapabilityFlag{
-  Position = QTouchDevice::Position,   Area = QTouchDevice::Area,   Pressure = QTouchDevice::Pressure,   Velocity = QTouchDevice::Velocity,   RawPositions = QTouchDevice::RawPositions,   NormalizedPosition = QTouchDevice::NormalizedPosition};
-enum DeviceType{
-  TouchScreen = QTouchDevice::TouchScreen,   TouchPad = QTouchDevice::TouchPad};
-public slots:
-QTouchDevice* new_QTouchDevice();
-void delete_QTouchDevice(QTouchDevice* obj) { delete obj; } 
-   QList<const QTouchDevice* >  static_QTouchDevice_devices();
-   int  maximumTouchPoints(QTouchDevice* theWrappedObject) const;
-   QString  name(QTouchDevice* theWrappedObject) const;
-   void setMaximumTouchPoints(QTouchDevice* theWrappedObject, int  max);
-   void setName(QTouchDevice* theWrappedObject, const QString&  name);
-   void setType(QTouchDevice* theWrappedObject, QTouchDevice::DeviceType  devType);
-   QTouchDevice::DeviceType  type(QTouchDevice* theWrappedObject) const;
 };
 
 

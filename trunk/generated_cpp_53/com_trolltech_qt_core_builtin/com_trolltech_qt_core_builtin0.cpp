@@ -300,6 +300,11 @@ QByteArray  PythonQtWrapper_QByteArray::static_QByteArray_fromBase64(const QByte
   return (QByteArray::fromBase64(base64));
 }
 
+QByteArray  PythonQtWrapper_QByteArray::static_QByteArray_fromBase64(const QByteArray&  base64, QByteArray::Base64Options  options)
+{
+  return (QByteArray::fromBase64(base64, options));
+}
+
 QByteArray  PythonQtWrapper_QByteArray::static_QByteArray_fromHex(const QByteArray&  hexEncoded)
 {
   return (QByteArray::fromHex(hexEncoded));
@@ -678,6 +683,11 @@ void PythonQtWrapper_QByteArray::swap(QByteArray* theWrappedObject, QByteArray& 
 QByteArray  PythonQtWrapper_QByteArray::toBase64(QByteArray* theWrappedObject) const
 {
   return ( theWrappedObject->toBase64());
+}
+
+QByteArray  PythonQtWrapper_QByteArray::toBase64(QByteArray* theWrappedObject, QByteArray::Base64Options  options) const
+{
+  return ( theWrappedObject->toBase64(options));
 }
 
 double  PythonQtWrapper_QByteArray::toDouble(QByteArray* theWrappedObject, bool*  ok) const
@@ -3719,6 +3729,11 @@ QUrl  PythonQtWrapper_QUrl::adjusted(QUrl* theWrappedObject, QUrl::FormattingOpt
   return ( theWrappedObject->adjusted(options));
 }
 
+QString  PythonQtWrapper_QUrl::authority(QUrl* theWrappedObject, QUrl::ComponentFormattingOptions  options) const
+{
+  return ( theWrappedObject->authority(options));
+}
+
 void PythonQtWrapper_QUrl::clear(QUrl* theWrappedObject)
 {
   ( theWrappedObject->clear());
@@ -3727,6 +3742,16 @@ void PythonQtWrapper_QUrl::clear(QUrl* theWrappedObject)
 QString  PythonQtWrapper_QUrl::errorString(QUrl* theWrappedObject) const
 {
   return ( theWrappedObject->errorString());
+}
+
+QString  PythonQtWrapper_QUrl::fileName(QUrl* theWrappedObject, QUrl::ComponentFormattingOptions  options) const
+{
+  return ( theWrappedObject->fileName(options));
+}
+
+QString  PythonQtWrapper_QUrl::fragment(QUrl* theWrappedObject, QUrl::ComponentFormattingOptions  options) const
+{
+  return ( theWrappedObject->fragment(options));
 }
 
 QString  PythonQtWrapper_QUrl::static_QUrl_fromAce(const QByteArray&  arg__1)
@@ -3767,6 +3792,11 @@ bool  PythonQtWrapper_QUrl::hasFragment(QUrl* theWrappedObject) const
 bool  PythonQtWrapper_QUrl::hasQuery(QUrl* theWrappedObject) const
 {
   return ( theWrappedObject->hasQuery());
+}
+
+QString  PythonQtWrapper_QUrl::host(QUrl* theWrappedObject, QUrl::ComponentFormattingOptions  arg__1) const
+{
+  return ( theWrappedObject->host(arg__1));
 }
 
 QStringList  PythonQtWrapper_QUrl::static_QUrl_idnWhitelist()
@@ -3829,9 +3859,24 @@ void PythonQtWrapper_QUrl::readFrom(QUrl* theWrappedObject, QDataStream&  arg__1
   arg__1 >>  (*theWrappedObject);
 }
 
+QString  PythonQtWrapper_QUrl::password(QUrl* theWrappedObject, QUrl::ComponentFormattingOptions  arg__1) const
+{
+  return ( theWrappedObject->password(arg__1));
+}
+
+QString  PythonQtWrapper_QUrl::path(QUrl* theWrappedObject, QUrl::ComponentFormattingOptions  options) const
+{
+  return ( theWrappedObject->path(options));
+}
+
 int  PythonQtWrapper_QUrl::port(QUrl* theWrappedObject, int  defaultPort) const
 {
   return ( theWrappedObject->port(defaultPort));
+}
+
+QString  PythonQtWrapper_QUrl::query(QUrl* theWrappedObject, QUrl::ComponentFormattingOptions  arg__1) const
+{
+  return ( theWrappedObject->query(arg__1));
 }
 
 QUrl  PythonQtWrapper_QUrl::resolved(QUrl* theWrappedObject, const QUrl&  relative) const
@@ -3949,9 +3994,24 @@ QStringList  PythonQtWrapper_QUrl::static_QUrl_toStringList(const QList<QUrl >& 
   return (QUrl::toStringList(uris, options));
 }
 
+QString  PythonQtWrapper_QUrl::topLevelDomain(QUrl* theWrappedObject, QUrl::ComponentFormattingOptions  options) const
+{
+  return ( theWrappedObject->topLevelDomain(options));
+}
+
 QString  PythonQtWrapper_QUrl::url(QUrl* theWrappedObject, QUrl::FormattingOptions  options) const
 {
   return ( theWrappedObject->url(options));
+}
+
+QString  PythonQtWrapper_QUrl::userInfo(QUrl* theWrappedObject, QUrl::ComponentFormattingOptions  options) const
+{
+  return ( theWrappedObject->userInfo(options));
+}
+
+QString  PythonQtWrapper_QUrl::userName(QUrl* theWrappedObject, QUrl::ComponentFormattingOptions  options) const
+{
+  return ( theWrappedObject->userName(options));
 }
 
 QString PythonQtWrapper_QUrl::py_toString(QUrl* obj) { return obj->toString(); }

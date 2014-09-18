@@ -4428,157 +4428,6 @@ QStringList  PythonQtWrapper_QCommandLineParser::values(QCommandLineParser* theW
 
 
 
-PythonQtShell_QCoreApplication::~PythonQtShell_QCoreApplication() {
-  PythonQtPrivate* priv = PythonQt::priv();
-  if (priv) { priv->shellClassDeleted(this); }
-}
-void PythonQtShell_QCoreApplication::childEvent(QChildEvent*  arg__1)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("childEvent");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QChildEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QCoreApplication::childEvent(arg__1);
-}
-void PythonQtShell_QCoreApplication::customEvent(QEvent*  arg__1)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("customEvent");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QCoreApplication::customEvent(arg__1);
-}
-bool  PythonQtShell_QCoreApplication::event(QEvent*  arg__1)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("event");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"bool" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      bool returnValue;
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return QCoreApplication::event(arg__1);
-}
-bool  PythonQtShell_QCoreApplication::eventFilter(QObject*  arg__1, QEvent*  arg__2)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("eventFilter");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
-      bool returnValue;
-    void* args[3] = {NULL, (void*)&arg__1, (void*)&arg__2};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("eventFilter", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return QCoreApplication::eventFilter(arg__1, arg__2);
-}
-bool  PythonQtShell_QCoreApplication::notify(QObject*  arg__1, QEvent*  arg__2)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("notify");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
-      bool returnValue;
-    void* args[3] = {NULL, (void*)&arg__1, (void*)&arg__2};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("notify", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return QCoreApplication::notify(arg__1, arg__2);
-}
-void PythonQtShell_QCoreApplication::timerEvent(QTimerEvent*  arg__1)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("timerEvent");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QTimerEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QCoreApplication::timerEvent(arg__1);
-}
 void PythonQtWrapper_QCoreApplication::static_QCoreApplication_addLibraryPath(const QString&  arg__1)
 {
   (QCoreApplication::addLibraryPath(arg__1));
@@ -4838,6 +4687,11 @@ bool  PythonQtWrapper_QDataStream::atEnd(QDataStream* theWrappedObject) const
   return ( theWrappedObject->atEnd());
 }
 
+QDataStream::ByteOrder  PythonQtWrapper_QDataStream::byteOrder(QDataStream* theWrappedObject) const
+{
+  return ( theWrappedObject->byteOrder());
+}
+
 QIODevice*  PythonQtWrapper_QDataStream::device(QDataStream* theWrappedObject) const
 {
   return ( theWrappedObject->device());
@@ -4851,6 +4705,11 @@ QDataStream::FloatingPointPrecision  PythonQtWrapper_QDataStream::floatingPointP
 void PythonQtWrapper_QDataStream::resetStatus(QDataStream* theWrappedObject)
 {
   ( theWrappedObject->resetStatus());
+}
+
+void PythonQtWrapper_QDataStream::setByteOrder(QDataStream* theWrappedObject, QDataStream::ByteOrder  arg__1)
+{
+  ( theWrappedObject->setByteOrder(arg__1));
 }
 
 void PythonQtWrapper_QDataStream::setDevice(QDataStream* theWrappedObject, QIODevice*  arg__1)
@@ -6281,6 +6140,36 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   return QFile::open(flags);
 }
+QFileDevice::Permissions  PythonQtShell_QFile::permissions() const
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("permissions");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"QFileDevice::Permissions"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      QFileDevice::Permissions returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("permissions", methodInfo, result);
+        } else {
+          returnValue = *((QFileDevice::Permissions*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QFile::permissions();
+}
 qint64  PythonQtShell_QFile::pos() const
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
@@ -6460,6 +6349,36 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   }
 }
   return QFile::seek(offset);
+}
+bool  PythonQtShell_QFile::setPermissions(QFileDevice::Permissions  permissionSpec)
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("setPermissions");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"bool" , "QFileDevice::Permissions"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      bool returnValue;
+    void* args[2] = {NULL, (void*)&permissionSpec};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("setPermissions", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QFile::setPermissions(permissionSpec);
 }
 qint64  PythonQtShell_QFile::size() const
 {
@@ -6666,6 +6585,21 @@ bool  PythonQtWrapper_QFile::open(QFile* theWrappedObject, QIODevice::OpenMode  
   return ( ((PythonQtPublicPromoter_QFile*)theWrappedObject)->promoted_open(flags));
 }
 
+bool  PythonQtWrapper_QFile::open(QFile* theWrappedObject, int  fd, QIODevice::OpenMode  ioFlags, QFileDevice::FileHandleFlags  handleFlags)
+{
+  return ( theWrappedObject->open(fd, ioFlags, handleFlags));
+}
+
+QFileDevice::Permissions  PythonQtWrapper_QFile::permissions(QFile* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QFile*)theWrappedObject)->promoted_permissions());
+}
+
+QFileDevice::Permissions  PythonQtWrapper_QFile::static_QFile_permissions(const QString&  filename)
+{
+  return (QFile::permissions(filename));
+}
+
 bool  PythonQtWrapper_QFile::remove(QFile* theWrappedObject)
 {
   return ( theWrappedObject->remove());
@@ -6699,6 +6633,16 @@ bool  PythonQtWrapper_QFile::resize(QFile* theWrappedObject, qint64  sz)
 void PythonQtWrapper_QFile::setFileName(QFile* theWrappedObject, const QString&  name)
 {
   ( theWrappedObject->setFileName(name));
+}
+
+bool  PythonQtWrapper_QFile::setPermissions(QFile* theWrappedObject, QFileDevice::Permissions  permissionSpec)
+{
+  return ( ((PythonQtPublicPromoter_QFile*)theWrappedObject)->promoted_setPermissions(permissionSpec));
+}
+
+bool  PythonQtWrapper_QFile::static_QFile_setPermissions(const QString&  filename, QFileDevice::Permissions  permissionSpec)
+{
+  return (QFile::setPermissions(filename, permissionSpec));
 }
 
 qint64  PythonQtWrapper_QFile::size(QFile* theWrappedObject) const
@@ -7049,6 +6993,36 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   return QFileDevice::open(mode);
 }
+QFileDevice::Permissions  PythonQtShell_QFileDevice::permissions() const
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("permissions");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"QFileDevice::Permissions"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      QFileDevice::Permissions returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("permissions", methodInfo, result);
+        } else {
+          returnValue = *((QFileDevice::Permissions*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QFileDevice::permissions();
+}
 qint64  PythonQtShell_QFileDevice::pos() const
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
@@ -7229,6 +7203,36 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   return QFileDevice::seek(offset);
 }
+bool  PythonQtShell_QFileDevice::setPermissions(QFileDevice::Permissions  permissionSpec)
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("setPermissions");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"bool" , "QFileDevice::Permissions"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      bool returnValue;
+    void* args[2] = {NULL, (void*)&permissionSpec};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("setPermissions", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QFileDevice::setPermissions(permissionSpec);
+}
 qint64  PythonQtShell_QFileDevice::size() const
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
@@ -7408,6 +7412,11 @@ uchar*  PythonQtWrapper_QFileDevice::map(QFileDevice* theWrappedObject, qint64  
   return ( theWrappedObject->map(offset, size, flags));
 }
 
+QFileDevice::Permissions  PythonQtWrapper_QFileDevice::permissions(QFileDevice* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QFileDevice*)theWrappedObject)->promoted_permissions());
+}
+
 qint64  PythonQtWrapper_QFileDevice::pos(QFileDevice* theWrappedObject) const
 {
   return ( ((PythonQtPublicPromoter_QFileDevice*)theWrappedObject)->promoted_pos());
@@ -7431,6 +7440,11 @@ bool  PythonQtWrapper_QFileDevice::resize(QFileDevice* theWrappedObject, qint64 
 bool  PythonQtWrapper_QFileDevice::seek(QFileDevice* theWrappedObject, qint64  offset)
 {
   return ( ((PythonQtPublicPromoter_QFileDevice*)theWrappedObject)->promoted_seek(offset));
+}
+
+bool  PythonQtWrapper_QFileDevice::setPermissions(QFileDevice* theWrappedObject, QFileDevice::Permissions  permissionSpec)
+{
+  return ( ((PythonQtPublicPromoter_QFileDevice*)theWrappedObject)->promoted_setPermissions(permissionSpec));
 }
 
 qint64  PythonQtWrapper_QFileDevice::size(QFileDevice* theWrappedObject) const

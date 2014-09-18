@@ -77,8 +77,10 @@ class PythonQtWrapper_QByteArray : public QObject
 { Q_OBJECT
 public:
 Q_ENUMS(Base64Option )
+Q_FLAGS(Base64Options )
 enum Base64Option{
   Base64Encoding = QByteArray::Base64Encoding,   Base64UrlEncoding = QByteArray::Base64UrlEncoding,   KeepTrailingEquals = QByteArray::KeepTrailingEquals,   OmitTrailingEquals = QByteArray::OmitTrailingEquals};
+Q_DECLARE_FLAGS(Base64Options, Base64Option)
 public slots:
 QByteArray* new_QByteArray();
 QByteArray* new_QByteArray(const QByteArray&  arg__1);
@@ -103,6 +105,7 @@ void delete_QByteArray(QByteArray* obj) { delete obj; }
    bool  endsWith(QByteArray* theWrappedObject, const QByteArray&  a) const;
    QByteArray*  fill(QByteArray* theWrappedObject, char  c, int  size = -1);
    QByteArray  static_QByteArray_fromBase64(const QByteArray&  base64);
+   QByteArray  static_QByteArray_fromBase64(const QByteArray&  base64, QByteArray::Base64Options  options);
    QByteArray  static_QByteArray_fromHex(const QByteArray&  hexEncoded);
    QByteArray  static_QByteArray_fromPercentEncoding(const QByteArray&  pctEncoded, char  percent = '%');
    int  indexOf(QByteArray* theWrappedObject, char  c, int  from = 0) const;
@@ -179,6 +182,7 @@ void delete_QByteArray(QByteArray* obj) { delete obj; }
    bool  startsWith(QByteArray* theWrappedObject, const QByteArray&  a) const;
    void swap(QByteArray* theWrappedObject, QByteArray&  other);
    QByteArray  toBase64(QByteArray* theWrappedObject) const;
+   QByteArray  toBase64(QByteArray* theWrappedObject, QByteArray::Base64Options  options) const;
    double  toDouble(QByteArray* theWrappedObject, bool*  ok = 0) const;
    float  toFloat(QByteArray* theWrappedObject, bool*  ok = 0) const;
    QByteArray  toHex(QByteArray* theWrappedObject) const;
@@ -1025,20 +1029,25 @@ class PythonQtWrapper_QUrl : public QObject
 { Q_OBJECT
 public:
 Q_ENUMS(ComponentFormattingOption ParsingMode UrlFormattingOption )
+Q_FLAGS(ComponentFormattingOptions )
 enum ComponentFormattingOption{
   PrettyDecoded = QUrl::PrettyDecoded,   EncodeSpaces = QUrl::EncodeSpaces,   EncodeUnicode = QUrl::EncodeUnicode,   EncodeDelimiters = QUrl::EncodeDelimiters,   EncodeReserved = QUrl::EncodeReserved,   DecodeReserved = QUrl::DecodeReserved,   FullyEncoded = QUrl::FullyEncoded,   FullyDecoded = QUrl::FullyDecoded};
 enum ParsingMode{
   TolerantMode = QUrl::TolerantMode,   StrictMode = QUrl::StrictMode,   DecodedMode = QUrl::DecodedMode};
 enum UrlFormattingOption{
   None = QUrl::None,   RemoveScheme = QUrl::RemoveScheme,   RemovePassword = QUrl::RemovePassword,   RemoveUserInfo = QUrl::RemoveUserInfo,   RemovePort = QUrl::RemovePort,   RemoveAuthority = QUrl::RemoveAuthority,   RemovePath = QUrl::RemovePath,   RemoveQuery = QUrl::RemoveQuery,   RemoveFragment = QUrl::RemoveFragment,   PreferLocalFile = QUrl::PreferLocalFile,   StripTrailingSlash = QUrl::StripTrailingSlash,   RemoveFilename = QUrl::RemoveFilename,   NormalizePathSegments = QUrl::NormalizePathSegments};
+Q_DECLARE_FLAGS(ComponentFormattingOptions, ComponentFormattingOption)
 public slots:
 QUrl* new_QUrl();
 QUrl* new_QUrl(const QString&  url, QUrl::ParsingMode  mode = QUrl::TolerantMode);
 QUrl* new_QUrl(const QUrl&  copy);
 void delete_QUrl(QUrl* obj) { delete obj; } 
    QUrl  adjusted(QUrl* theWrappedObject, QUrl::FormattingOptions  options) const;
+   QString  authority(QUrl* theWrappedObject, QUrl::ComponentFormattingOptions  options = QUrl::PrettyDecoded) const;
    void clear(QUrl* theWrappedObject);
    QString  errorString(QUrl* theWrappedObject) const;
+   QString  fileName(QUrl* theWrappedObject, QUrl::ComponentFormattingOptions  options = QUrl::FullyDecoded) const;
+   QString  fragment(QUrl* theWrappedObject, QUrl::ComponentFormattingOptions  options = QUrl::PrettyDecoded) const;
    QString  static_QUrl_fromAce(const QByteArray&  arg__1);
    QUrl  static_QUrl_fromEncoded(const QByteArray&  url, QUrl::ParsingMode  mode = QUrl::TolerantMode);
    QUrl  static_QUrl_fromLocalFile(const QString&  localfile);
@@ -1047,6 +1056,7 @@ void delete_QUrl(QUrl* obj) { delete obj; }
    QUrl  static_QUrl_fromUserInput(const QString&  userInput);
    bool  hasFragment(QUrl* theWrappedObject) const;
    bool  hasQuery(QUrl* theWrappedObject) const;
+   QString  host(QUrl* theWrappedObject, QUrl::ComponentFormattingOptions  arg__1 = QUrl::FullyDecoded) const;
    QStringList  static_QUrl_idnWhitelist();
    bool  isEmpty(QUrl* theWrappedObject) const;
    bool  isLocalFile(QUrl* theWrappedObject) const;
@@ -1059,7 +1069,10 @@ void delete_QUrl(QUrl* obj) { delete obj; }
    void writeTo(QUrl* theWrappedObject, QDataStream&  arg__1);
    bool  __eq__(QUrl* theWrappedObject, const QUrl&  url) const;
    void readFrom(QUrl* theWrappedObject, QDataStream&  arg__1);
+   QString  password(QUrl* theWrappedObject, QUrl::ComponentFormattingOptions  arg__1 = QUrl::FullyDecoded) const;
+   QString  path(QUrl* theWrappedObject, QUrl::ComponentFormattingOptions  options = QUrl::FullyDecoded) const;
    int  port(QUrl* theWrappedObject, int  defaultPort = -1) const;
+   QString  query(QUrl* theWrappedObject, QUrl::ComponentFormattingOptions  arg__1 = QUrl::PrettyDecoded) const;
    QUrl  resolved(QUrl* theWrappedObject, const QUrl&  relative) const;
    QString  scheme(QUrl* theWrappedObject) const;
    void setAuthority(QUrl* theWrappedObject, const QString&  authority, QUrl::ParsingMode  mode = QUrl::TolerantMode);
@@ -1083,7 +1096,10 @@ void delete_QUrl(QUrl* obj) { delete obj; }
    QByteArray  static_QUrl_toPercentEncoding(const QString&  arg__1, const QByteArray&  exclude = QByteArray(), const QByteArray&  include = QByteArray());
    QString  toString(QUrl* theWrappedObject, QUrl::FormattingOptions  options = QUrl::FormattingOptions(PrettyDecoded)) const;
    QStringList  static_QUrl_toStringList(const QList<QUrl >&  uris, QUrl::FormattingOptions  options = QUrl::FormattingOptions(PrettyDecoded));
+   QString  topLevelDomain(QUrl* theWrappedObject, QUrl::ComponentFormattingOptions  options = QUrl::FullyDecoded) const;
    QString  url(QUrl* theWrappedObject, QUrl::FormattingOptions  options = QUrl::FormattingOptions(PrettyDecoded)) const;
+   QString  userInfo(QUrl* theWrappedObject, QUrl::ComponentFormattingOptions  options = QUrl::PrettyDecoded) const;
+   QString  userName(QUrl* theWrappedObject, QUrl::ComponentFormattingOptions  options = QUrl::FullyDecoded) const;
     QString py_toString(QUrl*);
 };
 
@@ -1095,7 +1111,7 @@ class PythonQtWrapper_Qt : public QObject
 { Q_OBJECT
 public:
 Q_ENUMS(AlignmentFlag AnchorPoint ApplicationAttribute ApplicationState ArrowType AspectRatioMode Axis BGMode BrushStyle CaseSensitivity CheckState ClipOperation ConnectionType ContextMenuPolicy CoordinateSystem Corner CursorMoveStyle CursorShape DateFormat DayOfWeek DockWidgetArea DockWidgetAreaSizes DropAction Edge EventPriority FillRule FindChildOption FocusPolicy FocusReason GestureFlag GestureState GestureType GlobalColor HitTestAccuracy ImageConversionFlag InputMethodHint InputMethodQuery ItemDataRole ItemFlag ItemSelectionMode Key KeyboardModifier LayoutDirection MaskMode MatchFlag MouseButton MouseEventFlag MouseEventSource NativeGestureType NavigationMode Orientation PenCapStyle PenJoinStyle PenStyle ScreenOrientation ScrollBarPolicy ScrollPhase ShortcutContext SizeHint SizeMode SortOrder TextElideMode TextFlag TextFormat TextInteractionFlag TileRule TimeSpec TimerType ToolBarArea ToolBarAreaSizes ToolButtonStyle TouchPointState TransformationMode UIEffect WhiteSpaceMode WidgetAttribute WindowFrameSection WindowModality WindowState WindowType )
-Q_FLAGS(Alignment DockWidgetAreas DropActions GestureFlags ImageConversionFlags InputMethodHints ItemFlags KeyboardModifiers MatchFlags MouseButtons Orientations TextInteractionFlags ToolBarAreas TouchPointStates WindowStates WindowFlags )
+Q_FLAGS(Alignment DockWidgetAreas DropActions FindChildOptions GestureFlags ImageConversionFlags InputMethodHints InputMethodQueries ItemFlags KeyboardModifiers MatchFlags MouseButtons MouseEventFlags Orientations ScreenOrientations TextInteractionFlags ToolBarAreas TouchPointStates WindowStates WindowFlags )
 enum AlignmentFlag{
   AlignLeft = Qt::AlignLeft,   AlignLeading = Qt::AlignLeading,   AlignRight = Qt::AlignRight,   AlignTrailing = Qt::AlignTrailing,   AlignHCenter = Qt::AlignHCenter,   AlignJustify = Qt::AlignJustify,   AlignAbsolute = Qt::AlignAbsolute,   AlignHorizontal_Mask = Qt::AlignHorizontal_Mask,   AlignTop = Qt::AlignTop,   AlignBottom = Qt::AlignBottom,   AlignVCenter = Qt::AlignVCenter,   AlignBaseline = Qt::AlignBaseline,   AlignVertical_Mask = Qt::AlignVertical_Mask,   AlignCenter = Qt::AlignCenter};
 enum AnchorPoint{
@@ -1259,14 +1275,18 @@ enum WindowType{
 Q_DECLARE_FLAGS(Alignment, AlignmentFlag)
 Q_DECLARE_FLAGS(DockWidgetAreas, DockWidgetArea)
 Q_DECLARE_FLAGS(DropActions, DropAction)
+Q_DECLARE_FLAGS(FindChildOptions, FindChildOption)
 Q_DECLARE_FLAGS(GestureFlags, GestureFlag)
 Q_DECLARE_FLAGS(ImageConversionFlags, ImageConversionFlag)
 Q_DECLARE_FLAGS(InputMethodHints, InputMethodHint)
+Q_DECLARE_FLAGS(InputMethodQueries, InputMethodQuery)
 Q_DECLARE_FLAGS(ItemFlags, ItemFlag)
 Q_DECLARE_FLAGS(KeyboardModifiers, KeyboardModifier)
 Q_DECLARE_FLAGS(MatchFlags, MatchFlag)
 Q_DECLARE_FLAGS(MouseButtons, MouseButton)
+Q_DECLARE_FLAGS(MouseEventFlags, MouseEventFlag)
 Q_DECLARE_FLAGS(Orientations, Orientation)
+Q_DECLARE_FLAGS(ScreenOrientations, ScreenOrientation)
 Q_DECLARE_FLAGS(TextInteractionFlags, TextInteractionFlag)
 Q_DECLARE_FLAGS(ToolBarAreas, ToolBarArea)
 Q_DECLARE_FLAGS(TouchPointStates, TouchPointState)

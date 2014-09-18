@@ -12,8 +12,10 @@
 #include <qaction.h>
 #include <qbackingstore.h>
 #include <qbitmap.h>
+#include <qbrush.h>
 #include <qbytearray.h>
 #include <qcalendarwidget.h>
+#include <qcolor.h>
 #include <qcompleter.h>
 #include <qcoreevent.h>
 #include <qcursor.h>
@@ -40,9 +42,6 @@
 #include <qfocusframe.h>
 #include <qfont.h>
 #include <qfontcombobox.h>
-#include <qfontdatabase.h>
-#include <qfontdialog.h>
-#include <qfontinfo.h>
 #include <qgraphicseffect.h>
 #include <qgraphicsproxywidget.h>
 #include <qicon.h>
@@ -58,6 +57,7 @@
 #include <qpaintdevice.h>
 #include <qpaintengine.h>
 #include <qpainter.h>
+#include <qpair.h>
 #include <qpalette.h>
 #include <qpixmap.h>
 #include <qpoint.h>
@@ -75,6 +75,145 @@
 #include <qvector.h>
 #include <qwidget.h>
 #include <qwindow.h>
+
+
+
+class PythonQtShell_QCompleter : public QCompleter
+{
+public:
+    PythonQtShell_QCompleter(QAbstractItemModel*  model, QObject*  parent = 0):QCompleter(model, parent),_wrapper(NULL) {};
+    PythonQtShell_QCompleter(QObject*  parent = 0):QCompleter(parent),_wrapper(NULL) {};
+    PythonQtShell_QCompleter(const QStringList&  completions, QObject*  parent = 0):QCompleter(completions, parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QCompleter();
+
+virtual void childEvent(QChildEvent*  arg__1);
+virtual void customEvent(QEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
+virtual bool  eventFilter(QObject*  o, QEvent*  e);
+virtual QString  pathFromIndex(const QModelIndex&  index) const;
+virtual QStringList  splitPath(const QString&  path) const;
+virtual void timerEvent(QTimerEvent*  arg__1);
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtPublicPromoter_QCompleter : public QCompleter
+{ public:
+inline bool  promoted_event(QEvent*  arg__1) { return QCompleter::event(arg__1); }
+inline bool  promoted_eventFilter(QObject*  o, QEvent*  e) { return QCompleter::eventFilter(o, e); }
+inline QString  promoted_pathFromIndex(const QModelIndex&  index) const { return QCompleter::pathFromIndex(index); }
+inline QStringList  promoted_splitPath(const QString&  path) const { return QCompleter::splitPath(path); }
+};
+
+class PythonQtWrapper_QCompleter : public QObject
+{ Q_OBJECT
+public:
+Q_ENUMS(CompletionMode ModelSorting )
+enum CompletionMode{
+  PopupCompletion = QCompleter::PopupCompletion,   UnfilteredPopupCompletion = QCompleter::UnfilteredPopupCompletion,   InlineCompletion = QCompleter::InlineCompletion};
+enum ModelSorting{
+  UnsortedModel = QCompleter::UnsortedModel,   CaseSensitivelySortedModel = QCompleter::CaseSensitivelySortedModel,   CaseInsensitivelySortedModel = QCompleter::CaseInsensitivelySortedModel};
+public slots:
+QCompleter* new_QCompleter(QAbstractItemModel*  model, QObject*  parent = 0);
+QCompleter* new_QCompleter(QObject*  parent = 0);
+QCompleter* new_QCompleter(const QStringList&  completions, QObject*  parent = 0);
+void delete_QCompleter(QCompleter* obj) { delete obj; } 
+   Qt::CaseSensitivity  caseSensitivity(QCompleter* theWrappedObject) const;
+   int  completionColumn(QCompleter* theWrappedObject) const;
+   int  completionCount(QCompleter* theWrappedObject) const;
+   QCompleter::CompletionMode  completionMode(QCompleter* theWrappedObject) const;
+   QAbstractItemModel*  completionModel(QCompleter* theWrappedObject) const;
+   QString  completionPrefix(QCompleter* theWrappedObject) const;
+   int  completionRole(QCompleter* theWrappedObject) const;
+   QString  currentCompletion(QCompleter* theWrappedObject) const;
+   QModelIndex  currentIndex(QCompleter* theWrappedObject) const;
+   int  currentRow(QCompleter* theWrappedObject) const;
+   bool  event(QCompleter* theWrappedObject, QEvent*  arg__1);
+   bool  eventFilter(QCompleter* theWrappedObject, QObject*  o, QEvent*  e);
+   Qt::MatchFlags  filterMode(QCompleter* theWrappedObject) const;
+   int  maxVisibleItems(QCompleter* theWrappedObject) const;
+   QAbstractItemModel*  model(QCompleter* theWrappedObject) const;
+   QCompleter::ModelSorting  modelSorting(QCompleter* theWrappedObject) const;
+   QString  pathFromIndex(QCompleter* theWrappedObject, const QModelIndex&  index) const;
+   QAbstractItemView*  popup(QCompleter* theWrappedObject) const;
+   void setCaseSensitivity(QCompleter* theWrappedObject, Qt::CaseSensitivity  caseSensitivity);
+   void setCompletionColumn(QCompleter* theWrappedObject, int  column);
+   void setCompletionMode(QCompleter* theWrappedObject, QCompleter::CompletionMode  mode);
+   void setCompletionRole(QCompleter* theWrappedObject, int  role);
+   bool  setCurrentRow(QCompleter* theWrappedObject, int  row);
+   void setFilterMode(QCompleter* theWrappedObject, Qt::MatchFlags  filterMode);
+   void setMaxVisibleItems(QCompleter* theWrappedObject, int  maxItems);
+   void setModel(QCompleter* theWrappedObject, QAbstractItemModel*  c);
+   void setModelSorting(QCompleter* theWrappedObject, QCompleter::ModelSorting  sorting);
+   void setPopup(QCompleter* theWrappedObject, QAbstractItemView*  popup);
+   void setWidget(QCompleter* theWrappedObject, QWidget*  widget);
+   QStringList  splitPath(QCompleter* theWrappedObject, const QString&  path) const;
+   QWidget*  widget(QCompleter* theWrappedObject) const;
+   bool  wrapAround(QCompleter* theWrappedObject) const;
+};
+
+
+
+
+
+class PythonQtWrapper_QConicalGradient : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QConicalGradient* new_QConicalGradient();
+QConicalGradient* new_QConicalGradient(const QPointF&  center, qreal  startAngle);
+QConicalGradient* new_QConicalGradient(qreal  cx, qreal  cy, qreal  startAngle);
+QConicalGradient* new_QConicalGradient(const QConicalGradient& other) {
+QConicalGradient* a = new QConicalGradient();
+*((QConicalGradient*)a) = other;
+return a; }
+void delete_QConicalGradient(QConicalGradient* obj) { delete obj; } 
+   qreal  angle(QConicalGradient* theWrappedObject) const;
+   QPointF  center(QConicalGradient* theWrappedObject) const;
+   void setAngle(QConicalGradient* theWrappedObject, qreal  angle);
+   void setCenter(QConicalGradient* theWrappedObject, const QPointF&  center);
+   void setCenter(QConicalGradient* theWrappedObject, qreal  x, qreal  y);
+};
+
+
+
+
+
+class PythonQtShell_QContextMenuEvent : public QContextMenuEvent
+{
+public:
+    PythonQtShell_QContextMenuEvent(QContextMenuEvent::Reason  reason, const QPoint&  pos):QContextMenuEvent(reason, pos),_wrapper(NULL) {};
+    PythonQtShell_QContextMenuEvent(QContextMenuEvent::Reason  reason, const QPoint&  pos, const QPoint&  globalPos):QContextMenuEvent(reason, pos, globalPos),_wrapper(NULL) {};
+    PythonQtShell_QContextMenuEvent(QContextMenuEvent::Reason  reason, const QPoint&  pos, const QPoint&  globalPos, Qt::KeyboardModifiers  modifiers):QContextMenuEvent(reason, pos, globalPos, modifiers),_wrapper(NULL) {};
+
+   ~PythonQtShell_QContextMenuEvent();
+
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtWrapper_QContextMenuEvent : public QObject
+{ Q_OBJECT
+public:
+Q_ENUMS(Reason )
+enum Reason{
+  Mouse = QContextMenuEvent::Mouse,   Keyboard = QContextMenuEvent::Keyboard,   Other = QContextMenuEvent::Other};
+public slots:
+QContextMenuEvent* new_QContextMenuEvent(QContextMenuEvent::Reason  reason, const QPoint&  pos);
+QContextMenuEvent* new_QContextMenuEvent(QContextMenuEvent::Reason  reason, const QPoint&  pos, const QPoint&  globalPos);
+QContextMenuEvent* new_QContextMenuEvent(QContextMenuEvent::Reason  reason, const QPoint&  pos, const QPoint&  globalPos, Qt::KeyboardModifiers  modifiers);
+void delete_QContextMenuEvent(QContextMenuEvent* obj) { delete obj; } 
+   const QPoint*  globalPos(QContextMenuEvent* theWrappedObject) const;
+   int  globalX(QContextMenuEvent* theWrappedObject) const;
+   int  globalY(QContextMenuEvent* theWrappedObject) const;
+   const QPoint*  pos(QContextMenuEvent* theWrappedObject) const;
+   QContextMenuEvent::Reason  reason(QContextMenuEvent* theWrappedObject) const;
+   int  x(QContextMenuEvent* theWrappedObject) const;
+   int  y(QContextMenuEvent* theWrappedObject) const;
+};
+
+
 
 
 
@@ -870,7 +1009,6 @@ void delete_QDirModel(QDirModel* obj) { delete obj; }
    QStringList  mimeTypes(QDirModel* theWrappedObject) const;
    QModelIndex  mkdir(QDirModel* theWrappedObject, const QModelIndex&  parent, const QString&  name);
    QStringList  nameFilters(QDirModel* theWrappedObject) const;
-   QObject*  parent(QDirModel* theWrappedObject) const;
    QModelIndex  parent(QDirModel* theWrappedObject, const QModelIndex&  child) const;
    bool  remove(QDirModel* theWrappedObject, const QModelIndex&  index);
    bool  resolveSymlinks(QDirModel* theWrappedObject) const;
@@ -1575,15 +1713,19 @@ class PythonQtWrapper_QFileIconProvider : public QObject
 { Q_OBJECT
 public:
 Q_ENUMS(IconType Option )
+Q_FLAGS(Options )
 enum IconType{
   Computer = QFileIconProvider::Computer,   Desktop = QFileIconProvider::Desktop,   Trashcan = QFileIconProvider::Trashcan,   Network = QFileIconProvider::Network,   Drive = QFileIconProvider::Drive,   Folder = QFileIconProvider::Folder,   File = QFileIconProvider::File};
 enum Option{
   DontUseCustomDirectoryIcons = QFileIconProvider::DontUseCustomDirectoryIcons};
+Q_DECLARE_FLAGS(Options, Option)
 public slots:
 QFileIconProvider* new_QFileIconProvider();
 void delete_QFileIconProvider(QFileIconProvider* obj) { delete obj; } 
    QIcon  icon(QFileIconProvider* theWrappedObject, QFileIconProvider::IconType  type) const;
    QIcon  icon(QFileIconProvider* theWrappedObject, const QFileInfo&  info) const;
+   QFileIconProvider::Options  options(QFileIconProvider* theWrappedObject) const;
+   void setOptions(QFileIconProvider* theWrappedObject, QFileIconProvider::Options  options);
    QString  type(QFileIconProvider* theWrappedObject, const QFileInfo&  info) const;
 };
 
@@ -1912,175 +2054,6 @@ void delete_QFontComboBox(QFontComboBox* obj) { delete obj; }
    void setWritingSystem(QFontComboBox* theWrappedObject, QFontDatabase::WritingSystem  arg__1);
    QSize  sizeHint(QFontComboBox* theWrappedObject) const;
    QFontDatabase::WritingSystem  writingSystem(QFontComboBox* theWrappedObject) const;
-};
-
-
-
-
-
-class PythonQtWrapper_QFontDatabase : public QObject
-{ Q_OBJECT
-public:
-Q_ENUMS(SystemFont WritingSystem )
-enum SystemFont{
-  GeneralFont = QFontDatabase::GeneralFont,   FixedFont = QFontDatabase::FixedFont,   TitleFont = QFontDatabase::TitleFont,   SmallestReadableFont = QFontDatabase::SmallestReadableFont};
-enum WritingSystem{
-  Any = QFontDatabase::Any,   Latin = QFontDatabase::Latin,   Greek = QFontDatabase::Greek,   Cyrillic = QFontDatabase::Cyrillic,   Armenian = QFontDatabase::Armenian,   Hebrew = QFontDatabase::Hebrew,   Arabic = QFontDatabase::Arabic,   Syriac = QFontDatabase::Syriac,   Thaana = QFontDatabase::Thaana,   Devanagari = QFontDatabase::Devanagari,   Bengali = QFontDatabase::Bengali,   Gurmukhi = QFontDatabase::Gurmukhi,   Gujarati = QFontDatabase::Gujarati,   Oriya = QFontDatabase::Oriya,   Tamil = QFontDatabase::Tamil,   Telugu = QFontDatabase::Telugu,   Kannada = QFontDatabase::Kannada,   Malayalam = QFontDatabase::Malayalam,   Sinhala = QFontDatabase::Sinhala,   Thai = QFontDatabase::Thai,   Lao = QFontDatabase::Lao,   Tibetan = QFontDatabase::Tibetan,   Myanmar = QFontDatabase::Myanmar,   Georgian = QFontDatabase::Georgian,   Khmer = QFontDatabase::Khmer,   SimplifiedChinese = QFontDatabase::SimplifiedChinese,   TraditionalChinese = QFontDatabase::TraditionalChinese,   Japanese = QFontDatabase::Japanese,   Korean = QFontDatabase::Korean,   Vietnamese = QFontDatabase::Vietnamese,   Symbol = QFontDatabase::Symbol,   Other = QFontDatabase::Other,   Ogham = QFontDatabase::Ogham,   Runic = QFontDatabase::Runic,   Nko = QFontDatabase::Nko,   WritingSystemsCount = QFontDatabase::WritingSystemsCount};
-public slots:
-QFontDatabase* new_QFontDatabase();
-void delete_QFontDatabase(QFontDatabase* obj) { delete obj; } 
-   int  static_QFontDatabase_addApplicationFont(const QString&  fileName);
-   int  static_QFontDatabase_addApplicationFontFromData(const QByteArray&  fontData);
-   QStringList  static_QFontDatabase_applicationFontFamilies(int  id);
-   bool  bold(QFontDatabase* theWrappedObject, const QString&  family, const QString&  style) const;
-   QStringList  families(QFontDatabase* theWrappedObject, QFontDatabase::WritingSystem  writingSystem = QFontDatabase::Any) const;
-   QFont  font(QFontDatabase* theWrappedObject, const QString&  family, const QString&  style, int  pointSize) const;
-   bool  hasFamily(QFontDatabase* theWrappedObject, const QString&  family) const;
-   bool  isBitmapScalable(QFontDatabase* theWrappedObject, const QString&  family, const QString&  style = QString()) const;
-   bool  isFixedPitch(QFontDatabase* theWrappedObject, const QString&  family, const QString&  style = QString()) const;
-   bool  isScalable(QFontDatabase* theWrappedObject, const QString&  family, const QString&  style = QString()) const;
-   bool  isSmoothlyScalable(QFontDatabase* theWrappedObject, const QString&  family, const QString&  style = QString()) const;
-   bool  italic(QFontDatabase* theWrappedObject, const QString&  family, const QString&  style) const;
-   QList<int >  pointSizes(QFontDatabase* theWrappedObject, const QString&  family, const QString&  style = QString());
-   bool  static_QFontDatabase_removeAllApplicationFonts();
-   bool  static_QFontDatabase_removeApplicationFont(int  id);
-   QList<int >  smoothSizes(QFontDatabase* theWrappedObject, const QString&  family, const QString&  style);
-   QList<int >  static_QFontDatabase_standardSizes();
-   QString  styleString(QFontDatabase* theWrappedObject, const QFont&  font);
-   QString  styleString(QFontDatabase* theWrappedObject, const QFontInfo&  fontInfo);
-   QStringList  styles(QFontDatabase* theWrappedObject, const QString&  family) const;
-   bool  static_QFontDatabase_supportsThreadedFontRendering();
-   QFont  static_QFontDatabase_systemFont(QFontDatabase::SystemFont  type);
-   int  weight(QFontDatabase* theWrappedObject, const QString&  family, const QString&  style) const;
-   QString  static_QFontDatabase_writingSystemName(QFontDatabase::WritingSystem  writingSystem);
-   QString  static_QFontDatabase_writingSystemSample(QFontDatabase::WritingSystem  writingSystem);
-   QList<QFontDatabase::WritingSystem >  writingSystems(QFontDatabase* theWrappedObject) const;
-   QList<QFontDatabase::WritingSystem >  writingSystems(QFontDatabase* theWrappedObject, const QString&  family) const;
-};
-
-
-
-
-
-class PythonQtShell_QFontDialog : public QFontDialog
-{
-public:
-    PythonQtShell_QFontDialog(QWidget*  parent = 0):QFontDialog(parent),_wrapper(NULL) {};
-    PythonQtShell_QFontDialog(const QFont&  initial, QWidget*  parent = 0):QFontDialog(initial, parent),_wrapper(NULL) {};
-
-   ~PythonQtShell_QFontDialog();
-
-virtual void accept();
-virtual void actionEvent(QActionEvent*  arg__1);
-virtual void changeEvent(QEvent*  event);
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void closeEvent(QCloseEvent*  arg__1);
-virtual void contextMenuEvent(QContextMenuEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual int  devType() const;
-virtual void done(int  result);
-virtual void dragEnterEvent(QDragEnterEvent*  arg__1);
-virtual void dragLeaveEvent(QDragLeaveEvent*  arg__1);
-virtual void dragMoveEvent(QDragMoveEvent*  arg__1);
-virtual void dropEvent(QDropEvent*  arg__1);
-virtual void enterEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  object, QEvent*  event);
-virtual int  exec();
-virtual void focusInEvent(QFocusEvent*  arg__1);
-virtual bool  focusNextPrevChild(bool  next);
-virtual void focusOutEvent(QFocusEvent*  arg__1);
-virtual bool  hasHeightForWidth() const;
-virtual int  heightForWidth(int  arg__1) const;
-virtual void hideEvent(QHideEvent*  arg__1);
-virtual void initPainter(QPainter*  painter) const;
-virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
-virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const;
-virtual void keyPressEvent(QKeyEvent*  arg__1);
-virtual void keyReleaseEvent(QKeyEvent*  arg__1);
-virtual void leaveEvent(QEvent*  arg__1);
-virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
-virtual void mouseDoubleClickEvent(QMouseEvent*  arg__1);
-virtual void mouseMoveEvent(QMouseEvent*  arg__1);
-virtual void mousePressEvent(QMouseEvent*  arg__1);
-virtual void mouseReleaseEvent(QMouseEvent*  arg__1);
-virtual void moveEvent(QMoveEvent*  arg__1);
-virtual bool  nativeEvent(const QByteArray&  eventType, void*  message, long*  result);
-virtual void open();
-virtual QPaintEngine*  paintEngine() const;
-virtual void paintEvent(QPaintEvent*  arg__1);
-virtual QPaintDevice*  redirected(QPoint*  offset) const;
-virtual void reject();
-virtual void resizeEvent(QResizeEvent*  arg__1);
-virtual QPainter*  sharedPainter() const;
-virtual void showEvent(QShowEvent*  arg__1);
-virtual void tabletEvent(QTabletEvent*  arg__1);
-virtual void timerEvent(QTimerEvent*  arg__1);
-virtual void wheelEvent(QWheelEvent*  arg__1);
-
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
-class PythonQtPublicPromoter_QFontDialog : public QFontDialog
-{ public:
-inline void promoted_changeEvent(QEvent*  event) { QFontDialog::changeEvent(event); }
-inline void promoted_done(int  result) { QFontDialog::done(result); }
-inline bool  promoted_eventFilter(QObject*  object, QEvent*  event) { return QFontDialog::eventFilter(object, event); }
-inline void promoted_open() { QFontDialog::open(); }
-};
-
-class PythonQtWrapper_QFontDialog : public QObject
-{ Q_OBJECT
-public:
-public slots:
-QFontDialog* new_QFontDialog(QWidget*  parent = 0);
-QFontDialog* new_QFontDialog(const QFont&  initial, QWidget*  parent = 0);
-void delete_QFontDialog(QFontDialog* obj) { delete obj; } 
-   void changeEvent(QFontDialog* theWrappedObject, QEvent*  event);
-   QFont  currentFont(QFontDialog* theWrappedObject) const;
-   void done(QFontDialog* theWrappedObject, int  result);
-   bool  eventFilter(QFontDialog* theWrappedObject, QObject*  object, QEvent*  event);
-   QFont  static_QFontDialog_getFont(bool*  ok, QWidget*  parent = 0);
-   QFont  static_QFontDialog_getFont(bool*  ok, const QFont&  initial, QWidget*  parent = 0, const QString&  title = QString(), QFontDialog::FontDialogOptions  options = 0);
-   void open(QFontDialog* theWrappedObject);
-   void open(QFontDialog* theWrappedObject, QObject*  receiver, const char*  member);
-   QFontDialog::FontDialogOptions  options(QFontDialog* theWrappedObject) const;
-   QFont  selectedFont(QFontDialog* theWrappedObject) const;
-   void setCurrentFont(QFontDialog* theWrappedObject, const QFont&  font);
-   void setOption(QFontDialog* theWrappedObject, QFontDialog::FontDialogOption  option, bool  on = true);
-   void setOptions(QFontDialog* theWrappedObject, QFontDialog::FontDialogOptions  options);
-   void setVisible(QFontDialog* theWrappedObject, bool  visible);
-   bool  testOption(QFontDialog* theWrappedObject, QFontDialog::FontDialogOption  option) const;
-};
-
-
-
-
-
-class PythonQtWrapper_QFontInfo : public QObject
-{ Q_OBJECT
-public:
-public slots:
-QFontInfo* new_QFontInfo(const QFont&  arg__1);
-QFontInfo* new_QFontInfo(const QFontInfo&  arg__1);
-void delete_QFontInfo(QFontInfo* obj) { delete obj; } 
-   bool  bold(QFontInfo* theWrappedObject) const;
-   bool  exactMatch(QFontInfo* theWrappedObject) const;
-   QString  family(QFontInfo* theWrappedObject) const;
-   bool  fixedPitch(QFontInfo* theWrappedObject) const;
-   bool  italic(QFontInfo* theWrappedObject) const;
-   bool  overline(QFontInfo* theWrappedObject) const;
-   int  pixelSize(QFontInfo* theWrappedObject) const;
-   int  pointSize(QFontInfo* theWrappedObject) const;
-   qreal  pointSizeF(QFontInfo* theWrappedObject) const;
-   bool  rawMode(QFontInfo* theWrappedObject) const;
-   bool  strikeOut(QFontInfo* theWrappedObject) const;
-   QFont::Style  style(QFontInfo* theWrappedObject) const;
-   QFont::StyleHint  styleHint(QFontInfo* theWrappedObject) const;
-   QString  styleName(QFontInfo* theWrappedObject) const;
-   void swap(QFontInfo* theWrappedObject, QFontInfo&  other);
-   bool  underline(QFontInfo* theWrappedObject) const;
-   int  weight(QFontInfo* theWrappedObject) const;
 };
 
 

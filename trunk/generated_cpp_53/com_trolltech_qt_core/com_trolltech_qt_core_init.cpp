@@ -1,4 +1,5 @@
 #include <PythonQt.h>
+#include <PythonQtConversion.h>
 #include "com_trolltech_qt_core0.h"
 #include "com_trolltech_qt_core1.h"
 #include "com_trolltech_qt_core2.h"
@@ -21,11 +22,11 @@ static void* polymorphichandler_QEvent(const void *ptr, const char **class_name)
         return (QEvent*)object;
     }
     if (object->type() == QEvent::StateMachineSignal) {
-        *class_name = "QStateMachine_SignalEvent";
+        *class_name = "QStateMachine__SignalEvent";
         return (QStateMachine::SignalEvent*)object;
     }
     if (object->type() == QEvent::StateMachineWrapped) {
-        *class_name = "QStateMachine_WrappedEvent";
+        *class_name = "QStateMachine__WrappedEvent";
         return (QStateMachine::WrappedEvent*)object;
     }
     if (object->type() == QEvent::Timer) {
@@ -51,7 +52,7 @@ PythonQt::priv()->registerCPPClass("QCollator", "", "QtCore", PythonQtCreateObje
 PythonQt::priv()->registerCPPClass("QCollatorSortKey", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QCollatorSortKey>, NULL, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerCPPClass("QCommandLineOption", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QCommandLineOption>, NULL, module, 0);
 PythonQt::priv()->registerCPPClass("QCommandLineParser", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QCommandLineParser>, NULL, module, 0);
-PythonQt::priv()->registerClass(&QCoreApplication::staticMetaObject, "QtCore", PythonQtCreateObject<PythonQtWrapper_QCoreApplication>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QCoreApplication>, module, 0);
+PythonQt::priv()->registerClass(&QCoreApplication::staticMetaObject, "QtCore", PythonQtCreateObject<PythonQtWrapper_QCoreApplication>, NULL, module, 0);
 PythonQt::priv()->registerCPPClass("QCryptographicHash", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QCryptographicHash>, NULL, module, 0);
 PythonQt::priv()->registerCPPClass("QDataStream", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QDataStream>, NULL, module, 0);
 PythonQt::priv()->registerCPPClass("QDir", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QDir>, NULL, module, PythonQt::Type_RichCompare);
@@ -97,6 +98,7 @@ PythonQt::priv()->registerCPPClass("QMutex", "QBasicMutex", "QtCore", PythonQtCr
 PythonQt::priv()->registerClass(&QObject::staticMetaObject, "QtCore", PythonQtCreateObject<PythonQtWrapper_QObject>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QObject>, module, 0);
 PythonQt::priv()->registerClass(&QParallelAnimationGroup::staticMetaObject, "QtCore", PythonQtCreateObject<PythonQtWrapper_QParallelAnimationGroup>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QParallelAnimationGroup>, module, 0);
 PythonQt::priv()->registerClass(&QPauseAnimation::staticMetaObject, "QtCore", PythonQtCreateObject<PythonQtWrapper_QPauseAnimation>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPauseAnimation>, module, 0);
+PythonQt::priv()->registerCPPClass("QPersistentModelIndex", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QPersistentModelIndex>, NULL, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerClass(&QProcess::staticMetaObject, "QtCore", PythonQtCreateObject<PythonQtWrapper_QProcess>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QProcess>, module, 0);
 PythonQt::priv()->registerCPPClass("QProcessEnvironment", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QProcessEnvironment>, NULL, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerClass(&QPropertyAnimation::staticMetaObject, "QtCore", PythonQtCreateObject<PythonQtWrapper_QPropertyAnimation>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPropertyAnimation>, module, 0);
@@ -117,8 +119,8 @@ PythonQt::priv()->registerClass(&QSocketNotifier::staticMetaObject, "QtCore", Py
 PythonQt::priv()->registerCPPClass("QStandardPaths", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QStandardPaths>, NULL, module, 0);
 PythonQt::priv()->registerClass(&QState::staticMetaObject, "QtCore", PythonQtCreateObject<PythonQtWrapper_QState>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QState>, module, 0);
 PythonQt::priv()->registerClass(&QStateMachine::staticMetaObject, "QtCore", PythonQtCreateObject<PythonQtWrapper_QStateMachine>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QStateMachine>, module, 0);
-PythonQt::priv()->registerCPPClass("QStateMachine::SignalEvent", "QEvent", "QtCore", PythonQtCreateObject<PythonQtWrapper_QStateMachine_SignalEvent>, NULL, module, 0);
-PythonQt::priv()->registerCPPClass("QStateMachine::WrappedEvent", "QEvent", "QtCore", PythonQtCreateObject<PythonQtWrapper_QStateMachine_WrappedEvent>, NULL, module, 0);
+PythonQt::priv()->registerCPPClass("QStateMachine::SignalEvent", "QEvent", "QtCore", PythonQtCreateObject<PythonQtWrapper_QStateMachine__SignalEvent>, NULL, module, 0);
+PythonQt::priv()->registerCPPClass("QStateMachine::WrappedEvent", "QEvent", "QtCore", PythonQtCreateObject<PythonQtWrapper_QStateMachine__WrappedEvent>, NULL, module, 0);
 PythonQt::priv()->registerCPPClass("QStringMatcher", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QStringMatcher>, NULL, module, 0);
 PythonQt::priv()->registerCPPClass("QSysInfo", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QSysInfo>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSysInfo>, module, 0);
 PythonQt::priv()->registerCPPClass("QSystemSemaphore", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QSystemSemaphore>, NULL, module, 0);
@@ -142,4 +144,9 @@ PythonQt::priv()->registerCPPClass("QWaitCondition", "", "QtCore", PythonQtCreat
 PythonQt::priv()->registerCPPClass("QXmlStreamEntityResolver", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QXmlStreamEntityResolver>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QXmlStreamEntityResolver>, module, 0);
 
 PythonQt::self()->addPolymorphicHandler("QEvent", polymorphichandler_QEvent);
+
+PythonQtRegisterListTemplateConverterForKnownClass(QList, QFileInfo);
+PythonQtRegisterListTemplateConverterForKnownClass(QList, QMimeType);
+PythonQtRegisterListTemplateConverterForKnownClass(QList, QModelIndex);
+PythonQtRegisterListTemplateConverterForKnownClass(QList, QPersistentModelIndex);
 }
