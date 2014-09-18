@@ -76,6 +76,8 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
 
     PythonQtMethodInfo::addParameterTypeAlias("QObjectList", "QList<QObject*>");
     qRegisterMetaType<QList<QObject*> >("QList<void*>");
+    qRegisterMetaType<QObjectList>("QObjectList");
+    qRegisterMetaType<QList<QObject*> >("QList<QObject*>");
 
     int stringRefId = qRegisterMetaType<QStringRef>("QStringRef");
     PythonQtConv::registerMetaTypeToPythonConverter(stringRefId, PythonQtConvertFromStringRef);
