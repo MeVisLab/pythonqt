@@ -1149,7 +1149,7 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
       PythonQtConvertPythonToMetaTypeCB* converter = _pythonToMetaTypeConverters.value(type);
       if (converter) {
         // allocate a default object of the needed type:
-        v = QVariant(type, NULL);
+        v = QVariant(type, (const void*)NULL);
         // now call the converter, passing the internal object of the variant
         ok = (*converter)(val, (void*)v.constData(), type, true);
         if (!ok) {
@@ -1160,7 +1160,7 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
         const PythonQtMethodInfo::ParameterInfo& info = PythonQtMethodInfo::getParameterInfoForMetaType(type);
         if (info.isQList && (info.innerNamePointerCount == 1)) {
           // allocate a default object of the needed type:
-          v = QVariant(type, NULL);
+          v = QVariant(type, (const void*)NULL);
           ok = ConvertPythonListToQListOfPointerType(val, (QList<void*>*)v.constData(), info.innerName, true);
           if (!ok) {
             v = QVariant();
