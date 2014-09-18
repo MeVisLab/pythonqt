@@ -4301,6 +4301,11 @@ void PythonQtWrapper_QMetaType::destruct(QMetaType* theWrappedObject, void*  dat
   ( theWrappedObject->destruct(data));
 }
 
+QMetaType::TypeFlags  PythonQtWrapper_QMetaType::flags(QMetaType* theWrappedObject) const
+{
+  return ( theWrappedObject->flags());
+}
+
 bool  PythonQtWrapper_QMetaType::static_QMetaType_hasRegisteredComparators(int  typeId)
 {
   return (QMetaType::hasRegisteredComparators(typeId));
@@ -4374,6 +4379,11 @@ int  PythonQtWrapper_QMetaType::static_QMetaType_sizeOf(int  type)
 int  PythonQtWrapper_QMetaType::static_QMetaType_type(const char*  typeName)
 {
   return (QMetaType::type(typeName));
+}
+
+QMetaType::TypeFlags  PythonQtWrapper_QMetaType::static_QMetaType_typeFlags(int  type)
+{
+  return (QMetaType::typeFlags(type));
 }
 
 const char*  PythonQtWrapper_QMetaType::static_QMetaType_typeName(int  type)

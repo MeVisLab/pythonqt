@@ -1,9 +1,9 @@
 #include <PythonQt.h>
 #include <QObject>
 #include <QStringList>
-#include <QTextCodec>
 #include <QVariant>
 #include <qabstractanimation.h>
+#include <qabstractitemmodel.h>
 #include <qabstractstate.h>
 #include <qabstracttransition.h>
 #include <qanimationgroup.h>
@@ -86,6 +86,38 @@ void delete_QPauseAnimation(QPauseAnimation* obj) { delete obj; }
    bool  event(QPauseAnimation* theWrappedObject, QEvent*  e);
    void setDuration(QPauseAnimation* theWrappedObject, int  msecs);
    void updateCurrentTime(QPauseAnimation* theWrappedObject, int  arg__1);
+};
+
+
+
+
+
+class PythonQtWrapper_QPersistentModelIndex : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QPersistentModelIndex* new_QPersistentModelIndex();
+QPersistentModelIndex* new_QPersistentModelIndex(const QModelIndex&  index);
+QPersistentModelIndex* new_QPersistentModelIndex(const QPersistentModelIndex&  other);
+void delete_QPersistentModelIndex(QPersistentModelIndex* obj) { delete obj; } 
+   QModelIndex  child(QPersistentModelIndex* theWrappedObject, int  row, int  column) const;
+   int  column(QPersistentModelIndex* theWrappedObject) const;
+   QVariant  data(QPersistentModelIndex* theWrappedObject, int  role = Qt::DisplayRole) const;
+   Qt::ItemFlags  flags(QPersistentModelIndex* theWrappedObject) const;
+   quintptr  internalId(QPersistentModelIndex* theWrappedObject) const;
+   bool  isValid(QPersistentModelIndex* theWrappedObject) const;
+   const QAbstractItemModel*  model(QPersistentModelIndex* theWrappedObject) const;
+   QModelIndex  operator_cast_QModelIndex(QPersistentModelIndex* theWrappedObject) const;
+   bool  __ne__(QPersistentModelIndex* theWrappedObject, const QModelIndex&  other) const;
+   bool  __ne__(QPersistentModelIndex* theWrappedObject, const QPersistentModelIndex&  other) const;
+   bool  __lt__(QPersistentModelIndex* theWrappedObject, const QPersistentModelIndex&  other) const;
+   bool  __eq__(QPersistentModelIndex* theWrappedObject, const QModelIndex&  other) const;
+   bool  __eq__(QPersistentModelIndex* theWrappedObject, const QPersistentModelIndex&  other) const;
+   QModelIndex  parent(QPersistentModelIndex* theWrappedObject) const;
+   int  row(QPersistentModelIndex* theWrappedObject) const;
+   QModelIndex  sibling(QPersistentModelIndex* theWrappedObject, int  row, int  column) const;
+   void swap(QPersistentModelIndex* theWrappedObject, QPersistentModelIndex&  other);
+    QString py_toString(QPersistentModelIndex*);
 };
 
 
@@ -322,20 +354,26 @@ class PythonQtWrapper_QRegularExpression : public QObject
 { Q_OBJECT
 public:
 Q_ENUMS(MatchOption MatchType PatternOption )
+Q_FLAGS(MatchOptions PatternOptions )
 enum MatchOption{
   NoMatchOption = QRegularExpression::NoMatchOption,   AnchoredMatchOption = QRegularExpression::AnchoredMatchOption};
 enum MatchType{
   NormalMatch = QRegularExpression::NormalMatch,   PartialPreferCompleteMatch = QRegularExpression::PartialPreferCompleteMatch,   PartialPreferFirstMatch = QRegularExpression::PartialPreferFirstMatch,   NoMatch = QRegularExpression::NoMatch};
 enum PatternOption{
   NoPatternOption = QRegularExpression::NoPatternOption,   CaseInsensitiveOption = QRegularExpression::CaseInsensitiveOption,   DotMatchesEverythingOption = QRegularExpression::DotMatchesEverythingOption,   MultilineOption = QRegularExpression::MultilineOption,   ExtendedPatternSyntaxOption = QRegularExpression::ExtendedPatternSyntaxOption,   InvertedGreedinessOption = QRegularExpression::InvertedGreedinessOption,   DontCaptureOption = QRegularExpression::DontCaptureOption,   UseUnicodePropertiesOption = QRegularExpression::UseUnicodePropertiesOption};
+Q_DECLARE_FLAGS(MatchOptions, MatchOption)
+Q_DECLARE_FLAGS(PatternOptions, PatternOption)
 public slots:
 QRegularExpression* new_QRegularExpression();
 QRegularExpression* new_QRegularExpression(const QRegularExpression&  re);
+QRegularExpression* new_QRegularExpression(const QString&  pattern, QRegularExpression::PatternOptions  options = QRegularExpression::NoPatternOption);
 void delete_QRegularExpression(QRegularExpression* obj) { delete obj; } 
    int  captureCount(QRegularExpression* theWrappedObject) const;
    QString  errorString(QRegularExpression* theWrappedObject) const;
    QString  static_QRegularExpression_escape(const QString&  str);
+   QRegularExpressionMatchIterator  globalMatch(QRegularExpression* theWrappedObject, const QString&  subject, int  offset = 0, QRegularExpression::MatchType  matchType = QRegularExpression::NormalMatch, QRegularExpression::MatchOptions  matchOptions = QRegularExpression::NoMatchOption) const;
    bool  isValid(QRegularExpression* theWrappedObject) const;
+   QRegularExpressionMatch  match(QRegularExpression* theWrappedObject, const QString&  subject, int  offset = 0, QRegularExpression::MatchType  matchType = QRegularExpression::NormalMatch, QRegularExpression::MatchOptions  matchOptions = QRegularExpression::NoMatchOption) const;
    QStringList  namedCaptureGroups(QRegularExpression* theWrappedObject) const;
    bool  __ne__(QRegularExpression* theWrappedObject, const QRegularExpression&  re) const;
    void writeTo(QRegularExpression* theWrappedObject, QDataStream&  out);
@@ -344,7 +382,9 @@ void delete_QRegularExpression(QRegularExpression* obj) { delete obj; }
    void readFrom(QRegularExpression* theWrappedObject, QDataStream&  in);
    QString  pattern(QRegularExpression* theWrappedObject) const;
    int  patternErrorOffset(QRegularExpression* theWrappedObject) const;
+   QRegularExpression::PatternOptions  patternOptions(QRegularExpression* theWrappedObject) const;
    void setPattern(QRegularExpression* theWrappedObject, const QString&  pattern);
+   void setPatternOptions(QRegularExpression* theWrappedObject, QRegularExpression::PatternOptions  options);
    void swap(QRegularExpression* theWrappedObject, QRegularExpression&  re);
     QString py_toString(QRegularExpression*);
 };
@@ -375,6 +415,7 @@ void delete_QRegularExpressionMatch(QRegularExpressionMatch* obj) { delete obj; 
    bool  hasPartialMatch(QRegularExpressionMatch* theWrappedObject) const;
    bool  isValid(QRegularExpressionMatch* theWrappedObject) const;
    int  lastCapturedIndex(QRegularExpressionMatch* theWrappedObject) const;
+   QRegularExpression::MatchOptions  matchOptions(QRegularExpressionMatch* theWrappedObject) const;
    QRegularExpression::MatchType  matchType(QRegularExpressionMatch* theWrappedObject) const;
    QRegularExpressionMatch*  operator_assign(QRegularExpressionMatch* theWrappedObject, const QRegularExpressionMatch&  match);
    QRegularExpression  regularExpression(QRegularExpressionMatch* theWrappedObject) const;
@@ -395,6 +436,7 @@ QRegularExpressionMatchIterator* new_QRegularExpressionMatchIterator(const QRegu
 void delete_QRegularExpressionMatchIterator(QRegularExpressionMatchIterator* obj) { delete obj; } 
    bool  hasNext(QRegularExpressionMatchIterator* theWrappedObject) const;
    bool  isValid(QRegularExpressionMatchIterator* theWrappedObject) const;
+   QRegularExpression::MatchOptions  matchOptions(QRegularExpressionMatchIterator* theWrappedObject) const;
    QRegularExpression::MatchType  matchType(QRegularExpressionMatchIterator* theWrappedObject) const;
    QRegularExpressionMatch  next(QRegularExpressionMatchIterator* theWrappedObject);
    QRegularExpressionMatchIterator*  operator_assign(QRegularExpressionMatchIterator* theWrappedObject, const QRegularExpressionMatchIterator&  iterator);
@@ -491,12 +533,14 @@ virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 virtual QString  fileName() const;
 virtual bool  isSequential() const;
 virtual bool  open(QIODevice::OpenMode  flags);
+virtual QFileDevice::Permissions  permissions() const;
 virtual qint64  pos() const;
 virtual qint64  readData(char*  data, qint64  maxlen);
 virtual qint64  readLineData(char*  data, qint64  maxlen);
 virtual bool  reset();
 virtual bool  resize(qint64  sz);
 virtual bool  seek(qint64  offset);
+virtual bool  setPermissions(QFileDevice::Permissions  permissionSpec);
 virtual qint64  size() const;
 virtual void timerEvent(QTimerEvent*  arg__1);
 virtual bool  waitForBytesWritten(int  msecs);
@@ -838,15 +882,19 @@ class PythonQtWrapper_QStandardPaths : public QObject
 { Q_OBJECT
 public:
 Q_ENUMS(LocateOption StandardLocation )
+Q_FLAGS(LocateOptions )
 enum LocateOption{
   LocateFile = QStandardPaths::LocateFile,   LocateDirectory = QStandardPaths::LocateDirectory};
 enum StandardLocation{
   DesktopLocation = QStandardPaths::DesktopLocation,   DocumentsLocation = QStandardPaths::DocumentsLocation,   FontsLocation = QStandardPaths::FontsLocation,   ApplicationsLocation = QStandardPaths::ApplicationsLocation,   MusicLocation = QStandardPaths::MusicLocation,   MoviesLocation = QStandardPaths::MoviesLocation,   PicturesLocation = QStandardPaths::PicturesLocation,   TempLocation = QStandardPaths::TempLocation,   HomeLocation = QStandardPaths::HomeLocation,   DataLocation = QStandardPaths::DataLocation,   CacheLocation = QStandardPaths::CacheLocation,   GenericDataLocation = QStandardPaths::GenericDataLocation,   RuntimeLocation = QStandardPaths::RuntimeLocation,   ConfigLocation = QStandardPaths::ConfigLocation,   DownloadLocation = QStandardPaths::DownloadLocation,   GenericCacheLocation = QStandardPaths::GenericCacheLocation,   GenericConfigLocation = QStandardPaths::GenericConfigLocation};
+Q_DECLARE_FLAGS(LocateOptions, LocateOption)
 public slots:
    QString  static_QStandardPaths_displayName(QStandardPaths::StandardLocation  type);
    void static_QStandardPaths_enableTestMode(bool  testMode);
    QString  static_QStandardPaths_findExecutable(const QString&  executableName, const QStringList&  paths = QStringList());
    bool  static_QStandardPaths_isTestModeEnabled();
+   QString  static_QStandardPaths_locate(QStandardPaths::StandardLocation  type, const QString&  fileName, QStandardPaths::LocateOptions  options = QStandardPaths::LocateFile);
+   QStringList  static_QStandardPaths_locateAll(QStandardPaths::StandardLocation  type, const QString&  fileName, QStandardPaths::LocateOptions  options = QStandardPaths::LocateFile);
    void static_QStandardPaths_setTestModeEnabled(bool  testMode);
    QStringList  static_QStandardPaths_standardLocations(QStandardPaths::StandardLocation  type);
    QString  static_QStandardPaths_writableLocation(QStandardPaths::StandardLocation  type);
@@ -988,12 +1036,12 @@ void delete_QStateMachine(QStateMachine* obj) { delete obj; }
 
 
 
-class PythonQtWrapper_QStateMachine_SignalEvent : public QObject
+class PythonQtWrapper_QStateMachine__SignalEvent : public QObject
 { Q_OBJECT
 public:
 public slots:
-QStateMachine::SignalEvent* new_QStateMachine_SignalEvent(QObject*  sender, int  signalIndex, const QList<QVariant >&  arguments);
-void delete_QStateMachine_SignalEvent(QStateMachine::SignalEvent* obj) { delete obj; } 
+QStateMachine::SignalEvent* new_QStateMachine__SignalEvent(QObject*  sender, int  signalIndex, const QList<QVariant >&  arguments);
+void delete_QStateMachine__SignalEvent(QStateMachine::SignalEvent* obj) { delete obj; } 
    QList<QVariant >  arguments(QStateMachine::SignalEvent* theWrappedObject) const;
    QObject*  sender(QStateMachine::SignalEvent* theWrappedObject) const;
    int  signalIndex(QStateMachine::SignalEvent* theWrappedObject) const;
@@ -1003,12 +1051,12 @@ void delete_QStateMachine_SignalEvent(QStateMachine::SignalEvent* obj) { delete 
 
 
 
-class PythonQtWrapper_QStateMachine_WrappedEvent : public QObject
+class PythonQtWrapper_QStateMachine__WrappedEvent : public QObject
 { Q_OBJECT
 public:
 public slots:
-QStateMachine::WrappedEvent* new_QStateMachine_WrappedEvent(QObject*  object, QEvent*  event);
-void delete_QStateMachine_WrappedEvent(QStateMachine::WrappedEvent* obj) { delete obj; } 
+QStateMachine::WrappedEvent* new_QStateMachine__WrappedEvent(QObject*  object, QEvent*  event);
+void delete_QStateMachine__WrappedEvent(QStateMachine::WrappedEvent* obj) { delete obj; } 
    QEvent*  event(QStateMachine::WrappedEvent* theWrappedObject) const;
    QObject*  object(QStateMachine::WrappedEvent* theWrappedObject) const;
 };
@@ -1124,12 +1172,14 @@ virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 virtual bool  isSequential() const;
 virtual bool  open(QIODevice::OpenMode  flags);
+virtual QFileDevice::Permissions  permissions() const;
 virtual qint64  pos() const;
 virtual qint64  readData(char*  data, qint64  maxlen);
 virtual qint64  readLineData(char*  data, qint64  maxlen);
 virtual bool  reset();
 virtual bool  resize(qint64  sz);
 virtual bool  seek(qint64  offset);
+virtual bool  setPermissions(QFileDevice::Permissions  permissionSpec);
 virtual qint64  size() const;
 virtual void timerEvent(QTimerEvent*  arg__1);
 virtual bool  waitForBytesWritten(int  msecs);
@@ -1196,60 +1246,6 @@ void delete_QTextBoundaryFinder(QTextBoundaryFinder* obj) { delete obj; }
    int  toPreviousBoundary(QTextBoundaryFinder* theWrappedObject);
    void toStart(QTextBoundaryFinder* theWrappedObject);
    QTextBoundaryFinder::BoundaryType  type(QTextBoundaryFinder* theWrappedObject) const;
-};
-
-
-
-
-
-class PythonQtShell_QTextCodec : public QTextCodec
-{
-public:
-    PythonQtShell_QTextCodec():QTextCodec(),_wrapper(NULL) {};
-
-   ~PythonQtShell_QTextCodec();
-
-virtual QList<QByteArray >  aliases() const;
-virtual QByteArray  convertFromUnicode(const QChar*  in, int  length, QTextCodec::ConverterState*  state) const;
-virtual QString  convertToUnicode(const char*  in, int  length, QTextCodec::ConverterState*  state) const;
-virtual int  mibEnum() const;
-virtual QByteArray  name() const;
-
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
-class PythonQtPublicPromoter_QTextCodec : public QTextCodec
-{ public:
-inline QList<QByteArray >  promoted_aliases() const { return QTextCodec::aliases(); }
-};
-
-class PythonQtWrapper_QTextCodec : public QObject
-{ Q_OBJECT
-public:
-Q_ENUMS(ConversionFlag )
-Q_FLAGS(ConversionFlags )
-enum ConversionFlag{
-  DefaultConversion = QTextCodec::DefaultConversion,   ConvertInvalidToNull = QTextCodec::ConvertInvalidToNull,   IgnoreHeader = QTextCodec::IgnoreHeader,   FreeFunction = QTextCodec::FreeFunction};
-Q_DECLARE_FLAGS(ConversionFlags, ConversionFlag)
-public slots:
-   QList<QByteArray >  aliases(QTextCodec* theWrappedObject) const;
-   QList<QByteArray >  static_QTextCodec_availableCodecs();
-   QList<int >  static_QTextCodec_availableMibs();
-   bool  canEncode(QTextCodec* theWrappedObject, QChar  arg__1) const;
-   bool  canEncode(QTextCodec* theWrappedObject, const QString&  arg__1) const;
-   QTextCodec*  static_QTextCodec_codecForHtml(const QByteArray&  ba);
-   QTextCodec*  static_QTextCodec_codecForHtml(const QByteArray&  ba, QTextCodec*  defaultCodec);
-   QTextCodec*  static_QTextCodec_codecForLocale();
-   QTextCodec*  static_QTextCodec_codecForMib(int  mib);
-   QTextCodec*  static_QTextCodec_codecForName(const QByteArray&  name);
-   QTextCodec*  static_QTextCodec_codecForName(const char*  name);
-   QTextCodec*  static_QTextCodec_codecForUtfText(const QByteArray&  ba);
-   QTextCodec*  static_QTextCodec_codecForUtfText(const QByteArray&  ba, QTextCodec*  defaultCodec);
-   QByteArray  fromUnicode(QTextCodec* theWrappedObject, const QString&  uc) const;
-   QTextDecoder*  makeDecoder(QTextCodec* theWrappedObject, QTextCodec::ConversionFlags  flags = QTextCodec::DefaultConversion) const;
-   QTextEncoder*  makeEncoder(QTextCodec* theWrappedObject, QTextCodec::ConversionFlags  flags = QTextCodec::DefaultConversion) const;
-   void static_QTextCodec_setCodecForLocale(QTextCodec*  c);
-   QString  toUnicode(QTextCodec* theWrappedObject, const QByteArray&  arg__1) const;
 };
 
 

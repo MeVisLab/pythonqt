@@ -787,6 +787,10 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   return QVariant();
 }
+QAbstractXmlNodeModel* PythonQtWrapper_QAbstractXmlNodeModel::new_QAbstractXmlNodeModel()
+{ 
+return new PythonQtShell_QAbstractXmlNodeModel(); }
+
 QSourceLocation  PythonQtWrapper_QAbstractXmlNodeModel::sourceLocation(QAbstractXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  index) const
 {
   return ( theWrappedObject->sourceLocation(index));

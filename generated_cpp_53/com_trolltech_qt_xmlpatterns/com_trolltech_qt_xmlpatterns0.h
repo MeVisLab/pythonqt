@@ -90,6 +90,7 @@ void delete_QAbstractUriResolver(QAbstractUriResolver* obj) { delete obj; }
 class PythonQtShell_QAbstractXmlNodeModel : public QAbstractXmlNodeModel
 {
 public:
+    PythonQtShell_QAbstractXmlNodeModel():QAbstractXmlNodeModel(),_wrapper(NULL) {};
 
    ~PythonQtShell_QAbstractXmlNodeModel();
 
@@ -121,6 +122,7 @@ enum NodeCopySetting{
 enum SimpleAxis{
   Parent = QAbstractXmlNodeModel::Parent,   FirstChild = QAbstractXmlNodeModel::FirstChild,   PreviousSibling = QAbstractXmlNodeModel::PreviousSibling,   NextSibling = QAbstractXmlNodeModel::NextSibling};
 public slots:
+QAbstractXmlNodeModel* new_QAbstractXmlNodeModel();
 void delete_QAbstractXmlNodeModel(QAbstractXmlNodeModel* obj) { delete obj; } 
    QSourceLocation  sourceLocation(QAbstractXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  index) const;
 };

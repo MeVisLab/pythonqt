@@ -1,4 +1,5 @@
 #include <PythonQt.h>
+#include <PythonQtConversion.h>
 #include "com_trolltech_qt_opengl0.h"
 
 
@@ -16,5 +17,6 @@ PythonQt::self()->addParentClass("QGLPixelBuffer", "QPaintDevice",PythonQtUpcast
 PythonQt::priv()->registerClass(&QGLShader::staticMetaObject, "QtOpenGL", PythonQtCreateObject<PythonQtWrapper_QGLShader>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QGLShader>, module, 0);
 PythonQt::priv()->registerClass(&QGLShaderProgram::staticMetaObject, "QtOpenGL", PythonQtCreateObject<PythonQtWrapper_QGLShaderProgram>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QGLShaderProgram>, module, 0);
 PythonQt::priv()->registerClass(&QGLWidget::staticMetaObject, "QtOpenGL", PythonQtCreateObject<PythonQtWrapper_QGLWidget>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QGLWidget>, module, 0);
+
 
 }

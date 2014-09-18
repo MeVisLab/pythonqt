@@ -1,4 +1,5 @@
 #include <PythonQt.h>
+#include <PythonQtConversion.h>
 #include "com_trolltech_qt_xml0.h"
 #include "com_trolltech_qt_xml1.h"
 
@@ -48,4 +49,10 @@ PythonQt::priv()->registerCPPClass("QXmlStreamNotationDeclaration", "", "QtXml",
 PythonQt::priv()->registerCPPClass("QXmlStreamReader", "", "QtXml", PythonQtCreateObject<PythonQtWrapper_QXmlStreamReader>, NULL, module, 0);
 PythonQt::priv()->registerCPPClass("QXmlStreamWriter", "", "QtXml", PythonQtCreateObject<PythonQtWrapper_QXmlStreamWriter>, NULL, module, 0);
 
+
+PythonQtRegisterListTemplateConverterForKnownClass(QList, QXmlStreamAttribute);
+PythonQtRegisterListTemplateConverterForKnownClass(QVector, QXmlStreamAttribute);
+PythonQtRegisterListTemplateConverterForKnownClass(QVector, QXmlStreamEntityDeclaration);
+PythonQtRegisterListTemplateConverterForKnownClass(QVector, QXmlStreamNamespaceDeclaration);
+PythonQtRegisterListTemplateConverterForKnownClass(QVector, QXmlStreamNotationDeclaration);
 }

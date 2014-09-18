@@ -3,6 +3,7 @@
 #include <PythonQtMethodInfo.h>
 #include <PythonQtSignalReceiver.h>
 #include <QByteArray>
+#include <QGraphicsItem>
 #include <QMatrix>
 #include <QRectF>
 #include <QSize>
@@ -17,7 +18,9 @@
 #include <qevent.h>
 #include <qfont.h>
 #include <qgraphicseffect.h>
+#include <qgraphicsitem.h>
 #include <qgraphicsproxywidget.h>
+#include <qgraphicssvgitem.h>
 #include <qicon.h>
 #include <qiodevice.h>
 #include <qkeysequence.h>
@@ -39,11 +42,277 @@
 #include <qsize.h>
 #include <qsizepolicy.h>
 #include <qstyle.h>
+#include <qstyleoption.h>
 #include <qsvgrenderer.h>
 #include <qsvgwidget.h>
 #include <qwidget.h>
 #include <qwindow.h>
 #include <qxmlstream.h>
+
+PythonQtShell_QGraphicsSvgItem::~PythonQtShell_QGraphicsSvgItem() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QRectF  PythonQtShell_QGraphicsSvgItem::boundingRect() const
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("boundingRect");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"QRectF"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      QRectF returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("boundingRect", methodInfo, result);
+        } else {
+          returnValue = *((QRectF*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QGraphicsSvgItem::boundingRect();
+}
+void PythonQtShell_QGraphicsSvgItem::childEvent(QChildEvent*  arg__1)
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("childEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"" , "QChildEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+    void* args[2] = {NULL, (void*)&arg__1};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  } else {
+    PyErr_Clear();
+  }
+}
+  QGraphicsSvgItem::childEvent(arg__1);
+}
+void PythonQtShell_QGraphicsSvgItem::customEvent(QEvent*  arg__1)
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("customEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+    void* args[2] = {NULL, (void*)&arg__1};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  } else {
+    PyErr_Clear();
+  }
+}
+  QGraphicsSvgItem::customEvent(arg__1);
+}
+bool  PythonQtShell_QGraphicsSvgItem::event(QEvent*  ev)
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("event");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"bool" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      bool returnValue;
+    void* args[2] = {NULL, (void*)&ev};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QGraphicsSvgItem::event(ev);
+}
+bool  PythonQtShell_QGraphicsSvgItem::eventFilter(QObject*  arg__1, QEvent*  arg__2)
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("eventFilter");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
+      bool returnValue;
+    void* args[3] = {NULL, (void*)&arg__1, (void*)&arg__2};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("eventFilter", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QGraphicsSvgItem::eventFilter(arg__1, arg__2);
+}
+void PythonQtShell_QGraphicsSvgItem::paint(QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget)
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("paint");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"" , "QPainter*" , "const QStyleOptionGraphicsItem*" , "QWidget*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
+    void* args[4] = {NULL, (void*)&painter, (void*)&option, (void*)&widget};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  } else {
+    PyErr_Clear();
+  }
+}
+  QGraphicsSvgItem::paint(painter, option, widget);
+}
+void PythonQtShell_QGraphicsSvgItem::timerEvent(QTimerEvent*  arg__1)
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("timerEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"" , "QTimerEvent*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+    void* args[2] = {NULL, (void*)&arg__1};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  } else {
+    PyErr_Clear();
+  }
+}
+  QGraphicsSvgItem::timerEvent(arg__1);
+}
+int  PythonQtShell_QGraphicsSvgItem::type() const
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("type");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      int returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("type", methodInfo, result);
+        } else {
+          returnValue = *((int*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QGraphicsSvgItem::type();
+}
+QGraphicsSvgItem* PythonQtWrapper_QGraphicsSvgItem::new_QGraphicsSvgItem(QGraphicsItem*  parentItem)
+{ 
+return new PythonQtShell_QGraphicsSvgItem(parentItem); }
+
+QGraphicsSvgItem* PythonQtWrapper_QGraphicsSvgItem::new_QGraphicsSvgItem(const QString&  fileName, QGraphicsItem*  parentItem)
+{ 
+return new PythonQtShell_QGraphicsSvgItem(fileName, parentItem); }
+
+QRectF  PythonQtWrapper_QGraphicsSvgItem::boundingRect(QGraphicsSvgItem* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QGraphicsSvgItem*)theWrappedObject)->promoted_boundingRect());
+}
+
+QString  PythonQtWrapper_QGraphicsSvgItem::elementId(QGraphicsSvgItem* theWrappedObject) const
+{
+  return ( theWrappedObject->elementId());
+}
+
+bool  PythonQtWrapper_QGraphicsSvgItem::isCachingEnabled(QGraphicsSvgItem* theWrappedObject) const
+{
+  return ( theWrappedObject->isCachingEnabled());
+}
+
+QSize  PythonQtWrapper_QGraphicsSvgItem::maximumCacheSize(QGraphicsSvgItem* theWrappedObject) const
+{
+  return ( theWrappedObject->maximumCacheSize());
+}
+
+void PythonQtWrapper_QGraphicsSvgItem::paint(QGraphicsSvgItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget)
+{
+  ( ((PythonQtPublicPromoter_QGraphicsSvgItem*)theWrappedObject)->promoted_paint(painter, option, widget));
+}
+
+QSvgRenderer*  PythonQtWrapper_QGraphicsSvgItem::renderer(QGraphicsSvgItem* theWrappedObject) const
+{
+  return ( theWrappedObject->renderer());
+}
+
+void PythonQtWrapper_QGraphicsSvgItem::setCachingEnabled(QGraphicsSvgItem* theWrappedObject, bool  arg__1)
+{
+  ( theWrappedObject->setCachingEnabled(arg__1));
+}
+
+void PythonQtWrapper_QGraphicsSvgItem::setElementId(QGraphicsSvgItem* theWrappedObject, const QString&  id)
+{
+  ( theWrappedObject->setElementId(id));
+}
+
+void PythonQtWrapper_QGraphicsSvgItem::setMaximumCacheSize(QGraphicsSvgItem* theWrappedObject, const QSize&  size)
+{
+  ( theWrappedObject->setMaximumCacheSize(size));
+}
+
+void PythonQtWrapper_QGraphicsSvgItem::setSharedRenderer(QGraphicsSvgItem* theWrappedObject, QSvgRenderer*  renderer)
+{
+  ( theWrappedObject->setSharedRenderer(renderer));
+}
+
+int  PythonQtWrapper_QGraphicsSvgItem::type(QGraphicsSvgItem* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QGraphicsSvgItem*)theWrappedObject)->promoted_type());
+}
+
+
 
 PythonQtShell_QSvgGenerator::~PythonQtShell_QSvgGenerator() {
   PythonQtPrivate* priv = PythonQt::priv();

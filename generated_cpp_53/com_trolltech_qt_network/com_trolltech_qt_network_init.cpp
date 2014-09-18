@@ -1,4 +1,5 @@
 #include <PythonQt.h>
+#include <PythonQtConversion.h>
 #include "com_trolltech_qt_network0.h"
 #include "com_trolltech_qt_network1.h"
 
@@ -17,6 +18,8 @@ PythonQt::priv()->registerClass(&QLocalSocket::staticMetaObject, "QtNetwork", Py
 PythonQt::priv()->registerClass(&QNetworkAccessManager::staticMetaObject, "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QNetworkAccessManager>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QNetworkAccessManager>, module, 0);
 PythonQt::priv()->registerCPPClass("QNetworkAddressEntry", "", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QNetworkAddressEntry>, NULL, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerCPPClass("QNetworkCacheMetaData", "", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QNetworkCacheMetaData>, NULL, module, PythonQt::Type_RichCompare);
+PythonQt::priv()->registerCPPClass("QNetworkConfiguration", "", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QNetworkConfiguration>, NULL, module, PythonQt::Type_RichCompare);
+PythonQt::priv()->registerClass(&QNetworkConfigurationManager::staticMetaObject, "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QNetworkConfigurationManager>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QNetworkConfigurationManager>, module, 0);
 PythonQt::priv()->registerCPPClass("QNetworkCookie", "", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QNetworkCookie>, NULL, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerClass(&QNetworkCookieJar::staticMetaObject, "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QNetworkCookieJar>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QNetworkCookieJar>, module, 0);
 PythonQt::priv()->registerClass(&QNetworkDiskCache::staticMetaObject, "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QNetworkDiskCache>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QNetworkDiskCache>, module, 0);
@@ -26,6 +29,7 @@ PythonQt::priv()->registerCPPClass("QNetworkProxyFactory", "", "QtNetwork", Pyth
 PythonQt::priv()->registerCPPClass("QNetworkProxyQuery", "", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QNetworkProxyQuery>, NULL, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerClass(&QNetworkReply::staticMetaObject, "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QNetworkReply>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QNetworkReply>, module, 0);
 PythonQt::priv()->registerCPPClass("QNetworkRequest", "", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QNetworkRequest>, NULL, module, PythonQt::Type_RichCompare);
+PythonQt::priv()->registerClass(&QNetworkSession::staticMetaObject, "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QNetworkSession>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QNetworkSession>, module, 0);
 #ifndef QT_NO_OPENSSL
 PythonQt::priv()->registerCPPClass("QSsl", "", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QSsl>, NULL, module, 0);
 #endif
@@ -51,4 +55,20 @@ PythonQt::priv()->registerClass(&QTcpServer::staticMetaObject, "QtNetwork", Pyth
 PythonQt::priv()->registerClass(&QTcpSocket::staticMetaObject, "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QTcpSocket>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QTcpSocket>, module, 0);
 PythonQt::priv()->registerClass(&QUdpSocket::staticMetaObject, "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QUdpSocket>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QUdpSocket>, module, 0);
 
+
+PythonQtRegisterListTemplateConverterForKnownClass(QList, QHostAddress);
+PythonQtRegisterListTemplateConverterForKnownClass(QList, QNetworkAddressEntry);
+PythonQtRegisterListTemplateConverterForKnownClass(QList, QNetworkConfiguration);
+PythonQtRegisterListTemplateConverterForKnownClass(QList, QNetworkCookie);
+PythonQtRegisterListTemplateConverterForKnownClass(QList, QNetworkInterface);
+PythonQtRegisterListTemplateConverterForKnownClass(QList, QNetworkProxy);
+#ifndef QT_NO_OPENSSL
+PythonQtRegisterListTemplateConverterForKnownClass(QList, QSslCertificate);
+#endif
+#ifndef QT_NO_OPENSSL
+PythonQtRegisterListTemplateConverterForKnownClass(QList, QSslCipher);
+#endif
+#ifndef QT_NO_OPENSSL
+PythonQtRegisterListTemplateConverterForKnownClass(QList, QSslError);
+#endif
 }

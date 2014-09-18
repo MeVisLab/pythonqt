@@ -709,22 +709,6 @@ void delete_QCommandLineParser(QCommandLineParser* obj) { delete obj; }
 
 
 
-class PythonQtShell_QCoreApplication : public QCoreApplication
-{
-public:
-
-   ~PythonQtShell_QCoreApplication();
-
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual bool  notify(QObject*  arg__1, QEvent*  arg__2);
-virtual void timerEvent(QTimerEvent*  arg__1);
-
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
 class PythonQtPublicPromoter_QCoreApplication : public QCoreApplication
 { public:
 inline bool  promoted_event(QEvent*  arg__1) { return QCoreApplication::event(arg__1); }
@@ -734,6 +718,9 @@ inline bool  promoted_notify(QObject*  arg__1, QEvent*  arg__2) { return QCoreAp
 class PythonQtWrapper_QCoreApplication : public QObject
 { Q_OBJECT
 public:
+Q_ENUMS(enum_1 )
+enum enum_1{
+  ApplicationFlags = QCoreApplication::ApplicationFlags};
 public slots:
 void delete_QCoreApplication(QCoreApplication* obj) { delete obj; } 
    void static_QCoreApplication_addLibraryPath(const QString&  arg__1);
@@ -806,7 +793,9 @@ void delete_QCryptographicHash(QCryptographicHash* obj) { delete obj; }
 class PythonQtWrapper_QDataStream : public QObject
 { Q_OBJECT
 public:
-Q_ENUMS(FloatingPointPrecision Status Version )
+Q_ENUMS(ByteOrder FloatingPointPrecision Status Version )
+enum ByteOrder{
+  BigEndian = QDataStream::BigEndian,   LittleEndian = QDataStream::LittleEndian};
 enum FloatingPointPrecision{
   SinglePrecision = QDataStream::SinglePrecision,   DoublePrecision = QDataStream::DoublePrecision};
 enum Status{
@@ -820,9 +809,11 @@ QDataStream* new_QDataStream(QIODevice*  arg__1);
 QDataStream* new_QDataStream(const QByteArray&  arg__1);
 void delete_QDataStream(QDataStream* obj) { delete obj; } 
    bool  atEnd(QDataStream* theWrappedObject) const;
+   QDataStream::ByteOrder  byteOrder(QDataStream* theWrappedObject) const;
    QIODevice*  device(QDataStream* theWrappedObject) const;
    QDataStream::FloatingPointPrecision  floatingPointPrecision(QDataStream* theWrappedObject) const;
    void resetStatus(QDataStream* theWrappedObject);
+   void setByteOrder(QDataStream* theWrappedObject, QDataStream::ByteOrder  arg__1);
    void setDevice(QDataStream* theWrappedObject, QIODevice*  arg__1);
    void setFloatingPointPrecision(QDataStream* theWrappedObject, QDataStream::FloatingPointPrecision  precision);
    void setStatus(QDataStream* theWrappedObject, QDataStream::Status  status);
@@ -1263,12 +1254,14 @@ virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 virtual QString  fileName() const;
 virtual bool  isSequential() const;
 virtual bool  open(QIODevice::OpenMode  flags);
+virtual QFileDevice::Permissions  permissions() const;
 virtual qint64  pos() const;
 virtual qint64  readData(char*  data, qint64  maxlen);
 virtual qint64  readLineData(char*  data, qint64  maxlen);
 virtual bool  reset();
 virtual bool  resize(qint64  sz);
 virtual bool  seek(qint64  offset);
+virtual bool  setPermissions(QFileDevice::Permissions  permissionSpec);
 virtual qint64  size() const;
 virtual void timerEvent(QTimerEvent*  arg__1);
 virtual bool  waitForBytesWritten(int  msecs);
@@ -1282,7 +1275,9 @@ class PythonQtPublicPromoter_QFile : public QFile
 { public:
 inline QString  promoted_fileName() const { return QFile::fileName(); }
 inline bool  promoted_open(QIODevice::OpenMode  flags) { return QFile::open(flags); }
+inline QFileDevice::Permissions  promoted_permissions() const { return QFile::permissions(); }
 inline bool  promoted_resize(qint64  sz) { return QFile::resize(sz); }
+inline bool  promoted_setPermissions(QFileDevice::Permissions  permissionSpec) { return QFile::setPermissions(permissionSpec); }
 inline qint64  promoted_size() const { return QFile::size(); }
 };
 
@@ -1305,6 +1300,9 @@ void delete_QFile(QFile* obj) { delete obj; }
    bool  link(QFile* theWrappedObject, const QString&  newName);
    bool  static_QFile_link(const QString&  oldname, const QString&  newName);
    bool  open(QFile* theWrappedObject, QIODevice::OpenMode  flags);
+   bool  open(QFile* theWrappedObject, int  fd, QIODevice::OpenMode  ioFlags, QFileDevice::FileHandleFlags  handleFlags = QFileDevice::DontCloseHandle);
+   QFileDevice::Permissions  permissions(QFile* theWrappedObject) const;
+   QFileDevice::Permissions  static_QFile_permissions(const QString&  filename);
    bool  remove(QFile* theWrappedObject);
    bool  static_QFile_remove(const QString&  fileName);
    bool  rename(QFile* theWrappedObject, const QString&  newName);
@@ -1312,6 +1310,8 @@ void delete_QFile(QFile* obj) { delete obj; }
    bool  static_QFile_resize(const QString&  filename, qint64  sz);
    bool  resize(QFile* theWrappedObject, qint64  sz);
    void setFileName(QFile* theWrappedObject, const QString&  name);
+   bool  setPermissions(QFile* theWrappedObject, QFileDevice::Permissions  permissionSpec);
+   bool  static_QFile_setPermissions(const QString&  filename, QFileDevice::Permissions  permissionSpec);
    qint64  size(QFile* theWrappedObject) const;
    QString  symLinkTarget(QFile* theWrappedObject) const;
    QString  static_QFile_symLinkTarget(const QString&  fileName);
@@ -1341,12 +1341,14 @@ virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 virtual QString  fileName() const;
 virtual bool  isSequential() const;
 virtual bool  open(QIODevice::OpenMode  mode);
+virtual QFileDevice::Permissions  permissions() const;
 virtual qint64  pos() const;
 virtual qint64  readData(char*  data, qint64  maxlen);
 virtual qint64  readLineData(char*  data, qint64  maxlen);
 virtual bool  reset();
 virtual bool  resize(qint64  sz);
 virtual bool  seek(qint64  offset);
+virtual bool  setPermissions(QFileDevice::Permissions  permissionSpec);
 virtual qint64  size() const;
 virtual void timerEvent(QTimerEvent*  arg__1);
 virtual bool  waitForBytesWritten(int  msecs);
@@ -1362,11 +1364,13 @@ inline bool  promoted_atEnd() const { return QFileDevice::atEnd(); }
 inline void promoted_close() { QFileDevice::close(); }
 inline QString  promoted_fileName() const { return QFileDevice::fileName(); }
 inline bool  promoted_isSequential() const { return QFileDevice::isSequential(); }
+inline QFileDevice::Permissions  promoted_permissions() const { return QFileDevice::permissions(); }
 inline qint64  promoted_pos() const { return QFileDevice::pos(); }
 inline qint64  promoted_readData(char*  data, qint64  maxlen) { return QFileDevice::readData(data, maxlen); }
 inline qint64  promoted_readLineData(char*  data, qint64  maxlen) { return QFileDevice::readLineData(data, maxlen); }
 inline bool  promoted_resize(qint64  sz) { return QFileDevice::resize(sz); }
 inline bool  promoted_seek(qint64  offset) { return QFileDevice::seek(offset); }
+inline bool  promoted_setPermissions(QFileDevice::Permissions  permissionSpec) { return QFileDevice::setPermissions(permissionSpec); }
 inline qint64  promoted_size() const { return QFileDevice::size(); }
 inline qint64  promoted_writeData(const char*  data, qint64  len) { return QFileDevice::writeData(data, len); }
 };
@@ -1375,6 +1379,7 @@ class PythonQtWrapper_QFileDevice : public QObject
 { Q_OBJECT
 public:
 Q_ENUMS(FileError FileHandleFlag MemoryMapFlags Permission )
+Q_FLAGS(FileHandleFlags Permissions )
 enum FileError{
   NoError = QFileDevice::NoError,   ReadError = QFileDevice::ReadError,   WriteError = QFileDevice::WriteError,   FatalError = QFileDevice::FatalError,   ResourceError = QFileDevice::ResourceError,   OpenError = QFileDevice::OpenError,   AbortError = QFileDevice::AbortError,   TimeOutError = QFileDevice::TimeOutError,   UnspecifiedError = QFileDevice::UnspecifiedError,   RemoveError = QFileDevice::RemoveError,   RenameError = QFileDevice::RenameError,   PositionError = QFileDevice::PositionError,   ResizeError = QFileDevice::ResizeError,   PermissionsError = QFileDevice::PermissionsError,   CopyError = QFileDevice::CopyError};
 enum FileHandleFlag{
@@ -1383,6 +1388,8 @@ enum MemoryMapFlags{
   NoOptions = QFileDevice::NoOptions};
 enum Permission{
   ReadOwner = QFileDevice::ReadOwner,   WriteOwner = QFileDevice::WriteOwner,   ExeOwner = QFileDevice::ExeOwner,   ReadUser = QFileDevice::ReadUser,   WriteUser = QFileDevice::WriteUser,   ExeUser = QFileDevice::ExeUser,   ReadGroup = QFileDevice::ReadGroup,   WriteGroup = QFileDevice::WriteGroup,   ExeGroup = QFileDevice::ExeGroup,   ReadOther = QFileDevice::ReadOther,   WriteOther = QFileDevice::WriteOther,   ExeOther = QFileDevice::ExeOther};
+Q_DECLARE_FLAGS(FileHandleFlags, FileHandleFlag)
+Q_DECLARE_FLAGS(Permissions, Permission)
 public slots:
 void delete_QFileDevice(QFileDevice* obj) { delete obj; } 
    bool  atEnd(QFileDevice* theWrappedObject) const;
@@ -1393,11 +1400,13 @@ void delete_QFileDevice(QFileDevice* obj) { delete obj; }
    int  handle(QFileDevice* theWrappedObject) const;
    bool  isSequential(QFileDevice* theWrappedObject) const;
    uchar*  map(QFileDevice* theWrappedObject, qint64  offset, qint64  size, QFileDevice::MemoryMapFlags  flags = QFileDevice::NoOptions);
+   QFileDevice::Permissions  permissions(QFileDevice* theWrappedObject) const;
    qint64  pos(QFileDevice* theWrappedObject) const;
    qint64  readData(QFileDevice* theWrappedObject, char*  data, qint64  maxlen);
    qint64  readLineData(QFileDevice* theWrappedObject, char*  data, qint64  maxlen);
    bool  resize(QFileDevice* theWrappedObject, qint64  sz);
    bool  seek(QFileDevice* theWrappedObject, qint64  offset);
+   bool  setPermissions(QFileDevice* theWrappedObject, QFileDevice::Permissions  permissionSpec);
    qint64  size(QFileDevice* theWrappedObject) const;
    bool  unmap(QFileDevice* theWrappedObject, uchar*  address);
    void unsetError(QFileDevice* theWrappedObject);
