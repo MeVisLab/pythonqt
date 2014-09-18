@@ -4,6 +4,7 @@
 #include <PythonQtSignalReceiver.h>
 #include <QVariant>
 #include <qaction.h>
+#include <qbackingstore.h>
 #include <qbitmap.h>
 #include <qbytearray.h>
 #include <qcoreevent.h>
@@ -58,6 +59,7 @@
 #include <qwebsettings.h>
 #include <qwebview.h>
 #include <qwidget.h>
+#include <qwindow.h>
 
 PythonQtShell_QGraphicsWebView::~PythonQtShell_QGraphicsWebView() {
   PythonQtPrivate* priv = PythonQt::priv();
@@ -1862,6 +1864,11 @@ QPoint  PythonQtWrapper_QWebFrame::pos(QWebFrame* theWrappedObject) const
   return ( theWrappedObject->pos());
 }
 
+void PythonQtWrapper_QWebFrame::render(QWebFrame* theWrappedObject, QPainter*  arg__1, QWebFrame::RenderLayers  layer, const QRegion&  clip)
+{
+  ( theWrappedObject->render(arg__1, layer, clip));
+}
+
 void PythonQtWrapper_QWebFrame::render(QWebFrame* theWrappedObject, QPainter*  arg__1, const QRegion&  clip)
 {
   ( theWrappedObject->render(arg__1, clip));
@@ -2294,11 +2301,6 @@ bool  PythonQtWrapper_QWebHistoryItem::isValid(QWebHistoryItem* theWrappedObject
 QDateTime  PythonQtWrapper_QWebHistoryItem::lastVisited(QWebHistoryItem* theWrappedObject) const
 {
   return ( theWrappedObject->lastVisited());
-}
-
-QWebHistoryItem*  PythonQtWrapper_QWebHistoryItem::operator_assign(QWebHistoryItem* theWrappedObject, const QWebHistoryItem&  other)
-{
-  return &( (*theWrappedObject)= other);
 }
 
 QUrl  PythonQtWrapper_QWebHistoryItem::originalUrl(QWebHistoryItem* theWrappedObject) const
@@ -4192,63 +4194,63 @@ QSize  PythonQtWrapper_QWebPage::viewportSize(QWebPage* theWrappedObject) const
 
 
 
-PythonQtShell_QWebPage_ChooseMultipleFilesExtensionOption::~PythonQtShell_QWebPage_ChooseMultipleFilesExtensionOption() {
+PythonQtShell_QWebPage__ChooseMultipleFilesExtensionOption::~PythonQtShell_QWebPage__ChooseMultipleFilesExtensionOption() {
   PythonQtPrivate* priv = PythonQt::priv();
   if (priv) { priv->shellClassDeleted(this); }
 }
-QWebPage::ChooseMultipleFilesExtensionOption* PythonQtWrapper_QWebPage_ChooseMultipleFilesExtensionOption::new_QWebPage_ChooseMultipleFilesExtensionOption()
+QWebPage::ChooseMultipleFilesExtensionOption* PythonQtWrapper_QWebPage__ChooseMultipleFilesExtensionOption::new_QWebPage__ChooseMultipleFilesExtensionOption()
 { 
-return new PythonQtShell_QWebPage_ChooseMultipleFilesExtensionOption(); }
+return new PythonQtShell_QWebPage__ChooseMultipleFilesExtensionOption(); }
 
 
 
-PythonQtShell_QWebPage_ChooseMultipleFilesExtensionReturn::~PythonQtShell_QWebPage_ChooseMultipleFilesExtensionReturn() {
+PythonQtShell_QWebPage__ChooseMultipleFilesExtensionReturn::~PythonQtShell_QWebPage__ChooseMultipleFilesExtensionReturn() {
   PythonQtPrivate* priv = PythonQt::priv();
   if (priv) { priv->shellClassDeleted(this); }
 }
-QWebPage::ChooseMultipleFilesExtensionReturn* PythonQtWrapper_QWebPage_ChooseMultipleFilesExtensionReturn::new_QWebPage_ChooseMultipleFilesExtensionReturn()
+QWebPage::ChooseMultipleFilesExtensionReturn* PythonQtWrapper_QWebPage__ChooseMultipleFilesExtensionReturn::new_QWebPage__ChooseMultipleFilesExtensionReturn()
 { 
-return new PythonQtShell_QWebPage_ChooseMultipleFilesExtensionReturn(); }
+return new PythonQtShell_QWebPage__ChooseMultipleFilesExtensionReturn(); }
 
 
 
-PythonQtShell_QWebPage_ErrorPageExtensionOption::~PythonQtShell_QWebPage_ErrorPageExtensionOption() {
+PythonQtShell_QWebPage__ErrorPageExtensionOption::~PythonQtShell_QWebPage__ErrorPageExtensionOption() {
   PythonQtPrivate* priv = PythonQt::priv();
   if (priv) { priv->shellClassDeleted(this); }
 }
-QWebPage::ErrorPageExtensionOption* PythonQtWrapper_QWebPage_ErrorPageExtensionOption::new_QWebPage_ErrorPageExtensionOption()
+QWebPage::ErrorPageExtensionOption* PythonQtWrapper_QWebPage__ErrorPageExtensionOption::new_QWebPage__ErrorPageExtensionOption()
 { 
-return new PythonQtShell_QWebPage_ErrorPageExtensionOption(); }
+return new PythonQtShell_QWebPage__ErrorPageExtensionOption(); }
 
 
 
-PythonQtShell_QWebPage_ErrorPageExtensionReturn::~PythonQtShell_QWebPage_ErrorPageExtensionReturn() {
+PythonQtShell_QWebPage__ErrorPageExtensionReturn::~PythonQtShell_QWebPage__ErrorPageExtensionReturn() {
   PythonQtPrivate* priv = PythonQt::priv();
   if (priv) { priv->shellClassDeleted(this); }
 }
-QWebPage::ErrorPageExtensionReturn* PythonQtWrapper_QWebPage_ErrorPageExtensionReturn::new_QWebPage_ErrorPageExtensionReturn()
+QWebPage::ErrorPageExtensionReturn* PythonQtWrapper_QWebPage__ErrorPageExtensionReturn::new_QWebPage__ErrorPageExtensionReturn()
 { 
-return new PythonQtShell_QWebPage_ErrorPageExtensionReturn(); }
+return new PythonQtShell_QWebPage__ErrorPageExtensionReturn(); }
 
 
 
-PythonQtShell_QWebPage_ExtensionOption::~PythonQtShell_QWebPage_ExtensionOption() {
+PythonQtShell_QWebPage__ExtensionOption::~PythonQtShell_QWebPage__ExtensionOption() {
   PythonQtPrivate* priv = PythonQt::priv();
   if (priv) { priv->shellClassDeleted(this); }
 }
-QWebPage::ExtensionOption* PythonQtWrapper_QWebPage_ExtensionOption::new_QWebPage_ExtensionOption()
+QWebPage::ExtensionOption* PythonQtWrapper_QWebPage__ExtensionOption::new_QWebPage__ExtensionOption()
 { 
-return new PythonQtShell_QWebPage_ExtensionOption(); }
+return new PythonQtShell_QWebPage__ExtensionOption(); }
 
 
 
-PythonQtShell_QWebPage_ExtensionReturn::~PythonQtShell_QWebPage_ExtensionReturn() {
+PythonQtShell_QWebPage__ExtensionReturn::~PythonQtShell_QWebPage__ExtensionReturn() {
   PythonQtPrivate* priv = PythonQt::priv();
   if (priv) { priv->shellClassDeleted(this); }
 }
-QWebPage::ExtensionReturn* PythonQtWrapper_QWebPage_ExtensionReturn::new_QWebPage_ExtensionReturn()
+QWebPage::ExtensionReturn* PythonQtWrapper_QWebPage__ExtensionReturn::new_QWebPage__ExtensionReturn()
 { 
-return new PythonQtShell_QWebPage_ExtensionReturn(); }
+return new PythonQtShell_QWebPage__ExtensionReturn(); }
 
 
 
@@ -4533,53 +4535,53 @@ bool  PythonQtWrapper_QWebPluginFactory::supportsExtension(QWebPluginFactory* th
 
 
 
-PythonQtShell_QWebPluginFactory_ExtensionOption::~PythonQtShell_QWebPluginFactory_ExtensionOption() {
+PythonQtShell_QWebPluginFactory__ExtensionOption::~PythonQtShell_QWebPluginFactory__ExtensionOption() {
   PythonQtPrivate* priv = PythonQt::priv();
   if (priv) { priv->shellClassDeleted(this); }
 }
-QWebPluginFactory::ExtensionOption* PythonQtWrapper_QWebPluginFactory_ExtensionOption::new_QWebPluginFactory_ExtensionOption()
+QWebPluginFactory::ExtensionOption* PythonQtWrapper_QWebPluginFactory__ExtensionOption::new_QWebPluginFactory__ExtensionOption()
 { 
-return new PythonQtShell_QWebPluginFactory_ExtensionOption(); }
+return new PythonQtShell_QWebPluginFactory__ExtensionOption(); }
 
 
 
-PythonQtShell_QWebPluginFactory_ExtensionReturn::~PythonQtShell_QWebPluginFactory_ExtensionReturn() {
+PythonQtShell_QWebPluginFactory__ExtensionReturn::~PythonQtShell_QWebPluginFactory__ExtensionReturn() {
   PythonQtPrivate* priv = PythonQt::priv();
   if (priv) { priv->shellClassDeleted(this); }
 }
-QWebPluginFactory::ExtensionReturn* PythonQtWrapper_QWebPluginFactory_ExtensionReturn::new_QWebPluginFactory_ExtensionReturn()
+QWebPluginFactory::ExtensionReturn* PythonQtWrapper_QWebPluginFactory__ExtensionReturn::new_QWebPluginFactory__ExtensionReturn()
 { 
-return new PythonQtShell_QWebPluginFactory_ExtensionReturn(); }
+return new PythonQtShell_QWebPluginFactory__ExtensionReturn(); }
 
 
 
-PythonQtShell_QWebPluginFactory_MimeType::~PythonQtShell_QWebPluginFactory_MimeType() {
+PythonQtShell_QWebPluginFactory__MimeType::~PythonQtShell_QWebPluginFactory__MimeType() {
   PythonQtPrivate* priv = PythonQt::priv();
   if (priv) { priv->shellClassDeleted(this); }
 }
-QWebPluginFactory::MimeType* PythonQtWrapper_QWebPluginFactory_MimeType::new_QWebPluginFactory_MimeType()
+QWebPluginFactory::MimeType* PythonQtWrapper_QWebPluginFactory__MimeType::new_QWebPluginFactory__MimeType()
 { 
-return new PythonQtShell_QWebPluginFactory_MimeType(); }
+return new PythonQtShell_QWebPluginFactory__MimeType(); }
 
-bool  PythonQtWrapper_QWebPluginFactory_MimeType::__ne__(QWebPluginFactory::MimeType* theWrappedObject, const QWebPluginFactory::MimeType&  other) const
+bool  PythonQtWrapper_QWebPluginFactory__MimeType::__ne__(QWebPluginFactory::MimeType* theWrappedObject, const QWebPluginFactory::MimeType&  other) const
 {
   return ( (*theWrappedObject)!= other);
 }
 
-bool  PythonQtWrapper_QWebPluginFactory_MimeType::__eq__(QWebPluginFactory::MimeType* theWrappedObject, const QWebPluginFactory::MimeType&  other) const
+bool  PythonQtWrapper_QWebPluginFactory__MimeType::__eq__(QWebPluginFactory::MimeType* theWrappedObject, const QWebPluginFactory::MimeType&  other) const
 {
   return ( (*theWrappedObject)== other);
 }
 
 
 
-PythonQtShell_QWebPluginFactory_Plugin::~PythonQtShell_QWebPluginFactory_Plugin() {
+PythonQtShell_QWebPluginFactory__Plugin::~PythonQtShell_QWebPluginFactory__Plugin() {
   PythonQtPrivate* priv = PythonQt::priv();
   if (priv) { priv->shellClassDeleted(this); }
 }
-QWebPluginFactory::Plugin* PythonQtWrapper_QWebPluginFactory_Plugin::new_QWebPluginFactory_Plugin()
+QWebPluginFactory::Plugin* PythonQtWrapper_QWebPluginFactory__Plugin::new_QWebPluginFactory__Plugin()
 { 
-return new PythonQtShell_QWebPluginFactory_Plugin(); }
+return new PythonQtShell_QWebPluginFactory__Plugin(); }
 
 
 
