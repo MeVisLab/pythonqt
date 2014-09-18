@@ -35,6 +35,7 @@
 #include <qpolygon.h>
 #include <qrect.h>
 #include <qregion.h>
+#include <qscreen.h>
 #include <qsize.h>
 #include <qsizepolicy.h>
 #include <qstringlist.h>
@@ -251,6 +252,9 @@ void delete_QCursor(QCursor* obj) { delete obj; }
    void readFrom(QCursor* theWrappedObject, QDataStream&  inS);
    QPixmap  pixmap(QCursor* theWrappedObject) const;
    QPoint  static_QCursor_pos();
+   QPoint  static_QCursor_pos(const QScreen*  screen);
+   void static_QCursor_setPos(QScreen*  screen, const QPoint&  p);
+   void static_QCursor_setPos(QScreen*  screen, int  x, int  y);
    void static_QCursor_setPos(const QPoint&  p);
    void static_QCursor_setPos(int  x, int  y);
    void setShape(QCursor* theWrappedObject, Qt::CursorShape  newShape);

@@ -1,4 +1,5 @@
 #include <PythonQt.h>
+#include <PythonQtConversion.h>
 #include "com_trolltech_qt_gui0.h"
 #include "com_trolltech_qt_gui1.h"
 #include "com_trolltech_qt_gui2.h"
@@ -10,6 +11,7 @@
 #include "com_trolltech_qt_gui8.h"
 #include "com_trolltech_qt_gui9.h"
 #include "com_trolltech_qt_gui10.h"
+#include "com_trolltech_qt_gui11.h"
 
 static void* polymorphichandler_QEvent(const void *ptr, const char **class_name)
 {
@@ -42,6 +44,14 @@ static void* polymorphichandler_QEvent(const void *ptr, const char **class_name)
     if (object->type() == QEvent::Drop) {
         *class_name = "QDropEvent";
         return (QDropEvent*)object;
+    }
+    if (object->type() == QEvent::Enter) {
+        *class_name = "QEnterEvent";
+        return (QEnterEvent*)object;
+    }
+    if (object->type() == QEvent::Expose) {
+        *class_name = "QExposeEvent";
+        return (QExposeEvent*)object;
     }
     if (object->type() == QEvent::FileOpen) {
         *class_name = "QFileOpenEvent";
@@ -103,6 +113,14 @@ static void* polymorphichandler_QEvent(const void *ptr, const char **class_name)
         *class_name = "QIconDragEvent";
         return (QIconDragEvent*)object;
     }
+    if (object->type() == QEvent::InputMethod) {
+        *class_name = "QInputMethodEvent";
+        return (QInputMethodEvent*)object;
+    }
+    if (object->type() == QEvent::InputMethodQuery) {
+        *class_name = "QInputMethodQueryEvent";
+        return (QInputMethodQueryEvent*)object;
+    }
     if (object->type() == QEvent::KeyPress || object->type() == QEvent::KeyRelease) {
         *class_name = "QKeyEvent";
         return (QKeyEvent*)object;
@@ -122,6 +140,14 @@ static void* polymorphichandler_QEvent(const void *ptr, const char **class_name)
     if (object->type() == QEvent::Resize) {
         *class_name = "QResizeEvent";
         return (QResizeEvent*)object;
+    }
+    if (object->type() == QEvent::Scroll) {
+        *class_name = "QScrollEvent";
+        return (QScrollEvent*)object;
+    }
+    if (object->type() == QEvent::ScrollPrepare) {
+        *class_name = "QScrollPrepareEvent";
+        return (QScrollPrepareEvent*)object;
     }
     if (object->type() == QEvent::Shortcut) {
         *class_name = "QShortcutEvent";
@@ -388,11 +414,15 @@ PythonQt::priv()->registerClass(&QAbstractScrollArea::staticMetaObject, "QtGui",
 PythonQt::priv()->registerClass(&QAbstractSlider::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QAbstractSlider>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QAbstractSlider>, module, 0);
 PythonQt::priv()->registerClass(&QAbstractSpinBox::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QAbstractSpinBox>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QAbstractSpinBox>, module, 0);
 PythonQt::priv()->registerClass(&QAbstractTableModel::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QAbstractTableModel>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QAbstractTableModel>, module, 0);
+PythonQt::priv()->registerClass(&QAbstractTextDocumentLayout::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QAbstractTextDocumentLayout>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QAbstractTextDocumentLayout>, module, 0);
+PythonQt::priv()->registerCPPClass("QAbstractTextDocumentLayout::PaintContext", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QAbstractTextDocumentLayout__PaintContext>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QAbstractTextDocumentLayout__PaintContext>, module, 0);
+PythonQt::priv()->registerCPPClass("QAbstractTextDocumentLayout::Selection", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QAbstractTextDocumentLayout__Selection>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QAbstractTextDocumentLayout__Selection>, module, 0);
 PythonQt::priv()->registerCPPClass("QAccessibleEvent", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QAccessibleEvent>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QAccessibleEvent>, module, 0);
 PythonQt::priv()->registerClass(&QAction::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QAction>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QAction>, module, 0);
 PythonQt::priv()->registerCPPClass("QActionEvent", "QEvent", "QtGui", PythonQtCreateObject<PythonQtWrapper_QActionEvent>, NULL, module, 0);
 PythonQt::priv()->registerClass(&QActionGroup::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QActionGroup>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QActionGroup>, module, 0);
-PythonQt::priv()->registerClass(&QApplication::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QApplication>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QApplication>, module, 0);
+PythonQt::priv()->registerClass(&QApplication::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QApplication>, NULL, module, 0);
+PythonQt::priv()->registerCPPClass("QBackingStore", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QBackingStore>, NULL, module, 0);
 PythonQt::priv()->registerClass(&QBoxLayout::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QBoxLayout>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QBoxLayout>, module, 0);
 PythonQt::priv()->registerClass(&QButtonGroup::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QButtonGroup>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QButtonGroup>, module, 0);
 PythonQt::priv()->registerClass(&QCalendarWidget::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QCalendarWidget>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QCalendarWidget>, module, 0);
@@ -424,7 +454,9 @@ PythonQt::priv()->registerCPPClass("QDragEnterEvent", "QDragMoveEvent", "QtGui",
 PythonQt::priv()->registerCPPClass("QDragLeaveEvent", "QEvent", "QtGui", PythonQtCreateObject<PythonQtWrapper_QDragLeaveEvent>, NULL, module, 0);
 PythonQt::priv()->registerCPPClass("QDragMoveEvent", "QDropEvent", "QtGui", PythonQtCreateObject<PythonQtWrapper_QDragMoveEvent>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QDragMoveEvent>, module, 0);
 PythonQt::priv()->registerCPPClass("QDropEvent", "QEvent", "QtGui", PythonQtCreateObject<PythonQtWrapper_QDropEvent>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QDropEvent>, module, 0);
+PythonQt::priv()->registerCPPClass("QEnterEvent", "QEvent", "QtGui", PythonQtCreateObject<PythonQtWrapper_QEnterEvent>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QEnterEvent>, module, 0);
 PythonQt::priv()->registerClass(&QErrorMessage::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QErrorMessage>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QErrorMessage>, module, 0);
+PythonQt::priv()->registerCPPClass("QExposeEvent", "QEvent", "QtGui", PythonQtCreateObject<PythonQtWrapper_QExposeEvent>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QExposeEvent>, module, 0);
 PythonQt::priv()->registerClass(&QFileDialog::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QFileDialog>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QFileDialog>, module, 0);
 PythonQt::priv()->registerCPPClass("QFileIconProvider", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QFileIconProvider>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QFileIconProvider>, module, 0);
 PythonQt::priv()->registerCPPClass("QFileOpenEvent", "QEvent", "QtGui", PythonQtCreateObject<PythonQtWrapper_QFileOpenEvent>, NULL, module, 0);
@@ -442,6 +474,7 @@ PythonQt::priv()->registerClass(&QFrame::staticMetaObject, "QtGui", PythonQtCrea
 PythonQt::priv()->registerClass(&QGesture::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QGesture>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QGesture>, module, 0);
 PythonQt::priv()->registerCPPClass("QGestureEvent", "QEvent", "QtGui", PythonQtCreateObject<PythonQtWrapper_QGestureEvent>, NULL, module, 0);
 PythonQt::priv()->registerCPPClass("QGestureRecognizer", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QGestureRecognizer>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QGestureRecognizer>, module, 0);
+PythonQt::priv()->registerCPPClass("QGlyphRun", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QGlyphRun>, NULL, module, PythonQt::Type_Add|PythonQt::Type_InplaceAdd|PythonQt::Type_RichCompare);
 PythonQt::priv()->registerCPPClass("QGradient", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QGradient>, NULL, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerClass(&QGraphicsAnchor::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QGraphicsAnchor>, NULL, module, 0);
 PythonQt::priv()->registerCPPClass("QGraphicsAnchorLayout", "QGraphicsLayout", "QtGui", PythonQtCreateObject<PythonQtWrapper_QGraphicsAnchorLayout>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QGraphicsAnchorLayout>, module, 0);
@@ -490,6 +523,7 @@ PythonQt::priv()->registerClass(&QGraphicsWidget::staticMetaObject, "QtGui", Pyt
 PythonQt::self()->addParentClass("QGraphicsWidget", "QGraphicsLayoutItem",PythonQtUpcastingOffset<QGraphicsWidget,QGraphicsLayoutItem>());
 PythonQt::priv()->registerClass(&QGridLayout::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QGridLayout>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QGridLayout>, module, 0);
 PythonQt::priv()->registerClass(&QGroupBox::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QGroupBox>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QGroupBox>, module, 0);
+PythonQt::priv()->registerClass(&QGuiApplication::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QGuiApplication>, NULL, module, 0);
 PythonQt::priv()->registerClass(&QHBoxLayout::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QHBoxLayout>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QHBoxLayout>, module, 0);
 PythonQt::priv()->registerClass(&QHeaderView::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QHeaderView>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QHeaderView>, module, 0);
 PythonQt::priv()->registerCPPClass("QHelpEvent", "QEvent", "QtGui", PythonQtCreateObject<PythonQtWrapper_QHelpEvent>, NULL, module, 0);
@@ -503,6 +537,10 @@ PythonQt::priv()->registerCPPClass("QImageReader", "", "QtGui", PythonQtCreateOb
 PythonQt::priv()->registerCPPClass("QImageWriter", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QImageWriter>, NULL, module, 0);
 PythonQt::priv()->registerClass(&QInputDialog::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QInputDialog>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QInputDialog>, module, 0);
 PythonQt::priv()->registerCPPClass("QInputEvent", "QEvent", "QtGui", PythonQtCreateObject<PythonQtWrapper_QInputEvent>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QInputEvent>, module, 0);
+PythonQt::priv()->registerClass(&QInputMethod::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QInputMethod>, NULL, module, 0);
+PythonQt::priv()->registerCPPClass("QInputMethodEvent", "QEvent", "QtGui", PythonQtCreateObject<PythonQtWrapper_QInputMethodEvent>, NULL, module, 0);
+PythonQt::priv()->registerCPPClass("QInputMethodEvent::Attribute", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QInputMethodEvent__Attribute>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QInputMethodEvent__Attribute>, module, 0);
+PythonQt::priv()->registerCPPClass("QInputMethodQueryEvent", "QEvent", "QtGui", PythonQtCreateObject<PythonQtWrapper_QInputMethodQueryEvent>, NULL, module, 0);
 PythonQt::priv()->registerClass(&QIntValidator::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QIntValidator>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QIntValidator>, module, 0);
 PythonQt::priv()->registerClass(&QItemDelegate::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QItemDelegate>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QItemDelegate>, module, 0);
 PythonQt::priv()->registerCPPClass("QItemEditorCreatorBase", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QItemEditorCreatorBase>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QItemEditorCreatorBase>, module, 0);
@@ -534,7 +572,20 @@ PythonQt::priv()->registerCPPClass("QMouseEvent", "QInputEvent", "QtGui", Python
 PythonQt::priv()->registerClass(&QMouseEventTransition::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QMouseEventTransition>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QMouseEventTransition>, module, 0);
 PythonQt::priv()->registerCPPClass("QMoveEvent", "QEvent", "QtGui", PythonQtCreateObject<PythonQtWrapper_QMoveEvent>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QMoveEvent>, module, 0);
 PythonQt::priv()->registerClass(&QMovie::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QMovie>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QMovie>, module, 0);
+PythonQt::priv()->registerCPPClass("QOpenGLBuffer", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QOpenGLBuffer>, NULL, module, 0);
+PythonQt::priv()->registerClass(&QOpenGLContext::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QOpenGLContext>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QOpenGLContext>, module, 0);
+PythonQt::priv()->registerClass(&QOpenGLContextGroup::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QOpenGLContextGroup>, NULL, module, 0);
+PythonQt::priv()->registerCPPClass("QOpenGLFramebufferObject", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QOpenGLFramebufferObject>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QOpenGLFramebufferObject>, module, 0);
+PythonQt::priv()->registerCPPClass("QOpenGLFramebufferObjectFormat", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QOpenGLFramebufferObjectFormat>, NULL, module, PythonQt::Type_RichCompare);
+PythonQt::priv()->registerCPPClass("QOpenGLFunctions", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QOpenGLFunctions>, NULL, module, 0);
+PythonQt::priv()->registerCPPClass("QOpenGLPaintDevice", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QOpenGLPaintDevice>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QOpenGLPaintDevice>, module, 0);
+PythonQt::self()->addParentClass("QOpenGLPaintDevice", "QPaintDevice",PythonQtUpcastingOffset<QOpenGLPaintDevice,QPaintDevice>());
+PythonQt::priv()->registerClass(&QOpenGLShader::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QOpenGLShader>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QOpenGLShader>, module, 0);
+PythonQt::priv()->registerClass(&QOpenGLShaderProgram::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QOpenGLShaderProgram>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QOpenGLShaderProgram>, module, 0);
 PythonQt::priv()->registerClass(&QPageSetupDialog::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QPageSetupDialog>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPageSetupDialog>, module, 0);
+PythonQt::priv()->registerCPPClass("QPagedPaintDevice", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPagedPaintDevice>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPagedPaintDevice>, module, 0);
+PythonQt::self()->addParentClass("QPagedPaintDevice", "QPaintDevice",PythonQtUpcastingOffset<QPagedPaintDevice,QPaintDevice>());
+PythonQt::priv()->registerCPPClass("QPagedPaintDevice::Margins", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPagedPaintDevice__Margins>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPagedPaintDevice__Margins>, module, 0);
 PythonQt::priv()->registerCPPClass("QPaintDevice", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPaintDevice>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPaintDevice>, module, 0);
 PythonQt::priv()->registerCPPClass("QPaintEngine", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPaintEngine>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPaintEngine>, module, 0);
 PythonQt::priv()->registerCPPClass("QPaintEngineState", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPaintEngineState>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPaintEngineState>, module, 0);
@@ -542,14 +593,18 @@ PythonQt::priv()->registerCPPClass("QPaintEvent", "QEvent", "QtGui", PythonQtCre
 PythonQt::priv()->registerCPPClass("QPainter", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPainter>, NULL, module, 0);
 PythonQt::priv()->registerCPPClass("QPainterPath", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPainterPath>, NULL, module, PythonQt::Type_Add|PythonQt::Type_And|PythonQt::Type_InplaceAdd|PythonQt::Type_InplaceAnd|PythonQt::Type_InplaceOr|PythonQt::Type_InplaceSubtract|PythonQt::Type_Multiply|PythonQt::Type_Or|PythonQt::Type_RichCompare|PythonQt::Type_Subtract);
 PythonQt::priv()->registerCPPClass("QPainterPathStroker", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPainterPathStroker>, NULL, module, 0);
+PythonQt::priv()->registerCPPClass("QPainter::PixmapFragment", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPainter__PixmapFragment>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPainter__PixmapFragment>, module, 0);
 PythonQt::priv()->registerClass(&QPanGesture::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QPanGesture>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPanGesture>, module, 0);
+PythonQt::priv()->registerClass(&QPdfWriter::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QPdfWriter>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPdfWriter>, module, 0);
+PythonQt::self()->addParentClass("QPdfWriter", "QPagedPaintDevice",PythonQtUpcastingOffset<QPdfWriter,QPagedPaintDevice>());
+PythonQt::self()->addParentClass("QPdfWriter", "QPaintDevice",PythonQtUpcastingOffset<QPdfWriter,QPaintDevice>());
 PythonQt::priv()->registerCPPClass("QPicture", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPicture>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPicture>, module, PythonQt::Type_NonZero);
 PythonQt::self()->addParentClass("QPicture", "QPaintDevice",PythonQtUpcastingOffset<QPicture,QPaintDevice>());
 PythonQt::priv()->registerClass(&QPictureFormatPlugin::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QPictureFormatPlugin>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPictureFormatPlugin>, module, 0);
 PythonQt::priv()->registerCPPClass("QPictureIO", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPictureIO>, NULL, module, 0);
 PythonQt::priv()->registerClass(&QPinchGesture::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QPinchGesture>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPinchGesture>, module, 0);
 PythonQt::priv()->registerCPPClass("QPixmapCache", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPixmapCache>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPixmapCache>, module, 0);
-PythonQt::priv()->registerCPPClass("QPixmapCache::Key", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPixmapCache_Key>, NULL, module, PythonQt::Type_RichCompare);
+PythonQt::priv()->registerCPPClass("QPixmapCache::Key", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPixmapCache__Key>, NULL, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerClass(&QPlainTextDocumentLayout::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QPlainTextDocumentLayout>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPlainTextDocumentLayout>, module, 0);
 PythonQt::priv()->registerClass(&QPlainTextEdit::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QPlainTextEdit>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPlainTextEdit>, module, 0);
 PythonQt::priv()->registerCPPClass("QPolygonF", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPolygonF>, NULL, module, PythonQt::Type_Add|PythonQt::Type_Multiply|PythonQt::Type_RichCompare);
@@ -557,7 +612,9 @@ PythonQt::priv()->registerClass(&QPrintDialog::staticMetaObject, "QtGui", Python
 PythonQt::priv()->registerCPPClass("QPrintEngine", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPrintEngine>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPrintEngine>, module, 0);
 PythonQt::priv()->registerClass(&QPrintPreviewDialog::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QPrintPreviewDialog>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPrintPreviewDialog>, module, 0);
 PythonQt::priv()->registerClass(&QPrintPreviewWidget::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QPrintPreviewWidget>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPrintPreviewWidget>, module, 0);
-PythonQt::priv()->registerCPPClass("QPrinter", "QPagedPaintDevice", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPrinter>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPrinter>, module, 0);
+PythonQt::priv()->registerCPPClass("QPrinter", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPrinter>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QPrinter>, module, 0);
+PythonQt::self()->addParentClass("QPrinter", "QPagedPaintDevice",PythonQtUpcastingOffset<QPrinter,QPagedPaintDevice>());
+PythonQt::self()->addParentClass("QPrinter", "QPaintDevice",PythonQtUpcastingOffset<QPrinter,QPaintDevice>());
 PythonQt::priv()->registerCPPClass("QPrinterInfo", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QPrinterInfo>, NULL, module, PythonQt::Type_NonZero);
 PythonQt::priv()->registerClass(&QProgressBar::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QProgressBar>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QProgressBar>, module, 0);
 PythonQt::priv()->registerClass(&QProgressDialog::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QProgressDialog>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QProgressDialog>, module, 0);
@@ -566,11 +623,17 @@ PythonQt::priv()->registerClass(&QPushButton::staticMetaObject, "QtGui", PythonQ
 PythonQt::priv()->registerCPPClass("QQuaternion", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QQuaternion>, NULL, module, PythonQt::Type_Add|PythonQt::Type_Divide|PythonQt::Type_InplaceAdd|PythonQt::Type_InplaceDivide|PythonQt::Type_InplaceMultiply|PythonQt::Type_InplaceSubtract|PythonQt::Type_Multiply|PythonQt::Type_NonZero|PythonQt::Type_RichCompare|PythonQt::Type_Subtract);
 PythonQt::priv()->registerCPPClass("QRadialGradient", "QGradient", "QtGui", PythonQtCreateObject<PythonQtWrapper_QRadialGradient>, NULL, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerClass(&QRadioButton::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QRadioButton>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QRadioButton>, module, 0);
+PythonQt::priv()->registerCPPClass("QRawFont", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QRawFont>, NULL, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerClass(&QRegExpValidator::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QRegExpValidator>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QRegExpValidator>, module, 0);
 PythonQt::priv()->registerCPPClass("QResizeEvent", "QEvent", "QtGui", PythonQtCreateObject<PythonQtWrapper_QResizeEvent>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QResizeEvent>, module, 0);
 PythonQt::priv()->registerClass(&QRubberBand::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QRubberBand>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QRubberBand>, module, 0);
+PythonQt::priv()->registerClass(&QScreen::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QScreen>, NULL, module, 0);
 PythonQt::priv()->registerClass(&QScrollArea::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QScrollArea>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QScrollArea>, module, 0);
 PythonQt::priv()->registerClass(&QScrollBar::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QScrollBar>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QScrollBar>, module, 0);
+PythonQt::priv()->registerCPPClass("QScrollEvent", "QEvent", "QtGui", PythonQtCreateObject<PythonQtWrapper_QScrollEvent>, NULL, module, 0);
+PythonQt::priv()->registerCPPClass("QScrollPrepareEvent", "QEvent", "QtGui", PythonQtCreateObject<PythonQtWrapper_QScrollPrepareEvent>, NULL, module, 0);
+PythonQt::priv()->registerClass(&QScroller::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QScroller>, NULL, module, 0);
+PythonQt::priv()->registerCPPClass("QScrollerProperties", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QScrollerProperties>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QScrollerProperties>, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerClass(&QSessionManager::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QSessionManager>, NULL, module, 0);
 PythonQt::priv()->registerClass(&QShortcut::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QShortcut>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QShortcut>, module, 0);
 PythonQt::priv()->registerCPPClass("QShortcutEvent", "QEvent", "QtGui", PythonQtCreateObject<PythonQtWrapper_QShortcutEvent>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QShortcutEvent>, module, 0);
@@ -597,6 +660,7 @@ PythonQt::priv()->registerCPPClass("QStyleFactory", "", "QtGui", PythonQtCreateO
 PythonQt::priv()->registerCPPClass("QStyleHintReturn", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QStyleHintReturn>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QStyleHintReturn>, module, 0);
 PythonQt::priv()->registerCPPClass("QStyleHintReturnMask", "QStyleHintReturn", "QtGui", PythonQtCreateObject<PythonQtWrapper_QStyleHintReturnMask>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QStyleHintReturnMask>, module, 0);
 PythonQt::priv()->registerCPPClass("QStyleHintReturnVariant", "QStyleHintReturn", "QtGui", PythonQtCreateObject<PythonQtWrapper_QStyleHintReturnVariant>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QStyleHintReturnVariant>, module, 0);
+PythonQt::priv()->registerClass(&QStyleHints::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QStyleHints>, NULL, module, 0);
 PythonQt::priv()->registerCPPClass("QStyleOption", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QStyleOption>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QStyleOption>, module, 0);
 PythonQt::priv()->registerCPPClass("QStyleOptionButton", "QStyleOption", "QtGui", PythonQtCreateObject<PythonQtWrapper_QStyleOptionButton>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QStyleOptionButton>, module, 0);
 PythonQt::priv()->registerCPPClass("QStyleOptionComboBox", "QStyleOptionComplex", "QtGui", PythonQtCreateObject<PythonQtWrapper_QStyleOptionComboBox>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QStyleOptionComboBox>, module, 0);
@@ -635,6 +699,8 @@ PythonQt::priv()->registerCPPClass("QStyleOptionViewItemV4", "QStyleOptionViewIt
 PythonQt::priv()->registerCPPClass("QStylePainter", "QPainter", "QtGui", PythonQtCreateObject<PythonQtWrapper_QStylePainter>, NULL, module, 0);
 PythonQt::priv()->registerClass(&QStylePlugin::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QStylePlugin>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QStylePlugin>, module, 0);
 PythonQt::priv()->registerClass(&QStyledItemDelegate::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QStyledItemDelegate>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QStyledItemDelegate>, module, 0);
+PythonQt::priv()->registerCPPClass("QSurface", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QSurface>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSurface>, module, 0);
+PythonQt::priv()->registerCPPClass("QSurfaceFormat", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QSurfaceFormat>, NULL, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerClass(&QSwipeGesture::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QSwipeGesture>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSwipeGesture>, module, 0);
 PythonQt::priv()->registerClass(&QSyntaxHighlighter::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QSyntaxHighlighter>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSyntaxHighlighter>, module, 0);
 PythonQt::priv()->registerClass(&QSystemTrayIcon::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QSystemTrayIcon>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSystemTrayIcon>, module, 0);
@@ -669,7 +735,7 @@ PythonQt::priv()->registerClass(&QTextList::staticMetaObject, "QtGui", PythonQtC
 PythonQt::priv()->registerCPPClass("QTextListFormat", "QTextFormat", "QtGui", PythonQtCreateObject<PythonQtWrapper_QTextListFormat>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QTextListFormat>, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerClass(&QTextObject::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QTextObject>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QTextObject>, module, 0);
 PythonQt::priv()->registerCPPClass("QTextOption", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QTextOption>, NULL, module, 0);
-PythonQt::priv()->registerCPPClass("QTextOption::Tab", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QTextOption_Tab>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QTextOption_Tab>, module, PythonQt::Type_RichCompare);
+PythonQt::priv()->registerCPPClass("QTextOption::Tab", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QTextOption__Tab>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QTextOption__Tab>, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerClass(&QTextTable::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QTextTable>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QTextTable>, module, 0);
 PythonQt::priv()->registerCPPClass("QTextTableCell", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QTextTableCell>, NULL, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerCPPClass("QTextTableCellFormat", "QTextCharFormat", "QtGui", PythonQtCreateObject<PythonQtWrapper_QTextTableCellFormat>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QTextTableCellFormat>, module, PythonQt::Type_RichCompare);
@@ -681,8 +747,9 @@ PythonQt::priv()->registerCPPClass("QToolBarChangeEvent", "QEvent", "QtGui", Pyt
 PythonQt::priv()->registerClass(&QToolBox::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QToolBox>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QToolBox>, module, 0);
 PythonQt::priv()->registerClass(&QToolButton::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QToolButton>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QToolButton>, module, 0);
 PythonQt::priv()->registerCPPClass("QToolTip", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QToolTip>, NULL, module, 0);
-PythonQt::priv()->registerCPPClass("QTouchEvent", "QInputEvent", "QtGui", PythonQtCreateObject<PythonQtWrapper_QTouchEvent>, NULL, module, 0);
-PythonQt::priv()->registerCPPClass("QTouchEvent::TouchPoint", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QTouchEvent_TouchPoint>, NULL, module, 0);
+PythonQt::priv()->registerCPPClass("QTouchDevice", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QTouchDevice>, NULL, module, 0);
+PythonQt::priv()->registerCPPClass("QTouchEvent", "QInputEvent", "QtGui", PythonQtCreateObject<PythonQtWrapper_QTouchEvent>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QTouchEvent>, module, 0);
+PythonQt::priv()->registerCPPClass("QTouchEvent::TouchPoint", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QTouchEvent__TouchPoint>, NULL, module, 0);
 PythonQt::priv()->registerCPPClass("QTransform", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QTransform>, NULL, module, PythonQt::Type_Add|PythonQt::Type_Divide|PythonQt::Type_InplaceAdd|PythonQt::Type_InplaceDivide|PythonQt::Type_InplaceMultiply|PythonQt::Type_InplaceSubtract|PythonQt::Type_Multiply|PythonQt::Type_RichCompare|PythonQt::Type_Subtract);
 PythonQt::priv()->registerClass(&QTreeView::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QTreeView>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QTreeView>, module, 0);
 PythonQt::priv()->registerClass(&QTreeWidget::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QTreeWidget>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QTreeWidget>, module, 0);
@@ -704,6 +771,8 @@ PythonQt::self()->addParentClass("QWidget", "QPaintDevice",PythonQtUpcastingOffs
 PythonQt::priv()->registerClass(&QWidgetAction::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QWidgetAction>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QWidgetAction>, module, 0);
 PythonQt::priv()->registerCPPClass("QWidgetItem", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QWidgetItem>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QWidgetItem>, module, 0);
 PythonQt::self()->addParentClass("QWidgetItem", "QLayoutItem",PythonQtUpcastingOffset<QWidgetItem,QLayoutItem>());
+PythonQt::priv()->registerClass(&QWindow::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QWindow>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QWindow>, module, 0);
+PythonQt::self()->addParentClass("QWindow", "QSurface",PythonQtUpcastingOffset<QWindow,QSurface>());
 PythonQt::priv()->registerCPPClass("QWindowStateChangeEvent", "QEvent", "QtGui", PythonQtCreateObject<PythonQtWrapper_QWindowStateChangeEvent>, NULL, module, 0);
 PythonQt::priv()->registerClass(&QWizard::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QWizard>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QWizard>, module, 0);
 PythonQt::priv()->registerClass(&QWizardPage::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QWizardPage>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QWizardPage>, module, 0);
@@ -712,4 +781,21 @@ PythonQt::self()->addPolymorphicHandler("QEvent", polymorphichandler_QEvent);
 PythonQt::self()->addPolymorphicHandler("QGradient", polymorphichandler_QGradient);
 PythonQt::self()->addPolymorphicHandler("QGraphicsItem", polymorphichandler_QGraphicsItem);
 PythonQt::self()->addPolymorphicHandler("QStyleOption", polymorphichandler_QStyleOption);
+
+PythonQtMethodInfo::addParameterTypeAlias("QList<QFontDatabase::WritingSystem>", "QList<int>");
+PythonQtMethodInfo::addParameterTypeAlias("QList<QPagedPaintDevice::PageSize>", "QList<int>");
+PythonQtMethodInfo::addParameterTypeAlias("QList<QWizard::WizardButton>", "QList<int>");
+PythonQtRegisterListTemplateConverterForKnownClass(QList, QGlyphRun);
+PythonQtRegisterListTemplateConverterForKnownClass(QList, QInputMethodEvent::Attribute);
+PythonQtRegisterListTemplateConverterForKnownClass(QList, QItemSelectionRange);
+PythonQtRegisterListTemplateConverterForKnownClass(QList, QModelIndex);
+PythonQtRegisterListTemplateConverterForKnownClass(QList, QPersistentModelIndex);
+PythonQtRegisterListTemplateConverterForKnownClass(QList, QPolygonF);
+PythonQtRegisterListTemplateConverterForKnownClass(QList, QPrinterInfo);
+PythonQtRegisterListTemplateConverterForKnownClass(QList, QTableWidgetSelectionRange);
+PythonQtRegisterListTemplateConverterForKnownClass(QList, QTextBlock);
+PythonQtRegisterListTemplateConverterForKnownClass(QList, QTextEdit::ExtraSelection);
+PythonQtRegisterListTemplateConverterForKnownClass(QList, QTextOption::Tab);
+PythonQtRegisterListTemplateConverterForKnownClass(QList, QTouchEvent::TouchPoint);
+PythonQtRegisterListTemplateConverterForKnownClass(QVector, QItemSelectionRange);
 }

@@ -8,68 +8,92 @@
 #include <QVariant>
 #include <qabstractanimation.h>
 #include <qabstractitemmodel.h>
-#include <qabstractstate.h>
-#include <qabstracttransition.h>
 #include <qanimationgroup.h>
 #include <qbytearray.h>
 #include <qcoreevent.h>
 #include <qdatastream.h>
 #include <qdatetime.h>
 #include <qeasingcurve.h>
+#include <qfileinfo.h>
+#include <qidentityproxymodel.h>
 #include <qiodevice.h>
+#include <qitemselectionmodel.h>
+#include <qjsonarray.h>
+#include <qjsondocument.h>
+#include <qjsonobject.h>
+#include <qjsonvalue.h>
 #include <qlibrary.h>
 #include <qlist.h>
-#include <qlocale.h>
+#include <qlogging.h>
 #include <qmetaobject.h>
 #include <qmetatype.h>
 #include <qmimedata.h>
+#include <qmimedatabase.h>
+#include <qmimetype.h>
 #include <qmutex.h>
 #include <qobject.h>
-#include <qpaintdevice.h>
-#include <qpaintengine.h>
-#include <qpainter.h>
 #include <qpair.h>
 #include <qparallelanimationgroup.h>
 #include <qpauseanimation.h>
-#include <qpoint.h>
 #include <qprocess.h>
 #include <qpropertyanimation.h>
 #include <qreadwritelock.h>
-#include <qsemaphore.h>
-#include <qsequentialanimationgroup.h>
-#include <qsettings.h>
-#include <qsharedmemory.h>
-#include <qsignalmapper.h>
-#include <qsignaltransition.h>
+#include <qregularexpression.h>
 #include <qsize.h>
-#include <qsocketnotifier.h>
-#include <qstate.h>
-#include <qstatemachine.h>
 #include <qstringlist.h>
-#include <qtextcodec.h>
 #include <qurl.h>
 #include <qvector.h>
 
-PythonQtShell_QIODevice::~PythonQtShell_QIODevice() {
+PythonQtShell_QIdentityProxyModel::~PythonQtShell_QIdentityProxyModel() {
   PythonQtPrivate* priv = PythonQt::priv();
   if (priv) { priv->shellClassDeleted(this); }
 }
-bool  PythonQtShell_QIODevice::atEnd() const
+QModelIndex  PythonQtShell_QIdentityProxyModel::buddy(const QModelIndex&  index) const
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("atEnd");
+  static PyObject* name = PyString_FromString("buddy");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
-    static const char* argumentList[] ={"bool"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
-      bool returnValue;
-    void* args[1] = {NULL};
+    static const char* argumentList[] ={"QModelIndex" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      QModelIndex returnValue;
+    void* args[2] = {NULL, (void*)&index};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
         if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("atEnd", methodInfo, result);
+          PythonQt::priv()->handleVirtualOverloadReturnError("buddy", methodInfo, result);
+        } else {
+          returnValue = *((QModelIndex*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QIdentityProxyModel::buddy(index);
+}
+bool  PythonQtShell_QIdentityProxyModel::canDropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent) const
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("canDropMimeData");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"bool" , "const QMimeData*" , "Qt::DropAction" , "int" , "int" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(6, argumentList);
+      bool returnValue;
+    void* args[6] = {NULL, (void*)&data, (void*)&action, (void*)&row, (void*)&column, (void*)&parent};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("canDropMimeData", methodInfo, result);
         } else {
           returnValue = *((bool*)args[0]);
         }
@@ -82,84 +106,24 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QIODevice::atEnd();
+  return QIdentityProxyModel::canDropMimeData(data, action, row, column, parent);
 }
-qint64  PythonQtShell_QIODevice::bytesAvailable() const
+bool  PythonQtShell_QIdentityProxyModel::canFetchMore(const QModelIndex&  parent) const
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("bytesAvailable");
+  static PyObject* name = PyString_FromString("canFetchMore");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
-    static const char* argumentList[] ={"qint64"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
-      qint64 returnValue;
-    void* args[1] = {NULL};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("bytesAvailable", methodInfo, result);
-        } else {
-          returnValue = *((qint64*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return QIODevice::bytesAvailable();
-}
-qint64  PythonQtShell_QIODevice::bytesToWrite() const
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("bytesToWrite");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"qint64"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
-      qint64 returnValue;
-    void* args[1] = {NULL};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("bytesToWrite", methodInfo, result);
-        } else {
-          returnValue = *((qint64*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return QIODevice::bytesToWrite();
-}
-bool  PythonQtShell_QIODevice::canReadLine() const
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("canReadLine");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"bool"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+    static const char* argumentList[] ={"bool" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue;
-    void* args[1] = {NULL};
+    void* args[2] = {NULL, (void*)&parent};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
         if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("canReadLine", methodInfo, result);
+          PythonQt::priv()->handleVirtualOverloadReturnError("canFetchMore", methodInfo, result);
         } else {
           returnValue = *((bool*)args[0]);
         }
@@ -172,9 +136,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QIODevice::canReadLine();
+  return QIdentityProxyModel::canFetchMore(parent);
 }
-void PythonQtShell_QIODevice::childEvent(QChildEvent*  arg__1)
+void PythonQtShell_QIdentityProxyModel::childEvent(QChildEvent*  arg__1)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("childEvent");
@@ -191,28 +155,39 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QIODevice::childEvent(arg__1);
+  QIdentityProxyModel::childEvent(arg__1);
 }
-void PythonQtShell_QIODevice::close()
+int  PythonQtShell_QIdentityProxyModel::columnCount(const QModelIndex&  parent) const
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("close");
+  static PyObject* name = PyString_FromString("columnCount");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
-    static const char* argumentList[] ={""};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
-    void* args[1] = {NULL};
+    static const char* argumentList[] ={"int" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      int returnValue;
+    void* args[2] = {NULL, (void*)&parent};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("columnCount", methodInfo, result);
+        } else {
+          returnValue = *((int*)args[0]);
+        }
+      }
+    }
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
-    return;
+    return returnValue;
   } else {
     PyErr_Clear();
   }
 }
-  QIODevice::close();
+  return QIdentityProxyModel::columnCount(parent);
 }
-void PythonQtShell_QIODevice::customEvent(QEvent*  arg__1)
+void PythonQtShell_QIdentityProxyModel::customEvent(QEvent*  arg__1)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("customEvent");
@@ -229,9 +204,69 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QIODevice::customEvent(arg__1);
+  QIdentityProxyModel::customEvent(arg__1);
 }
-bool  PythonQtShell_QIODevice::event(QEvent*  arg__1)
+QVariant  PythonQtShell_QIdentityProxyModel::data(const QModelIndex&  proxyIndex, int  role) const
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("data");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"QVariant" , "const QModelIndex&" , "int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
+      QVariant returnValue;
+    void* args[3] = {NULL, (void*)&proxyIndex, (void*)&role};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("data", methodInfo, result);
+        } else {
+          returnValue = *((QVariant*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QIdentityProxyModel::data(proxyIndex, role);
+}
+bool  PythonQtShell_QIdentityProxyModel::dropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent)
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("dropMimeData");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"bool" , "const QMimeData*" , "Qt::DropAction" , "int" , "int" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(6, argumentList);
+      bool returnValue;
+    void* args[6] = {NULL, (void*)&data, (void*)&action, (void*)&row, (void*)&column, (void*)&parent};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("dropMimeData", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QIdentityProxyModel::dropMimeData(data, action, row, column, parent);
+}
+bool  PythonQtShell_QIdentityProxyModel::event(QEvent*  arg__1)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("event");
@@ -259,9 +294,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QIODevice::event(arg__1);
+  return QIdentityProxyModel::event(arg__1);
 }
-bool  PythonQtShell_QIODevice::eventFilter(QObject*  arg__1, QEvent*  arg__2)
+bool  PythonQtShell_QIdentityProxyModel::eventFilter(QObject*  arg__1, QEvent*  arg__2)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("eventFilter");
@@ -289,12 +324,868 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QIODevice::eventFilter(arg__1, arg__2);
+  return QIdentityProxyModel::eventFilter(arg__1, arg__2);
 }
-bool  PythonQtShell_QIODevice::isSequential() const
+void PythonQtShell_QIdentityProxyModel::fetchMore(const QModelIndex&  parent)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("isSequential");
+  static PyObject* name = PyString_FromString("fetchMore");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+    void* args[2] = {NULL, (void*)&parent};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  } else {
+    PyErr_Clear();
+  }
+}
+  QIdentityProxyModel::fetchMore(parent);
+}
+Qt::ItemFlags  PythonQtShell_QIdentityProxyModel::flags(const QModelIndex&  index) const
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("flags");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"Qt::ItemFlags" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      Qt::ItemFlags returnValue;
+    void* args[2] = {NULL, (void*)&index};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("flags", methodInfo, result);
+        } else {
+          returnValue = *((Qt::ItemFlags*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QIdentityProxyModel::flags(index);
+}
+bool  PythonQtShell_QIdentityProxyModel::hasChildren(const QModelIndex&  parent) const
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("hasChildren");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"bool" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      bool returnValue;
+    void* args[2] = {NULL, (void*)&parent};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("hasChildren", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QIdentityProxyModel::hasChildren(parent);
+}
+QVariant  PythonQtShell_QIdentityProxyModel::headerData(int  section, Qt::Orientation  orientation, int  role) const
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("headerData");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"QVariant" , "int" , "Qt::Orientation" , "int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
+      QVariant returnValue;
+    void* args[4] = {NULL, (void*)&section, (void*)&orientation, (void*)&role};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("headerData", methodInfo, result);
+        } else {
+          returnValue = *((QVariant*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QIdentityProxyModel::headerData(section, orientation, role);
+}
+QModelIndex  PythonQtShell_QIdentityProxyModel::index(int  row, int  column, const QModelIndex&  parent) const
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("index");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"QModelIndex" , "int" , "int" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
+      QModelIndex returnValue;
+    void* args[4] = {NULL, (void*)&row, (void*)&column, (void*)&parent};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("index", methodInfo, result);
+        } else {
+          returnValue = *((QModelIndex*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QIdentityProxyModel::index(row, column, parent);
+}
+bool  PythonQtShell_QIdentityProxyModel::insertColumns(int  column, int  count, const QModelIndex&  parent)
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("insertColumns");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"bool" , "int" , "int" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
+      bool returnValue;
+    void* args[4] = {NULL, (void*)&column, (void*)&count, (void*)&parent};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("insertColumns", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QIdentityProxyModel::insertColumns(column, count, parent);
+}
+bool  PythonQtShell_QIdentityProxyModel::insertRows(int  row, int  count, const QModelIndex&  parent)
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("insertRows");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"bool" , "int" , "int" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
+      bool returnValue;
+    void* args[4] = {NULL, (void*)&row, (void*)&count, (void*)&parent};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("insertRows", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QIdentityProxyModel::insertRows(row, count, parent);
+}
+QMap<int , QVariant >  PythonQtShell_QIdentityProxyModel::itemData(const QModelIndex&  index) const
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("itemData");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"QMap<int , QVariant >" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      QMap<int , QVariant > returnValue;
+    void* args[2] = {NULL, (void*)&index};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("itemData", methodInfo, result);
+        } else {
+          returnValue = *((QMap<int , QVariant >*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QIdentityProxyModel::itemData(index);
+}
+QModelIndex  PythonQtShell_QIdentityProxyModel::mapFromSource(const QModelIndex&  sourceIndex) const
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("mapFromSource");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"QModelIndex" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      QModelIndex returnValue;
+    void* args[2] = {NULL, (void*)&sourceIndex};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("mapFromSource", methodInfo, result);
+        } else {
+          returnValue = *((QModelIndex*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QIdentityProxyModel::mapFromSource(sourceIndex);
+}
+QItemSelection  PythonQtShell_QIdentityProxyModel::mapSelectionFromSource(const QItemSelection&  selection) const
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("mapSelectionFromSource");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"QItemSelection" , "const QItemSelection&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      QItemSelection returnValue;
+    void* args[2] = {NULL, (void*)&selection};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("mapSelectionFromSource", methodInfo, result);
+        } else {
+          returnValue = *((QItemSelection*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QIdentityProxyModel::mapSelectionFromSource(selection);
+}
+QItemSelection  PythonQtShell_QIdentityProxyModel::mapSelectionToSource(const QItemSelection&  selection) const
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("mapSelectionToSource");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"QItemSelection" , "const QItemSelection&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      QItemSelection returnValue;
+    void* args[2] = {NULL, (void*)&selection};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("mapSelectionToSource", methodInfo, result);
+        } else {
+          returnValue = *((QItemSelection*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QIdentityProxyModel::mapSelectionToSource(selection);
+}
+QModelIndex  PythonQtShell_QIdentityProxyModel::mapToSource(const QModelIndex&  proxyIndex) const
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("mapToSource");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"QModelIndex" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      QModelIndex returnValue;
+    void* args[2] = {NULL, (void*)&proxyIndex};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("mapToSource", methodInfo, result);
+        } else {
+          returnValue = *((QModelIndex*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QIdentityProxyModel::mapToSource(proxyIndex);
+}
+QList<QModelIndex >  PythonQtShell_QIdentityProxyModel::match(const QModelIndex&  start, int  role, const QVariant&  value, int  hits, Qt::MatchFlags  flags) const
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("match");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"QList<QModelIndex >" , "const QModelIndex&" , "int" , "const QVariant&" , "int" , "Qt::MatchFlags"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(6, argumentList);
+      QList<QModelIndex > returnValue;
+    void* args[6] = {NULL, (void*)&start, (void*)&role, (void*)&value, (void*)&hits, (void*)&flags};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("match", methodInfo, result);
+        } else {
+          returnValue = *((QList<QModelIndex >*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QIdentityProxyModel::match(start, role, value, hits, flags);
+}
+QMimeData*  PythonQtShell_QIdentityProxyModel::mimeData(const QList<QModelIndex >&  indexes) const
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("mimeData");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"QMimeData*" , "const QList<QModelIndex >&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      QMimeData* returnValue;
+    void* args[2] = {NULL, (void*)&indexes};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("mimeData", methodInfo, result);
+        } else {
+          returnValue = *((QMimeData**)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QIdentityProxyModel::mimeData(indexes);
+}
+QStringList  PythonQtShell_QIdentityProxyModel::mimeTypes() const
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("mimeTypes");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"QStringList"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      QStringList returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("mimeTypes", methodInfo, result);
+        } else {
+          returnValue = *((QStringList*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QIdentityProxyModel::mimeTypes();
+}
+bool  PythonQtShell_QIdentityProxyModel::moveColumns(const QModelIndex&  sourceParent, int  sourceColumn, int  count, const QModelIndex&  destinationParent, int  destinationChild)
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("moveColumns");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"bool" , "const QModelIndex&" , "int" , "int" , "const QModelIndex&" , "int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(6, argumentList);
+      bool returnValue;
+    void* args[6] = {NULL, (void*)&sourceParent, (void*)&sourceColumn, (void*)&count, (void*)&destinationParent, (void*)&destinationChild};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("moveColumns", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QIdentityProxyModel::moveColumns(sourceParent, sourceColumn, count, destinationParent, destinationChild);
+}
+bool  PythonQtShell_QIdentityProxyModel::moveRows(const QModelIndex&  sourceParent, int  sourceRow, int  count, const QModelIndex&  destinationParent, int  destinationChild)
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("moveRows");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"bool" , "const QModelIndex&" , "int" , "int" , "const QModelIndex&" , "int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(6, argumentList);
+      bool returnValue;
+    void* args[6] = {NULL, (void*)&sourceParent, (void*)&sourceRow, (void*)&count, (void*)&destinationParent, (void*)&destinationChild};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("moveRows", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QIdentityProxyModel::moveRows(sourceParent, sourceRow, count, destinationParent, destinationChild);
+}
+QModelIndex  PythonQtShell_QIdentityProxyModel::parent(const QModelIndex&  child) const
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("parent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"QModelIndex" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      QModelIndex returnValue;
+    void* args[2] = {NULL, (void*)&child};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("parent", methodInfo, result);
+        } else {
+          returnValue = *((QModelIndex*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QIdentityProxyModel::parent(child);
+}
+bool  PythonQtShell_QIdentityProxyModel::removeColumns(int  column, int  count, const QModelIndex&  parent)
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("removeColumns");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"bool" , "int" , "int" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
+      bool returnValue;
+    void* args[4] = {NULL, (void*)&column, (void*)&count, (void*)&parent};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("removeColumns", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QIdentityProxyModel::removeColumns(column, count, parent);
+}
+bool  PythonQtShell_QIdentityProxyModel::removeRows(int  row, int  count, const QModelIndex&  parent)
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("removeRows");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"bool" , "int" , "int" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
+      bool returnValue;
+    void* args[4] = {NULL, (void*)&row, (void*)&count, (void*)&parent};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("removeRows", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QIdentityProxyModel::removeRows(row, count, parent);
+}
+void PythonQtShell_QIdentityProxyModel::revert()
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("revert");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={""};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  } else {
+    PyErr_Clear();
+  }
+}
+  QIdentityProxyModel::revert();
+}
+QHash<int , QByteArray >  PythonQtShell_QIdentityProxyModel::roleNames() const
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("roleNames");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"QHash<int , QByteArray >"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
+      QHash<int , QByteArray > returnValue;
+    void* args[1] = {NULL};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("roleNames", methodInfo, result);
+        } else {
+          returnValue = *((QHash<int , QByteArray >*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QIdentityProxyModel::roleNames();
+}
+int  PythonQtShell_QIdentityProxyModel::rowCount(const QModelIndex&  parent) const
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("rowCount");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"int" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      int returnValue;
+    void* args[2] = {NULL, (void*)&parent};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("rowCount", methodInfo, result);
+        } else {
+          returnValue = *((int*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QIdentityProxyModel::rowCount(parent);
+}
+bool  PythonQtShell_QIdentityProxyModel::setData(const QModelIndex&  index, const QVariant&  value, int  role)
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("setData");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"bool" , "const QModelIndex&" , "const QVariant&" , "int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
+      bool returnValue;
+    void* args[4] = {NULL, (void*)&index, (void*)&value, (void*)&role};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("setData", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QIdentityProxyModel::setData(index, value, role);
+}
+bool  PythonQtShell_QIdentityProxyModel::setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role)
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("setHeaderData");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"bool" , "int" , "Qt::Orientation" , "const QVariant&" , "int"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(5, argumentList);
+      bool returnValue;
+    void* args[5] = {NULL, (void*)&section, (void*)&orientation, (void*)&value, (void*)&role};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("setHeaderData", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QIdentityProxyModel::setHeaderData(section, orientation, value, role);
+}
+bool  PythonQtShell_QIdentityProxyModel::setItemData(const QModelIndex&  index, const QMap<int , QVariant >&  roles)
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("setItemData");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"bool" , "const QModelIndex&" , "const QMap<int , QVariant >&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
+      bool returnValue;
+    void* args[3] = {NULL, (void*)&index, (void*)&roles};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("setItemData", methodInfo, result);
+        } else {
+          returnValue = *((bool*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QIdentityProxyModel::setItemData(index, roles);
+}
+void PythonQtShell_QIdentityProxyModel::setSourceModel(QAbstractItemModel*  sourceModel)
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("setSourceModel");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"" , "QAbstractItemModel*"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+    void* args[2] = {NULL, (void*)&sourceModel};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  } else {
+    PyErr_Clear();
+  }
+}
+  QIdentityProxyModel::setSourceModel(sourceModel);
+}
+QModelIndex  PythonQtShell_QIdentityProxyModel::sibling(int  row, int  column, const QModelIndex&  idx) const
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("sibling");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"QModelIndex" , "int" , "int" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
+      QModelIndex returnValue;
+    void* args[4] = {NULL, (void*)&row, (void*)&column, (void*)&idx};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("sibling", methodInfo, result);
+        } else {
+          returnValue = *((QModelIndex*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QIdentityProxyModel::sibling(row, column, idx);
+}
+void PythonQtShell_QIdentityProxyModel::sort(int  column, Qt::SortOrder  order)
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("sort");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"" , "int" , "Qt::SortOrder"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
+    void* args[3] = {NULL, (void*)&column, (void*)&order};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return;
+  } else {
+    PyErr_Clear();
+  }
+}
+  QIdentityProxyModel::sort(column, order);
+}
+QSize  PythonQtShell_QIdentityProxyModel::span(const QModelIndex&  index) const
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("span");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
+    static const char* argumentList[] ={"QSize" , "const QModelIndex&"};
+    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
+      QSize returnValue;
+    void* args[2] = {NULL, (void*)&index};
+    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
+    if (result) {
+      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
+      if (args[0]!=&returnValue) {
+        if (args[0]==NULL) {
+          PythonQt::priv()->handleVirtualOverloadReturnError("span", methodInfo, result);
+        } else {
+          returnValue = *((QSize*)args[0]);
+        }
+      }
+    }
+    if (result) { Py_DECREF(result); } 
+    Py_DECREF(obj);
+    return returnValue;
+  } else {
+    PyErr_Clear();
+  }
+}
+  return QIdentityProxyModel::span(index);
+}
+bool  PythonQtShell_QIdentityProxyModel::submit()
+{
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("submit");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"bool"};
@@ -306,7 +1197,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
         if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("isSequential", methodInfo, result);
+          PythonQt::priv()->handleVirtualOverloadReturnError("submit", methodInfo, result);
         } else {
           returnValue = *((bool*)args[0]);
         }
@@ -319,56 +1210,26 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QIODevice::isSequential();
+  return QIdentityProxyModel::submit();
 }
-bool  PythonQtShell_QIODevice::open(QIODevice::OpenMode  mode)
+Qt::DropActions  PythonQtShell_QIdentityProxyModel::supportedDragActions() const
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("open");
+  static PyObject* name = PyString_FromString("supportedDragActions");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
-    static const char* argumentList[] ={"bool" , "QIODevice::OpenMode"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      bool returnValue;
-    void* args[2] = {NULL, (void*)&mode};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("open", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return QIODevice::open(mode);
-}
-qint64  PythonQtShell_QIODevice::pos() const
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("pos");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"qint64"};
+    static const char* argumentList[] ={"Qt::DropActions"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
-      qint64 returnValue;
+      Qt::DropActions returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
         if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("pos", methodInfo, result);
+          PythonQt::priv()->handleVirtualOverloadReturnError("supportedDragActions", methodInfo, result);
         } else {
-          returnValue = *((qint64*)args[0]);
+          returnValue = *((Qt::DropActions*)args[0]);
         }
       }
     }
@@ -379,86 +1240,26 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QIODevice::pos();
+  return QIdentityProxyModel::supportedDragActions();
 }
-qint64  PythonQtShell_QIODevice::readData(char*  data, qint64  maxlen)
+Qt::DropActions  PythonQtShell_QIdentityProxyModel::supportedDropActions() const
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("readData");
+  static PyObject* name = PyString_FromString("supportedDropActions");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
-    static const char* argumentList[] ={"qint64" , "char*" , "qint64"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
-      qint64 returnValue;
-    void* args[3] = {NULL, (void*)&data, (void*)&maxlen};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("readData", methodInfo, result);
-        } else {
-          returnValue = *((qint64*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return qint64();
-}
-qint64  PythonQtShell_QIODevice::readLineData(char*  data, qint64  maxlen)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("readLineData");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"qint64" , "char*" , "qint64"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
-      qint64 returnValue;
-    void* args[3] = {NULL, (void*)&data, (void*)&maxlen};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("readLineData", methodInfo, result);
-        } else {
-          returnValue = *((qint64*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return QIODevice::readLineData(data, maxlen);
-}
-bool  PythonQtShell_QIODevice::reset()
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("reset");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"bool"};
+    static const char* argumentList[] ={"Qt::DropActions"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
-      bool returnValue;
+      Qt::DropActions returnValue;
     void* args[1] = {NULL};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
       if (args[0]!=&returnValue) {
         if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("reset", methodInfo, result);
+          PythonQt::priv()->handleVirtualOverloadReturnError("supportedDropActions", methodInfo, result);
         } else {
-          returnValue = *((bool*)args[0]);
+          returnValue = *((Qt::DropActions*)args[0]);
         }
       }
     }
@@ -469,69 +1270,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QIODevice::reset();
+  return QIdentityProxyModel::supportedDropActions();
 }
-bool  PythonQtShell_QIODevice::seek(qint64  pos)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("seek");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"bool" , "qint64"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      bool returnValue;
-    void* args[2] = {NULL, (void*)&pos};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("seek", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return QIODevice::seek(pos);
-}
-qint64  PythonQtShell_QIODevice::size() const
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("size");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"qint64"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
-      qint64 returnValue;
-    void* args[1] = {NULL};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("size", methodInfo, result);
-        } else {
-          returnValue = *((qint64*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return QIODevice::size();
-}
-void PythonQtShell_QIODevice::timerEvent(QTimerEvent*  arg__1)
+void PythonQtShell_QIdentityProxyModel::timerEvent(QTimerEvent*  arg__1)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("timerEvent");
@@ -548,256 +1289,624 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QIODevice::timerEvent(arg__1);
+  QIdentityProxyModel::timerEvent(arg__1);
 }
-bool  PythonQtShell_QIODevice::waitForBytesWritten(int  msecs)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("waitForBytesWritten");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"bool" , "int"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      bool returnValue;
-    void* args[2] = {NULL, (void*)&msecs};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("waitForBytesWritten", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return QIODevice::waitForBytesWritten(msecs);
-}
-bool  PythonQtShell_QIODevice::waitForReadyRead(int  msecs)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("waitForReadyRead");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"bool" , "int"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      bool returnValue;
-    void* args[2] = {NULL, (void*)&msecs};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("waitForReadyRead", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return QIODevice::waitForReadyRead(msecs);
-}
-qint64  PythonQtShell_QIODevice::writeData(const char*  data, qint64  len)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("writeData");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"qint64" , "const char*" , "qint64"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
-      qint64 returnValue;
-    void* args[3] = {NULL, (void*)&data, (void*)&len};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("writeData", methodInfo, result);
-        } else {
-          returnValue = *((qint64*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return qint64();
-}
-QIODevice* PythonQtWrapper_QIODevice::new_QIODevice()
+QIdentityProxyModel* PythonQtWrapper_QIdentityProxyModel::new_QIdentityProxyModel(QObject*  parent)
 { 
-return new PythonQtShell_QIODevice(); }
+return new PythonQtShell_QIdentityProxyModel(parent); }
 
-QIODevice* PythonQtWrapper_QIODevice::new_QIODevice(QObject*  parent)
+int  PythonQtWrapper_QIdentityProxyModel::columnCount(QIdentityProxyModel* theWrappedObject, const QModelIndex&  parent) const
+{
+  return ( ((PythonQtPublicPromoter_QIdentityProxyModel*)theWrappedObject)->promoted_columnCount(parent));
+}
+
+bool  PythonQtWrapper_QIdentityProxyModel::dropMimeData(QIdentityProxyModel* theWrappedObject, const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent)
+{
+  return ( ((PythonQtPublicPromoter_QIdentityProxyModel*)theWrappedObject)->promoted_dropMimeData(data, action, row, column, parent));
+}
+
+QVariant  PythonQtWrapper_QIdentityProxyModel::headerData(QIdentityProxyModel* theWrappedObject, int  section, Qt::Orientation  orientation, int  role) const
+{
+  return ( ((PythonQtPublicPromoter_QIdentityProxyModel*)theWrappedObject)->promoted_headerData(section, orientation, role));
+}
+
+QModelIndex  PythonQtWrapper_QIdentityProxyModel::index(QIdentityProxyModel* theWrappedObject, int  row, int  column, const QModelIndex&  parent) const
+{
+  return ( ((PythonQtPublicPromoter_QIdentityProxyModel*)theWrappedObject)->promoted_index(row, column, parent));
+}
+
+bool  PythonQtWrapper_QIdentityProxyModel::insertColumns(QIdentityProxyModel* theWrappedObject, int  column, int  count, const QModelIndex&  parent)
+{
+  return ( ((PythonQtPublicPromoter_QIdentityProxyModel*)theWrappedObject)->promoted_insertColumns(column, count, parent));
+}
+
+bool  PythonQtWrapper_QIdentityProxyModel::insertRows(QIdentityProxyModel* theWrappedObject, int  row, int  count, const QModelIndex&  parent)
+{
+  return ( ((PythonQtPublicPromoter_QIdentityProxyModel*)theWrappedObject)->promoted_insertRows(row, count, parent));
+}
+
+QModelIndex  PythonQtWrapper_QIdentityProxyModel::mapFromSource(QIdentityProxyModel* theWrappedObject, const QModelIndex&  sourceIndex) const
+{
+  return ( ((PythonQtPublicPromoter_QIdentityProxyModel*)theWrappedObject)->promoted_mapFromSource(sourceIndex));
+}
+
+QItemSelection  PythonQtWrapper_QIdentityProxyModel::mapSelectionFromSource(QIdentityProxyModel* theWrappedObject, const QItemSelection&  selection) const
+{
+  return ( ((PythonQtPublicPromoter_QIdentityProxyModel*)theWrappedObject)->promoted_mapSelectionFromSource(selection));
+}
+
+QItemSelection  PythonQtWrapper_QIdentityProxyModel::mapSelectionToSource(QIdentityProxyModel* theWrappedObject, const QItemSelection&  selection) const
+{
+  return ( ((PythonQtPublicPromoter_QIdentityProxyModel*)theWrappedObject)->promoted_mapSelectionToSource(selection));
+}
+
+QModelIndex  PythonQtWrapper_QIdentityProxyModel::mapToSource(QIdentityProxyModel* theWrappedObject, const QModelIndex&  proxyIndex) const
+{
+  return ( ((PythonQtPublicPromoter_QIdentityProxyModel*)theWrappedObject)->promoted_mapToSource(proxyIndex));
+}
+
+QList<QModelIndex >  PythonQtWrapper_QIdentityProxyModel::match(QIdentityProxyModel* theWrappedObject, const QModelIndex&  start, int  role, const QVariant&  value, int  hits, Qt::MatchFlags  flags) const
+{
+  return ( ((PythonQtPublicPromoter_QIdentityProxyModel*)theWrappedObject)->promoted_match(start, role, value, hits, flags));
+}
+
+QModelIndex  PythonQtWrapper_QIdentityProxyModel::parent(QIdentityProxyModel* theWrappedObject, const QModelIndex&  child) const
+{
+  return ( ((PythonQtPublicPromoter_QIdentityProxyModel*)theWrappedObject)->promoted_parent(child));
+}
+
+bool  PythonQtWrapper_QIdentityProxyModel::removeColumns(QIdentityProxyModel* theWrappedObject, int  column, int  count, const QModelIndex&  parent)
+{
+  return ( ((PythonQtPublicPromoter_QIdentityProxyModel*)theWrappedObject)->promoted_removeColumns(column, count, parent));
+}
+
+bool  PythonQtWrapper_QIdentityProxyModel::removeRows(QIdentityProxyModel* theWrappedObject, int  row, int  count, const QModelIndex&  parent)
+{
+  return ( ((PythonQtPublicPromoter_QIdentityProxyModel*)theWrappedObject)->promoted_removeRows(row, count, parent));
+}
+
+int  PythonQtWrapper_QIdentityProxyModel::rowCount(QIdentityProxyModel* theWrappedObject, const QModelIndex&  parent) const
+{
+  return ( ((PythonQtPublicPromoter_QIdentityProxyModel*)theWrappedObject)->promoted_rowCount(parent));
+}
+
+void PythonQtWrapper_QIdentityProxyModel::setSourceModel(QIdentityProxyModel* theWrappedObject, QAbstractItemModel*  sourceModel)
+{
+  ( ((PythonQtPublicPromoter_QIdentityProxyModel*)theWrappedObject)->promoted_setSourceModel(sourceModel));
+}
+
+QModelIndex  PythonQtWrapper_QIdentityProxyModel::sibling(QIdentityProxyModel* theWrappedObject, int  row, int  column, const QModelIndex&  idx) const
+{
+  return ( ((PythonQtPublicPromoter_QIdentityProxyModel*)theWrappedObject)->promoted_sibling(row, column, idx));
+}
+
+
+
+QJsonArray* PythonQtWrapper_QJsonArray::new_QJsonArray()
 { 
-return new PythonQtShell_QIODevice(parent); }
+return new QJsonArray(); }
 
-bool  PythonQtWrapper_QIODevice::atEnd(QIODevice* theWrappedObject) const
+QJsonArray* PythonQtWrapper_QJsonArray::new_QJsonArray(const QJsonArray&  other)
+{ 
+return new QJsonArray(other); }
+
+void PythonQtWrapper_QJsonArray::append(QJsonArray* theWrappedObject, const QJsonValue&  value)
 {
-  return ( ((PythonQtPublicPromoter_QIODevice*)theWrappedObject)->promoted_atEnd());
+  ( theWrappedObject->append(value));
 }
 
-qint64  PythonQtWrapper_QIODevice::bytesAvailable(QIODevice* theWrappedObject) const
+QJsonValue  PythonQtWrapper_QJsonArray::at(QJsonArray* theWrappedObject, int  i) const
 {
-  return ( ((PythonQtPublicPromoter_QIODevice*)theWrappedObject)->promoted_bytesAvailable());
+  return ( theWrappedObject->at(i));
 }
 
-qint64  PythonQtWrapper_QIODevice::bytesToWrite(QIODevice* theWrappedObject) const
+bool  PythonQtWrapper_QJsonArray::contains(QJsonArray* theWrappedObject, const QJsonValue&  element) const
 {
-  return ( ((PythonQtPublicPromoter_QIODevice*)theWrappedObject)->promoted_bytesToWrite());
+  return ( theWrappedObject->contains(element));
 }
 
-bool  PythonQtWrapper_QIODevice::canReadLine(QIODevice* theWrappedObject) const
+int  PythonQtWrapper_QJsonArray::count(QJsonArray* theWrappedObject) const
 {
-  return ( ((PythonQtPublicPromoter_QIODevice*)theWrappedObject)->promoted_canReadLine());
+  return ( theWrappedObject->count());
 }
 
-void PythonQtWrapper_QIODevice::close(QIODevice* theWrappedObject)
+bool  PythonQtWrapper_QJsonArray::empty(QJsonArray* theWrappedObject) const
 {
-  ( ((PythonQtPublicPromoter_QIODevice*)theWrappedObject)->promoted_close());
+  return ( theWrappedObject->empty());
 }
 
-QString  PythonQtWrapper_QIODevice::errorString(QIODevice* theWrappedObject) const
+QJsonValue  PythonQtWrapper_QJsonArray::first(QJsonArray* theWrappedObject) const
+{
+  return ( theWrappedObject->first());
+}
+
+QJsonArray  PythonQtWrapper_QJsonArray::static_QJsonArray_fromStringList(const QStringList&  list)
+{
+  return (QJsonArray::fromStringList(list));
+}
+
+QJsonArray  PythonQtWrapper_QJsonArray::static_QJsonArray_fromVariantList(const QList<QVariant >&  list)
+{
+  return (QJsonArray::fromVariantList(list));
+}
+
+void PythonQtWrapper_QJsonArray::insert(QJsonArray* theWrappedObject, int  i, const QJsonValue&  value)
+{
+  ( theWrappedObject->insert(i, value));
+}
+
+bool  PythonQtWrapper_QJsonArray::isEmpty(QJsonArray* theWrappedObject) const
+{
+  return ( theWrappedObject->isEmpty());
+}
+
+QJsonValue  PythonQtWrapper_QJsonArray::last(QJsonArray* theWrappedObject) const
+{
+  return ( theWrappedObject->last());
+}
+
+bool  PythonQtWrapper_QJsonArray::__ne__(QJsonArray* theWrappedObject, const QJsonArray&  other) const
+{
+  return ( (*theWrappedObject)!= other);
+}
+
+QJsonArray*  PythonQtWrapper_QJsonArray::operator_assign(QJsonArray* theWrappedObject, const QJsonArray&  other)
+{
+  return &( (*theWrappedObject)= other);
+}
+
+bool  PythonQtWrapper_QJsonArray::__eq__(QJsonArray* theWrappedObject, const QJsonArray&  other) const
+{
+  return ( (*theWrappedObject)== other);
+}
+
+QJsonValue  PythonQtWrapper_QJsonArray::operator_subscript(QJsonArray* theWrappedObject, int  i) const
+{
+  return ( (*theWrappedObject)[i]);
+}
+
+void PythonQtWrapper_QJsonArray::pop_back(QJsonArray* theWrappedObject)
+{
+  ( theWrappedObject->pop_back());
+}
+
+void PythonQtWrapper_QJsonArray::pop_front(QJsonArray* theWrappedObject)
+{
+  ( theWrappedObject->pop_front());
+}
+
+void PythonQtWrapper_QJsonArray::prepend(QJsonArray* theWrappedObject, const QJsonValue&  value)
+{
+  ( theWrappedObject->prepend(value));
+}
+
+void PythonQtWrapper_QJsonArray::push_back(QJsonArray* theWrappedObject, const QJsonValue&  t)
+{
+  ( theWrappedObject->push_back(t));
+}
+
+void PythonQtWrapper_QJsonArray::push_front(QJsonArray* theWrappedObject, const QJsonValue&  t)
+{
+  ( theWrappedObject->push_front(t));
+}
+
+void PythonQtWrapper_QJsonArray::removeAt(QJsonArray* theWrappedObject, int  i)
+{
+  ( theWrappedObject->removeAt(i));
+}
+
+void PythonQtWrapper_QJsonArray::removeFirst(QJsonArray* theWrappedObject)
+{
+  ( theWrappedObject->removeFirst());
+}
+
+void PythonQtWrapper_QJsonArray::removeLast(QJsonArray* theWrappedObject)
+{
+  ( theWrappedObject->removeLast());
+}
+
+void PythonQtWrapper_QJsonArray::replace(QJsonArray* theWrappedObject, int  i, const QJsonValue&  value)
+{
+  ( theWrappedObject->replace(i, value));
+}
+
+int  PythonQtWrapper_QJsonArray::size(QJsonArray* theWrappedObject) const
+{
+  return ( theWrappedObject->size());
+}
+
+QJsonValue  PythonQtWrapper_QJsonArray::takeAt(QJsonArray* theWrappedObject, int  i)
+{
+  return ( theWrappedObject->takeAt(i));
+}
+
+QList<QVariant >  PythonQtWrapper_QJsonArray::toVariantList(QJsonArray* theWrappedObject) const
+{
+  return ( theWrappedObject->toVariantList());
+}
+
+QString PythonQtWrapper_QJsonArray::py_toString(QJsonArray* obj) {
+  QString result;
+  QDebug d(&result);
+  d << *obj;
+  return result;
+}
+
+
+
+PythonQtShell_QJsonDocument::~PythonQtShell_QJsonDocument() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QJsonDocument* PythonQtWrapper_QJsonDocument::new_QJsonDocument()
+{ 
+return new PythonQtShell_QJsonDocument(); }
+
+QJsonDocument* PythonQtWrapper_QJsonDocument::new_QJsonDocument(const QJsonArray&  array)
+{ 
+return new PythonQtShell_QJsonDocument(array); }
+
+QJsonDocument* PythonQtWrapper_QJsonDocument::new_QJsonDocument(const QJsonDocument&  other)
+{ 
+return new PythonQtShell_QJsonDocument(other); }
+
+QJsonDocument* PythonQtWrapper_QJsonDocument::new_QJsonDocument(const QJsonObject&  object)
+{ 
+return new PythonQtShell_QJsonDocument(object); }
+
+QJsonArray  PythonQtWrapper_QJsonDocument::array(QJsonDocument* theWrappedObject) const
+{
+  return ( theWrappedObject->array());
+}
+
+QJsonDocument  PythonQtWrapper_QJsonDocument::static_QJsonDocument_fromBinaryData(const QByteArray&  data, QJsonDocument::DataValidation  validation)
+{
+  return (QJsonDocument::fromBinaryData(data, validation));
+}
+
+QJsonDocument  PythonQtWrapper_QJsonDocument::static_QJsonDocument_fromJson(const QByteArray&  json, QJsonParseError*  error)
+{
+  return (QJsonDocument::fromJson(json, error));
+}
+
+QJsonDocument  PythonQtWrapper_QJsonDocument::static_QJsonDocument_fromRawData(const char*  data, int  size, QJsonDocument::DataValidation  validation)
+{
+  return (QJsonDocument::fromRawData(data, size, validation));
+}
+
+QJsonDocument  PythonQtWrapper_QJsonDocument::static_QJsonDocument_fromVariant(const QVariant&  variant)
+{
+  return (QJsonDocument::fromVariant(variant));
+}
+
+bool  PythonQtWrapper_QJsonDocument::isArray(QJsonDocument* theWrappedObject) const
+{
+  return ( theWrappedObject->isArray());
+}
+
+bool  PythonQtWrapper_QJsonDocument::isEmpty(QJsonDocument* theWrappedObject) const
+{
+  return ( theWrappedObject->isEmpty());
+}
+
+bool  PythonQtWrapper_QJsonDocument::isNull(QJsonDocument* theWrappedObject) const
+{
+  return ( theWrappedObject->isNull());
+}
+
+bool  PythonQtWrapper_QJsonDocument::isObject(QJsonDocument* theWrappedObject) const
+{
+  return ( theWrappedObject->isObject());
+}
+
+QJsonObject  PythonQtWrapper_QJsonDocument::object(QJsonDocument* theWrappedObject) const
+{
+  return ( theWrappedObject->object());
+}
+
+bool  PythonQtWrapper_QJsonDocument::__ne__(QJsonDocument* theWrappedObject, const QJsonDocument&  other) const
+{
+  return ( (*theWrappedObject)!= other);
+}
+
+QJsonDocument*  PythonQtWrapper_QJsonDocument::operator_assign(QJsonDocument* theWrappedObject, const QJsonDocument&  other)
+{
+  return &( (*theWrappedObject)= other);
+}
+
+bool  PythonQtWrapper_QJsonDocument::__eq__(QJsonDocument* theWrappedObject, const QJsonDocument&  other) const
+{
+  return ( (*theWrappedObject)== other);
+}
+
+const char*  PythonQtWrapper_QJsonDocument::rawData(QJsonDocument* theWrappedObject, int*  size) const
+{
+  return ( theWrappedObject->rawData(size));
+}
+
+void PythonQtWrapper_QJsonDocument::setArray(QJsonDocument* theWrappedObject, const QJsonArray&  array)
+{
+  ( theWrappedObject->setArray(array));
+}
+
+void PythonQtWrapper_QJsonDocument::setObject(QJsonDocument* theWrappedObject, const QJsonObject&  object)
+{
+  ( theWrappedObject->setObject(object));
+}
+
+QByteArray  PythonQtWrapper_QJsonDocument::toBinaryData(QJsonDocument* theWrappedObject) const
+{
+  return ( theWrappedObject->toBinaryData());
+}
+
+QByteArray  PythonQtWrapper_QJsonDocument::toJson(QJsonDocument* theWrappedObject) const
+{
+  return ( theWrappedObject->toJson());
+}
+
+QVariant  PythonQtWrapper_QJsonDocument::toVariant(QJsonDocument* theWrappedObject) const
+{
+  return ( theWrappedObject->toVariant());
+}
+
+QString PythonQtWrapper_QJsonDocument::py_toString(QJsonDocument* obj) {
+  QString result;
+  QDebug d(&result);
+  d << *obj;
+  return result;
+}
+
+
+
+QJsonObject* PythonQtWrapper_QJsonObject::new_QJsonObject()
+{ 
+return new QJsonObject(); }
+
+QJsonObject* PythonQtWrapper_QJsonObject::new_QJsonObject(const QJsonObject&  other)
+{ 
+return new QJsonObject(other); }
+
+bool  PythonQtWrapper_QJsonObject::contains(QJsonObject* theWrappedObject, const QString&  key) const
+{
+  return ( theWrappedObject->contains(key));
+}
+
+int  PythonQtWrapper_QJsonObject::count(QJsonObject* theWrappedObject) const
+{
+  return ( theWrappedObject->count());
+}
+
+bool  PythonQtWrapper_QJsonObject::empty(QJsonObject* theWrappedObject) const
+{
+  return ( theWrappedObject->empty());
+}
+
+QJsonObject  PythonQtWrapper_QJsonObject::static_QJsonObject_fromVariantMap(const QMap<QString , QVariant >&  map)
+{
+  return (QJsonObject::fromVariantMap(map));
+}
+
+bool  PythonQtWrapper_QJsonObject::isEmpty(QJsonObject* theWrappedObject) const
+{
+  return ( theWrappedObject->isEmpty());
+}
+
+QStringList  PythonQtWrapper_QJsonObject::keys(QJsonObject* theWrappedObject) const
+{
+  return ( theWrappedObject->keys());
+}
+
+int  PythonQtWrapper_QJsonObject::length(QJsonObject* theWrappedObject) const
+{
+  return ( theWrappedObject->length());
+}
+
+bool  PythonQtWrapper_QJsonObject::__ne__(QJsonObject* theWrappedObject, const QJsonObject&  other) const
+{
+  return ( (*theWrappedObject)!= other);
+}
+
+QJsonObject*  PythonQtWrapper_QJsonObject::operator_assign(QJsonObject* theWrappedObject, const QJsonObject&  other)
+{
+  return &( (*theWrappedObject)= other);
+}
+
+bool  PythonQtWrapper_QJsonObject::__eq__(QJsonObject* theWrappedObject, const QJsonObject&  other) const
+{
+  return ( (*theWrappedObject)== other);
+}
+
+QJsonValue  PythonQtWrapper_QJsonObject::operator_subscript(QJsonObject* theWrappedObject, const QString&  key) const
+{
+  return ( (*theWrappedObject)[key]);
+}
+
+void PythonQtWrapper_QJsonObject::remove(QJsonObject* theWrappedObject, const QString&  key)
+{
+  ( theWrappedObject->remove(key));
+}
+
+int  PythonQtWrapper_QJsonObject::size(QJsonObject* theWrappedObject) const
+{
+  return ( theWrappedObject->size());
+}
+
+QJsonValue  PythonQtWrapper_QJsonObject::take(QJsonObject* theWrappedObject, const QString&  key)
+{
+  return ( theWrappedObject->take(key));
+}
+
+QMap<QString , QVariant >  PythonQtWrapper_QJsonObject::toVariantMap(QJsonObject* theWrappedObject) const
+{
+  return ( theWrappedObject->toVariantMap());
+}
+
+QJsonValue  PythonQtWrapper_QJsonObject::value(QJsonObject* theWrappedObject, const QString&  key) const
+{
+  return ( theWrappedObject->value(key));
+}
+
+QString PythonQtWrapper_QJsonObject::py_toString(QJsonObject* obj) {
+  QString result;
+  QDebug d(&result);
+  d << *obj;
+  return result;
+}
+
+
+
+PythonQtShell_QJsonParseError::~PythonQtShell_QJsonParseError() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QJsonParseError* PythonQtWrapper_QJsonParseError::new_QJsonParseError()
+{ 
+return new PythonQtShell_QJsonParseError(); }
+
+QString  PythonQtWrapper_QJsonParseError::errorString(QJsonParseError* theWrappedObject) const
 {
   return ( theWrappedObject->errorString());
 }
 
-bool  PythonQtWrapper_QIODevice::getChar(QIODevice* theWrappedObject, char*  c)
+
+
+QJsonValue* PythonQtWrapper_QJsonValue::new_QJsonValue(QJsonValue::Type  arg__1)
+{ 
+return new QJsonValue(arg__1); }
+
+QJsonValue* PythonQtWrapper_QJsonValue::new_QJsonValue(QLatin1String  s)
+{ 
+return new QJsonValue(s); }
+
+QJsonValue* PythonQtWrapper_QJsonValue::new_QJsonValue(bool  b)
+{ 
+return new QJsonValue(b); }
+
+QJsonValue* PythonQtWrapper_QJsonValue::new_QJsonValue(const QJsonArray&  a)
+{ 
+return new QJsonValue(a); }
+
+QJsonValue* PythonQtWrapper_QJsonValue::new_QJsonValue(const QJsonObject&  o)
+{ 
+return new QJsonValue(o); }
+
+QJsonValue* PythonQtWrapper_QJsonValue::new_QJsonValue(const QJsonValue&  other)
+{ 
+return new QJsonValue(other); }
+
+QJsonValue* PythonQtWrapper_QJsonValue::new_QJsonValue(const QString&  s)
+{ 
+return new QJsonValue(s); }
+
+QJsonValue* PythonQtWrapper_QJsonValue::new_QJsonValue(double  n)
+{ 
+return new QJsonValue(n); }
+
+QJsonValue* PythonQtWrapper_QJsonValue::new_QJsonValue(int  n)
+{ 
+return new QJsonValue(n); }
+
+QJsonValue  PythonQtWrapper_QJsonValue::static_QJsonValue_fromVariant(const QVariant&  variant)
 {
-  return ( theWrappedObject->getChar(c));
+  return (QJsonValue::fromVariant(variant));
 }
 
-bool  PythonQtWrapper_QIODevice::isOpen(QIODevice* theWrappedObject) const
+bool  PythonQtWrapper_QJsonValue::isArray(QJsonValue* theWrappedObject) const
 {
-  return ( theWrappedObject->isOpen());
+  return ( theWrappedObject->isArray());
 }
 
-bool  PythonQtWrapper_QIODevice::isReadable(QIODevice* theWrappedObject) const
+bool  PythonQtWrapper_QJsonValue::isBool(QJsonValue* theWrappedObject) const
 {
-  return ( theWrappedObject->isReadable());
+  return ( theWrappedObject->isBool());
 }
 
-bool  PythonQtWrapper_QIODevice::isSequential(QIODevice* theWrappedObject) const
+bool  PythonQtWrapper_QJsonValue::isDouble(QJsonValue* theWrappedObject) const
 {
-  return ( ((PythonQtPublicPromoter_QIODevice*)theWrappedObject)->promoted_isSequential());
+  return ( theWrappedObject->isDouble());
 }
 
-bool  PythonQtWrapper_QIODevice::isTextModeEnabled(QIODevice* theWrappedObject) const
+bool  PythonQtWrapper_QJsonValue::isNull(QJsonValue* theWrappedObject) const
 {
-  return ( theWrappedObject->isTextModeEnabled());
+  return ( theWrappedObject->isNull());
 }
 
-bool  PythonQtWrapper_QIODevice::isWritable(QIODevice* theWrappedObject) const
+bool  PythonQtWrapper_QJsonValue::isObject(QJsonValue* theWrappedObject) const
 {
-  return ( theWrappedObject->isWritable());
+  return ( theWrappedObject->isObject());
 }
 
-bool  PythonQtWrapper_QIODevice::open(QIODevice* theWrappedObject, QIODevice::OpenMode  mode)
+bool  PythonQtWrapper_QJsonValue::isString(QJsonValue* theWrappedObject) const
 {
-  return ( ((PythonQtPublicPromoter_QIODevice*)theWrappedObject)->promoted_open(mode));
+  return ( theWrappedObject->isString());
 }
 
-QIODevice::OpenMode  PythonQtWrapper_QIODevice::openMode(QIODevice* theWrappedObject) const
+bool  PythonQtWrapper_QJsonValue::isUndefined(QJsonValue* theWrappedObject) const
 {
-  return ( theWrappedObject->openMode());
+  return ( theWrappedObject->isUndefined());
 }
 
-QByteArray  PythonQtWrapper_QIODevice::peek(QIODevice* theWrappedObject, qint64  maxlen)
+bool  PythonQtWrapper_QJsonValue::__ne__(QJsonValue* theWrappedObject, const QJsonValue&  other) const
 {
-  return ( theWrappedObject->peek(maxlen));
+  return ( (*theWrappedObject)!= other);
 }
 
-qint64  PythonQtWrapper_QIODevice::pos(QIODevice* theWrappedObject) const
+QJsonValue*  PythonQtWrapper_QJsonValue::operator_assign(QJsonValue* theWrappedObject, const QJsonValue&  other)
 {
-  return ( ((PythonQtPublicPromoter_QIODevice*)theWrappedObject)->promoted_pos());
+  return &( (*theWrappedObject)= other);
 }
 
-bool  PythonQtWrapper_QIODevice::putChar(QIODevice* theWrappedObject, char  c)
+bool  PythonQtWrapper_QJsonValue::__eq__(QJsonValue* theWrappedObject, const QJsonValue&  other) const
 {
-  return ( theWrappedObject->putChar(c));
+  return ( (*theWrappedObject)== other);
 }
 
-QByteArray  PythonQtWrapper_QIODevice::read(QIODevice* theWrappedObject, qint64  maxlen)
+QJsonArray  PythonQtWrapper_QJsonValue::toArray(QJsonValue* theWrappedObject) const
 {
-  return ( theWrappedObject->read(maxlen));
+  return ( theWrappedObject->toArray());
 }
 
-QByteArray  PythonQtWrapper_QIODevice::readAll(QIODevice* theWrappedObject)
+QJsonArray  PythonQtWrapper_QJsonValue::toArray(QJsonValue* theWrappedObject, const QJsonArray&  defaultValue) const
 {
-  return ( theWrappedObject->readAll());
+  return ( theWrappedObject->toArray(defaultValue));
 }
 
-QByteArray  PythonQtWrapper_QIODevice::readLine(QIODevice* theWrappedObject, qint64  maxlen)
+bool  PythonQtWrapper_QJsonValue::toBool(QJsonValue* theWrappedObject, bool  defaultValue) const
 {
-  return ( theWrappedObject->readLine(maxlen));
+  return ( theWrappedObject->toBool(defaultValue));
 }
 
-qint64  PythonQtWrapper_QIODevice::readLineData(QIODevice* theWrappedObject, char*  data, qint64  maxlen)
+double  PythonQtWrapper_QJsonValue::toDouble(QJsonValue* theWrappedObject, double  defaultValue) const
 {
-  return ( ((PythonQtPublicPromoter_QIODevice*)theWrappedObject)->promoted_readLineData(data, maxlen));
+  return ( theWrappedObject->toDouble(defaultValue));
 }
 
-bool  PythonQtWrapper_QIODevice::reset(QIODevice* theWrappedObject)
+QJsonObject  PythonQtWrapper_QJsonValue::toObject(QJsonValue* theWrappedObject) const
 {
-  return ( ((PythonQtPublicPromoter_QIODevice*)theWrappedObject)->promoted_reset());
+  return ( theWrappedObject->toObject());
 }
 
-bool  PythonQtWrapper_QIODevice::seek(QIODevice* theWrappedObject, qint64  pos)
+QJsonObject  PythonQtWrapper_QJsonValue::toObject(QJsonValue* theWrappedObject, const QJsonObject&  defaultValue) const
 {
-  return ( ((PythonQtPublicPromoter_QIODevice*)theWrappedObject)->promoted_seek(pos));
+  return ( theWrappedObject->toObject(defaultValue));
 }
 
-void PythonQtWrapper_QIODevice::setTextModeEnabled(QIODevice* theWrappedObject, bool  enabled)
+QString  PythonQtWrapper_QJsonValue::toString(QJsonValue* theWrappedObject, const QString&  defaultValue) const
 {
-  ( theWrappedObject->setTextModeEnabled(enabled));
+  return ( theWrappedObject->toString(defaultValue));
 }
 
-qint64  PythonQtWrapper_QIODevice::size(QIODevice* theWrappedObject) const
+QVariant  PythonQtWrapper_QJsonValue::toVariant(QJsonValue* theWrappedObject) const
 {
-  return ( ((PythonQtPublicPromoter_QIODevice*)theWrappedObject)->promoted_size());
+  return ( theWrappedObject->toVariant());
 }
 
-void PythonQtWrapper_QIODevice::ungetChar(QIODevice* theWrappedObject, char  c)
+QJsonValue::Type  PythonQtWrapper_QJsonValue::type(QJsonValue* theWrappedObject) const
 {
-  ( theWrappedObject->ungetChar(c));
+  return ( theWrappedObject->type());
 }
 
-bool  PythonQtWrapper_QIODevice::waitForBytesWritten(QIODevice* theWrappedObject, int  msecs)
-{
-  return ( ((PythonQtPublicPromoter_QIODevice*)theWrappedObject)->promoted_waitForBytesWritten(msecs));
-}
-
-bool  PythonQtWrapper_QIODevice::waitForReadyRead(QIODevice* theWrappedObject, int  msecs)
-{
-  return ( ((PythonQtPublicPromoter_QIODevice*)theWrappedObject)->promoted_waitForReadyRead(msecs));
-}
-
-qint64  PythonQtWrapper_QIODevice::write(QIODevice* theWrappedObject, const QByteArray&  data)
-{
-  return ( theWrappedObject->write(data));
-}
-
-qint64  PythonQtWrapper_QIODevice::write(QIODevice* theWrappedObject, const char*  data)
-{
-  return ( theWrappedObject->write(data));
-}
-
+QString PythonQtWrapper_QJsonValue::py_toString(QJsonValue* obj) { return obj->toString(); }
 
 
 PythonQtShell_QLibrary::~PythonQtShell_QLibrary() {
@@ -1017,6 +2126,59 @@ QString  PythonQtWrapper_QLibraryInfo::static_QLibraryInfo_licensee()
 QString  PythonQtWrapper_QLibraryInfo::static_QLibraryInfo_location(QLibraryInfo::LibraryLocation  arg__1)
 {
   return (QLibraryInfo::location(arg__1));
+}
+
+
+
+PythonQtShell_QMessageLogContext::~PythonQtShell_QMessageLogContext() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QMessageLogContext* PythonQtWrapper_QMessageLogContext::new_QMessageLogContext()
+{ 
+return new PythonQtShell_QMessageLogContext(); }
+
+QMessageLogContext* PythonQtWrapper_QMessageLogContext::new_QMessageLogContext(const char*  fileName, int  lineNumber, const char*  functionName, const char*  categoryName)
+{ 
+return new PythonQtShell_QMessageLogContext(fileName, lineNumber, functionName, categoryName); }
+
+
+
+QMessageLogger* PythonQtWrapper_QMessageLogger::new_QMessageLogger()
+{ 
+return new QMessageLogger(); }
+
+QMessageLogger* PythonQtWrapper_QMessageLogger::new_QMessageLogger(const char*  file, int  line, const char*  function)
+{ 
+return new QMessageLogger(file, line, function); }
+
+QMessageLogger* PythonQtWrapper_QMessageLogger::new_QMessageLogger(const char*  file, int  line, const char*  function, const char*  category)
+{ 
+return new QMessageLogger(file, line, function, category); }
+
+void PythonQtWrapper_QMessageLogger::critical(QMessageLogger* theWrappedObject, const char*  msg) const
+{
+  ( theWrappedObject->critical(msg));
+}
+
+void PythonQtWrapper_QMessageLogger::debug(QMessageLogger* theWrappedObject, const char*  msg) const
+{
+  ( theWrappedObject->debug(msg));
+}
+
+void PythonQtWrapper_QMessageLogger::fatal(QMessageLogger* theWrappedObject, const char*  msg) const
+{
+  ( theWrappedObject->fatal(msg));
+}
+
+void PythonQtWrapper_QMessageLogger::noDebug(QMessageLogger* theWrappedObject, const char*  arg__1) const
+{
+  ( theWrappedObject->noDebug(arg__1));
+}
+
+void PythonQtWrapper_QMessageLogger::warning(QMessageLogger* theWrappedObject, const char*  msg) const
+{
+  ( theWrappedObject->warning(msg));
 }
 
 
@@ -1394,6 +2556,11 @@ void PythonQtWrapper_QMetaType::destruct(QMetaType* theWrappedObject, void*  dat
   ( theWrappedObject->destruct(data));
 }
 
+QMetaType::TypeFlags  PythonQtWrapper_QMetaType::flags(QMetaType* theWrappedObject) const
+{
+  return ( theWrappedObject->flags());
+}
+
 bool  PythonQtWrapper_QMetaType::isRegistered(QMetaType* theWrappedObject) const
 {
   return ( theWrappedObject->isRegistered());
@@ -1452,6 +2619,11 @@ int  PythonQtWrapper_QMetaType::static_QMetaType_sizeOf(int  type)
 int  PythonQtWrapper_QMetaType::static_QMetaType_type(const char*  typeName)
 {
   return (QMetaType::type(typeName));
+}
+
+QMetaType::TypeFlags  PythonQtWrapper_QMetaType::static_QMetaType_typeFlags(int  type)
+{
+  return (QMetaType::typeFlags(type));
 }
 
 const char*  PythonQtWrapper_QMetaType::static_QMetaType_typeName(int  type)
@@ -1788,6 +2960,167 @@ QList<QUrl >  PythonQtWrapper_QMimeData::urls(QMimeData* theWrappedObject) const
 
 
 
+QMimeDatabase* PythonQtWrapper_QMimeDatabase::new_QMimeDatabase()
+{ 
+return new QMimeDatabase(); }
+
+QList<QMimeType >  PythonQtWrapper_QMimeDatabase::allMimeTypes(QMimeDatabase* theWrappedObject) const
+{
+  return ( theWrappedObject->allMimeTypes());
+}
+
+QMimeType  PythonQtWrapper_QMimeDatabase::mimeTypeForData(QMimeDatabase* theWrappedObject, QIODevice*  device) const
+{
+  return ( theWrappedObject->mimeTypeForData(device));
+}
+
+QMimeType  PythonQtWrapper_QMimeDatabase::mimeTypeForData(QMimeDatabase* theWrappedObject, const QByteArray&  data) const
+{
+  return ( theWrappedObject->mimeTypeForData(data));
+}
+
+QMimeType  PythonQtWrapper_QMimeDatabase::mimeTypeForFile(QMimeDatabase* theWrappedObject, const QFileInfo&  fileInfo, QMimeDatabase::MatchMode  mode) const
+{
+  return ( theWrappedObject->mimeTypeForFile(fileInfo, mode));
+}
+
+QMimeType  PythonQtWrapper_QMimeDatabase::mimeTypeForFile(QMimeDatabase* theWrappedObject, const QString&  fileName, QMimeDatabase::MatchMode  mode) const
+{
+  return ( theWrappedObject->mimeTypeForFile(fileName, mode));
+}
+
+QMimeType  PythonQtWrapper_QMimeDatabase::mimeTypeForFileNameAndData(QMimeDatabase* theWrappedObject, const QString&  fileName, QIODevice*  device) const
+{
+  return ( theWrappedObject->mimeTypeForFileNameAndData(fileName, device));
+}
+
+QMimeType  PythonQtWrapper_QMimeDatabase::mimeTypeForFileNameAndData(QMimeDatabase* theWrappedObject, const QString&  fileName, const QByteArray&  data) const
+{
+  return ( theWrappedObject->mimeTypeForFileNameAndData(fileName, data));
+}
+
+QMimeType  PythonQtWrapper_QMimeDatabase::mimeTypeForName(QMimeDatabase* theWrappedObject, const QString&  nameOrAlias) const
+{
+  return ( theWrappedObject->mimeTypeForName(nameOrAlias));
+}
+
+QMimeType  PythonQtWrapper_QMimeDatabase::mimeTypeForUrl(QMimeDatabase* theWrappedObject, const QUrl&  url) const
+{
+  return ( theWrappedObject->mimeTypeForUrl(url));
+}
+
+QList<QMimeType >  PythonQtWrapper_QMimeDatabase::mimeTypesForFileName(QMimeDatabase* theWrappedObject, const QString&  fileName) const
+{
+  return ( theWrappedObject->mimeTypesForFileName(fileName));
+}
+
+QString  PythonQtWrapper_QMimeDatabase::suffixForFileName(QMimeDatabase* theWrappedObject, const QString&  fileName) const
+{
+  return ( theWrappedObject->suffixForFileName(fileName));
+}
+
+
+
+QMimeType* PythonQtWrapper_QMimeType::new_QMimeType()
+{ 
+return new QMimeType(); }
+
+QMimeType* PythonQtWrapper_QMimeType::new_QMimeType(const QMimeType&  other)
+{ 
+return new QMimeType(other); }
+
+QStringList  PythonQtWrapper_QMimeType::aliases(QMimeType* theWrappedObject) const
+{
+  return ( theWrappedObject->aliases());
+}
+
+QStringList  PythonQtWrapper_QMimeType::allAncestors(QMimeType* theWrappedObject) const
+{
+  return ( theWrappedObject->allAncestors());
+}
+
+QString  PythonQtWrapper_QMimeType::comment(QMimeType* theWrappedObject) const
+{
+  return ( theWrappedObject->comment());
+}
+
+QString  PythonQtWrapper_QMimeType::filterString(QMimeType* theWrappedObject) const
+{
+  return ( theWrappedObject->filterString());
+}
+
+QString  PythonQtWrapper_QMimeType::genericIconName(QMimeType* theWrappedObject) const
+{
+  return ( theWrappedObject->genericIconName());
+}
+
+QStringList  PythonQtWrapper_QMimeType::globPatterns(QMimeType* theWrappedObject) const
+{
+  return ( theWrappedObject->globPatterns());
+}
+
+QString  PythonQtWrapper_QMimeType::iconName(QMimeType* theWrappedObject) const
+{
+  return ( theWrappedObject->iconName());
+}
+
+bool  PythonQtWrapper_QMimeType::inherits(QMimeType* theWrappedObject, const QString&  mimeTypeName) const
+{
+  return ( theWrappedObject->inherits(mimeTypeName));
+}
+
+bool  PythonQtWrapper_QMimeType::isDefault(QMimeType* theWrappedObject) const
+{
+  return ( theWrappedObject->isDefault());
+}
+
+bool  PythonQtWrapper_QMimeType::isValid(QMimeType* theWrappedObject) const
+{
+  return ( theWrappedObject->isValid());
+}
+
+QString  PythonQtWrapper_QMimeType::name(QMimeType* theWrappedObject) const
+{
+  return ( theWrappedObject->name());
+}
+
+bool  PythonQtWrapper_QMimeType::__ne__(QMimeType* theWrappedObject, const QMimeType&  other) const
+{
+  return ( (*theWrappedObject)!= other);
+}
+
+QMimeType*  PythonQtWrapper_QMimeType::operator_assign(QMimeType* theWrappedObject, const QMimeType&  other)
+{
+  return &( (*theWrappedObject)= other);
+}
+
+bool  PythonQtWrapper_QMimeType::__eq__(QMimeType* theWrappedObject, const QMimeType&  other) const
+{
+  return ( (*theWrappedObject)== other);
+}
+
+QStringList  PythonQtWrapper_QMimeType::parentMimeTypes(QMimeType* theWrappedObject) const
+{
+  return ( theWrappedObject->parentMimeTypes());
+}
+
+QString  PythonQtWrapper_QMimeType::preferredSuffix(QMimeType* theWrappedObject) const
+{
+  return ( theWrappedObject->preferredSuffix());
+}
+
+QStringList  PythonQtWrapper_QMimeType::suffixes(QMimeType* theWrappedObject) const
+{
+  return ( theWrappedObject->suffixes());
+}
+
+void PythonQtWrapper_QMimeType::swap(QMimeType* theWrappedObject, QMimeType&  other)
+{
+  ( theWrappedObject->swap(other));
+}
+
+
+
 QModelIndex* PythonQtWrapper_QModelIndex::new_QModelIndex()
 { 
 return new QModelIndex(); }
@@ -2120,273 +3453,6 @@ QThread*  PythonQtWrapper_QObject::thread(QObject* theWrappedObject) const
 void PythonQtWrapper_QObject::timerEvent(QObject* theWrappedObject, QTimerEvent*  arg__1)
 {
   ( ((PythonQtPublicPromoter_QObject*)theWrappedObject)->promoted_timerEvent(arg__1));
-}
-
-
-
-PythonQtShell_QPagedPaintDevice::~PythonQtShell_QPagedPaintDevice() {
-  PythonQtPrivate* priv = PythonQt::priv();
-  if (priv) { priv->shellClassDeleted(this); }
-}
-int  PythonQtShell_QPagedPaintDevice::devType() const
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("devType");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"int"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
-      int returnValue;
-    void* args[1] = {NULL};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("devType", methodInfo, result);
-        } else {
-          returnValue = *((int*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return QPagedPaintDevice::devType();
-}
-void PythonQtShell_QPagedPaintDevice::initPainter(QPainter*  painter) const
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("initPainter");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QPainter*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&painter};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QPagedPaintDevice::initPainter(painter);
-}
-int  PythonQtShell_QPagedPaintDevice::metric(QPaintDevice::PaintDeviceMetric  metric) const
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("metric");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"int" , "QPaintDevice::PaintDeviceMetric"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      int returnValue;
-    void* args[2] = {NULL, (void*)&metric};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("metric", methodInfo, result);
-        } else {
-          returnValue = *((int*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return QPagedPaintDevice::metric(metric);
-}
-bool  PythonQtShell_QPagedPaintDevice::newPage()
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("newPage");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"bool"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
-      bool returnValue;
-    void* args[1] = {NULL};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("newPage", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return bool();
-}
-QPaintEngine*  PythonQtShell_QPagedPaintDevice::paintEngine() const
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("paintEngine");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"QPaintEngine*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
-      QPaintEngine* returnValue;
-    void* args[1] = {NULL};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("paintEngine", methodInfo, result);
-        } else {
-          returnValue = *((QPaintEngine**)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return 0;
-}
-QPaintDevice*  PythonQtShell_QPagedPaintDevice::redirected(QPoint*  offset) const
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("redirected");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"QPaintDevice*" , "QPoint*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      QPaintDevice* returnValue;
-    void* args[2] = {NULL, (void*)&offset};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("redirected", methodInfo, result);
-        } else {
-          returnValue = *((QPaintDevice**)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return QPagedPaintDevice::redirected(offset);
-}
-void PythonQtShell_QPagedPaintDevice::setPageSize(QPagedPaintDevice::PageSize  size)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("setPageSize");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QPagedPaintDevice::PageSize"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&size};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QPagedPaintDevice::setPageSize(size);
-}
-void PythonQtShell_QPagedPaintDevice::setPageSizeMM(const QSizeF&  size)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("setPageSizeMM");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "const QSizeF&"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&size};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QPagedPaintDevice::setPageSizeMM(size);
-}
-QPainter*  PythonQtShell_QPagedPaintDevice::sharedPainter() const
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("sharedPainter");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"QPainter*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
-      QPainter* returnValue;
-    void* args[1] = {NULL};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("sharedPainter", methodInfo, result);
-        } else {
-          returnValue = *((QPainter**)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return QPagedPaintDevice::sharedPainter();
-}
-QPagedPaintDevice* PythonQtWrapper_QPagedPaintDevice::new_QPagedPaintDevice()
-{ 
-return new PythonQtShell_QPagedPaintDevice(); }
-
-QPagedPaintDevice::PageSize  PythonQtWrapper_QPagedPaintDevice::pageSize(QPagedPaintDevice* theWrappedObject) const
-{
-  return ( theWrappedObject->pageSize());
-}
-
-QSizeF  PythonQtWrapper_QPagedPaintDevice::pageSizeMM(QPagedPaintDevice* theWrappedObject) const
-{
-  return ( theWrappedObject->pageSizeMM());
-}
-
-void PythonQtWrapper_QPagedPaintDevice::setPageSize(QPagedPaintDevice* theWrappedObject, QPagedPaintDevice::PageSize  size)
-{
-  ( ((PythonQtPublicPromoter_QPagedPaintDevice*)theWrappedObject)->promoted_setPageSize(size));
-}
-
-void PythonQtWrapper_QPagedPaintDevice::setPageSizeMM(QPagedPaintDevice* theWrappedObject, const QSizeF&  size)
-{
-  ( ((PythonQtPublicPromoter_QPagedPaintDevice*)theWrappedObject)->promoted_setPageSizeMM(size));
 }
 
 
@@ -2864,6 +3930,112 @@ void PythonQtWrapper_QPauseAnimation::setDuration(QPauseAnimation* theWrappedObj
 void PythonQtWrapper_QPauseAnimation::updateCurrentTime(QPauseAnimation* theWrappedObject, int  arg__1)
 {
   ( ((PythonQtPublicPromoter_QPauseAnimation*)theWrappedObject)->promoted_updateCurrentTime(arg__1));
+}
+
+
+
+QPersistentModelIndex* PythonQtWrapper_QPersistentModelIndex::new_QPersistentModelIndex()
+{ 
+return new QPersistentModelIndex(); }
+
+QPersistentModelIndex* PythonQtWrapper_QPersistentModelIndex::new_QPersistentModelIndex(const QModelIndex&  index)
+{ 
+return new QPersistentModelIndex(index); }
+
+QPersistentModelIndex* PythonQtWrapper_QPersistentModelIndex::new_QPersistentModelIndex(const QPersistentModelIndex&  other)
+{ 
+return new QPersistentModelIndex(other); }
+
+QModelIndex  PythonQtWrapper_QPersistentModelIndex::child(QPersistentModelIndex* theWrappedObject, int  row, int  column) const
+{
+  return ( theWrappedObject->child(row, column));
+}
+
+int  PythonQtWrapper_QPersistentModelIndex::column(QPersistentModelIndex* theWrappedObject) const
+{
+  return ( theWrappedObject->column());
+}
+
+QVariant  PythonQtWrapper_QPersistentModelIndex::data(QPersistentModelIndex* theWrappedObject, int  role) const
+{
+  return ( theWrappedObject->data(role));
+}
+
+Qt::ItemFlags  PythonQtWrapper_QPersistentModelIndex::flags(QPersistentModelIndex* theWrappedObject) const
+{
+  return ( theWrappedObject->flags());
+}
+
+quintptr  PythonQtWrapper_QPersistentModelIndex::internalId(QPersistentModelIndex* theWrappedObject) const
+{
+  return ( theWrappedObject->internalId());
+}
+
+bool  PythonQtWrapper_QPersistentModelIndex::isValid(QPersistentModelIndex* theWrappedObject) const
+{
+  return ( theWrappedObject->isValid());
+}
+
+const QAbstractItemModel*  PythonQtWrapper_QPersistentModelIndex::model(QPersistentModelIndex* theWrappedObject) const
+{
+  return ( theWrappedObject->model());
+}
+
+QModelIndex  PythonQtWrapper_QPersistentModelIndex::operator_cast_QModelIndex(QPersistentModelIndex* theWrappedObject) const
+{
+  return ( theWrappedObject->operator const QModelIndex&());
+}
+
+bool  PythonQtWrapper_QPersistentModelIndex::__ne__(QPersistentModelIndex* theWrappedObject, const QModelIndex&  other) const
+{
+  return ( (*theWrappedObject)!= other);
+}
+
+bool  PythonQtWrapper_QPersistentModelIndex::__ne__(QPersistentModelIndex* theWrappedObject, const QPersistentModelIndex&  other) const
+{
+  return ( (*theWrappedObject)!= other);
+}
+
+bool  PythonQtWrapper_QPersistentModelIndex::__lt__(QPersistentModelIndex* theWrappedObject, const QPersistentModelIndex&  other) const
+{
+  return ( (*theWrappedObject)< other);
+}
+
+bool  PythonQtWrapper_QPersistentModelIndex::__eq__(QPersistentModelIndex* theWrappedObject, const QModelIndex&  other) const
+{
+  return ( (*theWrappedObject)== other);
+}
+
+bool  PythonQtWrapper_QPersistentModelIndex::__eq__(QPersistentModelIndex* theWrappedObject, const QPersistentModelIndex&  other) const
+{
+  return ( (*theWrappedObject)== other);
+}
+
+QModelIndex  PythonQtWrapper_QPersistentModelIndex::parent(QPersistentModelIndex* theWrappedObject) const
+{
+  return ( theWrappedObject->parent());
+}
+
+int  PythonQtWrapper_QPersistentModelIndex::row(QPersistentModelIndex* theWrappedObject) const
+{
+  return ( theWrappedObject->row());
+}
+
+QModelIndex  PythonQtWrapper_QPersistentModelIndex::sibling(QPersistentModelIndex* theWrappedObject, int  row, int  column) const
+{
+  return ( theWrappedObject->sibling(row, column));
+}
+
+void PythonQtWrapper_QPersistentModelIndex::swap(QPersistentModelIndex* theWrappedObject, QPersistentModelIndex&  other)
+{
+  ( theWrappedObject->swap(other));
+}
+
+QString PythonQtWrapper_QPersistentModelIndex::py_toString(QPersistentModelIndex* obj) {
+  QString result;
+  QDebug d(&result);
+  d << *obj;
+  return result;
 }
 
 
@@ -4131,1928 +5303,221 @@ void PythonQtWrapper_QReadWriteLock::unlock(QReadWriteLock* theWrappedObject)
 
 
 
-PythonQtShell_QResource::~PythonQtShell_QResource() {
-  PythonQtPrivate* priv = PythonQt::priv();
-  if (priv) { priv->shellClassDeleted(this); }
-}
-QResource* PythonQtWrapper_QResource::new_QResource(const QString&  file, const QLocale&  locale)
+QRegularExpression* PythonQtWrapper_QRegularExpression::new_QRegularExpression()
 { 
-return new PythonQtShell_QResource(file, locale); }
+return new QRegularExpression(); }
 
-QString  PythonQtWrapper_QResource::absoluteFilePath(QResource* theWrappedObject) const
+QRegularExpression* PythonQtWrapper_QRegularExpression::new_QRegularExpression(const QRegularExpression&  re)
+{ 
+return new QRegularExpression(re); }
+
+QRegularExpression* PythonQtWrapper_QRegularExpression::new_QRegularExpression(const QString&  pattern, QRegularExpression::PatternOptions  options)
+{ 
+return new QRegularExpression(pattern, options); }
+
+int  PythonQtWrapper_QRegularExpression::captureCount(QRegularExpression* theWrappedObject) const
 {
-  return ( theWrappedObject->absoluteFilePath());
+  return ( theWrappedObject->captureCount());
 }
 
-void PythonQtWrapper_QResource::static_QResource_addSearchPath(const QString&  path)
+QString  PythonQtWrapper_QRegularExpression::errorString(QRegularExpression* theWrappedObject) const
 {
-  (QResource::addSearchPath(path));
+  return ( theWrappedObject->errorString());
 }
 
-const uchar*  PythonQtWrapper_QResource::data(QResource* theWrappedObject) const
+QString  PythonQtWrapper_QRegularExpression::static_QRegularExpression_escape(const QString&  str)
 {
-  return ( theWrappedObject->data());
+  return (QRegularExpression::escape(str));
 }
 
-QString  PythonQtWrapper_QResource::fileName(QResource* theWrappedObject) const
+QRegularExpressionMatchIterator  PythonQtWrapper_QRegularExpression::globalMatch(QRegularExpression* theWrappedObject, const QString&  subject, int  offset, QRegularExpression::MatchType  matchType, QRegularExpression::MatchOptions  matchOptions) const
 {
-  return ( theWrappedObject->fileName());
+  return ( theWrappedObject->globalMatch(subject, offset, matchType, matchOptions));
 }
 
-bool  PythonQtWrapper_QResource::isCompressed(QResource* theWrappedObject) const
-{
-  return ( theWrappedObject->isCompressed());
-}
-
-bool  PythonQtWrapper_QResource::isValid(QResource* theWrappedObject) const
+bool  PythonQtWrapper_QRegularExpression::isValid(QRegularExpression* theWrappedObject) const
 {
   return ( theWrappedObject->isValid());
 }
 
-QLocale  PythonQtWrapper_QResource::locale(QResource* theWrappedObject) const
+QRegularExpressionMatch  PythonQtWrapper_QRegularExpression::match(QRegularExpression* theWrappedObject, const QString&  subject, int  offset, QRegularExpression::MatchType  matchType, QRegularExpression::MatchOptions  matchOptions) const
 {
-  return ( theWrappedObject->locale());
+  return ( theWrappedObject->match(subject, offset, matchType, matchOptions));
 }
 
-bool  PythonQtWrapper_QResource::static_QResource_registerResource(const QString&  rccFilename, const QString&  resourceRoot)
+bool  PythonQtWrapper_QRegularExpression::__ne__(QRegularExpression* theWrappedObject, const QRegularExpression&  re) const
 {
-  return (QResource::registerResource(rccFilename, resourceRoot));
+  return ( (*theWrappedObject)!= re);
 }
 
-bool  PythonQtWrapper_QResource::static_QResource_registerResource(const uchar*  rccData, const QString&  resourceRoot)
+void PythonQtWrapper_QRegularExpression::writeTo(QRegularExpression* theWrappedObject, QDataStream&  out)
 {
-  return (QResource::registerResource(rccData, resourceRoot));
+  out <<  (*theWrappedObject);
 }
 
-QStringList  PythonQtWrapper_QResource::static_QResource_searchPaths()
+QRegularExpression*  PythonQtWrapper_QRegularExpression::operator_assign(QRegularExpression* theWrappedObject, const QRegularExpression&  re)
 {
-  return (QResource::searchPaths());
+  return &( (*theWrappedObject)= re);
 }
 
-void PythonQtWrapper_QResource::setFileName(QResource* theWrappedObject, const QString&  file)
+bool  PythonQtWrapper_QRegularExpression::__eq__(QRegularExpression* theWrappedObject, const QRegularExpression&  re) const
 {
-  ( theWrappedObject->setFileName(file));
+  return ( (*theWrappedObject)== re);
 }
 
-void PythonQtWrapper_QResource::setLocale(QResource* theWrappedObject, const QLocale&  locale)
+void PythonQtWrapper_QRegularExpression::readFrom(QRegularExpression* theWrappedObject, QDataStream&  in)
 {
-  ( theWrappedObject->setLocale(locale));
+  in >>  (*theWrappedObject);
 }
 
-qint64  PythonQtWrapper_QResource::size(QResource* theWrappedObject) const
+QString  PythonQtWrapper_QRegularExpression::pattern(QRegularExpression* theWrappedObject) const
 {
-  return ( theWrappedObject->size());
+  return ( theWrappedObject->pattern());
 }
 
-bool  PythonQtWrapper_QResource::static_QResource_unregisterResource(const QString&  rccFilename, const QString&  resourceRoot)
+int  PythonQtWrapper_QRegularExpression::patternErrorOffset(QRegularExpression* theWrappedObject) const
 {
-  return (QResource::unregisterResource(rccFilename, resourceRoot));
+  return ( theWrappedObject->patternErrorOffset());
 }
 
-bool  PythonQtWrapper_QResource::static_QResource_unregisterResource(const uchar*  rccData, const QString&  resourceRoot)
+QRegularExpression::PatternOptions  PythonQtWrapper_QRegularExpression::patternOptions(QRegularExpression* theWrappedObject) const
 {
-  return (QResource::unregisterResource(rccData, resourceRoot));
+  return ( theWrappedObject->patternOptions());
 }
 
-
-
-PythonQtShell_QRunnable::~PythonQtShell_QRunnable() {
-  PythonQtPrivate* priv = PythonQt::priv();
-  if (priv) { priv->shellClassDeleted(this); }
-}
-void PythonQtShell_QRunnable::run()
+void PythonQtWrapper_QRegularExpression::setPattern(QRegularExpression* theWrappedObject, const QString&  pattern)
 {
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("run");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={""};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
-    void* args[1] = {NULL};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
+  ( theWrappedObject->setPattern(pattern));
 }
-  
+
+void PythonQtWrapper_QRegularExpression::setPatternOptions(QRegularExpression* theWrappedObject, QRegularExpression::PatternOptions  options)
+{
+  ( theWrappedObject->setPatternOptions(options));
 }
-QRunnable* PythonQtWrapper_QRunnable::new_QRunnable()
+
+void PythonQtWrapper_QRegularExpression::swap(QRegularExpression* theWrappedObject, QRegularExpression&  re)
+{
+  ( theWrappedObject->swap(re));
+}
+
+QString PythonQtWrapper_QRegularExpression::py_toString(QRegularExpression* obj) {
+  QString result;
+  QDebug d(&result);
+  d << *obj;
+  return result;
+}
+
+
+
+QRegularExpressionMatch* PythonQtWrapper_QRegularExpressionMatch::new_QRegularExpressionMatch(const QRegularExpressionMatch&  match)
 { 
-return new PythonQtShell_QRunnable(); }
+return new QRegularExpressionMatch(match); }
 
-bool  PythonQtWrapper_QRunnable::autoDelete(QRunnable* theWrappedObject) const
+QString  PythonQtWrapper_QRegularExpressionMatch::captured(QRegularExpressionMatch* theWrappedObject, const QString&  name) const
 {
-  return ( theWrappedObject->autoDelete());
+  return ( theWrappedObject->captured(name));
 }
 
-void PythonQtWrapper_QRunnable::setAutoDelete(QRunnable* theWrappedObject, bool  _autoDelete)
+QString  PythonQtWrapper_QRegularExpressionMatch::captured(QRegularExpressionMatch* theWrappedObject, int  nth) const
 {
-  ( theWrappedObject->setAutoDelete(_autoDelete));
+  return ( theWrappedObject->captured(nth));
 }
 
-
-
-QSemaphore* PythonQtWrapper_QSemaphore::new_QSemaphore(int  n)
-{ 
-return new QSemaphore(n); }
-
-void PythonQtWrapper_QSemaphore::acquire(QSemaphore* theWrappedObject, int  n)
-{
-  ( theWrappedObject->acquire(n));
-}
-
-int  PythonQtWrapper_QSemaphore::available(QSemaphore* theWrappedObject) const
-{
-  return ( theWrappedObject->available());
-}
-
-void PythonQtWrapper_QSemaphore::release(QSemaphore* theWrappedObject, int  n)
-{
-  ( theWrappedObject->release(n));
-}
-
-bool  PythonQtWrapper_QSemaphore::tryAcquire(QSemaphore* theWrappedObject, int  n)
-{
-  return ( theWrappedObject->tryAcquire(n));
-}
-
-bool  PythonQtWrapper_QSemaphore::tryAcquire(QSemaphore* theWrappedObject, int  n, int  timeout)
-{
-  return ( theWrappedObject->tryAcquire(n, timeout));
-}
-
-
-
-PythonQtShell_QSequentialAnimationGroup::~PythonQtShell_QSequentialAnimationGroup() {
-  PythonQtPrivate* priv = PythonQt::priv();
-  if (priv) { priv->shellClassDeleted(this); }
-}
-void PythonQtShell_QSequentialAnimationGroup::childEvent(QChildEvent*  arg__1)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("childEvent");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QChildEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QSequentialAnimationGroup::childEvent(arg__1);
-}
-void PythonQtShell_QSequentialAnimationGroup::customEvent(QEvent*  arg__1)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("customEvent");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QSequentialAnimationGroup::customEvent(arg__1);
-}
-int  PythonQtShell_QSequentialAnimationGroup::duration() const
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("duration");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"int"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
-      int returnValue;
-    void* args[1] = {NULL};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("duration", methodInfo, result);
-        } else {
-          returnValue = *((int*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return QSequentialAnimationGroup::duration();
-}
-bool  PythonQtShell_QSequentialAnimationGroup::event(QEvent*  event)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("event");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"bool" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      bool returnValue;
-    void* args[2] = {NULL, (void*)&event};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return QSequentialAnimationGroup::event(event);
-}
-bool  PythonQtShell_QSequentialAnimationGroup::eventFilter(QObject*  arg__1, QEvent*  arg__2)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("eventFilter");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
-      bool returnValue;
-    void* args[3] = {NULL, (void*)&arg__1, (void*)&arg__2};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("eventFilter", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return QSequentialAnimationGroup::eventFilter(arg__1, arg__2);
-}
-void PythonQtShell_QSequentialAnimationGroup::timerEvent(QTimerEvent*  arg__1)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("timerEvent");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QTimerEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QSequentialAnimationGroup::timerEvent(arg__1);
-}
-void PythonQtShell_QSequentialAnimationGroup::updateCurrentTime(int  arg__1)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("updateCurrentTime");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "int"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QSequentialAnimationGroup::updateCurrentTime(arg__1);
-}
-void PythonQtShell_QSequentialAnimationGroup::updateDirection(QAbstractAnimation::Direction  direction)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("updateDirection");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QAbstractAnimation::Direction"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&direction};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QSequentialAnimationGroup::updateDirection(direction);
-}
-void PythonQtShell_QSequentialAnimationGroup::updateState(QAbstractAnimation::State  newState, QAbstractAnimation::State  oldState)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("updateState");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QAbstractAnimation::State" , "QAbstractAnimation::State"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
-    void* args[3] = {NULL, (void*)&newState, (void*)&oldState};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QSequentialAnimationGroup::updateState(newState, oldState);
-}
-QSequentialAnimationGroup* PythonQtWrapper_QSequentialAnimationGroup::new_QSequentialAnimationGroup(QObject*  parent)
-{ 
-return new PythonQtShell_QSequentialAnimationGroup(parent); }
-
-QPauseAnimation*  PythonQtWrapper_QSequentialAnimationGroup::addPause(QSequentialAnimationGroup* theWrappedObject, int  msecs)
-{
-  return ( theWrappedObject->addPause(msecs));
-}
-
-QAbstractAnimation*  PythonQtWrapper_QSequentialAnimationGroup::currentAnimation(QSequentialAnimationGroup* theWrappedObject) const
-{
-  return ( theWrappedObject->currentAnimation());
-}
-
-int  PythonQtWrapper_QSequentialAnimationGroup::duration(QSequentialAnimationGroup* theWrappedObject) const
-{
-  return ( ((PythonQtPublicPromoter_QSequentialAnimationGroup*)theWrappedObject)->promoted_duration());
-}
-
-bool  PythonQtWrapper_QSequentialAnimationGroup::event(QSequentialAnimationGroup* theWrappedObject, QEvent*  event)
-{
-  return ( ((PythonQtPublicPromoter_QSequentialAnimationGroup*)theWrappedObject)->promoted_event(event));
-}
-
-QPauseAnimation*  PythonQtWrapper_QSequentialAnimationGroup::insertPause(QSequentialAnimationGroup* theWrappedObject, int  index, int  msecs)
-{
-  return ( theWrappedObject->insertPause(index, msecs));
-}
-
-void PythonQtWrapper_QSequentialAnimationGroup::updateCurrentTime(QSequentialAnimationGroup* theWrappedObject, int  arg__1)
-{
-  ( ((PythonQtPublicPromoter_QSequentialAnimationGroup*)theWrappedObject)->promoted_updateCurrentTime(arg__1));
-}
-
-void PythonQtWrapper_QSequentialAnimationGroup::updateDirection(QSequentialAnimationGroup* theWrappedObject, QAbstractAnimation::Direction  direction)
-{
-  ( ((PythonQtPublicPromoter_QSequentialAnimationGroup*)theWrappedObject)->promoted_updateDirection(direction));
-}
-
-void PythonQtWrapper_QSequentialAnimationGroup::updateState(QSequentialAnimationGroup* theWrappedObject, QAbstractAnimation::State  newState, QAbstractAnimation::State  oldState)
-{
-  ( ((PythonQtPublicPromoter_QSequentialAnimationGroup*)theWrappedObject)->promoted_updateState(newState, oldState));
-}
-
-
-
-PythonQtShell_QSettings::~PythonQtShell_QSettings() {
-  PythonQtPrivate* priv = PythonQt::priv();
-  if (priv) { priv->shellClassDeleted(this); }
-}
-void PythonQtShell_QSettings::childEvent(QChildEvent*  arg__1)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("childEvent");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QChildEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QSettings::childEvent(arg__1);
-}
-void PythonQtShell_QSettings::customEvent(QEvent*  arg__1)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("customEvent");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QSettings::customEvent(arg__1);
-}
-bool  PythonQtShell_QSettings::event(QEvent*  event)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("event");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"bool" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      bool returnValue;
-    void* args[2] = {NULL, (void*)&event};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return QSettings::event(event);
-}
-bool  PythonQtShell_QSettings::eventFilter(QObject*  arg__1, QEvent*  arg__2)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("eventFilter");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
-      bool returnValue;
-    void* args[3] = {NULL, (void*)&arg__1, (void*)&arg__2};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("eventFilter", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return QSettings::eventFilter(arg__1, arg__2);
-}
-void PythonQtShell_QSettings::timerEvent(QTimerEvent*  arg__1)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("timerEvent");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QTimerEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QSettings::timerEvent(arg__1);
-}
-QSettings* PythonQtWrapper_QSettings::new_QSettings(QObject*  parent)
-{ 
-return new PythonQtShell_QSettings(parent); }
-
-QSettings* PythonQtWrapper_QSettings::new_QSettings(QSettings::Format  format, QSettings::Scope  scope, const QString&  organization, const QString&  application, QObject*  parent)
-{ 
-return new PythonQtShell_QSettings(format, scope, organization, application, parent); }
-
-QSettings* PythonQtWrapper_QSettings::new_QSettings(QSettings::Scope  scope, const QString&  organization, const QString&  application, QObject*  parent)
-{ 
-return new PythonQtShell_QSettings(scope, organization, application, parent); }
-
-QSettings* PythonQtWrapper_QSettings::new_QSettings(const QString&  fileName, QSettings::Format  format, QObject*  parent)
-{ 
-return new PythonQtShell_QSettings(fileName, format, parent); }
-
-QSettings* PythonQtWrapper_QSettings::new_QSettings(const QString&  organization, const QString&  application, QObject*  parent)
-{ 
-return new PythonQtShell_QSettings(organization, application, parent); }
-
-QStringList  PythonQtWrapper_QSettings::allKeys(QSettings* theWrappedObject) const
-{
-  return ( theWrappedObject->allKeys());
-}
-
-QString  PythonQtWrapper_QSettings::applicationName(QSettings* theWrappedObject) const
-{
-  return ( theWrappedObject->applicationName());
-}
-
-void PythonQtWrapper_QSettings::beginGroup(QSettings* theWrappedObject, const QString&  prefix)
-{
-  ( theWrappedObject->beginGroup(prefix));
-}
-
-int  PythonQtWrapper_QSettings::beginReadArray(QSettings* theWrappedObject, const QString&  prefix)
-{
-  return ( theWrappedObject->beginReadArray(prefix));
-}
-
-void PythonQtWrapper_QSettings::beginWriteArray(QSettings* theWrappedObject, const QString&  prefix, int  size)
-{
-  ( theWrappedObject->beginWriteArray(prefix, size));
-}
-
-QStringList  PythonQtWrapper_QSettings::childGroups(QSettings* theWrappedObject) const
-{
-  return ( theWrappedObject->childGroups());
-}
-
-QStringList  PythonQtWrapper_QSettings::childKeys(QSettings* theWrappedObject) const
-{
-  return ( theWrappedObject->childKeys());
-}
-
-void PythonQtWrapper_QSettings::clear(QSettings* theWrappedObject)
-{
-  ( theWrappedObject->clear());
-}
-
-bool  PythonQtWrapper_QSettings::contains(QSettings* theWrappedObject, const QString&  key) const
-{
-  return ( theWrappedObject->contains(key));
-}
-
-QSettings::Format  PythonQtWrapper_QSettings::static_QSettings_defaultFormat()
-{
-  return (QSettings::defaultFormat());
-}
-
-void PythonQtWrapper_QSettings::endArray(QSettings* theWrappedObject)
-{
-  ( theWrappedObject->endArray());
-}
-
-void PythonQtWrapper_QSettings::endGroup(QSettings* theWrappedObject)
-{
-  ( theWrappedObject->endGroup());
-}
-
-bool  PythonQtWrapper_QSettings::event(QSettings* theWrappedObject, QEvent*  event)
-{
-  return ( ((PythonQtPublicPromoter_QSettings*)theWrappedObject)->promoted_event(event));
-}
-
-bool  PythonQtWrapper_QSettings::fallbacksEnabled(QSettings* theWrappedObject) const
-{
-  return ( theWrappedObject->fallbacksEnabled());
-}
-
-QString  PythonQtWrapper_QSettings::fileName(QSettings* theWrappedObject) const
-{
-  return ( theWrappedObject->fileName());
-}
-
-QSettings::Format  PythonQtWrapper_QSettings::format(QSettings* theWrappedObject) const
-{
-  return ( theWrappedObject->format());
-}
-
-QString  PythonQtWrapper_QSettings::group(QSettings* theWrappedObject) const
-{
-  return ( theWrappedObject->group());
-}
-
-QTextCodec*  PythonQtWrapper_QSettings::iniCodec(QSettings* theWrappedObject) const
-{
-  return ( theWrappedObject->iniCodec());
-}
-
-bool  PythonQtWrapper_QSettings::isWritable(QSettings* theWrappedObject) const
-{
-  return ( theWrappedObject->isWritable());
-}
-
-QString  PythonQtWrapper_QSettings::organizationName(QSettings* theWrappedObject) const
-{
-  return ( theWrappedObject->organizationName());
-}
-
-void PythonQtWrapper_QSettings::remove(QSettings* theWrappedObject, const QString&  key)
-{
-  ( theWrappedObject->remove(key));
-}
-
-QSettings::Scope  PythonQtWrapper_QSettings::scope(QSettings* theWrappedObject) const
-{
-  return ( theWrappedObject->scope());
-}
-
-void PythonQtWrapper_QSettings::setArrayIndex(QSettings* theWrappedObject, int  i)
-{
-  ( theWrappedObject->setArrayIndex(i));
-}
-
-void PythonQtWrapper_QSettings::static_QSettings_setDefaultFormat(QSettings::Format  format)
-{
-  (QSettings::setDefaultFormat(format));
-}
-
-void PythonQtWrapper_QSettings::setFallbacksEnabled(QSettings* theWrappedObject, bool  b)
-{
-  ( theWrappedObject->setFallbacksEnabled(b));
-}
-
-void PythonQtWrapper_QSettings::setIniCodec(QSettings* theWrappedObject, QTextCodec*  codec)
-{
-  ( theWrappedObject->setIniCodec(codec));
-}
-
-void PythonQtWrapper_QSettings::setIniCodec(QSettings* theWrappedObject, const char*  codecName)
-{
-  ( theWrappedObject->setIniCodec(codecName));
-}
-
-void PythonQtWrapper_QSettings::static_QSettings_setPath(QSettings::Format  format, QSettings::Scope  scope, const QString&  path)
-{
-  (QSettings::setPath(format, scope, path));
-}
-
-void PythonQtWrapper_QSettings::setValue(QSettings* theWrappedObject, const QString&  key, const QVariant&  value)
-{
-  ( theWrappedObject->setValue(key, value));
-}
-
-QSettings::Status  PythonQtWrapper_QSettings::status(QSettings* theWrappedObject) const
-{
-  return ( theWrappedObject->status());
-}
-
-void PythonQtWrapper_QSettings::sync(QSettings* theWrappedObject)
-{
-  ( theWrappedObject->sync());
-}
-
-QVariant  PythonQtWrapper_QSettings::value(QSettings* theWrappedObject, const QString&  key, const QVariant&  defaultValue) const
-{
-  return ( theWrappedObject->value(key, defaultValue));
-}
-
-
-
-PythonQtShell_QSharedMemory::~PythonQtShell_QSharedMemory() {
-  PythonQtPrivate* priv = PythonQt::priv();
-  if (priv) { priv->shellClassDeleted(this); }
-}
-void PythonQtShell_QSharedMemory::childEvent(QChildEvent*  arg__1)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("childEvent");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QChildEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QSharedMemory::childEvent(arg__1);
-}
-void PythonQtShell_QSharedMemory::customEvent(QEvent*  arg__1)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("customEvent");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QSharedMemory::customEvent(arg__1);
-}
-bool  PythonQtShell_QSharedMemory::event(QEvent*  arg__1)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("event");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"bool" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      bool returnValue;
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return QSharedMemory::event(arg__1);
-}
-bool  PythonQtShell_QSharedMemory::eventFilter(QObject*  arg__1, QEvent*  arg__2)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("eventFilter");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
-      bool returnValue;
-    void* args[3] = {NULL, (void*)&arg__1, (void*)&arg__2};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("eventFilter", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return QSharedMemory::eventFilter(arg__1, arg__2);
-}
-void PythonQtShell_QSharedMemory::timerEvent(QTimerEvent*  arg__1)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("timerEvent");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QTimerEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QSharedMemory::timerEvent(arg__1);
-}
-QSharedMemory* PythonQtWrapper_QSharedMemory::new_QSharedMemory(QObject*  parent)
-{ 
-return new PythonQtShell_QSharedMemory(parent); }
-
-QSharedMemory* PythonQtWrapper_QSharedMemory::new_QSharedMemory(const QString&  key, QObject*  parent)
-{ 
-return new PythonQtShell_QSharedMemory(key, parent); }
-
-bool  PythonQtWrapper_QSharedMemory::attach(QSharedMemory* theWrappedObject, QSharedMemory::AccessMode  mode)
-{
-  return ( theWrappedObject->attach(mode));
-}
-
-const void*  PythonQtWrapper_QSharedMemory::constData(QSharedMemory* theWrappedObject) const
-{
-  return ( theWrappedObject->constData());
-}
-
-bool  PythonQtWrapper_QSharedMemory::create(QSharedMemory* theWrappedObject, int  size, QSharedMemory::AccessMode  mode)
-{
-  return ( theWrappedObject->create(size, mode));
-}
-
-void*  PythonQtWrapper_QSharedMemory::data(QSharedMemory* theWrappedObject)
-{
-  return ( theWrappedObject->data());
-}
-
-const void*  PythonQtWrapper_QSharedMemory::data(QSharedMemory* theWrappedObject) const
-{
-  return ( theWrappedObject->data());
-}
-
-QSharedMemory::SharedMemoryError  PythonQtWrapper_QSharedMemory::error(QSharedMemory* theWrappedObject) const
-{
-  return ( theWrappedObject->error());
-}
-
-QString  PythonQtWrapper_QSharedMemory::errorString(QSharedMemory* theWrappedObject) const
-{
-  return ( theWrappedObject->errorString());
-}
-
-bool  PythonQtWrapper_QSharedMemory::isAttached(QSharedMemory* theWrappedObject) const
-{
-  return ( theWrappedObject->isAttached());
-}
-
-QString  PythonQtWrapper_QSharedMemory::key(QSharedMemory* theWrappedObject) const
-{
-  return ( theWrappedObject->key());
-}
-
-bool  PythonQtWrapper_QSharedMemory::lock(QSharedMemory* theWrappedObject)
-{
-  return ( theWrappedObject->lock());
-}
-
-QString  PythonQtWrapper_QSharedMemory::nativeKey(QSharedMemory* theWrappedObject) const
-{
-  return ( theWrappedObject->nativeKey());
-}
-
-void PythonQtWrapper_QSharedMemory::setKey(QSharedMemory* theWrappedObject, const QString&  key)
-{
-  ( theWrappedObject->setKey(key));
-}
-
-void PythonQtWrapper_QSharedMemory::setNativeKey(QSharedMemory* theWrappedObject, const QString&  key)
-{
-  ( theWrappedObject->setNativeKey(key));
-}
-
-int  PythonQtWrapper_QSharedMemory::size(QSharedMemory* theWrappedObject) const
-{
-  return ( theWrappedObject->size());
-}
-
-bool  PythonQtWrapper_QSharedMemory::unlock(QSharedMemory* theWrappedObject)
-{
-  return ( theWrappedObject->unlock());
-}
-
-
-
-PythonQtShell_QSignalMapper::~PythonQtShell_QSignalMapper() {
-  PythonQtPrivate* priv = PythonQt::priv();
-  if (priv) { priv->shellClassDeleted(this); }
-}
-void PythonQtShell_QSignalMapper::childEvent(QChildEvent*  arg__1)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("childEvent");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QChildEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QSignalMapper::childEvent(arg__1);
-}
-void PythonQtShell_QSignalMapper::customEvent(QEvent*  arg__1)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("customEvent");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QSignalMapper::customEvent(arg__1);
-}
-bool  PythonQtShell_QSignalMapper::event(QEvent*  arg__1)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("event");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"bool" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      bool returnValue;
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return QSignalMapper::event(arg__1);
-}
-bool  PythonQtShell_QSignalMapper::eventFilter(QObject*  arg__1, QEvent*  arg__2)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("eventFilter");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
-      bool returnValue;
-    void* args[3] = {NULL, (void*)&arg__1, (void*)&arg__2};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("eventFilter", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return QSignalMapper::eventFilter(arg__1, arg__2);
-}
-void PythonQtShell_QSignalMapper::timerEvent(QTimerEvent*  arg__1)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("timerEvent");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QTimerEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QSignalMapper::timerEvent(arg__1);
-}
-QSignalMapper* PythonQtWrapper_QSignalMapper::new_QSignalMapper(QObject*  parent)
-{ 
-return new PythonQtShell_QSignalMapper(parent); }
-
-QObject*  PythonQtWrapper_QSignalMapper::mapping(QSignalMapper* theWrappedObject, QObject*  object) const
-{
-  return ( theWrappedObject->mapping(object));
-}
-
-QObject*  PythonQtWrapper_QSignalMapper::mapping(QSignalMapper* theWrappedObject, const QString&  text) const
-{
-  return ( theWrappedObject->mapping(text));
-}
-
-QObject*  PythonQtWrapper_QSignalMapper::mapping(QSignalMapper* theWrappedObject, int  id) const
-{
-  return ( theWrappedObject->mapping(id));
-}
-
-void PythonQtWrapper_QSignalMapper::removeMappings(QSignalMapper* theWrappedObject, QObject*  sender)
-{
-  ( theWrappedObject->removeMappings(sender));
-}
-
-void PythonQtWrapper_QSignalMapper::setMapping(QSignalMapper* theWrappedObject, QObject*  sender, QObject*  object)
-{
-  ( theWrappedObject->setMapping(sender, object));
-}
-
-void PythonQtWrapper_QSignalMapper::setMapping(QSignalMapper* theWrappedObject, QObject*  sender, const QString&  text)
-{
-  ( theWrappedObject->setMapping(sender, text));
-}
-
-void PythonQtWrapper_QSignalMapper::setMapping(QSignalMapper* theWrappedObject, QObject*  sender, int  id)
-{
-  ( theWrappedObject->setMapping(sender, id));
-}
-
-
-
-PythonQtShell_QSignalTransition::~PythonQtShell_QSignalTransition() {
-  PythonQtPrivate* priv = PythonQt::priv();
-  if (priv) { priv->shellClassDeleted(this); }
-}
-void PythonQtShell_QSignalTransition::childEvent(QChildEvent*  arg__1)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("childEvent");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QChildEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QSignalTransition::childEvent(arg__1);
-}
-void PythonQtShell_QSignalTransition::customEvent(QEvent*  arg__1)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("customEvent");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QSignalTransition::customEvent(arg__1);
-}
-bool  PythonQtShell_QSignalTransition::event(QEvent*  e)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("event");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"bool" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      bool returnValue;
-    void* args[2] = {NULL, (void*)&e};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return QSignalTransition::event(e);
-}
-bool  PythonQtShell_QSignalTransition::eventFilter(QObject*  arg__1, QEvent*  arg__2)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("eventFilter");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
-      bool returnValue;
-    void* args[3] = {NULL, (void*)&arg__1, (void*)&arg__2};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("eventFilter", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return QSignalTransition::eventFilter(arg__1, arg__2);
-}
-bool  PythonQtShell_QSignalTransition::eventTest(QEvent*  event)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("eventTest");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"bool" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      bool returnValue;
-    void* args[2] = {NULL, (void*)&event};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("eventTest", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return QSignalTransition::eventTest(event);
-}
-void PythonQtShell_QSignalTransition::onTransition(QEvent*  event)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("onTransition");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&event};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QSignalTransition::onTransition(event);
-}
-void PythonQtShell_QSignalTransition::timerEvent(QTimerEvent*  arg__1)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("timerEvent");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QTimerEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QSignalTransition::timerEvent(arg__1);
-}
-QSignalTransition* PythonQtWrapper_QSignalTransition::new_QSignalTransition(QState*  sourceState)
-{ 
-return new PythonQtShell_QSignalTransition(sourceState); }
-
-QSignalTransition* PythonQtWrapper_QSignalTransition::new_QSignalTransition(const QObject*  sender, const char*  signal, QState*  sourceState)
-{ 
-return new PythonQtShell_QSignalTransition(sender, signal, sourceState); }
-
-bool  PythonQtWrapper_QSignalTransition::event(QSignalTransition* theWrappedObject, QEvent*  e)
-{
-  return ( ((PythonQtPublicPromoter_QSignalTransition*)theWrappedObject)->promoted_event(e));
-}
-
-bool  PythonQtWrapper_QSignalTransition::eventTest(QSignalTransition* theWrappedObject, QEvent*  event)
-{
-  return ( ((PythonQtPublicPromoter_QSignalTransition*)theWrappedObject)->promoted_eventTest(event));
-}
-
-void PythonQtWrapper_QSignalTransition::onTransition(QSignalTransition* theWrappedObject, QEvent*  event)
-{
-  ( ((PythonQtPublicPromoter_QSignalTransition*)theWrappedObject)->promoted_onTransition(event));
-}
-
-QObject*  PythonQtWrapper_QSignalTransition::senderObject(QSignalTransition* theWrappedObject) const
-{
-  return ( theWrappedObject->senderObject());
-}
-
-void PythonQtWrapper_QSignalTransition::setSenderObject(QSignalTransition* theWrappedObject, const QObject*  sender)
-{
-  ( theWrappedObject->setSenderObject(sender));
-}
-
-void PythonQtWrapper_QSignalTransition::setSignal(QSignalTransition* theWrappedObject, const QByteArray&  signal)
-{
-  ( theWrappedObject->setSignal(signal));
-}
-
-QByteArray  PythonQtWrapper_QSignalTransition::signal(QSignalTransition* theWrappedObject) const
-{
-  return ( theWrappedObject->signal());
-}
-
-
-
-bool  PythonQtWrapper_QSocketNotifier::event(QSocketNotifier* theWrappedObject, QEvent*  arg__1)
-{
-  return ( ((PythonQtPublicPromoter_QSocketNotifier*)theWrappedObject)->promoted_event(arg__1));
-}
-
-bool  PythonQtWrapper_QSocketNotifier::isEnabled(QSocketNotifier* theWrappedObject) const
-{
-  return ( theWrappedObject->isEnabled());
-}
-
-QSocketNotifier::Type  PythonQtWrapper_QSocketNotifier::type(QSocketNotifier* theWrappedObject) const
-{
-  return ( theWrappedObject->type());
-}
-
-
-
-PythonQtShell_QState::~PythonQtShell_QState() {
-  PythonQtPrivate* priv = PythonQt::priv();
-  if (priv) { priv->shellClassDeleted(this); }
-}
-void PythonQtShell_QState::childEvent(QChildEvent*  arg__1)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("childEvent");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QChildEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QState::childEvent(arg__1);
-}
-void PythonQtShell_QState::customEvent(QEvent*  arg__1)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("customEvent");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QState::customEvent(arg__1);
-}
-bool  PythonQtShell_QState::event(QEvent*  e)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("event");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"bool" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      bool returnValue;
-    void* args[2] = {NULL, (void*)&e};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return QState::event(e);
-}
-bool  PythonQtShell_QState::eventFilter(QObject*  arg__1, QEvent*  arg__2)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("eventFilter");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
-      bool returnValue;
-    void* args[3] = {NULL, (void*)&arg__1, (void*)&arg__2};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("eventFilter", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return QState::eventFilter(arg__1, arg__2);
-}
-void PythonQtShell_QState::onEntry(QEvent*  event)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("onEntry");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&event};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QState::onEntry(event);
-}
-void PythonQtShell_QState::onExit(QEvent*  event)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("onExit");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&event};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QState::onExit(event);
-}
-void PythonQtShell_QState::timerEvent(QTimerEvent*  arg__1)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("timerEvent");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QTimerEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QState::timerEvent(arg__1);
-}
-QState* PythonQtWrapper_QState::new_QState(QState*  parent)
-{ 
-return new PythonQtShell_QState(parent); }
-
-QState* PythonQtWrapper_QState::new_QState(QState::ChildMode  childMode, QState*  parent)
-{ 
-return new PythonQtShell_QState(childMode, parent); }
-
-QAbstractTransition*  PythonQtWrapper_QState::addTransition(QState* theWrappedObject, QAbstractState*  target)
-{
-  return ( theWrappedObject->addTransition(target));
-}
-
-void PythonQtWrapper_QState::addTransition(QState* theWrappedObject, QAbstractTransition*  transition)
-{
-  ( theWrappedObject->addTransition(transition));
-}
-
-QSignalTransition*  PythonQtWrapper_QState::addTransition(QState* theWrappedObject, const QObject*  sender, const char*  signal, QAbstractState*  target)
-{
-  return ( theWrappedObject->addTransition(sender, signal, target));
-}
-
-void PythonQtWrapper_QState::assignProperty(QState* theWrappedObject, QObject*  object, const char*  name, const QVariant&  value)
-{
-  ( theWrappedObject->assignProperty(object, name, value));
-}
-
-QState::ChildMode  PythonQtWrapper_QState::childMode(QState* theWrappedObject) const
-{
-  return ( theWrappedObject->childMode());
-}
-
-QAbstractState*  PythonQtWrapper_QState::errorState(QState* theWrappedObject) const
-{
-  return ( theWrappedObject->errorState());
-}
-
-bool  PythonQtWrapper_QState::event(QState* theWrappedObject, QEvent*  e)
-{
-  return ( ((PythonQtPublicPromoter_QState*)theWrappedObject)->promoted_event(e));
-}
-
-QAbstractState*  PythonQtWrapper_QState::initialState(QState* theWrappedObject) const
-{
-  return ( theWrappedObject->initialState());
-}
-
-void PythonQtWrapper_QState::onEntry(QState* theWrappedObject, QEvent*  event)
-{
-  ( ((PythonQtPublicPromoter_QState*)theWrappedObject)->promoted_onEntry(event));
-}
-
-void PythonQtWrapper_QState::onExit(QState* theWrappedObject, QEvent*  event)
-{
-  ( ((PythonQtPublicPromoter_QState*)theWrappedObject)->promoted_onExit(event));
-}
-
-void PythonQtWrapper_QState::removeTransition(QState* theWrappedObject, QAbstractTransition*  transition)
-{
-  ( theWrappedObject->removeTransition(transition));
-}
-
-void PythonQtWrapper_QState::setChildMode(QState* theWrappedObject, QState::ChildMode  mode)
-{
-  ( theWrappedObject->setChildMode(mode));
-}
-
-void PythonQtWrapper_QState::setErrorState(QState* theWrappedObject, QAbstractState*  state)
-{
-  ( theWrappedObject->setErrorState(state));
-}
-
-void PythonQtWrapper_QState::setInitialState(QState* theWrappedObject, QAbstractState*  state)
-{
-  ( theWrappedObject->setInitialState(state));
-}
-
-QList<QAbstractTransition* >  PythonQtWrapper_QState::transitions(QState* theWrappedObject) const
-{
-  return ( theWrappedObject->transitions());
-}
-
-
-
-PythonQtShell_QStateMachine::~PythonQtShell_QStateMachine() {
-  PythonQtPrivate* priv = PythonQt::priv();
-  if (priv) { priv->shellClassDeleted(this); }
-}
-void PythonQtShell_QStateMachine::beginMicrostep(QEvent*  event)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("beginMicrostep");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&event};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QStateMachine::beginMicrostep(event);
-}
-void PythonQtShell_QStateMachine::beginSelectTransitions(QEvent*  event)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("beginSelectTransitions");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&event};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QStateMachine::beginSelectTransitions(event);
-}
-void PythonQtShell_QStateMachine::childEvent(QChildEvent*  arg__1)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("childEvent");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QChildEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QStateMachine::childEvent(arg__1);
-}
-void PythonQtShell_QStateMachine::customEvent(QEvent*  arg__1)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("customEvent");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QStateMachine::customEvent(arg__1);
-}
-void PythonQtShell_QStateMachine::endMicrostep(QEvent*  event)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("endMicrostep");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&event};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QStateMachine::endMicrostep(event);
-}
-void PythonQtShell_QStateMachine::endSelectTransitions(QEvent*  event)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("endSelectTransitions");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&event};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QStateMachine::endSelectTransitions(event);
-}
-bool  PythonQtShell_QStateMachine::event(QEvent*  e)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("event");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"bool" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-      bool returnValue;
-    void* args[2] = {NULL, (void*)&e};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("event", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return QStateMachine::event(e);
-}
-bool  PythonQtShell_QStateMachine::eventFilter(QObject*  watched, QEvent*  event)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("eventFilter");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
-      bool returnValue;
-    void* args[3] = {NULL, (void*)&watched, (void*)&event};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) {
-      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
-      if (args[0]!=&returnValue) {
-        if (args[0]==NULL) {
-          PythonQt::priv()->handleVirtualOverloadReturnError("eventFilter", methodInfo, result);
-        } else {
-          returnValue = *((bool*)args[0]);
-        }
-      }
-    }
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return returnValue;
-  } else {
-    PyErr_Clear();
-  }
-}
-  return QStateMachine::eventFilter(watched, event);
-}
-void PythonQtShell_QStateMachine::onEntry(QEvent*  event)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("onEntry");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&event};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QStateMachine::onEntry(event);
-}
-void PythonQtShell_QStateMachine::onExit(QEvent*  event)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("onExit");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&event};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QStateMachine::onExit(event);
-}
-void PythonQtShell_QStateMachine::timerEvent(QTimerEvent*  arg__1)
-{
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
-  static PyObject* name = PyString_FromString("timerEvent");
-  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
-  if (obj) {
-    static const char* argumentList[] ={"" , "QTimerEvent*"};
-    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&arg__1};
-    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
-    if (result) { Py_DECREF(result); } 
-    Py_DECREF(obj);
-    return;
-  } else {
-    PyErr_Clear();
-  }
-}
-  QStateMachine::timerEvent(arg__1);
-}
-QStateMachine* PythonQtWrapper_QStateMachine::new_QStateMachine(QObject*  parent)
-{ 
-return new PythonQtShell_QStateMachine(parent); }
-
-QStateMachine* PythonQtWrapper_QStateMachine::new_QStateMachine(QState::ChildMode  childMode, QObject*  parent)
-{ 
-return new PythonQtShell_QStateMachine(childMode, parent); }
-
-void PythonQtWrapper_QStateMachine::addDefaultAnimation(QStateMachine* theWrappedObject, QAbstractAnimation*  animation)
-{
-  ( theWrappedObject->addDefaultAnimation(animation));
-}
-
-void PythonQtWrapper_QStateMachine::addState(QStateMachine* theWrappedObject, QAbstractState*  state)
+int  PythonQtWrapper_QRegularExpressionMatch::capturedEnd(QRegularExpressionMatch* theWrappedObject, const QString&  name) const
 {
-  ( theWrappedObject->addState(state));
+  return ( theWrappedObject->capturedEnd(name));
 }
 
-void PythonQtWrapper_QStateMachine::beginMicrostep(QStateMachine* theWrappedObject, QEvent*  event)
+int  PythonQtWrapper_QRegularExpressionMatch::capturedEnd(QRegularExpressionMatch* theWrappedObject, int  nth) const
 {
-  ( ((PythonQtPublicPromoter_QStateMachine*)theWrappedObject)->promoted_beginMicrostep(event));
+  return ( theWrappedObject->capturedEnd(nth));
 }
 
-void PythonQtWrapper_QStateMachine::beginSelectTransitions(QStateMachine* theWrappedObject, QEvent*  event)
+int  PythonQtWrapper_QRegularExpressionMatch::capturedLength(QRegularExpressionMatch* theWrappedObject, const QString&  name) const
 {
-  ( ((PythonQtPublicPromoter_QStateMachine*)theWrappedObject)->promoted_beginSelectTransitions(event));
+  return ( theWrappedObject->capturedLength(name));
 }
 
-bool  PythonQtWrapper_QStateMachine::cancelDelayedEvent(QStateMachine* theWrappedObject, int  id)
+int  PythonQtWrapper_QRegularExpressionMatch::capturedLength(QRegularExpressionMatch* theWrappedObject, int  nth) const
 {
-  return ( theWrappedObject->cancelDelayedEvent(id));
+  return ( theWrappedObject->capturedLength(nth));
 }
 
-void PythonQtWrapper_QStateMachine::clearError(QStateMachine* theWrappedObject)
+QStringRef  PythonQtWrapper_QRegularExpressionMatch::capturedRef(QRegularExpressionMatch* theWrappedObject, const QString&  name) const
 {
-  ( theWrappedObject->clearError());
+  return ( theWrappedObject->capturedRef(name));
 }
 
-QSet<QAbstractState* >  PythonQtWrapper_QStateMachine::configuration(QStateMachine* theWrappedObject) const
+QStringRef  PythonQtWrapper_QRegularExpressionMatch::capturedRef(QRegularExpressionMatch* theWrappedObject, int  nth) const
 {
-  return ( theWrappedObject->configuration());
+  return ( theWrappedObject->capturedRef(nth));
 }
 
-QList<QAbstractAnimation* >  PythonQtWrapper_QStateMachine::defaultAnimations(QStateMachine* theWrappedObject) const
+int  PythonQtWrapper_QRegularExpressionMatch::capturedStart(QRegularExpressionMatch* theWrappedObject, const QString&  name) const
 {
-  return ( theWrappedObject->defaultAnimations());
+  return ( theWrappedObject->capturedStart(name));
 }
 
-void PythonQtWrapper_QStateMachine::endMicrostep(QStateMachine* theWrappedObject, QEvent*  event)
+int  PythonQtWrapper_QRegularExpressionMatch::capturedStart(QRegularExpressionMatch* theWrappedObject, int  nth) const
 {
-  ( ((PythonQtPublicPromoter_QStateMachine*)theWrappedObject)->promoted_endMicrostep(event));
+  return ( theWrappedObject->capturedStart(nth));
 }
 
-void PythonQtWrapper_QStateMachine::endSelectTransitions(QStateMachine* theWrappedObject, QEvent*  event)
+QStringList  PythonQtWrapper_QRegularExpressionMatch::capturedTexts(QRegularExpressionMatch* theWrappedObject) const
 {
-  ( ((PythonQtPublicPromoter_QStateMachine*)theWrappedObject)->promoted_endSelectTransitions(event));
+  return ( theWrappedObject->capturedTexts());
 }
 
-QStateMachine::Error  PythonQtWrapper_QStateMachine::error(QStateMachine* theWrappedObject) const
+bool  PythonQtWrapper_QRegularExpressionMatch::hasMatch(QRegularExpressionMatch* theWrappedObject) const
 {
-  return ( theWrappedObject->error());
+  return ( theWrappedObject->hasMatch());
 }
 
-QString  PythonQtWrapper_QStateMachine::errorString(QStateMachine* theWrappedObject) const
+bool  PythonQtWrapper_QRegularExpressionMatch::hasPartialMatch(QRegularExpressionMatch* theWrappedObject) const
 {
-  return ( theWrappedObject->errorString());
+  return ( theWrappedObject->hasPartialMatch());
 }
 
-bool  PythonQtWrapper_QStateMachine::event(QStateMachine* theWrappedObject, QEvent*  e)
+bool  PythonQtWrapper_QRegularExpressionMatch::isValid(QRegularExpressionMatch* theWrappedObject) const
 {
-  return ( ((PythonQtPublicPromoter_QStateMachine*)theWrappedObject)->promoted_event(e));
+  return ( theWrappedObject->isValid());
 }
 
-bool  PythonQtWrapper_QStateMachine::eventFilter(QStateMachine* theWrappedObject, QObject*  watched, QEvent*  event)
+int  PythonQtWrapper_QRegularExpressionMatch::lastCapturedIndex(QRegularExpressionMatch* theWrappedObject) const
 {
-  return ( ((PythonQtPublicPromoter_QStateMachine*)theWrappedObject)->promoted_eventFilter(watched, event));
+  return ( theWrappedObject->lastCapturedIndex());
 }
 
-QState::RestorePolicy  PythonQtWrapper_QStateMachine::globalRestorePolicy(QStateMachine* theWrappedObject) const
+QRegularExpression::MatchOptions  PythonQtWrapper_QRegularExpressionMatch::matchOptions(QRegularExpressionMatch* theWrappedObject) const
 {
-  return ( theWrappedObject->globalRestorePolicy());
+  return ( theWrappedObject->matchOptions());
 }
 
-bool  PythonQtWrapper_QStateMachine::isAnimated(QStateMachine* theWrappedObject) const
+QRegularExpression::MatchType  PythonQtWrapper_QRegularExpressionMatch::matchType(QRegularExpressionMatch* theWrappedObject) const
 {
-  return ( theWrappedObject->isAnimated());
+  return ( theWrappedObject->matchType());
 }
 
-bool  PythonQtWrapper_QStateMachine::isRunning(QStateMachine* theWrappedObject) const
+QRegularExpressionMatch*  PythonQtWrapper_QRegularExpressionMatch::operator_assign(QRegularExpressionMatch* theWrappedObject, const QRegularExpressionMatch&  match)
 {
-  return ( theWrappedObject->isRunning());
+  return &( (*theWrappedObject)= match);
 }
 
-void PythonQtWrapper_QStateMachine::onEntry(QStateMachine* theWrappedObject, QEvent*  event)
+QRegularExpression  PythonQtWrapper_QRegularExpressionMatch::regularExpression(QRegularExpressionMatch* theWrappedObject) const
 {
-  ( ((PythonQtPublicPromoter_QStateMachine*)theWrappedObject)->promoted_onEntry(event));
+  return ( theWrappedObject->regularExpression());
 }
 
-void PythonQtWrapper_QStateMachine::onExit(QStateMachine* theWrappedObject, QEvent*  event)
+void PythonQtWrapper_QRegularExpressionMatch::swap(QRegularExpressionMatch* theWrappedObject, QRegularExpressionMatch&  match)
 {
-  ( ((PythonQtPublicPromoter_QStateMachine*)theWrappedObject)->promoted_onExit(event));
+  ( theWrappedObject->swap(match));
 }
 
-int  PythonQtWrapper_QStateMachine::postDelayedEvent(QStateMachine* theWrappedObject, QEvent*  event, int  delay)
-{
-  return ( theWrappedObject->postDelayedEvent(event, delay));
-}
-
-void PythonQtWrapper_QStateMachine::postEvent(QStateMachine* theWrappedObject, QEvent*  event, QStateMachine::EventPriority  priority)
-{
-  ( theWrappedObject->postEvent(event, priority));
-}
-
-void PythonQtWrapper_QStateMachine::removeDefaultAnimation(QStateMachine* theWrappedObject, QAbstractAnimation*  animation)
-{
-  ( theWrappedObject->removeDefaultAnimation(animation));
-}
-
-void PythonQtWrapper_QStateMachine::removeState(QStateMachine* theWrappedObject, QAbstractState*  state)
-{
-  ( theWrappedObject->removeState(state));
-}
-
-void PythonQtWrapper_QStateMachine::setAnimated(QStateMachine* theWrappedObject, bool  enabled)
-{
-  ( theWrappedObject->setAnimated(enabled));
-}
-
-void PythonQtWrapper_QStateMachine::setGlobalRestorePolicy(QStateMachine* theWrappedObject, QState::RestorePolicy  restorePolicy)
-{
-  ( theWrappedObject->setGlobalRestorePolicy(restorePolicy));
+QString PythonQtWrapper_QRegularExpressionMatch::py_toString(QRegularExpressionMatch* obj) {
+  QString result;
+  QDebug d(&result);
+  d << *obj;
+  return result;
 }
 
 

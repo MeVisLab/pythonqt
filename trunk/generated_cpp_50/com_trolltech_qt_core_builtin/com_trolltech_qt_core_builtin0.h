@@ -22,6 +22,7 @@
 #include <qtextcodec.h>
 #include <qtransform.h>
 #include <qurl.h>
+#include <qurlquery.h>
 
 
 
@@ -981,19 +982,23 @@ class PythonQtWrapper_QUrl : public QObject
 { Q_OBJECT
 public:
 Q_ENUMS(ComponentFormattingOption ParsingMode UrlFormattingOption )
+Q_FLAGS(ComponentFormattingOptions )
 enum ComponentFormattingOption{
   PrettyDecoded = QUrl::PrettyDecoded,   EncodeSpaces = QUrl::EncodeSpaces,   EncodeUnicode = QUrl::EncodeUnicode,   EncodeDelimiters = QUrl::EncodeDelimiters,   EncodeReserved = QUrl::EncodeReserved,   DecodeReserved = QUrl::DecodeReserved,   FullyEncoded = QUrl::FullyEncoded,   FullyDecoded = QUrl::FullyDecoded};
 enum ParsingMode{
   TolerantMode = QUrl::TolerantMode,   StrictMode = QUrl::StrictMode,   DecodedMode = QUrl::DecodedMode};
 enum UrlFormattingOption{
   None = QUrl::None,   RemoveScheme = QUrl::RemoveScheme,   RemovePassword = QUrl::RemovePassword,   RemoveUserInfo = QUrl::RemoveUserInfo,   RemovePort = QUrl::RemovePort,   RemoveAuthority = QUrl::RemoveAuthority,   RemovePath = QUrl::RemovePath,   RemoveQuery = QUrl::RemoveQuery,   RemoveFragment = QUrl::RemoveFragment,   PreferLocalFile = QUrl::PreferLocalFile,   StripTrailingSlash = QUrl::StripTrailingSlash};
+Q_DECLARE_FLAGS(ComponentFormattingOptions, ComponentFormattingOption)
 public slots:
 QUrl* new_QUrl();
 QUrl* new_QUrl(const QString&  url, QUrl::ParsingMode  mode = QUrl::TolerantMode);
 QUrl* new_QUrl(const QUrl&  copy);
 void delete_QUrl(QUrl* obj) { delete obj; } 
+   QString  authority(QUrl* theWrappedObject, QUrl::ComponentFormattingOptions  options = QUrl::PrettyDecoded) const;
    void clear(QUrl* theWrappedObject);
    QString  errorString(QUrl* theWrappedObject) const;
+   QString  fragment(QUrl* theWrappedObject, QUrl::ComponentFormattingOptions  options = QUrl::PrettyDecoded) const;
    QString  static_QUrl_fromAce(const QByteArray&  arg__1);
    QUrl  static_QUrl_fromEncoded(const QByteArray&  url, QUrl::ParsingMode  mode = QUrl::TolerantMode);
    QUrl  static_QUrl_fromLocalFile(const QString&  localfile);
@@ -1001,6 +1006,7 @@ void delete_QUrl(QUrl* obj) { delete obj; }
    QUrl  static_QUrl_fromUserInput(const QString&  userInput);
    bool  hasFragment(QUrl* theWrappedObject) const;
    bool  hasQuery(QUrl* theWrappedObject) const;
+   QString  host(QUrl* theWrappedObject, QUrl::ComponentFormattingOptions  arg__1 = QUrl::PrettyDecoded) const;
    QStringList  static_QUrl_idnWhitelist();
    bool  isEmpty(QUrl* theWrappedObject) const;
    bool  isLocalFile(QUrl* theWrappedObject) const;
@@ -1012,7 +1018,10 @@ void delete_QUrl(QUrl* obj) { delete obj; }
    void writeTo(QUrl* theWrappedObject, QDataStream&  arg__1);
    bool  __eq__(QUrl* theWrappedObject, const QUrl&  url) const;
    void readFrom(QUrl* theWrappedObject, QDataStream&  arg__1);
+   QString  password(QUrl* theWrappedObject, QUrl::ComponentFormattingOptions  arg__1 = QUrl::PrettyDecoded) const;
+   QString  path(QUrl* theWrappedObject, QUrl::ComponentFormattingOptions  options = QUrl::PrettyDecoded) const;
    int  port(QUrl* theWrappedObject, int  defaultPort = -1) const;
+   QString  query(QUrl* theWrappedObject, QUrl::ComponentFormattingOptions  arg__1 = QUrl::PrettyDecoded) const;
    QUrl  resolved(QUrl* theWrappedObject, const QUrl&  relative) const;
    QString  scheme(QUrl* theWrappedObject) const;
    void setAuthority(QUrl* theWrappedObject, const QString&  authority, QUrl::ParsingMode  mode = QUrl::TolerantMode);
@@ -1023,6 +1032,7 @@ void delete_QUrl(QUrl* obj) { delete obj; }
    void setPath(QUrl* theWrappedObject, const QString&  path, QUrl::ParsingMode  mode = QUrl::TolerantMode);
    void setPort(QUrl* theWrappedObject, int  port);
    void setQuery(QUrl* theWrappedObject, const QString&  query, QUrl::ParsingMode  mode = QUrl::TolerantMode);
+   void setQuery(QUrl* theWrappedObject, const QUrlQuery&  query);
    void setScheme(QUrl* theWrappedObject, const QString&  scheme);
    void setUrl(QUrl* theWrappedObject, const QString&  url, QUrl::ParsingMode  mode = QUrl::TolerantMode);
    void setUserInfo(QUrl* theWrappedObject, const QString&  userInfo, QUrl::ParsingMode  mode = QUrl::TolerantMode);
@@ -1034,7 +1044,10 @@ void delete_QUrl(QUrl* obj) { delete obj; }
    QString  toLocalFile(QUrl* theWrappedObject) const;
    QByteArray  static_QUrl_toPercentEncoding(const QString&  arg__1, const QByteArray&  exclude = QByteArray(), const QByteArray&  include = QByteArray());
    QString  toString(QUrl* theWrappedObject, QUrl::FormattingOptions  options = QUrl::FormattingOptions(PrettyDecoded)) const;
+   QString  topLevelDomain(QUrl* theWrappedObject, QUrl::ComponentFormattingOptions  options = QUrl::PrettyDecoded) const;
    QString  url(QUrl* theWrappedObject, QUrl::FormattingOptions  options = QUrl::FormattingOptions(PrettyDecoded)) const;
+   QString  userInfo(QUrl* theWrappedObject, QUrl::ComponentFormattingOptions  options = QUrl::PrettyDecoded) const;
+   QString  userName(QUrl* theWrappedObject, QUrl::ComponentFormattingOptions  options = QUrl::PrettyDecoded) const;
     QString py_toString(QUrl*);
 };
 
@@ -1046,7 +1059,7 @@ class PythonQtWrapper_Qt : public QObject
 { Q_OBJECT
 public:
 Q_ENUMS(AlignmentFlag AnchorPoint ApplicationAttribute ArrowType AspectRatioMode Axis BGMode BrushStyle CaseSensitivity CheckState ClipOperation ConnectionType ContextMenuPolicy CoordinateSystem Corner CursorMoveStyle CursorShape DateFormat DayOfWeek DockWidgetArea DockWidgetAreaSizes DropAction EventPriority FillRule FindChildOption FocusPolicy FocusReason GestureFlag GestureState GestureType GlobalColor HitTestAccuracy ImageConversionFlag InputMethodHint InputMethodQuery ItemDataRole ItemFlag ItemSelectionMode Key KeyboardModifier LayoutDirection MaskMode MatchFlag MouseButton NavigationMode Orientation PenCapStyle PenJoinStyle PenStyle ScreenOrientation ScrollBarPolicy ShortcutContext SizeHint SizeMode SortOrder TextElideMode TextFlag TextFormat TextInteractionFlag TileRule TimeSpec TimerType ToolBarArea ToolBarAreaSizes ToolButtonStyle TouchPointState TransformationMode UIEffect WhiteSpaceMode WidgetAttribute WindowFrameSection WindowModality WindowState WindowType )
-Q_FLAGS(Alignment DockWidgetAreas DropActions GestureFlags ImageConversionFlags InputMethodHints ItemFlags KeyboardModifiers MatchFlags MouseButtons Orientations TextInteractionFlags ToolBarAreas TouchPointStates WindowStates WindowFlags )
+Q_FLAGS(Alignment DockWidgetAreas DropActions FindChildOptions GestureFlags ImageConversionFlags InputMethodHints InputMethodQueries ItemFlags KeyboardModifiers MatchFlags MouseButtons Orientations ScreenOrientations TextInteractionFlags ToolBarAreas TouchPointStates WindowStates WindowFlags )
 enum AlignmentFlag{
   AlignLeft = Qt::AlignLeft,   AlignLeading = Qt::AlignLeading,   AlignRight = Qt::AlignRight,   AlignTrailing = Qt::AlignTrailing,   AlignHCenter = Qt::AlignHCenter,   AlignJustify = Qt::AlignJustify,   AlignAbsolute = Qt::AlignAbsolute,   AlignHorizontal_Mask = Qt::AlignHorizontal_Mask,   AlignTop = Qt::AlignTop,   AlignBottom = Qt::AlignBottom,   AlignVCenter = Qt::AlignVCenter,   AlignVertical_Mask = Qt::AlignVertical_Mask,   AlignCenter = Qt::AlignCenter};
 enum AnchorPoint{
@@ -1198,14 +1211,17 @@ enum WindowType{
 Q_DECLARE_FLAGS(Alignment, AlignmentFlag)
 Q_DECLARE_FLAGS(DockWidgetAreas, DockWidgetArea)
 Q_DECLARE_FLAGS(DropActions, DropAction)
+Q_DECLARE_FLAGS(FindChildOptions, FindChildOption)
 Q_DECLARE_FLAGS(GestureFlags, GestureFlag)
 Q_DECLARE_FLAGS(ImageConversionFlags, ImageConversionFlag)
 Q_DECLARE_FLAGS(InputMethodHints, InputMethodHint)
+Q_DECLARE_FLAGS(InputMethodQueries, InputMethodQuery)
 Q_DECLARE_FLAGS(ItemFlags, ItemFlag)
 Q_DECLARE_FLAGS(KeyboardModifiers, KeyboardModifier)
 Q_DECLARE_FLAGS(MatchFlags, MatchFlag)
 Q_DECLARE_FLAGS(MouseButtons, MouseButton)
 Q_DECLARE_FLAGS(Orientations, Orientation)
+Q_DECLARE_FLAGS(ScreenOrientations, ScreenOrientation)
 Q_DECLARE_FLAGS(TextInteractionFlags, TextInteractionFlag)
 Q_DECLARE_FLAGS(ToolBarAreas, ToolBarArea)
 Q_DECLARE_FLAGS(TouchPointStates, TouchPointState)

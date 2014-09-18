@@ -4,6 +4,7 @@
 #include <QPixmap>
 #include <QVariant>
 #include <qaction.h>
+#include <qbackingstore.h>
 #include <qbitmap.h>
 #include <qbytearray.h>
 #include <qcolor.h>
@@ -30,6 +31,7 @@
 #include <qmatrix4x4.h>
 #include <qmetaobject.h>
 #include <qobject.h>
+#include <qopenglcontext.h>
 #include <qpaintdevice.h>
 #include <qpaintengine.h>
 #include <qpainter.h>
@@ -41,11 +43,13 @@
 #include <qsize.h>
 #include <qsizepolicy.h>
 #include <qstyle.h>
+#include <qsurfaceformat.h>
 #include <qtransform.h>
 #include <qvector2d.h>
 #include <qvector3d.h>
 #include <qvector4d.h>
 #include <qwidget.h>
+#include <qwindow.h>
 
 
 
@@ -167,6 +171,7 @@ void delete_QGLContext(QGLContext* obj) { delete obj; }
    GLuint  bindTexture(QGLContext* theWrappedObject, const QPixmap&  pixmap, GLenum  target, GLint  format, QGLContext::BindOptions  options);
    GLuint  bindTexture(QGLContext* theWrappedObject, const QString&  fileName);
    bool  chooseContext(QGLContext* theWrappedObject, const QGLContext*  shareContext = 0);
+   QOpenGLContext*  contextHandle(QGLContext* theWrappedObject) const;
    bool  create(QGLContext* theWrappedObject, const QGLContext*  shareContext = 0);
    const QGLContext*  static_QGLContext_currentContext();
    void deleteTexture(QGLContext* theWrappedObject, GLuint  tx_id);
@@ -175,6 +180,7 @@ void delete_QGLContext(QGLContext* obj) { delete obj; }
    void drawTexture(QGLContext* theWrappedObject, const QPointF&  point, GLuint  textureId, GLenum  textureTarget = 0x0DE1);
    void drawTexture(QGLContext* theWrappedObject, const QRectF&  target, GLuint  textureId, GLenum  textureTarget = 0x0DE1);
    QGLFormat  format(QGLContext* theWrappedObject) const;
+   QGLContext*  static_QGLContext_fromOpenGLContext(QOpenGLContext*  platformContext);
    QGLFunctions*  functions(QGLContext* theWrappedObject) const;
    bool  isSharing(QGLContext* theWrappedObject) const;
    bool  isValid(QGLContext* theWrappedObject) const;
@@ -219,6 +225,7 @@ void delete_QGLFormat(QGLFormat* obj) { delete obj; }
    int  depthBufferSize(QGLFormat* theWrappedObject) const;
    bool  directRendering(QGLFormat* theWrappedObject) const;
    bool  doubleBuffer(QGLFormat* theWrappedObject) const;
+   QGLFormat  static_QGLFormat_fromSurfaceFormat(const QSurfaceFormat&  format);
    int  greenBufferSize(QGLFormat* theWrappedObject) const;
    bool  static_QGLFormat_hasOpenGL();
    bool  static_QGLFormat_hasOpenGLOverlays();
@@ -263,6 +270,7 @@ void delete_QGLFormat(QGLFormat* obj) { delete obj; }
    bool  stereo(QGLFormat* theWrappedObject) const;
    int  swapInterval(QGLFormat* theWrappedObject) const;
    bool  testOption(QGLFormat* theWrappedObject, QGL::FormatOptions  opt) const;
+   QSurfaceFormat  static_QGLFormat_toSurfaceFormat(const QGLFormat&  format);
     QString py_toString(QGLFormat*);
 };
 
@@ -368,8 +376,10 @@ class PythonQtWrapper_QGLFunctions : public QObject
 { Q_OBJECT
 public:
 Q_ENUMS(OpenGLFeature )
+Q_FLAGS(OpenGLFeatures )
 enum OpenGLFeature{
   Multitexture = QGLFunctions::Multitexture,   Shaders = QGLFunctions::Shaders,   Buffers = QGLFunctions::Buffers,   Framebuffers = QGLFunctions::Framebuffers,   BlendColor = QGLFunctions::BlendColor,   BlendEquation = QGLFunctions::BlendEquation,   BlendEquationSeparate = QGLFunctions::BlendEquationSeparate,   BlendFuncSeparate = QGLFunctions::BlendFuncSeparate,   BlendSubtract = QGLFunctions::BlendSubtract,   CompressedTextures = QGLFunctions::CompressedTextures,   Multisample = QGLFunctions::Multisample,   StencilSeparate = QGLFunctions::StencilSeparate,   NPOTTextures = QGLFunctions::NPOTTextures};
+Q_DECLARE_FLAGS(OpenGLFeatures, OpenGLFeature)
 public slots:
 QGLFunctions* new_QGLFunctions();
 QGLFunctions* new_QGLFunctions(const QGLContext*  context);
@@ -471,6 +481,7 @@ void delete_QGLFunctions(QGLFunctions* obj) { delete obj; }
    void glVertexAttribPointer(QGLFunctions* theWrappedObject, GLuint  indx, GLint  size, GLenum  type, GLboolean  normalized, GLsizei  stride, const void*  ptr);
    bool  hasOpenGLFeature(QGLFunctions* theWrappedObject, QGLFunctions::OpenGLFeature  feature) const;
    void initializeGLFunctions(QGLFunctions* theWrappedObject, const QGLContext*  context = 0);
+   QGLFunctions::OpenGLFeatures  openGLFeatures(QGLFunctions* theWrappedObject) const;
 };
 
 

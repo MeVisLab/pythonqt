@@ -90,6 +90,7 @@ void delete_QAbstractUriResolver(QAbstractUriResolver* obj) { delete obj; }
 class PythonQtShell_QAbstractXmlNodeModel : public QAbstractXmlNodeModel
 {
 public:
+    PythonQtShell_QAbstractXmlNodeModel():QAbstractXmlNodeModel(),_wrapper(NULL) {};
 
    ~PythonQtShell_QAbstractXmlNodeModel();
 
@@ -121,6 +122,7 @@ enum NodeCopySetting{
 enum SimpleAxis{
   Parent = QAbstractXmlNodeModel::Parent,   FirstChild = QAbstractXmlNodeModel::FirstChild,   PreviousSibling = QAbstractXmlNodeModel::PreviousSibling,   NextSibling = QAbstractXmlNodeModel::NextSibling};
 public slots:
+QAbstractXmlNodeModel* new_QAbstractXmlNodeModel();
 void delete_QAbstractXmlNodeModel(QAbstractXmlNodeModel* obj) { delete obj; } 
    QSourceLocation  sourceLocation(QAbstractXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  index) const;
 };
@@ -163,10 +165,6 @@ class PythonQtWrapper_QAbstractXmlReceiver : public QObject
 public:
 public slots:
 QAbstractXmlReceiver* new_QAbstractXmlReceiver();
-QAbstractXmlReceiver* new_QAbstractXmlReceiver(const QAbstractXmlReceiver& other) {
-PythonQtShell_QAbstractXmlReceiver* a = new PythonQtShell_QAbstractXmlReceiver();
-*((QAbstractXmlReceiver*)a) = other;
-return a; }
 void delete_QAbstractXmlReceiver(QAbstractXmlReceiver* obj) { delete obj; } 
    void whitespaceOnly(QAbstractXmlReceiver* theWrappedObject, const QStringRef&  value);
 };
@@ -529,7 +527,6 @@ void delete_QXmlSchemaValidator(QXmlSchemaValidator* obj) { delete obj; }
    QAbstractMessageHandler*  messageHandler(QXmlSchemaValidator* theWrappedObject) const;
    QXmlNamePool  namePool(QXmlSchemaValidator* theWrappedObject) const;
    QNetworkAccessManager*  networkAccessManager(QXmlSchemaValidator* theWrappedObject) const;
-   QXmlSchema  schema(QXmlSchemaValidator* theWrappedObject) const;
    void setMessageHandler(QXmlSchemaValidator* theWrappedObject, QAbstractMessageHandler*  handler);
    void setNetworkAccessManager(QXmlSchemaValidator* theWrappedObject, QNetworkAccessManager*  networkmanager);
    void setSchema(QXmlSchemaValidator* theWrappedObject, const QXmlSchema&  schema);
