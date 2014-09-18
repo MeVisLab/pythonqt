@@ -321,6 +321,23 @@ void PythonQtTestSlotCalling::testMultiArgsSlotCall()
   QVERIFY(_helper->runScript("if obj.getMultiArgs(12,47.11,'test')==(12,47.11,'test'): obj.setPassed();\n"));
 }
 
+void PythonQtTestSlotCalling::testProperties()
+{
+  QVERIFY(_helper->runScript("obj.intProp = 47\nif obj.intProp == 47: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("obj.floatProp = 47\nif obj.floatProp == 47: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("obj.variantListProp = (1,'test')\nif obj.variantListProp == (1,'test'): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("obj.variantMapProp = {'test':'a', 'bla':'blubb'}\nif obj.variantMapProp == {'test':'a', 'bla':'blubb'}: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("obj.variantProp = {'test':'a', 'bla':'blubb'}\nif obj.variantProp == {'test':'a', 'bla':'blubb'}: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("obj.variantProp = 'test'\nif obj.variantProp == 'test': obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("obj.variantProp = 47.11\nif obj.variantProp == 47.11: obj.setPassed();\n"));
+
+//  QVERIFY(_helper->runScript("if obj.qObjectProp == obj: obj.setPassed();\n"));
+//  QVERIFY(_helper->runScript("if obj.qObjectListProp == (obj,obj): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("obj.qObjectProp = obj\nif obj.qObjectProp == obj: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("obj.qObjectListProp = (obj,obj,obj)\nif obj.qObjectListProp == (obj,obj,obj): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("obj.sizeProp = PythonQt.QtCore.QSize(1,2)\nif obj.sizeProp == PythonQt.QtCore.QSize(1,2): obj.setPassed();\n"));
+}
+
 bool PythonQtTestSlotCallingHelper::runScript(const char* script, int expectedOverload)
 {
   _called = false;

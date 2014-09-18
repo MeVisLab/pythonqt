@@ -327,6 +327,7 @@ private Q_SLOTS:
   void testCppFactory();
   void testInheritance();
   void testAutoConversion();
+  void testProperties();
 
 private:
   PythonQtTestSlotCallingHelper* _helper;
@@ -340,9 +341,54 @@ class PythonQtTestSlotCallingHelper : public QObject
 public:
   PythonQtTestSlotCallingHelper(PythonQtTestSlotCalling* test) {
     _test = test;
+    _qObjectProp = NULL;
   };
 
   bool runScript(const char* script, int expectedOverload = -1);
+
+  Q_PROPERTY(int intProp READ intProp WRITE setIntProp);
+  Q_PROPERTY(float floatProp READ floatProp WRITE setFloatProp);
+  Q_PROPERTY(QVariantList variantListProp READ variantListProp WRITE setVariantListProp);
+  Q_PROPERTY(QVariantMap  variantMapProp READ variantMapProp WRITE setVariantMapProp);
+  Q_PROPERTY(QVariant     variantProp READ variantProp WRITE setVariantProp);
+  Q_PROPERTY(QObject*     qObjectProp READ qObjectProp WRITE setQObjectProp);
+  Q_PROPERTY(QList<QObject*>  qObjectListProp READ qObjectListProp WRITE setQObjectListProp);
+
+  Q_PROPERTY(QSize sizeProp READ sizeProp WRITE setSizeProp);
+
+public:
+  int intProp() const { _called = true; return _intProp; }
+  void setIntProp(int value) { _called = true; _intProp = value; }
+  float floatProp() const { _called = true; return _floatProp; }
+  void setFloatProp(float value) { _called = true; _floatProp = value; }
+
+  QVariantList variantListProp() const { _called = true; return _variantListProp; }
+  void setVariantListProp(const QVariantList& value) { _called = true; _variantListProp = value; }
+
+  QVariantMap variantMapProp() const { _called = true; return _variantMapProp; }
+  void setVariantMapProp(const QVariantMap& value) { _called = true; _variantMapProp = value; }
+
+  QVariant variantProp() const { _called = true; return _variantProp; }
+  void setVariantProp(const QVariant& value) { _called = true; _variantProp = value; }
+
+  QObject* qObjectProp() const { _called = true; return _qObjectProp; }
+  void setQObjectProp(QObject* value) { _called = true; _qObjectProp = value; }
+
+  QObjectList qObjectListProp() const { _called = true; return _qObjectListProp; }
+  void setQObjectListProp(const QObjectList& value) { _called = true; _qObjectListProp = value; }
+
+  QSize sizeProp() const { _called = true; return _sizeProp; }
+  void setSizeProp(const QSize& value) { _called = true; _sizeProp = value; }
+
+private:
+  int   _intProp;
+  float _floatProp;
+  QVariantList _variantListProp;
+  QVariantMap _variantMapProp;
+  QVariant _variantProp;
+  QObject* _qObjectProp;
+  QObjectList _qObjectListProp;
+  QSize _sizeProp;
 
 public Q_SLOTS:
 
@@ -472,7 +518,7 @@ public Q_SLOTS:
   
 private:
   bool _passed;
-  bool _called;
+  mutable bool _called;
   int  _calledOverload;
   PythonQtTestSlotCalling* _test;
 };
