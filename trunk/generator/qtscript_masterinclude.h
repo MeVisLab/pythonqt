@@ -53,6 +53,12 @@
 #include <QtWidgets/QtWidgets>
 #endif
 
+#include <QtMultimedia/QtMultimedia>
+
+#if QT_VERSION >= 0x050000
+#include <QtMultimediaWidgets/QtMultimediaWidgets>
+#endif
+
 #ifndef QT_NO_XMLPATTERNS
 #  include <QtXmlPatterns/QtXmlPatterns>
 #endif
