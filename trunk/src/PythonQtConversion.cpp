@@ -565,7 +565,7 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
        {
          QByteArray bytes = PyObjGetBytes(obj, strict, ok);
 #ifdef PY3K
-         if (!ok) {
+         if (!ok && !strict) {
            // since Qt uses QByteArray in many places for identifier strings,
            // we need to allow implicit conversion from unicode as well:
            bytes = PyObjGetString(obj, strict, ok).toUtf8();
