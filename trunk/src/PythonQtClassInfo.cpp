@@ -42,6 +42,7 @@
 #include "PythonQtClassInfo.h"
 #include "PythonQtMethodInfo.h"
 #include "PythonQt.h"
+#include "PythonQtConversion.h"
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QMetaEnum>
@@ -60,6 +61,7 @@ PythonQtClassInfo::PythonQtClassInfo() {
   _typeSlots = 0;
   _isQObject = false;
   _enumsCreated = false;
+  _searchPolymorphicHandlerOnParent = true;
 }
 
 PythonQtClassInfo::~PythonQtClassInfo()
@@ -89,6 +91,9 @@ void PythonQtClassInfo::setupCPPObject(const QByteArray& classname)
   _isQObject = false;
   _wrappedClassName = classname;
   _metaTypeId = QMetaType::type(classname);
+  if (_metaTypeId == 0) {
+    _metaTypeId = -1;
+  }
 }
 
 void PythonQtClassInfo::clearCachedMembers()
@@ -755,7 +760,31 @@ void* PythonQtClassInfo::castDownIfPossible(void* ptr, PythonQtClassInfo** resul
 {
   const char* className;
   // this would do downcasting recursively...
+  // It is too expensive, since it walks the whole hierarchy on each cast...
   // void* resultPtr = recursiveCastDownIfPossible(ptr, &className);
+
+  if (_polymorphicHandlers.isEmpty() && _searchPolymorphicHandlerOnParent) {
+    // if we don't have a polymorphic handler, seach
+    // in the first parent class hierarchy, not for multiple inheritance...
+    // (for speed reasons and because of casting offsets...)
+    // Only do this once...
+    _searchPolymorphicHandlerOnParent = false;
+    if (_parentClasses.count()>0) {
+      PythonQtClassInfo* parent = _parentClasses[0]._parent;
+      while (parent) {
+        if (parent->_polymorphicHandlers.count()>0) {
+          // copy handlers from parent class, to speedup next lookup
+          _polymorphicHandlers = parent->_polymorphicHandlers;
+          break;
+        }
+        if (parent->_parentClasses.count()>0) {
+          parent = parent->_parentClasses[0]._parent;
+        } else {
+          parent = NULL;
+        }
+      }
+    }
+  }
 
   // we only do downcasting on the base object, not on the whole inheritance tree...
   void* resultPtr = NULL;
@@ -881,6 +910,51 @@ QByteArray PythonQtClassInfo::unscopedClassName() const
     return _wrappedClassName;
   }
 }
+
+PyObject* PythonQtClassInfo::copyObject( void* cppObject )
+{
+  PythonQtClassInfo* info;
+  cppObject = castDownIfPossible(cppObject, &info);
+  if (info->metaTypeId() != PythonQtMethodInfo::Unknown) {
+    // use meta type to copy the object
+    return PythonQtConv::createCopyFromMetaType(info->metaTypeId(), cppObject);
+  } else {
+    // use copy constructor
+    PythonQtSlotInfo* slot = info->getCopyConstructor();
+    if (slot) {
+      void* result;
+      void* args[2];
+      args[0] = &result;
+      args[1] = cppObject;
+      slot->decorator()->qt_metacall(QMetaObject::InvokeMetaMethod, slot->slotIndex(), args);
+      if (result) {
+        PythonQtInstanceWrapper* wrapper =  (PythonQtInstanceWrapper*)PythonQt::priv()->wrapPtr(result, info->className());
+        if (wrapper) {
+          wrapper->_ownedByPythonQt = true;
+        }
+        return (PyObject*)wrapper;
+      }
+    } else {
+      std::cerr << "PythonQt: Can't create a copy of '" << info->_wrappedClassName.constData() << "', either use qRegisterMetaType() or add a copy constructor to the decorator/wrapper." << std::endl;
+    }
+  }
+  return NULL;
+}
+
+PythonQtSlotInfo* PythonQtClassInfo::getCopyConstructor()
+{
+  PythonQtSlotInfo* construc = constructors();
+  while (construc) {
+    if ((construc->parameterCount() == 2) &&
+        (construc->parameters().at(1).name == _wrappedClassName) &&  
+        (construc->parameters().at(1).pointerCount == 0)) {
+      return construc;
+    }
+    construc = construc->nextInfo();
+  }
+  return NULL;
+}
+
 //-------------------------------------------------------------------------
 
 PythonQtMemberInfo::PythonQtMemberInfo( PythonQtSlotInfo* info )

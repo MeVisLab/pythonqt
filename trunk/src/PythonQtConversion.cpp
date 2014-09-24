@@ -114,11 +114,22 @@ PyObject* PythonQtConv::ConvertQtValueToPython(const PythonQtMethodInfo::Paramet
     // convert the pointer to a Python Object (we can handle ANY C++ object, in the worst case we just know the type and the pointer)
     return PythonQt::priv()->wrapPtr(*((void**)data), info.name);
   } else if (info.pointerCount == 0) {
-    // handle values that are not yet handled and not pointers
-    return ConvertQtValueToPythonInternal(info.typeId, data);
-  } else {
-    return NULL;
+    if (info.typeId != PythonQtMethodInfo::Unknown) {
+      // handle values that are const& or by value and have a metatype
+      return ConvertQtValueToPythonInternal(info.typeId, data);
+    } else {
+      // the type does not have a typeid, we need to make a copy using the copy constructor
+      PythonQtClassInfo* classInfo = PythonQt::priv()->getClassInfo(info.name);
+      if (classInfo) {
+        PyObject* result = classInfo->copyObject((void*)data);
+        if (result) {
+          return result;
+        }
+      }
+    }
   }
+  Py_INCREF(Py_None);
+  return Py_None;
 }
 
 PyObject* PythonQtConv::ConvertQtValueToPythonInternal(int type, const void* data) {
@@ -191,19 +202,10 @@ PyObject* PythonQtConv::ConvertQtValueToPythonInternal(int type, const void* dat
       return o;
     } else {
       if (type > 0) {
-        // if the type is known, we can construct it via QMetaType::construct
-#if( QT_VERSION >= QT_VERSION_CHECK(5,0,0) )
-        void* newCPPObject = QMetaType::create(type, data);
-#else
-        void* newCPPObject = QMetaType::construct(type, data);
-#endif
-        // XXX this could be optimized by using metatypeid directly
-        PythonQtInstanceWrapper* wrap = (PythonQtInstanceWrapper*)PythonQt::priv()->wrapPtr(newCPPObject, QMetaType::typeName(type));
-        wrap->_ownedByPythonQt = true;
-        wrap->_useQMetaTypeDestroy = true;
-        return (PyObject*)wrap;
+        return createCopyFromMetaType(type, data);
+      } else {
+        std::cerr << "Unknown type that can not be converted to Python: " << type << ", in " << __FILE__ << ":" << __LINE__ << std::endl;
       }
-      std::cerr << "Unknown type that can not be converted to Python: " << type << ", in " << __FILE__ << ":" << __LINE__ << std::endl;
     }
   }
   Py_INCREF(Py_None);
@@ -233,6 +235,8 @@ PyObject* PythonQtConv::ConvertQtValueToPythonInternal(int type, const void* dat
      case QMetaType::QChar:
      case QMetaType::Float:
      case QMetaType::Double:
+     case QMetaType::LongLong:
+     case QMetaType::ULongLong:
        PythonQtValueStorage_ADD_VALUE(global_valueStorage, qint64, 0, ptr);
        break;
      case PythonQtMethodInfo::Variant:
@@ -1386,4 +1390,19 @@ QString PythonQtConv::CPPObjectToString(int type, const void* data) {
       }
   }
   return r;
+}
+
+PyObject* PythonQtConv::createCopyFromMetaType( int type, const void* data )
+{
+  // if the type is known, we can construct it via QMetaType::construct
+#if( QT_VERSION >= QT_VERSION_CHECK(5,0,0) )
+  void* newCPPObject = QMetaType::create(type, data);
+#else
+  void* newCPPObject = QMetaType::construct(type, data);
+#endif
+  // XXX this could be optimized by using metatypeid directly
+  PythonQtInstanceWrapper* wrap = (PythonQtInstanceWrapper*)PythonQt::priv()->wrapPtr(newCPPObject, QMetaType::typeName(type));
+  wrap->_ownedByPythonQt = true;
+  wrap->_useQMetaTypeDestroy = true;
+  return (PyObject*)wrap;
 }

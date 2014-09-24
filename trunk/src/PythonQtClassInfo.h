@@ -196,6 +196,15 @@ public:
   //! get nested classes
   const QList<PythonQtClassInfo*>& nestedClasses() { return _nestedClasses; }
 
+  //! Create a copy of the given C++ object (which is known to be of a derived class), wrapped by Python and owned by PythonQt.
+  //! This will downcast if possible and return a copy of the down casted object.
+  //! This either requires a copy constructor on the class or it needs to be registered
+  //! as a meta type.
+  PyObject* copyObject(void* cppObject);
+
+  //! Get the copy constructor for this class
+  PythonQtSlotInfo* getCopyConstructor();
+
 private:
   void createEnumWrappers();
   void createEnumWrappers(const QMetaObject* meta);
@@ -249,6 +258,7 @@ private:
 
   bool                                 _isQObject;
   bool                                 _enumsCreated;
+  bool                                 _searchPolymorphicHandlerOnParent;
   
 };
 
