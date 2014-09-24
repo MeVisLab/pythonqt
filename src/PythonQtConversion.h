@@ -168,6 +168,9 @@ public:
   //! converts the Qt parameter given in \c data, interpreting it as a \c type registered qvariant/meta type, into a Python object,
   static PyObject* ConvertQtValueToPythonInternal(int type, const void* data);
 
+  //! creates a copy of given object, using the QMetaType
+  static PyObject* createCopyFromMetaType( int type, const void* object );
+
   //! cast wrapper to given className if possible
   static void* castWrapperTo(PythonQtInstanceWrapper* wrapper, const QByteArray& className, bool& ok);
 
