@@ -2,11 +2,8 @@
 <typesystem package="com.trolltech.qt.gui">
   <rejection class="QColormap"/>
   <rejection class="QIconEngineV2"/>
-  <rejection class="QPainterPath::Element"/>
   <rejection class="QTextBlock::iterator"/>
-  <rejection class="QTextEdit::ExtraSelection"/>
   <rejection class="QTextFrame::iterator"/>
-  <rejection class="QTextLayout::FormatRange"/>
   <rejection class="QTreeWidgetItemIterator"/>
   <rejection class="QAccessibleFactoryInterface"/>
   <rejection class="QIconEngineFactoryInterfaceV2"/>
