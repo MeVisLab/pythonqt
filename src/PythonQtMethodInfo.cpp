@@ -152,7 +152,7 @@ void PythonQtMethodInfo::fillParameterInfo(ParameterInfo& type, const QByteArray
     }
 
     type.typeId = nameToType(name);
-    if ((type.pointerCount == 0) && type.typeId == Unknown) {
+    if (type.typeId == Unknown) {
       type.typeId = QMetaType::type(name.constData());
 #if( QT_VERSION >= QT_VERSION_CHECK(5,0,0) )
       if (type.typeId == QMetaType::UnknownType) {

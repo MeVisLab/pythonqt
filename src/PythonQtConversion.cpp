@@ -105,7 +105,7 @@ PyObject* PythonQtConv::ConvertQtValueToPython(const PythonQtMethodInfo::Paramet
     // if a converter is registered, we use is:
     PythonQtConvertMetaTypeToPythonCB* converter = _metaTypeToPythonConverters.value(info.typeId);
     if (converter) {
-      return (*converter)(data, info.typeId);
+      return (*converter)(info.pointerCount==0?data:*((void**)data), info.typeId);
     }
   }
 
