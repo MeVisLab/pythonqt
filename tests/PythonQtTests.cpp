@@ -330,9 +330,6 @@ void PythonQtTestSlotCalling::testProperties()
   QVERIFY(_helper->runScript("obj.variantProp = {'test':'a', 'bla':'blubb'}\nif obj.variantProp == {'test':'a', 'bla':'blubb'}: obj.setPassed();\n"));
   QVERIFY(_helper->runScript("obj.variantProp = 'test'\nif obj.variantProp == 'test': obj.setPassed();\n"));
   QVERIFY(_helper->runScript("obj.variantProp = 47.11\nif obj.variantProp == 47.11: obj.setPassed();\n"));
-
-//  QVERIFY(_helper->runScript("if obj.qObjectProp == obj: obj.setPassed();\n"));
-//  QVERIFY(_helper->runScript("if obj.qObjectListProp == (obj,obj): obj.setPassed();\n"));
   QVERIFY(_helper->runScript("obj.qObjectProp = obj\nif obj.qObjectProp == obj: obj.setPassed();\n"));
   QVERIFY(_helper->runScript("obj.qObjectListProp = (obj,obj,obj)\nif obj.qObjectListProp == (obj,obj,obj): obj.setPassed();\n"));
   QVERIFY(_helper->runScript("obj.sizeProp = PythonQt.QtCore.QSize(1,2)\nif obj.sizeProp == PythonQt.QtCore.QSize(1,2): obj.setPassed();\n"));
