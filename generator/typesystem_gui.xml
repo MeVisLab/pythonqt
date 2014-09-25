@@ -1972,6 +1972,7 @@ PyObject* constScanLine(QImage* image, int line) {
         <include file-name="QPixmap" location="global"/>
     </extra-includes>
     <modify-function signature="event(QEvent*)" remove="all"/>
+    <modify-function signature="connectNotify(const char*)" remove="all"/>
   </object-type>
 
   <object-type name="QAbstractScrollArea">
