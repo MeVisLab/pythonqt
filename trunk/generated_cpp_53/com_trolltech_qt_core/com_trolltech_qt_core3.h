@@ -53,6 +53,7 @@ virtual QByteArray  name() const;
 
 class PythonQtPublicPromoter_QTextCodec : public QTextCodec
 { public:
+friend class PythonQtWrapper_QTextCodec;
 inline QList<QByteArray >  promoted_aliases() const { return QTextCodec::aliases(); }
 };
 
@@ -266,6 +267,7 @@ virtual qreal  valueForTime(int  msec) const;
 
 class PythonQtPublicPromoter_QTimeLine : public QTimeLine
 { public:
+friend class PythonQtWrapper_QTimeLine;
 inline void promoted_timerEvent(QTimerEvent*  event) { QTimeLine::timerEvent(event); }
 inline qreal  promoted_valueForTime(int  msec) const { return QTimeLine::valueForTime(msec); }
 };
@@ -382,6 +384,7 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QTimer : public QTimer
 { public:
+friend class PythonQtWrapper_QTimer;
 inline void promoted_timerEvent(QTimerEvent*  arg__1) { QTimer::timerEvent(arg__1); }
 };
 
@@ -453,6 +456,7 @@ virtual QString  translate(const char*  context, const char*  sourceText, const 
 
 class PythonQtPublicPromoter_QTranslator : public QTranslator
 { public:
+friend class PythonQtWrapper_QTranslator;
 inline bool  promoted_isEmpty() const { return QTranslator::isEmpty(); }
 };
 
@@ -598,6 +602,7 @@ virtual void updateState(QAbstractAnimation::State  newState, QAbstractAnimation
 
 class PythonQtPublicPromoter_QVariantAnimation : public QVariantAnimation
 { public:
+friend class PythonQtWrapper_QVariantAnimation;
 inline int  promoted_duration() const { return QVariantAnimation::duration(); }
 inline bool  promoted_event(QEvent*  event) { return QVariantAnimation::event(event); }
 inline QVariant  promoted_interpolated(const QVariant&  from, const QVariant&  to, qreal  progress) const { return QVariantAnimation::interpolated(from, to, progress); }
@@ -667,6 +672,7 @@ virtual QString  resolveUndeclaredEntity(const QString&  name);
 
 class PythonQtPublicPromoter_QXmlStreamEntityResolver : public QXmlStreamEntityResolver
 { public:
+friend class PythonQtWrapper_QXmlStreamEntityResolver;
 inline QString  promoted_resolveEntity(const QString&  publicId, const QString&  systemId) { return QXmlStreamEntityResolver::resolveEntity(publicId, systemId); }
 inline QString  promoted_resolveUndeclaredEntity(const QString&  name) { return QXmlStreamEntityResolver::resolveUndeclaredEntity(name); }
 };

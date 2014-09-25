@@ -278,6 +278,7 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QMdiArea : public QMdiArea
 { public:
+friend class PythonQtWrapper_QMdiArea;
 inline void promoted_childEvent(QChildEvent*  childEvent) { QMdiArea::childEvent(childEvent); }
 inline bool  promoted_event(QEvent*  event) { return QMdiArea::event(event); }
 inline bool  promoted_eventFilter(QObject*  object, QEvent*  event) { return QMdiArea::eventFilter(object, event); }
@@ -397,6 +398,7 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QMdiSubWindow : public QMdiSubWindow
 { public:
+friend class PythonQtWrapper_QMdiSubWindow;
 inline void promoted_changeEvent(QEvent*  changeEvent) { QMdiSubWindow::changeEvent(changeEvent); }
 inline void promoted_childEvent(QChildEvent*  childEvent) { QMdiSubWindow::childEvent(childEvent); }
 inline void promoted_closeEvent(QCloseEvent*  closeEvent) { QMdiSubWindow::closeEvent(closeEvent); }
@@ -529,12 +531,15 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QMenu : public QMenu
 { public:
+friend class PythonQtWrapper_QMenu;
 inline void promoted_actionEvent(QActionEvent*  arg__1) { QMenu::actionEvent(arg__1); }
 inline void promoted_changeEvent(QEvent*  arg__1) { QMenu::changeEvent(arg__1); }
+inline int  promoted_columnCount() const { return QMenu::columnCount(); }
 inline void promoted_enterEvent(QEvent*  arg__1) { QMenu::enterEvent(arg__1); }
 inline bool  promoted_event(QEvent*  arg__1) { return QMenu::event(arg__1); }
 inline bool  promoted_focusNextPrevChild(bool  next) { return QMenu::focusNextPrevChild(next); }
 inline void promoted_hideEvent(QHideEvent*  arg__1) { QMenu::hideEvent(arg__1); }
+inline void promoted_initStyleOption(QStyleOptionMenuItem*  option, const QAction*  action) const { QMenu::initStyleOption(option, action); }
 inline void promoted_keyPressEvent(QKeyEvent*  arg__1) { QMenu::keyPressEvent(arg__1); }
 inline void promoted_leaveEvent(QEvent*  arg__1) { QMenu::leaveEvent(arg__1); }
 inline void promoted_mouseMoveEvent(QMouseEvent*  arg__1) { QMenu::mouseMoveEvent(arg__1); }
@@ -569,6 +574,7 @@ void delete_QMenu(QMenu* obj) { delete obj; }
    QAction*  addSeparator(QMenu* theWrappedObject);
    void changeEvent(QMenu* theWrappedObject, QEvent*  arg__1);
    void clear(QMenu* theWrappedObject);
+   int  columnCount(QMenu* theWrappedObject) const;
    QAction*  defaultAction(QMenu* theWrappedObject) const;
    void enterEvent(QMenu* theWrappedObject, QEvent*  arg__1);
    bool  event(QMenu* theWrappedObject, QEvent*  arg__1);
@@ -579,6 +585,7 @@ void delete_QMenu(QMenu* obj) { delete obj; }
    void hideEvent(QMenu* theWrappedObject, QHideEvent*  arg__1);
    void hideTearOffMenu(QMenu* theWrappedObject);
    QIcon  icon(QMenu* theWrappedObject) const;
+   void initStyleOption(QMenu* theWrappedObject, QStyleOptionMenuItem*  option, const QAction*  action) const;
    QAction*  insertMenu(QMenu* theWrappedObject, QAction*  before, QMenu*  menu);
    QAction*  insertSection(QMenu* theWrappedObject, QAction*  before, const QIcon&  icon, const QString&  text);
    QAction*  insertSection(QMenu* theWrappedObject, QAction*  before, const QString&  text);
@@ -686,6 +693,7 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QMenuBar : public QMenuBar
 { public:
+friend class PythonQtWrapper_QMenuBar;
 inline void promoted_actionEvent(QActionEvent*  arg__1) { QMenuBar::actionEvent(arg__1); }
 inline void promoted_changeEvent(QEvent*  arg__1) { QMenuBar::changeEvent(arg__1); }
 inline bool  promoted_event(QEvent*  arg__1) { return QMenuBar::event(arg__1); }
@@ -693,6 +701,7 @@ inline bool  promoted_eventFilter(QObject*  arg__1, QEvent*  arg__2) { return QM
 inline void promoted_focusInEvent(QFocusEvent*  arg__1) { QMenuBar::focusInEvent(arg__1); }
 inline void promoted_focusOutEvent(QFocusEvent*  arg__1) { QMenuBar::focusOutEvent(arg__1); }
 inline int  promoted_heightForWidth(int  arg__1) const { return QMenuBar::heightForWidth(arg__1); }
+inline void promoted_initStyleOption(QStyleOptionMenuItem*  option, const QAction*  action) const { QMenuBar::initStyleOption(option, action); }
 inline void promoted_keyPressEvent(QKeyEvent*  arg__1) { QMenuBar::keyPressEvent(arg__1); }
 inline void promoted_leaveEvent(QEvent*  arg__1) { QMenuBar::leaveEvent(arg__1); }
 inline void promoted_mouseMoveEvent(QMouseEvent*  arg__1) { QMenuBar::mouseMoveEvent(arg__1); }
@@ -729,6 +738,7 @@ void delete_QMenuBar(QMenuBar* obj) { delete obj; }
    void focusInEvent(QMenuBar* theWrappedObject, QFocusEvent*  arg__1);
    void focusOutEvent(QMenuBar* theWrappedObject, QFocusEvent*  arg__1);
    int  heightForWidth(QMenuBar* theWrappedObject, int  arg__1) const;
+   void initStyleOption(QMenuBar* theWrappedObject, QStyleOptionMenuItem*  option, const QAction*  action) const;
    QAction*  insertMenu(QMenuBar* theWrappedObject, QAction*  before, QMenu*  menu);
    QAction*  insertSeparator(QMenuBar* theWrappedObject, QAction*  before);
    bool  isDefaultUp(QMenuBar* theWrappedObject) const;
@@ -823,6 +833,7 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QMessageBox : public QMessageBox
 { public:
+friend class PythonQtWrapper_QMessageBox;
 inline void promoted_changeEvent(QEvent*  event) { QMessageBox::changeEvent(event); }
 inline void promoted_closeEvent(QCloseEvent*  event) { QMessageBox::closeEvent(event); }
 inline bool  promoted_event(QEvent*  e) { return QMessageBox::event(e); }
@@ -964,6 +975,7 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QMouseEventTransition : public QMouseEventTransition
 { public:
+friend class PythonQtWrapper_QMouseEventTransition;
 inline bool  promoted_eventTest(QEvent*  event) { return QMouseEventTransition::eventTest(event); }
 inline void promoted_onTransition(QEvent*  event) { QMouseEventTransition::onTransition(event); }
 };
@@ -1121,6 +1133,7 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QOffscreenSurface : public QOffscreenSurface
 { public:
+friend class PythonQtWrapper_QOffscreenSurface;
 inline QSurfaceFormat  promoted_format() const { return QOffscreenSurface::format(); }
 inline QSize  promoted_size() const { return QOffscreenSurface::size(); }
 inline QSurface::SurfaceType  promoted_surfaceType() const { return QOffscreenSurface::surfaceType(); }
@@ -1519,6 +1532,7 @@ virtual QPainter*  sharedPainter() const;
 
 class PythonQtPublicPromoter_QOpenGLPaintDevice : public QOpenGLPaintDevice
 { public:
+friend class PythonQtWrapper_QOpenGLPaintDevice;
 inline int  promoted_devType() const { return QOpenGLPaintDevice::devType(); }
 inline void promoted_ensureActiveTarget() { QOpenGLPaintDevice::ensureActiveTarget(); }
 inline int  promoted_metric(QPaintDevice::PaintDeviceMetric  metric) const { return QOpenGLPaintDevice::metric(metric); }
@@ -1615,6 +1629,7 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QOpenGLShaderProgram : public QOpenGLShaderProgram
 { public:
+friend class PythonQtWrapper_QOpenGLShaderProgram;
 inline bool  promoted_link() { return QOpenGLShaderProgram::link(); }
 };
 
@@ -2112,6 +2127,7 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QPageSetupDialog : public QPageSetupDialog
 { public:
+friend class PythonQtWrapper_QPageSetupDialog;
 inline void promoted_done(int  result) { QPageSetupDialog::done(result); }
 inline int  promoted_exec() { return QPageSetupDialog::exec(); }
 inline void promoted_open() { QPageSetupDialog::open(); }

@@ -100,6 +100,7 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QCompleter : public QCompleter
 { public:
+friend class PythonQtWrapper_QCompleter;
 inline bool  promoted_event(QEvent*  arg__1) { return QCompleter::event(arg__1); }
 inline bool  promoted_eventFilter(QObject*  o, QEvent*  e) { return QCompleter::eventFilter(o, e); }
 inline QString  promoted_pathFromIndex(const QModelIndex&  index) const { return QCompleter::pathFromIndex(index); }
@@ -236,6 +237,7 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QDataWidgetMapper : public QDataWidgetMapper
 { public:
+friend class PythonQtWrapper_QDataWidgetMapper;
 inline void promoted_setCurrentIndex(int  index) { QDataWidgetMapper::setCurrentIndex(index); }
 };
 
@@ -410,12 +412,14 @@ virtual void wheelEvent(QWheelEvent*  event);
 
 class PythonQtPublicPromoter_QDateTimeEdit : public QDateTimeEdit
 { public:
+friend class PythonQtWrapper_QDateTimeEdit;
 inline void promoted_clear() { QDateTimeEdit::clear(); }
 inline QDateTime  promoted_dateTimeFromText(const QString&  text) const { return QDateTimeEdit::dateTimeFromText(text); }
 inline bool  promoted_event(QEvent*  event) { return QDateTimeEdit::event(event); }
 inline void promoted_fixup(QString&  input) const { QDateTimeEdit::fixup(input); }
 inline void promoted_focusInEvent(QFocusEvent*  event) { QDateTimeEdit::focusInEvent(event); }
 inline bool  promoted_focusNextPrevChild(bool  next) { return QDateTimeEdit::focusNextPrevChild(next); }
+inline void promoted_initStyleOption(QStyleOptionSpinBox*  option) const { QDateTimeEdit::initStyleOption(option); }
 inline void promoted_keyPressEvent(QKeyEvent*  event) { QDateTimeEdit::keyPressEvent(event); }
 inline void promoted_mousePressEvent(QMouseEvent*  event) { QDateTimeEdit::mousePressEvent(event); }
 inline void promoted_paintEvent(QPaintEvent*  event) { QDateTimeEdit::paintEvent(event); }
@@ -455,6 +459,7 @@ void delete_QDateTimeEdit(QDateTimeEdit* obj) { delete obj; }
    void fixup(QDateTimeEdit* theWrappedObject, QString&  input) const;
    void focusInEvent(QDateTimeEdit* theWrappedObject, QFocusEvent*  event);
    bool  focusNextPrevChild(QDateTimeEdit* theWrappedObject, bool  next);
+   void initStyleOption(QDateTimeEdit* theWrappedObject, QStyleOptionSpinBox*  option) const;
    void keyPressEvent(QDateTimeEdit* theWrappedObject, QKeyEvent*  event);
    QDate  maximumDate(QDateTimeEdit* theWrappedObject) const;
    QDateTime  maximumDateTime(QDateTimeEdit* theWrappedObject) const;
@@ -580,6 +585,7 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QDesktopWidget : public QDesktopWidget
 { public:
+friend class PythonQtWrapper_QDesktopWidget;
 inline void promoted_resizeEvent(QResizeEvent*  e) { QDesktopWidget::resizeEvent(e); }
 };
 
@@ -664,12 +670,15 @@ virtual void wheelEvent(QWheelEvent*  e);
 
 class PythonQtPublicPromoter_QDial : public QDial
 { public:
+friend class PythonQtWrapper_QDial;
 inline bool  promoted_event(QEvent*  e) { return QDial::event(e); }
+inline void promoted_initStyleOption(QStyleOptionSlider*  option) const { QDial::initStyleOption(option); }
 inline void promoted_mouseMoveEvent(QMouseEvent*  me) { QDial::mouseMoveEvent(me); }
 inline void promoted_mousePressEvent(QMouseEvent*  me) { QDial::mousePressEvent(me); }
 inline void promoted_mouseReleaseEvent(QMouseEvent*  me) { QDial::mouseReleaseEvent(me); }
 inline void promoted_paintEvent(QPaintEvent*  pe) { QDial::paintEvent(pe); }
 inline void promoted_resizeEvent(QResizeEvent*  re) { QDial::resizeEvent(re); }
+inline void promoted_sliderChange(QAbstractSlider::SliderChange  change) { QDial::sliderChange(change); }
 };
 
 class PythonQtWrapper_QDial : public QObject
@@ -679,6 +688,7 @@ public slots:
 QDial* new_QDial(QWidget*  parent = 0);
 void delete_QDial(QDial* obj) { delete obj; } 
    bool  event(QDial* theWrappedObject, QEvent*  e);
+   void initStyleOption(QDial* theWrappedObject, QStyleOptionSlider*  option) const;
    QSize  minimumSizeHint(QDial* theWrappedObject) const;
    void mouseMoveEvent(QDial* theWrappedObject, QMouseEvent*  me);
    void mousePressEvent(QDial* theWrappedObject, QMouseEvent*  me);
@@ -690,6 +700,7 @@ void delete_QDial(QDial* obj) { delete obj; }
    void resizeEvent(QDial* theWrappedObject, QResizeEvent*  re);
    void setNotchTarget(QDial* theWrappedObject, double  target);
    QSize  sizeHint(QDial* theWrappedObject) const;
+   void sliderChange(QDial* theWrappedObject, QAbstractSlider::SliderChange  change);
    bool  wrapping(QDial* theWrappedObject) const;
 };
 
@@ -757,7 +768,9 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QDialog : public QDialog
 { public:
+friend class PythonQtWrapper_QDialog;
 inline void promoted_accept() { QDialog::accept(); }
+inline void promoted_adjustPosition(QWidget*  arg__1) { QDialog::adjustPosition(arg__1); }
 inline void promoted_closeEvent(QCloseEvent*  arg__1) { QDialog::closeEvent(arg__1); }
 inline void promoted_contextMenuEvent(QContextMenuEvent*  arg__1) { QDialog::contextMenuEvent(arg__1); }
 inline void promoted_done(int  arg__1) { QDialog::done(arg__1); }
@@ -780,6 +793,7 @@ public slots:
 QDialog* new_QDialog(QWidget*  parent = 0, Qt::WindowFlags  f = 0);
 void delete_QDialog(QDialog* obj) { delete obj; } 
    void accept(QDialog* theWrappedObject);
+   void adjustPosition(QDialog* theWrappedObject, QWidget*  arg__1);
    void closeEvent(QDialog* theWrappedObject, QCloseEvent*  arg__1);
    void contextMenuEvent(QDialog* theWrappedObject, QContextMenuEvent*  arg__1);
    void done(QDialog* theWrappedObject, int  arg__1);
@@ -864,6 +878,7 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QDialogButtonBox : public QDialogButtonBox
 { public:
+friend class PythonQtWrapper_QDialogButtonBox;
 inline void promoted_changeEvent(QEvent*  event) { QDialogButtonBox::changeEvent(event); }
 inline bool  promoted_event(QEvent*  event) { return QDialogButtonBox::event(event); }
 };
@@ -932,22 +947,22 @@ virtual Qt::ItemFlags  flags(const QModelIndex&  index) const;
 virtual bool  hasChildren(const QModelIndex&  index = QModelIndex()) const;
 virtual QVariant  headerData(int  section, Qt::Orientation  orientation, int  role = Qt::DisplayRole) const;
 virtual QModelIndex  index(int  row, int  column, const QModelIndex&  parent = QModelIndex()) const;
-virtual bool  insertColumns(int  column, int  count, const QModelIndex&  parent);
-virtual bool  insertRows(int  row, int  count, const QModelIndex&  parent);
+virtual bool  insertColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex());
+virtual bool  insertRows(int  row, int  count, const QModelIndex&  parent = QModelIndex());
 virtual QMap<int , QVariant >  itemData(const QModelIndex&  index) const;
-virtual QList<QModelIndex >  match(const QModelIndex&  start, int  role, const QVariant&  value, int  hits, Qt::MatchFlags  flags) const;
+virtual QList<QModelIndex >  match(const QModelIndex&  start, int  role, const QVariant&  value, int  hits = 1, Qt::MatchFlags  flags = Qt::MatchFlags(Qt::MatchStartsWith|Qt::MatchWrap)) const;
 virtual QMimeData*  mimeData(const QList<QModelIndex >&  indexes) const;
 virtual QStringList  mimeTypes() const;
 virtual bool  moveColumns(const QModelIndex&  sourceParent, int  sourceColumn, int  count, const QModelIndex&  destinationParent, int  destinationChild);
 virtual bool  moveRows(const QModelIndex&  sourceParent, int  sourceRow, int  count, const QModelIndex&  destinationParent, int  destinationChild);
 virtual QModelIndex  parent(const QModelIndex&  child) const;
-virtual bool  removeColumns(int  column, int  count, const QModelIndex&  parent);
-virtual bool  removeRows(int  row, int  count, const QModelIndex&  parent);
+virtual bool  removeColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex());
+virtual bool  removeRows(int  row, int  count, const QModelIndex&  parent = QModelIndex());
 virtual void revert();
 virtual QHash<int , QByteArray >  roleNames() const;
 virtual int  rowCount(const QModelIndex&  parent = QModelIndex()) const;
 virtual bool  setData(const QModelIndex&  index, const QVariant&  value, int  role = Qt::EditRole);
-virtual bool  setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role);
+virtual bool  setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role = Qt::EditRole);
 virtual bool  setItemData(const QModelIndex&  index, const QMap<int , QVariant >&  roles);
 virtual QModelIndex  sibling(int  row, int  column, const QModelIndex&  idx) const;
 virtual void sort(int  column, Qt::SortOrder  order = Qt::AscendingOrder);
@@ -962,6 +977,7 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QDirModel : public QDirModel
 { public:
+friend class PythonQtWrapper_QDirModel;
 inline int  promoted_columnCount(const QModelIndex&  parent = QModelIndex()) const { return QDirModel::columnCount(parent); }
 inline QVariant  promoted_data(const QModelIndex&  index, int  role = Qt::DisplayRole) const { return QDirModel::data(index, role); }
 inline bool  promoted_dropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent) { return QDirModel::dropMimeData(data, action, row, column, parent); }
@@ -1089,9 +1105,11 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QDockWidget : public QDockWidget
 { public:
+friend class PythonQtWrapper_QDockWidget;
 inline void promoted_changeEvent(QEvent*  event) { QDockWidget::changeEvent(event); }
 inline void promoted_closeEvent(QCloseEvent*  event) { QDockWidget::closeEvent(event); }
 inline bool  promoted_event(QEvent*  event) { return QDockWidget::event(event); }
+inline void promoted_initStyleOption(QStyleOptionDockWidget*  option) const { QDockWidget::initStyleOption(option); }
 inline void promoted_paintEvent(QPaintEvent*  event) { QDockWidget::paintEvent(event); }
 };
 
@@ -1112,6 +1130,7 @@ void delete_QDockWidget(QDockWidget* obj) { delete obj; }
    void closeEvent(QDockWidget* theWrappedObject, QCloseEvent*  event);
    bool  event(QDockWidget* theWrappedObject, QEvent*  event);
    QDockWidget::DockWidgetFeatures  features(QDockWidget* theWrappedObject) const;
+   void initStyleOption(QDockWidget* theWrappedObject, QStyleOptionDockWidget*  option) const;
    bool  isAreaAllowed(QDockWidget* theWrappedObject, Qt::DockWidgetArea  area) const;
    bool  isFloating(QDockWidget* theWrappedObject) const;
    void paintEvent(QDockWidget* theWrappedObject, QPaintEvent*  event);
@@ -1191,6 +1210,7 @@ virtual void wheelEvent(QWheelEvent*  event);
 
 class PythonQtPublicPromoter_QDoubleSpinBox : public QDoubleSpinBox
 { public:
+friend class PythonQtWrapper_QDoubleSpinBox;
 inline void promoted_fixup(QString&  str) const { QDoubleSpinBox::fixup(str); }
 inline QString  promoted_textFromValue(double  val) const { return QDoubleSpinBox::textFromValue(val); }
 inline QValidator::State  promoted_validate(QString&  input, int&  pos) const { return QDoubleSpinBox::validate(input, pos); }
@@ -1250,6 +1270,7 @@ virtual QValidator::State  validate(QString&  arg__1, int&  arg__2) const;
 
 class PythonQtPublicPromoter_QDoubleValidator : public QDoubleValidator
 { public:
+friend class PythonQtWrapper_QDoubleValidator;
 inline void promoted_setRange(double  bottom, double  top, int  decimals = 0) { QDoubleValidator::setRange(bottom, top, decimals); }
 inline QValidator::State  promoted_validate(QString&  arg__1, int&  arg__2) const { return QDoubleValidator::validate(arg__1, arg__2); }
 };
@@ -1495,6 +1516,7 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QErrorMessage : public QErrorMessage
 { public:
+friend class PythonQtWrapper_QErrorMessage;
 inline void promoted_changeEvent(QEvent*  e) { QErrorMessage::changeEvent(e); }
 inline void promoted_done(int  arg__1) { QErrorMessage::done(arg__1); }
 };
@@ -1599,6 +1621,7 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QFileDialog : public QFileDialog
 { public:
+friend class PythonQtWrapper_QFileDialog;
 inline void promoted_accept() { QFileDialog::accept(); }
 inline void promoted_changeEvent(QEvent*  e) { QFileDialog::changeEvent(e); }
 inline void promoted_done(int  result) { QFileDialog::done(result); }
@@ -1704,6 +1727,7 @@ virtual QString  type(const QFileInfo&  info) const;
 
 class PythonQtPublicPromoter_QFileIconProvider : public QFileIconProvider
 { public:
+friend class PythonQtWrapper_QFileIconProvider;
 inline QIcon  promoted_icon(QFileIconProvider::IconType  type) const { return QFileIconProvider::icon(type); }
 inline QIcon  promoted_icon(const QFileInfo&  info) const { return QFileIconProvider::icon(info); }
 inline QString  promoted_type(const QFileInfo&  info) const { return QFileIconProvider::type(info); }
@@ -1771,22 +1795,22 @@ virtual Qt::ItemFlags  flags(const QModelIndex&  index) const;
 virtual bool  hasChildren(const QModelIndex&  parent = QModelIndex()) const;
 virtual QVariant  headerData(int  section, Qt::Orientation  orientation, int  role = Qt::DisplayRole) const;
 virtual QModelIndex  index(int  row, int  column, const QModelIndex&  parent = QModelIndex()) const;
-virtual bool  insertColumns(int  column, int  count, const QModelIndex&  parent);
-virtual bool  insertRows(int  row, int  count, const QModelIndex&  parent);
+virtual bool  insertColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex());
+virtual bool  insertRows(int  row, int  count, const QModelIndex&  parent = QModelIndex());
 virtual QMap<int , QVariant >  itemData(const QModelIndex&  index) const;
-virtual QList<QModelIndex >  match(const QModelIndex&  start, int  role, const QVariant&  value, int  hits, Qt::MatchFlags  flags) const;
+virtual QList<QModelIndex >  match(const QModelIndex&  start, int  role, const QVariant&  value, int  hits = 1, Qt::MatchFlags  flags = Qt::MatchFlags(Qt::MatchStartsWith|Qt::MatchWrap)) const;
 virtual QMimeData*  mimeData(const QList<QModelIndex >&  indexes) const;
 virtual QStringList  mimeTypes() const;
 virtual bool  moveColumns(const QModelIndex&  sourceParent, int  sourceColumn, int  count, const QModelIndex&  destinationParent, int  destinationChild);
 virtual bool  moveRows(const QModelIndex&  sourceParent, int  sourceRow, int  count, const QModelIndex&  destinationParent, int  destinationChild);
 virtual QModelIndex  parent(const QModelIndex&  child) const;
-virtual bool  removeColumns(int  column, int  count, const QModelIndex&  parent);
-virtual bool  removeRows(int  row, int  count, const QModelIndex&  parent);
+virtual bool  removeColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex());
+virtual bool  removeRows(int  row, int  count, const QModelIndex&  parent = QModelIndex());
 virtual void revert();
 virtual QHash<int , QByteArray >  roleNames() const;
 virtual int  rowCount(const QModelIndex&  parent = QModelIndex()) const;
 virtual bool  setData(const QModelIndex&  index, const QVariant&  value, int  role = Qt::EditRole);
-virtual bool  setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role);
+virtual bool  setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role = Qt::EditRole);
 virtual bool  setItemData(const QModelIndex&  index, const QMap<int , QVariant >&  roles);
 virtual QModelIndex  sibling(int  row, int  column, const QModelIndex&  idx) const;
 virtual void sort(int  column, Qt::SortOrder  order = Qt::AscendingOrder);
@@ -1801,6 +1825,7 @@ virtual void timerEvent(QTimerEvent*  event);
 
 class PythonQtPublicPromoter_QFileSystemModel : public QFileSystemModel
 { public:
+friend class PythonQtWrapper_QFileSystemModel;
 inline bool  promoted_canFetchMore(const QModelIndex&  parent) const { return QFileSystemModel::canFetchMore(parent); }
 inline int  promoted_columnCount(const QModelIndex&  parent = QModelIndex()) const { return QFileSystemModel::columnCount(parent); }
 inline QVariant  promoted_data(const QModelIndex&  index, int  role = Qt::DisplayRole) const { return QFileSystemModel::data(index, role); }
@@ -1954,8 +1979,10 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QFocusFrame : public QFocusFrame
 { public:
+friend class PythonQtWrapper_QFocusFrame;
 inline bool  promoted_event(QEvent*  e) { return QFocusFrame::event(e); }
 inline bool  promoted_eventFilter(QObject*  arg__1, QEvent*  arg__2) { return QFocusFrame::eventFilter(arg__1, arg__2); }
+inline void promoted_initStyleOption(QStyleOption*  option) const { QFocusFrame::initStyleOption(option); }
 inline void promoted_paintEvent(QPaintEvent*  arg__1) { QFocusFrame::paintEvent(arg__1); }
 };
 
@@ -1967,6 +1994,7 @@ QFocusFrame* new_QFocusFrame(QWidget*  parent = 0);
 void delete_QFocusFrame(QFocusFrame* obj) { delete obj; } 
    bool  event(QFocusFrame* theWrappedObject, QEvent*  e);
    bool  eventFilter(QFocusFrame* theWrappedObject, QObject*  arg__1, QEvent*  arg__2);
+   void initStyleOption(QFocusFrame* theWrappedObject, QStyleOption*  option) const;
    void paintEvent(QFocusFrame* theWrappedObject, QPaintEvent*  arg__1);
    void setWidget(QFocusFrame* theWrappedObject, QWidget*  widget);
    QWidget*  widget(QFocusFrame* theWrappedObject) const;
@@ -2033,6 +2061,7 @@ virtual void wheelEvent(QWheelEvent*  e);
 
 class PythonQtPublicPromoter_QFontComboBox : public QFontComboBox
 { public:
+friend class PythonQtWrapper_QFontComboBox;
 inline bool  promoted_event(QEvent*  e) { return QFontComboBox::event(e); }
 };
 
