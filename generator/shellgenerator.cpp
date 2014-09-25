@@ -126,8 +126,14 @@ void ShellGenerator::writeFunctionArguments(QTextStream &s, const AbstractMetaCl
             s << ", ";
         AbstractMetaArgument *arg = arguments.at(i);
         writeTypeInfo(s, arg->type(), option);
-        if (!(option & SkipName))
+        if (!(option & SkipName)) {
+          if (option & UseIndexedName) {
+            s << " " << arg->indexedName();
+          }
+          else {
             s << " " << arg->argumentName();
+          }
+        }
         if ((option & IncludeDefaultExpression) && !arg->defaultValueExpression().isEmpty()) {
             s << " = "; 
 

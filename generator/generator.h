@@ -86,6 +86,7 @@ public:
         // These 2 are added for PythonQt
         FirstArgIsWrappedObject  = 0x00400000,
         ConvertReferenceToPtr    = 0x00800000,
+        UseIndexedName           = 0x01000000,
 
         GlobalRefJObject         = 0x00100000,
 

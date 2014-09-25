@@ -117,7 +117,7 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
     foreach (const AbstractMetaFunction *fun, virtualsForShell) {
       bool hasReturnValue = (fun->type());
       writeFunctionSignature(s, fun, meta_class, QString(),
-        Option(OriginalName | ShowStatic | UnderscoreSpaces),
+        Option(OriginalName | ShowStatic | UnderscoreSpaces | UseIndexedName),
         "PythonQtShell_");
       s << endl << "{" << endl;
 
@@ -150,7 +150,7 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
       }
       s << "    void* args[" << QString::number(args.size()+1) << "] = {NULL";
       for (int i = 0; i < args.size(); ++i) {
-        s << ", (void*)&" << args.at(i)->argumentName();
+        s << ", (void*)&" << args.at(i)->indexedName();
       }
       s << "};" << endl;
 
@@ -202,7 +202,7 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
         for (int i = 0; i < args.size(); ++i) {
           if (i > 0)
             s << ", ";
-          s << args.at(i)->argumentName();
+          s << args.at(i)->indexedName();
         }
         s << ");";
       }
