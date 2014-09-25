@@ -732,18 +732,6 @@
 
 
   <value-type name="QSize">
-    <modify-function signature="operator*=(double)">
-      <access modifier="private"/>
-    </modify-function>
-    <modify-function signature="operator/=(double)">
-      <access modifier="private"/>
-    </modify-function>
-    <modify-function signature="operator+=(QSize)">
-      <access modifier="private"/>
-    </modify-function>
-    <modify-function signature="operator-=(QSize)">
-      <access modifier="private"/>
-    </modify-function>
     <modify-function signature="rheight()">
       <remove/>
     </modify-function>
@@ -753,18 +741,6 @@
   </value-type>
 
   <value-type name="QSizeF">
-    <modify-function signature="operator*=(double)">
-      <access modifier="private"/>
-    </modify-function>
-    <modify-function signature="operator/=(double)">
-      <access modifier="private"/>
-    </modify-function>
-    <modify-function signature="operator+=(QSizeF)">
-      <access modifier="private"/>
-    </modify-function>
-    <modify-function signature="operator-=(QSizeF)">
-      <access modifier="private"/>
-    </modify-function>
     <modify-function signature="rheight()">
       <remove/>
     </modify-function>
@@ -1202,9 +1178,6 @@
     <modify-function signature="argc()" remove="all"/>
     <!-- Obsolete -->
 
-    <modify-function signature="QCoreApplication(int &amp;, char  **)">
-      <access modifier="private"/>
-    </modify-function>
     <modify-function signature="QCoreApplication(int &amp;, char  **, int)" remove="all"/>
   
     <modify-function signature="QCoreApplication(int &amp;, char **)" remove="all"/>

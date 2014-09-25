@@ -50,9 +50,6 @@
     </object-type>
     <object-type name="QWebSettings"/>
     <object-type name="QWebPage">
-        <modify-function signature="javaScriptPrompt(QWebFrame*,QString,QString,QString*)">
-            <access modifier="private"/>
-        </modify-function>
     </object-type>
 
     <value-type name="QWebHitTestResult">
