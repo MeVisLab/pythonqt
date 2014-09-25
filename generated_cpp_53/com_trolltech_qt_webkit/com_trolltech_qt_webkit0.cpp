@@ -65,7 +65,7 @@ PythonQtShell_QGraphicsWebView::~PythonQtShell_QGraphicsWebView() {
   PythonQtPrivate* priv = PythonQt::priv();
   if (priv) { priv->shellClassDeleted(this); }
 }
-void PythonQtShell_QGraphicsWebView::changeEvent(QEvent*  event)
+void PythonQtShell_QGraphicsWebView::changeEvent(QEvent*  event0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("changeEvent");
@@ -73,7 +73,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "QEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&event};
+    void* args[2] = {NULL, (void*)&event0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -82,7 +82,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QGraphicsWebView::changeEvent(event);
+  QGraphicsWebView::changeEvent(event0);
 }
 void PythonQtShell_QGraphicsWebView::childEvent(QChildEvent*  arg__1)
 {
@@ -103,7 +103,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QGraphicsWebView::childEvent(arg__1);
 }
-void PythonQtShell_QGraphicsWebView::closeEvent(QCloseEvent*  event)
+void PythonQtShell_QGraphicsWebView::closeEvent(QCloseEvent*  event0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("closeEvent");
@@ -111,7 +111,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "QCloseEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&event};
+    void* args[2] = {NULL, (void*)&event0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -120,7 +120,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QGraphicsWebView::closeEvent(event);
+  QGraphicsWebView::closeEvent(event0);
 }
 void PythonQtShell_QGraphicsWebView::contextMenuEvent(QGraphicsSceneContextMenuEvent*  arg__1)
 {
@@ -315,7 +315,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QGraphicsWebView::focusInEvent(arg__1);
 }
-bool  PythonQtShell_QGraphicsWebView::focusNextPrevChild(bool  next)
+bool  PythonQtShell_QGraphicsWebView::focusNextPrevChild(bool  next0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("focusNextPrevChild");
@@ -324,7 +324,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"bool" , "bool"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue;
-    void* args[2] = {NULL, (void*)&next};
+    void* args[2] = {NULL, (void*)&next0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -343,7 +343,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QGraphicsWebView::focusNextPrevChild(next);
+  return QGraphicsWebView::focusNextPrevChild(next0);
 }
 void PythonQtShell_QGraphicsWebView::focusOutEvent(QFocusEvent*  arg__1)
 {
@@ -364,7 +364,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QGraphicsWebView::focusOutEvent(arg__1);
 }
-void PythonQtShell_QGraphicsWebView::getContentsMargins(qreal*  left, qreal*  top, qreal*  right, qreal*  bottom) const
+void PythonQtShell_QGraphicsWebView::getContentsMargins(qreal*  left0, qreal*  top1, qreal*  right2, qreal*  bottom3) const
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("getContentsMargins");
@@ -372,7 +372,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "qreal*" , "qreal*" , "qreal*" , "qreal*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(5, argumentList);
-    void* args[5] = {NULL, (void*)&left, (void*)&top, (void*)&right, (void*)&bottom};
+    void* args[5] = {NULL, (void*)&left0, (void*)&top1, (void*)&right2, (void*)&bottom3};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -381,9 +381,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QGraphicsWebView::getContentsMargins(left, top, right, bottom);
+  QGraphicsWebView::getContentsMargins(left0, top1, right2, bottom3);
 }
-void PythonQtShell_QGraphicsWebView::grabKeyboardEvent(QEvent*  event)
+void PythonQtShell_QGraphicsWebView::grabKeyboardEvent(QEvent*  event0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("grabKeyboardEvent");
@@ -391,7 +391,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "QEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&event};
+    void* args[2] = {NULL, (void*)&event0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -400,9 +400,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QGraphicsWebView::grabKeyboardEvent(event);
+  QGraphicsWebView::grabKeyboardEvent(event0);
 }
-void PythonQtShell_QGraphicsWebView::grabMouseEvent(QEvent*  event)
+void PythonQtShell_QGraphicsWebView::grabMouseEvent(QEvent*  event0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("grabMouseEvent");
@@ -410,7 +410,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "QEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&event};
+    void* args[2] = {NULL, (void*)&event0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -419,9 +419,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QGraphicsWebView::grabMouseEvent(event);
+  QGraphicsWebView::grabMouseEvent(event0);
 }
-void PythonQtShell_QGraphicsWebView::hideEvent(QHideEvent*  event)
+void PythonQtShell_QGraphicsWebView::hideEvent(QHideEvent*  event0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("hideEvent");
@@ -429,7 +429,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "QHideEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&event};
+    void* args[2] = {NULL, (void*)&event0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -438,7 +438,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QGraphicsWebView::hideEvent(event);
+  QGraphicsWebView::hideEvent(event0);
 }
 void PythonQtShell_QGraphicsWebView::hoverLeaveEvent(QGraphicsSceneHoverEvent*  arg__1)
 {
@@ -478,7 +478,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QGraphicsWebView::hoverMoveEvent(arg__1);
 }
-void PythonQtShell_QGraphicsWebView::initStyleOption(QStyleOption*  option) const
+void PythonQtShell_QGraphicsWebView::initStyleOption(QStyleOption*  option0) const
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("initStyleOption");
@@ -486,7 +486,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "QStyleOption*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&option};
+    void* args[2] = {NULL, (void*)&option0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -495,7 +495,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QGraphicsWebView::initStyleOption(option);
+  QGraphicsWebView::initStyleOption(option0);
 }
 void PythonQtShell_QGraphicsWebView::inputMethodEvent(QInputMethodEvent*  arg__1)
 {
@@ -516,7 +516,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QGraphicsWebView::inputMethodEvent(arg__1);
 }
-QVariant  PythonQtShell_QGraphicsWebView::inputMethodQuery(Qt::InputMethodQuery  query) const
+QVariant  PythonQtShell_QGraphicsWebView::inputMethodQuery(Qt::InputMethodQuery  query0) const
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("inputMethodQuery");
@@ -525,7 +525,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"QVariant" , "Qt::InputMethodQuery"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       QVariant returnValue;
-    void* args[2] = {NULL, (void*)&query};
+    void* args[2] = {NULL, (void*)&query0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -544,9 +544,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QGraphicsWebView::inputMethodQuery(query);
+  return QGraphicsWebView::inputMethodQuery(query0);
 }
-QVariant  PythonQtShell_QGraphicsWebView::itemChange(QGraphicsItem::GraphicsItemChange  change, const QVariant&  value)
+QVariant  PythonQtShell_QGraphicsWebView::itemChange(QGraphicsItem::GraphicsItemChange  change0, const QVariant&  value1)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("itemChange");
@@ -555,7 +555,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"QVariant" , "QGraphicsItem::GraphicsItemChange" , "const QVariant&"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
       QVariant returnValue;
-    void* args[3] = {NULL, (void*)&change, (void*)&value};
+    void* args[3] = {NULL, (void*)&change0, (void*)&value1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -574,7 +574,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QGraphicsWebView::itemChange(change, value);
+  return QGraphicsWebView::itemChange(change0, value1);
 }
 void PythonQtShell_QGraphicsWebView::keyPressEvent(QKeyEvent*  arg__1)
 {
@@ -690,7 +690,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QGraphicsWebView::mouseReleaseEvent(arg__1);
 }
-void PythonQtShell_QGraphicsWebView::moveEvent(QGraphicsSceneMoveEvent*  event)
+void PythonQtShell_QGraphicsWebView::moveEvent(QGraphicsSceneMoveEvent*  event0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("moveEvent");
@@ -698,7 +698,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "QGraphicsSceneMoveEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&event};
+    void* args[2] = {NULL, (void*)&event0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -707,9 +707,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QGraphicsWebView::moveEvent(event);
+  QGraphicsWebView::moveEvent(event0);
 }
-void PythonQtShell_QGraphicsWebView::paint(QPainter*  arg__1, const QStyleOptionGraphicsItem*  options, QWidget*  widget)
+void PythonQtShell_QGraphicsWebView::paint(QPainter*  arg__1, const QStyleOptionGraphicsItem*  options1, QWidget*  widget2)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("paint");
@@ -717,7 +717,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "QPainter*" , "const QStyleOptionGraphicsItem*" , "QWidget*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
-    void* args[4] = {NULL, (void*)&arg__1, (void*)&options, (void*)&widget};
+    void* args[4] = {NULL, (void*)&arg__1, (void*)&options1, (void*)&widget2};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -726,9 +726,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QGraphicsWebView::paint(arg__1, options, widget);
+  QGraphicsWebView::paint(arg__1, options1, widget2);
 }
-void PythonQtShell_QGraphicsWebView::paintWindowFrame(QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget)
+void PythonQtShell_QGraphicsWebView::paintWindowFrame(QPainter*  painter0, const QStyleOptionGraphicsItem*  option1, QWidget*  widget2)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("paintWindowFrame");
@@ -736,7 +736,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "QPainter*" , "const QStyleOptionGraphicsItem*" , "QWidget*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
-    void* args[4] = {NULL, (void*)&painter, (void*)&option, (void*)&widget};
+    void* args[4] = {NULL, (void*)&painter0, (void*)&option1, (void*)&widget2};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -745,7 +745,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QGraphicsWebView::paintWindowFrame(painter, option, widget);
+  QGraphicsWebView::paintWindowFrame(painter0, option1, widget2);
 }
 void PythonQtShell_QGraphicsWebView::polishEvent()
 {
@@ -766,7 +766,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QGraphicsWebView::polishEvent();
 }
-QVariant  PythonQtShell_QGraphicsWebView::propertyChange(const QString&  propertyName, const QVariant&  value)
+QVariant  PythonQtShell_QGraphicsWebView::propertyChange(const QString&  propertyName0, const QVariant&  value1)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("propertyChange");
@@ -775,7 +775,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"QVariant" , "const QString&" , "const QVariant&"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
       QVariant returnValue;
-    void* args[3] = {NULL, (void*)&propertyName, (void*)&value};
+    void* args[3] = {NULL, (void*)&propertyName0, (void*)&value1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -794,9 +794,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QGraphicsWebView::propertyChange(propertyName, value);
+  return QGraphicsWebView::propertyChange(propertyName0, value1);
 }
-void PythonQtShell_QGraphicsWebView::resizeEvent(QGraphicsSceneResizeEvent*  event)
+void PythonQtShell_QGraphicsWebView::resizeEvent(QGraphicsSceneResizeEvent*  event0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("resizeEvent");
@@ -804,7 +804,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "QGraphicsSceneResizeEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&event};
+    void* args[2] = {NULL, (void*)&event0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -813,7 +813,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QGraphicsWebView::resizeEvent(event);
+  QGraphicsWebView::resizeEvent(event0);
 }
 bool  PythonQtShell_QGraphicsWebView::sceneEvent(QEvent*  arg__1)
 {
@@ -845,7 +845,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   return QGraphicsWebView::sceneEvent(arg__1);
 }
-void PythonQtShell_QGraphicsWebView::setGeometry(const QRectF&  rect)
+void PythonQtShell_QGraphicsWebView::setGeometry(const QRectF&  rect0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("setGeometry");
@@ -853,7 +853,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "const QRectF&"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&rect};
+    void* args[2] = {NULL, (void*)&rect0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -862,9 +862,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QGraphicsWebView::setGeometry(rect);
+  QGraphicsWebView::setGeometry(rect0);
 }
-void PythonQtShell_QGraphicsWebView::showEvent(QShowEvent*  event)
+void PythonQtShell_QGraphicsWebView::showEvent(QShowEvent*  event0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("showEvent");
@@ -872,7 +872,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "QShowEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&event};
+    void* args[2] = {NULL, (void*)&event0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -881,9 +881,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QGraphicsWebView::showEvent(event);
+  QGraphicsWebView::showEvent(event0);
 }
-QSizeF  PythonQtShell_QGraphicsWebView::sizeHint(Qt::SizeHint  which, const QSizeF&  constraint) const
+QSizeF  PythonQtShell_QGraphicsWebView::sizeHint(Qt::SizeHint  which0, const QSizeF&  constraint1) const
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("sizeHint");
@@ -892,7 +892,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"QSizeF" , "Qt::SizeHint" , "const QSizeF&"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
       QSizeF returnValue;
-    void* args[3] = {NULL, (void*)&which, (void*)&constraint};
+    void* args[3] = {NULL, (void*)&which0, (void*)&constraint1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -911,7 +911,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QGraphicsWebView::sizeHint(which, constraint);
+  return QGraphicsWebView::sizeHint(which0, constraint1);
 }
 void PythonQtShell_QGraphicsWebView::timerEvent(QTimerEvent*  arg__1)
 {
@@ -932,7 +932,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QGraphicsWebView::timerEvent(arg__1);
 }
-void PythonQtShell_QGraphicsWebView::ungrabKeyboardEvent(QEvent*  event)
+void PythonQtShell_QGraphicsWebView::ungrabKeyboardEvent(QEvent*  event0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("ungrabKeyboardEvent");
@@ -940,7 +940,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "QEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&event};
+    void* args[2] = {NULL, (void*)&event0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -949,9 +949,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QGraphicsWebView::ungrabKeyboardEvent(event);
+  QGraphicsWebView::ungrabKeyboardEvent(event0);
 }
-void PythonQtShell_QGraphicsWebView::ungrabMouseEvent(QEvent*  event)
+void PythonQtShell_QGraphicsWebView::ungrabMouseEvent(QEvent*  event0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("ungrabMouseEvent");
@@ -959,7 +959,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "QEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&event};
+    void* args[2] = {NULL, (void*)&event0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -968,7 +968,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QGraphicsWebView::ungrabMouseEvent(event);
+  QGraphicsWebView::ungrabMouseEvent(event0);
 }
 void PythonQtShell_QGraphicsWebView::updateGeometry()
 {
@@ -1008,7 +1008,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QGraphicsWebView::wheelEvent(arg__1);
 }
-bool  PythonQtShell_QGraphicsWebView::windowFrameEvent(QEvent*  e)
+bool  PythonQtShell_QGraphicsWebView::windowFrameEvent(QEvent*  e0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("windowFrameEvent");
@@ -1017,7 +1017,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"bool" , "QEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue;
-    void* args[2] = {NULL, (void*)&e};
+    void* args[2] = {NULL, (void*)&e0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -1036,9 +1036,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QGraphicsWebView::windowFrameEvent(e);
+  return QGraphicsWebView::windowFrameEvent(e0);
 }
-Qt::WindowFrameSection  PythonQtShell_QGraphicsWebView::windowFrameSectionAt(const QPointF&  pos) const
+Qt::WindowFrameSection  PythonQtShell_QGraphicsWebView::windowFrameSectionAt(const QPointF&  pos0) const
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("windowFrameSectionAt");
@@ -1047,7 +1047,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"Qt::WindowFrameSection" , "const QPointF&"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       Qt::WindowFrameSection returnValue;
-    void* args[2] = {NULL, (void*)&pos};
+    void* args[2] = {NULL, (void*)&pos0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -1066,7 +1066,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QGraphicsWebView::windowFrameSectionAt(pos);
+  return QGraphicsWebView::windowFrameSectionAt(pos0);
 }
 QGraphicsWebView* PythonQtWrapper_QGraphicsWebView::new_QGraphicsWebView(QGraphicsItem*  parent)
 { 
@@ -2102,7 +2102,7 @@ PythonQtShell_QWebHistoryInterface::~PythonQtShell_QWebHistoryInterface() {
   PythonQtPrivate* priv = PythonQt::priv();
   if (priv) { priv->shellClassDeleted(this); }
 }
-void PythonQtShell_QWebHistoryInterface::addHistoryEntry(const QString&  url)
+void PythonQtShell_QWebHistoryInterface::addHistoryEntry(const QString&  url0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("addHistoryEntry");
@@ -2110,7 +2110,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "const QString&"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&url};
+    void* args[2] = {NULL, (void*)&url0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -2219,7 +2219,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   return QWebHistoryInterface::eventFilter(arg__1, arg__2);
 }
-bool  PythonQtShell_QWebHistoryInterface::historyContains(const QString&  url) const
+bool  PythonQtShell_QWebHistoryInterface::historyContains(const QString&  url0) const
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("historyContains");
@@ -2228,7 +2228,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"bool" , "const QString&"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue;
-    void* args[2] = {NULL, (void*)&url};
+    void* args[2] = {NULL, (void*)&url0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -2491,7 +2491,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QWebInspector::childEvent(arg__1);
 }
-void PythonQtShell_QWebInspector::closeEvent(QCloseEvent*  event)
+void PythonQtShell_QWebInspector::closeEvent(QCloseEvent*  event0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("closeEvent");
@@ -2499,7 +2499,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "QCloseEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&event};
+    void* args[2] = {NULL, (void*)&event0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -2508,7 +2508,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QWebInspector::closeEvent(event);
+  QWebInspector::closeEvent(event0);
 }
 void PythonQtShell_QWebInspector::contextMenuEvent(QContextMenuEvent*  arg__1)
 {
@@ -2752,7 +2752,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QWebInspector::focusInEvent(arg__1);
 }
-bool  PythonQtShell_QWebInspector::focusNextPrevChild(bool  next)
+bool  PythonQtShell_QWebInspector::focusNextPrevChild(bool  next0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("focusNextPrevChild");
@@ -2761,7 +2761,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"bool" , "bool"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue;
-    void* args[2] = {NULL, (void*)&next};
+    void* args[2] = {NULL, (void*)&next0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -2780,7 +2780,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QWebInspector::focusNextPrevChild(next);
+  return QWebInspector::focusNextPrevChild(next0);
 }
 void PythonQtShell_QWebInspector::focusOutEvent(QFocusEvent*  arg__1)
 {
@@ -2861,7 +2861,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   return QWebInspector::heightForWidth(arg__1);
 }
-void PythonQtShell_QWebInspector::hideEvent(QHideEvent*  event)
+void PythonQtShell_QWebInspector::hideEvent(QHideEvent*  event0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("hideEvent");
@@ -2869,7 +2869,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "QHideEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&event};
+    void* args[2] = {NULL, (void*)&event0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -2878,9 +2878,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QWebInspector::hideEvent(event);
+  QWebInspector::hideEvent(event0);
 }
-void PythonQtShell_QWebInspector::initPainter(QPainter*  painter) const
+void PythonQtShell_QWebInspector::initPainter(QPainter*  painter0) const
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("initPainter");
@@ -2888,7 +2888,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "QPainter*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&painter};
+    void* args[2] = {NULL, (void*)&painter0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -2897,7 +2897,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QWebInspector::initPainter(painter);
+  QWebInspector::initPainter(painter0);
 }
 void PythonQtShell_QWebInspector::inputMethodEvent(QInputMethodEvent*  arg__1)
 {
@@ -3160,7 +3160,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QWebInspector::moveEvent(arg__1);
 }
-bool  PythonQtShell_QWebInspector::nativeEvent(const QByteArray&  eventType, void*  message, long*  result)
+bool  PythonQtShell_QWebInspector::nativeEvent(const QByteArray&  eventType0, void*  message1, long*  result2)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("nativeEvent");
@@ -3169,7 +3169,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"bool" , "const QByteArray&" , "void*" , "long*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
       bool returnValue;
-    void* args[4] = {NULL, (void*)&eventType, (void*)&message, (void*)&result};
+    void* args[4] = {NULL, (void*)&eventType0, (void*)&message1, (void*)&result2};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -3188,7 +3188,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QWebInspector::nativeEvent(eventType, message, result);
+  return QWebInspector::nativeEvent(eventType0, message1, result2);
 }
 QPaintEngine*  PythonQtShell_QWebInspector::paintEngine() const
 {
@@ -3239,7 +3239,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QWebInspector::paintEvent(arg__1);
 }
-QPaintDevice*  PythonQtShell_QWebInspector::redirected(QPoint*  offset) const
+QPaintDevice*  PythonQtShell_QWebInspector::redirected(QPoint*  offset0) const
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("redirected");
@@ -3248,7 +3248,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"QPaintDevice*" , "QPoint*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       QPaintDevice* returnValue;
-    void* args[2] = {NULL, (void*)&offset};
+    void* args[2] = {NULL, (void*)&offset0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -3267,9 +3267,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QWebInspector::redirected(offset);
+  return QWebInspector::redirected(offset0);
 }
-void PythonQtShell_QWebInspector::resizeEvent(QResizeEvent*  event)
+void PythonQtShell_QWebInspector::resizeEvent(QResizeEvent*  event0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("resizeEvent");
@@ -3277,7 +3277,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "QResizeEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&event};
+    void* args[2] = {NULL, (void*)&event0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -3286,7 +3286,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QWebInspector::resizeEvent(event);
+  QWebInspector::resizeEvent(event0);
 }
 QPainter*  PythonQtShell_QWebInspector::sharedPainter() const
 {
@@ -3318,7 +3318,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   return QWebInspector::sharedPainter();
 }
-void PythonQtShell_QWebInspector::showEvent(QShowEvent*  event)
+void PythonQtShell_QWebInspector::showEvent(QShowEvent*  event0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("showEvent");
@@ -3326,7 +3326,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "QShowEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&event};
+    void* args[2] = {NULL, (void*)&event0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -3335,7 +3335,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QWebInspector::showEvent(event);
+  QWebInspector::showEvent(event0);
 }
 void PythonQtShell_QWebInspector::tabletEvent(QTabletEvent*  arg__1)
 {
@@ -3444,7 +3444,7 @@ PythonQtShell_QWebPage::~PythonQtShell_QWebPage() {
   PythonQtPrivate* priv = PythonQt::priv();
   if (priv) { priv->shellClassDeleted(this); }
 }
-bool  PythonQtShell_QWebPage::acceptNavigationRequest(QWebFrame*  frame, const QNetworkRequest&  request, QWebPage::NavigationType  type)
+bool  PythonQtShell_QWebPage::acceptNavigationRequest(QWebFrame*  frame0, const QNetworkRequest&  request1, QWebPage::NavigationType  type2)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("acceptNavigationRequest");
@@ -3453,7 +3453,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"bool" , "QWebFrame*" , "const QNetworkRequest&" , "QWebPage::NavigationType"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
       bool returnValue;
-    void* args[4] = {NULL, (void*)&frame, (void*)&request, (void*)&type};
+    void* args[4] = {NULL, (void*)&frame0, (void*)&request1, (void*)&type2};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -3472,7 +3472,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QWebPage::acceptNavigationRequest(frame, request, type);
+  return QWebPage::acceptNavigationRequest(frame0, request1, type2);
 }
 void PythonQtShell_QWebPage::childEvent(QChildEvent*  arg__1)
 {
@@ -3493,7 +3493,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QWebPage::childEvent(arg__1);
 }
-QString  PythonQtShell_QWebPage::chooseFile(QWebFrame*  originatingFrame, const QString&  oldFile)
+QString  PythonQtShell_QWebPage::chooseFile(QWebFrame*  originatingFrame0, const QString&  oldFile1)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("chooseFile");
@@ -3502,7 +3502,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"QString" , "QWebFrame*" , "const QString&"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
       QString returnValue;
-    void* args[3] = {NULL, (void*)&originatingFrame, (void*)&oldFile};
+    void* args[3] = {NULL, (void*)&originatingFrame0, (void*)&oldFile1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -3521,9 +3521,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QWebPage::chooseFile(originatingFrame, oldFile);
+  return QWebPage::chooseFile(originatingFrame0, oldFile1);
 }
-QObject*  PythonQtShell_QWebPage::createPlugin(const QString&  classid, const QUrl&  url, const QStringList&  paramNames, const QStringList&  paramValues)
+QObject*  PythonQtShell_QWebPage::createPlugin(const QString&  classid0, const QUrl&  url1, const QStringList&  paramNames2, const QStringList&  paramValues3)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("createPlugin");
@@ -3532,7 +3532,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"QObject*" , "const QString&" , "const QUrl&" , "const QStringList&" , "const QStringList&"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(5, argumentList);
       QObject* returnValue;
-    void* args[5] = {NULL, (void*)&classid, (void*)&url, (void*)&paramNames, (void*)&paramValues};
+    void* args[5] = {NULL, (void*)&classid0, (void*)&url1, (void*)&paramNames2, (void*)&paramValues3};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -3551,9 +3551,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QWebPage::createPlugin(classid, url, paramNames, paramValues);
+  return QWebPage::createPlugin(classid0, url1, paramNames2, paramValues3);
 }
-QWebPage*  PythonQtShell_QWebPage::createWindow(QWebPage::WebWindowType  type)
+QWebPage*  PythonQtShell_QWebPage::createWindow(QWebPage::WebWindowType  type0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("createWindow");
@@ -3562,7 +3562,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"QWebPage*" , "QWebPage::WebWindowType"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       QWebPage* returnValue;
-    void* args[2] = {NULL, (void*)&type};
+    void* args[2] = {NULL, (void*)&type0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -3581,7 +3581,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QWebPage::createWindow(type);
+  return QWebPage::createWindow(type0);
 }
 void PythonQtShell_QWebPage::customEvent(QEvent*  arg__1)
 {
@@ -3662,7 +3662,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   return QWebPage::eventFilter(arg__1, arg__2);
 }
-bool  PythonQtShell_QWebPage::extension(QWebPage::Extension  extension, const QWebPage::ExtensionOption*  option, QWebPage::ExtensionReturn*  output)
+bool  PythonQtShell_QWebPage::extension(QWebPage::Extension  extension0, const QWebPage::ExtensionOption*  option1, QWebPage::ExtensionReturn*  output2)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("extension");
@@ -3671,7 +3671,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"bool" , "QWebPage::Extension" , "const QWebPage::ExtensionOption*" , "QWebPage::ExtensionReturn*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
       bool returnValue;
-    void* args[4] = {NULL, (void*)&extension, (void*)&option, (void*)&output};
+    void* args[4] = {NULL, (void*)&extension0, (void*)&option1, (void*)&output2};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -3690,9 +3690,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QWebPage::extension(extension, option, output);
+  return QWebPage::extension(extension0, option1, output2);
 }
-void PythonQtShell_QWebPage::javaScriptAlert(QWebFrame*  originatingFrame, const QString&  msg)
+void PythonQtShell_QWebPage::javaScriptAlert(QWebFrame*  originatingFrame0, const QString&  msg1)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("javaScriptAlert");
@@ -3700,7 +3700,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "QWebFrame*" , "const QString&"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
-    void* args[3] = {NULL, (void*)&originatingFrame, (void*)&msg};
+    void* args[3] = {NULL, (void*)&originatingFrame0, (void*)&msg1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -3709,9 +3709,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QWebPage::javaScriptAlert(originatingFrame, msg);
+  QWebPage::javaScriptAlert(originatingFrame0, msg1);
 }
-bool  PythonQtShell_QWebPage::javaScriptConfirm(QWebFrame*  originatingFrame, const QString&  msg)
+bool  PythonQtShell_QWebPage::javaScriptConfirm(QWebFrame*  originatingFrame0, const QString&  msg1)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("javaScriptConfirm");
@@ -3720,7 +3720,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"bool" , "QWebFrame*" , "const QString&"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
       bool returnValue;
-    void* args[3] = {NULL, (void*)&originatingFrame, (void*)&msg};
+    void* args[3] = {NULL, (void*)&originatingFrame0, (void*)&msg1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -3739,9 +3739,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QWebPage::javaScriptConfirm(originatingFrame, msg);
+  return QWebPage::javaScriptConfirm(originatingFrame0, msg1);
 }
-void PythonQtShell_QWebPage::javaScriptConsoleMessage(const QString&  message, int  lineNumber, const QString&  sourceID)
+void PythonQtShell_QWebPage::javaScriptConsoleMessage(const QString&  message0, int  lineNumber1, const QString&  sourceID2)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("javaScriptConsoleMessage");
@@ -3749,7 +3749,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "const QString&" , "int" , "const QString&"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
-    void* args[4] = {NULL, (void*)&message, (void*)&lineNumber, (void*)&sourceID};
+    void* args[4] = {NULL, (void*)&message0, (void*)&lineNumber1, (void*)&sourceID2};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -3758,9 +3758,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QWebPage::javaScriptConsoleMessage(message, lineNumber, sourceID);
+  QWebPage::javaScriptConsoleMessage(message0, lineNumber1, sourceID2);
 }
-bool  PythonQtShell_QWebPage::javaScriptPrompt(QWebFrame*  originatingFrame, const QString&  msg, const QString&  defaultValue, QString*  result)
+bool  PythonQtShell_QWebPage::javaScriptPrompt(QWebFrame*  originatingFrame0, const QString&  msg1, const QString&  defaultValue2, QString*  result3)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("javaScriptPrompt");
@@ -3769,7 +3769,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"bool" , "QWebFrame*" , "const QString&" , "const QString&" , "QString*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(5, argumentList);
       bool returnValue;
-    void* args[5] = {NULL, (void*)&originatingFrame, (void*)&msg, (void*)&defaultValue, (void*)&result};
+    void* args[5] = {NULL, (void*)&originatingFrame0, (void*)&msg1, (void*)&defaultValue2, (void*)&result3};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -3788,7 +3788,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QWebPage::javaScriptPrompt(originatingFrame, msg, defaultValue, result);
+  return QWebPage::javaScriptPrompt(originatingFrame0, msg1, defaultValue2, result3);
 }
 bool  PythonQtShell_QWebPage::shouldInterruptJavaScript()
 {
@@ -3820,7 +3820,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   return QWebPage::shouldInterruptJavaScript();
 }
-bool  PythonQtShell_QWebPage::supportsExtension(QWebPage::Extension  extension) const
+bool  PythonQtShell_QWebPage::supportsExtension(QWebPage::Extension  extension0) const
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("supportsExtension");
@@ -3829,7 +3829,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"bool" , "QWebPage::Extension"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue;
-    void* args[2] = {NULL, (void*)&extension};
+    void* args[2] = {NULL, (void*)&extension0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -3848,7 +3848,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QWebPage::supportsExtension(extension);
+  return QWebPage::supportsExtension(extension0);
 }
 void PythonQtShell_QWebPage::timerEvent(QTimerEvent*  arg__1)
 {
@@ -3869,7 +3869,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QWebPage::timerEvent(arg__1);
 }
-void PythonQtShell_QWebPage::triggerAction(QWebPage::WebAction  action, bool  checked)
+void PythonQtShell_QWebPage::triggerAction(QWebPage::WebAction  action0, bool  checked1)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("triggerAction");
@@ -3877,7 +3877,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "QWebPage::WebAction" , "bool"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
-    void* args[3] = {NULL, (void*)&action, (void*)&checked};
+    void* args[3] = {NULL, (void*)&action0, (void*)&checked1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -3886,9 +3886,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QWebPage::triggerAction(action, checked);
+  QWebPage::triggerAction(action0, checked1);
 }
-QString  PythonQtShell_QWebPage::userAgentForUrl(const QUrl&  url) const
+QString  PythonQtShell_QWebPage::userAgentForUrl(const QUrl&  url0) const
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("userAgentForUrl");
@@ -3897,7 +3897,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"QString" , "const QUrl&"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       QString returnValue;
-    void* args[2] = {NULL, (void*)&url};
+    void* args[2] = {NULL, (void*)&url0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -3916,7 +3916,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QWebPage::userAgentForUrl(url);
+  return QWebPage::userAgentForUrl(url0);
 }
 QWebPage* PythonQtWrapper_QWebPage::new_QWebPage(QObject*  parent)
 { 
@@ -4292,7 +4292,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QWebPluginFactory::childEvent(arg__1);
 }
-QObject*  PythonQtShell_QWebPluginFactory::create(const QString&  mimeType, const QUrl&  arg__2, const QStringList&  argumentNames, const QStringList&  argumentValues) const
+QObject*  PythonQtShell_QWebPluginFactory::create(const QString&  mimeType0, const QUrl&  arg__2, const QStringList&  argumentNames2, const QStringList&  argumentValues3) const
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("create");
@@ -4301,7 +4301,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"QObject*" , "const QString&" , "const QUrl&" , "const QStringList&" , "const QStringList&"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(5, argumentList);
       QObject* returnValue;
-    void* args[5] = {NULL, (void*)&mimeType, (void*)&arg__2, (void*)&argumentNames, (void*)&argumentValues};
+    void* args[5] = {NULL, (void*)&mimeType0, (void*)&arg__2, (void*)&argumentNames2, (void*)&argumentValues3};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -4401,7 +4401,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   return QWebPluginFactory::eventFilter(arg__1, arg__2);
 }
-bool  PythonQtShell_QWebPluginFactory::extension(QWebPluginFactory::Extension  extension, const QWebPluginFactory::ExtensionOption*  option, QWebPluginFactory::ExtensionReturn*  output)
+bool  PythonQtShell_QWebPluginFactory::extension(QWebPluginFactory::Extension  extension0, const QWebPluginFactory::ExtensionOption*  option1, QWebPluginFactory::ExtensionReturn*  output2)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("extension");
@@ -4410,7 +4410,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"bool" , "QWebPluginFactory::Extension" , "const QWebPluginFactory::ExtensionOption*" , "QWebPluginFactory::ExtensionReturn*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
       bool returnValue;
-    void* args[4] = {NULL, (void*)&extension, (void*)&option, (void*)&output};
+    void* args[4] = {NULL, (void*)&extension0, (void*)&option1, (void*)&output2};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -4429,7 +4429,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QWebPluginFactory::extension(extension, option, output);
+  return QWebPluginFactory::extension(extension0, option1, output2);
 }
 QList<QWebPluginFactory::Plugin >  PythonQtShell_QWebPluginFactory::plugins() const
 {
@@ -4480,7 +4480,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QWebPluginFactory::refreshPlugins();
 }
-bool  PythonQtShell_QWebPluginFactory::supportsExtension(QWebPluginFactory::Extension  extension) const
+bool  PythonQtShell_QWebPluginFactory::supportsExtension(QWebPluginFactory::Extension  extension0) const
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("supportsExtension");
@@ -4489,7 +4489,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"bool" , "QWebPluginFactory::Extension"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue;
-    void* args[2] = {NULL, (void*)&extension};
+    void* args[2] = {NULL, (void*)&extension0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -4508,7 +4508,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QWebPluginFactory::supportsExtension(extension);
+  return QWebPluginFactory::supportsExtension(extension0);
 }
 void PythonQtShell_QWebPluginFactory::timerEvent(QTimerEvent*  arg__1)
 {
@@ -4981,7 +4981,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QWebView::contextMenuEvent(arg__1);
 }
-QWebView*  PythonQtShell_QWebView::createWindow(QWebPage::WebWindowType  type)
+QWebView*  PythonQtShell_QWebView::createWindow(QWebPage::WebWindowType  type0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("createWindow");
@@ -4990,7 +4990,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"QWebView*" , "QWebPage::WebWindowType"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       QWebView* returnValue;
-    void* args[2] = {NULL, (void*)&type};
+    void* args[2] = {NULL, (void*)&type0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -5009,7 +5009,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QWebView::createWindow(type);
+  return QWebView::createWindow(type0);
 }
 void PythonQtShell_QWebView::customEvent(QEvent*  arg__1)
 {
@@ -5234,7 +5234,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QWebView::focusInEvent(arg__1);
 }
-bool  PythonQtShell_QWebView::focusNextPrevChild(bool  next)
+bool  PythonQtShell_QWebView::focusNextPrevChild(bool  next0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("focusNextPrevChild");
@@ -5243,7 +5243,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"bool" , "bool"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue;
-    void* args[2] = {NULL, (void*)&next};
+    void* args[2] = {NULL, (void*)&next0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -5262,7 +5262,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QWebView::focusNextPrevChild(next);
+  return QWebView::focusNextPrevChild(next0);
 }
 void PythonQtShell_QWebView::focusOutEvent(QFocusEvent*  arg__1)
 {
@@ -5362,7 +5362,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QWebView::hideEvent(arg__1);
 }
-void PythonQtShell_QWebView::initPainter(QPainter*  painter) const
+void PythonQtShell_QWebView::initPainter(QPainter*  painter0) const
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("initPainter");
@@ -5370,7 +5370,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "QPainter*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&painter};
+    void* args[2] = {NULL, (void*)&painter0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -5379,7 +5379,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QWebView::initPainter(painter);
+  QWebView::initPainter(painter0);
 }
 void PythonQtShell_QWebView::inputMethodEvent(QInputMethodEvent*  arg__1)
 {
@@ -5400,7 +5400,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QWebView::inputMethodEvent(arg__1);
 }
-QVariant  PythonQtShell_QWebView::inputMethodQuery(Qt::InputMethodQuery  property) const
+QVariant  PythonQtShell_QWebView::inputMethodQuery(Qt::InputMethodQuery  property0) const
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("inputMethodQuery");
@@ -5409,7 +5409,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"QVariant" , "Qt::InputMethodQuery"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       QVariant returnValue;
-    void* args[2] = {NULL, (void*)&property};
+    void* args[2] = {NULL, (void*)&property0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -5428,7 +5428,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QWebView::inputMethodQuery(property);
+  return QWebView::inputMethodQuery(property0);
 }
 void PythonQtShell_QWebView::keyPressEvent(QKeyEvent*  arg__1)
 {
@@ -5642,7 +5642,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QWebView::moveEvent(arg__1);
 }
-bool  PythonQtShell_QWebView::nativeEvent(const QByteArray&  eventType, void*  message, long*  result)
+bool  PythonQtShell_QWebView::nativeEvent(const QByteArray&  eventType0, void*  message1, long*  result2)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("nativeEvent");
@@ -5651,7 +5651,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"bool" , "const QByteArray&" , "void*" , "long*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
       bool returnValue;
-    void* args[4] = {NULL, (void*)&eventType, (void*)&message, (void*)&result};
+    void* args[4] = {NULL, (void*)&eventType0, (void*)&message1, (void*)&result2};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -5670,7 +5670,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QWebView::nativeEvent(eventType, message, result);
+  return QWebView::nativeEvent(eventType0, message1, result2);
 }
 QPaintEngine*  PythonQtShell_QWebView::paintEngine() const
 {
@@ -5721,7 +5721,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QWebView::paintEvent(arg__1);
 }
-QPaintDevice*  PythonQtShell_QWebView::redirected(QPoint*  offset) const
+QPaintDevice*  PythonQtShell_QWebView::redirected(QPoint*  offset0) const
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("redirected");
@@ -5730,7 +5730,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"QPaintDevice*" , "QPoint*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       QPaintDevice* returnValue;
-    void* args[2] = {NULL, (void*)&offset};
+    void* args[2] = {NULL, (void*)&offset0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -5749,7 +5749,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QWebView::redirected(offset);
+  return QWebView::redirected(offset0);
 }
 void PythonQtShell_QWebView::resizeEvent(QResizeEvent*  arg__1)
 {

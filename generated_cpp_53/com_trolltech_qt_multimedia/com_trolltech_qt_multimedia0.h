@@ -93,6 +93,7 @@ virtual void unmap();
 
 class PythonQtPublicPromoter_QAbstractVideoBuffer : public QAbstractVideoBuffer
 { public:
+friend class PythonQtWrapper_QAbstractVideoBuffer;
 inline QVariant  promoted_handle() const { return QAbstractVideoBuffer::handle(); }
 inline void promoted_release() { QAbstractVideoBuffer::release(); }
 };
@@ -141,8 +142,11 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QAbstractVideoSurface : public QAbstractVideoSurface
 { public:
+friend class PythonQtWrapper_QAbstractVideoSurface;
 inline bool  promoted_isFormatSupported(const QVideoSurfaceFormat&  format) const { return QAbstractVideoSurface::isFormatSupported(format); }
 inline QVideoSurfaceFormat  promoted_nearestFormat(const QVideoSurfaceFormat&  format) const { return QAbstractVideoSurface::nearestFormat(format); }
+inline void promoted_setError(QAbstractVideoSurface::Error  error) { QAbstractVideoSurface::setError(error); }
+inline void promoted_setNativeResolution(const QSize&  resolution) { QAbstractVideoSurface::setNativeResolution(resolution); }
 inline bool  promoted_start(const QVideoSurfaceFormat&  format) { return QAbstractVideoSurface::start(format); }
 inline void promoted_stop() { QAbstractVideoSurface::stop(); }
 };
@@ -161,6 +165,8 @@ void delete_QAbstractVideoSurface(QAbstractVideoSurface* obj) { delete obj; }
    bool  isFormatSupported(QAbstractVideoSurface* theWrappedObject, const QVideoSurfaceFormat&  format) const;
    QSize  nativeResolution(QAbstractVideoSurface* theWrappedObject) const;
    QVideoSurfaceFormat  nearestFormat(QAbstractVideoSurface* theWrappedObject, const QVideoSurfaceFormat&  format) const;
+   void setError(QAbstractVideoSurface* theWrappedObject, QAbstractVideoSurface::Error  error);
+   void setNativeResolution(QAbstractVideoSurface* theWrappedObject, const QSize&  resolution);
    bool  start(QAbstractVideoSurface* theWrappedObject, const QVideoSurfaceFormat&  format);
    void stop(QAbstractVideoSurface* theWrappedObject);
    QVideoSurfaceFormat  surfaceFormat(QAbstractVideoSurface* theWrappedObject) const;
@@ -236,6 +242,7 @@ virtual void unbind(QObject*  arg__1);
 
 class PythonQtPublicPromoter_QAudioDecoder : public QAudioDecoder
 { public:
+friend class PythonQtWrapper_QAudioDecoder;
 inline bool  promoted_bind(QObject*  arg__1) { return QAudioDecoder::bind(arg__1); }
 inline void promoted_unbind(QObject*  arg__1) { QAudioDecoder::unbind(arg__1); }
 };
@@ -566,6 +573,7 @@ virtual void unbind(QObject*  arg__1);
 
 class PythonQtPublicPromoter_QCamera : public QCamera
 { public:
+friend class PythonQtWrapper_QCamera;
 inline QMultimedia::AvailabilityStatus  promoted_availability() const { return QCamera::availability(); }
 };
 
@@ -702,6 +710,7 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QCameraImageCapture : public QCameraImageCapture
 { public:
+friend class PythonQtWrapper_QCameraImageCapture;
 inline QMediaObject*  promoted_mediaObject() const { return QCameraImageCapture::mediaObject(); }
 inline bool  promoted_setMediaObject(QMediaObject*  arg__1) { return QCameraImageCapture::setMediaObject(arg__1); }
 };
@@ -847,6 +856,7 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QCameraViewfinder : public QCameraViewfinder
 { public:
+friend class PythonQtWrapper_QCameraViewfinder;
 inline QMediaObject*  promoted_mediaObject() const { return QCameraViewfinder::mediaObject(); }
 inline bool  promoted_setMediaObject(QMediaObject*  object) { return QCameraViewfinder::setMediaObject(object); }
 };
@@ -885,6 +895,8 @@ virtual void timerEvent(QTimerEvent*  event);
 
 class PythonQtPublicPromoter_QGraphicsVideoItem : public QGraphicsVideoItem
 { public:
+friend class PythonQtWrapper_QGraphicsVideoItem;
+inline QVariant  promoted_itemChange(QGraphicsItem::GraphicsItemChange  change, const QVariant&  value) { return QGraphicsVideoItem::itemChange(change, value); }
 inline QMediaObject*  promoted_mediaObject() const { return QGraphicsVideoItem::mediaObject(); }
 inline bool  promoted_setMediaObject(QMediaObject*  object) { return QGraphicsVideoItem::setMediaObject(object); }
 inline void promoted_timerEvent(QTimerEvent*  event) { QGraphicsVideoItem::timerEvent(event); }
@@ -898,6 +910,7 @@ QGraphicsVideoItem* new_QGraphicsVideoItem(QGraphicsItem*  parent = 0);
 void delete_QGraphicsVideoItem(QGraphicsVideoItem* obj) { delete obj; } 
    Qt::AspectRatioMode  aspectRatioMode(QGraphicsVideoItem* theWrappedObject) const;
    QRectF  boundingRect(QGraphicsVideoItem* theWrappedObject) const;
+   QVariant  itemChange(QGraphicsVideoItem* theWrappedObject, QGraphicsItem::GraphicsItemChange  change, const QVariant&  value);
    QMediaObject*  mediaObject(QGraphicsVideoItem* theWrappedObject) const;
    QSizeF  nativeSize(QGraphicsVideoItem* theWrappedObject) const;
    QPointF  offset(QGraphicsVideoItem* theWrappedObject) const;
@@ -1046,9 +1059,12 @@ virtual void unbind(QObject*  arg__1);
 
 class PythonQtPublicPromoter_QMediaObject : public QMediaObject
 { public:
+friend class PythonQtWrapper_QMediaObject;
+inline void promoted_addPropertyWatch(const QByteArray&  name) { QMediaObject::addPropertyWatch(name); }
 inline QMultimedia::AvailabilityStatus  promoted_availability() const { return QMediaObject::availability(); }
 inline bool  promoted_bind(QObject*  arg__1) { return QMediaObject::bind(arg__1); }
 inline bool  promoted_isAvailable() const { return QMediaObject::isAvailable(); }
+inline void promoted_removePropertyWatch(const QByteArray&  name) { QMediaObject::removePropertyWatch(name); }
 inline QMediaService*  promoted_service() const { return QMediaObject::service(); }
 inline void promoted_unbind(QObject*  arg__1) { QMediaObject::unbind(arg__1); }
 };
@@ -1058,6 +1074,7 @@ class PythonQtWrapper_QMediaObject : public QObject
 public:
 public slots:
 void delete_QMediaObject(QMediaObject* obj) { delete obj; } 
+   void addPropertyWatch(QMediaObject* theWrappedObject, const QByteArray&  name);
    QMultimedia::AvailabilityStatus  availability(QMediaObject* theWrappedObject) const;
    QStringList  availableMetaData(QMediaObject* theWrappedObject) const;
    bool  bind(QMediaObject* theWrappedObject, QObject*  arg__1);
@@ -1065,6 +1082,7 @@ void delete_QMediaObject(QMediaObject* obj) { delete obj; }
    bool  isMetaDataAvailable(QMediaObject* theWrappedObject) const;
    QVariant  metaData(QMediaObject* theWrappedObject, const QString&  key) const;
    int  notifyInterval(QMediaObject* theWrappedObject) const;
+   void removePropertyWatch(QMediaObject* theWrappedObject, const QByteArray&  name);
    QMediaService*  service(QMediaObject* theWrappedObject) const;
    void setNotifyInterval(QMediaObject* theWrappedObject, int  milliSeconds);
    void unbind(QMediaObject* theWrappedObject, QObject*  arg__1);
@@ -1097,6 +1115,7 @@ virtual void unbind(QObject*  arg__1);
 
 class PythonQtPublicPromoter_QMediaPlayer : public QMediaPlayer
 { public:
+friend class PythonQtWrapper_QMediaPlayer;
 inline QMultimedia::AvailabilityStatus  promoted_availability() const { return QMediaPlayer::availability(); }
 inline bool  promoted_bind(QObject*  arg__1) { return QMediaPlayer::bind(arg__1); }
 inline void promoted_unbind(QObject*  arg__1) { QMediaPlayer::unbind(arg__1); }
@@ -1165,6 +1184,7 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QMediaPlaylist : public QMediaPlaylist
 { public:
+friend class PythonQtWrapper_QMediaPlaylist;
 inline QMediaObject*  promoted_mediaObject() const { return QMediaPlaylist::mediaObject(); }
 inline bool  promoted_setMediaObject(QMediaObject*  object) { return QMediaPlaylist::setMediaObject(object); }
 };
@@ -1227,6 +1247,7 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QMediaRecorder : public QMediaRecorder
 { public:
+friend class PythonQtWrapper_QMediaRecorder;
 inline QMediaObject*  promoted_mediaObject() const { return QMediaRecorder::mediaObject(); }
 inline bool  promoted_setMediaObject(QMediaObject*  object) { return QMediaRecorder::setMediaObject(object); }
 };

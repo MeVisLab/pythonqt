@@ -604,6 +604,7 @@ virtual bool  warning(const QXmlParseException&  exception);
 
 class PythonQtPublicPromoter_QXmlDefaultHandler : public QXmlDefaultHandler
 { public:
+friend class PythonQtWrapper_QXmlDefaultHandler;
 inline bool  promoted_attributeDecl(const QString&  eName, const QString&  aName, const QString&  type, const QString&  valueDefault, const QString&  value) { return QXmlDefaultHandler::attributeDecl(eName, aName, type, valueDefault, value); }
 inline bool  promoted_characters(const QString&  ch) { return QXmlDefaultHandler::characters(ch); }
 inline bool  promoted_comment(const QString&  ch) { return QXmlDefaultHandler::comment(ch); }
@@ -747,6 +748,7 @@ virtual void setData(const QString&  dat);
 
 class PythonQtPublicPromoter_QXmlInputSource : public QXmlInputSource
 { public:
+friend class PythonQtWrapper_QXmlInputSource;
 inline QString  promoted_data() const { return QXmlInputSource::data(); }
 inline void promoted_fetchData() { QXmlInputSource::fetchData(); }
 inline QString  promoted_fromRawData(const QByteArray&  data, bool  beginning = false) { return QXmlInputSource::fromRawData(data, beginning); }
@@ -928,6 +930,7 @@ virtual void setProperty(const QString&  name, void*  value);
 
 class PythonQtPublicPromoter_QXmlSimpleReader : public QXmlSimpleReader
 { public:
+friend class PythonQtWrapper_QXmlSimpleReader;
 inline QXmlDTDHandler*  promoted_DTDHandler() const { return QXmlSimpleReader::DTDHandler(); }
 inline QXmlContentHandler*  promoted_contentHandler() const { return QXmlSimpleReader::contentHandler(); }
 inline QXmlDeclHandler*  promoted_declHandler() const { return QXmlSimpleReader::declHandler(); }

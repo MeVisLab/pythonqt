@@ -39,6 +39,7 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QUiLoader : public QUiLoader
 { public:
+friend class PythonQtWrapper_QUiLoader;
 inline QAction*  promoted_createAction(QObject*  parent = 0, const QString&  name = QString()) { return QUiLoader::createAction(parent, name); }
 inline QActionGroup*  promoted_createActionGroup(QObject*  parent = 0, const QString&  name = QString()) { return QUiLoader::createActionGroup(parent, name); }
 inline QLayout*  promoted_createLayout(const QString&  className, QObject*  parent = 0, const QString&  name = QString()) { return QUiLoader::createLayout(className, parent, name); }

@@ -445,9 +445,16 @@ virtual QPainter*  sharedPainter() const;
 
 class PythonQtPublicPromoter_QImage : public QImage
 { public:
+friend class PythonQtWrapper_QImage;
+inline QImage  promoted_convertToFormat_helper(QImage::Format  format, Qt::ImageConversionFlags  flags) const { return QImage::convertToFormat_helper(format, flags); }
+inline bool  promoted_convertToFormat_inplace(QImage::Format  format, Qt::ImageConversionFlags  flags) { return QImage::convertToFormat_inplace(format, flags); }
 inline int  promoted_devType() const { return QImage::devType(); }
 inline int  promoted_metric(QPaintDevice::PaintDeviceMetric  metric) const { return QImage::metric(metric); }
+inline QImage  promoted_mirrored_helper(bool  horizontal, bool  vertical) const { return QImage::mirrored_helper(horizontal, vertical); }
+inline void promoted_mirrored_inplace(bool  horizontal, bool  vertical) { QImage::mirrored_inplace(horizontal, vertical); }
 inline QPaintEngine*  promoted_paintEngine() const { return QImage::paintEngine(); }
+inline QImage  promoted_rgbSwapped_helper() const { return QImage::rgbSwapped_helper(); }
+inline void promoted_rgbSwapped_inplace() { QImage::rgbSwapped_inplace(); }
 };
 
 class PythonQtWrapper_QImage : public QObject
@@ -476,6 +483,8 @@ void delete_QImage(QImage* obj) { delete obj; }
    QVector<unsigned int >  colorTable(QImage* theWrappedObject) const;
    QImage  convertToFormat(QImage* theWrappedObject, QImage::Format  f, Qt::ImageConversionFlags  flags = Qt::AutoColor) const;
    QImage  convertToFormat(QImage* theWrappedObject, QImage::Format  f, const QVector<unsigned int >&  colorTable, Qt::ImageConversionFlags  flags = Qt::AutoColor) const;
+   QImage  convertToFormat_helper(QImage* theWrappedObject, QImage::Format  format, Qt::ImageConversionFlags  flags) const;
+   bool  convertToFormat_inplace(QImage* theWrappedObject, QImage::Format  format, Qt::ImageConversionFlags  flags);
    QImage  copy(QImage* theWrappedObject, const QRect&  rect = QRect()) const;
    QImage  copy(QImage* theWrappedObject, int  x, int  y, int  w, int  h) const;
    QImage  createAlphaMask(QImage* theWrappedObject, Qt::ImageConversionFlags  flags = Qt::AutoColor) const;
@@ -501,6 +510,8 @@ void delete_QImage(QImage* obj) { delete obj; }
    bool  loadFromData(QImage* theWrappedObject, const QByteArray&  data, const char*  aformat = 0);
    int  metric(QImage* theWrappedObject, QPaintDevice::PaintDeviceMetric  metric) const;
    QImage  mirrored(QImage* theWrappedObject, bool  horizontally = false, bool  vertically = true) const;
+   QImage  mirrored_helper(QImage* theWrappedObject, bool  horizontal, bool  vertical) const;
+   void mirrored_inplace(QImage* theWrappedObject, bool  horizontal, bool  vertical);
    QPoint  offset(QImage* theWrappedObject) const;
    bool  __ne__(QImage* theWrappedObject, const QImage&  arg__1) const;
    void writeTo(QImage* theWrappedObject, QDataStream&  arg__1);
@@ -513,6 +524,8 @@ void delete_QImage(QImage* obj) { delete obj; }
    int  pixelIndex(QImage* theWrappedObject, int  x, int  y) const;
    QRect  rect(QImage* theWrappedObject) const;
    QImage  rgbSwapped(QImage* theWrappedObject) const;
+   QImage  rgbSwapped_helper(QImage* theWrappedObject) const;
+   void rgbSwapped_inplace(QImage* theWrappedObject);
    bool  save(QImage* theWrappedObject, QIODevice*  device, const char*  format = 0, int  quality = -1) const;
    bool  save(QImage* theWrappedObject, const QString&  fileName, const char*  format = 0, int  quality = -1) const;
    QImage  scaled(QImage* theWrappedObject, const QSize&  s, Qt::AspectRatioMode  aspectMode = Qt::IgnoreAspectRatio, Qt::TransformationMode  mode = Qt::FastTransformation) const;
@@ -802,7 +815,9 @@ virtual QPainter*  sharedPainter() const;
 
 class PythonQtPublicPromoter_QPixmap : public QPixmap
 { public:
+friend class PythonQtWrapper_QPixmap;
 inline int  promoted_devType() const { return QPixmap::devType(); }
+inline QPixmap  promoted_static_QPixmap_fromImageInPlace(QImage&  image, Qt::ImageConversionFlags  flags = Qt::AutoColor) { return QPixmap::fromImageInPlace(image, flags); }
 inline int  promoted_metric(QPaintDevice::PaintDeviceMetric  arg__1) const { return QPixmap::metric(arg__1); }
 inline QPaintEngine*  promoted_paintEngine() const { return QPixmap::paintEngine(); }
 };
@@ -831,6 +846,7 @@ void delete_QPixmap(QPixmap* obj) { delete obj; }
    void fill(QPixmap* theWrappedObject, const QPaintDevice*  device, const QPoint&  ofs);
    void fill(QPixmap* theWrappedObject, const QPaintDevice*  device, int  xofs, int  yofs);
    QPixmap  static_QPixmap_fromImage(const QImage&  image, Qt::ImageConversionFlags  flags = Qt::AutoColor);
+   QPixmap  static_QPixmap_fromImageInPlace(QImage&  image, Qt::ImageConversionFlags  flags = Qt::AutoColor);
    QPixmap  static_QPixmap_fromImageReader(QImageReader*  imageReader, Qt::ImageConversionFlags  flags = Qt::AutoColor);
    QPixmap  static_QPixmap_grabWidget(QObject*  widget, const QRect&  rect);
    QPixmap  static_QPixmap_grabWidget(QObject*  widget, int  x = 0, int  y = 0, int  w = -1, int  h = -1);
@@ -861,8 +877,8 @@ void delete_QPixmap(QPixmap* obj) { delete obj; }
    QSize  size(QPixmap* theWrappedObject) const;
    void swap(QPixmap* theWrappedObject, QPixmap&  other);
    QImage  toImage(QPixmap* theWrappedObject) const;
-   QPixmap  transformed(QPixmap* theWrappedObject, const QMatrix&  arg__1, Qt::TransformationMode  mode = Qt::FastTransformation) const;
-   QPixmap  transformed(QPixmap* theWrappedObject, const QTransform&  arg__1, Qt::TransformationMode  mode = Qt::FastTransformation) const;
+   QPixmap  transformed(QPixmap* theWrappedObject, const QMatrix&  arg__1, Qt::TransformationMode  mode) const;
+   QPixmap  transformed(QPixmap* theWrappedObject, const QTransform&  arg__1, Qt::TransformationMode  mode) const;
    QMatrix  static_QPixmap_trueMatrix(const QMatrix&  m, int  w, int  h);
    QTransform  static_QPixmap_trueMatrix(const QTransform&  m, int  w, int  h);
    int  width(QPixmap* theWrappedObject) const;
@@ -895,17 +911,17 @@ void delete_QPolygon(QPolygon* obj) { delete obj; }
    int  count(QPolygon* theWrappedObject, const QPoint&  t) const;
    bool  empty(QPolygon* theWrappedObject) const;
    bool  endsWith(QPolygon* theWrappedObject, const QPoint&  t) const;
-   QVector<QPoint >*  fill(QPolygon* theWrappedObject, const QPoint&  t, int  size);
+   QVector<QPoint >*  fill(QPolygon* theWrappedObject, const QPoint&  t, int  size = -1);
    const QPoint*  first(QPolygon* theWrappedObject) const;
    QVector<QPoint >  static_QPolygon_fromList(const QList<QPoint >&  list);
-   int  indexOf(QPolygon* theWrappedObject, const QPoint&  t, int  from) const;
+   int  indexOf(QPolygon* theWrappedObject, const QPoint&  t, int  from = 0) const;
    QPolygon  intersected(QPolygon* theWrappedObject, const QPolygon&  r) const;
    bool  isEmpty(QPolygon* theWrappedObject) const;
    bool  isSharedWith(QPolygon* theWrappedObject, const QVector<QPoint >&  other) const;
    const QPoint*  last(QPolygon* theWrappedObject) const;
-   int  lastIndexOf(QPolygon* theWrappedObject, const QPoint&  t, int  from) const;
+   int  lastIndexOf(QPolygon* theWrappedObject, const QPoint&  t, int  from = -1) const;
    int  length(QPolygon* theWrappedObject) const;
-   QVector<QPoint >  mid(QPolygon* theWrappedObject, int  pos, int  len) const;
+   QVector<QPoint >  mid(QPolygon* theWrappedObject, int  pos, int  len = -1) const;
    bool  __ne__(QPolygon* theWrappedObject, const QVector<QPoint >&  v) const;
    QPolygon  __mul__(QPolygon* theWrappedObject, const QMatrix&  m);
    QPolygon  __mul__(QPolygon* theWrappedObject, const QTransform&  m);

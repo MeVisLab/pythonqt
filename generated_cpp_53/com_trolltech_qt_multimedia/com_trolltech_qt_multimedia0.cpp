@@ -105,7 +105,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   return QAbstractVideoBuffer::handle();
 }
-uchar*  PythonQtShell_QAbstractVideoBuffer::map(QAbstractVideoBuffer::MapMode  mode, int*  numBytes, int*  bytesPerLine)
+uchar*  PythonQtShell_QAbstractVideoBuffer::map(QAbstractVideoBuffer::MapMode  mode0, int*  numBytes1, int*  bytesPerLine2)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("map");
@@ -114,7 +114,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"uchar*" , "QAbstractVideoBuffer::MapMode" , "int*" , "int*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
       uchar* returnValue;
-    void* args[4] = {NULL, (void*)&mode, (void*)&numBytes, (void*)&bytesPerLine};
+    void* args[4] = {NULL, (void*)&mode0, (void*)&numBytes1, (void*)&bytesPerLine2};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -326,7 +326,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   return QAbstractVideoSurface::eventFilter(arg__1, arg__2);
 }
-bool  PythonQtShell_QAbstractVideoSurface::isFormatSupported(const QVideoSurfaceFormat&  format) const
+bool  PythonQtShell_QAbstractVideoSurface::isFormatSupported(const QVideoSurfaceFormat&  format0) const
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("isFormatSupported");
@@ -335,7 +335,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"bool" , "const QVideoSurfaceFormat&"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue;
-    void* args[2] = {NULL, (void*)&format};
+    void* args[2] = {NULL, (void*)&format0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -354,9 +354,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QAbstractVideoSurface::isFormatSupported(format);
+  return QAbstractVideoSurface::isFormatSupported(format0);
 }
-QVideoSurfaceFormat  PythonQtShell_QAbstractVideoSurface::nearestFormat(const QVideoSurfaceFormat&  format) const
+QVideoSurfaceFormat  PythonQtShell_QAbstractVideoSurface::nearestFormat(const QVideoSurfaceFormat&  format0) const
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("nearestFormat");
@@ -365,7 +365,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"QVideoSurfaceFormat" , "const QVideoSurfaceFormat&"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       QVideoSurfaceFormat returnValue;
-    void* args[2] = {NULL, (void*)&format};
+    void* args[2] = {NULL, (void*)&format0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -384,9 +384,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QAbstractVideoSurface::nearestFormat(format);
+  return QAbstractVideoSurface::nearestFormat(format0);
 }
-bool  PythonQtShell_QAbstractVideoSurface::present(const QVideoFrame&  frame)
+bool  PythonQtShell_QAbstractVideoSurface::present(const QVideoFrame&  frame0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("present");
@@ -395,7 +395,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"bool" , "const QVideoFrame&"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue;
-    void* args[2] = {NULL, (void*)&frame};
+    void* args[2] = {NULL, (void*)&frame0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -416,7 +416,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   return bool();
 }
-bool  PythonQtShell_QAbstractVideoSurface::start(const QVideoSurfaceFormat&  format)
+bool  PythonQtShell_QAbstractVideoSurface::start(const QVideoSurfaceFormat&  format0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("start");
@@ -425,7 +425,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"bool" , "const QVideoSurfaceFormat&"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue;
-    void* args[2] = {NULL, (void*)&format};
+    void* args[2] = {NULL, (void*)&format0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -444,7 +444,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QAbstractVideoSurface::start(format);
+  return QAbstractVideoSurface::start(format0);
 }
 void PythonQtShell_QAbstractVideoSurface::stop()
 {
@@ -465,7 +465,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QAbstractVideoSurface::stop();
 }
-QList<QVideoFrame::PixelFormat >  PythonQtShell_QAbstractVideoSurface::supportedPixelFormats(QAbstractVideoBuffer::HandleType  handleType) const
+QList<QVideoFrame::PixelFormat >  PythonQtShell_QAbstractVideoSurface::supportedPixelFormats(QAbstractVideoBuffer::HandleType  handleType0) const
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("supportedPixelFormats");
@@ -474,7 +474,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"QList<QVideoFrame::PixelFormat >" , "QAbstractVideoBuffer::HandleType"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       QList<QVideoFrame::PixelFormat > returnValue;
-    void* args[2] = {NULL, (void*)&handleType};
+    void* args[2] = {NULL, (void*)&handleType0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -541,6 +541,16 @@ QSize  PythonQtWrapper_QAbstractVideoSurface::nativeResolution(QAbstractVideoSur
 QVideoSurfaceFormat  PythonQtWrapper_QAbstractVideoSurface::nearestFormat(QAbstractVideoSurface* theWrappedObject, const QVideoSurfaceFormat&  format) const
 {
   return ( ((PythonQtPublicPromoter_QAbstractVideoSurface*)theWrappedObject)->promoted_nearestFormat(format));
+}
+
+void PythonQtWrapper_QAbstractVideoSurface::setError(QAbstractVideoSurface* theWrappedObject, QAbstractVideoSurface::Error  error)
+{
+  ( ((PythonQtPublicPromoter_QAbstractVideoSurface*)theWrappedObject)->promoted_setError(error));
+}
+
+void PythonQtWrapper_QAbstractVideoSurface::setNativeResolution(QAbstractVideoSurface* theWrappedObject, const QSize&  resolution)
+{
+  ( ((PythonQtPublicPromoter_QAbstractVideoSurface*)theWrappedObject)->promoted_setNativeResolution(resolution));
 }
 
 bool  PythonQtWrapper_QAbstractVideoSurface::start(QAbstractVideoSurface* theWrappedObject, const QVideoSurfaceFormat&  format)
@@ -2054,7 +2064,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   return QAudioRecorder::mediaObject();
 }
-bool  PythonQtShell_QAudioRecorder::setMediaObject(QMediaObject*  object)
+bool  PythonQtShell_QAudioRecorder::setMediaObject(QMediaObject*  object0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("setMediaObject");
@@ -2063,7 +2073,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"bool" , "QMediaObject*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue;
-    void* args[2] = {NULL, (void*)&object};
+    void* args[2] = {NULL, (void*)&object0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -2082,7 +2092,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QAudioRecorder::setMediaObject(object);
+  return QAudioRecorder::setMediaObject(object0);
 }
 void PythonQtShell_QAudioRecorder::timerEvent(QTimerEvent*  arg__1)
 {
@@ -3393,7 +3403,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QCameraViewfinder::enterEvent(arg__1);
 }
-bool  PythonQtShell_QCameraViewfinder::event(QEvent*  event)
+bool  PythonQtShell_QCameraViewfinder::event(QEvent*  event0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("event");
@@ -3402,7 +3412,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"bool" , "QEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue;
-    void* args[2] = {NULL, (void*)&event};
+    void* args[2] = {NULL, (void*)&event0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -3421,7 +3431,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QCameraViewfinder::event(event);
+  return QCameraViewfinder::event(event0);
 }
 bool  PythonQtShell_QCameraViewfinder::eventFilter(QObject*  arg__1, QEvent*  arg__2)
 {
@@ -3472,7 +3482,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QCameraViewfinder::focusInEvent(arg__1);
 }
-bool  PythonQtShell_QCameraViewfinder::focusNextPrevChild(bool  next)
+bool  PythonQtShell_QCameraViewfinder::focusNextPrevChild(bool  next0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("focusNextPrevChild");
@@ -3481,7 +3491,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"bool" , "bool"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue;
-    void* args[2] = {NULL, (void*)&next};
+    void* args[2] = {NULL, (void*)&next0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -3500,7 +3510,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QCameraViewfinder::focusNextPrevChild(next);
+  return QCameraViewfinder::focusNextPrevChild(next0);
 }
 void PythonQtShell_QCameraViewfinder::focusOutEvent(QFocusEvent*  arg__1)
 {
@@ -3581,7 +3591,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   return QCameraViewfinder::heightForWidth(arg__1);
 }
-void PythonQtShell_QCameraViewfinder::hideEvent(QHideEvent*  event)
+void PythonQtShell_QCameraViewfinder::hideEvent(QHideEvent*  event0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("hideEvent");
@@ -3589,7 +3599,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "QHideEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&event};
+    void* args[2] = {NULL, (void*)&event0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -3598,9 +3608,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QCameraViewfinder::hideEvent(event);
+  QCameraViewfinder::hideEvent(event0);
 }
-void PythonQtShell_QCameraViewfinder::initPainter(QPainter*  painter) const
+void PythonQtShell_QCameraViewfinder::initPainter(QPainter*  painter0) const
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("initPainter");
@@ -3608,7 +3618,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "QPainter*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&painter};
+    void* args[2] = {NULL, (void*)&painter0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -3617,7 +3627,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QCameraViewfinder::initPainter(painter);
+  QCameraViewfinder::initPainter(painter0);
 }
 void PythonQtShell_QCameraViewfinder::inputMethodEvent(QInputMethodEvent*  arg__1)
 {
@@ -3891,7 +3901,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QCameraViewfinder::mouseReleaseEvent(arg__1);
 }
-void PythonQtShell_QCameraViewfinder::moveEvent(QMoveEvent*  event)
+void PythonQtShell_QCameraViewfinder::moveEvent(QMoveEvent*  event0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("moveEvent");
@@ -3899,7 +3909,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "QMoveEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&event};
+    void* args[2] = {NULL, (void*)&event0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -3908,9 +3918,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QCameraViewfinder::moveEvent(event);
+  QCameraViewfinder::moveEvent(event0);
 }
-bool  PythonQtShell_QCameraViewfinder::nativeEvent(const QByteArray&  eventType, void*  message, long*  result)
+bool  PythonQtShell_QCameraViewfinder::nativeEvent(const QByteArray&  eventType0, void*  message1, long*  result2)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("nativeEvent");
@@ -3919,7 +3929,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"bool" , "const QByteArray&" , "void*" , "long*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(4, argumentList);
       bool returnValue;
-    void* args[4] = {NULL, (void*)&eventType, (void*)&message, (void*)&result};
+    void* args[4] = {NULL, (void*)&eventType0, (void*)&message1, (void*)&result2};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -3938,7 +3948,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QCameraViewfinder::nativeEvent(eventType, message, result);
+  return QCameraViewfinder::nativeEvent(eventType0, message1, result2);
 }
 QPaintEngine*  PythonQtShell_QCameraViewfinder::paintEngine() const
 {
@@ -3970,7 +3980,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   return QCameraViewfinder::paintEngine();
 }
-void PythonQtShell_QCameraViewfinder::paintEvent(QPaintEvent*  event)
+void PythonQtShell_QCameraViewfinder::paintEvent(QPaintEvent*  event0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("paintEvent");
@@ -3978,7 +3988,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "QPaintEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&event};
+    void* args[2] = {NULL, (void*)&event0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -3987,9 +3997,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QCameraViewfinder::paintEvent(event);
+  QCameraViewfinder::paintEvent(event0);
 }
-QPaintDevice*  PythonQtShell_QCameraViewfinder::redirected(QPoint*  offset) const
+QPaintDevice*  PythonQtShell_QCameraViewfinder::redirected(QPoint*  offset0) const
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("redirected");
@@ -3998,7 +4008,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"QPaintDevice*" , "QPoint*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       QPaintDevice* returnValue;
-    void* args[2] = {NULL, (void*)&offset};
+    void* args[2] = {NULL, (void*)&offset0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -4017,9 +4027,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QCameraViewfinder::redirected(offset);
+  return QCameraViewfinder::redirected(offset0);
 }
-void PythonQtShell_QCameraViewfinder::resizeEvent(QResizeEvent*  event)
+void PythonQtShell_QCameraViewfinder::resizeEvent(QResizeEvent*  event0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("resizeEvent");
@@ -4027,7 +4037,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "QResizeEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&event};
+    void* args[2] = {NULL, (void*)&event0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -4036,9 +4046,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QCameraViewfinder::resizeEvent(event);
+  QCameraViewfinder::resizeEvent(event0);
 }
-bool  PythonQtShell_QCameraViewfinder::setMediaObject(QMediaObject*  object)
+bool  PythonQtShell_QCameraViewfinder::setMediaObject(QMediaObject*  object0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("setMediaObject");
@@ -4047,7 +4057,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"bool" , "QMediaObject*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue;
-    void* args[2] = {NULL, (void*)&object};
+    void* args[2] = {NULL, (void*)&object0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -4066,7 +4076,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QCameraViewfinder::setMediaObject(object);
+  return QCameraViewfinder::setMediaObject(object0);
 }
 QPainter*  PythonQtShell_QCameraViewfinder::sharedPainter() const
 {
@@ -4098,7 +4108,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   return QCameraViewfinder::sharedPainter();
 }
-void PythonQtShell_QCameraViewfinder::showEvent(QShowEvent*  event)
+void PythonQtShell_QCameraViewfinder::showEvent(QShowEvent*  event0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("showEvent");
@@ -4106,7 +4116,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "QShowEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&event};
+    void* args[2] = {NULL, (void*)&event0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -4115,7 +4125,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QCameraViewfinder::showEvent(event);
+  QCameraViewfinder::showEvent(event0);
 }
 void PythonQtShell_QCameraViewfinder::tabletEvent(QTabletEvent*  arg__1)
 {
@@ -4232,7 +4242,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QGraphicsVideoItem::customEvent(arg__1);
 }
-bool  PythonQtShell_QGraphicsVideoItem::event(QEvent*  ev)
+bool  PythonQtShell_QGraphicsVideoItem::event(QEvent*  ev0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("event");
@@ -4241,7 +4251,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"bool" , "QEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue;
-    void* args[2] = {NULL, (void*)&ev};
+    void* args[2] = {NULL, (void*)&ev0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -4260,7 +4270,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QGraphicsVideoItem::event(ev);
+  return QGraphicsVideoItem::event(ev0);
 }
 bool  PythonQtShell_QGraphicsVideoItem::eventFilter(QObject*  arg__1, QEvent*  arg__2)
 {
@@ -4322,7 +4332,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   return QGraphicsVideoItem::mediaObject();
 }
-bool  PythonQtShell_QGraphicsVideoItem::setMediaObject(QMediaObject*  object)
+bool  PythonQtShell_QGraphicsVideoItem::setMediaObject(QMediaObject*  object0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("setMediaObject");
@@ -4331,7 +4341,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"bool" , "QMediaObject*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue;
-    void* args[2] = {NULL, (void*)&object};
+    void* args[2] = {NULL, (void*)&object0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -4350,9 +4360,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QGraphicsVideoItem::setMediaObject(object);
+  return QGraphicsVideoItem::setMediaObject(object0);
 }
-void PythonQtShell_QGraphicsVideoItem::timerEvent(QTimerEvent*  event)
+void PythonQtShell_QGraphicsVideoItem::timerEvent(QTimerEvent*  event0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("timerEvent");
@@ -4360,7 +4370,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "QTimerEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&event};
+    void* args[2] = {NULL, (void*)&event0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -4369,7 +4379,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QGraphicsVideoItem::timerEvent(event);
+  QGraphicsVideoItem::timerEvent(event0);
 }
 QGraphicsVideoItem* PythonQtWrapper_QGraphicsVideoItem::new_QGraphicsVideoItem(QGraphicsItem*  parent)
 { 
@@ -4383,6 +4393,11 @@ Qt::AspectRatioMode  PythonQtWrapper_QGraphicsVideoItem::aspectRatioMode(QGraphi
 QRectF  PythonQtWrapper_QGraphicsVideoItem::boundingRect(QGraphicsVideoItem* theWrappedObject) const
 {
   return ( theWrappedObject->boundingRect());
+}
+
+QVariant  PythonQtWrapper_QGraphicsVideoItem::itemChange(QGraphicsVideoItem* theWrappedObject, QGraphicsItem::GraphicsItemChange  change, const QVariant&  value)
+{
+  return ( ((PythonQtPublicPromoter_QGraphicsVideoItem*)theWrappedObject)->promoted_itemChange(change, value));
 }
 
 QMediaObject*  PythonQtWrapper_QGraphicsVideoItem::mediaObject(QGraphicsVideoItem* theWrappedObject) const
@@ -4556,7 +4571,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   return 0;
 }
-bool  PythonQtShell_QMediaBindableInterface::setMediaObject(QMediaObject*  object)
+bool  PythonQtShell_QMediaBindableInterface::setMediaObject(QMediaObject*  object0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("setMediaObject");
@@ -4565,7 +4580,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"bool" , "QMediaObject*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue;
-    void* args[2] = {NULL, (void*)&object};
+    void* args[2] = {NULL, (void*)&object0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -5050,6 +5065,11 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QMediaObject::unbind(arg__1);
 }
+void PythonQtWrapper_QMediaObject::addPropertyWatch(QMediaObject* theWrappedObject, const QByteArray&  name)
+{
+  ( ((PythonQtPublicPromoter_QMediaObject*)theWrappedObject)->promoted_addPropertyWatch(name));
+}
+
 QMultimedia::AvailabilityStatus  PythonQtWrapper_QMediaObject::availability(QMediaObject* theWrappedObject) const
 {
   return ( ((PythonQtPublicPromoter_QMediaObject*)theWrappedObject)->promoted_availability());
@@ -5083,6 +5103,11 @@ QVariant  PythonQtWrapper_QMediaObject::metaData(QMediaObject* theWrappedObject,
 int  PythonQtWrapper_QMediaObject::notifyInterval(QMediaObject* theWrappedObject) const
 {
   return ( theWrappedObject->notifyInterval());
+}
+
+void PythonQtWrapper_QMediaObject::removePropertyWatch(QMediaObject* theWrappedObject, const QByteArray&  name)
+{
+  ( ((PythonQtPublicPromoter_QMediaObject*)theWrappedObject)->promoted_removePropertyWatch(name));
 }
 
 QMediaService*  PythonQtWrapper_QMediaObject::service(QMediaObject* theWrappedObject) const
@@ -5630,7 +5655,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   return QMediaPlaylist::mediaObject();
 }
-bool  PythonQtShell_QMediaPlaylist::setMediaObject(QMediaObject*  object)
+bool  PythonQtShell_QMediaPlaylist::setMediaObject(QMediaObject*  object0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("setMediaObject");
@@ -5639,7 +5664,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"bool" , "QMediaObject*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue;
-    void* args[2] = {NULL, (void*)&object};
+    void* args[2] = {NULL, (void*)&object0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -5658,7 +5683,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QMediaPlaylist::setMediaObject(object);
+  return QMediaPlaylist::setMediaObject(object0);
 }
 void PythonQtShell_QMediaPlaylist::timerEvent(QTimerEvent*  arg__1)
 {
@@ -5947,7 +5972,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   return QMediaRecorder::mediaObject();
 }
-bool  PythonQtShell_QMediaRecorder::setMediaObject(QMediaObject*  object)
+bool  PythonQtShell_QMediaRecorder::setMediaObject(QMediaObject*  object0)
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("setMediaObject");
@@ -5956,7 +5981,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"bool" , "QMediaObject*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue;
-    void* args[2] = {NULL, (void*)&object};
+    void* args[2] = {NULL, (void*)&object0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -5975,7 +6000,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QMediaRecorder::setMediaObject(object);
+  return QMediaRecorder::setMediaObject(object0);
 }
 void PythonQtShell_QMediaRecorder::timerEvent(QTimerEvent*  arg__1)
 {
