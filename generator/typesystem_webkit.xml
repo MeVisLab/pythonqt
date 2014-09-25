@@ -46,7 +46,6 @@
     <object-type name="QWebPage::ChooseMultipleFilesExtensionReturn"/>
     <object-type name="QWebHistory">
       <modify-function signature="saveState(QWebHistory::HistoryStateVersion)const">
-         <modify-argument index="1"><remove-default-expression/></modify-argument>
       </modify-function>
     </object-type>
     <object-type name="QWebSettings"/>

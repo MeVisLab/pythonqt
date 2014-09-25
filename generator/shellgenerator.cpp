@@ -128,10 +128,10 @@ void ShellGenerator::writeFunctionArguments(QTextStream &s, const AbstractMetaCl
         writeTypeInfo(s, arg->type(), option);
         if (!(option & SkipName))
             s << " " << arg->argumentName();
-        if ((option & IncludeDefaultExpression) && !arg->originalDefaultValueExpression().isEmpty()) {
+        if ((option & IncludeDefaultExpression) && !arg->defaultValueExpression().isEmpty()) {
             s << " = "; 
 
-            QString expr = arg->originalDefaultValueExpression();
+            QString expr = arg->defaultValueExpression();
           if (expr != "0") {
             QString qualifier;
             if (arg->type()->typeEntry()->isEnum() && expr.indexOf("::") < 0) {
@@ -143,12 +143,7 @@ void ShellGenerator::writeFunctionArguments(QTextStream &s, const AbstractMetaCl
               s << qualifier << "::";
             }
           }
-          if (expr.contains("defaultConnection")) {
-            expr.replace("defaultConnection","QSqlDatabase::defaultConnection");
-          }
-          if (expr == "MediaSource()") {
-            expr = "Phonon::MediaSource()";
-          }
+          
             s << expr; 
         }
     }
@@ -254,7 +249,7 @@ bool function_sorter(AbstractMetaFunction *a, AbstractMetaFunction *b);
 AbstractMetaFunctionList ShellGenerator::getFunctionsToWrap(const AbstractMetaClass* meta_class)
 {
   AbstractMetaFunctionList functions = meta_class->queryFunctions( 
-    AbstractMetaClass::NormalFunctions | AbstractMetaClass::WasPublic
+    AbstractMetaClass::NormalFunctions | AbstractMetaClass::WasVisible
     | AbstractMetaClass::NotRemovedFromTargetLang | AbstractMetaClass::ClassImplements
     );
   AbstractMetaFunctionList functions2 = meta_class->queryFunctions( 
@@ -292,7 +287,7 @@ AbstractMetaFunctionList ShellGenerator::getProtectedFunctionsThatNeedPromotion(
   AbstractMetaFunctionList functions; 
   AbstractMetaFunctionList functions1 = getFunctionsToWrap(meta_class); 
   foreach(AbstractMetaFunction* func, functions1) {
-    if (!func->isPublic() || func->isVirtual()) {
+    if (func->wasProtected() || func->isVirtual()) {
       functions << func;
     }
   }
