@@ -162,6 +162,8 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
     s << "class " << promoterClassName(meta_class)
       << " : public " << meta_class->qualifiedCppName() << endl << "{ public:" << endl;
 
+    s << "friend class " << wrapperClassName(meta_class) << ";" << endl;
+
     foreach(AbstractMetaFunction* fun, promoteFunctions) {
       s << "inline ";
       writeFunctionSignature(s, fun, 0, "promoted_",
@@ -198,7 +200,7 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
   QList<FlagsTypeEntry*> flags;
   foreach(AbstractMetaEnum* enum1, enums1) {
     // catch gadgets and enums that are not exported on QObjects...
-    if (enum1->wasPublic() && (!meta_class->isQObject() || !enum1->hasQEnumsDeclaration())) {
+    if ((enum1->wasProtected() || enum1->wasPublic()) && (!meta_class->isQObject() || !enum1->hasQEnumsDeclaration())) {
       enums << enum1;
       if (enum1->typeEntry()->flags()) {
         flags << enum1->typeEntry()->flags();
@@ -228,10 +230,12 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
     foreach(AbstractMetaEnum* enum1, enums) {
       s << "enum " << enum1->name() << "{" << endl;
       bool first = true;
+      QString scope = enum1->wasProtected() ? promoterClassName(meta_class) : meta_class->qualifiedCppName();
+
       foreach(AbstractMetaEnumValue* value, enum1->values()) {
         if (first) { first = false; }
         else { s << ", "; }
-        s << "  " << value->name() << " = " << meta_class->qualifiedCppName() << "::" << value->name();
+        s << "  " << value->name() << " = " << scope << "::" << value->name();
       }
       s << "};" << endl;
     }

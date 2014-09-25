@@ -31,7 +31,7 @@
   <primitive-type name="GLboolean"/>
   <primitive-type name="GLuint64"/>
   
-  <primitive-type name="bool"/><primitive-type name="double"/><primitive-type name="qreal"/><primitive-type name="float"/><primitive-type name="qint64"/><primitive-type name="__int64"/><primitive-type name="unsigned __int64"/><primitive-type name="unsigned long long"/><primitive-type name="long long"/><primitive-type name="qlonglong"/><primitive-type name="qulonglong"/><primitive-type name="short"/><primitive-type name="short"/><primitive-type name="signed short"/><primitive-type name="ushort"/><primitive-type name="unsigned short"/><primitive-type name="char"/><primitive-type name="signed char"/><primitive-type name="uchar"/><primitive-type name="unsigned char"/><primitive-type name="int"/><primitive-type name="signed int"/><primitive-type name="uint"/><primitive-type name="ulong"/><primitive-type name="unsigned int"/><primitive-type name="signed long"/><primitive-type name="long"/><primitive-type name="unsigned long"/><primitive-type name="WId"/><primitive-type name="Qt::HANDLE"/><primitive-type name="QVariant::Type"/><primitive-type name="QByteRef"/><primitive-type name="QBitRef"/><primitive-type name="QBool"/><primitive-type name="jobject"/><primitive-type name="quintptr"/><suppress-warning text="WARNING(MetaJavaBuilder) :: signal 'finished' in class 'QProcess' is overloaded."/><suppress-warning text="WARNING(MetaJavaBuilder) :: missing required class for enums: QRegExp"/><suppress-warning text="WARNING(MetaJavaBuilder) :: enum 'QtValidLicenseForScriptToolsModule' does not have a type entry or is not an enum"/><suppress-warning text="WARNING(MetaJavaBuilder) :: Rejected enum has no alternative...: QDataStream::Qt_4_5"/><suppress-warning text="WARNING(MetaJavaBuilder) :: unhandled enum value: Qt::MatchFlags(Qt::MatchStartsWith in Qt::MatchFlag"/><suppress-warning text="WARNING(MetaJavaBuilder) :: unhandled enum value: Qt::MatchWrap) in Qt::MatchFlag"/><suppress-warning text="WARNING(MetaJavaBuilder) :: unmatched enum Qt::MatchFlags(Qt::MatchStartsWith|Qt::MatchWrap) when parsing default value of 'match' in class 'QAbstractItemModel'"/><suppress-warning text="WARNING(MetaJavaBuilder) :: unsupported default value 'QLatin1String(defaultConnection)' of argument in function '*', class '*'"/><suppress-warning text="WARNING(MetaJavaBuilder) :: Class '*' has equals operators but no qHash() function"/><suppress-warning text="WARNING(MetaJavaBuilder) :: type '*' is specified in typesystem, but not defined. This could potentially lead to compilation errors."/><suppress-warning text="WARNING(MetaJavaBuilder) :: namespace '*' for enum '*' is not declared"/><suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function '*', unmatched parameter type '*'"/><suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function '*', unmatched return type '*'"/><suppress-warning text="WARNING(MetaJavaBuilder) :: signature '*' for function modification in '*' not found. Possible candidates: "/><suppress-warning text="WARNING(MetaJavaBuilder) :: namespace '*' does not have a type entry"/><suppress-warning text="WARNING(MetaJavaBuilder) :: unsupported default value '*' of argument in function '*', class '*'"/><suppress-warning text="WARNING(MetaJavaBuilder) :: Shadowing: * and *; Java code will not compile"/><suppress-warning text="WARNING(MetaJavaBuilder) :: enum '*' is specified in typesystem, but not declared"/>
+  <primitive-type name="bool"/><primitive-type name="double"/><primitive-type name="qreal"/><primitive-type name="float"/><primitive-type name="qint64"/><primitive-type name="__int64"/><primitive-type name="unsigned __int64"/><primitive-type name="unsigned long long"/><primitive-type name="long long"/><primitive-type name="qlonglong"/><primitive-type name="qulonglong"/><primitive-type name="short"/><primitive-type name="short"/><primitive-type name="signed short"/><primitive-type name="ushort"/><primitive-type name="unsigned short"/><primitive-type name="char"/><primitive-type name="signed char"/><primitive-type name="uchar"/><primitive-type name="unsigned char"/><primitive-type name="int"/><primitive-type name="signed int"/><primitive-type name="uint"/><primitive-type name="ulong"/><primitive-type name="unsigned int"/><primitive-type name="signed long"/><primitive-type name="long"/><primitive-type name="unsigned long"/><primitive-type name="WId"/><primitive-type name="Qt::HANDLE"/><primitive-type name="QVariant::Type"/><primitive-type name="QByteRef"/><primitive-type name="QBitRef"/><primitive-type name="QBool"/><primitive-type name="jobject"/><primitive-type name="quintptr"/>
 
   <value-type name="QModelIndex"/>
   <rejection class="*" function-name="d_func"/>
@@ -683,9 +683,6 @@
 
   <value-type name="QDir">
     <modify-function signature="QDir(QString,QString,QFlags&lt;QDir::SortFlag&gt;,QFlags&lt;QDir::Filter&gt;)">
-      <modify-argument index="3">
-        <replace-default-expression with="SortFlag.Name, SortFlag.IgnoreCase"/>
-      </modify-argument>
     </modify-function>
     <modify-function signature="operator=(QDir)" remove="all"/>
     <modify-function signature="operator=(QString)" remove="all"/>
@@ -956,10 +953,6 @@
     <modify-function signature="append(const char *)" remove="all">
       <modify-argument index="0" replace-value="this"/>
     </modify-function>
-    <modify-function signature="append(char)">
-      <modify-argument index="0" replace-value="this"/>
-      <rename to="appendByte"/> 
-    </modify-function>
 
     <modify-function signature="count(const char *)const" remove="all"/>
 
@@ -972,9 +965,6 @@
     </modify-function>
 
     <modify-function signature="indexOf(const char*,int)const" remove="all"/>
-    <modify-function signature="indexOf(char,int)const">
-      <rename to="indexOfByte"/> 
-    </modify-function>
 
     <modify-function signature="insert(int,QByteArray)">
       <modify-argument index="0" replace-value="this"/>
@@ -983,24 +973,13 @@
       <modify-argument index="0" replace-value="this"/>
     </modify-function>
     <modify-function signature="insert(int,const char *)" remove="all"/>
-    <modify-function signature="insert(int,char)">
-      <modify-argument index="0" replace-value="this"/>
-      <rename to="insertByte"/>
-    </modify-function>
 
     <modify-function signature="lastIndexOf(const char*,int)const" remove="all"/>
-    <modify-function signature="lastIndexOf(char,int)const">
-      <rename to="lastIndexOfByte"/> 
-    </modify-function>
 
     <modify-function signature="prepend(QByteArray)">
       <modify-argument index="0" replace-value="this"/>
     </modify-function>
     <modify-function signature="prepend(const char *)" remove="all"/>
-    <modify-function signature="prepend(char)">
-      <modify-argument index="0" replace-value="this"/>
-      <rename to="prependByte"/>
-    </modify-function>
 
     <modify-function signature="remove(int,int)">
       <modify-argument index="0" replace-value="this"/>
@@ -1034,53 +1013,6 @@
     <modify-function signature="startsWith(const char *)const" remove="all"/>
 
     <modify-function signature="fromRawData(const char*,int)" remove="all"/>
-
-    <modify-function signature="number(int,int)">
-      <rename to="fromInt"/>
-    </modify-function>
-    <modify-function signature="number(uint,int)">
-      <rename to="fromUInt"/>
-    </modify-function>
-    <modify-function signature="number(qlonglong,int)">
-      <rename to="fromLongLong"/>
-    </modify-function>
-    <modify-function signature="number(qulonglong,int)">
-      <rename to="fromULongLong"/>
-    </modify-function>
-
-    <modify-function signature="setNum(int,int)">
-      <modify-argument index="0" replace-value="this"/>
-      <rename to="setInt"/>
-    </modify-function>
-    <modify-function signature="setNum(uint,int)">
-      <modify-argument index="0" replace-value="this"/>
-      <rename to="setUInt"/>
-    </modify-function>
-    <modify-function signature="setNum(short,int)">
-      <modify-argument index="0" replace-value="this"/>
-      <rename to="setShort"/>
-    </modify-function>
-    <modify-function signature="setNum(ushort,int)">
-      <modify-argument index="0" replace-value="this"/>
-      <rename to="setUShort"/>
-    </modify-function>
-    <modify-function signature="setNum(qlonglong,int)">
-      <modify-argument index="0" replace-value="this"/>
-      <rename to="setLongLong"/>
-    </modify-function>
-    <modify-function signature="setNum(qulonglong,int)">
-      <modify-argument index="0" replace-value="this"/>
-      <rename to="setULongLong"/>
-    </modify-function>
-    <modify-function signature="setNum(double,char,int)">
-      <modify-argument index="0" replace-value="this"/>
-      <rename to="setDouble"/>
-    </modify-function>
-    <modify-function signature="setNum(float,char,int)">
-      <modify-argument index="0" replace-value="this"/>
-      <rename to="setFloat"/>
-    </modify-function>
-
   </value-type>
 
   <value-type name="QTextBoundaryFinder">
@@ -1242,59 +1174,12 @@
   </object-type>
 
   <object-type name="QSignalMapper">
-    <modify-function signature="mapped(const QString &amp;)">
-      <rename to="mappedString"/>
-    </modify-function>
-    <modify-function signature="mapped(int)">
-      <rename to="mappedInteger"/>
-    </modify-function>
-    <modify-function signature="mapped(QObject *)">
-      <rename to="mappedQObject"/>
-    </modify-function>
-    <modify-function signature="mapped(QWidget *)" remove="all"/>
-
-    <modify-function signature="mapping(QWidget*)const" remove="all"/>
-
-    <modify-function signature="setMapping(QObject*,QWidget*)" remove="all"/>
-  
-    <!-- ### overloads -->
-    <modify-function signature="mapping(int)const">
-      <rename to="mappingById"/>
-    </modify-function>
-    <modify-function signature="mapping(QString)const">
-      <rename to="mappingByString"/>
-    </modify-function>
-    <modify-function signature="mapping(QObject*)const">
-      <rename to="mappingByObject"/>
-    </modify-function>
-    <modify-function signature="setMapping(QObject*,int)">
-      <rename to="setMappingById"/>
-    </modify-function>
-    <modify-function signature="setMapping(QObject*,QString)">
-      <rename to="setMappingByString"/>
-    </modify-function>
-    <modify-function signature="setMapping(QObject*,QObject*)">
-      <rename to="setMappingByObject"/>
-    </modify-function>
   </object-type>
 
   <object-type name="QObject">
-    <modify-function signature="deleteLater()">
-      <rename to="disposeLater"/>
-    </modify-function>
-
     <modify-function signature="inherits(const char*)const">
       <remove/>
     </modify-function>
-
-    <modify-function signature="property(const char*)const">
-      <access modifier="private"/>
-    </modify-function>
-
-    <modify-function signature="setProperty(const char*,QVariant)">
-      <access modifier="private"/>
-    </modify-function>
-
 
     <extra-includes>
       <include file-name="QVarLengthArray" location="global"/>
@@ -1765,6 +1650,24 @@
   <suppress-warning text="WARNING(Parser) :: ** WARNING scope not found for function definition:QFuture&lt;void&gt;::operator= - definition *ignored*"/>
   <suppress-warning text="WARNING(Parser) :: ** WARNING scope not found for function definition:QFutureInterface&lt;void&gt;::future - definition *ignored*"/>
   <suppress-warning text="WARNING(Parser) :: ** WARNING scope not found for function definition:QFutureWatcher&lt;void&gt;::setFuture - definition *ignored*"/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: signal 'finished' in class 'QProcess' is overloaded."/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: missing required class for enums: QRegExp"/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: enum 'QtValidLicenseForScriptToolsModule' does not have a type entry or is not an enum"/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Rejected enum has no alternative...: QDataStream::Qt_4_5"/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: unhandled enum value: Qt::MatchFlags(Qt::MatchStartsWith in Qt::MatchFlag"/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: unhandled enum value: Qt::MatchWrap) in Qt::MatchFlag"/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: unmatched enum Qt::MatchFlags(Qt::MatchStartsWith|Qt::MatchWrap) when parsing default value of 'match' in class 'QAbstractItemModel'"/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: unsupported default value 'QLatin1String(defaultConnection)' of argument in function '*', class '*'"/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class '*' has equals operators but no qHash() function"/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: type '*' is specified in typesystem, but not defined. This could potentially lead to compilation errors."/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: namespace '*' for enum '*' is not declared"/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function '*', unmatched parameter type '*'"/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function '*', unmatched return type '*'"/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: signature '*' for function modification in '*' not found. Possible candidates: "/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: namespace '*' does not have a type entry"/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: unsupported default value '*' of argument in function '*', class '*'"/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Shadowing: * and *; Java code will not compile"/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: enum '*' is specified in typesystem, but not declared"/>
 
   <!-- Qt 5 new classes -->
   <object-type name="QFileDevice"/>

@@ -52,12 +52,6 @@
 
   <value-type name="QXmlName">
     <modify-function signature="QXmlName(QXmlNamePool&amp;,QString,QString,QString)" access="private">
-      <modify-argument index="3">
-    <remove-default-expression/>
-      </modify-argument>
-      <modify-argument index="4">
-    <remove-default-expression/>
-      </modify-argument>
     </modify-function>
 
     <modify-function signature="operator=(QXmlName)" remove="all"/>

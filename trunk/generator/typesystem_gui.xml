@@ -653,14 +653,10 @@
   <value-type name="QBitmap" delete-in-main-thread="yes">
     <modify-function signature="operator=(const QPixmap &amp;)" remove="all"/>
     <modify-function signature="QBitmap(QString,const char*)" access="private">
-        <modify-argument index="2"> <remove-default-expression/> </modify-argument>
     </modify-function>
 
     <modify-function signature="fromData(QSize,const unsigned char*,QImage::Format)">
         <access modifier="private"/>
-        <modify-argument index="3">
-            <remove-default-expression/>
-        </modify-argument>
     </modify-function>
   
     <modify-function signature="fromData(QSize,const uchar*,QImage::Format)" remove="all"/>
@@ -836,7 +832,7 @@
     </modify-function>
   </value-type>
 
-  <value-type name="QTextLayout::FormatRange" generate="no">
+  <value-type name="QTextLayout::FormatRange">
     <include file-name="QTextLayout" location="global"/>
   </value-type>
 
@@ -875,9 +871,6 @@
 
       <modify-function signature="inverted(bool*)const">
         <access modifier="private"/>
-        <modify-argument index="1">
-            <remove-default-expression/>
-        </modify-argument>
       </modify-function>
   
       <modify-function signature="inverted(bool*)const">
@@ -953,56 +946,6 @@
         <include file-name="QStringList" location="global"/>
         <include file-name="QMatrix" location="global"/>
     </extra-includes>
-    <modify-function signature="save(const QString &amp;, const char *, int) const">
-        <access modifier="private"/>
-        <rename to="private_save"/>
-        <modify-argument index="2">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="3">
-            <remove-default-expression/>
-        </modify-argument>
-    </modify-function>
-
-    <modify-function signature="QImage(unsigned char*,int,int,QImage::Format)">
-        <access modifier="private"/>
-    </modify-function>
-
-    <modify-function signature="QImage(QString,const char*)">
-        <access modifier="private"/>
-        <modify-argument index="2">
-            <remove-default-expression/>
-        </modify-argument>
-    </modify-function>
-
-    <modify-function signature="load(QString,const char*)">
-        <access modifier="private"/>
-        <modify-argument index="2">
-            <remove-default-expression/>
-        </modify-argument>
-    </modify-function>
-
-    <modify-function signature="load(QIODevice*,const char*)">
-        <access modifier="private"/>
-    </modify-function>
-
-    <modify-function signature="loadFromData(const unsigned char*,int,const char*)">
-        <access modifier="private"/>
-        <modify-argument index="2">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="3">
-            <remove-default-expression/>
-        </modify-argument>
-    </modify-function>
-
-    <modify-function signature="loadFromData(QByteArray,const char*)">
-        <access modifier="private"/>
-        <modify-argument index="2">
-            <remove-default-expression/>
-        </modify-argument>
-    </modify-function>
-
     <modify-function signature="operator=(QImage)" remove="all"/>
 
     <modify-function signature="setText(const char*,const char*,QString)">
@@ -1011,13 +954,6 @@
 
     <modify-function signature="text(const char*,const char*)const">
         <remove/>
-    </modify-function>
-
-    <modify-function signature="fromData(QByteArray,const char*)">
-        <access modifier="private"/>
-        <modify-argument index="2">
-            <remove-default-expression/>
-        </modify-argument>
     </modify-function>
 
     <modify-function signature="fromData(const unsigned char*,int,const char*)">
@@ -1153,12 +1089,6 @@ PyObject* constScanLine(QImage* image, int line) {
 
     <modify-function signature="boundingRect(QRectF,int,QString,int,int*)const">
         <access modifier="private"/>
-        <modify-argument index="4">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="5">
-            <remove-default-expression/>
-        </modify-argument>
     </modify-function>
 
     <modify-function signature="operator=(QFontMetrics)" remove="all"/>
@@ -1166,12 +1096,6 @@ PyObject* constScanLine(QImage* image, int line) {
 
     <modify-function signature="size(int,QString,int,int*)const">
         <access modifier="private"/>
-        <modify-argument index="3">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="4">
-            <remove-default-expression/>
-        </modify-argument>
     </modify-function>
    
     <modify-function signature="QFontMetricsF(QFontMetricsF)" remove="all"/>
@@ -1191,34 +1115,16 @@ PyObject* constScanLine(QImage* image, int line) {
 
     <modify-function signature="boundingRect(int,int,int,int,int,QString,int,int*)const">
         <access modifier="private"/>
-        <modify-argument index="7">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="8">
-            <remove-default-expression/>
-        </modify-argument>
     </modify-function>
 
     <modify-function signature="boundingRect(QRect,int,QString,int,int*)const">
         <access modifier="private"/>
-        <modify-argument index="4">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="5">
-            <remove-default-expression/>
-        </modify-argument>
     </modify-function>
 
     <modify-function signature="operator=(QFontMetrics)" remove="all"/>
 
     <modify-function signature="size(int,QString,int,int*)const">
         <access modifier="private"/>
-        <modify-argument index="3">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="4">
-            <remove-default-expression/>
-        </modify-argument>
     </modify-function>
 
   
@@ -1256,9 +1162,6 @@ PyObject* constScanLine(QImage* image, int line) {
     <modify-function signature="resetMatrix()" remove="all"/> <!--### Obsolete in 4.3-->
     <modify-function signature="sceneMatrix()const" remove="all"/> <!--### Obsolete in 4.3-->
     <modify-function signature="setMatrix(QMatrix, bool)" remove="all"/> <!--### Obsolete in 4.3-->
-  
-    <modify-function signature="supportsExtension(QGraphicsItem::Extension)const" remove="all"/>
-    <modify-function signature="setExtension(QGraphicsItem::Extension,QVariant)" remove="all"/>
   </interface-type>
 
   <object-type name="QAbstractGraphicsShapeItem" delete-in-main-thread="yes">
@@ -1349,12 +1252,6 @@ PyObject* constScanLine(QImage* image, int line) {
     <!-- ### Reduced functionality due to meta object having missing information -->
     <modify-function signature="registerField(const QString &amp;, QWidget *, const char *, const char *)">
         <access modifier="private"/>
-        <modify-argument index="3">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="4">
-            <remove-default-expression/>
-        </modify-argument>
     </modify-function>
 
   </object-type>
@@ -1479,28 +1376,6 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QPainterPathStroker"/>
 
   <object-type name="QPictureIO">
-
-    <modify-function signature="QPictureIO(QString,const char*)">
-        <access modifier="private"/>
-    </modify-function>
-
-    <modify-function signature="format()const">
-        <access modifier="private"/>
-        <rename to="format_private"/>
-    </modify-function>
-
-    <modify-function signature="parameters()const">
-        <access modifier="private"/>
-        <rename to="parameters_private"/>
-    </modify-function>
-
-    <modify-function signature="setFormat(const char*)">
-        <access modifier="private"/>
-    </modify-function>
-
-    <modify-function signature="setParameters(const char*)">
-        <access modifier="private"/>
-    </modify-function>
   </object-type>
 
   <object-type name="QPixmapCache">
@@ -1508,10 +1383,6 @@ PyObject* constScanLine(QImage* image, int line) {
         <remove/>
     </modify-function>
     <modify-function signature="find(QString,QPixmap*)" remove="all"/>
-
-    <modify-function signature="find(QString,QPixmap&amp;)">
-        <access modifier="private"/>
-    </modify-function>
   </object-type>
   <object-type name="QPlastiqueStyle">
     <modify-function signature="standardPixmap(QStyle::StandardPixmap, const QStyleOption*, const QWidget*)const" remove="all"/> <!--### Obsolete in 4.3-->
@@ -1538,15 +1409,6 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QShortcut">
     <modify-function signature="QShortcut(QKeySequence,QWidget*,const char*,const char*,Qt::ShortcutContext)">
         <access modifier="private"/>
-        <modify-argument index="3">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="4">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="5">
-            <remove-default-expression/>
-        </modify-argument>
     </modify-function>
   </object-type>
   <object-type name="QSizeGrip"/>
@@ -1718,31 +1580,13 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QColorDialog">
 
     <modify-function signature="getColor(const QColor &amp;, QWidget *)">
-      <modify-argument index="1">
-        <replace-default-expression with="QColor.white"/>
-      </modify-argument>
-    </modify-function>
-    <modify-function signature="getRgba(uint,bool*,QWidget*)">
-        <rename to="getRgba_internal"/>
-        <access modifier="private"/>
-        <modify-argument index="1">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="2">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="3">
-            <remove-default-expression/>
-        </modify-argument>
     </modify-function>
   </object-type>
 
   <object-type name="QLayout">
     <modify-function signature="setSpacing(int)" rename="setWidgetSpacing"/>
     <modify-function signature="spacing()const" rename="widgetSpacing"/>
-    <modify-function signature="getContentsMargins(int*,int*,int*,int*)const">
-        <access modifier="private"/>
-    </modify-function>
+    <modify-function signature="getContentsMargins(int*,int*,int*,int*)const" remove="all"/>
 
     <modify-function signature="margin()const" remove="all"/> <!--### Obsolete in 4.3-->
   </object-type>
@@ -1771,109 +1615,23 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QInputDialog">
 
     <modify-function signature="getInt(QWidget*,QString,QString,int,int,int,int,bool*,QFlags&lt;Qt::WindowType&gt;)">
-        <rename to="getInt_private"/>
         <access modifier="private"/>
-        <modify-argument index="4">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="5">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="6">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="7">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="8">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="9">
-            <remove-default-expression/>
-        </modify-argument>
     </modify-function>
 
     <modify-function signature="getDouble(QWidget *, const QString &amp;, const QString &amp;, double, double, double, int, bool *, QFlags&lt;Qt::WindowType&gt;)">
-        <rename to="getDouble_internal"/>
         <access modifier="private"/>
-        <modify-argument index="4">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="5">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="6">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="7">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="8">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="9">
-            <remove-default-expression/>
-        </modify-argument>
     </modify-function>
 
     <modify-function signature="getInteger(QWidget *, const QString &amp;, const QString &amp;, int, int, int, int, bool *, QFlags&lt;Qt::WindowType&gt;)">
-        <rename to="getInteger_internal"/>
         <access modifier="private"/>
-        <modify-argument index="4">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="5">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="6">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="7">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="8">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="9">
-            <remove-default-expression/>
-        </modify-argument>
     </modify-function>
 
     <modify-function signature="getItem(QWidget *, const QString &amp;, const QString &amp;, const QStringList&lt;QString&gt; &amp;, int, bool, bool *, QFlags&lt;Qt::WindowType&gt;)">
-        <rename to="getItem_internal"/>
         <access modifier="private"/>
-        <modify-argument index="4">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="5">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="6">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="7">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="8">
-            <remove-default-expression/>
-        </modify-argument>
     </modify-function>
 
     <modify-function signature="getText(QWidget *, const QString &amp;, const QString &amp;, QLineEdit::EchoMode, const QString &amp;, bool *, QFlags&lt;Qt::WindowType&gt;)">
-        <rename to="getText_internal"/>
         <access modifier="private"/>
-        <modify-argument index="4">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="5">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="6">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="7">
-            <remove-default-expression/>
-        </modify-argument>
     </modify-function>
   </object-type>
 
@@ -1970,12 +1728,6 @@ PyObject* constScanLine(QImage* image, int line) {
  </object-type>
 
   <object-type name="QCompleter">
-    <modify-function signature="activated(const QModelIndex &amp;)">
-        <rename to="activatedIndex"/>
-    </modify-function>
-    <modify-function signature="highlighted(const QModelIndex &amp;)">
-        <rename to="highlightedIndex"/>
-    </modify-function>
   </object-type>
 
 
@@ -2019,21 +1771,11 @@ PyObject* constScanLine(QImage* image, int line) {
     </extra-includes>
 
     <modify-function signature="render(QPainter*,QPoint,QRegion,QFlags&lt;QWidget::RenderFlag&gt;)">
-        <modify-argument index="2">
-            <!-- Removed because the render(QPainter*) overload conflicts with the identical function in QGraphicsView -->
-            <remove-default-expression/>
-        </modify-argument>
     </modify-function>
 
     <modify-function signature="render(QPaintDevice *, const QPoint &amp;, const QRegion &amp;, QFlags&lt;QWidget::RenderFlag&gt;)">
-        <modify-argument index="4">
-            <replace-default-expression with="RenderFlag.DrawWindowBackground, RenderFlag.DrawChildren"/>
-        </modify-argument>
     </modify-function>
     <modify-function signature="render(QPainter *, const QPoint &amp;, const QRegion &amp;, QFlags&lt;QWidget::RenderFlag&gt;)">
-        <modify-argument index="4">
-            <replace-default-expression with="RenderFlag.DrawWindowBackground, RenderFlag.DrawChildren"/>
-        </modify-argument>
     </modify-function>
     <modify-function signature="getContentsMargins(int*,int*,int*,int*)const">
         <access modifier="private"/>
@@ -2186,87 +1928,12 @@ PyObject* constScanLine(QImage* image, int line) {
   </object-type>
 
   <object-type name="QLabel">
-    <modify-function signature="picture()const">
-        <access modifier="private"/>
-        <rename to="picture_private"/>
-    </modify-function>
-
-    <modify-function signature="pixmap()const">
-        <access modifier="private"/>
-        <rename to="pixmap_private"/>
-    </modify-function>
   </object-type>
 
   <object-type name="QFileDialog">
     <extra-includes>
         <include file-name="QUrl" location="global"/>
     </extra-includes>
-
-    <modify-function signature="getOpenFileName(QWidget*,QString,QString,QString,QString*,QFlags&lt;QFileDialog::Option&gt;)">
-        <access modifier="private"/>
-        <modify-argument index="1">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="2">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="3">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="4">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="5">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="6">
-            <remove-default-expression/>
-        </modify-argument>
-    </modify-function>
-
-    <modify-function signature="getOpenFileNames(QWidget*,QString,QString,QString,QString*,QFlags&lt;QFileDialog::Option&gt;)">
-        <access modifier="private"/>
-        <modify-argument index="1">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="2">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="3">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="4">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="5">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="6">
-            <remove-default-expression/>
-        </modify-argument>
-    </modify-function>
-
-    <modify-function signature="getSaveFileName(QWidget*,QString,QString,QString,QString*,QFlags&lt;QFileDialog::Option&gt;)">
-        <access modifier="private"/>
-        <modify-argument index="1">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="2">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="3">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="4">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="5">
-            <remove-default-expression/>
-        </modify-argument>
-        <modify-argument index="6">
-            <remove-default-expression/>
-        </modify-argument>
-    </modify-function>
   </object-type>
 
   <object-type name="QErrorMessage"/>
@@ -2275,9 +1942,6 @@ PyObject* constScanLine(QImage* image, int line) {
     <extra-includes>
         <include file-name="QIcon" location="global"/>
     </extra-includes>
-    <modify-function signature="initStyleOption(QStyleOptionTab*,int)const">
-        <access modifier="private"/>
-    </modify-function>
   </object-type>
 
   <object-type name="QStandardItemModel">
@@ -2332,10 +1996,15 @@ PyObject* constScanLine(QImage* image, int line) {
     <modify-function signature="setGeometry(const QRect &amp;)" rename="setRubberBandGeometry"/>
   </object-type>
 
-  <object-type name="QTextLayout" generate="no"> <!-- the problem are the draw() default args -->
+  <object-type name="QTextLayout">
     <extra-includes>
         <include file-name="QTextOption" location="global"/>
     </extra-includes>
+    <modify-function signature="draw(QPainter*,const QPointF &amp;,const QVector&lt;QTextLayout::FormatRange&gt;  &amp;,const QRectF &amp;)const">
+      <modify-argument index="3">
+        <replace-default-expression with="QVector&lt;QTextLayout::FormatRange&gt;()"/>
+      </modify-argument>
+     </modify-function>
   </object-type>
 
   <object-type name="QTableWidget">
@@ -2424,42 +2093,21 @@ PyObject* constScanLine(QImage* image, int line) {
   </object-type>
 
   <object-type name="QTextTable">
-    <modify-function signature="format() const">
-        <rename to="tableFormat"/>
-    </modify-function>
     <extra-includes>
         <include file-name="QTextCursor" location="global"/>
     </extra-includes>
   </object-type>
 
   <object-type name="QSpinBox">
-    <modify-function signature="valueChanged(const QString &amp;)">
-        <rename to="valueStringChanged"/>
-    </modify-function>
   </object-type>
 
   <object-type name="QTextBrowser">
-    <modify-function signature="highlighted(const QString &amp;)">
-        <rename to="highlightedString"/>
-    </modify-function>
   </object-type>
 
   <object-type name="QDoubleSpinBox">
-    <modify-function signature="valueChanged(const QString &amp;)">
-        <rename to="valueStringChanged"/>
-    </modify-function>
   </object-type>
 
   <object-type name="QButtonGroup">
-    <modify-function signature="buttonClicked(int)">
-        <rename to="buttonIdClicked"/>
-    </modify-function>
-    <modify-function signature="buttonPressed(int)">
-        <rename to="buttonIdPressed"/>
-    </modify-function>
-    <modify-function signature="buttonReleased(int)">
-        <rename to="buttonIdReleased"/>
-    </modify-function>
   </object-type>
 
   <object-type name="QToolBar">
@@ -2505,15 +2153,6 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QComboBox">
     <modify-function signature="initStyleOption(QStyleOptionComboBox*)const">
         <access modifier="private"/>
-    </modify-function>
-    <modify-function signature="activated(int)">&gt;
-        <rename to="activatedIndex"/>
-    </modify-function>
-    <modify-function signature="currentIndexChanged(const QString &amp;)">
-        <rename to="currentStringChanged"/>
-    </modify-function>
-    <modify-function signature="highlighted(int)">
-        <rename to="highlightedIndex"/>
     </modify-function>
 
       <modify-function signature="autoCompletion()const" remove="all"/> <!--### Obsolete in 4.3-->
@@ -2588,46 +2227,7 @@ PyObject* constScanLine(QImage* image, int line) {
     <modify-function signature="drawRects(const QRectF *, int)">
         <remove/>
     </modify-function>
-    <modify-function signature="drawLines(const QVector&lt;QPoint&gt; &amp;)">
-        <rename to="drawLinesFromPoints"/>
-    </modify-function>
-    <modify-function signature="drawLines(const QVector&lt;QPointF&gt; &amp;)">
-        <rename to="drawLinesFromPointsF"/>
-    </modify-function>
-    <modify-function signature="drawLines(const QVector&lt;QLineF&gt; &amp;)">
-        <rename to="drawLinesF"/>
-    </modify-function>
-    <modify-function signature="drawRects(const QVector&lt;QRectF&gt; &amp;)">
-        <rename to="drawRectsF"/>
-    </modify-function>
 
-    <modify-function signature="drawText(QRect,int,QString,QRect*)">
-        <access modifier="private"/>
-        <modify-argument index="4">
-            <remove-default-expression/>
-        </modify-argument>
-    </modify-function>
-
-    <modify-function signature="drawText(QRectF,int,QString,QRectF*)">
-        <access modifier="private"/>
-        <modify-argument index="4">
-            <remove-default-expression/>
-        </modify-argument>
-    </modify-function>
-
-    <modify-function signature="drawText(int,int,int,int,int,QString,QRect*)">
-        <access modifier="private"/>
-        <modify-argument index="7">
-            <remove-default-expression/>
-        </modify-argument>
-    </modify-function>
-
-    <modify-function signature="redirected(const QPaintDevice*,QPoint*)">
-        <access modifier="private"/>
-        <modify-argument index="2">
-            <remove-default-expression/>
-        </modify-argument>
-    </modify-function>
     <modify-function signature="matrix()const" remove="all"/> <!--### Obsolete in 4.3-->
     <modify-function signature="matrixEnabled()const" remove="all"/> <!--### Obsolete in 4.3-->
     <modify-function signature="setMatrix(QMatrix, bool)" remove="all"/> <!--### Obsolete in 4.3-->
@@ -2661,9 +2261,6 @@ PyObject* constScanLine(QImage* image, int line) {
     </modify-function>
     <modify-function signature="setFont(QFont,const char*)">
         <access modifier="private"/>
-        <modify-argument index="2">
-            <remove-default-expression/>
-        </modify-argument>
     </modify-function>
 
     <modify-function signature="palette(const char*)">
@@ -2671,15 +2268,8 @@ PyObject* constScanLine(QImage* image, int line) {
     </modify-function>
     <modify-function signature="setPalette(QPalette,const char*)">
         <access modifier="private"/>
-        <modify-argument index="2">
-            <remove-default-expression/>
-        </modify-argument>
     </modify-function>
 
-    <modify-function signature="overrideCursor()">
-        <access modifier="private"/>
-        <rename to="overrideCursor_private"/>
-    </modify-function>
     <modify-function signature="QApplication(int&amp;,char**,QApplication::Type,int)" remove="all"/>
     <modify-function signature="QApplication(int&amp;,char**,bool,int)" remove="all"/>
     <modify-function signature="QApplication(int&amp;,char**,int)" remove="all"/>

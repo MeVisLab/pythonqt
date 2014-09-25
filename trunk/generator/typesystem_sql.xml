@@ -19,6 +19,27 @@
         <include file-name="QSize" location="global"/>
     </extra-includes>
     <modify-function signature="operator=(QSqlDatabase)" remove="all"/>
+
+    <modify-function signature="contains(const QString &amp;)">
+      <modify-argument index="1">
+        <replace-default-expression with="QLatin1String(QSqlDatabase::defaultConnection)"/>
+      </modify-argument>      
+    </modify-function>
+    <modify-function signature="database(const QString &amp;,bool)">
+      <modify-argument index="1">
+        <replace-default-expression with="QLatin1String(QSqlDatabase::defaultConnection)"/>
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="addDatabase(QSqlDriver*,const QString &amp;)">
+      <modify-argument index="2">
+        <replace-default-expression with="QLatin1String(QSqlDatabase::defaultConnection)"/>
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="addDatabase(const QString &amp;,const QString &amp;)">
+      <modify-argument index="2">
+        <replace-default-expression with="QLatin1String(QSqlDatabase::defaultConnection)"/>
+      </modify-argument>
+    </modify-function>
   </value-type>
 
   <value-type name="QSqlQuery">
