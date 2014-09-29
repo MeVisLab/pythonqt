@@ -262,9 +262,11 @@ int PythonQtMethodInfo::nameToType(const char* name)
     if (QT_POINTER_SIZE == 8) {
       _parameterTypeDict.insert("qgl_GLintptr", QMetaType::LongLong);
       _parameterTypeDict.insert("qgl_GLsizeiptr", QMetaType::LongLong);
+      _parameterTypeDict.insert("size_t", QMetaType::ULongLong);
     } else {
       _parameterTypeDict.insert("qgl_GLintptr", QMetaType::Int);
       _parameterTypeDict.insert("qgl_GLsizeiptr", QMetaType::Int);
+      _parameterTypeDict.insert("size_t", QMetaType::UInt);
     }
 
     // QVariant names
