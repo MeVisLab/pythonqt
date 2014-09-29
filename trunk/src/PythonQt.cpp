@@ -79,7 +79,11 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
     qRegisterMetaType<QList<QObject*> >("QList<void*>");
     qRegisterMetaType<QObjectList>("QObjectList");
     qRegisterMetaType<QList<QObject*> >("QList<QObject*>");
-
+    if (QT_POINTER_SIZE == 8) {
+      qRegisterMetaType<quint64>("size_t");
+    } else {
+      qRegisterMetaType<quint32>("size_t");
+    }
     int stringRefId = qRegisterMetaType<QStringRef>("QStringRef");
     PythonQtConv::registerMetaTypeToPythonConverter(stringRefId, PythonQtConvertFromStringRef);
 
