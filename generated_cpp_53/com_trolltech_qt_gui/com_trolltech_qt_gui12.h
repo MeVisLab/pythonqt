@@ -160,7 +160,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QWidget : public QWidget
 { public:
-friend class PythonQtWrapper_QWidget;
 inline void promoted_actionEvent(QActionEvent*  arg__1) { QWidget::actionEvent(arg__1); }
 inline void promoted_changeEvent(QEvent*  arg__1) { QWidget::changeEvent(arg__1); }
 inline void promoted_closeEvent(QCloseEvent*  arg__1) { QWidget::closeEvent(arg__1); }
@@ -496,7 +495,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QWidgetAction : public QWidgetAction
 { public:
-friend class PythonQtWrapper_QWidgetAction;
 inline QWidget*  promoted_createWidget(QWidget*  parent) { return QWidgetAction::createWidget(parent); }
 inline QList<QWidget* >  promoted_createdWidgets() const { return QWidgetAction::createdWidgets(); }
 inline void promoted_deleteWidget(QWidget*  widget) { QWidgetAction::deleteWidget(widget); }
@@ -553,7 +551,6 @@ virtual QWidget*  widget();
 
 class PythonQtPublicPromoter_QWidgetItem : public QWidgetItem
 { public:
-friend class PythonQtWrapper_QWidgetItem;
 inline QSizePolicy::ControlTypes  promoted_controlTypes() const { return QWidgetItem::controlTypes(); }
 inline Qt::Orientations  promoted_expandingDirections() const { return QWidgetItem::expandingDirections(); }
 inline QRect  promoted_geometry() const { return QWidgetItem::geometry(); }
@@ -630,7 +627,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QWindow : public QWindow
 { public:
-friend class PythonQtWrapper_QWindow;
 inline bool  promoted_event(QEvent*  arg__1) { return QWindow::event(arg__1); }
 inline void promoted_exposeEvent(QExposeEvent*  arg__1) { QWindow::exposeEvent(arg__1); }
 inline void promoted_focusInEvent(QFocusEvent*  arg__1) { QWindow::focusInEvent(arg__1); }
@@ -846,7 +842,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QWizard : public QWizard
 { public:
-friend class PythonQtWrapper_QWizard;
 inline void promoted_cleanupPage(int  id) { QWizard::cleanupPage(id); }
 inline void promoted_done(int  result) { QWizard::done(result); }
 inline bool  promoted_event(QEvent*  event) { return QWizard::event(event); }
@@ -978,7 +973,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QWizardPage : public QWizardPage
 { public:
-friend class PythonQtWrapper_QWizardPage;
 inline void promoted_cleanupPage() { QWizardPage::cleanupPage(); }
 inline QVariant  promoted_field(const QString&  name) const { return QWizardPage::field(name); }
 inline void promoted_initializePage() { QWizardPage::initializePage(); }

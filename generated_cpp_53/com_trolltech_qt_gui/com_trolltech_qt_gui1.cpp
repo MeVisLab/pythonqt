@@ -5398,7 +5398,7 @@ QSize  PythonQtWrapper_QDial::sizeHint(QDial* theWrappedObject) const
   return ( theWrappedObject->sizeHint());
 }
 
-void PythonQtWrapper_QDial::sliderChange(QDial* theWrappedObject, QAbstractSlider::SliderChange  change)
+void PythonQtWrapper_QDial::sliderChange(QDial* theWrappedObject, int  change)
 {
   ( ((PythonQtPublicPromoter_QDial*)theWrappedObject)->promoted_sliderChange(change));
 }

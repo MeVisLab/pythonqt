@@ -479,7 +479,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QToolBar : public QToolBar
 { public:
-friend class PythonQtWrapper_QToolBar;
 inline void promoted_actionEvent(QActionEvent*  event) { QToolBar::actionEvent(event); }
 inline void promoted_changeEvent(QEvent*  event) { QToolBar::changeEvent(event); }
 inline bool  promoted_event(QEvent*  event) { return QToolBar::event(event); }
@@ -619,7 +618,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QToolBox : public QToolBox
 { public:
-friend class PythonQtWrapper_QToolBox;
 inline void promoted_changeEvent(QEvent*  arg__1) { QToolBox::changeEvent(arg__1); }
 inline bool  promoted_event(QEvent*  e) { return QToolBox::event(e); }
 inline void promoted_itemInserted(int  index) { QToolBox::itemInserted(index); }
@@ -720,7 +718,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QToolButton : public QToolButton
 { public:
-friend class PythonQtWrapper_QToolButton;
 inline void promoted_actionEvent(QActionEvent*  arg__1) { QToolButton::actionEvent(arg__1); }
 inline void promoted_changeEvent(QEvent*  arg__1) { QToolButton::changeEvent(arg__1); }
 inline void promoted_enterEvent(QEvent*  arg__1) { QToolButton::enterEvent(arg__1); }
@@ -1098,7 +1095,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QTreeView : public QTreeView
 { public:
-friend class PythonQtWrapper_QTreeView;
 inline void promoted_columnCountChanged(int  oldCount, int  newCount) { QTreeView::columnCountChanged(oldCount, newCount); }
 inline void promoted_columnMoved() { QTreeView::columnMoved(); }
 inline void promoted_columnResized(int  column, int  oldSize, int  newSize) { QTreeView::columnResized(column, oldSize, newSize); }
@@ -1120,7 +1116,7 @@ inline void promoted_mouseDoubleClickEvent(QMouseEvent*  event) { QTreeView::mou
 inline void promoted_mouseMoveEvent(QMouseEvent*  event) { QTreeView::mouseMoveEvent(event); }
 inline void promoted_mousePressEvent(QMouseEvent*  event) { QTreeView::mousePressEvent(event); }
 inline void promoted_mouseReleaseEvent(QMouseEvent*  event) { QTreeView::mouseReleaseEvent(event); }
-inline QModelIndex  promoted_moveCursor(QAbstractItemView::CursorAction  cursorAction, Qt::KeyboardModifiers  modifiers) { return QTreeView::moveCursor(cursorAction, modifiers); }
+inline QModelIndex  promoted_moveCursor(int  cursorAction, Qt::KeyboardModifiers  modifiers) { return QTreeView::moveCursor((QAbstractItemView::CursorAction)cursorAction, modifiers); }
 inline void promoted_paintEvent(QPaintEvent*  event) { QTreeView::paintEvent(event); }
 inline void promoted_reexpand() { QTreeView::reexpand(); }
 inline void promoted_reset() { QTreeView::reset(); }
@@ -1189,7 +1185,7 @@ void delete_QTreeView(QTreeView* obj) { delete obj; }
    void mouseMoveEvent(QTreeView* theWrappedObject, QMouseEvent*  event);
    void mousePressEvent(QTreeView* theWrappedObject, QMouseEvent*  event);
    void mouseReleaseEvent(QTreeView* theWrappedObject, QMouseEvent*  event);
-   QModelIndex  moveCursor(QTreeView* theWrappedObject, QAbstractItemView::CursorAction  cursorAction, Qt::KeyboardModifiers  modifiers);
+   QModelIndex  moveCursor(QTreeView* theWrappedObject, int  cursorAction, Qt::KeyboardModifiers  modifiers);
    void paintEvent(QTreeView* theWrappedObject, QPaintEvent*  event);
    void reset(QTreeView* theWrappedObject);
    bool  rootIsDecorated(QTreeView* theWrappedObject) const;
@@ -1342,7 +1338,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QTreeWidget : public QTreeWidget
 { public:
-friend class PythonQtWrapper_QTreeWidget;
 inline void promoted_dropEvent(QDropEvent*  event) { QTreeWidget::dropEvent(event); }
 inline bool  promoted_dropMimeData(QTreeWidgetItem*  parent, int  index, const QMimeData*  data, Qt::DropAction  action) { return QTreeWidget::dropMimeData(parent, index, data, action); }
 inline bool  promoted_event(QEvent*  e) { return QTreeWidget::event(e); }
@@ -1436,7 +1431,6 @@ virtual void write(QDataStream&  out) const;
 
 class PythonQtPublicPromoter_QTreeWidgetItem : public QTreeWidgetItem
 { public:
-friend class PythonQtWrapper_QTreeWidgetItem;
 inline QTreeWidgetItem*  promoted_clone() const { return QTreeWidgetItem::clone(); }
 inline QVariant  promoted_data(int  column, int  role) const { return QTreeWidgetItem::data(column, role); }
 inline void promoted_emitDataChanged() { QTreeWidgetItem::emitDataChanged(); }
@@ -1542,7 +1536,6 @@ virtual void undo();
 
 class PythonQtPublicPromoter_QUndoCommand : public QUndoCommand
 { public:
-friend class PythonQtWrapper_QUndoCommand;
 inline int  promoted_id() const { return QUndoCommand::id(); }
 inline bool  promoted_mergeWith(const QUndoCommand*  other) { return QUndoCommand::mergeWith(other); }
 inline void promoted_redo() { QUndoCommand::redo(); }
@@ -1837,7 +1830,6 @@ virtual QValidator::State  validate(QString&  arg__1, int&  arg__2) const;
 
 class PythonQtPublicPromoter_QValidator : public QValidator
 { public:
-friend class PythonQtWrapper_QValidator;
 inline void promoted_fixup(QString&  arg__1) const { QValidator::fixup(arg__1); }
 };
 

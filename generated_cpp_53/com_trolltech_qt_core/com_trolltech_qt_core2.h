@@ -71,7 +71,6 @@ virtual void updateState(QAbstractAnimation::State  newState, QAbstractAnimation
 
 class PythonQtPublicPromoter_QPauseAnimation : public QPauseAnimation
 { public:
-friend class PythonQtWrapper_QPauseAnimation;
 inline int  promoted_duration() const { return QPauseAnimation::duration(); }
 inline bool  promoted_event(QEvent*  e) { return QPauseAnimation::event(e); }
 inline void promoted_updateCurrentTime(int  arg__1) { QPauseAnimation::updateCurrentTime(arg__1); }
@@ -161,7 +160,6 @@ virtual qint64  writeData(const char*  data, qint64  len);
 
 class PythonQtPublicPromoter_QProcess : public QProcess
 { public:
-friend class PythonQtWrapper_QProcess;
 inline bool  promoted_atEnd() const { return QProcess::atEnd(); }
 inline qint64  promoted_bytesAvailable() const { return QProcess::bytesAvailable(); }
 inline qint64  promoted_bytesToWrite() const { return QProcess::bytesToWrite(); }
@@ -308,7 +306,6 @@ virtual void updateState(QAbstractAnimation::State  newState, QAbstractAnimation
 
 class PythonQtPublicPromoter_QPropertyAnimation : public QPropertyAnimation
 { public:
-friend class PythonQtWrapper_QPropertyAnimation;
 inline bool  promoted_event(QEvent*  event) { return QPropertyAnimation::event(event); }
 inline void promoted_updateCurrentValue(const QVariant&  value) { QPropertyAnimation::updateCurrentValue(value); }
 inline void promoted_updateState(QAbstractAnimation::State  newState, QAbstractAnimation::State  oldState) { QPropertyAnimation::updateState(newState, oldState); }
@@ -468,7 +465,6 @@ public:
 
 class PythonQtPublicPromoter_QResource : public QResource
 { public:
-friend class PythonQtWrapper_QResource;
 inline QStringList  promoted_children() const { return QResource::children(); }
 inline bool  promoted_isDir() const { return QResource::isDir(); }
 inline bool  promoted_isFile() const { return QResource::isFile(); }
@@ -569,7 +565,6 @@ virtual qint64  writeData(const char*  data, qint64  len);
 
 class PythonQtPublicPromoter_QSaveFile : public QSaveFile
 { public:
-friend class PythonQtWrapper_QSaveFile;
 inline QString  promoted_fileName() const { return QSaveFile::fileName(); }
 inline bool  promoted_open(QIODevice::OpenMode  flags) { return QSaveFile::open(flags); }
 inline qint64  promoted_writeData(const char*  data, qint64  len) { return QSaveFile::writeData(data, len); }
@@ -636,7 +631,6 @@ virtual void updateState(QAbstractAnimation::State  newState, QAbstractAnimation
 
 class PythonQtPublicPromoter_QSequentialAnimationGroup : public QSequentialAnimationGroup
 { public:
-friend class PythonQtWrapper_QSequentialAnimationGroup;
 inline int  promoted_duration() const { return QSequentialAnimationGroup::duration(); }
 inline bool  promoted_event(QEvent*  event) { return QSequentialAnimationGroup::event(event); }
 inline void promoted_updateCurrentTime(int  arg__1) { QSequentialAnimationGroup::updateCurrentTime(arg__1); }
@@ -686,7 +680,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QSettings : public QSettings
 { public:
-friend class PythonQtWrapper_QSettings;
 inline bool  promoted_event(QEvent*  event) { return QSettings::event(event); }
 };
 
@@ -853,7 +846,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QSignalTransition : public QSignalTransition
 { public:
-friend class PythonQtWrapper_QSignalTransition;
 inline bool  promoted_event(QEvent*  e) { return QSignalTransition::event(e); }
 inline bool  promoted_eventTest(QEvent*  event) { return QSignalTransition::eventTest(event); }
 inline void promoted_onTransition(QEvent*  event) { QSignalTransition::onTransition(event); }
@@ -881,7 +873,6 @@ void delete_QSignalTransition(QSignalTransition* obj) { delete obj; }
 
 class PythonQtPublicPromoter_QSocketNotifier : public QSocketNotifier
 { public:
-friend class PythonQtWrapper_QSocketNotifier;
 inline bool  promoted_event(QEvent*  arg__1) { return QSocketNotifier::event(arg__1); }
 };
 
@@ -949,7 +940,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QState : public QState
 { public:
-friend class PythonQtWrapper_QState;
 inline bool  promoted_event(QEvent*  e) { return QState::event(e); }
 inline void promoted_onEntry(QEvent*  event) { QState::onEntry(event); }
 inline void promoted_onExit(QEvent*  event) { QState::onExit(event); }
@@ -1008,7 +998,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QStateMachine : public QStateMachine
 { public:
-friend class PythonQtWrapper_QStateMachine;
 inline void promoted_beginMicrostep(QEvent*  event) { QStateMachine::beginMicrostep(event); }
 inline void promoted_beginSelectTransitions(QEvent*  event) { QStateMachine::beginSelectTransitions(event); }
 inline void promoted_endMicrostep(QEvent*  event) { QStateMachine::endMicrostep(event); }
@@ -1217,7 +1206,6 @@ virtual qint64  writeData(const char*  data, qint64  len);
 
 class PythonQtPublicPromoter_QTemporaryFile : public QTemporaryFile
 { public:
-friend class PythonQtWrapper_QTemporaryFile;
 inline bool  promoted_open(QIODevice::OpenMode  flags) { return QTemporaryFile::open(flags); }
 };
 

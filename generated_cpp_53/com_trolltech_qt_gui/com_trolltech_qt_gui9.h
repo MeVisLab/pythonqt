@@ -902,7 +902,6 @@ virtual void updateEditorGeometry(QWidget*  editor, const QStyleOptionViewItem& 
 
 class PythonQtPublicPromoter_QStyledItemDelegate : public QStyledItemDelegate
 { public:
-friend class PythonQtWrapper_QStyledItemDelegate;
 inline QWidget*  promoted_createEditor(QWidget*  parent, const QStyleOptionViewItem&  option, const QModelIndex&  index) const { return QStyledItemDelegate::createEditor(parent, option, index); }
 inline QString  promoted_displayText(const QVariant&  value, const QLocale&  locale) const { return QStyledItemDelegate::displayText(value, locale); }
 inline bool  promoted_editorEvent(QEvent*  event, QAbstractItemModel*  model, const QStyleOptionViewItem&  option, const QModelIndex&  index) { return QStyledItemDelegate::editorEvent(event, model, option, index); }
@@ -1090,7 +1089,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QSyntaxHighlighter : public QSyntaxHighlighter
 { public:
-friend class PythonQtWrapper_QSyntaxHighlighter;
 inline QTextBlock  promoted_currentBlock() const { return QSyntaxHighlighter::currentBlock(); }
 inline int  promoted_currentBlockState() const { return QSyntaxHighlighter::currentBlockState(); }
 inline QTextBlockUserData*  promoted_currentBlockUserData() const { return QSyntaxHighlighter::currentBlockUserData(); }
@@ -1147,7 +1145,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QSystemTrayIcon : public QSystemTrayIcon
 { public:
-friend class PythonQtWrapper_QSystemTrayIcon;
 inline bool  promoted_event(QEvent*  event) { return QSystemTrayIcon::event(event); }
 };
 
@@ -1240,7 +1237,6 @@ virtual void wheelEvent(QWheelEvent*  event);
 
 class PythonQtPublicPromoter_QTabBar : public QTabBar
 { public:
-friend class PythonQtWrapper_QTabBar;
 inline void promoted_changeEvent(QEvent*  arg__1) { QTabBar::changeEvent(arg__1); }
 inline bool  promoted_event(QEvent*  arg__1) { return QTabBar::event(arg__1); }
 inline void promoted_hideEvent(QHideEvent*  arg__1) { QTabBar::hideEvent(arg__1); }
@@ -1399,7 +1395,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QTabWidget : public QTabWidget
 { public:
-friend class PythonQtWrapper_QTabWidget;
 inline void promoted_changeEvent(QEvent*  arg__1) { QTabWidget::changeEvent(arg__1); }
 inline bool  promoted_event(QEvent*  arg__1) { return QTabWidget::event(arg__1); }
 inline bool  promoted_hasHeightForWidth() const { return QTabWidget::hasHeightForWidth(); }
@@ -1576,7 +1571,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QTableView : public QTableView
 { public:
-friend class PythonQtWrapper_QTableView;
 inline void promoted_columnCountChanged(int  oldCount, int  newCount) { QTableView::columnCountChanged(oldCount, newCount); }
 inline void promoted_columnMoved(int  column, int  oldIndex, int  newIndex) { QTableView::columnMoved(column, oldIndex, newIndex); }
 inline void promoted_columnResized(int  column, int  oldWidth, int  newWidth) { QTableView::columnResized(column, oldWidth, newWidth); }
@@ -1586,7 +1580,7 @@ inline int  promoted_horizontalOffset() const { return QTableView::horizontalOff
 inline void promoted_horizontalScrollbarAction(int  action) { QTableView::horizontalScrollbarAction(action); }
 inline QModelIndex  promoted_indexAt(const QPoint&  p) const { return QTableView::indexAt(p); }
 inline bool  promoted_isIndexHidden(const QModelIndex&  index) const { return QTableView::isIndexHidden(index); }
-inline QModelIndex  promoted_moveCursor(QAbstractItemView::CursorAction  cursorAction, Qt::KeyboardModifiers  modifiers) { return QTableView::moveCursor(cursorAction, modifiers); }
+inline QModelIndex  promoted_moveCursor(int  cursorAction, Qt::KeyboardModifiers  modifiers) { return QTableView::moveCursor((QAbstractItemView::CursorAction)cursorAction, modifiers); }
 inline void promoted_paintEvent(QPaintEvent*  e) { QTableView::paintEvent(e); }
 inline void promoted_rowCountChanged(int  oldCount, int  newCount) { QTableView::rowCountChanged(oldCount, newCount); }
 inline void promoted_rowMoved(int  row, int  oldIndex, int  newIndex) { QTableView::rowMoved(row, oldIndex, newIndex); }
@@ -1634,7 +1628,7 @@ void delete_QTableView(QTableView* obj) { delete obj; }
    bool  isIndexHidden(QTableView* theWrappedObject, const QModelIndex&  index) const;
    bool  isRowHidden(QTableView* theWrappedObject, int  row) const;
    bool  isSortingEnabled(QTableView* theWrappedObject) const;
-   QModelIndex  moveCursor(QTableView* theWrappedObject, QAbstractItemView::CursorAction  cursorAction, Qt::KeyboardModifiers  modifiers);
+   QModelIndex  moveCursor(QTableView* theWrappedObject, int  cursorAction, Qt::KeyboardModifiers  modifiers);
    void paintEvent(QTableView* theWrappedObject, QPaintEvent*  e);
    int  rowAt(QTableView* theWrappedObject, int  y) const;
    int  rowHeight(QTableView* theWrappedObject, int  row) const;

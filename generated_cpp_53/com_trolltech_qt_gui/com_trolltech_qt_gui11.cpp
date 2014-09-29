@@ -8031,7 +8031,7 @@ void PythonQtWrapper_QTreeView::mouseReleaseEvent(QTreeView* theWrappedObject, Q
   ( ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_mouseReleaseEvent(event));
 }
 
-QModelIndex  PythonQtWrapper_QTreeView::moveCursor(QTreeView* theWrappedObject, QAbstractItemView::CursorAction  cursorAction, Qt::KeyboardModifiers  modifiers)
+QModelIndex  PythonQtWrapper_QTreeView::moveCursor(QTreeView* theWrappedObject, int  cursorAction, Qt::KeyboardModifiers  modifiers)
 {
   return ( ((PythonQtPublicPromoter_QTreeView*)theWrappedObject)->promoted_moveCursor(cursorAction, modifiers));
 }

@@ -106,7 +106,6 @@ public:
 
 class PythonQtPublicPromoter_QGLColormap : public QGLColormap
 { public:
-friend class PythonQtWrapper_QGLColormap;
 inline Qt::HANDLE  promoted_handle() { return QGLColormap::handle(); }
 inline void promoted_setHandle(Qt::HANDLE  ahandle) { QGLColormap::setHandle(ahandle); }
 };
@@ -153,7 +152,6 @@ virtual void swapBuffers() const;
 
 class PythonQtPublicPromoter_QGLContext : public QGLContext
 { public:
-friend class PythonQtWrapper_QGLContext;
 inline bool  promoted_chooseContext(const QGLContext*  shareContext = 0) { return QGLContext::chooseContext(shareContext); }
 inline uint  promoted_colorIndex(const QColor&  c) const { return QGLContext::colorIndex(c); }
 inline bool  promoted_create(const QGLContext*  shareContext = 0) { return QGLContext::create(shareContext); }
@@ -325,7 +323,6 @@ virtual QPainter*  sharedPainter() const;
 
 class PythonQtPublicPromoter_QGLFramebufferObject : public QGLFramebufferObject
 { public:
-friend class PythonQtWrapper_QGLFramebufferObject;
 inline int  promoted_devType() const { return QGLFramebufferObject::devType(); }
 inline int  promoted_metric(QPaintDevice::PaintDeviceMetric  metric) const { return QGLFramebufferObject::metric(metric); }
 inline QPaintEngine*  promoted_paintEngine() const { return QGLFramebufferObject::paintEngine(); }
@@ -532,7 +529,6 @@ virtual QPainter*  sharedPainter() const;
 
 class PythonQtPublicPromoter_QGLPixelBuffer : public QGLPixelBuffer
 { public:
-friend class PythonQtWrapper_QGLPixelBuffer;
 inline int  promoted_devType() const { return QGLPixelBuffer::devType(); }
 inline int  promoted_metric(QPaintDevice::PaintDeviceMetric  metric) const { return QGLPixelBuffer::metric(metric); }
 inline QPaintEngine*  promoted_paintEngine() const { return QGLPixelBuffer::paintEngine(); }
@@ -638,7 +634,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QGLShaderProgram : public QGLShaderProgram
 { public:
-friend class PythonQtWrapper_QGLShaderProgram;
 inline bool  promoted_link() { return QGLShaderProgram::link(); }
 };
 
@@ -832,7 +827,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QGLWidget : public QGLWidget
 { public:
-friend class PythonQtWrapper_QGLWidget;
 inline bool  promoted_autoBufferSwap() const { return QGLWidget::autoBufferSwap(); }
 inline bool  promoted_event(QEvent*  arg__1) { return QGLWidget::event(arg__1); }
 inline void promoted_glDraw() { QGLWidget::glDraw(); }

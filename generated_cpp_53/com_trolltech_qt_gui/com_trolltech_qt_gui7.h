@@ -124,7 +124,6 @@ virtual void unpolish(QWidget*  widget);
 
 class PythonQtPublicPromoter_QProxyStyle : public QProxyStyle
 { public:
-friend class PythonQtWrapper_QProxyStyle;
 inline void promoted_drawComplexControl(QStyle::ComplexControl  control, const QStyleOptionComplex*  option, QPainter*  painter, const QWidget*  widget = 0) const { QProxyStyle::drawComplexControl(control, option, painter, widget); }
 inline void promoted_drawControl(QStyle::ControlElement  element, const QStyleOption*  option, QPainter*  painter, const QWidget*  widget = 0) const { QProxyStyle::drawControl(element, option, painter, widget); }
 inline void promoted_drawItemPixmap(QPainter*  painter, const QRect&  rect, int  alignment, const QPixmap&  pixmap) const { QProxyStyle::drawItemPixmap(painter, rect, alignment, pixmap); }
@@ -249,7 +248,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QPushButton : public QPushButton
 { public:
-friend class PythonQtWrapper_QPushButton;
 inline bool  promoted_event(QEvent*  e) { return QPushButton::event(e); }
 inline void promoted_focusInEvent(QFocusEvent*  arg__1) { QPushButton::focusInEvent(arg__1); }
 inline void promoted_focusOutEvent(QFocusEvent*  arg__1) { QPushButton::focusOutEvent(arg__1); }
@@ -439,7 +437,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QRadioButton : public QRadioButton
 { public:
-friend class PythonQtWrapper_QRadioButton;
 inline bool  promoted_event(QEvent*  e) { return QRadioButton::event(e); }
 inline bool  promoted_hitButton(const QPoint&  arg__1) const { return QRadioButton::hitButton(arg__1); }
 inline void promoted_initStyleOption(QStyleOptionButton*  button) const { QRadioButton::initStyleOption(button); }
@@ -547,7 +544,6 @@ virtual QValidator::State  validate(QString&  input, int&  pos) const;
 
 class PythonQtPublicPromoter_QRegExpValidator : public QRegExpValidator
 { public:
-friend class PythonQtWrapper_QRegExpValidator;
 inline QValidator::State  promoted_validate(QString&  input, int&  pos) const { return QRegExpValidator::validate(input, pos); }
 };
 
@@ -588,7 +584,6 @@ virtual QValidator::State  validate(QString&  input, int&  pos) const;
 
 class PythonQtPublicPromoter_QRegularExpressionValidator : public QRegularExpressionValidator
 { public:
-friend class PythonQtWrapper_QRegularExpressionValidator;
 inline QValidator::State  promoted_validate(QString&  input, int&  pos) const { return QRegularExpressionValidator::validate(input, pos); }
 };
 
@@ -689,7 +684,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QRubberBand : public QRubberBand
 { public:
-friend class PythonQtWrapper_QRubberBand;
 inline void promoted_changeEvent(QEvent*  arg__1) { QRubberBand::changeEvent(arg__1); }
 inline bool  promoted_event(QEvent*  e) { return QRubberBand::event(e); }
 inline void promoted_initStyleOption(QStyleOptionRubberBand*  option) const { QRubberBand::initStyleOption(option); }
@@ -829,7 +823,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QScrollArea : public QScrollArea
 { public:
-friend class PythonQtWrapper_QScrollArea;
 inline bool  promoted_event(QEvent*  arg__1) { return QScrollArea::event(arg__1); }
 inline bool  promoted_eventFilter(QObject*  arg__1, QEvent*  arg__2) { return QScrollArea::eventFilter(arg__1, arg__2); }
 inline bool  promoted_focusNextPrevChild(bool  next) { return QScrollArea::focusNextPrevChild(next); }
@@ -923,7 +916,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QScrollBar : public QScrollBar
 { public:
-friend class PythonQtWrapper_QScrollBar;
 inline void promoted_contextMenuEvent(QContextMenuEvent*  arg__1) { QScrollBar::contextMenuEvent(arg__1); }
 inline bool  promoted_event(QEvent*  event) { return QScrollBar::event(event); }
 inline void promoted_hideEvent(QHideEvent*  arg__1) { QScrollBar::hideEvent(arg__1); }
@@ -932,7 +924,7 @@ inline void promoted_mouseMoveEvent(QMouseEvent*  arg__1) { QScrollBar::mouseMov
 inline void promoted_mousePressEvent(QMouseEvent*  arg__1) { QScrollBar::mousePressEvent(arg__1); }
 inline void promoted_mouseReleaseEvent(QMouseEvent*  arg__1) { QScrollBar::mouseReleaseEvent(arg__1); }
 inline void promoted_paintEvent(QPaintEvent*  arg__1) { QScrollBar::paintEvent(arg__1); }
-inline void promoted_sliderChange(QAbstractSlider::SliderChange  change) { QScrollBar::sliderChange(change); }
+inline void promoted_sliderChange(int  change) { QScrollBar::sliderChange((QAbstractSlider::SliderChange)change); }
 inline void promoted_wheelEvent(QWheelEvent*  arg__1) { QScrollBar::wheelEvent(arg__1); }
 };
 
@@ -952,7 +944,7 @@ void delete_QScrollBar(QScrollBar* obj) { delete obj; }
    void mouseReleaseEvent(QScrollBar* theWrappedObject, QMouseEvent*  arg__1);
    void paintEvent(QScrollBar* theWrappedObject, QPaintEvent*  arg__1);
    QSize  sizeHint(QScrollBar* theWrappedObject) const;
-   void sliderChange(QScrollBar* theWrappedObject, QAbstractSlider::SliderChange  change);
+   void sliderChange(QScrollBar* theWrappedObject, int  change);
    void wheelEvent(QScrollBar* theWrappedObject, QWheelEvent*  arg__1);
 };
 
@@ -1118,7 +1110,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QShortcut : public QShortcut
 { public:
-friend class PythonQtWrapper_QShortcut;
 inline bool  promoted_event(QEvent*  e) { return QShortcut::event(e); }
 };
 
@@ -1242,7 +1233,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QSizeGrip : public QSizeGrip
 { public:
-friend class PythonQtWrapper_QSizeGrip;
 inline bool  promoted_event(QEvent*  arg__1) { return QSizeGrip::event(arg__1); }
 inline bool  promoted_eventFilter(QObject*  arg__1, QEvent*  arg__2) { return QSizeGrip::eventFilter(arg__1, arg__2); }
 inline void promoted_hideEvent(QHideEvent*  hideEvent) { QSizeGrip::hideEvent(hideEvent); }
@@ -1333,7 +1323,6 @@ virtual void wheelEvent(QWheelEvent*  e);
 
 class PythonQtPublicPromoter_QSlider : public QSlider
 { public:
-friend class PythonQtWrapper_QSlider;
 inline bool  promoted_event(QEvent*  event) { return QSlider::event(event); }
 inline void promoted_initStyleOption(QStyleOptionSlider*  option) const { QSlider::initStyleOption(option); }
 inline void promoted_mouseMoveEvent(QMouseEvent*  ev) { QSlider::mouseMoveEvent(ev); }
@@ -1427,7 +1416,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QSortFilterProxyModel : public QSortFilterProxyModel
 { public:
-friend class PythonQtWrapper_QSortFilterProxyModel;
 inline QModelIndex  promoted_buddy(const QModelIndex&  index) const { return QSortFilterProxyModel::buddy(index); }
 inline bool  promoted_canFetchMore(const QModelIndex&  parent) const { return QSortFilterProxyModel::canFetchMore(parent); }
 inline int  promoted_columnCount(const QModelIndex&  parent = QModelIndex()) const { return QSortFilterProxyModel::columnCount(parent); }
@@ -1593,7 +1581,6 @@ virtual QWidget*  widget();
 
 class PythonQtPublicPromoter_QSpacerItem : public QSpacerItem
 { public:
-friend class PythonQtWrapper_QSpacerItem;
 inline Qt::Orientations  promoted_expandingDirections() const { return QSpacerItem::expandingDirections(); }
 inline QRect  promoted_geometry() const { return QSpacerItem::geometry(); }
 inline bool  promoted_isEmpty() const { return QSpacerItem::isEmpty(); }
@@ -1687,7 +1674,6 @@ virtual void wheelEvent(QWheelEvent*  event);
 
 class PythonQtPublicPromoter_QSpinBox : public QSpinBox
 { public:
-friend class PythonQtWrapper_QSpinBox;
 inline bool  promoted_event(QEvent*  event) { return QSpinBox::event(event); }
 inline void promoted_fixup(QString&  str) const { QSpinBox::fixup(str); }
 inline QString  promoted_textFromValue(int  val) const { return QSpinBox::textFromValue(val); }
@@ -1786,7 +1772,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QSplashScreen : public QSplashScreen
 { public:
-friend class PythonQtWrapper_QSplashScreen;
 inline void promoted_drawContents(QPainter*  painter) { QSplashScreen::drawContents(painter); }
 inline bool  promoted_event(QEvent*  e) { return QSplashScreen::event(e); }
 inline void promoted_mousePressEvent(QMouseEvent*  arg__1) { QSplashScreen::mousePressEvent(arg__1); }
@@ -1869,7 +1854,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QSplitter : public QSplitter
 { public:
-friend class PythonQtWrapper_QSplitter;
 inline void promoted_changeEvent(QEvent*  arg__1) { QSplitter::changeEvent(arg__1); }
 inline void promoted_childEvent(QChildEvent*  arg__1) { QSplitter::childEvent(arg__1); }
 inline int  promoted_closestLegalPosition(int  arg__1, int  arg__2) { return QSplitter::closestLegalPosition(arg__1, arg__2); }
@@ -1983,7 +1967,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QSplitterHandle : public QSplitterHandle
 { public:
-friend class PythonQtWrapper_QSplitterHandle;
 inline int  promoted_closestLegalPosition(int  p) { return QSplitterHandle::closestLegalPosition(p); }
 inline bool  promoted_event(QEvent*  arg__1) { return QSplitterHandle::event(arg__1); }
 inline void promoted_mouseMoveEvent(QMouseEvent*  arg__1) { QSplitterHandle::mouseMoveEvent(arg__1); }

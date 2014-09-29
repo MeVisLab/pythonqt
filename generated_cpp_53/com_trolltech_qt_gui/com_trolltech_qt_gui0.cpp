@@ -4612,7 +4612,7 @@ void PythonQtWrapper_QAbstractItemView::dropEvent(QAbstractItemView* theWrappedO
   ( ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_dropEvent(event));
 }
 
-QAbstractItemView::DropIndicatorPosition  PythonQtWrapper_QAbstractItemView::dropIndicatorPosition(QAbstractItemView* theWrappedObject) const
+int  PythonQtWrapper_QAbstractItemView::dropIndicatorPosition(QAbstractItemView* theWrappedObject) const
 {
   return ( ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_dropIndicatorPosition());
 }
@@ -4932,7 +4932,7 @@ void PythonQtWrapper_QAbstractItemView::setSelectionModel(QAbstractItemView* the
   ( ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_setSelectionModel(selectionModel));
 }
 
-void PythonQtWrapper_QAbstractItemView::setState(QAbstractItemView* theWrappedObject, QAbstractItemView::State  state)
+void PythonQtWrapper_QAbstractItemView::setState(QAbstractItemView* theWrappedObject, int  state)
 {
   ( ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_setState(state));
 }
@@ -4982,7 +4982,7 @@ void PythonQtWrapper_QAbstractItemView::startDrag(QAbstractItemView* theWrappedO
   ( ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_startDrag(supportedActions));
 }
 
-QAbstractItemView::State  PythonQtWrapper_QAbstractItemView::state(QAbstractItemView* theWrappedObject) const
+int  PythonQtWrapper_QAbstractItemView::state(QAbstractItemView* theWrappedObject) const
 {
   return ( ((PythonQtPublicPromoter_QAbstractItemView*)theWrappedObject)->promoted_state());
 }
@@ -19972,7 +19972,7 @@ bool  PythonQtWrapper_QColumnView::isIndexHidden(QColumnView* theWrappedObject, 
   return ( ((PythonQtPublicPromoter_QColumnView*)theWrappedObject)->promoted_isIndexHidden(index));
 }
 
-QModelIndex  PythonQtWrapper_QColumnView::moveCursor(QColumnView* theWrappedObject, QAbstractItemView::CursorAction  cursorAction, Qt::KeyboardModifiers  modifiers)
+QModelIndex  PythonQtWrapper_QColumnView::moveCursor(QColumnView* theWrappedObject, int  cursorAction, Qt::KeyboardModifiers  modifiers)
 {
   return ( ((PythonQtPublicPromoter_QColumnView*)theWrappedObject)->promoted_moveCursor(cursorAction, modifiers));
 }

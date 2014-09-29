@@ -167,7 +167,6 @@ virtual bool  unsubscribeFromNotification(const QString&  name);
 
 class PythonQtPublicPromoter_QSqlDriver : public QSqlDriver
 { public:
-friend class PythonQtWrapper_QSqlDriver;
 inline bool  promoted_beginTransaction() { return QSqlDriver::beginTransaction(); }
 inline bool  promoted_cancelQuery() { return QSqlDriver::cancelQuery(); }
 inline bool  promoted_commitTransaction() { return QSqlDriver::commitTransaction(); }
@@ -467,7 +466,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QSqlQueryModel : public QSqlQueryModel
 { public:
-friend class PythonQtWrapper_QSqlQueryModel;
 inline void promoted_beginInsertColumns(const QModelIndex&  parent, int  first, int  last) { QSqlQueryModel::beginInsertColumns(parent, first, last); }
 inline void promoted_beginInsertRows(const QModelIndex&  parent, int  first, int  last) { QSqlQueryModel::beginInsertRows(parent, first, last); }
 inline void promoted_beginRemoveColumns(const QModelIndex&  parent, int  first, int  last) { QSqlQueryModel::beginRemoveColumns(parent, first, last); }
@@ -664,7 +662,6 @@ virtual bool  updateRowInTable(int  row, const QSqlRecord&  values);
 
 class PythonQtPublicPromoter_QSqlRelationalTableModel : public QSqlRelationalTableModel
 { public:
-friend class PythonQtWrapper_QSqlRelationalTableModel;
 inline void promoted_clear() { QSqlRelationalTableModel::clear(); }
 inline QVariant  promoted_data(const QModelIndex&  item, int  role = Qt::DisplayRole) const { return QSqlRelationalTableModel::data(item, role); }
 inline bool  promoted_insertRowIntoTable(const QSqlRecord&  values) { return QSqlRelationalTableModel::insertRowIntoTable(values); }
@@ -752,14 +749,17 @@ virtual void virtual_hook(int  id, void*  data);
 
 class PythonQtPublicPromoter_QSqlResult : public QSqlResult
 { public:
-friend class PythonQtWrapper_QSqlResult;
+enum BindingSyntax{
+  PositionalBinding = QSqlResult::PositionalBinding,   NamedBinding = QSqlResult::NamedBinding};
+enum VirtualHookOperation{
+};
 inline void promoted_addBindValue(const QVariant&  val, QSql::ParamType  type) { QSqlResult::addBindValue(val, type); }
 inline int  promoted_at() const { return QSqlResult::at(); }
 inline void promoted_bindValue(const QString&  placeholder, const QVariant&  val, QSql::ParamType  type) { QSqlResult::bindValue(placeholder, val, type); }
 inline void promoted_bindValue(int  pos, const QVariant&  val, QSql::ParamType  type) { QSqlResult::bindValue(pos, val, type); }
 inline QSql::ParamType  promoted_bindValueType(const QString&  placeholder) const { return QSqlResult::bindValueType(placeholder); }
 inline QSql::ParamType  promoted_bindValueType(int  pos) const { return QSqlResult::bindValueType(pos); }
-inline QSqlResult::BindingSyntax  promoted_bindingSyntax() const { return QSqlResult::bindingSyntax(); }
+inline int  promoted_bindingSyntax() const { return QSqlResult::bindingSyntax(); }
 inline QVariant  promoted_boundValue(const QString&  placeholder) const { return QSqlResult::boundValue(placeholder); }
 inline QVariant  promoted_boundValue(int  pos) const { return QSqlResult::boundValue(pos); }
 inline int  promoted_boundValueCount() const { return QSqlResult::boundValueCount(); }
@@ -813,7 +813,7 @@ void delete_QSqlResult(QSqlResult* obj) { delete obj; }
    void bindValue(QSqlResult* theWrappedObject, int  pos, const QVariant&  val, QSql::ParamType  type);
    QSql::ParamType  bindValueType(QSqlResult* theWrappedObject, const QString&  placeholder) const;
    QSql::ParamType  bindValueType(QSqlResult* theWrappedObject, int  pos) const;
-   QSqlResult::BindingSyntax  bindingSyntax(QSqlResult* theWrappedObject) const;
+   int  bindingSyntax(QSqlResult* theWrappedObject) const;
    QVariant  boundValue(QSqlResult* theWrappedObject, const QString&  placeholder) const;
    QVariant  boundValue(QSqlResult* theWrappedObject, int  pos) const;
    int  boundValueCount(QSqlResult* theWrappedObject) const;
@@ -920,7 +920,6 @@ virtual bool  updateRowInTable(int  row, const QSqlRecord&  values);
 
 class PythonQtPublicPromoter_QSqlTableModel : public QSqlTableModel
 { public:
-friend class PythonQtWrapper_QSqlTableModel;
 inline void promoted_clear() { QSqlTableModel::clear(); }
 inline QVariant  promoted_data(const QModelIndex&  idx, int  role = Qt::DisplayRole) const { return QSqlTableModel::data(idx, role); }
 inline bool  promoted_deleteRowFromTable(int  row) { return QSqlTableModel::deleteRowFromTable(row); }

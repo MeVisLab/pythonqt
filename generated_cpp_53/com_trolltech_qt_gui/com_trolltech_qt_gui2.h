@@ -181,7 +181,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QFontDialog : public QFontDialog
 { public:
-friend class PythonQtWrapper_QFontDialog;
 inline void promoted_changeEvent(QEvent*  event) { QFontDialog::changeEvent(event); }
 inline void promoted_done(int  result) { QFontDialog::done(result); }
 inline bool  promoted_eventFilter(QObject*  object, QEvent*  event) { return QFontDialog::eventFilter(object, event); }
@@ -361,7 +360,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QFormLayout : public QFormLayout
 { public:
-friend class PythonQtWrapper_QFormLayout;
 inline void promoted_addItem(QLayoutItem*  item) { QFormLayout::addItem(item); }
 inline int  promoted_count() const { return QFormLayout::count(); }
 inline Qt::Orientations  promoted_expandingDirections() const { return QFormLayout::expandingDirections(); }
@@ -487,7 +485,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QFrame : public QFrame
 { public:
-friend class PythonQtWrapper_QFrame;
 inline void promoted_changeEvent(QEvent*  arg__1) { QFrame::changeEvent(arg__1); }
 inline void promoted_drawFrame(QPainter*  arg__1) { QFrame::drawFrame(arg__1); }
 inline bool  promoted_event(QEvent*  e) { return QFrame::event(e); }
@@ -613,7 +610,6 @@ virtual void reset(QGesture*  state);
 
 class PythonQtPublicPromoter_QGestureRecognizer : public QGestureRecognizer
 { public:
-friend class PythonQtWrapper_QGestureRecognizer;
 inline QGesture*  promoted_create(QObject*  target) { return QGestureRecognizer::create(target); }
 inline void promoted_reset(QGesture*  state) { QGestureRecognizer::reset(state); }
 };
@@ -752,7 +748,6 @@ virtual void widgetEvent(QEvent*  e);
 
 class PythonQtPublicPromoter_QGraphicsAnchorLayout : public QGraphicsAnchorLayout
 { public:
-friend class PythonQtWrapper_QGraphicsAnchorLayout;
 inline int  promoted_count() const { return QGraphicsAnchorLayout::count(); }
 inline void promoted_invalidate() { QGraphicsAnchorLayout::invalidate(); }
 inline QGraphicsLayoutItem*  promoted_itemAt(int  index) const { return QGraphicsAnchorLayout::itemAt(index); }
@@ -808,7 +803,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QGraphicsBlurEffect : public QGraphicsBlurEffect
 { public:
-friend class PythonQtWrapper_QGraphicsBlurEffect;
 inline QRectF  promoted_boundingRectFor(const QRectF&  rect) const { return QGraphicsBlurEffect::boundingRectFor(rect); }
 inline void promoted_draw(QPainter*  painter) { QGraphicsBlurEffect::draw(painter); }
 };
@@ -855,7 +849,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QGraphicsColorizeEffect : public QGraphicsColorizeEffect
 { public:
-friend class PythonQtWrapper_QGraphicsColorizeEffect;
 inline void promoted_draw(QPainter*  painter) { QGraphicsColorizeEffect::draw(painter); }
 };
 
@@ -895,7 +888,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QGraphicsDropShadowEffect : public QGraphicsDropShadowEffect
 { public:
-friend class PythonQtWrapper_QGraphicsDropShadowEffect;
 inline QRectF  promoted_boundingRectFor(const QRectF&  rect) const { return QGraphicsDropShadowEffect::boundingRectFor(rect); }
 inline void promoted_draw(QPainter*  painter) { QGraphicsDropShadowEffect::draw(painter); }
 };
@@ -940,7 +932,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QGraphicsEffect : public QGraphicsEffect
 { public:
-friend class PythonQtWrapper_QGraphicsEffect;
 inline QRectF  promoted_boundingRectFor(const QRectF&  sourceRect) const { return QGraphicsEffect::boundingRectFor(sourceRect); }
 inline void promoted_drawSource(QPainter*  painter) { QGraphicsEffect::drawSource(painter); }
 inline QRectF  promoted_sourceBoundingRect(Qt::CoordinateSystem  system = Qt::LogicalCoordinates) const { return QGraphicsEffect::sourceBoundingRect(system); }
@@ -995,12 +986,11 @@ virtual QPainterPath  opaqueArea() const;
 
 class PythonQtPublicPromoter_QGraphicsEllipseItem : public QGraphicsEllipseItem
 { public:
-friend class PythonQtWrapper_QGraphicsEllipseItem;
 inline QVariant  promoted_extension(const QVariant&  variant) const { return QGraphicsEllipseItem::extension(variant); }
 inline bool  promoted_isObscuredBy(const QGraphicsItem*  item) const { return QGraphicsEllipseItem::isObscuredBy(item); }
 inline QPainterPath  promoted_opaqueArea() const { return QGraphicsEllipseItem::opaqueArea(); }
-inline void promoted_setExtension(QGraphicsItem::Extension  extension, const QVariant&  variant) { QGraphicsEllipseItem::setExtension(extension, variant); }
-inline bool  promoted_supportsExtension(QGraphicsItem::Extension  extension) const { return QGraphicsEllipseItem::supportsExtension(extension); }
+inline void promoted_setExtension(int  extension, const QVariant&  variant) { QGraphicsEllipseItem::setExtension((QGraphicsItem::Extension)extension, variant); }
+inline bool  promoted_supportsExtension(int  extension) const { return QGraphicsEllipseItem::supportsExtension((QGraphicsItem::Extension)extension); }
 };
 
 class PythonQtWrapper_QGraphicsEllipseItem : public QObject
@@ -1021,7 +1011,7 @@ void delete_QGraphicsEllipseItem(QGraphicsEllipseItem* obj) { delete obj; }
    QPainterPath  opaqueArea(QGraphicsEllipseItem* theWrappedObject) const;
    void paint(QGraphicsEllipseItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = 0);
    QRectF  rect(QGraphicsEllipseItem* theWrappedObject) const;
-   void setExtension(QGraphicsEllipseItem* theWrappedObject, QGraphicsItem::Extension  extension, const QVariant&  variant);
+   void setExtension(QGraphicsEllipseItem* theWrappedObject, int  extension, const QVariant&  variant);
    void setRect(QGraphicsEllipseItem* theWrappedObject, const QRectF&  rect);
    void setRect(QGraphicsEllipseItem* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h);
    void setSpanAngle(QGraphicsEllipseItem* theWrappedObject, int  angle);
@@ -1029,7 +1019,7 @@ void delete_QGraphicsEllipseItem(QGraphicsEllipseItem* obj) { delete obj; }
    QPainterPath  shape(QGraphicsEllipseItem* theWrappedObject) const;
    int  spanAngle(QGraphicsEllipseItem* theWrappedObject) const;
    int  startAngle(QGraphicsEllipseItem* theWrappedObject) const;
-   bool  supportsExtension(QGraphicsEllipseItem* theWrappedObject, QGraphicsItem::Extension  extension) const;
+   bool  supportsExtension(QGraphicsEllipseItem* theWrappedObject, int  extension) const;
    int  type(QGraphicsEllipseItem* theWrappedObject) const;
 };
 
@@ -1057,7 +1047,6 @@ virtual void widgetEvent(QEvent*  e);
 
 class PythonQtPublicPromoter_QGraphicsGridLayout : public QGraphicsGridLayout
 { public:
-friend class PythonQtWrapper_QGraphicsGridLayout;
 inline int  promoted_count() const { return QGraphicsGridLayout::count(); }
 inline void promoted_invalidate() { QGraphicsGridLayout::invalidate(); }
 inline QGraphicsLayoutItem*  promoted_itemAt(int  index) const { return QGraphicsGridLayout::itemAt(index); }
@@ -1169,7 +1158,8 @@ virtual void wheelEvent(QGraphicsSceneWheelEvent*  event);
 
 class PythonQtPublicPromoter_QGraphicsItem : public QGraphicsItem
 { public:
-friend class PythonQtWrapper_QGraphicsItem;
+enum Extension{
+  UserExtension = QGraphicsItem::UserExtension};
 inline void promoted_addToIndex() { QGraphicsItem::addToIndex(); }
 inline void promoted_advance(int  phase) { QGraphicsItem::advance(phase); }
 inline bool  promoted_collidesWithItem(const QGraphicsItem*  other, Qt::ItemSelectionMode  mode = Qt::IntersectsItemShape) const { return QGraphicsItem::collidesWithItem(other, mode); }
@@ -1201,9 +1191,9 @@ inline void promoted_prepareGeometryChange() { QGraphicsItem::prepareGeometryCha
 inline void promoted_removeFromIndex() { QGraphicsItem::removeFromIndex(); }
 inline bool  promoted_sceneEvent(QEvent*  event) { return QGraphicsItem::sceneEvent(event); }
 inline bool  promoted_sceneEventFilter(QGraphicsItem*  watched, QEvent*  event) { return QGraphicsItem::sceneEventFilter(watched, event); }
-inline void promoted_setExtension(QGraphicsItem::Extension  extension, const QVariant&  variant) { QGraphicsItem::setExtension(extension, variant); }
+inline void promoted_setExtension(int  extension, const QVariant&  variant) { QGraphicsItem::setExtension((QGraphicsItem::Extension)extension, variant); }
 inline QPainterPath  promoted_shape() const { return QGraphicsItem::shape(); }
-inline bool  promoted_supportsExtension(QGraphicsItem::Extension  extension) const { return QGraphicsItem::supportsExtension(extension); }
+inline bool  promoted_supportsExtension(int  extension) const { return QGraphicsItem::supportsExtension((QGraphicsItem::Extension)extension); }
 inline int  promoted_type() const { return QGraphicsItem::type(); }
 inline void promoted_updateMicroFocus() { QGraphicsItem::updateMicroFocus(); }
 inline void promoted_wheelEvent(QGraphicsSceneWheelEvent*  event) { QGraphicsItem::wheelEvent(event); }
@@ -1385,7 +1375,7 @@ void delete_QGraphicsItem(QGraphicsItem* obj) { delete obj; }
    void setCursor(QGraphicsItem* theWrappedObject, const QCursor&  cursor);
    void setData(QGraphicsItem* theWrappedObject, int  key, const QVariant&  value);
    void setEnabled(QGraphicsItem* theWrappedObject, bool  enabled);
-   void setExtension(QGraphicsItem* theWrappedObject, QGraphicsItem::Extension  extension, const QVariant&  variant);
+   void setExtension(QGraphicsItem* theWrappedObject, int  extension, const QVariant&  variant);
    void setFiltersChildEvents(QGraphicsItem* theWrappedObject, bool  enabled);
    void setFlag(QGraphicsItem* theWrappedObject, QGraphicsItem::GraphicsItemFlag  flag, bool  enabled = true);
    void setFlags(QGraphicsItem* theWrappedObject, QGraphicsItem::GraphicsItemFlags  flags);
@@ -1415,7 +1405,7 @@ void delete_QGraphicsItem(QGraphicsItem* obj) { delete obj; }
    QPainterPath  shape(QGraphicsItem* theWrappedObject) const;
    void show(QGraphicsItem* theWrappedObject);
    void stackBefore(QGraphicsItem* theWrappedObject, const QGraphicsItem*  sibling);
-   bool  supportsExtension(QGraphicsItem* theWrappedObject, QGraphicsItem::Extension  extension) const;
+   bool  supportsExtension(QGraphicsItem* theWrappedObject, int  extension) const;
    QGraphicsObject*  toGraphicsObject(QGraphicsItem* theWrappedObject);
    QString  toolTip(QGraphicsItem* theWrappedObject) const;
    QGraphicsItem*  topLevelItem(QGraphicsItem* theWrappedObject) const;
@@ -1462,7 +1452,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QGraphicsItemAnimation : public QGraphicsItemAnimation
 { public:
-friend class PythonQtWrapper_QGraphicsItemAnimation;
 inline void promoted_afterAnimationStep(qreal  step) { QGraphicsItemAnimation::afterAnimationStep(step); }
 inline void promoted_beforeAnimationStep(qreal  step) { QGraphicsItemAnimation::beforeAnimationStep(step); }
 };
@@ -1553,7 +1542,6 @@ virtual void wheelEvent(QGraphicsSceneWheelEvent*  event);
 
 class PythonQtPublicPromoter_QGraphicsItemGroup : public QGraphicsItemGroup
 { public:
-friend class PythonQtWrapper_QGraphicsItemGroup;
 inline QRectF  promoted_boundingRect() const { return QGraphicsItemGroup::boundingRect(); }
 inline bool  promoted_isObscuredBy(const QGraphicsItem*  item) const { return QGraphicsItemGroup::isObscuredBy(item); }
 inline QPainterPath  promoted_opaqueArea() const { return QGraphicsItemGroup::opaqueArea(); }
@@ -1605,7 +1593,6 @@ virtual void widgetEvent(QEvent*  e);
 
 class PythonQtPublicPromoter_QGraphicsLayout : public QGraphicsLayout
 { public:
-friend class PythonQtWrapper_QGraphicsLayout;
 inline void promoted_addChildLayoutItem(QGraphicsLayoutItem*  layoutItem) { QGraphicsLayout::addChildLayoutItem(layoutItem); }
 inline void promoted_getContentsMargins(qreal*  left, qreal*  top, qreal*  right, qreal*  bottom) const { QGraphicsLayout::getContentsMargins(left, top, right, bottom); }
 inline void promoted_invalidate() { QGraphicsLayout::invalidate(); }
@@ -1652,7 +1639,6 @@ virtual void updateGeometry();
 
 class PythonQtPublicPromoter_QGraphicsLayoutItem : public QGraphicsLayoutItem
 { public:
-friend class PythonQtWrapper_QGraphicsLayoutItem;
 inline void promoted_getContentsMargins(qreal*  left, qreal*  top, qreal*  right, qreal*  bottom) const { QGraphicsLayoutItem::getContentsMargins(left, top, right, bottom); }
 inline void promoted_setGeometry(const QRectF&  rect) { QGraphicsLayoutItem::setGeometry(rect); }
 inline void promoted_setGraphicsItem(QGraphicsItem*  item) { QGraphicsLayoutItem::setGraphicsItem(item); }
@@ -1759,16 +1745,15 @@ virtual void wheelEvent(QGraphicsSceneWheelEvent*  event);
 
 class PythonQtPublicPromoter_QGraphicsLineItem : public QGraphicsLineItem
 { public:
-friend class PythonQtWrapper_QGraphicsLineItem;
 inline QRectF  promoted_boundingRect() const { return QGraphicsLineItem::boundingRect(); }
 inline bool  promoted_contains(const QPointF&  point) const { return QGraphicsLineItem::contains(point); }
 inline QVariant  promoted_extension(const QVariant&  variant) const { return QGraphicsLineItem::extension(variant); }
 inline bool  promoted_isObscuredBy(const QGraphicsItem*  item) const { return QGraphicsLineItem::isObscuredBy(item); }
 inline QPainterPath  promoted_opaqueArea() const { return QGraphicsLineItem::opaqueArea(); }
 inline void promoted_paint(QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = 0) { QGraphicsLineItem::paint(painter, option, widget); }
-inline void promoted_setExtension(QGraphicsItem::Extension  extension, const QVariant&  variant) { QGraphicsLineItem::setExtension(extension, variant); }
+inline void promoted_setExtension(int  extension, const QVariant&  variant) { QGraphicsLineItem::setExtension((QGraphicsItem::Extension)extension, variant); }
 inline QPainterPath  promoted_shape() const { return QGraphicsLineItem::shape(); }
-inline bool  promoted_supportsExtension(QGraphicsItem::Extension  extension) const { return QGraphicsLineItem::supportsExtension(extension); }
+inline bool  promoted_supportsExtension(int  extension) const { return QGraphicsLineItem::supportsExtension((QGraphicsItem::Extension)extension); }
 inline int  promoted_type() const { return QGraphicsLineItem::type(); }
 };
 
@@ -1791,12 +1776,12 @@ void delete_QGraphicsLineItem(QGraphicsLineItem* obj) { delete obj; }
    QPainterPath  opaqueArea(QGraphicsLineItem* theWrappedObject) const;
    void paint(QGraphicsLineItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = 0);
    QPen  pen(QGraphicsLineItem* theWrappedObject) const;
-   void setExtension(QGraphicsLineItem* theWrappedObject, QGraphicsItem::Extension  extension, const QVariant&  variant);
+   void setExtension(QGraphicsLineItem* theWrappedObject, int  extension, const QVariant&  variant);
    void setLine(QGraphicsLineItem* theWrappedObject, const QLineF&  line);
    void setLine(QGraphicsLineItem* theWrappedObject, qreal  x1, qreal  y1, qreal  x2, qreal  y2);
    void setPen(QGraphicsLineItem* theWrappedObject, const QPen&  pen);
    QPainterPath  shape(QGraphicsLineItem* theWrappedObject) const;
-   bool  supportsExtension(QGraphicsLineItem* theWrappedObject, QGraphicsItem::Extension  extension) const;
+   bool  supportsExtension(QGraphicsLineItem* theWrappedObject, int  extension) const;
    int  type(QGraphicsLineItem* theWrappedObject) const;
 };
 
@@ -1825,7 +1810,6 @@ virtual void widgetEvent(QEvent*  e);
 
 class PythonQtPublicPromoter_QGraphicsLinearLayout : public QGraphicsLinearLayout
 { public:
-friend class PythonQtWrapper_QGraphicsLinearLayout;
 inline int  promoted_count() const { return QGraphicsLinearLayout::count(); }
 inline void promoted_invalidate() { QGraphicsLinearLayout::invalidate(); }
 inline QGraphicsLayoutItem*  promoted_itemAt(int  index) const { return QGraphicsLinearLayout::itemAt(index); }
@@ -1920,7 +1904,6 @@ virtual void wheelEvent(QGraphicsSceneWheelEvent*  event);
 
 class PythonQtPublicPromoter_QGraphicsObject : public QGraphicsObject
 { public:
-friend class PythonQtWrapper_QGraphicsObject;
 inline bool  promoted_event(QEvent*  ev) { return QGraphicsObject::event(ev); }
 inline void promoted_updateMicroFocus() { QGraphicsObject::updateMicroFocus(); }
 };
@@ -1962,7 +1945,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QGraphicsOpacityEffect : public QGraphicsOpacityEffect
 { public:
-friend class PythonQtWrapper_QGraphicsOpacityEffect;
 inline void promoted_draw(QPainter*  painter) { QGraphicsOpacityEffect::draw(painter); }
 };
 
@@ -1997,12 +1979,11 @@ virtual QPainterPath  opaqueArea() const;
 
 class PythonQtPublicPromoter_QGraphicsPathItem : public QGraphicsPathItem
 { public:
-friend class PythonQtWrapper_QGraphicsPathItem;
 inline QVariant  promoted_extension(const QVariant&  variant) const { return QGraphicsPathItem::extension(variant); }
 inline bool  promoted_isObscuredBy(const QGraphicsItem*  item) const { return QGraphicsPathItem::isObscuredBy(item); }
 inline QPainterPath  promoted_opaqueArea() const { return QGraphicsPathItem::opaqueArea(); }
-inline void promoted_setExtension(QGraphicsItem::Extension  extension, const QVariant&  variant) { QGraphicsPathItem::setExtension(extension, variant); }
-inline bool  promoted_supportsExtension(QGraphicsItem::Extension  extension) const { return QGraphicsPathItem::supportsExtension(extension); }
+inline void promoted_setExtension(int  extension, const QVariant&  variant) { QGraphicsPathItem::setExtension((QGraphicsItem::Extension)extension, variant); }
+inline bool  promoted_supportsExtension(int  extension) const { return QGraphicsPathItem::supportsExtension((QGraphicsItem::Extension)extension); }
 };
 
 class PythonQtWrapper_QGraphicsPathItem : public QObject
@@ -2022,10 +2003,10 @@ void delete_QGraphicsPathItem(QGraphicsPathItem* obj) { delete obj; }
    QPainterPath  opaqueArea(QGraphicsPathItem* theWrappedObject) const;
    void paint(QGraphicsPathItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = 0);
    QPainterPath  path(QGraphicsPathItem* theWrappedObject) const;
-   void setExtension(QGraphicsPathItem* theWrappedObject, QGraphicsItem::Extension  extension, const QVariant&  variant);
+   void setExtension(QGraphicsPathItem* theWrappedObject, int  extension, const QVariant&  variant);
    void setPath(QGraphicsPathItem* theWrappedObject, const QPainterPath&  path);
    QPainterPath  shape(QGraphicsPathItem* theWrappedObject) const;
-   bool  supportsExtension(QGraphicsPathItem* theWrappedObject, QGraphicsItem::Extension  extension) const;
+   bool  supportsExtension(QGraphicsPathItem* theWrappedObject, int  extension) const;
    int  type(QGraphicsPathItem* theWrappedObject) const;
 };
 

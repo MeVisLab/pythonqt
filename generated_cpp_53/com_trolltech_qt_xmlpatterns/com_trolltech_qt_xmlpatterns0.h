@@ -115,7 +115,6 @@ virtual QVariant  typedValue(const QXmlNodeModelIndex&  n) const;
 
 class PythonQtPublicPromoter_QAbstractXmlNodeModel : public QAbstractXmlNodeModel
 { public:
-friend class PythonQtWrapper_QAbstractXmlNodeModel;
 inline QXmlNodeModelIndex  promoted_createIndex(qint64  data) const { return QAbstractXmlNodeModel::createIndex(data); }
 inline QXmlNodeModelIndex  promoted_createIndex(qint64  data, qint64  additionalData) const { return QAbstractXmlNodeModel::createIndex(data, additionalData); }
 inline QXmlNodeModelIndex  promoted_createIndex(void*  pointer, qint64  additionalData = 0) const { return QAbstractXmlNodeModel::createIndex(pointer, additionalData); }
@@ -168,7 +167,6 @@ virtual void whitespaceOnly(const QStringRef&  value);
 
 class PythonQtPublicPromoter_QAbstractXmlReceiver : public QAbstractXmlReceiver
 { public:
-friend class PythonQtWrapper_QAbstractXmlReceiver;
 inline void promoted_whitespaceOnly(const QStringRef&  value) { QAbstractXmlReceiver::whitespaceOnly(value); }
 };
 
@@ -231,7 +229,6 @@ virtual QVariant  typedValue(const QXmlNodeModelIndex&  n) const;
 
 class PythonQtPublicPromoter_QSimpleXmlNodeModel : public QSimpleXmlNodeModel
 { public:
-friend class PythonQtWrapper_QSimpleXmlNodeModel;
 inline QUrl  promoted_baseUri(const QXmlNodeModelIndex&  node) const { return QSimpleXmlNodeModel::baseUri(node); }
 inline QXmlNodeModelIndex  promoted_elementById(const QXmlName&  id) const { return QSimpleXmlNodeModel::elementById(id); }
 inline QVector<QXmlName >  promoted_namespaceBindings(const QXmlNodeModelIndex&  arg__1) const { return QSimpleXmlNodeModel::namespaceBindings(arg__1); }
@@ -308,7 +305,6 @@ virtual void whitespaceOnly(const QStringRef&  value);
 
 class PythonQtPublicPromoter_QXmlFormatter : public QXmlFormatter
 { public:
-friend class PythonQtWrapper_QXmlFormatter;
 inline void promoted_atomicValue(const QVariant&  value) { QXmlFormatter::atomicValue(value); }
 inline void promoted_attribute(const QXmlName&  name, const QStringRef&  value) { QXmlFormatter::attribute(name, value); }
 inline void promoted_characters(const QStringRef&  value) { QXmlFormatter::characters(value); }
@@ -581,7 +577,6 @@ virtual void whitespaceOnly(const QStringRef&  value);
 
 class PythonQtPublicPromoter_QXmlSerializer : public QXmlSerializer
 { public:
-friend class PythonQtWrapper_QXmlSerializer;
 inline void promoted_atomicValue(const QVariant&  value) { QXmlSerializer::atomicValue(value); }
 inline void promoted_attribute(const QXmlName&  name, const QStringRef&  value) { QXmlSerializer::attribute(name, value); }
 inline void promoted_characters(const QStringRef&  value) { QXmlSerializer::characters(value); }

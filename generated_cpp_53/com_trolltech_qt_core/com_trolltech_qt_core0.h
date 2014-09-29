@@ -72,7 +72,6 @@ virtual void updateState(QAbstractAnimation::State  newState, QAbstractAnimation
 
 class PythonQtPublicPromoter_QAbstractAnimation : public QAbstractAnimation
 { public:
-friend class PythonQtWrapper_QAbstractAnimation;
 inline bool  promoted_event(QEvent*  event) { return QAbstractAnimation::event(event); }
 inline void promoted_updateDirection(QAbstractAnimation::Direction  direction) { QAbstractAnimation::updateDirection(direction); }
 inline void promoted_updateState(QAbstractAnimation::State  newState, QAbstractAnimation::State  oldState) { QAbstractAnimation::updateState(newState, oldState); }
@@ -158,7 +157,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QAbstractItemModel : public QAbstractItemModel
 { public:
-friend class PythonQtWrapper_QAbstractItemModel;
 inline void promoted_beginInsertColumns(const QModelIndex&  parent, int  first, int  last) { QAbstractItemModel::beginInsertColumns(parent, first, last); }
 inline void promoted_beginInsertRows(const QModelIndex&  parent, int  first, int  last) { QAbstractItemModel::beginInsertRows(parent, first, last); }
 inline bool  promoted_beginMoveColumns(const QModelIndex&  sourceParent, int  sourceFirst, int  sourceLast, const QModelIndex&  destinationParent, int  destinationColumn) { return QAbstractItemModel::beginMoveColumns(sourceParent, sourceFirst, sourceLast, destinationParent, destinationColumn); }
@@ -331,7 +329,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QAbstractListModel : public QAbstractListModel
 { public:
-friend class PythonQtWrapper_QAbstractListModel;
 inline bool  promoted_dropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent) { return QAbstractListModel::dropMimeData(data, action, row, column, parent); }
 inline Qt::ItemFlags  promoted_flags(const QModelIndex&  index) const { return QAbstractListModel::flags(index); }
 inline QModelIndex  promoted_index(int  row, int  column = 0, const QModelIndex&  parent = QModelIndex()) const { return QAbstractListModel::index(row, column, parent); }
@@ -373,7 +370,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QAbstractState : public QAbstractState
 { public:
-friend class PythonQtWrapper_QAbstractState;
 inline bool  promoted_event(QEvent*  e) { return QAbstractState::event(e); }
 };
 
@@ -411,7 +407,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QAbstractTransition : public QAbstractTransition
 { public:
-friend class PythonQtWrapper_QAbstractTransition;
 inline bool  promoted_event(QEvent*  e) { return QAbstractTransition::event(e); }
 };
 
@@ -459,7 +454,6 @@ virtual void updateState(QAbstractAnimation::State  newState, QAbstractAnimation
 
 class PythonQtPublicPromoter_QAnimationGroup : public QAnimationGroup
 { public:
-friend class PythonQtWrapper_QAnimationGroup;
 inline bool  promoted_event(QEvent*  event) { return QAnimationGroup::event(event); }
 };
 
@@ -567,7 +561,6 @@ virtual qint64  writeData(const char*  data, qint64  len);
 
 class PythonQtPublicPromoter_QBuffer : public QBuffer
 { public:
-friend class PythonQtWrapper_QBuffer;
 inline bool  promoted_atEnd() const { return QBuffer::atEnd(); }
 inline bool  promoted_canReadLine() const { return QBuffer::canReadLine(); }
 inline void promoted_close() { QBuffer::close(); }
@@ -765,7 +758,6 @@ void delete_QCommandLineParser(QCommandLineParser* obj) { delete obj; }
 
 class PythonQtPublicPromoter_QCoreApplication : public QCoreApplication
 { public:
-friend class PythonQtWrapper_QCoreApplication;
 inline bool  promoted_event(QEvent*  arg__1) { return QCoreApplication::event(arg__1); }
 inline bool  promoted_notify(QObject*  arg__1, QEvent*  arg__2) { return QCoreApplication::notify(arg__1, arg__2); }
 };
@@ -1190,7 +1182,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QEventLoop : public QEventLoop
 { public:
-friend class PythonQtWrapper_QEventLoop;
 inline bool  promoted_event(QEvent*  event) { return QEventLoop::event(event); }
 };
 
@@ -1239,7 +1230,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QEventTransition : public QEventTransition
 { public:
-friend class PythonQtWrapper_QEventTransition;
 inline bool  promoted_event(QEvent*  e) { return QEventTransition::event(e); }
 inline bool  promoted_eventTest(QEvent*  event) { return QEventTransition::eventTest(event); }
 inline void promoted_onTransition(QEvent*  event) { QEventTransition::onTransition(event); }
@@ -1330,7 +1320,6 @@ virtual qint64  writeData(const char*  data, qint64  len);
 
 class PythonQtPublicPromoter_QFile : public QFile
 { public:
-friend class PythonQtWrapper_QFile;
 inline QString  promoted_fileName() const { return QFile::fileName(); }
 inline bool  promoted_open(QIODevice::OpenMode  flags) { return QFile::open(flags); }
 inline QFileDevice::Permissions  promoted_permissions() const { return QFile::permissions(); }
@@ -1418,7 +1407,6 @@ virtual qint64  writeData(const char*  data, qint64  len);
 
 class PythonQtPublicPromoter_QFileDevice : public QFileDevice
 { public:
-friend class PythonQtWrapper_QFileDevice;
 inline bool  promoted_atEnd() const { return QFileDevice::atEnd(); }
 inline void promoted_close() { QFileDevice::close(); }
 inline QString  promoted_fileName() const { return QFileDevice::fileName(); }

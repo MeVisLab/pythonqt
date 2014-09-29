@@ -7303,7 +7303,7 @@ QSize  PythonQtWrapper_QScrollBar::sizeHint(QScrollBar* theWrappedObject) const
   return ( theWrappedObject->sizeHint());
 }
 
-void PythonQtWrapper_QScrollBar::sliderChange(QScrollBar* theWrappedObject, QAbstractSlider::SliderChange  change)
+void PythonQtWrapper_QScrollBar::sliderChange(QScrollBar* theWrappedObject, int  change)
 {
   ( ((PythonQtPublicPromoter_QScrollBar*)theWrappedObject)->promoted_sliderChange(change));
 }

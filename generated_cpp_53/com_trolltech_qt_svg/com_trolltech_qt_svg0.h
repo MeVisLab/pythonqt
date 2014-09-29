@@ -72,7 +72,6 @@ virtual int  type() const;
 
 class PythonQtPublicPromoter_QGraphicsSvgItem : public QGraphicsSvgItem
 { public:
-friend class PythonQtWrapper_QGraphicsSvgItem;
 inline QRectF  promoted_boundingRect() const { return QGraphicsSvgItem::boundingRect(); }
 inline void promoted_paint(QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = 0) { QGraphicsSvgItem::paint(painter, option, widget); }
 inline int  promoted_type() const { return QGraphicsSvgItem::type(); }
@@ -124,7 +123,6 @@ virtual QPainter*  sharedPainter() const;
 
 class PythonQtPublicPromoter_QSvgGenerator : public QSvgGenerator
 { public:
-friend class PythonQtWrapper_QSvgGenerator;
 inline int  promoted_metric(QPaintDevice::PaintDeviceMetric  metric) const { return QSvgGenerator::metric(metric); }
 inline QPaintEngine*  promoted_paintEngine() const { return QSvgGenerator::paintEngine(); }
 };
@@ -265,7 +263,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QSvgWidget : public QSvgWidget
 { public:
-friend class PythonQtWrapper_QSvgWidget;
 inline void promoted_paintEvent(QPaintEvent*  event) { QSvgWidget::paintEvent(event); }
 };
 
