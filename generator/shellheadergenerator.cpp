@@ -162,22 +162,44 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
     s << "class " << promoterClassName(meta_class)
       << " : public " << meta_class->qualifiedCppName() << endl << "{ public:" << endl;
 
-    s << "friend class " << wrapperClassName(meta_class) << ";" << endl;
-
+    AbstractMetaEnumList enums1 = meta_class->enums();
+    qSort(enums1.begin(), enums1.end(), enum_lessThan);
+    foreach(AbstractMetaEnum* enum1, enums1) {
+      if (enum1->wasProtected()) {
+        s << "enum " << enum1->name() << "{" << endl;
+        bool first = true;
+        QString scope = meta_class->qualifiedCppName();
+        foreach(AbstractMetaEnumValue* value, enum1->values()) {
+          if (first) { first = false; }
+          else { s << ", "; }
+          s << "  " << value->name() << " = " << scope << "::" << value->name();
+        }
+        s << "};" << endl;
+      }
+    }
+    
     foreach(AbstractMetaFunction* fun, promoteFunctions) {
       s << "inline ";
       writeFunctionSignature(s, fun, 0, "promoted_",
-        Option(IncludeDefaultExpression | OriginalName | ShowStatic | UnderscoreSpaces));
+        Option(IncludeDefaultExpression | OriginalName | ShowStatic | UnderscoreSpaces | ProtectedEnumAsInts));
       s << " { ";
       QString scriptFunctionName = fun->originalName();
       AbstractMetaArgumentList args = fun->arguments();
-      if (fun->type())
+      if (fun->type()) {
         s << "return ";
+      }
       s << meta_class->qualifiedCppName() << "::";
       s << fun->originalName() << "(";
       for (int i = 0; i < args.size(); ++i) {
-        if (i > 0)
+        if (i > 0) {
           s << ", ";
+        }
+        if (args.at(i)->type()->isEnum()) {
+          AbstractMetaEnum* enumType = m_classes.findEnum((EnumTypeEntry *)args.at(i)->type()->typeEntry());
+          if (enumType && enumType->wasProtected()) {
+            s << "(" << enumType->typeEntry()->qualifiedCppName() << ")";
+          }
+        }
         s << args.at(i)->argumentName();
       }
       s << "); }" << endl;
@@ -291,7 +313,7 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
     if (!function->isSlot() || function->isVirtual()) {
       s << "   ";
       writeFunctionSignature(s, function, 0, QString(),
-        Option(ConvertReferenceToPtr | FirstArgIsWrappedObject| IncludeDefaultExpression | OriginalName | ShowStatic | UnderscoreSpaces));
+        Option(ConvertReferenceToPtr | FirstArgIsWrappedObject | IncludeDefaultExpression | OriginalName | ShowStatic | UnderscoreSpaces | ProtectedEnumAsInts));
       s << ";" << endl;
     }
   }

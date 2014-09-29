@@ -58,15 +58,15 @@ public:
         return "generated_cpp/" + cls->package().replace(".", "_") + "/";
     }
 
-    static void writeTypeInfo(QTextStream &s, const AbstractMetaType *type, Option option = NoOption);
-    static void writeFunctionSignature(QTextStream &s, const AbstractMetaFunction *meta_function,
+    void writeTypeInfo(QTextStream &s, const AbstractMetaType *type, Option option = NoOption);
+    void writeFunctionSignature(QTextStream &s, const AbstractMetaFunction *meta_function,
                                 const AbstractMetaClass *implementor = 0,
                                 const QString &name_prefix = QString(),
                                 Option option = NoOption,
                                 const QString &classname_prefix = QString(),
                                 const QStringList &extra_arguments = QStringList(),
                                 int numArguments = -1);
-    static void writeFunctionArguments(QTextStream &s, const AbstractMetaClass* owner, const AbstractMetaArgumentList &arguments,
+    void writeFunctionArguments(QTextStream &s, const AbstractMetaClass* owner, const AbstractMetaArgumentList &arguments,
                                 Option option = NoOption,
                                 int numArguments = -1);
 
