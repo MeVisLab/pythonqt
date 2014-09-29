@@ -79,7 +79,16 @@ void ShellGenerator::writeTypeInfo(QTextStream &s, const AbstractMetaType *type,
     } else if (te->isFlags()) {
         s << ((FlagsTypeEntry *) te)->originalName();
     } else {
+      if (type->isEnum() && (options & ProtectedEnumAsInts)) {
+        AbstractMetaEnum* enumType = m_classes.findEnum((EnumTypeEntry *)te);
+        if (enumType && enumType->wasProtected()) {
+          s << "int";
+        } else {
+          s << fixCppTypeName(te->qualifiedCppName());
+        }
+      } else {
         s << fixCppTypeName(te->qualifiedCppName());
+      }
     }
 
     if (type->instantiations().size() > 0

@@ -83,12 +83,11 @@ public:
         NoBlockedSlot            = 0x00100000,
 
         SuperCall                = 0x00200000,
-        // These 2 are added for PythonQt
+        // The following options have been added for PythonQt:
         FirstArgIsWrappedObject  = 0x00400000,
         ConvertReferenceToPtr    = 0x00800000,
         UseIndexedName           = 0x01000000,
-
-        GlobalRefJObject         = 0x00100000,
+        ProtectedEnumAsInts      = 0x02000000,
 
         ForceValueType           = ExcludeReference | ExcludeConst
     };
