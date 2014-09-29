@@ -11837,7 +11837,7 @@ void PythonQtWrapper_QListView::mouseReleaseEvent(QListView* theWrappedObject, Q
   ( ((PythonQtPublicPromoter_QListView*)theWrappedObject)->promoted_mouseReleaseEvent(e));
 }
 
-QModelIndex  PythonQtWrapper_QListView::moveCursor(QListView* theWrappedObject, QAbstractItemView::CursorAction  cursorAction, Qt::KeyboardModifiers  modifiers)
+QModelIndex  PythonQtWrapper_QListView::moveCursor(QListView* theWrappedObject, int  cursorAction, Qt::KeyboardModifiers  modifiers)
 {
   return ( ((PythonQtPublicPromoter_QListView*)theWrappedObject)->promoted_moveCursor(cursorAction, modifiers));
 }

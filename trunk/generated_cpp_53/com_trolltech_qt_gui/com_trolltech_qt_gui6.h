@@ -116,7 +116,6 @@ virtual QPainter*  sharedPainter() const;
 
 class PythonQtPublicPromoter_QPagedPaintDevice : public QPagedPaintDevice
 { public:
-friend class PythonQtWrapper_QPagedPaintDevice;
 inline QPageLayout&  promoted_devicePageLayout() { return QPagedPaintDevice::devicePageLayout(); }
 inline void promoted_setMargins(const QPagedPaintDevice::Margins&  margins) { QPagedPaintDevice::setMargins(margins); }
 inline void promoted_setPageSize(QPagedPaintDevice::PageSize  size) { QPagedPaintDevice::setPageSize(size); }
@@ -205,7 +204,6 @@ virtual QPainter*  sharedPainter() const;
 
 class PythonQtPublicPromoter_QPaintDevice : public QPaintDevice
 { public:
-friend class PythonQtWrapper_QPaintDevice;
 inline int  promoted_devType() const { return QPaintDevice::devType(); }
 inline void promoted_initPainter(QPainter*  painter) const { QPaintDevice::initPainter(painter); }
 inline int  promoted_metric(QPaintDevice::PaintDeviceMetric  metric) const { return QPaintDevice::metric(metric); }
@@ -278,7 +276,6 @@ virtual void updateState(const QPaintEngineState&  state);
 
 class PythonQtPublicPromoter_QPaintEngine : public QPaintEngine
 { public:
-friend class PythonQtWrapper_QPaintEngine;
 inline QPoint  promoted_coordinateOffset() const { return QPaintEngine::coordinateOffset(); }
 inline void promoted_drawEllipse(const QRect&  r) { QPaintEngine::drawEllipse(r); }
 inline void promoted_drawEllipse(const QRectF&  r) { QPaintEngine::drawEllipse(r); }
@@ -906,7 +903,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QPdfWriter : public QPdfWriter
 { public:
-friend class PythonQtWrapper_QPdfWriter;
 inline int  promoted_metric(QPaintDevice::PaintDeviceMetric  id) const { return QPdfWriter::metric(id); }
 inline bool  promoted_newPage() { return QPdfWriter::newPage(); }
 inline QPaintEngine*  promoted_paintEngine() const { return QPdfWriter::paintEngine(); }
@@ -961,7 +957,6 @@ virtual QPainter*  sharedPainter() const;
 
 class PythonQtPublicPromoter_QPicture : public QPicture
 { public:
-friend class PythonQtWrapper_QPicture;
 inline int  promoted_devType() const { return QPicture::devType(); }
 inline int  promoted_metric(QPaintDevice::PaintDeviceMetric  m) const { return QPicture::metric(m); }
 inline QPaintEngine*  promoted_paintEngine() const { return QPicture::paintEngine(); }
@@ -1018,7 +1013,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QPictureFormatPlugin : public QPictureFormatPlugin
 { public:
-friend class PythonQtWrapper_QPictureFormatPlugin;
 inline bool  promoted_loadPicture(const QString&  format, const QString&  filename, QPicture*  pic) { return QPictureFormatPlugin::loadPicture(format, filename, pic); }
 inline bool  promoted_savePicture(const QString&  format, const QString&  filename, const QPicture&  pic) { return QPictureFormatPlugin::savePicture(format, filename, pic); }
 };
@@ -1207,7 +1201,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QPlainTextDocumentLayout : public QPlainTextDocumentLayout
 { public:
-friend class PythonQtWrapper_QPlainTextDocumentLayout;
 inline QRectF  promoted_blockBoundingRect(const QTextBlock&  block) const { return QPlainTextDocumentLayout::blockBoundingRect(block); }
 inline void promoted_documentChanged(int  from, int  arg__2, int  charsAdded) { QPlainTextDocumentLayout::documentChanged(from, arg__2, charsAdded); }
 inline QSizeF  promoted_documentSize() const { return QPlainTextDocumentLayout::documentSize(); }
@@ -1305,7 +1298,6 @@ virtual void wheelEvent(QWheelEvent*  e);
 
 class PythonQtPublicPromoter_QPlainTextEdit : public QPlainTextEdit
 { public:
-friend class PythonQtWrapper_QPlainTextEdit;
 inline QRectF  promoted_blockBoundingGeometry(const QTextBlock&  block) const { return QPlainTextEdit::blockBoundingGeometry(block); }
 inline QRectF  promoted_blockBoundingRect(const QTextBlock&  block) const { return QPlainTextEdit::blockBoundingRect(block); }
 inline bool  promoted_canInsertFromMimeData(const QMimeData*  source) const { return QPlainTextEdit::canInsertFromMimeData(source); }
@@ -1579,7 +1571,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QPrintDialog : public QPrintDialog
 { public:
-friend class PythonQtWrapper_QPrintDialog;
 inline void promoted_accept() { QPrintDialog::accept(); }
 inline void promoted_done(int  result) { QPrintDialog::done(result); }
 inline int  promoted_exec() { return QPrintDialog::exec(); }
@@ -1703,7 +1694,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QPrintPreviewDialog : public QPrintPreviewDialog
 { public:
-friend class PythonQtWrapper_QPrintPreviewDialog;
 inline void promoted_done(int  result) { QPrintPreviewDialog::done(result); }
 inline void promoted_open() { QPrintPreviewDialog::open(); }
 };
@@ -1831,7 +1821,6 @@ virtual QPainter*  sharedPainter() const;
 
 class PythonQtPublicPromoter_QPrinter : public QPrinter
 { public:
-friend class PythonQtWrapper_QPrinter;
 inline int  promoted_devType() const { return QPrinter::devType(); }
 inline int  promoted_metric(QPaintDevice::PaintDeviceMetric  arg__1) const { return QPrinter::metric(arg__1); }
 inline bool  promoted_newPage() { return QPrinter::newPage(); }
@@ -2039,7 +2028,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QProgressBar : public QProgressBar
 { public:
-friend class PythonQtWrapper_QProgressBar;
 inline bool  promoted_event(QEvent*  e) { return QProgressBar::event(e); }
 inline void promoted_initStyleOption(QStyleOptionProgressBar*  option) const { QProgressBar::initStyleOption(option); }
 inline void promoted_paintEvent(QPaintEvent*  arg__1) { QProgressBar::paintEvent(arg__1); }
@@ -2140,7 +2128,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QProgressDialog : public QProgressDialog
 { public:
-friend class PythonQtWrapper_QProgressDialog;
 inline void promoted_changeEvent(QEvent*  event) { QProgressDialog::changeEvent(event); }
 inline void promoted_closeEvent(QCloseEvent*  event) { QProgressDialog::closeEvent(event); }
 inline void promoted_forceShow() { QProgressDialog::forceShow(); }

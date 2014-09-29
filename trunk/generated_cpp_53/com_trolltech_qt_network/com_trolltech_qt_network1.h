@@ -99,7 +99,6 @@ virtual qint64  writeData(const char*  data, qint64  len);
 
 class PythonQtPublicPromoter_QSslSocket : public QSslSocket
 { public:
-friend class PythonQtWrapper_QSslSocket;
 inline bool  promoted_atEnd() const { return QSslSocket::atEnd(); }
 inline qint64  promoted_bytesAvailable() const { return QSslSocket::bytesAvailable(); }
 inline qint64  promoted_bytesToWrite() const { return QSslSocket::bytesToWrite(); }
@@ -227,7 +226,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QTcpServer : public QTcpServer
 { public:
-friend class PythonQtWrapper_QTcpServer;
 inline void promoted_addPendingConnection(QTcpSocket*  socket) { QTcpServer::addPendingConnection(socket); }
 inline bool  promoted_hasPendingConnections() const { return QTcpServer::hasPendingConnections(); }
 inline QTcpSocket*  promoted_nextPendingConnection() { return QTcpServer::nextPendingConnection(); }

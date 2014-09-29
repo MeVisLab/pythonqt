@@ -445,7 +445,6 @@ virtual QPainter*  sharedPainter() const;
 
 class PythonQtPublicPromoter_QImage : public QImage
 { public:
-friend class PythonQtWrapper_QImage;
 inline QImage  promoted_convertToFormat_helper(QImage::Format  format, Qt::ImageConversionFlags  flags) const { return QImage::convertToFormat_helper(format, flags); }
 inline bool  promoted_convertToFormat_inplace(QImage::Format  format, Qt::ImageConversionFlags  flags) { return QImage::convertToFormat_inplace(format, flags); }
 inline int  promoted_devType() const { return QImage::devType(); }
@@ -815,7 +814,6 @@ virtual QPainter*  sharedPainter() const;
 
 class PythonQtPublicPromoter_QPixmap : public QPixmap
 { public:
-friend class PythonQtWrapper_QPixmap;
 inline int  promoted_devType() const { return QPixmap::devType(); }
 inline QPixmap  promoted_static_QPixmap_fromImageInPlace(QImage&  image, Qt::ImageConversionFlags  flags = Qt::AutoColor) { return QPixmap::fromImageInPlace(image, flags); }
 inline int  promoted_metric(QPaintDevice::PaintDeviceMetric  arg__1) const { return QPixmap::metric(arg__1); }

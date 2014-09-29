@@ -90,7 +90,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QStackedLayout : public QStackedLayout
 { public:
-friend class PythonQtWrapper_QStackedLayout;
 inline void promoted_addItem(QLayoutItem*  item) { QStackedLayout::addItem(item); }
 inline int  promoted_count() const { return QStackedLayout::count(); }
 inline QLayoutItem*  promoted_itemAt(int  arg__1) const { return QStackedLayout::itemAt(arg__1); }
@@ -186,7 +185,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QStackedWidget : public QStackedWidget
 { public:
-friend class PythonQtWrapper_QStackedWidget;
 inline bool  promoted_event(QEvent*  e) { return QStackedWidget::event(e); }
 };
 
@@ -235,7 +233,6 @@ virtual void write(QDataStream&  out) const;
 
 class PythonQtPublicPromoter_QStandardItem : public QStandardItem
 { public:
-friend class PythonQtWrapper_QStandardItem;
 inline QStandardItem*  promoted_clone() const { return QStandardItem::clone(); }
 inline QVariant  promoted_data(int  role = Qt::UserRole + 1) const { return QStandardItem::data(role); }
 inline void promoted_emitDataChanged() { QStandardItem::emitDataChanged(); }
@@ -394,7 +391,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QStandardItemModel : public QStandardItemModel
 { public:
-friend class PythonQtWrapper_QStandardItemModel;
 inline int  promoted_columnCount(const QModelIndex&  parent = QModelIndex()) const { return QStandardItemModel::columnCount(parent); }
 inline QVariant  promoted_data(const QModelIndex&  index, int  role = Qt::DisplayRole) const { return QStandardItemModel::data(index, role); }
 inline bool  promoted_dropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent) { return QStandardItemModel::dropMimeData(data, action, row, column, parent); }
@@ -576,7 +572,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QStatusBar : public QStatusBar
 { public:
-friend class PythonQtWrapper_QStatusBar;
 inline bool  promoted_event(QEvent*  arg__1) { return QStatusBar::event(arg__1); }
 inline void promoted_hideOrShow() { QStatusBar::hideOrShow(); }
 inline void promoted_paintEvent(QPaintEvent*  arg__1) { QStatusBar::paintEvent(arg__1); }
@@ -674,7 +669,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QStringListModel : public QStringListModel
 { public:
-friend class PythonQtWrapper_QStringListModel;
 inline QVariant  promoted_data(const QModelIndex&  index, int  role) const { return QStringListModel::data(index, role); }
 inline Qt::ItemFlags  promoted_flags(const QModelIndex&  index) const { return QStringListModel::flags(index); }
 inline bool  promoted_insertRows(int  row, int  count, const QModelIndex&  parent = QModelIndex()) { return QStringListModel::insertRows(row, count, parent); }
@@ -751,7 +745,6 @@ virtual void unpolish(QWidget*  arg__1);
 
 class PythonQtPublicPromoter_QStyle : public QStyle
 { public:
-friend class PythonQtWrapper_QStyle;
 inline void promoted_drawItemPixmap(QPainter*  painter, const QRect&  rect, int  alignment, const QPixmap&  pixmap) const { QStyle::drawItemPixmap(painter, rect, alignment, pixmap); }
 inline void promoted_drawItemText(QPainter*  painter, const QRect&  rect, int  flags, const QPalette&  pal, bool  enabled, const QString&  text, QPalette::ColorRole  textRole = QPalette::NoRole) const { QStyle::drawItemText(painter, rect, flags, pal, enabled, text, textRole); }
 inline QRect  promoted_itemPixmapRect(const QRect&  r, int  flags, const QPixmap&  pixmap) const { return QStyle::itemPixmapRect(r, flags, pixmap); }

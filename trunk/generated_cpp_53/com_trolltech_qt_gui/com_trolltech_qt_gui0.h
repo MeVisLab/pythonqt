@@ -168,7 +168,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QAbstractButton : public QAbstractButton
 { public:
-friend class PythonQtWrapper_QAbstractButton;
 inline void promoted_changeEvent(QEvent*  e) { QAbstractButton::changeEvent(e); }
 inline void promoted_checkStateSet() { QAbstractButton::checkStateSet(); }
 inline bool  promoted_event(QEvent*  e) { return QAbstractButton::event(e); }
@@ -278,7 +277,6 @@ virtual void wheelEvent(QGraphicsSceneWheelEvent*  event);
 
 class PythonQtPublicPromoter_QAbstractGraphicsShapeItem : public QAbstractGraphicsShapeItem
 { public:
-friend class PythonQtWrapper_QAbstractGraphicsShapeItem;
 inline bool  promoted_isObscuredBy(const QGraphicsItem*  item) const { return QAbstractGraphicsShapeItem::isObscuredBy(item); }
 inline QPainterPath  promoted_opaqueArea() const { return QAbstractGraphicsShapeItem::opaqueArea(); }
 };
@@ -329,7 +327,6 @@ virtual void updateEditorGeometry(QWidget*  editor, const QStyleOptionViewItem& 
 
 class PythonQtPublicPromoter_QAbstractItemDelegate : public QAbstractItemDelegate
 { public:
-friend class PythonQtWrapper_QAbstractItemDelegate;
 inline QWidget*  promoted_createEditor(QWidget*  parent, const QStyleOptionViewItem&  option, const QModelIndex&  index) const { return QAbstractItemDelegate::createEditor(parent, option, index); }
 inline void promoted_destroyEditor(QWidget*  editor, const QModelIndex&  index) const { QAbstractItemDelegate::destroyEditor(editor, index); }
 inline bool  promoted_editorEvent(QEvent*  event, QAbstractItemModel*  model, const QStyleOptionViewItem&  option, const QModelIndex&  index) { return QAbstractItemDelegate::editorEvent(event, model, option, index); }
@@ -460,7 +457,12 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QAbstractItemView : public QAbstractItemView
 { public:
-friend class PythonQtWrapper_QAbstractItemView;
+enum CursorAction{
+  MoveUp = QAbstractItemView::MoveUp,   MoveDown = QAbstractItemView::MoveDown,   MoveLeft = QAbstractItemView::MoveLeft,   MoveRight = QAbstractItemView::MoveRight,   MoveHome = QAbstractItemView::MoveHome,   MoveEnd = QAbstractItemView::MoveEnd,   MovePageUp = QAbstractItemView::MovePageUp,   MovePageDown = QAbstractItemView::MovePageDown,   MoveNext = QAbstractItemView::MoveNext,   MovePrevious = QAbstractItemView::MovePrevious};
+enum DropIndicatorPosition{
+  OnItem = QAbstractItemView::OnItem,   AboveItem = QAbstractItemView::AboveItem,   BelowItem = QAbstractItemView::BelowItem,   OnViewport = QAbstractItemView::OnViewport};
+enum State{
+  NoState = QAbstractItemView::NoState,   DraggingState = QAbstractItemView::DraggingState,   DragSelectingState = QAbstractItemView::DragSelectingState,   EditingState = QAbstractItemView::EditingState,   ExpandingState = QAbstractItemView::ExpandingState,   CollapsingState = QAbstractItemView::CollapsingState,   AnimatingState = QAbstractItemView::AnimatingState};
 inline void promoted_closeEditor(QWidget*  editor, QAbstractItemDelegate::EndEditHint  hint) { QAbstractItemView::closeEditor(editor, hint); }
 inline void promoted_commitData(QWidget*  editor) { QAbstractItemView::commitData(editor); }
 inline void promoted_currentChanged(const QModelIndex&  current, const QModelIndex&  previous) { QAbstractItemView::currentChanged(current, previous); }
@@ -472,7 +474,7 @@ inline void promoted_dragEnterEvent(QDragEnterEvent*  event) { QAbstractItemView
 inline void promoted_dragLeaveEvent(QDragLeaveEvent*  event) { QAbstractItemView::dragLeaveEvent(event); }
 inline void promoted_dragMoveEvent(QDragMoveEvent*  event) { QAbstractItemView::dragMoveEvent(event); }
 inline void promoted_dropEvent(QDropEvent*  event) { QAbstractItemView::dropEvent(event); }
-inline QAbstractItemView::DropIndicatorPosition  promoted_dropIndicatorPosition() const { return QAbstractItemView::dropIndicatorPosition(); }
+inline int  promoted_dropIndicatorPosition() const { return QAbstractItemView::dropIndicatorPosition(); }
 inline bool  promoted_edit(const QModelIndex&  index, QAbstractItemView::EditTrigger  trigger, QEvent*  event) { return QAbstractItemView::edit(index, trigger, event); }
 inline void promoted_editorDestroyed(QObject*  editor) { QAbstractItemView::editorDestroyed(editor); }
 inline bool  promoted_event(QEvent*  event) { return QAbstractItemView::event(event); }
@@ -504,12 +506,12 @@ inline void promoted_setDirtyRegion(const QRegion&  region) { QAbstractItemView:
 inline void promoted_setModel(QAbstractItemModel*  model) { QAbstractItemView::setModel(model); }
 inline void promoted_setRootIndex(const QModelIndex&  index) { QAbstractItemView::setRootIndex(index); }
 inline void promoted_setSelectionModel(QItemSelectionModel*  selectionModel) { QAbstractItemView::setSelectionModel(selectionModel); }
-inline void promoted_setState(QAbstractItemView::State  state) { QAbstractItemView::setState(state); }
+inline void promoted_setState(int  state) { QAbstractItemView::setState((QAbstractItemView::State)state); }
 inline int  promoted_sizeHintForColumn(int  column) const { return QAbstractItemView::sizeHintForColumn(column); }
 inline int  promoted_sizeHintForRow(int  row) const { return QAbstractItemView::sizeHintForRow(row); }
 inline void promoted_startAutoScroll() { QAbstractItemView::startAutoScroll(); }
 inline void promoted_startDrag(Qt::DropActions  supportedActions) { QAbstractItemView::startDrag(supportedActions); }
-inline QAbstractItemView::State  promoted_state() const { return QAbstractItemView::state(); }
+inline int  promoted_state() const { return QAbstractItemView::state(); }
 inline void promoted_stopAutoScroll() { QAbstractItemView::stopAutoScroll(); }
 inline void promoted_timerEvent(QTimerEvent*  event) { QAbstractItemView::timerEvent(event); }
 inline void promoted_updateEditorData() { QAbstractItemView::updateEditorData(); }
@@ -558,7 +560,7 @@ void delete_QAbstractItemView(QAbstractItemView* obj) { delete obj; }
    void dragLeaveEvent(QAbstractItemView* theWrappedObject, QDragLeaveEvent*  event);
    void dragMoveEvent(QAbstractItemView* theWrappedObject, QDragMoveEvent*  event);
    void dropEvent(QAbstractItemView* theWrappedObject, QDropEvent*  event);
-   QAbstractItemView::DropIndicatorPosition  dropIndicatorPosition(QAbstractItemView* theWrappedObject) const;
+   int  dropIndicatorPosition(QAbstractItemView* theWrappedObject) const;
    bool  edit(QAbstractItemView* theWrappedObject, const QModelIndex&  index, QAbstractItemView::EditTrigger  trigger, QEvent*  event);
    QAbstractItemView::EditTriggers  editTriggers(QAbstractItemView* theWrappedObject) const;
    void editorDestroyed(QAbstractItemView* theWrappedObject, QObject*  editor);
@@ -622,7 +624,7 @@ void delete_QAbstractItemView(QAbstractItemView* obj) { delete obj; }
    void setSelectionBehavior(QAbstractItemView* theWrappedObject, QAbstractItemView::SelectionBehavior  behavior);
    void setSelectionMode(QAbstractItemView* theWrappedObject, QAbstractItemView::SelectionMode  mode);
    void setSelectionModel(QAbstractItemView* theWrappedObject, QItemSelectionModel*  selectionModel);
-   void setState(QAbstractItemView* theWrappedObject, QAbstractItemView::State  state);
+   void setState(QAbstractItemView* theWrappedObject, int  state);
    void setTabKeyNavigation(QAbstractItemView* theWrappedObject, bool  enable);
    void setTextElideMode(QAbstractItemView* theWrappedObject, Qt::TextElideMode  mode);
    void setVerticalScrollMode(QAbstractItemView* theWrappedObject, QAbstractItemView::ScrollMode  mode);
@@ -632,7 +634,7 @@ void delete_QAbstractItemView(QAbstractItemView* obj) { delete obj; }
    int  sizeHintForRow(QAbstractItemView* theWrappedObject, int  row) const;
    void startAutoScroll(QAbstractItemView* theWrappedObject);
    void startDrag(QAbstractItemView* theWrappedObject, Qt::DropActions  supportedActions);
-   QAbstractItemView::State  state(QAbstractItemView* theWrappedObject) const;
+   int  state(QAbstractItemView* theWrappedObject) const;
    void stopAutoScroll(QAbstractItemView* theWrappedObject);
    bool  tabKeyNavigation(QAbstractItemView* theWrappedObject) const;
    Qt::TextElideMode  textElideMode(QAbstractItemView* theWrappedObject) const;
@@ -800,7 +802,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QAbstractProxyModel : public QAbstractProxyModel
 { public:
-friend class PythonQtWrapper_QAbstractProxyModel;
 inline QModelIndex  promoted_buddy(const QModelIndex&  index) const { return QAbstractProxyModel::buddy(index); }
 inline bool  promoted_canFetchMore(const QModelIndex&  parent) const { return QAbstractProxyModel::canFetchMore(parent); }
 inline QVariant  promoted_data(const QModelIndex&  proxyIndex, int  role = Qt::DisplayRole) const { return QAbstractProxyModel::data(proxyIndex, role); }
@@ -920,7 +921,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QAbstractScrollArea : public QAbstractScrollArea
 { public:
-friend class PythonQtWrapper_QAbstractScrollArea;
 inline void promoted_contextMenuEvent(QContextMenuEvent*  arg__1) { QAbstractScrollArea::contextMenuEvent(arg__1); }
 inline void promoted_dragEnterEvent(QDragEnterEvent*  arg__1) { QAbstractScrollArea::dragEnterEvent(arg__1); }
 inline void promoted_dragLeaveEvent(QDragLeaveEvent*  arg__1) { QAbstractScrollArea::dragLeaveEvent(arg__1); }
@@ -1054,7 +1054,8 @@ virtual void wheelEvent(QWheelEvent*  e);
 
 class PythonQtPublicPromoter_QAbstractSlider : public QAbstractSlider
 { public:
-friend class PythonQtWrapper_QAbstractSlider;
+enum SliderChange{
+  SliderRangeChange = QAbstractSlider::SliderRangeChange,   SliderOrientationChange = QAbstractSlider::SliderOrientationChange,   SliderStepsChange = QAbstractSlider::SliderStepsChange,   SliderValueChange = QAbstractSlider::SliderValueChange};
 inline void promoted_changeEvent(QEvent*  e) { QAbstractSlider::changeEvent(e); }
 inline bool  promoted_event(QEvent*  e) { return QAbstractSlider::event(e); }
 inline void promoted_keyPressEvent(QKeyEvent*  ev) { QAbstractSlider::keyPressEvent(ev); }
@@ -1169,7 +1170,6 @@ virtual void wheelEvent(QWheelEvent*  event);
 
 class PythonQtPublicPromoter_QAbstractSpinBox : public QAbstractSpinBox
 { public:
-friend class PythonQtWrapper_QAbstractSpinBox;
 inline void promoted_changeEvent(QEvent*  event) { QAbstractSpinBox::changeEvent(event); }
 inline void promoted_clear() { QAbstractSpinBox::clear(); }
 inline void promoted_closeEvent(QCloseEvent*  event) { QAbstractSpinBox::closeEvent(event); }
@@ -1316,7 +1316,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QAbstractTableModel : public QAbstractTableModel
 { public:
-friend class PythonQtWrapper_QAbstractTableModel;
 inline bool  promoted_dropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent) { return QAbstractTableModel::dropMimeData(data, action, row, column, parent); }
 inline Qt::ItemFlags  promoted_flags(const QModelIndex&  index) const { return QAbstractTableModel::flags(index); }
 inline QModelIndex  promoted_index(int  row, int  column, const QModelIndex&  parent = QModelIndex()) const { return QAbstractTableModel::index(row, column, parent); }
@@ -1366,7 +1365,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QAbstractTextDocumentLayout : public QAbstractTextDocumentLayout
 { public:
-friend class PythonQtWrapper_QAbstractTextDocumentLayout;
 inline void promoted_drawInlineObject(QPainter*  painter, const QRectF&  rect, QTextInlineObject  object, int  posInDocument, const QTextFormat&  format) { QAbstractTextDocumentLayout::drawInlineObject(painter, rect, object, posInDocument, format); }
 inline QTextCharFormat  promoted_format(int  pos) { return QAbstractTextDocumentLayout::format(pos); }
 inline int  promoted_formatIndex(int  pos) { return QAbstractTextDocumentLayout::formatIndex(pos); }
@@ -1509,7 +1507,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QAction : public QAction
 { public:
-friend class PythonQtWrapper_QAction;
 inline bool  promoted_event(QEvent*  arg__1) { return QAction::event(arg__1); }
 };
 
@@ -1631,7 +1628,6 @@ void delete_QActionGroup(QActionGroup* obj) { delete obj; }
 
 class PythonQtPublicPromoter_QApplication : public QApplication
 { public:
-friend class PythonQtWrapper_QApplication;
 inline bool  promoted_event(QEvent*  arg__1) { return QApplication::event(arg__1); }
 inline bool  promoted_notify(QObject*  arg__1, QEvent*  arg__2) { return QApplication::notify(arg__1, arg__2); }
 };
@@ -1752,7 +1748,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QBoxLayout : public QBoxLayout
 { public:
-friend class PythonQtWrapper_QBoxLayout;
 inline void promoted_addItem(QLayoutItem*  arg__1) { QBoxLayout::addItem(arg__1); }
 inline int  promoted_count() const { return QBoxLayout::count(); }
 inline Qt::Orientations  promoted_expandingDirections() const { return QBoxLayout::expandingDirections(); }
@@ -1908,7 +1903,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QCalendarWidget : public QCalendarWidget
 { public:
-friend class PythonQtWrapper_QCalendarWidget;
 inline bool  promoted_event(QEvent*  event) { return QCalendarWidget::event(event); }
 inline bool  promoted_eventFilter(QObject*  watched, QEvent*  event) { return QCalendarWidget::eventFilter(watched, event); }
 inline void promoted_keyPressEvent(QKeyEvent*  event) { QCalendarWidget::keyPressEvent(event); }
@@ -2030,7 +2024,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QCheckBox : public QCheckBox
 { public:
-friend class PythonQtWrapper_QCheckBox;
 inline void promoted_checkStateSet() { QCheckBox::checkStateSet(); }
 inline bool  promoted_event(QEvent*  e) { return QCheckBox::event(e); }
 inline bool  promoted_hitButton(const QPoint&  pos) const { return QCheckBox::hitButton(pos); }
@@ -2167,7 +2160,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QColorDialog : public QColorDialog
 { public:
-friend class PythonQtWrapper_QColorDialog;
 inline void promoted_changeEvent(QEvent*  event) { QColorDialog::changeEvent(event); }
 inline void promoted_done(int  result) { QColorDialog::done(result); }
 inline void promoted_open() { QColorDialog::open(); }
@@ -2302,14 +2294,13 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QColumnView : public QColumnView
 { public:
-friend class PythonQtWrapper_QColumnView;
 inline QAbstractItemView*  promoted_createColumn(const QModelIndex&  rootIndex) { return QColumnView::createColumn(rootIndex); }
 inline void promoted_currentChanged(const QModelIndex&  current, const QModelIndex&  previous) { QColumnView::currentChanged(current, previous); }
 inline int  promoted_horizontalOffset() const { return QColumnView::horizontalOffset(); }
 inline QModelIndex  promoted_indexAt(const QPoint&  point) const { return QColumnView::indexAt(point); }
 inline void promoted_initializeColumn(QAbstractItemView*  column) const { QColumnView::initializeColumn(column); }
 inline bool  promoted_isIndexHidden(const QModelIndex&  index) const { return QColumnView::isIndexHidden(index); }
-inline QModelIndex  promoted_moveCursor(QAbstractItemView::CursorAction  cursorAction, Qt::KeyboardModifiers  modifiers) { return QColumnView::moveCursor(cursorAction, modifiers); }
+inline QModelIndex  promoted_moveCursor(int  cursorAction, Qt::KeyboardModifiers  modifiers) { return QColumnView::moveCursor((QAbstractItemView::CursorAction)cursorAction, modifiers); }
 inline void promoted_resizeEvent(QResizeEvent*  event) { QColumnView::resizeEvent(event); }
 inline void promoted_rowsInserted(const QModelIndex&  parent, int  start, int  end) { QColumnView::rowsInserted(parent, start, end); }
 inline void promoted_scrollContentsBy(int  dx, int  dy) { QColumnView::scrollContentsBy(dx, dy); }
@@ -2337,7 +2328,7 @@ void delete_QColumnView(QColumnView* obj) { delete obj; }
    QModelIndex  indexAt(QColumnView* theWrappedObject, const QPoint&  point) const;
    void initializeColumn(QColumnView* theWrappedObject, QAbstractItemView*  column) const;
    bool  isIndexHidden(QColumnView* theWrappedObject, const QModelIndex&  index) const;
-   QModelIndex  moveCursor(QColumnView* theWrappedObject, QAbstractItemView::CursorAction  cursorAction, Qt::KeyboardModifiers  modifiers);
+   QModelIndex  moveCursor(QColumnView* theWrappedObject, int  cursorAction, Qt::KeyboardModifiers  modifiers);
    QWidget*  previewWidget(QColumnView* theWrappedObject) const;
    void resizeEvent(QColumnView* theWrappedObject, QResizeEvent*  event);
    bool  resizeGripsVisible(QColumnView* theWrappedObject) const;
@@ -2419,7 +2410,6 @@ virtual void wheelEvent(QWheelEvent*  e);
 
 class PythonQtPublicPromoter_QComboBox : public QComboBox
 { public:
-friend class PythonQtWrapper_QComboBox;
 inline void promoted_changeEvent(QEvent*  e) { QComboBox::changeEvent(e); }
 inline void promoted_contextMenuEvent(QContextMenuEvent*  e) { QComboBox::contextMenuEvent(e); }
 inline bool  promoted_event(QEvent*  event) { return QComboBox::event(event); }
@@ -2588,7 +2578,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QCommandLinkButton : public QCommandLinkButton
 { public:
-friend class PythonQtWrapper_QCommandLinkButton;
 inline bool  promoted_event(QEvent*  e) { return QCommandLinkButton::event(e); }
 inline int  promoted_heightForWidth(int  arg__1) const { return QCommandLinkButton::heightForWidth(arg__1); }
 inline QSize  promoted_minimumSizeHint() const { return QCommandLinkButton::minimumSizeHint(); }
@@ -2657,7 +2646,6 @@ virtual void unpolish(QWidget*  widget);
 
 class PythonQtPublicPromoter_QCommonStyle : public QCommonStyle
 { public:
-friend class PythonQtWrapper_QCommonStyle;
 inline void promoted_drawComplexControl(QStyle::ComplexControl  cc, const QStyleOptionComplex*  opt, QPainter*  p, const QWidget*  w = 0) const { QCommonStyle::drawComplexControl(cc, opt, p, w); }
 inline void promoted_drawControl(QStyle::ControlElement  element, const QStyleOption*  opt, QPainter*  p, const QWidget*  w = 0) const { QCommonStyle::drawControl(element, opt, p, w); }
 inline void promoted_drawPrimitive(QStyle::PrimitiveElement  pe, const QStyleOption*  opt, QPainter*  p, const QWidget*  w = 0) const { QCommonStyle::drawPrimitive(pe, opt, p, w); }

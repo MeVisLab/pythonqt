@@ -5518,7 +5518,7 @@ QSql::ParamType  PythonQtWrapper_QSqlResult::bindValueType(QSqlResult* theWrappe
   return ( ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_bindValueType(pos));
 }
 
-QSqlResult::BindingSyntax  PythonQtWrapper_QSqlResult::bindingSyntax(QSqlResult* theWrappedObject) const
+int  PythonQtWrapper_QSqlResult::bindingSyntax(QSqlResult* theWrappedObject) const
 {
   return ( ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_bindingSyntax());
 }

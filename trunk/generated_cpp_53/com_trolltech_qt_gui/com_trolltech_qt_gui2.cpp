@@ -5391,7 +5391,7 @@ QRectF  PythonQtWrapper_QGraphicsEllipseItem::rect(QGraphicsEllipseItem* theWrap
   return ( theWrappedObject->rect());
 }
 
-void PythonQtWrapper_QGraphicsEllipseItem::setExtension(QGraphicsEllipseItem* theWrappedObject, QGraphicsItem::Extension  extension, const QVariant&  variant)
+void PythonQtWrapper_QGraphicsEllipseItem::setExtension(QGraphicsEllipseItem* theWrappedObject, int  extension, const QVariant&  variant)
 {
   ( ((PythonQtPublicPromoter_QGraphicsEllipseItem*)theWrappedObject)->promoted_setExtension(extension, variant));
 }
@@ -5431,7 +5431,7 @@ int  PythonQtWrapper_QGraphicsEllipseItem::startAngle(QGraphicsEllipseItem* theW
   return ( theWrappedObject->startAngle());
 }
 
-bool  PythonQtWrapper_QGraphicsEllipseItem::supportsExtension(QGraphicsEllipseItem* theWrappedObject, QGraphicsItem::Extension  extension) const
+bool  PythonQtWrapper_QGraphicsEllipseItem::supportsExtension(QGraphicsEllipseItem* theWrappedObject, int  extension) const
 {
   return ( ((PythonQtPublicPromoter_QGraphicsEllipseItem*)theWrappedObject)->promoted_supportsExtension(extension));
 }
@@ -7435,7 +7435,7 @@ void PythonQtWrapper_QGraphicsItem::setEnabled(QGraphicsItem* theWrappedObject, 
   ( theWrappedObject->setEnabled(enabled));
 }
 
-void PythonQtWrapper_QGraphicsItem::setExtension(QGraphicsItem* theWrappedObject, QGraphicsItem::Extension  extension, const QVariant&  variant)
+void PythonQtWrapper_QGraphicsItem::setExtension(QGraphicsItem* theWrappedObject, int  extension, const QVariant&  variant)
 {
   ( ((PythonQtPublicPromoter_QGraphicsItem*)theWrappedObject)->promoted_setExtension(extension, variant));
 }
@@ -7585,7 +7585,7 @@ void PythonQtWrapper_QGraphicsItem::stackBefore(QGraphicsItem* theWrappedObject,
   ( theWrappedObject->stackBefore(sibling));
 }
 
-bool  PythonQtWrapper_QGraphicsItem::supportsExtension(QGraphicsItem* theWrappedObject, QGraphicsItem::Extension  extension) const
+bool  PythonQtWrapper_QGraphicsItem::supportsExtension(QGraphicsItem* theWrappedObject, int  extension) const
 {
   return ( ((PythonQtPublicPromoter_QGraphicsItem*)theWrappedObject)->promoted_supportsExtension(extension));
 }
@@ -10274,7 +10274,7 @@ QPen  PythonQtWrapper_QGraphicsLineItem::pen(QGraphicsLineItem* theWrappedObject
   return ( theWrappedObject->pen());
 }
 
-void PythonQtWrapper_QGraphicsLineItem::setExtension(QGraphicsLineItem* theWrappedObject, QGraphicsItem::Extension  extension, const QVariant&  variant)
+void PythonQtWrapper_QGraphicsLineItem::setExtension(QGraphicsLineItem* theWrappedObject, int  extension, const QVariant&  variant)
 {
   ( ((PythonQtPublicPromoter_QGraphicsLineItem*)theWrappedObject)->promoted_setExtension(extension, variant));
 }
@@ -10299,7 +10299,7 @@ QPainterPath  PythonQtWrapper_QGraphicsLineItem::shape(QGraphicsLineItem* theWra
   return ( ((PythonQtPublicPromoter_QGraphicsLineItem*)theWrappedObject)->promoted_shape());
 }
 
-bool  PythonQtWrapper_QGraphicsLineItem::supportsExtension(QGraphicsLineItem* theWrappedObject, QGraphicsItem::Extension  extension) const
+bool  PythonQtWrapper_QGraphicsLineItem::supportsExtension(QGraphicsLineItem* theWrappedObject, int  extension) const
 {
   return ( ((PythonQtPublicPromoter_QGraphicsLineItem*)theWrappedObject)->promoted_supportsExtension(extension));
 }
@@ -11875,7 +11875,7 @@ QPainterPath  PythonQtWrapper_QGraphicsPathItem::path(QGraphicsPathItem* theWrap
   return ( theWrappedObject->path());
 }
 
-void PythonQtWrapper_QGraphicsPathItem::setExtension(QGraphicsPathItem* theWrappedObject, QGraphicsItem::Extension  extension, const QVariant&  variant)
+void PythonQtWrapper_QGraphicsPathItem::setExtension(QGraphicsPathItem* theWrappedObject, int  extension, const QVariant&  variant)
 {
   ( ((PythonQtPublicPromoter_QGraphicsPathItem*)theWrappedObject)->promoted_setExtension(extension, variant));
 }
@@ -11890,7 +11890,7 @@ QPainterPath  PythonQtWrapper_QGraphicsPathItem::shape(QGraphicsPathItem* theWra
   return ( theWrappedObject->shape());
 }
 
-bool  PythonQtWrapper_QGraphicsPathItem::supportsExtension(QGraphicsPathItem* theWrappedObject, QGraphicsItem::Extension  extension) const
+bool  PythonQtWrapper_QGraphicsPathItem::supportsExtension(QGraphicsPathItem* theWrappedObject, int  extension) const
 {
   return ( ((PythonQtPublicPromoter_QGraphicsPathItem*)theWrappedObject)->promoted_supportsExtension(extension));
 }

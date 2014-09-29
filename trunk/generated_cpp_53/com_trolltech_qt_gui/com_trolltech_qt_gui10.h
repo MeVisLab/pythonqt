@@ -180,7 +180,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QTableWidget : public QTableWidget
 { public:
-friend class PythonQtWrapper_QTableWidget;
 inline void promoted_dropEvent(QDropEvent*  event) { QTableWidget::dropEvent(event); }
 inline bool  promoted_dropMimeData(int  row, int  column, const QMimeData*  data, Qt::DropAction  action) { return QTableWidget::dropMimeData(row, column, data, action); }
 inline bool  promoted_event(QEvent*  e) { return QTableWidget::event(e); }
@@ -275,7 +274,6 @@ virtual void write(QDataStream&  out) const;
 
 class PythonQtPublicPromoter_QTableWidgetItem : public QTableWidgetItem
 { public:
-friend class PythonQtWrapper_QTableWidgetItem;
 inline QTableWidgetItem*  promoted_clone() const { return QTableWidgetItem::clone(); }
 inline QVariant  promoted_data(int  role) const { return QTableWidgetItem::data(role); }
 inline void promoted_setData(int  role, const QVariant&  value) { QTableWidgetItem::setData(role, value); }
@@ -587,7 +585,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QTextBlockGroup : public QTextBlockGroup
 { public:
-friend class PythonQtWrapper_QTextBlockGroup;
 inline void promoted_blockFormatChanged(const QTextBlock&  block) { QTextBlockGroup::blockFormatChanged(block); }
 inline void promoted_blockInserted(const QTextBlock&  block) { QTextBlockGroup::blockInserted(block); }
 inline QList<QTextBlock >  promoted_blockList() const { return QTextBlockGroup::blockList(); }
@@ -700,7 +697,6 @@ virtual void wheelEvent(QWheelEvent*  e);
 
 class PythonQtPublicPromoter_QTextBrowser : public QTextBrowser
 { public:
-friend class PythonQtWrapper_QTextBrowser;
 inline void promoted_backward() { QTextBrowser::backward(); }
 inline bool  promoted_event(QEvent*  e) { return QTextBrowser::event(e); }
 inline bool  promoted_focusNextPrevChild(bool  next) { return QTextBrowser::focusNextPrevChild(next); }
@@ -968,7 +964,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QTextDocument : public QTextDocument
 { public:
-friend class PythonQtWrapper_QTextDocument;
 inline void promoted_clear() { QTextDocument::clear(); }
 inline QTextObject*  promoted_createObject(const QTextFormat&  f) { return QTextDocument::createObject(f); }
 inline QVariant  promoted_loadResource(int  type, const QUrl&  name) { return QTextDocument::loadResource(type, name); }
@@ -1184,7 +1179,6 @@ virtual void wheelEvent(QWheelEvent*  e);
 
 class PythonQtPublicPromoter_QTextEdit : public QTextEdit
 { public:
-friend class PythonQtWrapper_QTextEdit;
 inline bool  promoted_canInsertFromMimeData(const QMimeData*  source) const { return QTextEdit::canInsertFromMimeData(source); }
 inline void promoted_changeEvent(QEvent*  e) { QTextEdit::changeEvent(e); }
 inline void promoted_contextMenuEvent(QContextMenuEvent*  e) { QTextEdit::contextMenuEvent(e); }
@@ -1812,7 +1806,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QTextObject : public QTextObject
 { public:
-friend class PythonQtWrapper_QTextObject;
 inline void promoted_setFormat(const QTextFormat&  format) { QTextObject::setFormat(format); }
 };
 

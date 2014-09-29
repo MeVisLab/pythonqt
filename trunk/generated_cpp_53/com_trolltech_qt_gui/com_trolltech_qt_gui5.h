@@ -278,7 +278,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QMdiArea : public QMdiArea
 { public:
-friend class PythonQtWrapper_QMdiArea;
 inline void promoted_childEvent(QChildEvent*  childEvent) { QMdiArea::childEvent(childEvent); }
 inline bool  promoted_event(QEvent*  event) { return QMdiArea::event(event); }
 inline bool  promoted_eventFilter(QObject*  object, QEvent*  event) { return QMdiArea::eventFilter(object, event); }
@@ -398,7 +397,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QMdiSubWindow : public QMdiSubWindow
 { public:
-friend class PythonQtWrapper_QMdiSubWindow;
 inline void promoted_changeEvent(QEvent*  changeEvent) { QMdiSubWindow::changeEvent(changeEvent); }
 inline void promoted_childEvent(QChildEvent*  childEvent) { QMdiSubWindow::childEvent(childEvent); }
 inline void promoted_closeEvent(QCloseEvent*  closeEvent) { QMdiSubWindow::closeEvent(closeEvent); }
@@ -531,7 +529,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QMenu : public QMenu
 { public:
-friend class PythonQtWrapper_QMenu;
 inline void promoted_actionEvent(QActionEvent*  arg__1) { QMenu::actionEvent(arg__1); }
 inline void promoted_changeEvent(QEvent*  arg__1) { QMenu::changeEvent(arg__1); }
 inline int  promoted_columnCount() const { return QMenu::columnCount(); }
@@ -693,7 +690,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QMenuBar : public QMenuBar
 { public:
-friend class PythonQtWrapper_QMenuBar;
 inline void promoted_actionEvent(QActionEvent*  arg__1) { QMenuBar::actionEvent(arg__1); }
 inline void promoted_changeEvent(QEvent*  arg__1) { QMenuBar::changeEvent(arg__1); }
 inline bool  promoted_event(QEvent*  arg__1) { return QMenuBar::event(arg__1); }
@@ -833,7 +829,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QMessageBox : public QMessageBox
 { public:
-friend class PythonQtWrapper_QMessageBox;
 inline void promoted_changeEvent(QEvent*  event) { QMessageBox::changeEvent(event); }
 inline void promoted_closeEvent(QCloseEvent*  event) { QMessageBox::closeEvent(event); }
 inline bool  promoted_event(QEvent*  e) { return QMessageBox::event(e); }
@@ -975,7 +970,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QMouseEventTransition : public QMouseEventTransition
 { public:
-friend class PythonQtWrapper_QMouseEventTransition;
 inline bool  promoted_eventTest(QEvent*  event) { return QMouseEventTransition::eventTest(event); }
 inline void promoted_onTransition(QEvent*  event) { QMouseEventTransition::onTransition(event); }
 };
@@ -1133,7 +1127,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QOffscreenSurface : public QOffscreenSurface
 { public:
-friend class PythonQtWrapper_QOffscreenSurface;
 inline QSurfaceFormat  promoted_format() const { return QOffscreenSurface::format(); }
 inline QSize  promoted_size() const { return QOffscreenSurface::size(); }
 inline QSurface::SurfaceType  promoted_surfaceType() const { return QOffscreenSurface::surfaceType(); }
@@ -1532,7 +1525,6 @@ virtual QPainter*  sharedPainter() const;
 
 class PythonQtPublicPromoter_QOpenGLPaintDevice : public QOpenGLPaintDevice
 { public:
-friend class PythonQtWrapper_QOpenGLPaintDevice;
 inline int  promoted_devType() const { return QOpenGLPaintDevice::devType(); }
 inline void promoted_ensureActiveTarget() { QOpenGLPaintDevice::ensureActiveTarget(); }
 inline int  promoted_metric(QPaintDevice::PaintDeviceMetric  metric) const { return QOpenGLPaintDevice::metric(metric); }
@@ -1629,7 +1621,6 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QOpenGLShaderProgram : public QOpenGLShaderProgram
 { public:
-friend class PythonQtWrapper_QOpenGLShaderProgram;
 inline bool  promoted_link() { return QOpenGLShaderProgram::link(); }
 };
 
@@ -2127,7 +2118,6 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QPageSetupDialog : public QPageSetupDialog
 { public:
-friend class PythonQtWrapper_QPageSetupDialog;
 inline void promoted_done(int  result) { QPageSetupDialog::done(result); }
 inline int  promoted_exec() { return QPageSetupDialog::exec(); }
 inline void promoted_open() { QPageSetupDialog::open(); }

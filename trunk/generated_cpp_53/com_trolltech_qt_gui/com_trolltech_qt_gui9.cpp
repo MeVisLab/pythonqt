@@ -6484,7 +6484,7 @@ bool  PythonQtWrapper_QTableView::isSortingEnabled(QTableView* theWrappedObject)
   return ( theWrappedObject->isSortingEnabled());
 }
 
-QModelIndex  PythonQtWrapper_QTableView::moveCursor(QTableView* theWrappedObject, QAbstractItemView::CursorAction  cursorAction, Qt::KeyboardModifiers  modifiers)
+QModelIndex  PythonQtWrapper_QTableView::moveCursor(QTableView* theWrappedObject, int  cursorAction, Qt::KeyboardModifiers  modifiers)
 {
   return ( ((PythonQtPublicPromoter_QTableView*)theWrappedObject)->promoted_moveCursor(cursorAction, modifiers));
 }
