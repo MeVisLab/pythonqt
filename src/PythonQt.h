@@ -137,11 +137,9 @@ public:
     Type_InplaceLShift = 1 << 18,
     Type_InplaceRShift = 1 << 19,
 
-    // Not yet needed/nicely mappable/generated...
-    //Type_Positive = 1 << 29,
-    //Type_Negative = 1 << 29,
-    //Type_Abs = 1 << 29,
-    //Type_Hash = 1 << 29,
+    Type_Length = 1 << 20,
+    Type_MappingSetItem = 1 << 21,
+    Type_MappingGetItem = 1 << 22,
 
     Type_Invert = 1 << 29,
     Type_RichCompare = 1 << 30,

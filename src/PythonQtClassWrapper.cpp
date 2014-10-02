@@ -77,6 +77,54 @@ static int PythonQtInstanceWrapper_nonzero(PythonQtInstanceWrapper* wrapper)
   return result;
 }
 
+static Py_ssize_t PythonQtInstanceWrapper_length(PythonQtInstanceWrapper* wrapper)
+{
+  qint64 result = -1;
+  if (wrapper->_wrappedPtr != NULL || wrapper->_obj != NULL) {
+    static QByteArray memberName = "__len__";
+    PythonQtMemberInfo opSlot = wrapper->classInfo()->member(memberName);
+    if (opSlot._type == PythonQtMemberInfo::Slot) {
+      PyObject* resultObj = PythonQtSlotFunction_CallImpl(wrapper->classInfo(), wrapper->_obj, opSlot._slot, NULL, NULL, wrapper->_wrappedPtr);
+      bool ok;
+      result = PythonQtConv::PyObjGetLongLong(resultObj, false, ok);
+      if (!ok) {
+        result = -1;
+      }
+      Py_XDECREF(resultObj);
+    }
+  }
+  return result;
+}
+
+static int PythonQtInstanceWrapper_setitem(PyObject* self, PyObject* index, PyObject* value)
+{
+  PythonQtInstanceWrapper* wrapper = (PythonQtInstanceWrapper*)self;
+  PythonQtMemberInfo opSlot;
+  bool isSetItem = false;
+  if (value) {
+    isSetItem = true;
+    opSlot = wrapper->classInfo()->member("__setitem__");
+  } else {
+    opSlot = wrapper->classInfo()->member("__delitem__");
+  }
+  if (opSlot._type == PythonQtMemberInfo::Slot) {
+      PyObject* args = PyTuple_New(isSetItem?2:1);
+      Py_INCREF(index);
+      PyTuple_SET_ITEM(args, 0, index);
+      if (isSetItem) {
+        Py_INCREF(value);
+        PyTuple_SET_ITEM(args, 1, value);
+      }
+      PyObject* result = PythonQtSlotFunction_CallImpl(wrapper->classInfo(), wrapper->_obj, opSlot._slot, args, NULL, wrapper->_wrappedPtr);
+      if (result) {
+        Py_DECREF(result);
+      }
+      Py_DECREF(args);
+    return 0;
+  } else {
+    return -1;
+  }
+}
 
 static PyObject* PythonQtInstanceWrapper_binaryfunc(PyObject* self, PyObject* other, const QByteArray& opName, const QByteArray& fallbackOpName = QByteArray())
 {
@@ -130,6 +178,7 @@ BINARY_OP(xor)
 BINARY_OP(mod)
 BINARY_OP(lshift)
 BINARY_OP(rshift)
+BINARY_OP(getitem)
 
 BINARY_OP_INPLACE(add)
 BINARY_OP_INPLACE(sub)
@@ -146,6 +195,19 @@ static void initializeSlots(PythonQtClassWrapper* wrap)
 {
   int typeSlots = wrap->classInfo()->typeSlots();
   if (typeSlots) {
+
+    if (typeSlots & PythonQt::Type_MappingGetItem) {
+      wrap->_base.as_mapping.mp_subscript = (binaryfunc)PythonQtInstanceWrapper_getitem;
+    }
+    if (typeSlots & PythonQt::Type_MappingSetItem) {
+      wrap->_base.as_mapping.mp_ass_subscript = (objobjargproc)PythonQtInstanceWrapper_setitem;
+    }
+    if (typeSlots & (PythonQt::Type_MappingGetItem | PythonQt::Type_MappingSetItem)) {
+      if (typeSlots & PythonQt::Type_Length) {
+        wrap->_base.as_mapping.mp_length = (lenfunc)PythonQtInstanceWrapper_length;
+      }
+    }
+
     if (typeSlots & PythonQt::Type_Add) {
       wrap->_base.as_number.nb_add = (binaryfunc)PythonQtInstanceWrapper_add;
     }
