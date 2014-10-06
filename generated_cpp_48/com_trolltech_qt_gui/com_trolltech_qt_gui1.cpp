@@ -2617,10 +2617,6 @@ void PythonQtWrapper_QClipboard::clear(QClipboard* theWrappedObject, QClipboard:
   ( theWrappedObject->clear(mode));
 }
 
-bool  PythonQtWrapper_QClipboard::event(QClipboard* theWrappedObject, QEvent*  arg__1)
-{
-  return ( ((PythonQtPublicPromoter_QClipboard*)theWrappedObject)->promoted_event(arg__1));
-}
 
 QImage  PythonQtWrapper_QClipboard::image(QClipboard* theWrappedObject, QClipboard::Mode  mode) const
 {
