@@ -375,11 +375,6 @@ void delete_QCleanlooksStyle(QCleanlooksStyle* obj) { delete obj; }
 
 
 
-class PythonQtPublicPromoter_QClipboard : public QClipboard
-{ public:
-inline bool  promoted_event(QEvent*  arg__1) { return QClipboard::event(arg__1); }
-};
-
 class PythonQtWrapper_QClipboard : public QObject
 { Q_OBJECT
 public:
