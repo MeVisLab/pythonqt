@@ -903,7 +903,7 @@ double PythonQtConv::PyObjGetDouble(PyObject* val, bool strict, bool &ok) {
     } else
 #endif
     if (PyLong_Check(val)) {
-      d = PyLong_AsLong(val);
+      d = static_cast<double>(PyLong_AsLongLong(val));
     } else if (val == Py_False) {
       d = 0;
     } else if (val == Py_True) {
