@@ -260,7 +260,6 @@ enum Mode{
   Clipboard = QClipboard::Clipboard,   Selection = QClipboard::Selection,   FindBuffer = QClipboard::FindBuffer,   LastMode = QClipboard::LastMode};
 public slots:
    void clear(QClipboard* theWrappedObject, QClipboard::Mode  mode = QClipboard::Clipboard);
-   bool  event(QClipboard* theWrappedObject, QEvent*  arg__1);
    QImage  image(QClipboard* theWrappedObject, QClipboard::Mode  mode = QClipboard::Clipboard) const;
    const QMimeData*  mimeData(QClipboard* theWrappedObject, QClipboard::Mode  mode = QClipboard::Clipboard) const;
    bool  ownsClipboard(QClipboard* theWrappedObject) const;
