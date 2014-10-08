@@ -44,6 +44,11 @@ void PythonQt_init_QtOpenGL(PyObject*);
 void PythonQt_init_QtXml(PyObject*);
 void PythonQt_init_QtUiTools(PyObject*);
 
+#if QT_VERSION >= 0x050000
+void PythonQt_init_QtXmlPatterns(PyObject*);
+void PythonQt_init_QtMultimedia(PyObject*);
+#endif
+
 namespace PythonQt_QtAll
 {
   PYTHONQT_QTALL_EXPORT void init() {
@@ -56,6 +61,10 @@ namespace PythonQt_QtAll
     PythonQt_init_QtWebKit(0);
     PythonQt_init_QtOpenGL(0);
     PythonQt_init_QtUiTools(0);
+#if QT_VERSION >= 0x050000
+    PythonQt_init_QtXmlPatterns(0);
+    PythonQt_init_QtMultimedia(0);
+#endif
   };
 };
 
