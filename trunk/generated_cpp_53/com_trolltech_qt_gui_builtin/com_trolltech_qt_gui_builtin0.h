@@ -815,7 +815,7 @@ virtual QPainter*  sharedPainter() const;
 class PythonQtPublicPromoter_QPixmap : public QPixmap
 { public:
 inline int  promoted_devType() const { return QPixmap::devType(); }
-inline QPixmap  promoted_static_QPixmap_fromImageInPlace(QImage&  image, Qt::ImageConversionFlags  flags = Qt::AutoColor) { return QPixmap::fromImageInPlace(image, flags); }
+static inline QPixmap  promoted_fromImageInPlace(QImage&  image, Qt::ImageConversionFlags  flags = Qt::AutoColor) { return QPixmap::fromImageInPlace(image, flags); }
 inline int  promoted_metric(QPaintDevice::PaintDeviceMetric  arg__1) const { return QPixmap::metric(arg__1); }
 inline QPaintEngine*  promoted_paintEngine() const { return QPixmap::paintEngine(); }
 };
