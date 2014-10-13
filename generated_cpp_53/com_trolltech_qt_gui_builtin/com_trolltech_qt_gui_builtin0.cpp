@@ -3010,7 +3010,7 @@ QPixmap  PythonQtWrapper_QPixmap::static_QPixmap_fromImage(const QImage&  image,
 
 QPixmap  PythonQtWrapper_QPixmap::static_QPixmap_fromImageInPlace(QImage&  image, Qt::ImageConversionFlags  flags)
 {
-  return (QPixmap::fromImageInPlace(image, flags));
+  return (PythonQtPublicPromoter_QPixmap::promoted_fromImageInPlace(image, flags));
 }
 
 QPixmap  PythonQtWrapper_QPixmap::static_QPixmap_fromImageReader(QImageReader*  imageReader, Qt::ImageConversionFlags  flags)
