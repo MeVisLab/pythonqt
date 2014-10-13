@@ -179,9 +179,12 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
     }
     
     foreach(AbstractMetaFunction* fun, promoteFunctions) {
+      if (fun->isStatic()) {
+        s << "static ";
+      }
       s << "inline ";
       writeFunctionSignature(s, fun, 0, "promoted_",
-        Option(IncludeDefaultExpression | OriginalName | ShowStatic | UnderscoreSpaces | ProtectedEnumAsInts));
+        Option(IncludeDefaultExpression | OriginalName | UnderscoreSpaces | ProtectedEnumAsInts));
       s << " { ";
       QString scriptFunctionName = fun->originalName();
       AbstractMetaArgumentList args = fun->arguments();
