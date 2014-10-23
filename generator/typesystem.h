@@ -103,7 +103,8 @@ namespace TypeSystem {
         Interface           = 0x0080,
         PyWrapperCode       = 0x0100,
         PyWrapperDeclaration = 0x0200,
-
+        PyWrapperOperators = 0x0400,
+        
         // masks
         All                 = TargetLangCode
                               | NativeCode
