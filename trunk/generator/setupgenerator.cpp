@@ -44,6 +44,7 @@
 #include "reporthandler.h"
 #include "fileout.h"
 
+
 void SetupGenerator::addClass(const QString& package, const AbstractMetaClass *cls)
 {
   packHash[package].append(cls);
@@ -107,6 +108,20 @@ static QStringList getOperatorCodes(const AbstractMetaClass* cls) {
   if (cls->hasDefaultIsNull()) {
     r.insert("PythonQt::Type_NonZero");
   }
+
+  {
+    CodeSnipList code_snips = cls->typeEntry()->codeSnips();
+    foreach(const CodeSnip &cs, code_snips) {
+      if (cs.language == TypeSystem::PyWrapperOperators) {
+        QStringList values = cs.code().split(" ", QString::SkipEmptyParts);
+        foreach(QString value, values) {
+          r.insert(value);
+        }
+      }
+    }
+  }
+
+
   QStringList result = r.toList();
   qSort(result);
   return result;
