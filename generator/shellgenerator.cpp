@@ -43,6 +43,7 @@
 #include "reporthandler.h"
 
 #include "metaqtscript.h"
+#include <iostream>
 
 bool ShellGenerator::shouldGenerate(const AbstractMetaClass *meta_class) const
 {
@@ -261,6 +262,23 @@ void ShellGenerator::writeFunctionSignature(QTextStream &s,
 }
 bool function_sorter(AbstractMetaFunction *a, AbstractMetaFunction *b);
 
+bool ShellGenerator::functionHasNonConstReferences(const AbstractMetaFunction* function)
+{
+  foreach(const AbstractMetaArgument* arg, function->arguments())
+  {
+    if (!arg->type()->isConstant() && arg->type()->isReference()) {
+      QString s;
+      QTextStream t(&s);
+      t << function->implementingClass()->qualifiedCppName() << "::";
+      writeFunctionSignature(t, function, 0, "",
+        Option(ConvertReferenceToPtr | FirstArgIsWrappedObject | IncludeDefaultExpression | OriginalName | ShowStatic | UnderscoreSpaces | ProtectedEnumAsInts));
+      std::cout << s.toLatin1().constData() << std::endl;
+      return true;
+    }
+  }
+  return false;
+}
+
 AbstractMetaFunctionList ShellGenerator::getFunctionsToWrap(const AbstractMetaClass* meta_class)
 {
   AbstractMetaFunctionList functions = meta_class->queryFunctions( 
@@ -278,9 +296,13 @@ AbstractMetaFunctionList ShellGenerator::getFunctionsToWrap(const AbstractMetaCl
 
   AbstractMetaFunctionList resultFunctions;
 
+  bool hasPromoter = meta_class->typeEntry()->shouldCreatePromoter();
+
   foreach(AbstractMetaFunction* func, set1.toList()) {
     if (!func->isAbstract() && func->implementingClass()==meta_class) {
-      resultFunctions << func;
+      if (hasPromoter || func->wasPublic()) {
+        resultFunctions << func;
+      }
     }
   }
   qSort(resultFunctions.begin(), resultFunctions.end(), function_sorter);

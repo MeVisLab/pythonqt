@@ -1142,11 +1142,11 @@ bool AbstractMetaClass::hasProtectedFunctions() const {
 
 bool AbstractMetaClass::generateShellClass() const
 {
-    return m_force_shell_class ||
+    return typeEntry()->shouldCreateShell() && ( m_force_shell_class ||
         (!isFinal()
          && (hasVirtualFunctions()
              || hasProtectedFunctions()
-             || hasFieldAccessors()));
+             || hasFieldAccessors())));
 }
 
 QPropertySpec *AbstractMetaClass::propertySpecForRead(const QString &name) const

@@ -494,6 +494,8 @@ bool Handler::startElement(const QString &, const QString &n,
             attributes["expense-cost"] = "1";
             attributes["expense-limit"] = "none";
             attributes["polymorphic-base"] = QString("no");
+            attributes["create-shell"] = QString("yes");
+            attributes["create-promoter"] = QString("yes");
             attributes["generate"] = QString("yes");
             attributes["target-type"] = QString();
             attributes["generic-class"] = QString("no");
@@ -642,6 +644,8 @@ bool Handler::startElement(const QString &, const QString &n,
                     ep.cost = attributes["expense-cost"];
                     ctype->setExpensePolicy(ep);
                 }
+                ctype->setCreateShell(convertBoolean(attributes["create-shell"], "create-shell", false));
+                ctype->setCreatePromoter(convertBoolean(attributes["create-promoter"], "create-promoter", false));
 
                 ctype->setIsPolymorphicBase(convertBoolean(attributes["polymorphic-base"], "polymorphic-base", false));
                 ctype->setPolymorphicIdValue(attributes["polymorphic-id-expression"]);

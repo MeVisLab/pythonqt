@@ -72,6 +72,8 @@ public:
 
     bool shouldGenerate(const AbstractMetaClass *meta_class) const;
 
+    bool functionHasNonConstReferences(const AbstractMetaFunction* func);
+
     static QString shellClassName(const AbstractMetaClass *meta_class) {
       return "PythonQtShell_" + meta_class->name();
     }
@@ -82,9 +84,9 @@ public:
       return "PythonQtPublicPromoter_" + meta_class->name();
     }
 
-    static AbstractMetaFunctionList getFunctionsToWrap(const AbstractMetaClass* cls);
-    static AbstractMetaFunctionList getVirtualFunctionsForShell(const AbstractMetaClass* cls);
-    static AbstractMetaFunctionList getProtectedFunctionsThatNeedPromotion(const AbstractMetaClass* cls);
+    AbstractMetaFunctionList getFunctionsToWrap(const AbstractMetaClass* cls);
+    AbstractMetaFunctionList getVirtualFunctionsForShell(const AbstractMetaClass* cls);
+    AbstractMetaFunctionList getProtectedFunctionsThatNeedPromotion(const AbstractMetaClass* cls);
 
     // PythonQt builtins..., dont put them in pri files and dont register them, but generate the code
     static bool isBuiltIn(const QString& name);
