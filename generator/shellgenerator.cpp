@@ -313,7 +313,7 @@ AbstractMetaFunctionList ShellGenerator::getVirtualFunctionsForShell(const Abstr
 {
   AbstractMetaFunctionList functions = meta_class->queryFunctions( 
     AbstractMetaClass::VirtualFunctions | AbstractMetaClass::WasVisible
-//    | AbstractMetaClass::NotRemovedFromTargetLang
+    | AbstractMetaClass::NotRemovedFromTargetLang
     );
   qSort(functions.begin(), functions.end(), function_sorter);
   return functions;
