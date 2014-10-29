@@ -337,9 +337,10 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
   AbstractMetaFieldList fields = meta_class->fields();
   qSort(fields.begin(), fields.end(), field_lessThan);
 
+  // TODO: move "So" check to typesystem, e.g. allow star in rejection...
   // Field accessors
   foreach (const AbstractMetaField *field, fields ) {
-    if (field->isPublic()) {
+    if (field->isPublic() && !field->type()->name().startsWith("So")) {
       writeFieldAccessors(s, field);
     }
   }
