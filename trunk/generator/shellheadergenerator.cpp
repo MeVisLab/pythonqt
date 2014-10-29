@@ -157,7 +157,10 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
   }
 
   // Promoter-------------------------------------------------------------------
-  AbstractMetaFunctionList promoteFunctions = getProtectedFunctionsThatNeedPromotion(meta_class);
+  AbstractMetaFunctionList promoteFunctions;
+  if (meta_class->typeEntry()->shouldCreatePromoter()) {
+    promoteFunctions = getProtectedFunctionsThatNeedPromotion(meta_class);
+  }
   if (!promoteFunctions.isEmpty()) {
     s << "class " << promoterClassName(meta_class)
       << " : public " << meta_class->qualifiedCppName() << endl << "{ public:" << endl;
@@ -314,6 +317,10 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
 
   foreach (const AbstractMetaFunction *function, functions) {
     if (!function->isSlot() || function->isVirtual()) {
+      
+      // for debugging:
+      //functionHasNonConstReferences(function);
+      
       s << "   ";
       writeFunctionSignature(s, function, 0, QString(),
         Option(ConvertReferenceToPtr | FirstArgIsWrappedObject | IncludeDefaultExpression | OriginalName | ShowStatic | UnderscoreSpaces | ProtectedEnumAsInts));

@@ -284,7 +284,7 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
             s << meta_class->qualifiedCppName() << "::";
           }
         } else {
-          if (fun->wasProtected() || fun->isVirtual()) {
+          if (fun->wasProtected() || (fun->isVirtual() && meta_class->typeEntry()->shouldCreatePromoter())) {
             s << " (("  << promoterClassName(meta_class) << "*)theWrappedObject)->promoted_";
           } else {
             s << " theWrappedObject->";
