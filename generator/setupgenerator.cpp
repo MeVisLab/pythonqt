@@ -281,6 +281,7 @@ void SetupGenerator::generate()
       }
 
       QSet<QString> listRegistration;
+      QSet<QString> snips;
       foreach(const AbstractMetaClass *cls, list) {
         Q_FOREACH(const AbstractMetaFunction* func, cls->functions()) {
           if (func->type() && func->type()->isContainer()) {
@@ -292,7 +293,23 @@ void SetupGenerator::generate()
             }
           }
         }
+        {
+          while (cls) {
+            CodeSnipList code_snips = cls->typeEntry()->codeSnips();
+            foreach(const CodeSnip &cs, code_snips) {
+              if (cs.language == TypeSystem::PyInitSource) {
+                snips.insert(cs.code());
+              }
+            }
+            cls = cls->baseClass();
+          }
+        }
       }
+
+      foreach(QString snip, snips) {
+        s << snip;
+      }
+      s << endl;
 
       // declare individual class creation functions
       s << "void PythonQt_init_" << shortPackName << "(PyObject* module) {" << endl;
@@ -311,7 +328,21 @@ void SetupGenerator::generate()
 
         QString shellCreator;
         if (cls->generateShellClass() && !ctors.isEmpty()) {
-          shellCreator = ", PythonQtSetInstanceWrapperOnShell<" + ShellGenerator::shellClassName(cls) + ">";
+          QString setInstanceFunc = "PythonQtSetInstanceWrapperOnShell";
+          {
+            const AbstractMetaClass* theclass = cls;
+            while (theclass) {
+              CodeSnipList code_snips = theclass->typeEntry()->codeSnips();
+              foreach(const CodeSnip &cs, code_snips) {
+                if (cs.language == TypeSystem::PySetWrapperFunc) {
+                  setInstanceFunc = cs.code();
+                  break;
+                }
+              }
+              theclass = theclass->baseClass();
+            }
+          }
+          shellCreator = ", " + setInstanceFunc + "<" + ShellGenerator::shellClassName(cls) + ">";
         } else {
           shellCreator = ", NULL";
         }

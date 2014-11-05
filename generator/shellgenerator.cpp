@@ -299,7 +299,7 @@ AbstractMetaFunctionList ShellGenerator::getFunctionsToWrap(const AbstractMetaCl
   bool hasPromoter = meta_class->typeEntry()->shouldCreatePromoter();
 
   foreach(AbstractMetaFunction* func, set1.toList()) {
-    if (!func->isAbstract() && func->implementingClass()==meta_class) {
+    if (func->implementingClass()==meta_class) {
       if (hasPromoter || func->wasPublic()) {
         resultFunctions << func;
       }
@@ -313,7 +313,8 @@ AbstractMetaFunctionList ShellGenerator::getVirtualFunctionsForShell(const Abstr
 {
   AbstractMetaFunctionList functions = meta_class->queryFunctions( 
     AbstractMetaClass::VirtualFunctions | AbstractMetaClass::WasVisible
-    | AbstractMetaClass::NotRemovedFromTargetLang
+    // in case of abstract base classes, we need a shell implementation even for removed virtual functions...
+    //    | AbstractMetaClass::NotRemovedFromTargetLang
     );
   qSort(functions.begin(), functions.end(), function_sorter);
   return functions;
