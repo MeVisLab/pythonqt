@@ -60,7 +60,7 @@ public:
     virtual QString fileNameForClass(const AbstractMetaClass *cls) const;
 
     void write(QTextStream &s, const AbstractMetaClass *meta_class);
-    void writeInjectedCode(QTextStream &s, const AbstractMetaClass *meta_class);
+    void writeInjectedCode(QTextStream &s, const AbstractMetaClass *meta_class, int type, bool recursive = false);
 
   void writeFieldAccessors(QTextStream &s, const AbstractMetaField *field);
 

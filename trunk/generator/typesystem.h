@@ -104,7 +104,10 @@ namespace TypeSystem {
         PyWrapperCode       = 0x0100,
         PyWrapperDeclaration = 0x0200,
         PyWrapperOperators = 0x0400,
-        
+        PyShellDeclaration = 0x0800,
+        PyInheritShellDeclaration = 0x1000,
+        PyInitSource      = 0x2000,
+        PySetWrapperFunc  = 0x4000,
         // masks
         All                 = TargetLangCode
                               | NativeCode

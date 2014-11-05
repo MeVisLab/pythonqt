@@ -1285,6 +1285,10 @@ bool Handler::startElement(const QString &, const QString &n,
                   languageNames["pywrap-cpp"] = TypeSystem::PyWrapperCode;
                   languageNames["pywrap-h"] = TypeSystem::PyWrapperDeclaration;
                   languageNames["pywrap-operators"] = TypeSystem::PyWrapperOperators;
+                  languageNames["pyshell-h"] = TypeSystem::PyShellDeclaration;
+                  languageNames["pyinheritshell-h"] = TypeSystem::PyInheritShellDeclaration;
+                  languageNames["pyinit-cpp"] = TypeSystem::PyInitSource;
+                  languageNames["pysetwrapperfunc"] = TypeSystem::PySetWrapperFunc;
                 }
 
                 QString className = attributes["class"].toLower();
