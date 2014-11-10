@@ -108,6 +108,7 @@ namespace TypeSystem {
         PyInheritShellDeclaration = 0x1000,
         PyInitSource      = 0x2000,
         PySetWrapperFunc  = 0x4000,
+        PyInheritShellConstructorCode = 0x8000,
         // masks
         All                 = TargetLangCode
                               | NativeCode

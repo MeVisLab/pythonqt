@@ -138,7 +138,9 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
           s << ", ";
         s << args.at(i)->argumentName();
       }
-      s << "),_wrapper(NULL) {};" << endl;
+      s << "),_wrapper(NULL) { ";
+      writeInjectedCode(s, meta_class, TypeSystem::PyInheritShellConstructorCode, true);
+      s << " };" << endl;
     }
     s << endl;
     s << "   ~" << shellClassName(meta_class) << "();" << endl;
@@ -324,7 +326,7 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
     if (!function->isSlot() || function->isVirtual()) {
       
       // for debugging:
-      //functionHasNonConstReferences(function);
+      functionHasNonConstReferences(function);
       
       s << "   ";
       writeFunctionSignature(s, function, 0, QString(),
