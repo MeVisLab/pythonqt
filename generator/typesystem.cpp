@@ -1287,6 +1287,7 @@ bool Handler::startElement(const QString &, const QString &n,
                   languageNames["pywrap-operators"] = TypeSystem::PyWrapperOperators;
                   languageNames["pyshell-h"] = TypeSystem::PyShellDeclaration;
                   languageNames["pyinheritshell-h"] = TypeSystem::PyInheritShellDeclaration;
+                  languageNames["pyinheritshell-constructor-code"] = TypeSystem::PyInheritShellConstructorCode;
                   languageNames["pyinit-cpp"] = TypeSystem::PyInitSource;
                   languageNames["pysetwrapperfunc"] = TypeSystem::PySetWrapperFunc;
                 }
