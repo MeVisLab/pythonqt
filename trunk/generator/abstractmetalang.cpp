@@ -1091,7 +1091,8 @@ void AbstractMetaClass::addFunction(AbstractMetaFunction *function)
 
     if (!function->isDestructor()) {
         m_functions << function;
-        qSort(m_functions.begin(), m_functions.end(), function_sorter);
+        // seems like this is not needed and takes a lot of performance
+        //qSort(m_functions.begin(), m_functions.end(), function_sorter);
     }
 
 
@@ -1840,7 +1841,10 @@ void AbstractMetaClass::fixFunctions()
         (*this) -= AbstractMetaAttributes::Final;
     }
 
-    foreach (AbstractMetaFunction *f1, funcs) {
+    // we don't care about FinalOverload for PythonQt, so we
+    // can remove this compare orgy...
+    
+    /*foreach (AbstractMetaFunction *f1, funcs) {
         foreach (AbstractMetaFunction *f2, funcs) {
             if (f1 != f2) {
                 uint cmp = f1->compareTo(f2);
@@ -1861,7 +1865,7 @@ void AbstractMetaClass::fixFunctions()
                 }
             }
         }
-    }
+    }*/
 
     setFunctions(funcs);
 }
