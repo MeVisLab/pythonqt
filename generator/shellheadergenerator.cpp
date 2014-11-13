@@ -64,15 +64,27 @@ void ShellHeaderGenerator::writeFieldAccessors(QTextStream &s, const AbstractMet
   if (field->enclosingClass()->name()=="QUuid" &&  setter->name()=="data4") return;
   if (field->enclosingClass()->name()=="QIPv6Address") return;
 
-  if (!field->type()->isConstant()) {
+  bool isInventorField = field->type()->name().startsWith("So");
+
+  if (!isInventorField && !field->type()->isConstant()) {
     writeFunctionSignature(s, setter, 0, QString(),
                            Option(ConvertReferenceToPtr | FirstArgIsWrappedObject| IncludeDefaultExpression | ShowStatic | UnderscoreSpaces));
     s << "{ theWrappedObject->" << field->name() << " = " << setter->arguments()[0]->argumentName() << "; }\n";
   }
   
+  bool addIndirection = false;
+  if (isInventorField && getter->type()->indirections() == 0) {
+    // make it a field ptr:
+    getter->type()->setIndirections(1);
+    addIndirection = true;
+  }
   writeFunctionSignature(s, getter, 0, QString(),
                          Option(ConvertReferenceToPtr | FirstArgIsWrappedObject| IncludeDefaultExpression | OriginalName | ShowStatic | UnderscoreSpaces));
-  s << "{ return theWrappedObject->" << field->name() << "; }\n";
+  s << "{ return ";
+  if (addIndirection) {
+    s << "&";
+  }
+  s << "theWrappedObject->" << field->name() << "; }\n";
 }
 
 static bool enum_lessThan(const AbstractMetaEnum *a, const AbstractMetaEnum *b)
@@ -347,7 +359,7 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
   // TODO: move "So" check to typesystem, e.g. allow star in rejection...
   // Field accessors
   foreach (const AbstractMetaField *field, fields ) {
-    if (field->isPublic() && !field->type()->name().startsWith("So")) {
+    if (field->isPublic()) {
       writeFieldAccessors(s, field);
     }
   }
