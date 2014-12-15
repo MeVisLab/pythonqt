@@ -188,6 +188,26 @@ PythonQtImporter_find_module(PyObject *obj, PyObject *args)
   }
 }
 
+PyObject *
+PythonQtImporter_iter_modules(PyObject *obj, PyObject *args)
+{
+  // The pkgutil.iter_modules expects an importer to implement
+  // "iter_modules"... We use the generic ImpImporter to handle that.
+  // This is needed for import completion of the jedi library.
+  const char* prefix;
+  if (!PyArg_ParseTuple(args, "|s",
+    &prefix)) {
+    return NULL;
+  }
+  PythonQtImporter *self = (PythonQtImporter *)obj;
+  PythonQtObjectPtr pkgutil = PythonQt::self()->importModule("pkgutil");
+  PythonQtObjectPtr importer = pkgutil.call("ImpImporter", QVariantList() << *self->_path);
+  PythonQtObjectPtr result = importer.call("iter_modules", QVariantList() << QString::fromUtf8(prefix));
+  PyObject* o = result;
+  Py_XINCREF(o);
+  return o;
+}
+
 /* Load and return the module named by 'fullname'. */
 PyObject *
 PythonQtImporter_load_module(PyObject *obj, PyObject *args)
@@ -376,11 +396,16 @@ Return the source code for the specified module. Raise PythonQtImportError\n\
 is the module couldn't be found, return None if the archive does\n\
 contain the module, but has no source for it.");
 
+PyDoc_STRVAR(doc_iter_modules,
+             "Needed for pkgutil");
+
 PyMethodDef PythonQtImporter_methods[] = {
   {"find_module", PythonQtImporter_find_module, METH_VARARGS,
    doc_find_module},
   {"load_module", PythonQtImporter_load_module, METH_VARARGS,
    doc_load_module},
+  {"iter_modules", PythonQtImporter_iter_modules, METH_VARARGS,
+  doc_iter_modules},
   {"get_data", PythonQtImporter_get_data, METH_VARARGS,
    doc_get_data},
   {"get_code", PythonQtImporter_get_code, METH_VARARGS,

@@ -71,6 +71,7 @@ public:
     char pointerCount; // the number of pointer indirections
     char innerNamePointerCount; // the number of pointer indirections in the inner name 
     bool isConst;
+    bool isReference;
     bool isQList;
   };
 
@@ -130,7 +131,7 @@ protected:
 };
 
 //! stores information about a slot, including a next pointer to overloaded slots
-class PythonQtSlotInfo : public PythonQtMethodInfo
+class PYTHONQT_EXPORT PythonQtSlotInfo : public PythonQtMethodInfo
 {
 public:
   enum Type {
@@ -161,6 +162,8 @@ public:
 
 
 public:
+  //! get the parameter infos for the arguments, without return type and instance decorator.
+  QList<ParameterInfo> arguments() const;
 
   void deleteOverloadsAndThis();
 
@@ -180,21 +183,30 @@ public:
   void setNextInfo(PythonQtSlotInfo* next) { _next = next; }
 
   //! returns if the slot is a decorator slot
-  bool isInstanceDecorator() { return _decorator!=NULL && _type == InstanceDecorator; }
+  bool isInstanceDecorator() const { return _decorator!=NULL && _type == InstanceDecorator; }
 
   //! returns if the slot is a constructor slot
-  bool isClassDecorator() { return _decorator!=NULL && _type == ClassDecorator; }
+  bool isClassDecorator() const { return _decorator!=NULL && _type == ClassDecorator; }
 
-  QObject* decorator() { return _decorator; }
+  QObject* decorator() const { return _decorator; }
 
   //! get the full signature including return type
-  QString fullSignature();
+  QString fullSignature(bool skipReturnValue = false, int optionalArgsIndex = -1) const;
 
   //! get the Qt signature of the slot
   QByteArray signature() const;
 
   //! get the short slot name
-  QByteArray slotName() const;
+  QByteArray slotName(bool removeDecorators = false) const;
+
+  //! gets a list of all overload signatures. Signatures
+  //! which only differ because of default values are joined using "[]" to
+  //! indicate the optional arguments.
+  QStringList overloads(bool skipReturnValue = false) const;
+
+  //! Returns the class name that originally implements this method,
+  //! regardless where the wrapper is located/implemented.
+  QByteArray getImplementingClassName() const;
 
 private:
   int               _slotIndex;

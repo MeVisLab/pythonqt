@@ -166,13 +166,19 @@ public:
   static void registerMetaTypeToPythonConverter(int metaTypeId, PythonQtConvertMetaTypeToPythonCB* cb) { _metaTypeToPythonConverters.insert(metaTypeId, cb); }
 
   //! converts the Qt parameter given in \c data, interpreting it as a \c type registered qvariant/meta type, into a Python object,
-  static PyObject* ConvertQtValueToPythonInternal(int type, const void* data);
+  static PyObject* convertQtValueToPythonInternal(int type, const void* data);
 
   //! creates a copy of given object, using the QMetaType
   static PyObject* createCopyFromMetaType( int type, const void* object );
 
   //! cast wrapper to given className if possible
   static void* castWrapperTo(PythonQtInstanceWrapper* wrapper, const QByteArray& className, bool& ok);
+
+  static bool      convertToPythonQtObjectPtr(PyObject* obj, void* /* PythonQtObjectPtr* */ outPtr, int /*metaTypeId*/, bool /*strict*/);
+  static PyObject* convertFromPythonQtObjectPtr(const void* /* PythonQtObjectPtr* */ inObject, int /*metaTypeId*/);
+  static bool      convertToQListOfPythonQtObjectPtr(PyObject* obj, void* /* QList<PythonQtObjectPtr>* */ outList, int /*metaTypeId*/, bool /*strict*/);
+  static PyObject* convertFromQListOfPythonQtObjectPtr(const void* /* QList<PythonQtObjectPtr>* */ inObject, int /*metaTypeId*/);
+  static PyObject* convertFromStringRef(const void* inObject, int /*metaTypeId*/);
 
 public:
 
@@ -198,6 +204,7 @@ protected:
   //! helper template function for QVariantMapToPyObject/QVariantHashToPyObject
   template <typename Map>
   static PyObject* mapToPython (const Map& m);
+  
 };
 
 template<class ListType, class T>
@@ -211,7 +218,7 @@ PyObject* PythonQtConvertListOfValueTypeToPythonList(const void* /*QList<T>* */ 
   PyObject* result = PyTuple_New(list->size());
   int i = 0;
   Q_FOREACH (const T& value, *list) {
-    PyTuple_SET_ITEM(result, i, PythonQtConv::ConvertQtValueToPythonInternal(innerType, &value));
+    PyTuple_SET_ITEM(result, i, PythonQtConv::convertQtValueToPythonInternal(innerType, &value));
     i++;
   }
   return result;
@@ -235,6 +242,7 @@ bool PythonQtConvertPythonListToListOfValueType(PyObject* obj, void* /*QList<T>*
         value = PySequence_GetItem(obj,i);
         // this is quite some overhead, but it avoids having another large switch...
         QVariant v = PythonQtConv::PyObjToQVariant(value, innerType);
+        Py_XDECREF(value);
         if (v.isValid()) {
           list->push_back(qvariant_cast<T>(v));
         } else {
@@ -289,6 +297,7 @@ bool PythonQtConvertPythonListToListOfKnownClass(PyObject* obj, void* /*QList<T>
           PythonQtInstanceWrapper* wrap = (PythonQtInstanceWrapper*)value;
           bool ok;
           T* object = (T*)PythonQtConv::castWrapperTo(wrap, innerType->className(), ok);
+          Py_XDECREF(value);
           if (ok) {
             list->push_back(*object);
           } else {
@@ -296,6 +305,7 @@ bool PythonQtConvertPythonListToListOfKnownClass(PyObject* obj, void* /*QList<T>
             break;
           }
         } else {
+          Py_XDECREF(value);
           result = false;
           break;
         }
@@ -323,8 +333,8 @@ PyObject* PythonQtConvertPairToPython(const void* /*QPair<T1,T2>* */ inPair, int
     std::cerr << "PythonQtConvertPairToPython: unknown inner type " << QMetaType::typeName(metaTypeId) << std::endl;
   }
   PyObject* result = PyTuple_New(2);
-  PyTuple_SET_ITEM(result, 0, PythonQtConv::ConvertQtValueToPythonInternal(innerType1, &pair->first));
-  PyTuple_SET_ITEM(result, 1, PythonQtConv::ConvertQtValueToPythonInternal(innerType2, &pair->second));
+  PyTuple_SET_ITEM(result, 0, PythonQtConv::convertQtValueToPythonInternal(innerType1, &pair->first));
+  PyTuple_SET_ITEM(result, 1, PythonQtConv::convertQtValueToPythonInternal(innerType2, &pair->second));
   return result;
 }
 
@@ -353,6 +363,7 @@ bool PythonQtConvertPythonToPair(PyObject* obj, void* /*QPair<T1,T2>* */ outPair
       value = PySequence_GetItem(obj, 0);
       // this is quite some overhead, but it avoids having another large switch...
       QVariant v = PythonQtConv::PyObjToQVariant(value, innerType1);
+      Py_XDECREF(value);
       if (v.isValid()) {
         pair->first = qvariant_cast<T1>(v);
       } else {
@@ -362,6 +373,7 @@ bool PythonQtConvertPythonToPair(PyObject* obj, void* /*QPair<T1,T2>* */ outPair
       value = PySequence_GetItem(obj, 1);
       // this is quite some overhead, but it avoids having another large switch...
       v = PythonQtConv::PyObjToQVariant(value, innerType2);
+      Py_XDECREF(value);
       if (v.isValid()) {
         pair->second = qvariant_cast<T2>(v);
       } else {
@@ -411,8 +423,10 @@ bool PythonQtConvertPythonListToListOfPair(PyObject* obj, void* /*QList<QPair<T1
         QPair<T1, T2> pair;
         value = PySequence_GetItem(obj, i);
         if (PythonQtConvertPythonToPair<T1,T2>(value, &pair, innerType, false)) {
+          Py_XDECREF(value);
           list->push_back(pair);
         } else {
+          Py_XDECREF(value);
           result = false;
           break;
         }
@@ -444,7 +458,7 @@ PyObject* PythonQtConvertIntegerMapToPython(const void* /*QMap<int, T>* */ inMap
   PyObject* val;
   for (; t != map->constEnd(); t++) {
     key = PyInt_FromLong(t.key());
-    val = PythonQtConv::ConvertQtValueToPythonInternal(innerType, &t.value());
+    val = PythonQtConv::convertQtValueToPythonInternal(innerType, &t.value());
     PyDict_SetItem(result, key, val);
     Py_DECREF(key);
     Py_DECREF(val);
