@@ -42,7 +42,6 @@
 */
 //----------------------------------------------------------------------------------
 
-#include <iostream>
 #include "PythonQtUtils.h"
 #include "PythonQtSystem.h"
 #include "PythonQtInstanceWrapper.h"
@@ -57,6 +56,8 @@
 #include <QByteArray>
 #include <QStringList>
 #include <QtDebug>
+#include <iostream>
+
 
 class PythonQtClassInfo;
 class PythonQtPrivate;
@@ -67,6 +68,7 @@ class PythonQtCppWrapperFactory;
 class PythonQtForeignWrapperFactory;
 class PythonQtQFileImporter;
 
+typedef void  PythonQtVoidPtrCB(void* object);
 typedef void  PythonQtQObjectWrappedCB(QObject* object);
 typedef void  PythonQtQObjectNoLongerWrappedCB(QObject* object);
 typedef void* PythonQtPolymorphicHandlerCB(const void *ptr, const char **class_name);
@@ -545,7 +547,6 @@ private:
 
   PythonQt(int flags, const QByteArray& pythonQtModuleName);
   ~PythonQt();
-
   static PythonQt* _self;
   static int _uniqueModuleCount;
 
@@ -602,8 +603,10 @@ public:
   //! wrap the given QObject into a Python object (or return existing wrapper!)
   PyObject* wrapQObject(QObject* obj);
 
-  //! wrap the given ptr into a Python object (or return existing wrapper!) if there is a known QObject of that name or a known wrapper in the factory
-  PyObject* wrapPtr(void* ptr, const QByteArray& name);
+  //! wrap the given ptr into a Python object (or return existing wrapper!) if there is a known QObject of that name or a known wrapper in the factory.
+  //! If passOwnership == true, the ownership is passed to PythonQt, so the object will be deleted by PythonQt when the Python wrapper
+  //! goes away.
+  PyObject* wrapPtr(void* ptr, const QByteArray& name, bool passOwnership = false);
 
   //! create a read-only buffer object from the given memory
   static PyObject* wrapMemoryAsBuffer(const void* data, Py_ssize_t size);
@@ -646,10 +649,14 @@ public:
   PythonQtInstanceWrapper* createNewPythonQtInstanceWrapper(QObject* obj, PythonQtClassInfo* info, void* wrappedPtr = NULL);
 
   //! get the class info for a meta object (if available)
-  PythonQtClassInfo* getClassInfo(const QMetaObject* meta) { return _knownClassInfos.value(meta->className()); }
+  PythonQtClassInfo* getClassInfo(const QMetaObject* meta);
 
   //! get the class info for a meta object (if available)
-  PythonQtClassInfo* getClassInfo(const QByteArray& className) { return _knownClassInfos.value(className); }
+  PythonQtClassInfo* getClassInfo(const QByteArray& className);
+
+  //! register a class name that causes lazy loading of the moduleToImport when
+  //! PythonQt encounters the type
+  void registerLazyClass(const QByteArray& name, const QByteArray& moduleToImport);
 
   //! creates the new module from the given pycode
   PythonQtObjectPtr createModule(const QString& name, PyObject* pycode);
@@ -696,6 +703,9 @@ private:
 
   //! names of qobject derived classes that can be casted to qobject savely
   QHash<QByteArray, bool> _knownQObjectClassNames;
+
+  //! lazy classes that cause PythonQt to trigger an import if they are encountered.
+  QHash<QByteArray, QByteArray> _knownLazyClasses;
 
   //! stores signal receivers for QObjects
   QHash<QObject* , PythonQtSignalReceiver *> _signalReceivers;

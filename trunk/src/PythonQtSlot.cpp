@@ -410,16 +410,68 @@ meth_dealloc(PythonQtSlotFunctionObject *m)
 }
 
 static PyObject *
-meth_get__doc__(PythonQtSlotFunctionObject * /*m*/, void * /*closure*/)
+meth_get__doc__(PythonQtSlotFunctionObject * m, void * /*closure*/)
 {
-  Py_INCREF(Py_None);
-  return Py_None;
+  QByteArray doc;
+  PythonQtSlotInfo* info = m->m_ml;
+  const QByteArray& returnType = info->parameters().at(0).name;
+  int returnTypeId = info->parameters().at(0).typeId;
+
+  PythonQtSlotInfo* longestInfo = info;
+  PythonQtSlotInfo* infoSearch = info->nextInfo();
+  while (infoSearch) {
+    if (longestInfo->parameterCount() < infoSearch->parameterCount()) {
+      longestInfo = infoSearch;
+    }
+    infoSearch = infoSearch->nextInfo();
+  }
+  doc = "X." + info->slotName(true) + "(";
+  for (int i = 1;i<longestInfo->parameterCount(); i++) {
+    if (i!=1) {
+      doc += ", ";
+    }
+    doc += QString('a' + i-1);
+  }
+  doc += ")";
+  QByteArray pyReturnType;
+  if (returnType == "QString" || returnType == "SbName" || returnType == "SbString") {
+    pyReturnType = "str";
+  } else if (returnType.startsWith("QVector<") || returnType.startsWith("QList<") ||
+             returnType == "QStringList" || returnType == "QObjectList" || returnType == "QVariantList") {
+    pyReturnType = "tuple";
+  } else if (returnType.startsWith("QHash<") || returnType.startsWith("QMap<") ||
+    returnType == "QVariantMap" || returnType == "QVariantHash") {
+    pyReturnType = "dict";
+  } else if (returnTypeId == QVariant::Bool) {
+    pyReturnType = "bool";
+  } else if (returnTypeId == QMetaType::Char || returnTypeId == QMetaType::UChar ||
+    returnTypeId == QMetaType::Short || returnTypeId == QMetaType::UShort ||
+    returnTypeId == QMetaType::Int || returnTypeId == QMetaType::UInt ||
+    returnTypeId == QMetaType::Long || returnTypeId == QMetaType::ULong ||
+    returnTypeId == QMetaType::LongLong || returnTypeId == QMetaType::ULongLong) {
+    pyReturnType = "int";
+  } else if (returnTypeId == QMetaType::Float || returnTypeId == QMetaType::Double) {
+    pyReturnType = "float";
+  } else {
+    PythonQtClassInfo* returnTypeClassInfo = PythonQt::priv()->getClassInfo(returnType);
+    if (returnTypeClassInfo) {
+      PyObject* s = PyObject_GetAttrString(returnTypeClassInfo->pythonQtClassWrapper(), "__module__");
+      if (s) {
+        pyReturnType = QByteArray(PyString_AsString(s)) + "." + returnType;
+        Py_DECREF(s);
+      }
+    }
+  }
+  if (!pyReturnType.isEmpty()) {
+    doc += " -> " + pyReturnType;
+  }
+  return PyString_FromString(doc.constData());
 }
 
 static PyObject *
 meth_get__name__(PythonQtSlotFunctionObject *m, void * /*closure*/)
 {
-  return PyString_FromString(m->m_ml->signature());
+  return PyString_FromString(m->m_ml->slotName(true));
 }
 
 static int

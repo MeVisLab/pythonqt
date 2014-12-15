@@ -114,16 +114,24 @@ PyObject* PythonQtConv::ConvertQtValueToPython(const PythonQtMethodInfo::Paramet
     // convert the pointer to a Python Object (we can handle ANY C++ object, in the worst case we just know the type and the pointer)
     return PythonQt::priv()->wrapPtr(*((void**)data), info.name);
   } else if (info.pointerCount == 0) {
-    if (info.typeId != PythonQtMethodInfo::Unknown) {
-      // handle values that are const& or by value and have a metatype
-      return ConvertQtValueToPythonInternal(info.typeId, data);
+    if (info.isReference && !info.isConst) {
+      // if we have a non-const reference, we want to pass the direct pointer to Python.
+      // NOTE: The moc does not generate non-const & as return values, but we get these when
+      // we pass virtual methods to Python.
+      return PythonQt::priv()->wrapPtr((void*)data, info.name);
     } else {
-      // the type does not have a typeid, we need to make a copy using the copy constructor
-      PythonQtClassInfo* classInfo = PythonQt::priv()->getClassInfo(info.name);
-      if (classInfo) {
-        PyObject* result = classInfo->copyObject((void*)data);
-        if (result) {
-          return result;
+      // if we have a by value or const&, we copy the object and wrap it:
+      if (info.typeId != PythonQtMethodInfo::Unknown) {
+        // handle values that are const& or by value and have a metatype
+        return convertQtValueToPythonInternal(info.typeId, data);
+      } else {
+        // the type does not have a typeid, we need to make a copy using the copy constructor
+        PythonQtClassInfo* classInfo = PythonQt::priv()->getClassInfo(info.name);
+        if (classInfo) {
+          PyObject* result = classInfo->copyObject((void*)data);
+          if (result) {
+            return result;
+          }
         }
       }
     }
@@ -132,7 +140,7 @@ PyObject* PythonQtConv::ConvertQtValueToPython(const PythonQtMethodInfo::Paramet
   return Py_None;
 }
 
-PyObject* PythonQtConv::ConvertQtValueToPythonInternal(int type, const void* data) {
+PyObject* PythonQtConv::convertQtValueToPythonInternal(int type, const void* data) {
   switch (type) {
   case QMetaType::Void:
     Py_INCREF(Py_None);
@@ -703,6 +711,7 @@ QStringList PythonQtConv::PyObjToStringList(PyObject* val, bool strict, bool& ok
       for (int i = 0;i<count;i++) {
         PyObject* value = PySequence_GetItem(val,i);
         v.append(PyObjGetString(value,false,ok));
+        Py_XDECREF(value);
       }
       ok = true;
     }
@@ -1114,6 +1123,7 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
         for (int i = 0;i<count;i++) {
           value = PySequence_GetItem(val,i);
           list.append(PyObjToQVariant(value, -1));
+          Py_XDECREF(value);
         }
         v = list;
       }
@@ -1230,7 +1240,7 @@ PyObject* PythonQtConv::QVariantToPyObject(const QVariant& v)
     obj = ConvertQtValueToPython(info, v.constData());
   } else {
     // try the quick way to convert it, since it is a built-in type:
-    obj = ConvertQtValueToPythonInternal(v.userType(), (void*)v.constData());
+    obj = convertQtValueToPythonInternal(v.userType(), (void*)v.constData());
   }
   return obj;
 }
@@ -1298,12 +1308,17 @@ bool PythonQtConv::ConvertPythonListToQListOfPointerType(PyObject* obj, QList<vo
           PythonQtInstanceWrapper* wrap = (PythonQtInstanceWrapper*)value;
           bool ok;
           void* object = castWrapperTo(wrap, type, ok);
+          Py_XDECREF(value);
           if (ok) {
             list->append(object);
           } else {
             result = false;
             break;
           }
+        } else {
+          Py_XDECREF(value);
+          result = false;
+          break;
         }
       }
     }
@@ -1405,4 +1420,56 @@ PyObject* PythonQtConv::createCopyFromMetaType( int type, const void* data )
   wrap->_ownedByPythonQt = true;
   wrap->_useQMetaTypeDestroy = true;
   return (PyObject*)wrap;
+}
+
+PyObject* PythonQtConv::convertFromStringRef(const void* inObject, int /*metaTypeId*/)
+{
+  return PythonQtConv::QStringToPyObject(((QStringRef*)inObject)->toString());
+}
+
+PyObject* PythonQtConv::convertFromQListOfPythonQtObjectPtr(const void* inObject, int /*metaTypeId*/)
+{
+  QList<PythonQtObjectPtr>& list = *((QList<PythonQtObjectPtr>*)inObject);
+  PyObject* tuple = PyTuple_New(list.size());
+  for (int i = 0; i<list.size(); i++) {
+    PyObject* item = list.at(i).object();
+    // SET_ITEM steals the reference count, so we need to incref
+    Py_XINCREF(item);
+    PyTuple_SET_ITEM(tuple, i, item);
+  }
+  return tuple;
+}
+
+bool PythonQtConv::convertToQListOfPythonQtObjectPtr(PyObject* obj, void* /* QList<PythonQtObjectPtr>* */ outList, int /*metaTypeId*/, bool /*strict*/)
+{
+  bool result = false;
+  QList<PythonQtObjectPtr>& list = *((QList<PythonQtObjectPtr>*)outList);
+  if (PySequence_Check(obj)) {
+    int count = PySequence_Size(obj);
+    if (count >= 0) {
+      PyObject* value;
+      result = true;
+      for (int i = 0;i<count;i++) {
+        value = PySequence_GetItem(obj,i);
+        list.append(value);
+        Py_XDECREF(value);
+      }
+    }
+  }
+  return result;
+}
+
+bool PythonQtConv::convertToPythonQtObjectPtr( PyObject* obj, void* /* PythonQtObjectPtr* */ outPtr, int /*metaTypeId*/, bool /*strict*/ )
+{
+  // just store the PyObject inside of the smart ptr
+  *((PythonQtObjectPtr*)outPtr) = obj;
+  return true;
+}
+
+PyObject* PythonQtConv::convertFromPythonQtObjectPtr( const void* /* PythonQtObjectPtr* */ inObject, int /*metaTypeId*/ )
+{
+  PyObject* obj = (*((const PythonQtObjectPtr*)inObject)).object();
+  // extra ref count, since we are supposed to return a newly refcounted object
+  Py_XINCREF(obj);
+  return obj;
 }

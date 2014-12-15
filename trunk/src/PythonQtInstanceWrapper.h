@@ -45,6 +45,7 @@
 #include "PythonQtPythonInclude.h"
 
 #include "PythonQtSystem.h"
+#include "PythonQtClassWrapper.h"
 #include <QPointer>
 
 #include "structmember.h"
@@ -63,7 +64,8 @@ typedef struct PythonQtInstanceWrapperStruct {
   PyObject_HEAD
 
   //! the class information, this is set even if the _obj or _wrappedPtr is NULL to support typed NULL pointers
-  PythonQtClassInfo* classInfo();
+  inline PythonQtClassInfo* classInfo() 
+  {  return ((PythonQtClassWrapper*)Py_TYPE(this))->_classInfo; }
 
   //! set the QObject pointer
   void setQObject(QObject* object) {
