@@ -213,6 +213,9 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
       if (!fun->isAbstract()) {
         s << meta_class->qualifiedCppName() << "::";
       }
+      else {
+        s << "this->";
+      }
       s << fun->originalName() << "(";
       for (int i = 0; i < args.size(); ++i) {
         if (i > 0) {
@@ -338,7 +341,7 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
     if (!function->isSlot() || function->isVirtual()) {
       
       // for debugging:
-      functionHasNonConstReferences(function);
+      //functionHasNonConstReferences(function);
       
       s << "   ";
       writeFunctionSignature(s, function, 0, QString(),
