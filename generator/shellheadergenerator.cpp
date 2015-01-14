@@ -311,7 +311,7 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
 
       s << meta_class->qualifiedCppName() << "* ";
       writeFunctionSignature(s, fun, 0, "new_",
-        Option(IncludeDefaultExpression | OriginalName | ShowStatic));
+        Option(IncludeDefaultExpression | OriginalName | ShowStatic | AddOwnershipTemplates));
       s << ";" << endl;
       if (fun->arguments().size()==1 && meta_class->qualifiedCppName() == fun->arguments().at(0)->type()->typeEntry()->qualifiedCppName()) {
         copyConstructorSeen = true;
@@ -345,7 +345,7 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
       
       s << "   ";
       writeFunctionSignature(s, function, 0, QString(),
-        Option(ConvertReferenceToPtr | FirstArgIsWrappedObject | IncludeDefaultExpression | OriginalName | ShowStatic | UnderscoreSpaces | ProtectedEnumAsInts));
+        Option(AddOwnershipTemplates | ConvertReferenceToPtr | FirstArgIsWrappedObject | IncludeDefaultExpression | OriginalName | ShowStatic | UnderscoreSpaces | ProtectedEnumAsInts));
       s << ";" << endl;
     }
   }

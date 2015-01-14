@@ -124,18 +124,29 @@ void ShellGenerator::writeTypeInfo(QTextStream &s, const AbstractMetaType *type,
 }
 
 
-void ShellGenerator::writeFunctionArguments(QTextStream &s, const AbstractMetaClass* owner,
-                                          const AbstractMetaArgumentList &arguments,
-                                          Option option,
-                                          int numArguments)
+void ShellGenerator::writeFunctionArguments(QTextStream &s,
+                                            const AbstractMetaFunction *meta_function,
+                                            Option option,
+                                            int numArguments)
 {
+  const AbstractMetaClass* owner = meta_function->ownerClass();
+  const AbstractMetaArgumentList &arguments = meta_function->arguments();
+
     if (numArguments < 0) numArguments = arguments.size();
 
     for (int i=0; i<numArguments; ++i) {
         if (i != 0)
             s << ", ";
         AbstractMetaArgument *arg = arguments.at(i);
+        TypeSystem::Ownership ownership = TypeSystem::InvalidOwnership;
+        if (option & AddOwnershipTemplates) {
+          ownership = writeOwnershipTemplate(s, meta_function, i+1);
+        }
         writeTypeInfo(s, arg->type(), option);
+        if (ownership != TypeSystem::InvalidOwnership) {
+          s << "> ";
+        }
+
         if (!(option & SkipName)) {
           if (option & UseIndexedName) {
             s << " " << arg->indexedName();
@@ -194,8 +205,15 @@ void ShellGenerator::writeFunctionSignature(QTextStream &s,
 
     if ((option & SkipReturnType) == 0) {
         if (function_type) {
-            writeTypeInfo(s, function_type, option);
-            s << " ";
+          TypeSystem::Ownership ownership = TypeSystem::InvalidOwnership;
+          if (option & AddOwnershipTemplates) {
+            ownership = writeOwnershipTemplate(s, meta_function, 0);
+          }
+          writeTypeInfo(s, function_type, option);
+          s << " ";
+          if (ownership != TypeSystem::InvalidOwnership) {
+            s << "> ";
+          }
         } else if (!meta_function->isConstructor()) {
             s << "void ";
         }
@@ -245,7 +263,7 @@ void ShellGenerator::writeFunctionSignature(QTextStream &s,
     }
   }
   
-   writeFunctionArguments(s, meta_function->ownerClass(), meta_function->arguments(), Option(option & Option(~ConvertReferenceToPtr)), numArguments);
+   writeFunctionArguments(s, meta_function, Option(option & Option(~ConvertReferenceToPtr)), numArguments);
 
     // The extra arguments...
     for (int i=0; i<extra_arguments.size(); ++i) {
@@ -408,4 +426,19 @@ bool ShellGenerator::isBuiltIn(const QString& name) {
     builtIn.insert("QRegExp");
   }
   return builtIn.contains(name);
+}
+
+TypeSystem::Ownership ShellGenerator::writeOwnershipTemplate(QTextStream & s, const AbstractMetaFunction * meta_function, int argumentIndex)
+{
+  TypeSystem::Ownership ownership = meta_function->ownership(meta_function->ownerClass(), TypeSystem::TargetLangCode, argumentIndex);
+  if (ownership == TypeSystem::CppOwnership) {
+    s << "PythonQtPassOwnershipToCPP<";
+  }
+  else if (ownership == TypeSystem::TargetLangOwnership) {
+    s << "PythonQtPassOwnershipToPython<";
+  }
+  else if (ownership == TypeSystem::TargetLangThisOwnership) {
+    s << "PythonQtNewOwnerOfThis<";
+  }
+  return ownership;
 }

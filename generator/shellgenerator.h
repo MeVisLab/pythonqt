@@ -66,7 +66,10 @@ public:
                                 const QString &classname_prefix = QString(),
                                 const QStringList &extra_arguments = QStringList(),
                                 int numArguments = -1);
-    void writeFunctionArguments(QTextStream &s, const AbstractMetaClass* owner, const AbstractMetaArgumentList &arguments,
+
+    TypeSystem::Ownership writeOwnershipTemplate(QTextStream & s, const AbstractMetaFunction * meta_function, int argumentIndex);
+
+    void writeFunctionArguments(QTextStream &s, const AbstractMetaFunction *meta_function,
                                 Option option = NoOption,
                                 int numArguments = -1);
 

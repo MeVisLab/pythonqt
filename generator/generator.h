@@ -88,6 +88,7 @@ public:
         ConvertReferenceToPtr    = 0x00800000,
         UseIndexedName           = 0x01000000,
         ProtectedEnumAsInts      = 0x02000000,
+        AddOwnershipTemplates    = 0x04000000,
 
         ForceValueType           = ExcludeReference | ExcludeConst
     };
