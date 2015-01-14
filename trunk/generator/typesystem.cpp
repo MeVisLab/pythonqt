@@ -960,9 +960,10 @@ bool Handler::startElement(const QString &, const QString &n,
 
                 static QHash<QString, TypeSystem::Ownership> ownershipNames;
                 if (ownershipNames.isEmpty()) {
-                    ownershipNames["java"] = TypeSystem::TargetLangOwnership;
+                    ownershipNames["python"] = TypeSystem::TargetLangOwnership;
                     ownershipNames["c++"] = TypeSystem::CppOwnership;
                     ownershipNames["default"] = TypeSystem::DefaultOwnership;
+                    ownershipNames["new-owner-of-this"] = TypeSystem::TargetLangThisOwnership;
                 }
 
                 QString ownershipAttribute = attributes["owner"].toLower();

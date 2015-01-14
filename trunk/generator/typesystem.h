@@ -127,7 +127,8 @@ namespace TypeSystem {
         InvalidOwnership,
         DefaultOwnership,
         TargetLangOwnership,
-        CppOwnership
+        CppOwnership,
+        TargetLangThisOwnership
     };
 };
 
