@@ -120,9 +120,27 @@ void PythonQtMethodInfo::fillParameterInfo(ParameterInfo& type, const QByteArray
   type.enumWrapper = NULL;
   type.innerNamePointerCount = 0;
   type.isQList = false;
-  
+  type.passOwnershipToCPP = false;
+  type.passOwnershipToPython = false;
+  type.newOwnerOfThis = false;
+
   int len = name.length();
   if (len>0) {
+    if (name.startsWith("PythonQtPassOwnershipToCPP<")) {
+      type.passOwnershipToCPP = true;
+      name = name.mid(27, len-28);
+      len -= 28;
+    }
+    if (name.startsWith("PythonQtPassOwnershipToPython<")) {
+      type.passOwnershipToPython = true;
+      name = name.mid(30, len-31);
+      len -= 31;
+    }
+    if (name.startsWith("PythonQtNewOwnerOfThis<")) {
+      type.newOwnerOfThis = true;
+      name = name.mid(23, len-24);
+      len -= 24;
+    }
     if (strncmp(name.constData(), "const ", 6)==0) {
       name = name.mid(6);
       len -= 6;

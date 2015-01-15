@@ -73,6 +73,9 @@ public:
     bool isConst;
     bool isReference;
     bool isQList;
+    bool passOwnershipToCPP;
+    bool passOwnershipToPython;
+    bool newOwnerOfThis;
   };
 
   PythonQtMethodInfo() {};

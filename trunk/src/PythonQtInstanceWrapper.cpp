@@ -140,6 +140,7 @@ static PyObject* PythonQtInstanceWrapper_new(PyTypeObject *type, PyObject * /*ar
     self->_ownedByPythonQt = false;
     self->_useQMetaTypeDestroy = false;
     self->_isShellInstance = false;
+    self->_shellInstanceRefCountsWrapper = false;
   }
   return (PyObject *)self;
 }
@@ -154,7 +155,8 @@ int PythonQtInstanceWrapper_init(PythonQtInstanceWrapper * self, PyObject * args
   // we are called from python, try to construct our object
   if (self->classInfo()->constructors()) {
     void* directCPPPointer = NULL;
-    PythonQtSlotFunction_CallImpl(self->classInfo(), NULL, self->classInfo()->constructors(), args, kwds, NULL, &directCPPPointer);
+    PythonQtPassThisOwnershipType ownership;
+    PythonQtSlotFunction_CallImpl(self->classInfo(), NULL, self->classInfo()->constructors(), args, kwds, NULL, &directCPPPointer, &ownership);
     if (PyErr_Occurred()) {
       return -1;
     }
@@ -164,11 +166,11 @@ int PythonQtInstanceWrapper_init(PythonQtInstanceWrapper * self, PyObject * args
       if (refCB) {
         (*refCB)(directCPPPointer);
       }
-
-      // change ownershipflag to be owned by PythonQt
+      // change ownership flag to be owned by PythonQt
       self->_ownedByPythonQt = true;
       self->_useQMetaTypeDestroy = false;
-      if (self->classInfo()->isCPPWrapper()) {
+      bool isQObject = !self->classInfo()->isCPPWrapper();
+      if (!isQObject) {
         self->_wrappedPtr = directCPPPointer;
         // TODO xxx: if there is a wrapper factory, we might want to generate a wrapper for our class?!
       } else {
@@ -188,6 +190,16 @@ int PythonQtInstanceWrapper_init(PythonQtInstanceWrapper * self, PyObject * args
           (*cb)(directCPPPointer, self);
           self->_isShellInstance = true;
         }
+      }
+      // if the constructor has a PythonQtPassThisOwnership parameter and that owner is not NULL,
+      // this wrapper is immediately owned by CPP
+      // (Example: QGraphicsItem(QGraphicsItem* parent), if parent != NULL, ownership needs to be passed
+      //  to C++ immediately)
+      // Alternatively, if it is a QObject and the object already has a parent when it is constructed,
+      // the ownership should be moved to C++ as well, so that the shell instance stays alive.
+      if (ownership == PassOwnershipToCPP ||
+          (isQObject && self->_obj && self->_obj->parent())) {
+        self->passOwnershipToCPP();
       }
     }
   } else {

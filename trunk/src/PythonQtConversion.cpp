@@ -391,6 +391,13 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
      PythonQtInstanceWrapper* wrap = (PythonQtInstanceWrapper*)obj;
      void* object = castWrapperTo(wrap, info.name, ok);
      if (ok) {
+       if (info.passOwnershipToCPP) {
+         // Example: QLayout::addWidget(QWidget*)
+         wrap->passOwnershipToCPP();
+       } else if (info.passOwnershipToPython) {
+         // Example: QLayout::removeWidget(QWidget*)
+         wrap->passOwnershipToPython();
+       }
        if (info.pointerCount==1) {
          // store the wrapped pointer in an extra pointer and let ptr point to the extra pointer
          PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_ptrStorage, void*, object, ptr);

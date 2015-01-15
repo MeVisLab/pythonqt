@@ -73,6 +73,33 @@ typedef struct PythonQtInstanceWrapperStruct {
     _objPointerCopy = object;
   }
 
+  //! Passes the ownership of the wrapped object to C++
+  void passOwnershipToCPP() {
+    // we pass the ownership to C++
+    _ownedByPythonQt = false;
+    // handle shell instance
+    if (_isShellInstance) {
+      if (!_shellInstanceRefCountsWrapper) {
+        // ref count the wrapper, so that the Python part of the shell instance can not go
+        // away until the C++ object gets deleted...
+        Py_INCREF((PyObject*)this);
+        _shellInstanceRefCountsWrapper = true;
+      }
+    }
+  }
+
+  //! Passes the ownership to Python
+  void passOwnershipToPython() {
+    _ownedByPythonQt = true;
+    // if the shell instance was owned by C++ and the ownership goes to Python,
+    // we need to remove the extra ref count that kept the Python part alive from the C++ side.
+    if (_shellInstanceRefCountsWrapper) {
+      Py_DECREF((PyObject*)this);
+      _shellInstanceRefCountsWrapper = false;
+    }
+  }
+
+
   //! pointer to the wrapped Qt object or if _wrappedPtr is set, the Qt object that wraps the C++ Ptr
   QPointer<QObject> _obj;
   //! a copy of the _obj pointer, which is required because the wrapper needs to
@@ -92,6 +119,9 @@ typedef struct PythonQtInstanceWrapperStruct {
 
   //! stores if the object is a shell instance
   bool _isShellInstance;
+
+  //! stores if the shell instance (C++) owns the wrapper with its ref count
+  bool _shellInstanceRefCountsWrapper;
 
 } PythonQtInstanceWrapper;
 

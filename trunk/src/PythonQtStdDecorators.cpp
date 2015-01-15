@@ -145,7 +145,7 @@ QObject* PythonQtStdDecorators::parent(QObject* o) {
   return o->parent();
 }
 
-void PythonQtStdDecorators::setParent(QObject* o, QObject* parent)
+void PythonQtStdDecorators::setParent(QObject* o, PythonQtNewOwnerOfThis<QObject*> parent)
 {
   o->setParent(parent);
 }
@@ -332,4 +332,61 @@ int PythonQtStdDecorators::findChildren(QObject* parent, const char* typeName, c
 const QMetaObject* PythonQtStdDecorators::metaObject( QObject* obj )
 {
   return obj->metaObject();
+}
+
+bool PythonQtDebugAPI::isOwnedByPython( PyObject* object )
+{
+  if (PyObject_TypeCheck(object, &PythonQtInstanceWrapper_Type)) {
+    PythonQtInstanceWrapper* wrapper = (PythonQtInstanceWrapper*)object;
+    return wrapper->_ownedByPythonQt;
+  }
+  return true;
+}
+
+bool PythonQtDebugAPI::isDerivedShellInstance( PyObject* object )
+{
+  if (PyObject_TypeCheck(object, &PythonQtInstanceWrapper_Type)) {
+    PythonQtInstanceWrapper* wrapper = (PythonQtInstanceWrapper*)object;
+    return wrapper->_isShellInstance;
+  }
+  return false;
+}
+
+bool PythonQtDebugAPI::hasExtraShellRefCount( PyObject* object )
+{
+  if (PyObject_TypeCheck(object, &PythonQtInstanceWrapper_Type)) {
+    PythonQtInstanceWrapper* wrapper = (PythonQtInstanceWrapper*)object;
+    return wrapper->_shellInstanceRefCountsWrapper;
+  }
+  return false;
+}
+
+bool PythonQtDebugAPI::passOwnershipToCPP( PyObject* object )
+{
+  if (PyObject_TypeCheck(object, &PythonQtInstanceWrapper_Type)) {
+    PythonQtInstanceWrapper* wrapper = (PythonQtInstanceWrapper*)object;
+    wrapper->passOwnershipToCPP();
+    return true;
+  }
+  return false;
+}
+
+bool PythonQtDebugAPI::passOwnershipToPython( PyObject* object )
+{
+  if (PyObject_TypeCheck(object, &PythonQtInstanceWrapper_Type)) {
+    PythonQtInstanceWrapper* wrapper = (PythonQtInstanceWrapper*)object;
+    wrapper->passOwnershipToPython();
+    return true;
+  }
+  return false;
+}
+
+bool PythonQtDebugAPI::isPythonQtInstanceWrapper( PyObject* object )
+{
+  return PyObject_TypeCheck(object, &PythonQtInstanceWrapper_Type) != 0;
+}
+
+bool PythonQtDebugAPI::isPythonQtClassWrapper( PyObject* object )
+{
+  return PyObject_TypeCheck(object, &PythonQtClassWrapper_Type) != 0;
 }
