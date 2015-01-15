@@ -44,7 +44,7 @@
 
 #include "PythonQtPythonInclude.h"
 
-#include "PythonQtSystem.h"
+#include "PythonQt.h"
 
 #include <QObject>
 #include <QVariantList>
@@ -76,7 +76,7 @@ public Q_SLOTS:
   const QMetaObject* metaObject( QObject* obj );
 
   QObject* parent(QObject* o);
-  void setParent(QObject* o, QObject* parent);
+  void setParent(QObject* o, PythonQtNewOwnerOfThis<QObject*> parent);
 
   const QObjectList* children(QObject* o);
   QObject* findChild(QObject* parent, PyObject* type, const QString& name = QString());
@@ -154,6 +154,32 @@ public Q_SLOTS:
   QByteArray static_QMetaObject_normalizedSignature(const char *method) { return QMetaObject::normalizedSignature(method); }
   QByteArray static_QMetaObject_normalizedType(const char *type) { return QMetaObject::normalizedType(type); }
 
+};
+
+//! Some helper methods that allow testing of the ownership
+class PYTHONQT_EXPORT PythonQtDebugAPI : public QObject
+{
+  Q_OBJECT
+  public:
+    PythonQtDebugAPI(QObject* parent):QObject(parent) {};
+
+  public slots:
+    //! Returns if the C++ object is owned by PythonQt and will be deleted when the reference goes away.
+    bool isOwnedByPython(PyObject* object);
+    //! Returns if the C++ object is an instance of a Python class that derives a C++ class.
+    bool isDerivedShellInstance(PyObject* object);
+    //! Returns if the shell instance has an extra ref count from the C++ side.
+    bool hasExtraShellRefCount(PyObject* object);
+
+    //! Pass the ownership of the given object to CPP (so that it will not be deleted by Python if the reference goes away)
+    bool passOwnershipToCPP(PyObject* object);
+    //! Pass the ownership of the given object to Python (so that the C++ object will be deleted when the Python reference goes away)
+    bool passOwnershipToPython(PyObject* object);
+
+    //! Returns if the given object is a PythonQt instance wrapper (or derived class)
+    bool isPythonQtInstanceWrapper(PyObject* object);
+    //! Returns if the given object is a PythonQt class wrapper (or derived class)
+    bool isPythonQtClassWrapper(PyObject* object);
 };
 
 #endif

@@ -238,6 +238,8 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
       Py_INCREF(obj);
       PyModule_AddObject(pack2, enumNames[i], obj);
     }
+
+    _self->priv()->pythonQtModule().addObject("Debug", _self->priv()->_debugAPI);
   }
 }
 
@@ -314,7 +316,6 @@ PythonQt::PythonQt(int flags, const QByteArray& pythonQtModuleName)
   Py_INCREF(&PythonQtStdInRedirectType);
 
   initPythonQtModule(flags & RedirectStdOut, pythonQtModuleName);
-
 }
 
 PythonQt::~PythonQt() {
@@ -1290,6 +1291,7 @@ PythonQtPrivate::PythonQtPrivate()
   _profilingCB = NULL;
   _hadError = false;
   _systemExitExceptionHandlerEnabled = false;
+  _debugAPI = new PythonQtDebugAPI(this);
 }
 
 void PythonQtPrivate::setupSharedLibrarySuffixes()
@@ -2013,16 +2015,26 @@ QString PythonQtPrivate::getSignature(PyObject* object)
 void PythonQtPrivate::shellClassDeleted( void* shellClass )
 {
   PythonQtInstanceWrapper* wrap = _wrappedObjects.value(shellClass);
-  if (wrap && wrap->_wrappedPtr) {
-    // this is a pure C++ wrapper and the shell has gone, so we need
-    // to set the _wrappedPtr to NULL on the wrapper
-    wrap->_wrappedPtr = NULL;
-    // and then we remove the wrapper, since the wrapped class is gone
-    _wrappedObjects.remove(shellClass);
+  if (wrap) {
+    if (wrap->_wrappedPtr) {
+      // this is a pure C++ wrapper and the shell has gone, so we need
+      // to set the _wrappedPtr to NULL on the wrapper
+      wrap->_wrappedPtr = NULL;
+      // and then we remove the wrapper, since the wrapped class is gone
+      _wrappedObjects.remove(shellClass);
+    }
+    // if the wrapper is a QObject, we do not handle this here,
+    // it will be handled by the QPointer<> to the QObject, which becomes NULL
+    // via the QObject destructor.
+
+    // if the shell was owned by C++ and is deleted via C++, we
+    // need to decrement the ref-count of the wrapper so that is can
+    // be released.
+    if (wrap->_shellInstanceRefCountsWrapper) {
+      Py_DECREF((PyObject*)wrap);
+      wrap->_shellInstanceRefCountsWrapper = false;
+    }
   }
-  // if the wrapper is a QObject, we do not handle this here,
-  // it will be handled by the QPointer<> to the QObject, which becomes NULL
-  // via the QObject destructor.
 }
 
 PyObject* PythonQtPrivate::wrapMemoryAsBuffer( const void* data, Py_ssize_t size )

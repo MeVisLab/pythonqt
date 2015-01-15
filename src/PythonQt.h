@@ -79,6 +79,58 @@ template<class T> void PythonQtSetInstanceWrapperOnShell(void* object, PythonQtI
   (reinterpret_cast<T*>(object))->_wrapper = wrapper;
 }
 
+//! Helper template that allows to pass the ownership of a C++ instance between C++ and Python
+//! (it is used as a slot return type or parameter type so that it can be detected by the PythonQt
+//!  slot calling code).
+template<class T>
+class PythonQtPassOwnershipToCPP
+{
+  public:
+    //! Allow conversion from T to PythonQtPassOwnershipToCPP<T>
+    PythonQtPassOwnershipToCPP(const T& t):_t(t) {}
+    //! Allow conversion from PythonQtPassOwnershipToCPP<T> to T
+    operator T() const { return _t; }
+
+    //! Stored value. This is important so that it has the same memory layout
+    //! as a pointer if T is a pointer type (which is the typical use case for this class).
+    T _t;
+};
+
+//! Helper template that allows to pass the ownership of a C++ instance between C++ and Python
+//! (it is used as a slot return type or parameter type so that it can be detected by the PythonQt
+//!  slot calling code).
+template<class T>
+class PythonQtPassOwnershipToPython
+{
+public:
+  //! Allow conversion from T to PythonQtPassOwnershipToPython<T>
+  PythonQtPassOwnershipToPython(const T& t):_t(t) {}
+  //! Allow conversion from PythonQtPassOwnershipToPython<T> to T
+  operator T() const { return _t; }
+
+  //! Stored value. This is important so that it has the same memory layout
+  //! as a pointer if T is a pointer type (which is the typical use case for this class).
+  T _t;
+};
+
+//! Helper template that allows to pass the ownership of a C++ instance between C++ and Python
+//! (it is used as a slot return type or parameter type so that it can be detected by the PythonQt
+//!  slot calling code).
+template<class T>
+class PythonQtNewOwnerOfThis
+{
+public:
+  //! Allow conversion from T to PythonQtNewOwnerOfThis<T>
+  PythonQtNewOwnerOfThis(const T& t):_t(t) {}
+  //! Allow conversion from PythonQtNewOwnerOfThis<T> to T
+  operator T() const { return _t; }
+
+  //! Stored value. This is important so that it has the same memory layout
+  //! as a pointer if T is a pointer type (which is the typical use case for this class).
+  T _t;
+};
+
+
 //! returns the offset that needs to be added to upcast an object of type T1 to T2
 template<class T1, class T2> int PythonQtUpcastingOffset() {
   return ((reinterpret_cast<char*>(static_cast<T2*>(reinterpret_cast<T1*>(0x100)))) 
@@ -554,6 +606,8 @@ private:
 
 };
 
+class PythonQtDebugAPI;
+
 //! internal PythonQt details
 class PYTHONQT_EXPORT PythonQtPrivate : public QObject {
 
@@ -738,6 +792,8 @@ private:
   PythonQtClassInfo* _currentClassInfoForClassWrapperCreation;
 
   PythonQt::ProfilingCB* _profilingCB;
+
+  PythonQtDebugAPI* _debugAPI;
 
   int _initFlags;
   int _PythonQtObjectPtr_metaId;

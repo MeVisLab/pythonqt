@@ -443,7 +443,9 @@ static PyObject *PythonQtClassWrapper_getattro(PyObject *obj, PyObject *name)
     return NULL;
   }
   if (obj == (PyObject*)&PythonQtInstanceWrapper_Type) {
-    return NULL;
+    // if we are called as PythonQtInstanceWrapper_Type, we need to get the properties from the type...
+    PyObject* superAttr = PyType_Type.tp_getattro(obj, name);
+    return superAttr;
   }
 
   if (qstrcmp(attributeName, "__dict__")==0) {
