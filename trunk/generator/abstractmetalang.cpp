@@ -329,7 +329,7 @@ QStringList AbstractMetaFunction::introspectionCompatibleSignatures(const QStrin
 {
     AbstractMetaArgumentList arguments = this->arguments();
     if (arguments.size() == resolvedArguments.size()) {
-        return (QStringList() << QMetaObject::normalizedSignature((name() + "(" + resolvedArguments.join(",") + ")").toUtf8().constData()));
+        return (QStringList() << TypeSystem::normalizedSignature((name() + "(" + resolvedArguments.join(",") + ")").toUtf8().constData()));
     } else {
         QStringList returned;
 
@@ -656,7 +656,7 @@ QString AbstractMetaFunction::minimalSignature() const
     if (isConstant())
         minimalSignature += "const";
 
-    minimalSignature = QMetaObject::normalizedSignature(minimalSignature.toLocal8Bit().constData());
+    minimalSignature = TypeSystem::normalizedSignature(minimalSignature.toLocal8Bit().constData());
     m_cached_minimal_signature = minimalSignature;
 
     return minimalSignature;
@@ -1497,10 +1497,10 @@ void AbstractMetaClass::addInterface(AbstractMetaClass *interface)
             *cpy += AbstractMetaAttributes::InterfaceFunction;
 
             // Copy the modifications in interface into the implementing classes.
-            FunctionModificationList mods = function->modifications(interface);
-            foreach  (const FunctionModification &mod, mods) {
-                m_type_entry->addFunctionModification(mod);
-            }
+            //FunctionModificationList mods = function->modifications(interface);
+            //foreach  (const FunctionModification &mod, mods) {
+            //    m_type_entry->addFunctionModification(mod);
+            //}
 
             // It should be mostly safe to assume that when we implement an interface
             // we don't "pass on" pure virtual functions to our sublcasses...

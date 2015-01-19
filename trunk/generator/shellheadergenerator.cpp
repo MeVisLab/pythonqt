@@ -150,9 +150,9 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
           s << ", ";
         s << args.at(i)->argumentName();
       }
-      s << "),_wrapper(NULL) { ";
+      s << "),_wrapper(NULL) {";
       writeInjectedCode(s, meta_class, TypeSystem::PyInheritShellConstructorCode, true);
-      s << " };" << endl;
+      s << "};" << endl;
     }
     s << endl;
     s << "   ~" << shellClassName(meta_class) << "();" << endl;
