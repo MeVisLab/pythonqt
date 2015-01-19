@@ -53,7 +53,7 @@ bool ShellGenerator::shouldGenerate(const AbstractMetaClass *meta_class) const
     return ((cg & TypeEntry::GenerateCode) != 0);
 }
 
-void ShellGenerator::writeTypeInfo(QTextStream &s, const AbstractMetaType *type, Option options)
+void ShellGenerator::writeTypeInfo(QTextStream &s, const AbstractMetaType *type, Option options, TypeSystem::Ownership ownership)
 {
     if ((options & OriginalTypeDescription) && !type->originalTypeDescription().isEmpty()) {
         s << type->originalTypeDescription();
@@ -61,7 +61,7 @@ void ShellGenerator::writeTypeInfo(QTextStream &s, const AbstractMetaType *type,
     }
 
     if (type->isArray()) {
-        writeTypeInfo(s, type->arrayElementType(), options);
+        writeTypeInfo(s, type->arrayElementType(), options, ownership);
         if (options & ArrayAsPointer) {
             s << "*";
         } else {
@@ -72,7 +72,7 @@ void ShellGenerator::writeTypeInfo(QTextStream &s, const AbstractMetaType *type,
 
     const TypeEntry *te = type->typeEntry();
 
-    if (type->isConstant() && !(options & ExcludeConst))
+    if (type->isConstant() && !(options & ExcludeConst) && !(ownership!=TypeSystem::InvalidOwnership && type->isReference()) )
         s << "const ";
 
     if ((options & EnumAsInts) && (te->isEnum() || te->isFlags())) {
@@ -111,7 +111,7 @@ void ShellGenerator::writeTypeInfo(QTextStream &s, const AbstractMetaType *type,
 
     s << QString(type->indirections(), '*');
 
-    if (type->isReference() && !(options & ExcludeReference) && !(options & ConvertReferenceToPtr))
+    if (type->isReference() && !(options & ExcludeReference) && !(options & ConvertReferenceToPtr) && !(ownership != TypeSystem::InvalidOwnership && type->isReference()))
         s << "&";
 
     if (type->isReference() && (options & ConvertReferenceToPtr)) {
@@ -142,7 +142,7 @@ void ShellGenerator::writeFunctionArguments(QTextStream &s,
         if (option & AddOwnershipTemplates) {
           ownership = writeOwnershipTemplate(s, meta_function, i+1);
         }
-        writeTypeInfo(s, arg->type(), option);
+        writeTypeInfo(s, arg->type(), option, ownership);
         if (ownership != TypeSystem::InvalidOwnership) {
           s << "> ";
         }
@@ -209,7 +209,7 @@ void ShellGenerator::writeFunctionSignature(QTextStream &s,
           if (option & AddOwnershipTemplates) {
             ownership = writeOwnershipTemplate(s, meta_function, 0);
           }
-          writeTypeInfo(s, function_type, option);
+          writeTypeInfo(s, function_type, option, ownership);
           s << " ";
           if (ownership != TypeSystem::InvalidOwnership) {
             s << "> ";

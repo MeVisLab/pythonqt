@@ -2029,5 +2029,6 @@ QByteArray TypeSystem::normalizedSignature(const char* signature)
   result.replace("qulonglong", "ulonglong");
   result.replace("qint64", "longlong");
   result.replace("quint64", "ulonglong");
+  result.replace("QStringList<QString>", "QStringList");
   return result;
 }

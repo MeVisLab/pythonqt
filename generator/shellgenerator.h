@@ -58,7 +58,7 @@ public:
         return "generated_cpp/" + cls->package().replace(".", "_") + "/";
     }
 
-    void writeTypeInfo(QTextStream &s, const AbstractMetaType *type, Option option = NoOption);
+    void writeTypeInfo(QTextStream &s, const AbstractMetaType *type, Option option = NoOption, TypeSystem::Ownership ownership = TypeSystem::InvalidOwnership);
     void writeFunctionSignature(QTextStream &s, const AbstractMetaFunction *meta_function,
                                 const AbstractMetaClass *implementor = 0,
                                 const QString &name_prefix = QString(),
