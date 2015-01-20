@@ -95,7 +95,7 @@ PyObject* PythonQtConv::ConvertQtValueToPython(const PythonQtMethodInfo::Paramet
       listPtr = (QList<void*>*)data;
     }
     if (listPtr) {
-      return ConvertQListOfPointerTypeToPythonList(listPtr, info.innerName);
+      return ConvertQListOfPointerTypeToPythonList(listPtr, info);
     } else {
       return NULL;
     }
@@ -656,7 +656,7 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
              } else {
                ptr = alreadyAllocatedCPPObject;
              }
-             ok = ConvertPythonListToQListOfPointerType(obj, (QList<void*>*)ptr, info.innerName, strict);
+             ok = ConvertPythonListToQListOfPointerType(obj, (QList<void*>*)ptr, info, strict);
              if (ok) {
                return ptr;
              } else {
@@ -1189,7 +1189,7 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
         if (info.isQList && (info.innerNamePointerCount == 1)) {
           // allocate a default object of the needed type:
           v = QVariant(type, (const void*)NULL);
-          ok = ConvertPythonListToQListOfPointerType(val, (QList<void*>*)v.constData(), info.innerName, true);
+          ok = ConvertPythonListToQListOfPointerType(val, (QList<void*>*)v.constData(), info, true);
           if (!ok) {
             v = QVariant();
           }
@@ -1290,18 +1290,27 @@ PyObject* PythonQtConv::QVariantListToPyObject(const QVariantList& l) {
   return result;
 }
 
-PyObject* PythonQtConv::ConvertQListOfPointerTypeToPythonList(QList<void*>* list, const QByteArray& typeName)
+PyObject* PythonQtConv::ConvertQListOfPointerTypeToPythonList(QList<void*>* list, const PythonQtMethodInfo::ParameterInfo& info)
 {
   PyObject* result = PyTuple_New(list->count());
   int i = 0;
   Q_FOREACH (void* value, *list) {
-    PyTuple_SET_ITEM(result, i, PythonQt::priv()->wrapPtr(value, typeName));
+    PyObject* wrap = PythonQt::priv()->wrapPtr(value, info.innerName);
+    if (wrap) {
+      PythonQtInstanceWrapper* wrapper = (PythonQtInstanceWrapper*)wrap;
+      if (info.passOwnershipToCPP) {
+        wrapper->passOwnershipToCPP();
+      } else if (info.passOwnershipToPython) {
+        wrapper->passOwnershipToPython();
+      }
+    }
+    PyTuple_SET_ITEM(result, i, wrap);
     i++;
   }
   return result;
 }
 
-bool PythonQtConv::ConvertPythonListToQListOfPointerType(PyObject* obj, QList<void*>* list, const QByteArray& type, bool /*strict*/)
+bool PythonQtConv::ConvertPythonListToQListOfPointerType(PyObject* obj, QList<void*>* list, const PythonQtMethodInfo::ParameterInfo& info, bool /*strict*/)
 {
   bool result = false;
   if (PySequence_Check(obj)) {
@@ -1314,9 +1323,16 @@ bool PythonQtConv::ConvertPythonListToQListOfPointerType(PyObject* obj, QList<vo
         if (PyObject_TypeCheck(value, &PythonQtInstanceWrapper_Type)) {
           PythonQtInstanceWrapper* wrap = (PythonQtInstanceWrapper*)value;
           bool ok;
-          void* object = castWrapperTo(wrap, type, ok);
+          void* object = castWrapperTo(wrap, info.innerName, ok);
           Py_XDECREF(value);
           if (ok) {
+            if (object) {
+              if (info.passOwnershipToCPP) {
+                wrap->passOwnershipToCPP();
+              } else if (info.passOwnershipToPython) {
+                wrap->passOwnershipToPython();
+              }
+            }
             list->append(object);
           } else {
             result = false;

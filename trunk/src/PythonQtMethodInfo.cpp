@@ -130,17 +130,18 @@ void PythonQtMethodInfo::fillParameterInfo(ParameterInfo& type, const QByteArray
       type.passOwnershipToCPP = true;
       name = name.mid(27, len-28);
       len -= 28;
-    }
+    } else
     if (name.startsWith("PythonQtPassOwnershipToPython<")) {
       type.passOwnershipToPython = true;
       name = name.mid(30, len-31);
       len -= 31;
-    }
+    } else
     if (name.startsWith("PythonQtNewOwnerOfThis<")) {
       type.newOwnerOfThis = true;
       name = name.mid(23, len-24);
       len -= 24;
     }
+
     if (strncmp(name.constData(), "const ", 6)==0) {
       name = name.mid(6);
       len -= 6;
