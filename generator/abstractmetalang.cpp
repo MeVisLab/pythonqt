@@ -1767,6 +1767,13 @@ void AbstractMetaClass::fixFunctions()
 
                     }
 
+                    /* I did not see a good reason for erasing the default arguments,
+                       maybe this was a java related problem?
+                       I uncommented this code, because it causes that the default arguments
+                       of QBoxLayout::addWidget(QWidget, stretch, alignment) are removed because of
+                       QLayout::addWidget(QWidget)
+                       */
+                    /*
                     if (cmp & AbstractMetaFunction::EqualDefaultValueOverload) {
                         AbstractMetaArgumentList arguments;
                         if (f->arguments().size() < sf->arguments().size())
@@ -1776,7 +1783,7 @@ void AbstractMetaClass::fixFunctions()
 
                         for (int i=0; i<arguments.size(); ++i)
                             arguments[i]->setDefaultValueExpression(QString());
-                    }
+                    }*/
 
 
                     // Otherwise we have function shadowing and we can
