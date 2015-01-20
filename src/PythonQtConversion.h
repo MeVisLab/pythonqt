@@ -194,9 +194,9 @@ protected:
   static void* handlePythonToQtAutoConversion(int typeId, PyObject* obj, void* alreadyAllocatedCPPObject);
 
   //! converts the list of pointers of given type to Python
-  static PyObject* ConvertQListOfPointerTypeToPythonList(QList<void*>* list, const QByteArray& type);
+  static PyObject* ConvertQListOfPointerTypeToPythonList(QList<void*>* list, const PythonQtMethodInfo::ParameterInfo& info);
   //! tries to convert the python object to a QList of pointers to \c type objects, returns true on success
-  static bool      ConvertPythonListToQListOfPointerType(PyObject* obj, QList<void*>* list, const QByteArray& type, bool strict);
+  static bool      ConvertPythonListToQListOfPointerType(PyObject* obj, QList<void*>* list, const PythonQtMethodInfo::ParameterInfo& info, bool strict);
 
   //! helper template method for conversion from Python to QVariantMap/Hash
   template <typename Map>
