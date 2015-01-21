@@ -772,6 +772,17 @@
   <value-type name="QIcon">
     <modify-function signature="operator=(QIcon)" remove="all"/>
     <modify-function signature="serialNumber()const" remove="all"/> <!--### Obsolete in 4.3-->
+
+    <modify-function signature="QIcon(QIconEngineV2 *)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="QIcon(QIconEngine *)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
   </value-type>
 
   <value-type name="QTextFrame::iterator">
@@ -1115,6 +1126,12 @@ PyObject* constScanLine(QImage* image, int line) {
   <interface-type name="QPaintDevice"/>
 
   <interface-type name="QGraphicsItem" polymorphic-base="yes">
+    <modify-function signature="setParentItem(QGraphicsItem *)">
+      <modify-argument index="1">
+        <define-ownership owner="new-owner-of-this" />
+      </modify-argument>
+    </modify-function>
+    
     <modify-function signature="setCursorForItemOnly(QCursor)" remove="all"/>
 
     <modify-function signature="setMatrix(QMatrix, bool)" remove="all"/>
@@ -1128,13 +1145,16 @@ PyObject* constScanLine(QImage* image, int line) {
   </interface-type>
 
   <object-type name="QAbstractGraphicsShapeItem">
-    <modify-function signature="matrix()const" remove="all"/> <!--### Obsolete in 4.3-->
-    <modify-function signature="resetMatrix()" remove="all"/> <!--### Obsolete in 4.3-->
-    <modify-function signature="sceneMatrix()const" remove="all"/> <!--### Obsolete in 4.3-->
-    <modify-function signature="setMatrix(QMatrix, bool)" remove="all"/> <!--### Obsolete in 4.3-->
   </object-type>
 
   <object-type name="QAbstractItemView">
+
+    <modify-function signature="setIndexWidget(const QModelIndex &amp;, QWidget *)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    
       <modify-function signature="update()" remove="all"/>
       <modify-function signature="horizontalStepsPerItem()const" remove="all"/> <!--### Obsolete in 4.3-->
       <modify-function signature="setHorizontalStepsPerItem(int)" remove="all"/> <!--### Obsolete in 4.3-->
@@ -1198,6 +1218,16 @@ PyObject* constScanLine(QImage* image, int line) {
     <modify-function signature="showExtension(bool)" remove="all"/> <!--### Obsolete in 4.3-->
   </object-type>
   <object-type name="QDialogButtonBox">
+    <modify-function signature="addButton(QAbstractButton*,QDialogButtonBox::ButtonRole)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="removeButton(QAbstractButton*)">
+      <modify-argument index="1">
+        <define-ownership owner="python" />
+      </modify-argument>
+    </modify-function>
   </object-type>
   <object-type name="QDirModel">
      <modify-function signature="parent()const" remove="all"/>
@@ -1224,24 +1254,12 @@ PyObject* constScanLine(QImage* image, int line) {
   </object-type>
   <object-type name="QGraphicsItemGroup"
   polymorphic-id-expression="%1-&gt;type() == QGraphicsItemGroup::Type">
-      <modify-function signature="matrix()const" remove="all"/> <!--### Obsolete in 4.3-->
-      <modify-function signature="resetMatrix()" remove="all"/> <!--### Obsolete in 4.3-->
-      <modify-function signature="sceneMatrix()const" remove="all"/> <!--### Obsolete in 4.3-->
-      <modify-function signature="setMatrix(QMatrix, bool)" remove="all"/> <!--### Obsolete in 4.3-->
   </object-type>
   <object-type name="QGraphicsLineItem" polymorphic-id-expression="%1-&gt;type() == QGraphicsLineItem::Type">
-      <modify-function signature="matrix()const" remove="all"/> <!--### Obsolete in 4.3-->
-      <modify-function signature="resetMatrix()" remove="all"/> <!--### Obsolete in 4.3-->
-      <modify-function signature="sceneMatrix()const" remove="all"/> <!--### Obsolete in 4.3-->
-      <modify-function signature="setMatrix(QMatrix, bool)" remove="all"/> <!--### Obsolete in 4.3-->
   </object-type>
   <object-type name="QGraphicsPathItem" polymorphic-id-expression="%1-&gt;type() == QGraphicsPathItem::Type"/>
 
   <object-type name="QGraphicsPixmapItem" polymorphic-id-expression="%1-&gt;type() == QGraphicsPixmapItem::Type">
-      <modify-function signature="matrix()const" remove="all"/> <!--### Obsolete in 4.3-->
-      <modify-function signature="resetMatrix()" remove="all"/> <!--### Obsolete in 4.3-->
-      <modify-function signature="sceneMatrix()const" remove="all"/> <!--### Obsolete in 4.3-->
-      <modify-function signature="setMatrix(QMatrix, bool)" remove="all"/> <!--### Obsolete in 4.3-->
   </object-type>
   <object-type name="QGraphicsPolygonItem" polymorphic-id-expression="%1-&gt;type() == QGraphicsPolygonItem::Type"/>
   <object-type name="QGraphicsRectItem" polymorphic-id-expression="%1-&gt;type() == QGraphicsRectItem::Type"/>
@@ -1347,6 +1365,11 @@ PyObject* constScanLine(QImage* image, int line) {
   </object-type>
   <object-type name="QRegExpValidator"/>
   <object-type name="QScrollArea">
+    <modify-function signature="setWidget(QWidget*)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
   </object-type>
   <object-type name="QSessionManager"/>
   <object-type name="QShortcut">
@@ -1356,6 +1379,60 @@ PyObject* constScanLine(QImage* image, int line) {
   <enum-type name="QSound::Loop"/>
   <object-type name="QSpacerItem"/>
   <object-type name="QStandardItem">
+    <modify-function signature="appendColumn(const QList&lt;QStandardItem *&gt; &amp;)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="appendRow(const QList&lt;QStandardItem *&gt; &amp;)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="appendRow(QStandardItem *)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="appendRows(const QList&lt;QStandardItem *&gt; &amp;)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+
+    <modify-function signature="insertColumn(int, const QList&lt;QStandardItem *&gt; &amp;)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="insertRow(int, const QList&lt;QStandardItem *&gt; &amp;)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="insertRows(int, const QList&lt;QStandardItem *&gt; &amp;)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+
+    <modify-function signature="setChild(int, int, QStandardItem *)">
+      <modify-argument index="3">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="setChild(int, QStandardItem *)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+
+    <modify-function signature="takeChild(int, int)">
+      <modify-argument index="return">
+        <define-ownership owner="python" />
+      </modify-argument>
+    </modify-function>
+
     <modify-function signature="operator=(QStandardItem)" remove="all"/>
   
     <modify-function signature="read(QDataStream &amp;)" remove="all"/>
@@ -1364,6 +1441,26 @@ PyObject* constScanLine(QImage* image, int line) {
     <modify-function signature="operator&lt;(QStandardItem)const" remove="all"/>
   </object-type>
   <object-type name="QStatusBar">
+    <modify-function signature="addWidget(QWidget*, int)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="addPermanentWidget(QWidget*, int)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="insertWidget(int, QWidget*, int)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="insertPermanentWidget(int, QWidget*, int)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
   </object-type>
   <object-type name="QStringListModel"/>
   <object-type name="QStyleFactory"/>
@@ -1390,6 +1487,26 @@ PyObject* constScanLine(QImage* image, int line) {
     
   <object-type name="QTimeEdit"/>
   <object-type name="QToolBox">
+    <modify-function signature="addItem(QWidget*, const QIcon&amp;, const QString&amp;)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="addItem(QWidget*, const QString&amp;)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="insertItem(int, QWidget*, const QIcon&amp;, const QString&amp;)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="insertItem(int, QWidget*, const QString&amp;)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
   </object-type>
   <object-type name="QToolButton">
   </object-type>
@@ -1521,6 +1638,46 @@ PyObject* constScanLine(QImage* image, int line) {
   </object-type>
 
   <object-type name="QLayout">
+
+    <modify-function signature="removeWidget(QWidget*)">
+      <modify-argument index="1">
+        <define-ownership owner="python" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="removeItem(QLayoutItem*)">
+      <modify-argument index="1">
+        <define-ownership owner="python" />
+      </modify-argument>
+    </modify-function>
+
+    <modify-function signature="takeAt(int)">
+      <modify-argument index="return">
+        <define-ownership owner="python" />
+      </modify-argument>
+    </modify-function>
+
+    <modify-function signature="addItem(QLayoutItem*)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+
+    <modify-function signature="addWidget(QWidget *)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="addChildWidget(QWidget *)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="addChildLayout(QLayout*)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+
     <modify-function signature="setSpacing(int)" rename="setWidgetSpacing"/>
     <modify-function signature="spacing()const" rename="widgetSpacing"/>
     <modify-function signature="getContentsMargins(int*,int*,int*,int*)const" remove="all"/>
@@ -1529,12 +1686,80 @@ PyObject* constScanLine(QImage* image, int line) {
   </object-type>
 
   <object-type name="QStackedLayout">
+    <modify-function signature="insertWidget(int,QWidget*)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
   </object-type>
 
   <object-type name="QBoxLayout">
+    <modify-function signature="addWidget(QWidget *, int, QFlags&lt;Qt::AlignmentFlag&gt;)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+
+    <modify-function signature="addLayout(QLayout *, int)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+
+    <modify-function signature="insertWidget(int, QWidget *, int, QFlags&lt;Qt::AlignmentFlag&gt;)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="insertLayout(int, QLayout *, int)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="insertItem(int, QLayoutItem *)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="addSpacerItem(QSpacerItem*)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="insertSpacerItem(int,QSpacerItem*)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
   </object-type>
 
   <object-type name="QGridLayout">
+    <modify-function signature="addWidget(QWidget *, int, int, QFlags&lt;Qt::AlignmentFlag&gt;)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="addWidget(QWidget *, int, int, int, int, QFlags&lt;Qt::AlignmentFlag&gt;)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="addLayout(QLayout *, int, int, QFlags&lt;Qt::AlignmentFlag&gt;)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="addLayout(QLayout *, int, int, int, int, QFlags&lt;Qt::AlignmentFlag&gt;)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="addItem(QLayoutItem *, int, int, int, int, QFlags&lt;Qt::AlignmentFlag&gt;)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+
     <modify-function signature="addWidget(QWidget *)" remove="all"/>
     <modify-function signature="getItemPosition(int,int*,int*,int*,int*)" remove="all"/>
   </object-type>
@@ -1555,6 +1780,21 @@ PyObject* constScanLine(QImage* image, int line) {
     <extra-includes>
         <include file-name="QVarLengthArray" location="global"/>
     </extra-includes>
+    <modify-function signature="addItem(QGraphicsItem*)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="addWidget(QWidget*,QFlags&lt;Qt::WindowType&gt;)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="removeItem(QGraphicsItem*)">
+      <modify-argument index="1">
+        <define-ownership owner="python" />
+      </modify-argument>
+    </modify-function>
   </object-type>
 
 
@@ -1571,6 +1811,38 @@ PyObject* constScanLine(QImage* image, int line) {
   </object-type>
 
   <object-type name="QTreeWidget">
+
+    <modify-function signature="addTopLevelItem(QTreeWidgetItem *)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="addTopLevelItems(const QList&lt;QTreeWidgetItem*&gt; &amp;)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="insertTopLevelItem(int, QTreeWidgetItem *)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="insertTopLevelItems(int, const QList&lt;QTreeWidgetItem*&gt; &amp;)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="setHeaderItem(QTreeWidgetItem*)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="takeTopLevelItem(int)">
+      <modify-argument index="return">
+        <define-ownership owner="python" />
+      </modify-argument>
+    </modify-function>
+    
     <modify-function signature="isSortingEnabled()const" remove="all"/>
     <modify-function signature="setSortingEnabled(bool)" remove="all"/>
     <modify-function signature="indexOfTopLevelItem(QTreeWidgetItem *)">
@@ -1618,6 +1890,22 @@ PyObject* constScanLine(QImage* image, int line) {
 
   <object-type name="QListWidgetItem">
 
+    <modify-function signature="QListWidgetItem(const QString&amp;, QListWidget*, int)">
+      <modify-argument index="2">
+        <define-ownership owner="new-owner-of-this" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="QListWidgetItem(const QIcon&amp;, const QString&amp;, QListWidget*, int)">
+      <modify-argument index="3">
+        <define-ownership owner="new-owner-of-this" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="QListWidgetItem(QListWidget*, int)">
+      <modify-argument index="1">
+        <define-ownership owner="new-owner-of-this" />
+      </modify-argument>
+    </modify-function>
+    
     <modify-function signature="operator=(const QListWidgetItem&amp;)" remove="all"/>
       <modify-function signature="backgroundColor()const" remove="all"/> <!--### Obsolete in 4.3-->
       <modify-function signature="setBackgroundColor(QColor)" remove="all"/> <!--### Obsolete in 4.3-->
@@ -1635,19 +1923,90 @@ PyObject* constScanLine(QImage* image, int line) {
     <extra-includes>
       <include file-name="QTextCursor" location="global"/>
     </extra-includes>
-
-      <modify-function signature="matrix()const" remove="all"/> <!--### Obsolete in 4.3-->
-      <modify-function signature="resetMatrix()" remove="all"/> <!--### Obsolete in 4.3-->
-      <modify-function signature="sceneMatrix()const" remove="all"/> <!--### Obsolete in 4.3-->
-      <modify-function signature="setMatrix(QMatrix, bool)" remove="all"/> <!--### Obsolete in 4.3-->
  </object-type>
 
   <object-type name="QCompleter">
+    <modify-function signature="setModel(QAbstractItemModel*)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="setPopup(QAbstractItemView*)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
   </object-type>
 
 
   <object-type name="QTreeWidgetItem">
 
+    <modify-function signature="QTreeWidgetItem(QTreeWidget*, int)">
+      <modify-argument index="1">
+        <define-ownership owner="new-owner-of-this" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="QTreeWidgetItem(QTreeWidget*, const QStringList&amp;, int)">
+      <modify-argument index="1">
+        <define-ownership owner="new-owner-of-this" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="QTreeWidgetItem(QTreeWidget*, QTreeWidgetItem*, int)">
+      <modify-argument index="1">
+        <define-ownership owner="new-owner-of-this" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="QTreeWidgetItem(QTreeWidgetItem *,int)">
+      <modify-argument index="1">
+        <define-ownership owner="new-owner-of-this" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="QTreeWidgetItem(QTreeWidgetItem*, const QStringList &amp;, int)">
+      <modify-argument index="1">
+        <define-ownership owner="new-owner-of-this" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="QTreeWidgetItem(QTreeWidgetItem*, QTreeWidgetItem*, int)">
+      <modify-argument index="1">
+        <define-ownership owner="new-owner-of-this" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="addChild(QTreeWidgetItem *)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="addChildren(const QList&lt;QTreeWidgetItem*&gt; &amp;)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="insertChild(int, QTreeWidgetItem *)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="insertChildren(int, const QList&lt;QTreeWidgetItem*&gt; &amp;)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="removeChild(QTreeWidgetItem*)">
+      <modify-argument index="1">
+        <define-ownership owner="python" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="takeChild(int)">
+      <modify-argument index="return">
+        <define-ownership owner="python" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="takeChildren()">
+      <modify-argument index="return">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    
     <modify-function signature="QTreeWidgetItem(const QTreeWidgetItem &amp;)" remove="all"/>
     <modify-function signature="operator=(const QTreeWidgetItem&amp;)" remove="all"/>
 
@@ -1664,6 +2023,29 @@ PyObject* constScanLine(QImage* image, int line) {
   </object-type>
 
   <object-type name="QListWidget">
+
+    <modify-function signature="setItemWidget(QListWidgetItem *, QWidget *)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="addItem(QListWidgetItem*)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="insertItem(int, QListWidgetItem*)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+
+    <modify-function signature="takeItem(int)">
+      <modify-argument index="return">
+        <define-ownership owner="python" />
+      </modify-argument>
+    </modify-function>
+    
     <modify-function signature="setItemHidden(const QListWidgetItem*,bool)">
         <remove/>
     </modify-function>
@@ -1685,13 +2067,24 @@ PyObject* constScanLine(QImage* image, int line) {
         <include file-name="QMessageBox" location="global"/>
     </extra-includes>
 
-    <modify-function signature="render(QPainter*,QPoint,QRegion,QFlags&lt;QWidget::RenderFlag&gt;)">
+    <modify-function signature="setLayout(QLayout *)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
     </modify-function>
 
-    <modify-function signature="render(QPaintDevice *, const QPoint &amp;, const QRegion &amp;, QFlags&lt;QWidget::RenderFlag&gt;)">
+    <modify-function signature="setParent(QWidget*)">
+      <modify-argument index="1">
+        <define-ownership owner="new-owner-of-this" />
+      </modify-argument>
     </modify-function>
-    <modify-function signature="render(QPainter *, const QPoint &amp;, const QRegion &amp;, QFlags&lt;QWidget::RenderFlag&gt;)">
+
+    <modify-function signature="setParent(QWidget*, QFlags&lt;Qt::WindowType&gt;)">
+      <modify-argument index="1">
+        <define-ownership owner="new-owner-of-this" />
+      </modify-argument>
     </modify-function>
+
     <modify-function signature="getContentsMargins(int*,int*,int*,int*)const" remove="all"/>
       <modify-function signature="enabledChange(bool)" remove="all"/> <!--### Obsolete in 4.3-->
       <modify-function signature="fontChange(QFont)" remove="all"/> <!--### Obsolete in 4.3-->
@@ -1791,12 +2184,57 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QPageSetupDialog"/>
 
   <object-type name="QTabWidget">
+    <modify-function signature="addTab(QWidget*, const QString&amp;)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="addTab(QWidget*, const QIcon&amp;, const QString&amp;)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="insertTab(int, QWidget*, const QIcon&amp;, const QString&amp;)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="insertTab(int, QWidget*, const QString&amp;)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="setCornerWidget(QWidget*, Qt::Corner)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="setTabBar(QTabBar*)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+
+    <!-- TODO!
+    <modify-function signature="removeTab(int)">
+      <modify-argument index="return">
+        <define-ownership owner="python" />
+      </modify-argument>
+    </modify-function>
+    -->
   </object-type>
   <object-type name="QDrag">
     <extra-includes>
         <include file-name="QPoint" location="global"/>
         <include file-name="QPixmap" location="global"/>
     </extra-includes>
+    
+    <modify-function signature="setMimeData(QMimeData*)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    
     <modify-function signature="start(QFlags&lt;Qt::DropAction&gt;)" remove="all"/> <!--### Obsolete in 4.3-->
   </object-type>
 
@@ -1848,6 +2286,96 @@ PyObject* constScanLine(QImage* image, int line) {
   </object-type>
 
   <object-type name="QStandardItemModel">
+    <modify-function signature="takeItem(int,int)">
+      <modify-argument index="return">
+        <define-ownership owner="python" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="takeHorizontalHeaderItem(int)">
+      <modify-argument index="return">
+        <define-ownership owner="python" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="takeVerticalHeaderItem(int)">
+      <modify-argument index="return">
+        <define-ownership owner="python" />
+      </modify-argument>
+    </modify-function>
+
+    <modify-function signature="appendRow(const QList&lt;QStandardItem*&gt;&amp;)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="appendRow(QStandardItem*)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+
+    <modify-function signature="insertRow(int, QStandardItem*)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="setHorizontalHeaderItem(int, QStandardItem*)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+
+    <modify-function signature="setItem(int, int, QStandardItem*)">
+      <modify-argument index="3">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="setItem(int, QStandardItem*)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="setItemPrototype(const QStandardItem*)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+
+    <modify-function signature="setVerticalHeaderItem(int, QStandardItem*)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+
+    <modify-function signature="takeColumn(int)">
+      <modify-argument index="return">
+        <define-ownership owner="python" />
+      </modify-argument>
+    </modify-function>
+
+    <modify-function signature="takeRow(int)">
+      <modify-argument index="return">
+        <define-ownership owner="python" />
+      </modify-argument>
+    </modify-function>
+
+    <modify-function signature="insertColumn(int, const QList&lt;QStandardItem*&gt;&amp;)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+
+    <modify-function signature="insertRow(int, const QList&lt;QStandardItem*&gt;&amp;)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+
+    <modify-function signature="appendColumn(const QList&lt;QStandardItem*&gt;&amp;)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+
     <modify-function signature="insertColumn(int,const QModelIndex &amp;)" remove="all"/>
     <modify-function signature="insertRow(int,const QModelIndex &amp;)" remove="all"/>
     <modify-function signature="parent()const" remove="all"/>
@@ -1868,12 +2396,45 @@ PyObject* constScanLine(QImage* image, int line) {
         <include file-name="QImage" location="global"/>
         <include file-name="QPixmap" location="global"/>
     </extra-includes>
+    
+    <modify-function signature="setMimeData(QMimeData *, QClipboard::Mode)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    
     <modify-function signature="event(QEvent*)" remove="all"/>
     <modify-function signature="connectNotify(const char*)" remove="all"/>
   </object-type>
 
   <object-type name="QAbstractScrollArea">
     <modify-function signature="setupViewport(QWidget *)" access="non-final"/>
+
+    <modify-function signature="setViewport(QWidget *)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="addScrollBarWidget(QWidget*,QFlags&lt;Qt::AlignmentFlag&gt;)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="setCornerWidget(QWidget*)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="setHorizontalScrollBar(QScrollBar*)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="setVerticalScrollBar(QScrollBar*)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
   </object-type>
 
   <object-type name="QPaintEngineState">
@@ -1897,6 +2458,48 @@ PyObject* constScanLine(QImage* image, int line) {
   </object-type>
 
   <object-type name="QTableWidget">
+
+    <modify-function signature="setHorizontalHeaderItem(int, QTableWidgetItem *)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="setItem(int, int, QTableWidgetItem *)">
+      <modify-argument index="3">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="takeHorizontalHeaderItem(int)">
+      <modify-argument index="return">
+        <define-ownership owner="python" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="takeVerticalHeaderItem(int)">
+      <modify-argument index="return">
+        <define-ownership owner="python" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="takeItem(int,int)">
+      <modify-argument index="return">
+        <define-ownership owner="python" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="setItemPrototype(const QTableWidgetItem *)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="setVerticalHeaderItem(int, QTableWidgetItem *)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="setCellWidget(int,int,QWidget*)">
+      <modify-argument index="3">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    
     <modify-function signature="isSortingEnabled()const" remove="all"/>
     <modify-function signature="setSortingEnabled(bool)" remove="all"/>
     <modify-function signature="setItemSelected(const QTableWidgetItem*,bool)">
@@ -1921,12 +2524,38 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QSplitter">
 
     <modify-function signature="getRange(int,int*,int*)const" remove="all"/>
+    
+    <modify-function signature="addWidget(QWidget *)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="insertWidget(int, QWidget *)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
   </object-type>
 
   <object-type name="QGroupBox">
   </object-type>
 
   <object-type name="QStackedWidget">
+    <modify-function signature="addWidget(QWidget*)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="insertWidget(int,QWidget*)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="removeWidget(QWidget*)">
+      <modify-argument index="1">
+        <define-ownership owner="python" />
+      </modify-argument>
+    </modify-function>
   </object-type>
 
   <object-type name="QSplitterHandle">
@@ -2142,22 +2771,153 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QFileSystemModel">
   </object-type>
   <object-type name="QFormLayout">
+    <modify-function signature="addRow(QWidget*,QWidget*)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="addRow(QLayout*)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="addRow(QWidget*,QLayout*)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="addRow(QWidget*)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="addRow(QString,QLayout*)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="addRow(QString,QWidget*)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="insertRow(int,QLayout*)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="insertRow(int,QWidget*,QLayout*)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+      <modify-argument index="3">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="insertRow(int,QWidget*,QWidget*)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+      <modify-argument index="3">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="insertRow(int,QWidget*)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="insertRow(int,QString,QLayout*)">
+      <modify-argument index="3">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="insertRow(int,QString,QWidget*)">
+      <modify-argument index="3">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="setLayout(int,QFormLayout::ItemRole,QLayout*)">
+      <modify-argument index="3">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="setWidget(int,QFormLayout::ItemRole,QWidget*)">
+      <modify-argument index="3">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="setItem(int,QFormLayout::ItemRole,QLayoutItem*)">
+      <modify-argument index="3">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
   </object-type>
+    
   <object-type name="QGraphicsGridLayout">
+    <modify-function signature="addItem(QGraphicsLayoutItem*,int,int,QFlags&lt;Qt::AlignmentFlag&gt;)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="addItem(QGraphicsLayoutItem*,int,int,int,int,QFlags&lt;Qt::AlignmentFlag&gt;)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
   </object-type>
   <object-type name="QGraphicsLayout">
   </object-type>
   <interface-type name="QGraphicsLayoutItem">
   </interface-type>
   <object-type name="QGraphicsLinearLayout">
+    <modify-function signature="addItem(QGraphicsLayoutItem*)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="insertItem(int,QGraphicsLayoutItem*)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="removeItem(QGraphicsLayoutItem*)">
+      <modify-argument index="1">
+        <define-ownership owner="python" />
+      </modify-argument>
+    </modify-function>
   </object-type>
-  <object-type name="QGraphicsProxyWidget"/> <!-- a QObject so main-thread delete redundant -->
+
+  <object-type name="QGraphicsProxyWidget">
+    <modify-function signature="QGraphicsProxyWidget(QGraphicsItem*, QFlags&lt;Qt::WindowType&gt;)">
+      <modify-argument index="1">
+        <define-ownership owner="new-owner-of-this" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="setWidget(QWidget*)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+  </object-type>
+  
   <object-type name="QGraphicsWidget"
     polymorphic-id-expression="%1-&gt;isWidget()">
-    <!-- a QObject so main-thread delete redundant -->
     <!-- Duplicate function to QObject::children() to override accidental shadowing which is not present in Jambi -->
     <modify-function signature="children()const" remove="all"/>
+    <modify-function signature="setLayout(QGraphicsLayout*)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
   </object-type>
+  
   <object-type name="QPlainTextDocumentLayout"/>
   <object-type name="QPlainTextEdit">
   </object-type>

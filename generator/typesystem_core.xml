@@ -814,6 +814,11 @@
   <object-type name="QDirIterator"/>
   <object-type name="QAbstractFileEngineIterator"/>
   <object-type name="QAbstractItemModel">
+    <modify-function signature="mimeData(const QList&lt;QModelIndex&gt;&amp;)const">
+      <modify-argument index="return">
+        <define-ownership owner="python" />
+      </modify-argument>
+    </modify-function>
   </object-type>
 
   <object-type name="QAbstractListModel">
@@ -1003,7 +1008,30 @@
 
   <object-type name="QAbstractAnimation"/>
   <object-type name="QVariantAnimation"/>
-  <object-type name="QAnimationGroup"/>
+  <object-type name="QAnimationGroup">
+    <modify-function signature="addAnimation(QAbstractAnimation*)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="insertAnimation(int, QAbstractAnimation*)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+
+    <modify-function signature="removeAnimation(QAbstractAnimation*)">
+      <modify-argument index="1">
+        <define-ownership owner="python" />
+      </modify-argument>
+    </modify-function>
+
+    <modify-function signature="takeAnimation(int)">
+      <modify-argument index="return">
+        <define-ownership owner="python" />
+      </modify-argument>
+    </modify-function>
+  </object-type>
   <object-type name="QPauseAnimation"/>
   <object-type name="QParallelAnimationGroup"/>
   <object-type name="QSequentialAnimationGroup"/>
@@ -1011,8 +1039,40 @@
 
   <object-type name="QAbstractState"/>
   <object-type name="QAbstractTransition"/>
-  <object-type name="QState"/>
-  <object-type name="QStateMachine"/>
+
+  <object-type name="QState">
+    <modify-function signature="addTransition(QAbstractTransition*)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+
+    <modify-function signature="addTransition(QAbstractState*)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+
+    <modify-function signature="removeTransition(QAbstractTransition*)">
+      <modify-argument index="1">
+        <define-ownership owner="python" />
+      </modify-argument>
+    </modify-function>
+  </object-type>
+
+  <object-type name="QStateMachine">
+    <modify-function signature="addState(QAbstractState *)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="removeState(QAbstractState *)">
+      <modify-argument index="1">
+        <define-ownership owner="python" />
+      </modify-argument>
+    </modify-function>
+  </object-type>
+
   <object-type name="QHistoryState"/>
   <object-type name="QSignalTransition"/>
   <object-type name="QEventTransition"/>
@@ -1173,6 +1233,17 @@
       <include file-name="QStringList" location="global"/>
     </extra-includes>
 
+    <modify-function signature="postEvent(QObject*,QEvent*)">
+      <modify-argument index="2">
+        <define-ownership owner="c++"/>
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="postEvent(QObject*,QEvent*, int)">
+      <modify-argument index="2">
+        <define-ownership owner="c++"/>
+      </modify-argument>
+    </modify-function>
+    
     <modify-function signature="argv()" remove="all"/>
     <!-- Obsolete -->
     <modify-function signature="argc()" remove="all"/>
@@ -1636,7 +1707,8 @@
   <suppress-warning text="WARNING(MetaJavaBuilder) :: namespace '*' for enum '*' is not declared"/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function '*', unmatched parameter type '*'"/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function '*', unmatched return type '*'"/>
-  <suppress-warning text="WARNING(MetaJavaBuilder) :: signature '*' for function modification in '*' not found. Possible candidates: "/>
+  <!-- <suppress-warning text="WARNING(MetaJavaBuilder) :: signature '*' for function modification in '*' not found. Possible candidates: "/>
+  -->
   <suppress-warning text="WARNING(MetaJavaBuilder) :: namespace '*' does not have a type entry"/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: unsupported default value '*' of argument in function '*', class '*'"/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: Shadowing: * and *; Java code will not compile"/>
