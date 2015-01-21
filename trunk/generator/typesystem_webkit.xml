@@ -32,9 +32,13 @@
     </enum-type>
     <enum-type name="QWebPage::ErrorDomain"/>
     
-    <value-type name="QWebElementCollection"/>    
-    
-    <object-type name="QGraphicsWebView"/>    
+    <value-type name="QWebElementCollection"/>
+
+    <object-type name="QGraphicsWebView">
+      <extra-includes>
+        <include file-name="QGraphicsScene" location="global"/>
+      </extra-includes>
+      </object-type>
     <object-type name="QWebView">
     </object-type>
     <object-type name="QWebFrame">
