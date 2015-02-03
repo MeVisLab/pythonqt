@@ -26,6 +26,9 @@ contains(QT_MAJOR_VERSION, 5) {
   QT += widgets
 }
 
+# Qt 5.4 adds this option, but this is not compatible with the Python API
+QMAKE_CXXFLAGS_RELEASE -= -Zc:strictStrings
+ 
 INCLUDEPATH += $$PWD
 
 include ( ../build/common.prf )  
