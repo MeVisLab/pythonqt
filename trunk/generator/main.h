@@ -72,7 +72,7 @@ struct Preprocess
         includes << QString(".");
 
 #if defined(Q_OS_WIN32)
-        char *path_splitter = ";";
+        const char *path_splitter = ";";
 #else
         const char *path_splitter = ":";
 #endif
