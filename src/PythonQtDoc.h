@@ -144,7 +144,7 @@ Qt framework</a>.
  - PythonQt currently does not support instanceof checks for Qt classes, except for the exact match and derived Python classes
  - QObject.emit to emit Qt signals from Python is not yet implemented but PythonQt allows to just emit a signal by calling it like a normal slot
  - PythonQt does not (yet) offer to add new signals/slots to Python/C++ objects and it does not create QMetaObjects for derived classes on the fly
- - Ownership of objects is a bit different in PythonQt, currently Python classes derived from a C++ class need to be manually referenced in Python to not get deleted too early (this will be fixed in a future version)
+ - Ownership handling of objects is not as complete as in PySide and PyQt, especially in situations where the ownership is not clearly passed to C++ on the C++ API.
  - QStrings are always converted to unicode Python objects, QByteArray always stays a QByteArray and can be converted using QByteArray.data()
  - Qt methods that take an extra "bool* ok" parameter can be called passing PythonQt.BoolResult as parameter. In PyQt, a tuple is returned instead.
  
@@ -420,6 +420,36 @@ yourCpp = None
 
 \endcode
 
+ \section Ownership Ownership management
+
+ In PythonQt, each wrapped C++ object is either owned by Python or C++. When an object is created via a Python constructor,
+ it is owned by Python by default. When an object is returned from a C++ API (e.g. a slot), it is owned by C++ by default.
+ Since the Qt API contains various APIs that pass the ownership from/to other C++ objects, PythonQt needs to keep track of
+ such API calls. This is archieved by annotating arguments and return values in wrapper slots with magic templates:
+ 
+ - PythonQtPassOwnershipToCPP
+ - PythonQtPassOwnershipToPython
+ - PythonQtNewOwnerOfThis
+
+ These annotation templates work for since C++ pointer types. In addition to that, they work for QList<AnyObject*>,
+ to pass the ownership for each object in the list.
+ 
+ Examples:
+ \code
+ public slots:
+   //! Pass ownership of return value to Python
+   PythonQtPassOwnershipToPython<QGraphicsItem*> createNewItemOwnedByPython();
+
+   //! Pass ownership of item to C++
+   void addItemToCPP(PythonQtPassOwnershipToPython<QGraphicsItem*> item);
+
+   //! Pass ownership of items to C++ (Note that the QList can't be a reference nor a pointer).
+   void addItemToCPP(PythonQtPassOwnershipToPython<QList<QGraphicsItem*> > items);
+
+   //! Pass ownership of wrapped object to C++ if parent is != NULL
+   void addItemParent(QGraphicsItem* wrappedObject, PythonQtNewOwnerOfThis<QGraphicsItem*> parent);
+ \endcode
+ 
  \page Building Building
 
  PythonQt requires at least Qt 4.6.1 (for earlier Qt versions, you will need to run the pythonqt_generator, Qt 4.3 is the absolute minimum) and Python 2.6.x/2.7.x or Python 3.3 (or higher).
