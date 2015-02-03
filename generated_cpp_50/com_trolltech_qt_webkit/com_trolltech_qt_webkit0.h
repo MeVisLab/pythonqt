@@ -1,4 +1,5 @@
 #include <PythonQt.h>
+#include <QGraphicsScene>
 #include <QObject>
 #include <QVariant>
 #include <qaction.h>
@@ -102,7 +103,7 @@ virtual void mousePressEvent(QGraphicsSceneMouseEvent*  arg__1);
 virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent*  arg__1);
 virtual void moveEvent(QGraphicsSceneMoveEvent*  event);
 virtual void paint(QPainter*  arg__1, const QStyleOptionGraphicsItem*  options, QWidget*  widget = 0);
-virtual void paintWindowFrame(QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget);
+virtual void paintWindowFrame(QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = 0);
 virtual void polishEvent();
 virtual QVariant  propertyChange(const QString&  propertyName, const QVariant&  value);
 virtual void resizeEvent(QGraphicsSceneResizeEvent*  event);
@@ -449,13 +450,21 @@ virtual void timerEvent(QTimerEvent*  arg__1);
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QWebHistoryInterface : public QWebHistoryInterface
+{ public:
+inline void promoted_addHistoryEntry(const QString&  url) { this->addHistoryEntry(url); }
+inline bool  promoted_historyContains(const QString&  url) const { return this->historyContains(url); }
+};
+
 class PythonQtWrapper_QWebHistoryInterface : public QObject
 { Q_OBJECT
 public:
 public slots:
 QWebHistoryInterface* new_QWebHistoryInterface(QObject*  parent = 0);
 void delete_QWebHistoryInterface(QWebHistoryInterface* obj) { delete obj; } 
+   void addHistoryEntry(QWebHistoryInterface* theWrappedObject, const QString&  url);
    QWebHistoryInterface*  static_QWebHistoryInterface_defaultInterface();
+   bool  historyContains(QWebHistoryInterface* theWrappedObject, const QString&  url) const;
    void static_QWebHistoryInterface_setDefaultInterface(QWebHistoryInterface*  defaultInterface);
 };
 
@@ -911,7 +920,9 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QWebPluginFactory : public QWebPluginFactory
 { public:
+inline QObject*  promoted_create(const QString&  mimeType, const QUrl&  arg__2, const QStringList&  argumentNames, const QStringList&  argumentValues) const { return this->create(mimeType, arg__2, argumentNames, argumentValues); }
 inline bool  promoted_extension(QWebPluginFactory::Extension  extension, const QWebPluginFactory::ExtensionOption*  option = 0, QWebPluginFactory::ExtensionReturn*  output = 0) { return QWebPluginFactory::extension(extension, option, output); }
+inline QList<QWebPluginFactory::Plugin >  promoted_plugins() const { return this->plugins(); }
 inline void promoted_refreshPlugins() { QWebPluginFactory::refreshPlugins(); }
 inline bool  promoted_supportsExtension(QWebPluginFactory::Extension  extension) const { return QWebPluginFactory::supportsExtension(extension); }
 };
@@ -925,7 +936,9 @@ enum Extension{
 public slots:
 QWebPluginFactory* new_QWebPluginFactory(QObject*  parent = 0);
 void delete_QWebPluginFactory(QWebPluginFactory* obj) { delete obj; } 
+   QObject*  create(QWebPluginFactory* theWrappedObject, const QString&  mimeType, const QUrl&  arg__2, const QStringList&  argumentNames, const QStringList&  argumentValues) const;
    bool  extension(QWebPluginFactory* theWrappedObject, QWebPluginFactory::Extension  extension, const QWebPluginFactory::ExtensionOption*  option = 0, QWebPluginFactory::ExtensionReturn*  output = 0);
+   QList<QWebPluginFactory::Plugin >  plugins(QWebPluginFactory* theWrappedObject) const;
    void refreshPlugins(QWebPluginFactory* theWrappedObject);
    bool  supportsExtension(QWebPluginFactory* theWrappedObject, QWebPluginFactory::Extension  extension) const;
 };

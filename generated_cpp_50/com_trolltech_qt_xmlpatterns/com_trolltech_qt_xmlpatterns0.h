@@ -45,12 +45,18 @@ virtual void timerEvent(QTimerEvent*  arg__1);
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QAbstractMessageHandler : public QAbstractMessageHandler
+{ public:
+inline void promoted_handleMessage(QtMsgType  type, const QString&  description, const QUrl&  identifier, const QSourceLocation&  sourceLocation) { this->handleMessage(type, description, identifier, sourceLocation); }
+};
+
 class PythonQtWrapper_QAbstractMessageHandler : public QObject
 { Q_OBJECT
 public:
 public slots:
 QAbstractMessageHandler* new_QAbstractMessageHandler(QObject*  parent = 0);
 void delete_QAbstractMessageHandler(QAbstractMessageHandler* obj) { delete obj; } 
+   void handleMessage(QAbstractMessageHandler* theWrappedObject, QtMsgType  type, const QString&  description, const QUrl&  identifier, const QSourceLocation&  sourceLocation);
    void message(QAbstractMessageHandler* theWrappedObject, QtMsgType  type, const QString&  description, const QUrl&  identifier = QUrl(), const QSourceLocation&  sourceLocation = QSourceLocation());
 };
 
@@ -75,12 +81,18 @@ virtual void timerEvent(QTimerEvent*  arg__1);
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QAbstractUriResolver : public QAbstractUriResolver
+{ public:
+inline QUrl  promoted_resolve(const QUrl&  relative, const QUrl&  baseURI) const { return this->resolve(relative, baseURI); }
+};
+
 class PythonQtWrapper_QAbstractUriResolver : public QObject
 { Q_OBJECT
 public:
 public slots:
 QAbstractUriResolver* new_QAbstractUriResolver(QObject*  parent = 0);
 void delete_QAbstractUriResolver(QAbstractUriResolver* obj) { delete obj; } 
+   QUrl  resolve(QAbstractUriResolver* theWrappedObject, const QUrl&  relative, const QUrl&  baseURI) const;
 };
 
 
@@ -113,6 +125,26 @@ virtual QVariant  typedValue(const QXmlNodeModelIndex&  n) const;
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QAbstractXmlNodeModel : public QAbstractXmlNodeModel
+{ public:
+inline QVector<QXmlNodeModelIndex >  promoted_attributes(const QXmlNodeModelIndex&  element) const { return this->attributes(element); }
+inline QUrl  promoted_baseUri(const QXmlNodeModelIndex&  ni) const { return this->baseUri(ni); }
+inline QXmlNodeModelIndex::DocumentOrder  promoted_compareOrder(const QXmlNodeModelIndex&  ni1, const QXmlNodeModelIndex&  ni2) const { return this->compareOrder(ni1, ni2); }
+inline QXmlNodeModelIndex  promoted_createIndex(qint64  data) const { return QAbstractXmlNodeModel::createIndex(data); }
+inline QXmlNodeModelIndex  promoted_createIndex(qint64  data, qint64  additionalData) const { return QAbstractXmlNodeModel::createIndex(data, additionalData); }
+inline QXmlNodeModelIndex  promoted_createIndex(void*  pointer, qint64  additionalData = 0) const { return QAbstractXmlNodeModel::createIndex(pointer, additionalData); }
+inline QUrl  promoted_documentUri(const QXmlNodeModelIndex&  ni) const { return this->documentUri(ni); }
+inline QXmlNodeModelIndex  promoted_elementById(const QXmlName&  NCName) const { return this->elementById(NCName); }
+inline QXmlNodeModelIndex::NodeKind  promoted_kind(const QXmlNodeModelIndex&  ni) const { return this->kind(ni); }
+inline QXmlName  promoted_name(const QXmlNodeModelIndex&  ni) const { return this->name(ni); }
+inline QVector<QXmlName >  promoted_namespaceBindings(const QXmlNodeModelIndex&  n) const { return this->namespaceBindings(n); }
+inline QXmlNodeModelIndex  promoted_nextFromSimpleAxis(QAbstractXmlNodeModel::SimpleAxis  axis, const QXmlNodeModelIndex&  origin) const { return this->nextFromSimpleAxis(axis, origin); }
+inline QVector<QXmlNodeModelIndex >  promoted_nodesByIdref(const QXmlName&  NCName) const { return this->nodesByIdref(NCName); }
+inline QXmlNodeModelIndex  promoted_root(const QXmlNodeModelIndex&  n) const { return this->root(n); }
+inline QString  promoted_stringValue(const QXmlNodeModelIndex&  n) const { return this->stringValue(n); }
+inline QVariant  promoted_typedValue(const QXmlNodeModelIndex&  n) const { return this->typedValue(n); }
+};
+
 class PythonQtWrapper_QAbstractXmlNodeModel : public QObject
 { Q_OBJECT
 public:
@@ -124,7 +156,23 @@ enum SimpleAxis{
 public slots:
 QAbstractXmlNodeModel* new_QAbstractXmlNodeModel();
 void delete_QAbstractXmlNodeModel(QAbstractXmlNodeModel* obj) { delete obj; } 
+   QVector<QXmlNodeModelIndex >  attributes(QAbstractXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  element) const;
+   QUrl  baseUri(QAbstractXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  ni) const;
+   QXmlNodeModelIndex::DocumentOrder  compareOrder(QAbstractXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  ni1, const QXmlNodeModelIndex&  ni2) const;
+   QXmlNodeModelIndex  createIndex(QAbstractXmlNodeModel* theWrappedObject, qint64  data) const;
+   QXmlNodeModelIndex  createIndex(QAbstractXmlNodeModel* theWrappedObject, qint64  data, qint64  additionalData) const;
+   QXmlNodeModelIndex  createIndex(QAbstractXmlNodeModel* theWrappedObject, void*  pointer, qint64  additionalData = 0) const;
+   QUrl  documentUri(QAbstractXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  ni) const;
+   QXmlNodeModelIndex  elementById(QAbstractXmlNodeModel* theWrappedObject, const QXmlName&  NCName) const;
+   QXmlNodeModelIndex::NodeKind  kind(QAbstractXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  ni) const;
+   QXmlName  name(QAbstractXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  ni) const;
+   QVector<QXmlName >  namespaceBindings(QAbstractXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  n) const;
+   QXmlNodeModelIndex  nextFromSimpleAxis(QAbstractXmlNodeModel* theWrappedObject, QAbstractXmlNodeModel::SimpleAxis  axis, const QXmlNodeModelIndex&  origin) const;
+   QVector<QXmlNodeModelIndex >  nodesByIdref(QAbstractXmlNodeModel* theWrappedObject, const QXmlName&  NCName) const;
+   QXmlNodeModelIndex  root(QAbstractXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  n) const;
    QSourceLocation  sourceLocation(QAbstractXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  index) const;
+   QString  stringValue(QAbstractXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  n) const;
+   QVariant  typedValue(QAbstractXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  n) const;
 };
 
 
@@ -157,6 +205,18 @@ virtual void whitespaceOnly(const QStringRef&  value);
 
 class PythonQtPublicPromoter_QAbstractXmlReceiver : public QAbstractXmlReceiver
 { public:
+inline void promoted_atomicValue(const QVariant&  value) { this->atomicValue(value); }
+inline void promoted_attribute(const QXmlName&  name, const QStringRef&  value) { this->attribute(name, value); }
+inline void promoted_characters(const QStringRef&  value) { this->characters(value); }
+inline void promoted_comment(const QString&  value) { this->comment(value); }
+inline void promoted_endDocument() { this->endDocument(); }
+inline void promoted_endElement() { this->endElement(); }
+inline void promoted_endOfSequence() { this->endOfSequence(); }
+inline void promoted_namespaceBinding(const QXmlName&  name) { this->namespaceBinding(name); }
+inline void promoted_processingInstruction(const QXmlName&  target, const QString&  value) { this->processingInstruction(target, value); }
+inline void promoted_startDocument() { this->startDocument(); }
+inline void promoted_startElement(const QXmlName&  name) { this->startElement(name); }
+inline void promoted_startOfSequence() { this->startOfSequence(); }
 inline void promoted_whitespaceOnly(const QStringRef&  value) { QAbstractXmlReceiver::whitespaceOnly(value); }
 };
 
@@ -166,6 +226,18 @@ public:
 public slots:
 QAbstractXmlReceiver* new_QAbstractXmlReceiver();
 void delete_QAbstractXmlReceiver(QAbstractXmlReceiver* obj) { delete obj; } 
+   void atomicValue(QAbstractXmlReceiver* theWrappedObject, const QVariant&  value);
+   void attribute(QAbstractXmlReceiver* theWrappedObject, const QXmlName&  name, const QStringRef&  value);
+   void characters(QAbstractXmlReceiver* theWrappedObject, const QStringRef&  value);
+   void comment(QAbstractXmlReceiver* theWrappedObject, const QString&  value);
+   void endDocument(QAbstractXmlReceiver* theWrappedObject);
+   void endElement(QAbstractXmlReceiver* theWrappedObject);
+   void endOfSequence(QAbstractXmlReceiver* theWrappedObject);
+   void namespaceBinding(QAbstractXmlReceiver* theWrappedObject, const QXmlName&  name);
+   void processingInstruction(QAbstractXmlReceiver* theWrappedObject, const QXmlName&  target, const QString&  value);
+   void startDocument(QAbstractXmlReceiver* theWrappedObject);
+   void startElement(QAbstractXmlReceiver* theWrappedObject, const QXmlName&  name);
+   void startOfSequence(QAbstractXmlReceiver* theWrappedObject);
    void whitespaceOnly(QAbstractXmlReceiver* theWrappedObject, const QStringRef&  value);
 };
 

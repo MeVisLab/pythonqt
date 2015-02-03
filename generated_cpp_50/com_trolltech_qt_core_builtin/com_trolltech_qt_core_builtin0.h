@@ -120,7 +120,6 @@ void delete_QByteArray(QByteArray* obj) { delete obj; }
    QByteArray  static_QByteArray_number(double  arg__1, char  f = 'g', int  prec = 6);
    QByteArray  static_QByteArray_number(int  arg__1, int  base = 10);
    QByteArray  static_QByteArray_number(qlonglong  arg__1, int  base = 10);
-   QByteArray  static_QByteArray_number(qulonglong  arg__1, int  base = 10);
    const QByteArray  __add__(QByteArray* theWrappedObject, char  a2);
    const QByteArray  __add__(QByteArray* theWrappedObject, const QByteArray&  a2);
    const QString  __add__(QByteArray* theWrappedObject, const QString&  s);
@@ -162,9 +161,7 @@ void delete_QByteArray(QByteArray* obj) { delete obj; }
    QByteArray*  setNum(QByteArray* theWrappedObject, float  arg__1, char  f = 'g', int  prec = 6);
    QByteArray*  setNum(QByteArray* theWrappedObject, int  arg__1, int  base = 10);
    QByteArray*  setNum(QByteArray* theWrappedObject, qlonglong  arg__1, int  base = 10);
-   QByteArray*  setNum(QByteArray* theWrappedObject, qulonglong  arg__1, int  base = 10);
    QByteArray*  setNum(QByteArray* theWrappedObject, short  arg__1, int  base = 10);
-   QByteArray*  setNum(QByteArray* theWrappedObject, ushort  arg__1, int  base = 10);
    QByteArray*  setRawData(QByteArray* theWrappedObject, const char*  a, uint  n);
    QByteArray  simplified(QByteArray* theWrappedObject) const;
    int  size(QByteArray* theWrappedObject) const;
@@ -517,9 +514,7 @@ void delete_QLocale(QLocale* obj) { delete obj; }
    QString  toString(QLocale* theWrappedObject, float  i, char  f = 'g', int  prec = 6) const;
    QString  toString(QLocale* theWrappedObject, int  i) const;
    QString  toString(QLocale* theWrappedObject, qlonglong  i) const;
-   QString  toString(QLocale* theWrappedObject, qulonglong  i) const;
    QString  toString(QLocale* theWrappedObject, short  i) const;
-   QString  toString(QLocale* theWrappedObject, ushort  i) const;
    QTime  toTime(QLocale* theWrappedObject, const QString&  string, QLocale::FormatType  arg__2 = QLocale::LongFormat) const;
    QTime  toTime(QLocale* theWrappedObject, const QString&  string, const QString&  format) const;
    uint  toUInt(QLocale* theWrappedObject, const QString&  s, bool*  ok = 0) const;
@@ -728,8 +723,6 @@ void delete_QRectF(QRectF* obj) { delete obj; }
    bool  contains(QRectF* theWrappedObject, const QPointF&  p) const;
    bool  contains(QRectF* theWrappedObject, const QRectF&  r) const;
    bool  contains(QRectF* theWrappedObject, qreal  x, qreal  y) const;
-   void getCoords(QRectF* theWrappedObject, qreal*  x1, qreal*  y1, qreal*  x2, qreal*  y2) const;
-   void getRect(QRectF* theWrappedObject, qreal*  x, qreal*  y, qreal*  w, qreal*  h) const;
    qreal  height(QRectF* theWrappedObject) const;
    QRectF  intersected(QRectF* theWrappedObject, const QRectF&  other) const;
    bool  intersects(QRectF* theWrappedObject, const QRectF&  r) const;

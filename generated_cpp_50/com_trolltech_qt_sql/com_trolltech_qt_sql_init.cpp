@@ -3,6 +3,7 @@
 #include "com_trolltech_qt_sql0.h"
 
 
+
 void PythonQt_init_QtSql(PyObject* module) {
 PythonQt::priv()->registerCPPClass("QSql", "", "QtSql", PythonQtCreateObject<PythonQtWrapper_QSql>, NULL, module, 0);
 PythonQt::priv()->registerCPPClass("QSqlDatabase", "", "QtSql", PythonQtCreateObject<PythonQtWrapper_QSqlDatabase>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSqlDatabase>, module, 0);

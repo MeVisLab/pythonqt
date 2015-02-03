@@ -2,6 +2,7 @@
 #include <PythonQtConversion.h>
 #include "com_trolltech_qt_core_builtin0.h"
 
+
 void PythonQt_init_QtCoreBuiltin(PyObject* module) {
 PythonQt::priv()->registerCPPClass("QBitArray", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QBitArray>, NULL, module, PythonQt::Type_And|PythonQt::Type_InplaceAnd|PythonQt::Type_InplaceOr|PythonQt::Type_InplaceXor|PythonQt::Type_Invert|PythonQt::Type_NonZero|PythonQt::Type_Or|PythonQt::Type_RichCompare|PythonQt::Type_Xor);
 PythonQt::priv()->registerCPPClass("QByteArray", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QByteArray>, NULL, module, PythonQt::Type_Add|PythonQt::Type_InplaceAdd|PythonQt::Type_NonZero|PythonQt::Type_RichCompare);

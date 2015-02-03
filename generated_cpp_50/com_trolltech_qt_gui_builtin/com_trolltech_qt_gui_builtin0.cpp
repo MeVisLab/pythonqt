@@ -460,11 +460,6 @@ QColor  PythonQtWrapper_QColor::static_QColor_fromRgba(unsigned int  rgba)
   return (QColor::fromRgba(rgba));
 }
 
-void PythonQtWrapper_QColor::getCmykF(QColor* theWrappedObject, qreal*  c, qreal*  m, qreal*  y, qreal*  k, qreal*  a)
-{
-  ( theWrappedObject->getCmykF(c, m, y, k, a));
-}
-
 void PythonQtWrapper_QColor::getHsl(QColor* theWrappedObject, int*  h, int*  s, int*  l, int*  a) const
 {
   ( theWrappedObject->getHsl(h, s, l, a));
@@ -473,16 +468,6 @@ void PythonQtWrapper_QColor::getHsl(QColor* theWrappedObject, int*  h, int*  s, 
 void PythonQtWrapper_QColor::getHslF(QColor* theWrappedObject, qreal*  h, qreal*  s, qreal*  l, qreal*  a) const
 {
   ( theWrappedObject->getHslF(h, s, l, a));
-}
-
-void PythonQtWrapper_QColor::getHsvF(QColor* theWrappedObject, qreal*  h, qreal*  s, qreal*  v, qreal*  a) const
-{
-  ( theWrappedObject->getHsvF(h, s, v, a));
-}
-
-void PythonQtWrapper_QColor::getRgbF(QColor* theWrappedObject, qreal*  r, qreal*  g, qreal*  b, qreal*  a) const
-{
-  ( theWrappedObject->getRgbF(r, g, b, a));
 }
 
 int  PythonQtWrapper_QColor::green(QColor* theWrappedObject) const
@@ -1271,7 +1256,7 @@ QIcon* PythonQtWrapper_QIcon::new_QIcon()
 { 
 return new QIcon(); }
 
-QIcon* PythonQtWrapper_QIcon::new_QIcon(QIconEngine*  engine)
+QIcon* PythonQtWrapper_QIcon::new_QIcon(PythonQtPassOwnershipToCPP<QIconEngine* >  engine)
 { 
 return new QIcon(engine); }
 
@@ -1435,7 +1420,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   return QImage::devType();
 }
-void PythonQtShell_QImage::initPainter(QPainter*  painter) const
+void PythonQtShell_QImage::initPainter(QPainter*  painter0) const
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("initPainter");
@@ -1443,7 +1428,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "QPainter*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&painter};
+    void* args[2] = {NULL, (void*)&painter0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -1452,9 +1437,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QImage::initPainter(painter);
+  QImage::initPainter(painter0);
 }
-int  PythonQtShell_QImage::metric(QPaintDevice::PaintDeviceMetric  metric) const
+int  PythonQtShell_QImage::metric(QPaintDevice::PaintDeviceMetric  metric0) const
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("metric");
@@ -1463,7 +1448,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"int" , "QPaintDevice::PaintDeviceMetric"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       int returnValue;
-    void* args[2] = {NULL, (void*)&metric};
+    void* args[2] = {NULL, (void*)&metric0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -1482,7 +1467,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QImage::metric(metric);
+  return QImage::metric(metric0);
 }
 QPaintEngine*  PythonQtShell_QImage::paintEngine() const
 {
@@ -1514,7 +1499,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   return QImage::paintEngine();
 }
-QPaintDevice*  PythonQtShell_QImage::redirected(QPoint*  offset) const
+QPaintDevice*  PythonQtShell_QImage::redirected(QPoint*  offset0) const
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("redirected");
@@ -1523,7 +1508,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"QPaintDevice*" , "QPoint*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       QPaintDevice* returnValue;
-    void* args[2] = {NULL, (void*)&offset};
+    void* args[2] = {NULL, (void*)&offset0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -1542,7 +1527,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QImage::redirected(offset);
+  return QImage::redirected(offset0);
 }
 QPainter*  PythonQtShell_QImage::sharedPainter() const
 {
@@ -2188,11 +2173,6 @@ QRegion  PythonQtWrapper_QMatrix::map(QMatrix* theWrappedObject, const QRegion& 
   return ( theWrappedObject->map(r));
 }
 
-void PythonQtWrapper_QMatrix::map(QMatrix* theWrappedObject, qreal  x, qreal  y, qreal*  tx, qreal*  ty) const
-{
-  ( theWrappedObject->map(x, y, tx, ty));
-}
-
 QRect  PythonQtWrapper_QMatrix::mapRect(QMatrix* theWrappedObject, const QRect&  arg__1) const
 {
   return ( theWrappedObject->mapRect(arg__1));
@@ -2723,7 +2703,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   return QPixmap::devType();
 }
-void PythonQtShell_QPixmap::initPainter(QPainter*  painter) const
+void PythonQtShell_QPixmap::initPainter(QPainter*  painter0) const
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("initPainter");
@@ -2731,7 +2711,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   if (obj) {
     static const char* argumentList[] ={"" , "QPainter*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
-    void* args[2] = {NULL, (void*)&painter};
+    void* args[2] = {NULL, (void*)&painter0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
@@ -2740,7 +2720,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  QPixmap::initPainter(painter);
+  QPixmap::initPainter(painter0);
 }
 int  PythonQtShell_QPixmap::metric(QPaintDevice::PaintDeviceMetric  arg__1) const
 {
@@ -2802,7 +2782,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   return QPixmap::paintEngine();
 }
-QPaintDevice*  PythonQtShell_QPixmap::redirected(QPoint*  offset) const
+QPaintDevice*  PythonQtShell_QPixmap::redirected(QPoint*  offset0) const
 {
 if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
   static PyObject* name = PyString_FromString("redirected");
@@ -2811,7 +2791,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     static const char* argumentList[] ={"QPaintDevice*" , "QPoint*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       QPaintDevice* returnValue;
-    void* args[2] = {NULL, (void*)&offset};
+    void* args[2] = {NULL, (void*)&offset0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -2830,7 +2810,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     PyErr_Clear();
   }
 }
-  return QPixmap::redirected(offset);
+  return QPixmap::redirected(offset0);
 }
 QPainter*  PythonQtShell_QPixmap::sharedPainter() const
 {

@@ -65,11 +65,32 @@ virtual void updateMetaData(const QNetworkCacheMetaData&  metaData);
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QAbstractNetworkCache : public QAbstractNetworkCache
+{ public:
+inline qint64  promoted_cacheSize() const { return this->cacheSize(); }
+inline void promoted_clear() { this->clear(); }
+inline QIODevice*  promoted_data(const QUrl&  url) { return this->data(url); }
+inline void promoted_insert(QIODevice*  device) { this->insert(device); }
+inline QNetworkCacheMetaData  promoted_metaData(const QUrl&  url) { return this->metaData(url); }
+inline QIODevice*  promoted_prepare(const QNetworkCacheMetaData&  metaData) { return this->prepare(metaData); }
+inline bool  promoted_remove(const QUrl&  url) { return this->remove(url); }
+inline void promoted_updateMetaData(const QNetworkCacheMetaData&  metaData) { this->updateMetaData(metaData); }
+};
+
 class PythonQtWrapper_QAbstractNetworkCache : public QObject
 { Q_OBJECT
 public:
 public slots:
+QAbstractNetworkCache* new_QAbstractNetworkCache(QObject*  parent = 0);
 void delete_QAbstractNetworkCache(QAbstractNetworkCache* obj) { delete obj; } 
+   qint64  cacheSize(QAbstractNetworkCache* theWrappedObject) const;
+   void clear(QAbstractNetworkCache* theWrappedObject);
+   QIODevice*  data(QAbstractNetworkCache* theWrappedObject, const QUrl&  url);
+   void insert(QAbstractNetworkCache* theWrappedObject, QIODevice*  device);
+   QNetworkCacheMetaData  metaData(QAbstractNetworkCache* theWrappedObject, const QUrl&  url);
+   QIODevice*  prepare(QAbstractNetworkCache* theWrappedObject, const QNetworkCacheMetaData&  metaData);
+   bool  remove(QAbstractNetworkCache* theWrappedObject, const QUrl&  url);
+   void updateMetaData(QAbstractNetworkCache* theWrappedObject, const QNetworkCacheMetaData&  metaData);
 };
 
 
@@ -131,8 +152,15 @@ inline bool  promoted_isSequential() const { return QAbstractSocket::isSequentia
 inline qint64  promoted_readData(char*  data, qint64  maxlen) { return QAbstractSocket::readData(data, maxlen); }
 inline qint64  promoted_readLineData(char*  data, qint64  maxlen) { return QAbstractSocket::readLineData(data, maxlen); }
 inline void promoted_resume() { QAbstractSocket::resume(); }
+inline void promoted_setLocalAddress(const QHostAddress&  address) { QAbstractSocket::setLocalAddress(address); }
+inline void promoted_setLocalPort(unsigned short  port) { QAbstractSocket::setLocalPort(port); }
+inline void promoted_setPeerAddress(const QHostAddress&  address) { QAbstractSocket::setPeerAddress(address); }
+inline void promoted_setPeerName(const QString&  name) { QAbstractSocket::setPeerName(name); }
+inline void promoted_setPeerPort(unsigned short  port) { QAbstractSocket::setPeerPort(port); }
 inline void promoted_setReadBufferSize(qint64  size) { QAbstractSocket::setReadBufferSize(size); }
+inline void promoted_setSocketError(QAbstractSocket::SocketError  socketError) { QAbstractSocket::setSocketError(socketError); }
 inline void promoted_setSocketOption(QAbstractSocket::SocketOption  option, const QVariant&  value) { QAbstractSocket::setSocketOption(option, value); }
+inline void promoted_setSocketState(QAbstractSocket::SocketState  state) { QAbstractSocket::setSocketState(state); }
 inline QVariant  promoted_socketOption(QAbstractSocket::SocketOption  option) { return QAbstractSocket::socketOption(option); }
 inline bool  promoted_waitForBytesWritten(int  msecs = 30000) { return QAbstractSocket::waitForBytesWritten(msecs); }
 inline bool  promoted_waitForConnected(int  msecs = 30000) { return QAbstractSocket::waitForConnected(msecs); }
@@ -181,10 +209,17 @@ void delete_QAbstractSocket(QAbstractSocket* obj) { delete obj; }
    qint64  readData(QAbstractSocket* theWrappedObject, char*  data, qint64  maxlen);
    qint64  readLineData(QAbstractSocket* theWrappedObject, char*  data, qint64  maxlen);
    void resume(QAbstractSocket* theWrappedObject);
+   void setLocalAddress(QAbstractSocket* theWrappedObject, const QHostAddress&  address);
+   void setLocalPort(QAbstractSocket* theWrappedObject, unsigned short  port);
    void setPauseMode(QAbstractSocket* theWrappedObject, QAbstractSocket::PauseModes  pauseMode);
+   void setPeerAddress(QAbstractSocket* theWrappedObject, const QHostAddress&  address);
+   void setPeerName(QAbstractSocket* theWrappedObject, const QString&  name);
+   void setPeerPort(QAbstractSocket* theWrappedObject, unsigned short  port);
    void setProxy(QAbstractSocket* theWrappedObject, const QNetworkProxy&  networkProxy);
    void setReadBufferSize(QAbstractSocket* theWrappedObject, qint64  size);
+   void setSocketError(QAbstractSocket* theWrappedObject, QAbstractSocket::SocketError  socketError);
    void setSocketOption(QAbstractSocket* theWrappedObject, QAbstractSocket::SocketOption  option, const QVariant&  value);
+   void setSocketState(QAbstractSocket* theWrappedObject, QAbstractSocket::SocketState  state);
    QVariant  socketOption(QAbstractSocket* theWrappedObject, QAbstractSocket::SocketOption  option);
    QAbstractSocket::SocketType  socketType(QAbstractSocket* theWrappedObject) const;
    QAbstractSocket::SocketState  state(QAbstractSocket* theWrappedObject) const;
@@ -784,9 +819,11 @@ virtual bool  validateCookie(const QNetworkCookie&  cookie, const QUrl&  url) co
 
 class PythonQtPublicPromoter_QNetworkCookieJar : public QNetworkCookieJar
 { public:
+inline QList<QNetworkCookie >  promoted_allCookies() const { return QNetworkCookieJar::allCookies(); }
 inline QList<QNetworkCookie >  promoted_cookiesForUrl(const QUrl&  url) const { return QNetworkCookieJar::cookiesForUrl(url); }
 inline bool  promoted_deleteCookie(const QNetworkCookie&  cookie) { return QNetworkCookieJar::deleteCookie(cookie); }
 inline bool  promoted_insertCookie(const QNetworkCookie&  cookie) { return QNetworkCookieJar::insertCookie(cookie); }
+inline void promoted_setAllCookies(const QList<QNetworkCookie >&  cookieList) { QNetworkCookieJar::setAllCookies(cookieList); }
 inline bool  promoted_setCookiesFromUrl(const QList<QNetworkCookie >&  cookieList, const QUrl&  url) { return QNetworkCookieJar::setCookiesFromUrl(cookieList, url); }
 inline bool  promoted_updateCookie(const QNetworkCookie&  cookie) { return QNetworkCookieJar::updateCookie(cookie); }
 inline bool  promoted_validateCookie(const QNetworkCookie&  cookie, const QUrl&  url) const { return QNetworkCookieJar::validateCookie(cookie, url); }
@@ -798,9 +835,11 @@ public:
 public slots:
 QNetworkCookieJar* new_QNetworkCookieJar(QObject*  parent = 0);
 void delete_QNetworkCookieJar(QNetworkCookieJar* obj) { delete obj; } 
+   QList<QNetworkCookie >  allCookies(QNetworkCookieJar* theWrappedObject) const;
    QList<QNetworkCookie >  cookiesForUrl(QNetworkCookieJar* theWrappedObject, const QUrl&  url) const;
    bool  deleteCookie(QNetworkCookieJar* theWrappedObject, const QNetworkCookie&  cookie);
    bool  insertCookie(QNetworkCookieJar* theWrappedObject, const QNetworkCookie&  cookie);
+   void setAllCookies(QNetworkCookieJar* theWrappedObject, const QList<QNetworkCookie >&  cookieList);
    bool  setCookiesFromUrl(QNetworkCookieJar* theWrappedObject, const QList<QNetworkCookie >&  cookieList, const QUrl&  url);
    bool  updateCookie(QNetworkCookieJar* theWrappedObject, const QNetworkCookie&  cookie);
    bool  validateCookie(QNetworkCookieJar* theWrappedObject, const QNetworkCookie&  cookie, const QUrl&  url) const;
@@ -964,6 +1003,11 @@ virtual QList<QNetworkProxy >  queryProxy(const QNetworkProxyQuery&  query = QNe
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QNetworkProxyFactory : public QNetworkProxyFactory
+{ public:
+inline QList<QNetworkProxy >  promoted_queryProxy(const QNetworkProxyQuery&  query = QNetworkProxyQuery()) { return this->queryProxy(query); }
+};
+
 class PythonQtWrapper_QNetworkProxyFactory : public QObject
 { Q_OBJECT
 public:
@@ -971,6 +1015,7 @@ public slots:
 QNetworkProxyFactory* new_QNetworkProxyFactory();
 void delete_QNetworkProxyFactory(QNetworkProxyFactory* obj) { delete obj; } 
    QList<QNetworkProxy >  static_QNetworkProxyFactory_proxyForQuery(const QNetworkProxyQuery&  query);
+   QList<QNetworkProxy >  queryProxy(QNetworkProxyFactory* theWrappedObject, const QNetworkProxyQuery&  query = QNetworkProxyQuery());
    void static_QNetworkProxyFactory_setApplicationProxyFactory(QNetworkProxyFactory*  factory);
    void static_QNetworkProxyFactory_setUseSystemConfiguration(bool  enable);
    QList<QNetworkProxy >  static_QNetworkProxyFactory_systemProxyForQuery(const QNetworkProxyQuery&  query = QNetworkProxyQuery());
@@ -1059,12 +1104,21 @@ virtual qint64  writeData(const char*  data, qint64  len);
 
 class PythonQtPublicPromoter_QNetworkReply : public QNetworkReply
 { public:
+inline void promoted_abort() { this->abort(); }
 inline void promoted_close() { QNetworkReply::close(); }
 inline void promoted_ignoreSslErrors() { QNetworkReply::ignoreSslErrors(); }
 inline void promoted_ignoreSslErrorsImplementation(const QList<QSslError >&  arg__1) { QNetworkReply::ignoreSslErrorsImplementation(arg__1); }
 inline bool  promoted_isSequential() const { return QNetworkReply::isSequential(); }
+inline void promoted_setAttribute(QNetworkRequest::Attribute  code, const QVariant&  value) { QNetworkReply::setAttribute(code, value); }
+inline void promoted_setError(QNetworkReply::NetworkError  errorCode, const QString&  errorString) { QNetworkReply::setError(errorCode, errorString); }
+inline void promoted_setFinished(bool  arg__1) { QNetworkReply::setFinished(arg__1); }
+inline void promoted_setHeader(QNetworkRequest::KnownHeaders  header, const QVariant&  value) { QNetworkReply::setHeader(header, value); }
+inline void promoted_setOperation(QNetworkAccessManager::Operation  operation) { QNetworkReply::setOperation(operation); }
+inline void promoted_setRawHeader(const QByteArray&  headerName, const QByteArray&  value) { QNetworkReply::setRawHeader(headerName, value); }
 inline void promoted_setReadBufferSize(qint64  size) { QNetworkReply::setReadBufferSize(size); }
+inline void promoted_setRequest(const QNetworkRequest&  request) { QNetworkReply::setRequest(request); }
 inline void promoted_setSslConfigurationImplementation(const QSslConfiguration&  arg__1) { QNetworkReply::setSslConfigurationImplementation(arg__1); }
+inline void promoted_setUrl(const QUrl&  url) { QNetworkReply::setUrl(url); }
 inline void promoted_sslConfigurationImplementation(QSslConfiguration&  arg__1) const { QNetworkReply::sslConfigurationImplementation(arg__1); }
 inline qint64  promoted_writeData(const char*  data, qint64  len) { return QNetworkReply::writeData(data, len); }
 };
@@ -1073,7 +1127,9 @@ class PythonQtWrapper_QNetworkReply : public QObject
 { Q_OBJECT
 public:
 public slots:
+QNetworkReply* new_QNetworkReply(QObject*  parent = 0);
 void delete_QNetworkReply(QNetworkReply* obj) { delete obj; } 
+   void abort(QNetworkReply* theWrappedObject);
    QVariant  attribute(QNetworkReply* theWrappedObject, QNetworkRequest::Attribute  code) const;
    void close(QNetworkReply* theWrappedObject);
    QNetworkReply::NetworkError  error(QNetworkReply* theWrappedObject) const;
@@ -1091,8 +1147,16 @@ void delete_QNetworkReply(QNetworkReply* obj) { delete obj; }
    const QList<QPair<QByteArray , QByteArray >  >*  rawHeaderPairs(QNetworkReply* theWrappedObject) const;
    qint64  readBufferSize(QNetworkReply* theWrappedObject) const;
    QNetworkRequest  request(QNetworkReply* theWrappedObject) const;
+   void setAttribute(QNetworkReply* theWrappedObject, QNetworkRequest::Attribute  code, const QVariant&  value);
+   void setError(QNetworkReply* theWrappedObject, QNetworkReply::NetworkError  errorCode, const QString&  errorString);
+   void setFinished(QNetworkReply* theWrappedObject, bool  arg__1);
+   void setHeader(QNetworkReply* theWrappedObject, QNetworkRequest::KnownHeaders  header, const QVariant&  value);
+   void setOperation(QNetworkReply* theWrappedObject, QNetworkAccessManager::Operation  operation);
+   void setRawHeader(QNetworkReply* theWrappedObject, const QByteArray&  headerName, const QByteArray&  value);
    void setReadBufferSize(QNetworkReply* theWrappedObject, qint64  size);
+   void setRequest(QNetworkReply* theWrappedObject, const QNetworkRequest&  request);
    void setSslConfigurationImplementation(QNetworkReply* theWrappedObject, const QSslConfiguration&  arg__1);
+   void setUrl(QNetworkReply* theWrappedObject, const QUrl&  url);
    void sslConfigurationImplementation(QNetworkReply* theWrappedObject, QSslConfiguration&  arg__1) const;
    QUrl  url(QNetworkReply* theWrappedObject) const;
    qint64  writeData(QNetworkReply* theWrappedObject, const char*  data, qint64  len);

@@ -519,10 +519,12 @@ class PythonQtPublicPromoter_QMenu : public QMenu
 { public:
 inline void promoted_actionEvent(QActionEvent*  arg__1) { QMenu::actionEvent(arg__1); }
 inline void promoted_changeEvent(QEvent*  arg__1) { QMenu::changeEvent(arg__1); }
+inline int  promoted_columnCount() const { return QMenu::columnCount(); }
 inline void promoted_enterEvent(QEvent*  arg__1) { QMenu::enterEvent(arg__1); }
 inline bool  promoted_event(QEvent*  arg__1) { return QMenu::event(arg__1); }
 inline bool  promoted_focusNextPrevChild(bool  next) { return QMenu::focusNextPrevChild(next); }
 inline void promoted_hideEvent(QHideEvent*  arg__1) { QMenu::hideEvent(arg__1); }
+inline void promoted_initStyleOption(QStyleOptionMenuItem*  option, const QAction*  action) const { QMenu::initStyleOption(option, action); }
 inline void promoted_keyPressEvent(QKeyEvent*  arg__1) { QMenu::keyPressEvent(arg__1); }
 inline void promoted_leaveEvent(QEvent*  arg__1) { QMenu::leaveEvent(arg__1); }
 inline void promoted_mouseMoveEvent(QMouseEvent*  arg__1) { QMenu::mouseMoveEvent(arg__1); }
@@ -555,6 +557,7 @@ void delete_QMenu(QMenu* obj) { delete obj; }
    QAction*  addSeparator(QMenu* theWrappedObject);
    void changeEvent(QMenu* theWrappedObject, QEvent*  arg__1);
    void clear(QMenu* theWrappedObject);
+   int  columnCount(QMenu* theWrappedObject) const;
    QAction*  defaultAction(QMenu* theWrappedObject) const;
    void enterEvent(QMenu* theWrappedObject, QEvent*  arg__1);
    bool  event(QMenu* theWrappedObject, QEvent*  arg__1);
@@ -565,6 +568,7 @@ void delete_QMenu(QMenu* obj) { delete obj; }
    void hideEvent(QMenu* theWrappedObject, QHideEvent*  arg__1);
    void hideTearOffMenu(QMenu* theWrappedObject);
    QIcon  icon(QMenu* theWrappedObject) const;
+   void initStyleOption(QMenu* theWrappedObject, QStyleOptionMenuItem*  option, const QAction*  action) const;
    QAction*  insertMenu(QMenu* theWrappedObject, QAction*  before, QMenu*  menu);
    QAction*  insertSeparator(QMenu* theWrappedObject, QAction*  before);
    bool  isEmpty(QMenu* theWrappedObject) const;
@@ -675,6 +679,7 @@ inline bool  promoted_eventFilter(QObject*  arg__1, QEvent*  arg__2) { return QM
 inline void promoted_focusInEvent(QFocusEvent*  arg__1) { QMenuBar::focusInEvent(arg__1); }
 inline void promoted_focusOutEvent(QFocusEvent*  arg__1) { QMenuBar::focusOutEvent(arg__1); }
 inline int  promoted_heightForWidth(int  arg__1) const { return QMenuBar::heightForWidth(arg__1); }
+inline void promoted_initStyleOption(QStyleOptionMenuItem*  option, const QAction*  action) const { QMenuBar::initStyleOption(option, action); }
 inline void promoted_keyPressEvent(QKeyEvent*  arg__1) { QMenuBar::keyPressEvent(arg__1); }
 inline void promoted_leaveEvent(QEvent*  arg__1) { QMenuBar::leaveEvent(arg__1); }
 inline void promoted_mouseMoveEvent(QMouseEvent*  arg__1) { QMenuBar::mouseMoveEvent(arg__1); }
@@ -711,6 +716,7 @@ void delete_QMenuBar(QMenuBar* obj) { delete obj; }
    void focusInEvent(QMenuBar* theWrappedObject, QFocusEvent*  arg__1);
    void focusOutEvent(QMenuBar* theWrappedObject, QFocusEvent*  arg__1);
    int  heightForWidth(QMenuBar* theWrappedObject, int  arg__1) const;
+   void initStyleOption(QMenuBar* theWrappedObject, QStyleOptionMenuItem*  option, const QAction*  action) const;
    QAction*  insertMenu(QMenuBar* theWrappedObject, QAction*  before, QMenu*  menu);
    QAction*  insertSeparator(QMenuBar* theWrappedObject, QAction*  before);
    bool  isDefaultUp(QMenuBar* theWrappedObject) const;
@@ -1247,8 +1253,6 @@ void delete_QOpenGLFunctions(QOpenGLFunctions* obj) { delete obj; }
    void glBlendEquation(QOpenGLFunctions* theWrappedObject, GLenum  mode);
    void glBlendEquationSeparate(QOpenGLFunctions* theWrappedObject, GLenum  modeRGB, GLenum  modeAlpha);
    void glBlendFuncSeparate(QOpenGLFunctions* theWrappedObject, GLenum  srcRGB, GLenum  dstRGB, GLenum  srcAlpha, GLenum  dstAlpha);
-   void glBufferData(QOpenGLFunctions* theWrappedObject, GLenum  target, int  size, const void*  data, GLenum  usage);
-   void glBufferSubData(QOpenGLFunctions* theWrappedObject, GLenum  target, int  offset, int  size, const void*  data);
    GLenum  glCheckFramebufferStatus(QOpenGLFunctions* theWrappedObject, GLenum  target);
    void glClearDepthf(QOpenGLFunctions* theWrappedObject, GLclampf  depth);
    void glCompileShader(QOpenGLFunctions* theWrappedObject, GLuint  shader);
@@ -1686,6 +1690,7 @@ virtual QPainter*  sharedPainter() const;
 
 class PythonQtPublicPromoter_QPagedPaintDevice : public QPagedPaintDevice
 { public:
+inline bool  promoted_newPage() { return this->newPage(); }
 inline void promoted_setMargins(const QPagedPaintDevice::Margins&  margins) { QPagedPaintDevice::setMargins(margins); }
 inline void promoted_setPageSize(QPagedPaintDevice::PageSize  size) { QPagedPaintDevice::setPageSize(size); }
 inline void promoted_setPageSizeMM(const QSizeF&  size) { QPagedPaintDevice::setPageSizeMM(size); }
@@ -1701,6 +1706,7 @@ public slots:
 QPagedPaintDevice* new_QPagedPaintDevice();
 void delete_QPagedPaintDevice(QPagedPaintDevice* obj) { delete obj; } 
    QPagedPaintDevice::Margins  margins(QPagedPaintDevice* theWrappedObject) const;
+   bool  newPage(QPagedPaintDevice* theWrappedObject);
    QPagedPaintDevice::PageSize  pageSize(QPagedPaintDevice* theWrappedObject) const;
    QSizeF  pageSizeMM(QPagedPaintDevice* theWrappedObject) const;
    void setMargins(QPagedPaintDevice* theWrappedObject, const QPagedPaintDevice::Margins&  margins);
@@ -1769,6 +1775,7 @@ class PythonQtPublicPromoter_QPaintDevice : public QPaintDevice
 inline int  promoted_devType() const { return QPaintDevice::devType(); }
 inline void promoted_initPainter(QPainter*  painter) const { QPaintDevice::initPainter(painter); }
 inline int  promoted_metric(QPaintDevice::PaintDeviceMetric  metric) const { return QPaintDevice::metric(metric); }
+inline QPaintEngine*  promoted_paintEngine() const { return this->paintEngine(); }
 inline QPaintDevice*  promoted_redirected(QPoint*  offset) const { return QPaintDevice::redirected(offset); }
 inline QPainter*  promoted_sharedPainter() const { return QPaintDevice::sharedPainter(); }
 };
@@ -1791,6 +1798,7 @@ void delete_QPaintDevice(QPaintDevice* obj) { delete obj; }
    int  logicalDpiX(QPaintDevice* theWrappedObject) const;
    int  logicalDpiY(QPaintDevice* theWrappedObject) const;
    int  metric(QPaintDevice* theWrappedObject, QPaintDevice::PaintDeviceMetric  metric) const;
+   QPaintEngine*  paintEngine(QPaintDevice* theWrappedObject) const;
    bool  paintingActive(QPaintDevice* theWrappedObject) const;
    int  physicalDpiX(QPaintDevice* theWrappedObject) const;
    int  physicalDpiY(QPaintDevice* theWrappedObject) const;
@@ -1837,6 +1845,7 @@ virtual void updateState(const QPaintEngineState&  state);
 
 class PythonQtPublicPromoter_QPaintEngine : public QPaintEngine
 { public:
+inline bool  promoted_begin(QPaintDevice*  pdev) { return this->begin(pdev); }
 inline QPoint  promoted_coordinateOffset() const { return QPaintEngine::coordinateOffset(); }
 inline void promoted_drawEllipse(const QRect&  r) { QPaintEngine::drawEllipse(r); }
 inline void promoted_drawEllipse(const QRectF&  r) { QPaintEngine::drawEllipse(r); }
@@ -1844,6 +1853,7 @@ inline void promoted_drawImage(const QRectF&  r, const QImage&  pm, const QRectF
 inline void promoted_drawLines(const QLine*  lines, int  lineCount) { QPaintEngine::drawLines(lines, lineCount); }
 inline void promoted_drawLines(const QLineF*  lines, int  lineCount) { QPaintEngine::drawLines(lines, lineCount); }
 inline void promoted_drawPath(const QPainterPath&  path) { QPaintEngine::drawPath(path); }
+inline void promoted_drawPixmap(const QRectF&  r, const QPixmap&  pm, const QRectF&  sr) { this->drawPixmap(r, pm, sr); }
 inline void promoted_drawPoints(const QPoint*  points, int  pointCount) { QPaintEngine::drawPoints(points, pointCount); }
 inline void promoted_drawPoints(const QPointF*  points, int  pointCount) { QPaintEngine::drawPoints(points, pointCount); }
 inline void promoted_drawPolygon(const QPoint*  points, int  pointCount, QPaintEngine::PolygonDrawMode  mode) { QPaintEngine::drawPolygon(points, pointCount, mode); }
@@ -1852,6 +1862,9 @@ inline void promoted_drawRects(const QRect*  rects, int  rectCount) { QPaintEngi
 inline void promoted_drawRects(const QRectF*  rects, int  rectCount) { QPaintEngine::drawRects(rects, rectCount); }
 inline void promoted_drawTextItem(const QPointF&  p, const QTextItem&  textItem) { QPaintEngine::drawTextItem(p, textItem); }
 inline void promoted_drawTiledPixmap(const QRectF&  r, const QPixmap&  pixmap, const QPointF&  s) { QPaintEngine::drawTiledPixmap(r, pixmap, s); }
+inline bool  promoted_end() { return this->end(); }
+inline QPaintEngine::Type  promoted_type() const { return this->type(); }
+inline void promoted_updateState(const QPaintEngineState&  state) { this->updateState(state); }
 };
 
 class PythonQtWrapper_QPaintEngine : public QObject
@@ -1872,6 +1885,7 @@ Q_DECLARE_FLAGS(PaintEngineFeatures, PaintEngineFeature)
 public slots:
 QPaintEngine* new_QPaintEngine(QPaintEngine::PaintEngineFeatures  features = 0);
 void delete_QPaintEngine(QPaintEngine* obj) { delete obj; } 
+   bool  begin(QPaintEngine* theWrappedObject, QPaintDevice*  pdev);
    void clearDirty(QPaintEngine* theWrappedObject, QPaintEngine::DirtyFlags  df);
    QPoint  coordinateOffset(QPaintEngine* theWrappedObject) const;
    void drawEllipse(QPaintEngine* theWrappedObject, const QRect&  r);
@@ -1880,6 +1894,7 @@ void delete_QPaintEngine(QPaintEngine* obj) { delete obj; }
    void drawLines(QPaintEngine* theWrappedObject, const QLine*  lines, int  lineCount);
    void drawLines(QPaintEngine* theWrappedObject, const QLineF*  lines, int  lineCount);
    void drawPath(QPaintEngine* theWrappedObject, const QPainterPath&  path);
+   void drawPixmap(QPaintEngine* theWrappedObject, const QRectF&  r, const QPixmap&  pm, const QRectF&  sr);
    void drawPoints(QPaintEngine* theWrappedObject, const QPoint*  points, int  pointCount);
    void drawPoints(QPaintEngine* theWrappedObject, const QPointF*  points, int  pointCount);
    void drawPolygon(QPaintEngine* theWrappedObject, const QPoint*  points, int  pointCount, QPaintEngine::PolygonDrawMode  mode);
@@ -1888,6 +1903,7 @@ void delete_QPaintEngine(QPaintEngine* obj) { delete obj; }
    void drawRects(QPaintEngine* theWrappedObject, const QRectF*  rects, int  rectCount);
    void drawTextItem(QPaintEngine* theWrappedObject, const QPointF&  p, const QTextItem&  textItem);
    void drawTiledPixmap(QPaintEngine* theWrappedObject, const QRectF&  r, const QPixmap&  pixmap, const QPointF&  s);
+   bool  end(QPaintEngine* theWrappedObject);
    bool  hasFeature(QPaintEngine* theWrappedObject, QPaintEngine::PaintEngineFeatures  feature) const;
    bool  isActive(QPaintEngine* theWrappedObject) const;
    bool  isExtended(QPaintEngine* theWrappedObject) const;
@@ -1901,6 +1917,8 @@ void delete_QPaintEngine(QPaintEngine* obj) { delete obj; }
    QRegion  systemClip(QPaintEngine* theWrappedObject) const;
    QRect  systemRect(QPaintEngine* theWrappedObject) const;
    bool  testDirty(QPaintEngine* theWrappedObject, QPaintEngine::DirtyFlags  df);
+   QPaintEngine::Type  type(QPaintEngine* theWrappedObject) const;
+   void updateState(QPaintEngine* theWrappedObject, const QPaintEngineState&  state);
 };
 
 
