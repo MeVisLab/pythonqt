@@ -2,6 +2,7 @@
 #include <PythonQtConversion.h>
 #include <PythonQtMethodInfo.h>
 #include <PythonQtSignalReceiver.h>
+#include <QGraphicsScene>
 #include <QVariant>
 #include <qaction.h>
 #include <qbackingstore.h>
@@ -569,6 +570,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     }
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
+    if (change0 == QGraphicsItem::ItemParentChange || change0 == QGraphicsItem::ItemSceneChange) {
+      returnValue = value1;
+    } 
     return returnValue;
   } else {
     PyErr_Clear();
@@ -2272,9 +2276,19 @@ QWebHistoryInterface* PythonQtWrapper_QWebHistoryInterface::new_QWebHistoryInter
 { 
 return new PythonQtShell_QWebHistoryInterface(parent); }
 
+void PythonQtWrapper_QWebHistoryInterface::addHistoryEntry(QWebHistoryInterface* theWrappedObject, const QString&  url)
+{
+  ( ((PythonQtPublicPromoter_QWebHistoryInterface*)theWrappedObject)->promoted_addHistoryEntry(url));
+}
+
 QWebHistoryInterface*  PythonQtWrapper_QWebHistoryInterface::static_QWebHistoryInterface_defaultInterface()
 {
   return (QWebHistoryInterface::defaultInterface());
+}
+
+bool  PythonQtWrapper_QWebHistoryInterface::historyContains(QWebHistoryInterface* theWrappedObject, const QString&  url) const
+{
+  return ( ((PythonQtPublicPromoter_QWebHistoryInterface*)theWrappedObject)->promoted_historyContains(url));
 }
 
 void PythonQtWrapper_QWebHistoryInterface::static_QWebHistoryInterface_setDefaultInterface(QWebHistoryInterface*  defaultInterface)
@@ -4533,9 +4547,19 @@ QWebPluginFactory* PythonQtWrapper_QWebPluginFactory::new_QWebPluginFactory(QObj
 { 
 return new PythonQtShell_QWebPluginFactory(parent); }
 
+QObject*  PythonQtWrapper_QWebPluginFactory::create(QWebPluginFactory* theWrappedObject, const QString&  mimeType, const QUrl&  arg__2, const QStringList&  argumentNames, const QStringList&  argumentValues) const
+{
+  return ( ((PythonQtPublicPromoter_QWebPluginFactory*)theWrappedObject)->promoted_create(mimeType, arg__2, argumentNames, argumentValues));
+}
+
 bool  PythonQtWrapper_QWebPluginFactory::extension(QWebPluginFactory* theWrappedObject, QWebPluginFactory::Extension  extension, const QWebPluginFactory::ExtensionOption*  option, QWebPluginFactory::ExtensionReturn*  output)
 {
   return ( ((PythonQtPublicPromoter_QWebPluginFactory*)theWrappedObject)->promoted_extension(extension, option, output));
+}
+
+QList<QWebPluginFactory::Plugin >  PythonQtWrapper_QWebPluginFactory::plugins(QWebPluginFactory* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QWebPluginFactory*)theWrappedObject)->promoted_plugins());
 }
 
 void PythonQtWrapper_QWebPluginFactory::refreshPlugins(QWebPluginFactory* theWrappedObject)

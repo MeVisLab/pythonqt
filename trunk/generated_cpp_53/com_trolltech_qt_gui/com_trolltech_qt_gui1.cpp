@@ -395,7 +395,7 @@ void PythonQtWrapper_QCompleter::setMaxVisibleItems(QCompleter* theWrappedObject
   ( theWrappedObject->setMaxVisibleItems(maxItems));
 }
 
-void PythonQtWrapper_QCompleter::setModel(QCompleter* theWrappedObject, QAbstractItemModel*  c)
+void PythonQtWrapper_QCompleter::setModel(QCompleter* theWrappedObject, PythonQtPassOwnershipToCPP<QAbstractItemModel* >  c)
 {
   ( theWrappedObject->setModel(c));
 }
@@ -405,7 +405,7 @@ void PythonQtWrapper_QCompleter::setModelSorting(QCompleter* theWrappedObject, Q
   ( theWrappedObject->setModelSorting(sorting));
 }
 
-void PythonQtWrapper_QCompleter::setPopup(QCompleter* theWrappedObject, QAbstractItemView*  popup)
+void PythonQtWrapper_QCompleter::setPopup(QCompleter* theWrappedObject, PythonQtPassOwnershipToCPP<QAbstractItemView* >  popup)
 {
   ( theWrappedObject->setPopup(popup));
 }
@@ -3012,6 +3012,10 @@ return new PythonQtShell_QDateTimeEdit(dt, parent); }
 QDateTimeEdit* PythonQtWrapper_QDateTimeEdit::new_QDateTimeEdit(const QTime&  t, QWidget*  parent)
 { 
 return new PythonQtShell_QDateTimeEdit(t, parent); }
+
+QDateTimeEdit* PythonQtWrapper_QDateTimeEdit::new_QDateTimeEdit(const QVariant&  val, QVariant::Type  parserType, QWidget*  parent)
+{ 
+return new PythonQtShell_QDateTimeEdit(val, parserType, parent); }
 
 bool  PythonQtWrapper_QDateTimeEdit::calendarPopup(QDateTimeEdit* theWrappedObject) const
 {
@@ -7566,7 +7570,7 @@ QDialogButtonBox* PythonQtWrapper_QDialogButtonBox::new_QDialogButtonBox(Qt::Ori
 { 
 return new PythonQtShell_QDialogButtonBox(orientation, parent); }
 
-void PythonQtWrapper_QDialogButtonBox::addButton(QDialogButtonBox* theWrappedObject, QAbstractButton*  button, QDialogButtonBox::ButtonRole  role)
+void PythonQtWrapper_QDialogButtonBox::addButton(QDialogButtonBox* theWrappedObject, PythonQtPassOwnershipToCPP<QAbstractButton* >  button, QDialogButtonBox::ButtonRole  role)
 {
   ( theWrappedObject->addButton(button, role));
 }
@@ -7621,7 +7625,7 @@ Qt::Orientation  PythonQtWrapper_QDialogButtonBox::orientation(QDialogButtonBox*
   return ( theWrappedObject->orientation());
 }
 
-void PythonQtWrapper_QDialogButtonBox::removeButton(QDialogButtonBox* theWrappedObject, QAbstractButton*  button)
+void PythonQtWrapper_QDialogButtonBox::removeButton(QDialogButtonBox* theWrappedObject, PythonQtPassOwnershipToPython<QAbstractButton* >  button)
 {
   ( theWrappedObject->removeButton(button));
 }
@@ -11676,7 +11680,7 @@ void PythonQtWrapper_QDrag::setHotSpot(QDrag* theWrappedObject, const QPoint&  h
   ( theWrappedObject->setHotSpot(hotspot));
 }
 
-void PythonQtWrapper_QDrag::setMimeData(QDrag* theWrappedObject, QMimeData*  data)
+void PythonQtWrapper_QDrag::setMimeData(QDrag* theWrappedObject, PythonQtPassOwnershipToCPP<QMimeData* >  data)
 {
   ( theWrappedObject->setMimeData(data));
 }

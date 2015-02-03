@@ -117,6 +117,7 @@ virtual QPainter*  sharedPainter() const;
 class PythonQtPublicPromoter_QPagedPaintDevice : public QPagedPaintDevice
 { public:
 inline QPageLayout&  promoted_devicePageLayout() { return QPagedPaintDevice::devicePageLayout(); }
+inline bool  promoted_newPage() { return this->newPage(); }
 inline void promoted_setMargins(const QPagedPaintDevice::Margins&  margins) { QPagedPaintDevice::setMargins(margins); }
 inline void promoted_setPageSize(QPagedPaintDevice::PageSize  size) { QPagedPaintDevice::setPageSize(size); }
 inline void promoted_setPageSizeMM(const QSizeF&  size) { QPagedPaintDevice::setPageSizeMM(size); }
@@ -133,6 +134,7 @@ QPagedPaintDevice* new_QPagedPaintDevice();
 void delete_QPagedPaintDevice(QPagedPaintDevice* obj) { delete obj; } 
    QPageLayout*  devicePageLayout(QPagedPaintDevice* theWrappedObject);
    QPagedPaintDevice::Margins  margins(QPagedPaintDevice* theWrappedObject) const;
+   bool  newPage(QPagedPaintDevice* theWrappedObject);
    QPageLayout  pageLayout(QPagedPaintDevice* theWrappedObject) const;
    QPagedPaintDevice::PageSize  pageSize(QPagedPaintDevice* theWrappedObject) const;
    QSizeF  pageSizeMM(QPagedPaintDevice* theWrappedObject) const;
@@ -207,6 +209,7 @@ class PythonQtPublicPromoter_QPaintDevice : public QPaintDevice
 inline int  promoted_devType() const { return QPaintDevice::devType(); }
 inline void promoted_initPainter(QPainter*  painter) const { QPaintDevice::initPainter(painter); }
 inline int  promoted_metric(QPaintDevice::PaintDeviceMetric  metric) const { return QPaintDevice::metric(metric); }
+inline QPaintEngine*  promoted_paintEngine() const { return this->paintEngine(); }
 inline QPaintDevice*  promoted_redirected(QPoint*  offset) const { return QPaintDevice::redirected(offset); }
 inline QPainter*  promoted_sharedPainter() const { return QPaintDevice::sharedPainter(); }
 };
@@ -230,6 +233,7 @@ void delete_QPaintDevice(QPaintDevice* obj) { delete obj; }
    int  logicalDpiX(QPaintDevice* theWrappedObject) const;
    int  logicalDpiY(QPaintDevice* theWrappedObject) const;
    int  metric(QPaintDevice* theWrappedObject, QPaintDevice::PaintDeviceMetric  metric) const;
+   QPaintEngine*  paintEngine(QPaintDevice* theWrappedObject) const;
    bool  paintingActive(QPaintDevice* theWrappedObject) const;
    int  physicalDpiX(QPaintDevice* theWrappedObject) const;
    int  physicalDpiY(QPaintDevice* theWrappedObject) const;
@@ -276,6 +280,7 @@ virtual void updateState(const QPaintEngineState&  state);
 
 class PythonQtPublicPromoter_QPaintEngine : public QPaintEngine
 { public:
+inline bool  promoted_begin(QPaintDevice*  pdev) { return this->begin(pdev); }
 inline QPoint  promoted_coordinateOffset() const { return QPaintEngine::coordinateOffset(); }
 inline void promoted_drawEllipse(const QRect&  r) { QPaintEngine::drawEllipse(r); }
 inline void promoted_drawEllipse(const QRectF&  r) { QPaintEngine::drawEllipse(r); }
@@ -283,6 +288,7 @@ inline void promoted_drawImage(const QRectF&  r, const QImage&  pm, const QRectF
 inline void promoted_drawLines(const QLine*  lines, int  lineCount) { QPaintEngine::drawLines(lines, lineCount); }
 inline void promoted_drawLines(const QLineF*  lines, int  lineCount) { QPaintEngine::drawLines(lines, lineCount); }
 inline void promoted_drawPath(const QPainterPath&  path) { QPaintEngine::drawPath(path); }
+inline void promoted_drawPixmap(const QRectF&  r, const QPixmap&  pm, const QRectF&  sr) { this->drawPixmap(r, pm, sr); }
 inline void promoted_drawPoints(const QPoint*  points, int  pointCount) { QPaintEngine::drawPoints(points, pointCount); }
 inline void promoted_drawPoints(const QPointF*  points, int  pointCount) { QPaintEngine::drawPoints(points, pointCount); }
 inline void promoted_drawPolygon(const QPoint*  points, int  pointCount, QPaintEngine::PolygonDrawMode  mode) { QPaintEngine::drawPolygon(points, pointCount, mode); }
@@ -291,6 +297,9 @@ inline void promoted_drawRects(const QRect*  rects, int  rectCount) { QPaintEngi
 inline void promoted_drawRects(const QRectF*  rects, int  rectCount) { QPaintEngine::drawRects(rects, rectCount); }
 inline void promoted_drawTextItem(const QPointF&  p, const QTextItem&  textItem) { QPaintEngine::drawTextItem(p, textItem); }
 inline void promoted_drawTiledPixmap(const QRectF&  r, const QPixmap&  pixmap, const QPointF&  s) { QPaintEngine::drawTiledPixmap(r, pixmap, s); }
+inline bool  promoted_end() { return this->end(); }
+inline QPaintEngine::Type  promoted_type() const { return this->type(); }
+inline void promoted_updateState(const QPaintEngineState&  state) { this->updateState(state); }
 };
 
 class PythonQtWrapper_QPaintEngine : public QObject
@@ -311,6 +320,7 @@ Q_DECLARE_FLAGS(PaintEngineFeatures, PaintEngineFeature)
 public slots:
 QPaintEngine* new_QPaintEngine(QPaintEngine::PaintEngineFeatures  features = 0);
 void delete_QPaintEngine(QPaintEngine* obj) { delete obj; } 
+   bool  begin(QPaintEngine* theWrappedObject, QPaintDevice*  pdev);
    void clearDirty(QPaintEngine* theWrappedObject, QPaintEngine::DirtyFlags  df);
    QPoint  coordinateOffset(QPaintEngine* theWrappedObject) const;
    void drawEllipse(QPaintEngine* theWrappedObject, const QRect&  r);
@@ -319,6 +329,7 @@ void delete_QPaintEngine(QPaintEngine* obj) { delete obj; }
    void drawLines(QPaintEngine* theWrappedObject, const QLine*  lines, int  lineCount);
    void drawLines(QPaintEngine* theWrappedObject, const QLineF*  lines, int  lineCount);
    void drawPath(QPaintEngine* theWrappedObject, const QPainterPath&  path);
+   void drawPixmap(QPaintEngine* theWrappedObject, const QRectF&  r, const QPixmap&  pm, const QRectF&  sr);
    void drawPoints(QPaintEngine* theWrappedObject, const QPoint*  points, int  pointCount);
    void drawPoints(QPaintEngine* theWrappedObject, const QPointF*  points, int  pointCount);
    void drawPolygon(QPaintEngine* theWrappedObject, const QPoint*  points, int  pointCount, QPaintEngine::PolygonDrawMode  mode);
@@ -327,6 +338,7 @@ void delete_QPaintEngine(QPaintEngine* obj) { delete obj; }
    void drawRects(QPaintEngine* theWrappedObject, const QRectF*  rects, int  rectCount);
    void drawTextItem(QPaintEngine* theWrappedObject, const QPointF&  p, const QTextItem&  textItem);
    void drawTiledPixmap(QPaintEngine* theWrappedObject, const QRectF&  r, const QPixmap&  pixmap, const QPointF&  s);
+   bool  end(QPaintEngine* theWrappedObject);
    bool  hasFeature(QPaintEngine* theWrappedObject, QPaintEngine::PaintEngineFeatures  feature) const;
    bool  isActive(QPaintEngine* theWrappedObject) const;
    bool  isExtended(QPaintEngine* theWrappedObject) const;
@@ -340,6 +352,8 @@ void delete_QPaintEngine(QPaintEngine* obj) { delete obj; }
    QRegion  systemClip(QPaintEngine* theWrappedObject) const;
    QRect  systemRect(QPaintEngine* theWrappedObject) const;
    bool  testDirty(QPaintEngine* theWrappedObject, QPaintEngine::DirtyFlags  df);
+   QPaintEngine::Type  type(QPaintEngine* theWrappedObject) const;
+   void updateState(QPaintEngine* theWrappedObject, const QPaintEngineState&  state);
 };
 
 
@@ -1013,6 +1027,7 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QPictureFormatPlugin : public QPictureFormatPlugin
 { public:
+inline bool  promoted_installIOHandler(const QString&  format) { return this->installIOHandler(format); }
 inline bool  promoted_loadPicture(const QString&  format, const QString&  filename, QPicture*  pic) { return QPictureFormatPlugin::loadPicture(format, filename, pic); }
 inline bool  promoted_savePicture(const QString&  format, const QString&  filename, const QPicture&  pic) { return QPictureFormatPlugin::savePicture(format, filename, pic); }
 };
@@ -1023,6 +1038,7 @@ public:
 public slots:
 QPictureFormatPlugin* new_QPictureFormatPlugin(QObject*  parent = 0);
 void delete_QPictureFormatPlugin(QPictureFormatPlugin* obj) { delete obj; } 
+   bool  installIOHandler(QPictureFormatPlugin* theWrappedObject, const QString&  format);
    bool  loadPicture(QPictureFormatPlugin* theWrappedObject, const QString&  format, const QString&  filename, QPicture*  pic);
    bool  savePicture(QPictureFormatPlugin* theWrappedObject, const QString&  format, const QString&  filename, const QPicture&  pic);
 };
@@ -1618,6 +1634,16 @@ virtual void setProperty(QPrintEngine::PrintEnginePropertyKey  key, const QVaria
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QPrintEngine : public QPrintEngine
+{ public:
+inline bool  promoted_abort() { return this->abort(); }
+inline int  promoted_metric(QPaintDevice::PaintDeviceMetric  arg__1) const { return this->metric(arg__1); }
+inline bool  promoted_newPage() { return this->newPage(); }
+inline QPrinter::PrinterState  promoted_printerState() const { return this->printerState(); }
+inline QVariant  promoted_property(QPrintEngine::PrintEnginePropertyKey  key) const { return this->property(key); }
+inline void promoted_setProperty(QPrintEngine::PrintEnginePropertyKey  key, const QVariant&  value) { this->setProperty(key, value); }
+};
+
 class PythonQtWrapper_QPrintEngine : public QObject
 { Q_OBJECT
 public:
@@ -1627,6 +1653,12 @@ enum PrintEnginePropertyKey{
 public slots:
 QPrintEngine* new_QPrintEngine();
 void delete_QPrintEngine(QPrintEngine* obj) { delete obj; } 
+   bool  abort(QPrintEngine* theWrappedObject);
+   int  metric(QPrintEngine* theWrappedObject, QPaintDevice::PaintDeviceMetric  arg__1) const;
+   bool  newPage(QPrintEngine* theWrappedObject);
+   QPrinter::PrinterState  printerState(QPrintEngine* theWrappedObject) const;
+   QVariant  property(QPrintEngine* theWrappedObject, QPrintEngine::PrintEnginePropertyKey  key) const;
+   void setProperty(QPrintEngine* theWrappedObject, QPrintEngine::PrintEnginePropertyKey  key, const QVariant&  value);
 };
 
 

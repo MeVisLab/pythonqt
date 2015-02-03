@@ -461,11 +461,6 @@ QColor  PythonQtWrapper_QColor::static_QColor_fromRgba(unsigned int  rgba)
   return (QColor::fromRgba(rgba));
 }
 
-void PythonQtWrapper_QColor::getCmykF(QColor* theWrappedObject, qreal*  c, qreal*  m, qreal*  y, qreal*  k, qreal*  a)
-{
-  ( theWrappedObject->getCmykF(c, m, y, k, a));
-}
-
 void PythonQtWrapper_QColor::getHsl(QColor* theWrappedObject, int*  h, int*  s, int*  l, int*  a) const
 {
   ( theWrappedObject->getHsl(h, s, l, a));
@@ -474,16 +469,6 @@ void PythonQtWrapper_QColor::getHsl(QColor* theWrappedObject, int*  h, int*  s, 
 void PythonQtWrapper_QColor::getHslF(QColor* theWrappedObject, qreal*  h, qreal*  s, qreal*  l, qreal*  a) const
 {
   ( theWrappedObject->getHslF(h, s, l, a));
-}
-
-void PythonQtWrapper_QColor::getHsvF(QColor* theWrappedObject, qreal*  h, qreal*  s, qreal*  v, qreal*  a) const
-{
-  ( theWrappedObject->getHsvF(h, s, v, a));
-}
-
-void PythonQtWrapper_QColor::getRgbF(QColor* theWrappedObject, qreal*  r, qreal*  g, qreal*  b, qreal*  a) const
-{
-  ( theWrappedObject->getRgbF(r, g, b, a));
 }
 
 int  PythonQtWrapper_QColor::green(QColor* theWrappedObject) const
@@ -1277,7 +1262,7 @@ QIcon* PythonQtWrapper_QIcon::new_QIcon()
 { 
 return new QIcon(); }
 
-QIcon* PythonQtWrapper_QIcon::new_QIcon(QIconEngine*  engine)
+QIcon* PythonQtWrapper_QIcon::new_QIcon(PythonQtPassOwnershipToCPP<QIconEngine* >  engine)
 { 
 return new QIcon(engine); }
 
@@ -2242,11 +2227,6 @@ QPolygonF  PythonQtWrapper_QMatrix::map(QMatrix* theWrappedObject, const QPolygo
 QRegion  PythonQtWrapper_QMatrix::map(QMatrix* theWrappedObject, const QRegion&  r) const
 {
   return ( theWrappedObject->map(r));
-}
-
-void PythonQtWrapper_QMatrix::map(QMatrix* theWrappedObject, qreal  x, qreal  y, qreal*  tx, qreal*  ty) const
-{
-  ( theWrappedObject->map(x, y, tx, ty));
 }
 
 QRect  PythonQtWrapper_QMatrix::mapRect(QMatrix* theWrappedObject, const QRect&  arg__1) const

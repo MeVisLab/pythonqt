@@ -179,9 +179,9 @@ QGLContext* new_QGLContext(const QGLFormat&  format);
 QGLContext* new_QGLContext(const QGLFormat&  format, QPaintDevice*  device);
 void delete_QGLContext(QGLContext* obj) { delete obj; } 
    bool  static_QGLContext_areSharing(const QGLContext*  context1, const QGLContext*  context2);
-   GLuint  bindTexture(QGLContext* theWrappedObject, const QImage&  image, GLenum  target = 0x0DE1, GLint  format = 0x1908);
+   GLuint  bindTexture(QGLContext* theWrappedObject, const QImage&  image, GLenum  target = GL_TEXTURE_2D, GLint  format = GL_RGBA);
    GLuint  bindTexture(QGLContext* theWrappedObject, const QImage&  image, GLenum  target, GLint  format, QGLContext::BindOptions  options);
-   GLuint  bindTexture(QGLContext* theWrappedObject, const QPixmap&  pixmap, GLenum  target = 0x0DE1, GLint  format = 0x1908);
+   GLuint  bindTexture(QGLContext* theWrappedObject, const QPixmap&  pixmap, GLenum  target = GL_TEXTURE_2D, GLint  format = GL_RGBA);
    GLuint  bindTexture(QGLContext* theWrappedObject, const QPixmap&  pixmap, GLenum  target, GLint  format, QGLContext::BindOptions  options);
    GLuint  bindTexture(QGLContext* theWrappedObject, const QString&  fileName);
    bool  chooseContext(QGLContext* theWrappedObject, const QGLContext*  shareContext = 0);
@@ -193,8 +193,8 @@ void delete_QGLContext(QGLContext* obj) { delete obj; }
    QPaintDevice*  device(QGLContext* theWrappedObject) const;
    bool  deviceIsPixmap(QGLContext* theWrappedObject) const;
    void doneCurrent(QGLContext* theWrappedObject);
-   void drawTexture(QGLContext* theWrappedObject, const QPointF&  point, GLuint  textureId, GLenum  textureTarget = 0x0DE1);
-   void drawTexture(QGLContext* theWrappedObject, const QRectF&  target, GLuint  textureId, GLenum  textureTarget = 0x0DE1);
+   void drawTexture(QGLContext* theWrappedObject, const QPointF&  point, GLuint  textureId, GLenum  textureTarget = GL_TEXTURE_2D);
+   void drawTexture(QGLContext* theWrappedObject, const QRectF&  target, GLuint  textureId, GLenum  textureTarget = GL_TEXTURE_2D);
    QGLFormat  format(QGLContext* theWrappedObject) const;
    QGLContext*  static_QGLContext_fromOpenGLContext(QOpenGLContext*  platformContext);
    QGLFunctions*  functions(QGLContext* theWrappedObject) const;
@@ -302,11 +302,11 @@ void delete_QGLFormat(QGLFormat* obj) { delete obj; }
 class PythonQtShell_QGLFramebufferObject : public QGLFramebufferObject
 {
 public:
-    PythonQtShell_QGLFramebufferObject(const QSize&  size, GLenum  target = 0x0DE1):QGLFramebufferObject(size, target),_wrapper(NULL) {};
-    PythonQtShell_QGLFramebufferObject(const QSize&  size, QGLFramebufferObject::Attachment  attachment, GLenum  target = 0x0DE1, GLenum  internal_format = 0):QGLFramebufferObject(size, attachment, target, internal_format),_wrapper(NULL) {};
+    PythonQtShell_QGLFramebufferObject(const QSize&  size, GLenum  target = GL_TEXTURE_2D):QGLFramebufferObject(size, target),_wrapper(NULL) {};
+    PythonQtShell_QGLFramebufferObject(const QSize&  size, QGLFramebufferObject::Attachment  attachment, GLenum  target = GL_TEXTURE_2D, GLenum  internal_format = 0):QGLFramebufferObject(size, attachment, target, internal_format),_wrapper(NULL) {};
     PythonQtShell_QGLFramebufferObject(const QSize&  size, const QGLFramebufferObjectFormat&  format):QGLFramebufferObject(size, format),_wrapper(NULL) {};
-    PythonQtShell_QGLFramebufferObject(int  width, int  height, GLenum  target = 0x0DE1):QGLFramebufferObject(width, height, target),_wrapper(NULL) {};
-    PythonQtShell_QGLFramebufferObject(int  width, int  height, QGLFramebufferObject::Attachment  attachment, GLenum  target = 0x0DE1, GLenum  internal_format = 0):QGLFramebufferObject(width, height, attachment, target, internal_format),_wrapper(NULL) {};
+    PythonQtShell_QGLFramebufferObject(int  width, int  height, GLenum  target = GL_TEXTURE_2D):QGLFramebufferObject(width, height, target),_wrapper(NULL) {};
+    PythonQtShell_QGLFramebufferObject(int  width, int  height, QGLFramebufferObject::Attachment  attachment, GLenum  target = GL_TEXTURE_2D, GLenum  internal_format = 0):QGLFramebufferObject(width, height, attachment, target, internal_format),_wrapper(NULL) {};
     PythonQtShell_QGLFramebufferObject(int  width, int  height, const QGLFramebufferObjectFormat&  format):QGLFramebufferObject(width, height, format),_wrapper(NULL) {};
 
    ~PythonQtShell_QGLFramebufferObject();
@@ -335,20 +335,20 @@ Q_ENUMS(Attachment )
 enum Attachment{
   NoAttachment = QGLFramebufferObject::NoAttachment,   CombinedDepthStencil = QGLFramebufferObject::CombinedDepthStencil,   Depth = QGLFramebufferObject::Depth};
 public slots:
-QGLFramebufferObject* new_QGLFramebufferObject(const QSize&  size, GLenum  target = 0x0DE1);
-QGLFramebufferObject* new_QGLFramebufferObject(const QSize&  size, QGLFramebufferObject::Attachment  attachment, GLenum  target = 0x0DE1, GLenum  internal_format = 0);
+QGLFramebufferObject* new_QGLFramebufferObject(const QSize&  size, GLenum  target = GL_TEXTURE_2D);
+QGLFramebufferObject* new_QGLFramebufferObject(const QSize&  size, QGLFramebufferObject::Attachment  attachment, GLenum  target = GL_TEXTURE_2D, GLenum  internal_format = 0);
 QGLFramebufferObject* new_QGLFramebufferObject(const QSize&  size, const QGLFramebufferObjectFormat&  format);
-QGLFramebufferObject* new_QGLFramebufferObject(int  width, int  height, GLenum  target = 0x0DE1);
-QGLFramebufferObject* new_QGLFramebufferObject(int  width, int  height, QGLFramebufferObject::Attachment  attachment, GLenum  target = 0x0DE1, GLenum  internal_format = 0);
+QGLFramebufferObject* new_QGLFramebufferObject(int  width, int  height, GLenum  target = GL_TEXTURE_2D);
+QGLFramebufferObject* new_QGLFramebufferObject(int  width, int  height, QGLFramebufferObject::Attachment  attachment, GLenum  target = GL_TEXTURE_2D, GLenum  internal_format = 0);
 QGLFramebufferObject* new_QGLFramebufferObject(int  width, int  height, const QGLFramebufferObjectFormat&  format);
 void delete_QGLFramebufferObject(QGLFramebufferObject* obj) { delete obj; } 
    QGLFramebufferObject::Attachment  attachment(QGLFramebufferObject* theWrappedObject) const;
    bool  bind(QGLFramebufferObject* theWrappedObject);
    bool  static_QGLFramebufferObject_bindDefault();
-   void static_QGLFramebufferObject_blitFramebuffer(QGLFramebufferObject*  target, const QRect&  targetRect, QGLFramebufferObject*  source, const QRect&  sourceRect, GLbitfield  buffers = 0x00004000, GLenum  filter = 0x2600);
+   void static_QGLFramebufferObject_blitFramebuffer(QGLFramebufferObject*  target, const QRect&  targetRect, QGLFramebufferObject*  source, const QRect&  sourceRect, GLbitfield  buffers = GL_COLOR_BUFFER_BIT, GLenum  filter = GL_NEAREST);
    int  devType(QGLFramebufferObject* theWrappedObject) const;
-   void drawTexture(QGLFramebufferObject* theWrappedObject, const QPointF&  point, GLuint  textureId, GLenum  textureTarget = 0x0DE1);
-   void drawTexture(QGLFramebufferObject* theWrappedObject, const QRectF&  target, GLuint  textureId, GLenum  textureTarget = 0x0DE1);
+   void drawTexture(QGLFramebufferObject* theWrappedObject, const QPointF&  point, GLuint  textureId, GLenum  textureTarget = GL_TEXTURE_2D);
+   void drawTexture(QGLFramebufferObject* theWrappedObject, const QRectF&  target, GLuint  textureId, GLenum  textureTarget = GL_TEXTURE_2D);
    QGLFramebufferObjectFormat  format(QGLFramebufferObject* theWrappedObject) const;
    GLuint  handle(QGLFramebufferObject* theWrappedObject) const;
    bool  static_QGLFramebufferObject_hasOpenGLFramebufferBlit();
@@ -854,9 +854,9 @@ QGLWidget* new_QGLWidget(QWidget*  parent = 0, const QGLWidget*  shareWidget = 0
 QGLWidget* new_QGLWidget(const QGLFormat&  format, QWidget*  parent = 0, const QGLWidget*  shareWidget = 0, Qt::WindowFlags  f = 0);
 void delete_QGLWidget(QGLWidget* obj) { delete obj; } 
    bool  autoBufferSwap(QGLWidget* theWrappedObject) const;
-   GLuint  bindTexture(QGLWidget* theWrappedObject, const QImage&  image, GLenum  target = 0x0DE1, GLint  format = 0x1908);
+   GLuint  bindTexture(QGLWidget* theWrappedObject, const QImage&  image, GLenum  target = GL_TEXTURE_2D, GLint  format = GL_RGBA);
    GLuint  bindTexture(QGLWidget* theWrappedObject, const QImage&  image, GLenum  target, GLint  format, QGLContext::BindOptions  options);
-   GLuint  bindTexture(QGLWidget* theWrappedObject, const QPixmap&  pixmap, GLenum  target = 0x0DE1, GLint  format = 0x1908);
+   GLuint  bindTexture(QGLWidget* theWrappedObject, const QPixmap&  pixmap, GLenum  target = GL_TEXTURE_2D, GLint  format = GL_RGBA);
    GLuint  bindTexture(QGLWidget* theWrappedObject, const QPixmap&  pixmap, GLenum  target, GLint  format, QGLContext::BindOptions  options);
    GLuint  bindTexture(QGLWidget* theWrappedObject, const QString&  fileName);
    const QGLColormap*  colormap(QGLWidget* theWrappedObject) const;
@@ -865,8 +865,8 @@ void delete_QGLWidget(QGLWidget* obj) { delete obj; }
    void deleteTexture(QGLWidget* theWrappedObject, GLuint  tx_id);
    void doneCurrent(QGLWidget* theWrappedObject);
    bool  doubleBuffer(QGLWidget* theWrappedObject) const;
-   void drawTexture(QGLWidget* theWrappedObject, const QPointF&  point, GLuint  textureId, GLenum  textureTarget = 0x0DE1);
-   void drawTexture(QGLWidget* theWrappedObject, const QRectF&  target, GLuint  textureId, GLenum  textureTarget = 0x0DE1);
+   void drawTexture(QGLWidget* theWrappedObject, const QPointF&  point, GLuint  textureId, GLenum  textureTarget = GL_TEXTURE_2D);
+   void drawTexture(QGLWidget* theWrappedObject, const QRectF&  target, GLuint  textureId, GLenum  textureTarget = GL_TEXTURE_2D);
    bool  event(QGLWidget* theWrappedObject, QEvent*  arg__1);
    QGLFormat  format(QGLWidget* theWrappedObject) const;
    void glDraw(QGLWidget* theWrappedObject);

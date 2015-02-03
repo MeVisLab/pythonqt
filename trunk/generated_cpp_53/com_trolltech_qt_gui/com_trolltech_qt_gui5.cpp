@@ -8144,16 +8144,6 @@ void PythonQtWrapper_QOpenGLFunctions::glBlendFuncSeparate(QOpenGLFunctions* the
   ( theWrappedObject->glBlendFuncSeparate(srcRGB, dstRGB, srcAlpha, dstAlpha));
 }
 
-void PythonQtWrapper_QOpenGLFunctions::glBufferData(QOpenGLFunctions* theWrappedObject, GLenum  target, int  size, const void*  data, GLenum  usage)
-{
-  ( theWrappedObject->glBufferData(target, size, data, usage));
-}
-
-void PythonQtWrapper_QOpenGLFunctions::glBufferSubData(QOpenGLFunctions* theWrappedObject, GLenum  target, int  offset, int  size, const void*  data)
-{
-  ( theWrappedObject->glBufferSubData(target, offset, size, data));
-}
-
 GLenum  PythonQtWrapper_QOpenGLFunctions::glCheckFramebufferStatus(QOpenGLFunctions* theWrappedObject, GLenum  target)
 {
   return ( theWrappedObject->glCheckFramebufferStatus(target));

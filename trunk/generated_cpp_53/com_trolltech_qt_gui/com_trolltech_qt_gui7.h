@@ -846,7 +846,7 @@ void delete_QScrollArea(QScrollArea* obj) { delete obj; }
    void resizeEvent(QScrollArea* theWrappedObject, QResizeEvent*  arg__1);
    void scrollContentsBy(QScrollArea* theWrappedObject, int  dx, int  dy);
    void setAlignment(QScrollArea* theWrappedObject, Qt::Alignment  arg__1);
-   void setWidget(QScrollArea* theWrappedObject, QWidget*  widget);
+   void setWidget(QScrollArea* theWrappedObject, PythonQtPassOwnershipToCPP<QWidget* >  widget);
    void setWidgetResizable(QScrollArea* theWrappedObject, bool  resizable);
    QSize  sizeHint(QScrollArea* theWrappedObject) const;
    QWidget*  takeWidget(QScrollArea* theWrappedObject);
@@ -1871,7 +1871,7 @@ public slots:
 QSplitter* new_QSplitter(QWidget*  parent = 0);
 QSplitter* new_QSplitter(Qt::Orientation  arg__1, QWidget*  parent = 0);
 void delete_QSplitter(QSplitter* obj) { delete obj; } 
-   void addWidget(QSplitter* theWrappedObject, QWidget*  widget);
+   void addWidget(QSplitter* theWrappedObject, PythonQtPassOwnershipToCPP<QWidget* >  widget);
    void changeEvent(QSplitter* theWrappedObject, QEvent*  arg__1);
    void childEvent(QSplitter* theWrappedObject, QChildEvent*  arg__1);
    bool  childrenCollapsible(QSplitter* theWrappedObject) const;
@@ -1882,7 +1882,7 @@ void delete_QSplitter(QSplitter* obj) { delete obj; }
    QSplitterHandle*  handle(QSplitter* theWrappedObject, int  index) const;
    int  handleWidth(QSplitter* theWrappedObject) const;
    int  indexOf(QSplitter* theWrappedObject, QWidget*  w) const;
-   void insertWidget(QSplitter* theWrappedObject, int  index, QWidget*  widget);
+   void insertWidget(QSplitter* theWrappedObject, int  index, PythonQtPassOwnershipToCPP<QWidget* >  widget);
    bool  isCollapsible(QSplitter* theWrappedObject, int  index) const;
    QSize  minimumSizeHint(QSplitter* theWrappedObject) const;
    void moveSplitter(QSplitter* theWrappedObject, int  pos, int  index);

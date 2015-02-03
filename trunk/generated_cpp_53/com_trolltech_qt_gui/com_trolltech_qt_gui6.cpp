@@ -362,6 +362,11 @@ QPagedPaintDevice::Margins  PythonQtWrapper_QPagedPaintDevice::margins(QPagedPai
   return ( theWrappedObject->margins());
 }
 
+bool  PythonQtWrapper_QPagedPaintDevice::newPage(QPagedPaintDevice* theWrappedObject)
+{
+  return ( ((PythonQtPublicPromoter_QPagedPaintDevice*)theWrappedObject)->promoted_newPage());
+}
+
 QPageLayout  PythonQtWrapper_QPagedPaintDevice::pageLayout(QPagedPaintDevice* theWrappedObject) const
 {
   return ( theWrappedObject->pageLayout());
@@ -654,6 +659,11 @@ int  PythonQtWrapper_QPaintDevice::logicalDpiY(QPaintDevice* theWrappedObject) c
 int  PythonQtWrapper_QPaintDevice::metric(QPaintDevice* theWrappedObject, QPaintDevice::PaintDeviceMetric  metric) const
 {
   return ( ((PythonQtPublicPromoter_QPaintDevice*)theWrappedObject)->promoted_metric(metric));
+}
+
+QPaintEngine*  PythonQtWrapper_QPaintDevice::paintEngine(QPaintDevice* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QPaintDevice*)theWrappedObject)->promoted_paintEngine());
 }
 
 bool  PythonQtWrapper_QPaintDevice::paintingActive(QPaintDevice* theWrappedObject) const
@@ -1125,6 +1135,11 @@ QPaintEngine* PythonQtWrapper_QPaintEngine::new_QPaintEngine(QPaintEngine::Paint
 { 
 return new PythonQtShell_QPaintEngine(features); }
 
+bool  PythonQtWrapper_QPaintEngine::begin(QPaintEngine* theWrappedObject, QPaintDevice*  pdev)
+{
+  return ( ((PythonQtPublicPromoter_QPaintEngine*)theWrappedObject)->promoted_begin(pdev));
+}
+
 void PythonQtWrapper_QPaintEngine::clearDirty(QPaintEngine* theWrappedObject, QPaintEngine::DirtyFlags  df)
 {
   ( theWrappedObject->clearDirty(df));
@@ -1165,6 +1180,11 @@ void PythonQtWrapper_QPaintEngine::drawPath(QPaintEngine* theWrappedObject, cons
   ( ((PythonQtPublicPromoter_QPaintEngine*)theWrappedObject)->promoted_drawPath(path));
 }
 
+void PythonQtWrapper_QPaintEngine::drawPixmap(QPaintEngine* theWrappedObject, const QRectF&  r, const QPixmap&  pm, const QRectF&  sr)
+{
+  ( ((PythonQtPublicPromoter_QPaintEngine*)theWrappedObject)->promoted_drawPixmap(r, pm, sr));
+}
+
 void PythonQtWrapper_QPaintEngine::drawPoints(QPaintEngine* theWrappedObject, const QPoint*  points, int  pointCount)
 {
   ( ((PythonQtPublicPromoter_QPaintEngine*)theWrappedObject)->promoted_drawPoints(points, pointCount));
@@ -1203,6 +1223,11 @@ void PythonQtWrapper_QPaintEngine::drawTextItem(QPaintEngine* theWrappedObject, 
 void PythonQtWrapper_QPaintEngine::drawTiledPixmap(QPaintEngine* theWrappedObject, const QRectF&  r, const QPixmap&  pixmap, const QPointF&  s)
 {
   ( ((PythonQtPublicPromoter_QPaintEngine*)theWrappedObject)->promoted_drawTiledPixmap(r, pixmap, s));
+}
+
+bool  PythonQtWrapper_QPaintEngine::end(QPaintEngine* theWrappedObject)
+{
+  return ( ((PythonQtPublicPromoter_QPaintEngine*)theWrappedObject)->promoted_end());
 }
 
 bool  PythonQtWrapper_QPaintEngine::hasFeature(QPaintEngine* theWrappedObject, QPaintEngine::PaintEngineFeatures  feature) const
@@ -1268,6 +1293,16 @@ QRect  PythonQtWrapper_QPaintEngine::systemRect(QPaintEngine* theWrappedObject) 
 bool  PythonQtWrapper_QPaintEngine::testDirty(QPaintEngine* theWrappedObject, QPaintEngine::DirtyFlags  df)
 {
   return ( theWrappedObject->testDirty(df));
+}
+
+QPaintEngine::Type  PythonQtWrapper_QPaintEngine::type(QPaintEngine* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QPaintEngine*)theWrappedObject)->promoted_type());
+}
+
+void PythonQtWrapper_QPaintEngine::updateState(QPaintEngine* theWrappedObject, const QPaintEngineState&  state)
+{
+  ( ((PythonQtPublicPromoter_QPaintEngine*)theWrappedObject)->promoted_updateState(state));
 }
 
 
@@ -4017,6 +4052,11 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 QPictureFormatPlugin* PythonQtWrapper_QPictureFormatPlugin::new_QPictureFormatPlugin(QObject*  parent)
 { 
 return new PythonQtShell_QPictureFormatPlugin(parent); }
+
+bool  PythonQtWrapper_QPictureFormatPlugin::installIOHandler(QPictureFormatPlugin* theWrappedObject, const QString&  format)
+{
+  return ( ((PythonQtPublicPromoter_QPictureFormatPlugin*)theWrappedObject)->promoted_installIOHandler(format));
+}
 
 bool  PythonQtWrapper_QPictureFormatPlugin::loadPicture(QPictureFormatPlugin* theWrappedObject, const QString&  format, const QString&  filename, QPicture*  pic)
 {
@@ -8122,6 +8162,36 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 QPrintEngine* PythonQtWrapper_QPrintEngine::new_QPrintEngine()
 { 
 return new PythonQtShell_QPrintEngine(); }
+
+bool  PythonQtWrapper_QPrintEngine::abort(QPrintEngine* theWrappedObject)
+{
+  return ( ((PythonQtPublicPromoter_QPrintEngine*)theWrappedObject)->promoted_abort());
+}
+
+int  PythonQtWrapper_QPrintEngine::metric(QPrintEngine* theWrappedObject, QPaintDevice::PaintDeviceMetric  arg__1) const
+{
+  return ( ((PythonQtPublicPromoter_QPrintEngine*)theWrappedObject)->promoted_metric(arg__1));
+}
+
+bool  PythonQtWrapper_QPrintEngine::newPage(QPrintEngine* theWrappedObject)
+{
+  return ( ((PythonQtPublicPromoter_QPrintEngine*)theWrappedObject)->promoted_newPage());
+}
+
+QPrinter::PrinterState  PythonQtWrapper_QPrintEngine::printerState(QPrintEngine* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QPrintEngine*)theWrappedObject)->promoted_printerState());
+}
+
+QVariant  PythonQtWrapper_QPrintEngine::property(QPrintEngine* theWrappedObject, QPrintEngine::PrintEnginePropertyKey  key) const
+{
+  return ( ((PythonQtPublicPromoter_QPrintEngine*)theWrappedObject)->promoted_property(key));
+}
+
+void PythonQtWrapper_QPrintEngine::setProperty(QPrintEngine* theWrappedObject, QPrintEngine::PrintEnginePropertyKey  key, const QVariant&  value)
+{
+  ( ((PythonQtPublicPromoter_QPrintEngine*)theWrappedObject)->promoted_setProperty(key, value));
+}
 
 
 

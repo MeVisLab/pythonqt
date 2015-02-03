@@ -512,6 +512,11 @@ virtual void run();
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QRunnable : public QRunnable
+{ public:
+inline void promoted_run() { this->run(); }
+};
+
 class PythonQtWrapper_QRunnable : public QObject
 { Q_OBJECT
 public:
@@ -519,6 +524,7 @@ public slots:
 QRunnable* new_QRunnable();
 void delete_QRunnable(QRunnable* obj) { delete obj; } 
    bool  autoDelete(QRunnable* theWrappedObject) const;
+   void run(QRunnable* theWrappedObject);
    void setAutoDelete(QRunnable* theWrappedObject, bool  _autoDelete);
 };
 
@@ -952,8 +958,8 @@ public slots:
 QState* new_QState(QState*  parent = 0);
 QState* new_QState(QState::ChildMode  childMode, QState*  parent = 0);
 void delete_QState(QState* obj) { delete obj; } 
-   QAbstractTransition*  addTransition(QState* theWrappedObject, QAbstractState*  target);
-   void addTransition(QState* theWrappedObject, QAbstractTransition*  transition);
+   QAbstractTransition*  addTransition(QState* theWrappedObject, PythonQtPassOwnershipToCPP<QAbstractState* >  target);
+   void addTransition(QState* theWrappedObject, PythonQtPassOwnershipToCPP<QAbstractTransition* >  transition);
    QSignalTransition*  addTransition(QState* theWrappedObject, const QObject*  sender, const char*  signal, QAbstractState*  target);
    void assignProperty(QState* theWrappedObject, QObject*  object, const char*  name, const QVariant&  value);
    QState::ChildMode  childMode(QState* theWrappedObject) const;
@@ -962,7 +968,7 @@ void delete_QState(QState* obj) { delete obj; }
    QAbstractState*  initialState(QState* theWrappedObject) const;
    void onEntry(QState* theWrappedObject, QEvent*  event);
    void onExit(QState* theWrappedObject, QEvent*  event);
-   void removeTransition(QState* theWrappedObject, QAbstractTransition*  transition);
+   void removeTransition(QState* theWrappedObject, PythonQtPassOwnershipToPython<QAbstractTransition* >  transition);
    void setChildMode(QState* theWrappedObject, QState::ChildMode  mode);
    void setErrorState(QState* theWrappedObject, QAbstractState*  state);
    void setInitialState(QState* theWrappedObject, QAbstractState*  state);
@@ -1021,7 +1027,7 @@ QStateMachine* new_QStateMachine(QObject*  parent = 0);
 QStateMachine* new_QStateMachine(QState::ChildMode  childMode, QObject*  parent = 0);
 void delete_QStateMachine(QStateMachine* obj) { delete obj; } 
    void addDefaultAnimation(QStateMachine* theWrappedObject, QAbstractAnimation*  animation);
-   void addState(QStateMachine* theWrappedObject, QAbstractState*  state);
+   void addState(QStateMachine* theWrappedObject, PythonQtPassOwnershipToCPP<QAbstractState* >  state);
    void beginMicrostep(QStateMachine* theWrappedObject, QEvent*  event);
    void beginSelectTransitions(QStateMachine* theWrappedObject, QEvent*  event);
    bool  cancelDelayedEvent(QStateMachine* theWrappedObject, int  id);
@@ -1042,7 +1048,7 @@ void delete_QStateMachine(QStateMachine* obj) { delete obj; }
    int  postDelayedEvent(QStateMachine* theWrappedObject, QEvent*  event, int  delay);
    void postEvent(QStateMachine* theWrappedObject, QEvent*  event, QStateMachine::EventPriority  priority = QStateMachine::NormalPriority);
    void removeDefaultAnimation(QStateMachine* theWrappedObject, QAbstractAnimation*  animation);
-   void removeState(QStateMachine* theWrappedObject, QAbstractState*  state);
+   void removeState(QStateMachine* theWrappedObject, PythonQtPassOwnershipToPython<QAbstractState* >  state);
    void setAnimated(QStateMachine* theWrappedObject, bool  enabled);
    void setGlobalRestorePolicy(QStateMachine* theWrappedObject, QState::RestorePolicy  restorePolicy);
 };

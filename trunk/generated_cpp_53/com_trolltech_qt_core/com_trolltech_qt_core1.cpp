@@ -1436,6 +1436,11 @@ QByteArray  PythonQtWrapper_QIODevice::readAll(QIODevice* theWrappedObject)
   return ( theWrappedObject->readAll());
 }
 
+qint64  PythonQtWrapper_QIODevice::readData(QIODevice* theWrappedObject, char*  data, qint64  maxlen)
+{
+  return ( ((PythonQtPublicPromoter_QIODevice*)theWrappedObject)->promoted_readData(data, maxlen));
+}
+
 QByteArray  PythonQtWrapper_QIODevice::readLine(QIODevice* theWrappedObject, qint64  maxlen)
 {
   return ( theWrappedObject->readLine(maxlen));
@@ -1499,6 +1504,11 @@ qint64  PythonQtWrapper_QIODevice::write(QIODevice* theWrappedObject, const QByt
 qint64  PythonQtWrapper_QIODevice::write(QIODevice* theWrappedObject, const char*  data)
 {
   return ( theWrappedObject->write(data));
+}
+
+qint64  PythonQtWrapper_QIODevice::writeData(QIODevice* theWrappedObject, const char*  data, qint64  len)
+{
+  return ( ((PythonQtPublicPromoter_QIODevice*)theWrappedObject)->promoted_writeData(data, len));
 }
 
 

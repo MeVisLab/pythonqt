@@ -3,6 +3,7 @@
 #include "com_trolltech_qt_svg0.h"
 
 
+
 void PythonQt_init_QtSvg(PyObject* module) {
 PythonQt::priv()->registerClass(&QGraphicsSvgItem::staticMetaObject, "QtSvg", PythonQtCreateObject<PythonQtWrapper_QGraphicsSvgItem>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QGraphicsSvgItem>, module, 0);
 PythonQt::priv()->registerCPPClass("QSvgGenerator", "", "QtSvg", PythonQtCreateObject<PythonQtWrapper_QSvgGenerator>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSvgGenerator>, module, 0);

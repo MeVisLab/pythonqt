@@ -2253,32 +2253,32 @@ void PythonQtWrapper_QFormLayout::addItem(QFormLayout* theWrappedObject, QLayout
   ( ((PythonQtPublicPromoter_QFormLayout*)theWrappedObject)->promoted_addItem(item));
 }
 
-void PythonQtWrapper_QFormLayout::addRow(QFormLayout* theWrappedObject, QLayout*  layout)
+void PythonQtWrapper_QFormLayout::addRow(QFormLayout* theWrappedObject, PythonQtPassOwnershipToCPP<QLayout* >  layout)
 {
   ( theWrappedObject->addRow(layout));
 }
 
-void PythonQtWrapper_QFormLayout::addRow(QFormLayout* theWrappedObject, QWidget*  label, QLayout*  field)
+void PythonQtWrapper_QFormLayout::addRow(QFormLayout* theWrappedObject, PythonQtPassOwnershipToCPP<QWidget* >  label, PythonQtPassOwnershipToCPP<QLayout* >  field)
 {
   ( theWrappedObject->addRow(label, field));
 }
 
-void PythonQtWrapper_QFormLayout::addRow(QFormLayout* theWrappedObject, QWidget*  label, QWidget*  field)
+void PythonQtWrapper_QFormLayout::addRow(QFormLayout* theWrappedObject, PythonQtPassOwnershipToCPP<QWidget* >  label, PythonQtPassOwnershipToCPP<QWidget* >  field)
 {
   ( theWrappedObject->addRow(label, field));
 }
 
-void PythonQtWrapper_QFormLayout::addRow(QFormLayout* theWrappedObject, QWidget*  widget)
+void PythonQtWrapper_QFormLayout::addRow(QFormLayout* theWrappedObject, PythonQtPassOwnershipToCPP<QWidget* >  widget)
 {
   ( theWrappedObject->addRow(widget));
 }
 
-void PythonQtWrapper_QFormLayout::addRow(QFormLayout* theWrappedObject, const QString&  labelText, QLayout*  field)
+void PythonQtWrapper_QFormLayout::addRow(QFormLayout* theWrappedObject, const QString&  labelText, PythonQtPassOwnershipToCPP<QLayout* >  field)
 {
   ( theWrappedObject->addRow(labelText, field));
 }
 
-void PythonQtWrapper_QFormLayout::addRow(QFormLayout* theWrappedObject, const QString&  labelText, QWidget*  field)
+void PythonQtWrapper_QFormLayout::addRow(QFormLayout* theWrappedObject, const QString&  labelText, PythonQtPassOwnershipToCPP<QWidget* >  field)
 {
   ( theWrappedObject->addRow(labelText, field));
 }
@@ -2333,32 +2333,32 @@ int  PythonQtWrapper_QFormLayout::horizontalSpacing(QFormLayout* theWrappedObjec
   return ( theWrappedObject->horizontalSpacing());
 }
 
-void PythonQtWrapper_QFormLayout::insertRow(QFormLayout* theWrappedObject, int  row, QLayout*  layout)
+void PythonQtWrapper_QFormLayout::insertRow(QFormLayout* theWrappedObject, int  row, PythonQtPassOwnershipToCPP<QLayout* >  layout)
 {
   ( theWrappedObject->insertRow(row, layout));
 }
 
-void PythonQtWrapper_QFormLayout::insertRow(QFormLayout* theWrappedObject, int  row, QWidget*  label, QLayout*  field)
+void PythonQtWrapper_QFormLayout::insertRow(QFormLayout* theWrappedObject, int  row, PythonQtPassOwnershipToCPP<QWidget* >  label, PythonQtPassOwnershipToCPP<QLayout* >  field)
 {
   ( theWrappedObject->insertRow(row, label, field));
 }
 
-void PythonQtWrapper_QFormLayout::insertRow(QFormLayout* theWrappedObject, int  row, QWidget*  label, QWidget*  field)
+void PythonQtWrapper_QFormLayout::insertRow(QFormLayout* theWrappedObject, int  row, PythonQtPassOwnershipToCPP<QWidget* >  label, PythonQtPassOwnershipToCPP<QWidget* >  field)
 {
   ( theWrappedObject->insertRow(row, label, field));
 }
 
-void PythonQtWrapper_QFormLayout::insertRow(QFormLayout* theWrappedObject, int  row, QWidget*  widget)
+void PythonQtWrapper_QFormLayout::insertRow(QFormLayout* theWrappedObject, int  row, PythonQtPassOwnershipToCPP<QWidget* >  widget)
 {
   ( theWrappedObject->insertRow(row, widget));
 }
 
-void PythonQtWrapper_QFormLayout::insertRow(QFormLayout* theWrappedObject, int  row, const QString&  labelText, QLayout*  field)
+void PythonQtWrapper_QFormLayout::insertRow(QFormLayout* theWrappedObject, int  row, const QString&  labelText, PythonQtPassOwnershipToCPP<QLayout* >  field)
 {
   ( theWrappedObject->insertRow(row, labelText, field));
 }
 
-void PythonQtWrapper_QFormLayout::insertRow(QFormLayout* theWrappedObject, int  row, const QString&  labelText, QWidget*  field)
+void PythonQtWrapper_QFormLayout::insertRow(QFormLayout* theWrappedObject, int  row, const QString&  labelText, PythonQtPassOwnershipToCPP<QWidget* >  field)
 {
   ( theWrappedObject->insertRow(row, labelText, field));
 }
@@ -2428,7 +2428,7 @@ void PythonQtWrapper_QFormLayout::setHorizontalSpacing(QFormLayout* theWrappedOb
   ( theWrappedObject->setHorizontalSpacing(spacing));
 }
 
-void PythonQtWrapper_QFormLayout::setItem(QFormLayout* theWrappedObject, int  row, QFormLayout::ItemRole  role, QLayoutItem*  item)
+void PythonQtWrapper_QFormLayout::setItem(QFormLayout* theWrappedObject, int  row, QFormLayout::ItemRole  role, PythonQtPassOwnershipToCPP<QLayoutItem* >  item)
 {
   ( theWrappedObject->setItem(row, role, item));
 }
@@ -2438,7 +2438,7 @@ void PythonQtWrapper_QFormLayout::setLabelAlignment(QFormLayout* theWrappedObjec
   ( theWrappedObject->setLabelAlignment(alignment));
 }
 
-void PythonQtWrapper_QFormLayout::setLayout(QFormLayout* theWrappedObject, int  row, QFormLayout::ItemRole  role, QLayout*  layout)
+void PythonQtWrapper_QFormLayout::setLayout(QFormLayout* theWrappedObject, int  row, QFormLayout::ItemRole  role, PythonQtPassOwnershipToCPP<QLayout* >  layout)
 {
   ( theWrappedObject->setLayout(row, role, layout));
 }
@@ -2458,7 +2458,7 @@ void PythonQtWrapper_QFormLayout::setVerticalSpacing(QFormLayout* theWrappedObje
   ( theWrappedObject->setVerticalSpacing(spacing));
 }
 
-void PythonQtWrapper_QFormLayout::setWidget(QFormLayout* theWrappedObject, int  row, QFormLayout::ItemRole  role, QWidget*  widget)
+void PythonQtWrapper_QFormLayout::setWidget(QFormLayout* theWrappedObject, int  row, QFormLayout::ItemRole  role, PythonQtPassOwnershipToCPP<QWidget* >  widget)
 {
   ( theWrappedObject->setWidget(row, role, widget));
 }
@@ -3905,6 +3905,11 @@ QGesture*  PythonQtWrapper_QGestureRecognizer::create(QGestureRecognizer* theWra
   return ( ((PythonQtPublicPromoter_QGestureRecognizer*)theWrappedObject)->promoted_create(target));
 }
 
+QGestureRecognizer::Result  PythonQtWrapper_QGestureRecognizer::recognize(QGestureRecognizer* theWrappedObject, QGesture*  state, QObject*  watched, QEvent*  event)
+{
+  return ( ((PythonQtPublicPromoter_QGestureRecognizer*)theWrappedObject)->promoted_recognize(state, watched, event));
+}
+
 Qt::GestureType  PythonQtWrapper_QGestureRecognizer::static_QGestureRecognizer_registerRecognizer(QGestureRecognizer*  recognizer)
 {
   return (QGestureRecognizer::registerRecognizer(recognizer));
@@ -5243,6 +5248,11 @@ QRectF  PythonQtWrapper_QGraphicsEffect::boundingRectFor(QGraphicsEffect* theWra
   return ( ((PythonQtPublicPromoter_QGraphicsEffect*)theWrappedObject)->promoted_boundingRectFor(sourceRect));
 }
 
+void PythonQtWrapper_QGraphicsEffect::draw(QGraphicsEffect* theWrappedObject, QPainter*  painter)
+{
+  ( ((PythonQtPublicPromoter_QGraphicsEffect*)theWrappedObject)->promoted_draw(painter));
+}
+
 void PythonQtWrapper_QGraphicsEffect::drawSource(QGraphicsEffect* theWrappedObject, QPainter*  painter)
 {
   ( ((PythonQtPublicPromoter_QGraphicsEffect*)theWrappedObject)->promoted_drawSource(painter));
@@ -5606,12 +5616,12 @@ QGraphicsGridLayout* PythonQtWrapper_QGraphicsGridLayout::new_QGraphicsGridLayou
 { 
 return new PythonQtShell_QGraphicsGridLayout(parent); }
 
-void PythonQtWrapper_QGraphicsGridLayout::addItem(QGraphicsGridLayout* theWrappedObject, QGraphicsLayoutItem*  item, int  row, int  column, Qt::Alignment  alignment)
+void PythonQtWrapper_QGraphicsGridLayout::addItem(QGraphicsGridLayout* theWrappedObject, PythonQtPassOwnershipToCPP<QGraphicsLayoutItem* >  item, int  row, int  column, Qt::Alignment  alignment)
 {
   ( theWrappedObject->addItem(item, row, column, alignment));
 }
 
-void PythonQtWrapper_QGraphicsGridLayout::addItem(QGraphicsGridLayout* theWrappedObject, QGraphicsLayoutItem*  item, int  row, int  column, int  rowSpan, int  columnSpan, Qt::Alignment  alignment)
+void PythonQtWrapper_QGraphicsGridLayout::addItem(QGraphicsGridLayout* theWrappedObject, PythonQtPassOwnershipToCPP<QGraphicsLayoutItem* >  item, int  row, int  column, int  rowSpan, int  columnSpan, Qt::Alignment  alignment)
 {
   ( theWrappedObject->addItem(item, row, column, rowSpan, columnSpan, alignment));
 }
@@ -6298,6 +6308,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     }
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
+    if (change0 == QGraphicsItem::ItemParentChange || change0 == QGraphicsItem::ItemSceneChange) {
+      returnValue = value1;
+    } 
     return returnValue;
   } else {
     PyErr_Clear();
@@ -6688,6 +6701,11 @@ void PythonQtWrapper_QGraphicsItem::addToIndex(QGraphicsItem* theWrappedObject)
 void PythonQtWrapper_QGraphicsItem::advance(QGraphicsItem* theWrappedObject, int  phase)
 {
   ( ((PythonQtPublicPromoter_QGraphicsItem*)theWrappedObject)->promoted_advance(phase));
+}
+
+QRectF  PythonQtWrapper_QGraphicsItem::boundingRect(QGraphicsItem* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QGraphicsItem*)theWrappedObject)->promoted_boundingRect());
 }
 
 QRegion  PythonQtWrapper_QGraphicsItem::boundingRegion(QGraphicsItem* theWrappedObject, const QTransform&  itemToDeviceTransform) const
@@ -7290,6 +7308,11 @@ QPainterPath  PythonQtWrapper_QGraphicsItem::opaqueArea(QGraphicsItem* theWrappe
   return ( ((PythonQtPublicPromoter_QGraphicsItem*)theWrappedObject)->promoted_opaqueArea());
 }
 
+void PythonQtWrapper_QGraphicsItem::paint(QGraphicsItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget)
+{
+  ( ((PythonQtPublicPromoter_QGraphicsItem*)theWrappedObject)->promoted_paint(painter, option, widget));
+}
+
 QGraphicsItem*  PythonQtWrapper_QGraphicsItem::panel(QGraphicsItem* theWrappedObject) const
 {
   return ( theWrappedObject->panel());
@@ -7495,7 +7518,7 @@ void PythonQtWrapper_QGraphicsItem::setPanelModality(QGraphicsItem* theWrappedOb
   ( theWrappedObject->setPanelModality(panelModality));
 }
 
-void PythonQtWrapper_QGraphicsItem::setParentItem(QGraphicsItem* theWrappedObject, QGraphicsItem*  parent)
+void PythonQtWrapper_QGraphicsItem::setParentItem(QGraphicsItem* theWrappedObject, PythonQtNewOwnerOfThis<QGraphicsItem* >  parent)
 {
   ( theWrappedObject->setParentItem(parent));
 }
@@ -8454,6 +8477,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     }
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
+    if (change0 == QGraphicsItem::ItemParentChange || change0 == QGraphicsItem::ItemSceneChange) {
+      returnValue = value1;
+    } 
     return returnValue;
   } else {
     PyErr_Clear();
@@ -9075,6 +9101,11 @@ void PythonQtWrapper_QGraphicsLayout::addChildLayoutItem(QGraphicsLayout* theWra
   ( ((PythonQtPublicPromoter_QGraphicsLayout*)theWrappedObject)->promoted_addChildLayoutItem(layoutItem));
 }
 
+int  PythonQtWrapper_QGraphicsLayout::count(QGraphicsLayout* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QGraphicsLayout*)theWrappedObject)->promoted_count());
+}
+
 void PythonQtWrapper_QGraphicsLayout::getContentsMargins(QGraphicsLayout* theWrappedObject, qreal*  left, qreal*  top, qreal*  right, qreal*  bottom) const
 {
   ( ((PythonQtPublicPromoter_QGraphicsLayout*)theWrappedObject)->promoted_getContentsMargins(left, top, right, bottom));
@@ -9093,6 +9124,16 @@ void PythonQtWrapper_QGraphicsLayout::invalidate(QGraphicsLayout* theWrappedObje
 bool  PythonQtWrapper_QGraphicsLayout::isActivated(QGraphicsLayout* theWrappedObject) const
 {
   return ( theWrappedObject->isActivated());
+}
+
+QGraphicsLayoutItem*  PythonQtWrapper_QGraphicsLayout::itemAt(QGraphicsLayout* theWrappedObject, int  i) const
+{
+  return ( ((PythonQtPublicPromoter_QGraphicsLayout*)theWrappedObject)->promoted_itemAt(i));
+}
+
+void PythonQtWrapper_QGraphicsLayout::removeAt(QGraphicsLayout* theWrappedObject, int  index)
+{
+  ( ((PythonQtPublicPromoter_QGraphicsLayout*)theWrappedObject)->promoted_removeAt(index));
 }
 
 void PythonQtWrapper_QGraphicsLayout::setContentsMargins(QGraphicsLayout* theWrappedObject, qreal  left, qreal  top, qreal  right, qreal  bottom)
@@ -9385,6 +9426,11 @@ void PythonQtWrapper_QGraphicsLayoutItem::setSizePolicy(QGraphicsLayoutItem* the
 void PythonQtWrapper_QGraphicsLayoutItem::setSizePolicy(QGraphicsLayoutItem* theWrappedObject, const QSizePolicy&  policy)
 {
   ( theWrappedObject->setSizePolicy(policy));
+}
+
+QSizeF  PythonQtWrapper_QGraphicsLayoutItem::sizeHint(QGraphicsLayoutItem* theWrappedObject, Qt::SizeHint  which, const QSizeF&  constraint) const
+{
+  return ( ((PythonQtPublicPromoter_QGraphicsLayoutItem*)theWrappedObject)->promoted_sizeHint(which, constraint));
 }
 
 QSizePolicy  PythonQtWrapper_QGraphicsLayoutItem::sizePolicy(QGraphicsLayoutItem* theWrappedObject) const
@@ -9864,6 +9910,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     }
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
+    if (change0 == QGraphicsItem::ItemParentChange || change0 == QGraphicsItem::ItemSceneChange) {
+      returnValue = value1;
+    } 
     return returnValue;
   } else {
     PyErr_Clear();
@@ -10478,7 +10527,7 @@ QGraphicsLinearLayout* PythonQtWrapper_QGraphicsLinearLayout::new_QGraphicsLinea
 { 
 return new PythonQtShell_QGraphicsLinearLayout(orientation, parent); }
 
-void PythonQtWrapper_QGraphicsLinearLayout::addItem(QGraphicsLinearLayout* theWrappedObject, QGraphicsLayoutItem*  item)
+void PythonQtWrapper_QGraphicsLinearLayout::addItem(QGraphicsLinearLayout* theWrappedObject, PythonQtPassOwnershipToCPP<QGraphicsLayoutItem* >  item)
 {
   ( theWrappedObject->addItem(item));
 }
@@ -10503,7 +10552,7 @@ void PythonQtWrapper_QGraphicsLinearLayout::dump(QGraphicsLinearLayout* theWrapp
   ( theWrappedObject->dump(indent));
 }
 
-void PythonQtWrapper_QGraphicsLinearLayout::insertItem(QGraphicsLinearLayout* theWrappedObject, int  index, QGraphicsLayoutItem*  item)
+void PythonQtWrapper_QGraphicsLinearLayout::insertItem(QGraphicsLinearLayout* theWrappedObject, int  index, PythonQtPassOwnershipToCPP<QGraphicsLayoutItem* >  item)
 {
   ( theWrappedObject->insertItem(index, item));
 }
@@ -10538,7 +10587,7 @@ void PythonQtWrapper_QGraphicsLinearLayout::removeAt(QGraphicsLinearLayout* theW
   ( ((PythonQtPublicPromoter_QGraphicsLinearLayout*)theWrappedObject)->promoted_removeAt(index));
 }
 
-void PythonQtWrapper_QGraphicsLinearLayout::removeItem(QGraphicsLinearLayout* theWrappedObject, QGraphicsLayoutItem*  item)
+void PythonQtWrapper_QGraphicsLinearLayout::removeItem(QGraphicsLinearLayout* theWrappedObject, PythonQtPassOwnershipToPython<QGraphicsLayoutItem* >  item)
 {
   ( theWrappedObject->removeItem(item));
 }
@@ -11153,6 +11202,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     }
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
+    if (change0 == QGraphicsItem::ItemParentChange || change0 == QGraphicsItem::ItemSceneChange) {
+      returnValue = value1;
+    } 
     return returnValue;
   } else {
     PyErr_Clear();

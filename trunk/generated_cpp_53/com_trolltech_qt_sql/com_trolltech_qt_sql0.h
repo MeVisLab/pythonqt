@@ -75,7 +75,9 @@ class PythonQtWrapper_QSqlDatabase : public QObject
 public:
 public slots:
 QSqlDatabase* new_QSqlDatabase();
+QSqlDatabase* new_QSqlDatabase(QSqlDriver*  driver);
 QSqlDatabase* new_QSqlDatabase(const QSqlDatabase&  other);
+QSqlDatabase* new_QSqlDatabase(const QString&  type);
 void delete_QSqlDatabase(QSqlDatabase* obj) { delete obj; } 
    QSqlDatabase  static_QSqlDatabase_addDatabase(QSqlDriver*  driver, const QString&  connectionName = QLatin1String(QSqlDatabase::defaultConnection));
    QSqlDatabase  static_QSqlDatabase_addDatabase(const QString&  type, const QString&  connectionName = QLatin1String(QSqlDatabase::defaultConnection));
@@ -169,12 +171,16 @@ class PythonQtPublicPromoter_QSqlDriver : public QSqlDriver
 { public:
 inline bool  promoted_beginTransaction() { return QSqlDriver::beginTransaction(); }
 inline bool  promoted_cancelQuery() { return QSqlDriver::cancelQuery(); }
+inline void promoted_close() { this->close(); }
 inline bool  promoted_commitTransaction() { return QSqlDriver::commitTransaction(); }
+inline QSqlResult*  promoted_createResult() const { return this->createResult(); }
 inline QString  promoted_escapeIdentifier(const QString&  identifier, QSqlDriver::IdentifierType  type) const { return QSqlDriver::escapeIdentifier(identifier, type); }
 inline QString  promoted_formatValue(const QSqlField&  field, bool  trimStrings = false) const { return QSqlDriver::formatValue(field, trimStrings); }
 inline QVariant  promoted_handle() const { return QSqlDriver::handle(); }
+inline bool  promoted_hasFeature(QSqlDriver::DriverFeature  f) const { return this->hasFeature(f); }
 inline bool  promoted_isIdentifierEscaped(const QString&  identifier, QSqlDriver::IdentifierType  type) const { return QSqlDriver::isIdentifierEscaped(identifier, type); }
 inline bool  promoted_isOpen() const { return QSqlDriver::isOpen(); }
+inline bool  promoted_open(const QString&  db, const QString&  user = QString(), const QString&  password = QString(), const QString&  host = QString(), int  port = -1, const QString&  connOpts = QString()) { return this->open(db, user, password, host, port, connOpts); }
 inline QSqlIndex  promoted_primaryIndex(const QString&  tableName) const { return QSqlDriver::primaryIndex(tableName); }
 inline QSqlRecord  promoted_record(const QString&  tableName) const { return QSqlDriver::record(tableName); }
 inline bool  promoted_rollbackTransaction() { return QSqlDriver::rollbackTransaction(); }
@@ -206,15 +212,19 @@ QSqlDriver* new_QSqlDriver(QObject*  parent = 0);
 void delete_QSqlDriver(QSqlDriver* obj) { delete obj; } 
    bool  beginTransaction(QSqlDriver* theWrappedObject);
    bool  cancelQuery(QSqlDriver* theWrappedObject);
+   void close(QSqlDriver* theWrappedObject);
    bool  commitTransaction(QSqlDriver* theWrappedObject);
+   QSqlResult*  createResult(QSqlDriver* theWrappedObject) const;
    QString  escapeIdentifier(QSqlDriver* theWrappedObject, const QString&  identifier, QSqlDriver::IdentifierType  type) const;
    QString  formatValue(QSqlDriver* theWrappedObject, const QSqlField&  field, bool  trimStrings = false) const;
    QVariant  handle(QSqlDriver* theWrappedObject) const;
+   bool  hasFeature(QSqlDriver* theWrappedObject, QSqlDriver::DriverFeature  f) const;
    bool  isIdentifierEscaped(QSqlDriver* theWrappedObject, const QString&  identifier, QSqlDriver::IdentifierType  type) const;
    bool  isOpen(QSqlDriver* theWrappedObject) const;
    bool  isOpenError(QSqlDriver* theWrappedObject) const;
    QSqlError  lastError(QSqlDriver* theWrappedObject) const;
    QSql::NumericalPrecisionPolicy  numericalPrecisionPolicy(QSqlDriver* theWrappedObject) const;
+   bool  open(QSqlDriver* theWrappedObject, const QString&  db, const QString&  user = QString(), const QString&  password = QString(), const QString&  host = QString(), int  port = -1, const QString&  connOpts = QString());
    QSqlIndex  primaryIndex(QSqlDriver* theWrappedObject, const QString&  tableName) const;
    QSqlRecord  record(QSqlDriver* theWrappedObject, const QString&  tableName) const;
    bool  rollbackTransaction(QSqlDriver* theWrappedObject);
@@ -246,12 +256,18 @@ virtual QSqlDriver*  createObject() const;
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QSqlDriverCreatorBase : public QSqlDriverCreatorBase
+{ public:
+inline QSqlDriver*  promoted_createObject() const { return this->createObject(); }
+};
+
 class PythonQtWrapper_QSqlDriverCreatorBase : public QObject
 { Q_OBJECT
 public:
 public slots:
 QSqlDriverCreatorBase* new_QSqlDriverCreatorBase();
 void delete_QSqlDriverCreatorBase(QSqlDriverCreatorBase* obj) { delete obj; } 
+   QSqlDriver*  createObject(QSqlDriverCreatorBase* theWrappedObject) const;
 };
 
 
@@ -766,26 +782,33 @@ inline int  promoted_boundValueCount() const { return QSqlResult::boundValueCoun
 inline QString  promoted_boundValueName(int  pos) const { return QSqlResult::boundValueName(pos); }
 inline QVector<QVariant >&  promoted_boundValues() const { return QSqlResult::boundValues(); }
 inline void promoted_clear() { QSqlResult::clear(); }
+inline QVariant  promoted_data(int  i) { return this->data(i); }
 inline void promoted_detachFromResultSet() { QSqlResult::detachFromResultSet(); }
 inline const QSqlDriver*  promoted_driver() const { return QSqlResult::driver(); }
 inline bool  promoted_exec() { return QSqlResult::exec(); }
 inline bool  promoted_execBatch(bool  arrayBind = false) { return QSqlResult::execBatch(arrayBind); }
 inline QString  promoted_executedQuery() const { return QSqlResult::executedQuery(); }
+inline bool  promoted_fetch(int  i) { return this->fetch(i); }
+inline bool  promoted_fetchFirst() { return this->fetchFirst(); }
+inline bool  promoted_fetchLast() { return this->fetchLast(); }
 inline bool  promoted_fetchNext() { return QSqlResult::fetchNext(); }
 inline bool  promoted_fetchPrevious() { return QSqlResult::fetchPrevious(); }
 inline QVariant  promoted_handle() const { return QSqlResult::handle(); }
 inline bool  promoted_hasOutValues() const { return QSqlResult::hasOutValues(); }
 inline bool  promoted_isActive() const { return QSqlResult::isActive(); }
 inline bool  promoted_isForwardOnly() const { return QSqlResult::isForwardOnly(); }
+inline bool  promoted_isNull(int  i) { return this->isNull(i); }
 inline bool  promoted_isSelect() const { return QSqlResult::isSelect(); }
 inline bool  promoted_isValid() const { return QSqlResult::isValid(); }
 inline QSqlError  promoted_lastError() const { return QSqlResult::lastError(); }
 inline QVariant  promoted_lastInsertId() const { return QSqlResult::lastInsertId(); }
 inline QString  promoted_lastQuery() const { return QSqlResult::lastQuery(); }
 inline bool  promoted_nextResult() { return QSqlResult::nextResult(); }
+inline int  promoted_numRowsAffected() { return this->numRowsAffected(); }
 inline QSql::NumericalPrecisionPolicy  promoted_numericalPrecisionPolicy() const { return QSqlResult::numericalPrecisionPolicy(); }
 inline bool  promoted_prepare(const QString&  query) { return QSqlResult::prepare(query); }
 inline QSqlRecord  promoted_record() const { return QSqlResult::record(); }
+inline bool  promoted_reset(const QString&  sqlquery) { return this->reset(sqlquery); }
 inline void promoted_resetBindCount() { QSqlResult::resetBindCount(); }
 inline bool  promoted_savePrepare(const QString&  sqlquery) { return QSqlResult::savePrepare(sqlquery); }
 inline void promoted_setActive(bool  a) { QSqlResult::setActive(a); }
@@ -795,6 +818,7 @@ inline void promoted_setLastError(const QSqlError&  e) { QSqlResult::setLastErro
 inline void promoted_setNumericalPrecisionPolicy(QSql::NumericalPrecisionPolicy  policy) { QSqlResult::setNumericalPrecisionPolicy(policy); }
 inline void promoted_setQuery(const QString&  query) { QSqlResult::setQuery(query); }
 inline void promoted_setSelect(bool  s) { QSqlResult::setSelect(s); }
+inline int  promoted_size() { return this->size(); }
 };
 
 class PythonQtWrapper_QSqlResult : public QObject
@@ -806,6 +830,7 @@ enum BindingSyntax{
 enum VirtualHookOperation{
 };
 public slots:
+QSqlResult* new_QSqlResult(const QSqlDriver*  db);
 void delete_QSqlResult(QSqlResult* obj) { delete obj; } 
    void addBindValue(QSqlResult* theWrappedObject, const QVariant&  val, QSql::ParamType  type);
    int  at(QSqlResult* theWrappedObject) const;
@@ -820,26 +845,33 @@ void delete_QSqlResult(QSqlResult* obj) { delete obj; }
    QString  boundValueName(QSqlResult* theWrappedObject, int  pos) const;
    QVector<QVariant >*  boundValues(QSqlResult* theWrappedObject) const;
    void clear(QSqlResult* theWrappedObject);
+   QVariant  data(QSqlResult* theWrappedObject, int  i);
    void detachFromResultSet(QSqlResult* theWrappedObject);
    const QSqlDriver*  driver(QSqlResult* theWrappedObject) const;
    bool  exec(QSqlResult* theWrappedObject);
    bool  execBatch(QSqlResult* theWrappedObject, bool  arrayBind = false);
    QString  executedQuery(QSqlResult* theWrappedObject) const;
+   bool  fetch(QSqlResult* theWrappedObject, int  i);
+   bool  fetchFirst(QSqlResult* theWrappedObject);
+   bool  fetchLast(QSqlResult* theWrappedObject);
    bool  fetchNext(QSqlResult* theWrappedObject);
    bool  fetchPrevious(QSqlResult* theWrappedObject);
    QVariant  handle(QSqlResult* theWrappedObject) const;
    bool  hasOutValues(QSqlResult* theWrappedObject) const;
    bool  isActive(QSqlResult* theWrappedObject) const;
    bool  isForwardOnly(QSqlResult* theWrappedObject) const;
+   bool  isNull(QSqlResult* theWrappedObject, int  i);
    bool  isSelect(QSqlResult* theWrappedObject) const;
    bool  isValid(QSqlResult* theWrappedObject) const;
    QSqlError  lastError(QSqlResult* theWrappedObject) const;
    QVariant  lastInsertId(QSqlResult* theWrappedObject) const;
    QString  lastQuery(QSqlResult* theWrappedObject) const;
    bool  nextResult(QSqlResult* theWrappedObject);
+   int  numRowsAffected(QSqlResult* theWrappedObject);
    QSql::NumericalPrecisionPolicy  numericalPrecisionPolicy(QSqlResult* theWrappedObject) const;
    bool  prepare(QSqlResult* theWrappedObject, const QString&  query);
    QSqlRecord  record(QSqlResult* theWrappedObject) const;
+   bool  reset(QSqlResult* theWrappedObject, const QString&  sqlquery);
    void resetBindCount(QSqlResult* theWrappedObject);
    bool  savePrepare(QSqlResult* theWrappedObject, const QString&  sqlquery);
    void setActive(QSqlResult* theWrappedObject, bool  a);
@@ -849,6 +881,7 @@ void delete_QSqlResult(QSqlResult* obj) { delete obj; }
    void setNumericalPrecisionPolicy(QSqlResult* theWrappedObject, QSql::NumericalPrecisionPolicy  policy);
    void setQuery(QSqlResult* theWrappedObject, const QString&  query);
    void setSelect(QSqlResult* theWrappedObject, bool  s);
+   int  size(QSqlResult* theWrappedObject);
 };
 
 

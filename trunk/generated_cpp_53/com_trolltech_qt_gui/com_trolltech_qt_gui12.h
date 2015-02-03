@@ -388,7 +388,7 @@ void delete_QWidget(QWidget* obj) { delete obj; }
    void setGeometry(QWidget* theWrappedObject, int  x, int  y, int  w, int  h);
    void setGraphicsEffect(QWidget* theWrappedObject, QGraphicsEffect*  effect);
    void setInputMethodHints(QWidget* theWrappedObject, Qt::InputMethodHints  hints);
-   void setLayout(QWidget* theWrappedObject, QLayout*  arg__1);
+   void setLayout(QWidget* theWrappedObject, PythonQtPassOwnershipToCPP<QLayout* >  arg__1);
    void setLayoutDirection(QWidget* theWrappedObject, Qt::LayoutDirection  direction);
    void setLocale(QWidget* theWrappedObject, const QLocale&  locale);
    void setMask(QWidget* theWrappedObject, const QBitmap&  arg__1);
@@ -403,8 +403,8 @@ void delete_QWidget(QWidget* obj) { delete obj; }
    void setMinimumWidth(QWidget* theWrappedObject, int  minw);
    void setMouseTracking(QWidget* theWrappedObject, bool  enable);
    void setPalette(QWidget* theWrappedObject, const QPalette&  arg__1);
-   void setParent(QWidget* theWrappedObject, QWidget*  parent);
-   void setParent(QWidget* theWrappedObject, QWidget*  parent, Qt::WindowFlags  f);
+   void setParent(QWidget* theWrappedObject, PythonQtNewOwnerOfThis<QWidget* >  parent);
+   void setParent(QWidget* theWrappedObject, PythonQtNewOwnerOfThis<QWidget* >  parent, Qt::WindowFlags  f);
    void setShortcutAutoRepeat(QWidget* theWrappedObject, int  id, bool  enable = true);
    void setShortcutEnabled(QWidget* theWrappedObject, int  id, bool  enable = true);
    void setSizeIncrement(QWidget* theWrappedObject, const QSize&  arg__1);

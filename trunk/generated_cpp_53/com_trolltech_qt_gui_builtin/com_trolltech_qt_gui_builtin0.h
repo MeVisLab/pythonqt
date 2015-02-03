@@ -168,11 +168,8 @@ void delete_QColor(QColor* obj) { delete obj; }
    QColor  static_QColor_fromRgb(unsigned int  rgb);
    QColor  static_QColor_fromRgbF(qreal  r, qreal  g, qreal  b, qreal  a = 1.0);
    QColor  static_QColor_fromRgba(unsigned int  rgba);
-   void getCmykF(QColor* theWrappedObject, qreal*  c, qreal*  m, qreal*  y, qreal*  k, qreal*  a = 0);
    void getHsl(QColor* theWrappedObject, int*  h, int*  s, int*  l, int*  a = 0) const;
    void getHslF(QColor* theWrappedObject, qreal*  h, qreal*  s, qreal*  l, qreal*  a = 0) const;
-   void getHsvF(QColor* theWrappedObject, qreal*  h, qreal*  s, qreal*  v, qreal*  a = 0) const;
-   void getRgbF(QColor* theWrappedObject, qreal*  r, qreal*  g, qreal*  b, qreal*  a = 0) const;
    int  green(QColor* theWrappedObject) const;
    qreal  greenF(QColor* theWrappedObject) const;
    int  hslHue(QColor* theWrappedObject) const;
@@ -386,7 +383,7 @@ enum State{
   On = QIcon::On,   Off = QIcon::Off};
 public slots:
 QIcon* new_QIcon();
-QIcon* new_QIcon(QIconEngine*  engine);
+QIcon* new_QIcon(PythonQtPassOwnershipToCPP<QIconEngine* >  engine);
 QIcon* new_QIcon(const QIcon&  other);
 QIcon* new_QIcon(const QPixmap&  pixmap);
 QIcon* new_QIcon(const QString&  fileName);
@@ -658,7 +655,6 @@ void delete_QMatrix(QMatrix* obj) { delete obj; }
    QPolygon  map(QMatrix* theWrappedObject, const QPolygon&  a) const;
    QPolygonF  map(QMatrix* theWrappedObject, const QPolygonF&  a) const;
    QRegion  map(QMatrix* theWrappedObject, const QRegion&  r) const;
-   void map(QMatrix* theWrappedObject, qreal  x, qreal  y, qreal*  tx, qreal*  ty) const;
    QRect  mapRect(QMatrix* theWrappedObject, const QRect&  arg__1) const;
    QRectF  mapRect(QMatrix* theWrappedObject, const QRectF&  arg__1) const;
    QPolygon  mapToPolygon(QMatrix* theWrappedObject, const QRect&  r) const;
@@ -875,8 +871,8 @@ void delete_QPixmap(QPixmap* obj) { delete obj; }
    QSize  size(QPixmap* theWrappedObject) const;
    void swap(QPixmap* theWrappedObject, QPixmap&  other);
    QImage  toImage(QPixmap* theWrappedObject) const;
-   QPixmap  transformed(QPixmap* theWrappedObject, const QMatrix&  arg__1, Qt::TransformationMode  mode) const;
-   QPixmap  transformed(QPixmap* theWrappedObject, const QTransform&  arg__1, Qt::TransformationMode  mode) const;
+   QPixmap  transformed(QPixmap* theWrappedObject, const QMatrix&  arg__1, Qt::TransformationMode  mode = Qt::FastTransformation) const;
+   QPixmap  transformed(QPixmap* theWrappedObject, const QTransform&  arg__1, Qt::TransformationMode  mode = Qt::FastTransformation) const;
    QMatrix  static_QPixmap_trueMatrix(const QMatrix&  m, int  w, int  h);
    QTransform  static_QPixmap_trueMatrix(const QTransform&  m, int  w, int  h);
    int  width(QPixmap* theWrappedObject) const;

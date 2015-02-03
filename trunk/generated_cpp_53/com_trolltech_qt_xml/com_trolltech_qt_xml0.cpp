@@ -411,11 +411,6 @@ void PythonQtWrapper_QDomElement::setAttribute(QDomElement* theWrappedObject, co
   ( theWrappedObject->setAttribute(name, value));
 }
 
-void PythonQtWrapper_QDomElement::setAttribute(QDomElement* theWrappedObject, const QString&  name, qulonglong  value)
-{
-  ( theWrappedObject->setAttribute(name, value));
-}
-
 void PythonQtWrapper_QDomElement::setAttributeNS(QDomElement* theWrappedObject, const QString  nsURI, const QString&  qName, const QString&  value)
 {
   ( theWrappedObject->setAttributeNS(nsURI, qName, value));
@@ -432,11 +427,6 @@ void PythonQtWrapper_QDomElement::setAttributeNS(QDomElement* theWrappedObject, 
 }
 
 void PythonQtWrapper_QDomElement::setAttributeNS(QDomElement* theWrappedObject, const QString  nsURI, const QString&  qName, qlonglong  value)
-{
-  ( theWrappedObject->setAttributeNS(nsURI, qName, value));
-}
-
-void PythonQtWrapper_QDomElement::setAttributeNS(QDomElement* theWrappedObject, const QString  nsURI, const QString&  qName, qulonglong  value)
 {
   ( theWrappedObject->setAttributeNS(nsURI, qName, value));
 }
@@ -1515,6 +1505,66 @@ QXmlContentHandler* PythonQtWrapper_QXmlContentHandler::new_QXmlContentHandler()
 { 
 return new PythonQtShell_QXmlContentHandler(); }
 
+bool  PythonQtWrapper_QXmlContentHandler::characters(QXmlContentHandler* theWrappedObject, const QString&  ch)
+{
+  return ( ((PythonQtPublicPromoter_QXmlContentHandler*)theWrappedObject)->promoted_characters(ch));
+}
+
+bool  PythonQtWrapper_QXmlContentHandler::endDocument(QXmlContentHandler* theWrappedObject)
+{
+  return ( ((PythonQtPublicPromoter_QXmlContentHandler*)theWrappedObject)->promoted_endDocument());
+}
+
+bool  PythonQtWrapper_QXmlContentHandler::endElement(QXmlContentHandler* theWrappedObject, const QString&  namespaceURI, const QString&  localName, const QString&  qName)
+{
+  return ( ((PythonQtPublicPromoter_QXmlContentHandler*)theWrappedObject)->promoted_endElement(namespaceURI, localName, qName));
+}
+
+bool  PythonQtWrapper_QXmlContentHandler::endPrefixMapping(QXmlContentHandler* theWrappedObject, const QString&  prefix)
+{
+  return ( ((PythonQtPublicPromoter_QXmlContentHandler*)theWrappedObject)->promoted_endPrefixMapping(prefix));
+}
+
+QString  PythonQtWrapper_QXmlContentHandler::errorString(QXmlContentHandler* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QXmlContentHandler*)theWrappedObject)->promoted_errorString());
+}
+
+bool  PythonQtWrapper_QXmlContentHandler::ignorableWhitespace(QXmlContentHandler* theWrappedObject, const QString&  ch)
+{
+  return ( ((PythonQtPublicPromoter_QXmlContentHandler*)theWrappedObject)->promoted_ignorableWhitespace(ch));
+}
+
+bool  PythonQtWrapper_QXmlContentHandler::processingInstruction(QXmlContentHandler* theWrappedObject, const QString&  target, const QString&  data)
+{
+  return ( ((PythonQtPublicPromoter_QXmlContentHandler*)theWrappedObject)->promoted_processingInstruction(target, data));
+}
+
+void PythonQtWrapper_QXmlContentHandler::setDocumentLocator(QXmlContentHandler* theWrappedObject, QXmlLocator*  locator)
+{
+  ( ((PythonQtPublicPromoter_QXmlContentHandler*)theWrappedObject)->promoted_setDocumentLocator(locator));
+}
+
+bool  PythonQtWrapper_QXmlContentHandler::skippedEntity(QXmlContentHandler* theWrappedObject, const QString&  name)
+{
+  return ( ((PythonQtPublicPromoter_QXmlContentHandler*)theWrappedObject)->promoted_skippedEntity(name));
+}
+
+bool  PythonQtWrapper_QXmlContentHandler::startDocument(QXmlContentHandler* theWrappedObject)
+{
+  return ( ((PythonQtPublicPromoter_QXmlContentHandler*)theWrappedObject)->promoted_startDocument());
+}
+
+bool  PythonQtWrapper_QXmlContentHandler::startElement(QXmlContentHandler* theWrappedObject, const QString&  namespaceURI, const QString&  localName, const QString&  qName, const QXmlAttributes&  atts)
+{
+  return ( ((PythonQtPublicPromoter_QXmlContentHandler*)theWrappedObject)->promoted_startElement(namespaceURI, localName, qName, atts));
+}
+
+bool  PythonQtWrapper_QXmlContentHandler::startPrefixMapping(QXmlContentHandler* theWrappedObject, const QString&  prefix, const QString&  uri)
+{
+  return ( ((PythonQtPublicPromoter_QXmlContentHandler*)theWrappedObject)->promoted_startPrefixMapping(prefix, uri));
+}
+
 
 
 PythonQtShell_QXmlDTDHandler::~PythonQtShell_QXmlDTDHandler() {
@@ -1614,6 +1664,21 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 QXmlDTDHandler* PythonQtWrapper_QXmlDTDHandler::new_QXmlDTDHandler()
 { 
 return new PythonQtShell_QXmlDTDHandler(); }
+
+QString  PythonQtWrapper_QXmlDTDHandler::errorString(QXmlDTDHandler* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QXmlDTDHandler*)theWrappedObject)->promoted_errorString());
+}
+
+bool  PythonQtWrapper_QXmlDTDHandler::notationDecl(QXmlDTDHandler* theWrappedObject, const QString&  name, const QString&  publicId, const QString&  systemId)
+{
+  return ( ((PythonQtPublicPromoter_QXmlDTDHandler*)theWrappedObject)->promoted_notationDecl(name, publicId, systemId));
+}
+
+bool  PythonQtWrapper_QXmlDTDHandler::unparsedEntityDecl(QXmlDTDHandler* theWrappedObject, const QString&  name, const QString&  publicId, const QString&  systemId, const QString&  notationName)
+{
+  return ( ((PythonQtPublicPromoter_QXmlDTDHandler*)theWrappedObject)->promoted_unparsedEntityDecl(name, publicId, systemId, notationName));
+}
 
 
 
@@ -1744,6 +1809,26 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 QXmlDeclHandler* PythonQtWrapper_QXmlDeclHandler::new_QXmlDeclHandler()
 { 
 return new PythonQtShell_QXmlDeclHandler(); }
+
+bool  PythonQtWrapper_QXmlDeclHandler::attributeDecl(QXmlDeclHandler* theWrappedObject, const QString&  eName, const QString&  aName, const QString&  type, const QString&  valueDefault, const QString&  value)
+{
+  return ( ((PythonQtPublicPromoter_QXmlDeclHandler*)theWrappedObject)->promoted_attributeDecl(eName, aName, type, valueDefault, value));
+}
+
+QString  PythonQtWrapper_QXmlDeclHandler::errorString(QXmlDeclHandler* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QXmlDeclHandler*)theWrappedObject)->promoted_errorString());
+}
+
+bool  PythonQtWrapper_QXmlDeclHandler::externalEntityDecl(QXmlDeclHandler* theWrappedObject, const QString&  name, const QString&  publicId, const QString&  systemId)
+{
+  return ( ((PythonQtPublicPromoter_QXmlDeclHandler*)theWrappedObject)->promoted_externalEntityDecl(name, publicId, systemId));
+}
+
+bool  PythonQtWrapper_QXmlDeclHandler::internalEntityDecl(QXmlDeclHandler* theWrappedObject, const QString&  name, const QString&  value)
+{
+  return ( ((PythonQtPublicPromoter_QXmlDeclHandler*)theWrappedObject)->promoted_internalEntityDecl(name, value));
+}
 
 
 
@@ -2794,6 +2879,16 @@ QXmlEntityResolver* PythonQtWrapper_QXmlEntityResolver::new_QXmlEntityResolver()
 { 
 return new PythonQtShell_QXmlEntityResolver(); }
 
+QString  PythonQtWrapper_QXmlEntityResolver::errorString(QXmlEntityResolver* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QXmlEntityResolver*)theWrappedObject)->promoted_errorString());
+}
+
+bool  PythonQtWrapper_QXmlEntityResolver::resolveEntity(QXmlEntityResolver* theWrappedObject, const QString&  publicId, const QString&  systemId, QXmlInputSource*&  ret)
+{
+  return ( ((PythonQtPublicPromoter_QXmlEntityResolver*)theWrappedObject)->promoted_resolveEntity(publicId, systemId, ret));
+}
+
 
 
 PythonQtShell_QXmlErrorHandler::~PythonQtShell_QXmlErrorHandler() {
@@ -2923,6 +3018,26 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 QXmlErrorHandler* PythonQtWrapper_QXmlErrorHandler::new_QXmlErrorHandler()
 { 
 return new PythonQtShell_QXmlErrorHandler(); }
+
+bool  PythonQtWrapper_QXmlErrorHandler::error(QXmlErrorHandler* theWrappedObject, const QXmlParseException&  exception)
+{
+  return ( ((PythonQtPublicPromoter_QXmlErrorHandler*)theWrappedObject)->promoted_error(exception));
+}
+
+QString  PythonQtWrapper_QXmlErrorHandler::errorString(QXmlErrorHandler* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QXmlErrorHandler*)theWrappedObject)->promoted_errorString());
+}
+
+bool  PythonQtWrapper_QXmlErrorHandler::fatalError(QXmlErrorHandler* theWrappedObject, const QXmlParseException&  exception)
+{
+  return ( ((PythonQtPublicPromoter_QXmlErrorHandler*)theWrappedObject)->promoted_fatalError(exception));
+}
+
+bool  PythonQtWrapper_QXmlErrorHandler::warning(QXmlErrorHandler* theWrappedObject, const QXmlParseException&  exception)
+{
+  return ( ((PythonQtPublicPromoter_QXmlErrorHandler*)theWrappedObject)->promoted_warning(exception));
+}
 
 
 
@@ -3389,6 +3504,46 @@ QXmlLexicalHandler* PythonQtWrapper_QXmlLexicalHandler::new_QXmlLexicalHandler()
 { 
 return new PythonQtShell_QXmlLexicalHandler(); }
 
+bool  PythonQtWrapper_QXmlLexicalHandler::comment(QXmlLexicalHandler* theWrappedObject, const QString&  ch)
+{
+  return ( ((PythonQtPublicPromoter_QXmlLexicalHandler*)theWrappedObject)->promoted_comment(ch));
+}
+
+bool  PythonQtWrapper_QXmlLexicalHandler::endCDATA(QXmlLexicalHandler* theWrappedObject)
+{
+  return ( ((PythonQtPublicPromoter_QXmlLexicalHandler*)theWrappedObject)->promoted_endCDATA());
+}
+
+bool  PythonQtWrapper_QXmlLexicalHandler::endDTD(QXmlLexicalHandler* theWrappedObject)
+{
+  return ( ((PythonQtPublicPromoter_QXmlLexicalHandler*)theWrappedObject)->promoted_endDTD());
+}
+
+bool  PythonQtWrapper_QXmlLexicalHandler::endEntity(QXmlLexicalHandler* theWrappedObject, const QString&  name)
+{
+  return ( ((PythonQtPublicPromoter_QXmlLexicalHandler*)theWrappedObject)->promoted_endEntity(name));
+}
+
+QString  PythonQtWrapper_QXmlLexicalHandler::errorString(QXmlLexicalHandler* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QXmlLexicalHandler*)theWrappedObject)->promoted_errorString());
+}
+
+bool  PythonQtWrapper_QXmlLexicalHandler::startCDATA(QXmlLexicalHandler* theWrappedObject)
+{
+  return ( ((PythonQtPublicPromoter_QXmlLexicalHandler*)theWrappedObject)->promoted_startCDATA());
+}
+
+bool  PythonQtWrapper_QXmlLexicalHandler::startDTD(QXmlLexicalHandler* theWrappedObject, const QString&  name, const QString&  publicId, const QString&  systemId)
+{
+  return ( ((PythonQtPublicPromoter_QXmlLexicalHandler*)theWrappedObject)->promoted_startDTD(name, publicId, systemId));
+}
+
+bool  PythonQtWrapper_QXmlLexicalHandler::startEntity(QXmlLexicalHandler* theWrappedObject, const QString&  name)
+{
+  return ( ((PythonQtPublicPromoter_QXmlLexicalHandler*)theWrappedObject)->promoted_startEntity(name));
+}
+
 
 
 PythonQtShell_QXmlLocator::~PythonQtShell_QXmlLocator() {
@@ -3458,6 +3613,16 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 QXmlLocator* PythonQtWrapper_QXmlLocator::new_QXmlLocator()
 { 
 return new PythonQtShell_QXmlLocator(); }
+
+int  PythonQtWrapper_QXmlLocator::columnNumber(QXmlLocator* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QXmlLocator*)theWrappedObject)->promoted_columnNumber());
+}
+
+int  PythonQtWrapper_QXmlLocator::lineNumber(QXmlLocator* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QXmlLocator*)theWrappedObject)->promoted_lineNumber());
+}
 
 
 
@@ -4015,6 +4180,106 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 QXmlReader* PythonQtWrapper_QXmlReader::new_QXmlReader()
 { 
 return new PythonQtShell_QXmlReader(); }
+
+QXmlDTDHandler*  PythonQtWrapper_QXmlReader::DTDHandler(QXmlReader* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QXmlReader*)theWrappedObject)->promoted_DTDHandler());
+}
+
+QXmlContentHandler*  PythonQtWrapper_QXmlReader::contentHandler(QXmlReader* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QXmlReader*)theWrappedObject)->promoted_contentHandler());
+}
+
+QXmlDeclHandler*  PythonQtWrapper_QXmlReader::declHandler(QXmlReader* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QXmlReader*)theWrappedObject)->promoted_declHandler());
+}
+
+QXmlEntityResolver*  PythonQtWrapper_QXmlReader::entityResolver(QXmlReader* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QXmlReader*)theWrappedObject)->promoted_entityResolver());
+}
+
+QXmlErrorHandler*  PythonQtWrapper_QXmlReader::errorHandler(QXmlReader* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QXmlReader*)theWrappedObject)->promoted_errorHandler());
+}
+
+bool  PythonQtWrapper_QXmlReader::feature(QXmlReader* theWrappedObject, const QString&  name, bool*  ok) const
+{
+  return ( ((PythonQtPublicPromoter_QXmlReader*)theWrappedObject)->promoted_feature(name, ok));
+}
+
+bool  PythonQtWrapper_QXmlReader::hasFeature(QXmlReader* theWrappedObject, const QString&  name) const
+{
+  return ( ((PythonQtPublicPromoter_QXmlReader*)theWrappedObject)->promoted_hasFeature(name));
+}
+
+bool  PythonQtWrapper_QXmlReader::hasProperty(QXmlReader* theWrappedObject, const QString&  name) const
+{
+  return ( ((PythonQtPublicPromoter_QXmlReader*)theWrappedObject)->promoted_hasProperty(name));
+}
+
+QXmlLexicalHandler*  PythonQtWrapper_QXmlReader::lexicalHandler(QXmlReader* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QXmlReader*)theWrappedObject)->promoted_lexicalHandler());
+}
+
+bool  PythonQtWrapper_QXmlReader::parse(QXmlReader* theWrappedObject, const QXmlInputSource&  input)
+{
+  return ( ((PythonQtPublicPromoter_QXmlReader*)theWrappedObject)->promoted_parse(input));
+}
+
+bool  PythonQtWrapper_QXmlReader::parse(QXmlReader* theWrappedObject, const QXmlInputSource*  input)
+{
+  return ( ((PythonQtPublicPromoter_QXmlReader*)theWrappedObject)->promoted_parse(input));
+}
+
+void*  PythonQtWrapper_QXmlReader::property(QXmlReader* theWrappedObject, const QString&  name, bool*  ok) const
+{
+  return ( ((PythonQtPublicPromoter_QXmlReader*)theWrappedObject)->promoted_property(name, ok));
+}
+
+void PythonQtWrapper_QXmlReader::setContentHandler(QXmlReader* theWrappedObject, QXmlContentHandler*  handler)
+{
+  ( ((PythonQtPublicPromoter_QXmlReader*)theWrappedObject)->promoted_setContentHandler(handler));
+}
+
+void PythonQtWrapper_QXmlReader::setDTDHandler(QXmlReader* theWrappedObject, QXmlDTDHandler*  handler)
+{
+  ( ((PythonQtPublicPromoter_QXmlReader*)theWrappedObject)->promoted_setDTDHandler(handler));
+}
+
+void PythonQtWrapper_QXmlReader::setDeclHandler(QXmlReader* theWrappedObject, QXmlDeclHandler*  handler)
+{
+  ( ((PythonQtPublicPromoter_QXmlReader*)theWrappedObject)->promoted_setDeclHandler(handler));
+}
+
+void PythonQtWrapper_QXmlReader::setEntityResolver(QXmlReader* theWrappedObject, QXmlEntityResolver*  handler)
+{
+  ( ((PythonQtPublicPromoter_QXmlReader*)theWrappedObject)->promoted_setEntityResolver(handler));
+}
+
+void PythonQtWrapper_QXmlReader::setErrorHandler(QXmlReader* theWrappedObject, QXmlErrorHandler*  handler)
+{
+  ( ((PythonQtPublicPromoter_QXmlReader*)theWrappedObject)->promoted_setErrorHandler(handler));
+}
+
+void PythonQtWrapper_QXmlReader::setFeature(QXmlReader* theWrappedObject, const QString&  name, bool  value)
+{
+  ( ((PythonQtPublicPromoter_QXmlReader*)theWrappedObject)->promoted_setFeature(name, value));
+}
+
+void PythonQtWrapper_QXmlReader::setLexicalHandler(QXmlReader* theWrappedObject, QXmlLexicalHandler*  handler)
+{
+  ( ((PythonQtPublicPromoter_QXmlReader*)theWrappedObject)->promoted_setLexicalHandler(handler));
+}
+
+void PythonQtWrapper_QXmlReader::setProperty(QXmlReader* theWrappedObject, const QString&  name, void*  value)
+{
+  ( ((PythonQtPublicPromoter_QXmlReader*)theWrappedObject)->promoted_setProperty(name, value));
+}
 
 
 

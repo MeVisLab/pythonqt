@@ -3,6 +3,7 @@
 #include "com_trolltech_qt_webkit0.h"
 
 
+
 void PythonQt_init_QtWebKit(PyObject* module) {
 PythonQt::priv()->registerClass(&QGraphicsWebView::staticMetaObject, "QtWebKit", PythonQtCreateObject<PythonQtWrapper_QGraphicsWebView>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QGraphicsWebView>, module, 0);
 PythonQt::priv()->registerCPPClass("QWebDatabase", "", "QtWebKit", PythonQtCreateObject<PythonQtWrapper_QWebDatabase>, NULL, module, 0);

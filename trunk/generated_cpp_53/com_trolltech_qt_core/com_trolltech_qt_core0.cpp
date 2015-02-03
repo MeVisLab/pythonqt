@@ -277,6 +277,11 @@ QAbstractAnimation::Direction  PythonQtWrapper_QAbstractAnimation::direction(QAb
   return ( theWrappedObject->direction());
 }
 
+int  PythonQtWrapper_QAbstractAnimation::duration(QAbstractAnimation* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QAbstractAnimation*)theWrappedObject)->promoted_duration());
+}
+
 bool  PythonQtWrapper_QAbstractAnimation::event(QAbstractAnimation* theWrappedObject, QEvent*  event)
 {
   return ( ((PythonQtPublicPromoter_QAbstractAnimation*)theWrappedObject)->promoted_event(event));
@@ -310,6 +315,11 @@ QAbstractAnimation::State  PythonQtWrapper_QAbstractAnimation::state(QAbstractAn
 int  PythonQtWrapper_QAbstractAnimation::totalDuration(QAbstractAnimation* theWrappedObject) const
 {
   return ( theWrappedObject->totalDuration());
+}
+
+void PythonQtWrapper_QAbstractAnimation::updateCurrentTime(QAbstractAnimation* theWrappedObject, int  currentTime)
+{
+  ( ((PythonQtPublicPromoter_QAbstractAnimation*)theWrappedObject)->promoted_updateCurrentTime(currentTime));
 }
 
 void PythonQtWrapper_QAbstractAnimation::updateDirection(QAbstractAnimation* theWrappedObject, QAbstractAnimation::Direction  direction)
@@ -1496,6 +1506,11 @@ void PythonQtWrapper_QAbstractItemModel::changePersistentIndexList(QAbstractItem
   ( ((PythonQtPublicPromoter_QAbstractItemModel*)theWrappedObject)->promoted_changePersistentIndexList(from, to));
 }
 
+int  PythonQtWrapper_QAbstractItemModel::columnCount(QAbstractItemModel* theWrappedObject, const QModelIndex&  parent) const
+{
+  return ( ((PythonQtPublicPromoter_QAbstractItemModel*)theWrappedObject)->promoted_columnCount(parent));
+}
+
 QModelIndex  PythonQtWrapper_QAbstractItemModel::createIndex(QAbstractItemModel* theWrappedObject, int  row, int  column, quintptr  id) const
 {
   return ( ((PythonQtPublicPromoter_QAbstractItemModel*)theWrappedObject)->promoted_createIndex(row, column, id));
@@ -1504,6 +1519,11 @@ QModelIndex  PythonQtWrapper_QAbstractItemModel::createIndex(QAbstractItemModel*
 QModelIndex  PythonQtWrapper_QAbstractItemModel::createIndex(QAbstractItemModel* theWrappedObject, int  row, int  column, void*  data) const
 {
   return ( ((PythonQtPublicPromoter_QAbstractItemModel*)theWrappedObject)->promoted_createIndex(row, column, data));
+}
+
+QVariant  PythonQtWrapper_QAbstractItemModel::data(QAbstractItemModel* theWrappedObject, const QModelIndex&  index, int  role) const
+{
+  return ( ((PythonQtPublicPromoter_QAbstractItemModel*)theWrappedObject)->promoted_data(index, role));
 }
 
 bool  PythonQtWrapper_QAbstractItemModel::decodeData(QAbstractItemModel* theWrappedObject, int  row, int  column, const QModelIndex&  parent, QDataStream&  stream)
@@ -1581,6 +1601,11 @@ QVariant  PythonQtWrapper_QAbstractItemModel::headerData(QAbstractItemModel* the
   return ( ((PythonQtPublicPromoter_QAbstractItemModel*)theWrappedObject)->promoted_headerData(section, orientation, role));
 }
 
+QModelIndex  PythonQtWrapper_QAbstractItemModel::index(QAbstractItemModel* theWrappedObject, int  row, int  column, const QModelIndex&  parent) const
+{
+  return ( ((PythonQtPublicPromoter_QAbstractItemModel*)theWrappedObject)->promoted_index(row, column, parent));
+}
+
 bool  PythonQtWrapper_QAbstractItemModel::insertColumn(QAbstractItemModel* theWrappedObject, int  column, const QModelIndex&  parent)
 {
   return ( theWrappedObject->insertColumn(column, parent));
@@ -1611,7 +1636,7 @@ QList<QModelIndex >  PythonQtWrapper_QAbstractItemModel::match(QAbstractItemMode
   return ( ((PythonQtPublicPromoter_QAbstractItemModel*)theWrappedObject)->promoted_match(start, role, value, hits, flags));
 }
 
-QMimeData*  PythonQtWrapper_QAbstractItemModel::mimeData(QAbstractItemModel* theWrappedObject, const QList<QModelIndex >&  indexes) const
+PythonQtPassOwnershipToPython<QMimeData*  > PythonQtWrapper_QAbstractItemModel::mimeData(QAbstractItemModel* theWrappedObject, const QList<QModelIndex >&  indexes) const
 {
   return ( ((PythonQtPublicPromoter_QAbstractItemModel*)theWrappedObject)->promoted_mimeData(indexes));
 }
@@ -1644,6 +1669,11 @@ bool  PythonQtWrapper_QAbstractItemModel::moveRows(QAbstractItemModel* theWrappe
 QObject*  PythonQtWrapper_QAbstractItemModel::parent(QAbstractItemModel* theWrappedObject) const
 {
   return ( theWrappedObject->parent());
+}
+
+QModelIndex  PythonQtWrapper_QAbstractItemModel::parent(QAbstractItemModel* theWrappedObject, const QModelIndex&  child) const
+{
+  return ( ((PythonQtPublicPromoter_QAbstractItemModel*)theWrappedObject)->promoted_parent(child));
 }
 
 QList<QModelIndex >  PythonQtWrapper_QAbstractItemModel::persistentIndexList(QAbstractItemModel* theWrappedObject) const
@@ -1679,6 +1709,11 @@ void PythonQtWrapper_QAbstractItemModel::revert(QAbstractItemModel* theWrappedOb
 QHash<int , QByteArray >  PythonQtWrapper_QAbstractItemModel::roleNames(QAbstractItemModel* theWrappedObject) const
 {
   return ( ((PythonQtPublicPromoter_QAbstractItemModel*)theWrappedObject)->promoted_roleNames());
+}
+
+int  PythonQtWrapper_QAbstractItemModel::rowCount(QAbstractItemModel* theWrappedObject, const QModelIndex&  parent) const
+{
+  return ( ((PythonQtPublicPromoter_QAbstractItemModel*)theWrappedObject)->promoted_rowCount(parent));
 }
 
 bool  PythonQtWrapper_QAbstractItemModel::setData(QAbstractItemModel* theWrappedObject, const QModelIndex&  index, const QVariant&  value, int  role)
@@ -2931,6 +2966,10 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QAbstractState::timerEvent(arg__1);
 }
+QAbstractState* PythonQtWrapper_QAbstractState::new_QAbstractState(QState*  parent)
+{ 
+return new PythonQtShell_QAbstractState(parent); }
+
 bool  PythonQtWrapper_QAbstractState::event(QAbstractState* theWrappedObject, QEvent*  e)
 {
   return ( ((PythonQtPublicPromoter_QAbstractState*)theWrappedObject)->promoted_event(e));
@@ -2939,6 +2978,16 @@ bool  PythonQtWrapper_QAbstractState::event(QAbstractState* theWrappedObject, QE
 QStateMachine*  PythonQtWrapper_QAbstractState::machine(QAbstractState* theWrappedObject) const
 {
   return ( theWrappedObject->machine());
+}
+
+void PythonQtWrapper_QAbstractState::onEntry(QAbstractState* theWrappedObject, QEvent*  event)
+{
+  ( ((PythonQtPublicPromoter_QAbstractState*)theWrappedObject)->promoted_onEntry(event));
+}
+
+void PythonQtWrapper_QAbstractState::onExit(QAbstractState* theWrappedObject, QEvent*  event)
+{
+  ( ((PythonQtPublicPromoter_QAbstractState*)theWrappedObject)->promoted_onExit(event));
 }
 
 QState*  PythonQtWrapper_QAbstractState::parentState(QAbstractState* theWrappedObject) const
@@ -3137,9 +3186,19 @@ bool  PythonQtWrapper_QAbstractTransition::event(QAbstractTransition* theWrapped
   return ( ((PythonQtPublicPromoter_QAbstractTransition*)theWrappedObject)->promoted_event(e));
 }
 
+bool  PythonQtWrapper_QAbstractTransition::eventTest(QAbstractTransition* theWrappedObject, QEvent*  event)
+{
+  return ( ((PythonQtPublicPromoter_QAbstractTransition*)theWrappedObject)->promoted_eventTest(event));
+}
+
 QStateMachine*  PythonQtWrapper_QAbstractTransition::machine(QAbstractTransition* theWrappedObject) const
 {
   return ( theWrappedObject->machine());
+}
+
+void PythonQtWrapper_QAbstractTransition::onTransition(QAbstractTransition* theWrappedObject, QEvent*  event)
+{
+  ( ((PythonQtPublicPromoter_QAbstractTransition*)theWrappedObject)->promoted_onTransition(event));
 }
 
 void PythonQtWrapper_QAbstractTransition::removeAnimation(QAbstractTransition* theWrappedObject, QAbstractAnimation*  animation)
@@ -3386,7 +3445,7 @@ QAnimationGroup* PythonQtWrapper_QAnimationGroup::new_QAnimationGroup(QObject*  
 { 
 return new PythonQtShell_QAnimationGroup(parent); }
 
-void PythonQtWrapper_QAnimationGroup::addAnimation(QAnimationGroup* theWrappedObject, QAbstractAnimation*  animation)
+void PythonQtWrapper_QAnimationGroup::addAnimation(QAnimationGroup* theWrappedObject, PythonQtPassOwnershipToCPP<QAbstractAnimation* >  animation)
 {
   ( theWrappedObject->addAnimation(animation));
 }
@@ -3416,17 +3475,17 @@ int  PythonQtWrapper_QAnimationGroup::indexOfAnimation(QAnimationGroup* theWrapp
   return ( theWrappedObject->indexOfAnimation(animation));
 }
 
-void PythonQtWrapper_QAnimationGroup::insertAnimation(QAnimationGroup* theWrappedObject, int  index, QAbstractAnimation*  animation)
+void PythonQtWrapper_QAnimationGroup::insertAnimation(QAnimationGroup* theWrappedObject, int  index, PythonQtPassOwnershipToCPP<QAbstractAnimation* >  animation)
 {
   ( theWrappedObject->insertAnimation(index, animation));
 }
 
-void PythonQtWrapper_QAnimationGroup::removeAnimation(QAnimationGroup* theWrappedObject, QAbstractAnimation*  animation)
+void PythonQtWrapper_QAnimationGroup::removeAnimation(QAnimationGroup* theWrappedObject, PythonQtPassOwnershipToPython<QAbstractAnimation* >  animation)
 {
   ( theWrappedObject->removeAnimation(animation));
 }
 
-QAbstractAnimation*  PythonQtWrapper_QAnimationGroup::takeAnimation(QAnimationGroup* theWrappedObject, int  index)
+PythonQtPassOwnershipToPython<QAbstractAnimation*  > PythonQtWrapper_QAnimationGroup::takeAnimation(QAnimationGroup* theWrappedObject, int  index)
 {
   return ( theWrappedObject->takeAnimation(index));
 }
@@ -4648,7 +4707,7 @@ QString  PythonQtWrapper_QCoreApplication::static_QCoreApplication_organizationN
   return (QCoreApplication::organizationName());
 }
 
-void PythonQtWrapper_QCoreApplication::static_QCoreApplication_postEvent(QObject*  receiver, QEvent*  event, int  priority)
+void PythonQtWrapper_QCoreApplication::static_QCoreApplication_postEvent(QObject*  receiver, PythonQtPassOwnershipToCPP<QEvent* >  event, int  priority)
 {
   (QCoreApplication::postEvent(receiver, event, priority));
 }
@@ -5921,6 +5980,11 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 QFactoryInterface* PythonQtWrapper_QFactoryInterface::new_QFactoryInterface()
 { 
 return new PythonQtShell_QFactoryInterface(); }
+
+QStringList  PythonQtWrapper_QFactoryInterface::keys(QFactoryInterface* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QFactoryInterface*)theWrappedObject)->promoted_keys());
+}
 
 
 
@@ -7487,6 +7551,14 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   return QFileDevice::writeData(data0, len1);
 }
+QFileDevice* PythonQtWrapper_QFileDevice::new_QFileDevice()
+{ 
+return new PythonQtShell_QFileDevice(); }
+
+QFileDevice* PythonQtWrapper_QFileDevice::new_QFileDevice(QObject*  parent)
+{ 
+return new PythonQtShell_QFileDevice(parent); }
+
 bool  PythonQtWrapper_QFileDevice::atEnd(QFileDevice* theWrappedObject) const
 {
   return ( ((PythonQtPublicPromoter_QFileDevice*)theWrappedObject)->promoted_atEnd());

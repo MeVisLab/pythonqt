@@ -2021,7 +2021,7 @@ void PythonQtWrapper_QWidget::setInputMethodHints(QWidget* theWrappedObject, Qt:
   ( theWrappedObject->setInputMethodHints(hints));
 }
 
-void PythonQtWrapper_QWidget::setLayout(QWidget* theWrappedObject, QLayout*  arg__1)
+void PythonQtWrapper_QWidget::setLayout(QWidget* theWrappedObject, PythonQtPassOwnershipToCPP<QLayout* >  arg__1)
 {
   ( theWrappedObject->setLayout(arg__1));
 }
@@ -2096,12 +2096,12 @@ void PythonQtWrapper_QWidget::setPalette(QWidget* theWrappedObject, const QPalet
   ( theWrappedObject->setPalette(arg__1));
 }
 
-void PythonQtWrapper_QWidget::setParent(QWidget* theWrappedObject, QWidget*  parent)
+void PythonQtWrapper_QWidget::setParent(QWidget* theWrappedObject, PythonQtNewOwnerOfThis<QWidget* >  parent)
 {
   ( theWrappedObject->setParent(parent));
 }
 
-void PythonQtWrapper_QWidget::setParent(QWidget* theWrappedObject, QWidget*  parent, Qt::WindowFlags  f)
+void PythonQtWrapper_QWidget::setParent(QWidget* theWrappedObject, PythonQtNewOwnerOfThis<QWidget* >  parent, Qt::WindowFlags  f)
 {
   ( theWrappedObject->setParent(parent, f));
 }
