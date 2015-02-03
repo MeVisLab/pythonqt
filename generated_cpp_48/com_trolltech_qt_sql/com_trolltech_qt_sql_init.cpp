@@ -1,5 +1,7 @@
 #include <PythonQt.h>
+#include <PythonQtConversion.h>
 #include "com_trolltech_qt_sql0.h"
+
 
 
 void PythonQt_init_QtSql(PyObject* module) {
@@ -18,4 +20,6 @@ PythonQt::priv()->registerClass(&QSqlRelationalTableModel::staticMetaObject, "Qt
 PythonQt::priv()->registerCPPClass("QSqlResult", "", "QtSql", PythonQtCreateObject<PythonQtWrapper_QSqlResult>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSqlResult>, module, 0);
 PythonQt::priv()->registerClass(&QSqlTableModel::staticMetaObject, "QtSql", PythonQtCreateObject<PythonQtWrapper_QSqlTableModel>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSqlTableModel>, module, 0);
 
+
+PythonQtRegisterListTemplateConverterForKnownClass(QList, QModelIndex);
 }

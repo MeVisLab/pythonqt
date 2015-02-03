@@ -8,6 +8,7 @@
 #include <qdatastream.h>
 #include <qeasingcurve.h>
 #include <qfile.h>
+#include <qglobal.h>
 #include <qiodevice.h>
 #include <qlist.h>
 #include <qlocale.h>
@@ -16,6 +17,7 @@
 #include <qpair.h>
 #include <qreadwritelock.h>
 #include <qrunnable.h>
+#include <qstringmatcher.h>
 #include <qsystemsemaphore.h>
 #include <qtconcurrentexception.h>
 #include <qtconcurrentreducekernel.h>
@@ -33,6 +35,51 @@
 #include <qvector.h>
 #include <qwaitcondition.h>
 #include <qxmlstream.h>
+
+
+
+class PythonQtWrapper_QStringMatcher : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QStringMatcher* new_QStringMatcher();
+QStringMatcher* new_QStringMatcher(const QString&  pattern, Qt::CaseSensitivity  cs = Qt::CaseSensitive);
+QStringMatcher* new_QStringMatcher(const QStringMatcher&  other);
+void delete_QStringMatcher(QStringMatcher* obj) { delete obj; } 
+   Qt::CaseSensitivity  caseSensitivity(QStringMatcher* theWrappedObject) const;
+   int  indexIn(QStringMatcher* theWrappedObject, const QString&  str, int  from = 0) const;
+   QString  pattern(QStringMatcher* theWrappedObject) const;
+   void setCaseSensitivity(QStringMatcher* theWrappedObject, Qt::CaseSensitivity  cs);
+   void setPattern(QStringMatcher* theWrappedObject, const QString&  pattern);
+};
+
+
+
+
+
+class PythonQtShell_QSysInfo : public QSysInfo
+{
+public:
+    PythonQtShell_QSysInfo():QSysInfo(),_wrapper(NULL) {};
+
+   ~PythonQtShell_QSysInfo();
+
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtWrapper_QSysInfo : public QObject
+{ Q_OBJECT
+public:
+Q_ENUMS(Sizes )
+enum Sizes{
+  WordSize = QSysInfo::WordSize};
+public slots:
+QSysInfo* new_QSysInfo();
+void delete_QSysInfo(QSysInfo* obj) { delete obj; } 
+};
+
+
 
 
 
@@ -177,6 +224,10 @@ virtual QByteArray  name() const;
 class PythonQtPublicPromoter_QTextCodec : public QTextCodec
 { public:
 inline QList<QByteArray >  promoted_aliases() const { return QTextCodec::aliases(); }
+inline QByteArray  promoted_convertFromUnicode(const QChar*  in, int  length, QTextCodec::ConverterState*  state) const { return this->convertFromUnicode(in, length, state); }
+inline QString  promoted_convertToUnicode(const char*  in, int  length, QTextCodec::ConverterState*  state) const { return this->convertToUnicode(in, length, state); }
+inline int  promoted_mibEnum() const { return this->mibEnum(); }
+inline QByteArray  promoted_name() const { return this->name(); }
 };
 
 class PythonQtWrapper_QTextCodec : public QObject
@@ -188,6 +239,7 @@ enum ConversionFlag{
   DefaultConversion = QTextCodec::DefaultConversion,   ConvertInvalidToNull = QTextCodec::ConvertInvalidToNull,   IgnoreHeader = QTextCodec::IgnoreHeader,   FreeFunction = QTextCodec::FreeFunction};
 Q_DECLARE_FLAGS(ConversionFlags, ConversionFlag)
 public slots:
+QTextCodec* new_QTextCodec();
    QList<QByteArray >  aliases(QTextCodec* theWrappedObject) const;
    QList<QByteArray >  static_QTextCodec_availableCodecs();
    QList<int >  static_QTextCodec_availableMibs();
@@ -202,11 +254,15 @@ public slots:
    QTextCodec*  static_QTextCodec_codecForName(const char*  name);
    QTextCodec*  static_QTextCodec_codecForUtfText(const QByteArray&  ba);
    QTextCodec*  static_QTextCodec_codecForUtfText(const QByteArray&  ba, QTextCodec*  defaultCodec);
+   QByteArray  convertFromUnicode(QTextCodec* theWrappedObject, const QChar*  in, int  length, QTextCodec::ConverterState*  state) const;
+   QString  convertToUnicode(QTextCodec* theWrappedObject, const char*  in, int  length, QTextCodec::ConverterState*  state) const;
    QByteArray  fromUnicode(QTextCodec* theWrappedObject, const QString&  uc) const;
    QTextDecoder*  makeDecoder(QTextCodec* theWrappedObject) const;
    QTextDecoder*  makeDecoder(QTextCodec* theWrappedObject, QTextCodec::ConversionFlags  flags) const;
    QTextEncoder*  makeEncoder(QTextCodec* theWrappedObject) const;
    QTextEncoder*  makeEncoder(QTextCodec* theWrappedObject, QTextCodec::ConversionFlags  flags) const;
+   int  mibEnum(QTextCodec* theWrappedObject) const;
+   QByteArray  name(QTextCodec* theWrappedObject) const;
    void static_QTextCodec_setCodecForCStrings(QTextCodec*  c);
    void static_QTextCodec_setCodecForLocale(QTextCodec*  c);
    void static_QTextCodec_setCodecForTr(QTextCodec*  c);
@@ -263,14 +319,14 @@ public:
 class PythonQtWrapper_QTextStream : public QObject
 { Q_OBJECT
 public:
-Q_ENUMS(RealNumberNotation NumberFlag FieldAlignment Status )
+Q_ENUMS(FieldAlignment NumberFlag RealNumberNotation Status )
 Q_FLAGS(NumberFlags )
-enum RealNumberNotation{
-  SmartNotation = QTextStream::SmartNotation,   FixedNotation = QTextStream::FixedNotation,   ScientificNotation = QTextStream::ScientificNotation};
-enum NumberFlag{
-  ShowBase = QTextStream::ShowBase,   ForcePoint = QTextStream::ForcePoint,   ForceSign = QTextStream::ForceSign,   UppercaseBase = QTextStream::UppercaseBase,   UppercaseDigits = QTextStream::UppercaseDigits};
 enum FieldAlignment{
   AlignLeft = QTextStream::AlignLeft,   AlignRight = QTextStream::AlignRight,   AlignCenter = QTextStream::AlignCenter,   AlignAccountingStyle = QTextStream::AlignAccountingStyle};
+enum NumberFlag{
+  ShowBase = QTextStream::ShowBase,   ForcePoint = QTextStream::ForcePoint,   ForceSign = QTextStream::ForceSign,   UppercaseBase = QTextStream::UppercaseBase,   UppercaseDigits = QTextStream::UppercaseDigits};
+enum RealNumberNotation{
+  SmartNotation = QTextStream::SmartNotation,   FixedNotation = QTextStream::FixedNotation,   ScientificNotation = QTextStream::ScientificNotation};
 enum Status{
   Ok = QTextStream::Ok,   ReadPastEnd = QTextStream::ReadPastEnd,   ReadCorruptData = QTextStream::ReadCorruptData,   WriteFailed = QTextStream::WriteFailed};
 Q_DECLARE_FLAGS(NumberFlags, NumberFlag)
@@ -401,11 +457,11 @@ inline qreal  promoted_valueForTime(int  msec) const { return QTimeLine::valueFo
 class PythonQtWrapper_QTimeLine : public QObject
 { Q_OBJECT
 public:
-Q_ENUMS(Direction CurveShape State )
-enum Direction{
-  Forward = QTimeLine::Forward,   Backward = QTimeLine::Backward};
+Q_ENUMS(CurveShape Direction State )
 enum CurveShape{
   EaseInCurve = QTimeLine::EaseInCurve,   EaseOutCurve = QTimeLine::EaseOutCurve,   EaseInOutCurve = QTimeLine::EaseInOutCurve,   LinearCurve = QTimeLine::LinearCurve,   SineCurve = QTimeLine::SineCurve,   CosineCurve = QTimeLine::CosineCurve};
+enum Direction{
+  Forward = QTimeLine::Forward,   Backward = QTimeLine::Backward};
 enum State{
   NotRunning = QTimeLine::NotRunning,   Paused = QTimeLine::Paused,   Running = QTimeLine::Running};
 public slots:
@@ -635,6 +691,7 @@ inline int  promoted_duration() const { return QVariantAnimation::duration(); }
 inline bool  promoted_event(QEvent*  event) { return QVariantAnimation::event(event); }
 inline QVariant  promoted_interpolated(const QVariant&  from, const QVariant&  to, qreal  progress) const { return QVariantAnimation::interpolated(from, to, progress); }
 inline void promoted_updateCurrentTime(int  arg__1) { QVariantAnimation::updateCurrentTime(arg__1); }
+inline void promoted_updateCurrentValue(const QVariant&  value) { this->updateCurrentValue(value); }
 inline void promoted_updateState(QAbstractAnimation::State  newState, QAbstractAnimation::State  oldState) { QVariantAnimation::updateState(newState, oldState); }
 };
 
@@ -660,6 +717,7 @@ void delete_QVariantAnimation(QVariantAnimation* obj) { delete obj; }
    void setStartValue(QVariantAnimation* theWrappedObject, const QVariant&  value);
    QVariant  startValue(QVariantAnimation* theWrappedObject) const;
    void updateCurrentTime(QVariantAnimation* theWrappedObject, int  arg__1);
+   void updateCurrentValue(QVariantAnimation* theWrappedObject, const QVariant&  value);
    void updateState(QVariantAnimation* theWrappedObject, QAbstractAnimation::State  newState, QAbstractAnimation::State  oldState);
 };
 

@@ -54,17 +54,17 @@ void delete_QXmlStreamAttributes(QXmlStreamAttributes* obj) { delete obj; }
    int  count(QXmlStreamAttributes* theWrappedObject, const QXmlStreamAttribute&  t) const;
    bool  empty(QXmlStreamAttributes* theWrappedObject) const;
    bool  endsWith(QXmlStreamAttributes* theWrappedObject, const QXmlStreamAttribute&  t) const;
-   QVector<QXmlStreamAttribute >*  fill(QXmlStreamAttributes* theWrappedObject, const QXmlStreamAttribute&  t, int  size);
+   QVector<QXmlStreamAttribute >*  fill(QXmlStreamAttributes* theWrappedObject, const QXmlStreamAttribute&  t, int  size = -1);
    const QXmlStreamAttribute*  first(QXmlStreamAttributes* theWrappedObject) const;
    QVector<QXmlStreamAttribute >  static_QXmlStreamAttributes_fromList(const QList<QXmlStreamAttribute >&  list);
    bool  hasAttribute(QXmlStreamAttributes* theWrappedObject, const QString&  namespaceUri, const QString&  name) const;
    bool  hasAttribute(QXmlStreamAttributes* theWrappedObject, const QString&  qualifiedName) const;
-   int  indexOf(QXmlStreamAttributes* theWrappedObject, const QXmlStreamAttribute&  t, int  from) const;
+   int  indexOf(QXmlStreamAttributes* theWrappedObject, const QXmlStreamAttribute&  t, int  from = 0) const;
    bool  isEmpty(QXmlStreamAttributes* theWrappedObject) const;
    bool  isSharedWith(QXmlStreamAttributes* theWrappedObject, const QVector<QXmlStreamAttribute >&  other) const;
    const QXmlStreamAttribute*  last(QXmlStreamAttributes* theWrappedObject) const;
-   int  lastIndexOf(QXmlStreamAttributes* theWrappedObject, const QXmlStreamAttribute&  t, int  from) const;
-   QVector<QXmlStreamAttribute >  mid(QXmlStreamAttributes* theWrappedObject, int  pos, int  length) const;
+   int  lastIndexOf(QXmlStreamAttributes* theWrappedObject, const QXmlStreamAttribute&  t, int  from = -1) const;
+   QVector<QXmlStreamAttribute >  mid(QXmlStreamAttributes* theWrappedObject, int  pos, int  length = -1) const;
    bool  __ne__(QXmlStreamAttributes* theWrappedObject, const QVector<QXmlStreamAttribute >&  v) const;
    bool  __eq__(QXmlStreamAttributes* theWrappedObject, const QVector<QXmlStreamAttribute >&  v) const;
    void prepend(QXmlStreamAttributes* theWrappedObject, const QXmlStreamAttribute&  t);
@@ -146,13 +146,13 @@ void delete_QXmlStreamNotationDeclaration(QXmlStreamNotationDeclaration* obj) { 
 class PythonQtWrapper_QXmlStreamReader : public QObject
 { Q_OBJECT
 public:
-Q_ENUMS(Error TokenType ReadElementTextBehaviour )
+Q_ENUMS(Error ReadElementTextBehaviour TokenType )
 enum Error{
   NoError = QXmlStreamReader::NoError,   UnexpectedElementError = QXmlStreamReader::UnexpectedElementError,   CustomError = QXmlStreamReader::CustomError,   NotWellFormedError = QXmlStreamReader::NotWellFormedError,   PrematureEndOfDocumentError = QXmlStreamReader::PrematureEndOfDocumentError};
-enum TokenType{
-  NoToken = QXmlStreamReader::NoToken,   Invalid = QXmlStreamReader::Invalid,   StartDocument = QXmlStreamReader::StartDocument,   EndDocument = QXmlStreamReader::EndDocument,   StartElement = QXmlStreamReader::StartElement,   EndElement = QXmlStreamReader::EndElement,   Characters = QXmlStreamReader::Characters,   Comment = QXmlStreamReader::Comment,   DTD = QXmlStreamReader::DTD,   EntityReference = QXmlStreamReader::EntityReference,   ProcessingInstruction = QXmlStreamReader::ProcessingInstruction};
 enum ReadElementTextBehaviour{
   ErrorOnUnexpectedElement = QXmlStreamReader::ErrorOnUnexpectedElement,   IncludeChildElements = QXmlStreamReader::IncludeChildElements,   SkipChildElements = QXmlStreamReader::SkipChildElements};
+enum TokenType{
+  NoToken = QXmlStreamReader::NoToken,   Invalid = QXmlStreamReader::Invalid,   StartDocument = QXmlStreamReader::StartDocument,   EndDocument = QXmlStreamReader::EndDocument,   StartElement = QXmlStreamReader::StartElement,   EndElement = QXmlStreamReader::EndElement,   Characters = QXmlStreamReader::Characters,   Comment = QXmlStreamReader::Comment,   DTD = QXmlStreamReader::DTD,   EntityReference = QXmlStreamReader::EntityReference,   ProcessingInstruction = QXmlStreamReader::ProcessingInstruction};
 public slots:
 QXmlStreamReader* new_QXmlStreamReader();
 QXmlStreamReader* new_QXmlStreamReader(QIODevice*  device);

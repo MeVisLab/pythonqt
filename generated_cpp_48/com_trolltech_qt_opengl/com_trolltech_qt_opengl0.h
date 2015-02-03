@@ -52,13 +52,13 @@
 class PythonQtWrapper_QGLBuffer : public QObject
 { Q_OBJECT
 public:
-Q_ENUMS(Access UsagePattern Type )
+Q_ENUMS(Access Type UsagePattern )
 enum Access{
   ReadOnly = QGLBuffer::ReadOnly,   WriteOnly = QGLBuffer::WriteOnly,   ReadWrite = QGLBuffer::ReadWrite};
-enum UsagePattern{
-  StreamDraw = QGLBuffer::StreamDraw,   StreamRead = QGLBuffer::StreamRead,   StreamCopy = QGLBuffer::StreamCopy,   StaticDraw = QGLBuffer::StaticDraw,   StaticRead = QGLBuffer::StaticRead,   StaticCopy = QGLBuffer::StaticCopy,   DynamicDraw = QGLBuffer::DynamicDraw,   DynamicRead = QGLBuffer::DynamicRead,   DynamicCopy = QGLBuffer::DynamicCopy};
 enum Type{
   VertexBuffer = QGLBuffer::VertexBuffer,   IndexBuffer = QGLBuffer::IndexBuffer,   PixelPackBuffer = QGLBuffer::PixelPackBuffer,   PixelUnpackBuffer = QGLBuffer::PixelUnpackBuffer};
+enum UsagePattern{
+  StreamDraw = QGLBuffer::StreamDraw,   StreamRead = QGLBuffer::StreamRead,   StreamCopy = QGLBuffer::StreamCopy,   StaticDraw = QGLBuffer::StaticDraw,   StaticRead = QGLBuffer::StaticRead,   StaticCopy = QGLBuffer::StaticCopy,   DynamicDraw = QGLBuffer::DynamicDraw,   DynamicRead = QGLBuffer::DynamicRead,   DynamicCopy = QGLBuffer::DynamicCopy};
 public slots:
 QGLBuffer* new_QGLBuffer();
 QGLBuffer* new_QGLBuffer(QGLBuffer::Type  type);
@@ -100,6 +100,12 @@ public:
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QGLColormap : public QGLColormap
+{ public:
+inline Qt::HANDLE  promoted_handle() { return QGLColormap::handle(); }
+inline void promoted_setHandle(Qt::HANDLE  ahandle) { QGLColormap::setHandle(ahandle); }
+};
+
 class PythonQtWrapper_QGLColormap : public QObject
 { Q_OBJECT
 public:
@@ -111,10 +117,11 @@ void delete_QGLColormap(QGLColormap* obj) { delete obj; }
    unsigned int  entryRgb(QGLColormap* theWrappedObject, int  idx) const;
    int  find(QGLColormap* theWrappedObject, unsigned int  color) const;
    int  findNearest(QGLColormap* theWrappedObject, unsigned int  color) const;
+   Qt::HANDLE  handle(QGLColormap* theWrappedObject);
    bool  isEmpty(QGLColormap* theWrappedObject) const;
-   void setEntries(QGLColormap* theWrappedObject, int  count, const unsigned int*  colors, int  base = 0);
    void setEntry(QGLColormap* theWrappedObject, int  idx, const QColor&  color);
    void setEntry(QGLColormap* theWrappedObject, int  idx, unsigned int  color);
+   void setHandle(QGLColormap* theWrappedObject, Qt::HANDLE  ahandle);
    int  size(QGLColormap* theWrappedObject) const;
 };
 
@@ -142,10 +149,17 @@ virtual void swapBuffers() const;
 class PythonQtPublicPromoter_QGLContext : public QGLContext
 { public:
 inline bool  promoted_chooseContext(const QGLContext*  shareContext = 0) { return QGLContext::chooseContext(shareContext); }
+inline uint  promoted_colorIndex(const QColor&  c) const { return QGLContext::colorIndex(c); }
 inline bool  promoted_create(const QGLContext*  shareContext = 0) { return QGLContext::create(shareContext); }
+inline bool  promoted_deviceIsPixmap() const { return QGLContext::deviceIsPixmap(); }
 inline void promoted_doneCurrent() { QGLContext::doneCurrent(); }
+inline bool  promoted_initialized() const { return QGLContext::initialized(); }
 inline void promoted_makeCurrent() { QGLContext::makeCurrent(); }
+inline void promoted_setInitialized(bool  on) { QGLContext::setInitialized(on); }
+inline void promoted_setValid(bool  valid) { QGLContext::setValid(valid); }
+inline void promoted_setWindowCreated(bool  on) { QGLContext::setWindowCreated(on); }
 inline void promoted_swapBuffers() const { QGLContext::swapBuffers(); }
+inline bool  promoted_windowCreated() const { return QGLContext::windowCreated(); }
 };
 
 class PythonQtWrapper_QGLContext : public QObject
@@ -167,14 +181,17 @@ void delete_QGLContext(QGLContext* obj) { delete obj; }
    GLuint  bindTexture(QGLContext* theWrappedObject, const QPixmap&  pixmap, GLenum  target, GLint  format, QGLContext::BindOptions  options);
    GLuint  bindTexture(QGLContext* theWrappedObject, const QString&  fileName);
    bool  chooseContext(QGLContext* theWrappedObject, const QGLContext*  shareContext = 0);
+   uint  colorIndex(QGLContext* theWrappedObject, const QColor&  c) const;
    bool  create(QGLContext* theWrappedObject, const QGLContext*  shareContext = 0);
    const QGLContext*  static_QGLContext_currentContext();
    void deleteTexture(QGLContext* theWrappedObject, GLuint  tx_id);
    QPaintDevice*  device(QGLContext* theWrappedObject) const;
+   bool  deviceIsPixmap(QGLContext* theWrappedObject) const;
    void doneCurrent(QGLContext* theWrappedObject);
    void drawTexture(QGLContext* theWrappedObject, const QPointF&  point, GLuint  textureId, GLenum  textureTarget = 0x0DE1);
    void drawTexture(QGLContext* theWrappedObject, const QRectF&  target, GLuint  textureId, GLenum  textureTarget = 0x0DE1);
    QGLFormat  format(QGLContext* theWrappedObject) const;
+   bool  initialized(QGLContext* theWrappedObject) const;
    bool  isSharing(QGLContext* theWrappedObject) const;
    bool  isValid(QGLContext* theWrappedObject) const;
    void makeCurrent(QGLContext* theWrappedObject);
@@ -182,9 +199,13 @@ void delete_QGLContext(QGLContext* obj) { delete obj; }
    QGLFormat  requestedFormat(QGLContext* theWrappedObject) const;
    void reset(QGLContext* theWrappedObject);
    void setFormat(QGLContext* theWrappedObject, const QGLFormat&  format);
+   void setInitialized(QGLContext* theWrappedObject, bool  on);
    void static_QGLContext_setTextureCacheLimit(int  size);
+   void setValid(QGLContext* theWrappedObject, bool  valid);
+   void setWindowCreated(QGLContext* theWrappedObject, bool  on);
    void swapBuffers(QGLContext* theWrappedObject) const;
    int  static_QGLContext_textureCacheLimit();
+   bool  windowCreated(QGLContext* theWrappedObject) const;
 };
 
 
@@ -194,12 +215,12 @@ void delete_QGLContext(QGLContext* obj) { delete obj; }
 class PythonQtWrapper_QGLFormat : public QObject
 { Q_OBJECT
 public:
-Q_ENUMS(OpenGLVersionFlag OpenGLContextProfile )
+Q_ENUMS(OpenGLContextProfile OpenGLVersionFlag )
 Q_FLAGS(OpenGLVersionFlags )
-enum OpenGLVersionFlag{
-  OpenGL_Version_None = QGLFormat::OpenGL_Version_None,   OpenGL_Version_1_1 = QGLFormat::OpenGL_Version_1_1,   OpenGL_Version_1_2 = QGLFormat::OpenGL_Version_1_2,   OpenGL_Version_1_3 = QGLFormat::OpenGL_Version_1_3,   OpenGL_Version_1_4 = QGLFormat::OpenGL_Version_1_4,   OpenGL_Version_1_5 = QGLFormat::OpenGL_Version_1_5,   OpenGL_Version_2_0 = QGLFormat::OpenGL_Version_2_0,   OpenGL_Version_2_1 = QGLFormat::OpenGL_Version_2_1,   OpenGL_ES_Common_Version_1_0 = QGLFormat::OpenGL_ES_Common_Version_1_0,   OpenGL_ES_CommonLite_Version_1_0 = QGLFormat::OpenGL_ES_CommonLite_Version_1_0,   OpenGL_ES_Common_Version_1_1 = QGLFormat::OpenGL_ES_Common_Version_1_1,   OpenGL_ES_CommonLite_Version_1_1 = QGLFormat::OpenGL_ES_CommonLite_Version_1_1,   OpenGL_ES_Version_2_0 = QGLFormat::OpenGL_ES_Version_2_0,   OpenGL_Version_3_0 = QGLFormat::OpenGL_Version_3_0,   OpenGL_Version_3_1 = QGLFormat::OpenGL_Version_3_1,   OpenGL_Version_3_2 = QGLFormat::OpenGL_Version_3_2,   OpenGL_Version_3_3 = QGLFormat::OpenGL_Version_3_3,   OpenGL_Version_4_0 = QGLFormat::OpenGL_Version_4_0};
 enum OpenGLContextProfile{
   NoProfile = QGLFormat::NoProfile,   CoreProfile = QGLFormat::CoreProfile,   CompatibilityProfile = QGLFormat::CompatibilityProfile};
+enum OpenGLVersionFlag{
+  OpenGL_Version_None = QGLFormat::OpenGL_Version_None,   OpenGL_Version_1_1 = QGLFormat::OpenGL_Version_1_1,   OpenGL_Version_1_2 = QGLFormat::OpenGL_Version_1_2,   OpenGL_Version_1_3 = QGLFormat::OpenGL_Version_1_3,   OpenGL_Version_1_4 = QGLFormat::OpenGL_Version_1_4,   OpenGL_Version_1_5 = QGLFormat::OpenGL_Version_1_5,   OpenGL_Version_2_0 = QGLFormat::OpenGL_Version_2_0,   OpenGL_Version_2_1 = QGLFormat::OpenGL_Version_2_1,   OpenGL_ES_Common_Version_1_0 = QGLFormat::OpenGL_ES_Common_Version_1_0,   OpenGL_ES_CommonLite_Version_1_0 = QGLFormat::OpenGL_ES_CommonLite_Version_1_0,   OpenGL_ES_Common_Version_1_1 = QGLFormat::OpenGL_ES_Common_Version_1_1,   OpenGL_ES_CommonLite_Version_1_1 = QGLFormat::OpenGL_ES_CommonLite_Version_1_1,   OpenGL_ES_Version_2_0 = QGLFormat::OpenGL_ES_Version_2_0,   OpenGL_Version_3_0 = QGLFormat::OpenGL_Version_3_0,   OpenGL_Version_3_1 = QGLFormat::OpenGL_Version_3_1,   OpenGL_Version_3_2 = QGLFormat::OpenGL_Version_3_2,   OpenGL_Version_3_3 = QGLFormat::OpenGL_Version_3_3,   OpenGL_Version_4_0 = QGLFormat::OpenGL_Version_4_0};
 Q_DECLARE_FLAGS(OpenGLVersionFlags, OpenGLVersionFlag)
 public slots:
 QGLFormat* new_QGLFormat();
@@ -363,8 +384,10 @@ class PythonQtWrapper_QGLFunctions : public QObject
 { Q_OBJECT
 public:
 Q_ENUMS(OpenGLFeature )
+Q_FLAGS(OpenGLFeatures )
 enum OpenGLFeature{
   Multitexture = QGLFunctions::Multitexture,   Shaders = QGLFunctions::Shaders,   Buffers = QGLFunctions::Buffers,   Framebuffers = QGLFunctions::Framebuffers,   BlendColor = QGLFunctions::BlendColor,   BlendEquation = QGLFunctions::BlendEquation,   BlendEquationSeparate = QGLFunctions::BlendEquationSeparate,   BlendFuncSeparate = QGLFunctions::BlendFuncSeparate,   BlendSubtract = QGLFunctions::BlendSubtract,   CompressedTextures = QGLFunctions::CompressedTextures,   Multisample = QGLFunctions::Multisample,   StencilSeparate = QGLFunctions::StencilSeparate,   NPOTTextures = QGLFunctions::NPOTTextures};
+Q_DECLARE_FLAGS(OpenGLFeatures, OpenGLFeature)
 public slots:
 QGLFunctions* new_QGLFunctions();
 QGLFunctions* new_QGLFunctions(const QGLContext*  context);
@@ -379,8 +402,6 @@ void delete_QGLFunctions(QGLFunctions* obj) { delete obj; }
    void glBlendEquation(QGLFunctions* theWrappedObject, GLenum  mode);
    void glBlendEquationSeparate(QGLFunctions* theWrappedObject, GLenum  modeRGB, GLenum  modeAlpha);
    void glBlendFuncSeparate(QGLFunctions* theWrappedObject, GLenum  srcRGB, GLenum  dstRGB, GLenum  srcAlpha, GLenum  dstAlpha);
-   void glBufferData(QGLFunctions* theWrappedObject, GLenum  target, qgl_GLsizeiptr  size, const void*  data, GLenum  usage);
-   void glBufferSubData(QGLFunctions* theWrappedObject, GLenum  target, qgl_GLintptr  offset, qgl_GLsizeiptr  size, const void*  data);
    GLenum  glCheckFramebufferStatus(QGLFunctions* theWrappedObject, GLenum  target);
    void glClearDepthf(QGLFunctions* theWrappedObject, GLclampf  depth);
    void glCompileShader(QGLFunctions* theWrappedObject, GLuint  shader);
@@ -468,6 +489,7 @@ void delete_QGLFunctions(QGLFunctions* obj) { delete obj; }
    void glVertexAttribPointer(QGLFunctions* theWrappedObject, GLuint  indx, GLint  size, GLenum  type, GLboolean  normalized, GLsizei  stride, const void*  ptr);
    bool  hasOpenGLFeature(QGLFunctions* theWrappedObject, QGLFunctions::OpenGLFeature  feature) const;
    void initializeGLFunctions(QGLFunctions* theWrappedObject, const QGLContext*  context = 0);
+   QGLFunctions::OpenGLFeatures  openGLFeatures(QGLFunctions* theWrappedObject) const;
 };
 
 
@@ -784,6 +806,7 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 
 class PythonQtPublicPromoter_QGLWidget : public QGLWidget
 { public:
+inline bool  promoted_autoBufferSwap() const { return QGLWidget::autoBufferSwap(); }
 inline bool  promoted_event(QEvent*  arg__1) { return QGLWidget::event(arg__1); }
 inline void promoted_glDraw() { QGLWidget::glDraw(); }
 inline void promoted_glInit() { QGLWidget::glInit(); }
@@ -796,6 +819,7 @@ inline void promoted_paintOverlayGL() { QGLWidget::paintOverlayGL(); }
 inline void promoted_resizeEvent(QResizeEvent*  arg__1) { QGLWidget::resizeEvent(arg__1); }
 inline void promoted_resizeGL(int  w, int  h) { QGLWidget::resizeGL(w, h); }
 inline void promoted_resizeOverlayGL(int  w, int  h) { QGLWidget::resizeOverlayGL(w, h); }
+inline void promoted_setAutoBufferSwap(bool  on) { QGLWidget::setAutoBufferSwap(on); }
 inline void promoted_updateGL() { QGLWidget::updateGL(); }
 inline void promoted_updateOverlayGL() { QGLWidget::updateOverlayGL(); }
 };
@@ -808,6 +832,7 @@ QGLWidget* new_QGLWidget(QGLContext*  context, QWidget*  parent = 0, const QGLWi
 QGLWidget* new_QGLWidget(QWidget*  parent = 0, const QGLWidget*  shareWidget = 0, Qt::WindowFlags  f = 0);
 QGLWidget* new_QGLWidget(const QGLFormat&  format, QWidget*  parent = 0, const QGLWidget*  shareWidget = 0, Qt::WindowFlags  f = 0);
 void delete_QGLWidget(QGLWidget* obj) { delete obj; } 
+   bool  autoBufferSwap(QGLWidget* theWrappedObject) const;
    GLuint  bindTexture(QGLWidget* theWrappedObject, const QImage&  image, GLenum  target = 0x0DE1, GLint  format = 0x1908);
    GLuint  bindTexture(QGLWidget* theWrappedObject, const QImage&  image, GLenum  target, GLint  format, QGLContext::BindOptions  options);
    GLuint  bindTexture(QGLWidget* theWrappedObject, const QPixmap&  pixmap, GLenum  target = 0x0DE1, GLint  format = 0x1908);
@@ -845,6 +870,7 @@ void delete_QGLWidget(QGLWidget* obj) { delete obj; }
    void resizeEvent(QGLWidget* theWrappedObject, QResizeEvent*  arg__1);
    void resizeGL(QGLWidget* theWrappedObject, int  w, int  h);
    void resizeOverlayGL(QGLWidget* theWrappedObject, int  w, int  h);
+   void setAutoBufferSwap(QGLWidget* theWrappedObject, bool  on);
    void setColormap(QGLWidget* theWrappedObject, const QGLColormap&  map);
    void swapBuffers(QGLWidget* theWrappedObject);
    void updateGL(QGLWidget* theWrappedObject);
