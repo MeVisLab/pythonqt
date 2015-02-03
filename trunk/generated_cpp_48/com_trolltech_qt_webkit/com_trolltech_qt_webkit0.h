@@ -1,4 +1,5 @@
 #include <PythonQt.h>
+#include <QGraphicsScene>
 #include <QObject>
 #include <QVariant>
 #include <qaction.h>
@@ -100,7 +101,7 @@ virtual void mousePressEvent(QGraphicsSceneMouseEvent*  arg__1);
 virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent*  arg__1);
 virtual void moveEvent(QGraphicsSceneMoveEvent*  event);
 virtual void paint(QPainter*  arg__1, const QStyleOptionGraphicsItem*  options, QWidget*  widget = 0);
-virtual void paintWindowFrame(QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget);
+virtual void paintWindowFrame(QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = 0);
 virtual void polishEvent();
 virtual QVariant  propertyChange(const QString&  propertyName, const QVariant&  value);
 virtual void resizeEvent(QGraphicsSceneResizeEvent*  event);
@@ -338,24 +339,20 @@ void delete_QWebElementCollection(QWebElementCollection* obj) { delete obj; }
 
 
 
-class PythonQtPublicPromoter_QWebFrame : public QWebFrame
-{ public:
-inline bool  promoted_event(QEvent*  arg__1) { return QWebFrame::event(arg__1); }
-};
-
 class PythonQtWrapper_QWebFrame : public QObject
 { Q_OBJECT
 public:
 Q_ENUMS(RenderLayer )
+Q_FLAGS(RenderLayers )
 enum RenderLayer{
   ContentsLayer = QWebFrame::ContentsLayer,   ScrollBarLayer = QWebFrame::ScrollBarLayer,   PanIconLayer = QWebFrame::PanIconLayer,   AllLayers = QWebFrame::AllLayers};
+Q_DECLARE_FLAGS(RenderLayers, RenderLayer)
 public slots:
    void addToJavaScriptWindowObject(QWebFrame* theWrappedObject, const QString&  name, QObject*  object);
    QUrl  baseUrl(QWebFrame* theWrappedObject) const;
    QList<QWebFrame* >  childFrames(QWebFrame* theWrappedObject) const;
    QSize  contentsSize(QWebFrame* theWrappedObject) const;
    QWebElement  documentElement(QWebFrame* theWrappedObject) const;
-   bool  event(QWebFrame* theWrappedObject, QEvent*  arg__1);
    QWebElementCollection  findAllElements(QWebFrame* theWrappedObject, const QString&  selectorQuery) const;
    QWebElement  findFirstElement(QWebFrame* theWrappedObject, const QString&  selectorQuery) const;
    QString  frameName(QWebFrame* theWrappedObject) const;
@@ -451,13 +448,21 @@ virtual void timerEvent(QTimerEvent*  arg__1);
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QWebHistoryInterface : public QWebHistoryInterface
+{ public:
+inline void promoted_addHistoryEntry(const QString&  url) { this->addHistoryEntry(url); }
+inline bool  promoted_historyContains(const QString&  url) const { return this->historyContains(url); }
+};
+
 class PythonQtWrapper_QWebHistoryInterface : public QObject
 { Q_OBJECT
 public:
 public slots:
 QWebHistoryInterface* new_QWebHistoryInterface(QObject*  parent = 0);
 void delete_QWebHistoryInterface(QWebHistoryInterface* obj) { delete obj; } 
+   void addHistoryEntry(QWebHistoryInterface* theWrappedObject, const QString&  url);
    QWebHistoryInterface*  static_QWebHistoryInterface_defaultInterface();
+   bool  historyContains(QWebHistoryInterface* theWrappedObject, const QString&  url) const;
    void static_QWebHistoryInterface_setDefaultInterface(QWebHistoryInterface*  defaultInterface);
 };
 
@@ -474,7 +479,6 @@ void delete_QWebHistoryItem(QWebHistoryItem* obj) { delete obj; }
    QIcon  icon(QWebHistoryItem* theWrappedObject) const;
    bool  isValid(QWebHistoryItem* theWrappedObject) const;
    QDateTime  lastVisited(QWebHistoryItem* theWrappedObject) const;
-   QWebHistoryItem*  operator_assign(QWebHistoryItem* theWrappedObject, const QWebHistoryItem&  other);
    QUrl  originalUrl(QWebHistoryItem* theWrappedObject) const;
    void setUserData(QWebHistoryItem* theWrappedObject, const QVariant&  userData);
    QString  title(QWebHistoryItem* theWrappedObject) const;
@@ -644,20 +648,20 @@ inline QString  promoted_userAgentForUrl(const QUrl&  url) const { return QWebPa
 class PythonQtWrapper_QWebPage : public QObject
 { Q_OBJECT
 public:
-Q_ENUMS(ErrorDomain WebWindowType PermissionPolicy FindFlag Feature Extension )
+Q_ENUMS(ErrorDomain Extension Feature FindFlag PermissionPolicy WebWindowType )
 Q_FLAGS(FindFlags )
 enum ErrorDomain{
   QtNetwork = QWebPage::QtNetwork,   Http = QWebPage::Http,   WebKit = QWebPage::WebKit};
-enum WebWindowType{
-  WebBrowserWindow = QWebPage::WebBrowserWindow,   WebModalDialog = QWebPage::WebModalDialog};
-enum PermissionPolicy{
-  PermissionUnknown = QWebPage::PermissionUnknown,   PermissionGrantedByUser = QWebPage::PermissionGrantedByUser,   PermissionDeniedByUser = QWebPage::PermissionDeniedByUser};
-enum FindFlag{
-  FindBackward = QWebPage::FindBackward,   FindCaseSensitively = QWebPage::FindCaseSensitively,   FindWrapsAroundDocument = QWebPage::FindWrapsAroundDocument,   HighlightAllOccurrences = QWebPage::HighlightAllOccurrences};
-enum Feature{
-  Notifications = QWebPage::Notifications,   Geolocation = QWebPage::Geolocation};
 enum Extension{
   ChooseMultipleFilesExtension = QWebPage::ChooseMultipleFilesExtension,   ErrorPageExtension = QWebPage::ErrorPageExtension};
+enum Feature{
+  Notifications = QWebPage::Notifications,   Geolocation = QWebPage::Geolocation};
+enum FindFlag{
+  FindBackward = QWebPage::FindBackward,   FindCaseSensitively = QWebPage::FindCaseSensitively,   FindWrapsAroundDocument = QWebPage::FindWrapsAroundDocument,   HighlightAllOccurrences = QWebPage::HighlightAllOccurrences};
+enum PermissionPolicy{
+  PermissionUnknown = QWebPage::PermissionUnknown,   PermissionGrantedByUser = QWebPage::PermissionGrantedByUser,   PermissionDeniedByUser = QWebPage::PermissionDeniedByUser};
+enum WebWindowType{
+  WebBrowserWindow = QWebPage::WebBrowserWindow,   WebModalDialog = QWebPage::WebModalDialog};
 Q_DECLARE_FLAGS(FindFlags, FindFlag)
 public slots:
 QWebPage* new_QWebPage(QObject*  parent = 0);
@@ -722,23 +726,23 @@ void delete_QWebPage(QWebPage* obj) { delete obj; }
 
 
 
-class PythonQtShell_QWebPage_ChooseMultipleFilesExtensionOption : public QWebPage::ChooseMultipleFilesExtensionOption
+class PythonQtShell_QWebPage__ChooseMultipleFilesExtensionOption : public QWebPage::ChooseMultipleFilesExtensionOption
 {
 public:
-    PythonQtShell_QWebPage_ChooseMultipleFilesExtensionOption():QWebPage::ChooseMultipleFilesExtensionOption(),_wrapper(NULL) {};
+    PythonQtShell_QWebPage__ChooseMultipleFilesExtensionOption():QWebPage::ChooseMultipleFilesExtensionOption(),_wrapper(NULL) {};
 
-   ~PythonQtShell_QWebPage_ChooseMultipleFilesExtensionOption();
+   ~PythonQtShell_QWebPage__ChooseMultipleFilesExtensionOption();
 
 
   PythonQtInstanceWrapper* _wrapper; 
 };
 
-class PythonQtWrapper_QWebPage_ChooseMultipleFilesExtensionOption : public QObject
+class PythonQtWrapper_QWebPage__ChooseMultipleFilesExtensionOption : public QObject
 { Q_OBJECT
 public:
 public slots:
-QWebPage::ChooseMultipleFilesExtensionOption* new_QWebPage_ChooseMultipleFilesExtensionOption();
-void delete_QWebPage_ChooseMultipleFilesExtensionOption(QWebPage::ChooseMultipleFilesExtensionOption* obj) { delete obj; } 
+QWebPage::ChooseMultipleFilesExtensionOption* new_QWebPage__ChooseMultipleFilesExtensionOption();
+void delete_QWebPage__ChooseMultipleFilesExtensionOption(QWebPage::ChooseMultipleFilesExtensionOption* obj) { delete obj; } 
 void py_set_parentFrame(QWebPage::ChooseMultipleFilesExtensionOption* theWrappedObject, QWebFrame*  parentFrame){ theWrappedObject->parentFrame = parentFrame; }
 QWebFrame*  py_get_parentFrame(QWebPage::ChooseMultipleFilesExtensionOption* theWrappedObject){ return theWrappedObject->parentFrame; }
 void py_set_suggestedFileNames(QWebPage::ChooseMultipleFilesExtensionOption* theWrappedObject, QStringList  suggestedFileNames){ theWrappedObject->suggestedFileNames = suggestedFileNames; }
@@ -749,23 +753,23 @@ QStringList  py_get_suggestedFileNames(QWebPage::ChooseMultipleFilesExtensionOpt
 
 
 
-class PythonQtShell_QWebPage_ChooseMultipleFilesExtensionReturn : public QWebPage::ChooseMultipleFilesExtensionReturn
+class PythonQtShell_QWebPage__ChooseMultipleFilesExtensionReturn : public QWebPage::ChooseMultipleFilesExtensionReturn
 {
 public:
-    PythonQtShell_QWebPage_ChooseMultipleFilesExtensionReturn():QWebPage::ChooseMultipleFilesExtensionReturn(),_wrapper(NULL) {};
+    PythonQtShell_QWebPage__ChooseMultipleFilesExtensionReturn():QWebPage::ChooseMultipleFilesExtensionReturn(),_wrapper(NULL) {};
 
-   ~PythonQtShell_QWebPage_ChooseMultipleFilesExtensionReturn();
+   ~PythonQtShell_QWebPage__ChooseMultipleFilesExtensionReturn();
 
 
   PythonQtInstanceWrapper* _wrapper; 
 };
 
-class PythonQtWrapper_QWebPage_ChooseMultipleFilesExtensionReturn : public QObject
+class PythonQtWrapper_QWebPage__ChooseMultipleFilesExtensionReturn : public QObject
 { Q_OBJECT
 public:
 public slots:
-QWebPage::ChooseMultipleFilesExtensionReturn* new_QWebPage_ChooseMultipleFilesExtensionReturn();
-void delete_QWebPage_ChooseMultipleFilesExtensionReturn(QWebPage::ChooseMultipleFilesExtensionReturn* obj) { delete obj; } 
+QWebPage::ChooseMultipleFilesExtensionReturn* new_QWebPage__ChooseMultipleFilesExtensionReturn();
+void delete_QWebPage__ChooseMultipleFilesExtensionReturn(QWebPage::ChooseMultipleFilesExtensionReturn* obj) { delete obj; } 
 void py_set_fileNames(QWebPage::ChooseMultipleFilesExtensionReturn* theWrappedObject, QStringList  fileNames){ theWrappedObject->fileNames = fileNames; }
 QStringList  py_get_fileNames(QWebPage::ChooseMultipleFilesExtensionReturn* theWrappedObject){ return theWrappedObject->fileNames; }
 };
@@ -774,110 +778,110 @@ QStringList  py_get_fileNames(QWebPage::ChooseMultipleFilesExtensionReturn* theW
 
 
 
-class PythonQtShell_QWebPage_ErrorPageExtensionOption : public QWebPage::ErrorPageExtensionOption
+class PythonQtShell_QWebPage__ErrorPageExtensionOption : public QWebPage::ErrorPageExtensionOption
 {
 public:
-    PythonQtShell_QWebPage_ErrorPageExtensionOption():QWebPage::ErrorPageExtensionOption(),_wrapper(NULL) {};
+    PythonQtShell_QWebPage__ErrorPageExtensionOption():QWebPage::ErrorPageExtensionOption(),_wrapper(NULL) {};
 
-   ~PythonQtShell_QWebPage_ErrorPageExtensionOption();
+   ~PythonQtShell_QWebPage__ErrorPageExtensionOption();
 
 
   PythonQtInstanceWrapper* _wrapper; 
 };
 
-class PythonQtWrapper_QWebPage_ErrorPageExtensionOption : public QObject
+class PythonQtWrapper_QWebPage__ErrorPageExtensionOption : public QObject
 { Q_OBJECT
 public:
 public slots:
-QWebPage::ErrorPageExtensionOption* new_QWebPage_ErrorPageExtensionOption();
-void delete_QWebPage_ErrorPageExtensionOption(QWebPage::ErrorPageExtensionOption* obj) { delete obj; } 
-void py_set_error(QWebPage::ErrorPageExtensionOption* theWrappedObject, int  error){ theWrappedObject->error = error; }
-int  py_get_error(QWebPage::ErrorPageExtensionOption* theWrappedObject){ return theWrappedObject->error; }
+QWebPage::ErrorPageExtensionOption* new_QWebPage__ErrorPageExtensionOption();
+void delete_QWebPage__ErrorPageExtensionOption(QWebPage::ErrorPageExtensionOption* obj) { delete obj; } 
 void py_set_domain(QWebPage::ErrorPageExtensionOption* theWrappedObject, QWebPage::ErrorDomain  domain){ theWrappedObject->domain = domain; }
 QWebPage::ErrorDomain  py_get_domain(QWebPage::ErrorPageExtensionOption* theWrappedObject){ return theWrappedObject->domain; }
+void py_set_error(QWebPage::ErrorPageExtensionOption* theWrappedObject, int  error){ theWrappedObject->error = error; }
+int  py_get_error(QWebPage::ErrorPageExtensionOption* theWrappedObject){ return theWrappedObject->error; }
 void py_set_errorString(QWebPage::ErrorPageExtensionOption* theWrappedObject, QString  errorString){ theWrappedObject->errorString = errorString; }
 QString  py_get_errorString(QWebPage::ErrorPageExtensionOption* theWrappedObject){ return theWrappedObject->errorString; }
-void py_set_url(QWebPage::ErrorPageExtensionOption* theWrappedObject, QUrl  url){ theWrappedObject->url = url; }
-QUrl  py_get_url(QWebPage::ErrorPageExtensionOption* theWrappedObject){ return theWrappedObject->url; }
 void py_set_frame(QWebPage::ErrorPageExtensionOption* theWrappedObject, QWebFrame*  frame){ theWrappedObject->frame = frame; }
 QWebFrame*  py_get_frame(QWebPage::ErrorPageExtensionOption* theWrappedObject){ return theWrappedObject->frame; }
+void py_set_url(QWebPage::ErrorPageExtensionOption* theWrappedObject, QUrl  url){ theWrappedObject->url = url; }
+QUrl  py_get_url(QWebPage::ErrorPageExtensionOption* theWrappedObject){ return theWrappedObject->url; }
 };
 
 
 
 
 
-class PythonQtShell_QWebPage_ErrorPageExtensionReturn : public QWebPage::ErrorPageExtensionReturn
+class PythonQtShell_QWebPage__ErrorPageExtensionReturn : public QWebPage::ErrorPageExtensionReturn
 {
 public:
-    PythonQtShell_QWebPage_ErrorPageExtensionReturn():QWebPage::ErrorPageExtensionReturn(),_wrapper(NULL) {};
+    PythonQtShell_QWebPage__ErrorPageExtensionReturn():QWebPage::ErrorPageExtensionReturn(),_wrapper(NULL) {};
 
-   ~PythonQtShell_QWebPage_ErrorPageExtensionReturn();
+   ~PythonQtShell_QWebPage__ErrorPageExtensionReturn();
 
 
   PythonQtInstanceWrapper* _wrapper; 
 };
 
-class PythonQtWrapper_QWebPage_ErrorPageExtensionReturn : public QObject
+class PythonQtWrapper_QWebPage__ErrorPageExtensionReturn : public QObject
 { Q_OBJECT
 public:
 public slots:
-QWebPage::ErrorPageExtensionReturn* new_QWebPage_ErrorPageExtensionReturn();
-void delete_QWebPage_ErrorPageExtensionReturn(QWebPage::ErrorPageExtensionReturn* obj) { delete obj; } 
+QWebPage::ErrorPageExtensionReturn* new_QWebPage__ErrorPageExtensionReturn();
+void delete_QWebPage__ErrorPageExtensionReturn(QWebPage::ErrorPageExtensionReturn* obj) { delete obj; } 
 void py_set_baseUrl(QWebPage::ErrorPageExtensionReturn* theWrappedObject, QUrl  baseUrl){ theWrappedObject->baseUrl = baseUrl; }
 QUrl  py_get_baseUrl(QWebPage::ErrorPageExtensionReturn* theWrappedObject){ return theWrappedObject->baseUrl; }
+void py_set_content(QWebPage::ErrorPageExtensionReturn* theWrappedObject, QByteArray  content){ theWrappedObject->content = content; }
+QByteArray  py_get_content(QWebPage::ErrorPageExtensionReturn* theWrappedObject){ return theWrappedObject->content; }
 void py_set_contentType(QWebPage::ErrorPageExtensionReturn* theWrappedObject, QString  contentType){ theWrappedObject->contentType = contentType; }
 QString  py_get_contentType(QWebPage::ErrorPageExtensionReturn* theWrappedObject){ return theWrappedObject->contentType; }
 void py_set_encoding(QWebPage::ErrorPageExtensionReturn* theWrappedObject, QString  encoding){ theWrappedObject->encoding = encoding; }
 QString  py_get_encoding(QWebPage::ErrorPageExtensionReturn* theWrappedObject){ return theWrappedObject->encoding; }
-void py_set_content(QWebPage::ErrorPageExtensionReturn* theWrappedObject, QByteArray  content){ theWrappedObject->content = content; }
-QByteArray  py_get_content(QWebPage::ErrorPageExtensionReturn* theWrappedObject){ return theWrappedObject->content; }
 };
 
 
 
 
 
-class PythonQtShell_QWebPage_ExtensionOption : public QWebPage::ExtensionOption
+class PythonQtShell_QWebPage__ExtensionOption : public QWebPage::ExtensionOption
 {
 public:
-    PythonQtShell_QWebPage_ExtensionOption():QWebPage::ExtensionOption(),_wrapper(NULL) {};
+    PythonQtShell_QWebPage__ExtensionOption():QWebPage::ExtensionOption(),_wrapper(NULL) {};
 
-   ~PythonQtShell_QWebPage_ExtensionOption();
+   ~PythonQtShell_QWebPage__ExtensionOption();
 
 
   PythonQtInstanceWrapper* _wrapper; 
 };
 
-class PythonQtWrapper_QWebPage_ExtensionOption : public QObject
+class PythonQtWrapper_QWebPage__ExtensionOption : public QObject
 { Q_OBJECT
 public:
 public slots:
-QWebPage::ExtensionOption* new_QWebPage_ExtensionOption();
-void delete_QWebPage_ExtensionOption(QWebPage::ExtensionOption* obj) { delete obj; } 
+QWebPage::ExtensionOption* new_QWebPage__ExtensionOption();
+void delete_QWebPage__ExtensionOption(QWebPage::ExtensionOption* obj) { delete obj; } 
 };
 
 
 
 
 
-class PythonQtShell_QWebPage_ExtensionReturn : public QWebPage::ExtensionReturn
+class PythonQtShell_QWebPage__ExtensionReturn : public QWebPage::ExtensionReturn
 {
 public:
-    PythonQtShell_QWebPage_ExtensionReturn():QWebPage::ExtensionReturn(),_wrapper(NULL) {};
+    PythonQtShell_QWebPage__ExtensionReturn():QWebPage::ExtensionReturn(),_wrapper(NULL) {};
 
-   ~PythonQtShell_QWebPage_ExtensionReturn();
+   ~PythonQtShell_QWebPage__ExtensionReturn();
 
 
   PythonQtInstanceWrapper* _wrapper; 
 };
 
-class PythonQtWrapper_QWebPage_ExtensionReturn : public QObject
+class PythonQtWrapper_QWebPage__ExtensionReturn : public QObject
 { Q_OBJECT
 public:
 public slots:
-QWebPage::ExtensionReturn* new_QWebPage_ExtensionReturn();
-void delete_QWebPage_ExtensionReturn(QWebPage::ExtensionReturn* obj) { delete obj; } 
+QWebPage::ExtensionReturn* new_QWebPage__ExtensionReturn();
+void delete_QWebPage__ExtensionReturn(QWebPage::ExtensionReturn* obj) { delete obj; } 
 };
 
 
@@ -907,7 +911,9 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QWebPluginFactory : public QWebPluginFactory
 { public:
+inline QObject*  promoted_create(const QString&  mimeType, const QUrl&  arg__2, const QStringList&  argumentNames, const QStringList&  argumentValues) const { return this->create(mimeType, arg__2, argumentNames, argumentValues); }
 inline bool  promoted_extension(QWebPluginFactory::Extension  extension, const QWebPluginFactory::ExtensionOption*  option = 0, QWebPluginFactory::ExtensionReturn*  output = 0) { return QWebPluginFactory::extension(extension, option, output); }
+inline QList<QWebPluginFactory::Plugin >  promoted_plugins() const { return this->plugins(); }
 inline void promoted_refreshPlugins() { QWebPluginFactory::refreshPlugins(); }
 inline bool  promoted_supportsExtension(QWebPluginFactory::Extension  extension) const { return QWebPluginFactory::supportsExtension(extension); }
 };
@@ -921,7 +927,9 @@ enum Extension{
 public slots:
 QWebPluginFactory* new_QWebPluginFactory(QObject*  parent = 0);
 void delete_QWebPluginFactory(QWebPluginFactory* obj) { delete obj; } 
+   QObject*  create(QWebPluginFactory* theWrappedObject, const QString&  mimeType, const QUrl&  arg__2, const QStringList&  argumentNames, const QStringList&  argumentValues) const;
    bool  extension(QWebPluginFactory* theWrappedObject, QWebPluginFactory::Extension  extension, const QWebPluginFactory::ExtensionOption*  option = 0, QWebPluginFactory::ExtensionReturn*  output = 0);
+   QList<QWebPluginFactory::Plugin >  plugins(QWebPluginFactory* theWrappedObject) const;
    void refreshPlugins(QWebPluginFactory* theWrappedObject);
    bool  supportsExtension(QWebPluginFactory* theWrappedObject, QWebPluginFactory::Extension  extension) const;
 };
@@ -930,108 +938,108 @@ void delete_QWebPluginFactory(QWebPluginFactory* obj) { delete obj; }
 
 
 
-class PythonQtShell_QWebPluginFactory_ExtensionOption : public QWebPluginFactory::ExtensionOption
+class PythonQtShell_QWebPluginFactory__ExtensionOption : public QWebPluginFactory::ExtensionOption
 {
 public:
-    PythonQtShell_QWebPluginFactory_ExtensionOption():QWebPluginFactory::ExtensionOption(),_wrapper(NULL) {};
+    PythonQtShell_QWebPluginFactory__ExtensionOption():QWebPluginFactory::ExtensionOption(),_wrapper(NULL) {};
 
-   ~PythonQtShell_QWebPluginFactory_ExtensionOption();
+   ~PythonQtShell_QWebPluginFactory__ExtensionOption();
 
 
   PythonQtInstanceWrapper* _wrapper; 
 };
 
-class PythonQtWrapper_QWebPluginFactory_ExtensionOption : public QObject
+class PythonQtWrapper_QWebPluginFactory__ExtensionOption : public QObject
 { Q_OBJECT
 public:
 public slots:
-QWebPluginFactory::ExtensionOption* new_QWebPluginFactory_ExtensionOption();
-void delete_QWebPluginFactory_ExtensionOption(QWebPluginFactory::ExtensionOption* obj) { delete obj; } 
+QWebPluginFactory::ExtensionOption* new_QWebPluginFactory__ExtensionOption();
+void delete_QWebPluginFactory__ExtensionOption(QWebPluginFactory::ExtensionOption* obj) { delete obj; } 
 };
 
 
 
 
 
-class PythonQtShell_QWebPluginFactory_ExtensionReturn : public QWebPluginFactory::ExtensionReturn
+class PythonQtShell_QWebPluginFactory__ExtensionReturn : public QWebPluginFactory::ExtensionReturn
 {
 public:
-    PythonQtShell_QWebPluginFactory_ExtensionReturn():QWebPluginFactory::ExtensionReturn(),_wrapper(NULL) {};
+    PythonQtShell_QWebPluginFactory__ExtensionReturn():QWebPluginFactory::ExtensionReturn(),_wrapper(NULL) {};
 
-   ~PythonQtShell_QWebPluginFactory_ExtensionReturn();
+   ~PythonQtShell_QWebPluginFactory__ExtensionReturn();
 
 
   PythonQtInstanceWrapper* _wrapper; 
 };
 
-class PythonQtWrapper_QWebPluginFactory_ExtensionReturn : public QObject
+class PythonQtWrapper_QWebPluginFactory__ExtensionReturn : public QObject
 { Q_OBJECT
 public:
 public slots:
-QWebPluginFactory::ExtensionReturn* new_QWebPluginFactory_ExtensionReturn();
-void delete_QWebPluginFactory_ExtensionReturn(QWebPluginFactory::ExtensionReturn* obj) { delete obj; } 
+QWebPluginFactory::ExtensionReturn* new_QWebPluginFactory__ExtensionReturn();
+void delete_QWebPluginFactory__ExtensionReturn(QWebPluginFactory::ExtensionReturn* obj) { delete obj; } 
 };
 
 
 
 
 
-class PythonQtShell_QWebPluginFactory_MimeType : public QWebPluginFactory::MimeType
+class PythonQtShell_QWebPluginFactory__MimeType : public QWebPluginFactory::MimeType
 {
 public:
-    PythonQtShell_QWebPluginFactory_MimeType():QWebPluginFactory::MimeType(),_wrapper(NULL) {};
+    PythonQtShell_QWebPluginFactory__MimeType():QWebPluginFactory::MimeType(),_wrapper(NULL) {};
 
-   ~PythonQtShell_QWebPluginFactory_MimeType();
+   ~PythonQtShell_QWebPluginFactory__MimeType();
 
 
   PythonQtInstanceWrapper* _wrapper; 
 };
 
-class PythonQtWrapper_QWebPluginFactory_MimeType : public QObject
+class PythonQtWrapper_QWebPluginFactory__MimeType : public QObject
 { Q_OBJECT
 public:
 public slots:
-QWebPluginFactory::MimeType* new_QWebPluginFactory_MimeType();
-QWebPluginFactory::MimeType* new_QWebPluginFactory_MimeType(const QWebPluginFactory::MimeType& other) {
-PythonQtShell_QWebPluginFactory_MimeType* a = new PythonQtShell_QWebPluginFactory_MimeType();
+QWebPluginFactory::MimeType* new_QWebPluginFactory__MimeType();
+QWebPluginFactory::MimeType* new_QWebPluginFactory__MimeType(const QWebPluginFactory::MimeType& other) {
+PythonQtShell_QWebPluginFactory__MimeType* a = new PythonQtShell_QWebPluginFactory__MimeType();
 *((QWebPluginFactory::MimeType*)a) = other;
 return a; }
-void delete_QWebPluginFactory_MimeType(QWebPluginFactory::MimeType* obj) { delete obj; } 
+void delete_QWebPluginFactory__MimeType(QWebPluginFactory::MimeType* obj) { delete obj; } 
    bool  __ne__(QWebPluginFactory::MimeType* theWrappedObject, const QWebPluginFactory::MimeType&  other) const;
    bool  __eq__(QWebPluginFactory::MimeType* theWrappedObject, const QWebPluginFactory::MimeType&  other) const;
 void py_set_description(QWebPluginFactory::MimeType* theWrappedObject, QString  description){ theWrappedObject->description = description; }
 QString  py_get_description(QWebPluginFactory::MimeType* theWrappedObject){ return theWrappedObject->description; }
-void py_set_name(QWebPluginFactory::MimeType* theWrappedObject, QString  name){ theWrappedObject->name = name; }
-QString  py_get_name(QWebPluginFactory::MimeType* theWrappedObject){ return theWrappedObject->name; }
 void py_set_fileExtensions(QWebPluginFactory::MimeType* theWrappedObject, QStringList  fileExtensions){ theWrappedObject->fileExtensions = fileExtensions; }
 QStringList  py_get_fileExtensions(QWebPluginFactory::MimeType* theWrappedObject){ return theWrappedObject->fileExtensions; }
+void py_set_name(QWebPluginFactory::MimeType* theWrappedObject, QString  name){ theWrappedObject->name = name; }
+QString  py_get_name(QWebPluginFactory::MimeType* theWrappedObject){ return theWrappedObject->name; }
 };
 
 
 
 
 
-class PythonQtShell_QWebPluginFactory_Plugin : public QWebPluginFactory::Plugin
+class PythonQtShell_QWebPluginFactory__Plugin : public QWebPluginFactory::Plugin
 {
 public:
-    PythonQtShell_QWebPluginFactory_Plugin():QWebPluginFactory::Plugin(),_wrapper(NULL) {};
+    PythonQtShell_QWebPluginFactory__Plugin():QWebPluginFactory::Plugin(),_wrapper(NULL) {};
 
-   ~PythonQtShell_QWebPluginFactory_Plugin();
+   ~PythonQtShell_QWebPluginFactory__Plugin();
 
 
   PythonQtInstanceWrapper* _wrapper; 
 };
 
-class PythonQtWrapper_QWebPluginFactory_Plugin : public QObject
+class PythonQtWrapper_QWebPluginFactory__Plugin : public QObject
 { Q_OBJECT
 public:
 public slots:
-QWebPluginFactory::Plugin* new_QWebPluginFactory_Plugin();
-QWebPluginFactory::Plugin* new_QWebPluginFactory_Plugin(const QWebPluginFactory::Plugin& other) {
-PythonQtShell_QWebPluginFactory_Plugin* a = new PythonQtShell_QWebPluginFactory_Plugin();
+QWebPluginFactory::Plugin* new_QWebPluginFactory__Plugin();
+QWebPluginFactory::Plugin* new_QWebPluginFactory__Plugin(const QWebPluginFactory::Plugin& other) {
+PythonQtShell_QWebPluginFactory__Plugin* a = new PythonQtShell_QWebPluginFactory__Plugin();
 *((QWebPluginFactory::Plugin*)a) = other;
 return a; }
-void delete_QWebPluginFactory_Plugin(QWebPluginFactory::Plugin* obj) { delete obj; } 
+void delete_QWebPluginFactory__Plugin(QWebPluginFactory::Plugin* obj) { delete obj; } 
 void py_set_description(QWebPluginFactory::Plugin* theWrappedObject, QString  description){ theWrappedObject->description = description; }
 QString  py_get_description(QWebPluginFactory::Plugin* theWrappedObject){ return theWrappedObject->description; }
 void py_set_name(QWebPluginFactory::Plugin* theWrappedObject, QString  name){ theWrappedObject->name = name; }
@@ -1070,15 +1078,15 @@ void delete_QWebSecurityOrigin(QWebSecurityOrigin* obj) { delete obj; }
 class PythonQtWrapper_QWebSettings : public QObject
 { Q_OBJECT
 public:
-Q_ENUMS(FontSize WebGraphic FontFamily WebAttribute )
-enum FontSize{
-  MinimumFontSize = QWebSettings::MinimumFontSize,   MinimumLogicalFontSize = QWebSettings::MinimumLogicalFontSize,   DefaultFontSize = QWebSettings::DefaultFontSize,   DefaultFixedFontSize = QWebSettings::DefaultFixedFontSize};
-enum WebGraphic{
-  MissingImageGraphic = QWebSettings::MissingImageGraphic,   MissingPluginGraphic = QWebSettings::MissingPluginGraphic,   DefaultFrameIconGraphic = QWebSettings::DefaultFrameIconGraphic,   TextAreaSizeGripCornerGraphic = QWebSettings::TextAreaSizeGripCornerGraphic,   DeleteButtonGraphic = QWebSettings::DeleteButtonGraphic,   InputSpeechButtonGraphic = QWebSettings::InputSpeechButtonGraphic,   SearchCancelButtonGraphic = QWebSettings::SearchCancelButtonGraphic,   SearchCancelButtonPressedGraphic = QWebSettings::SearchCancelButtonPressedGraphic};
+Q_ENUMS(FontFamily FontSize WebAttribute WebGraphic )
 enum FontFamily{
   StandardFont = QWebSettings::StandardFont,   FixedFont = QWebSettings::FixedFont,   SerifFont = QWebSettings::SerifFont,   SansSerifFont = QWebSettings::SansSerifFont,   CursiveFont = QWebSettings::CursiveFont,   FantasyFont = QWebSettings::FantasyFont};
+enum FontSize{
+  MinimumFontSize = QWebSettings::MinimumFontSize,   MinimumLogicalFontSize = QWebSettings::MinimumLogicalFontSize,   DefaultFontSize = QWebSettings::DefaultFontSize,   DefaultFixedFontSize = QWebSettings::DefaultFixedFontSize};
 enum WebAttribute{
   AutoLoadImages = QWebSettings::AutoLoadImages,   JavascriptEnabled = QWebSettings::JavascriptEnabled,   JavaEnabled = QWebSettings::JavaEnabled,   PluginsEnabled = QWebSettings::PluginsEnabled,   PrivateBrowsingEnabled = QWebSettings::PrivateBrowsingEnabled,   JavascriptCanOpenWindows = QWebSettings::JavascriptCanOpenWindows,   JavascriptCanAccessClipboard = QWebSettings::JavascriptCanAccessClipboard,   DeveloperExtrasEnabled = QWebSettings::DeveloperExtrasEnabled,   LinksIncludedInFocusChain = QWebSettings::LinksIncludedInFocusChain,   ZoomTextOnly = QWebSettings::ZoomTextOnly,   PrintElementBackgrounds = QWebSettings::PrintElementBackgrounds,   OfflineStorageDatabaseEnabled = QWebSettings::OfflineStorageDatabaseEnabled,   OfflineWebApplicationCacheEnabled = QWebSettings::OfflineWebApplicationCacheEnabled,   LocalStorageEnabled = QWebSettings::LocalStorageEnabled,   LocalStorageDatabaseEnabled = QWebSettings::LocalStorageDatabaseEnabled,   LocalContentCanAccessRemoteUrls = QWebSettings::LocalContentCanAccessRemoteUrls,   DnsPrefetchEnabled = QWebSettings::DnsPrefetchEnabled,   XSSAuditingEnabled = QWebSettings::XSSAuditingEnabled,   AcceleratedCompositingEnabled = QWebSettings::AcceleratedCompositingEnabled,   SpatialNavigationEnabled = QWebSettings::SpatialNavigationEnabled,   LocalContentCanAccessFileUrls = QWebSettings::LocalContentCanAccessFileUrls,   TiledBackingStoreEnabled = QWebSettings::TiledBackingStoreEnabled,   FrameFlatteningEnabled = QWebSettings::FrameFlatteningEnabled,   SiteSpecificQuirksEnabled = QWebSettings::SiteSpecificQuirksEnabled,   JavascriptCanCloseWindows = QWebSettings::JavascriptCanCloseWindows,   WebGLEnabled = QWebSettings::WebGLEnabled,   HyperlinkAuditingEnabled = QWebSettings::HyperlinkAuditingEnabled};
+enum WebGraphic{
+  MissingImageGraphic = QWebSettings::MissingImageGraphic,   MissingPluginGraphic = QWebSettings::MissingPluginGraphic,   DefaultFrameIconGraphic = QWebSettings::DefaultFrameIconGraphic,   TextAreaSizeGripCornerGraphic = QWebSettings::TextAreaSizeGripCornerGraphic,   DeleteButtonGraphic = QWebSettings::DeleteButtonGraphic,   InputSpeechButtonGraphic = QWebSettings::InputSpeechButtonGraphic,   SearchCancelButtonGraphic = QWebSettings::SearchCancelButtonGraphic,   SearchCancelButtonPressedGraphic = QWebSettings::SearchCancelButtonPressedGraphic};
 public slots:
    void static_QWebSettings_clearIconDatabase();
    void static_QWebSettings_clearMemoryCaches();

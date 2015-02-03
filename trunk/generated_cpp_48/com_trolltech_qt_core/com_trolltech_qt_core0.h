@@ -1,4 +1,5 @@
 #include <PythonQt.h>
+#include <PythonQtConversion.h>
 #include <QDateTime>
 #include <QDir>
 #include <QObject>
@@ -31,9 +32,10 @@
 #include <qfilesystemwatcher.h>
 #include <qfinalstate.h>
 #include <qhistorystate.h>
+#include <qidentityproxymodel.h>
 #include <qiodevice.h>
+#include <qitemselectionmodel.h>
 #include <qlibrary.h>
-#include <qlibraryinfo.h>
 #include <qlist.h>
 #include <qmimedata.h>
 #include <qobject.h>
@@ -67,7 +69,9 @@ virtual void updateState(QAbstractAnimation::State  newState, QAbstractAnimation
 
 class PythonQtPublicPromoter_QAbstractAnimation : public QAbstractAnimation
 { public:
+inline int  promoted_duration() const { return this->duration(); }
 inline bool  promoted_event(QEvent*  event) { return QAbstractAnimation::event(event); }
+inline void promoted_updateCurrentTime(int  currentTime) { this->updateCurrentTime(currentTime); }
 inline void promoted_updateDirection(QAbstractAnimation::Direction  direction) { QAbstractAnimation::updateDirection(direction); }
 inline void promoted_updateState(QAbstractAnimation::State  newState, QAbstractAnimation::State  oldState) { QAbstractAnimation::updateState(newState, oldState); }
 };
@@ -85,6 +89,7 @@ void delete_QAbstractAnimation(QAbstractAnimation* obj) { delete obj; }
    int  currentLoopTime(QAbstractAnimation* theWrappedObject) const;
    int  currentTime(QAbstractAnimation* theWrappedObject) const;
    QAbstractAnimation::Direction  direction(QAbstractAnimation* theWrappedObject) const;
+   int  duration(QAbstractAnimation* theWrappedObject) const;
    bool  event(QAbstractAnimation* theWrappedObject, QEvent*  event);
    QAnimationGroup*  group(QAbstractAnimation* theWrappedObject) const;
    int  loopCount(QAbstractAnimation* theWrappedObject) const;
@@ -92,6 +97,7 @@ void delete_QAbstractAnimation(QAbstractAnimation* obj) { delete obj; }
    void setLoopCount(QAbstractAnimation* theWrappedObject, int  loopCount);
    QAbstractAnimation::State  state(QAbstractAnimation* theWrappedObject) const;
    int  totalDuration(QAbstractAnimation* theWrappedObject) const;
+   void updateCurrentTime(QAbstractAnimation* theWrappedObject, int  currentTime);
    void updateDirection(QAbstractAnimation* theWrappedObject, QAbstractAnimation::Direction  direction);
    void updateState(QAbstractAnimation* theWrappedObject, QAbstractAnimation::State  newState, QAbstractAnimation::State  oldState);
 };
@@ -146,25 +152,55 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QAbstractItemModel : public QAbstractItemModel
 { public:
+inline void promoted_beginInsertColumns(const QModelIndex&  parent, int  first, int  last) { QAbstractItemModel::beginInsertColumns(parent, first, last); }
+inline void promoted_beginInsertRows(const QModelIndex&  parent, int  first, int  last) { QAbstractItemModel::beginInsertRows(parent, first, last); }
+inline bool  promoted_beginMoveColumns(const QModelIndex&  sourceParent, int  sourceFirst, int  sourceLast, const QModelIndex&  destinationParent, int  destinationColumn) { return QAbstractItemModel::beginMoveColumns(sourceParent, sourceFirst, sourceLast, destinationParent, destinationColumn); }
+inline bool  promoted_beginMoveRows(const QModelIndex&  sourceParent, int  sourceFirst, int  sourceLast, const QModelIndex&  destinationParent, int  destinationRow) { return QAbstractItemModel::beginMoveRows(sourceParent, sourceFirst, sourceLast, destinationParent, destinationRow); }
+inline void promoted_beginRemoveColumns(const QModelIndex&  parent, int  first, int  last) { QAbstractItemModel::beginRemoveColumns(parent, first, last); }
+inline void promoted_beginRemoveRows(const QModelIndex&  parent, int  first, int  last) { QAbstractItemModel::beginRemoveRows(parent, first, last); }
+inline void promoted_beginResetModel() { QAbstractItemModel::beginResetModel(); }
 inline QModelIndex  promoted_buddy(const QModelIndex&  index) const { return QAbstractItemModel::buddy(index); }
 inline bool  promoted_canFetchMore(const QModelIndex&  parent) const { return QAbstractItemModel::canFetchMore(parent); }
+inline void promoted_changePersistentIndex(const QModelIndex&  from, const QModelIndex&  to) { QAbstractItemModel::changePersistentIndex(from, to); }
+inline void promoted_changePersistentIndexList(const QList<QModelIndex >&  from, const QList<QModelIndex >&  to) { QAbstractItemModel::changePersistentIndexList(from, to); }
+inline int  promoted_columnCount(const QModelIndex&  parent = QModelIndex()) const { return this->columnCount(parent); }
+inline QModelIndex  promoted_createIndex(int  row, int  column, int  id) const { return QAbstractItemModel::createIndex(row, column, id); }
+inline QModelIndex  promoted_createIndex(int  row, int  column, unsigned int  id) const { return QAbstractItemModel::createIndex(row, column, id); }
+inline QModelIndex  promoted_createIndex(int  row, int  column, void*  data = 0) const { return QAbstractItemModel::createIndex(row, column, data); }
+inline QVariant  promoted_data(const QModelIndex&  index, int  role = Qt::DisplayRole) const { return this->data(index, role); }
+inline bool  promoted_decodeData(int  row, int  column, const QModelIndex&  parent, QDataStream&  stream) { return QAbstractItemModel::decodeData(row, column, parent, stream); }
 inline bool  promoted_dropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent) { return QAbstractItemModel::dropMimeData(data, action, row, column, parent); }
+inline void promoted_encodeData(const QList<QModelIndex >&  indexes, QDataStream&  stream) const { QAbstractItemModel::encodeData(indexes, stream); }
+inline void promoted_endInsertColumns() { QAbstractItemModel::endInsertColumns(); }
+inline void promoted_endInsertRows() { QAbstractItemModel::endInsertRows(); }
+inline void promoted_endMoveColumns() { QAbstractItemModel::endMoveColumns(); }
+inline void promoted_endMoveRows() { QAbstractItemModel::endMoveRows(); }
+inline void promoted_endRemoveColumns() { QAbstractItemModel::endRemoveColumns(); }
+inline void promoted_endRemoveRows() { QAbstractItemModel::endRemoveRows(); }
+inline void promoted_endResetModel() { QAbstractItemModel::endResetModel(); }
 inline void promoted_fetchMore(const QModelIndex&  parent) { QAbstractItemModel::fetchMore(parent); }
 inline Qt::ItemFlags  promoted_flags(const QModelIndex&  index) const { return QAbstractItemModel::flags(index); }
 inline bool  promoted_hasChildren(const QModelIndex&  parent = QModelIndex()) const { return QAbstractItemModel::hasChildren(parent); }
 inline QVariant  promoted_headerData(int  section, Qt::Orientation  orientation, int  role = Qt::DisplayRole) const { return QAbstractItemModel::headerData(section, orientation, role); }
+inline QModelIndex  promoted_index(int  row, int  column, const QModelIndex&  parent = QModelIndex()) const { return this->index(row, column, parent); }
 inline bool  promoted_insertColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex()) { return QAbstractItemModel::insertColumns(column, count, parent); }
 inline bool  promoted_insertRows(int  row, int  count, const QModelIndex&  parent = QModelIndex()) { return QAbstractItemModel::insertRows(row, count, parent); }
 inline QMap<int , QVariant >  promoted_itemData(const QModelIndex&  index) const { return QAbstractItemModel::itemData(index); }
 inline QList<QModelIndex >  promoted_match(const QModelIndex&  start, int  role, const QVariant&  value, int  hits = 1, Qt::MatchFlags  flags = Qt::MatchFlags(Qt::MatchStartsWith|Qt::MatchWrap)) const { return QAbstractItemModel::match(start, role, value, hits, flags); }
 inline QMimeData*  promoted_mimeData(const QList<QModelIndex >&  indexes) const { return QAbstractItemModel::mimeData(indexes); }
 inline QStringList  promoted_mimeTypes() const { return QAbstractItemModel::mimeTypes(); }
+inline QModelIndex  promoted_parent(const QModelIndex&  child) const { return this->parent(child); }
+inline QList<QModelIndex >  promoted_persistentIndexList() const { return QAbstractItemModel::persistentIndexList(); }
 inline bool  promoted_removeColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex()) { return QAbstractItemModel::removeColumns(column, count, parent); }
 inline bool  promoted_removeRows(int  row, int  count, const QModelIndex&  parent = QModelIndex()) { return QAbstractItemModel::removeRows(row, count, parent); }
+inline void promoted_reset() { QAbstractItemModel::reset(); }
+inline void promoted_resetInternalData() { QAbstractItemModel::resetInternalData(); }
 inline void promoted_revert() { QAbstractItemModel::revert(); }
+inline int  promoted_rowCount(const QModelIndex&  parent = QModelIndex()) const { return this->rowCount(parent); }
 inline bool  promoted_setData(const QModelIndex&  index, const QVariant&  value, int  role = Qt::EditRole) { return QAbstractItemModel::setData(index, value, role); }
 inline bool  promoted_setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role = Qt::EditRole) { return QAbstractItemModel::setHeaderData(section, orientation, value, role); }
 inline bool  promoted_setItemData(const QModelIndex&  index, const QMap<int , QVariant >&  roles) { return QAbstractItemModel::setItemData(index, roles); }
+inline void promoted_setRoleNames(const QHash<int , QByteArray >&  roleNames) { QAbstractItemModel::setRoleNames(roleNames); }
 inline void promoted_sort(int  column, Qt::SortOrder  order = Qt::AscendingOrder) { QAbstractItemModel::sort(column, order); }
 inline QSize  promoted_span(const QModelIndex&  index) const { return QAbstractItemModel::span(index); }
 inline bool  promoted_submit() { return QAbstractItemModel::submit(); }
@@ -177,32 +213,61 @@ public:
 public slots:
 QAbstractItemModel* new_QAbstractItemModel(QObject*  parent = 0);
 void delete_QAbstractItemModel(QAbstractItemModel* obj) { delete obj; } 
+   void beginInsertColumns(QAbstractItemModel* theWrappedObject, const QModelIndex&  parent, int  first, int  last);
+   void beginInsertRows(QAbstractItemModel* theWrappedObject, const QModelIndex&  parent, int  first, int  last);
+   bool  beginMoveColumns(QAbstractItemModel* theWrappedObject, const QModelIndex&  sourceParent, int  sourceFirst, int  sourceLast, const QModelIndex&  destinationParent, int  destinationColumn);
+   bool  beginMoveRows(QAbstractItemModel* theWrappedObject, const QModelIndex&  sourceParent, int  sourceFirst, int  sourceLast, const QModelIndex&  destinationParent, int  destinationRow);
+   void beginRemoveColumns(QAbstractItemModel* theWrappedObject, const QModelIndex&  parent, int  first, int  last);
+   void beginRemoveRows(QAbstractItemModel* theWrappedObject, const QModelIndex&  parent, int  first, int  last);
+   void beginResetModel(QAbstractItemModel* theWrappedObject);
    QModelIndex  buddy(QAbstractItemModel* theWrappedObject, const QModelIndex&  index) const;
    bool  canFetchMore(QAbstractItemModel* theWrappedObject, const QModelIndex&  parent) const;
+   void changePersistentIndex(QAbstractItemModel* theWrappedObject, const QModelIndex&  from, const QModelIndex&  to);
+   void changePersistentIndexList(QAbstractItemModel* theWrappedObject, const QList<QModelIndex >&  from, const QList<QModelIndex >&  to);
+   int  columnCount(QAbstractItemModel* theWrappedObject, const QModelIndex&  parent = QModelIndex()) const;
+   QModelIndex  createIndex(QAbstractItemModel* theWrappedObject, int  row, int  column, int  id) const;
+   QModelIndex  createIndex(QAbstractItemModel* theWrappedObject, int  row, int  column, unsigned int  id) const;
+   QModelIndex  createIndex(QAbstractItemModel* theWrappedObject, int  row, int  column, void*  data = 0) const;
+   QVariant  data(QAbstractItemModel* theWrappedObject, const QModelIndex&  index, int  role = Qt::DisplayRole) const;
+   bool  decodeData(QAbstractItemModel* theWrappedObject, int  row, int  column, const QModelIndex&  parent, QDataStream&  stream);
    bool  dropMimeData(QAbstractItemModel* theWrappedObject, const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent);
+   void encodeData(QAbstractItemModel* theWrappedObject, const QList<QModelIndex >&  indexes, QDataStream&  stream) const;
+   void endInsertColumns(QAbstractItemModel* theWrappedObject);
+   void endInsertRows(QAbstractItemModel* theWrappedObject);
+   void endMoveColumns(QAbstractItemModel* theWrappedObject);
+   void endMoveRows(QAbstractItemModel* theWrappedObject);
+   void endRemoveColumns(QAbstractItemModel* theWrappedObject);
+   void endRemoveRows(QAbstractItemModel* theWrappedObject);
+   void endResetModel(QAbstractItemModel* theWrappedObject);
    void fetchMore(QAbstractItemModel* theWrappedObject, const QModelIndex&  parent);
    Qt::ItemFlags  flags(QAbstractItemModel* theWrappedObject, const QModelIndex&  index) const;
    bool  hasChildren(QAbstractItemModel* theWrappedObject, const QModelIndex&  parent = QModelIndex()) const;
    bool  hasIndex(QAbstractItemModel* theWrappedObject, int  row, int  column, const QModelIndex&  parent = QModelIndex()) const;
    QVariant  headerData(QAbstractItemModel* theWrappedObject, int  section, Qt::Orientation  orientation, int  role = Qt::DisplayRole) const;
+   QModelIndex  index(QAbstractItemModel* theWrappedObject, int  row, int  column, const QModelIndex&  parent = QModelIndex()) const;
    bool  insertColumn(QAbstractItemModel* theWrappedObject, int  column, const QModelIndex&  parent = QModelIndex());
    bool  insertColumns(QAbstractItemModel* theWrappedObject, int  column, int  count, const QModelIndex&  parent = QModelIndex());
    bool  insertRow(QAbstractItemModel* theWrappedObject, int  row, const QModelIndex&  parent = QModelIndex());
    bool  insertRows(QAbstractItemModel* theWrappedObject, int  row, int  count, const QModelIndex&  parent = QModelIndex());
    QMap<int , QVariant >  itemData(QAbstractItemModel* theWrappedObject, const QModelIndex&  index) const;
    QList<QModelIndex >  match(QAbstractItemModel* theWrappedObject, const QModelIndex&  start, int  role, const QVariant&  value, int  hits = 1, Qt::MatchFlags  flags = Qt::MatchFlags(Qt::MatchStartsWith|Qt::MatchWrap)) const;
-   QMimeData*  mimeData(QAbstractItemModel* theWrappedObject, const QList<QModelIndex >&  indexes) const;
+   PythonQtPassOwnershipToPython<QMimeData*  > mimeData(QAbstractItemModel* theWrappedObject, const QList<QModelIndex >&  indexes) const;
    QStringList  mimeTypes(QAbstractItemModel* theWrappedObject) const;
    QObject*  parent(QAbstractItemModel* theWrappedObject) const;
+   QModelIndex  parent(QAbstractItemModel* theWrappedObject, const QModelIndex&  child) const;
+   QList<QModelIndex >  persistentIndexList(QAbstractItemModel* theWrappedObject) const;
    bool  removeColumn(QAbstractItemModel* theWrappedObject, int  column, const QModelIndex&  parent = QModelIndex());
    bool  removeColumns(QAbstractItemModel* theWrappedObject, int  column, int  count, const QModelIndex&  parent = QModelIndex());
    bool  removeRow(QAbstractItemModel* theWrappedObject, int  row, const QModelIndex&  parent = QModelIndex());
    bool  removeRows(QAbstractItemModel* theWrappedObject, int  row, int  count, const QModelIndex&  parent = QModelIndex());
+   void reset(QAbstractItemModel* theWrappedObject);
    void revert(QAbstractItemModel* theWrappedObject);
    const QHash<int , QByteArray >*  roleNames(QAbstractItemModel* theWrappedObject) const;
+   int  rowCount(QAbstractItemModel* theWrappedObject, const QModelIndex&  parent = QModelIndex()) const;
    bool  setData(QAbstractItemModel* theWrappedObject, const QModelIndex&  index, const QVariant&  value, int  role = Qt::EditRole);
    bool  setHeaderData(QAbstractItemModel* theWrappedObject, int  section, Qt::Orientation  orientation, const QVariant&  value, int  role = Qt::EditRole);
    bool  setItemData(QAbstractItemModel* theWrappedObject, const QModelIndex&  index, const QMap<int , QVariant >&  roles);
+   void setRoleNames(QAbstractItemModel* theWrappedObject, const QHash<int , QByteArray >&  roleNames);
    void setSupportedDragActions(QAbstractItemModel* theWrappedObject, Qt::DropActions  arg__1);
    QModelIndex  sibling(QAbstractItemModel* theWrappedObject, int  row, int  column, const QModelIndex&  idx) const;
    void sort(QAbstractItemModel* theWrappedObject, int  column, Qt::SortOrder  order = Qt::AscendingOrder);
@@ -227,28 +292,28 @@ virtual QModelIndex  buddy(const QModelIndex&  index) const;
 virtual bool  canFetchMore(const QModelIndex&  parent) const;
 virtual void childEvent(QChildEvent*  arg__1);
 virtual void customEvent(QEvent*  arg__1);
-virtual QVariant  data(const QModelIndex&  index, int  role) const;
+virtual QVariant  data(const QModelIndex&  index, int  role = Qt::DisplayRole) const;
 virtual bool  dropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent);
 virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 virtual void fetchMore(const QModelIndex&  parent);
 virtual Qt::ItemFlags  flags(const QModelIndex&  index) const;
-virtual QVariant  headerData(int  section, Qt::Orientation  orientation, int  role) const;
+virtual QVariant  headerData(int  section, Qt::Orientation  orientation, int  role = Qt::DisplayRole) const;
 virtual QModelIndex  index(int  row, int  column = 0, const QModelIndex&  parent = QModelIndex()) const;
-virtual bool  insertColumns(int  column, int  count, const QModelIndex&  parent);
-virtual bool  insertRows(int  row, int  count, const QModelIndex&  parent);
+virtual bool  insertColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex());
+virtual bool  insertRows(int  row, int  count, const QModelIndex&  parent = QModelIndex());
 virtual QMap<int , QVariant >  itemData(const QModelIndex&  index) const;
-virtual QList<QModelIndex >  match(const QModelIndex&  start, int  role, const QVariant&  value, int  hits, Qt::MatchFlags  flags) const;
+virtual QList<QModelIndex >  match(const QModelIndex&  start, int  role, const QVariant&  value, int  hits = 1, Qt::MatchFlags  flags = Qt::MatchFlags(Qt::MatchStartsWith|Qt::MatchWrap)) const;
 virtual QMimeData*  mimeData(const QList<QModelIndex >&  indexes) const;
 virtual QStringList  mimeTypes() const;
-virtual bool  removeColumns(int  column, int  count, const QModelIndex&  parent);
-virtual bool  removeRows(int  row, int  count, const QModelIndex&  parent);
+virtual bool  removeColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex());
+virtual bool  removeRows(int  row, int  count, const QModelIndex&  parent = QModelIndex());
 virtual void revert();
-virtual int  rowCount(const QModelIndex&  parent) const;
-virtual bool  setData(const QModelIndex&  index, const QVariant&  value, int  role);
-virtual bool  setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role);
+virtual int  rowCount(const QModelIndex&  parent = QModelIndex()) const;
+virtual bool  setData(const QModelIndex&  index, const QVariant&  value, int  role = Qt::EditRole);
+virtual bool  setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role = Qt::EditRole);
 virtual bool  setItemData(const QModelIndex&  index, const QMap<int , QVariant >&  roles);
-virtual void sort(int  column, Qt::SortOrder  order);
+virtual void sort(int  column, Qt::SortOrder  order = Qt::AscendingOrder);
 virtual QSize  span(const QModelIndex&  index) const;
 virtual bool  submit();
 virtual Qt::DropActions  supportedDropActions() const;
@@ -298,15 +363,20 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 class PythonQtPublicPromoter_QAbstractState : public QAbstractState
 { public:
 inline bool  promoted_event(QEvent*  e) { return QAbstractState::event(e); }
+inline void promoted_onEntry(QEvent*  event) { this->onEntry(event); }
+inline void promoted_onExit(QEvent*  event) { this->onExit(event); }
 };
 
 class PythonQtWrapper_QAbstractState : public QObject
 { Q_OBJECT
 public:
 public slots:
+QAbstractState* new_QAbstractState(QState*  parent = 0);
 void delete_QAbstractState(QAbstractState* obj) { delete obj; } 
    bool  event(QAbstractState* theWrappedObject, QEvent*  e);
    QStateMachine*  machine(QAbstractState* theWrappedObject) const;
+   void onEntry(QAbstractState* theWrappedObject, QEvent*  event);
+   void onExit(QAbstractState* theWrappedObject, QEvent*  event);
    QState*  parentState(QAbstractState* theWrappedObject) const;
 };
 
@@ -335,6 +405,8 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 class PythonQtPublicPromoter_QAbstractTransition : public QAbstractTransition
 { public:
 inline bool  promoted_event(QEvent*  e) { return QAbstractTransition::event(e); }
+inline bool  promoted_eventTest(QEvent*  event) { return this->eventTest(event); }
+inline void promoted_onTransition(QEvent*  event) { this->onTransition(event); }
 };
 
 class PythonQtWrapper_QAbstractTransition : public QObject
@@ -346,7 +418,9 @@ void delete_QAbstractTransition(QAbstractTransition* obj) { delete obj; }
    void addAnimation(QAbstractTransition* theWrappedObject, QAbstractAnimation*  animation);
    QList<QAbstractAnimation* >  animations(QAbstractTransition* theWrappedObject) const;
    bool  event(QAbstractTransition* theWrappedObject, QEvent*  e);
+   bool  eventTest(QAbstractTransition* theWrappedObject, QEvent*  event);
    QStateMachine*  machine(QAbstractTransition* theWrappedObject) const;
+   void onTransition(QAbstractTransition* theWrappedObject, QEvent*  event);
    void removeAnimation(QAbstractTransition* theWrappedObject, QAbstractAnimation*  animation);
    void setTargetState(QAbstractTransition* theWrappedObject, QAbstractState*  target);
    void setTargetStates(QAbstractTransition* theWrappedObject, const QList<QAbstractState* >&  targets);
@@ -390,15 +464,15 @@ public:
 public slots:
 QAnimationGroup* new_QAnimationGroup(QObject*  parent = 0);
 void delete_QAnimationGroup(QAnimationGroup* obj) { delete obj; } 
-   void addAnimation(QAnimationGroup* theWrappedObject, QAbstractAnimation*  animation);
+   void addAnimation(QAnimationGroup* theWrappedObject, PythonQtPassOwnershipToCPP<QAbstractAnimation* >  animation);
    QAbstractAnimation*  animationAt(QAnimationGroup* theWrappedObject, int  index) const;
    int  animationCount(QAnimationGroup* theWrappedObject) const;
    void clear(QAnimationGroup* theWrappedObject);
    bool  event(QAnimationGroup* theWrappedObject, QEvent*  event);
    int  indexOfAnimation(QAnimationGroup* theWrappedObject, QAbstractAnimation*  animation) const;
-   void insertAnimation(QAnimationGroup* theWrappedObject, int  index, QAbstractAnimation*  animation);
-   void removeAnimation(QAnimationGroup* theWrappedObject, QAbstractAnimation*  animation);
-   QAbstractAnimation*  takeAnimation(QAnimationGroup* theWrappedObject, int  index);
+   void insertAnimation(QAnimationGroup* theWrappedObject, int  index, PythonQtPassOwnershipToCPP<QAbstractAnimation* >  animation);
+   void removeAnimation(QAnimationGroup* theWrappedObject, PythonQtPassOwnershipToPython<QAbstractAnimation* >  animation);
+   PythonQtPassOwnershipToPython<QAbstractAnimation*  > takeAnimation(QAnimationGroup* theWrappedObject, int  index);
 };
 
 
@@ -479,8 +553,10 @@ QBuffer* new_QBuffer(QByteArray*  buf, QObject*  parent = 0);
 QBuffer* new_QBuffer(QObject*  parent = 0);
 void delete_QBuffer(QBuffer* obj) { delete obj; } 
    bool  atEnd(QBuffer* theWrappedObject) const;
+   const QByteArray*  buffer(QBuffer* theWrappedObject) const;
    bool  canReadLine(QBuffer* theWrappedObject) const;
    void close(QBuffer* theWrappedObject);
+   const QByteArray*  data(QBuffer* theWrappedObject) const;
    bool  open(QBuffer* theWrappedObject, QIODevice::OpenMode  openMode);
    qint64  pos(QBuffer* theWrappedObject) const;
    qint64  readData(QBuffer* theWrappedObject, char*  data, qint64  maxlen);
@@ -541,22 +617,6 @@ void delete_QChildEvent(QChildEvent* obj) { delete obj; }
 
 
 
-class PythonQtShell_QCoreApplication : public QCoreApplication
-{
-public:
-
-   ~PythonQtShell_QCoreApplication();
-
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual bool  notify(QObject*  arg__1, QEvent*  arg__2);
-virtual void timerEvent(QTimerEvent*  arg__1);
-
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
 class PythonQtPublicPromoter_QCoreApplication : public QCoreApplication
 { public:
 inline bool  promoted_event(QEvent*  arg__1) { return QCoreApplication::event(arg__1); }
@@ -566,9 +626,11 @@ inline bool  promoted_notify(QObject*  arg__1, QEvent*  arg__2) { return QCoreAp
 class PythonQtWrapper_QCoreApplication : public QObject
 { Q_OBJECT
 public:
-Q_ENUMS(Encoding )
+Q_ENUMS(Encoding enum_1 )
 enum Encoding{
   CodecForTr = QCoreApplication::CodecForTr,   UnicodeUTF8 = QCoreApplication::UnicodeUTF8,   DefaultCodec = QCoreApplication::DefaultCodec};
+enum enum_1{
+  ApplicationFlags = QCoreApplication::ApplicationFlags};
 public slots:
 void delete_QCoreApplication(QCoreApplication* obj) { delete obj; } 
    void static_QCoreApplication_addLibraryPath(const QString&  arg__1);
@@ -589,8 +651,8 @@ void delete_QCoreApplication(QCoreApplication* obj) { delete obj; }
    bool  notify(QCoreApplication* theWrappedObject, QObject*  arg__1, QEvent*  arg__2);
    QString  static_QCoreApplication_organizationDomain();
    QString  static_QCoreApplication_organizationName();
-   void static_QCoreApplication_postEvent(QObject*  receiver, QEvent*  event);
-   void static_QCoreApplication_postEvent(QObject*  receiver, QEvent*  event, int  priority);
+   void static_QCoreApplication_postEvent(QObject*  receiver, PythonQtPassOwnershipToCPP<QEvent* >  event);
+   void static_QCoreApplication_postEvent(QObject*  receiver, PythonQtPassOwnershipToCPP<QEvent* >  event, int  priority);
    void static_QCoreApplication_processEvents(QEventLoop::ProcessEventsFlags  flags = QEventLoop::AllEvents);
    void static_QCoreApplication_processEvents(QEventLoop::ProcessEventsFlags  flags, int  maxtime);
    void static_QCoreApplication_removeLibraryPath(const QString&  arg__1);
@@ -652,13 +714,15 @@ public:
 class PythonQtWrapper_QDataStream : public QObject
 { Q_OBJECT
 public:
-Q_ENUMS(FloatingPointPrecision Version Status )
+Q_ENUMS(ByteOrder FloatingPointPrecision Status Version )
+enum ByteOrder{
+  BigEndian = QDataStream::BigEndian,   LittleEndian = QDataStream::LittleEndian};
 enum FloatingPointPrecision{
   SinglePrecision = QDataStream::SinglePrecision,   DoublePrecision = QDataStream::DoublePrecision};
-enum Version{
-  Qt_1_0 = QDataStream::Qt_1_0,   Qt_2_0 = QDataStream::Qt_2_0,   Qt_2_1 = QDataStream::Qt_2_1,   Qt_3_0 = QDataStream::Qt_3_0,   Qt_3_1 = QDataStream::Qt_3_1,   Qt_3_3 = QDataStream::Qt_3_3,   Qt_4_0 = QDataStream::Qt_4_0,   Qt_4_1 = QDataStream::Qt_4_1,   Qt_4_2 = QDataStream::Qt_4_2,   Qt_4_3 = QDataStream::Qt_4_3,   Qt_4_4 = QDataStream::Qt_4_4,   Qt_4_5 = QDataStream::Qt_4_5,   Qt_4_6 = QDataStream::Qt_4_6,   Qt_4_7 = QDataStream::Qt_4_7,   Qt_4_8 = QDataStream::Qt_4_8};
 enum Status{
   Ok = QDataStream::Ok,   ReadPastEnd = QDataStream::ReadPastEnd,   ReadCorruptData = QDataStream::ReadCorruptData,   WriteFailed = QDataStream::WriteFailed};
+enum Version{
+  Qt_1_0 = QDataStream::Qt_1_0,   Qt_2_0 = QDataStream::Qt_2_0,   Qt_2_1 = QDataStream::Qt_2_1,   Qt_3_0 = QDataStream::Qt_3_0,   Qt_3_1 = QDataStream::Qt_3_1,   Qt_3_3 = QDataStream::Qt_3_3,   Qt_4_0 = QDataStream::Qt_4_0,   Qt_4_1 = QDataStream::Qt_4_1,   Qt_4_2 = QDataStream::Qt_4_2,   Qt_4_3 = QDataStream::Qt_4_3,   Qt_4_4 = QDataStream::Qt_4_4,   Qt_4_5 = QDataStream::Qt_4_5,   Qt_4_6 = QDataStream::Qt_4_6,   Qt_4_7 = QDataStream::Qt_4_7,   Qt_4_8 = QDataStream::Qt_4_8};
 public slots:
 QDataStream* new_QDataStream();
 QDataStream* new_QDataStream(QByteArray*  arg__1, QIODevice::OpenMode  flags);
@@ -666,22 +730,11 @@ QDataStream* new_QDataStream(QIODevice*  arg__1);
 QDataStream* new_QDataStream(const QByteArray&  arg__1);
 void delete_QDataStream(QDataStream* obj) { delete obj; } 
    bool  atEnd(QDataStream* theWrappedObject) const;
+   QDataStream::ByteOrder  byteOrder(QDataStream* theWrappedObject) const;
    QIODevice*  device(QDataStream* theWrappedObject) const;
    QDataStream::FloatingPointPrecision  floatingPointPrecision(QDataStream* theWrappedObject) const;
-   QDataStream*  writeBoolean(QDataStream* theWrappedObject, bool  i);
-   QDataStream*  writeDouble(QDataStream* theWrappedObject, double  f);
-   QDataStream*  writeFloat(QDataStream* theWrappedObject, float  f);
-   QDataStream*  writeInt(QDataStream* theWrappedObject, int  i);
-   QDataStream*  writeLongLong(QDataStream* theWrappedObject, qint64  i);
-   QDataStream*  writeShort(QDataStream* theWrappedObject, short  i);
-   QDataStream*  readBoolean(QDataStream* theWrappedObject, bool&  i);
-   QDataStream*  readDouble(QDataStream* theWrappedObject, double&  f);
-   QDataStream*  readFloat(QDataStream* theWrappedObject, float&  f);
-   QDataStream*  readInt(QDataStream* theWrappedObject, int&  i);
-   QDataStream*  readLongLong(QDataStream* theWrappedObject, qint64&  i);
-   QDataStream*  readShort(QDataStream* theWrappedObject, short&  i);
-   QDataStream*  readUShort(QDataStream* theWrappedObject, unsigned short&  i);
    void resetStatus(QDataStream* theWrappedObject);
+   void setByteOrder(QDataStream* theWrappedObject, QDataStream::ByteOrder  arg__1);
    void setDevice(QDataStream* theWrappedObject, QIODevice*  arg__1);
    void setFloatingPointPrecision(QDataStream* theWrappedObject, QDataStream::FloatingPointPrecision  precision);
    void setStatus(QDataStream* theWrappedObject, QDataStream::Status  status);
@@ -690,6 +743,59 @@ void delete_QDataStream(QDataStream* obj) { delete obj; }
    QDataStream::Status  status(QDataStream* theWrappedObject) const;
    void unsetDevice(QDataStream* theWrappedObject);
    int  version(QDataStream* theWrappedObject) const;
+
+   QString readQString(QDataStream* d) { QString r; (*d) >> r; return r; }
+   QString readString(QDataStream* d) { QString r; (*d) >> r; return r; }
+   QChar readQChar(QDataStream* d) { QChar r; (*d) >> r; return r; }
+   QStringList readQStringList(QDataStream* d) { QStringList r; (*d) >> r; return r; }
+   QVariant readQVariant(QDataStream* d) { QVariant r; (*d) >> r; return r; }
+   bool readBool(QDataStream* d) { bool r; (*d) >> r; return r; }
+   qint8 readInt8(QDataStream* d) { qint8 r; (*d) >> r; return r; }
+   quint8 readUInt8(QDataStream* d) { quint8 r; (*d) >> r; return r; }
+   qint16 readInt16(QDataStream* d) { qint16 r; (*d) >> r; return r; }
+   quint16 readUInt16(QDataStream* d) { quint16 r; (*d) >> r; return r; }
+   qint32 readInt32(QDataStream* d) { qint32 r; (*d) >> r; return r; }
+   quint32 readUInt32(QDataStream* d) { quint32 r; (*d) >> r; return r; }
+   qint64 readInt64(QDataStream* d) { qint64 r; (*d) >> r; return r; }
+   quint64 readUInt64(QDataStream* d) { quint64 r; (*d) >> r; return r; }
+   float readFloat(QDataStream* d) { float r; (*d) >> r; return r; }
+   double readDouble(QDataStream* d) { double r; (*d) >> r; return r; }
+
+   void writeQString(QDataStream* d, const QString& v) { (*d) << v; }
+   void writeString(QDataStream* d, const QString& v) { (*d) << v; }
+   void writeQChar(QDataStream* d, const QChar& v) { (*d) << v; }
+   void writeQStringList(QDataStream* d, const QStringList& v) { (*d) << v; }
+   void writeQVariant(QDataStream* d, const QVariant& v) { (*d) << v; }
+   void writeBool(QDataStream* d, bool v) { (*d) << v; }
+   void writeInt8(QDataStream* d, qint8 v) { (*d) << v; }
+   void writeUInt8(QDataStream* d, quint8 v) { (*d) << v; }
+   void writeInt16(QDataStream* d, qint16 v) { (*d) << v; }
+   void writeUInt16(QDataStream* d, quint16 v) { (*d) << v; }
+   void writeInt32(QDataStream* d, qint32 v) { (*d) << v; }
+   void writeUInt32(QDataStream* d, quint32 v) { (*d) << v; }
+   void writeInt64(QDataStream* d, qint64 v) { (*d) << v; }
+   void writeUInt64(QDataStream* d, quint64 v) { (*d) << v; }
+   void writeFloat(QDataStream* d, float v) { (*d) << v; }
+   void writeDouble(QDataStream* d, double v) { (*d) << v; }
+
+   int writeRawData(QDataStream* d, PyObject* o) {
+     bool ok;
+     QByteArray r = PythonQtConv::PyObjGetBytes(o, false, ok);
+     return (*d).writeRawData(r.constData(), r.size());
+   }
+
+   PyObject* readRawData(QDataStream* d, int len) {
+     QByteArray r;
+     r.resize(len);
+     int result = d->readRawData(r.data(), r.size());
+     if (result>=0) {
+       return PyBytes_FromStringAndSize(r.data(), result);
+     } else {
+       Py_INCREF(Py_None);
+       return Py_None;
+     }
+   }
+    
 };
 
 
@@ -920,7 +1026,7 @@ class PythonQtWrapper_QEvent : public QObject
 public:
 Q_ENUMS(Type )
 enum Type{
-  None = QEvent::None,   Timer = QEvent::Timer,   MouseButtonPress = QEvent::MouseButtonPress,   MouseButtonRelease = QEvent::MouseButtonRelease,   MouseButtonDblClick = QEvent::MouseButtonDblClick,   MouseMove = QEvent::MouseMove,   KeyPress = QEvent::KeyPress,   KeyRelease = QEvent::KeyRelease,   FocusIn = QEvent::FocusIn,   FocusOut = QEvent::FocusOut,   Enter = QEvent::Enter,   Leave = QEvent::Leave,   Paint = QEvent::Paint,   Move = QEvent::Move,   Resize = QEvent::Resize,   Create = QEvent::Create,   Destroy = QEvent::Destroy,   Show = QEvent::Show,   Hide = QEvent::Hide,   Close = QEvent::Close,   Quit = QEvent::Quit,   ParentChange = QEvent::ParentChange,   ParentAboutToChange = QEvent::ParentAboutToChange,   ThreadChange = QEvent::ThreadChange,   WindowActivate = QEvent::WindowActivate,   WindowDeactivate = QEvent::WindowDeactivate,   ShowToParent = QEvent::ShowToParent,   HideToParent = QEvent::HideToParent,   Wheel = QEvent::Wheel,   WindowTitleChange = QEvent::WindowTitleChange,   WindowIconChange = QEvent::WindowIconChange,   ApplicationWindowIconChange = QEvent::ApplicationWindowIconChange,   ApplicationFontChange = QEvent::ApplicationFontChange,   ApplicationLayoutDirectionChange = QEvent::ApplicationLayoutDirectionChange,   ApplicationPaletteChange = QEvent::ApplicationPaletteChange,   PaletteChange = QEvent::PaletteChange,   Clipboard = QEvent::Clipboard,   Speech = QEvent::Speech,   MetaCall = QEvent::MetaCall,   SockAct = QEvent::SockAct,   WinEventAct = QEvent::WinEventAct,   DeferredDelete = QEvent::DeferredDelete,   DragEnter = QEvent::DragEnter,   DragMove = QEvent::DragMove,   DragLeave = QEvent::DragLeave,   Drop = QEvent::Drop,   DragResponse = QEvent::DragResponse,   ChildAdded = QEvent::ChildAdded,   ChildPolished = QEvent::ChildPolished,   ChildRemoved = QEvent::ChildRemoved,   ShowWindowRequest = QEvent::ShowWindowRequest,   PolishRequest = QEvent::PolishRequest,   Polish = QEvent::Polish,   LayoutRequest = QEvent::LayoutRequest,   UpdateRequest = QEvent::UpdateRequest,   UpdateLater = QEvent::UpdateLater,   EmbeddingControl = QEvent::EmbeddingControl,   ActivateControl = QEvent::ActivateControl,   DeactivateControl = QEvent::DeactivateControl,   ContextMenu = QEvent::ContextMenu,   InputMethod = QEvent::InputMethod,   AccessibilityPrepare = QEvent::AccessibilityPrepare,   TabletMove = QEvent::TabletMove,   LocaleChange = QEvent::LocaleChange,   LanguageChange = QEvent::LanguageChange,   LayoutDirectionChange = QEvent::LayoutDirectionChange,   Style = QEvent::Style,   TabletPress = QEvent::TabletPress,   TabletRelease = QEvent::TabletRelease,   OkRequest = QEvent::OkRequest,   HelpRequest = QEvent::HelpRequest,   IconDrag = QEvent::IconDrag,   FontChange = QEvent::FontChange,   EnabledChange = QEvent::EnabledChange,   ActivationChange = QEvent::ActivationChange,   StyleChange = QEvent::StyleChange,   IconTextChange = QEvent::IconTextChange,   ModifiedChange = QEvent::ModifiedChange,   MouseTrackingChange = QEvent::MouseTrackingChange,   WindowBlocked = QEvent::WindowBlocked,   WindowUnblocked = QEvent::WindowUnblocked,   WindowStateChange = QEvent::WindowStateChange,   ToolTip = QEvent::ToolTip,   WhatsThis = QEvent::WhatsThis,   StatusTip = QEvent::StatusTip,   ActionChanged = QEvent::ActionChanged,   ActionAdded = QEvent::ActionAdded,   ActionRemoved = QEvent::ActionRemoved,   FileOpen = QEvent::FileOpen,   Shortcut = QEvent::Shortcut,   ShortcutOverride = QEvent::ShortcutOverride,   WhatsThisClicked = QEvent::WhatsThisClicked,   ToolBarChange = QEvent::ToolBarChange,   ApplicationActivate = QEvent::ApplicationActivate,   ApplicationActivated = QEvent::ApplicationActivated,   ApplicationDeactivate = QEvent::ApplicationDeactivate,   ApplicationDeactivated = QEvent::ApplicationDeactivated,   QueryWhatsThis = QEvent::QueryWhatsThis,   EnterWhatsThisMode = QEvent::EnterWhatsThisMode,   LeaveWhatsThisMode = QEvent::LeaveWhatsThisMode,   ZOrderChange = QEvent::ZOrderChange,   HoverEnter = QEvent::HoverEnter,   HoverLeave = QEvent::HoverLeave,   HoverMove = QEvent::HoverMove,   AccessibilityHelp = QEvent::AccessibilityHelp,   AccessibilityDescription = QEvent::AccessibilityDescription,   AcceptDropsChange = QEvent::AcceptDropsChange,   MenubarUpdated = QEvent::MenubarUpdated,   ZeroTimerEvent = QEvent::ZeroTimerEvent,   GraphicsSceneMouseMove = QEvent::GraphicsSceneMouseMove,   GraphicsSceneMousePress = QEvent::GraphicsSceneMousePress,   GraphicsSceneMouseRelease = QEvent::GraphicsSceneMouseRelease,   GraphicsSceneMouseDoubleClick = QEvent::GraphicsSceneMouseDoubleClick,   GraphicsSceneContextMenu = QEvent::GraphicsSceneContextMenu,   GraphicsSceneHoverEnter = QEvent::GraphicsSceneHoverEnter,   GraphicsSceneHoverMove = QEvent::GraphicsSceneHoverMove,   GraphicsSceneHoverLeave = QEvent::GraphicsSceneHoverLeave,   GraphicsSceneHelp = QEvent::GraphicsSceneHelp,   GraphicsSceneDragEnter = QEvent::GraphicsSceneDragEnter,   GraphicsSceneDragMove = QEvent::GraphicsSceneDragMove,   GraphicsSceneDragLeave = QEvent::GraphicsSceneDragLeave,   GraphicsSceneDrop = QEvent::GraphicsSceneDrop,   GraphicsSceneWheel = QEvent::GraphicsSceneWheel,   KeyboardLayoutChange = QEvent::KeyboardLayoutChange,   DynamicPropertyChange = QEvent::DynamicPropertyChange,   TabletEnterProximity = QEvent::TabletEnterProximity,   TabletLeaveProximity = QEvent::TabletLeaveProximity,   NonClientAreaMouseMove = QEvent::NonClientAreaMouseMove,   NonClientAreaMouseButtonPress = QEvent::NonClientAreaMouseButtonPress,   NonClientAreaMouseButtonRelease = QEvent::NonClientAreaMouseButtonRelease,   NonClientAreaMouseButtonDblClick = QEvent::NonClientAreaMouseButtonDblClick,   MacSizeChange = QEvent::MacSizeChange,   ContentsRectChange = QEvent::ContentsRectChange,   MacGLWindowChange = QEvent::MacGLWindowChange,   FutureCallOut = QEvent::FutureCallOut,   GraphicsSceneResize = QEvent::GraphicsSceneResize,   GraphicsSceneMove = QEvent::GraphicsSceneMove,   CursorChange = QEvent::CursorChange,   ToolTipChange = QEvent::ToolTipChange,   NetworkReplyUpdated = QEvent::NetworkReplyUpdated,   GrabMouse = QEvent::GrabMouse,   UngrabMouse = QEvent::UngrabMouse,   GrabKeyboard = QEvent::GrabKeyboard,   UngrabKeyboard = QEvent::UngrabKeyboard,   MacGLClearDrawable = QEvent::MacGLClearDrawable,   StateMachineSignal = QEvent::StateMachineSignal,   StateMachineWrapped = QEvent::StateMachineWrapped,   TouchBegin = QEvent::TouchBegin,   TouchUpdate = QEvent::TouchUpdate,   TouchEnd = QEvent::TouchEnd,   NativeGesture = QEvent::NativeGesture,   RequestSoftwareInputPanel = QEvent::RequestSoftwareInputPanel,   CloseSoftwareInputPanel = QEvent::CloseSoftwareInputPanel,   UpdateSoftKeys = QEvent::UpdateSoftKeys,   WinIdChange = QEvent::WinIdChange,   Gesture = QEvent::Gesture,   GestureOverride = QEvent::GestureOverride,   User = QEvent::User,   MaxUser = QEvent::MaxUser};
+  None = QEvent::None,   Timer = QEvent::Timer,   MouseButtonPress = QEvent::MouseButtonPress,   MouseButtonRelease = QEvent::MouseButtonRelease,   MouseButtonDblClick = QEvent::MouseButtonDblClick,   MouseMove = QEvent::MouseMove,   KeyPress = QEvent::KeyPress,   KeyRelease = QEvent::KeyRelease,   FocusIn = QEvent::FocusIn,   FocusOut = QEvent::FocusOut,   Enter = QEvent::Enter,   Leave = QEvent::Leave,   Paint = QEvent::Paint,   Move = QEvent::Move,   Resize = QEvent::Resize,   Create = QEvent::Create,   Destroy = QEvent::Destroy,   Show = QEvent::Show,   Hide = QEvent::Hide,   Close = QEvent::Close,   Quit = QEvent::Quit,   ParentChange = QEvent::ParentChange,   ParentAboutToChange = QEvent::ParentAboutToChange,   ThreadChange = QEvent::ThreadChange,   WindowActivate = QEvent::WindowActivate,   WindowDeactivate = QEvent::WindowDeactivate,   ShowToParent = QEvent::ShowToParent,   HideToParent = QEvent::HideToParent,   Wheel = QEvent::Wheel,   WindowTitleChange = QEvent::WindowTitleChange,   WindowIconChange = QEvent::WindowIconChange,   ApplicationWindowIconChange = QEvent::ApplicationWindowIconChange,   ApplicationFontChange = QEvent::ApplicationFontChange,   ApplicationLayoutDirectionChange = QEvent::ApplicationLayoutDirectionChange,   ApplicationPaletteChange = QEvent::ApplicationPaletteChange,   PaletteChange = QEvent::PaletteChange,   Clipboard = QEvent::Clipboard,   Speech = QEvent::Speech,   MetaCall = QEvent::MetaCall,   SockAct = QEvent::SockAct,   WinEventAct = QEvent::WinEventAct,   DeferredDelete = QEvent::DeferredDelete,   DragEnter = QEvent::DragEnter,   DragMove = QEvent::DragMove,   DragLeave = QEvent::DragLeave,   Drop = QEvent::Drop,   DragResponse = QEvent::DragResponse,   ChildAdded = QEvent::ChildAdded,   ChildPolished = QEvent::ChildPolished,   ChildRemoved = QEvent::ChildRemoved,   ShowWindowRequest = QEvent::ShowWindowRequest,   PolishRequest = QEvent::PolishRequest,   Polish = QEvent::Polish,   LayoutRequest = QEvent::LayoutRequest,   UpdateRequest = QEvent::UpdateRequest,   UpdateLater = QEvent::UpdateLater,   EmbeddingControl = QEvent::EmbeddingControl,   ActivateControl = QEvent::ActivateControl,   DeactivateControl = QEvent::DeactivateControl,   ContextMenu = QEvent::ContextMenu,   InputMethod = QEvent::InputMethod,   AccessibilityPrepare = QEvent::AccessibilityPrepare,   TabletMove = QEvent::TabletMove,   LocaleChange = QEvent::LocaleChange,   LanguageChange = QEvent::LanguageChange,   LayoutDirectionChange = QEvent::LayoutDirectionChange,   Style = QEvent::Style,   TabletPress = QEvent::TabletPress,   TabletRelease = QEvent::TabletRelease,   OkRequest = QEvent::OkRequest,   HelpRequest = QEvent::HelpRequest,   IconDrag = QEvent::IconDrag,   FontChange = QEvent::FontChange,   EnabledChange = QEvent::EnabledChange,   ActivationChange = QEvent::ActivationChange,   StyleChange = QEvent::StyleChange,   IconTextChange = QEvent::IconTextChange,   ModifiedChange = QEvent::ModifiedChange,   MouseTrackingChange = QEvent::MouseTrackingChange,   WindowBlocked = QEvent::WindowBlocked,   WindowUnblocked = QEvent::WindowUnblocked,   WindowStateChange = QEvent::WindowStateChange,   ToolTip = QEvent::ToolTip,   WhatsThis = QEvent::WhatsThis,   StatusTip = QEvent::StatusTip,   ActionChanged = QEvent::ActionChanged,   ActionAdded = QEvent::ActionAdded,   ActionRemoved = QEvent::ActionRemoved,   FileOpen = QEvent::FileOpen,   Shortcut = QEvent::Shortcut,   ShortcutOverride = QEvent::ShortcutOverride,   WhatsThisClicked = QEvent::WhatsThisClicked,   ToolBarChange = QEvent::ToolBarChange,   ApplicationActivate = QEvent::ApplicationActivate,   ApplicationActivated = QEvent::ApplicationActivated,   ApplicationDeactivate = QEvent::ApplicationDeactivate,   ApplicationDeactivated = QEvent::ApplicationDeactivated,   QueryWhatsThis = QEvent::QueryWhatsThis,   EnterWhatsThisMode = QEvent::EnterWhatsThisMode,   LeaveWhatsThisMode = QEvent::LeaveWhatsThisMode,   ZOrderChange = QEvent::ZOrderChange,   HoverEnter = QEvent::HoverEnter,   HoverLeave = QEvent::HoverLeave,   HoverMove = QEvent::HoverMove,   AccessibilityHelp = QEvent::AccessibilityHelp,   AccessibilityDescription = QEvent::AccessibilityDescription,   AcceptDropsChange = QEvent::AcceptDropsChange,   MenubarUpdated = QEvent::MenubarUpdated,   ZeroTimerEvent = QEvent::ZeroTimerEvent,   GraphicsSceneMouseMove = QEvent::GraphicsSceneMouseMove,   GraphicsSceneMousePress = QEvent::GraphicsSceneMousePress,   GraphicsSceneMouseRelease = QEvent::GraphicsSceneMouseRelease,   GraphicsSceneMouseDoubleClick = QEvent::GraphicsSceneMouseDoubleClick,   GraphicsSceneContextMenu = QEvent::GraphicsSceneContextMenu,   GraphicsSceneHoverEnter = QEvent::GraphicsSceneHoverEnter,   GraphicsSceneHoverMove = QEvent::GraphicsSceneHoverMove,   GraphicsSceneHoverLeave = QEvent::GraphicsSceneHoverLeave,   GraphicsSceneHelp = QEvent::GraphicsSceneHelp,   GraphicsSceneDragEnter = QEvent::GraphicsSceneDragEnter,   GraphicsSceneDragMove = QEvent::GraphicsSceneDragMove,   GraphicsSceneDragLeave = QEvent::GraphicsSceneDragLeave,   GraphicsSceneDrop = QEvent::GraphicsSceneDrop,   GraphicsSceneWheel = QEvent::GraphicsSceneWheel,   KeyboardLayoutChange = QEvent::KeyboardLayoutChange,   DynamicPropertyChange = QEvent::DynamicPropertyChange,   TabletEnterProximity = QEvent::TabletEnterProximity,   TabletLeaveProximity = QEvent::TabletLeaveProximity,   NonClientAreaMouseMove = QEvent::NonClientAreaMouseMove,   NonClientAreaMouseButtonPress = QEvent::NonClientAreaMouseButtonPress,   NonClientAreaMouseButtonRelease = QEvent::NonClientAreaMouseButtonRelease,   NonClientAreaMouseButtonDblClick = QEvent::NonClientAreaMouseButtonDblClick,   MacSizeChange = QEvent::MacSizeChange,   ContentsRectChange = QEvent::ContentsRectChange,   MacGLWindowChange = QEvent::MacGLWindowChange,   FutureCallOut = QEvent::FutureCallOut,   GraphicsSceneResize = QEvent::GraphicsSceneResize,   GraphicsSceneMove = QEvent::GraphicsSceneMove,   CursorChange = QEvent::CursorChange,   ToolTipChange = QEvent::ToolTipChange,   NetworkReplyUpdated = QEvent::NetworkReplyUpdated,   GrabMouse = QEvent::GrabMouse,   UngrabMouse = QEvent::UngrabMouse,   GrabKeyboard = QEvent::GrabKeyboard,   UngrabKeyboard = QEvent::UngrabKeyboard,   MacGLClearDrawable = QEvent::MacGLClearDrawable,   StateMachineSignal = QEvent::StateMachineSignal,   StateMachineWrapped = QEvent::StateMachineWrapped,   TouchBegin = QEvent::TouchBegin,   TouchUpdate = QEvent::TouchUpdate,   TouchEnd = QEvent::TouchEnd,   NativeGesture = QEvent::NativeGesture,   RequestSoftwareInputPanel = QEvent::RequestSoftwareInputPanel,   CloseSoftwareInputPanel = QEvent::CloseSoftwareInputPanel,   UpdateSoftKeys = QEvent::UpdateSoftKeys,   WinIdChange = QEvent::WinIdChange,   Gesture = QEvent::Gesture,   GestureOverride = QEvent::GestureOverride,   PlatformPanel = QEvent::PlatformPanel,   User = QEvent::User,   MaxUser = QEvent::MaxUser};
 public slots:
 QEvent* new_QEvent(QEvent::Type  type);
 void delete_QEvent(QEvent* obj) { delete obj; } 
@@ -1035,12 +1141,18 @@ virtual QStringList  keys() const;
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QFactoryInterface : public QFactoryInterface
+{ public:
+inline QStringList  promoted_keys() const { return this->keys(); }
+};
+
 class PythonQtWrapper_QFactoryInterface : public QObject
 { Q_OBJECT
 public:
 public slots:
 QFactoryInterface* new_QFactoryInterface();
 void delete_QFactoryInterface(QFactoryInterface* obj) { delete obj; } 
+   QStringList  keys(QFactoryInterface* theWrappedObject) const;
 };
 
 
@@ -1390,12 +1502,16 @@ inline void promoted_close() { QIODevice::close(); }
 inline bool  promoted_isSequential() const { return QIODevice::isSequential(); }
 inline bool  promoted_open(QIODevice::OpenMode  mode) { return QIODevice::open(mode); }
 inline qint64  promoted_pos() const { return QIODevice::pos(); }
+inline qint64  promoted_readData(char*  data, qint64  maxlen) { return this->readData(data, maxlen); }
 inline qint64  promoted_readLineData(char*  data, qint64  maxlen) { return QIODevice::readLineData(data, maxlen); }
 inline bool  promoted_reset() { return QIODevice::reset(); }
 inline bool  promoted_seek(qint64  pos) { return QIODevice::seek(pos); }
+inline void promoted_setErrorString(const QString&  errorString) { QIODevice::setErrorString(errorString); }
+inline void promoted_setOpenMode(QIODevice::OpenMode  openMode) { QIODevice::setOpenMode(openMode); }
 inline qint64  promoted_size() const { return QIODevice::size(); }
 inline bool  promoted_waitForBytesWritten(int  msecs) { return QIODevice::waitForBytesWritten(msecs); }
 inline bool  promoted_waitForReadyRead(int  msecs) { return QIODevice::waitForReadyRead(msecs); }
+inline qint64  promoted_writeData(const char*  data, qint64  len) { return this->writeData(data, len); }
 };
 
 class PythonQtWrapper_QIODevice : public QObject
@@ -1429,10 +1545,13 @@ void delete_QIODevice(QIODevice* obj) { delete obj; }
    bool  putChar(QIODevice* theWrappedObject, char  c);
    QByteArray  read(QIODevice* theWrappedObject, qint64  maxlen);
    QByteArray  readAll(QIODevice* theWrappedObject);
+   qint64  readData(QIODevice* theWrappedObject, char*  data, qint64  maxlen);
    QByteArray  readLine(QIODevice* theWrappedObject, qint64  maxlen = 0);
    qint64  readLineData(QIODevice* theWrappedObject, char*  data, qint64  maxlen);
    bool  reset(QIODevice* theWrappedObject);
    bool  seek(QIODevice* theWrappedObject, qint64  pos);
+   void setErrorString(QIODevice* theWrappedObject, const QString&  errorString);
+   void setOpenMode(QIODevice* theWrappedObject, QIODevice::OpenMode  openMode);
    void setTextModeEnabled(QIODevice* theWrappedObject, bool  enabled);
    qint64  size(QIODevice* theWrappedObject) const;
    void ungetChar(QIODevice* theWrappedObject, char  c);
@@ -1440,6 +1559,102 @@ void delete_QIODevice(QIODevice* obj) { delete obj; }
    bool  waitForReadyRead(QIODevice* theWrappedObject, int  msecs);
    qint64  write(QIODevice* theWrappedObject, const QByteArray&  data);
    qint64  write(QIODevice* theWrappedObject, const char*  data);
+   qint64  writeData(QIODevice* theWrappedObject, const char*  data, qint64  len);
+};
+
+
+
+
+
+class PythonQtShell_QIdentityProxyModel : public QIdentityProxyModel
+{
+public:
+    PythonQtShell_QIdentityProxyModel(QObject*  parent = 0):QIdentityProxyModel(parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QIdentityProxyModel();
+
+virtual QModelIndex  buddy(const QModelIndex&  index) const;
+virtual bool  canFetchMore(const QModelIndex&  parent) const;
+virtual void childEvent(QChildEvent*  arg__1);
+virtual int  columnCount(const QModelIndex&  parent = QModelIndex()) const;
+virtual void customEvent(QEvent*  arg__1);
+virtual QVariant  data(const QModelIndex&  proxyIndex, int  role = Qt::DisplayRole) const;
+virtual bool  dropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent);
+virtual bool  event(QEvent*  arg__1);
+virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void fetchMore(const QModelIndex&  parent);
+virtual Qt::ItemFlags  flags(const QModelIndex&  index) const;
+virtual bool  hasChildren(const QModelIndex&  parent = QModelIndex()) const;
+virtual QVariant  headerData(int  section, Qt::Orientation  orientation, int  role) const;
+virtual QModelIndex  index(int  row, int  column, const QModelIndex&  parent = QModelIndex()) const;
+virtual bool  insertColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex());
+virtual bool  insertRows(int  row, int  count, const QModelIndex&  parent = QModelIndex());
+virtual QMap<int , QVariant >  itemData(const QModelIndex&  index) const;
+virtual QModelIndex  mapFromSource(const QModelIndex&  sourceIndex) const;
+virtual QItemSelection  mapSelectionFromSource(const QItemSelection&  selection) const;
+virtual QItemSelection  mapSelectionToSource(const QItemSelection&  selection) const;
+virtual QModelIndex  mapToSource(const QModelIndex&  proxyIndex) const;
+virtual QList<QModelIndex >  match(const QModelIndex&  start, int  role, const QVariant&  value, int  hits = 1, Qt::MatchFlags  flags = Qt::MatchFlags(Qt::MatchStartsWith|Qt::MatchWrap)) const;
+virtual QMimeData*  mimeData(const QList<QModelIndex >&  indexes) const;
+virtual QStringList  mimeTypes() const;
+virtual QModelIndex  parent(const QModelIndex&  child) const;
+virtual bool  removeColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex());
+virtual bool  removeRows(int  row, int  count, const QModelIndex&  parent = QModelIndex());
+virtual void revert();
+virtual int  rowCount(const QModelIndex&  parent = QModelIndex()) const;
+virtual bool  setData(const QModelIndex&  index, const QVariant&  value, int  role = Qt::EditRole);
+virtual bool  setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role = Qt::EditRole);
+virtual bool  setItemData(const QModelIndex&  index, const QMap<int , QVariant >&  roles);
+virtual void setSourceModel(QAbstractItemModel*  sourceModel);
+virtual void sort(int  column, Qt::SortOrder  order = Qt::AscendingOrder);
+virtual QSize  span(const QModelIndex&  index) const;
+virtual bool  submit();
+virtual Qt::DropActions  supportedDropActions() const;
+virtual void timerEvent(QTimerEvent*  arg__1);
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtPublicPromoter_QIdentityProxyModel : public QIdentityProxyModel
+{ public:
+inline int  promoted_columnCount(const QModelIndex&  parent = QModelIndex()) const { return QIdentityProxyModel::columnCount(parent); }
+inline bool  promoted_dropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent) { return QIdentityProxyModel::dropMimeData(data, action, row, column, parent); }
+inline QModelIndex  promoted_index(int  row, int  column, const QModelIndex&  parent = QModelIndex()) const { return QIdentityProxyModel::index(row, column, parent); }
+inline bool  promoted_insertColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex()) { return QIdentityProxyModel::insertColumns(column, count, parent); }
+inline bool  promoted_insertRows(int  row, int  count, const QModelIndex&  parent = QModelIndex()) { return QIdentityProxyModel::insertRows(row, count, parent); }
+inline QModelIndex  promoted_mapFromSource(const QModelIndex&  sourceIndex) const { return QIdentityProxyModel::mapFromSource(sourceIndex); }
+inline QItemSelection  promoted_mapSelectionFromSource(const QItemSelection&  selection) const { return QIdentityProxyModel::mapSelectionFromSource(selection); }
+inline QItemSelection  promoted_mapSelectionToSource(const QItemSelection&  selection) const { return QIdentityProxyModel::mapSelectionToSource(selection); }
+inline QModelIndex  promoted_mapToSource(const QModelIndex&  proxyIndex) const { return QIdentityProxyModel::mapToSource(proxyIndex); }
+inline QList<QModelIndex >  promoted_match(const QModelIndex&  start, int  role, const QVariant&  value, int  hits = 1, Qt::MatchFlags  flags = Qt::MatchFlags(Qt::MatchStartsWith|Qt::MatchWrap)) const { return QIdentityProxyModel::match(start, role, value, hits, flags); }
+inline QModelIndex  promoted_parent(const QModelIndex&  child) const { return QIdentityProxyModel::parent(child); }
+inline bool  promoted_removeColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex()) { return QIdentityProxyModel::removeColumns(column, count, parent); }
+inline bool  promoted_removeRows(int  row, int  count, const QModelIndex&  parent = QModelIndex()) { return QIdentityProxyModel::removeRows(row, count, parent); }
+inline int  promoted_rowCount(const QModelIndex&  parent = QModelIndex()) const { return QIdentityProxyModel::rowCount(parent); }
+inline void promoted_setSourceModel(QAbstractItemModel*  sourceModel) { QIdentityProxyModel::setSourceModel(sourceModel); }
+};
+
+class PythonQtWrapper_QIdentityProxyModel : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QIdentityProxyModel* new_QIdentityProxyModel(QObject*  parent = 0);
+void delete_QIdentityProxyModel(QIdentityProxyModel* obj) { delete obj; } 
+   int  columnCount(QIdentityProxyModel* theWrappedObject, const QModelIndex&  parent = QModelIndex()) const;
+   bool  dropMimeData(QIdentityProxyModel* theWrappedObject, const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent);
+   QModelIndex  index(QIdentityProxyModel* theWrappedObject, int  row, int  column, const QModelIndex&  parent = QModelIndex()) const;
+   bool  insertColumns(QIdentityProxyModel* theWrappedObject, int  column, int  count, const QModelIndex&  parent = QModelIndex());
+   bool  insertRows(QIdentityProxyModel* theWrappedObject, int  row, int  count, const QModelIndex&  parent = QModelIndex());
+   QModelIndex  mapFromSource(QIdentityProxyModel* theWrappedObject, const QModelIndex&  sourceIndex) const;
+   QItemSelection  mapSelectionFromSource(QIdentityProxyModel* theWrappedObject, const QItemSelection&  selection) const;
+   QItemSelection  mapSelectionToSource(QIdentityProxyModel* theWrappedObject, const QItemSelection&  selection) const;
+   QModelIndex  mapToSource(QIdentityProxyModel* theWrappedObject, const QModelIndex&  proxyIndex) const;
+   QList<QModelIndex >  match(QIdentityProxyModel* theWrappedObject, const QModelIndex&  start, int  role, const QVariant&  value, int  hits = 1, Qt::MatchFlags  flags = Qt::MatchFlags(Qt::MatchStartsWith|Qt::MatchWrap)) const;
+   QModelIndex  parent(QIdentityProxyModel* theWrappedObject, const QModelIndex&  child) const;
+   bool  removeColumns(QIdentityProxyModel* theWrappedObject, int  column, int  count, const QModelIndex&  parent = QModelIndex());
+   bool  removeRows(QIdentityProxyModel* theWrappedObject, int  row, int  count, const QModelIndex&  parent = QModelIndex());
+   int  rowCount(QIdentityProxyModel* theWrappedObject, const QModelIndex&  parent = QModelIndex()) const;
+   void setSourceModel(QIdentityProxyModel* theWrappedObject, QAbstractItemModel*  sourceModel);
 };
 
 
@@ -1471,7 +1686,7 @@ public:
 Q_ENUMS(LoadHint )
 Q_FLAGS(LoadHints )
 enum LoadHint{
-  ResolveAllSymbolsHint = QLibrary::ResolveAllSymbolsHint,   ExportExternalSymbolsHint = QLibrary::ExportExternalSymbolsHint,   LoadArchiveMemberHint = QLibrary::LoadArchiveMemberHint};
+  ResolveAllSymbolsHint = QLibrary::ResolveAllSymbolsHint,   ExportExternalSymbolsHint = QLibrary::ExportExternalSymbolsHint,   LoadArchiveMemberHint = QLibrary::LoadArchiveMemberHint,   ImprovedSearchHeuristics = QLibrary::ImprovedSearchHeuristics};
 Q_DECLARE_FLAGS(LoadHints, LoadHint)
 public slots:
 QLibrary* new_QLibrary(QObject*  parent = 0);
@@ -1494,25 +1709,6 @@ void delete_QLibrary(QLibrary* obj) { delete obj; }
    void setFileNameAndVersion(QLibrary* theWrappedObject, const QString&  fileName, int  verNum);
    void setLoadHints(QLibrary* theWrappedObject, QLibrary::LoadHints  hints);
    bool  unload(QLibrary* theWrappedObject);
-};
-
-
-
-
-
-class PythonQtWrapper_QLibraryInfo : public QObject
-{ Q_OBJECT
-public:
-Q_ENUMS(LibraryLocation )
-enum LibraryLocation{
-  PrefixPath = QLibraryInfo::PrefixPath,   DocumentationPath = QLibraryInfo::DocumentationPath,   HeadersPath = QLibraryInfo::HeadersPath,   LibrariesPath = QLibraryInfo::LibrariesPath,   BinariesPath = QLibraryInfo::BinariesPath,   PluginsPath = QLibraryInfo::PluginsPath,   DataPath = QLibraryInfo::DataPath,   TranslationsPath = QLibraryInfo::TranslationsPath,   SettingsPath = QLibraryInfo::SettingsPath,   DemosPath = QLibraryInfo::DemosPath,   ExamplesPath = QLibraryInfo::ExamplesPath,   ImportsPath = QLibraryInfo::ImportsPath};
-public slots:
-void delete_QLibraryInfo(QLibraryInfo* obj) { delete obj; } 
-   QDate  static_QLibraryInfo_buildDate();
-   QString  static_QLibraryInfo_buildKey();
-   QString  static_QLibraryInfo_licensedProducts();
-   QString  static_QLibraryInfo_licensee();
-   QString  static_QLibraryInfo_location(QLibraryInfo::LibraryLocation  arg__1);
 };
 
 

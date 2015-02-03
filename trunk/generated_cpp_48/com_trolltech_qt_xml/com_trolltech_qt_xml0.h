@@ -180,12 +180,10 @@ void delete_QDomElement(QDomElement* obj) { delete obj; }
    void setAttribute(QDomElement* theWrappedObject, const QString&  name, float  value);
    void setAttribute(QDomElement* theWrappedObject, const QString&  name, int  value);
    void setAttribute(QDomElement* theWrappedObject, const QString&  name, qlonglong  value);
-   void setAttribute(QDomElement* theWrappedObject, const QString&  name, qulonglong  value);
    void setAttributeNS(QDomElement* theWrappedObject, const QString  nsURI, const QString&  qName, const QString&  value);
    void setAttributeNS(QDomElement* theWrappedObject, const QString  nsURI, const QString&  qName, double  value);
    void setAttributeNS(QDomElement* theWrappedObject, const QString  nsURI, const QString&  qName, int  value);
    void setAttributeNS(QDomElement* theWrappedObject, const QString  nsURI, const QString&  qName, qlonglong  value);
-   void setAttributeNS(QDomElement* theWrappedObject, const QString  nsURI, const QString&  qName, qulonglong  value);
    QDomAttr  setAttributeNode(QDomElement* theWrappedObject, const QDomAttr&  newAttr);
    QDomAttr  setAttributeNodeNS(QDomElement* theWrappedObject, const QDomAttr&  newAttr);
    void setTagName(QDomElement* theWrappedObject, const QString&  name);
@@ -284,11 +282,11 @@ void delete_QDomNamedNodeMap(QDomNamedNodeMap* obj) { delete obj; }
 class PythonQtWrapper_QDomNode : public QObject
 { Q_OBJECT
 public:
-Q_ENUMS(NodeType EncodingPolicy )
-enum NodeType{
-  ElementNode = QDomNode::ElementNode,   AttributeNode = QDomNode::AttributeNode,   TextNode = QDomNode::TextNode,   CDATASectionNode = QDomNode::CDATASectionNode,   EntityReferenceNode = QDomNode::EntityReferenceNode,   EntityNode = QDomNode::EntityNode,   ProcessingInstructionNode = QDomNode::ProcessingInstructionNode,   CommentNode = QDomNode::CommentNode,   DocumentNode = QDomNode::DocumentNode,   DocumentTypeNode = QDomNode::DocumentTypeNode,   DocumentFragmentNode = QDomNode::DocumentFragmentNode,   NotationNode = QDomNode::NotationNode,   BaseNode = QDomNode::BaseNode,   CharacterDataNode = QDomNode::CharacterDataNode};
+Q_ENUMS(EncodingPolicy NodeType )
 enum EncodingPolicy{
   EncodingFromDocument = QDomNode::EncodingFromDocument,   EncodingFromTextStream = QDomNode::EncodingFromTextStream};
+enum NodeType{
+  ElementNode = QDomNode::ElementNode,   AttributeNode = QDomNode::AttributeNode,   TextNode = QDomNode::TextNode,   CDATASectionNode = QDomNode::CDATASectionNode,   EntityReferenceNode = QDomNode::EntityReferenceNode,   EntityNode = QDomNode::EntityNode,   ProcessingInstructionNode = QDomNode::ProcessingInstructionNode,   CommentNode = QDomNode::CommentNode,   DocumentNode = QDomNode::DocumentNode,   DocumentTypeNode = QDomNode::DocumentTypeNode,   DocumentFragmentNode = QDomNode::DocumentFragmentNode,   NotationNode = QDomNode::NotationNode,   BaseNode = QDomNode::BaseNode,   CharacterDataNode = QDomNode::CharacterDataNode};
 public slots:
 QDomNode* new_QDomNode();
 QDomNode* new_QDomNode(const QDomNode&  arg__1);
@@ -499,12 +497,40 @@ virtual bool  startPrefixMapping(const QString&  prefix, const QString&  uri);
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QXmlContentHandler : public QXmlContentHandler
+{ public:
+inline bool  promoted_characters(const QString&  ch) { return this->characters(ch); }
+inline bool  promoted_endDocument() { return this->endDocument(); }
+inline bool  promoted_endElement(const QString&  namespaceURI, const QString&  localName, const QString&  qName) { return this->endElement(namespaceURI, localName, qName); }
+inline bool  promoted_endPrefixMapping(const QString&  prefix) { return this->endPrefixMapping(prefix); }
+inline QString  promoted_errorString() const { return this->errorString(); }
+inline bool  promoted_ignorableWhitespace(const QString&  ch) { return this->ignorableWhitespace(ch); }
+inline bool  promoted_processingInstruction(const QString&  target, const QString&  data) { return this->processingInstruction(target, data); }
+inline void promoted_setDocumentLocator(QXmlLocator*  locator) { this->setDocumentLocator(locator); }
+inline bool  promoted_skippedEntity(const QString&  name) { return this->skippedEntity(name); }
+inline bool  promoted_startDocument() { return this->startDocument(); }
+inline bool  promoted_startElement(const QString&  namespaceURI, const QString&  localName, const QString&  qName, const QXmlAttributes&  atts) { return this->startElement(namespaceURI, localName, qName, atts); }
+inline bool  promoted_startPrefixMapping(const QString&  prefix, const QString&  uri) { return this->startPrefixMapping(prefix, uri); }
+};
+
 class PythonQtWrapper_QXmlContentHandler : public QObject
 { Q_OBJECT
 public:
 public slots:
 QXmlContentHandler* new_QXmlContentHandler();
 void delete_QXmlContentHandler(QXmlContentHandler* obj) { delete obj; } 
+   bool  characters(QXmlContentHandler* theWrappedObject, const QString&  ch);
+   bool  endDocument(QXmlContentHandler* theWrappedObject);
+   bool  endElement(QXmlContentHandler* theWrappedObject, const QString&  namespaceURI, const QString&  localName, const QString&  qName);
+   bool  endPrefixMapping(QXmlContentHandler* theWrappedObject, const QString&  prefix);
+   QString  errorString(QXmlContentHandler* theWrappedObject) const;
+   bool  ignorableWhitespace(QXmlContentHandler* theWrappedObject, const QString&  ch);
+   bool  processingInstruction(QXmlContentHandler* theWrappedObject, const QString&  target, const QString&  data);
+   void setDocumentLocator(QXmlContentHandler* theWrappedObject, QXmlLocator*  locator);
+   bool  skippedEntity(QXmlContentHandler* theWrappedObject, const QString&  name);
+   bool  startDocument(QXmlContentHandler* theWrappedObject);
+   bool  startElement(QXmlContentHandler* theWrappedObject, const QString&  namespaceURI, const QString&  localName, const QString&  qName, const QXmlAttributes&  atts);
+   bool  startPrefixMapping(QXmlContentHandler* theWrappedObject, const QString&  prefix, const QString&  uri);
 };
 
 
@@ -525,12 +551,22 @@ virtual bool  unparsedEntityDecl(const QString&  name, const QString&  publicId,
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QXmlDTDHandler : public QXmlDTDHandler
+{ public:
+inline QString  promoted_errorString() const { return this->errorString(); }
+inline bool  promoted_notationDecl(const QString&  name, const QString&  publicId, const QString&  systemId) { return this->notationDecl(name, publicId, systemId); }
+inline bool  promoted_unparsedEntityDecl(const QString&  name, const QString&  publicId, const QString&  systemId, const QString&  notationName) { return this->unparsedEntityDecl(name, publicId, systemId, notationName); }
+};
+
 class PythonQtWrapper_QXmlDTDHandler : public QObject
 { Q_OBJECT
 public:
 public slots:
 QXmlDTDHandler* new_QXmlDTDHandler();
 void delete_QXmlDTDHandler(QXmlDTDHandler* obj) { delete obj; } 
+   QString  errorString(QXmlDTDHandler* theWrappedObject) const;
+   bool  notationDecl(QXmlDTDHandler* theWrappedObject, const QString&  name, const QString&  publicId, const QString&  systemId);
+   bool  unparsedEntityDecl(QXmlDTDHandler* theWrappedObject, const QString&  name, const QString&  publicId, const QString&  systemId, const QString&  notationName);
 };
 
 
@@ -552,12 +588,24 @@ virtual bool  internalEntityDecl(const QString&  name, const QString&  value);
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QXmlDeclHandler : public QXmlDeclHandler
+{ public:
+inline bool  promoted_attributeDecl(const QString&  eName, const QString&  aName, const QString&  type, const QString&  valueDefault, const QString&  value) { return this->attributeDecl(eName, aName, type, valueDefault, value); }
+inline QString  promoted_errorString() const { return this->errorString(); }
+inline bool  promoted_externalEntityDecl(const QString&  name, const QString&  publicId, const QString&  systemId) { return this->externalEntityDecl(name, publicId, systemId); }
+inline bool  promoted_internalEntityDecl(const QString&  name, const QString&  value) { return this->internalEntityDecl(name, value); }
+};
+
 class PythonQtWrapper_QXmlDeclHandler : public QObject
 { Q_OBJECT
 public:
 public slots:
 QXmlDeclHandler* new_QXmlDeclHandler();
 void delete_QXmlDeclHandler(QXmlDeclHandler* obj) { delete obj; } 
+   bool  attributeDecl(QXmlDeclHandler* theWrappedObject, const QString&  eName, const QString&  aName, const QString&  type, const QString&  valueDefault, const QString&  value);
+   QString  errorString(QXmlDeclHandler* theWrappedObject) const;
+   bool  externalEntityDecl(QXmlDeclHandler* theWrappedObject, const QString&  name, const QString&  publicId, const QString&  systemId);
+   bool  internalEntityDecl(QXmlDeclHandler* theWrappedObject, const QString&  name, const QString&  value);
 };
 
 
@@ -688,12 +736,20 @@ virtual bool  resolveEntity(const QString&  publicId, const QString&  systemId, 
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QXmlEntityResolver : public QXmlEntityResolver
+{ public:
+inline QString  promoted_errorString() const { return this->errorString(); }
+inline bool  promoted_resolveEntity(const QString&  publicId, const QString&  systemId, QXmlInputSource*&  ret) { return this->resolveEntity(publicId, systemId, ret); }
+};
+
 class PythonQtWrapper_QXmlEntityResolver : public QObject
 { Q_OBJECT
 public:
 public slots:
 QXmlEntityResolver* new_QXmlEntityResolver();
 void delete_QXmlEntityResolver(QXmlEntityResolver* obj) { delete obj; } 
+   QString  errorString(QXmlEntityResolver* theWrappedObject) const;
+   bool  resolveEntity(QXmlEntityResolver* theWrappedObject, const QString&  publicId, const QString&  systemId, QXmlInputSource*&  ret);
 };
 
 
@@ -715,12 +771,24 @@ virtual bool  warning(const QXmlParseException&  exception);
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QXmlErrorHandler : public QXmlErrorHandler
+{ public:
+inline bool  promoted_error(const QXmlParseException&  exception) { return this->error(exception); }
+inline QString  promoted_errorString() const { return this->errorString(); }
+inline bool  promoted_fatalError(const QXmlParseException&  exception) { return this->fatalError(exception); }
+inline bool  promoted_warning(const QXmlParseException&  exception) { return this->warning(exception); }
+};
+
 class PythonQtWrapper_QXmlErrorHandler : public QObject
 { Q_OBJECT
 public:
 public slots:
 QXmlErrorHandler* new_QXmlErrorHandler();
 void delete_QXmlErrorHandler(QXmlErrorHandler* obj) { delete obj; } 
+   bool  error(QXmlErrorHandler* theWrappedObject, const QXmlParseException&  exception);
+   QString  errorString(QXmlErrorHandler* theWrappedObject) const;
+   bool  fatalError(QXmlErrorHandler* theWrappedObject, const QXmlParseException&  exception);
+   bool  warning(QXmlErrorHandler* theWrappedObject, const QXmlParseException&  exception);
 };
 
 
@@ -796,12 +864,32 @@ virtual bool  startEntity(const QString&  name);
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QXmlLexicalHandler : public QXmlLexicalHandler
+{ public:
+inline bool  promoted_comment(const QString&  ch) { return this->comment(ch); }
+inline bool  promoted_endCDATA() { return this->endCDATA(); }
+inline bool  promoted_endDTD() { return this->endDTD(); }
+inline bool  promoted_endEntity(const QString&  name) { return this->endEntity(name); }
+inline QString  promoted_errorString() const { return this->errorString(); }
+inline bool  promoted_startCDATA() { return this->startCDATA(); }
+inline bool  promoted_startDTD(const QString&  name, const QString&  publicId, const QString&  systemId) { return this->startDTD(name, publicId, systemId); }
+inline bool  promoted_startEntity(const QString&  name) { return this->startEntity(name); }
+};
+
 class PythonQtWrapper_QXmlLexicalHandler : public QObject
 { Q_OBJECT
 public:
 public slots:
 QXmlLexicalHandler* new_QXmlLexicalHandler();
 void delete_QXmlLexicalHandler(QXmlLexicalHandler* obj) { delete obj; } 
+   bool  comment(QXmlLexicalHandler* theWrappedObject, const QString&  ch);
+   bool  endCDATA(QXmlLexicalHandler* theWrappedObject);
+   bool  endDTD(QXmlLexicalHandler* theWrappedObject);
+   bool  endEntity(QXmlLexicalHandler* theWrappedObject, const QString&  name);
+   QString  errorString(QXmlLexicalHandler* theWrappedObject) const;
+   bool  startCDATA(QXmlLexicalHandler* theWrappedObject);
+   bool  startDTD(QXmlLexicalHandler* theWrappedObject, const QString&  name, const QString&  publicId, const QString&  systemId);
+   bool  startEntity(QXmlLexicalHandler* theWrappedObject, const QString&  name);
 };
 
 
@@ -821,12 +909,20 @@ virtual int  lineNumber() const;
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QXmlLocator : public QXmlLocator
+{ public:
+inline int  promoted_columnNumber() const { return this->columnNumber(); }
+inline int  promoted_lineNumber() const { return this->lineNumber(); }
+};
+
 class PythonQtWrapper_QXmlLocator : public QObject
 { Q_OBJECT
 public:
 public slots:
 QXmlLocator* new_QXmlLocator();
 void delete_QXmlLocator(QXmlLocator* obj) { delete obj; } 
+   int  columnNumber(QXmlLocator* theWrappedObject) const;
+   int  lineNumber(QXmlLocator* theWrappedObject) const;
 };
 
 
@@ -882,12 +978,56 @@ virtual void setProperty(const QString&  name, void*  value);
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QXmlReader : public QXmlReader
+{ public:
+inline QXmlDTDHandler*  promoted_DTDHandler() const { return this->DTDHandler(); }
+inline QXmlContentHandler*  promoted_contentHandler() const { return this->contentHandler(); }
+inline QXmlDeclHandler*  promoted_declHandler() const { return this->declHandler(); }
+inline QXmlEntityResolver*  promoted_entityResolver() const { return this->entityResolver(); }
+inline QXmlErrorHandler*  promoted_errorHandler() const { return this->errorHandler(); }
+inline bool  promoted_feature(const QString&  name, bool*  ok = 0) const { return this->feature(name, ok); }
+inline bool  promoted_hasFeature(const QString&  name) const { return this->hasFeature(name); }
+inline bool  promoted_hasProperty(const QString&  name) const { return this->hasProperty(name); }
+inline QXmlLexicalHandler*  promoted_lexicalHandler() const { return this->lexicalHandler(); }
+inline bool  promoted_parse(const QXmlInputSource&  input) { return this->parse(input); }
+inline bool  promoted_parse(const QXmlInputSource*  input) { return this->parse(input); }
+inline void*  promoted_property(const QString&  name, bool*  ok = 0) const { return this->property(name, ok); }
+inline void promoted_setContentHandler(QXmlContentHandler*  handler) { this->setContentHandler(handler); }
+inline void promoted_setDTDHandler(QXmlDTDHandler*  handler) { this->setDTDHandler(handler); }
+inline void promoted_setDeclHandler(QXmlDeclHandler*  handler) { this->setDeclHandler(handler); }
+inline void promoted_setEntityResolver(QXmlEntityResolver*  handler) { this->setEntityResolver(handler); }
+inline void promoted_setErrorHandler(QXmlErrorHandler*  handler) { this->setErrorHandler(handler); }
+inline void promoted_setFeature(const QString&  name, bool  value) { this->setFeature(name, value); }
+inline void promoted_setLexicalHandler(QXmlLexicalHandler*  handler) { this->setLexicalHandler(handler); }
+inline void promoted_setProperty(const QString&  name, void*  value) { this->setProperty(name, value); }
+};
+
 class PythonQtWrapper_QXmlReader : public QObject
 { Q_OBJECT
 public:
 public slots:
 QXmlReader* new_QXmlReader();
 void delete_QXmlReader(QXmlReader* obj) { delete obj; } 
+   QXmlDTDHandler*  DTDHandler(QXmlReader* theWrappedObject) const;
+   QXmlContentHandler*  contentHandler(QXmlReader* theWrappedObject) const;
+   QXmlDeclHandler*  declHandler(QXmlReader* theWrappedObject) const;
+   QXmlEntityResolver*  entityResolver(QXmlReader* theWrappedObject) const;
+   QXmlErrorHandler*  errorHandler(QXmlReader* theWrappedObject) const;
+   bool  feature(QXmlReader* theWrappedObject, const QString&  name, bool*  ok = 0) const;
+   bool  hasFeature(QXmlReader* theWrappedObject, const QString&  name) const;
+   bool  hasProperty(QXmlReader* theWrappedObject, const QString&  name) const;
+   QXmlLexicalHandler*  lexicalHandler(QXmlReader* theWrappedObject) const;
+   bool  parse(QXmlReader* theWrappedObject, const QXmlInputSource&  input);
+   bool  parse(QXmlReader* theWrappedObject, const QXmlInputSource*  input);
+   void*  property(QXmlReader* theWrappedObject, const QString&  name, bool*  ok = 0) const;
+   void setContentHandler(QXmlReader* theWrappedObject, QXmlContentHandler*  handler);
+   void setDTDHandler(QXmlReader* theWrappedObject, QXmlDTDHandler*  handler);
+   void setDeclHandler(QXmlReader* theWrappedObject, QXmlDeclHandler*  handler);
+   void setEntityResolver(QXmlReader* theWrappedObject, QXmlEntityResolver*  handler);
+   void setErrorHandler(QXmlReader* theWrappedObject, QXmlErrorHandler*  handler);
+   void setFeature(QXmlReader* theWrappedObject, const QString&  name, bool  value);
+   void setLexicalHandler(QXmlReader* theWrappedObject, QXmlLexicalHandler*  handler);
+   void setProperty(QXmlReader* theWrappedObject, const QString&  name, void*  value);
 };
 
 

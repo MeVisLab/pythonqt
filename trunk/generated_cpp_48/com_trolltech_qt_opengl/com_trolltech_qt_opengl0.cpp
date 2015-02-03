@@ -184,14 +184,14 @@ int  PythonQtWrapper_QGLColormap::findNearest(QGLColormap* theWrappedObject, uns
   return ( theWrappedObject->findNearest(color));
 }
 
+Qt::HANDLE  PythonQtWrapper_QGLColormap::handle(QGLColormap* theWrappedObject)
+{
+  return ( ((PythonQtPublicPromoter_QGLColormap*)theWrappedObject)->promoted_handle());
+}
+
 bool  PythonQtWrapper_QGLColormap::isEmpty(QGLColormap* theWrappedObject) const
 {
   return ( theWrappedObject->isEmpty());
-}
-
-void PythonQtWrapper_QGLColormap::setEntries(QGLColormap* theWrappedObject, int  count, const unsigned int*  colors, int  base)
-{
-  ( theWrappedObject->setEntries(count, colors, base));
 }
 
 void PythonQtWrapper_QGLColormap::setEntry(QGLColormap* theWrappedObject, int  idx, const QColor&  color)
@@ -202,6 +202,11 @@ void PythonQtWrapper_QGLColormap::setEntry(QGLColormap* theWrappedObject, int  i
 void PythonQtWrapper_QGLColormap::setEntry(QGLColormap* theWrappedObject, int  idx, unsigned int  color)
 {
   ( theWrappedObject->setEntry(idx, color));
+}
+
+void PythonQtWrapper_QGLColormap::setHandle(QGLColormap* theWrappedObject, Qt::HANDLE  ahandle)
+{
+  ( ((PythonQtPublicPromoter_QGLColormap*)theWrappedObject)->promoted_setHandle(ahandle));
 }
 
 int  PythonQtWrapper_QGLColormap::size(QGLColormap* theWrappedObject) const
@@ -215,16 +220,16 @@ PythonQtShell_QGLContext::~PythonQtShell_QGLContext() {
   PythonQtPrivate* priv = PythonQt::priv();
   if (priv) { priv->shellClassDeleted(this); }
 }
-bool  PythonQtShell_QGLContext::chooseContext(const QGLContext*  shareContext)
+bool  PythonQtShell_QGLContext::chooseContext(const QGLContext*  shareContext0)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "chooseContext");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("chooseContext");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"bool" , "const QGLContext*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue;
-    void* args[2] = {NULL, (void*)&shareContext};
+    void* args[2] = {NULL, (void*)&shareContext0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -239,20 +244,22 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return returnValue;
+  } else {
+    PyErr_Clear();
   }
 }
-  return QGLContext::chooseContext(shareContext);
+  return QGLContext::chooseContext(shareContext0);
 }
-bool  PythonQtShell_QGLContext::create(const QGLContext*  shareContext)
+bool  PythonQtShell_QGLContext::create(const QGLContext*  shareContext0)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "create");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("create");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"bool" , "const QGLContext*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue;
-    void* args[2] = {NULL, (void*)&shareContext};
+    void* args[2] = {NULL, (void*)&shareContext0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -267,16 +274,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return returnValue;
+  } else {
+    PyErr_Clear();
   }
 }
-  return QGLContext::create(shareContext);
+  return QGLContext::create(shareContext0);
 }
 void PythonQtShell_QGLContext::doneCurrent()
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "doneCurrent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("doneCurrent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={""};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
     void* args[1] = {NULL};
@@ -284,16 +293,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLContext::doneCurrent();
 }
 void PythonQtShell_QGLContext::makeCurrent()
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "makeCurrent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("makeCurrent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={""};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
     void* args[1] = {NULL};
@@ -301,16 +312,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLContext::makeCurrent();
 }
 void PythonQtShell_QGLContext::swapBuffers() const
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "swapBuffers");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("swapBuffers");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={""};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
     void* args[1] = {NULL};
@@ -318,6 +331,8 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLContext::swapBuffers();
@@ -365,6 +380,11 @@ bool  PythonQtWrapper_QGLContext::chooseContext(QGLContext* theWrappedObject, co
   return ( ((PythonQtPublicPromoter_QGLContext*)theWrappedObject)->promoted_chooseContext(shareContext));
 }
 
+uint  PythonQtWrapper_QGLContext::colorIndex(QGLContext* theWrappedObject, const QColor&  c) const
+{
+  return ( ((PythonQtPublicPromoter_QGLContext*)theWrappedObject)->promoted_colorIndex(c));
+}
+
 bool  PythonQtWrapper_QGLContext::create(QGLContext* theWrappedObject, const QGLContext*  shareContext)
 {
   return ( ((PythonQtPublicPromoter_QGLContext*)theWrappedObject)->promoted_create(shareContext));
@@ -385,6 +405,11 @@ QPaintDevice*  PythonQtWrapper_QGLContext::device(QGLContext* theWrappedObject) 
   return ( theWrappedObject->device());
 }
 
+bool  PythonQtWrapper_QGLContext::deviceIsPixmap(QGLContext* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QGLContext*)theWrappedObject)->promoted_deviceIsPixmap());
+}
+
 void PythonQtWrapper_QGLContext::doneCurrent(QGLContext* theWrappedObject)
 {
   ( ((PythonQtPublicPromoter_QGLContext*)theWrappedObject)->promoted_doneCurrent());
@@ -403,6 +428,11 @@ void PythonQtWrapper_QGLContext::drawTexture(QGLContext* theWrappedObject, const
 QGLFormat  PythonQtWrapper_QGLContext::format(QGLContext* theWrappedObject) const
 {
   return ( theWrappedObject->format());
+}
+
+bool  PythonQtWrapper_QGLContext::initialized(QGLContext* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QGLContext*)theWrappedObject)->promoted_initialized());
 }
 
 bool  PythonQtWrapper_QGLContext::isSharing(QGLContext* theWrappedObject) const
@@ -440,9 +470,24 @@ void PythonQtWrapper_QGLContext::setFormat(QGLContext* theWrappedObject, const Q
   ( theWrappedObject->setFormat(format));
 }
 
+void PythonQtWrapper_QGLContext::setInitialized(QGLContext* theWrappedObject, bool  on)
+{
+  ( ((PythonQtPublicPromoter_QGLContext*)theWrappedObject)->promoted_setInitialized(on));
+}
+
 void PythonQtWrapper_QGLContext::static_QGLContext_setTextureCacheLimit(int  size)
 {
   (QGLContext::setTextureCacheLimit(size));
+}
+
+void PythonQtWrapper_QGLContext::setValid(QGLContext* theWrappedObject, bool  valid)
+{
+  ( ((PythonQtPublicPromoter_QGLContext*)theWrappedObject)->promoted_setValid(valid));
+}
+
+void PythonQtWrapper_QGLContext::setWindowCreated(QGLContext* theWrappedObject, bool  on)
+{
+  ( ((PythonQtPublicPromoter_QGLContext*)theWrappedObject)->promoted_setWindowCreated(on));
 }
 
 void PythonQtWrapper_QGLContext::swapBuffers(QGLContext* theWrappedObject) const
@@ -453,6 +498,11 @@ void PythonQtWrapper_QGLContext::swapBuffers(QGLContext* theWrappedObject) const
 int  PythonQtWrapper_QGLContext::static_QGLContext_textureCacheLimit()
 {
   return (QGLContext::textureCacheLimit());
+}
+
+bool  PythonQtWrapper_QGLContext::windowCreated(QGLContext* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QGLContext*)theWrappedObject)->promoted_windowCreated());
 }
 
 
@@ -759,10 +809,10 @@ PythonQtShell_QGLFramebufferObject::~PythonQtShell_QGLFramebufferObject() {
 }
 int  PythonQtShell_QGLFramebufferObject::devType() const
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "devType");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("devType");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"int"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
       int returnValue;
@@ -781,20 +831,22 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return returnValue;
+  } else {
+    PyErr_Clear();
   }
 }
   return QGLFramebufferObject::devType();
 }
-int  PythonQtShell_QGLFramebufferObject::metric(QPaintDevice::PaintDeviceMetric  metric) const
+int  PythonQtShell_QGLFramebufferObject::metric(QPaintDevice::PaintDeviceMetric  metric0) const
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "metric");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("metric");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"int" , "QPaintDevice::PaintDeviceMetric"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       int returnValue;
-    void* args[2] = {NULL, (void*)&metric};
+    void* args[2] = {NULL, (void*)&metric0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -809,16 +861,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return returnValue;
+  } else {
+    PyErr_Clear();
   }
 }
-  return QGLFramebufferObject::metric(metric);
+  return QGLFramebufferObject::metric(metric0);
 }
 QPaintEngine*  PythonQtShell_QGLFramebufferObject::paintEngine() const
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "paintEngine");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("paintEngine");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"QPaintEngine*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
       QPaintEngine* returnValue;
@@ -837,6 +891,8 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return returnValue;
+  } else {
+    PyErr_Clear();
   }
 }
   return QGLFramebufferObject::paintEngine();
@@ -1093,16 +1149,6 @@ void PythonQtWrapper_QGLFunctions::glBlendEquationSeparate(QGLFunctions* theWrap
 void PythonQtWrapper_QGLFunctions::glBlendFuncSeparate(QGLFunctions* theWrappedObject, GLenum  srcRGB, GLenum  dstRGB, GLenum  srcAlpha, GLenum  dstAlpha)
 {
   ( theWrappedObject->glBlendFuncSeparate(srcRGB, dstRGB, srcAlpha, dstAlpha));
-}
-
-void PythonQtWrapper_QGLFunctions::glBufferData(QGLFunctions* theWrappedObject, GLenum  target, qgl_GLsizeiptr  size, const void*  data, GLenum  usage)
-{
-  ( theWrappedObject->glBufferData(target, size, data, usage));
-}
-
-void PythonQtWrapper_QGLFunctions::glBufferSubData(QGLFunctions* theWrappedObject, GLenum  target, qgl_GLintptr  offset, qgl_GLsizeiptr  size, const void*  data)
-{
-  ( theWrappedObject->glBufferSubData(target, offset, size, data));
 }
 
 GLenum  PythonQtWrapper_QGLFunctions::glCheckFramebufferStatus(QGLFunctions* theWrappedObject, GLenum  target)
@@ -1540,6 +1586,11 @@ void PythonQtWrapper_QGLFunctions::initializeGLFunctions(QGLFunctions* theWrappe
   ( theWrappedObject->initializeGLFunctions(context));
 }
 
+QGLFunctions::OpenGLFeatures  PythonQtWrapper_QGLFunctions::openGLFeatures(QGLFunctions* theWrappedObject) const
+{
+  return ( theWrappedObject->openGLFeatures());
+}
+
 
 
 PythonQtShell_QGLPixelBuffer::~PythonQtShell_QGLPixelBuffer() {
@@ -1548,10 +1599,10 @@ PythonQtShell_QGLPixelBuffer::~PythonQtShell_QGLPixelBuffer() {
 }
 int  PythonQtShell_QGLPixelBuffer::devType() const
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "devType");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("devType");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"int"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
       int returnValue;
@@ -1570,20 +1621,22 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return returnValue;
+  } else {
+    PyErr_Clear();
   }
 }
   return QGLPixelBuffer::devType();
 }
-int  PythonQtShell_QGLPixelBuffer::metric(QPaintDevice::PaintDeviceMetric  metric) const
+int  PythonQtShell_QGLPixelBuffer::metric(QPaintDevice::PaintDeviceMetric  metric0) const
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "metric");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("metric");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"int" , "QPaintDevice::PaintDeviceMetric"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       int returnValue;
-    void* args[2] = {NULL, (void*)&metric};
+    void* args[2] = {NULL, (void*)&metric0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -1598,16 +1651,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return returnValue;
+  } else {
+    PyErr_Clear();
   }
 }
-  return QGLPixelBuffer::metric(metric);
+  return QGLPixelBuffer::metric(metric0);
 }
 QPaintEngine*  PythonQtShell_QGLPixelBuffer::paintEngine() const
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "paintEngine");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("paintEngine");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"QPaintEngine*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
       QPaintEngine* returnValue;
@@ -1626,6 +1681,8 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return returnValue;
+  } else {
+    PyErr_Clear();
   }
 }
   return QGLPixelBuffer::paintEngine();
@@ -1751,10 +1808,10 @@ PythonQtShell_QGLShader::~PythonQtShell_QGLShader() {
 }
 void PythonQtShell_QGLShader::childEvent(QChildEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "childEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("childEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QChildEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -1762,16 +1819,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLShader::childEvent(arg__1);
 }
 void PythonQtShell_QGLShader::customEvent(QEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "customEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("customEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -1779,16 +1838,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLShader::customEvent(arg__1);
 }
 bool  PythonQtShell_QGLShader::event(QEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "event");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("event");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"bool" , "QEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue;
@@ -1807,16 +1868,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return returnValue;
+  } else {
+    PyErr_Clear();
   }
 }
   return QGLShader::event(arg__1);
 }
 bool  PythonQtShell_QGLShader::eventFilter(QObject*  arg__1, QEvent*  arg__2)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "eventFilter");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("eventFilter");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
       bool returnValue;
@@ -1835,16 +1898,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return returnValue;
+  } else {
+    PyErr_Clear();
   }
 }
   return QGLShader::eventFilter(arg__1, arg__2);
 }
 void PythonQtShell_QGLShader::timerEvent(QTimerEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "timerEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("timerEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QTimerEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -1852,6 +1917,8 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLShader::timerEvent(arg__1);
@@ -1922,10 +1989,10 @@ PythonQtShell_QGLShaderProgram::~PythonQtShell_QGLShaderProgram() {
 }
 void PythonQtShell_QGLShaderProgram::childEvent(QChildEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "childEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("childEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QChildEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -1933,16 +2000,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLShaderProgram::childEvent(arg__1);
 }
 void PythonQtShell_QGLShaderProgram::customEvent(QEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "customEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("customEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -1950,16 +2019,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLShaderProgram::customEvent(arg__1);
 }
 bool  PythonQtShell_QGLShaderProgram::event(QEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "event");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("event");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"bool" , "QEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue;
@@ -1978,16 +2049,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return returnValue;
+  } else {
+    PyErr_Clear();
   }
 }
   return QGLShaderProgram::event(arg__1);
 }
 bool  PythonQtShell_QGLShaderProgram::eventFilter(QObject*  arg__1, QEvent*  arg__2)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "eventFilter");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("eventFilter");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
       bool returnValue;
@@ -2006,16 +2079,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return returnValue;
+  } else {
+    PyErr_Clear();
   }
 }
   return QGLShaderProgram::eventFilter(arg__1, arg__2);
 }
 bool  PythonQtShell_QGLShaderProgram::link()
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "link");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("link");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"bool"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
       bool returnValue;
@@ -2034,16 +2109,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return returnValue;
+  } else {
+    PyErr_Clear();
   }
 }
   return QGLShaderProgram::link();
 }
 void PythonQtShell_QGLShaderProgram::timerEvent(QTimerEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "timerEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("timerEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QTimerEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -2051,6 +2128,8 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLShaderProgram::timerEvent(arg__1);
@@ -2611,10 +2690,10 @@ PythonQtShell_QGLWidget::~PythonQtShell_QGLWidget() {
 }
 void PythonQtShell_QGLWidget::actionEvent(QActionEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "actionEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("actionEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QActionEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -2622,16 +2701,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::actionEvent(arg__1);
 }
 void PythonQtShell_QGLWidget::changeEvent(QEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "changeEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("changeEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -2639,16 +2720,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::changeEvent(arg__1);
 }
 void PythonQtShell_QGLWidget::childEvent(QChildEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "childEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("childEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QChildEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -2656,16 +2739,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::childEvent(arg__1);
 }
 void PythonQtShell_QGLWidget::closeEvent(QCloseEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "closeEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("closeEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QCloseEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -2673,16 +2758,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::closeEvent(arg__1);
 }
 void PythonQtShell_QGLWidget::contextMenuEvent(QContextMenuEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "contextMenuEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("contextMenuEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QContextMenuEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -2690,16 +2777,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::contextMenuEvent(arg__1);
 }
 void PythonQtShell_QGLWidget::customEvent(QEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "customEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("customEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -2707,16 +2796,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::customEvent(arg__1);
 }
 int  PythonQtShell_QGLWidget::devType() const
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "devType");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("devType");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"int"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
       int returnValue;
@@ -2735,16 +2826,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return returnValue;
+  } else {
+    PyErr_Clear();
   }
 }
   return QGLWidget::devType();
 }
 void PythonQtShell_QGLWidget::dragEnterEvent(QDragEnterEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "dragEnterEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("dragEnterEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QDragEnterEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -2752,16 +2845,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::dragEnterEvent(arg__1);
 }
 void PythonQtShell_QGLWidget::dragLeaveEvent(QDragLeaveEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "dragLeaveEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("dragLeaveEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QDragLeaveEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -2769,16 +2864,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::dragLeaveEvent(arg__1);
 }
 void PythonQtShell_QGLWidget::dragMoveEvent(QDragMoveEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "dragMoveEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("dragMoveEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QDragMoveEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -2786,16 +2883,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::dragMoveEvent(arg__1);
 }
 void PythonQtShell_QGLWidget::dropEvent(QDropEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "dropEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("dropEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QDropEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -2803,16 +2902,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::dropEvent(arg__1);
 }
 void PythonQtShell_QGLWidget::enterEvent(QEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "enterEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("enterEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -2820,16 +2921,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::enterEvent(arg__1);
 }
 bool  PythonQtShell_QGLWidget::event(QEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "event");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("event");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"bool" , "QEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue;
@@ -2848,16 +2951,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return returnValue;
+  } else {
+    PyErr_Clear();
   }
 }
   return QGLWidget::event(arg__1);
 }
 bool  PythonQtShell_QGLWidget::eventFilter(QObject*  arg__1, QEvent*  arg__2)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "eventFilter");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("eventFilter");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
       bool returnValue;
@@ -2876,16 +2981,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return returnValue;
+  } else {
+    PyErr_Clear();
   }
 }
   return QGLWidget::eventFilter(arg__1, arg__2);
 }
 void PythonQtShell_QGLWidget::focusInEvent(QFocusEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "focusInEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("focusInEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QFocusEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -2893,20 +3000,22 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::focusInEvent(arg__1);
 }
-bool  PythonQtShell_QGLWidget::focusNextPrevChild(bool  next)
+bool  PythonQtShell_QGLWidget::focusNextPrevChild(bool  next0)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "focusNextPrevChild");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("focusNextPrevChild");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"bool" , "bool"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       bool returnValue;
-    void* args[2] = {NULL, (void*)&next};
+    void* args[2] = {NULL, (void*)&next0};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) {
       args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);
@@ -2921,16 +3030,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return returnValue;
+  } else {
+    PyErr_Clear();
   }
 }
-  return QGLWidget::focusNextPrevChild(next);
+  return QGLWidget::focusNextPrevChild(next0);
 }
 void PythonQtShell_QGLWidget::focusOutEvent(QFocusEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "focusOutEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("focusOutEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QFocusEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -2938,16 +3049,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::focusOutEvent(arg__1);
 }
 void PythonQtShell_QGLWidget::glDraw()
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "glDraw");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("glDraw");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={""};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
     void* args[1] = {NULL};
@@ -2955,16 +3068,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::glDraw();
 }
 void PythonQtShell_QGLWidget::glInit()
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "glInit");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("glInit");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={""};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
     void* args[1] = {NULL};
@@ -2972,16 +3087,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::glInit();
 }
 int  PythonQtShell_QGLWidget::heightForWidth(int  arg__1) const
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "heightForWidth");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("heightForWidth");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"int" , "int"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       int returnValue;
@@ -3000,16 +3117,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return returnValue;
+  } else {
+    PyErr_Clear();
   }
 }
   return QGLWidget::heightForWidth(arg__1);
 }
 void PythonQtShell_QGLWidget::hideEvent(QHideEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "hideEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("hideEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QHideEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -3017,16 +3136,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::hideEvent(arg__1);
 }
 void PythonQtShell_QGLWidget::initializeGL()
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "initializeGL");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("initializeGL");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={""};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
     void* args[1] = {NULL};
@@ -3034,16 +3155,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::initializeGL();
 }
 void PythonQtShell_QGLWidget::initializeOverlayGL()
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "initializeOverlayGL");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("initializeOverlayGL");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={""};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
     void* args[1] = {NULL};
@@ -3051,16 +3174,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::initializeOverlayGL();
 }
 void PythonQtShell_QGLWidget::inputMethodEvent(QInputMethodEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "inputMethodEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("inputMethodEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QInputMethodEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -3068,16 +3193,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::inputMethodEvent(arg__1);
 }
 QVariant  PythonQtShell_QGLWidget::inputMethodQuery(Qt::InputMethodQuery  arg__1) const
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "inputMethodQuery");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("inputMethodQuery");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"QVariant" , "Qt::InputMethodQuery"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       QVariant returnValue;
@@ -3096,16 +3223,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return returnValue;
+  } else {
+    PyErr_Clear();
   }
 }
   return QGLWidget::inputMethodQuery(arg__1);
 }
 void PythonQtShell_QGLWidget::keyPressEvent(QKeyEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "keyPressEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("keyPressEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QKeyEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -3113,16 +3242,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::keyPressEvent(arg__1);
 }
 void PythonQtShell_QGLWidget::keyReleaseEvent(QKeyEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "keyReleaseEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("keyReleaseEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QKeyEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -3130,16 +3261,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::keyReleaseEvent(arg__1);
 }
 void PythonQtShell_QGLWidget::languageChange()
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "languageChange");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("languageChange");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={""};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
     void* args[1] = {NULL};
@@ -3147,16 +3280,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::languageChange();
 }
 void PythonQtShell_QGLWidget::leaveEvent(QEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "leaveEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("leaveEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -3164,16 +3299,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::leaveEvent(arg__1);
 }
 int  PythonQtShell_QGLWidget::metric(QPaintDevice::PaintDeviceMetric  arg__1) const
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "metric");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("metric");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"int" , "QPaintDevice::PaintDeviceMetric"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
       int returnValue;
@@ -3192,16 +3329,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return returnValue;
+  } else {
+    PyErr_Clear();
   }
 }
   return QGLWidget::metric(arg__1);
 }
 QSize  PythonQtShell_QGLWidget::minimumSizeHint() const
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "getMinimumSizeHint");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("getMinimumSizeHint");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"QSize"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
       QSize returnValue;
@@ -3220,16 +3359,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return returnValue;
+  } else {
+    PyErr_Clear();
   }
 }
   return QGLWidget::minimumSizeHint();
 }
 void PythonQtShell_QGLWidget::mouseDoubleClickEvent(QMouseEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "mouseDoubleClickEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("mouseDoubleClickEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QMouseEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -3237,16 +3378,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::mouseDoubleClickEvent(arg__1);
 }
 void PythonQtShell_QGLWidget::mouseMoveEvent(QMouseEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "mouseMoveEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("mouseMoveEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QMouseEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -3254,16 +3397,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::mouseMoveEvent(arg__1);
 }
 void PythonQtShell_QGLWidget::mousePressEvent(QMouseEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "mousePressEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("mousePressEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QMouseEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -3271,16 +3416,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::mousePressEvent(arg__1);
 }
 void PythonQtShell_QGLWidget::mouseReleaseEvent(QMouseEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "mouseReleaseEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("mouseReleaseEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QMouseEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -3288,16 +3435,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::mouseReleaseEvent(arg__1);
 }
 void PythonQtShell_QGLWidget::moveEvent(QMoveEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "moveEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("moveEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QMoveEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -3305,16 +3454,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::moveEvent(arg__1);
 }
 QPaintEngine*  PythonQtShell_QGLWidget::paintEngine() const
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "paintEngine");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("paintEngine");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"QPaintEngine*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
       QPaintEngine* returnValue;
@@ -3333,16 +3484,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return returnValue;
+  } else {
+    PyErr_Clear();
   }
 }
   return QGLWidget::paintEngine();
 }
 void PythonQtShell_QGLWidget::paintEvent(QPaintEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "paintEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("paintEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QPaintEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -3350,16 +3503,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::paintEvent(arg__1);
 }
 void PythonQtShell_QGLWidget::paintGL()
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "paintGL");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("paintGL");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={""};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
     void* args[1] = {NULL};
@@ -3367,16 +3522,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::paintGL();
 }
 void PythonQtShell_QGLWidget::paintOverlayGL()
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "paintOverlayGL");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("paintOverlayGL");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={""};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
     void* args[1] = {NULL};
@@ -3384,16 +3541,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::paintOverlayGL();
 }
 void PythonQtShell_QGLWidget::resizeEvent(QResizeEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "resizeEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("resizeEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QResizeEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -3401,50 +3560,56 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::resizeEvent(arg__1);
 }
-void PythonQtShell_QGLWidget::resizeGL(int  w, int  h)
+void PythonQtShell_QGLWidget::resizeGL(int  w0, int  h1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "resizeGL");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("resizeGL");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "int" , "int"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
-    void* args[3] = {NULL, (void*)&w, (void*)&h};
+    void* args[3] = {NULL, (void*)&w0, (void*)&h1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
-  QGLWidget::resizeGL(w, h);
+  QGLWidget::resizeGL(w0, h1);
 }
-void PythonQtShell_QGLWidget::resizeOverlayGL(int  w, int  h)
+void PythonQtShell_QGLWidget::resizeOverlayGL(int  w0, int  h1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "resizeOverlayGL");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("resizeOverlayGL");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "int" , "int"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(3, argumentList);
-    void* args[3] = {NULL, (void*)&w, (void*)&h};
+    void* args[3] = {NULL, (void*)&w0, (void*)&h1};
     PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
-  QGLWidget::resizeOverlayGL(w, h);
+  QGLWidget::resizeOverlayGL(w0, h1);
 }
 void PythonQtShell_QGLWidget::showEvent(QShowEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "showEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("showEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QShowEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -3452,16 +3617,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::showEvent(arg__1);
 }
 QSize  PythonQtShell_QGLWidget::sizeHint() const
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "getSizeHint");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("getSizeHint");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"QSize"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
       QSize returnValue;
@@ -3480,16 +3647,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return returnValue;
+  } else {
+    PyErr_Clear();
   }
 }
   return QGLWidget::sizeHint();
 }
 void PythonQtShell_QGLWidget::tabletEvent(QTabletEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "tabletEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("tabletEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QTabletEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -3497,16 +3666,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::tabletEvent(arg__1);
 }
 void PythonQtShell_QGLWidget::timerEvent(QTimerEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "timerEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("timerEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QTimerEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -3514,16 +3685,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::timerEvent(arg__1);
 }
 void PythonQtShell_QGLWidget::updateGL()
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "updateGL");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("updateGL");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={""};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
     void* args[1] = {NULL};
@@ -3531,16 +3704,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::updateGL();
 }
 void PythonQtShell_QGLWidget::updateOverlayGL()
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "updateOverlayGL");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("updateOverlayGL");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={""};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(1, argumentList);
     void* args[1] = {NULL};
@@ -3548,16 +3723,18 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::updateOverlayGL();
 }
 void PythonQtShell_QGLWidget::wheelEvent(QWheelEvent*  arg__1)
 {
-if (_wrapper) {
-  PyObject* obj = PyObject_GetAttrString((PyObject*)_wrapper, "wheelEvent");
-  PyErr_Clear();
-  if (obj && !PythonQtSlotFunction_Check(obj)) {
+if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+  static PyObject* name = PyString_FromString("wheelEvent");
+  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
+  if (obj) {
     static const char* argumentList[] ={"" , "QWheelEvent*"};
     static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(2, argumentList);
     void* args[2] = {NULL, (void*)&arg__1};
@@ -3565,6 +3742,8 @@ if (_wrapper) {
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
     return;
+  } else {
+    PyErr_Clear();
   }
 }
   QGLWidget::wheelEvent(arg__1);
@@ -3580,6 +3759,11 @@ return new PythonQtShell_QGLWidget(parent, shareWidget, f); }
 QGLWidget* PythonQtWrapper_QGLWidget::new_QGLWidget(const QGLFormat&  format, QWidget*  parent, const QGLWidget*  shareWidget, Qt::WindowFlags  f)
 { 
 return new PythonQtShell_QGLWidget(format, parent, shareWidget, f); }
+
+bool  PythonQtWrapper_QGLWidget::autoBufferSwap(QGLWidget* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QGLWidget*)theWrappedObject)->promoted_autoBufferSwap());
+}
 
 GLuint  PythonQtWrapper_QGLWidget::bindTexture(QGLWidget* theWrappedObject, const QImage&  image, GLenum  target, GLint  format)
 {
@@ -3764,6 +3948,11 @@ void PythonQtWrapper_QGLWidget::resizeGL(QGLWidget* theWrappedObject, int  w, in
 void PythonQtWrapper_QGLWidget::resizeOverlayGL(QGLWidget* theWrappedObject, int  w, int  h)
 {
   ( ((PythonQtPublicPromoter_QGLWidget*)theWrappedObject)->promoted_resizeOverlayGL(w, h));
+}
+
+void PythonQtWrapper_QGLWidget::setAutoBufferSwap(QGLWidget* theWrappedObject, bool  on)
+{
+  ( ((PythonQtPublicPromoter_QGLWidget*)theWrappedObject)->promoted_setAutoBufferSwap(on));
 }
 
 void PythonQtWrapper_QGLWidget::setColormap(QGLWidget* theWrappedObject, const QGLColormap&  map)

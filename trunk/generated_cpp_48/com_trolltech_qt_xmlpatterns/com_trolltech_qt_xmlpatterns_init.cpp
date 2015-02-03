@@ -1,5 +1,7 @@
 #include <PythonQt.h>
+#include <PythonQtConversion.h>
 #include "com_trolltech_qt_xmlpatterns0.h"
+
 
 
 void PythonQt_init_QtXmlPatterns(PyObject* module) {
@@ -22,4 +24,7 @@ PythonQt::priv()->registerCPPClass("QXmlSchema", "", "QtXmlPatterns", PythonQtCr
 PythonQt::priv()->registerCPPClass("QXmlSchemaValidator", "", "QtXmlPatterns", PythonQtCreateObject<PythonQtWrapper_QXmlSchemaValidator>, NULL, module, 0);
 PythonQt::priv()->registerCPPClass("QXmlSerializer", "QAbstractXmlReceiver", "QtXmlPatterns", PythonQtCreateObject<PythonQtWrapper_QXmlSerializer>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QXmlSerializer>, module, 0);
 
+
+PythonQtRegisterListTemplateConverterForKnownClass(QVector, QXmlName);
+PythonQtRegisterListTemplateConverterForKnownClass(QVector, QXmlNodeModelIndex);
 }

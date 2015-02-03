@@ -164,11 +164,8 @@ void delete_QColor(QColor* obj) { delete obj; }
    QColor  static_QColor_fromRgb(unsigned int  rgb);
    QColor  static_QColor_fromRgbF(qreal  r, qreal  g, qreal  b, qreal  a = 1.0);
    QColor  static_QColor_fromRgba(unsigned int  rgba);
-   void getCmykF(QColor* theWrappedObject, qreal*  c, qreal*  m, qreal*  y, qreal*  k, qreal*  a = 0);
    void getHsl(QColor* theWrappedObject, int*  h, int*  s, int*  l, int*  a = 0) const;
    void getHslF(QColor* theWrappedObject, qreal*  h, qreal*  s, qreal*  l, qreal*  a = 0) const;
-   void getHsvF(QColor* theWrappedObject, qreal*  h, qreal*  s, qreal*  v, qreal*  a = 0) const;
-   void getRgbF(QColor* theWrappedObject, qreal*  r, qreal*  g, qreal*  b, qreal*  a = 0) const;
    int  green(QColor* theWrappedObject) const;
    qreal  greenF(QColor* theWrappedObject) const;
    int  hslHue(QColor* theWrappedObject) const;
@@ -264,23 +261,23 @@ void delete_QCursor(QCursor* obj) { delete obj; }
 class PythonQtWrapper_QFont : public QObject
 { Q_OBJECT
 public:
-Q_ENUMS(HintingPreference StyleStrategy SpacingType StyleHint Weight Capitalization Stretch Style )
-enum HintingPreference{
-  PreferDefaultHinting = QFont::PreferDefaultHinting,   PreferNoHinting = QFont::PreferNoHinting,   PreferVerticalHinting = QFont::PreferVerticalHinting,   PreferFullHinting = QFont::PreferFullHinting};
-enum StyleStrategy{
-  PreferDefault = QFont::PreferDefault,   PreferBitmap = QFont::PreferBitmap,   PreferDevice = QFont::PreferDevice,   PreferOutline = QFont::PreferOutline,   ForceOutline = QFont::ForceOutline,   PreferMatch = QFont::PreferMatch,   PreferQuality = QFont::PreferQuality,   PreferAntialias = QFont::PreferAntialias,   NoAntialias = QFont::NoAntialias,   OpenGLCompatible = QFont::OpenGLCompatible,   ForceIntegerMetrics = QFont::ForceIntegerMetrics,   NoFontMerging = QFont::NoFontMerging};
-enum SpacingType{
-  PercentageSpacing = QFont::PercentageSpacing,   AbsoluteSpacing = QFont::AbsoluteSpacing};
-enum StyleHint{
-  Helvetica = QFont::Helvetica,   SansSerif = QFont::SansSerif,   Times = QFont::Times,   Serif = QFont::Serif,   Courier = QFont::Courier,   TypeWriter = QFont::TypeWriter,   OldEnglish = QFont::OldEnglish,   Decorative = QFont::Decorative,   System = QFont::System,   AnyStyle = QFont::AnyStyle,   Cursive = QFont::Cursive,   Monospace = QFont::Monospace,   Fantasy = QFont::Fantasy};
-enum Weight{
-  Light = QFont::Light,   Normal = QFont::Normal,   DemiBold = QFont::DemiBold,   Bold = QFont::Bold,   Black = QFont::Black};
+Q_ENUMS(Capitalization HintingPreference SpacingType Stretch Style StyleHint StyleStrategy Weight )
 enum Capitalization{
   MixedCase = QFont::MixedCase,   AllUppercase = QFont::AllUppercase,   AllLowercase = QFont::AllLowercase,   SmallCaps = QFont::SmallCaps,   Capitalize = QFont::Capitalize};
+enum HintingPreference{
+  PreferDefaultHinting = QFont::PreferDefaultHinting,   PreferNoHinting = QFont::PreferNoHinting,   PreferVerticalHinting = QFont::PreferVerticalHinting,   PreferFullHinting = QFont::PreferFullHinting};
+enum SpacingType{
+  PercentageSpacing = QFont::PercentageSpacing,   AbsoluteSpacing = QFont::AbsoluteSpacing};
 enum Stretch{
   UltraCondensed = QFont::UltraCondensed,   ExtraCondensed = QFont::ExtraCondensed,   Condensed = QFont::Condensed,   SemiCondensed = QFont::SemiCondensed,   Unstretched = QFont::Unstretched,   SemiExpanded = QFont::SemiExpanded,   Expanded = QFont::Expanded,   ExtraExpanded = QFont::ExtraExpanded,   UltraExpanded = QFont::UltraExpanded};
 enum Style{
   StyleNormal = QFont::StyleNormal,   StyleItalic = QFont::StyleItalic,   StyleOblique = QFont::StyleOblique};
+enum StyleHint{
+  Helvetica = QFont::Helvetica,   SansSerif = QFont::SansSerif,   Times = QFont::Times,   Serif = QFont::Serif,   Courier = QFont::Courier,   TypeWriter = QFont::TypeWriter,   OldEnglish = QFont::OldEnglish,   Decorative = QFont::Decorative,   System = QFont::System,   AnyStyle = QFont::AnyStyle,   Cursive = QFont::Cursive,   Monospace = QFont::Monospace,   Fantasy = QFont::Fantasy};
+enum StyleStrategy{
+  PreferDefault = QFont::PreferDefault,   PreferBitmap = QFont::PreferBitmap,   PreferDevice = QFont::PreferDevice,   PreferOutline = QFont::PreferOutline,   ForceOutline = QFont::ForceOutline,   PreferMatch = QFont::PreferMatch,   PreferQuality = QFont::PreferQuality,   PreferAntialias = QFont::PreferAntialias,   NoAntialias = QFont::NoAntialias,   OpenGLCompatible = QFont::OpenGLCompatible,   ForceIntegerMetrics = QFont::ForceIntegerMetrics,   NoFontMerging = QFont::NoFontMerging};
+enum Weight{
+  Light = QFont::Light,   Normal = QFont::Normal,   DemiBold = QFont::DemiBold,   Bold = QFont::Bold,   Black = QFont::Black};
 public slots:
 QFont* new_QFont();
 QFont* new_QFont(const QFont&  arg__1);
@@ -377,8 +374,8 @@ enum State{
   On = QIcon::On,   Off = QIcon::Off};
 public slots:
 QIcon* new_QIcon();
-QIcon* new_QIcon(QIconEngine*  engine);
-QIcon* new_QIcon(QIconEngineV2*  engine);
+QIcon* new_QIcon(PythonQtPassOwnershipToCPP<QIconEngine* >  engine);
+QIcon* new_QIcon(PythonQtPassOwnershipToCPP<QIconEngineV2* >  engine);
 QIcon* new_QIcon(const QIcon&  other);
 QIcon* new_QIcon(const QPixmap&  pixmap);
 QIcon* new_QIcon(const QString&  fileName);
@@ -439,11 +436,11 @@ inline QPaintEngine*  promoted_paintEngine() const { return QImage::paintEngine(
 class PythonQtWrapper_QImage : public QObject
 { Q_OBJECT
 public:
-Q_ENUMS(InvertMode Format )
-enum InvertMode{
-  InvertRgb = QImage::InvertRgb,   InvertRgba = QImage::InvertRgba};
+Q_ENUMS(Format InvertMode )
 enum Format{
   Format_Invalid = QImage::Format_Invalid,   Format_Mono = QImage::Format_Mono,   Format_MonoLSB = QImage::Format_MonoLSB,   Format_Indexed8 = QImage::Format_Indexed8,   Format_RGB32 = QImage::Format_RGB32,   Format_ARGB32 = QImage::Format_ARGB32,   Format_ARGB32_Premultiplied = QImage::Format_ARGB32_Premultiplied,   Format_RGB16 = QImage::Format_RGB16,   Format_ARGB8565_Premultiplied = QImage::Format_ARGB8565_Premultiplied,   Format_RGB666 = QImage::Format_RGB666,   Format_ARGB6666_Premultiplied = QImage::Format_ARGB6666_Premultiplied,   Format_RGB555 = QImage::Format_RGB555,   Format_ARGB8555_Premultiplied = QImage::Format_ARGB8555_Premultiplied,   Format_RGB888 = QImage::Format_RGB888,   Format_RGB444 = QImage::Format_RGB444,   Format_ARGB4444_Premultiplied = QImage::Format_ARGB4444_Premultiplied,   NImageFormats = QImage::NImageFormats};
+enum InvertMode{
+  InvertRgb = QImage::InvertRgb,   InvertRgba = QImage::InvertRgba};
 public slots:
 QImage* new_QImage();
 QImage* new_QImage(const QImage&  arg__1);
@@ -460,8 +457,6 @@ void delete_QImage(QImage* obj) { delete obj; }
    unsigned int  color(QImage* theWrappedObject, int  i) const;
    int  colorCount(QImage* theWrappedObject) const;
    QVector<unsigned int >  colorTable(QImage* theWrappedObject) const;
-   const uchar*  constBits(QImage* theWrappedObject) const;
-   const uchar*  constScanLine(QImage* theWrappedObject, int  arg__1) const;
    QImage  convertToFormat(QImage* theWrappedObject, QImage::Format  f, Qt::ImageConversionFlags  flags = Qt::AutoColor) const;
    QImage  convertToFormat(QImage* theWrappedObject, QImage::Format  f, const QVector<unsigned int >&  colorTable, Qt::ImageConversionFlags  flags = Qt::AutoColor) const;
    QImage  copy(QImage* theWrappedObject, const QRect&  rect = QRect()) const;
@@ -538,6 +533,27 @@ QImage* new_QImage( const uchar * data, int width, int height, QImage::Format fo
   return image;
 }
 
+PyObject* bits(QImage* image) {
+  return PythonQtPrivate::wrapMemoryAsBuffer(image->bits(), image->bytesPerLine()* image->height());
+}
+
+#if QT_VERSION >= QT_VERSION_CHECK(4,7,0)
+PyObject* constBits(QImage* image) {
+  return PythonQtPrivate::wrapMemoryAsBuffer(image->constBits(), image->byteCount());
+}
+#endif
+
+PyObject* scanLine(QImage* image, int line) {
+  return PythonQtPrivate::wrapMemoryAsBuffer(image->scanLine(line), image->bytesPerLine());
+}
+
+#if QT_VERSION >= QT_VERSION_CHECK(4,7,0)
+PyObject* constScanLine(QImage* image, int line) {
+  return PythonQtPrivate::wrapMemoryAsBuffer(image->constScanLine(line), image->bytesPerLine());
+}
+#endif
+
+
 };
 
 
@@ -547,13 +563,13 @@ QImage* new_QImage( const uchar * data, int width, int height, QImage::Format fo
 class PythonQtWrapper_QKeySequence : public QObject
 { Q_OBJECT
 public:
-Q_ENUMS(SequenceFormat StandardKey SequenceMatch )
+Q_ENUMS(SequenceFormat SequenceMatch StandardKey )
 enum SequenceFormat{
   NativeText = QKeySequence::NativeText,   PortableText = QKeySequence::PortableText};
-enum StandardKey{
-  UnknownKey = QKeySequence::UnknownKey,   HelpContents = QKeySequence::HelpContents,   WhatsThis = QKeySequence::WhatsThis,   Open = QKeySequence::Open,   Close = QKeySequence::Close,   Save = QKeySequence::Save,   New = QKeySequence::New,   Delete = QKeySequence::Delete,   Cut = QKeySequence::Cut,   Copy = QKeySequence::Copy,   Paste = QKeySequence::Paste,   Undo = QKeySequence::Undo,   Redo = QKeySequence::Redo,   Back = QKeySequence::Back,   Forward = QKeySequence::Forward,   Refresh = QKeySequence::Refresh,   ZoomIn = QKeySequence::ZoomIn,   ZoomOut = QKeySequence::ZoomOut,   Print = QKeySequence::Print,   AddTab = QKeySequence::AddTab,   NextChild = QKeySequence::NextChild,   PreviousChild = QKeySequence::PreviousChild,   Find = QKeySequence::Find,   FindNext = QKeySequence::FindNext,   FindPrevious = QKeySequence::FindPrevious,   Replace = QKeySequence::Replace,   SelectAll = QKeySequence::SelectAll,   Bold = QKeySequence::Bold,   Italic = QKeySequence::Italic,   Underline = QKeySequence::Underline,   MoveToNextChar = QKeySequence::MoveToNextChar,   MoveToPreviousChar = QKeySequence::MoveToPreviousChar,   MoveToNextWord = QKeySequence::MoveToNextWord,   MoveToPreviousWord = QKeySequence::MoveToPreviousWord,   MoveToNextLine = QKeySequence::MoveToNextLine,   MoveToPreviousLine = QKeySequence::MoveToPreviousLine,   MoveToNextPage = QKeySequence::MoveToNextPage,   MoveToPreviousPage = QKeySequence::MoveToPreviousPage,   MoveToStartOfLine = QKeySequence::MoveToStartOfLine,   MoveToEndOfLine = QKeySequence::MoveToEndOfLine,   MoveToStartOfBlock = QKeySequence::MoveToStartOfBlock,   MoveToEndOfBlock = QKeySequence::MoveToEndOfBlock,   MoveToStartOfDocument = QKeySequence::MoveToStartOfDocument,   MoveToEndOfDocument = QKeySequence::MoveToEndOfDocument,   SelectNextChar = QKeySequence::SelectNextChar,   SelectPreviousChar = QKeySequence::SelectPreviousChar,   SelectNextWord = QKeySequence::SelectNextWord,   SelectPreviousWord = QKeySequence::SelectPreviousWord,   SelectNextLine = QKeySequence::SelectNextLine,   SelectPreviousLine = QKeySequence::SelectPreviousLine,   SelectNextPage = QKeySequence::SelectNextPage,   SelectPreviousPage = QKeySequence::SelectPreviousPage,   SelectStartOfLine = QKeySequence::SelectStartOfLine,   SelectEndOfLine = QKeySequence::SelectEndOfLine,   SelectStartOfBlock = QKeySequence::SelectStartOfBlock,   SelectEndOfBlock = QKeySequence::SelectEndOfBlock,   SelectStartOfDocument = QKeySequence::SelectStartOfDocument,   SelectEndOfDocument = QKeySequence::SelectEndOfDocument,   DeleteStartOfWord = QKeySequence::DeleteStartOfWord,   DeleteEndOfWord = QKeySequence::DeleteEndOfWord,   DeleteEndOfLine = QKeySequence::DeleteEndOfLine,   InsertParagraphSeparator = QKeySequence::InsertParagraphSeparator,   InsertLineSeparator = QKeySequence::InsertLineSeparator,   SaveAs = QKeySequence::SaveAs,   Preferences = QKeySequence::Preferences,   Quit = QKeySequence::Quit};
 enum SequenceMatch{
   NoMatch = QKeySequence::NoMatch,   PartialMatch = QKeySequence::PartialMatch,   ExactMatch = QKeySequence::ExactMatch};
+enum StandardKey{
+  UnknownKey = QKeySequence::UnknownKey,   HelpContents = QKeySequence::HelpContents,   WhatsThis = QKeySequence::WhatsThis,   Open = QKeySequence::Open,   Close = QKeySequence::Close,   Save = QKeySequence::Save,   New = QKeySequence::New,   Delete = QKeySequence::Delete,   Cut = QKeySequence::Cut,   Copy = QKeySequence::Copy,   Paste = QKeySequence::Paste,   Undo = QKeySequence::Undo,   Redo = QKeySequence::Redo,   Back = QKeySequence::Back,   Forward = QKeySequence::Forward,   Refresh = QKeySequence::Refresh,   ZoomIn = QKeySequence::ZoomIn,   ZoomOut = QKeySequence::ZoomOut,   Print = QKeySequence::Print,   AddTab = QKeySequence::AddTab,   NextChild = QKeySequence::NextChild,   PreviousChild = QKeySequence::PreviousChild,   Find = QKeySequence::Find,   FindNext = QKeySequence::FindNext,   FindPrevious = QKeySequence::FindPrevious,   Replace = QKeySequence::Replace,   SelectAll = QKeySequence::SelectAll,   Bold = QKeySequence::Bold,   Italic = QKeySequence::Italic,   Underline = QKeySequence::Underline,   MoveToNextChar = QKeySequence::MoveToNextChar,   MoveToPreviousChar = QKeySequence::MoveToPreviousChar,   MoveToNextWord = QKeySequence::MoveToNextWord,   MoveToPreviousWord = QKeySequence::MoveToPreviousWord,   MoveToNextLine = QKeySequence::MoveToNextLine,   MoveToPreviousLine = QKeySequence::MoveToPreviousLine,   MoveToNextPage = QKeySequence::MoveToNextPage,   MoveToPreviousPage = QKeySequence::MoveToPreviousPage,   MoveToStartOfLine = QKeySequence::MoveToStartOfLine,   MoveToEndOfLine = QKeySequence::MoveToEndOfLine,   MoveToStartOfBlock = QKeySequence::MoveToStartOfBlock,   MoveToEndOfBlock = QKeySequence::MoveToEndOfBlock,   MoveToStartOfDocument = QKeySequence::MoveToStartOfDocument,   MoveToEndOfDocument = QKeySequence::MoveToEndOfDocument,   SelectNextChar = QKeySequence::SelectNextChar,   SelectPreviousChar = QKeySequence::SelectPreviousChar,   SelectNextWord = QKeySequence::SelectNextWord,   SelectPreviousWord = QKeySequence::SelectPreviousWord,   SelectNextLine = QKeySequence::SelectNextLine,   SelectPreviousLine = QKeySequence::SelectPreviousLine,   SelectNextPage = QKeySequence::SelectNextPage,   SelectPreviousPage = QKeySequence::SelectPreviousPage,   SelectStartOfLine = QKeySequence::SelectStartOfLine,   SelectEndOfLine = QKeySequence::SelectEndOfLine,   SelectStartOfBlock = QKeySequence::SelectStartOfBlock,   SelectEndOfBlock = QKeySequence::SelectEndOfBlock,   SelectStartOfDocument = QKeySequence::SelectStartOfDocument,   SelectEndOfDocument = QKeySequence::SelectEndOfDocument,   DeleteStartOfWord = QKeySequence::DeleteStartOfWord,   DeleteEndOfWord = QKeySequence::DeleteEndOfWord,   DeleteEndOfLine = QKeySequence::DeleteEndOfLine,   InsertParagraphSeparator = QKeySequence::InsertParagraphSeparator,   InsertLineSeparator = QKeySequence::InsertLineSeparator,   SaveAs = QKeySequence::SaveAs,   Preferences = QKeySequence::Preferences,   Quit = QKeySequence::Quit};
 public slots:
 QKeySequence* new_QKeySequence();
 QKeySequence* new_QKeySequence(QKeySequence::StandardKey  key);
@@ -614,7 +630,6 @@ void delete_QMatrix(QMatrix* obj) { delete obj; }
    QPolygon  map(QMatrix* theWrappedObject, const QPolygon&  a) const;
    QPolygonF  map(QMatrix* theWrappedObject, const QPolygonF&  a) const;
    QRegion  map(QMatrix* theWrappedObject, const QRegion&  r) const;
-   void map(QMatrix* theWrappedObject, qreal  x, qreal  y, qreal*  tx, qreal*  ty) const;
    QRect  mapRect(QMatrix* theWrappedObject, const QRect&  arg__1) const;
    QRectF  mapRect(QMatrix* theWrappedObject, const QRectF&  arg__1) const;
    QPolygon  mapToPolygon(QMatrix* theWrappedObject, const QRect&  r) const;
@@ -858,16 +873,16 @@ void delete_QPolygon(QPolygon* obj) { delete obj; }
    int  count(QPolygon* theWrappedObject, const QPoint&  t) const;
    bool  empty(QPolygon* theWrappedObject) const;
    bool  endsWith(QPolygon* theWrappedObject, const QPoint&  t) const;
-   QVector<QPoint >*  fill(QPolygon* theWrappedObject, const QPoint&  t, int  size);
+   QVector<QPoint >*  fill(QPolygon* theWrappedObject, const QPoint&  t, int  size = -1);
    const QPoint*  first(QPolygon* theWrappedObject) const;
    QVector<QPoint >  static_QPolygon_fromList(const QList<QPoint >&  list);
-   int  indexOf(QPolygon* theWrappedObject, const QPoint&  t, int  from) const;
+   int  indexOf(QPolygon* theWrappedObject, const QPoint&  t, int  from = 0) const;
    QPolygon  intersected(QPolygon* theWrappedObject, const QPolygon&  r) const;
    bool  isEmpty(QPolygon* theWrappedObject) const;
    bool  isSharedWith(QPolygon* theWrappedObject, const QVector<QPoint >&  other) const;
    const QPoint*  last(QPolygon* theWrappedObject) const;
-   int  lastIndexOf(QPolygon* theWrappedObject, const QPoint&  t, int  from) const;
-   QVector<QPoint >  mid(QPolygon* theWrappedObject, int  pos, int  length) const;
+   int  lastIndexOf(QPolygon* theWrappedObject, const QPoint&  t, int  from = -1) const;
+   QVector<QPoint >  mid(QPolygon* theWrappedObject, int  pos, int  length = -1) const;
    bool  __ne__(QPolygon* theWrappedObject, const QVector<QPoint >&  v) const;
    QPolygon  __mul__(QPolygon* theWrappedObject, const QMatrix&  m);
    QPolygon  __mul__(QPolygon* theWrappedObject, const QTransform&  m);
@@ -960,14 +975,14 @@ void delete_QRegion(QRegion* obj) { delete obj; }
 class PythonQtWrapper_QSizePolicy : public QObject
 { Q_OBJECT
 public:
-Q_ENUMS(ControlType PolicyFlag Policy )
+Q_ENUMS(ControlType Policy PolicyFlag )
 Q_FLAGS(ControlTypes )
 enum ControlType{
   DefaultType = QSizePolicy::DefaultType,   ButtonBox = QSizePolicy::ButtonBox,   CheckBox = QSizePolicy::CheckBox,   ComboBox = QSizePolicy::ComboBox,   Frame = QSizePolicy::Frame,   GroupBox = QSizePolicy::GroupBox,   Label = QSizePolicy::Label,   Line = QSizePolicy::Line,   LineEdit = QSizePolicy::LineEdit,   PushButton = QSizePolicy::PushButton,   RadioButton = QSizePolicy::RadioButton,   Slider = QSizePolicy::Slider,   SpinBox = QSizePolicy::SpinBox,   TabWidget = QSizePolicy::TabWidget,   ToolButton = QSizePolicy::ToolButton};
-enum PolicyFlag{
-  GrowFlag = QSizePolicy::GrowFlag,   ExpandFlag = QSizePolicy::ExpandFlag,   ShrinkFlag = QSizePolicy::ShrinkFlag,   IgnoreFlag = QSizePolicy::IgnoreFlag};
 enum Policy{
   Fixed = QSizePolicy::Fixed,   Minimum = QSizePolicy::Minimum,   Maximum = QSizePolicy::Maximum,   Preferred = QSizePolicy::Preferred,   MinimumExpanding = QSizePolicy::MinimumExpanding,   Expanding = QSizePolicy::Expanding,   Ignored = QSizePolicy::Ignored};
+enum PolicyFlag{
+  GrowFlag = QSizePolicy::GrowFlag,   ExpandFlag = QSizePolicy::ExpandFlag,   ShrinkFlag = QSizePolicy::ShrinkFlag,   IgnoreFlag = QSizePolicy::IgnoreFlag};
 Q_DECLARE_FLAGS(ControlTypes, ControlType)
 public slots:
 QSizePolicy* new_QSizePolicy();
@@ -1007,16 +1022,16 @@ void delete_QSizePolicy(QSizePolicy* obj) { delete obj; }
 class PythonQtWrapper_QTextFormat : public QObject
 { Q_OBJECT
 public:
-Q_ENUMS(Property FormatType ObjectTypes PageBreakFlag )
+Q_ENUMS(FormatType ObjectTypes PageBreakFlag Property )
 Q_FLAGS(PageBreakFlags )
-enum Property{
-  ObjectIndex = QTextFormat::ObjectIndex,   CssFloat = QTextFormat::CssFloat,   LayoutDirection = QTextFormat::LayoutDirection,   OutlinePen = QTextFormat::OutlinePen,   BackgroundBrush = QTextFormat::BackgroundBrush,   ForegroundBrush = QTextFormat::ForegroundBrush,   BackgroundImageUrl = QTextFormat::BackgroundImageUrl,   BlockAlignment = QTextFormat::BlockAlignment,   BlockTopMargin = QTextFormat::BlockTopMargin,   BlockBottomMargin = QTextFormat::BlockBottomMargin,   BlockLeftMargin = QTextFormat::BlockLeftMargin,   BlockRightMargin = QTextFormat::BlockRightMargin,   TextIndent = QTextFormat::TextIndent,   TabPositions = QTextFormat::TabPositions,   BlockIndent = QTextFormat::BlockIndent,   LineHeight = QTextFormat::LineHeight,   LineHeightType = QTextFormat::LineHeightType,   BlockNonBreakableLines = QTextFormat::BlockNonBreakableLines,   BlockTrailingHorizontalRulerWidth = QTextFormat::BlockTrailingHorizontalRulerWidth,   FirstFontProperty = QTextFormat::FirstFontProperty,   FontCapitalization = QTextFormat::FontCapitalization,   FontLetterSpacing = QTextFormat::FontLetterSpacing,   FontWordSpacing = QTextFormat::FontWordSpacing,   FontStyleHint = QTextFormat::FontStyleHint,   FontStyleStrategy = QTextFormat::FontStyleStrategy,   FontKerning = QTextFormat::FontKerning,   FontHintingPreference = QTextFormat::FontHintingPreference,   FontFamily = QTextFormat::FontFamily,   FontPointSize = QTextFormat::FontPointSize,   FontSizeAdjustment = QTextFormat::FontSizeAdjustment,   FontSizeIncrement = QTextFormat::FontSizeIncrement,   FontWeight = QTextFormat::FontWeight,   FontItalic = QTextFormat::FontItalic,   FontUnderline = QTextFormat::FontUnderline,   FontOverline = QTextFormat::FontOverline,   FontStrikeOut = QTextFormat::FontStrikeOut,   FontFixedPitch = QTextFormat::FontFixedPitch,   FontPixelSize = QTextFormat::FontPixelSize,   LastFontProperty = QTextFormat::LastFontProperty,   TextUnderlineColor = QTextFormat::TextUnderlineColor,   TextVerticalAlignment = QTextFormat::TextVerticalAlignment,   TextOutline = QTextFormat::TextOutline,   TextUnderlineStyle = QTextFormat::TextUnderlineStyle,   TextToolTip = QTextFormat::TextToolTip,   IsAnchor = QTextFormat::IsAnchor,   AnchorHref = QTextFormat::AnchorHref,   AnchorName = QTextFormat::AnchorName,   ObjectType = QTextFormat::ObjectType,   ListStyle = QTextFormat::ListStyle,   ListIndent = QTextFormat::ListIndent,   ListNumberPrefix = QTextFormat::ListNumberPrefix,   ListNumberSuffix = QTextFormat::ListNumberSuffix,   FrameBorder = QTextFormat::FrameBorder,   FrameMargin = QTextFormat::FrameMargin,   FramePadding = QTextFormat::FramePadding,   FrameWidth = QTextFormat::FrameWidth,   FrameHeight = QTextFormat::FrameHeight,   FrameTopMargin = QTextFormat::FrameTopMargin,   FrameBottomMargin = QTextFormat::FrameBottomMargin,   FrameLeftMargin = QTextFormat::FrameLeftMargin,   FrameRightMargin = QTextFormat::FrameRightMargin,   FrameBorderBrush = QTextFormat::FrameBorderBrush,   FrameBorderStyle = QTextFormat::FrameBorderStyle,   TableColumns = QTextFormat::TableColumns,   TableColumnWidthConstraints = QTextFormat::TableColumnWidthConstraints,   TableCellSpacing = QTextFormat::TableCellSpacing,   TableCellPadding = QTextFormat::TableCellPadding,   TableHeaderRowCount = QTextFormat::TableHeaderRowCount,   TableCellRowSpan = QTextFormat::TableCellRowSpan,   TableCellColumnSpan = QTextFormat::TableCellColumnSpan,   TableCellTopPadding = QTextFormat::TableCellTopPadding,   TableCellBottomPadding = QTextFormat::TableCellBottomPadding,   TableCellLeftPadding = QTextFormat::TableCellLeftPadding,   TableCellRightPadding = QTextFormat::TableCellRightPadding,   ImageName = QTextFormat::ImageName,   ImageWidth = QTextFormat::ImageWidth,   ImageHeight = QTextFormat::ImageHeight,   FullWidthSelection = QTextFormat::FullWidthSelection,   PageBreakPolicy = QTextFormat::PageBreakPolicy,   UserProperty = QTextFormat::UserProperty};
 enum FormatType{
   InvalidFormat = QTextFormat::InvalidFormat,   BlockFormat = QTextFormat::BlockFormat,   CharFormat = QTextFormat::CharFormat,   ListFormat = QTextFormat::ListFormat,   TableFormat = QTextFormat::TableFormat,   FrameFormat = QTextFormat::FrameFormat,   UserFormat = QTextFormat::UserFormat};
 enum ObjectTypes{
   NoObject = QTextFormat::NoObject,   ImageObject = QTextFormat::ImageObject,   TableObject = QTextFormat::TableObject,   TableCellObject = QTextFormat::TableCellObject,   UserObject = QTextFormat::UserObject};
 enum PageBreakFlag{
   PageBreak_Auto = QTextFormat::PageBreak_Auto,   PageBreak_AlwaysBefore = QTextFormat::PageBreak_AlwaysBefore,   PageBreak_AlwaysAfter = QTextFormat::PageBreak_AlwaysAfter};
+enum Property{
+  ObjectIndex = QTextFormat::ObjectIndex,   CssFloat = QTextFormat::CssFloat,   LayoutDirection = QTextFormat::LayoutDirection,   OutlinePen = QTextFormat::OutlinePen,   BackgroundBrush = QTextFormat::BackgroundBrush,   ForegroundBrush = QTextFormat::ForegroundBrush,   BackgroundImageUrl = QTextFormat::BackgroundImageUrl,   BlockAlignment = QTextFormat::BlockAlignment,   BlockTopMargin = QTextFormat::BlockTopMargin,   BlockBottomMargin = QTextFormat::BlockBottomMargin,   BlockLeftMargin = QTextFormat::BlockLeftMargin,   BlockRightMargin = QTextFormat::BlockRightMargin,   TextIndent = QTextFormat::TextIndent,   TabPositions = QTextFormat::TabPositions,   BlockIndent = QTextFormat::BlockIndent,   LineHeight = QTextFormat::LineHeight,   LineHeightType = QTextFormat::LineHeightType,   BlockNonBreakableLines = QTextFormat::BlockNonBreakableLines,   BlockTrailingHorizontalRulerWidth = QTextFormat::BlockTrailingHorizontalRulerWidth,   FirstFontProperty = QTextFormat::FirstFontProperty,   FontCapitalization = QTextFormat::FontCapitalization,   FontLetterSpacing = QTextFormat::FontLetterSpacing,   FontWordSpacing = QTextFormat::FontWordSpacing,   FontStyleHint = QTextFormat::FontStyleHint,   FontStyleStrategy = QTextFormat::FontStyleStrategy,   FontKerning = QTextFormat::FontKerning,   FontHintingPreference = QTextFormat::FontHintingPreference,   FontFamily = QTextFormat::FontFamily,   FontPointSize = QTextFormat::FontPointSize,   FontSizeAdjustment = QTextFormat::FontSizeAdjustment,   FontSizeIncrement = QTextFormat::FontSizeIncrement,   FontWeight = QTextFormat::FontWeight,   FontItalic = QTextFormat::FontItalic,   FontUnderline = QTextFormat::FontUnderline,   FontOverline = QTextFormat::FontOverline,   FontStrikeOut = QTextFormat::FontStrikeOut,   FontFixedPitch = QTextFormat::FontFixedPitch,   FontPixelSize = QTextFormat::FontPixelSize,   LastFontProperty = QTextFormat::LastFontProperty,   TextUnderlineColor = QTextFormat::TextUnderlineColor,   TextVerticalAlignment = QTextFormat::TextVerticalAlignment,   TextOutline = QTextFormat::TextOutline,   TextUnderlineStyle = QTextFormat::TextUnderlineStyle,   TextToolTip = QTextFormat::TextToolTip,   IsAnchor = QTextFormat::IsAnchor,   AnchorHref = QTextFormat::AnchorHref,   AnchorName = QTextFormat::AnchorName,   ObjectType = QTextFormat::ObjectType,   ListStyle = QTextFormat::ListStyle,   ListIndent = QTextFormat::ListIndent,   ListNumberPrefix = QTextFormat::ListNumberPrefix,   ListNumberSuffix = QTextFormat::ListNumberSuffix,   FrameBorder = QTextFormat::FrameBorder,   FrameMargin = QTextFormat::FrameMargin,   FramePadding = QTextFormat::FramePadding,   FrameWidth = QTextFormat::FrameWidth,   FrameHeight = QTextFormat::FrameHeight,   FrameTopMargin = QTextFormat::FrameTopMargin,   FrameBottomMargin = QTextFormat::FrameBottomMargin,   FrameLeftMargin = QTextFormat::FrameLeftMargin,   FrameRightMargin = QTextFormat::FrameRightMargin,   FrameBorderBrush = QTextFormat::FrameBorderBrush,   FrameBorderStyle = QTextFormat::FrameBorderStyle,   TableColumns = QTextFormat::TableColumns,   TableColumnWidthConstraints = QTextFormat::TableColumnWidthConstraints,   TableCellSpacing = QTextFormat::TableCellSpacing,   TableCellPadding = QTextFormat::TableCellPadding,   TableHeaderRowCount = QTextFormat::TableHeaderRowCount,   TableCellRowSpan = QTextFormat::TableCellRowSpan,   TableCellColumnSpan = QTextFormat::TableCellColumnSpan,   TableCellTopPadding = QTextFormat::TableCellTopPadding,   TableCellBottomPadding = QTextFormat::TableCellBottomPadding,   TableCellLeftPadding = QTextFormat::TableCellLeftPadding,   TableCellRightPadding = QTextFormat::TableCellRightPadding,   ImageName = QTextFormat::ImageName,   ImageWidth = QTextFormat::ImageWidth,   ImageHeight = QTextFormat::ImageHeight,   FullWidthSelection = QTextFormat::FullWidthSelection,   PageBreakPolicy = QTextFormat::PageBreakPolicy,   UserProperty = QTextFormat::UserProperty};
 Q_DECLARE_FLAGS(PageBreakFlags, PageBreakFlag)
 public slots:
 QTextFormat* new_QTextFormat();

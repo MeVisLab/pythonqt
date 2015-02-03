@@ -41,7 +41,6 @@
 #include <qsizepolicy.h>
 #include <qstyle.h>
 #include <qstyleoption.h>
-#include <qvalidator.h>
 #include <qvector2d.h>
 #include <qvector3d.h>
 #include <qvector4d.h>
@@ -51,47 +50,6 @@
 #include <qwindowsstyle.h>
 #include <qwizard.h>
 #include <qworkspace.h>
-
-
-
-class PythonQtShell_QValidator : public QValidator
-{
-public:
-    PythonQtShell_QValidator(QObject*  parent = 0):QValidator(parent),_wrapper(NULL) {};
-
-   ~PythonQtShell_QValidator();
-
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void fixup(QString&  arg__1) const;
-virtual void timerEvent(QTimerEvent*  arg__1);
-virtual QValidator::State  validate(QString&  arg__1, int&  arg__2) const;
-
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
-class PythonQtPublicPromoter_QValidator : public QValidator
-{ public:
-inline void promoted_fixup(QString&  arg__1) const { QValidator::fixup(arg__1); }
-};
-
-class PythonQtWrapper_QValidator : public QObject
-{ Q_OBJECT
-public:
-Q_ENUMS(State )
-enum State{
-  Invalid = QValidator::Invalid,   Intermediate = QValidator::Intermediate,   Acceptable = QValidator::Acceptable};
-public slots:
-QValidator* new_QValidator(QObject*  parent = 0);
-void delete_QValidator(QValidator* obj) { delete obj; } 
-   void fixup(QValidator* theWrappedObject, QString&  arg__1) const;
-   QLocale  locale(QValidator* theWrappedObject) const;
-   void setLocale(QValidator* theWrappedObject, const QLocale&  locale);
-};
-
-
 
 
 
@@ -390,6 +348,7 @@ inline void promoted_actionEvent(QActionEvent*  arg__1) { QWidget::actionEvent(a
 inline void promoted_changeEvent(QEvent*  arg__1) { QWidget::changeEvent(arg__1); }
 inline void promoted_closeEvent(QCloseEvent*  arg__1) { QWidget::closeEvent(arg__1); }
 inline void promoted_contextMenuEvent(QContextMenuEvent*  arg__1) { QWidget::contextMenuEvent(arg__1); }
+inline void promoted_destroy(bool  destroyWindow = true, bool  destroySubWindows = true) { QWidget::destroy(destroyWindow, destroySubWindows); }
 inline int  promoted_devType() const { return QWidget::devType(); }
 inline void promoted_dragEnterEvent(QDragEnterEvent*  arg__1) { QWidget::dragEnterEvent(arg__1); }
 inline void promoted_dragLeaveEvent(QDragLeaveEvent*  arg__1) { QWidget::dragLeaveEvent(arg__1); }
@@ -398,8 +357,10 @@ inline void promoted_dropEvent(QDropEvent*  arg__1) { QWidget::dropEvent(arg__1)
 inline void promoted_enterEvent(QEvent*  arg__1) { QWidget::enterEvent(arg__1); }
 inline bool  promoted_event(QEvent*  arg__1) { return QWidget::event(arg__1); }
 inline void promoted_focusInEvent(QFocusEvent*  arg__1) { QWidget::focusInEvent(arg__1); }
+inline bool  promoted_focusNextChild() { return QWidget::focusNextChild(); }
 inline bool  promoted_focusNextPrevChild(bool  next) { return QWidget::focusNextPrevChild(next); }
 inline void promoted_focusOutEvent(QFocusEvent*  arg__1) { QWidget::focusOutEvent(arg__1); }
+inline bool  promoted_focusPreviousChild() { return QWidget::focusPreviousChild(); }
 inline int  promoted_heightForWidth(int  arg__1) const { return QWidget::heightForWidth(arg__1); }
 inline void promoted_hideEvent(QHideEvent*  arg__1) { QWidget::hideEvent(arg__1); }
 inline void promoted_inputMethodEvent(QInputMethodEvent*  arg__1) { QWidget::inputMethodEvent(arg__1); }
@@ -417,10 +378,12 @@ inline void promoted_mouseReleaseEvent(QMouseEvent*  arg__1) { QWidget::mouseRel
 inline void promoted_moveEvent(QMoveEvent*  arg__1) { QWidget::moveEvent(arg__1); }
 inline QPaintEngine*  promoted_paintEngine() const { return QWidget::paintEngine(); }
 inline void promoted_paintEvent(QPaintEvent*  arg__1) { QWidget::paintEvent(arg__1); }
+inline void promoted_resetInputContext() { QWidget::resetInputContext(); }
 inline void promoted_resizeEvent(QResizeEvent*  arg__1) { QWidget::resizeEvent(arg__1); }
 inline void promoted_showEvent(QShowEvent*  arg__1) { QWidget::showEvent(arg__1); }
 inline QSize  promoted_sizeHint() const { return QWidget::sizeHint(); }
 inline void promoted_tabletEvent(QTabletEvent*  arg__1) { QWidget::tabletEvent(arg__1); }
+inline void promoted_updateMicroFocus() { QWidget::updateMicroFocus(); }
 inline void promoted_wheelEvent(QWheelEvent*  arg__1) { QWidget::wheelEvent(arg__1); }
 };
 
@@ -461,6 +424,7 @@ void delete_QWidget(QWidget* obj) { delete obj; }
    Qt::ContextMenuPolicy  contextMenuPolicy(QWidget* theWrappedObject) const;
    void createWinId(QWidget* theWrappedObject);
    QCursor  cursor(QWidget* theWrappedObject) const;
+   void destroy(QWidget* theWrappedObject, bool  destroyWindow = true, bool  destroySubWindows = true);
    int  devType(QWidget* theWrappedObject) const;
    void dragEnterEvent(QWidget* theWrappedObject, QDragEnterEvent*  arg__1);
    void dragLeaveEvent(QWidget* theWrappedObject, QDragLeaveEvent*  arg__1);
@@ -471,9 +435,11 @@ void delete_QWidget(QWidget* obj) { delete obj; }
    void enterEvent(QWidget* theWrappedObject, QEvent*  arg__1);
    bool  event(QWidget* theWrappedObject, QEvent*  arg__1);
    void focusInEvent(QWidget* theWrappedObject, QFocusEvent*  arg__1);
+   bool  focusNextChild(QWidget* theWrappedObject);
    bool  focusNextPrevChild(QWidget* theWrappedObject, bool  next);
    void focusOutEvent(QWidget* theWrappedObject, QFocusEvent*  arg__1);
    Qt::FocusPolicy  focusPolicy(QWidget* theWrappedObject) const;
+   bool  focusPreviousChild(QWidget* theWrappedObject);
    QWidget*  focusProxy(QWidget* theWrappedObject) const;
    QWidget*  focusWidget(QWidget* theWrappedObject) const;
    const QFont*  font(QWidget* theWrappedObject) const;
@@ -481,7 +447,6 @@ void delete_QWidget(QWidget* obj) { delete obj; }
    QRect  frameGeometry(QWidget* theWrappedObject) const;
    QSize  frameSize(QWidget* theWrappedObject) const;
    const QRect*  geometry(QWidget* theWrappedObject) const;
-   void getContentsMargins(QWidget* theWrappedObject, int*  left, int*  top, int*  right, int*  bottom) const;
    void grabGesture(QWidget* theWrappedObject, Qt::GestureType  type, Qt::GestureFlags  flags = Qt::GestureFlags());
    void grabKeyboard(QWidget* theWrappedObject);
    void grabMouse(QWidget* theWrappedObject);
@@ -567,6 +532,7 @@ void delete_QWidget(QWidget* obj) { delete obj; }
    void repaint(QWidget* theWrappedObject, const QRect&  arg__1);
    void repaint(QWidget* theWrappedObject, const QRegion&  arg__1);
    void repaint(QWidget* theWrappedObject, int  x, int  y, int  w, int  h);
+   void resetInputContext(QWidget* theWrappedObject);
    void resize(QWidget* theWrappedObject, const QSize&  arg__1);
    void resize(QWidget* theWrappedObject, int  w, int  h);
    void resizeEvent(QWidget* theWrappedObject, QResizeEvent*  arg__1);
@@ -600,7 +566,7 @@ void delete_QWidget(QWidget* obj) { delete obj; }
    void setGraphicsEffect(QWidget* theWrappedObject, QGraphicsEffect*  effect);
    void setInputContext(QWidget* theWrappedObject, QInputContext*  arg__1);
    void setInputMethodHints(QWidget* theWrappedObject, Qt::InputMethodHints  hints);
-   void setLayout(QWidget* theWrappedObject, QLayout*  arg__1);
+   void setLayout(QWidget* theWrappedObject, PythonQtPassOwnershipToCPP<QLayout* >  arg__1);
    void setLayoutDirection(QWidget* theWrappedObject, Qt::LayoutDirection  direction);
    void setLocale(QWidget* theWrappedObject, const QLocale&  locale);
    void setMask(QWidget* theWrappedObject, const QBitmap&  arg__1);
@@ -615,8 +581,8 @@ void delete_QWidget(QWidget* obj) { delete obj; }
    void setMinimumWidth(QWidget* theWrappedObject, int  minw);
    void setMouseTracking(QWidget* theWrappedObject, bool  enable);
    void setPalette(QWidget* theWrappedObject, const QPalette&  arg__1);
-   void setParent(QWidget* theWrappedObject, QWidget*  parent);
-   void setParent(QWidget* theWrappedObject, QWidget*  parent, Qt::WindowFlags  f);
+   void setParent(QWidget* theWrappedObject, PythonQtNewOwnerOfThis<QWidget* >  parent);
+   void setParent(QWidget* theWrappedObject, PythonQtNewOwnerOfThis<QWidget* >  parent, Qt::WindowFlags  f);
    void setShortcutAutoRepeat(QWidget* theWrappedObject, int  id, bool  enable = true);
    void setShortcutEnabled(QWidget* theWrappedObject, int  id, bool  enable = true);
    void setSizeIncrement(QWidget* theWrappedObject, const QSize&  arg__1);
@@ -704,6 +670,7 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 class PythonQtPublicPromoter_QWidgetAction : public QWidgetAction
 { public:
 inline QWidget*  promoted_createWidget(QWidget*  parent) { return QWidgetAction::createWidget(parent); }
+inline QList<QWidget* >  promoted_createdWidgets() const { return QWidgetAction::createdWidgets(); }
 inline void promoted_deleteWidget(QWidget*  widget) { QWidgetAction::deleteWidget(widget); }
 inline bool  promoted_event(QEvent*  arg__1) { return QWidgetAction::event(arg__1); }
 inline bool  promoted_eventFilter(QObject*  arg__1, QEvent*  arg__2) { return QWidgetAction::eventFilter(arg__1, arg__2); }
@@ -716,6 +683,7 @@ public slots:
 QWidgetAction* new_QWidgetAction(QObject*  parent);
 void delete_QWidgetAction(QWidgetAction* obj) { delete obj; } 
    QWidget*  createWidget(QWidgetAction* theWrappedObject, QWidget*  parent);
+   QList<QWidget* >  createdWidgets(QWidgetAction* theWrappedObject) const;
    QWidget*  defaultWidget(QWidgetAction* theWrappedObject) const;
    void deleteWidget(QWidgetAction* theWrappedObject, QWidget*  widget);
    bool  event(QWidgetAction* theWrappedObject, QEvent*  arg__1);
@@ -817,12 +785,12 @@ virtual void customEvent(QEvent*  arg__1);
 virtual void drawComplexControl(QStyle::ComplexControl  cc, const QStyleOptionComplex*  opt, QPainter*  p, const QWidget*  w = 0) const;
 virtual void drawControl(QStyle::ControlElement  element, const QStyleOption*  opt, QPainter*  p, const QWidget*  w = 0) const;
 virtual void drawItemPixmap(QPainter*  painter, const QRect&  rect, int  alignment, const QPixmap&  pixmap) const;
-virtual void drawItemText(QPainter*  painter, const QRect&  rect, int  flags, const QPalette&  pal, bool  enabled, const QString&  text, QPalette::ColorRole  textRole) const;
+virtual void drawItemText(QPainter*  painter, const QRect&  rect, int  flags, const QPalette&  pal, bool  enabled, const QString&  text, QPalette::ColorRole  textRole = QPalette::NoRole) const;
 virtual void drawPrimitive(QStyle::PrimitiveElement  pe, const QStyleOption*  opt, QPainter*  p, const QWidget*  w = 0) const;
 virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  o, QEvent*  e);
 virtual QPixmap  generatedIconPixmap(QIcon::Mode  iconMode, const QPixmap&  pixmap, const QStyleOption*  opt) const;
-virtual QStyle::SubControl  hitTestComplexControl(QStyle::ComplexControl  cc, const QStyleOptionComplex*  opt, const QPoint&  pt, const QWidget*  w) const;
+virtual QStyle::SubControl  hitTestComplexControl(QStyle::ComplexControl  cc, const QStyleOptionComplex*  opt, const QPoint&  pt, const QWidget*  w = 0) const;
 virtual QRect  itemPixmapRect(const QRect&  r, int  flags, const QPixmap&  pixmap) const;
 virtual int  pixelMetric(QStyle::PixelMetric  pm, const QStyleOption*  option = 0, const QWidget*  widget = 0) const;
 virtual void polish(QApplication*  arg__1);
@@ -830,9 +798,9 @@ virtual void polish(QPalette&  arg__1);
 virtual void polish(QWidget*  arg__1);
 virtual QSize  sizeFromContents(QStyle::ContentsType  ct, const QStyleOption*  opt, const QSize&  contentsSize, const QWidget*  widget = 0) const;
 virtual QPalette  standardPalette() const;
-virtual QPixmap  standardPixmap(QStyle::StandardPixmap  standardPixmap, const QStyleOption*  opt, const QWidget*  widget) const;
+virtual QPixmap  standardPixmap(QStyle::StandardPixmap  standardPixmap, const QStyleOption*  opt = 0, const QWidget*  widget = 0) const;
 virtual int  styleHint(QStyle::StyleHint  hint, const QStyleOption*  opt = 0, const QWidget*  widget = 0, QStyleHintReturn*  returnData = 0) const;
-virtual QRect  subControlRect(QStyle::ComplexControl  cc, const QStyleOptionComplex*  opt, QStyle::SubControl  sc, const QWidget*  w) const;
+virtual QRect  subControlRect(QStyle::ComplexControl  cc, const QStyleOptionComplex*  opt, QStyle::SubControl  sc, const QWidget*  w = 0) const;
 virtual QRect  subElementRect(QStyle::SubElement  r, const QStyleOption*  opt, const QWidget*  widget = 0) const;
 virtual void timerEvent(QTimerEvent*  event);
 virtual void unpolish(QApplication*  arg__1);
@@ -852,6 +820,7 @@ inline void promoted_polish(QApplication*  arg__1) { QWindowsStyle::polish(arg__
 inline void promoted_polish(QPalette&  arg__1) { QWindowsStyle::polish(arg__1); }
 inline void promoted_polish(QWidget*  arg__1) { QWindowsStyle::polish(arg__1); }
 inline QSize  promoted_sizeFromContents(QStyle::ContentsType  ct, const QStyleOption*  opt, const QSize&  contentsSize, const QWidget*  widget = 0) const { return QWindowsStyle::sizeFromContents(ct, opt, contentsSize, widget); }
+inline QIcon  promoted_standardIconImplementation(QStyle::StandardPixmap  standardIcon, const QStyleOption*  option, const QWidget*  widget = 0) const { return QWindowsStyle::standardIconImplementation(standardIcon, option, widget); }
 inline int  promoted_styleHint(QStyle::StyleHint  hint, const QStyleOption*  opt = 0, const QWidget*  widget = 0, QStyleHintReturn*  returnData = 0) const { return QWindowsStyle::styleHint(hint, opt, widget, returnData); }
 inline QRect  promoted_subElementRect(QStyle::SubElement  r, const QStyleOption*  opt, const QWidget*  widget = 0) const { return QWindowsStyle::subElementRect(r, opt, widget); }
 inline void promoted_timerEvent(QTimerEvent*  event) { QWindowsStyle::timerEvent(event); }
@@ -1071,10 +1040,14 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
 class PythonQtPublicPromoter_QWizardPage : public QWizardPage
 { public:
 inline void promoted_cleanupPage() { QWizardPage::cleanupPage(); }
+inline QVariant  promoted_field(const QString&  name) const { return QWizardPage::field(name); }
 inline void promoted_initializePage() { QWizardPage::initializePage(); }
 inline bool  promoted_isComplete() const { return QWizardPage::isComplete(); }
 inline int  promoted_nextId() const { return QWizardPage::nextId(); }
+inline void promoted_registerField(const QString&  name, QWidget*  widget, const char*  property = 0, const char*  changedSignal = 0) { QWizardPage::registerField(name, widget, property, changedSignal); }
+inline void promoted_setField(const QString&  name, const QVariant&  value) { QWizardPage::setField(name, value); }
 inline bool  promoted_validatePage() { return QWizardPage::validatePage(); }
+inline QWizard*  promoted_wizard() const { return QWizardPage::wizard(); }
 };
 
 class PythonQtWrapper_QWizardPage : public QObject
@@ -1085,14 +1058,17 @@ QWizardPage* new_QWizardPage(QWidget*  parent = 0);
 void delete_QWizardPage(QWizardPage* obj) { delete obj; } 
    QString  buttonText(QWizardPage* theWrappedObject, QWizard::WizardButton  which) const;
    void cleanupPage(QWizardPage* theWrappedObject);
+   QVariant  field(QWizardPage* theWrappedObject, const QString&  name) const;
    void initializePage(QWizardPage* theWrappedObject);
    bool  isCommitPage(QWizardPage* theWrappedObject) const;
    bool  isComplete(QWizardPage* theWrappedObject) const;
    bool  isFinalPage(QWizardPage* theWrappedObject) const;
    int  nextId(QWizardPage* theWrappedObject) const;
    QPixmap  pixmap(QWizardPage* theWrappedObject, QWizard::WizardPixmap  which) const;
+   void registerField(QWizardPage* theWrappedObject, const QString&  name, QWidget*  widget, const char*  property = 0, const char*  changedSignal = 0);
    void setButtonText(QWizardPage* theWrappedObject, QWizard::WizardButton  which, const QString&  text);
    void setCommitPage(QWizardPage* theWrappedObject, bool  commitPage);
+   void setField(QWizardPage* theWrappedObject, const QString&  name, const QVariant&  value);
    void setFinalPage(QWizardPage* theWrappedObject, bool  finalPage);
    void setPixmap(QWizardPage* theWrappedObject, QWizard::WizardPixmap  which, const QPixmap&  pixmap);
    void setSubTitle(QWizardPage* theWrappedObject, const QString&  subTitle);
@@ -1100,6 +1076,7 @@ void delete_QWizardPage(QWizardPage* obj) { delete obj; }
    QString  subTitle(QWizardPage* theWrappedObject) const;
    QString  title(QWizardPage* theWrappedObject) const;
    bool  validatePage(QWizardPage* theWrappedObject);
+   QWizard*  wizard(QWizardPage* theWrappedObject) const;
 };
 
 
