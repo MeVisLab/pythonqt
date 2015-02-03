@@ -43,6 +43,7 @@
 #include <qtimeline.h>
 #include <qtimer.h>
 #include <qtranslator.h>
+#include <qwidget.h>
 
 
 
@@ -78,6 +79,13 @@ public:
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QResource : public QResource
+{ public:
+inline QStringList  promoted_children() const { return QResource::children(); }
+inline bool  promoted_isDir() const { return QResource::isDir(); }
+inline bool  promoted_isFile() const { return QResource::isFile(); }
+};
+
 class PythonQtWrapper_QResource : public QObject
 { Q_OBJECT
 public:
@@ -86,9 +94,12 @@ QResource* new_QResource(const QString&  file = QString(), const QLocale&  local
 void delete_QResource(QResource* obj) { delete obj; } 
    QString  absoluteFilePath(QResource* theWrappedObject) const;
    void static_QResource_addSearchPath(const QString&  path);
+   QStringList  children(QResource* theWrappedObject) const;
    const uchar*  data(QResource* theWrappedObject) const;
    QString  fileName(QResource* theWrappedObject) const;
    bool  isCompressed(QResource* theWrappedObject) const;
+   bool  isDir(QResource* theWrappedObject) const;
+   bool  isFile(QResource* theWrappedObject) const;
    bool  isValid(QResource* theWrappedObject) const;
    QLocale  locale(QResource* theWrappedObject) const;
    bool  static_QResource_registerResource(const QString&  rccFilename, const QString&  resourceRoot = QString());
@@ -117,6 +128,11 @@ virtual void run();
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QRunnable : public QRunnable
+{ public:
+inline void promoted_run() { this->run(); }
+};
+
 class PythonQtWrapper_QRunnable : public QObject
 { Q_OBJECT
 public:
@@ -124,6 +140,7 @@ public slots:
 QRunnable* new_QRunnable();
 void delete_QRunnable(QRunnable* obj) { delete obj; } 
    bool  autoDelete(QRunnable* theWrappedObject) const;
+   void run(QRunnable* theWrappedObject);
    void setAutoDelete(QRunnable* theWrappedObject, bool  _autoDelete);
 };
 
@@ -350,10 +367,12 @@ public slots:
 QSignalMapper* new_QSignalMapper(QObject*  parent = 0);
 void delete_QSignalMapper(QSignalMapper* obj) { delete obj; } 
    QObject*  mapping(QSignalMapper* theWrappedObject, QObject*  object) const;
+   QObject*  mapping(QSignalMapper* theWrappedObject, QWidget*  widget) const;
    QObject*  mapping(QSignalMapper* theWrappedObject, const QString&  text) const;
    QObject*  mapping(QSignalMapper* theWrappedObject, int  id) const;
    void removeMappings(QSignalMapper* theWrappedObject, QObject*  sender);
    void setMapping(QSignalMapper* theWrappedObject, QObject*  sender, QObject*  object);
+   void setMapping(QSignalMapper* theWrappedObject, QObject*  sender, QWidget*  widget);
    void setMapping(QSignalMapper* theWrappedObject, QObject*  sender, const QString&  text);
    void setMapping(QSignalMapper* theWrappedObject, QObject*  sender, int  id);
 };
@@ -488,8 +507,8 @@ public slots:
 QState* new_QState(QState*  parent = 0);
 QState* new_QState(QState::ChildMode  childMode, QState*  parent = 0);
 void delete_QState(QState* obj) { delete obj; } 
-   QAbstractTransition*  addTransition(QState* theWrappedObject, QAbstractState*  target);
-   void addTransition(QState* theWrappedObject, QAbstractTransition*  transition);
+   QAbstractTransition*  addTransition(QState* theWrappedObject, PythonQtPassOwnershipToCPP<QAbstractState* >  target);
+   void addTransition(QState* theWrappedObject, PythonQtPassOwnershipToCPP<QAbstractTransition* >  transition);
    QSignalTransition*  addTransition(QState* theWrappedObject, const QObject*  sender, const char*  signal, QAbstractState*  target);
    void assignProperty(QState* theWrappedObject, QObject*  object, const char*  name, const QVariant&  value);
    QState::ChildMode  childMode(QState* theWrappedObject) const;
@@ -498,7 +517,7 @@ void delete_QState(QState* obj) { delete obj; }
    QAbstractState*  initialState(QState* theWrappedObject) const;
    void onEntry(QState* theWrappedObject, QEvent*  event);
    void onExit(QState* theWrappedObject, QEvent*  event);
-   void removeTransition(QState* theWrappedObject, QAbstractTransition*  transition);
+   void removeTransition(QState* theWrappedObject, PythonQtPassOwnershipToPython<QAbstractTransition* >  transition);
    void setChildMode(QState* theWrappedObject, QState::ChildMode  mode);
    void setErrorState(QState* theWrappedObject, QAbstractState*  state);
    void setInitialState(QState* theWrappedObject, QAbstractState*  state);
@@ -557,7 +576,7 @@ QStateMachine* new_QStateMachine(QObject*  parent = 0);
 QStateMachine* new_QStateMachine(QState::ChildMode  childMode, QObject*  parent = 0);
 void delete_QStateMachine(QStateMachine* obj) { delete obj; } 
    void addDefaultAnimation(QStateMachine* theWrappedObject, QAbstractAnimation*  animation);
-   void addState(QStateMachine* theWrappedObject, QAbstractState*  state);
+   void addState(QStateMachine* theWrappedObject, PythonQtPassOwnershipToCPP<QAbstractState* >  state);
    void beginMicrostep(QStateMachine* theWrappedObject, QEvent*  event);
    void beginSelectTransitions(QStateMachine* theWrappedObject, QEvent*  event);
    bool  cancelDelayedEvent(QStateMachine* theWrappedObject, int  id);
@@ -578,7 +597,7 @@ void delete_QStateMachine(QStateMachine* obj) { delete obj; }
    int  postDelayedEvent(QStateMachine* theWrappedObject, QEvent*  event, int  delay);
    void postEvent(QStateMachine* theWrappedObject, QEvent*  event, QStateMachine::EventPriority  priority = QStateMachine::NormalPriority);
    void removeDefaultAnimation(QStateMachine* theWrappedObject, QAbstractAnimation*  animation);
-   void removeState(QStateMachine* theWrappedObject, QAbstractState*  state);
+   void removeState(QStateMachine* theWrappedObject, PythonQtPassOwnershipToPython<QAbstractState* >  state);
    void setAnimated(QStateMachine* theWrappedObject, bool  enabled);
    void setGlobalRestorePolicy(QStateMachine* theWrappedObject, QState::RestorePolicy  restorePolicy);
 };
@@ -822,6 +841,10 @@ virtual QByteArray  name() const;
 class PythonQtPublicPromoter_QTextCodec : public QTextCodec
 { public:
 inline QList<QByteArray >  promoted_aliases() const { return QTextCodec::aliases(); }
+inline QByteArray  promoted_convertFromUnicode(const QChar*  in, int  length, QTextCodec::ConverterState*  state) const { return this->convertFromUnicode(in, length, state); }
+inline QString  promoted_convertToUnicode(const char*  in, int  length, QTextCodec::ConverterState*  state) const { return this->convertToUnicode(in, length, state); }
+inline int  promoted_mibEnum() const { return this->mibEnum(); }
+inline QByteArray  promoted_name() const { return this->name(); }
 };
 
 class PythonQtWrapper_QTextCodec : public QObject
@@ -833,6 +856,7 @@ enum ConversionFlag{
   DefaultConversion = QTextCodec::DefaultConversion,   ConvertInvalidToNull = QTextCodec::ConvertInvalidToNull,   IgnoreHeader = QTextCodec::IgnoreHeader,   FreeFunction = QTextCodec::FreeFunction};
 Q_DECLARE_FLAGS(ConversionFlags, ConversionFlag)
 public slots:
+QTextCodec* new_QTextCodec();
    QList<QByteArray >  aliases(QTextCodec* theWrappedObject) const;
    QList<QByteArray >  static_QTextCodec_availableCodecs();
    QList<int >  static_QTextCodec_availableMibs();
@@ -846,9 +870,13 @@ public slots:
    QTextCodec*  static_QTextCodec_codecForName(const char*  name);
    QTextCodec*  static_QTextCodec_codecForUtfText(const QByteArray&  ba);
    QTextCodec*  static_QTextCodec_codecForUtfText(const QByteArray&  ba, QTextCodec*  defaultCodec);
+   QByteArray  convertFromUnicode(QTextCodec* theWrappedObject, const QChar*  in, int  length, QTextCodec::ConverterState*  state) const;
+   QString  convertToUnicode(QTextCodec* theWrappedObject, const char*  in, int  length, QTextCodec::ConverterState*  state) const;
    QByteArray  fromUnicode(QTextCodec* theWrappedObject, const QString&  uc) const;
    QTextDecoder*  makeDecoder(QTextCodec* theWrappedObject, QTextCodec::ConversionFlags  flags = QTextCodec::DefaultConversion) const;
    QTextEncoder*  makeEncoder(QTextCodec* theWrappedObject, QTextCodec::ConversionFlags  flags = QTextCodec::DefaultConversion) const;
+   int  mibEnum(QTextCodec* theWrappedObject) const;
+   QByteArray  name(QTextCodec* theWrappedObject) const;
    void static_QTextCodec_setCodecForLocale(QTextCodec*  c);
    QString  toUnicode(QTextCodec* theWrappedObject, const QByteArray&  arg__1) const;
 };

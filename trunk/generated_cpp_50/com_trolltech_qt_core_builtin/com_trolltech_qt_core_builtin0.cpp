@@ -408,11 +408,6 @@ QByteArray  PythonQtWrapper_QByteArray::static_QByteArray_number(qlonglong  arg_
   return (QByteArray::number(arg__1, base));
 }
 
-QByteArray  PythonQtWrapper_QByteArray::static_QByteArray_number(qulonglong  arg__1, int  base)
-{
-  return (QByteArray::number(arg__1, base));
-}
-
 const QByteArray  PythonQtWrapper_QByteArray::__add__(QByteArray* theWrappedObject, char  a2)
 {
   return ( (*theWrappedObject)+ a2);
@@ -618,17 +613,7 @@ QByteArray*  PythonQtWrapper_QByteArray::setNum(QByteArray* theWrappedObject, ql
   return &( theWrappedObject->setNum(arg__1, base));
 }
 
-QByteArray*  PythonQtWrapper_QByteArray::setNum(QByteArray* theWrappedObject, qulonglong  arg__1, int  base)
-{
-  return &( theWrappedObject->setNum(arg__1, base));
-}
-
 QByteArray*  PythonQtWrapper_QByteArray::setNum(QByteArray* theWrappedObject, short  arg__1, int  base)
-{
-  return &( theWrappedObject->setNum(arg__1, base));
-}
-
-QByteArray*  PythonQtWrapper_QByteArray::setNum(QByteArray* theWrappedObject, ushort  arg__1, int  base)
 {
   return &( theWrappedObject->setNum(arg__1, base));
 }
@@ -1871,17 +1856,7 @@ QString  PythonQtWrapper_QLocale::toString(QLocale* theWrappedObject, qlonglong 
   return ( theWrappedObject->toString(i));
 }
 
-QString  PythonQtWrapper_QLocale::toString(QLocale* theWrappedObject, qulonglong  i) const
-{
-  return ( theWrappedObject->toString(i));
-}
-
 QString  PythonQtWrapper_QLocale::toString(QLocale* theWrappedObject, short  i) const
-{
-  return ( theWrappedObject->toString(i));
-}
-
-QString  PythonQtWrapper_QLocale::toString(QLocale* theWrappedObject, ushort  i) const
 {
   return ( theWrappedObject->toString(i));
 }
@@ -2611,16 +2586,6 @@ bool  PythonQtWrapper_QRectF::contains(QRectF* theWrappedObject, const QRectF&  
 bool  PythonQtWrapper_QRectF::contains(QRectF* theWrappedObject, qreal  x, qreal  y) const
 {
   return ( theWrappedObject->contains(x, y));
-}
-
-void PythonQtWrapper_QRectF::getCoords(QRectF* theWrappedObject, qreal*  x1, qreal*  y1, qreal*  x2, qreal*  y2) const
-{
-  ( theWrappedObject->getCoords(x1, y1, x2, y2));
-}
-
-void PythonQtWrapper_QRectF::getRect(QRectF* theWrappedObject, qreal*  x, qreal*  y, qreal*  w, qreal*  h) const
-{
-  ( theWrappedObject->getRect(x, y, w, h));
 }
 
 qreal  PythonQtWrapper_QRectF::height(QRectF* theWrappedObject) const

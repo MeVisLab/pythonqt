@@ -12,6 +12,26 @@
 #include <qtransform.h>
 #include <qwidget.h>
 
+PythonQtShell_QStyleHintReturn::~PythonQtShell_QStyleHintReturn() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QStyleHintReturn* PythonQtWrapper_QStyleHintReturn::new_QStyleHintReturn(int  version, int  type)
+{ 
+return new PythonQtShell_QStyleHintReturn(version, type); }
+
+
+
+PythonQtShell_QStyleHintReturnMask::~PythonQtShell_QStyleHintReturnMask() {
+  PythonQtPrivate* priv = PythonQt::priv();
+  if (priv) { priv->shellClassDeleted(this); }
+}
+QStyleHintReturnMask* PythonQtWrapper_QStyleHintReturnMask::new_QStyleHintReturnMask()
+{ 
+return new PythonQtShell_QStyleHintReturnMask(); }
+
+
+
 PythonQtShell_QStyleHintReturnVariant::~PythonQtShell_QStyleHintReturnVariant() {
   PythonQtPrivate* priv = PythonQt::priv();
   if (priv) { priv->shellClassDeleted(this); }
@@ -117,6 +137,10 @@ QStyleOptionButton* PythonQtWrapper_QStyleOptionButton::new_QStyleOptionButton(c
 { 
 return new PythonQtShell_QStyleOptionButton(other); }
 
+QStyleOptionButton* PythonQtWrapper_QStyleOptionButton::new_QStyleOptionButton(int  version)
+{ 
+return new PythonQtShell_QStyleOptionButton(version); }
+
 
 
 PythonQtShell_QStyleOptionComboBox::~PythonQtShell_QStyleOptionComboBox() {
@@ -131,6 +155,10 @@ QStyleOptionComboBox* PythonQtWrapper_QStyleOptionComboBox::new_QStyleOptionComb
 { 
 return new PythonQtShell_QStyleOptionComboBox(other); }
 
+QStyleOptionComboBox* PythonQtWrapper_QStyleOptionComboBox::new_QStyleOptionComboBox(int  version)
+{ 
+return new PythonQtShell_QStyleOptionComboBox(version); }
+
 
 
 PythonQtShell_QStyleOptionDockWidget::~PythonQtShell_QStyleOptionDockWidget() {
@@ -144,6 +172,10 @@ return new PythonQtShell_QStyleOptionDockWidget(); }
 QStyleOptionDockWidget* PythonQtWrapper_QStyleOptionDockWidget::new_QStyleOptionDockWidget(const QStyleOptionDockWidget&  other)
 { 
 return new PythonQtShell_QStyleOptionDockWidget(other); }
+
+QStyleOptionDockWidget* PythonQtWrapper_QStyleOptionDockWidget::new_QStyleOptionDockWidget(int  version)
+{ 
+return new PythonQtShell_QStyleOptionDockWidget(version); }
 
 
 
@@ -169,6 +201,10 @@ QStyleOptionFocusRect* PythonQtWrapper_QStyleOptionFocusRect::new_QStyleOptionFo
 { 
 return new PythonQtShell_QStyleOptionFocusRect(other); }
 
+QStyleOptionFocusRect* PythonQtWrapper_QStyleOptionFocusRect::new_QStyleOptionFocusRect(int  version)
+{ 
+return new PythonQtShell_QStyleOptionFocusRect(version); }
+
 
 
 PythonQtShell_QStyleOptionFrame::~PythonQtShell_QStyleOptionFrame() {
@@ -182,6 +218,10 @@ return new PythonQtShell_QStyleOptionFrame(); }
 QStyleOptionFrame* PythonQtWrapper_QStyleOptionFrame::new_QStyleOptionFrame(const QStyleOptionFrame&  other)
 { 
 return new PythonQtShell_QStyleOptionFrame(other); }
+
+QStyleOptionFrame* PythonQtWrapper_QStyleOptionFrame::new_QStyleOptionFrame(int  version)
+{ 
+return new PythonQtShell_QStyleOptionFrame(version); }
 
 
 
@@ -217,6 +257,10 @@ QStyleOptionGraphicsItem* PythonQtWrapper_QStyleOptionGraphicsItem::new_QStyleOp
 { 
 return new PythonQtShell_QStyleOptionGraphicsItem(other); }
 
+QStyleOptionGraphicsItem* PythonQtWrapper_QStyleOptionGraphicsItem::new_QStyleOptionGraphicsItem(int  version)
+{ 
+return new PythonQtShell_QStyleOptionGraphicsItem(version); }
+
 qreal  PythonQtWrapper_QStyleOptionGraphicsItem::static_QStyleOptionGraphicsItem_levelOfDetailFromTransform(const QTransform&  worldTransform)
 {
   return (QStyleOptionGraphicsItem::levelOfDetailFromTransform(worldTransform));
@@ -236,6 +280,10 @@ QStyleOptionGroupBox* PythonQtWrapper_QStyleOptionGroupBox::new_QStyleOptionGrou
 { 
 return new PythonQtShell_QStyleOptionGroupBox(other); }
 
+QStyleOptionGroupBox* PythonQtWrapper_QStyleOptionGroupBox::new_QStyleOptionGroupBox(int  version)
+{ 
+return new PythonQtShell_QStyleOptionGroupBox(version); }
+
 
 
 PythonQtShell_QStyleOptionHeader::~PythonQtShell_QStyleOptionHeader() {
@@ -249,6 +297,10 @@ return new PythonQtShell_QStyleOptionHeader(); }
 QStyleOptionHeader* PythonQtWrapper_QStyleOptionHeader::new_QStyleOptionHeader(const QStyleOptionHeader&  other)
 { 
 return new PythonQtShell_QStyleOptionHeader(other); }
+
+QStyleOptionHeader* PythonQtWrapper_QStyleOptionHeader::new_QStyleOptionHeader(int  version)
+{ 
+return new PythonQtShell_QStyleOptionHeader(version); }
 
 
 
@@ -264,6 +316,10 @@ QStyleOptionMenuItem* PythonQtWrapper_QStyleOptionMenuItem::new_QStyleOptionMenu
 { 
 return new PythonQtShell_QStyleOptionMenuItem(other); }
 
+QStyleOptionMenuItem* PythonQtWrapper_QStyleOptionMenuItem::new_QStyleOptionMenuItem(int  version)
+{ 
+return new PythonQtShell_QStyleOptionMenuItem(version); }
+
 
 
 PythonQtShell_QStyleOptionProgressBar::~PythonQtShell_QStyleOptionProgressBar() {
@@ -277,6 +333,10 @@ return new PythonQtShell_QStyleOptionProgressBar(); }
 QStyleOptionProgressBar* PythonQtWrapper_QStyleOptionProgressBar::new_QStyleOptionProgressBar(const QStyleOptionProgressBar&  other)
 { 
 return new PythonQtShell_QStyleOptionProgressBar(other); }
+
+QStyleOptionProgressBar* PythonQtWrapper_QStyleOptionProgressBar::new_QStyleOptionProgressBar(int  version)
+{ 
+return new PythonQtShell_QStyleOptionProgressBar(version); }
 
 
 
@@ -302,6 +362,10 @@ QStyleOptionRubberBand* PythonQtWrapper_QStyleOptionRubberBand::new_QStyleOption
 { 
 return new PythonQtShell_QStyleOptionRubberBand(other); }
 
+QStyleOptionRubberBand* PythonQtWrapper_QStyleOptionRubberBand::new_QStyleOptionRubberBand(int  version)
+{ 
+return new PythonQtShell_QStyleOptionRubberBand(version); }
+
 
 
 PythonQtShell_QStyleOptionSizeGrip::~PythonQtShell_QStyleOptionSizeGrip() {
@@ -315,6 +379,10 @@ return new PythonQtShell_QStyleOptionSizeGrip(); }
 QStyleOptionSizeGrip* PythonQtWrapper_QStyleOptionSizeGrip::new_QStyleOptionSizeGrip(const QStyleOptionSizeGrip&  other)
 { 
 return new PythonQtShell_QStyleOptionSizeGrip(other); }
+
+QStyleOptionSizeGrip* PythonQtWrapper_QStyleOptionSizeGrip::new_QStyleOptionSizeGrip(int  version)
+{ 
+return new PythonQtShell_QStyleOptionSizeGrip(version); }
 
 
 
@@ -330,6 +398,10 @@ QStyleOptionSlider* PythonQtWrapper_QStyleOptionSlider::new_QStyleOptionSlider(c
 { 
 return new PythonQtShell_QStyleOptionSlider(other); }
 
+QStyleOptionSlider* PythonQtWrapper_QStyleOptionSlider::new_QStyleOptionSlider(int  version)
+{ 
+return new PythonQtShell_QStyleOptionSlider(version); }
+
 
 
 PythonQtShell_QStyleOptionSpinBox::~PythonQtShell_QStyleOptionSpinBox() {
@@ -343,6 +415,10 @@ return new PythonQtShell_QStyleOptionSpinBox(); }
 QStyleOptionSpinBox* PythonQtWrapper_QStyleOptionSpinBox::new_QStyleOptionSpinBox(const QStyleOptionSpinBox&  other)
 { 
 return new PythonQtShell_QStyleOptionSpinBox(other); }
+
+QStyleOptionSpinBox* PythonQtWrapper_QStyleOptionSpinBox::new_QStyleOptionSpinBox(int  version)
+{ 
+return new PythonQtShell_QStyleOptionSpinBox(version); }
 
 
 
@@ -358,6 +434,10 @@ QStyleOptionTab* PythonQtWrapper_QStyleOptionTab::new_QStyleOptionTab(const QSty
 { 
 return new PythonQtShell_QStyleOptionTab(other); }
 
+QStyleOptionTab* PythonQtWrapper_QStyleOptionTab::new_QStyleOptionTab(int  version)
+{ 
+return new PythonQtShell_QStyleOptionTab(version); }
+
 
 
 PythonQtShell_QStyleOptionTabBarBase::~PythonQtShell_QStyleOptionTabBarBase() {
@@ -371,6 +451,10 @@ return new PythonQtShell_QStyleOptionTabBarBase(); }
 QStyleOptionTabBarBase* PythonQtWrapper_QStyleOptionTabBarBase::new_QStyleOptionTabBarBase(const QStyleOptionTabBarBase&  other)
 { 
 return new PythonQtShell_QStyleOptionTabBarBase(other); }
+
+QStyleOptionTabBarBase* PythonQtWrapper_QStyleOptionTabBarBase::new_QStyleOptionTabBarBase(int  version)
+{ 
+return new PythonQtShell_QStyleOptionTabBarBase(version); }
 
 
 
@@ -416,6 +500,10 @@ QStyleOptionTabWidgetFrame* PythonQtWrapper_QStyleOptionTabWidgetFrame::new_QSty
 { 
 return new PythonQtShell_QStyleOptionTabWidgetFrame(other); }
 
+QStyleOptionTabWidgetFrame* PythonQtWrapper_QStyleOptionTabWidgetFrame::new_QStyleOptionTabWidgetFrame(int  version)
+{ 
+return new PythonQtShell_QStyleOptionTabWidgetFrame(version); }
+
 
 
 PythonQtShell_QStyleOptionTabWidgetFrameV2::~PythonQtShell_QStyleOptionTabWidgetFrameV2() {
@@ -425,33 +513,5 @@ PythonQtShell_QStyleOptionTabWidgetFrameV2::~PythonQtShell_QStyleOptionTabWidget
 QStyleOptionTabWidgetFrameV2* PythonQtWrapper_QStyleOptionTabWidgetFrameV2::new_QStyleOptionTabWidgetFrameV2()
 { 
 return new PythonQtShell_QStyleOptionTabWidgetFrameV2(); }
-
-
-
-PythonQtShell_QStyleOptionTitleBar::~PythonQtShell_QStyleOptionTitleBar() {
-  PythonQtPrivate* priv = PythonQt::priv();
-  if (priv) { priv->shellClassDeleted(this); }
-}
-QStyleOptionTitleBar* PythonQtWrapper_QStyleOptionTitleBar::new_QStyleOptionTitleBar()
-{ 
-return new PythonQtShell_QStyleOptionTitleBar(); }
-
-QStyleOptionTitleBar* PythonQtWrapper_QStyleOptionTitleBar::new_QStyleOptionTitleBar(const QStyleOptionTitleBar&  other)
-{ 
-return new PythonQtShell_QStyleOptionTitleBar(other); }
-
-
-
-PythonQtShell_QStyleOptionToolBar::~PythonQtShell_QStyleOptionToolBar() {
-  PythonQtPrivate* priv = PythonQt::priv();
-  if (priv) { priv->shellClassDeleted(this); }
-}
-QStyleOptionToolBar* PythonQtWrapper_QStyleOptionToolBar::new_QStyleOptionToolBar()
-{ 
-return new PythonQtShell_QStyleOptionToolBar(); }
-
-QStyleOptionToolBar* PythonQtWrapper_QStyleOptionToolBar::new_QStyleOptionToolBar(const QStyleOptionToolBar&  other)
-{ 
-return new PythonQtShell_QStyleOptionToolBar(other); }
 
 

@@ -224,6 +224,7 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QTcpServer : public QTcpServer
 { public:
+inline void promoted_addPendingConnection(QTcpSocket*  socket) { QTcpServer::addPendingConnection(socket); }
 inline bool  promoted_hasPendingConnections() const { return QTcpServer::hasPendingConnections(); }
 inline QTcpSocket*  promoted_nextPendingConnection() { return QTcpServer::nextPendingConnection(); }
 };
@@ -234,6 +235,7 @@ public:
 public slots:
 QTcpServer* new_QTcpServer(QObject*  parent = 0);
 void delete_QTcpServer(QTcpServer* obj) { delete obj; } 
+   void addPendingConnection(QTcpServer* theWrappedObject, QTcpSocket*  socket);
    void close(QTcpServer* theWrappedObject);
    QString  errorString(QTcpServer* theWrappedObject) const;
    bool  hasPendingConnections(QTcpServer* theWrappedObject) const;
@@ -269,8 +271,8 @@ virtual qint64  bytesToWrite() const;
 virtual bool  canReadLine() const;
 virtual void childEvent(QChildEvent*  arg__1);
 virtual void close();
-virtual void connectToHost(const QHostAddress&  address, unsigned short  port, QIODevice::OpenMode  mode);
-virtual void connectToHost(const QString&  hostName, unsigned short  port, QIODevice::OpenMode  mode, QAbstractSocket::NetworkLayerProtocol  protocol);
+virtual void connectToHost(const QHostAddress&  address, unsigned short  port, QIODevice::OpenMode  mode = QIODevice::ReadWrite);
+virtual void connectToHost(const QString&  hostName, unsigned short  port, QIODevice::OpenMode  mode = QIODevice::ReadWrite, QAbstractSocket::NetworkLayerProtocol  protocol = QAbstractSocket::AnyIPProtocol);
 virtual void customEvent(QEvent*  arg__1);
 virtual void disconnectFromHost();
 virtual bool  event(QEvent*  arg__1);
@@ -288,10 +290,10 @@ virtual void setSocketOption(QAbstractSocket::SocketOption  option, const QVaria
 virtual qint64  size() const;
 virtual QVariant  socketOption(QAbstractSocket::SocketOption  option);
 virtual void timerEvent(QTimerEvent*  arg__1);
-virtual bool  waitForBytesWritten(int  msecs);
-virtual bool  waitForConnected(int  msecs);
-virtual bool  waitForDisconnected(int  msecs);
-virtual bool  waitForReadyRead(int  msecs);
+virtual bool  waitForBytesWritten(int  msecs = 30000);
+virtual bool  waitForConnected(int  msecs = 30000);
+virtual bool  waitForDisconnected(int  msecs = 30000);
+virtual bool  waitForReadyRead(int  msecs = 30000);
 virtual qint64  writeData(const char*  data, qint64  len);
 
   PythonQtInstanceWrapper* _wrapper; 
@@ -322,8 +324,8 @@ virtual qint64  bytesToWrite() const;
 virtual bool  canReadLine() const;
 virtual void childEvent(QChildEvent*  arg__1);
 virtual void close();
-virtual void connectToHost(const QHostAddress&  address, unsigned short  port, QIODevice::OpenMode  mode);
-virtual void connectToHost(const QString&  hostName, unsigned short  port, QIODevice::OpenMode  mode, QAbstractSocket::NetworkLayerProtocol  protocol);
+virtual void connectToHost(const QHostAddress&  address, unsigned short  port, QIODevice::OpenMode  mode = QIODevice::ReadWrite);
+virtual void connectToHost(const QString&  hostName, unsigned short  port, QIODevice::OpenMode  mode = QIODevice::ReadWrite, QAbstractSocket::NetworkLayerProtocol  protocol = QAbstractSocket::AnyIPProtocol);
 virtual void customEvent(QEvent*  arg__1);
 virtual void disconnectFromHost();
 virtual bool  event(QEvent*  arg__1);
@@ -341,10 +343,10 @@ virtual void setSocketOption(QAbstractSocket::SocketOption  option, const QVaria
 virtual qint64  size() const;
 virtual QVariant  socketOption(QAbstractSocket::SocketOption  option);
 virtual void timerEvent(QTimerEvent*  arg__1);
-virtual bool  waitForBytesWritten(int  msecs);
-virtual bool  waitForConnected(int  msecs);
-virtual bool  waitForDisconnected(int  msecs);
-virtual bool  waitForReadyRead(int  msecs);
+virtual bool  waitForBytesWritten(int  msecs = 30000);
+virtual bool  waitForConnected(int  msecs = 30000);
+virtual bool  waitForDisconnected(int  msecs = 30000);
+virtual bool  waitForReadyRead(int  msecs = 30000);
 virtual qint64  writeData(const char*  data, qint64  len);
 
   PythonQtInstanceWrapper* _wrapper; 

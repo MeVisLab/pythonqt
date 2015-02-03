@@ -193,8 +193,8 @@ public:
 public slots:
 QWaitCondition* new_QWaitCondition();
 void delete_QWaitCondition(QWaitCondition* obj) { delete obj; } 
-   bool  wait(QWaitCondition* theWrappedObject, QMutex*  lockedMutex, unsigned long  time = 0xffffffffUL);
-   bool  wait(QWaitCondition* theWrappedObject, QReadWriteLock*  lockedReadWriteLock, unsigned long  time = 0xffffffffUL);
+   bool  wait(QWaitCondition* theWrappedObject, QMutex*  lockedMutex, unsigned long  time = ULONG_MAX);
+   bool  wait(QWaitCondition* theWrappedObject, QReadWriteLock*  lockedReadWriteLock, unsigned long  time = ULONG_MAX);
    void wakeAll(QWaitCondition* theWrappedObject);
    void wakeOne(QWaitCondition* theWrappedObject);
 };

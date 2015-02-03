@@ -75,7 +75,9 @@ class PythonQtWrapper_QSqlDatabase : public QObject
 public:
 public slots:
 QSqlDatabase* new_QSqlDatabase();
+QSqlDatabase* new_QSqlDatabase(QSqlDriver*  driver);
 QSqlDatabase* new_QSqlDatabase(const QSqlDatabase&  other);
+QSqlDatabase* new_QSqlDatabase(const QString&  type);
 void delete_QSqlDatabase(QSqlDatabase* obj) { delete obj; } 
    QSqlDatabase  static_QSqlDatabase_addDatabase(QSqlDriver*  driver, const QString&  connectionName = QLatin1String(QSqlDatabase::defaultConnection));
    QSqlDatabase  static_QSqlDatabase_addDatabase(const QString&  type, const QString&  connectionName = QLatin1String(QSqlDatabase::defaultConnection));
@@ -169,12 +171,16 @@ class PythonQtPublicPromoter_QSqlDriver : public QSqlDriver
 { public:
 inline bool  promoted_beginTransaction() { return QSqlDriver::beginTransaction(); }
 inline bool  promoted_cancelQuery() { return QSqlDriver::cancelQuery(); }
+inline void promoted_close() { this->close(); }
 inline bool  promoted_commitTransaction() { return QSqlDriver::commitTransaction(); }
+inline QSqlResult*  promoted_createResult() const { return this->createResult(); }
 inline QString  promoted_escapeIdentifier(const QString&  identifier, QSqlDriver::IdentifierType  type) const { return QSqlDriver::escapeIdentifier(identifier, type); }
 inline QString  promoted_formatValue(const QSqlField&  field, bool  trimStrings = false) const { return QSqlDriver::formatValue(field, trimStrings); }
 inline QVariant  promoted_handle() const { return QSqlDriver::handle(); }
+inline bool  promoted_hasFeature(QSqlDriver::DriverFeature  f) const { return this->hasFeature(f); }
 inline bool  promoted_isIdentifierEscaped(const QString&  identifier, QSqlDriver::IdentifierType  type) const { return QSqlDriver::isIdentifierEscaped(identifier, type); }
 inline bool  promoted_isOpen() const { return QSqlDriver::isOpen(); }
+inline bool  promoted_open(const QString&  db, const QString&  user = QString(), const QString&  password = QString(), const QString&  host = QString(), int  port = -1, const QString&  connOpts = QString()) { return this->open(db, user, password, host, port, connOpts); }
 inline QSqlIndex  promoted_primaryIndex(const QString&  tableName) const { return QSqlDriver::primaryIndex(tableName); }
 inline QSqlRecord  promoted_record(const QString&  tableName) const { return QSqlDriver::record(tableName); }
 inline bool  promoted_rollbackTransaction() { return QSqlDriver::rollbackTransaction(); }
@@ -206,15 +212,19 @@ QSqlDriver* new_QSqlDriver(QObject*  parent = 0);
 void delete_QSqlDriver(QSqlDriver* obj) { delete obj; } 
    bool  beginTransaction(QSqlDriver* theWrappedObject);
    bool  cancelQuery(QSqlDriver* theWrappedObject);
+   void close(QSqlDriver* theWrappedObject);
    bool  commitTransaction(QSqlDriver* theWrappedObject);
+   QSqlResult*  createResult(QSqlDriver* theWrappedObject) const;
    QString  escapeIdentifier(QSqlDriver* theWrappedObject, const QString&  identifier, QSqlDriver::IdentifierType  type) const;
    QString  formatValue(QSqlDriver* theWrappedObject, const QSqlField&  field, bool  trimStrings = false) const;
    QVariant  handle(QSqlDriver* theWrappedObject) const;
+   bool  hasFeature(QSqlDriver* theWrappedObject, QSqlDriver::DriverFeature  f) const;
    bool  isIdentifierEscaped(QSqlDriver* theWrappedObject, const QString&  identifier, QSqlDriver::IdentifierType  type) const;
    bool  isOpen(QSqlDriver* theWrappedObject) const;
    bool  isOpenError(QSqlDriver* theWrappedObject) const;
    QSqlError  lastError(QSqlDriver* theWrappedObject) const;
    QSql::NumericalPrecisionPolicy  numericalPrecisionPolicy(QSqlDriver* theWrappedObject) const;
+   bool  open(QSqlDriver* theWrappedObject, const QString&  db, const QString&  user = QString(), const QString&  password = QString(), const QString&  host = QString(), int  port = -1, const QString&  connOpts = QString());
    QSqlIndex  primaryIndex(QSqlDriver* theWrappedObject, const QString&  tableName) const;
    QSqlRecord  record(QSqlDriver* theWrappedObject, const QString&  tableName) const;
    bool  rollbackTransaction(QSqlDriver* theWrappedObject);
@@ -246,12 +256,18 @@ virtual QSqlDriver*  createObject() const;
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QSqlDriverCreatorBase : public QSqlDriverCreatorBase
+{ public:
+inline QSqlDriver*  promoted_createObject() const { return this->createObject(); }
+};
+
 class PythonQtWrapper_QSqlDriverCreatorBase : public QObject
 { Q_OBJECT
 public:
 public slots:
 QSqlDriverCreatorBase* new_QSqlDriverCreatorBase();
 void delete_QSqlDriverCreatorBase(QSqlDriverCreatorBase* obj) { delete obj; } 
+   QSqlDriver*  createObject(QSqlDriverCreatorBase* theWrappedObject) const;
 };
 
 
@@ -431,27 +447,27 @@ virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 virtual void fetchMore(const QModelIndex&  parent = QModelIndex());
 virtual Qt::ItemFlags  flags(const QModelIndex&  index) const;
 virtual QVariant  headerData(int  section, Qt::Orientation  orientation, int  role = Qt::DisplayRole) const;
-virtual QModelIndex  index(int  row, int  column, const QModelIndex&  parent) const;
+virtual QModelIndex  index(int  row, int  column, const QModelIndex&  parent = QModelIndex()) const;
 virtual QModelIndex  indexInQuery(const QModelIndex&  item) const;
 virtual bool  insertColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex());
-virtual bool  insertRows(int  row, int  count, const QModelIndex&  parent);
+virtual bool  insertRows(int  row, int  count, const QModelIndex&  parent = QModelIndex());
 virtual QMap<int , QVariant >  itemData(const QModelIndex&  index) const;
-virtual QList<QModelIndex >  match(const QModelIndex&  start, int  role, const QVariant&  value, int  hits, Qt::MatchFlags  flags) const;
+virtual QList<QModelIndex >  match(const QModelIndex&  start, int  role, const QVariant&  value, int  hits = 1, Qt::MatchFlags  flags = Qt::MatchFlags(Qt::MatchStartsWith|Qt::MatchWrap)) const;
 virtual QMimeData*  mimeData(const QList<QModelIndex >&  indexes) const;
 virtual QStringList  mimeTypes() const;
 virtual bool  moveColumns(const QModelIndex&  sourceParent, int  sourceColumn, int  count, const QModelIndex&  destinationParent, int  destinationChild);
 virtual bool  moveRows(const QModelIndex&  sourceParent, int  sourceRow, int  count, const QModelIndex&  destinationParent, int  destinationChild);
 virtual void queryChange();
 virtual bool  removeColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex());
-virtual bool  removeRows(int  row, int  count, const QModelIndex&  parent);
+virtual bool  removeRows(int  row, int  count, const QModelIndex&  parent = QModelIndex());
 virtual void revert();
 virtual QHash<int , QByteArray >  roleNames() const;
 virtual int  rowCount(const QModelIndex&  parent = QModelIndex()) const;
-virtual bool  setData(const QModelIndex&  index, const QVariant&  value, int  role);
+virtual bool  setData(const QModelIndex&  index, const QVariant&  value, int  role = Qt::EditRole);
 virtual bool  setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role = Qt::EditRole);
 virtual bool  setItemData(const QModelIndex&  index, const QMap<int , QVariant >&  roles);
 virtual QModelIndex  sibling(int  row, int  column, const QModelIndex&  idx) const;
-virtual void sort(int  column, Qt::SortOrder  order);
+virtual void sort(int  column, Qt::SortOrder  order = Qt::AscendingOrder);
 virtual QSize  span(const QModelIndex&  index) const;
 virtual bool  submit();
 virtual Qt::DropActions  supportedDragActions() const;
@@ -463,10 +479,20 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QSqlQueryModel : public QSqlQueryModel
 { public:
+inline void promoted_beginInsertColumns(const QModelIndex&  parent, int  first, int  last) { QSqlQueryModel::beginInsertColumns(parent, first, last); }
+inline void promoted_beginInsertRows(const QModelIndex&  parent, int  first, int  last) { QSqlQueryModel::beginInsertRows(parent, first, last); }
+inline void promoted_beginRemoveColumns(const QModelIndex&  parent, int  first, int  last) { QSqlQueryModel::beginRemoveColumns(parent, first, last); }
+inline void promoted_beginRemoveRows(const QModelIndex&  parent, int  first, int  last) { QSqlQueryModel::beginRemoveRows(parent, first, last); }
+inline void promoted_beginResetModel() { QSqlQueryModel::beginResetModel(); }
 inline bool  promoted_canFetchMore(const QModelIndex&  parent = QModelIndex()) const { return QSqlQueryModel::canFetchMore(parent); }
 inline void promoted_clear() { QSqlQueryModel::clear(); }
 inline int  promoted_columnCount(const QModelIndex&  parent = QModelIndex()) const { return QSqlQueryModel::columnCount(parent); }
 inline QVariant  promoted_data(const QModelIndex&  item, int  role = Qt::DisplayRole) const { return QSqlQueryModel::data(item, role); }
+inline void promoted_endInsertColumns() { QSqlQueryModel::endInsertColumns(); }
+inline void promoted_endInsertRows() { QSqlQueryModel::endInsertRows(); }
+inline void promoted_endRemoveColumns() { QSqlQueryModel::endRemoveColumns(); }
+inline void promoted_endRemoveRows() { QSqlQueryModel::endRemoveRows(); }
+inline void promoted_endResetModel() { QSqlQueryModel::endResetModel(); }
 inline void promoted_fetchMore(const QModelIndex&  parent = QModelIndex()) { QSqlQueryModel::fetchMore(parent); }
 inline QVariant  promoted_headerData(int  section, Qt::Orientation  orientation, int  role = Qt::DisplayRole) const { return QSqlQueryModel::headerData(section, orientation, role); }
 inline QModelIndex  promoted_indexInQuery(const QModelIndex&  item) const { return QSqlQueryModel::indexInQuery(item); }
@@ -475,6 +501,7 @@ inline void promoted_queryChange() { QSqlQueryModel::queryChange(); }
 inline bool  promoted_removeColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex()) { return QSqlQueryModel::removeColumns(column, count, parent); }
 inline int  promoted_rowCount(const QModelIndex&  parent = QModelIndex()) const { return QSqlQueryModel::rowCount(parent); }
 inline bool  promoted_setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role = Qt::EditRole) { return QSqlQueryModel::setHeaderData(section, orientation, value, role); }
+inline void promoted_setLastError(const QSqlError&  error) { QSqlQueryModel::setLastError(error); }
 };
 
 class PythonQtWrapper_QSqlQueryModel : public QObject
@@ -483,10 +510,20 @@ public:
 public slots:
 QSqlQueryModel* new_QSqlQueryModel(QObject*  parent = 0);
 void delete_QSqlQueryModel(QSqlQueryModel* obj) { delete obj; } 
+   void beginInsertColumns(QSqlQueryModel* theWrappedObject, const QModelIndex&  parent, int  first, int  last);
+   void beginInsertRows(QSqlQueryModel* theWrappedObject, const QModelIndex&  parent, int  first, int  last);
+   void beginRemoveColumns(QSqlQueryModel* theWrappedObject, const QModelIndex&  parent, int  first, int  last);
+   void beginRemoveRows(QSqlQueryModel* theWrappedObject, const QModelIndex&  parent, int  first, int  last);
+   void beginResetModel(QSqlQueryModel* theWrappedObject);
    bool  canFetchMore(QSqlQueryModel* theWrappedObject, const QModelIndex&  parent = QModelIndex()) const;
    void clear(QSqlQueryModel* theWrappedObject);
    int  columnCount(QSqlQueryModel* theWrappedObject, const QModelIndex&  parent = QModelIndex()) const;
    QVariant  data(QSqlQueryModel* theWrappedObject, const QModelIndex&  item, int  role = Qt::DisplayRole) const;
+   void endInsertColumns(QSqlQueryModel* theWrappedObject);
+   void endInsertRows(QSqlQueryModel* theWrappedObject);
+   void endRemoveColumns(QSqlQueryModel* theWrappedObject);
+   void endRemoveRows(QSqlQueryModel* theWrappedObject);
+   void endResetModel(QSqlQueryModel* theWrappedObject);
    void fetchMore(QSqlQueryModel* theWrappedObject, const QModelIndex&  parent = QModelIndex());
    QVariant  headerData(QSqlQueryModel* theWrappedObject, int  section, Qt::Orientation  orientation, int  role = Qt::DisplayRole) const;
    QModelIndex  indexInQuery(QSqlQueryModel* theWrappedObject, const QModelIndex&  item) const;
@@ -499,6 +536,7 @@ void delete_QSqlQueryModel(QSqlQueryModel* obj) { delete obj; }
    bool  removeColumns(QSqlQueryModel* theWrappedObject, int  column, int  count, const QModelIndex&  parent = QModelIndex());
    int  rowCount(QSqlQueryModel* theWrappedObject, const QModelIndex&  parent = QModelIndex()) const;
    bool  setHeaderData(QSqlQueryModel* theWrappedObject, int  section, Qt::Orientation  orientation, const QVariant&  value, int  role = Qt::EditRole);
+   void setLastError(QSqlQueryModel* theWrappedObject, const QSqlError&  error);
    void setQuery(QSqlQueryModel* theWrappedObject, const QSqlQuery&  query);
    void setQuery(QSqlQueryModel* theWrappedObject, const QString&  query, const QSqlDatabase&  db = QSqlDatabase());
 };
@@ -578,26 +616,26 @@ public:
 
 virtual QModelIndex  buddy(const QModelIndex&  index) const;
 virtual bool  canDropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent) const;
-virtual bool  canFetchMore(const QModelIndex&  parent) const;
+virtual bool  canFetchMore(const QModelIndex&  parent = QModelIndex()) const;
 virtual void childEvent(QChildEvent*  arg__1);
 virtual void clear();
-virtual int  columnCount(const QModelIndex&  parent) const;
+virtual int  columnCount(const QModelIndex&  parent = QModelIndex()) const;
 virtual void customEvent(QEvent*  arg__1);
 virtual QVariant  data(const QModelIndex&  item, int  role = Qt::DisplayRole) const;
 virtual bool  deleteRowFromTable(int  row);
 virtual bool  dropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent);
 virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void fetchMore(const QModelIndex&  parent);
+virtual void fetchMore(const QModelIndex&  parent = QModelIndex());
 virtual Qt::ItemFlags  flags(const QModelIndex&  index) const;
-virtual QVariant  headerData(int  section, Qt::Orientation  orientation, int  role) const;
-virtual QModelIndex  index(int  row, int  column, const QModelIndex&  parent) const;
+virtual QVariant  headerData(int  section, Qt::Orientation  orientation, int  role = Qt::DisplayRole) const;
+virtual QModelIndex  index(int  row, int  column, const QModelIndex&  parent = QModelIndex()) const;
 virtual QModelIndex  indexInQuery(const QModelIndex&  item) const;
-virtual bool  insertColumns(int  column, int  count, const QModelIndex&  parent);
+virtual bool  insertColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex());
 virtual bool  insertRowIntoTable(const QSqlRecord&  values);
-virtual bool  insertRows(int  row, int  count, const QModelIndex&  parent);
+virtual bool  insertRows(int  row, int  count, const QModelIndex&  parent = QModelIndex());
 virtual QMap<int , QVariant >  itemData(const QModelIndex&  index) const;
-virtual QList<QModelIndex >  match(const QModelIndex&  start, int  role, const QVariant&  value, int  hits, Qt::MatchFlags  flags) const;
+virtual QList<QModelIndex >  match(const QModelIndex&  start, int  role, const QVariant&  value, int  hits = 1, Qt::MatchFlags  flags = Qt::MatchFlags(Qt::MatchStartsWith|Qt::MatchWrap)) const;
 virtual QMimeData*  mimeData(const QList<QModelIndex >&  indexes) const;
 virtual QStringList  mimeTypes() const;
 virtual bool  moveColumns(const QModelIndex&  sourceParent, int  sourceColumn, int  count, const QModelIndex&  destinationParent, int  destinationChild);
@@ -606,18 +644,18 @@ virtual QString  orderByClause() const;
 virtual void queryChange();
 virtual QSqlTableModel*  relationModel(int  column) const;
 virtual bool  removeColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex());
-virtual bool  removeRows(int  row, int  count, const QModelIndex&  parent);
+virtual bool  removeRows(int  row, int  count, const QModelIndex&  parent = QModelIndex());
 virtual void revert();
 virtual void revertRow(int  row);
 virtual QHash<int , QByteArray >  roleNames() const;
-virtual int  rowCount(const QModelIndex&  parent) const;
+virtual int  rowCount(const QModelIndex&  parent = QModelIndex()) const;
 virtual bool  select();
 virtual bool  selectRow(int  row);
 virtual QString  selectStatement() const;
 virtual bool  setData(const QModelIndex&  item, const QVariant&  value, int  role = Qt::EditRole);
 virtual void setEditStrategy(QSqlTableModel::EditStrategy  strategy);
 virtual void setFilter(const QString&  filter);
-virtual bool  setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role);
+virtual bool  setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role = Qt::EditRole);
 virtual bool  setItemData(const QModelIndex&  index, const QMap<int , QVariant >&  roles);
 virtual void setRelation(int  column, const QSqlRelation&  relation);
 virtual void setSort(int  column, Qt::SortOrder  order);
@@ -723,18 +761,51 @@ virtual void virtual_hook(int  id, void*  data);
 
 class PythonQtPublicPromoter_QSqlResult : public QSqlResult
 { public:
+enum BindingSyntax{
+  PositionalBinding = QSqlResult::PositionalBinding,   NamedBinding = QSqlResult::NamedBinding};
+enum VirtualHookOperation{
+};
+inline void promoted_addBindValue(const QVariant&  val, QSql::ParamType  type) { QSqlResult::addBindValue(val, type); }
+inline int  promoted_at() const { return QSqlResult::at(); }
 inline void promoted_bindValue(const QString&  placeholder, const QVariant&  val, QSql::ParamType  type) { QSqlResult::bindValue(placeholder, val, type); }
 inline void promoted_bindValue(int  pos, const QVariant&  val, QSql::ParamType  type) { QSqlResult::bindValue(pos, val, type); }
+inline QSql::ParamType  promoted_bindValueType(const QString&  placeholder) const { return QSqlResult::bindValueType(placeholder); }
+inline QSql::ParamType  promoted_bindValueType(int  pos) const { return QSqlResult::bindValueType(pos); }
+inline int  promoted_bindingSyntax() const { return QSqlResult::bindingSyntax(); }
+inline QVariant  promoted_boundValue(const QString&  placeholder) const { return QSqlResult::boundValue(placeholder); }
+inline QVariant  promoted_boundValue(int  pos) const { return QSqlResult::boundValue(pos); }
+inline int  promoted_boundValueCount() const { return QSqlResult::boundValueCount(); }
+inline QString  promoted_boundValueName(int  pos) const { return QSqlResult::boundValueName(pos); }
+inline QVector<QVariant >&  promoted_boundValues() const { return QSqlResult::boundValues(); }
+inline void promoted_clear() { QSqlResult::clear(); }
+inline QVariant  promoted_data(int  i) { return this->data(i); }
 inline void promoted_detachFromResultSet() { QSqlResult::detachFromResultSet(); }
+inline const QSqlDriver*  promoted_driver() const { return QSqlResult::driver(); }
 inline bool  promoted_exec() { return QSqlResult::exec(); }
 inline bool  promoted_execBatch(bool  arrayBind = false) { return QSqlResult::execBatch(arrayBind); }
+inline QString  promoted_executedQuery() const { return QSqlResult::executedQuery(); }
+inline bool  promoted_fetch(int  i) { return this->fetch(i); }
+inline bool  promoted_fetchFirst() { return this->fetchFirst(); }
+inline bool  promoted_fetchLast() { return this->fetchLast(); }
 inline bool  promoted_fetchNext() { return QSqlResult::fetchNext(); }
 inline bool  promoted_fetchPrevious() { return QSqlResult::fetchPrevious(); }
 inline QVariant  promoted_handle() const { return QSqlResult::handle(); }
+inline bool  promoted_hasOutValues() const { return QSqlResult::hasOutValues(); }
+inline bool  promoted_isActive() const { return QSqlResult::isActive(); }
+inline bool  promoted_isForwardOnly() const { return QSqlResult::isForwardOnly(); }
+inline bool  promoted_isNull(int  i) { return this->isNull(i); }
+inline bool  promoted_isSelect() const { return QSqlResult::isSelect(); }
+inline bool  promoted_isValid() const { return QSqlResult::isValid(); }
+inline QSqlError  promoted_lastError() const { return QSqlResult::lastError(); }
 inline QVariant  promoted_lastInsertId() const { return QSqlResult::lastInsertId(); }
+inline QString  promoted_lastQuery() const { return QSqlResult::lastQuery(); }
 inline bool  promoted_nextResult() { return QSqlResult::nextResult(); }
+inline int  promoted_numRowsAffected() { return this->numRowsAffected(); }
+inline QSql::NumericalPrecisionPolicy  promoted_numericalPrecisionPolicy() const { return QSqlResult::numericalPrecisionPolicy(); }
 inline bool  promoted_prepare(const QString&  query) { return QSqlResult::prepare(query); }
 inline QSqlRecord  promoted_record() const { return QSqlResult::record(); }
+inline bool  promoted_reset(const QString&  sqlquery) { return this->reset(sqlquery); }
+inline void promoted_resetBindCount() { QSqlResult::resetBindCount(); }
 inline bool  promoted_savePrepare(const QString&  sqlquery) { return QSqlResult::savePrepare(sqlquery); }
 inline void promoted_setActive(bool  a) { QSqlResult::setActive(a); }
 inline void promoted_setAt(int  at) { QSqlResult::setAt(at); }
@@ -743,25 +814,61 @@ inline void promoted_setLastError(const QSqlError&  e) { QSqlResult::setLastErro
 inline void promoted_setNumericalPrecisionPolicy(QSql::NumericalPrecisionPolicy  policy) { QSqlResult::setNumericalPrecisionPolicy(policy); }
 inline void promoted_setQuery(const QString&  query) { QSqlResult::setQuery(query); }
 inline void promoted_setSelect(bool  s) { QSqlResult::setSelect(s); }
+inline int  promoted_size() { return this->size(); }
 };
 
 class PythonQtWrapper_QSqlResult : public QObject
 { Q_OBJECT
 public:
+Q_ENUMS(BindingSyntax VirtualHookOperation )
+enum BindingSyntax{
+  PositionalBinding = PythonQtPublicPromoter_QSqlResult::PositionalBinding,   NamedBinding = PythonQtPublicPromoter_QSqlResult::NamedBinding};
+enum VirtualHookOperation{
+};
 public slots:
+QSqlResult* new_QSqlResult(const QSqlDriver*  db);
 void delete_QSqlResult(QSqlResult* obj) { delete obj; } 
+   void addBindValue(QSqlResult* theWrappedObject, const QVariant&  val, QSql::ParamType  type);
+   int  at(QSqlResult* theWrappedObject) const;
    void bindValue(QSqlResult* theWrappedObject, const QString&  placeholder, const QVariant&  val, QSql::ParamType  type);
    void bindValue(QSqlResult* theWrappedObject, int  pos, const QVariant&  val, QSql::ParamType  type);
+   QSql::ParamType  bindValueType(QSqlResult* theWrappedObject, const QString&  placeholder) const;
+   QSql::ParamType  bindValueType(QSqlResult* theWrappedObject, int  pos) const;
+   int  bindingSyntax(QSqlResult* theWrappedObject) const;
+   QVariant  boundValue(QSqlResult* theWrappedObject, const QString&  placeholder) const;
+   QVariant  boundValue(QSqlResult* theWrappedObject, int  pos) const;
+   int  boundValueCount(QSqlResult* theWrappedObject) const;
+   QString  boundValueName(QSqlResult* theWrappedObject, int  pos) const;
+   QVector<QVariant >*  boundValues(QSqlResult* theWrappedObject) const;
+   void clear(QSqlResult* theWrappedObject);
+   QVariant  data(QSqlResult* theWrappedObject, int  i);
    void detachFromResultSet(QSqlResult* theWrappedObject);
+   const QSqlDriver*  driver(QSqlResult* theWrappedObject) const;
    bool  exec(QSqlResult* theWrappedObject);
    bool  execBatch(QSqlResult* theWrappedObject, bool  arrayBind = false);
+   QString  executedQuery(QSqlResult* theWrappedObject) const;
+   bool  fetch(QSqlResult* theWrappedObject, int  i);
+   bool  fetchFirst(QSqlResult* theWrappedObject);
+   bool  fetchLast(QSqlResult* theWrappedObject);
    bool  fetchNext(QSqlResult* theWrappedObject);
    bool  fetchPrevious(QSqlResult* theWrappedObject);
    QVariant  handle(QSqlResult* theWrappedObject) const;
+   bool  hasOutValues(QSqlResult* theWrappedObject) const;
+   bool  isActive(QSqlResult* theWrappedObject) const;
+   bool  isForwardOnly(QSqlResult* theWrappedObject) const;
+   bool  isNull(QSqlResult* theWrappedObject, int  i);
+   bool  isSelect(QSqlResult* theWrappedObject) const;
+   bool  isValid(QSqlResult* theWrappedObject) const;
+   QSqlError  lastError(QSqlResult* theWrappedObject) const;
    QVariant  lastInsertId(QSqlResult* theWrappedObject) const;
+   QString  lastQuery(QSqlResult* theWrappedObject) const;
    bool  nextResult(QSqlResult* theWrappedObject);
+   int  numRowsAffected(QSqlResult* theWrappedObject);
+   QSql::NumericalPrecisionPolicy  numericalPrecisionPolicy(QSqlResult* theWrappedObject) const;
    bool  prepare(QSqlResult* theWrappedObject, const QString&  query);
    QSqlRecord  record(QSqlResult* theWrappedObject) const;
+   bool  reset(QSqlResult* theWrappedObject, const QString&  sqlquery);
+   void resetBindCount(QSqlResult* theWrappedObject);
    bool  savePrepare(QSqlResult* theWrappedObject, const QString&  sqlquery);
    void setActive(QSqlResult* theWrappedObject, bool  a);
    void setAt(QSqlResult* theWrappedObject, int  at);
@@ -770,6 +877,7 @@ void delete_QSqlResult(QSqlResult* obj) { delete obj; }
    void setNumericalPrecisionPolicy(QSqlResult* theWrappedObject, QSql::NumericalPrecisionPolicy  policy);
    void setQuery(QSqlResult* theWrappedObject, const QString&  query);
    void setSelect(QSqlResult* theWrappedObject, bool  s);
+   int  size(QSqlResult* theWrappedObject);
 };
 
 
@@ -785,26 +893,26 @@ public:
 
 virtual QModelIndex  buddy(const QModelIndex&  index) const;
 virtual bool  canDropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent) const;
-virtual bool  canFetchMore(const QModelIndex&  parent) const;
+virtual bool  canFetchMore(const QModelIndex&  parent = QModelIndex()) const;
 virtual void childEvent(QChildEvent*  arg__1);
 virtual void clear();
-virtual int  columnCount(const QModelIndex&  parent) const;
+virtual int  columnCount(const QModelIndex&  parent = QModelIndex()) const;
 virtual void customEvent(QEvent*  arg__1);
 virtual QVariant  data(const QModelIndex&  idx, int  role = Qt::DisplayRole) const;
 virtual bool  deleteRowFromTable(int  row);
 virtual bool  dropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent);
 virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void fetchMore(const QModelIndex&  parent);
+virtual void fetchMore(const QModelIndex&  parent = QModelIndex());
 virtual Qt::ItemFlags  flags(const QModelIndex&  index) const;
 virtual QVariant  headerData(int  section, Qt::Orientation  orientation, int  role = Qt::DisplayRole) const;
-virtual QModelIndex  index(int  row, int  column, const QModelIndex&  parent) const;
+virtual QModelIndex  index(int  row, int  column, const QModelIndex&  parent = QModelIndex()) const;
 virtual QModelIndex  indexInQuery(const QModelIndex&  item) const;
-virtual bool  insertColumns(int  column, int  count, const QModelIndex&  parent);
+virtual bool  insertColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex());
 virtual bool  insertRowIntoTable(const QSqlRecord&  values);
 virtual bool  insertRows(int  row, int  count, const QModelIndex&  parent = QModelIndex());
 virtual QMap<int , QVariant >  itemData(const QModelIndex&  index) const;
-virtual QList<QModelIndex >  match(const QModelIndex&  start, int  role, const QVariant&  value, int  hits, Qt::MatchFlags  flags) const;
+virtual QList<QModelIndex >  match(const QModelIndex&  start, int  role, const QVariant&  value, int  hits = 1, Qt::MatchFlags  flags = Qt::MatchFlags(Qt::MatchStartsWith|Qt::MatchWrap)) const;
 virtual QMimeData*  mimeData(const QList<QModelIndex >&  indexes) const;
 virtual QStringList  mimeTypes() const;
 virtual bool  moveColumns(const QModelIndex&  sourceParent, int  sourceColumn, int  count, const QModelIndex&  destinationParent, int  destinationChild);
@@ -823,7 +931,7 @@ virtual QString  selectStatement() const;
 virtual bool  setData(const QModelIndex&  index, const QVariant&  value, int  role = Qt::EditRole);
 virtual void setEditStrategy(QSqlTableModel::EditStrategy  strategy);
 virtual void setFilter(const QString&  filter);
-virtual bool  setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role);
+virtual bool  setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role = Qt::EditRole);
 virtual bool  setItemData(const QModelIndex&  index, const QMap<int , QVariant >&  roles);
 virtual void setSort(int  column, Qt::SortOrder  order);
 virtual void setTable(const QString&  tableName);
@@ -861,6 +969,8 @@ inline QString  promoted_selectStatement() const { return QSqlTableModel::select
 inline bool  promoted_setData(const QModelIndex&  index, const QVariant&  value, int  role = Qt::EditRole) { return QSqlTableModel::setData(index, value, role); }
 inline void promoted_setEditStrategy(QSqlTableModel::EditStrategy  strategy) { QSqlTableModel::setEditStrategy(strategy); }
 inline void promoted_setFilter(const QString&  filter) { QSqlTableModel::setFilter(filter); }
+inline void promoted_setPrimaryKey(const QSqlIndex&  key) { QSqlTableModel::setPrimaryKey(key); }
+inline void promoted_setQuery(const QSqlQuery&  query) { QSqlTableModel::setQuery(query); }
 inline void promoted_setSort(int  column, Qt::SortOrder  order) { QSqlTableModel::setSort(column, order); }
 inline void promoted_setTable(const QString&  tableName) { QSqlTableModel::setTable(tableName); }
 inline void promoted_sort(int  column, Qt::SortOrder  order) { QSqlTableModel::sort(column, order); }
@@ -907,6 +1017,8 @@ void delete_QSqlTableModel(QSqlTableModel* obj) { delete obj; }
    bool  setData(QSqlTableModel* theWrappedObject, const QModelIndex&  index, const QVariant&  value, int  role = Qt::EditRole);
    void setEditStrategy(QSqlTableModel* theWrappedObject, QSqlTableModel::EditStrategy  strategy);
    void setFilter(QSqlTableModel* theWrappedObject, const QString&  filter);
+   void setPrimaryKey(QSqlTableModel* theWrappedObject, const QSqlIndex&  key);
+   void setQuery(QSqlTableModel* theWrappedObject, const QSqlQuery&  query);
    bool  setRecord(QSqlTableModel* theWrappedObject, int  row, const QSqlRecord&  record);
    void setSort(QSqlTableModel* theWrappedObject, int  column, Qt::SortOrder  order);
    void setTable(QSqlTableModel* theWrappedObject, const QString&  tableName);

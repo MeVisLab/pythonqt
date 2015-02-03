@@ -4,6 +4,7 @@
 #include "com_trolltech_qt_xml1.h"
 
 
+
 void PythonQt_init_QtXml(PyObject* module) {
 PythonQt::priv()->registerCPPClass("QDomAttr", "QDomNode", "QtXml", PythonQtCreateObject<PythonQtWrapper_QDomAttr>, NULL, module, PythonQt::Type_NonZero|PythonQt::Type_RichCompare);
 PythonQt::priv()->registerCPPClass("QDomCDATASection", "QDomText", "QtXml", PythonQtCreateObject<PythonQtWrapper_QDomCDATASection>, NULL, module, PythonQt::Type_NonZero|PythonQt::Type_RichCompare);

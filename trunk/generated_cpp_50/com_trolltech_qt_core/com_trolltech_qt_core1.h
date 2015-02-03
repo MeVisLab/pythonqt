@@ -58,13 +58,13 @@ virtual bool  canFetchMore(const QModelIndex&  parent) const;
 virtual void childEvent(QChildEvent*  arg__1);
 virtual int  columnCount(const QModelIndex&  parent = QModelIndex()) const;
 virtual void customEvent(QEvent*  arg__1);
-virtual QVariant  data(const QModelIndex&  proxyIndex, int  role) const;
+virtual QVariant  data(const QModelIndex&  proxyIndex, int  role = Qt::DisplayRole) const;
 virtual bool  dropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent);
 virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 virtual void fetchMore(const QModelIndex&  parent);
 virtual Qt::ItemFlags  flags(const QModelIndex&  index) const;
-virtual bool  hasChildren(const QModelIndex&  parent) const;
+virtual bool  hasChildren(const QModelIndex&  parent = QModelIndex()) const;
 virtual QVariant  headerData(int  section, Qt::Orientation  orientation, int  role) const;
 virtual QModelIndex  index(int  row, int  column, const QModelIndex&  parent = QModelIndex()) const;
 virtual bool  insertColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex());
@@ -85,12 +85,12 @@ virtual bool  removeRows(int  row, int  count, const QModelIndex&  parent = QMod
 virtual void revert();
 virtual QHash<int , QByteArray >  roleNames() const;
 virtual int  rowCount(const QModelIndex&  parent = QModelIndex()) const;
-virtual bool  setData(const QModelIndex&  index, const QVariant&  value, int  role);
-virtual bool  setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role);
+virtual bool  setData(const QModelIndex&  index, const QVariant&  value, int  role = Qt::EditRole);
+virtual bool  setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role = Qt::EditRole);
 virtual bool  setItemData(const QModelIndex&  index, const QMap<int , QVariant >&  roles);
 virtual void setSourceModel(QAbstractItemModel*  sourceModel);
 virtual QModelIndex  sibling(int  row, int  column, const QModelIndex&  idx) const;
-virtual void sort(int  column, Qt::SortOrder  order);
+virtual void sort(int  column, Qt::SortOrder  order = Qt::AscendingOrder);
 virtual QSize  span(const QModelIndex&  index) const;
 virtual bool  submit();
 virtual Qt::DropActions  supportedDragActions() const;
@@ -814,6 +814,9 @@ inline void promoted_childEvent(QChildEvent*  arg__1) { QObject::childEvent(arg_
 inline void promoted_customEvent(QEvent*  arg__1) { QObject::customEvent(arg__1); }
 inline bool  promoted_event(QEvent*  arg__1) { return QObject::event(arg__1); }
 inline bool  promoted_eventFilter(QObject*  arg__1, QEvent*  arg__2) { return QObject::eventFilter(arg__1, arg__2); }
+inline bool  promoted_isSignalConnected(const QMetaMethod&  signal) const { return QObject::isSignalConnected(signal); }
+inline QObject*  promoted_sender() const { return QObject::sender(); }
+inline int  promoted_senderSignalIndex() const { return QObject::senderSignalIndex(); }
 inline void promoted_timerEvent(QTimerEvent*  arg__1) { QObject::timerEvent(arg__1); }
 };
 
@@ -833,12 +836,15 @@ void delete_QObject(QObject* obj) { delete obj; }
    bool  event(QObject* theWrappedObject, QEvent*  arg__1);
    bool  eventFilter(QObject* theWrappedObject, QObject*  arg__1, QEvent*  arg__2);
    void installEventFilter(QObject* theWrappedObject, QObject*  arg__1);
+   bool  isSignalConnected(QObject* theWrappedObject, const QMetaMethod&  signal) const;
    bool  isWidgetType(QObject* theWrappedObject) const;
    bool  isWindowType(QObject* theWrappedObject) const;
    void killTimer(QObject* theWrappedObject, int  id);
    void moveToThread(QObject* theWrappedObject, QThread*  thread);
    QString  objectName(QObject* theWrappedObject) const;
    void removeEventFilter(QObject* theWrappedObject, QObject*  arg__1);
+   QObject*  sender(QObject* theWrappedObject) const;
+   int  senderSignalIndex(QObject* theWrappedObject) const;
    void setObjectName(QObject* theWrappedObject, const QString&  name);
    bool  signalsBlocked(QObject* theWrappedObject) const;
    int  startTimer(QObject* theWrappedObject, int  interval, Qt::TimerType  timerType = Qt::CoarseTimer);
@@ -1015,6 +1021,7 @@ inline bool  promoted_canReadLine() const { return QProcess::canReadLine(); }
 inline void promoted_close() { QProcess::close(); }
 inline bool  promoted_isSequential() const { return QProcess::isSequential(); }
 inline qint64  promoted_readData(char*  data, qint64  maxlen) { return QProcess::readData(data, maxlen); }
+inline void promoted_setProcessState(QProcess::ProcessState  state) { QProcess::setProcessState(state); }
 inline void promoted_setupChildProcess() { QProcess::setupChildProcess(); }
 inline bool  promoted_waitForBytesWritten(int  msecs = 30000) { return QProcess::waitForBytesWritten(msecs); }
 inline bool  promoted_waitForReadyRead(int  msecs = 30000) { return QProcess::waitForReadyRead(msecs); }
@@ -1063,6 +1070,7 @@ void delete_QProcess(QProcess* obj) { delete obj; }
    void setEnvironment(QProcess* theWrappedObject, const QStringList&  environment);
    void setProcessChannelMode(QProcess* theWrappedObject, QProcess::ProcessChannelMode  mode);
    void setProcessEnvironment(QProcess* theWrappedObject, const QProcessEnvironment&  environment);
+   void setProcessState(QProcess* theWrappedObject, QProcess::ProcessState  state);
    void setReadChannel(QProcess* theWrappedObject, QProcess::ProcessChannel  channel);
    void setStandardErrorFile(QProcess* theWrappedObject, const QString&  fileName, QIODevice::OpenMode  mode = QIODevice::Truncate);
    void setStandardInputFile(QProcess* theWrappedObject, const QString&  fileName);

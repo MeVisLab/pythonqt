@@ -3,6 +3,7 @@
 #include "com_trolltech_qt_xmlpatterns0.h"
 
 
+
 void PythonQt_init_QtXmlPatterns(PyObject* module) {
 PythonQt::priv()->registerClass(&QAbstractMessageHandler::staticMetaObject, "QtXmlPatterns", PythonQtCreateObject<PythonQtWrapper_QAbstractMessageHandler>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QAbstractMessageHandler>, module, 0);
 PythonQt::priv()->registerClass(&QAbstractUriResolver::staticMetaObject, "QtXmlPatterns", PythonQtCreateObject<PythonQtWrapper_QAbstractUriResolver>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QAbstractUriResolver>, module, 0);
