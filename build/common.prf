@@ -31,8 +31,11 @@ PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp
       }
       else:contains( QT_MINOR_VERSION, 2 ) {
         PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_50
-      } else {
+      }
+	  else:contains( QT_MINOR_VERSION, 3 ) {
         PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_53
+      } else {
+        PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_54
       }
     }
   }
