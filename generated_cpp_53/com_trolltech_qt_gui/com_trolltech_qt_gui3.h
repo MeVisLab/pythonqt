@@ -311,7 +311,7 @@ Q_ENUMS(enum_1 )
 enum enum_1{
   Type = QGraphicsProxyWidget::Type};
 public slots:
-QGraphicsProxyWidget* new_QGraphicsProxyWidget(QGraphicsItem*  parent = 0, Qt::WindowFlags  wFlags = 0);
+QGraphicsProxyWidget* new_QGraphicsProxyWidget(PythonQtNewOwnerOfThis<QGraphicsItem* >  parent = 0, Qt::WindowFlags  wFlags = 0);
 void delete_QGraphicsProxyWidget(QGraphicsProxyWidget* obj) { delete obj; } 
    void contextMenuEvent(QGraphicsProxyWidget* theWrappedObject, QGraphicsSceneContextMenuEvent*  event);
    QGraphicsProxyWidget*  createProxyForChildWidget(QGraphicsProxyWidget* theWrappedObject, QWidget*  child);
@@ -341,7 +341,7 @@ void delete_QGraphicsProxyWidget(QGraphicsProxyWidget* obj) { delete obj; }
    void paint(QGraphicsProxyWidget* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget);
    void resizeEvent(QGraphicsProxyWidget* theWrappedObject, QGraphicsSceneResizeEvent*  event);
    void setGeometry(QGraphicsProxyWidget* theWrappedObject, const QRectF&  rect);
-   void setWidget(QGraphicsProxyWidget* theWrappedObject, QWidget*  widget);
+   void setWidget(QGraphicsProxyWidget* theWrappedObject, PythonQtPassOwnershipToCPP<QWidget* >  widget);
    void showEvent(QGraphicsProxyWidget* theWrappedObject, QShowEvent*  event);
    QSizeF  sizeHint(QGraphicsProxyWidget* theWrappedObject, Qt::SizeHint  which, const QSizeF&  constraint = QSizeF()) const;
    QRectF  subWidgetRect(QGraphicsProxyWidget* theWrappedObject, const QWidget*  widget) const;
@@ -578,7 +578,7 @@ void delete_QGraphicsScene(QGraphicsScene* obj) { delete obj; }
    QGraphicsWidget*  activeWindow(QGraphicsScene* theWrappedObject) const;
    QGraphicsEllipseItem*  addEllipse(QGraphicsScene* theWrappedObject, const QRectF&  rect, const QPen&  pen = QPen(), const QBrush&  brush = QBrush());
    QGraphicsEllipseItem*  addEllipse(QGraphicsScene* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h, const QPen&  pen = QPen(), const QBrush&  brush = QBrush());
-   void addItem(QGraphicsScene* theWrappedObject, QGraphicsItem*  item);
+   void addItem(QGraphicsScene* theWrappedObject, PythonQtPassOwnershipToCPP<QGraphicsItem* >  item);
    QGraphicsLineItem*  addLine(QGraphicsScene* theWrappedObject, const QLineF&  line, const QPen&  pen = QPen());
    QGraphicsLineItem*  addLine(QGraphicsScene* theWrappedObject, qreal  x1, qreal  y1, qreal  x2, qreal  y2, const QPen&  pen = QPen());
    QGraphicsPathItem*  addPath(QGraphicsScene* theWrappedObject, const QPainterPath&  path, const QPen&  pen = QPen(), const QBrush&  brush = QBrush());
@@ -588,7 +588,7 @@ void delete_QGraphicsScene(QGraphicsScene* obj) { delete obj; }
    QGraphicsRectItem*  addRect(QGraphicsScene* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h, const QPen&  pen = QPen(), const QBrush&  brush = QBrush());
    QGraphicsSimpleTextItem*  addSimpleText(QGraphicsScene* theWrappedObject, const QString&  text, const QFont&  font = QFont());
    QGraphicsTextItem*  addText(QGraphicsScene* theWrappedObject, const QString&  text, const QFont&  font = QFont());
-   QGraphicsProxyWidget*  addWidget(QGraphicsScene* theWrappedObject, QWidget*  widget, Qt::WindowFlags  wFlags = 0);
+   QGraphicsProxyWidget*  addWidget(QGraphicsScene* theWrappedObject, PythonQtPassOwnershipToCPP<QWidget* >  widget, Qt::WindowFlags  wFlags = 0);
    QBrush  backgroundBrush(QGraphicsScene* theWrappedObject) const;
    int  bspTreeDepth(QGraphicsScene* theWrappedObject) const;
    void clearFocus(QGraphicsScene* theWrappedObject);
@@ -636,7 +636,7 @@ void delete_QGraphicsScene(QGraphicsScene* obj) { delete obj; }
    void mousePressEvent(QGraphicsScene* theWrappedObject, QGraphicsSceneMouseEvent*  event);
    void mouseReleaseEvent(QGraphicsScene* theWrappedObject, QGraphicsSceneMouseEvent*  event);
    QPalette  palette(QGraphicsScene* theWrappedObject) const;
-   void removeItem(QGraphicsScene* theWrappedObject, QGraphicsItem*  item);
+   void removeItem(QGraphicsScene* theWrappedObject, PythonQtPassOwnershipToPython<QGraphicsItem* >  item);
    void render(QGraphicsScene* theWrappedObject, QPainter*  painter, const QRectF&  target = QRectF(), const QRectF&  source = QRectF(), Qt::AspectRatioMode  aspectRatioMode = Qt::KeepAspectRatio);
    QRectF  sceneRect(QGraphicsScene* theWrappedObject) const;
    QList<QGraphicsItem* >  selectedItems(QGraphicsScene* theWrappedObject) const;
@@ -1057,6 +1057,7 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QGraphicsTransform : public QGraphicsTransform
 { public:
+inline void promoted_applyTo(QMatrix4x4*  matrix) const { this->applyTo(matrix); }
 inline void promoted_update() { QGraphicsTransform::update(); }
 };
 
@@ -1066,6 +1067,7 @@ public:
 public slots:
 QGraphicsTransform* new_QGraphicsTransform(QObject*  parent = 0);
 void delete_QGraphicsTransform(QGraphicsTransform* obj) { delete obj; } 
+   void applyTo(QGraphicsTransform* theWrappedObject, QMatrix4x4*  matrix) const;
 };
 
 
@@ -1419,7 +1421,7 @@ void delete_QGraphicsWidget(QGraphicsWidget* obj) { delete obj; }
    void setFont(QGraphicsWidget* theWrappedObject, const QFont&  font);
    void setGeometry(QGraphicsWidget* theWrappedObject, const QRectF&  rect);
    void setGeometry(QGraphicsWidget* theWrappedObject, qreal  x, qreal  y, qreal  w, qreal  h);
-   void setLayout(QGraphicsWidget* theWrappedObject, QGraphicsLayout*  layout);
+   void setLayout(QGraphicsWidget* theWrappedObject, PythonQtPassOwnershipToCPP<QGraphicsLayout* >  layout);
    void setLayoutDirection(QGraphicsWidget* theWrappedObject, Qt::LayoutDirection  direction);
    void setPalette(QGraphicsWidget* theWrappedObject, const QPalette&  palette);
    void setShortcutAutoRepeat(QGraphicsWidget* theWrappedObject, int  id, bool  enabled = true);
@@ -1506,11 +1508,11 @@ QGridLayout* new_QGridLayout();
 QGridLayout* new_QGridLayout(QWidget*  parent);
 void delete_QGridLayout(QGridLayout* obj) { delete obj; } 
    void addItem(QGridLayout* theWrappedObject, QLayoutItem*  arg__1);
-   void addItem(QGridLayout* theWrappedObject, QLayoutItem*  item, int  row, int  column, int  rowSpan = 1, int  columnSpan = 1, Qt::Alignment  arg__6 = 0);
-   void addLayout(QGridLayout* theWrappedObject, QLayout*  arg__1, int  row, int  column, Qt::Alignment  arg__4 = 0);
-   void addLayout(QGridLayout* theWrappedObject, QLayout*  arg__1, int  row, int  column, int  rowSpan, int  columnSpan, Qt::Alignment  arg__6 = 0);
-   void addWidget(QGridLayout* theWrappedObject, QWidget*  arg__1, int  row, int  column, Qt::Alignment  arg__4 = 0);
-   void addWidget(QGridLayout* theWrappedObject, QWidget*  arg__1, int  row, int  column, int  rowSpan, int  columnSpan, Qt::Alignment  arg__6 = 0);
+   void addItem(QGridLayout* theWrappedObject, PythonQtPassOwnershipToCPP<QLayoutItem* >  item, int  row, int  column, int  rowSpan = 1, int  columnSpan = 1, Qt::Alignment  arg__6 = 0);
+   void addLayout(QGridLayout* theWrappedObject, PythonQtPassOwnershipToCPP<QLayout* >  arg__1, int  row, int  column, Qt::Alignment  arg__4 = 0);
+   void addLayout(QGridLayout* theWrappedObject, PythonQtPassOwnershipToCPP<QLayout* >  arg__1, int  row, int  column, int  rowSpan, int  columnSpan, Qt::Alignment  arg__6 = 0);
+   void addWidget(QGridLayout* theWrappedObject, PythonQtPassOwnershipToCPP<QWidget* >  arg__1, int  row, int  column, Qt::Alignment  arg__4 = 0);
+   void addWidget(QGridLayout* theWrappedObject, PythonQtPassOwnershipToCPP<QWidget* >  arg__1, int  row, int  column, int  rowSpan, int  columnSpan, Qt::Alignment  arg__6 = 0);
    QRect  cellRect(QGridLayout* theWrappedObject, int  row, int  column) const;
    int  columnCount(QGridLayout* theWrappedObject) const;
    int  columnMinimumWidth(QGridLayout* theWrappedObject, int  column) const;

@@ -100,6 +100,7 @@ enum StyleOptionVersion{
 public slots:
 QStyleOptionSizeGrip* new_QStyleOptionSizeGrip();
 QStyleOptionSizeGrip* new_QStyleOptionSizeGrip(const QStyleOptionSizeGrip&  other);
+QStyleOptionSizeGrip* new_QStyleOptionSizeGrip(int  version);
 void delete_QStyleOptionSizeGrip(QStyleOptionSizeGrip* obj) { delete obj; } 
 void py_set_corner(QStyleOptionSizeGrip* theWrappedObject, Qt::Corner  corner){ theWrappedObject->corner = corner; }
 Qt::Corner  py_get_corner(QStyleOptionSizeGrip* theWrappedObject){ return theWrappedObject->corner; }
@@ -133,6 +134,7 @@ enum StyleOptionVersion{
 public slots:
 QStyleOptionSlider* new_QStyleOptionSlider();
 QStyleOptionSlider* new_QStyleOptionSlider(const QStyleOptionSlider&  other);
+QStyleOptionSlider* new_QStyleOptionSlider(int  version);
 void delete_QStyleOptionSlider(QStyleOptionSlider* obj) { delete obj; } 
 void py_set_dialWrapping(QStyleOptionSlider* theWrappedObject, bool  dialWrapping){ theWrappedObject->dialWrapping = dialWrapping; }
 bool  py_get_dialWrapping(QStyleOptionSlider* theWrappedObject){ return theWrappedObject->dialWrapping; }
@@ -188,6 +190,7 @@ enum StyleOptionVersion{
 public slots:
 QStyleOptionSpinBox* new_QStyleOptionSpinBox();
 QStyleOptionSpinBox* new_QStyleOptionSpinBox(const QStyleOptionSpinBox&  other);
+QStyleOptionSpinBox* new_QStyleOptionSpinBox(int  version);
 void delete_QStyleOptionSpinBox(QStyleOptionSpinBox* obj) { delete obj; } 
 void py_set_buttonSymbols(QStyleOptionSpinBox* theWrappedObject, QAbstractSpinBox::ButtonSymbols  buttonSymbols){ theWrappedObject->buttonSymbols = buttonSymbols; }
 QAbstractSpinBox::ButtonSymbols  py_get_buttonSymbols(QStyleOptionSpinBox* theWrappedObject){ return theWrappedObject->buttonSymbols; }
@@ -236,6 +239,7 @@ Q_DECLARE_FLAGS(TabFeatures, TabFeature)
 public slots:
 QStyleOptionTab* new_QStyleOptionTab();
 QStyleOptionTab* new_QStyleOptionTab(const QStyleOptionTab&  other);
+QStyleOptionTab* new_QStyleOptionTab(int  version);
 void delete_QStyleOptionTab(QStyleOptionTab* obj) { delete obj; } 
 void py_set_cornerWidgets(QStyleOptionTab* theWrappedObject, QStyleOptionTab::CornerWidgets  cornerWidgets){ theWrappedObject->cornerWidgets = cornerWidgets; }
 QStyleOptionTab::CornerWidgets  py_get_cornerWidgets(QStyleOptionTab* theWrappedObject){ return theWrappedObject->cornerWidgets; }
@@ -291,6 +295,7 @@ enum StyleOptionVersion{
 public slots:
 QStyleOptionTabBarBase* new_QStyleOptionTabBarBase();
 QStyleOptionTabBarBase* new_QStyleOptionTabBarBase(const QStyleOptionTabBarBase&  other);
+QStyleOptionTabBarBase* new_QStyleOptionTabBarBase(int  version);
 void delete_QStyleOptionTabBarBase(QStyleOptionTabBarBase* obj) { delete obj; } 
 void py_set_documentMode(QStyleOptionTabBarBase* theWrappedObject, bool  documentMode){ theWrappedObject->documentMode = documentMode; }
 bool  py_get_documentMode(QStyleOptionTabBarBase* theWrappedObject){ return theWrappedObject->documentMode; }
@@ -411,6 +416,7 @@ enum StyleOptionVersion{
 public slots:
 QStyleOptionTabWidgetFrame* new_QStyleOptionTabWidgetFrame();
 QStyleOptionTabWidgetFrame* new_QStyleOptionTabWidgetFrame(const QStyleOptionTabWidgetFrame&  other);
+QStyleOptionTabWidgetFrame* new_QStyleOptionTabWidgetFrame(int  version);
 void delete_QStyleOptionTabWidgetFrame(QStyleOptionTabWidgetFrame* obj) { delete obj; } 
 void py_set_leftCornerWidgetSize(QStyleOptionTabWidgetFrame* theWrappedObject, QSize  leftCornerWidgetSize){ theWrappedObject->leftCornerWidgetSize = leftCornerWidgetSize; }
 QSize  py_get_leftCornerWidgetSize(QStyleOptionTabWidgetFrame* theWrappedObject){ return theWrappedObject->leftCornerWidgetSize; }
@@ -485,6 +491,7 @@ enum StyleOptionVersion{
 public slots:
 QStyleOptionTitleBar* new_QStyleOptionTitleBar();
 QStyleOptionTitleBar* new_QStyleOptionTitleBar(const QStyleOptionTitleBar&  other);
+QStyleOptionTitleBar* new_QStyleOptionTitleBar(int  version);
 void delete_QStyleOptionTitleBar(QStyleOptionTitleBar* obj) { delete obj; } 
 void py_set_icon(QStyleOptionTitleBar* theWrappedObject, QIcon  icon){ theWrappedObject->icon = icon; }
 QIcon  py_get_icon(QStyleOptionTitleBar* theWrappedObject){ return theWrappedObject->icon; }
@@ -530,6 +537,7 @@ Q_DECLARE_FLAGS(ToolBarFeatures, ToolBarFeature)
 public slots:
 QStyleOptionToolBar* new_QStyleOptionToolBar();
 QStyleOptionToolBar* new_QStyleOptionToolBar(const QStyleOptionToolBar&  other);
+QStyleOptionToolBar* new_QStyleOptionToolBar(int  version);
 void delete_QStyleOptionToolBar(QStyleOptionToolBar* obj) { delete obj; } 
 void py_set_features(QStyleOptionToolBar* theWrappedObject, QStyleOptionToolBar::ToolBarFeatures  features){ theWrappedObject->features = features; }
 QStyleOptionToolBar::ToolBarFeatures  py_get_features(QStyleOptionToolBar* theWrappedObject){ return theWrappedObject->features; }
@@ -577,6 +585,7 @@ enum TabPosition{
 public slots:
 QStyleOptionToolBox* new_QStyleOptionToolBox();
 QStyleOptionToolBox* new_QStyleOptionToolBox(const QStyleOptionToolBox&  other);
+QStyleOptionToolBox* new_QStyleOptionToolBox(int  version);
 void delete_QStyleOptionToolBox(QStyleOptionToolBox* obj) { delete obj; } 
 void py_set_icon(QStyleOptionToolBox* theWrappedObject, QIcon  icon){ theWrappedObject->icon = icon; }
 QIcon  py_get_icon(QStyleOptionToolBox* theWrappedObject){ return theWrappedObject->icon; }
@@ -647,6 +656,7 @@ Q_DECLARE_FLAGS(ToolButtonFeatures, ToolButtonFeature)
 public slots:
 QStyleOptionToolButton* new_QStyleOptionToolButton();
 QStyleOptionToolButton* new_QStyleOptionToolButton(const QStyleOptionToolButton&  other);
+QStyleOptionToolButton* new_QStyleOptionToolButton(int  version);
 void delete_QStyleOptionToolButton(QStyleOptionToolButton* obj) { delete obj; } 
 void py_set_arrowType(QStyleOptionToolButton* theWrappedObject, Qt::ArrowType  arrowType){ theWrappedObject->arrowType = arrowType; }
 Qt::ArrowType  py_get_arrowType(QStyleOptionToolButton* theWrappedObject){ return theWrappedObject->arrowType; }
@@ -702,6 +712,7 @@ Q_DECLARE_FLAGS(ViewItemFeatures, ViewItemFeature)
 public slots:
 QStyleOptionViewItem* new_QStyleOptionViewItem();
 QStyleOptionViewItem* new_QStyleOptionViewItem(const QStyleOptionViewItem&  other);
+QStyleOptionViewItem* new_QStyleOptionViewItem(int  version);
 void delete_QStyleOptionViewItem(QStyleOptionViewItem* obj) { delete obj; } 
 void py_set_backgroundBrush(QStyleOptionViewItem* theWrappedObject, QBrush  backgroundBrush){ theWrappedObject->backgroundBrush = backgroundBrush; }
 QBrush  py_get_backgroundBrush(QStyleOptionViewItem* theWrappedObject){ return theWrappedObject->backgroundBrush; }
@@ -860,12 +871,18 @@ virtual void timerEvent(QTimerEvent*  arg__1);
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QStylePlugin : public QStylePlugin
+{ public:
+inline QStyle*  promoted_create(const QString&  key) { return this->create(key); }
+};
+
 class PythonQtWrapper_QStylePlugin : public QObject
 { Q_OBJECT
 public:
 public slots:
 QStylePlugin* new_QStylePlugin(QObject*  parent = 0);
 void delete_QStylePlugin(QStylePlugin* obj) { delete obj; } 
+   QStyle*  create(QStylePlugin* theWrappedObject, const QString&  key);
 };
 
 
@@ -953,6 +970,14 @@ virtual QSurface::SurfaceType  surfaceType() const;
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QSurface : public QSurface
+{ public:
+inline QSurfaceFormat  promoted_format() const { return this->format(); }
+inline QSize  promoted_size() const { return this->size(); }
+inline QPlatformSurface*  promoted_surfaceHandle() const { return this->surfaceHandle(); }
+inline QSurface::SurfaceType  promoted_surfaceType() const { return this->surfaceType(); }
+};
+
 class PythonQtWrapper_QSurface : public QObject
 { Q_OBJECT
 public:
@@ -964,8 +989,12 @@ enum SurfaceType{
 public slots:
 QSurface* new_QSurface(QSurface::SurfaceClass  type);
 void delete_QSurface(QSurface* obj) { delete obj; } 
+   QSurfaceFormat  format(QSurface* theWrappedObject) const;
+   QSize  size(QSurface* theWrappedObject) const;
    bool  supportsOpenGL(QSurface* theWrappedObject) const;
    QSurface::SurfaceClass  surfaceClass(QSurface* theWrappedObject) const;
+   QPlatformSurface*  surfaceHandle(QSurface* theWrappedObject) const;
+   QSurface::SurfaceType  surfaceType(QSurface* theWrappedObject) const;
 };
 
 
@@ -1093,6 +1122,7 @@ inline QTextBlock  promoted_currentBlock() const { return QSyntaxHighlighter::cu
 inline int  promoted_currentBlockState() const { return QSyntaxHighlighter::currentBlockState(); }
 inline QTextBlockUserData*  promoted_currentBlockUserData() const { return QSyntaxHighlighter::currentBlockUserData(); }
 inline QTextCharFormat  promoted_format(int  pos) const { return QSyntaxHighlighter::format(pos); }
+inline void promoted_highlightBlock(const QString&  text) { this->highlightBlock(text); }
 inline int  promoted_previousBlockState() const { return QSyntaxHighlighter::previousBlockState(); }
 inline void promoted_setCurrentBlockState(int  newState) { QSyntaxHighlighter::setCurrentBlockState(newState); }
 inline void promoted_setCurrentBlockUserData(QTextBlockUserData*  data) { QSyntaxHighlighter::setCurrentBlockUserData(data); }
@@ -1113,6 +1143,7 @@ void delete_QSyntaxHighlighter(QSyntaxHighlighter* obj) { delete obj; }
    QTextBlockUserData*  currentBlockUserData(QSyntaxHighlighter* theWrappedObject) const;
    QTextDocument*  document(QSyntaxHighlighter* theWrappedObject) const;
    QTextCharFormat  format(QSyntaxHighlighter* theWrappedObject, int  pos) const;
+   void highlightBlock(QSyntaxHighlighter* theWrappedObject, const QString&  text);
    int  previousBlockState(QSyntaxHighlighter* theWrappedObject) const;
    void setCurrentBlockState(QSyntaxHighlighter* theWrappedObject, int  newState);
    void setCurrentBlockUserData(QSyntaxHighlighter* theWrappedObject, QTextBlockUserData*  data);
@@ -1415,8 +1446,8 @@ public:
 public slots:
 QTabWidget* new_QTabWidget(QWidget*  parent = 0);
 void delete_QTabWidget(QTabWidget* obj) { delete obj; } 
-   int  addTab(QTabWidget* theWrappedObject, QWidget*  widget, const QIcon&  icon, const QString&  label);
-   int  addTab(QTabWidget* theWrappedObject, QWidget*  widget, const QString&  arg__2);
+   int  addTab(QTabWidget* theWrappedObject, PythonQtPassOwnershipToCPP<QWidget* >  widget, const QIcon&  icon, const QString&  label);
+   int  addTab(QTabWidget* theWrappedObject, PythonQtPassOwnershipToCPP<QWidget* >  widget, const QString&  arg__2);
    void changeEvent(QTabWidget* theWrappedObject, QEvent*  arg__1);
    void clear(QTabWidget* theWrappedObject);
    QWidget*  cornerWidget(QTabWidget* theWrappedObject, Qt::Corner  corner = Qt::TopRightCorner) const;
@@ -1431,8 +1462,8 @@ void delete_QTabWidget(QTabWidget* obj) { delete obj; }
    QSize  iconSize(QTabWidget* theWrappedObject) const;
    int  indexOf(QTabWidget* theWrappedObject, QWidget*  widget) const;
    void initStyleOption(QTabWidget* theWrappedObject, QStyleOptionTabWidgetFrame*  option) const;
-   int  insertTab(QTabWidget* theWrappedObject, int  index, QWidget*  widget, const QIcon&  icon, const QString&  label);
-   int  insertTab(QTabWidget* theWrappedObject, int  index, QWidget*  widget, const QString&  arg__3);
+   int  insertTab(QTabWidget* theWrappedObject, int  index, PythonQtPassOwnershipToCPP<QWidget* >  widget, const QIcon&  icon, const QString&  label);
+   int  insertTab(QTabWidget* theWrappedObject, int  index, PythonQtPassOwnershipToCPP<QWidget* >  widget, const QString&  arg__3);
    bool  isMovable(QTabWidget* theWrappedObject) const;
    bool  isTabEnabled(QTabWidget* theWrappedObject, int  index) const;
    void keyPressEvent(QTabWidget* theWrappedObject, QKeyEvent*  arg__1);
@@ -1440,12 +1471,12 @@ void delete_QTabWidget(QTabWidget* obj) { delete obj; }
    void paintEvent(QTabWidget* theWrappedObject, QPaintEvent*  arg__1);
    void removeTab(QTabWidget* theWrappedObject, int  index);
    void resizeEvent(QTabWidget* theWrappedObject, QResizeEvent*  arg__1);
-   void setCornerWidget(QTabWidget* theWrappedObject, QWidget*  w, Qt::Corner  corner = Qt::TopRightCorner);
+   void setCornerWidget(QTabWidget* theWrappedObject, PythonQtPassOwnershipToCPP<QWidget* >  w, Qt::Corner  corner = Qt::TopRightCorner);
    void setDocumentMode(QTabWidget* theWrappedObject, bool  set);
    void setElideMode(QTabWidget* theWrappedObject, Qt::TextElideMode  arg__1);
    void setIconSize(QTabWidget* theWrappedObject, const QSize&  size);
    void setMovable(QTabWidget* theWrappedObject, bool  movable);
-   void setTabBar(QTabWidget* theWrappedObject, QTabBar*  arg__1);
+   void setTabBar(QTabWidget* theWrappedObject, PythonQtPassOwnershipToCPP<QTabBar* >  arg__1);
    void setTabEnabled(QTabWidget* theWrappedObject, int  index, bool  arg__2);
    void setTabIcon(QTabWidget* theWrappedObject, int  index, const QIcon&  icon);
    void setTabPosition(QTabWidget* theWrappedObject, QTabWidget::TabPosition  arg__1);

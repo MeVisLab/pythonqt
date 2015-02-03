@@ -2,6 +2,7 @@
 #include <PythonQtConversion.h>
 #include "com_trolltech_qt_gui_builtin0.h"
 
+
 void PythonQt_init_QtGuiBuiltin(PyObject* module) {
 PythonQt::priv()->registerCPPClass("QBitmap", "QPixmap", "QtGui", PythonQtCreateObject<PythonQtWrapper_QBitmap>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QBitmap>, module, PythonQt::Type_NonZero);
 PythonQt::priv()->registerCPPClass("QBrush", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QBrush>, NULL, module, PythonQt::Type_RichCompare);

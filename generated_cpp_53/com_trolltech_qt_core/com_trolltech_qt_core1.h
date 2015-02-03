@@ -247,6 +247,7 @@ inline void promoted_close() { QIODevice::close(); }
 inline bool  promoted_isSequential() const { return QIODevice::isSequential(); }
 inline bool  promoted_open(QIODevice::OpenMode  mode) { return QIODevice::open(mode); }
 inline qint64  promoted_pos() const { return QIODevice::pos(); }
+inline qint64  promoted_readData(char*  data, qint64  maxlen) { return this->readData(data, maxlen); }
 inline qint64  promoted_readLineData(char*  data, qint64  maxlen) { return QIODevice::readLineData(data, maxlen); }
 inline bool  promoted_reset() { return QIODevice::reset(); }
 inline bool  promoted_seek(qint64  pos) { return QIODevice::seek(pos); }
@@ -255,6 +256,7 @@ inline void promoted_setOpenMode(QIODevice::OpenMode  openMode) { QIODevice::set
 inline qint64  promoted_size() const { return QIODevice::size(); }
 inline bool  promoted_waitForBytesWritten(int  msecs) { return QIODevice::waitForBytesWritten(msecs); }
 inline bool  promoted_waitForReadyRead(int  msecs) { return QIODevice::waitForReadyRead(msecs); }
+inline qint64  promoted_writeData(const char*  data, qint64  len) { return this->writeData(data, len); }
 };
 
 class PythonQtWrapper_QIODevice : public QObject
@@ -288,6 +290,7 @@ void delete_QIODevice(QIODevice* obj) { delete obj; }
    bool  putChar(QIODevice* theWrappedObject, char  c);
    QByteArray  read(QIODevice* theWrappedObject, qint64  maxlen);
    QByteArray  readAll(QIODevice* theWrappedObject);
+   qint64  readData(QIODevice* theWrappedObject, char*  data, qint64  maxlen);
    QByteArray  readLine(QIODevice* theWrappedObject, qint64  maxlen = 0);
    qint64  readLineData(QIODevice* theWrappedObject, char*  data, qint64  maxlen);
    bool  reset(QIODevice* theWrappedObject);
@@ -301,6 +304,7 @@ void delete_QIODevice(QIODevice* obj) { delete obj; }
    bool  waitForReadyRead(QIODevice* theWrappedObject, int  msecs);
    qint64  write(QIODevice* theWrappedObject, const QByteArray&  data);
    qint64  write(QIODevice* theWrappedObject, const char*  data);
+   qint64  writeData(QIODevice* theWrappedObject, const char*  data, qint64  len);
 };
 
 
@@ -1147,7 +1151,7 @@ public slots:
 QMutex* new_QMutex(QMutex::RecursionMode  mode = QMutex::NonRecursive);
 void delete_QMutex(QMutex* obj) { delete obj; } 
    void lock(QMutex* theWrappedObject);
-   bool  tryLock(QMutex* theWrappedObject, int  timeout);
+   bool  tryLock(QMutex* theWrappedObject, int  timeout = 0);
    void unlock(QMutex* theWrappedObject);
 };
 
@@ -1210,7 +1214,7 @@ void delete_QObject(QObject* obj) { delete obj; }
    int  senderSignalIndex(QObject* theWrappedObject) const;
    void setObjectName(QObject* theWrappedObject, const QString&  name);
    bool  signalsBlocked(QObject* theWrappedObject) const;
-   int  startTimer(QObject* theWrappedObject, int  interval, Qt::TimerType  timerType);
+   int  startTimer(QObject* theWrappedObject, int  interval, Qt::TimerType  timerType = Qt::CoarseTimer);
    QThread*  thread(QObject* theWrappedObject) const;
    void timerEvent(QObject* theWrappedObject, QTimerEvent*  arg__1);
 };

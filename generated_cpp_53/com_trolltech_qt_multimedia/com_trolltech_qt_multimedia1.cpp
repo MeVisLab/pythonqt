@@ -221,6 +221,20 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QMediaService::timerEvent(arg__1);
 }
+QMediaService* PythonQtWrapper_QMediaService::new_QMediaService(QObject*  parent)
+{ 
+return new PythonQtShell_QMediaService(parent); }
+
+void PythonQtWrapper_QMediaService::releaseControl(QMediaService* theWrappedObject, QMediaControl*  control)
+{
+  ( ((PythonQtPublicPromoter_QMediaService*)theWrappedObject)->promoted_releaseControl(control));
+}
+
+QMediaControl*  PythonQtWrapper_QMediaService::requestControl(QMediaService* theWrappedObject, const char*  name)
+{
+  return ( ((PythonQtPublicPromoter_QMediaService*)theWrappedObject)->promoted_requestControl(name));
+}
+
 
 
 QMediaTimeInterval* PythonQtWrapper_QMediaTimeInterval::new_QMediaTimeInterval()

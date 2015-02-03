@@ -521,6 +521,10 @@ QTextTableCellFormat* PythonQtWrapper_QTextTableCellFormat::new_QTextTableCellFo
 { 
 return new PythonQtShell_QTextTableCellFormat(); }
 
+QTextTableCellFormat* PythonQtWrapper_QTextTableCellFormat::new_QTextTableCellFormat(const QTextFormat&  fmt)
+{ 
+return new PythonQtShell_QTextTableCellFormat(fmt); }
+
 qreal  PythonQtWrapper_QTextTableCellFormat::bottomPadding(QTextTableCellFormat* theWrappedObject) const
 {
   return ( theWrappedObject->bottomPadding());
@@ -580,6 +584,10 @@ PythonQtShell_QTextTableFormat::~PythonQtShell_QTextTableFormat() {
 QTextTableFormat* PythonQtWrapper_QTextTableFormat::new_QTextTableFormat()
 { 
 return new PythonQtShell_QTextTableFormat(); }
+
+QTextTableFormat* PythonQtWrapper_QTextTableFormat::new_QTextTableFormat(const QTextFormat&  fmt)
+{ 
+return new PythonQtShell_QTextTableFormat(fmt); }
 
 Qt::Alignment  PythonQtWrapper_QTextTableFormat::alignment(QTextTableFormat* theWrappedObject) const
 {
@@ -3969,12 +3977,12 @@ QToolBox* PythonQtWrapper_QToolBox::new_QToolBox(QWidget*  parent, Qt::WindowFla
 { 
 return new PythonQtShell_QToolBox(parent, f); }
 
-int  PythonQtWrapper_QToolBox::addItem(QToolBox* theWrappedObject, QWidget*  widget, const QIcon&  icon, const QString&  text)
+int  PythonQtWrapper_QToolBox::addItem(QToolBox* theWrappedObject, PythonQtPassOwnershipToCPP<QWidget* >  widget, const QIcon&  icon, const QString&  text)
 {
   return ( theWrappedObject->addItem(widget, icon, text));
 }
 
-int  PythonQtWrapper_QToolBox::addItem(QToolBox* theWrappedObject, QWidget*  widget, const QString&  text)
+int  PythonQtWrapper_QToolBox::addItem(QToolBox* theWrappedObject, PythonQtPassOwnershipToCPP<QWidget* >  widget, const QString&  text)
 {
   return ( theWrappedObject->addItem(widget, text));
 }
@@ -4009,12 +4017,12 @@ int  PythonQtWrapper_QToolBox::indexOf(QToolBox* theWrappedObject, QWidget*  wid
   return ( theWrappedObject->indexOf(widget));
 }
 
-int  PythonQtWrapper_QToolBox::insertItem(QToolBox* theWrappedObject, int  index, QWidget*  widget, const QIcon&  icon, const QString&  text)
+int  PythonQtWrapper_QToolBox::insertItem(QToolBox* theWrappedObject, int  index, PythonQtPassOwnershipToCPP<QWidget* >  widget, const QIcon&  icon, const QString&  text)
 {
   return ( theWrappedObject->insertItem(index, widget, icon, text));
 }
 
-int  PythonQtWrapper_QToolBox::insertItem(QToolBox* theWrappedObject, int  index, QWidget*  widget, const QString&  text)
+int  PythonQtWrapper_QToolBox::insertItem(QToolBox* theWrappedObject, int  index, PythonQtPassOwnershipToCPP<QWidget* >  widget, const QString&  text)
 {
   return ( theWrappedObject->insertItem(index, widget, text));
 }
@@ -5776,11 +5784,6 @@ QPolygonF  PythonQtWrapper_QTransform::map(QTransform* theWrappedObject, const Q
 QRegion  PythonQtWrapper_QTransform::map(QTransform* theWrappedObject, const QRegion&  r) const
 {
   return ( theWrappedObject->map(r));
-}
-
-void PythonQtWrapper_QTransform::map(QTransform* theWrappedObject, qreal  x, qreal  y, qreal*  tx, qreal*  ty) const
-{
-  ( theWrappedObject->map(x, y, tx, ty));
 }
 
 QRect  PythonQtWrapper_QTransform::mapRect(QTransform* theWrappedObject, const QRect&  arg__1) const
@@ -10273,12 +10276,12 @@ QTreeWidget* PythonQtWrapper_QTreeWidget::new_QTreeWidget(QWidget*  parent)
 { 
 return new PythonQtShell_QTreeWidget(parent); }
 
-void PythonQtWrapper_QTreeWidget::addTopLevelItem(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item)
+void PythonQtWrapper_QTreeWidget::addTopLevelItem(QTreeWidget* theWrappedObject, PythonQtPassOwnershipToCPP<QTreeWidgetItem* >  item)
 {
   ( theWrappedObject->addTopLevelItem(item));
 }
 
-void PythonQtWrapper_QTreeWidget::addTopLevelItems(QTreeWidget* theWrappedObject, const QList<QTreeWidgetItem* >&  items)
+void PythonQtWrapper_QTreeWidget::addTopLevelItems(QTreeWidget* theWrappedObject, PythonQtPassOwnershipToCPP<QList<QTreeWidgetItem* > >  items)
 {
   ( theWrappedObject->addTopLevelItems(items));
 }
@@ -10343,12 +10346,12 @@ int  PythonQtWrapper_QTreeWidget::indexOfTopLevelItem(QTreeWidget* theWrappedObj
   return ( theWrappedObject->indexOfTopLevelItem(item));
 }
 
-void PythonQtWrapper_QTreeWidget::insertTopLevelItem(QTreeWidget* theWrappedObject, int  index, QTreeWidgetItem*  item)
+void PythonQtWrapper_QTreeWidget::insertTopLevelItem(QTreeWidget* theWrappedObject, int  index, PythonQtPassOwnershipToCPP<QTreeWidgetItem* >  item)
 {
   ( theWrappedObject->insertTopLevelItem(index, item));
 }
 
-void PythonQtWrapper_QTreeWidget::insertTopLevelItems(QTreeWidget* theWrappedObject, int  index, const QList<QTreeWidgetItem* >&  items)
+void PythonQtWrapper_QTreeWidget::insertTopLevelItems(QTreeWidget* theWrappedObject, int  index, PythonQtPassOwnershipToCPP<QList<QTreeWidgetItem* > >  items)
 {
   ( theWrappedObject->insertTopLevelItems(index, items));
 }
@@ -10438,7 +10441,7 @@ void PythonQtWrapper_QTreeWidget::setFirstItemColumnSpanned(QTreeWidget* theWrap
   ( theWrappedObject->setFirstItemColumnSpanned(item, span));
 }
 
-void PythonQtWrapper_QTreeWidget::setHeaderItem(QTreeWidget* theWrappedObject, QTreeWidgetItem*  item)
+void PythonQtWrapper_QTreeWidget::setHeaderItem(QTreeWidget* theWrappedObject, PythonQtPassOwnershipToCPP<QTreeWidgetItem* >  item)
 {
   ( theWrappedObject->setHeaderItem(item));
 }
@@ -10478,7 +10481,7 @@ Qt::DropActions  PythonQtWrapper_QTreeWidget::supportedDropActions(QTreeWidget* 
   return ( ((PythonQtPublicPromoter_QTreeWidget*)theWrappedObject)->promoted_supportedDropActions());
 }
 
-QTreeWidgetItem*  PythonQtWrapper_QTreeWidget::takeTopLevelItem(QTreeWidget* theWrappedObject, int  index)
+PythonQtPassOwnershipToPython<QTreeWidgetItem*  > PythonQtWrapper_QTreeWidget::takeTopLevelItem(QTreeWidget* theWrappedObject, int  index)
 {
   return ( theWrappedObject->takeTopLevelItem(index));
 }
@@ -10651,27 +10654,27 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QTreeWidgetItem::write(out0);
 }
-QTreeWidgetItem* PythonQtWrapper_QTreeWidgetItem::new_QTreeWidgetItem(QTreeWidget*  view, QTreeWidgetItem*  after, int  type)
+QTreeWidgetItem* PythonQtWrapper_QTreeWidgetItem::new_QTreeWidgetItem(PythonQtNewOwnerOfThis<QTreeWidget* >  view, QTreeWidgetItem*  after, int  type)
 { 
 return new PythonQtShell_QTreeWidgetItem(view, after, type); }
 
-QTreeWidgetItem* PythonQtWrapper_QTreeWidgetItem::new_QTreeWidgetItem(QTreeWidget*  view, const QStringList&  strings, int  type)
+QTreeWidgetItem* PythonQtWrapper_QTreeWidgetItem::new_QTreeWidgetItem(PythonQtNewOwnerOfThis<QTreeWidget* >  view, const QStringList&  strings, int  type)
 { 
 return new PythonQtShell_QTreeWidgetItem(view, strings, type); }
 
-QTreeWidgetItem* PythonQtWrapper_QTreeWidgetItem::new_QTreeWidgetItem(QTreeWidget*  view, int  type)
+QTreeWidgetItem* PythonQtWrapper_QTreeWidgetItem::new_QTreeWidgetItem(PythonQtNewOwnerOfThis<QTreeWidget* >  view, int  type)
 { 
 return new PythonQtShell_QTreeWidgetItem(view, type); }
 
-QTreeWidgetItem* PythonQtWrapper_QTreeWidgetItem::new_QTreeWidgetItem(QTreeWidgetItem*  parent, QTreeWidgetItem*  after, int  type)
+QTreeWidgetItem* PythonQtWrapper_QTreeWidgetItem::new_QTreeWidgetItem(PythonQtNewOwnerOfThis<QTreeWidgetItem* >  parent, QTreeWidgetItem*  after, int  type)
 { 
 return new PythonQtShell_QTreeWidgetItem(parent, after, type); }
 
-QTreeWidgetItem* PythonQtWrapper_QTreeWidgetItem::new_QTreeWidgetItem(QTreeWidgetItem*  parent, const QStringList&  strings, int  type)
+QTreeWidgetItem* PythonQtWrapper_QTreeWidgetItem::new_QTreeWidgetItem(PythonQtNewOwnerOfThis<QTreeWidgetItem* >  parent, const QStringList&  strings, int  type)
 { 
 return new PythonQtShell_QTreeWidgetItem(parent, strings, type); }
 
-QTreeWidgetItem* PythonQtWrapper_QTreeWidgetItem::new_QTreeWidgetItem(QTreeWidgetItem*  parent, int  type)
+QTreeWidgetItem* PythonQtWrapper_QTreeWidgetItem::new_QTreeWidgetItem(PythonQtNewOwnerOfThis<QTreeWidgetItem* >  parent, int  type)
 { 
 return new PythonQtShell_QTreeWidgetItem(parent, type); }
 
@@ -10683,12 +10686,12 @@ QTreeWidgetItem* PythonQtWrapper_QTreeWidgetItem::new_QTreeWidgetItem(int  type)
 { 
 return new PythonQtShell_QTreeWidgetItem(type); }
 
-void PythonQtWrapper_QTreeWidgetItem::addChild(QTreeWidgetItem* theWrappedObject, QTreeWidgetItem*  child)
+void PythonQtWrapper_QTreeWidgetItem::addChild(QTreeWidgetItem* theWrappedObject, PythonQtPassOwnershipToCPP<QTreeWidgetItem* >  child)
 {
   ( theWrappedObject->addChild(child));
 }
 
-void PythonQtWrapper_QTreeWidgetItem::addChildren(QTreeWidgetItem* theWrappedObject, const QList<QTreeWidgetItem* >&  children)
+void PythonQtWrapper_QTreeWidgetItem::addChildren(QTreeWidgetItem* theWrappedObject, PythonQtPassOwnershipToCPP<QList<QTreeWidgetItem* > >  children)
 {
   ( theWrappedObject->addChildren(children));
 }
@@ -10763,12 +10766,12 @@ int  PythonQtWrapper_QTreeWidgetItem::indexOfChild(QTreeWidgetItem* theWrappedOb
   return ( theWrappedObject->indexOfChild(child));
 }
 
-void PythonQtWrapper_QTreeWidgetItem::insertChild(QTreeWidgetItem* theWrappedObject, int  index, QTreeWidgetItem*  child)
+void PythonQtWrapper_QTreeWidgetItem::insertChild(QTreeWidgetItem* theWrappedObject, int  index, PythonQtPassOwnershipToCPP<QTreeWidgetItem* >  child)
 {
   ( theWrappedObject->insertChild(index, child));
 }
 
-void PythonQtWrapper_QTreeWidgetItem::insertChildren(QTreeWidgetItem* theWrappedObject, int  index, const QList<QTreeWidgetItem* >&  children)
+void PythonQtWrapper_QTreeWidgetItem::insertChildren(QTreeWidgetItem* theWrappedObject, int  index, PythonQtPassOwnershipToCPP<QList<QTreeWidgetItem* > >  children)
 {
   ( theWrappedObject->insertChildren(index, children));
 }
@@ -10813,7 +10816,7 @@ QTreeWidgetItem*  PythonQtWrapper_QTreeWidgetItem::parent(QTreeWidgetItem* theWr
   return ( theWrappedObject->parent());
 }
 
-void PythonQtWrapper_QTreeWidgetItem::removeChild(QTreeWidgetItem* theWrappedObject, QTreeWidgetItem*  child)
+void PythonQtWrapper_QTreeWidgetItem::removeChild(QTreeWidgetItem* theWrappedObject, PythonQtPassOwnershipToPython<QTreeWidgetItem* >  child)
 {
   ( theWrappedObject->removeChild(child));
 }
@@ -10928,12 +10931,12 @@ QString  PythonQtWrapper_QTreeWidgetItem::statusTip(QTreeWidgetItem* theWrappedO
   return ( theWrappedObject->statusTip(column));
 }
 
-QTreeWidgetItem*  PythonQtWrapper_QTreeWidgetItem::takeChild(QTreeWidgetItem* theWrappedObject, int  index)
+PythonQtPassOwnershipToPython<QTreeWidgetItem*  > PythonQtWrapper_QTreeWidgetItem::takeChild(QTreeWidgetItem* theWrappedObject, int  index)
 {
   return ( theWrappedObject->takeChild(index));
 }
 
-QList<QTreeWidgetItem* >  PythonQtWrapper_QTreeWidgetItem::takeChildren(QTreeWidgetItem* theWrappedObject)
+PythonQtPassOwnershipToCPP<QList<QTreeWidgetItem* >  > PythonQtWrapper_QTreeWidgetItem::takeChildren(QTreeWidgetItem* theWrappedObject)
 {
   return ( theWrappedObject->takeChildren());
 }
@@ -14147,6 +14150,11 @@ QLocale  PythonQtWrapper_QValidator::locale(QValidator* theWrappedObject) const
 void PythonQtWrapper_QValidator::setLocale(QValidator* theWrappedObject, const QLocale&  locale)
 {
   ( theWrappedObject->setLocale(locale));
+}
+
+QValidator::State  PythonQtWrapper_QValidator::validate(QValidator* theWrappedObject, QString&  arg__1, int&  arg__2) const
+{
+  return ( ((PythonQtPublicPromoter_QValidator*)theWrappedObject)->promoted_validate(arg__1, arg__2));
 }
 
 

@@ -3,6 +3,7 @@
 #include "com_trolltech_qt_opengl0.h"
 
 
+
 void PythonQt_init_QtOpenGL(PyObject* module) {
 PythonQt::priv()->registerCPPClass("QGLBuffer", "", "QtOpenGL", PythonQtCreateObject<PythonQtWrapper_QGLBuffer>, NULL, module, 0);
 PythonQt::priv()->registerCPPClass("QGLColormap", "", "QtOpenGL", PythonQtCreateObject<PythonQtWrapper_QGLColormap>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QGLColormap>, module, 0);

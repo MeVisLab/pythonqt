@@ -70,6 +70,7 @@
 #include <qlist.h>
 #include <qlocale.h>
 #include <qmargins.h>
+#include <qmatrix.h>
 #include <qmenu.h>
 #include <qmetaobject.h>
 #include <qmimedata.h>
@@ -180,6 +181,7 @@ inline void promoted_mouseMoveEvent(QMouseEvent*  e) { QAbstractButton::mouseMov
 inline void promoted_mousePressEvent(QMouseEvent*  e) { QAbstractButton::mousePressEvent(e); }
 inline void promoted_mouseReleaseEvent(QMouseEvent*  e) { QAbstractButton::mouseReleaseEvent(e); }
 inline void promoted_nextCheckState() { QAbstractButton::nextCheckState(); }
+inline void promoted_paintEvent(QPaintEvent*  e) { this->paintEvent(e); }
 inline void promoted_timerEvent(QTimerEvent*  e) { QAbstractButton::timerEvent(e); }
 };
 
@@ -211,6 +213,7 @@ void delete_QAbstractButton(QAbstractButton* obj) { delete obj; }
    void mousePressEvent(QAbstractButton* theWrappedObject, QMouseEvent*  e);
    void mouseReleaseEvent(QAbstractButton* theWrappedObject, QMouseEvent*  e);
    void nextCheckState(QAbstractButton* theWrappedObject);
+   void paintEvent(QAbstractButton* theWrappedObject, QPaintEvent*  e);
    void setAutoExclusive(QAbstractButton* theWrappedObject, bool  arg__1);
    void setAutoRepeat(QAbstractButton* theWrappedObject, bool  arg__1);
    void setAutoRepeatDelay(QAbstractButton* theWrappedObject, int  arg__1);
@@ -331,9 +334,11 @@ inline QWidget*  promoted_createEditor(QWidget*  parent, const QStyleOptionViewI
 inline void promoted_destroyEditor(QWidget*  editor, const QModelIndex&  index) const { QAbstractItemDelegate::destroyEditor(editor, index); }
 inline bool  promoted_editorEvent(QEvent*  event, QAbstractItemModel*  model, const QStyleOptionViewItem&  option, const QModelIndex&  index) { return QAbstractItemDelegate::editorEvent(event, model, option, index); }
 inline bool  promoted_helpEvent(QHelpEvent*  event, QAbstractItemView*  view, const QStyleOptionViewItem&  option, const QModelIndex&  index) { return QAbstractItemDelegate::helpEvent(event, view, option, index); }
+inline void promoted_paint(QPainter*  painter, const QStyleOptionViewItem&  option, const QModelIndex&  index) const { this->paint(painter, option, index); }
 inline QVector<int >  promoted_paintingRoles() const { return QAbstractItemDelegate::paintingRoles(); }
 inline void promoted_setEditorData(QWidget*  editor, const QModelIndex&  index) const { QAbstractItemDelegate::setEditorData(editor, index); }
 inline void promoted_setModelData(QWidget*  editor, QAbstractItemModel*  model, const QModelIndex&  index) const { QAbstractItemDelegate::setModelData(editor, model, index); }
+inline QSize  promoted_sizeHint(const QStyleOptionViewItem&  option, const QModelIndex&  index) const { return this->sizeHint(option, index); }
 inline void promoted_updateEditorGeometry(QWidget*  editor, const QStyleOptionViewItem&  option, const QModelIndex&  index) const { QAbstractItemDelegate::updateEditorGeometry(editor, option, index); }
 };
 
@@ -350,9 +355,11 @@ void delete_QAbstractItemDelegate(QAbstractItemDelegate* obj) { delete obj; }
    void destroyEditor(QAbstractItemDelegate* theWrappedObject, QWidget*  editor, const QModelIndex&  index) const;
    bool  editorEvent(QAbstractItemDelegate* theWrappedObject, QEvent*  event, QAbstractItemModel*  model, const QStyleOptionViewItem&  option, const QModelIndex&  index);
    bool  helpEvent(QAbstractItemDelegate* theWrappedObject, QHelpEvent*  event, QAbstractItemView*  view, const QStyleOptionViewItem&  option, const QModelIndex&  index);
+   void paint(QAbstractItemDelegate* theWrappedObject, QPainter*  painter, const QStyleOptionViewItem&  option, const QModelIndex&  index) const;
    QVector<int >  paintingRoles(QAbstractItemDelegate* theWrappedObject) const;
    void setEditorData(QAbstractItemDelegate* theWrappedObject, QWidget*  editor, const QModelIndex&  index) const;
    void setModelData(QAbstractItemDelegate* theWrappedObject, QWidget*  editor, QAbstractItemModel*  model, const QModelIndex&  index) const;
+   QSize  sizeHint(QAbstractItemDelegate* theWrappedObject, const QStyleOptionViewItem&  option, const QModelIndex&  index) const;
    void updateEditorGeometry(QAbstractItemDelegate* theWrappedObject, QWidget*  editor, const QStyleOptionViewItem&  option, const QModelIndex&  index) const;
 };
 
@@ -482,10 +489,13 @@ inline void promoted_executeDelayedItemsLayout() { QAbstractItemView::executeDel
 inline void promoted_focusInEvent(QFocusEvent*  event) { QAbstractItemView::focusInEvent(event); }
 inline bool  promoted_focusNextPrevChild(bool  next) { return QAbstractItemView::focusNextPrevChild(next); }
 inline void promoted_focusOutEvent(QFocusEvent*  event) { QAbstractItemView::focusOutEvent(event); }
+inline int  promoted_horizontalOffset() const { return this->horizontalOffset(); }
 inline void promoted_horizontalScrollbarAction(int  action) { QAbstractItemView::horizontalScrollbarAction(action); }
 inline void promoted_horizontalScrollbarValueChanged(int  value) { QAbstractItemView::horizontalScrollbarValueChanged(value); }
+inline QModelIndex  promoted_indexAt(const QPoint&  point) const { return this->indexAt(point); }
 inline void promoted_inputMethodEvent(QInputMethodEvent*  event) { QAbstractItemView::inputMethodEvent(event); }
 inline QVariant  promoted_inputMethodQuery(Qt::InputMethodQuery  query) const { return QAbstractItemView::inputMethodQuery(query); }
+inline bool  promoted_isIndexHidden(const QModelIndex&  index) const { return this->isIndexHidden(index); }
 inline void promoted_keyPressEvent(QKeyEvent*  event) { QAbstractItemView::keyPressEvent(event); }
 inline void promoted_keyboardSearch(const QString&  search) { QAbstractItemView::keyboardSearch(search); }
 inline void promoted_mouseDoubleClickEvent(QMouseEvent*  event) { QAbstractItemView::mouseDoubleClickEvent(event); }
@@ -498,6 +508,7 @@ inline void promoted_rowsAboutToBeRemoved(const QModelIndex&  parent, int  start
 inline void promoted_rowsInserted(const QModelIndex&  parent, int  start, int  end) { QAbstractItemView::rowsInserted(parent, start, end); }
 inline void promoted_scheduleDelayedItemsLayout() { QAbstractItemView::scheduleDelayedItemsLayout(); }
 inline void promoted_scrollDirtyRegion(int  dx, int  dy) { QAbstractItemView::scrollDirtyRegion(dx, dy); }
+inline void promoted_scrollTo(const QModelIndex&  index, QAbstractItemView::ScrollHint  hint = QAbstractItemView::EnsureVisible) { this->scrollTo(index, hint); }
 inline void promoted_selectAll() { QAbstractItemView::selectAll(); }
 inline QList<QModelIndex >  promoted_selectedIndexes() const { return QAbstractItemView::selectedIndexes(); }
 inline void promoted_selectionChanged(const QItemSelection&  selected, const QItemSelection&  deselected) { QAbstractItemView::selectionChanged(selected, deselected); }
@@ -505,6 +516,7 @@ inline QItemSelectionModel::SelectionFlags  promoted_selectionCommand(const QMod
 inline void promoted_setDirtyRegion(const QRegion&  region) { QAbstractItemView::setDirtyRegion(region); }
 inline void promoted_setModel(QAbstractItemModel*  model) { QAbstractItemView::setModel(model); }
 inline void promoted_setRootIndex(const QModelIndex&  index) { QAbstractItemView::setRootIndex(index); }
+inline void promoted_setSelection(const QRect&  rect, QItemSelectionModel::SelectionFlags  command) { this->setSelection(rect, command); }
 inline void promoted_setSelectionModel(QItemSelectionModel*  selectionModel) { QAbstractItemView::setSelectionModel(selectionModel); }
 inline void promoted_setState(int  state) { QAbstractItemView::setState((QAbstractItemView::State)state); }
 inline int  promoted_sizeHintForColumn(int  column) const { return QAbstractItemView::sizeHintForColumn(column); }
@@ -517,11 +529,14 @@ inline void promoted_timerEvent(QTimerEvent*  event) { QAbstractItemView::timerE
 inline void promoted_updateEditorData() { QAbstractItemView::updateEditorData(); }
 inline void promoted_updateEditorGeometries() { QAbstractItemView::updateEditorGeometries(); }
 inline void promoted_updateGeometries() { QAbstractItemView::updateGeometries(); }
+inline int  promoted_verticalOffset() const { return this->verticalOffset(); }
 inline void promoted_verticalScrollbarAction(int  action) { QAbstractItemView::verticalScrollbarAction(action); }
 inline void promoted_verticalScrollbarValueChanged(int  value) { QAbstractItemView::verticalScrollbarValueChanged(value); }
 inline QStyleOptionViewItem  promoted_viewOptions() const { return QAbstractItemView::viewOptions(); }
 inline bool  promoted_viewportEvent(QEvent*  event) { return QAbstractItemView::viewportEvent(event); }
 inline QSize  promoted_viewportSizeHint() const { return QAbstractItemView::viewportSizeHint(); }
+inline QRect  promoted_visualRect(const QModelIndex&  index) const { return this->visualRect(index); }
+inline QRegion  promoted_visualRegionForSelection(const QItemSelection&  selection) const { return this->visualRegionForSelection(selection); }
 };
 
 class PythonQtWrapper_QAbstractItemView : public QObject
@@ -570,13 +585,16 @@ void delete_QAbstractItemView(QAbstractItemView* obj) { delete obj; }
    bool  focusNextPrevChild(QAbstractItemView* theWrappedObject, bool  next);
    void focusOutEvent(QAbstractItemView* theWrappedObject, QFocusEvent*  event);
    bool  hasAutoScroll(QAbstractItemView* theWrappedObject) const;
+   int  horizontalOffset(QAbstractItemView* theWrappedObject) const;
    QAbstractItemView::ScrollMode  horizontalScrollMode(QAbstractItemView* theWrappedObject) const;
    void horizontalScrollbarAction(QAbstractItemView* theWrappedObject, int  action);
    void horizontalScrollbarValueChanged(QAbstractItemView* theWrappedObject, int  value);
    QSize  iconSize(QAbstractItemView* theWrappedObject) const;
+   QModelIndex  indexAt(QAbstractItemView* theWrappedObject, const QPoint&  point) const;
    QWidget*  indexWidget(QAbstractItemView* theWrappedObject, const QModelIndex&  index) const;
    void inputMethodEvent(QAbstractItemView* theWrappedObject, QInputMethodEvent*  event);
    QVariant  inputMethodQuery(QAbstractItemView* theWrappedObject, Qt::InputMethodQuery  query) const;
+   bool  isIndexHidden(QAbstractItemView* theWrappedObject, const QModelIndex&  index) const;
    QAbstractItemDelegate*  itemDelegate(QAbstractItemView* theWrappedObject) const;
    QAbstractItemDelegate*  itemDelegate(QAbstractItemView* theWrappedObject, const QModelIndex&  index) const;
    QAbstractItemDelegate*  itemDelegateForColumn(QAbstractItemView* theWrappedObject, int  column) const;
@@ -596,6 +614,7 @@ void delete_QAbstractItemView(QAbstractItemView* obj) { delete obj; }
    void rowsInserted(QAbstractItemView* theWrappedObject, const QModelIndex&  parent, int  start, int  end);
    void scheduleDelayedItemsLayout(QAbstractItemView* theWrappedObject);
    void scrollDirtyRegion(QAbstractItemView* theWrappedObject, int  dx, int  dy);
+   void scrollTo(QAbstractItemView* theWrappedObject, const QModelIndex&  index, QAbstractItemView::ScrollHint  hint = QAbstractItemView::EnsureVisible);
    void selectAll(QAbstractItemView* theWrappedObject);
    QList<QModelIndex >  selectedIndexes(QAbstractItemView* theWrappedObject) const;
    QAbstractItemView::SelectionBehavior  selectionBehavior(QAbstractItemView* theWrappedObject) const;
@@ -615,12 +634,13 @@ void delete_QAbstractItemView(QAbstractItemView* obj) { delete obj; }
    void setEditTriggers(QAbstractItemView* theWrappedObject, QAbstractItemView::EditTriggers  triggers);
    void setHorizontalScrollMode(QAbstractItemView* theWrappedObject, QAbstractItemView::ScrollMode  mode);
    void setIconSize(QAbstractItemView* theWrappedObject, const QSize&  size);
-   void setIndexWidget(QAbstractItemView* theWrappedObject, const QModelIndex&  index, QWidget*  widget);
+   void setIndexWidget(QAbstractItemView* theWrappedObject, const QModelIndex&  index, PythonQtPassOwnershipToCPP<QWidget* >  widget);
    void setItemDelegate(QAbstractItemView* theWrappedObject, QAbstractItemDelegate*  delegate);
    void setItemDelegateForColumn(QAbstractItemView* theWrappedObject, int  column, QAbstractItemDelegate*  delegate);
    void setItemDelegateForRow(QAbstractItemView* theWrappedObject, int  row, QAbstractItemDelegate*  delegate);
    void setModel(QAbstractItemView* theWrappedObject, QAbstractItemModel*  model);
    void setRootIndex(QAbstractItemView* theWrappedObject, const QModelIndex&  index);
+   void setSelection(QAbstractItemView* theWrappedObject, const QRect&  rect, QItemSelectionModel::SelectionFlags  command);
    void setSelectionBehavior(QAbstractItemView* theWrappedObject, QAbstractItemView::SelectionBehavior  behavior);
    void setSelectionMode(QAbstractItemView* theWrappedObject, QAbstractItemView::SelectionMode  mode);
    void setSelectionModel(QAbstractItemView* theWrappedObject, QItemSelectionModel*  selectionModel);
@@ -642,12 +662,15 @@ void delete_QAbstractItemView(QAbstractItemView* obj) { delete obj; }
    void updateEditorData(QAbstractItemView* theWrappedObject);
    void updateEditorGeometries(QAbstractItemView* theWrappedObject);
    void updateGeometries(QAbstractItemView* theWrappedObject);
+   int  verticalOffset(QAbstractItemView* theWrappedObject) const;
    QAbstractItemView::ScrollMode  verticalScrollMode(QAbstractItemView* theWrappedObject) const;
    void verticalScrollbarAction(QAbstractItemView* theWrappedObject, int  action);
    void verticalScrollbarValueChanged(QAbstractItemView* theWrappedObject, int  value);
    QStyleOptionViewItem  viewOptions(QAbstractItemView* theWrappedObject) const;
    bool  viewportEvent(QAbstractItemView* theWrappedObject, QEvent*  event);
    QSize  viewportSizeHint(QAbstractItemView* theWrappedObject) const;
+   QRect  visualRect(QAbstractItemView* theWrappedObject, const QModelIndex&  index) const;
+   QRegion  visualRegionForSelection(QAbstractItemView* theWrappedObject, const QItemSelection&  selection) const;
 };
 
 
@@ -712,6 +735,11 @@ virtual void wheelEvent(QWheelEvent*  arg__1);
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QAbstractPrintDialog : public QAbstractPrintDialog
+{ public:
+inline int  promoted_exec() { return this->exec(); }
+};
+
 class PythonQtWrapper_QAbstractPrintDialog : public QObject
 { Q_OBJECT
 public:
@@ -727,6 +755,7 @@ QAbstractPrintDialog* new_QAbstractPrintDialog(QPrinter*  printer, QWidget*  par
 void delete_QAbstractPrintDialog(QAbstractPrintDialog* obj) { delete obj; } 
    void addEnabledOption(QAbstractPrintDialog* theWrappedObject, QAbstractPrintDialog::PrintDialogOption  option);
    QAbstractPrintDialog::PrintDialogOptions  enabledOptions(QAbstractPrintDialog* theWrappedObject) const;
+   int  exec(QAbstractPrintDialog* theWrappedObject);
    int  fromPage(QAbstractPrintDialog* theWrappedObject) const;
    bool  isOptionEnabled(QAbstractPrintDialog* theWrappedObject, QAbstractPrintDialog::PrintDialogOption  option) const;
    int  maxPage(QAbstractPrintDialog* theWrappedObject) const;
@@ -810,8 +839,10 @@ inline Qt::ItemFlags  promoted_flags(const QModelIndex&  index) const { return Q
 inline bool  promoted_hasChildren(const QModelIndex&  parent = QModelIndex()) const { return QAbstractProxyModel::hasChildren(parent); }
 inline QVariant  promoted_headerData(int  section, Qt::Orientation  orientation, int  role) const { return QAbstractProxyModel::headerData(section, orientation, role); }
 inline QMap<int , QVariant >  promoted_itemData(const QModelIndex&  index) const { return QAbstractProxyModel::itemData(index); }
+inline QModelIndex  promoted_mapFromSource(const QModelIndex&  sourceIndex) const { return this->mapFromSource(sourceIndex); }
 inline QItemSelection  promoted_mapSelectionFromSource(const QItemSelection&  selection) const { return QAbstractProxyModel::mapSelectionFromSource(selection); }
 inline QItemSelection  promoted_mapSelectionToSource(const QItemSelection&  selection) const { return QAbstractProxyModel::mapSelectionToSource(selection); }
+inline QModelIndex  promoted_mapToSource(const QModelIndex&  proxyIndex) const { return this->mapToSource(proxyIndex); }
 inline QMimeData*  promoted_mimeData(const QList<QModelIndex >&  indexes) const { return QAbstractProxyModel::mimeData(indexes); }
 inline QStringList  promoted_mimeTypes() const { return QAbstractProxyModel::mimeTypes(); }
 inline void promoted_resetInternalData() { QAbstractProxyModel::resetInternalData(); }
@@ -841,8 +872,10 @@ void delete_QAbstractProxyModel(QAbstractProxyModel* obj) { delete obj; }
    bool  hasChildren(QAbstractProxyModel* theWrappedObject, const QModelIndex&  parent = QModelIndex()) const;
    QVariant  headerData(QAbstractProxyModel* theWrappedObject, int  section, Qt::Orientation  orientation, int  role) const;
    QMap<int , QVariant >  itemData(QAbstractProxyModel* theWrappedObject, const QModelIndex&  index) const;
+   QModelIndex  mapFromSource(QAbstractProxyModel* theWrappedObject, const QModelIndex&  sourceIndex) const;
    QItemSelection  mapSelectionFromSource(QAbstractProxyModel* theWrappedObject, const QItemSelection&  selection) const;
    QItemSelection  mapSelectionToSource(QAbstractProxyModel* theWrappedObject, const QItemSelection&  selection) const;
+   QModelIndex  mapToSource(QAbstractProxyModel* theWrappedObject, const QModelIndex&  proxyIndex) const;
    QMimeData*  mimeData(QAbstractProxyModel* theWrappedObject, const QList<QModelIndex >&  indexes) const;
    QStringList  mimeTypes(QAbstractProxyModel* theWrappedObject) const;
    void revert(QAbstractProxyModel* theWrappedObject);
@@ -950,7 +983,7 @@ public:
 public slots:
 QAbstractScrollArea* new_QAbstractScrollArea(QWidget*  parent = 0);
 void delete_QAbstractScrollArea(QAbstractScrollArea* obj) { delete obj; } 
-   void addScrollBarWidget(QAbstractScrollArea* theWrappedObject, QWidget*  widget, Qt::Alignment  alignment);
+   void addScrollBarWidget(QAbstractScrollArea* theWrappedObject, PythonQtPassOwnershipToCPP<QWidget* >  widget, Qt::Alignment  alignment);
    void contextMenuEvent(QAbstractScrollArea* theWrappedObject, QContextMenuEvent*  arg__1);
    QWidget*  cornerWidget(QAbstractScrollArea* theWrappedObject) const;
    void dragEnterEvent(QAbstractScrollArea* theWrappedObject, QDragEnterEvent*  arg__1);
@@ -972,13 +1005,13 @@ void delete_QAbstractScrollArea(QAbstractScrollArea* obj) { delete obj; }
    void resizeEvent(QAbstractScrollArea* theWrappedObject, QResizeEvent*  arg__1);
    QList<QWidget* >  scrollBarWidgets(QAbstractScrollArea* theWrappedObject, Qt::Alignment  alignment);
    void scrollContentsBy(QAbstractScrollArea* theWrappedObject, int  dx, int  dy);
-   void setCornerWidget(QAbstractScrollArea* theWrappedObject, QWidget*  widget);
-   void setHorizontalScrollBar(QAbstractScrollArea* theWrappedObject, QScrollBar*  scrollbar);
+   void setCornerWidget(QAbstractScrollArea* theWrappedObject, PythonQtPassOwnershipToCPP<QWidget* >  widget);
+   void setHorizontalScrollBar(QAbstractScrollArea* theWrappedObject, PythonQtPassOwnershipToCPP<QScrollBar* >  scrollbar);
    void setHorizontalScrollBarPolicy(QAbstractScrollArea* theWrappedObject, Qt::ScrollBarPolicy  arg__1);
    void setSizeAdjustPolicy(QAbstractScrollArea* theWrappedObject, QAbstractScrollArea::SizeAdjustPolicy  policy);
-   void setVerticalScrollBar(QAbstractScrollArea* theWrappedObject, QScrollBar*  scrollbar);
+   void setVerticalScrollBar(QAbstractScrollArea* theWrappedObject, PythonQtPassOwnershipToCPP<QScrollBar* >  scrollbar);
    void setVerticalScrollBarPolicy(QAbstractScrollArea* theWrappedObject, Qt::ScrollBarPolicy  arg__1);
-   void setViewport(QAbstractScrollArea* theWrappedObject, QWidget*  widget);
+   void setViewport(QAbstractScrollArea* theWrappedObject, PythonQtPassOwnershipToCPP<QWidget* >  widget);
    void setViewportMargins(QAbstractScrollArea* theWrappedObject, const QMargins&  margins);
    void setViewportMargins(QAbstractScrollArea* theWrappedObject, int  left, int  top, int  right, int  bottom);
    void setupViewport(QAbstractScrollArea* theWrappedObject, QWidget*  viewport);
@@ -1365,9 +1398,16 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QAbstractTextDocumentLayout : public QAbstractTextDocumentLayout
 { public:
+inline QRectF  promoted_blockBoundingRect(const QTextBlock&  block) const { return this->blockBoundingRect(block); }
+inline void promoted_documentChanged(int  from, int  charsRemoved, int  charsAdded) { this->documentChanged(from, charsRemoved, charsAdded); }
+inline QSizeF  promoted_documentSize() const { return this->documentSize(); }
+inline void promoted_draw(QPainter*  painter, const QAbstractTextDocumentLayout::PaintContext&  context) { this->draw(painter, context); }
 inline void promoted_drawInlineObject(QPainter*  painter, const QRectF&  rect, QTextInlineObject  object, int  posInDocument, const QTextFormat&  format) { QAbstractTextDocumentLayout::drawInlineObject(painter, rect, object, posInDocument, format); }
 inline QTextCharFormat  promoted_format(int  pos) { return QAbstractTextDocumentLayout::format(pos); }
 inline int  promoted_formatIndex(int  pos) { return QAbstractTextDocumentLayout::formatIndex(pos); }
+inline QRectF  promoted_frameBoundingRect(QTextFrame*  frame) const { return this->frameBoundingRect(frame); }
+inline int  promoted_hitTest(const QPointF&  point, Qt::HitTestAccuracy  accuracy) const { return this->hitTest(point, accuracy); }
+inline int  promoted_pageCount() const { return this->pageCount(); }
 inline void promoted_positionInlineObject(QTextInlineObject  item, int  posInDocument, const QTextFormat&  format) { QAbstractTextDocumentLayout::positionInlineObject(item, posInDocument, format); }
 inline void promoted_resizeInlineObject(QTextInlineObject  item, int  posInDocument, const QTextFormat&  format) { QAbstractTextDocumentLayout::resizeInlineObject(item, posInDocument, format); }
 };
@@ -1379,10 +1419,17 @@ public slots:
 QAbstractTextDocumentLayout* new_QAbstractTextDocumentLayout(QTextDocument*  doc);
 void delete_QAbstractTextDocumentLayout(QAbstractTextDocumentLayout* obj) { delete obj; } 
    QString  anchorAt(QAbstractTextDocumentLayout* theWrappedObject, const QPointF&  pos) const;
+   QRectF  blockBoundingRect(QAbstractTextDocumentLayout* theWrappedObject, const QTextBlock&  block) const;
    QTextDocument*  document(QAbstractTextDocumentLayout* theWrappedObject) const;
+   void documentChanged(QAbstractTextDocumentLayout* theWrappedObject, int  from, int  charsRemoved, int  charsAdded);
+   QSizeF  documentSize(QAbstractTextDocumentLayout* theWrappedObject) const;
+   void draw(QAbstractTextDocumentLayout* theWrappedObject, QPainter*  painter, const QAbstractTextDocumentLayout::PaintContext&  context);
    void drawInlineObject(QAbstractTextDocumentLayout* theWrappedObject, QPainter*  painter, const QRectF&  rect, QTextInlineObject  object, int  posInDocument, const QTextFormat&  format);
    QTextCharFormat  format(QAbstractTextDocumentLayout* theWrappedObject, int  pos);
    int  formatIndex(QAbstractTextDocumentLayout* theWrappedObject, int  pos);
+   QRectF  frameBoundingRect(QAbstractTextDocumentLayout* theWrappedObject, QTextFrame*  frame) const;
+   int  hitTest(QAbstractTextDocumentLayout* theWrappedObject, const QPointF&  point, Qt::HitTestAccuracy  accuracy) const;
+   int  pageCount(QAbstractTextDocumentLayout* theWrappedObject) const;
    QPaintDevice*  paintDevice(QAbstractTextDocumentLayout* theWrappedObject) const;
    void positionInlineObject(QAbstractTextDocumentLayout* theWrappedObject, QTextInlineObject  item, int  posInDocument, const QTextFormat&  format);
    void registerHandler(QAbstractTextDocumentLayout* theWrappedObject, int  objectType, QObject*  component);
@@ -1666,10 +1713,10 @@ void delete_QApplication(QApplication* obj) { delete obj; }
    void static_QApplication_setCursorFlashTime(int  arg__1);
    void static_QApplication_setDoubleClickInterval(int  arg__1);
    void static_QApplication_setEffectEnabled(Qt::UIEffect  arg__1, bool  enable = true);
-   void static_QApplication_setFont(const QFont&  arg__1, const char*  className);
+   void static_QApplication_setFont(const QFont&  arg__1, const char*  className = 0);
    void static_QApplication_setGlobalStrut(const QSize&  arg__1);
    void static_QApplication_setKeyboardInputInterval(int  arg__1);
-   void static_QApplication_setPalette(const QPalette&  arg__1, const char*  className);
+   void static_QApplication_setPalette(const QPalette&  arg__1, const char*  className = 0);
    void static_QApplication_setStartDragDistance(int  l);
    void static_QApplication_setStartDragTime(int  ms);
    void static_QApplication_setStyle(QStyle*  arg__1);
@@ -1769,23 +1816,23 @@ public slots:
 QBoxLayout* new_QBoxLayout(QBoxLayout::Direction  arg__1, QWidget*  parent = 0);
 void delete_QBoxLayout(QBoxLayout* obj) { delete obj; } 
    void addItem(QBoxLayout* theWrappedObject, QLayoutItem*  arg__1);
-   void addLayout(QBoxLayout* theWrappedObject, QLayout*  layout, int  stretch = 0);
-   void addSpacerItem(QBoxLayout* theWrappedObject, QSpacerItem*  spacerItem);
+   void addLayout(QBoxLayout* theWrappedObject, PythonQtPassOwnershipToCPP<QLayout* >  layout, int  stretch = 0);
+   void addSpacerItem(QBoxLayout* theWrappedObject, PythonQtPassOwnershipToCPP<QSpacerItem* >  spacerItem);
    void addSpacing(QBoxLayout* theWrappedObject, int  size);
    void addStretch(QBoxLayout* theWrappedObject, int  stretch = 0);
    void addStrut(QBoxLayout* theWrappedObject, int  arg__1);
-   void addWidget(QBoxLayout* theWrappedObject, QWidget*  arg__1, int  stretch, Qt::Alignment  alignment);
+   void addWidget(QBoxLayout* theWrappedObject, PythonQtPassOwnershipToCPP<QWidget* >  arg__1, int  stretch = 0, Qt::Alignment  alignment = 0);
    int  count(QBoxLayout* theWrappedObject) const;
    QBoxLayout::Direction  direction(QBoxLayout* theWrappedObject) const;
    Qt::Orientations  expandingDirections(QBoxLayout* theWrappedObject) const;
    bool  hasHeightForWidth(QBoxLayout* theWrappedObject) const;
    int  heightForWidth(QBoxLayout* theWrappedObject, int  arg__1) const;
-   void insertItem(QBoxLayout* theWrappedObject, int  index, QLayoutItem*  arg__2);
-   void insertLayout(QBoxLayout* theWrappedObject, int  index, QLayout*  layout, int  stretch = 0);
-   void insertSpacerItem(QBoxLayout* theWrappedObject, int  index, QSpacerItem*  spacerItem);
+   void insertItem(QBoxLayout* theWrappedObject, int  index, PythonQtPassOwnershipToCPP<QLayoutItem* >  arg__2);
+   void insertLayout(QBoxLayout* theWrappedObject, int  index, PythonQtPassOwnershipToCPP<QLayout* >  layout, int  stretch = 0);
+   void insertSpacerItem(QBoxLayout* theWrappedObject, int  index, PythonQtPassOwnershipToCPP<QSpacerItem* >  spacerItem);
    void insertSpacing(QBoxLayout* theWrappedObject, int  index, int  size);
    void insertStretch(QBoxLayout* theWrappedObject, int  index, int  stretch = 0);
-   void insertWidget(QBoxLayout* theWrappedObject, int  index, QWidget*  widget, int  stretch = 0, Qt::Alignment  alignment = 0);
+   void insertWidget(QBoxLayout* theWrappedObject, int  index, PythonQtPassOwnershipToCPP<QWidget* >  widget, int  stretch = 0, Qt::Alignment  alignment = 0);
    void invalidate(QBoxLayout* theWrappedObject);
    QLayoutItem*  itemAt(QBoxLayout* theWrappedObject, int  arg__1) const;
    QSize  maximumSize(QBoxLayout* theWrappedObject) const;
@@ -2074,7 +2121,7 @@ public slots:
    bool  ownsSelection(QClipboard* theWrappedObject) const;
    QPixmap  pixmap(QClipboard* theWrappedObject, QClipboard::Mode  mode = QClipboard::Clipboard) const;
    void setImage(QClipboard* theWrappedObject, const QImage&  arg__1, QClipboard::Mode  mode = QClipboard::Clipboard);
-   void setMimeData(QClipboard* theWrappedObject, QMimeData*  data, QClipboard::Mode  mode = QClipboard::Clipboard);
+   void setMimeData(QClipboard* theWrappedObject, PythonQtPassOwnershipToCPP<QMimeData* >  data, QClipboard::Mode  mode = QClipboard::Clipboard);
    void setPixmap(QClipboard* theWrappedObject, const QPixmap&  arg__1, QClipboard::Mode  mode = QClipboard::Clipboard);
    void setText(QClipboard* theWrappedObject, const QString&  arg__1, QClipboard::Mode  mode = QClipboard::Clipboard);
    bool  supportsFindBuffer(QClipboard* theWrappedObject) const;

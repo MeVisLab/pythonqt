@@ -2111,6 +2111,11 @@ bool  PythonQtWrapper_QRunnable::autoDelete(QRunnable* theWrappedObject) const
   return ( theWrappedObject->autoDelete());
 }
 
+void PythonQtWrapper_QRunnable::run(QRunnable* theWrappedObject)
+{
+  ( ((PythonQtPublicPromoter_QRunnable*)theWrappedObject)->promoted_run());
+}
+
 void PythonQtWrapper_QRunnable::setAutoDelete(QRunnable* theWrappedObject, bool  _autoDelete)
 {
   ( theWrappedObject->setAutoDelete(_autoDelete));
@@ -4275,12 +4280,12 @@ QState* PythonQtWrapper_QState::new_QState(QState::ChildMode  childMode, QState*
 { 
 return new PythonQtShell_QState(childMode, parent); }
 
-QAbstractTransition*  PythonQtWrapper_QState::addTransition(QState* theWrappedObject, QAbstractState*  target)
+QAbstractTransition*  PythonQtWrapper_QState::addTransition(QState* theWrappedObject, PythonQtPassOwnershipToCPP<QAbstractState* >  target)
 {
   return ( theWrappedObject->addTransition(target));
 }
 
-void PythonQtWrapper_QState::addTransition(QState* theWrappedObject, QAbstractTransition*  transition)
+void PythonQtWrapper_QState::addTransition(QState* theWrappedObject, PythonQtPassOwnershipToCPP<QAbstractTransition* >  transition)
 {
   ( theWrappedObject->addTransition(transition));
 }
@@ -4325,7 +4330,7 @@ void PythonQtWrapper_QState::onExit(QState* theWrappedObject, QEvent*  event)
   ( ((PythonQtPublicPromoter_QState*)theWrappedObject)->promoted_onExit(event));
 }
 
-void PythonQtWrapper_QState::removeTransition(QState* theWrappedObject, QAbstractTransition*  transition)
+void PythonQtWrapper_QState::removeTransition(QState* theWrappedObject, PythonQtPassOwnershipToPython<QAbstractTransition* >  transition)
 {
   ( theWrappedObject->removeTransition(transition));
 }
@@ -4600,7 +4605,7 @@ void PythonQtWrapper_QStateMachine::addDefaultAnimation(QStateMachine* theWrappe
   ( theWrappedObject->addDefaultAnimation(animation));
 }
 
-void PythonQtWrapper_QStateMachine::addState(QStateMachine* theWrappedObject, QAbstractState*  state)
+void PythonQtWrapper_QStateMachine::addState(QStateMachine* theWrappedObject, PythonQtPassOwnershipToCPP<QAbstractState* >  state)
 {
   ( theWrappedObject->addState(state));
 }
@@ -4705,7 +4710,7 @@ void PythonQtWrapper_QStateMachine::removeDefaultAnimation(QStateMachine* theWra
   ( theWrappedObject->removeDefaultAnimation(animation));
 }
 
-void PythonQtWrapper_QStateMachine::removeState(QStateMachine* theWrappedObject, QAbstractState*  state)
+void PythonQtWrapper_QStateMachine::removeState(QStateMachine* theWrappedObject, PythonQtPassOwnershipToPython<QAbstractState* >  state)
 {
   ( theWrappedObject->removeState(state));
 }

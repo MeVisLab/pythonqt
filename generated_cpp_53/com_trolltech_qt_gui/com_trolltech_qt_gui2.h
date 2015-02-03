@@ -377,12 +377,12 @@ public slots:
 QFormLayout* new_QFormLayout(QWidget*  parent = 0);
 void delete_QFormLayout(QFormLayout* obj) { delete obj; } 
    void addItem(QFormLayout* theWrappedObject, QLayoutItem*  item);
-   void addRow(QFormLayout* theWrappedObject, QLayout*  layout);
-   void addRow(QFormLayout* theWrappedObject, QWidget*  label, QLayout*  field);
-   void addRow(QFormLayout* theWrappedObject, QWidget*  label, QWidget*  field);
-   void addRow(QFormLayout* theWrappedObject, QWidget*  widget);
-   void addRow(QFormLayout* theWrappedObject, const QString&  labelText, QLayout*  field);
-   void addRow(QFormLayout* theWrappedObject, const QString&  labelText, QWidget*  field);
+   void addRow(QFormLayout* theWrappedObject, PythonQtPassOwnershipToCPP<QLayout* >  layout);
+   void addRow(QFormLayout* theWrappedObject, PythonQtPassOwnershipToCPP<QWidget* >  label, PythonQtPassOwnershipToCPP<QLayout* >  field);
+   void addRow(QFormLayout* theWrappedObject, PythonQtPassOwnershipToCPP<QWidget* >  label, PythonQtPassOwnershipToCPP<QWidget* >  field);
+   void addRow(QFormLayout* theWrappedObject, PythonQtPassOwnershipToCPP<QWidget* >  widget);
+   void addRow(QFormLayout* theWrappedObject, const QString&  labelText, PythonQtPassOwnershipToCPP<QLayout* >  field);
+   void addRow(QFormLayout* theWrappedObject, const QString&  labelText, PythonQtPassOwnershipToCPP<QWidget* >  field);
    int  count(QFormLayout* theWrappedObject) const;
    Qt::Orientations  expandingDirections(QFormLayout* theWrappedObject) const;
    QFormLayout::FieldGrowthPolicy  fieldGrowthPolicy(QFormLayout* theWrappedObject) const;
@@ -393,12 +393,12 @@ void delete_QFormLayout(QFormLayout* obj) { delete obj; }
    bool  hasHeightForWidth(QFormLayout* theWrappedObject) const;
    int  heightForWidth(QFormLayout* theWrappedObject, int  width) const;
    int  horizontalSpacing(QFormLayout* theWrappedObject) const;
-   void insertRow(QFormLayout* theWrappedObject, int  row, QLayout*  layout);
-   void insertRow(QFormLayout* theWrappedObject, int  row, QWidget*  label, QLayout*  field);
-   void insertRow(QFormLayout* theWrappedObject, int  row, QWidget*  label, QWidget*  field);
-   void insertRow(QFormLayout* theWrappedObject, int  row, QWidget*  widget);
-   void insertRow(QFormLayout* theWrappedObject, int  row, const QString&  labelText, QLayout*  field);
-   void insertRow(QFormLayout* theWrappedObject, int  row, const QString&  labelText, QWidget*  field);
+   void insertRow(QFormLayout* theWrappedObject, int  row, PythonQtPassOwnershipToCPP<QLayout* >  layout);
+   void insertRow(QFormLayout* theWrappedObject, int  row, PythonQtPassOwnershipToCPP<QWidget* >  label, PythonQtPassOwnershipToCPP<QLayout* >  field);
+   void insertRow(QFormLayout* theWrappedObject, int  row, PythonQtPassOwnershipToCPP<QWidget* >  label, PythonQtPassOwnershipToCPP<QWidget* >  field);
+   void insertRow(QFormLayout* theWrappedObject, int  row, PythonQtPassOwnershipToCPP<QWidget* >  widget);
+   void insertRow(QFormLayout* theWrappedObject, int  row, const QString&  labelText, PythonQtPassOwnershipToCPP<QLayout* >  field);
+   void insertRow(QFormLayout* theWrappedObject, int  row, const QString&  labelText, PythonQtPassOwnershipToCPP<QWidget* >  field);
    void invalidate(QFormLayout* theWrappedObject);
    QLayoutItem*  itemAt(QFormLayout* theWrappedObject, int  index) const;
    QLayoutItem*  itemAt(QFormLayout* theWrappedObject, int  row, QFormLayout::ItemRole  role) const;
@@ -412,13 +412,13 @@ void delete_QFormLayout(QFormLayout* obj) { delete obj; }
    void setFormAlignment(QFormLayout* theWrappedObject, Qt::Alignment  alignment);
    void setGeometry(QFormLayout* theWrappedObject, const QRect&  rect);
    void setHorizontalSpacing(QFormLayout* theWrappedObject, int  spacing);
-   void setItem(QFormLayout* theWrappedObject, int  row, QFormLayout::ItemRole  role, QLayoutItem*  item);
+   void setItem(QFormLayout* theWrappedObject, int  row, QFormLayout::ItemRole  role, PythonQtPassOwnershipToCPP<QLayoutItem* >  item);
    void setLabelAlignment(QFormLayout* theWrappedObject, Qt::Alignment  alignment);
-   void setLayout(QFormLayout* theWrappedObject, int  row, QFormLayout::ItemRole  role, QLayout*  layout);
+   void setLayout(QFormLayout* theWrappedObject, int  row, QFormLayout::ItemRole  role, PythonQtPassOwnershipToCPP<QLayout* >  layout);
    void setRowWrapPolicy(QFormLayout* theWrappedObject, QFormLayout::RowWrapPolicy  policy);
    void setSpacing(QFormLayout* theWrappedObject, int  arg__1);
    void setVerticalSpacing(QFormLayout* theWrappedObject, int  spacing);
-   void setWidget(QFormLayout* theWrappedObject, int  row, QFormLayout::ItemRole  role, QWidget*  widget);
+   void setWidget(QFormLayout* theWrappedObject, int  row, QFormLayout::ItemRole  role, PythonQtPassOwnershipToCPP<QWidget* >  widget);
    QSize  sizeHint(QFormLayout* theWrappedObject) const;
    int  spacing(QFormLayout* theWrappedObject) const;
    QLayoutItem*  takeAt(QFormLayout* theWrappedObject, int  index);
@@ -611,6 +611,7 @@ virtual void reset(QGesture*  state);
 class PythonQtPublicPromoter_QGestureRecognizer : public QGestureRecognizer
 { public:
 inline QGesture*  promoted_create(QObject*  target) { return QGestureRecognizer::create(target); }
+inline QGestureRecognizer::Result  promoted_recognize(QGesture*  state, QObject*  watched, QEvent*  event) { return this->recognize(state, watched, event); }
 inline void promoted_reset(QGesture*  state) { QGestureRecognizer::reset(state); }
 };
 
@@ -626,6 +627,7 @@ public slots:
 QGestureRecognizer* new_QGestureRecognizer();
 void delete_QGestureRecognizer(QGestureRecognizer* obj) { delete obj; } 
    QGesture*  create(QGestureRecognizer* theWrappedObject, QObject*  target);
+   QGestureRecognizer::Result  recognize(QGestureRecognizer* theWrappedObject, QGesture*  state, QObject*  watched, QEvent*  event);
    Qt::GestureType  static_QGestureRecognizer_registerRecognizer(QGestureRecognizer*  recognizer);
    void reset(QGestureRecognizer* theWrappedObject, QGesture*  state);
    void static_QGestureRecognizer_unregisterRecognizer(Qt::GestureType  type);
@@ -933,6 +935,7 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 class PythonQtPublicPromoter_QGraphicsEffect : public QGraphicsEffect
 { public:
 inline QRectF  promoted_boundingRectFor(const QRectF&  sourceRect) const { return QGraphicsEffect::boundingRectFor(sourceRect); }
+inline void promoted_draw(QPainter*  painter) { this->draw(painter); }
 inline void promoted_drawSource(QPainter*  painter) { QGraphicsEffect::drawSource(painter); }
 inline QRectF  promoted_sourceBoundingRect(Qt::CoordinateSystem  system = Qt::LogicalCoordinates) const { return QGraphicsEffect::sourceBoundingRect(system); }
 inline void promoted_sourceChanged(QGraphicsEffect::ChangeFlags  flags) { QGraphicsEffect::sourceChanged(flags); }
@@ -956,6 +959,7 @@ QGraphicsEffect* new_QGraphicsEffect(QObject*  parent = 0);
 void delete_QGraphicsEffect(QGraphicsEffect* obj) { delete obj; } 
    QRectF  boundingRect(QGraphicsEffect* theWrappedObject) const;
    QRectF  boundingRectFor(QGraphicsEffect* theWrappedObject, const QRectF&  sourceRect) const;
+   void draw(QGraphicsEffect* theWrappedObject, QPainter*  painter);
    void drawSource(QGraphicsEffect* theWrappedObject, QPainter*  painter);
    bool  isEnabled(QGraphicsEffect* theWrappedObject) const;
    QRectF  sourceBoundingRect(QGraphicsEffect* theWrappedObject, Qt::CoordinateSystem  system = Qt::LogicalCoordinates) const;
@@ -1059,8 +1063,8 @@ public:
 public slots:
 QGraphicsGridLayout* new_QGraphicsGridLayout(QGraphicsLayoutItem*  parent = 0);
 void delete_QGraphicsGridLayout(QGraphicsGridLayout* obj) { delete obj; } 
-   void addItem(QGraphicsGridLayout* theWrappedObject, QGraphicsLayoutItem*  item, int  row, int  column, Qt::Alignment  alignment = 0);
-   void addItem(QGraphicsGridLayout* theWrappedObject, QGraphicsLayoutItem*  item, int  row, int  column, int  rowSpan, int  columnSpan, Qt::Alignment  alignment = 0);
+   void addItem(QGraphicsGridLayout* theWrappedObject, PythonQtPassOwnershipToCPP<QGraphicsLayoutItem* >  item, int  row, int  column, Qt::Alignment  alignment = 0);
+   void addItem(QGraphicsGridLayout* theWrappedObject, PythonQtPassOwnershipToCPP<QGraphicsLayoutItem* >  item, int  row, int  column, int  rowSpan, int  columnSpan, Qt::Alignment  alignment = 0);
    Qt::Alignment  alignment(QGraphicsGridLayout* theWrappedObject, QGraphicsLayoutItem*  item) const;
    Qt::Alignment  columnAlignment(QGraphicsGridLayout* theWrappedObject, int  column) const;
    int  columnCount(QGraphicsGridLayout* theWrappedObject) const;
@@ -1162,6 +1166,7 @@ enum Extension{
   UserExtension = QGraphicsItem::UserExtension};
 inline void promoted_addToIndex() { QGraphicsItem::addToIndex(); }
 inline void promoted_advance(int  phase) { QGraphicsItem::advance(phase); }
+inline QRectF  promoted_boundingRect() const { return this->boundingRect(); }
 inline bool  promoted_collidesWithItem(const QGraphicsItem*  other, Qt::ItemSelectionMode  mode = Qt::IntersectsItemShape) const { return QGraphicsItem::collidesWithItem(other, mode); }
 inline bool  promoted_collidesWithPath(const QPainterPath&  path, Qt::ItemSelectionMode  mode = Qt::IntersectsItemShape) const { return QGraphicsItem::collidesWithPath(path, mode); }
 inline bool  promoted_contains(const QPointF&  point) const { return QGraphicsItem::contains(point); }
@@ -1187,6 +1192,7 @@ inline void promoted_mouseMoveEvent(QGraphicsSceneMouseEvent*  event) { QGraphic
 inline void promoted_mousePressEvent(QGraphicsSceneMouseEvent*  event) { QGraphicsItem::mousePressEvent(event); }
 inline void promoted_mouseReleaseEvent(QGraphicsSceneMouseEvent*  event) { QGraphicsItem::mouseReleaseEvent(event); }
 inline QPainterPath  promoted_opaqueArea() const { return QGraphicsItem::opaqueArea(); }
+inline void promoted_paint(QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = 0) { this->paint(painter, option, widget); }
 inline void promoted_prepareGeometryChange() { QGraphicsItem::prepareGeometryChange(); }
 inline void promoted_removeFromIndex() { QGraphicsItem::removeFromIndex(); }
 inline bool  promoted_sceneEvent(QEvent*  event) { return QGraphicsItem::sceneEvent(event); }
@@ -1226,6 +1232,7 @@ void delete_QGraphicsItem(QGraphicsItem* obj) { delete obj; }
    Qt::MouseButtons  acceptedMouseButtons(QGraphicsItem* theWrappedObject) const;
    void addToIndex(QGraphicsItem* theWrappedObject);
    void advance(QGraphicsItem* theWrappedObject, int  phase);
+   QRectF  boundingRect(QGraphicsItem* theWrappedObject) const;
    QRegion  boundingRegion(QGraphicsItem* theWrappedObject, const QTransform&  itemToDeviceTransform) const;
    qreal  boundingRegionGranularity(QGraphicsItem* theWrappedObject) const;
    QGraphicsItem::CacheMode  cacheMode(QGraphicsItem* theWrappedObject) const;
@@ -1346,6 +1353,7 @@ void delete_QGraphicsItem(QGraphicsItem* obj) { delete obj; }
    void moveBy(QGraphicsItem* theWrappedObject, qreal  dx, qreal  dy);
    qreal  opacity(QGraphicsItem* theWrappedObject) const;
    QPainterPath  opaqueArea(QGraphicsItem* theWrappedObject) const;
+   void paint(QGraphicsItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = 0);
    QGraphicsItem*  panel(QGraphicsItem* theWrappedObject) const;
    QGraphicsItem::PanelModality  panelModality(QGraphicsItem* theWrappedObject) const;
    QGraphicsItem*  parentItem(QGraphicsItem* theWrappedObject) const;
@@ -1387,7 +1395,7 @@ void delete_QGraphicsItem(QGraphicsItem* obj) { delete obj; }
    void setInputMethodHints(QGraphicsItem* theWrappedObject, Qt::InputMethodHints  hints);
    void setOpacity(QGraphicsItem* theWrappedObject, qreal  opacity);
    void setPanelModality(QGraphicsItem* theWrappedObject, QGraphicsItem::PanelModality  panelModality);
-   void setParentItem(QGraphicsItem* theWrappedObject, QGraphicsItem*  parent);
+   void setParentItem(QGraphicsItem* theWrappedObject, PythonQtNewOwnerOfThis<QGraphicsItem* >  parent);
    void setPos(QGraphicsItem* theWrappedObject, const QPointF&  pos);
    void setPos(QGraphicsItem* theWrappedObject, qreal  x, qreal  y);
    void setRotation(QGraphicsItem* theWrappedObject, qreal  angle);
@@ -1594,8 +1602,11 @@ virtual void widgetEvent(QEvent*  e);
 class PythonQtPublicPromoter_QGraphicsLayout : public QGraphicsLayout
 { public:
 inline void promoted_addChildLayoutItem(QGraphicsLayoutItem*  layoutItem) { QGraphicsLayout::addChildLayoutItem(layoutItem); }
+inline int  promoted_count() const { return this->count(); }
 inline void promoted_getContentsMargins(qreal*  left, qreal*  top, qreal*  right, qreal*  bottom) const { QGraphicsLayout::getContentsMargins(left, top, right, bottom); }
 inline void promoted_invalidate() { QGraphicsLayout::invalidate(); }
+inline QGraphicsLayoutItem*  promoted_itemAt(int  i) const { return this->itemAt(i); }
+inline void promoted_removeAt(int  index) { this->removeAt(index); }
 inline void promoted_updateGeometry() { QGraphicsLayout::updateGeometry(); }
 inline void promoted_widgetEvent(QEvent*  e) { QGraphicsLayout::widgetEvent(e); }
 };
@@ -1608,10 +1619,13 @@ QGraphicsLayout* new_QGraphicsLayout(QGraphicsLayoutItem*  parent = 0);
 void delete_QGraphicsLayout(QGraphicsLayout* obj) { delete obj; } 
    void activate(QGraphicsLayout* theWrappedObject);
    void addChildLayoutItem(QGraphicsLayout* theWrappedObject, QGraphicsLayoutItem*  layoutItem);
+   int  count(QGraphicsLayout* theWrappedObject) const;
    void getContentsMargins(QGraphicsLayout* theWrappedObject, qreal*  left, qreal*  top, qreal*  right, qreal*  bottom) const;
    bool  static_QGraphicsLayout_instantInvalidatePropagation();
    void invalidate(QGraphicsLayout* theWrappedObject);
    bool  isActivated(QGraphicsLayout* theWrappedObject) const;
+   QGraphicsLayoutItem*  itemAt(QGraphicsLayout* theWrappedObject, int  i) const;
+   void removeAt(QGraphicsLayout* theWrappedObject, int  index);
    void setContentsMargins(QGraphicsLayout* theWrappedObject, qreal  left, qreal  top, qreal  right, qreal  bottom);
    void static_QGraphicsLayout_setInstantInvalidatePropagation(bool  enable);
    void updateGeometry(QGraphicsLayout* theWrappedObject);
@@ -1643,6 +1657,7 @@ inline void promoted_getContentsMargins(qreal*  left, qreal*  top, qreal*  right
 inline void promoted_setGeometry(const QRectF&  rect) { QGraphicsLayoutItem::setGeometry(rect); }
 inline void promoted_setGraphicsItem(QGraphicsItem*  item) { QGraphicsLayoutItem::setGraphicsItem(item); }
 inline void promoted_setOwnedByLayout(bool  ownedByLayout) { QGraphicsLayoutItem::setOwnedByLayout(ownedByLayout); }
+inline QSizeF  promoted_sizeHint(Qt::SizeHint  which, const QSizeF&  constraint = QSizeF()) const { return this->sizeHint(which, constraint); }
 inline void promoted_updateGeometry() { QGraphicsLayoutItem::updateGeometry(); }
 };
 
@@ -1687,6 +1702,7 @@ void delete_QGraphicsLayoutItem(QGraphicsLayoutItem* obj) { delete obj; }
    void setPreferredWidth(QGraphicsLayoutItem* theWrappedObject, qreal  width);
    void setSizePolicy(QGraphicsLayoutItem* theWrappedObject, QSizePolicy::Policy  hPolicy, QSizePolicy::Policy  vPolicy, QSizePolicy::ControlType  controlType = QSizePolicy::DefaultType);
    void setSizePolicy(QGraphicsLayoutItem* theWrappedObject, const QSizePolicy&  policy);
+   QSizeF  sizeHint(QGraphicsLayoutItem* theWrappedObject, Qt::SizeHint  which, const QSizeF&  constraint = QSizeF()) const;
    QSizePolicy  sizePolicy(QGraphicsLayoutItem* theWrappedObject) const;
    void updateGeometry(QGraphicsLayoutItem* theWrappedObject);
 };
@@ -1823,19 +1839,19 @@ public slots:
 QGraphicsLinearLayout* new_QGraphicsLinearLayout(QGraphicsLayoutItem*  parent = 0);
 QGraphicsLinearLayout* new_QGraphicsLinearLayout(Qt::Orientation  orientation, QGraphicsLayoutItem*  parent = 0);
 void delete_QGraphicsLinearLayout(QGraphicsLinearLayout* obj) { delete obj; } 
-   void addItem(QGraphicsLinearLayout* theWrappedObject, QGraphicsLayoutItem*  item);
+   void addItem(QGraphicsLinearLayout* theWrappedObject, PythonQtPassOwnershipToCPP<QGraphicsLayoutItem* >  item);
    void addStretch(QGraphicsLinearLayout* theWrappedObject, int  stretch = 1);
    Qt::Alignment  alignment(QGraphicsLinearLayout* theWrappedObject, QGraphicsLayoutItem*  item) const;
    int  count(QGraphicsLinearLayout* theWrappedObject) const;
    void dump(QGraphicsLinearLayout* theWrappedObject, int  indent = 0) const;
-   void insertItem(QGraphicsLinearLayout* theWrappedObject, int  index, QGraphicsLayoutItem*  item);
+   void insertItem(QGraphicsLinearLayout* theWrappedObject, int  index, PythonQtPassOwnershipToCPP<QGraphicsLayoutItem* >  item);
    void insertStretch(QGraphicsLinearLayout* theWrappedObject, int  index, int  stretch = 1);
    void invalidate(QGraphicsLinearLayout* theWrappedObject);
    QGraphicsLayoutItem*  itemAt(QGraphicsLinearLayout* theWrappedObject, int  index) const;
    qreal  itemSpacing(QGraphicsLinearLayout* theWrappedObject, int  index) const;
    Qt::Orientation  orientation(QGraphicsLinearLayout* theWrappedObject) const;
    void removeAt(QGraphicsLinearLayout* theWrappedObject, int  index);
-   void removeItem(QGraphicsLinearLayout* theWrappedObject, QGraphicsLayoutItem*  item);
+   void removeItem(QGraphicsLinearLayout* theWrappedObject, PythonQtPassOwnershipToPython<QGraphicsLayoutItem* >  item);
    void setAlignment(QGraphicsLinearLayout* theWrappedObject, QGraphicsLayoutItem*  item, Qt::Alignment  alignment);
    void setGeometry(QGraphicsLinearLayout* theWrappedObject, const QRectF&  rect);
    void setItemSpacing(QGraphicsLinearLayout* theWrappedObject, int  index, qreal  spacing);

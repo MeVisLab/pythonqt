@@ -1262,11 +1262,11 @@ void delete_QOpenGLContextGroup(QOpenGLContextGroup* obj) { delete obj; }
 class PythonQtShell_QOpenGLFramebufferObject : public QOpenGLFramebufferObject
 {
 public:
-    PythonQtShell_QOpenGLFramebufferObject(const QSize&  size, GLenum  target = 0x0DE1):QOpenGLFramebufferObject(size, target),_wrapper(NULL) {};
-    PythonQtShell_QOpenGLFramebufferObject(const QSize&  size, QOpenGLFramebufferObject::Attachment  attachment, GLenum  target = 0x0DE1, GLenum  internal_format = 0):QOpenGLFramebufferObject(size, attachment, target, internal_format),_wrapper(NULL) {};
+    PythonQtShell_QOpenGLFramebufferObject(const QSize&  size, GLenum  target = GL_TEXTURE_2D):QOpenGLFramebufferObject(size, target),_wrapper(NULL) {};
+    PythonQtShell_QOpenGLFramebufferObject(const QSize&  size, QOpenGLFramebufferObject::Attachment  attachment, GLenum  target = GL_TEXTURE_2D, GLenum  internal_format = 0):QOpenGLFramebufferObject(size, attachment, target, internal_format),_wrapper(NULL) {};
     PythonQtShell_QOpenGLFramebufferObject(const QSize&  size, const QOpenGLFramebufferObjectFormat&  format):QOpenGLFramebufferObject(size, format),_wrapper(NULL) {};
-    PythonQtShell_QOpenGLFramebufferObject(int  width, int  height, GLenum  target = 0x0DE1):QOpenGLFramebufferObject(width, height, target),_wrapper(NULL) {};
-    PythonQtShell_QOpenGLFramebufferObject(int  width, int  height, QOpenGLFramebufferObject::Attachment  attachment, GLenum  target = 0x0DE1, GLenum  internal_format = 0):QOpenGLFramebufferObject(width, height, attachment, target, internal_format),_wrapper(NULL) {};
+    PythonQtShell_QOpenGLFramebufferObject(int  width, int  height, GLenum  target = GL_TEXTURE_2D):QOpenGLFramebufferObject(width, height, target),_wrapper(NULL) {};
+    PythonQtShell_QOpenGLFramebufferObject(int  width, int  height, QOpenGLFramebufferObject::Attachment  attachment, GLenum  target = GL_TEXTURE_2D, GLenum  internal_format = 0):QOpenGLFramebufferObject(width, height, attachment, target, internal_format),_wrapper(NULL) {};
     PythonQtShell_QOpenGLFramebufferObject(int  width, int  height, const QOpenGLFramebufferObjectFormat&  format):QOpenGLFramebufferObject(width, height, format),_wrapper(NULL) {};
 
    ~PythonQtShell_QOpenGLFramebufferObject();
@@ -1282,18 +1282,18 @@ Q_ENUMS(Attachment )
 enum Attachment{
   NoAttachment = QOpenGLFramebufferObject::NoAttachment,   CombinedDepthStencil = QOpenGLFramebufferObject::CombinedDepthStencil,   Depth = QOpenGLFramebufferObject::Depth};
 public slots:
-QOpenGLFramebufferObject* new_QOpenGLFramebufferObject(const QSize&  size, GLenum  target = 0x0DE1);
-QOpenGLFramebufferObject* new_QOpenGLFramebufferObject(const QSize&  size, QOpenGLFramebufferObject::Attachment  attachment, GLenum  target = 0x0DE1, GLenum  internal_format = 0);
+QOpenGLFramebufferObject* new_QOpenGLFramebufferObject(const QSize&  size, GLenum  target = GL_TEXTURE_2D);
+QOpenGLFramebufferObject* new_QOpenGLFramebufferObject(const QSize&  size, QOpenGLFramebufferObject::Attachment  attachment, GLenum  target = GL_TEXTURE_2D, GLenum  internal_format = 0);
 QOpenGLFramebufferObject* new_QOpenGLFramebufferObject(const QSize&  size, const QOpenGLFramebufferObjectFormat&  format);
-QOpenGLFramebufferObject* new_QOpenGLFramebufferObject(int  width, int  height, GLenum  target = 0x0DE1);
-QOpenGLFramebufferObject* new_QOpenGLFramebufferObject(int  width, int  height, QOpenGLFramebufferObject::Attachment  attachment, GLenum  target = 0x0DE1, GLenum  internal_format = 0);
+QOpenGLFramebufferObject* new_QOpenGLFramebufferObject(int  width, int  height, GLenum  target = GL_TEXTURE_2D);
+QOpenGLFramebufferObject* new_QOpenGLFramebufferObject(int  width, int  height, QOpenGLFramebufferObject::Attachment  attachment, GLenum  target = GL_TEXTURE_2D, GLenum  internal_format = 0);
 QOpenGLFramebufferObject* new_QOpenGLFramebufferObject(int  width, int  height, const QOpenGLFramebufferObjectFormat&  format);
 void delete_QOpenGLFramebufferObject(QOpenGLFramebufferObject* obj) { delete obj; } 
    QOpenGLFramebufferObject::Attachment  attachment(QOpenGLFramebufferObject* theWrappedObject) const;
    bool  bind(QOpenGLFramebufferObject* theWrappedObject);
    bool  static_QOpenGLFramebufferObject_bindDefault();
-   void static_QOpenGLFramebufferObject_blitFramebuffer(QOpenGLFramebufferObject*  target, QOpenGLFramebufferObject*  source, GLbitfield  buffers = 0x00004000, GLenum  filter = 0x2600);
-   void static_QOpenGLFramebufferObject_blitFramebuffer(QOpenGLFramebufferObject*  target, const QRect&  targetRect, QOpenGLFramebufferObject*  source, const QRect&  sourceRect, GLbitfield  buffers = 0x00004000, GLenum  filter = 0x2600);
+   void static_QOpenGLFramebufferObject_blitFramebuffer(QOpenGLFramebufferObject*  target, QOpenGLFramebufferObject*  source, GLbitfield  buffers = GL_COLOR_BUFFER_BIT, GLenum  filter = GL_NEAREST);
+   void static_QOpenGLFramebufferObject_blitFramebuffer(QOpenGLFramebufferObject*  target, const QRect&  targetRect, QOpenGLFramebufferObject*  source, const QRect&  sourceRect, GLbitfield  buffers = GL_COLOR_BUFFER_BIT, GLenum  filter = GL_NEAREST);
    QOpenGLFramebufferObjectFormat  format(QOpenGLFramebufferObject* theWrappedObject) const;
    GLuint  handle(QOpenGLFramebufferObject* theWrappedObject) const;
    bool  static_QOpenGLFramebufferObject_hasOpenGLFramebufferBlit();
@@ -1364,8 +1364,6 @@ void delete_QOpenGLFunctions(QOpenGLFunctions* obj) { delete obj; }
    void glBlendEquationSeparate(QOpenGLFunctions* theWrappedObject, GLenum  modeRGB, GLenum  modeAlpha);
    void glBlendFunc(QOpenGLFunctions* theWrappedObject, GLenum  sfactor, GLenum  dfactor);
    void glBlendFuncSeparate(QOpenGLFunctions* theWrappedObject, GLenum  srcRGB, GLenum  dstRGB, GLenum  srcAlpha, GLenum  dstAlpha);
-   void glBufferData(QOpenGLFunctions* theWrappedObject, GLenum  target, int  size, const void*  data, GLenum  usage);
-   void glBufferSubData(QOpenGLFunctions* theWrappedObject, GLenum  target, int  offset, int  size, const void*  data);
    GLenum  glCheckFramebufferStatus(QOpenGLFunctions* theWrappedObject, GLenum  target);
    void glClear(QOpenGLFunctions* theWrappedObject, GLbitfield  mask);
    void glClearColor(QOpenGLFunctions* theWrappedObject, GLclampf  red, GLclampf  green, GLclampf  blue, GLclampf  alpha);

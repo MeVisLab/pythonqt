@@ -368,6 +368,50 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   
 }
+QAbstractNetworkCache* PythonQtWrapper_QAbstractNetworkCache::new_QAbstractNetworkCache(QObject*  parent)
+{ 
+return new PythonQtShell_QAbstractNetworkCache(parent); }
+
+qint64  PythonQtWrapper_QAbstractNetworkCache::cacheSize(QAbstractNetworkCache* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QAbstractNetworkCache*)theWrappedObject)->promoted_cacheSize());
+}
+
+void PythonQtWrapper_QAbstractNetworkCache::clear(QAbstractNetworkCache* theWrappedObject)
+{
+  ( ((PythonQtPublicPromoter_QAbstractNetworkCache*)theWrappedObject)->promoted_clear());
+}
+
+QIODevice*  PythonQtWrapper_QAbstractNetworkCache::data(QAbstractNetworkCache* theWrappedObject, const QUrl&  url)
+{
+  return ( ((PythonQtPublicPromoter_QAbstractNetworkCache*)theWrappedObject)->promoted_data(url));
+}
+
+void PythonQtWrapper_QAbstractNetworkCache::insert(QAbstractNetworkCache* theWrappedObject, QIODevice*  device)
+{
+  ( ((PythonQtPublicPromoter_QAbstractNetworkCache*)theWrappedObject)->promoted_insert(device));
+}
+
+QNetworkCacheMetaData  PythonQtWrapper_QAbstractNetworkCache::metaData(QAbstractNetworkCache* theWrappedObject, const QUrl&  url)
+{
+  return ( ((PythonQtPublicPromoter_QAbstractNetworkCache*)theWrappedObject)->promoted_metaData(url));
+}
+
+QIODevice*  PythonQtWrapper_QAbstractNetworkCache::prepare(QAbstractNetworkCache* theWrappedObject, const QNetworkCacheMetaData&  metaData)
+{
+  return ( ((PythonQtPublicPromoter_QAbstractNetworkCache*)theWrappedObject)->promoted_prepare(metaData));
+}
+
+bool  PythonQtWrapper_QAbstractNetworkCache::remove(QAbstractNetworkCache* theWrappedObject, const QUrl&  url)
+{
+  return ( ((PythonQtPublicPromoter_QAbstractNetworkCache*)theWrappedObject)->promoted_remove(url));
+}
+
+void PythonQtWrapper_QAbstractNetworkCache::updateMetaData(QAbstractNetworkCache* theWrappedObject, const QNetworkCacheMetaData&  metaData)
+{
+  ( ((PythonQtPublicPromoter_QAbstractNetworkCache*)theWrappedObject)->promoted_updateMetaData(metaData));
+}
+
 
 
 PythonQtShell_QAbstractSocket::~PythonQtShell_QAbstractSocket() {
@@ -4768,6 +4812,11 @@ QList<QNetworkProxy >  PythonQtWrapper_QNetworkProxyFactory::static_QNetworkProx
   return (QNetworkProxyFactory::proxyForQuery(query));
 }
 
+QList<QNetworkProxy >  PythonQtWrapper_QNetworkProxyFactory::queryProxy(QNetworkProxyFactory* theWrappedObject, const QNetworkProxyQuery&  query)
+{
+  return ( ((PythonQtPublicPromoter_QNetworkProxyFactory*)theWrappedObject)->promoted_queryProxy(query));
+}
+
 void PythonQtWrapper_QNetworkProxyFactory::static_QNetworkProxyFactory_setApplicationProxyFactory(QNetworkProxyFactory*  factory)
 {
   (QNetworkProxyFactory::setApplicationProxyFactory(factory));
@@ -5608,6 +5657,15 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   return QNetworkReply::writeData(data0, len1);
 }
+QNetworkReply* PythonQtWrapper_QNetworkReply::new_QNetworkReply(QObject*  parent)
+{ 
+return new PythonQtShell_QNetworkReply(parent); }
+
+void PythonQtWrapper_QNetworkReply::abort(QNetworkReply* theWrappedObject)
+{
+  ( ((PythonQtPublicPromoter_QNetworkReply*)theWrappedObject)->promoted_abort());
+}
+
 QVariant  PythonQtWrapper_QNetworkReply::attribute(QNetworkReply* theWrappedObject, QNetworkRequest::Attribute  code) const
 {
   return ( theWrappedObject->attribute(code));

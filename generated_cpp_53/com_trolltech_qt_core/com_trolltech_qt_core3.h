@@ -54,6 +54,10 @@ virtual QByteArray  name() const;
 class PythonQtPublicPromoter_QTextCodec : public QTextCodec
 { public:
 inline QList<QByteArray >  promoted_aliases() const { return QTextCodec::aliases(); }
+inline QByteArray  promoted_convertFromUnicode(const QChar*  in, int  length, QTextCodec::ConverterState*  state) const { return this->convertFromUnicode(in, length, state); }
+inline QString  promoted_convertToUnicode(const char*  in, int  length, QTextCodec::ConverterState*  state) const { return this->convertToUnicode(in, length, state); }
+inline int  promoted_mibEnum() const { return this->mibEnum(); }
+inline QByteArray  promoted_name() const { return this->name(); }
 };
 
 class PythonQtWrapper_QTextCodec : public QObject
@@ -65,6 +69,7 @@ enum ConversionFlag{
   DefaultConversion = QTextCodec::DefaultConversion,   ConvertInvalidToNull = QTextCodec::ConvertInvalidToNull,   IgnoreHeader = QTextCodec::IgnoreHeader,   FreeFunction = QTextCodec::FreeFunction};
 Q_DECLARE_FLAGS(ConversionFlags, ConversionFlag)
 public slots:
+QTextCodec* new_QTextCodec();
    QList<QByteArray >  aliases(QTextCodec* theWrappedObject) const;
    QList<QByteArray >  static_QTextCodec_availableCodecs();
    QList<int >  static_QTextCodec_availableMibs();
@@ -78,9 +83,13 @@ public slots:
    QTextCodec*  static_QTextCodec_codecForName(const char*  name);
    QTextCodec*  static_QTextCodec_codecForUtfText(const QByteArray&  ba);
    QTextCodec*  static_QTextCodec_codecForUtfText(const QByteArray&  ba, QTextCodec*  defaultCodec);
+   QByteArray  convertFromUnicode(QTextCodec* theWrappedObject, const QChar*  in, int  length, QTextCodec::ConverterState*  state) const;
+   QString  convertToUnicode(QTextCodec* theWrappedObject, const char*  in, int  length, QTextCodec::ConverterState*  state) const;
    QByteArray  fromUnicode(QTextCodec* theWrappedObject, const QString&  uc) const;
    QTextDecoder*  makeDecoder(QTextCodec* theWrappedObject, QTextCodec::ConversionFlags  flags = QTextCodec::DefaultConversion) const;
    QTextEncoder*  makeEncoder(QTextCodec* theWrappedObject, QTextCodec::ConversionFlags  flags = QTextCodec::DefaultConversion) const;
+   int  mibEnum(QTextCodec* theWrappedObject) const;
+   QByteArray  name(QTextCodec* theWrappedObject) const;
    void static_QTextCodec_setCodecForLocale(QTextCodec*  c);
    QString  toUnicode(QTextCodec* theWrappedObject, const QByteArray&  arg__1) const;
 };
@@ -642,8 +651,8 @@ public:
 public slots:
 QWaitCondition* new_QWaitCondition();
 void delete_QWaitCondition(QWaitCondition* obj) { delete obj; } 
-   bool  wait(QWaitCondition* theWrappedObject, QMutex*  lockedMutex, unsigned long  time = 0xffffffffUL);
-   bool  wait(QWaitCondition* theWrappedObject, QReadWriteLock*  lockedReadWriteLock, unsigned long  time = 0xffffffffUL);
+   bool  wait(QWaitCondition* theWrappedObject, QMutex*  lockedMutex, unsigned long  time = ULONG_MAX);
+   bool  wait(QWaitCondition* theWrappedObject, QReadWriteLock*  lockedReadWriteLock, unsigned long  time = ULONG_MAX);
    void wakeAll(QWaitCondition* theWrappedObject);
    void wakeOne(QWaitCondition* theWrappedObject);
 };

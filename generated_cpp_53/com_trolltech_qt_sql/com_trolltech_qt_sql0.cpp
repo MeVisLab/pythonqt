@@ -43,9 +43,17 @@ QSqlDatabase* PythonQtWrapper_QSqlDatabase::new_QSqlDatabase()
 { 
 return new PythonQtShell_QSqlDatabase(); }
 
+QSqlDatabase* PythonQtWrapper_QSqlDatabase::new_QSqlDatabase(QSqlDriver*  driver)
+{ 
+return new PythonQtShell_QSqlDatabase(driver); }
+
 QSqlDatabase* PythonQtWrapper_QSqlDatabase::new_QSqlDatabase(const QSqlDatabase&  other)
 { 
 return new PythonQtShell_QSqlDatabase(other); }
+
+QSqlDatabase* PythonQtWrapper_QSqlDatabase::new_QSqlDatabase(const QString&  type)
+{ 
+return new PythonQtShell_QSqlDatabase(type); }
 
 QSqlDatabase  PythonQtWrapper_QSqlDatabase::static_QSqlDatabase_addDatabase(QSqlDriver*  driver, const QString&  connectionName)
 {
@@ -1072,9 +1080,19 @@ bool  PythonQtWrapper_QSqlDriver::cancelQuery(QSqlDriver* theWrappedObject)
   return ( ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_cancelQuery());
 }
 
+void PythonQtWrapper_QSqlDriver::close(QSqlDriver* theWrappedObject)
+{
+  ( ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_close());
+}
+
 bool  PythonQtWrapper_QSqlDriver::commitTransaction(QSqlDriver* theWrappedObject)
 {
   return ( ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_commitTransaction());
+}
+
+QSqlResult*  PythonQtWrapper_QSqlDriver::createResult(QSqlDriver* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_createResult());
 }
 
 QString  PythonQtWrapper_QSqlDriver::escapeIdentifier(QSqlDriver* theWrappedObject, const QString&  identifier, QSqlDriver::IdentifierType  type) const
@@ -1090,6 +1108,11 @@ QString  PythonQtWrapper_QSqlDriver::formatValue(QSqlDriver* theWrappedObject, c
 QVariant  PythonQtWrapper_QSqlDriver::handle(QSqlDriver* theWrappedObject) const
 {
   return ( ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_handle());
+}
+
+bool  PythonQtWrapper_QSqlDriver::hasFeature(QSqlDriver* theWrappedObject, QSqlDriver::DriverFeature  f) const
+{
+  return ( ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_hasFeature(f));
 }
 
 bool  PythonQtWrapper_QSqlDriver::isIdentifierEscaped(QSqlDriver* theWrappedObject, const QString&  identifier, QSqlDriver::IdentifierType  type) const
@@ -1115,6 +1138,11 @@ QSqlError  PythonQtWrapper_QSqlDriver::lastError(QSqlDriver* theWrappedObject) c
 QSql::NumericalPrecisionPolicy  PythonQtWrapper_QSqlDriver::numericalPrecisionPolicy(QSqlDriver* theWrappedObject) const
 {
   return ( theWrappedObject->numericalPrecisionPolicy());
+}
+
+bool  PythonQtWrapper_QSqlDriver::open(QSqlDriver* theWrappedObject, const QString&  db, const QString&  user, const QString&  password, const QString&  host, int  port, const QString&  connOpts)
+{
+  return ( ((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->promoted_open(db, user, password, host, port, connOpts));
 }
 
 QSqlIndex  PythonQtWrapper_QSqlDriver::primaryIndex(QSqlDriver* theWrappedObject, const QString&  tableName) const
@@ -1221,6 +1249,11 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 QSqlDriverCreatorBase* PythonQtWrapper_QSqlDriverCreatorBase::new_QSqlDriverCreatorBase()
 { 
 return new PythonQtShell_QSqlDriverCreatorBase(); }
+
+QSqlDriver*  PythonQtWrapper_QSqlDriverCreatorBase::createObject(QSqlDriverCreatorBase* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QSqlDriverCreatorBase*)theWrappedObject)->promoted_createObject());
+}
 
 
 
@@ -5488,6 +5521,10 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QSqlResult::virtual_hook(id0, data1);
 }
+QSqlResult* PythonQtWrapper_QSqlResult::new_QSqlResult(const QSqlDriver*  db)
+{ 
+return new PythonQtShell_QSqlResult(db); }
+
 void PythonQtWrapper_QSqlResult::addBindValue(QSqlResult* theWrappedObject, const QVariant&  val, QSql::ParamType  type)
 {
   ( ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_addBindValue(val, type));
@@ -5553,6 +5590,11 @@ void PythonQtWrapper_QSqlResult::clear(QSqlResult* theWrappedObject)
   ( ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_clear());
 }
 
+QVariant  PythonQtWrapper_QSqlResult::data(QSqlResult* theWrappedObject, int  i)
+{
+  return ( ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_data(i));
+}
+
 void PythonQtWrapper_QSqlResult::detachFromResultSet(QSqlResult* theWrappedObject)
 {
   ( ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_detachFromResultSet());
@@ -5576,6 +5618,21 @@ bool  PythonQtWrapper_QSqlResult::execBatch(QSqlResult* theWrappedObject, bool  
 QString  PythonQtWrapper_QSqlResult::executedQuery(QSqlResult* theWrappedObject) const
 {
   return ( ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_executedQuery());
+}
+
+bool  PythonQtWrapper_QSqlResult::fetch(QSqlResult* theWrappedObject, int  i)
+{
+  return ( ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_fetch(i));
+}
+
+bool  PythonQtWrapper_QSqlResult::fetchFirst(QSqlResult* theWrappedObject)
+{
+  return ( ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_fetchFirst());
+}
+
+bool  PythonQtWrapper_QSqlResult::fetchLast(QSqlResult* theWrappedObject)
+{
+  return ( ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_fetchLast());
 }
 
 bool  PythonQtWrapper_QSqlResult::fetchNext(QSqlResult* theWrappedObject)
@@ -5608,6 +5665,11 @@ bool  PythonQtWrapper_QSqlResult::isForwardOnly(QSqlResult* theWrappedObject) co
   return ( ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_isForwardOnly());
 }
 
+bool  PythonQtWrapper_QSqlResult::isNull(QSqlResult* theWrappedObject, int  i)
+{
+  return ( ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_isNull(i));
+}
+
 bool  PythonQtWrapper_QSqlResult::isSelect(QSqlResult* theWrappedObject) const
 {
   return ( ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_isSelect());
@@ -5638,6 +5700,11 @@ bool  PythonQtWrapper_QSqlResult::nextResult(QSqlResult* theWrappedObject)
   return ( ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_nextResult());
 }
 
+int  PythonQtWrapper_QSqlResult::numRowsAffected(QSqlResult* theWrappedObject)
+{
+  return ( ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_numRowsAffected());
+}
+
 QSql::NumericalPrecisionPolicy  PythonQtWrapper_QSqlResult::numericalPrecisionPolicy(QSqlResult* theWrappedObject) const
 {
   return ( ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_numericalPrecisionPolicy());
@@ -5651,6 +5718,11 @@ bool  PythonQtWrapper_QSqlResult::prepare(QSqlResult* theWrappedObject, const QS
 QSqlRecord  PythonQtWrapper_QSqlResult::record(QSqlResult* theWrappedObject) const
 {
   return ( ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_record());
+}
+
+bool  PythonQtWrapper_QSqlResult::reset(QSqlResult* theWrappedObject, const QString&  sqlquery)
+{
+  return ( ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_reset(sqlquery));
 }
 
 void PythonQtWrapper_QSqlResult::resetBindCount(QSqlResult* theWrappedObject)
@@ -5696,6 +5768,11 @@ void PythonQtWrapper_QSqlResult::setQuery(QSqlResult* theWrappedObject, const QS
 void PythonQtWrapper_QSqlResult::setSelect(QSqlResult* theWrappedObject, bool  s)
 {
   ( ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_setSelect(s));
+}
+
+int  PythonQtWrapper_QSqlResult::size(QSqlResult* theWrappedObject)
+{
+  return ( ((PythonQtPublicPromoter_QSqlResult*)theWrappedObject)->promoted_size());
 }
 
 

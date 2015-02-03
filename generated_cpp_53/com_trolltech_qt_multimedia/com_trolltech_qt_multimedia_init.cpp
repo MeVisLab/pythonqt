@@ -4,6 +4,7 @@
 #include "com_trolltech_qt_multimedia1.h"
 
 
+
 void PythonQt_init_QtMultimedia(PyObject* module) {
 PythonQt::priv()->registerCPPClass("QAbstractVideoBuffer", "", "QtMultimedia", PythonQtCreateObject<PythonQtWrapper_QAbstractVideoBuffer>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QAbstractVideoBuffer>, module, 0);
 PythonQt::priv()->registerClass(&QAbstractVideoSurface::staticMetaObject, "QtMultimedia", PythonQtCreateObject<PythonQtWrapper_QAbstractVideoSurface>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QAbstractVideoSurface>, module, 0);

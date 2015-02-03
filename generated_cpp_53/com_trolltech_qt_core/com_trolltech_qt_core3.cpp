@@ -188,6 +188,10 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   return QByteArray();
 }
+QTextCodec* PythonQtWrapper_QTextCodec::new_QTextCodec()
+{ 
+return new PythonQtShell_QTextCodec(); }
+
 QList<QByteArray >  PythonQtWrapper_QTextCodec::aliases(QTextCodec* theWrappedObject) const
 {
   return ( ((PythonQtPublicPromoter_QTextCodec*)theWrappedObject)->promoted_aliases());
@@ -253,6 +257,16 @@ QTextCodec*  PythonQtWrapper_QTextCodec::static_QTextCodec_codecForUtfText(const
   return (QTextCodec::codecForUtfText(ba, defaultCodec));
 }
 
+QByteArray  PythonQtWrapper_QTextCodec::convertFromUnicode(QTextCodec* theWrappedObject, const QChar*  in, int  length, QTextCodec::ConverterState*  state) const
+{
+  return ( ((PythonQtPublicPromoter_QTextCodec*)theWrappedObject)->promoted_convertFromUnicode(in, length, state));
+}
+
+QString  PythonQtWrapper_QTextCodec::convertToUnicode(QTextCodec* theWrappedObject, const char*  in, int  length, QTextCodec::ConverterState*  state) const
+{
+  return ( ((PythonQtPublicPromoter_QTextCodec*)theWrappedObject)->promoted_convertToUnicode(in, length, state));
+}
+
 QByteArray  PythonQtWrapper_QTextCodec::fromUnicode(QTextCodec* theWrappedObject, const QString&  uc) const
 {
   return ( theWrappedObject->fromUnicode(uc));
@@ -266,6 +280,16 @@ QTextDecoder*  PythonQtWrapper_QTextCodec::makeDecoder(QTextCodec* theWrappedObj
 QTextEncoder*  PythonQtWrapper_QTextCodec::makeEncoder(QTextCodec* theWrappedObject, QTextCodec::ConversionFlags  flags) const
 {
   return ( theWrappedObject->makeEncoder(flags));
+}
+
+int  PythonQtWrapper_QTextCodec::mibEnum(QTextCodec* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QTextCodec*)theWrappedObject)->promoted_mibEnum());
+}
+
+QByteArray  PythonQtWrapper_QTextCodec::name(QTextCodec* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QTextCodec*)theWrappedObject)->promoted_name());
 }
 
 void PythonQtWrapper_QTextCodec::static_QTextCodec_setCodecForLocale(QTextCodec*  c)

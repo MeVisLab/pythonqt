@@ -217,9 +217,24 @@ QAbstractVideoBuffer::HandleType  PythonQtWrapper_QAbstractVideoBuffer::handleTy
   return ( theWrappedObject->handleType());
 }
 
+uchar*  PythonQtWrapper_QAbstractVideoBuffer::map(QAbstractVideoBuffer* theWrappedObject, QAbstractVideoBuffer::MapMode  mode, int*  numBytes, int*  bytesPerLine)
+{
+  return ( ((PythonQtPublicPromoter_QAbstractVideoBuffer*)theWrappedObject)->promoted_map(mode, numBytes, bytesPerLine));
+}
+
+QAbstractVideoBuffer::MapMode  PythonQtWrapper_QAbstractVideoBuffer::mapMode(QAbstractVideoBuffer* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QAbstractVideoBuffer*)theWrappedObject)->promoted_mapMode());
+}
+
 void PythonQtWrapper_QAbstractVideoBuffer::release(QAbstractVideoBuffer* theWrappedObject)
 {
   ( ((PythonQtPublicPromoter_QAbstractVideoBuffer*)theWrappedObject)->promoted_release());
+}
+
+void PythonQtWrapper_QAbstractVideoBuffer::unmap(QAbstractVideoBuffer* theWrappedObject)
+{
+  ( ((PythonQtPublicPromoter_QAbstractVideoBuffer*)theWrappedObject)->promoted_unmap());
 }
 
 
@@ -543,6 +558,11 @@ QVideoSurfaceFormat  PythonQtWrapper_QAbstractVideoSurface::nearestFormat(QAbstr
   return ( ((PythonQtPublicPromoter_QAbstractVideoSurface*)theWrappedObject)->promoted_nearestFormat(format));
 }
 
+bool  PythonQtWrapper_QAbstractVideoSurface::present(QAbstractVideoSurface* theWrappedObject, const QVideoFrame&  frame)
+{
+  return ( ((PythonQtPublicPromoter_QAbstractVideoSurface*)theWrappedObject)->promoted_present(frame));
+}
+
 void PythonQtWrapper_QAbstractVideoSurface::setError(QAbstractVideoSurface* theWrappedObject, QAbstractVideoSurface::Error  error)
 {
   ( ((PythonQtPublicPromoter_QAbstractVideoSurface*)theWrappedObject)->promoted_setError(error));
@@ -561,6 +581,11 @@ bool  PythonQtWrapper_QAbstractVideoSurface::start(QAbstractVideoSurface* theWra
 void PythonQtWrapper_QAbstractVideoSurface::stop(QAbstractVideoSurface* theWrappedObject)
 {
   ( ((PythonQtPublicPromoter_QAbstractVideoSurface*)theWrappedObject)->promoted_stop());
+}
+
+QList<QVideoFrame::PixelFormat >  PythonQtWrapper_QAbstractVideoSurface::supportedPixelFormats(QAbstractVideoSurface* theWrappedObject, QAbstractVideoBuffer::HandleType  handleType) const
+{
+  return ( ((PythonQtPublicPromoter_QAbstractVideoSurface*)theWrappedObject)->promoted_supportedPixelFormats(handleType));
 }
 
 QVideoSurfaceFormat  PythonQtWrapper_QAbstractVideoSurface::surfaceFormat(QAbstractVideoSurface* theWrappedObject) const
@@ -4605,6 +4630,16 @@ QMediaBindableInterface* PythonQtWrapper_QMediaBindableInterface::new_QMediaBind
 { 
 return new PythonQtShell_QMediaBindableInterface(); }
 
+QMediaObject*  PythonQtWrapper_QMediaBindableInterface::mediaObject(QMediaBindableInterface* theWrappedObject) const
+{
+  return ( ((PythonQtPublicPromoter_QMediaBindableInterface*)theWrappedObject)->promoted_mediaObject());
+}
+
+bool  PythonQtWrapper_QMediaBindableInterface::setMediaObject(QMediaBindableInterface* theWrappedObject, QMediaObject*  object)
+{
+  return ( ((PythonQtPublicPromoter_QMediaBindableInterface*)theWrappedObject)->promoted_setMediaObject(object));
+}
+
 
 
 QMediaContent* PythonQtWrapper_QMediaContent::new_QMediaContent()
@@ -4803,6 +4838,10 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QMediaControl::timerEvent(arg__1);
 }
+QMediaControl* PythonQtWrapper_QMediaControl::new_QMediaControl(QObject*  parent)
+{ 
+return new PythonQtShell_QMediaControl(parent); }
+
 
 
 PythonQtShell_QMediaObject::~PythonQtShell_QMediaObject() {
@@ -5065,6 +5104,10 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QMediaObject::unbind(arg__1);
 }
+QMediaObject* PythonQtWrapper_QMediaObject::new_QMediaObject(QObject*  parent, QMediaService*  service)
+{ 
+return new PythonQtShell_QMediaObject(parent, service); }
+
 void PythonQtWrapper_QMediaObject::addPropertyWatch(QMediaObject* theWrappedObject, const QByteArray&  name)
 {
   ( ((PythonQtPublicPromoter_QMediaObject*)theWrappedObject)->promoted_addPropertyWatch(name));

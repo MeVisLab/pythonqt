@@ -2190,7 +2190,7 @@ QList<QTableWidgetSelectionRange >  PythonQtWrapper_QTableWidget::selectedRanges
   return ( theWrappedObject->selectedRanges());
 }
 
-void PythonQtWrapper_QTableWidget::setCellWidget(QTableWidget* theWrappedObject, int  row, int  column, QWidget*  widget)
+void PythonQtWrapper_QTableWidget::setCellWidget(QTableWidget* theWrappedObject, int  row, int  column, PythonQtPassOwnershipToCPP<QWidget* >  widget)
 {
   ( theWrappedObject->setCellWidget(row, column, widget));
 }
@@ -2220,7 +2220,7 @@ void PythonQtWrapper_QTableWidget::setCurrentItem(QTableWidget* theWrappedObject
   ( theWrappedObject->setCurrentItem(item, command));
 }
 
-void PythonQtWrapper_QTableWidget::setHorizontalHeaderItem(QTableWidget* theWrappedObject, int  column, QTableWidgetItem*  item)
+void PythonQtWrapper_QTableWidget::setHorizontalHeaderItem(QTableWidget* theWrappedObject, int  column, PythonQtPassOwnershipToCPP<QTableWidgetItem* >  item)
 {
   ( theWrappedObject->setHorizontalHeaderItem(column, item));
 }
@@ -2230,12 +2230,12 @@ void PythonQtWrapper_QTableWidget::setHorizontalHeaderLabels(QTableWidget* theWr
   ( theWrappedObject->setHorizontalHeaderLabels(labels));
 }
 
-void PythonQtWrapper_QTableWidget::setItem(QTableWidget* theWrappedObject, int  row, int  column, QTableWidgetItem*  item)
+void PythonQtWrapper_QTableWidget::setItem(QTableWidget* theWrappedObject, int  row, int  column, PythonQtPassOwnershipToCPP<QTableWidgetItem* >  item)
 {
   ( theWrappedObject->setItem(row, column, item));
 }
 
-void PythonQtWrapper_QTableWidget::setItemPrototype(QTableWidget* theWrappedObject, const QTableWidgetItem*  item)
+void PythonQtWrapper_QTableWidget::setItemPrototype(QTableWidget* theWrappedObject, PythonQtPassOwnershipToCPP<const QTableWidgetItem* >  item)
 {
   ( theWrappedObject->setItemPrototype(item));
 }
@@ -2250,7 +2250,7 @@ void PythonQtWrapper_QTableWidget::setRowCount(QTableWidget* theWrappedObject, i
   ( theWrappedObject->setRowCount(rows));
 }
 
-void PythonQtWrapper_QTableWidget::setVerticalHeaderItem(QTableWidget* theWrappedObject, int  row, QTableWidgetItem*  item)
+void PythonQtWrapper_QTableWidget::setVerticalHeaderItem(QTableWidget* theWrappedObject, int  row, PythonQtPassOwnershipToCPP<QTableWidgetItem* >  item)
 {
   ( theWrappedObject->setVerticalHeaderItem(row, item));
 }
@@ -2270,17 +2270,17 @@ Qt::DropActions  PythonQtWrapper_QTableWidget::supportedDropActions(QTableWidget
   return ( ((PythonQtPublicPromoter_QTableWidget*)theWrappedObject)->promoted_supportedDropActions());
 }
 
-QTableWidgetItem*  PythonQtWrapper_QTableWidget::takeHorizontalHeaderItem(QTableWidget* theWrappedObject, int  column)
+PythonQtPassOwnershipToPython<QTableWidgetItem*  > PythonQtWrapper_QTableWidget::takeHorizontalHeaderItem(QTableWidget* theWrappedObject, int  column)
 {
   return ( theWrappedObject->takeHorizontalHeaderItem(column));
 }
 
-QTableWidgetItem*  PythonQtWrapper_QTableWidget::takeItem(QTableWidget* theWrappedObject, int  row, int  column)
+PythonQtPassOwnershipToPython<QTableWidgetItem*  > PythonQtWrapper_QTableWidget::takeItem(QTableWidget* theWrappedObject, int  row, int  column)
 {
   return ( theWrappedObject->takeItem(row, column));
 }
 
-QTableWidgetItem*  PythonQtWrapper_QTableWidget::takeVerticalHeaderItem(QTableWidget* theWrappedObject, int  row)
+PythonQtPassOwnershipToPython<QTableWidgetItem*  > PythonQtWrapper_QTableWidget::takeVerticalHeaderItem(QTableWidget* theWrappedObject, int  row)
 {
   return ( theWrappedObject->takeVerticalHeaderItem(row));
 }
@@ -3273,6 +3273,10 @@ QTextBlockFormat* PythonQtWrapper_QTextBlockFormat::new_QTextBlockFormat()
 { 
 return new PythonQtShell_QTextBlockFormat(); }
 
+QTextBlockFormat* PythonQtWrapper_QTextBlockFormat::new_QTextBlockFormat(const QTextFormat&  fmt)
+{ 
+return new PythonQtShell_QTextBlockFormat(fmt); }
+
 Qt::Alignment  PythonQtWrapper_QTextBlockFormat::alignment(QTextBlockFormat* theWrappedObject) const
 {
   return ( theWrappedObject->alignment());
@@ -3578,6 +3582,10 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QTextBlockGroup::timerEvent(arg__1);
 }
+QTextBlockGroup* PythonQtWrapper_QTextBlockGroup::new_QTextBlockGroup(QTextDocument*  doc)
+{ 
+return new PythonQtShell_QTextBlockGroup(doc); }
+
 void PythonQtWrapper_QTextBlockGroup::blockFormatChanged(QTextBlockGroup* theWrappedObject, const QTextBlock&  block)
 {
   ( ((PythonQtPublicPromoter_QTextBlockGroup*)theWrappedObject)->promoted_blockFormatChanged(block));
@@ -5018,6 +5026,10 @@ PythonQtShell_QTextCharFormat::~PythonQtShell_QTextCharFormat() {
 QTextCharFormat* PythonQtWrapper_QTextCharFormat::new_QTextCharFormat()
 { 
 return new PythonQtShell_QTextCharFormat(); }
+
+QTextCharFormat* PythonQtWrapper_QTextCharFormat::new_QTextCharFormat(const QTextFormat&  fmt)
+{ 
+return new PythonQtShell_QTextCharFormat(fmt); }
 
 QString  PythonQtWrapper_QTextCharFormat::anchorHref(QTextCharFormat* theWrappedObject) const
 {
@@ -8275,6 +8287,10 @@ QTextFrameFormat* PythonQtWrapper_QTextFrameFormat::new_QTextFrameFormat()
 { 
 return new PythonQtShell_QTextFrameFormat(); }
 
+QTextFrameFormat* PythonQtWrapper_QTextFrameFormat::new_QTextFrameFormat(const QTextFormat&  fmt)
+{ 
+return new PythonQtShell_QTextFrameFormat(fmt); }
+
 qreal  PythonQtWrapper_QTextFrameFormat::border(QTextFrameFormat* theWrappedObject) const
 {
   return ( theWrappedObject->border());
@@ -8429,6 +8445,10 @@ PythonQtShell_QTextImageFormat::~PythonQtShell_QTextImageFormat() {
 QTextImageFormat* PythonQtWrapper_QTextImageFormat::new_QTextImageFormat()
 { 
 return new PythonQtShell_QTextImageFormat(); }
+
+QTextImageFormat* PythonQtWrapper_QTextImageFormat::new_QTextImageFormat(const QTextFormat&  format)
+{ 
+return new PythonQtShell_QTextImageFormat(format); }
 
 qreal  PythonQtWrapper_QTextImageFormat::height(QTextImageFormat* theWrappedObject) const
 {
@@ -9174,6 +9194,10 @@ QTextListFormat* PythonQtWrapper_QTextListFormat::new_QTextListFormat()
 { 
 return new PythonQtShell_QTextListFormat(); }
 
+QTextListFormat* PythonQtWrapper_QTextListFormat::new_QTextListFormat(const QTextFormat&  fmt)
+{ 
+return new PythonQtShell_QTextListFormat(fmt); }
+
 int  PythonQtWrapper_QTextListFormat::indent(QTextListFormat* theWrappedObject) const
 {
   return ( theWrappedObject->indent());
@@ -9342,6 +9366,10 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   QTextObject::timerEvent(arg__1);
 }
+QTextObject* PythonQtWrapper_QTextObject::new_QTextObject(QTextDocument*  doc)
+{ 
+return new PythonQtShell_QTextObject(doc); }
+
 QTextDocument*  PythonQtWrapper_QTextObject::document(QTextObject* theWrappedObject) const
 {
   return ( theWrappedObject->document());

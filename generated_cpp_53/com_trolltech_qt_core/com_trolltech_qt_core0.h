@@ -72,7 +72,9 @@ virtual void updateState(QAbstractAnimation::State  newState, QAbstractAnimation
 
 class PythonQtPublicPromoter_QAbstractAnimation : public QAbstractAnimation
 { public:
+inline int  promoted_duration() const { return this->duration(); }
 inline bool  promoted_event(QEvent*  event) { return QAbstractAnimation::event(event); }
+inline void promoted_updateCurrentTime(int  currentTime) { this->updateCurrentTime(currentTime); }
 inline void promoted_updateDirection(QAbstractAnimation::Direction  direction) { QAbstractAnimation::updateDirection(direction); }
 inline void promoted_updateState(QAbstractAnimation::State  newState, QAbstractAnimation::State  oldState) { QAbstractAnimation::updateState(newState, oldState); }
 };
@@ -90,6 +92,7 @@ void delete_QAbstractAnimation(QAbstractAnimation* obj) { delete obj; }
    int  currentLoopTime(QAbstractAnimation* theWrappedObject) const;
    int  currentTime(QAbstractAnimation* theWrappedObject) const;
    QAbstractAnimation::Direction  direction(QAbstractAnimation* theWrappedObject) const;
+   int  duration(QAbstractAnimation* theWrappedObject) const;
    bool  event(QAbstractAnimation* theWrappedObject, QEvent*  event);
    QAnimationGroup*  group(QAbstractAnimation* theWrappedObject) const;
    int  loopCount(QAbstractAnimation* theWrappedObject) const;
@@ -97,6 +100,7 @@ void delete_QAbstractAnimation(QAbstractAnimation* obj) { delete obj; }
    void setLoopCount(QAbstractAnimation* theWrappedObject, int  loopCount);
    QAbstractAnimation::State  state(QAbstractAnimation* theWrappedObject) const;
    int  totalDuration(QAbstractAnimation* theWrappedObject) const;
+   void updateCurrentTime(QAbstractAnimation* theWrappedObject, int  currentTime);
    void updateDirection(QAbstractAnimation* theWrappedObject, QAbstractAnimation::Direction  direction);
    void updateState(QAbstractAnimation* theWrappedObject, QAbstractAnimation::State  newState, QAbstractAnimation::State  oldState);
 };
@@ -169,8 +173,10 @@ inline bool  promoted_canDropMimeData(const QMimeData*  data, Qt::DropAction  ac
 inline bool  promoted_canFetchMore(const QModelIndex&  parent) const { return QAbstractItemModel::canFetchMore(parent); }
 inline void promoted_changePersistentIndex(const QModelIndex&  from, const QModelIndex&  to) { QAbstractItemModel::changePersistentIndex(from, to); }
 inline void promoted_changePersistentIndexList(const QList<QModelIndex >&  from, const QList<QModelIndex >&  to) { QAbstractItemModel::changePersistentIndexList(from, to); }
+inline int  promoted_columnCount(const QModelIndex&  parent = QModelIndex()) const { return this->columnCount(parent); }
 inline QModelIndex  promoted_createIndex(int  row, int  column, quintptr  id) const { return QAbstractItemModel::createIndex(row, column, id); }
 inline QModelIndex  promoted_createIndex(int  row, int  column, void*  data = 0) const { return QAbstractItemModel::createIndex(row, column, data); }
+inline QVariant  promoted_data(const QModelIndex&  index, int  role = Qt::DisplayRole) const { return this->data(index, role); }
 inline bool  promoted_decodeData(int  row, int  column, const QModelIndex&  parent, QDataStream&  stream) { return QAbstractItemModel::decodeData(row, column, parent, stream); }
 inline bool  promoted_dropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent) { return QAbstractItemModel::dropMimeData(data, action, row, column, parent); }
 inline void promoted_encodeData(const QList<QModelIndex >&  indexes, QDataStream&  stream) const { QAbstractItemModel::encodeData(indexes, stream); }
@@ -185,6 +191,7 @@ inline void promoted_fetchMore(const QModelIndex&  parent) { QAbstractItemModel:
 inline Qt::ItemFlags  promoted_flags(const QModelIndex&  index) const { return QAbstractItemModel::flags(index); }
 inline bool  promoted_hasChildren(const QModelIndex&  parent = QModelIndex()) const { return QAbstractItemModel::hasChildren(parent); }
 inline QVariant  promoted_headerData(int  section, Qt::Orientation  orientation, int  role = Qt::DisplayRole) const { return QAbstractItemModel::headerData(section, orientation, role); }
+inline QModelIndex  promoted_index(int  row, int  column, const QModelIndex&  parent = QModelIndex()) const { return this->index(row, column, parent); }
 inline bool  promoted_insertColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex()) { return QAbstractItemModel::insertColumns(column, count, parent); }
 inline bool  promoted_insertRows(int  row, int  count, const QModelIndex&  parent = QModelIndex()) { return QAbstractItemModel::insertRows(row, count, parent); }
 inline QMap<int , QVariant >  promoted_itemData(const QModelIndex&  index) const { return QAbstractItemModel::itemData(index); }
@@ -193,12 +200,14 @@ inline QMimeData*  promoted_mimeData(const QList<QModelIndex >&  indexes) const 
 inline QStringList  promoted_mimeTypes() const { return QAbstractItemModel::mimeTypes(); }
 inline bool  promoted_moveColumns(const QModelIndex&  sourceParent, int  sourceColumn, int  count, const QModelIndex&  destinationParent, int  destinationChild) { return QAbstractItemModel::moveColumns(sourceParent, sourceColumn, count, destinationParent, destinationChild); }
 inline bool  promoted_moveRows(const QModelIndex&  sourceParent, int  sourceRow, int  count, const QModelIndex&  destinationParent, int  destinationChild) { return QAbstractItemModel::moveRows(sourceParent, sourceRow, count, destinationParent, destinationChild); }
+inline QModelIndex  promoted_parent(const QModelIndex&  child) const { return this->parent(child); }
 inline QList<QModelIndex >  promoted_persistentIndexList() const { return QAbstractItemModel::persistentIndexList(); }
 inline bool  promoted_removeColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex()) { return QAbstractItemModel::removeColumns(column, count, parent); }
 inline bool  promoted_removeRows(int  row, int  count, const QModelIndex&  parent = QModelIndex()) { return QAbstractItemModel::removeRows(row, count, parent); }
 inline void promoted_resetInternalData() { QAbstractItemModel::resetInternalData(); }
 inline void promoted_revert() { QAbstractItemModel::revert(); }
 inline QHash<int , QByteArray >  promoted_roleNames() const { return QAbstractItemModel::roleNames(); }
+inline int  promoted_rowCount(const QModelIndex&  parent = QModelIndex()) const { return this->rowCount(parent); }
 inline bool  promoted_setData(const QModelIndex&  index, const QVariant&  value, int  role = Qt::EditRole) { return QAbstractItemModel::setData(index, value, role); }
 inline bool  promoted_setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role = Qt::EditRole) { return QAbstractItemModel::setHeaderData(section, orientation, value, role); }
 inline bool  promoted_setItemData(const QModelIndex&  index, const QMap<int , QVariant >&  roles) { return QAbstractItemModel::setItemData(index, roles); }
@@ -228,8 +237,10 @@ void delete_QAbstractItemModel(QAbstractItemModel* obj) { delete obj; }
    bool  canFetchMore(QAbstractItemModel* theWrappedObject, const QModelIndex&  parent) const;
    void changePersistentIndex(QAbstractItemModel* theWrappedObject, const QModelIndex&  from, const QModelIndex&  to);
    void changePersistentIndexList(QAbstractItemModel* theWrappedObject, const QList<QModelIndex >&  from, const QList<QModelIndex >&  to);
+   int  columnCount(QAbstractItemModel* theWrappedObject, const QModelIndex&  parent = QModelIndex()) const;
    QModelIndex  createIndex(QAbstractItemModel* theWrappedObject, int  row, int  column, quintptr  id) const;
    QModelIndex  createIndex(QAbstractItemModel* theWrappedObject, int  row, int  column, void*  data = 0) const;
+   QVariant  data(QAbstractItemModel* theWrappedObject, const QModelIndex&  index, int  role = Qt::DisplayRole) const;
    bool  decodeData(QAbstractItemModel* theWrappedObject, int  row, int  column, const QModelIndex&  parent, QDataStream&  stream);
    bool  dropMimeData(QAbstractItemModel* theWrappedObject, const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent);
    void encodeData(QAbstractItemModel* theWrappedObject, const QList<QModelIndex >&  indexes, QDataStream&  stream) const;
@@ -245,19 +256,21 @@ void delete_QAbstractItemModel(QAbstractItemModel* obj) { delete obj; }
    bool  hasChildren(QAbstractItemModel* theWrappedObject, const QModelIndex&  parent = QModelIndex()) const;
    bool  hasIndex(QAbstractItemModel* theWrappedObject, int  row, int  column, const QModelIndex&  parent = QModelIndex()) const;
    QVariant  headerData(QAbstractItemModel* theWrappedObject, int  section, Qt::Orientation  orientation, int  role = Qt::DisplayRole) const;
+   QModelIndex  index(QAbstractItemModel* theWrappedObject, int  row, int  column, const QModelIndex&  parent = QModelIndex()) const;
    bool  insertColumn(QAbstractItemModel* theWrappedObject, int  column, const QModelIndex&  parent = QModelIndex());
    bool  insertColumns(QAbstractItemModel* theWrappedObject, int  column, int  count, const QModelIndex&  parent = QModelIndex());
    bool  insertRow(QAbstractItemModel* theWrappedObject, int  row, const QModelIndex&  parent = QModelIndex());
    bool  insertRows(QAbstractItemModel* theWrappedObject, int  row, int  count, const QModelIndex&  parent = QModelIndex());
    QMap<int , QVariant >  itemData(QAbstractItemModel* theWrappedObject, const QModelIndex&  index) const;
    QList<QModelIndex >  match(QAbstractItemModel* theWrappedObject, const QModelIndex&  start, int  role, const QVariant&  value, int  hits = 1, Qt::MatchFlags  flags = Qt::MatchFlags(Qt::MatchStartsWith|Qt::MatchWrap)) const;
-   QMimeData*  mimeData(QAbstractItemModel* theWrappedObject, const QList<QModelIndex >&  indexes) const;
+   PythonQtPassOwnershipToPython<QMimeData*  > mimeData(QAbstractItemModel* theWrappedObject, const QList<QModelIndex >&  indexes) const;
    QStringList  mimeTypes(QAbstractItemModel* theWrappedObject) const;
    bool  moveColumn(QAbstractItemModel* theWrappedObject, const QModelIndex&  sourceParent, int  sourceColumn, const QModelIndex&  destinationParent, int  destinationChild);
    bool  moveColumns(QAbstractItemModel* theWrappedObject, const QModelIndex&  sourceParent, int  sourceColumn, int  count, const QModelIndex&  destinationParent, int  destinationChild);
    bool  moveRow(QAbstractItemModel* theWrappedObject, const QModelIndex&  sourceParent, int  sourceRow, const QModelIndex&  destinationParent, int  destinationChild);
    bool  moveRows(QAbstractItemModel* theWrappedObject, const QModelIndex&  sourceParent, int  sourceRow, int  count, const QModelIndex&  destinationParent, int  destinationChild);
    QObject*  parent(QAbstractItemModel* theWrappedObject) const;
+   QModelIndex  parent(QAbstractItemModel* theWrappedObject, const QModelIndex&  child) const;
    QList<QModelIndex >  persistentIndexList(QAbstractItemModel* theWrappedObject) const;
    bool  removeColumn(QAbstractItemModel* theWrappedObject, int  column, const QModelIndex&  parent = QModelIndex());
    bool  removeColumns(QAbstractItemModel* theWrappedObject, int  column, int  count, const QModelIndex&  parent = QModelIndex());
@@ -265,6 +278,7 @@ void delete_QAbstractItemModel(QAbstractItemModel* obj) { delete obj; }
    bool  removeRows(QAbstractItemModel* theWrappedObject, int  row, int  count, const QModelIndex&  parent = QModelIndex());
    void revert(QAbstractItemModel* theWrappedObject);
    QHash<int , QByteArray >  roleNames(QAbstractItemModel* theWrappedObject) const;
+   int  rowCount(QAbstractItemModel* theWrappedObject, const QModelIndex&  parent = QModelIndex()) const;
    bool  setData(QAbstractItemModel* theWrappedObject, const QModelIndex&  index, const QVariant&  value, int  role = Qt::EditRole);
    bool  setHeaderData(QAbstractItemModel* theWrappedObject, int  section, Qt::Orientation  orientation, const QVariant&  value, int  role = Qt::EditRole);
    bool  setItemData(QAbstractItemModel* theWrappedObject, const QModelIndex&  index, const QMap<int , QVariant >&  roles);
@@ -371,15 +385,20 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 class PythonQtPublicPromoter_QAbstractState : public QAbstractState
 { public:
 inline bool  promoted_event(QEvent*  e) { return QAbstractState::event(e); }
+inline void promoted_onEntry(QEvent*  event) { this->onEntry(event); }
+inline void promoted_onExit(QEvent*  event) { this->onExit(event); }
 };
 
 class PythonQtWrapper_QAbstractState : public QObject
 { Q_OBJECT
 public:
 public slots:
+QAbstractState* new_QAbstractState(QState*  parent = 0);
 void delete_QAbstractState(QAbstractState* obj) { delete obj; } 
    bool  event(QAbstractState* theWrappedObject, QEvent*  e);
    QStateMachine*  machine(QAbstractState* theWrappedObject) const;
+   void onEntry(QAbstractState* theWrappedObject, QEvent*  event);
+   void onExit(QAbstractState* theWrappedObject, QEvent*  event);
    QState*  parentState(QAbstractState* theWrappedObject) const;
 };
 
@@ -408,6 +427,8 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 class PythonQtPublicPromoter_QAbstractTransition : public QAbstractTransition
 { public:
 inline bool  promoted_event(QEvent*  e) { return QAbstractTransition::event(e); }
+inline bool  promoted_eventTest(QEvent*  event) { return this->eventTest(event); }
+inline void promoted_onTransition(QEvent*  event) { this->onTransition(event); }
 };
 
 class PythonQtWrapper_QAbstractTransition : public QObject
@@ -419,7 +440,9 @@ void delete_QAbstractTransition(QAbstractTransition* obj) { delete obj; }
    void addAnimation(QAbstractTransition* theWrappedObject, QAbstractAnimation*  animation);
    QList<QAbstractAnimation* >  animations(QAbstractTransition* theWrappedObject) const;
    bool  event(QAbstractTransition* theWrappedObject, QEvent*  e);
+   bool  eventTest(QAbstractTransition* theWrappedObject, QEvent*  event);
    QStateMachine*  machine(QAbstractTransition* theWrappedObject) const;
+   void onTransition(QAbstractTransition* theWrappedObject, QEvent*  event);
    void removeAnimation(QAbstractTransition* theWrappedObject, QAbstractAnimation*  animation);
    void setTargetState(QAbstractTransition* theWrappedObject, QAbstractState*  target);
    void setTargetStates(QAbstractTransition* theWrappedObject, const QList<QAbstractState* >&  targets);
@@ -463,15 +486,15 @@ public:
 public slots:
 QAnimationGroup* new_QAnimationGroup(QObject*  parent = 0);
 void delete_QAnimationGroup(QAnimationGroup* obj) { delete obj; } 
-   void addAnimation(QAnimationGroup* theWrappedObject, QAbstractAnimation*  animation);
+   void addAnimation(QAnimationGroup* theWrappedObject, PythonQtPassOwnershipToCPP<QAbstractAnimation* >  animation);
    QAbstractAnimation*  animationAt(QAnimationGroup* theWrappedObject, int  index) const;
    int  animationCount(QAnimationGroup* theWrappedObject) const;
    void clear(QAnimationGroup* theWrappedObject);
    bool  event(QAnimationGroup* theWrappedObject, QEvent*  event);
    int  indexOfAnimation(QAnimationGroup* theWrappedObject, QAbstractAnimation*  animation) const;
-   void insertAnimation(QAnimationGroup* theWrappedObject, int  index, QAbstractAnimation*  animation);
-   void removeAnimation(QAnimationGroup* theWrappedObject, QAbstractAnimation*  animation);
-   QAbstractAnimation*  takeAnimation(QAnimationGroup* theWrappedObject, int  index);
+   void insertAnimation(QAnimationGroup* theWrappedObject, int  index, PythonQtPassOwnershipToCPP<QAbstractAnimation* >  animation);
+   void removeAnimation(QAnimationGroup* theWrappedObject, PythonQtPassOwnershipToPython<QAbstractAnimation* >  animation);
+   PythonQtPassOwnershipToPython<QAbstractAnimation*  > takeAnimation(QAnimationGroup* theWrappedObject, int  index);
 };
 
 
@@ -791,7 +814,7 @@ void delete_QCoreApplication(QCoreApplication* obj) { delete obj; }
    bool  notify(QCoreApplication* theWrappedObject, QObject*  arg__1, QEvent*  arg__2);
    QString  static_QCoreApplication_organizationDomain();
    QString  static_QCoreApplication_organizationName();
-   void static_QCoreApplication_postEvent(QObject*  receiver, QEvent*  event, int  priority = Qt::NormalEventPriority);
+   void static_QCoreApplication_postEvent(QObject*  receiver, PythonQtPassOwnershipToCPP<QEvent* >  event, int  priority = Qt::NormalEventPriority);
    void static_QCoreApplication_processEvents(QEventLoop::ProcessEventsFlags  flags = QEventLoop::AllEvents);
    void static_QCoreApplication_processEvents(QEventLoop::ProcessEventsFlags  flags, int  maxtime);
    void static_QCoreApplication_removeLibraryPath(const QString&  arg__1);
@@ -1267,12 +1290,18 @@ virtual QStringList  keys() const;
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QFactoryInterface : public QFactoryInterface
+{ public:
+inline QStringList  promoted_keys() const { return this->keys(); }
+};
+
 class PythonQtWrapper_QFactoryInterface : public QObject
 { Q_OBJECT
 public:
 public slots:
 QFactoryInterface* new_QFactoryInterface();
 void delete_QFactoryInterface(QFactoryInterface* obj) { delete obj; } 
+   QStringList  keys(QFactoryInterface* theWrappedObject) const;
 };
 
 
@@ -1438,6 +1467,8 @@ enum Permission{
 Q_DECLARE_FLAGS(FileHandleFlags, FileHandleFlag)
 Q_DECLARE_FLAGS(Permissions, Permission)
 public slots:
+QFileDevice* new_QFileDevice();
+QFileDevice* new_QFileDevice(QObject*  parent);
 void delete_QFileDevice(QFileDevice* obj) { delete obj; } 
    bool  atEnd(QFileDevice* theWrappedObject) const;
    void close(QFileDevice* theWrappedObject);

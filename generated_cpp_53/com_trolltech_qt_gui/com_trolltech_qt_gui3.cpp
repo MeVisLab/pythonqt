@@ -544,6 +544,9 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
     }
     if (result) { Py_DECREF(result); } 
     Py_DECREF(obj);
+    if (change0 == QGraphicsItem::ItemParentChange || change0 == QGraphicsItem::ItemSceneChange) {
+      returnValue = value1;
+    } 
     return returnValue;
   } else {
     PyErr_Clear();
@@ -1764,7 +1767,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
   return QGraphicsProxyWidget::windowFrameSectionAt(pos0);
 }
-QGraphicsProxyWidget* PythonQtWrapper_QGraphicsProxyWidget::new_QGraphicsProxyWidget(QGraphicsItem*  parent, Qt::WindowFlags  wFlags)
+QGraphicsProxyWidget* PythonQtWrapper_QGraphicsProxyWidget::new_QGraphicsProxyWidget(PythonQtNewOwnerOfThis<QGraphicsItem* >  parent, Qt::WindowFlags  wFlags)
 { 
 return new PythonQtShell_QGraphicsProxyWidget(parent, wFlags); }
 
@@ -1908,7 +1911,7 @@ void PythonQtWrapper_QGraphicsProxyWidget::setGeometry(QGraphicsProxyWidget* the
   ( ((PythonQtPublicPromoter_QGraphicsProxyWidget*)theWrappedObject)->promoted_setGeometry(rect));
 }
 
-void PythonQtWrapper_QGraphicsProxyWidget::setWidget(QGraphicsProxyWidget* theWrappedObject, QWidget*  widget)
+void PythonQtWrapper_QGraphicsProxyWidget::setWidget(QGraphicsProxyWidget* theWrappedObject, PythonQtPassOwnershipToCPP<QWidget* >  widget)
 {
   ( theWrappedObject->setWidget(widget));
 }
@@ -3014,7 +3017,7 @@ QGraphicsEllipseItem*  PythonQtWrapper_QGraphicsScene::addEllipse(QGraphicsScene
   return ( theWrappedObject->addEllipse(x, y, w, h, pen, brush));
 }
 
-void PythonQtWrapper_QGraphicsScene::addItem(QGraphicsScene* theWrappedObject, QGraphicsItem*  item)
+void PythonQtWrapper_QGraphicsScene::addItem(QGraphicsScene* theWrappedObject, PythonQtPassOwnershipToCPP<QGraphicsItem* >  item)
 {
   ( theWrappedObject->addItem(item));
 }
@@ -3064,7 +3067,7 @@ QGraphicsTextItem*  PythonQtWrapper_QGraphicsScene::addText(QGraphicsScene* theW
   return ( theWrappedObject->addText(text, font));
 }
 
-QGraphicsProxyWidget*  PythonQtWrapper_QGraphicsScene::addWidget(QGraphicsScene* theWrappedObject, QWidget*  widget, Qt::WindowFlags  wFlags)
+QGraphicsProxyWidget*  PythonQtWrapper_QGraphicsScene::addWidget(QGraphicsScene* theWrappedObject, PythonQtPassOwnershipToCPP<QWidget* >  widget, Qt::WindowFlags  wFlags)
 {
   return ( theWrappedObject->addWidget(widget, wFlags));
 }
@@ -3304,7 +3307,7 @@ QPalette  PythonQtWrapper_QGraphicsScene::palette(QGraphicsScene* theWrappedObje
   return ( theWrappedObject->palette());
 }
 
-void PythonQtWrapper_QGraphicsScene::removeItem(QGraphicsScene* theWrappedObject, QGraphicsItem*  item)
+void PythonQtWrapper_QGraphicsScene::removeItem(QGraphicsScene* theWrappedObject, PythonQtPassOwnershipToPython<QGraphicsItem* >  item)
 {
   ( theWrappedObject->removeItem(item));
 }
@@ -4643,6 +4646,11 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 QGraphicsTransform* PythonQtWrapper_QGraphicsTransform::new_QGraphicsTransform(QObject*  parent)
 { 
 return new PythonQtShell_QGraphicsTransform(parent); }
+
+void PythonQtWrapper_QGraphicsTransform::applyTo(QGraphicsTransform* theWrappedObject, QMatrix4x4*  matrix) const
+{
+  ( ((PythonQtPublicPromoter_QGraphicsTransform*)theWrappedObject)->promoted_applyTo(matrix));
+}
 
 
 
@@ -7132,7 +7140,7 @@ void PythonQtWrapper_QGraphicsWidget::setGeometry(QGraphicsWidget* theWrappedObj
   ( theWrappedObject->setGeometry(x, y, w, h));
 }
 
-void PythonQtWrapper_QGraphicsWidget::setLayout(QGraphicsWidget* theWrappedObject, QGraphicsLayout*  layout)
+void PythonQtWrapper_QGraphicsWidget::setLayout(QGraphicsWidget* theWrappedObject, PythonQtPassOwnershipToCPP<QGraphicsLayout* >  layout)
 {
   ( theWrappedObject->setLayout(layout));
 }
@@ -7800,27 +7808,27 @@ void PythonQtWrapper_QGridLayout::addItem(QGridLayout* theWrappedObject, QLayout
   ( ((PythonQtPublicPromoter_QGridLayout*)theWrappedObject)->promoted_addItem(arg__1));
 }
 
-void PythonQtWrapper_QGridLayout::addItem(QGridLayout* theWrappedObject, QLayoutItem*  item, int  row, int  column, int  rowSpan, int  columnSpan, Qt::Alignment  arg__6)
+void PythonQtWrapper_QGridLayout::addItem(QGridLayout* theWrappedObject, PythonQtPassOwnershipToCPP<QLayoutItem* >  item, int  row, int  column, int  rowSpan, int  columnSpan, Qt::Alignment  arg__6)
 {
   ( theWrappedObject->addItem(item, row, column, rowSpan, columnSpan, arg__6));
 }
 
-void PythonQtWrapper_QGridLayout::addLayout(QGridLayout* theWrappedObject, QLayout*  arg__1, int  row, int  column, Qt::Alignment  arg__4)
+void PythonQtWrapper_QGridLayout::addLayout(QGridLayout* theWrappedObject, PythonQtPassOwnershipToCPP<QLayout* >  arg__1, int  row, int  column, Qt::Alignment  arg__4)
 {
   ( theWrappedObject->addLayout(arg__1, row, column, arg__4));
 }
 
-void PythonQtWrapper_QGridLayout::addLayout(QGridLayout* theWrappedObject, QLayout*  arg__1, int  row, int  column, int  rowSpan, int  columnSpan, Qt::Alignment  arg__6)
+void PythonQtWrapper_QGridLayout::addLayout(QGridLayout* theWrappedObject, PythonQtPassOwnershipToCPP<QLayout* >  arg__1, int  row, int  column, int  rowSpan, int  columnSpan, Qt::Alignment  arg__6)
 {
   ( theWrappedObject->addLayout(arg__1, row, column, rowSpan, columnSpan, arg__6));
 }
 
-void PythonQtWrapper_QGridLayout::addWidget(QGridLayout* theWrappedObject, QWidget*  arg__1, int  row, int  column, Qt::Alignment  arg__4)
+void PythonQtWrapper_QGridLayout::addWidget(QGridLayout* theWrappedObject, PythonQtPassOwnershipToCPP<QWidget* >  arg__1, int  row, int  column, Qt::Alignment  arg__4)
 {
   ( theWrappedObject->addWidget(arg__1, row, column, arg__4));
 }
 
-void PythonQtWrapper_QGridLayout::addWidget(QGridLayout* theWrappedObject, QWidget*  arg__1, int  row, int  column, int  rowSpan, int  columnSpan, Qt::Alignment  arg__6)
+void PythonQtWrapper_QGridLayout::addWidget(QGridLayout* theWrappedObject, PythonQtPassOwnershipToCPP<QWidget* >  arg__1, int  row, int  column, int  rowSpan, int  columnSpan, Qt::Alignment  arg__6)
 {
   ( theWrappedObject->addWidget(arg__1, row, column, rowSpan, columnSpan, arg__6));
 }

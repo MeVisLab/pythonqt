@@ -144,9 +144,9 @@ void delete_QCompleter(QCompleter* obj) { delete obj; }
    bool  setCurrentRow(QCompleter* theWrappedObject, int  row);
    void setFilterMode(QCompleter* theWrappedObject, Qt::MatchFlags  filterMode);
    void setMaxVisibleItems(QCompleter* theWrappedObject, int  maxItems);
-   void setModel(QCompleter* theWrappedObject, QAbstractItemModel*  c);
+   void setModel(QCompleter* theWrappedObject, PythonQtPassOwnershipToCPP<QAbstractItemModel* >  c);
    void setModelSorting(QCompleter* theWrappedObject, QCompleter::ModelSorting  sorting);
-   void setPopup(QCompleter* theWrappedObject, QAbstractItemView*  popup);
+   void setPopup(QCompleter* theWrappedObject, PythonQtPassOwnershipToCPP<QAbstractItemView* >  popup);
    void setWidget(QCompleter* theWrappedObject, QWidget*  widget);
    QStringList  splitPath(QCompleter* theWrappedObject, const QString&  path) const;
    QWidget*  widget(QCompleter* theWrappedObject) const;
@@ -435,6 +435,7 @@ QDateTimeEdit* new_QDateTimeEdit(QWidget*  parent = 0);
 QDateTimeEdit* new_QDateTimeEdit(const QDate&  d, QWidget*  parent = 0);
 QDateTimeEdit* new_QDateTimeEdit(const QDateTime&  dt, QWidget*  parent = 0);
 QDateTimeEdit* new_QDateTimeEdit(const QTime&  t, QWidget*  parent = 0);
+QDateTimeEdit* new_QDateTimeEdit(const QVariant&  val, QVariant::Type  parserType, QWidget*  parent = 0);
 void delete_QDateTimeEdit(QDateTimeEdit* obj) { delete obj; } 
    bool  calendarPopup(QDateTimeEdit* theWrappedObject) const;
    QCalendarWidget*  calendarWidget(QDateTimeEdit* theWrappedObject) const;
@@ -894,7 +895,7 @@ QDialogButtonBox* new_QDialogButtonBox(QDialogButtonBox::StandardButtons  button
 QDialogButtonBox* new_QDialogButtonBox(QWidget*  parent = 0);
 QDialogButtonBox* new_QDialogButtonBox(Qt::Orientation  orientation, QWidget*  parent = 0);
 void delete_QDialogButtonBox(QDialogButtonBox* obj) { delete obj; } 
-   void addButton(QDialogButtonBox* theWrappedObject, QAbstractButton*  button, QDialogButtonBox::ButtonRole  role);
+   void addButton(QDialogButtonBox* theWrappedObject, PythonQtPassOwnershipToCPP<QAbstractButton* >  button, QDialogButtonBox::ButtonRole  role);
    QPushButton*  addButton(QDialogButtonBox* theWrappedObject, QDialogButtonBox::StandardButton  button);
    QPushButton*  addButton(QDialogButtonBox* theWrappedObject, const QString&  text, QDialogButtonBox::ButtonRole  role);
    QPushButton*  button(QDialogButtonBox* theWrappedObject, QDialogButtonBox::StandardButton  which) const;
@@ -905,7 +906,7 @@ void delete_QDialogButtonBox(QDialogButtonBox* obj) { delete obj; }
    void clear(QDialogButtonBox* theWrappedObject);
    bool  event(QDialogButtonBox* theWrappedObject, QEvent*  event);
    Qt::Orientation  orientation(QDialogButtonBox* theWrappedObject) const;
-   void removeButton(QDialogButtonBox* theWrappedObject, QAbstractButton*  button);
+   void removeButton(QDialogButtonBox* theWrappedObject, PythonQtPassOwnershipToPython<QAbstractButton* >  button);
    void setCenterButtons(QDialogButtonBox* theWrappedObject, bool  center);
    void setOrientation(QDialogButtonBox* theWrappedObject, Qt::Orientation  orientation);
    void setStandardButtons(QDialogButtonBox* theWrappedObject, QDialogButtonBox::StandardButtons  buttons);
@@ -1318,7 +1319,7 @@ void delete_QDrag(QDrag* obj) { delete obj; }
    QPixmap  pixmap(QDrag* theWrappedObject) const;
    void setDragCursor(QDrag* theWrappedObject, const QPixmap&  cursor, Qt::DropAction  action);
    void setHotSpot(QDrag* theWrappedObject, const QPoint&  hotspot);
-   void setMimeData(QDrag* theWrappedObject, QMimeData*  data);
+   void setMimeData(QDrag* theWrappedObject, PythonQtPassOwnershipToCPP<QMimeData* >  data);
    void setPixmap(QDrag* theWrappedObject, const QPixmap&  arg__1);
    QObject*  source(QDrag* theWrappedObject) const;
    Qt::DropActions  supportedActions(QDrag* theWrappedObject) const;

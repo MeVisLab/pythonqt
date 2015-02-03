@@ -609,7 +609,7 @@ int  PythonQtWrapper_QStackedLayout::heightForWidth(QStackedLayout* theWrappedOb
   return ( theWrappedObject->heightForWidth(width));
 }
 
-int  PythonQtWrapper_QStackedLayout::insertWidget(QStackedLayout* theWrappedObject, int  index, QWidget*  w)
+int  PythonQtWrapper_QStackedLayout::insertWidget(QStackedLayout* theWrappedObject, int  index, PythonQtPassOwnershipToCPP<QWidget* >  w)
 {
   return ( theWrappedObject->insertWidget(index, w));
 }
@@ -1629,7 +1629,7 @@ QStackedWidget* PythonQtWrapper_QStackedWidget::new_QStackedWidget(QWidget*  par
 { 
 return new PythonQtShell_QStackedWidget(parent); }
 
-int  PythonQtWrapper_QStackedWidget::addWidget(QStackedWidget* theWrappedObject, QWidget*  w)
+int  PythonQtWrapper_QStackedWidget::addWidget(QStackedWidget* theWrappedObject, PythonQtPassOwnershipToCPP<QWidget* >  w)
 {
   return ( theWrappedObject->addWidget(w));
 }
@@ -1659,12 +1659,12 @@ int  PythonQtWrapper_QStackedWidget::indexOf(QStackedWidget* theWrappedObject, Q
   return ( theWrappedObject->indexOf(arg__1));
 }
 
-int  PythonQtWrapper_QStackedWidget::insertWidget(QStackedWidget* theWrappedObject, int  index, QWidget*  w)
+int  PythonQtWrapper_QStackedWidget::insertWidget(QStackedWidget* theWrappedObject, int  index, PythonQtPassOwnershipToCPP<QWidget* >  w)
 {
   return ( theWrappedObject->insertWidget(index, w));
 }
 
-void PythonQtWrapper_QStackedWidget::removeWidget(QStackedWidget* theWrappedObject, QWidget*  w)
+void PythonQtWrapper_QStackedWidget::removeWidget(QStackedWidget* theWrappedObject, PythonQtPassOwnershipToPython<QWidget* >  w)
 {
   ( theWrappedObject->removeWidget(w));
 }
@@ -1865,6 +1865,10 @@ QStandardItem* PythonQtWrapper_QStandardItem::new_QStandardItem(const QIcon&  ic
 { 
 return new PythonQtShell_QStandardItem(icon, text); }
 
+QStandardItem* PythonQtWrapper_QStandardItem::new_QStandardItem(const QStandardItem&  other)
+{ 
+return new PythonQtShell_QStandardItem(other); }
+
 QStandardItem* PythonQtWrapper_QStandardItem::new_QStandardItem(const QString&  text)
 { 
 return new PythonQtShell_QStandardItem(text); }
@@ -1883,22 +1887,22 @@ QString  PythonQtWrapper_QStandardItem::accessibleText(QStandardItem* theWrapped
   return ( theWrappedObject->accessibleText());
 }
 
-void PythonQtWrapper_QStandardItem::appendColumn(QStandardItem* theWrappedObject, const QList<QStandardItem* >&  items)
+void PythonQtWrapper_QStandardItem::appendColumn(QStandardItem* theWrappedObject, PythonQtPassOwnershipToCPP<QList<QStandardItem* > >  items)
 {
   ( theWrappedObject->appendColumn(items));
 }
 
-void PythonQtWrapper_QStandardItem::appendRow(QStandardItem* theWrappedObject, QStandardItem*  item)
+void PythonQtWrapper_QStandardItem::appendRow(QStandardItem* theWrappedObject, PythonQtPassOwnershipToCPP<QStandardItem* >  item)
 {
   ( theWrappedObject->appendRow(item));
 }
 
-void PythonQtWrapper_QStandardItem::appendRow(QStandardItem* theWrappedObject, const QList<QStandardItem* >&  items)
+void PythonQtWrapper_QStandardItem::appendRow(QStandardItem* theWrappedObject, PythonQtPassOwnershipToCPP<QList<QStandardItem* > >  items)
 {
   ( theWrappedObject->appendRow(items));
 }
 
-void PythonQtWrapper_QStandardItem::appendRows(QStandardItem* theWrappedObject, const QList<QStandardItem* >&  items)
+void PythonQtWrapper_QStandardItem::appendRows(QStandardItem* theWrappedObject, PythonQtPassOwnershipToCPP<QList<QStandardItem* > >  items)
 {
   ( theWrappedObject->appendRows(items));
 }
@@ -1973,7 +1977,7 @@ QModelIndex  PythonQtWrapper_QStandardItem::index(QStandardItem* theWrappedObjec
   return ( theWrappedObject->index());
 }
 
-void PythonQtWrapper_QStandardItem::insertColumn(QStandardItem* theWrappedObject, int  column, const QList<QStandardItem* >&  items)
+void PythonQtWrapper_QStandardItem::insertColumn(QStandardItem* theWrappedObject, int  column, PythonQtPassOwnershipToCPP<QList<QStandardItem* > >  items)
 {
   ( theWrappedObject->insertColumn(column, items));
 }
@@ -1988,12 +1992,12 @@ void PythonQtWrapper_QStandardItem::insertRow(QStandardItem* theWrappedObject, i
   ( theWrappedObject->insertRow(row, item));
 }
 
-void PythonQtWrapper_QStandardItem::insertRow(QStandardItem* theWrappedObject, int  row, const QList<QStandardItem* >&  items)
+void PythonQtWrapper_QStandardItem::insertRow(QStandardItem* theWrappedObject, int  row, PythonQtPassOwnershipToCPP<QList<QStandardItem* > >  items)
 {
   ( theWrappedObject->insertRow(row, items));
 }
 
-void PythonQtWrapper_QStandardItem::insertRows(QStandardItem* theWrappedObject, int  row, const QList<QStandardItem* >&  items)
+void PythonQtWrapper_QStandardItem::insertRows(QStandardItem* theWrappedObject, int  row, PythonQtPassOwnershipToCPP<QList<QStandardItem* > >  items)
 {
   ( theWrappedObject->insertRows(row, items));
 }
@@ -2113,12 +2117,12 @@ void PythonQtWrapper_QStandardItem::setCheckable(QStandardItem* theWrappedObject
   ( theWrappedObject->setCheckable(checkable));
 }
 
-void PythonQtWrapper_QStandardItem::setChild(QStandardItem* theWrappedObject, int  row, QStandardItem*  item)
+void PythonQtWrapper_QStandardItem::setChild(QStandardItem* theWrappedObject, int  row, PythonQtPassOwnershipToCPP<QStandardItem* >  item)
 {
   ( theWrappedObject->setChild(row, item));
 }
 
-void PythonQtWrapper_QStandardItem::setChild(QStandardItem* theWrappedObject, int  row, int  column, QStandardItem*  item)
+void PythonQtWrapper_QStandardItem::setChild(QStandardItem* theWrappedObject, int  row, int  column, PythonQtPassOwnershipToCPP<QStandardItem* >  item)
 {
   ( theWrappedObject->setChild(row, column, item));
 }
@@ -2233,7 +2237,7 @@ QString  PythonQtWrapper_QStandardItem::statusTip(QStandardItem* theWrappedObjec
   return ( theWrappedObject->statusTip());
 }
 
-QStandardItem*  PythonQtWrapper_QStandardItem::takeChild(QStandardItem* theWrappedObject, int  row, int  column)
+PythonQtPassOwnershipToPython<QStandardItem*  > PythonQtWrapper_QStandardItem::takeChild(QStandardItem* theWrappedObject, int  row, int  column)
 {
   return ( theWrappedObject->takeChild(row, column));
 }
@@ -3391,17 +3395,17 @@ QStandardItemModel* PythonQtWrapper_QStandardItemModel::new_QStandardItemModel(i
 { 
 return new PythonQtShell_QStandardItemModel(rows, columns, parent); }
 
-void PythonQtWrapper_QStandardItemModel::appendColumn(QStandardItemModel* theWrappedObject, const QList<QStandardItem* >&  items)
+void PythonQtWrapper_QStandardItemModel::appendColumn(QStandardItemModel* theWrappedObject, PythonQtPassOwnershipToCPP<QList<QStandardItem* > >  items)
 {
   ( theWrappedObject->appendColumn(items));
 }
 
-void PythonQtWrapper_QStandardItemModel::appendRow(QStandardItemModel* theWrappedObject, QStandardItem*  item)
+void PythonQtWrapper_QStandardItemModel::appendRow(QStandardItemModel* theWrappedObject, PythonQtPassOwnershipToCPP<QStandardItem* >  item)
 {
   ( theWrappedObject->appendRow(item));
 }
 
-void PythonQtWrapper_QStandardItemModel::appendRow(QStandardItemModel* theWrappedObject, const QList<QStandardItem* >&  items)
+void PythonQtWrapper_QStandardItemModel::appendRow(QStandardItemModel* theWrappedObject, PythonQtPassOwnershipToCPP<QList<QStandardItem* > >  items)
 {
   ( theWrappedObject->appendRow(items));
 }
@@ -3461,7 +3465,7 @@ QModelIndex  PythonQtWrapper_QStandardItemModel::indexFromItem(QStandardItemMode
   return ( theWrappedObject->indexFromItem(item));
 }
 
-void PythonQtWrapper_QStandardItemModel::insertColumn(QStandardItemModel* theWrappedObject, int  column, const QList<QStandardItem* >&  items)
+void PythonQtWrapper_QStandardItemModel::insertColumn(QStandardItemModel* theWrappedObject, int  column, PythonQtPassOwnershipToCPP<QList<QStandardItem* > >  items)
 {
   ( theWrappedObject->insertColumn(column, items));
 }
@@ -3471,12 +3475,12 @@ bool  PythonQtWrapper_QStandardItemModel::insertColumns(QStandardItemModel* theW
   return ( ((PythonQtPublicPromoter_QStandardItemModel*)theWrappedObject)->promoted_insertColumns(column, count, parent));
 }
 
-void PythonQtWrapper_QStandardItemModel::insertRow(QStandardItemModel* theWrappedObject, int  row, QStandardItem*  item)
+void PythonQtWrapper_QStandardItemModel::insertRow(QStandardItemModel* theWrappedObject, int  row, PythonQtPassOwnershipToCPP<QStandardItem* >  item)
 {
   ( theWrappedObject->insertRow(row, item));
 }
 
-void PythonQtWrapper_QStandardItemModel::insertRow(QStandardItemModel* theWrappedObject, int  row, const QList<QStandardItem* >&  items)
+void PythonQtWrapper_QStandardItemModel::insertRow(QStandardItemModel* theWrappedObject, int  row, PythonQtPassOwnershipToCPP<QList<QStandardItem* > >  items)
 {
   ( theWrappedObject->insertRow(row, items));
 }
@@ -3556,7 +3560,7 @@ bool  PythonQtWrapper_QStandardItemModel::setHeaderData(QStandardItemModel* theW
   return ( ((PythonQtPublicPromoter_QStandardItemModel*)theWrappedObject)->promoted_setHeaderData(section, orientation, value, role));
 }
 
-void PythonQtWrapper_QStandardItemModel::setHorizontalHeaderItem(QStandardItemModel* theWrappedObject, int  column, QStandardItem*  item)
+void PythonQtWrapper_QStandardItemModel::setHorizontalHeaderItem(QStandardItemModel* theWrappedObject, int  column, PythonQtPassOwnershipToCPP<QStandardItem* >  item)
 {
   ( theWrappedObject->setHorizontalHeaderItem(column, item));
 }
@@ -3566,12 +3570,12 @@ void PythonQtWrapper_QStandardItemModel::setHorizontalHeaderLabels(QStandardItem
   ( theWrappedObject->setHorizontalHeaderLabels(labels));
 }
 
-void PythonQtWrapper_QStandardItemModel::setItem(QStandardItemModel* theWrappedObject, int  row, QStandardItem*  item)
+void PythonQtWrapper_QStandardItemModel::setItem(QStandardItemModel* theWrappedObject, int  row, PythonQtPassOwnershipToCPP<QStandardItem* >  item)
 {
   ( theWrappedObject->setItem(row, item));
 }
 
-void PythonQtWrapper_QStandardItemModel::setItem(QStandardItemModel* theWrappedObject, int  row, int  column, QStandardItem*  item)
+void PythonQtWrapper_QStandardItemModel::setItem(QStandardItemModel* theWrappedObject, int  row, int  column, PythonQtPassOwnershipToCPP<QStandardItem* >  item)
 {
   ( theWrappedObject->setItem(row, column, item));
 }
@@ -3581,7 +3585,7 @@ bool  PythonQtWrapper_QStandardItemModel::setItemData(QStandardItemModel* theWra
   return ( ((PythonQtPublicPromoter_QStandardItemModel*)theWrappedObject)->promoted_setItemData(index, roles));
 }
 
-void PythonQtWrapper_QStandardItemModel::setItemPrototype(QStandardItemModel* theWrappedObject, const QStandardItem*  item)
+void PythonQtWrapper_QStandardItemModel::setItemPrototype(QStandardItemModel* theWrappedObject, PythonQtPassOwnershipToCPP<const QStandardItem* >  item)
 {
   ( theWrappedObject->setItemPrototype(item));
 }
@@ -3601,7 +3605,7 @@ void PythonQtWrapper_QStandardItemModel::setSortRole(QStandardItemModel* theWrap
   ( theWrappedObject->setSortRole(role));
 }
 
-void PythonQtWrapper_QStandardItemModel::setVerticalHeaderItem(QStandardItemModel* theWrappedObject, int  row, QStandardItem*  item)
+void PythonQtWrapper_QStandardItemModel::setVerticalHeaderItem(QStandardItemModel* theWrappedObject, int  row, PythonQtPassOwnershipToCPP<QStandardItem* >  item)
 {
   ( theWrappedObject->setVerticalHeaderItem(row, item));
 }
@@ -3631,27 +3635,27 @@ Qt::DropActions  PythonQtWrapper_QStandardItemModel::supportedDropActions(QStand
   return ( ((PythonQtPublicPromoter_QStandardItemModel*)theWrappedObject)->promoted_supportedDropActions());
 }
 
-QList<QStandardItem* >  PythonQtWrapper_QStandardItemModel::takeColumn(QStandardItemModel* theWrappedObject, int  column)
+PythonQtPassOwnershipToPython<QList<QStandardItem* >  > PythonQtWrapper_QStandardItemModel::takeColumn(QStandardItemModel* theWrappedObject, int  column)
 {
   return ( theWrappedObject->takeColumn(column));
 }
 
-QStandardItem*  PythonQtWrapper_QStandardItemModel::takeHorizontalHeaderItem(QStandardItemModel* theWrappedObject, int  column)
+PythonQtPassOwnershipToPython<QStandardItem*  > PythonQtWrapper_QStandardItemModel::takeHorizontalHeaderItem(QStandardItemModel* theWrappedObject, int  column)
 {
   return ( theWrappedObject->takeHorizontalHeaderItem(column));
 }
 
-QStandardItem*  PythonQtWrapper_QStandardItemModel::takeItem(QStandardItemModel* theWrappedObject, int  row, int  column)
+PythonQtPassOwnershipToPython<QStandardItem*  > PythonQtWrapper_QStandardItemModel::takeItem(QStandardItemModel* theWrappedObject, int  row, int  column)
 {
   return ( theWrappedObject->takeItem(row, column));
 }
 
-QList<QStandardItem* >  PythonQtWrapper_QStandardItemModel::takeRow(QStandardItemModel* theWrappedObject, int  row)
+PythonQtPassOwnershipToPython<QList<QStandardItem* >  > PythonQtWrapper_QStandardItemModel::takeRow(QStandardItemModel* theWrappedObject, int  row)
 {
   return ( theWrappedObject->takeRow(row));
 }
 
-QStandardItem*  PythonQtWrapper_QStandardItemModel::takeVerticalHeaderItem(QStandardItemModel* theWrappedObject, int  row)
+PythonQtPassOwnershipToPython<QStandardItem*  > PythonQtWrapper_QStandardItemModel::takeVerticalHeaderItem(QStandardItemModel* theWrappedObject, int  row)
 {
   return ( theWrappedObject->takeVerticalHeaderItem(row));
 }
@@ -4755,12 +4759,12 @@ QStatusBar* PythonQtWrapper_QStatusBar::new_QStatusBar(QWidget*  parent)
 { 
 return new PythonQtShell_QStatusBar(parent); }
 
-void PythonQtWrapper_QStatusBar::addPermanentWidget(QStatusBar* theWrappedObject, QWidget*  widget, int  stretch)
+void PythonQtWrapper_QStatusBar::addPermanentWidget(QStatusBar* theWrappedObject, PythonQtPassOwnershipToCPP<QWidget* >  widget, int  stretch)
 {
   ( theWrappedObject->addPermanentWidget(widget, stretch));
 }
 
-void PythonQtWrapper_QStatusBar::addWidget(QStatusBar* theWrappedObject, QWidget*  widget, int  stretch)
+void PythonQtWrapper_QStatusBar::addWidget(QStatusBar* theWrappedObject, PythonQtPassOwnershipToCPP<QWidget* >  widget, int  stretch)
 {
   ( theWrappedObject->addWidget(widget, stretch));
 }
@@ -4780,12 +4784,12 @@ void PythonQtWrapper_QStatusBar::hideOrShow(QStatusBar* theWrappedObject)
   ( ((PythonQtPublicPromoter_QStatusBar*)theWrappedObject)->promoted_hideOrShow());
 }
 
-int  PythonQtWrapper_QStatusBar::insertPermanentWidget(QStatusBar* theWrappedObject, int  index, QWidget*  widget, int  stretch)
+int  PythonQtWrapper_QStatusBar::insertPermanentWidget(QStatusBar* theWrappedObject, int  index, PythonQtPassOwnershipToCPP<QWidget* >  widget, int  stretch)
 {
   return ( theWrappedObject->insertPermanentWidget(index, widget, stretch));
 }
 
-int  PythonQtWrapper_QStatusBar::insertWidget(QStatusBar* theWrappedObject, int  index, QWidget*  widget, int  stretch)
+int  PythonQtWrapper_QStatusBar::insertWidget(QStatusBar* theWrappedObject, int  index, PythonQtPassOwnershipToCPP<QWidget* >  widget, int  stretch)
 {
   return ( theWrappedObject->insertWidget(index, widget, stretch));
 }
@@ -6636,6 +6640,16 @@ int  PythonQtWrapper_QStyle::combinedLayoutSpacing(QStyle* theWrappedObject, QSi
   return ( theWrappedObject->combinedLayoutSpacing(controls1, controls2, orientation, option, widget));
 }
 
+void PythonQtWrapper_QStyle::drawComplexControl(QStyle* theWrappedObject, QStyle::ComplexControl  cc, const QStyleOptionComplex*  opt, QPainter*  p, const QWidget*  widget) const
+{
+  ( ((PythonQtPublicPromoter_QStyle*)theWrappedObject)->promoted_drawComplexControl(cc, opt, p, widget));
+}
+
+void PythonQtWrapper_QStyle::drawControl(QStyle* theWrappedObject, QStyle::ControlElement  element, const QStyleOption*  opt, QPainter*  p, const QWidget*  w) const
+{
+  ( ((PythonQtPublicPromoter_QStyle*)theWrappedObject)->promoted_drawControl(element, opt, p, w));
+}
+
 void PythonQtWrapper_QStyle::drawItemPixmap(QStyle* theWrappedObject, QPainter*  painter, const QRect&  rect, int  alignment, const QPixmap&  pixmap) const
 {
   ( ((PythonQtPublicPromoter_QStyle*)theWrappedObject)->promoted_drawItemPixmap(painter, rect, alignment, pixmap));
@@ -6646,9 +6660,34 @@ void PythonQtWrapper_QStyle::drawItemText(QStyle* theWrappedObject, QPainter*  p
   ( ((PythonQtPublicPromoter_QStyle*)theWrappedObject)->promoted_drawItemText(painter, rect, flags, pal, enabled, text, textRole));
 }
 
+void PythonQtWrapper_QStyle::drawPrimitive(QStyle* theWrappedObject, QStyle::PrimitiveElement  pe, const QStyleOption*  opt, QPainter*  p, const QWidget*  w) const
+{
+  ( ((PythonQtPublicPromoter_QStyle*)theWrappedObject)->promoted_drawPrimitive(pe, opt, p, w));
+}
+
+QPixmap  PythonQtWrapper_QStyle::generatedIconPixmap(QStyle* theWrappedObject, QIcon::Mode  iconMode, const QPixmap&  pixmap, const QStyleOption*  opt) const
+{
+  return ( ((PythonQtPublicPromoter_QStyle*)theWrappedObject)->promoted_generatedIconPixmap(iconMode, pixmap, opt));
+}
+
+QStyle::SubControl  PythonQtWrapper_QStyle::hitTestComplexControl(QStyle* theWrappedObject, QStyle::ComplexControl  cc, const QStyleOptionComplex*  opt, const QPoint&  pt, const QWidget*  widget) const
+{
+  return ( ((PythonQtPublicPromoter_QStyle*)theWrappedObject)->promoted_hitTestComplexControl(cc, opt, pt, widget));
+}
+
 QRect  PythonQtWrapper_QStyle::itemPixmapRect(QStyle* theWrappedObject, const QRect&  r, int  flags, const QPixmap&  pixmap) const
 {
   return ( ((PythonQtPublicPromoter_QStyle*)theWrappedObject)->promoted_itemPixmapRect(r, flags, pixmap));
+}
+
+int  PythonQtWrapper_QStyle::layoutSpacing(QStyle* theWrappedObject, QSizePolicy::ControlType  control1, QSizePolicy::ControlType  control2, Qt::Orientation  orientation, const QStyleOption*  option, const QWidget*  widget) const
+{
+  return ( ((PythonQtPublicPromoter_QStyle*)theWrappedObject)->promoted_layoutSpacing(control1, control2, orientation, option, widget));
+}
+
+int  PythonQtWrapper_QStyle::pixelMetric(QStyle* theWrappedObject, QStyle::PixelMetric  metric, const QStyleOption*  option, const QWidget*  widget) const
+{
+  return ( ((PythonQtPublicPromoter_QStyle*)theWrappedObject)->promoted_pixelMetric(metric, option, widget));
 }
 
 void PythonQtWrapper_QStyle::polish(QStyle* theWrappedObject, QApplication*  arg__1)
@@ -6671,6 +6710,11 @@ const QStyle*  PythonQtWrapper_QStyle::proxy(QStyle* theWrappedObject) const
   return ( theWrappedObject->proxy());
 }
 
+QSize  PythonQtWrapper_QStyle::sizeFromContents(QStyle* theWrappedObject, QStyle::ContentsType  ct, const QStyleOption*  opt, const QSize&  contentsSize, const QWidget*  w) const
+{
+  return ( ((PythonQtPublicPromoter_QStyle*)theWrappedObject)->promoted_sizeFromContents(ct, opt, contentsSize, w));
+}
+
 int  PythonQtWrapper_QStyle::static_QStyle_sliderPositionFromValue(int  min, int  max, int  val, int  space, bool  upsideDown)
 {
   return (QStyle::sliderPositionFromValue(min, max, val, space, upsideDown));
@@ -6681,9 +6725,34 @@ int  PythonQtWrapper_QStyle::static_QStyle_sliderValueFromPosition(int  min, int
   return (QStyle::sliderValueFromPosition(min, max, pos, space, upsideDown));
 }
 
+QIcon  PythonQtWrapper_QStyle::standardIcon(QStyle* theWrappedObject, QStyle::StandardPixmap  standardIcon, const QStyleOption*  option, const QWidget*  widget) const
+{
+  return ( ((PythonQtPublicPromoter_QStyle*)theWrappedObject)->promoted_standardIcon(standardIcon, option, widget));
+}
+
 QPalette  PythonQtWrapper_QStyle::standardPalette(QStyle* theWrappedObject) const
 {
   return ( ((PythonQtPublicPromoter_QStyle*)theWrappedObject)->promoted_standardPalette());
+}
+
+QPixmap  PythonQtWrapper_QStyle::standardPixmap(QStyle* theWrappedObject, QStyle::StandardPixmap  standardPixmap, const QStyleOption*  opt, const QWidget*  widget) const
+{
+  return ( ((PythonQtPublicPromoter_QStyle*)theWrappedObject)->promoted_standardPixmap(standardPixmap, opt, widget));
+}
+
+int  PythonQtWrapper_QStyle::styleHint(QStyle* theWrappedObject, QStyle::StyleHint  stylehint, const QStyleOption*  opt, const QWidget*  widget, QStyleHintReturn*  returnData) const
+{
+  return ( ((PythonQtPublicPromoter_QStyle*)theWrappedObject)->promoted_styleHint(stylehint, opt, widget, returnData));
+}
+
+QRect  PythonQtWrapper_QStyle::subControlRect(QStyle* theWrappedObject, QStyle::ComplexControl  cc, const QStyleOptionComplex*  opt, QStyle::SubControl  sc, const QWidget*  widget) const
+{
+  return ( ((PythonQtPublicPromoter_QStyle*)theWrappedObject)->promoted_subControlRect(cc, opt, sc, widget));
+}
+
+QRect  PythonQtWrapper_QStyle::subElementRect(QStyle* theWrappedObject, QStyle::SubElement  subElement, const QStyleOption*  option, const QWidget*  widget) const
+{
+  return ( ((PythonQtPublicPromoter_QStyle*)theWrappedObject)->promoted_subElementRect(subElement, option, widget));
 }
 
 void PythonQtWrapper_QStyle::unpolish(QStyle* theWrappedObject, QApplication*  arg__1)
@@ -6898,6 +6967,10 @@ QStyleOptionButton* PythonQtWrapper_QStyleOptionButton::new_QStyleOptionButton(c
 { 
 return new PythonQtShell_QStyleOptionButton(other); }
 
+QStyleOptionButton* PythonQtWrapper_QStyleOptionButton::new_QStyleOptionButton(int  version)
+{ 
+return new PythonQtShell_QStyleOptionButton(version); }
+
 
 
 PythonQtShell_QStyleOptionComboBox::~PythonQtShell_QStyleOptionComboBox() {
@@ -6912,6 +6985,10 @@ QStyleOptionComboBox* PythonQtWrapper_QStyleOptionComboBox::new_QStyleOptionComb
 { 
 return new PythonQtShell_QStyleOptionComboBox(other); }
 
+QStyleOptionComboBox* PythonQtWrapper_QStyleOptionComboBox::new_QStyleOptionComboBox(int  version)
+{ 
+return new PythonQtShell_QStyleOptionComboBox(version); }
+
 
 
 PythonQtShell_QStyleOptionDockWidget::~PythonQtShell_QStyleOptionDockWidget() {
@@ -6925,6 +7002,10 @@ return new PythonQtShell_QStyleOptionDockWidget(); }
 QStyleOptionDockWidget* PythonQtWrapper_QStyleOptionDockWidget::new_QStyleOptionDockWidget(const QStyleOptionDockWidget&  other)
 { 
 return new PythonQtShell_QStyleOptionDockWidget(other); }
+
+QStyleOptionDockWidget* PythonQtWrapper_QStyleOptionDockWidget::new_QStyleOptionDockWidget(int  version)
+{ 
+return new PythonQtShell_QStyleOptionDockWidget(version); }
 
 
 
@@ -6950,6 +7031,10 @@ QStyleOptionFocusRect* PythonQtWrapper_QStyleOptionFocusRect::new_QStyleOptionFo
 { 
 return new PythonQtShell_QStyleOptionFocusRect(other); }
 
+QStyleOptionFocusRect* PythonQtWrapper_QStyleOptionFocusRect::new_QStyleOptionFocusRect(int  version)
+{ 
+return new PythonQtShell_QStyleOptionFocusRect(version); }
+
 
 
 PythonQtShell_QStyleOptionFrame::~PythonQtShell_QStyleOptionFrame() {
@@ -6963,6 +7048,10 @@ return new PythonQtShell_QStyleOptionFrame(); }
 QStyleOptionFrame* PythonQtWrapper_QStyleOptionFrame::new_QStyleOptionFrame(const QStyleOptionFrame&  other)
 { 
 return new PythonQtShell_QStyleOptionFrame(other); }
+
+QStyleOptionFrame* PythonQtWrapper_QStyleOptionFrame::new_QStyleOptionFrame(int  version)
+{ 
+return new PythonQtShell_QStyleOptionFrame(version); }
 
 
 
@@ -6998,6 +7087,10 @@ QStyleOptionGraphicsItem* PythonQtWrapper_QStyleOptionGraphicsItem::new_QStyleOp
 { 
 return new PythonQtShell_QStyleOptionGraphicsItem(other); }
 
+QStyleOptionGraphicsItem* PythonQtWrapper_QStyleOptionGraphicsItem::new_QStyleOptionGraphicsItem(int  version)
+{ 
+return new PythonQtShell_QStyleOptionGraphicsItem(version); }
+
 qreal  PythonQtWrapper_QStyleOptionGraphicsItem::static_QStyleOptionGraphicsItem_levelOfDetailFromTransform(const QTransform&  worldTransform)
 {
   return (QStyleOptionGraphicsItem::levelOfDetailFromTransform(worldTransform));
@@ -7017,6 +7110,10 @@ QStyleOptionGroupBox* PythonQtWrapper_QStyleOptionGroupBox::new_QStyleOptionGrou
 { 
 return new PythonQtShell_QStyleOptionGroupBox(other); }
 
+QStyleOptionGroupBox* PythonQtWrapper_QStyleOptionGroupBox::new_QStyleOptionGroupBox(int  version)
+{ 
+return new PythonQtShell_QStyleOptionGroupBox(version); }
+
 
 
 PythonQtShell_QStyleOptionHeader::~PythonQtShell_QStyleOptionHeader() {
@@ -7030,6 +7127,10 @@ return new PythonQtShell_QStyleOptionHeader(); }
 QStyleOptionHeader* PythonQtWrapper_QStyleOptionHeader::new_QStyleOptionHeader(const QStyleOptionHeader&  other)
 { 
 return new PythonQtShell_QStyleOptionHeader(other); }
+
+QStyleOptionHeader* PythonQtWrapper_QStyleOptionHeader::new_QStyleOptionHeader(int  version)
+{ 
+return new PythonQtShell_QStyleOptionHeader(version); }
 
 
 
@@ -7045,6 +7146,10 @@ QStyleOptionMenuItem* PythonQtWrapper_QStyleOptionMenuItem::new_QStyleOptionMenu
 { 
 return new PythonQtShell_QStyleOptionMenuItem(other); }
 
+QStyleOptionMenuItem* PythonQtWrapper_QStyleOptionMenuItem::new_QStyleOptionMenuItem(int  version)
+{ 
+return new PythonQtShell_QStyleOptionMenuItem(version); }
+
 
 
 PythonQtShell_QStyleOptionProgressBar::~PythonQtShell_QStyleOptionProgressBar() {
@@ -7058,6 +7163,10 @@ return new PythonQtShell_QStyleOptionProgressBar(); }
 QStyleOptionProgressBar* PythonQtWrapper_QStyleOptionProgressBar::new_QStyleOptionProgressBar(const QStyleOptionProgressBar&  other)
 { 
 return new PythonQtShell_QStyleOptionProgressBar(other); }
+
+QStyleOptionProgressBar* PythonQtWrapper_QStyleOptionProgressBar::new_QStyleOptionProgressBar(int  version)
+{ 
+return new PythonQtShell_QStyleOptionProgressBar(version); }
 
 
 
@@ -7082,5 +7191,9 @@ return new PythonQtShell_QStyleOptionRubberBand(); }
 QStyleOptionRubberBand* PythonQtWrapper_QStyleOptionRubberBand::new_QStyleOptionRubberBand(const QStyleOptionRubberBand&  other)
 { 
 return new PythonQtShell_QStyleOptionRubberBand(other); }
+
+QStyleOptionRubberBand* PythonQtWrapper_QStyleOptionRubberBand::new_QStyleOptionRubberBand(int  version)
+{ 
+return new PythonQtShell_QStyleOptionRubberBand(version); }
 
 

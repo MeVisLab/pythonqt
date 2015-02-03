@@ -65,11 +65,32 @@ virtual void updateMetaData(const QNetworkCacheMetaData&  metaData);
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QAbstractNetworkCache : public QAbstractNetworkCache
+{ public:
+inline qint64  promoted_cacheSize() const { return this->cacheSize(); }
+inline void promoted_clear() { this->clear(); }
+inline QIODevice*  promoted_data(const QUrl&  url) { return this->data(url); }
+inline void promoted_insert(QIODevice*  device) { this->insert(device); }
+inline QNetworkCacheMetaData  promoted_metaData(const QUrl&  url) { return this->metaData(url); }
+inline QIODevice*  promoted_prepare(const QNetworkCacheMetaData&  metaData) { return this->prepare(metaData); }
+inline bool  promoted_remove(const QUrl&  url) { return this->remove(url); }
+inline void promoted_updateMetaData(const QNetworkCacheMetaData&  metaData) { this->updateMetaData(metaData); }
+};
+
 class PythonQtWrapper_QAbstractNetworkCache : public QObject
 { Q_OBJECT
 public:
 public slots:
+QAbstractNetworkCache* new_QAbstractNetworkCache(QObject*  parent = 0);
 void delete_QAbstractNetworkCache(QAbstractNetworkCache* obj) { delete obj; } 
+   qint64  cacheSize(QAbstractNetworkCache* theWrappedObject) const;
+   void clear(QAbstractNetworkCache* theWrappedObject);
+   QIODevice*  data(QAbstractNetworkCache* theWrappedObject, const QUrl&  url);
+   void insert(QAbstractNetworkCache* theWrappedObject, QIODevice*  device);
+   QNetworkCacheMetaData  metaData(QAbstractNetworkCache* theWrappedObject, const QUrl&  url);
+   QIODevice*  prepare(QAbstractNetworkCache* theWrappedObject, const QNetworkCacheMetaData&  metaData);
+   bool  remove(QAbstractNetworkCache* theWrappedObject, const QUrl&  url);
+   void updateMetaData(QAbstractNetworkCache* theWrappedObject, const QNetworkCacheMetaData&  metaData);
 };
 
 
@@ -991,6 +1012,11 @@ virtual QList<QNetworkProxy >  queryProxy(const QNetworkProxyQuery&  query = QNe
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QNetworkProxyFactory : public QNetworkProxyFactory
+{ public:
+inline QList<QNetworkProxy >  promoted_queryProxy(const QNetworkProxyQuery&  query = QNetworkProxyQuery()) { return this->queryProxy(query); }
+};
+
 class PythonQtWrapper_QNetworkProxyFactory : public QObject
 { Q_OBJECT
 public:
@@ -998,6 +1024,7 @@ public slots:
 QNetworkProxyFactory* new_QNetworkProxyFactory();
 void delete_QNetworkProxyFactory(QNetworkProxyFactory* obj) { delete obj; } 
    QList<QNetworkProxy >  static_QNetworkProxyFactory_proxyForQuery(const QNetworkProxyQuery&  query);
+   QList<QNetworkProxy >  queryProxy(QNetworkProxyFactory* theWrappedObject, const QNetworkProxyQuery&  query = QNetworkProxyQuery());
    void static_QNetworkProxyFactory_setApplicationProxyFactory(QNetworkProxyFactory*  factory);
    void static_QNetworkProxyFactory_setUseSystemConfiguration(bool  enable);
    QList<QNetworkProxy >  static_QNetworkProxyFactory_systemProxyForQuery(const QNetworkProxyQuery&  query = QNetworkProxyQuery());
@@ -1086,6 +1113,7 @@ virtual qint64  writeData(const char*  data, qint64  len);
 
 class PythonQtPublicPromoter_QNetworkReply : public QNetworkReply
 { public:
+inline void promoted_abort() { this->abort(); }
 inline void promoted_close() { QNetworkReply::close(); }
 inline void promoted_ignoreSslErrors() { QNetworkReply::ignoreSslErrors(); }
 inline void promoted_ignoreSslErrorsImplementation(const QList<QSslError >&  arg__1) { QNetworkReply::ignoreSslErrorsImplementation(arg__1); }
@@ -1108,7 +1136,9 @@ class PythonQtWrapper_QNetworkReply : public QObject
 { Q_OBJECT
 public:
 public slots:
+QNetworkReply* new_QNetworkReply(QObject*  parent = 0);
 void delete_QNetworkReply(QNetworkReply* obj) { delete obj; } 
+   void abort(QNetworkReply* theWrappedObject);
    QVariant  attribute(QNetworkReply* theWrappedObject, QNetworkRequest::Attribute  code) const;
    void close(QNetworkReply* theWrappedObject);
    QNetworkReply::NetworkError  error(QNetworkReply* theWrappedObject) const;

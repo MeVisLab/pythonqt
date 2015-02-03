@@ -72,11 +72,20 @@ virtual void timerEvent(QTimerEvent*  arg__1);
   PythonQtInstanceWrapper* _wrapper; 
 };
 
+class PythonQtPublicPromoter_QMediaService : public QMediaService
+{ public:
+inline void promoted_releaseControl(QMediaControl*  control) { this->releaseControl(control); }
+inline QMediaControl*  promoted_requestControl(const char*  name) { return this->requestControl(name); }
+};
+
 class PythonQtWrapper_QMediaService : public QObject
 { Q_OBJECT
 public:
 public slots:
+QMediaService* new_QMediaService(QObject*  parent);
 void delete_QMediaService(QMediaService* obj) { delete obj; } 
+   void releaseControl(QMediaService* theWrappedObject, QMediaControl*  control);
+   QMediaControl*  requestControl(QMediaService* theWrappedObject, const char*  name);
 };
 
 

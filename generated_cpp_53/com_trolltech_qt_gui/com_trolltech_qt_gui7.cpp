@@ -6249,7 +6249,7 @@ void PythonQtWrapper_QScrollArea::setAlignment(QScrollArea* theWrappedObject, Qt
   ( theWrappedObject->setAlignment(arg__1));
 }
 
-void PythonQtWrapper_QScrollArea::setWidget(QScrollArea* theWrappedObject, QWidget*  widget)
+void PythonQtWrapper_QScrollArea::setWidget(QScrollArea* theWrappedObject, PythonQtPassOwnershipToCPP<QWidget* >  widget)
 {
   ( theWrappedObject->setWidget(widget));
 }
@@ -15351,7 +15351,7 @@ QSplitter* PythonQtWrapper_QSplitter::new_QSplitter(Qt::Orientation  arg__1, QWi
 { 
 return new PythonQtShell_QSplitter(arg__1, parent); }
 
-void PythonQtWrapper_QSplitter::addWidget(QSplitter* theWrappedObject, QWidget*  widget)
+void PythonQtWrapper_QSplitter::addWidget(QSplitter* theWrappedObject, PythonQtPassOwnershipToCPP<QWidget* >  widget)
 {
   ( theWrappedObject->addWidget(widget));
 }
@@ -15406,7 +15406,7 @@ int  PythonQtWrapper_QSplitter::indexOf(QSplitter* theWrappedObject, QWidget*  w
   return ( theWrappedObject->indexOf(w));
 }
 
-void PythonQtWrapper_QSplitter::insertWidget(QSplitter* theWrappedObject, int  index, QWidget*  widget)
+void PythonQtWrapper_QSplitter::insertWidget(QSplitter* theWrappedObject, int  index, PythonQtPassOwnershipToCPP<QWidget* >  widget)
 {
   ( theWrappedObject->insertWidget(index, widget));
 }
