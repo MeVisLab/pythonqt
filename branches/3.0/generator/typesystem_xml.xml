@@ -1,0 +1,211 @@
+<?xml version="1.0"?>
+<typesystem package="com.trolltech.qt.xml"><rejection class="QXmlNamespaceSupport"/>
+    <rejection class="QXmlAttributes::Attribute"/>
+    <rejection class="QDomNode" field-name="impl"/>
+
+    <enum-type name="QDomNode::NodeType"/>
+    <enum-type name="QDomNode::EncodingPolicy"/>
+    <enum-type name="QDomImplementation::InvalidDataPolicy"/>
+    <enum-type name="QXmlStreamReader::Error"/>
+    <enum-type name="QXmlStreamReader::TokenType"/>
+    <enum-type name="QXmlStreamReader::ReadElementTextBehaviour"/>
+
+
+    <value-type name="QDomAttr">
+        <modify-function signature="operator=(QDomAttr)" remove="all"/>
+        <modify-function signature="nodeType()const" remove="all"/>
+    </value-type>
+
+    <value-type name="QDomCDATASection">
+        <modify-function signature="operator=(QDomCDATASection)" remove="all"/>
+        <modify-function signature="nodeType()const" remove="all"/>
+    </value-type>
+
+    <value-type name="QDomCharacterData">
+        <modify-function signature="operator=(QDomCharacterData)" remove="all"/>
+        <modify-function signature="nodeType()const" remove="all"/>
+    </value-type>
+
+    <value-type name="QDomComment">
+        <modify-function signature="operator=(QDomComment)" remove="all"/>
+        <modify-function signature="nodeType()const" remove="all"/>
+    </value-type>
+
+    <value-type name="QDomDocument">
+        <modify-function signature="nodeType()const" remove="all"/>
+        <modify-function signature="operator=(QDomDocument)" remove="all"/>
+    </value-type>
+
+    <value-type name="QDomDocumentFragment">
+        <modify-function signature="nodeType()const" remove="all"/>
+        <modify-function signature="operator=(QDomDocumentFragment)" remove="all"/>
+    </value-type>
+
+    <value-type name="QDomDocumentType">
+        <modify-function signature="nodeType()const" remove="all"/>
+        <modify-function signature="operator=(QDomDocumentType)" remove="all"/>
+    </value-type>
+
+    <value-type name="QDomEntity">
+        <modify-function signature="nodeType()const" remove="all"/>
+        <modify-function signature="operator=(QDomEntity)" remove="all"/>
+    </value-type>
+
+    <value-type name="QDomEntityReference">
+        <modify-function signature="nodeType()const" remove="all"/>
+        <modify-function signature="operator=(QDomEntityReference)" remove="all"/>
+    </value-type>
+
+    <value-type name="QDomImplementation">
+        <modify-function signature="operator=(QDomImplementation)" remove="all"/>
+    </value-type>
+
+    <value-type name="QDomNamedNodeMap">
+        <modify-function signature="operator=(QDomNamedNodeMap)" remove="all"/>
+    </value-type>
+
+    <value-type name="QDomNode">
+        <modify-function signature="operator=(QDomNode)" remove="all"/>
+        <modify-function signature="attributes()const" remove="all"/>
+    </value-type>
+
+    <value-type name="QDomNodeList">
+        <modify-function signature="operator=(const QDomNodeList &amp;)" remove="all"/>
+    </value-type>
+
+    <value-type name="QDomNotation">
+        <modify-function signature="nodeType()const" remove="all"/>
+        <modify-function signature="operator=(QDomNotation)" remove="all"/>
+    </value-type>
+
+    <value-type name="QDomProcessingInstruction">
+        <modify-function signature="nodeType()const" remove="all"/>
+        <modify-function signature="operator=(QDomProcessingInstruction)" remove="all"/>
+    </value-type>
+
+    <value-type name="QDomText">
+        <modify-function signature="nodeType()const" remove="all"/>
+        <modify-function signature="operator=(const QDomText &amp;)" remove="all"/>
+    </value-type>
+
+    <value-type name="QXmlParseException"/>
+
+    <value-type name="QXmlStreamAttribute">
+        <modify-function signature="operator=(QXmlStreamAttribute)" remove="all"/>
+    </value-type>
+
+    <value-type name="QXmlStreamAttributes">
+        <modify-function signature="operator+(QVector&lt;QXmlStreamAttribute&gt;)const" remove="all"/>
+        <modify-function signature="operator&lt;&lt;(QVector&lt;QXmlStreamAttribute&gt;)" remove="all"/>
+        <modify-function signature="operator&lt;&lt;(QXmlStreamAttribute)" remove="all"/>
+        <modify-function signature="push_back(QXmlStreamAttribute)" remove="all"/>
+        <modify-function signature="pop_back()" remove="all"/>
+        <modify-function signature="push_front(QXmlStreamAttribute)" remove="all"/>
+        <modify-function signature="pop_front()" remove="all"/>
+
+        <modify-function signature="value(const QString &amp;, const QLatin1String &amp;)const">
+            <remove/>
+        </modify-function>
+        <modify-function signature="value(const QLatin1String &amp;, const QLatin1String &amp;)const">
+            <remove/>
+        </modify-function>
+        <modify-function signature="value(const QLatin1String &amp;)const">
+            <remove/>
+        </modify-function>
+        <modify-function signature="hasAttribute(const QLatin1String &amp;)const">
+            <remove/>
+        </modify-function>
+    </value-type>
+
+    <value-type name="QXmlStreamNamespaceDeclaration">
+        <modify-function signature="operator=(QXmlStreamNamespaceDeclaration)" remove="all"/>
+    </value-type>
+
+    <value-type name="QXmlStreamNotationDeclaration">
+        <modify-function signature="operator=(QXmlStreamNotationDeclaration)" remove="all"/>
+    </value-type>
+
+    <value-type name="QXmlStreamEntityDeclaration">
+        <modify-function signature="operator=(QXmlStreamEntityDeclaration)" remove="all"/>
+    </value-type>
+
+    <value-type name="QXmlAttributes">
+      <modify-function signature="index(const QLatin1String&amp;) const">
+        <remove/>
+      </modify-function>
+      <modify-function signature="value(const QLatin1String&amp;) const">
+        <remove/>
+      </modify-function>
+    </value-type>
+
+    <value-type name="QXmlNamespaceSupport">
+    </value-type>
+
+    <value-type name="QDomElement">
+        <modify-function signature="nodeType()const" remove="all"/>
+        <modify-function signature="operator=(QDomElement)" remove="all"/>
+
+        <modify-function signature="setAttribute(const QString &amp;, unsigned int)">
+            <remove/>
+        </modify-function>
+        <modify-function signature="setAttribute(const QString &amp;, unsigned long long)">
+            <remove/>
+        </modify-function>
+        <modify-function signature="setAttributeNS(const QString, const QString &amp;, unsigned int)">
+            <remove/>
+        </modify-function>
+        <modify-function signature="setAttributeNS(const QString, const QString &amp;, unsigned long long)">
+            <remove/>
+        </modify-function>
+
+    </value-type>
+
+    <interface-type name="QXmlContentHandler">
+    </interface-type>
+    <interface-type name="QXmlDTDHandler"/>
+    <interface-type name="QXmlDeclHandler"/>
+    <interface-type name="QXmlEntityResolver"/>
+    <interface-type name="QXmlErrorHandler"/>
+    <interface-type name="QXmlLexicalHandler"/>
+
+    <object-type name="QXmlDefaultHandler">
+    </object-type>
+    <object-type name="QXmlInputSource"/>
+    <object-type name="QXmlLocator"/>
+    <object-type name="QXmlSimpleReader">
+    </object-type>
+
+    <object-type name="QXmlStreamReader">
+      <modify-function signature="QXmlStreamReader(const char*)" remove="all"/>
+      <modify-function signature="addData(const char*)" remove="all"/>
+    </object-type>
+    <object-type name="QXmlStreamWriter">
+        <modify-function signature="QXmlStreamWriter(QString *)">
+            <remove/>
+        </modify-function>
+    </object-type>
+
+    <object-type name="QXmlReader">
+        <modify-function signature="feature(QString,bool*)const">
+            <modify-argument index="2">
+                <remove-argument/>
+            </modify-argument>
+        </modify-function>
+        <modify-function signature="property(QString,bool*)const">
+            <modify-argument index="2">
+                <remove-argument/>
+            </modify-argument>
+        </modify-function>
+    </object-type>
+
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QDomNodeList' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QXmlStreamNamespaceDeclaration' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QDomNamedNodeMap' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QXmlStreamNotationDeclaration' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QDomNode' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QDomImplementation' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QXmlStreamAttribute' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QXmlStreamAttributes' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QXmlStreamEntityDeclaration' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
+
+</typesystem>

@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<typesystem package="com.trolltech.qt.multimedia">
+
+<enum-type name="QAudioFormat::Endian"/>
+<enum-type name="QAudioFormat::SampleType"/>
+<enum-type name="QSoundEffect::Status"/>
+<enum-type name="QSoundEffect::Loop"/>
+<enum-type name="QAbstractVideoBuffer::HandleType"/>
+<enum-type name="QAbstractVideoBuffer::MapMode"/>
+<enum-type name="QCameraImageCapture::Error"/>
+<enum-type name="QCameraImageCapture::DriveMode"/>
+<enum-type name="QCameraImageCapture::CaptureDestination" flags="QCameraImageCapture::CaptureDestinations"/>
+<enum-type name="QCameraFocusZone::FocusZoneStatus"/>
+<enum-type name="QMediaRecorder::State"/>
+<enum-type name="QMediaRecorder::Status"/>
+<enum-type name="QMediaRecorder::Error"/>
+<enum-type name="QVideoSurfaceFormat::YCbCrColorSpace"/>
+<enum-type name="QVideoSurfaceFormat::Direction"/>
+<enum-type name="QRadioTuner::State"/>
+<enum-type name="QRadioTuner::StereoMode"/>
+<enum-type name="QRadioTuner::Error"/>
+<enum-type name="QRadioTuner::SearchMode"/>
+<enum-type name="QRadioTuner::Band"/>
+<enum-type name="QCameraFocus::FocusPointMode"/>
+<enum-type name="QCameraFocus::FocusMode" flags="QCameraFocus::FocusModes"/>
+<enum-type name="QVideoFrame::FieldType"/>
+<enum-type name="QVideoFrame::PixelFormat"/>
+<enum-type name="QRadioData::Error"/>
+<enum-type name="QRadioData::ProgramType"/>
+<enum-type name="QAbstractVideoSurface::Error"/>
+<enum-type name="QCoreApplication::enum_1"/>
+<enum-type name="QAudioDecoder::State"/>
+<enum-type name="QAudioDecoder::Error"/>
+<enum-type name="QCameraExposure::MeteringMode"/>
+<enum-type name="QCameraExposure::FlashMode" flags="QCameraExposure::FlashModes"/>
+<enum-type name="QCameraExposure::ExposureMode"/>
+<enum-type name="QCameraImageProcessing::WhiteBalanceMode"/>
+<enum-type name="QMediaPlaylist::Error"/>
+<enum-type name="QMediaPlaylist::PlaybackMode"/>
+<enum-type name="QCamera::LockChangeReason"/>
+<enum-type name="QCamera::LockType" flags="QCamera::LockTypes"/>
+<enum-type name="QCamera::Position"/>
+<enum-type name="QCamera::State"/>
+<enum-type name="QCamera::LockStatus"/>
+<enum-type name="QCamera::Status"/>
+<enum-type name="QCamera::Error"/>
+<enum-type name="QCamera::CaptureMode" flags="QCamera::CaptureModes"/>
+<enum-type name="QMediaPlayer::State"/>
+<enum-type name="QMediaPlayer::MediaStatus"/>
+<enum-type name="QMediaPlayer::Error"/>
+<enum-type name="QMediaPlayer::Flag" flags="QMediaPlayer::Flags"/>
+<enum-type name="QAudio::Error"/>
+<enum-type name="QAudio::Mode"/>
+<enum-type name="QAudio::State"/>
+<enum-type name="QMultimedia::SupportEstimate"/>
+<enum-type name="QMultimedia::EncodingQuality"/>
+<enum-type name="QMultimedia::EncodingMode"/>
+<enum-type name="QMultimedia::AvailabilityStatus"/>
+
+<namespace-type name="QAudio"/>
+<namespace-type name="QMultimedia"/>
+
+<object-type name="QAbstractVideoBuffer"/>
+<object-type name="QAbstractVideoSurface"/>
+<object-type name="QAudioBuffer"/>
+<object-type name="QAudioDecoder"/>
+<object-type name="QAudioDeviceInfo"/>
+<object-type name="QAudioEncoderSettings"/>
+<object-type name="QAudioFormat"/>
+<object-type name="QAudioInput"/>
+<object-type name="QAudioOutput"/>
+<object-type name="QAudioProbe"/>
+<object-type name="QAudioRecorder"/>
+<object-type name="QCamera"/>
+<object-type name="QCameraExposure"/>
+<object-type name="QCameraFocus"/>
+<object-type name="QCameraFocusZone"/>
+<object-type name="QCameraImageCapture"/>
+<object-type name="QCameraImageProcessing"/>
+<object-type name="QCameraInfo"/>
+<object-type name="QImageEncoderSettings"/>
+<interface-type name="QMediaBindableInterface"/>
+<object-type name="QMediaContent"/>
+<object-type name="QMediaControl"/>
+<object-type name="QMediaMetaData"/>
+<object-type name="QMediaObject"/>
+<object-type name="QMediaPlayer"/>
+<object-type name="QMediaPlaylist"/>
+<object-type name="QMediaRecorder"/>
+<object-type name="QMediaResource"/>
+<object-type name="QMediaService"/>
+<object-type name="QMediaTimeInterval"/>
+<object-type name="QMediaTimeRange"/>
+<object-type name="QMultimedia"/>
+<object-type name="QRadioData"/>
+<object-type name="QRadioTuner"/>
+<!-- QSound is located in QtGui in Qt4, so it stays there for our Qt 5 wrappers for the moment...
+<object-type name="QSound"/> -->
+<object-type name="QSoundEffect"/>
+<object-type name="QVideoEncoderSettings"/>
+<object-type name="QVideoFrame"/>
+<object-type name="QVideoProbe"/>
+<object-type name="QVideoSurfaceFormat"/>
+
+<object-type name="QCameraViewfinder"/>
+<object-type name="QGraphicsVideoItem"/>
+<object-type name="QVideoWidget"/>
+
+<rejection class="QAbstractVideoBuffer" function-name="mapPlanes"/>
+
+</typesystem>
