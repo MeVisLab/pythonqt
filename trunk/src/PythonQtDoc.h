@@ -60,9 +60,8 @@ Qt framework</a>.
  your C++ Qt applications.
 
  The focus of PythonQt is on embedding Python into an existing C++ application, not on writing the whole
- application completely in Python. If you want to write your whole application in Python,
- you should use <a href="http://www.riverbankcomputing.co.uk/pyqt/" target="_blank">PyQt</a> or <a href="http://www.pyside.org" target="_blank">PySide</a> instead.
-
+ application completely in Python.
+ 
  If you are looking for a simple way to embed Python objects into your C++/Qt Application
  and to script parts of your application via Python, PythonQt is the way to go!
 
@@ -131,22 +130,21 @@ Qt framework</a>.
  - Python 2 (>= Python 2.6)
  - Python 3 (>= Python 3.3)
  - Qt 4.x (Qt 4.7 and Qt 4.8 recommended)
- - Qt 5.x (Tested with Qt 5.0 and 5.3)
+ - Qt 5.x (Tested with Qt 5.0, 5.3 and 5.4)
  
  The Qt5 support does not yet include Qt modules that have been introduced with Qt5. The new QtWidgets module is wrapped as part of QtGui.
  This allows to run scripts that were written with the Qt4 binding on a Qt5 PythonQt without porting.
 
- \section Comparison Comparison with PyQt/PySide
+ \section Comparison Comparison with PySide
 
- - PythonQt is not as pythonic as PyQt/PySide in many details (e.g. buffer protocol, pickling, translation support, ...) and it is mainly thought for embedding and intercommunication between Qt/Cpp and Python
- - PythonQt allows to communicate in both directions, e.g., calling a Python object from C++ AND calling a C++ method from Python, while PyQt only handles the Python->C++ direction
- - PythonQt offers properties as Python attributes, while PyQt offers them as setter/getter methods (e.g. QWidget.width is a property in PythonQt and a method in PyQt)
+ - PythonQt is not as pythonic as PySide in many details (e.g. buffer protocol, pickling, translation support, ...) and it is mainly thought for embedding and intercommunication between Qt/Cpp and Python
+ - PythonQt offers properties as Python attributes, while PySide offers them as setter/getter methods (e.g. QWidget.width is a property in PythonQt and a method in PySide)
  - PythonQt currently does not support instanceof checks for Qt classes, except for the exact match and derived Python classes
  - QObject.emit to emit Qt signals from Python is not yet implemented but PythonQt allows to just emit a signal by calling it like a normal slot
  - PythonQt does not (yet) offer to add new signals/slots to Python/C++ objects and it does not create QMetaObjects for derived classes on the fly
- - Ownership handling of objects is not as complete as in PySide and PyQt, especially in situations where the ownership is not clearly passed to C++ on the C++ API.
+ - Ownership handling of objects is not as complete as in PySide and PySide, especially in situations where the ownership is not clearly passed to C++ on the C++ API.
  - QStrings are always converted to unicode Python objects, QByteArray always stays a QByteArray and can be converted using QByteArray.data()
- - Qt methods that take an extra "bool* ok" parameter can be called passing PythonQt.BoolResult as parameter. In PyQt, a tuple is returned instead.
+ - Qt methods that take an extra "bool* ok" parameter can be called passing PythonQt.BoolResult as parameter. In PySide, a tuple is returned instead.
  
  \page Download Download
 
