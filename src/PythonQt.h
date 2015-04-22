@@ -75,7 +75,7 @@ typedef void* PythonQtPolymorphicHandlerCB(const void *ptr, const char **class_n
 
 typedef void PythonQtShellSetInstanceWrapperCB(void* object, PythonQtInstanceWrapper* wrapper);
 
-template<class T> void PythonQtSetInstanceWrapperOnShell(void* object, PythonQtInstanceWrapper* wrapper) { 
+template<class T> void PythonQtSetInstanceWrapperOnShell(void* object, PythonQtInstanceWrapper* wrapper) {
   (reinterpret_cast<T*>(object))->_wrapper = wrapper;
 }
 
@@ -133,7 +133,7 @@ public:
 
 //! returns the offset that needs to be added to upcast an object of type T1 to T2
 template<class T1, class T2> int PythonQtUpcastingOffset() {
-  return ((reinterpret_cast<char*>(static_cast<T2*>(reinterpret_cast<T1*>(0x100)))) 
+  return ((reinterpret_cast<char*>(static_cast<T2*>(reinterpret_cast<T1*>(0x100))))
           - (reinterpret_cast<char*>(reinterpret_cast<T1*>(0x100))));
 }
 
@@ -396,9 +396,9 @@ public:
   //! returns the found callable object or NULL
   //! @return new reference
   PythonQtObjectPtr lookupCallable(PyObject* object, const QString& name);
-  
+
   //! returns the return type of the method of a wrapped c++ object referenced by \c objectname
-  QString getReturnTypeOfWrappedMethod(PyObject* module, const QString& objectname);  
+  QString getReturnTypeOfWrappedMethod(PyObject* module, const QString& objectname);
   //! returns the return type of the method \c methodName of a wrapped c++ type referenced by \c typeName
   QString getReturnTypeOfWrappedMethod(const QString& typeName, const QString& methodName);
   //@}
@@ -533,7 +533,7 @@ public:
   //! The error is currently just output to the python stderr, future version might implement better trace printing
   bool handleError();
 
-  //! return \a true if \a handleError() has been called and an error occured.
+  //! return \a true if \a handleError() has been called and an error occurred.
   bool hadError()const;
 
   //! reset error flag. After calling this, hadError() will return false.
@@ -584,9 +584,9 @@ Q_SIGNALS:
 
 private:
   void initPythonQtModule(bool redirectStdOut, const QByteArray& pythonQtModuleName);
-  
+
   QString getReturnTypeOfWrappedMethodHelper(const PythonQtObjectPtr& variableObject, const QString& methodName, const QString& context);
-  
+
   PyObject* getObjectByType(const QString& typeName);
 
   //! callback for stdout redirection, emits pythonStdOut signal
@@ -729,10 +729,10 @@ public:
 
   //! returns the profiling callback, which may be NULL
   PythonQt::ProfilingCB* profilingCB() const { return _profilingCB; }
-  
+
   //! determines the signature of the given callable object (similar as pydoc)
   QString getSignature(PyObject* object);
-  
+
   //! returns true if the object is a method descriptor (same as inspect.ismethoddescriptor() in inspect.py)
   bool isMethodDescriptor(PyObject* object) const;
 
