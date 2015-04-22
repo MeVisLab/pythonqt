@@ -460,11 +460,22 @@ public Q_SLOTS:
   QColor  getQColor4(const QVariant& color) { _called = true;  return qvariant_cast<QColor>(color); }
   QColor* getQColor5() { _called = true; static QColor c(1,2,3); return &c; }
 
-  PyObject* getPyObject(PyObject* obj) { _called = true; return obj; }
-  PyObject* getPyObjectFromVariant(const QVariant& val) { _called = true; return PythonQtObjectPtr(val); };
+  PyObject* getPyObject(PyObject* obj) {
+    _called = true;
+    // returned object needs to get an extra ref count!
+    Py_XINCREF(obj);
+    return obj;
+  }
+
+  PyObject* getPyObjectFromVariant(const QVariant& val) {
+    _called = true;
+    PythonQtObjectPtr value = val;
+    PyObject* obj = value.object();
+    // returned object needs to get an extra ref count!
+    Py_XINCREF(obj);
+    return obj;
+  };
   QVariant  getPyObjectFromVariant2(const QVariant& val) { _called = true; return val; };
-  // this does not yet work but is not required to work:
-  //PyObject* getPyObjectFromPtr(const PythonQtObjectPtr& val) { _called = true; return val; };
 
   //! testing pointer passing
   PythonQtTestSlotCallingHelper* getTestObject(PythonQtTestSlotCallingHelper* obj) {  _called = true; return obj; }
