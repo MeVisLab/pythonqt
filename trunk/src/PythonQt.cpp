@@ -519,9 +519,9 @@ PyObject* PythonQtPrivate::wrapPtr(void* ptr, const QByteArray& name, bool passO
     if (!info) {
       // maybe it is a PyObject, which we can return directly
       if (name == "PyObject") {
-        PyObject* p = (PyObject*)ptr;
-        Py_INCREF(p);
-        return p;
+        // do not increment its ref-count, it is the job of the slot returning the value
+        // to ensure an extra ref on return.
+        return (PyObject*)ptr;
       }
 
       // we do not know the metaobject yet, but we might know it by its name:
