@@ -596,7 +596,7 @@ PyObject* PythonQtPrivate::wrapPtr(void* ptr, const QByteArray& name, bool passO
       info->setMetaObject(wrapper->metaObject());
     }
 
-    if (possibleStillAliveWrapper && possibleStillAliveWrapper->classInfo() == info) {
+    if (possibleStillAliveWrapper && possibleStillAliveWrapper->classInfo()->inherits(info)) {
       wrap = possibleStillAliveWrapper;
       Py_INCREF(wrap);
     } else {
