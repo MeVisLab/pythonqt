@@ -134,6 +134,7 @@ bool PythonQtClassInfo::lookForPropertyAndCache(const char* memberName)
   const char* attributeName = memberName;
   // look for properties
   int i = _meta->indexOfProperty(attributeName);
+#ifdef PYTHONQT_SUPPORT_NAME_PROPERTY
   if (i==-1) {
     // try to map name to objectName
     if (qstrcmp(attributeName, "name")==0) {
@@ -142,6 +143,7 @@ bool PythonQtClassInfo::lookForPropertyAndCache(const char* memberName)
       i = _meta->indexOfProperty(attributeName);
     }
   }
+#endif
   if (i!=-1) {
     PythonQtMemberInfo newInfo(_meta->property(i));
     _cachedMembers.insert(attributeName, newInfo);

@@ -877,12 +877,10 @@ QVariant PythonQt::evalScript(PyObject* object, const QString& script, int start
 
 void PythonQt::evalFile(PyObject* module, const QString& filename)
 {
+  // NOTE: error checking is done by parseFile and evalCode
   PythonQtObjectPtr code = parseFile(filename);
-  clearError();
   if (code) {
     evalCode(module, code);
-  } else {
-    handleError();
   }
 }
 
