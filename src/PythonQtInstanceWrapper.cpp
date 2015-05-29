@@ -343,7 +343,14 @@ static PyObject *PythonQtInstanceWrapper_help(PythonQtInstanceWrapper* obj)
 
 PyObject *PythonQtInstanceWrapper_delete(PythonQtInstanceWrapper * self)
 {
-  PythonQtInstanceWrapper_deleteObject(self, true);
+  PythonQtMemberInfo deleteSlot = self->classInfo()->member("py_delete");
+  if (deleteSlot._type == PythonQtMemberInfo::Slot) {
+    // call the py_delete slot instead of internal C++ destructor...
+    PyObject* resultObj = PythonQtSlotFunction_CallImpl(self->classInfo(), self->_obj, deleteSlot._slot, NULL, NULL, self->_wrappedPtr);
+    Py_XDECREF(resultObj);
+  } else {
+    PythonQtInstanceWrapper_deleteObject(self, true);
+  }
   Py_INCREF(Py_None);
   return Py_None;
 }
