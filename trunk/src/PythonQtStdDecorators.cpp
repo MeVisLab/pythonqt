@@ -174,6 +174,13 @@ QString PythonQtStdDecorators::tr(QObject* obj, const QByteArray& text, const QB
 #endif
 }
 
+void PythonQtStdDecorators::static_QTimer_singleShot(int msec, PyObject* callable)
+{
+  PythonQtSingleShotTimer* timer = new PythonQtSingleShotTimer(msec, callable);
+  timer->start();
+  // timer deletes itself after calling callable
+}
+
 QObject* PythonQtStdDecorators::findChild(QObject* parent, PyObject* type, const QString& name)
 {
   const QMetaObject* meta = NULL;
@@ -389,4 +396,23 @@ bool PythonQtDebugAPI::isPythonQtInstanceWrapper( PyObject* object )
 bool PythonQtDebugAPI::isPythonQtClassWrapper( PyObject* object )
 {
   return PyObject_TypeCheck(object, &PythonQtClassWrapper_Type) != 0;
+}
+
+//---------------------------------------------------------------------------
+
+PythonQtSingleShotTimer::PythonQtSingleShotTimer(int msec, const PythonQtObjectPtr& callable)
+{
+  _callable = callable;
+  setSingleShot(true);
+  setInterval(msec);
+  connect(this, SIGNAL(timeout()), this, SLOT(slotTimeout()));
+}
+
+void PythonQtSingleShotTimer::slotTimeout()
+{
+  if (_callable) {
+    _callable.call();
+  }
+  // delete ourself
+  deleteLater();
 }
