@@ -1386,6 +1386,18 @@ void PythonQtPrivate::removeSignalEmitter(QObject* obj)
   _signalReceivers.remove(obj);
 }
 
+void PythonQt::removeSignalHandlers()
+{
+  QList<PythonQtSignalReceiver*> signalReceivers = _p->_signalReceivers.values();
+
+  // just delete all signal receivers, they will remove themselves via removeSignalEmitter()
+  foreach(PythonQtSignalReceiver* receiver, signalReceivers) {
+    delete receiver;
+  }
+  // just to be sure, clear the receiver map as well
+  _p->_signalReceivers.clear();
+}
+
 namespace
 {
 //! adapted from python source file "pythonrun.c", function "handle_system_exit"
