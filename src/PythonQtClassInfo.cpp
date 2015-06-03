@@ -144,6 +144,12 @@ bool PythonQtClassInfo::lookForPropertyAndCache(const char* memberName)
     }
   }
 #endif
+  if (qstrcmp(attributeName, "singleShot") == 0 &&
+      className() == "QTimer") {
+    // ignore singleShot property, users need to use setSingleShot and isSingleShot instead...
+    i = -1;
+  }
+
   if (i!=-1) {
     PythonQtMemberInfo newInfo(_meta->property(i));
     _cachedMembers.insert(attributeName, newInfo);
