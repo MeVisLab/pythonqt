@@ -365,6 +365,9 @@ public:
   //! remove a signal handler from the given \c signal of \c obj
   bool removeSignalHandler(QObject* obj, const char* signal, PyObject* receiver);
 
+  //! globally removes all signal handlers (connections between QObjects and Python).
+  void removeSignalHandlers();
+
   //@}
 
   //---------------------------------------------------------------------------

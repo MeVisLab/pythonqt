@@ -213,6 +213,7 @@ bool PythonQtSignalReceiver::removeSignalHandler(const char* signal, PyObject* c
     if (callable) {
       while (i.hasNext()) {
         if (i.next().isSame(sigId, callable)) {
+          QMetaObject::disconnect(_obj, sigId, this, i.value().slotId());
           i.remove();
           foundCount++;
           break;
@@ -221,6 +222,7 @@ bool PythonQtSignalReceiver::removeSignalHandler(const char* signal, PyObject* c
     } else {
       while (i.hasNext()) {
         if (i.next().signalId() == sigId) {
+          QMetaObject::disconnect(_obj, sigId, this, i.value().slotId());
           i.remove();
           foundCount++;
         }
