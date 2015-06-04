@@ -422,9 +422,11 @@ void PythonQtTestApi::initTestCase()
 void PythonQtTestApi::testProperties()
 {
   PythonQtObjectPtr main = PythonQt::self()->getMainModule();
+#ifdef PYTHONQT_SUPPORT_NAME_PROPERTY
   // check for name alias (for backward comp to Qt3)
   main.evalScript("obj.name = 'hello'");
   QVERIFY(QString("hello") == main.getVariable("obj.name").toString());
+#endif
 
   main.evalScript("obj.objectName = 'hello2'");
   QVERIFY(QString("hello2") == main.getVariable("obj.objectName").toString());
