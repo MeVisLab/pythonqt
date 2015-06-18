@@ -352,7 +352,7 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
   AbstractMetaFunctionList functions = getFunctionsToWrap(meta_class);
 
   foreach (const AbstractMetaFunction *function, functions) {
-    if (!function->isSlot()) {
+    if (functionNeedsNormalWrapperSlot(function, meta_class)) {
       // for debugging:
       //functionHasNonConstReferences(function);
       s << "   ";
