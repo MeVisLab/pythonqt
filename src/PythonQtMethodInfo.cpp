@@ -401,7 +401,11 @@ QString PythonQtSlotInfo::fullSignature(bool skipReturnValue, int optionalArgsIn
     if (sig.startsWith("new_")) {
       sig = sig.mid(4);
       isConstructor = true;
-    } else if (sig.startsWith("delete_")) {
+    }
+    else if (sig.startsWith("py_q_")) {
+      sig = sig.mid(5);
+    }
+    else if (sig.startsWith("delete_")) {
       sig = sig.mid(7);
       isDestructor = true;
     } else if(sig.startsWith("static_")) {
@@ -471,6 +475,9 @@ QByteArray PythonQtSlotInfo::slotName(bool removeDecorators) const
 {
   QByteArray name = PythonQtUtils::methodName(_meta);
   if (removeDecorators) {
+    if (name.startsWith("py_q_")) {
+      name = name.mid(5);
+    } else 
     if (name.startsWith("static_")) {
       name = name.mid(7);
       int idx = name.indexOf("_");

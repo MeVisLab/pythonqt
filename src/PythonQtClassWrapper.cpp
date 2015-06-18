@@ -512,8 +512,19 @@ static PyObject *PythonQtClassWrapper_getattro(PyObject *obj, PyObject *name)
       Py_INCREF(enumWrapper);
       return enumWrapper;
     } else if (member._type == PythonQtMemberInfo::Slot) {
-      // we return all slots, even the instance slots, since they are callable as unbound slots with self argument
-      return PythonQtSlotFunction_New(member._slot, obj, NULL);
+      // NOTE: this does an extra lookup and string copy, it might be better to move this to
+      //       PythonQtClassInfo and add a new cache for qualified class methods...
+      QByteArray qualifiedMemberName = "py_q_";
+      qualifiedMemberName += attributeName;
+      PythonQtMemberInfo qualifiedMember = wrapper->classInfo()->member(qualifiedMemberName);
+      if (qualifiedMember._type == PythonQtMemberInfo::Slot) {
+        // return the qualified member, so that virtual calls on classes call the qualified member
+        return PythonQtSlotFunction_New(qualifiedMember._slot, obj, NULL);
+      }
+      else {
+        // we return all slots, even the instance slots, since they are callable as unbound slots with self argument
+        return PythonQtSlotFunction_New(member._slot, obj, NULL);
+      }
     } else if (member._type == PythonQtMemberInfo::Signal) {
       // we return all signals, even the instance signals, since they are callable as unbound signals with self argument
       return PythonQtSignalFunction_New(member._slot, obj, NULL);
