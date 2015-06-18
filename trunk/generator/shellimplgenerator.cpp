@@ -248,7 +248,7 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
   // write member functions
   for (int i = 0; i < functions.size(); ++i) {
     AbstractMetaFunction *fun = functions.at(i);
-    bool needsWrapping = (!fun->isSlot() || fun->isVirtual());
+    bool needsWrapping = !fun->isSlot();
     if (!needsWrapping) {
       continue;
     }
