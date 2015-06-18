@@ -2099,7 +2099,6 @@ PyObject* constScanLine(QImage* image, int line) {
     <modify-function signature="fontMetrics()const" remove="all"/>
     <modify-function signature="sizeHint()const" rename="getSizeHint"/>
     <modify-function signature="minimumSizeHint()const" rename="getMinimumSizeHint"/>
-    <modify-function signature="setVisible(bool)" remove="all"/>
   </object-type>
 
   <object-type name="QMessageBox">
