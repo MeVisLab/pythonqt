@@ -199,30 +199,32 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
     
     foreach(AbstractMetaFunction* fun, promoteFunctions) {
       // normal promoter
-      if (fun->isStatic()) {
-        s << "static ";
+      if (fun->wasProtected()) {
+        if (fun->isStatic()) {
+          s << "static ";
+        }
+        s << "inline ";
+        writeFunctionSignature(s, fun, 0, "promoted_",
+          Option(IncludeDefaultExpression | OriginalName | UnderscoreSpaces | ProtectedEnumAsInts));
+        s << " { ";
+        QString scriptFunctionName = fun->originalName();
+        AbstractMetaArgumentList args = fun->arguments();
+        if (fun->type()) {
+          s << "return ";
+        }
+        // always do a direct call, since we want to call the real virtual function here
+        s << "this->";
+        s << fun->originalName() << "(";
+        writePromoterArgs(args, s);
+        s << "); }" << endl;
       }
-      s << "inline ";
-      writeFunctionSignature(s, fun, 0, "promoted_",
-        Option(IncludeDefaultExpression | OriginalName | UnderscoreSpaces | ProtectedEnumAsInts));
-      s << " { ";
-      QString scriptFunctionName = fun->originalName();
-      AbstractMetaArgumentList args = fun->arguments();
-      if (fun->type()) {
-        s << "return ";
-      }
-      // always do a direct call, since we want to call the real virtual function here
-      s << "this->";
-      s << fun->originalName() << "(";
-      writePromoterArgs(args, s);
-      s << "); }" << endl;
     }
 
     foreach(AbstractMetaFunction* fun, promoteFunctions) {
       // qualified promoter for virtual functions
       if (fun->isVirtual()) {
         s << "inline ";
-        writeFunctionSignature(s, fun, 0, "py_qualified_",
+        writeFunctionSignature(s, fun, 0, "py_q_",
           Option(IncludeDefaultExpression | OriginalName | UnderscoreSpaces | ProtectedEnumAsInts));
         s << " { ";
         QString scriptFunctionName = fun->originalName();
@@ -361,7 +363,7 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
     if (function->isVirtual()) {
       // qualified version that calls the promoter/the qualified version
       s << "   ";
-      writeFunctionSignature(s, function, 0, "py_qualified_",
+      writeFunctionSignature(s, function, 0, "py_q_",
         Option(AddOwnershipTemplates | ConvertReferenceToPtr | FirstArgIsWrappedObject | IncludeDefaultExpression | OriginalName | ShowStatic | UnderscoreSpaces | ProtectedEnumAsInts));
       s << "{  ";
 
@@ -375,7 +377,7 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
           s << "&";
         }
       }
-      s << "(((" << promoterClassName(meta_class) << "*)theWrappedObject)->py_qualified_";
+      s << "(((" << promoterClassName(meta_class) << "*)theWrappedObject)->py_q_";
       s << function->originalName() << "(";
       for (int i = 0; i < args.size(); ++i) {
         if (i > 0)

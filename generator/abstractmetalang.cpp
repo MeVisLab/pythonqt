@@ -696,18 +696,6 @@ QString AbstractMetaFunction::targetLangSignature(bool minimal) const
 
     // Attributes...
     if (!minimal) {
-#if 0 // jambi
-        if (isPublic()) s += "public ";
-        else if (isProtected()) s += "protected ";
-        else if (isPrivate()) s += "private ";
-
-//     if (isNative()) s += "native ";
-//     else
-        if (isFinalInTargetLang()) s += "final ";
-        else if (isAbstract()) s += "abstract ";
-
-        if (isStatic()) s += "static ";
-#endif
         // Return type
         if (type())
             s += type()->name() + " ";
