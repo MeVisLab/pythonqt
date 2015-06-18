@@ -297,6 +297,18 @@ bool ShellGenerator::functionHasNonConstReferences(const AbstractMetaFunction* f
   return false;
 }
 
+bool ShellGenerator::functionNeedsNormalWrapperSlot(const AbstractMetaFunction* func, const AbstractMetaClass* currentClass)
+{
+  if (func->isSlot()) {
+    return false;
+  }
+  else if (func->isVirtual()) {
+    return func->declaringClass() == currentClass;
+  } else {
+    return true;
+  }
+}
+
 AbstractMetaFunctionList ShellGenerator::getFunctionsToWrap(const AbstractMetaClass* meta_class)
 {
   AbstractMetaFunctionList functions = meta_class->queryFunctions( 

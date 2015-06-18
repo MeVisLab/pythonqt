@@ -77,6 +77,8 @@ public:
 
     bool functionHasNonConstReferences(const AbstractMetaFunction* func);
 
+    bool functionNeedsNormalWrapperSlot(const AbstractMetaFunction* func, const AbstractMetaClass* currentClass);
+
     static QString shellClassName(const AbstractMetaClass *meta_class) {
       return "PythonQtShell_" + meta_class->name();
     }
