@@ -127,7 +127,9 @@ static void PythonQtInstanceWrapper_deleteObject(PythonQtInstanceWrapper* self, 
 
 static void PythonQtInstanceWrapper_dealloc(PythonQtInstanceWrapper* self)
 {
-  PythonQtInstanceWrapper_deleteObject(self);
+  if (PythonQt::self()) {
+    PythonQtInstanceWrapper_deleteObject(self);
+  }
   self->_obj.~QPointer<QObject>();
   Py_TYPE(self)->tp_free((PyObject*)self);
 }
