@@ -109,7 +109,7 @@ PythonQtObjectPtr::PythonQtObjectPtr(PythonQtSafeObjectPtr &&p) :_object(p.takeO
 
 PythonQtObjectPtr::~PythonQtObjectPtr()
 {
-  Py_XDECREF(_object);
+  if (_object && Py_IsInitialized()) Py_XDECREF(_object);
 }
 
 void PythonQtObjectPtr::setNewRef(PyObject* o)

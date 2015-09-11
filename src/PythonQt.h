@@ -566,7 +566,7 @@ public:
   //@{
 
   //! get access to internal data (should not be used on the public API, but is used by some C functions)
-  static PythonQtPrivate* priv() { return _self->_p; }
+  static PythonQtPrivate* priv() { return _self ? _self->_p : nullptr; }
 
   //! clear all NotFound entries on all class infos, to ensure that
   //! newly loaded wrappers can add methods even when the object was wrapped by PythonQt before the wrapper was loaded
