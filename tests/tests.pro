@@ -23,10 +23,13 @@ QT += widgets
 
 include ( ../build/common.prf )
 include ( ../build/PythonQt.prf )
+include ( ../build/PythonQt_QtAll.prf )
 
 HEADERS +=                    \
+  PythonQtTestCleanup.h       \
   PythonQtTests.h
 
 SOURCES +=                    \
+  PythonQtTestCleanup.cpp     \
   PythonQtTestMain.cpp        \
   PythonQtTests.cpp
