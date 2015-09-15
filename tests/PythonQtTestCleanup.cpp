@@ -26,16 +26,14 @@ void PythonQtTestCleanup::cleanup()
 {
   // Finalize and cleanup after each test
 
-  PythonQtObjectPtr main = PythonQt::self()->getMainModule();
-  PythonQt::self()->removeVariable(main, "obj");
-  delete _helper;
-  _helper = nullptr;
-
   if (Py_IsInitialized()) {
     Py_Finalize();
   }
 
   PythonQt::cleanup();
+
+  delete _helper;
+  _helper = nullptr;
 }
 
 void PythonQtTestCleanup::testQtEnum()
@@ -59,6 +57,19 @@ void PythonQtTestCleanup::testCallQtMethodInDel()
     "x = TimerWrapper()\n" \
     "obj.setPassed()\n"
     ));
+}
+
+void PythonQtTestCleanup::testSignalReceiverCleanup()
+{
+  PythonQtObjectPtr main = PythonQt::self()->getMainModule();
+
+  // Test that PythonQtSignalReceiver is cleaned up properly,
+  // i.e. PythonQt::cleanup() doesn't segfault
+  main.evalScript(
+    "import PythonQt.QtCore\n" \
+    "timer = PythonQt.QtCore.QTimer(obj)\n" \
+    "timer.connect('destroyed()', obj.onDestroyed)\n"
+    );
 }
 
 bool PythonQtTestCleanupHelper::runScript(const char* script)

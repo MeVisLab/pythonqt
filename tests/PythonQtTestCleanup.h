@@ -18,6 +18,7 @@ private Q_SLOTS:
 
   void testQtEnum();
   void testCallQtMethodInDel();
+  void testSignalReceiverCleanup();
 
 private:
   PythonQtTestCleanupHelper* _helper;
@@ -36,6 +37,7 @@ public:
 
 public Q_SLOTS:
   void setPassed() { _passed = true; }
+  void onDestroyed(QObject *) { }
 
 private:
   bool _passed;
