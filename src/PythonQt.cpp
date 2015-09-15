@@ -326,6 +326,10 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
 void PythonQt::cleanup()
 {
   if (_self) {
+    // Remove signal handlers in advance, since destroying them calls back into
+    // PythonQt::priv()->removeSignalEmitter()
+    _self->removeSignalHandlers();
+
     delete _self;
     _self = nullptr;
   }
