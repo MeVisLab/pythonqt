@@ -70,6 +70,8 @@
   <rejection class="QtConcurrent" function-name="operator|"/>
 
   <rejection class="Qt" enum-name="Modifier"/>
+  <rejection class="Qt" function-name="qt_getEnumName"/>
+  <rejection class="Qt" function-name="qt_getEnumMetaObject"/>
 
   <rejection class="QSharedPointer"/>
   <rejection class="QWeakPointer"/>
@@ -1580,7 +1582,9 @@
   <object-type name="QSharedMemory"/>
   <object-type name="QMetaObject"/>
   <object-type name="QMetaMethod"/>
-  <object-type name="QMetaEnum"/>
+  <object-type name="QMetaEnum">
+    <modify-function signature="fromType()" remove="all"/> 
+  </object-type>
   <object-type name="QMetaProperty"/>
   <object-type name="QMetaClassInfo"/>
   <object-type name="QElapsedTimer"/>
@@ -1589,6 +1593,7 @@
     <modify-function signature="hasRegisteredConverterFunction()" remove="all"/> 
     <modify-function signature="hasRegisteredDebugStreamOperator()" remove="all"/>
     <modify-function signature="hasRegisteredComparators()" remove="all"/>
+    <modify-function signature="registerEqualsComparator()" remove="all"/>
     <modify-function signature="registerComparators()" remove="all"/>
     <modify-function signature="registerConverter()" remove="all"/>
     <modify-function signature="registerDebugStreamOperator()" remove="all"/>

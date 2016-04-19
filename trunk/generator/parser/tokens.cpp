@@ -148,7 +148,8 @@ static char const * const _S_token_names[] = {
   "whitespaces",
   "xor",
   "xor_eq",
-  "Q_ENUMS"
+  "Q_ENUMS",
+  "Q_ENUM"
 };
 
 static char _S_printable[][2] = {
