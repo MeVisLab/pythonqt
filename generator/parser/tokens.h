@@ -151,6 +151,7 @@ enum TOKEN_KIND
     Token_xor,
     Token_xor_eq,
     Token_Q_ENUMS,
+    Token_Q_ENUM,
     Token_Q_INVOKABLE,
 
     TOKEN_KIND_COUNT

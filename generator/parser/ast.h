@@ -875,6 +875,8 @@ struct QPropertyAST : public DeclarationAST
 struct QEnumsAST : public DeclarationAST
 {
   DECLARE_AST_NODE(QEnumsAST)
+
+  bool isQEnum;
 };
 
 template <class _Tp>
