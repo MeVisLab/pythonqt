@@ -17,7 +17,7 @@
   <rejection class="*" field-name="d_ptr"/>
   <rejection class="*" field-name="d"/>
 
-  <rejection class="QWheelEvent" enum="enum_1"/>
+  <rejection class="QWheelEvent" enum-name="enum_1"/>
 
 <rejection class="QAccessible"/>
 <rejection class="QAccessibleActionInterface"/>
@@ -1834,6 +1834,7 @@ PyObject* constScanLine(QImage* image, int line) {
 
     <modify-function signature="addWidget(QWidget *)" remove="all"/>
     <modify-function signature="getItemPosition(int,int*,int*,int*,int*)" remove="all"/>
+    <modify-function signature="getItemPosition(int,int*,int*,int*,int*)const" remove="all"/>
   </object-type>
 
   <object-type name="QGraphicsView">
