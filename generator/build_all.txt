@@ -10,4 +10,6 @@
   <load-typesystem name="typesystem_xmlpatterns.xml" generate="yes" />
   <load-typesystem name="typesystem_uitools.xml" generate="yes" />
   <load-typesystem name="typesystem_multimedia.xml" generate="yes" />
+  <load-typesystem name="typesystem_qml.xml" generate="yes" />
+  <load-typesystem name="typesystem_quick.xml" generate="yes" />
 </typesystem>
