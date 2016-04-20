@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <typesystem package="com.trolltech.qt.core">
   
-  <rejection class="QSysInfo" enum="WinVersion"/>
-  <rejection class="QSysInfo" enum="MacVersion"/>
+  <rejection class="QSysInfo" enum-name="WinVersion"/>
+  <rejection class="QSysInfo" enum-name="MacVersion"/>
 
   <rejection class="QTextCodec::ConverterState"/>
   <rejection class="QTextCodecFactoryInterface"/>
