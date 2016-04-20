@@ -57,6 +57,9 @@
 
 #if QT_VERSION >= 0x050000
 #include <QtMultimediaWidgets/QtMultimediaWidgets>
+#include <QtQml/QtQml>
+#include <QtQuick/QtQuick>
+#include <QtQuickWidgets/QtQuickWidgets>
 #endif
 
 #ifndef QT_NO_XMLPATTERNS
