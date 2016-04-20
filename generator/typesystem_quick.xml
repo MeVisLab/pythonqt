@@ -1,8 +1,20 @@
 <?xml version="1.0"?>
 <typesystem package="com.trolltech.qt.quick">
 
+<!-- not yet supported: -->
+<rejection class="QSGMaterial"/>
+<rejection class="QSGMaterialShader"/>
+<rejection class="QSGOpaqueTextureMaterial"/>
+<rejection class="QSGSimpleMaterial"/>
+<rejection class="QSGSimpleMaterialComparableMaterial"/>
+<rejection class="QSGSimpleMaterialShader"/>
+<rejection class="QSGSimpleRectNode"/>
+<rejection class="QSGSimpleTextureNode"/>
+<rejection class="QSGVertexColorMaterial"/>
 <rejection class="QQuickItem" function-name="transform"/>
-  
+<rejection class="QQuickItem::ItemChangeData"/>
+<!-- end -->
+
 <object-type name="QQuickAsyncImageProvider"></object-type>
 <object-type name="QQuickFramebufferObject"></object-type>
 <object-type name="QQuickImageProvider"></object-type>

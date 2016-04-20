@@ -17,6 +17,63 @@
   <rejection class="*" field-name="d_ptr"/>
   <rejection class="*" field-name="d"/>
 
+  <rejection class="QWheelEvent" enum="enum_1"/>
+
+<rejection class="QAccessible"/>
+<rejection class="QAccessibleActionInterface"/>
+<rejection class="QAccessibleBridge"/>
+<rejection class="QAccessibleImageInterface"/>
+<rejection class="QAccessibleInterface"/>
+<rejection class="QAccessibleObject"/>
+<rejection class="QAccessiblePlugin"/>
+<rejection class="QAccessibleStateChangeEvent"/>
+<rejection class="QAccessibleTableCellInterface"/>
+<rejection class="QAccessibleTableInterface"/>
+<rejection class="QAccessibleTableModelChangeEvent"/>
+<rejection class="QAccessibleTextCursorEvent"/>
+<rejection class="QAccessibleTextInsertEvent"/>
+<rejection class="QAccessibleTextRemoveEvent"/>
+<rejection class="QAccessibleTextSelectionEvent"/>
+<rejection class="QAccessibleTextUpdateEvent"/>
+<rejection class="QAccessibleValueChangeEvent"/>
+<rejection class="QAccessibleWidget"/>
+<rejection class="QOpenGLDebugLogger"/>
+<rejection class="QOpenGLDebugMessage"/>
+<rejection class="QOpenGLExtraFunctions"/>
+<rejection class="QOpenGLExtraFunctionsPrivate"/>
+<rejection class="QOpenGLFunctionsPrivate"/>
+<rejection class="QOpenGLFunctions_1_0_CoreBackend"/>
+<rejection class="QOpenGLFunctions_1_0_DeprecatedBackend"/>
+<rejection class="QOpenGLFunctions_1_1_CoreBackend"/>
+<rejection class="QOpenGLFunctions_1_1_DeprecatedBackend"/>
+<rejection class="QOpenGLFunctions_1_2_CoreBackend"/>
+<rejection class="QOpenGLFunctions_1_2_DeprecatedBackend"/>
+<rejection class="QOpenGLFunctions_1_3_CoreBackend"/>
+<rejection class="QOpenGLFunctions_1_3_DeprecatedBackend"/>
+<rejection class="QOpenGLFunctions_1_4_CoreBackend"/>
+<rejection class="QOpenGLFunctions_1_4_DeprecatedBackend"/>
+<rejection class="QOpenGLFunctions_1_5_CoreBackend"/>
+<rejection class="QOpenGLFunctions_2_0_CoreBackend"/>
+<rejection class="QOpenGLFunctions_2_0_DeprecatedBackend"/>
+<rejection class="QOpenGLFunctions_2_1_CoreBackend"/>
+<rejection class="QOpenGLFunctions_3_0_CoreBackend"/>
+<rejection class="QOpenGLFunctions_3_0_DeprecatedBackend"/>
+<rejection class="QOpenGLFunctions_3_1_CoreBackend"/>
+<rejection class="QOpenGLFunctions_3_2_CoreBackend"/>
+<rejection class="QOpenGLFunctions_3_3_CoreBackend"/>
+<rejection class="QOpenGLFunctions_3_3_DeprecatedBackend"/>
+<rejection class="QOpenGLFunctions_4_0_CoreBackend"/>
+<rejection class="QOpenGLFunctions_4_1_CoreBackend"/>
+<rejection class="QOpenGLFunctions_4_2_CoreBackend"/>
+<rejection class="QOpenGLFunctions_4_3_CoreBackend"/>
+<rejection class="QOpenGLFunctions_4_4_CoreBackend"/>
+<rejection class="QOpenGLFunctions_4_5_CoreBackend"/>
+<rejection class="QOpenGLFunctions_4_5_DeprecatedBackend"/>
+<rejection class="QOpenGLPixelTransferOptions"/>
+<rejection class="QOpenGLVersionFunctionsBackend"/>
+<rejection class="QOpenGLVersionStatus"/>
+<rejection class="QOpenGLVertexArrayObject::Binder"/>
+<rejection class="QSizePolicy::Bits"/>
 
   <rejection class="QGenericMatrix"/>  
   <rejection class="QPixmapFilterPrivate"/>
@@ -227,6 +284,7 @@
   <enum-type name="QImage::Format"/>
   <enum-type name="QImage::InvertMode"/>
   <enum-type name="QImageIOHandler::ImageOption"/>
+  <enum-type name="QImageIOHandler::Transformation"/>
   <enum-type name="QImageReader::ImageReaderError"/>
   <enum-type name="QImageWriter::ImageWriterError"/>
   <enum-type name="QInputContext::StandardFormat"/>
@@ -430,6 +488,17 @@
   <enum-type name="QWizard::WizardStyle"/>
   <enum-type name="QImageIOPlugin::Capability" flags="QImageIOPlugin::Capabilities"/>
   <enum-type name="QStackedLayout::StackingMode"/>
+
+<enum-type name="QOpenGLWidget::UpdateBehavior"/>
+<enum-type name="QOpenGLWindow::UpdateBehavior"/>
+<enum-type name="QPixelFormat::AlphaPosition"/>
+<enum-type name="QPixelFormat::AlphaPremultiplied"/>
+<enum-type name="QPixelFormat::AlphaUsage"/>
+<enum-type name="QPixelFormat::ByteOrder"/>
+<enum-type name="QPixelFormat::ColorModel"/>
+<enum-type name="QPixelFormat::TypeInterpretation"/>
+<enum-type name="QPixelFormat::YUVLayout"/>
+<enum-type name="QPlatformSurfaceEvent::SurfaceEventType"/>
 
   <enum-type name="QWizard::WizardButton">
     <reject-enum-value name="NStandardButtons"/>
@@ -1538,6 +1607,8 @@ PyObject* constScanLine(QImage* image, int line) {
   </object-type>
 
   <object-type name="QActionEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::ActionAdded || %1-&gt;type() == QEvent::ActionRemoved || %1-&gt;type() == QEvent::ActionChanged"/>
+  <object-type name="QPlatformSurfaceEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::PlatformSurface"/>
+  <object-type name="QScreenOrientationChangeEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::OrientationChange"/>
   <object-type name="QClipboardEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::Clipboard"/>
   <object-type name="QCloseEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::Close"/>
   <object-type name="QContextMenuEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::ContextMenu"/>
@@ -2655,6 +2726,7 @@ PyObject* constScanLine(QImage* image, int line) {
       <modify-function signature="setAutoCompletionCaseSensitivity(Qt::CaseSensitivity)" remove="all"/> <!--### Obsolete in 4.3-->
   </object-type>
 
+
   <object-type name="QTextEdit">
     <extra-includes>
         <include file-name="QTextCursor" location="global"/>
@@ -2980,6 +3052,9 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QNativeGestureEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::NativeGesture"/>
   <object-type name="QOffscreenSurface"/>
   <object-type name="QOpenGLBuffer"/>
+  <enum-type name="QOpenGLBuffer::RangeAccessFlag"/>
+  <enum-type name="QOpenGLTexture::ComparisonFunction"/>
+  <enum-type name="QOpenGLTexture::ComparisonMode"/>
   <object-type name="QOpenGLContext"/>
   <object-type name="QOpenGLContextGroup"/>
   <object-type name="QOpenGLFramebufferObject"/>
@@ -3026,6 +3101,16 @@ PyObject* constScanLine(QImage* image, int line) {
     <modify-function signature="operator=(const QOpenGLPaintDevice&amp;)" remove="all"/>
   </object-type>
   <value-type name="QPagedPaintDevice::Margins"/>
+
+  <object-type name="QKeySequenceEdit"/>
+  <object-type name="QOpenGLWindow"/>
+  <object-type name="QOpenGLWidget"/>
+  <object-type name="QPaintDeviceWindow"/>
+  <object-type name="QRasterWindow"/>
+  <object-type name="QPixelFormat"/>
+  <value-type name="QRgba64">
+    <modify-function signature="operator quint64() const" remove="all"/>
+  </value-type>
 
   <enum-type name="QScrollerProperties::ScrollMetric"/>
   <enum-type name="QScrollerProperties::OvershootPolicy"/>
