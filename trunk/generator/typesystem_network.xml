@@ -4,6 +4,8 @@
     <include file-name="qssl.h" location="global"/>
   </namespace-type>
 
+  <rejection class="QSqlError::Unused"/>
+
   <enum-type name="QSsl::AlternativeNameEntryType"/>
   <enum-type name="QSslConfiguration::NextProtocolNegotiationStatus"/>
   <enum-type name="QNetworkProxy::Capability" flags="QNetworkProxy::Capabilities"/>
@@ -180,6 +182,10 @@
 
   <object-type name="QSslSocket"/>
 
+  <object-type name="QSslCertificateExtension"/>
+  <object-type name="QSslEllipticCurve"/>
+  <object-type name="QSslPreSharedKeyAuthenticator"/>
+
   <enum-type name="QNetworkSession::State"/>
   <enum-type name="QNetworkSession::UsagePolicy" flags="QNetworkSession::UsagePolicies"/>
   <enum-type name="QNetworkSession::SessionError"/>
@@ -195,7 +201,15 @@
   <object-type name="QNetworkConfiguration"/>
   <object-type name="QNetworkConfigurationManager"/>
 
-  
+  <object-type name="QDnsDomainNameRecord"/>
+  <object-type name="QDnsHostAddressRecord"/>
+  <object-type name="QDnsLookup"/>
+  <enum-type name="QDnsLookup::Error"/>
+  <enum-type name="QDnsLookup::Type"/>
+  <object-type name="QDnsMailExchangeRecord"/>
+  <object-type name="QDnsServiceRecord"/>
+  <object-type name="QDnsTextRecord"/>
+
   <suppress-warning text="*unmatched parameter type 'sockaddr const*"/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QUrlInfo' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QNetworkCacheMetaData' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>

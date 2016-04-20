@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 <typesystem package="com.trolltech.qt.core">
   
+  <rejection class="QSysInfo" enum="WinVersion"/>
+  <rejection class="QSysInfo" enum="MacVersion"/>
+
   <rejection class="QTextCodec::ConverterState"/>
   <rejection class="QTextCodecFactoryInterface"/>
   <rejection class="QAbstractEventDispatcher"/>
@@ -12,6 +15,137 @@
   <rejection class="QFutureWatcherBase"/>
   <rejection class="QFutureSynchronizer"/>
     
+    <rejection class="QAbstractConcatenable"/>
+<rejection class="QAbstractNativeEventFilter"/>
+<rejection class="QAbstractOpenGLFunctions"/>
+<rejection class="QAbstractOpenGLFunctionsPrivate"/>
+<rejection class="QAnimationDriver"/>
+<rejection class="QArrayData"/>
+<rejection class="QArrayDataOps"/>
+<rejection class="QArrayDataPointer"/>
+<rejection class="QArrayDataPointerRef"/>
+<rejection class="QArrayOpsSelector"/>
+<rejection class="QAssociativeIterable"/>
+<rejection class="QAtomicAdditiveType"/>
+<rejection class="QAtomicInteger"/>
+<rejection class="QAtomicOps"/>
+<rejection class="QAtomicOpsSupport>"/>
+<rejection class="QBasicAtomicInteger"/>
+<rejection class="QByteArrayDataPtr"/>
+<rejection class="QDebugStateSaver"/>
+<rejection class="QEnableSharedFromThis"/>
+<rejection class="QEventLoopLocker"/>
+<rejection class="QException"/>
+<rejection class="QGLFunctionsPrivate"/>
+<rejection class="QGenericAtomicOps"/>
+<rejection class="QGenericPlugin"/>
+<rejection class="QGenericPluginFactory"/>
+<rejection class="QIconEngine::AvailableSizesArgument"/>
+<rejection class="QInputMethodQueryEvent::QueryPair"/>
+<rejection class="QIntegerForSize>"/>
+<rejection class="QJSValueIterator"/>
+<rejection class="QJsonArray::const_iterator"/>
+<rejection class="QJsonArray::iterator"/>
+<rejection class="QJsonObject::const_iterator"/>
+<rejection class="QJsonObject::iterator"/>
+<rejection class="QJsonValuePtr"/>
+<rejection class="QJsonValueRef"/>
+<rejection class="QJsonValueRefPtr"/>
+<rejection class="QList::MemoryLayout"/>
+<rejection class="QListSpecialMethods"/>
+<rejection class="QLoggingCategory"/>
+<rejection class="QMapDataBase"/>
+<rejection class="QMapNodeBase"/>
+<rejection class="QMetaTypeIdQObject"/>
+<rejection class="QPalette::Data"/>
+
+<rejection class="QScopedPointerObjectDeleteLater"/>
+<rejection class="QScopedValueRollback"/>
+<rejection class="QSequentialIterable"/>
+
+<rejection class="QStaticArrayData"/>
+<rejection class="QStaticAssertFailure"/>
+<rejection class="QStaticByteArrayData"/>
+<rejection class="QStaticPlugin"/>
+<rejection class="QStaticStringData"/>
+<rejection class="QStringBuilderBase"/>
+<rejection class="QStringBuilderCommon"/>
+<rejection class="QStringDataPtr"/>
+<rejection class="QTimeZone::OffsetData"/>
+<rejection class="QTypeInfoMerger"/>
+<rejection class="QTypeInfoQuery"/>
+<rejection class="QTypedArrayData"/>
+<rejection class="QUnhandledException"/>
+<rejection class="QUrlTwoFlags"/>
+<rejection class="QVector::AlignmentDummy"/>
+<rejection class="QVersionNumber"/>
+
+<rejection class="_Alloc_allocate"/>
+<rejection class="_Allocator_base"/>
+<rejection class="_Call_wrapper"/>
+<rejection class="_Call_wrapper_base"/>
+<rejection class="_Callable_base"/>
+<rejection class="_Combined_type"/>
+<rejection class="_Extent"/>
+<rejection class="_Get_const_pointer_type"/>
+<rejection class="_Get_const_void_pointer_type"/>
+<rejection class="_Get_difference_type"/>
+<rejection class="_Get_element_type"/>
+<rejection class="_Get_pointer_type"/>
+<rejection class="_Get_propagate_on_container_copy"/>
+<rejection class="_Get_propagate_on_container_move"/>
+<rejection class="_Get_propagate_on_container_swap"/>
+<rejection class="_Get_ptr_difference_type"/>
+<rejection class="_Get_rebind_type"/>
+<rejection class="_Get_size_type"/>
+<rejection class="_Get_void_pointer_type"/>
+<rejection class="_Has_result_and_2arg_type"/>
+<rejection class="_Has_result_and_arg_type"/>
+<rejection class="_Is_checked_helper"/>
+<rejection class="_Real_type"/>
+<rejection class="_Real_widened"/>
+<rejection class="_Refwrap_impl"/>
+<rejection class="_Refwrap_result0"/>
+<rejection class="_Refwrap_result1"/>
+<rejection class="_Refwrap_result1_helper"/>
+<rejection class="_Refwrap_result2"/>
+<rejection class="_Refwrap_result2_helper"/>
+<rejection class="_Repeat_for"/>
+<rejection class="_Tree_comp"/>
+<rejection class="_Unrefwrap"/>
+<rejection class="_Unrefwrap_helper"/>
+<rejection class="_Vb_const_iterator"/>
+<rejection class="_Vb_iter_base"/>
+<rejection class="_Vb_iterator"/>
+<rejection class="_Vb_reference"/>
+<rejection class="_Vb_val"/>
+<rejection class="__type_info_node"/>
+<rejection class="_stat32"/>
+<rejection class="_stat32i64"/>
+<rejection class="_stat64"/>
+<rejection class="_stat64i32"/>
+<rejection class="_wfinddata32_t"/>
+<rejection class="_wfinddata32i64_t"/>
+<rejection class="_wfinddata64_t"/>
+<rejection class="_wfinddata64i32_t"/>
+<rejection class="allocator"/>
+<rejection class="basic_iostream"/>
+<rejection class="common_type"/>
+<rejection class="decay"/>
+<rejection class="extent"/>
+<rejection class="hash"/>
+<rejection class="identity"/>
+<rejection class="is_base_of"/>
+<rejection class="lconv"/>
+<rejection class="numeric_limits"/>
+<rejection class="pointer_traits"/>
+<rejection class="rank"/>
+<rejection class="reference_wrapper"/>
+<rejection class="tuple_element"/>
+<rejection class="type_info"/>
+<rejection class="underlying_type"/>
+<rejection class="vector"/>
+
   <primitive-type name="qgl_GLsizeiptr"/>
   <primitive-type name="qgl_GLintptr"/>
   <primitive-type name="GLint"/>
@@ -658,6 +792,10 @@
     <reject-enum-value name="AllToolBarAreas"/>
   </enum-type>
 
+  <enum-type name="Qt::EnterKeyType"/>
+  <enum-type name="Qt::ItemSelectionOperation"/>
+  <enum-type name="Qt::TabFocusBehavior"/>
+
   <enum-type name="Qt::WidgetAttribute">
     <reject-enum-value name="WA_ForceAcceptDrops"/>
     <reject-enum-value name="WA_NoBackground"/>
@@ -842,6 +980,7 @@
     <modify-function signature="toPunycode(const QString&amp;)" remove="all"/>
     <!--### Obsolete in 4.3-->
   </value-type>
+  <enum-type name="QUrl::UserInputResolutionOption"/>
 
   <value-type name="QRegExp">
     <extra-includes>
@@ -1041,6 +1180,7 @@
 
   <object-type name="QAbstractState"/>
   <object-type name="QAbstractTransition"/>
+  <enum-type name="QAbstractTransition::TransitionType"/>
 
   <object-type name="QState">
     <modify-function signature="addTransition(QAbstractTransition*)">
@@ -1275,7 +1415,12 @@
   </object-type>
   <object-type name="QTimerEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::Timer"/>
   <object-type name="QDynamicPropertyChangeEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::DynamicPropertyChange"/>
+  <object-type name="QApplicationStateChangeEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::ApplicationStateChange"/>
+  <object-type name="QDeferredDeleteEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::DeferredDelete"/>
 
+  <object-type name="QSignalBlocker"/>
+  <object-type name="QStorageInfo"/>
+    
   <object-type name="QDataStream">
     <extra-includes>
       <include file-name="PythonQtConversion.h" location="global"/>
@@ -1726,6 +1871,7 @@
   <object-type name="QCollatorSortKey"/>
   <object-type name="QCommandLineOption"/>
   <object-type name="QCommandLineParser"/>
+  <enum-type name="QCommandLineParser::OptionsAfterPositionalArgumentsMode"/>
   <object-type name="QIdentityProxyModel"/>
   <object-type name="QJsonArray"/>
   <object-type name="QJsonDocument"/>

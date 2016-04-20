@@ -1,8 +1,16 @@
 <?xml version="1.0"?>
 <typesystem package="com.trolltech.qt.qml">
 
+<rejection class="QQmlListProperty"/>
+<rejection class="QQmlTypeInfo"/>
+<rejection class="QQmlImageProviderBase"/>
+
 <object-type name="QJSEngine"></object-type>
 <object-type name="QJSValue"></object-type>
+
+<enum-type name="QJSEngine::Extension"/>
+<enum-type name="QJSValue::SpecialValue"/>
+
 <object-type name="QQmlAbstractUrlInterceptor"></object-type>
 <object-type name="QQmlApplicationEngine"></object-type>
 <object-type name="QQmlComponent"></object-type>
@@ -15,7 +23,6 @@
 <object-type name="QQmlExtensionPlugin"></object-type>
 <object-type name="QQmlFile"></object-type>
 <object-type name="QQmlFileSelector"></object-type>
-<object-type name="QQmlImageProviderBase"></object-type>
 <object-type name="QQmlIncubationController"></object-type>
 <object-type name="QQmlIncubator"></object-type>
 <object-type name="QQmlInfo"></object-type>
