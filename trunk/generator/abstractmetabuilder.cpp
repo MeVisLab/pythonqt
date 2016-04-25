@@ -2373,7 +2373,7 @@ void AbstractMetaBuilder::setupClonable(AbstractMetaClass *cls)
     }
 }
 
-static void write_reject_log_file(const QString &name,
+static void write_reject_log_file(const QString &name, const QString &tagName,
                                   const QMap<QString, AbstractMetaBuilder::RejectReason> &rejects)
 {
     QFile f(name);
@@ -2418,7 +2418,12 @@ static void write_reject_log_file(const QString &name,
              it != rejects.constEnd(); ++it) {
             if (it.value() != reason)
                 continue;
-            s << " - " << it.key() << endl;
+            if (tagName.isEmpty()) {
+              s << it.key() << endl;
+            } else {
+              s << "<" << tagName << " name=\"" << it.key() << "\"/>" << endl;
+//              s << "<rejection class=\"" << it.key() << "\"/>" << endl;
+            }
         }
 
         s << QString(72, '*') << endl << endl;
@@ -2429,10 +2434,10 @@ static void write_reject_log_file(const QString &name,
 
 void AbstractMetaBuilder::dumpLog()
 {
-    write_reject_log_file("mjb_rejected_classes.log", m_rejected_classes);
-    write_reject_log_file("mjb_rejected_enums.log", m_rejected_enums);
-    write_reject_log_file("mjb_rejected_functions.log", m_rejected_functions);
-    write_reject_log_file("mjb_rejected_fields.log", m_rejected_fields);
+    write_reject_log_file("mjb_rejected_classes.log", "object-type",  m_rejected_classes);
+    write_reject_log_file("mjb_rejected_enums.log", "enum-type", m_rejected_enums);
+    write_reject_log_file("mjb_rejected_functions.log","", m_rejected_functions);
+    write_reject_log_file("mjb_rejected_fields.log","", m_rejected_fields);
 }
 
 AbstractMetaClassList AbstractMetaBuilder::classesTopologicalSorted() const
