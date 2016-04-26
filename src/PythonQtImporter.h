@@ -88,7 +88,7 @@ public:
   static void init();
 
   //! writes the python code to disk, marshalling and writing the time stamp
-  static void writeCompiledModule(PyCodeObject *co, const QString& filename, long mtime);
+  static void writeCompiledModule(PyCodeObject *co, const QString& filename, long mtime, long sourceSize);
 
   /*! Given the contents of a .py[co] file in a buffer, unmarshal the data
    and return the code object. Return None if it the magic word doesn't
@@ -107,9 +107,10 @@ public:
                                       time_t mtime = 0);
 
   //! Get the code object associated with the module specified by
-  //! 'fullname'.
+  //! 'fullname'. In Python3, modpath will always be the path to the *.py file and cachemodpath the path
+  //! to the *.pyc file (if it exists).
   static PyObject * getModuleCode(PythonQtImporter *self,
-                                  const char* fullname, QString& modpath);
+                                  const char* fullname, QString& modpath, QString& cachemodpath);
 
 
   //! gets the compiled code for the given *.py file if there is a valid pyc file, otherwise compiles the file and writes the pyc
@@ -132,6 +133,13 @@ public:
   //! replace extension of file
   static QString replaceExtension(const QString& str, const QString& ext);
 
+  //! Returns the filename of the cache file for the given source file, e.g. test.pyc for test.py.
+  //! Python 3 places cache files inside a __pycache__ directory, this also handled here.
+  static QString getCacheFilename(const QString& sourceFile, bool isOptimizedFilename);
+
+  //! Returns the filename of the source file for the given cache file, e.g. test.py for test.pyc.
+  //! Python 3 places cache files inside a __pycache__ directory, this also handled here.
+  static QString getSourceFilename(const QString& cacheFile);
 };
 
 #endif

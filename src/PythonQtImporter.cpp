@@ -48,6 +48,7 @@
 #include "PythonQtImportFileInterface.h"
 #include "PythonQt.h"
 #include "PythonQtConversion.h"
+#include <QDir>
 #include <QFile>
 #include <QFileInfo>
 
@@ -100,6 +101,13 @@ PythonQtImport::ModuleInfo PythonQtImport::getModuleInfo(PythonQtImporter* self,
   QString test;
   for (zso = mlab_searchorder; *zso->suffix; zso++) {
     test = path + zso->suffix;
+#ifdef PY3K
+    if (!PythonQt::importInterface()->exists(test) && (zso->type & IS_BYTECODE)) {
+      // try __pycache__/*.pyc file
+      static QString cacheTag(PyImport_GetMagicTag());
+      test = *self->_path + "/__pycache__/" + subname + "." + cacheTag + zso->suffix;
+    }
+#endif
     if (PythonQt::importInterface()->exists(test)) {
       info.fullPath = test;
       info.moduleName = subname;
@@ -227,7 +235,8 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
 
   if (info.type == PythonQtImport::MI_PACKAGE || info.type == PythonQtImport::MI_MODULE) {
     QString fullPath;
-    code = PythonQtImport::getModuleCode(self, fullname, fullPath);
+    QString fullCachePath;
+    code = PythonQtImport::getModuleCode(self, fullname, fullPath, fullCachePath);
     if (code == NULL) {
       return NULL;
     }
@@ -274,9 +283,26 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
         Py_DECREF(mod);
         return NULL;
       }
+
+      // set __package__ only for Python 3, because in Python 2 it causes the exception "__package__ set to non-string"
+#ifdef PY3K
+      // The package attribute is needed to resolve the package name if it is referenced as '.'. For example,
+      // when importing the encodings package, there is an import statement 'from . import aliases'. This import
+      // would fail when reloading the encodings package with importlib.
+      err = PyDict_SetItemString(dict, "__package__", PyUnicode_FromString(fullname));
+      if (err != 0) {
+        Py_DECREF(code);
+        Py_DECREF(mod);
+        return NULL;
+      }
+#endif
     }
 
+#ifdef PY3K
+    mod = PyImport_ExecCodeModuleWithPathnames(fullname, code, fullPath.toUtf8().data(), fullCachePath.isEmpty() ? NULL : fullCachePath.toUtf8().data());
+#else
     mod = PyImport_ExecCodeModuleEx(fullname, code, fullPath.toLatin1().data());
+#endif
 
     if (PythonQt::importInterface()) {
       PythonQt::importInterface()->importedModule(fullname);
@@ -351,7 +377,8 @@ PythonQtImporter_get_code(PyObject *obj, PyObject *args)
     return NULL;
 
   QString notused;
-  return PythonQtImport::getModuleCode(self, fullname, notused);
+  QString notused2;
+  return PythonQtImport::getModuleCode(self, fullname, notused, notused2);
 }
 
 PyObject *
@@ -517,13 +544,20 @@ open_exclusive(const QString& filename)
 }
 
 
-void PythonQtImport::writeCompiledModule(PyCodeObject *co, const QString& filename, long mtime)
+void PythonQtImport::writeCompiledModule(PyCodeObject *co, const QString& filename, long mtime, long sourceSize)
 {
   FILE *fp;
   // we do not want to write Qt resources to disk, do we?
   if (filename.startsWith(":")) {
     return;
   }
+#ifdef PY3K
+  // create __pycache__ directory, if it does not exist
+  QDir dir = QFileInfo(filename).absoluteDir();
+  if (!dir.exists()) {
+    dir.mkpath(".");
+  }
+#endif
   fp = open_exclusive(filename);
   if (fp == NULL) {
     if (Py_VerboseFlag)
@@ -541,6 +575,9 @@ void PythonQtImport::writeCompiledModule(PyCodeObject *co, const QString& filena
   PyMarshal_WriteLongToFile(0L, fp);
 #else
   PyMarshal_WriteLongToFile(0L, fp, Py_MARSHAL_VERSION);
+#endif
+#ifdef PY3K
+  PyMarshal_WriteLongToFile(sourceSize, fp, Py_MARSHAL_VERSION);
 #endif
 #if PY_VERSION_HEX < 0x02040000
   PyMarshal_WriteObjectToFile((PyObject *)co, fp);
@@ -611,7 +648,15 @@ PythonQtImport::unmarshalCode(const QString& path, const QByteArray& data, time_
     }
   }
 
+#ifdef PY3K
+  // Python 3 also stores the size of the *.py file, but we ignore it for now
+  int sourceSize = getLong((unsigned char *)buf + 8); 
+  Q_UNUSED(sourceSize);
+  // read the module
+  code = PyMarshal_ReadObjectFromString(buf + 12, size - 12);
+#else
   code = PyMarshal_ReadObjectFromString(buf + 8, size - 8);
+#endif
   if (code == NULL)
     return NULL;
   if (!PyCode_Check(code)) {
@@ -640,6 +685,38 @@ PythonQtImport::compileSource(const QString& path, const QByteArray& data)
   return code;
 }
 
+QString PythonQtImport::getCacheFilename(const QString& sourceFilename, bool isOptimizedFilename)
+{
+#ifdef PY3K
+  QFileInfo fi(sourceFilename);
+  static QString cacheTag(PyImport_GetMagicTag());
+  QString pycFilename = fi.absolutePath() + "/__pycache__/" + fi.baseName() + "." + cacheTag + ".py";
+#else
+  QString pycFilename = sourceFilename;
+#endif
+  return pycFilename + (isOptimizedFilename ? "o" : "c");
+}
+
+QString PythonQtImport::getSourceFilename(const QString& cacheFile)
+{
+#ifdef PY3K
+  static QString cacheTagPart = "." + QString(PyImport_GetMagicTag());
+  QFileInfo fi(cacheFile);
+  // get the parent directory of the __pycache__ directory
+  QDir dir = fi.absoluteDir();
+  dir.cdUp();
+  QString baseName = fi.completeBaseName();
+  baseName.truncate(baseName.length()-cacheTagPart.length());
+  QString pyFilename = dir.absolutePath() + "/" + baseName + ".py";
+#else
+  QString pyFilename;
+  if (cacheFile.length() > 0) {
+    pyFilename = cacheFile;
+    pyFilename.truncate(pyFilename.length()-1);
+  }
+#endif
+  return pyFilename;
+}
 
 /* Return the code object for the module named by 'fullname' from the
    Zip archive as a new reference. */
@@ -665,7 +742,7 @@ PythonQtImport::getCodeFromData(const QString& path, int isbytecode,int /*ispack
     }
 
   if (isbytecode) {
-//    mlabDebugConst("MLABPython", "reading bytecode " << path);
+    // mlabDebugConst("MLABPython", "reading bytecode " << path);
     code = unmarshalCode(path, qdata, mtime);
   }
   else {
@@ -675,7 +752,8 @@ PythonQtImport::getCodeFromData(const QString& path, int isbytecode,int /*ispack
       // save a pyc file if possible
       QDateTime time;
       time = PythonQt::importInterface()->lastModifiedDate(path);
-      writeCompiledModule((PyCodeObject*)code, path+"c", time.toTime_t());
+      QString cacheFilename =  getCacheFilename(path, /*isOptimizedFilename=*/false);
+      writeCompiledModule((PyCodeObject*)code, cacheFilename, time.toTime_t(), /*sourceSize=*/qdata.length());
     }
   }
   return code;
@@ -685,9 +763,7 @@ time_t
 PythonQtImport::getMTimeOfSource(const QString& path)
 {
   time_t mtime = 0;
-  QString path2 = path;
-  path2.truncate(path.length()-1);
-
+  QString path2 = getSourceFilename(path);
   if (PythonQt::importInterface()->exists(path2)) {
     QDateTime t = PythonQt::importInterface()->lastModifiedDate(path2);
     if (t.isValid()) {
@@ -701,7 +777,7 @@ PythonQtImport::getMTimeOfSource(const QString& path)
 /* Get the code object associated with the module specified by
    'fullname'. */
 PyObject *
-PythonQtImport::getModuleCode(PythonQtImporter *self, const char* fullname, QString& modpath)
+PythonQtImport::getModuleCode(PythonQtImporter *self, const char* fullname, QString& modpath, QString& cachemodpath)
 {
   QString subname;
   struct st_mlab_searchorder *zso;
@@ -710,13 +786,23 @@ PythonQtImport::getModuleCode(PythonQtImporter *self, const char* fullname, QStr
   QString path = *self->_path + "/" + subname;
 
   QString test;
-  for (zso = mlab_searchorder; *zso->suffix; zso++) {
+  for (zso = mlab_searchorder; *zso->suffix;zso++) {
     PyObject *code = NULL;
     test = path + zso->suffix;
 
     if (Py_VerboseFlag > 1)
       PySys_WriteStderr("# trying %s\n",
             test.toLatin1().constData());
+#ifdef PY3K
+    if (!PythonQt::importInterface()->exists(test) && zso->type & IS_BYTECODE) {
+      // try __pycache__/*.pyc file
+      static QString cacheTag(PyImport_GetMagicTag());
+      test = *self->_path + "/__pycache__/" + subname + "." + cacheTag + zso->suffix;
+      if (Py_VerboseFlag > 1)
+        PySys_WriteStderr("# trying %s\n",
+              test.toLatin1().constData());
+    }
+#endif
     if (PythonQt::importInterface()->exists(test)) {
       time_t mtime = 0;
       int ispackage = zso->type & IS_PACKAGE;
@@ -737,6 +823,12 @@ PythonQtImport::getModuleCode(PythonQtImporter *self, const char* fullname, QStr
       }
       if (code != NULL) {
         modpath = test;
+#ifdef PY3K
+        if (isbytecode) {
+          cachemodpath = modpath;
+          modpath = getSourceFilename(modpath);
+        }
+#endif
       }
       return code;
     }
@@ -762,7 +854,17 @@ PyObject* PythonQtImport::getCodeFromPyc(const QString& file)
 {
   PyObject* code;
   const static QString pycStr("pyc");
-  QString pyc = replaceExtension(file, pycStr);
+  QString pyc;
+#ifdef PY3K
+  // if the cache file in __pycache__ does not exist, look for cache file next to
+  // source file
+  pyc = getCacheFilename(file, /*isOptimizedFilename=*/false);
+  if (!PythonQt::importInterface()->exists(pyc)) {
+    pyc = replaceExtension(file, pycStr);
+  }
+#else
+  pyc = replaceExtension(file, pycStr);
+#endif
   if (PythonQt::importInterface()->exists(pyc)) {
     time_t mtime = 0;
     // if ignoreUpdatedPythonSourceFiles() returns true, then mtime stays 0
@@ -857,17 +959,18 @@ void PythonQtImport::init()
   // set our importer into the path_hooks to handle all path on sys.path
   PyObject* classobj = PyDict_GetItemString(PyModule_GetDict(mod), "PythonQtImporter");
   PyObject* path_hooks = PySys_GetObject(const_cast<char*>("path_hooks"));
-  PyList_Append(path_hooks, classobj);
+  // insert our importer before all other loaders
+  PyList_Insert(path_hooks, 0, classobj);
 
-#ifndef WIN32
-  // reload the encodings module, because it might fail to custom import requirements (e.g. encryption).
-  PyObject* modules         = PyImport_GetModuleDict();
-  PyObject* encodingsModule = PyDict_GetItemString(modules, "encodings");
-  if (encodingsModule != NULL) {
-    PyImport_ReloadModule(encodingsModule);
-  } else {
-    // import it now, so that the search function is registered (a previous import from the codecs module may have failed and it does not retry to import it)
-    PyImport_ImportModule("encodings");
-  }
-#endif
+ #ifndef WIN32
+   // reload the encodings module, because it might fail to custom import requirements (e.g. encryption).
+   PyObject* modules         = PyImport_GetModuleDict();
+   PyObject* encodingsModule = PyDict_GetItemString(modules, "encodings");
+   if (encodingsModule != NULL) {
+     PyImport_ReloadModule(encodingsModule);
+   } else {
+     // import it now, so that the search function is registered (a previous import from the codecs module may have failed and it does not retry to import it)
+     PyImport_ImportModule("encodings");
+   }
+ #endif
 }

@@ -234,6 +234,15 @@ QByteArray PythonQtMethodInfo::getInnerTemplateTypeName(const QByteArray& typeNa
   return QByteArray();
 }
 
+QByteArray PythonQtMethodInfo::getInnerListTypeName(const QByteArray& typeName)
+{
+  QByteArray name = getInnerTemplateTypeName(typeName);
+  if (name.isEmpty() && typeName.endsWith("List")) {
+    name = typeName.left(typeName.length() - 4);
+  }
+  return name;
+}
+
 int PythonQtMethodInfo::nameToType(const char* name)
 {
   if (_parameterTypeDict.isEmpty()) {
@@ -245,6 +254,10 @@ int PythonQtMethodInfo::nameToType(const char* name)
     _parameterTypeDict.insert("int", QMetaType::Int);
     _parameterTypeDict.insert("short", QMetaType::Short);
     _parameterTypeDict.insert("char", QMetaType::Char);
+    _parameterTypeDict.insert("signed long", QMetaType::Long);
+    _parameterTypeDict.insert("signed int", QMetaType::Int);
+    _parameterTypeDict.insert("signed short", QMetaType::Short);
+    _parameterTypeDict.insert("signed char", QMetaType::Char);
     _parameterTypeDict.insert("ulong", QMetaType::ULong);
     _parameterTypeDict.insert("unsigned long", QMetaType::ULong);
     _parameterTypeDict.insert("uint", QMetaType::UInt);
@@ -289,6 +302,21 @@ int PythonQtMethodInfo::nameToType(const char* name)
       _parameterTypeDict.insert("qgl_GLsizeiptr", QMetaType::Int);
       _parameterTypeDict.insert("size_t", QMetaType::UInt);
     }
+
+#ifdef PYTHONQT_SUPPORT_ML_TYPES
+    _parameterTypeDict.insert("MLuint8",  QMetaType::UChar);
+    _parameterTypeDict.insert("MLint8",   QMetaType::Char);
+    _parameterTypeDict.insert("MLuint16", QMetaType::UShort);
+    _parameterTypeDict.insert("MLint16",  QMetaType::Short);
+    _parameterTypeDict.insert("MLuint32", QMetaType::UInt);
+    _parameterTypeDict.insert("MLint32",  QMetaType::Int);
+    _parameterTypeDict.insert("MLuint64", QMetaType::ULongLong);
+    _parameterTypeDict.insert("MLint64",  QMetaType::LongLong);
+    _parameterTypeDict.insert("MLuint",   QMetaType::ULongLong);
+    _parameterTypeDict.insert("MLint",    QMetaType::LongLong);
+    _parameterTypeDict.insert("MLfloat",  QMetaType::Float);
+    _parameterTypeDict.insert("MLdouble", QMetaType::Double);
+#endif
 
     // QVariant names
     _parameterTypeDict.insert("Q_LLONG", QMetaType::LongLong);

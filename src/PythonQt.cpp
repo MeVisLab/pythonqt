@@ -101,6 +101,27 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
     PythonQtRegisterToolClassesTemplateConverter(qint64);
     PythonQtRegisterToolClassesTemplateConverter(quint64);
     
+#ifdef PYTHONQT_SUPPORT_ML_TYPES
+    PythonQtMethodInfo::addParameterTypeAlias("QList<MLfloat>", "QList<float>");
+    PythonQtMethodInfo::addParameterTypeAlias("QVector<MLfloat>", "QVector<float>");
+    PythonQtMethodInfo::addParameterTypeAlias("QList<MLdouble>", "QList<double>");
+    PythonQtMethodInfo::addParameterTypeAlias("QVector<MLdouble>", "QVector<double>");
+
+    PythonQtMethodInfo::addParameterTypeAlias("QList<MLuint32>", "QList<quint32>");
+    PythonQtMethodInfo::addParameterTypeAlias("QVector<MLuint32>", "QVector<quint32>");
+    PythonQtMethodInfo::addParameterTypeAlias("QList<MLint32>", "QList<qint32>");
+    PythonQtMethodInfo::addParameterTypeAlias("QVector<MLint32>", "QVector<qint32>");
+
+    PythonQtMethodInfo::addParameterTypeAlias("QList<MLuint64>", "QList<quint64>");
+    PythonQtMethodInfo::addParameterTypeAlias("QVector<MLuint64>", "QVector<quint64>");
+    PythonQtMethodInfo::addParameterTypeAlias("QList<MLint64>", "QList<qint64>");
+    PythonQtMethodInfo::addParameterTypeAlias("QVector<MLint64>", "QVector<qint64>");
+    PythonQtMethodInfo::addParameterTypeAlias("QList<MLuint>", "QList<quint64>");
+    PythonQtMethodInfo::addParameterTypeAlias("QVector<MLuint>", "QVector<quint64>");
+    PythonQtMethodInfo::addParameterTypeAlias("QList<MLint>", "QList<qint64>");
+    PythonQtMethodInfo::addParameterTypeAlias("QVector<MLint>", "QVector<qint64>");
+#endif
+
     PythonQtMethodInfo::addParameterTypeAlias("QList<qreal>", "QList<double>");
     PythonQtMethodInfo::addParameterTypeAlias("QVector<qreal>", "QVector<double>");
     PythonQtMethodInfo::addParameterTypeAlias("QList<unsigned int>", "QList<quint32>");
@@ -891,6 +912,7 @@ PythonQtObjectPtr PythonQt::parseFile(const QString& filename)
   clearError();
   if (!p) {
     handleError();
+    _p->_hadError = true;
   }
   return p;
 }
