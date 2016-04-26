@@ -120,6 +120,9 @@ public:
   //! returns the inner type name of a simple template of the form SomeObject<InnerType>
   static QByteArray getInnerTemplateTypeName(const QByteArray& typeName);
 
+  //! returns the inner type name of a simple template or the typename without appended "List".
+  static QByteArray getInnerListTypeName(const QByteArray& typeName);
+
 protected:
 
   static QHash<QByteArray, int> _parameterTypeDict;

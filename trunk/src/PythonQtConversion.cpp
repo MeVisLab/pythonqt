@@ -46,6 +46,7 @@
 #include <QTime>
 #include <QDate>
 #include <climits>
+#include <limits>
 
 PythonQtValueStorage<qint64, 128>  PythonQtConv::global_valueStorage;
 PythonQtValueStorage<void*, 128>   PythonQtConv::global_ptrStorage;
@@ -383,7 +384,9 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
      return ptr;
    }
 
-   if (PyObject_TypeCheck(obj, &PythonQtInstanceWrapper_Type) && info.typeId != PythonQtMethodInfo::Variant) {
+   if (PyObject_TypeCheck(obj, &PythonQtInstanceWrapper_Type) &&
+       info.typeId != PythonQtMethodInfo::Variant &&
+       !PythonQt::priv()->isPythonQtObjectPtrMetaId(info.typeId)) {
      // if we have a Qt wrapper object and if we do not need a QVariant, we do the following:
      // (the Variant case is handled below in a switch)
 
@@ -984,7 +987,15 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
       type = QVariant::Int;
 #endif
     } else if (PyLong_Check(val)) {
-      type = QVariant::LongLong;
+      // return int if the value fits into that range,
+      // otherwise it would not be possible to get an int from Python 3
+      qint64 d = PyLong_AsLongLong(val);
+      if (d > std::numeric_limits<int>::max() ||
+          d < std::numeric_limits<int>::min()) {
+        type = QVariant::LongLong;
+      } else {
+        type = QVariant::Int;
+      }
     } else if (PyFloat_Check(val)) {
       type = QVariant::Double;
     } else if (PyObject_TypeCheck(val, &PythonQtInstanceWrapper_Type)) {
