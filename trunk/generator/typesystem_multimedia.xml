@@ -1,6 +1,13 @@
 <?xml version="1.0"?>
 <typesystem package="com.trolltech.qt.multimedia">
 
+<rejection class="QAbstractVideoBuffer" function-name="mapPlanes"/>
+<rejection class="QAbstractPlanarVideoBuffer"/>
+<rejection class="QAudioBuffer::StereoFrameDefault"/>
+<rejection class="QAudioBuffer::StereoFrame"/>
+<rejection class="QVideoFilterRunnable"/>
+<rejection class="QAbstractVideoFilter"/>
+
 <enum-type name="QAudioFormat::Endian"/>
 <enum-type name="QAudioFormat::SampleType"/>
 <enum-type name="QSoundEffect::Status"/>
@@ -52,10 +59,20 @@
 <enum-type name="QAudio::Error"/>
 <enum-type name="QAudio::Mode"/>
 <enum-type name="QAudio::State"/>
+<enum-type name="QAudio::Role"/>
 <enum-type name="QMultimedia::SupportEstimate"/>
 <enum-type name="QMultimedia::EncodingQuality"/>
 <enum-type name="QMultimedia::EncodingMode"/>
 <enum-type name="QMultimedia::AvailabilityStatus"/>
+<enum-type name="QCameraControl::PropertyChangeType"/>
+<enum-type name="QCameraExposureControl::ExposureParameter"/>
+<enum-type name="QCameraFeedbackControl::EventType"/>
+<enum-type name="QCameraImageProcessing::ColorFilter"/>
+<enum-type name="QCameraImageProcessingControl::ProcessingParameter"/>
+<enum-type name="QCameraViewfinderSettingsControl::ViewfinderParameter"/>
+<enum-type name="QMediaServiceProviderHint::Feature"/>
+<enum-type name="QMediaServiceProviderHint::Type"/>
+<enum-type name="QMediaStreamsControl::StreamType"/>
 
 <namespace-type name="QAudio"/>
 <namespace-type name="QMultimedia"/>
@@ -101,11 +118,60 @@
 <object-type name="QVideoFrame"/>
 <object-type name="QVideoProbe"/>
 <object-type name="QVideoSurfaceFormat"/>
-
 <object-type name="QCameraViewfinder"/>
 <object-type name="QGraphicsVideoItem"/>
 <object-type name="QVideoWidget"/>
-
-<rejection class="QAbstractVideoBuffer" function-name="mapPlanes"/>
+<object-type name="QAbstractAudioDeviceInfo"/>
+<object-type name="QAbstractAudioInput"/>
+<object-type name="QAbstractAudioOutput"/>
+<object-type name="QAudioDecoderControl"/>
+<object-type name="QAudioEncoderSettingsControl"/>
+<object-type name="QAudioInputSelectorControl"/>
+<object-type name="QAudioOutputSelectorControl"/>
+<object-type name="QAudioRoleControl"/>
+<object-type name="QAudioSystemFactoryInterface"/>
+<object-type name="QAudioSystemPlugin"/>
+<object-type name="QCamera::FrameRateRange"/>
+<object-type name="QCameraCaptureBufferFormatControl"/>
+<object-type name="QCameraCaptureDestinationControl"/>
+<object-type name="QCameraControl"/>
+<object-type name="QCameraExposureControl"/>
+<object-type name="QCameraFeedbackControl"/>
+<object-type name="QCameraFlashControl"/>
+<object-type name="QCameraFocusControl"/>
+<object-type name="QCameraImageCaptureControl"/>
+<object-type name="QCameraImageProcessingControl"/>
+<object-type name="QCameraInfoControl"/>
+<object-type name="QCameraLocksControl"/>
+<object-type name="QCameraViewfinderSettings"/>
+<object-type name="QCameraViewfinderSettingsControl"/>
+<object-type name="QCameraViewfinderSettingsControl2"/>
+<object-type name="QCameraZoomControl"/>
+<object-type name="QImageEncoderControl"/>
+<object-type name="QMediaAudioProbeControl"/>
+<object-type name="QMediaAvailabilityControl"/>
+<object-type name="QMediaContainerControl"/>
+<object-type name="QMediaGaplessPlaybackControl"/>
+<object-type name="QMediaNetworkAccessControl"/>
+<object-type name="QMediaPlayerControl"/>
+<object-type name="QMediaRecorderControl"/>
+<object-type name="QMediaServiceCameraInfoInterface"/>
+<object-type name="QMediaServiceDefaultDeviceInterface"/>
+<object-type name="QMediaServiceProviderFactoryInterface"/>
+<object-type name="QMediaServiceProviderHint"/>
+<object-type name="QMediaServiceProviderPlugin"/>
+<object-type name="QMediaServiceSupportedDevicesInterface"/>
+<object-type name="QMediaServiceSupportedFormatsInterface"/>
+<object-type name="QMediaStreamsControl"/>
+<object-type name="QMediaVideoProbeControl"/>
+<object-type name="QMetaDataReaderControl"/>
+<object-type name="QMetaDataWriterControl"/>
+<object-type name="QRadioDataControl"/>
+<object-type name="QRadioTunerControl"/>
+<object-type name="QVideoDeviceSelectorControl"/>
+<object-type name="QVideoEncoderSettingsControl"/>
+<object-type name="QVideoRendererControl"/>
+<object-type name="QVideoWidgetControl"/>
+<object-type name="QVideoWindowControl"/>
 
 </typesystem>
