@@ -320,7 +320,7 @@ void SetupGenerator::generate()
 
       foreach (const AbstractMetaClass *cls, list) {
         if (cls->qualifiedCppName().contains("Ssl")) {
-          s << "#ifndef QT_NO_OPENSSL"  << endl;
+          s << "#ifndef QT_NO_SSL"  << endl;
         }
         AbstractMetaFunctionList ctors = cls->queryFunctions(AbstractMetaClass::Constructors
           | AbstractMetaClass::WasVisible
@@ -376,7 +376,7 @@ void SetupGenerator::generate()
       list.sort();
       Q_FOREACH(QString name, list) {
         if (name.contains("Ssl")) {
-          s << "#ifndef QT_NO_OPENSSL" << endl;
+          s << "#ifndef QT_NO_SSL" << endl;
         }
         s << name << endl;
         if (name.contains("Ssl")) {
