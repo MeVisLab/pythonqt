@@ -51,6 +51,7 @@
 
 #if QT_VERSION >= 0x050000
 #include <QtWidgets/QtWidgets>
+#include <QtPrintSupport/QtPrintSupport>
 #endif
 
 #include <QtMultimedia/QtMultimedia>
