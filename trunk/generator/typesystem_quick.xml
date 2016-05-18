@@ -13,18 +13,20 @@
 <rejection class="QSGVertexColorMaterial"/>
 <rejection class="QQuickItem" function-name="transform"/>
 <rejection class="QQuickItem::ItemChangeData"/>
+<!-- missing Q_OBJECT macro -->
+<rejection class="QQuickTextureFactory"/>
+<rejection class="QQuickImageResponse"/>
+<rejection class="QQuickAsyncImageProvider"/>
 <!-- end -->
 
-<object-type name="QQuickAsyncImageProvider"></object-type>
-<object-type name="QQuickFramebufferObject"></object-type>
-<object-type name="QQuickImageProvider"></object-type>
-<object-type name="QQuickImageResponse"></object-type>
-<object-type name="QQuickItem"></object-type>
+  <object-type name="QQuickAsyncImageProvider"></object-type>
+  <object-type name="QQuickFramebufferObject"></object-type>
+  <object-type name="QQuickImageProvider"></object-type>
+  <object-type name="QQuickItem"></object-type>
 <object-type name="QQuickItemGrabResult"></object-type>
 <object-type name="QQuickPaintedItem"></object-type>
 <object-type name="QQuickRenderControl"></object-type>
 <object-type name="QQuickTextDocument"></object-type>
-<object-type name="QQuickTextureFactory"></object-type>
 <object-type name="QQuickTransform"></object-type>
 <object-type name="QQuickView"></object-type>
 <object-type name="QQuickWindow"></object-type>
