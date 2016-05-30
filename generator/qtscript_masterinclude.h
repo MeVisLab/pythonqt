@@ -40,9 +40,7 @@
 ****************************************************************************/
 
 // We need to force the endianess in Qt5
-#if QT_VERSION >= 0x050000
 #define Q_BYTE_ORDER Q_LITTLE_ENDIAN
-#endif
 
 #define QT_NO_STL
 #include <QtCore/QtCore>
