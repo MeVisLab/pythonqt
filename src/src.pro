@@ -23,7 +23,7 @@ isEmpty(PYTHONQT_STATIC) {
 }
 
 contains(QT_MAJOR_VERSION, 5) {
-  QT += widgets
+  QT += widgets core-private
 }
 
 # Qt 5.4 adds this option, but this is not compatible with the Python API
