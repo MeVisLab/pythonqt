@@ -165,6 +165,10 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
       s << ";" << endl;
     }
     s << endl;
+    if (meta_class->isQObject()) {
+      s << "  const QMetaObject* metaObject() const;" << endl;
+      s << "  int qt_metacall(QMetaObject::Call call, int id, void** args);" << endl;
+    }
     writeInjectedCode(s, meta_class, TypeSystem::PyShellDeclaration);
     writeInjectedCode(s, meta_class, TypeSystem::PyInheritShellDeclaration, true);
     s << "  PythonQtInstanceWrapper* _wrapper; " << endl;
