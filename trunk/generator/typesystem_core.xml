@@ -1301,9 +1301,6 @@
   </object-type>
   <object-type name="QTimeLine"/>
   <object-type name="QTranslator">
-    <modify-function signature="translate(const char*,const char*,const char*,int)const">
-      <remove/>
-    </modify-function>
   </object-type>
 
   <object-type name="QWaitCondition"/>
