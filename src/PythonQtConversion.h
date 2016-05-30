@@ -179,6 +179,12 @@ public:
   static PyObject* convertFromQListOfPythonQtObjectPtr(const void* /* QList<PythonQtObjectPtr>* */ inObject, int /*metaTypeId*/);
   static PyObject* convertFromStringRef(const void* inObject, int /*metaTypeId*/);
 
+  //! Returns the name of the equivalent CPP type (for signals and slots)
+  static QByteArray getCPPTypeName(PyObject* type);
+
+  //! Returns if the given object is a string (or unicode string)
+  static bool isStringType(PyTypeObject* type);
+
 public:
 
   static PythonQtValueStorage<qint64, 128>  global_valueStorage;

@@ -150,7 +150,6 @@ static PyObject* PythonQtInstanceWrapper_binaryfunc(PyObject* self, PyObject* ot
   PyObject* result = NULL;
   PythonQtMemberInfo opSlot = wrapper->classInfo()->member(opName);
   if (opSlot._type == PythonQtMemberInfo::Slot) {
-    // TODO get rid of tuple
     PyObject* args = PyTuple_New(1);
     Py_INCREF(other);
     PyTuple_SET_ITEM(args, 0, other);
@@ -178,7 +177,6 @@ static PyObject* PythonQtInstanceWrapper_mul(PyObject* self, PyObject* other)
   PyObject* result = NULL;
   PythonQtMemberInfo opSlot = wrapper->classInfo()->member("__mul__");
   if (opSlot._type == PythonQtMemberInfo::Slot) {
-    // TODO get rid of tuple
     PyObject* args = PyTuple_New(1);
     Py_INCREF(other);
     PyTuple_SET_ITEM(args, 0, other);
@@ -345,6 +343,7 @@ static int PythonQtClassWrapper_init(PythonQtClassWrapper* self, PyObject* args,
   if (PyType_Type.tp_init((PyObject *)self, args, kwds) < 0) {
     return -1;
   }
+  self->_dynamicClassInfo = NULL;
 
   // if we have no CPP class information, try our base class
   if (!self->classInfo()) {
@@ -367,6 +366,8 @@ static int PythonQtClassWrapper_init(PythonQtClassWrapper* self, PyObject* args,
 
     // take the class info from the superType
     self->_classInfo = ((PythonQtClassWrapper*)superType)->classInfo();
+
+    self->_dynamicClassInfo = new PythonQtDynamicClassInfo();
   }
 
   return 0;

@@ -57,6 +57,8 @@ class PythonQtClassInfo;
 //! the type of the PythonQt class wrapper objects
 extern PYTHONQT_EXPORT PyTypeObject PythonQtClassWrapper_Type;
 
+struct PythonQtDynamicClassInfo;
+
 //---------------------------------------------------------------
 //! a Python wrapper object for PythonQt wrapped classes
 //! which inherits from the Python type object to allow
@@ -69,6 +71,8 @@ typedef struct {
 
   //! get the class info
   PythonQtClassInfo* classInfo() { return _classInfo; }
+
+  PythonQtDynamicClassInfo* _dynamicClassInfo;
 
 } PythonQtClassWrapper;
 

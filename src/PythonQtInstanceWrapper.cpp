@@ -44,6 +44,7 @@
 #include "PythonQt.h"
 #include "PythonQtSlot.h"
 #include "PythonQtSignal.h"
+#include "PythonQtProperty.h"
 #include "PythonQtClassInfo.h"
 #include "PythonQtConversion.h"
 
@@ -295,7 +296,6 @@ static PyObject *PythonQtInstanceWrapper_richcompare(PythonQtInstanceWrapper* wr
 
   PythonQtMemberInfo opSlot = wrapper->classInfo()->member(memberName);
   if (opSlot._type == PythonQtMemberInfo::Slot) {
-    // TODO get rid of tuple
     PyObject* args = PyTuple_New(1);
     Py_INCREF(other);
     PyTuple_SET_ITEM(args, 0, other);
@@ -436,6 +436,32 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
   // first look in super, to return derived methods from base object first
   PyObject* superAttr = PyBaseObject_Type.tp_getattro(obj, name);
   if (superAttr) {
+    if (PythonQtProperty_Check(superAttr)) {
+      // call the getter on the property
+      PythonQtProperty* prop = (PythonQtProperty*)superAttr;
+      PyObject* result = prop->data->callGetter(obj);
+      Py_DECREF(superAttr);
+      return result;
+    } else if (PythonQtSignalFunction_Check(superAttr)) {
+      // we need to bind the class signal to the object
+      PythonQtSignalFunctionObject* sig = (PythonQtSignalFunctionObject*)superAttr;
+      if (sig->_dynamicInfo) {
+        if (!wrapper->dynamicClassInfo() || wrapper->dynamicClassInfo()->_dynamicMetaObject == NULL) {
+          // force creation of meta object:
+          if (wrapper->_obj) {
+            wrapper->_obj->metaObject();
+          }
+        }
+        if (wrapper->dynamicClassInfo() && wrapper->dynamicClassInfo()->_classInfo) {
+          PythonQtMemberInfo member = wrapper->dynamicClassInfo()->_classInfo->member(attributeName);
+          if (member._type == PythonQtMemberInfo::Signal) {
+            PyObject* boundSignal = PythonQtSignalFunction_New(member._slot, (PyObject*)wrapper, NULL);
+            Py_DECREF(superAttr);
+            return boundSignal;
+          }
+        }
+      }
+    }
     return superAttr;
   }
   PyErr_Clear();
@@ -667,6 +693,22 @@ static int PythonQtInstanceWrapper_setattro(PyObject *obj,PyObject *name,PyObjec
     // it would be confusing to allow it because a wrapper will go away when it is not seen by python anymore
     // and when it is recreated from a CPP pointer the attributes are gone...
     if (obj->ob_type->tp_base != &PythonQtInstanceWrapper_Type) {
+
+      // first check if this is a Property
+      PyObject* superAttr = PyBaseObject_Type.tp_getattro(obj, name);
+      if (superAttr) {
+        // handle QtCore.Propery setter
+        if (PythonQtProperty_Check(superAttr)) {
+          // call the setter on the property
+          PythonQtProperty* prop = (PythonQtProperty*)superAttr;
+          bool ok = prop->data->callSetter(obj, value);
+          Py_DECREF(superAttr);
+          return ok ? 0 : -1;
+        }
+        Py_DECREF(superAttr);
+      }
+      PyErr_Clear();
+      // otherwise call the default Python setattro
       return PyBaseObject_Type.tp_setattro(obj,name,value);
     } else {
       error = QString("'") + attributeName + "' does not exist on " + obj->ob_type->tp_name + " and creating new attributes on C++ objects is not allowed";
@@ -693,7 +735,6 @@ static QString getStringFromObject(PythonQtInstanceWrapper* wrapper) {
     if (info._type == PythonQtMemberInfo::Slot) {
       PyObject* resultObj = PythonQtSlotFunction_CallImpl(wrapper->classInfo(), wrapper->_obj, info._slot, NULL, NULL, wrapper->_wrappedPtr);
       if (resultObj) {
-        // TODO this is one conversion too much, would be nicer to call the slot directly...
         result = PythonQtConv::PyObjGetString(resultObj);
         Py_DECREF(resultObj);
       }
