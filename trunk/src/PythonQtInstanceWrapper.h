@@ -67,6 +67,9 @@ typedef struct PythonQtInstanceWrapperStruct {
   inline PythonQtClassInfo* classInfo() 
   {  return ((PythonQtClassWrapper*)Py_TYPE(this))->_classInfo; }
 
+  inline PythonQtDynamicClassInfo* dynamicClassInfo()
+  { return ((PythonQtClassWrapper*)Py_TYPE(this))->_dynamicClassInfo; }
+
   //! set the QObject pointer
   void setQObject(QObject* object) {
     _obj = object;

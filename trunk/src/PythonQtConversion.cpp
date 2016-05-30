@@ -462,7 +462,6 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
            bool ok;
            int value = PyObjGetInt(obj, true, ok);
            if (ok && value==0) {
-             // TODOXXX is this wise? or should it be expected from the programmer to use None?
              PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_ptrStorage, void*, NULL, ptr);
            }
          }
@@ -1459,6 +1458,49 @@ PyObject* PythonQtConv::createCopyFromMetaType( int type, const void* data )
 PyObject* PythonQtConv::convertFromStringRef(const void* inObject, int /*metaTypeId*/)
 {
   return PythonQtConv::QStringToPyObject(((QStringRef*)inObject)->toString());
+}
+
+QByteArray PythonQtConv::getCPPTypeName(PyObject* type)
+{
+  QByteArray result;
+  if (PyType_Check(type)) {
+    if (PyType_IsSubtype((PyTypeObject*)type, (PyTypeObject*)(&PythonQtClassWrapper_Type))) {
+      PythonQtClassWrapper* wrapper = (PythonQtClassWrapper*)type;
+      result = wrapper->classInfo()->className();
+    } else {
+      PyTypeObject* typeObject = reinterpret_cast<PyTypeObject*>(type);
+      if (typeObject == &PyFloat_Type) {
+        result = "double";
+      } else if (typeObject == &PyBool_Type) {
+        result = "bool";
+#ifndef PY3K
+      } else if (typeObject == &PyInt_Type) {
+        result = "qint32";
+#endif
+      } else if (typeObject == &PyLong_Type) {
+        result = "qint64";
+      } else if (isStringType(typeObject)) {
+        result = "QString";
+      } else {
+        result = "PyObject*";
+      }
+    }
+  } else if (type == Py_None) {
+      result = "void";
+  } else {
+    bool dummy;
+    result = PyObjGetString(type, true, dummy).toLatin1();
+  }
+  return result;
+}
+
+bool PythonQtConv::isStringType(PyTypeObject* type)
+{
+#ifdef PY3K
+  return type == &PyUnicode_Type
+#else
+  return type == &PyUnicode_Type || type == &PyString_Type;
+#endif
 }
 
 PyObject* PythonQtConv::convertFromQListOfPythonQtObjectPtr(const void* inObject, int /*metaTypeId*/)

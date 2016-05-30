@@ -41,6 +41,16 @@
 #include "PythonQt.h"
 
 class PythonQtSlotInfo;
+class PythonQtClassInfo;
+
+struct PythonQtDynamicClassInfo
+{
+  PythonQtDynamicClassInfo() { _dynamicMetaObject = NULL; _classInfo = NULL; }
+  ~PythonQtDynamicClassInfo();
+
+  const QMetaObject* _dynamicMetaObject;
+  PythonQtClassInfo* _classInfo;
+};
 
 struct PythonQtMemberInfo {
   enum Type {

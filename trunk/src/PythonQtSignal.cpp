@@ -64,6 +64,11 @@ PyObject *PythonQtSignalFunction_Call(PyObject *func, PyObject *args, PyObject *
   return PythonQtMemberFunction_Call(f->m_ml, f->m_self, args, kw);
 }
 
+PyObject *PythonQtSignalFunction_tpNew(PyTypeObject *subtype, PyObject *args, PyObject *kwds)
+{
+  return PythonQtSignalFunction_New(NULL, NULL, NULL);
+}
+
 PyObject *
 PythonQtSignalFunction_New(PythonQtSlotInfo *ml, PyObject *self, PyObject *module)
 {
@@ -78,6 +83,7 @@ PythonQtSignalFunction_New(PythonQtSlotInfo *ml, PyObject *self, PyObject *modul
     if (op == NULL)
       return NULL;
   }
+  op->_dynamicInfo = NULL;
   op->m_ml = ml;
   Py_XINCREF(self);
   op->m_self = self;
@@ -93,6 +99,10 @@ static void
 meth_dealloc(PythonQtSignalFunctionObject *m)
 {
   PyObject_GC_UnTrack(m);
+  if (m->_dynamicInfo) {
+    delete m->_dynamicInfo;
+    m->_dynamicInfo = NULL;
+  }
   Py_XDECREF(m->m_self);
   Py_XDECREF(m->m_module);
   m->m_self = (PyObject *)PythonQtSignal_free_list;
@@ -109,7 +119,11 @@ meth_get__doc__(PythonQtSignalFunctionObject * /*m*/, void * /*closure*/)
 static PyObject *
 meth_get__name__(PythonQtSignalFunctionObject *m, void * /*closure*/)
 {
-  return PyString_FromString(m->m_ml->signature());
+  if (m->m_ml) {
+    return PyString_FromString(m->m_ml->signature());
+  } else {
+    return PyString_FromString("Signal");
+  }
 }
 
 static int
@@ -164,6 +178,57 @@ static PyMemberDef meth_members[] = {
   {const_cast<char*>("__module__"),    T_OBJECT,     OFF(m_module), PY_WRITE_RESTRICTED},
   {NULL}
 };
+
+int PythonQtSignalFunction_init(PyObject *object, PyObject *args, PyObject *kw)
+{
+  PythonQtSignalFunctionObject* self = (PythonQtSignalFunctionObject*)object;
+  self->_dynamicInfo = new PythonQtDynamicSignalInfo();
+  
+  QList<QByteArray> argList;
+  Py_ssize_t argc = PyTuple_Size(args);
+  for (Py_ssize_t i = 0; i < argc; i++) {
+    PyObject *argType = PyTuple_GET_ITEM(args, i);
+    if (!PythonQtConv::isStringType(argType->ob_type) && PySequence_Check(argType)) {
+      // it is not a string and a sequence, so it defines an overload
+      int count = PySequence_Size(argType);
+      if (count >= 0) {
+        QList<QByteArray> localArgList;
+        PyObject* value;
+        for (int i = 0; i < count; i++) {
+          value = PySequence_GetItem(argType, i);
+
+          QByteArray typeName = PythonQtConv::getCPPTypeName(value);
+          if (!typeName.isEmpty()) {
+            localArgList << typeName;
+          } else {
+            PyErr_Format(PyExc_TypeError, "Unknown Signal argument type: %s", value->ob_type->tp_name);
+            return -1;
+          }
+          Py_XDECREF(value);
+        }
+        self->_dynamicInfo->signatures << localArgList.join(","); 
+      }
+    } else {
+      // normal signature (not given as overload sequences)
+      QByteArray typeName = PythonQtConv::getCPPTypeName(argType);
+      if (!typeName.isEmpty()) {
+        argList << typeName;
+      } else {
+        PyErr_Format(PyExc_TypeError, "Unknown Signal argument type: %s", argType->ob_type->tp_name);
+        return -1;
+      }
+    }
+  }
+  if (!argList.isEmpty()) {
+    self->_dynamicInfo->signatures << argList.join(",");
+  }
+
+  if (self->_dynamicInfo->signatures.isEmpty()) {
+    // add empty signature
+    self->_dynamicInfo->signatures << "";
+  }
+  return 1;
+}
 
 static PyObject *PythonQtSignalFunction_parameterTypes(PythonQtSignalFunctionObject* type)
 {
@@ -254,6 +319,10 @@ static PyMethodDef meth_methods[] = {
 static PyObject *
 meth_repr(PythonQtSignalFunctionObject *f)
 {
+  if (!f->m_ml) {
+    // TODO
+    return PyString_FromString("Signal");
+  }
   if (f->m_self->ob_type == &PythonQtClassWrapper_Type) {
     PythonQtClassWrapper* self = (PythonQtClassWrapper*) f->m_self;
     return PyString_FromFormat("<unbound qt signal %s of %s type>",
@@ -324,9 +393,12 @@ meth_richcompare(PythonQtSignalFunctionObject *a, PythonQtSignalFunctionObject *
     Py_RETURN_FALSE;
 }
 
+PyDoc_STRVAR(PythonQtSignalFunction_doc,
+  "Signal(*types) -> Signal\n");
+
 PyTypeObject PythonQtSignalFunction_Type = {
     PyVarObject_HEAD_INIT(&PyType_Type, 0)
-    "builtin_qt_signal",
+    "QtCore.Signal",
     sizeof(PythonQtSignalFunctionObject),
     0,
     (destructor)meth_dealloc,     /* tp_dealloc */
@@ -350,7 +422,7 @@ PyTypeObject PythonQtSignalFunction_Type = {
     0,          /* tp_setattro */
     0,          /* tp_as_buffer */
     Py_TPFLAGS_DEFAULT | Py_TPFLAGS_HAVE_GC,/* tp_flags */
-    0,          /* tp_doc */
+    PythonQtSignalFunction_doc,          /* tp_doc */
     (traverseproc)meth_traverse,    /* tp_traverse */
     0,          /* tp_clear */
     (richcmpfunc)meth_richcompare,          /* tp_richcompare */
@@ -362,6 +434,21 @@ PyTypeObject PythonQtSignalFunction_Type = {
     meth_getsets,       /* tp_getset */
     0,          /* tp_base */
     0,          /* tp_dict */
+    0,                          /*tp_descr_get */
+    0,                          /*tp_descr_set */
+    0,                          /*tp_dictoffset */
+    PythonQtSignalFunction_init,   /*tp_init */
+    0,                          /*tp_alloc */
+    PythonQtSignalFunction_tpNew,          /*tp_new */
+    0,                          /*tp_free */
+    0,                          /*tp_is_gc */
+    0,                          /*tp_bases */
+    0,                          /*tp_mro */
+    0,                          /*tp_cache */
+    0,                          /*tp_subclasses */
+    0,                          /*tp_weaklist */
+    0,                          /*tp_del */
+
 };
 
 /* Clear out the free list */

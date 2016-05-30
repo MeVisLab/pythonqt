@@ -46,6 +46,7 @@
 #include "PythonQtSignal.h"
 #include "PythonQtSignalReceiver.h"
 #include "PythonQtConversion.h"
+#include "PythonQtProperty.h"
 #include "PythonQtStdIn.h"
 #include "PythonQtStdOut.h"
 #include "PythonQtCppWrapperFactory.h"
@@ -53,6 +54,7 @@
 #include "PythonQtStdDecorators.h"
 #include "PythonQtQFileImporter.h"
 #include "PythonQtBoolResult.h"
+#include "PythonQtSlotDecorator.h"
 
 #include <QDir>
 
@@ -261,6 +263,11 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
     }
 
     _self->priv()->pythonQtModule().addObject("Debug", _self->priv()->_debugAPI);
+
+    PyModule_AddObject(pack, "Slot", (PyObject*)&PythonQtSlotDecorator_Type);
+    PyModule_AddObject(pack, "Signal", (PyObject*)&PythonQtSignalFunction_Type);
+    PyModule_AddObject(pack, "Property", (PyObject*)&PythonQtProperty_Type);
+
   }
 }
 
@@ -302,6 +309,16 @@ PythonQt::PythonQt(int flags, const QByteArray& pythonQtModuleName)
     std::cerr << "could not initialize PythonQtSignalFunction_Type" << ", in " << __FILE__ << ":" << __LINE__ << std::endl;
   }
   Py_INCREF(&PythonQtSignalFunction_Type);
+
+  if (PyType_Ready(&PythonQtSlotDecorator_Type) < 0) {
+    std::cerr << "could not initialize PythonQtSlotDecorator_Type" << ", in " << __FILE__ << ":" << __LINE__ << std::endl;
+  }
+  Py_INCREF(&PythonQtSlotDecorator_Type);
+
+  if (PyType_Ready(&PythonQtProperty_Type) < 0) {
+    std::cerr << "could not initialize PythonQtProperty_Type" << ", in " << __FILE__ << ":" << __LINE__ << std::endl;
+  }
+  Py_INCREF(&PythonQtProperty_Type);
 
   PythonQtBoolResult_Type.tp_new = PyType_GenericNew;
   if (PyType_Ready(&PythonQtBoolResult_Type) < 0) {
@@ -1909,6 +1926,178 @@ bool PythonQtPrivate::isMethodDescriptor(PyObject* object) const
     return true;
   }
   return false;
+}
+
+// We need this for the dynamic meta object building:
+#include <private/qmetaobjectbuilder_p.h>
+
+const QMetaObject* PythonQtPrivate::getDynamicMetaObject(PythonQtInstanceWrapper* wrapper, const QMetaObject* prototypeMetaObject)
+{
+  PythonQtDynamicClassInfo* info = wrapper->dynamicClassInfo();
+  if (info) {
+    if (!info->_dynamicMetaObject) {
+      buildDynamicMetaObject(((PythonQtClassWrapper*)Py_TYPE(wrapper)), prototypeMetaObject);
+    }
+    return info->_dynamicMetaObject;
+  }
+  return prototypeMetaObject;
+}
+
+void PythonQtPrivate::buildDynamicMetaObject(PythonQtClassWrapper* type, const QMetaObject* prototypeMetaObject)
+{
+  QMetaObjectBuilder builder;
+  builder.setSuperClass(prototypeMetaObject);
+  builder.setClassName(((PyTypeObject*)type)->tp_name);
+
+  PyObject* dict = ((PyTypeObject*)type)->tp_dict;
+  Py_ssize_t pos = NULL;
+  PyObject* value = NULL;
+  PyObject* key = NULL;
+  static PyObject* qtSlots = PyString_FromString("_qtSlots");
+
+  bool needsMetaObject = false;
+  // Iterate over all members and check if they affect the QMetaObject:
+  // First look for signals:
+  while (PyDict_Next(dict, &pos, &key, &value)) {
+    if (PythonQtSignalFunction_Check(value)) {
+      // A signal object, register with the meta object
+      PythonQtSignalFunctionObject* signal = (PythonQtSignalFunctionObject*)value;
+      if (signal->_dynamicInfo) {
+        signal->_dynamicInfo->name = PyString_AsString(key);
+        foreach(QByteArray sig, signal->_dynamicInfo->signatures) {
+          QMetaMethodBuilder method = builder.addSignal(signal->_dynamicInfo->name + "(" + sig + ")");
+          needsMetaObject = true;
+        }
+      }
+    }
+  }
+  pos = NULL;
+  value = NULL;
+  key = NULL;
+  // Now look for slots: (this is a bug in QMetaObjectBuilder, all signals need to be added first)
+  while (PyDict_Next(dict, &pos, &key, &value)) {
+    if (PythonQtProperty_Check(value)) {
+      PythonQtProperty* prop = (PythonQtProperty*)value;
+      QMetaPropertyBuilder newProp = builder.addProperty(PyString_AsString(key), prop->data->cppType);
+      newProp.setReadable(true);
+      newProp.setWritable(prop->data->fset != NULL);
+      newProp.setResettable(prop->data->freset != NULL);
+      newProp.setDesignable(prop->data->designable);
+      newProp.setScriptable(prop->data->scriptable);
+      newProp.setStored(prop->data->stored);
+      newProp.setUser(prop->data->user);
+      newProp.setConstant(prop->data->constant);
+      newProp.setFinal(prop->data->final);
+      if (prop->data->notify) {
+        PythonQtSignalFunctionObject* signal = (PythonQtSignalFunctionObject*)prop->data->notify;
+        if (signal->_dynamicInfo) {
+          QByteArray sig = signal->_dynamicInfo->signatures.at(0);
+          QByteArray fullSig = signal->_dynamicInfo->name + "(" + sig + ")";
+          int idx = builder.indexOfSignal(fullSig);
+          if (idx != -1) {
+            newProp.setNotifySignal(builder.method(idx));
+          } else {
+            std::cerr << "could not find notify signal signature " << fullSig.constData();
+          }
+        }
+      }
+    }
+    if (PyFunction_Check(value) && PyObject_HasAttr(value, qtSlots)) {
+      // A function which has a "_qtSlots" signature list, add the slots to the meta object
+      PyObject* signatures = PyObject_GetAttr(value, qtSlots);
+      Py_ssize_t count = PyList_Size(signatures);
+      for (Py_ssize_t i = 0; i < count; i++) {
+        PyObject* signature = PyList_GET_ITEM(signatures, i);
+        QByteArray sig = PyString_AsString(signature);
+        // Split the return type and the rest of the signature,
+        // no spaces should be in the rest of the signature...
+        QList<QByteArray> parts = sig.split(' ');
+        QMetaMethodBuilder method = builder.addSlot(parts[1]);
+        // set the return type of the slot
+        method.setReturnType(parts[0]);
+        needsMetaObject = true;
+      }
+    }
+    // TODO: handle enums, classinfo, ...
+  }
+  if (needsMetaObject) {
+    type->_dynamicClassInfo->_dynamicMetaObject = builder.toMetaObject();
+    type->_dynamicClassInfo->_classInfo = new PythonQtClassInfo();
+    type->_dynamicClassInfo->_classInfo->setupQObject(type->_dynamicClassInfo->_dynamicMetaObject);
+  } else {
+    // we don't need an own meta object, just use the one from our base class
+    type->_dynamicClassInfo->_dynamicMetaObject = prototypeMetaObject;
+  }
+}
+
+
+int PythonQtPrivate::handleMetaCall(QObject* object, PythonQtInstanceWrapper* wrapper, QMetaObject::Call call, int id, void** args)
+{
+  const QMetaObject* meta = object->metaObject();
+  int methodCount = meta->methodCount();
+  if (call == QMetaObject::InvokeMetaMethod) {
+    QMetaMethod method = meta->method(id);
+    if (method.methodType() == QMetaMethod::Signal) {
+      // just emit the signal, there is no Python code
+      QMetaObject::activate(object, id, args);
+    } else {
+      callMethodInPython(method, wrapper, args);
+    }
+  } else {
+    QMetaProperty metaProp = meta->property(id);
+    if (!metaProp.isValid()) {
+      return id - methodCount;
+    }
+    PythonQtProperty* prop = NULL;
+    // Get directly from the Python class, since we don't want to get the value of the property
+    PyObject* maybeProp = PyBaseObject_Type.tp_getattro((PyObject*)wrapper, PyString_FromString(metaProp.name()));
+    if (maybeProp && PythonQtProperty_Check(maybeProp)) {
+      prop = (PythonQtProperty*)maybeProp;
+    } else {
+      return id - methodCount;
+    }
+    const PythonQtMethodInfo::ParameterInfo& info = PythonQtMethodInfo::getParameterInfoForMetaType(metaProp.userType());
+
+    if (call == QMetaObject::WriteProperty) {
+      PyObject* value = PythonQtConv::ConvertQtValueToPython(info, args[0]);
+      bool ok = prop->data->callSetter((PyObject*)wrapper, value);
+      Py_XDECREF(value);
+
+      return ok ? 0 : -1;
+
+    } else if (call == QMetaObject::ReadProperty) {
+
+      PyObject* value = prop->data->callGetter((PyObject*)wrapper);
+      if (value) {
+        void* result = PythonQtConv::ConvertPythonToQt(info, value, false, NULL, args[0]);
+        Py_DECREF(value);
+        return (result == NULL ? -1 : 0);
+      } else {
+        return -1;
+      }
+    } else if (call == QMetaObject::ResetProperty) {
+      bool ok = prop->data->callReset((PyObject*)wrapper);
+      return ok ? 0 : -1;
+    }
+  }
+  return id - methodCount;
+}
+
+void PythonQtPrivate::callMethodInPython(QMetaMethod &method, PythonQtInstanceWrapper* wrapper, void** args)
+{
+  QByteArray methodSig = method.methodSignature();
+  PyObject* func = PyObject_GetAttrString((PyObject*)wrapper, method.name());
+  if (func) {
+    const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfo(method, NULL);
+    PyObject* result = PythonQtSignalTarget::call(func, methodInfo, args, false);
+    if (result) {
+      PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, args[0]);
+      // TODO: handle error?
+    //PythonQt::priv()->handleVirtualOverloadReturnError("devType", methodInfo, result);
+    }
+    Py_XDECREF(result);
+    Py_DECREF(func);
+  }
 }
 
 QString PythonQtPrivate::getSignature(PyObject* object)

@@ -289,7 +289,7 @@ bool PythonQtClassInfo::lookForEnumAndCache(const QMetaObject* meta, const char*
           found = true;
           break;
         } else {
-          std::cout << "enum " << e.name() << " not found on " << className().constData() << std::endl;
+          std::cerr << "enum " << e.name() << " not found on " << className().constData() << std::endl;
         }
       }
     }
@@ -1063,4 +1063,9 @@ PythonQtMemberInfo::PythonQtMemberInfo( const QMetaProperty& prop )
   _property = prop;
   _enumValue = NULL;
   _pythonType = NULL;
+}
+
+PythonQtDynamicClassInfo::~PythonQtDynamicClassInfo()
+{
+  delete _classInfo;
 }
