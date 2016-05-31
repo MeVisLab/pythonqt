@@ -1632,9 +1632,6 @@ PyObject* constScanLine(QImage* image, int line) {
 
   <object-type name="QFileOpenEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::FileOpen"/>
   <object-type name="QFocusEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::FocusIn || %1-&gt;type() == QEvent::FocusOut">
-        <modify-function signature="reason()const">
-            <remove/>
-        </modify-function>
   </object-type>
 
   <object-type name="QGraphicsSceneContextMenuEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::GraphicsSceneContextMenu"/>
