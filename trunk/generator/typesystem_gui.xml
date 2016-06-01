@@ -1675,7 +1675,7 @@ PyObject* constScanLine(QImage* image, int line) {
   </object-type>
   <object-type name="QShowEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::Show"/>
   <object-type name="QStatusTipEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::StatusTip"/>
-  <object-type name="QTabletEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::TabletMove || %1-&gt;type() == QEvent::TabletPress || %1-&gt;type() == QEvent::TabletRelease"/>
+  <object-type name="QTabletEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::TabletMove || %1-&gt;type() == QEvent::TabletPress || %1-&gt;type() == QEvent::TabletRelease || %1-&gt;type() == QEvent::TabletEnterProximity || %1-&gt;type() == QEvent::TabletLeaveProximity"/>
   <object-type name="QToolBarChangeEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::ToolBarChange"/>
   <object-type name="QWhatsThisClickedEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::WhatsThisClicked"/>
   <object-type name="QWheelEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::Wheel"/>
