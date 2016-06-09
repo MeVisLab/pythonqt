@@ -134,7 +134,7 @@ Qt framework</a>.
  - Qt 4.x (Qt 4.7 and Qt 4.8 recommended)
  - Qt 5.x (Tested with Qt 5.0, 5.3, 5.4 and 5.6)
  
- The last working Qt4 version is available at svn branches/Qt4LastWorkingVersion or you can use the PythonQt 3.0 releas.
+ The last working Qt4 version is available at svn branches/Qt4LastWorkingVersion or you can download the PythonQt 3.0 release.
  The current svn trunk no longer supports Qt4, since we started to make use of some Qt5-only features.
 
  \section Comparison Comparison with PySide
