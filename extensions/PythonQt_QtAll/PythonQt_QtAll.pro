@@ -1,5 +1,5 @@
-# enable this to compile QtWebKit support in:
-#CONFIG += PythonQtWebKit
+# If Qt has support for webkit, add it:
+qtHaveModule(webkit):CONFIG += PythonQtWebKit
 
 TARGET   = PythonQt_QtAll
 TEMPLATE = lib
