@@ -327,8 +327,14 @@ PyObject *PythonQtMemberFunction_Call(PythonQtSlotInfo* info, PyObject* m_self, 
   return NULL;
 }
 
-PyObject *PythonQtSlotFunction_CallImpl(PythonQtClassInfo* classInfo, QObject* objectToCall, PythonQtSlotInfo* info, PyObject *args, PyObject * /*kw*/, void* firstArg, void** directReturnValuePointer,  PythonQtPassThisOwnershipType* passThisOwnershipToCPP)
+PyObject *PythonQtSlotFunction_CallImpl(PythonQtClassInfo* classInfo, QObject* objectToCall, PythonQtSlotInfo* info, PyObject *args, PyObject * kw, void* firstArg, void** directReturnValuePointer,  PythonQtPassThisOwnershipType* passThisOwnershipToCPP)
 {
+  if (kw != NULL && PyDict_Check(kw) && (PyDict_Size(kw) > 0)) {
+    QString e = QString("Calling C++ functions with Python keywords is not supported! Function: ") + info->fullSignature(true) + " Keywords: " + PythonQtConv::PyObjGetString(kw);
+    PyErr_SetString(PyExc_ValueError, e.toLatin1().data());
+    return NULL;
+  }
+
   int argc = args?PyTuple_Size(args):0;
   if (passThisOwnershipToCPP) {
     *passThisOwnershipToCPP = IgnoreOwnership;

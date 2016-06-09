@@ -1464,9 +1464,16 @@ QByteArray PythonQtConv::getCPPTypeName(PyObject* type)
 {
   QByteArray result;
   if (PyType_Check(type)) {
-    if (PyType_IsSubtype((PyTypeObject*)type, (PyTypeObject*)(&PythonQtClassWrapper_Type))) {
+    if (type->ob_type == &PythonQtClassWrapper_Type) {
       PythonQtClassWrapper* wrapper = (PythonQtClassWrapper*)type;
-      result = wrapper->classInfo()->className();
+      // we have no good decision if this should be a pointer or a const reference
+      if (wrapper->classInfo()->isQObject()) {
+        // for QObjects, use a pointer
+        result = wrapper->classInfo()->className() + "*";
+      } else {
+        // everything else is a const reference (otherwise the user needs to use strings to specify the type)
+        result = wrapper->classInfo()->className();
+      }
     } else {
       PyTypeObject* typeObject = reinterpret_cast<PyTypeObject*>(type);
       if (typeObject == &PyFloat_Type) {
@@ -1489,7 +1496,7 @@ QByteArray PythonQtConv::getCPPTypeName(PyObject* type)
       result = "void";
   } else {
     bool dummy;
-    result = PyObjGetString(type, true, dummy).toLatin1();
+    result = QMetaObject::normalizedType(PyObjGetString(type, true, dummy).toLatin1());
   }
   return result;
 }
