@@ -1543,11 +1543,6 @@ QProcess::ExitStatus  PythonQtWrapper_QProcess::exitStatus(QProcess* theWrappedO
   return ( theWrappedObject->exitStatus());
 }
 
-bool  PythonQtWrapper_QProcess::inheritHandles(QProcess* theWrappedObject) const
-{
-  return ( theWrappedObject->inheritHandles());
-}
-
 QProcess::InputChannelMode  PythonQtWrapper_QProcess::inputChannelMode(QProcess* theWrappedObject) const
 {
   return ( theWrappedObject->inputChannelMode());
@@ -1601,11 +1596,6 @@ void PythonQtWrapper_QProcess::setArguments(QProcess* theWrappedObject, const QS
 void PythonQtWrapper_QProcess::setEnvironment(QProcess* theWrappedObject, const QStringList&  environment)
 {
   ( theWrappedObject->setEnvironment(environment));
-}
-
-void PythonQtWrapper_QProcess::setInheritHandles(QProcess* theWrappedObject, bool  inherit)
-{
-  ( theWrappedObject->setInheritHandles(inherit));
 }
 
 void PythonQtWrapper_QProcess::setInputChannelMode(QProcess* theWrappedObject, QProcess::InputChannelMode  mode)
