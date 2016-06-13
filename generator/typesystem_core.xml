@@ -550,6 +550,8 @@
   <rejection class="QObject" function-name="disconnectNotify"/>
   <rejection class="QObject" function-name="registerUserData"/>
   <rejection class="QProcess" function-name="pid"/>
+  <rejection class="QProcess" function-name="setInheritHandles"/>
+  <rejection class="QProcess" function-name="inheritHandles"/>
   <rejection class="QRegion" function-name="cleanUp"/>
   <rejection class="QSettings" function-name="registerFormat"/>
   <rejection class="QVector" function-name="back"/>
