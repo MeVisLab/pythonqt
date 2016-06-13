@@ -329,7 +329,6 @@ void delete_QProcess(QProcess* obj) { delete obj; }
    int  static_QProcess_execute(const QString&  program, const QStringList&  arguments);
    int  exitCode(QProcess* theWrappedObject) const;
    QProcess::ExitStatus  exitStatus(QProcess* theWrappedObject) const;
-   bool  inheritHandles(QProcess* theWrappedObject) const;
    QProcess::InputChannelMode  inputChannelMode(QProcess* theWrappedObject) const;
    bool  py_q_isSequential(QProcess* theWrappedObject) const{  return (((PythonQtPublicPromoter_QProcess*)theWrappedObject)->py_q_isSequential());}
    QString  static_QProcess_nullDevice();
@@ -344,7 +343,6 @@ void delete_QProcess(QProcess* obj) { delete obj; }
    qint64  py_q_readData(QProcess* theWrappedObject, char*  data, qint64  maxlen){  return (((PythonQtPublicPromoter_QProcess*)theWrappedObject)->py_q_readData(data, maxlen));}
    void setArguments(QProcess* theWrappedObject, const QStringList&  arguments);
    void setEnvironment(QProcess* theWrappedObject, const QStringList&  environment);
-   void setInheritHandles(QProcess* theWrappedObject, bool  inherit);
    void setInputChannelMode(QProcess* theWrappedObject, QProcess::InputChannelMode  mode);
    void setProcessChannelMode(QProcess* theWrappedObject, QProcess::ProcessChannelMode  mode);
    void setProcessEnvironment(QProcess* theWrappedObject, const QProcessEnvironment&  environment);
