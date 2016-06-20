@@ -746,9 +746,13 @@ QString PythonQtConv::PyObjGetRepresentation(PyObject* val)
 QString PythonQtConv::PyObjGetString(PyObject* val, bool strict, bool& ok) {
   QString r;
   ok = true;
+#ifndef PY3K
+  // in Python 3, we don't want to convert to QString, since we don't know anything about the encoding
   if (val->ob_type == &PyBytes_Type) {
     r = QString(PyBytes_AS_STRING(val));
-  } else if (PyUnicode_Check(val)) {
+  } else
+#endif
+  if (PyUnicode_Check(val)) {
 #ifdef PY3K
     r = QString::fromUtf8(PyUnicode_AsUTF8(val));
 #else
@@ -976,8 +980,15 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
 #endif
     ) {
     // no special type requested
-    if (PyBytes_Check(val) || PyUnicode_Check(val)) {
-      // NOTE: for compatibility reasons between Python 2/3 we don't use ByteArray for PyBytes_Type
+    if (PyBytes_Check(val)) {
+#ifdef PY3K
+      // In Python 3, it is a ByteArray
+      type = QVariant::ByteArray;
+#else
+      // In Python 2, we need to use String, since it might be a string
+      type = QVariant::String;
+#endif
+    } else if (PyUnicode_Check(val)) {
       type = QVariant::String;
     } else if (val == Py_False || val == Py_True) {
       type = QVariant::Bool;
@@ -1117,6 +1128,14 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
     }
 
   case QVariant::ByteArray:
+    {
+      bool ok;
+#ifdef PY3K
+      v = QVariant(PyObjGetBytes(val, false, ok));
+#else
+      v = QVariant(PyObjGetString(val, false, ok));
+#endif
+    }
   case QVariant::String:
     {
       bool ok;

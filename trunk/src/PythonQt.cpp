@@ -1977,6 +1977,7 @@ void PythonQtPrivate::buildDynamicMetaObject(PythonQtClassWrapper* type, const Q
   // Now look for slots: (this is a bug in QMetaObjectBuilder, all signals need to be added first)
   while (PyDict_Next(dict, &pos, &key, &value)) {
     if (PythonQtProperty_Check(value)) {
+      needsMetaObject = true;
       PythonQtProperty* prop = (PythonQtProperty*)value;
       QMetaPropertyBuilder newProp = builder.addProperty(PyString_AsString(key), prop->data->cppType);
       newProp.setReadable(true);

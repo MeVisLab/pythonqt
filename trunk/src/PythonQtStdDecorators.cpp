@@ -153,12 +153,12 @@ QVariant PythonQtStdDecorators::property(QObject* o, const char* name)
   return o->property(name);
 }
 
-QString PythonQtStdDecorators::tr(QObject* obj, const QByteArray& text, const QByteArray& ambig, int n)
+QString PythonQtStdDecorators::tr(QObject* obj, const QString& text, const QString& ambig, int n)
 {
 #if( QT_VERSION >= QT_VERSION_CHECK(5,0,0) )
-  return QCoreApplication::translate(obj->metaObject()->className(), text.constData(), ambig.constData(), n);
+  return QCoreApplication::translate(obj->metaObject()->className(), text.toUtf8().constData(), ambig.toUtf8().constData(), n);
 #else
-  return QCoreApplication::translate(obj->metaObject()->className(), text.constData(), ambig.constData(), QCoreApplication::CodecForTr, n);
+  return QCoreApplication::translate(obj->metaObject()->className(), text.toUtf8().constData(), ambig.toUtf8().constData(), QCoreApplication::CodecForTr, n);
 #endif
 }
 
