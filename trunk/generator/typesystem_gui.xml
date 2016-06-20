@@ -1307,6 +1307,17 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QWizard">
     <!-- ### Requires correct class name in meta object -->
     <modify-function signature="setDefaultProperty(const char *, const char *, const char *)" remove="all"/>
+    
+    <modify-function signature="addPage(QWizardPage*)">
+      <modify-argument index="1">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
+    <modify-function signature="setButton(QWizard::WizardButton,QAbstractButton*)">
+      <modify-argument index="2">
+        <define-ownership owner="c++" />
+      </modify-argument>
+    </modify-function>
   </object-type>
   <object-type name="QWizardPage">
   </object-type>
