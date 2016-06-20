@@ -106,10 +106,10 @@ public Q_SLOTS:
   int static_Qt_qrand() { return qrand(); }
   void static_Qt_qsrand(uint a) { qsrand(a); }
 
-  QString tr(QObject* obj, const QByteArray& text, const QByteArray& ambig = QByteArray(), int n = -1);
+  QString tr(QObject* obj, const QString& text, const QString& ambig = QString(), int n = -1);
 
-  QByteArray static_Qt_SIGNAL(const QByteArray& s) { return QByteArray("2") + s; }
-  QByteArray static_Qt_SLOT(const QByteArray& s) { return QByteArray("1") + s; }
+  QString static_Qt_SIGNAL(const QString& s) { return QString("2") + s; }
+  QString static_Qt_SLOT(const QString& s) { return QString("1") + s; }
 
   void static_QTimer_singleShot(int msec, PyObject* callable);
 
