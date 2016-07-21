@@ -42,9 +42,9 @@ int PythonQtSlotDecorator_init(PyObject *object, PyObject *args, PyObject *kw)
   char* argName = 0;
   PyObject* argResult = 0;
 
-  static char* kwlist[] = {"name", "result", 0};
+  static const char* kwlist[] = {"name", "result", 0};
   static PyObject* emptyTuple = PyTuple_New(0);
-  if (!PyArg_ParseTupleAndKeywords(emptyTuple, kw, "|sO:QtCore.Slot", kwlist, &argName, &argResult)) {
+  if (!PyArg_ParseTupleAndKeywords(emptyTuple, kw, "|sO:QtCore.Slot", (char**) kwlist, &argName, &argResult)) {
     return 0;
   }
 

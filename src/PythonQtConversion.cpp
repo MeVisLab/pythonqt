@@ -748,8 +748,9 @@ QString PythonQtConv::PyObjGetString(PyObject* val, bool strict, bool& ok) {
   ok = true;
 #ifndef PY3K
   // in Python 3, we don't want to convert to QString, since we don't know anything about the encoding
+  // in Python 2, we assume the default for str is latin-1
   if (val->ob_type == &PyBytes_Type) {
-    r = QString(PyBytes_AS_STRING(val));
+    r = QString::fromLatin1(PyBytes_AS_STRING(val));
   } else
 #endif
   if (PyUnicode_Check(val)) {
@@ -1523,7 +1524,7 @@ QByteArray PythonQtConv::getCPPTypeName(PyObject* type)
 bool PythonQtConv::isStringType(PyTypeObject* type)
 {
 #ifdef PY3K
-  return type == &PyUnicode_Type
+  return type == &PyUnicode_Type;
 #else
   return type == &PyUnicode_Type || type == &PyString_Type;
 #endif
