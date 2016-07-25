@@ -21,7 +21,7 @@ SOURCES +=                \
 
 QT += gui svg sql network xml xmlpatterns opengl
 QT += widgets printsupport multimedia multimediawidgets
-QT += quick qml quickwidgets
+QT += quick qml quickwidgets uitools
 
 include ($$PYTHONQT_GENERATED_PATH/com_trolltech_qt_core/com_trolltech_qt_core.pri)
 include ($$PYTHONQT_GENERATED_PATH/com_trolltech_qt_gui/com_trolltech_qt_gui.pri)
@@ -34,6 +34,7 @@ include ($$PYTHONQT_GENERATED_PATH/com_trolltech_qt_xmlpatterns/com_trolltech_qt
 include ($$PYTHONQT_GENERATED_PATH/com_trolltech_qt_multimedia/com_trolltech_qt_multimedia.pri)
 include ($$PYTHONQT_GENERATED_PATH/com_trolltech_qt_qml/com_trolltech_qt_qml.pri)
 include ($$PYTHONQT_GENERATED_PATH/com_trolltech_qt_quick/com_trolltech_qt_quick.pri)
+include ($$PYTHONQT_GENERATED_PATH/com_trolltech_qt_uitools/com_trolltech_qt_uitools.pri)
 
 PythonQtWebKit {
   QT += webkit webkitwidgets

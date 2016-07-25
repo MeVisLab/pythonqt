@@ -45,6 +45,7 @@ void PythonQt_init_QtXmlPatterns(PyObject*);
 void PythonQt_init_QtMultimedia(PyObject*);
 void PythonQt_init_QtQml(PyObject*);
 void PythonQt_init_QtQuick(PyObject*);
+void PythonQt_init_QtUiTools(PyObject*);
 
 #ifdef PYTHONQT_WITH_WEBKIT
 void PythonQt_init_QtWebKit(PyObject*);
@@ -67,6 +68,7 @@ namespace PythonQt_QtAll
     PythonQt_init_QtMultimedia(0);
     PythonQt_init_QtQml(0);
     PythonQt_init_QtQuick(0);
+    PythonQt_init_QtUiTools(0);
   };
 };
 
