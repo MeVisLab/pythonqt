@@ -105,7 +105,7 @@ static QStringList getOperatorCodes(const AbstractMetaClass* cls) {
       r.insert("PythonQt::Type_InplaceXor");
     }
   }
-  if (cls->hasDefaultIsNull()) {
+  if (!cls->getDefaultNonZeroFunction().isEmpty()) {
     r.insert("PythonQt::Type_NonZero");
   }
 

@@ -395,8 +395,9 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
   if (meta_class->hasDefaultToStringFunction() || meta_class->hasToStringCapability()) {
     s << "    QString py_toString(" << meta_class->qualifiedCppName() << "*);" << endl; 
   }
-  if (meta_class->hasDefaultIsNull()) {
-    s << "    bool __nonzero__(" << meta_class->qualifiedCppName() << "* obj) { return !obj->isNull(); }" << endl; 
+  QString nonZeroFunc = meta_class->getDefaultNonZeroFunction();
+  if (!nonZeroFunc.isEmpty()) {
+    s << "    bool __nonzero__(" << meta_class->qualifiedCppName() << "* obj) { return !obj->" << nonZeroFunc << "(); }" << endl; 
   }
 
   AbstractMetaFieldList fields = meta_class->fields();
