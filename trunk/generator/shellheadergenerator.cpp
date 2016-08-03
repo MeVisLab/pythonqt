@@ -397,7 +397,11 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
   }
   QString nonZeroFunc = meta_class->getDefaultNonZeroFunction();
   if (!nonZeroFunc.isEmpty()) {
-    s << "    bool __nonzero__(" << meta_class->qualifiedCppName() << "* obj) { return !obj->" << nonZeroFunc << "(); }" << endl; 
+    s << "    bool __nonzero__(" << meta_class->qualifiedCppName() << "* obj) { return ";
+    if (nonZeroFunc != "isValid") {
+      s << "!";
+    }
+    s << "obj->" << nonZeroFunc << "(); }" << endl;
   }
 
   AbstractMetaFieldList fields = meta_class->fields();

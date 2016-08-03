@@ -855,7 +855,7 @@ QString AbstractMetaClass::getDefaultNonZeroFunction() const
       return "isNull";
     }
   }
-  return false;
+  return QString();
 }
 
 /*******************************************************************************
