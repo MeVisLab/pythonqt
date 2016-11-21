@@ -2174,8 +2174,6 @@ PyObject* constScanLine(QImage* image, int line) {
       <modify-function signature="topLevelWidget()const" remove="all"/> <!--### Obsolete in 4.3-->
       <modify-function signature="windowActivationChange(bool)" remove="all"/> <!--### Obsolete in 4.3-->
   
-    <modify-function signature="fontInfo()const" remove="all"/>
-    <modify-function signature="fontMetrics()const" remove="all"/>
     <modify-function signature="sizeHint()const" rename="getSizeHint"/>
     <modify-function signature="minimumSizeHint()const" rename="getMinimumSizeHint"/>
   </object-type>
@@ -2839,7 +2837,6 @@ PyObject* constScanLine(QImage* image, int line) {
     <modify-function signature="QApplication(int&amp;,char**,int)" remove="all"/>
     <modify-function signature="commitData(QSessionManager&amp;)" remove="all"/>
     <modify-function signature="saveState(QSessionManager&amp;)" remove="all"/>
-    <modify-function signature="fontMetrics()" remove="all"/>
   </object-type>
 
   <object-type name="QMouseEventTransition"/>
