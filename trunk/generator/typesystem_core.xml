@@ -1393,8 +1393,6 @@
     <modify-function signature="QCoreApplication(int &amp;, char  **, int)" remove="all"/>
   
     <modify-function signature="QCoreApplication(int &amp;, char **)" remove="all"/>
-    <!-- ### arguments() causes a warning: "QScriptValue::setProperty(arguments): cannot change flags of a native property" -->
-    <modify-function signature="arguments()" remove="all"/>
   </object-type>
 
   <object-type name="QSettings">
