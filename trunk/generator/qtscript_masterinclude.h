@@ -43,6 +43,12 @@
 #define Q_BYTE_ORDER Q_LITTLE_ENDIAN
 
 #define QT_NO_STL
+#define override 
+#define final
+#define QOPENGLVERSIONFUNCTIONS_H
+#define QOPENGLFUNCTIONS_H
+#define QOPENGLEXTRAFUNCTIONS_H
+
 #include <QtCore/QtCore>
 #include <QtGui/QtGui>
 #include <QtNetwork/QtNetwork>
