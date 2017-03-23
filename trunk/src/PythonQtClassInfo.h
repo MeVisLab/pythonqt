@@ -185,7 +185,7 @@ public:
   void setShellSetInstanceWrapperCB(PythonQtShellSetInstanceWrapperCB* cb) {
     _shellSetInstanceWrapperCB = cb;
   }
-
+  
   //! get the shell set instance wrapper cb
   PythonQtShellSetInstanceWrapperCB* shellSetInstanceWrapperCB() {
     return _shellSetInstanceWrapperCB;
@@ -229,6 +229,12 @@ public:
 
   //! Returns the class info for given property, if available.
   PythonQtClassInfo* getClassInfoForProperty( const QString& name );
+
+  //! Returns if the class supports rich compare. This tests for
+  //! __eq__, __ne__, __lt__, __le__, __gt__, __ge__ slots and if
+  //! any of the slots is present it returns true and modifies the
+  //! _typeSlots with Type_RichCompare. The result is cached internally.
+  bool supportsRichCompare();
 
 private:
   void updateRefCountingCBs();
@@ -289,6 +295,7 @@ private:
 
   bool _isQObject;
   bool _enumsCreated;
+  bool _richCompareDetectionDone;
   bool _searchPolymorphicHandlerOnParent;
   bool _searchRefCountCB;
   

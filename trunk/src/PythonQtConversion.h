@@ -52,6 +52,7 @@
 
 typedef PyObject* PythonQtConvertMetaTypeToPythonCB(const void* inObject, int metaTypeId);
 typedef bool PythonQtConvertPythonToMetaTypeCB(PyObject* inObject, void* outObject, int metaTypeId, bool strict);
+typedef QVariant PythonQtConvertPythonSequenceToQVariantListCB(PyObject* inObject);
 
 #define PythonQtRegisterListTemplateConverter(type, innertype) \
 { int typeId = qRegisterMetaType<type<innertype > >(#type"<"#innertype">"); \
@@ -164,6 +165,10 @@ public:
   //! register a converter callback from cpp to python for given metatype
   static void registerMetaTypeToPythonConverter(int metaTypeId, PythonQtConvertMetaTypeToPythonCB* cb) { _metaTypeToPythonConverters.insert(metaTypeId, cb); }
 
+  //! set a callback that is called when a Python sequence should be converted to a QVariantList
+  //! to allow special conversion.
+  static void setPythonSequenceToQVariantListCallback(PythonQtConvertPythonSequenceToQVariantListCB* cb) { _pythonSequenceToQVariantListCB = cb; }
+
   //! converts the Qt parameter given in \c data, interpreting it as a \c type registered qvariant/meta type, into a Python object,
   static PyObject* convertQtValueToPythonInternal(int type, const void* data);
 
@@ -194,6 +199,7 @@ public:
 protected:
   static QHash<int, PythonQtConvertMetaTypeToPythonCB*> _metaTypeToPythonConverters; 
   static QHash<int, PythonQtConvertPythonToMetaTypeCB*> _pythonToMetaTypeConverters; 
+  static PythonQtConvertPythonSequenceToQVariantListCB*  _pythonSequenceToQVariantListCB;
  
   //! handle automatic conversion of some special types (QColor, QBrush, ...)
   static void* handlePythonToQtAutoConversion(int typeId, PyObject* obj, void* alreadyAllocatedCPPObject);
