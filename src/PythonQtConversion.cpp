@@ -55,6 +55,8 @@ PythonQtValueStorageWithCleanup<QVariant, 128> PythonQtConv::global_variantStora
 QHash<int, PythonQtConvertMetaTypeToPythonCB*> PythonQtConv::_metaTypeToPythonConverters;
 QHash<int, PythonQtConvertPythonToMetaTypeCB*> PythonQtConv::_pythonToMetaTypeConverters;
 
+PythonQtConvertPythonSequenceToQVariantListCB* PythonQtConv::_pythonSequenceToQVariantListCB = NULL;
+
 PyObject* PythonQtConv::GetPyBool(bool val)
 {
   PyObject* r = val?Py_True:Py_False;
@@ -1028,13 +1030,13 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
         v = qVariantFromValue(myObject);
       }
       return v;
+    } else if (val == Py_None) {
+      // none is invalid
+      type = QVariant::Invalid;
     } else if (PyDict_Check(val)) {
       type = QVariant::Map;
     } else if (PyList_Check(val) || PyTuple_Check(val) || PySequence_Check(val)) {
       type = QVariant::List;
-    } else if (val == Py_None) {
-      // none is invalid
-      type = QVariant::Invalid;
     } else {
       // this used to be:
       // type = QVariant::String;
@@ -1152,6 +1154,12 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
     break;
   case QVariant::List:
     if (PySequence_Check(val)) {
+      if (_pythonSequenceToQVariantListCB) {
+        QVariant result = (*_pythonSequenceToQVariantListCB)(val);
+        if (result.isValid()) {
+          return result;
+        }
+      }
       int count = PySequence_Size(val);
       if (count >= 0) {
         // only get items if size is valid (>= 0)

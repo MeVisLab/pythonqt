@@ -47,6 +47,7 @@ static PyObject *PythonQtStdOutRedirect_new(PyTypeObject *type, PyObject * /*arg
   self = (PythonQtStdOutRedirect *)type->tp_alloc(type, 0);
 
   self->softspace = 0;
+  self->closed = false;
   self->_cb = NULL;
 
   return (PyObject *)self;
@@ -116,6 +117,9 @@ static PyMethodDef PythonQtStdOutRedirect_methods[] = {
 static PyMemberDef PythonQtStdOutRedirect_members[] = {
   {const_cast<char*>("softspace"), T_INT, offsetof(PythonQtStdOutRedirect, softspace), 0,
     const_cast<char*>("soft space flag")
+  },
+  { const_cast<char*>("closed"), T_BOOL, offsetof(PythonQtStdOutRedirect, closed), 0,
+  const_cast<char*>("soft space flag")
   },
   {NULL}  /* Sentinel */
 };

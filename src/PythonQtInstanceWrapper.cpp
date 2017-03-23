@@ -238,7 +238,7 @@ static PyObject *PythonQtInstanceWrapper_richcompare(PythonQtInstanceWrapper* wr
     }
   }
 
-  if ((wrapper->classInfo()->typeSlots() & PythonQt::Type_RichCompare) == 0) {
+  if (!wrapper->classInfo()->supportsRichCompare()) {
     // shortcut if richcompare is not supported:
     if (validPtrs && code == Py_EQ) {
       return PythonQtConv::GetPyBool(areSamePtrs);

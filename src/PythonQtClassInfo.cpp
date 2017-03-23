@@ -61,6 +61,7 @@ PythonQtClassInfo::PythonQtClassInfo() {
   _typeSlots = 0;
   _isQObject = false;
   _enumsCreated = false;
+  _richCompareDetectionDone = false;
   _searchPolymorphicHandlerOnParent = true;
   _searchRefCountCB = true;
   _refCallback = NULL;
@@ -1034,6 +1035,34 @@ PythonQtClassInfo* PythonQtClassInfo::getClassInfoForProperty( const QString& na
   }
   return NULL;
 }
+
+bool PythonQtClassInfo::supportsRichCompare()
+{
+  if (_typeSlots & PythonQt::Type_RichCompare) {
+    return true;
+  }
+  if (!_richCompareDetectionDone) {
+    _richCompareDetectionDone = true;
+    static QList<QByteArray> names;
+    if (names.isEmpty()) {
+      names << "__eq__";
+      names << "__ne__";
+      names << "__lt__";
+      names << "__le__";
+      names << "__gt__";
+      names << "__ge__";
+    }
+    foreach (const QByteArray& name, names) {
+      if (member(name)._type == PythonQtMemberInfo::Slot) {
+        // we found one of the operators, so we can support the type slot
+        _typeSlots |= PythonQt::Type_RichCompare;
+        break;
+      }
+    }
+  }
+  return (_typeSlots & PythonQt::Type_RichCompare);
+}
+
 //-------------------------------------------------------------------------
 
 PythonQtMemberInfo::PythonQtMemberInfo( PythonQtSlotInfo* info )
