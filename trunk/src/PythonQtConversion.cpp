@@ -1153,8 +1153,11 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
     pythonToMapVariant<QVariantHash>(val, v);
     break;
   case QVariant::List:
-    if (PySequence_Check(val)) {
-      if (_pythonSequenceToQVariantListCB) {
+  {
+    bool isListOrTuple = PyList_Check(val) || PyTuple_Check(val);
+    if (isListOrTuple || PySequence_Check(val)) {
+      if (!isListOrTuple && _pythonSequenceToQVariantListCB) {
+        // Only call this if we don't have a tuple or list.
         QVariant result = (*_pythonSequenceToQVariantListCB)(val);
         if (result.isValid()) {
           return result;
@@ -1165,14 +1168,15 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
         // only get items if size is valid (>= 0)
         QVariantList list;
         PyObject* value;
-        for (int i = 0;i<count;i++) {
-          value = PySequence_GetItem(val,i);
+        for (int i = 0; i < count; i++) {
+          value = PySequence_GetItem(val, i);
           list.append(PyObjToQVariant(value, -1));
           Py_XDECREF(value);
         }
         v = list;
       }
     }
+  }
     break;
   case QVariant::StringList:
     {

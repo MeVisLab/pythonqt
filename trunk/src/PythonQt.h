@@ -742,7 +742,11 @@ public:
   //! get the dynamic meta object for the given wrapper. It will contain the signals/slots that have been added in Python
   const QMetaObject* getDynamicMetaObject(PythonQtInstanceWrapper* wrapper, const QMetaObject* prototypeMetaObject);
 
-  void buildDynamicMetaObject(PythonQtClassWrapper* type, const QMetaObject* prototypeMetaObject);
+  //! recursively creates the dynamic meta object chain down to the Qt class wrapper. 
+  const QMetaObject* setupDynamicMetaObjectChain(PythonQtClassWrapper* type, const QMetaObject* prototypeMetaObject);
+
+  //! builds and returns the dynamic meta object for the given type, derived from prototypeMetaObject.
+  const QMetaObject* buildDynamicMetaObject(PythonQtClassWrapper* type, const QMetaObject* prototypeMetaObject);
 
   //! redirected from shell classes, tries to call the given meta call on the Python wrapper. 
   int handleMetaCall(QObject* object, PythonQtInstanceWrapper* wrapper, QMetaObject::Call call, int id, void** args);

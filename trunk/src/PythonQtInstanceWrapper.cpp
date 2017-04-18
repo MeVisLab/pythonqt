@@ -452,12 +452,21 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
             wrapper->_obj->metaObject();
           }
         }
-        if (wrapper->dynamicClassInfo() && wrapper->dynamicClassInfo()->_classInfo) {
-          PythonQtMemberInfo member = wrapper->dynamicClassInfo()->_classInfo->member(attributeName);
-          if (member._type == PythonQtMemberInfo::Signal) {
-            PyObject* boundSignal = PythonQtSignalFunction_New(member._slot, (PyObject*)wrapper, NULL);
-            Py_DECREF(superAttr);
-            return boundSignal;
+        if (wrapper->dynamicClassInfo()) {
+          // go through the whole inheritance chain to find a signal in the dynamic class info:
+          PythonQtClassInfo* classInfo = NULL;
+          PythonQtClassWrapper* classType = (PythonQtClassWrapper*)Py_TYPE(wrapper);
+          while (classType->_dynamicClassInfo) {
+            classInfo = classType->_dynamicClassInfo->_classInfo;
+            if (classInfo) {
+              PythonQtMemberInfo member = classInfo->member(attributeName);
+              if (member._type == PythonQtMemberInfo::Signal) {
+                PyObject* boundSignal = PythonQtSignalFunction_New(member._slot, (PyObject*)wrapper, NULL);
+                Py_DECREF(superAttr);
+                return boundSignal;
+              }
+            }
+            classType = (PythonQtClassWrapper*)(((PyTypeObject*)classType)->tp_base);
           }
         }
       }

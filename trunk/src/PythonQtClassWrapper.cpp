@@ -366,8 +366,17 @@ static int PythonQtClassWrapper_init(PythonQtClassWrapper* self, PyObject* args,
 
     // take the class info from the superType
     self->_classInfo = ((PythonQtClassWrapper*)superType)->classInfo();
-
     self->_dynamicClassInfo = new PythonQtDynamicClassInfo();
+
+    // take the class info from the superType and fill the whole chain
+    PyTypeObject* typeChain = (PyTypeObject *)self;
+    while (typeChain && Py_TYPE(typeChain) != &PythonQtClassWrapper_Type) {
+
+      ((PythonQtClassWrapper*)typeChain)->_classInfo = ((PythonQtClassWrapper*)superType)->classInfo();
+      ((PythonQtClassWrapper*)typeChain)->_dynamicClassInfo = new PythonQtDynamicClassInfo();
+
+      typeChain = typeChain->tp_base;
+    }
   }
 
   return 0;
