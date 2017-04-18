@@ -738,14 +738,14 @@ QObject* PythonQtClassInfo::decorator()
       _decoratorProvider->setParent(PythonQt::priv());
       // setup enums early, since they might be needed by the constructor decorators:
       if (!_enumsCreated) {
-        createEnumWrappers();
+        createEnumWrappers(_decoratorProvider);
       }
       PythonQt::priv()->addDecorators(_decoratorProvider, PythonQtPrivate::ConstructorDecorator | PythonQtPrivate::DestructorDecorator);
     }
   }
   // check if enums need to be created and create them if they are not yet created
   if (!_enumsCreated) {
-    createEnumWrappers();
+    createEnumWrappers(_decoratorProvider);
   }
   return _decoratorProvider;
 }
@@ -857,18 +857,20 @@ void PythonQtClassInfo::createEnumWrappers(const QMetaObject* meta)
   }
 }
 
-void PythonQtClassInfo::createEnumWrappers()
+void PythonQtClassInfo::createEnumWrappers(const QObject* decoratorProvider)
 {
   if (!_enumsCreated) {
     _enumsCreated = true;
     if (_meta) {
       createEnumWrappers(_meta);
     }
-    if (decorator()) {
-      createEnumWrappers(decorator()->metaObject());
+    if (decoratorProvider) {
+      createEnumWrappers(decoratorProvider->metaObject());
     }
     Q_FOREACH(const ParentClassInfo& info, _parentClasses) {
-      info._parent->createEnumWrappers();
+      // trigger decorator() instead of createEnumWrappers(),
+      // which will then call createEnumWrappers().
+      info._parent->decorator();
     }
   }
 }
@@ -876,7 +878,9 @@ void PythonQtClassInfo::createEnumWrappers()
 PyObject* PythonQtClassInfo::findEnumWrapper(const char* name) {
   // force enum creation
   if (!_enumsCreated) {
-    createEnumWrappers();
+    // trigger decorator() instead of createEnumWrappers(),
+    // which will then call createEnumWrappers().
+    decorator();
   }
   Q_FOREACH(const PythonQtObjectPtr& p, _enumWrappers) {
     const char* className = ((PyTypeObject*)p.object())->tp_name;

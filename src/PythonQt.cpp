@@ -1936,15 +1936,31 @@ const QMetaObject* PythonQtPrivate::getDynamicMetaObject(PythonQtInstanceWrapper
   PythonQtDynamicClassInfo* info = wrapper->dynamicClassInfo();
   if (info) {
     if (!info->_dynamicMetaObject) {
-      buildDynamicMetaObject(((PythonQtClassWrapper*)Py_TYPE(wrapper)), prototypeMetaObject);
+      setupDynamicMetaObjectChain(((PythonQtClassWrapper*)Py_TYPE(wrapper)), prototypeMetaObject);
     }
     return info->_dynamicMetaObject;
   }
   return prototypeMetaObject;
 }
 
-void PythonQtPrivate::buildDynamicMetaObject(PythonQtClassWrapper* type, const QMetaObject* prototypeMetaObject)
+const QMetaObject* PythonQtPrivate::setupDynamicMetaObjectChain(PythonQtClassWrapper* type, const QMetaObject* prototypeMetaObject)
 {
+  if (!type->_dynamicClassInfo->_dynamicMetaObject) {
+    PyTypeObject*  superType = ((PyTypeObject *)type)->tp_base;
+    const QMetaObject* metaObjectOfParent = prototypeMetaObject;
+    if (((PythonQtClassWrapper*)superType)->_dynamicClassInfo) {
+      metaObjectOfParent = setupDynamicMetaObjectChain((PythonQtClassWrapper*)superType, prototypeMetaObject);
+    }
+    return buildDynamicMetaObject(type, metaObjectOfParent);
+  } else {
+    return type->_dynamicClassInfo->_dynamicMetaObject;
+  }
+}
+
+const QMetaObject* PythonQtPrivate::buildDynamicMetaObject(PythonQtClassWrapper* type, const QMetaObject* prototypeMetaObject)
+{
+  //std::cout << "creating " << ((PyTypeObject*)type)->tp_name << " derived from " << prototypeMetaObject->className() << std::endl;
+
   QMetaObjectBuilder builder;
   builder.setSuperClass(prototypeMetaObject);
   builder.setClassName(((PyTypeObject*)type)->tp_name);
@@ -2029,6 +2045,7 @@ void PythonQtPrivate::buildDynamicMetaObject(PythonQtClassWrapper* type, const Q
     // we don't need an own meta object, just use the one from our base class
     type->_dynamicClassInfo->_dynamicMetaObject = prototypeMetaObject;
   }
+  return type->_dynamicClassInfo->_dynamicMetaObject;
 }
 
 

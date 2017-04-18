@@ -239,7 +239,7 @@ public:
 private:
   void updateRefCountingCBs();
 
-  void createEnumWrappers();
+  void createEnumWrappers(const QObject* decoratorProvider);
   void createEnumWrappers(const QMetaObject* meta);
   PyObject* findEnumWrapper(const char* name);
 
