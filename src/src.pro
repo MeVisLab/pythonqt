@@ -22,6 +22,8 @@ isEmpty(PYTHONQT_STATIC) {
   CONFIG += static
 }
 
+DEFINES += PYTHONQT_CATCH_ALL_EXCEPTIONS
+
 contains(QT_MAJOR_VERSION, 5) {
   QT += widgets core-private
 }
