@@ -205,6 +205,11 @@ bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObj
         QByteArray what("std::exception: ");
         what += e.what();
         PyErr_SetString(PyExc_RuntimeError, what.constData());
+#ifdef PYTHONQT_CATCH_ALL_EXCEPTIONS
+      } catch (...) {
+        hadException = true;
+        PyErr_SetString(PyExc_RuntimeError, "Unknown C++ exception.");
+#endif
       }
     }
   
