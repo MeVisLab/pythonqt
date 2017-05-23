@@ -104,7 +104,7 @@ PyObject* PythonQtConv::ConvertQtValueToPython(const PythonQtMethodInfo::Paramet
     }
   }
 
-  if (info.typeId >= QMetaType::User) {
+  if (info.typeId >= QMetaType::User || info.typeId == QMetaType::QByteArrayList) {
     // if a converter is registered, we use is:
     PythonQtConvertMetaTypeToPythonCB* converter = _metaTypeToPythonConverters.value(info.typeId);
     if (converter) {
@@ -670,7 +670,7 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
          }
 
          // We only do this for registered type > QMetaType::User for performance reasons.
-         if (info.typeId >= QMetaType::User) {
+         if (info.typeId >= QMetaType::User || info.typeId == QMetaType::QByteArrayList) {
            // Maybe we have a special converter that is registered for that type:
            PythonQtConvertPythonToMetaTypeCB* converter = _pythonToMetaTypeConverters.value(info.typeId);
            if (converter) {
