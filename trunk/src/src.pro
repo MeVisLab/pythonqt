@@ -4,7 +4,7 @@
 # $Source$
 # --------------------------------------------------
 
-TARGET   = PythonQt
+TARGET   = PythonQt-Qt5-PythonXY
 TEMPLATE = lib
 
 
@@ -35,6 +35,7 @@ INCLUDEPATH += $$PWD
 
 include ( ../build/common.prf )  
 include ( ../build/python.prf )
+TARGET = $$replace(TARGET, PythonXY, Python$${PYTHON_VERSION})
 
 include ( src.pri )  
 

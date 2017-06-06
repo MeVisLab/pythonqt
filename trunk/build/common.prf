@@ -50,3 +50,4 @@ PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp
   }
 }
 
+VERSION = 3.2.0
