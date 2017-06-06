@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<typesystem package="com.trolltech.qt.quick">
+
+<!-- not yet supported: -->
+<rejection class="QSGMaterial"/>
+<rejection class="QSGMaterialShader"/>
+<rejection class="QSGOpaqueTextureMaterial"/>
+<rejection class="QSGSimpleMaterial"/>
+<rejection class="QSGSimpleMaterialComparableMaterial"/>
+<rejection class="QSGSimpleMaterialShader"/>
+<rejection class="QSGSimpleRectNode"/>
+<rejection class="QSGSimpleTextureNode"/>
+<rejection class="QSGVertexColorMaterial"/>
+<rejection class="QQuickItem" function-name="transform"/>
+<rejection class="QQuickItem::ItemChangeData"/>
+<!-- missing Q_OBJECT macro -->
+<rejection class="QQuickTextureFactory"/>
+<rejection class="QQuickImageResponse"/>
+<rejection class="QQuickAsyncImageProvider"/>
+<!-- end -->
+
+  <object-type name="QQuickAsyncImageProvider"></object-type>
+  <object-type name="QQuickFramebufferObject"></object-type>
+  <object-type name="QQuickImageProvider"></object-type>
+  <object-type name="QQuickItem"></object-type>
+<object-type name="QQuickItemGrabResult"></object-type>
+<object-type name="QQuickPaintedItem"></object-type>
+<object-type name="QQuickRenderControl"></object-type>
+<object-type name="QQuickTextDocument"></object-type>
+<object-type name="QQuickTransform"></object-type>
+<object-type name="QQuickView"></object-type>
+<object-type name="QQuickWindow"></object-type>
+
+<object-type name="QQuickWidget"></object-type>
+
+<object-type name="QSGAbstractRenderer"></object-type>
+<object-type name="QSGBasicGeometryNode"></object-type>
+<object-type name="QSGClipNode"></object-type>
+<object-type name="QSGDynamicTexture"></object-type>
+<object-type name="QSGEngine"></object-type>
+<object-type name="QSGFlatColorMaterial"></object-type>
+<object-type name="QSGGeometry"></object-type>
+<object-type name="QSGGeometryNode"></object-type>
+<object-type name="QSGMaterialType"></object-type>
+<object-type name="QSGNode"></object-type>
+<object-type name="QSGNodeVisitor"></object-type>
+<object-type name="QSGOpacityNode"></object-type>
+<object-type name="QSGRootNode"></object-type>
+<object-type name="QSGTexture"></object-type>
+<object-type name="QSGTextureMaterial"></object-type>
+<object-type name="QSGTextureProvider"></object-type>
+<object-type name="QSGTransformNode"></object-type>
+
+<object-type name="QSGGeometry::Attribute"></object-type>
+<object-type name="QSGGeometry::AttributeSet"></object-type>
+<object-type name="QSGGeometry::ColoredPoint2D"></object-type>
+<object-type name="QSGGeometry::Point2D"></object-type>
+<object-type name="QSGGeometry::TexturedPoint2D"></object-type>
+<object-type name="QSGMaterialShader::RenderState"></object-type>
+
+<object-type name="QQuickFramebufferObject::Renderer"></object-type>
+<object-type name="QQuickItem::UpdatePaintNodeData"></object-type>
+
+<enum-type name="QQuickItem::Flag"></enum-type>
+<enum-type name="QQuickItem::ItemChange"></enum-type>
+<enum-type name="QQuickItem::TransformOrigin"></enum-type>
+<enum-type name="QQuickPaintedItem::PerformanceHint"></enum-type>
+<enum-type name="QQuickPaintedItem::RenderTarget"></enum-type>
+<enum-type name="QQuickView::ResizeMode"></enum-type>
+<enum-type name="QQuickView::Status"></enum-type>
+<enum-type name="QQuickWidget::ResizeMode"></enum-type>
+<enum-type name="QQuickWidget::Status"></enum-type>
+<enum-type name="QQuickWindow::CreateTextureOption"></enum-type>
+<enum-type name="QQuickWindow::RenderStage"></enum-type>
+<enum-type name="QQuickWindow::SceneGraphError"></enum-type>
+<enum-type name="QSGAbstractRenderer::ClearModeBit"></enum-type>
+<enum-type name="QSGEngine::CreateTextureOption"></enum-type>
+<enum-type name="QSGGeometry::DataPattern"></enum-type>
+<enum-type name="QSGMaterial::Flag"></enum-type>
+<enum-type name="QSGNode::DirtyStateBit"></enum-type>
+<enum-type name="QSGNode::DirtyState"></enum-type>
+<enum-type name="QSGNode::Flag"></enum-type>
+<enum-type name="QSGNode::NodeType"></enum-type>
+<enum-type name="QSGSimpleTextureNode::TextureCoordinatesTransformFlag"></enum-type>
+<enum-type name="QSGTexture::Filtering"></enum-type>
+<enum-type name="QSGTexture::WrapMode"></enum-type>
+
+</typesystem>

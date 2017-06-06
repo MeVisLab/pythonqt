@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<typesystem package="com.trolltech.qt.svg">
+  
+  <namespace-type name="QSvg"/>
+
+  <enum-type name="QGraphicsSvgItem::enum_1"/>
+
+  <object-type name="QSvgRenderer">
+    <extra-includes>
+        <include file-name="QRectF" location="global"/>
+        <include file-name="QMatrix" location="global"/>
+        <include file-name="QSize" location="global"/>
+        <include file-name="QByteArray" location="global"/>
+    </extra-includes>
+  </object-type>
+
+  <object-type name="QSvgWidget">
+    <extra-includes>
+        <include file-name="QByteArray" location="global"/>
+        <include file-name="QSvgRenderer" location="global"/>
+        <include file-name="QSize" location="global"/>
+    </extra-includes>
+  </object-type>
+
+  <object-type name="QSvgGenerator">
+  </object-type>
+
+  <object-type name="QGraphicsSvgItem">
+    <extra-includes>
+        <include file-name="QGraphicsItem" location="global"/>
+        <include file-name="QSvgRenderer" location="global"/>
+        <include file-name="QSize" location="global"/>
+    </extra-includes>
+ </object-type>
+
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: class 'QGraphicsSvgItem' inherits from polymorphic class 'QGraphicsItem', but has no polymorphic id set"/>
+
+</typesystem>

@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<typesystem package="com.trolltech.qt.qml">
+
+<rejection class="QQmlListProperty"/>
+<rejection class="QQmlTypeInfo"/>
+<rejection class="QQmlImageProviderBase"/>
+
+<object-type name="QJSEngine"></object-type>
+<object-type name="QJSValue"></object-type>
+
+<enum-type name="QJSEngine::Extension"/>
+<enum-type name="QJSValue::SpecialValue"/>
+
+<object-type name="QQmlAbstractUrlInterceptor"></object-type>
+<object-type name="QQmlApplicationEngine"></object-type>
+<object-type name="QQmlComponent"></object-type>
+<object-type name="QQmlContext"></object-type>
+<object-type name="QQmlDebuggingEnabler"></object-type>
+<object-type name="QQmlEngine"></object-type>
+<object-type name="QQmlError"></object-type>
+<object-type name="QQmlExpression"></object-type>
+<object-type name="QQmlExtensionInterface"></object-type>
+<object-type name="QQmlExtensionPlugin"></object-type>
+<object-type name="QQmlFile"></object-type>
+<object-type name="QQmlFileSelector"></object-type>
+<object-type name="QQmlIncubationController"></object-type>
+<object-type name="QQmlIncubator"></object-type>
+<object-type name="QQmlInfo"></object-type>
+<object-type name="QQmlListReference"></object-type>
+<object-type name="QQmlNetworkAccessManagerFactory"></object-type>
+<object-type name="QQmlParserStatus"></object-type>
+<object-type name="QQmlProperty"></object-type>
+<object-type name="QQmlPropertyMap">
+  <modify-function signature="operator[](const QString&amp;)" remove="all"/>
+</object-type>
+<object-type name="QQmlPropertyValueSource"></object-type>
+<object-type name="QQmlScriptString"></object-type>
+<object-type name="QQmlTypesExtensionInterface"></object-type>
+
+<enum-type name="QQmlAbstractUrlInterceptor::DataType"></enum-type>
+<enum-type name="QQmlComponent::CompilationMode"></enum-type>
+<enum-type name="QQmlComponent::Status"></enum-type>
+<enum-type name="QQmlDebuggingEnabler::StartMode"></enum-type>
+<enum-type name="QQmlEngine::ObjectOwnership"></enum-type>
+<enum-type name="QQmlFile::Status"></enum-type>
+<enum-type name="QQmlIncubator::IncubationMode"></enum-type>
+<enum-type name="QQmlIncubator::Status"></enum-type>
+<enum-type name="QQmlProperty::PropertyTypeCategory"></enum-type>
+<enum-type name="QQmlProperty::Type"></enum-type>
+
+</typesystem>
