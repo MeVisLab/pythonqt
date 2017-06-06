@@ -466,12 +466,10 @@ static PyObject *PythonQtClassWrapper_getattro(PyObject *obj, PyObject *name)
     }
     PyObject* dict = PyDict_New();
       
-    QStringList l = wrapper->classInfo()->memberList();
-    Q_FOREACH (QString name, l) {
-      if (name.startsWith("py_get_")) {
-        // add slot getters as normal properties
-        name = name.mid(7);
-      }
+    QSet<QString> completeSet = QSet<QString>::fromList(wrapper->classInfo()->memberList());
+    completeSet.unite(QSet<QString>::fromList(wrapper->classInfo()->propertyList()));
+
+    Q_FOREACH (QString name, completeSet) {
       if (name.startsWith("py_")) {
         // do not expose internal slots
         continue;
