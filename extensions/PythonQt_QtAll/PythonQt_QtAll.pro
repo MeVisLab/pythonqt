@@ -1,13 +1,14 @@
 # If Qt has support for webkit, add it:
 qtHaveModule(webkit):CONFIG += PythonQtWebKit
 
-TARGET   = PythonQt_QtAll
+TARGET   = PythonQt_QtAll-Qt5-PythonXY
 TEMPLATE = lib
 
 DESTDIR    = ../../lib
 
 include ( ../../build/common.prf )  
 include ( ../../build/PythonQt.prf )  
+TARGET = $$replace(TARGET, PythonXY, Python$${PYTHON_VERSION})
 
 CONFIG += dll qt
 
