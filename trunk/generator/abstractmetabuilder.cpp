@@ -1463,6 +1463,10 @@ AbstractMetaFunction *AbstractMetaBuilder::traverseFunction(FunctionModelItem fu
     if (function_item->isFriend())
         return 0;
 
+    // Filter out variadic functions (having ... arguments) - they are not currently handled
+    if (function_item->isVariadics()) {
+      return 0;
+    }
 
     QString cast_type;
 
