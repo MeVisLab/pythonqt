@@ -1,8 +1,13 @@
 # profile to include and link Python
 
+
 # Change this variable to your python version (2.6, 2.7, 3.3, ...)
-win32:PYTHON_VERSION=27
-unix:PYTHON_VERSION=2.7
+PYTHON_VERSION=$$(PYTHON_VERSION)
+isEmpty( PYTHON_VERSION ) {
+  win32:PYTHON_VERSION=27
+  unix:PYTHON_VERSION=2.7
+}
+
 
 macx {
   # for macx you need to have the Python development kit installed as framework
@@ -36,6 +41,6 @@ macx {
   # on linux, python-config is used to autodetect Python.
   # make sure that you have installed a matching python-dev package.
   
-  unix:LIBS += $$system(python$${PYTHON_VERSION}-config --libs)
+  unix:LIBS += $$system(python$${PYTHON_VERSION}-config --ldflags)
   unix:QMAKE_CXXFLAGS += $$system(python$${PYTHON_VERSION}-config --includes)
 }
