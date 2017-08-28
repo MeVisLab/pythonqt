@@ -131,12 +131,13 @@ public:
     : flags(other.flags),
       m_qualifiedName(other.m_qualifiedName),
       m_arrayElements(other.m_arrayElements),
-      m_arguments(other.m_arguments)
+      m_arguments(other.m_arguments),
+      m_rvalue_reference(other.m_rvalue_reference)
   {
   }
 
   TypeInfo():
-    flags (0) {}
+    flags (0), m_rvalue_reference(false) {}
 
   QStringList qualifiedName() const { return m_qualifiedName; }
   void setQualifiedName(const QStringList &qualified_name) { m_qualifiedName = qualified_name; }
@@ -149,6 +150,9 @@ public:
 
   bool isReference() const { return m_reference; }
   void setReference(bool is) { m_reference = is; }
+
+  bool isRvalueReference() const { return m_rvalue_reference; }
+  void setRvalueReference(bool is) { m_rvalue_reference = is; }
 
   int indirections() const { return m_indirections; }
   void setIndirections(int indirections) { m_indirections = indirections; }
@@ -192,6 +196,7 @@ private:
   QStringList m_qualifiedName;
   QStringList m_arrayElements;
   QList<TypeInfo> m_arguments;
+  bool m_rvalue_reference;
 };
 
 class _CodeModelItem: public QSharedData

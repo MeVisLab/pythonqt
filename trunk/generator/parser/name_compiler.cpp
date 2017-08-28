@@ -147,7 +147,9 @@ void NameCompiler::visitTemplateArgument(TemplateArgumentAST *node)
 
       _M_name.last() += q.join("::");
 
-      if (decl_cc.isReference())
+      if (decl_cc.isRvalueReference())
+        _M_name.last() += "&&";
+      else if (decl_cc.isReference())
         _M_name.last() += "&";
       if (decl_cc.indirection())
         _M_name.last() += QString(decl_cc.indirection(), '*');

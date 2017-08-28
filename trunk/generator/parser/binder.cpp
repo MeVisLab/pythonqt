@@ -375,6 +375,13 @@ void Binder::visitFunctionDefinition(FunctionDefinitionAST *node)
     }
 
   decl_cc.run(declarator);
+  foreach (DeclaratorCompiler::Parameter p, decl_cc.parameters()) {
+    if (p.type.isRvalueReference()) {
+      std::cerr << "** Skipping function with rvalue reference parameter: "
+                << qPrintable(name_cc.name()) << std::endl;
+      return;
+    }
+  }
 
   Q_ASSERT(! decl_cc.id().isEmpty());
 
