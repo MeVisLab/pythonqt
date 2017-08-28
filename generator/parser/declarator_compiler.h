@@ -75,6 +75,7 @@ public:
   inline bool isFunction() const { return _M_function; }
   inline bool isVariadics() const { return _M_variadics; }
   inline bool isReference() const { return _M_reference; }
+  inline bool isRvalueReference() const { return _M_rvalue_reference; }
   inline int indirection() const { return _M_indirection; }
   inline QList<Parameter> parameters() const { return _M_parameters; }
 
@@ -88,6 +89,7 @@ private:
 
   bool _M_function;
   bool _M_reference;
+  bool _M_rvalue_reference;
   bool _M_variadics;
   int _M_indirection;
   QString _M_id;

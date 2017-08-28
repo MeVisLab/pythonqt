@@ -60,6 +60,7 @@ TypeInfo CompilerUtils::typeDescription(TypeSpecifierAST *type_specifier, Declar
   typeInfo.setConstant (type_cc.isConstant ());
   typeInfo.setVolatile (type_cc.isVolatile ());
   typeInfo.setReference (decl_cc.isReference ());
+  typeInfo.setRvalueReference (decl_cc.isRvalueReference ());
   typeInfo.setIndirections (decl_cc.indirection ());
   typeInfo.setArrayElements (decl_cc.arrayElements ());
 
