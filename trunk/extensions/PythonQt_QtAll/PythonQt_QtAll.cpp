@@ -34,18 +34,42 @@
 
 #include "PythonQt.h"
 
+#ifdef PYTHONQT_WITH_GUI
 void PythonQt_init_QtGui(PyObject*);
+#endif
+#ifdef PYTHONQT_WITH_SVG
 void PythonQt_init_QtSvg(PyObject*);
+#endif
+#ifdef PYTHONQT_WITH_SQL
 void PythonQt_init_QtSql(PyObject*);
+#endif
+#ifdef PYTHONQT_WITH_NETWORK
 void PythonQt_init_QtNetwork(PyObject*);
+#endif
+#ifdef PYTHONQT_WITH_CORE
 void PythonQt_init_QtCore(PyObject*);
+#endif
+#ifdef PYTHONQT_WITH_OPENGL
 void PythonQt_init_QtOpenGL(PyObject*);
+#endif
+#ifdef PYTHONQT_WITH_XML
 void PythonQt_init_QtXml(PyObject*);
+#endif
+#ifdef PYTHONQT_WITH_XMLPATTERNS
 void PythonQt_init_QtXmlPatterns(PyObject*);
+#endif
+#ifdef PYTHONQT_WITH_MULTIMEDIA
 void PythonQt_init_QtMultimedia(PyObject*);
+#endif
+#ifdef PYTHONQT_WITH_QML
 void PythonQt_init_QtQml(PyObject*);
+#endif
+#ifdef PYTHONQT_WITH_QUICK
 void PythonQt_init_QtQuick(PyObject*);
+#endif
+#ifdef PYTHONQT_WITH_UITOOLS
 void PythonQt_init_QtUiTools(PyObject*);
+#endif
 
 #ifdef PYTHONQT_WITH_WEBKIT
 void PythonQt_init_QtWebKit(PyObject*);
@@ -54,21 +78,45 @@ void PythonQt_init_QtWebKit(PyObject*);
 namespace PythonQt_QtAll
 {
   PYTHONQT_QTALL_EXPORT void init() {
+#ifdef PYTHONQT_WITH_CORE
     PythonQt_init_QtCore(0);
+#endif
+#ifdef PYTHONQT_WITH_NETWORK
     PythonQt_init_QtNetwork(0);
+#endif
+#ifdef PYTHONQT_WITH_GUI
     PythonQt_init_QtGui(0);
+#endif
+#ifdef PYTHONQT_WITH_XML
     PythonQt_init_QtXml(0);
+#endif
+#ifdef PYTHONQT_WITH_SVG
     PythonQt_init_QtSvg(0);
+#endif
+#ifdef PYTHONQT_WITH_SQL
     PythonQt_init_QtSql(0);
+#endif
 #ifdef PYTHONQT_WITH_WEBKIT
     PythonQt_init_QtWebKit(0);
 #endif
+#ifdef PYTHONQT_WITH_OPENGL
     PythonQt_init_QtOpenGL(0);
+#endif
+#ifdef PYTHONQT_WITH_XMLPATTERNS
     PythonQt_init_QtXmlPatterns(0);
+#endif
+#ifdef PYTHONQT_WITH_MULTIMEDIA
     PythonQt_init_QtMultimedia(0);
+#endif
+#ifdef PYTHONQT_WITH_QML
     PythonQt_init_QtQml(0);
+#endif
+#ifdef PYTHONQT_WITH_QUICK
     PythonQt_init_QtQuick(0);
+#endif
+#ifdef PYTHONQT_WITH_UITOOLS
     PythonQt_init_QtUiTools(0);
+#endif
   };
 };
 
