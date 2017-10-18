@@ -239,10 +239,10 @@ public Q_SLOTS:
   PQCppObjectNoWrap* new_PQCppObjectNoWrap() {
     return new PQCppObjectNoWrap(0);
   }
-  PQCppObjectNoWrap* new_PQCppObjectNoWrap(const PQCppObjectNoWrap& other) {
+  PQCppObjectNoWrap* new_PQCppObjectNoWrap(const PQCppObjectNoWrap& /*other*/) {
     return new PQCppObjectNoWrap(1);
   }
-  PQCppObjectNoWrap* new_PQCppObjectNoWrap(double value) {
+  PQCppObjectNoWrap* new_PQCppObjectNoWrap(double /*value*/) {
     return new PQCppObjectNoWrap(2);
   }
 
@@ -324,6 +324,7 @@ private Q_SLOTS:
   void testMultiArgsSlotCall();
   void testPyObjectSlotCall();
   void testOverloadedCall();
+  void testKeywordCall();
   void testCppFactory();
   void testInheritance();
   void testAutoConversion();
@@ -399,13 +400,17 @@ public Q_SLOTS:
   void testNoArg() { _called = true; }
 
   //! overload test!
-  void overload(bool a) { _calledOverload = 0; _called = true; }
-  void overload(float a) { _calledOverload = 1; _called = true;}
-  void overload(int a) { _calledOverload = 2; _called = true;}
-  void overload(const QString& str) { _calledOverload = 3; _called = true;}
-  void overload(const QStringList& str) { _calledOverload = 4; _called = true;}
-  void overload(QObject* str) { _calledOverload = 5; _called = true;}
-  void overload(float a, int b) { _calledOverload = 6; _called = true;}
+  void overload(bool /*a*/) { _calledOverload = 0; _called = true; }
+  void overload(float /*a*/) { _calledOverload = 1; _called = true;}
+  void overload(int /*a*/) { _calledOverload = 2; _called = true;}
+  void overload(const QString& /*str*/) { _calledOverload = 3; _called = true;}
+  void overload(const QStringList& /*str*/) { _calledOverload = 4; _called = true;}
+  void overload(QObject* /*str*/) { _calledOverload = 5; _called = true;}
+  void overload(float /*a*/, int /*b*/) { _calledOverload = 6; _called = true;}
+
+  //!keyword argument tests
+  int keywordInt(int i, const QVariantMap& kwargs = QVariantMap()) { _called = true; return (i + kwargs["value"].toInt()); }
+  int keywordOnly(const QVariantMap& kwargs = QVariantMap()) { _called = true; return kwargs.count(); }
 
   //! POD values:
   int getInt(int a) {   _called = true; return a; }
@@ -474,8 +479,8 @@ public Q_SLOTS:
     // returned object needs to get an extra ref count!
     Py_XINCREF(obj);
     return obj;
-  };
-  QVariant  getPyObjectFromVariant2(const QVariant& val) { _called = true; return val; };
+  }
+  QVariant  getPyObjectFromVariant2(const QVariant& val) { _called = true; return val; }
 
   //! testing pointer passing
   PythonQtTestSlotCallingHelper* getTestObject(PythonQtTestSlotCallingHelper* obj) {  _called = true; return obj; }
@@ -522,10 +527,10 @@ public Q_SLOTS:
   ClassA* createClassDAsA() { _called = true; return new ClassD; }
   ClassB* createClassDAsB() { _called = true; return new ClassD; }
 
-  QColor  setAutoConvertColor(const QColor& color) { _called = true; return color; };
-  QBrush  setAutoConvertBrush(const QBrush& brush) { _called = true; return brush; };
-  QPen    setAutoConvertPen(const QPen& pen) { _called = true; return pen; };
-  QCursor setAutoConvertCursor(const QCursor& cursor) { _called = true; return cursor; };
+  QColor  setAutoConvertColor(const QColor& color) { _called = true; return color; }
+  QBrush  setAutoConvertBrush(const QBrush& brush) { _called = true; return brush; }
+  QPen    setAutoConvertPen(const QPen& pen) { _called = true; return pen; }
+  QCursor setAutoConvertCursor(const QCursor& cursor) { _called = true; return cursor; }
   
 private:
   bool _passed;
@@ -560,24 +565,24 @@ class PythonQtTestSignalHandlerHelper : public QObject
 public:
   PythonQtTestSignalHandlerHelper(PythonQtTestSignalHandler* test) {
     _test = test;
-  };
+  }
 
 public Q_SLOTS:
   void setPassed() { _passed = true; }
 
-  bool emitIntSignal(int a) { _passed = false; emit intSignal(a); return _passed; };
-  bool emitFloatSignal(float a) { _passed = false; emit floatSignal(a); return _passed; };
-  bool emitEnumSignal(PQCppObject2::TestEnumFlag flag) { _passed = false; emit enumSignal(flag); return _passed; };
+  bool emitIntSignal(int a) { _passed = false; emit intSignal(a); return _passed; }
+  bool emitFloatSignal(float a) { _passed = false; emit floatSignal(a); return _passed; }
+  bool emitEnumSignal(PQCppObject2::TestEnumFlag flag) { _passed = false; emit enumSignal(flag); return _passed; }
 
-  bool emitVariantSignal(const QVariant& v) { _passed = false; emit variantSignal(v); return _passed; };
+  bool emitVariantSignal(const QVariant& v) { _passed = false; emit variantSignal(v); return _passed; }
   QVariant expectedVariant() { return _v; }
   void setExpectedVariant(const QVariant& v) { _v = v; }
 
-  bool emitComplexSignal(int a, float b, const QStringList& l, QObject* obj) { _passed = false; emit complexSignal(a,b,l,obj); return _passed; };
+  bool emitComplexSignal(int a, float b, const QStringList& l, QObject* obj) { _passed = false; emit complexSignal(a,b,l,obj); return _passed; }
 
-  bool emitSignal1(int a) { _passed = false; emit signal1(a); return _passed; };
-  bool emitSignal2(const QString& s) { _passed = false; emit signal2(s); return _passed; };
-  bool emitSignal3(float a) { _passed = false; emit signal3(a); return _passed; };
+  bool emitSignal1(int a) { _passed = false; emit signal1(a); return _passed; }
+  bool emitSignal2(const QString& s) { _passed = false; emit signal2(s); return _passed; }
+  bool emitSignal3(float a) { _passed = false; emit signal3(a); return _passed; }
 
 Q_SIGNALS:
   void intSignal(int);
