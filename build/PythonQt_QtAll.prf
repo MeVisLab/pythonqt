@@ -9,5 +9,5 @@ CONFIG(debug, debug|release) {
   DEBUG_EXT = 
 }
 
-win32::LIBS += $$PWD/../liPythonQt_QtAll-Qt5-Python$${PYTHON_VERSION}$${DEBUG_EXT}.lib
-unix::LIBS += -L$$PWD/../lib -lPythonQt_QtAll-Qt5-Python$${PYTHON_VERSION}$${DEBUG_EXT}
+win32::LIBS += $$DESTDIR/../lib/PythonQt_QtAll-Qt5-Python$${PYTHON_VERSION}$${DEBUG_EXT}.lib
+unix::LIBS += -L$$DESTDIR/../lib -lPythonQt_QtAll-Qt5-Python$${PYTHON_VERSION}$${DEBUG_EXT}
