@@ -343,6 +343,9 @@ public:
 
   //! evaluates the given script code and returns the result value
   QVariant evalScript(PyObject* object, const QString& script, int start = Py_file_input);
+  
+  //! evaluates the given script code in context of given globals and locals and returns the result value
+  QVariant evalScript(const QString& script, PyObject* globals, PyObject* locals, int start);
 
   //! evaluates the given script code from file
   void evalFile(PyObject* object, const QString& filename);

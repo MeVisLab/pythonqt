@@ -913,6 +913,24 @@ QVariant PythonQt::evalScript(PyObject* object, const QString& script, int start
   return result;
 }
 
+
+QVariant PythonQt::evalScript(const QString& script, PyObject* globals, PyObject* locals, int start)
+{
+  QVariant result;
+  PythonQtObjectPtr p;
+  clearError();
+  if (globals) {
+    p.setNewRef(PyRun_String(script.toLatin1().data(), start, globals, locals ? locals : globals));
+    if (p) {
+      result = PythonQtConv::PyObjToQVariant(p);
+    } else {
+      handleError();
+    }
+  }
+  return result;
+}
+
+
 void PythonQt::evalFile(PyObject* module, const QString& filename)
 {
   // NOTE: error checking is done by parseFile and evalCode
