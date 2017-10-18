@@ -481,11 +481,17 @@ meth_get__doc__(PythonQtSlotFunctionObject * m, void * /*closure*/)
     infoSearch = infoSearch->nextInfo();
   }
   doc = "X." + info->slotName(true) + "(";
-  for (int i = 1;i<longestInfo->parameterCount(); i++) {
-    if (i!=1) {
+  int firstArgOffset = info->isInstanceDecorator() ? 2 : 1;
+  QList<QByteArray> names = longestInfo->metaMethod()->parameterNames();
+  for (int i = firstArgOffset; i < longestInfo->parameterCount(); i++) {
+    if (i != firstArgOffset) {
       doc += ", ";
     }
-    doc += QString('a' + i-1);
+    if (!names.at(i - 1).isEmpty()) {
+      doc += names.at(i - 1);
+    } else {
+      doc += QString('a' + i - firstArgOffset);
+    }
   }
   doc += ")";
   QByteArray pyReturnType;
