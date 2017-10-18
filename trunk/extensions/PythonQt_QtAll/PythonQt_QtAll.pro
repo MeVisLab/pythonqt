@@ -41,9 +41,21 @@ HEADERS +=                \
 SOURCES +=                \
   PythonQt_QtAll.cpp
 
+# TODO: add these only when needed by configuration below
 QT += gui svg sql network xml xmlpatterns opengl
 QT += widgets printsupport multimedia multimediawidgets
 QT += quick qml quickwidgets uitools
+
+unix {
+  CONFIG += create_pc create_prl no_install_prl
+  QMAKE_PKGCONFIG_NAME = PythonQt_QtAll-Qt$${QT_MAJOR_VERSION}-Python$${PYTHON_VERSION}
+  QMAKE_PKGCONFIG_DESCRIPTION = Dynamic Python binding for the Qt framework
+  QMAKE_PKGCONFIG_PREFIX = $$INSTALLBASE
+  QMAKE_PKGCONFIG_LIBDIR = $$target.path
+  QMAKE_PKGCONFIG_INCDIR = $$headers.path
+  QMAKE_PKGCONFIG_INCDIR += $$PREFIX/include/PythonQt5
+  QMAKE_PKGCONFIG_VERSION = $$VERSION
+}
 
 unix: target.path = /lib
 win32: target.path = /
