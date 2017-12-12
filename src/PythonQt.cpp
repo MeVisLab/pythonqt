@@ -830,7 +830,7 @@ PythonQtObjectPtr PythonQt::lookupObject(PyObject* module, const QString& name)
   QByteArray b;
   for (QStringList::ConstIterator i = l.begin(); i!=l.end() && p; ++i) {
     prev = p;
-    b = (*i).toLatin1();
+    b = QStringToPythonEncoding(*i);
     if (PyDict_Check(p)) {
       p = PyDict_GetItemString(p, b.data());
     } else {
@@ -850,7 +850,7 @@ PythonQtObjectPtr PythonQt::getMainModule() {
 PythonQtObjectPtr PythonQt::importModule(const QString& name)
 {
   PythonQtObjectPtr mod;
-  mod.setNewRef(PyImport_ImportModule(name.toLatin1().constData()));
+  mod.setNewRef(PyImport_ImportModule(QStringToPythonCharPointer(name)));
   return mod;
 }
 
@@ -903,7 +903,7 @@ QVariant PythonQt::evalScript(PyObject* object, const QString& script, int start
     dict = object;
   }
   if (dict) {
-    p.setNewRef(PyRun_String(script.toLatin1().data(), start, dict, dict));
+    p.setNewRef(PyRun_String(QStringToPythonCharPointer(script), start, dict, dict));
   }
   if (p) {
     result = PythonQtConv::PyObjToQVariant(p);
@@ -920,7 +920,7 @@ QVariant PythonQt::evalScript(const QString& script, PyObject* globals, PyObject
   PythonQtObjectPtr p;
   clearError();
   if (globals) {
-    p.setNewRef(PyRun_String(script.toLatin1().data(), start, globals, locals ? locals : globals));
+    p.setNewRef(PyRun_String(QStringToPythonCharPointer(script), start, globals, locals ? locals : globals));
     if (p) {
       result = PythonQtConv::PyObjToQVariant(p);
     } else {
@@ -968,7 +968,7 @@ PythonQtObjectPtr PythonQt::createModuleFromScript(const QString& name, const QS
     scriptCode = "\n";
   }
   PythonQtObjectPtr pycode;
-  pycode.setNewRef(Py_CompileString((char*)scriptCode.toLatin1().data(), "",  Py_file_input));
+  pycode.setNewRef(Py_CompileString(QStringToPythonCharPointer(scriptCode), "",  Py_file_input));
   PythonQtObjectPtr module = _p->createModule(name, pycode);
   return module;
 }
@@ -983,31 +983,31 @@ PythonQtObjectPtr PythonQt::createUniqueModule()
 void PythonQt::addObject(PyObject* object, const QString& name, QObject* qObject)
 {
   if (PyModule_Check(object)) {
-    PyModule_AddObject(object, name.toLatin1().data(), _p->wrapQObject(qObject));
+    PyModule_AddObject(object, QStringToPythonCharPointer(name), _p->wrapQObject(qObject));
   } else if (PyDict_Check(object)) {
-    PyDict_SetItemString(object, name.toLatin1().data(), _p->wrapQObject(qObject));
+    PyDict_SetItemString(object, QStringToPythonCharPointer(name), _p->wrapQObject(qObject));
   } else {
-    PyObject_SetAttrString(object, name.toLatin1().data(), _p->wrapQObject(qObject));
+    PyObject_SetAttrString(object, QStringToPythonCharPointer(name), _p->wrapQObject(qObject));
   }
 }
 
 void PythonQt::addVariable(PyObject* object, const QString& name, const QVariant& v)
 {
   if (PyModule_Check(object)) {
-    PyModule_AddObject(object, name.toLatin1().data(), PythonQtConv::QVariantToPyObject(v));
+    PyModule_AddObject(object, QStringToPythonCharPointer(name), PythonQtConv::QVariantToPyObject(v));
   } else if (PyDict_Check(object)) {
-    PyDict_SetItemString(object, name.toLatin1().data(), PythonQtConv::QVariantToPyObject(v));
+    PyDict_SetItemString(object, QStringToPythonCharPointer(name), PythonQtConv::QVariantToPyObject(v));
   } else {
-    PyObject_SetAttrString(object, name.toLatin1().data(), PythonQtConv::QVariantToPyObject(v));
+    PyObject_SetAttrString(object, QStringToPythonCharPointer(name), PythonQtConv::QVariantToPyObject(v));
   }
 }
 
 void PythonQt::removeVariable(PyObject* object, const QString& name)
 {
   if (PyDict_Check(object)) {
-    PyDict_DelItemString(object, name.toLatin1().data());
+    PyDict_DelItemString(object, QStringToPythonCharPointer(name));
   } else {
-    PyObject_DelAttrString(object, name.toLatin1().data());
+    PyObject_DelAttrString(object, QStringToPythonCharPointer(name));
   }
 }
 
@@ -1033,7 +1033,7 @@ QStringList PythonQt::introspection(PyObject* module, const QString& objectname,
     if (!object && type == CallOverloads) {
       PyObject* dict = lookupObject(module, "__builtins__");
       if (dict) {
-        object = PyDict_GetItemString(dict, objectname.toLatin1().constData());
+        object = PyDict_GetItemString(dict, QStringToPythonCharPointer(objectname));
       }
     }
   }
@@ -1089,7 +1089,14 @@ QStringList PythonQt::introspectObject(PyObject* object, ObjectType type)
       keys = PyDict_Keys(object);
       isDict = true;
     } else {
+#if defined(MEVISLAB) && !defined(PY3K)
+      int oldPy3kWarningFlag = Py_Py3kWarningFlag;
+      Py_Py3kWarningFlag = 0;  // temporarily disable Python 3 warnings
       keys = PyObject_Dir(object);
+      Py_Py3kWarningFlag = oldPy3kWarningFlag;
+#else
+      keys = PyObject_Dir(object);
+#endif
     }
     if (keys) {
       int count = PyList_Size(keys);
@@ -1170,15 +1177,15 @@ PyObject* PythonQt::getObjectByType(const QString& typeName)
   QString moduleName = tmp.join(".");
   
   PyObject* object = NULL;
-  PyObject* moduleObject = PyDict_GetItemString(modules, moduleName.toLatin1().constData());
+  PyObject* moduleObject = PyDict_GetItemString(modules, QStringToPythonCharPointer(moduleName));
   if (moduleObject) {
-    object = PyObject_GetAttrString(moduleObject, simpleTypeName.toLatin1().constData());
+    object = PyObject_GetAttrString(moduleObject, QStringToPythonCharPointer(simpleTypeName));
   }
   
   if (!object) {
     moduleObject = PyDict_GetItemString(modules, "__builtin__");
     if (moduleObject) {
-      object = PyObject_GetAttrString(moduleObject, simpleTypeName.toLatin1().constData());
+      object = PyObject_GetAttrString(moduleObject, QStringToPythonCharPointer(simpleTypeName));
     }
   }
   
@@ -1202,7 +1209,7 @@ QStringList PythonQt::introspectType(const QString& typeName, ObjectType type)
     }
     PyObject* typeObject = getObjectByType(typeName);
     if (typeObject) {
-      object = PyObject_GetAttrString(typeObject, memberName.toLatin1().constData());
+      object = PyObject_GetAttrString(typeObject, QStringToPythonCharPointer(memberName));
     }
   }
   if (object) {
@@ -1272,7 +1279,7 @@ PyObject* PythonQt::callAndReturnPyObject(PyObject* callable, const QVariantList
           it.next();
           PyObject* arg = PythonQtConv::QVariantToPyObject(it.value());
           if (arg) {
-            PyDict_SetItemString(pkwargs, it.key().toLatin1().constData(), arg);
+            PyDict_SetItemString(pkwargs, QStringToPythonCharPointer(it.key()), arg);
           } else {
             err = true;
             break;
@@ -1434,7 +1441,7 @@ void PythonQtPrivate::addDecorators(QObject* o, int decoTypes)
 void PythonQtPrivate::registerQObjectClassNames(const QStringList& names)
 {
   Q_FOREACH(QString name, names) {
-    _knownQObjectClassNames.insert(name.toLatin1(), true);
+    _knownQObjectClassNames.insert(name.toUtf8(), true);
   }
 }
 
@@ -1602,7 +1609,7 @@ void PythonQt::setModuleImportPath(PyObject* module, const QStringList& paths)
 void PythonQt::stdOutRedirectCB(const QString& str)
 {
   if (!PythonQt::self()) {
-    std::cout << str.toLatin1().data() << std::endl;
+    std::cout << QStringToPythonConstCharPointer(str) << std::endl;
     return;
   }
   Q_EMIT PythonQt::self()->pythonStdOut(str);
@@ -1611,7 +1618,7 @@ void PythonQt::stdOutRedirectCB(const QString& str)
 void PythonQt::stdErrRedirectCB(const QString& str)
 {
   if (!PythonQt::self()) {
-    std::cerr << str.toLatin1().data() << std::endl;
+    std::cerr << QStringToPythonConstCharPointer(str) << std::endl;
     return;
   }
   Q_EMIT PythonQt::self()->pythonStdErr(str);
@@ -1727,9 +1734,9 @@ QString PythonQt::getReturnTypeOfWrappedMethodHelper(const PythonQtObjectPtr& va
 {
   PythonQtObjectPtr methodObject;
   if (PyDict_Check(variableObject)) {
-    methodObject = PyDict_GetItemString(variableObject, methodName.toLatin1().constData());
+    methodObject = PyDict_GetItemString(variableObject, QStringToPythonConstCharPointer(methodName));
   } else {
-    methodObject.setNewRef(PyObject_GetAttrString(variableObject, methodName.toLatin1().constData()));
+    methodObject.setNewRef(PyObject_GetAttrString(variableObject, QStringToPythonConstCharPointer(methodName)));
   }
   if (methodObject.isNull()) {
     return "";
@@ -1754,7 +1761,7 @@ QString PythonQt::getReturnTypeOfWrappedMethodHelper(const PythonQtObjectPtr& va
           // if the type is a known class info, then create the full type name, i.e. include the
           // module name. For example, the slot may return a QDate, then this looks up the
           // name _PythonQt.QtCore.QDate.
-          PythonQtClassInfo* typeInfo = _p->_knownClassInfos.value(type.toLatin1().constData());
+          PythonQtClassInfo* typeInfo = _p->_knownClassInfos.value(QStringToPythonConstCharPointer(type));
           if (typeInfo && typeInfo->pythonQtClassWrapper()) {
             PyObject* s = PyObject_GetAttrString(typeInfo->pythonQtClassWrapper(), "__module__");
             Q_ASSERT(PyString_Check(s));
@@ -1851,7 +1858,7 @@ PyObject* PythonQtPrivate::packageByName(const char* name)
 void PythonQtPrivate::handleVirtualOverloadReturnError(const char* signature, const PythonQtMethodInfo* methodInfo, PyObject* result)
 {
   QString error = "Return value '" + PythonQtConv::PyObjGetString(result) + "' can not be converted to expected C++ type '" + methodInfo->parameters().at(0).name + "' as return value of virtual method " + signature;
-  PyErr_SetString(PyExc_AttributeError, error.toLatin1().data());
+  PyErr_SetString(PyExc_AttributeError, QStringToPythonCharPointer(error));
   PythonQt::self()->handleError();
 }
 
@@ -1861,7 +1868,7 @@ PyObject* PythonQt::helpCalled(PythonQtClassInfo* info)
     Q_EMIT pythonHelpRequest(QByteArray(info->className()));
     return Py_BuildValue("");
   } else {
-    return PyString_FromString(info->help().toLatin1().data());
+    return PyString_FromString(QStringToPythonCharPointer(info->help()));
   }
 }
 
@@ -1911,7 +1918,7 @@ PythonQtObjectPtr PythonQtPrivate::createModule(const QString& name, PyObject* p
   PythonQtObjectPtr result;
   PythonQt::self()->clearError();
   if (pycode) {
-    result.setNewRef(PyImport_ExecCodeModule((char*)name.toLatin1().data(), pycode));
+    result.setNewRef(PyImport_ExecCodeModule(QStringToPythonCharPointer(name), pycode));
   } else {
     PythonQt::self()->handleError();
   }
@@ -2306,7 +2313,7 @@ PyObject* PythonQtPrivate::wrapMemoryAsBuffer( const void* data, Py_ssize_t size
 PyObject* PythonQtPrivate::wrapMemoryAsBuffer( void* data, Py_ssize_t size )
 {
 #ifdef PY3K
-  return PyMemoryView_FromMemory((char*)data, size, PyBUF_READ | PyBUF_WRITE);
+  return PyMemoryView_FromMemory((char*)data, size, PyBUF_WRITE);
 #else
   return PyBuffer_FromReadWriteMemory((char*)data, size);
 #endif

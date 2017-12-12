@@ -51,6 +51,7 @@
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
+#include <fcntl.h>
 
 #define IS_SOURCE   0x0
 #define IS_BYTECODE 0x1
@@ -260,9 +261,9 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
       int err;
 
       fullpath = PyString_FromFormat("%s%c%s",
-        self->_path->toLatin1().constData(),
-        SEP,
-        subname.toLatin1().constData());
+                                     QStringToPythonConstCharPointer(*self->_path),
+                                     SEP,
+                                     QStringToPythonConstCharPointer(subname));
       if (fullpath == NULL) {
         Py_DECREF(code);
         Py_DECREF(mod);
@@ -299,11 +300,16 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
     }
 
 #ifdef PY3K
-    mod = PyImport_ExecCodeModuleWithPathnames(fullname, code, fullPath.toUtf8().data(), fullCachePath.isEmpty() ? NULL : fullCachePath.toUtf8().data());
+    PyObject* fullnameObj = PyUnicode_FromString(fullname);
+    PyObject* fullPathObj = PythonQtConv::QStringToPyObject(fullPath);
+    PyObject* fullCachePathObj = fullCachePath.isEmpty() ? PythonQtConv::QStringToPyObject(fullCachePath) : NULL;
+    mod = PyImport_ExecCodeModuleObject(fullnameObj, code, fullPathObj, fullCachePathObj);
+    Py_XDECREF(fullnameObj);
+    Py_XDECREF(fullPathObj);
+    Py_XDECREF(fullCachePathObj);
 #else
     mod = PyImport_ExecCodeModuleEx(fullname, code, fullPath.toLatin1().data());
 #endif
-
     if (PythonQt::importInterface()) {
       PythonQt::importInterface()->importedModule(fullname);
     }
@@ -311,7 +317,7 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
     Py_DECREF(code);
     if (Py_VerboseFlag) {
       PySys_WriteStderr("import %s # loaded from %s\n",
-        fullname, fullPath.toLatin1().constData());
+        fullname, QStringToPythonConstCharPointer(fullPath));
     }
   } else {
     PythonQtObjectPtr imp;
@@ -530,9 +536,9 @@ open_exclusive(const QString& filename)
     flags |= O_BINARY;   /* necessary for Windows */
 #endif
 #ifdef WIN32
-  fd = _wopen(filename.ucs2(), flags, 0666);
+  fd = _wopen((const wchar_t*)filename.utf16(), flags, 0666);
 #else
-  fd = open(filename.local8Bit(), flags, 0666);
+  fd = open(filename.toLocal8Bit(), flags, 0666);
 #endif
   if (fd < 0)
     return NULL;
@@ -562,7 +568,7 @@ void PythonQtImport::writeCompiledModule(PyCodeObject *co, const QString& filena
   if (fp == NULL) {
     if (Py_VerboseFlag)
       PySys_WriteStderr(
-      "# can't create %s\n", filename.toLatin1().constData());
+      "# can't create %s\n", QStringToPythonConstCharPointer(filename));
     return;
   }
 #if PY_VERSION_HEX < 0x02040000
@@ -586,7 +592,7 @@ void PythonQtImport::writeCompiledModule(PyCodeObject *co, const QString& filena
 #endif
   if (ferror(fp)) {
     if (Py_VerboseFlag)
-      PySys_WriteStderr("# can't write %s\n", filename.toLatin1().constData());
+      PySys_WriteStderr("# can't write %s\n", QStringToPythonConstCharPointer(filename));
     /* Don't keep partial file */
     fclose(fp);
     QFile::remove(filename);
@@ -601,11 +607,9 @@ void PythonQtImport::writeCompiledModule(PyCodeObject *co, const QString& filena
 #endif
   fflush(fp);
   fclose(fp);
-  if (Py_VerboseFlag)
-    PySys_WriteStderr("# wrote %s\n", filename.toLatin1().constData());
-//#ifdef macintosh
-//  PyMac_setfiletype(cpathname, 'Pyth', 'PYC ');
-//#endif
+  if (Py_VerboseFlag) {
+    PySys_WriteStderr("# wrote %s\n", QStringToPythonConstCharPointer(filename));
+  }
 }
 
 /* Given the contents of a .py[co] file in a buffer, unmarshal the data
@@ -623,7 +627,7 @@ PythonQtImport::unmarshalCode(const QString& path, const QByteArray& data, time_
 
   if (size <= 9) {
     PySys_WriteStderr("# %s has bad pyc data\n",
-            path.toLatin1().constData());
+                      QStringToPythonConstCharPointer(path));
     Py_INCREF(Py_None);
     return Py_None;
   }
@@ -631,7 +635,7 @@ PythonQtImport::unmarshalCode(const QString& path, const QByteArray& data, time_
   if (getLong((unsigned char *)buf) != PyImport_GetMagicNumber()) {
     if (Py_VerboseFlag)
       PySys_WriteStderr("# %s has bad magic\n",
-            path.toLatin1().constData());
+            QStringToPythonConstCharPointer(path));
     Py_INCREF(Py_None);
     return Py_None;
   }
@@ -642,7 +646,7 @@ PythonQtImport::unmarshalCode(const QString& path, const QByteArray& data, time_
     if (timeDiff > 1) {
       if (Py_VerboseFlag)
         PySys_WriteStderr("# %s has bad mtime\n",
-        path.toLatin1().constData());
+        QStringToPythonConstCharPointer(path));
       Py_INCREF(Py_None);
       return Py_None;
     }
@@ -663,7 +667,7 @@ PythonQtImport::unmarshalCode(const QString& path, const QByteArray& data, time_
     Py_DECREF(code);
     PyErr_Format(PyExc_TypeError,
          "compiled module %.200s is not a code object",
-         path.toLatin1().constData());
+         QStringToPythonConstCharPointer(path));
     return NULL;
   }
   return code;
@@ -680,8 +684,15 @@ PythonQtImport::compileSource(const QString& path, const QByteArray& data)
 // in qt4, data is null terminated
 //  data1.resize(data.size()+1);
 //  data1.data()[data.size()-1] = 0;
-  code = Py_CompileString(data.data(), path.toLatin1().constData(),
-        Py_file_input);
+#ifdef PY3K
+  PyObject* filename = PythonQtConv::QStringToPyObject(path);
+  code = Py_CompileStringObject(data.data(), filename,
+                                Py_file_input, NULL, -1);
+  Py_DECREF(filename);
+#else
+  code = Py_CompileString(data.data(), QStringToPythonConstCharPointer(path),
+                          Py_file_input);
+#endif
   return code;
 }
 
@@ -792,7 +803,7 @@ PythonQtImport::getModuleCode(PythonQtImporter *self, const char* fullname, QStr
 
     if (Py_VerboseFlag > 1)
       PySys_WriteStderr("# trying %s\n",
-            test.toLatin1().constData());
+                        QStringToPythonConstCharPointer(test));
 #ifdef PY3K
     if (!PythonQt::importInterface()->exists(test) && zso->type & IS_BYTECODE) {
       // try __pycache__/*.pyc file
@@ -800,7 +811,7 @@ PythonQtImport::getModuleCode(PythonQtImporter *self, const char* fullname, QStr
       test = *self->_path + "/__pycache__/" + subname + "." + cacheTag + zso->suffix;
       if (Py_VerboseFlag > 1)
         PySys_WriteStderr("# trying %s\n",
-              test.toLatin1().constData());
+                          QStringToPythonConstCharPointer(test));
     }
 #endif
     if (PythonQt::importInterface()->exists(test)) {

@@ -40,6 +40,7 @@
 //----------------------------------------------------------------------------------
 
 #include "PythonQtStdIn.h"
+#include "PythonQt.h"
 
 static PyObject *PythonQtStdInRedirect_new(PyTypeObject *type, PyObject * /*args*/, PyObject * /*kwds*/)
 {
@@ -56,9 +57,9 @@ static PyObject *PythonQtStdInRedirect_readline(PyObject * self, PyObject * args
   PythonQtStdInRedirect*  s = (PythonQtStdInRedirect*)self;
   QString string;
   if (s->_cb) {
-    string =  (*s->_cb)(s->_callData);
-    }
-  return Py_BuildValue("s", string.toLatin1().constData());
+    string = (*s->_cb)(s->_callData);
+  }
+  return Py_BuildValue("s", QStringToPythonConstCharPointer(string));
 }
 
 static PyMethodDef PythonQtStdInRedirect_methods[] = {

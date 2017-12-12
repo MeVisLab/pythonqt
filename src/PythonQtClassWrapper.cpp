@@ -143,7 +143,7 @@ static PyObject* PythonQtInstanceWrapper_binaryfunc(PyObject* self, PyObject* ot
   // different objects on the right. Otherwise we would need to generate __radd__ etc. methods.
   if (!PyObject_TypeCheck(self, &PythonQtInstanceWrapper_Type)) {
     QString error = "Unsupported operation " + opName + "(" + self->ob_type->tp_name + ", " +  other->ob_type->tp_name + ")";
-    PyErr_SetString(PyExc_ArithmeticError, error.toLatin1().data());
+    PyErr_SetString(PyExc_ArithmeticError, QStringToPythonCharPointer(error));
     return NULL;
   }
   PythonQtInstanceWrapper* wrapper = (PythonQtInstanceWrapper*)self;
@@ -384,7 +384,7 @@ static int PythonQtClassWrapper_init(PythonQtClassWrapper* self, PyObject* args,
 
 static PyObject *PythonQtClassWrapper_classname(PythonQtClassWrapper* type)
 {
-  return PyString_FromString((QString("Class_") + type->classInfo()->className()).toLatin1().data());
+  return PyString_FromString((QByteArray("Class_") + type->classInfo()->className()).constData());
 }
 
 static PyObject *PythonQtClassWrapper_help(PythonQtClassWrapper* type)
@@ -474,9 +474,9 @@ static PyObject *PythonQtClassWrapper_getattro(PyObject *obj, PyObject *name)
         // do not expose internal slots
         continue;
       }
-      PyObject* o = PyObject_GetAttrString(obj, name.toLatin1().constData());
+      PyObject* o = PyObject_GetAttrString(obj, QStringToPythonConstCharPointer(name));
       if (o) {
-        PyDict_SetItemString(dict, name.toLatin1().constData(), o);
+        PyDict_SetItemString(dict, QStringToPythonConstCharPointer(name), o);
         Py_DECREF(o);
       } else {
         // we should not get here anymore, but ignore this anyways.
@@ -559,7 +559,7 @@ static PyObject *PythonQtClassWrapper_getattro(PyObject *obj, PyObject *name)
   }
 
   QString error = QString(wrapper->classInfo()->className()) + " has no attribute named '" + QString(attributeName) + "'";
-  PyErr_SetString(PyExc_AttributeError, error.toLatin1().data());
+  PyErr_SetString(PyExc_AttributeError, QStringToPythonConstCharPointer(error));
   return NULL;
 }
 
