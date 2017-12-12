@@ -1024,11 +1024,11 @@ PyObject* PythonQtClassInfo::getPythonTypeForProperty( const QString& name )
 PythonQtClassInfo* PythonQtClassInfo::getClassInfoForProperty( const QString& name )
 {
   QByteArray typeName;
-  PythonQtMemberInfo info = member(name.toLatin1().constData());
+  PythonQtMemberInfo info = member(QStringToPythonConstCharPointer(name));
   if (info._type == PythonQtMemberInfo::Property) {
     typeName = info._property.typeName();
   } else {
-    info = member(QString("py_get_" + name).toLatin1().constData());
+    info = member(QStringToPythonConstCharPointer(QString("py_get_" + name)));
     if (info._type == PythonQtMemberInfo::Slot) {
       typeName = info._slot->parameters().at(0).name;
     }

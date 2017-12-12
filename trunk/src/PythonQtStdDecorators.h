@@ -64,15 +64,15 @@ class PYTHONQT_EXPORT PythonQtStdDecorators : public QObject
   Q_OBJECT
 
 public Q_SLOTS:
-  bool connect(QObject* sender, const QString& signal, PyObject* callable);
-  bool connect(QObject* sender, const QString& signal, QObject* receiver, const QString& slot,  Qt::ConnectionType type = Qt::AutoConnection);
-  bool connect(QObject* receiver, QObject* sender, const QString& signal, const QString& slot,  Qt::ConnectionType type = Qt::AutoConnection) { return connect(sender, signal, receiver, slot, type); }
-  bool static_QObject_connect(QObject* sender, const QString& signal, PyObject* callable) { return connect(sender, signal, callable); }
-  bool static_QObject_connect(QObject* sender, const QString& signal, QObject* receiver, const QString& slot,  Qt::ConnectionType type = Qt::AutoConnection)  { return connect(sender, signal, receiver, slot, type); }
-  bool disconnect(QObject* sender, const QString& signal, PyObject* callable = NULL);
-  bool disconnect(QObject* sender, const QString& signal, QObject* receiver, const QString& slot);
-  bool static_QObject_disconnect(QObject* sender, const QString& signal, PyObject* callable = NULL) { return disconnect(sender, signal, callable); }
-  bool static_QObject_disconnect(QObject* sender, const QString& signal, QObject* receiver, const QString& slot) { return connect(sender, signal, receiver, slot); }
+  bool connect(QObject* sender, PyObject* signal, PyObject* callable);
+  bool connect(QObject* sender, PyObject* signal, QObject* receiver, PyObject* slot,  Qt::ConnectionType type = Qt::AutoConnection);
+  bool connect(QObject* receiver, QObject* sender, PyObject* signal, PyObject* slot,  Qt::ConnectionType type = Qt::AutoConnection) { return connect(sender, signal, receiver, slot, type); }
+  bool static_QObject_connect(QObject* sender, PyObject* signal, PyObject* callable) { return connect(sender, signal, callable); }
+  bool static_QObject_connect(QObject* sender, PyObject* signal, QObject* receiver, PyObject* slot,  Qt::ConnectionType type = Qt::AutoConnection)  { return connect(sender, signal, receiver, slot, type); }
+  bool disconnect(QObject* sender, PyObject* signal, PyObject* callable = NULL);
+  bool disconnect(QObject* sender, PyObject* signal, QObject* receiver, PyObject* slot);
+  bool static_QObject_disconnect(QObject* sender, PyObject* signal, PyObject* callable = NULL) { return disconnect(sender, signal, callable); }
+  bool static_QObject_disconnect(QObject* sender, PyObject* signal, QObject* receiver, PyObject* slot) { return disconnect(sender, signal, receiver, slot); }
 
   const QMetaObject* metaObject( QObject* obj );
 
@@ -137,7 +137,8 @@ class PythonQtWrapper_QMetaObject : public QObject
   Q_OBJECT
 
 public Q_SLOTS:
-  const char *className(QMetaObject* obj) const { return obj->className(); }
+  // Python 3: PythonQt shadows className, so we need an extra getClassName method...
+  const char *getClassName(QMetaObject* obj) const { return obj->className(); }
   const QMetaObject *superClass(QMetaObject* obj) const { return obj->superClass(); }
 
   int methodOffset(QMetaObject* obj) const { return obj->methodOffset(); }

@@ -85,7 +85,7 @@ void PythonQtScriptingConsole::stdOut(const QString& s)
   int idx;
   while ((idx = _stdOut.indexOf('\n'))!=-1) {
     consoleMessage(_stdOut.left(idx));
-    std::cout << _stdOut.left(idx).toLatin1().data() << std::endl;
+    std::cout << QStringToPythonConstCharPointer(_stdOut.left(idx)) << std::endl;
     _stdOut = _stdOut.mid(idx+1);
   }
 }
@@ -97,7 +97,7 @@ void PythonQtScriptingConsole::stdErr(const QString& s)
   int idx;
   while ((idx = _stdErr.indexOf('\n'))!=-1) {
     consoleMessage(_stdErr.left(idx));
-    std::cerr << _stdErr.left(idx).toLatin1().data() << std::endl;
+    std::cerr << QStringToPythonConstCharPointer(_stdErr.left(idx)) << std::endl;
     _stdErr = _stdErr.mid(idx+1);
   }
 }
@@ -181,7 +181,7 @@ void PythonQtScriptingConsole::executeCode(const QString& code)
     dict = _context;
   }
   if (dict) {
-    p.setNewRef(PyRun_String(code.toLatin1().data(), Py_single_input, dict, dict));
+    p.setNewRef(PyRun_String(QStringToPythonConstCharPointer(code), Py_single_input, dict, dict));
   }
 
   if (!p) {

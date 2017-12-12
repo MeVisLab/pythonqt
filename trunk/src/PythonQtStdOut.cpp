@@ -77,7 +77,11 @@ static PyObject *PythonQtStdOutRedirect_write(PyObject *self, PyObject *args)
         if (!PyArg_ParseTuple(args, "s", &string)) {
           return NULL;
         }
+#ifdef PY3K
+        output = QString::fromUtf8(string);
+#else
         output = QString::fromLatin1(string);
+#endif
       }
     }
 

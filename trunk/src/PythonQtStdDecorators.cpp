@@ -46,10 +46,25 @@
 
 #include <QCoreApplication>
 
-bool PythonQtStdDecorators::connect(QObject* sender, const QString& signal, PyObject* callable)
+// we want to support bytes and unicode strings, since the user will not always write b''
+// and signals and slots are always ascii...
+static QByteArray getByteArrayFromPyObject(PyObject* obj)
+{
+  bool ok;
+  QByteArray bytes = PythonQtConv::PyObjGetBytes(obj, true, ok);
+  if (!ok) {
+    QString str = PythonQtConv::PyObjGetString(obj, true, ok);
+    if (ok) {
+      bytes = str.toUtf8();
+    }
+  }
+  return bytes;
+}
+
+bool PythonQtStdDecorators::connect(QObject* sender, PyObject* signal, PyObject* callable)
 {
   bool result = false;
-  QByteArray signalTmp = signal.toLatin1();
+  QByteArray signalTmp = getByteArrayFromPyObject(signal);
   char first = signalTmp.at(0);
   if (first<'0' || first>'9') {
     signalTmp = "2" + signalTmp;
@@ -59,24 +74,24 @@ bool PythonQtStdDecorators::connect(QObject* sender, const QString& signal, PyOb
     result = PythonQt::self()->addSignalHandler(sender, signalTmp, callable);
     if (!result) {
       if (sender->metaObject()->indexOfSignal(QMetaObject::normalizedSignature(signalTmp.constData()+1)) == -1) {
-        qWarning("PythonQt: QObject::connect() signal '%s' does not exist on %s", signal.toLatin1().constData(), sender->metaObject()->className());
+        qWarning("PythonQt: QObject::connect() signal '%s' does not exist on %s", PythonQtConv::PyObjGetString(signal).toUtf8().constData(), sender->metaObject()->className());
       }
     }
   }
   return result;
 }
 
-bool PythonQtStdDecorators::connect(QObject* sender, const QString& signal, QObject* receiver, const QString& slot, Qt::ConnectionType type)
+bool PythonQtStdDecorators::connect(QObject* sender, PyObject* signal, QObject* receiver, PyObject* slot, Qt::ConnectionType type)
 {
   bool r = false;
   if (sender && receiver) {
-    QByteArray signalTmp = signal.toLatin1();
+    QByteArray signalTmp = getByteArrayFromPyObject(signal);
     char first = signalTmp.at(0);
     if (first<'0' || first>'9') {
       signalTmp = "2" + signalTmp;
     }
 
-    QByteArray slotTmp = slot.toLatin1();
+    QByteArray slotTmp = getByteArrayFromPyObject(slot);
     first = slotTmp.at(0);
     if (first<'0' || first>'9') {
       slotTmp = "1" + slotTmp;
@@ -86,10 +101,10 @@ bool PythonQtStdDecorators::connect(QObject* sender, const QString& signal, QObj
   return r;
 }
 
-bool PythonQtStdDecorators::disconnect(QObject* sender, const QString& signal, PyObject* callable)
+bool PythonQtStdDecorators::disconnect(QObject* sender, PyObject* signal, PyObject* callable)
 {
   bool result = false;
-  QByteArray signalTmp = signal.toLatin1();
+  QByteArray signalTmp = getByteArrayFromPyObject(signal);
   char first = signalTmp.at(0);
   if (first<'0' || first>'9') {
     signalTmp = "2" + signalTmp;
@@ -101,24 +116,24 @@ bool PythonQtStdDecorators::disconnect(QObject* sender, const QString& signal, P
     }
     if (!result) {
       if (sender->metaObject()->indexOfSignal(QMetaObject::normalizedSignature(signalTmp.constData()+1)) == -1) {
-        qWarning("PythonQt: QObject::disconnect() signal '%s' does not exist on %s", signal.toLatin1().constData(), sender->metaObject()->className());
+        qWarning("PythonQt: QObject::disconnect() signal '%s' does not exist on %s", PythonQtConv::PyObjGetString(signal).toUtf8().constData(), sender->metaObject()->className());
       }
     }
   }
   return result;
 }
 
-bool PythonQtStdDecorators::disconnect(QObject* sender, const QString& signal, QObject* receiver, const QString& slot)
+bool PythonQtStdDecorators::disconnect(QObject* sender, PyObject* signal, QObject* receiver, PyObject* slot)
 {
   bool r = false;
   if (sender && receiver) {
-    QByteArray signalTmp = signal.toLatin1();
+    QByteArray signalTmp = getByteArrayFromPyObject(signal);
     char first = signalTmp.at(0);
     if (first<'0' || first>'9') {
       signalTmp = "2" + signalTmp;
     }
 
-    QByteArray slotTmp = slot.toLatin1();
+    QByteArray slotTmp = getByteArrayFromPyObject(slot);
     first = slotTmp.at(0);
     if (first<'0' || first>'9') {
       slotTmp = "1" + slotTmp;
