@@ -575,7 +575,7 @@ PyObject* PythonQtPrivate::wrapPtr(void* ptr, const QByteArray& name, bool passO
       // if the object is a derived object, we want to switch the class info to the one of the derived class:
       if (name!=(qptr->metaObject()->className())) {
         info = _knownClassInfos.value(qptr->metaObject()->className());
-        if (!info) {
+        if (!info || (info->pythonQtClassWrapper() == NULL)) {
           registerClass(qptr->metaObject());
           info = _knownClassInfos.value(qptr->metaObject()->className());
         }
@@ -1017,6 +1017,16 @@ QVariant PythonQt::getVariable(PyObject* object, const QString& objectname)
   PythonQtObjectPtr obj = lookupObject(object, objectname);
   if (obj) {
     result = PythonQtConv::PyObjToQVariant(obj);
+  }
+  return result;
+}
+
+QVariant PythonQt::getNativeVariable(PyObject* object, const QString& objectname)
+{
+  QVariant result;
+  PythonQtObjectPtr obj = lookupObject(object, objectname);
+  if (obj) {
+    result = QVariant::fromValue(obj);
   }
   return result;
 }
