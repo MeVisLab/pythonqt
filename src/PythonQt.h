@@ -400,6 +400,9 @@ public:
   //! get the variable with the \c name of the \c object, returns an invalid QVariant on error
   QVariant getVariable(PyObject* object, const QString& name);
 
+  //! get the variable with the \c name of the \c object as QVariant of type PythonQtObjectPtr, returns an invalid QVariant on error
+  QVariant getNativeVariable(PyObject* object, const QString& name);
+
   //! read vars etc. in scope of an \c object, optional looking inside of an object \c objectname
   QStringList introspection(PyObject* object, const QString& objectname, ObjectType type);
   //! read vars etc. in scope of the given \c object
