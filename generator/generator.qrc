@@ -10,6 +10,7 @@
 <file alias="typesystem_network.txt">typesystem_network.xml</file>
 <file alias="typesystem_xml.txt">typesystem_xml.xml</file>
 <file alias="typesystem_webkit.txt">typesystem_webkit.xml</file>
+<file alias="typesystem_webenginewidgets.txt">typesystem_webenginewidgets.xml</file>
 <file alias="typesystem_xmlpatterns.txt">typesystem_xmlpatterns.xml</file>
 <file alias="typesystem_multimedia.txt">typesystem_multimedia.xml</file>
 <file alias="typesystem_qml.txt">typesystem_qml.xml</file>

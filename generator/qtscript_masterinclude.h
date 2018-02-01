@@ -83,6 +83,8 @@
 #endif
 #endif
 
+#include <QtWebEngineWidgets/QtWebEngineWidgets>
+
 #ifndef QT_NO_PHONON
 #  include <phonon/phonon>
 #endif
