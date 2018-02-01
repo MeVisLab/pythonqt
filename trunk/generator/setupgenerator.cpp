@@ -253,6 +253,8 @@ void SetupGenerator::generate()
       shortPackName = "QtWebKit";
     } else if (shortPackName == "QtXmlpatterns") {
       shortPackName = "QtXmlPatterns";
+    } else if (shortPackName == "QtWebenginewidgets") {
+      shortPackName = "QtWebEngineWidgets";
     } else if (shortPackName == "QtOpengl") {
       shortPackName = "QtOpenGL";
     } else if (shortPackName == "QtUitools") {

@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<typesystem package="com.trolltech.qt.webenginewidgets">
+
+    <object-type name="QWebEngineView">
+    </object-type>
+    <object-type name="QWebEnginePage">
+    </object-type>
+  
+  <object-type name="QWebEngineCertificateError"/>
+  <object-type name="QWebEngineCookieStore"/>
+  <object-type name="QWebEngineDownloadItem"/>
+  <object-type name="QWebEngineFullScreenRequest"/>
+  <object-type name="QWebEngineHistory"/>
+  <object-type name="QWebEngineHistoryItem"/>
+  <object-type name="QWebEngineProfile"/>
+  <object-type name="QWebEngineScript"/>
+  <object-type name="QWebEngineScriptCollection"/>
+  <object-type name="QWebEngineSettings"/>
+  <object-type name="QWebEngineUrlRequestInfo"/>
+  <object-type name="QWebEngineUrlRequestInterceptor"/>
+  <object-type name="QWebEngineUrlRequestJob"/>
+  <object-type name="QWebEngineUrlSchemeHandler"/>
+
+  <enum-type name="QWebEngineCertificateError::Error"/>
+  <enum-type name="QWebEngineDownloadItem::DownloadState"/>
+  <enum-type name="QWebEnginePage::Feature"/>
+  <enum-type name="QWebEnginePage::FileSelectionMode"/>
+  <enum-type name="QWebEnginePage::FindFlag" flags="QWebEnginePage::FindFlags"/>"
+  <enum-type name="QWebEnginePage::JavaScriptConsoleMessageLevel"/>
+  <enum-type name="QWebEnginePage::NavigationType"/>
+  <enum-type name="QWebEnginePage::PermissionPolicy"/>
+  <enum-type name="QWebEnginePage::RenderProcessTerminationStatus"/>
+  <enum-type name="QWebEnginePage::WebAction"/>
+  <enum-type name="QWebEnginePage::WebWindowType"/>
+  <enum-type name="QWebEngineProfile::HttpCacheType"/>
+  <enum-type name="QWebEngineProfile::PersistentCookiesPolicy"/>
+  <enum-type name="QWebEngineScript::InjectionPoint"/>
+  <enum-type name="QWebEngineScript::ScriptWorldId"/>
+  <enum-type name="QWebEngineSettings::FontFamily"/>
+  <enum-type name="QWebEngineSettings::FontSize"/>
+  <enum-type name="QWebEngineSettings::WebAttribute"/>
+  <enum-type name="QWebEngineUrlRequestInfo::NavigationType"/>
+  <enum-type name="QWebEngineUrlRequestInfo::ResourceType"/>
+  <enum-type name="QWebEngineUrlRequestJob::Error"/>
+
+</typesystem>
