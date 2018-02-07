@@ -165,7 +165,43 @@
   <primitive-type name="GLboolean"/>
   <primitive-type name="GLuint64"/>
   
-  <primitive-type name="bool"/><primitive-type name="double"/><primitive-type name="qreal"/><primitive-type name="float"/><primitive-type name="qint64"/><primitive-type name="__int64"/><primitive-type name="unsigned __int64"/><primitive-type name="unsigned long long"/><primitive-type name="long long"/><primitive-type name="qlonglong"/><primitive-type name="qulonglong"/><primitive-type name="short"/><primitive-type name="short"/><primitive-type name="signed short"/><primitive-type name="ushort"/><primitive-type name="unsigned short"/><primitive-type name="char"/><primitive-type name="signed char"/><primitive-type name="uchar"/><primitive-type name="unsigned char"/><primitive-type name="int"/><primitive-type name="signed int"/><primitive-type name="uint"/><primitive-type name="ulong"/><primitive-type name="unsigned int"/><primitive-type name="signed long"/><primitive-type name="long"/><primitive-type name="unsigned long"/><primitive-type name="WId"/><primitive-type name="Qt::HANDLE"/><primitive-type name="QVariant::Type"/><primitive-type name="QByteRef"/><primitive-type name="QBitRef"/><primitive-type name="QBool"/><primitive-type name="jobject"/><primitive-type name="quintptr"/>
+  <primitive-type name="bool"/>
+  <primitive-type name="double"/>
+  <primitive-type name="qreal"/>
+  <primitive-type name="float"/>
+  <primitive-type name="qint64"/>
+  <primitive-type name="quint64"/>
+  <primitive-type name="__int64"/>
+  <primitive-type name="unsigned __int64"/>
+  <primitive-type name="unsigned long long"/>
+  <primitive-type name="long long"/>
+  <primitive-type name="qlonglong"/>
+  <primitive-type name="qulonglong"/>
+  <primitive-type name="short"/>
+  <primitive-type name="signed short"/>
+  <primitive-type name="ushort"/>
+  <primitive-type name="unsigned short"/>
+  <primitive-type name="char"/>
+  <primitive-type name="signed char"/>
+  <primitive-type name="uchar"/>
+  <primitive-type name="unsigned char"/>
+  <primitive-type name="int"/>
+  <primitive-type name="signed int"/>
+  <primitive-type name="uint"/>
+  <primitive-type name="ulong"/>
+  <primitive-type name="unsigned int"/>
+  <primitive-type name="signed long"/>
+  <primitive-type name="long"/>
+  <primitive-type name="unsigned long"/>
+  <primitive-type name="WId"/>
+  <primitive-type name="Qt::HANDLE"/>
+  <primitive-type name="QVariant::Type"/>
+  <primitive-type name="QByteRef"/>
+  <primitive-type name="QBitRef"/>
+  <primitive-type name="QBool"/>
+  <primitive-type name="jobject"/>
+  <primitive-type name="quintptr"/>
+  <primitive-type name="qintptr"/>
 
   <value-type name="QModelIndex"/>
   <rejection class="*" function-name="d_func"/>
