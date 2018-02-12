@@ -63,11 +63,11 @@ virtual bool  atEnd() const;
 virtual qint64  bytesAvailable() const;
 virtual qint64  bytesToWrite() const;
 virtual bool  canReadLine() const;
-virtual void childEvent(QChildEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
 virtual void close();
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual QString  fileName() const;
 virtual bool  isSequential() const;
 virtual bool  open(QIODevice::OpenMode  mode);
@@ -80,7 +80,7 @@ virtual bool  resize(qint64  sz);
 virtual bool  seek(qint64  offset);
 virtual bool  setPermissions(QFileDevice::Permissions  permissionSpec);
 virtual qint64  size() const;
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  event);
 virtual bool  waitForBytesWritten(int  msecs);
 virtual bool  waitForReadyRead(int  msecs);
 virtual qint64  writeData(const char*  data, qint64  len);
@@ -228,11 +228,11 @@ public:
 
    ~PythonQtShell_QFileSelector();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -264,11 +264,11 @@ public:
 
    ~PythonQtShell_QFileSystemWatcher();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -301,13 +301,13 @@ public:
 
    ~PythonQtShell_QFinalState();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
 virtual bool  event(QEvent*  e);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual void onEntry(QEvent*  event);
 virtual void onExit(QEvent*  event);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -347,13 +347,13 @@ public:
 
    ~PythonQtShell_QHistoryState();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
 virtual bool  event(QEvent*  e);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual void onEntry(QEvent*  event);
 virtual void onExit(QEvent*  event);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -404,11 +404,11 @@ virtual bool  atEnd() const;
 virtual qint64  bytesAvailable() const;
 virtual qint64  bytesToWrite() const;
 virtual bool  canReadLine() const;
-virtual void childEvent(QChildEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
 virtual void close();
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual bool  isSequential() const;
 virtual bool  open(QIODevice::OpenMode  mode);
 virtual qint64  pos() const;
@@ -417,7 +417,7 @@ virtual qint64  readLineData(char*  data, qint64  maxlen);
 virtual bool  reset();
 virtual bool  seek(qint64  pos);
 virtual qint64  size() const;
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  event);
 virtual bool  waitForBytesWritten(int  msecs);
 virtual bool  waitForReadyRead(int  msecs);
 virtual qint64  writeData(const char*  data, qint64  len);
@@ -530,13 +530,13 @@ public:
 virtual QModelIndex  buddy(const QModelIndex&  index) const;
 virtual bool  canDropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent) const;
 virtual bool  canFetchMore(const QModelIndex&  parent) const;
-virtual void childEvent(QChildEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
 virtual int  columnCount(const QModelIndex&  parent = QModelIndex()) const;
-virtual void customEvent(QEvent*  arg__1);
+virtual void customEvent(QEvent*  event);
 virtual QVariant  data(const QModelIndex&  proxyIndex, int  role = Qt::DisplayRole) const;
 virtual bool  dropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual void fetchMore(const QModelIndex&  parent);
 virtual Qt::ItemFlags  flags(const QModelIndex&  index) const;
 virtual bool  hasChildren(const QModelIndex&  parent = QModelIndex()) const;
@@ -570,7 +570,7 @@ virtual QSize  span(const QModelIndex&  index) const;
 virtual bool  submit();
 virtual Qt::DropActions  supportedDragActions() const;
 virtual Qt::DropActions  supportedDropActions() const;
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -665,6 +665,7 @@ void delete_QJsonArray(QJsonArray* obj) { delete obj; }
    QJsonValue  takeAt(QJsonArray* theWrappedObject, int  i);
    QList<QVariant >  toVariantList(QJsonArray* theWrappedObject) const;
     QString py_toString(QJsonArray*);
+    bool __nonzero__(QJsonArray* obj) { return !obj->isEmpty(); }
 };
 
 
@@ -720,7 +721,7 @@ void delete_QJsonDocument(QJsonDocument* obj) { delete obj; }
    QByteArray  toJson(QJsonDocument* theWrappedObject, QJsonDocument::JsonFormat  format) const;
    QVariant  toVariant(QJsonDocument* theWrappedObject) const;
     QString py_toString(QJsonDocument*);
-    bool __nonzero__(QJsonDocument* obj) { return !obj->isNull(); }
+    bool __nonzero__(QJsonDocument* obj) { return !obj->isEmpty(); }
 };
 
 
@@ -753,6 +754,7 @@ void delete_QJsonObject(QJsonObject* obj) { delete obj; }
    QMap<QString , QVariant >  toVariantMap(QJsonObject* theWrappedObject) const;
    QJsonValue  value(QJsonObject* theWrappedObject, const QString&  key) const;
     QString py_toString(QJsonObject*);
+    bool __nonzero__(QJsonObject* obj) { return !obj->isEmpty(); }
 };
 
 
@@ -848,11 +850,11 @@ public:
 
    ~PythonQtShell_QLibrary();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -1036,12 +1038,6 @@ QMessageLogger* new_QMessageLogger();
 QMessageLogger* new_QMessageLogger(const char*  file, int  line, const char*  function);
 QMessageLogger* new_QMessageLogger(const char*  file, int  line, const char*  function, const char*  category);
 void delete_QMessageLogger(QMessageLogger* obj) { delete obj; } 
-   void critical(QMessageLogger* theWrappedObject, const char*  msg) const;
-   void debug(QMessageLogger* theWrappedObject, const char*  msg) const;
-   void fatal(QMessageLogger* theWrappedObject, const char*  msg) const;
-   void info(QMessageLogger* theWrappedObject, const char*  msg) const;
-   void noDebug(QMessageLogger* theWrappedObject, const char*  arg__1) const;
-   void warning(QMessageLogger* theWrappedObject, const char*  msg) const;
 };
 
 
@@ -1081,6 +1077,7 @@ void delete_QMetaEnum(QMetaEnum* obj) { delete obj; }
    int  value(QMetaEnum* theWrappedObject, int  index) const;
    const char*  valueToKey(QMetaEnum* theWrappedObject, int  value) const;
    QByteArray  valueToKeys(QMetaEnum* theWrappedObject, int  value) const;
+    bool __nonzero__(QMetaEnum* obj) { return obj->isValid(); }
 };
 
 
@@ -1118,6 +1115,7 @@ void delete_QMetaMethod(QMetaMethod* obj) { delete obj; }
    int  revision(QMetaMethod* theWrappedObject) const;
    const char*  tag(QMetaMethod* theWrappedObject) const;
    const char*  typeName(QMetaMethod* theWrappedObject) const;
+    bool __nonzero__(QMetaMethod* obj) { return obj->isValid(); }
 };
 
 
@@ -1161,6 +1159,7 @@ void delete_QMetaProperty(QMetaProperty* obj) { delete obj; }
    int  userType(QMetaProperty* theWrappedObject) const;
    bool  write(QMetaProperty* theWrappedObject, QObject*  obj, const QVariant&  value) const;
    bool  writeOnGadget(QMetaProperty* theWrappedObject, void*  gadget, const QVariant&  value) const;
+    bool __nonzero__(QMetaProperty* obj) { return obj->isValid(); }
 };
 
 
@@ -1209,6 +1208,7 @@ void delete_QMetaType(QMetaType* obj) { delete obj; }
    QMetaType::TypeFlags  static_QMetaType_typeFlags(int  type);
    const char*  static_QMetaType_typeName(int  type);
    bool  static_QMetaType_unregisterType(int  type);
+    bool __nonzero__(QMetaType* obj) { return obj->isValid(); }
 };
 
 
@@ -1222,14 +1222,14 @@ public:
 
    ~PythonQtShell_QMimeData();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual QStringList  formats() const;
 virtual bool  hasFormat(const QString&  mimetype) const;
 virtual QVariant  retrieveData(const QString&  mimetype, QVariant::Type  preferredType) const;
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -1333,6 +1333,7 @@ void delete_QMimeType(QMimeType* obj) { delete obj; }
    QStringList  suffixes(QMimeType* theWrappedObject) const;
    void swap(QMimeType* theWrappedObject, QMimeType&  other);
     QString py_toString(QMimeType*);
+    bool __nonzero__(QMimeType* obj) { return obj->isValid(); }
 };
 
 
@@ -1364,6 +1365,7 @@ void delete_QModelIndex(QModelIndex* obj) { delete obj; }
    int  row(QModelIndex* theWrappedObject) const;
    QModelIndex  sibling(QModelIndex* theWrappedObject, int  row, int  column) const;
     QString py_toString(QModelIndex*);
+    bool __nonzero__(QModelIndex* obj) { return obj->isValid(); }
 };
 
 

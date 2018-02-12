@@ -20,19 +20,19 @@
 class PythonQtShell_QUiLoader : public QUiLoader
 {
 public:
-    PythonQtShell_QUiLoader(QObject*  parent = 0):QUiLoader(parent),_wrapper(NULL) {};
+    PythonQtShell_QUiLoader(QObject*  parent = NULL):QUiLoader(parent),_wrapper(NULL) {};
 
    ~PythonQtShell_QUiLoader();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual QAction*  createAction(QObject*  parent = 0, const QString&  name = QString());
-virtual QActionGroup*  createActionGroup(QObject*  parent = 0, const QString&  name = QString());
-virtual QLayout*  createLayout(const QString&  className, QObject*  parent = 0, const QString&  name = QString());
-virtual QWidget*  createWidget(const QString&  className, QWidget*  parent = 0, const QString&  name = QString());
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual QAction*  createAction(QObject*  parent = NULL, const QString&  name = QString());
+virtual QActionGroup*  createActionGroup(QObject*  parent = NULL, const QString&  name = QString());
+virtual QLayout*  createLayout(const QString&  className, QObject*  parent = NULL, const QString&  name = QString());
+virtual QWidget*  createWidget(const QString&  className, QWidget*  parent = NULL, const QString&  name = QString());
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -41,34 +41,34 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 
 class PythonQtPublicPromoter_QUiLoader : public QUiLoader
 { public:
-inline QAction*  py_q_createAction(QObject*  parent = 0, const QString&  name = QString()) { return QUiLoader::createAction(parent, name); }
-inline QActionGroup*  py_q_createActionGroup(QObject*  parent = 0, const QString&  name = QString()) { return QUiLoader::createActionGroup(parent, name); }
-inline QLayout*  py_q_createLayout(const QString&  className, QObject*  parent = 0, const QString&  name = QString()) { return QUiLoader::createLayout(className, parent, name); }
-inline QWidget*  py_q_createWidget(const QString&  className, QWidget*  parent = 0, const QString&  name = QString()) { return QUiLoader::createWidget(className, parent, name); }
+inline QAction*  py_q_createAction(QObject*  parent = NULL, const QString&  name = QString()) { return QUiLoader::createAction(parent, name); }
+inline QActionGroup*  py_q_createActionGroup(QObject*  parent = NULL, const QString&  name = QString()) { return QUiLoader::createActionGroup(parent, name); }
+inline QLayout*  py_q_createLayout(const QString&  className, QObject*  parent = NULL, const QString&  name = QString()) { return QUiLoader::createLayout(className, parent, name); }
+inline QWidget*  py_q_createWidget(const QString&  className, QWidget*  parent = NULL, const QString&  name = QString()) { return QUiLoader::createWidget(className, parent, name); }
 };
 
 class PythonQtWrapper_QUiLoader : public QObject
 { Q_OBJECT
 public:
 public slots:
-QUiLoader* new_QUiLoader(QObject*  parent = 0);
+QUiLoader* new_QUiLoader(QObject*  parent = NULL);
 void delete_QUiLoader(QUiLoader* obj) { delete obj; } 
    void addPluginPath(QUiLoader* theWrappedObject, const QString&  path);
    QStringList  availableLayouts(QUiLoader* theWrappedObject) const;
    QStringList  availableWidgets(QUiLoader* theWrappedObject) const;
    void clearPluginPaths(QUiLoader* theWrappedObject);
-   QAction*  createAction(QUiLoader* theWrappedObject, QObject*  parent = 0, const QString&  name = QString());
-   QAction*  py_q_createAction(QUiLoader* theWrappedObject, QObject*  parent = 0, const QString&  name = QString()){  return (((PythonQtPublicPromoter_QUiLoader*)theWrappedObject)->py_q_createAction(parent, name));}
-   QActionGroup*  createActionGroup(QUiLoader* theWrappedObject, QObject*  parent = 0, const QString&  name = QString());
-   QActionGroup*  py_q_createActionGroup(QUiLoader* theWrappedObject, QObject*  parent = 0, const QString&  name = QString()){  return (((PythonQtPublicPromoter_QUiLoader*)theWrappedObject)->py_q_createActionGroup(parent, name));}
-   QLayout*  createLayout(QUiLoader* theWrappedObject, const QString&  className, QObject*  parent = 0, const QString&  name = QString());
-   QLayout*  py_q_createLayout(QUiLoader* theWrappedObject, const QString&  className, QObject*  parent = 0, const QString&  name = QString()){  return (((PythonQtPublicPromoter_QUiLoader*)theWrappedObject)->py_q_createLayout(className, parent, name));}
-   QWidget*  createWidget(QUiLoader* theWrappedObject, const QString&  className, QWidget*  parent = 0, const QString&  name = QString());
-   QWidget*  py_q_createWidget(QUiLoader* theWrappedObject, const QString&  className, QWidget*  parent = 0, const QString&  name = QString()){  return (((PythonQtPublicPromoter_QUiLoader*)theWrappedObject)->py_q_createWidget(className, parent, name));}
+   QAction*  createAction(QUiLoader* theWrappedObject, QObject*  parent = NULL, const QString&  name = QString());
+   QAction*  py_q_createAction(QUiLoader* theWrappedObject, QObject*  parent = NULL, const QString&  name = QString()){  return (((PythonQtPublicPromoter_QUiLoader*)theWrappedObject)->py_q_createAction(parent, name));}
+   QActionGroup*  createActionGroup(QUiLoader* theWrappedObject, QObject*  parent = NULL, const QString&  name = QString());
+   QActionGroup*  py_q_createActionGroup(QUiLoader* theWrappedObject, QObject*  parent = NULL, const QString&  name = QString()){  return (((PythonQtPublicPromoter_QUiLoader*)theWrappedObject)->py_q_createActionGroup(parent, name));}
+   QLayout*  createLayout(QUiLoader* theWrappedObject, const QString&  className, QObject*  parent = NULL, const QString&  name = QString());
+   QLayout*  py_q_createLayout(QUiLoader* theWrappedObject, const QString&  className, QObject*  parent = NULL, const QString&  name = QString()){  return (((PythonQtPublicPromoter_QUiLoader*)theWrappedObject)->py_q_createLayout(className, parent, name));}
+   QWidget*  createWidget(QUiLoader* theWrappedObject, const QString&  className, QWidget*  parent = NULL, const QString&  name = QString());
+   QWidget*  py_q_createWidget(QUiLoader* theWrappedObject, const QString&  className, QWidget*  parent = NULL, const QString&  name = QString()){  return (((PythonQtPublicPromoter_QUiLoader*)theWrappedObject)->py_q_createWidget(className, parent, name));}
    QString  errorString(QUiLoader* theWrappedObject) const;
    bool  isLanguageChangeEnabled(QUiLoader* theWrappedObject) const;
    bool  isTranslationEnabled(QUiLoader* theWrappedObject) const;
-   QWidget*  load(QUiLoader* theWrappedObject, QIODevice*  device, QWidget*  parentWidget = 0);
+   QWidget*  load(QUiLoader* theWrappedObject, QIODevice*  device, QWidget*  parentWidget = NULL);
    QStringList  pluginPaths(QUiLoader* theWrappedObject) const;
    void setLanguageChangeEnabled(QUiLoader* theWrappedObject, bool  enabled);
    void setTranslationEnabled(QUiLoader* theWrappedObject, bool  enabled);

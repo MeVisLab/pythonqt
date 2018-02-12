@@ -39,37 +39,12 @@
 #include <qstyleoption.h>
 #include <qstylepainter.h>
 #include <qstyleplugin.h>
+#include <qsurface.h>
+#include <qsurfaceformat.h>
 #include <qtextoption.h>
 #include <qtransform.h>
 #include <qvector.h>
 #include <qwidget.h>
-
-
-
-class PythonQtShell_QStyleOptionFrameV3 : public QStyleOptionFrameV3
-{
-public:
-    PythonQtShell_QStyleOptionFrameV3():QStyleOptionFrameV3(),_wrapper(NULL) {};
-
-   ~PythonQtShell_QStyleOptionFrameV3();
-
-
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
-class PythonQtWrapper_QStyleOptionFrameV3 : public QObject
-{ Q_OBJECT
-public:
-public slots:
-QStyleOptionFrameV3* new_QStyleOptionFrameV3();
-QStyleOptionFrameV3* new_QStyleOptionFrameV3(const QStyleOptionFrameV3& other) {
-PythonQtShell_QStyleOptionFrameV3* a = new PythonQtShell_QStyleOptionFrameV3();
-*((QStyleOptionFrameV3*)a) = other;
-return a; }
-void delete_QStyleOptionFrameV3(QStyleOptionFrameV3* obj) { delete obj; } 
-};
-
-
 
 
 
@@ -1165,12 +1140,12 @@ public:
 
    ~PythonQtShell_QStylePlugin();
 
-virtual void childEvent(QChildEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
 virtual QStyle*  create(const QString&  key);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -1203,13 +1178,13 @@ public:
 
    ~PythonQtShell_QStyledItemDelegate();
 
-virtual void childEvent(QChildEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
 virtual QWidget*  createEditor(QWidget*  parent, const QStyleOptionViewItem&  option, const QModelIndex&  index) const;
-virtual void customEvent(QEvent*  arg__1);
+virtual void customEvent(QEvent*  event);
 virtual void destroyEditor(QWidget*  editor, const QModelIndex&  index) const;
 virtual QString  displayText(const QVariant&  value, const QLocale&  locale) const;
 virtual bool  editorEvent(QEvent*  event, QAbstractItemModel*  model, const QStyleOptionViewItem&  option, const QModelIndex&  index);
-virtual bool  event(QEvent*  arg__1);
+virtual bool  event(QEvent*  event);
 virtual bool  eventFilter(QObject*  object, QEvent*  event);
 virtual bool  helpEvent(QHelpEvent*  event, QAbstractItemView*  view, const QStyleOptionViewItem&  option, const QModelIndex&  index);
 virtual void initStyleOption(QStyleOptionViewItem*  option, const QModelIndex&  index) const;
@@ -1218,7 +1193,7 @@ virtual QVector<int >  paintingRoles() const;
 virtual void setEditorData(QWidget*  editor, const QModelIndex&  index) const;
 virtual void setModelData(QWidget*  editor, QAbstractItemModel*  model, const QModelIndex&  index) const;
 virtual QSize  sizeHint(const QStyleOptionViewItem&  option, const QModelIndex&  index) const;
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  event);
 virtual void updateEditorGeometry(QWidget*  editor, const QStyleOptionViewItem&  option, const QModelIndex&  index) const;
 
   const QMetaObject* metaObject() const;
@@ -1263,6 +1238,56 @@ void delete_QStyledItemDelegate(QStyledItemDelegate* obj) { delete obj; }
    void py_q_setModelData(QStyledItemDelegate* theWrappedObject, QWidget*  editor, QAbstractItemModel*  model, const QModelIndex&  index) const{  (((PythonQtPublicPromoter_QStyledItemDelegate*)theWrappedObject)->py_q_setModelData(editor, model, index));}
    QSize  py_q_sizeHint(QStyledItemDelegate* theWrappedObject, const QStyleOptionViewItem&  option, const QModelIndex&  index) const{  return (((PythonQtPublicPromoter_QStyledItemDelegate*)theWrappedObject)->py_q_sizeHint(option, index));}
    void py_q_updateEditorGeometry(QStyledItemDelegate* theWrappedObject, QWidget*  editor, const QStyleOptionViewItem&  option, const QModelIndex&  index) const{  (((PythonQtPublicPromoter_QStyledItemDelegate*)theWrappedObject)->py_q_updateEditorGeometry(editor, option, index));}
+};
+
+
+
+
+
+class PythonQtShell_QSurface : public QSurface
+{
+public:
+    PythonQtShell_QSurface(QSurface::SurfaceClass  type):QSurface(type),_wrapper(NULL) {};
+
+   ~PythonQtShell_QSurface();
+
+virtual QSurfaceFormat  format() const;
+virtual QSize  size() const;
+virtual QPlatformSurface*  surfaceHandle() const;
+virtual QSurface::SurfaceType  surfaceType() const;
+
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtPublicPromoter_QSurface : public QSurface
+{ public:
+inline QSurfaceFormat  py_q_format() const { return this->format(); }
+inline QSize  py_q_size() const { return this->size(); }
+inline QPlatformSurface*  py_q_surfaceHandle() const { return this->surfaceHandle(); }
+inline QSurface::SurfaceType  py_q_surfaceType() const { return this->surfaceType(); }
+};
+
+class PythonQtWrapper_QSurface : public QObject
+{ Q_OBJECT
+public:
+Q_ENUMS(SurfaceClass SurfaceType )
+enum SurfaceClass{
+  Window = QSurface::Window,   Offscreen = QSurface::Offscreen};
+enum SurfaceType{
+  RasterSurface = QSurface::RasterSurface,   OpenGLSurface = QSurface::OpenGLSurface,   RasterGLSurface = QSurface::RasterGLSurface};
+public slots:
+QSurface* new_QSurface(QSurface::SurfaceClass  type);
+void delete_QSurface(QSurface* obj) { delete obj; } 
+   QSurfaceFormat  format(QSurface* theWrappedObject) const;
+   QSurfaceFormat  py_q_format(QSurface* theWrappedObject) const{  return (((PythonQtPublicPromoter_QSurface*)theWrappedObject)->py_q_format());}
+   QSize  size(QSurface* theWrappedObject) const;
+   QSize  py_q_size(QSurface* theWrappedObject) const{  return (((PythonQtPublicPromoter_QSurface*)theWrappedObject)->py_q_size());}
+   bool  supportsOpenGL(QSurface* theWrappedObject) const;
+   QSurface::SurfaceClass  surfaceClass(QSurface* theWrappedObject) const;
+   QPlatformSurface*  surfaceHandle(QSurface* theWrappedObject) const;
+   QPlatformSurface*  py_q_surfaceHandle(QSurface* theWrappedObject) const{  return (((PythonQtPublicPromoter_QSurface*)theWrappedObject)->py_q_surfaceHandle());}
+   QSurface::SurfaceType  surfaceType(QSurface* theWrappedObject) const;
+   QSurface::SurfaceType  py_q_surfaceType(QSurface* theWrappedObject) const{  return (((PythonQtPublicPromoter_QSurface*)theWrappedObject)->py_q_surfaceType());}
 };
 
 

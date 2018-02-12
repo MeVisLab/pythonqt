@@ -237,6 +237,7 @@ void delete_QColor(QColor* obj) { delete obj; }
    int  yellow(QColor* theWrappedObject) const;
    qreal  yellowF(QColor* theWrappedObject) const;
     QString py_toString(QColor*);
+    bool __nonzero__(QColor* obj) { return obj->isValid(); }
 };
 
 
@@ -642,6 +643,7 @@ void delete_QKeySequence(QKeySequence* obj) { delete obj; }
    void swap(QKeySequence* theWrappedObject, QKeySequence&  other);
    QString  toString(QKeySequence* theWrappedObject, QKeySequence::SequenceFormat  format = QKeySequence::PortableText) const;
     QString py_toString(QKeySequence*);
+    bool __nonzero__(QKeySequence* obj) { return !obj->isEmpty(); }
 };
 
 
@@ -978,6 +980,7 @@ void delete_QPolygon(QPolygon* obj) { delete obj; }
    QPoint  value(QPolygon* theWrappedObject, int  i) const;
    QPoint  value(QPolygon* theWrappedObject, int  i, const QPoint&  defaultValue) const;
     QString py_toString(QPolygon*);
+    bool __nonzero__(QPolygon* obj) { return !obj->isEmpty(); }
 };
 
 
@@ -1028,7 +1031,7 @@ void delete_QRegion(QRegion* obj) { delete obj; }
    QRegion  united(QRegion* theWrappedObject, const QRegion&  r) const;
    QRegion  xored(QRegion* theWrappedObject, const QRegion&  r) const;
     QString py_toString(QRegion*);
-    bool __nonzero__(QRegion* obj) { return !obj->isNull(); }
+    bool __nonzero__(QRegion* obj) { return !obj->isEmpty(); }
 };
 
 
@@ -1155,6 +1158,7 @@ void delete_QTextFormat(QTextFormat* obj) { delete obj; }
    QTextTableFormat  toTableFormat(QTextFormat* theWrappedObject) const;
    int  type(QTextFormat* theWrappedObject) const;
     QString py_toString(QTextFormat*);
+    bool __nonzero__(QTextFormat* obj) { return !obj->isEmpty(); }
 };
 
 

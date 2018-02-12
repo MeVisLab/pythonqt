@@ -31,16 +31,16 @@
 class PythonQtShell_QAbstractMessageHandler : public QAbstractMessageHandler
 {
 public:
-    PythonQtShell_QAbstractMessageHandler(QObject*  parent = 0):QAbstractMessageHandler(parent),_wrapper(NULL) {};
+    PythonQtShell_QAbstractMessageHandler(QObject*  parent = NULL):QAbstractMessageHandler(parent),_wrapper(NULL) {};
 
    ~PythonQtShell_QAbstractMessageHandler();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual void handleMessage(QtMsgType  type, const QString&  description, const QUrl&  identifier, const QSourceLocation&  sourceLocation);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -57,7 +57,7 @@ class PythonQtWrapper_QAbstractMessageHandler : public QObject
 { Q_OBJECT
 public:
 public slots:
-QAbstractMessageHandler* new_QAbstractMessageHandler(QObject*  parent = 0);
+QAbstractMessageHandler* new_QAbstractMessageHandler(QObject*  parent = NULL);
 void delete_QAbstractMessageHandler(QAbstractMessageHandler* obj) { delete obj; } 
    void handleMessage(QAbstractMessageHandler* theWrappedObject, QtMsgType  type, const QString&  description, const QUrl&  identifier, const QSourceLocation&  sourceLocation);
    void py_q_handleMessage(QAbstractMessageHandler* theWrappedObject, QtMsgType  type, const QString&  description, const QUrl&  identifier, const QSourceLocation&  sourceLocation){  (((PythonQtPublicPromoter_QAbstractMessageHandler*)theWrappedObject)->py_q_handleMessage(type, description, identifier, sourceLocation));}
@@ -71,16 +71,16 @@ void delete_QAbstractMessageHandler(QAbstractMessageHandler* obj) { delete obj; 
 class PythonQtShell_QAbstractUriResolver : public QAbstractUriResolver
 {
 public:
-    PythonQtShell_QAbstractUriResolver(QObject*  parent = 0):QAbstractUriResolver(parent),_wrapper(NULL) {};
+    PythonQtShell_QAbstractUriResolver(QObject*  parent = NULL):QAbstractUriResolver(parent),_wrapper(NULL) {};
 
    ~PythonQtShell_QAbstractUriResolver();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual QUrl  resolve(const QUrl&  relative, const QUrl&  baseURI) const;
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -96,7 +96,7 @@ class PythonQtWrapper_QAbstractUriResolver : public QObject
 { Q_OBJECT
 public:
 public slots:
-QAbstractUriResolver* new_QAbstractUriResolver(QObject*  parent = 0);
+QAbstractUriResolver* new_QAbstractUriResolver(QObject*  parent = NULL);
 void delete_QAbstractUriResolver(QAbstractUriResolver* obj) { delete obj; } 
    QUrl  resolve(QAbstractUriResolver* theWrappedObject, const QUrl&  relative, const QUrl&  baseURI) const;
    QUrl  py_q_resolve(QAbstractUriResolver* theWrappedObject, const QUrl&  relative, const QUrl&  baseURI) const{  return (((PythonQtPublicPromoter_QAbstractUriResolver*)theWrappedObject)->py_q_resolve(relative, baseURI));}
@@ -567,6 +567,7 @@ void delete_QXmlQuery(QXmlQuery* obj) { delete obj; }
    void setQuery(QXmlQuery* theWrappedObject, const QUrl&  queryURI, const QUrl&  baseURI = QUrl());
    void setUriResolver(QXmlQuery* theWrappedObject, const QAbstractUriResolver*  resolver);
    const QAbstractUriResolver*  uriResolver(QXmlQuery* theWrappedObject) const;
+    bool __nonzero__(QXmlQuery* obj) { return obj->isValid(); }
 };
 
 
@@ -619,6 +620,7 @@ void delete_QXmlSchema(QXmlSchema* obj) { delete obj; }
    void setNetworkAccessManager(QXmlSchema* theWrappedObject, QNetworkAccessManager*  networkmanager);
    void setUriResolver(QXmlSchema* theWrappedObject, const QAbstractUriResolver*  resolver);
    const QAbstractUriResolver*  uriResolver(QXmlSchema* theWrappedObject) const;
+    bool __nonzero__(QXmlSchema* obj) { return obj->isValid(); }
 };
 
 

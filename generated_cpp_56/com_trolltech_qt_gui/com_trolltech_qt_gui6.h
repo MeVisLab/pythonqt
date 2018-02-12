@@ -63,6 +63,7 @@
 #include <qprintdialog.h>
 #include <qprintengine.h>
 #include <qprinter.h>
+#include <qprintpreviewdialog.h>
 #include <qrect.h>
 #include <qregexp.h>
 #include <qregion.h>
@@ -88,61 +89,6 @@
 
 
 
-class PythonQtWrapper_QPageLayout : public QObject
-{ Q_OBJECT
-public:
-Q_ENUMS(Mode Orientation Unit )
-enum Mode{
-  StandardMode = QPageLayout::StandardMode,   FullPageMode = QPageLayout::FullPageMode};
-enum Orientation{
-  Portrait = QPageLayout::Portrait,   Landscape = QPageLayout::Landscape};
-enum Unit{
-  Millimeter = QPageLayout::Millimeter,   Point = QPageLayout::Point,   Inch = QPageLayout::Inch,   Pica = QPageLayout::Pica,   Didot = QPageLayout::Didot,   Cicero = QPageLayout::Cicero};
-public slots:
-QPageLayout* new_QPageLayout();
-QPageLayout* new_QPageLayout(const QPageLayout&  other);
-QPageLayout* new_QPageLayout(const QPageSize&  pageSize, QPageLayout::Orientation  orientation, const QMarginsF&  margins, QPageLayout::Unit  units = QPageLayout::Point, const QMarginsF&  minMargins = QMarginsF(0, 0, 0, 0));
-void delete_QPageLayout(QPageLayout* obj) { delete obj; } 
-   QRectF  fullRect(QPageLayout* theWrappedObject) const;
-   QRectF  fullRect(QPageLayout* theWrappedObject, QPageLayout::Unit  units) const;
-   QRect  fullRectPixels(QPageLayout* theWrappedObject, int  resolution) const;
-   QRect  fullRectPoints(QPageLayout* theWrappedObject) const;
-   bool  isEquivalentTo(QPageLayout* theWrappedObject, const QPageLayout&  other) const;
-   bool  isValid(QPageLayout* theWrappedObject) const;
-   QMarginsF  margins(QPageLayout* theWrappedObject) const;
-   QMarginsF  margins(QPageLayout* theWrappedObject, QPageLayout::Unit  units) const;
-   QMargins  marginsPixels(QPageLayout* theWrappedObject, int  resolution) const;
-   QMargins  marginsPoints(QPageLayout* theWrappedObject) const;
-   QMarginsF  maximumMargins(QPageLayout* theWrappedObject) const;
-   QMarginsF  minimumMargins(QPageLayout* theWrappedObject) const;
-   QPageLayout::Mode  mode(QPageLayout* theWrappedObject) const;
-   QPageLayout*  operator_assign(QPageLayout* theWrappedObject, const QPageLayout&  other);
-   bool  __eq__(QPageLayout* theWrappedObject, const QPageLayout&  rhs);
-   QPageLayout::Orientation  orientation(QPageLayout* theWrappedObject) const;
-   QPageSize  pageSize(QPageLayout* theWrappedObject) const;
-   QRectF  paintRect(QPageLayout* theWrappedObject) const;
-   QRectF  paintRect(QPageLayout* theWrappedObject, QPageLayout::Unit  units) const;
-   QRect  paintRectPixels(QPageLayout* theWrappedObject, int  resolution) const;
-   QRect  paintRectPoints(QPageLayout* theWrappedObject) const;
-   bool  setBottomMargin(QPageLayout* theWrappedObject, qreal  bottomMargin);
-   bool  setLeftMargin(QPageLayout* theWrappedObject, qreal  leftMargin);
-   bool  setMargins(QPageLayout* theWrappedObject, const QMarginsF&  margins);
-   void setMinimumMargins(QPageLayout* theWrappedObject, const QMarginsF&  minMargins);
-   void setMode(QPageLayout* theWrappedObject, QPageLayout::Mode  mode);
-   void setOrientation(QPageLayout* theWrappedObject, QPageLayout::Orientation  orientation);
-   void setPageSize(QPageLayout* theWrappedObject, const QPageSize&  pageSize, const QMarginsF&  minMargins = QMarginsF(0, 0, 0, 0));
-   bool  setRightMargin(QPageLayout* theWrappedObject, qreal  rightMargin);
-   bool  setTopMargin(QPageLayout* theWrappedObject, qreal  topMargin);
-   void setUnits(QPageLayout* theWrappedObject, QPageLayout::Unit  units);
-   void swap(QPageLayout* theWrappedObject, QPageLayout&  other);
-   QPageLayout::Unit  units(QPageLayout* theWrappedObject) const;
-    QString py_toString(QPageLayout*);
-};
-
-
-
-
-
 class PythonQtShell_QPageSetupDialog : public QPageSetupDialog
 {
 public:
@@ -152,52 +98,52 @@ public:
    ~PythonQtShell_QPageSetupDialog();
 
 virtual void accept();
-virtual void actionEvent(QActionEvent*  arg__1);
+virtual void actionEvent(QActionEvent*  event);
 virtual void changeEvent(QEvent*  arg__1);
-virtual void childEvent(QChildEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
 virtual void closeEvent(QCloseEvent*  arg__1);
 virtual void contextMenuEvent(QContextMenuEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
+virtual void customEvent(QEvent*  event);
 virtual int  devType() const;
 virtual void done(int  result);
-virtual void dragEnterEvent(QDragEnterEvent*  arg__1);
-virtual void dragLeaveEvent(QDragLeaveEvent*  arg__1);
-virtual void dragMoveEvent(QDragMoveEvent*  arg__1);
-virtual void dropEvent(QDropEvent*  arg__1);
-virtual void enterEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
+virtual void dragEnterEvent(QDragEnterEvent*  event);
+virtual void dragLeaveEvent(QDragLeaveEvent*  event);
+virtual void dragMoveEvent(QDragMoveEvent*  event);
+virtual void dropEvent(QDropEvent*  event);
+virtual void enterEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 virtual int  exec();
-virtual void focusInEvent(QFocusEvent*  arg__1);
+virtual void focusInEvent(QFocusEvent*  event);
 virtual bool  focusNextPrevChild(bool  next);
-virtual void focusOutEvent(QFocusEvent*  arg__1);
+virtual void focusOutEvent(QFocusEvent*  event);
 virtual bool  hasHeightForWidth() const;
 virtual int  heightForWidth(int  arg__1) const;
-virtual void hideEvent(QHideEvent*  arg__1);
+virtual void hideEvent(QHideEvent*  event);
 virtual void initPainter(QPainter*  painter) const;
 virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
 virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const;
 virtual void keyPressEvent(QKeyEvent*  arg__1);
-virtual void keyReleaseEvent(QKeyEvent*  arg__1);
-virtual void leaveEvent(QEvent*  arg__1);
+virtual void keyReleaseEvent(QKeyEvent*  event);
+virtual void leaveEvent(QEvent*  event);
 virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
-virtual void mouseDoubleClickEvent(QMouseEvent*  arg__1);
-virtual void mouseMoveEvent(QMouseEvent*  arg__1);
-virtual void mousePressEvent(QMouseEvent*  arg__1);
-virtual void mouseReleaseEvent(QMouseEvent*  arg__1);
-virtual void moveEvent(QMoveEvent*  arg__1);
+virtual void mouseDoubleClickEvent(QMouseEvent*  event);
+virtual void mouseMoveEvent(QMouseEvent*  event);
+virtual void mousePressEvent(QMouseEvent*  event);
+virtual void mouseReleaseEvent(QMouseEvent*  event);
+virtual void moveEvent(QMoveEvent*  event);
 virtual bool  nativeEvent(const QByteArray&  eventType, void*  message, long*  result);
 virtual QPaintEngine*  paintEngine() const;
-virtual void paintEvent(QPaintEvent*  arg__1);
+virtual void paintEvent(QPaintEvent*  event);
 virtual QPaintDevice*  redirected(QPoint*  offset) const;
 virtual void reject();
 virtual void resizeEvent(QResizeEvent*  arg__1);
 virtual void setVisible(bool  visible);
 virtual QPainter*  sharedPainter() const;
 virtual void showEvent(QShowEvent*  arg__1);
-virtual void tabletEvent(QTabletEvent*  arg__1);
-virtual void timerEvent(QTimerEvent*  arg__1);
-virtual void wheelEvent(QWheelEvent*  arg__1);
+virtual void tabletEvent(QTabletEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
+virtual void wheelEvent(QWheelEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -273,6 +219,7 @@ void delete_QPageSize(QPageSize* obj) { delete obj; }
    int  windowsId(QPageSize* theWrappedObject) const;
    int  static_QPageSize_windowsId(QPageSize::PageSizeId  pageSizeId);
     QString py_toString(QPageSize*);
+    bool __nonzero__(QPageSize* obj) { return obj->isValid(); }
 };
 
 
@@ -983,6 +930,7 @@ void delete_QPainterPath(QPainterPath* obj) { delete obj; }
    QPainterPath  translated(QPainterPath* theWrappedObject, qreal  dx, qreal  dy) const;
    QPainterPath  united(QPainterPath* theWrappedObject, const QPainterPath&  r) const;
     QString py_toString(QPainterPath*);
+    bool __nonzero__(QPainterPath* obj) { return !obj->isEmpty(); }
 };
 
 
@@ -1112,11 +1060,11 @@ public:
 
    ~PythonQtShell_QPanGesture();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -1150,11 +1098,11 @@ public:
 
    ~PythonQtShell_QPdfWriter();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
 virtual int  devType() const;
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual void initPainter(QPainter*  painter) const;
 virtual int  metric(QPaintDevice::PaintDeviceMetric  id) const;
 virtual bool  newPage();
@@ -1164,7 +1112,7 @@ virtual void setMargins(const QPagedPaintDevice::Margins&  m);
 virtual void setPageSize(QPagedPaintDevice::PageSize  size);
 virtual void setPageSizeMM(const QSizeF&  size);
 virtual QPainter*  sharedPainter() const;
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -1272,14 +1220,14 @@ public:
 
    ~PythonQtShell_QPictureFormatPlugin();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual bool  installIOHandler(const QString&  format);
 virtual bool  loadPicture(const QString&  format, const QString&  filename, QPicture*  pic);
 virtual bool  savePicture(const QString&  format, const QString&  filename, const QPicture&  pic);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -1356,11 +1304,11 @@ public:
 
    ~PythonQtShell_QPinchGesture();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -1514,20 +1462,20 @@ public:
    ~PythonQtShell_QPlainTextDocumentLayout();
 
 virtual QRectF  blockBoundingRect(const QTextBlock&  block) const;
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
 virtual void documentChanged(int  from, int  arg__2, int  charsAdded);
 virtual QSizeF  documentSize() const;
 virtual void draw(QPainter*  arg__1, const QAbstractTextDocumentLayout::PaintContext&  arg__2);
 virtual void drawInlineObject(QPainter*  painter, const QRectF&  rect, QTextInlineObject  object, int  posInDocument, const QTextFormat&  format);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual QRectF  frameBoundingRect(QTextFrame*  arg__1) const;
 virtual int  hitTest(const QPointF&  arg__1, Qt::HitTestAccuracy  arg__2) const;
 virtual int  pageCount() const;
 virtual void positionInlineObject(QTextInlineObject  item, int  posInDocument, const QTextFormat&  format);
 virtual void resizeInlineObject(QTextInlineObject  item, int  posInDocument, const QTextFormat&  format);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -1577,21 +1525,21 @@ public:
 
    ~PythonQtShell_QPlainTextEdit();
 
-virtual void actionEvent(QActionEvent*  arg__1);
+virtual void actionEvent(QActionEvent*  event);
 virtual bool  canInsertFromMimeData(const QMimeData*  source) const;
 virtual void changeEvent(QEvent*  e);
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void closeEvent(QCloseEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void closeEvent(QCloseEvent*  event);
 virtual void contextMenuEvent(QContextMenuEvent*  e);
 virtual QMimeData*  createMimeDataFromSelection() const;
-virtual void customEvent(QEvent*  arg__1);
+virtual void customEvent(QEvent*  event);
 virtual int  devType() const;
 virtual void doSetTextCursor(const QTextCursor&  cursor);
 virtual void dragEnterEvent(QDragEnterEvent*  e);
 virtual void dragLeaveEvent(QDragLeaveEvent*  e);
 virtual void dragMoveEvent(QDragMoveEvent*  e);
 virtual void dropEvent(QDropEvent*  e);
-virtual void enterEvent(QEvent*  arg__1);
+virtual void enterEvent(QEvent*  event);
 virtual bool  event(QEvent*  e);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 virtual void focusInEvent(QFocusEvent*  e);
@@ -1599,21 +1547,21 @@ virtual bool  focusNextPrevChild(bool  next);
 virtual void focusOutEvent(QFocusEvent*  e);
 virtual bool  hasHeightForWidth() const;
 virtual int  heightForWidth(int  arg__1) const;
-virtual void hideEvent(QHideEvent*  arg__1);
+virtual void hideEvent(QHideEvent*  event);
 virtual void initPainter(QPainter*  painter) const;
 virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
 virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  property) const;
 virtual void insertFromMimeData(const QMimeData*  source);
 virtual void keyPressEvent(QKeyEvent*  e);
 virtual void keyReleaseEvent(QKeyEvent*  e);
-virtual void leaveEvent(QEvent*  arg__1);
+virtual void leaveEvent(QEvent*  event);
 virtual QVariant  loadResource(int  type, const QUrl&  name);
 virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
 virtual void mouseDoubleClickEvent(QMouseEvent*  e);
 virtual void mouseMoveEvent(QMouseEvent*  e);
 virtual void mousePressEvent(QMouseEvent*  e);
 virtual void mouseReleaseEvent(QMouseEvent*  e);
-virtual void moveEvent(QMoveEvent*  arg__1);
+virtual void moveEvent(QMoveEvent*  event);
 virtual bool  nativeEvent(const QByteArray&  eventType, void*  message, long*  result);
 virtual QPaintEngine*  paintEngine() const;
 virtual void paintEvent(QPaintEvent*  e);
@@ -1624,7 +1572,7 @@ virtual void setVisible(bool  visible);
 virtual void setupViewport(QWidget*  viewport);
 virtual QPainter*  sharedPainter() const;
 virtual void showEvent(QShowEvent*  arg__1);
-virtual void tabletEvent(QTabletEvent*  arg__1);
+virtual void tabletEvent(QTabletEvent*  event);
 virtual void timerEvent(QTimerEvent*  e);
 virtual bool  viewportEvent(QEvent*  arg__1);
 virtual QSize  viewportSizeHint() const;
@@ -1912,6 +1860,7 @@ void delete_QPolygonF(QPolygonF* obj) { delete obj; }
    QPointF  value(QPolygonF* theWrappedObject, int  i) const;
    QPointF  value(QPolygonF* theWrappedObject, int  i, const QPointF&  defaultValue) const;
     QString py_toString(QPolygonF*);
+    bool __nonzero__(QPolygonF* obj) { return !obj->isEmpty(); }
 };
 
 
@@ -1927,52 +1876,52 @@ public:
    ~PythonQtShell_QPrintDialog();
 
 virtual void accept();
-virtual void actionEvent(QActionEvent*  arg__1);
+virtual void actionEvent(QActionEvent*  event);
 virtual void changeEvent(QEvent*  arg__1);
-virtual void childEvent(QChildEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
 virtual void closeEvent(QCloseEvent*  arg__1);
 virtual void contextMenuEvent(QContextMenuEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
+virtual void customEvent(QEvent*  event);
 virtual int  devType() const;
 virtual void done(int  result);
-virtual void dragEnterEvent(QDragEnterEvent*  arg__1);
-virtual void dragLeaveEvent(QDragLeaveEvent*  arg__1);
-virtual void dragMoveEvent(QDragMoveEvent*  arg__1);
-virtual void dropEvent(QDropEvent*  arg__1);
-virtual void enterEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
+virtual void dragEnterEvent(QDragEnterEvent*  event);
+virtual void dragLeaveEvent(QDragLeaveEvent*  event);
+virtual void dragMoveEvent(QDragMoveEvent*  event);
+virtual void dropEvent(QDropEvent*  event);
+virtual void enterEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 virtual int  exec();
-virtual void focusInEvent(QFocusEvent*  arg__1);
+virtual void focusInEvent(QFocusEvent*  event);
 virtual bool  focusNextPrevChild(bool  next);
-virtual void focusOutEvent(QFocusEvent*  arg__1);
+virtual void focusOutEvent(QFocusEvent*  event);
 virtual bool  hasHeightForWidth() const;
 virtual int  heightForWidth(int  arg__1) const;
-virtual void hideEvent(QHideEvent*  arg__1);
+virtual void hideEvent(QHideEvent*  event);
 virtual void initPainter(QPainter*  painter) const;
 virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
 virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const;
 virtual void keyPressEvent(QKeyEvent*  arg__1);
-virtual void keyReleaseEvent(QKeyEvent*  arg__1);
-virtual void leaveEvent(QEvent*  arg__1);
+virtual void keyReleaseEvent(QKeyEvent*  event);
+virtual void leaveEvent(QEvent*  event);
 virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
-virtual void mouseDoubleClickEvent(QMouseEvent*  arg__1);
-virtual void mouseMoveEvent(QMouseEvent*  arg__1);
-virtual void mousePressEvent(QMouseEvent*  arg__1);
-virtual void mouseReleaseEvent(QMouseEvent*  arg__1);
-virtual void moveEvent(QMoveEvent*  arg__1);
+virtual void mouseDoubleClickEvent(QMouseEvent*  event);
+virtual void mouseMoveEvent(QMouseEvent*  event);
+virtual void mousePressEvent(QMouseEvent*  event);
+virtual void mouseReleaseEvent(QMouseEvent*  event);
+virtual void moveEvent(QMoveEvent*  event);
 virtual bool  nativeEvent(const QByteArray&  eventType, void*  message, long*  result);
 virtual QPaintEngine*  paintEngine() const;
-virtual void paintEvent(QPaintEvent*  arg__1);
+virtual void paintEvent(QPaintEvent*  event);
 virtual QPaintDevice*  redirected(QPoint*  offset) const;
 virtual void reject();
 virtual void resizeEvent(QResizeEvent*  arg__1);
 virtual void setVisible(bool  visible);
 virtual QPainter*  sharedPainter() const;
 virtual void showEvent(QShowEvent*  arg__1);
-virtual void tabletEvent(QTabletEvent*  arg__1);
-virtual void timerEvent(QTimerEvent*  arg__1);
-virtual void wheelEvent(QWheelEvent*  arg__1);
+virtual void tabletEvent(QTabletEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
+virtual void wheelEvent(QWheelEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -2057,6 +2006,90 @@ void delete_QPrintEngine(QPrintEngine* obj) { delete obj; }
    QVariant  py_q_property(QPrintEngine* theWrappedObject, QPrintEngine::PrintEnginePropertyKey  key) const{  return (((PythonQtPublicPromoter_QPrintEngine*)theWrappedObject)->py_q_property(key));}
    void setProperty(QPrintEngine* theWrappedObject, QPrintEngine::PrintEnginePropertyKey  key, const QVariant&  value);
    void py_q_setProperty(QPrintEngine* theWrappedObject, QPrintEngine::PrintEnginePropertyKey  key, const QVariant&  value){  (((PythonQtPublicPromoter_QPrintEngine*)theWrappedObject)->py_q_setProperty(key, value));}
+};
+
+
+
+
+
+class PythonQtShell_QPrintPreviewDialog : public QPrintPreviewDialog
+{
+public:
+    PythonQtShell_QPrintPreviewDialog(QPrinter*  printer, QWidget*  parent = NULL, Qt::WindowFlags  flags = Qt::WindowFlags()):QPrintPreviewDialog(printer, parent, flags),_wrapper(NULL) {};
+    PythonQtShell_QPrintPreviewDialog(QWidget*  parent = NULL, Qt::WindowFlags  flags = Qt::WindowFlags()):QPrintPreviewDialog(parent, flags),_wrapper(NULL) {};
+
+   ~PythonQtShell_QPrintPreviewDialog();
+
+virtual void accept();
+virtual void actionEvent(QActionEvent*  event);
+virtual void changeEvent(QEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void closeEvent(QCloseEvent*  arg__1);
+virtual void contextMenuEvent(QContextMenuEvent*  arg__1);
+virtual void customEvent(QEvent*  event);
+virtual int  devType() const;
+virtual void done(int  result);
+virtual void dragEnterEvent(QDragEnterEvent*  event);
+virtual void dragLeaveEvent(QDragLeaveEvent*  event);
+virtual void dragMoveEvent(QDragMoveEvent*  event);
+virtual void dropEvent(QDropEvent*  event);
+virtual void enterEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual int  exec();
+virtual void focusInEvent(QFocusEvent*  event);
+virtual bool  focusNextPrevChild(bool  next);
+virtual void focusOutEvent(QFocusEvent*  event);
+virtual bool  hasHeightForWidth() const;
+virtual int  heightForWidth(int  arg__1) const;
+virtual void hideEvent(QHideEvent*  event);
+virtual void initPainter(QPainter*  painter) const;
+virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
+virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const;
+virtual void keyPressEvent(QKeyEvent*  arg__1);
+virtual void keyReleaseEvent(QKeyEvent*  event);
+virtual void leaveEvent(QEvent*  event);
+virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
+virtual void mouseDoubleClickEvent(QMouseEvent*  event);
+virtual void mouseMoveEvent(QMouseEvent*  event);
+virtual void mousePressEvent(QMouseEvent*  event);
+virtual void mouseReleaseEvent(QMouseEvent*  event);
+virtual void moveEvent(QMoveEvent*  event);
+virtual bool  nativeEvent(const QByteArray&  eventType, void*  message, long*  result);
+virtual QPaintEngine*  paintEngine() const;
+virtual void paintEvent(QPaintEvent*  event);
+virtual QPaintDevice*  redirected(QPoint*  offset) const;
+virtual void reject();
+virtual void resizeEvent(QResizeEvent*  arg__1);
+virtual void setVisible(bool  visible);
+virtual QPainter*  sharedPainter() const;
+virtual void showEvent(QShowEvent*  arg__1);
+virtual void tabletEvent(QTabletEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
+virtual void wheelEvent(QWheelEvent*  event);
+
+  const QMetaObject* metaObject() const;
+  int qt_metacall(QMetaObject::Call call, int id, void** args);
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtPublicPromoter_QPrintPreviewDialog : public QPrintPreviewDialog
+{ public:
+inline void py_q_done(int  result) { QPrintPreviewDialog::done(result); }
+inline void py_q_setVisible(bool  visible) { QPrintPreviewDialog::setVisible(visible); }
+};
+
+class PythonQtWrapper_QPrintPreviewDialog : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QPrintPreviewDialog* new_QPrintPreviewDialog(QPrinter*  printer, QWidget*  parent = NULL, Qt::WindowFlags  flags = Qt::WindowFlags());
+QPrintPreviewDialog* new_QPrintPreviewDialog(QWidget*  parent = NULL, Qt::WindowFlags  flags = Qt::WindowFlags());
+void delete_QPrintPreviewDialog(QPrintPreviewDialog* obj) { delete obj; } 
+   void py_q_done(QPrintPreviewDialog* theWrappedObject, int  result){  (((PythonQtPublicPromoter_QPrintPreviewDialog*)theWrappedObject)->py_q_done(result));}
+   void open(QPrintPreviewDialog* theWrappedObject, QObject*  receiver, const char*  member);
+   QPrinter*  printer(QPrintPreviewDialog* theWrappedObject);
+   void py_q_setVisible(QPrintPreviewDialog* theWrappedObject, bool  visible){  (((PythonQtPublicPromoter_QPrintPreviewDialog*)theWrappedObject)->py_q_setVisible(visible));}
 };
 
 

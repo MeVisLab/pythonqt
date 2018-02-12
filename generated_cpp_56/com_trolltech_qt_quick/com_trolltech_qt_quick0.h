@@ -10,6 +10,8 @@
 #include <qcursor.h>
 #include <qevent.h>
 #include <qfont.h>
+#include <qfontinfo.h>
+#include <qfontmetrics.h>
 #include <qgraphicseffect.h>
 #include <qgraphicsproxywidget.h>
 #include <qicon.h>
@@ -74,7 +76,7 @@
 class PythonQtShell_QQuickFramebufferObject : public QQuickFramebufferObject
 {
 public:
-    PythonQtShell_QQuickFramebufferObject(QQuickItem*  parent = 0):QQuickFramebufferObject(parent),_wrapper(NULL) {};
+    PythonQtShell_QQuickFramebufferObject(QQuickItem*  parent = NULL):QQuickFramebufferObject(parent),_wrapper(NULL) {};
 
    ~PythonQtShell_QQuickFramebufferObject();
 
@@ -133,7 +135,7 @@ class PythonQtWrapper_QQuickFramebufferObject : public QObject
 { Q_OBJECT
 public:
 public slots:
-QQuickFramebufferObject* new_QQuickFramebufferObject(QQuickItem*  parent = 0);
+QQuickFramebufferObject* new_QQuickFramebufferObject(QQuickItem*  parent = NULL);
 void delete_QQuickFramebufferObject(QQuickFramebufferObject* obj) { delete obj; } 
    QQuickFramebufferObject::Renderer*  createRenderer(QQuickFramebufferObject* theWrappedObject) const;
    QQuickFramebufferObject::Renderer*  py_q_createRenderer(QQuickFramebufferObject* theWrappedObject) const{  return (((PythonQtPublicPromoter_QQuickFramebufferObject*)theWrappedObject)->py_q_createRenderer());}
@@ -223,7 +225,7 @@ void delete_QQuickImageProvider(QQuickImageProvider* obj) { delete obj; }
 class PythonQtShell_QQuickItem : public QQuickItem
 {
 public:
-    PythonQtShell_QQuickItem(QQuickItem*  parent = 0):QQuickItem(parent),_wrapper(NULL) {};
+    PythonQtShell_QQuickItem(QQuickItem*  parent = NULL):QQuickItem(parent),_wrapper(NULL) {};
 
    ~PythonQtShell_QQuickItem();
 
@@ -344,7 +346,7 @@ enum Flag{
 enum ItemChange{
   ItemChildAddedChange = QQuickItem::ItemChildAddedChange,   ItemChildRemovedChange = QQuickItem::ItemChildRemovedChange,   ItemSceneChange = QQuickItem::ItemSceneChange,   ItemVisibleHasChanged = QQuickItem::ItemVisibleHasChanged,   ItemParentHasChanged = QQuickItem::ItemParentHasChanged,   ItemOpacityHasChanged = QQuickItem::ItemOpacityHasChanged,   ItemActiveFocusHasChanged = QQuickItem::ItemActiveFocusHasChanged,   ItemRotationHasChanged = QQuickItem::ItemRotationHasChanged,   ItemAntialiasingHasChanged = QQuickItem::ItemAntialiasingHasChanged,   ItemDevicePixelRatioHasChanged = QQuickItem::ItemDevicePixelRatioHasChanged};
 public slots:
-QQuickItem* new_QQuickItem(QQuickItem*  parent = 0);
+QQuickItem* new_QQuickItem(QQuickItem*  parent = NULL);
 void delete_QQuickItem(QQuickItem* obj) { delete obj; } 
    bool  acceptHoverEvents(QQuickItem* theWrappedObject) const;
    Qt::MouseButtons  acceptedMouseButtons(QQuickItem* theWrappedObject) const;
@@ -555,7 +557,7 @@ QSGTransformNode*  py_get_transformNode(QQuickItem::UpdatePaintNodeData* theWrap
 class PythonQtShell_QQuickPaintedItem : public QQuickPaintedItem
 {
 public:
-    PythonQtShell_QQuickPaintedItem(QQuickItem*  parent = 0):QQuickPaintedItem(parent),_wrapper(NULL) {};
+    PythonQtShell_QQuickPaintedItem(QQuickItem*  parent = NULL):QQuickPaintedItem(parent),_wrapper(NULL) {};
 
    ~PythonQtShell_QQuickPaintedItem();
 
@@ -616,7 +618,7 @@ Q_ENUMS(PerformanceHint )
 enum PerformanceHint{
   FastFBOResizing = QQuickPaintedItem::FastFBOResizing};
 public slots:
-QQuickPaintedItem* new_QQuickPaintedItem(QQuickItem*  parent = 0);
+QQuickPaintedItem* new_QQuickPaintedItem(QQuickItem*  parent = NULL);
 void delete_QQuickPaintedItem(QQuickPaintedItem* obj) { delete obj; } 
    bool  antialiasing(QQuickPaintedItem* theWrappedObject) const;
    QRectF  contentsBoundingRect(QQuickPaintedItem* theWrappedObject) const;
@@ -653,16 +655,16 @@ void delete_QQuickPaintedItem(QQuickPaintedItem* obj) { delete obj; }
 class PythonQtShell_QQuickRenderControl : public QQuickRenderControl
 {
 public:
-    PythonQtShell_QQuickRenderControl(QObject*  parent = 0):QQuickRenderControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QQuickRenderControl(QObject*  parent = NULL):QQuickRenderControl(parent),_wrapper(NULL) {};
 
    ~PythonQtShell_QQuickRenderControl();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual QWindow*  renderWindow(QPoint*  offset);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -678,7 +680,7 @@ class PythonQtWrapper_QQuickRenderControl : public QObject
 { Q_OBJECT
 public:
 public slots:
-QQuickRenderControl* new_QQuickRenderControl(QObject*  parent = 0);
+QQuickRenderControl* new_QQuickRenderControl(QObject*  parent = NULL);
 void delete_QQuickRenderControl(QQuickRenderControl* obj) { delete obj; } 
    QImage  grab(QQuickRenderControl* theWrappedObject);
    void initialize(QQuickRenderControl* theWrappedObject, QOpenGLContext*  gl);
@@ -688,7 +690,7 @@ void delete_QQuickRenderControl(QQuickRenderControl* obj) { delete obj; }
    void render(QQuickRenderControl* theWrappedObject);
    QWindow*  renderWindow(QQuickRenderControl* theWrappedObject, QPoint*  offset);
    QWindow*  py_q_renderWindow(QQuickRenderControl* theWrappedObject, QPoint*  offset){  return (((PythonQtPublicPromoter_QQuickRenderControl*)theWrappedObject)->py_q_renderWindow(offset));}
-   QWindow*  static_QQuickRenderControl_renderWindowFor(QQuickWindow*  win, QPoint*  offset = 0);
+   QWindow*  static_QQuickRenderControl_renderWindowFor(QQuickWindow*  win, QPoint*  offset = NULL);
    bool  sync(QQuickRenderControl* theWrappedObject);
 };
 
@@ -703,11 +705,11 @@ public:
 
    ~PythonQtShell_QQuickTextDocument();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -730,16 +732,16 @@ void delete_QQuickTextDocument(QQuickTextDocument* obj) { delete obj; }
 class PythonQtShell_QQuickTransform : public QQuickTransform
 {
 public:
-    PythonQtShell_QQuickTransform(QObject*  parent = 0):QQuickTransform(parent),_wrapper(NULL) {};
+    PythonQtShell_QQuickTransform(QObject*  parent = NULL):QQuickTransform(parent),_wrapper(NULL) {};
 
    ~PythonQtShell_QQuickTransform();
 
 virtual void applyTo(QMatrix4x4*  matrix) const;
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -756,7 +758,7 @@ class PythonQtWrapper_QQuickTransform : public QObject
 { Q_OBJECT
 public:
 public slots:
-QQuickTransform* new_QQuickTransform(QObject*  parent = 0);
+QQuickTransform* new_QQuickTransform(QObject*  parent = NULL);
 void delete_QQuickTransform(QQuickTransform* obj) { delete obj; } 
    void appendToItem(QQuickTransform* theWrappedObject, QQuickItem*  arg__1);
    void applyTo(QQuickTransform* theWrappedObject, QMatrix4x4*  matrix) const;
@@ -772,15 +774,15 @@ class PythonQtShell_QQuickView : public QQuickView
 {
 public:
     PythonQtShell_QQuickView(QQmlEngine*  engine, QWindow*  parent):QQuickView(engine, parent),_wrapper(NULL) {};
-    PythonQtShell_QQuickView(QWindow*  parent = 0):QQuickView(parent),_wrapper(NULL) {};
-    PythonQtShell_QQuickView(const QUrl&  source, QWindow*  parent = 0):QQuickView(source, parent),_wrapper(NULL) {};
+    PythonQtShell_QQuickView(QWindow*  parent = NULL):QQuickView(parent),_wrapper(NULL) {};
+    PythonQtShell_QQuickView(const QUrl&  source, QWindow*  parent = NULL):QQuickView(source, parent),_wrapper(NULL) {};
 
    ~PythonQtShell_QQuickView();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
 virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual void exposeEvent(QExposeEvent*  arg__1);
 virtual void focusInEvent(QFocusEvent*  arg__1);
 virtual QObject*  focusObject() const;
@@ -832,8 +834,8 @@ class PythonQtWrapper_QQuickView : public QObject
 public:
 public slots:
 QQuickView* new_QQuickView(QQmlEngine*  engine, QWindow*  parent);
-QQuickView* new_QQuickView(QWindow*  parent = 0);
-QQuickView* new_QQuickView(const QUrl&  source, QWindow*  parent = 0);
+QQuickView* new_QQuickView(QWindow*  parent = NULL);
+QQuickView* new_QQuickView(const QUrl&  source, QWindow*  parent = NULL);
 void delete_QQuickView(QQuickView* obj) { delete obj; } 
    QQmlEngine*  engine(QQuickView* theWrappedObject) const;
    QList<QQmlError >  errors(QQuickView* theWrappedObject) const;
@@ -862,25 +864,25 @@ class PythonQtShell_QQuickWidget : public QQuickWidget
 {
 public:
     PythonQtShell_QQuickWidget(QQmlEngine*  engine, QWidget*  parent):QQuickWidget(engine, parent),_wrapper(NULL) {};
-    PythonQtShell_QQuickWidget(QWidget*  parent = 0):QQuickWidget(parent),_wrapper(NULL) {};
-    PythonQtShell_QQuickWidget(const QUrl&  source, QWidget*  parent = 0):QQuickWidget(source, parent),_wrapper(NULL) {};
+    PythonQtShell_QQuickWidget(QWidget*  parent = NULL):QQuickWidget(parent),_wrapper(NULL) {};
+    PythonQtShell_QQuickWidget(const QUrl&  source, QWidget*  parent = NULL):QQuickWidget(source, parent),_wrapper(NULL) {};
 
    ~PythonQtShell_QQuickWidget();
 
-virtual void actionEvent(QActionEvent*  arg__1);
+virtual void actionEvent(QActionEvent*  event);
 virtual void changeEvent(QEvent*  arg__1);
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void closeEvent(QCloseEvent*  arg__1);
-virtual void contextMenuEvent(QContextMenuEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void closeEvent(QCloseEvent*  event);
+virtual void contextMenuEvent(QContextMenuEvent*  event);
+virtual void customEvent(QEvent*  event);
 virtual int  devType() const;
 virtual void dragEnterEvent(QDragEnterEvent*  arg__1);
 virtual void dragLeaveEvent(QDragLeaveEvent*  arg__1);
 virtual void dragMoveEvent(QDragMoveEvent*  arg__1);
 virtual void dropEvent(QDropEvent*  arg__1);
-virtual void enterEvent(QEvent*  arg__1);
+virtual void enterEvent(QEvent*  event);
 virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual void focusInEvent(QFocusEvent*  event);
 virtual bool  focusNextPrevChild(bool  next);
 virtual void focusOutEvent(QFocusEvent*  event);
@@ -892,23 +894,23 @@ virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
 virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const;
 virtual void keyPressEvent(QKeyEvent*  arg__1);
 virtual void keyReleaseEvent(QKeyEvent*  arg__1);
-virtual void leaveEvent(QEvent*  arg__1);
+virtual void leaveEvent(QEvent*  event);
 virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
 virtual QSize  minimumSizeHint() const;
 virtual void mouseDoubleClickEvent(QMouseEvent*  arg__1);
 virtual void mouseMoveEvent(QMouseEvent*  arg__1);
 virtual void mousePressEvent(QMouseEvent*  arg__1);
 virtual void mouseReleaseEvent(QMouseEvent*  arg__1);
-virtual void moveEvent(QMoveEvent*  arg__1);
+virtual void moveEvent(QMoveEvent*  event);
 virtual bool  nativeEvent(const QByteArray&  eventType, void*  message, long*  result);
 virtual QPaintEngine*  paintEngine() const;
-virtual void paintEvent(QPaintEvent*  arg__1);
+virtual void paintEvent(QPaintEvent*  event);
 virtual QPaintDevice*  redirected(QPoint*  offset) const;
 virtual void resizeEvent(QResizeEvent*  arg__1);
 virtual void setVisible(bool  visible);
 virtual QPainter*  sharedPainter() const;
 virtual void showEvent(QShowEvent*  arg__1);
-virtual void tabletEvent(QTabletEvent*  arg__1);
+virtual void tabletEvent(QTabletEvent*  event);
 virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void wheelEvent(QWheelEvent*  arg__1);
 
@@ -962,8 +964,8 @@ class PythonQtWrapper_QQuickWidget : public QObject
 public:
 public slots:
 QQuickWidget* new_QQuickWidget(QQmlEngine*  engine, QWidget*  parent);
-QQuickWidget* new_QQuickWidget(QWidget*  parent = 0);
-QQuickWidget* new_QQuickWidget(const QUrl&  source, QWidget*  parent = 0);
+QQuickWidget* new_QQuickWidget(QWidget*  parent = NULL);
+QQuickWidget* new_QQuickWidget(const QUrl&  source, QWidget*  parent = NULL);
 void delete_QQuickWidget(QQuickWidget* obj) { delete obj; } 
    void py_q_dragEnterEvent(QQuickWidget* theWrappedObject, QDragEnterEvent*  arg__1){  (((PythonQtPublicPromoter_QQuickWidget*)theWrappedObject)->py_q_dragEnterEvent(arg__1));}
    void py_q_dragLeaveEvent(QQuickWidget* theWrappedObject, QDragLeaveEvent*  arg__1){  (((PythonQtPublicPromoter_QQuickWidget*)theWrappedObject)->py_q_dragLeaveEvent(arg__1));}
@@ -1008,14 +1010,14 @@ class PythonQtShell_QQuickWindow : public QQuickWindow
 {
 public:
     PythonQtShell_QQuickWindow(QQuickRenderControl*  renderControl):QQuickWindow(renderControl),_wrapper(NULL) {};
-    PythonQtShell_QQuickWindow(QWindow*  parent = 0):QQuickWindow(parent),_wrapper(NULL) {};
+    PythonQtShell_QQuickWindow(QWindow*  parent = NULL):QQuickWindow(parent),_wrapper(NULL) {};
 
    ~PythonQtShell_QQuickWindow();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
 virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual void exposeEvent(QExposeEvent*  arg__1);
 virtual void focusInEvent(QFocusEvent*  arg__1);
 virtual QObject*  focusObject() const;
@@ -1035,7 +1037,7 @@ virtual void showEvent(QShowEvent*  arg__1);
 virtual QSize  size() const;
 virtual QSurface::SurfaceType  surfaceType() const;
 virtual void tabletEvent(QTabletEvent*  arg__1);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  event);
 virtual void touchEvent(QTouchEvent*  arg__1);
 virtual void wheelEvent(QWheelEvent*  arg__1);
 
@@ -1087,7 +1089,7 @@ enum RenderStage{
   BeforeSynchronizingStage = QQuickWindow::BeforeSynchronizingStage,   AfterSynchronizingStage = QQuickWindow::AfterSynchronizingStage,   BeforeRenderingStage = QQuickWindow::BeforeRenderingStage,   AfterRenderingStage = QQuickWindow::AfterRenderingStage,   AfterSwapStage = QQuickWindow::AfterSwapStage,   NoStage = QQuickWindow::NoStage};
 public slots:
 QQuickWindow* new_QQuickWindow(QQuickRenderControl*  renderControl);
-QQuickWindow* new_QQuickWindow(QWindow*  parent = 0);
+QQuickWindow* new_QQuickWindow(QWindow*  parent = NULL);
 void delete_QQuickWindow(QQuickWindow* obj) { delete obj; } 
    QQuickItem*  activeFocusItem(QQuickWindow* theWrappedObject) const;
    bool  clearBeforeRendering(QQuickWindow* theWrappedObject) const;
@@ -1140,17 +1142,17 @@ void delete_QQuickWindow(QQuickWindow* obj) { delete obj; }
 class PythonQtShell_QSGAbstractRenderer : public QSGAbstractRenderer
 {
 public:
-    PythonQtShell_QSGAbstractRenderer(QObject*  parent = 0):QSGAbstractRenderer(parent),_wrapper(NULL) {};
+    PythonQtShell_QSGAbstractRenderer(QObject*  parent = NULL):QSGAbstractRenderer(parent),_wrapper(NULL) {};
 
    ~PythonQtShell_QSGAbstractRenderer();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual void nodeChanged(QSGNode*  node, QSGNode::DirtyState  state);
 virtual void renderScene(GLuint  fboId = 0);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -1171,7 +1173,7 @@ Q_ENUMS(ClearModeBit )
 enum ClearModeBit{
   ClearColorBuffer = QSGAbstractRenderer::ClearColorBuffer,   ClearDepthBuffer = QSGAbstractRenderer::ClearDepthBuffer,   ClearStencilBuffer = QSGAbstractRenderer::ClearStencilBuffer};
 public slots:
-QSGAbstractRenderer* new_QSGAbstractRenderer(QObject*  parent = 0);
+QSGAbstractRenderer* new_QSGAbstractRenderer(QObject*  parent = NULL);
 void delete_QSGAbstractRenderer(QSGAbstractRenderer* obj) { delete obj; } 
    QColor  clearColor(QSGAbstractRenderer* theWrappedObject) const;
    QRect  deviceRect(QSGAbstractRenderer* theWrappedObject) const;
@@ -1263,10 +1265,10 @@ public:
    ~PythonQtShell_QSGDynamicTexture();
 
 virtual void bind();
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual bool  hasAlphaChannel() const;
 virtual bool  hasMipmaps() const;
 virtual bool  isAtlasTexture() const;
@@ -1274,7 +1276,7 @@ virtual QRectF  normalizedTextureSubRect() const;
 virtual QSGTexture*  removedFromAtlas() const;
 virtual int  textureId() const;
 virtual QSize  textureSize() const;
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  event);
 virtual bool  updateTexture();
 
   const QMetaObject* metaObject() const;
@@ -1304,15 +1306,15 @@ void delete_QSGDynamicTexture(QSGDynamicTexture* obj) { delete obj; }
 class PythonQtShell_QSGEngine : public QSGEngine
 {
 public:
-    PythonQtShell_QSGEngine(QObject*  parent = 0):QSGEngine(parent),_wrapper(NULL) {};
+    PythonQtShell_QSGEngine(QObject*  parent = NULL):QSGEngine(parent),_wrapper(NULL) {};
 
    ~PythonQtShell_QSGEngine();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -1326,7 +1328,7 @@ Q_ENUMS(CreateTextureOption )
 enum CreateTextureOption{
   TextureHasAlphaChannel = QSGEngine::TextureHasAlphaChannel,   TextureOwnsGLTexture = QSGEngine::TextureOwnsGLTexture,   TextureCanUseAtlas = QSGEngine::TextureCanUseAtlas,   TextureIsOpaque = QSGEngine::TextureIsOpaque};
 public slots:
-QSGEngine* new_QSGEngine(QObject*  parent = 0);
+QSGEngine* new_QSGEngine(QObject*  parent = NULL);
 void delete_QSGEngine(QSGEngine* obj) { delete obj; } 
    QSGAbstractRenderer*  createRenderer(QSGEngine* theWrappedObject) const;
    void initialize(QSGEngine* theWrappedObject, QOpenGLContext*  context);

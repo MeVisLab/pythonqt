@@ -66,7 +66,7 @@ void delete_QBitArray(QBitArray* obj) { delete obj; }
    bool  toggleBit(QBitArray* theWrappedObject, int  i);
    void truncate(QBitArray* theWrappedObject, int  pos);
     QString py_toString(QBitArray*);
-    bool __nonzero__(QBitArray* obj) { return !obj->isNull(); }
+    bool __nonzero__(QBitArray* obj) { return !obj->isEmpty(); }
 };
 
 
@@ -190,7 +190,7 @@ void delete_QByteArray(QByteArray* obj) { delete obj; }
    QByteArray  toUpper(QByteArray* theWrappedObject) const;
    QByteArray  trimmed(QByteArray* theWrappedObject) const;
    void truncate(QByteArray* theWrappedObject, int  pos);
-    bool __nonzero__(QByteArray* obj) { return !obj->isNull(); }
+    bool __nonzero__(QByteArray* obj) { return !obj->isEmpty(); }
 
   PyObject* data(QByteArray* b) {
     return PyBytes_FromStringAndSize(b->data(), b->size());
@@ -226,7 +226,7 @@ void delete_QDate(QDate* obj) { delete obj; }
    int  daysInMonth(QDate* theWrappedObject) const;
    int  daysInYear(QDate* theWrappedObject) const;
    qint64  daysTo(QDate* theWrappedObject, const QDate&  arg__1) const;
-   QDate  static_QDate_fromJulianDay(qint64  jd);
+   QDate  static_QDate_fromJulianDay(qint64  jd_);
    QDate  static_QDate_fromString(const QString&  s, Qt::DateFormat  f = Qt::TextDate);
    QDate  static_QDate_fromString(const QString&  s, const QString&  format);
    void getDate(QDate* theWrappedObject, int*  year, int*  month, int*  day);
@@ -254,7 +254,7 @@ void delete_QDate(QDate* obj) { delete obj; }
    int  weekNumber(QDate* theWrappedObject, int*  yearNum = NULL) const;
    int  year(QDate* theWrappedObject) const;
     QString py_toString(QDate*);
-    bool __nonzero__(QDate* obj) { return !obj->isNull(); }
+    bool __nonzero__(QDate* obj) { return obj->isValid(); }
 };
 
 
@@ -328,7 +328,7 @@ void delete_QDateTime(QDateTime* obj) { delete obj; }
    QDateTime  toUTC(QDateTime* theWrappedObject) const;
    int  utcOffset(QDateTime* theWrappedObject) const;
     QString py_toString(QDateTime*);
-    bool __nonzero__(QDateTime* obj) { return !obj->isNull(); }
+    bool __nonzero__(QDateTime* obj) { return obj->isValid(); }
 };
 
 
@@ -732,7 +732,7 @@ void delete_QRect(QRect* obj) { delete obj; }
    int  x(QRect* theWrappedObject) const;
    int  y(QRect* theWrappedObject) const;
     QString py_toString(QRect*);
-    bool __nonzero__(QRect* obj) { return !obj->isNull(); }
+    bool __nonzero__(QRect* obj) { return !obj->isEmpty(); }
 };
 
 
@@ -825,7 +825,7 @@ void delete_QRectF(QRectF* obj) { delete obj; }
    qreal  x(QRectF* theWrappedObject) const;
    qreal  y(QRectF* theWrappedObject) const;
     QString py_toString(QRectF*);
-    bool __nonzero__(QRectF* obj) { return !obj->isNull(); }
+    bool __nonzero__(QRectF* obj) { return !obj->isEmpty(); }
 };
 
 
@@ -871,6 +871,7 @@ void delete_QRegExp(QRegExp* obj) { delete obj; }
    void setPatternSyntax(QRegExp* theWrappedObject, QRegExp::PatternSyntax  syntax);
    void swap(QRegExp* theWrappedObject, QRegExp&  other);
     QString py_toString(QRegExp*);
+    bool __nonzero__(QRegExp* obj) { return !obj->isEmpty(); }
 };
 
 
@@ -915,7 +916,7 @@ void delete_QSize(QSize* obj) { delete obj; }
    QSize  transposed(QSize* theWrappedObject) const;
    int  width(QSize* theWrappedObject) const;
     QString py_toString(QSize*);
-    bool __nonzero__(QSize* obj) { return !obj->isNull(); }
+    bool __nonzero__(QSize* obj) { return !obj->isEmpty(); }
 };
 
 
@@ -962,7 +963,7 @@ void delete_QSizeF(QSizeF* obj) { delete obj; }
    QSizeF  transposed(QSizeF* theWrappedObject) const;
    qreal  width(QSizeF* theWrappedObject) const;
     QString py_toString(QSizeF*);
-    bool __nonzero__(QSizeF* obj) { return !obj->isNull(); }
+    bool __nonzero__(QSizeF* obj) { return !obj->isEmpty(); }
 };
 
 
@@ -1011,7 +1012,7 @@ void delete_QTime(QTime* obj) { delete obj; }
    QString  toString(QTime* theWrappedObject, Qt::DateFormat  f = Qt::TextDate) const;
    QString  toString(QTime* theWrappedObject, const QString&  format) const;
     QString py_toString(QTime*);
-    bool __nonzero__(QTime* obj) { return !obj->isNull(); }
+    bool __nonzero__(QTime* obj) { return obj->isValid(); }
 };
 
 
@@ -1096,6 +1097,7 @@ void delete_QUrl(QUrl* obj) { delete obj; }
    QString  userInfo(QUrl* theWrappedObject, QUrl::ComponentFormattingOptions  options = QUrl::PrettyDecoded) const;
    QString  userName(QUrl* theWrappedObject, QUrl::ComponentFormattingOptions  options = QUrl::FullyDecoded) const;
     QString py_toString(QUrl*);
+    bool __nonzero__(QUrl* obj) { return !obj->isEmpty(); }
 };
 
 
@@ -1224,7 +1226,7 @@ enum ScreenOrientation{
 enum ScrollBarPolicy{
   ScrollBarAsNeeded = Qt::ScrollBarAsNeeded,   ScrollBarAlwaysOff = Qt::ScrollBarAlwaysOff,   ScrollBarAlwaysOn = Qt::ScrollBarAlwaysOn};
 enum ScrollPhase{
-  ScrollBegin = Qt::ScrollBegin,   ScrollUpdate = Qt::ScrollUpdate,   ScrollEnd = Qt::ScrollEnd};
+  NoScrollPhase = Qt::NoScrollPhase,   ScrollBegin = Qt::ScrollBegin,   ScrollUpdate = Qt::ScrollUpdate,   ScrollEnd = Qt::ScrollEnd};
 enum ShortcutContext{
   WidgetShortcut = Qt::WidgetShortcut,   WindowShortcut = Qt::WindowShortcut,   ApplicationShortcut = Qt::ApplicationShortcut,   WidgetWithChildrenShortcut = Qt::WidgetWithChildrenShortcut};
 enum SizeHint{
@@ -1272,7 +1274,7 @@ enum WindowModality{
 enum WindowState{
   WindowNoState = Qt::WindowNoState,   WindowMinimized = Qt::WindowMinimized,   WindowMaximized = Qt::WindowMaximized,   WindowFullScreen = Qt::WindowFullScreen,   WindowActive = Qt::WindowActive};
 enum WindowType{
-  Widget = Qt::Widget,   Window = Qt::Window,   Dialog = Qt::Dialog,   Sheet = Qt::Sheet,   Drawer = Qt::Drawer,   Popup = Qt::Popup,   Tool = Qt::Tool,   ToolTip = Qt::ToolTip,   SplashScreen = Qt::SplashScreen,   Desktop = Qt::Desktop,   SubWindow = Qt::SubWindow,   ForeignWindow = Qt::ForeignWindow,   CoverWindow = Qt::CoverWindow,   WindowType_Mask = Qt::WindowType_Mask,   MSWindowsFixedSizeDialogHint = Qt::MSWindowsFixedSizeDialogHint,   MSWindowsOwnDC = Qt::MSWindowsOwnDC,   BypassWindowManagerHint = Qt::BypassWindowManagerHint,   X11BypassWindowManagerHint = Qt::X11BypassWindowManagerHint,   FramelessWindowHint = Qt::FramelessWindowHint,   WindowTitleHint = Qt::WindowTitleHint,   WindowSystemMenuHint = Qt::WindowSystemMenuHint,   WindowMinimizeButtonHint = Qt::WindowMinimizeButtonHint,   WindowMaximizeButtonHint = Qt::WindowMaximizeButtonHint,   WindowMinMaxButtonsHint = Qt::WindowMinMaxButtonsHint,   WindowContextHelpButtonHint = Qt::WindowContextHelpButtonHint,   WindowShadeButtonHint = Qt::WindowShadeButtonHint,   WindowStaysOnTopHint = Qt::WindowStaysOnTopHint,   WindowTransparentForInput = Qt::WindowTransparentForInput,   WindowOverridesSystemGestures = Qt::WindowOverridesSystemGestures,   WindowDoesNotAcceptFocus = Qt::WindowDoesNotAcceptFocus,   MaximizeUsingFullscreenGeometryHint = Qt::MaximizeUsingFullscreenGeometryHint,   CustomizeWindowHint = Qt::CustomizeWindowHint,   WindowStaysOnBottomHint = Qt::WindowStaysOnBottomHint,   WindowCloseButtonHint = Qt::WindowCloseButtonHint,   MacWindowToolBarButtonHint = Qt::MacWindowToolBarButtonHint,   BypassGraphicsProxyWidget = Qt::BypassGraphicsProxyWidget,   NoDropShadowWindowHint = Qt::NoDropShadowWindowHint,   WindowFullscreenButtonHint = Qt::WindowFullscreenButtonHint};
+  Widget = Qt::Widget,   Window = Qt::Window,   Dialog = Qt::Dialog,   Sheet = Qt::Sheet,   Drawer = Qt::Drawer,   Popup = Qt::Popup,   Tool = Qt::Tool,   ToolTip = Qt::ToolTip,   SplashScreen = Qt::SplashScreen,   Desktop = Qt::Desktop,   SubWindow = Qt::SubWindow,   ForeignWindow = Qt::ForeignWindow,   CoverWindow = Qt::CoverWindow,   WindowType_Mask = Qt::WindowType_Mask,   MSWindowsFixedSizeDialogHint = Qt::MSWindowsFixedSizeDialogHint,   MSWindowsOwnDC = Qt::MSWindowsOwnDC,   BypassWindowManagerHint = Qt::BypassWindowManagerHint,   X11BypassWindowManagerHint = Qt::X11BypassWindowManagerHint,   FramelessWindowHint = Qt::FramelessWindowHint,   WindowTitleHint = Qt::WindowTitleHint,   WindowSystemMenuHint = Qt::WindowSystemMenuHint,   WindowMinimizeButtonHint = Qt::WindowMinimizeButtonHint,   WindowMaximizeButtonHint = Qt::WindowMaximizeButtonHint,   WindowMinMaxButtonsHint = Qt::WindowMinMaxButtonsHint,   WindowContextHelpButtonHint = Qt::WindowContextHelpButtonHint,   WindowShadeButtonHint = Qt::WindowShadeButtonHint,   WindowStaysOnTopHint = Qt::WindowStaysOnTopHint,   WindowTransparentForInput = Qt::WindowTransparentForInput,   WindowOverridesSystemGestures = Qt::WindowOverridesSystemGestures,   WindowDoesNotAcceptFocus = Qt::WindowDoesNotAcceptFocus,   MaximizeUsingFullscreenGeometryHint = Qt::MaximizeUsingFullscreenGeometryHint,   CustomizeWindowHint = Qt::CustomizeWindowHint,   WindowStaysOnBottomHint = Qt::WindowStaysOnBottomHint,   WindowCloseButtonHint = Qt::WindowCloseButtonHint,   MacWindowToolBarButtonHint = Qt::MacWindowToolBarButtonHint,   BypassGraphicsProxyWidget = Qt::BypassGraphicsProxyWidget,   NoDropShadowWindowHint = Qt::NoDropShadowWindowHint,   WindowFullscreenButtonHint = Qt::WindowFullscreenButtonHint,   WindowOkButtonHint = Qt::WindowOkButtonHint,   WindowCancelButtonHint = Qt::WindowCancelButtonHint};
 Q_DECLARE_FLAGS(Alignment, AlignmentFlag)
 Q_DECLARE_FLAGS(DockWidgetAreas, DockWidgetArea)
 Q_DECLARE_FLAGS(DropActions, DropAction)

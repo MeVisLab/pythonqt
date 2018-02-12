@@ -40,13 +40,13 @@ public:
 
    ~PythonQtShell_QNetworkSession();
 
-virtual void childEvent(QChildEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
 virtual void connectNotify(const QMetaMethod&  signal);
-virtual void customEvent(QEvent*  arg__1);
+virtual void customEvent(QEvent*  event);
 virtual void disconnectNotify(const QMetaMethod&  signal);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -324,6 +324,7 @@ void delete_QSslEllipticCurve(QSslEllipticCurve* obj) { delete obj; }
    bool  __eq__(QSslEllipticCurve* theWrappedObject, QSslEllipticCurve  rhs);
    QString  shortName(QSslEllipticCurve* theWrappedObject) const;
     QString py_toString(QSslEllipticCurve*);
+    bool __nonzero__(QSslEllipticCurve* obj) { return obj->isValid(); }
 };
 
 #endif
@@ -431,13 +432,13 @@ virtual bool  atEnd() const;
 virtual qint64  bytesAvailable() const;
 virtual qint64  bytesToWrite() const;
 virtual bool  canReadLine() const;
-virtual void childEvent(QChildEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
 virtual void close();
 virtual void connectToHost(const QString&  hostName, unsigned short  port, QIODevice::OpenMode  openMode = QIODevice::ReadWrite, QAbstractSocket::NetworkLayerProtocol  protocol = QAbstractSocket::AnyIPProtocol);
-virtual void customEvent(QEvent*  arg__1);
+virtual void customEvent(QEvent*  event);
 virtual void disconnectFromHost();
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual bool  isSequential() const;
 virtual bool  open(QIODevice::OpenMode  mode);
 virtual qint64  pos() const;
@@ -447,10 +448,12 @@ virtual bool  reset();
 virtual void resume();
 virtual bool  seek(qint64  pos);
 virtual void setReadBufferSize(qint64  size);
+virtual bool  setSocketDescriptor(qintptr  socketDescriptor, QAbstractSocket::SocketState  state = QAbstractSocket::ConnectedState, QIODevice::OpenMode  openMode = QIODevice::ReadWrite);
 virtual void setSocketOption(QAbstractSocket::SocketOption  option, const QVariant&  value);
 virtual qint64  size() const;
+virtual qintptr  socketDescriptor() const;
 virtual QVariant  socketOption(QAbstractSocket::SocketOption  option);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  event);
 virtual bool  waitForBytesWritten(int  msecs = 30000);
 virtual bool  waitForConnected(int  msecs = 30000);
 virtual bool  waitForDisconnected(int  msecs = 30000);
@@ -476,6 +479,7 @@ inline void py_q_disconnectFromHost() { QSslSocket::disconnectFromHost(); }
 inline qint64  py_q_readData(char*  data, qint64  maxlen) { return QSslSocket::readData(data, maxlen); }
 inline void py_q_resume() { QSslSocket::resume(); }
 inline void py_q_setReadBufferSize(qint64  size) { QSslSocket::setReadBufferSize(size); }
+inline bool  py_q_setSocketDescriptor(qintptr  socketDescriptor, QAbstractSocket::SocketState  state = QAbstractSocket::ConnectedState, QIODevice::OpenMode  openMode = QIODevice::ReadWrite) { return QSslSocket::setSocketDescriptor(socketDescriptor, state, openMode); }
 inline void py_q_setSocketOption(QAbstractSocket::SocketOption  option, const QVariant&  value) { QSslSocket::setSocketOption(option, value); }
 inline QVariant  py_q_socketOption(QAbstractSocket::SocketOption  option) { return QSslSocket::socketOption(option); }
 inline bool  py_q_waitForBytesWritten(int  msecs = 30000) { return QSslSocket::waitForBytesWritten(msecs); }
@@ -550,6 +554,7 @@ void delete_QSslSocket(QSslSocket* obj) { delete obj; }
    void setPrivateKey(QSslSocket* theWrappedObject, const QString&  fileName, QSsl::KeyAlgorithm  algorithm = QSsl::Rsa, QSsl::EncodingFormat  format = QSsl::Pem, const QByteArray&  passPhrase = QByteArray());
    void setProtocol(QSslSocket* theWrappedObject, QSsl::SslProtocol  protocol);
    void py_q_setReadBufferSize(QSslSocket* theWrappedObject, qint64  size){  (((PythonQtPublicPromoter_QSslSocket*)theWrappedObject)->py_q_setReadBufferSize(size));}
+   bool  py_q_setSocketDescriptor(QSslSocket* theWrappedObject, qintptr  socketDescriptor, QAbstractSocket::SocketState  state = QAbstractSocket::ConnectedState, QIODevice::OpenMode  openMode = QIODevice::ReadWrite){  return (((PythonQtPublicPromoter_QSslSocket*)theWrappedObject)->py_q_setSocketDescriptor(socketDescriptor, state, openMode));}
    void py_q_setSocketOption(QSslSocket* theWrappedObject, QAbstractSocket::SocketOption  option, const QVariant&  value){  (((PythonQtPublicPromoter_QSslSocket*)theWrappedObject)->py_q_setSocketOption(option, value));}
    void setSslConfiguration(QSslSocket* theWrappedObject, const QSslConfiguration&  config);
    QVariant  py_q_socketOption(QSslSocket* theWrappedObject, QAbstractSocket::SocketOption  option){  return (((PythonQtPublicPromoter_QSslSocket*)theWrappedObject)->py_q_socketOption(option));}
@@ -568,6 +573,7 @@ void delete_QSslSocket(QSslSocket* obj) { delete obj; }
    bool  waitForEncrypted(QSslSocket* theWrappedObject, int  msecs = 30000);
    bool  py_q_waitForReadyRead(QSslSocket* theWrappedObject, int  msecs = 30000){  return (((PythonQtPublicPromoter_QSslSocket*)theWrappedObject)->py_q_waitForReadyRead(msecs));}
    qint64  py_q_writeData(QSslSocket* theWrappedObject, const char*  data, qint64  len){  return (((PythonQtPublicPromoter_QSslSocket*)theWrappedObject)->py_q_writeData(data, len));}
+    bool __nonzero__(QSslSocket* obj) { return obj->isValid(); }
 };
 
 #endif
@@ -583,13 +589,14 @@ public:
 
    ~PythonQtShell_QTcpServer();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual bool  hasPendingConnections() const;
+virtual void incomingConnection(qintptr  handle);
 virtual QTcpSocket*  nextPendingConnection();
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -599,7 +606,9 @@ virtual void timerEvent(QTimerEvent*  arg__1);
 class PythonQtPublicPromoter_QTcpServer : public QTcpServer
 { public:
 inline void promoted_addPendingConnection(QTcpSocket*  socket) { this->addPendingConnection(socket); }
+inline void promoted_incomingConnection(qintptr  handle) { this->incomingConnection(handle); }
 inline bool  py_q_hasPendingConnections() const { return QTcpServer::hasPendingConnections(); }
+inline void py_q_incomingConnection(qintptr  handle) { QTcpServer::incomingConnection(handle); }
 inline QTcpSocket*  py_q_nextPendingConnection() { return QTcpServer::nextPendingConnection(); }
 };
 
@@ -614,6 +623,8 @@ void delete_QTcpServer(QTcpServer* obj) { delete obj; }
    QString  errorString(QTcpServer* theWrappedObject) const;
    bool  hasPendingConnections(QTcpServer* theWrappedObject) const;
    bool  py_q_hasPendingConnections(QTcpServer* theWrappedObject) const{  return (((PythonQtPublicPromoter_QTcpServer*)theWrappedObject)->py_q_hasPendingConnections());}
+   void incomingConnection(QTcpServer* theWrappedObject, qintptr  handle);
+   void py_q_incomingConnection(QTcpServer* theWrappedObject, qintptr  handle){  (((PythonQtPublicPromoter_QTcpServer*)theWrappedObject)->py_q_incomingConnection(handle));}
    bool  isListening(QTcpServer* theWrappedObject) const;
    bool  listen(QTcpServer* theWrappedObject, const QHostAddress&  address = QHostAddress::Any, unsigned short  port = 0);
    int  maxPendingConnections(QTcpServer* theWrappedObject) const;
@@ -627,6 +638,8 @@ void delete_QTcpServer(QTcpServer* obj) { delete obj; }
    unsigned short  serverPort(QTcpServer* theWrappedObject) const;
    void setMaxPendingConnections(QTcpServer* theWrappedObject, int  numConnections);
    void setProxy(QTcpServer* theWrappedObject, const QNetworkProxy&  networkProxy);
+   bool  setSocketDescriptor(QTcpServer* theWrappedObject, qintptr  socketDescriptor);
+   qintptr  socketDescriptor(QTcpServer* theWrappedObject) const;
    bool  waitForNewConnection(QTcpServer* theWrappedObject, int  msec = 0, bool*  timedOut = NULL);
 };
 
@@ -645,14 +658,14 @@ virtual bool  atEnd() const;
 virtual qint64  bytesAvailable() const;
 virtual qint64  bytesToWrite() const;
 virtual bool  canReadLine() const;
-virtual void childEvent(QChildEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
 virtual void close();
 virtual void connectToHost(const QHostAddress&  address, unsigned short  port, QIODevice::OpenMode  mode = QIODevice::ReadWrite);
 virtual void connectToHost(const QString&  hostName, unsigned short  port, QIODevice::OpenMode  mode = QIODevice::ReadWrite, QAbstractSocket::NetworkLayerProtocol  protocol = QAbstractSocket::AnyIPProtocol);
-virtual void customEvent(QEvent*  arg__1);
+virtual void customEvent(QEvent*  event);
 virtual void disconnectFromHost();
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual bool  isSequential() const;
 virtual bool  open(QIODevice::OpenMode  mode);
 virtual qint64  pos() const;
@@ -662,10 +675,12 @@ virtual bool  reset();
 virtual void resume();
 virtual bool  seek(qint64  pos);
 virtual void setReadBufferSize(qint64  size);
+virtual bool  setSocketDescriptor(qintptr  socketDescriptor, QAbstractSocket::SocketState  state = QAbstractSocket::ConnectedState, QIODevice::OpenMode  openMode = QIODevice::ReadWrite);
 virtual void setSocketOption(QAbstractSocket::SocketOption  option, const QVariant&  value);
 virtual qint64  size() const;
+virtual qintptr  socketDescriptor() const;
 virtual QVariant  socketOption(QAbstractSocket::SocketOption  option);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  event);
 virtual bool  waitForBytesWritten(int  msecs = 30000);
 virtual bool  waitForConnected(int  msecs = 30000);
 virtual bool  waitForDisconnected(int  msecs = 30000);
@@ -683,6 +698,7 @@ public:
 public slots:
 QTcpSocket* new_QTcpSocket(QObject*  parent = NULL);
 void delete_QTcpSocket(QTcpSocket* obj) { delete obj; } 
+    bool __nonzero__(QTcpSocket* obj) { return obj->isValid(); }
 };
 
 
@@ -700,14 +716,14 @@ virtual bool  atEnd() const;
 virtual qint64  bytesAvailable() const;
 virtual qint64  bytesToWrite() const;
 virtual bool  canReadLine() const;
-virtual void childEvent(QChildEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
 virtual void close();
 virtual void connectToHost(const QHostAddress&  address, unsigned short  port, QIODevice::OpenMode  mode = QIODevice::ReadWrite);
 virtual void connectToHost(const QString&  hostName, unsigned short  port, QIODevice::OpenMode  mode = QIODevice::ReadWrite, QAbstractSocket::NetworkLayerProtocol  protocol = QAbstractSocket::AnyIPProtocol);
-virtual void customEvent(QEvent*  arg__1);
+virtual void customEvent(QEvent*  event);
 virtual void disconnectFromHost();
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual bool  isSequential() const;
 virtual bool  open(QIODevice::OpenMode  mode);
 virtual qint64  pos() const;
@@ -717,10 +733,12 @@ virtual bool  reset();
 virtual void resume();
 virtual bool  seek(qint64  pos);
 virtual void setReadBufferSize(qint64  size);
+virtual bool  setSocketDescriptor(qintptr  socketDescriptor, QAbstractSocket::SocketState  state = QAbstractSocket::ConnectedState, QIODevice::OpenMode  openMode = QIODevice::ReadWrite);
 virtual void setSocketOption(QAbstractSocket::SocketOption  option, const QVariant&  value);
 virtual qint64  size() const;
+virtual qintptr  socketDescriptor() const;
 virtual QVariant  socketOption(QAbstractSocket::SocketOption  option);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  event);
 virtual bool  waitForBytesWritten(int  msecs = 30000);
 virtual bool  waitForConnected(int  msecs = 30000);
 virtual bool  waitForDisconnected(int  msecs = 30000);
@@ -748,6 +766,7 @@ void delete_QUdpSocket(QUdpSocket* obj) { delete obj; }
    qint64  readDatagram(QUdpSocket* theWrappedObject, char*  data, qint64  maxlen, QHostAddress*  host = NULL, unsigned short*  port = NULL);
    void setMulticastInterface(QUdpSocket* theWrappedObject, const QNetworkInterface&  iface);
    qint64  writeDatagram(QUdpSocket* theWrappedObject, const QByteArray&  datagram, const QHostAddress&  host, unsigned short  port);
+    bool __nonzero__(QUdpSocket* obj) { return obj->isValid(); }
 };
 
 

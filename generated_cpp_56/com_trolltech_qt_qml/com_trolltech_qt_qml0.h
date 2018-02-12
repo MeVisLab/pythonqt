@@ -45,11 +45,11 @@ public:
 
    ~PythonQtShell_QJSEngine();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -178,17 +178,17 @@ void delete_QQmlAbstractUrlInterceptor(QQmlAbstractUrlInterceptor* obj) { delete
 class PythonQtShell_QQmlApplicationEngine : public QQmlApplicationEngine
 {
 public:
-    PythonQtShell_QQmlApplicationEngine(QObject*  parent = 0):QQmlApplicationEngine(parent),_wrapper(NULL) {};
-    PythonQtShell_QQmlApplicationEngine(const QString&  filePath, QObject*  parent = 0):QQmlApplicationEngine(filePath, parent),_wrapper(NULL) {};
-    PythonQtShell_QQmlApplicationEngine(const QUrl&  url, QObject*  parent = 0):QQmlApplicationEngine(url, parent),_wrapper(NULL) {};
+    PythonQtShell_QQmlApplicationEngine(QObject*  parent = NULL):QQmlApplicationEngine(parent),_wrapper(NULL) {};
+    PythonQtShell_QQmlApplicationEngine(const QString&  filePath, QObject*  parent = NULL):QQmlApplicationEngine(filePath, parent),_wrapper(NULL) {};
+    PythonQtShell_QQmlApplicationEngine(const QUrl&  url, QObject*  parent = NULL):QQmlApplicationEngine(url, parent),_wrapper(NULL) {};
 
    ~PythonQtShell_QQmlApplicationEngine();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
 virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -199,9 +199,9 @@ class PythonQtWrapper_QQmlApplicationEngine : public QObject
 { Q_OBJECT
 public:
 public slots:
-QQmlApplicationEngine* new_QQmlApplicationEngine(QObject*  parent = 0);
-QQmlApplicationEngine* new_QQmlApplicationEngine(const QString&  filePath, QObject*  parent = 0);
-QQmlApplicationEngine* new_QQmlApplicationEngine(const QUrl&  url, QObject*  parent = 0);
+QQmlApplicationEngine* new_QQmlApplicationEngine(QObject*  parent = NULL);
+QQmlApplicationEngine* new_QQmlApplicationEngine(const QString&  filePath, QObject*  parent = NULL);
+QQmlApplicationEngine* new_QQmlApplicationEngine(const QUrl&  url, QObject*  parent = NULL);
 void delete_QQmlApplicationEngine(QQmlApplicationEngine* obj) { delete obj; } 
    QList<QObject* >  rootObjects(QQmlApplicationEngine* theWrappedObject);
 };
@@ -213,23 +213,23 @@ void delete_QQmlApplicationEngine(QQmlApplicationEngine* obj) { delete obj; }
 class PythonQtShell_QQmlComponent : public QQmlComponent
 {
 public:
-    PythonQtShell_QQmlComponent(QObject*  parent = 0):QQmlComponent(parent),_wrapper(NULL) {};
-    PythonQtShell_QQmlComponent(QQmlEngine*  arg__1, QObject*  parent = 0):QQmlComponent(arg__1, parent),_wrapper(NULL) {};
-    PythonQtShell_QQmlComponent(QQmlEngine*  arg__1, const QString&  fileName, QObject*  parent = 0):QQmlComponent(arg__1, fileName, parent),_wrapper(NULL) {};
-    PythonQtShell_QQmlComponent(QQmlEngine*  arg__1, const QString&  fileName, QQmlComponent::CompilationMode  mode, QObject*  parent = 0):QQmlComponent(arg__1, fileName, mode, parent),_wrapper(NULL) {};
-    PythonQtShell_QQmlComponent(QQmlEngine*  arg__1, const QUrl&  url, QObject*  parent = 0):QQmlComponent(arg__1, url, parent),_wrapper(NULL) {};
-    PythonQtShell_QQmlComponent(QQmlEngine*  arg__1, const QUrl&  url, QQmlComponent::CompilationMode  mode, QObject*  parent = 0):QQmlComponent(arg__1, url, mode, parent),_wrapper(NULL) {};
+    PythonQtShell_QQmlComponent(QObject*  parent = NULL):QQmlComponent(parent),_wrapper(NULL) {};
+    PythonQtShell_QQmlComponent(QQmlEngine*  arg__1, QObject*  parent = NULL):QQmlComponent(arg__1, parent),_wrapper(NULL) {};
+    PythonQtShell_QQmlComponent(QQmlEngine*  arg__1, const QString&  fileName, QObject*  parent = NULL):QQmlComponent(arg__1, fileName, parent),_wrapper(NULL) {};
+    PythonQtShell_QQmlComponent(QQmlEngine*  arg__1, const QString&  fileName, QQmlComponent::CompilationMode  mode, QObject*  parent = NULL):QQmlComponent(arg__1, fileName, mode, parent),_wrapper(NULL) {};
+    PythonQtShell_QQmlComponent(QQmlEngine*  arg__1, const QUrl&  url, QObject*  parent = NULL):QQmlComponent(arg__1, url, parent),_wrapper(NULL) {};
+    PythonQtShell_QQmlComponent(QQmlEngine*  arg__1, const QUrl&  url, QQmlComponent::CompilationMode  mode, QObject*  parent = NULL):QQmlComponent(arg__1, url, mode, parent),_wrapper(NULL) {};
 
    ~PythonQtShell_QQmlComponent();
 
 virtual QObject*  beginCreate(QQmlContext*  arg__1);
-virtual void childEvent(QChildEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
 virtual void completeCreate();
-virtual QObject*  create(QQmlContext*  context = 0);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual QObject*  create(QQmlContext*  context = NULL);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -240,27 +240,27 @@ class PythonQtPublicPromoter_QQmlComponent : public QQmlComponent
 { public:
 inline QObject*  py_q_beginCreate(QQmlContext*  arg__1) { return QQmlComponent::beginCreate(arg__1); }
 inline void py_q_completeCreate() { QQmlComponent::completeCreate(); }
-inline QObject*  py_q_create(QQmlContext*  context = 0) { return QQmlComponent::create(context); }
+inline QObject*  py_q_create(QQmlContext*  context = NULL) { return QQmlComponent::create(context); }
 };
 
 class PythonQtWrapper_QQmlComponent : public QObject
 { Q_OBJECT
 public:
 public slots:
-QQmlComponent* new_QQmlComponent(QObject*  parent = 0);
-QQmlComponent* new_QQmlComponent(QQmlEngine*  arg__1, QObject*  parent = 0);
-QQmlComponent* new_QQmlComponent(QQmlEngine*  arg__1, const QString&  fileName, QObject*  parent = 0);
-QQmlComponent* new_QQmlComponent(QQmlEngine*  arg__1, const QString&  fileName, QQmlComponent::CompilationMode  mode, QObject*  parent = 0);
-QQmlComponent* new_QQmlComponent(QQmlEngine*  arg__1, const QUrl&  url, QObject*  parent = 0);
-QQmlComponent* new_QQmlComponent(QQmlEngine*  arg__1, const QUrl&  url, QQmlComponent::CompilationMode  mode, QObject*  parent = 0);
+QQmlComponent* new_QQmlComponent(QObject*  parent = NULL);
+QQmlComponent* new_QQmlComponent(QQmlEngine*  arg__1, QObject*  parent = NULL);
+QQmlComponent* new_QQmlComponent(QQmlEngine*  arg__1, const QString&  fileName, QObject*  parent = NULL);
+QQmlComponent* new_QQmlComponent(QQmlEngine*  arg__1, const QString&  fileName, QQmlComponent::CompilationMode  mode, QObject*  parent = NULL);
+QQmlComponent* new_QQmlComponent(QQmlEngine*  arg__1, const QUrl&  url, QObject*  parent = NULL);
+QQmlComponent* new_QQmlComponent(QQmlEngine*  arg__1, const QUrl&  url, QQmlComponent::CompilationMode  mode, QObject*  parent = NULL);
 void delete_QQmlComponent(QQmlComponent* obj) { delete obj; } 
    QObject*  beginCreate(QQmlComponent* theWrappedObject, QQmlContext*  arg__1);
    QObject*  py_q_beginCreate(QQmlComponent* theWrappedObject, QQmlContext*  arg__1){  return (((PythonQtPublicPromoter_QQmlComponent*)theWrappedObject)->py_q_beginCreate(arg__1));}
    void completeCreate(QQmlComponent* theWrappedObject);
    void py_q_completeCreate(QQmlComponent* theWrappedObject){  (((PythonQtPublicPromoter_QQmlComponent*)theWrappedObject)->py_q_completeCreate());}
-   QObject*  create(QQmlComponent* theWrappedObject, QQmlContext*  context = 0);
-   QObject*  py_q_create(QQmlComponent* theWrappedObject, QQmlContext*  context = 0){  return (((PythonQtPublicPromoter_QQmlComponent*)theWrappedObject)->py_q_create(context));}
-   void create(QQmlComponent* theWrappedObject, QQmlIncubator&  arg__1, QQmlContext*  context = 0, QQmlContext*  forContext = 0);
+   QObject*  create(QQmlComponent* theWrappedObject, QQmlContext*  context = NULL);
+   QObject*  py_q_create(QQmlComponent* theWrappedObject, QQmlContext*  context = NULL){  return (((PythonQtPublicPromoter_QQmlComponent*)theWrappedObject)->py_q_create(context));}
+   void create(QQmlComponent* theWrappedObject, QQmlIncubator&  arg__1, QQmlContext*  context = NULL, QQmlContext*  forContext = NULL);
    QQmlContext*  creationContext(QQmlComponent* theWrappedObject) const;
    QString  errorString(QQmlComponent* theWrappedObject) const;
    QList<QQmlError >  errors(QQmlComponent* theWrappedObject) const;
@@ -281,16 +281,16 @@ void delete_QQmlComponent(QQmlComponent* obj) { delete obj; }
 class PythonQtShell_QQmlContext : public QQmlContext
 {
 public:
-    PythonQtShell_QQmlContext(QQmlContext*  parent, QObject*  objParent = 0):QQmlContext(parent, objParent),_wrapper(NULL) {};
-    PythonQtShell_QQmlContext(QQmlEngine*  parent, QObject*  objParent = 0):QQmlContext(parent, objParent),_wrapper(NULL) {};
+    PythonQtShell_QQmlContext(QQmlContext*  parent, QObject*  objParent = NULL):QQmlContext(parent, objParent),_wrapper(NULL) {};
+    PythonQtShell_QQmlContext(QQmlEngine*  parent, QObject*  objParent = NULL):QQmlContext(parent, objParent),_wrapper(NULL) {};
 
    ~PythonQtShell_QQmlContext();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -301,8 +301,8 @@ class PythonQtWrapper_QQmlContext : public QObject
 { Q_OBJECT
 public:
 public slots:
-QQmlContext* new_QQmlContext(QQmlContext*  parent, QObject*  objParent = 0);
-QQmlContext* new_QQmlContext(QQmlEngine*  parent, QObject*  objParent = 0);
+QQmlContext* new_QQmlContext(QQmlContext*  parent, QObject*  objParent = NULL);
+QQmlContext* new_QQmlContext(QQmlEngine*  parent, QObject*  objParent = NULL);
 void delete_QQmlContext(QQmlContext* obj) { delete obj; } 
    QUrl  baseUrl(QQmlContext* theWrappedObject) const;
    QObject*  contextObject(QQmlContext* theWrappedObject) const;
@@ -316,6 +316,7 @@ void delete_QQmlContext(QQmlContext* obj) { delete obj; }
    void setContextObject(QQmlContext* theWrappedObject, QObject*  arg__1);
    void setContextProperty(QQmlContext* theWrappedObject, const QString&  arg__1, QObject*  arg__2);
    void setContextProperty(QQmlContext* theWrappedObject, const QString&  arg__1, const QVariant&  arg__2);
+    bool __nonzero__(QQmlContext* obj) { return obj->isValid(); }
 };
 
 
@@ -342,15 +343,15 @@ void delete_QQmlDebuggingEnabler(QQmlDebuggingEnabler* obj) { delete obj; }
 class PythonQtShell_QQmlEngine : public QQmlEngine
 {
 public:
-    PythonQtShell_QQmlEngine(QObject*  p = 0):QQmlEngine(p),_wrapper(NULL) {};
+    PythonQtShell_QQmlEngine(QObject*  p = NULL):QQmlEngine(p),_wrapper(NULL) {};
 
    ~PythonQtShell_QQmlEngine();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
 virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -370,7 +371,7 @@ Q_ENUMS(ObjectOwnership )
 enum ObjectOwnership{
   CppOwnership = QQmlEngine::CppOwnership,   JavaScriptOwnership = QQmlEngine::JavaScriptOwnership};
 public slots:
-QQmlEngine* new_QQmlEngine(QObject*  p = 0);
+QQmlEngine* new_QQmlEngine(QObject*  p = NULL);
 void delete_QQmlEngine(QQmlEngine* obj) { delete obj; } 
    void addImportPath(QQmlEngine* theWrappedObject, const QString&  dir);
    bool  addNamedBundle(QQmlEngine* theWrappedObject, const QString&  name, const QString&  fileName);
@@ -429,6 +430,7 @@ void delete_QQmlError(QQmlError* obj) { delete obj; }
    QString  toString(QQmlError* theWrappedObject) const;
    QUrl  url(QQmlError* theWrappedObject) const;
     QString py_toString(QQmlError*);
+    bool __nonzero__(QQmlError* obj) { return obj->isValid(); }
 };
 
 
@@ -439,16 +441,16 @@ class PythonQtShell_QQmlExpression : public QQmlExpression
 {
 public:
     PythonQtShell_QQmlExpression():QQmlExpression(),_wrapper(NULL) {};
-    PythonQtShell_QQmlExpression(QQmlContext*  arg__1, QObject*  arg__2, const QString&  arg__3, QObject*  arg__4 = 0):QQmlExpression(arg__1, arg__2, arg__3, arg__4),_wrapper(NULL) {};
-    PythonQtShell_QQmlExpression(const QQmlScriptString&  arg__1, QQmlContext*  arg__2 = 0, QObject*  arg__3 = 0, QObject*  arg__4 = 0):QQmlExpression(arg__1, arg__2, arg__3, arg__4),_wrapper(NULL) {};
+    PythonQtShell_QQmlExpression(QQmlContext*  arg__1, QObject*  arg__2, const QString&  arg__3, QObject*  arg__4 = NULL):QQmlExpression(arg__1, arg__2, arg__3, arg__4),_wrapper(NULL) {};
+    PythonQtShell_QQmlExpression(const QQmlScriptString&  arg__1, QQmlContext*  arg__2 = NULL, QObject*  arg__3 = NULL, QObject*  arg__4 = NULL):QQmlExpression(arg__1, arg__2, arg__3, arg__4),_wrapper(NULL) {};
 
    ~PythonQtShell_QQmlExpression();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -460,15 +462,15 @@ class PythonQtWrapper_QQmlExpression : public QObject
 public:
 public slots:
 QQmlExpression* new_QQmlExpression();
-QQmlExpression* new_QQmlExpression(QQmlContext*  arg__1, QObject*  arg__2, const QString&  arg__3, QObject*  arg__4 = 0);
-QQmlExpression* new_QQmlExpression(const QQmlScriptString&  arg__1, QQmlContext*  arg__2 = 0, QObject*  arg__3 = 0, QObject*  arg__4 = 0);
+QQmlExpression* new_QQmlExpression(QQmlContext*  arg__1, QObject*  arg__2, const QString&  arg__3, QObject*  arg__4 = NULL);
+QQmlExpression* new_QQmlExpression(const QQmlScriptString&  arg__1, QQmlContext*  arg__2 = NULL, QObject*  arg__3 = NULL, QObject*  arg__4 = NULL);
 void delete_QQmlExpression(QQmlExpression* obj) { delete obj; } 
    void clearError(QQmlExpression* theWrappedObject);
    int  columnNumber(QQmlExpression* theWrappedObject) const;
    QQmlContext*  context(QQmlExpression* theWrappedObject) const;
    QQmlEngine*  engine(QQmlExpression* theWrappedObject) const;
    QQmlError  error(QQmlExpression* theWrappedObject) const;
-   QVariant  evaluate(QQmlExpression* theWrappedObject, bool*  valueIsUndefined = 0);
+   QVariant  evaluate(QQmlExpression* theWrappedObject, bool*  valueIsUndefined = NULL);
    QString  expression(QQmlExpression* theWrappedObject) const;
    bool  hasError(QQmlExpression* theWrappedObject) const;
    int  lineNumber(QQmlExpression* theWrappedObject) const;
@@ -519,7 +521,7 @@ void delete_QQmlExtensionInterface(QQmlExtensionInterface* obj) { delete obj; }
 class PythonQtShell_QQmlExtensionPlugin : public QQmlExtensionPlugin
 {
 public:
-    PythonQtShell_QQmlExtensionPlugin(QObject*  parent = 0):QQmlExtensionPlugin(parent),_wrapper(NULL) {};
+    PythonQtShell_QQmlExtensionPlugin(QObject*  parent = NULL):QQmlExtensionPlugin(parent),_wrapper(NULL) {};
 
    ~PythonQtShell_QQmlExtensionPlugin();
 
@@ -541,7 +543,7 @@ class PythonQtWrapper_QQmlExtensionPlugin : public QObject
 { Q_OBJECT
 public:
 public slots:
-QQmlExtensionPlugin* new_QQmlExtensionPlugin(QObject*  parent = 0);
+QQmlExtensionPlugin* new_QQmlExtensionPlugin(QObject*  parent = NULL);
 void delete_QQmlExtensionPlugin(QQmlExtensionPlugin* obj) { delete obj; } 
    QUrl  baseUrl(QQmlExtensionPlugin* theWrappedObject) const;
    void initializeEngine(QQmlExtensionPlugin* theWrappedObject, QQmlEngine*  engine, const char*  uri);
@@ -599,15 +601,15 @@ void delete_QQmlFile(QQmlFile* obj) { delete obj; }
 class PythonQtShell_QQmlFileSelector : public QQmlFileSelector
 {
 public:
-    PythonQtShell_QQmlFileSelector(QQmlEngine*  engine, QObject*  parent = 0):QQmlFileSelector(engine, parent),_wrapper(NULL) {};
+    PythonQtShell_QQmlFileSelector(QQmlEngine*  engine, QObject*  parent = NULL):QQmlFileSelector(engine, parent),_wrapper(NULL) {};
 
    ~PythonQtShell_QQmlFileSelector();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -618,7 +620,7 @@ class PythonQtWrapper_QQmlFileSelector : public QObject
 { Q_OBJECT
 public:
 public slots:
-QQmlFileSelector* new_QQmlFileSelector(QQmlEngine*  engine, QObject*  parent = 0);
+QQmlFileSelector* new_QQmlFileSelector(QQmlEngine*  engine, QObject*  parent = NULL);
 void delete_QQmlFileSelector(QQmlFileSelector* obj) { delete obj; } 
    QQmlFileSelector*  static_QQmlFileSelector_get(QQmlEngine*  arg__1);
    void setExtraSelectors(QQmlFileSelector* theWrappedObject, QStringList&  strings);
@@ -737,11 +739,11 @@ void delete_QQmlInfo(QQmlInfo* obj) { delete obj; }
    QQmlInfo*  __lshift__(QQmlInfo* theWrappedObject, double  t);
    QQmlInfo*  __lshift__(QQmlInfo* theWrappedObject, float  t);
    QQmlInfo*  __lshift__(QQmlInfo* theWrappedObject, qint64  t);
+   QQmlInfo*  __lshift__(QQmlInfo* theWrappedObject, quint64  t);
    QQmlInfo*  __lshift__(QQmlInfo* theWrappedObject, signed int  t);
    QQmlInfo*  __lshift__(QQmlInfo* theWrappedObject, signed long  t);
    QQmlInfo*  __lshift__(QQmlInfo* theWrappedObject, signed short  t);
    QQmlInfo*  __lshift__(QQmlInfo* theWrappedObject, unsigned int  t);
-   QQmlInfo*  __lshift__(QQmlInfo* theWrappedObject, quint64  t);
    QQmlInfo*  __lshift__(QQmlInfo* theWrappedObject, unsigned long  t);
    QQmlInfo*  __lshift__(QQmlInfo* theWrappedObject, unsigned short  t);
 };
@@ -755,7 +757,7 @@ class PythonQtWrapper_QQmlListReference : public QObject
 public:
 public slots:
 QQmlListReference* new_QQmlListReference();
-QQmlListReference* new_QQmlListReference(QObject*  arg__1, const char*  property, QQmlEngine*  arg__3 = 0);
+QQmlListReference* new_QQmlListReference(QObject*  arg__1, const char*  property, QQmlEngine*  arg__3 = NULL);
 QQmlListReference* new_QQmlListReference(const QQmlListReference&  arg__1);
 void delete_QQmlListReference(QQmlListReference* obj) { delete obj; } 
    bool  append(QQmlListReference* theWrappedObject, QObject*  arg__1) const;
@@ -772,6 +774,7 @@ void delete_QQmlListReference(QQmlListReference* obj) { delete obj; }
    const QMetaObject*  listElementType(QQmlListReference* theWrappedObject) const;
    QObject*  object(QQmlListReference* theWrappedObject) const;
    QQmlListReference*  operator_assign(QQmlListReference* theWrappedObject, const QQmlListReference&  arg__1);
+    bool __nonzero__(QQmlListReference* obj) { return obj->isValid(); }
 };
 
 
@@ -892,6 +895,7 @@ void delete_QQmlProperty(QQmlProperty* obj) { delete obj; }
    bool  static_QQmlProperty_write(QObject*  arg__1, const QString&  arg__2, const QVariant&  arg__3, QQmlContext*  arg__4);
    bool  static_QQmlProperty_write(QObject*  arg__1, const QString&  arg__2, const QVariant&  arg__3, QQmlEngine*  arg__4);
    bool  write(QQmlProperty* theWrappedObject, const QVariant&  arg__1) const;
+    bool __nonzero__(QQmlProperty* obj) { return obj->isValid(); }
 };
 
 
@@ -901,15 +905,15 @@ void delete_QQmlProperty(QQmlProperty* obj) { delete obj; }
 class PythonQtShell_QQmlPropertyMap : public QQmlPropertyMap
 {
 public:
-    PythonQtShell_QQmlPropertyMap(QObject*  parent = 0):QQmlPropertyMap(parent),_wrapper(NULL) {};
+    PythonQtShell_QQmlPropertyMap(QObject*  parent = NULL):QQmlPropertyMap(parent),_wrapper(NULL) {};
 
    ~PythonQtShell_QQmlPropertyMap();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
 virtual QVariant  updateValue(const QString&  key, const QVariant&  input);
 
   const QMetaObject* metaObject() const;
@@ -927,7 +931,7 @@ class PythonQtWrapper_QQmlPropertyMap : public QObject
 { Q_OBJECT
 public:
 public slots:
-QQmlPropertyMap* new_QQmlPropertyMap(QObject*  parent = 0);
+QQmlPropertyMap* new_QQmlPropertyMap(QObject*  parent = NULL);
 void delete_QQmlPropertyMap(QQmlPropertyMap* obj) { delete obj; } 
    void clear(QQmlPropertyMap* theWrappedObject, const QString&  key);
    bool  contains(QQmlPropertyMap* theWrappedObject, const QString&  key) const;
@@ -940,6 +944,7 @@ void delete_QQmlPropertyMap(QQmlPropertyMap* obj) { delete obj; }
    QVariant  updateValue(QQmlPropertyMap* theWrappedObject, const QString&  key, const QVariant&  input);
    QVariant  py_q_updateValue(QQmlPropertyMap* theWrappedObject, const QString&  key, const QVariant&  input){  return (((PythonQtPublicPromoter_QQmlPropertyMap*)theWrappedObject)->py_q_updateValue(key, input));}
    QVariant  value(QQmlPropertyMap* theWrappedObject, const QString&  key) const;
+    bool __nonzero__(QQmlPropertyMap* obj) { return !obj->isEmpty(); }
 };
 
 
@@ -993,6 +998,7 @@ void delete_QQmlScriptString(QQmlScriptString* obj) { delete obj; }
    QQmlScriptString*  operator_assign(QQmlScriptString* theWrappedObject, const QQmlScriptString&  arg__1);
    bool  __eq__(QQmlScriptString* theWrappedObject, const QQmlScriptString&  arg__1) const;
    QString  stringLiteral(QQmlScriptString* theWrappedObject) const;
+    bool __nonzero__(QQmlScriptString* obj) { return !obj->isEmpty(); }
 };
 
 

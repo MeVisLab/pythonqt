@@ -92,6 +92,7 @@ void delete_QXmlStreamAttributes(QXmlStreamAttributes* obj) { delete obj; }
    QList<QXmlStreamAttribute >  toList(QXmlStreamAttributes* theWrappedObject) const;
    QStringRef  value(QXmlStreamAttributes* theWrappedObject, const QString&  namespaceUri, const QString&  name) const;
    QStringRef  value(QXmlStreamAttributes* theWrappedObject, const QString&  qualifiedName) const;
+    bool __nonzero__(QXmlStreamAttributes* obj) { return !obj->isEmpty(); }
 };
 
 
