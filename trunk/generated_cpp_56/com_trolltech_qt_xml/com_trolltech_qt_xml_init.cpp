@@ -17,9 +17,9 @@ PythonQt::priv()->registerCPPClass("QDomElement", "QDomNode", "QtXml", PythonQtC
 PythonQt::priv()->registerCPPClass("QDomEntity", "QDomNode", "QtXml", PythonQtCreateObject<PythonQtWrapper_QDomEntity>, NULL, module, PythonQt::Type_NonZero|PythonQt::Type_RichCompare);
 PythonQt::priv()->registerCPPClass("QDomEntityReference", "QDomNode", "QtXml", PythonQtCreateObject<PythonQtWrapper_QDomEntityReference>, NULL, module, PythonQt::Type_NonZero|PythonQt::Type_RichCompare);
 PythonQt::priv()->registerCPPClass("QDomImplementation", "", "QtXml", PythonQtCreateObject<PythonQtWrapper_QDomImplementation>, NULL, module, PythonQt::Type_NonZero|PythonQt::Type_RichCompare);
-PythonQt::priv()->registerCPPClass("QDomNamedNodeMap", "", "QtXml", PythonQtCreateObject<PythonQtWrapper_QDomNamedNodeMap>, NULL, module, PythonQt::Type_RichCompare);
+PythonQt::priv()->registerCPPClass("QDomNamedNodeMap", "", "QtXml", PythonQtCreateObject<PythonQtWrapper_QDomNamedNodeMap>, NULL, module, PythonQt::Type_NonZero|PythonQt::Type_RichCompare);
 PythonQt::priv()->registerCPPClass("QDomNode", "", "QtXml", PythonQtCreateObject<PythonQtWrapper_QDomNode>, NULL, module, PythonQt::Type_NonZero|PythonQt::Type_RichCompare);
-PythonQt::priv()->registerCPPClass("QDomNodeList", "", "QtXml", PythonQtCreateObject<PythonQtWrapper_QDomNodeList>, NULL, module, PythonQt::Type_RichCompare);
+PythonQt::priv()->registerCPPClass("QDomNodeList", "", "QtXml", PythonQtCreateObject<PythonQtWrapper_QDomNodeList>, NULL, module, PythonQt::Type_NonZero|PythonQt::Type_RichCompare);
 PythonQt::priv()->registerCPPClass("QDomNotation", "QDomNode", "QtXml", PythonQtCreateObject<PythonQtWrapper_QDomNotation>, NULL, module, PythonQt::Type_NonZero|PythonQt::Type_RichCompare);
 PythonQt::priv()->registerCPPClass("QDomProcessingInstruction", "QDomNode", "QtXml", PythonQtCreateObject<PythonQtWrapper_QDomProcessingInstruction>, NULL, module, PythonQt::Type_NonZero|PythonQt::Type_RichCompare);
 PythonQt::priv()->registerCPPClass("QDomText", "QDomCharacterData", "QtXml", PythonQtCreateObject<PythonQtWrapper_QDomText>, NULL, module, PythonQt::Type_NonZero|PythonQt::Type_RichCompare);
@@ -43,7 +43,7 @@ PythonQt::priv()->registerCPPClass("QXmlParseException", "", "QtXml", PythonQtCr
 PythonQt::priv()->registerCPPClass("QXmlReader", "", "QtXml", PythonQtCreateObject<PythonQtWrapper_QXmlReader>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QXmlReader>, module, 0);
 PythonQt::priv()->registerCPPClass("QXmlSimpleReader", "QXmlReader", "QtXml", PythonQtCreateObject<PythonQtWrapper_QXmlSimpleReader>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QXmlSimpleReader>, module, 0);
 PythonQt::priv()->registerCPPClass("QXmlStreamAttribute", "", "QtXml", PythonQtCreateObject<PythonQtWrapper_QXmlStreamAttribute>, NULL, module, PythonQt::Type_RichCompare);
-PythonQt::priv()->registerCPPClass("QXmlStreamAttributes", "", "QtXml", PythonQtCreateObject<PythonQtWrapper_QXmlStreamAttributes>, NULL, module, PythonQt::Type_Add|PythonQt::Type_RichCompare);
+PythonQt::priv()->registerCPPClass("QXmlStreamAttributes", "", "QtXml", PythonQtCreateObject<PythonQtWrapper_QXmlStreamAttributes>, NULL, module, PythonQt::Type_Add|PythonQt::Type_NonZero|PythonQt::Type_RichCompare);
 PythonQt::priv()->registerCPPClass("QXmlStreamEntityDeclaration", "", "QtXml", PythonQtCreateObject<PythonQtWrapper_QXmlStreamEntityDeclaration>, NULL, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerCPPClass("QXmlStreamNamespaceDeclaration", "", "QtXml", PythonQtCreateObject<PythonQtWrapper_QXmlStreamNamespaceDeclaration>, NULL, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerCPPClass("QXmlStreamNotationDeclaration", "", "QtXml", PythonQtCreateObject<PythonQtWrapper_QXmlStreamNotationDeclaration>, NULL, module, PythonQt::Type_RichCompare);

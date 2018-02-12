@@ -785,9 +785,9 @@ qint64  PythonQtWrapper_QDate::daysTo(QDate* theWrappedObject, const QDate&  arg
   return ( theWrappedObject->daysTo(arg__1));
 }
 
-QDate  PythonQtWrapper_QDate::static_QDate_fromJulianDay(qint64  jd)
+QDate  PythonQtWrapper_QDate::static_QDate_fromJulianDay(qint64  jd_)
 {
-  return (QDate::fromJulianDay(jd));
+  return (QDate::fromJulianDay(jd_));
 }
 
 QDate  PythonQtWrapper_QDate::static_QDate_fromString(const QString&  s, Qt::DateFormat  f)

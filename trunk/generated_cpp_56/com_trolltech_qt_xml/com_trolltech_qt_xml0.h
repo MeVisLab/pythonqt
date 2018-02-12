@@ -273,6 +273,7 @@ void delete_QDomNamedNodeMap(QDomNamedNodeMap* obj) { delete obj; }
    QDomNode  setNamedItem(QDomNamedNodeMap* theWrappedObject, const QDomNode&  newNode);
    QDomNode  setNamedItemNS(QDomNamedNodeMap* theWrappedObject, const QDomNode&  newNode);
    int  size(QDomNamedNodeMap* theWrappedObject) const;
+    bool __nonzero__(QDomNamedNodeMap* obj) { return !obj->isEmpty(); }
 };
 
 
@@ -377,6 +378,7 @@ void delete_QDomNodeList(QDomNodeList* obj) { delete obj; }
    bool  __ne__(QDomNodeList* theWrappedObject, const QDomNodeList&  arg__1) const;
    bool  __eq__(QDomNodeList* theWrappedObject, const QDomNodeList&  arg__1) const;
    int  size(QDomNodeList* theWrappedObject) const;
+    bool __nonzero__(QDomNodeList* obj) { return !obj->isEmpty(); }
 };
 
 

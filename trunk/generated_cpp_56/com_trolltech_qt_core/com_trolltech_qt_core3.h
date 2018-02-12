@@ -76,6 +76,7 @@ void delete_QTemporaryDir(QTemporaryDir* obj) { delete obj; }
    QString  path(QTemporaryDir* theWrappedObject) const;
    bool  remove(QTemporaryDir* theWrappedObject);
    void setAutoRemove(QTemporaryDir* theWrappedObject, bool  b);
+    bool __nonzero__(QTemporaryDir* obj) { return obj->isValid(); }
 };
 
 
@@ -96,11 +97,11 @@ virtual bool  atEnd() const;
 virtual qint64  bytesAvailable() const;
 virtual qint64  bytesToWrite() const;
 virtual bool  canReadLine() const;
-virtual void childEvent(QChildEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
 virtual void close();
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual bool  isSequential() const;
 virtual bool  open(QIODevice::OpenMode  flags);
 virtual QFileDevice::Permissions  permissions() const;
@@ -112,7 +113,7 @@ virtual bool  resize(qint64  sz);
 virtual bool  seek(qint64  offset);
 virtual bool  setPermissions(QFileDevice::Permissions  permissionSpec);
 virtual qint64  size() const;
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  event);
 virtual bool  waitForBytesWritten(int  msecs);
 virtual bool  waitForReadyRead(int  msecs);
 virtual qint64  writeData(const char*  data, qint64  len);
@@ -180,6 +181,7 @@ void delete_QTextBoundaryFinder(QTextBoundaryFinder* obj) { delete obj; }
    int  toPreviousBoundary(QTextBoundaryFinder* theWrappedObject);
    void toStart(QTextBoundaryFinder* theWrappedObject);
    QTextBoundaryFinder::BoundaryType  type(QTextBoundaryFinder* theWrappedObject) const;
+    bool __nonzero__(QTextBoundaryFinder* obj) { return obj->isValid(); }
 };
 
 
@@ -383,11 +385,11 @@ public:
 
    ~PythonQtShell_QThreadPool();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -426,10 +428,10 @@ public:
 
    ~PythonQtShell_QTimeLine();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual void timerEvent(QTimerEvent*  event);
 virtual qreal  valueForTime(int  msec) const;
 
@@ -536,6 +538,7 @@ void delete_QTimeZone(QTimeZone* obj) { delete obj; }
    QList<QByteArray >  static_QTimeZone_windowsIdToIanaIds(const QByteArray&  windowsId);
    QList<QByteArray >  static_QTimeZone_windowsIdToIanaIds(const QByteArray&  windowsId, QLocale::Country  country);
     QString py_toString(QTimeZone*);
+    bool __nonzero__(QTimeZone* obj) { return obj->isValid(); }
 };
 
 
@@ -549,10 +552,10 @@ public:
 
    ~PythonQtShell_QTimer();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual void timerEvent(QTimerEvent*  arg__1);
 
   const QMetaObject* metaObject() const;
@@ -621,12 +624,12 @@ public:
 
    ~PythonQtShell_QTranslator();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual bool  isEmpty() const;
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  event);
 virtual QString  translate(const char*  context, const char*  sourceText, const char*  disambiguation = NULL, int  n = -1) const;
 
   const QMetaObject* metaObject() const;
@@ -653,6 +656,7 @@ void delete_QTranslator(QTranslator* obj) { delete obj; }
    bool  load(QTranslator* theWrappedObject, const uchar*  data, int  len, const QString&  directory = QString());
    QString  translate(QTranslator* theWrappedObject, const char*  context, const char*  sourceText, const char*  disambiguation = NULL, int  n = -1) const;
    QString  py_q_translate(QTranslator* theWrappedObject, const char*  context, const char*  sourceText, const char*  disambiguation = NULL, int  n = -1) const{  return (((PythonQtPublicPromoter_QTranslator*)theWrappedObject)->py_q_translate(context, sourceText, disambiguation, n));}
+    bool __nonzero__(QTranslator* obj) { return !obj->isEmpty(); }
 };
 
 
@@ -691,6 +695,7 @@ void delete_QUrlQuery(QUrlQuery* obj) { delete obj; }
    void swap(QUrlQuery* theWrappedObject, QUrlQuery&  other);
    QString  toString(QUrlQuery* theWrappedObject, QUrl::ComponentFormattingOptions  encoding = QUrl::PrettyDecoded) const;
     QString py_toString(QUrlQuery*);
+    bool __nonzero__(QUrlQuery* obj) { return !obj->isEmpty(); }
 };
 
 
@@ -770,13 +775,13 @@ public:
 
    ~PythonQtShell_QVariantAnimation();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
 virtual int  duration() const;
 virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual QVariant  interpolated(const QVariant&  from, const QVariant&  to, qreal  progress) const;
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  event);
 virtual void updateCurrentTime(int  arg__1);
 virtual void updateCurrentValue(const QVariant&  value);
 virtual void updateDirection(QAbstractAnimation::Direction  direction);

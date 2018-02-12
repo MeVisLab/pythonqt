@@ -7,7 +7,7 @@
 
 void PythonQt_init_QtNetwork(PyObject* module) {
 PythonQt::priv()->registerClass(&QAbstractNetworkCache::staticMetaObject, "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QAbstractNetworkCache>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QAbstractNetworkCache>, module, 0);
-PythonQt::priv()->registerClass(&QAbstractSocket::staticMetaObject, "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QAbstractSocket>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QAbstractSocket>, module, 0);
+PythonQt::priv()->registerClass(&QAbstractSocket::staticMetaObject, "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QAbstractSocket>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QAbstractSocket>, module, PythonQt::Type_NonZero);
 PythonQt::priv()->registerCPPClass("QAuthenticator", "", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QAuthenticator>, NULL, module, PythonQt::Type_NonZero|PythonQt::Type_RichCompare);
 PythonQt::priv()->registerCPPClass("QDnsDomainNameRecord", "", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QDnsDomainNameRecord>, NULL, module, 0);
 PythonQt::priv()->registerCPPClass("QDnsHostAddressRecord", "", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QDnsHostAddressRecord>, NULL, module, 0);
@@ -21,16 +21,16 @@ PythonQt::priv()->registerClass(&QHttpMultiPart::staticMetaObject, "QtNetwork", 
 PythonQt::priv()->registerCPPClass("QHttpPart", "", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QHttpPart>, NULL, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerCPPClass("QIPv6Address", "", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QIPv6Address>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QIPv6Address>, module, 0);
 PythonQt::priv()->registerClass(&QLocalServer::staticMetaObject, "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QLocalServer>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QLocalServer>, module, 0);
-PythonQt::priv()->registerClass(&QLocalSocket::staticMetaObject, "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QLocalSocket>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QLocalSocket>, module, 0);
+PythonQt::priv()->registerClass(&QLocalSocket::staticMetaObject, "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QLocalSocket>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QLocalSocket>, module, PythonQt::Type_NonZero);
 PythonQt::priv()->registerClass(&QNetworkAccessManager::staticMetaObject, "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QNetworkAccessManager>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QNetworkAccessManager>, module, 0);
 PythonQt::priv()->registerCPPClass("QNetworkAddressEntry", "", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QNetworkAddressEntry>, NULL, module, PythonQt::Type_RichCompare);
-PythonQt::priv()->registerCPPClass("QNetworkCacheMetaData", "", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QNetworkCacheMetaData>, NULL, module, PythonQt::Type_RichCompare);
-PythonQt::priv()->registerCPPClass("QNetworkConfiguration", "", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QNetworkConfiguration>, NULL, module, PythonQt::Type_RichCompare);
+PythonQt::priv()->registerCPPClass("QNetworkCacheMetaData", "", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QNetworkCacheMetaData>, NULL, module, PythonQt::Type_NonZero|PythonQt::Type_RichCompare);
+PythonQt::priv()->registerCPPClass("QNetworkConfiguration", "", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QNetworkConfiguration>, NULL, module, PythonQt::Type_NonZero|PythonQt::Type_RichCompare);
 PythonQt::priv()->registerClass(&QNetworkConfigurationManager::staticMetaObject, "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QNetworkConfigurationManager>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QNetworkConfigurationManager>, module, 0);
 PythonQt::priv()->registerCPPClass("QNetworkCookie", "", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QNetworkCookie>, NULL, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerClass(&QNetworkCookieJar::staticMetaObject, "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QNetworkCookieJar>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QNetworkCookieJar>, module, 0);
 PythonQt::priv()->registerClass(&QNetworkDiskCache::staticMetaObject, "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QNetworkDiskCache>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QNetworkDiskCache>, module, 0);
-PythonQt::priv()->registerCPPClass("QNetworkInterface", "", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QNetworkInterface>, NULL, module, 0);
+PythonQt::priv()->registerCPPClass("QNetworkInterface", "", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QNetworkInterface>, NULL, module, PythonQt::Type_NonZero);
 PythonQt::priv()->registerCPPClass("QNetworkProxy", "", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QNetworkProxy>, NULL, module, PythonQt::Type_RichCompare);
 PythonQt::priv()->registerCPPClass("QNetworkProxyFactory", "", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QNetworkProxyFactory>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QNetworkProxyFactory>, module, 0);
 PythonQt::priv()->registerCPPClass("QNetworkProxyQuery", "", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QNetworkProxyQuery>, NULL, module, PythonQt::Type_RichCompare);
@@ -53,7 +53,7 @@ PythonQt::priv()->registerCPPClass("QSslCipher", "", "QtNetwork", PythonQtCreate
 PythonQt::priv()->registerCPPClass("QSslConfiguration", "", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QSslConfiguration>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSslConfiguration>, module, PythonQt::Type_NonZero|PythonQt::Type_RichCompare);
 #endif
 #ifndef QT_NO_SSL
-PythonQt::priv()->registerCPPClass("QSslEllipticCurve", "", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QSslEllipticCurve>, NULL, module, PythonQt::Type_RichCompare);
+PythonQt::priv()->registerCPPClass("QSslEllipticCurve", "", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QSslEllipticCurve>, NULL, module, PythonQt::Type_NonZero|PythonQt::Type_RichCompare);
 #endif
 #ifndef QT_NO_SSL
 PythonQt::priv()->registerCPPClass("QSslError", "", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QSslError>, NULL, module, PythonQt::Type_RichCompare);
@@ -65,11 +65,11 @@ PythonQt::priv()->registerCPPClass("QSslKey", "", "QtNetwork", PythonQtCreateObj
 PythonQt::priv()->registerCPPClass("QSslPreSharedKeyAuthenticator", "", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QSslPreSharedKeyAuthenticator>, NULL, module, 0);
 #endif
 #ifndef QT_NO_SSL
-PythonQt::priv()->registerClass(&QSslSocket::staticMetaObject, "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QSslSocket>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSslSocket>, module, 0);
+PythonQt::priv()->registerClass(&QSslSocket::staticMetaObject, "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QSslSocket>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSslSocket>, module, PythonQt::Type_NonZero);
 #endif
 PythonQt::priv()->registerClass(&QTcpServer::staticMetaObject, "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QTcpServer>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QTcpServer>, module, 0);
-PythonQt::priv()->registerClass(&QTcpSocket::staticMetaObject, "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QTcpSocket>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QTcpSocket>, module, 0);
-PythonQt::priv()->registerClass(&QUdpSocket::staticMetaObject, "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QUdpSocket>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QUdpSocket>, module, 0);
+PythonQt::priv()->registerClass(&QTcpSocket::staticMetaObject, "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QTcpSocket>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QTcpSocket>, module, PythonQt::Type_NonZero);
+PythonQt::priv()->registerClass(&QUdpSocket::staticMetaObject, "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QUdpSocket>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QUdpSocket>, module, PythonQt::Type_NonZero);
 
 
 PythonQtRegisterListTemplateConverterForKnownClass(QList, QDnsDomainNameRecord);

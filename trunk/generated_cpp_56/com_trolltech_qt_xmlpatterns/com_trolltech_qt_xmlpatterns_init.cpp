@@ -18,9 +18,9 @@ PythonQt::priv()->registerCPPClass("QXmlItem", "", "QtXmlPatterns", PythonQtCrea
 PythonQt::priv()->registerCPPClass("QXmlName", "", "QtXmlPatterns", PythonQtCreateObject<PythonQtWrapper_QXmlName>, NULL, module, PythonQt::Type_NonZero|PythonQt::Type_RichCompare);
 PythonQt::priv()->registerCPPClass("QXmlNamePool", "", "QtXmlPatterns", PythonQtCreateObject<PythonQtWrapper_QXmlNamePool>, NULL, module, 0);
 PythonQt::priv()->registerCPPClass("QXmlNodeModelIndex", "", "QtXmlPatterns", PythonQtCreateObject<PythonQtWrapper_QXmlNodeModelIndex>, NULL, module, PythonQt::Type_NonZero|PythonQt::Type_RichCompare);
-PythonQt::priv()->registerCPPClass("QXmlQuery", "", "QtXmlPatterns", PythonQtCreateObject<PythonQtWrapper_QXmlQuery>, NULL, module, 0);
+PythonQt::priv()->registerCPPClass("QXmlQuery", "", "QtXmlPatterns", PythonQtCreateObject<PythonQtWrapper_QXmlQuery>, NULL, module, PythonQt::Type_NonZero);
 PythonQt::priv()->registerCPPClass("QXmlResultItems", "", "QtXmlPatterns", PythonQtCreateObject<PythonQtWrapper_QXmlResultItems>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QXmlResultItems>, module, 0);
-PythonQt::priv()->registerCPPClass("QXmlSchema", "", "QtXmlPatterns", PythonQtCreateObject<PythonQtWrapper_QXmlSchema>, NULL, module, 0);
+PythonQt::priv()->registerCPPClass("QXmlSchema", "", "QtXmlPatterns", PythonQtCreateObject<PythonQtWrapper_QXmlSchema>, NULL, module, PythonQt::Type_NonZero);
 PythonQt::priv()->registerCPPClass("QXmlSchemaValidator", "", "QtXmlPatterns", PythonQtCreateObject<PythonQtWrapper_QXmlSchemaValidator>, NULL, module, 0);
 PythonQt::priv()->registerCPPClass("QXmlSerializer", "QAbstractXmlReceiver", "QtXmlPatterns", PythonQtCreateObject<PythonQtWrapper_QXmlSerializer>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QXmlSerializer>, module, 0);
 

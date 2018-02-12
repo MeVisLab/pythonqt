@@ -22,6 +22,8 @@
 #include <qdockwidget.h>
 #include <qevent.h>
 #include <qfont.h>
+#include <qfontinfo.h>
+#include <qfontmetrics.h>
 #include <qgraphicseffect.h>
 #include <qgraphicsproxywidget.h>
 #include <qicon.h>
@@ -48,7 +50,6 @@
 #include <qopenglbuffer.h>
 #include <qopenglcontext.h>
 #include <qopenglframebufferobject.h>
-#include <qopenglfunctions.h>
 #include <qopenglpaintdevice.h>
 #include <qopenglshaderprogram.h>
 #include <qopengltexture.h>
@@ -56,6 +57,8 @@
 #include <qopenglvertexarrayobject.h>
 #include <qopenglwidget.h>
 #include <qopenglwindow.h>
+#include <qpagelayout.h>
+#include <qpagesize.h>
 #include <qpaintdevice.h>
 #include <qpaintengine.h>
 #include <qpainter.h>
@@ -97,52 +100,52 @@ public:
 
    ~PythonQtShell_QMainWindow();
 
-virtual void actionEvent(QActionEvent*  arg__1);
+virtual void actionEvent(QActionEvent*  event);
 virtual void changeEvent(QEvent*  arg__1);
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void closeEvent(QCloseEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void closeEvent(QCloseEvent*  event);
 virtual void contextMenuEvent(QContextMenuEvent*  event);
 virtual QMenu*  createPopupMenu();
-virtual void customEvent(QEvent*  arg__1);
+virtual void customEvent(QEvent*  event);
 virtual int  devType() const;
-virtual void dragEnterEvent(QDragEnterEvent*  arg__1);
-virtual void dragLeaveEvent(QDragLeaveEvent*  arg__1);
-virtual void dragMoveEvent(QDragMoveEvent*  arg__1);
-virtual void dropEvent(QDropEvent*  arg__1);
-virtual void enterEvent(QEvent*  arg__1);
+virtual void dragEnterEvent(QDragEnterEvent*  event);
+virtual void dragLeaveEvent(QDragLeaveEvent*  event);
+virtual void dragMoveEvent(QDragMoveEvent*  event);
+virtual void dropEvent(QDropEvent*  event);
+virtual void enterEvent(QEvent*  event);
 virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void focusInEvent(QFocusEvent*  arg__1);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void focusInEvent(QFocusEvent*  event);
 virtual bool  focusNextPrevChild(bool  next);
-virtual void focusOutEvent(QFocusEvent*  arg__1);
+virtual void focusOutEvent(QFocusEvent*  event);
 virtual bool  hasHeightForWidth() const;
 virtual int  heightForWidth(int  arg__1) const;
-virtual void hideEvent(QHideEvent*  arg__1);
+virtual void hideEvent(QHideEvent*  event);
 virtual void initPainter(QPainter*  painter) const;
 virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
 virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const;
-virtual void keyPressEvent(QKeyEvent*  arg__1);
-virtual void keyReleaseEvent(QKeyEvent*  arg__1);
-virtual void leaveEvent(QEvent*  arg__1);
+virtual void keyPressEvent(QKeyEvent*  event);
+virtual void keyReleaseEvent(QKeyEvent*  event);
+virtual void leaveEvent(QEvent*  event);
 virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
 virtual QSize  minimumSizeHint() const;
-virtual void mouseDoubleClickEvent(QMouseEvent*  arg__1);
-virtual void mouseMoveEvent(QMouseEvent*  arg__1);
-virtual void mousePressEvent(QMouseEvent*  arg__1);
-virtual void mouseReleaseEvent(QMouseEvent*  arg__1);
-virtual void moveEvent(QMoveEvent*  arg__1);
+virtual void mouseDoubleClickEvent(QMouseEvent*  event);
+virtual void mouseMoveEvent(QMouseEvent*  event);
+virtual void mousePressEvent(QMouseEvent*  event);
+virtual void mouseReleaseEvent(QMouseEvent*  event);
+virtual void moveEvent(QMoveEvent*  event);
 virtual bool  nativeEvent(const QByteArray&  eventType, void*  message, long*  result);
 virtual QPaintEngine*  paintEngine() const;
-virtual void paintEvent(QPaintEvent*  arg__1);
+virtual void paintEvent(QPaintEvent*  event);
 virtual QPaintDevice*  redirected(QPoint*  offset) const;
-virtual void resizeEvent(QResizeEvent*  arg__1);
+virtual void resizeEvent(QResizeEvent*  event);
 virtual void setVisible(bool  visible);
 virtual QPainter*  sharedPainter() const;
-virtual void showEvent(QShowEvent*  arg__1);
+virtual void showEvent(QShowEvent*  event);
 virtual QSize  sizeHint() const;
-virtual void tabletEvent(QTabletEvent*  arg__1);
-virtual void timerEvent(QTimerEvent*  arg__1);
-virtual void wheelEvent(QWheelEvent*  arg__1);
+virtual void tabletEvent(QTabletEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
+virtual void wheelEvent(QWheelEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -161,6 +164,11 @@ inline bool  py_q_event(QEvent*  event) { return QMainWindow::event(event); }
 class PythonQtWrapper_QMainWindow : public QObject
 { Q_OBJECT
 public:
+Q_ENUMS(DockOption )
+Q_FLAGS(DockOptions )
+enum DockOption{
+  AnimatedDocks = QMainWindow::AnimatedDocks,   AllowNestedDocks = QMainWindow::AllowNestedDocks,   AllowTabbedDocks = QMainWindow::AllowTabbedDocks,   ForceTabbedDocks = QMainWindow::ForceTabbedDocks,   VerticalTabs = QMainWindow::VerticalTabs,   GroupedDragging = QMainWindow::GroupedDragging};
+Q_DECLARE_FLAGS(DockOptions, DockOption)
 public slots:
 QMainWindow* new_QMainWindow(QWidget*  parent = NULL, Qt::WindowFlags  flags = Qt::WindowFlags());
 void delete_QMainWindow(QMainWindow* obj) { delete obj; } 
@@ -362,38 +370,38 @@ public:
 
    ~PythonQtShell_QMdiArea();
 
-virtual void actionEvent(QActionEvent*  arg__1);
+virtual void actionEvent(QActionEvent*  event);
 virtual void changeEvent(QEvent*  arg__1);
 virtual void childEvent(QChildEvent*  childEvent);
-virtual void closeEvent(QCloseEvent*  arg__1);
+virtual void closeEvent(QCloseEvent*  event);
 virtual void contextMenuEvent(QContextMenuEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
+virtual void customEvent(QEvent*  event);
 virtual int  devType() const;
 virtual void dragEnterEvent(QDragEnterEvent*  arg__1);
 virtual void dragLeaveEvent(QDragLeaveEvent*  arg__1);
 virtual void dragMoveEvent(QDragMoveEvent*  arg__1);
 virtual void dropEvent(QDropEvent*  arg__1);
-virtual void enterEvent(QEvent*  arg__1);
+virtual void enterEvent(QEvent*  event);
 virtual bool  event(QEvent*  event);
 virtual bool  eventFilter(QObject*  object, QEvent*  event);
-virtual void focusInEvent(QFocusEvent*  arg__1);
+virtual void focusInEvent(QFocusEvent*  event);
 virtual bool  focusNextPrevChild(bool  next);
-virtual void focusOutEvent(QFocusEvent*  arg__1);
+virtual void focusOutEvent(QFocusEvent*  event);
 virtual bool  hasHeightForWidth() const;
 virtual int  heightForWidth(int  arg__1) const;
-virtual void hideEvent(QHideEvent*  arg__1);
+virtual void hideEvent(QHideEvent*  event);
 virtual void initPainter(QPainter*  painter) const;
 virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
 virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const;
 virtual void keyPressEvent(QKeyEvent*  arg__1);
-virtual void keyReleaseEvent(QKeyEvent*  arg__1);
-virtual void leaveEvent(QEvent*  arg__1);
+virtual void keyReleaseEvent(QKeyEvent*  event);
+virtual void leaveEvent(QEvent*  event);
 virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
 virtual void mouseDoubleClickEvent(QMouseEvent*  arg__1);
 virtual void mouseMoveEvent(QMouseEvent*  arg__1);
 virtual void mousePressEvent(QMouseEvent*  arg__1);
 virtual void mouseReleaseEvent(QMouseEvent*  arg__1);
-virtual void moveEvent(QMoveEvent*  arg__1);
+virtual void moveEvent(QMoveEvent*  event);
 virtual bool  nativeEvent(const QByteArray&  eventType, void*  message, long*  result);
 virtual QPaintEngine*  paintEngine() const;
 virtual void paintEvent(QPaintEvent*  paintEvent);
@@ -404,7 +412,7 @@ virtual void setVisible(bool  visible);
 virtual void setupViewport(QWidget*  viewport);
 virtual QPainter*  sharedPainter() const;
 virtual void showEvent(QShowEvent*  showEvent);
-virtual void tabletEvent(QTabletEvent*  arg__1);
+virtual void tabletEvent(QTabletEvent*  event);
 virtual void timerEvent(QTimerEvent*  timerEvent);
 virtual bool  viewportEvent(QEvent*  event);
 virtual QSize  viewportSizeHint() const;
@@ -498,18 +506,18 @@ public:
 
    ~PythonQtShell_QMdiSubWindow();
 
-virtual void actionEvent(QActionEvent*  arg__1);
+virtual void actionEvent(QActionEvent*  event);
 virtual void changeEvent(QEvent*  changeEvent);
 virtual void childEvent(QChildEvent*  childEvent);
 virtual void closeEvent(QCloseEvent*  closeEvent);
 virtual void contextMenuEvent(QContextMenuEvent*  contextMenuEvent);
-virtual void customEvent(QEvent*  arg__1);
+virtual void customEvent(QEvent*  event);
 virtual int  devType() const;
-virtual void dragEnterEvent(QDragEnterEvent*  arg__1);
-virtual void dragLeaveEvent(QDragLeaveEvent*  arg__1);
-virtual void dragMoveEvent(QDragMoveEvent*  arg__1);
-virtual void dropEvent(QDropEvent*  arg__1);
-virtual void enterEvent(QEvent*  arg__1);
+virtual void dragEnterEvent(QDragEnterEvent*  event);
+virtual void dragLeaveEvent(QDragLeaveEvent*  event);
+virtual void dragMoveEvent(QDragMoveEvent*  event);
+virtual void dropEvent(QDropEvent*  event);
+virtual void enterEvent(QEvent*  event);
 virtual bool  event(QEvent*  event);
 virtual bool  eventFilter(QObject*  object, QEvent*  event);
 virtual void focusInEvent(QFocusEvent*  focusInEvent);
@@ -522,7 +530,7 @@ virtual void initPainter(QPainter*  painter) const;
 virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
 virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const;
 virtual void keyPressEvent(QKeyEvent*  keyEvent);
-virtual void keyReleaseEvent(QKeyEvent*  arg__1);
+virtual void keyReleaseEvent(QKeyEvent*  event);
 virtual void leaveEvent(QEvent*  leaveEvent);
 virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
 virtual void mouseDoubleClickEvent(QMouseEvent*  mouseEvent);
@@ -538,9 +546,9 @@ virtual void resizeEvent(QResizeEvent*  resizeEvent);
 virtual void setVisible(bool  visible);
 virtual QPainter*  sharedPainter() const;
 virtual void showEvent(QShowEvent*  showEvent);
-virtual void tabletEvent(QTabletEvent*  arg__1);
+virtual void tabletEvent(QTabletEvent*  event);
 virtual void timerEvent(QTimerEvent*  timerEvent);
-virtual void wheelEvent(QWheelEvent*  arg__1);
+virtual void wheelEvent(QWheelEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -654,21 +662,21 @@ public:
 
 virtual void actionEvent(QActionEvent*  arg__1);
 virtual void changeEvent(QEvent*  arg__1);
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void closeEvent(QCloseEvent*  arg__1);
-virtual void contextMenuEvent(QContextMenuEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void closeEvent(QCloseEvent*  event);
+virtual void contextMenuEvent(QContextMenuEvent*  event);
+virtual void customEvent(QEvent*  event);
 virtual int  devType() const;
-virtual void dragEnterEvent(QDragEnterEvent*  arg__1);
-virtual void dragLeaveEvent(QDragLeaveEvent*  arg__1);
-virtual void dragMoveEvent(QDragMoveEvent*  arg__1);
-virtual void dropEvent(QDropEvent*  arg__1);
+virtual void dragEnterEvent(QDragEnterEvent*  event);
+virtual void dragLeaveEvent(QDragLeaveEvent*  event);
+virtual void dragMoveEvent(QDragMoveEvent*  event);
+virtual void dropEvent(QDropEvent*  event);
 virtual void enterEvent(QEvent*  arg__1);
 virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void focusInEvent(QFocusEvent*  arg__1);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void focusInEvent(QFocusEvent*  event);
 virtual bool  focusNextPrevChild(bool  next);
-virtual void focusOutEvent(QFocusEvent*  arg__1);
+virtual void focusOutEvent(QFocusEvent*  event);
 virtual bool  hasHeightForWidth() const;
 virtual int  heightForWidth(int  arg__1) const;
 virtual void hideEvent(QHideEvent*  arg__1);
@@ -676,24 +684,24 @@ virtual void initPainter(QPainter*  painter) const;
 virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
 virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const;
 virtual void keyPressEvent(QKeyEvent*  arg__1);
-virtual void keyReleaseEvent(QKeyEvent*  arg__1);
+virtual void keyReleaseEvent(QKeyEvent*  event);
 virtual void leaveEvent(QEvent*  arg__1);
 virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
 virtual QSize  minimumSizeHint() const;
-virtual void mouseDoubleClickEvent(QMouseEvent*  arg__1);
+virtual void mouseDoubleClickEvent(QMouseEvent*  event);
 virtual void mouseMoveEvent(QMouseEvent*  arg__1);
 virtual void mousePressEvent(QMouseEvent*  arg__1);
 virtual void mouseReleaseEvent(QMouseEvent*  arg__1);
-virtual void moveEvent(QMoveEvent*  arg__1);
+virtual void moveEvent(QMoveEvent*  event);
 virtual bool  nativeEvent(const QByteArray&  eventType, void*  message, long*  result);
 virtual QPaintEngine*  paintEngine() const;
 virtual void paintEvent(QPaintEvent*  arg__1);
 virtual QPaintDevice*  redirected(QPoint*  offset) const;
-virtual void resizeEvent(QResizeEvent*  arg__1);
+virtual void resizeEvent(QResizeEvent*  event);
 virtual void setVisible(bool  visible);
 virtual QPainter*  sharedPainter() const;
-virtual void showEvent(QShowEvent*  arg__1);
-virtual void tabletEvent(QTabletEvent*  arg__1);
+virtual void showEvent(QShowEvent*  event);
+virtual void tabletEvent(QTabletEvent*  event);
 virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void wheelEvent(QWheelEvent*  arg__1);
 
@@ -799,6 +807,7 @@ void delete_QMenu(QMenu* obj) { delete obj; }
    QString  title(QMenu* theWrappedObject) const;
    bool  toolTipsVisible(QMenu* theWrappedObject) const;
    void py_q_wheelEvent(QMenu* theWrappedObject, QWheelEvent*  arg__1){  (((PythonQtPublicPromoter_QMenu*)theWrappedObject)->py_q_wheelEvent(arg__1));}
+    bool __nonzero__(QMenu* obj) { return !obj->isEmpty(); }
 
   QAction* addAction (QMenu* menu, const QString & text, PyObject* callable, const QKeySequence & shortcut = 0) {
     QAction* a = menu->addAction(text);
@@ -831,16 +840,16 @@ public:
 
 virtual void actionEvent(QActionEvent*  arg__1);
 virtual void changeEvent(QEvent*  arg__1);
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void closeEvent(QCloseEvent*  arg__1);
-virtual void contextMenuEvent(QContextMenuEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void closeEvent(QCloseEvent*  event);
+virtual void contextMenuEvent(QContextMenuEvent*  event);
+virtual void customEvent(QEvent*  event);
 virtual int  devType() const;
-virtual void dragEnterEvent(QDragEnterEvent*  arg__1);
-virtual void dragLeaveEvent(QDragLeaveEvent*  arg__1);
-virtual void dragMoveEvent(QDragMoveEvent*  arg__1);
-virtual void dropEvent(QDropEvent*  arg__1);
-virtual void enterEvent(QEvent*  arg__1);
+virtual void dragEnterEvent(QDragEnterEvent*  event);
+virtual void dragLeaveEvent(QDragLeaveEvent*  event);
+virtual void dragMoveEvent(QDragMoveEvent*  event);
+virtual void dropEvent(QDropEvent*  event);
+virtual void enterEvent(QEvent*  event);
 virtual bool  event(QEvent*  arg__1);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 virtual void focusInEvent(QFocusEvent*  arg__1);
@@ -848,19 +857,19 @@ virtual bool  focusNextPrevChild(bool  next);
 virtual void focusOutEvent(QFocusEvent*  arg__1);
 virtual bool  hasHeightForWidth() const;
 virtual int  heightForWidth(int  arg__1) const;
-virtual void hideEvent(QHideEvent*  arg__1);
+virtual void hideEvent(QHideEvent*  event);
 virtual void initPainter(QPainter*  painter) const;
 virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
 virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const;
 virtual void keyPressEvent(QKeyEvent*  arg__1);
-virtual void keyReleaseEvent(QKeyEvent*  arg__1);
+virtual void keyReleaseEvent(QKeyEvent*  event);
 virtual void leaveEvent(QEvent*  arg__1);
 virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
-virtual void mouseDoubleClickEvent(QMouseEvent*  arg__1);
+virtual void mouseDoubleClickEvent(QMouseEvent*  event);
 virtual void mouseMoveEvent(QMouseEvent*  arg__1);
 virtual void mousePressEvent(QMouseEvent*  arg__1);
 virtual void mouseReleaseEvent(QMouseEvent*  arg__1);
-virtual void moveEvent(QMoveEvent*  arg__1);
+virtual void moveEvent(QMoveEvent*  event);
 virtual bool  nativeEvent(const QByteArray&  eventType, void*  message, long*  result);
 virtual QPaintEngine*  paintEngine() const;
 virtual void paintEvent(QPaintEvent*  arg__1);
@@ -868,10 +877,10 @@ virtual QPaintDevice*  redirected(QPoint*  offset) const;
 virtual void resizeEvent(QResizeEvent*  arg__1);
 virtual void setVisible(bool  visible);
 virtual QPainter*  sharedPainter() const;
-virtual void showEvent(QShowEvent*  arg__1);
-virtual void tabletEvent(QTabletEvent*  arg__1);
+virtual void showEvent(QShowEvent*  event);
+virtual void tabletEvent(QTabletEvent*  event);
 virtual void timerEvent(QTimerEvent*  arg__1);
-virtual void wheelEvent(QWheelEvent*  arg__1);
+virtual void wheelEvent(QWheelEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -980,52 +989,52 @@ public:
    ~PythonQtShell_QMessageBox();
 
 virtual void accept();
-virtual void actionEvent(QActionEvent*  arg__1);
+virtual void actionEvent(QActionEvent*  event);
 virtual void changeEvent(QEvent*  event);
-virtual void childEvent(QChildEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
 virtual void closeEvent(QCloseEvent*  event);
 virtual void contextMenuEvent(QContextMenuEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
+virtual void customEvent(QEvent*  event);
 virtual int  devType() const;
 virtual void done(int  arg__1);
-virtual void dragEnterEvent(QDragEnterEvent*  arg__1);
-virtual void dragLeaveEvent(QDragLeaveEvent*  arg__1);
-virtual void dragMoveEvent(QDragMoveEvent*  arg__1);
-virtual void dropEvent(QDropEvent*  arg__1);
-virtual void enterEvent(QEvent*  arg__1);
+virtual void dragEnterEvent(QDragEnterEvent*  event);
+virtual void dragLeaveEvent(QDragLeaveEvent*  event);
+virtual void dragMoveEvent(QDragMoveEvent*  event);
+virtual void dropEvent(QDropEvent*  event);
+virtual void enterEvent(QEvent*  event);
 virtual bool  event(QEvent*  e);
 virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
 virtual int  exec();
-virtual void focusInEvent(QFocusEvent*  arg__1);
+virtual void focusInEvent(QFocusEvent*  event);
 virtual bool  focusNextPrevChild(bool  next);
-virtual void focusOutEvent(QFocusEvent*  arg__1);
+virtual void focusOutEvent(QFocusEvent*  event);
 virtual bool  hasHeightForWidth() const;
 virtual int  heightForWidth(int  arg__1) const;
-virtual void hideEvent(QHideEvent*  arg__1);
+virtual void hideEvent(QHideEvent*  event);
 virtual void initPainter(QPainter*  painter) const;
 virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
 virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const;
 virtual void keyPressEvent(QKeyEvent*  event);
-virtual void keyReleaseEvent(QKeyEvent*  arg__1);
-virtual void leaveEvent(QEvent*  arg__1);
+virtual void keyReleaseEvent(QKeyEvent*  event);
+virtual void leaveEvent(QEvent*  event);
 virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
-virtual void mouseDoubleClickEvent(QMouseEvent*  arg__1);
-virtual void mouseMoveEvent(QMouseEvent*  arg__1);
-virtual void mousePressEvent(QMouseEvent*  arg__1);
-virtual void mouseReleaseEvent(QMouseEvent*  arg__1);
-virtual void moveEvent(QMoveEvent*  arg__1);
+virtual void mouseDoubleClickEvent(QMouseEvent*  event);
+virtual void mouseMoveEvent(QMouseEvent*  event);
+virtual void mousePressEvent(QMouseEvent*  event);
+virtual void mouseReleaseEvent(QMouseEvent*  event);
+virtual void moveEvent(QMoveEvent*  event);
 virtual bool  nativeEvent(const QByteArray&  eventType, void*  message, long*  result);
 virtual QPaintEngine*  paintEngine() const;
-virtual void paintEvent(QPaintEvent*  arg__1);
+virtual void paintEvent(QPaintEvent*  event);
 virtual QPaintDevice*  redirected(QPoint*  offset) const;
 virtual void reject();
 virtual void resizeEvent(QResizeEvent*  event);
 virtual void setVisible(bool  visible);
 virtual QPainter*  sharedPainter() const;
 virtual void showEvent(QShowEvent*  event);
-virtual void tabletEvent(QTabletEvent*  arg__1);
-virtual void timerEvent(QTimerEvent*  arg__1);
-virtual void wheelEvent(QWheelEvent*  arg__1);
+virtual void tabletEvent(QTabletEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
+virtual void wheelEvent(QWheelEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -1168,13 +1177,13 @@ public:
 
    ~PythonQtShell_QMouseEventTransition();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
 virtual bool  event(QEvent*  e);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual bool  eventTest(QEvent*  event);
 virtual void onTransition(QEvent*  event);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -1244,11 +1253,11 @@ public:
 
    ~PythonQtShell_QMovie();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -1287,6 +1296,7 @@ void delete_QMovie(QMovie* obj) { delete obj; }
    int  speed(QMovie* theWrappedObject) const;
    QMovie::MovieState  state(QMovie* theWrappedObject) const;
    QList<QByteArray >  static_QMovie_supportedFormats();
+    bool __nonzero__(QMovie* obj) { return obj->isValid(); }
 };
 
 
@@ -1330,14 +1340,14 @@ public:
 
    ~PythonQtShell_QOffscreenSurface();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual QSurfaceFormat  format() const;
 virtual QSize  size() const;
 virtual QSurface::SurfaceType  surfaceType() const;
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -1367,6 +1377,7 @@ void delete_QOffscreenSurface(QOffscreenSurface* obj) { delete obj; }
    void setScreen(QOffscreenSurface* theWrappedObject, QScreen*  screen);
    QSize  py_q_size(QOffscreenSurface* theWrappedObject) const{  return (((PythonQtPublicPromoter_QOffscreenSurface*)theWrappedObject)->py_q_size());}
    QSurface::SurfaceType  py_q_surfaceType(QOffscreenSurface* theWrappedObject) const{  return (((PythonQtPublicPromoter_QOffscreenSurface*)theWrappedObject)->py_q_surfaceType());}
+    bool __nonzero__(QOffscreenSurface* obj) { return obj->isValid(); }
 };
 
 
@@ -1421,11 +1432,11 @@ public:
 
    ~PythonQtShell_QOpenGLContext();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -1467,6 +1478,7 @@ void delete_QOpenGLContext(QOpenGLContext* obj) { delete obj; }
    bool  static_QOpenGLContext_supportsThreadedOpenGL();
    QSurface*  surface(QOpenGLContext* theWrappedObject) const;
    void swapBuffers(QOpenGLContext* theWrappedObject, QSurface*  surface);
+    bool __nonzero__(QOpenGLContext* obj) { return obj->isValid(); }
 };
 
 
@@ -1543,6 +1555,7 @@ void delete_QOpenGLFramebufferObject(QOpenGLFramebufferObject* obj) { delete obj
    QImage  toImage(QOpenGLFramebufferObject* theWrappedObject, bool  flipped) const;
    QImage  toImage(QOpenGLFramebufferObject* theWrappedObject, bool  flipped, int  colorAttachmentIndex) const;
    int  width(QOpenGLFramebufferObject* theWrappedObject) const;
+    bool __nonzero__(QOpenGLFramebufferObject* obj) { return obj->isValid(); }
 };
 
 
@@ -1569,167 +1582,6 @@ void delete_QOpenGLFramebufferObjectFormat(QOpenGLFramebufferObjectFormat* obj) 
    void setSamples(QOpenGLFramebufferObjectFormat* theWrappedObject, int  samples);
    void setTextureTarget(QOpenGLFramebufferObjectFormat* theWrappedObject, GLenum  target);
    GLenum  textureTarget(QOpenGLFramebufferObjectFormat* theWrappedObject) const;
-};
-
-
-
-
-
-class PythonQtWrapper_QOpenGLFunctions : public QObject
-{ Q_OBJECT
-public:
-Q_ENUMS(OpenGLFeature )
-Q_FLAGS(OpenGLFeatures )
-enum OpenGLFeature{
-  Multitexture = QOpenGLFunctions::Multitexture,   Shaders = QOpenGLFunctions::Shaders,   Buffers = QOpenGLFunctions::Buffers,   Framebuffers = QOpenGLFunctions::Framebuffers,   BlendColor = QOpenGLFunctions::BlendColor,   BlendEquation = QOpenGLFunctions::BlendEquation,   BlendEquationSeparate = QOpenGLFunctions::BlendEquationSeparate,   BlendFuncSeparate = QOpenGLFunctions::BlendFuncSeparate,   BlendSubtract = QOpenGLFunctions::BlendSubtract,   CompressedTextures = QOpenGLFunctions::CompressedTextures,   Multisample = QOpenGLFunctions::Multisample,   StencilSeparate = QOpenGLFunctions::StencilSeparate,   NPOTTextures = QOpenGLFunctions::NPOTTextures,   NPOTTextureRepeat = QOpenGLFunctions::NPOTTextureRepeat,   FixedFunctionPipeline = QOpenGLFunctions::FixedFunctionPipeline,   TextureRGFormats = QOpenGLFunctions::TextureRGFormats,   MultipleRenderTargets = QOpenGLFunctions::MultipleRenderTargets};
-Q_DECLARE_FLAGS(OpenGLFeatures, OpenGLFeature)
-public slots:
-QOpenGLFunctions* new_QOpenGLFunctions();
-QOpenGLFunctions* new_QOpenGLFunctions(QOpenGLContext*  context);
-void delete_QOpenGLFunctions(QOpenGLFunctions* obj) { delete obj; } 
-   void glActiveTexture(QOpenGLFunctions* theWrappedObject, GLenum  texture);
-   void glAttachShader(QOpenGLFunctions* theWrappedObject, GLuint  program, GLuint  shader);
-   void glBindAttribLocation(QOpenGLFunctions* theWrappedObject, GLuint  program, GLuint  index, const char*  name);
-   void glBindBuffer(QOpenGLFunctions* theWrappedObject, GLenum  target, GLuint  buffer);
-   void glBindFramebuffer(QOpenGLFunctions* theWrappedObject, GLenum  target, GLuint  framebuffer);
-   void glBindRenderbuffer(QOpenGLFunctions* theWrappedObject, GLenum  target, GLuint  renderbuffer);
-   void glBindTexture(QOpenGLFunctions* theWrappedObject, GLenum  target, GLuint  texture);
-   void glBlendColor(QOpenGLFunctions* theWrappedObject, GLclampf  red, GLclampf  green, GLclampf  blue, GLclampf  alpha);
-   void glBlendEquation(QOpenGLFunctions* theWrappedObject, GLenum  mode);
-   void glBlendEquationSeparate(QOpenGLFunctions* theWrappedObject, GLenum  modeRGB, GLenum  modeAlpha);
-   void glBlendFunc(QOpenGLFunctions* theWrappedObject, GLenum  sfactor, GLenum  dfactor);
-   void glBlendFuncSeparate(QOpenGLFunctions* theWrappedObject, GLenum  srcRGB, GLenum  dstRGB, GLenum  srcAlpha, GLenum  dstAlpha);
-   GLenum  glCheckFramebufferStatus(QOpenGLFunctions* theWrappedObject, GLenum  target);
-   void glClear(QOpenGLFunctions* theWrappedObject, GLbitfield  mask);
-   void glClearColor(QOpenGLFunctions* theWrappedObject, GLclampf  red, GLclampf  green, GLclampf  blue, GLclampf  alpha);
-   void glClearDepthf(QOpenGLFunctions* theWrappedObject, GLclampf  depth);
-   void glClearStencil(QOpenGLFunctions* theWrappedObject, GLint  s);
-   void glColorMask(QOpenGLFunctions* theWrappedObject, GLboolean  red, GLboolean  green, GLboolean  blue, GLboolean  alpha);
-   void glCompileShader(QOpenGLFunctions* theWrappedObject, GLuint  shader);
-   void glCompressedTexImage2D(QOpenGLFunctions* theWrappedObject, GLenum  target, GLint  level, GLenum  internalformat, GLsizei  width, GLsizei  height, GLint  border, GLsizei  imageSize, const void*  data);
-   void glCompressedTexSubImage2D(QOpenGLFunctions* theWrappedObject, GLenum  target, GLint  level, GLint  xoffset, GLint  yoffset, GLsizei  width, GLsizei  height, GLenum  format, GLsizei  imageSize, const void*  data);
-   void glCopyTexImage2D(QOpenGLFunctions* theWrappedObject, GLenum  target, GLint  level, GLenum  internalformat, GLint  x, GLint  y, GLsizei  width, GLsizei  height, GLint  border);
-   void glCopyTexSubImage2D(QOpenGLFunctions* theWrappedObject, GLenum  target, GLint  level, GLint  xoffset, GLint  yoffset, GLint  x, GLint  y, GLsizei  width, GLsizei  height);
-   GLuint  glCreateProgram(QOpenGLFunctions* theWrappedObject);
-   GLuint  glCreateShader(QOpenGLFunctions* theWrappedObject, GLenum  type);
-   void glCullFace(QOpenGLFunctions* theWrappedObject, GLenum  mode);
-   void glDeleteBuffers(QOpenGLFunctions* theWrappedObject, GLsizei  n, const GLuint*  buffers);
-   void glDeleteFramebuffers(QOpenGLFunctions* theWrappedObject, GLsizei  n, const GLuint*  framebuffers);
-   void glDeleteProgram(QOpenGLFunctions* theWrappedObject, GLuint  program);
-   void glDeleteRenderbuffers(QOpenGLFunctions* theWrappedObject, GLsizei  n, const GLuint*  renderbuffers);
-   void glDeleteShader(QOpenGLFunctions* theWrappedObject, GLuint  shader);
-   void glDeleteTextures(QOpenGLFunctions* theWrappedObject, GLsizei  n, const GLuint*  textures);
-   void glDepthFunc(QOpenGLFunctions* theWrappedObject, GLenum  func);
-   void glDepthMask(QOpenGLFunctions* theWrappedObject, GLboolean  flag);
-   void glDepthRangef(QOpenGLFunctions* theWrappedObject, GLclampf  zNear, GLclampf  zFar);
-   void glDetachShader(QOpenGLFunctions* theWrappedObject, GLuint  program, GLuint  shader);
-   void glDisable(QOpenGLFunctions* theWrappedObject, GLenum  cap);
-   void glDisableVertexAttribArray(QOpenGLFunctions* theWrappedObject, GLuint  index);
-   void glDrawArrays(QOpenGLFunctions* theWrappedObject, GLenum  mode, GLint  first, GLsizei  count);
-   void glDrawElements(QOpenGLFunctions* theWrappedObject, GLenum  mode, GLsizei  count, GLenum  type, const GLvoid*  indices);
-   void glEnable(QOpenGLFunctions* theWrappedObject, GLenum  cap);
-   void glEnableVertexAttribArray(QOpenGLFunctions* theWrappedObject, GLuint  index);
-   void glFinish(QOpenGLFunctions* theWrappedObject);
-   void glFlush(QOpenGLFunctions* theWrappedObject);
-   void glFramebufferRenderbuffer(QOpenGLFunctions* theWrappedObject, GLenum  target, GLenum  attachment, GLenum  renderbuffertarget, GLuint  renderbuffer);
-   void glFramebufferTexture2D(QOpenGLFunctions* theWrappedObject, GLenum  target, GLenum  attachment, GLenum  textarget, GLuint  texture, GLint  level);
-   void glFrontFace(QOpenGLFunctions* theWrappedObject, GLenum  mode);
-   void glGenBuffers(QOpenGLFunctions* theWrappedObject, GLsizei  n, GLuint*  buffers);
-   void glGenFramebuffers(QOpenGLFunctions* theWrappedObject, GLsizei  n, GLuint*  framebuffers);
-   void glGenRenderbuffers(QOpenGLFunctions* theWrappedObject, GLsizei  n, GLuint*  renderbuffers);
-   void glGenTextures(QOpenGLFunctions* theWrappedObject, GLsizei  n, GLuint*  textures);
-   void glGenerateMipmap(QOpenGLFunctions* theWrappedObject, GLenum  target);
-   void glGetActiveAttrib(QOpenGLFunctions* theWrappedObject, GLuint  program, GLuint  index, GLsizei  bufsize, GLsizei*  length, GLint*  size, GLenum*  type, char*  name);
-   void glGetActiveUniform(QOpenGLFunctions* theWrappedObject, GLuint  program, GLuint  index, GLsizei  bufsize, GLsizei*  length, GLint*  size, GLenum*  type, char*  name);
-   void glGetAttachedShaders(QOpenGLFunctions* theWrappedObject, GLuint  program, GLsizei  maxcount, GLsizei*  count, GLuint*  shaders);
-   GLint  glGetAttribLocation(QOpenGLFunctions* theWrappedObject, GLuint  program, const char*  name);
-   void glGetBooleanv(QOpenGLFunctions* theWrappedObject, GLenum  pname, GLboolean*  params);
-   void glGetBufferParameteriv(QOpenGLFunctions* theWrappedObject, GLenum  target, GLenum  pname, GLint*  params);
-   GLenum  glGetError(QOpenGLFunctions* theWrappedObject);
-   void glGetFloatv(QOpenGLFunctions* theWrappedObject, GLenum  pname, GLfloat*  params);
-   void glGetFramebufferAttachmentParameteriv(QOpenGLFunctions* theWrappedObject, GLenum  target, GLenum  attachment, GLenum  pname, GLint*  params);
-   void glGetIntegerv(QOpenGLFunctions* theWrappedObject, GLenum  pname, GLint*  params);
-   void glGetProgramInfoLog(QOpenGLFunctions* theWrappedObject, GLuint  program, GLsizei  bufsize, GLsizei*  length, char*  infolog);
-   void glGetProgramiv(QOpenGLFunctions* theWrappedObject, GLuint  program, GLenum  pname, GLint*  params);
-   void glGetRenderbufferParameteriv(QOpenGLFunctions* theWrappedObject, GLenum  target, GLenum  pname, GLint*  params);
-   void glGetShaderInfoLog(QOpenGLFunctions* theWrappedObject, GLuint  shader, GLsizei  bufsize, GLsizei*  length, char*  infolog);
-   void glGetShaderPrecisionFormat(QOpenGLFunctions* theWrappedObject, GLenum  shadertype, GLenum  precisiontype, GLint*  range, GLint*  precision);
-   void glGetShaderSource(QOpenGLFunctions* theWrappedObject, GLuint  shader, GLsizei  bufsize, GLsizei*  length, char*  source);
-   void glGetShaderiv(QOpenGLFunctions* theWrappedObject, GLuint  shader, GLenum  pname, GLint*  params);
-   const GLubyte*  glGetString(QOpenGLFunctions* theWrappedObject, GLenum  name);
-   void glGetTexParameterfv(QOpenGLFunctions* theWrappedObject, GLenum  target, GLenum  pname, GLfloat*  params);
-   void glGetTexParameteriv(QOpenGLFunctions* theWrappedObject, GLenum  target, GLenum  pname, GLint*  params);
-   GLint  glGetUniformLocation(QOpenGLFunctions* theWrappedObject, GLuint  program, const char*  name);
-   void glGetUniformfv(QOpenGLFunctions* theWrappedObject, GLuint  program, GLint  location, GLfloat*  params);
-   void glGetUniformiv(QOpenGLFunctions* theWrappedObject, GLuint  program, GLint  location, GLint*  params);
-   void glGetVertexAttribPointerv(QOpenGLFunctions* theWrappedObject, GLuint  index, GLenum  pname, void**  pointer);
-   void glGetVertexAttribfv(QOpenGLFunctions* theWrappedObject, GLuint  index, GLenum  pname, GLfloat*  params);
-   void glGetVertexAttribiv(QOpenGLFunctions* theWrappedObject, GLuint  index, GLenum  pname, GLint*  params);
-   void glHint(QOpenGLFunctions* theWrappedObject, GLenum  target, GLenum  mode);
-   GLboolean  glIsBuffer(QOpenGLFunctions* theWrappedObject, GLuint  buffer);
-   GLboolean  glIsEnabled(QOpenGLFunctions* theWrappedObject, GLenum  cap);
-   GLboolean  glIsFramebuffer(QOpenGLFunctions* theWrappedObject, GLuint  framebuffer);
-   GLboolean  glIsProgram(QOpenGLFunctions* theWrappedObject, GLuint  program);
-   GLboolean  glIsRenderbuffer(QOpenGLFunctions* theWrappedObject, GLuint  renderbuffer);
-   GLboolean  glIsShader(QOpenGLFunctions* theWrappedObject, GLuint  shader);
-   GLboolean  glIsTexture(QOpenGLFunctions* theWrappedObject, GLuint  texture);
-   void glLineWidth(QOpenGLFunctions* theWrappedObject, GLfloat  width);
-   void glLinkProgram(QOpenGLFunctions* theWrappedObject, GLuint  program);
-   void glPixelStorei(QOpenGLFunctions* theWrappedObject, GLenum  pname, GLint  param);
-   void glPolygonOffset(QOpenGLFunctions* theWrappedObject, GLfloat  factor, GLfloat  units);
-   void glReadPixels(QOpenGLFunctions* theWrappedObject, GLint  x, GLint  y, GLsizei  width, GLsizei  height, GLenum  format, GLenum  type, GLvoid*  pixels);
-   void glReleaseShaderCompiler(QOpenGLFunctions* theWrappedObject);
-   void glRenderbufferStorage(QOpenGLFunctions* theWrappedObject, GLenum  target, GLenum  internalformat, GLsizei  width, GLsizei  height);
-   void glSampleCoverage(QOpenGLFunctions* theWrappedObject, GLclampf  value, GLboolean  invert);
-   void glScissor(QOpenGLFunctions* theWrappedObject, GLint  x, GLint  y, GLsizei  width, GLsizei  height);
-   void glShaderBinary(QOpenGLFunctions* theWrappedObject, GLint  n, const GLuint*  shaders, GLenum  binaryformat, const void*  binary, GLint  length);
-   void glShaderSource(QOpenGLFunctions* theWrappedObject, GLuint  shader, GLsizei  count, const char**  string, const GLint*  length);
-   void glStencilFunc(QOpenGLFunctions* theWrappedObject, GLenum  func, GLint  ref, GLuint  mask);
-   void glStencilFuncSeparate(QOpenGLFunctions* theWrappedObject, GLenum  face, GLenum  func, GLint  ref, GLuint  mask);
-   void glStencilMask(QOpenGLFunctions* theWrappedObject, GLuint  mask);
-   void glStencilMaskSeparate(QOpenGLFunctions* theWrappedObject, GLenum  face, GLuint  mask);
-   void glStencilOp(QOpenGLFunctions* theWrappedObject, GLenum  fail, GLenum  zfail, GLenum  zpass);
-   void glStencilOpSeparate(QOpenGLFunctions* theWrappedObject, GLenum  face, GLenum  fail, GLenum  zfail, GLenum  zpass);
-   void glTexImage2D(QOpenGLFunctions* theWrappedObject, GLenum  target, GLint  level, GLint  internalformat, GLsizei  width, GLsizei  height, GLint  border, GLenum  format, GLenum  type, const GLvoid*  pixels);
-   void glTexParameterf(QOpenGLFunctions* theWrappedObject, GLenum  target, GLenum  pname, GLfloat  param);
-   void glTexParameterfv(QOpenGLFunctions* theWrappedObject, GLenum  target, GLenum  pname, const GLfloat*  params);
-   void glTexParameteri(QOpenGLFunctions* theWrappedObject, GLenum  target, GLenum  pname, GLint  param);
-   void glTexParameteriv(QOpenGLFunctions* theWrappedObject, GLenum  target, GLenum  pname, const GLint*  params);
-   void glTexSubImage2D(QOpenGLFunctions* theWrappedObject, GLenum  target, GLint  level, GLint  xoffset, GLint  yoffset, GLsizei  width, GLsizei  height, GLenum  format, GLenum  type, const GLvoid*  pixels);
-   void glUniform1f(QOpenGLFunctions* theWrappedObject, GLint  location, GLfloat  x);
-   void glUniform1fv(QOpenGLFunctions* theWrappedObject, GLint  location, GLsizei  count, const GLfloat*  v);
-   void glUniform1i(QOpenGLFunctions* theWrappedObject, GLint  location, GLint  x);
-   void glUniform1iv(QOpenGLFunctions* theWrappedObject, GLint  location, GLsizei  count, const GLint*  v);
-   void glUniform2f(QOpenGLFunctions* theWrappedObject, GLint  location, GLfloat  x, GLfloat  y);
-   void glUniform2fv(QOpenGLFunctions* theWrappedObject, GLint  location, GLsizei  count, const GLfloat*  v);
-   void glUniform2i(QOpenGLFunctions* theWrappedObject, GLint  location, GLint  x, GLint  y);
-   void glUniform2iv(QOpenGLFunctions* theWrappedObject, GLint  location, GLsizei  count, const GLint*  v);
-   void glUniform3f(QOpenGLFunctions* theWrappedObject, GLint  location, GLfloat  x, GLfloat  y, GLfloat  z);
-   void glUniform3fv(QOpenGLFunctions* theWrappedObject, GLint  location, GLsizei  count, const GLfloat*  v);
-   void glUniform3i(QOpenGLFunctions* theWrappedObject, GLint  location, GLint  x, GLint  y, GLint  z);
-   void glUniform3iv(QOpenGLFunctions* theWrappedObject, GLint  location, GLsizei  count, const GLint*  v);
-   void glUniform4f(QOpenGLFunctions* theWrappedObject, GLint  location, GLfloat  x, GLfloat  y, GLfloat  z, GLfloat  w);
-   void glUniform4fv(QOpenGLFunctions* theWrappedObject, GLint  location, GLsizei  count, const GLfloat*  v);
-   void glUniform4i(QOpenGLFunctions* theWrappedObject, GLint  location, GLint  x, GLint  y, GLint  z, GLint  w);
-   void glUniform4iv(QOpenGLFunctions* theWrappedObject, GLint  location, GLsizei  count, const GLint*  v);
-   void glUniformMatrix2fv(QOpenGLFunctions* theWrappedObject, GLint  location, GLsizei  count, GLboolean  transpose, const GLfloat*  value);
-   void glUniformMatrix3fv(QOpenGLFunctions* theWrappedObject, GLint  location, GLsizei  count, GLboolean  transpose, const GLfloat*  value);
-   void glUniformMatrix4fv(QOpenGLFunctions* theWrappedObject, GLint  location, GLsizei  count, GLboolean  transpose, const GLfloat*  value);
-   void glUseProgram(QOpenGLFunctions* theWrappedObject, GLuint  program);
-   void glValidateProgram(QOpenGLFunctions* theWrappedObject, GLuint  program);
-   void glVertexAttrib1f(QOpenGLFunctions* theWrappedObject, GLuint  indx, GLfloat  x);
-   void glVertexAttrib1fv(QOpenGLFunctions* theWrappedObject, GLuint  indx, const GLfloat*  values);
-   void glVertexAttrib2f(QOpenGLFunctions* theWrappedObject, GLuint  indx, GLfloat  x, GLfloat  y);
-   void glVertexAttrib2fv(QOpenGLFunctions* theWrappedObject, GLuint  indx, const GLfloat*  values);
-   void glVertexAttrib3f(QOpenGLFunctions* theWrappedObject, GLuint  indx, GLfloat  x, GLfloat  y, GLfloat  z);
-   void glVertexAttrib3fv(QOpenGLFunctions* theWrappedObject, GLuint  indx, const GLfloat*  values);
-   void glVertexAttrib4f(QOpenGLFunctions* theWrappedObject, GLuint  indx, GLfloat  x, GLfloat  y, GLfloat  z, GLfloat  w);
-   void glVertexAttrib4fv(QOpenGLFunctions* theWrappedObject, GLuint  indx, const GLfloat*  values);
-   void glVertexAttribPointer(QOpenGLFunctions* theWrappedObject, GLuint  indx, GLint  size, GLenum  type, GLboolean  normalized, GLsizei  stride, const void*  ptr);
-   void glViewport(QOpenGLFunctions* theWrappedObject, GLint  x, GLint  y, GLsizei  width, GLsizei  height);
-   bool  hasOpenGLFeature(QOpenGLFunctions* theWrappedObject, QOpenGLFunctions::OpenGLFeature  feature) const;
-   void initializeOpenGLFunctions(QOpenGLFunctions* theWrappedObject);
-   QOpenGLFunctions::OpenGLFeatures  openGLFeatures(QOpenGLFunctions* theWrappedObject) const;
 };
 
 
@@ -1801,11 +1653,11 @@ public:
 
    ~PythonQtShell_QOpenGLShader();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -1846,12 +1698,12 @@ public:
 
    ~PythonQtShell_QOpenGLShaderProgram();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual bool  link();
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -2129,11 +1981,11 @@ public:
 
    ~PythonQtShell_QOpenGLTimeMonitor();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -2170,11 +2022,11 @@ public:
 
    ~PythonQtShell_QOpenGLTimerQuery();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -2220,6 +2072,7 @@ void delete_QOpenGLVersionProfile(QOpenGLVersionProfile* obj) { delete obj; }
    void setProfile(QOpenGLVersionProfile* theWrappedObject, QSurfaceFormat::OpenGLContextProfile  profile);
    void setVersion(QOpenGLVersionProfile* theWrappedObject, int  majorVersion, int  minorVersion);
    QPair<int , int >  version(QOpenGLVersionProfile* theWrappedObject) const;
+    bool __nonzero__(QOpenGLVersionProfile* obj) { return obj->isValid(); }
 };
 
 
@@ -2233,11 +2086,11 @@ public:
 
    ~PythonQtShell_QOpenGLVertexArrayObject();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -2269,40 +2122,40 @@ public:
 
    ~PythonQtShell_QOpenGLWidget();
 
-virtual void actionEvent(QActionEvent*  arg__1);
+virtual void actionEvent(QActionEvent*  event);
 virtual void changeEvent(QEvent*  arg__1);
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void closeEvent(QCloseEvent*  arg__1);
-virtual void contextMenuEvent(QContextMenuEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void closeEvent(QCloseEvent*  event);
+virtual void contextMenuEvent(QContextMenuEvent*  event);
+virtual void customEvent(QEvent*  event);
 virtual int  devType() const;
-virtual void dragEnterEvent(QDragEnterEvent*  arg__1);
-virtual void dragLeaveEvent(QDragLeaveEvent*  arg__1);
-virtual void dragMoveEvent(QDragMoveEvent*  arg__1);
-virtual void dropEvent(QDropEvent*  arg__1);
-virtual void enterEvent(QEvent*  arg__1);
+virtual void dragEnterEvent(QDragEnterEvent*  event);
+virtual void dragLeaveEvent(QDragLeaveEvent*  event);
+virtual void dragMoveEvent(QDragMoveEvent*  event);
+virtual void dropEvent(QDropEvent*  event);
+virtual void enterEvent(QEvent*  event);
 virtual bool  event(QEvent*  e);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void focusInEvent(QFocusEvent*  arg__1);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void focusInEvent(QFocusEvent*  event);
 virtual bool  focusNextPrevChild(bool  next);
-virtual void focusOutEvent(QFocusEvent*  arg__1);
+virtual void focusOutEvent(QFocusEvent*  event);
 virtual bool  hasHeightForWidth() const;
 virtual int  heightForWidth(int  arg__1) const;
-virtual void hideEvent(QHideEvent*  arg__1);
+virtual void hideEvent(QHideEvent*  event);
 virtual void initPainter(QPainter*  painter) const;
 virtual void initializeGL();
 virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
 virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const;
-virtual void keyPressEvent(QKeyEvent*  arg__1);
-virtual void keyReleaseEvent(QKeyEvent*  arg__1);
-virtual void leaveEvent(QEvent*  arg__1);
+virtual void keyPressEvent(QKeyEvent*  event);
+virtual void keyReleaseEvent(QKeyEvent*  event);
+virtual void leaveEvent(QEvent*  event);
 virtual int  metric(QPaintDevice::PaintDeviceMetric  metric) const;
 virtual QSize  minimumSizeHint() const;
-virtual void mouseDoubleClickEvent(QMouseEvent*  arg__1);
-virtual void mouseMoveEvent(QMouseEvent*  arg__1);
-virtual void mousePressEvent(QMouseEvent*  arg__1);
-virtual void mouseReleaseEvent(QMouseEvent*  arg__1);
-virtual void moveEvent(QMoveEvent*  arg__1);
+virtual void mouseDoubleClickEvent(QMouseEvent*  event);
+virtual void mouseMoveEvent(QMouseEvent*  event);
+virtual void mousePressEvent(QMouseEvent*  event);
+virtual void mouseReleaseEvent(QMouseEvent*  event);
+virtual void moveEvent(QMoveEvent*  event);
 virtual bool  nativeEvent(const QByteArray&  eventType, void*  message, long*  result);
 virtual QPaintEngine*  paintEngine() const;
 virtual void paintEvent(QPaintEvent*  e);
@@ -2312,11 +2165,11 @@ virtual void resizeEvent(QResizeEvent*  e);
 virtual void resizeGL(int  w, int  h);
 virtual void setVisible(bool  visible);
 virtual QPainter*  sharedPainter() const;
-virtual void showEvent(QShowEvent*  arg__1);
+virtual void showEvent(QShowEvent*  event);
 virtual QSize  sizeHint() const;
-virtual void tabletEvent(QTabletEvent*  arg__1);
-virtual void timerEvent(QTimerEvent*  arg__1);
-virtual void wheelEvent(QWheelEvent*  arg__1);
+virtual void tabletEvent(QTabletEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
+virtual void wheelEvent(QWheelEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -2376,6 +2229,7 @@ void delete_QOpenGLWidget(QOpenGLWidget* obj) { delete obj; }
    void setFormat(QOpenGLWidget* theWrappedObject, const QSurfaceFormat&  format);
    void setUpdateBehavior(QOpenGLWidget* theWrappedObject, QOpenGLWidget::UpdateBehavior  updateBehavior);
    QOpenGLWidget::UpdateBehavior  updateBehavior(QOpenGLWidget* theWrappedObject) const;
+    bool __nonzero__(QOpenGLWidget* obj) { return obj->isValid(); }
 };
 
 
@@ -2390,10 +2244,10 @@ public:
 
    ~PythonQtShell_QOpenGLWindow();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
 virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual void exposeEvent(QExposeEvent*  arg__1);
 virtual void focusInEvent(QFocusEvent*  arg__1);
 virtual QObject*  focusObject() const;
@@ -2420,7 +2274,7 @@ virtual void showEvent(QShowEvent*  arg__1);
 virtual QSize  size() const;
 virtual QSurface::SurfaceType  surfaceType() const;
 virtual void tabletEvent(QTabletEvent*  arg__1);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  event);
 virtual void touchEvent(QTouchEvent*  arg__1);
 virtual void wheelEvent(QWheelEvent*  arg__1);
 
@@ -2482,6 +2336,63 @@ void delete_QOpenGLWindow(QOpenGLWindow* obj) { delete obj; }
    void py_q_resizeGL(QOpenGLWindow* theWrappedObject, int  w, int  h){  (((PythonQtPublicPromoter_QOpenGLWindow*)theWrappedObject)->py_q_resizeGL(w, h));}
    QOpenGLContext*  shareContext(QOpenGLWindow* theWrappedObject) const;
    QOpenGLWindow::UpdateBehavior  updateBehavior(QOpenGLWindow* theWrappedObject) const;
+    bool __nonzero__(QOpenGLWindow* obj) { return obj->isValid(); }
+};
+
+
+
+
+
+class PythonQtWrapper_QPageLayout : public QObject
+{ Q_OBJECT
+public:
+Q_ENUMS(Mode Orientation Unit )
+enum Mode{
+  StandardMode = QPageLayout::StandardMode,   FullPageMode = QPageLayout::FullPageMode};
+enum Orientation{
+  Portrait = QPageLayout::Portrait,   Landscape = QPageLayout::Landscape};
+enum Unit{
+  Millimeter = QPageLayout::Millimeter,   Point = QPageLayout::Point,   Inch = QPageLayout::Inch,   Pica = QPageLayout::Pica,   Didot = QPageLayout::Didot,   Cicero = QPageLayout::Cicero};
+public slots:
+QPageLayout* new_QPageLayout();
+QPageLayout* new_QPageLayout(const QPageLayout&  other);
+QPageLayout* new_QPageLayout(const QPageSize&  pageSize, QPageLayout::Orientation  orientation, const QMarginsF&  margins, QPageLayout::Unit  units = QPageLayout::Point, const QMarginsF&  minMargins = QMarginsF(0, 0, 0, 0));
+void delete_QPageLayout(QPageLayout* obj) { delete obj; } 
+   QRectF  fullRect(QPageLayout* theWrappedObject) const;
+   QRectF  fullRect(QPageLayout* theWrappedObject, QPageLayout::Unit  units) const;
+   QRect  fullRectPixels(QPageLayout* theWrappedObject, int  resolution) const;
+   QRect  fullRectPoints(QPageLayout* theWrappedObject) const;
+   bool  isEquivalentTo(QPageLayout* theWrappedObject, const QPageLayout&  other) const;
+   bool  isValid(QPageLayout* theWrappedObject) const;
+   QMarginsF  margins(QPageLayout* theWrappedObject) const;
+   QMarginsF  margins(QPageLayout* theWrappedObject, QPageLayout::Unit  units) const;
+   QMargins  marginsPixels(QPageLayout* theWrappedObject, int  resolution) const;
+   QMargins  marginsPoints(QPageLayout* theWrappedObject) const;
+   QMarginsF  maximumMargins(QPageLayout* theWrappedObject) const;
+   QMarginsF  minimumMargins(QPageLayout* theWrappedObject) const;
+   QPageLayout::Mode  mode(QPageLayout* theWrappedObject) const;
+   QPageLayout*  operator_assign(QPageLayout* theWrappedObject, const QPageLayout&  other);
+   bool  __eq__(QPageLayout* theWrappedObject, const QPageLayout&  rhs);
+   QPageLayout::Orientation  orientation(QPageLayout* theWrappedObject) const;
+   QPageSize  pageSize(QPageLayout* theWrappedObject) const;
+   QRectF  paintRect(QPageLayout* theWrappedObject) const;
+   QRectF  paintRect(QPageLayout* theWrappedObject, QPageLayout::Unit  units) const;
+   QRect  paintRectPixels(QPageLayout* theWrappedObject, int  resolution) const;
+   QRect  paintRectPoints(QPageLayout* theWrappedObject) const;
+   bool  setBottomMargin(QPageLayout* theWrappedObject, qreal  bottomMargin);
+   bool  setLeftMargin(QPageLayout* theWrappedObject, qreal  leftMargin);
+   bool  setMargins(QPageLayout* theWrappedObject, const QMarginsF&  margins);
+   void setMinimumMargins(QPageLayout* theWrappedObject, const QMarginsF&  minMargins);
+   void setMode(QPageLayout* theWrappedObject, QPageLayout::Mode  mode);
+   void setOrientation(QPageLayout* theWrappedObject, QPageLayout::Orientation  orientation);
+   void setPageSize(QPageLayout* theWrappedObject, const QPageSize&  pageSize, const QMarginsF&  minMargins = QMarginsF(0, 0, 0, 0));
+   bool  setRightMargin(QPageLayout* theWrappedObject, qreal  rightMargin);
+   bool  setTopMargin(QPageLayout* theWrappedObject, qreal  topMargin);
+   void setUnits(QPageLayout* theWrappedObject, QPageLayout::Unit  units);
+   void swap(QPageLayout* theWrappedObject, QPageLayout&  other);
+   QPageLayout::Unit  units(QPageLayout* theWrappedObject) const;
+    QString py_toString(QPageLayout*);
+    bool __nonzero__(QPageLayout* obj) { return obj->isValid(); }
 };
 
 

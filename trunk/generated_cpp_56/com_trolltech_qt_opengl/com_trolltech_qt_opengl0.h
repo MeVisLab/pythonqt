@@ -12,6 +12,8 @@
 #include <qcursor.h>
 #include <qevent.h>
 #include <qfont.h>
+#include <qfontinfo.h>
+#include <qfontmetrics.h>
 #include <qgl.h>
 #include <qglbuffer.h>
 #include <qglcolormap.h>
@@ -127,6 +129,7 @@ void delete_QGLColormap(QGLColormap* obj) { delete obj; }
    void setEntry(QGLColormap* theWrappedObject, int  idx, unsigned int  color);
    void setHandle(QGLColormap* theWrappedObject, Qt::HANDLE  ahandle);
    int  size(QGLColormap* theWrappedObject) const;
+    bool __nonzero__(QGLColormap* obj) { return !obj->isEmpty(); }
 };
 
 
@@ -220,6 +223,7 @@ void delete_QGLContext(QGLContext* obj) { delete obj; }
    void py_q_swapBuffers(QGLContext* theWrappedObject) const{  (((PythonQtPublicPromoter_QGLContext*)theWrappedObject)->py_q_swapBuffers());}
    int  static_QGLContext_textureCacheLimit();
    bool  windowCreated(QGLContext* theWrappedObject) const;
+    bool __nonzero__(QGLContext* obj) { return obj->isValid(); }
 };
 
 
@@ -369,6 +373,7 @@ void delete_QGLFramebufferObject(QGLFramebufferObject* obj) { delete obj; }
    QSize  size(QGLFramebufferObject* theWrappedObject) const;
    GLuint  texture(QGLFramebufferObject* theWrappedObject) const;
    QImage  toImage(QGLFramebufferObject* theWrappedObject) const;
+    bool __nonzero__(QGLFramebufferObject* obj) { return obj->isValid(); }
 };
 
 
@@ -573,6 +578,7 @@ void delete_QGLPixelBuffer(QGLPixelBuffer* obj) { delete obj; }
    QSize  size(QGLPixelBuffer* theWrappedObject) const;
    QImage  toImage(QGLPixelBuffer* theWrappedObject) const;
    void updateDynamicTexture(QGLPixelBuffer* theWrappedObject, GLuint  texture_id) const;
+    bool __nonzero__(QGLPixelBuffer* obj) { return obj->isValid(); }
 };
 
 
@@ -587,11 +593,11 @@ public:
 
    ~PythonQtShell_QGLShader();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -634,12 +640,12 @@ public:
 
    ~PythonQtShell_QGLShaderProgram();
 
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
-virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual bool  link();
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void timerEvent(QTimerEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -782,43 +788,43 @@ public:
 
    ~PythonQtShell_QGLWidget();
 
-virtual void actionEvent(QActionEvent*  arg__1);
+virtual void actionEvent(QActionEvent*  event);
 virtual void changeEvent(QEvent*  arg__1);
-virtual void childEvent(QChildEvent*  arg__1);
-virtual void closeEvent(QCloseEvent*  arg__1);
-virtual void contextMenuEvent(QContextMenuEvent*  arg__1);
-virtual void customEvent(QEvent*  arg__1);
+virtual void childEvent(QChildEvent*  event);
+virtual void closeEvent(QCloseEvent*  event);
+virtual void contextMenuEvent(QContextMenuEvent*  event);
+virtual void customEvent(QEvent*  event);
 virtual int  devType() const;
-virtual void dragEnterEvent(QDragEnterEvent*  arg__1);
-virtual void dragLeaveEvent(QDragLeaveEvent*  arg__1);
-virtual void dragMoveEvent(QDragMoveEvent*  arg__1);
-virtual void dropEvent(QDropEvent*  arg__1);
-virtual void enterEvent(QEvent*  arg__1);
+virtual void dragEnterEvent(QDragEnterEvent*  event);
+virtual void dragLeaveEvent(QDragLeaveEvent*  event);
+virtual void dragMoveEvent(QDragMoveEvent*  event);
+virtual void dropEvent(QDropEvent*  event);
+virtual void enterEvent(QEvent*  event);
 virtual bool  event(QEvent*  arg__1);
-virtual bool  eventFilter(QObject*  arg__1, QEvent*  arg__2);
-virtual void focusInEvent(QFocusEvent*  arg__1);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void focusInEvent(QFocusEvent*  event);
 virtual bool  focusNextPrevChild(bool  next);
-virtual void focusOutEvent(QFocusEvent*  arg__1);
+virtual void focusOutEvent(QFocusEvent*  event);
 virtual void glDraw();
 virtual void glInit();
 virtual bool  hasHeightForWidth() const;
 virtual int  heightForWidth(int  arg__1) const;
-virtual void hideEvent(QHideEvent*  arg__1);
+virtual void hideEvent(QHideEvent*  event);
 virtual void initPainter(QPainter*  painter) const;
 virtual void initializeGL();
 virtual void initializeOverlayGL();
 virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
 virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const;
-virtual void keyPressEvent(QKeyEvent*  arg__1);
-virtual void keyReleaseEvent(QKeyEvent*  arg__1);
-virtual void leaveEvent(QEvent*  arg__1);
+virtual void keyPressEvent(QKeyEvent*  event);
+virtual void keyReleaseEvent(QKeyEvent*  event);
+virtual void leaveEvent(QEvent*  event);
 virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
 virtual QSize  minimumSizeHint() const;
-virtual void mouseDoubleClickEvent(QMouseEvent*  arg__1);
-virtual void mouseMoveEvent(QMouseEvent*  arg__1);
-virtual void mousePressEvent(QMouseEvent*  arg__1);
-virtual void mouseReleaseEvent(QMouseEvent*  arg__1);
-virtual void moveEvent(QMoveEvent*  arg__1);
+virtual void mouseDoubleClickEvent(QMouseEvent*  event);
+virtual void mouseMoveEvent(QMouseEvent*  event);
+virtual void mousePressEvent(QMouseEvent*  event);
+virtual void mouseReleaseEvent(QMouseEvent*  event);
+virtual void moveEvent(QMoveEvent*  event);
 virtual bool  nativeEvent(const QByteArray&  eventType, void*  message, long*  result);
 virtual QPaintEngine*  paintEngine() const;
 virtual void paintEvent(QPaintEvent*  arg__1);
@@ -830,13 +836,13 @@ virtual void resizeGL(int  w, int  h);
 virtual void resizeOverlayGL(int  w, int  h);
 virtual void setVisible(bool  visible);
 virtual QPainter*  sharedPainter() const;
-virtual void showEvent(QShowEvent*  arg__1);
+virtual void showEvent(QShowEvent*  event);
 virtual QSize  sizeHint() const;
-virtual void tabletEvent(QTabletEvent*  arg__1);
-virtual void timerEvent(QTimerEvent*  arg__1);
+virtual void tabletEvent(QTabletEvent*  event);
+virtual void timerEvent(QTimerEvent*  event);
 virtual void updateGL();
 virtual void updateOverlayGL();
-virtual void wheelEvent(QWheelEvent*  arg__1);
+virtual void wheelEvent(QWheelEvent*  event);
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
@@ -933,6 +939,7 @@ void delete_QGLWidget(QGLWidget* obj) { delete obj; }
    void swapBuffers(QGLWidget* theWrappedObject);
    void py_q_updateGL(QGLWidget* theWrappedObject){  (((PythonQtPublicPromoter_QGLWidget*)theWrappedObject)->py_q_updateGL());}
    void py_q_updateOverlayGL(QGLWidget* theWrappedObject){  (((PythonQtPublicPromoter_QGLWidget*)theWrappedObject)->py_q_updateOverlayGL());}
+    bool __nonzero__(QGLWidget* obj) { return obj->isValid(); }
 };
 
 
