@@ -46,25 +46,14 @@
 
 #include <QCoreApplication>
 
-// we want to support bytes and unicode strings, since the user will not always write b''
-// and signals and slots are always ascii...
-static QByteArray getByteArrayFromPyObject(PyObject* obj)
+bool PythonQtStdDecorators::connect(QObject* sender, const QByteArray& signal, PyObject* callable)
 {
-  bool ok;
-  QByteArray bytes = PythonQtConv::PyObjGetBytes(obj, true, ok);
-  if (!ok) {
-    QString str = PythonQtConv::PyObjGetString(obj, true, ok);
-    if (ok) {
-      bytes = str.toUtf8();
-    }
+  if (signal.size() == 0) {
+    std::cerr << "PythonQt: QObject::disconnect() signal is empty." << std::endl;
+    return false;
   }
-  return bytes;
-}
-
-bool PythonQtStdDecorators::connect(QObject* sender, PyObject* signal, PyObject* callable)
-{
   bool result = false;
-  QByteArray signalTmp = getByteArrayFromPyObject(signal);
+  QByteArray signalTmp = signal;
   char first = signalTmp.at(0);
   if (first<'0' || first>'9') {
     signalTmp = "2" + signalTmp;
@@ -74,24 +63,32 @@ bool PythonQtStdDecorators::connect(QObject* sender, PyObject* signal, PyObject*
     result = PythonQt::self()->addSignalHandler(sender, signalTmp, callable);
     if (!result) {
       if (sender->metaObject()->indexOfSignal(QMetaObject::normalizedSignature(signalTmp.constData()+1)) == -1) {
-        qWarning("PythonQt: QObject::connect() signal '%s' does not exist on %s", PythonQtConv::PyObjGetString(signal).toUtf8().constData(), sender->metaObject()->className());
+        std::cerr << "PythonQt: QObject::connect() signal '" << signal.constData() << "' does not exist on " << sender->metaObject()->className() << std::endl;
       }
     }
   }
   return result;
 }
 
-bool PythonQtStdDecorators::connect(QObject* sender, PyObject* signal, QObject* receiver, PyObject* slot, Qt::ConnectionType type)
+bool PythonQtStdDecorators::connect(QObject* sender, const QByteArray& signal, QObject* receiver, const QByteArray& slot, Qt::ConnectionType type)
 {
+  if (signal.size() == 0) {
+    std::cerr << "PythonQt: QObject::connect() signal is empty." << std::endl;
+    return false;
+  }
+  if (slot.size() == 0) {
+    std::cerr << "PythonQt: QObject::connect() slot is empty." << std::endl;
+    return false;
+  }
   bool r = false;
   if (sender && receiver) {
-    QByteArray signalTmp = getByteArrayFromPyObject(signal);
+    QByteArray signalTmp = signal;
     char first = signalTmp.at(0);
     if (first<'0' || first>'9') {
       signalTmp = "2" + signalTmp;
     }
 
-    QByteArray slotTmp = getByteArrayFromPyObject(slot);
+    QByteArray slotTmp = slot;
     first = slotTmp.at(0);
     if (first<'0' || first>'9') {
       slotTmp = "1" + slotTmp;
@@ -101,10 +98,15 @@ bool PythonQtStdDecorators::connect(QObject* sender, PyObject* signal, QObject* 
   return r;
 }
 
-bool PythonQtStdDecorators::disconnect(QObject* sender, PyObject* signal, PyObject* callable)
+bool PythonQtStdDecorators::disconnect(QObject* sender, const QByteArray& signal, PyObject* callable)
 {
+  if (signal.size() == 0) {
+    std::cerr << "PythonQt: QObject::disconnect() signal is empty." << std::endl;
+    return false;
+  }
+
   bool result = false;
-  QByteArray signalTmp = getByteArrayFromPyObject(signal);
+  QByteArray signalTmp = signal;
   char first = signalTmp.at(0);
   if (first<'0' || first>'9') {
     signalTmp = "2" + signalTmp;
@@ -116,24 +118,32 @@ bool PythonQtStdDecorators::disconnect(QObject* sender, PyObject* signal, PyObje
     }
     if (!result) {
       if (sender->metaObject()->indexOfSignal(QMetaObject::normalizedSignature(signalTmp.constData()+1)) == -1) {
-        qWarning("PythonQt: QObject::disconnect() signal '%s' does not exist on %s", PythonQtConv::PyObjGetString(signal).toUtf8().constData(), sender->metaObject()->className());
+        std::cerr << "PythonQt: QObject::disconnect() signal '" << signal.constData() << "' does not exist on " << sender->metaObject()->className() << std::endl;
       }
     }
   }
   return result;
 }
 
-bool PythonQtStdDecorators::disconnect(QObject* sender, PyObject* signal, QObject* receiver, PyObject* slot)
+bool PythonQtStdDecorators::disconnect(QObject* sender, const QByteArray& signal, QObject* receiver, const QByteArray& slot)
 {
   bool r = false;
+  if (signal.size() == 0) {
+    std::cerr << "PythonQt: QObject::disconnect() signal is empty." << std::endl;
+    return false;
+  }
+  if (slot.size() == 0) {
+    std::cerr << "PythonQt: QObject::disconnect() slot is empty." << std::endl;
+    return false;
+  }
   if (sender && receiver) {
-    QByteArray signalTmp = getByteArrayFromPyObject(signal);
+    QByteArray signalTmp = signal;
     char first = signalTmp.at(0);
     if (first<'0' || first>'9') {
       signalTmp = "2" + signalTmp;
     }
 
-    QByteArray slotTmp = getByteArrayFromPyObject(slot);
+    QByteArray slotTmp = slot;
     first = slotTmp.at(0);
     if (first<'0' || first>'9') {
       slotTmp = "1" + slotTmp;
