@@ -74,6 +74,10 @@ bool PythonQtQFileImporter::exists (const QString &filename) {
   return QFile::exists(filename);
 }
 
+bool PythonQtQFileImporter::isEggArchive(const QString& filename) {
+  return filename.toLower().endsWith(".egg") && !QFileInfo(filename).isDir();
+}
+
 QDateTime PythonQtQFileImporter::lastModifiedDate (const QString &filename) {
   QFileInfo fi(filename);
   return fi.lastModified();

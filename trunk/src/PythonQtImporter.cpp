@@ -144,17 +144,23 @@ int PythonQtImporter_init(PythonQtImporter *self, PyObject *args, PyObject * /*k
 
   QString path(cpath);
   if (PythonQt::importInterface()->exists(path)) {
-    const QStringList& ignorePaths = PythonQt::self()->getImporterIgnorePaths();
-    Q_FOREACH(QString ignorePath, ignorePaths) {
-      if (path.startsWith(ignorePath)) {
-        PyErr_SetString(PythonQtImportError,
-          "path ignored");
-        return -1;
+    if (PythonQt::importInterface()->isEggArchive(path)) {
+      PyErr_SetString(PythonQtImportError,
+          "path is an egg archive, which is unsupported by PythonQt");
+      return -1;
+    } else {
+      const QStringList& ignorePaths = PythonQt::self()->getImporterIgnorePaths();
+      Q_FOREACH(QString ignorePath, ignorePaths) {
+        if (path.startsWith(ignorePath)) {
+          PyErr_SetString(PythonQtImportError,
+            "path ignored");
+          return -1;
+        }
       }
-    }
 
-    self->_path = new QString(path);
-    return 0;
+      self->_path = new QString(path);
+      return 0;
+    }
   } else {
     PyErr_SetString(PythonQtImportError,
         "path does not exist error");

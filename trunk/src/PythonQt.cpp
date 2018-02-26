@@ -264,6 +264,9 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
 
     _self->priv()->pythonQtModule().addObject("Debug", _self->priv()->_debugAPI);
 
+    Py_INCREF((PyObject*)&PythonQtSlotDecorator_Type);
+    Py_INCREF((PyObject*)&PythonQtSignalFunction_Type);
+    Py_INCREF((PyObject*)&PythonQtProperty_Type);
     PyModule_AddObject(pack, "Slot", (PyObject*)&PythonQtSlotDecorator_Type);
     PyModule_AddObject(pack, "Signal", (PyObject*)&PythonQtSignalFunction_Type);
     PyModule_AddObject(pack, "Property", (PyObject*)&PythonQtProperty_Type);
@@ -695,6 +698,7 @@ PythonQtClassWrapper* PythonQtPrivate::createNewPythonQtClassWrapper(PythonQtCla
   PyObject* className = PyString_FromString(pythonClassName.constData());
 
   PyObject* baseClasses = PyTuple_New(1);
+  Py_INCREF((PyObject*)&PythonQtInstanceWrapper_Type);
   PyTuple_SET_ITEM(baseClasses, 0, (PyObject*)&PythonQtInstanceWrapper_Type);
 
   PyObject* typeDict = PyDict_New();
@@ -1677,11 +1681,13 @@ void PythonQt::initPythonQtModule(bool redirectStdOut, const QByteArray& pythonQ
 #ifdef PY3K
   PythonQtModuleDef.m_name = name.constData();
   _p->_pythonQtModule = PyModule_Create(&PythonQtModuleDef);
+  _PyImport_FixupBuiltin(_p->_pythonQtModule, name);
 #else
   _p->_pythonQtModule = Py_InitModule(name.constData(), PythonQtMethods);
 #endif
   _p->_pythonQtModuleName = name;
-  
+
+  Py_INCREF((PyObject*)&PythonQtBoolResult_Type);
   PyModule_AddObject(_p->pythonQtModule().object(), "BoolResult", (PyObject*)&PythonQtBoolResult_Type);
   PythonQtObjectPtr sys;
   sys.setNewRef(PyImport_ImportModule("sys"));
@@ -1705,16 +1711,14 @@ void PythonQt::initPythonQtModule(bool redirectStdOut, const QByteArray& pythonQ
     Py_ssize_t old_size = PyTuple_Size(old_module_names);
     PyObject *module_names = PyTuple_New(old_size + 1);
     for (Py_ssize_t i = 0; i < old_size; i++) {
-      PyTuple_SetItem(module_names, i, PyTuple_GetItem(old_module_names, i));
+      PyObject* val = PyTuple_GetItem(old_module_names, i);
+      Py_INCREF(val);
+      PyTuple_SetItem(module_names, i, val);
     }
     PyTuple_SetItem(module_names, old_size, PyString_FromString(name.constData()));
     PyModule_AddObject(sys.object(), "builtin_module_names", module_names);
   }
   Py_XDECREF(old_module_names);
-
-#ifdef PY3K
-  PyDict_SetItem(PyObject_GetAttrString(sys.object(), "modules"), PyUnicode_FromString(name.constData()), _p->_pythonQtModule.object());
-#endif
 }
 
 QString PythonQt::getReturnTypeOfWrappedMethod(PyObject* module, const QString& name)
