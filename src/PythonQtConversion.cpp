@@ -591,7 +591,7 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
            // since Qt uses QByteArray in many places for identifier strings,
            // we need to allow implicit conversion from unicode as well.
            // We allow that for both Python 2.x and 3.x to be compatible.
-           bytes = PyObjGetString(obj, strict, ok).toUtf8();
+           bytes = PyObjGetString(obj, true, ok).toUtf8();
          }
          if (ok) {
            PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,global_variantStorage, QVariant, QVariant(bytes), ptr);

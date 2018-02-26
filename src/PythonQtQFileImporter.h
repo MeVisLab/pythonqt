@@ -55,6 +55,7 @@ public:
     QByteArray readSourceFile (const QString &filename, bool &ok);
     
     bool exists (const QString &filename);
+    bool isEggArchive(const QString& filename);
     
     QDateTime lastModifiedDate (const QString &filename);
 
