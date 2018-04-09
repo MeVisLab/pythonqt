@@ -33,12 +33,13 @@
  *
  */
 
+#include "PythonQtPythonInclude.h"
+#include "PythonQt.h"
 #include <QMetaObject>
 #include <QMetaMethod>
 #include <QHash>
 #include <QByteArray>
 #include <QList>
-#include "PythonQt.h"
 
 class PythonQtSlotInfo;
 class PythonQtClassInfo;

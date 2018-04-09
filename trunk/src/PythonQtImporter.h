@@ -134,11 +134,9 @@ public:
   static QString replaceExtension(const QString& str, const QString& ext);
 
   //! Returns the filename of the cache file for the given source file, e.g. test.pyc for test.py.
-  //! Python 3 places cache files inside a __pycache__ directory, this also handled here.
   static QString getCacheFilename(const QString& sourceFile, bool isOptimizedFilename);
 
   //! Returns the filename of the source file for the given cache file, e.g. test.py for test.pyc.
-  //! Python 3 places cache files inside a __pycache__ directory, this also handled here.
   static QString getSourceFilename(const QString& cacheFile);
 };
 
