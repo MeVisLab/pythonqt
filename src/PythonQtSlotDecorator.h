@@ -32,8 +32,8 @@
 *
 */
 
-#include "PythonQtSystem.h"
 #include "PythonQtPythonInclude.h"
+#include "PythonQtSystem.h"
 #include <QByteArray>
 #include <QList>
 

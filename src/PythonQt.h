@@ -42,6 +42,7 @@
 */
 //----------------------------------------------------------------------------------
 
+#include "PythonQtPythonInclude.h"
 #include "PythonQtUtils.h"
 #include "PythonQtSystem.h"
 #include "PythonQtInstanceWrapper.h"
@@ -345,8 +346,14 @@ public:
   //! \name Script Parsing and Evaluation
   //@{
 
-  //! parses the given file and returns the python code object, this can then be used to call evalCode()
+  //! parses the given file (using PythonQt's own import mechanism) and returns the python code object, this can then be used to call evalCode()
   PythonQtObjectPtr parseFile(const QString& filename);
+
+  //! Parses the given file and returns the python code object, this can then be used to call evalCode()
+  //! It uses Python's importlib machinery to load the file's code and supports source and sourceless loading
+  //! and generation of cache files.
+  //! This method is PY3K only!
+  PythonQtObjectPtr parseFileWithPythonLoaders(const QString& filename);
 
   //! evaluates the given code and returns the result value (use Py_Compile etc. to create pycode from string)
   //! If pycode is NULL, a python error is printed.
@@ -551,7 +558,7 @@ public:
 
   //! handle a python error, call this when a python function fails. If no error occurred, it returns false.
   //! The error is currently just output to the python stderr, future version might implement better trace printing
-  bool handleError();
+  bool handleError(bool printStack = true);
 
   //! return \a true if \a handleError() has been called and an error occurred.
   bool hadError()const;
@@ -816,6 +823,9 @@ private:
 
   QStringList _importIgnorePaths;
   QStringList _sharedLibrarySuffixes;
+
+  PythonQtObjectPtr _pySourceFileLoader;
+  PythonQtObjectPtr _pySourcelessFileLoader;
 
   //! the cpp object wrapper factories
   QList<PythonQtCppWrapperFactory*> _cppWrapperFactories;

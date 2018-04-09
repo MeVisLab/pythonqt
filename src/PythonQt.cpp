@@ -357,6 +357,14 @@ PythonQt::PythonQt(int flags, const QByteArray& pythonQtModuleName)
   Py_INCREF(&PythonQtStdInRedirectType);
 
   initPythonQtModule(flags & RedirectStdOut, pythonQtModuleName);
+
+  PythonQtObjectPtr importlib;
+  importlib.setNewRef(PyImport_ImportModule("importlib.machinery"));
+
+  if (importlib) {
+    _p->_pySourceFileLoader = importlib.getVariable("SourceFileLoader");
+    _p->_pySourcelessFileLoader = importlib.getVariable("SourcelessFileLoader");
+  }
 }
 
 PythonQt::~PythonQt() {
@@ -956,6 +964,38 @@ PythonQtObjectPtr PythonQt::parseFile(const QString& filename)
   return p;
 }
 
+PythonQtObjectPtr PythonQt::parseFileWithPythonLoaders(const QString& file)
+{
+  PythonQtObjectPtr result;
+  QString filename = file;
+  PyObject* loaderClass = NULL;
+  if (QFile::exists(filename)) {
+    loaderClass = _p->_pySourceFileLoader;
+  } else {
+    filename += "c";
+    if (QFile::exists(filename)) {
+      loaderClass = _p->_pySourcelessFileLoader;
+    }
+  }
+  if (loaderClass) {
+    static QString dummy("x");
+    PythonQtObjectPtr loader;
+    QVariantList args;
+    args << dummy << filename;
+    loader.setNewRef(callAndReturnPyObject(loaderClass, args));
+    QVariantList args2;
+    args2 << dummy;
+    PythonQtObjectPtr getCode; 
+    getCode.setNewRef(PyObject_GetAttrString(loader, "get_code"));
+    result.setNewRef(callAndReturnPyObject(getCode, args2));
+    if (!result) {
+      // we don't want frozenlib to appear in the stack:
+      handleError(/* printStack = */ false);
+    }
+  }
+  return result;
+}
+
 PythonQtObjectPtr PythonQt::createModuleFromFile(const QString& name, const QString& filename)
 {
   PythonQtObjectPtr code = parseFile(filename);
@@ -1540,7 +1580,7 @@ int custom_system_exit_exception_handler()
 }
 }
 
-bool PythonQt::handleError()
+bool PythonQt::handleError(bool printStack)
 {
   bool flag = false;
   if (PyErr_Occurred()) {
@@ -1551,24 +1591,20 @@ bool PythonQt::handleError()
       Q_EMIT PythonQt::self()->systemExitExceptionRaised(exitcode);
       }
     else
-      {
-      // currently we just print the error and the stderr handler parses the errors
-      PyErr_Print();
-
-      /*
-      // EXTRA: the format of the ptype and ptraceback is not really documented, so I use PyErr_Print() above
-      PyObject *ptype;
-      PyObject *pvalue;
-      PyObject *ptraceback;
-      PyErr_Fetch( &ptype, &pvalue, &ptraceback);
-
-        Py_XDECREF(ptype);
-        Py_XDECREF(pvalue);
-        Py_XDECREF(ptraceback);
-      */
-      PyErr_Clear();
+    {
+      if (printStack) {
+        PyErr_Print();
+      } else {
+        PyObject *ptype, *pvalue, *ptraceback;
+        PyErr_Fetch(&ptype, &pvalue, &ptraceback);
+        PyErr_NormalizeException(&ptype, &pvalue, &ptraceback);
+        // we leave out the traceback:
+        PyErr_Display(ptype, pvalue, NULL);
+        PyErr_Restore(ptype, pvalue, ptraceback);
+        PyErr_Clear();
       }
-    flag = true;
+      flag = true;
+    }
   }
   _p->_hadError = flag;
   return flag;

@@ -42,6 +42,7 @@
 */
 //----------------------------------------------------------------------------------
 
+#include "PythonQtPythonInclude.h"
 #include "PythonQt.h"
 #include "PythonQtMisc.h"
 #include "PythonQtClassInfo.h"

@@ -42,6 +42,7 @@
 */
 //----------------------------------------------------------------------------------
 
+#include "PythonQtPythonInclude.h"
 #include <QDateTime>
 #include <QString>
 #include <QByteArray>

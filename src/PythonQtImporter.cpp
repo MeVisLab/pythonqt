@@ -100,29 +100,22 @@ PythonQtImport::ModuleInfo PythonQtImport::getModuleInfo(PythonQtImporter* self,
   QString path = *self->_path + "/" + subname;
 
   QString test;
-  for (zso = mlab_searchorder; *zso->suffix; zso++) {
-    test = path + zso->suffix;
-#ifdef PY3K
-    if (!PythonQt::importInterface()->exists(test) && (zso->type & IS_BYTECODE)) {
-      // try __pycache__/*.pyc file
-      static QString cacheTag(PyImport_GetMagicTag());
-      test = *self->_path + "/__pycache__/" + subname + "." + cacheTag + zso->suffix;
-    }
-#endif
-    if (PythonQt::importInterface()->exists(test)) {
-      info.fullPath = test;
-      info.moduleName = subname;
-      info.type = (zso->type & IS_PACKAGE)?MI_PACKAGE:MI_MODULE;
-      return info;
-    }
-  }
-  // test if it is a shared library
+  // test if it is a shared library (they have precedence over *.py files and this is used in eggs)
   Q_FOREACH(const QString& suffix, PythonQt::priv()->sharedLibrarySuffixes()) {
-    test = path+suffix;
+    test = path + suffix;
     if (PythonQt::importInterface()->exists(test)) {
       info.fullPath = test;
       info.moduleName = subname;
       info.type = MI_SHAREDLIBRARY;
+      return info;
+    }
+  }
+  for (zso = mlab_searchorder; *zso->suffix; zso++) {
+    test = path + zso->suffix;
+    if (PythonQt::importInterface()->exists(test)) {
+      info.fullPath = test;
+      info.moduleName = subname;
+      info.type = (zso->type & IS_PACKAGE)?MI_PACKAGE:MI_MODULE;
       return info;
     }
   }
@@ -308,7 +301,7 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
 #ifdef PY3K
     PyObject* fullnameObj = PyUnicode_FromString(fullname);
     PyObject* fullPathObj = PythonQtConv::QStringToPyObject(fullPath);
-    PyObject* fullCachePathObj = fullCachePath.isEmpty() ? PythonQtConv::QStringToPyObject(fullCachePath) : NULL;
+    PyObject* fullCachePathObj = !fullCachePath.isEmpty() ? PythonQtConv::QStringToPyObject(fullCachePath) : NULL;
     mod = PyImport_ExecCodeModuleObject(fullnameObj, code, fullPathObj, fullCachePathObj);
     Py_XDECREF(fullnameObj);
     Py_XDECREF(fullPathObj);
@@ -563,13 +556,6 @@ void PythonQtImport::writeCompiledModule(PyCodeObject *co, const QString& filena
   if (filename.startsWith(":")) {
     return;
   }
-#ifdef PY3K
-  // create __pycache__ directory, if it does not exist
-  QDir dir = QFileInfo(filename).absoluteDir();
-  if (!dir.exists()) {
-    dir.mkpath(".");
-  }
-#endif
   fp = open_exclusive(filename);
   if (fp == NULL) {
     if (Py_VerboseFlag)
@@ -704,34 +690,17 @@ PythonQtImport::compileSource(const QString& path, const QByteArray& data)
 
 QString PythonQtImport::getCacheFilename(const QString& sourceFilename, bool isOptimizedFilename)
 {
-#ifdef PY3K
-  QFileInfo fi(sourceFilename);
-  static QString cacheTag(PyImport_GetMagicTag());
-  QString pycFilename = fi.absolutePath() + "/__pycache__/" + fi.baseName() + "." + cacheTag + ".py";
-#else
   QString pycFilename = sourceFilename;
-#endif
   return pycFilename + (isOptimizedFilename ? "o" : "c");
 }
 
 QString PythonQtImport::getSourceFilename(const QString& cacheFile)
 {
-#ifdef PY3K
-  static QString cacheTagPart = "." + QString(PyImport_GetMagicTag());
-  QFileInfo fi(cacheFile);
-  // get the parent directory of the __pycache__ directory
-  QDir dir = fi.absoluteDir();
-  dir.cdUp();
-  QString baseName = fi.completeBaseName();
-  baseName.truncate(baseName.length()-cacheTagPart.length());
-  QString pyFilename = dir.absolutePath() + "/" + baseName + ".py";
-#else
   QString pyFilename;
   if (cacheFile.length() > 0) {
     pyFilename = cacheFile;
     pyFilename.truncate(pyFilename.length()-1);
   }
-#endif
   return pyFilename;
 }
 
@@ -810,16 +779,6 @@ PythonQtImport::getModuleCode(PythonQtImporter *self, const char* fullname, QStr
     if (Py_VerboseFlag > 1)
       PySys_WriteStderr("# trying %s\n",
                         QStringToPythonConstCharPointer(test));
-#ifdef PY3K
-    if (!PythonQt::importInterface()->exists(test) && zso->type & IS_BYTECODE) {
-      // try __pycache__/*.pyc file
-      static QString cacheTag(PyImport_GetMagicTag());
-      test = *self->_path + "/__pycache__/" + subname + "." + cacheTag + zso->suffix;
-      if (Py_VerboseFlag > 1)
-        PySys_WriteStderr("# trying %s\n",
-                          QStringToPythonConstCharPointer(test));
-    }
-#endif
     if (PythonQt::importInterface()->exists(test)) {
       time_t mtime = 0;
       int ispackage = zso->type & IS_PACKAGE;
@@ -871,17 +830,7 @@ PyObject* PythonQtImport::getCodeFromPyc(const QString& file)
 {
   PyObject* code;
   const static QString pycStr("pyc");
-  QString pyc;
-#ifdef PY3K
-  // if the cache file in __pycache__ does not exist, look for cache file next to
-  // source file
-  pyc = getCacheFilename(file, /*isOptimizedFilename=*/false);
-  if (!PythonQt::importInterface()->exists(pyc)) {
-    pyc = replaceExtension(file, pycStr);
-  }
-#else
-  pyc = replaceExtension(file, pycStr);
-#endif
+  QString pyc = replaceExtension(file, pycStr);
   if (PythonQt::importInterface()->exists(pyc)) {
     time_t mtime = 0;
     // if ignoreUpdatedPythonSourceFiles() returns true, then mtime stays 0
@@ -978,16 +927,4 @@ void PythonQtImport::init()
   PyObject* path_hooks = PySys_GetObject(const_cast<char*>("path_hooks"));
   // insert our importer before all other loaders
   PyList_Insert(path_hooks, 0, classobj);
-
- #ifndef WIN32
-   // reload the encodings module, because it might fail to custom import requirements (e.g. encryption).
-   PyObject* modules         = PyImport_GetModuleDict();
-   PyObject* encodingsModule = PyDict_GetItemString(modules, "encodings");
-   if (encodingsModule != NULL) {
-     PyImport_ReloadModule(encodingsModule);
-   } else {
-     // import it now, so that the search function is registered (a previous import from the codecs module may have failed and it does not retry to import it)
-     PyImport_ImportModule("encodings");
-   }
- #endif
 }

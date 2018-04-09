@@ -42,7 +42,7 @@
 */
 //----------------------------------------------------------------------------------
 
-
+#include "PythonQtPythonInclude.h"
 #include <QList>
 
 #define PythonQtValueStorage_ADD_VALUE(store, type, value, ptr) \
