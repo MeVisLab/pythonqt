@@ -596,7 +596,11 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
   }
 
   QString error = QString(wrapper->classInfo()->className()) + " has no attribute named '" + QString(attributeName) + "'";
+  if (wrapper->_obj) {
+    error += PythonQt::self()->qObjectMissingAttributeCallback(wrapper->_obj, QString(attributeName));
+  }
   PyErr_SetString(PyExc_AttributeError, QStringToPythonConstCharPointer(error));
+
   return NULL;
 }
 

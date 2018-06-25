@@ -444,6 +444,20 @@ void PythonQt::qObjectNoLongerWrappedCB(QObject* o)
   };
 }
 
+void PythonQt::setQObjectMissingAttributeCallback(PythonQtQObjectMissingAttributeCB* cb)
+{
+  _self->_p->_qObjectMissingAttribCB = cb;
+}
+
+QString PythonQt::qObjectMissingAttributeCallback(QObject* o, const QString& attribute)
+{
+  if (_self && _self->_p && _self->_p->_qObjectMissingAttribCB) {
+    return _self->_p->_qObjectMissingAttribCB(o, attribute);
+  } else {
+    return QString();
+  }
+}
+
 void PythonQt::registerClass(const QMetaObject* metaobject, const char* package, PythonQtQObjectCreatorFunctionCB* wrapperCreator, PythonQtShellSetInstanceWrapperCB* shell)
 {
   _p->registerClass(metaobject, package, wrapperCreator, shell);
@@ -1095,7 +1109,7 @@ QStringList PythonQt::introspection(PyObject* module, const QString& objectname,
   if (object) {
     results = introspectObject(object, type);
   }
-  
+  PyErr_Clear();
   return results;
 }
 
@@ -1216,6 +1230,7 @@ QStringList PythonQt::introspectObject(PyObject* object, ObjectType type)
       Py_DECREF(keys);
     }
   }
+  PyErr_Clear();
   return results;
 }
 
@@ -1243,6 +1258,7 @@ PyObject* PythonQt::getObjectByType(const QString& typeName)
     }
   }
   
+  PyErr_Clear();
   return object;
 }
   
@@ -1270,6 +1286,7 @@ QStringList PythonQt::introspectType(const QString& typeName, ObjectType type)
     results = introspectObject(object, type);
     Py_DECREF(object);
   }
+  PyErr_Clear();
   return results;
 }
 
@@ -1403,6 +1420,7 @@ PythonQtPrivate::PythonQtPrivate()
   _defaultImporter = new PythonQtQFileImporter;
   _noLongerWrappedCB = NULL;
   _wrappedCB = NULL;
+  _qObjectMissingAttribCB = NULL;
   _currentClassInfoForClassWrapperCreation = NULL;
   _profilingCB = NULL;
   _hadError = false;

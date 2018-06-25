@@ -73,6 +73,7 @@ typedef void  PythonQtVoidPtrCB(void* object);
 typedef void  PythonQtQObjectWrappedCB(QObject* object);
 typedef void  PythonQtQObjectNoLongerWrappedCB(QObject* object);
 typedef void* PythonQtPolymorphicHandlerCB(const void *ptr, const char **class_name);
+typedef QString PythonQtQObjectMissingAttributeCB(QObject* object, const QString& attribute);
 
 typedef void PythonQtShellSetInstanceWrapperCB(void* object, PythonQtInstanceWrapper* wrapper);
 
@@ -583,6 +584,12 @@ public:
   //! call the callback if it is set
   static void qObjectNoLongerWrappedCB(QObject* o);
 
+  //! set a callback that is called when a QObject does not have a specific attribute.
+  void setQObjectMissingAttributeCallback(PythonQtQObjectMissingAttributeCB* cb);
+
+  //! call the callback if it is set
+  static QString qObjectMissingAttributeCallback(QObject* o, const QString& attribute);
+
   //! called by internal help methods
   PyObject* helpCalled(PythonQtClassInfo* info);
 
@@ -820,6 +827,7 @@ private:
 
   PythonQtQObjectNoLongerWrappedCB* _noLongerWrappedCB;
   PythonQtQObjectWrappedCB* _wrappedCB;
+  PythonQtQObjectMissingAttributeCB* _qObjectMissingAttribCB;
 
   QStringList _importIgnorePaths;
   QStringList _sharedLibrarySuffixes;
