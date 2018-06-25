@@ -52,6 +52,10 @@
 
 #include <QByteArray>
 
+#if defined(__GNUG__) && !defined(__clang__)
+#include <cxxabi.h>
+#endif
+
 #define PYTHONQT_MAX_ARGS 32
 
 
@@ -208,6 +212,10 @@ bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObj
         what += e.what();
         PyErr_SetString(PyExc_RuntimeError, what.constData());
 #ifdef PYTHONQT_CATCH_ALL_EXCEPTIONS
+  #if defined(__GNUG__) && !defined(__clang__)
+      } catch (abi::__forced_unwind &) {
+        throw;
+  #endif
       } catch (...) {
         hadException = true;
         PyErr_SetString(PyExc_RuntimeError, "Unknown C++ exception.");
