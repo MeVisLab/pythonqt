@@ -1735,7 +1735,6 @@ void PythonQt::initPythonQtModule(bool redirectStdOut, const QByteArray& pythonQ
 #ifdef PY3K
   PythonQtModuleDef.m_name = name.constData();
   _p->_pythonQtModule = PyModule_Create(&PythonQtModuleDef);
-  _PyImport_FixupBuiltin(_p->_pythonQtModule, name);
 #else
   _p->_pythonQtModule = Py_InitModule(name.constData(), PythonQtMethods);
 #endif
@@ -1773,6 +1772,10 @@ void PythonQt::initPythonQtModule(bool redirectStdOut, const QByteArray& pythonQ
     PyModule_AddObject(sys.object(), "builtin_module_names", module_names);
   }
   Py_XDECREF(old_module_names);
+
+#ifdef PY3K
+  PyDict_SetItem(PyObject_GetAttrString(sys.object(), "modules"), PyUnicode_FromString(name.constData()), _p->_pythonQtModule.object());
+#endif
 }
 
 QString PythonQt::getReturnTypeOfWrappedMethod(PyObject* module, const QString& name)
