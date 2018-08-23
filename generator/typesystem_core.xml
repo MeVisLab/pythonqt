@@ -758,7 +758,10 @@
   <enum-type name="Qt::WhiteSpaceMode"/>
   <enum-type name="Qt::WindowModality"/>
   <enum-type name="Qt::WindowState" flags="Qt::WindowStates"/>
-  <enum-type name="Qt::WindowType" flags="Qt::WindowFlags"/>
+  <enum-type name="Qt::WindowType" flags="Qt::WindowFlags">
+    <reject-enum-value name="WindowOkButtonHint"/>
+    <reject-enum-value name="WindowCancelButtonHint"/>
+  </enum-type>
   <enum-type name="QDirIterator::IteratorFlag" flags="QDirIterator::IteratorFlags"/>
   <enum-type name="Qt::EventPriority"/>
   <enum-type name="Qt::MaskMode"/>
