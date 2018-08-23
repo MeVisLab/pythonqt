@@ -159,7 +159,6 @@
 <object-type name="QMediaServiceDefaultDeviceInterface"/>
 <object-type name="QMediaServiceProviderFactoryInterface"/>
 <object-type name="QMediaServiceProviderHint"/>
-<!-- <object-type name="QMediaServiceProviderPlugin"/>  -->
 <object-type name="QMediaServiceSupportedDevicesInterface"/>
 <object-type name="QMediaServiceSupportedFormatsInterface"/>
 <object-type name="QMediaStreamsControl"/>
@@ -173,5 +172,9 @@
 <object-type name="QVideoRendererControl"/>
 <object-type name="QVideoWidgetControl"/>
 <object-type name="QVideoWindowControl"/>
+<enum-type name="QAudio::VolumeScale"/>
+
+<!-- override with abstract function does not work yet-->
+<rejection class="QMediaServiceProviderPlugin"/>
 
 </typesystem>

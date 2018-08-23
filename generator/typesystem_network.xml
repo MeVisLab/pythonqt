@@ -210,6 +210,14 @@
   <object-type name="QDnsServiceRecord"/>
   <object-type name="QDnsTextRecord"/>
 
+  <enum-type name="QHostAddress::ConversionModeFlag"/>
+  <enum-type name="QNetworkInterface::InterfaceType"/>
+  <enum-type name="QNetworkRequest::RedirectPolicy"/>
+
+  <object-type name="QHstsPolicy"/>
+  <enum-type name="QHstsPolicy::PolicyFlag"/>
+  <object-type name="QNetworkDatagram"/>
+
   <suppress-warning text="*unmatched parameter type 'sockaddr const*"/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QUrlInfo' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QNetworkCacheMetaData' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>

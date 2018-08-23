@@ -60,6 +60,17 @@
 
 <object-type name="QQuickFramebufferObject::Renderer"></object-type>
 <object-type name="QQuickItem::UpdatePaintNodeData"></object-type>
+  
+<object-type name="QSGImageNode" create-shell="no"/>
+<object-type name="QSGNinePatchNode"/>
+<object-type name="QSGRectangleNode"/>
+<object-type name="QSGRenderNode"/>
+<object-type name="QSGRenderNode::RenderState"/>
+<rejection class="QSGRendererInterface"/>
+
+<enum-type name="QSGImageNode::TextureCoordinatesTransformFlag"/>
+<enum-type name="QSGRenderNode::RenderingFlag"/>
+<enum-type name="QSGRenderNode::StateFlag"/>
 
 <enum-type name="QQuickItem::Flag"></enum-type>
 <enum-type name="QQuickItem::ItemChange"></enum-type>
@@ -76,6 +87,9 @@
 <enum-type name="QSGAbstractRenderer::ClearModeBit"></enum-type>
 <enum-type name="QSGEngine::CreateTextureOption"></enum-type>
 <enum-type name="QSGGeometry::DataPattern"></enum-type>
+<enum-type name="QSGGeometry::Type"></enum-type>
+<enum-type name="QSGGeometry::DrawingMode"></enum-type>
+<enum-type name="QSGGeometry::AttributeType"></enum-type>
 <enum-type name="QSGMaterial::Flag"></enum-type>
 <enum-type name="QSGNode::DirtyStateBit"></enum-type>
 <enum-type name="QSGNode::DirtyState"></enum-type>
@@ -84,5 +98,7 @@
 <enum-type name="QSGSimpleTextureNode::TextureCoordinatesTransformFlag"></enum-type>
 <enum-type name="QSGTexture::Filtering"></enum-type>
 <enum-type name="QSGTexture::WrapMode"></enum-type>
+<enum-type name="QQuickWindow::TextRenderType"/>
+<enum-type name="QSGTexture::AnisotropyLevel"/>
 
 </typesystem>

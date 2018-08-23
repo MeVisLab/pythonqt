@@ -3167,6 +3167,13 @@ PyObject* constScanLine(QImage* image, int line) {
   <enum-type name="QSurfaceFormat::RenderableType"/>
   <enum-type name="QSurfaceFormat::SwapBehavior"/>
   <enum-type name="QSurfaceFormat::OpenGLContextProfile"/>
+  <enum-type name="QSurfaceFormat::ColorSpace"/>
+
+  <enum-type name="QOpenGLFramebufferObject::FramebufferRestorePolicy"/>
+  <enum-type name="QPagedPaintDevice::PdfVersion"/>
+
+  <object-type name="QOpenGLTextureBlitter"/>
+  <enum-type name="QOpenGLTextureBlitter::Origin"/>
 
   <!-- Inefficient hash codes -->
   <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QTextFrame_iterator' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
