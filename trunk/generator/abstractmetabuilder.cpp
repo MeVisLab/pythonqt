@@ -958,7 +958,9 @@ AbstractMetaEnum *AbstractMetaBuilder::traverseEnum(EnumModelItem enum_item, Abs
     ReportHandler::debugMedium(QString(" - traversing enum %1").arg(meta_enum->fullName()));
 
     foreach (EnumeratorModelItem value, enum_item->enumerators()) {
-
+        if (meta_enum->typeEntry()->isEnumValueRejected(value->name())) {
+          continue;
+        }
         AbstractMetaEnumValue *meta_enum_value = createMetaEnumValue();
         meta_enum_value->setName(value->name());
         // Deciding the enum value...
