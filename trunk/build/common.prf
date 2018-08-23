@@ -26,7 +26,13 @@ PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp
 
   !exists($$PYTHONQT_GENERATED_PATH) {
     contains( QT_MAJOR_VERSION, 5 ) {
-      contains( QT_MINOR_VERSION, 1 ) {
+      contains( QT_MINOR_VERSION, 10 ) { 
+        PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_56
+      }
+      else:contains( QT_MINOR_VERSION, 11 ) { 
+        PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_511
+      }
+      else:contains( QT_MINOR_VERSION, 1 ) {
         PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_50
       }
       else:contains( QT_MINOR_VERSION, 2 ) {
@@ -43,7 +49,17 @@ PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp
   	  }
       else:contains( QT_MINOR_VERSION, 6 ) { 
         PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_56
-      } else {
+      }
+      else:contains( QT_MINOR_VERSION, 7 ) { 
+        PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_56
+      }
+      else:contains( QT_MINOR_VERSION, 8 ) { 
+        PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_56
+      }
+      else:contains( QT_MINOR_VERSION, 9 ) { 
+        PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_56
+      }
+      else {
         PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_56
       }
     }
