@@ -1972,4 +1972,17 @@
   <enum-type name="Qt::TimerType"/>
   <enum-type name="Qt::Edge"/>
 
+  <object-type name="QDeadlineTimer"/>
+  <object-type name="QOperatingSystemVersion"/>
+  <enum-type name="QOperatingSystemVersion::OSType"/>
+  <object-type name="QRandomGenerator"/>
+  <object-type name="QRandomGenerator64"/>
+  <enum-type name="QDeadlineTimer::ForeverConstant"/>
+  
+  <enum-type name="QCommandLineOption::Flag"/>
+  <enum-type name="QFileDevice::FileTime"/>
+  <enum-type name="QLocale::DataSizeFormat"/>
+  <enum-type name="QLocale::FloatingPointPrecisionOption"/>
+  <enum-type name="QUuid::StringFormat"/>
+  <enum-type name="Qt::ChecksumType"/>
   </typesystem>
