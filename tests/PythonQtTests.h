@@ -161,6 +161,8 @@ public:
   virtual bool exists(const QString& filename);
 
   virtual QDateTime lastModifiedDate(const QString& filename);
+  
+  virtual bool isEggArchive(const QString& filename) { return false; }
 
 public Q_SLOTS:
 
