@@ -159,7 +159,7 @@
 <object-type name="QMediaServiceDefaultDeviceInterface"/>
 <object-type name="QMediaServiceProviderFactoryInterface"/>
 <object-type name="QMediaServiceProviderHint"/>
-<object-type name="QMediaServiceProviderPlugin"/>
+<!-- <object-type name="QMediaServiceProviderPlugin"/>  -->
 <object-type name="QMediaServiceSupportedDevicesInterface"/>
 <object-type name="QMediaServiceSupportedFormatsInterface"/>
 <object-type name="QMediaStreamsControl"/>

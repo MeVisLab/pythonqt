@@ -9,6 +9,7 @@
 #define Q_SLOTS slots
 #define Q_SIGNALS signals
 #define Q_FLAGS(a)
+#define Q_FLAG(a)
 #define Q_PRIVATE_SLOT(a, b)
 #define Q_DECLARE_INTERFACE(a,b)
 #define Q_INTERFACES(a)
