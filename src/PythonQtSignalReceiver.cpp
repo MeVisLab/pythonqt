@@ -52,6 +52,7 @@ int PythonQtSignalReceiver::_destroyedSignal1Id = -2;
 int PythonQtSignalReceiver::_destroyedSignal2Id = -2;
 
 void PythonQtSignalTarget::call(void **arguments) const {
+  PythonQtGILScope gil;
   PyObject* result = call(_callable, methodInfo(), arguments);
   if (result) {
     Py_DECREF(result);
