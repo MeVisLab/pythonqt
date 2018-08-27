@@ -8,7 +8,6 @@
     <enum-type name="QWebSettings::FontSize"/>
     <enum-type name="QWebSettings::WebGraphic"/>
     <enum-type name="QWebSettings::WebAttribute">
-        <reject-enum-value name="LocalStorageEnabled"/>
     </enum-type>
   <enum-type name="QWebSettings::ThirdPartyCookiePolicy"/>
   <enum-type name="QWebPage::VisibilityState"/>
@@ -28,7 +27,6 @@
     <enum-type name="QWebPluginFactory::Extension"/>
     <enum-type name="QWebElement::StyleResolveStrategy"/>
     <enum-type name="QWebHistory::HistoryStateVersion">
-        <reject-enum-value name="DefaultHistoryVersion"/>
     </enum-type>
     <enum-type name="QWebPage::ErrorDomain"/>
     
