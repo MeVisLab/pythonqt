@@ -128,11 +128,13 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
       // we can't handle return values which are references right now, do not send those to Python...
       if (!hasReturnValue || !fun->type()->isReference()) {
 
-        s << "if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {" << endl;
-        s << "  static PyObject* name = PyString_FromString(\"" << fun->name() << "\");" << endl;
-        s << "  PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);" << endl;
-        s << "  if (obj) {" << endl;
-        s << "    static const char* argumentList[] ={\"";
+        s << "if (_wrapper) {" << endl;
+        s << "  PythonQtGILScope gil;" << endl;
+        s << "  if (((PyObject*)_wrapper)->ob_refcnt > 0) {" << endl;
+        s << "    static PyObject* name = PyString_FromString(\"" << fun->name() << "\");" << endl;
+        s << "    PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);" << endl;
+        s << "    if (obj) {" << endl;
+        s << "      static const char* argumentList[] ={\"";
         if (hasReturnValue) {
           // write the arguments, return type first
           writeTypeInfo(s, fun->type(), typeOptions);
@@ -144,51 +146,55 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
           s << "\"";
         }
         s << "};" << endl;
-        s << "    static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(" << QString::number(args.size() + 1) << ", argumentList);" << endl;
+        s << "      static const PythonQtMethodInfo* methodInfo = PythonQtMethodInfo::getCachedMethodInfoFromArgumentList(" << QString::number(args.size() + 1) << ", argumentList);" << endl;
 
         if (hasReturnValue) {
           s << "      ";
           writeTypeInfo(s, fun->type(), typeOptions);
-          s << " returnValue;" << endl;
-          // TODO: POD init to default is missing...
+          s << " returnValue";
+          if (fun->type()->isPrimitive()) {
+            s << " = 0";
+          }
+          s << ";" << endl;
         }
-        s << "    void* args[" << QString::number(args.size() + 1) << "] = {NULL";
+        s << "      void* args[" << QString::number(args.size() + 1) << "] = {NULL";
         for (int i = 0; i < args.size(); ++i) {
           s << ", (void*)&" << args.at(i)->indexedName();
         }
         s << "};" << endl;
 
-        s << "    PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);" << endl;
+        s << "      PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);" << endl;
         if (hasReturnValue) {
-          s << "    if (result) {" << endl;
-          s << "      args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);" << endl;
-          s << "      if (args[0]!=&returnValue) {" << endl;
-          s << "        if (args[0]==NULL) {" << endl;
-          s << "          PythonQt::priv()->handleVirtualOverloadReturnError(\"" << fun->name() << "\", methodInfo, result);" << endl;
-          s << "        } else {" << endl;
-          s << "          returnValue = *((";
+          s << "      if (result) {" << endl;
+          s << "        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);" << endl;
+          s << "        if (args[0]!=&returnValue) {" << endl;
+          s << "          if (args[0]==NULL) {" << endl;
+          s << "            PythonQt::priv()->handleVirtualOverloadReturnError(\"" << fun->name() << "\", methodInfo, result);" << endl;
+          s << "          } else {" << endl;
+          s << "            returnValue = *((";
           writeTypeInfo(s, fun->type(), typeOptions);
           s << "*)args[0]);" << endl;
+          s << "          }" << endl;
           s << "        }" << endl;
           s << "      }" << endl;
-          s << "    }" << endl;
         }
-        s << "    if (result) { Py_DECREF(result); } " << endl;
-        s << "    Py_DECREF(obj);" << endl;
+        s << "      if (result) { Py_DECREF(result); } " << endl;
+        s << "      Py_DECREF(obj);" << endl;
         // ugly hack, we don't support QGraphicsScene* nor QGraphicsItem* QVariants in PythonQt...
         if (fun->name() == "itemChange" && fun->type() && fun->type()->isVariant()) {
-            s << "    if (change0 == QGraphicsItem::ItemParentChange || change0 == QGraphicsItem::ItemSceneChange) {\n";
-            s << "      returnValue = value1;\n";
-            s << "    } \n";
+            s << "      if (change0 == QGraphicsItem::ItemParentChange || change0 == QGraphicsItem::ItemSceneChange) {\n";
+            s << "        returnValue = value1;\n";
+            s << "      } \n";
         }
         if (hasReturnValue) {
-          s << "    return returnValue;" << endl;
+          s << "      return returnValue;" << endl;
         }
         else {
-          s << "    return;" << endl;
+          s << "      return;" << endl;
         }
-        s << "  } else {" << endl;
-        s << "    PyErr_Clear();" << endl;
+        s << "    } else {" << endl;
+        s << "      PyErr_Clear();" << endl;
+        s << "    }" << endl;
         s << "  }" << endl;
         s << "}" << endl;
       }
