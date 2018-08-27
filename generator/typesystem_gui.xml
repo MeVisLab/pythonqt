@@ -318,7 +318,6 @@
   <enum-type name="QPainter::RenderHint" flags="QPainter::RenderHints"/>
   <enum-type name="QPainterPath::ElementType"/>
   <enum-type name="QPrintEngine::PrintEnginePropertyKey">
-    <reject-enum-value name="PPK_PaperSize"/>
   </enum-type>
   <enum-type name="QPrinter::ColorMode"/>
   <enum-type name="QPrinter::Orientation"/>
@@ -343,17 +342,12 @@
   <enum-type name="QStyle::ContentsType" extensible="yes"/>
   <enum-type name="QStyle::ControlElement" extensible="yes"/>
   <enum-type name="QStyle::PixelMetric" extensible="yes">
-    <reject-enum-value name="PM_MDIFrameWidth"/>
-    <reject-enum-value name="PM_MDIMinimizedWidth"/>
   </enum-type>
   <enum-type name="QStyle::PrimitiveElement" extensible="yes">
-    <reject-enum-value name="PE_IndicatorItemViewItemCheck"/>
-    <reject-enum-value name="PE_FrameStatusBarItem"/>
   </enum-type>
   <enum-type name="QStyle::StandardPixmap" extensible="yes"/>
   <enum-type name="QStyle::StateFlag" flags="QStyle::State"/>
   <enum-type name="QStyle::SubElement" extensible="yes">
-    <reject-enum-value name="SE_ItemViewItemCheckIndicator"/>
   </enum-type>
   <enum-type name="QStyleHintReturn::HintReturnType"/>
   <enum-type name="QStyleHintReturn::StyleOptionType"/>
@@ -430,7 +424,6 @@
   <enum-type name="QStyleOptionToolButton::StyleOptionType"/>
   <enum-type name="QStyleOptionToolButton::StyleOptionVersion"/>
   <enum-type name="QStyleOptionToolButton::ToolButtonFeature" flags="QStyleOptionToolButton::ToolButtonFeatures">
-    <reject-enum-value name="MenuButtonPopup"/>
   </enum-type>
   <enum-type name="QStyleOptionViewItem::Position"/>
   <enum-type name="QStyleOptionViewItem::StyleOptionType"/>
@@ -501,92 +494,55 @@
 <enum-type name="QPlatformSurfaceEvent::SurfaceEventType"/>
 
   <enum-type name="QWizard::WizardButton">
-    <reject-enum-value name="NStandardButtons"/>
-    <reject-enum-value name="NButtons"/>
   </enum-type>
 
   <enum-type name="QAccessible::Action">
-    <reject-enum-value name="FirstStandardAction"/>
-    <reject-enum-value name="LastStandardAction"/>
   </enum-type>
 
   <enum-type name="QBoxLayout::Direction">
-    <reject-enum-value name="Down"/>
-    <reject-enum-value name="Up"/>
   </enum-type>
 
 
   <enum-type name="QClipboard::Mode">
-    <reject-enum-value name="LastMode"/>
   </enum-type>
 
   <enum-type name="QDialogButtonBox::StandardButton" flags="QDialogButtonBox::StandardButtons">
-    <reject-enum-value name="FirstButton"/>
-    <reject-enum-value name="LastButton"/>
-    <reject-enum-value name="YesAll"/>
-    <reject-enum-value name="NoAll"/>
-    <reject-enum-value name="Default"/>
-    <reject-enum-value name="Escape"/>
-    <reject-enum-value name="FlagMask"/>
-    <reject-enum-value name="ButtonMask"/>
   </enum-type>
 
   <enum-type name="QDockWidget::DockWidgetFeature" flags="QDockWidget::DockWidgetFeatures"/>
 
   <enum-type name="QFont::StyleHint">
-    <reject-enum-value name="SansSerif"/>
-    <reject-enum-value name="Serif"/>
-    <reject-enum-value name="TypeWriter"/>
-    <reject-enum-value name="Decorative"/>
   </enum-type>
 
   <enum-type name="QFontDatabase::WritingSystem">
-    <reject-enum-value name="Other"/>
   </enum-type>
 
   <enum-type name="QHeaderView::ResizeMode">
-    <reject-enum-value name="Custom"/>
   </enum-type>
 
 
   <enum-type name="QMessageBox::StandardButton" flags="QMessageBox::StandardButtons">
-    <reject-enum-value name="FirstButton"/>
-    <reject-enum-value name="LastButton"/>
-    <reject-enum-value name="YesAll"/>
-    <reject-enum-value name="NoAll"/>
   </enum-type>
 
   <enum-type name="QPalette::ColorGroup">
-    <reject-enum-value name="Normal"/>
   </enum-type>
 
   <enum-type name="QPalette::ColorRole">
-    <reject-enum-value name="NColorRoles"/>
-    <reject-enum-value name="Foreground"/>
-    <reject-enum-value name="Background"/>
   </enum-type>
 
   <enum-type name="QPrinter::PageSize">
-    <reject-enum-value name="NPageSize"/>
-    <reject-enum-value name="NPaperSize"/>
   </enum-type>
 
   <enum-type name="QSlider::TickPosition">
-    <reject-enum-value name="TicksLeft"/>
-    <reject-enum-value name="TicksRight"/>
   </enum-type>
 
   <enum-type name="QStyle::StyleHint" extensible="yes">
-    <reject-enum-value name="SH_ScrollBar_StopMouseOverSlider"/>
   </enum-type>
 
 
   <enum-type name="QTextFormat::FormatType"/>
 
   <enum-type name="QTextFormat::Property">
-    <reject-enum-value name="FontSizeIncrement"/>
-    <reject-enum-value name="FirstFontProperty"/>
-    <reject-enum-value name="LastFontProperty"/>
   </enum-type>
 
  <enum-type name="QAction::Priority"/>
