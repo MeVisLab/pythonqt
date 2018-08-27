@@ -50,6 +50,7 @@
 #include "PythonQtSlot.h"
 #include "PythonQtObjectPtr.h"
 #include "PythonQtStdIn.h"
+#include "PythonQtThreadSupport.h"
 #include <QObject>
 #include <QVariant>
 #include <QList>
