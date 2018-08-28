@@ -1244,7 +1244,14 @@ bool Parser::parseDeclarator(DeclaratorAST *&node)
 
         parseCvQualify(ast->fun_cv);
         parseExceptionSpecification(ast->exception_spec);
-
+        if (token_stream.lookAhead() == Token_identifier) {
+          const NameSymbol *name_symbol = token_stream.symbol(token_stream.cursor());
+          QString name = name_symbol->as_string();
+          if (name == "override") {
+            token_stream.nextToken();
+            ast->_override = true;
+          }
+        }
         if (token_stream.lookAhead() == Token___attribute__)
           {
 	      parse_Attribute__();

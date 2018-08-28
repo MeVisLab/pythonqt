@@ -1186,9 +1186,6 @@ PyObject* constScanLine(QImage* image, int line) {
       <modify-function signature="setHorizontalStepsPerItem(int)" remove="all"/> <!--### Obsolete in 4.3-->
       <modify-function signature="setVerticalStepsPerItem(int)" remove="all"/> <!--### Obsolete in 4.3-->
       <modify-function signature="verticalStepsPerItem()const" remove="all"/> <!--### Obsolete in 4.3-->
-
-    <!-- ### because the CursorAction enum is protected -->
-    <modify-function signature="moveCursor(QAbstractItemView::CursorAction,QFlags&lt;Qt::KeyboardModifier&gt;)" remove="all"/>
   </object-type>
 
   <object-type name="QAbstractPageSetupDialog"/>
@@ -1226,7 +1223,6 @@ PyObject* constScanLine(QImage* image, int line) {
       <modify-function signature="standardIconImplementation(QStyle::StandardPixmap, const QStyleOption *, const QWidget *)const" virtual-slot="yes"/>
   </object-type>
   <object-type name="QCommonStyle">
-      <modify-function signature="standardPixmap(QStyle::StandardPixmap, const QStyleOption*,const QWidget*)const" remove="all"/> <!--### Obsolete in 4.3-->
       <modify-function signature="standardIconImplementation(QStyle::StandardPixmap, const QStyleOption *, const QWidget *)const" virtual-slot="yes"/>
   </object-type>
   <object-type name="QDataWidgetMapper">
