@@ -286,6 +286,21 @@ void Binder::declare_symbol(SimpleDeclarationAST *node, InitDeclaratorAST *init_
       fun->setTemplateParameters(_M_current_template_parameters);
       applyStorageSpecifiers(node->storage_specifiers, model_static_cast<MemberModelItem>(fun));
       applyFunctionSpecifiers(node->function_specifiers, fun);
+      
+      if (const ListNode<InitDeclaratorAST*> *it = node->init_declarators)
+      {
+        it = it->toFront();
+        const ListNode<InitDeclaratorAST*> *end = it;
+        do
+        {
+          InitDeclaratorAST *init_declarator = it->element;
+          if (init_declarator->declarator && init_declarator->declarator->_override) {
+            //std::cout << name_cc.name().toLatin1().constData() << std::endl;
+            fun->setVirtual(true);
+          }
+          it = it->next;
+        } while (it != end);
+      }
 
       // build the type
       TypeInfo typeInfo = CompilerUtils::typeDescription(node->type_specifier,
@@ -409,6 +424,10 @@ void Binder::visitFunctionDefinition(FunctionDefinitionAST *node)
                           model_static_cast<MemberModelItem>(_M_current_function));
   applyFunctionSpecifiers(node->function_specifiers,
                           model_static_cast<FunctionModelItem>(_M_current_function));
+  if (node->init_declarator->declarator && node->init_declarator->declarator->_override) {
+    //std::cout << unqualified_name.toLatin1().constData() << std::endl;
+    model_static_cast<FunctionModelItem>(_M_current_function)->setVirtual(true);
+  }
 
   _M_current_function->setVariadics (decl_cc.isVariadics ());
 
@@ -436,6 +455,10 @@ void Binder::visitFunctionDefinition(FunctionDefinitionAST *node)
   else
     {
       applyFunctionSpecifiers(node->function_specifiers, declared);
+      if (node->init_declarator->declarator && node->init_declarator->declarator->_override) {
+        //std::cout << unqualified_name.toLatin1().constData() << std::endl;
+        model_static_cast<FunctionModelItem>(_M_current_function)->setVirtual(true);
+      }
 
       // fix the function type and the access policy
       _M_current_function->setAccessPolicy(declared->accessPolicy());

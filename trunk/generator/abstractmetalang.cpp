@@ -1633,7 +1633,7 @@ void AbstractMetaClass::fixFunctions()
 //         printf(" - base: %s\n", qPrintable(super_class->name()));
 
         // Since we always traverse the complete hierarchy we are only
-        // interrested in what each super class implements, not what
+        // interested in what each super class implements, not what
         // we may have propagated from their base classes again.
         AbstractMetaFunctionList super_funcs;
         if (super_class) {
@@ -1662,7 +1662,7 @@ void AbstractMetaClass::fixFunctions()
                 AbstractMetaFunction *f = funcs.at(fi);
                 if (f->isRemovedFromAllLanguages(f->implementingClass()))
                     continue;
-
+                
                 uint cmp = f->compareTo(sf);
 
                 if (cmp & AbstractMetaFunction::EqualModifiedName) {
@@ -1685,7 +1685,7 @@ void AbstractMetaClass::fixFunctions()
 //                                                    .arg(f->name()));
 //                         }
 
-                        // Same function, propegate virtual...
+                        // Same function, propagate virtual...
                         if (!(cmp & AbstractMetaFunction::EqualAttributes)) {
                             if (!f->isEmptyFunction()) {
                                 if (!sf->isFinalInCpp() && f->isFinalInCpp()) {
@@ -1734,7 +1734,7 @@ void AbstractMetaClass::fixFunctions()
                         f->setDeclaringClass(sf->declaringClass());
 
                         if (sf->isFinalInTargetLang() && !sf->isPrivate() && !f->isPrivate() && !sf->isStatic() && !f->isStatic()) {
-                            // Shadowed funcion, need to make base class
+                            // Shadowed function, need to make base class
                             // function non-virtual
                             if (f->implementingClass() != sf->implementingClass() && f->implementingClass()->inheritsFrom(sf->implementingClass())) {
 

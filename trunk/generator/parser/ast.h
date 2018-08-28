@@ -372,7 +372,10 @@ struct DeclarationStatementAST: public StatementAST
 struct DeclaratorAST: public AST
 {
   DECLARE_AST_NODE(Declarator)
-
+  
+  DeclaratorAST() {
+    _override = false;
+  }
   const ListNode<PtrOperatorAST*> *ptr_ops;
   DeclaratorAST *sub_declarator;
   NameAST *id;
@@ -381,6 +384,7 @@ struct DeclaratorAST: public AST
   ParameterDeclarationClauseAST *parameter_declaration_clause;
   const ListNode<std::size_t> *fun_cv;
   ExceptionSpecificationAST *exception_spec;
+  bool _override;
 };
 
 struct DeleteExpressionAST: public ExpressionAST

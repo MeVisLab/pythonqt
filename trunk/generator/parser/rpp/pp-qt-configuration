@@ -17,6 +17,7 @@
 #define Q_OVERRIDE(a)
 #define Q_OS_OS2
 #define Q_NO_USING_KEYWORD
+#define Q_DECL_OVERRIDE override
 
 // There are symbols in Qt that exist in Debug but
 // not in release
