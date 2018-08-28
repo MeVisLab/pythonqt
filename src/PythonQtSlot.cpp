@@ -185,7 +185,7 @@ bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObj
       PyErr_SetString(PyExc_RuntimeError, "Trying to call a slot on a deleted QObject!");
     } else {
       try {
-        PythonQtThreadStateSaver save;
+        PYTHONQT_ALLOW_THREADS_SCOPE
         obj->qt_metacall(QMetaObject::InvokeMetaMethod, info->slotIndex(), argList);
       } catch (std::out_of_range & e) {
         hadException = true;

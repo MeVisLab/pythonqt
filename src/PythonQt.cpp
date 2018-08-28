@@ -2155,11 +2155,11 @@ int PythonQtPrivate::handleMetaCall(QObject* object, PythonQtInstanceWrapper* wr
       // just emit the signal, there is no Python code
       QMetaObject::activate(object, id, args);
     } else {
-      PythonQtGILScope gil;
+      PYTHONQT_GIL_SCOPE
       callMethodInPython(method, wrapper, args);
     }
   } else {
-    PythonQtGILScope gil;
+    PYTHONQT_GIL_SCOPE
     QMetaProperty metaProp = meta->property(id);
     if (!metaProp.isValid()) {
       return id - methodCount;
@@ -2351,7 +2351,7 @@ QString PythonQtPrivate::getSignature(PyObject* object)
 
 void PythonQtPrivate::shellClassDeleted( void* shellClass )
 {
-  PythonQtGILScope gil;
+  PYTHONQT_GIL_SCOPE
 
   PythonQtInstanceWrapper* wrap = _wrappedObjects.value(shellClass);
   if (wrap) {

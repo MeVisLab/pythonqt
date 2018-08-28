@@ -43,12 +43,16 @@
 #include <PythonQtPythonInclude.h>
 #include <PythonQtSystem.h>
 
+//#define PYTHONQT_FULL_THREAD_SUPPORT
+
 #ifdef PYTHONQT_FULL_THREAD_SUPPORT
 #define PYTHONQT_GIL_SUPPORT
 #define PYTHONQT_ALLOW_THREADS_SUPPORT
 #endif
 
 #ifdef PYTHONQT_GIL_SUPPORT
+
+#define PYTHONQT_GIL_SCOPE PythonQtGILScope internal_pythonqt_gilscope;
 
 //! Ensures/releases the Python GIL
 //! An instance of this class can be used to
@@ -81,6 +85,8 @@ private:
 
 #else
 
+#define PYTHONQT_GIL_SCOPE
+
 //! Empty dummy implementation.
 class PythonQtGILScope
 {
@@ -92,6 +98,8 @@ public:
 #endif
 
 #ifdef PYTHONQT_ALLOW_THREADS_SUPPORT
+
+#define PYTHONQT_ALLOW_THREADS_SCOPE PythonQtThreadStateSaver internal_pythonqt_savethread;
 
 //! This class wraps the Python save/restore thread state API.
 //! It can be used to allow other Python threads to run when entering C++ code
@@ -123,6 +131,9 @@ private:
 };
 
 #else
+
+#define PYTHONQT_ALLOW_THREADS_SCOPE
+
 //! Empty dummy implementation.
 class PythonQtThreadStateSaver
 {
