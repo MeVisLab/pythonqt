@@ -129,7 +129,7 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
       if (!hasReturnValue || !fun->type()->isReference()) {
 
         s << "if (_wrapper) {" << endl;
-        s << "  PythonQtGILScope gil;" << endl;
+        s << "  PYTHONQT_GIL_SCOPE" << endl;
         s << "  if (((PyObject*)_wrapper)->ob_refcnt > 0) {" << endl;
         s << "    static PyObject* name = PyString_FromString(\"" << fun->name() << "\");" << endl;
         s << "    PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);" << endl;
