@@ -684,6 +684,7 @@ virtual void keyPressEvent(QKeyEvent*  ev);
 virtual void keyReleaseEvent(QKeyEvent*  event);
 virtual void leaveEvent(QEvent*  event);
 virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
+virtual QSize  minimumSizeHint() const;
 virtual void mouseDoubleClickEvent(QMouseEvent*  event);
 virtual void mouseMoveEvent(QMouseEvent*  me);
 virtual void mousePressEvent(QMouseEvent*  me);
@@ -697,6 +698,8 @@ virtual void resizeEvent(QResizeEvent*  re);
 virtual void setVisible(bool  visible);
 virtual QPainter*  sharedPainter() const;
 virtual void showEvent(QShowEvent*  event);
+virtual QSize  sizeHint() const;
+virtual void sliderChange(QAbstractSlider::SliderChange  change);
 virtual void tabletEvent(QTabletEvent*  event);
 virtual void timerEvent(QTimerEvent*  arg__1);
 virtual void wheelEvent(QWheelEvent*  e);
@@ -717,11 +720,14 @@ inline void promoted_paintEvent(QPaintEvent*  pe) { this->paintEvent(pe); }
 inline void promoted_resizeEvent(QResizeEvent*  re) { this->resizeEvent(re); }
 inline void promoted_sliderChange(int  change) { this->sliderChange((QAbstractSlider::SliderChange)change); }
 inline bool  py_q_event(QEvent*  e) { return QDial::event(e); }
+inline QSize  py_q_minimumSizeHint() const { return QDial::minimumSizeHint(); }
 inline void py_q_mouseMoveEvent(QMouseEvent*  me) { QDial::mouseMoveEvent(me); }
 inline void py_q_mousePressEvent(QMouseEvent*  me) { QDial::mousePressEvent(me); }
 inline void py_q_mouseReleaseEvent(QMouseEvent*  me) { QDial::mouseReleaseEvent(me); }
 inline void py_q_paintEvent(QPaintEvent*  pe) { QDial::paintEvent(pe); }
 inline void py_q_resizeEvent(QResizeEvent*  re) { QDial::resizeEvent(re); }
+inline QSize  py_q_sizeHint() const { return QDial::sizeHint(); }
+inline void py_q_sliderChange(int  change) { QDial::sliderChange((QAbstractSlider::SliderChange)change); }
 };
 
 class PythonQtWrapper_QDial : public QObject
@@ -733,6 +739,7 @@ void delete_QDial(QDial* obj) { delete obj; }
    bool  py_q_event(QDial* theWrappedObject, QEvent*  e){  return (((PythonQtPublicPromoter_QDial*)theWrappedObject)->py_q_event(e));}
    void initStyleOption(QDial* theWrappedObject, QStyleOptionSlider*  option) const;
    QSize  minimumSizeHint(QDial* theWrappedObject) const;
+   QSize  py_q_minimumSizeHint(QDial* theWrappedObject) const{  return (((PythonQtPublicPromoter_QDial*)theWrappedObject)->py_q_minimumSizeHint());}
    void py_q_mouseMoveEvent(QDial* theWrappedObject, QMouseEvent*  me){  (((PythonQtPublicPromoter_QDial*)theWrappedObject)->py_q_mouseMoveEvent(me));}
    void py_q_mousePressEvent(QDial* theWrappedObject, QMouseEvent*  me){  (((PythonQtPublicPromoter_QDial*)theWrappedObject)->py_q_mousePressEvent(me));}
    void py_q_mouseReleaseEvent(QDial* theWrappedObject, QMouseEvent*  me){  (((PythonQtPublicPromoter_QDial*)theWrappedObject)->py_q_mouseReleaseEvent(me));}
@@ -743,7 +750,8 @@ void delete_QDial(QDial* obj) { delete obj; }
    void py_q_resizeEvent(QDial* theWrappedObject, QResizeEvent*  re){  (((PythonQtPublicPromoter_QDial*)theWrappedObject)->py_q_resizeEvent(re));}
    void setNotchTarget(QDial* theWrappedObject, double  target);
    QSize  sizeHint(QDial* theWrappedObject) const;
-   void sliderChange(QDial* theWrappedObject, int  change);
+   QSize  py_q_sizeHint(QDial* theWrappedObject) const{  return (((PythonQtPublicPromoter_QDial*)theWrappedObject)->py_q_sizeHint());}
+   void py_q_sliderChange(QDial* theWrappedObject, int  change){  (((PythonQtPublicPromoter_QDial*)theWrappedObject)->py_q_sliderChange(change));}
    bool  wrapping(QDial* theWrappedObject) const;
 };
 
@@ -2134,6 +2142,7 @@ virtual void keyPressEvent(QKeyEvent*  e);
 virtual void keyReleaseEvent(QKeyEvent*  e);
 virtual void leaveEvent(QEvent*  event);
 virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
+virtual QSize  minimumSizeHint() const;
 virtual void mouseDoubleClickEvent(QMouseEvent*  event);
 virtual void mouseMoveEvent(QMouseEvent*  event);
 virtual void mousePressEvent(QMouseEvent*  e);
@@ -2148,6 +2157,7 @@ virtual void setVisible(bool  visible);
 virtual QPainter*  sharedPainter() const;
 virtual void showEvent(QShowEvent*  e);
 virtual void showPopup();
+virtual QSize  sizeHint() const;
 virtual void tabletEvent(QTabletEvent*  event);
 virtual void timerEvent(QTimerEvent*  event);
 virtual void wheelEvent(QWheelEvent*  e);
@@ -2161,6 +2171,7 @@ class PythonQtPublicPromoter_QFontComboBox : public QFontComboBox
 { public:
 inline bool  promoted_event(QEvent*  e) { return this->event(e); }
 inline bool  py_q_event(QEvent*  e) { return QFontComboBox::event(e); }
+inline QSize  py_q_sizeHint() const { return QFontComboBox::sizeHint(); }
 };
 
 class PythonQtWrapper_QFontComboBox : public QObject
@@ -2179,7 +2190,7 @@ void delete_QFontComboBox(QFontComboBox* obj) { delete obj; }
    QFontComboBox::FontFilters  fontFilters(QFontComboBox* theWrappedObject) const;
    void setFontFilters(QFontComboBox* theWrappedObject, QFontComboBox::FontFilters  filters);
    void setWritingSystem(QFontComboBox* theWrappedObject, QFontDatabase::WritingSystem  arg__1);
-   QSize  sizeHint(QFontComboBox* theWrappedObject) const;
+   QSize  py_q_sizeHint(QFontComboBox* theWrappedObject) const{  return (((PythonQtPublicPromoter_QFontComboBox*)theWrappedObject)->py_q_sizeHint());}
    QFontDatabase::WritingSystem  writingSystem(QFontComboBox* theWrappedObject) const;
 };
 

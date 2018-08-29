@@ -114,10 +114,12 @@ virtual void keyReleaseEvent(QKeyEvent*  event);
 virtual void keyboardSearch(const QString&  search);
 virtual void leaveEvent(QEvent*  event);
 virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
+virtual QSize  minimumSizeHint() const;
 virtual void mouseDoubleClickEvent(QMouseEvent*  event);
 virtual void mouseMoveEvent(QMouseEvent*  e);
 virtual void mousePressEvent(QMouseEvent*  event);
 virtual void mouseReleaseEvent(QMouseEvent*  e);
+virtual QModelIndex  moveCursor(QAbstractItemView::CursorAction  cursorAction, Qt::KeyboardModifiers  modifiers);
 virtual void moveEvent(QMoveEvent*  event);
 virtual bool  nativeEvent(const QByteArray&  eventType, void*  message, long*  result);
 virtual QPaintEngine*  paintEngine() const;
@@ -141,6 +143,7 @@ virtual void setVisible(bool  visible);
 virtual void setupViewport(QWidget*  viewport);
 virtual QPainter*  sharedPainter() const;
 virtual void showEvent(QShowEvent*  event);
+virtual QSize  sizeHint() const;
 virtual int  sizeHintForColumn(int  column) const;
 virtual int  sizeHintForRow(int  row) const;
 virtual void startDrag(Qt::DropActions  supportedActions);
@@ -201,14 +204,18 @@ virtual bool  event(QEvent*  event);
 virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual Qt::Orientations  expandingDirections() const;
 virtual QRect  geometry() const;
+virtual bool  hasHeightForWidth() const;
+virtual int  heightForWidth(int  arg__1) const;
 virtual int  indexOf(QWidget*  arg__1) const;
 virtual void invalidate();
 virtual bool  isEmpty() const;
 virtual QLayoutItem*  itemAt(int  arg__1) const;
 virtual QLayout*  layout();
 virtual QSize  maximumSize() const;
+virtual int  minimumHeightForWidth(int  arg__1) const;
 virtual QSize  minimumSize() const;
 virtual void setGeometry(const QRect&  arg__1);
+virtual QSize  sizeHint() const;
 virtual QLayoutItem*  takeAt(int  arg__1);
 virtual void timerEvent(QTimerEvent*  event);
 
@@ -1389,6 +1396,7 @@ virtual void resizeEvent(QResizeEvent*  event);
 virtual void setVisible(bool  visible);
 virtual QPainter*  sharedPainter() const;
 virtual void showEvent(QShowEvent*  arg__1);
+virtual QSize  sizeHint() const;
 virtual void tabletEvent(QTabletEvent*  event);
 virtual void timerEvent(QTimerEvent*  event);
 virtual bool  validateCurrentPage();
@@ -1415,6 +1423,7 @@ inline int  py_q_nextId() const { return QWizard::nextId(); }
 inline void py_q_paintEvent(QPaintEvent*  event) { QWizard::paintEvent(event); }
 inline void py_q_resizeEvent(QResizeEvent*  event) { QWizard::resizeEvent(event); }
 inline void py_q_setVisible(bool  visible) { QWizard::setVisible(visible); }
+inline QSize  py_q_sizeHint() const { return QWizard::sizeHint(); }
 inline bool  py_q_validateCurrentPage() { return QWizard::validateCurrentPage(); }
 };
 
@@ -1470,7 +1479,7 @@ void delete_QWizard(QWizard* obj) { delete obj; }
    void py_q_setVisible(QWizard* theWrappedObject, bool  visible){  (((PythonQtPublicPromoter_QWizard*)theWrappedObject)->py_q_setVisible(visible));}
    void setWizardStyle(QWizard* theWrappedObject, QWizard::WizardStyle  style);
    QWidget*  sideWidget(QWizard* theWrappedObject) const;
-   QSize  sizeHint(QWizard* theWrappedObject) const;
+   QSize  py_q_sizeHint(QWizard* theWrappedObject) const{  return (((PythonQtPublicPromoter_QWizard*)theWrappedObject)->py_q_sizeHint());}
    int  startId(QWizard* theWrappedObject) const;
    Qt::TextFormat  subTitleFormat(QWizard* theWrappedObject) const;
    bool  testOption(QWizard* theWrappedObject, QWizard::WizardOption  option) const;

@@ -639,7 +639,9 @@ virtual qint64  bytesToWrite() const;
 virtual bool  canReadLine() const;
 virtual void childEvent(QChildEvent*  event);
 virtual void close();
+virtual void connectNotify(const QMetaMethod&  arg__1);
 virtual void customEvent(QEvent*  event);
+virtual void disconnectNotify(const QMetaMethod&  arg__1);
 virtual bool  event(QEvent*  event);
 virtual bool  eventFilter(QObject*  watched, QEvent*  event);
 virtual bool  isSequential() const;
@@ -669,6 +671,8 @@ inline qint64  promoted_writeData(const char*  data, qint64  len) { return this-
 inline bool  py_q_atEnd() const { return QBuffer::atEnd(); }
 inline bool  py_q_canReadLine() const { return QBuffer::canReadLine(); }
 inline void py_q_close() { QBuffer::close(); }
+inline void py_q_connectNotify(const QMetaMethod&  arg__1) { QBuffer::connectNotify(arg__1); }
+inline void py_q_disconnectNotify(const QMetaMethod&  arg__1) { QBuffer::disconnectNotify(arg__1); }
 inline bool  py_q_open(QIODevice::OpenMode  openMode) { return QBuffer::open(openMode); }
 inline qint64  py_q_pos() const { return QBuffer::pos(); }
 inline qint64  py_q_readData(char*  data, qint64  maxlen) { return QBuffer::readData(data, maxlen); }
@@ -689,8 +693,10 @@ void delete_QBuffer(QBuffer* obj) { delete obj; }
    bool  py_q_canReadLine(QBuffer* theWrappedObject) const{  return (((PythonQtPublicPromoter_QBuffer*)theWrappedObject)->py_q_canReadLine());}
    void py_q_close(QBuffer* theWrappedObject){  (((PythonQtPublicPromoter_QBuffer*)theWrappedObject)->py_q_close());}
    void connectNotify(QBuffer* theWrappedObject, const QMetaMethod&  arg__1);
+   void py_q_connectNotify(QBuffer* theWrappedObject, const QMetaMethod&  arg__1){  (((PythonQtPublicPromoter_QBuffer*)theWrappedObject)->py_q_connectNotify(arg__1));}
    const QByteArray*  data(QBuffer* theWrappedObject) const;
    void disconnectNotify(QBuffer* theWrappedObject, const QMetaMethod&  arg__1);
+   void py_q_disconnectNotify(QBuffer* theWrappedObject, const QMetaMethod&  arg__1){  (((PythonQtPublicPromoter_QBuffer*)theWrappedObject)->py_q_disconnectNotify(arg__1));}
    bool  py_q_open(QBuffer* theWrappedObject, QIODevice::OpenMode  openMode){  return (((PythonQtPublicPromoter_QBuffer*)theWrappedObject)->py_q_open(openMode));}
    qint64  py_q_pos(QBuffer* theWrappedObject) const{  return (((PythonQtPublicPromoter_QBuffer*)theWrappedObject)->py_q_pos());}
    qint64  py_q_readData(QBuffer* theWrappedObject, char*  data, qint64  maxlen){  return (((PythonQtPublicPromoter_QBuffer*)theWrappedObject)->py_q_readData(data, maxlen));}

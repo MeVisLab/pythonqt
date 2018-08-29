@@ -73,6 +73,7 @@ public:
 
    ~PythonQtShell_QGraphicsWebView();
 
+virtual QRectF  boundingRect() const;
 virtual void changeEvent(QEvent*  event);
 virtual void childEvent(QChildEvent*  event);
 virtual void closeEvent(QCloseEvent*  event);
@@ -111,9 +112,11 @@ virtual QVariant  propertyChange(const QString&  propertyName, const QVariant&  
 virtual void resizeEvent(QGraphicsSceneResizeEvent*  event);
 virtual bool  sceneEvent(QEvent*  arg__1);
 virtual void setGeometry(const QRectF&  rect);
+virtual QPainterPath  shape() const;
 virtual void showEvent(QShowEvent*  event);
 virtual QSizeF  sizeHint(Qt::SizeHint  which, const QSizeF&  constraint) const;
 virtual void timerEvent(QTimerEvent*  event);
+virtual int  type() const;
 virtual void ungrabKeyboardEvent(QEvent*  event);
 virtual void ungrabMouseEvent(QEvent*  event);
 virtual void updateGeometry();
@@ -615,6 +618,7 @@ virtual void resizeEvent(QResizeEvent*  event);
 virtual void setVisible(bool  visible);
 virtual QPainter*  sharedPainter() const;
 virtual void showEvent(QShowEvent*  event);
+virtual QSize  sizeHint() const;
 virtual void tabletEvent(QTabletEvent*  event);
 virtual void timerEvent(QTimerEvent*  event);
 virtual void wheelEvent(QWheelEvent*  event);
@@ -635,6 +639,7 @@ inline bool  py_q_event(QEvent*  arg__1) { return QWebInspector::event(arg__1); 
 inline void py_q_hideEvent(QHideEvent*  event) { QWebInspector::hideEvent(event); }
 inline void py_q_resizeEvent(QResizeEvent*  event) { QWebInspector::resizeEvent(event); }
 inline void py_q_showEvent(QShowEvent*  event) { QWebInspector::showEvent(event); }
+inline QSize  py_q_sizeHint() const { return QWebInspector::sizeHint(); }
 };
 
 class PythonQtWrapper_QWebInspector : public QObject
@@ -651,6 +656,7 @@ void delete_QWebInspector(QWebInspector* obj) { delete obj; }
    void setPage(QWebInspector* theWrappedObject, QWebPage*  page);
    void py_q_showEvent(QWebInspector* theWrappedObject, QShowEvent*  event){  (((PythonQtPublicPromoter_QWebInspector*)theWrappedObject)->py_q_showEvent(event));}
    QSize  sizeHint(QWebInspector* theWrappedObject) const;
+   QSize  py_q_sizeHint(QWebInspector* theWrappedObject) const{  return (((PythonQtPublicPromoter_QWebInspector*)theWrappedObject)->py_q_sizeHint());}
 };
 
 
@@ -1283,6 +1289,7 @@ virtual void resizeEvent(QResizeEvent*  arg__1);
 virtual void setVisible(bool  visible);
 virtual QPainter*  sharedPainter() const;
 virtual void showEvent(QShowEvent*  event);
+virtual QSize  sizeHint() const;
 virtual void tabletEvent(QTabletEvent*  event);
 virtual void timerEvent(QTimerEvent*  event);
 virtual void wheelEvent(QWheelEvent*  arg__1);
@@ -1335,6 +1342,7 @@ inline void py_q_mousePressEvent(QMouseEvent*  arg__1) { QWebView::mousePressEve
 inline void py_q_mouseReleaseEvent(QMouseEvent*  arg__1) { QWebView::mouseReleaseEvent(arg__1); }
 inline void py_q_paintEvent(QPaintEvent*  arg__1) { QWebView::paintEvent(arg__1); }
 inline void py_q_resizeEvent(QResizeEvent*  arg__1) { QWebView::resizeEvent(arg__1); }
+inline QSize  py_q_sizeHint() const { return QWebView::sizeHint(); }
 inline void py_q_wheelEvent(QWheelEvent*  arg__1) { QWebView::wheelEvent(arg__1); }
 };
 
@@ -1388,6 +1396,7 @@ void delete_QWebView(QWebView* obj) { delete obj; }
    void setZoomFactor(QWebView* theWrappedObject, qreal  factor);
    QWebSettings*  settings(QWebView* theWrappedObject) const;
    QSize  sizeHint(QWebView* theWrappedObject) const;
+   QSize  py_q_sizeHint(QWebView* theWrappedObject) const{  return (((PythonQtPublicPromoter_QWebView*)theWrappedObject)->py_q_sizeHint());}
    qreal  textSizeMultiplier(QWebView* theWrappedObject) const;
    QString  title(QWebView* theWrappedObject) const;
    void triggerPageAction(QWebView* theWrappedObject, QWebPage::WebAction  action, bool  checked = false);

@@ -82,13 +82,16 @@ public:
 
 virtual QRectF  boundingRect() const;
 virtual bool  childMouseEventFilter(QQuickItem*  arg__1, QEvent*  arg__2);
+virtual void classBegin();
 virtual QRectF  clipRect() const;
+virtual void componentComplete();
 virtual bool  contains(const QPointF&  point) const;
 virtual QQuickFramebufferObject::Renderer*  createRenderer() const;
 virtual void dragEnterEvent(QDragEnterEvent*  arg__1);
 virtual void dragLeaveEvent(QDragLeaveEvent*  arg__1);
 virtual void dragMoveEvent(QDragMoveEvent*  arg__1);
 virtual void dropEvent(QDropEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
 virtual void focusInEvent(QFocusEvent*  arg__1);
 virtual void focusOutEvent(QFocusEvent*  arg__1);
 virtual void geometryChanged(const QRectF&  newGeometry, const QRectF&  oldGeometry);
@@ -231,12 +234,15 @@ public:
 
 virtual QRectF  boundingRect() const;
 virtual bool  childMouseEventFilter(QQuickItem*  arg__1, QEvent*  arg__2);
+virtual void classBegin();
 virtual QRectF  clipRect() const;
+virtual void componentComplete();
 virtual bool  contains(const QPointF&  point) const;
 virtual void dragEnterEvent(QDragEnterEvent*  arg__1);
 virtual void dragLeaveEvent(QDragLeaveEvent*  arg__1);
 virtual void dragMoveEvent(QDragMoveEvent*  arg__1);
 virtual void dropEvent(QDropEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
 virtual void focusInEvent(QFocusEvent*  arg__1);
 virtual void focusOutEvent(QFocusEvent*  arg__1);
 virtual void geometryChanged(const QRectF&  newGeometry, const QRectF&  oldGeometry);
@@ -305,12 +311,15 @@ inline bool  promoted_widthValid() const { return this->widthValid(); }
 inline void promoted_windowDeactivateEvent() { this->windowDeactivateEvent(); }
 inline QRectF  py_q_boundingRect() const { return QQuickItem::boundingRect(); }
 inline bool  py_q_childMouseEventFilter(QQuickItem*  arg__1, QEvent*  arg__2) { return QQuickItem::childMouseEventFilter(arg__1, arg__2); }
+inline void py_q_classBegin() { QQuickItem::classBegin(); }
 inline QRectF  py_q_clipRect() const { return QQuickItem::clipRect(); }
+inline void py_q_componentComplete() { QQuickItem::componentComplete(); }
 inline bool  py_q_contains(const QPointF&  point) const { return QQuickItem::contains(point); }
 inline void py_q_dragEnterEvent(QDragEnterEvent*  arg__1) { QQuickItem::dragEnterEvent(arg__1); }
 inline void py_q_dragLeaveEvent(QDragLeaveEvent*  arg__1) { QQuickItem::dragLeaveEvent(arg__1); }
 inline void py_q_dragMoveEvent(QDragMoveEvent*  arg__1) { QQuickItem::dragMoveEvent(arg__1); }
 inline void py_q_dropEvent(QDropEvent*  arg__1) { QQuickItem::dropEvent(arg__1); }
+inline bool  py_q_event(QEvent*  arg__1) { return QQuickItem::event(arg__1); }
 inline void py_q_focusInEvent(QFocusEvent*  arg__1) { QQuickItem::focusInEvent(arg__1); }
 inline void py_q_focusOutEvent(QFocusEvent*  arg__1) { QQuickItem::focusOutEvent(arg__1); }
 inline void py_q_geometryChanged(const QRectF&  newGeometry, const QRectF&  oldGeometry) { QQuickItem::geometryChanged(newGeometry, oldGeometry); }
@@ -361,10 +370,12 @@ void delete_QQuickItem(QQuickItem* obj) { delete obj; }
    bool  py_q_childMouseEventFilter(QQuickItem* theWrappedObject, QQuickItem*  arg__1, QEvent*  arg__2){  return (((PythonQtPublicPromoter_QQuickItem*)theWrappedObject)->py_q_childMouseEventFilter(arg__1, arg__2));}
    QRectF  childrenRect(QQuickItem* theWrappedObject);
    void classBegin(QQuickItem* theWrappedObject);
+   void py_q_classBegin(QQuickItem* theWrappedObject){  (((PythonQtPublicPromoter_QQuickItem*)theWrappedObject)->py_q_classBegin());}
    bool  clip(QQuickItem* theWrappedObject) const;
    QRectF  clipRect(QQuickItem* theWrappedObject) const;
    QRectF  py_q_clipRect(QQuickItem* theWrappedObject) const{  return (((PythonQtPublicPromoter_QQuickItem*)theWrappedObject)->py_q_clipRect());}
    void componentComplete(QQuickItem* theWrappedObject);
+   void py_q_componentComplete(QQuickItem* theWrappedObject){  (((PythonQtPublicPromoter_QQuickItem*)theWrappedObject)->py_q_componentComplete());}
    bool  contains(QQuickItem* theWrappedObject, const QPointF&  point) const;
    bool  py_q_contains(QQuickItem* theWrappedObject, const QPointF&  point) const{  return (((PythonQtPublicPromoter_QQuickItem*)theWrappedObject)->py_q_contains(point));}
    QCursor  cursor(QQuickItem* theWrappedObject) const;
@@ -377,6 +388,7 @@ void delete_QQuickItem(QQuickItem* obj) { delete obj; }
    void dropEvent(QQuickItem* theWrappedObject, QDropEvent*  arg__1);
    void py_q_dropEvent(QQuickItem* theWrappedObject, QDropEvent*  arg__1){  (((PythonQtPublicPromoter_QQuickItem*)theWrappedObject)->py_q_dropEvent(arg__1));}
    bool  event(QQuickItem* theWrappedObject, QEvent*  arg__1);
+   bool  py_q_event(QQuickItem* theWrappedObject, QEvent*  arg__1){  return (((PythonQtPublicPromoter_QQuickItem*)theWrappedObject)->py_q_event(arg__1));}
    bool  filtersChildMouseEvents(QQuickItem* theWrappedObject) const;
    void focusInEvent(QQuickItem* theWrappedObject, QFocusEvent*  arg__1);
    void py_q_focusInEvent(QQuickItem* theWrappedObject, QFocusEvent*  arg__1){  (((PythonQtPublicPromoter_QQuickItem*)theWrappedObject)->py_q_focusInEvent(arg__1));}
@@ -563,12 +575,15 @@ public:
 
 virtual QRectF  boundingRect() const;
 virtual bool  childMouseEventFilter(QQuickItem*  arg__1, QEvent*  arg__2);
+virtual void classBegin();
 virtual QRectF  clipRect() const;
+virtual void componentComplete();
 virtual bool  contains(const QPointF&  point) const;
 virtual void dragEnterEvent(QDragEnterEvent*  arg__1);
 virtual void dragLeaveEvent(QDragLeaveEvent*  arg__1);
 virtual void dragMoveEvent(QDragMoveEvent*  arg__1);
 virtual void dropEvent(QDropEvent*  arg__1);
+virtual bool  event(QEvent*  arg__1);
 virtual void focusInEvent(QFocusEvent*  arg__1);
 virtual void focusOutEvent(QFocusEvent*  arg__1);
 virtual void geometryChanged(const QRectF&  newGeometry, const QRectF&  oldGeometry);
