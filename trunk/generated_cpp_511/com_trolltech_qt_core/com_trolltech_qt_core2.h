@@ -13,7 +13,7 @@
 #include <qdatastream.h>
 #include <qdatetime.h>
 #include <qeasingcurve.h>
-#include <qlist.h>
+#include <qevent.h>
 #include <qlocale.h>
 #include <qmetaobject.h>
 #include <qmutex.h>

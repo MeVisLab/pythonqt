@@ -1,6 +1,7 @@
 #include <PythonQt.h>
 #include <QObject>
 #include <QVariant>
+#include <qabstractvideosurface.h>
 #include <qaction.h>
 #include <qbackingstore.h>
 #include <qbitmap.h>
@@ -16,7 +17,6 @@
 #include <qicon.h>
 #include <qkeysequence.h>
 #include <qlayout.h>
-#include <qlist.h>
 #include <qlocale.h>
 #include <qmargins.h>
 #include <qmediaobject.h>
@@ -33,12 +33,55 @@
 #include <qsize.h>
 #include <qsizepolicy.h>
 #include <qstyle.h>
+#include <qvideorenderercontrol.h>
 #include <qvideosurfaceformat.h>
 #include <qvideowidget.h>
 #include <qvideowidgetcontrol.h>
 #include <qvideowindowcontrol.h>
 #include <qwidget.h>
 #include <qwindow.h>
+
+
+
+class PythonQtShell_QVideoRendererControl : public QVideoRendererControl
+{
+public:
+    PythonQtShell_QVideoRendererControl(QObject*  parent = nullptr):QVideoRendererControl(parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QVideoRendererControl();
+
+virtual void childEvent(QChildEvent*  event);
+virtual void customEvent(QEvent*  event);
+virtual bool  event(QEvent*  event);
+virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void setSurface(QAbstractVideoSurface*  surface);
+virtual QAbstractVideoSurface*  surface() const;
+virtual void timerEvent(QTimerEvent*  event);
+
+  const QMetaObject* metaObject() const;
+  int qt_metacall(QMetaObject::Call call, int id, void** args);
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtPublicPromoter_QVideoRendererControl : public QVideoRendererControl
+{ public:
+inline void py_q_setSurface(QAbstractVideoSurface*  surface) { this->setSurface(surface); }
+inline QAbstractVideoSurface*  py_q_surface() const { return this->surface(); }
+};
+
+class PythonQtWrapper_QVideoRendererControl : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QVideoRendererControl* new_QVideoRendererControl(QObject*  parent = nullptr);
+void delete_QVideoRendererControl(QVideoRendererControl* obj) { delete obj; } 
+   void setSurface(QVideoRendererControl* theWrappedObject, QAbstractVideoSurface*  surface);
+   void py_q_setSurface(QVideoRendererControl* theWrappedObject, QAbstractVideoSurface*  surface){  (((PythonQtPublicPromoter_QVideoRendererControl*)theWrappedObject)->py_q_setSurface(surface));}
+   QAbstractVideoSurface*  surface(QVideoRendererControl* theWrappedObject) const;
+   QAbstractVideoSurface*  py_q_surface(QVideoRendererControl* theWrappedObject) const{  return (((PythonQtPublicPromoter_QVideoRendererControl*)theWrappedObject)->py_q_surface());}
+};
+
+
 
 
 
@@ -141,6 +184,7 @@ virtual bool  setMediaObject(QMediaObject*  object);
 virtual void setVisible(bool  visible);
 virtual QPainter*  sharedPainter() const;
 virtual void showEvent(QShowEvent*  event);
+virtual QSize  sizeHint() const;
 virtual void tabletEvent(QTabletEvent*  event);
 virtual void timerEvent(QTimerEvent*  event);
 virtual void wheelEvent(QWheelEvent*  event);
@@ -167,6 +211,7 @@ inline void py_q_paintEvent(QPaintEvent*  event) { QVideoWidget::paintEvent(even
 inline void py_q_resizeEvent(QResizeEvent*  event) { QVideoWidget::resizeEvent(event); }
 inline bool  py_q_setMediaObject(QMediaObject*  object) { return QVideoWidget::setMediaObject(object); }
 inline void py_q_showEvent(QShowEvent*  event) { QVideoWidget::showEvent(event); }
+inline QSize  py_q_sizeHint() const { return QVideoWidget::sizeHint(); }
 };
 
 class PythonQtWrapper_QVideoWidget : public QObject
@@ -189,6 +234,7 @@ void delete_QVideoWidget(QVideoWidget* obj) { delete obj; }
    bool  py_q_setMediaObject(QVideoWidget* theWrappedObject, QMediaObject*  object){  return (((PythonQtPublicPromoter_QVideoWidget*)theWrappedObject)->py_q_setMediaObject(object));}
    void py_q_showEvent(QVideoWidget* theWrappedObject, QShowEvent*  event){  (((PythonQtPublicPromoter_QVideoWidget*)theWrappedObject)->py_q_showEvent(event));}
    QSize  sizeHint(QVideoWidget* theWrappedObject) const;
+   QSize  py_q_sizeHint(QVideoWidget* theWrappedObject) const{  return (((PythonQtPublicPromoter_QVideoWidget*)theWrappedObject)->py_q_sizeHint());}
 };
 
 

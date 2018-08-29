@@ -33,9 +33,9 @@
 #include <qcamerainfo.h>
 #include <qcameraviewfindersettings.h>
 #include <qcoreevent.h>
+#include <qevent.h>
 #include <qgraphicsvideoitem.h>
 #include <qiodevice.h>
-#include <qlist.h>
 #include <qmediaencodersettings.h>
 #include <qmediaobject.h>
 #include <qmediarecorder.h>
@@ -1202,15 +1202,45 @@ void delete_QAudioSystemFactoryInterface(QAudioSystemFactoryInterface* obj) { de
 
 
 
+class PythonQtShell_QAudioSystemPlugin : public QAudioSystemPlugin
+{
+public:
+    PythonQtShell_QAudioSystemPlugin(QObject*  parent = nullptr):QAudioSystemPlugin(parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QAudioSystemPlugin();
+
+virtual QList<QByteArray >  availableDevices(QAudio::Mode  arg__1) const;
+virtual QAbstractAudioDeviceInfo*  createDeviceInfo(const QByteArray&  device, QAudio::Mode  mode);
+virtual QAbstractAudioInput*  createInput(const QByteArray&  device);
+virtual QAbstractAudioOutput*  createOutput(const QByteArray&  device);
+
+  const QMetaObject* metaObject() const;
+  int qt_metacall(QMetaObject::Call call, int id, void** args);
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtPublicPromoter_QAudioSystemPlugin : public QAudioSystemPlugin
+{ public:
+inline QList<QByteArray >  py_q_availableDevices(QAudio::Mode  arg__1) const { return this->availableDevices(arg__1); }
+inline QAbstractAudioDeviceInfo*  py_q_createDeviceInfo(const QByteArray&  device, QAudio::Mode  mode) { return this->createDeviceInfo(device, mode); }
+inline QAbstractAudioInput*  py_q_createInput(const QByteArray&  device) { return this->createInput(device); }
+inline QAbstractAudioOutput*  py_q_createOutput(const QByteArray&  device) { return this->createOutput(device); }
+};
+
 class PythonQtWrapper_QAudioSystemPlugin : public QObject
 { Q_OBJECT
 public:
 public slots:
+QAudioSystemPlugin* new_QAudioSystemPlugin(QObject*  parent = nullptr);
 void delete_QAudioSystemPlugin(QAudioSystemPlugin* obj) { delete obj; } 
    QList<QByteArray >  availableDevices(QAudioSystemPlugin* theWrappedObject, QAudio::Mode  arg__1) const;
+   QList<QByteArray >  py_q_availableDevices(QAudioSystemPlugin* theWrappedObject, QAudio::Mode  arg__1) const{  return (((PythonQtPublicPromoter_QAudioSystemPlugin*)theWrappedObject)->py_q_availableDevices(arg__1));}
    QAbstractAudioDeviceInfo*  createDeviceInfo(QAudioSystemPlugin* theWrappedObject, const QByteArray&  device, QAudio::Mode  mode);
+   QAbstractAudioDeviceInfo*  py_q_createDeviceInfo(QAudioSystemPlugin* theWrappedObject, const QByteArray&  device, QAudio::Mode  mode){  return (((PythonQtPublicPromoter_QAudioSystemPlugin*)theWrappedObject)->py_q_createDeviceInfo(device, mode));}
    QAbstractAudioInput*  createInput(QAudioSystemPlugin* theWrappedObject, const QByteArray&  device);
+   QAbstractAudioInput*  py_q_createInput(QAudioSystemPlugin* theWrappedObject, const QByteArray&  device){  return (((PythonQtPublicPromoter_QAudioSystemPlugin*)theWrappedObject)->py_q_createInput(device));}
    QAbstractAudioOutput*  createOutput(QAudioSystemPlugin* theWrappedObject, const QByteArray&  device);
+   QAbstractAudioOutput*  py_q_createOutput(QAudioSystemPlugin* theWrappedObject, const QByteArray&  device){  return (((PythonQtPublicPromoter_QAudioSystemPlugin*)theWrappedObject)->py_q_createOutput(device));}
 };
 
 

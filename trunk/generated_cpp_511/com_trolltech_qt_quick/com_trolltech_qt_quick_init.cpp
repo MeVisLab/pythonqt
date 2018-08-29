@@ -24,7 +24,7 @@ PythonQt::priv()->registerCPPClass("QSGBasicGeometryNode", "QSGNode", "QtQuick",
 PythonQt::priv()->registerCPPClass("QSGClipNode", "QSGBasicGeometryNode", "QtQuick", PythonQtCreateObject<PythonQtWrapper_QSGClipNode>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSGClipNode>, module, 0);
 PythonQt::priv()->registerClass(&QSGDynamicTexture::staticMetaObject, "QtQuick", PythonQtCreateObject<PythonQtWrapper_QSGDynamicTexture>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSGDynamicTexture>, module, 0);
 PythonQt::priv()->registerClass(&QSGEngine::staticMetaObject, "QtQuick", PythonQtCreateObject<PythonQtWrapper_QSGEngine>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSGEngine>, module, 0);
-PythonQt::priv()->registerCPPClass("QSGFlatColorMaterial", "", "QtQuick", PythonQtCreateObject<PythonQtWrapper_QSGFlatColorMaterial>, NULL, module, 0);
+PythonQt::priv()->registerCPPClass("QSGFlatColorMaterial", "", "QtQuick", PythonQtCreateObject<PythonQtWrapper_QSGFlatColorMaterial>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSGFlatColorMaterial>, module, 0);
 PythonQt::priv()->registerCPPClass("QSGGeometry", "", "QtQuick", PythonQtCreateObject<PythonQtWrapper_QSGGeometry>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSGGeometry>, module, 0);
 PythonQt::priv()->registerCPPClass("QSGGeometryNode", "QSGBasicGeometryNode", "QtQuick", PythonQtCreateObject<PythonQtWrapper_QSGGeometryNode>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSGGeometryNode>, module, 0);
 PythonQt::priv()->registerCPPClass("QSGGeometry::Attribute", "", "QtQuick", PythonQtCreateObject<PythonQtWrapper_QSGGeometry__Attribute>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSGGeometry__Attribute>, module, 0);

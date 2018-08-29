@@ -9,9 +9,9 @@
 #include <qdatetime.h>
 #include <qdir.h>
 #include <qeasingcurve.h>
+#include <qevent.h>
 #include <qfile.h>
 #include <qiodevice.h>
-#include <qlist.h>
 #include <qlocale.h>
 #include <qmetaobject.h>
 #include <qmutex.h>
@@ -218,6 +218,7 @@ virtual void close();
 virtual void customEvent(QEvent*  event);
 virtual bool  event(QEvent*  event);
 virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual QString  fileName() const;
 virtual bool  isSequential() const;
 virtual bool  open(QIODevice::OpenMode  flags);
 virtual QFileDevice::Permissions  permissions() const;
@@ -242,6 +243,7 @@ virtual qint64  writeData(const char*  data, qint64  len);
 class PythonQtPublicPromoter_QTemporaryFile : public QTemporaryFile
 { public:
 inline bool  promoted_open(QIODevice::OpenMode  flags) { return this->open(flags); }
+inline QString  py_q_fileName() const { return QTemporaryFile::fileName(); }
 inline bool  py_q_open(QIODevice::OpenMode  flags) { return QTemporaryFile::open(flags); }
 };
 
@@ -260,6 +262,7 @@ void delete_QTemporaryFile(QTemporaryFile* obj) { delete obj; }
    QTemporaryFile*  static_QTemporaryFile_createNativeFile(QFile&  file);
    QTemporaryFile*  static_QTemporaryFile_createNativeFile(const QString&  fileName);
    QString  fileName(QTemporaryFile* theWrappedObject) const;
+   QString  py_q_fileName(QTemporaryFile* theWrappedObject) const{  return (((PythonQtPublicPromoter_QTemporaryFile*)theWrappedObject)->py_q_fileName());}
    QString  fileTemplate(QTemporaryFile* theWrappedObject) const;
    bool  open(QTemporaryFile* theWrappedObject);
    bool  py_q_open(QTemporaryFile* theWrappedObject, QIODevice::OpenMode  flags){  return (((PythonQtPublicPromoter_QTemporaryFile*)theWrappedObject)->py_q_open(flags));}

@@ -4,8 +4,8 @@
 #include <PythonQtSignalReceiver.h>
 #include <QVariant>
 #include <qbytearray.h>
+#include <qevent.h>
 #include <qiodevice.h>
-#include <qlist.h>
 #include <qtextcodec.h>
 #include <qvector.h>
 #include <qxmlstream.h>

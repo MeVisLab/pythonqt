@@ -4,7 +4,7 @@
 #include <qbytearray.h>
 #include <qcolor.h>
 #include <qcoreevent.h>
-#include <qlist.h>
+#include <qevent.h>
 #include <qmatrix4x4.h>
 #include <qmetaobject.h>
 #include <qobject.h>
@@ -403,8 +403,14 @@ public:
 
    ~PythonQtShell_QSGTextureMaterial();
 
+virtual QSGMaterialType*  type() const;
 
   PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtPublicPromoter_QSGTextureMaterial : public QSGTextureMaterial
+{ public:
+inline QSGMaterialType*  py_q_type() const { return QSGTextureMaterial::type(); }
 };
 
 class PythonQtWrapper_QSGTextureMaterial : public QObject
@@ -414,6 +420,7 @@ public slots:
 QSGTextureMaterial* new_QSGTextureMaterial();
 void delete_QSGTextureMaterial(QSGTextureMaterial* obj) { delete obj; } 
    QSGMaterialType*  type(QSGTextureMaterial* theWrappedObject) const;
+   QSGMaterialType*  py_q_type(QSGTextureMaterial* theWrappedObject) const{  return (((PythonQtPublicPromoter_QSGTextureMaterial*)theWrappedObject)->py_q_type());}
 };
 
 
