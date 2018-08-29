@@ -1191,7 +1191,6 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QAbstractPageSetupDialog"/>
   <object-type name="QAbstractPrintDialog"/>
   <object-type name="QAbstractSlider">
-    <modify-function signature="sliderChange(QAbstractSlider::SliderChange)" remove="all"/>
   </object-type>
   <object-type name="QAbstractTextDocumentLayout">
   </object-type>
@@ -1464,10 +1463,6 @@ PyObject* constScanLine(QImage* image, int line) {
       </modify-argument>
     </modify-function>
 
-    <modify-function signature="operator=(QStandardItem)" remove="all"/>
-  
-    <modify-function signature="read(QDataStream &amp;)" remove="all"/>
-    <modify-function signature="write(QDataStream &amp;)const" remove="all"/>
     <modify-function signature="operator=(QStandardItem)" remove="all"/>
     <modify-function signature="operator&lt;(QStandardItem)const" remove="all"/>
   </object-type>
@@ -1899,7 +1894,12 @@ PyObject* constScanLine(QImage* image, int line) {
     </modify-function>
       <modify-function signature="items(const QMimeData*)const" remove="all"/> <!--### Obsolete in 4.3-->
   
-    <modify-function signature="mimeData(const QList&lt;QTreeWidgetItem*&gt;)const" remove="all"/>
+    <modify-function signature="mimeData(const QList&lt;QTreeWidgetItem*&gt;)const">
+      <modify-argument index="return">
+        <define-ownership owner="python" />
+      </modify-argument>
+    </modify-function>
+
   </object-type>
 
   <object-type name="QAbstractItemDelegate">
@@ -1912,8 +1912,6 @@ PyObject* constScanLine(QImage* image, int line) {
       <modify-function signature="setBackgroundColor(QColor)" remove="all"/> <!--### Obsolete in 4.3-->
       <modify-function signature="setTextColor(QColor)" remove="all"/> <!--### Obsolete in 4.3-->
       <modify-function signature="textColor()const" remove="all"/> <!--### Obsolete in 4.3-->
-    <modify-function signature="read(QDataStream &amp;)" remove="all"/>
-    <modify-function signature="write(QDataStream &amp;)const" remove="all"/>
     <modify-function signature="QTableWidgetItem(QTableWidgetItem)" remove="all"/>
     <modify-function signature="operator=(QTableWidgetItem)" remove="all"/>
     <modify-function signature="operator&lt;(QTableWidgetItem)const" remove="all"/>
@@ -1943,8 +1941,6 @@ PyObject* constScanLine(QImage* image, int line) {
       <modify-function signature="setTextColor(QColor)" remove="all"/> <!--### Obsolete in 4.3-->
       <modify-function signature="textColor()const" remove="all"/> <!--### Obsolete in 4.3-->
   
-    <modify-function signature="read(QDataStream &amp;)" remove="all"/>
-    <modify-function signature="write(QDataStream &amp;)const" remove="all"/>
     <modify-function signature="QListWidgetItem(QListWidgetItem)" remove="all"/>
     <modify-function signature="operator=(QListWidgetItem)" remove="all"/>
     <modify-function signature="operator&lt;(QListWidgetItem)const" remove="all"/>
@@ -2046,8 +2042,6 @@ PyObject* constScanLine(QImage* image, int line) {
       <modify-function signature="setTextColor(int, QColor)" remove="all"/> <!--### Obsolete in 4.3-->
       <modify-function signature="textColor(int)const" remove="all"/> <!--### Obsolete in 4.3-->
   
-    <modify-function signature="read(QDataStream &amp;)" remove="all"/>
-    <modify-function signature="write(QDataStream &amp;)const" remove="all"/>
     <modify-function signature="QTreeWidgetItem(QTreeWidgetItem)" remove="all"/>
     <modify-function signature="operator=(QTreeWidgetItem)" remove="all"/>
     <modify-function signature="operator&lt;(QTreeWidgetItem)const" remove="all"/>
@@ -2089,7 +2083,11 @@ PyObject* constScanLine(QImage* image, int line) {
     <modify-function signature="isItemSelected(const QListWidgetItem*)const">
         <remove/>
     </modify-function>
-    <modify-function signature="mimeData(const QList&lt;QListWidgetItem*&gt;)const" remove="all"/>
+    <modify-function signature="mimeData(const QList&lt;QListWidgetItem*&gt;)const">
+      <modify-argument index="return">
+        <define-ownership owner="python" />
+      </modify-argument>
+    </modify-function>
   </object-type>
 
   <object-type name="QWidget">
@@ -2536,7 +2534,11 @@ PyObject* constScanLine(QImage* image, int line) {
     <modify-function signature="isItemSelected(const QTableWidgetItem*)const">
         <remove/>
     </modify-function>
-    <modify-function signature="mimeData(const QList&lt;QTableWidgetItem*&gt;)const" remove="all"/>
+    <modify-function signature="mimeData(const QList&lt;QTableWidgetItem*&gt;)const">
+      <modify-argument index="return">
+        <define-ownership owner="python" />
+      </modify-argument>
+    </modify-function>
   </object-type>
   <object-type name="QTextDocument">
     <extra-includes>

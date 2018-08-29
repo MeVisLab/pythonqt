@@ -24,8 +24,6 @@
   <rejection class="QAbstractXmlNodeModel" function-name="copyNodeTo"/>
   <rejection class="QAbstractXmlNodeModel" function-name="type"/>
   <object-type name="QAbstractXmlNodeModel">
-    <modify-function signature="namespaceForPrefix(QXmlNodeModelIndex,short) const" remove="all"/>
-    <modify-function signature="isDeepEqual(QXmlNodeModelIndex,QXmlNodeModelIndex) const" remove="all"/>
   </object-type>
 
   <rejection class="QAbstractXmlReceiver" function-name="item"/>
