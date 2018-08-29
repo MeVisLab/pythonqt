@@ -174,7 +174,6 @@
 <object-type name="QVideoWindowControl"/>
 <enum-type name="QAudio::VolumeScale"/>
 
-<!-- override with abstract function does not work yet-->
-<rejection class="QMediaServiceProviderPlugin"/>
+<object-type name="QMediaServiceProviderPlugin"/>
 
 </typesystem>
