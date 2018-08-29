@@ -144,9 +144,11 @@ inline QUrl  py_q_baseUri(const QXmlNodeModelIndex&  ni) const { return this->ba
 inline QXmlNodeModelIndex::DocumentOrder  py_q_compareOrder(const QXmlNodeModelIndex&  ni1, const QXmlNodeModelIndex&  ni2) const { return this->compareOrder(ni1, ni2); }
 inline QUrl  py_q_documentUri(const QXmlNodeModelIndex&  ni) const { return this->documentUri(ni); }
 inline QXmlNodeModelIndex  py_q_elementById(const QXmlName&  NCName) const { return this->elementById(NCName); }
+inline bool  py_q_isDeepEqual(const QXmlNodeModelIndex&  ni1, const QXmlNodeModelIndex&  ni2) const { return QAbstractXmlNodeModel::isDeepEqual(ni1, ni2); }
 inline QXmlNodeModelIndex::NodeKind  py_q_kind(const QXmlNodeModelIndex&  ni) const { return this->kind(ni); }
 inline QXmlName  py_q_name(const QXmlNodeModelIndex&  ni) const { return this->name(ni); }
 inline QVector<QXmlName >  py_q_namespaceBindings(const QXmlNodeModelIndex&  n) const { return this->namespaceBindings(n); }
+inline short  py_q_namespaceForPrefix(const QXmlNodeModelIndex&  ni, const short  prefix) const { return QAbstractXmlNodeModel::namespaceForPrefix(ni, prefix); }
 inline QXmlNodeModelIndex  py_q_nextFromSimpleAxis(QAbstractXmlNodeModel::SimpleAxis  axis, const QXmlNodeModelIndex&  origin) const { return this->nextFromSimpleAxis(axis, origin); }
 inline QVector<QXmlNodeModelIndex >  py_q_nodesByIdref(const QXmlName&  NCName) const { return this->nodesByIdref(NCName); }
 inline QXmlNodeModelIndex  py_q_root(const QXmlNodeModelIndex&  n) const { return this->root(n); }
@@ -178,12 +180,16 @@ void delete_QAbstractXmlNodeModel(QAbstractXmlNodeModel* obj) { delete obj; }
    QUrl  py_q_documentUri(QAbstractXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  ni) const{  return (((PythonQtPublicPromoter_QAbstractXmlNodeModel*)theWrappedObject)->py_q_documentUri(ni));}
    QXmlNodeModelIndex  elementById(QAbstractXmlNodeModel* theWrappedObject, const QXmlName&  NCName) const;
    QXmlNodeModelIndex  py_q_elementById(QAbstractXmlNodeModel* theWrappedObject, const QXmlName&  NCName) const{  return (((PythonQtPublicPromoter_QAbstractXmlNodeModel*)theWrappedObject)->py_q_elementById(NCName));}
+   bool  isDeepEqual(QAbstractXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  ni1, const QXmlNodeModelIndex&  ni2) const;
+   bool  py_q_isDeepEqual(QAbstractXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  ni1, const QXmlNodeModelIndex&  ni2) const{  return (((PythonQtPublicPromoter_QAbstractXmlNodeModel*)theWrappedObject)->py_q_isDeepEqual(ni1, ni2));}
    QXmlNodeModelIndex::NodeKind  kind(QAbstractXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  ni) const;
    QXmlNodeModelIndex::NodeKind  py_q_kind(QAbstractXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  ni) const{  return (((PythonQtPublicPromoter_QAbstractXmlNodeModel*)theWrappedObject)->py_q_kind(ni));}
    QXmlName  name(QAbstractXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  ni) const;
    QXmlName  py_q_name(QAbstractXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  ni) const{  return (((PythonQtPublicPromoter_QAbstractXmlNodeModel*)theWrappedObject)->py_q_name(ni));}
    QVector<QXmlName >  namespaceBindings(QAbstractXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  n) const;
    QVector<QXmlName >  py_q_namespaceBindings(QAbstractXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  n) const{  return (((PythonQtPublicPromoter_QAbstractXmlNodeModel*)theWrappedObject)->py_q_namespaceBindings(n));}
+   short  namespaceForPrefix(QAbstractXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  ni, const short  prefix) const;
+   short  py_q_namespaceForPrefix(QAbstractXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  ni, const short  prefix) const{  return (((PythonQtPublicPromoter_QAbstractXmlNodeModel*)theWrappedObject)->py_q_namespaceForPrefix(ni, prefix));}
    QXmlNodeModelIndex  nextFromSimpleAxis(QAbstractXmlNodeModel* theWrappedObject, QAbstractXmlNodeModel::SimpleAxis  axis, const QXmlNodeModelIndex&  origin) const;
    QXmlNodeModelIndex  py_q_nextFromSimpleAxis(QAbstractXmlNodeModel* theWrappedObject, QAbstractXmlNodeModel::SimpleAxis  axis, const QXmlNodeModelIndex&  origin) const{  return (((PythonQtPublicPromoter_QAbstractXmlNodeModel*)theWrappedObject)->py_q_nextFromSimpleAxis(axis, origin));}
    QVector<QXmlNodeModelIndex >  nodesByIdref(QAbstractXmlNodeModel* theWrappedObject, const QXmlName&  NCName) const;
@@ -312,9 +318,11 @@ virtual QUrl  baseUri(const QXmlNodeModelIndex&  node) const;
 virtual QXmlNodeModelIndex::DocumentOrder  compareOrder(const QXmlNodeModelIndex&  ni1, const QXmlNodeModelIndex&  ni2) const;
 virtual QUrl  documentUri(const QXmlNodeModelIndex&  ni) const;
 virtual QXmlNodeModelIndex  elementById(const QXmlName&  id) const;
+virtual bool  isDeepEqual(const QXmlNodeModelIndex&  ni1, const QXmlNodeModelIndex&  ni2) const;
 virtual QXmlNodeModelIndex::NodeKind  kind(const QXmlNodeModelIndex&  ni) const;
 virtual QXmlName  name(const QXmlNodeModelIndex&  ni) const;
 virtual QVector<QXmlName >  namespaceBindings(const QXmlNodeModelIndex&  arg__1) const;
+virtual short  namespaceForPrefix(const QXmlNodeModelIndex&  ni, const short  prefix) const;
 virtual QXmlNodeModelIndex  nextFromSimpleAxis(QAbstractXmlNodeModel::SimpleAxis  axis, const QXmlNodeModelIndex&  origin) const;
 virtual QVector<QXmlNodeModelIndex >  nodesByIdref(const QXmlName&  idref) const;
 virtual QXmlNodeModelIndex  root(const QXmlNodeModelIndex&  n) const;
@@ -467,10 +475,7 @@ public:
 public slots:
 QXmlName* new_QXmlName();
 QXmlName* new_QXmlName(QXmlNamePool&  namePool, const QString&  localName, const QString&  namespaceURI = QString(), const QString&  prefix = QString());
-QXmlName* new_QXmlName(const QXmlName& other) {
-QXmlName* a = new QXmlName();
-*((QXmlName*)a) = other;
-return a; }
+QXmlName* new_QXmlName(const QXmlName&  other);
 void delete_QXmlName(QXmlName* obj) { delete obj; } 
    QXmlName  static_QXmlName_fromClarkName(const QString&  clarkName, const QXmlNamePool&  namePool);
    bool  static_QXmlName_isNCName(const QString&  candidate);

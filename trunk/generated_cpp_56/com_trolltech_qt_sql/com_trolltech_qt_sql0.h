@@ -811,7 +811,6 @@ virtual void setNumericalPrecisionPolicy(QSql::NumericalPrecisionPolicy  policy)
 virtual void setQuery(const QString&  query);
 virtual void setSelect(bool  s);
 virtual int  size();
-virtual void virtual_hook(int  id, void*  data);
 
   PythonQtInstanceWrapper* _wrapper; 
 };
