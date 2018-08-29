@@ -6,9 +6,9 @@
 #include <qbytearray.h>
 #include <qcoreevent.h>
 #include <qdir.h>
+#include <qevent.h>
 #include <qiodevice.h>
 #include <qlayout.h>
-#include <qlist.h>
 #include <qmetaobject.h>
 #include <qobject.h>
 #include <qstringlist.h>

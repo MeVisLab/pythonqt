@@ -15,7 +15,6 @@
 #include <qimage.h>
 #include <qitemeditorfactory.h>
 #include <qline.h>
-#include <qlist.h>
 #include <qlocale.h>
 #include <qmatrix.h>
 #include <qmetaobject.h>
@@ -955,7 +954,7 @@ enum StyleOptionType{
 enum StyleOptionVersion{
   Version = QStyleOptionToolButton::Version};
 enum ToolButtonFeature{
-  None = QStyleOptionToolButton::None,   Arrow = QStyleOptionToolButton::Arrow,   Menu = QStyleOptionToolButton::Menu,   PopupDelay = QStyleOptionToolButton::PopupDelay,   HasMenu = QStyleOptionToolButton::HasMenu};
+  None = QStyleOptionToolButton::None,   Arrow = QStyleOptionToolButton::Arrow,   Menu = QStyleOptionToolButton::Menu,   MenuButtonPopup = QStyleOptionToolButton::MenuButtonPopup,   PopupDelay = QStyleOptionToolButton::PopupDelay,   HasMenu = QStyleOptionToolButton::HasMenu};
 Q_DECLARE_FLAGS(ToolButtonFeatures, ToolButtonFeature)
 public slots:
 QStyleOptionToolButton* new_QStyleOptionToolButton();

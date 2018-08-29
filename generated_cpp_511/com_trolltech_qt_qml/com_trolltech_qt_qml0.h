@@ -4,10 +4,10 @@
 #include <qbytearray.h>
 #include <qcoreevent.h>
 #include <qdatetime.h>
+#include <qevent.h>
 #include <qfileselector.h>
 #include <qjsengine.h>
 #include <qjsvalue.h>
-#include <qlist.h>
 #include <qmetaobject.h>
 #include <qnetworkaccessmanager.h>
 #include <qobject.h>
@@ -531,14 +531,38 @@ void delete_QQmlExtensionInterface(QQmlExtensionInterface* obj) { delete obj; }
 
 
 
+class PythonQtShell_QQmlExtensionPlugin : public QQmlExtensionPlugin
+{
+public:
+    PythonQtShell_QQmlExtensionPlugin(QObject*  parent = nullptr):QQmlExtensionPlugin(parent),_wrapper(NULL) {};
+
+   ~PythonQtShell_QQmlExtensionPlugin();
+
+virtual void initializeEngine(QQmlEngine*  engine, const char*  uri);
+virtual void registerTypes(const char*  uri);
+
+  const QMetaObject* metaObject() const;
+  int qt_metacall(QMetaObject::Call call, int id, void** args);
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtPublicPromoter_QQmlExtensionPlugin : public QQmlExtensionPlugin
+{ public:
+inline void py_q_initializeEngine(QQmlEngine*  engine, const char*  uri) { QQmlExtensionPlugin::initializeEngine(engine, uri); }
+inline void py_q_registerTypes(const char*  uri) { this->registerTypes(uri); }
+};
+
 class PythonQtWrapper_QQmlExtensionPlugin : public QObject
 { Q_OBJECT
 public:
 public slots:
+QQmlExtensionPlugin* new_QQmlExtensionPlugin(QObject*  parent = nullptr);
 void delete_QQmlExtensionPlugin(QQmlExtensionPlugin* obj) { delete obj; } 
    QUrl  baseUrl(QQmlExtensionPlugin* theWrappedObject) const;
    void initializeEngine(QQmlExtensionPlugin* theWrappedObject, QQmlEngine*  engine, const char*  uri);
+   void py_q_initializeEngine(QQmlExtensionPlugin* theWrappedObject, QQmlEngine*  engine, const char*  uri){  (((PythonQtPublicPromoter_QQmlExtensionPlugin*)theWrappedObject)->py_q_initializeEngine(engine, uri));}
    void registerTypes(QQmlExtensionPlugin* theWrappedObject, const char*  uri);
+   void py_q_registerTypes(QQmlExtensionPlugin* theWrappedObject, const char*  uri){  (((PythonQtPublicPromoter_QQmlExtensionPlugin*)theWrappedObject)->py_q_registerTypes(uri));}
 };
 
 

@@ -25,7 +25,6 @@
 #include <qiodevice.h>
 #include <qkeysequence.h>
 #include <qlayout.h>
-#include <qlist.h>
 #include <qlocale.h>
 #include <qmargins.h>
 #include <qmatrix.h>
@@ -60,15 +59,25 @@ public:
 
    ~PythonQtShell_QGraphicsSvgItem();
 
+virtual QRectF  boundingRect() const;
 virtual void childEvent(QChildEvent*  event);
 virtual void customEvent(QEvent*  event);
 virtual bool  event(QEvent*  ev);
 virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual void paint(QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = nullptr);
 virtual void timerEvent(QTimerEvent*  event);
+virtual int  type() const;
 
   const QMetaObject* metaObject() const;
   int qt_metacall(QMetaObject::Call call, int id, void** args);
   PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtPublicPromoter_QGraphicsSvgItem : public QGraphicsSvgItem
+{ public:
+inline QRectF  py_q_boundingRect() const { return QGraphicsSvgItem::boundingRect(); }
+inline void py_q_paint(QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = nullptr) { QGraphicsSvgItem::paint(painter, option, widget); }
+inline int  py_q_type() const { return QGraphicsSvgItem::type(); }
 };
 
 class PythonQtWrapper_QGraphicsSvgItem : public QObject
@@ -82,16 +91,19 @@ QGraphicsSvgItem* new_QGraphicsSvgItem(QGraphicsItem*  parentItem = nullptr);
 QGraphicsSvgItem* new_QGraphicsSvgItem(const QString&  fileName, QGraphicsItem*  parentItem = nullptr);
 void delete_QGraphicsSvgItem(QGraphicsSvgItem* obj) { delete obj; } 
    QRectF  boundingRect(QGraphicsSvgItem* theWrappedObject) const;
+   QRectF  py_q_boundingRect(QGraphicsSvgItem* theWrappedObject) const{  return (((PythonQtPublicPromoter_QGraphicsSvgItem*)theWrappedObject)->py_q_boundingRect());}
    QString  elementId(QGraphicsSvgItem* theWrappedObject) const;
    bool  isCachingEnabled(QGraphicsSvgItem* theWrappedObject) const;
    QSize  maximumCacheSize(QGraphicsSvgItem* theWrappedObject) const;
    void paint(QGraphicsSvgItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = nullptr);
+   void py_q_paint(QGraphicsSvgItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = nullptr){  (((PythonQtPublicPromoter_QGraphicsSvgItem*)theWrappedObject)->py_q_paint(painter, option, widget));}
    QSvgRenderer*  renderer(QGraphicsSvgItem* theWrappedObject) const;
    void setCachingEnabled(QGraphicsSvgItem* theWrappedObject, bool  arg__1);
    void setElementId(QGraphicsSvgItem* theWrappedObject, const QString&  id);
    void setMaximumCacheSize(QGraphicsSvgItem* theWrappedObject, const QSize&  size);
    void setSharedRenderer(QGraphicsSvgItem* theWrappedObject, QSvgRenderer*  renderer);
    int  type(QGraphicsSvgItem* theWrappedObject) const;
+   int  py_q_type(QGraphicsSvgItem* theWrappedObject) const{  return (((PythonQtPublicPromoter_QGraphicsSvgItem*)theWrappedObject)->py_q_type());}
 };
 
 
@@ -254,6 +266,7 @@ virtual void resizeEvent(QResizeEvent*  event);
 virtual void setVisible(bool  visible);
 virtual QPainter*  sharedPainter() const;
 virtual void showEvent(QShowEvent*  event);
+virtual QSize  sizeHint() const;
 virtual void tabletEvent(QTabletEvent*  event);
 virtual void timerEvent(QTimerEvent*  event);
 virtual void wheelEvent(QWheelEvent*  event);
@@ -267,6 +280,7 @@ class PythonQtPublicPromoter_QSvgWidget : public QSvgWidget
 { public:
 inline void promoted_paintEvent(QPaintEvent*  event) { this->paintEvent(event); }
 inline void py_q_paintEvent(QPaintEvent*  event) { QSvgWidget::paintEvent(event); }
+inline QSize  py_q_sizeHint() const { return QSvgWidget::sizeHint(); }
 };
 
 class PythonQtWrapper_QSvgWidget : public QObject
@@ -279,6 +293,7 @@ void delete_QSvgWidget(QSvgWidget* obj) { delete obj; }
    void py_q_paintEvent(QSvgWidget* theWrappedObject, QPaintEvent*  event){  (((PythonQtPublicPromoter_QSvgWidget*)theWrappedObject)->py_q_paintEvent(event));}
    QSvgRenderer*  renderer(QSvgWidget* theWrappedObject) const;
    QSize  sizeHint(QSvgWidget* theWrappedObject) const;
+   QSize  py_q_sizeHint(QSvgWidget* theWrappedObject) const{  return (((PythonQtPublicPromoter_QSvgWidget*)theWrappedObject)->py_q_sizeHint());}
 };
 
 

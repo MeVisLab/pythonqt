@@ -16,7 +16,7 @@ PythonQt::priv()->registerClass(&QQmlEngine::staticMetaObject, "QtQml", PythonQt
 PythonQt::priv()->registerCPPClass("QQmlError", "", "QtQml", PythonQtCreateObject<PythonQtWrapper_QQmlError>, NULL, module, PythonQt::Type_NonZero);
 PythonQt::priv()->registerClass(&QQmlExpression::staticMetaObject, "QtQml", PythonQtCreateObject<PythonQtWrapper_QQmlExpression>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QQmlExpression>, module, 0);
 PythonQt::priv()->registerCPPClass("QQmlExtensionInterface", "QQmlTypesExtensionInterface", "QtQml", PythonQtCreateObject<PythonQtWrapper_QQmlExtensionInterface>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QQmlExtensionInterface>, module, 0);
-PythonQt::priv()->registerClass(&QQmlExtensionPlugin::staticMetaObject, "QtQml", PythonQtCreateObject<PythonQtWrapper_QQmlExtensionPlugin>, NULL, module, 0);
+PythonQt::priv()->registerClass(&QQmlExtensionPlugin::staticMetaObject, "QtQml", PythonQtCreateObject<PythonQtWrapper_QQmlExtensionPlugin>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QQmlExtensionPlugin>, module, 0);
 PythonQt::priv()->registerCPPClass("QQmlFile", "", "QtQml", PythonQtCreateObject<PythonQtWrapper_QQmlFile>, NULL, module, PythonQt::Type_NonZero);
 PythonQt::priv()->registerClass(&QQmlFileSelector::staticMetaObject, "QtQml", PythonQtCreateObject<PythonQtWrapper_QQmlFileSelector>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QQmlFileSelector>, module, 0);
 PythonQt::priv()->registerCPPClass("QQmlIncubationController", "", "QtQml", PythonQtCreateObject<PythonQtWrapper_QQmlIncubationController>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QQmlIncubationController>, module, 0);

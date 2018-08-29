@@ -559,7 +559,7 @@ PythonQt::priv()->registerClass(&QIntValidator::staticMetaObject, "QtGui", Pytho
 PythonQt::priv()->registerClass(&QItemDelegate::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QItemDelegate>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QItemDelegate>, module, 0);
 PythonQt::priv()->registerCPPClass("QItemEditorCreatorBase", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QItemEditorCreatorBase>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QItemEditorCreatorBase>, module, 0);
 PythonQt::priv()->registerCPPClass("QItemEditorFactory", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QItemEditorFactory>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QItemEditorFactory>, module, 0);
-PythonQt::priv()->registerCPPClass("QItemSelection", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QItemSelection>, NULL, module, PythonQt::Type_Add|PythonQt::Type_InplaceAdd|PythonQt::Type_NonZero|PythonQt::Type_RichCompare);
+PythonQt::priv()->registerCPPClass("QItemSelection", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QItemSelection>, NULL, module, 0);
 PythonQt::priv()->registerClass(&QItemSelectionModel::staticMetaObject, "QtGui", PythonQtCreateObject<PythonQtWrapper_QItemSelectionModel>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QItemSelectionModel>, module, 0);
 PythonQt::priv()->registerCPPClass("QItemSelectionRange", "", "QtGui", PythonQtCreateObject<PythonQtWrapper_QItemSelectionRange>, NULL, module, PythonQt::Type_NonZero|PythonQt::Type_RichCompare);
 PythonQt::priv()->registerCPPClass("QKeyEvent", "QInputEvent", "QtGui", PythonQtCreateObject<PythonQtWrapper_QKeyEvent>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QKeyEvent>, module, 0);
@@ -827,7 +827,6 @@ PythonQtMethodInfo::addParameterTypeAlias("QList<QPrinter::DuplexMode>", "QList<
 PythonQtMethodInfo::addParameterTypeAlias("QList<QWizard::WizardButton>", "QList<int>");
 PythonQtRegisterListTemplateConverterForKnownClass(QList, QGlyphRun);
 PythonQtRegisterListTemplateConverterForKnownClass(QList, QInputMethodEvent::Attribute);
-PythonQtRegisterListTemplateConverterForKnownClass(QList, QItemSelectionRange);
 PythonQtRegisterListTemplateConverterForKnownClass(QList, QModelIndex);
 PythonQtRegisterListTemplateConverterForKnownClass(QList, QPageSize);
 PythonQtRegisterListTemplateConverterForKnownClass(QList, QPersistentModelIndex);
@@ -839,6 +838,5 @@ PythonQtRegisterListTemplateConverterForKnownClass(QList, QTextEdit::ExtraSelect
 PythonQtRegisterListTemplateConverterForKnownClass(QList, QTextLayout::FormatRange);
 PythonQtRegisterListTemplateConverterForKnownClass(QList, QTextOption::Tab);
 PythonQtRegisterListTemplateConverterForKnownClass(QList, QTouchEvent::TouchPoint);
-PythonQtRegisterListTemplateConverterForKnownClass(QVector, QItemSelectionRange);
 PythonQtRegisterListTemplateConverterForKnownClass(QVector, QTextLayout::FormatRange);
 }

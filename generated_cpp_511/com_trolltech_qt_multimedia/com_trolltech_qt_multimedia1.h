@@ -37,7 +37,6 @@
 #include <qiodevice.h>
 #include <qkeysequence.h>
 #include <qlayout.h>
-#include <qlist.h>
 #include <qlocale.h>
 #include <qmargins.h>
 #include <qmediaaudioprobecontrol.h>
@@ -571,6 +570,7 @@ virtual bool  setMediaObject(QMediaObject*  object);
 virtual void setVisible(bool  visible);
 virtual QPainter*  sharedPainter() const;
 virtual void showEvent(QShowEvent*  event);
+virtual QSize  sizeHint() const;
 virtual void tabletEvent(QTabletEvent*  event);
 virtual void timerEvent(QTimerEvent*  event);
 virtual void wheelEvent(QWheelEvent*  event);
@@ -824,11 +824,14 @@ public:
 
    ~PythonQtShell_QGraphicsVideoItem();
 
+virtual QRectF  boundingRect() const;
 virtual void childEvent(QChildEvent*  event);
 virtual void customEvent(QEvent*  event);
 virtual bool  event(QEvent*  ev);
 virtual bool  eventFilter(QObject*  watched, QEvent*  event);
+virtual QVariant  itemChange(QGraphicsItem::GraphicsItemChange  change, const QVariant&  value);
 virtual QMediaObject*  mediaObject() const;
+virtual void paint(QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = nullptr);
 virtual bool  setMediaObject(QMediaObject*  object);
 virtual void timerEvent(QTimerEvent*  event);
 
@@ -842,7 +845,10 @@ class PythonQtPublicPromoter_QGraphicsVideoItem : public QGraphicsVideoItem
 inline QVariant  promoted_itemChange(QGraphicsItem::GraphicsItemChange  change, const QVariant&  value) { return this->itemChange(change, value); }
 inline bool  promoted_setMediaObject(QMediaObject*  object) { return this->setMediaObject(object); }
 inline void promoted_timerEvent(QTimerEvent*  event) { this->timerEvent(event); }
+inline QRectF  py_q_boundingRect() const { return QGraphicsVideoItem::boundingRect(); }
+inline QVariant  py_q_itemChange(QGraphicsItem::GraphicsItemChange  change, const QVariant&  value) { return QGraphicsVideoItem::itemChange(change, value); }
 inline QMediaObject*  py_q_mediaObject() const { return QGraphicsVideoItem::mediaObject(); }
+inline void py_q_paint(QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = nullptr) { QGraphicsVideoItem::paint(painter, option, widget); }
 inline bool  py_q_setMediaObject(QMediaObject*  object) { return QGraphicsVideoItem::setMediaObject(object); }
 inline void py_q_timerEvent(QTimerEvent*  event) { QGraphicsVideoItem::timerEvent(event); }
 };
@@ -855,11 +861,14 @@ QGraphicsVideoItem* new_QGraphicsVideoItem(QGraphicsItem*  parent = nullptr);
 void delete_QGraphicsVideoItem(QGraphicsVideoItem* obj) { delete obj; } 
    Qt::AspectRatioMode  aspectRatioMode(QGraphicsVideoItem* theWrappedObject) const;
    QRectF  boundingRect(QGraphicsVideoItem* theWrappedObject) const;
+   QRectF  py_q_boundingRect(QGraphicsVideoItem* theWrappedObject) const{  return (((PythonQtPublicPromoter_QGraphicsVideoItem*)theWrappedObject)->py_q_boundingRect());}
    QVariant  itemChange(QGraphicsVideoItem* theWrappedObject, QGraphicsItem::GraphicsItemChange  change, const QVariant&  value);
+   QVariant  py_q_itemChange(QGraphicsVideoItem* theWrappedObject, QGraphicsItem::GraphicsItemChange  change, const QVariant&  value){  return (((PythonQtPublicPromoter_QGraphicsVideoItem*)theWrappedObject)->py_q_itemChange(change, value));}
    QMediaObject*  py_q_mediaObject(QGraphicsVideoItem* theWrappedObject) const{  return (((PythonQtPublicPromoter_QGraphicsVideoItem*)theWrappedObject)->py_q_mediaObject());}
    QSizeF  nativeSize(QGraphicsVideoItem* theWrappedObject) const;
    QPointF  offset(QGraphicsVideoItem* theWrappedObject) const;
    void paint(QGraphicsVideoItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = nullptr);
+   void py_q_paint(QGraphicsVideoItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = nullptr){  (((PythonQtPublicPromoter_QGraphicsVideoItem*)theWrappedObject)->py_q_paint(painter, option, widget));}
    void setAspectRatioMode(QGraphicsVideoItem* theWrappedObject, Qt::AspectRatioMode  mode);
    bool  py_q_setMediaObject(QGraphicsVideoItem* theWrappedObject, QMediaObject*  object){  return (((PythonQtPublicPromoter_QGraphicsVideoItem*)theWrappedObject)->py_q_setMediaObject(object));}
    void setOffset(QGraphicsVideoItem* theWrappedObject, const QPointF&  offset);

@@ -2,12 +2,11 @@
 #include <QObject>
 #include <QVariant>
 #include <qabstractvideobuffer.h>
-#include <qabstractvideosurface.h>
 #include <qbytearray.h>
 #include <qcoreevent.h>
+#include <qevent.h>
 #include <qimage.h>
 #include <qiodevice.h>
-#include <qlist.h>
 #include <qmediacontent.h>
 #include <qmediacontrol.h>
 #include <qmediaencodersettings.h>
@@ -41,7 +40,6 @@
 #include <qvideoencodersettingscontrol.h>
 #include <qvideoframe.h>
 #include <qvideoprobe.h>
-#include <qvideorenderercontrol.h>
 
 
 
@@ -471,6 +469,43 @@ void delete_QMediaServiceProviderHint(QMediaServiceProviderHint* obj) { delete o
    bool  __eq__(QMediaServiceProviderHint* theWrappedObject, const QMediaServiceProviderHint&  other) const;
    QMediaServiceProviderHint::Type  type(QMediaServiceProviderHint* theWrappedObject) const;
     bool __nonzero__(QMediaServiceProviderHint* obj) { return !obj->isNull(); }
+};
+
+
+
+
+
+class PythonQtShell_QMediaServiceProviderPlugin : public QMediaServiceProviderPlugin
+{
+public:
+    PythonQtShell_QMediaServiceProviderPlugin():QMediaServiceProviderPlugin(),_wrapper(NULL) {};
+
+   ~PythonQtShell_QMediaServiceProviderPlugin();
+
+virtual QMediaService*  create(const QString&  key);
+virtual void release(QMediaService*  service);
+
+  const QMetaObject* metaObject() const;
+  int qt_metacall(QMetaObject::Call call, int id, void** args);
+  PythonQtInstanceWrapper* _wrapper; 
+};
+
+class PythonQtPublicPromoter_QMediaServiceProviderPlugin : public QMediaServiceProviderPlugin
+{ public:
+inline QMediaService*  py_q_create(const QString&  key) { return this->create(key); }
+inline void py_q_release(QMediaService*  service) { this->release(service); }
+};
+
+class PythonQtWrapper_QMediaServiceProviderPlugin : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QMediaServiceProviderPlugin* new_QMediaServiceProviderPlugin();
+void delete_QMediaServiceProviderPlugin(QMediaServiceProviderPlugin* obj) { delete obj; } 
+   QMediaService*  create(QMediaServiceProviderPlugin* theWrappedObject, const QString&  key);
+   QMediaService*  py_q_create(QMediaServiceProviderPlugin* theWrappedObject, const QString&  key){  return (((PythonQtPublicPromoter_QMediaServiceProviderPlugin*)theWrappedObject)->py_q_create(key));}
+   void release(QMediaServiceProviderPlugin* theWrappedObject, QMediaService*  service);
+   void py_q_release(QMediaServiceProviderPlugin* theWrappedObject, QMediaService*  service){  (((PythonQtPublicPromoter_QMediaServiceProviderPlugin*)theWrappedObject)->py_q_release(service));}
 };
 
 
@@ -1453,48 +1488,6 @@ void delete_QVideoProbe(QVideoProbe* obj) { delete obj; }
    bool  isActive(QVideoProbe* theWrappedObject) const;
    bool  setSource(QVideoProbe* theWrappedObject, QMediaObject*  source);
    bool  setSource(QVideoProbe* theWrappedObject, QMediaRecorder*  source);
-};
-
-
-
-
-
-class PythonQtShell_QVideoRendererControl : public QVideoRendererControl
-{
-public:
-    PythonQtShell_QVideoRendererControl(QObject*  parent = nullptr):QVideoRendererControl(parent),_wrapper(NULL) {};
-
-   ~PythonQtShell_QVideoRendererControl();
-
-virtual void childEvent(QChildEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual void setSurface(QAbstractVideoSurface*  surface);
-virtual QAbstractVideoSurface*  surface() const;
-virtual void timerEvent(QTimerEvent*  event);
-
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
-};
-
-class PythonQtPublicPromoter_QVideoRendererControl : public QVideoRendererControl
-{ public:
-inline void py_q_setSurface(QAbstractVideoSurface*  surface) { this->setSurface(surface); }
-inline QAbstractVideoSurface*  py_q_surface() const { return this->surface(); }
-};
-
-class PythonQtWrapper_QVideoRendererControl : public QObject
-{ Q_OBJECT
-public:
-public slots:
-QVideoRendererControl* new_QVideoRendererControl(QObject*  parent = nullptr);
-void delete_QVideoRendererControl(QVideoRendererControl* obj) { delete obj; } 
-   void setSurface(QVideoRendererControl* theWrappedObject, QAbstractVideoSurface*  surface);
-   void py_q_setSurface(QVideoRendererControl* theWrappedObject, QAbstractVideoSurface*  surface){  (((PythonQtPublicPromoter_QVideoRendererControl*)theWrappedObject)->py_q_setSurface(surface));}
-   QAbstractVideoSurface*  surface(QVideoRendererControl* theWrappedObject) const;
-   QAbstractVideoSurface*  py_q_surface(QVideoRendererControl* theWrappedObject) const{  return (((PythonQtPublicPromoter_QVideoRendererControl*)theWrappedObject)->py_q_surface());}
 };
 
 

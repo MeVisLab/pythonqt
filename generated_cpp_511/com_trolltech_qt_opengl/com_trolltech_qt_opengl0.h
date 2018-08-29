@@ -27,7 +27,6 @@
 #include <qimage.h>
 #include <qkeysequence.h>
 #include <qlayout.h>
-#include <qlist.h>
 #include <qlocale.h>
 #include <qmargins.h>
 #include <qmatrix4x4.h>

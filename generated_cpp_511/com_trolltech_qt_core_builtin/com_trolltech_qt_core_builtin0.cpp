@@ -10,8 +10,8 @@
 #include <qbytearray.h>
 #include <qdatastream.h>
 #include <qdatetime.h>
+#include <qevent.h>
 #include <qline.h>
-#include <qlist.h>
 #include <qlocale.h>
 #include <qmargins.h>
 #include <qmatrix.h>

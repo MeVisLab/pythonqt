@@ -11,12 +11,12 @@
 #include <qdatetime.h>
 #include <qdeadlinetimer.h>
 #include <qdnslookup.h>
+#include <qevent.h>
 #include <qhostaddress.h>
 #include <qhostinfo.h>
 #include <qhstspolicy.h>
 #include <qhttpmultipart.h>
 #include <qiodevice.h>
-#include <qlist.h>
 #include <qlocalserver.h>
 #include <qlocalsocket.h>
 #include <qmetaobject.h>

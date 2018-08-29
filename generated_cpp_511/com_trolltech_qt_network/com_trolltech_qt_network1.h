@@ -6,9 +6,9 @@
 #include <qbytearray.h>
 #include <qcoreevent.h>
 #include <qdatetime.h>
+#include <qevent.h>
 #include <qhostaddress.h>
 #include <qiodevice.h>
-#include <qlist.h>
 #include <qmetaobject.h>
 #include <qnetworkaccessmanager.h>
 #include <qnetworkconfiguration.h>

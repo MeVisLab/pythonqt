@@ -13,6 +13,7 @@
 #include <qdatastream.h>
 #include <qdatetime.h>
 #include <qdir.h>
+#include <qevent.h>
 #include <qfile.h>
 #include <qfiledevice.h>
 #include <qfileinfo.h>
@@ -29,7 +30,6 @@
 #include <qjsonvalue.h>
 #include <qlibrary.h>
 #include <qlibraryinfo.h>
-#include <qlist.h>
 #include <qlockfile.h>
 #include <qlogging.h>
 #include <qmargins.h>
