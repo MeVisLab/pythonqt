@@ -946,8 +946,7 @@ PyObject* PythonQtClassInfo::copyObject( void* cppObject )
       args[0] = &result;
       args[1] = cppObject;
       {
-        PYTHONQT_ALLOW_THREADS_SCOPE
-        slot->decorator()->qt_metacall(QMetaObject::InvokeMetaMethod, slot->slotIndex(), args);
+        PythonQtSlotInfo::invokeQtMethod(slot->decorator(), slot, args);
       }
       if (result) {
         PythonQtInstanceWrapper* wrapper =  (PythonQtInstanceWrapper*)PythonQt::priv()->wrapPtr(result, info->className());

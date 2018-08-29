@@ -60,9 +60,15 @@ public:
     setObject(p.object());
   }
 
+  //! rvalue copy constructor, does not need any incref/decref.
+  PythonQtObjectPtr(PythonQtObjectPtr &&p)
+    :_object(p._object) {
+    p._object = NULL;
+  }
+
   //! If the given variant holds a PythonQtObjectPtr, extract the value from it and hold onto the reference. This results in an increment of the reference count.
   PythonQtObjectPtr(const QVariant& variant):_object(NULL) {
-      fromVariant(variant);
+    fromVariant(variant);
   }
 
   PythonQtObjectPtr(PyObject* o);
@@ -74,6 +80,16 @@ public:
 
   PythonQtObjectPtr &operator=(const PythonQtObjectPtr &p) {
     setObject(p.object());
+    return *this;
+  }
+
+  //! rvalue assignment operator that steals the reference from p
+  PythonQtObjectPtr &operator=(PythonQtObjectPtr &&p) {
+    if (_object) {
+      setObject(NULL);
+    }
+    _object = p._object;
+    p._object = NULL;
     return *this;
   }
 
