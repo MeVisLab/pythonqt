@@ -77,8 +77,7 @@ static void PythonQtInstanceWrapper_deleteObject(PythonQtInstanceWrapper* self, 
           void* args[2];
           args[0] = NULL;
           args[1] = &self->_wrappedPtr;
-          PYTHONQT_ALLOW_THREADS_SCOPE
-          slot->decorator()->qt_metacall(QMetaObject::InvokeMetaMethod, slot->slotIndex(), args);
+          PythonQtSlotInfo::invokeQtMethod(slot->decorator(), slot, args);
           self->_wrappedPtr = NULL;
         } else {
           if (type>=0) {
