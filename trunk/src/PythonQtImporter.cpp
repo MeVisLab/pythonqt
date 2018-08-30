@@ -359,6 +359,9 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
         PythonQtObjectPtr file = list.at(1);
         file.call("close");
       }
+    } else {
+      PyErr_Format(PythonQtImportError, "can't find module '%s'",
+                   qPrintable(info.moduleName));
     }
   }
   return mod;
