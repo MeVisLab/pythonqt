@@ -216,8 +216,10 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
         if (fun->type()) {
           s << "return ";
         }
-        // always do a direct call, since we want to call the real virtual function here
-        s << "this->";
+        if (!fun->isStatic()) {
+          // always do a direct call, since we want to call the real virtual function here
+          s << "this->";
+        }
         s << fun->originalName() << "(";
         writePromoterArgs(args, s);
         s << "); }" << endl;
@@ -368,7 +370,7 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
         Option(AddOwnershipTemplates | ConvertReferenceToPtr | FirstArgIsWrappedObject | IncludeDefaultExpression | OriginalName | ShowStatic | UnderscoreSpaces | ProtectedEnumAsInts));
       s << ";" << endl;
     }
-    if (function->isVirtual()) {
+    if (function->isVirtual() && meta_class->typeEntry()->shouldCreatePromoter()) {
       // qualified version that calls the promoter/the qualified version
       s << "   ";
       writeFunctionSignature(s, function, 0, "py_q_",
