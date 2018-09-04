@@ -43,7 +43,7 @@
 #include <PythonQtPythonInclude.h>
 #include <PythonQtSystem.h>
 
-//#define PYTHONQT_FULL_THREAD_SUPPORT
+#define PYTHONQT_FULL_THREAD_SUPPORT
 
 #ifdef PYTHONQT_FULL_THREAD_SUPPORT
 #define PYTHONQT_GIL_SUPPORT
@@ -57,30 +57,27 @@
 //! Ensures/releases the Python GIL
 //! An instance of this class can be used to
 //! allow access to the Python API from C++ code.
-class PythonQtGILScope
+class PYTHONQT_EXPORT PythonQtGILScope
 {
 public:
-  PythonQtGILScope() : _ensured(false) {
-    if (Py_IsInitialized()) {
-      _state = PyGILState_Ensure();
-      _ensured = true;
-    }
-  };
+  PythonQtGILScope();
 
-  ~PythonQtGILScope() {
-    release();
-  };
+  ~PythonQtGILScope();
 
-  void release() {
-    if (_ensured) {
-      PyGILState_Release(_state);
-      _ensured = false;
-    }
-  }
+  void release();
+
+  //! This allows to globally enable/disable the GIL scopes.
+  //! Make sure to only call this early in the PythonQt setup, or
+  //! when you are holding the GIL.
+  static void setGILScopeEnabled(bool flag);
+  //! Check if GIL scopes are enabled.
+  static bool isGILScopeEnabled();
 
 private:
   PyGILState_STATE _state;
   bool _ensured;
+
+  static bool _enableGILScope;
 };
 
 #else

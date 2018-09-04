@@ -72,12 +72,23 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
 {
   if (!_self) {
     _self = new PythonQt(flags, pythonQtModuleName);
-    
-    PythonQt::priv()->setupSharedLibrarySuffixes();
 
     _self->_p->_PythonQtObjectPtr_metaId = qRegisterMetaType<PythonQtObjectPtr>("PythonQtObjectPtr");
     PythonQtConv::registerMetaTypeToPythonConverter(_self->_p->_PythonQtObjectPtr_metaId, PythonQtConv::convertFromPythonQtObjectPtr);
     PythonQtConv::registerPythonToMetaTypeConverter(_self->_p->_PythonQtObjectPtr_metaId, PythonQtConv::convertToPythonQtObjectPtr);
+    _self->_p->_PythonQtSafeObjectPtr_metaId = qRegisterMetaType<PythonQtSafeObjectPtr>("PythonQtSafeObjectPtr");
+    PythonQtConv::registerMetaTypeToPythonConverter(_self->_p->_PythonQtSafeObjectPtr_metaId, PythonQtConv::convertFromPythonQtSafeObjectPtr);
+    PythonQtConv::registerPythonToMetaTypeConverter(_self->_p->_PythonQtSafeObjectPtr_metaId, PythonQtConv::convertToPythonQtSafeObjectPtr);
+
+    PythonQtObjectPtr importlib;
+    importlib.setNewRef(PyImport_ImportModule("importlib.machinery"));
+
+    if (importlib) {
+      _self->_p->_pySourceFileLoader = importlib.getVariable("SourceFileLoader");
+      _self->_p->_pySourcelessFileLoader = importlib.getVariable("SourcelessFileLoader");
+    }
+
+    PythonQt::priv()->setupSharedLibrarySuffixes();
 
     PythonQtMethodInfo::addParameterTypeAlias("QObjectList", "QList<QObject*>");
     qRegisterMetaType<QList<QObject*> >("QList<void*>");
@@ -302,6 +313,12 @@ PythonQt::PythonQt(int flags, const QByteArray& pythonQtModuleName)
     Py_Initialize();
   }
 
+#ifdef PYTHONQT_FULL_THREAD_SUPPORT
+  if (!PyEval_ThreadsInitialized()) {
+    PyEval_InitThreads();
+  }
+#endif
+
   // add our own python object types for qt object slots
   if (PyType_Ready(&PythonQtSlotFunction_Type) < 0) {
     std::cerr << "could not initialize PythonQtSlotFunction_Type" << ", in " << __FILE__ << ":" << __LINE__ << std::endl;
@@ -357,14 +374,6 @@ PythonQt::PythonQt(int flags, const QByteArray& pythonQtModuleName)
   Py_INCREF(&PythonQtStdInRedirectType);
 
   initPythonQtModule(flags & RedirectStdOut, pythonQtModuleName);
-
-  PythonQtObjectPtr importlib;
-  importlib.setNewRef(PyImport_ImportModule("importlib.machinery"));
-
-  if (importlib) {
-    _p->_pySourceFileLoader = importlib.getVariable("SourceFileLoader");
-    _p->_pySourcelessFileLoader = importlib.getVariable("SourcelessFileLoader");
-  }
 }
 
 PythonQt::~PythonQt() {
@@ -1084,7 +1093,7 @@ QVariant PythonQt::getNativeVariable(PyObject* object, const QString& objectname
   QVariant result;
   PythonQtObjectPtr obj = lookupObject(object, objectname);
   if (obj) {
-    result = QVariant::fromValue(obj);
+    result = obj.toVariant();
   }
   return result;
 }
@@ -1708,6 +1717,14 @@ void PythonQt::setProfilingCallback(ProfilingCB* cb)
 }
 
 
+void PythonQt::setEnableThreadSupport(bool flag)
+{
+#ifdef PYTHONQT_FULL_THREAD_SUPPORT
+  PythonQtGILScope::setGILScopeEnabled(flag);
+  PythonQtSlotInfo::setGlobalShouldAllowThreads(flag);
+#endif
+}
+
 static PyMethodDef PythonQtMethods[] = {
   {NULL, NULL, 0, NULL}
 };
@@ -2029,6 +2046,7 @@ bool PythonQtPrivate::isMethodDescriptor(PyObject* object) const
 
 const QMetaObject* PythonQtPrivate::getDynamicMetaObject(PythonQtInstanceWrapper* wrapper, const QMetaObject* prototypeMetaObject)
 {
+  PYTHONQT_GIL_SCOPE;
   PythonQtDynamicClassInfo* info = wrapper->dynamicClassInfo();
   if (info) {
     if (!info->_dynamicMetaObject) {

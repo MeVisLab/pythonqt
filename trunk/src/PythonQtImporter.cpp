@@ -331,7 +331,7 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
     // Pass the module name without the package prefix
     args.append(info.moduleName);
     // And the path where we know that the shared library is
-    args.append(QVariant::fromValue(pathList));
+    args.append(pathList.toLocalVariant());
     QVariant result = imp.call("find_module", args);
     if (result.isValid()) {
       // This will return a tuple with (file, pathname, description=(suffix,mode,type))
