@@ -231,6 +231,12 @@ public:
   //! Invoke the given slot on obj, save/restore thread state if needed.
   static void invokeQtMethod(QObject* obj, PythonQtSlotInfo* slot, void** argList);
 
+  //! Sets if calling slots should release the GIL to allow other Python threads while being inside of C++
+  static void setGlobalShouldAllowThreads(bool flag);
+
+  //! Returns if calling slots should release the GIL to allow  Python threads while being inside of C++
+  static bool getGlobalShouldAllowThreads();
+
 private:
   int               _slotIndex;
   PythonQtSlotInfo* _next;
@@ -238,6 +244,8 @@ private:
   Type              _type;
   QMetaMethod       _meta;
   int               _upcastingOffset;
+
+  static bool _globalShouldAllowThreads;
 };
 
 

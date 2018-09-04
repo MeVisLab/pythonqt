@@ -39,3 +39,40 @@
 //----------------------------------------------------------------------------------
 
 #include "PythonQtThreadSupport.h"
+
+#ifdef PYTHONQT_GIL_SUPPORT
+
+bool PythonQtGILScope::_enableGILScope = false;
+
+PythonQtGILScope::PythonQtGILScope() : _ensured(false)
+{
+  if (_enableGILScope) {
+    _state = PyGILState_Ensure();
+    _ensured = true;
+  }
+}
+
+PythonQtGILScope::~PythonQtGILScope()
+{
+  release();
+}
+
+void PythonQtGILScope::release()
+{
+  if (_ensured) {
+    PyGILState_Release(_state);
+    _ensured = false;
+  }
+}
+
+void PythonQtGILScope::setGILScopeEnabled(bool flag)
+{
+  _enableGILScope = flag;
+}
+
+bool PythonQtGILScope::isGILScopeEnabled()
+{
+  return _enableGILScope;
+}
+
+#endif

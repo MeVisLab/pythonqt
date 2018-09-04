@@ -40,25 +40,6 @@
 //----------------------------------------------------------------------------------
 
 #include <PythonQt.h>
-
-PythonQtObjectPtr::PythonQtObjectPtr(PyObject* o)
-{
-  _object = o;
-  if (o) Py_INCREF(_object);
-}
-
-PythonQtObjectPtr::~PythonQtObjectPtr()
-{ 
-  if (_object) Py_DECREF(_object); 
-}
-
-void PythonQtObjectPtr::setNewRef(PyObject* o)
-{
-  if (o != _object) {
-    if (_object) Py_DECREF(_object);
-    _object = o;
-  }
-}
   
 QVariant PythonQtObjectPtr::evalScript(const QString& script, int start)
 {
@@ -106,16 +87,60 @@ QVariant PythonQtObjectPtr::call(const QVariantList& args, const QVariantMap& kw
   return PythonQt::self()->call(_object, args, kwargs);
 }
 
+PythonQtObjectPtr::PythonQtObjectPtr(PyObject* o)
+{
+  _object = o;
+  if (o) Py_INCREF(_object);
+}
+
+PythonQtObjectPtr::PythonQtObjectPtr(PythonQtSafeObjectPtr &&p) :_object(p.takeObject())
+{
+}
+
+PythonQtObjectPtr::~PythonQtObjectPtr()
+{
+  if (_object) Py_DECREF(_object);
+}
+
+void PythonQtObjectPtr::setNewRef(PyObject* o)
+{
+  if (o != _object) {
+    if (_object) Py_DECREF(_object);
+    _object = o;
+  }
+}
+
 bool PythonQtObjectPtr::fromVariant(const QVariant& variant) 
 {
   if (!variant.isNull()) {
-      setObject(qvariant_cast<PythonQtObjectPtr>(variant));
-      return true;
+    PyObject* object = NULL;
+    if (PythonQt::priv()->isPythonQtSafeObjectPtrMetaId(variant.userType())) {
+      object = (*((const PythonQtSafeObjectPtr*)variant.constData())).object();
+    } else if (PythonQt::priv()->isPythonQtObjectPtrMetaId(variant.userType())) {
+      object = (*((const PythonQtObjectPtr*)variant.constData())).object();
+    }
+    setObject(object);
+    return true;
   }
   else {
-      setObject(0);
-      return false;
+    setObject(NULL);
+    return false;
   } 
+}
+
+QVariant PythonQtObjectPtr::toVariant()
+{
+  return QVariant::fromValue(PythonQtSafeObjectPtr(*this));
+}
+
+
+PythonQtObjectPtr & PythonQtObjectPtr::operator=(PythonQtSafeObjectPtr &&p)
+{
+  if (_object) {
+    setObject(NULL);
+  }
+  _object = p.takeObject();
+  return *this;
 }
 
 void PythonQtObjectPtr::setObject(PyObject* o)
@@ -125,4 +150,53 @@ void PythonQtObjectPtr::setObject(PyObject* o)
     _object = o;
     if (_object) Py_INCREF(_object);
   }
+}
+
+//------------------------------------------------------------------------------
+
+PythonQtSafeObjectPtr::PythonQtSafeObjectPtr(PyObject* o)
+{
+  _object = o;
+  if (o) {
+    PYTHONQT_GIL_SCOPE
+    Py_INCREF(_object);
+  }
+}
+
+PythonQtSafeObjectPtr::~PythonQtSafeObjectPtr()
+{
+  if (_object) {
+    PYTHONQT_GIL_SCOPE
+    Py_DECREF(_object);
+  }
+}
+
+void PythonQtSafeObjectPtr::setObject(PyObject* o)
+{
+  if (o != _object) {
+    PYTHONQT_GIL_SCOPE
+    if (_object) Py_DECREF(_object);
+    _object = o;
+    if (_object) Py_INCREF(_object);
+  }
+}
+
+void PythonQtSafeObjectPtr::setObjectUnsafe(PyObject* o)
+{
+  if (o != _object) {
+    if (_object) Py_DECREF(_object);
+    _object = o;
+    if (_object) Py_INCREF(_object);
+  }
+}
+
+
+//--------------------------------------------------------------------------
+
+// we do this here to allow toLocalVariant() to create a QVariant
+Q_DECLARE_METATYPE(PythonQtObjectPtr)
+
+QVariant PythonQtObjectPtr::toLocalVariant()
+{
+  return QVariant::fromValue(PythonQtSafeObjectPtr(*this));
 }

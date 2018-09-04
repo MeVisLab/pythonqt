@@ -47,6 +47,8 @@ QHash<QByteArray, PythonQtMethodInfo*> PythonQtMethodInfo::_cachedSignatures;
 QHash<int, PythonQtMethodInfo::ParameterInfo> PythonQtMethodInfo::_cachedParameterInfos;
 QHash<QByteArray, QByteArray> PythonQtMethodInfo::_parameterNameAliases;
 
+bool PythonQtSlotInfo::_globalShouldAllowThreads = false;
+
 PythonQtMethodInfo::PythonQtMethodInfo(const QMetaMethod& meta, PythonQtClassInfo* classInfo)
 {
 #ifdef PYTHONQT_DEBUG
@@ -640,10 +642,15 @@ QByteArray PythonQtSlotInfo::getImplementingClassName() const
 
 void PythonQtSlotInfo::invokeQtMethod(QObject* obj, PythonQtSlotInfo* slot, void** args)
 {
-  if (slot->shouldAllowThreads()) {
+  if (slot->shouldAllowThreads() && _globalShouldAllowThreads) {
     PYTHONQT_ALLOW_THREADS_SCOPE
     obj->qt_metacall(QMetaObject::InvokeMetaMethod, slot->slotIndex(), args);
   } else {
     obj->qt_metacall(QMetaObject::InvokeMetaMethod, slot->slotIndex(), args);
   }
+}
+
+void PythonQtSlotInfo::setGlobalShouldAllowThreads(bool flag)
+{
+  _globalShouldAllowThreads = flag;
 }

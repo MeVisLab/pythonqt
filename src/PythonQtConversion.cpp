@@ -206,8 +206,9 @@ PyObject* PythonQtConv::convertQtValueToPythonInternal(int type, const void* dat
     return PythonQt::priv()->wrapQObject(*((QObject**)data));
 
   default:
-    if (PythonQt::priv()->isPythonQtObjectPtrMetaId(type)) {
-      // special case, it is a PythonQtObjectPtr which contains a PyObject, take it directly:
+    if (PythonQt::priv()->isPythonQtAnyObjectPtrMetaId(type)) {
+      // special case, it is a PythonQtObjectPtr or PythonQtSafeObjectPtr which contains a PyObject, take it directly:
+      // in case of PythonQtSafeObjectPtr, the cast is wrong but the ptr layout is identical, so that is ok.
       PyObject* o = ((PythonQtObjectPtr*)data)->object();
       Py_INCREF(o);
       return o;
@@ -388,7 +389,7 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
 
    if (PyObject_TypeCheck(obj, &PythonQtInstanceWrapper_Type) &&
        info.typeId != PythonQtMethodInfo::Variant &&
-       !PythonQt::priv()->isPythonQtObjectPtrMetaId(info.typeId)) {
+       !PythonQt::priv()->isPythonQtAnyObjectPtrMetaId(info.typeId)) {
      // if we have a Qt wrapper object and if we do not need a QVariant, we do the following:
      // (the Variant case is handled below in a switch)
 
@@ -1037,11 +1038,8 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
     } else if (PyList_Check(val) || PyTuple_Check(val) || PySequence_Check(val)) {
       type = QVariant::List;
     } else {
-      // this used to be:
-      // type = QVariant::String;
-      // but now we want to transport the Python Objects directly:
-      PythonQtObjectPtr o(val);
-      v = qVariantFromValue(o);
+      // transport the Python objects directly inside of QVariant:
+      v = PythonQtObjectPtr(val).toVariant();
       return v;
     }
   }
@@ -1282,7 +1280,7 @@ PyObject* PythonQtConv::QVariantToPyObject(const QVariant& v)
     return Py_None;
   }
   PyObject* obj = NULL;
-  if (v.userType() >= QMetaType::User && !PythonQt::priv()->isPythonQtObjectPtrMetaId(v.userType())) {
+  if (v.userType() >= QMetaType::User && !PythonQt::priv()->isPythonQtAnyObjectPtrMetaId(v.userType())) {
     // try the slower way, which supports more conversions, e.g. QList<QObject*>
     const PythonQtMethodInfo::ParameterInfo& info = PythonQtMethodInfo::getParameterInfoForMetaType(v.userType());
     obj = ConvertQtValueToPython(info, v.constData());
@@ -1583,6 +1581,21 @@ bool PythonQtConv::convertToPythonQtObjectPtr( PyObject* obj, void* /* PythonQtO
 PyObject* PythonQtConv::convertFromPythonQtObjectPtr( const void* /* PythonQtObjectPtr* */ inObject, int /*metaTypeId*/ )
 {
   PyObject* obj = (*((const PythonQtObjectPtr*)inObject)).object();
+  // extra ref count, since we are supposed to return a newly refcounted object
+  Py_XINCREF(obj);
+  return obj;
+}
+
+bool PythonQtConv::convertToPythonQtSafeObjectPtr(PyObject* obj, void* /* PythonQtSafeObjectPtr* */ outPtr, int /*metaTypeId*/, bool /*strict*/)
+{
+  // just store the PyObject inside of the smart ptr
+  *((PythonQtSafeObjectPtr*)outPtr) = obj;
+  return true;
+}
+
+PyObject* PythonQtConv::convertFromPythonQtSafeObjectPtr(const void* /* PythonQtSafeObjectPtr* */ inObject, int /*metaTypeId*/)
+{
+  PyObject* obj = (*((const PythonQtSafeObjectPtr*)inObject)).object();
   // extra ref count, since we are supposed to return a newly refcounted object
   Py_XINCREF(obj);
   return obj;

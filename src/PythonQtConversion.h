@@ -181,6 +181,8 @@ public:
 
   static bool      convertToPythonQtObjectPtr(PyObject* obj, void* /* PythonQtObjectPtr* */ outPtr, int /*metaTypeId*/, bool /*strict*/);
   static PyObject* convertFromPythonQtObjectPtr(const void* /* PythonQtObjectPtr* */ inObject, int /*metaTypeId*/);
+  static bool      convertToPythonQtSafeObjectPtr(PyObject* obj, void* /* PythonQtObjectPtr* */ outPtr, int /*metaTypeId*/, bool /*strict*/);
+  static PyObject* convertFromPythonQtSafeObjectPtr(const void* /* PythonQtObjectPtr* */ inObject, int /*metaTypeId*/);
   static bool      convertToQListOfPythonQtObjectPtr(PyObject* obj, void* /* QList<PythonQtObjectPtr>* */ outList, int /*metaTypeId*/, bool /*strict*/);
   static PyObject* convertFromQListOfPythonQtObjectPtr(const void* /* QList<PythonQtObjectPtr>* */ inObject, int /*metaTypeId*/);
   static PyObject* convertFromStringRef(const void* inObject, int /*metaTypeId*/);

@@ -45,9 +45,12 @@
 #include "PythonQtPythonInclude.h"
 
 #include "PythonQtSystem.h"
+#include "PythonQtThreadSupport.h"
 #include <QVariant>
 #include <QVariantList>
 #include <QVariantMap>
+
+class PythonQtSafeObjectPtr;
 
 //! a smart pointer that stores a PyObject pointer and that handles reference counting automatically
 class PYTHONQT_EXPORT PythonQtObjectPtr
@@ -62,9 +65,11 @@ public:
 
   //! rvalue copy constructor, does not need any incref/decref.
   PythonQtObjectPtr(PythonQtObjectPtr &&p)
-    :_object(p._object) {
-    p._object = NULL;
+    :_object(p.takeObject()) {
   }
+
+  //! rvalue copy constructor, does not need any incref/decref.
+  PythonQtObjectPtr(PythonQtSafeObjectPtr &&p);
 
   //! If the given variant holds a PythonQtObjectPtr, extract the value from it and hold onto the reference. This results in an increment of the reference count.
   PythonQtObjectPtr(const QVariant& variant):_object(NULL) {
@@ -78,6 +83,12 @@ public:
   //! If the given variant holds a PythonQtObjectPtr, extract the value from it and hold onto the reference. This results in an increment of the reference count.
   bool fromVariant(const QVariant& variant);
 
+  //! Returns a PythonQtSafeObjectPtr as a QVariant. It does not return a PythonQtObjectPtr, because that would be unsafe regarding the GIL.
+  QVariant toVariant();
+
+  //! Returns a PythonQtObjectPtr as a QVariant. Only use this when you know that the variant is only used locally and not stored outside of the current GIL scope.
+  QVariant toLocalVariant();
+
   PythonQtObjectPtr &operator=(const PythonQtObjectPtr &p) {
     setObject(p.object());
     return *this;
@@ -88,10 +99,12 @@ public:
     if (_object) {
       setObject(NULL);
     }
-    _object = p._object;
-    p._object = NULL;
+    _object = p.takeObject();
     return *this;
   }
+
+  //! rvalue assignment operator that steals the reference from p
+  PythonQtObjectPtr &operator=(PythonQtSafeObjectPtr &&p);
 
   PythonQtObjectPtr &operator=(PyObject* o) {
     setObject(o);
@@ -100,8 +113,8 @@ public:
 
 
   PythonQtObjectPtr &operator=(const QVariant& variant) {
-      fromVariant(variant);
-      return *this;
+    fromVariant(variant);
+    return *this;
   }
 
 
@@ -164,6 +177,14 @@ public:
   //! call the contained python object directly, returns the result converted to a QVariant
   QVariant call(const QVariantList& args = QVariantList(), const QVariantMap& kwargs = QVariantMap());
 
+  //! takes the object from the pointer, leaving the pointer empty.
+  //! the caller has to take care about the decref of the taken object!
+  PyObject* takeObject() {
+    PyObject* o = _object;
+    _object = NULL;
+    return o;
+  }
+
 protected:
 
   void setObject(PyObject* o);
@@ -172,9 +193,121 @@ private:
   PyObject* _object;
 };
 
+//! a smart pointer that stores a PyObject pointer and that handles reference counting automatically
+class PYTHONQT_EXPORT PythonQtSafeObjectPtr
+{
+public:
+  PythonQtSafeObjectPtr() :_object(NULL) {}
 
-// register it to the meta type system
-Q_DECLARE_METATYPE(PythonQtObjectPtr)
+  PythonQtSafeObjectPtr(const PythonQtSafeObjectPtr &p)
+    :_object(NULL) {
+    setObject(p.object());
+  }
+
+  PythonQtSafeObjectPtr(const PythonQtObjectPtr &p)
+    :_object(NULL) {
+    setObject(p.object());
+  }
+
+  //! rvalue copy constructor, does not need any incref/decref.
+  PythonQtSafeObjectPtr(PythonQtSafeObjectPtr &&p)
+    :_object(p._object) {
+    p._object = NULL;
+  }
+
+  //! rvalue copy constructor, does not need any incref/decref.
+  PythonQtSafeObjectPtr(PythonQtObjectPtr &&p)
+    :_object(p.takeObject()) {
+  }
+
+  PythonQtSafeObjectPtr(PyObject* o);
+
+  ~PythonQtSafeObjectPtr();
+
+  PythonQtSafeObjectPtr &operator=(const PythonQtSafeObjectPtr &p) {
+    setObject(p.object());
+    return *this;
+  }
+
+  PythonQtSafeObjectPtr &operator=(const PythonQtObjectPtr &p) {
+    setObjectUnsafe(p.object());
+    return *this;
+  }
+
+  //! rvalue assignment operator that steals the reference from p
+  PythonQtSafeObjectPtr &operator=(PythonQtSafeObjectPtr &&p) {
+    if (_object) {
+      setObject(NULL);
+    }
+    _object = p._object;
+    p._object = NULL;
+    return *this;
+  }
+
+  //! rvalue assignment operator that steals the reference from p
+  PythonQtSafeObjectPtr &operator=(PythonQtObjectPtr &&p) {
+    if (_object) {
+      setObjectUnsafe(NULL);
+    }
+    _object = p.takeObject();
+    return *this;
+  }
+
+  PythonQtSafeObjectPtr &operator=(PyObject* o) {
+    setObject(o);
+    return *this;
+  }
+
+  bool operator==(const PythonQtSafeObjectPtr &p) const {
+    return object() == p.object();
+  }
+
+  bool operator!= (const PythonQtSafeObjectPtr& p) const {
+    return !(*this == p);
+  }
+
+  bool operator==(PyObject* p) const {
+    return object() == p;
+  }
+
+  bool operator!= (PyObject* p) const {
+    return object() != p;
+  }
+
+  bool isNull() const { return !object(); }
+
+  PyObject* operator->() const { return object(); }
+
+  PyObject& operator*() const { return *(object()); }
+
+  operator PyObject*() const { return object(); }
+
+  PyObject* object() const {
+    return _object;
+  }
+
+  //! takes the object from the pointer, leaving the pointer empty.
+  //! the caller has to take care about the decref of the taken object!
+  PyObject* takeObject() {
+    PyObject* o = _object;
+    _object = NULL;
+    return o;
+  }
+
+protected:
+  void setObject(PyObject* o);
+  void setObjectUnsafe(PyObject* o);
+
+private:
+  PyObject* _object;
+};
+
+// We don't want QVariant to take PythonQtObjectPtr via QVariant::fromValue, because it is unsafe when using multi-threading/GIL
+// A QVariant can still be obtained with PythonQtObjectPtr::toLocalVariant().
+//Q_DECLARE_METATYPE(PythonQtObjectPtr)
+
+// register PythonQtSafeObjectPtr to the meta type system
+Q_DECLARE_METATYPE(PythonQtSafeObjectPtr)
 
 #endif
 
