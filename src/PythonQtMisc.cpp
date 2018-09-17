@@ -40,4 +40,78 @@
 //----------------------------------------------------------------------------------
 
 #include "PythonQtMisc.h"
+#include <iostream>
 
+#define PYTHONQT_MAX_ARGUMENT_FRAME_SIZE (PYTHONQT_MAX_ARGS * 2)
+
+PythonQtArgumentFrame* PythonQtArgumentFrame::_freeListHead = NULL;
+
+PythonQtArgumentFrame::PythonQtArgumentFrame()
+{
+  _freeListNext = NULL;
+
+  // it is important to reserve the memory immediately,
+  // otherwise pointers would change while pushing back new arguments.
+  _variantArgs.reserve(PYTHONQT_MAX_ARGUMENT_FRAME_SIZE);
+  _podArgs.reserve(PYTHONQT_MAX_ARGUMENT_FRAME_SIZE);
+}
+
+PythonQtArgumentFrame::~PythonQtArgumentFrame()
+{
+}
+
+PythonQtArgumentFrame* PythonQtArgumentFrame::newFrame()
+{
+  PythonQtArgumentFrame* frame = NULL;
+  if (_freeListHead) {
+    frame = _freeListHead;
+    _freeListHead = _freeListHead->_freeListNext;
+    frame->_freeListNext = NULL;
+  } else {
+    frame = new PythonQtArgumentFrame();
+  }
+  return frame;
+}
+
+void PythonQtArgumentFrame::deleteFrame(PythonQtArgumentFrame* frame)
+{
+  frame->reset();
+  frame->_freeListNext = _freeListHead;
+  _freeListHead = frame;
+}
+
+void PythonQtArgumentFrame::cleanupFreeList()
+{
+  PythonQtArgumentFrame* head = _freeListHead;
+  while (head) {
+    PythonQtArgumentFrame* tmp = head;
+    head = head->_freeListNext;
+    delete tmp;
+  }
+  _freeListHead = NULL;
+}
+
+void PythonQtArgumentFrame::reset()
+{
+  // Note: clear still keeps the capacity of the vectors, which is what we want!
+  _variantArgs.clear();
+  _podArgs.clear();
+}
+
+QVariant* PythonQtArgumentFrame::nextVariantPtr()
+{
+  if (_variantArgs.size() >= PYTHONQT_MAX_ARGUMENT_FRAME_SIZE) {
+    std::cerr << "PYTHONQT_MAX_ARGUMENT_FRAME_SIZE QVariants exceeded, use less complex slots or increase size!" << std::endl;
+  }
+  _variantArgs.push_back(QVariant());
+  return &_variantArgs[_variantArgs.size() - 1];
+}
+
+quint64* PythonQtArgumentFrame::nextPODPtr()
+{
+  if (_podArgs.size() >= PYTHONQT_MAX_ARGUMENT_FRAME_SIZE) {
+    std::cerr << "PYTHONQT_MAX_ARGUMENT_FRAME_SIZE PODs exceeded, use less complex slots or increase size!" << std::endl;
+  }
+  _podArgs.push_back(0);
+  return &_podArgs[_podArgs.size() - 1];
+}

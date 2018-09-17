@@ -391,11 +391,9 @@ PythonQtPrivate::~PythonQtPrivate() {
       delete i.next().value();
     }
   }
-  PythonQtConv::global_valueStorage.clear();
-  PythonQtConv::global_ptrStorage.clear();
-  PythonQtConv::global_variantStorage.clear();
 
   PythonQtMethodInfo::cleanupCachedMethodInfos();
+  PythonQtArgumentFrame::cleanupFreeList();
 }
 
 void PythonQt::setRedirectStdInCallback(PythonQtInputChangedCB* callback, void * callbackData)
