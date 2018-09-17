@@ -59,6 +59,12 @@
 #include <Python.h>
 #endif
 
+// By including Python.h on Linux truncate could have been defined (in unistd.h)
+// which would lead to compiler errors. Therefore:
+#ifdef truncate
+# undef truncate
+#endif
+
 // get Qt keywords back
 #ifdef PYTHONQT_RESTORE_KEYWORDS
 #define slots Q_SLOTS
