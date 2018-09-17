@@ -178,7 +178,10 @@ PythonQtSignalReceiver::PythonQtSignalReceiver(QObject* obj):PythonQtSignalRecei
 
 PythonQtSignalReceiver::~PythonQtSignalReceiver()
 {
+  // we need the GIL scope here, because the targets keep references to Python objects
+  PYTHONQT_GIL_SCOPE;
   PythonQt::priv()->removeSignalEmitter(_obj);
+  _targets.clear();
 }
 
 
