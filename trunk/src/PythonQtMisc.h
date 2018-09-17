@@ -43,133 +43,67 @@
 //----------------------------------------------------------------------------------
 
 #include "PythonQtPythonInclude.h"
-#include <QList>
+#include <vector>
+#include <QVariant>
 
-#define PythonQtValueStorage_ADD_VALUE(store, type, value, ptr) \
-{  type* item = (type*)store.nextValuePtr(); \
+#define PYTHONQT_MAX_ARGS 32
+
+#define PythonQtArgumentFrame_ADD_VALUE(store, type, value, ptr) \
+{  type* item = (type*)store->nextPODPtr(); \
    *item = value; \
    ptr = (void*)item; \
 }
 
-#define PythonQtValueStorage_ADD_VALUE_IF_NEEDED(alreadyAllocatedPtr,store, type, value, ptr) \
+#define PythonQtArgumentFrame_ADD_VALUE_IF_NEEDED(alreadyAllocatedPtr,store, type, value, ptr) \
 { \
-  type* item = (type*)(alreadyAllocatedPtr?alreadyAllocatedPtr:store.nextValuePtr()); \
+  type* item = (type*)(alreadyAllocatedPtr?alreadyAllocatedPtr:store->nextPODPtr()); \
   *item = value; \
   ptr = (void*)item; \
 }
 
-//! stores a position in the PythonQtValueStorage
-class PythonQtValueStoragePosition {
+#define PythonQtArgumentFrame_ADD_VARIANT_VALUE(store, value, ptr) \
+{  QVariant* item = store->nextVariantPtr(); \
+   *item = value; \
+   ptr = (void*)item; \
+}
+
+#define PythonQtArgumentFrame_ADD_VARIANT_VALUE_IF_NEEDED(alreadyAllocatedPtr,store, value, ptr) \
+{ \
+  QVariant* item = (QVariant*)(alreadyAllocatedPtr?alreadyAllocatedPtr:store->nextVariantPtr()); \
+  *item = value; \
+  ptr = (void*)item; \
+}
+
+//! Stores C++ arguments for a qt_metacall (which are created when converting data from Python to C++)
+class PythonQtArgumentFrame {
 
 public:
-  PythonQtValueStoragePosition() { chunkIdx = 0; chunkOffset = 0; }
+  //! Create a new (empty) frame (which is typically reused from a freelist)
+  static PythonQtArgumentFrame* newFrame();
+  //! Frees the frame (resetting it and putting it back to the freelist)
+  static void deleteFrame(PythonQtArgumentFrame* frame);
 
-  int chunkIdx;
-  int chunkOffset;
+  //! Frees all PythonQtArgumentFrame frames that are stored.
+  static void cleanupFreeList();
 
-};
+  //! Resets the pod and variant argument lists to empty lists.
+  void reset();
 
-//! a helper class that stores basic C++ value types in chunks
-template <typename T, int chunkEntries> class PythonQtValueStorage
-{
-public:
-  PythonQtValueStorage() {
-    _chunkIdx  = 0;
-    _chunkOffset = 0;
-    _currentChunk = new T[chunkEntries];
-    _chunks.append(_currentChunk);
-  };
-
-  //! clear all memory
-  void clear() {
-    T* chunk;
-    Q_FOREACH(chunk, _chunks) {
-      delete[]chunk;
-    }
-    _chunks.clear();
-  }
-
-  //! get the current position to be restored with setPos
-  void getPos(PythonQtValueStoragePosition & pos) {
-    pos.chunkIdx = _chunkIdx;
-    pos.chunkOffset = _chunkOffset;
-  }
-
-  //! set the current position (without freeing memory, thus caching old entries for reuse)
-  void setPos(const PythonQtValueStoragePosition& pos) {
-    _chunkOffset = pos.chunkOffset;
-    if (_chunkIdx != pos.chunkIdx) {
-      _chunkIdx = pos.chunkIdx;
-      _currentChunk = _chunks.at(_chunkIdx);
-    }
-  }
-
-  //! add one default constructed value and return the pointer to it
-  T* nextValuePtr() {
-    if (_chunkOffset>=chunkEntries) {
-      _chunkIdx++;
-      if (_chunkIdx >= _chunks.size()) {
-        T* newChunk = new T[chunkEntries];
-        _chunks.append(newChunk);
-        _currentChunk = newChunk;
-      } else {
-        _currentChunk = _chunks.at(_chunkIdx);
-      }
-      _chunkOffset = 0;
-    }
-    T* newEntry = _currentChunk + _chunkOffset;
-    _chunkOffset++;
-    return newEntry;
-  };
-
-protected:
-  QList<T*> _chunks;
-
-  int _chunkIdx;
-  int _chunkOffset;
-  T*  _currentChunk;
-
-};
-
-//! a helper class that stores basic C++ value types in chunks and clears the unused values on setPos() usage.
-template <typename T, int chunkEntries> class PythonQtValueStorageWithCleanup : public PythonQtValueStorage<T, chunkEntries>
-{  
-public:
-  void setPos(const PythonQtValueStoragePosition& pos) {
-    if (_chunkIdx > pos.chunkIdx) {
-      T*  firstChunk = _chunks.at(pos.chunkIdx);
-      // clear region in first chunk
-      for (int i = pos.chunkOffset; i < chunkEntries; i++) {
-        firstChunk[i] = T();
-      }
-      for (int chunk = pos.chunkIdx + 1; chunk < _chunkIdx; chunk++) {
-        // clear the full chunks between the first and last chunk
-        T*  fullChunk = _chunks.at(chunk);
-        for (int i = 0; i < chunkEntries; i++) {
-          fullChunk[i] = T();
-        }
-      }
-      // clear region in last chunk
-      T*  lastChunk = _chunks.at(_chunkIdx);
-      for (int i = 0; i < _chunkOffset; i++) {
-        lastChunk[i] = T();
-      }
-    } else if (_chunkIdx == pos.chunkIdx) {
-      // clear the region in the last chunk only
-      T*  lastChunk = _chunks.at(_chunkIdx);
-      for (int i = pos.chunkOffset; i<_chunkOffset; i++) {
-        lastChunk[i] = T();
-      }
-    }
-
-    PythonQtValueStorage<T, chunkEntries>::setPos(pos);
-  }
+  //! Get next pointer to a variant
+  QVariant* nextVariantPtr();
+  //! Get next pointer to a POD.
+  quint64*  nextPODPtr();
 
 private:
-  using PythonQtValueStorage<T, chunkEntries>::_chunks;
-  using PythonQtValueStorage<T, chunkEntries>::_chunkIdx;
-  using PythonQtValueStorage<T, chunkEntries>::_chunkOffset;
-  using PythonQtValueStorage<T, chunkEntries>::_currentChunk;
+  PythonQtArgumentFrame();
+  ~PythonQtArgumentFrame();
+
+  std::vector<quint64>  _podArgs;
+  std::vector<QVariant> _variantArgs;
+
+  PythonQtArgumentFrame* _freeListNext;
+
+  static PythonQtArgumentFrame* _freeListHead;
 };
 
 #endif
