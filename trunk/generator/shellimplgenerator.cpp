@@ -151,11 +151,7 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
         if (hasReturnValue) {
           s << "      ";
           writeTypeInfo(s, fun->type(), typeOptions);
-          s << " returnValue";
-          if (fun->type()->isPrimitive()) {
-            s << " = 0";
-          }
-          s << ";" << endl;
+          s << " returnValue{};" << endl;
         }
         s << "      void* args[" << QString::number(args.size() + 1) << "] = {NULL";
         for (int i = 0; i < args.size(); ++i) {
