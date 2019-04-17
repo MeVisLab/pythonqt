@@ -526,7 +526,7 @@ void pp::operator () (_InputIterator __first, _InputIterator __last, _OutputIter
 }
 
 inline pp::pp (pp_environment &__env):
-  env (__env), expand (env)
+  env (__env), expand (env), skip_comment(false)
 {
   iflevel = 0;
   _M_skipping[iflevel] = 0;
@@ -620,10 +620,10 @@ _InputIterator pp::handle_define (_InputIterator __first, _InputIterator __last)
 
   while (__first != __last && *__first != '\n')
     {
-	if (*__first == '/') {
-	    __first = skip_comment_or_divop(__first, __last);
-	    env.current_line += skip_comment_or_divop.lines;
-	}
+      if (*__first == '/') {
+          __first = skip_comment(__first, __last);
+          env.current_line += skip_comment.lines;
+      }
 
       if (*__first == '\\')
         {
@@ -728,7 +728,7 @@ _InputIterator pp::eval_primary(_InputIterator __first, _InputIterator __last, V
 
       if (token != TOKEN_IDENTIFIER)
         {
-          std::cerr << "** WARNING expected ``identifier'' found:" << char(token) << std::endl;
+          std::cerr << "** WARNING expected ``identifier'' found:" << char(token) << " at " << env.current_file << ":" << env.current_line << std::endl;
           result->set_long (0);
           break;
         }
@@ -741,7 +741,7 @@ _InputIterator pp::eval_primary(_InputIterator __first, _InputIterator __last, V
         {
           _InputIterator next = next_token (__first, __last, &token);
           if (token != ')')
-            std::cerr << "** WARNING expected ``)''" << std::endl;
+            std::cerr << "** WARNING expected ``)'' at " << env.current_file << ":" << env.current_line << std::endl;
           else
             __first = next;
         }
@@ -770,7 +770,7 @@ _InputIterator pp::eval_primary(_InputIterator __first, _InputIterator __last, V
       next_token (__first, __last, &token);
 
       if (token != ')')
-        std::cerr << "** WARNING expected ``)'' = " << token << std::endl;
+        std::cerr << "** WARNING expected ``)'' = " << token << " at " << env.current_file << ":" << env.current_line << std::endl;
       else
         __first = next_token(__first, __last, &token);
       break;
@@ -801,7 +801,7 @@ _InputIterator pp::eval_multiplicative(_InputIterator __first, _InputIterator __
         {
           if (value.is_zero ())
             {
-              std::cerr << "** WARNING division by zero" << std::endl;
+              std::cerr << "** WARNING division by zero at " << env.current_file << ":" << env.current_line << std::endl;
               result->set_long (0);
             }
           else
@@ -811,7 +811,7 @@ _InputIterator pp::eval_multiplicative(_InputIterator __first, _InputIterator __
         {
           if (value.is_zero ())
             {
-              std::cerr << "** WARNING division by zero" << std::endl;
+              std::cerr << "** WARNING division by zero at " << env.current_file << ":" << env.current_line << std::endl;
               result->set_long (0);
             }
           else
@@ -1055,7 +1055,7 @@ _InputIterator pp::eval_constant_expression(_InputIterator __first, _InputIterat
         }
       else
         {
-          std::cerr << "** WARNING expected ``:'' = " << int (token) << std::endl;
+          std::cerr << "** WARNING expected ``:'' = " << int (token) << " at " << env.current_file << ":" << env.current_line << std::endl;
           *result = left_value;
         }
     }
@@ -1078,10 +1078,15 @@ _InputIterator pp::handle_if (_InputIterator __first, _InputIterator __last)
       std::string condition;
       condition.reserve (255);
       expand_condition (skip_blanks (__first, __last), __last, std::back_inserter (condition));
+      std::string condition2ndpass;
+      condition2ndpass.reserve (255);
+      const char* first = condition.c_str ();
+      const char* last = first + condition.size ();
+      expand_condition (skip_blanks (first, last), last, std::back_inserter (condition2ndpass));
 
       Value result;
       result.set_long (0);
-      eval_expression(condition.c_str (), condition.c_str () + condition.size (), &result);
+      eval_expression(condition2ndpass.c_str (), condition2ndpass.c_str () + condition2ndpass.size (), &result);
 
       _M_true_test[iflevel] = !result.is_zero ();
       _M_skipping[iflevel] = result.is_zero ();
@@ -1095,7 +1100,7 @@ _InputIterator pp::handle_else (_InputIterator __first, _InputIterator /*__last*
 {
   if (iflevel == 0 && !skipping ())
     {
-      std::cerr << "** WARNING #else without #if" << std::endl;
+      std::cerr << "** WARNING #else without #if" << " at " << env.current_file << ":" << env.current_line << std::endl;
     }
   else if (iflevel > 0 && _M_skipping[iflevel - 1])
     {
@@ -1116,7 +1121,7 @@ _InputIterator pp::handle_elif (_InputIterator __first, _InputIterator __last)
 
   if (iflevel == 0 && !skipping())
     {
-      std::cerr << "** WARNING #else without #if" << std::endl;
+      std::cerr << "** WARNING #else without #if" << " at " << env.current_file << ":" << env.current_line << std::endl;
     }
   else if (!_M_true_test[iflevel] && !_M_skipping[iflevel - 1])
     {
@@ -1138,7 +1143,7 @@ _InputIterator pp::handle_endif (_InputIterator __first, _InputIterator /*__last
 {
   if (iflevel == 0 && !skipping())
     {
-      std::cerr << "** WARNING #endif without #if" << std::endl;
+      std::cerr << "** WARNING #endif without #if" << " at " << env.current_file << ":" << env.current_line << std::endl;
     }
   else
     {
