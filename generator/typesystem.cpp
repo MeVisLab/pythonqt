@@ -1465,7 +1465,7 @@ TypeDatabase::TypeDatabase() : m_suppressWarnings(true)
         addType(wrapper);
     }
 
-    addType(new ThreadTypeEntry());
+    //addType(new ThreadTypeEntry());
     addType(new VoidTypeEntry());
 
     // Predefined containers...
