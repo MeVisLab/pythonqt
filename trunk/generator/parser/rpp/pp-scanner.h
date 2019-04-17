@@ -94,6 +94,8 @@ struct pp_skip_whitespaces
 
 struct pp_skip_comment_or_divop
 {
+  pp_skip_comment_or_divop(bool skipDiv = true) { _skipDiv = skipDiv; }
+
   int lines;
 
   template <typename _InputIterator>
@@ -130,8 +132,10 @@ struct pp_skip_comment_or_divop
                 state = IN_COMMENT;
               else if (*__first == '/')
                 state = IN_CXX_COMMENT;
-              else
+              else if (_skipDiv)
                 return __first;
+              else
+                return __first-1;
               break;
 
             case IN_COMMENT:
@@ -158,6 +162,8 @@ struct pp_skip_comment_or_divop
 
     return __first;
   }
+private:
+  bool _skipDiv;
 };
 
 struct pp_skip_identifier
