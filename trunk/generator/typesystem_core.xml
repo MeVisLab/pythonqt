@@ -1724,6 +1724,7 @@
   </object-type>
   <object-type name="QFutureSynchronizer" generate="no"/>
   <object-type name="QThreadPool"/>
+  <object-type name="QThread"/>
 
   <object-type name="QFutureIterator" generate="no">
     <modify-function signature="operator=(const QFuture&amp;)" remove="all"/>

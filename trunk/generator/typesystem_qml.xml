@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <typesystem package="com.trolltech.qt.qml">
 
+<rejection class="QQmlEngine" function-name="singletonInstance&lt;QJSValue&gt;"/>
+
 <rejection class="QQmlListProperty"/>
 <rejection class="QQmlTypeInfo"/>
 <rejection class="QQmlImageProviderBase"/>
