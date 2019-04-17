@@ -462,7 +462,6 @@
   <rejection class="QMutableListIterator"/>
   <rejection class="QMutableMapIterator"/>
   <rejection class="QMutableVectorIterator"/>
-  <rejection class="QMutexLocker"/>
   <rejection class="QNoImplicitBoolCast"/>
   <rejection class="QObjectCleanupHandler"/>
   <rejection class="QObjectData"/>
@@ -1271,6 +1270,12 @@
   </object-type>
   <object-type name="QLibraryInfo"/>
   <object-type name="QMutex"/>
+  <value-type name="QMutexLocker">
+    <inject-code class="pywrap-h">
+    void __enter__(QMutexLocker* self) {}
+    void __exit__(QMutexLocker* self) { self->unlock(); }
+    </inject-code>
+  </value-type>
   <object-type name="QSemaphore"/>
   <object-type name="QSocketNotifier"/>
   <object-type name="QSystemLocale"/>
