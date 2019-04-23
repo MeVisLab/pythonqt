@@ -242,10 +242,10 @@ public:
 
   FileModelItem file() const;
 
-  void getStartPosition(int *line, int *column);
+  void getStartPosition(int *line, int *column) const;
   void setStartPosition(int line, int column);
 
-  void getEndPosition(int *line, int *column);
+  void getEndPosition(int *line, int *column) const;
   void setEndPosition(int line, int column);
 
   inline std::size_t creationId() const { return _M_creation_id; }

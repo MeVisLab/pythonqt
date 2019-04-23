@@ -313,7 +313,7 @@ FileModelItem _CodeModelItem::file() const
   return model()->findFile(fileName());
 }
 
-void _CodeModelItem::getStartPosition(int *line, int *column)
+void _CodeModelItem::getStartPosition(int *line, int *column) const
 {
   *line = _M_startLine;
   *column = _M_startColumn;
@@ -325,7 +325,7 @@ void _CodeModelItem::setStartPosition(int line, int column)
   _M_startColumn = column;
 }
 
-void _CodeModelItem::getEndPosition(int *line, int *column)
+void _CodeModelItem::getEndPosition(int *line, int *column) const
 {
   *line = _M_endLine;
   *column = _M_endColumn;
