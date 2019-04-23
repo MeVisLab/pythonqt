@@ -62,7 +62,7 @@ public:
 
   inline TokenStream *tokenStream() const { return _M_token_stream; }
   inline CodeModel *model() const { return _M_model; }
-  ScopeModelItem currentScope();
+  ScopeModelItem currentScope() const;
 
   FileModelItem run(AST *node);
 
@@ -85,6 +85,8 @@ protected:
   virtual void visitQProperty(QPropertyAST *);
   virtual void visitForwardDeclarationSpecifier(ForwardDeclarationSpecifierAST *);
   virtual void visitQEnums(QEnumsAST *);
+
+  void warnHere() const;
 
 private:
 
@@ -126,6 +128,7 @@ private:
   TemplateParameterList _M_current_template_parameters; // ### check me
   QHash<QString, QString> _M_qualified_types;
   QHash<QString, int> _M_anonymous_enums;
+  mutable QString _M_lastWarnedFile;
 
 protected:
   TypeCompiler type_cc;
