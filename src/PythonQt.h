@@ -269,6 +269,18 @@ public:
   //@}
 
   //---------------------------------------------------------------------------
+  //! \name Standard output handling
+  //@{
+
+  //! return \a true if std out/err redirection is enabled.
+  bool redirectStdOutCallbackEnabled() const;
+
+  //! enable or disable std out/err redirection to pythonStdOut() and pythonStdErr() signals.
+  void setRedirectStdOutCallbackEnabled(bool enabled);
+
+  //@}
+
+  //---------------------------------------------------------------------------
   //! \name Modules
   //@{
 
