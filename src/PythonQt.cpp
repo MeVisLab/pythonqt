@@ -505,11 +505,11 @@ void PythonQt::setRedirectStdInCallbackEnabled(bool enabled)
   sys.setNewRef(PyImport_ImportModule("sys"));
 
   if (enabled) {
-    if( !PyObject_HasAttrString(sys.object(), "pythonqt_stdin") ) {
+    if( PyObject_HasAttrString(sys.object(), "pythonqt_stdin") ) {
       PyObject_SetAttrString(sys.object(), "stdin", PyObject_GetAttrString(sys.object(), "pythonqt_stdin"));
     }
   } else {
-    if( !PyObject_HasAttrString(sys.object(), "pythonqt_original_stdin") ) {
+    if( PyObject_HasAttrString(sys.object(), "pythonqt_original_stdin") ) {
       PyObject_SetAttrString(sys.object(), "stdin", PyObject_GetAttrString(sys.object(), "pythonqt_original_stdin"));
     }
   }
