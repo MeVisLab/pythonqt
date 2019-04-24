@@ -1920,10 +1920,10 @@ bool PythonQt::redirectStdOutCallbackEnabled() const
   PythonQtObjectPtr pythonqt_stdout;
   pythonqt_stdout.setNewRef(PyObject_GetAttrString(sys.object(), "pythonqt_stdout"));
 
-  PythonQtObjectPtr stdout;
-  stdout.setNewRef(PyObject_GetAttrString(sys.object(), "stdout"));
+  PythonQtObjectPtr sys_stdout;
+  sys_stdout.setNewRef(PyObject_GetAttrString(sys.object(), "stdout"));
 
-  return PyObject_RichCompareBool(pythonqt_stdout.object(), stdout.object(), Py_EQ);
+  return PyObject_RichCompareBool(pythonqt_stdout.object(), sys_stdout.object(), Py_EQ);
 }
 
 void PythonQt::setRedirectStdOutCallbackEnabled(bool enabled)
