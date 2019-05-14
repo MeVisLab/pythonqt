@@ -5,6 +5,10 @@
   </namespace-type>
 
   <rejection class="QSqlError::Unused"/>
+  <rejection class="QSslConfiguration" function-name="defaultDtlsConfiguration"/>
+  <rejection class="QSslConfiguration" function-name="dtlsCookieVerificationEnabled"/>
+  <rejection class="QSslConfiguration" function-name="setDefaultDtlsConfiguration"/>
+  <rejection class="QSslConfiguration" function-name="setDtlsCookieVerificationEnabled"/>
 
   <enum-type name="QSsl::AlternativeNameEntryType"/>
   <enum-type name="QSslConfiguration::NextProtocolNegotiationStatus"/>
