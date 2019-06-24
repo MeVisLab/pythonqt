@@ -1,1 +1,1 @@
-doxygen doc.cfg
+doxygen
