@@ -53,20 +53,20 @@
 
  \section Introduction
 
- \b PythonQt is a dynamic <a href="http://www.python.org" target="_blank"> 
-Python</a> binding for the <a href="http://qt-project.org/" target="_blank"> 
+ \b PythonQt is a dynamic <a href="https://www.python.org" target="_blank">
+Python</a> binding for the <a href="https://www.qt.io" target="_blank">
 Qt framework</a>.
  It offers an easy way to embed the Python scripting language into
  your C++ Qt applications.
 
  The focus of PythonQt is on embedding Python into an existing C++ application, not on writing the whole
  application completely in Python.
- 
+
  If you are looking for a simple way to embed Python objects into your C++/Qt Application
  and to script parts of your application via Python, PythonQt is the way to go!
 
  PythonQt is a stable library that was developed to make the
- Image Processing and Visualization platform <a href="http://www.mevislab.de" target="_blank">MeVisLab</a>
+ Image Processing and Visualization platform <a href="https://www.mevislab.de" target="_blank">MeVisLab</a>
  scriptable from Python.
 
  - \ref Features
@@ -77,7 +77,7 @@ Qt framework</a>.
  - \ref Examples
 
  \page Features Features
- 
+
  \section Builtin Built-in Features
 
  The following are the built-in features of the PythonQt library:
@@ -101,7 +101,7 @@ Qt framework</a>.
  - Extensible handler for Python/C++ conversion of complex types, e.g. mapping of QVector<SomeObject> to/from a Python array
  - Setting of dynamic QObject properties via setProperty(), dynamic properties can be accessed for reading and writing like normal Python attributes (but creating a new property needs to be done with setProperty(), to distinguish from normal Python attributes)
  - Support for QtCore.Signal, QtCore.Slot and QtCore.Property, including the creation of a dynamic QMetaObject.
- 
+
  \section FeaturesQtAll Features with wrapper generator
 
  PythonQt offers the additional PythonQt_QtAll library which wraps the complete Qt API, including all C++ classes and all non-slots on QObject derived classes.
@@ -125,7 +125,7 @@ Qt framework</a>.
  - Polymorphic downcasting on QEvent, QGraphicsItem, QStyleOption, ...
  - Multiple inheritance support (e.g., QGraphicsTextItem is a QObject and a QGraphicsItem, PythonQt will handle this well)
  - QtQuick support is experimental and currently it is not possible to register new qml components from Python
- 
+
  \section Supported Supported Versions
 
  PythonQt supports:
@@ -133,7 +133,7 @@ Qt framework</a>.
  - Python 3 (>= Python 3.3)
  - Qt 4.x (Qt 4.7 and Qt 4.8 recommended)
  - Qt 5.x (Tested with Qt 5.0, 5.3, 5.4 and 5.6)
- 
+
  The last working Qt4 version is available at svn branches/Qt4LastWorkingVersion or you can download the PythonQt 3.0 release.
  The current svn trunk no longer supports Qt4, since we started to make use of some Qt5-only features.
 
@@ -146,27 +146,24 @@ Qt framework</a>.
  - Ownership handling of objects is not as complete as in PySide and PySide, especially in situations where the ownership is not clearly passed to C++ on the C++ API.
  - QStrings are always converted to unicode Python objects, QByteArray always stays a QByteArray and can be converted using QByteArray.data()
  - Qt methods that take an extra "bool* ok" parameter can be called passing PythonQt.BoolResult as parameter. In PySide, a tuple is returned instead.
- 
+
  \page Download Download
 
- PythonQt is hosted on <a href="http://sourceforge.net/projects/pythonqt/" target="_blank">SourceForge</a>.
+ PythonQt is hosted on <a href="https://github.com/MeVisLab/pythonqt" target="_blank">GitHub</a>.
 
- You can download the source code as a tarball at http://sourceforge.net/projects/pythonqt/files/.
- Alternatively you can get the latest version from the svn repository.
- 
- You can also browse the source code online via ViewVC: http://pythonqt.svn.sourceforge.net/viewvc/pythonqt/trunk/
+ You can download the source code or alternatively you can get the latest version from the git repository.
 
  \note We do not offer prebuilt binaries, since there are so many possible combinations of
  platforms (Windows/Linux/MacOs), architectures (32/64 bit) and Qt / Python versions.
 
  \page License License
-  
+
  PythonQt is distributed under the LGPL 2.1 license. It can be used in commercial applications when following the LGPL 2.1 obligations.
 
  The build system of PythonQt makes use of a modified version of the LGPL'ed QtScript generator,
  located in the "generator" directory.
 
- See http://qt.gitorious.org/qt-labs/qtscriptgenerator for details on the original project.
+ See https://code.qt.io/cgit/qt-labs/qtscriptgenerator.git for details on the original project.
  Thanks a lot to the QtJambi guys and the QtScript Generator project for the C++ parser and
  Qt typesystem files!
 
@@ -424,14 +421,14 @@ yourCpp = None
  it is owned by Python by default. When an object is returned from a C++ API (e.g. a slot), it is owned by C++ by default.
  Since the Qt API contains various APIs that pass the ownership from/to other C++ objects, PythonQt needs to keep track of
  such API calls. This is archieved by annotating arguments and return values in wrapper slots with magic templates:
- 
+
  - PythonQtPassOwnershipToCPP
  - PythonQtPassOwnershipToPython
  - PythonQtNewOwnerOfThis
 
  These annotation templates work for since C++ pointer types. In addition to that, they work for QList<AnyObject*>,
  to pass the ownership for each object in the list.
- 
+
  Examples:
  \code
  public slots:
@@ -447,7 +444,7 @@ yourCpp = None
    //! Pass ownership of wrapped object to C++ if parent is != NULL
    void addItemParent(QGraphicsItem* wrappedObject, PythonQtNewOwnerOfThis<QGraphicsItem*> parent);
  \endcode
- 
+
  \page Building Building
 
  PythonQt requires at least Qt 4.6.1 (for earlier Qt versions, you will need to run the pythonqt_generator, Qt 4.3 is the absolute minimum) and Python 2.6.x/2.7.x or Python 3.3 (or higher).
@@ -456,7 +453,7 @@ the python2x.[lib | dll | so | dynlib].
  The recommended way to build PythonQt is to use the QMake-based *.pro file.
  The build scripts a currently set to use Python 2.6.
  You may need to tweak the \b build/python.prf file to set the correct Python includes and libs on your system.
- 
+
  \subsection Windows
 
  On Windows, the (non-source) Python Windows installer can be used.
@@ -500,7 +497,7 @@ the python2x.[lib | dll | so | dynlib].
  pythonxx_d.lib/.dll are not provided. You can tweak linking of the debug build to the release
  Python version, but this typically requires patching pyconfig.h and removing Py_DEBUG and linker pragmas
  (google for it!).
- 
+
  \subsection Linux
 
  On Linux, you need to install a Python-dev package.
