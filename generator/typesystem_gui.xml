@@ -1643,7 +1643,7 @@ PyObject* constScanLine(QImage* image, int line) {
     <modify-function signature="modifiers()const" access="non-final"/>
   </object-type>
   <object-type name="QGestureEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::Gesture || %1-&gt;type() == QEvent::GestureOverride"/>
-  <object-type name="QKeyEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::KeyPress || %1-&gt;type() == QEvent::KeyRelease"/>
+  <object-type name="QKeyEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::KeyPress || %1-&gt;type() == QEvent::KeyRelease || %1-&gt;type() == QEvent::ShortcutOverride"/>
   <object-type name="QMouseEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::MouseButtonDblClick || %1-&gt;type() == QEvent::MouseButtonPress || %1-&gt;type() == QEvent::MouseButtonRelease || %1-&gt;type() == QEvent::MouseMove"/>
   <object-type name="QPaintEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::Paint"/>
   <object-type name="QAccessibleEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::AccessibilityDescription || %1-&gt;type() == QEvent::AccessibilityHelp"/>
