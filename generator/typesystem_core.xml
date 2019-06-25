@@ -53,7 +53,6 @@
 <rejection class="QJsonValueRefPtr"/>
 <rejection class="QList::MemoryLayout"/>
 <rejection class="QListSpecialMethods"/>
-<rejection class="QLoggingCategory"/>
 <rejection class="QMapDataBase"/>
 <rejection class="QMapNodeBase"/>
 <rejection class="QMetaTypeIdQObject"/>
@@ -496,6 +495,7 @@
   <rejection class="QList::Node"/>
   <rejection class="QList::const_iterator"/>
   <rejection class="QList::iterator"/>
+  <rejection class="QLoggingCategory::AtomicBools"/>
   <rejection class="QMetaTypeId2"/>
   <rejection class="QMutableSetIterator"/>
   <rejection class="QSubString"/>
@@ -1911,6 +1911,14 @@
   <object-type name="QTimeZone"/>
   <object-type name="QUrlQuery"/>
   <object-type name="QTemporaryDir"/>
+
+  <object-type name="QLoggingCategory">
+    <modify-function signature="QLoggingCategory(const char*)" remove="all"/>
+    <modify-function signature="QLoggingCategory(const char*, QtMsgType)" remove="all"/>
+    <modify-function signature="operator()()" remove="all"/>
+    <modify-function signature="operator()()const" remove="all"/>
+  </object-type>
+
 
   <!-- <object-type name="QAccessibleActionInterface"/> -->
   <enum-type name="QJsonValue::Type"/>
