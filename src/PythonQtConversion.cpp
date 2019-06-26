@@ -1031,7 +1031,7 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
       type = QVariant::Invalid;
     } else if (PyDict_Check(val)) {
       type = QVariant::Map;
-    } else if (PyList_Check(val) || PyTuple_Check(val) || PySequence_Check(val)) {
+    } else if (PyList_Check(val) || PyTuple_Check(val) || (PySequence_Check(val) && strcmp(val->ob_type->tp_name, "EnumMeta") != 0)) {
       type = QVariant::List;
     } else {
       // transport the Python objects directly inside of QVariant:
