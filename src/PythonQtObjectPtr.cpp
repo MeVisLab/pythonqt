@@ -39,8 +39,8 @@
 */
 //----------------------------------------------------------------------------------
 
-#include <PythonQt.h>
   
+#include "PythonQt.h"
 QVariant PythonQtObjectPtr::evalScript(const QString& script, int start)
 {
   return PythonQt::self()->evalScript(_object, script, start);
