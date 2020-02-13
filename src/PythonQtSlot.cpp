@@ -374,6 +374,7 @@ PyObject *PythonQtSlotFunction_CallImpl(PythonQtClassInfo* classInfo, QObject* o
         kwSlotFound = true;
         break;
       }
+      slotInfo = slotInfo->nextInfo();
     }
     if (kwSlotFound) {
 #ifdef PYTHONQT_DEBUG
