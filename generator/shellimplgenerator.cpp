@@ -155,7 +155,7 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
           writeTypeInfo(s, fun->type(), typeOptions);
           s << " returnValue{};" << endl;
         }
-        s << "      void* args[" << QString::number(args.size() + 1) << "] = {NULL";
+        s << "      void* args[" << QString::number(args.size() + 1) << "] = {nullptr";
         for (int i = 0; i < args.size(); ++i) {
           s << ", (void*)&" << args.at(i)->indexedName();
         }
@@ -164,9 +164,9 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
         s << "      PyObject* result = PythonQtSignalTarget::call(obj, methodInfo, args, true);" << endl;
         if (hasReturnValue) {
           s << "      if (result) {" << endl;
-          s << "        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, NULL, &returnValue);" << endl;
+          s << "        args[0] = PythonQtConv::ConvertPythonToQt(methodInfo->parameters().at(0), result, false, nullptr, &returnValue);" << endl;
           s << "        if (args[0]!=&returnValue) {" << endl;
-          s << "          if (args[0]==NULL) {" << endl;
+          s << "          if (args[0]==nullptr) {" << endl;
           s << "            PythonQt::priv()->handleVirtualOverloadReturnError(\"" << fun->name() << "\", methodInfo, result);" << endl;
           s << "          } else {" << endl;
           s << "            returnValue = *((";
@@ -202,7 +202,7 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
           // return empty default object
           s << "return ";
           if (fun->type()->indirections()>0) {
-            s << "0;";
+            s << "nullptr;";
           } else {
             writeTypeInfo(s, fun->type(), typeOptions);
             s << "();";

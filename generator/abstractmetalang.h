@@ -674,6 +674,7 @@ public:
           m_has_nonprivateconstructor(false),
           m_functions_fixed(false),
           m_has_public_destructor(true),
+          m_has_virtual_destructor(false),
           m_force_shell_class(false),
           m_has_hash_function(false),
           m_has_equals_operator(false),
@@ -709,6 +710,8 @@ public:
     void setHasNonPrivateConstructor(bool on) { m_has_nonprivateconstructor = on; }
     bool hasPublicDestructor() const { return m_has_public_destructor; }
     void setHasPublicDestructor(bool on) { m_has_public_destructor = on; }
+    bool hasVirtualDestructor() const;
+    void setHasVirtualDestructor(bool on) { m_has_virtual_destructor = on; }
 
     QString destructorException() const { return m_destructor_exception; }
     void setDestructorException(const QString &exception) { m_destructor_exception = exception; }
@@ -748,6 +751,10 @@ public:
 
     AbstractMetaClass *baseClass() const { return m_base_class; }
     void setBaseClass(AbstractMetaClass *base_class) { m_base_class = base_class; }
+
+    // this lists _all_ super classes of this class
+    QList<AbstractMetaClass *> superClasses() const { return m_super_classes; }
+    void addSuperClass(AbstractMetaClass *super_class) { m_super_classes.append(super_class); }
 
     const AbstractMetaClass *enclosingClass() const { return m_enclosing_class; }
     void setEnclosingClass(AbstractMetaClass *cl) { m_enclosing_class = cl; }
@@ -849,16 +856,18 @@ private:
     uint m_has_nonprivateconstructor : 1;
     uint m_functions_fixed : 1;
     uint m_has_public_destructor : 1;
+    uint m_has_virtual_destructor : 1;
     uint m_force_shell_class : 1;
     uint m_has_hash_function : 1;
     uint m_has_equals_operator : 1;
     uint m_has_clone_operator :1;
     uint m_is_type_alias : 1;
-    uint m_reserved : 19;
+    uint m_reserved : 18;
     QString m_destructor_exception;
 
     const AbstractMetaClass *m_enclosing_class;
     AbstractMetaClass *m_base_class;
+    QList<AbstractMetaClass*> m_super_classes;
     const AbstractMetaClass *m_template_base_class;
     AbstractMetaFunctionList m_functions;
     AbstractMetaFieldList m_fields;

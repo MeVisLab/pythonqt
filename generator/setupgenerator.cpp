@@ -346,7 +346,7 @@ void SetupGenerator::generate()
           }
           shellCreator = ", " + setInstanceFunc + "<" + ShellGenerator::shellClassName(cls) + ">";
         } else {
-          shellCreator = ", NULL";
+          shellCreator = ", nullptr";
         }
         QString operatorCodes = getOperatorCodes(cls).join("|");
         if (operatorCodes.isEmpty()) {
@@ -431,7 +431,7 @@ QStringList SetupGenerator::writePolymorphicHandler(QTextStream &s, const QStrin
             s << "static void* polymorphichandler_" << handler
               << "(const void *ptr, const char **class_name)" << endl
               << "{" << endl
-              << "    Q_ASSERT(ptr != 0);" << endl
+              << "    Q_ASSERT(ptr != nullptr);" << endl
               << "    " << cls->qualifiedCppName() << " *object = ("
               << cls->qualifiedCppName() << " *)ptr;" << endl;
           }
@@ -456,7 +456,7 @@ QStringList SetupGenerator::writePolymorphicHandler(QTextStream &s, const QStrin
 
     // Close the function if it has been opened
     if (!first) {
-      s << "    return NULL;" << endl
+      s << "    return nullptr;" << endl
         << "}" << endl;
     }
   }
