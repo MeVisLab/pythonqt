@@ -906,6 +906,11 @@
 
   <value-type name="QFontInfo" expense-cost="1" expense-limit="1000">
     <modify-function signature="operator=(QFontInfo)" remove="all"/>
+
+   <inject-code class="pywrap-h">
+   QFontInfo* new_QFontInfo() { return new QFontInfo(QFont()); }
+   </inject-code>
+
   </value-type>
 
   <value-type name="QRadialGradient" polymorphic-id-expression="%1-&gt;type() == QGradient::RadialGradient">
@@ -1128,7 +1133,11 @@ PyObject* constScanLine(QImage* image, int line) {
 
     <modify-function signature="operator=(QFontMetrics)" remove="all"/>
   
-    <modify-function signature="QFontMetrics(QFontMetrics)" remove="all"/>
+   <inject-code class="pywrap-h">
+   QFontMetrics* new_QFontMetrics() { return new QFontMetrics(QFont()); }
+   </inject-code>
+
+    <!-- <modify-function signature="QFontMetrics(QFontMetrics)" remove="all"/> -->
     <modify-function signature="operator==(QFontMetrics)const" remove="all"/>
     <modify-function signature="operator!=(QFontMetrics)const" remove="all"/>
   </value-type>
