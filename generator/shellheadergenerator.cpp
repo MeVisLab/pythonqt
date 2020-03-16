@@ -150,24 +150,24 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
           s << ", ";
         s << args.at(i)->argumentName();
       }
-      s << "),_wrapper(NULL) {";
+      s << "),_wrapper(nullptr) {";
       writeInjectedCode(s, meta_class, TypeSystem::PyInheritShellConstructorCode, true);
       s << "};" << endl;
     }
     s << endl;
-    s << "   ~" << shellClassName(meta_class) << "();" << endl;
+    const AbstractMetaClass* c = meta_class;
+    s << "   ~" << shellClassName(meta_class) << "()" << (meta_class->hasVirtualDestructor() ? " override" : "") << ";" << endl;
     s << endl;
 
     foreach(AbstractMetaFunction* fun, virtualsForShell) {
-      s << "virtual ";
       writeFunctionSignature(s, fun, 0, QString(),
         Option(IncludeDefaultExpression | OriginalName | ShowStatic | UnderscoreSpaces));
-      s << ";" << endl;
+      s << " override;" << endl;
     }
     s << endl;
     if (meta_class->isQObject()) {
-      s << "  const QMetaObject* metaObject() const;" << endl;
-      s << "  int qt_metacall(QMetaObject::Call call, int id, void** args);" << endl;
+      s << "  const QMetaObject* metaObject() const override;" << endl;
+      s << "  int qt_metacall(QMetaObject::Call call, int id, void** args) override;" << endl;
     }
     writeInjectedCode(s, meta_class, TypeSystem::PyShellDeclaration);
     writeInjectedCode(s, meta_class, TypeSystem::PyInheritShellDeclaration, true);

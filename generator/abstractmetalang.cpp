@@ -1173,6 +1173,23 @@ QPropertySpec *AbstractMetaClass::propertySpecForReset(const QString &name) cons
     return 0;
 }
 
+bool AbstractMetaClass::hasVirtualDestructor() const
+{
+    if (m_has_virtual_destructor) {
+        return true;
+    }
+    else {
+        // check all super classes
+        for (int i = 0; i < m_super_classes.size(); ++i) {
+            AbstractMetaClass* super_class = m_super_classes.at(i);
+            if (super_class->hasVirtualDestructor()) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 
 
 static bool functions_contains(const AbstractMetaFunctionList &l, const AbstractMetaFunction *func)

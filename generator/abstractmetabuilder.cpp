@@ -1303,6 +1303,7 @@ void AbstractMetaBuilder::traverseFunctions(ScopeModelItem scope_item, AbstractM
                 if (!meta_function->isPublic()) {
                   meta_class->setHasPublicDestructor(false);
                 }
+                meta_class->setHasVirtualDestructor(meta_function->isVirtual());
             }
         }
     }
@@ -1407,8 +1408,11 @@ bool AbstractMetaBuilder::setupInheritance(AbstractMetaClass *meta_class)
         if (types->isClassRejected(base_classes.at(i)))
             continue;
 
+        AbstractMetaClass *base_class = m_meta_classes.findClass(base_classes.at(i));
+        if (base_class) {
+            meta_class->addSuperClass(base_class);
+        }
         if (i != primary) {
-            AbstractMetaClass *base_class = m_meta_classes.findClass(base_classes.at(i));
             if (base_class == 0) {
                 ReportHandler::warning(QString("class not found for setup inheritance '%1'").arg(base_classes.at(i)));
                 return false;
