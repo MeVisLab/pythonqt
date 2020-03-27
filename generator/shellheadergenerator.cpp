@@ -171,7 +171,7 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
     }
     writeInjectedCode(s, meta_class, TypeSystem::PyShellDeclaration);
     writeInjectedCode(s, meta_class, TypeSystem::PyInheritShellDeclaration, true);
-    s << "  PythonQtInstanceWrapper* _wrapper; " << endl;
+    s << "  PythonQtInstanceWrapper* _wrapper;" << endl;
 
     s << "};" << endl << endl;
   }
@@ -355,8 +355,7 @@ void ShellHeaderGenerator::write(QTextStream &s, const AbstractMetaClass *meta_c
     }
   }
   if (meta_class->hasPublicDestructor() && !meta_class->isNamespace()) {
-    s << "void delete_" << meta_class->name() << "(" << meta_class->qualifiedCppName() << "* obj) { delete obj; } ";
-    s << endl;
+    s << "void delete_" << meta_class->name() << "(" << meta_class->qualifiedCppName() << "* obj) { delete obj; }" << endl;
   }
 
   AbstractMetaFunctionList functions = getFunctionsToWrap(meta_class);
