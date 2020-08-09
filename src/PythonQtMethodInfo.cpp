@@ -432,7 +432,7 @@ const PythonQtMethodInfo::ParameterInfo& PythonQtMethodInfo::getParameterInfoFor
 void PythonQtSlotInfo::deleteOverloadsAndThis()
 {
   PythonQtSlotInfo* cur = this;
-  while(cur->nextInfo()) {
+  while(cur) {
     PythonQtSlotInfo* next = cur->nextInfo();
     delete cur;
     cur = next;
