@@ -1924,6 +1924,32 @@ void PythonQtPrivate::registerCPPClass(const char* typeName, const char* parentT
   if (shell) {
     info->setShellSetInstanceWrapperCB(shell);
   }
+  if (info->typeSlots() & PythonQt::Type_EnterExit) {
+    // context handlers must be handled specially, because optimized accesses
+    // cause that the __enter__ and __exit__ methods will not be found by
+    // conventional means:
+    PyObject* classObj = (PyObject*)info->pythonQtClassWrapper();
+    PyTypeObject* typeObj = (PyTypeObject*)classObj;
+    // __enter__ and _exit__ must be inserted directly into the tp_dict,
+    // otherwise they are not found by "with":
+    PyObject* tp_dict = typeObj->tp_dict;
+    PyObject* enterMethod = PyObject_GetAttrString(classObj, "__enter__");
+    if (enterMethod) {
+      PyDict_SetItemString(tp_dict, "__enter__", enterMethod);
+      Py_DECREF(enterMethod);
+    }
+    PyErr_Clear();
+    PyObject* exitMethod = PyObject_GetAttrString(classObj, "__exit__");
+    if (exitMethod) {
+      PyDict_SetItemString(tp_dict, "__exit__", exitMethod);
+      Py_DECREF(exitMethod);
+    }
+    PyErr_Clear();
+    // invalidate attribute cache for this type:
+    // (as the search for the class methods otherwise cached methods as "not existing", and
+    // we don't want to rely on the wrong empty entries being evicted from the cache by chance):
+    typeObj->tp_flags &= ~Py_TPFLAGS_VALID_VERSION_TAG;
+  }
 }
 
 PyObject* PythonQtPrivate::packageByName(const char* name)

@@ -208,6 +208,8 @@ public:
     Type_MappingSetItem = 1 << 21,
     Type_MappingGetItem = 1 << 22,
 
+    Type_EnterExit = 1 << 23,
+
     Type_Invert = 1 << 29,
     Type_RichCompare = 1 << 30,
     Type_NonZero     = 1 << 31,

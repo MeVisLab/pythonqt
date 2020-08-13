@@ -790,6 +790,20 @@ meth_richcompare(PythonQtSlotFunctionObject *a, PythonQtSlotFunctionObject *b, i
     Py_RETURN_FALSE;
 }
 
+static PyObject*
+meth_descr_get(PyObject *descr, PyObject *obj, PyObject* type)
+{
+  if (PythonQtSlotFunction_Check(descr)) {
+    PythonQtSlotFunctionObject *slotObj = (PythonQtSlotFunctionObject*)descr;
+    return PythonQtSlotFunction_New(slotObj->m_ml, obj, NULL);
+  }
+  else {
+    // wrong type
+    Py_IncRef(descr);
+    return descr;
+  }
+}
+
 PyTypeObject PythonQtSlotFunction_Type = {
     PyVarObject_HEAD_INIT(&PyType_Type, 0)
     "builtin_qt_slot",
@@ -827,6 +841,7 @@ PyTypeObject PythonQtSlotFunction_Type = {
     meth_getsets,       /* tp_getset */
     0,          /* tp_base */
     0,          /* tp_dict */
+    meth_descr_get,     /* tp_descr_get */
 };
 
 /* Clear out the free list */
