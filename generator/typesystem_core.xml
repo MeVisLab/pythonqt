@@ -467,7 +467,6 @@
   <rejection class="QObjectUserData"/>
   <rejection class="QPluginLoader"/>
   <rejection class="QPointer"/>
-  <rejection class="QReadLocker"/>
   <rejection class="QSet"/>
   <rejection class="QSetIterator"/>
   <rejection class="QSharedData"/>
@@ -483,7 +482,6 @@
   <rejection class="QVectorData"/>
   <rejection class="QVectorIterator"/>
   <rejection class="QVectorTypedData"/>
-  <rejection class="QWriteLocker"/>
   <rejection class="QtPrivate"/>
   <rejection class="qGreater"/>
   <rejection class="qLess"/>
@@ -1271,9 +1269,27 @@
   <object-type name="QLibraryInfo"/>
   <object-type name="QMutex"/>
   <value-type name="QMutexLocker">
+    <!-- special handling for context handlers -->
+    <inject-code class="pywrap-operators">PythonQt::Type_EnterExit</inject-code>
     <inject-code class="pywrap-h">
     void __enter__(QMutexLocker* self) {}
-    void __exit__(QMutexLocker* self) { self->unlock(); }
+    void __exit__(QMutexLocker* self, PyObject* type, PyObject* value, PyObject* traceback) { self->unlock(); }
+    </inject-code>
+  </value-type>
+  <value-type name="QReadLocker">
+    <!-- special handling for context handlers -->
+    <inject-code class="pywrap-operators">PythonQt::Type_EnterExit</inject-code>
+    <inject-code class="pywrap-h">
+    void __enter__(QReadLocker* self) {}
+    void __exit__(QReadLocker* self, PyObject* type, PyObject* value, PyObject* traceback) { self->unlock(); }
+    </inject-code>
+  </value-type>
+  <value-type name="QWriteLocker">
+    <!-- special handling for context handlers -->
+    <inject-code class="pywrap-operators">PythonQt::Type_EnterExit</inject-code>
+    <inject-code class="pywrap-h">
+    void __enter__(QWriteLocker* self) {}
+    void __exit__(QWriteLocker* self, PyObject* type, PyObject* value, PyObject* traceback) { self->unlock(); }
     </inject-code>
   </value-type>
   <object-type name="QSemaphore"/>
