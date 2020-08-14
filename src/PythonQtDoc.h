@@ -197,12 +197,12 @@ Qt framework</a>.
   <tr><td>long</td><td>integer</td></tr>
   <tr><td>ulong,longlong,ulonglong</td><td>long</td></tr>
   <tr><td>QString</td><td>unicode string</td></tr>
-  <tr><td>QByteArray</td><td>QByteArray wrapper</td></tr>
+  <tr><td>QByteArray</td><td>QByteArray wrapper <sup>\ref qbytearray-bytes "(1)"</sup></td></tr>
   <tr><td>char*</td><td>str</td></tr>
   <tr><td>QStringList</td><td>tuple of unicode strings</td></tr>
   <tr><td>QVariantList</td><td>tuple of objects</td></tr>
   <tr><td>QVariantMap</td><td>dict of objects</td></tr>
-  <tr><td>QVariant</td><td>depends on type, see below</td></tr>
+  <tr><td>QVariant</td><td>depends on type <sup>\ref qvariant "(2)"</sup></td></tr>
   <tr><td>QSize, QRect and all other standard Qt QVariants</td><td>variant wrapper that supports complete API of the respective Qt classes</td></tr>
   <tr><td>OwnRegisteredMetaType</td><td>C++ wrapper, optionally with additional information/wrapping provided by registerCPPClass()</td></tr>
   <tr><td>QList<AnyObject*></td><td>converts to a list of CPP wrappers</td></tr>
@@ -210,14 +210,17 @@ Qt framework</a>.
   <tr><td>EnumType</td><td>Enum wrapper derived from python integer</td></tr>
   <tr><td>QObject (and derived classes)</td><td>QObject wrapper</td></tr>
   <tr><td>C++ object</td><td>CPP wrapper, either wrapped via PythonQtCppWrapperFactory or just decorated with decorators</td></tr>
-  <tr><td>PyObject</td><td>PyObject</td></tr>
+  <tr><td>PyObject</td><td>PyObject <sup>\ref pyobject "(3)"</sup></td></tr>
   </table>
 
-  PyObject is passed as direct pointer, which allows to pass/return any Python object directly to/from
-  a Qt slot that uses PyObject* as its argument/return value.
-  QVariants are mapped recursively as given above, e.g. a dictionary can
+  -# \anchor qbytearray-bytes The Python 'bytes' type will automatically be converted to QByteArray where required. For converting a QByteArray to 'bytes' use the .data() method.
+  -# \anchor qvariant QVariants are mapped recursively as given above, e.g. a dictionary can
   contain lists of dictionaries of doubles.
-  All Qt QVariant types are implemented, PythonQt supports the complete Qt API for these object.
+  -# \anchor pyobject PyObject is passed as direct pointer, which allows to pass/return any Python object directly to/from
+  a Qt slot that uses PyObject* as its argument/return value.  
+  
+  All Qt QVariant types are implemented, PythonQt supports the complete Qt API for these objects.
+
 
  \section QObject QObject Wrapping
 
