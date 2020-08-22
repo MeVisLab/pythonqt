@@ -687,7 +687,7 @@ static int PythonQtInstanceWrapper_setattro(PyObject *obj,PyObject *name,PyObjec
     // handle dynamic properties
     if (wrapper->_obj) {
       QVariant prop = wrapper->_obj->property(attributeName);
-      if (prop.isValid()) {
+      if (prop.isValid() || wrapper->classInfo()->isQObject()) {
         QVariant v = PythonQtConv::PyObjToQVariant(value);
         if (v.isValid()) {
           wrapper->_obj->setProperty(attributeName, v);
