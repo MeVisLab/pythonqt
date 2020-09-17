@@ -57,6 +57,3 @@ SOURCES +=                    \
   $$PWD/PythonQtBoolResult.cpp      \
   $$PWD/gui/PythonQtScriptingConsole.cpp \
   $$PWD/PythonQtThreadSupport.cpp \
-
-
-
