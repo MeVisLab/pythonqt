@@ -4,6 +4,7 @@ INCLUDEPATH += $$PWD
 
 # This was needed to work around "number of sections exceeded object file format limit" linker error
 win32-msvc*: QMAKE_CXXFLAGS += /bigobj
+win32-g++: QMAKE_CXXFLAGS += -Wa,-mbig-obj
 
 HEADERS +=                    \
   $$PWD/PythonQt.h                  \
