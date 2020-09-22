@@ -554,7 +554,8 @@ meth_get__doc__(PythonQtSlotFunctionObject * m, void * /*closure*/)
     pyReturnType = "float";
   } else {
     PythonQtClassInfo* returnTypeClassInfo = PythonQt::priv()->getClassInfo(returnType);
-    if (returnTypeClassInfo) {
+    // a class wrapper does not necessarily need to exist
+    if (returnTypeClassInfo && returnTypeClassInfo->pythonQtClassWrapper()) {
       PyObject* s = PyObject_GetAttrString(returnTypeClassInfo->pythonQtClassWrapper(), "__module__");
       if (s) {
         pyReturnType = QByteArray(PyString_AsString(s)) + "." + returnType;
