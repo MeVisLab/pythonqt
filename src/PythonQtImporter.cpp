@@ -289,7 +289,9 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
       // The package attribute is needed to resolve the package name if it is referenced as '.'. For example,
       // when importing the encodings package, there is an import statement 'from . import aliases'. This import
       // would fail when reloading the encodings package with importlib.
-      err = PyDict_SetItemString(dict, "__package__", PyUnicode_FromString(fullname));
+      PyObject* fullnameObj = PyUnicode_FromString(fullname);
+      err = PyDict_SetItemString(dict, "__package__", fullnameObj);
+      Py_XDECREF(fullnameObj);
       if (err != 0) {
         Py_DECREF(code);
         Py_DECREF(mod);
@@ -297,6 +299,7 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
       }
 #endif
     }
+    Py_DECREF(mod);
 
 #ifdef PY3K
     PyObject* fullnameObj = PyUnicode_FromString(fullname);
@@ -912,22 +915,32 @@ void PythonQtImport::init()
 
   PythonQtImportError = PyErr_NewException(const_cast<char*>("PythonQtImport.PythonQtImportError"),
               PyExc_ImportError, NULL);
-  if (PythonQtImportError == NULL)
+  if (PythonQtImportError == NULL) {
+    Py_XDECREF(mod);
     return;
+  }
 
   Py_INCREF(PythonQtImportError);
   if (PyModule_AddObject(mod, "PythonQtImportError",
-             PythonQtImportError) < 0)
+                 PythonQtImportError) < 0) {
+    Py_DECREF(PythonQtImportError);
+    Py_DECREF(mod);
     return;
+  }
 
   Py_INCREF(&PythonQtImporter_Type);
   if (PyModule_AddObject(mod, "PythonQtImporter",
-             (PyObject *)&PythonQtImporter_Type) < 0)
+                 (PyObject *)&PythonQtImporter_Type) < 0) {
+    Py_DECREF(&PythonQtImporter_Type);
+    Py_DECREF(mod);
     return;
+  }
 
   // set our importer into the path_hooks to handle all path on sys.path
   PyObject* classobj = PyDict_GetItemString(PyModule_GetDict(mod), "PythonQtImporter");
   PyObject* path_hooks = PySys_GetObject(const_cast<char*>("path_hooks"));
   // insert our importer before all other loaders
   PyList_Insert(path_hooks, 0, classobj);
+
+  Py_DECREF(mod);
 }
