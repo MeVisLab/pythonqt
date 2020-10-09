@@ -224,9 +224,9 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
   PyObject *code = NULL, *mod = NULL, *dict = NULL;
   char *fullname;
 
-  if (!PyArg_ParseTuple(args, "s:PythonQtImporter.load_module",
-            &fullname))
+  if (!PyArg_ParseTuple(args, "s:PythonQtImporter.load_module", &fullname)) {
     return NULL;
+  }
 
   PythonQtImport::ModuleInfo info = PythonQtImport::getModuleInfo(self, fullname);
   if (info.type == PythonQtImport::MI_NOT_FOUND) {
@@ -250,7 +250,6 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
 
     if (PyDict_SetItemString(dict, "__loader__", (PyObject *)self) != 0) {
       Py_DECREF(code);
-      Py_DECREF(mod);
       return NULL;
     }
 
@@ -265,7 +264,6 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
                                      QStringToPythonConstCharPointer(subname));
       if (fullpath == NULL) {
         Py_DECREF(code);
-        Py_DECREF(mod);
         return NULL;
       }
 
@@ -273,14 +271,12 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
       Py_DECREF(fullpath);
       if (pkgpath == NULL) {
         Py_DECREF(code);
-        Py_DECREF(mod);
         return NULL;
       }
       err = PyDict_SetItemString(dict, "__path__", pkgpath);
       Py_DECREF(pkgpath);
       if (err != 0) {
         Py_DECREF(code);
-        Py_DECREF(mod);
         return NULL;
       }
 
@@ -294,12 +290,10 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
       Py_XDECREF(fullnameObj);
       if (err != 0) {
         Py_DECREF(code);
-        Py_DECREF(mod);
         return NULL;
       }
 #endif
     }
-    Py_DECREF(mod);
 
 #ifdef PY3K
     PyObject* fullnameObj = PyUnicode_FromString(fullname);
