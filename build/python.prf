@@ -2,10 +2,19 @@
 
 
 # Change this variable to your python version (2.6, 2.7, 3.3, ...)
-PYTHON_VERSION=$$(PYTHON_VERSION)
+isEmpty( PYTHON_VERSION ) {
+  PYTHON_VERSION=$$(PYTHON_VERSION)
+}
 isEmpty( PYTHON_VERSION ) {
   win32:PYTHON_VERSION=27
   unix:PYTHON_VERSION=2.7
+}
+
+isEmpty( PYTHON_DIR ) {
+  PYTHON_DIR=$$(PYTHON_DIR)
+}
+!isEmpty( PYTHON_DIR ) {
+  PYTHON_DIR=$${PYTHON_DIR}/
 }
 
 message(Using Python version $${PYTHON_VERSION})
@@ -42,9 +51,16 @@ macx {
   # on linux, python-config is used to autodetect Python.
   # make sure that you have installed a matching python-dev package.
   
-  system(python$${PYTHON_VERSION}-config --embed --libs) {
-    unix:LIBS += $$system(python$${PYTHON_VERSION}-config --embed --libs)
-  } else: unix:LIBS += $$system(python$${PYTHON_VERSION}-config --libs)  
-  unix:QMAKE_CXXFLAGS += $$system(python$${PYTHON_VERSION}-config --includes)
-  unix:QMAKE_LFLAGS += $$system(python$${PYTHON_VERSION}-config --ldflags)
+  PYTHON_CONFIG = $${PYTHON_DIR}/bin/python$${PYTHON_VERSION}-config
+  system($${PYTHON_CONFIG} --embed --libs) {
+    unix:LIBS += $$system($${PYTHON_CONFIG} --embed --libs)
+  } else: unix:LIBS += $$system($${PYTHON_CONFIG} --libs)  
+  unix:QMAKE_CXXFLAGS += $$system($${PYTHON_CONFIG} --includes)
+  PYTHON_LFLAGS = $$system($${PYTHON_CONFIG} --ldflags)
+  unix:QMAKE_LFLAGS += $${PYTHON_LFLAGS}
+  # add rpath
+  PYTHON_LIBDIR = $$find(PYTHON_LFLAGS,-L.*)
+  RPATH = -Wl,-rpath,
+  PYTHON_RPATH = $$replace(PYTHON_LIBDIR,-L,$${RPATH})
+  unix:QMAKE_LFLAGS += $${PYTHON_RPATH}
 }
