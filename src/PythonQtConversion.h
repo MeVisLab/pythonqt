@@ -158,7 +158,7 @@ public:
   static PyObject* QVariantListToPyObject(const QVariantList& l);
   
   //! get human readable string from CPP object (when the metatype is known)
-  static QString CPPObjectToString(int type, const void* data);
+  static QString CPPObjectToString(int type, const void* data, bool &ok);
     
   //! register a converter callback from python to cpp for given metatype
   static void registerPythonToMetaTypeConverter(int metaTypeId, PythonQtConvertPythonToMetaTypeCB* cb) { _pythonToMetaTypeConverters.insert(metaTypeId, cb); }

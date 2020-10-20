@@ -732,13 +732,14 @@ static int PythonQtInstanceWrapper_setattro(PyObject *obj,PyObject *name,PyObjec
   return -1;
 }
 
-static QString getStringFromObject(PythonQtInstanceWrapper* wrapper) {
+static QString getStringFromObject(PythonQtInstanceWrapper* wrapper, bool &ok) {
   QString result;
+  ok = false;
   if (wrapper->_wrappedPtr) {
     // first try some manually string conversions for some variants
     int metaid = wrapper->classInfo()->metaTypeId();
-    result = PythonQtConv::CPPObjectToString(metaid, wrapper->_wrappedPtr);
-    if (!result.isEmpty()) {
+    result = PythonQtConv::CPPObjectToString(metaid, wrapper->_wrappedPtr, ok);
+    if (ok) {
       return result;
     }
   }
@@ -748,7 +749,7 @@ static QString getStringFromObject(PythonQtInstanceWrapper* wrapper) {
     if (info._type == PythonQtMemberInfo::Slot) {
       PyObject* resultObj = PythonQtSlotFunction_CallImpl(wrapper->classInfo(), wrapper->_obj, info._slot, NULL, NULL, wrapper->_wrappedPtr);
       if (resultObj) {
-        result = PythonQtConv::PyObjGetString(resultObj);
+        result = PythonQtConv::PyObjGetString(resultObj, false, ok);
         Py_DECREF(resultObj);
       }
     }
@@ -786,8 +787,9 @@ static PyObject * PythonQtInstanceWrapper_str(PyObject * obj)
 
   const char* typeName = obj->ob_type->tp_name;
   QObject *qobj = wrapper->_obj;
-  QString str = getStringFromObject(wrapper);
-  if (!str.isEmpty()) {
+  bool ok = false;
+  QString str = getStringFromObject(wrapper, ok);
+  if (ok) {
     return PyString_FromFormat("%s", QStringToPythonConstCharPointer(str));
   }
   if (wrapper->_wrappedPtr) {
@@ -807,8 +809,9 @@ static PyObject * PythonQtInstanceWrapper_repr(PyObject * obj)
   const char* typeName = obj->ob_type->tp_name;
 
   QObject *qobj = wrapper->_obj;
-  QString str = getStringFromObject(wrapper);
-  if (!str.isEmpty()) {
+  bool ok = false;
+  QString str = getStringFromObject(wrapper, ok);
+  if (ok) {
     if (str.startsWith(typeName)) {
       return PyString_FromFormat("%s", QStringToPythonConstCharPointer(str));
     } else {

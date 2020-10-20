@@ -1385,8 +1385,9 @@ bool PythonQtConv::ConvertPythonListToQListOfPointerType(PyObject* obj, QList<vo
 }
 
 
-QString PythonQtConv::CPPObjectToString(int type, const void* data) {
+QString PythonQtConv::CPPObjectToString(int type, const void* data, bool &ok) {
   QString r;
+  ok = true;
   switch (type) {
     case QVariant::Size: {
       const QSize* s = static_cast<const QSize*>(data);
@@ -1456,11 +1457,15 @@ QString PythonQtConv::CPPObjectToString(int type, const void* data) {
       //TODO: add more printing for other variant types
     default:
       // this creates a copy, but that should not be expensive for typical simple variants
-      // (but we do not want to do this for our won user types!
+      // (but we do not want to do this for our own user types!
       if (type>0 && type < (int)QVariant::UserType) {
         QVariant v(type, data);
+        ok = v.canConvert<QString>();
         r = v.toString();
+      } else {
+        ok = false;
       }
+      break;
   }
   return r;
 }
