@@ -207,6 +207,10 @@ bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObj
         PyErr_SetString(PyExc_RuntimeError, "Unknown C++ exception.");
 #endif
       }
+      // check if the slot raised an exception, if so return a null PyObject!
+      if (PyErr_Occurred()) {
+        hadException = true;
+      }
     }
   
     if (profilingCB) {
