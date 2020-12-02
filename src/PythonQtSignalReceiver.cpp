@@ -262,9 +262,9 @@ int PythonQtSignalReceiver::qt_metacall(QMetaObject::Call c, int id, void **argu
   bool shouldDelete = false;
   for(const PythonQtSignalTarget& t : _targets) {
     if (t.slotId() == id) {
+      const int sigId = t.signalId();
       t.call(arguments);
       // if the signal is the last destroyed signal, we delete ourselves
-      int sigId = t.signalId();
       if ((sigId == _destroyedSignal1Id) || (sigId == _destroyedSignal2Id)) {
         _destroyedSignalCount--;
         if (_destroyedSignalCount == 0) {
