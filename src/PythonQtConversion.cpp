@@ -947,7 +947,8 @@ double PythonQtConv::PyObjGetDouble(PyObject* val, bool strict, bool &ok) {
 template <typename Map> 
 void PythonQtConv::pythonToMapVariant(PyObject* val, QVariant& result)
 {
-  if (PyMapping_Check(val)) {
+  // check if val is not a string, otherwise AttributeError("'str' object has no attribute 'items'") is raised which is misleading
+  if (PyMapping_Check(val) && !PyString_Check(val)) {
     Map map;
     PyObject* items = PyMapping_Items(val);
     if (items) {
@@ -998,8 +999,11 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
     } else if (PyLong_Check(val)) {
       // return int if the value fits into that range,
       // otherwise it would not be possible to get an int from Python 3
-      qint64 d = PyLong_AsLongLong(val);
-      if (d > std::numeric_limits<int>::max() ||
+      int overflow = 0;
+      qint64 d = PyLong_AsLongLongAndOverflow(val, &overflow);
+      if (overflow != 0) {
+        type = QVariant::ByteArray; // if it's too long for long long return byte array
+      } else if (d > std::numeric_limits<int>::max() ||
           d < std::numeric_limits<int>::min()) {
         type = QVariant::LongLong;
       } else {
