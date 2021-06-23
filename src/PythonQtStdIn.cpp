@@ -62,9 +62,18 @@ static PyObject *PythonQtStdInRedirect_readline(PyObject * self, PyObject * args
   return Py_BuildValue("s", QStringToPythonConstCharPointer(string));
 }
 
+static PyObject *PythonQtStdInRedirect_isatty(PyObject * /*self*/, PyObject * /*args*/)
+{
+  Py_INCREF(Py_False);
+  return Py_False;
+}
+
 static PyMethodDef PythonQtStdInRedirect_methods[] = {
   {"readline", (PyCFunction)PythonQtStdInRedirect_readline, METH_VARARGS,
    "read input line"},
+  {"isatty", (PyCFunction)PythonQtStdInRedirect_isatty,   METH_NOARGS,
+   "return False since this object is not a tty-like device. Needed for logging framework"
+  },
   {NULL,    NULL, 0 , NULL} /* sentinel */
 };
 
