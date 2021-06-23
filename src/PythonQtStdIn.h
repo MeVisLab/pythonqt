@@ -58,6 +58,7 @@ typedef struct {
   PyObject_HEAD
   PythonQtInputChangedCB* _cb;
   void * _callData;
+  bool _isatty;
 } PythonQtStdInRedirect;
 
 #endif
