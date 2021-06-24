@@ -88,7 +88,7 @@ struct PythonQtPropertyData
   bool final;
 };
 
-typedef struct {
+struct PythonQtProperty {
   PyObject_HEAD
   PythonQtPropertyData* data;
-} PythonQtProperty;
+};
