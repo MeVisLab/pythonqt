@@ -99,6 +99,10 @@ PythonQtObjectPtr::PythonQtObjectPtr(PythonQtSafeObjectPtr &&p) :_object(p.takeO
 
 PythonQtObjectPtr::~PythonQtObjectPtr()
 {
+  if (!PythonQt::self()) {
+    qWarning("Deleting PythonQtObjectPtr(%p) without PythonQt::self", this);
+    return;
+  }
   if (_object) Py_DECREF(_object);
 }
 
@@ -165,6 +169,10 @@ PythonQtSafeObjectPtr::PythonQtSafeObjectPtr(PyObject* o)
 
 PythonQtSafeObjectPtr::~PythonQtSafeObjectPtr()
 {
+  if (!PythonQt::self()) {
+    qWarning("Deleting PythonQtSafeObjectPtr(%p) without PythonQt::self", this);
+    return;
+  }
   if (_object) {
     PYTHONQT_GIL_SCOPE
     Py_DECREF(_object);

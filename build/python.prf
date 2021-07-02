@@ -13,11 +13,12 @@ isEmpty( PYTHON_VERSION ) {
 isEmpty( PYTHON_DIR ) {
   PYTHON_DIR=$$(PYTHON_DIR)
 }
-!isEmpty( PYTHON_DIR ) {
-  PYTHON_DIR=$${PYTHON_DIR}/
-}
 
-message(Using Python version $${PYTHON_VERSION})
+isEmpty( PYTHON_DIR ) {
+  message(Using Python version $${PYTHON_VERSION})
+} else {
+  message(Using Python version $${PYTHON_VERSION} in $${PYTHON_DIR})
+}
 
 macx {
   # for macx you need to have the Python development kit installed as framework
@@ -51,7 +52,11 @@ macx {
   # on linux, python-config is used to autodetect Python.
   # make sure that you have installed a matching python-dev package.
   
-  PYTHON_CONFIG = $${PYTHON_DIR}/bin/python$${PYTHON_VERSION}-config
+  !isEmpty( PYTHON_DIR ) {
+    PYTHON_CONFIG = $${PYTHON_DIR}/bin/python$${PYTHON_VERSION}-config
+  } else {
+    PYTHON_CONFIG = python$${PYTHON_VERSION}-config
+  }
   system($${PYTHON_CONFIG} --embed --libs) {
     unix:LIBS += $$system($${PYTHON_CONFIG} --embed --libs)
   } else: unix:LIBS += $$system($${PYTHON_CONFIG} --libs)  
