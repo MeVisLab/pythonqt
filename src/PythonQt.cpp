@@ -1713,6 +1713,20 @@ void PythonQt::overwriteSysPath(const QStringList& paths)
 void PythonQt::setModuleImportPath(PyObject* module, const QStringList& paths)
 {
   PyModule_AddObject_DECREF(module, "__path__", PythonQtConv::QStringListToPyList(paths));
+#if PY_MAJOR_VERSION >= 3 || (PY_MAJOR_VERSION == 3 && PY_MINOR_VERSION >= 4)
+  // Since Python 3.4 a module has a __spec__ member of type ModuleSpec which
+  // mirrors some module-specific attributes, see
+  // https://docs.python.org/3/library/importlib.html#importlib.machinery.ModuleSpec .
+  //
+  // Python 3.9 prints an import warning "__package__ != __spec__.parent" on relative imports
+  // if we don't set the submodule_search_locations on __spec__ (this indirectly changes
+  // the value of parent)
+  PyObject* spec = PyObject_GetAttrString(module, "__spec__");
+  if (spec) {
+    PythonQt::self()->addVariable(spec, "submodule_search_locations", paths);
+    Py_DECREF(spec);
+  }
+#endif
 }
 
 void PythonQt::stdOutRedirectCB(const QString& str)
