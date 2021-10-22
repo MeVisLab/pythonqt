@@ -71,9 +71,8 @@ void PythonQt_init_QtCoreBuiltin(PyObject*);
 static inline int PyModule_AddObject_DECREF(PyObject *module, const char *name, PyObject *value)
 {
   int ret = PyModule_AddObject(module, name, value);
-  if (ret < 0) {
+  if (ret < 0)
     Py_XDECREF(value);
-  }
   return ret;
 }
 
@@ -2147,9 +2146,8 @@ const QMetaObject* PythonQtPrivate::buildDynamicMetaObject(PythonQtClassWrapper*
   PyObject* value = NULL;
   PyObject* key = NULL;
   static PyObject* qtSlots = NULL;
-  if (!qtSlots) {
-    qtSlots = PyString_FromString("_qtSlots");
-  }
+  if (!qtSlots)
+      qtSlots = PyString_FromString("_qtSlots");
 
   bool needsMetaObject = false;
   // Iterate over all members and check if they affect the QMetaObject:
