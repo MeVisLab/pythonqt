@@ -813,7 +813,7 @@ private:
   PythonQtInstanceWrapper* findWrapperAndRemoveUnused(void* obj);
 
   //! stores pointer to PyObject mapping of wrapped QObjects AND C++ objects
-  QHash<void* , PythonQtInstanceWrapper *> _wrappedObjects; // FIXME: remove unused entries in cleanup()
+  QHash<void* , PythonQtInstanceWrapper *> _wrappedObjects;
 
   //! stores the meta info of known Qt classes
   QHash<QByteArray, PythonQtClassInfo *>   _knownClassInfos;
