@@ -414,9 +414,9 @@ void PythonQt::setRedirectStdInCallback(PythonQtInputChangedCB* callback, void *
 
   // Backup original 'sys.stdin' if not yet done
   if( !PyObject_HasAttrString(sys.object(), "pythonqt_original_stdin") ) {
-    PyObject *_stdin = PyObject_GetAttrString(sys.object(), "stdin");
-    PyObject_SetAttrString(sys.object(), "pythonqt_original_stdin", _stdin);
-    Py_XDECREF(_stdin);
+    PyObject *stdin = PyObject_GetAttrString(sys.object(), "stdin");
+    PyObject_SetAttrString(sys.object(), "pythonqt_original_stdin", stdin);
+    Py_XDECREF(stdin);
   }
 
   in = PythonQtStdInRedirectType.tp_new(&PythonQtStdInRedirectType, NULL, NULL);
@@ -435,18 +435,18 @@ void PythonQt::setRedirectStdInCallbackEnabled(bool enabled)
   PythonQtObjectPtr sys;
   sys.setNewRef(PyImport_ImportModule("sys"));
 
-  PythonQtObjectPtr _stdin;
+  PythonQtObjectPtr stdin;
   if (enabled) {
     if( PyObject_HasAttrString(sys.object(), "pythonqt_stdin") ) {
-      _stdin.setNewRef(PyObject_GetAttrString(sys.object(), "pythonqt_stdin"));
+      stdin.setNewRef(PyObject_GetAttrString(sys.object(), "pythonqt_stdin"));
     }
   } else {
     if( PyObject_HasAttrString(sys.object(), "pythonqt_original_stdin") ) {
-      _stdin.setNewRef(PyObject_GetAttrString(sys.object(), "pythonqt_original_stdin"));
+      stdin.setNewRef(PyObject_GetAttrString(sys.object(), "pythonqt_original_stdin"));
     }
   }
-  if (_stdin) {
-    PyObject_SetAttrString(sys.object(), "stdin", _stdin);
+  if (stdin) {
+    PyObject_SetAttrString(sys.object(), "stdin", stdin);
   }
 }
 
