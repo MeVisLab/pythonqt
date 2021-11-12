@@ -249,4 +249,16 @@ private:
 };
 
 
+//! Internal class for delegation of slot execution to Qt main UI thread
+class PYTHONQT_EXPORT PythonQtMetaCallDelegate : public QObject
+{
+	Q_OBJECT
+public:
+	using QObject::QObject;
+
+public slots:
+	void qt_metacall(QObject* obj, void* slot, void* args);
+};
+
+
 #endif

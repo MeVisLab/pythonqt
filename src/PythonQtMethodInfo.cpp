@@ -41,7 +41,11 @@
 
 #include "PythonQtMethodInfo.h"
 #include "PythonQtClassInfo.h"
+#include <QThread>
+#include <QSemaphore>
+#include <QCoreApplication>
 #include <iostream>
+#include <private/qobject_p.h>
 
 QHash<QByteArray, PythonQtMethodInfo*> PythonQtMethodInfo::_cachedSignatures;
 QHash<int, PythonQtMethodInfo::ParameterInfo> PythonQtMethodInfo::_cachedParameterInfos;
@@ -640,15 +644,6 @@ QByteArray PythonQtSlotInfo::getImplementingClassName() const
   }
 }
 
-void PythonQtSlotInfo::invokeQtMethod(QObject* obj, PythonQtSlotInfo* slot, void** args)
-{
-  if (slot->shouldAllowThreads() && _globalShouldAllowThreads) {
-    PYTHONQT_ALLOW_THREADS_SCOPE
-    obj->qt_metacall(QMetaObject::InvokeMetaMethod, slot->slotIndex(), args);
-  } else {
-    obj->qt_metacall(QMetaObject::InvokeMetaMethod, slot->slotIndex(), args);
-  }
-}
 
 void PythonQtSlotInfo::setGlobalShouldAllowThreads(bool flag)
 {
@@ -658,4 +653,94 @@ void PythonQtSlotInfo::setGlobalShouldAllowThreads(bool flag)
 bool PythonQtSlotInfo::getGlobalShouldAllowThreads()
 {
   return _globalShouldAllowThreads;
+}
+
+
+//! The delegate instance is statically constructed in the UI main thread.
+static PythonQtMetaCallDelegate MetaCallDelegate;
+
+
+/**
+ * Posts metacall event to ensure that the slot is called in the obj
+ * thread.
+ * The function implements a blocking queued connection using a semaphore.
+ * The implementation has been taken from the QMetaMethod::invoke function
+ * implementation.
+ * This allows a Python interpreter running in a Qt worker thread to call 
+ * functions of Qt widgets in the main UI thread.
+ * 
+ * \note This implementation uses Qt 5.15 specific private API and may not
+ * compile with other Qt versions. The implementation of QMetaCallEvent
+ * changed from Qt 5.12 to Qt 5.15.
+ */
+static void postMetacallEvent(QObject* obj, PythonQtSlotInfo* slot, void** args)
+{
+  auto MetaMethod = slot->metaMethod();
+  auto idx_offset = obj->metaObject()->methodOffset();
+  auto idx_relative = MetaMethod->methodIndex() - idx_offset;
+  auto callFunction = obj->metaObject()->d.static_metacall;
+  QSemaphore semaphore;
+  auto Event = new QMetaCallEvent(idx_offset, idx_relative, callFunction,
+	  nullptr, -1, args, &semaphore);
+  QCoreApplication::postEvent(obj, Event);
+  semaphore.acquire();
+}
+
+
+/**
+ * Delegates the meta call to the PythonQtMetaCallDelegate instance to ensure
+ * that the slot is called in the main UI thread.
+ * The advantage of this method is, that it does rely on private Qt API. The
+ * slot is called in the thread of the MetaCallDelegate object  - that means
+ * in the main UI thread. This allows a Python interpreter running in a
+ * Qt worker thread to call functions of Qt widgets in the main UI thread.
+ */
+static void delegateMetaCall(QObject* obj, PythonQtSlotInfo* slot, void** args)
+{
+	MetaCallDelegate.metaObject()->invokeMethod(&MetaCallDelegate, "qt_metacall",
+	  Qt::BlockingQueuedConnection,
+	  Q_ARG(QObject*, obj),  Q_ARG(void*, slot), Q_ARG(void*, args));
+}
+
+
+/**
+ * If the current thread is the same like the obj thread, then the slot is
+ * called directly. If it is not the same thread, then the slot is called via
+ * a blocking queued connection in the obj thread.
+ */
+void PythonQtSlotInfo::invokeQtMethod(QObject* obj, PythonQtSlotInfo* slot, void** args)
+{
+  if (QThread::currentThread() != obj->thread())
+  {
+	  postMetacallEvent(obj, slot, args);
+  }
+  else
+  {
+	  if (slot->shouldAllowThreads() && _globalShouldAllowThreads) {
+      PYTHONQT_ALLOW_THREADS_SCOPE
+      obj->qt_metacall(QMetaObject::InvokeMetaMethod, slot->slotIndex(), args);
+	  } else {
+      obj->qt_metacall(QMetaObject::InvokeMetaMethod, slot->slotIndex(), args);
+	  }
+  }
+}
+
+
+/**
+ * Calls the slot in the main UI thread
+ */
+void PythonQtMetaCallDelegate::qt_metacall(QObject* obj, void* _slot, void* args)
+{
+	PythonQtSlotInfo *slot = (PythonQtSlotInfo*) _slot;
+	if (slot->shouldAllowThreads() && PythonQtSlotInfo::getGlobalShouldAllowThreads())
+	{
+		PYTHONQT_ALLOW_THREADS_SCOPE
+		obj->qt_metacall(QMetaObject::InvokeMetaMethod, slot->slotIndex(),
+		    (void**)args);
+	}
+	else
+	{
+		obj->qt_metacall(QMetaObject::InvokeMetaMethod, slot->slotIndex(),
+		    (void**)args);
+	}
 }
