@@ -81,12 +81,12 @@ PyObject *PythonQtMemberFunction_parameterNames(PythonQtSlotInfo* theInfo);
 PyObject *PythonQtMemberFunction_typeName(PythonQtSlotInfo* theInfo);
 
 //! defines a python object that stores a Qt slot info
-typedef struct {
+struct PythonQtSlotFunctionObject {
     PyObject_HEAD
     PythonQtSlotInfo *m_ml; /* Description of the C function to call */
     PyObject    *m_self; /* Passed as 'self' arg to the C func, can be NULL */
     PyObject    *m_module; /* The __module__ attribute, can be anything */
-} PythonQtSlotFunctionObject;
+};
 
 
 #endif

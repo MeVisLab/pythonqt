@@ -55,11 +55,11 @@ extern PyTypeObject PythonQtStdOutRedirectType;
 typedef void PythonQtOutputChangedCB(const QString& str);
 
 //! declares the stdout redirection class
-typedef struct {
+struct PythonQtStdOutRedirect {
   PyObject_HEAD
   PythonQtOutputChangedCB* _cb;
   int softspace;
   bool closed;
-} PythonQtStdOutRedirect;
+};
 
 #endif

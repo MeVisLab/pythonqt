@@ -43,8 +43,8 @@ extern PYTHONQT_EXPORT PyTypeObject PythonQtSlotDecorator_Type;
 
 #define PythonQtSlotDecorator_Check(op) (Py_TYPE(op) == &PythonQtSlotDecorator_Type)
 
-typedef struct {
+struct PythonQtSlotDecorator {
   PyObject_HEAD
   QByteArray* args;
   QByteArray* returnType;
-} PythonQtSlotDecorator;
+};

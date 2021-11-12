@@ -48,6 +48,7 @@ static PyObject *PythonQtStdInRedirect_new(PyTypeObject *type, PyObject * /*args
   self = (PythonQtStdInRedirect *)type->tp_alloc(type, 0);
   self->_cb = NULL;
   self->_callData = NULL;
+  self->_isatty = false;
 
   return (PyObject *)self;
 }
@@ -62,9 +63,20 @@ static PyObject *PythonQtStdInRedirect_readline(PyObject * self, PyObject * args
   return Py_BuildValue("s", QStringToPythonConstCharPointer(string));
 }
 
+static PyObject *PythonQtStdInRedirect_isatty(PyObject * self, PyObject * /*args*/)
+{
+  PythonQtStdInRedirect* s = (PythonQtStdInRedirect*)self;
+  PyObject* r = s->_isatty ? Py_True : Py_False;
+  Py_INCREF(r);
+  return r;
+}
+
 static PyMethodDef PythonQtStdInRedirect_methods[] = {
   {"readline", (PyCFunction)PythonQtStdInRedirect_readline, METH_VARARGS,
    "read input line"},
+  {"isatty", (PyCFunction)PythonQtStdInRedirect_isatty,   METH_NOARGS,
+   "returns True if this is a tty-like device. False by default."
+  },
   {NULL,    NULL, 0 , NULL} /* sentinel */
 };
 

@@ -60,7 +60,7 @@ extern PYTHONQT_EXPORT PyTypeObject PythonQtInstanceWrapper_Type;
 
 //---------------------------------------------------------------
 //! a Python wrapper object for Qt objects and C++ objects (that are themselves wrapped by wrapper QObjects)
-typedef struct PythonQtInstanceWrapperStruct {
+struct PythonQtInstanceWrapper {
   PyObject_HEAD
 
   //! the class information, this is set even if the _obj or _wrappedPtr is NULL to support typed NULL pointers
@@ -126,7 +126,7 @@ typedef struct PythonQtInstanceWrapperStruct {
   //! stores if the shell instance (C++) owns the wrapper with its ref count
   bool _shellInstanceRefCountsWrapper;
 
-} PythonQtInstanceWrapper;
+};
 
 int PythonQtInstanceWrapper_init(PythonQtInstanceWrapper * self, PyObject * args, PyObject * kwds);
 

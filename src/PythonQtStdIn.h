@@ -54,10 +54,11 @@ extern PyTypeObject PythonQtStdInRedirectType;
 typedef QString PythonQtInputChangedCB(void* callData);
 
 //! declares the stdin redirection class
-typedef struct {
+struct PythonQtStdInRedirect {
   PyObject_HEAD
   PythonQtInputChangedCB* _cb;
   void * _callData;
-} PythonQtStdInRedirect;
+  bool _isatty;
+};
 
 #endif

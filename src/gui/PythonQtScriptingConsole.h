@@ -73,7 +73,7 @@ public Q_SLOTS:
   QStringList history() { return _history; }
 
   //! set history
-  void setHistory(const QStringList& h) { _history = h; _historyPosition = 0; }
+  void setHistory(const QStringList& h) { _history = h; _historyPosition = h.count(); }
 
   //! clear the console
   void clear();

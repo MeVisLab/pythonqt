@@ -63,13 +63,13 @@ struct PythonQtDynamicSignalInfo
 };
 
 //! defines a python object that stores a Qt signal info
-typedef struct {
+struct PythonQtSignalFunctionObject {
     PyObject_HEAD
     PythonQtSlotInfo *m_ml; /* Description of the C function to call */
     PyObject    *m_self; /* Passed as 'self' arg to the C func, can be NULL */
     PyObject    *m_module; /* The __module__ attribute, can be anything */
     PythonQtDynamicSignalInfo* _dynamicInfo;
-} PythonQtSignalFunctionObject;
+};
 
 
 #endif
