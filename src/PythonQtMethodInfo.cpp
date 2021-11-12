@@ -654,3 +654,8 @@ void PythonQtSlotInfo::setGlobalShouldAllowThreads(bool flag)
 {
   _globalShouldAllowThreads = flag;
 }
+
+bool PythonQtSlotInfo::getGlobalShouldAllowThreads()
+{
+	return _globalShouldAllowThreads;
+}
