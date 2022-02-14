@@ -120,6 +120,8 @@ public:
         { return m_qmetatype_declared_typenames; }
 
 protected:
+    
+
     void verifyDirectoryFor(const QFile &file);
 
     AbstractMetaClassList m_classes;

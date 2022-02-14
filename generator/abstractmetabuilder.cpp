@@ -547,25 +547,26 @@ bool AbstractMetaBuilder::build()
 
     {
         FunctionList hash_functions = m_dom->findFunctions("qHash");
-        foreach (FunctionModelItem item, hash_functions) {
+        for (FunctionModelItem item :  hash_functions) {
             registerHashFunction(item);
         }
     }
 
     {
         FunctionList hash_functions = m_dom->findFunctions("operator<<");
-        foreach (FunctionModelItem item, hash_functions) {
+        for (FunctionModelItem item :  hash_functions) {
             registerToStringCapability(item);
         }
     }
 
     {
         FunctionList compare_operators = m_dom->findFunctions("operator==")
+                                         + m_dom->findFunctions("operator!=")
                                          + m_dom->findFunctions("operator<=")
                                          + m_dom->findFunctions("operator>=")
                                          + m_dom->findFunctions("operator<")
                                          + m_dom->findFunctions("operator>");
-        foreach (FunctionModelItem item, compare_operators) {
+        for (FunctionModelItem item :  compare_operators) {
             traverseCompareOperator(item);
         }
     }
