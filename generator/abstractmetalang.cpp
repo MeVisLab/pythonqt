@@ -53,7 +53,7 @@ AbstractMetaType *AbstractMetaType::copy() const
     cpy->setConstant(isConstant());
     cpy->setReference(isReference());
     cpy->setIndirections(indirections());
-	cpy->setInstantiations(instantiations());
+    cpy->setInstantiations(instantiations());
     cpy->setArrayElementCount(arrayElementCount());
     cpy->setOriginalTypeDescription(originalTypeDescription());
     cpy->setOriginalTemplateType(originalTemplateType() ? originalTemplateType()->copy() : 0);
@@ -840,17 +840,17 @@ AbstractMetaFunctionList AbstractMetaClass::queryFunctionsByName(const QString &
 
 QString AbstractMetaClass::getDefaultNonZeroFunction() const
 {
-  foreach(const AbstractMetaFunction* fun, queryFunctionsByName("isEmpty")) {
+  for (const AbstractMetaFunction* fun :  queryFunctionsByName("isEmpty")) {
     if (fun->actualMinimumArgumentCount()==0 && fun->isPublic()) {
       return "isEmpty";
     }
   }
-  foreach(const AbstractMetaFunction* fun, queryFunctionsByName("isValid")) {
+  for (const AbstractMetaFunction* fun :  queryFunctionsByName("isValid")) {
     if (fun->actualMinimumArgumentCount() == 0 && fun->isPublic()) {
       return "isValid";
     }
   }
-  foreach(const AbstractMetaFunction* fun, queryFunctionsByName("isNull")) {
+  for (const AbstractMetaFunction* fun :  queryFunctionsByName("isNull")) {
     if (fun->actualMinimumArgumentCount() == 0 && fun->isPublic()) {
       return "isNull";
     }

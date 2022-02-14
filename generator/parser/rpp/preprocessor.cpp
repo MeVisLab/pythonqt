@@ -62,7 +62,7 @@ public:
 
     void initPP(pp &proc)
     {
-        foreach(QString path, includePaths)
+        for (QString path :  includePaths)
             proc.push_include_path(path.toStdString());
     }
 };

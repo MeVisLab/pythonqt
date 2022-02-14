@@ -72,7 +72,7 @@ static QString combineIncludes(const QString& text) {
   QStringList lines = text.split('\n');
   QSet<QString> includes;
   QString result;
-  foreach(QString line, lines) {
+  for (QString line :  lines) {
     if (line.startsWith("#include")) {
       includes.insert(line);
     } else if (line.startsWith("#") && line.contains("PYTHONQTWRAPPER_")) {
