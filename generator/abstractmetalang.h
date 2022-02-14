@@ -153,8 +153,8 @@ public:
     bool wasFriendly() const { return m_originalAttributes & Friendly; }
 
 private:
-    uint m_attributes;
-    uint m_originalAttributes;
+    uint m_attributes{};
+    uint m_originalAttributes{};
 };
 
 
@@ -203,7 +203,7 @@ public:
     // true when use pattern is container
     bool hasInstantiations() const { return !m_instantiations.isEmpty(); }
     void addInstantiation(AbstractMetaType *inst) { m_instantiations << inst; }
-	void setInstantiations(const QList<AbstractMetaType *> &insts) { m_instantiations = insts; }
+    void setInstantiations(const QList<AbstractMetaType *> &insts) { m_instantiations = insts; }
     QList<AbstractMetaType *> instantiations() const { return m_instantiations; }
     void setInstantiationInCpp(bool incpp) { m_cpp_instantiation = incpp; }
     bool hasInstantiationInCpp() const { return hasInstantiations() && m_cpp_instantiation; }
