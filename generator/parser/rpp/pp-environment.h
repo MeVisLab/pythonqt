@@ -71,11 +71,11 @@ public:
   const_iterator first_macro () const { return _M_macros.begin (); }
   const_iterator last_macro () const { return _M_macros.end (); }
 
-  inline void bind (pp_fast_string const *__name, pp_macro const &__macro)
+  inline void bind (pp_fast_string const *_name, pp_macro const &_macro)
   {
-    std::size_t h = hash_code (*__name) % _M_hash_size;
-    pp_macro *m = new pp_macro (__macro);
-    m->name = __name;
+    std::size_t h = hash_code (*_name) % _M_hash_size;
+    pp_macro *m = new pp_macro (_macro);
+    m->name = _name;
     m->next = _M_base [h];
     m->hash_code = h;
     _M_base [h] = m;
@@ -86,33 +86,33 @@ public:
       rehash();
   }
 
-  inline void unbind (pp_fast_string const *__name)
+  inline void unbind (pp_fast_string const *_name)
   {
-    if (pp_macro *m = resolve (__name))
+    if (pp_macro *m = resolve (_name))
       m->hidden = true;
   }
 
-  inline void unbind (char const *__s, std::size_t __size)
+  inline void unbind (char const *_s, std::size_t _size)
   {
-    pp_fast_string __tmp (__s, __size);
-    unbind (&__tmp);
+    pp_fast_string tmp (_s, _size);
+    unbind (&tmp);
   }
 
-  inline pp_macro *resolve (pp_fast_string const *__name) const
+  inline pp_macro *resolve (pp_fast_string const *_name) const
   {
-    std::size_t h = hash_code (*__name) % _M_hash_size;
+    std::size_t h = hash_code (*_name) % _M_hash_size;
     pp_macro *it = _M_base [h];
 
-    while (it && it->name && it->hash_code == h && (*it->name != *__name || it->hidden))
+    while (it && it->name && it->hash_code == h && (*it->name != *_name || it->hidden))
       it = it->next;
 
     return it;
   }
 
-  inline pp_macro *resolve (char const *__data, std::size_t __size) const
+  inline pp_macro *resolve (char const *_data, std::size_t _size) const
   {
-    pp_fast_string const __tmp (__data, __size);
-    return resolve (&__tmp);
+    pp_fast_string const tmp (_data, _size);
+    return resolve (&tmp);
   }
 
   std::string current_file;
