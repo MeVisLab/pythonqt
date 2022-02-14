@@ -171,11 +171,11 @@ class pp
   };
 
 public:
-  pp (pp_environment &__env);
+  pp (pp_environment &env);
 
   inline std::back_insert_iterator<std::vector<std::string> > include_paths_inserter ();
 
-  inline void push_include_path (std::string const &__path);
+  inline void push_include_path (std::string const &path);
 
   inline std::vector<std::string>::iterator include_paths_begin ();
   inline std::vector<std::string>::iterator include_paths_end ();
@@ -183,23 +183,23 @@ public:
   inline std::vector<std::string>::const_iterator include_paths_begin () const;
   inline std::vector<std::string>::const_iterator include_paths_end () const;
 
-  template <typename _InputIterator>
-  inline _InputIterator eval_expression (_InputIterator __first, _InputIterator __last, Value *result);
+  template <typename InputIterator>
+  inline InputIterator eval_expression (InputIterator _first, InputIterator _last, Value *result);
 
-  template <typename _OutputIterator>
-  void file (std::string const &filename, _OutputIterator __result);
+  template <typename OutputIterator>
+  void file (std::string const &filename, OutputIterator _result);
 
-  template <typename _OutputIterator>
-  void file (FILE *fp, _OutputIterator __result);
+  template <typename OutputIterator>
+  void file (FILE *fp, OutputIterator _result);
 
-  template <typename _InputIterator, typename _OutputIterator>
-  void operator () (_InputIterator __first, _InputIterator __last, _OutputIterator __result);
+  template <typename InputIterator, typename OutputIterator>
+  void operator () (InputIterator _first, InputIterator _last, OutputIterator _result);
 
 private:
-  inline bool file_isdir (std::string const &__filename) const;
-  inline bool file_exists (std::string const &__filename) const;
-  FILE *find_include_file (std::string const &__filename, std::string *__filepath,
-                           INCLUDE_POLICY __include_policy, bool __skip_current_path = false) const;
+  inline bool file_isdir (std::string const &_filename) const;
+  inline bool file_exists (std::string const &_filename) const;
+  FILE *find_include_file (std::string const &_filename, std::string *_filepath,
+                           INCLUDE_POLICY include_policy, bool _skip_current_path = false) const;
 
   inline int skipping() const;
   bool test_if_level();
@@ -207,84 +207,84 @@ private:
   inline std::string fix_file_path (std::string const &filename) const;
   inline bool is_absolute (std::string const &filename) const;
 
-  PP_DIRECTIVE_TYPE find_directive (char const *__directive, std::size_t __size) const;
+  PP_DIRECTIVE_TYPE find_directive (char const *_directive, std::size_t _size) const;
 
-  template <typename _InputIterator>
-  bool find_header_protection (_InputIterator __first, _InputIterator __last, std::string *__prot);
+  template <typename InputIterator>
+  bool find_header_protection (InputIterator _first, InputIterator _last, std::string *_prot);
 
-  template <typename _InputIterator>
-  _InputIterator skip (_InputIterator __first, _InputIterator __last);
+  template <typename InputIterator>
+  InputIterator skip (InputIterator _first, InputIterator _last);
 
-  template <typename _InputIterator>
-  _InputIterator eval_primary(_InputIterator __first, _InputIterator __last, Value *result);
+  template <typename InputIterator>
+  InputIterator eval_primary(InputIterator _first, InputIterator _last, Value *result);
 
-  template <typename _InputIterator>
-  _InputIterator eval_multiplicative(_InputIterator __first, _InputIterator __last, Value *result);
+  template <typename InputIterator>
+  InputIterator eval_multiplicative(InputIterator _first, InputIterator _last, Value *result);
 
-  template <typename _InputIterator>
-  _InputIterator eval_additive(_InputIterator __first, _InputIterator __last, Value *result);
+  template <typename InputIterator>
+  InputIterator eval_additive(InputIterator _first, InputIterator _last, Value *result);
 
-  template <typename _InputIterator>
-  _InputIterator eval_shift(_InputIterator __first, _InputIterator __last, Value *result);
+  template <typename InputIterator>
+  InputIterator eval_shift(InputIterator _first, InputIterator _last, Value *result);
 
-  template <typename _InputIterator>
-  _InputIterator eval_relational(_InputIterator __first, _InputIterator __last, Value *result);
+  template <typename InputIterator>
+  InputIterator eval_relational(InputIterator _first, InputIterator _last, Value *result);
 
-  template <typename _InputIterator>
-  _InputIterator eval_equality(_InputIterator __first, _InputIterator __last, Value *result);
+  template <typename InputIterator>
+  InputIterator eval_equality(InputIterator _first, InputIterator _last, Value *result);
 
-  template <typename _InputIterator>
-  _InputIterator eval_and(_InputIterator __first, _InputIterator __last, Value *result);
+  template <typename InputIterator>
+  InputIterator eval_and(InputIterator _first, InputIterator _last, Value *result);
 
-  template <typename _InputIterator>
-  _InputIterator eval_xor(_InputIterator __first, _InputIterator __last, Value *result);
+  template <typename InputIterator>
+  InputIterator eval_xor(InputIterator _first, InputIterator _last, Value *result);
 
-  template <typename _InputIterator>
-  _InputIterator eval_or(_InputIterator __first, _InputIterator __last, Value *result);
+  template <typename InputIterator>
+  InputIterator eval_or(InputIterator _first, InputIterator _last, Value *result);
 
-  template <typename _InputIterator>
-  _InputIterator eval_logical_and(_InputIterator __first, _InputIterator __last, Value *result);
+  template <typename InputIterator>
+  InputIterator eval_logical_and(InputIterator _first, InputIterator _last, Value *result);
 
-  template <typename _InputIterator>
-  _InputIterator eval_logical_or(_InputIterator __first, _InputIterator __last, Value *result);
+  template <typename InputIterator>
+  InputIterator eval_logical_or(InputIterator _first, InputIterator _last, Value *result);
 
-  template <typename _InputIterator>
-  _InputIterator eval_constant_expression(_InputIterator __first, _InputIterator __last, Value *result);
+  template <typename InputIterator>
+  InputIterator eval_constant_expression(InputIterator _first, InputIterator _last, Value *result);
 
-  template <typename _InputIterator, typename _OutputIterator>
-  _InputIterator handle_directive(char const *__directive, std::size_t __size,
-          _InputIterator __first, _InputIterator __last, _OutputIterator __result);
+  template <typename InputIterator, typename OutputIterator>
+  InputIterator handle_directive(char const *_directive, std::size_t _size,
+          InputIterator _first, InputIterator _last, OutputIterator _result);
 
-  template <typename _InputIterator, typename _OutputIterator>
-  _InputIterator handle_include(bool skip_current_path, _InputIterator __first, _InputIterator __last,
-        _OutputIterator __result);
+  template <typename InputIterator, typename OutputIterator>
+  InputIterator handle_include(bool skip_current_path, InputIterator _first, InputIterator _last,
+        OutputIterator _result);
 
-  template <typename _InputIterator>
-  _InputIterator handle_define (_InputIterator __first, _InputIterator __last);
+  template <typename InputIterator>
+  InputIterator handle_define (InputIterator _first, InputIterator _last);
 
-  template <typename _InputIterator>
-  _InputIterator handle_if (_InputIterator __first, _InputIterator __last);
+  template <typename InputIterator>
+  InputIterator handle_if (InputIterator _first, InputIterator _last);
 
-  template <typename _InputIterator>
-  _InputIterator handle_else (_InputIterator __first, _InputIterator __last);
+  template <typename InputIterator>
+  InputIterator handle_else (InputIterator _first, InputIterator _last);
 
-  template <typename _InputIterator>
-  _InputIterator handle_elif (_InputIterator __first, _InputIterator __last);
+  template <typename InputIterator>
+  InputIterator handle_elif (InputIterator _first, InputIterator _last);
 
-  template <typename _InputIterator>
-  _InputIterator handle_endif (_InputIterator __first, _InputIterator __last);
+  template <typename InputIterator>
+  InputIterator handle_endif (InputIterator _first, InputIterator _last);
 
-  template <typename _InputIterator>
-  _InputIterator handle_ifdef (bool check_undefined, _InputIterator __first, _InputIterator __last);
+  template <typename InputIterator>
+  InputIterator handle_ifdef (bool check_undefined, InputIterator _first, InputIterator _last);
 
-  template <typename _InputIterator>
-  _InputIterator handle_undef(_InputIterator __first, _InputIterator __last);
+  template <typename InputIterator>
+  InputIterator handle_undef(InputIterator _first, InputIterator _last);
 
-  template <typename _InputIterator>
-  inline char peek_char (_InputIterator __first, _InputIterator __last);
+  template <typename InputIterator>
+  char peek_char (InputIterator _first, InputIterator _last);
 
-  template <typename _InputIterator>
-  _InputIterator next_token (_InputIterator __first, _InputIterator __last, int *kind);
+  template <typename InputIterator>
+  InputIterator next_token (InputIterator _first, InputIterator _last, int *kind);
 };
 
 } // namespace rpp

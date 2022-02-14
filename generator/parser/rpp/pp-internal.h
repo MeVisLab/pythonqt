@@ -50,52 +50,52 @@ namespace rpp {
 namespace _PP_internal
 {
 
-inline void extract_file_path (const std::string &__filename, std::string *__filepath)
+inline void extract_file_path (const std::string &_filename, std::string *_filepath)
 {
-  std::size_t __index = __filename.rfind (PATH_SEPARATOR);
+  std::size_t index = _filename.rfind (PATH_SEPARATOR);
 
-  if (__index == std::string::npos)
-    *__filepath = "/";
+  if (index == std::string::npos)
+    *_filepath = "/";
 
   else
-    __filepath->assign (__filename, 0, __index + 1);
+    _filepath->assign (_filename, 0, index + 1);
 }
 
-template <typename _OutputIterator>
-void output_line(const std::string &__filename, int __line, _OutputIterator __result)
+template <typename OutputIterator>
+void output_line(const std::string &_filename, int _line, OutputIterator _result)
 {
-  std::string __msg;
+  std::string msg;
 
-  __msg += "# ";
+  msg += "# ";
 
-  char __line_descr[16];
-  pp_snprintf (__line_descr, 16, "%d", __line);
-  __msg += __line_descr;
+  char line_descr[16];
+  pp_snprintf (line_descr, 16, "%d", _line);
+  msg += line_descr;
 
-  __msg += " \"";
+  msg += " \"";
 
-  if (__filename.empty ())
-    __msg += "<internal>";
+  if (_filename.empty ())
+    msg += "<internal>";
   else
-    __msg += __filename;
+    msg += _filename;
 
-  __msg += "\"\n";
-  std::copy (__msg.begin (), __msg.end (), __result);
+  msg += "\"\n";
+  std::copy (msg.begin (), msg.end (), _result);
 }
 
-template <typename _InputIterator>
-inline bool comment_p (_InputIterator __first, _InputIterator __last) /*const*/
+template <typename InputIterator>
+inline bool comment_p (InputIterator _first, InputIterator _last) /*const*/
 {
-  if (__first == __last)
+  if (_first == _last)
     return false;
 
-  if (*__first != '/')
+  if (*_first != '/')
     return false;
 
-  if (++__first == __last)
+  if (++_first == _last)
     return false;
 
-  return (*__first == '/' || *__first == '*');
+  return (*_first == '/' || *_first == '*');
 }
 
 struct _Compare_string: public std::binary_function<bool, pp_fast_string const *, pp_fast_string const *>
