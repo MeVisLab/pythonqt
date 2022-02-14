@@ -158,6 +158,10 @@ void ShellGenerator::writeFunctionArguments(QTextStream &s,
             s << " = "; 
 
             QString expr = arg->defaultValueExpression();
+          if (expr == "NULL")
+          {
+            expr = "nullptr";
+          }
           if (expr != "0") {
             QString qualifier;
             if (arg->type()->typeEntry()->isEnum() && expr.indexOf("::") < 0) {

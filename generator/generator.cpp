@@ -42,7 +42,6 @@
 #include "generator.h"
 #include "reporthandler.h"
 #include "fileout.h"
-
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
