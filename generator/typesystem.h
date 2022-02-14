@@ -1052,7 +1052,7 @@ public:
     }
 
 private:
-    ObjectTypeEntry *m_origin;
+    ObjectTypeEntry *m_origin{};
 };
 
 
@@ -1120,7 +1120,7 @@ public:
         SingleTypeEntryHash returned;
         QList<QString> keys = entries.keys();
 
-        foreach(QString key, keys) {
+        for (QString key :  keys) {
             returned[key] = findType(key);
         }
 

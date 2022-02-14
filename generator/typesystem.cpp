@@ -662,7 +662,7 @@ bool Handler::startElement(const QString &, const QString &n,
                     element->type == StackElement::ValueTypeEntry ||
                     element->type == StackElement::ObjectTypeEntry) {
                     if (convertBoolean(attributes["delete-in-main-thread"], "delete-in-main-thread", false))
-			            ctype->setTypeFlags(ctype->typeFlags() | ComplexTypeEntry::DeleteInMainThread);
+                        ctype->setTypeFlags(ctype->typeFlags() | ComplexTypeEntry::DeleteInMainThread);
                 }
 
                 QString targetType = attributes["target-type"];
@@ -735,7 +735,7 @@ bool Handler::startElement(const QString &, const QString &n,
             break;
         case StackElement::ModifyArgument:
             attributes["index"] = QString();
-	        attributes["replace-value"] = QString();
+            attributes["replace-value"] = QString();
             attributes["invalidate-after-use"] = QString("no");
             break;
         case StackElement::ModifyField:
@@ -909,18 +909,18 @@ bool Handler::startElement(const QString &, const QString &n,
                     return false;
                 }
 
-		        QString replace_value = attributes["replace-value"];
+                QString replace_value = attributes["replace-value"];
 
-		        if (!replace_value.isEmpty() && idx != 0) {
-		            m_error = QString("replace-value is only supported for return values (index=0).");
-		            return false;
-		        }
+                if (!replace_value.isEmpty() && idx != 0) {
+                    m_error = QString("replace-value is only supported for return values (index=0).");
+                    return false;
+                }
 
-		        ArgumentModification argumentModification = ArgumentModification(idx);
-		        argumentModification.replace_value = replace_value;
-                argumentModification.reset_after_use = convertBoolean(attributes["invalidate-after-use"], "invalidate-after-use", false);
-                m_function_mods.last().argument_mods.append(argumentModification);
-            }
+                ArgumentModification argumentModification = ArgumentModification(idx);
+                argumentModification.replace_value = replace_value;
+                    argumentModification.reset_after_use = convertBoolean(attributes["invalidate-after-use"], "invalidate-after-use", false);
+                    m_function_mods.last().argument_mods.append(argumentModification);
+                }
             break;
         case StackElement::NoNullPointers:
             {
@@ -1836,7 +1836,7 @@ QString TemplateInstance::expandCode() const{
     TemplateEntry *templateEntry = TypeDatabase::instance()->findTemplate(m_name);
     if(templateEntry){
         QString res = templateEntry->code();
-        foreach(QString key, replaceRules.keys()){
+        for (QString key :  replaceRules.keys()){
             res.replace(key, replaceRules[key]);
         }
         return "// TEMPLATE - " + m_name + " - START" + res + "// TEMPLATE - " + m_name + " - END";
@@ -1850,7 +1850,7 @@ QString TemplateInstance::expandCode() const{
 
 QString CodeSnipAbstract::code() const{
     QString res;
-    foreach(CodeSnipFragment *codeFrag, codeList){
+    for (CodeSnipFragment *codeFrag :  codeList){
         res.append(codeFrag->code());
     }
     return res;
