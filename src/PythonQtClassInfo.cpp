@@ -169,7 +169,9 @@ PythonQtSlotInfo* PythonQtClassInfo::recursiveFindDecoratorSlotsFromDecoratorPro
 {
   inputInfo = findDecoratorSlotsFromDecoratorProvider(memberName, inputInfo, found, memberCache, upcastingOffset);
   Q_FOREACH(const ParentClassInfo& info, _parentClasses) {
-    inputInfo = info._parent->recursiveFindDecoratorSlotsFromDecoratorProvider(memberName, inputInfo, found, memberCache, upcastingOffset+info._upcastingOffset);
+    if (this != info._parent) {
+      inputInfo = info._parent->recursiveFindDecoratorSlotsFromDecoratorProvider(memberName, inputInfo, found, memberCache, upcastingOffset+info._upcastingOffset);
+    }
   }
   return inputInfo;
 }
@@ -382,14 +384,18 @@ void PythonQtClassInfo::recursiveCollectDecoratorObjects(QList<QObject*>& decora
     decoratorObjects.append(deco);
   }
   Q_FOREACH(const ParentClassInfo& info, _parentClasses) {
-    info._parent->recursiveCollectDecoratorObjects(decoratorObjects);
+    if (this != info._parent) {
+      info._parent->recursiveCollectDecoratorObjects(decoratorObjects);
+    }
   }
 }
 
 void PythonQtClassInfo::recursiveCollectClassInfos(QList<PythonQtClassInfo*>& classInfoObjects) {
   classInfoObjects.append(this);
   Q_FOREACH(const ParentClassInfo& info, _parentClasses) {
-    info._parent->recursiveCollectClassInfos(classInfoObjects);
+    if (this != info._parent) {
+      info._parent->recursiveCollectClassInfos(classInfoObjects);
+    }
   }
 }
 
@@ -584,7 +590,7 @@ bool PythonQtClassInfo::inherits(const char* name)
     return true;
   }
   Q_FOREACH(const ParentClassInfo& info, _parentClasses) {
-    if (info._parent->inherits(name)) {
+    if (info._parent != this && info._parent->inherits(name)) {
       return true;
     }
   }
@@ -597,7 +603,7 @@ bool PythonQtClassInfo::inherits(PythonQtClassInfo* classInfo)
     return true;
   }
   Q_FOREACH(const ParentClassInfo& info, _parentClasses) {
-    if (info._parent->inherits(classInfo)) {
+    if (info._parent != this && info._parent->inherits(classInfo)) {
       return true;
     }
   }
@@ -761,8 +767,11 @@ void* PythonQtClassInfo::recursiveCastDownIfPossible(void* ptr, const char** res
     }
   }
   Q_FOREACH(const ParentClassInfo& info, _parentClasses) {
+    void* resultPtr = NULL;
     if (!info._parent->isQObject()) {
-      void* resultPtr = info._parent->recursiveCastDownIfPossible((char*)ptr + info._upcastingOffset, resultClassName);
+      if (this != info._parent) {
+        resultPtr = info._parent->recursiveCastDownIfPossible((char*)ptr + info._upcastingOffset, resultClassName);
+      }
       if (resultPtr) {
         return resultPtr;
       }
@@ -870,7 +879,9 @@ void PythonQtClassInfo::createEnumWrappers(const QObject* decoratorProvider)
     Q_FOREACH(const ParentClassInfo& info, _parentClasses) {
       // trigger decorator() instead of createEnumWrappers(),
       // which will then call createEnumWrappers().
-      info._parent->decorator();
+      if (info._parent != this) {
+        info._parent->decorator();
+      }
     }
   }
 }
@@ -889,7 +900,10 @@ PyObject* PythonQtClassInfo::findEnumWrapper(const char* name) {
     }
   }
   Q_FOREACH(const ParentClassInfo& info, _parentClasses) {
-    PyObject* p = info._parent->findEnumWrapper(name);
+    PyObject* p =  NULL;
+    if (info._parent != this) {
+      p = info._parent->findEnumWrapper(name);
+    }
     if (p) return p;
   }
   return NULL;
@@ -1004,6 +1018,10 @@ void PythonQtClassInfo::updateRefCountingCBs()
     if (!_parentClasses.isEmpty()) {
       // we only search in single inheritance, using the first parent class
       PythonQtClassInfo* parent = _parentClasses.at(0)._parent;
+      if (parent == this) {
+        _searchRefCountCB = false;
+        return;
+      }
       parent->updateRefCountingCBs();
       // propagate to ourself
       _refCallback = parent->_refCallback; 
