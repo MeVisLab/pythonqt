@@ -266,7 +266,7 @@ void Binder::declare_symbol(SimpleDeclarationAST *node, InitDeclaratorAST *init_
     {
       name_cc.run(id);
       warnHere();
-      std::cerr << "** WARNING scope not found for symbol:"
+      std::cerr << "** WARNING scope not found for symbol: "
                 << qPrintable(name_cc.name()) << std::endl;
       return;
     }
