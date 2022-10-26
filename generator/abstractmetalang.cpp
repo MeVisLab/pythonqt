@@ -1201,10 +1201,6 @@ static bool functions_contains(const AbstractMetaFunctionList &l, const Abstract
     return false;
 }
 
-AbstractMetaField::AbstractMetaField() : m_getter(0), m_setter(0), m_class(0)
-{
-}
-
 AbstractMetaField::~AbstractMetaField()
 {
     delete m_setter;
