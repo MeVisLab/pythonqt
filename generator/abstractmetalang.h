@@ -79,7 +79,7 @@ public:
 class AbstractMetaAttributes
 {
 public:
-    AbstractMetaAttributes() : m_attributes(0) { };
+    AbstractMetaAttributes() = default;
 
     enum Attribute {
         None                        = 0x00000000,
@@ -180,11 +180,6 @@ public:
     };
 
     AbstractMetaType() :
-        m_type_entry(0),
-        m_array_element_count(0),
-        m_array_element_type(0),
-        m_original_template_type(0),
-        m_pattern(InvalidPattern),
         m_constant(false),
         m_reference(false),
         m_cpp_instantiation(true),
@@ -294,16 +289,16 @@ public:
     const AbstractMetaType *originalTemplateType() const { return m_original_template_type; }
 
 private:
-    const TypeEntry *m_type_entry;
+    const TypeEntry *m_type_entry{};
     QList <AbstractMetaType *> m_instantiations;
     QString m_package;
     QString m_original_type_description;
 
-    int m_array_element_count;
-    AbstractMetaType *m_array_element_type;
-    const AbstractMetaType *m_original_template_type;
+    int m_array_element_count{};
+    AbstractMetaType *m_array_element_type{};
+    const AbstractMetaType *m_original_template_type{};
 
-    TypeUsagePattern m_pattern;
+    TypeUsagePattern m_pattern{InvalidPattern};
     uint m_constant : 1;
     uint m_reference : 1;
     uint m_cpp_instantiation : 1;
@@ -314,7 +309,7 @@ private:
 class AbstractMetaVariable
 {
 public:
-    AbstractMetaVariable() : m_type(0) { }
+    AbstractMetaVariable() = default;
 
     AbstractMetaType *type() const { return m_type; }
     void setType(AbstractMetaType *type) { m_type = type; }
@@ -324,7 +319,7 @@ public:
 
 private:
     QString m_name;
-    AbstractMetaType *m_type;
+    AbstractMetaType *m_type{};
 };
 
 
@@ -332,7 +327,7 @@ private:
 class AbstractMetaArgument : public AbstractMetaVariable
 {
 public:
-    AbstractMetaArgument() : m_argument_index(0) { };
+    AbstractMetaArgument() = default;
 
     QString defaultValueExpression() const { return m_expression; }
     void setDefaultValueExpression(const QString &expr) { m_expression = expr; }
@@ -357,14 +352,14 @@ private:
 
     QString m_expression;
     QString m_original_expression;
-    int m_argument_index;
+    int m_argument_index{};
 };
 
 
 class AbstractMetaField : public AbstractMetaVariable, public AbstractMetaAttributes
 {
 public:
-    AbstractMetaField();
+    AbstractMetaField() = default;
     ~AbstractMetaField();
 
     const AbstractMetaClass *enclosingClass() const { return m_class; }
@@ -378,9 +373,9 @@ public:
     AbstractMetaField *copy() const;
 
 private:
-    mutable AbstractMetaFunction *m_getter;
-    mutable AbstractMetaFunction *m_setter;
-    const AbstractMetaClass *m_class;
+    mutable AbstractMetaFunction *m_getter{};
+    mutable AbstractMetaFunction *m_setter{};
+    const AbstractMetaClass *m_class{};
 };
 
 
@@ -413,14 +408,7 @@ public:
         NotEqual                    = 0x00001000
     };
 
-    AbstractMetaFunction()
-        : m_function_type(NormalFunction),
-          m_type(0),
-          m_class(0),
-          m_implementing_class(0),
-          m_declaring_class(0),
-          m_interface_class(0),
-          m_property_spec(0),
+    AbstractMetaFunction() :
           m_constant(false),
           m_invalid(false)
     {
@@ -552,13 +540,13 @@ private:
     mutable QString m_cached_minimal_signature;
     mutable QString m_cached_modified_name;
 
-    FunctionType m_function_type;
-    AbstractMetaType *m_type;
-    const AbstractMetaClass *m_class;
-    const AbstractMetaClass *m_implementing_class;
-    const AbstractMetaClass *m_declaring_class;
-    const AbstractMetaClass *m_interface_class;
-    QPropertySpec *m_property_spec;
+    FunctionType m_function_type{NormalFunction};
+    AbstractMetaType *m_type{};
+    const AbstractMetaClass *m_class{};
+    const AbstractMetaClass *m_implementing_class{};
+    const AbstractMetaClass *m_declaring_class{};
+    const AbstractMetaClass *m_interface_class{};
+    QPropertySpec *m_property_spec{};
     AbstractMetaArgumentList m_arguments;
     QString m_exception;
     uint m_constant                 : 1;
@@ -569,10 +557,7 @@ private:
 class AbstractMetaEnumValue
 {
 public:
-    AbstractMetaEnumValue()
-        : m_value_set(false), m_value(0)
-    {
-    }
+    AbstractMetaEnumValue() = default;
 
     int value() const { return m_value; }
     void setValue(int value) { m_value_set = true; m_value = value; }
@@ -589,8 +574,8 @@ private:
     QString m_name;
     QString m_string_value;
 
-    bool m_value_set;
-    int m_value;
+    bool m_value_set{};
+    int m_value{};
 };
 
 
@@ -603,7 +588,7 @@ public:
 class AbstractMetaEnum : public AbstractMetaAttributes
 {
 public:
-    AbstractMetaEnum() : m_type_entry(0), m_class(0), m_has_qenums_declaration(false) {}
+    AbstractMetaEnum() : m_has_qenums_declaration(false) {}
 
     AbstractMetaEnumValueList values() const { return m_enum_values; }
     void addEnumValue(AbstractMetaEnumValue *enumValue) { m_enum_values << enumValue; }
@@ -625,8 +610,8 @@ public:
 
 private:
     AbstractMetaEnumValueList m_enum_values;
-    EnumTypeEntry *m_type_entry;
-    AbstractMetaClass *m_class;
+    EnumTypeEntry *m_type_entry{};
+    AbstractMetaClass *m_class{};
 
     uint m_has_qenums_declaration : 1;
     uint m_reserved : 31;
@@ -680,12 +665,6 @@ public:
           m_has_equals_operator(false),
           m_has_clone_operator(false),
           m_is_type_alias(false),
-          m_enclosing_class(0),
-          m_base_class(0),
-          m_template_base_class(0),
-          m_extracted_interface(0),
-          m_primary_interface_implementor(0),
-          m_type_entry(0),
           m_qDebug_stream_function(0)
     {
     }
@@ -865,16 +844,16 @@ private:
     uint m_reserved : 18;
     QString m_destructor_exception;
 
-    const AbstractMetaClass *m_enclosing_class;
-    AbstractMetaClass *m_base_class;
+    const AbstractMetaClass *m_enclosing_class{};
+    AbstractMetaClass *m_base_class{};
     QList<AbstractMetaClass*> m_super_classes;
-    const AbstractMetaClass *m_template_base_class;
+    const AbstractMetaClass *m_template_base_class{};
     AbstractMetaFunctionList m_functions;
     AbstractMetaFieldList m_fields;
     AbstractMetaEnumList m_enums;
     AbstractMetaClassList m_interfaces;
-    AbstractMetaClass *m_extracted_interface;
-    AbstractMetaClass *m_primary_interface_implementor;
+    AbstractMetaClass *m_extracted_interface{};
+    AbstractMetaClass *m_primary_interface_implementor{};
     QList<QPropertySpec *> m_property_specs;
     AbstractMetaFunctionList m_equals_functions;
     AbstractMetaFunctionList m_nequals_functions;
@@ -886,7 +865,7 @@ private:
 
     QStringList m_base_class_names;
     QList<TypeEntry *> m_template_args;
-    ComplexTypeEntry *m_type_entry;
+    ComplexTypeEntry *m_type_entry{};
     FunctionModelItem m_qDebug_stream_function;
 };
 
@@ -924,8 +903,8 @@ private:
     QString m_write;
     QString m_designable;
     QString m_reset;
-    const TypeEntry *m_type;
-    int m_index;
+    const TypeEntry *m_type{};
+    int m_index{-1};
 };
 
 inline AbstractMetaFunctionList AbstractMetaClass::allVirtualFunctions() const
