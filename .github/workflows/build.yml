@@ -1,0 +1,27 @@
+name: Build
+
+on:
+  push:
+    branches: 
+      - master
+  pull_request:
+      
+   
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        runs-on: [ubuntu-latest]
+        gcc: [7, 9, 11]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup docker container
+      shell: bash
+      run: |
+        cat $GITHUB_WORKSPACE/.github/workflows/Dockerfile_gcc | sed 's/#GCC#/${{ matrix.gcc }}/' > ./Dockerfile
+        docker build -t pythonqt -f ./Dockerfile . 
+    - name: Run docker
+      run: docker run -t pythonqt
