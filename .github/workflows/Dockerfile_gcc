@@ -1,0 +1,38 @@
+FROM gcc:#GCC#
+
+RUN apt-get update && apt-get install -y --force-yes \
+    unzip \
+    wget \
+    python3 \
+    python3-dev \
+    libpython3-dev \
+    qtbase5-dev \
+    qtbase5-private-dev \
+    qtchooser \
+    qt5-qmake \
+    qtbase5-dev-tools \
+    qttools5-dev \
+    qtdeclarative5-dev \
+    libqt5svg5* \
+    libqt5xmlpatterns5* \
+    libqt5multimedia5* \
+    libqt5multimediawidgets5* \
+    libqt5qml5* \
+    libqt5quickwidgets5* \
+    qtmultimedia5-dev
+RUN apt-get clean
+
+RUN mkdir -p work
+
+COPY . work/
+
+WORKDIR work
+
+ARG QT_SELECT=qt5
+RUN uname -a; gcc --version | grep "gcc"; python3 --version; qmake --version
+
+RUN qmake -r PythonQt.pro \
+    PYTHON_VERSION=$(python3 --version | cut -d " " -f 2 | cut -d "." -f1,2) \
+    PYTHON_DIR=$(which python3 | xargs dirname | xargs dirname)
+
+CMD ["make"]
