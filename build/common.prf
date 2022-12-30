@@ -72,3 +72,4 @@ PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp
 VERSION = 3.2.0
 
 win32: CONFIG += skip_target_version_ext
+unix: QMAKE_CXXFLAGS += -std=c++11
