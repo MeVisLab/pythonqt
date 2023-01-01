@@ -42,15 +42,21 @@
 */
 //----------------------------------------------------------------------------------
 
-#ifdef WIN32
-#ifdef PYTHONQT_EXPORTS
-#define PYTHONQT_EXPORT __declspec(dllexport)
+
+#if defined(WIN32)
+    #ifdef PYTHONQT_EXPORTS
+      #define PYTHONQT_EXPORT __declspec(dllexport)
+    #else
+      #define PYTHONQT_EXPORT __declspec(dllimport)
+    #endif
 #else
-#define PYTHONQT_EXPORT __declspec(dllimport)
+    #ifdef PYTHONQT_EXPORTS
+      #define PYTHONQT_EXPORT __attribute__((__visibility__("default")))
+    #else
+      #define PYTHONQT_EXPORT
+    #endif
 #endif
-#else
-#define PYTHONQT_EXPORT
-#endif
+
 
 #endif
 
