@@ -64,7 +64,7 @@ struct PythonQtInstanceWrapper {
   PyObject_HEAD
 
   //! the class information, this is set even if the _obj or _wrappedPtr is NULL to support typed NULL pointers
-  inline PythonQtClassInfo* classInfo() 
+  inline PythonQtClassInfo* classInfo()
   {  return ((PythonQtClassWrapper*)Py_TYPE(this))->_classInfo; }
 
   inline PythonQtDynamicClassInfo* dynamicClassInfo()

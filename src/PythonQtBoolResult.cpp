@@ -66,54 +66,54 @@ static int PythonQtBoolResult_nonzero(PyObject *obj)
 
 // we override nb_nonzero, so that one can do 'if' expressions to test for a NULL ptr
 static PyNumberMethods PythonQtBoolResult_as_number = {
-  0,      /* nb_add */
-  0,      /* nb_subtract */
-  0,      /* nb_multiply */
+  nullptr,      /* nb_add */
+  nullptr,      /* nb_subtract */
+  nullptr,      /* nb_multiply */
 #ifndef PY3K
-  0,      /* nb_divide */
+  nullptr,      /* nb_divide */
 #endif
-  0,      /* nb_remainder */
-  0,      /* nb_divmod */
-  0,      /* nb_power */
-  0,      /* nb_negative */
-  0,      /* nb_positive */
-  0,      /* nb_absolute */
+  nullptr,      /* nb_remainder */
+  nullptr,      /* nb_divmod */
+  nullptr,      /* nb_power */
+  nullptr,      /* nb_negative */
+  nullptr,      /* nb_positive */
+  nullptr,      /* nb_absolute */
   PythonQtBoolResult_nonzero,      /* nb_nonzero / nb_bool in Py3K */
-  0,      /* nb_invert */
-  0,      /* nb_lshift */
-  0,      /* nb_rshift */
-  0,    /* nb_and */
-  0,    /* nb_xor */
-  0,    /* nb_or */
-#ifndef PY3K
-  0,      /* nb_coerce */
+  nullptr,      /* nb_invert */
+  nullptr,      /* nb_lshift */
+  nullptr,      /* nb_rshift */
+  nullptr,      /* nb_and */
+  nullptr,      /* nb_xor */
+  nullptr,      /* nb_or */
+#ifndef PY3K   
+  nullptr,      /* nb_coerce */
 #endif
-  0,      /* nb_int */
-  0,      /* nb_long  / nb_reserved in Py3K */
-  0,      /* nb_float */
+  nullptr,      /* nb_int */
+  nullptr,      /* nb_long  / nb_reserved in Py3K */
+  nullptr,      /* nb_float */
 #ifndef PY3K
-  0,      /* nb_oct */
-  0,      /* nb_hex */
+  nullptr,      /* nb_oct */
+  nullptr,      /* nb_hex */
 #endif
-  0,      /* nb_inplace_add */
-  0,      /* nb_inplace_subtract */
-  0,      /* nb_inplace_multiply */
+  nullptr,      /* nb_inplace_add */
+  nullptr,      /* nb_inplace_subtract */
+  nullptr,      /* nb_inplace_multiply */
 #ifndef PY3K
-  0,      /* nb_inplace_divide */
+  nullptr,      /* nb_inplace_divide */
 #endif
-  0,      /* nb_inplace_remainder */
-  0,      /* nb_inplace_power */
-  0,      /* nb_inplace_lshift */
-  0,      /* nb_inplace_rshift */
-  0,      /* nb_inplace_and */
-  0,      /* nb_inplace_xor */
-  0,      /* nb_inplace_or */
-  0,      /* nb_floor_divide */
-  0,      /* nb_true_divide */
-  0,      /* nb_inplace_floor_divide */
-  0,      /* nb_inplace_true_divide */
+  nullptr,      /* nb_inplace_remainder */
+  nullptr,      /* nb_inplace_power */
+  nullptr,      /* nb_inplace_lshift */
+  nullptr,      /* nb_inplace_rshift */
+  nullptr,      /* nb_inplace_and */
+  nullptr,      /* nb_inplace_xor */
+  nullptr,      /* nb_inplace_or */
+  nullptr,      /* nb_floor_divide */
+  nullptr,      /* nb_true_divide */
+  nullptr,      /* nb_inplace_floor_divide */
+  nullptr,      /* nb_inplace_true_divide */
 #ifdef PY3K
-  0,      /* nb_index in Py3K */
+  nullptr,      /* nb_index in Py3K */
 #endif
 };
 
@@ -122,37 +122,37 @@ PyTypeObject PythonQtBoolResult_Type = {
     "BoolResult",
     sizeof(PythonQtBoolResultObject),
     0,
-    0,     /* tp_dealloc */
-    0,          /* tp_print */
-    0,          /* tp_getattr */
-    0,          /* tp_setattr */
-    0,
+    nullptr,      /* tp_dealloc */
+    0,            /* tp_vectorcall_offset */
+    nullptr,      /* tp_getattr */
+    nullptr,      /* tp_setattr */
+    nullptr,
     (reprfunc)PythonQtBoolResult_repr,      /* tp_repr */
     &PythonQtBoolResult_as_number,          /* tp_as_number */
-    0,          /* tp_as_sequence */
-    0,          /* tp_as_mapping */
-    0,      /* tp_hash */
-    0,      /* tp_call */
-    0,          /* tp_str */
-    0,    /* tp_getattro */
-    0,          /* tp_setattro */
-    0,          /* tp_as_buffer */
+    nullptr,      /* tp_as_sequence */
+    nullptr,      /* tp_as_mapping */
+    nullptr,      /* tp_hash */
+    nullptr,      /* tp_call */
+    nullptr,      /* tp_str */
+    nullptr,      /* tp_getattro */
+    nullptr,      /* tp_setattro */
+    nullptr,      /* tp_as_buffer */
     Py_TPFLAGS_DEFAULT,/* tp_flags */
-    "Result object that is useful for bool* arguments",          /* tp_doc */
-    0,    /* tp_traverse */
-    0,          /* tp_clear */
-    0,          /* tp_richcompare */
-    0,          /* tp_weaklistoffset */
-    0,          /* tp_iter */
-    0,          /* tp_iternext */
-    0,          /* tp_methods */
-    0,       /* tp_members */
-    0,       /* tp_getset */
-    0,          /* tp_base */
-    0,          /* tp_dict */
-    0,                         /* tp_descr_get */
-    0,                         /* tp_descr_set */
-    0,                         /* tp_dictoffset */
+    "Result object that is useful for bool* arguments",     /* tp_doc */
+    nullptr,      /* tp_traverse */
+    nullptr,      /* tp_clear */
+    nullptr,      /* tp_richcompare */
+    0,            /* tp_weaklistoffset */
+    nullptr,      /* tp_iter */
+    nullptr,      /* tp_iternext */
+    nullptr,      /* tp_methods */
+    nullptr,      /* tp_members */
+    nullptr,      /* tp_getset */
+    nullptr,      /* tp_base */
+    nullptr,      /* tp_dict */
+    nullptr,      /* tp_descr_get */
+    nullptr,      /* tp_descr_set */
+    0,            /* tp_dictoffset */
     (initproc)&PythonQtBoolResult_init,      /* tp_init */
 };
 

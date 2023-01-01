@@ -113,7 +113,7 @@ void PythonQtObjectPtr::setNewRef(PyObject* o)
 bool PythonQtObjectPtr::fromVariant(const QVariant& variant) 
 {
   if (!variant.isNull()) {
-    PyObject* object = NULL;
+    PyObject* object = nullptr;
     if (PythonQt::priv()->isPythonQtSafeObjectPtrMetaId(variant.userType())) {
       object = (*((const PythonQtSafeObjectPtr*)variant.constData())).object();
     } else if (PythonQt::priv()->isPythonQtObjectPtrMetaId(variant.userType())) {
@@ -123,7 +123,7 @@ bool PythonQtObjectPtr::fromVariant(const QVariant& variant)
     return true;
   }
   else {
-    setObject(NULL);
+    setObject(nullptr);
     return false;
   } 
 }
@@ -137,7 +137,7 @@ QVariant PythonQtObjectPtr::toVariant()
 PythonQtObjectPtr & PythonQtObjectPtr::operator=(PythonQtSafeObjectPtr &&p)
 {
   if (_object) {
-    setObject(NULL);
+    setObject(nullptr);
   }
   _object = p.takeObject();
   return *this;

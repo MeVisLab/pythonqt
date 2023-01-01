@@ -50,13 +50,13 @@
 QHash<QByteArray, int> PythonQtMethodInfo::_parameterTypeDict;
 
 PythonQtClassInfo::PythonQtClassInfo() {
-  _meta = NULL;
-  _constructors = NULL;
-  _destructor = NULL;
-  _decoratorProvider = NULL;
-  _decoratorProviderCB = NULL;
-  _pythonQtClassWrapper = NULL;
-  _shellSetInstanceWrapperCB = NULL;
+  _meta = nullptr;
+  _constructors = nullptr;
+  _destructor = nullptr;
+  _decoratorProvider = nullptr;
+  _decoratorProviderCB = nullptr;
+  _pythonQtClassWrapper = nullptr;
+  _shellSetInstanceWrapperCB = nullptr;
   _metaTypeId = -1;
   _typeSlots = 0;
   _isQObject = false;
@@ -64,8 +64,8 @@ PythonQtClassInfo::PythonQtClassInfo() {
   _richCompareDetectionDone = false;
   _searchPolymorphicHandlerOnParent = true;
   _searchRefCountCB = true;
-  _refCallback = NULL;
-  _unrefCallback = NULL;
+  _refCallback = nullptr;
+  _unrefCallback = nullptr;
 }
 
 PythonQtClassInfo::~PythonQtClassInfo()
@@ -256,7 +256,7 @@ PythonQtSlotInfo* PythonQtClassInfo::findDecoratorSlotsFromDecoratorProvider(con
 bool PythonQtClassInfo::lookForMethodAndCache(const char* memberName)
 {
   bool found = false;
-  PythonQtSlotInfo* tail = NULL;
+  PythonQtSlotInfo* tail = nullptr;
   
   // look for dynamic decorators in this class and in derived classes
   // (do this first to allow overloading of existing slots with generated wrappers,
@@ -496,7 +496,6 @@ QStringList PythonQtClassInfo::memberList()
   decorator();
 
   QStringList l;
-  QString h;
   // normal slots of QObject (or wrapper QObject)
   if (_meta) {
     int numMethods = _meta->methodCount();
@@ -563,8 +562,8 @@ const QByteArray& PythonQtClassInfo::className() const
 
 void* PythonQtClassInfo::castTo(void* ptr, const char* classname)
 {
-  if (ptr==NULL) {
-    return NULL;
+  if (ptr==nullptr) {
+    return nullptr;
   }
   if (_wrappedClassName == classname) {
     return ptr;
@@ -575,7 +574,7 @@ void* PythonQtClassInfo::castTo(void* ptr, const char* classname)
       return result;
     }
   }
-  return NULL;
+  return nullptr;
 }
 
 bool PythonQtClassInfo::inherits(const char* name)
@@ -768,7 +767,7 @@ void* PythonQtClassInfo::recursiveCastDownIfPossible(void* ptr, const char** res
       }
     }
   }
-  return NULL;
+  return nullptr;
 }
 
 void* PythonQtClassInfo::castDownIfPossible(void* ptr, PythonQtClassInfo** resultClassInfo)
@@ -795,14 +794,14 @@ void* PythonQtClassInfo::castDownIfPossible(void* ptr, PythonQtClassInfo** resul
         if (parent->_parentClasses.count()>0) {
           parent = parent->_parentClasses[0]._parent;
         } else {
-          parent = NULL;
+          parent = nullptr;
         }
       }
     }
   }
 
   // we only do downcasting on the base object, not on the whole inheritance tree...
-  void* resultPtr = NULL;
+  void* resultPtr = nullptr;
   if (!_polymorphicHandlers.isEmpty()) {
     Q_FOREACH(PythonQtPolymorphicHandlerCB* cb, _polymorphicHandlers) {
       resultPtr = (*cb)(ptr, &className);
@@ -837,13 +836,13 @@ PyObject* PythonQtClassInfo::findEnumWrapper(const QByteArray& name, PythonQtCla
     if (info) {
       return info->findEnumWrapper(enumName);
     } else{
-      return NULL;
+      return nullptr;
     }
   }
   if (localScope) {
     return localScope->findEnumWrapper(name);
   } else {
-    return NULL;
+    return nullptr;
   }
 }
 
@@ -892,13 +891,13 @@ PyObject* PythonQtClassInfo::findEnumWrapper(const char* name) {
     PyObject* p = info._parent->findEnumWrapper(name);
     if (p) return p;
   }
-  return NULL;
+  return nullptr;
 }
 
 void PythonQtClassInfo::setDecoratorProvider( PythonQtQObjectCreatorFunctionCB* cb )
 {
   _decoratorProviderCB = cb;
-  _decoratorProvider = NULL;
+  _decoratorProvider = nullptr;
   _enumsCreated = false;
 }
 
@@ -959,7 +958,7 @@ PyObject* PythonQtClassInfo::copyObject( void* cppObject )
       std::cerr << "PythonQt: Can't create a copy of '" << info->_wrappedClassName.constData() << "', either use qRegisterMetaType() or add a copy constructor to the decorator/wrapper." << std::endl;
     }
   }
-  return NULL;
+  return nullptr;
 }
 
 PythonQtSlotInfo* PythonQtClassInfo::getCopyConstructor()
@@ -973,7 +972,7 @@ PythonQtSlotInfo* PythonQtClassInfo::getCopyConstructor()
     }
     construc = construc->nextInfo();
   }
-  return NULL;
+  return nullptr;
 }
 
 void PythonQtClassInfo::setReferenceCounting( PythonQtVoidPtrCB* refCB, PythonQtVoidPtrCB* unrefCB )
@@ -1019,7 +1018,7 @@ PyObject* PythonQtClassInfo::getPythonTypeForProperty( const QString& name )
   if (classInfo) {
     return classInfo->pythonQtClassWrapper();
   } else {
-    return NULL;
+    return nullptr;
   }
 }
 
@@ -1042,7 +1041,7 @@ PythonQtClassInfo* PythonQtClassInfo::getClassInfoForProperty( const QString& na
     PythonQtClassInfo* classInfo = PythonQt::priv()->getClassInfo(typeName);
     return classInfo;
   }
-  return NULL;
+  return nullptr;
 }
 
 bool PythonQtClassInfo::supportsRichCompare()
@@ -1082,25 +1081,25 @@ PythonQtMemberInfo::PythonQtMemberInfo( PythonQtSlotInfo* info )
     _type = Slot;
   }
   _slot = info;
-  _enumValue = NULL;
-  _pythonType = NULL;
+  _enumValue = nullptr;
+  _pythonType = nullptr;
 }
 
 PythonQtMemberInfo::PythonQtMemberInfo( const PythonQtObjectPtr& enumValue )
 {
   _type = EnumValue;
-  _slot = NULL;
+  _slot = nullptr;
   _enumValue = enumValue;
-  _pythonType = NULL;
+  _pythonType = nullptr;
 }
 
 PythonQtMemberInfo::PythonQtMemberInfo( const QMetaProperty& prop )
 {
   _type = Property;
-  _slot = NULL;
+  _slot = nullptr;
   _property = prop;
-  _enumValue = NULL;
-  _pythonType = NULL;
+  _enumValue = nullptr;
+  _pythonType = nullptr;
 }
 
 PythonQtDynamicClassInfo::~PythonQtDynamicClassInfo()

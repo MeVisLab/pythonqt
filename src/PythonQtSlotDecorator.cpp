@@ -39,10 +39,10 @@ int PythonQtSlotDecorator_init(PyObject *object, PyObject *args, PyObject *kw)
   self->returnType = new QByteArray();
   self->args = new QByteArray();
 
-  char* argName = 0;
-  PyObject* argResult = 0;
+  char* argName = nullptr;
+  PyObject* argResult = nullptr;
 
-  static const char* kwlist[] = {"name", "result", 0};
+  static const char* kwlist[] = {"name", "result", nullptr};
   static PyObject* emptyTuple = PyTuple_New(0);
   if (!PyArg_ParseTupleAndKeywords(emptyTuple, kw, "|sO:QtCore.Slot", (char**) kwlist, &argName, &argResult)) {
     return 0;
@@ -96,7 +96,7 @@ PyObject* PythonQtSlotDecorator_call(PyObject* object, PyObject* args, PyObject*
     QByteArray signature = returnType + " " + slotName + "(" + *self->args + ")";
 
     static PyObject* qtSlots = PyString_FromString("_qtSlots");
-    PyObject* signatures = NULL;
+    PyObject* signatures = nullptr;
     if (!PyObject_HasAttr(function, qtSlots)) {
       // create a new list
       signatures = PyList_New(0);
@@ -127,49 +127,49 @@ PyDoc_STRVAR(PythonQtSlotDecorator_doc,
 
 PyTypeObject PythonQtSlotDecorator_Type = {
     PyVarObject_HEAD_INIT(&PyType_Type, 0)
-    "PythonQt.QtCore.Slot",     /*tp_name*/
-    sizeof(PythonQtSlotDecorator),/*tp_basicsize*/
+    "PythonQt.QtCore.Slot",          /*tp_name*/
+    sizeof(PythonQtSlotDecorator),   /*tp_basicsize*/
     0,                          /*tp_itemsize*/
-    0,                          /*tp_dealloc*/
-    0,                          /*tp_print*/
-    0,                          /*tp_getattr*/
-    0,                          /*tp_setattr*/
-    0,                          /*tp_compare*/
-    0,                          /*tp_repr*/
-    0,                          /*tp_as_number*/
-    0,                          /*tp_as_sequence*/
-    0,                          /*tp_as_mapping*/
-    0,                          /*tp_hash */
-    PythonQtSlotDecorator_call,   /*tp_call*/
-    0,                          /*tp_str*/
-    0,                          /*tp_getattro*/
-    0,                          /*tp_setattro*/
-    0,                          /*tp_as_buffer*/
+    nullptr,                    /*tp_dealloc*/
+    0,                          /*tp_vectorcall_offset*/
+    nullptr,                    /*tp_getattr*/
+    nullptr,                    /*tp_setattr*/
+    nullptr,                    /*tp_compare*/
+    nullptr,                    /*tp_repr*/
+    nullptr,                    /*tp_as_number*/
+    nullptr,                    /*tp_as_sequence*/
+    nullptr,                    /*tp_as_mapping*/
+    nullptr,                    /*tp_hash */
+    PythonQtSlotDecorator_call, /*tp_call*/
+    nullptr,                    /*tp_str*/
+    nullptr,                    /*tp_getattro*/
+    nullptr,                    /*tp_setattro*/
+    nullptr,                    /*tp_as_buffer*/
     Py_TPFLAGS_DEFAULT,         /*tp_flags*/
     PythonQtSlotDecorator_doc,  /*tp_doc */
-    0,                          /*tp_traverse */
-    0,                          /*tp_clear */
-    0,                          /*tp_richcompare */
+    nullptr,                    /*tp_traverse */
+    nullptr,                    /*tp_clear */
+    nullptr,                    /*tp_richcompare */
     0,                          /*tp_weaklistoffset */
-    0,                          /*tp_iter */
-    0,                          /*tp_iternext */
-    0,                          /*tp_methods */
-    0,                          /*tp_members */
-    0,                          /*tp_getset */
-    0,                          /*tp_base */
-    0,                          /*tp_dict */
-    0,                          /*tp_descr_get */
-    0,                          /*tp_descr_set */
+    nullptr,                    /*tp_iter */
+    nullptr,                    /*tp_iternext */
+    nullptr,                    /*tp_methods */
+    nullptr,                    /*tp_members */
+    nullptr,                    /*tp_getset */
+    nullptr,                    /*tp_base */
+    nullptr,                    /*tp_dict */
+    nullptr,                    /*tp_descr_get */
+    nullptr,                    /*tp_descr_set */
     0,                          /*tp_dictoffset */
-    PythonQtSlotDecorator_init,   /*tp_init */
-    0,                          /*tp_alloc */
+    PythonQtSlotDecorator_init, /*tp_init */
+    nullptr,                    /*tp_alloc */
     PyType_GenericNew,          /*tp_new */
-    0,                          /*tp_free */
-    0,                          /*tp_is_gc */
-    0,                          /*tp_bases */
-    0,                          /*tp_mro */
-    0,                          /*tp_cache */
-    0,                          /*tp_subclasses */
-    0,                          /*tp_weaklist */
-    0,                          /*tp_del */
+    nullptr,                    /*tp_free */
+    nullptr,                    /*tp_is_gc */
+    nullptr,                    /*tp_bases */
+    nullptr,                    /*tp_mro */
+    nullptr,                    /*tp_cache */
+    nullptr,                    /*tp_subclasses */
+    nullptr,                    /*tp_weaklist */
+    nullptr,                    /*tp_del */
 };

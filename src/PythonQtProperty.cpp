@@ -40,7 +40,7 @@ int PythonQtProperty_init(PyObject *object, PyObject *args, PyObject *kw)
   self->data = new PythonQtPropertyData();
   PythonQtPropertyData* data = self->data;
 
-  PyObject* type = 0;
+  PyObject* type = nullptr;
   static const char *kwlist[] =
   {
     "type",
@@ -48,7 +48,7 @@ int PythonQtProperty_init(PyObject *object, PyObject *args, PyObject *kw)
     "doc",
     "designable", "scriptable", "stored", "user", "constant", "final",
     "notify",
-    0
+    nullptr
   };
 
   if (!PyArg_ParseTupleAndKeywords(args, kw,
@@ -69,19 +69,19 @@ int PythonQtProperty_init(PyObject *object, PyObject *args, PyObject *kw)
   }
 
   if (data->fget == Py_None) {
-    data->fget = NULL;
+    data->fget = nullptr;
   }
   if (data->fset == Py_None) {
-    data->fset = NULL;
+    data->fset = nullptr;
   }
   if (data->freset == Py_None) {
-    data->freset = NULL;
+    data->freset = nullptr;
   }
   if (data->fdel == Py_None) {
-    data->fdel = NULL;
+    data->fdel = nullptr;
   }
   if (data->doc == Py_None) {
-    data->doc = NULL;
+    data->doc = nullptr;
   }
   if (data->fdel) {
     std::cerr << "Property: fdel is not yet supported!" << std::endl;
@@ -109,7 +109,7 @@ void PythonQtProperty_dealloc(PyObject* object)
   Py_CLEAR(self->data->doc);
 
   delete self->data;
-  self->data = NULL;
+  self->data = nullptr;
   Py_TYPE(object)->tp_free(object);
 }
 
@@ -128,7 +128,7 @@ PyObject* PythonQtProperty_setter(PyObject* object, PyObject* func)
     return object;
   } else {
     PyErr_SetString(PyExc_TypeError, "Property needs a callable as fset.");
-    return 0;
+    return nullptr;
   }
 }
 
@@ -147,7 +147,7 @@ PyObject* PythonQtProperty_getter(PyObject* object, PyObject* func)
     return object;
   } else {
     PyErr_SetString(PyExc_TypeError, "Property needs a callable as fget.");
-    return 0;
+    return nullptr;
   }
 }
 
@@ -158,7 +158,7 @@ PyObject* PythonQtProperty_call(PyObject* object, PyObject* args, PyObject* kw)
     return PythonQtProperty_getter(object, func);
   } else {
     PyErr_SetString(PyExc_TypeError, "Property expects a single callable.");
-    return 0;
+    return nullptr;
   }
 }
 
@@ -167,7 +167,7 @@ static PyMethodDef PythonQtProperty_methods[] = {
   { "getter", (PyCFunction)PythonQtProperty_getter, METH_O, "Sets the fget function." },
   { "write", (PyCFunction)PythonQtProperty_setter, METH_O, "Sets the fset function." },
   { "read", (PyCFunction)PythonQtProperty_getter, METH_O, "Sets the fget function." },
-  { NULL, NULL, 0, NULL }  /* Sentinel */
+  { nullptr, nullptr, 0, nullptr }  /* Sentinel */
 };
 
 
@@ -184,8 +184,8 @@ static PyObject *PythonQtProperty_get_doc(PythonQtProperty* self, void * /*closu
 }
 
 static PyGetSetDef PythonQtProperty_getsets[] = {
-  { const_cast<char*>("__doc__"),  (getter)PythonQtProperty_get_doc,  NULL, NULL },
-  { NULL, NULL, NULL,NULL },
+  { const_cast<char*>("__doc__"),  (getter)PythonQtProperty_get_doc,  nullptr, nullptr },
+  { nullptr, nullptr, nullptr,nullptr },
 };
 
 PyDoc_STRVAR(PythonQtProperty_doc,
@@ -199,47 +199,47 @@ PyTypeObject PythonQtProperty_Type = {
     sizeof(PythonQtProperty),   /*tp_basicsize*/
     0,                          /*tp_itemsize*/
     PythonQtProperty_dealloc,   /*tp_dealloc*/
-    0,                          /*tp_print*/
-    0,                          /*tp_getattr*/
-    0,                          /*tp_setattr*/
-    0,                          /*tp_compare*/
-    0,                          /*tp_repr*/
-    0,                          /*tp_as_number*/
-    0,                          /*tp_as_sequence*/
-    0,                          /*tp_as_mapping*/
-    0,                          /*tp_hash */
+    0,                          /*tp_vectorcall_offset*/
+    nullptr,                    /*tp_getattr*/
+    nullptr,                    /*tp_setattr*/
+    nullptr,                    /*tp_compare*/
+    nullptr,                    /*tp_repr*/
+    nullptr,                    /*tp_as_number*/
+    nullptr,                    /*tp_as_sequence*/
+    nullptr,                    /*tp_as_mapping*/
+    nullptr,                    /*tp_hash */
     PythonQtProperty_call,      /*tp_call*/
-    0,                          /*tp_str*/
-    0,                          /*tp_getattro*/
-    0,                          /*tp_setattro*/
-    0,                          /*tp_as_buffer*/
+    nullptr,                    /*tp_str*/
+    nullptr,                    /*tp_getattro*/
+    nullptr,                    /*tp_setattro*/
+    nullptr,                    /*tp_as_buffer*/
     Py_TPFLAGS_DEFAULT,         /*tp_flags*/
     PythonQtProperty_doc,       /*tp_doc */
-    0,                          /*tp_traverse */
-    0,                          /*tp_clear */
-    0,                          /*tp_richcompare */
+    nullptr,                    /*tp_traverse */
+    nullptr,                    /*tp_clear */
+    nullptr,                    /*tp_richcompare */
     0,                          /*tp_weaklistoffset */
-    0,                          /*tp_iter */
-    0,                          /*tp_iternext */
+    nullptr,                    /*tp_iter */
+    nullptr,                    /*tp_iternext */
     PythonQtProperty_methods,   /*tp_methods */
-    0,                          /*tp_members */
+    nullptr,                    /*tp_members */
     PythonQtProperty_getsets,   /*tp_getset */
-    0,                          /*tp_base */
-    0,                          /*tp_dict */
-    0,                          /*tp_descr_get */
-    0,                          /*tp_descr_set */
+    nullptr,                    /*tp_base */
+    nullptr,                    /*tp_dict */
+    nullptr,                    /*tp_descr_get */
+    nullptr,                    /*tp_descr_set */
     0,                          /*tp_dictoffset */
     PythonQtProperty_init,      /*tp_init */
-    0,                          /*tp_alloc */
+    nullptr,                    /*tp_alloc */
     PyType_GenericNew,          /*tp_new */
-    0,                          /*tp_free */
-    0,                          /*tp_is_gc */
-    0,                          /*tp_bases */
-    0,                          /*tp_mro */
-    0,                          /*tp_cache */
-    0,                          /*tp_subclasses */
-    0,                          /*tp_weaklist */
-    0,                          /*tp_del */
+    nullptr,                    /*tp_free */
+    nullptr,                    /*tp_is_gc */
+    nullptr,                    /*tp_bases */
+    nullptr,                    /*tp_mro */
+    nullptr,                    /*tp_cache */
+    nullptr,                    /*tp_subclasses */
+    nullptr,                    /*tp_weaklist */
+    nullptr,                    /*tp_del */
 };
 
 bool PythonQtPropertyData::callSetter(PyObject* wrapper, PyObject* newValue)
@@ -253,7 +253,7 @@ bool PythonQtPropertyData::callSetter(PyObject* wrapper, PyObject* newValue)
 
     PyObject* result = PyObject_CallObject(fset, pyargs);
 
-    bool ok = (result != NULL);
+    bool ok = (result != nullptr);
     Py_XDECREF(result);
     Py_DECREF(pyargs);
     return ok;
@@ -274,7 +274,7 @@ PyObject* PythonQtPropertyData::callGetter(PyObject* wrapper)
     return value;
   } else {
     PyErr_Format(PyExc_TypeError, "Property is write only.");
-    return NULL;
+    return nullptr;
   }
 }
 
@@ -285,7 +285,7 @@ bool PythonQtPropertyData::callReset(PyObject* wrapper)
     PyTuple_SET_ITEM(pyargs, 0, wrapper);
     Py_INCREF(wrapper);
     PyObject* result = PyObject_CallObject(freset, pyargs);
-    bool ok = (result != NULL);
+    bool ok = (result != nullptr);
     Py_XDECREF(result);
     Py_DECREF(pyargs);
     return ok; 

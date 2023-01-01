@@ -57,7 +57,7 @@ class PYTHONQT_EXPORT PythonQtSignalTarget {
 public:
   PythonQtSignalTarget() {
     _signalId = -1;
-    _methodInfo = NULL;
+    _methodInfo = nullptr;
     _slotId = -1;
   }
 
@@ -119,7 +119,7 @@ public:
   bool addSignalHandler(const char* signal, PyObject* callable);
 
   //! remove a signal handler for given callable (or all callables on that signal if callable is NULL)
-  bool removeSignalHandler(const char* signal, PyObject* callable = NULL);
+  bool removeSignalHandler(const char* signal, PyObject* callable = nullptr);
 
   //! we implement this method to simulate a number of slots that match the ids in _targets
   virtual int qt_metacall(QMetaObject::Call c, int id, void **arguments);

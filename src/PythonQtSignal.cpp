@@ -56,7 +56,7 @@
 
 //-----------------------------------------------------------------------------------
 
-static PythonQtSignalFunctionObject *PythonQtSignal_free_list = NULL;
+static PythonQtSignalFunctionObject *PythonQtSignal_free_list = nullptr;
 
 PyObject *PythonQtSignalFunction_Call(PyObject *func, PyObject *args, PyObject *kw)
 {
@@ -66,7 +66,7 @@ PyObject *PythonQtSignalFunction_Call(PyObject *func, PyObject *args, PyObject *
 
 PyObject *PythonQtSignalFunction_tpNew(PyTypeObject *subtype, PyObject *args, PyObject *kwds)
 {
-  return PythonQtSignalFunction_New(NULL, NULL, NULL);
+  return PythonQtSignalFunction_New(nullptr, nullptr, nullptr);
 }
 
 PyObject *
@@ -74,16 +74,16 @@ PythonQtSignalFunction_New(PythonQtSlotInfo *ml, PyObject *self, PyObject *modul
 {
   PythonQtSignalFunctionObject *op;
   op = PythonQtSignal_free_list;
-  if (op != NULL) {
+  if (op != nullptr) {
     PythonQtSignal_free_list = (PythonQtSignalFunctionObject *)(op->m_self);
     PyObject_INIT(op, &PythonQtSignalFunction_Type);
   }
   else {
     op = PyObject_GC_New(PythonQtSignalFunctionObject, &PythonQtSignalFunction_Type);
-    if (op == NULL)
-      return NULL;
+    if (op == nullptr)
+      return nullptr;
   }
-  op->_dynamicInfo = NULL;
+  op->_dynamicInfo = nullptr;
   op->m_ml = ml;
   Py_XINCREF(self);
   op->m_self = self;
@@ -101,7 +101,7 @@ meth_dealloc(PythonQtSignalFunctionObject *m)
   PyObject_GC_UnTrack(m);
   if (m->_dynamicInfo) {
     delete m->_dynamicInfo;
-    m->_dynamicInfo = NULL;
+    m->_dynamicInfo = nullptr;
   }
   Py_XDECREF(m->m_self);
   Py_XDECREF(m->m_module);
@@ -130,12 +130,12 @@ static int
 meth_traverse(PythonQtSignalFunctionObject *m, visitproc visit, void *arg)
 {
   int err;
-  if (m->m_self != NULL) {
+  if (m->m_self != nullptr) {
     err = visit(m->m_self, arg);
     if (err)
       return err;
   }
-  if (m->m_module != NULL) {
+  if (m->m_module != nullptr) {
     err = visit(m->m_module, arg);
     if (err)
       return err;
@@ -155,17 +155,17 @@ meth_get__self__(PythonQtSignalFunctionObject *m, void * /*closure*/)
   }
 #endif
   self = m->m_self;
-  if (self == NULL)
+  if (self == nullptr)
     self = Py_None;
   Py_INCREF(self);
   return self;
 }
 
 static PyGetSetDef meth_getsets [] = {
-  {const_cast<char*>("__doc__"),  (getter)meth_get__doc__,  NULL, NULL},
-  {const_cast<char*>("__name__"), (getter)meth_get__name__, NULL, NULL},
-  {const_cast<char*>("__self__"), (getter)meth_get__self__, NULL, NULL},
-  {NULL, NULL, NULL,NULL},
+  {const_cast<char*>("__doc__"),  (getter)meth_get__doc__,  nullptr, nullptr},
+  {const_cast<char*>("__name__"), (getter)meth_get__name__, nullptr, nullptr},
+  {const_cast<char*>("__self__"), (getter)meth_get__self__, nullptr, nullptr},
+  {nullptr, nullptr, nullptr,nullptr},
 };
 
 #if PY_MAJOR_VERSION == 2 && PY_MINOR_VERSION < 6
@@ -176,7 +176,7 @@ static PyGetSetDef meth_getsets [] = {
 
 static PyMemberDef meth_members[] = {
   {const_cast<char*>("__module__"),    T_OBJECT,     OFF(m_module), PY_WRITE_RESTRICTED},
-  {NULL}
+  {nullptr}
 };
 
 int PythonQtSignalFunction_init(PyObject *object, PyObject *args, PyObject *kw)
@@ -261,7 +261,7 @@ static PyObject *PythonQtSignalFunction_connect(PythonQtSignalFunctionObject* ty
       }
     }
   }
-  return NULL;
+  return nullptr;
 }
 
 static PyObject *PythonQtSignalFunction_disconnect(PythonQtSignalFunctionObject* type, PyObject *args)
@@ -277,21 +277,21 @@ static PyObject *PythonQtSignalFunction_disconnect(PythonQtSignalFunctionObject*
         bool result = PythonQt::self()->removeSignalHandler(self->_obj, signal, callable);
         return PythonQtConv::GetPyBool(result);
       } else if (argc==0) {
-        bool result = PythonQt::self()->removeSignalHandler(self->_obj, signal, NULL);
-        result |= QObject::disconnect(self->_obj, signal, NULL, NULL);
+        bool result = PythonQt::self()->removeSignalHandler(self->_obj, signal, nullptr);
+        result |= QObject::disconnect(self->_obj, signal, nullptr, nullptr);
         return PythonQtConv::GetPyBool(result);
       } else {
         PyErr_SetString(PyExc_ValueError, "Called disconnect with wrong number of arguments");
       }
     }
   }
-  return NULL;
+  return nullptr;
 }
 
 static PyObject *PythonQtSignalFunction_emit(PythonQtSignalFunctionObject* func, PyObject *args)
 {
   PythonQtSignalFunctionObject* f = (PythonQtSignalFunctionObject*)func;
-  return PythonQtMemberFunction_Call(f->m_ml, f->m_self, args, NULL);
+  return PythonQtMemberFunction_Call(f->m_ml, f->m_self, args, nullptr);
 }
 
 static PyMethodDef meth_methods[] = {
@@ -313,7 +313,7 @@ static PyMethodDef meth_methods[] = {
   {"emit", (PyCFunction)PythonQtSignalFunction_emit, METH_VARARGS,
   "Emits the signal with given arguments"
   },
-  {NULL, NULL, 0 , NULL}  /* Sentinel */
+  {nullptr, nullptr, 0 , nullptr}  /* Sentinel */
 };
 
 static PyObject *
@@ -353,7 +353,7 @@ static long
 meth_hash(PythonQtSignalFunctionObject *a)
 {
   long x,y;
-  if (a->m_self == NULL)
+  if (a->m_self == nullptr)
     x = 0;
   else {
     x = PyObject_Hash(a->m_self);
@@ -401,53 +401,53 @@ PyTypeObject PythonQtSignalFunction_Type = {
     "QtCore.Signal",
     sizeof(PythonQtSignalFunctionObject),
     0,
-    (destructor)meth_dealloc,     /* tp_dealloc */
-    0,          /* tp_print */
-    0,          /* tp_getattr */
-    0,          /* tp_setattr */
+    (destructor)meth_dealloc, /* tp_dealloc */
+    0,                        /* tp_vectorcall_offset */
+    nullptr,                  /* tp_getattr */
+    nullptr,                  /* tp_setattr */
 #ifdef PY3K
-    0,
+    nullptr,
 #else
-    (cmpfunc)meth_compare,      /* tp_compare */
+    (cmpfunc)meth_compare,    /* tp_compare */
 #endif
     (reprfunc)meth_repr,      /* tp_repr */
-    0,          /* tp_as_number */
-    0,          /* tp_as_sequence */
+    nullptr,                  /* tp_as_number */
+    nullptr,                  /* tp_as_sequence */
     // TODO: implement tp_as_mapping to support overload resolution on the signal
-    0,          /* tp_as_mapping */
+    nullptr,                  /* tp_as_mapping */
     (hashfunc)meth_hash,      /* tp_hash */
-    PythonQtSignalFunction_Call,      /* tp_call */
-    0,          /* tp_str */
-    PyObject_GenericGetAttr,    /* tp_getattro */
-    0,          /* tp_setattro */
-    0,          /* tp_as_buffer */
+    PythonQtSignalFunction_Call,    /* tp_call */
+    nullptr,                  /* tp_str */
+    PyObject_GenericGetAttr,  /* tp_getattro */
+    nullptr,                  /* tp_setattro */
+    nullptr,                  /* tp_as_buffer */
     Py_TPFLAGS_DEFAULT | Py_TPFLAGS_HAVE_GC,/* tp_flags */
-    PythonQtSignalFunction_doc,          /* tp_doc */
+    PythonQtSignalFunction_doc,     /* tp_doc */
     (traverseproc)meth_traverse,    /* tp_traverse */
-    0,          /* tp_clear */
-    (richcmpfunc)meth_richcompare,          /* tp_richcompare */
-    0,          /* tp_weaklistoffset */
-    0,          /* tp_iter */
-    0,          /* tp_iternext */
-    meth_methods,          /* tp_methods */
-    meth_members,       /* tp_members */
-    meth_getsets,       /* tp_getset */
-    0,          /* tp_base */
-    0,          /* tp_dict */
-    0,                          /*tp_descr_get */
-    0,                          /*tp_descr_set */
-    0,                          /*tp_dictoffset */
+    nullptr,                        /* tp_clear */
+    (richcmpfunc)meth_richcompare,  /* tp_richcompare */
+    0,                        /* tp_weaklistoffset */
+    nullptr,                  /* tp_iter */
+    nullptr,                  /* tp_iternext */
+    meth_methods,             /* tp_methods */
+    meth_members,             /* tp_members */
+    meth_getsets,             /* tp_getset */
+    nullptr,                  /* tp_base */
+    nullptr,                  /* tp_dict */
+    nullptr,                  /*tp_descr_get */
+    nullptr,                  /*tp_descr_set */
+    0,                        /*tp_dictoffset */
     PythonQtSignalFunction_init,   /*tp_init */
-    0,                          /*tp_alloc */
-    PythonQtSignalFunction_tpNew,          /*tp_new */
-    0,                          /*tp_free */
-    0,                          /*tp_is_gc */
-    0,                          /*tp_bases */
-    0,                          /*tp_mro */
-    0,                          /*tp_cache */
-    0,                          /*tp_subclasses */
-    0,                          /*tp_weaklist */
-    0,                          /*tp_del */
+    nullptr,                       /*tp_alloc */
+    PythonQtSignalFunction_tpNew,  /*tp_new */
+    nullptr,                  /*tp_free */
+    nullptr,                  /*tp_is_gc */
+    nullptr,                  /*tp_bases */
+    nullptr,                  /*tp_mro */
+    nullptr,                  /*tp_cache */
+    nullptr,                  /*tp_subclasses */
+    nullptr,                  /*tp_weaklist */
+    nullptr,                  /*tp_del */
 
 };
 

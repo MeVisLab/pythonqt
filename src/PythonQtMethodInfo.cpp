@@ -73,10 +73,10 @@ PythonQtMethodInfo::PythonQtMethodInfo(const QMetaMethod& meta, PythonQtClassInf
 PythonQtMethodInfo::PythonQtMethodInfo(const QByteArray& typeName, const QList<QByteArray>& args)
 {
   ParameterInfo type;
-  fillParameterInfo(type, typeName, NULL);
+  fillParameterInfo(type, typeName, nullptr);
   _parameters.append(type);
   Q_FOREACH (const QByteArray& name, args) {
-    fillParameterInfo(type, name, NULL);
+    fillParameterInfo(type, name, nullptr);
     _parameters.append(type);
   }
   setupAllowThreads();
@@ -135,7 +135,7 @@ void PythonQtMethodInfo::fillParameterInfo(ParameterInfo& type, const QByteArray
 {
   QByteArray name = orgName;
 
-  type.enumWrapper = NULL;
+  type.enumWrapper = nullptr;
   type.innerNamePointerCount = 0;
   type.isQList = false;
   type.passOwnershipToCPP = false;

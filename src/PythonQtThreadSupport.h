@@ -119,7 +119,7 @@ public:
   void restore() {
     if (_state) {
       PyEval_RestoreThread(_state);
-      _state = NULL;
+      _state = nullptr;
     }
   }
 
