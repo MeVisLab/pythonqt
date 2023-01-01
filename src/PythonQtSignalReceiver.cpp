@@ -100,7 +100,7 @@ PyObject* PythonQtSignalTarget::call(PyObject* callable, const PythonQtMethodInf
     }
   }
 
-  PyObject* pargs = NULL;
+  PyObject* pargs = nullptr;
   if (count>1) {
     pargs = PyTuple_New(count-1);
   }
@@ -117,14 +117,14 @@ PyObject* PythonQtSignalTarget::call(PyObject* callable, const PythonQtMethodInf
     }
     if (arg) {
       // steals reference, no unref
-      PyTuple_SetItem(pargs, i-1,arg);
+      PyTuple_SetItem(pargs, i-1, arg);
     } else {
       err = true;
       break;
     }
   }
 
-  PyObject* result = NULL;
+  PyObject* result = nullptr;
   if (!err) {
     PyErr_Clear();
     result = PyObject_CallObject(callable, pargs);
@@ -196,7 +196,7 @@ bool PythonQtSignalReceiver::addSignalHandler(const char* signal, PyObject* call
     PythonQtSignalTarget t(sigId, signalInfo, _slotCount, callable);
     _targets.append(t);
     // now connect to ourselves with the new slot id
-    QMetaObject::connect(_obj, sigId, this, _slotCount, Qt::AutoConnection, 0);
+    QMetaObject::connect(_obj, sigId, this, _slotCount, Qt::AutoConnection, nullptr);
 
     _slotCount++;
     flag = true;

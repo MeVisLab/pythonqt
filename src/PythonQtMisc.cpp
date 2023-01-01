@@ -44,11 +44,11 @@
 
 #define PYTHONQT_MAX_ARGUMENT_FRAME_SIZE (PYTHONQT_MAX_ARGS * 2)
 
-PythonQtArgumentFrame* PythonQtArgumentFrame::_freeListHead = NULL;
+PythonQtArgumentFrame* PythonQtArgumentFrame::_freeListHead = nullptr;
 
 PythonQtArgumentFrame::PythonQtArgumentFrame()
 {
-  _freeListNext = NULL;
+  _freeListNext = nullptr;
 
   // it is important to reserve the memory immediately,
   // otherwise pointers would change while pushing back new arguments.
@@ -62,11 +62,11 @@ PythonQtArgumentFrame::~PythonQtArgumentFrame()
 
 PythonQtArgumentFrame* PythonQtArgumentFrame::newFrame()
 {
-  PythonQtArgumentFrame* frame = NULL;
+  PythonQtArgumentFrame* frame = nullptr;
   if (_freeListHead) {
     frame = _freeListHead;
     _freeListHead = _freeListHead->_freeListNext;
-    frame->_freeListNext = NULL;
+    frame->_freeListNext = nullptr;
   } else {
     frame = new PythonQtArgumentFrame();
   }
@@ -88,7 +88,7 @@ void PythonQtArgumentFrame::cleanupFreeList()
     head = head->_freeListNext;
     delete tmp;
   }
-  _freeListHead = NULL;
+  _freeListHead = nullptr;
 }
 
 void PythonQtArgumentFrame::reset()

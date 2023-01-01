@@ -70,7 +70,7 @@ PyObject* PythonQtSlotFunction_GetSelf(PyObject *);
 
 PyObject* PythonQtSlotFunction_Call(PyObject *, PyObject *, PyObject *);
 
-PyObject *PythonQtSlotFunction_CallImpl(PythonQtClassInfo* classInfo, QObject* objectToCall, PythonQtSlotInfo* info, PyObject *args, PyObject *kw, void* firstArg=NULL,  void** directReturnValuePointer=NULL, PythonQtPassThisOwnershipType* passThisOwnershipToCPP = NULL);
+PyObject *PythonQtSlotFunction_CallImpl(PythonQtClassInfo* classInfo, QObject* objectToCall, PythonQtSlotInfo* info, PyObject *args, PyObject *kw, void* firstArg=nullptr,  void** directReturnValuePointer=nullptr, PythonQtPassThisOwnershipType* passThisOwnershipToCPP = nullptr);
 
 PyObject* PythonQtSlotFunction_New(PythonQtSlotInfo *, PyObject *,
            PyObject *);

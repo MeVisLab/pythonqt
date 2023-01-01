@@ -46,12 +46,12 @@ extern PYTHONQT_EXPORT PyTypeObject PythonQtProperty_Type;
 struct PythonQtPropertyData
 {
   PythonQtPropertyData() {
-    fget = NULL;
-    fset = NULL;
-    fdel = NULL;
-    freset = NULL;
-    notify = NULL;
-    doc = NULL;
+    fget = nullptr;
+    fset = nullptr;
+    fdel = nullptr;
+    freset = nullptr;
+    notify = nullptr;
+    doc = nullptr;
     designable = true;
     scriptable = true;
     stored = true;

@@ -69,9 +69,9 @@ public Q_SLOTS:
   bool connect(QObject* receiver, QObject* sender, const QByteArray& signal, const QByteArray& slot,  Qt::ConnectionType type = Qt::AutoConnection) { return connect(sender, signal, receiver, slot, type); }
   bool static_QObject_connect(QObject* sender, const QByteArray& signal, PyObject* callable) { return connect(sender, signal, callable); }
   bool static_QObject_connect(QObject* sender, const QByteArray& signal, QObject* receiver, const QByteArray& slot,  Qt::ConnectionType type = Qt::AutoConnection)  { return connect(sender, signal, receiver, slot, type); }
-  bool disconnect(QObject* sender, const QByteArray& signal, PyObject* callable = NULL);
+  bool disconnect(QObject* sender, const QByteArray& signal, PyObject* callable = nullptr);
   bool disconnect(QObject* sender, const QByteArray& signal, QObject* receiver, const QByteArray& slot);
-  bool static_QObject_disconnect(QObject* sender, const QByteArray& signal, PyObject* callable = NULL) { return disconnect(sender, signal, callable); }
+  bool static_QObject_disconnect(QObject* sender, const QByteArray& signal, PyObject* callable = nullptr) { return disconnect(sender, signal, callable); }
   bool static_QObject_disconnect(QObject* sender, const QByteArray& signal, QObject* receiver, const QByteArray& slot) { return disconnect(sender, signal, receiver, slot); }
 
   const QMetaObject* metaObject( QObject* obj );
