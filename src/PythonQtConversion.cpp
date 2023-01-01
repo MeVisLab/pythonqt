@@ -503,7 +503,7 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
        break;
      case QMetaType::Long:
        {
-         qint64 val = PyObjGetLongLong(obj, strict, ok);
+         auto val = PyObjGetLongLong(obj, strict, ok);
          if (ok && (val >= LONG_MIN && val <= LONG_MAX)) {
            PythonQtArgumentFrame_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject, frame, long, val, ptr);
          }
@@ -511,8 +511,8 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
        break;
      case QMetaType::ULong:
        {
-         qint64 val = (unsigned long)PyObjGetLongLong(obj, strict, ok);
-         if (ok && (val >= 0 && val <= ULONG_MAX)) {
+         auto val = PyObjGetULongLong(obj, strict, ok);
+         if (ok && val <= ULONG_MAX) {
            PythonQtArgumentFrame_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject, frame, unsigned long, val, ptr);
          }
        }
@@ -535,7 +535,7 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
        break;
      case QMetaType::UInt:
        {
-         quint64 val = PyObjGetLongLong(obj, strict, ok);
+         auto val = PyObjGetLongLong(obj, strict, ok);
          if (ok && (val >= 0 && val <= UINT_MAX)) {
            PythonQtArgumentFrame_ADD_VALUE_IF_NEEDED(alreadyAllocatedCPPObject, frame, unsigned int, val, ptr);
          }
@@ -1066,26 +1066,26 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
     {
       double d = PyObjGetDouble(val,false,ok);
       if (ok) v =  QVariant(d);
-      break;
     }
+    break;
   case QMetaType::Float:
     {
       float d = (float) PyObjGetDouble(val,false,ok);
       if (ok) v =  qVariantFromValue(d);
-      break;
     }
+    break;
   case QMetaType::Long:
     {
       long d = (long) PyObjGetLongLong(val,false,ok);
       if (ok) v =  qVariantFromValue(d);
-      break;
     }
+    break;
   case QMetaType::ULong:
     {
       unsigned long d = (unsigned long) PyObjGetLongLong(val,false,ok);
       if (ok) v =  qVariantFromValue(d);
-      break;
     }
+    break;
   case QMetaType::LongLong:
     {
       qint64 d = PyObjGetLongLong(val, false, ok);
@@ -1102,26 +1102,26 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
     {
       short d = (short) PyObjGetInt(val,false,ok);
       if (ok) v =  qVariantFromValue(d);
-      break;
     }
+    break;
   case QMetaType::UShort:
     {
       unsigned short d = (unsigned short) PyObjGetInt(val,false,ok);
       if (ok) v =  qVariantFromValue(d);
-      break;
     }
+    break;
   case QMetaType::Char:
     {
       char d = (char) PyObjGetInt(val,false,ok);
       if (ok) v =  qVariantFromValue(d);
-      break;
     }
+    break;
   case QMetaType::UChar:
     {
       unsigned char d = (unsigned char) PyObjGetInt(val,false,ok);
       if (ok) v =  qVariantFromValue(d);
-      break;
     }
+    break;
 
   case QVariant::ByteArray:
     {
@@ -1131,8 +1131,8 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
 #else
       v = QVariant(PyObjGetString(val, false, ok));
 #endif
-      break;
     }
+    break;
   case QVariant::String:
     {
       bool ok;
@@ -1207,7 +1207,7 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
           }
         }
       }
-    } else if (type >= QVariant::UserType) {
+    } else if (static_cast<std::uint32_t>(type) >= QVariant::UserType) {
       // not an instance wrapper, but there might be other converters 
       // Maybe we have a special converter that is registered for that type:
       PythonQtConvertPythonToMetaTypeCB* converter = _pythonToMetaTypeConverters.value(type);

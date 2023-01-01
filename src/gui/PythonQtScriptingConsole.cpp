@@ -464,7 +464,6 @@ void PythonQtScriptingConsole::keyPressEvent(QKeyEvent* event) {
     } else {
       _completer->popup()->hide();
     }
-    eventHandled = true;
   }
 }
 
