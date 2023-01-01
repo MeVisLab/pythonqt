@@ -704,13 +704,13 @@ PyObject *PythonQtMemberFunction_typeName(PythonQtSlotInfo* theInfo)
 }
 
 static PyMethodDef meth_methods[] = {
-  {"parameterTypes", (PyCFunction)PythonQtSlotFunction_parameterTypes, METH_NOARGS,
+  {"parameterTypes", reinterpret_cast<PyCFunction>(reinterpret_cast<void*>(PythonQtSlotFunction_parameterTypes)), METH_NOARGS,
   "Returns a tuple of tuples of the C++ parameter types for all overloads of the slot"
   },
-  {"parameterNames", (PyCFunction)PythonQtSlotFunction_parameterNames, METH_NOARGS,
+  {"parameterNames", reinterpret_cast<PyCFunction>(reinterpret_cast<void*>(PythonQtSlotFunction_parameterNames)), METH_NOARGS,
   "Returns a tuple of tuples of the C++ parameter type names (if available), for all overloads of the slot"
   },
-  {"typeName", (PyCFunction)PythonQtSlotFunction_typeName, METH_NOARGS,
+  {"typeName", reinterpret_cast<PyCFunction>(reinterpret_cast<void*>(PythonQtSlotFunction_typeName)), METH_NOARGS,
   "Returns a tuple of the C++ return value types of each slot overload"
   },
   {nullptr, nullptr, 0 , nullptr}  /* Sentinel */
@@ -722,11 +722,11 @@ meth_repr(PythonQtSlotFunctionObject *f)
   if (f->m_self->ob_type == &PythonQtClassWrapper_Type) {
     PythonQtClassWrapper* self = (PythonQtClassWrapper*) f->m_self;
     return PyString_FromFormat("<unbound qt slot %s of %s type>",
-      f->m_ml->slotName().data(),
+      f->m_ml->slotName().constData(),
       self->classInfo()->className().constData());
   } else {
     return PyString_FromFormat("<qt slot %s of %s instance at %p>",
-      f->m_ml->slotName().data(),
+      f->m_ml->slotName().constData(),
       f->m_self->ob_type->tp_name,
       f->m_self);
   }

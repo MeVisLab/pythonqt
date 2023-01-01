@@ -357,16 +357,16 @@ PyObject *PythonQtInstanceWrapper_delete(PythonQtInstanceWrapper * self)
 
 
 static PyMethodDef PythonQtInstanceWrapper_methods[] = {
-    {"className", (PyCFunction)PythonQtInstanceWrapper_classname, METH_NOARGS,
+    {"className", reinterpret_cast<PyCFunction>(reinterpret_cast<void*>(PythonQtInstanceWrapper_classname)), METH_NOARGS,
      "Return the classname of the object"
     },
-    {"inherits", (PyCFunction)PythonQtInstanceWrapper_inherits, METH_VARARGS,
+    {"inherits", reinterpret_cast<PyCFunction>(reinterpret_cast<void*>(PythonQtInstanceWrapper_inherits)), METH_VARARGS,
     "Returns if the class inherits or is of given type name"
     },
-    {"help", (PyCFunction)PythonQtInstanceWrapper_help, METH_NOARGS,
+    {"help", reinterpret_cast<PyCFunction>(reinterpret_cast<void*>(PythonQtInstanceWrapper_help)), METH_NOARGS,
     "Shows the help of available methods for this class"
     },
-    {"delete", (PyCFunction)PythonQtInstanceWrapper_delete, METH_NOARGS,
+    {"delete", reinterpret_cast<PyCFunction>(reinterpret_cast<void*>(PythonQtInstanceWrapper_delete)), METH_NOARGS,
     "Deletes the C++ object (at your own risk, my friend!)"
     },
 {nullptr, nullptr, 0, nullptr}  /* Sentinel */

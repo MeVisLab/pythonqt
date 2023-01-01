@@ -295,22 +295,22 @@ static PyObject *PythonQtSignalFunction_emit(PythonQtSignalFunctionObject* func,
 }
 
 static PyMethodDef meth_methods[] = {
-  {"parameterTypes", (PyCFunction)PythonQtSignalFunction_parameterTypes, METH_NOARGS,
+  {"parameterTypes", reinterpret_cast<PyCFunction>(reinterpret_cast<void*>(PythonQtSignalFunction_parameterTypes)), METH_NOARGS,
   "Returns a tuple of tuples of the C++ parameter types for all overloads of the signal"
   },
-  {"parameterNames", (PyCFunction)PythonQtSignalFunction_parameterNames, METH_NOARGS,
+  {"parameterNames", reinterpret_cast<PyCFunction>(reinterpret_cast<void*>(PythonQtSignalFunction_parameterNames)), METH_NOARGS,
   "Returns a tuple of tuples of the C++ parameter type names (if available), for all overloads of the signal"
   },
-  {"typeName", (PyCFunction)PythonQtSignalFunction_typeName, METH_NOARGS,
+  {"typeName", reinterpret_cast<PyCFunction>(reinterpret_cast<void*>(PythonQtSignalFunction_typeName)), METH_NOARGS,
   "Returns a tuple of the C++ return value types of each signal overload"
   },
-  {"connect", (PyCFunction)PythonQtSignalFunction_connect, METH_VARARGS,
+  {"connect", reinterpret_cast<PyCFunction>(reinterpret_cast<void*>(PythonQtSignalFunction_connect)), METH_VARARGS,
   "Connects the signal to the Python callable"
   },
-  {"disconnect", (PyCFunction)PythonQtSignalFunction_disconnect, METH_VARARGS,
+  {"disconnect", reinterpret_cast<PyCFunction>(reinterpret_cast<void*>(PythonQtSignalFunction_disconnect)), METH_VARARGS,
   "Disconnects the signal from the given Python callable or disconnects all if no argument is passed."
   },
-  {"emit", (PyCFunction)PythonQtSignalFunction_emit, METH_VARARGS,
+  {"emit", reinterpret_cast<PyCFunction>(reinterpret_cast<void*>(PythonQtSignalFunction_emit)), METH_VARARGS,
   "Emits the signal with given arguments"
   },
   {nullptr, nullptr, 0 , nullptr}  /* Sentinel */
@@ -326,11 +326,11 @@ meth_repr(PythonQtSignalFunctionObject *f)
   if (f->m_self->ob_type == &PythonQtClassWrapper_Type) {
     PythonQtClassWrapper* self = (PythonQtClassWrapper*) f->m_self;
     return PyString_FromFormat("<unbound qt signal %s of %s type>",
-      f->m_ml->slotName().data(),
+      f->m_ml->slotName().constData(),
       self->classInfo()->className().constData());
   } else {
     return PyString_FromFormat("<qt signal %s of %s instance at %p>",
-      f->m_ml->slotName().data(),
+      f->m_ml->slotName().constData(),
       f->m_self->ob_type->tp_name,
       f->m_self);
   }
@@ -374,7 +374,7 @@ static PyObject*
 meth_richcompare(PythonQtSignalFunctionObject *a, PythonQtSignalFunctionObject *b, int op)
 {
   int x = meth_compare(a, b);
-  bool r;
+  bool r = false;
   if (op == Py_LT)
     r = x < 0;
   else if (op == Py_LE)

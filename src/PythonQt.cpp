@@ -266,7 +266,7 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
       "QtSystemMsg"
     };
     
-    for (int i = 0; i<sizeof(enumValues)/sizeof(int); i++) {
+    for (auto i = 0u; i<sizeof(enumValues)/sizeof(int); i++) {
       PyObject* obj = PyInt_FromLong(enumValues[i]);
       PyModule_AddObject(pack, enumNames[i], obj);
       Py_INCREF(obj);
@@ -2134,7 +2134,7 @@ const QMetaObject* PythonQtPrivate::buildDynamicMetaObject(PythonQtClassWrapper*
       if (signal->_dynamicInfo) {
         signal->_dynamicInfo->name = PyString_AsString(key);
         foreach(QByteArray sig, signal->_dynamicInfo->signatures) {
-          QMetaMethodBuilder method = builder.addSignal(signal->_dynamicInfo->name + "(" + sig + ")");
+          builder.addSignal(signal->_dynamicInfo->name + "(" + sig + ")");
           needsMetaObject = true;
         }
       }
