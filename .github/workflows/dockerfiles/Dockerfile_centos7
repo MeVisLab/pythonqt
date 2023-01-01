@@ -1,0 +1,33 @@
+FROM centos:7
+
+RUN yum update -y
+RUN yum groupinstall "Development Tools" -y
+RUN yum install -y \
+    which \
+    python3 \
+    python3-debug \
+    qt5-qtbase-* \
+    qt5-qttools* \
+    qt5-qtsvg \
+    qt5-qtsvg-devel \
+    qt5-qtxmlpatterns \
+    qt5-qtxmlpatterns-devel \
+    qt5-qtmultimedia \
+    qt5-qtmultimedia-devel \
+    qt5-qt3d \
+    qt5-qt3d-devel
+
+RUN mkdir -p work
+
+COPY . work/
+
+WORKDIR work
+
+ARG QT_SELECT=qt5
+RUN uname -a; gcc --version | grep "gcc"; python3 --version; qmake-qt5 --version
+
+RUN qmake-qt5 -r PythonQt.pro \
+    PYTHON_VERSION=$(python3 --version | cut -d " " -f 2 | cut -d "." -f1,2) \
+    PYTHON_DIR=$(which python3 | xargs dirname | xargs dirname)
+
+CMD ["make"]
