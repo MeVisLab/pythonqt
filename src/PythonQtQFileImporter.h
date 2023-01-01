@@ -49,16 +49,16 @@
 class PythonQtQFileImporter : public PythonQtImportFileInterface {
 public:
     PythonQtQFileImporter();
-    ~PythonQtQFileImporter();
+    ~PythonQtQFileImporter() override;
 
-    QByteArray readFileAsBytes (const QString &filename);
-    
-    QByteArray readSourceFile (const QString &filename, bool &ok);
-    
-    bool exists (const QString &filename);
-    bool isEggArchive(const QString& filename);
-    
-    QDateTime lastModifiedDate (const QString &filename);
+    QByteArray readFileAsBytes (const QString &filename) override;
+
+    QByteArray readSourceFile (const QString &filename, bool &ok) override;
+
+    bool exists (const QString &filename) override;
+    bool isEggArchive(const QString& filename) override;
+
+    QDateTime lastModifiedDate (const QString &filename) override;
 
 };
 

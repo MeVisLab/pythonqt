@@ -113,7 +113,7 @@ class PythonQtSignalReceiver : public PythonQtSignalReceiverBase {
 
 public:
   PythonQtSignalReceiver(QObject* obj);
-  ~PythonQtSignalReceiver();
+  ~PythonQtSignalReceiver() override;
 
   //! add a signal handler
   bool addSignalHandler(const char* signal, PyObject* callable);
@@ -122,7 +122,7 @@ public:
   bool removeSignalHandler(const char* signal, PyObject* callable = nullptr);
 
   //! we implement this method to simulate a number of slots that match the ids in _targets
-  virtual int qt_metacall(QMetaObject::Call c, int id, void **arguments);
+  int qt_metacall(QMetaObject::Call c, int id, void **arguments) override;
 
 private:
   //! get the index of the signal

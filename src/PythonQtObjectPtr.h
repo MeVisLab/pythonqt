@@ -64,7 +64,7 @@ public:
   }
 
   //! rvalue copy constructor, does not need any incref/decref.
-  PythonQtObjectPtr(PythonQtObjectPtr &&p)
+  PythonQtObjectPtr(PythonQtObjectPtr &&p) noexcept
     :_object(p.takeObject()) {
   }
 
@@ -95,7 +95,7 @@ public:
   }
 
   //! rvalue assignment operator that steals the reference from p
-  PythonQtObjectPtr &operator=(PythonQtObjectPtr &&p) {
+  PythonQtObjectPtr &operator=(PythonQtObjectPtr &&p) noexcept {
     if (_object) {
       setObject(nullptr);
     }
@@ -210,7 +210,7 @@ public:
   }
 
   //! rvalue copy constructor, does not need any incref/decref.
-  PythonQtSafeObjectPtr(PythonQtSafeObjectPtr &&p)
+  PythonQtSafeObjectPtr(PythonQtSafeObjectPtr &&p) noexcept
     :_object(p._object) {
     p._object = nullptr;
   }
@@ -235,7 +235,7 @@ public:
   }
 
   //! rvalue assignment operator that steals the reference from p
-  PythonQtSafeObjectPtr &operator=(PythonQtSafeObjectPtr &&p) {
+  PythonQtSafeObjectPtr &operator=(PythonQtSafeObjectPtr &&p) noexcept {
     if (_object) {
       setObject(nullptr);
     }

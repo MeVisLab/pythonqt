@@ -44,11 +44,11 @@
 
 #include "PythonQtPythonInclude.h"
 
-#include "structmember.h"
-#include "osdefs.h"
-#include "marshal.h"
 #include "compile.h"
-#include <time.h>
+#include "marshal.h"
+#include "osdefs.h"
+#include "structmember.h"
+#include <ctime>
 
 #include <qobject.h>
 #include <qstring.h>
