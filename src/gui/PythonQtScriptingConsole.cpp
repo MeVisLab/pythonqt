@@ -451,8 +451,9 @@ void PythonQtScriptingConsole::keyPressEvent(QKeyEvent* event) {
   }
 
   if (eventHandled) {
-
-    _completer->popup()->hide();
+    if(_completer != nullptr) {
+        _completer->popup()->hide();
+    }
     event->accept();
 
   } else {

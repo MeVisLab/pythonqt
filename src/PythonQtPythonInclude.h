@@ -33,11 +33,6 @@
 #ifndef __PythonQtPythonInclude_h
 #define __PythonQtPythonInclude_h
 
-// Undefine macros that Python.h defines to avoid redefinition warning.
-#undef _POSIX_C_SOURCE
-#undef _POSIX_THREADS
-#undef _XOPEN_SOURCE
-
 // Undefine Qt keywords that conflict with Python headers
 #ifdef slots
 #undef slots
