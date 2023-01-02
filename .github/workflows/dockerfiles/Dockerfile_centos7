@@ -4,8 +4,8 @@ RUN yum update -y
 RUN yum groupinstall "Development Tools" -y
 RUN yum install -y \
     which \
-    python3 \
-    python3-debug \
+#    python3 \
+    python-debug \
     qt5-qtbase-* \
     qt5-qttools* \
     qt5-qtsvg \
@@ -24,10 +24,10 @@ COPY . work/
 WORKDIR work
 
 ARG QT_SELECT=qt5
-RUN uname -a; gcc --version | grep "gcc"; python3 --version; qmake-qt5 --version
+RUN uname -a; gcc --version | grep "gcc"; python --version; qmake-qt5 --version
 
 RUN qmake-qt5 -r PythonQt.pro \
-    PYTHON_VERSION=$(python3 --version | cut -d " " -f 2 | cut -d "." -f1,2) \
-    PYTHON_DIR=$(which python3 | xargs dirname | xargs dirname)
+    PYTHON_VERSION=$(python --version | cut -d " " -f 2 | cut -d "." -f1,2) \
+    PYTHON_DIR=$(which python | xargs dirname | xargs dirname)
 
 CMD ["make"]

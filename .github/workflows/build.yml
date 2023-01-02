@@ -2,8 +2,8 @@ name: Build
 
 on:
   push:
-    branches: 
-      - master
+    # branches: 
+      # - master
   pull_request:
       
 defaults:
