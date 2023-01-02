@@ -1515,7 +1515,7 @@ QByteArray PythonQtConv::getCPPTypeName(PyObject* type)
       } else if (isStringType(typeObject)) {
         result = "QString";
       } else {
-        result = "PyObject*";
+        result = "PythonQtSafeObjectPtr";
       }
     }
   } else if (type == Py_None) {
