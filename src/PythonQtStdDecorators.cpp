@@ -354,6 +354,17 @@ const QMetaObject* PythonQtStdDecorators::metaObject( QObject* obj )
   return obj->metaObject();
 }
 
+//---------------------------------------------------------------------------
+
+void PythonQtConfigAPI::setTaskDoneCallback(PyObject* object)
+{
+  if (PythonQt::self()) {
+    PythonQt::self()->priv()->setTaskDoneCallback(object);
+  }
+}
+
+//---------------------------------------------------------------------------
+
 bool PythonQtDebugAPI::isOwnedByPython( PyObject* object )
 {
   if (PyObject_TypeCheck(object, &PythonQtInstanceWrapper_Type)) {

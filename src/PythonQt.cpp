@@ -274,6 +274,7 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
     }
 
     _self->priv()->pythonQtModule().addObject("Debug", _self->priv()->_debugAPI);
+    _self->priv()->pythonQtModule().addObject("Config", _self->priv()->_configAPI);
 
     Py_INCREF((PyObject*)&PythonQtSlotDecorator_Type);
     Py_INCREF((PyObject*)&PythonQtSignalFunction_Type);
@@ -394,6 +395,11 @@ PythonQtPrivate::~PythonQtPrivate() {
 
   PythonQtMethodInfo::cleanupCachedMethodInfos();
   PythonQtArgumentFrame::cleanupFreeList();
+}
+
+void PythonQtPrivate::setTaskDoneCallback(const PythonQtObjectPtr & callable)
+{
+  _pyTaskDoneCallback = callable;
 }
 
 void PythonQt::setRedirectStdInCallback(PythonQtInputChangedCB* callback, void * callbackData)
@@ -1434,6 +1440,7 @@ PythonQtPrivate::PythonQtPrivate()
   _hadError = false;
   _systemExitExceptionHandlerEnabled = false;
   _debugAPI = new PythonQtDebugAPI(this);
+  _configAPI = new PythonQtConfigAPI(this);
 }
 
 void PythonQtPrivate::setupSharedLibrarySuffixes()

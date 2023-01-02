@@ -173,6 +173,20 @@ public Q_SLOTS:
 
 };
 
+//! Some methods to set properties of PythonQt from Python
+class PYTHONQT_EXPORT PythonQtConfigAPI : public QObject
+{
+  Q_OBJECT
+public:
+  PythonQtConfigAPI(QObject* parent):QObject(parent) {};
+
+public slots:
+  //! Set a callable that is used as the argument for the add_done_callback for the Task/Future
+  //! created when, e.g., an async function is connected to signal.
+  void setTaskDoneCallback(PyObject* object);
+};
+
+
 //! Some helper methods that allow testing of the ownership
 class PYTHONQT_EXPORT PythonQtDebugAPI : public QObject
 {
