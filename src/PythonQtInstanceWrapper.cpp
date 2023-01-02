@@ -91,7 +91,7 @@ static void PythonQtInstanceWrapper_deleteObject(PythonQtInstanceWrapper* self, 
     }
   } else {
     //mlabDebugConst("Python","qobject wrapper removed " << self->_obj->className() << " " << self->classInfo()->wrappedClassName().latin1());
-    if (self->_objPointerCopy && PythonQt::self() && PythonQt::priv()) {
+    if (self->_objPointerCopy) {
       PythonQt::priv()->removeWrapperPointer(self->_objPointerCopy);
     }
     if (self->_obj) {

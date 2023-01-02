@@ -54,7 +54,9 @@ int PythonQtSignalReceiver::_destroyedSignal2Id = -2;
 void PythonQtSignalTarget::call(void **arguments) const {
   PYTHONQT_GIL_SCOPE
   PyObject* result = call(_callable, methodInfo(), arguments);
-  Py_XDECREF(result);
+  if (result) {
+    Py_DECREF(result);
+  }
 }
 
 PyObject* PythonQtSignalTarget::call(PyObject* callable, const PythonQtMethodInfo* methodInfos, void **arguments, bool skipFirstArgumentOfMethodInfo)
@@ -98,9 +100,9 @@ PyObject* PythonQtSignalTarget::call(PyObject* callable, const PythonQtMethodInf
     }
   }
 
-  PythonQtObjectPtr pargs;
+  PyObject* pargs = NULL;
   if (count>1) {
-    pargs.setNewRef(PyTuple_New(count-1));
+    pargs = PyTuple_New(count-1);
   }
   bool err = false;
   // transform Qt values to Python
@@ -115,7 +117,7 @@ PyObject* PythonQtSignalTarget::call(PyObject* callable, const PythonQtMethodInf
     }
     if (arg) {
       // steals reference, no unref
-      PyTuple_SetItem(pargs, i-1, arg);
+      PyTuple_SetItem(pargs, i-1,arg);
     } else {
       err = true;
       break;
@@ -131,6 +133,10 @@ PyObject* PythonQtSignalTarget::call(PyObject* callable, const PythonQtMethodInf
     } else {
       PythonQt::self()->handleError();
     }
+  }
+  if (pargs) {
+    // free the arguments again
+    Py_DECREF(pargs);
   }
 
   return result;
