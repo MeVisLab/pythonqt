@@ -88,6 +88,16 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
       _self->_p->_pySourcelessFileLoader = importlib.getVariable("SourcelessFileLoader");
     }
 
+#ifdef PY3K
+    PythonQtObjectPtr asyncio;
+    asyncio.setNewRef(PyImport_ImportModule("asyncio"));
+    if (asyncio)
+    {
+      _self->_p->_pyEnsureFuture = asyncio.getVariable("ensure_future");
+      _self->_p->_pyFutureClass = asyncio.getVariable("Future");
+    }
+#endif
+
     PythonQt::priv()->setupSharedLibrarySuffixes();
 
     PythonQtMethodInfo::addParameterTypeAlias("QObjectList", "QList<QObject*>");
@@ -400,6 +410,46 @@ PythonQtPrivate::~PythonQtPrivate() {
 void PythonQtPrivate::setTaskDoneCallback(const PythonQtObjectPtr & callable)
 {
   _pyTaskDoneCallback = callable;
+}
+
+PythonQtObjectPtr PythonQtPrivate::checkAndRunCoroutine(const PythonQtObjectPtr& object)
+{
+  PythonQtObjectPtr result;
+#ifdef PY3K
+  if (!PyCoro_CheckExact(object))
+  {
+    return result;
+  }
+
+  if (!_pyEnsureFuture)
+  {
+    std::cerr << "PythonQt: ensure_future not initialized" << std::endl;
+    return PythonQtObjectPtr();
+  }
+  PyObject* args = PyTuple_New(1);
+  PyObject* coro = object.object();
+  Py_INCREF(coro);
+  PyTuple_SetItem(args, 0, coro);
+  PyObject* r = PyObject_CallObject(_pyEnsureFuture, args);
+  result.setNewRef(r);
+  if (_pyTaskDoneCallback) {
+    PyObject* methodName = PyUnicode_FromString("add_done_callback");
+    PyObject_CallMethodObjArgs(r, methodName, _pyTaskDoneCallback.object(), nullptr);
+    Py_XDECREF(methodName);
+  }
+  Py_XDECREF(args);
+#endif
+  return result;
+}
+
+PythonQtObjectPtr PythonQtPrivate::createAsyncioFuture()
+{
+  if (!_pyFutureClass)
+  {
+    std::cerr << "PythonQt: _pyFutureClass not initialized" << std::endl;
+    return nullptr;
+  }
+  return _pyFutureClass.call();
 }
 
 void PythonQt::setRedirectStdInCallback(PythonQtInputChangedCB* callback, void * callbackData)

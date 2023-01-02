@@ -55,6 +55,7 @@ void PythonQtSignalTarget::call(void **arguments) const {
   PYTHONQT_GIL_SCOPE
   PyObject* result = call(_callable, methodInfo(), arguments);
   if (result) {
+    PythonQt::priv()->checkAndRunCoroutine(result);
     Py_DECREF(result);
   }
 }
