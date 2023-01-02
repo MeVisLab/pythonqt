@@ -124,6 +124,7 @@ class PythonQtSingleShotTimer : public QTimer
   Q_OBJECT
 public:
   PythonQtSingleShotTimer(int msec, const PythonQtObjectPtr& callable);
+  ~PythonQtSingleShotTimer() override;
 
 public Q_SLOTS :
   void slotTimeout();
