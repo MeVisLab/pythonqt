@@ -651,6 +651,7 @@ private:
 };
 
 class PythonQtDebugAPI;
+class PythonQtConfigAPI;
 
 //! internal PythonQt details
 class PYTHONQT_EXPORT PythonQtPrivate : public QObject {
@@ -668,6 +669,10 @@ public:
     InstanceDecorator = 8,
     AllDecorators = 0xffff
   };
+
+  //! Set a callable that is used as the argument for the add_done_callback for the Task
+  //! created by checkAndRunCoroutine
+  void setTaskDoneCallback(const PythonQtObjectPtr& callable);
 
   //! get the suffixes that are used for shared libraries
   const QStringList& sharedLibrarySuffixes() { return _sharedLibrarySuffixes; }
@@ -849,6 +854,8 @@ private:
   PythonQtObjectPtr _pySourceFileLoader;
   PythonQtObjectPtr _pySourcelessFileLoader;
 
+  PythonQtObjectPtr _pyTaskDoneCallback;
+
   //! the cpp object wrapper factories
   QList<PythonQtCppWrapperFactory*> _cppWrapperFactories;
 
@@ -861,6 +868,7 @@ private:
   PythonQt::ProfilingCB* _profilingCB;
 
   PythonQtDebugAPI* _debugAPI;
+  PythonQtConfigAPI* _configAPI;
 
   int _initFlags;
   int _PythonQtObjectPtr_metaId;
