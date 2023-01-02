@@ -432,11 +432,19 @@ PythonQtSingleShotTimer::PythonQtSingleShotTimer(int msec, const PythonQtObjectP
   connect(this, SIGNAL(timeout()), this, SLOT(slotTimeout()));
 }
 
+PythonQtSingleShotTimer::~PythonQtSingleShotTimer()
+{
+  PYTHONQT_GIL_SCOPE
+  _callable = nullptr;
+}
+
 void PythonQtSingleShotTimer::slotTimeout()
 {
   if (_callable) {
+    PYTHONQT_GIL_SCOPE
     _callable.call();
   }
   // delete ourself
   deleteLater();
 }
+
