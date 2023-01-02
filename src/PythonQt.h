@@ -674,6 +674,12 @@ public:
   //! created by checkAndRunCoroutine
   void setTaskDoneCallback(const PythonQtObjectPtr& callable);
 
+  //! Runs the given coroutine (via asyncio), returns a scheduled task if it object is a coroutine.
+  PythonQtObjectPtr checkAndRunCoroutine(const PythonQtObjectPtr& object);
+
+  //! Creates a new asyncio.Future object
+  PythonQtObjectPtr createAsyncioFuture();
+
   //! get the suffixes that are used for shared libraries
   const QStringList& sharedLibrarySuffixes() { return _sharedLibrarySuffixes; }
 
@@ -853,6 +859,8 @@ private:
 
   PythonQtObjectPtr _pySourceFileLoader;
   PythonQtObjectPtr _pySourcelessFileLoader;
+  PythonQtObjectPtr _pyEnsureFuture;
+  PythonQtObjectPtr _pyFutureClass;
 
   PythonQtObjectPtr _pyTaskDoneCallback;
 
