@@ -4,7 +4,6 @@ RUN yum update -y
 RUN yum groupinstall "Development Tools" -y
 RUN yum install -y \
     which \
-#    python3 \
     python-debug \
     qt5-qtbase-* \
     qt5-qttools* \
