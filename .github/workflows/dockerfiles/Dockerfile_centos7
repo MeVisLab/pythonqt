@@ -25,8 +25,21 @@ WORKDIR work
 ARG QT_SELECT=qt5
 RUN uname -a; gcc --version | grep "gcc"; python --version; qmake-qt5 --version
 
+CMD ["make"]
+
+# 1. build PythonQt and the generator
+
 RUN qmake-qt5 -r PythonQt.pro \
     PYTHON_VERSION=$(python --version | cut -d " " -f 2 | cut -d "." -f1,2) \
     PYTHON_DIR=$(which python | xargs dirname | xargs dirname)
+RUN make
 
-CMD ["make"]
+# 2. generate wrappers using the built generator
+
+# workaround to allow to find the Qt include dirs for installed standard qt packages
+RUN mkdir /usr/include/qt5ln; ln -s /usr/include/qt5 /usr/include/qt5ln/include
+
+RUN echo "export QTDIR=/usr/include/qt5ln" > generate.sh
+RUN echo "cd generator; ./pythonqt_generator" >> generate.sh
+
+CMD ["bash", "generate.sh"]
