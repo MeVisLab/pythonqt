@@ -115,8 +115,8 @@ Public Types</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Standard input handling</div></td></tr>
-<tr class="memitem:a4d48f7d1640f279f74efa3b598f96568"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQt.html#a4d48f7d1640f279f74efa3b598f96568">setRedirectStdInCallback</a> (<a class="el" href="PythonQtStdIn_8h.html#a2f5dd78b5a4f514f03f6722f02557618">PythonQtInputChangedCB</a> *callback, void *callbackData=0)</td></tr>
-<tr class="separator:a4d48f7d1640f279f74efa3b598f96568"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a778d24f5a68d1038483d5f8f48c258be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQt.html#a778d24f5a68d1038483d5f8f48c258be">setRedirectStdInCallback</a> (<a class="el" href="PythonQtStdIn_8h.html#a2f5dd78b5a4f514f03f6722f02557618">PythonQtInputChangedCB</a> *callback, void *callbackData=nullptr)</td></tr>
+<tr class="separator:a778d24f5a68d1038483d5f8f48c258be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a531b249881ff4b3b8b3ed8b6781a3e04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQt.html#a531b249881ff4b3b8b3ed8b6781a3e04">setRedirectStdInCallbackEnabled</a> (bool enabled)</td></tr>
 <tr class="separator:a531b249881ff4b3b8b3ed8b6781a3e04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Modules</div></td></tr>
@@ -142,11 +142,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a9194b96506cb225452025ade60c75e8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the <b>path</b> list of a module to the given list (important for local imports)  <a href="classPythonQt.html#a9194b96506cb225452025ade60c75e8e">More...</a><br /></td></tr>
 <tr class="separator:a9194b96506cb225452025ade60c75e8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Registering Classes</div></td></tr>
-<tr class="memitem:a1d50946ef76058e9e9ca37e99cdc16a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQt.html#a1d50946ef76058e9e9ca37e99cdc16a2">registerClass</a> (const QMetaObject *metaobject, const char *package=NULL, <a class="el" href="PythonQt_8h.html#a1ef662748d0780f84ae324f141ae128f">PythonQtQObjectCreatorFunctionCB</a> *wrapperCreator=NULL, <a class="el" href="PythonQt_8h.html#a40859e9296e9e0ee042509ccf9e6c18d">PythonQtShellSetInstanceWrapperCB</a> *shell=NULL)</td></tr>
-<tr class="memdesc:a1d50946ef76058e9e9ca37e99cdc16a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">registers a QObject derived class to <a class="el" href="classPythonQt.html" title="The main interface to the Python Qt binding, realized as a singleton.">PythonQt</a> (this is implicitly called by addObject as well)  <a href="classPythonQt.html#a1d50946ef76058e9e9ca37e99cdc16a2">More...</a><br /></td></tr>
-<tr class="separator:a1d50946ef76058e9e9ca37e99cdc16a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97559c89bfed5f0f5bb47d7fc360a269"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQt.html#a97559c89bfed5f0f5bb47d7fc360a269">registerCPPClass</a> (const char *typeName, const char *parentTypeName=NULL, const char *package=NULL, <a class="el" href="PythonQt_8h.html#a1ef662748d0780f84ae324f141ae128f">PythonQtQObjectCreatorFunctionCB</a> *wrapperCreator=NULL, <a class="el" href="PythonQt_8h.html#a40859e9296e9e0ee042509ccf9e6c18d">PythonQtShellSetInstanceWrapperCB</a> *shell=NULL)</td></tr>
-<tr class="separator:a97559c89bfed5f0f5bb47d7fc360a269"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5143791d9dbfea11f47de249e8a4913a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQt.html#a5143791d9dbfea11f47de249e8a4913a">registerClass</a> (const QMetaObject *metaobject, const char *package=nullptr, <a class="el" href="PythonQt_8h.html#a1ef662748d0780f84ae324f141ae128f">PythonQtQObjectCreatorFunctionCB</a> *wrapperCreator=nullptr, <a class="el" href="PythonQt_8h.html#a40859e9296e9e0ee042509ccf9e6c18d">PythonQtShellSetInstanceWrapperCB</a> *shell=nullptr)</td></tr>
+<tr class="memdesc:a5143791d9dbfea11f47de249e8a4913a"><td class="mdescLeft">&#160;</td><td class="mdescRight">registers a QObject derived class to <a class="el" href="classPythonQt.html" title="The main interface to the Python Qt binding, realized as a singleton.">PythonQt</a> (this is implicitly called by addObject as well)  <a href="classPythonQt.html#a5143791d9dbfea11f47de249e8a4913a">More...</a><br /></td></tr>
+<tr class="separator:a5143791d9dbfea11f47de249e8a4913a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ea69334c30be240fd370e5c8762f7f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQt.html#a3ea69334c30be240fd370e5c8762f7f9">registerCPPClass</a> (const char *typeName, const char *parentTypeName=nullptr, const char *package=nullptr, <a class="el" href="PythonQt_8h.html#a1ef662748d0780f84ae324f141ae128f">PythonQtQObjectCreatorFunctionCB</a> *wrapperCreator=nullptr, <a class="el" href="PythonQt_8h.html#a40859e9296e9e0ee042509ccf9e6c18d">PythonQtShellSetInstanceWrapperCB</a> *shell=nullptr)</td></tr>
+<tr class="separator:a3ea69334c30be240fd370e5c8762f7f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49f8bcd159744b7914dc21d7602b8daa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQt.html#a49f8bcd159744b7914dc21d7602b8daa">registerQObjectClassNames</a> (const QStringList &amp;names)</td></tr>
 <tr class="separator:a49f8bcd159744b7914dc21d7602b8daa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46a7ccb0a93142329d76e06573ff93e6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQt.html#a46a7ccb0a93142329d76e06573ff93e6">addParentClass</a> (const char *typeName, const char *parentTypeName, int upcastingOffset=0)</td></tr>
@@ -1645,7 +1645,7 @@ Public Member Functions</h2></td></tr>
 <p>this installs the default QFile importer (which effectively does a setImporter(NULL)) (without calling setImporter or installDefaultImporter at least once, the default python import mechanism is in place) the default importer allows to import files from anywhere QFile can read from, including the Qt resource system using ":". Keep in mind that you need to extend "sys.path" with ":" to be able to import from the Qt resources. </p>
 
 <p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00539">539</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;{ <a class="code" href="classPythonQt.html#a7887ccc0daf281f429123d243085b0fc">setImporter</a>(NULL); }</div>
+<div class="fragment"><div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;{ <a class="code" href="classPythonQt.html#a7887ccc0daf281f429123d243085b0fc">setImporter</a>(<span class="keyword">nullptr</span>); }</div>
 <div class="ttc" id="aclassPythonQt_html_a7887ccc0daf281f429123d243085b0fc"><div class="ttname"><a href="classPythonQt.html#a7887ccc0daf281f429123d243085b0fc">PythonQt::setImporter</a></div><div class="ttdeci">void setImporter(PythonQtImportFileInterface *importInterface)</div></div>
 </div><!-- fragment -->
 </div>
@@ -2044,8 +2044,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a1d50946ef76058e9e9ca37e99cdc16a2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1d50946ef76058e9e9ca37e99cdc16a2">&#9670;&nbsp;</a></span>registerClass()</h2>
+<a id="a5143791d9dbfea11f47de249e8a4913a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5143791d9dbfea11f47de249e8a4913a">&#9670;&nbsp;</a></span>registerClass()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2060,19 +2060,19 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>package</em> = <code>NULL</code>, </td>
+          <td class="paramname"><em>package</em> = <code>nullptr</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="PythonQt_8h.html#a1ef662748d0780f84ae324f141ae128f">PythonQtQObjectCreatorFunctionCB</a> *&#160;</td>
-          <td class="paramname"><em>wrapperCreator</em> = <code>NULL</code>, </td>
+          <td class="paramname"><em>wrapperCreator</em> = <code>nullptr</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="PythonQt_8h.html#a40859e9296e9e0ee042509ccf9e6c18d">PythonQtShellSetInstanceWrapperCB</a> *&#160;</td>
-          <td class="paramname"><em>shell</em> = <code>NULL</code>&#160;</td>
+          <td class="paramname"><em>shell</em> = <code>nullptr</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2086,8 +2086,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a97559c89bfed5f0f5bb47d7fc360a269"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a97559c89bfed5f0f5bb47d7fc360a269">&#9670;&nbsp;</a></span>registerCPPClass()</h2>
+<a id="a3ea69334c30be240fd370e5c8762f7f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ea69334c30be240fd370e5c8762f7f9">&#9670;&nbsp;</a></span>registerCPPClass()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2102,25 +2102,25 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>parentTypeName</em> = <code>NULL</code>, </td>
+          <td class="paramname"><em>parentTypeName</em> = <code>nullptr</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>package</em> = <code>NULL</code>, </td>
+          <td class="paramname"><em>package</em> = <code>nullptr</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="PythonQt_8h.html#a1ef662748d0780f84ae324f141ae128f">PythonQtQObjectCreatorFunctionCB</a> *&#160;</td>
-          <td class="paramname"><em>wrapperCreator</em> = <code>NULL</code>, </td>
+          <td class="paramname"><em>wrapperCreator</em> = <code>nullptr</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="PythonQt_8h.html#a40859e9296e9e0ee042509ccf9e6c18d">PythonQtShellSetInstanceWrapperCB</a> *&#160;</td>
-          <td class="paramname"><em>shell</em> = <code>NULL</code>&#160;</td>
+          <td class="paramname"><em>shell</em> = <code>nullptr</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2524,8 +2524,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a4d48f7d1640f279f74efa3b598f96568"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4d48f7d1640f279f74efa3b598f96568">&#9670;&nbsp;</a></span>setRedirectStdInCallback()</h2>
+<a id="a778d24f5a68d1038483d5f8f48c258be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a778d24f5a68d1038483d5f8f48c258be">&#9670;&nbsp;</a></span>setRedirectStdInCallback()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2540,7 +2540,7 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>callbackData</em> = <code>0</code>&#160;</td>
+          <td class="paramname"><em>callbackData</em> = <code>nullptr</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2642,7 +2642,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 3 2023 19:06:49 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Thu Jan 5 2023 15:59:03 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

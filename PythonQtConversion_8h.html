@@ -516,7 +516,7 @@ template&lt;class ListType , class T &gt; </div>
 <div class="fragment"><div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;{</div>
 <div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;  ListType* list = (ListType*)inList;</div>
 <div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;  <span class="keyword">static</span> <a class="code" href="classPythonQtClassInfo.html">PythonQtClassInfo</a>* innerType = <a class="code" href="classPythonQt.html#a978d6a0b4954599d48c2d58ae69d1b01">PythonQt::priv</a>()-&gt;<a class="code" href="classPythonQtPrivate.html#ac367693299c028bd3893574598b97f14">getClassInfo</a>(<a class="code" href="classPythonQtMethodInfo.html#a743831e3513364c0672d9f4f059adc80">PythonQtMethodInfo::getInnerListTypeName</a>(QByteArray(<a class="code" href="namespacePythonQtUtils.html#a7ab7320f61f25b5e2d2b27ee40f7a277">QMetaType::typeName</a>(metaTypeId))));</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;  <span class="keywordflow">if</span> (innerType == NULL) {</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;  <span class="keywordflow">if</span> (innerType == <span class="keyword">nullptr</span>) {</div>
 <div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;    std::cerr &lt;&lt; <span class="stringliteral">&quot;PythonQtConvertListOfKnownClassToPythonList: unknown inner type &quot;</span> &lt;&lt; innerType-&gt;<a class="code" href="classPythonQtClassInfo.html#af9568a3f10603584a5ecb35effebe7c4">className</a>().constData() &lt;&lt; std::endl;</div>
 <div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;  }</div>
 <div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;  <a class="code" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a>* result = PyTuple_New(list-&gt;size());</div>
@@ -624,7 +624,7 @@ template&lt;class ListType , class T &gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="PythonQtConversion_8h_source.html#l00219">219</a> of file <a class="el" href="PythonQtConversion_8h_source.html">PythonQtConversion.h</a>.</p>
 <div class="fragment"><div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;{</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;  ListType* list = (ListType*)inList; </div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;  ListType* list = (ListType*)inList;</div>
 <div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;  <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> innerType = <a class="code" href="classPythonQtMethodInfo.html#a5365db0f245b8bce50eab84c553665ae">PythonQtMethodInfo::getInnerTemplateMetaType</a>(QByteArray(<a class="code" href="namespacePythonQtUtils.html#a7ab7320f61f25b5e2d2b27ee40f7a277">QMetaType::typeName</a>(metaTypeId)));</div>
 <div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;  <span class="keywordflow">if</span> (innerType == QVariant::Invalid) {</div>
 <div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    std::cerr &lt;&lt; <span class="stringliteral">&quot;PythonQtConvertListOfValueTypeToPythonList: unknown inner type &quot;</span> &lt;&lt; <a class="code" href="namespacePythonQtUtils.html#a7ab7320f61f25b5e2d2b27ee40f7a277">QMetaType::typeName</a>(metaTypeId) &lt;&lt; std::endl;</div>
@@ -738,7 +738,7 @@ template&lt;class ListType , class T &gt; </div>
 <div class="fragment"><div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;{</div>
 <div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;  ListType* list = (ListType*)outList;</div>
 <div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;  <span class="keyword">static</span> <a class="code" href="classPythonQtClassInfo.html">PythonQtClassInfo</a>* innerType = <a class="code" href="classPythonQt.html#a978d6a0b4954599d48c2d58ae69d1b01">PythonQt::priv</a>()-&gt;<a class="code" href="classPythonQtPrivate.html#ac367693299c028bd3893574598b97f14">getClassInfo</a>(<a class="code" href="classPythonQtMethodInfo.html#a743831e3513364c0672d9f4f059adc80">PythonQtMethodInfo::getInnerListTypeName</a>(QByteArray(<a class="code" href="namespacePythonQtUtils.html#a7ab7320f61f25b5e2d2b27ee40f7a277">QMetaType::typeName</a>(metaTypeId))));</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;  <span class="keywordflow">if</span> (innerType == NULL) {</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;  <span class="keywordflow">if</span> (innerType == <span class="keyword">nullptr</span>) {</div>
 <div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;    std::cerr &lt;&lt; <span class="stringliteral">&quot;PythonQtConvertListOfKnownClassToPythonList: unknown inner type &quot;</span> &lt;&lt; innerType-&gt;<a class="code" href="classPythonQtClassInfo.html#af9568a3f10603584a5ecb35effebe7c4">className</a>().constData() &lt;&lt; std::endl;</div>
 <div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;  }</div>
 <div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;  <span class="keywordtype">bool</span> result = <span class="keyword">false</span>;</div>
@@ -893,7 +893,7 @@ template&lt;class ListType , class T &gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="PythonQtConversion_8h_source.html#l00236">236</a> of file <a class="el" href="PythonQtConversion_8h_source.html">PythonQtConversion.h</a>.</p>
 <div class="fragment"><div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;{</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;  ListType* list = (ListType*)outList; </div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;  ListType* list = (ListType*)outList;</div>
 <div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;  <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> innerType = <a class="code" href="classPythonQtMethodInfo.html#a5365db0f245b8bce50eab84c553665ae">PythonQtMethodInfo::getInnerTemplateMetaType</a>(QByteArray(<a class="code" href="namespacePythonQtUtils.html#a7ab7320f61f25b5e2d2b27ee40f7a277">QMetaType::typeName</a>(metaTypeId)));</div>
 <div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;  <span class="keywordflow">if</span> (innerType == QVariant::Invalid) {</div>
 <div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    std::cerr &lt;&lt; <span class="stringliteral">&quot;PythonQtConvertPythonListToListOfValueType: unknown inner type &quot;</span> &lt;&lt; <a class="code" href="namespacePythonQtUtils.html#a7ab7320f61f25b5e2d2b27ee40f7a277">QMetaType::typeName</a>(metaTypeId) &lt;&lt; std::endl;</div>
@@ -991,7 +991,7 @@ template&lt;class MapType , class T &gt; </div>
 <div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;        tuple = PyList_GetItem(items, i);</div>
 <div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;        key = PyTuple_GetItem(tuple, 0);</div>
 <div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;        value = PyTuple_GetItem(tuple, 1);</div>
-<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;        </div>
+<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160; </div>
 <div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;        <span class="keywordtype">bool</span> ok;</div>
 <div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;        <span class="keywordtype">int</span> intKey = <a class="code" href="classPythonQtConv.html#ac03ef92dc283b07573993ba330280619">PythonQtConv::PyObjGetInt</a>(key, <span class="keyword">false</span>, ok);</div>
 <div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;        <span class="comment">// this is quite some overhead, but it avoids having another large switch...</span></div>
@@ -1106,7 +1106,7 @@ template&lt;class T1 , class T2 &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 3 2023 19:06:49 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Thu Jan 5 2023 15:59:03 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

@@ -61,9 +61,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ab75d4d83c004561cc7f47a20c0f2d32c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtConv.html#ab75d4d83c004561cc7f47a20c0f2d32c">ConvertQtValueToPython</a> (const <a class="el" href="structPythonQtMethodInfo_1_1ParameterInfo.html">PythonQtMethodInfo::ParameterInfo</a> &amp;info, const void *data)</td></tr>
 <tr class="memdesc:ab75d4d83c004561cc7f47a20c0f2d32c"><td class="mdescLeft">&#160;</td><td class="mdescRight">converts the Qt parameter given in <code>data</code>, interpreting it as a <code>info</code> parameter, into a Python object,  <a href="classPythonQtConv.html#ab75d4d83c004561cc7f47a20c0f2d32c">More...</a><br /></td></tr>
 <tr class="separator:ab75d4d83c004561cc7f47a20c0f2d32c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1088d4e6064c2c6820f2a7ded8b5c837"><td class="memItemLeft" align="right" valign="top">static void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtConv.html#a1088d4e6064c2c6820f2a7ded8b5c837">ConvertPythonToQt</a> (const <a class="el" href="structPythonQtMethodInfo_1_1ParameterInfo.html">PythonQtMethodInfo::ParameterInfo</a> &amp;info, <a class="el" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a> *obj, bool strict, <a class="el" href="classPythonQtClassInfo.html">PythonQtClassInfo</a> *classInfo, void *alreadyAllocatedCPPObject, <a class="el" href="classPythonQtArgumentFrame.html">PythonQtArgumentFrame</a> *frame=NULL)</td></tr>
-<tr class="memdesc:a1088d4e6064c2c6820f2a7ded8b5c837"><td class="mdescLeft">&#160;</td><td class="mdescRight">convert python object to Qt (according to the given parameter) and if the conversion should be strict (classInfo is currently not used anymore)  <a href="classPythonQtConv.html#a1088d4e6064c2c6820f2a7ded8b5c837">More...</a><br /></td></tr>
-<tr class="separator:a1088d4e6064c2c6820f2a7ded8b5c837"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc255ef26b2ea4432ecef8ccf87768be"><td class="memItemLeft" align="right" valign="top">static void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtConv.html#afc255ef26b2ea4432ecef8ccf87768be">ConvertPythonToQt</a> (const <a class="el" href="structPythonQtMethodInfo_1_1ParameterInfo.html">PythonQtMethodInfo::ParameterInfo</a> &amp;info, <a class="el" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a> *obj, bool strict, <a class="el" href="classPythonQtClassInfo.html">PythonQtClassInfo</a> *classInfo, void *alreadyAllocatedCPPObject, <a class="el" href="classPythonQtArgumentFrame.html">PythonQtArgumentFrame</a> *frame=nullptr)</td></tr>
+<tr class="memdesc:afc255ef26b2ea4432ecef8ccf87768be"><td class="mdescLeft">&#160;</td><td class="mdescRight">convert python object to Qt (according to the given parameter) and if the conversion should be strict (classInfo is currently not used anymore)  <a href="classPythonQtConv.html#afc255ef26b2ea4432ecef8ccf87768be">More...</a><br /></td></tr>
+<tr class="separator:afc255ef26b2ea4432ecef8ccf87768be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6264be1128abb94ca9575fa59d266ad3"><td class="memItemLeft" align="right" valign="top">static void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtConv.html#a6264be1128abb94ca9575fa59d266ad3">CreateQtReturnValue</a> (const <a class="el" href="structPythonQtMethodInfo_1_1ParameterInfo.html">PythonQtMethodInfo::ParameterInfo</a> &amp;info, <a class="el" href="classPythonQtArgumentFrame.html">PythonQtArgumentFrame</a> *frame)</td></tr>
 <tr class="memdesc:a6264be1128abb94ca9575fa59d266ad3"><td class="mdescLeft">&#160;</td><td class="mdescRight">creates a data storage for the passed parameter type and returns a void pointer to be set as arg[0] of qt_metacall  <a href="classPythonQtConv.html#a6264be1128abb94ca9575fa59d266ad3">More...</a><br /></td></tr>
 <tr class="separator:a6264be1128abb94ca9575fa59d266ad3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -432,8 +432,8 @@ Static Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a1088d4e6064c2c6820f2a7ded8b5c837"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1088d4e6064c2c6820f2a7ded8b5c837">&#9670;&nbsp;</a></span>ConvertPythonToQt()</h2>
+<a id="afc255ef26b2ea4432ecef8ccf87768be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc255ef26b2ea4432ecef8ccf87768be">&#9670;&nbsp;</a></span>ConvertPythonToQt()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -475,7 +475,7 @@ Static Protected Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="classPythonQtArgumentFrame.html">PythonQtArgumentFrame</a> *&#160;</td>
-          <td class="paramname"><em>frame</em> = <code>NULL</code>&#160;</td>
+          <td class="paramname"><em>frame</em> = <code>nullptr</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1913,7 +1913,7 @@ template&lt;typename Map &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 3 2023 19:06:49 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Thu Jan 5 2023 15:59:03 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

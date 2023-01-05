@@ -77,8 +77,16 @@ Public Types</h2></td></tr>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a5e014a7f38dd466db7fdd1b065d92d21"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtPrivate.html#a5e014a7f38dd466db7fdd1b065d92d21">PythonQtPrivate</a> ()</td></tr>
 <tr class="separator:a5e014a7f38dd466db7fdd1b065d92d21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca14ef0d26a958576e7993eed9488510"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtPrivate.html#aca14ef0d26a958576e7993eed9488510">~PythonQtPrivate</a> ()</td></tr>
-<tr class="separator:aca14ef0d26a958576e7993eed9488510"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af46641c5e57bf3536a8d3f2f07f7b2c4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtPrivate.html#af46641c5e57bf3536a8d3f2f07f7b2c4">~PythonQtPrivate</a> () override</td></tr>
+<tr class="separator:af46641c5e57bf3536a8d3f2f07f7b2c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4416d0fc87ea573de8ae29b853f3da2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtPrivate.html#a4416d0fc87ea573de8ae29b853f3da2e">setTaskDoneCallback</a> (const <a class="el" href="classPythonQtObjectPtr.html">PythonQtObjectPtr</a> &amp;callable)</td></tr>
+<tr class="separator:a4416d0fc87ea573de8ae29b853f3da2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80d0f03856ab4e0c5c9d1083553ecf1f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPythonQtObjectPtr.html">PythonQtObjectPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtPrivate.html#a80d0f03856ab4e0c5c9d1083553ecf1f">checkAndRunCoroutine</a> (const <a class="el" href="classPythonQtObjectPtr.html">PythonQtObjectPtr</a> &amp;object)</td></tr>
+<tr class="memdesc:a80d0f03856ab4e0c5c9d1083553ecf1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the given coroutine (via asyncio), returns a scheduled task if it object is a coroutine.  <a href="classPythonQtPrivate.html#a80d0f03856ab4e0c5c9d1083553ecf1f">More...</a><br /></td></tr>
+<tr class="separator:a80d0f03856ab4e0c5c9d1083553ecf1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed8488490a5aa6fcca612a3d49bda081"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPythonQtObjectPtr.html">PythonQtObjectPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtPrivate.html#aed8488490a5aa6fcca612a3d49bda081">createAsyncioFuture</a> ()</td></tr>
+<tr class="memdesc:aed8488490a5aa6fcca612a3d49bda081"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new asyncio.Future object.  <a href="classPythonQtPrivate.html#aed8488490a5aa6fcca612a3d49bda081">More...</a><br /></td></tr>
+<tr class="separator:aed8488490a5aa6fcca612a3d49bda081"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad71d47fc126798c2648f984ad50b043c"><td class="memItemLeft" align="right" valign="top">const QStringList &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtPrivate.html#ad71d47fc126798c2648f984ad50b043c">sharedLibrarySuffixes</a> ()</td></tr>
 <tr class="memdesc:ad71d47fc126798c2648f984ad50b043c"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the suffixes that are used for shared libraries  <a href="classPythonQtPrivate.html#ad71d47fc126798c2648f984ad50b043c">More...</a><br /></td></tr>
 <tr class="separator:ad71d47fc126798c2648f984ad50b043c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -120,11 +128,11 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ab7f7d55af997329798b5b74845bbd0bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6139a69cfe1e12ce9d3b14117e70ff6c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtPrivate.html#a6139a69cfe1e12ce9d3b14117e70ff6c">wrapPtr</a> (void *ptr, const QByteArray &amp;name, bool passOwnership=false)</td></tr>
 <tr class="separator:a6139a69cfe1e12ce9d3b14117e70ff6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea10db65640522550181f3c1327f8e11"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtPrivate.html#aea10db65640522550181f3c1327f8e11">registerClass</a> (const QMetaObject *metaobject, const char *package=NULL, <a class="el" href="PythonQt_8h.html#a1ef662748d0780f84ae324f141ae128f">PythonQtQObjectCreatorFunctionCB</a> *wrapperCreator=NULL, <a class="el" href="PythonQt_8h.html#a40859e9296e9e0ee042509ccf9e6c18d">PythonQtShellSetInstanceWrapperCB</a> *shell=NULL, <a class="el" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a> *module=NULL, int typeSlots=0)</td></tr>
-<tr class="memdesc:aea10db65640522550181f3c1327f8e11"><td class="mdescLeft">&#160;</td><td class="mdescRight">registers a QObject derived class to <a class="el" href="classPythonQt.html" title="The main interface to the Python Qt binding, realized as a singleton.">PythonQt</a> (this is implicitly called by addObject as well)  <a href="classPythonQtPrivate.html#aea10db65640522550181f3c1327f8e11">More...</a><br /></td></tr>
-<tr class="separator:aea10db65640522550181f3c1327f8e11"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8b1d1a1245deb4f3e7ae4bab4535a19"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtPrivate.html#af8b1d1a1245deb4f3e7ae4bab4535a19">registerCPPClass</a> (const char *typeName, const char *parentTypeName=NULL, const char *package=NULL, <a class="el" href="PythonQt_8h.html#a1ef662748d0780f84ae324f141ae128f">PythonQtQObjectCreatorFunctionCB</a> *wrapperCreator=NULL, <a class="el" href="PythonQt_8h.html#a40859e9296e9e0ee042509ccf9e6c18d">PythonQtShellSetInstanceWrapperCB</a> *shell=NULL, <a class="el" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a> *module=NULL, int typeSlots=0)</td></tr>
-<tr class="separator:af8b1d1a1245deb4f3e7ae4bab4535a19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a177d19d411fe79befe554afe7b424f1d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtPrivate.html#a177d19d411fe79befe554afe7b424f1d">registerClass</a> (const QMetaObject *metaobject, const char *package=nullptr, <a class="el" href="PythonQt_8h.html#a1ef662748d0780f84ae324f141ae128f">PythonQtQObjectCreatorFunctionCB</a> *wrapperCreator=nullptr, <a class="el" href="PythonQt_8h.html#a40859e9296e9e0ee042509ccf9e6c18d">PythonQtShellSetInstanceWrapperCB</a> *shell=nullptr, <a class="el" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a> *module=nullptr, int typeSlots=0)</td></tr>
+<tr class="memdesc:a177d19d411fe79befe554afe7b424f1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">registers a QObject derived class to <a class="el" href="classPythonQt.html" title="The main interface to the Python Qt binding, realized as a singleton.">PythonQt</a> (this is implicitly called by addObject as well)  <a href="classPythonQtPrivate.html#a177d19d411fe79befe554afe7b424f1d">More...</a><br /></td></tr>
+<tr class="separator:a177d19d411fe79befe554afe7b424f1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a561db283c2ed41d3c995522499297838"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtPrivate.html#a561db283c2ed41d3c995522499297838">registerCPPClass</a> (const char *typeName, const char *parentTypeName=nullptr, const char *package=nullptr, <a class="el" href="PythonQt_8h.html#a1ef662748d0780f84ae324f141ae128f">PythonQtQObjectCreatorFunctionCB</a> *wrapperCreator=nullptr, <a class="el" href="PythonQt_8h.html#a40859e9296e9e0ee042509ccf9e6c18d">PythonQtShellSetInstanceWrapperCB</a> *shell=nullptr, <a class="el" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a> *module=nullptr, int typeSlots=0)</td></tr>
+<tr class="separator:a561db283c2ed41d3c995522499297838"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a376dc4556ff3f872fa2fcce395c04356"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtPrivate.html#a376dc4556ff3f872fa2fcce395c04356">registerQObjectClassNames</a> (const QStringList &amp;names)</td></tr>
 <tr class="separator:a376dc4556ff3f872fa2fcce395c04356"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af085f2c2646e6a6240141b7ccff093e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtPrivate.html#af085f2c2646e6a6240141b7ccff093e4">addDecorators</a> (QObject *o, int decoTypes)</td></tr>
@@ -133,9 +141,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a70118c0d69477e159f69af87f896ce91"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structPythonQtClassWrapper.html">PythonQtClassWrapper</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtPrivate.html#a70118c0d69477e159f69af87f896ce91">createNewPythonQtClassWrapper</a> (<a class="el" href="classPythonQtClassInfo.html">PythonQtClassInfo</a> *info, <a class="el" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a> *module, const QByteArray &amp;pythonClassName)</td></tr>
 <tr class="memdesc:a70118c0d69477e159f69af87f896ce91"><td class="mdescLeft">&#160;</td><td class="mdescRight">helper method that creates a <a class="el" href="structPythonQtClassWrapper.html">PythonQtClassWrapper</a> object (returns a new reference)  <a href="classPythonQtPrivate.html#a70118c0d69477e159f69af87f896ce91">More...</a><br /></td></tr>
 <tr class="separator:a70118c0d69477e159f69af87f896ce91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a34134943240bcc05a36a8f13b66bb728"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structPythonQtInstanceWrapper.html">PythonQtInstanceWrapper</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtPrivate.html#a34134943240bcc05a36a8f13b66bb728">createNewPythonQtInstanceWrapper</a> (QObject *obj, <a class="el" href="classPythonQtClassInfo.html">PythonQtClassInfo</a> *info, void *wrappedPtr=NULL)</td></tr>
-<tr class="memdesc:a34134943240bcc05a36a8f13b66bb728"><td class="mdescLeft">&#160;</td><td class="mdescRight">helper method that creates a <a class="el" href="structPythonQtInstanceWrapper.html" title="a Python wrapper object for Qt objects and C++ objects (that are themselves wrapped by wrapper QObjec...">PythonQtInstanceWrapper</a> object and registers it in the object map  <a href="classPythonQtPrivate.html#a34134943240bcc05a36a8f13b66bb728">More...</a><br /></td></tr>
-<tr class="separator:a34134943240bcc05a36a8f13b66bb728"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f23cb5890901b384f15839f909379f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structPythonQtInstanceWrapper.html">PythonQtInstanceWrapper</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtPrivate.html#a5f23cb5890901b384f15839f909379f0">createNewPythonQtInstanceWrapper</a> (QObject *obj, <a class="el" href="classPythonQtClassInfo.html">PythonQtClassInfo</a> *info, void *wrappedPtr=nullptr)</td></tr>
+<tr class="memdesc:a5f23cb5890901b384f15839f909379f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">helper method that creates a <a class="el" href="structPythonQtInstanceWrapper.html" title="a Python wrapper object for Qt objects and C++ objects (that are themselves wrapped by wrapper QObjec...">PythonQtInstanceWrapper</a> object and registers it in the object map  <a href="classPythonQtPrivate.html#a5f23cb5890901b384f15839f909379f0">More...</a><br /></td></tr>
+<tr class="separator:a5f23cb5890901b384f15839f909379f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac367693299c028bd3893574598b97f14"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPythonQtClassInfo.html">PythonQtClassInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtPrivate.html#ac367693299c028bd3893574598b97f14">getClassInfo</a> (const QMetaObject *meta)</td></tr>
 <tr class="memdesc:ac367693299c028bd3893574598b97f14"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the class info for a meta object (if available)  <a href="classPythonQtPrivate.html#ac367693299c028bd3893574598b97f14">More...</a><br /></td></tr>
 <tr class="separator:ac367693299c028bd3893574598b97f14"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -207,7 +215,7 @@ Friends</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>internal <a class="el" href="classPythonQt.html" title="The main interface to the Python Qt binding, realized as a singleton.">PythonQt</a> details </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00656">656</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00657">657</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="a2ba68b8767781c090335834bdd1df87f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2ba68b8767781c090335834bdd1df87f">&#9670;&nbsp;</a></span>DecoratorTypes</h2>
@@ -228,19 +236,19 @@ Friends</h2></td></tr>
 <tr><td class="fieldname"><a id="a2ba68b8767781c090335834bdd1df87fa1c4433385e804345c9e94ff4413afa2e"></a>AllDecorators&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00664">664</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00664"></a><span class="lineno">  664</span>&#160;                      {</div>
-<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;    <a class="code" href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87faeea46a1c7dc73925616faa04937f5037">StaticDecorator</a> = 1,</div>
-<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;    <a class="code" href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87fa4b9ded55fcabb6fc26056baf933d24f6">ConstructorDecorator</a> = 2,</div>
-<div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;    <a class="code" href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87fa97be46d080d6145a4cb98dd7bb86215c">DestructorDecorator</a> = 4,</div>
-<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;    <a class="code" href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87fac45f152dc968707a8dc91b595b0285c4">InstanceDecorator</a> = 8,</div>
-<div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;    <a class="code" href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87fa1c4433385e804345c9e94ff4413afa2e">AllDecorators</a> = 0xffff</div>
-<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;  };</div>
-<div class="ttc" id="aclassPythonQtPrivate_html_a2ba68b8767781c090335834bdd1df87fa1c4433385e804345c9e94ff4413afa2e"><div class="ttname"><a href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87fa1c4433385e804345c9e94ff4413afa2e">PythonQtPrivate::AllDecorators</a></div><div class="ttdeci">@ AllDecorators</div><div class="ttdef"><b>Definition:</b> <a href="PythonQt_8h_source.html#l00670">PythonQt.h:669</a></div></div>
-<div class="ttc" id="aclassPythonQtPrivate_html_a2ba68b8767781c090335834bdd1df87fa4b9ded55fcabb6fc26056baf933d24f6"><div class="ttname"><a href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87fa4b9ded55fcabb6fc26056baf933d24f6">PythonQtPrivate::ConstructorDecorator</a></div><div class="ttdeci">@ ConstructorDecorator</div><div class="ttdef"><b>Definition:</b> <a href="PythonQt_8h_source.html#l00666">PythonQt.h:666</a></div></div>
-<div class="ttc" id="aclassPythonQtPrivate_html_a2ba68b8767781c090335834bdd1df87fa97be46d080d6145a4cb98dd7bb86215c"><div class="ttname"><a href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87fa97be46d080d6145a4cb98dd7bb86215c">PythonQtPrivate::DestructorDecorator</a></div><div class="ttdeci">@ DestructorDecorator</div><div class="ttdef"><b>Definition:</b> <a href="PythonQt_8h_source.html#l00667">PythonQt.h:667</a></div></div>
-<div class="ttc" id="aclassPythonQtPrivate_html_a2ba68b8767781c090335834bdd1df87fac45f152dc968707a8dc91b595b0285c4"><div class="ttname"><a href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87fac45f152dc968707a8dc91b595b0285c4">PythonQtPrivate::InstanceDecorator</a></div><div class="ttdeci">@ InstanceDecorator</div><div class="ttdef"><b>Definition:</b> <a href="PythonQt_8h_source.html#l00668">PythonQt.h:668</a></div></div>
-<div class="ttc" id="aclassPythonQtPrivate_html_a2ba68b8767781c090335834bdd1df87faeea46a1c7dc73925616faa04937f5037"><div class="ttname"><a href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87faeea46a1c7dc73925616faa04937f5037">PythonQtPrivate::StaticDecorator</a></div><div class="ttdeci">@ StaticDecorator</div><div class="ttdef"><b>Definition:</b> <a href="PythonQt_8h_source.html#l00665">PythonQt.h:665</a></div></div>
+<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00665">665</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;                      {</div>
+<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;    <a class="code" href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87faeea46a1c7dc73925616faa04937f5037">StaticDecorator</a> = 1,</div>
+<div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;    <a class="code" href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87fa4b9ded55fcabb6fc26056baf933d24f6">ConstructorDecorator</a> = 2,</div>
+<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;    <a class="code" href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87fa97be46d080d6145a4cb98dd7bb86215c">DestructorDecorator</a> = 4,</div>
+<div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;    <a class="code" href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87fac45f152dc968707a8dc91b595b0285c4">InstanceDecorator</a> = 8,</div>
+<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;    <a class="code" href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87fa1c4433385e804345c9e94ff4413afa2e">AllDecorators</a> = 0xffff</div>
+<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;  };</div>
+<div class="ttc" id="aclassPythonQtPrivate_html_a2ba68b8767781c090335834bdd1df87fa1c4433385e804345c9e94ff4413afa2e"><div class="ttname"><a href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87fa1c4433385e804345c9e94ff4413afa2e">PythonQtPrivate::AllDecorators</a></div><div class="ttdeci">@ AllDecorators</div><div class="ttdef"><b>Definition:</b> <a href="PythonQt_8h_source.html#l00671">PythonQt.h:670</a></div></div>
+<div class="ttc" id="aclassPythonQtPrivate_html_a2ba68b8767781c090335834bdd1df87fa4b9ded55fcabb6fc26056baf933d24f6"><div class="ttname"><a href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87fa4b9ded55fcabb6fc26056baf933d24f6">PythonQtPrivate::ConstructorDecorator</a></div><div class="ttdeci">@ ConstructorDecorator</div><div class="ttdef"><b>Definition:</b> <a href="PythonQt_8h_source.html#l00667">PythonQt.h:667</a></div></div>
+<div class="ttc" id="aclassPythonQtPrivate_html_a2ba68b8767781c090335834bdd1df87fa97be46d080d6145a4cb98dd7bb86215c"><div class="ttname"><a href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87fa97be46d080d6145a4cb98dd7bb86215c">PythonQtPrivate::DestructorDecorator</a></div><div class="ttdeci">@ DestructorDecorator</div><div class="ttdef"><b>Definition:</b> <a href="PythonQt_8h_source.html#l00668">PythonQt.h:668</a></div></div>
+<div class="ttc" id="aclassPythonQtPrivate_html_a2ba68b8767781c090335834bdd1df87fac45f152dc968707a8dc91b595b0285c4"><div class="ttname"><a href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87fac45f152dc968707a8dc91b595b0285c4">PythonQtPrivate::InstanceDecorator</a></div><div class="ttdeci">@ InstanceDecorator</div><div class="ttdef"><b>Definition:</b> <a href="PythonQt_8h_source.html#l00669">PythonQt.h:669</a></div></div>
+<div class="ttc" id="aclassPythonQtPrivate_html_a2ba68b8767781c090335834bdd1df87faeea46a1c7dc73925616faa04937f5037"><div class="ttname"><a href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87faeea46a1c7dc73925616faa04937f5037">PythonQtPrivate::StaticDecorator</a></div><div class="ttdeci">@ StaticDecorator</div><div class="ttdef"><b>Definition:</b> <a href="PythonQt_8h_source.html#l00666">PythonQt.h:666</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -262,11 +270,14 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="aca14ef0d26a958576e7993eed9488510"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aca14ef0d26a958576e7993eed9488510">&#9670;&nbsp;</a></span>~PythonQtPrivate()</h2>
+<a id="af46641c5e57bf3536a8d3f2f07f7b2c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af46641c5e57bf3536a8d3f2f07f7b2c4">&#9670;&nbsp;</a></span>~PythonQtPrivate()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">PythonQtPrivate::~PythonQtPrivate </td>
@@ -275,6 +286,11 @@ Friends</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -472,6 +488,45 @@ Friends</h2></td></tr>
 
 </div>
 </div>
+<a id="a80d0f03856ab4e0c5c9d1083553ecf1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80d0f03856ab4e0c5c9d1083553ecf1f">&#9670;&nbsp;</a></span>checkAndRunCoroutine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPythonQtObjectPtr.html">PythonQtObjectPtr</a> PythonQtPrivate::checkAndRunCoroutine </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classPythonQtObjectPtr.html">PythonQtObjectPtr</a> &amp;&#160;</td>
+          <td class="paramname"><em>object</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Runs the given coroutine (via asyncio), returns a scheduled task if it object is a coroutine. </p>
+
+</div>
+</div>
+<a id="aed8488490a5aa6fcca612a3d49bda081"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed8488490a5aa6fcca612a3d49bda081">&#9670;&nbsp;</a></span>createAsyncioFuture()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPythonQtObjectPtr.html">PythonQtObjectPtr</a> PythonQtPrivate::createAsyncioFuture </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a new asyncio.Future object. </p>
+
+</div>
+</div>
 <a id="abf46eb1e6b36aef3aff88a85d57691b3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abf46eb1e6b36aef3aff88a85d57691b3">&#9670;&nbsp;</a></span>createEnumValueInstance()</h2>
 
@@ -614,8 +669,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="a34134943240bcc05a36a8f13b66bb728"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a34134943240bcc05a36a8f13b66bb728">&#9670;&nbsp;</a></span>createNewPythonQtInstanceWrapper()</h2>
+<a id="a5f23cb5890901b384f15839f909379f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f23cb5890901b384f15839f909379f0">&#9670;&nbsp;</a></span>createNewPythonQtInstanceWrapper()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -636,7 +691,7 @@ Friends</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>wrappedPtr</em> = <code>NULL</code>&#160;</td>
+          <td class="paramname"><em>wrappedPtr</em> = <code>nullptr</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -918,8 +973,8 @@ Friends</h2></td></tr>
 
 <p>returns if the id is either <a class="el" href="classPythonQtObjectPtr.html" title="a smart pointer that stores a PyObject pointer and that handles reference counting automatically">PythonQtObjectPtr</a> or <a class="el" href="classPythonQtSafeObjectPtr.html" title="a smart pointer that stores a PyObject pointer and that handles reference counting automatically">PythonQtSafeObjectPtr</a> </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00680">680</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;{ <span class="keywordflow">return</span> _PythonQtObjectPtr_metaId == <span class="keywordtype">id</span> || _PythonQtSafeObjectPtr_metaId == id; }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00691">691</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00691"></a><span class="lineno">  691</span>&#160;{ <span class="keywordflow">return</span> _PythonQtObjectPtr_metaId == <span class="keywordtype">id</span> || _PythonQtSafeObjectPtr_metaId == id; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -949,8 +1004,8 @@ Friends</h2></td></tr>
 
 <p>returns if the id is the id for <a class="el" href="classPythonQtObjectPtr.html" title="a smart pointer that stores a PyObject pointer and that handles reference counting automatically">PythonQtObjectPtr</a> </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00676">676</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;{ <span class="keywordflow">return</span> _PythonQtObjectPtr_metaId == id; }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00687">687</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00687"></a><span class="lineno">  687</span>&#160;{ <span class="keywordflow">return</span> _PythonQtObjectPtr_metaId == id; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -980,8 +1035,8 @@ Friends</h2></td></tr>
 
 <p>returns if the id is the id for <a class="el" href="classPythonQtSafeObjectPtr.html" title="a smart pointer that stores a PyObject pointer and that handles reference counting automatically">PythonQtSafeObjectPtr</a> </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00678">678</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;{ <span class="keywordflow">return</span> _PythonQtSafeObjectPtr_metaId == id; }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00689">689</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00689"></a><span class="lineno">  689</span>&#160;{ <span class="keywordflow">return</span> _PythonQtSafeObjectPtr_metaId == id; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1030,8 +1085,8 @@ Friends</h2></td></tr>
 
 <p>returns the profiling callback, which may be NULL </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00779">779</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00779"></a><span class="lineno">  779</span>&#160;{ <span class="keywordflow">return</span> _profilingCB; }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00790">790</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00790"></a><span class="lineno">  790</span>&#160;{ <span class="keywordflow">return</span> _profilingCB; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1060,13 +1115,13 @@ Friends</h2></td></tr>
 
 <p>get access to the <a class="el" href="classPythonQt.html" title="The main interface to the Python Qt binding, realized as a singleton.">PythonQt</a> module </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00776">776</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00776"></a><span class="lineno">  776</span>&#160;{ <span class="keywordflow">return</span> _pythonQtModule; }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00787">787</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00787"></a><span class="lineno">  787</span>&#160;{ <span class="keywordflow">return</span> _pythonQtModule; }</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="aea10db65640522550181f3c1327f8e11"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aea10db65640522550181f3c1327f8e11">&#9670;&nbsp;</a></span>registerClass()</h2>
+<a id="a177d19d411fe79befe554afe7b424f1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a177d19d411fe79befe554afe7b424f1d">&#9670;&nbsp;</a></span>registerClass()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1081,25 +1136,25 @@ Friends</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>package</em> = <code>NULL</code>, </td>
+          <td class="paramname"><em>package</em> = <code>nullptr</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="PythonQt_8h.html#a1ef662748d0780f84ae324f141ae128f">PythonQtQObjectCreatorFunctionCB</a> *&#160;</td>
-          <td class="paramname"><em>wrapperCreator</em> = <code>NULL</code>, </td>
+          <td class="paramname"><em>wrapperCreator</em> = <code>nullptr</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="PythonQt_8h.html#a40859e9296e9e0ee042509ccf9e6c18d">PythonQtShellSetInstanceWrapperCB</a> *&#160;</td>
-          <td class="paramname"><em>shell</em> = <code>NULL</code>, </td>
+          <td class="paramname"><em>shell</em> = <code>nullptr</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a> *&#160;</td>
-          <td class="paramname"><em>module</em> = <code>NULL</code>, </td>
+          <td class="paramname"><em>module</em> = <code>nullptr</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1119,8 +1174,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="af8b1d1a1245deb4f3e7ae4bab4535a19"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af8b1d1a1245deb4f3e7ae4bab4535a19">&#9670;&nbsp;</a></span>registerCPPClass()</h2>
+<a id="a561db283c2ed41d3c995522499297838"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a561db283c2ed41d3c995522499297838">&#9670;&nbsp;</a></span>registerCPPClass()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1135,31 +1190,31 @@ Friends</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>parentTypeName</em> = <code>NULL</code>, </td>
+          <td class="paramname"><em>parentTypeName</em> = <code>nullptr</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>package</em> = <code>NULL</code>, </td>
+          <td class="paramname"><em>package</em> = <code>nullptr</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="PythonQt_8h.html#a1ef662748d0780f84ae324f141ae128f">PythonQtQObjectCreatorFunctionCB</a> *&#160;</td>
-          <td class="paramname"><em>wrapperCreator</em> = <code>NULL</code>, </td>
+          <td class="paramname"><em>wrapperCreator</em> = <code>nullptr</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="PythonQt_8h.html#a40859e9296e9e0ee042509ccf9e6c18d">PythonQtShellSetInstanceWrapperCB</a> *&#160;</td>
-          <td class="paramname"><em>shell</em> = <code>NULL</code>, </td>
+          <td class="paramname"><em>shell</em> = <code>nullptr</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a> *&#160;</td>
-          <td class="paramname"><em>module</em> = <code>NULL</code>, </td>
+          <td class="paramname"><em>module</em> = <code>nullptr</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1268,6 +1323,25 @@ Friends</h2></td></tr>
 
 </div>
 </div>
+<a id="a4416d0fc87ea573de8ae29b853f3da2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4416d0fc87ea573de8ae29b853f3da2e">&#9670;&nbsp;</a></span>setTaskDoneCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PythonQtPrivate::setTaskDoneCallback </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classPythonQtObjectPtr.html">PythonQtObjectPtr</a> &amp;&#160;</td>
+          <td class="paramname"><em>callable</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Set a callable that is used as the argument for the add_done_callback for the Task created by checkAndRunCoroutine </p>
+
+</div>
+</div>
 <a id="a8b4b78ecc99ec2ad63e0af0ad638a92f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8b4b78ecc99ec2ad63e0af0ad638a92f">&#9670;&nbsp;</a></span>setupDynamicMetaObjectChain()</h2>
 
@@ -1323,8 +1397,8 @@ Friends</h2></td></tr>
 
 <p>get the suffixes that are used for shared libraries </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00673">673</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160;{ <span class="keywordflow">return</span> _sharedLibrarySuffixes; }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00684">684</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160;{ <span class="keywordflow">return</span> _sharedLibrarySuffixes; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1532,7 +1606,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00872">872</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00888">888</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
 
 </div>
 </div>
@@ -1542,7 +1616,7 @@ Friends</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 3 2023 19:06:49 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Thu Jan 5 2023 15:59:03 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

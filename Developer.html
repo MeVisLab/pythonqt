@@ -107,7 +107,7 @@ QObject Wrapping</h1>
 <li>when a Qt <b>slot</b> returns a QObject derived object to python</li>
 <li>when a Qt <b>signal</b> contains a QObject and is connected to a python function</li>
 </ul>
-<p>It is important that you call <a class="el" href="classPythonQt.html#a1d50946ef76058e9e9ca37e99cdc16a2" title="registers a QObject derived class to PythonQt (this is implicitly called by addObject as well)">PythonQt::registerClass()</a> for any QObject derived class that may become visible to Python, except when you add it via <a class="el" href="classPythonQt.html#a8134a601594d09b76aad66da3e75803d" title="add the given qObject to the python object as a variable with name (it can be removed via clearVariab...">PythonQt::addObject()</a>. This will register the complete parent hierachy of the registered class, so that when you register e.g. a QPushButton, QWidget will be registered as well (and all intermediate parents).</p>
+<p>It is important that you call <a class="el" href="classPythonQt.html#a5143791d9dbfea11f47de249e8a4913a" title="registers a QObject derived class to PythonQt (this is implicitly called by addObject as well)">PythonQt::registerClass()</a> for any QObject derived class that may become visible to Python, except when you add it via <a class="el" href="classPythonQt.html#a8134a601594d09b76aad66da3e75803d" title="add the given qObject to the python object as a variable with name (it can be removed via clearVariab...">PythonQt::addObject()</a>. This will register the complete parent hierachy of the registered class, so that when you register e.g. a QPushButton, QWidget will be registered as well (and all intermediate parents).</p>
 <p>From Python, you can talk to the returned QObjects in a natural way by calling their slots and receiving the return values. You can also read/write all properties of the objects as if they where normal python properties.</p>
 <p>In addition to this, the wrapped objects support</p><ul>
 <li>className() - returns a string that represents the classname of the QObject</li>
@@ -224,9 +224,9 @@ Decorator slots</h1>
 <div class="line">...</div>
 <div class="line"> </div>
 <div class="line">PythonQt::self()-&gt;addDecorators(<span class="keyword">new</span> ExampleDecorator());</div>
-<div class="line"><a class="code" href="classPythonQt.html#a55184a6cb954afb65e2d6f9ae56b0b0a">PythonQt::self</a>()-&gt;<a class="code" href="classPythonQt.html#a97559c89bfed5f0f5bb47d7fc360a269">registerCPPClass</a>(<span class="stringliteral">&quot;YourCPPObject&quot;</span>);</div>
+<div class="line"><a class="code" href="classPythonQt.html#a55184a6cb954afb65e2d6f9ae56b0b0a">PythonQt::self</a>()-&gt;<a class="code" href="classPythonQt.html#a3ea69334c30be240fd370e5c8762f7f9">registerCPPClass</a>(<span class="stringliteral">&quot;YourCPPObject&quot;</span>);</div>
+<div class="ttc" id="aclassPythonQt_html_a3ea69334c30be240fd370e5c8762f7f9"><div class="ttname"><a href="classPythonQt.html#a3ea69334c30be240fd370e5c8762f7f9">PythonQt::registerCPPClass</a></div><div class="ttdeci">void registerCPPClass(const char *typeName, const char *parentTypeName=nullptr, const char *package=nullptr, PythonQtQObjectCreatorFunctionCB *wrapperCreator=nullptr, PythonQtShellSetInstanceWrapperCB *shell=nullptr)</div></div>
 <div class="ttc" id="aclassPythonQt_html_a55184a6cb954afb65e2d6f9ae56b0b0a"><div class="ttname"><a href="classPythonQt.html#a55184a6cb954afb65e2d6f9ae56b0b0a">PythonQt::self</a></div><div class="ttdeci">static PythonQt * self()</div><div class="ttdoc">get the singleton instance</div></div>
-<div class="ttc" id="aclassPythonQt_html_a97559c89bfed5f0f5bb47d7fc360a269"><div class="ttname"><a href="classPythonQt.html#a97559c89bfed5f0f5bb47d7fc360a269">PythonQt::registerCPPClass</a></div><div class="ttdeci">void registerCPPClass(const char *typeName, const char *parentTypeName=NULL, const char *package=NULL, PythonQtQObjectCreatorFunctionCB *wrapperCreator=NULL, PythonQtShellSetInstanceWrapperCB *shell=NULL)</div></div>
 </div><!-- fragment --><p>After you have registered an instance of the above ExampleDecorator, you can do the following from Python (all these calls are mapped to the above decorator slots):</p>
 <div class="fragment"><div class="line">from <a class="code" href="classPythonQt.html">PythonQt</a> <span class="keyword">import</span> QtCore, QtGui, YourCPPObject</div>
 <div class="line"> </div>
@@ -276,7 +276,7 @@ Ownership management</h1>
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 3 2023 19:06:49 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Thu Jan 5 2023 15:59:03 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>
