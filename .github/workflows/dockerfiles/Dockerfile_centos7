@@ -8,13 +8,10 @@ RUN yum install -y \
     qt5-qtbase-* \
     qt5-qttools* \
     qt5-qtsvg \
-    qt5-qtsvg-devel \
     qt5-qtxmlpatterns \
-    qt5-qtxmlpatterns-devel \
     qt5-qtmultimedia \
-    qt5-qtmultimedia-devel \
     qt5-qt3d \
-    qt5-qt3d-devel
+    qt5-*-devel
 
 RUN mkdir -p work
 

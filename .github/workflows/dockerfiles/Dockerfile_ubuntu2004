@@ -1,12 +1,14 @@
-FROM gcc:11
+FROM ubuntu:20.04
 
-RUN apt-get update && apt-get install -y --force-yes \
+RUN apt-get update
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes \
+    build-essential \
     python3 \
     python3-dev \
     libpython3-dev \
     qtbase5-dev \
     qtbase5-private-dev \
-    qtchooser \
     qt5-qmake \
     qtbase5-dev-tools \
     qttools5-dev \
