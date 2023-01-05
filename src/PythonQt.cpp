@@ -58,7 +58,6 @@
 
 #include <QDir>
 
-#include <pydebug.h>
 #include <vector>
 
 PythonQt* PythonQt::_self = nullptr;

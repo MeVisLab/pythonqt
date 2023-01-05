@@ -17,7 +17,7 @@ jobs:
       fail-fast: false
       matrix:
         runs-on: [ubuntu-latest]
-        docker-image: [gcc7, gcc11, centos7]
+        docker-image: [centos7, ubuntu2004, ubuntu2204]
 
     steps:
     - uses: actions/checkout@v3
