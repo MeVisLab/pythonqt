@@ -82,6 +82,9 @@ Thumbs.db
 # Visual Studio Code
 .vscode/*
 
+# JetBrains tools
+.idea/*
+
 # Doxygen
 doxygen/html/*
 doxygen.log

@@ -11,19 +11,123 @@ defaults:
     shell: bash
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  ubuntu:
     strategy:
       fail-fast: false
       matrix:
-        runs-on: [ubuntu-latest]
-        docker-image: [centos7, ubuntu2004, ubuntu2204]
-
+        container: 
+        - 'ubuntu:20.04'
+        - 'ubuntu:22.04'
+    runs-on: ubuntu-latest
+    container: ${{ matrix.container }}
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup docker container
+    - name: Install Qt
       run: |
-        docker build -t pythonqt -f $GITHUB_WORKSPACE/.github/workflows/dockerfiles/Dockerfile_${{ matrix.docker-image }} . 
+        apt-get update
+        DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes \
+        build-essential \
+        python3 \
+        python3-dev \
+        libpython3-dev \
+        qtbase5-dev \
+        qtbase5-private-dev \
+        qt5-qmake \
+        qtbase5-dev-tools \
+        qttools5-dev \
+        qtdeclarative5-dev \
+        libqt5svg5* \
+        libqt5xmlpatterns5* \
+        libqt5multimedia5* \
+        libqt5multimediawidgets5* \
+        libqt5qml5* \
+        libqt5quickwidgets5* \
+        qtmultimedia5-dev
+        apt-get clean
+      
+    - name: Checkout PythonQt
+      uses: actions/checkout@v3
 
-    - name: Run docker
-      run: docker run -t pythonqt
+    - name: Build PythonQt
+      run: |
+        export QT_SELECT=qt5
+        echo ======= SYSTEM INFO ========
+        uname -a; gcc --version | grep "gcc"; python3 --version; qmake --version
+        echo ============================
+        qmake -r PythonQt.pro \
+        PYTHON_VERSION=$(python3 --version | cut -d " " -f 2 | cut -d "." -f1,2) \
+        PYTHON_DIR=$(which python3 | xargs dirname | xargs dirname)    
+        make
+      
+    - name: Generate Wrappers
+      run: |
+        # workaround to allow to find the Qt include dirs for installed standard qt packages
+        mkdir /usr/include/qt5; ln -s /usr/include/x86_64-linux-gnu/qt5 /usr/include/qt5/include
+        export QTDIR=/usr/include/qt5
+        cd generator
+        ./pythonqt_generator
+
+    - name: Upload Wrappers
+      uses: actions/upload-artifact@v3
+      if: ${{ matrix.container }} == 'ubuntu:20.04'
+      with:
+        name: wrappers_ubuntu_20_04
+        path: generated_cpp
+
+    - name: Upload Wrappers
+      uses: actions/upload-artifact@v3
+      if: ${{ matrix.container }} == 'ubuntu:22.04'
+      with:
+        name: wrappers_ubuntu_22_04
+        path: generated_cpp
+
+  centos:
+    strategy:
+      fail-fast: false
+      matrix:
+        container:
+        - 'centos:7'
+    runs-on: ubuntu-latest
+    container: ${{ matrix.container }}
+    steps:
+    - name: Install Qt
+      run: |
+        yum update -y
+        yum groupinstall "Development Tools" -y
+        yum install -y \
+        which \
+        python-debug \
+        qt5-qtbase-* \
+        qt5-qttools* \
+        qt5-qtsvg \
+        qt5-qtxmlpatterns \
+        qt5-qtmultimedia \
+        qt5-qt3d \
+        qt5-*-devel
+
+    - name: Checkout PythonQt
+      uses: actions/checkout@v3
+
+    - name: Build PythonQt
+      run: |
+        export QT_SELECT=qt5
+        echo ======= SYSTEM INFO ========
+        uname -a; gcc --version | grep "gcc"; python --version; qmake-qt5 --version
+        echo ============================
+        qmake-qt5 -r PythonQt.pro \
+        PYTHON_VERSION=$(python --version | cut -d " " -f 2 | cut -d "." -f1,2) \
+        PYTHON_DIR=$(which python | xargs dirname | xargs dirname)    
+        make
+      
+    - name: Generate Wrappers
+      run: |
+        # workaround to allow to find the Qt include dirs for installed standard qt packages
+        mkdir /usr/include/qt5ln; ln -s /usr/include/qt5 /usr/include/qt5ln/include
+        export QTDIR=/usr/include/qt5ln
+        cd generator
+        ./pythonqt_generator
+        
+    - name: Upload Wrappers
+      uses: actions/upload-artifact@v3
+      with:
+        name: wrappers_centos7
+        path: generated_cpp
