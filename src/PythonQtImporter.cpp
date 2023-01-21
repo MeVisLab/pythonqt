@@ -917,13 +917,17 @@ void PythonQtImport::init()
 
   Py_INCREF(PythonQtImportError);
   if (PyModule_AddObject(mod, "PythonQtImportError",
-             PythonQtImportError) < 0)
+             PythonQtImportError) < 0) {
+    Py_DECREF(PythonQtImportError);
     return;
+  }
 
   Py_INCREF(&PythonQtImporter_Type);
   if (PyModule_AddObject(mod, "PythonQtImporter",
-             (PyObject *)&PythonQtImporter_Type) < 0)
+             (PyObject *)&PythonQtImporter_Type) < 0) {
+    Py_DECREF(&PythonQtImporter_Type);
     return;
+  }
 
   // set our importer into the path_hooks to handle all path on sys.path
   PyObject* classobj = PyDict_GetItemString(PyModule_GetDict(mod), "PythonQtImporter");
