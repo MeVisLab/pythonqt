@@ -19,6 +19,14 @@ isEmpty( PYTHON_DIR ) {
 
 message(Using Python version $${PYTHON_VERSION})
 
+PYTHON_VERSION_MAJOR=$$split(PYTHON_VERSION, . )
+PYTHON_VERSION_MAJOR=$$first(PYTHON_VERSION_MAJOR)
+
+# Python 2.x has problems:
+# 1) https://wiki.gentoo.org/wiki/Project:Python/Strict_aliasing
+# 2) deprecated implicit cast of string literals to char*
+equals(PYTHON_VERSION_MAJOR, 2):QMAKE_CXXFLAGS *= -fno-strict-aliasing -Wno-error=write-strings
+
 macx {
   # for macx you need to have the Python development kit installed as framework
   INCLUDEPATH += /System/Library/Frameworks/Python.framework/Headers
@@ -52,15 +60,15 @@ macx {
   # make sure that you have installed a matching python-dev package.
   
   PYTHON_CONFIG = $${PYTHON_DIR}/bin/python$${PYTHON_VERSION}-config
-  system($${PYTHON_CONFIG} --embed --libs) {
-    unix:LIBS += $$system($${PYTHON_CONFIG} --embed --libs)
-  } else: unix:LIBS += $$system($${PYTHON_CONFIG} --libs)  
-  unix:QMAKE_CXXFLAGS += $$system($${PYTHON_CONFIG} --includes)
+  PYTHON_CONFIG_OPTIONS_LIBS = --libs
+  equals(PYTHON_VERSION_MAJOR, 3): PYTHON_CONFIG_OPTIONS_LIBS += --embed
+  LIBS += $$system($${PYTHON_CONFIG} $${PYTHON_CONFIG_OPTIONS_LIBS})
+  QMAKE_CXXFLAGS += $$system($${PYTHON_CONFIG} --includes)
   PYTHON_LFLAGS = $$system($${PYTHON_CONFIG} --ldflags)
   unix:QMAKE_LFLAGS += $${PYTHON_LFLAGS}
   # add rpath
   PYTHON_LIBDIR = $$find(PYTHON_LFLAGS,-L.*)
   RPATH = -Wl,-rpath,
   PYTHON_RPATH = $$replace(PYTHON_LIBDIR,-L,$${RPATH})
-  unix:QMAKE_LFLAGS += $${PYTHON_RPATH}
+  QMAKE_LFLAGS += $${PYTHON_RPATH}
 }

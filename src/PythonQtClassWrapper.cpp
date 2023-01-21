@@ -394,7 +394,7 @@ static PyObject *PythonQtClassWrapper_help(PythonQtClassWrapper* type)
 
 PyObject *PythonQtClassWrapper_delete(PythonQtClassWrapper *type, PyObject *args)
 {
-  Q_UNUSED(type);
+  Q_UNUSED(type)
 
   Py_ssize_t argc = PyTuple_Size(args);
   if (argc>0) {
@@ -408,7 +408,7 @@ PyObject *PythonQtClassWrapper_delete(PythonQtClassWrapper *type, PyObject *args
 
 PyObject *PythonQtClassWrapper_inherits(PythonQtClassWrapper *type, PyObject *args)
 {
-  Q_UNUSED(type);
+  Q_UNUSED(type)
   PythonQtInstanceWrapper* wrapper = nullptr;
   char *name = nullptr;
   if (!PyArg_ParseTuple(args, "O!s:PythonQtClassWrapper.inherits",&PythonQtInstanceWrapper_Type, &wrapper, &name)) {

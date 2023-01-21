@@ -18,6 +18,7 @@ win32-msvc2005:{
         QMAKE_CXXFLAGS += -wd4996
         QMAKE_CFLAGS += -wd4996
 }
+gcc:QMAKE_CXXFLAGS += -Wno-deprecated-declarations -Wpedantic
 
 # Input
 HEADERS += \

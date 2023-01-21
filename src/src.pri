@@ -2,8 +2,13 @@ DEFINES +=  PYTHONQT_EXPORTS
 
 INCLUDEPATH += $$PWD
 
+CONFIG += c++11
+
+!no_warn:gcc: QMAKE_CXXFLAGS += -Werror -Wno-deprecated-declarations \
+				-Wno-error=missing-field-initializers
+
 # This was needed to work around "number of sections exceeded object file format limit" linker error
-win32-msvc*: QMAKE_CXXFLAGS += /bigobj
+win32-msvc*:!gcc:QMAKE_CXXFLAGS += /bigobj
 win32-g++: QMAKE_CXXFLAGS += -Wa,-mbig-obj
 
 HEADERS +=                    \

@@ -490,9 +490,10 @@ PythonQtSlotFunction_GetSelf(PyObject *op)
 /* Methods (the standard built-in methods, that is) */
 
 static void
-meth_dealloc(PythonQtSlotFunctionObject *m)
+meth_dealloc(PyObject *o)
 {
-  PyObject_GC_UnTrack(m);
+  PyObject_GC_UnTrack(o);
+  auto m = static_cast<PythonQtSlotFunctionObject *>(static_cast<void *>(o));
   Py_XDECREF(m->m_self);
   Py_XDECREF(m->m_module);
   m->m_self = (PyObject *)pythonqtslot_free_list;
@@ -792,6 +793,7 @@ meth_richcompare(PythonQtSlotFunctionObject *a, PythonQtSlotFunctionObject *b, i
 static PyObject*
 meth_descr_get(PyObject *descr, PyObject *obj, PyObject* type)
 {
+  Q_UNUSED(type)
   if (PythonQtSlotFunction_Check(descr)) {
     PythonQtSlotFunctionObject *slotObj = (PythonQtSlotFunctionObject*)descr;
     return PythonQtSlotFunction_New(slotObj->m_ml, obj, nullptr);

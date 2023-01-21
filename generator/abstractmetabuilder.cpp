@@ -1619,12 +1619,15 @@ AbstractMetaFunction *AbstractMetaBuilder::traverseFunction(FunctionModelItem fu
 
     // If we where not able to translate the default argument make it
     // reset all default arguments before this one too.
-    for (int i=0; i<first_default_argument; ++i)
+    for (int i=0; i<first_default_argument; ++i) {
         meta_arguments[i]->setDefaultValueExpression(QString());
+    }
 
-    if (ReportHandler::debugLevel() == ReportHandler::FullDebug)
-        foreach(AbstractMetaArgument *arg, meta_arguments)
+    if (ReportHandler::debugLevel() == ReportHandler::FullDebug) {
+        foreach(AbstractMetaArgument *arg, meta_arguments) {
             ReportHandler::debugFull("   - " + arg->toString());
+        }
+    }
 
     return meta_function;
 }

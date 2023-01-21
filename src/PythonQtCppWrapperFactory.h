@@ -55,6 +55,7 @@ A factory can be added to PythonQt by PythonQt::addCppWrapperFactory().
 */
 class PYTHONQT_EXPORT PythonQtCppWrapperFactory
 {
+  Q_DISABLE_COPY(PythonQtCppWrapperFactory)
 public:
   PythonQtCppWrapperFactory() {};
   virtual ~PythonQtCppWrapperFactory() {};
@@ -68,9 +69,10 @@ public:
 //! Python with other means than PythonQt/QObjects.
 class PYTHONQT_EXPORT PythonQtForeignWrapperFactory
 {
+  Q_DISABLE_COPY(PythonQtForeignWrapperFactory)
 public:
-  PythonQtForeignWrapperFactory() {};
-  virtual ~PythonQtForeignWrapperFactory() {};
+  PythonQtForeignWrapperFactory() {}
+  virtual ~PythonQtForeignWrapperFactory() {}
 
   //! create a Python object (with new reference count), wrapping the given \p ptr as class of type \p classname
   //! Return NULL (and not Py_None) if the object could not be wrapped.

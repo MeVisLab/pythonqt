@@ -43,6 +43,7 @@
 #define PP_ITERATOR_H
 
 #include <iterator>
+#include <qcompilerdetection.h> // Q_CC_MSVC
 
 namespace rpp {
 
@@ -71,6 +72,7 @@ public:
   explicit pp_output_iterator(std::string &__result):
     _M_result (__result) {}
 
+#ifdef Q_CC_MSVC
   // this copy constructor was needed for Visual Studio 2012 release builds:
   inline pp_output_iterator &operator=(const pp_output_iterator& other)
   {
@@ -78,6 +80,7 @@ public:
     _M_result = other._M_result;
     return *this;
   }
+#endif
 
   inline pp_output_iterator &operator=(typename _Container::const_reference __v)
   {

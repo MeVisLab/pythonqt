@@ -627,7 +627,7 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
        {
          // check for enum case
          if (info.enumWrapper) {
-           unsigned int val;
+           unsigned int val = 0;
            ok = false;
            if ((PyObject*)obj->ob_type == info.enumWrapper) {
              // we have a exact enum type match:

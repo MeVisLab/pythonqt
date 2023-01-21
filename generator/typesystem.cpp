@@ -49,6 +49,7 @@
 #include <memory>
 
 #include <QtXml>
+#include <qcompilerdetection.h> // Q_FALLTHROUGH
 
 QString strings_Object = QLatin1String("Object");
 QString strings_String = QLatin1String("String");
@@ -482,12 +483,12 @@ bool Handler::startElement(const QString &, const QString &n,
         case StackElement::ValueTypeEntry:
             attributes["force-abstract"] = QString("no");
             attributes["deprecated"] = QString("no");
-            // fall throooough
+            Q_FALLTHROUGH();
         case StackElement::InterfaceTypeEntry:
             attributes["default-superclass"] = m_defaultSuperclass;
             attributes["polymorphic-id-expression"] = QString();
             attributes["delete-in-main-thread"] = QString("no");
-            // fall through
+            Q_FALLTHROUGH();
         case StackElement::NamespaceTypeEntry:
             attributes["java-name"] = QString();
             attributes["package"] = m_defaultPackage;
@@ -840,9 +841,7 @@ bool Handler::startElement(const QString &, const QString &n,
             }
             QString name = attributes["name"];
 
-            bool added = false;
             if (!name.isEmpty()) {
-                added = true;
                 m_current_enum->addEnumValueRejection(name);
             }
 

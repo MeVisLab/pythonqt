@@ -402,10 +402,7 @@ PythonQtPrivate::~PythonQtPrivate() {
   _defaultImporter = nullptr;
 
   {
-    QHashIterator<QByteArray, PythonQtClassInfo *> i(_knownClassInfos);
-    while (i.hasNext()) {
-      delete i.next().value();
-    }
+    qDeleteAll(_knownClassInfos);
   }
 
   PythonQtMethodInfo::cleanupCachedMethodInfos();
@@ -443,6 +440,8 @@ PythonQtObjectPtr PythonQtPrivate::checkAndRunCoroutine(const PythonQtObjectPtr&
     Py_XDECREF(methodName);
   }
   Py_XDECREF(args);
+#else
+  Q_UNUSED(object)
 #endif
   return result;
 }
