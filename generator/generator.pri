@@ -4,13 +4,10 @@ INCLUDEPATH += $$GENERATORPATH
 TEMPLATE = app
 TARGET +=
 DEPENDPATH += $$GENERATORPATH tests parser
-mac:CONFIG -= app_bundle
 INCLUDEPATH += $$GENERATORPATH/.
 INCLUDEPATH += $$GENERATORPATH/../common
 
-unix:CONFIG += debug_and_release
-
-CONFIG += console
+CONFIG += cmdline
 RESOURCES += generator.qrc
 
 include($$GENERATORPATH/parser/rxx.pri)
@@ -58,7 +55,7 @@ SOURCES += \
 
 
    
-QT = core xml
+QT += core xml
 
 win32-msvc.net {
         QMAKE_CXXFLAGS += /Zm500

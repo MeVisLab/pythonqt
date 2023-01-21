@@ -1,6 +1,4 @@
 TARGET = pythonqt_generator
-CONFIG -= debug
-CONFIG += release
 DESTDIR = .
 
 include(generator.pri)

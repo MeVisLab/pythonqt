@@ -53,10 +53,10 @@ jobs:
         echo ======= SYSTEM INFO ========
         uname -a; gcc --version | grep "gcc"; python3 --version; qmake --version
         echo ============================
-        qmake -r PythonQt.pro \
+        qmake -r PythonQt.pro CONFIG+=release \
         PYTHON_VERSION=$(python3 --version | cut -d " " -f 2 | cut -d "." -f1,2) \
         PYTHON_DIR=$(which python3 | xargs dirname | xargs dirname)    
-        make
+        make -j 2 && make check TESTARGS="-platform offscreen"
       
     - name: Generate Wrappers
       run: |
@@ -113,10 +113,10 @@ jobs:
         echo ======= SYSTEM INFO ========
         uname -a; gcc --version | grep "gcc"; python --version; qmake-qt5 --version
         echo ============================
-        qmake-qt5 -r PythonQt.pro \
+        qmake-qt5 -r PythonQt.pro CONFIG+=release \
         PYTHON_VERSION=$(python --version | cut -d " " -f 2 | cut -d "." -f1,2) \
         PYTHON_DIR=$(which python | xargs dirname | xargs dirname)    
-        make
+        make -j 2 && make check TESTARGS="-platform offscreen"
       
     - name: Generate Wrappers
       run: |
