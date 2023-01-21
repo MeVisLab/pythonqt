@@ -526,7 +526,7 @@ meth_get__doc__(PythonQtSlotFunctionObject * m, void * /*closure*/)
     if (!names.at(i - 1).isEmpty()) {
       doc += names.at(i - 1);
     } else {
-      doc += QString('a' + i - firstArgOffset);
+      doc += QString('a' + i - firstArgOffset).toLatin1();
     }
   }
   doc += ")";
