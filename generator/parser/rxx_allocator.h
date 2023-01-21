@@ -102,6 +102,9 @@ public:
       (_M_current_block + _M_current_index);
 
     _M_current_index += bytes;
+    // Hack for modern C++ to get aligned allocations
+    _M_current_index += 7U;
+    _M_current_index &= ~(7U);
 
     return p;
   }
