@@ -124,21 +124,8 @@ private:
   void operator = (const CodeModel &other);
 };
 
-class TypeInfo
+struct TypeInfo
 {
-public:
-  TypeInfo(const TypeInfo &other)
-    : flags(other.flags),
-      m_qualifiedName(other.m_qualifiedName),
-      m_arrayElements(other.m_arrayElements),
-      m_arguments(other.m_arguments),
-      m_rvalue_reference(other.m_rvalue_reference)
-  {
-  }
-
-  TypeInfo():
-    flags (0), m_rvalue_reference(false) {}
-
   QStringList qualifiedName() const { return m_qualifiedName; }
   void setQualifiedName(const QStringList &qualified_name) { m_qualifiedName = qualified_name; }
 

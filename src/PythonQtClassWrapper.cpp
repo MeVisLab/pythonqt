@@ -110,14 +110,11 @@ static Py_ssize_t PythonQtInstanceWrapper_length(PythonQtInstanceWrapper* wrappe
 static int PythonQtInstanceWrapper_setitem(PyObject* self, PyObject* index, PyObject* value)
 {
   PythonQtInstanceWrapper* wrapper = (PythonQtInstanceWrapper*)self;
-  PythonQtMemberInfo opSlot;
-  bool isSetItem = false;
-  if (value) {
-    isSetItem = true;
-    opSlot = wrapper->classInfo()->member("__setitem__");
-  } else {
-    opSlot = wrapper->classInfo()->member("__delitem__");
-  }
+  bool isSetItem = value;
+  PythonQtMemberInfo opSlot = isSetItem ?
+	wrapper->classInfo()->member("__setitem__")
+	: wrapper->classInfo()->member("__delitem__");
+
   if (opSlot._type == PythonQtMemberInfo::Slot) {
     PyObject* args = PyTuple_New(isSetItem?2:1);
     Py_INCREF(index);

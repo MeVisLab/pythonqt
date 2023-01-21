@@ -746,6 +746,7 @@ int AbstractMetaBuilder::figureOutEnumValue(const QString &stringValue,
                                         AbstractMetaEnum *meta_enum,
                                         AbstractMetaFunction *meta_function)
 {
+    Q_UNUSED(meta_function)
     if (stringValue.isEmpty())
         return oldValuevalue;
 
@@ -1947,6 +1948,7 @@ QString AbstractMetaBuilder::translateDefaultValue(ArgumentModelItem item, Abstr
                                                AbstractMetaFunction *fnc, AbstractMetaClass *implementing_class,
                                                int argument_index)
 {
+    Q_UNUSED(type)
     QString function_name = fnc->name();
     QString class_name = implementing_class->name();
 

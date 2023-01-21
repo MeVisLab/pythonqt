@@ -1075,14 +1075,13 @@ bool PythonQtClassInfo::supportsRichCompare()
 
 //-------------------------------------------------------------------------
 
-PythonQtMemberInfo::PythonQtMemberInfo( PythonQtSlotInfo* info )
+PythonQtMemberInfo::PythonQtMemberInfo( PythonQtSlotInfo* info ) : _slot(info)
 {
   if (info->metaMethod()->methodType() == QMetaMethod::Signal) {
     _type = Signal;
   } else {
     _type = Slot;
   }
-  _slot = info;
   _enumValue = nullptr;
   _pythonType = nullptr;
 }
