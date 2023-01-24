@@ -289,7 +289,7 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
     
     for (auto i = 0u; i < sizeof(enumValues)/sizeof(int); i++) {
       PyObject* obj = PyInt_FromLong(enumValues[i]);
-      if (PyModule_AddObject(pack, enumNames[i], obj) >= 0) {
+      if (PyModule_AddObject(pack, enumNames[i], obj) == 0) {
         Py_INCREF(obj);
       }
       if (PyModule_AddObject(pack2, enumNames[i], obj) < 0) {

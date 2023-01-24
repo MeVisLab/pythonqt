@@ -52,11 +52,11 @@ int main( int argc, char **argv )
 
   int failCount = 0;
   PythonQtTestApi api;
-  failCount |= QTest::qExec(&api, argc, argv);
+  failCount += QTest::qExec(&api, argc, argv);
   PythonQtTestSignalHandler signalHandler;
-  failCount |= QTest::qExec(&signalHandler, argc, argv);
+  failCount += QTest::qExec(&signalHandler, argc, argv);
   PythonQtTestSlotCalling slotCalling;
-  failCount |= QTest::qExec(&slotCalling, argc, argv);
+  failCount += QTest::qExec(&slotCalling, argc, argv);
 
   PythonQt::cleanup();
 
@@ -65,6 +65,6 @@ int main( int argc, char **argv )
   } else {
     std::cout << "All tests passed successfully." << std::endl;
   }
-  return failCount;
+  return failCount != 0 ? EXIT_FAILURE : EXIT_SUCCESS;
 }
 
