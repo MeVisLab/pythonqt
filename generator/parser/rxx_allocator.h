@@ -109,7 +109,7 @@ public:
     return p;
   }
 
-  void deallocate(pointer __p, size_type __n) {}
+  void deallocate(pointer /*__p*/, size_type /*__n*/) {}
 
   size_type max_size() const { return size_type(-1) / sizeof(_Tp); }
 
@@ -121,7 +121,7 @@ private:
     typedef rxx_allocator<_Tp1> other;
   };
 
-  template <class _Tp1> rxx_allocator(const rxx_allocator<_Tp1> &__o) {}
+  template <class _Tp1> rxx_allocator(const rxx_allocator<_Tp1> &/*__o*/) {}
 
 private:
   size_type _M_block_index;

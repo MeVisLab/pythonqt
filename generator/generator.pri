@@ -2,12 +2,15 @@ isEmpty(GENERATORPATH):GENERATORPATH = $$PWD
 INCLUDEPATH += $$GENERATORPATH
 
 TEMPLATE = app
+#CONFIG += cmdline -- does not work as expected with old Qt versions, f.e. is missing in 5.9
+CONFIG += console
+CONFIG -= app_bundle
+
 TARGET +=
 DEPENDPATH += $$GENERATORPATH tests parser
 INCLUDEPATH += $$GENERATORPATH/.
 INCLUDEPATH += $$GENERATORPATH/../common
 
-CONFIG += cmdline
 RESOURCES += generator.qrc
 
 include($$GENERATORPATH/parser/rxx.pri)
@@ -19,6 +22,7 @@ win32-msvc2005:{
         QMAKE_CFLAGS += -wd4996
 }
 gcc:QMAKE_CXXFLAGS += -Wno-deprecated-declarations -Wpedantic
+clang: QMAKE_CXXFLAGS += -Wno-nested-anon-types -Wno-gnu-anonymous-struct -Wno-unused-private-field
 
 # Input
 HEADERS += \

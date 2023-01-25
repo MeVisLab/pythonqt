@@ -30,9 +30,9 @@ PYTHON_VERSION_MINOR=$$section(PYTHON_VERSION, ., 1, 1)
 # Python 2.x has problems:
 # 1) https://wiki.gentoo.org/wiki/Project:Python/Strict_aliasing
 # 2) deprecated implicit cast of string literals to char*
-equals(PYTHON_VERSION_MAJOR, 2):QMAKE_CXXFLAGS *= -fno-strict-aliasing -Wno-error=write-strings
+equals(PYTHON_VERSION_MAJOR, 2):gcc:QMAKE_CXXFLAGS *= -fno-strict-aliasing -Wno-error=write-strings
 
-macx {
+macx:isEmpty(PYTHON_DIR){
   # for macx you need to have the Python development kit installed as framework
   INCLUDEPATH += /System/Library/Frameworks/Python.framework/Headers
   LIBS += -F/System/Library/Frameworks -framework Python

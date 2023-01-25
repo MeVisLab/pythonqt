@@ -4,8 +4,10 @@ INCLUDEPATH += $$PWD
 
 CONFIG += c++11
 
-!no_warn:gcc: QMAKE_CXXFLAGS += -Werror -Wno-deprecated-declarations \
-				-Wno-error=missing-field-initializers
+gcc:!no_warn {
+    !clang:QMAKE_CXXFLAGS += -Werror -Wno-error=missing-field-initializers
+    clang:QMAKE_CXXFLAGS += -Wno-error=sometimes-uninitialized
+}
 
 # This was needed to work around "number of sections exceeded object file format limit" linker error
 win32-msvc*:QMAKE_CXXFLAGS += /bigobj

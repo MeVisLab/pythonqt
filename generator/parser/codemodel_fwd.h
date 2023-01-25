@@ -62,7 +62,7 @@ class _TemplateParameterModelItem;
 class _TypeAliasModelItem;
 class _VariableModelItem;
 class _MemberModelItem;
-class TypeInfo;
+struct TypeInfo;
 
 typedef CodeModelPointer<_ArgumentModelItem> ArgumentModelItem;
 typedef CodeModelPointer<_ClassModelItem> ClassModelItem;
