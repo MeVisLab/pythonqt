@@ -31,8 +31,13 @@ PYTHON_VERSION_MINOR=$$section(PYTHON_VERSION, ., 1, 1)
 # 1) https://wiki.gentoo.org/wiki/Project:Python/Strict_aliasing
 # 2) deprecated implicit cast of string literals to char*
 equals(PYTHON_VERSION_MAJOR, 2):gcc:QMAKE_CXXFLAGS *= -fno-strict-aliasing -Wno-error=write-strings
-
-macx:isEmpty(PYTHON_DIR){
+contains(PKGCONFIG, "python.*"){
+  CONFIG += link_pkgconfig
+  PYTHON_PKGCONFIG = $$member($$unique($$find(PKGCONFIG, "python.*")), 1, 1)
+  # add rpath
+  PYTHON_LIBDIR = $$system($$pkgConfigExecutable() --libs-only-L $$PYTHON_PKGCONFIG)
+  QMAKE_RPATHDIR += $$replace(PYTHON_LIBDIR,-L,)
+} else:macx:isEmpty(PYTHON_DIR){
   # for macx you need to have the Python development kit installed as framework
   INCLUDEPATH += /System/Library/Frameworks/Python.framework/Headers
   LIBS += -F/System/Library/Frameworks -framework Python
