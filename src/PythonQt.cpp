@@ -596,14 +596,14 @@ void PythonQtPrivate::createPythonQtClassWrapper(PythonQtClassInfo* info, const 
     PythonQtClassInfo* outerClassInfo = lookupClassInfoAndCreateIfNotPresent(outerClass);
     outerClassInfo->addNestedClass(info);
   } else {
-    if (!PyModule_AddObject(pack, info->className(), pyobj)) {
+    if (PyModule_AddObject(pack, info->className(), pyobj) == 0) {
       // since PyModule_AddObject steals the reference, we need a incref once more...
       Py_INCREF(pyobj);
     }
   }
   if (!module && package && strncmp(package, "Qt", 2) == 0) {
     // put all qt objects into Qt as well
-    if (!PyModule_AddObject(packageByName("Qt"), info->className(), pyobj)) {
+    if (PyModule_AddObject(packageByName("Qt"), info->className(), pyobj) == 0) {
       // since PyModule_AddObject steals the reference, we need a incref once more...
       Py_INCREF(pyobj);
     }
