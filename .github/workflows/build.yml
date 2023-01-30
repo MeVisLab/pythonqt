@@ -214,3 +214,92 @@ jobs:
         name: wrappers_macos${{ steps.versions.outputs.MACOS_VERSION_SHORT }}_qt${{ steps.versions.outputs.QT_VERSION_SHORT }}
         path: generated_cpp
 
+  windows:
+    strategy:
+      fail-fast: false
+      matrix:
+#       macos-version:  ['10.15']
+       python-version: ['2.7']
+       python-arch: ['x86']
+       qt-version: ['5.9.*']
+       qt-arch: ['win32_msvc2019']
+       include:
+         - python-version: '3.10'
+           python-arch: 'x64'
+           qt-version: '5.11.*'
+           qt-arch: 'win64_mingw81' 
+    runs-on: windows-latest
+    steps:
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v3
+      with:
+        aqtversion: '==2.1.*'
+        version: ${{ matrix.qt-version }}
+        host: 'windows'
+        target: 'desktop'
+        arch: ${{ matrix.qt-arch }}
+        modules: 'qtscript'
+        archives: 'qtmultimedia qtbase qttools'
+        tool: ${{ contains(matrix.qt-arch, 'mingw') && format('qt.tools.${0}0', matrix.qt-arch) || '' }}
+
+    - name: Setup Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: '${{ matrix.python-version }}'
+        architecture: ${{ matrix.python-arch }}
+
+    - name: Checkout PythonQt
+      uses: actions/checkout@v3
+
+    - name: Detect exact versions
+      if: false
+      id : versions
+      run : |
+        set -eu
+        PYTHON_VERSION_FULL=$(python --version 2>&1 | cut -f 2 -d ' ')
+        PYTHON_VERSION_SHORT=$(cut -f 1,2 -d . <<< $PYTHON_VERSION_FULL)
+        QT_VERSION_FULL=$($Qt5_DIR/bin/qmake -query QT_VERSION)
+        QT_VERSION_SHORT=$(cut -f 1,2 -d . <<< $QT_VERSION_FULL)
+        MACOS_VERSION_FULL=$(sw_vers -productVersion)
+        MACOS_VERSION_SHORT=$(cut -f 1,2 -d . <<< $MACOS_VERSION_FULL)
+
+        echo "PYTHON_VERSION_FULL=$PYTHON_VERSION_FULL" | tee -a $GITHUB_OUTPUT
+        echo "PYTHON_VERSION_SHORT=$PYTHON_VERSION_SHORT" | tee -a $GITHUB_OUTPUT
+        echo "QT_VERSION_FULL=$QT_VERSION_FULL" | tee -a $GITHUB_OUTPUT
+        echo "QT_VERSION_SHORT=$QT_VERSION_SHORT" | tee -a $GITHUB_OUTPUT
+        echo "MACOS_VERSION_FULL=$MACOS_VERSION_FULL" | tee -a $GITHUB_OUTPUT
+        echo "MACOS_VERSION_SHORT=$MACOS_VERSION_SHORT" | tee -a $GITHUB_OUTPUT
+
+    - name: Build PythonQt
+      if: false
+      shell: bash
+      run: |
+        set -ue
+        echo ======= SYSTEM INFO ========
+        uname -a; gcc --version | head -n 1; python --version; qmake --version
+        echo ============================
+        PYTHON_VERSION_MAJOR=$(cut -d . -f1 <<< ${{ steps.versions.outputs.PYTHON_VERSION_SHORT }})
+        for i in "python${{ steps.versions.outputs.PYTHON_VERSION_SHORT }}-embed" "python${{ steps.versions.outputs.PYTHON_VERSION_SHORT }}" \
+                 "python${PYTHON_VERSION_MAJOR}-embed" "python${PYTHON_VERSION_MAJOR}"
+        do if pkg-config --exists "$i"; then PYTHON_PKGCONFIG_NAME="$i"; break; fi; done
+        qmake CONFIG+=release CONFIG+=sanitizer CONFIG+=sanitize_undefined \
+        PYTHON_VERSION=${{ steps.versions.outputs.PYTHON_VERSION_SHORT }} \
+        PYTHON_DIR="$pythonLocation" \
+        PKGCONFIG+=$PYTHON_PKGCONFIG_NAME \
+        -r PythonQt.pro
+        make -j 2 && make check TESTARGS="-platform offscreen"
+
+    - name: Generate Wrappers
+      if: false
+      run: |
+        cd generator
+        # workaround to allow to find the Qt include dirs for installed standard qt packages
+        QTDIR=-UNDEFINED- ./pythonqt_generator --include-paths=$Qt5_DIR/lib
+
+    - name: Upload Wrappers
+      if: false
+      uses: actions/upload-artifact@v3
+      with:
+        name: wrappers_macos${{ steps.versions.outputs.MACOS_VERSION_SHORT }}_qt${{ steps.versions.outputs.QT_VERSION_SHORT }}
+        path: generated_cpp
+
