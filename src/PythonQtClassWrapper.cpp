@@ -110,14 +110,11 @@ static Py_ssize_t PythonQtInstanceWrapper_length(PythonQtInstanceWrapper* wrappe
 static int PythonQtInstanceWrapper_setitem(PyObject* self, PyObject* index, PyObject* value)
 {
   PythonQtInstanceWrapper* wrapper = (PythonQtInstanceWrapper*)self;
-  PythonQtMemberInfo opSlot;
-  bool isSetItem = false;
-  if (value) {
-    isSetItem = true;
-    opSlot = wrapper->classInfo()->member("__setitem__");
-  } else {
-    opSlot = wrapper->classInfo()->member("__delitem__");
-  }
+  bool isSetItem = value;
+  PythonQtMemberInfo opSlot = isSetItem ?
+	wrapper->classInfo()->member("__setitem__")
+	: wrapper->classInfo()->member("__delitem__");
+
   if (opSlot._type == PythonQtMemberInfo::Slot) {
     PyObject* args = PyTuple_New(isSetItem?2:1);
     Py_INCREF(index);
@@ -394,7 +391,7 @@ static PyObject *PythonQtClassWrapper_help(PythonQtClassWrapper* type)
 
 PyObject *PythonQtClassWrapper_delete(PythonQtClassWrapper *type, PyObject *args)
 {
-  Q_UNUSED(type);
+  Q_UNUSED(type)
 
   Py_ssize_t argc = PyTuple_Size(args);
   if (argc>0) {
@@ -408,7 +405,7 @@ PyObject *PythonQtClassWrapper_delete(PythonQtClassWrapper *type, PyObject *args
 
 PyObject *PythonQtClassWrapper_inherits(PythonQtClassWrapper *type, PyObject *args)
 {
-  Q_UNUSED(type);
+  Q_UNUSED(type)
   PythonQtInstanceWrapper* wrapper = nullptr;
   char *name = nullptr;
   if (!PyArg_ParseTuple(args, "O!s:PythonQtClassWrapper.inherits",&PythonQtInstanceWrapper_Type, &wrapper, &name)) {

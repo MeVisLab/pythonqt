@@ -1,10 +1,8 @@
 TARGET = pythonqt_generator
-CONFIG -= debug
-CONFIG += release
 DESTDIR = .
 
 include(generator.pri)
-
+DEFINES += QT_NO_CAST_TO_ASCII
 
 # Input
 HEADERS += \

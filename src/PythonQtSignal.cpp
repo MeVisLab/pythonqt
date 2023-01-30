@@ -66,6 +66,9 @@ PyObject *PythonQtSignalFunction_Call(PyObject *func, PyObject *args, PyObject *
 
 PyObject *PythonQtSignalFunction_tpNew(PyTypeObject *subtype, PyObject *args, PyObject *kwds)
 {
+  Q_UNUSED(subtype)
+  Q_UNUSED(args)
+  Q_UNUSED(kwds)
   return PythonQtSignalFunction_New(nullptr, nullptr, nullptr);
 }
 
@@ -181,6 +184,7 @@ static PyMemberDef meth_members[] = {
 
 int PythonQtSignalFunction_init(PyObject *object, PyObject *args, PyObject *kw)
 {
+  Q_UNUSED(kw)
   PythonQtSignalFunctionObject* self = (PythonQtSignalFunctionObject*)object;
   self->_dynamicInfo = new PythonQtDynamicSignalInfo();
   

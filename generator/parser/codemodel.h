@@ -124,41 +124,28 @@ private:
   void operator = (const CodeModel &other);
 };
 
-class TypeInfo
+struct TypeInfo
 {
-public:
-  TypeInfo(const TypeInfo &other)
-    : flags(other.flags),
-      m_qualifiedName(other.m_qualifiedName),
-      m_arrayElements(other.m_arrayElements),
-      m_arguments(other.m_arguments),
-      m_rvalue_reference(other.m_rvalue_reference)
-  {
-  }
-
-  TypeInfo():
-    flags (0), m_rvalue_reference(false) {}
-
   QStringList qualifiedName() const { return m_qualifiedName; }
   void setQualifiedName(const QStringList &qualified_name) { m_qualifiedName = qualified_name; }
 
-  bool isConstant() const { return m_constant; }
-  void setConstant(bool is) { m_constant = is; }
+  bool isConstant() const { return m_flags.m_constant; }
+  void setConstant(bool is) { m_flags.m_constant = is; }
 
-  bool isVolatile() const { return m_volatile; }
-  void setVolatile(bool is) { m_volatile = is; }
+  bool isVolatile() const { return m_flags.m_volatile; }
+  void setVolatile(bool is) { m_flags.m_volatile = is; }
 
-  bool isReference() const { return m_reference; }
-  void setReference(bool is) { m_reference = is; }
+  bool isReference() const { return m_flags.m_reference; }
+  void setReference(bool is) { m_flags.m_reference = is; }
 
   bool isRvalueReference() const { return m_rvalue_reference; }
   void setRvalueReference(bool is) { m_rvalue_reference = is; }
 
-  int indirections() const { return m_indirections; }
-  void setIndirections(int indirections) { m_indirections = indirections; }
+  int indirections() const { return m_flags.m_indirections; }
+  void setIndirections(int indirections) { m_flags.m_indirections = indirections; }
 
-  bool isFunctionPointer() const { return m_functionPointer; }
-  void setFunctionPointer(bool is) { m_functionPointer = is; }
+  bool isFunctionPointer() const { return m_flags.m_functionPointer; }
+  void setFunctionPointer(bool is) { m_flags.m_functionPointer = is; }
 
   QStringList arrayElements() const { return m_arrayElements; }
   void setArrayElements(const QStringList &arrayElements) { m_arrayElements = arrayElements; }
@@ -178,25 +165,25 @@ public:
   static TypeInfo resolveType (TypeInfo const &__type, CodeModelItem __scope);
 
 private:
-  union
-  {
-    uint flags;
-
-    struct
-    {
-      uint m_constant: 1;
-      uint m_volatile: 1;
-      uint m_reference: 1;
-      uint m_functionPointer: 1;
-      uint m_indirections: 6;
-      uint m_padding: 22;
-    };
-  };
+  struct TypeInfo_flags {
+	uint m_constant: 1;
+	uint m_volatile: 1;
+	uint m_reference: 1;
+	uint m_functionPointer: 1;
+	uint m_indirections: 6;
+	inline bool equals(TypeInfo_flags other) {
+         return m_constant == other.m_constant
+             && m_volatile == other.m_volatile
+             && m_reference == other.m_reference
+             && m_functionPointer == other.m_functionPointer
+             && m_indirections == other.m_indirections;
+	}
+  } m_flags {0, 0, 0, 0, 0};
 
   QStringList m_qualifiedName;
   QStringList m_arrayElements;
   QList<TypeInfo> m_arguments;
-  bool m_rvalue_reference;
+  bool m_rvalue_reference { false };
 };
 
 class _CodeModelItem: public QSharedData

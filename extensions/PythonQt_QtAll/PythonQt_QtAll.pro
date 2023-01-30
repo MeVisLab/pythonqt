@@ -1,19 +1,23 @@
 # get external pythonqtall config or enable all by default
 
 isEmpty( PYTHONQTALL_CONFIG ) {
+  PYTHONQTALL_CONFIG = $$(PYTHONQTALL_CONFIG)
+}
+
+isEmpty( PYTHONQTALL_CONFIG ) {
   message("using default PythonQt_QtAll Configuration")
   CONFIG += PythonQtCore
-  CONFIG += PythonQtGui
-  CONFIG += PythonQtSvg
-  CONFIG += PythonQtSql
-  CONFIG += PythonQtNetwork
-  CONFIG += PythonQtOpengl 
-  CONFIG += PythonQtXml
-  CONFIG += PythonQtXmlpatterns
-  CONFIG += PythonQtMultimedia
-  CONFIG += PythonQtQml
-  CONFIG += PythonQtQuick
-  CONFIG += PythonQtUiTools
+  qtHaveModule(gui):qtHaveModule(widgets):CONFIG += PythonQtGui
+  qtHaveModule(svg):CONFIG += PythonQtSvg
+  qtHaveModule(sql):CONFIG += PythonQtSql
+  qtHaveModule(network):CONFIG += PythonQtNetwork
+  qtHaveModule(opengl):CONFIG += PythonQtOpengl
+  qtHaveModule(xml):CONFIG += PythonQtXml
+  qtHaveModule(xmlpatterns):CONFIG += PythonQtXmlpatterns
+  qtHaveModule(multimedia):CONFIG += PythonQtMultimedia
+  qtHaveModule(qml):CONFIG += PythonQtQml
+  qtHaveModule(quick):CONFIG += PythonQtQuick
+  qtHaveModule(uitools):CONFIG += PythonQtUiTools
 
   qtHaveModule(webkit):CONFIG += PythonQtWebKit
 } else {
@@ -36,10 +40,10 @@ CONFIG += dll qt
 DEFINES += PYTHONQT_QTALL_EXPORTS
 
 HEADERS +=                \
-  PythonQt_QtAll.h
+  $$PWD/PythonQt_QtAll.h
   
 SOURCES +=                \
-  PythonQt_QtAll.cpp
+  $$PWD/PythonQt_QtAll.cpp
 
 unix {
   CONFIG += create_pc create_prl no_install_prl
@@ -60,79 +64,81 @@ headers.path = /include
 
 INSTALLS += target headers
 
+defineTest(Xinclude) {
+  f=$$PYTHONQT_GENERATED_PATH/$$1/$${1}.pri
+  exists($$f):include($$f):export(HEADERS):export(SOURCES):export(DEFINES)
+
+}
+
+
 PythonQtCore {
   DEFINES += PYTHONQT_WITH_CORE
-  include ($$PYTHONQT_GENERATED_PATH/com_trolltech_qt_core/com_trolltech_qt_core.pri)
+  Xinclude (com_trolltech_qt_core)
 }
 
 PythonQtGui  {
   DEFINES += PYTHONQT_WITH_GUI
-  include ($$PYTHONQT_GENERATED_PATH/com_trolltech_qt_gui/com_trolltech_qt_gui.pri)
+  Xinclude (com_trolltech_qt_gui)
   QT += gui widgets printsupport
 }
 
 PythonQtSvg {
   DEFINES += PYTHONQT_WITH_SVG
-  include ($$PYTHONQT_GENERATED_PATH/com_trolltech_qt_svg/com_trolltech_qt_svg.pri)
+  Xinclude (com_trolltech_qt_svg)
   QT +=svg
 }
 
 PythonQtSql {
   DEFINES += PYTHONQT_WITH_SQL
-  include ($$PYTHONQT_GENERATED_PATH/com_trolltech_qt_sql/com_trolltech_qt_sql.pri)
+  Xinclude (com_trolltech_qt_sql)
   QT += sql
 }
 
 PythonQtNetwork {
   DEFINES += PYTHONQT_WITH_NETWORK
-  include ($$PYTHONQT_GENERATED_PATH/com_trolltech_qt_network/com_trolltech_qt_network.pri)
+  Xinclude (com_trolltech_qt_network)
   QT += network
 }
 
 PythonQtOpengl {
   DEFINES += PYTHONQT_WITH_OPENGL
-  PythonQtCore: include ($$PYTHONQT_GENERATED_PATH/com_trolltech_qt_opengl/com_trolltech_qt_opengl.pri)
   QT += opengl
-}
-
-PythonQtXml {
-  DEFINES += PYTHONQT_WITH_XML
-  include ($$PYTHONQT_GENERATED_PATH/com_trolltech_qt_xml/com_trolltech_qt_xml.pri)
+  PythonQtCore: Xinclude (com_trolltech_qt_opengl)
   QT += xml
 }
 
 PythonQtXmlpatterns {
   DEFINES += PYTHONQT_WITH_XMLPATTERNS
-  include ($$PYTHONQT_GENERATED_PATH/com_trolltech_qt_xmlpatterns/com_trolltech_qt_xmlpatterns.pri)
+  Xinclude (com_trolltech_qt_xmlpatterns)
   QT += xmlpatterns
 }
 
 PythonQtMultimedia {
   DEFINES += PYTHONQT_WITH_MULTIMEDIA
-  include ($$PYTHONQT_GENERATED_PATH/com_trolltech_qt_multimedia/com_trolltech_qt_multimedia.pri)
- QT += multimedia multimediawidgets
+  Xinclude (com_trolltech_qt_multimedia)
+  QT += multimedia multimediawidgets
 }
 
 PythonQtQml {
   DEFINES += PYTHONQT_WITH_QML
-  include ($$PYTHONQT_GENERATED_PATH/com_trolltech_qt_qml/com_trolltech_qt_qml.pri)
+  Xinclude (com_trolltech_qt_qml)
   QT += qml
 }
 
 PythonQtQuick {
   DEFINES += PYTHONQT_WITH_QUICK
-  include ($$PYTHONQT_GENERATED_PATH/com_trolltech_qt_quick/com_trolltech_qt_quick.pri)
+  Xinclude (com_trolltech_qt_quick)
   QT += quick quickwidgets
 }
 
 PythonQtUiTools {
   DEFINES += PYTHONQT_WITH_UITOOLS
-  include ($$PYTHONQT_GENERATED_PATH/com_trolltech_qt_uitools/com_trolltech_qt_uitools.pri)
+  Xinclude (com_trolltech_qt_uitools)
   QT += uitools
 }
 
 PythonQtWebKit {
   DEFINES += PYTHONQT_WITH_WEBKIT
-  include ($$PYTHONQT_GENERATED_PATH/com_trolltech_qt_webkit/com_trolltech_qt_webkit.pri)
+  Xinclude (com_trolltech_qt_webkit)
   QT += webkit webkitwidgets
 }

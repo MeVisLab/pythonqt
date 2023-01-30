@@ -60,11 +60,11 @@ int main( int argc, char **argv )
 
   PythonQt::cleanup();
 
-  if (failCount>0) {
+  if (failCount) {
     std::cerr << "Tests failed: " << failCount << std::endl;
   } else {
     std::cout << "All tests passed successfully." << std::endl;
   }
-  return failCount;
+  return failCount != 0 ? EXIT_FAILURE : EXIT_SUCCESS;
 }
 

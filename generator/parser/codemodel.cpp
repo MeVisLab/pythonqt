@@ -232,9 +232,9 @@ bool TypeInfo::operator==(const TypeInfo &other)
     }
 #endif
 
-  return flags == other.flags
+  return m_flags.equals(other.m_flags)
     && m_qualifiedName == other.m_qualifiedName
-    && (!m_functionPointer || m_arguments == other.m_arguments);
+    && (!m_flags.m_functionPointer || m_arguments == other.m_arguments);
 }
 
 // ---------------------------------------------------------------------------

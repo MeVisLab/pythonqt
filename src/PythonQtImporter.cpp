@@ -579,6 +579,8 @@ void PythonQtImport::writeCompiledModule(PyCodeObject *co, const QString& filena
 #endif
 #ifdef PY3K
   PyMarshal_WriteLongToFile(sourceSize, fp, Py_MARSHAL_VERSION);
+#else
+  Q_UNUSED(sourceSize)
 #endif
 #if PY_VERSION_HEX < 0x02040000
   PyMarshal_WriteObjectToFile((PyObject *)co, fp);
@@ -650,7 +652,7 @@ PythonQtImport::unmarshalCode(const QString& path, const QByteArray& data, time_
 #ifdef PY3K
   // Python 3 also stores the size of the *.py file, but we ignore it for now
   int sourceSize = getLong((unsigned char *)buf + 8); 
-  Q_UNUSED(sourceSize);
+  Q_UNUSED(sourceSize)
   // read the module
   code = PyMarshal_ReadObjectFromString(buf + 12, size - 12);
 #else
@@ -803,6 +805,8 @@ PythonQtImport::getModuleCode(PythonQtImporter *self, const char* fullname, QStr
           cachemodpath = modpath;
           modpath = getSourceFilename(modpath);
         }
+#else
+        Q_UNUSED(cachemodpath)
 #endif
       }
       return code;
@@ -913,13 +917,17 @@ void PythonQtImport::init()
 
   Py_INCREF(PythonQtImportError);
   if (PyModule_AddObject(mod, "PythonQtImportError",
-             PythonQtImportError) < 0)
+             PythonQtImportError) < 0) {
+    Py_DECREF(PythonQtImportError);
     return;
+  }
 
   Py_INCREF(&PythonQtImporter_Type);
   if (PyModule_AddObject(mod, "PythonQtImporter",
-             (PyObject *)&PythonQtImporter_Type) < 0)
+             (PyObject *)&PythonQtImporter_Type) < 0) {
+    Py_DECREF(&PythonQtImporter_Type);
     return;
+  }
 
   // set our importer into the path_hooks to handle all path on sys.path
   PyObject* classobj = PyDict_GetItemString(PyModule_GetDict(mod), "PythonQtImporter");

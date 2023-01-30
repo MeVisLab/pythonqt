@@ -53,7 +53,7 @@ void displayHelp(GeneratorSet *generatorSet);
 #include <QDebug>
 int main(int argc, char *argv[])
 {
-    GeneratorSet *gs = GeneratorSet::getInstance();
+    QScopedPointer<GeneratorSet> gs(GeneratorSet::getInstance());
 
     QString default_file = ":/trolltech/generator/qtscript_masterinclude.h";
     QString default_system = ":/trolltech/generator/build_all.txt";
@@ -118,7 +118,7 @@ int main(int argc, char *argv[])
 
     typesystemFileName = args.value("arg-2");
     if (args.contains("arg-3"))
-        displayHelp(gs);
+        displayHelp(&*gs);
 
     if (fileName.isEmpty())
         fileName = default_file;
@@ -127,10 +127,10 @@ int main(int argc, char *argv[])
         typesystemFileName = default_system;
 
     if (fileName.isEmpty() || typesystemFileName.isEmpty() )
-        displayHelp(gs);
+        displayHelp(&*gs);
 
     if (!gs->readParameters(args))
-        displayHelp(gs);
+        displayHelp(&*gs);
 
     printf("Please wait while source files are being generated...\n");
 

@@ -117,7 +117,5 @@ namespace PythonQt_QtAll
 #ifdef PYTHONQT_WITH_UITOOLS
     PythonQt_init_QtUiTools(0);
 #endif
-  };
-};
-
-
+  }
+}

@@ -47,6 +47,6 @@ namespace PythonQt_QtAll
 {
   //! initialize the Qt binding
   PYTHONQT_QTALL_EXPORT void init();
-};    
+}
 
 #endif

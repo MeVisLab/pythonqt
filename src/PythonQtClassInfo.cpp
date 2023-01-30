@@ -131,11 +131,11 @@ bool PythonQtClassInfo::lookForPropertyAndCache(const char* memberName)
   if (!_meta) return false;
   
   bool found = false;
-  bool nameMapped = false;
   const char* attributeName = memberName;
   // look for properties
   int i = _meta->indexOfProperty(attributeName);
 #ifdef PYTHONQT_SUPPORT_NAME_PROPERTY
+  bool nameMapped = false;
   if (i==-1) {
     // try to map name to objectName
     if (qstrcmp(attributeName, "name")==0) {
@@ -154,9 +154,11 @@ bool PythonQtClassInfo::lookForPropertyAndCache(const char* memberName)
   if (i!=-1) {
     PythonQtMemberInfo newInfo(_meta->property(i));
     _cachedMembers.insert(attributeName, newInfo);
+#ifdef PYTHONQT_SUPPORT_NAME_PROPERTY
     if (nameMapped) {
       _cachedMembers.insert(memberName, newInfo);
     }
+#endif
   #ifdef PYTHONQT_DEBUG
     std::cout << "caching property " << memberName << " on " << _meta->className() << std::endl;
   #endif
@@ -1073,14 +1075,13 @@ bool PythonQtClassInfo::supportsRichCompare()
 
 //-------------------------------------------------------------------------
 
-PythonQtMemberInfo::PythonQtMemberInfo( PythonQtSlotInfo* info )
+PythonQtMemberInfo::PythonQtMemberInfo( PythonQtSlotInfo* info ) : _slot(info)
 {
   if (info->metaMethod()->methodType() == QMetaMethod::Signal) {
     _type = Signal;
   } else {
     _type = Slot;
   }
-  _slot = info;
   _enumValue = nullptr;
   _pythonType = nullptr;
 }

@@ -2387,10 +2387,8 @@ bool Parser::parsePtrToMember(PtrToMemberAST *&node)
 
   std::size_t start = token_stream.cursor();
 
-  std::size_t global_scope = 0;
   if (token_stream.lookAhead() == Token_scope)
     {
-      global_scope = token_stream.cursor();
       token_stream.nextToken();
     }
 

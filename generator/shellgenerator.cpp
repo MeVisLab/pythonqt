@@ -129,7 +129,6 @@ void ShellGenerator::writeFunctionArguments(QTextStream &s,
                                             Option option,
                                             int numArguments)
 {
-  const AbstractMetaClass* owner = meta_function->ownerClass();
   const AbstractMetaArgumentList &arguments = meta_function->arguments();
 
     if (numArguments < 0) numArguments = arguments.size();
