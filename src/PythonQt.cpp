@@ -67,6 +67,7 @@
 // .co_varnames was removed in 3.11, but the helper function was added
 #if PY_VERSION_HEX < 0x030B0000
 static inline PyObject *PyCode_GetVarnames(PyCodeObject *o) {
+  Py_XINCREF(o->co_varnames);
   return o->co_varnames;
 }
 #endif
@@ -2453,6 +2454,7 @@ QString PythonQtPrivate::getSignature(PyObject* object)
           Q_ASSERT(PyString_Check(s));
           varkeywords = PyString_AsString(s);
         }
+        Py_DECREF(co_varnames);
       }
       
       PyObject* defaultsTuple = func->func_defaults;
