@@ -49,7 +49,6 @@
 #include "structmember.h"
 #include "methodobject.h"
 #include "compile.h"
-#include "eval.h"
 #include <QString>
 
 class PythonQtClassInfo;
