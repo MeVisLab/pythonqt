@@ -56,11 +56,11 @@ unix {
   QMAKE_PKGCONFIG_VERSION = $$VERSION
 }
 
-unix: target.path = /lib
+unix: target.path = $${INSTALL_PREFIX}/lib
 win32: target.path = /
 
 headers.files = $${HEADERS}
-headers.path = /include
+headers.path = $${INSTALL_PREFIX}/include
 
 INSTALLS += target headers
 
