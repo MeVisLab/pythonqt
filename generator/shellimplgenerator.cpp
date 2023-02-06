@@ -176,7 +176,7 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
           s << "        }" << endl;
           s << "      }" << endl;
         }
-        s << "      if (result) { Py_DECREF(result); } " << endl;
+        s << "      if (result) { Py_DECREF(result); }" << endl;
         s << "      Py_DECREF(obj);" << endl;
         // ugly hack, we don't support QGraphicsScene* nor QGraphicsItem* QVariants in PythonQt...
         if (fun->name() == "itemChange" && fun->type() && fun->type()->isVariant()) {

@@ -17,7 +17,7 @@ mingw: TEST_TARGET_DIR = .
 
 DEFINES += QT_NO_CAST_TO_ASCII
 
-gcc: QMAKE_CXXFLAGS += -Wpedantic
+gcc: QMAKE_CXXFLAGS += -pedantic -ansi -Winit-self -Wuninitialized
 
 contains(QT_MAJOR_VERSION, 5) {
   QT += widgets

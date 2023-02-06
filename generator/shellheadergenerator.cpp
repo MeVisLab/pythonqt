@@ -40,7 +40,6 @@
 ****************************************************************************/
 
 #include "shellheadergenerator.h"
-#include "fileout.h"
 
 #include <QtCore/QDir>
 
@@ -156,7 +155,6 @@ void ShellHeaderGenerator::write(QTextStream& s, const AbstractMetaClass* meta_c
       s << "};" << endl;
     }
     s << endl;
-    const AbstractMetaClass* c = meta_class;
     s << "   ~" << shellClassName(meta_class) << "()" << (meta_class->hasVirtualDestructor() ? " override" : "") << ";" << endl;
     s << endl;
 

@@ -6,8 +6,7 @@ isEmpty( PYTHON_VERSION ) {
   PYTHON_VERSION=$$(PYTHON_VERSION)
 }
 isEmpty( PYTHON_VERSION ) {
-  win32:PYTHON_VERSION=27
-  unix:PYTHON_VERSION=2.7
+  PYTHON_VERSION=2.7
 }
 
 isEmpty( PYTHON_DIR ) {
@@ -30,8 +29,18 @@ PYTHON_VERSION_MINOR=$$section(PYTHON_VERSION, ., 1, 1)
 # Python 2.x has problems:
 # 1) https://wiki.gentoo.org/wiki/Project:Python/Strict_aliasing
 # 2) deprecated implicit cast of string literals to char*
-equals(PYTHON_VERSION_MAJOR, 2):gcc:QMAKE_CXXFLAGS *= -fno-strict-aliasing -Wno-error=write-strings
+equals(PYTHON_VERSION_MAJOR, 2) {
+   gcc:QMAKE_CXXFLAGS *= -fno-strict-aliasing -Wno-write-strings
+   # Qt 5.4 adds this option, but this is not compatible with the Python API
+   msvc: QMAKE_CXXFLAGS -= -Zc:strictStrings
+}
+
 contains(PKGCONFIG, "python.*"){
+# If `pkg-config` is configured, use `qmake PKGCONFIG+=python3.8-embed CONFIG+=...`
+# or `PKGCONFIG+=python2.7m`-like form for older versions,
+# see `pkg-config --list-all | grep python` for details.
+# This can help with GNU/Linux (including macOS with Homebrew), MSYS2/MinGW environment,
+# and also with OpenEmbedded and other cross-builds
   CONFIG += link_pkgconfig
   PYTHON_PKGCONFIG = $$member($$unique($$find(PKGCONFIG, "python.*")), 1, 1)
   # add rpath
@@ -63,8 +72,26 @@ contains(PKGCONFIG, "python.*"){
     DEBUG_EXT = 
   }
 
-  win32:INCLUDEPATH += $$(PYTHON_PATH)/PC $$(PYTHON_PATH)/include
-  win32:LIBS += $$(PYTHON_LIB)/python$${PYTHON_VERSION}$${DEBUG_EXT}.lib
+  isEmpty(PYTHON_PATH):PYTHON_PATH=$(PYTHON_PATH)
+  isEmpty(PYTHON_PATH)|!exists("$$PYTHON_PATH\\include") | !exists("$$PYTHON_PATH\\libs\\") {
+     error("PYTHON_PATH must be set to correct folder with \\libs and \\include subfolders ")
+  }
+
+  #We need to destinguish 64-bit build to add a workaround option
+  #The only known problematic case is MinGW with external (MSVC-built) Python2
+  mingw:equals(PYTHON_VERSION_MAJOR, 2): isEmpty(QMAKE_TARGET.arch):system(\
+  $$system_quote($$system_path($${PYTHON_PATH}/python.exe)) -c \
+  $$system_quote(import sysconfig;exit(0 if 0 <= sysconfig.get_platform().find(\'win-amd64\') else 1))\
+  ):DEFINES += MS_WIN64
+
+  INCLUDEPATH += $$shell_path($${PYTHON_PATH}/include)
+
+  LIBS += $$shell_path(-L$${PYTHON_PATH}/libs)
+  LIBS += -lpython$${PYTHON_VERSION_MAJOR}$${PYTHON_VERSION_MINOR}$${DEBUG_EXT}
+
+  # Hack for "CONFIG+=testcase" and 'make check' to add python's dll to PATH
+  deppath += $$shell_path($${PYTHON_PATH})
+
 } else:unix {
   # on linux, python-config is used to autodetect Python.
   # make sure that you have installed a matching python-dev package.

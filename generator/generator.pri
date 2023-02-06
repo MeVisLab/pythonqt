@@ -17,12 +17,20 @@ include($$GENERATORPATH/parser/rxx.pri)
 
 include($$GENERATORPATH/parser/rpp/rpp.pri)
 
-win32-msvc2005:{
+CONFIG += strict_c++ c++11
+win32-msvc*{
+#Disable warning C4996 (deprecated declarations)
         QMAKE_CXXFLAGS += -wd4996
         QMAKE_CFLAGS += -wd4996
+#Disable warnings for external headers
+	greaterThan(QMAKE_MSC_VER, 1599):QMAKE_CXXFLAGS += -external:anglebrackets -external:W0 -external:templates-
 }
-gcc:QMAKE_CXXFLAGS += -Wno-deprecated-declarations -Wpedantic
-clang: QMAKE_CXXFLAGS += -Wno-nested-anon-types -Wno-gnu-anonymous-struct -Wno-unused-private-field
+#Do not issue warning to Qt's system includes
+gcc:!isEmpty(QT_INSTALL_HEADERS): QMAKE_CXXFLAGS += -isystem $$[QT_INSTALL_HEADERS]
+gcc|win32-clang-msvc:QMAKE_CXXFLAGS += -Wno-deprecated-declarations -pedantic -ansi -Winit-self -Wuninitialized
+clang|win32-clang-msvc: QMAKE_CXXFLAGS += -Wno-nested-anon-types -Wno-gnu-anonymous-struct -Wno-unused-private-field
+win32-clang-msvc:QMAKE_CXXFLAGS += -Wno-language-extension-token -Wno-microsoft-enum-value
+
 
 # Input
 HEADERS += \
