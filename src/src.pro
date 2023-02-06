@@ -7,13 +7,10 @@
 TARGET   = PythonQt-Qt5-PythonXY
 TEMPLATE = lib
 
-
 DESTDIR    = ../lib
 
 CONFIG += qt
 CONFIG -= flat
-
-mingw:QMAKE_CXXFLAGS+=-Wa,-mbig-obj
 
 # allow to choose static linking through the environment variable PYTHONQT_STATIC
 isEmpty(PYTHONQT_STATIC) {
@@ -31,9 +28,6 @@ DEFINES += PYTHONQT_CATCH_ALL_EXCEPTIONS
 contains(QT_MAJOR_VERSION, 5) {
   QT += widgets core-private
 }
-
-# Qt 5.4 adds this option, but this is not compatible with the Python API
-QMAKE_CXXFLAGS_RELEASE -= -Zc:strictStrings
  
 INCLUDEPATH += $$PWD
 
