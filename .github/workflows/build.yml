@@ -55,8 +55,10 @@ jobs:
         echo ============================
         qmake -r PythonQt.pro CONFIG+=release CONFIG+=sanitizer CONFIG+=sanitize_undefined \
         PYTHON_VERSION=$(python3 --version | cut -d " " -f 2 | cut -d "." -f1,2) \
-        PYTHON_DIR=$(which python3 | xargs dirname | xargs dirname)    
-        make -j 2 && make check TESTARGS="-platform offscreen"
+        PYTHON_DIR=$(which python3 | xargs dirname | xargs dirname)
+        make -j 2
+        UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
+          make check TESTARGS="-platform offscreen"
       
     - name: Generate Wrappers
       run: |
@@ -86,6 +88,7 @@ jobs:
       matrix:
         container:
         - 'centos:7'
+        configuration: ['debug', 'release']
     runs-on: ubuntu-latest
     container: ${{ matrix.container }}
     steps:
@@ -113,9 +116,9 @@ jobs:
         echo ======= SYSTEM INFO ========
         uname -a; gcc --version | grep "gcc"; python --version; qmake-qt5 --version
         echo ============================
-        qmake-qt5 -r PythonQt.pro CONFIG+=release \
-        PYTHON_VERSION=$(python --version | cut -d " " -f 2 | cut -d "." -f1,2) \
-        PYTHON_DIR=$(which python | xargs dirname | xargs dirname)    
+        qmake-qt5 -r PythonQt.pro CONFIG+=${{ matrix.configuration }} \
+          PYTHON_VERSION=$(python --version | cut -d " " -f 2 | cut -d "." -f1,2) \
+          PYTHON_DIR=$(which python | xargs dirname | xargs dirname)
         make -j 2 && make check TESTARGS="-platform offscreen"
       
     - name: Generate Wrappers
@@ -139,13 +142,16 @@ jobs:
        macos-version:  ['10.15']
        python-version: ['2.7']
        qt-version: ['5.9.*']
+       configuration: ['release','debug']
        include:
          - macos-version: '11'
            python-version: '3.6'
            qt-version: '5.11.*'
+           configuration: 'release'
          - macos-version: '12'
            python-version: '3.11'
            qt-version: '5.12.*'
+           configuration: 'debug'
     runs-on: macos-${{ matrix.macos-version }}
     steps:
     - name: Install Qt
@@ -195,14 +201,17 @@ jobs:
         for i in "python${{ steps.versions.outputs.PYTHON_VERSION_SHORT }}-embed" "python${{ steps.versions.outputs.PYTHON_VERSION_SHORT }}" \
                  "python${PYTHON_VERSION_MAJOR}-embed" "python${PYTHON_VERSION_MAJOR}"
         do if pkg-config --exists "$i"; then PYTHON_PKGCONFIG_NAME="$i"; break; fi; done
-        qmake CONFIG+=release CONFIG+=sanitizer CONFIG+=sanitize_undefined \
-        PYTHON_VERSION=${{ steps.versions.outputs.PYTHON_VERSION_SHORT }} \
-        PYTHON_PATH="$pythonLocation" \
-        PKGCONFIG+=$PYTHON_PKGCONFIG_NAME \
-        -r PythonQt.pro
-        make -j 2 && make check TESTARGS="-platform offscreen"
+        qmake CONFIG+=${{ matrix.configuration }} CONFIG+=sanitizer CONFIG+=sanitize_undefined \
+          PYTHON_VERSION=${{ steps.versions.outputs.PYTHON_VERSION_SHORT }} \
+          PYTHON_DIR="$pythonLocation" \
+          PKGCONFIG+=$PYTHON_PKGCONFIG_NAME \
+          -r PythonQt.pro
+        make -j 2
+        UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
+          make check TESTARGS="-platform offscreen"
 
     - name: Generate Wrappers
+      if: ${{ contains(matrix.configuration, 'release') }}
       run: |
         cd generator
         # workaround to allow to find the Qt include dirs for installed standard qt packages
