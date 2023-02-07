@@ -41,6 +41,16 @@
 
 #include <PythonQt.h>
   
+#ifndef Py_XSETREF // Some Python2, but not the latest one
+#define Py_XSETREF(op1, op2)                       \
+  do {                                             \
+    auto **op = &(op1);                            \
+    PyObject *tmp = static_cast<PyObject *>(*op);  \
+    *op = (op2);                                   \
+    Py_XDECREF(tmp);                               \
+  } while (0)
+#endif
+
 QVariant PythonQtObjectPtr::evalScript(const QString& script, int start)
 {
   return PythonQt::self()->evalScript(_object, script, start);
@@ -89,8 +99,8 @@ QVariant PythonQtObjectPtr::call(const QVariantList& args, const QVariantMap& kw
 
 PythonQtObjectPtr::PythonQtObjectPtr(PyObject* o)
 {
+  Py_XINCREF(o);
   _object = o;
-  if (o) Py_INCREF(_object);
 }
 
 PythonQtObjectPtr::PythonQtObjectPtr(PythonQtSafeObjectPtr &&p) :_object(p.takeObject())
@@ -99,14 +109,13 @@ PythonQtObjectPtr::PythonQtObjectPtr(PythonQtSafeObjectPtr &&p) :_object(p.takeO
 
 PythonQtObjectPtr::~PythonQtObjectPtr()
 {
-  if (_object) Py_DECREF(_object);
+  Py_XDECREF(_object);
 }
 
 void PythonQtObjectPtr::setNewRef(PyObject* o)
 {
   if (o != _object) {
-    if (_object) Py_DECREF(_object);
-    _object = o;
+    Py_XSETREF(_object, o);
   }
 }
 
@@ -136,19 +145,15 @@ QVariant PythonQtObjectPtr::toVariant()
 
 PythonQtObjectPtr & PythonQtObjectPtr::operator=(PythonQtSafeObjectPtr &&p)
 {
-  if (_object) {
-    setObject(nullptr);
-  }
-  _object = p.takeObject();
+  Py_XSETREF(_object, p.takeObject());
   return *this;
 }
 
 void PythonQtObjectPtr::setObject(PyObject* o)
 {
   if (o != _object) {
-    if (_object) Py_DECREF(_object);
-    _object = o;
-    if (_object) Py_INCREF(_object);
+    Py_XINCREF(o);
+    Py_XSETREF(_object, o);
   }
 }
 
@@ -159,7 +164,7 @@ PythonQtSafeObjectPtr::PythonQtSafeObjectPtr(PyObject* o)
   _object = o;
   if (o) {
     PYTHONQT_GIL_SCOPE
-    Py_INCREF(_object);
+    Py_INCREF(o);
   }
 }
 
@@ -175,18 +180,16 @@ void PythonQtSafeObjectPtr::setObject(PyObject* o)
 {
   if (o != _object) {
     PYTHONQT_GIL_SCOPE
-    if (_object) Py_DECREF(_object);
-    _object = o;
-    if (_object) Py_INCREF(_object);
+    Py_XINCREF(o);
+    Py_XSETREF(_object, o);
   }
 }
 
 void PythonQtSafeObjectPtr::setObjectUnsafe(PyObject* o)
 {
   if (o != _object) {
-    if (_object) Py_DECREF(_object);
-    _object = o;
-    if (_object) Py_INCREF(_object);
+    Py_XINCREF(o);
+    Py_XSETREF(_object, o);
   }
 }
 
