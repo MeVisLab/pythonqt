@@ -99,9 +99,10 @@ PythonQtSignalFunction_New(PythonQtSlotInfo *ml, PyObject *self, PyObject *modul
 /* Methods (the standard built-in methods, that is) */
 
 static void
-meth_dealloc(PythonQtSignalFunctionObject *m)
+meth_dealloc(PyObject *o)
 {
-  PyObject_GC_UnTrack(m);
+  PyObject_GC_UnTrack(o);
+  auto m = reinterpret_cast<PythonQtSignalFunctionObject*>(o);
   if (m->_dynamicInfo) {
     delete m->_dynamicInfo;
     m->_dynamicInfo = nullptr;
