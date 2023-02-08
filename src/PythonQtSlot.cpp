@@ -327,6 +327,20 @@ PyObject *PythonQtMemberFunction_Call(PythonQtSlotInfo* info, PyObject* m_self, 
   return nullptr;
 }
 
+namespace {
+  QString limitString(const QString& aString, int maxLength = 2000, const QString& ellipsis = "...")
+  {
+    if (aString.length() <= maxLength)
+      return aString;
+
+    const int beforeSize = (maxLength - ellipsis.length()) / 2;
+    auto beforeEllipsis = aString.left(beforeSize);
+    auto afterEllipsis = aString.right(maxLength - ellipsis.length() - beforeSize);
+
+    return beforeEllipsis + ellipsis + afterEllipsis;
+  }
+};
+
 PyObject *PythonQtSlotFunction_CallImpl(PythonQtClassInfo* classInfo, QObject* objectToCall, PythonQtSlotInfo* info, PyObject *args, PyObject * kw, void* firstArg, void** directReturnValuePointer,  PythonQtPassThisOwnershipType* passThisOwnershipToCPP)
 {
   int argc = args?PyTuple_Size(args):0;
@@ -381,7 +395,7 @@ PyObject *PythonQtSlotFunction_CallImpl(PythonQtClassInfo* classInfo, QObject* o
 
       ok = PythonQtCallSlot(classInfo, objectToCall, combinedArgs, false, slotInfo, firstArg, &r, directReturnValuePointer, passThisOwnershipToCPP);
       if (!ok && !PyErr_Occurred()) {
-        QString e = QString("Called ") + info->fullSignature() + " with wrong arguments: " + PythonQtConv::PyObjGetString(args);
+        QString e = QString("Called ") + info->fullSignature() + " with wrong arguments: " + limitString(PythonQtConv::PyObjGetString(args));
         PyErr_SetString(PyExc_ValueError, QStringToPythonConstCharPointer(e));
       }
     } else {
@@ -413,7 +427,7 @@ PyObject *PythonQtSlotFunction_CallImpl(PythonQtClassInfo* classInfo, QObject* o
         }
       }
       if (!ok && !PyErr_Occurred()) {
-        QString e = QString("Could not find matching overload for given arguments:\n" + PythonQtConv::PyObjGetString(args) + "\n The following slots are available:\n");
+        QString e = QString("Could not find matching overload for given arguments:\n" + limitString(PythonQtConv::PyObjGetString(args)) + "\n The following slots are available:\n");
         PythonQtSlotInfo* i = info;
         while (i) {
           e += QString(i->fullSignature()) + "\n";
@@ -431,11 +445,11 @@ PyObject *PythonQtSlotFunction_CallImpl(PythonQtClassInfo* classInfo, QObject* o
   #endif
         ok = PythonQtCallSlot(classInfo, objectToCall, args, false, info, firstArg, &r, directReturnValuePointer, passThisOwnershipToCPP);
         if (!ok && !PyErr_Occurred()) {
-          QString e = QString("Called ") + info->fullSignature() + " with wrong arguments: " + PythonQtConv::PyObjGetString(args);
+          QString e = QString("Called ") + info->fullSignature() + " with wrong arguments: " + limitString(PythonQtConv::PyObjGetString(args));
           PyErr_SetString(PyExc_ValueError, QStringToPythonConstCharPointer(e));
         }
       } else {
-        QString e = QString("Called ") + info->fullSignature() + " with wrong number of arguments: " + PythonQtConv::PyObjGetString(args);
+        QString e = QString("Called ") + info->fullSignature() + " with wrong number of arguments: " + limitString(PythonQtConv::PyObjGetString(args));
         PyErr_SetString(PyExc_ValueError, QStringToPythonConstCharPointer(e));
       }
     }
