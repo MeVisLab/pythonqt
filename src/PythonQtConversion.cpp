@@ -979,7 +979,9 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
 #endif
     ) {
     // no special type requested
-    if (PyBytes_Check(val)) {
+    if (val == nullptr) {
+      type = QVariant::Invalid;
+    } else if (PyBytes_Check(val)) {
 #ifdef PY3K
       // In Python 3, it is a ByteArray
       type = QVariant::ByteArray;
