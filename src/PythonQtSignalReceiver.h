@@ -94,7 +94,7 @@ private:
   int       _signalId;
   int       _slotId;
   const PythonQtMethodInfo* _methodInfo;
-  PythonQtObjectPtr _callable;
+  PythonQtSafeObjectPtr _callable;
 };
 
 //! base class for signal receivers
