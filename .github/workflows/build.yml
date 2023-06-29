@@ -132,7 +132,60 @@ jobs:
     - name: Upload Wrappers
       uses: actions/upload-artifact@v3
       with:
-        name: wrappers_centos7
+        name: wrappers_${{ matrix.container }}_${{ matrix.configuration }}
+        path: generated_cpp
+
+  rockylinux:
+    strategy:
+      fail-fast: false
+      matrix:
+        container:
+          - 'rockylinux:9'
+        configuration: ['debug', 'release']
+    runs-on: ubuntu-latest
+    container: ${{ matrix.container }}
+    steps:
+    - name: Install Qt
+      run: |
+        yum update -y
+        yum groupinstall "Development Tools" -y
+        yum install -y \
+        which \
+        python3-devel \
+        qt5-qtbase-* \
+        qt5-qttools* \
+        qt5-qtsvg \
+        qt5-qtxmlpatterns \
+        qt5-qtmultimedia \
+        qt5-qt3d \
+        qt5-*-devel
+
+    - name: Checkout PythonQt
+      uses: actions/checkout@v3
+
+    - name: Build PythonQt
+      run: |
+        export QT_SELECT=qt5
+        echo ======= SYSTEM INFO ========
+        uname -a; gcc --version | grep "gcc"; python3 --version; qmake-qt5 --version
+        echo ============================
+        qmake-qt5 -r PythonQt.pro CONFIG+=${{ matrix.configuration }} \
+          PYTHON_VERSION=$(python3 --version | cut -d " " -f 2 | cut -d "." -f1,2) \
+          PYTHON_DIR=$(which python3 | xargs dirname | xargs dirname)
+        make -j 2 && make check TESTARGS="-platform offscreen"
+
+    - name: Generate Wrappers
+      run: |
+        # workaround to allow to find the Qt include dirs for installed standard qt packages
+        mkdir /usr/include/qt5ln; ln -s /usr/include/qt5 /usr/include/qt5ln/include
+        export QTDIR=/usr/include/qt5ln
+        cd generator
+        ./pythonqt_generator
+
+    - name: Upload Wrappers
+      uses: actions/upload-artifact@v3
+      with:
+        name: wrappers_${{ matrix.container }}_${{ matrix.configuration }}
         path: generated_cpp
 
   macOS:
