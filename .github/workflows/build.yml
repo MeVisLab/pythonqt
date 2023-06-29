@@ -132,7 +132,7 @@ jobs:
     - name: Upload Wrappers
       uses: actions/upload-artifact@v3
       with:
-        name: wrappers_${{ matrix.container }}_${{ matrix.configuration }}
+        name: wrappers_centos7_${{ matrix.configuration }}
         path: generated_cpp
 
   rockylinux:
@@ -185,7 +185,7 @@ jobs:
     - name: Upload Wrappers
       uses: actions/upload-artifact@v3
       with:
-        name: wrappers_${{ matrix.container }}_${{ matrix.configuration }}
+        name: wrappers_rockylinux9_${{ matrix.configuration }}
         path: generated_cpp
 
   macOS:
