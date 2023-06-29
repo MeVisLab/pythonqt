@@ -290,7 +290,7 @@ jobs:
 #           msvc-toolset: '14.16'
 
          - qt-arch: 'win32_mingw53'
-           python-version: '3.8'
+           python-version: '3.6'
            python-arch: 'x86'
            qt-version: '5.11.*'
 
