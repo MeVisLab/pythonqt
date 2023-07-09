@@ -33,6 +33,15 @@
 #ifndef __PythonQtPythonInclude_h
 #define __PythonQtPythonInclude_h
 
+// Undefine macros that features.h defines to avoid redefinition warning
+#ifdef _POSIX_C_SOURCE
+#  undef _POSIX_C_SOURCE
+#endif
+
+#ifdef _XOPEN_SOURCE
+#  undef _XOPEN_SOURCE
+#endif
+
 // Undefine Qt keywords that conflict with Python headers
 #ifdef slots
 #undef slots
