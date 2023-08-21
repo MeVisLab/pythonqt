@@ -54,7 +54,7 @@
 #include <QLineF>
 #include <QPoint>
 #include <QPointF>
-#include <QRegExp>
+#include <QRegularExpression>
 
 #include <QFont>
 #include <QBitmap>
@@ -72,7 +72,6 @@
 #include <QPen>
 #include <QTextLength>
 #include <QTextFormat>
-#include <QMatrix>
 
 #endif
 

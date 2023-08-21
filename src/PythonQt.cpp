@@ -122,8 +122,6 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
     } else {
       qRegisterMetaType<quint32>("size_t");
     }
-    int stringRefId = qRegisterMetaType<QStringRef>("QStringRef");
-    PythonQtConv::registerMetaTypeToPythonConverter(stringRefId, PythonQtConv::convertFromStringRef);
 
     int objectPtrListId = qRegisterMetaType<QList<PythonQtObjectPtr> >("QList<PythonQtObjectPtr>");
     PythonQtConv::registerMetaTypeToPythonConverter(objectPtrListId, PythonQtConv::convertFromQListOfPythonQtObjectPtr);
@@ -239,7 +237,7 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
     PythonQtRegisterToolClassesTemplateConverterForKnownClass(QLineF);
     PythonQtRegisterToolClassesTemplateConverterForKnownClass(QPoint);
     PythonQtRegisterToolClassesTemplateConverterForKnownClass(QPointF);
-    PythonQtRegisterToolClassesTemplateConverterForKnownClass(QRegExp);
+    PythonQtRegisterToolClassesTemplateConverterForKnownClass(QRegularExpression);
 
     PythonQtRegisterToolClassesTemplateConverterForKnownClass(QFont);
     PythonQtRegisterToolClassesTemplateConverterForKnownClass(QPixmap);
@@ -257,7 +255,6 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
     PythonQtRegisterToolClassesTemplateConverterForKnownClass(QPen);
     PythonQtRegisterToolClassesTemplateConverterForKnownClass(QTextLength);
     PythonQtRegisterToolClassesTemplateConverterForKnownClass(QTextFormat);
-    PythonQtRegisterToolClassesTemplateConverterForKnownClass(QMatrix);
 
     PyObject* pack = PythonQt::priv()->packageByName("QtCore");
     PyObject* pack2 = PythonQt::priv()->packageByName("Qt");
