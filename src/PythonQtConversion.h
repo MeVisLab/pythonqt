@@ -185,7 +185,6 @@ public:
   static PyObject* convertFromPythonQtSafeObjectPtr(const void* /* PythonQtObjectPtr* */ inObject, int /*metaTypeId*/);
   static bool      convertToQListOfPythonQtObjectPtr(PyObject* obj, void* /* QList<PythonQtObjectPtr>* */ outList, int /*metaTypeId*/, bool /*strict*/);
   static PyObject* convertFromQListOfPythonQtObjectPtr(const void* /* QList<PythonQtObjectPtr>* */ inObject, int /*metaTypeId*/);
-  static PyObject* convertFromStringRef(const void* inObject, int /*metaTypeId*/);
 
   //! Returns the name of the equivalent CPP type (for signals and slots)
   static QByteArray getCPPTypeName(PyObject* type);
