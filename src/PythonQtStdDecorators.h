@@ -58,7 +58,9 @@
 #include <QMetaMethod>
 #include <QMetaEnum>
 #include <QMetaProperty>
+#if QT_VERSION >= 0x060000
 #include <QRandomGenerator>
+#endif
 
 class PYTHONQT_EXPORT PythonQtStdDecorators : public QObject
 {
@@ -104,8 +106,24 @@ public Q_SLOTS:
   int static_Qt_qRound(double a) { return qRound(a); }
   qint64 static_Qt_qRound64(double a) { return qRound64(a); }
   const char* static_Qt_qVersion() { return qVersion(); }
-  int static_Qt_qrand() { return QRandomGenerator::global()->generate(); }
-  void static_Qt_qsrand(uint a) { QRandomGenerator::global()->seed(a); }
+
+  int static_Qt_qrand()
+  {
+#if QT_VERSION < 0x060000
+    return qrand();
+#else
+    return QRandomGenerator::global()->generate();
+#endif
+  }
+
+  void static_Qt_qsrand(uint a)
+  {
+#if QT_VERSION < 0x060000
+    qsrand(a);
+#else
+    QRandomGenerator::global()->seed(a);
+#endif
+  }
 
   QString tr(QObject* obj, const QString& text, const QString& ambig = QString(), int n = -1);
 
