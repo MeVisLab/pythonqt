@@ -462,9 +462,11 @@ static PyObject *PythonQtClassWrapper_getattro(PyObject *obj, PyObject *name)
       return objectDict;
     }
     PyObject* dict = PyDict_New();
-      
-    QSet<QString> completeSet(wrapper->classInfo()->memberList().begin(), wrapper->classInfo()->memberList().end());
-    completeSet.unite(QSet<QString>(wrapper->classInfo()->propertyList().begin(), wrapper->classInfo()->propertyList().end()));
+
+    auto members = wrapper->classInfo()->memberList();
+    auto properties = wrapper->classInfo()->propertyList();
+    QSet<QString> completeSet(members.begin(), members.end());
+    completeSet.unite(QSet<QString>(properties.begin(), properties.end()));
 
     Q_FOREACH (QString name, completeSet) {
       if (name.startsWith("py_")) {

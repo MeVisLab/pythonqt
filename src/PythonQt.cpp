@@ -122,6 +122,10 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
     } else {
       qRegisterMetaType<quint32>("size_t");
     }
+#if QT_VERSION < 0x060000
+    int stringRefId = qRegisterMetaType<QStringRef>("QStringRef");
+    PythonQtConv::registerMetaTypeToPythonConverter(stringRefId, PythonQtConv::convertFromStringRef);
+#endif
 
     int objectPtrListId = qRegisterMetaType<QList<PythonQtObjectPtr> >("QList<PythonQtObjectPtr>");
     PythonQtConv::registerMetaTypeToPythonConverter(objectPtrListId, PythonQtConv::convertFromQListOfPythonQtObjectPtr);
@@ -237,6 +241,9 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
     PythonQtRegisterToolClassesTemplateConverterForKnownClass(QLineF);
     PythonQtRegisterToolClassesTemplateConverterForKnownClass(QPoint);
     PythonQtRegisterToolClassesTemplateConverterForKnownClass(QPointF);
+#if QT_VERSION < 0x060000
+    PythonQtRegisterToolClassesTemplateConverterForKnownClass(QRegExp);
+#endif
     PythonQtRegisterToolClassesTemplateConverterForKnownClass(QRegularExpression);
 
     PythonQtRegisterToolClassesTemplateConverterForKnownClass(QFont);
