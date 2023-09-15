@@ -554,8 +554,12 @@ QStringList PythonQtClassInfo::memberList()
     }
   }
 
+#if QT_VERSION >= 0x060000
   QSet<QString> set(l.begin(), l.end());
   return set.values();
+#else
+  return QSet<QString>::fromList(l).toList();
+#endif
 }
 
 const QByteArray& PythonQtClassInfo::className() const
