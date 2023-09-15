@@ -4,7 +4,11 @@
 # $Source$
 # --------------------------------------------------
 
-TARGET   = PythonQt-Qt6-PythonXY
+contains(QT_MAJOR_VERSION, 6) {
+    TARGET = PythonQt-Qt6-PythonXY
+} else {
+    TARGET = PythonQt-Qt5-PythonXY
+}
 TEMPLATE = lib
 
 DESTDIR    = ../lib
@@ -25,10 +29,8 @@ isEmpty(PYTHONQT_STATIC) {
 
 DEFINES += PYTHONQT_CATCH_ALL_EXCEPTIONS
 
-contains(QT_MAJOR_VERSION, 6) {
-  QT += widgets core-private
-}
- 
+QT += widgets core-private
+
 INCLUDEPATH += $$PWD
 
 macx {
