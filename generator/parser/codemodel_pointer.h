@@ -123,15 +123,15 @@ private:
 
 #   if QT_VERSION >= 0x050000
     operator T * () const {
-        return QAtomicPointer<T>::load();
+        return QAtomicPointer<T>::loadRelaxed();
     }
     inline bool operator!() const { return !(bool)*this; }
     operator bool () const {
-        return (bool)QAtomicPointer<T>::load();
+        return (bool)QAtomicPointer<T>::loadRelaxed();
     }
 
-    inline T *operator->() { return QAtomicPointer<T>::load(); }
-    inline const T *operator->() const { return QAtomicPointer<T>::load(); }
+    inline T *operator->() { return QAtomicPointer<T>::loadRelaxed(); }
+    inline const T *operator->() const { return QAtomicPointer<T>::loadRelaxed(); }
     inline bool operator==(const CodeModelPointer<T> &other) const { return (T*)*this == (T*)other; }
     inline bool operator!=(const CodeModelPointer<T> &other) const { return (T*)*this != (T*)other; }
     inline bool operator==(const T *ptr) const { return (T*)*this == ptr; }
