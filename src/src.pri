@@ -2,8 +2,6 @@ DEFINES +=  PYTHONQT_EXPORTS
 
 INCLUDEPATH += $$PWD
 
-CONFIG += c++11
-
 gcc:!no_warn:!clang:QMAKE_CXXFLAGS += -Wno-error=missing-field-initializers
 *-clang*:!no_warn:QMAKE_CXXFLAGS += -Wno-error=sometimes-uninitialized
 
