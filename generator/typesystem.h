@@ -1151,6 +1151,18 @@ public:
         m_suppressedWarnings.append(s);
     }
 
+    /* QString::SkipEmptyParts was moved to Qt::SplitBehavior in 15.4 and the
+     * QString original as deprecated then it was removed in Qt6.  This
+     * provides compatibility with versions of Qt prior to 15.4:
+     */
+#   if QT_VERSION >= QT_VERSION_CHECK(5,14,0)
+        static const constexpr Qt::SplitBehavior skipEmptyParts =
+            Qt::SkipEmptyParts;
+#   else
+        static const  constexpr QString::SplitBehavior skipEmptyParts =
+            QString::SkipEmptyParts;
+#   endif
+
     bool isSuppressedWarning(const QString &s)
     {
         if (!m_suppressWarnings)
@@ -1159,7 +1171,8 @@ public:
         foreach (const QString &_warning, m_suppressedWarnings) {
             QString warning(QString(_warning).replace("\\*", "&place_holder_for_asterisk;"));
 
-            QStringList segs = warning.split("*", QString::SkipEmptyParts);
+            QStringList segs = warning.split("*", skipEmptyParts);
+
             if (segs.size() == 0)
                 continue ;
 

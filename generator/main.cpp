@@ -110,7 +110,8 @@ int main(int argc, char *argv[])
         FileOut::license = true;
 
     if (args.contains("rebuild-only")) {
-        QStringList classes = args.value("rebuild-only").split(",", QString::SkipEmptyParts);
+        QStringList classes = args.value("rebuild-only").split(
+                ",", TypeDatabase::skipEmptyParts);
         TypeDatabase::instance()->setRebuildClasses(classes);
     }
 
