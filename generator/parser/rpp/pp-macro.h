@@ -57,12 +57,16 @@ struct pp_macro
   {
     int unsigned state;
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpedantic"
+    /* This is an anonymous struct, not allowed in C++ (it works in G++): */
     struct
     {
       int unsigned hidden: 1;
       int unsigned function_like: 1;
       int unsigned variadics: 1;
     };
+#pragma GCC diagnostic pop
   };
 
   int lines;

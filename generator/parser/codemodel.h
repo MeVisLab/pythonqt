@@ -501,6 +501,9 @@ private:
   CodeModel::AccessPolicy _M_accessPolicy;
   union
   {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpedantic"
+    /* This is an anonymous struct, not allowed in C++ (it works in G++): */
     struct 
     {
       uint _M_isConstant: 1;
@@ -512,6 +515,7 @@ private:
       uint _M_isExtern: 1;
       uint _M_isMutable: 1;
     };
+#pragma GCC diagnostic pop
     uint _M_flags;
   };
 
@@ -569,6 +573,9 @@ private:
   QString _M_exception;
   union
   {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpedantic"
+    /* This is an anonymous struct, not allowed in C++ (it works in G++): */
     struct
     {
       uint _M_isVirtual: 1;
@@ -578,6 +585,7 @@ private:
       uint _M_isVariadics: 1;
       uint _M_isInvokable : 1; // Qt
     };
+#pragma GCC diagnostic pop
     uint _M_flags;
   };
 
