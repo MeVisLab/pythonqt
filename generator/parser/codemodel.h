@@ -154,8 +154,8 @@ struct TypeInfo
   void setArguments(const QList<TypeInfo> &arguments);
   void addArgument(const TypeInfo &arg) { m_arguments.append(arg); }
 
-  bool operator==(const TypeInfo &other);
-  bool operator!=(const TypeInfo &other) { return !(*this==other); }
+  bool operator==(const TypeInfo &other) const;
+  bool operator!=(const TypeInfo &other) const { return !(*this==other); }
 
   // ### arrays and templates??
 
@@ -171,7 +171,7 @@ private:
 	uint m_reference: 1;
 	uint m_functionPointer: 1;
 	uint m_indirections: 6;
-	inline bool equals(TypeInfo_flags other) {
+	inline bool equals(TypeInfo_flags other) const {
          return m_constant == other.m_constant
              && m_volatile == other.m_volatile
              && m_reference == other.m_reference
