@@ -91,7 +91,7 @@ void Generator::printClasses()
         if (!shouldGenerate(cls))
             continue;
         write(s, cls);
-        s << endl << endl;
+        s << Qt::endl << Qt::endl;
     }
 }
 

@@ -1768,7 +1768,7 @@ QString formattedCodeHelper(QTextStream &s, Indentor &indentor, QStringList &lin
         const QString line = lines.takeFirst().trimmed();
         if (line.isEmpty()) {
             if (!lastEmpty)
-                s << endl;
+                s << Qt::endl;
             lastEmpty = true;
             continue;
         } else {
@@ -1781,23 +1781,23 @@ QString formattedCodeHelper(QTextStream &s, Indentor &indentor, QStringList &lin
             s << indentor;
             if (line.startsWith("*"))
                 s << " ";
-            s << line << endl;
+            s << line << Qt::endl;
             if (line.endsWith("*/"))
                 multilineComment = false;
         } else if (line.startsWith("}")) {
             return line;
         } else if (line.endsWith("}")) {
-            s << indentor << line << endl;
+            s << indentor << line << Qt::endl;
             return 0;
         } else if(line.endsWith("{")) {
-            s << indentor << line << endl;
+            s << indentor << line << Qt::endl;
             QString tmp;
             {
                 Indentation indent(indentor);
                 tmp = formattedCodeHelper(s, indentor, lines);
             }
             if (!tmp.isNull()) {
-                s << indentor << tmp << endl;
+                s << indentor << tmp << Qt::endl;
             }
             lastLine = tmp;
             continue;
@@ -1811,7 +1811,7 @@ QString formattedCodeHelper(QTextStream &s, Indentor &indentor, QStringList &lin
                 !lastLine.endsWith("}") &&
                 !line.startsWith("{"))
                 s << "    ";
-            s << line << endl;
+            s << line << Qt::endl;
         }
         lastLine = line;
     }
@@ -1825,7 +1825,7 @@ QTextStream &CodeSnip::formattedCode(QTextStream &s, Indentor &indentor) const
     while (!lst.isEmpty()) {
         QString tmp = formattedCodeHelper(s, indentor, lst);
         if (!tmp.isNull()) {
-            s << indentor << tmp << endl;
+            s << indentor << tmp << Qt::endl;
         }
     }
     s.flush();
