@@ -61,7 +61,7 @@ void Generator::generate()
         return;
     }
 
-    qStableSort(m_classes);
+    std::stable_sort(m_classes.begin(), m_classes.end());
 
     foreach (AbstractMetaClass *cls, m_classes) {
         if (!shouldGenerate(cls))
@@ -85,7 +85,7 @@ void Generator::printClasses()
     QTextStream s(stdout);
 
     AbstractMetaClassList classes = m_classes;
-    qSort(classes);
+    std::sort(classes.begin(), classes.end());
 
     foreach (AbstractMetaClass *cls, classes) {
         if (!shouldGenerate(cls))
