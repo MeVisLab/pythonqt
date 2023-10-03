@@ -39,6 +39,7 @@
 **
 ****************************************************************************/
 
+#include <algorithm> // for std::stable_sort, std::sort
 #include "generator.h"
 #include "reporthandler.h"
 #include "fileout.h"
