@@ -70,9 +70,8 @@ PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp
 }
 
 VERSION = 3.2.0
-greaterThan(QT_MAJOR_VERSION, 5) | greaterThan(QT_MINOR_VERSION, 9): CONFIG += c++11
 win32: CONFIG += skip_target_version_ext
-gcc|win32-clang-msvc:QMAKE_CXXFLAGS += -Wno-deprecated-declarations -Wuninitialized -Winit-self -ansi -pedantic
+gcc|win32-clang-msvc:QMAKE_CXXFLAGS += -Wno-deprecated-declarations -Wuninitialized -Winit-self -pedantic
 win32-clang-msvc:QMAKE_CXXFLAGS += -Wno-unused-command-line-argument
 #Do not issue warning to system includes
 gcc:!isEmpty(QT_INSTALL_HEADERS): QMAKE_CXXFLAGS += -isystem $$[QT_INSTALL_HEADERS]

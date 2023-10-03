@@ -17,7 +17,7 @@ include($$GENERATORPATH/parser/rxx.pri)
 
 include($$GENERATORPATH/parser/rpp/rpp.pri)
 
-CONFIG += strict_c++ c++11
+CONFIG += strict_c++
 win32-msvc*{
 #Disable warning C4996 (deprecated declarations)
         QMAKE_CXXFLAGS += -wd4996
@@ -27,7 +27,7 @@ win32-msvc*{
 }
 #Do not issue warning to Qt's system includes
 gcc:!isEmpty(QT_INSTALL_HEADERS): QMAKE_CXXFLAGS += -isystem $$[QT_INSTALL_HEADERS]
-gcc|win32-clang-msvc:QMAKE_CXXFLAGS += -Wno-deprecated-declarations -pedantic -ansi -Winit-self -Wuninitialized
+gcc|win32-clang-msvc:QMAKE_CXXFLAGS += -Wno-deprecated-declarations -pedantic -Winit-self -Wuninitialized
 clang|win32-clang-msvc: QMAKE_CXXFLAGS += -Wno-nested-anon-types -Wno-gnu-anonymous-struct -Wno-unused-private-field
 win32-clang-msvc:QMAKE_CXXFLAGS += -Wno-language-extension-token -Wno-microsoft-enum-value
 
