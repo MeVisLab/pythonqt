@@ -122,16 +122,22 @@ private:
 
 
 #   if QT_VERSION >= 0x050000
+#       if QT_VERSION >= QT_VERSION_CHECK(5,14,0)
+#           define LOAD loadRelaxed
+#       else
+#           define LOAD load
+#       endif
     operator T * () const {
-        return QAtomicPointer<T>::load();
+        return QAtomicPointer<T>::LOAD();
     }
     inline bool operator!() const { return !(bool)*this; }
     operator bool () const {
-        return (bool)QAtomicPointer<T>::load();
+        return (bool)QAtomicPointer<T>::LOAD();
     }
 
-    inline T *operator->() { return QAtomicPointer<T>::load(); }
-    inline const T *operator->() const { return QAtomicPointer<T>::load(); }
+    inline T *operator->() { return QAtomicPointer<T>::LOAD(); }
+    inline const T *operator->() const { return QAtomicPointer<T>::LOAD(); }
+#undef  LOAD
     inline bool operator==(const CodeModelPointer<T> &other) const { return (T*)*this == (T*)other; }
     inline bool operator!=(const CodeModelPointer<T> &other) const { return (T*)*this != (T*)other; }
     inline bool operator==(const T *ptr) const { return (T*)*this == ptr; }
