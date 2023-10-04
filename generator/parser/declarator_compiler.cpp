@@ -135,7 +135,7 @@ void DeclaratorCompiler::visitPtrOperator(PtrOperatorAST *node)
   if (node->mem_ptr)
     {
 #if defined(__GNUC__)
-#warning "ptr to mem -- not implemented"
+#pragma GCC warning "ptr to mem -- not implemented"
 #endif
     }
 }
