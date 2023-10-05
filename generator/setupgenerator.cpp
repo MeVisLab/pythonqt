@@ -39,6 +39,8 @@
 **
 ****************************************************************************/
 
+#include <algorithm> // for std::sort
+
 #include "setupgenerator.h"
 #include "shellgenerator.h"
 #include "reporthandler.h"
@@ -65,7 +67,13 @@ static QStringList getOperatorCodes(const AbstractMetaClass* cls) {
     }
   }
   QSet<QString> r;
-  for (QString op :  operatorCodes.toList()) {
+  for (QString op :
+#       if QT_VERSION < QT_VERSION_CHECK(5,14,0)
+              operatorCodes.toList()
+#       else
+              QStringList(operatorCodes.begin(), operatorCodes.end())
+#       endif
+      ) {
     if (op == ">" || op == "<" || op == ">=" || op == "<=" || op == "==" || op == "!=") {
       r.insert("PythonQt::Type_RichCompare");
     } else if (op == "+") {
@@ -122,8 +130,12 @@ static QStringList getOperatorCodes(const AbstractMetaClass* cls) {
   }
 
 
-  QStringList result = r.toList();
-  qSort(result);
+#if QT_VERSION < QT_VERSION_CHECK(5,14,0)
+      QStringList result = r.toList();
+#else
+      QStringList result(r.begin(), r.end());
+#endif
+  std::sort(result.begin(), result.end());
   return result;
 }
 
@@ -223,7 +235,7 @@ void SetupGenerator::generate()
       }
     }
   }
-  qSort(classes_with_polymorphic_id.begin(), classes_with_polymorphic_id.end(), class_less_than);
+  std::sort(classes_with_polymorphic_id.begin(), classes_with_polymorphic_id.end(), class_less_than);
 
   QHashIterator<QString, QList<const AbstractMetaClass*> > pack(packHash);
   while (pack.hasNext()) {
@@ -231,7 +243,7 @@ void SetupGenerator::generate()
     QList<const AbstractMetaClass*> list = pack.value();
     if (list.isEmpty())
       continue;
-    qSort(list.begin(), list.end(), class_less_than);
+    std::sort(list.begin(), list.end(), class_less_than);
 
     QString packKey = pack.key();
     QString packName = pack.key();
@@ -374,7 +386,11 @@ void SetupGenerator::generate()
       }
       s << endl;
 
+#if QT_VERSION < QT_VERSION_CHECK(5,14,0)
       QStringList list = listRegistration.toList();
+#else
+      QStringList list(listRegistration.begin(), listRegistration.end());
+#endif
       list.sort();
       Q_FOREACH(QString name, list) {
         if (name.contains("Ssl")) {
