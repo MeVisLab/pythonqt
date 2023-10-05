@@ -68,7 +68,7 @@
  * for global endl in Qt6 (not Qt5, where global endl was still available).
  *
  * Note that 'constexpr' is available in Qt6 because Qt6 requires C++17;
- * consexpr was introduced in C++11.  Likewise for decltype.  Qt::endl is a
+ * constexpr was introduced in C++11.  Likewise for decltype.  Qt::endl is a
  * function so ::endl is a pointer to the function and the implicit conversion
  * is used; this is to cause an compiler error in the future if the base type
  * of Qt::endl changes.
