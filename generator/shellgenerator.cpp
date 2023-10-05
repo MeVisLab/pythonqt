@@ -39,6 +39,8 @@
 **
 ****************************************************************************/
 
+#include <algorithm> // for std::sort
+
 #include "shellgenerator.h"
 #include "reporthandler.h"
 
@@ -322,7 +324,11 @@ AbstractMetaFunctionList ShellGenerator::getFunctionsToWrap(const AbstractMetaCl
     AbstractMetaClass::VirtualFunctions | AbstractMetaClass::WasVisible
     | AbstractMetaClass::NotRemovedFromTargetLang | AbstractMetaClass::ClassImplements
     );
+#if QT_VERSION < QT_VERSION_CHECK(5,14,0)
   QSet<AbstractMetaFunction*> set1 = QSet<AbstractMetaFunction*>::fromList(functions);
+#else
+  QSet<AbstractMetaFunction*> set1(functions.begin(), functions.end());
+#endif
   for (AbstractMetaFunction* func :  functions2) {
     set1.insert(func);
   }
@@ -331,14 +337,20 @@ AbstractMetaFunctionList ShellGenerator::getFunctionsToWrap(const AbstractMetaCl
 
   bool hasPromoter = meta_class->typeEntry()->shouldCreatePromoter();
 
-  for (AbstractMetaFunction* func :  set1.toList()) {
+  for (AbstractMetaFunction* func :
+#   if QT_VERSION < QT_VERSION_CHECK(5,14,0)
+          set1.toList()
+#   else
+          QList<AbstractMetaFunction*>(set1.begin(), set1.end())
+#   endif
+      ) {
     if (func->implementingClass()==meta_class) {
       if (hasPromoter || func->wasPublic()) {
         resultFunctions << func;
       }
     }
   }
-  qSort(resultFunctions.begin(), resultFunctions.end(), function_sorter);
+  std::sort(resultFunctions.begin(), resultFunctions.end(), function_sorter);
   return resultFunctions;
 }
 
@@ -348,7 +360,7 @@ AbstractMetaFunctionList ShellGenerator::getVirtualFunctionsForShell(const Abstr
     AbstractMetaClass::VirtualFunctions | AbstractMetaClass::WasVisible
         | AbstractMetaClass::NotRemovedFromTargetLang
     );
-  qSort(functions.begin(), functions.end(), function_sorter);
+  std::sort(functions.begin(), functions.end(), function_sorter);
   return functions;
 }
 
@@ -361,7 +373,7 @@ AbstractMetaFunctionList ShellGenerator::getProtectedFunctionsThatNeedPromotion(
       functions << func;
     }
   }
-  qSort(functions.begin(), functions.end(), function_sorter);
+  std::sort(functions.begin(), functions.end(), function_sorter);
   return functions;
 }
 

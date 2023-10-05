@@ -39,6 +39,8 @@
 **
 ****************************************************************************/
 
+#include <algorithm> // for std::sort
+
 #include "abstractmetabuilder.h"
 #include "reporthandler.h"
 
@@ -384,7 +386,7 @@ static bool class_less_than(AbstractMetaClass *a, AbstractMetaClass *b)
 
 void AbstractMetaBuilder::sortLists()
 {
-   qSort(m_meta_classes.begin(), m_meta_classes.end(), class_less_than);
+   std::sort(m_meta_classes.begin(), m_meta_classes.end(), class_less_than);
    for (AbstractMetaClass *cls :  m_meta_classes) {
         cls->sortFunctions();
    }
@@ -971,7 +973,7 @@ AbstractMetaEnum *AbstractMetaBuilder::traverseEnum(EnumModelItem enum_item, Abs
         meta_enum->addEnumValue(meta_enum_value);
 
         ReportHandler::debugFull("   - " + meta_enum_value->name() + " = "
-                                 + meta_enum_value->value());
+                                 + QString::number(meta_enum_value->value()));
 
         // Add into global register...
         if (enclosing)
@@ -1444,7 +1446,13 @@ void AbstractMetaBuilder::traverseEnums(ScopeModelItem scope_item, AbstractMetaC
 {
     EnumList enums = scope_item->enums();
     for (EnumModelItem enum_item :  enums) {
-        AbstractMetaEnum *meta_enum = traverseEnum(enum_item, meta_class, QSet<QString>::fromList(enumsDeclarations));
+        AbstractMetaEnum *meta_enum = traverseEnum(enum_item, meta_class,
+#if QT_VERSION < QT_VERSION_CHECK(5,14,0)
+            QSet<QString>::fromList(enumsDeclarations)
+#else
+            QSet<QString>(enumsDeclarations.begin(), enumsDeclarations.end())
+#endif
+        );
         if (meta_enum) {
             meta_enum->setOriginalAttributes(meta_enum->attributes());
             meta_class->addEnum(meta_enum);
@@ -2461,7 +2469,7 @@ AbstractMetaClassList AbstractMetaBuilder::classesTopologicalSorted() const
     AbstractMetaClassList res;
 
     AbstractMetaClassList classes = m_meta_classes;
-    qSort(classes);
+    std::sort(classes.begin(), classes.end());
 
     QSet<AbstractMetaClass*> noDependency;
     QHash<AbstractMetaClass*, QSet<AbstractMetaClass* >* > hash;
