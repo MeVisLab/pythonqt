@@ -56,7 +56,9 @@
 #include <QtCore/QDebug>
 #include <QtCore/QFile>
 #include <QtCore/QFileInfo>
-#include <QtCore/QTextCodec>
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+#   include <QtCore/QTextCodec>
+#endif
 #include <QtCore/QTextStream>
 #include <QtCore/QVariant>
 
@@ -402,7 +404,10 @@ bool AbstractMetaBuilder::build()
         return false;
 
     QTextStream stream(&file);
-    stream.setCodec(QTextCodec::codecForName("UTF-8"));
+#   if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+        stream.setCodec(QTextCodec::codecForName("UTF-8"));
+        /* Note required in Qt6: see the same call in asttoxml.cpp */
+#   endif
     QByteArray contents = stream.readAll().toUtf8();
     file.close();
 
