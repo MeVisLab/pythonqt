@@ -48,6 +48,16 @@
 #include <QtCore/QMap>
 #include <QDebug>
 
+/* QString::SkipEmptyParts was replicated in Qt::SplitBehavior in 15.4 and the
+ * QString original deprecated then it was removed in Qt6.  This provides
+ * forward compatibility with Qt6 for versions of Qt prior to 15.4:
+ */
+#if QT_VERSION < QT_VERSION_CHECK(5,14,0)
+    namespace Qt {
+        const QString::SplitBehavior SkipEmptyParts = QString::SkipEmptyParts;
+    };
+#endif
+
 class Indentor;
 
 class AbstractMetaType;
@@ -1159,7 +1169,8 @@ public:
         foreach (const QString &_warning, m_suppressedWarnings) {
             QString warning(QString(_warning).replace("\\*", "&place_holder_for_asterisk;"));
 
-            QStringList segs = warning.split("*", QString::SkipEmptyParts);
+            QStringList segs = warning.split("*", Qt::SkipEmptyParts);
+
             if (segs.size() == 0)
                 continue ;
 

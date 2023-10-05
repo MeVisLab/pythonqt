@@ -121,7 +121,7 @@ static QStringList getOperatorCodes(const AbstractMetaClass* cls) {
     CodeSnipList code_snips = cls->typeEntry()->codeSnips();
     for (const CodeSnip &cs :  code_snips) {
       if (cs.language == TypeSystem::PyWrapperOperators) {
-        QStringList values = cs.code().split(" ", QString::SkipEmptyParts);
+        QStringList values = cs.code().split(" ", Qt::SkipEmptyParts);
         for (QString value :  values) {
           r.insert(value);
         }
