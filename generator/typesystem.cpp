@@ -51,6 +51,22 @@
 #include <QtXml>
 #include <qcompilerdetection.h> // Q_FALLTHROUGH
 
+/* This file needs to be rewritten as documented here:
+ *
+ * See: https://doc.qt.io/qt-6/xml-changes-qt6.html
+ *
+ * The rewrite may be backward compatible to Qt4.3 APIs because the base
+ * facilites (QXmlStreamReader) used to relace the 'SAX' parser were apparently
+ * available then.  Use of Xml5Compat is a work round until such a rewrite has
+ * been done.
+ */
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+#   if defined(__GNUC__)
+#       pragma GCC warning "Qt6: implement Qt6 compatible XML reading"
+#   endif
+#   include <QtCore5Compat/QXmlDefaultHandler>
+#endif
+
 QString strings_Object = QLatin1String("Object");
 QString strings_String = QLatin1String("String");
 QString strings_Thread = QLatin1String("Thread");
