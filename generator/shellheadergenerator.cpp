@@ -39,6 +39,8 @@
 **
 ****************************************************************************/
 
+#include <algorithm> // for std::sort
+
 #include "shellheadergenerator.h"
 
 #include <QtCore/QDir>
@@ -115,7 +117,7 @@ void ShellHeaderGenerator::write(QTextStream& s, const AbstractMetaClass* meta_c
   s << "#include <PythonQt.h>" << endl << endl;
 
   IncludeList list = meta_class->typeEntry()->extraIncludes();
-  qSort(list.begin(), list.end());
+  std::sort(list.begin(), list.end());
   for (const Include & inc :  list) {
     ShellGenerator::writeInclude(s, inc);
   }
@@ -185,7 +187,7 @@ void ShellHeaderGenerator::write(QTextStream& s, const AbstractMetaClass* meta_c
       << " : public " << meta_class->qualifiedCppName() << endl << "{ public:" << endl;
 
     AbstractMetaEnumList enums1 = meta_class->enums();
-    qSort(enums1.begin(), enums1.end(), enum_lessThan);
+    std::sort(enums1.begin(), enums1.end(), enum_lessThan);
     for (AbstractMetaEnum * enum1 :  enums1) {
       if (enum1->wasProtected()) {
         s << "enum " << enum1->name() << "{" << endl;
@@ -263,7 +265,7 @@ void ShellHeaderGenerator::write(QTextStream& s, const AbstractMetaClass* meta_c
   s << "public:" << endl;
 
   AbstractMetaEnumList enums1 = meta_class->enums();
-  qSort(enums1.begin(), enums1.end(), enum_lessThan);
+  std::sort(enums1.begin(), enums1.end(), enum_lessThan);
   AbstractMetaEnumList enums;
   QList<FlagsTypeEntry*> flags;
   for (AbstractMetaEnum * enum1 :  enums1) {
@@ -409,7 +411,7 @@ void ShellHeaderGenerator::write(QTextStream& s, const AbstractMetaClass* meta_c
   }
 
   AbstractMetaFieldList fields = meta_class->fields();
-  qSort(fields.begin(), fields.end(), field_lessThan);
+  std::sort(fields.begin(), fields.end(), field_lessThan);
 
   // TODO: move "So" check to typesystem, e.g. allow star in rejection...
   // Field accessors
