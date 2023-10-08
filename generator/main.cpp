@@ -51,6 +51,10 @@
 void displayHelp(GeneratorSet *generatorSet);
 
 #include <QDebug>
+
+/* List of core modules to add to the build in order. */
+static const char coreModuleListDefault[]{"Xml,Network,Core,Gui,OpenGL"};
+
 int main(int argc, char *argv[])
 {
     QScopedPointer<GeneratorSet> gs(GeneratorSet::getInstance());
@@ -60,7 +64,7 @@ int main(int argc, char *argv[])
 
     QString fileName;
     QString typesystemFileName;
-    QString pp_file = ".preprocessed.tmp";
+    QString pp_file = "qtheaders.preprocessed.tmp";
     QStringList rebuild_classes;
 
     QMap<QString, QString> args;
@@ -132,6 +136,150 @@ int main(int argc, char *argv[])
     if (!gs->readParameters(args))
         displayHelp(&*gs);
 
+    /* This used to be in main.h::preprocess however this makes it difficult to
+     * update the command line argument handling (because, unusually, it was
+     * split into two different places, one a header file!).  This is the
+     * code form main.h:
+     */
+    const bool minimal(args.contains("minimal"));
+    QStringList includes;
+    if (!minimal)
+        includes << QString(".");
+
+#if defined(Q_OS_WIN32)
+    const char *path_splitter = ";";
+#else
+    const char *path_splitter = ":";
+#endif
+
+    // Environment INCLUDE
+    QString includePath = getenv("INCLUDE");
+    if (!includePath.isEmpty())
+        includes += includePath.split(path_splitter);
+
+    // Includes from the command line
+    const QString commandLineIncludes(args.value("include-paths"));
+    if (!commandLineIncludes.isEmpty())
+        includes += commandLineIncludes.split(path_splitter);
+
+    /* Allow coreModules to be specified on the command line (e.g. to add or
+     * remove modules for an application specific build).
+     */
+    QString moduleList(args.value("core-modules"));
+    if (moduleList.isEmpty())
+        moduleList = coreModuleListDefault;
+    const QStringList coreModules(moduleList.split(","));
+
+    // Include Qt
+    QString qtHeaders(args.value("qt-headers"));
+
+    if (qtHeaders.isEmpty()) {
+        /* This is the legacy QTDIR approach.  It requires Qt to be installed
+         * in a single directory which contains a subdirectory /include with
+         * all the expected header files (in module-specific sub-directories).
+         * There is a work-round for MacOS (recent versions) which understands
+         * the MacOS file system layout.
+         *
+         * TODO: remove this, require the directories to be specified on the
+         * command line.
+         */
+        QString qtdir = getenv ("QTDIR");
+
+        if (qtdir.isEmpty()) {
+#if defined(Q_OS_MAC)
+            qWarning(
+"QTDIR environment variable not set. Assuming standard binary install using\n"
+"frameworks.");
+            foreach (const QString &mod, coreModules)
+                includes << ("/Library/Frameworks/Qt" + mod + ".framework/Headers");
+            includes << "/Library/Frameworks"; // this seems wrong
+#else
+            qWarning(
+"QTDIR environment variable not set. This may cause problems with finding the\n"
+"necessary include files.  You can find the correct directory with the\n"
+"command:\n\n"
+"  qmake -query QT_INSTALL_HEADERS\n\n"
+"This directory can be supplied using the command line argument --qt-headers\n"
+            );
+#endif
+        } else {
+            /* Legacy handling: Qt install into a single directory on its own,
+             * basically /opt/qt or something like that:
+             */
+            qtHeaders = qtdir + "/include";
+        }
+    }
+
+    if (!qtHeaders.isEmpty()) {
+        /* Look for the 'standard' directories, favouring the first found
+         * in the qt-headers list.
+         *
+         * NOTE: use of a list here is intended for the project build workflows
+         * which apparently have to assemble the headers from difference
+         * installation directories.  This could be avoided by using
+         * --include-paths instead!
+         *
+         */
+        QStringList dirList;
+        QStringList requiredModules(coreModules);
+
+        foreach (const QString &dir, qtHeaders.split(path_splitter))
+            if (QDir(dir).exists())  {
+                QStringList remaining(requiredModules);
+
+                foreach (const QString &mod, requiredModules) {
+                    const QString modpath(dir + "/Qt" + mod);
+                    if (QDir(modpath).exists()) {
+                        includes << modpath;
+                        remaining.removeAll(mod);
+                    }
+                }
+
+                requiredModules = remaining;
+                dirList << dir;
+            } else
+                qWarning((dir + " Qt header directory not found")
+                                            .toLocal8Bit().constData());
+
+        /* Add the top level directories at the end; this simulates the legacy
+         * behaviour.
+         */
+        if (!minimal)
+            includes += dirList;
+
+        /* Warn if standard directories are not found: */
+        if (!requiredModules.isEmpty()) {
+            QString sep("");
+            QString errMsg("WARNING: missing core Qt modules:");
+
+            foreach (const QString &mod, requiredModules) {
+                errMsg += sep + " Qt" + mod;
+                sep = ",";
+            }
+
+            if (args.contains("core-error"))
+                qFatal(errMsg.toLocal8Bit().constData());
+            else
+                qWarning(errMsg.toLocal8Bit().constData());
+        }
+    } else if (includes.isEmpty()) {
+        /* This is never true unless --minimal is given because "." is always
+         * added to includes first.
+         */
+        qWarning("No directories to scan: use --include-paths or --qt-headers");
+        displayHelp(&*gs);
+    }
+
+    std::cout << "-------------------------------------------------------------" << std::endl;
+    std::cout << "Scanning Qt headers from (in this order):" << std::endl;
+    foreach (const QString &dir, includes) {
+        std::cout << "  " << dir.toUtf8().constData();
+        if (!QDir(dir).exists())
+            std::cout << " [DIRECTORY DOES NOT EXIST]";
+        std::cout << std::endl;
+    }
+    std::cout << "-------------------------------------------------------------" << std::endl;
+
     printf("Please wait while source files are being generated...\n");
 
     printf("Parsing typesystem file [%s]\n", qPrintable(typesystemFileName));
@@ -140,7 +288,7 @@ int main(int argc, char *argv[])
 
     printf("PreProcessing - Generate [%s] using [%s] and include-paths [%s]\n",
       qPrintable(pp_file), qPrintable(fileName), qPrintable(args.value("include-paths")));
-    if (!Preprocess::preprocess(fileName, pp_file, args.value("include-paths"))) {
+    if (!Preprocess::preprocess(fileName, pp_file, includes)) {
         fprintf(stderr, "Preprocessor failed on file: '%s'\n", qPrintable(fileName));
         return 1;
     }
@@ -174,15 +322,41 @@ void displayHelp(GeneratorSet* generatorSet) {
     printf("Usage:\n  generator [options] header-file typesystem-file\n\n");
     printf("Available options:\n\n");
     printf("General:\n");
-    printf("  --debug-level=[sparse|medium|full]        \n"
-           "  --dump-object-tree                        \n"
-           "  --help, -h or -?                          \n"
-           "  --no-suppress-warnings                    \n"
-           "  --output-directory=[dir]                  \n"
-           "  --include-paths=<path>[%c<path>%c...]     \n"
-           "  --print-stdout                            \n",
-           path_splitter, path_splitter);
+    printf("  --debug-level=[sparse|medium|full]\n"
+           "  --dump-object-tree\n"
+           "  --help, -h or -?\n"
+           "  --no-suppress-warnings\n"
+           "  --output-directory=[dir]\n"
+           "  --include-paths=<path>[%c<path>%c...]\n"
+           "  --qt-headers=<path>[%c<path>%c...]\n"
+           "  --core-modules=module,...\n"
+           "  --core-error\n"
+           "  --minimal\n"
+           "  --print-stdout\n\n",
+           path_splitter, path_splitter, path_splitter, path_splitter);
 
-    printf("%s", qPrintable( generatorSet->usage()));
-    exit(0);
+    printf("%s\n", qPrintable( generatorSet->usage()));
+
+    printf("Notes:\n"
+"  The location of the Qt header files to be used must be specified either by\n"
+"  a directory in --qt-headers or by the location of the Qt installation in\n"
+"  the environment variable QTDIR.  The latter is equivalent to passing\n"
+"  $QT_DIR/include to --qt-headers.\n\n"
+"  --core-modules is a comma-separated list of Qt modules names without the\n"
+"  leading 'Qt'.  Do not put spaces in the list.  The headers directory is\n"
+"  used to locate these modules and they are added, in turn, to the end of\n"
+"  the list of directories to scan.  The header directory itself is added at\n"
+"  the end unless --minimal is given. By default:\n\n"
+"    --core-modules=\"%s\"\n\n"
+"  If core modules fail to be found a warning is issued unless --core-error\n"
+"  is given in which case the generator exits with an error.\n\n"
+"  Additional directories to be scanned are passed in the environment\n"
+"  variable INCLUDE and the --include-paths argument.  Both are '%c'\n"
+"  separated lists of directories which are scanned before the core module\n"
+"  directories in the order given.\n\n"
+"  The current working directory is also scanned (first) unless --minimal is\n"
+"  given.\n",
+        coreModuleListDefault, path_splitter);
+
+    exit(1);
 }

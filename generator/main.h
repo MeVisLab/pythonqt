@@ -49,7 +49,8 @@
 
 struct Preprocess
 {
-    static bool preprocess(const QString &sourceFile, const QString &targetFile, const QString &commandLineIncludes = QString())
+    static bool preprocess(const QString &sourceFile, const QString &targetFile,
+            const QStringList &includes)
     {
         rpp::pp_environment env;
         rpp::pp preprocess(env);
@@ -68,51 +69,6 @@ struct Preprocess
         file.close();
         preprocess.operator() (ba.constData(), ba.constData() + ba.size(), null_out);
 
-        QStringList includes;
-        includes << QString(".");
-
-#if defined(Q_OS_WIN32)
-        const char *path_splitter = ";";
-#else
-        const char *path_splitter = ":";
-#endif
-
-        // Environment INCLUDE
-        QString includePath = getenv("INCLUDE");
-        if (!includePath.isEmpty())
-            includes += includePath.split(path_splitter);
-
-        // Includes from the command line
-        if (!commandLineIncludes.isEmpty())
-            includes += commandLineIncludes.split(path_splitter);
-
-        // Include Qt
-        QString qtdir = getenv ("QTDIR");
-        if (qtdir.isEmpty()) {
-#if defined(Q_OS_MAC)
-            qWarning("QTDIR environment variable not set. Assuming standard binary install using frameworks.");
-            QString frameworkDir = "/Library/Frameworks";
-            includes << (frameworkDir + "/QtXml.framework/Headers");
-            includes << (frameworkDir + "/QtNetwork.framework/Headers");
-            includes << (frameworkDir + "/QtCore.framework/Headers");
-            includes << (frameworkDir + "/QtGui.framework/Headers");
-            includes << (frameworkDir + "/QtOpenGL.framework/Headers");
-            includes << frameworkDir;
-#else
-            qWarning("QTDIR environment variable not set. This may cause problems with finding the necessary include files.");
-#endif
-        } else {
-            std::cout << "-------------------------------------------------------------" << std::endl;
-            std::cout << "Using QT at: " << qtdir.toLocal8Bit().constData() << std::endl;
-            std::cout << "-------------------------------------------------------------" << std::endl;
-            qtdir += "/include";
-            includes << (qtdir + "/QtXml");
-            includes << (qtdir + "/QtNetwork");
-            includes << (qtdir + "/QtCore");
-            includes << (qtdir + "/QtGui");
-            includes << (qtdir + "/QtOpenGL");
-            includes << qtdir;
-        }
         foreach (QString include, includes) {
             preprocess.push_include_path(QDir::toNativeSeparators(include).toStdString());
         }
