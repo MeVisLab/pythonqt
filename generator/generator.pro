@@ -13,7 +13,7 @@ HEADERS += \
         shellimplgenerator.h \
         shellheadergenerator.h \
         setupgenerator.h
-   
+
 SOURCES += \
         generatorsetqtscript.cpp \
         metaqtscriptbuilder.cpp \
@@ -22,3 +22,9 @@ SOURCES += \
         shellimplgenerator.cpp \
         shellheadergenerator.cpp \
         setupgenerator.cpp
+
+#The generate target is NOT built automatically!
+QMAKE_EXTRA_TARGETS += generate
+
+generate.depends = $$TARGET
+generate.commands = ./$$TARGET --qt-headers="$$[QT_INSTALL_HEADERS]" --core-error --output-directory="."
