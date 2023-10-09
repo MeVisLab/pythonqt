@@ -80,7 +80,7 @@ void NameCompiler::visitUnqualifiedName(UnqualifiedNameAST *node)
   if (OperatorFunctionIdAST *op_id = node->operator_id)
     {
 #if defined(__GNUC__)
-#warning "NameCompiler::visitUnqualifiedName() -- implement me"
+#pragma GCC warning "NameCompiler::visitUnqualifiedName() -- implement me"
 #endif
 
       if (op_id->op && op_id->op->op)
@@ -93,7 +93,7 @@ void NameCompiler::visitUnqualifiedName(UnqualifiedNameAST *node)
       else if (op_id->type_specifier)
         {
 #if defined(__GNUC__)
-#warning "don't use an hardcoded string as cast' name"
+#pragma GCC warning "don't use an hardcoded string as cast' name"
 #endif
           Token const &tk = _M_token_stream->token ((int) op_id->start_token);
           Token const &end_tk = _M_token_stream->token ((int) op_id->end_token);

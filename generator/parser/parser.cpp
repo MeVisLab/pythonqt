@@ -840,7 +840,7 @@ bool Parser::parseAsmDefinition(DeclarationAST *&node)
   parseCvQualify(cv);
 
 #if defined(__GNUC__)
-#warning "implement me"
+#pragma GCC warning "implement me"
 #endif
   skip('(', ')');
   token_stream.nextToken();
@@ -2427,7 +2427,7 @@ bool Parser::parseInitializerClause(InitializerClauseAST *&node)
   if (token_stream.lookAhead() == '{')
     {
 #if defined(__GNUC__)
-#warning "implement me"
+#pragma GCC warning "implement me"
 #endif
       if (skip('{','}'))
         token_stream.nextToken();
@@ -2451,7 +2451,7 @@ bool Parser::parseInitializerClause(InitializerClauseAST *&node)
 bool Parser::parsePtrToMember(PtrToMemberAST *&node)
 {
 #if defined(__GNUC__)
-#warning "implemente me (AST)"
+#pragma GCC warning "implemente me (AST)"
 #endif
 
   std::size_t start = token_stream.cursor();
@@ -2625,7 +2625,7 @@ bool Parser::parseStatement(StatementAST *&node)
     case Token_break:
     case Token_continue:
 #if defined(__GNUC__)
-#warning "implement me"
+#pragma GCC warning "implement me"
 #endif
       token_stream.nextToken();
       ADVANCE(';', ";");
@@ -2633,7 +2633,7 @@ bool Parser::parseStatement(StatementAST *&node)
 
     case Token_goto:
 #if defined(__GNUC__)
-#warning "implement me"
+#pragma GCC warning "implement me"
 #endif
       token_stream.nextToken();
       ADVANCE(Token_identifier, "identifier");
@@ -3279,7 +3279,7 @@ bool Parser::parseDeclarationInternal(DeclarationAST *&node)
       ADVANCE(';', ";");
 
 #if defined(__GNUC__)
-#warning "mark the ast as constant"
+#pragma GCC warning "mark the ast as constant"
 #endif
       SimpleDeclarationAST *ast = CreateNode<SimpleDeclarationAST>(_M_pool);
       ast->init_declarators = declarators;
@@ -3380,7 +3380,7 @@ bool Parser::parseDeclarationInternal(DeclarationAST *&node)
 bool Parser::skipFunctionBody(StatementAST *&)
 {
 #if defined(__GNUC__)
-#warning "Parser::skipFunctionBody() -- implement me"
+#pragma GCC warning "Parser::skipFunctionBody() -- implement me"
 #endif
   Q_ASSERT(0); // ### not implemented
   return 0;
@@ -3409,7 +3409,7 @@ bool Parser::parseTypeSpecifierOrClassSpec(TypeSpecifierAST *&node)
 bool Parser::parseTryBlockStatement(StatementAST *&node)
 {
 #if defined(__GNUC__)
-#warning "implement me"
+#pragma GCC warning "implement me"
 #endif
   CHECK(Token_try);
 
