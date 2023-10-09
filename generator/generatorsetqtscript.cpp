@@ -68,6 +68,7 @@ void GeneratorSetQtScript::buildModel(const QString pp_file) {
     ReportHandler::setContext("MetaJavaBuilder");
     builder.setFileName(pp_file);
     builder.build();
+    ReportHandler::setContext("After MetaJavaBuilder");
 }
 
 void GeneratorSetQtScript::dumpObjectTree() {

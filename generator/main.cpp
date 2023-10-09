@@ -57,6 +57,7 @@ static const char coreModuleListDefault[]{"Xml,Network,Core,Gui,OpenGL"};
 
 int main(int argc, char *argv[])
 {
+    ReportHandler::setContext("Parameters");
     QScopedPointer<GeneratorSet> gs(GeneratorSet::getInstance());
 
     QString default_file = ":/trolltech/generator/qtscript_masterinclude.h";
@@ -64,7 +65,7 @@ int main(int argc, char *argv[])
 
     QString fileName;
     QString typesystemFileName;
-    QString pp_file = "qtheaders.preprocessed.tmp";
+    const QString pp_file = "qtheaders.preprocessed.tmp";
     QStringList rebuild_classes;
 
     QMap<QString, QString> args;
@@ -136,6 +137,8 @@ int main(int argc, char *argv[])
     if (!gs->readParameters(args))
         displayHelp(&*gs);
 
+    ReportHandler::setContext("Files");
+
     /* This used to be in main.h::preprocess however this makes it difficult to
      * update the command line argument handling (because, unusually, it was
      * split into two different places, one a header file!).  This is the
@@ -153,7 +156,7 @@ int main(int argc, char *argv[])
 #endif
 
     // Environment INCLUDE
-    QString includePath = getenv("INCLUDE");
+    const QString includePath(getenv("INCLUDE"));
     if (!includePath.isEmpty())
         includes += includePath.split(path_splitter);
 
@@ -283,33 +286,56 @@ int main(int argc, char *argv[])
     printf("Please wait while source files are being generated...\n");
 
     printf("Parsing typesystem file [%s]\n", qPrintable(typesystemFileName));
+    fflush(stdout);
+    ReportHandler::setContext(QString("Parse[%1]").arg(typesystemFileName));
+
     if (!TypeDatabase::instance()->parseFile(typesystemFileName))
         qFatal("Cannot parse file: '%s'", qPrintable(typesystemFileName));
 
     printf("PreProcessing - Generate [%s] using [%s] and include-paths [%s]\n",
-      qPrintable(pp_file), qPrintable(fileName), qPrintable(args.value("include-paths")));
+            qPrintable(pp_file), qPrintable(fileName),
+            qPrintable(args.value("include-paths")));
+    fflush(stdout);
+    ReportHandler::setContext(QString("Preprocess[%1]->[%2]")
+            .arg(fileName).arg(pp_file));
+
     if (!Preprocess::preprocess(fileName, pp_file, includes)) {
-        fprintf(stderr, "Preprocessor failed on file: '%s'\n", qPrintable(fileName));
+        fprintf(stderr, "Preprocessor failed on file: '%s'\n",
+                qPrintable(fileName));
         return 1;
     }
 
     if (args.contains("ast-to-xml")) {
-      printf("Running ast-to-xml on file [%s] using pp_file [%s] and include-paths [%s]\n",
-        qPrintable(fileName), qPrintable(pp_file), qPrintable(args.value("include-paths")));
-      astToXML(pp_file);
-      return 0;
+        printf("Running ast-to-xml on file [%s] using pp_file [%s] and include-paths [%s]+[%s]\n",
+                qPrintable(fileName), qPrintable(pp_file),
+                qPrintable(includePath), qPrintable(commandLineIncludes));
+        fflush(stdout);
+        ReportHandler::setContext(QString("ast-to-xml[%1]([%2]+[%3])")
+                .arg(pp_file).arg(includePath).arg(commandLineIncludes));
+        astToXML(pp_file);
+        return 0;
     }
 
     printf("Building model using [%s]\n", qPrintable(pp_file));
+    fflush(stdout);
+    ReportHandler::setContext(QString("Model[%1]").arg(pp_file));
     gs->buildModel(pp_file);
     if (args.contains("dump-object-tree")) {
+        ReportHandler::setContext("dump-object-tree");
         gs->dumpObjectTree();
         return 0;
     }
+
+    printf("Generate\n");
+    fflush(stdout);
+    ReportHandler::setContext("Generate");
     printf("%s\n", qPrintable(gs->generate()));
 
-    printf("Done, %d warnings (%d known issues)\n", ReportHandler::warningCount(),
-           ReportHandler::suppressedCount());
+    ReportHandler::setContext("Finished");
+    printf("Done, %d warnings (%d known issues)\n",
+            ReportHandler::warningCount(),
+            ReportHandler::suppressedCount());
+    fflush(stdout);
 }
 
 
