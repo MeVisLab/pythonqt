@@ -70,6 +70,11 @@ SOURCES += \
    
 QT += core xml
 
+greaterThan(QT_MAJOR_VERSION, 5) {
+    QT += core5compat
+    message("WARNING: Qt module core5compat for XML handling in typesystem.cpp")
+}
+
 win32-msvc.net {
         QMAKE_CXXFLAGS += /Zm500
         QMAKE_CXXFLAGS -= -Zm200
