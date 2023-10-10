@@ -212,7 +212,7 @@ int main(int argc, char *argv[])
          * in the qt-headers list.
          *
          * NOTE: use of a list here is intended for the project build workflows
-         * which apparently have to assemble the headers from difference
+         * which apparently have to assemble the headers from different
          * installation directories.  This could be avoided by using
          * --include-paths instead!
          *
