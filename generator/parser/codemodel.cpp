@@ -626,10 +626,6 @@ bool _FunctionModelItem::isSimilar(FunctionModelItem other) const
   if (isConstant() != other->isConstant())
     return false;
 
-  // ### this may be incorrect (note that isVolatile is not checked!)
-  if (isConstexpr() != other->isConstexpr())
-    return false;
-
   if (isVariadics() != other->isVariadics())
     return false;
 
