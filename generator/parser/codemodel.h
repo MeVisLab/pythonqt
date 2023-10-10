@@ -178,16 +178,16 @@ struct TypeInfo
 
 private:
   struct TypeInfo_flags {
-	uint m_constant: 1;
-	uint m_constexpr: 1;
-	uint m_volatile: 1;
+        uint m_constant: 1;
+        uint m_constexpr: 1;
+        uint m_volatile: 1;
         uint m_mutable: 1;
         uint m_friend: 1;
         uint m_auto: 1;
-	uint m_reference: 1;
-	uint m_functionPointer: 1;
-	uint m_indirections: 6;
-	inline bool equals(TypeInfo_flags other) const {
+        uint m_reference: 1;
+        uint m_functionPointer: 1;
+        uint m_indirections: 6;
+        inline bool equals(TypeInfo_flags other) const {
          /* m_auto and m_friend don't matter here */
          return m_constant == other.m_constant
              && m_constexpr == other.m_constexpr
@@ -196,7 +196,7 @@ private:
              && m_reference == other.m_reference
              && m_functionPointer == other.m_functionPointer
              && m_indirections == other.m_indirections;
-	}
+        }
   } m_flags {0, 0, 0, 0, 0, 0, 0, 0, 0};
 
   QStringList m_qualifiedName;
