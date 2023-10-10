@@ -246,13 +246,8 @@ int main(int argc, char *argv[])
 
         /* Warn if standard directories are not found: */
         if (!requiredModules.isEmpty()) {
-            QString sep("");
-            QString errMsg("WARNING: missing core Qt modules:");
-
-            for (const QString &mod : requiredModules) {
-                errMsg += sep + " Qt" + mod;
-                sep = ",";
-            }
+            const QString errMsg("WARNING: missing core Qt modules: Qt" +
+                    requiredModules.join(",Qt"));
 
             if (args.contains("core-error"))
                 qFatal(errMsg.toLocal8Bit().constData());
