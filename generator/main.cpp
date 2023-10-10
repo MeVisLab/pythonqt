@@ -149,21 +149,15 @@ int main(int argc, char *argv[])
     if (!minimal)
         includes << QString(".");
 
-#if defined(Q_OS_WIN32)
-    const char *path_splitter = ";";
-#else
-    const char *path_splitter = ":";
-#endif
-
     // Environment INCLUDE
     const QString includePath(getenv("INCLUDE"));
     if (!includePath.isEmpty())
-        includes += includePath.split(path_splitter);
+        includes += includePath.split(QDir::listSeparator());
 
     // Includes from the command line
     const QString commandLineIncludes(args.value("include-paths"));
     if (!commandLineIncludes.isEmpty())
-        includes += commandLineIncludes.split(path_splitter);
+        includes += commandLineIncludes.split(QDir::listSeparator());
 
     /* Allow coreModules to be specified on the command line (e.g. to add or
      * remove modules for an application specific build).
@@ -226,7 +220,7 @@ int main(int argc, char *argv[])
         QStringList dirList;
         QStringList requiredModules(coreModules);
 
-        foreach (const QString &dir, qtHeaders.split(path_splitter))
+        foreach (const QString &dir, qtHeaders.split(QDir::listSeparator()))
             if (QDir(dir).exists())  {
                 QStringList remaining(requiredModules);
 
@@ -340,11 +334,8 @@ int main(int argc, char *argv[])
 
 
 void displayHelp(GeneratorSet* generatorSet) {
-#if defined(Q_OS_WIN32)
-    char path_splitter = ';';
-#else
-    char path_splitter = ':';
-#endif
+    const QByteArray sep(QString(QDir::listSeparator()).toLocal8Bit());
+
     printf("Usage:\n  generator [options] header-file typesystem-file\n\n");
     printf("Available options:\n\n");
     printf("General:\n");
@@ -353,13 +344,13 @@ void displayHelp(GeneratorSet* generatorSet) {
            "  --help, -h or -?\n"
            "  --no-suppress-warnings\n"
            "  --output-directory=[dir]\n"
-           "  --include-paths=<path>[%c<path>%c...]\n"
-           "  --qt-headers=<path>[%c<path>%c...]\n"
+           "  --include-paths=<path>[%s<path>%s...]\n"
+           "  --qt-headers=<path>[%s<path>%s...]\n"
            "  --core-modules=module,...\n"
            "  --core-error\n"
            "  --minimal\n"
            "  --print-stdout\n\n",
-           path_splitter, path_splitter, path_splitter, path_splitter);
+           sep.constData(), sep.constData(), sep.constData(), sep.constData());
 
     printf("%s\n", qPrintable( generatorSet->usage()));
 
@@ -377,12 +368,12 @@ void displayHelp(GeneratorSet* generatorSet) {
 "  If core modules fail to be found a warning is issued unless --core-error\n"
 "  is given in which case the generator exits with an error.\n\n"
 "  Additional directories to be scanned are passed in the environment\n"
-"  variable INCLUDE and the --include-paths argument.  Both are '%c'\n"
+"  variable INCLUDE and the --include-paths argument.  Both are '%s'\n"
 "  separated lists of directories which are scanned before the core module\n"
 "  directories in the order given.\n\n"
 "  The current working directory is also scanned (first) unless --minimal is\n"
 "  given.\n",
-        coreModuleListDefault, path_splitter);
+        coreModuleListDefault, sep.constData());
 
     exit(1);
 }
