@@ -141,12 +141,6 @@ struct TypeInfo
   bool isMutable() const { return m_flags.m_mutable; }
   void setMutable(bool is) { m_flags.m_mutable = is; }
 
-  bool isFriend() const { return m_flags.m_friend; }
-  void setFriend(bool is) { m_flags.m_friend = is; }
-
-  bool isAuto() const { return m_flags.m_auto; }
-  void setAuto(bool is) { m_flags.m_auto = is; }
-
   bool isReference() const { return m_flags.m_reference; }
   void setReference(bool is) { m_flags.m_reference = is; }
 
@@ -182,8 +176,6 @@ private:
         uint m_constexpr: 1;
         uint m_volatile: 1;
         uint m_mutable: 1;
-        uint m_friend: 1;
-        uint m_auto: 1;
         uint m_reference: 1;
         uint m_functionPointer: 1;
         uint m_indirections: 6;
@@ -197,7 +189,7 @@ private:
              && m_functionPointer == other.m_functionPointer
              && m_indirections == other.m_indirections;
         }
-  } m_flags {0, 0, 0, 0, 0, 0, 0, 0, 0};
+  } m_flags {0, 0, 0, 0, 0, 0, 0};
 
   QStringList m_qualifiedName;
   QStringList m_arrayElements;
