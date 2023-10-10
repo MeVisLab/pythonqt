@@ -206,7 +206,7 @@ QString TypeInfo::toString() const
       tmp += QLatin1String(")");
     }
 
-  foreach (QString elt, arrayElements ())
+  for (QString elt : arrayElements ())
     {
       tmp += QLatin1String ("[");
       tmp += elt;
@@ -394,7 +394,7 @@ FunctionModelItem _ScopeModelItem::declaredFunction(FunctionModelItem item)
 {
   FunctionList function_list = findFunctions(item->name());
 
-  foreach (FunctionModelItem fun, function_list)
+  for (FunctionModelItem fun : function_list)
     {
       if (fun->isSimilar(item))
         return fun;

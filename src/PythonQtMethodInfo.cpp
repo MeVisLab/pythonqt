@@ -607,7 +607,7 @@ QStringList PythonQtSlotInfo::overloads(bool skipReturnValue) const
     }
     if (slotsWithSameArgs.size() > 1) {
       results << maxArgSlot->fullSignature(skipReturnValue, minSameArgs);
-      foreach(const PythonQtSlotInfo* o, slotsWithSameArgs) {
+      for(const PythonQtSlotInfo* o : slotsWithSameArgs) {
         list.removeOne(o);
       }
     } else {

@@ -485,7 +485,7 @@ QStringList PythonQtClassInfo::propertyList()
     }
   }
   QStringList members = memberList();
-  foreach(QString member, members) {
+  for (QString member : members) {
     if (member.startsWith("py_get_")) {
       l << member.mid(7);
     }
@@ -1067,7 +1067,7 @@ bool PythonQtClassInfo::supportsRichCompare()
       names << "__gt__";
       names << "__ge__";
     }
-    foreach (const QByteArray& name, names) {
+    for (const QByteArray& name : names) {
       if (member(name)._type == PythonQtMemberInfo::Slot) {
         // we found one of the operators, so we can support the type slot
         _typeSlots |= PythonQt::Type_RichCompare;

@@ -432,7 +432,7 @@ public:
     // true if one or more of the arguments are of QtJambiObject subclasses
     bool argumentsHaveNativeId() const
     {
-        foreach (const AbstractMetaArgument *arg, m_arguments) {
+        for (const AbstractMetaArgument *arg : m_arguments) {
             if (arg->type()->hasNativeId())
                 return true;
         }

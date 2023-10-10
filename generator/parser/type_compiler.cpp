@@ -131,7 +131,7 @@ QStringList TypeCompiler::cvString() const
 {
   QStringList lst;
 
-  foreach (int q, cv())
+  for (int q : cv())
     {
       if (q == Token_const)
         lst.append(QLatin1String("const"));

@@ -1631,7 +1631,7 @@ void PythonQt::removeSignalHandlers()
   QList<PythonQtSignalReceiver*> signalReceivers = _p->_signalReceivers.values();
 
   // just delete all signal receivers, they will remove themselves via removeSignalEmitter()
-  foreach(PythonQtSignalReceiver* receiver, signalReceivers) {
+  for (PythonQtSignalReceiver* receiver : signalReceivers) {
     delete receiver;
   }
   // just to be sure, clear the receiver map as well
@@ -1767,7 +1767,7 @@ void PythonQt::overwriteSysPath(const QStringList& paths)
   // Since Python uses os.path.sep at various places,
   // makse sure that we use the native path separators.
   QStringList nativePaths;
-  foreach(QString path, paths) {
+  for (QString path : paths) {
     nativePaths << QDir::toNativeSeparators(path);
   }
   PyModule_AddObject(sys, "path", PythonQtConv::QStringListToPyList(nativePaths));
@@ -2229,7 +2229,7 @@ const QMetaObject* PythonQtPrivate::buildDynamicMetaObject(PythonQtClassWrapper*
       PythonQtSignalFunctionObject* signal = (PythonQtSignalFunctionObject*)value;
       if (signal->_dynamicInfo) {
         signal->_dynamicInfo->name = PyString_AsString(key);
-        foreach(QByteArray sig, signal->_dynamicInfo->signatures) {
+        for (QByteArray sig : signal->_dynamicInfo->signatures) {
           builder.addSignal(signal->_dynamicInfo->name + "(" + sig + ")");
           needsMetaObject = true;
         }

@@ -60,7 +60,7 @@ static QStringList getOperatorCodes(const AbstractMetaClass* cls) {
   QSet<QString> operatorCodes;
   AbstractMetaFunctionList returned;
   AbstractMetaFunctionList functions = cls->functions();
-  foreach (AbstractMetaFunction *function, functions) {
+  for (AbstractMetaFunction *function : functions) {
     if (function->originalName().startsWith("operator")) {
       QString op = function->originalName().mid(8);
       operatorCodes.insert(op);
@@ -228,7 +228,7 @@ void SetupGenerator::generate()
     while (pack.hasNext()) {
       pack.next();
       QList<const AbstractMetaClass*> list = pack.value();
-      foreach (const AbstractMetaClass *cls, list) {
+      for (const AbstractMetaClass *cls : list) {
         if (cls->typeEntry()->isPolymorphicBase()) {
           classes_with_polymorphic_id.append((AbstractMetaClass*)cls);
         }
@@ -256,7 +256,7 @@ void SetupGenerator::generate()
     }
 
     QString shortPackName;
-    foreach (QString comp, components) {
+    for (QString comp : components) {
       comp[0] = comp[0].toUpper();
       shortPackName += comp;
     }
@@ -332,7 +332,7 @@ void SetupGenerator::generate()
         shortPackName = shortPackName.mid(0, shortPackName.length()-strlen("builtin"));
       }
 
-      foreach (const AbstractMetaClass *cls, list) {
+      for (const AbstractMetaClass *cls : list) {
         if (cls->qualifiedCppName().contains("Ssl")) {
           s << "#ifndef QT_NO_SSL"  << endl;
         }
@@ -381,7 +381,7 @@ void SetupGenerator::generate()
         }
       }
       s << endl;
-      foreach (QString handler, polymorphicHandlers) {
+      for (QString handler : polymorphicHandlers) {
         s << "PythonQt::self()->addPolymorphicHandler(\""<< handler << "\", polymorphichandler_" << handler << ");" << endl;
       }
       s << endl;
@@ -412,14 +412,14 @@ QStringList SetupGenerator::writePolymorphicHandler(QTextStream &s, const QStrin
                                                     const AbstractMetaClassList &polybase, QList<const AbstractMetaClass*>& allClasses)
 {
   QStringList handlers;
-  foreach (AbstractMetaClass *cls, polybase) {
+  for (AbstractMetaClass *cls : polybase) {
     const ComplexTypeEntry *centry = cls->typeEntry();
     if (!centry->isPolymorphicBase())
       continue;
     bool isGraphicsItem = (cls->qualifiedCppName()=="QGraphicsItem");
 
     bool first = true;
-    foreach (const AbstractMetaClass *clazz, allClasses) {
+    for (const AbstractMetaClass *clazz : allClasses) {
       bool inherits = false;
       if (isGraphicsItem) {
         const AbstractMetaClass *currentClazz = clazz;

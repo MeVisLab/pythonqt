@@ -69,7 +69,7 @@ struct Preprocess
         file.close();
         preprocess.operator() (ba.constData(), ba.constData() + ba.size(), null_out);
 
-        foreach (QString include, includes) {
+        for (QString include : includes) {
             preprocess.push_include_path(QDir::toNativeSeparators(include).toStdString());
         }
 

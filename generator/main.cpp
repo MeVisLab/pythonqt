@@ -187,7 +187,7 @@ int main(int argc, char *argv[])
             qWarning(
 "QTDIR environment variable not set. Assuming standard binary install using\n"
 "frameworks.");
-            foreach (const QString &mod, coreModules)
+            for (const QString &mod : coreModules)
                 includes << ("/Library/Frameworks/Qt" + mod + ".framework/Headers");
             includes << "/Library/Frameworks"; // this seems wrong
 #else
@@ -220,11 +220,11 @@ int main(int argc, char *argv[])
         QStringList dirList;
         QStringList requiredModules(coreModules);
 
-        foreach (const QString &dir, qtHeaders.split(QDir::listSeparator()))
+        for (const QString &dir : qtHeaders.split(QDir::listSeparator()))
             if (QDir(dir).exists())  {
                 QStringList remaining(requiredModules);
 
-                foreach (const QString &mod, requiredModules) {
+                for (const QString &mod : requiredModules) {
                     const QString modpath(dir + "/Qt" + mod);
                     if (QDir(modpath).exists()) {
                         includes << modpath;
@@ -249,7 +249,7 @@ int main(int argc, char *argv[])
             QString sep("");
             QString errMsg("WARNING: missing core Qt modules:");
 
-            foreach (const QString &mod, requiredModules) {
+            for (const QString &mod : requiredModules) {
                 errMsg += sep + " Qt" + mod;
                 sep = ",";
             }
@@ -269,7 +269,7 @@ int main(int argc, char *argv[])
 
     std::cout << "-------------------------------------------------------------" << std::endl;
     std::cout << "Scanning Qt headers from (in this order):" << std::endl;
-    foreach (const QString &dir, includes) {
+    for (const QString &dir : includes) {
         std::cout << "  " << dir.toUtf8().constData();
         if (!QDir(dir).exists())
             std::cout << " [DIRECTORY DOES NOT EXIST]";
