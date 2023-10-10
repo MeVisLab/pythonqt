@@ -127,6 +127,7 @@ void TypeCompiler::visitName(NameAST *node)
   _M_type = name_cc.qualifiedName();
 }
 
+#if 0 //UNUSED
 QStringList TypeCompiler::cvString() const
 {
   QStringList lst;
@@ -135,21 +136,36 @@ QStringList TypeCompiler::cvString() const
     {
       if (q == Token_const)
         lst.append(QLatin1String("const"));
+      else if (q == Token_constexpr)
+        lst.append(QLatin1String("constexpr"));
       else if (q == Token_volatile)
         lst.append(QLatin1String("volatile"));
+      else if (q == Token_mutable)
+        lst.append(QLatin1String("mutable"));
     }
 
   return lst;
 }
+#endif
 
 bool TypeCompiler::isConstant() const
 {
   return _M_cv.contains(Token_const);
 }
 
+bool TypeCompiler::isConstexpr() const
+{
+  return _M_cv.contains(Token_constexpr);
+}
+
 bool TypeCompiler::isVolatile() const
 {
   return _M_cv.contains(Token_volatile);
+}
+
+bool TypeCompiler::isMutable() const
+{
+  return _M_cv.contains(Token_mutable);
 }
 
 // kate: space-indent on; indent-width 2; replace-tabs on;
