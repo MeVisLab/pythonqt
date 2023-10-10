@@ -65,8 +65,6 @@ public:
   bool isVolatile() const;
   bool isMutable() const;
 
-  //QStringList cvString() const; //UNUSED
-
   void run(TypeSpecifierAST *node);
 
 protected:
