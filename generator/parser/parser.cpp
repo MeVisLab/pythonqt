@@ -249,13 +249,20 @@ bool Parser::skipUntilDeclaration()
         case Token_export:
 
         case Token_const:       // cv
+        case Token_constexpr:   // cv
         case Token_volatile:    // cv
+        case Token_mutable:    // cv
 
         case Token_public:
         case Token_protected:
         case Token_private:
         case Token_signals:      // Qt
         case Token_slots:        // Qt
+          return true;
+
+        case Token_decltype:
+        case Token___typeof:
+          reportError("C++11 decltype/__typeof(id|expression) not handled");
           return true;
 
         default:
@@ -276,7 +283,11 @@ bool Parser::skipUntilStatement()
         case '{':
         case '}':
         case Token_const:
+        case Token_constexpr:
+        case Token_decltype:
+        case Token___typeof:
         case Token_volatile:
+        case Token_mutable:
         case Token_identifier:
         case Token_case:
         case Token_default:
@@ -984,7 +995,8 @@ bool Parser::parseCvQualify(const ListNode<std::size_t> *&node)
 
   int tk;
   while (0 != (tk = token_stream.lookAhead())
-         && (tk == Token_const || tk == Token_volatile))
+         && (tk == Token_const || tk == Token_constexpr ||
+             tk == Token_volatile || tk == Token_mutable))
     {
       node = snoc(node, token_stream.cursor(), _M_pool);
       token_stream.nextToken();
@@ -1032,7 +1044,8 @@ bool Parser::parseSimpleTypeSpecifier(TypeSpecifierAST *&node,
     {
       ast->integrals = integrals;
     }
-  else if (token_stream.lookAhead() == Token___typeof)
+  else if (token_stream.lookAhead() == Token___typeof ||
+           token_stream.lookAhead() == Token_decltype)
     {
       ast->type_of = token_stream.cursor();
       token_stream.nextToken();
@@ -1627,7 +1640,7 @@ bool Parser::parseStorageClassSpecifier(const ListNode<std::size_t> *&node)
   while (0 != (tk = token_stream.lookAhead())
          && (tk == Token_friend || tk == Token_auto
              || tk == Token_register || tk == Token_static
-             || tk == Token_extern || tk == Token_mutable))
+             || tk == Token_extern))
     {
       node = snoc(node, token_stream.cursor(), _M_pool);
       token_stream.nextToken();
@@ -3262,7 +3275,8 @@ bool Parser::parseDeclarationInternal(DeclarationAST *&node)
  start_decl:
   token_stream.rewind((int) index);
 
-  if (token_stream.lookAhead() == Token_const
+  if ((token_stream.lookAhead() == Token_const ||
+       token_stream.lookAhead() == Token_constexpr)
       && token_stream.lookAhead(1) == Token_identifier
       && token_stream.lookAhead(2) == '=')
     {
