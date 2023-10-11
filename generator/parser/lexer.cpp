@@ -1549,6 +1549,20 @@ void Lexer::scanKeyword8()
 	}
       break;
 
+    case 'd':
+      if (*(cursor + 1) == 'e' &&
+	  *(cursor + 2) == 'c' &&
+	  *(cursor + 3) == 'l' &&
+	  *(cursor + 4) == 't' &&
+	  *(cursor + 5) == 'y' &&
+	  *(cursor + 6) == 'p' &&
+	  *(cursor + 7) == 'e')
+	{
+	  token_stream[(int) index++].kind = Token_decltype;
+	  return;
+	}
+      break;
+
     case 'e':
       if (*(cursor + 1) == 'x' &&
 	  *(cursor + 2) == 'p' &&
@@ -1680,6 +1694,21 @@ void Lexer::scanKeyword9()
 {
   switch (*cursor)
     {
+    case 'c':
+      if (*(cursor + 1) == 'o' &&
+	  *(cursor + 2) == 'n' &&
+	  *(cursor + 3) == 's' &&
+	  *(cursor + 4) == 't' &&
+	  *(cursor + 5) == 'e' &&
+	  *(cursor + 6) == 'x' &&
+	  *(cursor + 7) == 'p' &&
+	  *(cursor + 8) == 'r')
+	{
+	  token_stream[(int) index++].kind = Token_constexpr;
+	  return;
+	}
+      break;
+
     case 'p':
       if (*(cursor + 1) == 'r' &&
 	  *(cursor + 2) == 'o' &&

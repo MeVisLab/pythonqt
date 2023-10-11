@@ -61,9 +61,9 @@ public:
   inline QList<int> cv() const { return _M_cv; }
 
   bool isConstant() const;
+  bool isConstexpr() const;
   bool isVolatile() const;
-
-  QStringList cvString() const;
+  bool isMutable() const;
 
   void run(TypeSpecifierAST *node);
 

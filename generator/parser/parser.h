@@ -100,10 +100,10 @@ public:
   bool parseEnumSpecifier(TypeSpecifierAST *&node);
   bool parseEnumerator(EnumeratorAST *&node);
   bool parseEqualityExpression(ExpressionAST *&node,
-			       bool templArgs = false);
+                               bool templArgs = false);
   bool parseExceptionSpecification(ExceptionSpecificationAST *&node);
   bool parseExclusiveOrExpression(ExpressionAST *&node,
-				  bool templArgs = false);
+                                  bool templArgs = false);
   bool parseExpression(ExpressionAST *&node);
   bool parseExpressionOrDeclarationStatement(StatementAST *&node);
   bool parseExpressionStatement(StatementAST *&node);
@@ -113,7 +113,7 @@ public:
   bool parseFunctionSpecifier(const ListNode<std::size_t> *&node);
   bool parseIfStatement(StatementAST *&node);
   bool parseInclusiveOrExpression(ExpressionAST *&node,
-				  bool templArgs = false);
+                                  bool templArgs = false);
   bool parseInitDeclarator(InitDeclaratorAST *&node);
   bool parseInitDeclaratorList(const ListNode<InitDeclaratorAST*> *&node);
   bool parseInitializer(InitializerAST *&node);
@@ -122,9 +122,9 @@ public:
   bool parseLinkageBody(LinkageBodyAST *&node);
   bool parseLinkageSpecification(DeclarationAST *&node);
   bool parseLogicalAndExpression(ExpressionAST *&node,
-				 bool templArgs = false);
+                                 bool templArgs = false);
   bool parseLogicalOrExpression(ExpressionAST *&node,
-				bool templArgs = false);
+                                bool templArgs = false);
   bool parseMemInitializer(MemInitializerAST *&node);
   bool parseMemInitializerList(const ListNode<MemInitializerAST*> *&node);
   bool parseMemberSpecification(DeclarationAST *&node);
@@ -148,17 +148,17 @@ public:
   bool parsePtrOperator(PtrOperatorAST *&node);
   bool parsePtrToMember(PtrToMemberAST *&node);
   bool parseRelationalExpression(ExpressionAST *&node,
-				 bool templArgs = false);
+                                 bool templArgs = false);
   bool parseShiftExpression(ExpressionAST *&node);
   bool parseSimpleTypeSpecifier(TypeSpecifierAST *&node,
-				bool onlyIntegral = false);
+                                bool onlyIntegral = false);
   bool parseStatement(StatementAST *&node);
   bool parseStorageClassSpecifier(const ListNode<std::size_t> *&node);
   bool parseStringLiteral(StringLiteralAST *&node);
   bool parseSwitchStatement(StatementAST *&node);
   bool parseTemplateArgument(TemplateArgumentAST *&node);
   bool parseTemplateArgumentList(const ListNode<TemplateArgumentAST*> *&node,
-				 bool reportError = true);
+                                 bool reportError = true);
   bool parseTemplateDeclaration(DeclarationAST *&node);
   bool parseTemplateParameter(TemplateParameterAST *&node);
   bool parseTemplateParameterList(const ListNode<TemplateParameterAST*> *&node);
@@ -173,7 +173,7 @@ public:
   bool parseTypedef(DeclarationAST *&node);
   bool parseUnaryExpression(ExpressionAST *&node);
   bool parseUnqualifiedName(UnqualifiedNameAST *&node,
-			    bool parseTemplateId = true);
+                            bool parseTemplateId = true);
   bool parseUsing(DeclarationAST *&node);
   bool parseUsingTypedef(DeclarationAST*& node);
   bool parseUsingDirective(DeclarationAST *&node);

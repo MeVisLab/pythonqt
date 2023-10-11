@@ -82,20 +82,20 @@ public:
     const size_type bytes = __n * sizeof(_Tp);
 
     if (_M_current_block == 0
-	|| _S_block_size < _M_current_index + bytes)
+        || _S_block_size < _M_current_index + bytes)
       {
-	++_M_block_index;
+        ++_M_block_index;
 
-	_M_storage = reinterpret_cast<char**>
-	  (::realloc(_M_storage, sizeof(char*) * (1 + _M_block_index)));
+        _M_storage = reinterpret_cast<char**>
+          (::realloc(_M_storage, sizeof(char*) * (1 + _M_block_index)));
 
-	_M_current_block = _M_storage[_M_block_index] = reinterpret_cast<char*>
-	  (new char[_S_block_size]);
+        _M_current_block = _M_storage[_M_block_index] = reinterpret_cast<char*>
+          (new char[_S_block_size]);
 
 #if defined(RXX_ALLOCATOR_INIT_0) // ### make it a policy
-	::memset(_M_current_block, 0, _S_block_size);
+        ::memset(_M_current_block, 0, _S_block_size);
 #endif
-	_M_current_index = 0;
+        _M_current_index = 0;
       }
 
     pointer p = reinterpret_cast<pointer>

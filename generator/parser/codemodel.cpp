@@ -142,7 +142,9 @@ TypeInfo TypeInfo::combine (const TypeInfo &__lhs, const TypeInfo &__rhs)
   TypeInfo __result = __lhs;
 
   __result.setConstant (__result.isConstant () || __rhs.isConstant ());
+  __result.setConstexpr (__result.isConstexpr () || __rhs.isConstexpr ());
   __result.setVolatile (__result.isVolatile () || __rhs.isVolatile ());
+  __result.setMutable (__result.isMutable () || __rhs.isMutable ());
   __result.setReference (__result.isReference () || __rhs.isReference ());
   __result.setRvalueReference (__result.isRvalueReference () || __rhs.isRvalueReference ());
   __result.setIndirections (__result.indirections () + __rhs.indirections ());
@@ -182,8 +184,14 @@ QString TypeInfo::toString() const
   if (isConstant())
     tmp += QLatin1String(" const");
 
+  if (isConstexpr())
+    tmp += QLatin1String(" constexpr");
+
   if (isVolatile())
     tmp += QLatin1String(" volatile");
+
+  if (isMutable())
+    tmp += QLatin1String(" mutable");
 
   if (indirections())
     tmp += QString(indirections(), QLatin1Char('*'));
@@ -915,6 +923,16 @@ bool _MemberModelItem::isConstant() const
 void _MemberModelItem::setConstant(bool isConstant)
 {
   _M_isConstant = isConstant;
+}
+
+bool _MemberModelItem::isConstexpr() const
+{
+  return _M_isConstexpr;
+}
+
+void _MemberModelItem::setConstexpr(bool isConstexpr)
+{
+  _M_isConstexpr = isConstexpr;
 }
 
 bool _MemberModelItem::isVolatile() const
