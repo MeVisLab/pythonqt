@@ -117,8 +117,8 @@ public:
     NameSymbol *name = _M_storage.value(key);
     if (!name)
       {
-	name = new NameSymbol(str, len);
-	_M_storage.insert(key, name);
+        name = new NameSymbol(str, len);
+        _M_storage.insert(key, name);
       }
 
     return name;

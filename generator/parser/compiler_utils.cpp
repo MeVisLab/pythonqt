@@ -58,7 +58,9 @@ TypeInfo CompilerUtils::typeDescription(TypeSpecifierAST *type_specifier, Declar
   TypeInfo typeInfo;
   typeInfo.setQualifiedName (type_cc.qualifiedName ());
   typeInfo.setConstant (type_cc.isConstant ());
+  typeInfo.setConstexpr (type_cc.isConstexpr ());
   typeInfo.setVolatile (type_cc.isVolatile ());
+  typeInfo.setMutable (type_cc.isMutable ());
   typeInfo.setReference (decl_cc.isReference ());
   typeInfo.setRvalueReference (decl_cc.isRvalueReference ());
   typeInfo.setIndirections (decl_cc.indirection ());
