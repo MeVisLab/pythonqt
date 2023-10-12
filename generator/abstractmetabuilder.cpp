@@ -1489,6 +1489,19 @@ AbstractMetaFunction *AbstractMetaBuilder::traverseFunction(FunctionModelItem fu
       return 0;
     }
 
+    if (function_item->isAuto()) {
+        /*TODO: it might work just to output 'auto', but this would require
+         * understanding what AbstractMetabuild::translateType() does and
+         * changing it.  auto is only used once anyway.
+         */
+        ReportHandler::warning(QString("%1: skipping auto function type '%2'")
+                .arg(function_name)
+                .arg(function_item->type().toString()));
+        m_rejected_functions[class_name + "::" + function_name + " " + function_item->type().toString()] =
+                UnmatchedReturnType;
+        return 0;
+    }
+
     QString cast_type;
 
     if (function_name.startsWith("operator")) {
@@ -1504,6 +1517,8 @@ AbstractMetaFunction *AbstractMetaBuilder::traverseFunction(FunctionModelItem fu
 
     AbstractMetaFunction *meta_function = createMetaFunction();
     meta_function->setConstant(function_item->isConstant());
+    meta_function->setConstexpr(function_item->isConstexpr());
+    meta_function->setAuto(function_item->isAuto());
     meta_function->setException(function_item->exception());
 
     ReportHandler::debugMedium(QString(" - %2()").arg(function_name));
@@ -1707,10 +1722,12 @@ AbstractMetaType *AbstractMetaBuilder::translateType(const TypeInfo &_typei, boo
             //newInfo.setArguments(typei.arguments());
             newInfo.setIndirections(typei.indirections());
             newInfo.setConstant(typei.isConstant());
+            newInfo.setConstexpr(typei.isConstexpr());
             newInfo.setFunctionPointer(typei.isFunctionPointer());
             newInfo.setQualifiedName(typei.qualifiedName());
             newInfo.setReference(typei.isReference());
             newInfo.setVolatile(typei.isVolatile());
+            newInfo.setMutable(typei.isMutable());
 
             AbstractMetaType *elementType = translateType(newInfo, ok);
             if (!(*ok))
