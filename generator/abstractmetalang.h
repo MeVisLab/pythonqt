@@ -410,6 +410,7 @@ public:
 
     AbstractMetaFunction() :
           m_constant(false),
+          m_constexpr(false),
           m_invalid(false)
     {
     }
@@ -487,6 +488,12 @@ public:
     bool isConstant() const { return m_constant; }
     void setConstant(bool constant) { m_constant = constant; }
 
+    bool isConstexpr() const { return m_constexpr; }
+    void setConstexpr(bool constant) { m_constexpr = constant; }
+
+    bool isAuto() const { return m_auto; }
+    void setAuto(bool isAuto) { m_auto = isAuto; }
+
     QString exception() const { return m_exception; }
     void setException(const QString &exception) { m_exception = exception; }
     QString toString() const { return m_name; }
@@ -550,6 +557,8 @@ private:
     AbstractMetaArgumentList m_arguments;
     QString m_exception;
     uint m_constant                 : 1;
+    uint m_constexpr                : 1;
+    uint m_auto                     : 1;
     uint m_invalid                  : 1;
 };
 
