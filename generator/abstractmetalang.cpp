@@ -315,6 +315,8 @@ AbstractMetaFunction *AbstractMetaFunction::copy() const
     if (type())
         cpy->setType(type()->copy());
     cpy->setConstant(isConstant());
+    cpy->setConstexpr(isConstexpr());
+    cpy->setAuto(isAuto());
     cpy->setException(exception());
     cpy->setOriginalAttributes(originalAttributes());
 
@@ -366,6 +368,8 @@ QString AbstractMetaFunction::signature() const
 
     if (isConstant())
         s += " const";
+    if (isConstexpr())
+        s += " constexpr";
 
     return s;
 }
@@ -657,6 +661,8 @@ QString AbstractMetaFunction::minimalSignature() const
     minimalSignature += ")";
     if (isConstant())
         minimalSignature += "const";
+    if (isConstexpr())
+        minimalSignature += "constexpr";
 
     minimalSignature = TypeSystem::normalizedSignature(minimalSignature.toLocal8Bit().constData());
     m_cached_minimal_signature = minimalSignature;
