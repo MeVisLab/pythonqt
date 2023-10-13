@@ -158,7 +158,10 @@ static QSet<QString> _builtinListTypes = QSet<QString>() << "QByteArray"
 << "QLineF"
 << "QPoint"
 << "QPointF"
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
 << "QRegExp"
+#endif
+<< "QRegularExpression"
 << "QFont"
 << "QPixmap"
 << "QBrush"
@@ -175,7 +178,11 @@ static QSet<QString> _builtinListTypes = QSet<QString>() << "QByteArray"
 << "QPen"
 << "QTextLength"
 << "QTextFormat"
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
 << "QMatrix"
+#endif
+<< "QTransform"
+<< "QMatrix4x4"
 << "QVariant";
 
 static void addListRegistration(AbstractMetaType* type, QSet<QString>& output) {

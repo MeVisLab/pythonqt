@@ -435,7 +435,11 @@ bool ShellGenerator::isBuiltIn(const QString& name) {
     builtIn.insert("QKeySequence");
     builtIn.insert("QTextLength");
     builtIn.insert("QTextFormat");
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
     builtIn.insert("QMatrix");
+#endif
+    builtIn.insert("QTransform");
+    builtIn.insert("QMatrix4x4");
     builtIn.insert("QDate");
     builtIn.insert("QTime");
     builtIn.insert("QDateTime");
@@ -449,7 +453,10 @@ bool ShellGenerator::isBuiltIn(const QString& name) {
     builtIn.insert("QLineF");
     builtIn.insert("QPoint");
     builtIn.insert("QPointF");
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
     builtIn.insert("QRegExp");
+#endif
+    builtIn.insert("QRegularExpression");
   }
   return builtIn.contains(name);
 }
