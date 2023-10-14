@@ -25,48 +25,34 @@ PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp
   PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_$${QT_MAJOR_VERSION}$${QT_MINOR_VERSION}
 
   !exists($$PYTHONQT_GENERATED_PATH) {
-    contains( QT_MAJOR_VERSION, 5 ) {
-      contains( QT_MINOR_VERSION, 10 ) { 
-        PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_56
-      }
-      else:contains( QT_MINOR_VERSION, 11 ) { 
-        PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_511
-      }
-      else:contains( QT_MINOR_VERSION, 12 ) {
-        PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_511
-      }
-      else:contains( QT_MINOR_VERSION, 1 ) {
+    # For Qt5 we know that the older generated wrappers work with the later
+    # versions, even (apparently) Qt5.15, so:
+    equals(QT_MAJOR_VERSION, 5) {
+      # Qt5: have 5.0, 5.3, 5.4, 5.6 and 5.11 at present:
+      lessThan(QT_MINOR_VERSION, 3) { # 5.1, 5.2
         PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_50
       }
-      else:contains( QT_MINOR_VERSION, 2 ) {
-        PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_50
-      }
-  	  else:contains( QT_MINOR_VERSION, 3 ) { 
-        PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_53
-  	  }
-  	  else:contains( QT_MINOR_VERSION, 4 ) { 
+      else: lessThan(QT_MINOR_VERSION, 6) { # 5.5
         PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_54
-  	  }
-      else:contains( QT_MINOR_VERSION, 5 ) { 
-        PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_54
-  	  }
-      else:contains( QT_MINOR_VERSION, 6 ) { 
+      }
+      else: lessThan(QT_MINOR_VERSION, 11) { # 5.7, 5.8, 5.9, 5.10
         PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_56
       }
-      else:contains( QT_MINOR_VERSION, 7 ) { 
-        PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_56
-      }
-      else:contains( QT_MINOR_VERSION, 8 ) { 
-        PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_56
-      }
-      else:contains( QT_MINOR_VERSION, 9 ) { 
-        PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_56
-      }
-      else {
-        PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_56
+      else { # >5.11
+        # LATEST Qt5 generated files:
+        PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_511
       }
     }
+
+    !exists($$PYTHONQT_GENERATED_PATH) {
+      error("No generated sources exist for Qt$${QT_VERSION}")
+    }
   }
+}
+
+!build_pass {
+  message("Qt version: Qt$${QT_VERSION}")
+  message("Using generated sources files from $${PYTHONQT_GENERATED_PATH}")
 }
 
 VERSION = 3.2.0

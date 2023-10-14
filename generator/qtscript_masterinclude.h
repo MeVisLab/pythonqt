@@ -38,7 +38,6 @@
 ** $QT_END_LICENSE$
 **
 ****************************************************************************/
-
 // We need to force the endianess in Qt5
 #define Q_BYTE_ORDER Q_LITTLE_ENDIAN
 
@@ -48,11 +47,31 @@
 #define QOPENGLFUNCTIONS_H
 #define QOPENGLEXTRAFUNCTIONS_H
 
-// our compiler can't handle the templates for singleShot (int Qt 5.12), but we can circumvent this with
-// Q_CLANG_QDOC for the moment:
-#define Q_CLANG_QDOC
-#include <QtCore/QTimer>
-#undef Q_CLANG_QDOC
+/* This must only be included after 'QT_NO_' definitions have been defined. */
+#include <QtCore/qglobal.h>
+
+/* NOTE: Qt5.12 and later (including Qt6) uses template functions for the
+ * static implementations of QTimer::singleShot() (the function, not the
+ * property).  The generator does not handle template functions.  Defining
+ * Q_CLANG_QDOC works around this by exposing the non-template forms that
+ * appear in the documentation at the same time as hiding the templates.
+ * Without this the QTimer::singleShot functions do not appear in the PythonQt
+ * interface.
+ *
+ * Unfortunately the work around breaks precompilation in Qt5.11 because it
+ * causes duplicate definitions of some text handling functions (they really
+ * are duplicated if Q_CLANG_QDOC is turned on) so the change must be version
+ * specific.
+ *
+ * This does not work in Qt6 because Qt6 uses Q_QDOC for the documentation and
+ * needs other fixes.
+ */
+#if QT_VERSION_MAJOR == 5 && QT_VERSION_MINOR > 11
+#   include <QtCore/QObject>  // included by QtCore/QTimer
+#   define Q_CLANG_QDOC
+#   include <QtCore/QTimer>
+#   undef Q_CLANG_QDOC
+#endif
 
 #include <QtCore/QtCore>
 #include <QtGui/QtGui>
