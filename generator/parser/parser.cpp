@@ -1267,7 +1267,7 @@ bool Parser::parseDeclarator(DeclaratorAST *&node)
         }
         if (token_stream.lookAhead() == Token___attribute__)
           {
-	      parse_Attribute__();
+              parse_Attribute__();
           }
       }
 
@@ -1780,14 +1780,14 @@ bool Parser::parse_Attribute__() {
     parseExpression(expr);
 
     if (token_stream.lookAhead() != ')')
-	{
-	    reportError(("')' expected"));
-	    return false;
-	}
+        {
+            reportError(("')' expected"));
+            return false;
+        }
     else
-	{
-	    token_stream.nextToken();
-	}
+        {
+            token_stream.nextToken();
+        }
     return true;
 }
 
