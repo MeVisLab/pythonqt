@@ -112,8 +112,8 @@ static int PythonQtInstanceWrapper_setitem(PyObject* self, PyObject* index, PyOb
   PythonQtInstanceWrapper* wrapper = (PythonQtInstanceWrapper*)self;
   bool isSetItem = value;
   PythonQtMemberInfo opSlot = isSetItem ?
-	wrapper->classInfo()->member("__setitem__")
-	: wrapper->classInfo()->member("__delitem__");
+        wrapper->classInfo()->member("__setitem__")
+        : wrapper->classInfo()->member("__delitem__");
 
   if (opSlot._type == PythonQtMemberInfo::Slot) {
     PyObject* args = PyTuple_New(isSetItem?2:1);

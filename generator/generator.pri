@@ -23,7 +23,7 @@ win32-msvc*{
         QMAKE_CXXFLAGS += -wd4996
         QMAKE_CFLAGS += -wd4996
 #Disable warnings for external headers
-	greaterThan(QMAKE_MSC_VER, 1599):QMAKE_CXXFLAGS += -external:anglebrackets -external:W0 -external:templates-
+        greaterThan(QMAKE_MSC_VER, 1599):QMAKE_CXXFLAGS += -external:anglebrackets -external:W0 -external:templates-
 }
 #Do not issue warning to Qt's system includes
 gcc:!isEmpty(QT_INSTALL_HEADERS): QMAKE_CXXFLAGS += -isystem $$[QT_INSTALL_HEADERS]
