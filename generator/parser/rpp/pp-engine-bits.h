@@ -577,7 +577,7 @@ InputIterator pp::handle_define (InputIterator _first, InputIterator _last)
 
   if (_first != _last && *_first == '(')
     {
-      macro.function_like = true;
+      macro.is.function_like = true;
       macro.formals.reserve (5);
 
       _first = skip_blanks (++_first, _last); // skip '('
@@ -589,7 +589,7 @@ InputIterator pp::handle_define (InputIterator _first, InputIterator _last)
 
       if (*_first == '.')
         {
-          macro.variadics = true;
+          macro.is.variadics = true;
           while (*_first == '.')
             ++_first;
         }
@@ -606,7 +606,7 @@ InputIterator pp::handle_define (InputIterator _first, InputIterator _last)
 
           if (*_first == '.')
             {
-              macro.variadics = true;
+              macro.is.variadics = true;
               while (*_first == '.')
                 ++_first;
             }
