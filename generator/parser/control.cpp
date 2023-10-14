@@ -52,7 +52,7 @@ Control::Control()
   pushContext();
 
   declareTypedef(findOrInsertName("__builtin_va_list",
-		 strlen("__builtin_va_list")), 0);
+                 strlen("__builtin_va_list")), 0);
 }
 
 Control::~Control()
