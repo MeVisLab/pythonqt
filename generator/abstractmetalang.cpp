@@ -1203,7 +1203,7 @@ bool AbstractMetaClass::hasVirtualDestructor() const
 static bool functions_contains(const AbstractMetaFunctionList &l, const AbstractMetaFunction *func)
 {
     foreach (const AbstractMetaFunction *f, l) {
-		if ((f->compareTo(func) & AbstractMetaFunction::PrettySimilar) == AbstractMetaFunction::PrettySimilar)
+                if ((f->compareTo(func) & AbstractMetaFunction::PrettySimilar) == AbstractMetaFunction::PrettySimilar)
             return true;
     }
     return false;

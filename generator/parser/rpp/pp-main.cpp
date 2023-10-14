@@ -142,19 +142,19 @@ int main (int, char *argv [])
         opt_pch = true;
 
       else if (! strcmp (arg, "-msse"))
-	{
-	  pp_macro __macro;
-	  __macro.name = pp_symbol::get ("__SSE__", 7);
-	  env.bind (__macro.name, __macro);
+        {
+          pp_macro __macro;
+          __macro.name = pp_symbol::get ("__SSE__", 7);
+          env.bind (__macro.name, __macro);
 
-	  __macro.name = pp_symbol::get ("__MMX__", 7);
-	  env.bind (__macro.name, __macro);
-	}
+          __macro.name = pp_symbol::get ("__MMX__", 7);
+          env.bind (__macro.name, __macro);
+        }
 
       else if (! strcmp (arg, "-include"))
         {
           if (argv [1])
-	    include_pch_file = *++argv;
+            include_pch_file = *++argv;
         }
 
       else if (! strncmp (arg, "-o", 2))
