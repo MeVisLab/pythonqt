@@ -517,16 +517,16 @@ private:
   {
     struct
     {
-      uint _M_isConstant: 1;
-      uint _M_isConstexpr: 1;
-      uint _M_isVolatile: 1;
-      uint _M_isStatic: 1;
-      uint _M_isAuto: 1;
-      uint _M_isFriend: 1;
-      uint _M_isRegister: 1;
-      uint _M_isExtern: 1;
-      uint _M_isMutable: 1;
-    };
+      uint isConstant: 1;
+      uint isConstexpr: 1;
+      uint isVolatile: 1;
+      uint isStatic: 1;
+      uint isAuto: 1;
+      uint isFriend: 1;
+      uint isRegister: 1;
+      uint isExtern: 1;
+      uint isMutable: 1;
+    } _M;
     uint _M_flags;
   };
 
@@ -586,13 +586,13 @@ private:
   {
     struct
     {
-      uint _M_isVirtual: 1;
-      uint _M_isInline: 1;
-      uint _M_isAbstract: 1;
-      uint _M_isExplicit: 1;
-      uint _M_isVariadics: 1;
-      uint _M_isInvokable : 1; // Qt
-    };
+      uint isVirtual: 1;
+      uint isInline: 1;
+      uint isAbstract: 1;
+      uint isExplicit: 1;
+      uint isVariadics: 1;
+      uint isInvokable : 1; // Qt
+    } _M;
     uint _M_flags;
   };
 
