@@ -250,7 +250,7 @@ public:
             static bool hide_next = false; // ### remove me
 
             pp_macro *macro = env.resolve (name_buffer, name_size);
-            if (! macro || macro->hidden || hide_next)
+            if (! macro || macro->is.hidden || hide_next)
               {
                 hide_next = ! strcmp (name_buffer, "defined");
 
@@ -278,13 +278,13 @@ public:
                 continue;
               }
 
-            if (! macro->function_like)
+            if (! macro->is.function_like)
               {
                 pp_macro *m = 0;
 
                 if (macro->definition)
                   {
-                    macro->hidden = true;
+                    macro->is.hidden = true;
 
                     std::string tmp;
                     tmp.reserve (256);
@@ -316,7 +316,7 @@ public:
                           std::copy (tmp.begin (), tmp.end (), _result);
                       }
 
-                    macro->hidden = false;
+                    macro->is.hidden = false;
                   }
 
                 if (! m)
@@ -370,15 +370,15 @@ public:
               _first = arg_it;
 
 #if 0 // ### enable me
-              assert ((macro->variadics && macro->formals.size () >= actuals.size ())
+              assert ((macro->is.variadics && macro->formals.size () >= actuals.size ())
                           || macro->formals.size() == actuals.size());
 #endif
 
               pp_frame frame (macro, &actuals);
               pp_macro_expander expand_macro (env, &frame);
-              macro->hidden = true;
+              macro->is.hidden = true;
               expand_macro (macro->definition->begin (), macro->definition->end (), _result);
-              macro->hidden = false;
+              macro->is.hidden = false;
               generated_lines += expand_macro.lines;
           }
         else
@@ -394,7 +394,7 @@ public:
   {
     InputIterator arg_end = skip_argument (_first, _last);
 
-    while (_macro->variadics && _first != arg_end && arg_end != _last && *arg_end == ','
+    while (_macro->is.variadics && _first != arg_end && arg_end != _last && *arg_end == ','
         && (_actuals.size () + 1) == _macro->formals.size ())
       {
         arg_end = skip_argument (++arg_end, _last);

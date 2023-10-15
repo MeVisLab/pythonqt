@@ -683,63 +683,63 @@ void _FunctionModelItem::setException(const QString &exception)
 
 bool _FunctionModelItem::isVariadics() const
 {
-  return _M_isVariadics;
+  return _M.isVariadics;
 }
 
 void _FunctionModelItem::setVariadics(bool isVariadics)
 {
-  _M_isVariadics = isVariadics;
+  _M.isVariadics = isVariadics;
 }
 
 bool _FunctionModelItem::isVirtual() const
 {
-  return _M_isVirtual;
+  return _M.isVirtual;
 }
 
 void _FunctionModelItem::setVirtual(bool isVirtual)
 {
-  _M_isVirtual = isVirtual;
+  _M.isVirtual = isVirtual;
 }
 
 bool _FunctionModelItem::isInline() const
 {
-  return _M_isInline;
+  return _M.isInline;
 }
 
 void _FunctionModelItem::setInline(bool isInline)
 {
-  _M_isInline = isInline;
+  _M.isInline = isInline;
 }
 
 bool _FunctionModelItem::isExplicit() const
 {
-  return _M_isExplicit;
+  return _M.isExplicit;
 }
 
 void _FunctionModelItem::setExplicit(bool isExplicit)
 {
-  _M_isExplicit = isExplicit;
+  _M.isExplicit = isExplicit;
 }
 
 bool _FunctionModelItem::isAbstract() const
 {
-  return _M_isAbstract;
+  return _M.isAbstract;
 }
 
 void _FunctionModelItem::setAbstract(bool isAbstract)
 {
-  _M_isAbstract = isAbstract;
+  _M.isAbstract = isAbstract;
 }
 
 // Qt
 bool _FunctionModelItem::isInvokable() const
 {
-    return _M_isInvokable;
+    return _M.isInvokable;
 }
 
 void _FunctionModelItem::setInvokable(bool isInvokable)
 {
-    _M_isInvokable = isInvokable;
+    _M.isInvokable = isInvokable;
 }
 
 // ---------------------------------------------------------------------------
@@ -907,92 +907,92 @@ void _MemberModelItem::setAccessPolicy(CodeModel::AccessPolicy accessPolicy)
 
 bool _MemberModelItem::isStatic() const
 {
-  return _M_isStatic;
+  return _M.isStatic;
 }
 
 void _MemberModelItem::setStatic(bool isStatic)
 {
-  _M_isStatic = isStatic;
+  _M.isStatic = isStatic;
 }
 
 bool _MemberModelItem::isConstant() const
 {
-  return _M_isConstant;
+  return _M.isConstant;
 }
 
 void _MemberModelItem::setConstant(bool isConstant)
 {
-  _M_isConstant = isConstant;
+  _M.isConstant = isConstant;
 }
 
 bool _MemberModelItem::isConstexpr() const
 {
-  return _M_isConstexpr;
+  return _M.isConstexpr;
 }
 
 void _MemberModelItem::setConstexpr(bool isConstexpr)
 {
-  _M_isConstexpr = isConstexpr;
+  _M.isConstexpr = isConstexpr;
 }
 
 bool _MemberModelItem::isVolatile() const
 {
-  return _M_isVolatile;
+  return _M.isVolatile;
 }
 
 void _MemberModelItem::setVolatile(bool isVolatile)
 {
-  _M_isVolatile = isVolatile;
+  _M.isVolatile = isVolatile;
 }
 
 bool _MemberModelItem::isAuto() const
 {
-  return _M_isAuto;
+  return _M.isAuto;
 }
 
 void _MemberModelItem::setAuto(bool isAuto)
 {
-  _M_isAuto = isAuto;
+  _M.isAuto = isAuto;
 }
 
 bool _MemberModelItem::isFriend() const
 {
-  return _M_isFriend;
+  return _M.isFriend;
 }
 
 void _MemberModelItem::setFriend(bool isFriend)
 {
-  _M_isFriend = isFriend;
+  _M.isFriend = isFriend;
 }
 
 bool _MemberModelItem::isRegister() const
 {
-  return _M_isRegister;
+  return _M.isRegister;
 }
 
 void _MemberModelItem::setRegister(bool isRegister)
 {
-  _M_isRegister = isRegister;
+  _M.isRegister = isRegister;
 }
 
 bool _MemberModelItem::isExtern() const
 {
-  return _M_isExtern;
+  return _M.isExtern;
 }
 
 void _MemberModelItem::setExtern(bool isExtern)
 {
-  _M_isExtern = isExtern;
+  _M.isExtern = isExtern;
 }
 
 bool _MemberModelItem::isMutable() const
 {
-  return _M_isMutable;
+  return _M.isMutable;
 }
 
 void _MemberModelItem::setMutable(bool isMutable)
 {
-  _M_isMutable = isMutable;
+  _M.isMutable = isMutable;
 }
 
 // kate: space-indent on; indent-width 2; replace-tabs on;
