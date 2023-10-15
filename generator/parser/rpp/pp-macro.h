@@ -62,7 +62,7 @@ struct pp_macro
       int unsigned hidden: 1;
       int unsigned function_like: 1;
       int unsigned variadics: 1;
-    };
+    } is;
   };
 
   int lines;
