@@ -39,7 +39,7 @@
 **
 ****************************************************************************/
 
-#include <algorithm> // for std::sort
+#include <algorithm> // for std::sort, std::stable_sort
 
 #include "setupgenerator.h"
 #include "shellgenerator.h"
@@ -137,11 +137,6 @@ static QStringList getOperatorCodes(const AbstractMetaClass* cls) {
 #endif
   std::sort(result.begin(), result.end());
   return result;
-}
-
-static bool class_less_than(const AbstractMetaClass *a, const AbstractMetaClass *b)
-{
-  return a->name() < b->name();
 }
 
 static QSet<QString> _builtinListTypes = QSet<QString>() << "QByteArray"
@@ -242,7 +237,7 @@ void SetupGenerator::generate()
       }
     }
   }
-  std::sort(classes_with_polymorphic_id.begin(), classes_with_polymorphic_id.end(), class_less_than);
+  classes_with_polymorphic_id.sort();
 
   QHashIterator<QString, QList<const AbstractMetaClass*> > pack(packHash);
   while (pack.hasNext()) {
@@ -250,7 +245,7 @@ void SetupGenerator::generate()
     QList<const AbstractMetaClass*> list = pack.value();
     if (list.isEmpty())
       continue;
-    std::sort(list.begin(), list.end(), class_less_than);
+    std::stable_sort(list.begin(), list.end(), AbstractMetaClass::less_than);
 
     QString packKey = pack.key();
     QString packName = pack.key();
