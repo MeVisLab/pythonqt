@@ -39,8 +39,6 @@
 **
 ****************************************************************************/
 
-#include <algorithm> // for std::sort
-
 #include "abstractmetabuilder.h"
 #include "reporthandler.h"
 
@@ -380,15 +378,9 @@ void AbstractMetaBuilder::fixQObjectForScope(TypeDatabase *types,
     }
 }
 
-static bool class_less_than(AbstractMetaClass *a, AbstractMetaClass *b)
-{
-    return a->name() < b->name();
-}
-
-
 void AbstractMetaBuilder::sortLists()
 {
-   std::sort(m_meta_classes.begin(), m_meta_classes.end(), class_less_than);
+   m_meta_classes.sort();
    for (AbstractMetaClass *cls :  m_meta_classes) {
         cls->sortFunctions();
    }
@@ -2491,7 +2483,7 @@ AbstractMetaClassList AbstractMetaBuilder::classesTopologicalSorted() const
     AbstractMetaClassList res;
 
     AbstractMetaClassList classes = m_meta_classes;
-    std::sort(classes.begin(), classes.end());
+    classes.sort();
 
     QSet<AbstractMetaClass*> noDependency;
     QHash<AbstractMetaClass*, QSet<AbstractMetaClass* >* > hash;

@@ -71,6 +71,7 @@ public:
     AbstractMetaClass *findClass(const QString &name) const;
     AbstractMetaEnumValue *findEnumValue(const QString &string) const;
     AbstractMetaEnum *findEnum(const EnumTypeEntry *entry) const;
+    void sort();
 
 };
 
@@ -833,6 +834,11 @@ public:
     bool isTypeAlias() const { return m_is_type_alias; }
     bool operator <(const AbstractMetaClass &a) const {
       return qualifiedCppName() < a.qualifiedCppName();
+    }
+
+    static bool less_than(const AbstractMetaClass *cl,
+            const AbstractMetaClass *cr) {
+        return cl->name() < cr->name();
     }
 
 private:
