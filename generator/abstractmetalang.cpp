@@ -39,7 +39,7 @@
 **
 ****************************************************************************/
 
-#include <algorithm> // for std::sort
+#include <algorithm> // for std::stable_sort
 
 #include "abstractmetalang.h"
 #include "reporthandler.h"
@@ -2022,4 +2022,10 @@ AbstractMetaClass *AbstractMetaClassList::findClass(const QString &name) const
     }
 
     return 0;
+}
+
+
+void AbstractMetaClassList::sort(void)
+{
+   std::stable_sort(begin(), end(), AbstractMetaClass::less_than);
 }
