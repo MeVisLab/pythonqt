@@ -1389,8 +1389,24 @@ bool Parser::parseEnumSpecifier(TypeSpecifierAST *&node)
 
   CHECK(Token_enum);
 
+  if (token_stream.lookAhead() == Token_class)
+    {
+      token_stream.nextToken();
+    }
+
   NameAST *name = 0;
   parseName(name);
+
+  if(token_stream.lookAhead() == ':')
+    {
+      token_stream.nextToken();
+      TypeSpecifierAST *ast = 0;
+      if (!parseSimpleTypeSpecifier(ast))
+        {
+            token_stream.rewind((int) start);
+            return false;
+        }
+    }
 
   if (token_stream.lookAhead() != '{')
     {
@@ -1796,11 +1812,16 @@ bool Parser::parseForwardDeclarationSpecifier(TypeSpecifierAST *&node)
   std::size_t start = token_stream.cursor();
 
   int kind = token_stream.lookAhead();
-  if (kind != Token_class && kind != Token_struct && kind != Token_union)
+  if (kind != Token_class && kind != Token_struct && kind != Token_union && kind != Token_enum)
     return false;
 
   std::size_t class_key = token_stream.cursor();
   token_stream.nextToken();
+
+  if (kind == Token_enum && token_stream.lookAhead() == Token_class)
+    {
+      token_stream.nextToken();
+    }
 
   NameAST *name = 0;
   if (!parseName(name, false)) {

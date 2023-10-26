@@ -190,6 +190,7 @@
   <enum-type name="QAbstractSlider::SliderChange"/>
   <enum-type name="QAbstractSpinBox::ButtonSymbols"/>
   <enum-type name="QAbstractSpinBox::CorrectionMode"/>
+  <enum-type name="QAbstractSpinBox::StepType"/>
   <enum-type name="QAbstractSpinBox::StepEnabledFlag" flags="QAbstractSpinBox::StepEnabled"/>
   <enum-type name="QAccessible::Event"/>
   <enum-type name="QAccessible::Method"/>
@@ -256,6 +257,7 @@
   <enum-type name="QFrame::Shape"/>
   <enum-type name="QFrame::StyleMask"/>
   <enum-type name="QGradient::CoordinateMode"/>
+  <enum-type name="QGradient::Preset"/>
   <enum-type name="QGradient::Spread" lower-bound="QGradient.PadSpread" upper-bound="QGradient.RepeatSpread"/>
   <enum-type name="QGradient::Type"/>
   <enum-type name="QGraphicsEllipseItem::enum_1"/>

@@ -13,6 +13,7 @@
 <object-type name="QJSValue"></object-type>
 
 <enum-type name="QJSEngine::Extension"/>
+<enum-type name="QJSValue::ErrorType"/>
 <enum-type name="QJSValue::SpecialValue"/>
 
 <object-type name="QQmlAbstractUrlInterceptor"></object-type>

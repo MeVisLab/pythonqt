@@ -86,7 +86,7 @@ protected:
   virtual void visitForwardDeclarationSpecifier(ForwardDeclarationSpecifierAST *);
   virtual void visitQEnums(QEnumsAST *);
 
-  void warnHere() const;
+  void warnHere(int startToken, int endToken = -1) const;
 
 private:
 
