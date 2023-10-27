@@ -645,6 +645,11 @@ bool Parser::parseUsing(DeclarationAST *&node)
 
   CHECK(Token_using);
 
+  if (token_stream.lookAhead(1) == '=')
+  {
+      return parseUsingTypedef(node);
+  }
+
   if (token_stream.lookAhead() == Token_namespace)
     return parseUsingDirective(node);
 
@@ -667,6 +672,41 @@ bool Parser::parseUsing(DeclarationAST *&node)
   return true;
 }
 
+bool Parser::parseUsingTypedef(DeclarationAST*& node)
+{
+    std::size_t start = token_stream.cursor();
+
+    DeclaratorAST* decl = 0;
+    if (!parseDeclarator(decl))
+    {
+        return false;
+    }
+
+    InitDeclaratorAST* init_decl = CreateNode<InitDeclaratorAST>(_M_pool);
+    init_decl->declarator = decl;
+    init_decl->initializer = 0;
+    const ListNode<InitDeclaratorAST*>* declarators = 0;
+    declarators = snoc(declarators, init_decl, _M_pool);
+
+    ADVANCE('=', "=");
+
+    TypeSpecifierAST* spec = 0;
+    if (!parseTypeSpecifierOrClassSpec(spec))
+    {
+        reportError(("Need a type specifier to declare"));
+        return false;
+    }
+
+    TypedefAST* ast = CreateNode<TypedefAST>(_M_pool);
+    ast->type_specifier = spec;
+    ast->init_declarators = declarators;
+
+    UPDATE_POS(ast, start, token_stream.cursor());
+    node = ast;
+
+    return true;
+}
+    
 bool Parser::parseUsingDirective(DeclarationAST *&node)
 {
   std::size_t start = token_stream.cursor();

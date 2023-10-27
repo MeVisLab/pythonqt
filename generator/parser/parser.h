@@ -175,6 +175,7 @@ public:
   bool parseUnqualifiedName(UnqualifiedNameAST *&node,
 			    bool parseTemplateId = true);
   bool parseUsing(DeclarationAST *&node);
+  bool parseUsingTypedef(DeclarationAST*& node);
   bool parseUsingDirective(DeclarationAST *&node);
   bool parseWhileStatement(StatementAST *&node);
   bool parseWinDeclSpec(WinDeclSpecAST *&node);
