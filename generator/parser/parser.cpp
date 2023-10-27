@@ -168,6 +168,7 @@ void Parser::tokenRequiredError(int token)
   err += token_name(token_stream.lookAhead());
   err += "''";
 
+
   reportError(err);
 }
 
@@ -1922,7 +1923,7 @@ bool Parser::parseClassSpecifier(TypeSpecifierAST *&node)
 
   NameAST *name = 0;
   parseName(name, true);
-
+  
   BaseClauseAST *bases = 0;
 
   if (token_stream.lookAhead() == ':')
@@ -3152,11 +3153,14 @@ bool Parser::parseDeclarationInternal(DeclarationAST *&node)
   WinDeclSpecAST *winDeclSpec = 0;
   parseWinDeclSpec(winDeclSpec);
 
+  const ListNode<std::size_t>* cv = 0;
+  parseCvQualify(cv);
+
   const ListNode<std::size_t> *funSpec = 0;
   bool hasFunSpec = parseFunctionSpecifier(funSpec);
 
-  const ListNode<std::size_t> *cv = 0;
-  parseCvQualify(cv);
+  if (!cv)
+    parseCvQualify(cv);
 
   const ListNode<std::size_t> *storageSpec = 0;
   bool hasStorageSpec = parseStorageClassSpecifier(storageSpec);
