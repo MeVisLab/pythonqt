@@ -446,7 +446,7 @@ bool Handler::startElement(const QString &, const QString &n,
         return importFileElement(atts);
     }
 
-    std::auto_ptr<StackElement> element(new StackElement(current));
+    std::unique_ptr<StackElement> element(new StackElement(current));
 
     if (!tagNames.contains(tagName)) {
         m_error = QString("Unknown tag name: '%1'").arg(tagName);
@@ -1486,6 +1486,7 @@ TypeDatabase::TypeDatabase() : m_suppressWarnings(true)
 bool TypeDatabase::parseFile(const QString &filename, bool generate)
 {
     QFile file(filename);
+
     Q_ASSERT(file.exists());
     QXmlInputSource source(&file);
 
