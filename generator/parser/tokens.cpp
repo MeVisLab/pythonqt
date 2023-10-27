@@ -105,6 +105,7 @@ static char const * const _S_token_names[] = {
   "mutable",
   "namespace",
   "new",
+  "noexcept",
   "not",
   "not_eq",
   "number_literal",
