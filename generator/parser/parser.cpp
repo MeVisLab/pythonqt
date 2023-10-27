@@ -2109,6 +2109,13 @@ bool Parser::parseExceptionSpecification(ExceptionSpecificationAST *&node)
 {
   std::size_t start = token_stream.cursor();
 
+  if (token_stream.lookAhead() == Token_noexcept)
+  {
+    // ignore noexcept
+    token_stream.nextToken();
+    return true;
+  }
+
   CHECK(Token_throw);
   ADVANCE('(', "(");
 

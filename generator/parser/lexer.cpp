@@ -1563,6 +1563,20 @@ void Lexer::scanKeyword8()
 	}
       break;
 
+    case 'n':
+      if (*(cursor + 1) == 'o' &&
+          *(cursor + 2) == 'e' &&
+          *(cursor + 3) == 'x' &&
+          *(cursor + 4) == 'c' &&
+          *(cursor + 5) == 'e' &&
+          *(cursor + 6) == 'p' &&
+          *(cursor + 7) == 't')
+        {
+          token_stream[(int) index++].kind = Token_noexcept;
+          return;
+        }
+      break;
+
     case 'o':
       if (*(cursor + 1) == 'p' &&
 	  *(cursor + 2) == 'e' &&
