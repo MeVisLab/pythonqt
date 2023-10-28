@@ -649,6 +649,7 @@
   <enum-type name="QSystemSemaphore::SystemSemaphoreError"/>
   <enum-type name="QTextBoundaryFinder::BoundaryReason" flags="QTextBoundaryFinder::BoundaryReasons"/>
   <enum-type name="QTextBoundaryFinder::BoundaryType"/>
+  <enum-type name="QThread::Priority"/>
   <enum-type name="QAbstractFileEngine::Extension" extensible="yes"/>
   <enum-type name="QAbstractFileEngine::FileFlag" flags="QAbstractFileEngine::FileFlags"/>
   <enum-type name="QAbstractFileEngine::FileName"/>
@@ -760,6 +761,9 @@
   <enum-type name="QDirIterator::IteratorFlag" flags="QDirIterator::IteratorFlags"/>
   <enum-type name="Qt::EventPriority"/>
   <enum-type name="Qt::MaskMode"/>
+  <enum-type name="QCborKnownTags"/>
+  <enum-type name="QCborSimpleType"/>
+  <enum-type name="QCborTag"/>
   <enum-type name="QCryptographicHash::Algorithm"/>
 
   <enum-type name="QtConcurrent::ReduceOption" flags="QtConcurrent::ReduceOptions"/>
@@ -1954,7 +1958,9 @@
   <enum-type name="QTimeZone::NameType"/>
   <enum-type name="QProcess::InputChannelMode"/>
   <enum-type name="QByteArray::Base64Option" flags="QByteArray::Base64Options"/>
+  <enum-type name="QMetaType::Type"/>
   <enum-type name="QMetaType::TypeFlag" flags="QMetaType::TypeFlags"/>
+  <enum-type name="QAbstractItemModel::CheckIndexOption"/>
   <enum-type name="QAbstractItemModel::LayoutChangeHint"/>
   <enum-type name="QTextCharFormat::FontPropertiesInheritanceBehavior"/>
   <enum-type name="QLocalServer::SocketOption" flags="QLocalServer::SocketOptions"/>

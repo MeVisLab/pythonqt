@@ -44,6 +44,7 @@
   <enum-type name="QLocalSocket::LocalSocketState"/>
   <enum-type name="QNetworkAccessManager::Operation"/>
   <enum-type name="QNetworkAccessManager::NetworkAccessibility"/>
+  <enum-type name="QNetworkAddressEntry::DnsEligibilityStatus"/>
   <enum-type name="QNetworkCookie::RawForm"/>
   <enum-type name="QNetworkReply::NetworkError"/>
   <enum-type name="QNetworkRequest::Attribute" extensible="yes"/>
@@ -210,6 +211,7 @@
   <object-type name="QDnsLookup"/>
   <enum-type name="QDnsLookup::Error"/>
   <enum-type name="QDnsLookup::Type"/>
+  <enum-type name="QDtlsError"/>
   <object-type name="QDnsMailExchangeRecord"/>
   <object-type name="QDnsServiceRecord"/>
   <object-type name="QDnsTextRecord"/>
