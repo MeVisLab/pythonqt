@@ -455,6 +455,11 @@ QByteArray  PythonQtWrapper_QByteArray::static_QByteArray_number(qlonglong  arg_
   return (QByteArray::number(arg__1, base));
 }
 
+bool  PythonQtWrapper_QByteArray::__ne__(QByteArray* theWrappedObject, const QByteArray&  a2)
+{
+  return ( (*theWrappedObject)!= a2);
+}
+
 const QByteArray  PythonQtWrapper_QByteArray::__add__(QByteArray* theWrappedObject, char  a2)
 {
   return ( (*theWrappedObject)+ a2);
@@ -2172,6 +2177,11 @@ int  PythonQtWrapper_QPoint::manhattanLength(QPoint* theWrappedObject) const
   return ( theWrappedObject->manhattanLength());
 }
 
+bool  PythonQtWrapper_QPoint::__ne__(QPoint* theWrappedObject, const QPoint&  p2)
+{
+  return ( (*theWrappedObject)!= p2);
+}
+
 QPoint  PythonQtWrapper_QPoint::__mul__(QPoint* theWrappedObject, const QMatrix&  m)
 {
   return ( (*theWrappedObject)* m);
@@ -2316,6 +2326,11 @@ bool  PythonQtWrapper_QPointF::isNull(QPointF* theWrappedObject) const
 qreal  PythonQtWrapper_QPointF::manhattanLength(QPointF* theWrappedObject) const
 {
   return ( theWrappedObject->manhattanLength());
+}
+
+bool  PythonQtWrapper_QPointF::__ne__(QPointF* theWrappedObject, const QPointF&  p2)
+{
+  return ( (*theWrappedObject)!= p2);
 }
 
 QPointF  PythonQtWrapper_QPointF::__mul__(QPointF* theWrappedObject, const QMatrix&  m)
@@ -2591,6 +2606,11 @@ void PythonQtWrapper_QRect::moveTopRight(QRect* theWrappedObject, const QPoint& 
 QRect  PythonQtWrapper_QRect::normalized(QRect* theWrappedObject) const
 {
   return ( theWrappedObject->normalized());
+}
+
+bool  PythonQtWrapper_QRect::__ne__(QRect* theWrappedObject, const QRect&  arg__2)
+{
+  return ( (*theWrappedObject)!= arg__2);
 }
 
 QRect  PythonQtWrapper_QRect::__and__(QRect* theWrappedObject, const QRect&  r) const
@@ -2970,6 +2990,11 @@ void PythonQtWrapper_QRectF::moveTopRight(QRectF* theWrappedObject, const QPoint
 QRectF  PythonQtWrapper_QRectF::normalized(QRectF* theWrappedObject) const
 {
   return ( theWrappedObject->normalized());
+}
+
+bool  PythonQtWrapper_QRectF::__ne__(QRectF* theWrappedObject, const QRectF&  arg__2)
+{
+  return ( (*theWrappedObject)!= arg__2);
 }
 
 QRectF  PythonQtWrapper_QRectF::__and__(QRectF* theWrappedObject, const QRectF&  r) const
@@ -3375,6 +3400,11 @@ bool  PythonQtWrapper_QSize::isValid(QSize* theWrappedObject) const
   return ( theWrappedObject->isValid());
 }
 
+bool  PythonQtWrapper_QSize::__ne__(QSize* theWrappedObject, const QSize&  s2)
+{
+  return ( (*theWrappedObject)!= s2);
+}
+
 const QSize  PythonQtWrapper_QSize::__mul__(QSize* theWrappedObject, qreal  c)
 {
   return ( (*theWrappedObject)* c);
@@ -3524,6 +3554,11 @@ bool  PythonQtWrapper_QSizeF::isNull(QSizeF* theWrappedObject) const
 bool  PythonQtWrapper_QSizeF::isValid(QSizeF* theWrappedObject) const
 {
   return ( theWrappedObject->isValid());
+}
+
+bool  PythonQtWrapper_QSizeF::__ne__(QSizeF* theWrappedObject, const QSizeF&  s2)
+{
+  return ( (*theWrappedObject)!= s2);
 }
 
 const QSizeF  PythonQtWrapper_QSizeF::__mul__(QSizeF* theWrappedObject, qreal  c)
@@ -4111,9 +4146,24 @@ QTextCodec*  PythonQtWrapper_Qt::static_Qt_codecForHtml(const QByteArray&  ba)
   return (Qt::codecForHtml(ba));
 }
 
+QTextCodec*  PythonQtWrapper_Qt::static_Qt_codecForHtml(const QByteArray&  ba)
+{
+  return (Qt::codecForHtml(ba));
+}
+
 QString  PythonQtWrapper_Qt::static_Qt_convertFromPlainText(const QString&  plain, Qt::WhiteSpaceMode  mode)
 {
   return (Qt::convertFromPlainText(plain, mode));
+}
+
+QString  PythonQtWrapper_Qt::static_Qt_convertFromPlainText(const QString&  plain, Qt::WhiteSpaceMode  mode)
+{
+  return (Qt::convertFromPlainText(plain, mode));
+}
+
+bool  PythonQtWrapper_Qt::static_Qt_mightBeRichText(const QString&  arg__1)
+{
+  return (Qt::mightBeRichText(arg__1));
 }
 
 bool  PythonQtWrapper_Qt::static_Qt_mightBeRichText(const QString&  arg__1)

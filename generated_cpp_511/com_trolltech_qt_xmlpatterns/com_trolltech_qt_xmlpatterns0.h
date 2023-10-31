@@ -15,6 +15,7 @@
 #include <qsimplexmlnodemodel.h>
 #include <qsourcelocation.h>
 #include <qtextcodec.h>
+#include <qthread.h>
 #include <qurl.h>
 #include <qvector.h>
 #include <qxmlformatter.h>
@@ -31,20 +32,20 @@
 class PythonQtShell_QAbstractMessageHandler : public QAbstractMessageHandler
 {
 public:
-    PythonQtShell_QAbstractMessageHandler(QObject*  parent = nullptr):QAbstractMessageHandler(parent),_wrapper(NULL) {};
+    PythonQtShell_QAbstractMessageHandler(QObject*  parent = nullptr):QAbstractMessageHandler(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QAbstractMessageHandler();
+   ~PythonQtShell_QAbstractMessageHandler() override;
 
-virtual void childEvent(QChildEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual void handleMessage(QtMsgType  type, const QString&  description, const QUrl&  identifier, const QSourceLocation&  sourceLocation);
-virtual void timerEvent(QTimerEvent*  event);
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void handleMessage(QtMsgType  type, const QString&  description, const QUrl&  identifier, const QSourceLocation&  sourceLocation) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QAbstractMessageHandler : public QAbstractMessageHandler
@@ -58,7 +59,7 @@ class PythonQtWrapper_QAbstractMessageHandler : public QObject
 public:
 public slots:
 QAbstractMessageHandler* new_QAbstractMessageHandler(QObject*  parent = nullptr);
-void delete_QAbstractMessageHandler(QAbstractMessageHandler* obj) { delete obj; } 
+void delete_QAbstractMessageHandler(QAbstractMessageHandler* obj) { delete obj; }
    void handleMessage(QAbstractMessageHandler* theWrappedObject, QtMsgType  type, const QString&  description, const QUrl&  identifier, const QSourceLocation&  sourceLocation);
    void py_q_handleMessage(QAbstractMessageHandler* theWrappedObject, QtMsgType  type, const QString&  description, const QUrl&  identifier, const QSourceLocation&  sourceLocation){  (((PythonQtPublicPromoter_QAbstractMessageHandler*)theWrappedObject)->py_q_handleMessage(type, description, identifier, sourceLocation));}
    void message(QAbstractMessageHandler* theWrappedObject, QtMsgType  type, const QString&  description, const QUrl&  identifier = QUrl(), const QSourceLocation&  sourceLocation = QSourceLocation());
@@ -71,20 +72,20 @@ void delete_QAbstractMessageHandler(QAbstractMessageHandler* obj) { delete obj; 
 class PythonQtShell_QAbstractUriResolver : public QAbstractUriResolver
 {
 public:
-    PythonQtShell_QAbstractUriResolver(QObject*  parent = nullptr):QAbstractUriResolver(parent),_wrapper(NULL) {};
+    PythonQtShell_QAbstractUriResolver(QObject*  parent = nullptr):QAbstractUriResolver(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QAbstractUriResolver();
+   ~PythonQtShell_QAbstractUriResolver() override;
 
-virtual void childEvent(QChildEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual QUrl  resolve(const QUrl&  relative, const QUrl&  baseURI) const;
-virtual void timerEvent(QTimerEvent*  event);
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+QUrl  resolve(const QUrl&  relative, const QUrl&  baseURI) const override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QAbstractUriResolver : public QAbstractUriResolver
@@ -97,7 +98,7 @@ class PythonQtWrapper_QAbstractUriResolver : public QObject
 public:
 public slots:
 QAbstractUriResolver* new_QAbstractUriResolver(QObject*  parent = nullptr);
-void delete_QAbstractUriResolver(QAbstractUriResolver* obj) { delete obj; } 
+void delete_QAbstractUriResolver(QAbstractUriResolver* obj) { delete obj; }
    QUrl  resolve(QAbstractUriResolver* theWrappedObject, const QUrl&  relative, const QUrl&  baseURI) const;
    QUrl  py_q_resolve(QAbstractUriResolver* theWrappedObject, const QUrl&  relative, const QUrl&  baseURI) const{  return (((PythonQtPublicPromoter_QAbstractUriResolver*)theWrappedObject)->py_q_resolve(relative, baseURI));}
 };
@@ -109,27 +110,27 @@ void delete_QAbstractUriResolver(QAbstractUriResolver* obj) { delete obj; }
 class PythonQtShell_QAbstractXmlNodeModel : public QAbstractXmlNodeModel
 {
 public:
-    PythonQtShell_QAbstractXmlNodeModel():QAbstractXmlNodeModel(),_wrapper(NULL) {};
+    PythonQtShell_QAbstractXmlNodeModel():QAbstractXmlNodeModel(),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QAbstractXmlNodeModel();
+   ~PythonQtShell_QAbstractXmlNodeModel() override;
 
-virtual QVector<QXmlNodeModelIndex >  attributes(const QXmlNodeModelIndex&  element) const;
-virtual QUrl  baseUri(const QXmlNodeModelIndex&  ni) const;
-virtual QXmlNodeModelIndex::DocumentOrder  compareOrder(const QXmlNodeModelIndex&  ni1, const QXmlNodeModelIndex&  ni2) const;
-virtual QUrl  documentUri(const QXmlNodeModelIndex&  ni) const;
-virtual QXmlNodeModelIndex  elementById(const QXmlName&  NCName) const;
-virtual bool  isDeepEqual(const QXmlNodeModelIndex&  ni1, const QXmlNodeModelIndex&  ni2) const;
-virtual QXmlNodeModelIndex::NodeKind  kind(const QXmlNodeModelIndex&  ni) const;
-virtual QXmlName  name(const QXmlNodeModelIndex&  ni) const;
-virtual QVector<QXmlName >  namespaceBindings(const QXmlNodeModelIndex&  n) const;
-virtual short  namespaceForPrefix(const QXmlNodeModelIndex&  ni, const short  prefix) const;
-virtual QXmlNodeModelIndex  nextFromSimpleAxis(QAbstractXmlNodeModel::SimpleAxis  axis, const QXmlNodeModelIndex&  origin) const;
-virtual QVector<QXmlNodeModelIndex >  nodesByIdref(const QXmlName&  NCName) const;
-virtual QXmlNodeModelIndex  root(const QXmlNodeModelIndex&  n) const;
-virtual QString  stringValue(const QXmlNodeModelIndex&  n) const;
-virtual QVariant  typedValue(const QXmlNodeModelIndex&  n) const;
+QVector<QXmlNodeModelIndex >  attributes(const QXmlNodeModelIndex&  element) const override;
+QUrl  baseUri(const QXmlNodeModelIndex&  ni) const override;
+QXmlNodeModelIndex::DocumentOrder  compareOrder(const QXmlNodeModelIndex&  ni1, const QXmlNodeModelIndex&  ni2) const override;
+QUrl  documentUri(const QXmlNodeModelIndex&  ni) const override;
+QXmlNodeModelIndex  elementById(const QXmlName&  NCName) const override;
+bool  isDeepEqual(const QXmlNodeModelIndex&  ni1, const QXmlNodeModelIndex&  ni2) const override;
+QXmlNodeModelIndex::NodeKind  kind(const QXmlNodeModelIndex&  ni) const override;
+QXmlName  name(const QXmlNodeModelIndex&  ni) const override;
+QVector<QXmlName >  namespaceBindings(const QXmlNodeModelIndex&  n) const override;
+short  namespaceForPrefix(const QXmlNodeModelIndex&  ni, const short  prefix) const override;
+QXmlNodeModelIndex  nextFromSimpleAxis(QAbstractXmlNodeModel::SimpleAxis  axis, const QXmlNodeModelIndex&  origin) const override;
+QVector<QXmlNodeModelIndex >  nodesByIdref(const QXmlName&  NCName) const override;
+QXmlNodeModelIndex  root(const QXmlNodeModelIndex&  n) const override;
+QString  stringValue(const QXmlNodeModelIndex&  n) const override;
+QVariant  typedValue(const QXmlNodeModelIndex&  n) const override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QAbstractXmlNodeModel : public QAbstractXmlNodeModel
@@ -166,7 +167,7 @@ enum SimpleAxis{
   Parent = QAbstractXmlNodeModel::Parent,   FirstChild = QAbstractXmlNodeModel::FirstChild,   PreviousSibling = QAbstractXmlNodeModel::PreviousSibling,   NextSibling = QAbstractXmlNodeModel::NextSibling};
 public slots:
 QAbstractXmlNodeModel* new_QAbstractXmlNodeModel();
-void delete_QAbstractXmlNodeModel(QAbstractXmlNodeModel* obj) { delete obj; } 
+void delete_QAbstractXmlNodeModel(QAbstractXmlNodeModel* obj) { delete obj; }
    QVector<QXmlNodeModelIndex >  attributes(QAbstractXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  element) const;
    QVector<QXmlNodeModelIndex >  py_q_attributes(QAbstractXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  element) const{  return (((PythonQtPublicPromoter_QAbstractXmlNodeModel*)theWrappedObject)->py_q_attributes(element));}
    QUrl  baseUri(QAbstractXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  ni) const;
@@ -210,25 +211,25 @@ void delete_QAbstractXmlNodeModel(QAbstractXmlNodeModel* obj) { delete obj; }
 class PythonQtShell_QAbstractXmlReceiver : public QAbstractXmlReceiver
 {
 public:
-    PythonQtShell_QAbstractXmlReceiver():QAbstractXmlReceiver(),_wrapper(NULL) {};
+    PythonQtShell_QAbstractXmlReceiver():QAbstractXmlReceiver(),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QAbstractXmlReceiver();
+   ~PythonQtShell_QAbstractXmlReceiver() override;
 
-virtual void atomicValue(const QVariant&  value);
-virtual void attribute(const QXmlName&  name, const QStringRef&  value);
-virtual void characters(const QStringRef&  value);
-virtual void comment(const QString&  value);
-virtual void endDocument();
-virtual void endElement();
-virtual void endOfSequence();
-virtual void namespaceBinding(const QXmlName&  name);
-virtual void processingInstruction(const QXmlName&  target, const QString&  value);
-virtual void startDocument();
-virtual void startElement(const QXmlName&  name);
-virtual void startOfSequence();
-virtual void whitespaceOnly(const QStringRef&  value);
+void atomicValue(const QVariant&  value) override;
+void attribute(const QXmlName&  name, const QStringRef&  value) override;
+void characters(const QStringRef&  value) override;
+void comment(const QString&  value) override;
+void endDocument() override;
+void endElement() override;
+void endOfSequence() override;
+void namespaceBinding(const QXmlName&  name) override;
+void processingInstruction(const QXmlName&  target, const QString&  value) override;
+void startDocument() override;
+void startElement(const QXmlName&  name) override;
+void startOfSequence() override;
+void whitespaceOnly(const QStringRef&  value) override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QAbstractXmlReceiver : public QAbstractXmlReceiver
@@ -253,7 +254,7 @@ class PythonQtWrapper_QAbstractXmlReceiver : public QObject
 public:
 public slots:
 QAbstractXmlReceiver* new_QAbstractXmlReceiver();
-void delete_QAbstractXmlReceiver(QAbstractXmlReceiver* obj) { delete obj; } 
+void delete_QAbstractXmlReceiver(QAbstractXmlReceiver* obj) { delete obj; }
    void atomicValue(QAbstractXmlReceiver* theWrappedObject, const QVariant&  value);
    void py_q_atomicValue(QAbstractXmlReceiver* theWrappedObject, const QVariant&  value){  (((PythonQtPublicPromoter_QAbstractXmlReceiver*)theWrappedObject)->py_q_atomicValue(value));}
    void attribute(QAbstractXmlReceiver* theWrappedObject, const QXmlName&  name, const QStringRef&  value);
@@ -309,27 +310,27 @@ public slots:
 class PythonQtShell_QSimpleXmlNodeModel : public QSimpleXmlNodeModel
 {
 public:
-    PythonQtShell_QSimpleXmlNodeModel(const QXmlNamePool&  namePool):QSimpleXmlNodeModel(namePool),_wrapper(NULL) {};
+    PythonQtShell_QSimpleXmlNodeModel(const QXmlNamePool&  namePool):QSimpleXmlNodeModel(namePool),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QSimpleXmlNodeModel();
+   ~PythonQtShell_QSimpleXmlNodeModel() override;
 
-virtual QVector<QXmlNodeModelIndex >  attributes(const QXmlNodeModelIndex&  element) const;
-virtual QUrl  baseUri(const QXmlNodeModelIndex&  node) const;
-virtual QXmlNodeModelIndex::DocumentOrder  compareOrder(const QXmlNodeModelIndex&  ni1, const QXmlNodeModelIndex&  ni2) const;
-virtual QUrl  documentUri(const QXmlNodeModelIndex&  ni) const;
-virtual QXmlNodeModelIndex  elementById(const QXmlName&  id) const;
-virtual bool  isDeepEqual(const QXmlNodeModelIndex&  ni1, const QXmlNodeModelIndex&  ni2) const;
-virtual QXmlNodeModelIndex::NodeKind  kind(const QXmlNodeModelIndex&  ni) const;
-virtual QXmlName  name(const QXmlNodeModelIndex&  ni) const;
-virtual QVector<QXmlName >  namespaceBindings(const QXmlNodeModelIndex&  arg__1) const;
-virtual short  namespaceForPrefix(const QXmlNodeModelIndex&  ni, const short  prefix) const;
-virtual QXmlNodeModelIndex  nextFromSimpleAxis(QAbstractXmlNodeModel::SimpleAxis  axis, const QXmlNodeModelIndex&  origin) const;
-virtual QVector<QXmlNodeModelIndex >  nodesByIdref(const QXmlName&  idref) const;
-virtual QXmlNodeModelIndex  root(const QXmlNodeModelIndex&  n) const;
-virtual QString  stringValue(const QXmlNodeModelIndex&  node) const;
-virtual QVariant  typedValue(const QXmlNodeModelIndex&  n) const;
+QVector<QXmlNodeModelIndex >  attributes(const QXmlNodeModelIndex&  element) const override;
+QUrl  baseUri(const QXmlNodeModelIndex&  node) const override;
+QXmlNodeModelIndex::DocumentOrder  compareOrder(const QXmlNodeModelIndex&  ni1, const QXmlNodeModelIndex&  ni2) const override;
+QUrl  documentUri(const QXmlNodeModelIndex&  ni) const override;
+QXmlNodeModelIndex  elementById(const QXmlName&  id) const override;
+bool  isDeepEqual(const QXmlNodeModelIndex&  ni1, const QXmlNodeModelIndex&  ni2) const override;
+QXmlNodeModelIndex::NodeKind  kind(const QXmlNodeModelIndex&  ni) const override;
+QXmlName  name(const QXmlNodeModelIndex&  ni) const override;
+QVector<QXmlName >  namespaceBindings(const QXmlNodeModelIndex&  arg__1) const override;
+short  namespaceForPrefix(const QXmlNodeModelIndex&  ni, const short  prefix) const override;
+QXmlNodeModelIndex  nextFromSimpleAxis(QAbstractXmlNodeModel::SimpleAxis  axis, const QXmlNodeModelIndex&  origin) const override;
+QVector<QXmlNodeModelIndex >  nodesByIdref(const QXmlName&  idref) const override;
+QXmlNodeModelIndex  root(const QXmlNodeModelIndex&  n) const override;
+QString  stringValue(const QXmlNodeModelIndex&  node) const override;
+QVariant  typedValue(const QXmlNodeModelIndex&  n) const override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QSimpleXmlNodeModel : public QSimpleXmlNodeModel
@@ -346,7 +347,7 @@ class PythonQtWrapper_QSimpleXmlNodeModel : public QObject
 public:
 public slots:
 QSimpleXmlNodeModel* new_QSimpleXmlNodeModel(const QXmlNamePool&  namePool);
-void delete_QSimpleXmlNodeModel(QSimpleXmlNodeModel* obj) { delete obj; } 
+void delete_QSimpleXmlNodeModel(QSimpleXmlNodeModel* obj) { delete obj; }
    QUrl  py_q_baseUri(QSimpleXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  node) const{  return (((PythonQtPublicPromoter_QSimpleXmlNodeModel*)theWrappedObject)->py_q_baseUri(node));}
    QXmlNodeModelIndex  py_q_elementById(QSimpleXmlNodeModel* theWrappedObject, const QXmlName&  id) const{  return (((PythonQtPublicPromoter_QSimpleXmlNodeModel*)theWrappedObject)->py_q_elementById(id));}
    QXmlNamePool*  namePool(QSimpleXmlNodeModel* theWrappedObject) const;
@@ -366,7 +367,7 @@ public slots:
 QSourceLocation* new_QSourceLocation();
 QSourceLocation* new_QSourceLocation(const QSourceLocation&  other);
 QSourceLocation* new_QSourceLocation(const QUrl&  uri, int  line = -1, int  column = -1);
-void delete_QSourceLocation(QSourceLocation* obj) { delete obj; } 
+void delete_QSourceLocation(QSourceLocation* obj) { delete obj; }
    qint64  column(QSourceLocation* theWrappedObject) const;
    bool  isNull(QSourceLocation* theWrappedObject) const;
    qint64  line(QSourceLocation* theWrappedObject) const;
@@ -387,25 +388,25 @@ void delete_QSourceLocation(QSourceLocation* obj) { delete obj; }
 class PythonQtShell_QXmlFormatter : public QXmlFormatter
 {
 public:
-    PythonQtShell_QXmlFormatter(const QXmlQuery&  query, QIODevice*  outputDevice):QXmlFormatter(query, outputDevice),_wrapper(NULL) {};
+    PythonQtShell_QXmlFormatter(const QXmlQuery&  query, QIODevice*  outputDevice):QXmlFormatter(query, outputDevice),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QXmlFormatter();
+   ~PythonQtShell_QXmlFormatter() override;
 
-virtual void atomicValue(const QVariant&  value);
-virtual void attribute(const QXmlName&  name, const QStringRef&  value);
-virtual void characters(const QStringRef&  value);
-virtual void comment(const QString&  value);
-virtual void endDocument();
-virtual void endElement();
-virtual void endOfSequence();
-virtual void namespaceBinding(const QXmlName&  nb);
-virtual void processingInstruction(const QXmlName&  name, const QString&  value);
-virtual void startDocument();
-virtual void startElement(const QXmlName&  name);
-virtual void startOfSequence();
-virtual void whitespaceOnly(const QStringRef&  value);
+void atomicValue(const QVariant&  value) override;
+void attribute(const QXmlName&  name, const QStringRef&  value) override;
+void characters(const QStringRef&  value) override;
+void comment(const QString&  value) override;
+void endDocument() override;
+void endElement() override;
+void endOfSequence() override;
+void namespaceBinding(const QXmlName&  nb) override;
+void processingInstruction(const QXmlName&  name, const QString&  value) override;
+void startDocument() override;
+void startElement(const QXmlName&  name) override;
+void startOfSequence() override;
+void whitespaceOnly(const QStringRef&  value) override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QXmlFormatter : public QXmlFormatter
@@ -428,7 +429,7 @@ class PythonQtWrapper_QXmlFormatter : public QObject
 public:
 public slots:
 QXmlFormatter* new_QXmlFormatter(const QXmlQuery&  query, QIODevice*  outputDevice);
-void delete_QXmlFormatter(QXmlFormatter* obj) { delete obj; } 
+void delete_QXmlFormatter(QXmlFormatter* obj) { delete obj; }
    void py_q_atomicValue(QXmlFormatter* theWrappedObject, const QVariant&  value){  (((PythonQtPublicPromoter_QXmlFormatter*)theWrappedObject)->py_q_atomicValue(value));}
    void py_q_attribute(QXmlFormatter* theWrappedObject, const QXmlName&  name, const QStringRef&  value){  (((PythonQtPublicPromoter_QXmlFormatter*)theWrappedObject)->py_q_attribute(name, value));}
    void py_q_characters(QXmlFormatter* theWrappedObject, const QStringRef&  value){  (((PythonQtPublicPromoter_QXmlFormatter*)theWrappedObject)->py_q_characters(value));}
@@ -456,7 +457,7 @@ QXmlItem* new_QXmlItem();
 QXmlItem* new_QXmlItem(const QVariant&  atomicValue);
 QXmlItem* new_QXmlItem(const QXmlItem&  other);
 QXmlItem* new_QXmlItem(const QXmlNodeModelIndex&  node);
-void delete_QXmlItem(QXmlItem* obj) { delete obj; } 
+void delete_QXmlItem(QXmlItem* obj) { delete obj; }
    bool  isAtomicValue(QXmlItem* theWrappedObject) const;
    bool  isNode(QXmlItem* theWrappedObject) const;
    bool  isNull(QXmlItem* theWrappedObject) const;
@@ -476,7 +477,7 @@ public slots:
 QXmlName* new_QXmlName();
 QXmlName* new_QXmlName(QXmlNamePool&  namePool, const QString&  localName, const QString&  namespaceURI = QString(), const QString&  prefix = QString());
 QXmlName* new_QXmlName(const QXmlName&  other);
-void delete_QXmlName(QXmlName* obj) { delete obj; } 
+void delete_QXmlName(QXmlName* obj) { delete obj; }
    QXmlName  static_QXmlName_fromClarkName(const QString&  clarkName, const QXmlNamePool&  namePool);
    bool  static_QXmlName_isNCName(const QString&  candidate);
    bool  isNull(QXmlName* theWrappedObject) const;
@@ -499,7 +500,7 @@ public:
 public slots:
 QXmlNamePool* new_QXmlNamePool();
 QXmlNamePool* new_QXmlNamePool(const QXmlNamePool&  other);
-void delete_QXmlNamePool(QXmlNamePool* obj) { delete obj; } 
+void delete_QXmlNamePool(QXmlNamePool* obj) { delete obj; }
 };
 
 
@@ -517,7 +518,7 @@ enum NodeKind{
 public slots:
 QXmlNodeModelIndex* new_QXmlNodeModelIndex();
 QXmlNodeModelIndex* new_QXmlNodeModelIndex(const QXmlNodeModelIndex&  other);
-void delete_QXmlNodeModelIndex(QXmlNodeModelIndex* obj) { delete obj; } 
+void delete_QXmlNodeModelIndex(QXmlNodeModelIndex* obj) { delete obj; }
    qint64  additionalData(QXmlNodeModelIndex* theWrappedObject) const;
    qint64  data(QXmlNodeModelIndex* theWrappedObject) const;
    bool  isNull(QXmlNodeModelIndex* theWrappedObject) const;
@@ -542,7 +543,7 @@ QXmlQuery* new_QXmlQuery();
 QXmlQuery* new_QXmlQuery(QXmlQuery::QueryLanguage  queryLanguage, const QXmlNamePool&  np = QXmlNamePool());
 QXmlQuery* new_QXmlQuery(const QXmlNamePool&  np);
 QXmlQuery* new_QXmlQuery(const QXmlQuery&  other);
-void delete_QXmlQuery(QXmlQuery* obj) { delete obj; } 
+void delete_QXmlQuery(QXmlQuery* obj) { delete obj; }
    void bindVariable(QXmlQuery* theWrappedObject, const QString&  localName, QIODevice*  arg__2);
    void bindVariable(QXmlQuery* theWrappedObject, const QString&  localName, const QXmlItem&  value);
    void bindVariable(QXmlQuery* theWrappedObject, const QString&  localName, const QXmlQuery&  query);
@@ -582,12 +583,12 @@ void delete_QXmlQuery(QXmlQuery* obj) { delete obj; }
 class PythonQtShell_QXmlResultItems : public QXmlResultItems
 {
 public:
-    PythonQtShell_QXmlResultItems():QXmlResultItems(),_wrapper(NULL) {};
+    PythonQtShell_QXmlResultItems():QXmlResultItems(),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QXmlResultItems();
+   ~PythonQtShell_QXmlResultItems() override;
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QXmlResultItems : public QObject
@@ -595,7 +596,7 @@ class PythonQtWrapper_QXmlResultItems : public QObject
 public:
 public slots:
 QXmlResultItems* new_QXmlResultItems();
-void delete_QXmlResultItems(QXmlResultItems* obj) { delete obj; } 
+void delete_QXmlResultItems(QXmlResultItems* obj) { delete obj; }
    QXmlItem  current(QXmlResultItems* theWrappedObject) const;
    bool  hasError(QXmlResultItems* theWrappedObject) const;
    QXmlItem  next(QXmlResultItems* theWrappedObject);
@@ -611,7 +612,7 @@ public:
 public slots:
 QXmlSchema* new_QXmlSchema();
 QXmlSchema* new_QXmlSchema(const QXmlSchema&  other);
-void delete_QXmlSchema(QXmlSchema* obj) { delete obj; } 
+void delete_QXmlSchema(QXmlSchema* obj) { delete obj; }
    QUrl  documentUri(QXmlSchema* theWrappedObject) const;
    bool  isValid(QXmlSchema* theWrappedObject) const;
    bool  load(QXmlSchema* theWrappedObject, QIODevice*  source, const QUrl&  documentUri = QUrl());
@@ -638,7 +639,7 @@ public:
 public slots:
 QXmlSchemaValidator* new_QXmlSchemaValidator();
 QXmlSchemaValidator* new_QXmlSchemaValidator(const QXmlSchema&  schema);
-void delete_QXmlSchemaValidator(QXmlSchemaValidator* obj) { delete obj; } 
+void delete_QXmlSchemaValidator(QXmlSchemaValidator* obj) { delete obj; }
    QAbstractMessageHandler*  messageHandler(QXmlSchemaValidator* theWrappedObject) const;
    QXmlNamePool  namePool(QXmlSchemaValidator* theWrappedObject) const;
    QNetworkAccessManager*  networkAccessManager(QXmlSchemaValidator* theWrappedObject) const;
@@ -659,25 +660,25 @@ void delete_QXmlSchemaValidator(QXmlSchemaValidator* obj) { delete obj; }
 class PythonQtShell_QXmlSerializer : public QXmlSerializer
 {
 public:
-    PythonQtShell_QXmlSerializer(const QXmlQuery&  query, QIODevice*  outputDevice):QXmlSerializer(query, outputDevice),_wrapper(NULL) {};
+    PythonQtShell_QXmlSerializer(const QXmlQuery&  query, QIODevice*  outputDevice):QXmlSerializer(query, outputDevice),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QXmlSerializer();
+   ~PythonQtShell_QXmlSerializer() override;
 
-virtual void atomicValue(const QVariant&  value);
-virtual void attribute(const QXmlName&  name, const QStringRef&  value);
-virtual void characters(const QStringRef&  value);
-virtual void comment(const QString&  value);
-virtual void endDocument();
-virtual void endElement();
-virtual void endOfSequence();
-virtual void namespaceBinding(const QXmlName&  nb);
-virtual void processingInstruction(const QXmlName&  name, const QString&  value);
-virtual void startDocument();
-virtual void startElement(const QXmlName&  name);
-virtual void startOfSequence();
-virtual void whitespaceOnly(const QStringRef&  value);
+void atomicValue(const QVariant&  value) override;
+void attribute(const QXmlName&  name, const QStringRef&  value) override;
+void characters(const QStringRef&  value) override;
+void comment(const QString&  value) override;
+void endDocument() override;
+void endElement() override;
+void endOfSequence() override;
+void namespaceBinding(const QXmlName&  nb) override;
+void processingInstruction(const QXmlName&  name, const QString&  value) override;
+void startDocument() override;
+void startElement(const QXmlName&  name) override;
+void startOfSequence() override;
+void whitespaceOnly(const QStringRef&  value) override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QXmlSerializer : public QXmlSerializer
@@ -701,7 +702,7 @@ class PythonQtWrapper_QXmlSerializer : public QObject
 public:
 public slots:
 QXmlSerializer* new_QXmlSerializer(const QXmlQuery&  query, QIODevice*  outputDevice);
-void delete_QXmlSerializer(QXmlSerializer* obj) { delete obj; } 
+void delete_QXmlSerializer(QXmlSerializer* obj) { delete obj; }
    void py_q_atomicValue(QXmlSerializer* theWrappedObject, const QVariant&  value){  (((PythonQtPublicPromoter_QXmlSerializer*)theWrappedObject)->py_q_atomicValue(value));}
    void py_q_attribute(QXmlSerializer* theWrappedObject, const QXmlName&  name, const QStringRef&  value){  (((PythonQtPublicPromoter_QXmlSerializer*)theWrappedObject)->py_q_attribute(name, value));}
    void py_q_characters(QXmlSerializer* theWrappedObject, const QStringRef&  value){  (((PythonQtPublicPromoter_QXmlSerializer*)theWrappedObject)->py_q_characters(value));}

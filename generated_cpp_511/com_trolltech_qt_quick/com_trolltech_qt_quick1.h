@@ -19,28 +19,29 @@
 #include <qsgtexturematerial.h>
 #include <qsgtextureprovider.h>
 #include <qsize.h>
+#include <qthread.h>
 
 
 
 class PythonQtShell_QSGNodeVisitor : public QSGNodeVisitor
 {
 public:
-    PythonQtShell_QSGNodeVisitor():QSGNodeVisitor(),_wrapper(NULL) {};
+    PythonQtShell_QSGNodeVisitor():QSGNodeVisitor(),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QSGNodeVisitor();
+   ~PythonQtShell_QSGNodeVisitor() override;
 
-virtual void enterClipNode(QSGClipNode*  arg__1);
-virtual void enterGeometryNode(QSGGeometryNode*  arg__1);
-virtual void enterOpacityNode(QSGOpacityNode*  arg__1);
-virtual void enterTransformNode(QSGTransformNode*  arg__1);
-virtual void leaveClipNode(QSGClipNode*  arg__1);
-virtual void leaveGeometryNode(QSGGeometryNode*  arg__1);
-virtual void leaveOpacityNode(QSGOpacityNode*  arg__1);
-virtual void leaveTransformNode(QSGTransformNode*  arg__1);
-virtual void visitChildren(QSGNode*  n);
-virtual void visitNode(QSGNode*  n);
+void enterClipNode(QSGClipNode*  arg__1) override;
+void enterGeometryNode(QSGGeometryNode*  arg__1) override;
+void enterOpacityNode(QSGOpacityNode*  arg__1) override;
+void enterTransformNode(QSGTransformNode*  arg__1) override;
+void leaveClipNode(QSGClipNode*  arg__1) override;
+void leaveGeometryNode(QSGGeometryNode*  arg__1) override;
+void leaveOpacityNode(QSGOpacityNode*  arg__1) override;
+void leaveTransformNode(QSGTransformNode*  arg__1) override;
+void visitChildren(QSGNode*  n) override;
+void visitNode(QSGNode*  n) override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QSGNodeVisitor : public QSGNodeVisitor
@@ -72,7 +73,7 @@ class PythonQtWrapper_QSGNodeVisitor : public QObject
 public:
 public slots:
 QSGNodeVisitor* new_QSGNodeVisitor();
-void delete_QSGNodeVisitor(QSGNodeVisitor* obj) { delete obj; } 
+void delete_QSGNodeVisitor(QSGNodeVisitor* obj) { delete obj; }
    void enterClipNode(QSGNodeVisitor* theWrappedObject, QSGClipNode*  arg__1);
    void py_q_enterClipNode(QSGNodeVisitor* theWrappedObject, QSGClipNode*  arg__1){  (((PythonQtPublicPromoter_QSGNodeVisitor*)theWrappedObject)->py_q_enterClipNode(arg__1));}
    void enterGeometryNode(QSGNodeVisitor* theWrappedObject, QSGGeometryNode*  arg__1);
@@ -102,14 +103,14 @@ void delete_QSGNodeVisitor(QSGNodeVisitor* obj) { delete obj; }
 class PythonQtShell_QSGOpacityNode : public QSGOpacityNode
 {
 public:
-    PythonQtShell_QSGOpacityNode():QSGOpacityNode(),_wrapper(NULL) {};
+    PythonQtShell_QSGOpacityNode():QSGOpacityNode(),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QSGOpacityNode();
+   ~PythonQtShell_QSGOpacityNode() override;
 
-virtual bool  isSubtreeBlocked() const;
-virtual void preprocess();
+bool  isSubtreeBlocked() const override;
+void preprocess() override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QSGOpacityNode : public QSGOpacityNode
@@ -122,7 +123,7 @@ class PythonQtWrapper_QSGOpacityNode : public QObject
 public:
 public slots:
 QSGOpacityNode* new_QSGOpacityNode();
-void delete_QSGOpacityNode(QSGOpacityNode* obj) { delete obj; } 
+void delete_QSGOpacityNode(QSGOpacityNode* obj) { delete obj; }
    qreal  combinedOpacity(QSGOpacityNode* theWrappedObject) const;
    bool  py_q_isSubtreeBlocked(QSGOpacityNode* theWrappedObject) const{  return (((PythonQtPublicPromoter_QSGOpacityNode*)theWrappedObject)->py_q_isSubtreeBlocked());}
    qreal  opacity(QSGOpacityNode* theWrappedObject) const;
@@ -138,18 +139,18 @@ void delete_QSGOpacityNode(QSGOpacityNode* obj) { delete obj; }
 class PythonQtShell_QSGRectangleNode : public QSGRectangleNode
 {
 public:
-    PythonQtShell_QSGRectangleNode():QSGRectangleNode(),_wrapper(NULL) {};
+    PythonQtShell_QSGRectangleNode():QSGRectangleNode(),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QSGRectangleNode();
+   ~PythonQtShell_QSGRectangleNode() override;
 
-virtual QColor  color() const;
-virtual bool  isSubtreeBlocked() const;
-virtual void preprocess();
-virtual QRectF  rect() const;
-virtual void setColor(const QColor&  color);
-virtual void setRect(const QRectF&  rect);
+QColor  color() const override;
+bool  isSubtreeBlocked() const override;
+void preprocess() override;
+QRectF  rect() const override;
+void setColor(const QColor&  color) override;
+void setRect(const QRectF&  rect) override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QSGRectangleNode : public QSGRectangleNode
@@ -165,7 +166,7 @@ class PythonQtWrapper_QSGRectangleNode : public QObject
 public:
 public slots:
 QSGRectangleNode* new_QSGRectangleNode();
-void delete_QSGRectangleNode(QSGRectangleNode* obj) { delete obj; } 
+void delete_QSGRectangleNode(QSGRectangleNode* obj) { delete obj; }
    QColor  color(QSGRectangleNode* theWrappedObject) const;
    QColor  py_q_color(QSGRectangleNode* theWrappedObject) const{  return (((PythonQtPublicPromoter_QSGRectangleNode*)theWrappedObject)->py_q_color());}
    QRectF  rect(QSGRectangleNode* theWrappedObject) const;
@@ -184,17 +185,17 @@ void delete_QSGRectangleNode(QSGRectangleNode* obj) { delete obj; }
 class PythonQtShell_QSGRenderNode : public QSGRenderNode
 {
 public:
-    PythonQtShell_QSGRenderNode():QSGRenderNode(),_wrapper(NULL) {};
+    PythonQtShell_QSGRenderNode():QSGRenderNode(),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QSGRenderNode();
+   ~PythonQtShell_QSGRenderNode() override;
 
-virtual bool  isSubtreeBlocked() const;
-virtual void preprocess();
-virtual QRectF  rect() const;
-virtual void releaseResources();
-virtual void render(const QSGRenderNode::RenderState*  state);
+bool  isSubtreeBlocked() const override;
+void preprocess() override;
+QRectF  rect() const override;
+void releaseResources() override;
+void render(const QSGRenderNode::RenderState*  state) override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QSGRenderNode : public QSGRenderNode
@@ -214,7 +215,7 @@ enum StateFlag{
   DepthState = QSGRenderNode::DepthState,   StencilState = QSGRenderNode::StencilState,   ScissorState = QSGRenderNode::ScissorState,   ColorState = QSGRenderNode::ColorState,   BlendState = QSGRenderNode::BlendState,   CullState = QSGRenderNode::CullState,   ViewportState = QSGRenderNode::ViewportState,   RenderTargetState = QSGRenderNode::RenderTargetState};
 public slots:
 QSGRenderNode* new_QSGRenderNode();
-void delete_QSGRenderNode(QSGRenderNode* obj) { delete obj; } 
+void delete_QSGRenderNode(QSGRenderNode* obj) { delete obj; }
    const QSGClipNode*  clipList(QSGRenderNode* theWrappedObject) const;
    qreal  inheritedOpacity(QSGRenderNode* theWrappedObject) const;
    const QMatrix4x4*  matrix(QSGRenderNode* theWrappedObject) const;
@@ -233,19 +234,19 @@ void delete_QSGRenderNode(QSGRenderNode* obj) { delete obj; }
 class PythonQtShell_QSGRenderNode__RenderState : public QSGRenderNode::RenderState
 {
 public:
-    PythonQtShell_QSGRenderNode__RenderState():QSGRenderNode::RenderState(),_wrapper(NULL) {};
+    PythonQtShell_QSGRenderNode__RenderState():QSGRenderNode::RenderState(),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QSGRenderNode__RenderState();
+   ~PythonQtShell_QSGRenderNode__RenderState() override;
 
-virtual const QRegion*  clipRegion() const;
-virtual void*  get(const char*  state) const;
-virtual const QMatrix4x4*  projectionMatrix() const;
-virtual bool  scissorEnabled() const;
-virtual QRect  scissorRect() const;
-virtual bool  stencilEnabled() const;
-virtual int  stencilValue() const;
+const QRegion*  clipRegion() const override;
+void*  get(const char*  state) const override;
+const QMatrix4x4*  projectionMatrix() const override;
+bool  scissorEnabled() const override;
+QRect  scissorRect() const override;
+bool  stencilEnabled() const override;
+int  stencilValue() const override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QSGRenderNode__RenderState : public QSGRenderNode::RenderState
@@ -264,7 +265,7 @@ class PythonQtWrapper_QSGRenderNode__RenderState : public QObject
 public:
 public slots:
 QSGRenderNode::RenderState* new_QSGRenderNode__RenderState();
-void delete_QSGRenderNode__RenderState(QSGRenderNode::RenderState* obj) { delete obj; } 
+void delete_QSGRenderNode__RenderState(QSGRenderNode::RenderState* obj) { delete obj; }
    const QRegion*  clipRegion(QSGRenderNode::RenderState* theWrappedObject) const;
    const QRegion*  py_q_clipRegion(QSGRenderNode::RenderState* theWrappedObject) const{  return (((PythonQtPublicPromoter_QSGRenderNode__RenderState*)theWrappedObject)->py_q_clipRegion());}
    void*  get(QSGRenderNode::RenderState* theWrappedObject, const char*  state) const;
@@ -288,14 +289,14 @@ void delete_QSGRenderNode__RenderState(QSGRenderNode::RenderState* obj) { delete
 class PythonQtShell_QSGRootNode : public QSGRootNode
 {
 public:
-    PythonQtShell_QSGRootNode():QSGRootNode(),_wrapper(NULL) {};
+    PythonQtShell_QSGRootNode():QSGRootNode(),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QSGRootNode();
+   ~PythonQtShell_QSGRootNode() override;
 
-virtual bool  isSubtreeBlocked() const;
-virtual void preprocess();
+bool  isSubtreeBlocked() const override;
+void preprocess() override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QSGRootNode : public QObject
@@ -303,7 +304,7 @@ class PythonQtWrapper_QSGRootNode : public QObject
 public:
 public slots:
 QSGRootNode* new_QSGRootNode();
-void delete_QSGRootNode(QSGRootNode* obj) { delete obj; } 
+void delete_QSGRootNode(QSGRootNode* obj) { delete obj; }
     QString py_toString(QSGRootNode*);
 };
 
@@ -314,27 +315,27 @@ void delete_QSGRootNode(QSGRootNode* obj) { delete obj; }
 class PythonQtShell_QSGTexture : public QSGTexture
 {
 public:
-    PythonQtShell_QSGTexture():QSGTexture(),_wrapper(NULL) {};
+    PythonQtShell_QSGTexture():QSGTexture(),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QSGTexture();
+   ~PythonQtShell_QSGTexture() override;
 
-virtual void bind();
-virtual void childEvent(QChildEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual bool  hasAlphaChannel() const;
-virtual bool  hasMipmaps() const;
-virtual bool  isAtlasTexture() const;
-virtual QRectF  normalizedTextureSubRect() const;
-virtual QSGTexture*  removedFromAtlas() const;
-virtual int  textureId() const;
-virtual QSize  textureSize() const;
-virtual void timerEvent(QTimerEvent*  event);
+void bind() override;
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+bool  hasAlphaChannel() const override;
+bool  hasMipmaps() const override;
+bool  isAtlasTexture() const override;
+QRectF  normalizedTextureSubRect() const override;
+QSGTexture*  removedFromAtlas() const override;
+int  textureId() const override;
+QSize  textureSize() const override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QSGTexture : public QSGTexture
@@ -361,7 +362,7 @@ enum WrapMode{
   Repeat = QSGTexture::Repeat,   ClampToEdge = QSGTexture::ClampToEdge,   MirroredRepeat = QSGTexture::MirroredRepeat};
 public slots:
 QSGTexture* new_QSGTexture();
-void delete_QSGTexture(QSGTexture* obj) { delete obj; } 
+void delete_QSGTexture(QSGTexture* obj) { delete obj; }
    QSGTexture::AnisotropyLevel  anisotropyLevel(QSGTexture* theWrappedObject) const;
    void bind(QSGTexture* theWrappedObject);
    void py_q_bind(QSGTexture* theWrappedObject){  (((PythonQtPublicPromoter_QSGTexture*)theWrappedObject)->py_q_bind());}
@@ -399,13 +400,13 @@ void delete_QSGTexture(QSGTexture* obj) { delete obj; }
 class PythonQtShell_QSGTextureMaterial : public QSGTextureMaterial
 {
 public:
-    PythonQtShell_QSGTextureMaterial():QSGTextureMaterial(),_wrapper(NULL) {};
+    PythonQtShell_QSGTextureMaterial():QSGTextureMaterial(),_wrapper(nullptr) {};
 
    ~PythonQtShell_QSGTextureMaterial();
 
-virtual QSGMaterialType*  type() const;
+QSGMaterialType*  type() const override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QSGTextureMaterial : public QSGTextureMaterial
@@ -418,7 +419,7 @@ class PythonQtWrapper_QSGTextureMaterial : public QObject
 public:
 public slots:
 QSGTextureMaterial* new_QSGTextureMaterial();
-void delete_QSGTextureMaterial(QSGTextureMaterial* obj) { delete obj; } 
+void delete_QSGTextureMaterial(QSGTextureMaterial* obj) { delete obj; }
    QSGMaterialType*  type(QSGTextureMaterial* theWrappedObject) const;
    QSGMaterialType*  py_q_type(QSGTextureMaterial* theWrappedObject) const{  return (((PythonQtPublicPromoter_QSGTextureMaterial*)theWrappedObject)->py_q_type());}
 };
@@ -430,20 +431,20 @@ void delete_QSGTextureMaterial(QSGTextureMaterial* obj) { delete obj; }
 class PythonQtShell_QSGTextureProvider : public QSGTextureProvider
 {
 public:
-    PythonQtShell_QSGTextureProvider():QSGTextureProvider(),_wrapper(NULL) {};
+    PythonQtShell_QSGTextureProvider():QSGTextureProvider(),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QSGTextureProvider();
+   ~PythonQtShell_QSGTextureProvider() override;
 
-virtual void childEvent(QChildEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual QSGTexture*  texture() const;
-virtual void timerEvent(QTimerEvent*  event);
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+QSGTexture*  texture() const override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QSGTextureProvider : public QSGTextureProvider
@@ -456,7 +457,7 @@ class PythonQtWrapper_QSGTextureProvider : public QObject
 public:
 public slots:
 QSGTextureProvider* new_QSGTextureProvider();
-void delete_QSGTextureProvider(QSGTextureProvider* obj) { delete obj; } 
+void delete_QSGTextureProvider(QSGTextureProvider* obj) { delete obj; }
    QSGTexture*  texture(QSGTextureProvider* theWrappedObject) const;
    QSGTexture*  py_q_texture(QSGTextureProvider* theWrappedObject) const{  return (((PythonQtPublicPromoter_QSGTextureProvider*)theWrappedObject)->py_q_texture());}
 };
@@ -468,14 +469,14 @@ void delete_QSGTextureProvider(QSGTextureProvider* obj) { delete obj; }
 class PythonQtShell_QSGTransformNode : public QSGTransformNode
 {
 public:
-    PythonQtShell_QSGTransformNode():QSGTransformNode(),_wrapper(NULL) {};
+    PythonQtShell_QSGTransformNode():QSGTransformNode(),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QSGTransformNode();
+   ~PythonQtShell_QSGTransformNode() override;
 
-virtual bool  isSubtreeBlocked() const;
-virtual void preprocess();
+bool  isSubtreeBlocked() const override;
+void preprocess() override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QSGTransformNode : public QObject
@@ -483,7 +484,7 @@ class PythonQtWrapper_QSGTransformNode : public QObject
 public:
 public slots:
 QSGTransformNode* new_QSGTransformNode();
-void delete_QSGTransformNode(QSGTransformNode* obj) { delete obj; } 
+void delete_QSGTransformNode(QSGTransformNode* obj) { delete obj; }
    const QMatrix4x4*  combinedMatrix(QSGTransformNode* theWrappedObject) const;
    const QMatrix4x4*  matrix(QSGTransformNode* theWrappedObject) const;
    void setCombinedMatrix(QSGTransformNode* theWrappedObject, const QMatrix4x4&  matrix);

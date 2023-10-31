@@ -30,7 +30,11 @@
 #include <qgraphicseffect.h>
 #include <qgraphicsitem.h>
 #include <qgraphicsproxywidget.h>
+#include <qgraphicsscene.h>
+#include <qgraphicssceneevent.h>
+#include <qgraphicstransform.h>
 #include <qgraphicsvideoitem.h>
+#include <qgraphicswidget.h>
 #include <qicon.h>
 #include <qimage.h>
 #include <qimageencodercontrol.h>
@@ -62,9 +66,11 @@
 #include <qpaintdevice.h>
 #include <qpaintengine.h>
 #include <qpainter.h>
+#include <qpainterpath.h>
 #include <qpalette.h>
 #include <qpixmap.h>
 #include <qpoint.h>
+#include <qpolygon.h>
 #include <qrect.h>
 #include <qregion.h>
 #include <qsize.h>
@@ -72,6 +78,8 @@
 #include <qstringlist.h>
 #include <qstyle.h>
 #include <qstyleoption.h>
+#include <qthread.h>
+#include <qtransform.h>
 #include <qurl.h>
 #include <qvideoframe.h>
 #include <qvideowidget.h>
@@ -113,28 +121,28 @@ public slots:
 class PythonQtShell_QCameraFocusControl : public QCameraFocusControl
 {
 public:
-    PythonQtShell_QCameraFocusControl(QObject*  parent = nullptr):QCameraFocusControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QCameraFocusControl(QObject*  parent = nullptr):QCameraFocusControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QCameraFocusControl();
+   ~PythonQtShell_QCameraFocusControl() override;
 
-virtual void childEvent(QChildEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual QPointF  customFocusPoint() const;
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual QCameraFocus::FocusModes  focusMode() const;
-virtual QCameraFocus::FocusPointMode  focusPointMode() const;
-virtual QList<QCameraFocusZone >  focusZones() const;
-virtual bool  isFocusModeSupported(QCameraFocus::FocusModes  mode) const;
-virtual bool  isFocusPointModeSupported(QCameraFocus::FocusPointMode  mode) const;
-virtual void setCustomFocusPoint(const QPointF&  point);
-virtual void setFocusMode(QCameraFocus::FocusModes  mode);
-virtual void setFocusPointMode(QCameraFocus::FocusPointMode  mode);
-virtual void timerEvent(QTimerEvent*  event);
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+QPointF  customFocusPoint() const override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+QCameraFocus::FocusModes  focusMode() const override;
+QCameraFocus::FocusPointMode  focusPointMode() const override;
+QList<QCameraFocusZone >  focusZones() const override;
+bool  isFocusModeSupported(QCameraFocus::FocusModes  mode) const override;
+bool  isFocusPointModeSupported(QCameraFocus::FocusPointMode  mode) const override;
+void setCustomFocusPoint(const QPointF&  point) override;
+void setFocusMode(QCameraFocus::FocusModes  mode) override;
+void setFocusPointMode(QCameraFocus::FocusPointMode  mode) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QCameraFocusControl : public QCameraFocusControl
@@ -155,7 +163,7 @@ class PythonQtWrapper_QCameraFocusControl : public QObject
 public:
 public slots:
 QCameraFocusControl* new_QCameraFocusControl(QObject*  parent = nullptr);
-void delete_QCameraFocusControl(QCameraFocusControl* obj) { delete obj; } 
+void delete_QCameraFocusControl(QCameraFocusControl* obj) { delete obj; }
    QPointF  customFocusPoint(QCameraFocusControl* theWrappedObject) const;
    QPointF  py_q_customFocusPoint(QCameraFocusControl* theWrappedObject) const{  return (((PythonQtPublicPromoter_QCameraFocusControl*)theWrappedObject)->py_q_customFocusPoint());}
    QCameraFocus::FocusModes  focusMode(QCameraFocusControl* theWrappedObject) const;
@@ -190,7 +198,7 @@ public slots:
 QCameraFocusZone* new_QCameraFocusZone();
 QCameraFocusZone* new_QCameraFocusZone(const QCameraFocusZone&  other);
 QCameraFocusZone* new_QCameraFocusZone(const QRectF&  area, QCameraFocusZone::FocusZoneStatus  status = QCameraFocusZone::Selected);
-void delete_QCameraFocusZone(QCameraFocusZone* obj) { delete obj; } 
+void delete_QCameraFocusZone(QCameraFocusZone* obj) { delete obj; }
    QRectF  area(QCameraFocusZone* theWrappedObject) const;
    bool  isValid(QCameraFocusZone* theWrappedObject) const;
    bool  __ne__(QCameraFocusZone* theWrappedObject, const QCameraFocusZone&  other) const;
@@ -208,21 +216,21 @@ void delete_QCameraFocusZone(QCameraFocusZone* obj) { delete obj; }
 class PythonQtShell_QCameraImageCapture : public QCameraImageCapture
 {
 public:
-    PythonQtShell_QCameraImageCapture(QMediaObject*  mediaObject, QObject*  parent = nullptr):QCameraImageCapture(mediaObject, parent),_wrapper(NULL) {};
+    PythonQtShell_QCameraImageCapture(QMediaObject*  mediaObject, QObject*  parent = nullptr):QCameraImageCapture(mediaObject, parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QCameraImageCapture();
+   ~PythonQtShell_QCameraImageCapture() override;
 
-virtual void childEvent(QChildEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual QMediaObject*  mediaObject() const;
-virtual bool  setMediaObject(QMediaObject*  arg__1);
-virtual void timerEvent(QTimerEvent*  event);
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+QMediaObject*  mediaObject() const override;
+bool  setMediaObject(QMediaObject*  arg__1) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QCameraImageCapture : public QCameraImageCapture
@@ -244,7 +252,7 @@ enum DriveMode{
 Q_DECLARE_FLAGS(CaptureDestinations, CaptureDestination)
 public slots:
 QCameraImageCapture* new_QCameraImageCapture(QMediaObject*  mediaObject, QObject*  parent = nullptr);
-void delete_QCameraImageCapture(QCameraImageCapture* obj) { delete obj; } 
+void delete_QCameraImageCapture(QCameraImageCapture* obj) { delete obj; }
    QMultimedia::AvailabilityStatus  availability(QCameraImageCapture* theWrappedObject) const;
    QVideoFrame::PixelFormat  bufferFormat(QCameraImageCapture* theWrappedObject) const;
    QCameraImageCapture::CaptureDestinations  captureDestination(QCameraImageCapture* theWrappedObject) const;
@@ -272,24 +280,24 @@ void delete_QCameraImageCapture(QCameraImageCapture* obj) { delete obj; }
 class PythonQtShell_QCameraImageCaptureControl : public QCameraImageCaptureControl
 {
 public:
-    PythonQtShell_QCameraImageCaptureControl(QObject*  parent = nullptr):QCameraImageCaptureControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QCameraImageCaptureControl(QObject*  parent = nullptr):QCameraImageCaptureControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QCameraImageCaptureControl();
+   ~PythonQtShell_QCameraImageCaptureControl() override;
 
-virtual void cancelCapture();
-virtual int  capture(const QString&  fileName);
-virtual void childEvent(QChildEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual QCameraImageCapture::DriveMode  driveMode() const;
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual bool  isReadyForCapture() const;
-virtual void setDriveMode(QCameraImageCapture::DriveMode  mode);
-virtual void timerEvent(QTimerEvent*  event);
+void cancelCapture() override;
+int  capture(const QString&  fileName) override;
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+QCameraImageCapture::DriveMode  driveMode() const override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+bool  isReadyForCapture() const override;
+void setDriveMode(QCameraImageCapture::DriveMode  mode) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QCameraImageCaptureControl : public QCameraImageCaptureControl
@@ -306,7 +314,7 @@ class PythonQtWrapper_QCameraImageCaptureControl : public QObject
 public:
 public slots:
 QCameraImageCaptureControl* new_QCameraImageCaptureControl(QObject*  parent = nullptr);
-void delete_QCameraImageCaptureControl(QCameraImageCaptureControl* obj) { delete obj; } 
+void delete_QCameraImageCaptureControl(QCameraImageCaptureControl* obj) { delete obj; }
    void cancelCapture(QCameraImageCaptureControl* theWrappedObject);
    void py_q_cancelCapture(QCameraImageCaptureControl* theWrappedObject){  (((PythonQtPublicPromoter_QCameraImageCaptureControl*)theWrappedObject)->py_q_cancelCapture());}
    int  capture(QCameraImageCaptureControl* theWrappedObject, const QString&  fileName);
@@ -355,23 +363,23 @@ public slots:
 class PythonQtShell_QCameraImageProcessingControl : public QCameraImageProcessingControl
 {
 public:
-    PythonQtShell_QCameraImageProcessingControl(QObject*  parent = nullptr):QCameraImageProcessingControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QCameraImageProcessingControl(QObject*  parent = nullptr):QCameraImageProcessingControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QCameraImageProcessingControl();
+   ~PythonQtShell_QCameraImageProcessingControl() override;
 
-virtual void childEvent(QChildEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual bool  isParameterSupported(QCameraImageProcessingControl::ProcessingParameter  arg__1) const;
-virtual bool  isParameterValueSupported(QCameraImageProcessingControl::ProcessingParameter  parameter, const QVariant&  value) const;
-virtual QVariant  parameter(QCameraImageProcessingControl::ProcessingParameter  parameter) const;
-virtual void setParameter(QCameraImageProcessingControl::ProcessingParameter  parameter, const QVariant&  value);
-virtual void timerEvent(QTimerEvent*  event);
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+bool  isParameterSupported(QCameraImageProcessingControl::ProcessingParameter  arg__1) const override;
+bool  isParameterValueSupported(QCameraImageProcessingControl::ProcessingParameter  parameter, const QVariant&  value) const override;
+QVariant  parameter(QCameraImageProcessingControl::ProcessingParameter  parameter) const override;
+void setParameter(QCameraImageProcessingControl::ProcessingParameter  parameter, const QVariant&  value) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QCameraImageProcessingControl : public QCameraImageProcessingControl
@@ -387,7 +395,7 @@ class PythonQtWrapper_QCameraImageProcessingControl : public QObject
 public:
 public slots:
 QCameraImageProcessingControl* new_QCameraImageProcessingControl(QObject*  parent = nullptr);
-void delete_QCameraImageProcessingControl(QCameraImageProcessingControl* obj) { delete obj; } 
+void delete_QCameraImageProcessingControl(QCameraImageProcessingControl* obj) { delete obj; }
    bool  isParameterSupported(QCameraImageProcessingControl* theWrappedObject, QCameraImageProcessingControl::ProcessingParameter  arg__1) const;
    bool  py_q_isParameterSupported(QCameraImageProcessingControl* theWrappedObject, QCameraImageProcessingControl::ProcessingParameter  arg__1) const{  return (((PythonQtPublicPromoter_QCameraImageProcessingControl*)theWrappedObject)->py_q_isParameterSupported(arg__1));}
    bool  isParameterValueSupported(QCameraImageProcessingControl* theWrappedObject, QCameraImageProcessingControl::ProcessingParameter  parameter, const QVariant&  value) const;
@@ -409,7 +417,7 @@ public slots:
 QCameraInfo* new_QCameraInfo(const QByteArray&  name = QByteArray());
 QCameraInfo* new_QCameraInfo(const QCamera&  camera);
 QCameraInfo* new_QCameraInfo(const QCameraInfo&  other);
-void delete_QCameraInfo(QCameraInfo* obj) { delete obj; } 
+void delete_QCameraInfo(QCameraInfo* obj) { delete obj; }
    QList<QCameraInfo >  static_QCameraInfo_availableCameras(QCamera::Position  position = QCamera::UnspecifiedPosition);
    QCameraInfo  static_QCameraInfo_defaultCamera();
    QString  description(QCameraInfo* theWrappedObject) const;
@@ -431,21 +439,21 @@ void delete_QCameraInfo(QCameraInfo* obj) { delete obj; }
 class PythonQtShell_QCameraInfoControl : public QCameraInfoControl
 {
 public:
-    PythonQtShell_QCameraInfoControl(QObject*  parent = nullptr):QCameraInfoControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QCameraInfoControl(QObject*  parent = nullptr):QCameraInfoControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QCameraInfoControl();
+   ~PythonQtShell_QCameraInfoControl() override;
 
-virtual int  cameraOrientation(const QString&  deviceName) const;
-virtual QCamera::Position  cameraPosition(const QString&  deviceName) const;
-virtual void childEvent(QChildEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual void timerEvent(QTimerEvent*  event);
+int  cameraOrientation(const QString&  deviceName) const override;
+QCamera::Position  cameraPosition(const QString&  deviceName) const override;
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QCameraInfoControl : public QCameraInfoControl
@@ -459,7 +467,7 @@ class PythonQtWrapper_QCameraInfoControl : public QObject
 public:
 public slots:
 QCameraInfoControl* new_QCameraInfoControl(QObject*  parent = nullptr);
-void delete_QCameraInfoControl(QCameraInfoControl* obj) { delete obj; } 
+void delete_QCameraInfoControl(QCameraInfoControl* obj) { delete obj; }
    int  cameraOrientation(QCameraInfoControl* theWrappedObject, const QString&  deviceName) const;
    int  py_q_cameraOrientation(QCameraInfoControl* theWrappedObject, const QString&  deviceName) const{  return (((PythonQtPublicPromoter_QCameraInfoControl*)theWrappedObject)->py_q_cameraOrientation(deviceName));}
    QCamera::Position  cameraPosition(QCameraInfoControl* theWrappedObject, const QString&  deviceName) const;
@@ -473,23 +481,23 @@ void delete_QCameraInfoControl(QCameraInfoControl* obj) { delete obj; }
 class PythonQtShell_QCameraLocksControl : public QCameraLocksControl
 {
 public:
-    PythonQtShell_QCameraLocksControl(QObject*  parent = nullptr):QCameraLocksControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QCameraLocksControl(QObject*  parent = nullptr):QCameraLocksControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QCameraLocksControl();
+   ~PythonQtShell_QCameraLocksControl() override;
 
-virtual void childEvent(QChildEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual QCamera::LockStatus  lockStatus(QCamera::LockType  lock) const;
-virtual void searchAndLock(QCamera::LockTypes  locks);
-virtual QCamera::LockTypes  supportedLocks() const;
-virtual void timerEvent(QTimerEvent*  event);
-virtual void unlock(QCamera::LockTypes  locks);
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+QCamera::LockStatus  lockStatus(QCamera::LockType  lock) const override;
+void searchAndLock(QCamera::LockTypes  locks) override;
+QCamera::LockTypes  supportedLocks() const override;
+void timerEvent(QTimerEvent*  event) override;
+void unlock(QCamera::LockTypes  locks) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QCameraLocksControl : public QCameraLocksControl
@@ -505,7 +513,7 @@ class PythonQtWrapper_QCameraLocksControl : public QObject
 public:
 public slots:
 QCameraLocksControl* new_QCameraLocksControl(QObject*  parent = nullptr);
-void delete_QCameraLocksControl(QCameraLocksControl* obj) { delete obj; } 
+void delete_QCameraLocksControl(QCameraLocksControl* obj) { delete obj; }
    QCamera::LockStatus  lockStatus(QCameraLocksControl* theWrappedObject, QCamera::LockType  lock) const;
    QCamera::LockStatus  py_q_lockStatus(QCameraLocksControl* theWrappedObject, QCamera::LockType  lock) const{  return (((PythonQtPublicPromoter_QCameraLocksControl*)theWrappedObject)->py_q_lockStatus(lock));}
    void searchAndLock(QCameraLocksControl* theWrappedObject, QCamera::LockTypes  locks);
@@ -523,61 +531,61 @@ void delete_QCameraLocksControl(QCameraLocksControl* obj) { delete obj; }
 class PythonQtShell_QCameraViewfinder : public QCameraViewfinder
 {
 public:
-    PythonQtShell_QCameraViewfinder(QWidget*  parent = nullptr):QCameraViewfinder(parent),_wrapper(NULL) {};
+    PythonQtShell_QCameraViewfinder(QWidget*  parent = nullptr):QCameraViewfinder(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QCameraViewfinder();
+   ~PythonQtShell_QCameraViewfinder() override;
 
-virtual void actionEvent(QActionEvent*  event);
-virtual void changeEvent(QEvent*  arg__1);
-virtual void childEvent(QChildEvent*  event);
-virtual void closeEvent(QCloseEvent*  event);
-virtual void contextMenuEvent(QContextMenuEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual int  devType() const;
-virtual void dragEnterEvent(QDragEnterEvent*  event);
-virtual void dragLeaveEvent(QDragLeaveEvent*  event);
-virtual void dragMoveEvent(QDragMoveEvent*  event);
-virtual void dropEvent(QDropEvent*  event);
-virtual void enterEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual void focusInEvent(QFocusEvent*  event);
-virtual bool  focusNextPrevChild(bool  next);
-virtual void focusOutEvent(QFocusEvent*  event);
-virtual bool  hasHeightForWidth() const;
-virtual int  heightForWidth(int  arg__1) const;
-virtual void hideEvent(QHideEvent*  event);
-virtual void initPainter(QPainter*  painter) const;
-virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
-virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const;
-virtual void keyPressEvent(QKeyEvent*  event);
-virtual void keyReleaseEvent(QKeyEvent*  event);
-virtual void leaveEvent(QEvent*  event);
-virtual QMediaObject*  mediaObject() const;
-virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
-virtual QSize  minimumSizeHint() const;
-virtual void mouseDoubleClickEvent(QMouseEvent*  event);
-virtual void mouseMoveEvent(QMouseEvent*  event);
-virtual void mousePressEvent(QMouseEvent*  event);
-virtual void mouseReleaseEvent(QMouseEvent*  event);
-virtual void moveEvent(QMoveEvent*  event);
-virtual bool  nativeEvent(const QByteArray&  eventType, void*  message, long*  result);
-virtual QPaintEngine*  paintEngine() const;
-virtual void paintEvent(QPaintEvent*  event);
-virtual QPaintDevice*  redirected(QPoint*  offset) const;
-virtual void resizeEvent(QResizeEvent*  event);
-virtual bool  setMediaObject(QMediaObject*  object);
-virtual void setVisible(bool  visible);
-virtual QPainter*  sharedPainter() const;
-virtual void showEvent(QShowEvent*  event);
-virtual QSize  sizeHint() const;
-virtual void tabletEvent(QTabletEvent*  event);
-virtual void timerEvent(QTimerEvent*  event);
-virtual void wheelEvent(QWheelEvent*  event);
+void actionEvent(QActionEvent*  event) override;
+void changeEvent(QEvent*  arg__1) override;
+void childEvent(QChildEvent*  event) override;
+void closeEvent(QCloseEvent*  event) override;
+void contextMenuEvent(QContextMenuEvent*  event) override;
+void customEvent(QEvent*  event) override;
+int  devType() const override;
+void dragEnterEvent(QDragEnterEvent*  event) override;
+void dragLeaveEvent(QDragLeaveEvent*  event) override;
+void dragMoveEvent(QDragMoveEvent*  event) override;
+void dropEvent(QDropEvent*  event) override;
+void enterEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void focusInEvent(QFocusEvent*  event) override;
+bool  focusNextPrevChild(bool  next) override;
+void focusOutEvent(QFocusEvent*  event) override;
+bool  hasHeightForWidth() const override;
+int  heightForWidth(int  arg__1) const override;
+void hideEvent(QHideEvent*  event) override;
+void initPainter(QPainter*  painter) const override;
+void inputMethodEvent(QInputMethodEvent*  arg__1) override;
+QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const override;
+void keyPressEvent(QKeyEvent*  event) override;
+void keyReleaseEvent(QKeyEvent*  event) override;
+void leaveEvent(QEvent*  event) override;
+QMediaObject*  mediaObject() const override;
+int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const override;
+QSize  minimumSizeHint() const override;
+void mouseDoubleClickEvent(QMouseEvent*  event) override;
+void mouseMoveEvent(QMouseEvent*  event) override;
+void mousePressEvent(QMouseEvent*  event) override;
+void mouseReleaseEvent(QMouseEvent*  event) override;
+void moveEvent(QMoveEvent*  event) override;
+bool  nativeEvent(const QByteArray&  eventType, void*  message, long*  result) override;
+QPaintEngine*  paintEngine() const override;
+void paintEvent(QPaintEvent*  event) override;
+QPaintDevice*  redirected(QPoint*  offset) const override;
+void resizeEvent(QResizeEvent*  event) override;
+bool  setMediaObject(QMediaObject*  object) override;
+void setVisible(bool  visible) override;
+QPainter*  sharedPainter() const override;
+void showEvent(QShowEvent*  event) override;
+QSize  sizeHint() const override;
+void tabletEvent(QTabletEvent*  event) override;
+void timerEvent(QTimerEvent*  event) override;
+void wheelEvent(QWheelEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QCameraViewfinder : public QCameraViewfinder
@@ -592,7 +600,7 @@ class PythonQtWrapper_QCameraViewfinder : public QObject
 public:
 public slots:
 QCameraViewfinder* new_QCameraViewfinder(QWidget*  parent = nullptr);
-void delete_QCameraViewfinder(QCameraViewfinder* obj) { delete obj; } 
+void delete_QCameraViewfinder(QCameraViewfinder* obj) { delete obj; }
    QMediaObject*  py_q_mediaObject(QCameraViewfinder* theWrappedObject) const{  return (((PythonQtPublicPromoter_QCameraViewfinder*)theWrappedObject)->py_q_mediaObject());}
    bool  py_q_setMediaObject(QCameraViewfinder* theWrappedObject, QMediaObject*  object){  return (((PythonQtPublicPromoter_QCameraViewfinder*)theWrappedObject)->py_q_setMediaObject(object));}
 };
@@ -607,10 +615,11 @@ public:
 public slots:
 QCameraViewfinderSettings* new_QCameraViewfinderSettings();
 QCameraViewfinderSettings* new_QCameraViewfinderSettings(const QCameraViewfinderSettings&  other);
-void delete_QCameraViewfinderSettings(QCameraViewfinderSettings* obj) { delete obj; } 
+void delete_QCameraViewfinderSettings(QCameraViewfinderSettings* obj) { delete obj; }
    bool  isNull(QCameraViewfinderSettings* theWrappedObject) const;
    qreal  maximumFrameRate(QCameraViewfinderSettings* theWrappedObject) const;
    qreal  minimumFrameRate(QCameraViewfinderSettings* theWrappedObject) const;
+   bool  __ne__(QCameraViewfinderSettings* theWrappedObject, const QCameraViewfinderSettings&  rhs);
    QCameraViewfinderSettings*  operator_assign(QCameraViewfinderSettings* theWrappedObject, const QCameraViewfinderSettings&  other);
    QSize  pixelAspectRatio(QCameraViewfinderSettings* theWrappedObject) const;
    QVideoFrame::PixelFormat  pixelFormat(QCameraViewfinderSettings* theWrappedObject) const;
@@ -633,22 +642,22 @@ void delete_QCameraViewfinderSettings(QCameraViewfinderSettings* obj) { delete o
 class PythonQtShell_QCameraViewfinderSettingsControl : public QCameraViewfinderSettingsControl
 {
 public:
-    PythonQtShell_QCameraViewfinderSettingsControl(QObject*  parent = nullptr):QCameraViewfinderSettingsControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QCameraViewfinderSettingsControl(QObject*  parent = nullptr):QCameraViewfinderSettingsControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QCameraViewfinderSettingsControl();
+   ~PythonQtShell_QCameraViewfinderSettingsControl() override;
 
-virtual void childEvent(QChildEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual bool  isViewfinderParameterSupported(QCameraViewfinderSettingsControl::ViewfinderParameter  parameter) const;
-virtual void setViewfinderParameter(QCameraViewfinderSettingsControl::ViewfinderParameter  parameter, const QVariant&  value);
-virtual void timerEvent(QTimerEvent*  event);
-virtual QVariant  viewfinderParameter(QCameraViewfinderSettingsControl::ViewfinderParameter  parameter) const;
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+bool  isViewfinderParameterSupported(QCameraViewfinderSettingsControl::ViewfinderParameter  parameter) const override;
+void setViewfinderParameter(QCameraViewfinderSettingsControl::ViewfinderParameter  parameter, const QVariant&  value) override;
+void timerEvent(QTimerEvent*  event) override;
+QVariant  viewfinderParameter(QCameraViewfinderSettingsControl::ViewfinderParameter  parameter) const override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QCameraViewfinderSettingsControl : public QCameraViewfinderSettingsControl
@@ -666,7 +675,7 @@ enum ViewfinderParameter{
   Resolution = QCameraViewfinderSettingsControl::Resolution,   PixelAspectRatio = QCameraViewfinderSettingsControl::PixelAspectRatio,   MinimumFrameRate = QCameraViewfinderSettingsControl::MinimumFrameRate,   MaximumFrameRate = QCameraViewfinderSettingsControl::MaximumFrameRate,   PixelFormat = QCameraViewfinderSettingsControl::PixelFormat,   UserParameter = QCameraViewfinderSettingsControl::UserParameter};
 public slots:
 QCameraViewfinderSettingsControl* new_QCameraViewfinderSettingsControl(QObject*  parent = nullptr);
-void delete_QCameraViewfinderSettingsControl(QCameraViewfinderSettingsControl* obj) { delete obj; } 
+void delete_QCameraViewfinderSettingsControl(QCameraViewfinderSettingsControl* obj) { delete obj; }
    bool  isViewfinderParameterSupported(QCameraViewfinderSettingsControl* theWrappedObject, QCameraViewfinderSettingsControl::ViewfinderParameter  parameter) const;
    bool  py_q_isViewfinderParameterSupported(QCameraViewfinderSettingsControl* theWrappedObject, QCameraViewfinderSettingsControl::ViewfinderParameter  parameter) const{  return (((PythonQtPublicPromoter_QCameraViewfinderSettingsControl*)theWrappedObject)->py_q_isViewfinderParameterSupported(parameter));}
    void setViewfinderParameter(QCameraViewfinderSettingsControl* theWrappedObject, QCameraViewfinderSettingsControl::ViewfinderParameter  parameter, const QVariant&  value);
@@ -682,22 +691,22 @@ void delete_QCameraViewfinderSettingsControl(QCameraViewfinderSettingsControl* o
 class PythonQtShell_QCameraViewfinderSettingsControl2 : public QCameraViewfinderSettingsControl2
 {
 public:
-    PythonQtShell_QCameraViewfinderSettingsControl2(QObject*  parent = nullptr):QCameraViewfinderSettingsControl2(parent),_wrapper(NULL) {};
+    PythonQtShell_QCameraViewfinderSettingsControl2(QObject*  parent = nullptr):QCameraViewfinderSettingsControl2(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QCameraViewfinderSettingsControl2();
+   ~PythonQtShell_QCameraViewfinderSettingsControl2() override;
 
-virtual void childEvent(QChildEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual void setViewfinderSettings(const QCameraViewfinderSettings&  settings);
-virtual QList<QCameraViewfinderSettings >  supportedViewfinderSettings() const;
-virtual void timerEvent(QTimerEvent*  event);
-virtual QCameraViewfinderSettings  viewfinderSettings() const;
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void setViewfinderSettings(const QCameraViewfinderSettings&  settings) override;
+QList<QCameraViewfinderSettings >  supportedViewfinderSettings() const override;
+void timerEvent(QTimerEvent*  event) override;
+QCameraViewfinderSettings  viewfinderSettings() const override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QCameraViewfinderSettingsControl2 : public QCameraViewfinderSettingsControl2
@@ -712,7 +721,7 @@ class PythonQtWrapper_QCameraViewfinderSettingsControl2 : public QObject
 public:
 public slots:
 QCameraViewfinderSettingsControl2* new_QCameraViewfinderSettingsControl2(QObject*  parent = nullptr);
-void delete_QCameraViewfinderSettingsControl2(QCameraViewfinderSettingsControl2* obj) { delete obj; } 
+void delete_QCameraViewfinderSettingsControl2(QCameraViewfinderSettingsControl2* obj) { delete obj; }
    void setViewfinderSettings(QCameraViewfinderSettingsControl2* theWrappedObject, const QCameraViewfinderSettings&  settings);
    void py_q_setViewfinderSettings(QCameraViewfinderSettingsControl2* theWrappedObject, const QCameraViewfinderSettings&  settings){  (((PythonQtPublicPromoter_QCameraViewfinderSettingsControl2*)theWrappedObject)->py_q_setViewfinderSettings(settings));}
    QList<QCameraViewfinderSettings >  supportedViewfinderSettings(QCameraViewfinderSettingsControl2* theWrappedObject) const;
@@ -728,26 +737,26 @@ void delete_QCameraViewfinderSettingsControl2(QCameraViewfinderSettingsControl2*
 class PythonQtShell_QCameraZoomControl : public QCameraZoomControl
 {
 public:
-    PythonQtShell_QCameraZoomControl(QObject*  parent = nullptr):QCameraZoomControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QCameraZoomControl(QObject*  parent = nullptr):QCameraZoomControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QCameraZoomControl();
+   ~PythonQtShell_QCameraZoomControl() override;
 
-virtual void childEvent(QChildEvent*  event);
-virtual qreal  currentDigitalZoom() const;
-virtual qreal  currentOpticalZoom() const;
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual qreal  maximumDigitalZoom() const;
-virtual qreal  maximumOpticalZoom() const;
-virtual qreal  requestedDigitalZoom() const;
-virtual qreal  requestedOpticalZoom() const;
-virtual void timerEvent(QTimerEvent*  event);
-virtual void zoomTo(qreal  optical, qreal  digital);
+void childEvent(QChildEvent*  event) override;
+qreal  currentDigitalZoom() const override;
+qreal  currentOpticalZoom() const override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+qreal  maximumDigitalZoom() const override;
+qreal  maximumOpticalZoom() const override;
+qreal  requestedDigitalZoom() const override;
+qreal  requestedOpticalZoom() const override;
+void timerEvent(QTimerEvent*  event) override;
+void zoomTo(qreal  optical, qreal  digital) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QCameraZoomControl : public QCameraZoomControl
@@ -766,7 +775,7 @@ class PythonQtWrapper_QCameraZoomControl : public QObject
 public:
 public slots:
 QCameraZoomControl* new_QCameraZoomControl(QObject*  parent = nullptr);
-void delete_QCameraZoomControl(QCameraZoomControl* obj) { delete obj; } 
+void delete_QCameraZoomControl(QCameraZoomControl* obj) { delete obj; }
    qreal  currentDigitalZoom(QCameraZoomControl* theWrappedObject) const;
    qreal  py_q_currentDigitalZoom(QCameraZoomControl* theWrappedObject) const{  return (((PythonQtPublicPromoter_QCameraZoomControl*)theWrappedObject)->py_q_currentDigitalZoom());}
    qreal  currentOpticalZoom(QCameraZoomControl* theWrappedObject) const;
@@ -790,13 +799,13 @@ void delete_QCameraZoomControl(QCameraZoomControl* obj) { delete obj; }
 class PythonQtShell_QCamera__FrameRateRange : public QCamera::FrameRateRange
 {
 public:
-    PythonQtShell_QCamera__FrameRateRange():QCamera::FrameRateRange(),_wrapper(NULL) {};
-    PythonQtShell_QCamera__FrameRateRange(qreal  minimum, qreal  maximum):QCamera::FrameRateRange(minimum, maximum),_wrapper(NULL) {};
+    PythonQtShell_QCamera__FrameRateRange():QCamera::FrameRateRange(),_wrapper(nullptr) {};
+    PythonQtShell_QCamera__FrameRateRange(qreal  minimum, qreal  maximum):QCamera::FrameRateRange(minimum, maximum),_wrapper(nullptr) {};
 
    ~PythonQtShell_QCamera__FrameRateRange();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QCamera__FrameRateRange : public QObject
@@ -805,7 +814,8 @@ public:
 public slots:
 QCamera::FrameRateRange* new_QCamera__FrameRateRange();
 QCamera::FrameRateRange* new_QCamera__FrameRateRange(qreal  minimum, qreal  maximum);
-void delete_QCamera__FrameRateRange(QCamera::FrameRateRange* obj) { delete obj; } 
+void delete_QCamera__FrameRateRange(QCamera::FrameRateRange* obj) { delete obj; }
+   bool  __ne__(QCamera::FrameRateRange* theWrappedObject, const QCamera::FrameRateRange&  r2);
    bool  __eq__(QCamera::FrameRateRange* theWrappedObject, const QCamera::FrameRateRange&  r2);
 void py_set_maximumFrameRate(QCamera::FrameRateRange* theWrappedObject, qreal  maximumFrameRate){ theWrappedObject->maximumFrameRate = maximumFrameRate; }
 qreal  py_get_maximumFrameRate(QCamera::FrameRateRange* theWrappedObject){ return theWrappedObject->maximumFrameRate; }
@@ -820,24 +830,56 @@ qreal  py_get_minimumFrameRate(QCamera::FrameRateRange* theWrappedObject){ retur
 class PythonQtShell_QGraphicsVideoItem : public QGraphicsVideoItem
 {
 public:
-    PythonQtShell_QGraphicsVideoItem(QGraphicsItem*  parent = nullptr):QGraphicsVideoItem(parent),_wrapper(NULL) {};
+    PythonQtShell_QGraphicsVideoItem(QGraphicsItem*  parent = nullptr):QGraphicsVideoItem(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QGraphicsVideoItem();
+   ~PythonQtShell_QGraphicsVideoItem() override;
 
-virtual QRectF  boundingRect() const;
-virtual void childEvent(QChildEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  ev);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual QVariant  itemChange(QGraphicsItem::GraphicsItemChange  change, const QVariant&  value);
-virtual QMediaObject*  mediaObject() const;
-virtual void paint(QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = nullptr);
-virtual bool  setMediaObject(QMediaObject*  object);
-virtual void timerEvent(QTimerEvent*  event);
+void advance(int  phase) override;
+QRectF  boundingRect() const override;
+void childEvent(QChildEvent*  event) override;
+bool  collidesWithItem(const QGraphicsItem*  other, Qt::ItemSelectionMode  mode = Qt::IntersectsItemShape) const override;
+bool  collidesWithPath(const QPainterPath&  path, Qt::ItemSelectionMode  mode = Qt::IntersectsItemShape) const override;
+bool  contains(const QPointF&  point) const override;
+void contextMenuEvent(QGraphicsSceneContextMenuEvent*  event) override;
+void customEvent(QEvent*  event) override;
+void dragEnterEvent(QGraphicsSceneDragDropEvent*  event) override;
+void dragLeaveEvent(QGraphicsSceneDragDropEvent*  event) override;
+void dragMoveEvent(QGraphicsSceneDragDropEvent*  event) override;
+void dropEvent(QGraphicsSceneDragDropEvent*  event) override;
+bool  event(QEvent*  ev) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+QVariant  extension(const QVariant&  variant) const override;
+void focusInEvent(QFocusEvent*  event) override;
+void focusOutEvent(QFocusEvent*  event) override;
+void hoverEnterEvent(QGraphicsSceneHoverEvent*  event) override;
+void hoverLeaveEvent(QGraphicsSceneHoverEvent*  event) override;
+void hoverMoveEvent(QGraphicsSceneHoverEvent*  event) override;
+void inputMethodEvent(QInputMethodEvent*  event) override;
+QVariant  inputMethodQuery(Qt::InputMethodQuery  query) const override;
+bool  isObscuredBy(const QGraphicsItem*  item) const override;
+QVariant  itemChange(QGraphicsItem::GraphicsItemChange  change, const QVariant&  value) override;
+void keyPressEvent(QKeyEvent*  event) override;
+void keyReleaseEvent(QKeyEvent*  event) override;
+QMediaObject*  mediaObject() const override;
+void mouseDoubleClickEvent(QGraphicsSceneMouseEvent*  event) override;
+void mouseMoveEvent(QGraphicsSceneMouseEvent*  event) override;
+void mousePressEvent(QGraphicsSceneMouseEvent*  event) override;
+void mouseReleaseEvent(QGraphicsSceneMouseEvent*  event) override;
+QPainterPath  opaqueArea() const override;
+void paint(QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = nullptr) override;
+bool  sceneEvent(QEvent*  event) override;
+bool  sceneEventFilter(QGraphicsItem*  watched, QEvent*  event) override;
+void setExtension(QGraphicsItem::Extension  extension, const QVariant&  variant) override;
+bool  setMediaObject(QMediaObject*  object) override;
+QPainterPath  shape() const override;
+bool  supportsExtension(QGraphicsItem::Extension  extension) const override;
+void timerEvent(QTimerEvent*  event) override;
+int  type() const override;
+void wheelEvent(QGraphicsSceneWheelEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QGraphicsVideoItem : public QGraphicsVideoItem
@@ -858,16 +900,13 @@ class PythonQtWrapper_QGraphicsVideoItem : public QObject
 public:
 public slots:
 QGraphicsVideoItem* new_QGraphicsVideoItem(QGraphicsItem*  parent = nullptr);
-void delete_QGraphicsVideoItem(QGraphicsVideoItem* obj) { delete obj; } 
+void delete_QGraphicsVideoItem(QGraphicsVideoItem* obj) { delete obj; }
    Qt::AspectRatioMode  aspectRatioMode(QGraphicsVideoItem* theWrappedObject) const;
-   QRectF  boundingRect(QGraphicsVideoItem* theWrappedObject) const;
    QRectF  py_q_boundingRect(QGraphicsVideoItem* theWrappedObject) const{  return (((PythonQtPublicPromoter_QGraphicsVideoItem*)theWrappedObject)->py_q_boundingRect());}
-   QVariant  itemChange(QGraphicsVideoItem* theWrappedObject, QGraphicsItem::GraphicsItemChange  change, const QVariant&  value);
    QVariant  py_q_itemChange(QGraphicsVideoItem* theWrappedObject, QGraphicsItem::GraphicsItemChange  change, const QVariant&  value){  return (((PythonQtPublicPromoter_QGraphicsVideoItem*)theWrappedObject)->py_q_itemChange(change, value));}
    QMediaObject*  py_q_mediaObject(QGraphicsVideoItem* theWrappedObject) const{  return (((PythonQtPublicPromoter_QGraphicsVideoItem*)theWrappedObject)->py_q_mediaObject());}
    QSizeF  nativeSize(QGraphicsVideoItem* theWrappedObject) const;
    QPointF  offset(QGraphicsVideoItem* theWrappedObject) const;
-   void paint(QGraphicsVideoItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = nullptr);
    void py_q_paint(QGraphicsVideoItem* theWrappedObject, QPainter*  painter, const QStyleOptionGraphicsItem*  option, QWidget*  widget = nullptr){  (((PythonQtPublicPromoter_QGraphicsVideoItem*)theWrappedObject)->py_q_paint(painter, option, widget));}
    void setAspectRatioMode(QGraphicsVideoItem* theWrappedObject, Qt::AspectRatioMode  mode);
    bool  py_q_setMediaObject(QGraphicsVideoItem* theWrappedObject, QMediaObject*  object){  return (((PythonQtPublicPromoter_QGraphicsVideoItem*)theWrappedObject)->py_q_setMediaObject(object));}
@@ -884,24 +923,24 @@ void delete_QGraphicsVideoItem(QGraphicsVideoItem* obj) { delete obj; }
 class PythonQtShell_QImageEncoderControl : public QImageEncoderControl
 {
 public:
-    PythonQtShell_QImageEncoderControl(QObject*  parent = nullptr):QImageEncoderControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QImageEncoderControl(QObject*  parent = nullptr):QImageEncoderControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QImageEncoderControl();
+   ~PythonQtShell_QImageEncoderControl() override;
 
-virtual void childEvent(QChildEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual QString  imageCodecDescription(const QString&  codec) const;
-virtual QImageEncoderSettings  imageSettings() const;
-virtual void setImageSettings(const QImageEncoderSettings&  settings);
-virtual QStringList  supportedImageCodecs() const;
-virtual QList<QSize >  supportedResolutions(const QImageEncoderSettings&  settings, bool*  continuous = nullptr) const;
-virtual void timerEvent(QTimerEvent*  event);
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+QString  imageCodecDescription(const QString&  codec) const override;
+QImageEncoderSettings  imageSettings() const override;
+void setImageSettings(const QImageEncoderSettings&  settings) override;
+QStringList  supportedImageCodecs() const override;
+QList<QSize >  supportedResolutions(const QImageEncoderSettings&  settings, bool*  continuous = nullptr) const override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QImageEncoderControl : public QImageEncoderControl
@@ -918,7 +957,7 @@ class PythonQtWrapper_QImageEncoderControl : public QObject
 public:
 public slots:
 QImageEncoderControl* new_QImageEncoderControl(QObject*  parent = nullptr);
-void delete_QImageEncoderControl(QImageEncoderControl* obj) { delete obj; } 
+void delete_QImageEncoderControl(QImageEncoderControl* obj) { delete obj; }
    QString  imageCodecDescription(QImageEncoderControl* theWrappedObject, const QString&  codec) const;
    QString  py_q_imageCodecDescription(QImageEncoderControl* theWrappedObject, const QString&  codec) const{  return (((PythonQtPublicPromoter_QImageEncoderControl*)theWrappedObject)->py_q_imageCodecDescription(codec));}
    QImageEncoderSettings  imageSettings(QImageEncoderControl* theWrappedObject) const;
@@ -941,7 +980,7 @@ public:
 public slots:
 QImageEncoderSettings* new_QImageEncoderSettings();
 QImageEncoderSettings* new_QImageEncoderSettings(const QImageEncoderSettings&  other);
-void delete_QImageEncoderSettings(QImageEncoderSettings* obj) { delete obj; } 
+void delete_QImageEncoderSettings(QImageEncoderSettings* obj) { delete obj; }
    QString  codec(QImageEncoderSettings* theWrappedObject) const;
    QVariant  encodingOption(QImageEncoderSettings* theWrappedObject, const QString&  option) const;
    QMap<QString , QVariant >  encodingOptions(QImageEncoderSettings* theWrappedObject) const;
@@ -967,19 +1006,19 @@ void delete_QImageEncoderSettings(QImageEncoderSettings* obj) { delete obj; }
 class PythonQtShell_QMediaAudioProbeControl : public QMediaAudioProbeControl
 {
 public:
-    PythonQtShell_QMediaAudioProbeControl(QObject*  parent = nullptr):QMediaAudioProbeControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QMediaAudioProbeControl(QObject*  parent = nullptr):QMediaAudioProbeControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QMediaAudioProbeControl();
+   ~PythonQtShell_QMediaAudioProbeControl() override;
 
-virtual void childEvent(QChildEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual void timerEvent(QTimerEvent*  event);
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QMediaAudioProbeControl : public QObject
@@ -987,7 +1026,7 @@ class PythonQtWrapper_QMediaAudioProbeControl : public QObject
 public:
 public slots:
 QMediaAudioProbeControl* new_QMediaAudioProbeControl(QObject*  parent = nullptr);
-void delete_QMediaAudioProbeControl(QMediaAudioProbeControl* obj) { delete obj; } 
+void delete_QMediaAudioProbeControl(QMediaAudioProbeControl* obj) { delete obj; }
 };
 
 
@@ -997,20 +1036,20 @@ void delete_QMediaAudioProbeControl(QMediaAudioProbeControl* obj) { delete obj; 
 class PythonQtShell_QMediaAvailabilityControl : public QMediaAvailabilityControl
 {
 public:
-    PythonQtShell_QMediaAvailabilityControl(QObject*  parent = nullptr):QMediaAvailabilityControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QMediaAvailabilityControl(QObject*  parent = nullptr):QMediaAvailabilityControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QMediaAvailabilityControl();
+   ~PythonQtShell_QMediaAvailabilityControl() override;
 
-virtual QMultimedia::AvailabilityStatus  availability() const;
-virtual void childEvent(QChildEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual void timerEvent(QTimerEvent*  event);
+QMultimedia::AvailabilityStatus  availability() const override;
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QMediaAvailabilityControl : public QMediaAvailabilityControl
@@ -1023,7 +1062,7 @@ class PythonQtWrapper_QMediaAvailabilityControl : public QObject
 public:
 public slots:
 QMediaAvailabilityControl* new_QMediaAvailabilityControl(QObject*  parent = nullptr);
-void delete_QMediaAvailabilityControl(QMediaAvailabilityControl* obj) { delete obj; } 
+void delete_QMediaAvailabilityControl(QMediaAvailabilityControl* obj) { delete obj; }
    QMultimedia::AvailabilityStatus  availability(QMediaAvailabilityControl* theWrappedObject) const;
    QMultimedia::AvailabilityStatus  py_q_availability(QMediaAvailabilityControl* theWrappedObject) const{  return (((PythonQtPublicPromoter_QMediaAvailabilityControl*)theWrappedObject)->py_q_availability());}
 };
@@ -1035,14 +1074,14 @@ void delete_QMediaAvailabilityControl(QMediaAvailabilityControl* obj) { delete o
 class PythonQtShell_QMediaBindableInterface : public QMediaBindableInterface
 {
 public:
-    PythonQtShell_QMediaBindableInterface():QMediaBindableInterface(),_wrapper(NULL) {};
+    PythonQtShell_QMediaBindableInterface():QMediaBindableInterface(),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QMediaBindableInterface();
+   ~PythonQtShell_QMediaBindableInterface() override;
 
-virtual QMediaObject*  mediaObject() const;
-virtual bool  setMediaObject(QMediaObject*  object);
+QMediaObject*  mediaObject() const override;
+bool  setMediaObject(QMediaObject*  object) override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QMediaBindableInterface : public QMediaBindableInterface
@@ -1057,7 +1096,7 @@ class PythonQtWrapper_QMediaBindableInterface : public QObject
 public:
 public slots:
 QMediaBindableInterface* new_QMediaBindableInterface();
-void delete_QMediaBindableInterface(QMediaBindableInterface* obj) { delete obj; } 
+void delete_QMediaBindableInterface(QMediaBindableInterface* obj) { delete obj; }
    QMediaObject*  mediaObject(QMediaBindableInterface* theWrappedObject) const;
    QMediaObject*  py_q_mediaObject(QMediaBindableInterface* theWrappedObject) const{  return (((PythonQtPublicPromoter_QMediaBindableInterface*)theWrappedObject)->py_q_mediaObject());}
    bool  setMediaObject(QMediaBindableInterface* theWrappedObject, QMediaObject*  object);
@@ -1071,23 +1110,23 @@ void delete_QMediaBindableInterface(QMediaBindableInterface* obj) { delete obj; 
 class PythonQtShell_QMediaContainerControl : public QMediaContainerControl
 {
 public:
-    PythonQtShell_QMediaContainerControl(QObject*  parent = nullptr):QMediaContainerControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QMediaContainerControl(QObject*  parent = nullptr):QMediaContainerControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QMediaContainerControl();
+   ~PythonQtShell_QMediaContainerControl() override;
 
-virtual void childEvent(QChildEvent*  event);
-virtual QString  containerDescription(const QString&  formatMimeType) const;
-virtual QString  containerFormat() const;
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual void setContainerFormat(const QString&  format);
-virtual QStringList  supportedContainers() const;
-virtual void timerEvent(QTimerEvent*  event);
+void childEvent(QChildEvent*  event) override;
+QString  containerDescription(const QString&  formatMimeType) const override;
+QString  containerFormat() const override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void setContainerFormat(const QString&  format) override;
+QStringList  supportedContainers() const override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QMediaContainerControl : public QMediaContainerControl
@@ -1103,7 +1142,7 @@ class PythonQtWrapper_QMediaContainerControl : public QObject
 public:
 public slots:
 QMediaContainerControl* new_QMediaContainerControl(QObject*  parent = nullptr);
-void delete_QMediaContainerControl(QMediaContainerControl* obj) { delete obj; } 
+void delete_QMediaContainerControl(QMediaContainerControl* obj) { delete obj; }
    QString  containerDescription(QMediaContainerControl* theWrappedObject, const QString&  formatMimeType) const;
    QString  py_q_containerDescription(QMediaContainerControl* theWrappedObject, const QString&  formatMimeType) const{  return (((PythonQtPublicPromoter_QMediaContainerControl*)theWrappedObject)->py_q_containerDescription(formatMimeType));}
    QString  containerFormat(QMediaContainerControl* theWrappedObject) const;
@@ -1129,7 +1168,7 @@ QMediaContent* new_QMediaContent(const QMediaContent&  other);
 QMediaContent* new_QMediaContent(const QMediaResource&  contentResource);
 QMediaContent* new_QMediaContent(const QNetworkRequest&  contentRequest);
 QMediaContent* new_QMediaContent(const QUrl&  contentUrl);
-void delete_QMediaContent(QMediaContent* obj) { delete obj; } 
+void delete_QMediaContent(QMediaContent* obj) { delete obj; }
    QNetworkRequest  canonicalRequest(QMediaContent* theWrappedObject) const;
    QMediaResource  canonicalResource(QMediaContent* theWrappedObject) const;
    QUrl  canonicalUrl(QMediaContent* theWrappedObject) const;
@@ -1149,19 +1188,19 @@ void delete_QMediaContent(QMediaContent* obj) { delete obj; }
 class PythonQtShell_QMediaControl : public QMediaControl
 {
 public:
-    PythonQtShell_QMediaControl(QObject*  parent = nullptr):QMediaControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QMediaControl(QObject*  parent = nullptr):QMediaControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QMediaControl();
+   ~PythonQtShell_QMediaControl() override;
 
-virtual void childEvent(QChildEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual void timerEvent(QTimerEvent*  event);
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QMediaControl : public QObject
@@ -1169,7 +1208,7 @@ class PythonQtWrapper_QMediaControl : public QObject
 public:
 public slots:
 QMediaControl* new_QMediaControl(QObject*  parent = nullptr);
-void delete_QMediaControl(QMediaControl* obj) { delete obj; } 
+void delete_QMediaControl(QMediaControl* obj) { delete obj; }
 };
 
 
@@ -1179,24 +1218,24 @@ void delete_QMediaControl(QMediaControl* obj) { delete obj; }
 class PythonQtShell_QMediaGaplessPlaybackControl : public QMediaGaplessPlaybackControl
 {
 public:
-    PythonQtShell_QMediaGaplessPlaybackControl(QObject*  parent = nullptr):QMediaGaplessPlaybackControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QMediaGaplessPlaybackControl(QObject*  parent = nullptr):QMediaGaplessPlaybackControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QMediaGaplessPlaybackControl();
+   ~PythonQtShell_QMediaGaplessPlaybackControl() override;
 
-virtual void childEvent(QChildEvent*  event);
-virtual qreal  crossfadeTime() const;
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual bool  isCrossfadeSupported() const;
-virtual QMediaContent  nextMedia() const;
-virtual void setCrossfadeTime(qreal  crossfadeTime);
-virtual void setNextMedia(const QMediaContent&  media);
-virtual void timerEvent(QTimerEvent*  event);
+void childEvent(QChildEvent*  event) override;
+qreal  crossfadeTime() const override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+bool  isCrossfadeSupported() const override;
+QMediaContent  nextMedia() const override;
+void setCrossfadeTime(qreal  crossfadeTime) override;
+void setNextMedia(const QMediaContent&  media) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QMediaGaplessPlaybackControl : public QMediaGaplessPlaybackControl
@@ -1213,7 +1252,7 @@ class PythonQtWrapper_QMediaGaplessPlaybackControl : public QObject
 public:
 public slots:
 QMediaGaplessPlaybackControl* new_QMediaGaplessPlaybackControl(QObject*  parent = nullptr);
-void delete_QMediaGaplessPlaybackControl(QMediaGaplessPlaybackControl* obj) { delete obj; } 
+void delete_QMediaGaplessPlaybackControl(QMediaGaplessPlaybackControl* obj) { delete obj; }
    qreal  crossfadeTime(QMediaGaplessPlaybackControl* theWrappedObject) const;
    qreal  py_q_crossfadeTime(QMediaGaplessPlaybackControl* theWrappedObject) const{  return (((PythonQtPublicPromoter_QMediaGaplessPlaybackControl*)theWrappedObject)->py_q_crossfadeTime());}
    bool  isCrossfadeSupported(QMediaGaplessPlaybackControl* theWrappedObject) const;
@@ -1233,21 +1272,21 @@ void delete_QMediaGaplessPlaybackControl(QMediaGaplessPlaybackControl* obj) { de
 class PythonQtShell_QMediaNetworkAccessControl : public QMediaNetworkAccessControl
 {
 public:
-    PythonQtShell_QMediaNetworkAccessControl(QObject*  parent = nullptr):QMediaNetworkAccessControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QMediaNetworkAccessControl(QObject*  parent = nullptr):QMediaNetworkAccessControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QMediaNetworkAccessControl();
+   ~PythonQtShell_QMediaNetworkAccessControl() override;
 
-virtual void childEvent(QChildEvent*  event);
-virtual QNetworkConfiguration  currentConfiguration() const;
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual void setConfigurations(const QList<QNetworkConfiguration >&  configuration);
-virtual void timerEvent(QTimerEvent*  event);
+void childEvent(QChildEvent*  event) override;
+QNetworkConfiguration  currentConfiguration() const override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void setConfigurations(const QList<QNetworkConfiguration >&  configuration) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QMediaNetworkAccessControl : public QMediaNetworkAccessControl
@@ -1261,7 +1300,7 @@ class PythonQtWrapper_QMediaNetworkAccessControl : public QObject
 public:
 public slots:
 QMediaNetworkAccessControl* new_QMediaNetworkAccessControl(QObject*  parent = nullptr);
-void delete_QMediaNetworkAccessControl(QMediaNetworkAccessControl* obj) { delete obj; } 
+void delete_QMediaNetworkAccessControl(QMediaNetworkAccessControl* obj) { delete obj; }
    QNetworkConfiguration  currentConfiguration(QMediaNetworkAccessControl* theWrappedObject) const;
    QNetworkConfiguration  py_q_currentConfiguration(QMediaNetworkAccessControl* theWrappedObject) const{  return (((PythonQtPublicPromoter_QMediaNetworkAccessControl*)theWrappedObject)->py_q_currentConfiguration());}
    void setConfigurations(QMediaNetworkAccessControl* theWrappedObject, const QList<QNetworkConfiguration >&  configuration);
@@ -1275,24 +1314,24 @@ void delete_QMediaNetworkAccessControl(QMediaNetworkAccessControl* obj) { delete
 class PythonQtShell_QMediaObject : public QMediaObject
 {
 public:
-    PythonQtShell_QMediaObject(QObject*  parent, QMediaService*  service):QMediaObject(parent, service),_wrapper(NULL) {};
+    PythonQtShell_QMediaObject(QObject*  parent, QMediaService*  service):QMediaObject(parent, service),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QMediaObject();
+   ~PythonQtShell_QMediaObject() override;
 
-virtual QMultimedia::AvailabilityStatus  availability() const;
-virtual bool  bind(QObject*  arg__1);
-virtual void childEvent(QChildEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual bool  isAvailable() const;
-virtual QMediaService*  service() const;
-virtual void timerEvent(QTimerEvent*  event);
-virtual void unbind(QObject*  arg__1);
+QMultimedia::AvailabilityStatus  availability() const override;
+bool  bind(QObject*  arg__1) override;
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+bool  isAvailable() const override;
+QMediaService*  service() const override;
+void timerEvent(QTimerEvent*  event) override;
+void unbind(QObject*  arg__1) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QMediaObject : public QMediaObject
@@ -1311,7 +1350,7 @@ class PythonQtWrapper_QMediaObject : public QObject
 public:
 public slots:
 QMediaObject* new_QMediaObject(QObject*  parent, QMediaService*  service);
-void delete_QMediaObject(QMediaObject* obj) { delete obj; } 
+void delete_QMediaObject(QMediaObject* obj) { delete obj; }
    void addPropertyWatch(QMediaObject* theWrappedObject, const QByteArray&  name);
    QMultimedia::AvailabilityStatus  availability(QMediaObject* theWrappedObject) const;
    QMultimedia::AvailabilityStatus  py_q_availability(QMediaObject* theWrappedObject) const{  return (((PythonQtPublicPromoter_QMediaObject*)theWrappedObject)->py_q_availability());}
@@ -1338,24 +1377,24 @@ void delete_QMediaObject(QMediaObject* obj) { delete obj; }
 class PythonQtShell_QMediaPlayer : public QMediaPlayer
 {
 public:
-    PythonQtShell_QMediaPlayer(QObject*  parent = nullptr, QMediaPlayer::Flags  flags = QMediaPlayer::Flags()):QMediaPlayer(parent, flags),_wrapper(NULL) {};
+    PythonQtShell_QMediaPlayer(QObject*  parent = nullptr, QMediaPlayer::Flags  flags = QMediaPlayer::Flags()):QMediaPlayer(parent, flags),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QMediaPlayer();
+   ~PythonQtShell_QMediaPlayer() override;
 
-virtual QMultimedia::AvailabilityStatus  availability() const;
-virtual bool  bind(QObject*  arg__1);
-virtual void childEvent(QChildEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual bool  isAvailable() const;
-virtual QMediaService*  service() const;
-virtual void timerEvent(QTimerEvent*  event);
-virtual void unbind(QObject*  arg__1);
+QMultimedia::AvailabilityStatus  availability() const override;
+bool  bind(QObject*  arg__1) override;
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+bool  isAvailable() const override;
+QMediaService*  service() const override;
+void timerEvent(QTimerEvent*  event) override;
+void unbind(QObject*  arg__1) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QMediaPlayer : public QMediaPlayer
@@ -1375,7 +1414,7 @@ enum Flag{
 Q_DECLARE_FLAGS(Flags, Flag)
 public slots:
 QMediaPlayer* new_QMediaPlayer(QObject*  parent = nullptr, QMediaPlayer::Flags  flags = QMediaPlayer::Flags());
-void delete_QMediaPlayer(QMediaPlayer* obj) { delete obj; } 
+void delete_QMediaPlayer(QMediaPlayer* obj) { delete obj; }
    QAudio::Role  audioRole(QMediaPlayer* theWrappedObject) const;
    QMultimedia::AvailabilityStatus  py_q_availability(QMediaPlayer* theWrappedObject) const{  return (((PythonQtPublicPromoter_QMediaPlayer*)theWrappedObject)->py_q_availability());}
    bool  py_q_bind(QMediaPlayer* theWrappedObject, QObject*  arg__1){  return (((PythonQtPublicPromoter_QMediaPlayer*)theWrappedObject)->py_q_bind(arg__1));}
@@ -1417,41 +1456,41 @@ void delete_QMediaPlayer(QMediaPlayer* obj) { delete obj; }
 class PythonQtShell_QMediaPlayerControl : public QMediaPlayerControl
 {
 public:
-    PythonQtShell_QMediaPlayerControl(QObject*  parent = nullptr):QMediaPlayerControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QMediaPlayerControl(QObject*  parent = nullptr):QMediaPlayerControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QMediaPlayerControl();
+   ~PythonQtShell_QMediaPlayerControl() override;
 
-virtual QMediaTimeRange  availablePlaybackRanges() const;
-virtual int  bufferStatus() const;
-virtual void childEvent(QChildEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual qint64  duration() const;
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual bool  isAudioAvailable() const;
-virtual bool  isMuted() const;
-virtual bool  isSeekable() const;
-virtual bool  isVideoAvailable() const;
-virtual QMediaContent  media() const;
-virtual QMediaPlayer::MediaStatus  mediaStatus() const;
-virtual const QIODevice*  mediaStream() const;
-virtual void pause();
-virtual void play();
-virtual qreal  playbackRate() const;
-virtual qint64  position() const;
-virtual void setMedia(const QMediaContent&  media, QIODevice*  stream);
-virtual void setMuted(bool  mute);
-virtual void setPlaybackRate(qreal  rate);
-virtual void setPosition(qint64  position);
-virtual void setVolume(int  volume);
-virtual QMediaPlayer::State  state() const;
-virtual void stop();
-virtual void timerEvent(QTimerEvent*  event);
-virtual int  volume() const;
+QMediaTimeRange  availablePlaybackRanges() const override;
+int  bufferStatus() const override;
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+qint64  duration() const override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+bool  isAudioAvailable() const override;
+bool  isMuted() const override;
+bool  isSeekable() const override;
+bool  isVideoAvailable() const override;
+QMediaContent  media() const override;
+QMediaPlayer::MediaStatus  mediaStatus() const override;
+const QIODevice*  mediaStream() const override;
+void pause() override;
+void play() override;
+qreal  playbackRate() const override;
+qint64  position() const override;
+void setMedia(const QMediaContent&  media, QIODevice*  stream) override;
+void setMuted(bool  mute) override;
+void setPlaybackRate(qreal  rate) override;
+void setPosition(qint64  position) override;
+void setVolume(int  volume) override;
+QMediaPlayer::State  state() const override;
+void stop() override;
+void timerEvent(QTimerEvent*  event) override;
+int  volume() const override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QMediaPlayerControl : public QMediaPlayerControl
@@ -1485,7 +1524,7 @@ class PythonQtWrapper_QMediaPlayerControl : public QObject
 public:
 public slots:
 QMediaPlayerControl* new_QMediaPlayerControl(QObject*  parent = nullptr);
-void delete_QMediaPlayerControl(QMediaPlayerControl* obj) { delete obj; } 
+void delete_QMediaPlayerControl(QMediaPlayerControl* obj) { delete obj; }
    QMediaTimeRange  availablePlaybackRanges(QMediaPlayerControl* theWrappedObject) const;
    QMediaTimeRange  py_q_availablePlaybackRanges(QMediaPlayerControl* theWrappedObject) const{  return (((PythonQtPublicPromoter_QMediaPlayerControl*)theWrappedObject)->py_q_availablePlaybackRanges());}
    int  bufferStatus(QMediaPlayerControl* theWrappedObject) const;

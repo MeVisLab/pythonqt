@@ -37,6 +37,7 @@
 #include <qsslerror.h>
 #include <qsslpresharedkeyauthenticator.h>
 #include <qstringlist.h>
+#include <qthread.h>
 #include <qurl.h>
 #include <qvector.h>
 
@@ -45,27 +46,27 @@
 class PythonQtShell_QAbstractNetworkCache : public QAbstractNetworkCache
 {
 public:
-    PythonQtShell_QAbstractNetworkCache(QObject*  parent = nullptr):QAbstractNetworkCache(parent),_wrapper(NULL) {};
+    PythonQtShell_QAbstractNetworkCache(QObject*  parent = nullptr):QAbstractNetworkCache(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QAbstractNetworkCache();
+   ~PythonQtShell_QAbstractNetworkCache() override;
 
-virtual qint64  cacheSize() const;
-virtual void childEvent(QChildEvent*  event);
-virtual void clear();
-virtual void customEvent(QEvent*  event);
-virtual QIODevice*  data(const QUrl&  url);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual void insert(QIODevice*  device);
-virtual QNetworkCacheMetaData  metaData(const QUrl&  url);
-virtual QIODevice*  prepare(const QNetworkCacheMetaData&  metaData);
-virtual bool  remove(const QUrl&  url);
-virtual void timerEvent(QTimerEvent*  event);
-virtual void updateMetaData(const QNetworkCacheMetaData&  metaData);
+qint64  cacheSize() const override;
+void childEvent(QChildEvent*  event) override;
+void clear() override;
+void customEvent(QEvent*  event) override;
+QIODevice*  data(const QUrl&  url) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void insert(QIODevice*  device) override;
+QNetworkCacheMetaData  metaData(const QUrl&  url) override;
+QIODevice*  prepare(const QNetworkCacheMetaData&  metaData) override;
+bool  remove(const QUrl&  url) override;
+void timerEvent(QTimerEvent*  event) override;
+void updateMetaData(const QNetworkCacheMetaData&  metaData) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QAbstractNetworkCache : public QAbstractNetworkCache
@@ -85,7 +86,7 @@ class PythonQtWrapper_QAbstractNetworkCache : public QObject
 public:
 public slots:
 QAbstractNetworkCache* new_QAbstractNetworkCache(QObject*  parent = nullptr);
-void delete_QAbstractNetworkCache(QAbstractNetworkCache* obj) { delete obj; } 
+void delete_QAbstractNetworkCache(QAbstractNetworkCache* obj) { delete obj; }
    qint64  cacheSize(QAbstractNetworkCache* theWrappedObject) const;
    qint64  py_q_cacheSize(QAbstractNetworkCache* theWrappedObject) const{  return (((PythonQtPublicPromoter_QAbstractNetworkCache*)theWrappedObject)->py_q_cacheSize());}
    void py_q_clear(QAbstractNetworkCache* theWrappedObject){  (((PythonQtPublicPromoter_QAbstractNetworkCache*)theWrappedObject)->py_q_clear());}
@@ -110,46 +111,46 @@ void delete_QAbstractNetworkCache(QAbstractNetworkCache* obj) { delete obj; }
 class PythonQtShell_QAbstractSocket : public QAbstractSocket
 {
 public:
-    PythonQtShell_QAbstractSocket(QAbstractSocket::SocketType  socketType, QObject*  parent):QAbstractSocket(socketType, parent),_wrapper(NULL) {};
+    PythonQtShell_QAbstractSocket(QAbstractSocket::SocketType  socketType, QObject*  parent):QAbstractSocket(socketType, parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QAbstractSocket();
+   ~PythonQtShell_QAbstractSocket() override;
 
-virtual bool  atEnd() const;
-virtual qint64  bytesAvailable() const;
-virtual qint64  bytesToWrite() const;
-virtual bool  canReadLine() const;
-virtual void childEvent(QChildEvent*  event);
-virtual void close();
-virtual void connectToHost(const QHostAddress&  address, unsigned short  port, QIODevice::OpenMode  mode = QIODevice::ReadWrite);
-virtual void connectToHost(const QString&  hostName, unsigned short  port, QIODevice::OpenMode  mode = QIODevice::ReadWrite, QAbstractSocket::NetworkLayerProtocol  protocol = QAbstractSocket::AnyIPProtocol);
-virtual void customEvent(QEvent*  event);
-virtual void disconnectFromHost();
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual bool  isSequential() const;
-virtual bool  open(QIODevice::OpenMode  mode);
-virtual qint64  pos() const;
-virtual qint64  readData(char*  data, qint64  maxlen);
-virtual qint64  readLineData(char*  data, qint64  maxlen);
-virtual bool  reset();
-virtual void resume();
-virtual bool  seek(qint64  pos);
-virtual void setReadBufferSize(qint64  size);
-virtual bool  setSocketDescriptor(qintptr  socketDescriptor, QAbstractSocket::SocketState  state = QAbstractSocket::ConnectedState, QIODevice::OpenMode  openMode = QIODevice::ReadWrite);
-virtual void setSocketOption(QAbstractSocket::SocketOption  option, const QVariant&  value);
-virtual qint64  size() const;
-virtual qintptr  socketDescriptor() const;
-virtual QVariant  socketOption(QAbstractSocket::SocketOption  option);
-virtual void timerEvent(QTimerEvent*  event);
-virtual bool  waitForBytesWritten(int  msecs = 30000);
-virtual bool  waitForConnected(int  msecs = 30000);
-virtual bool  waitForDisconnected(int  msecs = 30000);
-virtual bool  waitForReadyRead(int  msecs = 30000);
-virtual qint64  writeData(const char*  data, qint64  len);
+bool  atEnd() const override;
+qint64  bytesAvailable() const override;
+qint64  bytesToWrite() const override;
+bool  canReadLine() const override;
+void childEvent(QChildEvent*  event) override;
+void close() override;
+void connectToHost(const QHostAddress&  address, unsigned short  port, QIODevice::OpenMode  mode = QIODevice::ReadWrite) override;
+void connectToHost(const QString&  hostName, unsigned short  port, QIODevice::OpenMode  mode = QIODevice::ReadWrite, QAbstractSocket::NetworkLayerProtocol  protocol = QAbstractSocket::AnyIPProtocol) override;
+void customEvent(QEvent*  event) override;
+void disconnectFromHost() override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+bool  isSequential() const override;
+bool  open(QIODevice::OpenMode  mode) override;
+qint64  pos() const override;
+qint64  readData(char*  data, qint64  maxlen) override;
+qint64  readLineData(char*  data, qint64  maxlen) override;
+bool  reset() override;
+void resume() override;
+bool  seek(qint64  pos) override;
+void setReadBufferSize(qint64  size) override;
+bool  setSocketDescriptor(qintptr  socketDescriptor, QAbstractSocket::SocketState  state = QAbstractSocket::ConnectedState, QIODevice::OpenMode  openMode = QIODevice::ReadWrite) override;
+void setSocketOption(QAbstractSocket::SocketOption  option, const QVariant&  value) override;
+qint64  size() const override;
+qintptr  socketDescriptor() const override;
+QVariant  socketOption(QAbstractSocket::SocketOption  option) override;
+void timerEvent(QTimerEvent*  event) override;
+bool  waitForBytesWritten(int  msecs = 30000) override;
+bool  waitForConnected(int  msecs = 30000) override;
+bool  waitForDisconnected(int  msecs = 30000) override;
+bool  waitForReadyRead(int  msecs = 30000) override;
+qint64  writeData(const char*  data, qint64  len) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QAbstractSocket : public QAbstractSocket
@@ -201,7 +202,7 @@ Q_DECLARE_FLAGS(BindMode, BindFlag)
 Q_DECLARE_FLAGS(PauseModes, PauseMode)
 public slots:
 QAbstractSocket* new_QAbstractSocket(QAbstractSocket::SocketType  socketType, QObject*  parent);
-void delete_QAbstractSocket(QAbstractSocket* obj) { delete obj; } 
+void delete_QAbstractSocket(QAbstractSocket* obj) { delete obj; }
    void abort(QAbstractSocket* theWrappedObject);
    bool  py_q_atEnd(QAbstractSocket* theWrappedObject) const{  return (((PythonQtPublicPromoter_QAbstractSocket*)theWrappedObject)->py_q_atEnd());}
    bool  bind(QAbstractSocket* theWrappedObject, const QHostAddress&  address, unsigned short  port = 0, QAbstractSocket::BindMode  mode = QAbstractSocket::DefaultForPlatform);
@@ -273,7 +274,7 @@ public:
 public slots:
 QAuthenticator* new_QAuthenticator();
 QAuthenticator* new_QAuthenticator(const QAuthenticator&  other);
-void delete_QAuthenticator(QAuthenticator* obj) { delete obj; } 
+void delete_QAuthenticator(QAuthenticator* obj) { delete obj; }
    bool  isNull(QAuthenticator* theWrappedObject) const;
    bool  __ne__(QAuthenticator* theWrappedObject, const QAuthenticator&  other) const;
    bool  __eq__(QAuthenticator* theWrappedObject, const QAuthenticator&  other) const;
@@ -299,7 +300,7 @@ public:
 public slots:
 QDnsDomainNameRecord* new_QDnsDomainNameRecord();
 QDnsDomainNameRecord* new_QDnsDomainNameRecord(const QDnsDomainNameRecord&  other);
-void delete_QDnsDomainNameRecord(QDnsDomainNameRecord* obj) { delete obj; } 
+void delete_QDnsDomainNameRecord(QDnsDomainNameRecord* obj) { delete obj; }
    QString  name(QDnsDomainNameRecord* theWrappedObject) const;
    QDnsDomainNameRecord*  operator_assign(QDnsDomainNameRecord* theWrappedObject, const QDnsDomainNameRecord&  other);
    void swap(QDnsDomainNameRecord* theWrappedObject, QDnsDomainNameRecord&  other);
@@ -317,7 +318,7 @@ public:
 public slots:
 QDnsHostAddressRecord* new_QDnsHostAddressRecord();
 QDnsHostAddressRecord* new_QDnsHostAddressRecord(const QDnsHostAddressRecord&  other);
-void delete_QDnsHostAddressRecord(QDnsHostAddressRecord* obj) { delete obj; } 
+void delete_QDnsHostAddressRecord(QDnsHostAddressRecord* obj) { delete obj; }
    QString  name(QDnsHostAddressRecord* theWrappedObject) const;
    QDnsHostAddressRecord*  operator_assign(QDnsHostAddressRecord* theWrappedObject, const QDnsHostAddressRecord&  other);
    void swap(QDnsHostAddressRecord* theWrappedObject, QDnsHostAddressRecord&  other);
@@ -332,21 +333,21 @@ void delete_QDnsHostAddressRecord(QDnsHostAddressRecord* obj) { delete obj; }
 class PythonQtShell_QDnsLookup : public QDnsLookup
 {
 public:
-    PythonQtShell_QDnsLookup(QDnsLookup::Type  type, const QString&  name, QObject*  parent = nullptr):QDnsLookup(type, name, parent),_wrapper(NULL) {};
-    PythonQtShell_QDnsLookup(QDnsLookup::Type  type, const QString&  name, const QHostAddress&  nameserver, QObject*  parent = nullptr):QDnsLookup(type, name, nameserver, parent),_wrapper(NULL) {};
-    PythonQtShell_QDnsLookup(QObject*  parent = nullptr):QDnsLookup(parent),_wrapper(NULL) {};
+    PythonQtShell_QDnsLookup(QDnsLookup::Type  type, const QString&  name, QObject*  parent = nullptr):QDnsLookup(type, name, parent),_wrapper(nullptr) {};
+    PythonQtShell_QDnsLookup(QDnsLookup::Type  type, const QString&  name, const QHostAddress&  nameserver, QObject*  parent = nullptr):QDnsLookup(type, name, nameserver, parent),_wrapper(nullptr) {};
+    PythonQtShell_QDnsLookup(QObject*  parent = nullptr):QDnsLookup(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QDnsLookup();
+   ~PythonQtShell_QDnsLookup() override;
 
-virtual void childEvent(QChildEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual void timerEvent(QTimerEvent*  event);
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QDnsLookup : public QObject
@@ -356,7 +357,7 @@ public slots:
 QDnsLookup* new_QDnsLookup(QDnsLookup::Type  type, const QString&  name, QObject*  parent = nullptr);
 QDnsLookup* new_QDnsLookup(QDnsLookup::Type  type, const QString&  name, const QHostAddress&  nameserver, QObject*  parent = nullptr);
 QDnsLookup* new_QDnsLookup(QObject*  parent = nullptr);
-void delete_QDnsLookup(QDnsLookup* obj) { delete obj; } 
+void delete_QDnsLookup(QDnsLookup* obj) { delete obj; }
    QList<QDnsDomainNameRecord >  canonicalNameRecords(QDnsLookup* theWrappedObject) const;
    QDnsLookup::Error  error(QDnsLookup* theWrappedObject) const;
    QString  errorString(QDnsLookup* theWrappedObject) const;
@@ -385,7 +386,7 @@ public:
 public slots:
 QDnsMailExchangeRecord* new_QDnsMailExchangeRecord();
 QDnsMailExchangeRecord* new_QDnsMailExchangeRecord(const QDnsMailExchangeRecord&  other);
-void delete_QDnsMailExchangeRecord(QDnsMailExchangeRecord* obj) { delete obj; } 
+void delete_QDnsMailExchangeRecord(QDnsMailExchangeRecord* obj) { delete obj; }
    QString  exchange(QDnsMailExchangeRecord* theWrappedObject) const;
    QString  name(QDnsMailExchangeRecord* theWrappedObject) const;
    QDnsMailExchangeRecord*  operator_assign(QDnsMailExchangeRecord* theWrappedObject, const QDnsMailExchangeRecord&  other);
@@ -404,7 +405,7 @@ public:
 public slots:
 QDnsServiceRecord* new_QDnsServiceRecord();
 QDnsServiceRecord* new_QDnsServiceRecord(const QDnsServiceRecord&  other);
-void delete_QDnsServiceRecord(QDnsServiceRecord* obj) { delete obj; } 
+void delete_QDnsServiceRecord(QDnsServiceRecord* obj) { delete obj; }
    QString  name(QDnsServiceRecord* theWrappedObject) const;
    QDnsServiceRecord*  operator_assign(QDnsServiceRecord* theWrappedObject, const QDnsServiceRecord&  other);
    unsigned short  port(QDnsServiceRecord* theWrappedObject) const;
@@ -425,7 +426,7 @@ public:
 public slots:
 QDnsTextRecord* new_QDnsTextRecord();
 QDnsTextRecord* new_QDnsTextRecord(const QDnsTextRecord&  other);
-void delete_QDnsTextRecord(QDnsTextRecord* obj) { delete obj; } 
+void delete_QDnsTextRecord(QDnsTextRecord* obj) { delete obj; }
    QString  name(QDnsTextRecord* theWrappedObject) const;
    QDnsTextRecord*  operator_assign(QDnsTextRecord* theWrappedObject, const QDnsTextRecord&  other);
    void swap(QDnsTextRecord* theWrappedObject, QDnsTextRecord&  other);
@@ -453,7 +454,7 @@ QHostAddress* new_QHostAddress(const QIPv6Address&  ip6Addr);
 QHostAddress* new_QHostAddress(const QString&  address);
 QHostAddress* new_QHostAddress(const unsigned char*  ip6Addr);
 QHostAddress* new_QHostAddress(unsigned int  ip4Addr);
-void delete_QHostAddress(QHostAddress* obj) { delete obj; } 
+void delete_QHostAddress(QHostAddress* obj) { delete obj; }
    void clear(QHostAddress* theWrappedObject);
    bool  isBroadcast(QHostAddress* theWrappedObject) const;
    bool  isGlobal(QHostAddress* theWrappedObject) const;
@@ -503,7 +504,7 @@ enum HostInfoError{
 public slots:
 QHostInfo* new_QHostInfo(const QHostInfo&  d);
 QHostInfo* new_QHostInfo(int  lookupId = -1);
-void delete_QHostInfo(QHostInfo* obj) { delete obj; } 
+void delete_QHostInfo(QHostInfo* obj) { delete obj; }
    void static_QHostInfo_abortHostLookup(int  lookupId);
    QList<QHostAddress >  addresses(QHostInfo* theWrappedObject) const;
    QHostInfo::HostInfoError  error(QHostInfo* theWrappedObject) const;
@@ -535,11 +536,12 @@ enum PolicyFlag{
 public slots:
 QHstsPolicy* new_QHstsPolicy();
 QHstsPolicy* new_QHstsPolicy(const QHstsPolicy&  rhs);
-void delete_QHstsPolicy(QHstsPolicy* obj) { delete obj; } 
+void delete_QHstsPolicy(QHstsPolicy* obj) { delete obj; }
    QDateTime  expiry(QHstsPolicy* theWrappedObject) const;
    QString  host(QHstsPolicy* theWrappedObject, QUrl::ComponentFormattingOptions  options = QUrl::FullyDecoded) const;
    bool  includesSubDomains(QHstsPolicy* theWrappedObject) const;
    bool  isExpired(QHstsPolicy* theWrappedObject) const;
+   bool  __ne__(QHstsPolicy* theWrappedObject, const QHstsPolicy&  rhs);
    QHstsPolicy*  operator_assign(QHstsPolicy* theWrappedObject, const QHstsPolicy&  rhs);
    bool  __eq__(QHstsPolicy* theWrappedObject, const QHstsPolicy&  rhs);
    void setExpiry(QHstsPolicy* theWrappedObject, const QDateTime&  expiry);
@@ -555,20 +557,20 @@ void delete_QHstsPolicy(QHstsPolicy* obj) { delete obj; }
 class PythonQtShell_QHttpMultiPart : public QHttpMultiPart
 {
 public:
-    PythonQtShell_QHttpMultiPart(QHttpMultiPart::ContentType  contentType, QObject*  parent = nullptr):QHttpMultiPart(contentType, parent),_wrapper(NULL) {};
-    PythonQtShell_QHttpMultiPart(QObject*  parent = nullptr):QHttpMultiPart(parent),_wrapper(NULL) {};
+    PythonQtShell_QHttpMultiPart(QHttpMultiPart::ContentType  contentType, QObject*  parent = nullptr):QHttpMultiPart(contentType, parent),_wrapper(nullptr) {};
+    PythonQtShell_QHttpMultiPart(QObject*  parent = nullptr):QHttpMultiPart(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QHttpMultiPart();
+   ~PythonQtShell_QHttpMultiPart() override;
 
-virtual void childEvent(QChildEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual void timerEvent(QTimerEvent*  event);
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QHttpMultiPart : public QObject
@@ -580,7 +582,7 @@ enum ContentType{
 public slots:
 QHttpMultiPart* new_QHttpMultiPart(QHttpMultiPart::ContentType  contentType, QObject*  parent = nullptr);
 QHttpMultiPart* new_QHttpMultiPart(QObject*  parent = nullptr);
-void delete_QHttpMultiPart(QHttpMultiPart* obj) { delete obj; } 
+void delete_QHttpMultiPart(QHttpMultiPart* obj) { delete obj; }
    void append(QHttpMultiPart* theWrappedObject, const QHttpPart&  httpPart);
    QByteArray  boundary(QHttpMultiPart* theWrappedObject) const;
    void setBoundary(QHttpMultiPart* theWrappedObject, const QByteArray&  boundary);
@@ -597,7 +599,7 @@ public:
 public slots:
 QHttpPart* new_QHttpPart();
 QHttpPart* new_QHttpPart(const QHttpPart&  other);
-void delete_QHttpPart(QHttpPart* obj) { delete obj; } 
+void delete_QHttpPart(QHttpPart* obj) { delete obj; }
    bool  __ne__(QHttpPart* theWrappedObject, const QHttpPart&  other) const;
    QHttpPart*  operator_assign(QHttpPart* theWrappedObject, const QHttpPart&  other);
    bool  __eq__(QHttpPart* theWrappedObject, const QHttpPart&  other) const;
@@ -615,12 +617,12 @@ void delete_QHttpPart(QHttpPart* obj) { delete obj; }
 class PythonQtShell_QIPv6Address : public QIPv6Address
 {
 public:
-    PythonQtShell_QIPv6Address():QIPv6Address(),_wrapper(NULL) {};
+    PythonQtShell_QIPv6Address():QIPv6Address(),_wrapper(nullptr) {};
 
    ~PythonQtShell_QIPv6Address();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QIPv6Address : public QObject
@@ -632,7 +634,7 @@ QIPv6Address* new_QIPv6Address(const QIPv6Address& other) {
 PythonQtShell_QIPv6Address* a = new PythonQtShell_QIPv6Address();
 *((QIPv6Address*)a) = other;
 return a; }
-void delete_QIPv6Address(QIPv6Address* obj) { delete obj; } 
+void delete_QIPv6Address(QIPv6Address* obj) { delete obj; }
 };
 
 
@@ -642,22 +644,22 @@ void delete_QIPv6Address(QIPv6Address* obj) { delete obj; }
 class PythonQtShell_QLocalServer : public QLocalServer
 {
 public:
-    PythonQtShell_QLocalServer(QObject*  parent = nullptr):QLocalServer(parent),_wrapper(NULL) {};
+    PythonQtShell_QLocalServer(QObject*  parent = nullptr):QLocalServer(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QLocalServer();
+   ~PythonQtShell_QLocalServer() override;
 
-virtual void childEvent(QChildEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual bool  hasPendingConnections() const;
-virtual void incomingConnection(quintptr  socketDescriptor);
-virtual QLocalSocket*  nextPendingConnection();
-virtual void timerEvent(QTimerEvent*  event);
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+bool  hasPendingConnections() const override;
+void incomingConnection(quintptr  socketDescriptor) override;
+QLocalSocket*  nextPendingConnection() override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QLocalServer : public QLocalServer
@@ -678,7 +680,7 @@ enum SocketOption{
 Q_DECLARE_FLAGS(SocketOptions, SocketOption)
 public slots:
 QLocalServer* new_QLocalServer(QObject*  parent = nullptr);
-void delete_QLocalServer(QLocalServer* obj) { delete obj; } 
+void delete_QLocalServer(QLocalServer* obj) { delete obj; }
    void close(QLocalServer* theWrappedObject);
    QString  errorString(QLocalServer* theWrappedObject) const;
    QString  fullServerName(QLocalServer* theWrappedObject) const;
@@ -709,35 +711,35 @@ void delete_QLocalServer(QLocalServer* obj) { delete obj; }
 class PythonQtShell_QLocalSocket : public QLocalSocket
 {
 public:
-    PythonQtShell_QLocalSocket(QObject*  parent = nullptr):QLocalSocket(parent),_wrapper(NULL) {};
+    PythonQtShell_QLocalSocket(QObject*  parent = nullptr):QLocalSocket(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QLocalSocket();
+   ~PythonQtShell_QLocalSocket() override;
 
-virtual bool  atEnd() const;
-virtual qint64  bytesAvailable() const;
-virtual qint64  bytesToWrite() const;
-virtual bool  canReadLine() const;
-virtual void childEvent(QChildEvent*  event);
-virtual void close();
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual bool  isSequential() const;
-virtual bool  open(QIODevice::OpenMode  openMode = QIODevice::ReadWrite);
-virtual qint64  pos() const;
-virtual qint64  readData(char*  arg__1, qint64  arg__2);
-virtual qint64  readLineData(char*  data, qint64  maxlen);
-virtual bool  reset();
-virtual bool  seek(qint64  pos);
-virtual qint64  size() const;
-virtual void timerEvent(QTimerEvent*  event);
-virtual bool  waitForBytesWritten(int  msecs = 30000);
-virtual bool  waitForReadyRead(int  msecs = 30000);
-virtual qint64  writeData(const char*  arg__1, qint64  arg__2);
+bool  atEnd() const override;
+qint64  bytesAvailable() const override;
+qint64  bytesToWrite() const override;
+bool  canReadLine() const override;
+void childEvent(QChildEvent*  event) override;
+void close() override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+bool  isSequential() const override;
+bool  open(QIODevice::OpenMode  openMode = QIODevice::ReadWrite) override;
+qint64  pos() const override;
+qint64  readData(char*  arg__1, qint64  arg__2) override;
+qint64  readLineData(char*  data, qint64  maxlen) override;
+bool  reset() override;
+bool  seek(qint64  pos) override;
+qint64  size() const override;
+void timerEvent(QTimerEvent*  event) override;
+bool  waitForBytesWritten(int  msecs = 30000) override;
+bool  waitForReadyRead(int  msecs = 30000) override;
+qint64  writeData(const char*  arg__1, qint64  arg__2) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QLocalSocket : public QLocalSocket
@@ -766,7 +768,7 @@ enum LocalSocketState{
   UnconnectedState = QLocalSocket::UnconnectedState,   ConnectingState = QLocalSocket::ConnectingState,   ConnectedState = QLocalSocket::ConnectedState,   ClosingState = QLocalSocket::ClosingState};
 public slots:
 QLocalSocket* new_QLocalSocket(QObject*  parent = nullptr);
-void delete_QLocalSocket(QLocalSocket* obj) { delete obj; } 
+void delete_QLocalSocket(QLocalSocket* obj) { delete obj; }
    void abort(QLocalSocket* theWrappedObject);
    qint64  py_q_bytesAvailable(QLocalSocket* theWrappedObject) const{  return (((PythonQtPublicPromoter_QLocalSocket*)theWrappedObject)->py_q_bytesAvailable());}
    qint64  py_q_bytesToWrite(QLocalSocket* theWrappedObject) const{  return (((PythonQtPublicPromoter_QLocalSocket*)theWrappedObject)->py_q_bytesToWrite());}
@@ -804,20 +806,20 @@ void delete_QLocalSocket(QLocalSocket* obj) { delete obj; }
 class PythonQtShell_QNetworkAccessManager : public QNetworkAccessManager
 {
 public:
-    PythonQtShell_QNetworkAccessManager(QObject*  parent = nullptr):QNetworkAccessManager(parent),_wrapper(NULL) {};
+    PythonQtShell_QNetworkAccessManager(QObject*  parent = nullptr):QNetworkAccessManager(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QNetworkAccessManager();
+   ~PythonQtShell_QNetworkAccessManager() override;
 
-virtual void childEvent(QChildEvent*  event);
-virtual QNetworkReply*  createRequest(QNetworkAccessManager::Operation  op, const QNetworkRequest&  request, QIODevice*  outgoingData = nullptr);
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual void timerEvent(QTimerEvent*  event);
+void childEvent(QChildEvent*  event) override;
+QNetworkReply*  createRequest(QNetworkAccessManager::Operation  op, const QNetworkRequest&  request, QIODevice*  outgoingData = nullptr) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QNetworkAccessManager : public QNetworkAccessManager
@@ -835,7 +837,7 @@ enum Operation{
   HeadOperation = QNetworkAccessManager::HeadOperation,   GetOperation = QNetworkAccessManager::GetOperation,   PutOperation = QNetworkAccessManager::PutOperation,   PostOperation = QNetworkAccessManager::PostOperation,   DeleteOperation = QNetworkAccessManager::DeleteOperation,   CustomOperation = QNetworkAccessManager::CustomOperation,   UnknownOperation = QNetworkAccessManager::UnknownOperation};
 public slots:
 QNetworkAccessManager* new_QNetworkAccessManager(QObject*  parent = nullptr);
-void delete_QNetworkAccessManager(QNetworkAccessManager* obj) { delete obj; } 
+void delete_QNetworkAccessManager(QNetworkAccessManager* obj) { delete obj; }
    QNetworkConfiguration  activeConfiguration(QNetworkAccessManager* theWrappedObject) const;
    void addStrictTransportSecurityHosts(QNetworkAccessManager* theWrappedObject, const QVector<QHstsPolicy >&  knownHosts);
    QAbstractNetworkCache*  cache(QNetworkAccessManager* theWrappedObject) const;
@@ -888,7 +890,7 @@ public:
 public slots:
 QNetworkAddressEntry* new_QNetworkAddressEntry();
 QNetworkAddressEntry* new_QNetworkAddressEntry(const QNetworkAddressEntry&  other);
-void delete_QNetworkAddressEntry(QNetworkAddressEntry* obj) { delete obj; } 
+void delete_QNetworkAddressEntry(QNetworkAddressEntry* obj) { delete obj; }
    QHostAddress  broadcast(QNetworkAddressEntry* theWrappedObject) const;
    void clearAddressLifetime(QNetworkAddressEntry* theWrappedObject);
    QHostAddress  ip(QNetworkAddressEntry* theWrappedObject) const;
@@ -919,7 +921,7 @@ public:
 public slots:
 QNetworkCacheMetaData* new_QNetworkCacheMetaData();
 QNetworkCacheMetaData* new_QNetworkCacheMetaData(const QNetworkCacheMetaData&  other);
-void delete_QNetworkCacheMetaData(QNetworkCacheMetaData* obj) { delete obj; } 
+void delete_QNetworkCacheMetaData(QNetworkCacheMetaData* obj) { delete obj; }
    QHash<QNetworkRequest::Attribute , QVariant >  attributes(QNetworkCacheMetaData* theWrappedObject) const;
    QDateTime  expirationDate(QNetworkCacheMetaData* theWrappedObject) const;
    bool  isValid(QNetworkCacheMetaData* theWrappedObject) const;
@@ -962,7 +964,7 @@ Q_DECLARE_FLAGS(StateFlags, StateFlag)
 public slots:
 QNetworkConfiguration* new_QNetworkConfiguration();
 QNetworkConfiguration* new_QNetworkConfiguration(const QNetworkConfiguration&  other);
-void delete_QNetworkConfiguration(QNetworkConfiguration* obj) { delete obj; } 
+void delete_QNetworkConfiguration(QNetworkConfiguration* obj) { delete obj; }
    QNetworkConfiguration::BearerType  bearerType(QNetworkConfiguration* theWrappedObject) const;
    QNetworkConfiguration::BearerType  bearerTypeFamily(QNetworkConfiguration* theWrappedObject) const;
    QString  bearerTypeName(QNetworkConfiguration* theWrappedObject) const;
@@ -990,19 +992,19 @@ void delete_QNetworkConfiguration(QNetworkConfiguration* obj) { delete obj; }
 class PythonQtShell_QNetworkConfigurationManager : public QNetworkConfigurationManager
 {
 public:
-    PythonQtShell_QNetworkConfigurationManager(QObject*  parent = nullptr):QNetworkConfigurationManager(parent),_wrapper(NULL) {};
+    PythonQtShell_QNetworkConfigurationManager(QObject*  parent = nullptr):QNetworkConfigurationManager(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QNetworkConfigurationManager();
+   ~PythonQtShell_QNetworkConfigurationManager() override;
 
-virtual void childEvent(QChildEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual void timerEvent(QTimerEvent*  event);
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QNetworkConfigurationManager : public QObject
@@ -1015,7 +1017,7 @@ enum Capability{
 Q_DECLARE_FLAGS(Capabilities, Capability)
 public slots:
 QNetworkConfigurationManager* new_QNetworkConfigurationManager(QObject*  parent = nullptr);
-void delete_QNetworkConfigurationManager(QNetworkConfigurationManager* obj) { delete obj; } 
+void delete_QNetworkConfigurationManager(QNetworkConfigurationManager* obj) { delete obj; }
    QList<QNetworkConfiguration >  allConfigurations(QNetworkConfigurationManager* theWrappedObject, QNetworkConfiguration::StateFlags  flags = QNetworkConfiguration::StateFlags()) const;
    QNetworkConfigurationManager::Capabilities  capabilities(QNetworkConfigurationManager* theWrappedObject) const;
    QNetworkConfiguration  configurationFromIdentifier(QNetworkConfigurationManager* theWrappedObject, const QString&  identifier) const;
@@ -1036,7 +1038,7 @@ enum RawForm{
 public slots:
 QNetworkCookie* new_QNetworkCookie(const QByteArray&  name = QByteArray(), const QByteArray&  value = QByteArray());
 QNetworkCookie* new_QNetworkCookie(const QNetworkCookie&  other);
-void delete_QNetworkCookie(QNetworkCookie* obj) { delete obj; } 
+void delete_QNetworkCookie(QNetworkCookie* obj) { delete obj; }
    QString  domain(QNetworkCookie* theWrappedObject) const;
    QDateTime  expirationDate(QNetworkCookie* theWrappedObject) const;
    bool  hasSameIdentifier(QNetworkCookie* theWrappedObject, const QNetworkCookie&  other) const;
@@ -1069,25 +1071,25 @@ void delete_QNetworkCookie(QNetworkCookie* obj) { delete obj; }
 class PythonQtShell_QNetworkCookieJar : public QNetworkCookieJar
 {
 public:
-    PythonQtShell_QNetworkCookieJar(QObject*  parent = nullptr):QNetworkCookieJar(parent),_wrapper(NULL) {};
+    PythonQtShell_QNetworkCookieJar(QObject*  parent = nullptr):QNetworkCookieJar(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QNetworkCookieJar();
+   ~PythonQtShell_QNetworkCookieJar() override;
 
-virtual void childEvent(QChildEvent*  event);
-virtual QList<QNetworkCookie >  cookiesForUrl(const QUrl&  url) const;
-virtual void customEvent(QEvent*  event);
-virtual bool  deleteCookie(const QNetworkCookie&  cookie);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual bool  insertCookie(const QNetworkCookie&  cookie);
-virtual bool  setCookiesFromUrl(const QList<QNetworkCookie >&  cookieList, const QUrl&  url);
-virtual void timerEvent(QTimerEvent*  event);
-virtual bool  updateCookie(const QNetworkCookie&  cookie);
-virtual bool  validateCookie(const QNetworkCookie&  cookie, const QUrl&  url) const;
+void childEvent(QChildEvent*  event) override;
+QList<QNetworkCookie >  cookiesForUrl(const QUrl&  url) const override;
+void customEvent(QEvent*  event) override;
+bool  deleteCookie(const QNetworkCookie&  cookie) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+bool  insertCookie(const QNetworkCookie&  cookie) override;
+bool  setCookiesFromUrl(const QList<QNetworkCookie >&  cookieList, const QUrl&  url) override;
+void timerEvent(QTimerEvent*  event) override;
+bool  updateCookie(const QNetworkCookie&  cookie) override;
+bool  validateCookie(const QNetworkCookie&  cookie, const QUrl&  url) const override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QNetworkCookieJar : public QNetworkCookieJar
@@ -1108,7 +1110,7 @@ class PythonQtWrapper_QNetworkCookieJar : public QObject
 public:
 public slots:
 QNetworkCookieJar* new_QNetworkCookieJar(QObject*  parent = nullptr);
-void delete_QNetworkCookieJar(QNetworkCookieJar* obj) { delete obj; } 
+void delete_QNetworkCookieJar(QNetworkCookieJar* obj) { delete obj; }
    QList<QNetworkCookie >  allCookies(QNetworkCookieJar* theWrappedObject) const;
    QList<QNetworkCookie >  cookiesForUrl(QNetworkCookieJar* theWrappedObject, const QUrl&  url) const;
    QList<QNetworkCookie >  py_q_cookiesForUrl(QNetworkCookieJar* theWrappedObject, const QUrl&  url) const{  return (((PythonQtPublicPromoter_QNetworkCookieJar*)theWrappedObject)->py_q_cookiesForUrl(url));}
@@ -1136,7 +1138,7 @@ public slots:
 QNetworkDatagram* new_QNetworkDatagram();
 QNetworkDatagram* new_QNetworkDatagram(const QByteArray&  data, const QHostAddress&  destinationAddress = QHostAddress(), unsigned short  port = 0);
 QNetworkDatagram* new_QNetworkDatagram(const QNetworkDatagram&  other);
-void delete_QNetworkDatagram(QNetworkDatagram* obj) { delete obj; } 
+void delete_QNetworkDatagram(QNetworkDatagram* obj) { delete obj; }
    void clear(QNetworkDatagram* theWrappedObject);
    QByteArray  data(QNetworkDatagram* theWrappedObject) const;
    QHostAddress  destinationAddress(QNetworkDatagram* theWrappedObject) const;
@@ -1165,28 +1167,28 @@ void delete_QNetworkDatagram(QNetworkDatagram* obj) { delete obj; }
 class PythonQtShell_QNetworkDiskCache : public QNetworkDiskCache
 {
 public:
-    PythonQtShell_QNetworkDiskCache(QObject*  parent = nullptr):QNetworkDiskCache(parent),_wrapper(NULL) {};
+    PythonQtShell_QNetworkDiskCache(QObject*  parent = nullptr):QNetworkDiskCache(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QNetworkDiskCache();
+   ~PythonQtShell_QNetworkDiskCache() override;
 
-virtual qint64  cacheSize() const;
-virtual void childEvent(QChildEvent*  event);
-virtual void clear();
-virtual void customEvent(QEvent*  event);
-virtual QIODevice*  data(const QUrl&  url);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual qint64  expire();
-virtual void insert(QIODevice*  device);
-virtual QNetworkCacheMetaData  metaData(const QUrl&  url);
-virtual QIODevice*  prepare(const QNetworkCacheMetaData&  metaData);
-virtual bool  remove(const QUrl&  url);
-virtual void timerEvent(QTimerEvent*  event);
-virtual void updateMetaData(const QNetworkCacheMetaData&  metaData);
+qint64  cacheSize() const override;
+void childEvent(QChildEvent*  event) override;
+void clear() override;
+void customEvent(QEvent*  event) override;
+QIODevice*  data(const QUrl&  url) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+qint64  expire() override;
+void insert(QIODevice*  device) override;
+QNetworkCacheMetaData  metaData(const QUrl&  url) override;
+QIODevice*  prepare(const QNetworkCacheMetaData&  metaData) override;
+bool  remove(const QUrl&  url) override;
+void timerEvent(QTimerEvent*  event) override;
+void updateMetaData(const QNetworkCacheMetaData&  metaData) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QNetworkDiskCache : public QNetworkDiskCache
@@ -1208,7 +1210,7 @@ class PythonQtWrapper_QNetworkDiskCache : public QObject
 public:
 public slots:
 QNetworkDiskCache* new_QNetworkDiskCache(QObject*  parent = nullptr);
-void delete_QNetworkDiskCache(QNetworkDiskCache* obj) { delete obj; } 
+void delete_QNetworkDiskCache(QNetworkDiskCache* obj) { delete obj; }
    QString  cacheDirectory(QNetworkDiskCache* theWrappedObject) const;
    qint64  py_q_cacheSize(QNetworkDiskCache* theWrappedObject) const{  return (((PythonQtPublicPromoter_QNetworkDiskCache*)theWrappedObject)->py_q_cacheSize());}
    void py_q_clear(QNetworkDiskCache* theWrappedObject){  (((PythonQtPublicPromoter_QNetworkDiskCache*)theWrappedObject)->py_q_clear());}
@@ -1243,7 +1245,7 @@ Q_DECLARE_FLAGS(InterfaceFlags, InterfaceFlag)
 public slots:
 QNetworkInterface* new_QNetworkInterface();
 QNetworkInterface* new_QNetworkInterface(const QNetworkInterface&  other);
-void delete_QNetworkInterface(QNetworkInterface* obj) { delete obj; } 
+void delete_QNetworkInterface(QNetworkInterface* obj) { delete obj; }
    QList<QNetworkAddressEntry >  addressEntries(QNetworkInterface* theWrappedObject) const;
    QList<QHostAddress >  static_QNetworkInterface_allAddresses();
    QList<QNetworkInterface >  static_QNetworkInterface_allInterfaces();
@@ -1282,7 +1284,7 @@ public slots:
 QNetworkProxy* new_QNetworkProxy();
 QNetworkProxy* new_QNetworkProxy(QNetworkProxy::ProxyType  type, const QString&  hostName = QString(), unsigned short  port = 0, const QString&  user = QString(), const QString&  password = QString());
 QNetworkProxy* new_QNetworkProxy(const QNetworkProxy&  other);
-void delete_QNetworkProxy(QNetworkProxy* obj) { delete obj; } 
+void delete_QNetworkProxy(QNetworkProxy* obj) { delete obj; }
    QNetworkProxy  static_QNetworkProxy_applicationProxy();
    QNetworkProxy::Capabilities  capabilities(QNetworkProxy* theWrappedObject) const;
    bool  hasRawHeader(QNetworkProxy* theWrappedObject, const QByteArray&  headerName) const;
@@ -1318,13 +1320,13 @@ void delete_QNetworkProxy(QNetworkProxy* obj) { delete obj; }
 class PythonQtShell_QNetworkProxyFactory : public QNetworkProxyFactory
 {
 public:
-    PythonQtShell_QNetworkProxyFactory():QNetworkProxyFactory(),_wrapper(NULL) {};
+    PythonQtShell_QNetworkProxyFactory():QNetworkProxyFactory(),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QNetworkProxyFactory();
+   ~PythonQtShell_QNetworkProxyFactory() override;
 
-virtual QList<QNetworkProxy >  queryProxy(const QNetworkProxyQuery&  query = QNetworkProxyQuery());
+QList<QNetworkProxy >  queryProxy(const QNetworkProxyQuery&  query = QNetworkProxyQuery()) override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QNetworkProxyFactory : public QNetworkProxyFactory
@@ -1337,7 +1339,7 @@ class PythonQtWrapper_QNetworkProxyFactory : public QObject
 public:
 public slots:
 QNetworkProxyFactory* new_QNetworkProxyFactory();
-void delete_QNetworkProxyFactory(QNetworkProxyFactory* obj) { delete obj; } 
+void delete_QNetworkProxyFactory(QNetworkProxyFactory* obj) { delete obj; }
    QList<QNetworkProxy >  static_QNetworkProxyFactory_proxyForQuery(const QNetworkProxyQuery&  query);
    QList<QNetworkProxy >  queryProxy(QNetworkProxyFactory* theWrappedObject, const QNetworkProxyQuery&  query = QNetworkProxyQuery());
    QList<QNetworkProxy >  py_q_queryProxy(QNetworkProxyFactory* theWrappedObject, const QNetworkProxyQuery&  query = QNetworkProxyQuery()){  return (((PythonQtPublicPromoter_QNetworkProxyFactory*)theWrappedObject)->py_q_queryProxy(query));}
@@ -1366,7 +1368,7 @@ QNetworkProxyQuery* new_QNetworkProxyQuery(const QNetworkProxyQuery&  other);
 QNetworkProxyQuery* new_QNetworkProxyQuery(const QString&  hostname, int  port, const QString&  protocolTag = QString(), QNetworkProxyQuery::QueryType  queryType = QNetworkProxyQuery::TcpSocket);
 QNetworkProxyQuery* new_QNetworkProxyQuery(const QUrl&  requestUrl, QNetworkProxyQuery::QueryType  queryType = QNetworkProxyQuery::UrlRequest);
 QNetworkProxyQuery* new_QNetworkProxyQuery(unsigned short  bindPort, const QString&  protocolTag = QString(), QNetworkProxyQuery::QueryType  queryType = QNetworkProxyQuery::TcpServer);
-void delete_QNetworkProxyQuery(QNetworkProxyQuery* obj) { delete obj; } 
+void delete_QNetworkProxyQuery(QNetworkProxyQuery* obj) { delete obj; }
    int  localPort(QNetworkProxyQuery* theWrappedObject) const;
    QNetworkConfiguration  networkConfiguration(QNetworkProxyQuery* theWrappedObject) const;
    bool  __ne__(QNetworkProxyQuery* theWrappedObject, const QNetworkProxyQuery&  other) const;
