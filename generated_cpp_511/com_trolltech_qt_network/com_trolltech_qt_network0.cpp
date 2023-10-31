@@ -4196,6 +4196,11 @@ void PythonQtWrapper_QNetworkAddressEntry::clearAddressLifetime(QNetworkAddressE
   ( theWrappedObject->clearAddressLifetime());
 }
 
+QNetworkAddressEntry::DnsEligibilityStatus  PythonQtWrapper_QNetworkAddressEntry::dnsEligibility(QNetworkAddressEntry* theWrappedObject) const
+{
+  return ( theWrappedObject->dnsEligibility());
+}
+
 QHostAddress  PythonQtWrapper_QNetworkAddressEntry::ip(QNetworkAddressEntry* theWrappedObject) const
 {
   return ( theWrappedObject->ip());
@@ -4249,6 +4254,11 @@ void PythonQtWrapper_QNetworkAddressEntry::setAddressLifetime(QNetworkAddressEnt
 void PythonQtWrapper_QNetworkAddressEntry::setBroadcast(QNetworkAddressEntry* theWrappedObject, const QHostAddress&  newBroadcast)
 {
   ( theWrappedObject->setBroadcast(newBroadcast));
+}
+
+void PythonQtWrapper_QNetworkAddressEntry::setDnsEligibility(QNetworkAddressEntry* theWrappedObject, QNetworkAddressEntry::DnsEligibilityStatus  status)
+{
+  ( theWrappedObject->setDnsEligibility(status));
 }
 
 void PythonQtWrapper_QNetworkAddressEntry::setIp(QNetworkAddressEntry* theWrappedObject, const QHostAddress&  newIp)

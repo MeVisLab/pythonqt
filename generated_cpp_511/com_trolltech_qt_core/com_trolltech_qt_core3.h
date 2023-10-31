@@ -701,6 +701,9 @@ inline void py_q_run() { QThread::run(); }
 class PythonQtWrapper_QThread : public QObject
 { Q_OBJECT
 public:
+Q_ENUMS(Priority )
+enum Priority{
+  IdlePriority = QThread::IdlePriority,   LowestPriority = QThread::LowestPriority,   LowPriority = QThread::LowPriority,   NormalPriority = QThread::NormalPriority,   HighPriority = QThread::HighPriority,   HighestPriority = QThread::HighestPriority,   TimeCriticalPriority = QThread::TimeCriticalPriority,   InheritPriority = QThread::InheritPriority};
 public slots:
 QThread* new_QThread(QObject*  parent = nullptr);
 void delete_QThread(QThread* obj) { delete obj; }
@@ -716,10 +719,12 @@ void delete_QThread(QThread* obj) { delete obj; }
    bool  isRunning(QThread* theWrappedObject) const;
    int  loopLevel(QThread* theWrappedObject) const;
    void static_QThread_msleep(unsigned long  arg__1);
+   QThread::Priority  priority(QThread* theWrappedObject) const;
    void requestInterruption(QThread* theWrappedObject);
    void run(QThread* theWrappedObject);
    void py_q_run(QThread* theWrappedObject){  (((PythonQtPublicPromoter_QThread*)theWrappedObject)->py_q_run());}
    void setEventDispatcher(QThread* theWrappedObject, QAbstractEventDispatcher*  eventDispatcher);
+   void setPriority(QThread* theWrappedObject, QThread::Priority  priority);
    void setStackSize(QThread* theWrappedObject, uint  stackSize);
    void static_QThread_setTerminationEnabled(bool  enabled = true);
    void static_QThread_sleep(unsigned long  arg__1);

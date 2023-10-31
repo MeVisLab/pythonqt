@@ -2838,6 +2838,11 @@ void PythonQtWrapper_QThread::static_QThread_msleep(unsigned long  arg__1)
   (QThread::msleep(arg__1));
 }
 
+QThread::Priority  PythonQtWrapper_QThread::priority(QThread* theWrappedObject) const
+{
+  return ( theWrappedObject->priority());
+}
+
 void PythonQtWrapper_QThread::requestInterruption(QThread* theWrappedObject)
 {
   ( theWrappedObject->requestInterruption());
@@ -2851,6 +2856,11 @@ void PythonQtWrapper_QThread::run(QThread* theWrappedObject)
 void PythonQtWrapper_QThread::setEventDispatcher(QThread* theWrappedObject, QAbstractEventDispatcher*  eventDispatcher)
 {
   ( theWrappedObject->setEventDispatcher(eventDispatcher));
+}
+
+void PythonQtWrapper_QThread::setPriority(QThread* theWrappedObject, QThread::Priority  priority)
+{
+  ( theWrappedObject->setPriority(priority));
 }
 
 void PythonQtWrapper_QThread::setStackSize(QThread* theWrappedObject, uint  stackSize)

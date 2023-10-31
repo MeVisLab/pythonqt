@@ -887,12 +887,16 @@ void delete_QNetworkAccessManager(QNetworkAccessManager* obj) { delete obj; }
 class PythonQtWrapper_QNetworkAddressEntry : public QObject
 { Q_OBJECT
 public:
+Q_ENUMS(DnsEligibilityStatus )
+enum DnsEligibilityStatus{
+  DnsEligibilityUnknown = QNetworkAddressEntry::DnsEligibilityUnknown,   DnsIneligible = QNetworkAddressEntry::DnsIneligible,   DnsEligible = QNetworkAddressEntry::DnsEligible};
 public slots:
 QNetworkAddressEntry* new_QNetworkAddressEntry();
 QNetworkAddressEntry* new_QNetworkAddressEntry(const QNetworkAddressEntry&  other);
 void delete_QNetworkAddressEntry(QNetworkAddressEntry* obj) { delete obj; }
    QHostAddress  broadcast(QNetworkAddressEntry* theWrappedObject) const;
    void clearAddressLifetime(QNetworkAddressEntry* theWrappedObject);
+   QNetworkAddressEntry::DnsEligibilityStatus  dnsEligibility(QNetworkAddressEntry* theWrappedObject) const;
    QHostAddress  ip(QNetworkAddressEntry* theWrappedObject) const;
    bool  isLifetimeKnown(QNetworkAddressEntry* theWrappedObject) const;
    bool  isPermanent(QNetworkAddressEntry* theWrappedObject) const;
@@ -904,6 +908,7 @@ void delete_QNetworkAddressEntry(QNetworkAddressEntry* obj) { delete obj; }
    int  prefixLength(QNetworkAddressEntry* theWrappedObject) const;
    void setAddressLifetime(QNetworkAddressEntry* theWrappedObject, QDeadlineTimer  preferred, QDeadlineTimer  validity);
    void setBroadcast(QNetworkAddressEntry* theWrappedObject, const QHostAddress&  newBroadcast);
+   void setDnsEligibility(QNetworkAddressEntry* theWrappedObject, QNetworkAddressEntry::DnsEligibilityStatus  status);
    void setIp(QNetworkAddressEntry* theWrappedObject, const QHostAddress&  newIp);
    void setNetmask(QNetworkAddressEntry* theWrappedObject, const QHostAddress&  newNetmask);
    void setPrefixLength(QNetworkAddressEntry* theWrappedObject, int  length);
