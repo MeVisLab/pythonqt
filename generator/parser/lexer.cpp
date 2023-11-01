@@ -624,7 +624,7 @@ void Lexer::scan_less()
         }
       else
         {
-          token_stream[(int) index++].kind = Token_shift;
+          token_stream[(int) index++].kind = Token_shift_left;
         }
     }
   else
@@ -677,7 +677,9 @@ void Lexer::scan_greater()
         }
       else
         {
-          token_stream[(int) index++].kind = Token_shift;
+          // may be replaced by two ">" during parsing
+          token_stream[(int) index++].kind = Token_shift_right;
+          token_stream[(int) index++].kind = Token_placeholder;
         }
     }
   else

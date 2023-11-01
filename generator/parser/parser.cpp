@@ -896,6 +896,7 @@ bool Parser::parseTemplateDeclaration(DeclarationAST *&node)
       nextToken();
       parseTemplateParameterList(params);
 
+      resolveRightShift();
       ADVANCE('>', ">");
     }
 
@@ -957,7 +958,7 @@ bool Parser::parseOperator(OperatorAST *&node)
     case '>':
     case ',':
     case Token_assign:
-    case Token_shift:
+    case Token_shift_left:
     case Token_eq:
     case Token_not_eq:
     case Token_leq:
@@ -969,6 +970,13 @@ bool Parser::parseOperator(OperatorAST *&node)
     case Token_ptrmem:
     case Token_arrow:
       ast->op = token_stream.cursor();
+      nextToken();
+      break;
+
+    case Token_shift_right:
+      ast->op = token_stream.cursor();
+      nextToken();
+      // skip placeholder
       nextToken();
       break;
 
@@ -1157,7 +1165,8 @@ bool Parser::parseTemplateArgument(TemplateArgumentAST *&node)
   ExpressionAST *expr = 0;
 
   if (!parseTypeId(typeId) || (token_stream.lookAhead() != ','
-                               && token_stream.lookAhead() != '>'))
+                               && token_stream.lookAhead() != '>'
+                               && token_stream.lookAhead() != Token_shift_right))
     {
       token_stream.rewind((int) start);
 
@@ -2553,6 +2562,16 @@ bool Parser::parsePtrToMember(PtrToMemberAST *&node)
   return false;
 }
 
+void Parser::resolveRightShift()
+{
+  if (token_stream.lookAhead() == Token_shift_right)
+    {
+      int index = token_stream.cursor();
+      token_stream[index].kind = '>';
+      token_stream[index + 1].kind = '>';
+    }
+}
+
 bool Parser::parseUnqualifiedName(UnqualifiedNameAST *&node,
                                   bool parseTemplateId)
 {
@@ -2602,6 +2621,7 @@ bool Parser::parseUnqualifiedName(UnqualifiedNameAST *&node,
           // optional template arguments
           parseTemplateArgumentList(ast->template_arguments);
 
+          resolveRightShift();
           if (token_stream.lookAhead() == '>')
             {
               nextToken();
@@ -2609,7 +2629,7 @@ bool Parser::parseUnqualifiedName(UnqualifiedNameAST *&node,
           else
             {
               ast->template_arguments = 0;
-              token_stream.rewind((int) index);
+              token_stream.rewind((int)index);
             }
         }
     }
@@ -4207,9 +4227,14 @@ bool Parser::parseShiftExpression(ExpressionAST *&node)
   if (!parseAdditiveExpression(node))
     return false;
 
-  while (token_stream.lookAhead() == Token_shift)
+  while (token_stream.lookAhead() == Token_shift_left || token_stream.lookAhead() == Token_shift_right)
     {
       std::size_t op = token_stream.cursor();
+      if (token_stream.lookAhead() == Token_shift_right)
+        {
+          // skip placeholder
+          nextToken();
+        }
       nextToken();
 
       ExpressionAST *rightExpr = 0;
