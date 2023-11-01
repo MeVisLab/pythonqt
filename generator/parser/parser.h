@@ -147,6 +147,7 @@ public:
   bool parsePrimaryExpression(ExpressionAST *&node);
   bool parsePtrOperator(PtrOperatorAST *&node);
   bool parsePtrToMember(PtrToMemberAST *&node);
+  void resolveRightShift();
   bool parseRelationalExpression(ExpressionAST *&node,
                                  bool templArgs = false);
   bool parseShiftExpression(ExpressionAST *&node);
