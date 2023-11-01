@@ -466,6 +466,9 @@ bool Parser::parseDeclaration(DeclarationAST *&node)
   switch(token_stream.lookAhead())
     {
     case ';':
+    // ignore ellipse in constructs like
+    // using T1 = T2<f<Args>...>;
+    case Token_ellipsis:
       nextToken();
       return true;
 
@@ -1543,6 +1546,17 @@ bool Parser::parseTemplateParameterList(const ListNode<TemplateParameterAST*> *&
         }
     }
 
+  if (token_stream.lookAhead() == Token_ellipsis)
+    {
+      // ignore variadic template parameters as in
+      // template<class Tuple, std::size_t... I>
+      token_stream.nextToken();
+      if (token_stream.lookAhead() == Token_identifier)
+        {
+          token_stream.nextToken();
+        }
+    }
+
   return true;
 }
 
@@ -1556,7 +1570,13 @@ bool Parser::parseTemplateParameter(TemplateParameterAST *&node)
   if ((tk == Token_class || tk == Token_typename || tk == Token_template)
       && parseTypeParameter(ast->type_parameter))
     {
-      // nothing to do
+      if (token_stream.lookAhead() == '=' || token_stream.lookAhead() == Token_assign)
+        {
+          // default template parameter
+          token_stream.nextToken();
+          TypeSpecifierAST* typeNode = 0;
+          parseTypeSpecifier(typeNode);
+        }
     }
   else if (!parseParameterDeclaration(ast->parameter_declaration))
     return false;
@@ -1580,6 +1600,12 @@ bool Parser::parseTypeParameter(TypeParameterAST *&node)
     case Token_typename:
       {
         nextToken(); // skip class
+
+        if (token_stream.lookAhead() == Token_ellipsis)
+        {
+            // skip variadic parameters in template parameter list
+            nextToken();
+        }
 
         // parse optional name
         if(parseName(ast->name, true))
@@ -2252,6 +2278,13 @@ bool Parser::parseInitDeclarator(InitDeclaratorAST *&node)
 {
   std::size_t start = token_stream.cursor();
 
+  if (token_stream.lookAhead(0) == Token_ellipsis)
+    {
+      // for now just ignore variadic parameters
+      token_stream.nextToken();
+      return true;
+    }
+      
   DeclaratorAST *decl = 0;
   if (!parseDeclarator(decl))
     {
