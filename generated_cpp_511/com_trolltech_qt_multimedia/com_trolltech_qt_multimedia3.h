@@ -33,6 +33,7 @@
 #include <qsize.h>
 #include <qsizepolicy.h>
 #include <qstyle.h>
+#include <qthread.h>
 #include <qvideorenderercontrol.h>
 #include <qvideosurfaceformat.h>
 #include <qvideowidget.h>
@@ -46,21 +47,21 @@
 class PythonQtShell_QVideoRendererControl : public QVideoRendererControl
 {
 public:
-    PythonQtShell_QVideoRendererControl(QObject*  parent = nullptr):QVideoRendererControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QVideoRendererControl(QObject*  parent = nullptr):QVideoRendererControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QVideoRendererControl();
+   ~PythonQtShell_QVideoRendererControl() override;
 
-virtual void childEvent(QChildEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual void setSurface(QAbstractVideoSurface*  surface);
-virtual QAbstractVideoSurface*  surface() const;
-virtual void timerEvent(QTimerEvent*  event);
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void setSurface(QAbstractVideoSurface*  surface) override;
+QAbstractVideoSurface*  surface() const override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QVideoRendererControl : public QVideoRendererControl
@@ -74,7 +75,7 @@ class PythonQtWrapper_QVideoRendererControl : public QObject
 public:
 public slots:
 QVideoRendererControl* new_QVideoRendererControl(QObject*  parent = nullptr);
-void delete_QVideoRendererControl(QVideoRendererControl* obj) { delete obj; } 
+void delete_QVideoRendererControl(QVideoRendererControl* obj) { delete obj; }
    void setSurface(QVideoRendererControl* theWrappedObject, QAbstractVideoSurface*  surface);
    void py_q_setSurface(QVideoRendererControl* theWrappedObject, QAbstractVideoSurface*  surface){  (((PythonQtPublicPromoter_QVideoRendererControl*)theWrappedObject)->py_q_setSurface(surface));}
    QAbstractVideoSurface*  surface(QVideoRendererControl* theWrappedObject) const;
@@ -97,7 +98,7 @@ public slots:
 QVideoSurfaceFormat* new_QVideoSurfaceFormat();
 QVideoSurfaceFormat* new_QVideoSurfaceFormat(const QSize&  size, QVideoFrame::PixelFormat  pixelFormat, QAbstractVideoBuffer::HandleType  handleType = QAbstractVideoBuffer::NoHandle);
 QVideoSurfaceFormat* new_QVideoSurfaceFormat(const QVideoSurfaceFormat&  format);
-void delete_QVideoSurfaceFormat(QVideoSurfaceFormat* obj) { delete obj; } 
+void delete_QVideoSurfaceFormat(QVideoSurfaceFormat* obj) { delete obj; }
    int  frameHeight(QVideoSurfaceFormat* theWrappedObject) const;
    qreal  frameRate(QVideoSurfaceFormat* theWrappedObject) const;
    QSize  frameSize(QVideoSurfaceFormat* theWrappedObject) const;
@@ -137,61 +138,61 @@ void delete_QVideoSurfaceFormat(QVideoSurfaceFormat* obj) { delete obj; }
 class PythonQtShell_QVideoWidget : public QVideoWidget
 {
 public:
-    PythonQtShell_QVideoWidget(QWidget*  parent = nullptr):QVideoWidget(parent),_wrapper(NULL) {};
+    PythonQtShell_QVideoWidget(QWidget*  parent = nullptr):QVideoWidget(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QVideoWidget();
+   ~PythonQtShell_QVideoWidget() override;
 
-virtual void actionEvent(QActionEvent*  event);
-virtual void changeEvent(QEvent*  arg__1);
-virtual void childEvent(QChildEvent*  event);
-virtual void closeEvent(QCloseEvent*  event);
-virtual void contextMenuEvent(QContextMenuEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual int  devType() const;
-virtual void dragEnterEvent(QDragEnterEvent*  event);
-virtual void dragLeaveEvent(QDragLeaveEvent*  event);
-virtual void dragMoveEvent(QDragMoveEvent*  event);
-virtual void dropEvent(QDropEvent*  event);
-virtual void enterEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual void focusInEvent(QFocusEvent*  event);
-virtual bool  focusNextPrevChild(bool  next);
-virtual void focusOutEvent(QFocusEvent*  event);
-virtual bool  hasHeightForWidth() const;
-virtual int  heightForWidth(int  arg__1) const;
-virtual void hideEvent(QHideEvent*  event);
-virtual void initPainter(QPainter*  painter) const;
-virtual void inputMethodEvent(QInputMethodEvent*  arg__1);
-virtual QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const;
-virtual void keyPressEvent(QKeyEvent*  event);
-virtual void keyReleaseEvent(QKeyEvent*  event);
-virtual void leaveEvent(QEvent*  event);
-virtual QMediaObject*  mediaObject() const;
-virtual int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const;
-virtual QSize  minimumSizeHint() const;
-virtual void mouseDoubleClickEvent(QMouseEvent*  event);
-virtual void mouseMoveEvent(QMouseEvent*  event);
-virtual void mousePressEvent(QMouseEvent*  event);
-virtual void mouseReleaseEvent(QMouseEvent*  event);
-virtual void moveEvent(QMoveEvent*  event);
-virtual bool  nativeEvent(const QByteArray&  eventType, void*  message, long*  result);
-virtual QPaintEngine*  paintEngine() const;
-virtual void paintEvent(QPaintEvent*  event);
-virtual QPaintDevice*  redirected(QPoint*  offset) const;
-virtual void resizeEvent(QResizeEvent*  event);
-virtual bool  setMediaObject(QMediaObject*  object);
-virtual void setVisible(bool  visible);
-virtual QPainter*  sharedPainter() const;
-virtual void showEvent(QShowEvent*  event);
-virtual QSize  sizeHint() const;
-virtual void tabletEvent(QTabletEvent*  event);
-virtual void timerEvent(QTimerEvent*  event);
-virtual void wheelEvent(QWheelEvent*  event);
+void actionEvent(QActionEvent*  event) override;
+void changeEvent(QEvent*  arg__1) override;
+void childEvent(QChildEvent*  event) override;
+void closeEvent(QCloseEvent*  event) override;
+void contextMenuEvent(QContextMenuEvent*  event) override;
+void customEvent(QEvent*  event) override;
+int  devType() const override;
+void dragEnterEvent(QDragEnterEvent*  event) override;
+void dragLeaveEvent(QDragLeaveEvent*  event) override;
+void dragMoveEvent(QDragMoveEvent*  event) override;
+void dropEvent(QDropEvent*  event) override;
+void enterEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void focusInEvent(QFocusEvent*  event) override;
+bool  focusNextPrevChild(bool  next) override;
+void focusOutEvent(QFocusEvent*  event) override;
+bool  hasHeightForWidth() const override;
+int  heightForWidth(int  arg__1) const override;
+void hideEvent(QHideEvent*  event) override;
+void initPainter(QPainter*  painter) const override;
+void inputMethodEvent(QInputMethodEvent*  arg__1) override;
+QVariant  inputMethodQuery(Qt::InputMethodQuery  arg__1) const override;
+void keyPressEvent(QKeyEvent*  event) override;
+void keyReleaseEvent(QKeyEvent*  event) override;
+void leaveEvent(QEvent*  event) override;
+QMediaObject*  mediaObject() const override;
+int  metric(QPaintDevice::PaintDeviceMetric  arg__1) const override;
+QSize  minimumSizeHint() const override;
+void mouseDoubleClickEvent(QMouseEvent*  event) override;
+void mouseMoveEvent(QMouseEvent*  event) override;
+void mousePressEvent(QMouseEvent*  event) override;
+void mouseReleaseEvent(QMouseEvent*  event) override;
+void moveEvent(QMoveEvent*  event) override;
+bool  nativeEvent(const QByteArray&  eventType, void*  message, long*  result) override;
+QPaintEngine*  paintEngine() const override;
+void paintEvent(QPaintEvent*  event) override;
+QPaintDevice*  redirected(QPoint*  offset) const override;
+void resizeEvent(QResizeEvent*  event) override;
+bool  setMediaObject(QMediaObject*  object) override;
+void setVisible(bool  visible) override;
+QPainter*  sharedPainter() const override;
+void showEvent(QShowEvent*  event) override;
+QSize  sizeHint() const override;
+void tabletEvent(QTabletEvent*  event) override;
+void timerEvent(QTimerEvent*  event) override;
+void wheelEvent(QWheelEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QVideoWidget : public QVideoWidget
@@ -219,7 +220,7 @@ class PythonQtWrapper_QVideoWidget : public QObject
 public:
 public slots:
 QVideoWidget* new_QVideoWidget(QWidget*  parent = nullptr);
-void delete_QVideoWidget(QVideoWidget* obj) { delete obj; } 
+void delete_QVideoWidget(QVideoWidget* obj) { delete obj; }
    Qt::AspectRatioMode  aspectRatioMode(QVideoWidget* theWrappedObject) const;
    int  brightness(QVideoWidget* theWrappedObject) const;
    int  contrast(QVideoWidget* theWrappedObject) const;
@@ -244,32 +245,32 @@ void delete_QVideoWidget(QVideoWidget* obj) { delete obj; }
 class PythonQtShell_QVideoWidgetControl : public QVideoWidgetControl
 {
 public:
-    PythonQtShell_QVideoWidgetControl(QObject*  parent = nullptr):QVideoWidgetControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QVideoWidgetControl(QObject*  parent = nullptr):QVideoWidgetControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QVideoWidgetControl();
+   ~PythonQtShell_QVideoWidgetControl() override;
 
-virtual Qt::AspectRatioMode  aspectRatioMode() const;
-virtual int  brightness() const;
-virtual void childEvent(QChildEvent*  event);
-virtual int  contrast() const;
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual int  hue() const;
-virtual bool  isFullScreen() const;
-virtual int  saturation() const;
-virtual void setAspectRatioMode(Qt::AspectRatioMode  mode);
-virtual void setBrightness(int  brightness);
-virtual void setContrast(int  contrast);
-virtual void setFullScreen(bool  fullScreen);
-virtual void setHue(int  hue);
-virtual void setSaturation(int  saturation);
-virtual void timerEvent(QTimerEvent*  event);
-virtual QWidget*  videoWidget();
+Qt::AspectRatioMode  aspectRatioMode() const override;
+int  brightness() const override;
+void childEvent(QChildEvent*  event) override;
+int  contrast() const override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+int  hue() const override;
+bool  isFullScreen() const override;
+int  saturation() const override;
+void setAspectRatioMode(Qt::AspectRatioMode  mode) override;
+void setBrightness(int  brightness) override;
+void setContrast(int  contrast) override;
+void setFullScreen(bool  fullScreen) override;
+void setHue(int  hue) override;
+void setSaturation(int  saturation) override;
+void timerEvent(QTimerEvent*  event) override;
+QWidget*  videoWidget() override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QVideoWidgetControl : public QVideoWidgetControl
@@ -294,7 +295,7 @@ class PythonQtWrapper_QVideoWidgetControl : public QObject
 public:
 public slots:
 QVideoWidgetControl* new_QVideoWidgetControl(QObject*  parent = nullptr);
-void delete_QVideoWidgetControl(QVideoWidgetControl* obj) { delete obj; } 
+void delete_QVideoWidgetControl(QVideoWidgetControl* obj) { delete obj; }
    Qt::AspectRatioMode  aspectRatioMode(QVideoWidgetControl* theWrappedObject) const;
    Qt::AspectRatioMode  py_q_aspectRatioMode(QVideoWidgetControl* theWrappedObject) const{  return (((PythonQtPublicPromoter_QVideoWidgetControl*)theWrappedObject)->py_q_aspectRatioMode());}
    int  brightness(QVideoWidgetControl* theWrappedObject) const;
@@ -330,37 +331,37 @@ void delete_QVideoWidgetControl(QVideoWidgetControl* obj) { delete obj; }
 class PythonQtShell_QVideoWindowControl : public QVideoWindowControl
 {
 public:
-    PythonQtShell_QVideoWindowControl(QObject*  parent = nullptr):QVideoWindowControl(parent),_wrapper(NULL) {};
+    PythonQtShell_QVideoWindowControl(QObject*  parent = nullptr):QVideoWindowControl(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QVideoWindowControl();
+   ~PythonQtShell_QVideoWindowControl() override;
 
-virtual Qt::AspectRatioMode  aspectRatioMode() const;
-virtual int  brightness() const;
-virtual void childEvent(QChildEvent*  event);
-virtual int  contrast() const;
-virtual void customEvent(QEvent*  event);
-virtual QRect  displayRect() const;
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual int  hue() const;
-virtual bool  isFullScreen() const;
-virtual QSize  nativeSize() const;
-virtual void repaint();
-virtual int  saturation() const;
-virtual void setAspectRatioMode(Qt::AspectRatioMode  mode);
-virtual void setBrightness(int  brightness);
-virtual void setContrast(int  contrast);
-virtual void setDisplayRect(const QRect&  rect);
-virtual void setFullScreen(bool  fullScreen);
-virtual void setHue(int  hue);
-virtual void setSaturation(int  saturation);
-virtual void setWinId(WId  id);
-virtual void timerEvent(QTimerEvent*  event);
-virtual WId  winId() const;
+Qt::AspectRatioMode  aspectRatioMode() const override;
+int  brightness() const override;
+void childEvent(QChildEvent*  event) override;
+int  contrast() const override;
+void customEvent(QEvent*  event) override;
+QRect  displayRect() const override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+int  hue() const override;
+bool  isFullScreen() const override;
+QSize  nativeSize() const override;
+void repaint() override;
+int  saturation() const override;
+void setAspectRatioMode(Qt::AspectRatioMode  mode) override;
+void setBrightness(int  brightness) override;
+void setContrast(int  contrast) override;
+void setDisplayRect(const QRect&  rect) override;
+void setFullScreen(bool  fullScreen) override;
+void setHue(int  hue) override;
+void setSaturation(int  saturation) override;
+void setWinId(WId  id) override;
+void timerEvent(QTimerEvent*  event) override;
+WId  winId() const override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QVideoWindowControl : public QVideoWindowControl
@@ -390,7 +391,7 @@ class PythonQtWrapper_QVideoWindowControl : public QObject
 public:
 public slots:
 QVideoWindowControl* new_QVideoWindowControl(QObject*  parent = nullptr);
-void delete_QVideoWindowControl(QVideoWindowControl* obj) { delete obj; } 
+void delete_QVideoWindowControl(QVideoWindowControl* obj) { delete obj; }
    Qt::AspectRatioMode  aspectRatioMode(QVideoWindowControl* theWrappedObject) const;
    Qt::AspectRatioMode  py_q_aspectRatioMode(QVideoWindowControl* theWrappedObject) const{  return (((PythonQtPublicPromoter_QVideoWindowControl*)theWrappedObject)->py_q_aspectRatioMode());}
    int  brightness(QVideoWindowControl* theWrappedObject) const;

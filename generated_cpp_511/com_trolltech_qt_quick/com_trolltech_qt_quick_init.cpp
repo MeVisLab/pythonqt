@@ -8,10 +8,10 @@
 void PythonQt_init_QtQuick(PyObject* module) {
 PythonQt::priv()->registerClass(&QQuickFramebufferObject::staticMetaObject, "QtQuick", PythonQtCreateObject<PythonQtWrapper_QQuickFramebufferObject>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QQuickFramebufferObject>, module, 0);
 PythonQt::priv()->registerCPPClass("QQuickFramebufferObject::Renderer", "", "QtQuick", PythonQtCreateObject<PythonQtWrapper_QQuickFramebufferObject__Renderer>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QQuickFramebufferObject__Renderer>, module, 0);
-PythonQt::priv()->registerCPPClass("QQuickImageProvider", "", "QtQuick", PythonQtCreateObject<PythonQtWrapper_QQuickImageProvider>, NULL, module, 0);
+PythonQt::priv()->registerCPPClass("QQuickImageProvider", "", "QtQuick", PythonQtCreateObject<PythonQtWrapper_QQuickImageProvider>, nullptr, module, 0);
 PythonQt::priv()->registerClass(&QQuickItem::staticMetaObject, "QtQuick", PythonQtCreateObject<PythonQtWrapper_QQuickItem>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QQuickItem>, module, 0);
-PythonQt::priv()->registerClass(&QQuickItemGrabResult::staticMetaObject, "QtQuick", PythonQtCreateObject<PythonQtWrapper_QQuickItemGrabResult>, NULL, module, 0);
-PythonQt::priv()->registerCPPClass("QQuickItem::UpdatePaintNodeData", "", "QtQuick", PythonQtCreateObject<PythonQtWrapper_QQuickItem__UpdatePaintNodeData>, NULL, module, 0);
+PythonQt::priv()->registerClass(&QQuickItemGrabResult::staticMetaObject, "QtQuick", PythonQtCreateObject<PythonQtWrapper_QQuickItemGrabResult>, nullptr, module, 0);
+PythonQt::priv()->registerCPPClass("QQuickItem::UpdatePaintNodeData", "", "QtQuick", PythonQtCreateObject<PythonQtWrapper_QQuickItem__UpdatePaintNodeData>, nullptr, module, 0);
 PythonQt::priv()->registerClass(&QQuickPaintedItem::staticMetaObject, "QtQuick", PythonQtCreateObject<PythonQtWrapper_QQuickPaintedItem>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QQuickPaintedItem>, module, 0);
 PythonQt::priv()->registerClass(&QQuickRenderControl::staticMetaObject, "QtQuick", PythonQtCreateObject<PythonQtWrapper_QQuickRenderControl>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QQuickRenderControl>, module, 0);
 PythonQt::priv()->registerClass(&QQuickTextDocument::staticMetaObject, "QtQuick", PythonQtCreateObject<PythonQtWrapper_QQuickTextDocument>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QQuickTextDocument>, module, 0);
@@ -32,7 +32,7 @@ PythonQt::priv()->registerCPPClass("QSGGeometry::AttributeSet", "", "QtQuick", P
 PythonQt::priv()->registerCPPClass("QSGGeometry::ColoredPoint2D", "", "QtQuick", PythonQtCreateObject<PythonQtWrapper_QSGGeometry__ColoredPoint2D>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSGGeometry__ColoredPoint2D>, module, 0);
 PythonQt::priv()->registerCPPClass("QSGGeometry::Point2D", "", "QtQuick", PythonQtCreateObject<PythonQtWrapper_QSGGeometry__Point2D>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSGGeometry__Point2D>, module, 0);
 PythonQt::priv()->registerCPPClass("QSGGeometry::TexturedPoint2D", "", "QtQuick", PythonQtCreateObject<PythonQtWrapper_QSGGeometry__TexturedPoint2D>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSGGeometry__TexturedPoint2D>, module, 0);
-PythonQt::priv()->registerCPPClass("QSGImageNode", "QSGGeometryNode", "QtQuick", PythonQtCreateObject<PythonQtWrapper_QSGImageNode>, NULL, module, 0);
+PythonQt::priv()->registerCPPClass("QSGImageNode", "QSGGeometryNode", "QtQuick", PythonQtCreateObject<PythonQtWrapper_QSGImageNode>, nullptr, module, 0);
 PythonQt::priv()->registerCPPClass("QSGMaterialType", "", "QtQuick", PythonQtCreateObject<PythonQtWrapper_QSGMaterialType>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSGMaterialType>, module, 0);
 PythonQt::priv()->registerCPPClass("QSGNinePatchNode", "QSGGeometryNode", "QtQuick", PythonQtCreateObject<PythonQtWrapper_QSGNinePatchNode>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSGNinePatchNode>, module, 0);
 PythonQt::priv()->registerCPPClass("QSGNode", "", "QtQuick", PythonQtCreateObject<PythonQtWrapper_QSGNode>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QSGNode>, module, 0);

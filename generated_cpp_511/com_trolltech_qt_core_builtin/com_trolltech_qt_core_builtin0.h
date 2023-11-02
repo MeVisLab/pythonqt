@@ -18,6 +18,7 @@
 #include <qpoint.h>
 #include <qrect.h>
 #include <qregexp.h>
+#include <qregularexpression.h>
 #include <qsize.h>
 #include <qstringlist.h>
 #include <qtextcodec.h>
@@ -35,7 +36,7 @@ public slots:
 QBitArray* new_QBitArray();
 QBitArray* new_QBitArray(const QBitArray&  other);
 QBitArray* new_QBitArray(int  size, bool  val = false);
-void delete_QBitArray(QBitArray* obj) { delete obj; } 
+void delete_QBitArray(QBitArray* obj) { delete obj; }
    bool  at(QBitArray* theWrappedObject, int  i) const;
    const char*  bits(QBitArray* theWrappedObject) const;
    void clear(QBitArray* theWrappedObject);
@@ -86,7 +87,7 @@ public slots:
 QByteArray* new_QByteArray();
 QByteArray* new_QByteArray(const QByteArray&  arg__1);
 QByteArray* new_QByteArray(int  size, char  c);
-void delete_QByteArray(QByteArray* obj) { delete obj; } 
+void delete_QByteArray(QByteArray* obj) { delete obj; }
    QByteArray*  append(QByteArray* theWrappedObject, char  c);
    QByteArray*  append(QByteArray* theWrappedObject, const QByteArray&  a);
    QByteArray*  append(QByteArray* theWrappedObject, const QString&  s);
@@ -136,6 +137,7 @@ void delete_QByteArray(QByteArray* obj) { delete obj; }
    QByteArray  static_QByteArray_number(double  arg__1, char  f = 'g', int  prec = 6);
    QByteArray  static_QByteArray_number(int  arg__1, int  base = 10);
    QByteArray  static_QByteArray_number(qlonglong  arg__1, int  base = 10);
+   bool  __ne__(QByteArray* theWrappedObject, const QByteArray&  a2);
    const QByteArray  __add__(QByteArray* theWrappedObject, char  a2);
    const QByteArray  __add__(QByteArray* theWrappedObject, const QByteArray&  a2);
    const QString  __add__(QByteArray* theWrappedObject, const QString&  s);
@@ -226,7 +228,7 @@ QDate* new_QDate(const QDate& other) {
 QDate* a = new QDate();
 *((QDate*)a) = other;
 return a; }
-void delete_QDate(QDate* obj) { delete obj; } 
+void delete_QDate(QDate* obj) { delete obj; }
    QDate  addDays(QDate* theWrappedObject, qint64  days) const;
    QDate  addMonths(QDate* theWrappedObject, int  months) const;
    QDate  addYears(QDate* theWrappedObject, int  years) const;
@@ -284,7 +286,7 @@ QDateTime* new_QDateTime(const QDate&  arg__1, const QTime&  arg__2, Qt::TimeSpe
 QDateTime* new_QDateTime(const QDate&  date, const QTime&  time, Qt::TimeSpec  spec, int  offsetSeconds);
 QDateTime* new_QDateTime(const QDate&  date, const QTime&  time, const QTimeZone&  timeZone);
 QDateTime* new_QDateTime(const QDateTime&  other);
-void delete_QDateTime(QDateTime* obj) { delete obj; } 
+void delete_QDateTime(QDateTime* obj) { delete obj; }
    QDateTime  addDays(QDateTime* theWrappedObject, qint64  days) const;
    QDateTime  addMSecs(QDateTime* theWrappedObject, qint64  msecs) const;
    QDateTime  addMonths(QDateTime* theWrappedObject, int  months) const;
@@ -364,7 +366,7 @@ QLine* new_QLine(const QLine& other) {
 QLine* a = new QLine();
 *((QLine*)a) = other;
 return a; }
-void delete_QLine(QLine* obj) { delete obj; } 
+void delete_QLine(QLine* obj) { delete obj; }
    QPoint  center(QLine* theWrappedObject) const;
    int  dx(QLine* theWrappedObject) const;
    int  dy(QLine* theWrappedObject) const;
@@ -412,7 +414,7 @@ QLineF* new_QLineF(const QLineF& other) {
 QLineF* a = new QLineF();
 *((QLineF*)a) = other;
 return a; }
-void delete_QLineF(QLineF* obj) { delete obj; } 
+void delete_QLineF(QLineF* obj) { delete obj; }
    qreal  angle(QLineF* theWrappedObject) const;
    qreal  angle(QLineF* theWrappedObject, const QLineF&  l) const;
    qreal  angleTo(QLineF* theWrappedObject, const QLineF&  l) const;
@@ -489,7 +491,7 @@ QLocale* new_QLocale(QLocale::Language  language, QLocale::Country  country = QL
 QLocale* new_QLocale(QLocale::Language  language, QLocale::Script  script, QLocale::Country  country);
 QLocale* new_QLocale(const QLocale&  other);
 QLocale* new_QLocale(const QString&  name);
-void delete_QLocale(QLocale* obj) { delete obj; } 
+void delete_QLocale(QLocale* obj) { delete obj; }
    QString  amText(QLocale* theWrappedObject) const;
    QString  bcp47Name(QLocale* theWrappedObject) const;
    QLocale  static_QLocale_c();
@@ -599,10 +601,11 @@ QPoint* new_QPoint(const QPoint& other) {
 QPoint* a = new QPoint();
 *((QPoint*)a) = other;
 return a; }
-void delete_QPoint(QPoint* obj) { delete obj; } 
+void delete_QPoint(QPoint* obj) { delete obj; }
    int  static_QPoint_dotProduct(const QPoint&  p1, const QPoint&  p2);
    bool  isNull(QPoint* theWrappedObject) const;
    int  manhattanLength(QPoint* theWrappedObject) const;
+   bool  __ne__(QPoint* theWrappedObject, const QPoint&  p2);
    QPoint  __mul__(QPoint* theWrappedObject, const QMatrix&  m);
    QPoint  __mul__(QPoint* theWrappedObject, const QMatrix4x4&  matrix);
    QPoint  __mul__(QPoint* theWrappedObject, const QTransform&  m);
@@ -644,10 +647,11 @@ QPointF* new_QPointF(const QPointF& other) {
 QPointF* a = new QPointF();
 *((QPointF*)a) = other;
 return a; }
-void delete_QPointF(QPointF* obj) { delete obj; } 
+void delete_QPointF(QPointF* obj) { delete obj; }
    qreal  static_QPointF_dotProduct(const QPointF&  p1, const QPointF&  p2);
    bool  isNull(QPointF* theWrappedObject) const;
    qreal  manhattanLength(QPointF* theWrappedObject) const;
+   bool  __ne__(QPointF* theWrappedObject, const QPointF&  p2);
    QPointF  __mul__(QPointF* theWrappedObject, const QMatrix&  m);
    QPointF  __mul__(QPointF* theWrappedObject, const QMatrix4x4&  matrix);
    QPointF  __mul__(QPointF* theWrappedObject, const QTransform&  m);
@@ -687,7 +691,7 @@ QRect* new_QRect(const QRect& other) {
 QRect* a = new QRect();
 *((QRect*)a) = other;
 return a; }
-void delete_QRect(QRect* obj) { delete obj; } 
+void delete_QRect(QRect* obj) { delete obj; }
    void adjust(QRect* theWrappedObject, int  x1, int  y1, int  x2, int  y2);
    QRect  adjusted(QRect* theWrappedObject, int  x1, int  y1, int  x2, int  y2) const;
    int  bottom(QRect* theWrappedObject) const;
@@ -719,6 +723,7 @@ void delete_QRect(QRect* obj) { delete obj; }
    void moveTopLeft(QRect* theWrappedObject, const QPoint&  p);
    void moveTopRight(QRect* theWrappedObject, const QPoint&  p);
    QRect  normalized(QRect* theWrappedObject) const;
+   bool  __ne__(QRect* theWrappedObject, const QRect&  arg__2);
    QRect  __and__(QRect* theWrappedObject, const QRect&  r) const;
    QRect*  __iand__(QRect* theWrappedObject, const QRect&  r);
    QRect  __add__(QRect* theWrappedObject, const QMargins&  margins);
@@ -780,7 +785,7 @@ QRectF* new_QRectF(const QRectF& other) {
 QRectF* a = new QRectF();
 *((QRectF*)a) = other;
 return a; }
-void delete_QRectF(QRectF* obj) { delete obj; } 
+void delete_QRectF(QRectF* obj) { delete obj; }
    void adjust(QRectF* theWrappedObject, qreal  x1, qreal  y1, qreal  x2, qreal  y2);
    QRectF  adjusted(QRectF* theWrappedObject, qreal  x1, qreal  y1, qreal  x2, qreal  y2) const;
    qreal  bottom(QRectF* theWrappedObject) const;
@@ -811,6 +816,7 @@ void delete_QRectF(QRectF* obj) { delete obj; }
    void moveTopLeft(QRectF* theWrappedObject, const QPointF&  p);
    void moveTopRight(QRectF* theWrappedObject, const QPointF&  p);
    QRectF  normalized(QRectF* theWrappedObject) const;
+   bool  __ne__(QRectF* theWrappedObject, const QRectF&  arg__2);
    QRectF  __and__(QRectF* theWrappedObject, const QRectF&  r) const;
    QRectF*  __iand__(QRectF* theWrappedObject, const QRectF&  r);
    QRectF  __add__(QRectF* theWrappedObject, const QMarginsF&  rhs);
@@ -873,7 +879,7 @@ public slots:
 QRegExp* new_QRegExp();
 QRegExp* new_QRegExp(const QRegExp&  rx);
 QRegExp* new_QRegExp(const QString&  pattern, Qt::CaseSensitivity  cs = Qt::CaseSensitive, QRegExp::PatternSyntax  syntax = QRegExp::RegExp);
-void delete_QRegExp(QRegExp* obj) { delete obj; } 
+void delete_QRegExp(QRegExp* obj) { delete obj; }
    QString  cap(QRegExp* theWrappedObject, int  nth = 0);
    int  captureCount(QRegExp* theWrappedObject) const;
    QStringList  capturedTexts(QRegExp* theWrappedObject);
@@ -907,6 +913,53 @@ void delete_QRegExp(QRegExp* obj) { delete obj; }
 
 
 
+class PythonQtWrapper_QRegularExpression : public QObject
+{ Q_OBJECT
+public:
+Q_ENUMS(MatchOption MatchType PatternOption )
+Q_FLAGS(MatchOptions PatternOptions )
+enum MatchOption{
+  NoMatchOption = QRegularExpression::NoMatchOption,   AnchoredMatchOption = QRegularExpression::AnchoredMatchOption,   DontCheckSubjectStringMatchOption = QRegularExpression::DontCheckSubjectStringMatchOption};
+enum MatchType{
+  NormalMatch = QRegularExpression::NormalMatch,   PartialPreferCompleteMatch = QRegularExpression::PartialPreferCompleteMatch,   PartialPreferFirstMatch = QRegularExpression::PartialPreferFirstMatch,   NoMatch = QRegularExpression::NoMatch};
+enum PatternOption{
+  NoPatternOption = QRegularExpression::NoPatternOption,   CaseInsensitiveOption = QRegularExpression::CaseInsensitiveOption,   DotMatchesEverythingOption = QRegularExpression::DotMatchesEverythingOption,   MultilineOption = QRegularExpression::MultilineOption,   ExtendedPatternSyntaxOption = QRegularExpression::ExtendedPatternSyntaxOption,   InvertedGreedinessOption = QRegularExpression::InvertedGreedinessOption,   DontCaptureOption = QRegularExpression::DontCaptureOption,   UseUnicodePropertiesOption = QRegularExpression::UseUnicodePropertiesOption,   OptimizeOnFirstUsageOption = QRegularExpression::OptimizeOnFirstUsageOption,   DontAutomaticallyOptimizeOption = QRegularExpression::DontAutomaticallyOptimizeOption};
+Q_DECLARE_FLAGS(MatchOptions, MatchOption)
+Q_DECLARE_FLAGS(PatternOptions, PatternOption)
+public slots:
+QRegularExpression* new_QRegularExpression();
+QRegularExpression* new_QRegularExpression(const QRegularExpression&  re);
+QRegularExpression* new_QRegularExpression(const QString&  pattern, QRegularExpression::PatternOptions  options = QRegularExpression::NoPatternOption);
+void delete_QRegularExpression(QRegularExpression* obj) { delete obj; }
+   int  captureCount(QRegularExpression* theWrappedObject) const;
+   QString  errorString(QRegularExpression* theWrappedObject) const;
+   QString  static_QRegularExpression_escape(const QString&  str);
+   QRegularExpressionMatchIterator  globalMatch(QRegularExpression* theWrappedObject, const QString&  subject, int  offset = 0, QRegularExpression::MatchType  matchType = QRegularExpression::NormalMatch, QRegularExpression::MatchOptions  matchOptions = QRegularExpression::NoMatchOption) const;
+   QRegularExpressionMatchIterator  globalMatch(QRegularExpression* theWrappedObject, const QStringRef&  subjectRef, int  offset = 0, QRegularExpression::MatchType  matchType = QRegularExpression::NormalMatch, QRegularExpression::MatchOptions  matchOptions = QRegularExpression::NoMatchOption) const;
+   bool  isValid(QRegularExpression* theWrappedObject) const;
+   QRegularExpressionMatch  match(QRegularExpression* theWrappedObject, const QString&  subject, int  offset = 0, QRegularExpression::MatchType  matchType = QRegularExpression::NormalMatch, QRegularExpression::MatchOptions  matchOptions = QRegularExpression::NoMatchOption) const;
+   QRegularExpressionMatch  match(QRegularExpression* theWrappedObject, const QStringRef&  subjectRef, int  offset = 0, QRegularExpression::MatchType  matchType = QRegularExpression::NormalMatch, QRegularExpression::MatchOptions  matchOptions = QRegularExpression::NoMatchOption) const;
+   QStringList  namedCaptureGroups(QRegularExpression* theWrappedObject) const;
+   bool  __ne__(QRegularExpression* theWrappedObject, const QRegularExpression&  re) const;
+   void writeTo(QRegularExpression* theWrappedObject, QDataStream&  out);
+   QRegularExpression*  operator_assign(QRegularExpression* theWrappedObject, const QRegularExpression&  re);
+   bool  __eq__(QRegularExpression* theWrappedObject, const QRegularExpression&  re) const;
+   void readFrom(QRegularExpression* theWrappedObject, QDataStream&  in);
+   void optimize(QRegularExpression* theWrappedObject) const;
+   QString  pattern(QRegularExpression* theWrappedObject) const;
+   int  patternErrorOffset(QRegularExpression* theWrappedObject) const;
+   QRegularExpression::PatternOptions  patternOptions(QRegularExpression* theWrappedObject) const;
+   void setPattern(QRegularExpression* theWrappedObject, const QString&  pattern);
+   void setPatternOptions(QRegularExpression* theWrappedObject, QRegularExpression::PatternOptions  options);
+   void swap(QRegularExpression* theWrappedObject, QRegularExpression&  other);
+    QString py_toString(QRegularExpression*);
+    bool __nonzero__(QRegularExpression* obj) { return obj->isValid(); }
+};
+
+
+
+
+
 class PythonQtWrapper_QSize : public QObject
 { Q_OBJECT
 public:
@@ -917,13 +970,14 @@ QSize* new_QSize(const QSize& other) {
 QSize* a = new QSize();
 *((QSize*)a) = other;
 return a; }
-void delete_QSize(QSize* obj) { delete obj; } 
+void delete_QSize(QSize* obj) { delete obj; }
    QSize  boundedTo(QSize* theWrappedObject, const QSize&  arg__1) const;
    QSize  expandedTo(QSize* theWrappedObject, const QSize&  arg__1) const;
    int  height(QSize* theWrappedObject) const;
    bool  isEmpty(QSize* theWrappedObject) const;
    bool  isNull(QSize* theWrappedObject) const;
    bool  isValid(QSize* theWrappedObject) const;
+   bool  __ne__(QSize* theWrappedObject, const QSize&  s2);
    const QSize  __mul__(QSize* theWrappedObject, qreal  c);
    QSize*  __imul__(QSize* theWrappedObject, qreal  c);
    const QSize  __add__(QSize* theWrappedObject, const QSize&  s2);
@@ -963,13 +1017,14 @@ QSizeF* new_QSizeF(const QSizeF& other) {
 QSizeF* a = new QSizeF();
 *((QSizeF*)a) = other;
 return a; }
-void delete_QSizeF(QSizeF* obj) { delete obj; } 
+void delete_QSizeF(QSizeF* obj) { delete obj; }
    QSizeF  boundedTo(QSizeF* theWrappedObject, const QSizeF&  arg__1) const;
    QSizeF  expandedTo(QSizeF* theWrappedObject, const QSizeF&  arg__1) const;
    qreal  height(QSizeF* theWrappedObject) const;
    bool  isEmpty(QSizeF* theWrappedObject) const;
    bool  isNull(QSizeF* theWrappedObject) const;
    bool  isValid(QSizeF* theWrappedObject) const;
+   bool  __ne__(QSizeF* theWrappedObject, const QSizeF&  s2);
    const QSizeF  __mul__(QSizeF* theWrappedObject, qreal  c);
    QSizeF*  __imul__(QSizeF* theWrappedObject, qreal  c);
    const QSizeF  __add__(QSizeF* theWrappedObject, const QSizeF&  s2);
@@ -1009,7 +1064,7 @@ QTime* new_QTime(const QTime& other) {
 QTime* a = new QTime();
 *((QTime*)a) = other;
 return a; }
-void delete_QTime(QTime* obj) { delete obj; } 
+void delete_QTime(QTime* obj) { delete obj; }
    QTime  addMSecs(QTime* theWrappedObject, int  ms) const;
    QTime  addSecs(QTime* theWrappedObject, int  secs) const;
    QTime  static_QTime_currentTime();
@@ -1052,7 +1107,7 @@ class PythonQtWrapper_QUrl : public QObject
 { Q_OBJECT
 public:
 Q_ENUMS(ComponentFormattingOption ParsingMode UrlFormattingOption UserInputResolutionOption )
-Q_FLAGS(ComponentFormattingOptions )
+Q_FLAGS(ComponentFormattingOptions FormattingOptions )
 enum ComponentFormattingOption{
   PrettyDecoded = QUrl::PrettyDecoded,   EncodeSpaces = QUrl::EncodeSpaces,   EncodeUnicode = QUrl::EncodeUnicode,   EncodeDelimiters = QUrl::EncodeDelimiters,   EncodeReserved = QUrl::EncodeReserved,   DecodeReserved = QUrl::DecodeReserved,   FullyEncoded = QUrl::FullyEncoded,   FullyDecoded = QUrl::FullyDecoded};
 enum ParsingMode{
@@ -1062,11 +1117,12 @@ enum UrlFormattingOption{
 enum UserInputResolutionOption{
   DefaultResolution = QUrl::DefaultResolution,   AssumeLocalFile = QUrl::AssumeLocalFile};
 Q_DECLARE_FLAGS(ComponentFormattingOptions, ComponentFormattingOption)
+Q_DECLARE_FLAGS(FormattingOptions, UrlFormattingOption)
 public slots:
 QUrl* new_QUrl();
 QUrl* new_QUrl(const QString&  url, QUrl::ParsingMode  mode = QUrl::TolerantMode);
 QUrl* new_QUrl(const QUrl&  copy);
-void delete_QUrl(QUrl* obj) { delete obj; } 
+void delete_QUrl(QUrl* obj) { delete obj; }
    QUrl  adjusted(QUrl* theWrappedObject, QUrl::FormattingOptions  options) const;
    QString  authority(QUrl* theWrappedObject, QUrl::ComponentFormattingOptions  options = QUrl::PrettyDecoded) const;
    void clear(QUrl* theWrappedObject);

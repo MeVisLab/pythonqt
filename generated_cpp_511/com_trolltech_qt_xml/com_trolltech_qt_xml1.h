@@ -18,7 +18,7 @@ QXmlStreamAttribute* new_QXmlStreamAttribute();
 QXmlStreamAttribute* new_QXmlStreamAttribute(const QString&  namespaceUri, const QString&  name, const QString&  value);
 QXmlStreamAttribute* new_QXmlStreamAttribute(const QString&  qualifiedName, const QString&  value);
 QXmlStreamAttribute* new_QXmlStreamAttribute(const QXmlStreamAttribute&  arg__1);
-void delete_QXmlStreamAttribute(QXmlStreamAttribute* obj) { delete obj; } 
+void delete_QXmlStreamAttribute(QXmlStreamAttribute* obj) { delete obj; }
    bool  isDefault(QXmlStreamAttribute* theWrappedObject) const;
    QStringRef  name(QXmlStreamAttribute* theWrappedObject) const;
    QStringRef  namespaceUri(QXmlStreamAttribute* theWrappedObject) const;
@@ -42,7 +42,7 @@ QXmlStreamAttributes* new_QXmlStreamAttributes(const QXmlStreamAttributes& other
 QXmlStreamAttributes* a = new QXmlStreamAttributes();
 *((QXmlStreamAttributes*)a) = other;
 return a; }
-void delete_QXmlStreamAttributes(QXmlStreamAttributes* obj) { delete obj; } 
+void delete_QXmlStreamAttributes(QXmlStreamAttributes* obj) { delete obj; }
    void append(QXmlStreamAttributes* theWrappedObject, const QString&  namespaceUri, const QString&  name, const QString&  value);
    void append(QXmlStreamAttributes* theWrappedObject, const QString&  qualifiedName, const QString&  value);
    const QXmlStreamAttribute*  at(QXmlStreamAttributes* theWrappedObject, int  i) const;
@@ -107,7 +107,7 @@ public:
 public slots:
 QXmlStreamEntityDeclaration* new_QXmlStreamEntityDeclaration();
 QXmlStreamEntityDeclaration* new_QXmlStreamEntityDeclaration(const QXmlStreamEntityDeclaration&  arg__1);
-void delete_QXmlStreamEntityDeclaration(QXmlStreamEntityDeclaration* obj) { delete obj; } 
+void delete_QXmlStreamEntityDeclaration(QXmlStreamEntityDeclaration* obj) { delete obj; }
    QStringRef  name(QXmlStreamEntityDeclaration* theWrappedObject) const;
    QStringRef  notationName(QXmlStreamEntityDeclaration* theWrappedObject) const;
    bool  __ne__(QXmlStreamEntityDeclaration* theWrappedObject, const QXmlStreamEntityDeclaration&  other) const;
@@ -128,7 +128,7 @@ public slots:
 QXmlStreamNamespaceDeclaration* new_QXmlStreamNamespaceDeclaration();
 QXmlStreamNamespaceDeclaration* new_QXmlStreamNamespaceDeclaration(const QString&  prefix, const QString&  namespaceUri);
 QXmlStreamNamespaceDeclaration* new_QXmlStreamNamespaceDeclaration(const QXmlStreamNamespaceDeclaration&  arg__1);
-void delete_QXmlStreamNamespaceDeclaration(QXmlStreamNamespaceDeclaration* obj) { delete obj; } 
+void delete_QXmlStreamNamespaceDeclaration(QXmlStreamNamespaceDeclaration* obj) { delete obj; }
    QStringRef  namespaceUri(QXmlStreamNamespaceDeclaration* theWrappedObject) const;
    bool  __ne__(QXmlStreamNamespaceDeclaration* theWrappedObject, const QXmlStreamNamespaceDeclaration&  other) const;
    bool  __eq__(QXmlStreamNamespaceDeclaration* theWrappedObject, const QXmlStreamNamespaceDeclaration&  other) const;
@@ -145,7 +145,7 @@ public:
 public slots:
 QXmlStreamNotationDeclaration* new_QXmlStreamNotationDeclaration();
 QXmlStreamNotationDeclaration* new_QXmlStreamNotationDeclaration(const QXmlStreamNotationDeclaration&  arg__1);
-void delete_QXmlStreamNotationDeclaration(QXmlStreamNotationDeclaration* obj) { delete obj; } 
+void delete_QXmlStreamNotationDeclaration(QXmlStreamNotationDeclaration* obj) { delete obj; }
    QStringRef  name(QXmlStreamNotationDeclaration* theWrappedObject) const;
    bool  __ne__(QXmlStreamNotationDeclaration* theWrappedObject, const QXmlStreamNotationDeclaration&  other) const;
    bool  __eq__(QXmlStreamNotationDeclaration* theWrappedObject, const QXmlStreamNotationDeclaration&  other) const;
@@ -172,7 +172,7 @@ QXmlStreamReader* new_QXmlStreamReader();
 QXmlStreamReader* new_QXmlStreamReader(QIODevice*  device);
 QXmlStreamReader* new_QXmlStreamReader(const QByteArray&  data);
 QXmlStreamReader* new_QXmlStreamReader(const QString&  data);
-void delete_QXmlStreamReader(QXmlStreamReader* obj) { delete obj; } 
+void delete_QXmlStreamReader(QXmlStreamReader* obj) { delete obj; }
    void addData(QXmlStreamReader* theWrappedObject, const QByteArray&  data);
    void addData(QXmlStreamReader* theWrappedObject, const QString&  data);
    void addExtraNamespaceDeclaration(QXmlStreamReader* theWrappedObject, const QXmlStreamNamespaceDeclaration&  extraNamespaceDeclaraction);
@@ -239,7 +239,7 @@ public slots:
 QXmlStreamWriter* new_QXmlStreamWriter();
 QXmlStreamWriter* new_QXmlStreamWriter(QByteArray*  array);
 QXmlStreamWriter* new_QXmlStreamWriter(QIODevice*  device);
-void delete_QXmlStreamWriter(QXmlStreamWriter* obj) { delete obj; } 
+void delete_QXmlStreamWriter(QXmlStreamWriter* obj) { delete obj; }
    bool  autoFormatting(QXmlStreamWriter* theWrappedObject) const;
    int  autoFormattingIndent(QXmlStreamWriter* theWrappedObject) const;
    QTextCodec*  codec(QXmlStreamWriter* theWrappedObject) const;

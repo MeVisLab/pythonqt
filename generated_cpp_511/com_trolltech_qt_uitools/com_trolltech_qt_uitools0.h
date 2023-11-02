@@ -12,6 +12,7 @@
 #include <qmetaobject.h>
 #include <qobject.h>
 #include <qstringlist.h>
+#include <qthread.h>
 #include <quiloader.h>
 #include <qwidget.h>
 
@@ -20,23 +21,23 @@
 class PythonQtShell_QUiLoader : public QUiLoader
 {
 public:
-    PythonQtShell_QUiLoader(QObject*  parent = nullptr):QUiLoader(parent),_wrapper(NULL) {};
+    PythonQtShell_QUiLoader(QObject*  parent = nullptr):QUiLoader(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QUiLoader();
+   ~PythonQtShell_QUiLoader() override;
 
-virtual void childEvent(QChildEvent*  event);
-virtual QAction*  createAction(QObject*  parent = nullptr, const QString&  name = QString());
-virtual QActionGroup*  createActionGroup(QObject*  parent = nullptr, const QString&  name = QString());
-virtual QLayout*  createLayout(const QString&  className, QObject*  parent = nullptr, const QString&  name = QString());
-virtual QWidget*  createWidget(const QString&  className, QWidget*  parent = nullptr, const QString&  name = QString());
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual void timerEvent(QTimerEvent*  event);
+void childEvent(QChildEvent*  event) override;
+QAction*  createAction(QObject*  parent = nullptr, const QString&  name = QString()) override;
+QActionGroup*  createActionGroup(QObject*  parent = nullptr, const QString&  name = QString()) override;
+QLayout*  createLayout(const QString&  className, QObject*  parent = nullptr, const QString&  name = QString()) override;
+QWidget*  createWidget(const QString&  className, QWidget*  parent = nullptr, const QString&  name = QString()) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QUiLoader : public QUiLoader
@@ -52,7 +53,7 @@ class PythonQtWrapper_QUiLoader : public QObject
 public:
 public slots:
 QUiLoader* new_QUiLoader(QObject*  parent = nullptr);
-void delete_QUiLoader(QUiLoader* obj) { delete obj; } 
+void delete_QUiLoader(QUiLoader* obj) { delete obj; }
    void addPluginPath(QUiLoader* theWrappedObject, const QString&  path);
    QStringList  availableLayouts(QUiLoader* theWrappedObject) const;
    QStringList  availableWidgets(QUiLoader* theWrappedObject) const;

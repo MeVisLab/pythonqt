@@ -31,6 +31,7 @@
 #include <qsqlresult.h>
 #include <qsqltablemodel.h>
 #include <qstringlist.h>
+#include <qthread.h>
 #include <qvector.h>
 
 
@@ -59,15 +60,15 @@ public slots:
 class PythonQtShell_QSqlDatabase : public QSqlDatabase
 {
 public:
-    PythonQtShell_QSqlDatabase():QSqlDatabase(),_wrapper(NULL) {};
-    PythonQtShell_QSqlDatabase(QSqlDriver*  driver):QSqlDatabase(driver),_wrapper(NULL) {};
-    PythonQtShell_QSqlDatabase(const QSqlDatabase&  other):QSqlDatabase(other),_wrapper(NULL) {};
-    PythonQtShell_QSqlDatabase(const QString&  type):QSqlDatabase(type),_wrapper(NULL) {};
+    PythonQtShell_QSqlDatabase():QSqlDatabase(),_wrapper(nullptr) {};
+    PythonQtShell_QSqlDatabase(QSqlDriver*  driver):QSqlDatabase(driver),_wrapper(nullptr) {};
+    PythonQtShell_QSqlDatabase(const QSqlDatabase&  other):QSqlDatabase(other),_wrapper(nullptr) {};
+    PythonQtShell_QSqlDatabase(const QString&  type):QSqlDatabase(type),_wrapper(nullptr) {};
 
    ~PythonQtShell_QSqlDatabase();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QSqlDatabase : public QObject
@@ -78,7 +79,7 @@ QSqlDatabase* new_QSqlDatabase();
 QSqlDatabase* new_QSqlDatabase(QSqlDriver*  driver);
 QSqlDatabase* new_QSqlDatabase(const QSqlDatabase&  other);
 QSqlDatabase* new_QSqlDatabase(const QString&  type);
-void delete_QSqlDatabase(QSqlDatabase* obj) { delete obj; } 
+void delete_QSqlDatabase(QSqlDatabase* obj) { delete obj; }
    QSqlDatabase  static_QSqlDatabase_addDatabase(QSqlDriver*  driver, const QString&  connectionName = QLatin1String(QSqlDatabase::defaultConnection));
    QSqlDatabase  static_QSqlDatabase_addDatabase(const QString&  type, const QString&  connectionName = QLatin1String(QSqlDatabase::defaultConnection));
    QSqlDatabase  static_QSqlDatabase_cloneDatabase(const QSqlDatabase&  other, const QString&  connectionName);
@@ -131,43 +132,43 @@ void delete_QSqlDatabase(QSqlDatabase* obj) { delete obj; }
 class PythonQtShell_QSqlDriver : public QSqlDriver
 {
 public:
-    PythonQtShell_QSqlDriver(QObject*  parent = nullptr):QSqlDriver(parent),_wrapper(NULL) {};
+    PythonQtShell_QSqlDriver(QObject*  parent = nullptr):QSqlDriver(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QSqlDriver();
+   ~PythonQtShell_QSqlDriver() override;
 
-virtual bool  beginTransaction();
-virtual bool  cancelQuery();
-virtual void childEvent(QChildEvent*  event);
-virtual void close();
-virtual bool  commitTransaction();
-virtual QSqlResult*  createResult() const;
-virtual void customEvent(QEvent*  event);
-virtual QString  escapeIdentifier(const QString&  identifier, QSqlDriver::IdentifierType  type) const;
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual QString  formatValue(const QSqlField&  field, bool  trimStrings = false) const;
-virtual QVariant  handle() const;
-virtual bool  hasFeature(QSqlDriver::DriverFeature  f) const;
-virtual bool  isIdentifierEscaped(const QString&  identifier, QSqlDriver::IdentifierType  type) const;
-virtual bool  isOpen() const;
-virtual bool  open(const QString&  db, const QString&  user = QString(), const QString&  password = QString(), const QString&  host = QString(), int  port = -1, const QString&  connOpts = QString());
-virtual QSqlIndex  primaryIndex(const QString&  tableName) const;
-virtual QSqlRecord  record(const QString&  tableName) const;
-virtual bool  rollbackTransaction();
-virtual void setLastError(const QSqlError&  e);
-virtual void setOpen(bool  o);
-virtual void setOpenError(bool  e);
-virtual QString  sqlStatement(QSqlDriver::StatementType  type, const QString&  tableName, const QSqlRecord&  rec, bool  preparedStatement) const;
-virtual QString  stripDelimiters(const QString&  identifier, QSqlDriver::IdentifierType  type) const;
-virtual bool  subscribeToNotification(const QString&  name);
-virtual QStringList  subscribedToNotifications() const;
-virtual QStringList  tables(QSql::TableType  tableType) const;
-virtual void timerEvent(QTimerEvent*  event);
-virtual bool  unsubscribeFromNotification(const QString&  name);
+bool  beginTransaction() override;
+bool  cancelQuery() override;
+void childEvent(QChildEvent*  event) override;
+void close() override;
+bool  commitTransaction() override;
+QSqlResult*  createResult() const override;
+void customEvent(QEvent*  event) override;
+QString  escapeIdentifier(const QString&  identifier, QSqlDriver::IdentifierType  type) const override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+QString  formatValue(const QSqlField&  field, bool  trimStrings = false) const override;
+QVariant  handle() const override;
+bool  hasFeature(QSqlDriver::DriverFeature  f) const override;
+bool  isIdentifierEscaped(const QString&  identifier, QSqlDriver::IdentifierType  type) const override;
+bool  isOpen() const override;
+bool  open(const QString&  db, const QString&  user = QString(), const QString&  password = QString(), const QString&  host = QString(), int  port = -1, const QString&  connOpts = QString()) override;
+QSqlIndex  primaryIndex(const QString&  tableName) const override;
+QSqlRecord  record(const QString&  tableName) const override;
+bool  rollbackTransaction() override;
+void setLastError(const QSqlError&  e) override;
+void setOpen(bool  o) override;
+void setOpenError(bool  e) override;
+QString  sqlStatement(QSqlDriver::StatementType  type, const QString&  tableName, const QSqlRecord&  rec, bool  preparedStatement) const override;
+QString  stripDelimiters(const QString&  identifier, QSqlDriver::IdentifierType  type) const override;
+bool  subscribeToNotification(const QString&  name) override;
+QStringList  subscribedToNotifications() const override;
+QStringList  tables(QSql::TableType  tableType) const override;
+void timerEvent(QTimerEvent*  event) override;
+bool  unsubscribeFromNotification(const QString&  name) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QSqlDriver : public QSqlDriver
@@ -217,7 +218,7 @@ enum StatementType{
   WhereStatement = QSqlDriver::WhereStatement,   SelectStatement = QSqlDriver::SelectStatement,   UpdateStatement = QSqlDriver::UpdateStatement,   InsertStatement = QSqlDriver::InsertStatement,   DeleteStatement = QSqlDriver::DeleteStatement};
 public slots:
 QSqlDriver* new_QSqlDriver(QObject*  parent = nullptr);
-void delete_QSqlDriver(QSqlDriver* obj) { delete obj; } 
+void delete_QSqlDriver(QSqlDriver* obj) { delete obj; }
    bool  beginTransaction(QSqlDriver* theWrappedObject);
    bool  py_q_beginTransaction(QSqlDriver* theWrappedObject){  return (((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->py_q_beginTransaction());}
    bool  py_q_cancelQuery(QSqlDriver* theWrappedObject){  return (((PythonQtPublicPromoter_QSqlDriver*)theWrappedObject)->py_q_cancelQuery());}
@@ -279,13 +280,13 @@ void delete_QSqlDriver(QSqlDriver* obj) { delete obj; }
 class PythonQtShell_QSqlDriverCreatorBase : public QSqlDriverCreatorBase
 {
 public:
-    PythonQtShell_QSqlDriverCreatorBase():QSqlDriverCreatorBase(),_wrapper(NULL) {};
+    PythonQtShell_QSqlDriverCreatorBase():QSqlDriverCreatorBase(),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QSqlDriverCreatorBase();
+   ~PythonQtShell_QSqlDriverCreatorBase() override;
 
-virtual QSqlDriver*  createObject() const;
+QSqlDriver*  createObject() const override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QSqlDriverCreatorBase : public QSqlDriverCreatorBase
@@ -298,7 +299,7 @@ class PythonQtWrapper_QSqlDriverCreatorBase : public QObject
 public:
 public slots:
 QSqlDriverCreatorBase* new_QSqlDriverCreatorBase();
-void delete_QSqlDriverCreatorBase(QSqlDriverCreatorBase* obj) { delete obj; } 
+void delete_QSqlDriverCreatorBase(QSqlDriverCreatorBase* obj) { delete obj; }
    QSqlDriver*  createObject(QSqlDriverCreatorBase* theWrappedObject) const;
    QSqlDriver*  py_q_createObject(QSqlDriverCreatorBase* theWrappedObject) const{  return (((PythonQtPublicPromoter_QSqlDriverCreatorBase*)theWrappedObject)->py_q_createObject());}
 };
@@ -317,7 +318,7 @@ public slots:
 QSqlError* new_QSqlError(const QSqlError&  other);
 QSqlError* new_QSqlError(const QString&  driverText = QString(), const QString&  databaseText = QString(), QSqlError::ErrorType  type = QSqlError::NoError, const QString&  errorCode = QString());
 QSqlError* new_QSqlError(const QString&  driverText, const QString&  databaseText, QSqlError::ErrorType  type, int  number);
-void delete_QSqlError(QSqlError* obj) { delete obj; } 
+void delete_QSqlError(QSqlError* obj) { delete obj; }
    QString  databaseText(QSqlError* theWrappedObject) const;
    QString  driverText(QSqlError* theWrappedObject) const;
    bool  isValid(QSqlError* theWrappedObject) const;
@@ -350,7 +351,7 @@ public slots:
 QSqlField* new_QSqlField(const QSqlField&  other);
 QSqlField* new_QSqlField(const QString&  fieldName = QString(), QVariant::Type  type = QVariant::Invalid);
 QSqlField* new_QSqlField(const QString&  fieldName, QVariant::Type  type, const QString&  tableName);
-void delete_QSqlField(QSqlField* obj) { delete obj; } 
+void delete_QSqlField(QSqlField* obj) { delete obj; }
    void clear(QSqlField* theWrappedObject);
    QVariant  defaultValue(QSqlField* theWrappedObject) const;
    bool  isAutoValue(QSqlField* theWrappedObject) const;
@@ -395,7 +396,7 @@ public:
 public slots:
 QSqlIndex* new_QSqlIndex(const QSqlIndex&  other);
 QSqlIndex* new_QSqlIndex(const QString&  cursorName = QString(), const QString&  name = QString());
-void delete_QSqlIndex(QSqlIndex* obj) { delete obj; } 
+void delete_QSqlIndex(QSqlIndex* obj) { delete obj; }
    void append(QSqlIndex* theWrappedObject, const QSqlField&  field);
    void append(QSqlIndex* theWrappedObject, const QSqlField&  field, bool  desc);
    QString  cursorName(QSqlIndex* theWrappedObject) const;
@@ -422,7 +423,7 @@ QSqlQuery* new_QSqlQuery(QSqlDatabase  db);
 QSqlQuery* new_QSqlQuery(QSqlResult*  r);
 QSqlQuery* new_QSqlQuery(const QSqlQuery&  other);
 QSqlQuery* new_QSqlQuery(const QString&  query = QString(), QSqlDatabase  db = QSqlDatabase());
-void delete_QSqlQuery(QSqlQuery* obj) { delete obj; } 
+void delete_QSqlQuery(QSqlQuery* obj) { delete obj; }
    void addBindValue(QSqlQuery* theWrappedObject, const QVariant&  val, QSql::ParamType  type = QSql::In);
    int  at(QSqlQuery* theWrappedObject) const;
    void bindValue(QSqlQuery* theWrappedObject, const QString&  placeholder, const QVariant&  val, QSql::ParamType  type = QSql::In);
@@ -472,54 +473,54 @@ void delete_QSqlQuery(QSqlQuery* obj) { delete obj; }
 class PythonQtShell_QSqlQueryModel : public QSqlQueryModel
 {
 public:
-    PythonQtShell_QSqlQueryModel(QObject*  parent = nullptr):QSqlQueryModel(parent),_wrapper(NULL) {};
+    PythonQtShell_QSqlQueryModel(QObject*  parent = nullptr):QSqlQueryModel(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QSqlQueryModel();
+   ~PythonQtShell_QSqlQueryModel() override;
 
-virtual QModelIndex  buddy(const QModelIndex&  index) const;
-virtual bool  canDropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent) const;
-virtual bool  canFetchMore(const QModelIndex&  parent = QModelIndex()) const;
-virtual void childEvent(QChildEvent*  event);
-virtual void clear();
-virtual int  columnCount(const QModelIndex&  parent = QModelIndex()) const;
-virtual void customEvent(QEvent*  event);
-virtual QVariant  data(const QModelIndex&  item, int  role = Qt::DisplayRole) const;
-virtual bool  dropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual void fetchMore(const QModelIndex&  parent = QModelIndex());
-virtual Qt::ItemFlags  flags(const QModelIndex&  index) const;
-virtual QVariant  headerData(int  section, Qt::Orientation  orientation, int  role = Qt::DisplayRole) const;
-virtual QModelIndex  index(int  row, int  column, const QModelIndex&  parent = QModelIndex()) const;
-virtual QModelIndex  indexInQuery(const QModelIndex&  item) const;
-virtual bool  insertColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex());
-virtual bool  insertRows(int  row, int  count, const QModelIndex&  parent = QModelIndex());
-virtual QMap<int , QVariant >  itemData(const QModelIndex&  index) const;
-virtual QList<QModelIndex >  match(const QModelIndex&  start, int  role, const QVariant&  value, int  hits = 1, Qt::MatchFlags  flags = Qt::MatchFlags(Qt::MatchStartsWith|Qt::MatchWrap)) const;
-virtual QMimeData*  mimeData(const QList<QModelIndex >&  indexes) const;
-virtual QStringList  mimeTypes() const;
-virtual bool  moveColumns(const QModelIndex&  sourceParent, int  sourceColumn, int  count, const QModelIndex&  destinationParent, int  destinationChild);
-virtual bool  moveRows(const QModelIndex&  sourceParent, int  sourceRow, int  count, const QModelIndex&  destinationParent, int  destinationChild);
-virtual void queryChange();
-virtual bool  removeColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex());
-virtual bool  removeRows(int  row, int  count, const QModelIndex&  parent = QModelIndex());
-virtual void revert();
-virtual QHash<int , QByteArray >  roleNames() const;
-virtual int  rowCount(const QModelIndex&  parent = QModelIndex()) const;
-virtual bool  setData(const QModelIndex&  index, const QVariant&  value, int  role = Qt::EditRole);
-virtual bool  setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role = Qt::EditRole);
-virtual bool  setItemData(const QModelIndex&  index, const QMap<int , QVariant >&  roles);
-virtual QModelIndex  sibling(int  row, int  column, const QModelIndex&  idx) const;
-virtual void sort(int  column, Qt::SortOrder  order = Qt::AscendingOrder);
-virtual QSize  span(const QModelIndex&  index) const;
-virtual bool  submit();
-virtual Qt::DropActions  supportedDragActions() const;
-virtual Qt::DropActions  supportedDropActions() const;
-virtual void timerEvent(QTimerEvent*  event);
+QModelIndex  buddy(const QModelIndex&  index) const override;
+bool  canDropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent) const override;
+bool  canFetchMore(const QModelIndex&  parent = QModelIndex()) const override;
+void childEvent(QChildEvent*  event) override;
+void clear() override;
+int  columnCount(const QModelIndex&  parent = QModelIndex()) const override;
+void customEvent(QEvent*  event) override;
+QVariant  data(const QModelIndex&  item, int  role = Qt::DisplayRole) const override;
+bool  dropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void fetchMore(const QModelIndex&  parent = QModelIndex()) override;
+Qt::ItemFlags  flags(const QModelIndex&  index) const override;
+QVariant  headerData(int  section, Qt::Orientation  orientation, int  role = Qt::DisplayRole) const override;
+QModelIndex  index(int  row, int  column, const QModelIndex&  parent = QModelIndex()) const override;
+QModelIndex  indexInQuery(const QModelIndex&  item) const override;
+bool  insertColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex()) override;
+bool  insertRows(int  row, int  count, const QModelIndex&  parent = QModelIndex()) override;
+QMap<int , QVariant >  itemData(const QModelIndex&  index) const override;
+QList<QModelIndex >  match(const QModelIndex&  start, int  role, const QVariant&  value, int  hits = 1, Qt::MatchFlags  flags = Qt::MatchFlags(Qt::MatchStartsWith|Qt::MatchWrap)) const override;
+QMimeData*  mimeData(const QList<QModelIndex >&  indexes) const override;
+QStringList  mimeTypes() const override;
+bool  moveColumns(const QModelIndex&  sourceParent, int  sourceColumn, int  count, const QModelIndex&  destinationParent, int  destinationChild) override;
+bool  moveRows(const QModelIndex&  sourceParent, int  sourceRow, int  count, const QModelIndex&  destinationParent, int  destinationChild) override;
+void queryChange() override;
+bool  removeColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex()) override;
+bool  removeRows(int  row, int  count, const QModelIndex&  parent = QModelIndex()) override;
+void revert() override;
+QHash<int , QByteArray >  roleNames() const override;
+int  rowCount(const QModelIndex&  parent = QModelIndex()) const override;
+bool  setData(const QModelIndex&  index, const QVariant&  value, int  role = Qt::EditRole) override;
+bool  setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role = Qt::EditRole) override;
+bool  setItemData(const QModelIndex&  index, const QMap<int , QVariant >&  roles) override;
+QModelIndex  sibling(int  row, int  column, const QModelIndex&  idx) const override;
+void sort(int  column, Qt::SortOrder  order = Qt::AscendingOrder) override;
+QSize  span(const QModelIndex&  index) const override;
+bool  submit() override;
+Qt::DropActions  supportedDragActions() const override;
+Qt::DropActions  supportedDropActions() const override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QSqlQueryModel : public QSqlQueryModel
@@ -557,7 +558,7 @@ class PythonQtWrapper_QSqlQueryModel : public QObject
 public:
 public slots:
 QSqlQueryModel* new_QSqlQueryModel(QObject*  parent = nullptr);
-void delete_QSqlQueryModel(QSqlQueryModel* obj) { delete obj; } 
+void delete_QSqlQueryModel(QSqlQueryModel* obj) { delete obj; }
    void beginInsertColumns(QSqlQueryModel* theWrappedObject, const QModelIndex&  parent, int  first, int  last);
    void beginInsertRows(QSqlQueryModel* theWrappedObject, const QModelIndex&  parent, int  first, int  last);
    void beginRemoveColumns(QSqlQueryModel* theWrappedObject, const QModelIndex&  parent, int  first, int  last);
@@ -603,7 +604,7 @@ public:
 public slots:
 QSqlRecord* new_QSqlRecord();
 QSqlRecord* new_QSqlRecord(const QSqlRecord&  other);
-void delete_QSqlRecord(QSqlRecord* obj) { delete obj; } 
+void delete_QSqlRecord(QSqlRecord* obj) { delete obj; }
    void append(QSqlRecord* theWrappedObject, const QSqlField&  field);
    void clear(QSqlRecord* theWrappedObject);
    void clearValues(QSqlRecord* theWrappedObject);
@@ -650,7 +651,7 @@ QSqlRelation* new_QSqlRelation(const QSqlRelation& other) {
 QSqlRelation* a = new QSqlRelation();
 *((QSqlRelation*)a) = other;
 return a; }
-void delete_QSqlRelation(QSqlRelation* obj) { delete obj; } 
+void delete_QSqlRelation(QSqlRelation* obj) { delete obj; }
    QString  displayColumn(QSqlRelation* theWrappedObject) const;
    QString  indexColumn(QSqlRelation* theWrappedObject) const;
    bool  isValid(QSqlRelation* theWrappedObject) const;
@@ -666,68 +667,68 @@ void delete_QSqlRelation(QSqlRelation* obj) { delete obj; }
 class PythonQtShell_QSqlRelationalTableModel : public QSqlRelationalTableModel
 {
 public:
-    PythonQtShell_QSqlRelationalTableModel(QObject*  parent = nullptr, QSqlDatabase  db = QSqlDatabase()):QSqlRelationalTableModel(parent, db),_wrapper(NULL) {};
+    PythonQtShell_QSqlRelationalTableModel(QObject*  parent = nullptr, QSqlDatabase  db = QSqlDatabase()):QSqlRelationalTableModel(parent, db),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QSqlRelationalTableModel();
+   ~PythonQtShell_QSqlRelationalTableModel() override;
 
-virtual QModelIndex  buddy(const QModelIndex&  index) const;
-virtual bool  canDropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent) const;
-virtual bool  canFetchMore(const QModelIndex&  parent = QModelIndex()) const;
-virtual void childEvent(QChildEvent*  event);
-virtual void clear();
-virtual int  columnCount(const QModelIndex&  parent = QModelIndex()) const;
-virtual void customEvent(QEvent*  event);
-virtual QVariant  data(const QModelIndex&  item, int  role = Qt::DisplayRole) const;
-virtual bool  deleteRowFromTable(int  row);
-virtual bool  dropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual void fetchMore(const QModelIndex&  parent = QModelIndex());
-virtual Qt::ItemFlags  flags(const QModelIndex&  index) const;
-virtual QVariant  headerData(int  section, Qt::Orientation  orientation, int  role = Qt::DisplayRole) const;
-virtual QModelIndex  index(int  row, int  column, const QModelIndex&  parent = QModelIndex()) const;
-virtual QModelIndex  indexInQuery(const QModelIndex&  item) const;
-virtual bool  insertColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex());
-virtual bool  insertRowIntoTable(const QSqlRecord&  values);
-virtual bool  insertRows(int  row, int  count, const QModelIndex&  parent = QModelIndex());
-virtual QMap<int , QVariant >  itemData(const QModelIndex&  index) const;
-virtual QList<QModelIndex >  match(const QModelIndex&  start, int  role, const QVariant&  value, int  hits = 1, Qt::MatchFlags  flags = Qt::MatchFlags(Qt::MatchStartsWith|Qt::MatchWrap)) const;
-virtual QMimeData*  mimeData(const QList<QModelIndex >&  indexes) const;
-virtual QStringList  mimeTypes() const;
-virtual bool  moveColumns(const QModelIndex&  sourceParent, int  sourceColumn, int  count, const QModelIndex&  destinationParent, int  destinationChild);
-virtual bool  moveRows(const QModelIndex&  sourceParent, int  sourceRow, int  count, const QModelIndex&  destinationParent, int  destinationChild);
-virtual QString  orderByClause() const;
-virtual void queryChange();
-virtual QSqlTableModel*  relationModel(int  column) const;
-virtual bool  removeColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex());
-virtual bool  removeRows(int  row, int  count, const QModelIndex&  parent = QModelIndex());
-virtual void revert();
-virtual void revertRow(int  row);
-virtual QHash<int , QByteArray >  roleNames() const;
-virtual int  rowCount(const QModelIndex&  parent = QModelIndex()) const;
-virtual bool  select();
-virtual bool  selectRow(int  row);
-virtual QString  selectStatement() const;
-virtual bool  setData(const QModelIndex&  item, const QVariant&  value, int  role = Qt::EditRole);
-virtual void setEditStrategy(QSqlTableModel::EditStrategy  strategy);
-virtual void setFilter(const QString&  filter);
-virtual bool  setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role = Qt::EditRole);
-virtual bool  setItemData(const QModelIndex&  index, const QMap<int , QVariant >&  roles);
-virtual void setRelation(int  column, const QSqlRelation&  relation);
-virtual void setSort(int  column, Qt::SortOrder  order);
-virtual void setTable(const QString&  tableName);
-virtual QModelIndex  sibling(int  row, int  column, const QModelIndex&  idx) const;
-virtual void sort(int  column, Qt::SortOrder  order);
-virtual QSize  span(const QModelIndex&  index) const;
-virtual bool  submit();
-virtual Qt::DropActions  supportedDragActions() const;
-virtual Qt::DropActions  supportedDropActions() const;
-virtual void timerEvent(QTimerEvent*  event);
-virtual bool  updateRowInTable(int  row, const QSqlRecord&  values);
+QModelIndex  buddy(const QModelIndex&  index) const override;
+bool  canDropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent) const override;
+bool  canFetchMore(const QModelIndex&  parent = QModelIndex()) const override;
+void childEvent(QChildEvent*  event) override;
+void clear() override;
+int  columnCount(const QModelIndex&  parent = QModelIndex()) const override;
+void customEvent(QEvent*  event) override;
+QVariant  data(const QModelIndex&  item, int  role = Qt::DisplayRole) const override;
+bool  deleteRowFromTable(int  row) override;
+bool  dropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void fetchMore(const QModelIndex&  parent = QModelIndex()) override;
+Qt::ItemFlags  flags(const QModelIndex&  index) const override;
+QVariant  headerData(int  section, Qt::Orientation  orientation, int  role = Qt::DisplayRole) const override;
+QModelIndex  index(int  row, int  column, const QModelIndex&  parent = QModelIndex()) const override;
+QModelIndex  indexInQuery(const QModelIndex&  item) const override;
+bool  insertColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex()) override;
+bool  insertRowIntoTable(const QSqlRecord&  values) override;
+bool  insertRows(int  row, int  count, const QModelIndex&  parent = QModelIndex()) override;
+QMap<int , QVariant >  itemData(const QModelIndex&  index) const override;
+QList<QModelIndex >  match(const QModelIndex&  start, int  role, const QVariant&  value, int  hits = 1, Qt::MatchFlags  flags = Qt::MatchFlags(Qt::MatchStartsWith|Qt::MatchWrap)) const override;
+QMimeData*  mimeData(const QList<QModelIndex >&  indexes) const override;
+QStringList  mimeTypes() const override;
+bool  moveColumns(const QModelIndex&  sourceParent, int  sourceColumn, int  count, const QModelIndex&  destinationParent, int  destinationChild) override;
+bool  moveRows(const QModelIndex&  sourceParent, int  sourceRow, int  count, const QModelIndex&  destinationParent, int  destinationChild) override;
+QString  orderByClause() const override;
+void queryChange() override;
+QSqlTableModel*  relationModel(int  column) const override;
+bool  removeColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex()) override;
+bool  removeRows(int  row, int  count, const QModelIndex&  parent = QModelIndex()) override;
+void revert() override;
+void revertRow(int  row) override;
+QHash<int , QByteArray >  roleNames() const override;
+int  rowCount(const QModelIndex&  parent = QModelIndex()) const override;
+bool  select() override;
+bool  selectRow(int  row) override;
+QString  selectStatement() const override;
+bool  setData(const QModelIndex&  item, const QVariant&  value, int  role = Qt::EditRole) override;
+void setEditStrategy(QSqlTableModel::EditStrategy  strategy) override;
+void setFilter(const QString&  filter) override;
+bool  setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role = Qt::EditRole) override;
+bool  setItemData(const QModelIndex&  index, const QMap<int , QVariant >&  roles) override;
+void setRelation(int  column, const QSqlRelation&  relation) override;
+void setSort(int  column, Qt::SortOrder  order) override;
+void setTable(const QString&  tableName) override;
+QModelIndex  sibling(int  row, int  column, const QModelIndex&  idx) const override;
+void sort(int  column, Qt::SortOrder  order) override;
+QSize  span(const QModelIndex&  index) const override;
+bool  submit() override;
+Qt::DropActions  supportedDragActions() const override;
+Qt::DropActions  supportedDropActions() const override;
+void timerEvent(QTimerEvent*  event) override;
+bool  updateRowInTable(int  row, const QSqlRecord&  values) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QSqlRelationalTableModel : public QSqlRelationalTableModel
@@ -759,7 +760,7 @@ enum JoinMode{
   InnerJoin = QSqlRelationalTableModel::InnerJoin,   LeftJoin = QSqlRelationalTableModel::LeftJoin};
 public slots:
 QSqlRelationalTableModel* new_QSqlRelationalTableModel(QObject*  parent = nullptr, QSqlDatabase  db = QSqlDatabase());
-void delete_QSqlRelationalTableModel(QSqlRelationalTableModel* obj) { delete obj; } 
+void delete_QSqlRelationalTableModel(QSqlRelationalTableModel* obj) { delete obj; }
    void py_q_clear(QSqlRelationalTableModel* theWrappedObject){  (((PythonQtPublicPromoter_QSqlRelationalTableModel*)theWrappedObject)->py_q_clear());}
    QVariant  py_q_data(QSqlRelationalTableModel* theWrappedObject, const QModelIndex&  item, int  role = Qt::DisplayRole) const{  return (((PythonQtPublicPromoter_QSqlRelationalTableModel*)theWrappedObject)->py_q_data(item, role));}
    bool  py_q_insertRowIntoTable(QSqlRelationalTableModel* theWrappedObject, const QSqlRecord&  values){  return (((PythonQtPublicPromoter_QSqlRelationalTableModel*)theWrappedObject)->py_q_insertRowIntoTable(values));}
@@ -786,40 +787,40 @@ void delete_QSqlRelationalTableModel(QSqlRelationalTableModel* obj) { delete obj
 class PythonQtShell_QSqlResult : public QSqlResult
 {
 public:
-    PythonQtShell_QSqlResult(const QSqlDriver*  db):QSqlResult(db),_wrapper(NULL) {};
+    PythonQtShell_QSqlResult(const QSqlDriver*  db):QSqlResult(db),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QSqlResult();
+   ~PythonQtShell_QSqlResult() override;
 
-virtual void bindValue(const QString&  placeholder, const QVariant&  val, QSql::ParamType  type);
-virtual void bindValue(int  pos, const QVariant&  val, QSql::ParamType  type);
-virtual QVariant  data(int  i);
-virtual void detachFromResultSet();
-virtual bool  exec();
-virtual bool  execBatch(bool  arrayBind = false);
-virtual bool  fetch(int  i);
-virtual bool  fetchFirst();
-virtual bool  fetchLast();
-virtual bool  fetchNext();
-virtual bool  fetchPrevious();
-virtual QVariant  handle() const;
-virtual bool  isNull(int  i);
-virtual QVariant  lastInsertId() const;
-virtual bool  nextResult();
-virtual int  numRowsAffected();
-virtual bool  prepare(const QString&  query);
-virtual QSqlRecord  record() const;
-virtual bool  reset(const QString&  sqlquery);
-virtual bool  savePrepare(const QString&  sqlquery);
-virtual void setActive(bool  a);
-virtual void setAt(int  at);
-virtual void setForwardOnly(bool  forward);
-virtual void setLastError(const QSqlError&  e);
-virtual void setNumericalPrecisionPolicy(QSql::NumericalPrecisionPolicy  policy);
-virtual void setQuery(const QString&  query);
-virtual void setSelect(bool  s);
-virtual int  size();
+void bindValue(const QString&  placeholder, const QVariant&  val, QSql::ParamType  type) override;
+void bindValue(int  pos, const QVariant&  val, QSql::ParamType  type) override;
+QVariant  data(int  i) override;
+void detachFromResultSet() override;
+bool  exec() override;
+bool  execBatch(bool  arrayBind = false) override;
+bool  fetch(int  i) override;
+bool  fetchFirst() override;
+bool  fetchLast() override;
+bool  fetchNext() override;
+bool  fetchPrevious() override;
+QVariant  handle() const override;
+bool  isNull(int  i) override;
+QVariant  lastInsertId() const override;
+bool  nextResult() override;
+int  numRowsAffected() override;
+bool  prepare(const QString&  query) override;
+QSqlRecord  record() const override;
+bool  reset(const QString&  sqlquery) override;
+bool  savePrepare(const QString&  sqlquery) override;
+void setActive(bool  a) override;
+void setAt(int  at) override;
+void setForwardOnly(bool  forward) override;
+void setLastError(const QSqlError&  e) override;
+void setNumericalPrecisionPolicy(QSql::NumericalPrecisionPolicy  policy) override;
+void setQuery(const QString&  query) override;
+void setSelect(bool  s) override;
+int  size() override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QSqlResult : public QSqlResult
@@ -917,7 +918,7 @@ enum VirtualHookOperation{
 };
 public slots:
 QSqlResult* new_QSqlResult(const QSqlDriver*  db);
-void delete_QSqlResult(QSqlResult* obj) { delete obj; } 
+void delete_QSqlResult(QSqlResult* obj) { delete obj; }
    void addBindValue(QSqlResult* theWrappedObject, const QVariant&  val, QSql::ParamType  type);
    int  at(QSqlResult* theWrappedObject) const;
    void bindValue(QSqlResult* theWrappedObject, const QString&  placeholder, const QVariant&  val, QSql::ParamType  type);
@@ -1005,66 +1006,66 @@ void delete_QSqlResult(QSqlResult* obj) { delete obj; }
 class PythonQtShell_QSqlTableModel : public QSqlTableModel
 {
 public:
-    PythonQtShell_QSqlTableModel(QObject*  parent = nullptr, QSqlDatabase  db = QSqlDatabase()):QSqlTableModel(parent, db),_wrapper(NULL) {};
+    PythonQtShell_QSqlTableModel(QObject*  parent = nullptr, QSqlDatabase  db = QSqlDatabase()):QSqlTableModel(parent, db),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QSqlTableModel();
+   ~PythonQtShell_QSqlTableModel() override;
 
-virtual QModelIndex  buddy(const QModelIndex&  index) const;
-virtual bool  canDropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent) const;
-virtual bool  canFetchMore(const QModelIndex&  parent = QModelIndex()) const;
-virtual void childEvent(QChildEvent*  event);
-virtual void clear();
-virtual int  columnCount(const QModelIndex&  parent = QModelIndex()) const;
-virtual void customEvent(QEvent*  event);
-virtual QVariant  data(const QModelIndex&  idx, int  role = Qt::DisplayRole) const;
-virtual bool  deleteRowFromTable(int  row);
-virtual bool  dropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual void fetchMore(const QModelIndex&  parent = QModelIndex());
-virtual Qt::ItemFlags  flags(const QModelIndex&  index) const;
-virtual QVariant  headerData(int  section, Qt::Orientation  orientation, int  role = Qt::DisplayRole) const;
-virtual QModelIndex  index(int  row, int  column, const QModelIndex&  parent = QModelIndex()) const;
-virtual QModelIndex  indexInQuery(const QModelIndex&  item) const;
-virtual bool  insertColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex());
-virtual bool  insertRowIntoTable(const QSqlRecord&  values);
-virtual bool  insertRows(int  row, int  count, const QModelIndex&  parent = QModelIndex());
-virtual QMap<int , QVariant >  itemData(const QModelIndex&  index) const;
-virtual QList<QModelIndex >  match(const QModelIndex&  start, int  role, const QVariant&  value, int  hits = 1, Qt::MatchFlags  flags = Qt::MatchFlags(Qt::MatchStartsWith|Qt::MatchWrap)) const;
-virtual QMimeData*  mimeData(const QList<QModelIndex >&  indexes) const;
-virtual QStringList  mimeTypes() const;
-virtual bool  moveColumns(const QModelIndex&  sourceParent, int  sourceColumn, int  count, const QModelIndex&  destinationParent, int  destinationChild);
-virtual bool  moveRows(const QModelIndex&  sourceParent, int  sourceRow, int  count, const QModelIndex&  destinationParent, int  destinationChild);
-virtual QString  orderByClause() const;
-virtual void queryChange();
-virtual bool  removeColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex());
-virtual bool  removeRows(int  row, int  count, const QModelIndex&  parent = QModelIndex());
-virtual void revert();
-virtual void revertRow(int  row);
-virtual QHash<int , QByteArray >  roleNames() const;
-virtual int  rowCount(const QModelIndex&  parent = QModelIndex()) const;
-virtual bool  select();
-virtual bool  selectRow(int  row);
-virtual QString  selectStatement() const;
-virtual bool  setData(const QModelIndex&  index, const QVariant&  value, int  role = Qt::EditRole);
-virtual void setEditStrategy(QSqlTableModel::EditStrategy  strategy);
-virtual void setFilter(const QString&  filter);
-virtual bool  setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role = Qt::EditRole);
-virtual bool  setItemData(const QModelIndex&  index, const QMap<int , QVariant >&  roles);
-virtual void setSort(int  column, Qt::SortOrder  order);
-virtual void setTable(const QString&  tableName);
-virtual QModelIndex  sibling(int  row, int  column, const QModelIndex&  idx) const;
-virtual void sort(int  column, Qt::SortOrder  order);
-virtual QSize  span(const QModelIndex&  index) const;
-virtual bool  submit();
-virtual Qt::DropActions  supportedDragActions() const;
-virtual Qt::DropActions  supportedDropActions() const;
-virtual void timerEvent(QTimerEvent*  event);
-virtual bool  updateRowInTable(int  row, const QSqlRecord&  values);
+QModelIndex  buddy(const QModelIndex&  index) const override;
+bool  canDropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent) const override;
+bool  canFetchMore(const QModelIndex&  parent = QModelIndex()) const override;
+void childEvent(QChildEvent*  event) override;
+void clear() override;
+int  columnCount(const QModelIndex&  parent = QModelIndex()) const override;
+void customEvent(QEvent*  event) override;
+QVariant  data(const QModelIndex&  idx, int  role = Qt::DisplayRole) const override;
+bool  deleteRowFromTable(int  row) override;
+bool  dropMimeData(const QMimeData*  data, Qt::DropAction  action, int  row, int  column, const QModelIndex&  parent) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void fetchMore(const QModelIndex&  parent = QModelIndex()) override;
+Qt::ItemFlags  flags(const QModelIndex&  index) const override;
+QVariant  headerData(int  section, Qt::Orientation  orientation, int  role = Qt::DisplayRole) const override;
+QModelIndex  index(int  row, int  column, const QModelIndex&  parent = QModelIndex()) const override;
+QModelIndex  indexInQuery(const QModelIndex&  item) const override;
+bool  insertColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex()) override;
+bool  insertRowIntoTable(const QSqlRecord&  values) override;
+bool  insertRows(int  row, int  count, const QModelIndex&  parent = QModelIndex()) override;
+QMap<int , QVariant >  itemData(const QModelIndex&  index) const override;
+QList<QModelIndex >  match(const QModelIndex&  start, int  role, const QVariant&  value, int  hits = 1, Qt::MatchFlags  flags = Qt::MatchFlags(Qt::MatchStartsWith|Qt::MatchWrap)) const override;
+QMimeData*  mimeData(const QList<QModelIndex >&  indexes) const override;
+QStringList  mimeTypes() const override;
+bool  moveColumns(const QModelIndex&  sourceParent, int  sourceColumn, int  count, const QModelIndex&  destinationParent, int  destinationChild) override;
+bool  moveRows(const QModelIndex&  sourceParent, int  sourceRow, int  count, const QModelIndex&  destinationParent, int  destinationChild) override;
+QString  orderByClause() const override;
+void queryChange() override;
+bool  removeColumns(int  column, int  count, const QModelIndex&  parent = QModelIndex()) override;
+bool  removeRows(int  row, int  count, const QModelIndex&  parent = QModelIndex()) override;
+void revert() override;
+void revertRow(int  row) override;
+QHash<int , QByteArray >  roleNames() const override;
+int  rowCount(const QModelIndex&  parent = QModelIndex()) const override;
+bool  select() override;
+bool  selectRow(int  row) override;
+QString  selectStatement() const override;
+bool  setData(const QModelIndex&  index, const QVariant&  value, int  role = Qt::EditRole) override;
+void setEditStrategy(QSqlTableModel::EditStrategy  strategy) override;
+void setFilter(const QString&  filter) override;
+bool  setHeaderData(int  section, Qt::Orientation  orientation, const QVariant&  value, int  role = Qt::EditRole) override;
+bool  setItemData(const QModelIndex&  index, const QMap<int , QVariant >&  roles) override;
+void setSort(int  column, Qt::SortOrder  order) override;
+void setTable(const QString&  tableName) override;
+QModelIndex  sibling(int  row, int  column, const QModelIndex&  idx) const override;
+void sort(int  column, Qt::SortOrder  order) override;
+QSize  span(const QModelIndex&  index) const override;
+bool  submit() override;
+Qt::DropActions  supportedDragActions() const override;
+Qt::DropActions  supportedDropActions() const override;
+void timerEvent(QTimerEvent*  event) override;
+bool  updateRowInTable(int  row, const QSqlRecord&  values) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QSqlTableModel : public QSqlTableModel
@@ -1113,7 +1114,7 @@ enum EditStrategy{
   OnFieldChange = QSqlTableModel::OnFieldChange,   OnRowChange = QSqlTableModel::OnRowChange,   OnManualSubmit = QSqlTableModel::OnManualSubmit};
 public slots:
 QSqlTableModel* new_QSqlTableModel(QObject*  parent = nullptr, QSqlDatabase  db = QSqlDatabase());
-void delete_QSqlTableModel(QSqlTableModel* obj) { delete obj; } 
+void delete_QSqlTableModel(QSqlTableModel* obj) { delete obj; }
    void py_q_clear(QSqlTableModel* theWrappedObject){  (((PythonQtPublicPromoter_QSqlTableModel*)theWrappedObject)->py_q_clear());}
    QVariant  py_q_data(QSqlTableModel* theWrappedObject, const QModelIndex&  idx, int  role = Qt::DisplayRole) const{  return (((PythonQtPublicPromoter_QSqlTableModel*)theWrappedObject)->py_q_data(idx, role));}
    QSqlDatabase  database(QSqlTableModel* theWrappedObject) const;
