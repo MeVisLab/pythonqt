@@ -19,6 +19,7 @@
 #include <qpoint.h>
 #include <qrect.h>
 #include <qregexp.h>
+#include <qregularexpression.h>
 #include <qsize.h>
 #include <qstringlist.h>
 #include <qtextcodec.h>
@@ -453,6 +454,11 @@ QByteArray  PythonQtWrapper_QByteArray::static_QByteArray_number(int  arg__1, in
 QByteArray  PythonQtWrapper_QByteArray::static_QByteArray_number(qlonglong  arg__1, int  base)
 {
   return (QByteArray::number(arg__1, base));
+}
+
+bool  PythonQtWrapper_QByteArray::__ne__(QByteArray* theWrappedObject, const QByteArray&  a2)
+{
+  return ( (*theWrappedObject)!= a2);
 }
 
 const QByteArray  PythonQtWrapper_QByteArray::__add__(QByteArray* theWrappedObject, char  a2)
@@ -2172,6 +2178,11 @@ int  PythonQtWrapper_QPoint::manhattanLength(QPoint* theWrappedObject) const
   return ( theWrappedObject->manhattanLength());
 }
 
+bool  PythonQtWrapper_QPoint::__ne__(QPoint* theWrappedObject, const QPoint&  p2)
+{
+  return ( (*theWrappedObject)!= p2);
+}
+
 QPoint  PythonQtWrapper_QPoint::__mul__(QPoint* theWrappedObject, const QMatrix&  m)
 {
   return ( (*theWrappedObject)* m);
@@ -2316,6 +2327,11 @@ bool  PythonQtWrapper_QPointF::isNull(QPointF* theWrappedObject) const
 qreal  PythonQtWrapper_QPointF::manhattanLength(QPointF* theWrappedObject) const
 {
   return ( theWrappedObject->manhattanLength());
+}
+
+bool  PythonQtWrapper_QPointF::__ne__(QPointF* theWrappedObject, const QPointF&  p2)
+{
+  return ( (*theWrappedObject)!= p2);
 }
 
 QPointF  PythonQtWrapper_QPointF::__mul__(QPointF* theWrappedObject, const QMatrix&  m)
@@ -2591,6 +2607,11 @@ void PythonQtWrapper_QRect::moveTopRight(QRect* theWrappedObject, const QPoint& 
 QRect  PythonQtWrapper_QRect::normalized(QRect* theWrappedObject) const
 {
   return ( theWrappedObject->normalized());
+}
+
+bool  PythonQtWrapper_QRect::__ne__(QRect* theWrappedObject, const QRect&  arg__2)
+{
+  return ( (*theWrappedObject)!= arg__2);
 }
 
 QRect  PythonQtWrapper_QRect::__and__(QRect* theWrappedObject, const QRect&  r) const
@@ -2972,6 +2993,11 @@ QRectF  PythonQtWrapper_QRectF::normalized(QRectF* theWrappedObject) const
   return ( theWrappedObject->normalized());
 }
 
+bool  PythonQtWrapper_QRectF::__ne__(QRectF* theWrappedObject, const QRectF&  arg__2)
+{
+  return ( (*theWrappedObject)!= arg__2);
+}
+
 QRectF  PythonQtWrapper_QRectF::__and__(QRectF* theWrappedObject, const QRectF&  r) const
 {
   return ( (*theWrappedObject)& r);
@@ -3337,6 +3363,132 @@ QString PythonQtWrapper_QRegExp::py_toString(QRegExp* obj) {
 
 
 
+QRegularExpression* PythonQtWrapper_QRegularExpression::new_QRegularExpression()
+{ 
+return new QRegularExpression(); }
+
+QRegularExpression* PythonQtWrapper_QRegularExpression::new_QRegularExpression(const QRegularExpression&  re)
+{ 
+return new QRegularExpression(re); }
+
+QRegularExpression* PythonQtWrapper_QRegularExpression::new_QRegularExpression(const QString&  pattern, QRegularExpression::PatternOptions  options)
+{ 
+return new QRegularExpression(pattern, options); }
+
+int  PythonQtWrapper_QRegularExpression::captureCount(QRegularExpression* theWrappedObject) const
+{
+  return ( theWrappedObject->captureCount());
+}
+
+QString  PythonQtWrapper_QRegularExpression::errorString(QRegularExpression* theWrappedObject) const
+{
+  return ( theWrappedObject->errorString());
+}
+
+QString  PythonQtWrapper_QRegularExpression::static_QRegularExpression_escape(const QString&  str)
+{
+  return (QRegularExpression::escape(str));
+}
+
+QRegularExpressionMatchIterator  PythonQtWrapper_QRegularExpression::globalMatch(QRegularExpression* theWrappedObject, const QString&  subject, int  offset, QRegularExpression::MatchType  matchType, QRegularExpression::MatchOptions  matchOptions) const
+{
+  return ( theWrappedObject->globalMatch(subject, offset, matchType, matchOptions));
+}
+
+QRegularExpressionMatchIterator  PythonQtWrapper_QRegularExpression::globalMatch(QRegularExpression* theWrappedObject, const QStringRef&  subjectRef, int  offset, QRegularExpression::MatchType  matchType, QRegularExpression::MatchOptions  matchOptions) const
+{
+  return ( theWrappedObject->globalMatch(subjectRef, offset, matchType, matchOptions));
+}
+
+bool  PythonQtWrapper_QRegularExpression::isValid(QRegularExpression* theWrappedObject) const
+{
+  return ( theWrappedObject->isValid());
+}
+
+QRegularExpressionMatch  PythonQtWrapper_QRegularExpression::match(QRegularExpression* theWrappedObject, const QString&  subject, int  offset, QRegularExpression::MatchType  matchType, QRegularExpression::MatchOptions  matchOptions) const
+{
+  return ( theWrappedObject->match(subject, offset, matchType, matchOptions));
+}
+
+QRegularExpressionMatch  PythonQtWrapper_QRegularExpression::match(QRegularExpression* theWrappedObject, const QStringRef&  subjectRef, int  offset, QRegularExpression::MatchType  matchType, QRegularExpression::MatchOptions  matchOptions) const
+{
+  return ( theWrappedObject->match(subjectRef, offset, matchType, matchOptions));
+}
+
+QStringList  PythonQtWrapper_QRegularExpression::namedCaptureGroups(QRegularExpression* theWrappedObject) const
+{
+  return ( theWrappedObject->namedCaptureGroups());
+}
+
+bool  PythonQtWrapper_QRegularExpression::__ne__(QRegularExpression* theWrappedObject, const QRegularExpression&  re) const
+{
+  return ( (*theWrappedObject)!= re);
+}
+
+void PythonQtWrapper_QRegularExpression::writeTo(QRegularExpression* theWrappedObject, QDataStream&  out)
+{
+  out <<  (*theWrappedObject);
+}
+
+QRegularExpression*  PythonQtWrapper_QRegularExpression::operator_assign(QRegularExpression* theWrappedObject, const QRegularExpression&  re)
+{
+  return &( (*theWrappedObject)= re);
+}
+
+bool  PythonQtWrapper_QRegularExpression::__eq__(QRegularExpression* theWrappedObject, const QRegularExpression&  re) const
+{
+  return ( (*theWrappedObject)== re);
+}
+
+void PythonQtWrapper_QRegularExpression::readFrom(QRegularExpression* theWrappedObject, QDataStream&  in)
+{
+  in >>  (*theWrappedObject);
+}
+
+void PythonQtWrapper_QRegularExpression::optimize(QRegularExpression* theWrappedObject) const
+{
+  ( theWrappedObject->optimize());
+}
+
+QString  PythonQtWrapper_QRegularExpression::pattern(QRegularExpression* theWrappedObject) const
+{
+  return ( theWrappedObject->pattern());
+}
+
+int  PythonQtWrapper_QRegularExpression::patternErrorOffset(QRegularExpression* theWrappedObject) const
+{
+  return ( theWrappedObject->patternErrorOffset());
+}
+
+QRegularExpression::PatternOptions  PythonQtWrapper_QRegularExpression::patternOptions(QRegularExpression* theWrappedObject) const
+{
+  return ( theWrappedObject->patternOptions());
+}
+
+void PythonQtWrapper_QRegularExpression::setPattern(QRegularExpression* theWrappedObject, const QString&  pattern)
+{
+  ( theWrappedObject->setPattern(pattern));
+}
+
+void PythonQtWrapper_QRegularExpression::setPatternOptions(QRegularExpression* theWrappedObject, QRegularExpression::PatternOptions  options)
+{
+  ( theWrappedObject->setPatternOptions(options));
+}
+
+void PythonQtWrapper_QRegularExpression::swap(QRegularExpression* theWrappedObject, QRegularExpression&  other)
+{
+  ( theWrappedObject->swap(other));
+}
+
+QString PythonQtWrapper_QRegularExpression::py_toString(QRegularExpression* obj) {
+  QString result;
+  QDebug d(&result);
+  d << *obj;
+  return result;
+}
+
+
+
 QSize* PythonQtWrapper_QSize::new_QSize()
 { 
 return new QSize(); }
@@ -3373,6 +3525,11 @@ bool  PythonQtWrapper_QSize::isNull(QSize* theWrappedObject) const
 bool  PythonQtWrapper_QSize::isValid(QSize* theWrappedObject) const
 {
   return ( theWrappedObject->isValid());
+}
+
+bool  PythonQtWrapper_QSize::__ne__(QSize* theWrappedObject, const QSize&  s2)
+{
+  return ( (*theWrappedObject)!= s2);
 }
 
 const QSize  PythonQtWrapper_QSize::__mul__(QSize* theWrappedObject, qreal  c)
@@ -3524,6 +3681,11 @@ bool  PythonQtWrapper_QSizeF::isNull(QSizeF* theWrappedObject) const
 bool  PythonQtWrapper_QSizeF::isValid(QSizeF* theWrappedObject) const
 {
   return ( theWrappedObject->isValid());
+}
+
+bool  PythonQtWrapper_QSizeF::__ne__(QSizeF* theWrappedObject, const QSizeF&  s2)
+{
+  return ( (*theWrappedObject)!= s2);
 }
 
 const QSizeF  PythonQtWrapper_QSizeF::__mul__(QSizeF* theWrappedObject, qreal  c)

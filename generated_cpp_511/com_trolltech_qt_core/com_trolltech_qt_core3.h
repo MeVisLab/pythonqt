@@ -2,6 +2,9 @@
 #include <QObject>
 #include <QTextCodec>
 #include <QVariant>
+#include <qabstractanimation.h>
+#include <qabstractstate.h>
+#include <qabstracttransition.h>
 #include <qanimationgroup.h>
 #include <qbytearray.h>
 #include <qcoreevent.h>
@@ -19,6 +22,8 @@
 #include <qpair.h>
 #include <qreadwritelock.h>
 #include <qrunnable.h>
+#include <qsignaltransition.h>
+#include <qstate.h>
 #include <qstatemachine.h>
 #include <qstorageinfo.h>
 #include <qstringlist.h>
@@ -30,6 +35,7 @@
 #include <qtextboundaryfinder.h>
 #include <qtextcodec.h>
 #include <qtextstream.h>
+#include <qthread.h>
 #include <qthreadpool.h>
 #include <qtimeline.h>
 #include <qtimer.h>
@@ -45,12 +51,118 @@
 
 
 
+class PythonQtShell_QStateMachine : public QStateMachine
+{
+public:
+    PythonQtShell_QStateMachine(QObject*  parent = nullptr):QStateMachine(parent),_wrapper(nullptr) {};
+    PythonQtShell_QStateMachine(QState::ChildMode  childMode, QObject*  parent = nullptr):QStateMachine(childMode, parent),_wrapper(nullptr) {};
+
+   ~PythonQtShell_QStateMachine() override;
+
+void beginMicrostep(QEvent*  event) override;
+void beginSelectTransitions(QEvent*  event) override;
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+void endMicrostep(QEvent*  event) override;
+void endSelectTransitions(QEvent*  event) override;
+bool  event(QEvent*  e) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void onEntry(QEvent*  event) override;
+void onExit(QEvent*  event) override;
+void timerEvent(QTimerEvent*  event) override;
+
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
+};
+
+class PythonQtPublicPromoter_QStateMachine : public QStateMachine
+{ public:
+inline void promoted_beginMicrostep(QEvent*  event) { this->beginMicrostep(event); }
+inline void promoted_beginSelectTransitions(QEvent*  event) { this->beginSelectTransitions(event); }
+inline void promoted_endMicrostep(QEvent*  event) { this->endMicrostep(event); }
+inline void promoted_endSelectTransitions(QEvent*  event) { this->endSelectTransitions(event); }
+inline bool  promoted_event(QEvent*  e) { return this->event(e); }
+inline void promoted_onEntry(QEvent*  event) { this->onEntry(event); }
+inline void promoted_onExit(QEvent*  event) { this->onExit(event); }
+inline void py_q_beginMicrostep(QEvent*  event) { QStateMachine::beginMicrostep(event); }
+inline void py_q_beginSelectTransitions(QEvent*  event) { QStateMachine::beginSelectTransitions(event); }
+inline void py_q_endMicrostep(QEvent*  event) { QStateMachine::endMicrostep(event); }
+inline void py_q_endSelectTransitions(QEvent*  event) { QStateMachine::endSelectTransitions(event); }
+inline bool  py_q_event(QEvent*  e) { return QStateMachine::event(e); }
+inline bool  py_q_eventFilter(QObject*  watched, QEvent*  event) { return QStateMachine::eventFilter(watched, event); }
+inline void py_q_onEntry(QEvent*  event) { QStateMachine::onEntry(event); }
+inline void py_q_onExit(QEvent*  event) { QStateMachine::onExit(event); }
+};
+
+class PythonQtWrapper_QStateMachine : public QObject
+{ Q_OBJECT
+public:
+Q_ENUMS(Error EventPriority )
+enum Error{
+  NoError = QStateMachine::NoError,   NoInitialStateError = QStateMachine::NoInitialStateError,   NoDefaultStateInHistoryStateError = QStateMachine::NoDefaultStateInHistoryStateError,   NoCommonAncestorForTransitionError = QStateMachine::NoCommonAncestorForTransitionError};
+enum EventPriority{
+  NormalPriority = QStateMachine::NormalPriority,   HighPriority = QStateMachine::HighPriority};
+public slots:
+QStateMachine* new_QStateMachine(QObject*  parent = nullptr);
+QStateMachine* new_QStateMachine(QState::ChildMode  childMode, QObject*  parent = nullptr);
+void delete_QStateMachine(QStateMachine* obj) { delete obj; }
+   void addDefaultAnimation(QStateMachine* theWrappedObject, QAbstractAnimation*  animation);
+   void addState(QStateMachine* theWrappedObject, PythonQtPassOwnershipToCPP<QAbstractState* >  state);
+   void beginMicrostep(QStateMachine* theWrappedObject, QEvent*  event);
+   void py_q_beginMicrostep(QStateMachine* theWrappedObject, QEvent*  event){  (((PythonQtPublicPromoter_QStateMachine*)theWrappedObject)->py_q_beginMicrostep(event));}
+   void beginSelectTransitions(QStateMachine* theWrappedObject, QEvent*  event);
+   void py_q_beginSelectTransitions(QStateMachine* theWrappedObject, QEvent*  event){  (((PythonQtPublicPromoter_QStateMachine*)theWrappedObject)->py_q_beginSelectTransitions(event));}
+   bool  cancelDelayedEvent(QStateMachine* theWrappedObject, int  id);
+   void clearError(QStateMachine* theWrappedObject);
+   QSet<QAbstractState* >  configuration(QStateMachine* theWrappedObject) const;
+   QList<QAbstractAnimation* >  defaultAnimations(QStateMachine* theWrappedObject) const;
+   void endMicrostep(QStateMachine* theWrappedObject, QEvent*  event);
+   void py_q_endMicrostep(QStateMachine* theWrappedObject, QEvent*  event){  (((PythonQtPublicPromoter_QStateMachine*)theWrappedObject)->py_q_endMicrostep(event));}
+   void endSelectTransitions(QStateMachine* theWrappedObject, QEvent*  event);
+   void py_q_endSelectTransitions(QStateMachine* theWrappedObject, QEvent*  event){  (((PythonQtPublicPromoter_QStateMachine*)theWrappedObject)->py_q_endSelectTransitions(event));}
+   QStateMachine::Error  error(QStateMachine* theWrappedObject) const;
+   QString  errorString(QStateMachine* theWrappedObject) const;
+   bool  py_q_event(QStateMachine* theWrappedObject, QEvent*  e){  return (((PythonQtPublicPromoter_QStateMachine*)theWrappedObject)->py_q_event(e));}
+   bool  py_q_eventFilter(QStateMachine* theWrappedObject, QObject*  watched, QEvent*  event){  return (((PythonQtPublicPromoter_QStateMachine*)theWrappedObject)->py_q_eventFilter(watched, event));}
+   QState::RestorePolicy  globalRestorePolicy(QStateMachine* theWrappedObject) const;
+   bool  isAnimated(QStateMachine* theWrappedObject) const;
+   bool  isRunning(QStateMachine* theWrappedObject) const;
+   void py_q_onEntry(QStateMachine* theWrappedObject, QEvent*  event){  (((PythonQtPublicPromoter_QStateMachine*)theWrappedObject)->py_q_onEntry(event));}
+   void py_q_onExit(QStateMachine* theWrappedObject, QEvent*  event){  (((PythonQtPublicPromoter_QStateMachine*)theWrappedObject)->py_q_onExit(event));}
+   int  postDelayedEvent(QStateMachine* theWrappedObject, QEvent*  event, int  delay);
+   void postEvent(QStateMachine* theWrappedObject, QEvent*  event, QStateMachine::EventPriority  priority = QStateMachine::NormalPriority);
+   void removeDefaultAnimation(QStateMachine* theWrappedObject, QAbstractAnimation*  animation);
+   void removeState(QStateMachine* theWrappedObject, PythonQtPassOwnershipToPython<QAbstractState* >  state);
+   void setAnimated(QStateMachine* theWrappedObject, bool  enabled);
+   void setGlobalRestorePolicy(QStateMachine* theWrappedObject, QState::RestorePolicy  restorePolicy);
+};
+
+
+
+
+
+class PythonQtWrapper_QStateMachine__SignalEvent : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QStateMachine::SignalEvent* new_QStateMachine__SignalEvent(QObject*  sender, int  signalIndex, const QList<QVariant >&  arguments);
+void delete_QStateMachine__SignalEvent(QStateMachine::SignalEvent* obj) { delete obj; }
+   QList<QVariant >  arguments(QStateMachine::SignalEvent* theWrappedObject) const;
+   QObject*  sender(QStateMachine::SignalEvent* theWrappedObject) const;
+   int  signalIndex(QStateMachine::SignalEvent* theWrappedObject) const;
+};
+
+
+
+
+
 class PythonQtWrapper_QStateMachine__WrappedEvent : public QObject
 { Q_OBJECT
 public:
 public slots:
 QStateMachine::WrappedEvent* new_QStateMachine__WrappedEvent(QObject*  object, QEvent*  event);
-void delete_QStateMachine__WrappedEvent(QStateMachine::WrappedEvent* obj) { delete obj; } 
+void delete_QStateMachine__WrappedEvent(QStateMachine::WrappedEvent* obj) { delete obj; }
    QEvent*  event(QStateMachine::WrappedEvent* theWrappedObject) const;
    QObject*  object(QStateMachine::WrappedEvent* theWrappedObject) const;
 };
@@ -67,7 +179,7 @@ QStorageInfo* new_QStorageInfo();
 QStorageInfo* new_QStorageInfo(const QDir&  dir);
 QStorageInfo* new_QStorageInfo(const QStorageInfo&  other);
 QStorageInfo* new_QStorageInfo(const QString&  path);
-void delete_QStorageInfo(QStorageInfo* obj) { delete obj; } 
+void delete_QStorageInfo(QStorageInfo* obj) { delete obj; }
    int  blockSize(QStorageInfo* theWrappedObject) const;
    qint64  bytesAvailable(QStorageInfo* theWrappedObject) const;
    qint64  bytesFree(QStorageInfo* theWrappedObject) const;
@@ -81,6 +193,7 @@ void delete_QStorageInfo(QStorageInfo* obj) { delete obj; }
    bool  isValid(QStorageInfo* theWrappedObject) const;
    QList<QStorageInfo >  static_QStorageInfo_mountedVolumes();
    QString  name(QStorageInfo* theWrappedObject) const;
+   bool  __ne__(QStorageInfo* theWrappedObject, const QStorageInfo&  second);
    QStorageInfo*  operator_assign(QStorageInfo* theWrappedObject, const QStorageInfo&  other);
    bool  __eq__(QStorageInfo* theWrappedObject, const QStorageInfo&  second);
    void refresh(QStorageInfo* theWrappedObject);
@@ -104,7 +217,7 @@ public slots:
 QStringMatcher* new_QStringMatcher();
 QStringMatcher* new_QStringMatcher(const QString&  pattern, Qt::CaseSensitivity  cs = Qt::CaseSensitive);
 QStringMatcher* new_QStringMatcher(const QStringMatcher&  other);
-void delete_QStringMatcher(QStringMatcher* obj) { delete obj; } 
+void delete_QStringMatcher(QStringMatcher* obj) { delete obj; }
    Qt::CaseSensitivity  caseSensitivity(QStringMatcher* theWrappedObject) const;
    int  indexIn(QStringMatcher* theWrappedObject, const QString&  str, int  from = 0) const;
    QString  pattern(QStringMatcher* theWrappedObject) const;
@@ -119,12 +232,12 @@ void delete_QStringMatcher(QStringMatcher* obj) { delete obj; }
 class PythonQtShell_QSysInfo : public QSysInfo
 {
 public:
-    PythonQtShell_QSysInfo():QSysInfo(),_wrapper(NULL) {};
+    PythonQtShell_QSysInfo():QSysInfo(),_wrapper(nullptr) {};
 
    ~PythonQtShell_QSysInfo();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QSysInfo : public QObject
@@ -137,7 +250,7 @@ enum Sizes{
   WordSize = QSysInfo::WordSize};
 public slots:
 QSysInfo* new_QSysInfo();
-void delete_QSysInfo(QSysInfo* obj) { delete obj; } 
+void delete_QSysInfo(QSysInfo* obj) { delete obj; }
    QByteArray  static_QSysInfo_bootUniqueId();
    QString  static_QSysInfo_buildAbi();
    QString  static_QSysInfo_buildCpuArchitecture();
@@ -165,7 +278,7 @@ enum SystemSemaphoreError{
   NoError = QSystemSemaphore::NoError,   PermissionDenied = QSystemSemaphore::PermissionDenied,   KeyError = QSystemSemaphore::KeyError,   AlreadyExists = QSystemSemaphore::AlreadyExists,   NotFound = QSystemSemaphore::NotFound,   OutOfResources = QSystemSemaphore::OutOfResources,   UnknownError = QSystemSemaphore::UnknownError};
 public slots:
 QSystemSemaphore* new_QSystemSemaphore(const QString&  key, int  initialValue = 0, QSystemSemaphore::AccessMode  mode = QSystemSemaphore::Open);
-void delete_QSystemSemaphore(QSystemSemaphore* obj) { delete obj; } 
+void delete_QSystemSemaphore(QSystemSemaphore* obj) { delete obj; }
    bool  acquire(QSystemSemaphore* theWrappedObject);
    QSystemSemaphore::SystemSemaphoreError  error(QSystemSemaphore* theWrappedObject) const;
    QString  errorString(QSystemSemaphore* theWrappedObject) const;
@@ -184,7 +297,7 @@ public:
 public slots:
 QTemporaryDir* new_QTemporaryDir();
 QTemporaryDir* new_QTemporaryDir(const QString&  templateName);
-void delete_QTemporaryDir(QTemporaryDir* obj) { delete obj; } 
+void delete_QTemporaryDir(QTemporaryDir* obj) { delete obj; }
    bool  autoRemove(QTemporaryDir* theWrappedObject) const;
    QString  errorString(QTemporaryDir* theWrappedObject) const;
    QString  filePath(QTemporaryDir* theWrappedObject, const QString&  fileName) const;
@@ -202,42 +315,42 @@ void delete_QTemporaryDir(QTemporaryDir* obj) { delete obj; }
 class PythonQtShell_QTemporaryFile : public QTemporaryFile
 {
 public:
-    PythonQtShell_QTemporaryFile():QTemporaryFile(),_wrapper(NULL) {};
-    PythonQtShell_QTemporaryFile(QObject*  parent):QTemporaryFile(parent),_wrapper(NULL) {};
-    PythonQtShell_QTemporaryFile(const QString&  templateName):QTemporaryFile(templateName),_wrapper(NULL) {};
-    PythonQtShell_QTemporaryFile(const QString&  templateName, QObject*  parent):QTemporaryFile(templateName, parent),_wrapper(NULL) {};
+    PythonQtShell_QTemporaryFile():QTemporaryFile(),_wrapper(nullptr) {};
+    PythonQtShell_QTemporaryFile(QObject*  parent):QTemporaryFile(parent),_wrapper(nullptr) {};
+    PythonQtShell_QTemporaryFile(const QString&  templateName):QTemporaryFile(templateName),_wrapper(nullptr) {};
+    PythonQtShell_QTemporaryFile(const QString&  templateName, QObject*  parent):QTemporaryFile(templateName, parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QTemporaryFile();
+   ~PythonQtShell_QTemporaryFile() override;
 
-virtual bool  atEnd() const;
-virtual qint64  bytesAvailable() const;
-virtual qint64  bytesToWrite() const;
-virtual bool  canReadLine() const;
-virtual void childEvent(QChildEvent*  event);
-virtual void close();
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual QString  fileName() const;
-virtual bool  isSequential() const;
-virtual bool  open(QIODevice::OpenMode  flags);
-virtual QFileDevice::Permissions  permissions() const;
-virtual qint64  pos() const;
-virtual qint64  readData(char*  data, qint64  maxlen);
-virtual qint64  readLineData(char*  data, qint64  maxlen);
-virtual bool  reset();
-virtual bool  resize(qint64  sz);
-virtual bool  seek(qint64  offset);
-virtual bool  setPermissions(QFileDevice::Permissions  permissionSpec);
-virtual qint64  size() const;
-virtual void timerEvent(QTimerEvent*  event);
-virtual bool  waitForBytesWritten(int  msecs);
-virtual bool  waitForReadyRead(int  msecs);
-virtual qint64  writeData(const char*  data, qint64  len);
+bool  atEnd() const override;
+qint64  bytesAvailable() const override;
+qint64  bytesToWrite() const override;
+bool  canReadLine() const override;
+void childEvent(QChildEvent*  event) override;
+void close() override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+QString  fileName() const override;
+bool  isSequential() const override;
+bool  open(QIODevice::OpenMode  flags) override;
+QFileDevice::Permissions  permissions() const override;
+qint64  pos() const override;
+qint64  readData(char*  data, qint64  maxlen) override;
+qint64  readLineData(char*  data, qint64  maxlen) override;
+bool  reset() override;
+bool  resize(qint64  sz) override;
+bool  seek(qint64  offset) override;
+bool  setPermissions(QFileDevice::Permissions  permissionSpec) override;
+qint64  size() const override;
+void timerEvent(QTimerEvent*  event) override;
+bool  waitForBytesWritten(int  msecs) override;
+bool  waitForReadyRead(int  msecs) override;
+qint64  writeData(const char*  data, qint64  len) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QTemporaryFile : public QTemporaryFile
@@ -255,7 +368,7 @@ QTemporaryFile* new_QTemporaryFile();
 QTemporaryFile* new_QTemporaryFile(QObject*  parent);
 QTemporaryFile* new_QTemporaryFile(const QString&  templateName);
 QTemporaryFile* new_QTemporaryFile(const QString&  templateName, QObject*  parent);
-void delete_QTemporaryFile(QTemporaryFile* obj) { delete obj; } 
+void delete_QTemporaryFile(QTemporaryFile* obj) { delete obj; }
    bool  autoRemove(QTemporaryFile* theWrappedObject) const;
    QTemporaryFile*  static_QTemporaryFile_createLocalFile(QFile&  file);
    QTemporaryFile*  static_QTemporaryFile_createLocalFile(const QString&  fileName);
@@ -289,7 +402,7 @@ public slots:
 QTextBoundaryFinder* new_QTextBoundaryFinder();
 QTextBoundaryFinder* new_QTextBoundaryFinder(QTextBoundaryFinder::BoundaryType  type, const QString&  string);
 QTextBoundaryFinder* new_QTextBoundaryFinder(const QTextBoundaryFinder&  other);
-void delete_QTextBoundaryFinder(QTextBoundaryFinder* obj) { delete obj; } 
+void delete_QTextBoundaryFinder(QTextBoundaryFinder* obj) { delete obj; }
    QTextBoundaryFinder::BoundaryReasons  boundaryReasons(QTextBoundaryFinder* theWrappedObject) const;
    bool  isAtBoundary(QTextBoundaryFinder* theWrappedObject) const;
    bool  isValid(QTextBoundaryFinder* theWrappedObject) const;
@@ -311,17 +424,17 @@ void delete_QTextBoundaryFinder(QTextBoundaryFinder* obj) { delete obj; }
 class PythonQtShell_QTextCodec : public QTextCodec
 {
 public:
-    PythonQtShell_QTextCodec():QTextCodec(),_wrapper(NULL) {};
+    PythonQtShell_QTextCodec():QTextCodec(),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QTextCodec();
+   ~PythonQtShell_QTextCodec() override;
 
-virtual QList<QByteArray >  aliases() const;
-virtual QByteArray  convertFromUnicode(const QChar*  in, int  length, QTextCodec::ConverterState*  state) const;
-virtual QString  convertToUnicode(const char*  in, int  length, QTextCodec::ConverterState*  state) const;
-virtual int  mibEnum() const;
-virtual QByteArray  name() const;
+QList<QByteArray >  aliases() const override;
+QByteArray  convertFromUnicode(const QChar*  in, int  length, QTextCodec::ConverterState*  state) const override;
+QString  convertToUnicode(const char*  in, int  length, QTextCodec::ConverterState*  state) const override;
+int  mibEnum() const override;
+QByteArray  name() const override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QTextCodec : public QTextCodec
@@ -384,7 +497,7 @@ public:
 public slots:
 QTextDecoder* new_QTextDecoder(const QTextCodec*  codec);
 QTextDecoder* new_QTextDecoder(const QTextCodec*  codec, QTextCodec::ConversionFlags  flags);
-void delete_QTextDecoder(QTextDecoder* obj) { delete obj; } 
+void delete_QTextDecoder(QTextDecoder* obj) { delete obj; }
    bool  hasFailure(QTextDecoder* theWrappedObject) const;
    QString  toUnicode(QTextDecoder* theWrappedObject, const QByteArray&  ba);
 };
@@ -399,7 +512,7 @@ public:
 public slots:
 QTextEncoder* new_QTextEncoder(const QTextCodec*  codec);
 QTextEncoder* new_QTextEncoder(const QTextCodec*  codec, QTextCodec::ConversionFlags  flags);
-void delete_QTextEncoder(QTextEncoder* obj) { delete obj; } 
+void delete_QTextEncoder(QTextEncoder* obj) { delete obj; }
    QByteArray  fromUnicode(QTextEncoder* theWrappedObject, const QString&  str);
    bool  hasFailure(QTextEncoder* theWrappedObject) const;
 };
@@ -411,14 +524,14 @@ void delete_QTextEncoder(QTextEncoder* obj) { delete obj; }
 class PythonQtShell_QTextStream : public QTextStream
 {
 public:
-    PythonQtShell_QTextStream():QTextStream(),_wrapper(NULL) {};
-    PythonQtShell_QTextStream(QIODevice*  device):QTextStream(device),_wrapper(NULL) {};
-    PythonQtShell_QTextStream(const QByteArray&  array, QIODevice::OpenMode  openMode = QIODevice::ReadOnly):QTextStream(array, openMode),_wrapper(NULL) {};
+    PythonQtShell_QTextStream():QTextStream(),_wrapper(nullptr) {};
+    PythonQtShell_QTextStream(QIODevice*  device):QTextStream(device),_wrapper(nullptr) {};
+    PythonQtShell_QTextStream(const QByteArray&  array, QIODevice::OpenMode  openMode = QIODevice::ReadOnly):QTextStream(array, openMode),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QTextStream();
+   ~PythonQtShell_QTextStream() override;
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QTextStream : public QObject
@@ -439,7 +552,7 @@ public slots:
 QTextStream* new_QTextStream();
 QTextStream* new_QTextStream(QIODevice*  device);
 QTextStream* new_QTextStream(const QByteArray&  array, QIODevice::OpenMode  openMode = QIODevice::ReadOnly);
-void delete_QTextStream(QTextStream* obj) { delete obj; } 
+void delete_QTextStream(QTextStream* obj) { delete obj; }
    bool  atEnd(QTextStream* theWrappedObject) const;
    bool  autoDetectUnicode(QTextStream* theWrappedObject) const;
    QTextCodec*  codec(QTextStream* theWrappedObject) const;
@@ -498,22 +611,90 @@ void delete_QTextStream(QTextStream* obj) { delete obj; }
 
 
 
+class PythonQtShell_QThread : public QThread
+{
+public:
+    PythonQtShell_QThread(QObject*  parent = nullptr):QThread(parent),_wrapper(nullptr) {};
+
+   ~PythonQtShell_QThread() override;
+
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void run() override;
+void timerEvent(QTimerEvent*  event) override;
+
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
+};
+
+class PythonQtPublicPromoter_QThread : public QThread
+{ public:
+inline int  promoted_exec() { return this->exec(); }
+inline void promoted_run() { this->run(); }
+static inline void promoted_setTerminationEnabled(bool  enabled = true) { setTerminationEnabled(enabled); }
+inline bool  py_q_event(QEvent*  event) { return QThread::event(event); }
+inline void py_q_run() { QThread::run(); }
+};
+
+class PythonQtWrapper_QThread : public QObject
+{ Q_OBJECT
+public:
+Q_ENUMS(Priority )
+enum Priority{
+  IdlePriority = QThread::IdlePriority,   LowestPriority = QThread::LowestPriority,   LowPriority = QThread::LowPriority,   NormalPriority = QThread::NormalPriority,   HighPriority = QThread::HighPriority,   HighestPriority = QThread::HighestPriority,   TimeCriticalPriority = QThread::TimeCriticalPriority,   InheritPriority = QThread::InheritPriority};
+public slots:
+QThread* new_QThread(QObject*  parent = nullptr);
+void delete_QThread(QThread* obj) { delete obj; }
+   QThread*  static_QThread_currentThread();
+   Qt::HANDLE  static_QThread_currentThreadId();
+   bool  py_q_event(QThread* theWrappedObject, QEvent*  event){  return (((PythonQtPublicPromoter_QThread*)theWrappedObject)->py_q_event(event));}
+   QAbstractEventDispatcher*  eventDispatcher(QThread* theWrappedObject) const;
+   int  exec(QThread* theWrappedObject);
+   void exit(QThread* theWrappedObject, int  retcode = 0);
+   int  static_QThread_idealThreadCount();
+   bool  isFinished(QThread* theWrappedObject) const;
+   bool  isInterruptionRequested(QThread* theWrappedObject) const;
+   bool  isRunning(QThread* theWrappedObject) const;
+   int  loopLevel(QThread* theWrappedObject) const;
+   void static_QThread_msleep(unsigned long  arg__1);
+   QThread::Priority  priority(QThread* theWrappedObject) const;
+   void requestInterruption(QThread* theWrappedObject);
+   void run(QThread* theWrappedObject);
+   void py_q_run(QThread* theWrappedObject){  (((PythonQtPublicPromoter_QThread*)theWrappedObject)->py_q_run());}
+   void setEventDispatcher(QThread* theWrappedObject, QAbstractEventDispatcher*  eventDispatcher);
+   void setPriority(QThread* theWrappedObject, QThread::Priority  priority);
+   void setStackSize(QThread* theWrappedObject, uint  stackSize);
+   void static_QThread_setTerminationEnabled(bool  enabled = true);
+   void static_QThread_sleep(unsigned long  arg__1);
+   uint  stackSize(QThread* theWrappedObject) const;
+   void static_QThread_usleep(unsigned long  arg__1);
+   bool  wait(QThread* theWrappedObject, unsigned long  time = ULONG_MAX);
+   void static_QThread_yieldCurrentThread();
+};
+
+
+
+
+
 class PythonQtShell_QThreadPool : public QThreadPool
 {
 public:
-    PythonQtShell_QThreadPool(QObject*  parent = nullptr):QThreadPool(parent),_wrapper(NULL) {};
+    PythonQtShell_QThreadPool(QObject*  parent = nullptr):QThreadPool(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QThreadPool();
+   ~PythonQtShell_QThreadPool() override;
 
-virtual void childEvent(QChildEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual void timerEvent(QTimerEvent*  event);
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void timerEvent(QTimerEvent*  event) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QThreadPool : public QObject
@@ -521,7 +702,7 @@ class PythonQtWrapper_QThreadPool : public QObject
 public:
 public slots:
 QThreadPool* new_QThreadPool(QObject*  parent = nullptr);
-void delete_QThreadPool(QThreadPool* obj) { delete obj; } 
+void delete_QThreadPool(QThreadPool* obj) { delete obj; }
    int  activeThreadCount(QThreadPool* theWrappedObject) const;
    void cancel(QThreadPool* theWrappedObject, QRunnable*  runnable);
    void clear(QThreadPool* theWrappedObject);
@@ -547,20 +728,20 @@ void delete_QThreadPool(QThreadPool* obj) { delete obj; }
 class PythonQtShell_QTimeLine : public QTimeLine
 {
 public:
-    PythonQtShell_QTimeLine(int  duration = 1000, QObject*  parent = nullptr):QTimeLine(duration, parent),_wrapper(NULL) {};
+    PythonQtShell_QTimeLine(int  duration = 1000, QObject*  parent = nullptr):QTimeLine(duration, parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QTimeLine();
+   ~PythonQtShell_QTimeLine() override;
 
-virtual void childEvent(QChildEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual void timerEvent(QTimerEvent*  event);
-virtual qreal  valueForTime(int  msec) const;
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void timerEvent(QTimerEvent*  event) override;
+qreal  valueForTime(int  msec) const override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QTimeLine : public QTimeLine
@@ -582,7 +763,7 @@ enum State{
   NotRunning = QTimeLine::NotRunning,   Paused = QTimeLine::Paused,   Running = QTimeLine::Running};
 public slots:
 QTimeLine* new_QTimeLine(int  duration = 1000, QObject*  parent = nullptr);
-void delete_QTimeLine(QTimeLine* obj) { delete obj; } 
+void delete_QTimeLine(QTimeLine* obj) { delete obj; }
    int  currentFrame(QTimeLine* theWrappedObject) const;
    int  currentTime(QTimeLine* theWrappedObject) const;
    qreal  currentValue(QTimeLine* theWrappedObject) const;
@@ -628,7 +809,7 @@ QTimeZone* new_QTimeZone(const QByteArray&  ianaId);
 QTimeZone* new_QTimeZone(const QByteArray&  zoneId, int  offsetSeconds, const QString&  name, const QString&  abbreviation, QLocale::Country  country = QLocale::AnyCountry, const QString&  comment = QString());
 QTimeZone* new_QTimeZone(const QTimeZone&  other);
 QTimeZone* new_QTimeZone(int  offsetSeconds);
-void delete_QTimeZone(QTimeZone* obj) { delete obj; } 
+void delete_QTimeZone(QTimeZone* obj) { delete obj; }
    QString  abbreviation(QTimeZone* theWrappedObject, const QDateTime&  atDateTime) const;
    QList<QByteArray >  static_QTimeZone_availableTimeZoneIds();
    QList<QByteArray >  static_QTimeZone_availableTimeZoneIds(QLocale::Country  country);
@@ -671,19 +852,19 @@ void delete_QTimeZone(QTimeZone* obj) { delete obj; }
 class PythonQtShell_QTimer : public QTimer
 {
 public:
-    PythonQtShell_QTimer(QObject*  parent = nullptr):QTimer(parent),_wrapper(NULL) {};
+    PythonQtShell_QTimer(QObject*  parent = nullptr):QTimer(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QTimer();
+   ~PythonQtShell_QTimer() override;
 
-virtual void childEvent(QChildEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual void timerEvent(QTimerEvent*  arg__1);
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+void timerEvent(QTimerEvent*  arg__1) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QTimer : public QTimer
@@ -697,7 +878,7 @@ class PythonQtWrapper_QTimer : public QObject
 public:
 public slots:
 QTimer* new_QTimer(QObject*  parent = nullptr);
-void delete_QTimer(QTimer* obj) { delete obj; } 
+void delete_QTimer(QTimer* obj) { delete obj; }
    int  interval(QTimer* theWrappedObject) const;
    bool  isActive(QTimer* theWrappedObject) const;
    bool  isSingleShot(QTimer* theWrappedObject) const;
@@ -719,12 +900,12 @@ void delete_QTimer(QTimer* obj) { delete obj; }
 class PythonQtShell_QTimerEvent : public QTimerEvent
 {
 public:
-    PythonQtShell_QTimerEvent(int  timerId):QTimerEvent(timerId),_wrapper(NULL) {};
+    PythonQtShell_QTimerEvent(int  timerId):QTimerEvent(timerId),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QTimerEvent();
+   ~PythonQtShell_QTimerEvent() override;
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QTimerEvent : public QObject
@@ -732,7 +913,7 @@ class PythonQtWrapper_QTimerEvent : public QObject
 public:
 public slots:
 QTimerEvent* new_QTimerEvent(int  timerId);
-void delete_QTimerEvent(QTimerEvent* obj) { delete obj; } 
+void delete_QTimerEvent(QTimerEvent* obj) { delete obj; }
    int  timerId(QTimerEvent* theWrappedObject) const;
 };
 
@@ -743,21 +924,21 @@ void delete_QTimerEvent(QTimerEvent* obj) { delete obj; }
 class PythonQtShell_QTranslator : public QTranslator
 {
 public:
-    PythonQtShell_QTranslator(QObject*  parent = nullptr):QTranslator(parent),_wrapper(NULL) {};
+    PythonQtShell_QTranslator(QObject*  parent = nullptr):QTranslator(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QTranslator();
+   ~PythonQtShell_QTranslator() override;
 
-virtual void childEvent(QChildEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual bool  isEmpty() const;
-virtual void timerEvent(QTimerEvent*  event);
-virtual QString  translate(const char*  context, const char*  sourceText, const char*  disambiguation = nullptr, int  n = -1) const;
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+bool  isEmpty() const override;
+void timerEvent(QTimerEvent*  event) override;
+QString  translate(const char*  context, const char*  sourceText, const char*  disambiguation = nullptr, int  n = -1) const override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QTranslator : public QTranslator
@@ -771,7 +952,7 @@ class PythonQtWrapper_QTranslator : public QObject
 public:
 public slots:
 QTranslator* new_QTranslator(QObject*  parent = nullptr);
-void delete_QTranslator(QTranslator* obj) { delete obj; } 
+void delete_QTranslator(QTranslator* obj) { delete obj; }
    bool  isEmpty(QTranslator* theWrappedObject) const;
    bool  py_q_isEmpty(QTranslator* theWrappedObject) const{  return (((PythonQtPublicPromoter_QTranslator*)theWrappedObject)->py_q_isEmpty());}
    bool  load(QTranslator* theWrappedObject, const QLocale&  locale, const QString&  filename, const QString&  prefix = QString(), const QString&  directory = QString(), const QString&  suffix = QString());
@@ -794,7 +975,7 @@ QUrlQuery* new_QUrlQuery();
 QUrlQuery* new_QUrlQuery(const QString&  queryString);
 QUrlQuery* new_QUrlQuery(const QUrl&  url);
 QUrlQuery* new_QUrlQuery(const QUrlQuery&  other);
-void delete_QUrlQuery(QUrlQuery* obj) { delete obj; } 
+void delete_QUrlQuery(QUrlQuery* obj) { delete obj; }
    void addQueryItem(QUrlQuery* theWrappedObject, const QString&  key, const QString&  value);
    QStringList  allQueryItemValues(QUrlQuery* theWrappedObject, const QString&  key, QUrl::ComponentFormattingOptions  encoding = QUrl::PrettyDecoded) const;
    void clear(QUrlQuery* theWrappedObject);
@@ -828,15 +1009,15 @@ void delete_QUrlQuery(QUrlQuery* obj) { delete obj; }
 class PythonQtShell_QUuid : public QUuid
 {
 public:
-    PythonQtShell_QUuid():QUuid(),_wrapper(NULL) {};
-    PythonQtShell_QUuid(const QByteArray&  arg__1):QUuid(arg__1),_wrapper(NULL) {};
-    PythonQtShell_QUuid(const QString&  arg__1):QUuid(arg__1),_wrapper(NULL) {};
-    PythonQtShell_QUuid(uint  l, ushort  w1, ushort  w2, uchar  b1, uchar  b2, uchar  b3, uchar  b4, uchar  b5, uchar  b6, uchar  b7, uchar  b8):QUuid(l, w1, w2, b1, b2, b3, b4, b5, b6, b7, b8),_wrapper(NULL) {};
+    PythonQtShell_QUuid():QUuid(),_wrapper(nullptr) {};
+    PythonQtShell_QUuid(const QByteArray&  arg__1):QUuid(arg__1),_wrapper(nullptr) {};
+    PythonQtShell_QUuid(const QString&  arg__1):QUuid(arg__1),_wrapper(nullptr) {};
+    PythonQtShell_QUuid(uint  l, ushort  w1, ushort  w2, uchar  b1, uchar  b2, uchar  b3, uchar  b4, uchar  b5, uchar  b6, uchar  b7, uchar  b8):QUuid(l, w1, w2, b1, b2, b3, b4, b5, b6, b7, b8),_wrapper(nullptr) {};
 
    ~PythonQtShell_QUuid();
 
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtWrapper_QUuid : public QObject
@@ -858,7 +1039,7 @@ QUuid* new_QUuid(const QUuid& other) {
 PythonQtShell_QUuid* a = new PythonQtShell_QUuid();
 *((QUuid*)a) = other;
 return a; }
-void delete_QUuid(QUuid* obj) { delete obj; } 
+void delete_QUuid(QUuid* obj) { delete obj; }
    QUuid  static_QUuid_createUuid();
    QUuid  static_QUuid_createUuidV3(const QUuid&  ns, const QByteArray&  baseData);
    QUuid  static_QUuid_createUuidV3(const QUuid&  ns, const QString&  baseData);
@@ -899,25 +1080,25 @@ ushort  py_get_data3(QUuid* theWrappedObject){ return theWrappedObject->data3; }
 class PythonQtShell_QVariantAnimation : public QVariantAnimation
 {
 public:
-    PythonQtShell_QVariantAnimation(QObject*  parent = nullptr):QVariantAnimation(parent),_wrapper(NULL) {};
+    PythonQtShell_QVariantAnimation(QObject*  parent = nullptr):QVariantAnimation(parent),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QVariantAnimation();
+   ~PythonQtShell_QVariantAnimation() override;
 
-virtual void childEvent(QChildEvent*  event);
-virtual void customEvent(QEvent*  event);
-virtual int  duration() const;
-virtual bool  event(QEvent*  event);
-virtual bool  eventFilter(QObject*  watched, QEvent*  event);
-virtual QVariant  interpolated(const QVariant&  from, const QVariant&  to, qreal  progress) const;
-virtual void timerEvent(QTimerEvent*  event);
-virtual void updateCurrentTime(int  arg__1);
-virtual void updateCurrentValue(const QVariant&  value);
-virtual void updateDirection(QAbstractAnimation::Direction  direction);
-virtual void updateState(QAbstractAnimation::State  newState, QAbstractAnimation::State  oldState);
+void childEvent(QChildEvent*  event) override;
+void customEvent(QEvent*  event) override;
+int  duration() const override;
+bool  event(QEvent*  event) override;
+bool  eventFilter(QObject*  watched, QEvent*  event) override;
+QVariant  interpolated(const QVariant&  from, const QVariant&  to, qreal  progress) const override;
+void timerEvent(QTimerEvent*  event) override;
+void updateCurrentTime(int  arg__1) override;
+void updateCurrentValue(const QVariant&  value) override;
+void updateDirection(QAbstractAnimation::Direction  direction) override;
+void updateState(QAbstractAnimation::State  newState, QAbstractAnimation::State  oldState) override;
 
-  const QMetaObject* metaObject() const;
-  int qt_metacall(QMetaObject::Call call, int id, void** args);
-  PythonQtInstanceWrapper* _wrapper; 
+  const QMetaObject* metaObject() const override;
+  int qt_metacall(QMetaObject::Call call, int id, void** args) override;
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QVariantAnimation : public QVariantAnimation
@@ -940,7 +1121,7 @@ class PythonQtWrapper_QVariantAnimation : public QObject
 public:
 public slots:
 QVariantAnimation* new_QVariantAnimation(QObject*  parent = nullptr);
-void delete_QVariantAnimation(QVariantAnimation* obj) { delete obj; } 
+void delete_QVariantAnimation(QVariantAnimation* obj) { delete obj; }
    QVariant  currentValue(QVariantAnimation* theWrappedObject) const;
    int  py_q_duration(QVariantAnimation* theWrappedObject) const{  return (((PythonQtPublicPromoter_QVariantAnimation*)theWrappedObject)->py_q_duration());}
    QEasingCurve  easingCurve(QVariantAnimation* theWrappedObject) const;
@@ -972,7 +1153,7 @@ class PythonQtWrapper_QWaitCondition : public QObject
 public:
 public slots:
 QWaitCondition* new_QWaitCondition();
-void delete_QWaitCondition(QWaitCondition* obj) { delete obj; } 
+void delete_QWaitCondition(QWaitCondition* obj) { delete obj; }
    void notify_all(QWaitCondition* theWrappedObject);
    void notify_one(QWaitCondition* theWrappedObject);
    bool  wait(QWaitCondition* theWrappedObject, QMutex*  lockedMutex, unsigned long  time = ULONG_MAX);
@@ -985,17 +1166,36 @@ void delete_QWaitCondition(QWaitCondition* obj) { delete obj; }
 
 
 
+class PythonQtWrapper_QWriteLocker : public QObject
+{ Q_OBJECT
+public:
+public slots:
+QWriteLocker* new_QWriteLocker(QReadWriteLock*  readWriteLock);
+void delete_QWriteLocker(QWriteLocker* obj) { delete obj; }
+   QReadWriteLock*  readWriteLock(QWriteLocker* theWrappedObject) const;
+   void relock(QWriteLocker* theWrappedObject);
+   void unlock(QWriteLocker* theWrappedObject);
+
+    void __enter__(QWriteLocker* self) {}
+    void __exit__(QWriteLocker* self, PyObject* type, PyObject* value, PyObject* traceback) { self->unlock(); }
+    
+};
+
+
+
+
+
 class PythonQtShell_QXmlStreamEntityResolver : public QXmlStreamEntityResolver
 {
 public:
-    PythonQtShell_QXmlStreamEntityResolver():QXmlStreamEntityResolver(),_wrapper(NULL) {};
+    PythonQtShell_QXmlStreamEntityResolver():QXmlStreamEntityResolver(),_wrapper(nullptr) {};
 
-   ~PythonQtShell_QXmlStreamEntityResolver();
+   ~PythonQtShell_QXmlStreamEntityResolver() override;
 
-virtual QString  resolveEntity(const QString&  publicId, const QString&  systemId);
-virtual QString  resolveUndeclaredEntity(const QString&  name);
+QString  resolveEntity(const QString&  publicId, const QString&  systemId) override;
+QString  resolveUndeclaredEntity(const QString&  name) override;
 
-  PythonQtInstanceWrapper* _wrapper; 
+  PythonQtInstanceWrapper* _wrapper;
 };
 
 class PythonQtPublicPromoter_QXmlStreamEntityResolver : public QXmlStreamEntityResolver
@@ -1009,7 +1209,7 @@ class PythonQtWrapper_QXmlStreamEntityResolver : public QObject
 public:
 public slots:
 QXmlStreamEntityResolver* new_QXmlStreamEntityResolver();
-void delete_QXmlStreamEntityResolver(QXmlStreamEntityResolver* obj) { delete obj; } 
+void delete_QXmlStreamEntityResolver(QXmlStreamEntityResolver* obj) { delete obj; }
    QString  resolveEntity(QXmlStreamEntityResolver* theWrappedObject, const QString&  publicId, const QString&  systemId);
    QString  py_q_resolveEntity(QXmlStreamEntityResolver* theWrappedObject, const QString&  publicId, const QString&  systemId){  return (((PythonQtPublicPromoter_QXmlStreamEntityResolver*)theWrappedObject)->py_q_resolveEntity(publicId, systemId));}
    QString  resolveUndeclaredEntity(QXmlStreamEntityResolver* theWrappedObject, const QString&  name);
