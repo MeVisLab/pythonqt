@@ -73,6 +73,10 @@
 #   undef Q_CLANG_QDOC
 #endif
 
+// it seems this can be safely ignored (otherwise generator currently stumbles over use of noexcept):
+#define Q_DECLARE_SHARED(TYPE)
+#define Q_DECLARE_SHARED_NOT_MOVABLE_UNTIL_QT6(TYPE)
+
 #include <QtCore/QtCore>
 #include <QtGui/QtGui>
 #include <QtNetwork/QtNetwork>
