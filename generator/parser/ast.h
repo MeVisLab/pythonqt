@@ -512,6 +512,8 @@ struct InitializerAST: public AST
 
   InitializerClauseAST *initializer_clause{};
   ExpressionAST *expression{};
+  bool isDefault{};
+  bool isDeleted{};
 };
 
 struct InitializerClauseAST: public AST
