@@ -133,6 +133,9 @@ public:
   void declareTypedef(const NameSymbol *name, Declarator *d);
   bool isTypedef(const NameSymbol *name) const;
 
+  static bool printErrors() { return _M_printErrors; }
+  static void setPrintErrors(bool on) { _M_printErrors = on; }
+
   void reportError (const ErrorMessage &errmsg);
   QList<ErrorMessage> errorMessages () const;
   void clearErrorMessages ();
@@ -141,6 +144,7 @@ private:
   NameTable name_table;
   QHash<const NameSymbol*, Declarator*> stl_typedef_table;
   bool _M_skipFunctionBody;
+  static bool _M_printErrors;
   Lexer *_M_lexer;
   Parser *_M_parser;
 
