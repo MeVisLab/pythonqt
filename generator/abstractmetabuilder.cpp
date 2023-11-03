@@ -409,6 +409,7 @@ bool AbstractMetaBuilder::build()
     file.close();
 
     Control control;
+    control.setSkipFunctionBody(true);
     Parser p(&control);
     pool __pool;
 

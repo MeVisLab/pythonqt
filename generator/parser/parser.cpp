@@ -50,6 +50,7 @@
 
 #include <cstdlib>
 #include <iostream>
+#include <vector>
 
 #define ADVANCE(tk, descr) \
 { \
@@ -3420,13 +3421,76 @@ bool Parser::parseDeclarationInternal(DeclarationAST *&node)
   return false;
 }
 
-bool Parser::skipFunctionBody(StatementAST *&)
+void popStackUntil(std::vector<int>& stack, int value)
 {
-#if defined(__GNUC__)
-#pragma GCC warning "Parser::skipFunctionBody() -- implement me"
-#endif
-  Q_ASSERT(0); // ### not implemented
-  return 0;
+  while (!stack.empty() && stack.back() != value)
+    {
+      stack.pop_back();
+    }
+  if (!stack.empty())
+    {
+      stack.pop_back();
+    }
+}
+
+bool Parser::skipFunctionBody(StatementAST *& node)
+{
+  std::size_t start = token_stream.cursor();
+  std::vector<int> braceStack;
+  if (token_stream.lookAhead() != '{')
+    {
+      reportError("'{' expected (block start)");
+      return false;
+    }
+  braceStack.push_back('{');
+  nextToken();
+  while (!braceStack.empty())
+    {
+      int tk = token_stream.lookAhead();
+      switch (tk)
+        {
+        // handle opening braces:
+        case '{':
+        case '[':
+        case '(':
+          braceStack.push_back(tk);
+          break;
+        // handle closing braces:
+        case '}':
+          if (braceStack.back() != '{')
+            {
+              reportError("misbalanced '}' brace");
+            }
+          popStackUntil(braceStack, '{');
+          break;
+        case ']':
+          if (braceStack.back() != '[')
+            {
+              reportError("misbalanced ']' brace");
+            }
+          popStackUntil(braceStack, '[');
+          break;
+        case ')':
+          if (braceStack.back() != '(')
+            {
+              reportError("misbalanced ')' brace");
+            }
+          popStackUntil(braceStack, '(');
+          break;
+        case Token_EOF:
+          reportError("unexpected EOF while skipping block");
+          braceStack.clear();
+          break;
+        default:
+          // skip everything else
+          ;
+        }
+      nextToken();
+    }
+  CompoundStatementAST* ast = CreateNode<CompoundStatementAST>(_M_pool);
+  UPDATE_POS(ast, start, token_stream.cursor());
+  node = ast;
+  return true;
 }
 
 bool Parser::parseFunctionBody(StatementAST *&node)
