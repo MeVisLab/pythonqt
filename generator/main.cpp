@@ -47,6 +47,7 @@
 #include "typesystem.h"
 #include "generatorset.h"
 #include "fileout.h"
+#include "control.h"
 
 #include <QDir>
 
@@ -100,6 +101,10 @@ int main(int argc, char *argv[])
             ReportHandler::setDebugLevel(ReportHandler::MediumDebug);
         else if (level == "full")
             ReportHandler::setDebugLevel(ReportHandler::FullDebug);
+    }
+
+    if (args.contains("print-parser-errors")) {
+      Control::setPrintErrors(true);
     }
 
     if (args.contains("dummy")) {
@@ -184,6 +189,7 @@ void displayHelp(GeneratorSet* generatorSet) {
     printf("Available options:\n\n");
     printf("General:\n");
     printf("  --debug-level=[sparse|medium|full]        \n"
+           "  --print-parser-errors                     \n"
            "  --dump-object-tree                        \n"
            "  --help, -h or -?                          \n"
            "  --no-suppress-warnings                    \n"
