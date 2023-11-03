@@ -282,7 +282,8 @@ void Binder::declare_symbol(SimpleDeclarationAST *node, InitDeclaratorAST *init_
       fun->setAccessPolicy(_M_current_access);
       fun->setFunctionType(_M_current_function_type);
       fun->setName(name_cc.name());
-      fun->setAbstract(init_declarator->initializer != 0);
+      InitializerAST* initializer = init_declarator->initializer;
+      fun->setAbstract(initializer && !initializer->isDefault && !initializer->isDeleted);  // must be "= 0"
       fun->setConstant(declarator->fun_cv != 0);
       fun->setException(exceptionSpecToString(declarator->exception_spec));
 

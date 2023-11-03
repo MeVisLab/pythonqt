@@ -2305,8 +2305,19 @@ bool Parser::parseInitializer(InitializerAST *&node)
   if (tk == '=')
     {
       nextToken();
-
-      if (!parseInitializerClause(ast->initializer_clause))
+      tk = token_stream.lookAhead();
+      // this is also used for methods:
+      if (tk == Token_delete)
+        {
+          ast->isDeleted = true;
+          nextToken();
+        }
+      else if (tk == Token_default)
+        {
+          ast->isDefault = true;
+          nextToken();
+        }
+      else if (!parseInitializerClause(ast->initializer_clause))
         {
           reportError(("Initializer clause expected"));
         }
