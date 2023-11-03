@@ -189,7 +189,7 @@ public:
   bool skipUntilStatement();
   bool skip(int l, int r);
 
-  void advance();
+  void nextToken();
 
   // private:
   TokenStream token_stream;
@@ -200,12 +200,18 @@ public:
 
 private:
   QString tokenText(AST *) const;
+  void keepTrackDebug();
 
   LocationManager _M_location;
   Control *control;
   Lexer lexer;
   pool *_M_pool;
   bool _M_block_errors;
+
+  QString _currentFile;
+  int _currentLine{};
+  int _currentColumn{};
+  const char* _currentToken{};
 
 private:
   Parser(const Parser& source);
