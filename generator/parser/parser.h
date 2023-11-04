@@ -116,7 +116,7 @@ public:
                                   bool templArgs = false);
   bool parseInitDeclarator(InitDeclaratorAST *&node);
   bool parseInitDeclaratorList(const ListNode<InitDeclaratorAST*> *&node);
-  bool parseInitializer(InitializerAST *&node);
+  bool parseInitializer(InitializerAST *&node, bool allowNewStyle);
   bool parseInitializerClause(InitializerClauseAST *&node);
   bool parseLabeledStatement(StatementAST *&node);
   bool parseLinkageBody(LinkageBodyAST *&node);

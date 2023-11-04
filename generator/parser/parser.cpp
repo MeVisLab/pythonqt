@@ -2257,7 +2257,7 @@ bool Parser::parseInitDeclarator(InitDeclaratorAST *&node)
     }
 
   InitializerAST *init = 0;
-  parseInitializer(init);
+  parseInitializer(init, !decl->parameter_declaration_clause);
 
   InitDeclaratorAST *ast = CreateNode<InitDeclaratorAST>(_M_pool);
   ast->declarator = decl;
@@ -2300,12 +2300,12 @@ bool Parser::parseBaseClause(BaseClauseAST *&node)
   return true;
 }
 
-bool Parser::parseInitializer(InitializerAST *&node)
+bool Parser::parseInitializer(InitializerAST *&node, bool allowNewStyle)
 {
   std::size_t start = token_stream.cursor();
 
   int tk = token_stream.lookAhead();
-  if (tk != '=' && tk != '(')
+  if (tk != '=' && tk != '(' && !(allowNewStyle && tk == '{'))
     return false;
 
   InitializerAST *ast = CreateNode<InitializerAST>(_M_pool);
@@ -2336,6 +2336,15 @@ bool Parser::parseInitializer(InitializerAST *&node)
       parseCommaExpression(ast->expression);
       CHECK(')');
     }
+  else if (tk == '{')
+  {
+    nextToken();
+    if (token_stream.lookAhead() != '}') {
+      parseCommaExpression(ast->expression);
+    }
+    // new-style initializers may be empty (default value)
+    CHECK('}');
+  }
 
   UPDATE_POS(ast, start, token_stream.cursor());
   node = ast;
@@ -2376,10 +2385,23 @@ bool Parser::parseMemInitializer(MemInitializerAST *&node)
       return false;
     }
 
-  ADVANCE('(', "(");
-  ExpressionAST *expr = 0;
-  parseCommaExpression(expr);
-  ADVANCE(')', ")");
+  ExpressionAST* expr = 0;
+  if (token_stream.lookAhead() == '{')
+  {
+    // new style initializers
+    ADVANCE('{', "{");
+    if (token_stream.lookAhead() != '}') {
+      parseCommaExpression(expr);
+    }
+    // new-style initializers may be empty (default value)
+    ADVANCE('}', "}");
+  }
+  else
+  {
+    ADVANCE('(', "(");
+    parseCommaExpression(expr);
+    ADVANCE(')', ")");
+  }
 
   MemInitializerAST *ast = CreateNode<MemInitializerAST>(_M_pool);
   ast->initializer_id = initId;
