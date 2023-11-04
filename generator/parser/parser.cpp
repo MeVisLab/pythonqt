@@ -2178,6 +2178,13 @@ bool Parser::parseExceptionSpecification(ExceptionSpecificationAST *&node)
   {
     // ignore noexcept
     nextToken();
+    if (token_stream.lookAhead() == '(')
+    {
+      nextToken();
+      ExpressionAST* node;
+      parseCommaExpression(node);
+      CHECK(')');
+    }
     return true;
   }
 
