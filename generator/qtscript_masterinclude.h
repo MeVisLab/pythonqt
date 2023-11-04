@@ -77,6 +77,23 @@
 #define Q_DECLARE_SHARED(TYPE)
 #define Q_DECLARE_SHARED_NOT_MOVABLE_UNTIL_QT6(TYPE)
 
+// also ignore deprecation macros for now:
+#define QT_DEPRECATED_VERSION_X_5(minor, text)
+#define QT_DEPRECATED_VERSION_X(major, minor, text)
+
+#define QT_DEPRECATED_VERSION_5(minor)
+#define QT_DEPRECATED_VERSION(major, minor)
+
+// we also don't use this:
+#define Q_CLASSINFO(name, value)
+#define Q_PRIVATE_PROPERTY(d, text)
+
+// treat QDOC_PROPERTY like Q_PROPERTY
+#define QDOC_PROPERTY(text) Q_PROPERTY(text)
+
+// don't need this:
+#define Q_REVISION(v)
+
 #include <QtCore/QtCore>
 #include <QtGui/QtGui>
 #include <QtNetwork/QtNetwork>
