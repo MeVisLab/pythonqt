@@ -731,6 +731,16 @@ void _FunctionModelItem::setAbstract(bool isAbstract)
   _M.isAbstract = isAbstract;
 }
 
+bool _FunctionModelItem::isDeleted() const
+{
+  return _M.isDeleted;
+}
+
+void _FunctionModelItem::setDeleted(bool isDeleted)
+{
+  _M.isDeleted = isDeleted;
+}
+
 // Qt
 bool _FunctionModelItem::isInvokable() const
 {

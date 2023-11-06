@@ -566,6 +566,9 @@ public:
   bool isAbstract() const;
   void setAbstract(bool isAbstract);
 
+  bool isDeleted() const;
+  void setDeleted(bool isDeleted);
+
   bool isVariadics() const;
   void setVariadics(bool isVariadics);
 
@@ -589,6 +592,7 @@ private:
       uint isVirtual: 1;
       uint isInline: 1;
       uint isAbstract: 1;
+      uint isDeleted: 1;
       uint isExplicit: 1;
       uint isVariadics: 1;
       uint isInvokable : 1; // Qt
