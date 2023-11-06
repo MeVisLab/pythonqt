@@ -52,6 +52,7 @@
   <enum-type name="QNetworkRequest::KnownHeaders"/>
   <enum-type name="QNetworkRequest::Priority"/>
   <enum-type name="QNetworkRequest::LoadControl"/>
+  <enum-type name="QNetworkRequest::TransferTimeoutConstant"/>
   <enum-type name="QNetworkProxyQuery::QueryType"/>
   <enum-type name="QHttpMultiPart::ContentType"/>
   <object-type name="QHttpMultiPart"/>
