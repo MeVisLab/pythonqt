@@ -1593,6 +1593,11 @@ AbstractMetaFunction *AbstractMetaBuilder::traverseFunction(FunctionModelItem fu
             meta_function->setFunctionType(AbstractMetaFunction::SlotFunction);
     }
 
+    if (function_item->isDeleted()) {
+      meta_function->setInvalid(true);
+      return meta_function;
+    }
+
     ArgumentList arguments = function_item->arguments();
     AbstractMetaArgumentList meta_arguments;
 
