@@ -574,6 +574,8 @@
   <rejection class="QJsonObject" function-name="find"/>
   <rejection class="QJsonObject" function-name="insert"/>
   <rejection class="QList" function-name="begin"/>
+  <rejection class="QList" function-name="cbegin"/>
+  <rejection class="QList" function-name="cend"/>
   <rejection class="QList" function-name="constBegin"/>
   <rejection class="QList" function-name="constEnd"/>
   <rejection class="QList" function-name="end"/>
