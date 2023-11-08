@@ -1491,6 +1491,12 @@ AbstractMetaFunction *AbstractMetaBuilder::traverseFunction(FunctionModelItem fu
       return 0;
     }
 
+    // Also filter out functions with template parameters in classes without template arguments
+    // (we don't support templated classes directly, but derived classes might derive from template instantiations)
+    if (function_item->templateParameters().size() && m_current_class->templateArguments().empty()) {
+      return 0;
+    }
+
     if (function_item->isAuto()) {
         /*TODO: it might work just to output 'auto', but this would require
          * understanding what AbstractMetabuild::translateType() does and
