@@ -150,7 +150,7 @@ private:
     QString m_file_name;
 
     AbstractMetaClassList m_meta_classes;
-    AbstractMetaClassList m_templates;
+    QHash<QString,AbstractMetaClass*> m_templates;
     FileModelItem m_dom;
     
     QSet<const TypeEntry *> m_used_types;

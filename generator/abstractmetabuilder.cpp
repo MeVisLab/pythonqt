@@ -617,7 +617,15 @@ void AbstractMetaBuilder::addAbstractMetaClass(AbstractMetaClass *cls)
 
     cls->setOriginalAttributes(cls->attributes());
     if (cls->typeEntry()->isContainer()) {
-        m_templates << cls;
+        QString name = cls->typeEntry()->name();
+        if (cls->functions().size() || cls->baseClassNames().size()) {
+            if (!m_templates.contains(name)) {
+                m_templates[name] = cls;
+            }
+            else {
+                ReportHandler::warning(QString("Duplicate container type template '%1'").arg(name));
+            }
+        }
     } else {
         m_meta_classes << cls;
         if (cls->typeEntry()->designatedInterface()) {
@@ -1096,6 +1104,7 @@ AbstractMetaClass *AbstractMetaBuilder::traverseClass(ClassModelItem class_item)
         template_args.append(param_type);
     }
     meta_class->setTemplateArguments(template_args);
+    meta_class->setHasActualDeclaration(class_item->hasActualDeclaration());
 
     parseQ_Property(meta_class, class_item->propertyDeclarations());
 
@@ -1130,8 +1139,9 @@ AbstractMetaClass *AbstractMetaBuilder::traverseClass(ClassModelItem class_item)
 
     m_current_class = old_current_class;
 
-    // Set the default include file name
-    if (!type->include().isValid()) {
+    // Set the default include file name. In case we saw an template instance earlier,
+    // overwrite the include file when we see the actual declaration.
+    if (!type->include().isValid() || class_item->hasActualDeclaration()) {
         QFileInfo info(class_item->fileName());
         type->setInclude(Include(Include::IncludePath, info.fileName()));
     }
@@ -1337,13 +1347,7 @@ bool AbstractMetaBuilder::setupInheritance(AbstractMetaClass *meta_class)
             TypeParser::Info info = TypeParser::parse(complete_name);
             QString base_name = info.qualified_name.join("::");
 
-            AbstractMetaClass *templ = 0;
-            for (AbstractMetaClass *c :  m_templates) {
-                if (c->typeEntry()->name() == base_name) {
-                    templ = c;
-                    break;
-                }
-            }
+            AbstractMetaClass *templ = m_templates.value(base_name);
 
             if (templ == 0)
                 templ = m_meta_classes.findClass(base_name);
