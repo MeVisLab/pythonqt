@@ -54,7 +54,7 @@ public:
         Info() : is_reference(false), is_constant(false), is_busted(false), indirections(0) { }
         QStringList qualified_name;
         QStringList arrays;
-        QList<Info> template_instantiations;
+        QList<Info> template_instantiations; // I believe template_argument_types would be a better name
         uint is_reference : 1;
         uint is_constant : 1;
         uint is_busted : 1;

@@ -729,6 +729,7 @@ void Binder::visitClassSpecifier(ClassSpecifierAST *node)
   name_cc.run(node->name->unqualified_name);
   _M_context.append(name_cc.name());
   visitNodes(this, node->member_specs);
+  _M_current_class->setHasActualDeclaration(node->member_specs);
   _M_context.removeLast();
 
   changeCurrentClass(old);

@@ -366,6 +366,10 @@ public:
   void addPropertyDeclaration(const QString &propertyDeclaration);
   QStringList propertyDeclarations() const { return _M_propertyDeclarations; }
 
+  void setHasActualDeclaration(bool flag) { _M_hasActualDeclaration = flag; }
+  bool hasActualDeclaration() const { return _M_hasActualDeclaration; }
+
+
 protected:
   _ClassModelItem(CodeModel *model, int kind = __node_kind)
     : _ScopeModelItem(model, kind), _M_classType(CodeModel::Class) {}
@@ -376,6 +380,8 @@ private:
   CodeModel::ClassType _M_classType;
 
   QStringList _M_propertyDeclarations;
+
+  bool _M_hasActualDeclaration{};
 
 private:
   _ClassModelItem(const _ClassModelItem &other);
