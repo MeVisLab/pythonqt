@@ -3421,65 +3421,27 @@ bool Parser::parseDeclarationInternal(DeclarationAST *&node)
   return false;
 }
 
-void popStackUntil(std::vector<int>& stack, int value)
-{
-  while (!stack.empty() && stack.back() != value)
-    {
-      stack.pop_back();
-    }
-  if (!stack.empty())
-    {
-      stack.pop_back();
-    }
-}
-
 bool Parser::skipFunctionBody(StatementAST *& node)
 {
   std::size_t start = token_stream.cursor();
-  std::vector<int> braceStack;
-  if (token_stream.lookAhead() != '{')
-    {
-      reportError("'{' expected (block start)");
-      return false;
-    }
-  braceStack.push_back('{');
-  nextToken();
-  while (!braceStack.empty())
+  ADVANCE('{', "{");
+  int braceCount = 1;
+  while (braceCount)
     {
       int tk = token_stream.lookAhead();
       switch (tk)
         {
         // handle opening braces:
         case '{':
-        case '[':
-        case '(':
-          braceStack.push_back(tk);
+          braceCount++;
           break;
         // handle closing braces:
         case '}':
-          if (braceStack.back() != '{')
-            {
-              reportError("misbalanced '}' brace");
-            }
-          popStackUntil(braceStack, '{');
-          break;
-        case ']':
-          if (braceStack.back() != '[')
-            {
-              reportError("misbalanced ']' brace");
-            }
-          popStackUntil(braceStack, '[');
-          break;
-        case ')':
-          if (braceStack.back() != '(')
-            {
-              reportError("misbalanced ')' brace");
-            }
-          popStackUntil(braceStack, '(');
+          braceCount--;
           break;
         case Token_EOF:
           reportError("unexpected EOF while skipping block");
-          braceStack.clear();
+          braceCount = 0;
           break;
         default:
           // skip everything else
