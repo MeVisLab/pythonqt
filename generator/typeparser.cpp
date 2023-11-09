@@ -53,6 +53,7 @@ public:
         LessThanToken,
         ColonToken,
         CommaToken,
+        EllipsisToken,
         OpenParenToken,
         CloseParenToken,
         SquareBegin,
@@ -115,6 +116,12 @@ Scanner::Token Scanner::nextToken()
                 Q_ASSERT(m_pos + 1 < m_length);
                 ++m_pos;
                 break;
+            case '.':
+                if (m_pos + 2 < m_length && c == m_chars[m_pos + 1] && c == m_chars[m_pos + 2]) {
+                    tok = EllipsisToken;
+                    m_pos += 2;
+                    break;
+                }
             default:
                 if (c.isLetterOrNumber() || c == '_')
                     tok = Identifier;
@@ -168,6 +175,7 @@ TypeParser::Info TypeParser::parse(const QString &str)
 //         switch (tok) {
 //         case Scanner::StarToken: printf(" - *\n"); break;
 //         case Scanner::AmpersandToken: printf(" - &\n"); break;
+//         case Scanner::EllipsisToken: printf(" - ...\n"); break;
 //         case Scanner::LessThanToken: printf(" - <\n"); break;
 //         case Scanner::GreaterThanToken: printf(" - >\n"); break;
 //         case Scanner::ColonToken: printf(" - ::\n"); break;
@@ -215,7 +223,8 @@ TypeParser::Info TypeParser::parse(const QString &str)
 
         case Scanner::OpenParenToken: // function pointers not supported
         case Scanner::CloseParenToken:
-            {
+        case Scanner::EllipsisToken:  // variadic templates not supported
+        {
                 Info i;
                 i.is_busted = true;
                 return i;
