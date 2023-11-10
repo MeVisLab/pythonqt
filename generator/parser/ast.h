@@ -710,6 +710,7 @@ struct SimpleTypeSpecifierAST: public TypeSpecifierAST
   TypeIdAST *type_id{};
   ExpressionAST *expression{};
   NameAST *name{};
+  bool is_auto{};
 };
 
 struct SizeofExpressionAST: public ExpressionAST

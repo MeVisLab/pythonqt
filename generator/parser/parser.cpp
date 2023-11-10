@@ -1081,6 +1081,11 @@ bool Parser::parseSimpleTypeSpecifier(TypeSpecifierAST *&node,
     {
       ast->integrals = integrals;
     }
+  else if (token_stream.lookAhead() == Token_auto)
+    {
+      nextToken();
+      ast->is_auto = true;
+    }
   else if (token_stream.lookAhead() == Token___typeof ||
            token_stream.lookAhead() == Token_decltype)
     {
@@ -1699,7 +1704,8 @@ bool Parser::parseStorageClassSpecifier(const ListNode<std::size_t> *&node)
 
   int tk;
   while (0 != (tk = token_stream.lookAhead())
-         && (tk == Token_friend || tk == Token_auto
+         && (tk == Token_friend
+             // || tk == Token_auto  // I believe "auto" isn't used as storage class specifier in Qt, and it collides with the type-specifier of the same name
              || tk == Token_register || tk == Token_static
              || tk == Token_extern))
     {
@@ -3440,7 +3446,7 @@ bool Parser::parseDeclarationInternal(DeclarationAST *&node)
 
       if (token_stream.lookAhead() != ';')
         {
-          if (parseInitDeclarator(decl) && token_stream.lookAhead() == '{')
+          if (parseInitDeclarator(decl) && (token_stream.lookAhead() == '{' || token_stream.lookAhead() == Token_arrow))
             {
               // function definition
               maybeFunctionDefinition = true;
@@ -3455,6 +3461,18 @@ bool Parser::parseDeclarationInternal(DeclarationAST *&node)
                 }
             }
         }
+
+      if (token_stream.lookAhead() == Token_arrow) {
+        // trailing return type, used in conjuction with "auto" return type
+        nextToken();
+        TypeSpecifierAST* trailingReturnTypeSpec = 0;
+        if (!parseTypeSpecifier(trailingReturnTypeSpec)) {
+          // todo: replace "auto" return type? But I doubt we can handle these return types anyway.
+          syntaxError();
+          return false;
+        }
+        maybeFunctionDefinition = true;
+      }
 
       switch(token_stream.lookAhead())
         {
