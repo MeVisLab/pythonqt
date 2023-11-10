@@ -230,6 +230,43 @@ void Parser::keepTrackDebug()
 #endif
 }
 
+bool Parser::skipAttributes()
+{
+  bool any = false;
+  while (true) {
+    if (token_stream.lookAhead() == Token___attribute__)
+    {
+      parse_Attribute__();
+      any = true;
+    }
+    else if (token_stream.lookAhead() == '[' && token_stream.lookAhead(1) == '[')
+    {
+      nextToken();
+      while (true)
+      {
+        nextToken();
+        int tk = token_stream.lookAhead();
+        if (tk == Token_EOF)
+        {
+          break;
+        }
+        else if (tk == ']' && token_stream.lookAhead(1) == ']') // this has no separate token because "]]" can occur in other contexts
+        {
+          nextToken();
+          nextToken();
+          break;
+        }
+      }
+      any = true;
+    }
+    else
+    {
+      break;
+    }
+  }
+  return any;
+}
+
 bool Parser::skipUntil(int token)
 {
   while (token_stream.lookAhead())
@@ -507,6 +544,8 @@ bool Parser::parseDeclaration(DeclarationAST *&node)
 
     default:
       {
+        skipAttributes();
+
         const ListNode<std::size_t> *cv = 0;
         parseCvQualify(cv);
 
@@ -1210,6 +1249,8 @@ bool Parser::parseTypeSpecifier(TypeSpecifierAST *&node)
 {
   std::size_t start = token_stream.cursor();
 
+  skipAttributes();
+
   const ListNode<std::size_t> *cv = 0;
   parseCvQualify(cv);
 
@@ -1349,10 +1390,7 @@ bool Parser::parseDeclarator(DeclaratorAST *&node)
             ast->_override = true;
           }
         }
-        if (token_stream.lookAhead() == Token___attribute__)
-          {
-              parse_Attribute__();
-          }
+        skipAttributes();
       }
 
     if (skipParen)
@@ -1991,9 +2029,7 @@ bool Parser::parseClassSpecifier(TypeSpecifierAST *&node)
   WinDeclSpecAST *winDeclSpec = 0;
   parseWinDeclSpec(winDeclSpec);
 
-  if (token_stream.lookAhead() == Token___attribute__) {
-      parse_Attribute__();
-  }
+  skipAttributes();
 
   while (token_stream.lookAhead() == Token_identifier
          && token_stream.lookAhead(1) == Token_identifier)
@@ -3290,6 +3326,8 @@ bool Parser::parseDeclarationInternal(DeclarationAST *&node)
   // '__declspec(dllexport) inline int ...', etc.
   WinDeclSpecAST *winDeclSpec = 0;
   parseWinDeclSpec(winDeclSpec);
+
+  skipAttributes();
 
   const ListNode<std::size_t>* cv = 0;
   parseCvQualify(cv);
