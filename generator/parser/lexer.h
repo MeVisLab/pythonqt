@@ -140,7 +140,7 @@ public:
   inline std::size_t cursor() const
   { return index; }
 
-  inline void rewind(int i)
+  inline void rewind(std::size_t i)
   { index = i; }
 
   void resize(std::size_t size)

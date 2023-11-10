@@ -102,6 +102,12 @@ void Parser::nextToken()
   keepTrackDebug();
 }
 
+void Parser::rewind(std::size_t pos)
+{
+  token_stream.rewind(pos);
+  keepTrackDebug();
+}
+
 TranslationUnitAST *Parser::parse(const char *contents,
                                   std::size_t size, pool *p)
 {
@@ -213,6 +219,14 @@ void Parser::keepTrackDebug()
   location().positionAt(token_stream.position(tok),
     &_currentLine, &_currentColumn, &_currentFile);
   _currentToken = token_name(token_stream.lookAhead());
+  if (token_stream.lookAhead() == Token_identifier)
+  {
+    _currentSymbol = token_stream.symbol(tok)->as_string();
+  }
+  else
+  {
+    _currentSymbol = "";
+  }
 #endif
 }
 
@@ -407,7 +421,7 @@ bool Parser::parseName(NameAST *&node, bool acceptTemplateId)
           Q_ASSERT(n != 0);
           if (!acceptTemplateId)
             {
-              token_stream.rewind((int) n->start_token);
+              rewind(n->start_token);
               parseUnqualifiedName(n, false);
             }
 
@@ -534,7 +548,7 @@ bool Parser::parseDeclaration(DeclarationAST *&node)
       }
     } // end switch
 
-  token_stream.rewind((int) start);
+  rewind(start);
   return parseDeclarationInternal(node);
 }
 
@@ -1082,7 +1096,7 @@ bool Parser::parseSimpleTypeSpecifier(TypeSpecifierAST *&node,
           if (token_stream.lookAhead() != ')')
             {
               ast->type_id = 0;
-              token_stream.rewind((int) saved);
+              rewind(saved);
               parseUnaryExpression(ast->expression);
             }
           ADVANCE(')', ")");
@@ -1094,7 +1108,7 @@ bool Parser::parseSimpleTypeSpecifier(TypeSpecifierAST *&node,
     }
   else if (onlyIntegral)
     {
-      token_stream.rewind((int) start);
+      rewind(start);
       return false;
     }
   else
@@ -1102,7 +1116,7 @@ bool Parser::parseSimpleTypeSpecifier(TypeSpecifierAST *&node,
       if (!parseName(ast->name, true))
         {
           ast->name = 0;
-          token_stream.rewind((int) start);
+          rewind(start);
           return false;
         }
     }
@@ -1141,7 +1155,7 @@ bool Parser::parsePtrOperator(PtrOperatorAST *&node)
       {
         if (!parsePtrToMember(ast->mem_ptr))
           {
-            token_stream.rewind((int) start);
+            rewind(start);
             return false;
           }
       }
@@ -1171,7 +1185,7 @@ bool Parser::parseTemplateArgument(TemplateArgumentAST *&node)
                                && token_stream.lookAhead() != '>'
                                && token_stream.lookAhead() != Token_shift_right))
     {
-      token_stream.rewind((int) start);
+      rewind(start);
 
       if (!parseLogicalOrExpression(expr, true))
         return false;
@@ -1197,7 +1211,7 @@ bool Parser::parseTypeSpecifier(TypeSpecifierAST *&node)
   TypeSpecifierAST *ast = 0;
   if (!parseElaboratedTypeSpecifier(ast) && !parseSimpleTypeSpecifier(ast))
     {
-      token_stream.rewind((int) start);
+      rewind(start);
       return false;
     }
 
@@ -1247,7 +1261,7 @@ bool Parser::parseDeclarator(DeclaratorAST *&node)
         }
       else
         {
-          token_stream.rewind((int) start);
+          rewind(start);
           return false;
         }
 
@@ -1294,7 +1308,7 @@ bool Parser::parseDeclarator(DeclaratorAST *&node)
         && !(isVector || tok == '(' || tok == ','
              || tok == ';' || tok == '='))
       {
-        token_stream.rewind((int) start);
+        rewind(start);
         return false;
       }
 
@@ -1306,7 +1320,7 @@ bool Parser::parseDeclarator(DeclaratorAST *&node)
         ParameterDeclarationClauseAST *params = 0;
         if (!parseParameterDeclarationClause(params))
           {
-            token_stream.rewind((int) index);
+            rewind(index);
             goto update_pos;
           }
 
@@ -1314,7 +1328,7 @@ bool Parser::parseDeclarator(DeclaratorAST *&node)
 
         if (token_stream.lookAhead() != ')')
           {
-            token_stream.rewind((int) index);
+            rewind(index);
             goto update_pos;
           }
 
@@ -1374,7 +1388,7 @@ bool Parser::parseAbstractDeclarator(DeclaratorAST *&node)
 
       if (!parseAbstractDeclarator(decl))
         {
-          token_stream.rewind((int) index);
+          rewind(index);
           goto label1;
         }
 
@@ -1382,7 +1396,7 @@ bool Parser::parseAbstractDeclarator(DeclaratorAST *&node)
 
       if (token_stream.lookAhead() != ')')
         {
-          token_stream.rewind((int) start);
+          rewind(start);
           return false;
         }
       nextToken();
@@ -1420,7 +1434,7 @@ bool Parser::parseAbstractDeclarator(DeclaratorAST *&node)
         && !(isVector || tok == '(' || tok == ','
              || tok == ';' || tok == '='))
       {
-        token_stream.rewind((int) start);
+        rewind(start);
         return false;
       }
 
@@ -1432,7 +1446,7 @@ bool Parser::parseAbstractDeclarator(DeclaratorAST *&node)
         ParameterDeclarationClauseAST *params = 0;
         if (!parseParameterDeclarationClause(params))
           {
-            token_stream.rewind((int) index);
+            rewind(index);
             goto update_pos;
           }
 
@@ -1440,7 +1454,7 @@ bool Parser::parseAbstractDeclarator(DeclaratorAST *&node)
 
         if (token_stream.lookAhead() != ')')
           {
-            token_stream.rewind((int) index);
+            rewind(index);
             goto update_pos;
           }
 
@@ -1481,14 +1495,14 @@ bool Parser::parseEnumSpecifier(TypeSpecifierAST *&node)
       TypeSpecifierAST *ast = 0;
       if (!parseSimpleTypeSpecifier(ast))
         {
-          token_stream.rewind((int) start);
+          rewind(start);
           return false;
         }
     }
 
   if (token_stream.lookAhead() != '{')
     {
-      token_stream.rewind((int) start);
+      rewind(start);
       return false;
     }
   nextToken();
@@ -1617,14 +1631,14 @@ bool Parser::parseTypeParameter(TypeParameterAST *&node)
                 if(!parseTypeId(ast->type_id))
                   {
                     //syntaxError();
-                    token_stream.rewind((int) start);
+                    rewind(start);
                     return false;
                   }
               }
             else if (token_stream.lookAhead() != ','
                      && token_stream.lookAhead() != '>')
               {
-                token_stream.rewind((int) start);
+                rewind(start);
                 return false;
               }
           }
@@ -1720,7 +1734,7 @@ bool Parser::parseTypeId(TypeIdAST *&node)
   TypeSpecifierAST *spec = 0;
   if (!parseTypeSpecifier(spec))
     {
-      token_stream.rewind((int) start);
+      rewind(start);
       return false;
     }
 
@@ -1804,7 +1818,7 @@ bool Parser::parseParameterDeclarationList(const ListNode<ParameterDeclarationAS
   ParameterDeclarationAST *param = 0;
   if (!parseParameterDeclaration(param))
     {
-      token_stream.rewind((int) start);
+      rewind(start);
       return false;
     }
 
@@ -1819,7 +1833,7 @@ bool Parser::parseParameterDeclarationList(const ListNode<ParameterDeclarationAS
 
       if (!parseParameterDeclaration(param))
         {
-          token_stream.rewind((int) start);
+          rewind(start);
           return false;
         }
       node = snoc(node, param, _M_pool);
@@ -1839,7 +1853,7 @@ bool Parser::parseParameterDeclaration(ParameterDeclarationAST *&node)
   TypeSpecifierAST *spec = 0;
   if (!parseTypeSpecifier(spec))
     {
-      token_stream.rewind((int) start);
+      rewind(start);
       return false;
     }
 
@@ -1848,7 +1862,7 @@ bool Parser::parseParameterDeclaration(ParameterDeclarationAST *&node)
   DeclaratorAST *decl = 0;
   if (!parseDeclarator(decl))
     {
-      token_stream.rewind((int) index);
+      rewind(index);
 
       // try with abstract declarator
       parseAbstractDeclarator(decl);
@@ -1926,7 +1940,7 @@ bool Parser::parseForwardDeclarationSpecifier(TypeSpecifierAST *&node)
 
   NameAST *name = 0;
   if (!parseName(name, false)) {
-      token_stream.rewind((int) start);
+      rewind(start);
       return false;
   }
 
@@ -1935,14 +1949,14 @@ bool Parser::parseForwardDeclarationSpecifier(TypeSpecifierAST *&node)
     {
       if (!parseBaseClause(bases))
         {
-          token_stream.rewind((int) start);
+          rewind(start);
           return false;
         }
     }
 
   if (token_stream.lookAhead() != ';')
     {
-        token_stream.rewind((int) start);
+        rewind(start);
         return false;
     }
 
@@ -1997,7 +2011,7 @@ bool Parser::parseClassSpecifier(TypeSpecifierAST *&node)
   if (token_stream.lookAhead() != '{')
     {
 
-      token_stream.rewind((int) start);
+      rewind(start);
       return false;
     }
 
@@ -2119,7 +2133,7 @@ bool Parser::parseMemberSpecification(DeclarationAST *&node)
     return true;
   }
 
-  token_stream.rewind((int) start);
+  rewind(start);
 
   const ListNode<std::size_t> *cv = 0;
   parseCvQualify(cv);
@@ -2148,7 +2162,7 @@ bool Parser::parseMemberSpecification(DeclarationAST *&node)
       return true;
     }
 
-  token_stream.rewind((int) start);
+  rewind(start);
   return parseDeclarationInternal(node);
 }
 
@@ -2202,7 +2216,7 @@ bool Parser::parseElaboratedTypeSpecifier(TypeSpecifierAST *&node)
         }
     }
 
-  token_stream.rewind((int) start);
+  rewind(start);
   return false;
 }
 
@@ -2591,7 +2605,7 @@ bool Parser::parsePtrToMember(PtrToMemberAST *&node)
         nextToken();
     }
 
-  token_stream.rewind((int) start);
+  rewind(start);
   return false;
 }
 
@@ -2599,7 +2613,7 @@ void Parser::resolveRightShift()
 {
   if (token_stream.lookAhead() == Token_shift_right)
     {
-      int index = token_stream.cursor();
+      std::size_t index = token_stream.cursor();
       token_stream[index].kind = '>';
       token_stream[index + 1].kind = '>';
     }
@@ -2662,7 +2676,7 @@ bool Parser::parseUnqualifiedName(UnqualifiedNameAST *&node,
           else
             {
               ast->template_arguments = 0;
-              token_stream.rewind((int)index);
+              rewind(index);
             }
         }
     }
@@ -2798,7 +2812,7 @@ bool Parser::parseExpressionOrDeclarationStatement(StatementAST *&node)
 
   std::size_t end = token_stream.cursor();
 
-  token_stream.rewind((int) start);
+  rewind(start);
   StatementAST *expr_ast = 0;
   maybe_amb &= parseExpressionStatement(expr_ast);
   maybe_amb &= token_stream.kind(token_stream.cursor() - 1) == ';';
@@ -2816,7 +2830,7 @@ bool Parser::parseExpressionOrDeclarationStatement(StatementAST *&node)
     }
   else
     {
-      token_stream.rewind((int) std::max(end, token_stream.cursor()));
+      rewind(std::max(end, token_stream.cursor()));
 
       node = decl_ast;
       if (!node)
@@ -2847,7 +2861,7 @@ bool Parser::parseCondition(ConditionAST *&node, bool initRequired)
       DeclaratorAST *decl = 0;
       if (!parseDeclarator(decl))
         {
-          token_stream.rewind((int) declarator_start);
+          rewind(declarator_start);
           if (!initRequired && !parseAbstractDeclarator(decl))
             decl = 0;
         }
@@ -2870,7 +2884,7 @@ bool Parser::parseCondition(ConditionAST *&node, bool initRequired)
         }
     }
 
-  token_stream.rewind((int) start);
+  rewind(start);
 
   if (!parseCommaExpression(ast->expression))
     return false;
@@ -3191,7 +3205,7 @@ bool Parser::parseBlockDeclaration(DeclarationAST *&node)
   TypeSpecifierAST *spec = 0;
   if (!parseTypeSpecifierOrClassSpec(spec))
     { // replace with simpleTypeSpecifier?!?!
-      token_stream.rewind((int) start);
+      rewind(start);
       return false;
     }
 
@@ -3203,7 +3217,7 @@ bool Parser::parseBlockDeclaration(DeclarationAST *&node)
 
   if (token_stream.lookAhead() != ';')
     {
-      token_stream.rewind((int) start);
+      rewind(start);
       return false;
     }
   nextToken();
@@ -3298,7 +3312,7 @@ bool Parser::parseDeclarationInternal(DeclarationAST *&node)
     {
       // no type specifier, maybe a constructor or a cast operator??
 
-      token_stream.rewind((int) index);
+      rewind(index);
 
       InitDeclaratorAST *declarator = 0;
       if (parseInitDeclarator(declarator))
@@ -3378,7 +3392,7 @@ bool Parser::parseDeclarationInternal(DeclarationAST *&node)
     }
 
  start_decl:
-  token_stream.rewind((int) index);
+  rewind(index);
 
   if ((token_stream.lookAhead() == Token_const ||
        token_stream.lookAhead() == Token_constexpr)
@@ -3433,7 +3447,7 @@ bool Parser::parseDeclarationInternal(DeclarationAST *&node)
             }
           else
             {
-              token_stream.rewind((int) startDeclarator);
+              rewind(startDeclarator);
               if (!parseInitDeclaratorList(declarators))
                 {
                   syntaxError();
@@ -3710,7 +3724,7 @@ bool Parser::parsePostfixExpressionInternal(ExpressionAST *&node)
             nextToken();
           }
 
-        int saved = int(token_stream.cursor());
+        std::size_t saved = token_stream.cursor();
         NameAST *name = 0;
 
         if (parseName(name, true) && name->unqualified_name
@@ -3719,7 +3733,7 @@ bool Parser::parsePostfixExpressionInternal(ExpressionAST *&node)
           // a template method call
           // ### reverse the logic
         } else {
-          token_stream.rewind(saved);
+          rewind(saved);
           name = 0;
 
           if (! parseName (name, templ != 0))
@@ -3862,14 +3876,14 @@ bool Parser::parsePostfixExpression(ExpressionAST *&node)
           if (parseCastExpression(cast_expr)
               && cast_expr->kind == AST::Kind_CastExpression)
             {
-              token_stream.rewind((int) saved_pos);
+              rewind(saved_pos);
               parsePrimaryExpression(expr);
               goto L_no_rewind;
             }
         }
     }
 
-  token_stream.rewind((int) saved_pos);
+  rewind(saved_pos);
 
  L_no_rewind:
   if (!expr && parseSimpleTypeSpecifier(typeSpec)
@@ -3886,7 +3900,7 @@ bool Parser::parsePostfixExpression(ExpressionAST *&node)
   else
     {
       typeSpec = 0;
-      token_stream.rewind((int) start);
+      rewind(start);
 
       if (!parsePrimaryExpression(expr))
         return false;
@@ -3967,7 +3981,7 @@ bool Parser::parseUnaryExpression(ExpressionAST *&node)
               }
 
             ast->type_id = 0;
-            token_stream.rewind((int) index);
+            rewind(index);
           }
 
         if (!parseUnaryExpression(ast->expression))
@@ -4162,7 +4176,7 @@ bool Parser::parseCastExpression(ExpressionAST *&node)
         }
     }
 
-  token_stream.rewind((int) start);
+  rewind(start);
   return parseUnaryExpression(node);
 }
 
