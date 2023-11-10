@@ -48,5 +48,5 @@ QString AST::toString(TokenStream *stream) const
 {
     const Token &tk = stream->token((int) start_token);
     const Token &end_tk = stream->token ((int) end_token);
-    return QString::fromLatin1(tk.text + tk.position, end_tk.position - tk.position);
+    return QString::fromLatin1(tk.text + tk.position, static_cast<int>(end_tk.position - tk.position));
 }

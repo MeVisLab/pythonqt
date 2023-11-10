@@ -43,7 +43,7 @@ the directory where the python lib file is located. Then you should set the
 When using the prebuild Python installer, this will be:
 
 ```cmd
-set PYTHON_PATH=c:\Python38
-set PYTHON_LIB=c:\Python38\libs
-set PYTHON_VERSION=38
+set PYTHON_PATH=c:\Python311
+set PYTHON_LIB=c:\Python311\libs
+set PYTHON_VERSION=3.11
 ```

@@ -111,5 +111,6 @@ generate.bat
 generator/release
 
 /.vs/
+*/.vs
 */debug/*
 */release/*

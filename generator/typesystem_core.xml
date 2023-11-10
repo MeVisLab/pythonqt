@@ -555,6 +555,24 @@
   <rejection class="QCoreApplication" function-name="setEventFilter"/>
   <rejection class="QFile" function-name="setDecodingFunction"/>
   <rejection class="QFile" function-name="setEncodingFunction"/>
+  <rejection class="QJsonArray" function-name="begin"/>
+  <rejection class="QJsonArray" function-name="cbegin"/>
+  <rejection class="QJsonArray" function-name="cend"/>
+  <rejection class="QJsonArray" function-name="constBegin"/>
+  <rejection class="QJsonArray" function-name="constEnd"/>
+  <rejection class="QJsonArray" function-name="end"/>
+  <rejection class="QJsonArray" function-name="erase"/>
+  <rejection class="QJsonArray" function-name="insert"/>
+  <rejection class="QJsonObject" function-name="begin"/>
+  <rejection class="QJsonObject" function-name="cbegin"/>
+  <rejection class="QJsonObject" function-name="cend"/>
+  <rejection class="QJsonObject" function-name="constBegin"/>
+  <rejection class="QJsonObject" function-name="constEnd"/>
+  <rejection class="QJsonObject" function-name="constFind"/>
+  <rejection class="QJsonObject" function-name="end"/>
+  <rejection class="QJsonObject" function-name="erase"/>
+  <rejection class="QJsonObject" function-name="find"/>
+  <rejection class="QJsonObject" function-name="insert"/>
   <rejection class="QList" function-name="begin"/>
   <rejection class="QList" function-name="constBegin"/>
   <rejection class="QList" function-name="constEnd"/>
@@ -589,14 +607,20 @@
   <rejection class="QSettings" function-name="registerFormat"/>
   <rejection class="QVector" function-name="back"/>
   <rejection class="QVector" function-name="begin"/>
+  <rejection class="QVector" function-name="cbegin"/>
+  <rejection class="QVector" function-name="cend"/>
   <rejection class="QVector" function-name="constBegin"/>
   <rejection class="QVector" function-name="constEnd"/>
+  <rejection class="QVector" function-name="crbegin"/>
+  <rejection class="QVector" function-name="crend"/>
   <rejection class="QVector" function-name="end"/>
   <rejection class="QVector" function-name="erase"/>
   <rejection class="QVector" function-name="free"/>
   <rejection class="QVector" function-name="front"/>
   <rejection class="QVector" function-name="insert"/>
   <rejection class="QVector" function-name="malloc"/>
+  <rejection class="QVector" function-name="rbegin"/>
+  <rejection class="QVector" function-name="rend"/>
   <rejection class="QVector" function-name="alloc"/>
   <rejection class="QVector" function-name="operator+="/>
   <rejection class="QAbstractFileEngineIterator" function-name="entryInfo"/>

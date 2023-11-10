@@ -168,10 +168,10 @@ public:
   inline std::size_t matchingBrace(std::size_t i) const
   { return tokens[i].extra.right_brace; }
 
-  inline Token &operator[](int i)
+  inline Token &operator[](std::size_t i)
   { return tokens[i]; }
 
-  inline const Token &token(int i) const
+  inline const Token &token(std::size_t i) const
   { return tokens[i]; }
 
 private:

@@ -41,6 +41,7 @@
 
 
 #include <QtCore/qglobal.h>
+#include <iostream>
 
 #include "tokens.h"
 
@@ -152,7 +153,8 @@ static char const * const _S_token_names[] = {
   "xor",
   "xor_eq",
   "Q_ENUMS",
-  "Q_ENUM"
+  "Q_ENUM",
+  "Q_INVOKABLE"
 };
 
 static char _S_printable[][2] = {
@@ -254,6 +256,18 @@ static char _S_printable[][2] = {
   { char(127), '\0' },
 };
 
+int check_tokens_consistency()
+{
+  if (sizeof(_S_token_names) / sizeof(_S_token_names[0]) != TOKEN_KIND_COUNT - Token_K_DCOP)
+    {
+      std::cerr << "** ERROR enum TOKEN_KIND and _S_token_names are not consistent" << std::endl;
+      abort();
+    }
+  return 0;
+}
+
+static int tokens_consistency = check_tokens_consistency();
+
 char const *token_name(int token)
 {
   if (token == 0)
@@ -264,9 +278,9 @@ char const *token_name(int token)
     {
       return _S_printable[token - 32];
     }
-  else if (token >= 1000)
+  else if (token >= Token_K_DCOP)
     {
-      return _S_token_names[token - 1000];
+      return _S_token_names[token - Token_K_DCOP];
     }
 
   Q_ASSERT(0);

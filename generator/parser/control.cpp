@@ -43,6 +43,8 @@
 #include "control.h"
 #include "lexer.h"
 
+bool Control::_M_printErrors = false;
+
 Control::Control()
   : current_context(0),
     _M_skipFunctionBody(false),
@@ -141,7 +143,10 @@ void Control::clearErrorMessages ()
 
 void Control::reportError (const ErrorMessage &errmsg)
 {
-    _M_error_messages.append(errmsg);
+  _M_error_messages.append(errmsg);
+  if (_M_printErrors) {
+    printf("%s (%s:%d:%d)\n", qPrintable(errmsg.message()), qPrintable(errmsg.fileName()), errmsg.line(), errmsg.column());
+  }
 }
 
 // kate: space-indent on; indent-width 2; replace-tabs on;
