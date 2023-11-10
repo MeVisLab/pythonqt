@@ -191,6 +191,7 @@ public:
   bool skip(int l, int r);
 
   void nextToken();
+  void rewind(std::size_t pos);
 
   // private:
   TokenStream token_stream;
@@ -213,6 +214,7 @@ private:
   int _currentLine{};
   int _currentColumn{};
   const char* _currentToken{};
+  QString _currentSymbol;
 
 private:
   Parser(const Parser& source);
