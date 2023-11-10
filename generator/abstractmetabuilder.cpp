@@ -2480,13 +2480,18 @@ void AbstractMetaBuilder::dumpLog()
 
 AbstractMetaClassList AbstractMetaBuilder::classesTopologicalSorted() const
 {
-    /* This function is the standard topological of a Directed Acyclic Graph
-     * (a DAG).  It outputs a partially ordered list of the nodes in the graph
-     * such that a node is output after all of its children.
+    /* This function is the standard topological sort of a Directed Acyclic
+     * Graph (a DAG).  It outputs a partially ordered list of the nodes in the
+     * graph such that a node is output after all of its children.
      *
-     * In the previous implementation it accounted for around 68-69% of the
-     * entire run time of pythonqt_generator.  The implementation also leaked
-     * memory and modified a QHash while iterating over it with a QHashIterator.
+     * In the previous implementation it seemed to account for around 68-69% of
+     * the entire run time of pythonqt_generator however this might be an
+     * artefact of the profiling technique used as these changes make not
+     * significant difference to the run time of the generator.
+     *
+     * However the previous implementation also leaked memory and  modified a
+     * QHash while iterating over it with a QHashIterator; a potentially fatal
+     * "use after free".
      *
      * This version is somewhat like the python equivalent using list
      * comprehensions.
@@ -2504,8 +2509,15 @@ AbstractMetaClassList AbstractMetaBuilder::classesTopologicalSorted() const
         /* Add the baseClass and the interfaces the class uses.  The latter
          * are stored in an AbstractMetaClassList which is uses a QList, so:
          */
-        auto entry(classes.insert(cls, QSet<AbstractMetaClass*>(
-                    cls->interfaces().cbegin(), cls->interfaces().cend())));
+        auto entry(classes.insert(cls,
+#           if QT_VERSION < QT_VERSION_CHECK(5,14,0)
+                QSet<AbstractMetaClass*>::fromList(cls->interfaces())
+#           else
+                QSet<AbstractMetaClass*>(cls->interfaces().cbegin(),
+                        cls->interfaces().cend())
+#           endif
+        ));
+
         if (cls->baseClass())
             entry.value().insert(cls->baseClass());
         entry.value().remove(cls); // may come from interfaces
