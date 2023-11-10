@@ -750,6 +750,7 @@ struct TemplateArgumentAST: public AST
 
   TypeIdAST *type_id{};
   ExpressionAST *expression{};
+  bool variadic{};
 };
 
 struct TemplateDeclarationAST: public DeclarationAST

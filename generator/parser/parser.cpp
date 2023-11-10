@@ -400,7 +400,7 @@ bool Parser::parseName(NameAST *&node, bool acceptTemplateId)
   while (true)
     {
       UnqualifiedNameAST *n = 0;
-      if (!parseUnqualifiedName(n))
+      if (!parseUnqualifiedName(n, acceptTemplateId))
         return false;
 
       if (token_stream.lookAhead() == Token_scope)
@@ -419,12 +419,6 @@ bool Parser::parseName(NameAST *&node, bool acceptTemplateId)
       else
         {
           Q_ASSERT(n != 0);
-          if (!acceptTemplateId)
-            {
-              rewind(n->start_token);
-              parseUnqualifiedName(n, false);
-            }
-
           ast->unqualified_name = n;
           break;
         }
@@ -1102,7 +1096,7 @@ bool Parser::parseSimpleTypeSpecifier(TypeSpecifierAST *&node,
             {
               ast->type_id = 0;
               rewind(saved);
-              parseUnaryExpression(ast->expression);
+              parseConditionalExpression(ast->expression);
             }
           ADVANCE(')', ")");
         }
@@ -1187,6 +1181,7 @@ bool Parser::parseTemplateArgument(TemplateArgumentAST *&node)
   ExpressionAST *expr = 0;
 
   if (!parseTypeId(typeId) || (token_stream.lookAhead() != ','
+                               && token_stream.lookAhead() != Token_ellipsis
                                && token_stream.lookAhead() != '>'
                                && token_stream.lookAhead() != Token_shift_right))
     {
@@ -1199,6 +1194,11 @@ bool Parser::parseTemplateArgument(TemplateArgumentAST *&node)
   TemplateArgumentAST *ast = CreateNode<TemplateArgumentAST>(_M_pool);
   ast->type_id = typeId;
   ast->expression = expr;
+
+  if (token_stream.lookAhead() == Token_ellipsis) {
+    nextToken();
+    ast->variadic = true;
+  }
 
   UPDATE_POS(ast, start, token_stream.cursor());
   node = ast;
@@ -3642,6 +3642,7 @@ bool Parser::parsePrimaryExpression(ExpressionAST *&node)
       parseStringLiteral(ast->literal);
       break;
 
+    case Token_ellipsis:       // "..." can occur in constexpr of variadic templates
     case Token_number_literal:
     case Token_char_literal:
     case Token_true:
@@ -3669,7 +3670,7 @@ bool Parser::parsePrimaryExpression(ExpressionAST *&node)
       break;
 
     default:
-      if (!parseName(ast->name))
+      if (!parseName(ast->name, true))   // this can also be a template
         return false;
 
       break;
@@ -3943,6 +3944,12 @@ bool Parser::parsePostfixExpression(ExpressionAST *&node)
   else
     node = expr;
 
+  if (token_stream.lookAhead() == Token_ellipsis) {
+    // ignore ellipsis, it might be something like "Pair<Args1, Args2>...", which might appear
+    // in template arguments of variadic templates
+    nextToken();
+  }
+
   return true;
 }
 
@@ -3981,6 +3988,12 @@ bool Parser::parseUnaryExpression(ExpressionAST *&node)
       {
         std::size_t sizeof_token = token_stream.cursor();
         nextToken();
+
+        if (token_stream.lookAhead() == Token_ellipsis) {
+          // sizeof... is used on parameter packs - currently we ignore this
+          // todo: handle this
+          nextToken();
+        }
 
         SizeofExpressionAST *ast = CreateNode<SizeofExpressionAST>(_M_pool);
         ast->sizeof_token = sizeof_token;
