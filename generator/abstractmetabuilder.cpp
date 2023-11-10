@@ -2501,55 +2501,112 @@ void AbstractMetaBuilder::dumpLog()
 
 AbstractMetaClassList AbstractMetaBuilder::classesTopologicalSorted() const
 {
-    AbstractMetaClassList res;
+    /* This function is the standard topological sort of a Directed Acyclic
+     * Graph (a DAG).  It outputs a partially ordered list of the nodes in the
+     * graph such that a node is output after all of its children.
+     *
+     * In the previous implementation it seemed to account for around 68-69% of
+     * the entire run time of pythonqt_generator however this might be an
+     * artefact of the profiling technique used as these changes make not
+     * significant difference to the run time of the generator.
+     *
+     * However the previous implementation also leaked memory and  modified a
+     * QHash while iterating over it with a QHashIterator; a potentially fatal
+     * "use after free".
+     *
+     * This version is somewhat like the python equivalent using list
+     * comprehensions.
+     */
 
-    AbstractMetaClassList classes = m_meta_classes;
-    classes.sort();
+    /* Build a hash list of QSet<class> for each class.  'class' is represented
+     * by a pointer to the AbstractMetaClass from m_meta_classes.
+     */
+    ReportHandler::debugSparse(QString("TSORT: %1 meta classes")
+            .arg(m_meta_classes.count()));
+    QHash<AbstractMetaClass*, QSet<AbstractMetaClass*>> classes;
+    classes.reserve(m_meta_classes.count());
 
-    QSet<AbstractMetaClass*> noDependency;
-    QHash<AbstractMetaClass*, QSet<AbstractMetaClass* >* > hash;
-    for (AbstractMetaClass *cls :  classes) {
-        QSet<AbstractMetaClass* > *depends = new QSet<AbstractMetaClass* >();
+    for (auto cls : m_meta_classes) {
+        /* Add the baseClass and the interfaces the class uses.  The latter
+         * are stored in an AbstractMetaClassList which is uses a QList, so:
+         */
+        auto entry(classes.insert(cls,
+#           if QT_VERSION < QT_VERSION_CHECK(5,14,0)
+                QSet<AbstractMetaClass*>::fromList(cls->interfaces())
+#           else
+                QSet<AbstractMetaClass*>(cls->interfaces().cbegin(),
+                        cls->interfaces().cend())
+#           endif
+        ));
 
         if (cls->baseClass())
-            depends->insert(cls->baseClass());
-
-        for (AbstractMetaClass *interface :  cls->interfaces()) {
-            AbstractMetaClass *impl = interface->primaryInterfaceImplementor();
-            if (impl == cls)
-                continue;
-            depends->insert(impl);
-        }
-
-        if (depends->empty()) {
-            noDependency.insert(cls);
-        } else {
-            hash.insert(cls, depends);
-        }
+            entry.value().insert(cls->baseClass());
+        entry.value().remove(cls); // may come from interfaces
     }
 
-    while (!noDependency.empty()) {
-        for (AbstractMetaClass *cls :  noDependency.values()) {
-            if(!cls->isInterface())
-                res.append(cls);
-            noDependency.remove(cls);
-            QHashIterator<AbstractMetaClass*, QSet<AbstractMetaClass* >* > i(hash);
-            while (i.hasNext()) {
-                i.next();
-                i.value()->remove(cls);
-                if (i.value()->empty()) {
-                    AbstractMetaClass *key = i.key();
-                    noDependency.insert(key);
-                    hash.remove(key);
-                    delete(i.value());
-                }
-            }
+    /* This and the qFatals below are fatal internal errors in the code of
+     * pythonqt_generator.
+     */
+    if (m_meta_classes.count() != classes.count())
+        qFatal("TOPO SORT: duplicate meta classes (%lld != %lld)",
+                static_cast<long long>(m_meta_classes.count()),
+                static_cast<long long>(classes.count()));
+
+    /* Loop: output all the classes with no remaining dependencies to the
+     * result and then also remove those now output classes from the remaining
+     * classes in the hash table.
+     */
+    AbstractMetaClassList result;
+    result.reserve(classes.count());
+    QSet<AbstractMetaClass *> handled;
+    handled.reserve(classes.count());
+    int interfaceClasses(0), depthFromLeaf(0);
+
+    while (!classes.empty()) {
+        handled.clear();
+        int iFCount(0);
+
+        /* Output classes where all children have already been output (initially
+         * the leaf nodes):
+         */
+        for (auto i(classes.cbegin()); i != classes.cend(); ++i)
+            if (i.value().empty())
+                handled.insert(i.key());
+
+        /* Something must have been done; if not this is not a DAG because
+         * there is a cycle.
+         */
+        if (handled.empty())
+            qFatal("TOPOSORT: %lld cyclic meta classes @depth %d.",
+                    static_cast<long long>(classes.count()), depthFromLeaf);
+
+        /* Remove all 'handled' from the hash table. */
+        for (auto cls : handled)
+            if (!classes.remove(cls))
+                qFatal("TOPO SORT: class remove failed @depth %d.",
+                        depthFromLeaf);
+
+        /* Then remove the 'handled' set from the classes values: */
+        for (QSet<AbstractMetaClass*> &set : classes)
+            set -= handled;
+
+        /* Output only those handled classes there are not interfaces: */
+        for (auto cls : handled) {
+            if (!cls->isInterface())
+                result.append(cls);
+            else
+                ++iFCount;
         }
+
+        ReportHandler::debugSparse(
+                QString("TSORT: depth %1: %2 classes (%3 interface)")
+                .arg(depthFromLeaf).arg(handled.count()).arg(iFCount));
+        interfaceClasses += iFCount;
+        ++depthFromLeaf;
     }
 
-    if (!noDependency.empty() || !hash.empty()) {
-        qWarning("dependency graph was cyclic.");
-    }
-
-    return res;
+    ReportHandler::debugSparse(QString(
+                "TSORT: %1 result classes, %2 interface classes)")
+                .arg(result.count()).arg(interfaceClasses));
+    return result;
 }
