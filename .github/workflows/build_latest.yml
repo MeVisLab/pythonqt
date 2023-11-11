@@ -1,0 +1,71 @@
+name: Latest Qt5/6
+
+on:
+  push:
+    branches: 
+      - master
+  pull_request:
+      
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  ubuntu:
+    strategy:
+      fail-fast: false
+      matrix:
+        qt-version: [ '5.*', '6.*']
+        python-version: [ '3.12' ]
+    runs-on: ubuntu-latest
+    steps:
+      
+    - name: Install Qt ${{matrix.qt-version}}
+      uses: jurplel/install-qt-action@v3
+      with:
+        version: ${{ matrix.qt-version }}
+        modules: ${{startsWith(matrix.qt-version, '6') && 'qt5compat' || '' }}
+        archives: 'qtmultimedia qtlinuxextras qtbase qttools icu qtwayland'
+
+    - name: Setup Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: '${{ matrix.python-version }}'
+
+    - name: Checkout PythonQt
+      uses: actions/checkout@v3
+
+    - name: Set environment
+      run: |
+        QT_VERSION_MAJOR=$(cut -f 1 -d . <<< "${{matrix.qt-version}}")
+        echo "QT_VERSION_MAJOR=$QT_VERSION_MAJOR" >> $GITHUB_ENV
+        QTDIR=$(eval echo "\$Qt${QT_VERSION_MAJOR}_DIR")
+        echo "QTDIR=$QTDIR" >> $GITHUB_ENV
+        echo "$QTDIR/bin" >> $GITHUB_PATH
+        echo "$pythonLocation/bin" >> $GITHUB_PATH
+
+    - name: Build PythonQt
+      run: |
+        echo ======= SYSTEM INFO ========
+        uname -a; gcc --version | grep "gcc"; python3 --version; qmake --version
+        echo ============================
+        qmake -r PythonQt.pro CONFIG+=release CONFIG+=force_debug_info \
+        CONFIG+=sanitizer CONFIG+=sanitize_undefined CONFIG+=sanitize_address \
+        PYTHON_VERSION=$(python3 --version | cut -d " " -f 2 | cut -d "." -f1,2) \
+        PYTHON_DIR=$(which python3 | xargs dirname | xargs dirname)
+        make -j $(nproc)
+        UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
+          make check TESTARGS="-platform offscreen"
+      
+    - name: Generate Wrappers
+      run: |
+        cd generator
+        UBSAN_OPTIONS="halt_on_error=1" \
+        ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
+        ./pythonqt_generator
+
+    - name: Upload Wrappers
+      uses: actions/upload-artifact@v3
+      with:
+        name: wrappers_ubuntu_${{startsWith(matrix.qt-version, '6') && '6' || '5' }}-latest
+        path: generated_cpp
