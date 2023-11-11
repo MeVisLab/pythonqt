@@ -62,7 +62,7 @@ public:
     };
 
     AbstractMetaBuilder();
-    virtual ~AbstractMetaBuilder() {};
+    virtual ~AbstractMetaBuilder();
 
     AbstractMetaClassList classes() const { return m_meta_classes; }
     AbstractMetaClassList classesTopologicalSorted() const;
