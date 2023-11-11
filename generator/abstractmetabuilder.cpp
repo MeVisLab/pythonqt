@@ -150,6 +150,11 @@ AbstractMetaBuilder::AbstractMetaBuilder()
 {
 }
 
+AbstractMetaBuilder::~AbstractMetaBuilder()
+{
+    qDeleteAll(m_meta_classes);
+}
+
 void AbstractMetaBuilder::checkFunctionModifications()
 {
     TypeDatabase *types = TypeDatabase::instance();
