@@ -365,6 +365,15 @@ void Binder::visitFunctionDefinition(FunctionDefinitionAST *node)
   Q_ASSERT(node->init_declarator != 0);
 
   ScopeModelItem scope = currentScope();
+  bool friendWithDefinition = false;
+
+  if (hasFriendSpecifier(node->storage_specifiers) && ast_cast<FunctionDefinitionAST*>(node))
+    {
+      // check if this function declaration is a "friend" function with implementation body.
+      // In this case we modify the scope, and remove the "friend" flag later on.
+      friendWithDefinition = true;
+      scope = model_static_cast<ScopeModelItem>(_M_current_file);
+    }
 
   InitDeclaratorAST *init_declarator = node->init_declarator;
   DeclaratorAST *declarator = init_declarator->declarator;
@@ -437,6 +446,13 @@ void Binder::visitFunctionDefinition(FunctionDefinitionAST *node)
     model_static_cast<FunctionModelItem>(_M_current_function)->setVirtual(true);
   }
 
+  if (friendWithDefinition)
+  {
+    // unset the friend flag, as we treat this like a stand-alone function definition
+    _M_current_function->setFriend(false);
+    // also set the access policy to public, just in case
+    _M_current_function->setAccessPolicy(CodeModel::Public);
+  }
   _M_current_function->setVariadics (decl_cc.isVariadics ());
 
   foreach (DeclaratorCompiler::Parameter p, decl_cc.parameters())
@@ -848,6 +864,24 @@ void Binder::warnHere() const
     _M_lastWarnedFile = fileName;
     std::cerr << "In file " << fileName.toLatin1().constData() << ":" << std::endl;
   }
+}
+
+bool Binder::hasFriendSpecifier(const ListNode<std::size_t>* it)
+{
+  if (it == 0)
+    return false;
+
+  it = it->toFront();
+  const ListNode<std::size_t>* end = it;
+
+  do
+  {
+    if (decode_token(it->element) == Token_friend) {
+      return true;
+    }
+    it = it->next;
+  } while (it != end);
+  return false;
 }
 
 void Binder::applyStorageSpecifiers(const ListNode<std::size_t> *it, MemberModelItem item)

@@ -104,6 +104,7 @@ private:
 
   void declare_symbol(SimpleDeclarationAST *node, InitDeclaratorAST *init_declarator);
 
+  bool hasFriendSpecifier(const ListNode<std::size_t>* it);
   void applyStorageSpecifiers(const ListNode<std::size_t> *storage_specifiers, MemberModelItem item);
   void applyFunctionSpecifiers(const ListNode<std::size_t> *it, FunctionModelItem item);
 
