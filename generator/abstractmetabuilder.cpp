@@ -1717,7 +1717,7 @@ AbstractMetaType *AbstractMetaBuilder::translateType(const TypeInfo &_typei, boo
         return 0;
     }
 
-    TypeParser::Info typeInfo = TypeParser::parse(typei.toString());
+    TypeParser::Info typeInfo = TypeParser::parse(typei.toString(/*parsable=*/true));
     if (typeInfo.is_busted) {
         *ok = false;
         return 0;

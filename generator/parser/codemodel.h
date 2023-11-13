@@ -165,7 +165,7 @@ struct TypeInfo
 
   // ### arrays and templates??
 
-  QString toString() const;
+  QString toString(bool parsable = false) const;
 
   static TypeInfo combine (const TypeInfo &__lhs, const TypeInfo &__rhs);
   static TypeInfo resolveType (TypeInfo const &__type, CodeModelItem __scope);

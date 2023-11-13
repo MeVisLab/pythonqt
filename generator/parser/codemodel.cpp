@@ -176,7 +176,7 @@ TypeInfo TypeInfo::resolveType (TypeInfo const &__type, CodeModelItem __scope)
     return otherType;
 }
 
-QString TypeInfo::toString() const
+QString TypeInfo::toString(bool parsable) const
 {
   QString tmp;
 
@@ -184,14 +184,16 @@ QString TypeInfo::toString() const
   if (isConstant())
     tmp += QLatin1String(" const");
 
-  if (isConstexpr())
-    tmp += QLatin1String(" constexpr");
+  if (!parsable) {
+    if (isConstexpr())
+      tmp += QLatin1String(" constexpr");
 
-  if (isVolatile())
-    tmp += QLatin1String(" volatile");
+    if (isVolatile())
+      tmp += QLatin1String(" volatile");
 
-  if (isMutable())
-    tmp += QLatin1String(" mutable");
+    if (isMutable())
+      tmp += QLatin1String(" mutable");
+  }
 
   if (indirections())
     tmp += QString(indirections(), QLatin1Char('*'));
@@ -209,7 +211,7 @@ QString TypeInfo::toString() const
           if (i != 0)
             tmp += QLatin1String(", ");
 
-          tmp += m_arguments.at(i).toString();
+          tmp += m_arguments.at(i).toString(parsable);
         }
       tmp += QLatin1String(")");
     }
