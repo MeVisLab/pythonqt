@@ -1253,7 +1253,7 @@ void AbstractMetaBuilder::traverseFunctions(ScopeModelItem scope_item, AbstractM
                 }
             } else if (QPropertySpec *write =
                        meta_class->propertySpecForWrite(meta_function->name())) {
-                if (write->type() == meta_function->arguments().at(0)->type()->typeEntry()) {
+                if (meta_function->arguments().size() == 1 && write->type() == meta_function->arguments().at(0)->type()->typeEntry()) {
                     *meta_function += AbstractMetaAttributes::PropertyWriter;
                     meta_function->setPropertySpec(write);
 //                     printf("%s is writer for %s\n",
