@@ -186,6 +186,9 @@ public:
   template <typename InputIterator>
   inline InputIterator eval_expression (InputIterator _first, InputIterator _last, Value *result);
 
+  template<typename InputIterator>
+  std::string expand_condition(InputIterator _first, InputIterator _last);
+
   template <typename OutputIterator>
   void file (std::string const &filename, OutputIterator _result);
 
