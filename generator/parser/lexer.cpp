@@ -142,7 +142,7 @@ void Lexer::tokenize(const char *contents, std::size_t size)
   line_table.current_line = 1;
 
   do {
-    if (index == token_stream.size())
+    if (index >= token_stream.size()-4)  // increase size of token_stream early, in case more than one token is written in one go
       token_stream.resize(token_stream.size() * 2);
 
     Token *current_token = &token_stream[(int) index];
