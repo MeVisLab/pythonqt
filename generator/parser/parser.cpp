@@ -547,12 +547,12 @@ bool Parser::parseDeclaration(DeclarationAST *&node)
         skipAttributes();
 
         const ListNode<std::size_t> *cv = 0;
-        parseCvQualify(cv);
-
-        const ListNode<std::size_t> *storageSpec = 0;
-        parseStorageClassSpecifier(storageSpec);
-
-        parseCvQualify(cv);
+        const ListNode<std::size_t>* storageSpec = 0;
+        // consume all qualifiers/specifiers
+        while (parseCvQualify(cv) || parseStorageClassSpecifier(storageSpec))
+        {
+          ;
+        }
 
         TypeSpecifierAST *spec = 0;
         if (parseEnumSpecifier(spec)
@@ -2182,12 +2182,12 @@ bool Parser::parseMemberSpecification(DeclarationAST *&node)
   rewind(start);
 
   const ListNode<std::size_t> *cv = 0;
-  parseCvQualify(cv);
-
-  const ListNode<std::size_t> *storageSpec = 0;
-  parseStorageClassSpecifier(storageSpec);
-
-  parseCvQualify(cv);
+  const ListNode<std::size_t>* storageSpec = 0;
+  // consume all qualifiers/specifiers
+  while (parseCvQualify(cv) || parseStorageClassSpecifier(storageSpec))
+  {
+    ;
+  }
 
   TypeSpecifierAST *spec = 0;
   if (parseEnumSpecifier(spec) || parseClassSpecifier(spec))
@@ -3241,12 +3241,12 @@ bool Parser::parseBlockDeclaration(DeclarationAST *&node)
   std::size_t start = token_stream.cursor();
 
   const ListNode<std::size_t> *cv = 0;
-  parseCvQualify(cv);
-
   const ListNode<std::size_t> *storageSpec = 0;
-  parseStorageClassSpecifier(storageSpec);
-
-  parseCvQualify(cv);
+  // consume all qualifiers/specifiers
+  while (parseCvQualify(cv) || parseStorageClassSpecifier(storageSpec))
+  {
+    ;
+  }
 
   TypeSpecifierAST *spec = 0;
   if (!parseTypeSpecifierOrClassSpec(spec))
@@ -3329,30 +3329,20 @@ bool Parser::parseDeclarationInternal(DeclarationAST *&node)
   // that is for the case '__declspec(dllexport) int ...' or
   // '__declspec(dllexport) inline int ...', etc.
   WinDeclSpecAST *winDeclSpec = 0;
-  parseWinDeclSpec(winDeclSpec);
-
-  skipAttributes();
-
   const ListNode<std::size_t>* cv = 0;
-  parseCvQualify(cv);
-
-  const ListNode<std::size_t> *funSpec = 0;
-  bool hasFunSpec = parseFunctionSpecifier(funSpec);
-
-  if (!cv)
-    parseCvQualify(cv);
-
-  const ListNode<std::size_t> *storageSpec = 0;
-  bool hasStorageSpec = parseStorageClassSpecifier(storageSpec);
-
-  if (hasStorageSpec && !hasFunSpec)
-    hasFunSpec = parseFunctionSpecifier(funSpec);
-
-  // that is for the case 'friend __declspec(dllexport) ....'
-  parseWinDeclSpec(winDeclSpec);
-
-  if (!cv)
-    parseCvQualify(cv);
+  const ListNode<std::size_t>* funSpec = 0;
+  const ListNode<std::size_t>* storageSpec = 0;
+  // since it seems that the various specifiers can come in almost any order,
+  // so just consume then until no specifiers are left.
+  // Luckily the parse methods can be called multiple times, they just add to existing nodes.
+  while (skipAttributes() ||
+         parseWinDeclSpec(winDeclSpec) ||
+         parseCvQualify(cv) ||
+         parseFunctionSpecifier(funSpec) ||
+         parseStorageClassSpecifier(storageSpec))
+  {
+    ;
+  }
 
   int index = (int) token_stream.cursor();
   NameAST *name = 0;
@@ -3475,8 +3465,7 @@ bool Parser::parseDeclarationInternal(DeclarationAST *&node)
     {
       Q_ASSERT(spec != 0);
 
-      if (!hasFunSpec)
-        parseFunctionSpecifier(funSpec);         // e.g. "void inline"
+      parseFunctionSpecifier(funSpec);         // e.g. "void inline"
 
       spec->cv = cv;
 
