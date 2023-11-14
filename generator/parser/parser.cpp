@@ -1065,7 +1065,7 @@ bool Parser::parseCvQualify(const ListNode<std::size_t> *&node)
 
   int tk;
   while (0 != (tk = token_stream.lookAhead())
-         && (tk == Token_const || tk == Token_constexpr ||
+         && (tk == Token_const ||
              tk == Token_volatile || tk == Token_mutable))
     {
       node = snoc(node, token_stream.cursor(), _M_pool);
@@ -1760,7 +1760,7 @@ bool Parser::parseFunctionSpecifier(const ListNode<std::size_t> *&node)
 
   int tk;
   while (0 != (tk = token_stream.lookAhead())
-         && (tk == Token_inline || tk == Token_virtual
+         && (tk == Token_constexpr || tk == Token_inline || tk == Token_virtual
              || tk == Token_explicit || tk == Token_Q_INVOKABLE))
     {
       node = snoc(node, token_stream.cursor(), _M_pool);
@@ -3438,8 +3438,7 @@ bool Parser::parseDeclarationInternal(DeclarationAST *&node)
  start_decl:
   rewind(index);
 
-  if ((token_stream.lookAhead() == Token_const ||
-       token_stream.lookAhead() == Token_constexpr)
+  if (token_stream.lookAhead() == Token_const
       && token_stream.lookAhead(1) == Token_identifier
       && token_stream.lookAhead(2) == '=')
     {

@@ -132,11 +132,6 @@ bool TypeCompiler::isConstant() const
   return _M_cv.contains(Token_const);
 }
 
-bool TypeCompiler::isConstexpr() const
-{
-  return _M_cv.contains(Token_constexpr);
-}
-
 bool TypeCompiler::isVolatile() const
 {
   return _M_cv.contains(Token_volatile);

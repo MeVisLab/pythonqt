@@ -132,9 +132,6 @@ struct TypeInfo
   bool isConstant() const { return m_flags.m_constant; }
   void setConstant(bool is) { m_flags.m_constant = is; }
 
-  bool isConstexpr() const { return m_flags.m_constexpr; }
-  void setConstexpr(bool is) { m_flags.m_constexpr = is; }
-
   bool isVolatile() const { return m_flags.m_volatile; }
   void setVolatile(bool is) { m_flags.m_volatile = is; }
 

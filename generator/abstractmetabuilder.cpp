@@ -1735,7 +1735,6 @@ AbstractMetaType *AbstractMetaBuilder::translateType(const TypeInfo &_typei, boo
             //newInfo.setArguments(typei.arguments());
             newInfo.setIndirections(typei.indirections());
             newInfo.setConstant(typei.isConstant());
-            newInfo.setConstexpr(typei.isConstexpr());
             newInfo.setFunctionPointer(typei.isFunctionPointer());
             newInfo.setQualifiedName(typei.qualifiedName());
             newInfo.setReference(typei.isReference());

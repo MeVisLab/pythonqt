@@ -61,7 +61,6 @@ public:
   inline QList<int> cv() const { return _M_cv; }
 
   bool isConstant() const;
-  bool isConstexpr() const;
   bool isVolatile() const;
   bool isMutable() const;
 

@@ -142,7 +142,6 @@ TypeInfo TypeInfo::combine (const TypeInfo &__lhs, const TypeInfo &__rhs)
   TypeInfo __result = __lhs;
 
   __result.setConstant (__result.isConstant () || __rhs.isConstant ());
-  __result.setConstexpr (__result.isConstexpr () || __rhs.isConstexpr ());
   __result.setVolatile (__result.isVolatile () || __rhs.isVolatile ());
   __result.setMutable (__result.isMutable () || __rhs.isMutable ());
   __result.setReference (__result.isReference () || __rhs.isReference ());
@@ -185,9 +184,6 @@ QString TypeInfo::toString(bool parsable) const
     tmp += QLatin1String(" const");
 
   if (!parsable) {
-    if (isConstexpr())
-      tmp += QLatin1String(" constexpr");
-
     if (isVolatile())
       tmp += QLatin1String(" volatile");
 

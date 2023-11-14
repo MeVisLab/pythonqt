@@ -127,12 +127,6 @@ void NameCompiler::visitTemplateArgument(TemplateArgumentAST *node)
       if (type_cc.isConstant())
         _M_name.last() += "const ";
 
-      /* An id can't be 'constexpr' but it may have a function type in which
-       * case constexpr could appear.
-       */
-      if (type_cc.isConstexpr())
-        _M_name.last() += "constexpr ";
-
       QStringList q = type_cc.qualifiedName ();
 
       if (q.count () == 1)

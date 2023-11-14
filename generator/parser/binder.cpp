@@ -938,6 +938,10 @@ void Binder::applyFunctionSpecifiers(const ListNode<std::size_t> *it, FunctionMo
           default:
             break;
 
+          case Token_constexpr:
+            item->setConstexpr(true);
+            break;
+
           case Token_inline:
             item->setInline(true);
             break;
