@@ -735,7 +735,7 @@ bool Parser::parseUsing(DeclarationAST *&node)
       nextToken();
     }
 
-  if (!parseName(ast->name))
+  if (!parseName(ast->name, /*acceptTemplateId=*/true))
     return false;
 
   ADVANCE(';', ";");
@@ -1151,6 +1151,10 @@ bool Parser::parseSimpleTypeSpecifier(TypeSpecifierAST *&node,
     }
   else
     {
+      if (token_stream.lookAhead() == Token_typename)
+        {
+          nextToken(); // simply skip for now
+        }
       if (!parseName(ast->name, true))
         {
           ast->name = 0;
