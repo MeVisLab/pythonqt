@@ -71,6 +71,9 @@ class pp_macro_expander
 
   std::string const *resolve_formal (pp_fast_string const *_name)
   {
+    static const pp_fast_string va_args_name("__VA_ARGS__", 11);
+    static std::string empty("");
+
     assert (_name != 0);
 
     if (! frame)
@@ -78,7 +81,10 @@ class pp_macro_expander
 
     assert (frame->expanding_macro != 0);
 
-    std::vector<pp_fast_string const *> const formals = frame->expanding_macro->formals;
+    std::vector<pp_fast_string const *> formals = frame->expanding_macro->formals;
+    if (frame->expanding_macro->is.variadics)
+      formals.push_back(&va_args_name);
+
     for (std::size_t index = 0; index < formals.size(); ++index)
       {
         pp_fast_string const *formal = formals[index];
@@ -88,6 +94,10 @@ class pp_macro_expander
 
         else if (frame->actuals && index < frame->actuals->size())
           return &(*frame->actuals)[index];
+
+        else if (frame->expanding_macro->is.variadics && index == formals.size()-1)
+          // variadic argument may also be missing, replace with empty then
+          return &empty;
 
         else
           assert (0); // internal error?
