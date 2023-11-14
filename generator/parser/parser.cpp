@@ -3958,7 +3958,24 @@ bool Parser::parsePostfixExpression(ExpressionAST *&node)
       typeSpec = 0;
       rewind(start);
 
-      if (!parsePrimaryExpression(expr))
+      if (token_stream.lookAhead() == Token_noexcept)
+      {
+        nextToken();
+        CHECK('(');
+        ExpressionAST* arg_expr = 0;
+        if (!parseExpression(arg_expr))
+        {
+          return false;
+        }
+        CHECK(')');
+
+        // make noexcept() in expressions an unary expression
+        UnaryExpressionAST* ast = CreateNode<UnaryExpressionAST>(_M_pool);
+        ast->op = start;
+        ast->expression = arg_expr;
+        expr = ast;
+      }
+      else if (!parsePrimaryExpression(expr))
         return false;
     }
 
