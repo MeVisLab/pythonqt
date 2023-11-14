@@ -668,6 +668,16 @@ AbstractMetaClass *AbstractMetaBuilder::traverseNamespace(NamespaceModelItem nam
     traverseFunctions(model_dynamic_cast<ScopeModelItem>(namespace_item), meta_class);
 //     traverseClasses(model_dynamic_cast<ScopeModelItem>(namespace_item));
 
+    // collect all include files (since namespace items might come from different files)
+    QSet<QString> includeFiles;
+    for (auto item : namespace_item->enums()) {
+      includeFiles.insert(item->fileName());
+    }
+    for (auto item : namespace_item->functions()) {
+      includeFiles.insert(item->fileName());
+    }
+    // (should we do this for typeAliases and inner namespaces too?)
+
     pushScope(model_dynamic_cast<ScopeModelItem>(namespace_item));
     m_namespace_prefix = currentScope()->qualifiedName().join("::");
 
@@ -676,6 +686,7 @@ AbstractMetaClass *AbstractMetaBuilder::traverseNamespace(NamespaceModelItem nam
     for (ClassModelItem cls :  classes) {
         AbstractMetaClass *mjc = traverseClass(cls);
         addAbstractMetaClass(mjc);
+        includeFiles.insert(cls->fileName());
     }
 
     // Go through all typedefs to see if we have defined any
@@ -704,6 +715,11 @@ AbstractMetaClass *AbstractMetaBuilder::traverseNamespace(NamespaceModelItem nam
     if (!type->include().isValid()) {
         QFileInfo info(namespace_item->fileName());
         type->setInclude(Include(Include::IncludePath, info.fileName()));
+    }
+    // namespace items might come from different include files:
+    for (const QString& oneIncludeFile : includeFiles) {
+      QFileInfo info(oneIncludeFile);
+      type->addExtraInclude(Include(Include::IncludePath, info.fileName()));
     }
 
     return meta_class;
