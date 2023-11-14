@@ -3954,11 +3954,19 @@ bool Parser::parsePostfixExpression(ExpressionAST *&node)
 
  L_no_rewind:
   if (!expr && parseSimpleTypeSpecifier(typeSpec)
-      && token_stream.lookAhead() == '(')
+      && (token_stream.lookAhead() == '(' || token_stream.lookAhead() == '{'))
     {
-      nextToken(); // skip '('
+      int tk = token_stream.lookAhead();
+      nextToken(); // skip '(' or '{'
       parseCommaExpression(expr);
-      CHECK(')');
+      if (tk == '(')
+        {
+          CHECK(')');
+        }
+      else
+        {
+          CHECK('}');
+        }
     }
   else if (expr)
     {
