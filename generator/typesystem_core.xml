@@ -693,6 +693,7 @@
   <enum-type name="QFile::Permission" flags="QFile::Permissions"/>
   <enum-type name="QFile::FileHandleFlag" flags="QFile::FileHandleFlags"/>
   <enum-type name="QIODevice::OpenModeFlag" flags="QIODevice::OpenMode"/>
+  <enum-type name="QIODeviceBase::OpenModeFlag" flags="QIODeviceBase::OpenMode"/>
   <enum-type name="QLibraryInfo::LibraryLocation"/>
   <enum-type name="QLibrary::LoadHint" flags="QLibrary::LoadHints"/>
   <enum-type name="QLocale::FormatType"/>
@@ -1290,6 +1291,7 @@
     <modify-function signature="unmap(uchar*)" remove="all"/>
   </object-type>
 
+  <interface-type name="QIODeviceBase"/>
   <object-type name="QIODevice">
     <modify-function signature="peek(char *,qint64)" remove="all"/>
     <modify-function signature="read(char *,qint64)" remove="all"/>
@@ -1304,6 +1306,7 @@
   </object-type>
   <object-type name="QLibraryInfo"/>
   <object-type name="QMutex"/>
+  <object-type name="QRecursiveMutex"/>
   <value-type name="QMutexLocker">
     <!-- special handling for context handlers -->
     <inject-code class="pywrap-operators">PythonQt::Type_EnterExit</inject-code>
@@ -2014,6 +2017,7 @@
   <enum-type name="Qt::Edge"/>
 
   <object-type name="QDeadlineTimer"/>
+  <object-type name="QOperatingSystemVersionBase"/>
   <object-type name="QOperatingSystemVersion"/>
   <enum-type name="QOperatingSystemVersion::OSType"/>
   <object-type name="QRandomGenerator"/>
