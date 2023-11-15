@@ -3706,6 +3706,17 @@ bool Parser::parsePrimaryExpression(ExpressionAST *&node)
       CHECK(')');
       break;
 
+    case '{':
+      nextToken();
+
+      // support for new-style initializers
+      if (token_stream.lookAhead() != '}' && !parseExpression(ast->sub_expression)) {
+        return false;
+      }
+
+      CHECK('}');
+      break;
+
     default:
       if (!parseName(ast->name, true))   // this can also be a template
         return false;
