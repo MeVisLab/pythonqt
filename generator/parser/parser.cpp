@@ -1273,7 +1273,7 @@ bool Parser::parseTypeSpecifier(TypeSpecifierAST *&node)
   return true;
 }
 
-bool Parser::parseDeclarator(DeclaratorAST *&node)
+bool Parser::parseDeclarator(DeclaratorAST *&node, bool asParameter)
 {
   std::size_t start = token_stream.cursor();
 
@@ -1305,14 +1305,23 @@ bool Parser::parseDeclarator(DeclaratorAST *&node)
         {
           // unnamed bitfield
         }
-      else if (parseName(declId, true))
-        {
-          ast->id = declId;
-        }
       else
         {
-          rewind(start);
-          return false;
+          if (asParameter && token_stream.lookAhead() == Token_ellipsis)
+            {
+              // parameter pack
+              nextToken();
+              ast->packedParameter = true;
+            }
+          if (parseName(declId, true))
+            {
+              ast->id = declId;
+            }
+          else
+            {
+              rewind(start);
+              return false;
+            }
         }
 
       if (token_stream.lookAhead() == ':')
@@ -1902,7 +1911,7 @@ bool Parser::parseParameterDeclaration(ParameterDeclarationAST *&node)
   int index = (int) token_stream.cursor();
 
   DeclaratorAST *decl = 0;
-  if (!parseDeclarator(decl))
+  if (!parseDeclarator(decl, /*asParameter=*/true))
     {
       rewind(index);
 

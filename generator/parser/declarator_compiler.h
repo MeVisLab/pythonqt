@@ -60,9 +60,10 @@ public:
     TypeInfo type;
     QString name;
     QString defaultValueExpression;
-    bool defaultValue;
+    bool defaultValue{};
+    bool packedParameter{};
 
-    Parameter(): defaultValue(false) {}
+    Parameter() {}
   };
 
 public:
@@ -76,6 +77,7 @@ public:
   inline bool isVariadics() const { return _M_variadics; }
   inline bool isReference() const { return _M_reference; }
   inline bool isRvalueReference() const { return _M_rvalue_reference; }
+  inline bool isPackedParameter() const { return _M_packed_parameter; }
   inline int indirection() const { return _M_indirection; }
   inline QList<Parameter> parameters() const { return _M_parameters; }
 
@@ -91,6 +93,7 @@ private:
   bool _M_reference;
   bool _M_rvalue_reference;
   bool _M_variadics;
+  bool _M_packed_parameter;
   int _M_indirection;
   QString _M_id;
   QStringList _M_array;

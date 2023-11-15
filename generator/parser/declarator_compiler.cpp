@@ -64,6 +64,7 @@ void DeclaratorCompiler::run(DeclaratorAST *node)
   _M_reference = false;
   _M_rvalue_reference = false;
   _M_variadics = false;
+  _M_packed_parameter = false;
   _M_indirection = 0;
 
   if (node)
@@ -81,6 +82,7 @@ void DeclaratorCompiler::run(DeclaratorAST *node)
       _M_function = (node->parameter_declaration_clause != 0);
       if (node->parameter_declaration_clause && node->parameter_declaration_clause->ellipsis)
         _M_variadics = true;
+      _M_packed_parameter = node->packedParameter;
 
       visitNodes(this, node->ptr_ops);
       visit(node->parameter_declaration_clause);
@@ -151,6 +153,7 @@ void DeclaratorCompiler::visitParameterDeclaration(ParameterDeclarationAST *node
 
   p.name = decl_cc.id();
   p.type = CompilerUtils::typeDescription(node->type_specifier, node->declarator, _M_binder);
+  p.packedParameter = decl_cc.isPackedParameter();
 
   // ignore case a single void parameter
   if (_M_parameters.isEmpty() && p.name.isEmpty() && p.type.toString() == "void")

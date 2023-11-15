@@ -384,6 +384,7 @@ struct DeclaratorAST: public AST
   const ListNode<std::size_t> *fun_cv{};
   ExceptionSpecificationAST *exception_spec{};
   bool _override{};
+  bool packedParameter{};
   ValueReferenceEnum valueRef{ UnspecifiedRef };
 };
 

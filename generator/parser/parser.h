@@ -93,7 +93,7 @@ public:
   bool parseDeclaration(DeclarationAST *&node);
   bool parseDeclarationInternal(DeclarationAST *&node);
   bool parseDeclarationStatement(StatementAST *&node);
-  bool parseDeclarator(DeclaratorAST *&node);
+  bool parseDeclarator(DeclaratorAST *&node, bool asParameter = false);
   bool parseDeclaratorParametersAndSuffix(DeclaratorAST* node);
   bool parseDeleteExpression(ExpressionAST *&node);
   bool parseDoStatement(StatementAST *&node);

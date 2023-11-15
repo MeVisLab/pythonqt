@@ -420,6 +420,12 @@ void Binder::visitFunctionDefinition(FunctionDefinitionAST *node)
       //          << qPrintable(name_cc.name()) << std::endl;
       return;
     }
+    if (p.packedParameter) {
+      //warnHere();
+      //std::cerr << "** Skipping function with packed parameter: "
+      //          << qPrintable(name_cc.name()) << std::endl;
+      return;
+    }
   }
 
   Q_ASSERT(! decl_cc.id().isEmpty());
