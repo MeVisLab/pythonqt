@@ -318,15 +318,19 @@ int PythonQtMethodInfo::nameToType(const char* name)
       _parameterTypeDict.insert("qgl_GLsizeiptr", QMetaType::LongLong);
       _parameterTypeDict.insert("size_t", QMetaType::ULongLong);
       _parameterTypeDict.insert("qintptr", QMetaType::LongLong);
+      _parameterTypeDict.insert("qptrdiff", QMetaType::LongLong);
       _parameterTypeDict.insert("quintptr", QMetaType::ULongLong);
       _parameterTypeDict.insert("WId", QMetaType::ULongLong);
+      _parameterTypeDict.insert("qsizetype", QMetaType::LongLong);
     } else {
       _parameterTypeDict.insert("qgl_GLintptr", QMetaType::Int);
       _parameterTypeDict.insert("qgl_GLsizeiptr", QMetaType::Int);
       _parameterTypeDict.insert("size_t", QMetaType::UInt);
       _parameterTypeDict.insert("qintptr", QMetaType::Int);
+      _parameterTypeDict.insert("qptrdiff", QMetaType::Int);
       _parameterTypeDict.insert("quintptr", QMetaType::UInt);
       _parameterTypeDict.insert("WId", QMetaType::UInt);
+      _parameterTypeDict.insert("qsizetype", QMetaType::Int);
     }
 
 #ifdef PYTHONQT_SUPPORT_ML_TYPES

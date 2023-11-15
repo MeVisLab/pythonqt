@@ -201,6 +201,8 @@
   <primitive-type name="jobject"/>
   <primitive-type name="quintptr"/>
   <primitive-type name="qintptr"/>
+  <primitive-type name="qptrdiff"/>
+  <primitive-type name="qsizetype"/>
 
   <value-type name="QModelIndex"/>
   <rejection class="*" function-name="d_func"/>
