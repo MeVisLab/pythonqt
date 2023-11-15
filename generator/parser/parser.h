@@ -94,6 +94,7 @@ public:
   bool parseDeclarationInternal(DeclarationAST *&node);
   bool parseDeclarationStatement(StatementAST *&node);
   bool parseDeclarator(DeclaratorAST *&node);
+  bool parseDeclaratorParametersAndSuffix(DeclaratorAST* node);
   bool parseDeleteExpression(ExpressionAST *&node);
   bool parseDoStatement(StatementAST *&node);
   bool parseElaboratedTypeSpecifier(TypeSpecifierAST *&node);

@@ -372,10 +372,9 @@ struct DeclarationStatementAST: public StatementAST
 struct DeclaratorAST: public AST
 {
   DECLARE_AST_NODE(Declarator)
+  enum ValueReferenceEnum { UnspecifiedRef, Lvalue, Rvalue }; // "&" or "&&" after member function
   
-  DeclaratorAST() {
-    _override = false;
-  }
+  DeclaratorAST() = default;
   const ListNode<PtrOperatorAST*> *ptr_ops{};
   DeclaratorAST *sub_declarator{};
   NameAST *id{};
@@ -385,6 +384,7 @@ struct DeclaratorAST: public AST
   const ListNode<std::size_t> *fun_cv{};
   ExceptionSpecificationAST *exception_spec{};
   bool _override{};
+  ValueReferenceEnum valueRef{ UnspecifiedRef };
 };
 
 struct DeleteExpressionAST: public ExpressionAST

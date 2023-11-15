@@ -1362,50 +1362,27 @@ bool Parser::parseDeclarator(DeclaratorAST *&node)
         return false;
       }
 
-    std::size_t index = token_stream.cursor();
-    if (token_stream.lookAhead() == '(')
+    if (parseDeclaratorParametersAndSuffix(ast)) {
+
+      if (token_stream.lookAhead() == Token_identifier &&
+        token_stream.symbol(token_stream.cursor())->as_string() == "override")
       {
         nextToken();
-
-        ParameterDeclarationClauseAST *params = 0;
-        if (!parseParameterDeclarationClause(params))
-          {
-            rewind(index);
-            goto update_pos;
-          }
-
-        ast->parameter_declaration_clause = params;
-
-        if (token_stream.lookAhead() != ')')
-          {
-            rewind(index);
-            goto update_pos;
-          }
-
-        nextToken();  // skip ')'
-
-        parseCvQualify(ast->fun_cv);
-        parseExceptionSpecification(ast->exception_spec);
-        if (token_stream.lookAhead() == Token_identifier) {
-          const NameSymbol *name_symbol = token_stream.symbol(token_stream.cursor());
-          QString name = name_symbol->as_string();
-          if (name == "override") {
-            nextToken();
-            ast->_override = true;
-          }
-        }
-        skipAttributes();
+        ast->_override = true;
       }
+      skipAttributes();
 
-    if (skipParen)
+      if (skipParen)
       {
         if (token_stream.lookAhead() != ')')
-          {
-            reportError(("')' expected"));
-          }
+        {
+          reportError(("')' expected"));
+        }
         else
           nextToken();
       }
+
+    }
   }
 
  update_pos:
@@ -1485,31 +1462,7 @@ bool Parser::parseAbstractDeclarator(DeclaratorAST *&node)
         return false;
       }
 
-    int index = (int) token_stream.cursor();
-    if (token_stream.lookAhead() == '(')
-      {
-        nextToken();
-
-        ParameterDeclarationClauseAST *params = 0;
-        if (!parseParameterDeclarationClause(params))
-          {
-            rewind(index);
-            goto update_pos;
-          }
-
-        ast->parameter_declaration_clause = params;
-
-        if (token_stream.lookAhead() != ')')
-          {
-            rewind(index);
-            goto update_pos;
-          }
-
-        nextToken();  // skip ')'
-
-        parseCvQualify(ast->fun_cv);
-        parseExceptionSpecification(ast->exception_spec);
-      }
+    parseDeclaratorParametersAndSuffix(ast);
   }
 
  update_pos:
@@ -1520,6 +1473,47 @@ bool Parser::parseAbstractDeclarator(DeclaratorAST *&node)
   node = ast;
 
   return true;
+}
+
+bool Parser::parseDeclaratorParametersAndSuffix(DeclaratorAST* ast)
+{
+  std::size_t index = token_stream.cursor();
+  if (token_stream.lookAhead() == '(')
+  {
+    nextToken();
+
+    ParameterDeclarationClauseAST* params = 0;
+    if (!parseParameterDeclarationClause(params))
+    {
+      rewind(index);
+      return false;
+    }
+
+    ast->parameter_declaration_clause = params;
+
+    if (token_stream.lookAhead() != ')')
+    {
+      rewind(index);
+      return false;
+    }
+
+    nextToken();  // skip ')'
+
+    parseCvQualify(ast->fun_cv);
+    if (token_stream.lookAhead() == '&')
+    {
+      ast->valueRef = DeclaratorAST::Lvalue;
+      nextToken();
+    }
+    else if (token_stream.lookAhead() == Token_and)
+    {
+      ast->valueRef = DeclaratorAST::Rvalue;
+      nextToken();
+    }
+    parseExceptionSpecification(ast->exception_spec);
+    return true;
+  }
+  return false;
 }
 
 bool Parser::parseEnumSpecifier(TypeSpecifierAST *&node)

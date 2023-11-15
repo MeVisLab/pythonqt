@@ -393,6 +393,13 @@ void Binder::visitFunctionDefinition(FunctionDefinitionAST *node)
   }
   CodeModelFinder finder(model(), this);
 
+  if (declarator->valueRef == DeclaratorAST::Rvalue)
+  {
+    // rvalue reference methods are ignored, since we can't use them for the wrappers
+    // (there is usually also a method with lvalue reference binding)
+    return;
+  }
+
   ScopeModelItem functionScope = finder.resolveScope(declarator->id, scope);
   if (! functionScope)
     {
