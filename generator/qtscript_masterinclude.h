@@ -93,6 +93,7 @@
 
 // don't need this:
 #define Q_REVISION(v)
+#define Q_DECLARE_OPERATORS_FOR_FLAGS(x)
 
 #include <QtCore/QtCore>
 #include <QtGui/QtGui>
@@ -100,6 +101,10 @@
 #include <QtSql/QtSql>
 #include <QtSvg/QtSvg>
 #include <QtXml/QtXml>
+
+#if QT_VERSION >= 0x060000
+#include <QtSvgWidgets/QtSvgWidgets>
+#endif
 
 #include <QtUiTools/QtUiTools>
 
