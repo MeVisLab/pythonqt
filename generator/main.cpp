@@ -50,8 +50,44 @@
 #include "control.h"
 
 #include <QDir>
+#include <QFileInfo>
+#include <QFile>
+#include <QTextStream>
+#include <QRegularExpression>
 
 void displayHelp(GeneratorSet *generatorSet);
+
+static unsigned int getQtVersion(const QString& commandLineIncludes)
+{
+  QRegularExpression re("#define\\s+QTCORE_VERSION\\s+0x([0-9a-f]+)", QRegularExpression::CaseInsensitiveOption);
+  for (const QString& includeDir : Preprocess::getIncludeDirectories(commandLineIncludes)) {
+    QFileInfo fi(QDir(includeDir), "qtcoreversion.h");
+    if (fi.exists()) {
+      QString filePath = fi.absoluteFilePath();
+      QFile f(filePath);
+      if (f.open(QIODevice::ReadOnly)) {
+        QTextStream ts(&f);
+        QString content = ts.readAll();
+        f.close();
+        auto match = re.match(content);
+        if (match.isValid()) {
+          unsigned int result;
+          bool ok;
+          result = match.captured(1).toUInt(&ok, 16);
+          if (!ok) {
+            printf("Could not parse Qt version in file [%s] (looked for #define QTCORE_VERSION)\n",
+              qPrintable(filePath));
+          }
+          return result;
+        }
+      }
+    }
+  }
+  printf("Could not find QT version (looked for qtcoreversion.h in %s), using 5.15\n",
+    qPrintable(commandLineIncludes));
+  return 0x050F00;
+}
+
 
 #include <QDebug>
 int main(int argc, char *argv[])
@@ -143,9 +179,14 @@ int main(int argc, char *argv[])
 
     printf("Please wait while source files are being generated...\n");
 
+    printf("Trying to determine Qt version...\n");
+    unsigned int qtVersion = getQtVersion(args.value("include-paths"));
+    printf("Determined Qt version is %X\n", qtVersion);
+
     printf("Parsing typesystem file [%s]\n", qPrintable(typesystemFileName));
+    fflush(stdout);
     ReportHandler::setContext("Typesystem");
-    if (!TypeDatabase::instance()->parseFile(typesystemFileName))
+    if (!TypeDatabase::instance()->parseFile(typesystemFileName, qtVersion))
         qFatal("Cannot parse file: '%s'", qPrintable(typesystemFileName));
 
     printf("PreProcessing - Generate [%s] using [%s] and include-paths [%s]\n",

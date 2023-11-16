@@ -49,25 +49,9 @@
 
 struct Preprocess
 {
-    static bool preprocess(const QString &sourceFile, const QString &targetFile, const QString &commandLineIncludes = QString())
+
+    static QStringList getIncludeDirectories(const QString& commandLineIncludes)
     {
-        rpp::pp_environment env;
-        rpp::pp preprocess(env);
-
-        rpp::pp_null_output_iterator null_out;
-
-        const char *ppconfig = ":/trolltech/generator/parser/rpp/pp-qt-configuration";
-
-        QFile file(ppconfig);
-        if (!file.open(QFile::ReadOnly)) {
-            fprintf(stderr, "Preprocessor configuration file not found '%s'\n", ppconfig);
-            return false;
-        }
-
-        QByteArray ba = file.readAll();
-        file.close();
-        preprocess.operator() (ba.constData(), ba.constData() + ba.size(), null_out);
-
         QStringList includes;
         includes << QString(".");
 
@@ -113,7 +97,29 @@ struct Preprocess
             includes << (qtdir + "/QtOpenGL");
             includes << qtdir;
         }
-        foreach (QString include, includes) {
+        return includes;
+    }
+
+    static bool preprocess(const QString &sourceFile, const QString &targetFile, const QString &commandLineIncludes = QString())
+    {
+        rpp::pp_environment env;
+        rpp::pp preprocess(env);
+
+        rpp::pp_null_output_iterator null_out;
+
+        const char *ppconfig = ":/trolltech/generator/parser/rpp/pp-qt-configuration";
+
+        QFile file(ppconfig);
+        if (!file.open(QFile::ReadOnly)) {
+            fprintf(stderr, "Preprocessor configuration file not found '%s'\n", ppconfig);
+            return false;
+        }
+
+        QByteArray ba = file.readAll();
+        file.close();
+        preprocess.operator() (ba.constData(), ba.constData() + ba.size(), null_out);
+
+        foreach (QString include, getIncludeDirectories(commandLineIncludes)) {
             preprocess.push_include_path(QDir::toNativeSeparators(include).toStdString());
         }
 
