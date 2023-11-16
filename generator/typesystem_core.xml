@@ -894,10 +894,12 @@
       <remove/>
     </modify-function>
 
-    <modify-function signature="intersect(const QRect&amp;)const" remove="all"/>
-    <!--### Obsolete in 4.3-->
-    <modify-function signature="unite(const QRect&amp;)const" remove="all"/>
-    <!--### Obsolete in 4.3-->
+    <group before-version="6">
+      <modify-function signature="intersect(const QRect&amp;)const" remove="all"/>
+      <!--### Obsolete in 4.3-->
+      <modify-function signature="unite(const QRect&amp;)const" remove="all"/>
+      <!--### Obsolete in 4.3-->
+    </group>
   </value-type>
 
   <value-type name="QRectF">
@@ -1281,7 +1283,8 @@
     <modify-function signature="unmap(unsigned char*)" remove="all"/>
     <!-- Can't provide same API and performance -->
   
-    <modify-function signature="open(int,QFlags&lt;QIODevice::OpenModeFlag&gt;)" remove="all"/>
+    <modify-function signature="open(int,QFlags&lt;QIODevice::OpenModeFlag&gt;)" remove="all" before-version="6"/>
+    <modify-function signature="open(int,QFlags&lt;QIODeviceBase::OpenModeFlag&gt;,QFlags&lt;QFileDevice::FileHandleFlag&gt;)" remove="all" after-version="6"/>
     <modify-function signature="decodeName(const char*)" remove="all"/>
     <modify-function signature="map(qint64,qint64,QFile::MemoryMapFlags)" remove="all"/>
     <modify-function signature="unmap(uchar*)" remove="all"/>

@@ -2082,18 +2082,20 @@ PyObject* constScanLine(QImage* image, int line) {
       </modify-argument>
     </modify-function>
     
-    <modify-function signature="setItemHidden(const QListWidgetItem*,bool)">
-        <remove/>
-    </modify-function>
-    <modify-function signature="isItemHidden(const QListWidgetItem*)const">
-        <remove/>
-    </modify-function>
-    <modify-function signature="setItemSelected(const QListWidgetItem*,bool)">
-        <remove/>
-    </modify-function>
-    <modify-function signature="isItemSelected(const QListWidgetItem*)const">
-        <remove/>
-    </modify-function>
+    <group before-version="6">
+      <modify-function signature="setItemHidden(const QListWidgetItem*,bool)">
+          <remove/>
+      </modify-function>
+      <modify-function signature="isItemHidden(const QListWidgetItem*)const">
+          <remove/>
+      </modify-function>
+      <modify-function signature="setItemSelected(const QListWidgetItem*,bool)">
+          <remove/>
+      </modify-function>
+      <modify-function signature="isItemSelected(const QListWidgetItem*)const">
+          <remove/>
+      </modify-function>
+    </group>
     <modify-function signature="mimeData(const QList&lt;QListWidgetItem*&gt;)const">
       <modify-argument index="return">
         <define-ownership owner="python" />
