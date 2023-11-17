@@ -1,4 +1,4 @@
-name: Latest Qt5/6
+name: Latest Qt5
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        qt-version: [ '5.*', '6.*']
+        qt-version: [ '5.12.*' ]
         python-version: [ '3.12' ]
     runs-on: ubuntu-latest
     steps:
@@ -24,7 +24,6 @@ jobs:
       uses: jurplel/install-qt-action@v3
       with:
         version: ${{ matrix.qt-version }}
-        modules: ${{startsWith(matrix.qt-version, '6') && 'qt5compat' || '' }}
         archives: 'qtmultimedia qtlinuxextras qtbase qttools icu qtwayland'
 
     - name: Setup Python ${{ matrix.python-version }}
@@ -67,5 +66,5 @@ jobs:
     - name: Upload Wrappers
       uses: actions/upload-artifact@v3
       with:
-        name: wrappers_ubuntu_${{startsWith(matrix.qt-version, '6') && '6' || '5' }}-latest
+        name: wrappers_ubuntu_5-latest
         path: generated_cpp
