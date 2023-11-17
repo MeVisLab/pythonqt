@@ -542,6 +542,14 @@ bool Parser::parseDeclaration(DeclarationAST *&node)
     case Token_export:
       return parseTemplateDeclaration(node);
 
+    case Token_inline:
+      if (token_stream.lookAhead(1) == Token_namespace)
+        {
+          nextToken();
+          // handle like a normal namespace for now
+          return parseNamespace(node);
+        }
+      // else fallthrough
     default:
       {
         skipAttributes();
