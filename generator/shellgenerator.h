@@ -46,8 +46,6 @@
 #include "metaqtscript.h"
 #include "prigenerator.h"
 
-#define MAX_CLASSES_PER_FILE 30
-
 class ShellGenerator : public Generator
 {
     Q_OBJECT

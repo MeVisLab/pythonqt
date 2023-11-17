@@ -93,7 +93,7 @@ static QString combineIncludes(const QString& text) {
   return result;
 }
 
-static QStringList compactFiles(const QStringList& list, const QString& ext, const QString& dir, const QString& prefix) {
+QStringList PriGenerator::compactFiles(const QStringList& list, const QString& ext, const QString& dir, const QString& prefix) {
   QStringList outList;
   int count = list.count();
   int fileNum = 0;
@@ -110,7 +110,7 @@ static QStringList compactFiles(const QStringList& list, const QString& ext, con
     outList << outFileName;
     QString allText;
     QTextStream ts(&allText);
-    for (int i = 0; i<MAX_CLASSES_PER_FILE && count>0; i++) {
+    for (int i = 0; i< maxClassesPerFile && count>0; i++) {
       collectAndRemoveFile(ts,  srcDir + "/" + list.at(list.count()-count));
       count--;
     }
