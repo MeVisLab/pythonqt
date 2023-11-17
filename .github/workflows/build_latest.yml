@@ -43,19 +43,13 @@ jobs:
         echo "$QTDIR/bin" >> $GITHUB_PATH
         echo "$pythonLocation/bin" >> $GITHUB_PATH
 
-    - name: Build PythonQt
+    - name: Build generator
       run: |
-        echo ======= SYSTEM INFO ========
-        uname -a; gcc --version | grep "gcc"; python3 --version; qmake --version
-        echo ============================
-        qmake -r PythonQt.pro CONFIG+=release CONFIG+=force_debug_info \
-        CONFIG+=sanitizer CONFIG+=sanitize_undefined CONFIG+=sanitize_address \
-        PYTHON_VERSION=$(python3 --version | cut -d " " -f 2 | cut -d "." -f1,2) \
-        PYTHON_DIR=$(which python3 | xargs dirname | xargs dirname)
+        cd generator
+        qmake -r generator.pro CONFIG+=release CONFIG+=force_debug_info \
+        CONFIG+=sanitizer CONFIG+=sanitize_undefined CONFIG+=sanitize_address
         make -j $(nproc)
-        UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
-          make check TESTARGS="-platform offscreen"
-      
+
     - name: Generate Wrappers
       run: |
         cd generator
@@ -68,3 +62,16 @@ jobs:
       with:
         name: wrappers_ubuntu_5-latest
         path: generated_cpp
+
+    - name: Build PythonQt
+      run: |
+        echo ======= SYSTEM INFO ========
+        uname -a; gcc --version | grep "gcc"; python3 --version; qmake --version
+        echo ============================
+        qmake -r PythonQt.pro CONFIG+=release CONFIG+=force_debug_info \
+        CONFIG+=sanitizer CONFIG+=sanitize_undefined CONFIG+=sanitize_address \
+        PYTHON_VERSION=$(python3 --version | cut -d " " -f 2 | cut -d "." -f1,2) \
+        PYTHON_DIR=$(which python3 | xargs dirname | xargs dirname)
+        make -j $(nproc)
+        UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
+          make check TESTARGS="-platform offscreen"
