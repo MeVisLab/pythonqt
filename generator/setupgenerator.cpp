@@ -285,7 +285,7 @@ void SetupGenerator::generate()
       s << "#include <PythonQt.h>" << endl;
       s << "#include <PythonQtConversion.h>" << endl;
 
-      for (int i=0; i<(list.count()+MAX_CLASSES_PER_FILE-1) / MAX_CLASSES_PER_FILE; i++) {
+      for (int i=0; i<(list.count()+ maxClassesPerFile -1) / maxClassesPerFile; i++) {
         s << "#include \"" << packKey << QString::number(i) << ".h\"" << endl;
       }
       s << endl;

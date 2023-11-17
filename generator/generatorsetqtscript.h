@@ -62,6 +62,7 @@ public:
 
 private:
     MetaQtScriptBuilder builder;
+    int maxClassesPerFile{30};
   
 };
 
