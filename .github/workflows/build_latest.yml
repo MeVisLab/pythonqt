@@ -1,4 +1,4 @@
-name: Latest Qt5
+name: Qt5 check generated_cpp
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        qt-version: [ '5.12.*' ]
+        qt-version: [ '5.12.*', '5.15.*' ]
         python-version: [ '3.12' ]
     runs-on: ubuntu-latest
     steps:
