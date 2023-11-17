@@ -75,7 +75,7 @@
 <enum-type name="QMediaStreamsControl::StreamType"/>
 
 <namespace-type name="QAudio"/>
-<namespace-type name="QMultimedia"/>
+<namespace-type name="QMultimedia" after-version="5"/>
 
 <object-type name="QAbstractVideoBuffer"/>
 <object-type name="QAbstractVideoSurface"/>
@@ -108,7 +108,7 @@
 <object-type name="QMediaService"/>
 <object-type name="QMediaTimeInterval"/>
 <object-type name="QMediaTimeRange"/>
-<object-type name="QMultimedia"/>
+<object-type name="QMultimedia" before-version="5"/>
 <object-type name="QRadioData"/>
 <object-type name="QRadioTuner"/>
 <object-type name="QSound"/>
@@ -175,5 +175,23 @@
 <enum-type name="QAudio::VolumeScale"/>
 
 <object-type name="QMediaServiceProviderPlugin"/>
+
+<group after-verson="6">
+  <object-type name="QAudioDevice"/>
+  <object-type name="QAudioSink"/>
+  <object-type name="QAudioSource"/>
+  <object-type name="QCameraDevice"/>
+  <object-type name="QCameraFormat"/>
+  <object-type name="QCapturableWindow"/>
+  <object-type name="QImageCapture"/>
+  <object-type name="QMediaCaptureSession"/>
+  <object-type name="QMediaDevices"/>
+  <object-type name="QMediaFormat"/>
+  <object-type name="QMediaTimeRange::Interval"/>
+  <object-type name="QScreenCapture"/>
+  <object-type name="QVideoFrameFormat"/>
+  <object-type name="QVideoSink"/>
+  <object-type name="QWindowCapture"/>
+</group>
 
 </typesystem>
