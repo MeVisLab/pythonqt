@@ -429,9 +429,9 @@ FunctionList _ScopeModelItem::functions() const
   return _M_functions.values();
 }
 
-void _ScopeModelItem::addEnumsDeclaration(const QString &enumsDeclaration)
+void _ScopeModelItem::addQEnumDeclaration(const QString &qEnumDeclaration)
 {
-    _M_enumsDeclarations << enumsDeclaration;
+  _M_qEnumDeclarations.insert(qEnumDeclaration);
 }
 
 FunctionDefinitionList _ScopeModelItem::functionDefinitions() const

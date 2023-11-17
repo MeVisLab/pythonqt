@@ -430,6 +430,15 @@ bool AbstractMetaBuilder::build()
 
 
     // Start the generation...
+
+    // First automatically add all enums marked as QEnum into the TypeDatabase
+    // (if they don't contain an entry already). If there is an QEnum entry,
+    // the enum is obviously meant for scripting.
+    for (ClassModelItem item : typeMap.values()) {
+        autoAddQEnumsForClassItem(item);
+    }
+
+
     for (ClassModelItem item :  typeMap.values()) {
         AbstractMetaClass *cls = traverseClass(item);
         addAbstractMetaClass(cls);
@@ -609,6 +618,33 @@ bool AbstractMetaBuilder::build()
     return true;
 }
 
+void AbstractMetaBuilder::autoAddQEnumsForClassItem(ClassModelItem class_item)
+{
+    // also do this for sub-classes:
+    for (ClassModelItem sub_class : class_item->classMap().values()) {
+        autoAddQEnumsForClassItem(sub_class);
+    }
+
+    auto qEnumDeclarations = class_item->qEnumDeclarations();
+    for (EnumModelItem enum_item : class_item->enumMap().values()) {
+        if (enum_item) {
+            const auto& names = enum_item->qualifiedName();
+            QString qualified_name = names.join("::");
+            QString enum_name = enum_item->name();
+
+            bool hasQEnumDeclaration = qEnumDeclarations.contains(qualified_name)
+                                    || qEnumDeclarations.contains(enum_name);
+
+            TypeEntry* type_entry = TypeDatabase::instance()->findType(qualified_name);
+            if (hasQEnumDeclaration && !type_entry) {
+                // automatically add enum type declared as Q_ENUM
+                type_entry = new EnumTypeEntry(QStringList(names.mid(0, names.size() - 1)).join("::"), names.last());
+                TypeDatabase::instance()->addType(type_entry);
+            }
+        }
+    }
+}
+
 
 void AbstractMetaBuilder::addAbstractMetaClass(AbstractMetaClass *cls)
 {
@@ -664,7 +700,7 @@ AbstractMetaClass *AbstractMetaBuilder::traverseNamespace(NamespaceModelItem nam
                                .arg(meta_class->package())
                                .arg(namespace_item->name()));
 
-    traverseEnums(model_dynamic_cast<ScopeModelItem>(namespace_item), meta_class, namespace_item->enumsDeclarations());
+    traverseEnums(model_dynamic_cast<ScopeModelItem>(namespace_item), meta_class, namespace_item->qEnumDeclarations());
     traverseFunctions(model_dynamic_cast<ScopeModelItem>(namespace_item), meta_class);
 //     traverseClasses(model_dynamic_cast<ScopeModelItem>(namespace_item));
 
@@ -1122,11 +1158,11 @@ AbstractMetaClass *AbstractMetaBuilder::traverseClass(ClassModelItem class_item)
     meta_class->setTemplateArguments(template_args);
     meta_class->setHasActualDeclaration(class_item->hasActualDeclaration());
 
-    parseQ_Property(meta_class, class_item->propertyDeclarations());
-
     traverseFunctions(model_dynamic_cast<ScopeModelItem>(class_item), meta_class);
-    traverseEnums(model_dynamic_cast<ScopeModelItem>(class_item), meta_class, class_item->enumsDeclarations());
+    traverseEnums(model_dynamic_cast<ScopeModelItem>(class_item), meta_class, class_item->qEnumDeclarations());
     traverseFields(model_dynamic_cast<ScopeModelItem>(class_item), meta_class);
+
+    parseQ_Property(meta_class, class_item->propertyDeclarations());
 
     // Inner classes
     {
@@ -1465,17 +1501,11 @@ bool AbstractMetaBuilder::setupInheritance(AbstractMetaClass *meta_class)
     return true;
 }
 
-void AbstractMetaBuilder::traverseEnums(ScopeModelItem scope_item, AbstractMetaClass *meta_class, const QStringList &enumsDeclarations)
+void AbstractMetaBuilder::traverseEnums(ScopeModelItem scope_item, AbstractMetaClass *meta_class, const QSet<QString> &qEnumDeclarations)
 {
     EnumList enums = scope_item->enums();
     for (EnumModelItem enum_item :  enums) {
-        AbstractMetaEnum *meta_enum = traverseEnum(enum_item, meta_class,
-#if QT_VERSION < QT_VERSION_CHECK(5,14,0)
-            QSet<QString>::fromList(enumsDeclarations)
-#else
-            QSet<QString>(enumsDeclarations.begin(), enumsDeclarations.end())
-#endif
-        );
+        AbstractMetaEnum* meta_enum = traverseEnum(enum_item, meta_class, qEnumDeclarations);
         if (meta_enum) {
             meta_enum->setOriginalAttributes(meta_enum->attributes());
             meta_class->addEnum(meta_enum);

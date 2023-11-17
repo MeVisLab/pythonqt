@@ -51,6 +51,7 @@
 #include <QtCore/QString>
 #include <QtCore/QStringList>
 #include <QtCore/QVector>
+#include <QtCore/QSet>
 
 #define DECLARE_MODEL_NODE(k) \
     enum { __node_kind = Kind_##k }; \
@@ -307,8 +308,8 @@ public:
   TypeAliasModelItem findTypeAlias(const QString &name) const;
   VariableModelItem findVariable(const QString &name) const;
 
-  void addEnumsDeclaration(const QString &enumsDeclaration);
-  QStringList enumsDeclarations() const { return _M_enumsDeclarations; }
+  void addQEnumDeclaration(const QString &qEnumDeclaration);
+  QSet<QString> qEnumDeclarations() const { return _M_qEnumDeclarations; }
 
   inline QHash<QString, ClassModelItem> classMap() const { return _M_classes; }
   inline QHash<QString, EnumModelItem> enumMap() const { return _M_enums; }
@@ -335,7 +336,7 @@ private:
   _ScopeModelItem(const _ScopeModelItem &other);
   void operator = (const _ScopeModelItem &other);
 
-  QStringList _M_enumsDeclarations;
+  QSet<QString> _M_qEnumDeclarations;
 };
 
 class _ClassModelItem: public _ScopeModelItem

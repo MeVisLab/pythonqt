@@ -82,6 +82,8 @@ public:
 
     bool build();
 
+    void autoAddQEnumsForClassItem(ClassModelItem item);
+
     void figureOutEnumValuesForClass(AbstractMetaClass *meta_class, QSet<AbstractMetaClass *> *classes);
     int figureOutEnumValue(const QString &name, int value, AbstractMetaEnum *meta_enum, AbstractMetaFunction *meta_function = 0);
     void figureOutEnumValues();
@@ -92,7 +94,7 @@ public:
     bool setupInheritance(AbstractMetaClass *meta_class);
     AbstractMetaClass *traverseNamespace(NamespaceModelItem item);
     AbstractMetaEnum *traverseEnum(EnumModelItem item, AbstractMetaClass *enclosing, const QSet<QString> &enumsDeclarations);
-    void traverseEnums(ScopeModelItem item, AbstractMetaClass *parent, const QStringList &enumsDeclarations);
+    void traverseEnums(ScopeModelItem item, AbstractMetaClass *parent, const QSet<QString> &enumsDeclarations);
     void traverseFunctions(ScopeModelItem item, AbstractMetaClass *parent);
     void traverseFields(ScopeModelItem item, AbstractMetaClass *parent);
     void traverseStreamOperator(FunctionModelItem function_item);

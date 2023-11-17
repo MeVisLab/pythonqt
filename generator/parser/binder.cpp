@@ -856,7 +856,7 @@ void Binder::visitQEnums(QEnumsAST *node)
     //if (node->isQEnum) {
     //  std::cout << enum_list.at(i).toLatin1().constData() << std::endl;
     //}
-    scope->addEnumsDeclaration(enum_list.at(i));
+    scope->addQEnumDeclaration(enum_list.at(i));
   }
 }
 
