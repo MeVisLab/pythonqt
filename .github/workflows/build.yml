@@ -57,7 +57,7 @@ jobs:
         CONFIG+=sanitizer CONFIG+=sanitize_undefined CONFIG+=sanitize_address \
         PYTHON_VERSION=$(python3 --version | cut -d " " -f 2 | cut -d "." -f1,2) \
         PYTHON_DIR=$(which python3 | xargs dirname | xargs dirname)
-        make -j 2
+        make -j $(nproc)
         UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
           make check TESTARGS="-platform offscreen"
       
@@ -120,7 +120,7 @@ jobs:
         qmake-qt5 -r PythonQt.pro CONFIG+=${{ matrix.configuration }} \
           PYTHON_VERSION=$(python${PYTHON_VERSION_SUFFIX} --version | cut -d " " -f 2 | cut -d "." -f1,2) \
           PYTHON_DIR=$(which python${PYTHON_VERSION_SUFFIX} | xargs dirname | xargs dirname)
-        make -j 2 && make check TESTARGS="-platform offscreen"
+        make -j $(nproc) && make check TESTARGS="-platform offscreen"
 
     - name: Generate Wrappers
       run: |
@@ -203,7 +203,7 @@ jobs:
           PYTHON_DIR="$pythonLocation" \
           PKGCONFIG+=$PYTHON_PKGCONFIG_NAME \
           -r PythonQt.pro
-        make -j 2
+        make -j $(nproc)
         UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
           make check TESTARGS="-platform offscreen"
 
