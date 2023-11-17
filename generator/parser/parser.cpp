@@ -1055,6 +1055,15 @@ bool Parser::parseOperator(OperatorAST *&node)
           ast->close = token_stream.cursor();
           nextToken();
         }
+      else if (token_stream.lookAhead() == Token_string_literal
+               && token_stream.lookAhead(1) == Token_identifier)
+        {
+          // string literal operator
+          ast->op = token_stream.cursor();
+          nextToken();
+          // skip string literal suffix for now
+          nextToken();
+        }
       else
         {
           return false;
