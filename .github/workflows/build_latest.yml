@@ -35,9 +35,12 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Set environment
+      id: setenv
       run: |
         QT_VERSION_MAJOR=$(cut -f 1 -d . <<< "${{matrix.qt-version}}")
         echo "QT_VERSION_MAJOR=$QT_VERSION_MAJOR" >> $GITHUB_ENV
+        QT_VERSION_SHORT=$(cut -f 1,2 -d . <<< "${{matrix.qt-version}}")
+        echo "QT_VERSION_SHORT=$QT_VERSION_SHORT" >> $GITHUB_OUTPUT
         QTDIR=$(eval echo "\$Qt${QT_VERSION_MAJOR}_DIR")
         echo "QTDIR=$QTDIR" >> $GITHUB_ENV
         echo "$QTDIR/bin" >> $GITHUB_PATH
@@ -60,7 +63,7 @@ jobs:
     - name: Upload Wrappers
       uses: actions/upload-artifact@v3
       with:
-        name: wrappers_ubuntu_5-latest
+        name: wrappers_ubuntu_${{ steps.setenv.outputs.QT_VERSION_SHORT }}
         path: generated_cpp
 
     - name: Build PythonQt
