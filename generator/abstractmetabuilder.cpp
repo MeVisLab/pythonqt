@@ -2278,11 +2278,33 @@ void AbstractMetaBuilder::parseQ_Property(AbstractMetaClass *meta_class, const Q
         QStringList qualifiedScopeName = currentScope()->qualifiedName();
         bool ok = false;
         AbstractMetaType *type = 0;
-        QString scope;
+        int pIndex = 0;
+        QString typeName = l.value(pIndex++);
+        bool isConst = false;
+        if (typeName == "const") {
+            // use the next part as the type name
+            typeName = l.value(pIndex++);
+            isConst = true;
+        }
+        QString propertyName = l.value(pIndex++);
+        QString modifiers;
+        while (typeName.endsWith("*") || typeName.endsWith("&")) {
+            modifiers.insert(0, typeName.at(typeName.length() - 1));
+            typeName.chop(1);
+        }
+        while (propertyName.startsWith("*") || propertyName.startsWith("&")) {
+            modifiers.append(propertyName.at(0));
+            propertyName.remove(0, 1);
+            if (propertyName.isEmpty() && pIndex < l.size()) {
+                propertyName = l.value(pIndex++);
+            }
+        }
         for (int j=qualifiedScopeName.size(); j>=0; --j) {
-            scope = j > 0 ? QStringList(qualifiedScopeName.mid(0, j)).join("::") + "::" : QString();
+            QStringList scope(qualifiedScopeName.mid(0, j));
             TypeInfo info;
-            info.setQualifiedName((scope + l.at(0)).split("::"));
+            info.setIndirections(modifiers.count('*'));
+            info.setReference(modifiers.contains('&')); // r-value reference seems improbable for a property...
+            info.setQualifiedName(scope + QStringList(typeName));
 
             type = translateType(info, &ok);
             if (type != 0 && ok) {
@@ -2291,18 +2313,16 @@ void AbstractMetaBuilder::parseQ_Property(AbstractMetaClass *meta_class, const Q
         }
 
         if (type == 0 || !ok) {
-            ReportHandler::warning(QString("Unable to decide type of property: '%1' in class '%2'")
-                                   .arg(l.at(0)).arg(meta_class->name()));
+            ReportHandler::warning(QString("Unable to decide type '%1' of property '%2' in class '%3'")
+                                   .arg(typeName).arg(propertyName).arg(meta_class->name()));
             continue;
         }
 
-        QString typeName = scope + l.at(0);
-
         QPropertySpec *spec = new QPropertySpec(type->typeEntry());
-        spec->setName(l.at(1));
+        spec->setName(propertyName);
         spec->setIndex(i);
 
-        for (int pos=2; pos+1<l.size(); pos+=2) {
+        for (int pos=pIndex; pos+1<l.size(); pos+=2) {
             if (l.at(pos) == QLatin1String("READ"))
                 spec->setRead(l.at(pos+1));
             else if (l.at(pos) == QLatin1String("WRITE"))
