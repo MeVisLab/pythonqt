@@ -681,7 +681,8 @@ public:
         : TypeEntry(nspace.isEmpty() ? enumName : nspace + QLatin1String("::") + enumName,
                     EnumType),
           m_flags(0),
-          m_extensible(false)
+          m_extensible(false),
+          m_force_integer(false)
     {
         m_qualifier = nspace;
         m_java_name = enumName;
