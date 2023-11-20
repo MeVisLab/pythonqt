@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        qt-version: [ '5.12.*', '5.15.*' ]
+        qt-version: [ '5.12.*', '5.15.*', '6.5.*' ]
         python-version: [ '3.12' ]
     runs-on: ubuntu-latest
     steps:
@@ -24,6 +24,7 @@ jobs:
       uses: jurplel/install-qt-action@v3
       with:
         version: ${{ matrix.qt-version }}
+        modules: ${{startsWith(matrix.qt-version, '6') && 'qt5compat' || '' }}
         archives: 'qtmultimedia qtlinuxextras qtbase qttools icu qtwayland'
 
     - name: Setup Python ${{ matrix.python-version }}
