@@ -95,6 +95,11 @@
 #define Q_REVISION(v)
 #define Q_DECLARE_OPERATORS_FOR_FLAGS(x)
 
+#include <QtCore/QMetaType>
+
+// parse still stumbles over this declaration
+#define QT_DECL_METATYPE_EXTERN_TAGGED(TYPE, TAG, EXPORT)
+
 #include <QtCore/QtCore>
 #include <QtGui/QtGui>
 #include <QtNetwork/QtNetwork>
