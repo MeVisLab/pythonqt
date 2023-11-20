@@ -35,6 +35,7 @@
         <modify-function signature="nodeType()const" remove="all"/>
         <modify-function signature="operator=(QDomDocument)" remove="all"/>
     </value-type>
+    <enum-type name="QDomDocument::ParseOption" flags="QDomDocument::ParseOptions" since-version="6.5"/>
 
     <value-type name="QDomDocumentFragment">
         <modify-function signature="nodeType()const" remove="all"/>

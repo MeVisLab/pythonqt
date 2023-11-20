@@ -8,7 +8,7 @@
   <object-type name="QSvgRenderer">
     <extra-includes>
         <include file-name="QRectF" location="global"/>
-        <include file-name="QMatrix" location="global"/>
+        <include file-name="QMatrix" location="global" before-version="6"/>
         <include file-name="QSize" location="global"/>
         <include file-name="QByteArray" location="global"/>
     </extra-includes>
@@ -24,6 +24,7 @@
 
   <object-type name="QSvgGenerator">
   </object-type>
+  <enum-type name="QSvgGenerator::SvgVersion" since-version="6.5"/>
 
   <object-type name="QGraphicsSvgItem">
     <extra-includes>

@@ -10,6 +10,11 @@
 
 <enum-type name="QAudioFormat::Endian"/>
 <enum-type name="QAudioFormat::SampleType"/>
+<group since-version="6">
+<enum-type name="QAudioFormat::ChannelConfig"/>
+<enum-type name="QAudioFormat::AudioChannelPosition"/>
+<enum-type name="QAudioFormat::SampleFormat"/>
+</group>
 <enum-type name="QSoundEffect::Status"/>
 <enum-type name="QSoundEffect::Loop"/>
 <enum-type name="QAbstractVideoBuffer::HandleType"/>
@@ -52,6 +57,7 @@
 <enum-type name="QCamera::Status"/>
 <enum-type name="QCamera::Error"/>
 <enum-type name="QCamera::CaptureMode" flags="QCamera::CaptureModes"/>
+<enum-type name="QCamera::Feature" flags="QCamera::Features" since-version="6"/>
 <enum-type name="QMediaPlayer::State"/>
 <enum-type name="QMediaPlayer::MediaStatus"/>
 <enum-type name="QMediaPlayer::Error"/>
@@ -116,6 +122,11 @@
 <object-type name="QSoundEffect"/>
 <object-type name="QVideoEncoderSettings"/>
 <object-type name="QVideoFrame"/>
+<group since-version="6">
+<enum-type name="QVideoFrame::HandleType"/>
+<enum-type name="QVideoFrame::MapMode"/>
+<enum-type name="QVideoFrame::RotationAngle"/>
+</group>
 <object-type name="QVideoProbe"/>
 <object-type name="QVideoSurfaceFormat"/>
 <object-type name="QCameraViewfinder"/>
@@ -187,9 +198,16 @@
   <object-type name="QMediaCaptureSession"/>
   <object-type name="QMediaDevices"/>
   <object-type name="QMediaFormat"/>
+  <enum-type name="QMediaFormat::ResolveFlags"/>
   <object-type name="QMediaTimeRange::Interval"/>
   <object-type name="QScreenCapture"/>
   <object-type name="QVideoFrameFormat"/>
+  <enum-type name="QVideoFrameFormat::ColorSpace"/>
+  <enum-type name="QVideoFrameFormat::ColorRange"/>
+  <enum-type name="QVideoFrameFormat::Direction"/>
+  <enum-type name="QVideoFrameFormat::YCbCrColorSpace"/>
+  <enum-type name="QVideoFrameFormat::PixelFormat"/>
+  <enum-type name="QVideoFrameFormat::ColorTransfer"/>
   <object-type name="QVideoSink"/>
   <object-type name="QWindowCapture"/>
 </group>

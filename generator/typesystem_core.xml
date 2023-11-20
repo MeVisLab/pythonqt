@@ -694,9 +694,11 @@
   <enum-type name="QFile::FileHandleFlag" flags="QFile::FileHandleFlags"/>
   <enum-type name="QIODevice::OpenModeFlag" flags="QIODevice::OpenMode"/>
   <enum-type name="QIODeviceBase::OpenModeFlag" flags="QIODeviceBase::OpenMode"/>
-  <enum-type name="QLibraryInfo::LibraryLocation"/>
+  <enum-type name="QLibraryInfo::LibraryLocation" before-version="6" />
+  <enum-type name="QLibraryInfo::LibraryPath" since-version="6" />
   <enum-type name="QLibrary::LoadHint" flags="QLibrary::LoadHints"/>
   <enum-type name="QLocale::FormatType"/>
+  <enum-type name="QLocale::LanguageCodeType" flags="QLocale::LanguageCodeTypes" since-version="6"/>
   <enum-type name="QLocale::NumberOption" flags="QLocale::NumberOptions"/>
   <enum-type name="QLocale::MeasurementSystem"/>
   <enum-type name="QLocale::QuotationStyle"/>
@@ -723,10 +725,9 @@
   <enum-type name="QTimeLine::CurveShape"/>
   <enum-type name="QTimeLine::Direction"/>
   <enum-type name="QTimeLine::State"/>
-  <enum-type name="QUrl::FormattingOption" flags="QUrl::FormattingOptions"/>
   <enum-type name="QUrl::UrlFormattingOption" flags="QUrl::FormattingOptions"/>
   <enum-type name="QUrl::ComponentFormattingOption" flags="QUrl::ComponentFormattingOptions"/> <!-- Qt 5 -->
-  <enum-type name="QUrl::UrlFormattingOption"/> <!-- Qt 5 -->
+  <enum-type name="QUrl::AceProcessingOption" flags="QUrl::AceProcessingOptions" since-version="6"/>
   <enum-type name="QUrl::ParsingMode"/>
   <enum-type name="QUuid::Variant"/>
   <enum-type name="QUuid::Version"/>
@@ -848,6 +849,7 @@
   </enum-type>
 
   <value-type name="QProcessEnvironment"/>
+  <enum-type name="QProcessEnvironment::Initialization" since-version="6"/>
   <value-type name="QBasicTimer"/>
   <value-type name="QByteArrayMatcher">
     <modify-function signature="operator=(QByteArrayMatcher)" remove="all"/>
@@ -865,6 +867,7 @@
   <value-type name="QDateTime">
     <modify-function signature="operator=(QDateTime)" remove="all"/>
   </value-type>
+  <enum-type name="QDateTime::YearRange"/>
 
   <value-type name="QDir">
     <modify-function signature="QDir(QString,QString,QFlags&lt;QDir::SortFlag&gt;,QFlags&lt;QDir::Filter&gt;)">
@@ -884,6 +887,7 @@
     <modify-function signature="ry()" remove="all"/> 
   </value-type>
   <enum-type name="QLineF::IntersectType"/>
+  <enum-type name="QLineF::IntersectionType"/>
   <value-type name="QLineF"/>
   <value-type name="QLine"/>
  
@@ -1064,8 +1068,11 @@
 
   <value-type name="QByteArray">
     <!-- removed functions -->
+    <modify-function signature="back()" remove="all"/>
     <modify-function signature="begin()" remove="all"/>
     <modify-function signature="begin()const" remove="all"/>
+    <modify-function signature="cbegin()const" remove="all"/>
+    <modify-function signature="cend()const" remove="all"/>
     <modify-function signature="constBegin()const" remove="all"/>
     <modify-function signature="constData()const" remove="all"/>
     <modify-function signature="constEnd()const" remove="all"/>
@@ -1073,6 +1080,7 @@
     <modify-function signature="data()const" remove="all"/>
     <modify-function signature="end()" remove="all"/>
     <modify-function signature="end()const" remove="all"/>
+    <modify-function signature="front()" remove="all"/>
     <modify-function signature="number(uint,int)" remove="all"/>
     <modify-function signature="number(unsigned long long,int)" remove="all"/>
     <modify-function signature="operator const char *()const" remove="all"/>
@@ -1084,6 +1092,7 @@
     <modify-function signature="operator[](int)const" remove="all"/>
     <modify-function signature="operator[](uint)" remove="all"/>
     <modify-function signature="operator[](uint)const" remove="all"/>
+    <modify-function signature="operator[](qsizetype)" remove="all"/>
     <modify-function signature="push_back(char)" remove="all"/>
     <modify-function signature="push_back(const char*)" remove="all"/>
     <modify-function signature="push_front(char)" remove="all"/>
@@ -1183,6 +1192,7 @@
 
     <modify-function signature="fromRawData(const char*,int)" remove="all"/>
   </value-type>
+  <rejection class="QByteArray" function-name="erase"/>
 
   <value-type name="QTextBoundaryFinder">
     <modify-function signature="QTextBoundaryFinder(QTextBoundaryFinder::BoundaryType,const QChar*,int,unsigned char*,int)" remove="all"/>
@@ -1794,6 +1804,7 @@
   <object-type name="QSysInfo"/>
   <object-type name="QLibrary"/>
   <object-type name="QResource"/>
+  <enum-type name="QResource::Compression"/>
   <object-type name="QSharedMemory"/>
   <object-type name="QMetaObject"/>
   <object-type name="QMetaMethod"/>
@@ -1980,6 +1991,7 @@
   <enum-type name="QRegularExpression::MatchType"/>
   <enum-type name="QRegularExpression::PatternOption" flags="QRegularExpression::PatternOptions"/>
   <enum-type name="QRegularExpression::MatchOption" flags="QRegularExpression::MatchOptions"/>
+  <enum-type name="QRegularExpression::WildcardConversionOption" flags="QRegularExpression::WildcardConversionOptions" since-version="6"/>
   <enum-type name="QMimeDatabase::MatchMode"/>
   <enum-type name="QCommandLineParser::SingleDashWordOptionMode"/>
   <enum-type name="QJsonDocument::JsonFormat"/>
@@ -1990,6 +2002,7 @@
   <enum-type name="QLockFile::LockError"/>
   <enum-type name="QTimeZone::TimeType"/>
   <enum-type name="QTimeZone::NameType"/>
+  <enum-type name="QTimeZone::Initialization" since-version="6.5"/>
   <enum-type name="QProcess::InputChannelMode"/>
   <enum-type name="QByteArray::Base64Option" flags="QByteArray::Base64Options"/>
   <enum-type name="QMetaType::Type"/>
@@ -2001,7 +2014,8 @@
   <enum-type name="QState::RestorePolicy"/>
   <enum-type name="QAccessible::TextBoundaryType"/>
   <enum-type name="QAccessible::InterfaceType"/>
-  <enum-type name="QFileDevice::MemoryMapFlags"/>
+  <enum-type name="QFileDevice::MemoryMapFlags" before-version="6"/>
+  <enum-type name="QFileDevice::MemoryMapFlag" flags="QFileDevice::MemoryMapFlags" since-version="6"/>
   <enum-type name="QFileDevice::Permission" flags="QFileDevice::Permissions"/>
   <enum-type name="QFileDevice::FileError"/>
   <enum-type name="QFileDevice::FileHandleFlag" flags="QFileDevice::FileHandleFlags"/>
@@ -2015,9 +2029,11 @@
   <enum-type name="Qt::MouseEventFlag" flags="Qt::MouseEventFlags"/>
   <enum-type name="Qt::TimerType"/>
   <enum-type name="Qt::Edge"/>
+  <enum-type name="Qt::ColorScheme" since-version="6"/>
 
   <object-type name="QDeadlineTimer"/>
   <object-type name="QOperatingSystemVersionBase"/>
+  <enum-type name="QOperatingSystemVersionBase::OSType"/>
   <object-type name="QOperatingSystemVersion"/>
   <enum-type name="QOperatingSystemVersion::OSType"/>
   <object-type name="QRandomGenerator"/>

@@ -10,7 +10,11 @@
   <rejection class="QSslConfiguration" function-name="setDefaultDtlsConfiguration"/>
   <rejection class="QSslConfiguration" function-name="setDtlsCookieVerificationEnabled"/>
 
+  <enum-type name="QSsl::AlertLevel" since-version="6"/>
+  <enum-type name="QSsl::AlertType" since-version="6"/>
   <enum-type name="QSsl::AlternativeNameEntryType"/>
+  <enum-type name="QSsl::ImplementedClass" since-version="6.1"/>
+  <enum-type name="QSsl::SupportedFeature" since-version="6.1"/>
   <enum-type name="QSslConfiguration::NextProtocolNegotiationStatus"/>
   <enum-type name="QNetworkProxy::Capability" flags="QNetworkProxy::Capabilities"/>
   <enum-type name="QAbstractSocket::NetworkLayerProtocol"/>
@@ -42,6 +46,7 @@
   <enum-type name="QSsl::SslOption" flags="QSsl::SslOptions"/>
   <enum-type name="QLocalSocket::LocalSocketError"/>
   <enum-type name="QLocalSocket::LocalSocketState"/>
+  <enum-type name="QLocalSocket::SocketOption" flags="QLocalSocket::SocketOptions" since-version="6.2"/>
   <enum-type name="QNetworkAccessManager::Operation"/>
   <enum-type name="QNetworkAccessManager::NetworkAccessibility"/>
   <enum-type name="QNetworkAddressEntry::DnsEligibilityStatus"/>
@@ -172,6 +177,7 @@
   </value-type>
 
   <enum-type name="QSslError::SslError"/>
+  <enum-type name="QSslCertificate::PatternSyntax"/>
   <enum-type name="QSslCertificate::SubjectInfo"/>
   <enum-type name="QSslSocket::SslMode"/>
   <enum-type name="QSslSocket::PeerVerifyMode"/>
