@@ -4790,18 +4790,14 @@ bool Parser::parseQ_ENUM(DeclarationAST *&node)
 
 bool Parser::parseQ_PROPERTY(DeclarationAST *&node)
 {
-  if (token_stream.lookAhead() != Token_Q_PROPERTY)
-    return false;
-
-  if (token_stream.lookAhead(1) != '(')
+  if (token_stream.lookAhead() != Token_Q_PROPERTY || token_stream.lookAhead(1) != '(')
     return false;
 
   nextToken();
-  nextToken();
 
-  size_t firstToken = token_stream.cursor();
-  while (token_stream.lookAhead() != ')') {
-    nextToken();
+  size_t firstToken = token_stream.cursor()+1;
+  if (!skip('(', ')')) {
+    return false;
   }
   QPropertyAST *ast = CreateNode<QPropertyAST>(_M_pool);
   UPDATE_POS(ast, firstToken, token_stream.cursor());
