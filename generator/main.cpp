@@ -83,9 +83,9 @@ static unsigned int getQtVersion(const QString& commandLineIncludes)
       }
     }
   }
-  printf("Could not find QT version (looked for qtcoreversion.h in %s), using 5.15\n",
+  printf("Error: Could not find Qt version (looked for qtcoreversion.h in %s)\n",
     qPrintable(commandLineIncludes));
-  return 0x050F00;
+  return 0;
 }
 
 
@@ -105,6 +105,7 @@ int main(int argc, char *argv[])
     QStringList rebuild_classes;
 
     QMap<QString, QString> args;
+    unsigned int qtVersion{};
 
     int argNum = 0;
     for (int i=1; i<argc; ++i) {
@@ -159,6 +160,15 @@ int main(int argc, char *argv[])
         TypeDatabase::instance()->setRebuildClasses(classes);
     }
 
+    if (args.contains("qt-version")) {
+        bool ok;
+        qtVersion = TypeSystem::qtVersionFromString(args.value("qt-version"), ok);
+        if (!ok || qtVersion < 0x050000) {
+            printf("Invalid Qt version specified, will look into header files for version...\n");
+            qtVersion = 0;
+        }
+    }
+
     fileName = args.value("arg-1");
 
     typesystemFileName = args.value("arg-2");
@@ -179,9 +189,16 @@ int main(int argc, char *argv[])
 
     printf("Please wait while source files are being generated...\n");
 
-    printf("Trying to determine Qt version...\n");
-    unsigned int qtVersion = getQtVersion(args.value("include-paths"));
-    printf("Determined Qt version is %X\n", qtVersion);
+    if (!qtVersion) {
+        printf("Trying to determine Qt version...\n");
+        qtVersion = getQtVersion(args.value("include-paths"));
+        if (!qtVersion)
+        {
+            fprintf(stderr, "Aborting\n"); // the error message was printed by getQtVersion
+            return 1;
+        }
+        printf("Determined Qt version is %d.%d.%d\n", qtVersion >> 16, (qtVersion >> 8) & 0xFF, qtVersion & 0xFF);
+    }
 
     printf("Parsing typesystem file [%s]\n", qPrintable(typesystemFileName));
     fflush(stdout);
@@ -236,6 +253,7 @@ void displayHelp(GeneratorSet* generatorSet) {
            "  --no-suppress-warnings                    \n"
            "  --output-directory=[dir]                  \n"
            "  --include-paths=<path>[%c<path>%c...]     \n"
+           "  --qt-version=x.y.z                        \n"
            "  --print-stdout                            \n",
            path_splitter, path_splitter);
 

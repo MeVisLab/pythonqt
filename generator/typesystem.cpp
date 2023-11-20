@@ -216,7 +216,6 @@ private:
     bool importFileElement(const QXmlAttributes &atts);
     bool convertBoolean(const QString &, const QString &, bool);
     bool qtVersionMatches(const QXmlAttributes& atts, bool& ok);
-    unsigned int qtVersionFromString(const QString& value, bool& ok);
 
     TypeDatabase *m_database;
     StackElement* current;
@@ -475,7 +474,7 @@ bool Handler::qtVersionMatches(const QXmlAttributes& atts, bool& ok)
   ok = true;
   int beforeIndex = atts.index("before-version");
   if (beforeIndex >= 0) {
-    uint beforeVersion = qtVersionFromString(atts.value(beforeIndex), ok);
+    uint beforeVersion = TypeSystem::qtVersionFromString(atts.value(beforeIndex), ok);
     if (ok) {
       if (m_qtVersion >= beforeVersion) {
         return false;
@@ -487,7 +486,7 @@ bool Handler::qtVersionMatches(const QXmlAttributes& atts, bool& ok)
   }
   int afterIndex = atts.index("after-version"); // after-version really means this version or any version after
   if (afterIndex >= 0) {
-    uint afterVersion = qtVersionFromString(atts.value(afterIndex), ok);
+    uint afterVersion = TypeSystem::qtVersionFromString(atts.value(afterIndex), ok);
     if (ok) {
       if (m_qtVersion < afterVersion) {
         return false;
@@ -498,29 +497,6 @@ bool Handler::qtVersionMatches(const QXmlAttributes& atts, bool& ok)
     }
   }
   return true;
-}
-
-uint Handler::qtVersionFromString(const QString& value, bool& ok)
-{
-  ok = true;
-  QList<uint> values;
-  for (QString dotValue: value.split('.'))
-  {
-    dotValue = dotValue.trimmed();
-    bool ok2;
-    values.append(dotValue.toUInt(&ok2));
-    if (!ok2) {
-      ok = false;
-    }
-  }
-  uint result = values[0] << 16;
-  if (values.size() >= 2) {
-    result += values[1] << 8;
-  }
-  if (values.size() >= 3) {
-    result += values[2];
-  }
-  return result;
 }
 
 bool Handler::startElement(const QString &, const QString &n,
@@ -2133,3 +2109,27 @@ QByteArray TypeSystem::normalizedSignature(const char* signature)
   result.replace("QStringList<QString>", "QStringList");
   return result;
 }
+
+unsigned int TypeSystem::qtVersionFromString(const QString& value, bool& ok)
+{
+  ok = true;
+  QList<uint> values;
+  for (QString dotValue : value.split('.'))
+  {
+    dotValue = dotValue.trimmed();
+    bool ok2;
+    values.append(dotValue.toUInt(&ok2));
+    if (!ok2) {
+      ok = false;
+    }
+  }
+  uint result = values[0] << 16;
+  if (values.size() >= 2) {
+    result += values[1] << 8;
+  }
+  if (values.size() >= 3) {
+    result += values[2];
+  }
+  return result;
+}
+

@@ -167,6 +167,9 @@ namespace TypeSystem {
 
     //! A better normalized signature, which takes care of PODs with the same name
     QByteArray normalizedSignature(const char* signature);
+
+    //! Determine version ID from version string
+    unsigned int qtVersionFromString(const QString& value, bool& ok);
 }
 
 struct ReferenceCount
