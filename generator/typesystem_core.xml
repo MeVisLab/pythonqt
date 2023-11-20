@@ -1285,7 +1285,7 @@
     <!-- Can't provide same API and performance -->
   
     <modify-function signature="open(int,QFlags&lt;QIODevice::OpenModeFlag&gt;)" remove="all" before-version="6"/>
-    <modify-function signature="open(int,QFlags&lt;QIODeviceBase::OpenModeFlag&gt;,QFlags&lt;QFileDevice::FileHandleFlag&gt;)" remove="all" after-version="6"/>
+    <modify-function signature="open(int,QFlags&lt;QIODeviceBase::OpenModeFlag&gt;,QFlags&lt;QFileDevice::FileHandleFlag&gt;)" remove="all" since-version="6"/>
     <modify-function signature="decodeName(const char*)" remove="all"/>
     <modify-function signature="map(qint64,qint64,QFile::MemoryMapFlags)" remove="all"/>
     <modify-function signature="unmap(uchar*)" remove="all"/>

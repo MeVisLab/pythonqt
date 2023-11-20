@@ -75,7 +75,7 @@
 <enum-type name="QMediaStreamsControl::StreamType"/>
 
 <namespace-type name="QAudio"/>
-<namespace-type name="QMultimedia" after-version="5"/>
+<namespace-type name="QMultimedia" since-version="5"/>
 
 <object-type name="QAbstractVideoBuffer"/>
 <object-type name="QAbstractVideoSurface"/>
@@ -176,7 +176,7 @@
 
 <object-type name="QMediaServiceProviderPlugin"/>
 
-<group after-verson="6">
+<group since-version="6">
   <object-type name="QAudioDevice"/>
   <object-type name="QAudioSink"/>
   <object-type name="QAudioSource"/>

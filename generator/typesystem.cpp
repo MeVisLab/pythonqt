@@ -269,7 +269,7 @@ void Handler::fetchAttributeValues(const QString &name, const QXmlAttributes &at
         QString key = atts.localName(i).toLower();
         QString val = atts.value(i);
 
-        if (!acceptedAttributes->contains(key) && key != "after-version" && key != "before-version") {
+        if (!acceptedAttributes->contains(key) && key != "since-version" && key != "before-version") {
             ReportHandler::warning(QString("Unknown attribute for '%1': '%2'").arg(name).arg(key));
         } else {
             (*acceptedAttributes)[key] = val;
@@ -484,16 +484,16 @@ bool Handler::qtVersionMatches(const QXmlAttributes& atts, bool& ok)
       m_error = "Invalid 'before-version' version string: " + atts.value(beforeIndex);
     }
   }
-  int afterIndex = atts.index("after-version"); // after-version really means this version or any version after
-  if (afterIndex >= 0) {
-    uint afterVersion = TypeSystem::qtVersionFromString(atts.value(afterIndex), ok);
+  int sinceIndex = atts.index("since-version");
+  if (sinceIndex >= 0) {
+    uint sinceVersion = TypeSystem::qtVersionFromString(atts.value(sinceIndex), ok);
     if (ok) {
-      if (m_qtVersion < afterVersion) {
+      if (m_qtVersion < sinceVersion) {
         return false;
       }
     }
     else {
-      m_error = "Invalid 'after-version' version string: " + atts.value(afterIndex);
+      m_error = "Invalid 'since-version' version string: " + atts.value(sinceIndex);
     }
   }
   return true;
