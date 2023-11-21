@@ -1008,6 +1008,8 @@ AbstractMetaEnum *AbstractMetaBuilder::traverseEnum(EnumModelItem enum_item, Abs
        return 0;
     }
 
+    static_cast<EnumTypeEntry*>(type_entry)->setEnumClass(enum_item->isEnumClass());
+
     AbstractMetaEnum *meta_enum = createMetaEnum();
     if (   enumsDeclarations.contains(qualified_name)
         || enumsDeclarations.contains(enum_name)) {

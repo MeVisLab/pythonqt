@@ -421,6 +421,7 @@ struct EnumSpecifierAST: public TypeSpecifierAST
 
   NameAST *name{};
   const ListNode<EnumeratorAST*> *enumerators{};
+  bool is_enum_class{};
 };
 
 struct EnumeratorAST: public AST

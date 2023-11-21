@@ -730,6 +730,9 @@ public:
     void addEnumValueRedirection(const QString &rejected, const QString &usedValue);
     QString enumValueRedirection(const QString &value) const;
 
+    bool isEnumClass() const { return m_enum_class; }
+    void setEnumClass(bool enum_class) { m_enum_class = enum_class; }
+
     bool forceInteger() const { return m_force_integer; }
     void setForceInteger(bool force) { m_force_integer = force; }
 
@@ -748,6 +751,7 @@ private:
     FlagsTypeEntry *m_flags;
 
     bool m_extensible;
+    bool m_enum_class;
     bool m_force_integer;
 };
 

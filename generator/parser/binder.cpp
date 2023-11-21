@@ -796,6 +796,7 @@ void Binder::visitEnumSpecifier(EnumSpecifierAST *node)
 
   _M_current_enum = model()->create<EnumModelItem>();
   _M_current_enum->setAccessPolicy(_M_current_access);
+  _M_current_enum->setEnumClass(node->is_enum_class);
   updateItemPosition (_M_current_enum->toItem(), node);
   _M_current_enum->setName(name);
   _M_current_enum->setScope(enumScope->qualifiedName());

@@ -1548,8 +1548,10 @@ bool Parser::parseEnumSpecifier(TypeSpecifierAST *&node)
 
   CHECK(Token_enum);
 
+  bool enum_class{};
   if (token_stream.lookAhead() == Token_class)
     {
+      enum_class = true;
       nextToken();
     }
 
@@ -1576,6 +1578,7 @@ bool Parser::parseEnumSpecifier(TypeSpecifierAST *&node)
 
   EnumSpecifierAST *ast = CreateNode<EnumSpecifierAST>(_M_pool);
   ast->name = name;
+  ast->is_enum_class = enum_class;
 
   EnumeratorAST *enumerator = 0;
   if (parseEnumerator(enumerator))

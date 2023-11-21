@@ -676,6 +676,9 @@ public:
   CodeModel::AccessPolicy accessPolicy() const;
   void setAccessPolicy(CodeModel::AccessPolicy accessPolicy);
 
+  bool isEnumClass() const { return _M_isEnumClass; }
+  void setEnumClass(bool isEnumClass) { _M_isEnumClass = isEnumClass; }
+
   EnumeratorList enumerators() const;
   void addEnumerator(EnumeratorModelItem item);
   void removeEnumerator(EnumeratorModelItem item);
@@ -689,6 +692,7 @@ protected:
 private:
   CodeModel::AccessPolicy _M_accessPolicy;
   EnumeratorList _M_enumerators;
+  bool _M_isEnumClass{};
 
 private:
   _EnumModelItem(const _EnumModelItem &other);
