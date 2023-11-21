@@ -84,10 +84,6 @@ public:
 
     void autoAddQEnumsForClassItem(ClassModelItem item);
 
-    void figureOutEnumValuesForClass(AbstractMetaClass *meta_class, QSet<AbstractMetaClass *> *classes);
-    int figureOutEnumValue(const QString &name, int value, AbstractMetaEnum *meta_enum, AbstractMetaFunction *meta_function = 0);
-    void figureOutEnumValues();
-
     void addAbstractMetaClass(AbstractMetaClass *cls);
     AbstractMetaClass *traverseTypeAlias(TypeAliasModelItem item);
     AbstractMetaClass *traverseClass(ClassModelItem item);

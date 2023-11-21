@@ -727,9 +727,6 @@ public:
     void addEnumValueRejection(const QString &name) { m_rejected_enums << name; }
     QStringList enumValueRejections() const { return m_rejected_enums; }
 
-    void addEnumValueRedirection(const QString &rejected, const QString &usedValue);
-    QString enumValueRedirection(const QString &value) const;
-
     bool isEnumClass() const { return m_enum_class; }
     void setEnumClass(bool enum_class) { m_enum_class = enum_class; }
 
@@ -746,7 +743,6 @@ private:
     QString m_upper_bound;
 
     QStringList m_rejected_enums;
-    QList<EnumValueRedirection> m_enum_redirections;
 
     FlagsTypeEntry *m_flags;
 

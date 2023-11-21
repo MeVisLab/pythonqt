@@ -1742,19 +1742,6 @@ QString FlagsTypeEntry::jniName() const
     return "jint";
 }
 
-void EnumTypeEntry::addEnumValueRedirection(const QString &rejected, const QString &usedValue)
-{
-    m_enum_redirections << EnumValueRedirection(rejected, usedValue);
-}
-
-QString EnumTypeEntry::enumValueRedirection(const QString &value) const
-{
-    for (int i=0; i<m_enum_redirections.size(); ++i)
-        if (m_enum_redirections.at(i).rejected == value)
-            return m_enum_redirections.at(i).used;
-    return QString();
-}
-
 QString FlagsTypeEntry::qualifiedTargetLangName() const
 {
     return javaPackage() + "." + m_enum->javaQualifier() + "." + targetLangName();
