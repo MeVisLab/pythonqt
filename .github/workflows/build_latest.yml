@@ -32,7 +32,7 @@ jobs:
         python-version: '${{ matrix.python-version }}'
 
     - name: Checkout PythonQt
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set environment
       id: setenv
