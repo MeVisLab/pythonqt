@@ -100,6 +100,7 @@ static bool field_lessThan(const AbstractMetaField* a, const AbstractMetaField* 
 
 void ShellHeaderGenerator::write(QTextStream& s, const AbstractMetaClass* meta_class)
 {
+  setCurrentScope(meta_class);
   QString builtIn = ShellGenerator::isBuiltIn(meta_class->name()) ? "_builtin" : "";
   QString pro_file_name = meta_class->package().replace(".", "_") + builtIn + "/" + meta_class->package().replace(".", "_") + builtIn + ".pri";
   priGenerator->addHeader(pro_file_name, fileNameForClass(meta_class));
@@ -447,7 +448,7 @@ void ShellHeaderGenerator::write(QTextStream& s, const AbstractMetaClass* meta_c
 
   s << "#endif // " << include_block << endl;
 
-
+  setCurrentScope(nullptr);
 }
 
 void ShellHeaderGenerator::writePromoterArgs(AbstractMetaArgumentList& args, QTextStream& s)

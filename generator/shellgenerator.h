@@ -98,8 +98,14 @@ public:
     
     static void writeInclude(QTextStream &stream, const Include &inc);
   
+    // this scope is used in writeFunctionArguments
+    const AbstractMetaClass* setCurrentScope(const AbstractMetaClass* scope);
+    const AbstractMetaClass* currentScope() const { return _currentScope; }
+
  protected:
-    PriGenerator *priGenerator;
+    PriGenerator* priGenerator{};
+
+    const AbstractMetaClass* _currentScope{};
 
 };
 

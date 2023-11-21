@@ -70,6 +70,8 @@ static void writeHelperCode(QTextStream &, const AbstractMetaClass *)
 
 void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_class)
 {
+  setCurrentScope(meta_class);
+
   QString builtIn = ShellGenerator::isBuiltIn(meta_class->name())?"_builtin":"";
   QString pro_file_name = meta_class->package().replace(".", "_") + builtIn + "/" + meta_class->package().replace(".", "_") + builtIn + ".pri";
   priGenerator->addSource(pro_file_name, fileNameForClass(meta_class));
@@ -360,6 +362,8 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
   if (meta_class->qualifiedCppName().contains("Ssl")) {
     s << "#endif"  << endl;
   }
+
+  setCurrentScope(nullptr);
 }
 
 void ShellImplGenerator::writeInjectedCode(QTextStream &s, const AbstractMetaClass *meta_class)

@@ -125,6 +125,18 @@ void ShellGenerator::writeTypeInfo(QTextStream &s, const AbstractMetaType *type,
         s << ' ';
 }
 
+namespace {
+  AbstractMetaEnum* findEnumTypeOfClass(const AbstractMetaClass* implementor, const QString& enumName)
+  {
+    for (AbstractMetaEnum* enumType : implementor->enums()) {
+      if (enumType->name() == enumName) {
+        return enumType;
+      }
+    }
+    return nullptr;
+  }
+}
+
 
 void ShellGenerator::writeFunctionArguments(QTextStream &s,
                                             const AbstractMetaFunction *meta_function,
@@ -170,8 +182,20 @@ void ShellGenerator::writeFunctionArguments(QTextStream &s,
               qualifier =  ((EnumTypeEntry *)arg->type()->typeEntry())->qualifier();
             } else if (arg->type()->typeEntry()->isFlags() && expr.indexOf("::") < 0) {
               qualifier = ((FlagsTypeEntry *)arg->type()->typeEntry())->originator()->qualifier();
+            } else if (_currentScope) {
+              int pos = expr.indexOf("::");
+              if (pos > 0) {
+                QString typeName = expr.left(pos);
+                AbstractMetaEnum* enumType = findEnumTypeOfClass(_currentScope, typeName);
+                if (enumType && enumType->typeEntry()->isEnumClass()) {
+                  // prepend original class name, otherwise the new enum type from the wrapper will be used,
+                  // which is not compatible
+                  qualifier = _currentScope->name();
+                }
+              }
             }
-            if (!qualifier.isEmpty()) {
+
+            if (!qualifier.isEmpty() && !expr.startsWith("{")) {
               s << qualifier << "::";
             }
           }
@@ -397,6 +421,13 @@ void ShellGenerator::writeInclude(QTextStream &stream, const Include &inc)
   else
     stream << "\"";
   stream << endl;
+}
+
+const AbstractMetaClass* ShellGenerator::setCurrentScope(const AbstractMetaClass* scope)
+{
+  const AbstractMetaClass* previousScope = _currentScope;
+  _currentScope = scope;
+  return previousScope;
 }
 
 /*!
