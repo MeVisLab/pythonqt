@@ -11,7 +11,10 @@ isEmpty( PYTHONQTALL_CONFIG ) {
   qtHaveModule(svg):CONFIG += PythonQtSvg
   qtHaveModule(sql):CONFIG += PythonQtSql
   qtHaveModule(network):CONFIG += PythonQtNetwork
-  qtHaveModule(opengl):CONFIG += PythonQtOpengl
+  lessThan(QT_MAJOR_VERSION, 6) {
+    # module is empty in Qt6
+    qtHaveModule(opengl):CONFIG += PythonQtOpengl
+  }
   qtHaveModule(xml):CONFIG += PythonQtXml
   qtHaveModule(xmlpatterns):CONFIG += PythonQtXmlpatterns
   qtHaveModule(multimedia):CONFIG += PythonQtMultimedia
@@ -93,6 +96,7 @@ PythonQtSvg {
   DEFINES += PYTHONQT_WITH_SVG
   Xinclude (com_trolltech_qt_svg)
   QT += svg
+  !lessThan(QT_MAJOR_VERSION,6): QT += svgwidgets
 }
 
 PythonQtSql {
