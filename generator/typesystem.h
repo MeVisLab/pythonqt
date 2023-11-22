@@ -801,6 +801,7 @@ public:
           m_generic_class(false),
           m_createShell(false),
           m_createPromoter(false),
+          m_noCopy(false),
           m_type_flags(0)
     {
         Include inc;
@@ -931,6 +932,9 @@ public:
     bool isGenericClass() const { return m_generic_class; }
     void setGenericClass(bool isGeneric) { m_generic_class = isGeneric; }
 
+    bool hasNoCopy() const { return m_noCopy; }
+    void setNoCopy(bool noCopy) { m_noCopy = noCopy; }
+
 private:
     IncludeList m_extra_includes;
     Include m_include;
@@ -948,6 +952,7 @@ private:
     uint m_generic_class : 1;
     uint m_createShell : 1;
     uint m_createPromoter : 1;
+    uint m_noCopy : 1;
 
     QString m_polymorphic_id_value;
     QString m_lookup_name;

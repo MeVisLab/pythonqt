@@ -1109,8 +1109,15 @@ void AbstractMetaBuilder::traverseFunctions(ScopeModelItem scope_item, AbstractM
             bool isInvalidDestructor = meta_function->isDestructor() && meta_function->isPrivate();
             bool isInvalidConstructor = meta_function->isConstructor()
                 && (meta_function->isPrivate() || meta_function->isInvalid());
+            if (isInvalidConstructor && meta_function->arguments().size() == 1 &&
+              meta_class->qualifiedCppName() == meta_function->arguments().at(0)->type()->typeEntry()->qualifiedCppName())
+            {
+                // deleted or private copy constructor, it seems copying is not allowed
+                meta_class->typeEntry()->setNoCopy(true);
+            }
             if ((isInvalidDestructor || isInvalidConstructor)
-                && !meta_class->hasNonPrivateConstructor()) {
+                && !meta_class->hasNonPrivateConstructor())
+            {
                 *meta_class += AbstractMetaAttributes::Final;
             } else if (meta_function->isConstructor() && !meta_function->isPrivate()) {
                 *meta_class -= AbstractMetaAttributes::Final;
@@ -1434,11 +1441,6 @@ AbstractMetaFunction *AbstractMetaBuilder::traverseFunction(FunctionModelItem fu
             meta_function->setFunctionType(AbstractMetaFunction::SlotFunction);
     }
 
-    if (function_item->isDeleted()) {
-      meta_function->setInvalid(true);
-      return meta_function;
-    }
-
     ArgumentList arguments = function_item->arguments();
     AbstractMetaArgumentList meta_arguments;
 
@@ -1494,7 +1496,7 @@ AbstractMetaFunction *AbstractMetaBuilder::traverseFunction(FunctionModelItem fu
         }
     }
 
-    // If we where not able to translate the default argument make it
+    // If we were not able to translate the default argument make it
     // reset all default arguments before this one too.
     for (int i=0; i<first_default_argument; ++i) {
         meta_arguments[i]->setDefaultValueExpression(QString());
@@ -1504,6 +1506,11 @@ AbstractMetaFunction *AbstractMetaBuilder::traverseFunction(FunctionModelItem fu
         for (AbstractMetaArgument *arg :  meta_arguments) {
             ReportHandler::debugFull("   - " + arg->toString());
         }
+    }
+
+    if (function_item->isDeleted()) {
+      meta_function->setInvalid(true);
+      return meta_function;
     }
 
     return meta_function;

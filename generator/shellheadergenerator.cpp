@@ -364,7 +364,8 @@ void ShellHeaderGenerator::write(QTextStream& s, const AbstractMetaClass* meta_c
     }
 
     if (meta_class->typeEntry()->isValue()
-      && !copyConstructorSeen && defaultConstructorSeen) {
+      && !copyConstructorSeen && defaultConstructorSeen && !meta_class->typeEntry()->hasNoCopy())
+    {
       QString className = meta_class->generateShellClass() ? shellClassName(meta_class) : meta_class->qualifiedCppName();
       s << meta_class->qualifiedCppName() << "* new_" << meta_class->name() << "(const " << meta_class->qualifiedCppName() << "& other) {" << endl;
       s << className << "* a = new " << className << "();" << endl;
