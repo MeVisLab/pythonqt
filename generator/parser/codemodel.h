@@ -355,6 +355,7 @@ public:
 
   TemplateParameterList templateParameters() const;
   void setTemplateParameters(const TemplateParameterList &templateParameters);
+  bool isTemplateClass() const { return _M_templateParameters.size(); }
 
   bool extendsClass(const QString &name) const;
 

@@ -471,6 +471,18 @@ void Binder::visitFunctionDefinition(FunctionDefinitionAST *node)
   foreach (DeclaratorCompiler::Parameter p, decl_cc.parameters())
     {
       ArgumentModelItem arg = model()->create<ArgumentModelItem>();
+      
+      if (_M_current_class && _M_current_class->isTemplateClass())
+        {
+          QStringList qualifiedName = p.type.qualifiedName();
+          if (qualifiedName.size() == 1 && !qualifiedName.last().contains('<') &&
+              qualifiedName.last() == _M_current_class->name().split('<').first())
+            {
+              // Fix: add template arguments if the argument type is the current class
+              // name without template arguments
+              p.type.setQualifiedName(QStringList(_M_current_class->name()));
+            }
+        }
       arg->setType(qualifyType(p.type, functionScope->qualifiedName()));
       arg->setName(p.name);
       arg->setDefaultValue(p.defaultValue);
