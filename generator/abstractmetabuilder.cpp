@@ -705,10 +705,10 @@ AbstractMetaClass *AbstractMetaBuilder::traverseNamespace(NamespaceModelItem nam
 
     // collect all include files (since namespace items might come from different files)
     QSet<QString> includeFiles;
-    for (auto item : namespace_item->enums()) {
+    for (const auto& item : namespace_item->enums()) {
       includeFiles.insert(item->fileName());
     }
-    for (auto item : namespace_item->functions()) {
+    for (const auto& item : namespace_item->functions()) {
       includeFiles.insert(item->fileName());
     }
     // (should we do this for typeAliases and inner namespaces too?)
