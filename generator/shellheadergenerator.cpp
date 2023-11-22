@@ -222,6 +222,11 @@ void ShellHeaderGenerator::write(QTextStream& s, const AbstractMetaClass* meta_c
           // always do a direct call, since we want to call the real virtual function here
           s << "this->";
         }
+        if (fun->originalName() == "operator=") {
+          // make it clear we don't want to call the (automatically generated)
+          // assignment operator of the promoter
+          s << meta_class->qualifiedCppName() << "::";
+        }
         s << fun->originalName() << "(";
         writePromoterArgs(args, s);
         s << "); }" << endl;

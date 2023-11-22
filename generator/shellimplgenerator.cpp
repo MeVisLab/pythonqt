@@ -304,13 +304,13 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
         }
       }
       s << "(";
-      if (scriptFunctionName.startsWith("operator>>")) {
+      if (scriptFunctionName.startsWith("operator>>") && !fun->wasProtected()) {
         s << wrappedObject << " >>" << args.at(0)->argumentName();
-      } else if (scriptFunctionName.startsWith("operator<<")) {
+      } else if (scriptFunctionName.startsWith("operator<<") && !fun->wasProtected()) {
         s << wrappedObject << " <<" << args.at(0)->argumentName();
-      } else if (scriptFunctionName.startsWith("operator[]")) {
+      } else if (scriptFunctionName.startsWith("operator[]") && !fun->wasProtected()) {
         s << wrappedObject << "[" << args.at(0)->argumentName() << "]";
-      } else if (scriptFunctionName.startsWith("operator") && args.size()==1) {
+      } else if (scriptFunctionName.startsWith("operator") && args.size()==1 && !fun->wasProtected()) {
         QString op = scriptFunctionName.mid(8);
         s << wrappedObject << op << " " << args.at(0)->argumentName();
       } else {
@@ -328,7 +328,13 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
             s << " theWrappedObject->";
           }
         }
-        s  << fun->originalName() << "(";
+        if (fun->wasProtected()) {
+          // this is different e.g. for operators
+          s << fun->name() << "(";
+        }
+        else {
+          s << fun->originalName() << "(";
+        }
         for (int i = 0; i < args.size(); ++i) {
           if (i > 0)
             s << ", ";
