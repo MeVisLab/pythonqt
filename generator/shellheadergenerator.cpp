@@ -308,10 +308,10 @@ void ShellHeaderGenerator::write(QTextStream& s, const AbstractMetaClass* meta_c
     }
 
     for (AbstractMetaEnum * enum1 :  enums) {
-      s << "enum " << enum1->name() << "{" << endl;
+      bool isEnumClass = enum1->typeEntry()->isEnumClass();
+      s << "enum " << (isEnumClass ? "class " : "") << enum1->name() << "{" << endl;
       bool first = true;
       QString scope = enum1->wasProtected() ? promoterClassName(meta_class) : meta_class->qualifiedCppName();
-      bool isEnumClass = enum1->typeEntry()->isEnumClass();
       if (isEnumClass) {
         scope += "::" + enum1->name();
       }
@@ -321,12 +321,7 @@ void ShellHeaderGenerator::write(QTextStream& s, const AbstractMetaClass* meta_c
         else { s << ", "; }
         QString assignedValue = scope + "::" + value->name();
         if (isEnumClass) {
-          // prepend value name with class name, the value name on itself could be a duplicate
-          // 
-          // I thought about creating a enum class instead, and creating an Enum class in PythonQt for the wrapper
-          // (QMetaEnum has a isScoped method to check for enum classes),
-          // but the process seemed quite complicated.
-          s << "  " << enum1->name() << "_" << value->name() << " = " << "static_cast<int>(" << scope << "::" << value->name() << ")";
+          s << "  " << value->name() << " = " << "static_cast<int>(" << scope << "::" << value->name() << ")";
         }
         else {
           s << "  " << value->name() << " = " << scope << "::" << value->name();
