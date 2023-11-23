@@ -386,8 +386,8 @@ void PythonQtTestSignalHandler::testSignalHandler()
   QVERIFY(_helper->emitVariantSignal(12));
   _helper->setExpectedVariant(QStringList() << "test1" << "test2");
   QVERIFY(_helper->emitVariantSignal(QStringList() << "test1" << "test2"));
-  _helper->setExpectedVariant(qVariantFromValue((QObject*)_helper));
-  QVERIFY(_helper->emitVariantSignal(qVariantFromValue((QObject*)_helper)));
+  _helper->setExpectedVariant(QVariant::fromValue((QObject*)_helper));
+  QVERIFY(_helper->emitVariantSignal(QVariant::fromValue((QObject*)_helper)));
 
   PyRun_SimpleString("def testComplexSignal(a,b,l,o):\n  if a==12 and b==13 and l==('test1','test2') and o == obj: obj.setPassed();\n");
   // intentionally not normalized signal:
@@ -497,7 +497,7 @@ void PythonQtTestApi::testCall()
   QVERIFY(_helper->call("testCall1", QVariantList() << QVariant("test"), QVariant(QString("test2"))));
 
   PyRun_SimpleString("def testCall2(a, b):\n if a=='test' and b==obj: obj.setPassed();\n return obj;\n");
-  QVariant r = PythonQt::self()->call(PythonQt::self()->getMainModule(), "testCall2", QVariantList() << QVariant("test") << qVariantFromValue((QObject*)_helper));
+  QVariant r = PythonQt::self()->call(PythonQt::self()->getMainModule(), "testCall2", QVariantList() << QVariant("test") << QVariant::fromValue((QObject*)_helper));
   QObject* p = qvariant_cast<QObject*>(r);
   QVERIFY(p==_helper);
 }
@@ -522,7 +522,7 @@ void PythonQtTestApi::testVariables()
 #endif
   QVERIFY(v3 == someValue);
 
-  QStringList l = PythonQt::self()->introspection(PythonQt::self()->getMainModule(), QString::null, PythonQt::Variable);
+  QStringList l = PythonQt::self()->introspection(PythonQt::self()->getMainModule(), QString(), PythonQt::Variable);
   QSet<QString> s;
   // check that at least these three variables are set
   s << "obj" << "someObject" << "someValue";
