@@ -71,8 +71,12 @@ Macros</h2></td></tr>
 <tr class="separator:a5b81ddd3a960f38123966610960c68cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a35367819b2339d4db8256656388caf6a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PythonQtMisc_8h.html#a35367819b2339d4db8256656388caf6a">PythonQtArgumentFrame_ADD_VARIANT_VALUE</a>(store,  value,  ptr)</td></tr>
 <tr class="separator:a35367819b2339d4db8256656388caf6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7fba260364c7d7721b891130103036a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PythonQtMisc_8h.html#aa7fba260364c7d7721b891130103036a">PythonQtArgumentFrame_ADD_VARIANT_VALUE_BY_ID</a>(store,  id,  ptr)&#160;&#160;&#160;  <a class="el" href="PythonQtMisc_8h.html#a35367819b2339d4db8256656388caf6a">PythonQtArgumentFrame_ADD_VARIANT_VALUE</a>(store, QVariant::Type(id), ptr)</td></tr>
+<tr class="separator:aa7fba260364c7d7721b891130103036a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab3c37c207267f901fdeb2282598dc158"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PythonQtMisc_8h.html#ab3c37c207267f901fdeb2282598dc158">PythonQtArgumentFrame_ADD_VARIANT_VALUE_IF_NEEDED</a>(alreadyAllocatedPtr,  store,  value,  ptr)</td></tr>
 <tr class="separator:ab3c37c207267f901fdeb2282598dc158"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42648081c154c75dcc0fe6c6295cd43a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PythonQtMisc_8h.html#a42648081c154c75dcc0fe6c6295cd43a">PythonQtArgumentFrame_ADD_VARIANT_VALUE_BY_ID_IF_NEEDED</a>(alreadyAllocatedPtr,  store,  id,  ptr)&#160;&#160;&#160;  <a class="el" href="PythonQtMisc_8h.html#ab3c37c207267f901fdeb2282598dc158">PythonQtArgumentFrame_ADD_VARIANT_VALUE_IF_NEEDED</a>(alreadyAllocatedPtr,store, QVariant::Type(id), ptr)</td></tr>
+<tr class="separator:a42648081c154c75dcc0fe6c6295cd43a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Florian Link </dd>
@@ -238,6 +242,84 @@ Last changed by </dd></dl>
 
 </div>
 </div>
+<a id="aa7fba260364c7d7721b891130103036a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7fba260364c7d7721b891130103036a">&#9670;&nbsp;</a></span>PythonQtArgumentFrame_ADD_VARIANT_VALUE_BY_ID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PythonQtArgumentFrame_ADD_VARIANT_VALUE_BY_ID</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">store, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">id, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">ptr&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;  <a class="el" href="PythonQtMisc_8h.html#a35367819b2339d4db8256656388caf6a">PythonQtArgumentFrame_ADD_VARIANT_VALUE</a>(store, QVariant::Type(id), ptr)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="PythonQtMisc_8h_source.html#l00077">77</a> of file <a class="el" href="PythonQtMisc_8h_source.html">PythonQtMisc.h</a>.</p>
+
+</div>
+</div>
+<a id="a42648081c154c75dcc0fe6c6295cd43a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42648081c154c75dcc0fe6c6295cd43a">&#9670;&nbsp;</a></span>PythonQtArgumentFrame_ADD_VARIANT_VALUE_BY_ID_IF_NEEDED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PythonQtArgumentFrame_ADD_VARIANT_VALUE_BY_ID_IF_NEEDED</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">alreadyAllocatedPtr, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">store, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">id, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">ptr&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;  <a class="el" href="PythonQtMisc_8h.html#ab3c37c207267f901fdeb2282598dc158">PythonQtArgumentFrame_ADD_VARIANT_VALUE_IF_NEEDED</a>(alreadyAllocatedPtr,store, QVariant::Type(id), ptr)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="PythonQtMisc_8h_source.html#l00096">96</a> of file <a class="el" href="PythonQtMisc_8h_source.html">PythonQtMisc.h</a>.</p>
+
+</div>
+</div>
 <a id="ab3c37c207267f901fdeb2282598dc158"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab3c37c207267f901fdeb2282598dc158">&#9670;&nbsp;</a></span>PythonQtArgumentFrame_ADD_VARIANT_VALUE_IF_NEEDED</h2>
 
@@ -281,14 +363,14 @@ Last changed by </dd></dl>
 <div class="line">  ptr = (<span class="keywordtype">void</span>*)item; \</div>
 <div class="line">}</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="PythonQtMisc_8h_source.html#l00070">70</a> of file <a class="el" href="PythonQtMisc_8h_source.html">PythonQtMisc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PythonQtMisc_8h_source.html#l00082">82</a> of file <a class="el" href="PythonQtMisc_8h_source.html">PythonQtMisc.h</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 21 2023 12:50:20 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Fri Nov 24 2023 13:14:56 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>
