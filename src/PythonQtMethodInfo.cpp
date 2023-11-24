@@ -423,7 +423,16 @@ void PythonQtMethodInfo::cleanupCachedMethodInfos()
 
 void PythonQtMethodInfo::addParameterTypeAlias(const QByteArray& alias, const QByteArray& name)
 {
+#if QT_VERSION >= 0x060000
+  QByteArray alias2{ alias };
+  QByteArray name2{ name };
+  // in Qt6 QPair has been replaced by std::pair, QVector is really QList, and there is no space between ">"
+  alias2.replace("QPair", "std::pair").replace("QVector", "QList").replace("> >", ">>");
+  name2.replace("QPair", "std::pair").replace("QVector", "QList").replace("> >", ">>");
+  _parameterNameAliases.insert(alias2, name2);
+#else
   _parameterNameAliases.insert(alias, name);
+#endif
 }
 
 const PythonQtMethodInfo::ParameterInfo& PythonQtMethodInfo::getParameterInfoForMetaType(int type)
