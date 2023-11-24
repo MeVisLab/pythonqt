@@ -67,12 +67,36 @@
    ptr = (void*)item; \
 }
 
+#if QT_VERSION >= 0x060000
+
+#define PythonQtArgumentFrame_ADD_VARIANT_VALUE_BY_ID(store, id, ptr) \
+  PythonQtArgumentFrame_ADD_VARIANT_VALUE(store, QVariant(QMetaType(id)), ptr)
+
+#else
+
+#define PythonQtArgumentFrame_ADD_VARIANT_VALUE_BY_ID(store, id, ptr) \
+  PythonQtArgumentFrame_ADD_VARIANT_VALUE(store, QVariant::Type(id), ptr)
+
+#endif
+
 #define PythonQtArgumentFrame_ADD_VARIANT_VALUE_IF_NEEDED(alreadyAllocatedPtr,store, value, ptr) \
 { \
   QVariant* item = (QVariant*)(alreadyAllocatedPtr?alreadyAllocatedPtr:store->nextVariantPtr()); \
   *item = value; \
   ptr = (void*)item; \
 }
+
+#if QT_VERSION >= 0x060000
+
+#define PythonQtArgumentFrame_ADD_VARIANT_VALUE_BY_ID_IF_NEEDED(alreadyAllocatedPtr,store, id, ptr) \
+  PythonQtArgumentFrame_ADD_VARIANT_VALUE_IF_NEEDED(alreadyAllocatedPtr,store, QVariant(QMetaType(id)), ptr)
+
+#else
+
+#define PythonQtArgumentFrame_ADD_VARIANT_VALUE_BY_ID_IF_NEEDED(alreadyAllocatedPtr,store, id, ptr) \
+  PythonQtArgumentFrame_ADD_VARIANT_VALUE_IF_NEEDED(alreadyAllocatedPtr,store, QVariant::Type(id), ptr)
+
+#endif
 
 //! Stores C++ arguments for a qt_metacall (which are created when converting data from Python to C++)
 class PythonQtArgumentFrame {

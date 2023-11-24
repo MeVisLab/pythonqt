@@ -255,14 +255,14 @@ PyObject* PythonQtConv::convertQtValueToPythonInternal(int type, const void* dat
        // check if we have a QList of pointers, which we can circumvent with a QList<void*>
        if (info.isQList && (info.innerNamePointerCount == 1)) {
          static int id = QMetaType::type("QList<void*>");
-         PythonQtArgumentFrame_ADD_VARIANT_VALUE(frame, QVariant::Type(id), ptr);
+         PythonQtArgumentFrame_ADD_VARIANT_VALUE_BY_ID(frame, id, ptr);
          // return the constData pointer that will be filled with the result value later on
          ptr = (void*)((QVariant*)ptr)->constData();
        }
 
        if (!ptr && info.typeId != PythonQtMethodInfo::Unknown) {
          // everything else is stored in a QVariant, if we know the meta type...
-         PythonQtArgumentFrame_ADD_VARIANT_VALUE(frame, QVariant::Type(info.typeId), ptr);
+         PythonQtArgumentFrame_ADD_VARIANT_VALUE_BY_ID(frame, info.typeId, ptr);
          // return the constData pointer that will be filled with the result value later on
          ptr = (void*)((QVariant*)ptr)->constData();
        }
@@ -651,7 +651,7 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
            if (info.isQList && (info.innerNamePointerCount == 1)) {
              static int id = QMetaType::type("QList<void*>");
              if (!alreadyAllocatedCPPObject) {
-               PythonQtArgumentFrame_ADD_VARIANT_VALUE_IF_NEEDED(alreadyAllocatedCPPObject, frame, QVariant::Type(id), ptr);
+               PythonQtArgumentFrame_ADD_VARIANT_VALUE_BY_ID_IF_NEEDED(alreadyAllocatedCPPObject, frame, id, ptr);
                ptr = (void*)((QVariant*)ptr)->constData();
              } else {
                ptr = alreadyAllocatedCPPObject;
@@ -672,7 +672,7 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
            if (converter) {
              if (!alreadyAllocatedCPPObject) {
                // create a new empty variant of concrete type:
-               PythonQtArgumentFrame_ADD_VARIANT_VALUE_IF_NEEDED(alreadyAllocatedCPPObject,frame, QVariant::Type(info.typeId), ptr);
+               PythonQtArgumentFrame_ADD_VARIANT_VALUE_BY_ID_IF_NEEDED(alreadyAllocatedCPPObject,frame, info.typeId, ptr);
                ptr = (void*)((QVariant*)ptr)->constData();
              } else {
                ptr = alreadyAllocatedCPPObject;
