@@ -512,9 +512,15 @@ void PythonQtTestApi::testVariables()
   QVariant v2 = PythonQt::self()->getVariable(PythonQt::self()->getMainModule(), "someObject2");
   QVERIFY(v2==QVariant());
 
-  PythonQt::self()->addVariable(PythonQt::self()->getMainModule(), "someValue", QStringList() << "test1" << "test2");
+  QVariant someValue = QStringList() << "test1" << "test2";
+  PythonQt::self()->addVariable(PythonQt::self()->getMainModule(), "someValue", someValue);
   QVariant v3 = PythonQt::self()->getVariable(PythonQt::self()->getMainModule(), "someValue");
-  QVERIFY(v3 == QVariant(QStringList() << "test1" << "test2"));
+#if QT_VERSION >= 0x060000
+  // In Qt6 the behavior of the == operator changed, and it will not try to convert the other
+  // value first, so we replicate this first (otherwise the comparison QVariantList <-> QStringList fails)
+  QVERIFY(someValue.convert(v3.metaType()));
+#endif
+  QVERIFY(v3 == someValue);
 
   QStringList l = PythonQt::self()->introspection(PythonQt::self()->getMainModule(), QString::null, PythonQt::Variable);
   QSet<QString> s;
