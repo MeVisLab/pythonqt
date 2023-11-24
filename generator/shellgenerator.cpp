@@ -95,7 +95,7 @@ void ShellGenerator::writeTypeInfo(QTextStream &s, const AbstractMetaType *type,
     }
 
     if (type->instantiations().size() > 0
-        && (!type->isContainer() 
+        && (!te->isContainer() 
             || (static_cast<const ContainerTypeEntry *>(te))->type() != ContainerTypeEntry::StringListContainer)) {
         s << '<';
         QList<AbstractMetaType *> args = type->instantiations();
