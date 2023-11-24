@@ -51,6 +51,7 @@ static char const * const _S_token_names[] = {
   "Q_PROPERTY",
   "__attribute__",
   "__typeof",
+  "alignas",
   "and",
   "and_eq",
   "arrow",

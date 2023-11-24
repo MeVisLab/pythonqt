@@ -186,6 +186,7 @@ public:
   bool parseQ_ENUMS(DeclarationAST *&node);
   bool parseQ_ENUM(DeclarationAST *&node);
 
+  bool skipAlignas();
   bool skipAttributes();
   bool skipUntil(int token);
   bool skipUntilDeclaration();

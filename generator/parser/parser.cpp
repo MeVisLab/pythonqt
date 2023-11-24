@@ -230,6 +230,24 @@ void Parser::keepTrackDebug()
 #endif
 }
 
+bool Parser::skipAlignas()
+{
+  // we are currently not interested in alignas, so we just skip it
+  if (token_stream.lookAhead() == Token_alignas)
+  {
+    nextToken();
+    if (token_stream.lookAhead() == '(')
+    {
+      if (skip('(', ')'))
+      {
+        nextToken();
+      }
+    }
+    return true;
+  }
+  return false;
+}
+
 bool Parser::skipAttributes()
 {
   bool any = false;
@@ -422,7 +440,10 @@ bool Parser::parseName(NameAST *&node, bool acceptTemplateId)
   std::size_t start = token_stream.cursor();
 
   WinDeclSpecAST *winDeclSpec = 0;
-  parseWinDeclSpec(winDeclSpec);
+  while (skipAlignas() || (!winDeclSpec && parseWinDeclSpec(winDeclSpec)))
+  {
+    ;
+  }
 
   NameAST *ast = CreateNode<NameAST>(_M_pool);
 
@@ -2054,9 +2075,10 @@ bool Parser::parseClassSpecifier(TypeSpecifierAST *&node)
   nextToken();
 
   WinDeclSpecAST *winDeclSpec = 0;
-  parseWinDeclSpec(winDeclSpec);
-
-  skipAttributes();
+  while (skipAttributes() || skipAlignas() || (!winDeclSpec && parseWinDeclSpec(winDeclSpec)))
+  {
+    ;
+  }
 
   while (token_stream.lookAhead() == Token_identifier
          && token_stream.lookAhead(1) == Token_identifier)
@@ -3359,7 +3381,8 @@ bool Parser::parseDeclarationInternal(DeclarationAST *&node)
   // so just consume then until no specifiers are left.
   // Luckily the parse methods can be called multiple times, they just add to existing nodes.
   while (skipAttributes() ||
-         parseWinDeclSpec(winDeclSpec) ||
+         skipAlignas() ||
+         (!winDeclSpec && parseWinDeclSpec(winDeclSpec)) ||
          parseCvQualify(cv) ||
          parseFunctionSpecifier(funSpec) ||
          parseStorageClassSpecifier(storageSpec))

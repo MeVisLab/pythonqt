@@ -1426,6 +1426,18 @@ void Lexer::scanKeyword7()
 {
   switch (*cursor)
     {
+    case 'a':
+      if (*(cursor + 1) == 'l' &&
+          *(cursor + 2) == 'i' &&
+          *(cursor + 3) == 'g' &&
+          *(cursor + 4) == 'n' &&
+          *(cursor + 5) == 'a' &&
+          *(cursor + 6) == 's')
+        {
+          token_stream[(int)index++].kind = Token_alignas;
+          return;
+        }
+      break;
     case 'd':
       if (*(cursor + 1) == 'e' &&
           *(cursor + 2) == 'f' &&

@@ -52,6 +52,7 @@ enum TOKEN_KIND
     Token_Q_PROPERTY,
     Token___attribute__,
     Token___typeof,
+    Token_alignas,
     Token_and,
     Token_and_eq,
     Token_arrow,
