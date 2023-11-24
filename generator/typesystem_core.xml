@@ -1322,24 +1322,24 @@
     <!-- special handling for context handlers -->
     <inject-code class="pywrap-operators">PythonQt::Type_EnterExit</inject-code>
     <inject-code class="pywrap-h">
-    void __enter__(QMutexLocker* self) {}
-    void __exit__(QMutexLocker* self, PyObject* type, PyObject* value, PyObject* traceback) { self->unlock(); }
+    void __enter__(QMutexLocker* /*self*/) {}
+    void __exit__(QMutexLocker* self, PyObject* /*type*/, PyObject* /*value*/, PyObject* /*traceback*/) { self->unlock(); }
     </inject-code>
   </value-type>
   <value-type name="QReadLocker">
     <!-- special handling for context handlers -->
     <inject-code class="pywrap-operators">PythonQt::Type_EnterExit</inject-code>
     <inject-code class="pywrap-h">
-    void __enter__(QReadLocker* self) {}
-    void __exit__(QReadLocker* self, PyObject* type, PyObject* value, PyObject* traceback) { self->unlock(); }
+    void __enter__(QReadLocker* /*self*/) {}
+    void __exit__(QReadLocker* self, PyObject* /*type*/, PyObject* /*value*/, PyObject* /*traceback*/) { self->unlock(); }
     </inject-code>
   </value-type>
   <value-type name="QWriteLocker">
     <!-- special handling for context handlers -->
     <inject-code class="pywrap-operators">PythonQt::Type_EnterExit</inject-code>
     <inject-code class="pywrap-h">
-    void __enter__(QWriteLocker* self) {}
-    void __exit__(QWriteLocker* self, PyObject* type, PyObject* value, PyObject* traceback) { self->unlock(); }
+    void __enter__(QWriteLocker* /*self*/) {}
+    void __exit__(QWriteLocker* self, PyObject* /*type*/, PyObject* /*value*/, PyObject* /*traceback*/) { self->unlock(); }
     </inject-code>
   </value-type>
   <object-type name="QSemaphore"/>

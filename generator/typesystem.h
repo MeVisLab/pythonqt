@@ -78,7 +78,7 @@
  * changed to Qt::endl.
  */
 #if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
-    static const constexpr decltype (Qt::endl) *endl = Qt::endl;
+    static constexpr decltype (Qt::endl) *endl = Qt::endl;
 #endif
 /* END: Qt compatibility. */
 
