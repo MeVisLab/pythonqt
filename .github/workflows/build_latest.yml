@@ -1,9 +1,9 @@
-name: Qt5 check generated_cpp
+name: Check generated_cpp
 
 on:
   push:
     branches: 
-      - master
+       - master
   pull_request:
       
 defaults:
@@ -11,21 +11,29 @@ defaults:
     shell: bash
 
 jobs:
-  ubuntu:
+  build:
     strategy:
       fail-fast: false
       matrix:
+        os: ['ubuntu', 'windows']
         qt-version: [ '5.12.*', '5.15.*', '6.5.*' ]
         python-version: [ '3.12' ]
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}-latest
     steps:
       
+    - name: Install MSVC
+      if: ${{ matrix.os == 'windows' }}
+      uses: ilammy/msvc-dev-cmd@v1
+      with:
+        arch: amd64
+
     - name: Install Qt ${{matrix.qt-version}}
       uses: jurplel/install-qt-action@v3
       with:
         version: ${{ matrix.qt-version }}
         modules: ${{startsWith(matrix.qt-version, '6') && 'qt5compat' || '' }}
-        archives: 'qtmultimedia qtlinuxextras qtbase qttools icu qtwayland'
+        arch: ${{ matrix.os == 'ubuntu' && 'gcc_64' || (startsWith(matrix.qt-version, '5.12') && 'win64_msvc2017_64' || 'win64_msvc2019_64') }}
+        archives: "qtmultimedia qtbase qttools ${{ matrix.os == 'windows' && 'qtwinextras' || 'qtlinuxextras qtwayland icu' }}"
 
     - name: Setup Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4
@@ -43,20 +51,35 @@ jobs:
         QT_VERSION_SHORT=$(cut -f 1,2 -d . <<< "${{matrix.qt-version}}")
         echo "QT_VERSION_SHORT=$QT_VERSION_SHORT" >> $GITHUB_OUTPUT
         QTDIR=$(eval echo "\$Qt${QT_VERSION_MAJOR}_DIR")
+        PYTHON_VERSION_FULL=$(python --version 2>&1 | cut -f 2 -d ' ')
+        PYTHON_VERSION_SHORT=$(cut -f 1,2 -d . <<< $PYTHON_VERSION_FULL)
+        echo "PYTHON_VERSION_SHORT=$PYTHON_VERSION_SHORT" >> $GITHUB_OUTPUT
         echo "QTDIR=$QTDIR" >> $GITHUB_ENV
         echo "$QTDIR/bin" >> $GITHUB_PATH
         echo "$pythonLocation/bin" >> $GITHUB_PATH
 
-    - name: Build generator
+    - name: Build generator Ubuntu
+      shell: bash
+      if: ${{ matrix.os == 'ubuntu' }}
       run: |
         cd generator
-        qmake -r generator.pro CONFIG+=release CONFIG+=force_debug_info \
+        qmake -r generator.pro CONFIG+=release CONFIG-=debug_and_release CONFIG+=force_debug_info \
         CONFIG+=sanitizer CONFIG+=sanitize_undefined CONFIG+=sanitize_address
         make -j $(nproc)
 
-    - name: Generate Wrappers
+    - name: Build generator Windows
+      shell: cmd
+      if: ${{ matrix.os == 'windows' }}
       run: |
         cd generator
+        qmake CONFIG+=release CONFIG-=debug_and_release CONFIG-=debug_and_release_target generator.pro
+        nmake
+
+    - name: Generate Wrappers
+      shell: bash
+      run: |
+        cd generator
+        if [[ ${{ matrix.os }} == 'windows' && ${{ matrix.qt-version }} =~ '5.1' ]]; then export QTDIR=$Qt5_Dir; fi 
         UBSAN_OPTIONS="halt_on_error=1" \
         ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
         ./pythonqt_generator
@@ -64,10 +87,11 @@ jobs:
     - name: Upload Wrappers
       uses: actions/upload-artifact@v3
       with:
-        name: wrappers_ubuntu_${{ steps.setenv.outputs.QT_VERSION_SHORT }}
+        name: wrappers_${{ matrix.os }}_${{ steps.setenv.outputs.QT_VERSION_SHORT }}
         path: generated_cpp
 
-    - name: Build PythonQt
+    - name: Build PythonQt Ubuntu
+      if: ${{ matrix.os == 'ubuntu' }}
       run: |
         echo ======= SYSTEM INFO ========
         uname -a; gcc --version | grep "gcc"; python3 --version; qmake --version
@@ -79,3 +103,17 @@ jobs:
         make -j $(nproc)
         UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
           make check TESTARGS="-platform offscreen"
+          
+    - name: Build PythonQt Windows
+      shell: cmd
+      if: ${{ matrix.os == 'windows' }}
+      run: |
+        qmake -query
+        python --version
+        qmake CONFIG+=release CONFIG-=debug_and_release CONFIG-=debug_and_release_target ^
+           "PYTHONQTALL_CONFIG=${{ matrix.pythonqtall-config }}" ^
+           "PYTHON_PATH=%pythonLocation%" ^
+           "PYTHON_VERSION=${{ steps.setenv.outputs.PYTHON_VERSION_SHORT }}" ^
+           PythonQt.pro
+        nmake && nmake check "TESTARGS=-platform offscreen"
+          
