@@ -122,10 +122,7 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
     } else {
       qRegisterMetaType<quint32>("size_t");
     }
-#if QT_VERSION < 0x060000
-    int stringRefId = qRegisterMetaType<QStringRef>("QStringRef");
-    PythonQtConv::registerMetaTypeToPythonConverter(stringRefId, PythonQtConv::convertFromStringRef);
-#endif
+    PythonQtConv::registerStringViewTypes();
 
     int objectPtrListId = qRegisterMetaType<QList<PythonQtObjectPtr> >("QList<PythonQtObjectPtr>");
     PythonQtConv::registerMetaTypeToPythonConverter(objectPtrListId, PythonQtConv::convertFromQListOfPythonQtObjectPtr);
