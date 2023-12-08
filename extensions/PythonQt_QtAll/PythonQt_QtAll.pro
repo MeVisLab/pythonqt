@@ -38,7 +38,7 @@ include ( ../../build/common.prf )
 include ( ../../build/PythonQt.prf )  
 TARGET = $$replace(TARGET, PythonXY, Python$${PYTHON_VERSION})
 
-CONFIG += qt strict_c++
+CONFIG += qt strict_c++ msvc_mp
 
 !static:!staticlib {
   CONFIG += dll
