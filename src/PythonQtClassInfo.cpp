@@ -49,6 +49,11 @@
 
 QHash<QByteArray, int> PythonQtMethodInfo::_parameterTypeDict;
 
+// List of words that are reserved in Python, but not in C++, so they need escaping
+QSet<QByteArray> PythonQtClassInfo::_reservedNames{
+  "None", "True", "False"
+};
+
 PythonQtClassInfo::PythonQtClassInfo() {
   _meta = nullptr;
   _constructors = nullptr;
@@ -279,7 +284,7 @@ bool PythonQtClassInfo::lookForEnumAndCache(const QMetaObject* meta, const char*
     if (e.isFlag()) continue;
     
     for (int j=0; j < e.keyCount(); j++) {
-      if (qstrcmp(e.key(j), memberName)==0) {
+      if (escapeReservedNames(e.key(j)) == memberName) {
         PyObject* enumType = findEnumWrapper(e.name());
         if (enumType) {
           PythonQtObjectPtr enumValuePtr;
@@ -869,7 +874,7 @@ void PythonQtClassInfo::createEnumWrappers(const QMetaObject* meta)
       for (int j = 0; j < e.keyCount(); j++) {
         PythonQtObjectPtr enumValuePtr;
         enumValuePtr.setNewRef(PythonQtPrivate::createEnumValueInstance(p.object(), e.value(j)));
-        p.addVariable(e.key(j), QVariant::fromValue(enumValuePtr));
+        p.addVariable(escapeReservedNames(e.key(j)), QVariant::fromValue(enumValuePtr));
       }
     }
 #endif
@@ -1016,6 +1021,16 @@ PythonQtVoidPtrCB* PythonQtClassInfo::referenceCountingUnrefCB()
     updateRefCountingCBs();
   }
   return _unrefCallback;
+}
+
+QByteArray PythonQtClassInfo::escapeReservedNames(const QByteArray& name)
+{
+  if (_reservedNames.contains(name)) {
+    return name + "_";
+  }
+  else {
+    return name;
+  }
 }
 
 void PythonQtClassInfo::updateRefCountingCBs()
