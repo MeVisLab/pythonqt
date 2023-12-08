@@ -1519,6 +1519,14 @@ TypeDatabase::TypeDatabase() : m_suppressWarnings(true)
     e->setPreferredConversion(false);
     addType(e);
 
+    e = new StringTypeEntry("QStringView");
+    e->setPreferredConversion(false);
+    addType(e);
+
+    e = new StringTypeEntry("QAnyStringView");
+    e->setPreferredConversion(false);
+    addType(e);
+
     e = new StringTypeEntry("QXmlStreamStringRef");
     e->setPreferredConversion(false);
     addType(e);

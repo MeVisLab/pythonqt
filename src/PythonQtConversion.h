@@ -187,6 +187,9 @@ public:
   static PyObject* convertFromQListOfPythonQtObjectPtr(const void* /* QList<PythonQtObjectPtr>* */ inObject, int /*metaTypeId*/);
 #if QT_VERSION < 0x060000
   static PyObject* convertFromStringRef(const void* inObject, int /*metaTypeId*/);
+#else
+  static PyObject* convertFromStringView(const void* inObject, int /*metaTypeId*/);
+  static PyObject* convertFromAnyStringView(const void* inObject, int /*metaTypeId*/);
 #endif
 
   //! Returns the name of the equivalent CPP type (for signals and slots)
@@ -194,6 +197,9 @@ public:
 
   //! Returns if the given object is a string (or unicode string)
   static bool isStringType(PyTypeObject* type);
+
+  //! Register QStringView like types, that need to be handled specially
+  static void registerStringViewTypes();
 
 protected:
   static QHash<int, PythonQtConvertMetaTypeToPythonCB*> _metaTypeToPythonConverters;
@@ -215,6 +221,12 @@ protected:
   template <typename Map>
   static PyObject* mapToPython (const Map& m);
 
+#if QT_VERSION < 0x060000
+  static int stringRefTypeId;
+#else
+  static int stringViewTypeId;
+  static int anyStringViewTypeId;
+#endif
 };
 
 template<class ListType, class T>
