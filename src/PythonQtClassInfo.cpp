@@ -853,12 +853,26 @@ PyObject* PythonQtClassInfo::findEnumWrapper(const QByteArray& name, PythonQtCla
   }
 }
 
+// required for the code below (for versions before Qt 6)
+Q_DECLARE_METATYPE(PythonQtObjectPtr)
+
 void PythonQtClassInfo::createEnumWrappers(const QMetaObject* meta)
 {
   for (int i = meta->enumeratorOffset();i<meta->enumeratorCount();i++) {
     QMetaEnum e = meta->enumerator(i);
     PythonQtObjectPtr p;
     p.setNewRef(PythonQtPrivate::createNewPythonQtEnumWrapper(e.name(), _pythonQtClassWrapper));
+#if QT_VERSION > 0x050800
+    if (e.isScoped()) {
+      // add enum values to the enum type itself, in case enum value names are so generic
+      // that they are not unique
+      for (int j = 0; j < e.keyCount(); j++) {
+        PythonQtObjectPtr enumValuePtr;
+        enumValuePtr.setNewRef(PythonQtPrivate::createEnumValueInstance(p.object(), e.value(j)));
+        p.addVariable(e.key(j), QVariant::fromValue(enumValuePtr));
+      }
+    }
+#endif
     _enumWrappers.append(p);
   }
 }
