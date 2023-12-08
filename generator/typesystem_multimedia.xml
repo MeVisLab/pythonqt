@@ -193,14 +193,14 @@
   <object-type name="QAudioSource"/>
   <object-type name="QCameraDevice"/>
   <object-type name="QCameraFormat"/>
-  <object-type name="QCapturableWindow"/>
+  <object-type name="QCapturableWindow" since-version="6.6"/>
   <object-type name="QImageCapture"/>
   <object-type name="QMediaCaptureSession"/>
   <object-type name="QMediaDevices"/>
   <object-type name="QMediaFormat"/>
   <enum-type name="QMediaFormat::ResolveFlags"/>
   <object-type name="QMediaTimeRange::Interval"/>
-  <object-type name="QScreenCapture"/>
+  <object-type name="QScreenCapture" since-version="6.5"/>
   <object-type name="QVideoFrameFormat"/>
   <enum-type name="QVideoFrameFormat::ColorSpace"/>
   <enum-type name="QVideoFrameFormat::ColorRange"/>
@@ -209,7 +209,7 @@
   <enum-type name="QVideoFrameFormat::PixelFormat"/>
   <enum-type name="QVideoFrameFormat::ColorTransfer"/>
   <object-type name="QVideoSink"/>
-  <object-type name="QWindowCapture"/>
+  <object-type name="QWindowCapture" since-version="6.6"/>
 </group>
 
 </typesystem>

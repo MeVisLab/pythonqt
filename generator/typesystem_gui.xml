@@ -451,6 +451,7 @@
   <enum-type name="QTextDocument::FindFlag" flags="QTextDocument::FindFlags"/>
   <enum-type name="QTextDocument::MetaInformation"/>
   <enum-type name="QTextDocument::ResourceType"/>
+  <enum-type name="QTextDocument::MarkdownFeature" flags="QTextDocument::MarkdownFeatures"/>
   <enum-type name="QTextEdit::AutoFormattingFlag" flags="QTextEdit::AutoFormatting"/>
   <enum-type name="QTextEdit::LineWrapMode"/>
   <enum-type name="QTextFormat::ObjectTypes"/>
@@ -525,8 +526,8 @@
   </enum-type>
 
 
-  <enum-type name="QMessageBox::StandardButton" flags="QMessageBox::StandardButtons">
-  </enum-type>
+  <enum-type name="QMessageBox::StandardButton" flags="QMessageBox::StandardButtons"/>
+  <enum-type name="QMessageBox::Option" flags="QMessageBox::Options"/>
 
   <enum-type name="QPalette::ColorGroup">
   </enum-type>
@@ -730,6 +731,7 @@
     <modify-function signature="operator int()const" access="private"/>
     <modify-function signature="operator[](uint)const" access="private"/>
   </value-type>
+  <value-type name="QKeyCombination" since-version="6"/>
 
   <value-type name="QPicture">
     <modify-function signature="operator=(QPicture)" remove="all"/>
@@ -771,6 +773,7 @@
     <modify-function signature="operator=(QTextBlock)" remove="all"/>
   </value-type>
   <value-type name="QTextBlockFormat"/>
+  <enum-type name="QTextBlockFormat::MarkerType"/>
   <value-type name="QTextTableCellFormat"/>
   <value-type name="QTextCharFormat">
     <modify-function signature="isValid()const" access="non-final"/>
@@ -2525,6 +2528,7 @@ PyObject* constScanLine(QImage* image, int line) {
       </modify-argument>
     </modify-function>
   </object-type>
+  <enum-type name="QTextLayout::GlyphRunRetrievalFlag" flags="QTextLayout::GlyphRunRetrievalFlags" since-version="6.5"/>
 
   <object-type name="QTableWidget">
 
@@ -3092,6 +3096,7 @@ PyObject* constScanLine(QImage* image, int line) {
   <interface-type name="QPagedPaintDevice" create-shell="no">
     <modify-function signature="devicePageLayout()const" remove="all"/>
   </interface-type>
+  <interface-type name="QPageRanges"/>
 
    <interface-type name="QPlatformSurface"/>
    <interface-type name="QSurface"/>
@@ -3112,6 +3117,9 @@ PyObject* constScanLine(QImage* image, int line) {
   <value-type name="QRgba64">
     <modify-function signature="operator quint64() const" remove="all"/>
   </value-type>
+  <!--  template class
+  <value-type name="QRgbaFloat" since-version="6.2"/>
+  -->
 
   <enum-type name="QScrollerProperties::ScrollMetric"/>
   <enum-type name="QScrollerProperties::OvershootPolicy"/>
@@ -3171,6 +3179,14 @@ PyObject* constScanLine(QImage* image, int line) {
 
   <object-type name="QOpenGLTextureBlitter"/>
   <enum-type name="QOpenGLTextureBlitter::Origin"/>
+  
+  <object-type name="QTransposeProxyModel" since-version="5.13"/>
+
+  <value-type name="QColorSpace" since-version="5.14"/>
+  <enum-type name="QColorSpace::NamedColorSpace" since-version="5.14"/>
+  <enum-type name="QColorSpace::Primaries" since-version="5.14"/>
+  <enum-type name="QColorSpace::TransferFunction" since-version="5.14"/>
+  <value-type name="QColorTransform" since-version="5.14"/>
 
   <!-- Inefficient hash codes -->
   <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QTextFrame_iterator' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>

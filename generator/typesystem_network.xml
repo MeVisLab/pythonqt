@@ -81,6 +81,7 @@
   <object-type name="QHttp">
       <modify-function signature="closeConnection()" remove="all"/>
   </object-type>
+  
   <object-type name="QTcpServer">
     <modify-function signature="waitForNewConnection(int,bool*)">
       <modify-argument index="2">
@@ -88,6 +89,7 @@
       </modify-argument>
     </modify-function>
   </object-type>
+  <object-type name="QSslServer" since-version="6.4"/>
   <object-type name="QTcpSocket"/>
   <object-type name="QUdpSocket">
     <modify-function signature="writeDatagram(const char*,qint64,QHostAddress,unsigned short)" remove="all"/>
@@ -230,6 +232,16 @@
   <object-type name="QHstsPolicy"/>
   <enum-type name="QHstsPolicy::PolicyFlag"/>
   <object-type name="QNetworkDatagram"/>
+  
+  <object-type name="QDtls" since-version="5.12"/>
+  <enum-type name="QDtls::HandshakeState" since-version="5.12"/>
+  <object-type name="QDtlsClientVerifier" since-version="5.12"/>
+  
+  <object-type name="QHttp1Configuration" since-version="6.5"/>
+  <object-type name="QHttp2Configuration" since-version="5.14"/>
+  
+  <object-type name="QNetworkInformation" since-version="6.1"/>
+  <enum-type name="QNetworkInformation::Feature" flags="QNetworkInformation::Features" since-version="6.1"/>
 
   <suppress-warning text="*unmatched parameter type 'sockaddr const*"/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QUrlInfo' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
