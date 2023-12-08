@@ -118,6 +118,12 @@ PythonQtOpengl {
   QT += xml
 }
 
+PythonQtXml {
+  DEFINES += PYTHONQT_WITH_XML
+  Xinclude (com_trolltech_qt_xml)
+  QT += xml
+}
+
 PythonQtXmlpatterns {
   DEFINES += PYTHONQT_WITH_XMLPATTERNS
   Xinclude (com_trolltech_qt_xmlpatterns)
