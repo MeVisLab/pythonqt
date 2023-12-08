@@ -1103,6 +1103,11 @@ void AbstractMetaClass::addFunction(AbstractMetaFunction *function)
     m_has_nonpublic |= !function->isPublic();
 }
 
+void AbstractMetaClass::removeFunction(AbstractMetaFunction* function)
+{
+  m_functions.removeOne(function);
+}
+
 bool AbstractMetaClass::hasSignal(const AbstractMetaFunction *other) const
 {
     if (!other->isSignal())
