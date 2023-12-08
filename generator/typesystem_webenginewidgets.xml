@@ -12,7 +12,7 @@
   <object-type name="QWebEngineFullScreenRequest"/>
   <object-type name="QWebEngineHistory"/>
   <object-type name="QWebEngineHistoryItem"/>
-  <object-type name="QWebEngineHistoryModel" since-version="6.2"/>
+  <interface-type name="QWebEngineHistoryModel" create-shell="no" create-promoter="no" since-version="6.2"/>
   <enum-type name="QWebEngineHistoryModel::Roles" since-version="6.2"/>
   <object-type name="QWebEngineProfile"/>
   <object-type name="QWebEngineScript"/>
@@ -22,6 +22,21 @@
   <object-type name="QWebEngineUrlRequestInterceptor"/>
   <object-type name="QWebEngineUrlRequestJob"/>
   <object-type name="QWebEngineUrlSchemeHandler"/>
+  <object-type name="QWebEngineNotification" since-version="5.13"/>
+  <object-type name="QWebEngineClientCertificateStore" since-version="5.13"/>
+  <object-type name="QWebEngineLoadingInfo" since-version="6.2"/>
+  <enum-type name="QWebEngineLoadingInfo::ErrorDomain" since-version="6.2"/>
+  <enum-type name="QWebEngineLoadingInfo::LoadStatus" since-version="6.2"/>
+  <object-type name="QWebEngineContextMenuRequest" since-version="6.2"/>
+  <enum-type name="QWebEngineContextMenuRequest::EditFlag" flags="QWebEngineContextMenuRequest::EditFlags" since-version="6.2"/>
+  <enum-type name="QWebEngineContextMenuRequest::MediaFlag" flags="QWebEngineContextMenuRequest::MediaFlags" since-version="6.2"/>
+  <enum-type name="QWebEngineContextMenuRequest::MediaType" since-version="6.2"/>
+  <object-type name="QWebEngineNavigationRequest" since-version="6.2"/>
+  <object-type name="QWebEngineNewWindowRequest" since-version="6.2"/>
+  <enum-type name="QWebEngineNewWindowRequest::DestinationType" since-version="6.2"/>
+  <object-type name="QWebEngineFileSystemAccessRequest" since-version="6.4"/>
+  <enum-type name="QWebEngineFileSystemAccessRequest::AccessFlag" flags="QWebEngineFileSystemAccessRequest::AccessFlags" since-version="6.4"/>
+  <enum-type name="QWebEngineFileSystemAccessRequest::HandleType" since-version="6.4"/>
 
   <enum-type name="QWebEngineCertificateError::Error"/>
   <enum-type name="QWebEngineDownloadItem::DownloadState"/>

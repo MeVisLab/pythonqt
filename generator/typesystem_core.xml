@@ -864,6 +864,14 @@
     <!--### Obsolete in 4.3-->
   </value-type>
 
+  <value-type name="QCalendar" since-version="5.14">
+    <inject-code class="pywrap-h">
+public:
+    const static int Unspecified = QCalendar::Unspecified;
+    </inject-code>
+  </value-type>
+  <value-type name="QCalendar::YearMonthDay" since-version="5.14"/>
+  
   <value-type name="QDateTime">
     <modify-function signature="operator=(QDateTime)" remove="all"/>
   </value-type>
@@ -1011,6 +1019,8 @@
       </modify-argument>
     </modify-function>
   </object-type>
+  <value-type name="QModelRoleData" since-version="6"/>
+  <value-type name="QModelRoleDataSpan" since-version="6"/>
 
   <object-type name="QAbstractListModel">
     <extra-includes>
@@ -1316,7 +1326,7 @@
   </object-type>
   <object-type name="QLibraryInfo"/>
   <object-type name="QMutex"/>
-  <object-type name="QRecursiveMutex"/>
+  <object-type name="QRecursiveMutex" since-version="5.14"/>
   <!-- QMutexLocker is a template in Qt6, we need to figure out what to do with it... -->
   <value-type name="QMutexLocker" before-version="6">
     <!-- special handling for context handlers -->
@@ -1432,6 +1442,10 @@
     <modify-function signature="setReadChannelMode(QProcess::ProcessChannelMode)" remove="all"/>
     <!--### Obsolete in 4.3-->
   </object-type>
+  <!-- Only available on Linux:
+  <enum-type name="QProcess::UnixProcessFlag" flags="QProcess::UnixProcessFlags" since-version="6.6"/>
+  <value-type name="QProcess::UnixProcessParameters" since-version="6.6"/>
+  -->
 
   <object-type name="QSignalMapper">
   </object-type>
@@ -2006,6 +2020,7 @@
   <enum-type name="QTimeZone::Initialization" since-version="6.5"/>
   <enum-type name="QProcess::InputChannelMode"/>
   <enum-type name="QByteArray::Base64Option" flags="QByteArray::Base64Options"/>
+  <enum-type name="QByteArray::Base64DecodingStatus"/>
   <enum-type name="QMetaType::Type"/>
   <enum-type name="QMetaType::TypeFlag" flags="QMetaType::TypeFlags"/>
   <enum-type name="QAbstractItemModel::CheckIndexOption"/>
@@ -2047,4 +2062,6 @@
   <enum-type name="QLocale::FloatingPointPrecisionOption"/>
   <enum-type name="QUuid::StringFormat"/>
   <enum-type name="Qt::ChecksumType"/>
+  <enum-type name="Qt::SplitBehaviorFlags" flag="Qt::SplitBehavior"/>
+  <enum-type name="Qt::HighDpiScaleFactorRoundingPolicy"/>
   </typesystem>

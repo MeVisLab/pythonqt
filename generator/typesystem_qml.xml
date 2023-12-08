@@ -10,11 +10,22 @@
 <object-type name="QJSEngine">
   <modify-function signature="newQMetaObject()" remove="all"/>
 </object-type>
-<object-type name="QJSValue"></object-type>
+<object-type name="QJSValue"/>
+<object-type name="QJSManagedValue" since-version="6.1"/>
+<object-type name="QJSPrimitiveValue" since-version="6.1">
+  <modify-function signature="operator++(int)" remove="all"/>
+  <modify-function signature="operator--(int)" remove="all"/>
+</object-type>
+<object-type name="QJSPrimitiveUndefined" since-version="6.1"/>
+<object-type name="QJSPrimitiveNull" since-version="6.1"/>
 
 <enum-type name="QJSEngine::Extension"/>
+<enum-type name="QJSEngine::ObjectOwnership"/>
 <enum-type name="QJSValue::ErrorType"/>
 <enum-type name="QJSValue::SpecialValue"/>
+<enum-type name="QJSValue::ObjectConversionBehavior"/>
+<enum-type name="QJSManagedValue::Type" since-version="6.1"/>
+<enum-type name="QJSPrimitiveValue::Type" since-version="6.1"/>
 
 <object-type name="QQmlAbstractUrlInterceptor"></object-type>
 <object-type name="QQmlApplicationEngine"></object-type>
