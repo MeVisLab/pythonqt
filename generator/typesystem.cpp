@@ -1509,22 +1509,27 @@ TypeDatabase *TypeDatabase::instance()
 
 TypeDatabase::TypeDatabase() : m_suppressWarnings(true)
 {
-    addType(new StringTypeEntry("QString"));
+    StringTypeEntry* mainStringType = new StringTypeEntry("QString");
+    addType(mainStringType);
 
     StringTypeEntry *e = new StringTypeEntry("QLatin1String");
     e->setPreferredConversion(false);
+    e->setEquivalentType(mainStringType);
     addType(e);
 
     e = new StringTypeEntry("QStringRef");
     e->setPreferredConversion(false);
+    e->setEquivalentType(mainStringType);
     addType(e);
 
     e = new StringTypeEntry("QStringView");
     e->setPreferredConversion(false);
+    e->setEquivalentType(mainStringType);
     addType(e);
 
     e = new StringTypeEntry("QAnyStringView");
     e->setPreferredConversion(false);
+    e->setEquivalentType(mainStringType);
     addType(e);
 
     e = new StringTypeEntry("QXmlStreamStringRef");

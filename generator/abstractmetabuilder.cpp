@@ -1166,6 +1166,48 @@ void AbstractMetaBuilder::traverseFunctions(ScopeModelItem scope_item, AbstractM
             }
         }
     }
+    removeEquivalentFunctions(meta_class);
+}
+
+void AbstractMetaBuilder::removeEquivalentFunctions(AbstractMetaClass* parent)
+{
+    AbstractMetaFunctionList functions = parent->functions();
+    for (AbstractMetaFunction* fun : functions)
+    {
+        AbstractMetaArgumentList args = fun->arguments();
+        bool candidateToRemove = false;
+        for (AbstractMetaArgument* arg : args) {
+            const TypeEntry* argType = arg->type()->typeEntry();
+            if (argType && argType->equivalentType()) {
+                candidateToRemove = true;
+                break;
+            }
+        }
+        if (!candidateToRemove) {
+            continue;
+        }
+        // check if there are other functions with the same name and equivalent parameters
+        AbstractMetaFunctionList overloadedFunctions = parent->queryFunctionsByName(fun->name());
+        for (AbstractMetaFunction* overload : overloadedFunctions) {
+            if (overload != fun) {
+                AbstractMetaArgumentList overloadArgs = overload->arguments();
+                if (overloadArgs.size() == args.size()) {
+                    bool equivalentArgs = true;
+                    for (int i = 0; i < args.size() && equivalentArgs; i++) {
+                        const TypeEntry* argType = args[i]->type()->typeEntry();
+                        const TypeEntry* overloadArgType = overloadArgs[i]->type()->typeEntry();
+                        // This could have some more equivalency checks, but currently this seems to be sufficient
+                        equivalentArgs = (argType && overloadArgType &&
+                                          (argType == overloadArgType || argType->equivalentType() == overloadArgType));
+                    }
+                    if (equivalentArgs) {
+                        parent->removeFunction(fun);
+                        break;
+                    }
+                }
+            }
+        }
+    }
 }
 
 bool AbstractMetaBuilder::setupInheritance(AbstractMetaClass *meta_class)

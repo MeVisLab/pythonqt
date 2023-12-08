@@ -688,6 +688,7 @@ public:
     AbstractMetaFunctionList functions() const { return m_functions; }
     void setFunctions(const AbstractMetaFunctionList &functions);
     void addFunction(AbstractMetaFunction *function);
+    void removeFunction(AbstractMetaFunction* function);
     bool hasFunction(const AbstractMetaFunction *f) const;
     bool hasFunction(const QString &str) const;
     bool hasSignal(const AbstractMetaFunction *f) const;

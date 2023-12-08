@@ -549,6 +549,8 @@ public:
 
     virtual bool isNativeIdBased() const { return false; }
 
+    virtual TypeEntry* equivalentType() const { return nullptr; }
+
 private:
     QString m_name;
     Type m_type;
@@ -1013,8 +1015,14 @@ public:
 
     virtual bool isNativeIdBased() const { return true; }
 
+    virtual TypeEntry* equivalentType() const { return _equivalentType; }
+    void setEquivalentType(TypeEntry* typeEntry) { _equivalentType = typeEntry; }
+
 protected:
     ValueTypeEntry(const QString &name, Type t) : ComplexTypeEntry(name, t) { }
+
+private:
+  TypeEntry* _equivalentType{};
 };
 
 
