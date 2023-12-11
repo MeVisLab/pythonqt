@@ -21,6 +21,7 @@ isEmpty( PYTHONQTALL_CONFIG ) {
   qtHaveModule(qml):CONFIG += PythonQtQml
   qtHaveModule(quick):CONFIG += PythonQtQuick
   qtHaveModule(uitools):CONFIG += PythonQtUiTools
+  qtHaveModule(webenginewidgets):CONFIG += PythonQtWebEngineWidgets
 
   qtHaveModule(webkit):CONFIG += PythonQtWebKit
 } else {
@@ -152,6 +153,12 @@ PythonQtUiTools {
   DEFINES += PYTHONQT_WITH_UITOOLS
   Xinclude (com_trolltech_qt_uitools)
   QT += uitools
+}
+
+PythonQtWebEngineWidgets {
+  DEFINES += PYTHONQT_WITH_WEBENGINEWIDGETS
+  Xinclude (com_trolltech_qt_webenginewidgets)
+  QT += webenginewidgets
 }
 
 PythonQtWebKit {
