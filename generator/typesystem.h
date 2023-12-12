@@ -1234,6 +1234,7 @@ public:
     QString filename() const { return "typesystem.txt"; }
 
     bool parseFile(const QString &filename, unsigned int qtVersion, bool generate = true);
+    void finalSetup();
 
 private:
     bool m_suppressWarnings;

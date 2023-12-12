@@ -1573,6 +1573,19 @@ TypeDatabase::TypeDatabase() : m_suppressWarnings(true)
     addRemoveFunctionToTemplates(this);
 }
 
+void TypeDatabase::finalSetup()
+{
+  TypeEntry* byteArrayType = findType("QByteArray");
+  if (byteArrayType) {
+      // Support QByteArrayView as alternative parameter type.
+      // Using StringTypeEntry for it, because no wrappers are generated for those types
+      StringTypeEntry* e = new StringTypeEntry("QByteArrayView");
+      e->setPreferredConversion(false);
+      e->setEquivalentType(byteArrayType);
+      addType(e);
+  }
+}
+
 bool TypeDatabase::parseFile(const QString &filename, unsigned int qtVersion, bool generate)
 {
     QFile file(filename);
