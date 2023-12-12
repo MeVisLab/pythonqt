@@ -203,8 +203,12 @@ int main(int argc, char *argv[])
     printf("Parsing typesystem file [%s]\n", qPrintable(typesystemFileName));
     fflush(stdout);
     ReportHandler::setContext("Typesystem");
-    if (!TypeDatabase::instance()->parseFile(typesystemFileName, qtVersion))
+    if (TypeDatabase::instance()->parseFile(typesystemFileName, qtVersion)) {
+        TypeDatabase::instance()->finalSetup();
+    }
+    else {
         qFatal("Cannot parse file: '%s'", qPrintable(typesystemFileName));
+    }
 
     printf("PreProcessing - Generate [%s] using [%s] and include-paths [%s]\n",
       qPrintable(pp_file), qPrintable(fileName), qPrintable(args.value("include-paths")));

@@ -132,6 +132,8 @@ public:
   static QString PyObjGetString(PyObject* val, bool strict, bool &ok);
   //! get bytes from py object
   static QByteArray PyObjGetBytes(PyObject* val, bool strict, bool &ok);
+  //! get bytes from py object, also allows Python string
+  static QByteArray PyObjGetBytesAllowString(PyObject* val, bool strict, bool& ok);
   //! get int from py object
   static int     PyObjGetInt(PyObject* val, bool strict, bool &ok);
   //! get int64 from py object
@@ -190,6 +192,7 @@ public:
 #else
   static PyObject* convertFromStringView(const void* inObject, int /*metaTypeId*/);
   static PyObject* convertFromAnyStringView(const void* inObject, int /*metaTypeId*/);
+  static PyObject* convertFromByteArrayView(const void* inObject, int /*metaTypeId*/);
 #endif
 
   //! Returns the name of the equivalent CPP type (for signals and slots)
@@ -226,6 +229,7 @@ protected:
 #else
   static int stringViewTypeId;
   static int anyStringViewTypeId;
+  static int byteArrayViewTypeId;
 #endif
 };
 
