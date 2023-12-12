@@ -323,6 +323,7 @@ jobs:
       run: |
         cd generator
         set QTDIR=%Qt5_Dir%
+        set INCLUDE=
         pythonqt_generator
 
     - name: Upload Wrappers
