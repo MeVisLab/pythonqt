@@ -2082,6 +2082,6 @@ public:
   <enum-type name="QLocale::FloatingPointPrecisionOption"/>
   <enum-type name="QUuid::StringFormat"/>
   <enum-type name="Qt::ChecksumType"/>
-  <enum-type name="Qt::SplitBehaviorFlags" flag="Qt::SplitBehavior"/>
+  <enum-type name="Qt::SplitBehaviorFlags" flags="Qt::SplitBehavior"/>
   <enum-type name="Qt::HighDpiScaleFactorRoundingPolicy"/>
   </typesystem>
