@@ -31,9 +31,9 @@ jobs:
       uses: jurplel/install-qt-action@v3
       with:
         version: ${{ matrix.qt-version }}
-        modules: ${{startsWith(matrix.qt-version, '6') && 'qt5compat' || '' }}
+        modules: ${{startsWith(matrix.qt-version, '6') && 'qt5compat qtscxml qtpositioning qtwebchannel qtmultimedia qtwebengine' || '' }}
         arch: ${{ matrix.os == 'ubuntu' && 'gcc_64' || (startsWith(matrix.qt-version, '5.12') && 'win64_msvc2017_64' || 'win64_msvc2019_64') }}
-        archives: "qtmultimedia qtbase qttools ${{ matrix.os == 'windows' && 'qtwinextras' || 'qtlinuxextras qtwayland icu' }}"
+        archives: "qtmultimedia qtbase qttools qtdeclarative ${{ matrix.os == 'windows' && 'qtwinextras' || 'qtlinuxextras qtwayland icu' }}"
 
     - name: Setup Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4

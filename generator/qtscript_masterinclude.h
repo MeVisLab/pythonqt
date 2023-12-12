@@ -127,8 +127,10 @@
 #include <QtQuickWidgets/QtQuickWidgets>
 #endif
 
+#if QT_VERSION < 0x060000
 #ifndef QT_NO_XMLPATTERNS
 #  include <QtXmlPatterns/QtXmlPatterns>
+#endif
 #endif
 
 #ifndef QT_NO_WEBKIT
@@ -1232,4 +1234,8 @@
 #define GL_LOGIC_OP GL_INDEX_LOGIC_OP
 #define GL_TEXTURE_COMPONENTS GL_TEXTURE_INTERNAL_FORMAT
 #include <QtOpenGL/QtOpenGL>
+#if QT_VERSION >= 0x060000
+#include <QtOpenGLWidgets/QtOpenGLWidgets>
+#endif
+
 #endif // QT_NO_OPENGL
