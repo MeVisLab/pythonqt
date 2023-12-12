@@ -853,6 +853,7 @@
   <value-type name="QBasicTimer"/>
   <value-type name="QByteArrayMatcher">
     <modify-function signature="operator=(QByteArrayMatcher)" remove="all"/>
+    <modify-function signature="indexIn(const char*,qsizetype,qsizetype)const" remove="all"/>
   </value-type>
 
   <value-type name="QDate">
@@ -1127,8 +1128,9 @@ public:
     return PyBytes_FromStringAndSize(b-&gt;data(), b-&gt;size());
   }
     </inject-code>
-  
+
     <modify-function signature="QByteArray(const char*,int)" remove="all"/>
+    <modify-function signature="QByteArray(const char*, qsizetype)" remove="all"/>
     <modify-function signature="QByteArray(const char*)" remove="all"/>
 
     <modify-function signature="append(const char *)" remove="all"/>
@@ -1151,16 +1153,24 @@ public:
     <modify-function signature="fill(char,int)">
       <modify-argument index="0" replace-value="this"/>
     </modify-function>
+    <modify-function signature="fill(char,qsizetype)">
+      <modify-argument index="0" replace-value="this"/>
+    </modify-function>
 
     <modify-function signature="indexOf(const char*,int)const" remove="all"/>
 
     <modify-function signature="insert(int,QByteArray)">
       <modify-argument index="0" replace-value="this"/>
     </modify-function>
+    <modify-function signature="insert(qsizetype,QByteArray)">
+      <modify-argument index="0" replace-value="this"/>
+    </modify-function>
     <modify-function signature="insert(int,QString)">
       <modify-argument index="0" replace-value="this"/>
     </modify-function>
     <modify-function signature="insert(int,const char *)" remove="all"/>
+    <modify-function signature="insert(qsizetype,const char *)" remove="all"/>
+    <modify-function signature="insert(qsizetype,const char *,qsizetype)" remove="all"/>
 
     <modify-function signature="lastIndexOf(const char*,int)const" remove="all"/>
 
@@ -1168,8 +1178,12 @@ public:
       <modify-argument index="0" replace-value="this"/>
     </modify-function>
     <modify-function signature="prepend(const char *)" remove="all"/>
+    <modify-function signature="prepend(const char *,qsizetype)" remove="all"/>
 
     <modify-function signature="remove(int,int)">
+      <modify-argument index="0" replace-value="this"/>
+    </modify-function>
+    <modify-function signature="remove(qsizetype,qsizetype)">
       <modify-argument index="0" replace-value="this"/>
     </modify-function>
 
@@ -1177,6 +1191,8 @@ public:
       <modify-argument index="0" replace-value="this"/>
     </modify-function>
     <modify-function signature="replace(int,int,const char *)" remove="all"/>
+    <modify-function signature="replace(qsizetype,qsizetype,const char *,qsizetype)" remove="all"/>
+    <modify-function signature="replace(const char *,qsizetype,const char*,qsizetype)" remove="all"/>
     <modify-function signature="replace(QByteArray,QByteArray)">
       <modify-argument index="0" replace-value="this"/>
     </modify-function>
@@ -1201,6 +1217,7 @@ public:
     <modify-function signature="startsWith(const char *)const" remove="all"/>
 
     <modify-function signature="fromRawData(const char*,int)" remove="all"/>
+    <modify-function signature="fromRawData(const char*,qsizetype)" remove="all"/>
   </value-type>
   <rejection class="QByteArray" function-name="erase"/>
 
@@ -1323,6 +1340,7 @@ public:
 
   <object-type name="QCryptographicHash">
     <modify-function signature="addData(const char*,int)" remove="all"/>
+    <modify-function signature="addData(const char*,qsizetype)" remove="all"/>
   </object-type>
   <object-type name="QLibraryInfo"/>
   <object-type name="QMutex"/>
@@ -1977,7 +1995,9 @@ public:
   <object-type name="QFileSelector"/>
   <object-type name="QMarginsF"/>
   <object-type name="QLockFile"/>
-  <object-type name="QMessageAuthenticationCode"/>
+  <object-type name="QMessageAuthenticationCode">
+    <modify-function signature="addData(const char*,qsizetype)" remove="all"/>
+  </object-type>
   <object-type name="QMessageLogContext"/>
   <rejection class="QMessageLogContext" function-name="copy"/>
 
