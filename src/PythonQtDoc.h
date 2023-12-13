@@ -129,10 +129,11 @@ Qt framework</a>.
  \section Supported Supported Versions
 
  PythonQt supports:
- - Python 2 (>= Python 2.6)
- - Python 3 (>= Python 3.3)
- - Qt 4.x (Qt 4.7 and Qt 4.8 recommended)
- - Qt 5.x (Tested with Qt 5.0, 5.3, 5.4, 5.6 and 5.11)
+ - Python 2 (>= Python 2.7)
+ - Python 3 (>= Python 3.6)
+ - Qt 4.x (Qt 4.7 and Qt 4.8 recommended) (not in the master branch, see below)
+ - Qt 5.x (Tested with Qt 5.0, 5.3, 5.4, 5.6, 5.11, 5.12 and 5.15)
+ - Qt 6.x (Tested with Qt 6.5 and 6.6) - support may not be complete, support for optional modules may be added as needed
 
  The last working Qt4 version is available at svn branches/Qt4LastWorkingVersion or you can download the PythonQt 3.0 release.
  The current git master branch no longer supports Qt4, since we started to make use of some Qt5-only features.
@@ -196,13 +197,13 @@ Qt framework</a>.
   <tr><td>char/uchar,int/uint,short,ushort,QChar</td><td>integer</td></tr>
   <tr><td>long</td><td>integer</td></tr>
   <tr><td>ulong,longlong,ulonglong</td><td>long</td></tr>
-  <tr><td>QString</td><td>unicode string</td></tr>
-  <tr><td>QByteArray</td><td>QByteArray wrapper <sup>\ref qbytearray-bytes "(1)"</sup></td></tr>
+  <tr><td>QString <sup>\ref qstring "(1)"</sup></td><td>unicode string</td></tr>
+  <tr><td>QByteArray <sup>\ref qbytearray "(2)"</sup></td><td>QByteArray wrapper <sup>\ref qbytearray-bytes "(3)"</sup></td></tr>
   <tr><td>char*</td><td>str</td></tr>
   <tr><td>QStringList</td><td>tuple of unicode strings</td></tr>
   <tr><td>QVariantList</td><td>tuple of objects</td></tr>
   <tr><td>QVariantMap</td><td>dict of objects</td></tr>
-  <tr><td>QVariant</td><td>depends on type <sup>\ref qvariant "(2)"</sup></td></tr>
+  <tr><td>QVariant</td><td>depends on type <sup>\ref qvariant "(4)"</sup></td></tr>
   <tr><td>QSize, QRect and all other standard Qt QVariants</td><td>variant wrapper that supports complete API of the respective Qt classes</td></tr>
   <tr><td>OwnRegisteredMetaType</td><td>C++ wrapper, optionally with additional information/wrapping provided by registerCPPClass()</td></tr>
   <tr><td>QList<AnyObject*></td><td>converts to a list of CPP wrappers</td></tr>
@@ -210,9 +211,11 @@ Qt framework</a>.
   <tr><td>EnumType</td><td>Enum wrapper derived from python integer</td></tr>
   <tr><td>QObject (and derived classes)</td><td>QObject wrapper</td></tr>
   <tr><td>C++ object</td><td>CPP wrapper, either wrapped via PythonQtCppWrapperFactory or just decorated with decorators</td></tr>
-  <tr><td>PyObject</td><td>PyObject <sup>\ref pyobject "(3)"</sup></td></tr>
+  <tr><td>PyObject</td><td>PyObject <sup>\ref pyobject "(5)"</sup></td></tr>
   </table>
 
+  -# \anchor qstring QStringRef (Qt5), QStringView and QAnyStringView (Qt6) are handled like QString.
+  -# \anchor qbytearray QByteArrayView (Qt6) is handled like QByteArray.
   -# \anchor qbytearray-bytes The Python 'bytes' type will automatically be converted to QByteArray where required. For converting a QByteArray to 'bytes' use the .data() method.
   -# \anchor qvariant QVariants are mapped recursively as given above, e.g. a dictionary can
   contain lists of dictionaries of doubles.
