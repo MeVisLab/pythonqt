@@ -66,26 +66,37 @@ namespace
       QStringList includes;
       includes << QString(".");
 
-#if defined(Q_OS_WIN32)
-      const char *path_splitter = ";";
-#else
-      const char *path_splitter = ":";
-#endif
+      QChar pathSplitter = QDir::listSeparator();
 
-      // Environment INCLUDE
-      QString includePath = getenv("INCLUDE");
+      // Environment PYTHONQT_INCLUDE
+      QString includePath = getenv("PYTHONQT_INCLUDE");
       if (!includePath.isEmpty())
-        includes += includePath.split(path_splitter);
+        includes += includePath.split(pathSplitter, Qt::SkipEmptyParts);
 
       // Includes from the command line
       if (!commandLineIncludes.isEmpty())
-        includes += commandLineIncludes.split(path_splitter);
+        includes += commandLineIncludes.split(pathSplitter, Qt::SkipEmptyParts);
+      for (auto it = includes.begin(); it != includes.end();)
+      {
+        if (!QDir(*it).exists())
+        {
+          qWarning("Include path %s does not exist, ignoring it.", it->toUtf8().constData());
+          it = includes.erase(it);
+        }
+        else
+        {
+          ++it;
+        }
+      }
 
       // Include Qt
-      QString qtdir = getenv ("QTDIR");
-      if (qtdir.isEmpty()) {
+      QString qtdir = getenv("QTDIR");
+      if (qtdir.isEmpty() || !QDir(qtdir).exists(qtdir))
+      {
+        QString reason = "The QTDIR environment variable " + qtdir.isEmpty() ?
+                         "is not set. " : "points to a non-existing directory. ";
 #if defined(Q_OS_MAC)
-        qWarning("QTDIR environment variable not set. Assuming standard binary install using frameworks.");
+        qWarning((reason + "Assuming standard binary install using frameworks.").toUtf8().constData());
             QString frameworkDir = "/Library/Frameworks";
             includes << (frameworkDir + "/QtXml.framework/Headers");
             includes << (frameworkDir + "/QtNetwork.framework/Headers");
@@ -94,9 +105,11 @@ namespace
             includes << (frameworkDir + "/QtOpenGL.framework/Headers");
             includes << frameworkDir;
 #else
-        qWarning("QTDIR environment variable not set. This may cause problems with finding the necessary include files.");
+        qWarning((reason + "This may cause problems with finding the necessary include files.").toUtf8().constData());
 #endif
-      } else {
+      }
+      else
+      {
         std::cout << "-------------------------------------------------------------" << std::endl;
         std::cout << "Using QT at: " << qtdir.toLocal8Bit().constData() << std::endl;
         std::cout << "-------------------------------------------------------------" << std::endl;
@@ -353,11 +366,7 @@ int main(int argc, char *argv[])
 
 
 void displayHelp(GeneratorSet* generatorSet) {
-#if defined(Q_OS_WIN32)
-  char path_splitter = ';';
-#else
-  char path_splitter = ':';
-#endif
+    const auto path_splitter = QDir::listSeparator().toLatin1();
     printf("Usage:\n  generator [options] header-file typesystem-file\n\n");
     printf("Available options:\n\n");
     printf("General:\n");
