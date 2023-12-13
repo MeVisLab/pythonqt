@@ -63,9 +63,9 @@ Datatype Mapping</h1>
 <tr>
 <td>ulong,longlong,ulonglong</td><td>long </td></tr>
 <tr>
-<td>QString</td><td>unicode string </td></tr>
+<td>QString <sup><a class="el" href="Developer.html#qstring">(1)</a></sup></td><td>unicode string </td></tr>
 <tr>
-<td>QByteArray</td><td>QByteArray wrapper <sup><a class="el" href="Developer.html#qbytearray-bytes">(1)</a></sup> </td></tr>
+<td>QByteArray <sup><a class="el" href="Developer.html#qbytearray">(2)</a></sup></td><td>QByteArray wrapper <sup><a class="el" href="Developer.html#qbytearray-bytes">(3)</a></sup> </td></tr>
 <tr>
 <td>char*</td><td>str </td></tr>
 <tr>
@@ -75,7 +75,7 @@ Datatype Mapping</h1>
 <tr>
 <td>QVariantMap</td><td>dict of objects </td></tr>
 <tr>
-<td>QVariant</td><td>depends on type <sup><a class="el" href="Developer.html#qvariant">(2)</a></sup> </td></tr>
+<td>QVariant</td><td>depends on type <sup><a class="el" href="Developer.html#qvariant">(4)</a></sup> </td></tr>
 <tr>
 <td>QSize, QRect and all other standard Qt QVariants</td><td>variant wrapper that supports complete API of the respective Qt classes </td></tr>
 <tr>
@@ -91,9 +91,11 @@ Datatype Mapping</h1>
 <tr>
 <td>C++ object</td><td>CPP wrapper, either wrapped via <a class="el" href="classPythonQtCppWrapperFactory.html" title="Factory interface for C++ classes that can be wrapped by QObject objects.">PythonQtCppWrapperFactory</a> or just decorated with decorators </td></tr>
 <tr>
-<td>PyObject</td><td>PyObject <sup><a class="el" href="Developer.html#pyobject">(3)</a></sup> </td></tr>
+<td>PyObject</td><td>PyObject <sup><a class="el" href="Developer.html#pyobject">(5)</a></sup> </td></tr>
 </table>
 <ol type="1">
+<li><a class="anchor" id="qstring"></a>QStringRef (Qt5), QStringView and QAnyStringView (Qt6) are handled like QString.</li>
+<li><a class="anchor" id="qbytearray"></a>QByteArrayView (Qt6) is handled like QByteArray.</li>
 <li><a class="anchor" id="qbytearray-bytes"></a>The Python 'bytes' type will automatically be converted to QByteArray where required. For converting a QByteArray to 'bytes' use the .data() method.</li>
 <li><a class="anchor" id="qvariant"></a>QVariants are mapped recursively as given above, e.g. a dictionary can contain lists of dictionaries of doubles.</li>
 <li><a class="anchor" id="pyobject"></a>PyObject is passed as direct pointer, which allows to pass/return any Python object directly to/from a Qt slot that uses PyObject* as its argument/return value. <br  />
@@ -276,7 +278,7 @@ Ownership management</h1>
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 13 2023 10:31:04 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Wed Dec 13 2023 18:20:42 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>
