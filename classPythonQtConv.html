@@ -88,6 +88,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a91a7b08ea010cd40184e9542ca08dac2"><td class="memItemLeft" align="right" valign="top">static QByteArray&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtConv.html#a91a7b08ea010cd40184e9542ca08dac2">PyObjGetBytes</a> (<a class="el" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a> *val, bool strict, bool &amp;ok)</td></tr>
 <tr class="memdesc:a91a7b08ea010cd40184e9542ca08dac2"><td class="mdescLeft">&#160;</td><td class="mdescRight">get bytes from py object  <a href="classPythonQtConv.html#a91a7b08ea010cd40184e9542ca08dac2">More...</a><br /></td></tr>
 <tr class="separator:a91a7b08ea010cd40184e9542ca08dac2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dd3bc5068ba3465bb9ba72a857ac689"><td class="memItemLeft" align="right" valign="top">static QByteArray&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtConv.html#a9dd3bc5068ba3465bb9ba72a857ac689">PyObjGetBytesAllowString</a> (<a class="el" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a> *val, bool strict, bool &amp;ok)</td></tr>
+<tr class="memdesc:a9dd3bc5068ba3465bb9ba72a857ac689"><td class="mdescLeft">&#160;</td><td class="mdescRight">get bytes from py object, also allows Python string  <a href="classPythonQtConv.html#a9dd3bc5068ba3465bb9ba72a857ac689">More...</a><br /></td></tr>
+<tr class="separator:a9dd3bc5068ba3465bb9ba72a857ac689"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac03ef92dc283b07573993ba330280619"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtConv.html#ac03ef92dc283b07573993ba330280619">PyObjGetInt</a> (<a class="el" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a> *val, bool strict, bool &amp;ok)</td></tr>
 <tr class="memdesc:ac03ef92dc283b07573993ba330280619"><td class="mdescLeft">&#160;</td><td class="mdescRight">get int from py object  <a href="classPythonQtConv.html#ac03ef92dc283b07573993ba330280619">More...</a><br /></td></tr>
 <tr class="separator:ac03ef92dc283b07573993ba330280619"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -239,7 +242,7 @@ Static Protected Attributes</h2></td></tr>
 
 <p>cast wrapper to given className if possible </p>
 
-<p class="reference">Referenced by <a class="el" href="PythonQtConversion_8h_source.html#l00303">PythonQtConvertPythonListToListOfKnownClass()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="PythonQtConversion_8h_source.html#l00307">PythonQtConvertPythonListToListOfKnownClass()</a>.</p>
 
 </div>
 </div>
@@ -611,7 +614,7 @@ Static Protected Attributes</h2></td></tr>
 
 <p>converts the Qt parameter given in <code>data</code>, interpreting it as a <code>type</code> registered qvariant/meta type, into a Python object, </p>
 
-<p class="reference">Referenced by <a class="el" href="PythonQtConversion_8h_source.html#l00464">PythonQtConvertIntegerMapToPython()</a>, <a class="el" href="PythonQtConversion_8h_source.html#l00233">PythonQtConvertListOfValueTypeToPythonList()</a>, and <a class="el" href="PythonQtConversion_8h_source.html#l00343">PythonQtConvertPairToPython()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="PythonQtConversion_8h_source.html#l00468">PythonQtConvertIntegerMapToPython()</a>, <a class="el" href="PythonQtConversion_8h_source.html#l00237">PythonQtConvertListOfValueTypeToPythonList()</a>, and <a class="el" href="PythonQtConversion_8h_source.html#l00347">PythonQtConvertPairToPython()</a>.</p>
 
 </div>
 </div>
@@ -1125,6 +1128,50 @@ template&lt;typename Map &gt; </div>
 
 </div>
 </div>
+<a id="a9dd3bc5068ba3465bb9ba72a857ac689"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9dd3bc5068ba3465bb9ba72a857ac689">&#9670;&nbsp;</a></span>PyObjGetBytesAllowString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static QByteArray PythonQtConv::PyObjGetBytesAllowString </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a> *&#160;</td>
+          <td class="paramname"><em>val</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>strict</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &amp;&#160;</td>
+          <td class="paramname"><em>ok</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>get bytes from py object, also allows Python string </p>
+
+</div>
+</div>
 <a id="a51621f9d0437723fc2d73f56113d9545"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a51621f9d0437723fc2d73f56113d9545">&#9670;&nbsp;</a></span>PyObjGetDouble()</h2>
 
@@ -1211,7 +1258,7 @@ template&lt;typename Map &gt; </div>
 
 <p>get int from py object </p>
 
-<p class="reference">Referenced by <a class="el" href="PythonQtConversion_8h_source.html#l00492">PythonQtConvertPythonToIntegerMap()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="PythonQtConversion_8h_source.html#l00496">PythonQtConvertPythonToIntegerMap()</a>.</p>
 
 </div>
 </div>
@@ -1446,7 +1493,7 @@ template&lt;typename Map &gt; </div>
 </div><div class="memdoc">
 <p>convert python object to qvariant, if type is given it will try to create a qvariant of that type, otherwise it will guess from the python type </p>
 
-<p class="reference">Referenced by <a class="el" href="PythonQtConversion_8h_source.html#l00250">PythonQtConvertPythonListToListOfValueType()</a>, <a class="el" href="PythonQtConversion_8h_source.html#l00492">PythonQtConvertPythonToIntegerMap()</a>, and <a class="el" href="PythonQtConversion_8h_source.html#l00364">PythonQtConvertPythonToPair()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="PythonQtConversion_8h_source.html#l00254">PythonQtConvertPythonListToListOfValueType()</a>, <a class="el" href="PythonQtConversion_8h_source.html#l00496">PythonQtConvertPythonToIntegerMap()</a>, and <a class="el" href="PythonQtConversion_8h_source.html#l00368">PythonQtConvertPythonToPair()</a>.</p>
 
 </div>
 </div>
@@ -1760,9 +1807,9 @@ template&lt;typename Map &gt; </div>
 
 <p>register a converter callback from cpp to python for given metatype </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQtConversion_8h_source.html#l00167">167</a> of file <a class="el" href="PythonQtConversion_8h_source.html">PythonQtConversion.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;{ <a class="code" href="classPythonQtConv.html#ae32453a57352c1173804ff6c2fa7d5e0">_metaTypeToPythonConverters</a>.insert(metaTypeId, cb); }</div>
-<div class="ttc" id="aclassPythonQtConv_html_ae32453a57352c1173804ff6c2fa7d5e0"><div class="ttname"><a href="classPythonQtConv.html#ae32453a57352c1173804ff6c2fa7d5e0">PythonQtConv::_metaTypeToPythonConverters</a></div><div class="ttdeci">static QHash&lt; int, PythonQtConvertMetaTypeToPythonCB * &gt; _metaTypeToPythonConverters</div><div class="ttdef"><b>Definition:</b> <a href="PythonQtConversion_8h_source.html#l00205">PythonQtConversion.h:205</a></div></div>
+<p class="definition">Definition at line <a class="el" href="PythonQtConversion_8h_source.html#l00169">169</a> of file <a class="el" href="PythonQtConversion_8h_source.html">PythonQtConversion.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;{ <a class="code" href="classPythonQtConv.html#ae32453a57352c1173804ff6c2fa7d5e0">_metaTypeToPythonConverters</a>.insert(metaTypeId, cb); }</div>
+<div class="ttc" id="aclassPythonQtConv_html_ae32453a57352c1173804ff6c2fa7d5e0"><div class="ttname"><a href="classPythonQtConv.html#ae32453a57352c1173804ff6c2fa7d5e0">PythonQtConv::_metaTypeToPythonConverters</a></div><div class="ttdeci">static QHash&lt; int, PythonQtConvertMetaTypeToPythonCB * &gt; _metaTypeToPythonConverters</div><div class="ttdef"><b>Definition:</b> <a href="PythonQtConversion_8h_source.html#l00208">PythonQtConversion.h:208</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1802,9 +1849,9 @@ template&lt;typename Map &gt; </div>
 
 <p>register a converter callback from python to cpp for given metatype </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQtConversion_8h_source.html#l00164">164</a> of file <a class="el" href="PythonQtConversion_8h_source.html">PythonQtConversion.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;{ <a class="code" href="classPythonQtConv.html#a3baac2cd23d890ddf95213196886e7df">_pythonToMetaTypeConverters</a>.insert(metaTypeId, cb); }</div>
-<div class="ttc" id="aclassPythonQtConv_html_a3baac2cd23d890ddf95213196886e7df"><div class="ttname"><a href="classPythonQtConv.html#a3baac2cd23d890ddf95213196886e7df">PythonQtConv::_pythonToMetaTypeConverters</a></div><div class="ttdeci">static QHash&lt; int, PythonQtConvertPythonToMetaTypeCB * &gt; _pythonToMetaTypeConverters</div><div class="ttdef"><b>Definition:</b> <a href="PythonQtConversion_8h_source.html#l00206">PythonQtConversion.h:206</a></div></div>
+<p class="definition">Definition at line <a class="el" href="PythonQtConversion_8h_source.html#l00166">166</a> of file <a class="el" href="PythonQtConversion_8h_source.html">PythonQtConversion.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;{ <a class="code" href="classPythonQtConv.html#a3baac2cd23d890ddf95213196886e7df">_pythonToMetaTypeConverters</a>.insert(metaTypeId, cb); }</div>
+<div class="ttc" id="aclassPythonQtConv_html_a3baac2cd23d890ddf95213196886e7df"><div class="ttname"><a href="classPythonQtConv.html#a3baac2cd23d890ddf95213196886e7df">PythonQtConv::_pythonToMetaTypeConverters</a></div><div class="ttdeci">static QHash&lt; int, PythonQtConvertPythonToMetaTypeCB * &gt; _pythonToMetaTypeConverters</div><div class="ttdef"><b>Definition:</b> <a href="PythonQtConversion_8h_source.html#l00209">PythonQtConversion.h:209</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1860,9 +1907,9 @@ template&lt;typename Map &gt; </div>
 </div><div class="memdoc">
 <p>set a callback that is called when a Python sequence should be converted to a QVariantList to allow special conversion. </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQtConversion_8h_source.html#l00171">171</a> of file <a class="el" href="PythonQtConversion_8h_source.html">PythonQtConversion.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;{ <a class="code" href="classPythonQtConv.html#ad03083ea5adc12073cf3c7f11c1f52aa">_pythonSequenceToQVariantListCB</a> = cb; }</div>
-<div class="ttc" id="aclassPythonQtConv_html_ad03083ea5adc12073cf3c7f11c1f52aa"><div class="ttname"><a href="classPythonQtConv.html#ad03083ea5adc12073cf3c7f11c1f52aa">PythonQtConv::_pythonSequenceToQVariantListCB</a></div><div class="ttdeci">static PythonQtConvertPythonSequenceToQVariantListCB * _pythonSequenceToQVariantListCB</div><div class="ttdef"><b>Definition:</b> <a href="PythonQtConversion_8h_source.html#l00207">PythonQtConversion.h:207</a></div></div>
+<p class="definition">Definition at line <a class="el" href="PythonQtConversion_8h_source.html#l00173">173</a> of file <a class="el" href="PythonQtConversion_8h_source.html">PythonQtConversion.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;{ <a class="code" href="classPythonQtConv.html#ad03083ea5adc12073cf3c7f11c1f52aa">_pythonSequenceToQVariantListCB</a> = cb; }</div>
+<div class="ttc" id="aclassPythonQtConv_html_ad03083ea5adc12073cf3c7f11c1f52aa"><div class="ttname"><a href="classPythonQtConv.html#ad03083ea5adc12073cf3c7f11c1f52aa">PythonQtConv::_pythonSequenceToQVariantListCB</a></div><div class="ttdeci">static PythonQtConvertPythonSequenceToQVariantListCB * _pythonSequenceToQVariantListCB</div><div class="ttdef"><b>Definition:</b> <a href="PythonQtConversion_8h_source.html#l00210">PythonQtConversion.h:210</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1887,7 +1934,7 @@ template&lt;typename Map &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PythonQtConversion_8h_source.html#l00205">205</a> of file <a class="el" href="PythonQtConversion_8h_source.html">PythonQtConversion.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PythonQtConversion_8h_source.html#l00208">208</a> of file <a class="el" href="PythonQtConversion_8h_source.html">PythonQtConversion.h</a>.</p>
 
 </div>
 </div>
@@ -1911,7 +1958,7 @@ template&lt;typename Map &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PythonQtConversion_8h_source.html#l00207">207</a> of file <a class="el" href="PythonQtConversion_8h_source.html">PythonQtConversion.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PythonQtConversion_8h_source.html#l00210">210</a> of file <a class="el" href="PythonQtConversion_8h_source.html">PythonQtConversion.h</a>.</p>
 
 </div>
 </div>
@@ -1935,7 +1982,7 @@ template&lt;typename Map &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PythonQtConversion_8h_source.html#l00206">206</a> of file <a class="el" href="PythonQtConversion_8h_source.html">PythonQtConversion.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PythonQtConversion_8h_source.html#l00209">209</a> of file <a class="el" href="PythonQtConversion_8h_source.html">PythonQtConversion.h</a>.</p>
 
 </div>
 </div>
@@ -1959,7 +2006,7 @@ template&lt;typename Map &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PythonQtConversion_8h_source.html#l00225">225</a> of file <a class="el" href="PythonQtConversion_8h_source.html">PythonQtConversion.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PythonQtConversion_8h_source.html#l00228">228</a> of file <a class="el" href="PythonQtConversion_8h_source.html">PythonQtConversion.h</a>.</p>
 
 </div>
 </div>
@@ -1969,7 +2016,7 @@ template&lt;typename Map &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Dec 12 2023 18:28:41 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Wed Dec 13 2023 10:31:04 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>
