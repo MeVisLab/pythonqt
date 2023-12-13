@@ -36,7 +36,6 @@ win32-clang-msvc:QMAKE_CXXFLAGS += -Wno-language-extension-token -Wno-microsoft-
 # Input
 HEADERS += \
         $$GENERATORPATH/generator.h \
-        $$GENERATORPATH/main.h \
         $$GENERATORPATH/reporthandler.h \
         $$GENERATORPATH/typeparser.h \
         $$GENERATORPATH/typesystem.h \
