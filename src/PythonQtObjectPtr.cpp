@@ -172,7 +172,7 @@ PythonQtSafeObjectPtr::~PythonQtSafeObjectPtr()
 {
   if (_object) {
     PYTHONQT_GIL_SCOPE
-    Py_DECREF(_object);
+    if (_object && Py_IsInitialized()) Py_DECREF(_object);
   }
 }
 
