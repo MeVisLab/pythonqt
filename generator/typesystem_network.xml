@@ -5,10 +5,6 @@
   </namespace-type>
 
   <rejection class="QSqlError::Unused"/>
-  <rejection class="QSslConfiguration" function-name="defaultDtlsConfiguration"/>
-  <rejection class="QSslConfiguration" function-name="dtlsCookieVerificationEnabled"/>
-  <rejection class="QSslConfiguration" function-name="setDefaultDtlsConfiguration"/>
-  <rejection class="QSslConfiguration" function-name="setDtlsCookieVerificationEnabled"/>
 
   <enum-type name="QSsl::AlertLevel" since-version="6"/>
   <enum-type name="QSsl::AlertType" since-version="6"/>
@@ -112,8 +108,6 @@
   </object-type>
   <object-type name="QNetworkCookieJar"/>
   <object-type name="QNetworkReply">
-    <modify-function signature="setSslConfiguration(QSslConfiguration)" remove="all"/>
-    <modify-function signature="sslConfiguration() const" remove="all"/>
     <modify-function signature="ignoreSslErrors(const QList&lt;QSslError&gt;&amp;)" remove="all"/>
   </object-type>
 
@@ -174,8 +168,6 @@
   </value-type>
   <value-type name="QNetworkRequest">
     <modify-function signature="operator=(QNetworkRequest)" remove="all"/>
-    <modify-function signature="setSslConfiguration(QSslConfiguration)" remove="all"/>
-    <modify-function signature="sslConfiguration() const" remove="all"/>
   </value-type>
 
   <enum-type name="QSslError::SslError"/>
@@ -193,6 +185,8 @@
     </extra-includes>
   </value-type>
   <value-type name="QSslConfiguration"/>
+  <value-type name="QSslDiffieHellmanParameters" since-version="5.8"/>
+  <enum-type name="QSslDiffieHellmanParameters::Error" since-version="5.8"/>
 
   <object-type name="QSslSocket"/>
 
@@ -236,10 +230,17 @@
   <object-type name="QDtls" since-version="5.12"/>
   <enum-type name="QDtls::HandshakeState" since-version="5.12"/>
   <object-type name="QDtlsClientVerifier" since-version="5.12"/>
+  <value-type name="QDtlsClientVerifier::GeneratorParameters" since-version="5.12"/>
   
   <object-type name="QHttp1Configuration" since-version="6.5"/>
+  <rejection class="QHttp1Configuration::ShortData" since-version="6.5"/>
+  <rejection class="QHttp1Configuration::U" since-version="6.5"/>
   <object-type name="QHttp2Configuration" since-version="5.14"/>
-  
+
+  <object-type name="QOcspResponse" since-version="5.13"/>
+  <enum-type name="QOcspCertificateStatus" since-version="5.13"/>
+  <enum-type name="QOcspRevocationReason" since-version="5.13"/>
+
   <object-type name="QNetworkInformation" since-version="6.1"/>
   <enum-type name="QNetworkInformation::Feature" flags="QNetworkInformation::Features" since-version="6.1"/>
 

@@ -6,6 +6,14 @@
 <rejection class="QQmlListProperty"/>
 <rejection class="QQmlTypeInfo"/>
 <rejection class="QQmlImageProviderBase"/>
+<rejection class="QQmlContext::PropertyPair"/>
+<rejection class="QQmlEngineExtensionInterface"/>
+<rejection class="QQmlEngineExtensionPlugin"/>
+<rejection class="QQmlModuleRegistration"/>
+<rejection class="QQmlTriviallyDestructibleDebuggingEnabler"/>
+<rejection class="QQmlTypeNotAvailable"/>
+<rejection class="QmlTypeAndRevisionsRegistration"/>
+<rejection enum-name="QQmlModuleImportSpecialVersions"/>
 
 <object-type name="QJSEngine">
   <modify-function signature="newQMetaObject()" remove="all"/>
@@ -16,6 +24,13 @@
   <modify-function signature="operator++(int)" remove="all"/>
   <modify-function signature="operator--(int)" remove="all"/>
 </object-type>
+<rejection class="QJSPrimitiveValue::AddOperators" since-version="6.1"/>
+<rejection class="QJSPrimitiveValue::DivOperators" since-version="6.1"/>
+<rejection class="QJSPrimitiveValue::MulOperators" since-version="6.1"/>
+<rejection class="QJSPrimitiveValue::QJSPrimitiveValuePrivate" since-version="6.1"/>
+<rejection class="QJSPrimitiveValue::StringNaNOperators" since-version="6.1"/>
+<rejection class="QJSPrimitiveValue::SubOperators" since-version="6.1"/>
+
 <object-type name="QJSPrimitiveUndefined" since-version="6.1"/>
 <object-type name="QJSPrimitiveNull" since-version="6.1"/>
 
