@@ -30,7 +30,7 @@ isEmpty( PYTHONQTALL_CONFIG ) {
   CONFIG += $${PYTHONQTALL_CONFIG}
 }
 
-TARGET   = PythonQt_QtAll-Qt5-PythonXY
+TARGET   = PythonQt_QtAll-Qt$${QT_MAJOR_VERSION}-PythonXY
 TEMPLATE = lib
 
 DESTDIR    = ../../lib
