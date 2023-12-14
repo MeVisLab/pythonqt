@@ -22,11 +22,13 @@
 <rejection class="QAccessible"/>
 <rejection class="QAccessibleActionInterface"/>
 <rejection class="QAccessibleBridge"/>
+<rejection class="QAccessibleHyperlinkInterface"/>
 <rejection class="QAccessibleImageInterface"/>
 <rejection class="QAccessibleInterface"/>
 <rejection class="QAccessibleObject"/>
 <rejection class="QAccessiblePlugin"/>
 <rejection class="QAccessibleStateChangeEvent"/>
+<rejection class="QAccessibleSelectionInterface"/>
 <rejection class="QAccessibleTableCellInterface"/>
 <rejection class="QAccessibleTableInterface"/>
 <rejection class="QAccessibleTableModelChangeEvent"/>
@@ -84,6 +86,7 @@
   <rejection class="QAbstractUndoItem"/>
   <rejection class="QAccessibleApplication"/>
   <rejection class="QBrushData"/>
+  <rejection class="QBrushDataPointerDeleter"/>
   <rejection class="QImageTextKeyLang"/>
   <rejection class="QItemEditorCreator"/>
   <rejection class="QLinkedList"/>
@@ -104,6 +107,7 @@
   <rejection class="QWindowSurface"/>
   <rejection class="QWindowsXPStyle"/>
   <rejection class="QWindowsVistaStyle"/>
+  <rejection class="QWindowsMimeConverter"/>
   <rejection class="QWSEmbedWidget"/>
   <rejection class="QRegion::QRegionData"/>
   <rejection class="JObject_key"/>
@@ -156,13 +160,15 @@
   <rejection class="QWidgetItem" field-name="wid"/>
   <rejection class="QFont" enum-name="ResolveProperties"/>
   <rejection class="QGradient" enum-name="InterpolationMode"/>
+  <rejection class="QIconEngine::ScaledPixmapArgument" since-version="5.9"/>
   <rejection class="QIconEngineV2::AvailableSizesArgument"/>
   <rejection class="QIconEngineV2" enum-name="IconEngineHook"/>
+  <rejection class="QGradient::QGradientData"/>
   <rejection class="QGradient" enum-name="InterpolationMode"/>
   <rejection class="QGradient" function-name="setInterpolationMode"/>
   <rejection class="QGradient" function-name="interpolationMode"/>
   <rejection class="QAbstractTextDocumentLayout" function-name="handlerForObject"/>
-    <rejection class="QPixmap" function-name="fromImageInPlace"/>
+  <rejection class="QPixmap" function-name="fromImageInPlace"/>
   
   <enum-type name="QStaticText::PerformanceHint"/>
   <enum-type name="QTextBlockFormat::LineHeightTypes"/>
@@ -390,6 +396,8 @@
   <enum-type name="QStyleOptionHeader::SortIndicator"/>
   <enum-type name="QStyleOptionHeader::StyleOptionType"/>
   <enum-type name="QStyleOptionHeader::StyleOptionVersion"/>
+  <enum-type name="QStyleOptionHeaderV2::StyleOptionType"/>
+  <enum-type name="QStyleOptionHeaderV2::StyleOptionVersion"/>
   <enum-type name="QStyleOptionMenuItem::CheckType"/>
   <enum-type name="QStyleOptionMenuItem::MenuItemType"/>
   <enum-type name="QStyleOptionMenuItem::StyleOptionType"/>
@@ -615,6 +623,7 @@
         </modify-argument>
       </modify-function>
   </value-type>
+  <rejection class="QTransform::Affine"/>
 
   <value-type name="QStyleOption" polymorphic-base="yes" polymorphic-id-expression="%1-&gt;type == QStyleOption::SO_Default">
       <modify-function signature="operator=(QStyleOption)" remove="all"/>
@@ -641,6 +650,7 @@
 
   <value-type name="QStyleOptionGroupBox" polymorphic-id-expression="%1-&gt;type == QStyleOptionGroupBox::Type &amp;&amp; %1-&gt;version == QStyleOptionGroupBox::Version"/>
   <value-type name="QStyleOptionHeader" polymorphic-id-expression="%1-&gt;type == QStyleOptionHeader::Type &amp;&amp; %1-&gt;version == QStyleOptionHeader::Version"/>
+  <value-type name="QStyleOptionHeaderV2" polymorphic-id-expression="%1-&gt;type == QStyleOptionHeaderV2::Type &amp;&amp; %1-&gt;version == QStyleOptionHeaderV2::Version"/>
   <value-type name="QStyleOptionMenuItem" polymorphic-id-expression="%1-&gt;type == QStyleOptionMenuItem::Type &amp;&amp; %1-&gt;version == QStyleOptionMenuItem::Version"/>
   <value-type name="QStyleOptionProgressBar" polymorphic-id-expression="%1-&gt;type == QStyleOptionProgressBar::Type &amp;&amp; %1-&gt;version == QStyleOptionProgressBar::Version"/>
 
@@ -892,6 +902,7 @@
     <modify-function signature="data()const" remove="all"/>
     <modify-function signature="operator()(int, int)const" remove="all"/>
   </value-type>
+  <rejection class="QMatrix4x4" enum-name="Flag"/>
   <value-type name="QMatrix">
       <extra-includes>
         <include file-name="QPainterPath" location="global"/>
@@ -1120,6 +1131,7 @@ PyObject* constScanLine(QImage* image, int line) {
       <modify-function signature="dark(int)const" remove="all"/> <!--### Obsolete in 4.3-->
       <modify-function signature="light(int)const" remove="all"/> <!--### Obsolete in 4.3-->
   </value-type>
+  <rejection class="QColor::CT"/>
 
   <value-type name="QFontMetricsF" expense-cost="1" expense-limit="1000">
     <modify-function signature="operator!=(const QFontMetricsF &amp;)">
@@ -1326,6 +1338,7 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QHeaderView">
   </object-type>
   <object-type name="QIconEngine">
+    <modify-function signature="virtual_hook(int,void*)" remove="all"/>
   </object-type>
   <object-type name="QIconEngineV2">
     <modify-function signature="virtual_hook(int,void*)" remove="all"/>
@@ -2936,6 +2949,7 @@ PyObject* constScanLine(QImage* image, int line) {
       </modify-argument>
     </modify-function>
   </object-type>
+  <value-type name="QFormLayout::TakeRowResult" since-version="5.8"/>
     
   <object-type name="QGraphicsGridLayout">
     <modify-function signature="addItem(QGraphicsLayoutItem*,int,int,QFlags&lt;Qt::AlignmentFlag&gt;)">
@@ -3078,6 +3092,7 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QOpenGLTimeMonitor"/>
   <object-type name="QOpenGLTimerQuery"/>
   <object-type name="QOpenGLVersionProfile"/>
+  <object-type name="QOpenGLVersionFunctionsFactory" since-version="6"/>
   <object-type name="QOpenGLVertexArrayObject"/>
   <object-type name="QPageLayout"/>
   <object-type name="QPageSize"/>
@@ -3096,7 +3111,8 @@ PyObject* constScanLine(QImage* image, int line) {
   <interface-type name="QPagedPaintDevice" create-shell="no">
     <modify-function signature="devicePageLayout()const" remove="all"/>
   </interface-type>
-  <interface-type name="QPageRanges"/>
+  <interface-type name="QPageRanges" since-version="6"/>
+  <value-type name="QPageRanges::Range" since-version="6"/>
 
    <interface-type name="QPlatformSurface"/>
    <interface-type name="QSurface"/>
@@ -3180,6 +3196,7 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QOpenGLTextureBlitter"/>
   <enum-type name="QOpenGLTextureBlitter::Origin"/>
   
+  <object-type name="QConcatenateTablesProxyModel" since-version="5.13"/>
   <object-type name="QTransposeProxyModel" since-version="5.13"/>
 
   <value-type name="QColorSpace" since-version="5.14"/>

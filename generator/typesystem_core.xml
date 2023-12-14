@@ -19,21 +19,38 @@
 <rejection class="QAbstractNativeEventFilter"/>
 <rejection class="QAbstractOpenGLFunctions"/>
 <rejection class="QAbstractOpenGLFunctionsPrivate"/>
+<rejection class="QAdoptSharedDataTag"/>
 <rejection class="QAnimationDriver"/>
 <rejection class="QArrayData"/>
 <rejection class="QArrayDataOps"/>
 <rejection class="QArrayDataPointer"/>
 <rejection class="QArrayDataPointerRef"/>
 <rejection class="QArrayOpsSelector"/>
+<rejection class="QAssociativeConstIterator"/>
 <rejection class="QAssociativeIterable"/>
 <rejection class="QAtomicAdditiveType"/>
 <rejection class="QAtomicInteger"/>
 <rejection class="QAtomicOps"/>
+<rejection class="QAtomicOpsSupport"/>
 <rejection class="QAtomicOpsSupport>"/>
+<rejection class="QAtomicTraits"/>
+<rejection class="QBaseIterator"/>
 <rejection class="QBasicAtomicInteger"/>
+<rejection class="QBasicUtf8StringView"/>
+<rejection class="QBigEndianStorageType"/>
+<rejection class="QBindable"/>
+<rejection class="QBindingStatus"/>
+<rejection class="QBindingStorage"/>
 <rejection class="QByteArrayDataPtr"/>
+<rejection class="QConstIterator"/>
+<rejection class="QConstOverload"/>
+<rejection class="QDateTime::Data"/>
+<rejection class="QDateTime::ShortData"/>
 <rejection class="QDebugStateSaver"/>
 <rejection class="QEnableSharedFromThis"/>
+<rejection class="QEvent::InputEventTag"/>
+<rejection class="QEvent::PointerEventTag"/>
+<rejection class="QEvent::SinglePointEventTag"/>
 <rejection class="QEventLoopLocker"/>
 <rejection class="QException"/>
 <rejection class="QGLFunctionsPrivate"/>
@@ -203,6 +220,8 @@
   <primitive-type name="qintptr"/>
   <primitive-type name="qptrdiff"/>
   <primitive-type name="qsizetype"/>
+  
+  <rejection class="qfloat16"/>  <!-- only used in QRgbaFloat template and QCborStreamReader/Writer so far -->
 
   <value-type name="QModelIndex"/>
   <rejection class="*" function-name="d_func"/>
@@ -220,6 +239,7 @@
   <rejection class="" enum-name="QtValidLicenseForSqlModule"/>
   <rejection class="" enum-name="QtValidLicenseForOpenGLModule"/>
   <rejection class="" enum-name="enum_1"/>
+  <rejection class="" enum-name="enum_2"/>
   <rejection class="" enum-name="QtValidLicenseForXmlModule"/>
   <rejection class="" enum-name="QtValidLicenseForXmlPatternsModule"/>
   <rejection class="" enum-name="QtValidLicenseForActiveQtModule"/>
@@ -241,6 +261,7 @@
   <rejection class="QtConcurrent" function-name="operator|"/>
 
   <rejection class="Qt" enum-name="Modifier"/>
+  <rejection class="Qt" enum-name="ReturnByValueConstant"/>
   <rejection class="Qt" function-name="qt_getEnumName"/>
   <rejection class="Qt" function-name="qt_getEnumMetaObject"/>
 
@@ -416,6 +437,8 @@
 
   <rejection class="QBitRef"/>
   <rejection class="QCache"/>
+  <rejection class="QCalendar::SystemId"/>   <!-- not clear how to get this -->
+  <rejection class="QCalendar" enum-name="enum_1"/>   <!-- not clear how to get this -->
   <rejection class="QContiguousCache"/>
   <rejection class="QContiguousCacheData"/>
   <rejection class="QContiguousCacheTypedData"/>
@@ -444,43 +467,112 @@
   <rejection class="QHashNode"/>
   <rejection class="QInternal"/>
   <rejection class="QIncompatibleFlag"/>
+  <rejection class="QIterable"/>
+  <rejection class="QIterator"/>
+  <rejection class="QJSListIndexClamp"/>
+  <rejection class="QJSNumberCoercion"/>
+  <rejection class="QJsonValueConstRef"/>
+  <rejection class="QKeyValueIterator"/>
+  <rejection class="QLatin1StringMatcher"/>
   <rejection class="QLinkedList"/>
   <rejection class="QLinkedListData"/>
   <rejection class="QLinkedListIterator"/>
   <rejection class="QLinkedListNode"/>
+  <rejection class="QList::DisableRValueRefs"/>
   <rejection class="QListData"/>
   <rejection class="QListIterator"/>
+  <rejection class="QListSpecialMethodsBase"/>
+  <rejection class="QLittleEndianStorageType"/>
+  <rejection class="QLoggingCategoryMacroHolder"/>
   <rejection class="QMap"/>
   <rejection class="QMapNode"/>
   <rejection class="QMapPayloadNode"/>
   <rejection class="QMapData"/>
   <rejection class="QMapIterator"/>
   <rejection class="QMetaTypeId"/>
+  <rejection class="QMetaAssociation"/>
+  <rejection class="QMetaClassInfo::Data"/>
+  <rejection class="QMetaContainer"/>
+  <rejection class="QMetaEnum::Data"/>
+  <rejection class="QMetaMethod::Data"/>
+  <rejection class="QMetaProperty::Data"/>
+  <rejection class="QMetaSequence"/>
   <rejection class="QMultiHash"/>
+  <rejection class="QMultiHashIterator"/>
   <rejection class="QMultiMap"/>
+  <rejection class="QMultiMapIterator"/>
   <rejection class="QMutableHashIterator"/>
   <rejection class="QMutableLinkedListIterator"/>
   <rejection class="QMutableListIterator"/>
   <rejection class="QMutableMapIterator"/>
+  <rejection class="QMutableMultiHashIterator"/>
+  <rejection class="QMutableMultiMapIterator"/>
   <rejection class="QMutableVectorIterator"/>
   <rejection class="QNoImplicitBoolCast"/>
+  <rejection class="QNonConstOverload"/>
+  <rejection class="QObjectBindableProperty"/>
+  <rejection class="QObjectComputedProperty"/>
   <rejection class="QObjectCleanupHandler"/>
   <rejection class="QObjectData"/>
   <rejection class="QObjectUserData"/>
+  <rejection class="QOverload"/>
+  <rejection class="QPartialOrdering"/>  <!-- used for QVariant and QMetaType, not usable from Python -->
   <rejection class="QPluginLoader"/>
+  <rejection class="QPluginMetaData"/>
   <rejection class="QPointer"/>
+  <rejection class="QProperty"/>
+  <rejection class="QPropertyAlias"/>
+  <rejection class="QPropertyBinding"/>
+  <rejection class="QPropertyBindingError"/>
+  <rejection class="QPropertyBindingPrivatePtr"/>
+  <rejection class="QPropertyBindingSourceLocation"/>
+  <rejection class="QPropertyData"/>
+  <rejection class="QPropertyObserver"/>
+  <rejection class="QPropertyObserverBase"/>
+  <rejection class="QPropertyProxyBindingData"/>
+  <rejection class="QRandomGenerator::InitialRandomData"/>
+  <rejection class="QRandomGenerator::Storage"/>
+  <rejection class="QRandomGenerator" enum-name="System"/>
+  <rejection class="QRgbaFloat"/>  <!-- template class -->
+  <rejection class="QScopeGuard"/>
+  <rejection class="QScopedPropertyUpdateGroup"/>  <!-- wouldn't work the same in Python -->
+  <rejection class="QSemaphoreReleaser"/>  <!-- wouldn't work the same in Python -->
+  <rejection class="QSequentialConstIterator"/>
+  <rejection class="QSequentialIterator"/>
   <rejection class="QSet"/>
   <rejection class="QSetIterator"/>
   <rejection class="QSharedData"/>
   <rejection class="QSharedDataPointer"/>
+  <rejection class="QSpecialInteger"/>
+  <rejection class="QSocketDescriptor"/>  <!-- might be needed in future, emitted by QSocketNotifier::activated -->
   <rejection class="QStack"/>
+  <rejection class="QStaticByteArrayMatcher"/>
+  <rejection class="QStaticByteArrayMatcherBase"/>
+  <!-- QStringConvert & co. use templates for return values -->
+  <rejection class="QStringConverter"/>
+  <rejection class="QStringConverterBase"/>
+  <rejection class="QStringEncoder"/>
+  <rejection class="QStringDecoder"/>
+  <rejection class="QStringTokenizer"/>
+  <rejection class="QStringTokenizerBase"/>
+  <rejection class="QStringTokenizerBaseBase"/>
+  <rejection class="QTaggedIterator"/>
+  <rejection class="QTaggedPointer"/>
   <rejection class="QTextStreamManipulator"/>
   <rejection class="QThreadStorage"/>
   <rejection class="QThreadStorageData"/>
+  <rejection class="QTimeZone::Data"/>
+  <rejection class="QTimeZone::ShortData"/>
   <rejection class="QTypeInfo"/>
-  <rejection class="QTypeInfo"/>
+  <rejection class="QTypeRevision"/>   <!-- type not usable (static creator methods are templated) -->
+  <rejection class="QUntypedBindable"/>
+  <rejection class="QUntypedPropertyBinding"/>
+  <rejection class="QUntypedPropertyData"/>
   <rejection class="QVFbKeyData"/>
   <rejection class="QVariantComparisonHelper"/>
+  <rejection class="QVariantConstPointer"/>
+  <rejection class="QVariantPointer"/>
+  <rejection class="QVariantRef"/>
   <rejection class="QVectorData"/>
   <rejection class="QVectorIterator"/>
   <rejection class="QVectorTypedData"/>
@@ -513,6 +605,9 @@
   <rejection class="QLocale::Data"/>
   <rejection class="QGlobalStaticDeleter"/>
   <rejection class="QVarLengthArray"/>
+  <rejection class="QVLABase"/>
+  <rejection class="QVLABaseBase"/>
+  <rejection class="QVLAStorage"/>
 
   <!-- DBus -->
   <rejection class="QDBusAbstractAdaptor"/>
@@ -531,6 +626,20 @@
   <rejection class="QDBusSignature"/>
   <rejection class="QDBusVariant"/>
 
+  <!-- QPermission (templated) -->
+  <rejection class="QPermission"/>
+  <rejection class="QBluetoothPermission"/>
+  <rejection class="QCalendarPermission"/>
+  <rejection class="QCameraPermission"/>
+  <rejection class="QContactsPermission"/>
+  <rejection class="QLocationPermission"/>
+  <rejection class="QMicrophonePermission"/>
+  <rejection class="Qt" enum-name="PermissionStatus"/>
+
+  <!-- Template parameters in QSGTexture: -->
+  <rejection class="NativeInterface"/>
+  <rejection class="TypeInfo"/>
+
   <rejection class="_Revbidit"/>
   <rejection class="_complex"/>
   <rejection class="_exception"/>
@@ -544,8 +653,11 @@
   <rejection class="reverse_iterator"/>
   <rejection class="stat"/>
   <rejection class="tm"/>
+  <rejection class="function_ref"/>
+  <rejection class="has_type_info"/>
 
   <rejection class="Qt" enum-name="Initialization"/>
+  <rejection class="Qt::Disambiguated_t"/>
 
   <rejection class="QAbstractEventDispatcher" function-name="filterEvent"/>
   <rejection class="QAbstractEventDispatcher" function-name="setEventFilter"/>
@@ -968,6 +1080,7 @@ public:
       <remove/>
     </modify-function>
   </value-type>
+  <rejection class="QUuid::Id128Bytes" since-version="6.6"/>
 
   <value-type name="QLocale">
     <modify-function signature="toString(unsigned long long) const" remove="all"/>
@@ -989,6 +1102,8 @@ public:
     <modify-function signature="operator[](int)const" remove="all"/>
     <modify-function signature="operator[](uint)const" remove="all"/>
     <modify-function signature="operator[](uint)" remove="all"/>
+    <modify-function signature="operator[](qsizetype)" remove="all"/>
+    <modify-function signature="operator[](qsizetype)const" remove="all"/>
 
     <modify-function signature="operator&amp;=(QBitArray)" access="private"/>
     <modify-function signature="operator=(QBitArray)" access="private"/>
@@ -1104,6 +1219,7 @@ public:
     <modify-function signature="operator[](uint)" remove="all"/>
     <modify-function signature="operator[](uint)const" remove="all"/>
     <modify-function signature="operator[](qsizetype)" remove="all"/>
+    <modify-function signature="operator[](qsizetype)const" remove="all"/>
     <modify-function signature="push_back(char)" remove="all"/>
     <modify-function signature="push_back(const char*)" remove="all"/>
     <modify-function signature="push_front(char)" remove="all"/>
@@ -1220,6 +1336,7 @@ public:
     <modify-function signature="fromRawData(const char*,qsizetype)" remove="all"/>
   </value-type>
   <rejection class="QByteArray" function-name="erase"/>
+  <value-type name="QByteArray::FromBase64Result" since-version="5.15"/>
 
   <value-type name="QTextBoundaryFinder">
     <modify-function signature="QTextBoundaryFinder(QTextBoundaryFinder::BoundaryType,const QChar*,int,unsigned char*,int)" remove="all"/>
@@ -1345,7 +1462,6 @@ public:
   <object-type name="QLibraryInfo"/>
   <object-type name="QMutex"/>
   <object-type name="QRecursiveMutex" since-version="5.14"/>
-  <!-- QMutexLocker is a template in Qt6, we need to figure out what to do with it... -->
   <value-type name="QMutexLocker" before-version="6">
     <!-- special handling for context handlers -->
     <inject-code class="pywrap-operators">PythonQt::Type_EnterExit</inject-code>
@@ -1354,6 +1470,8 @@ public:
     void __exit__(QMutexLocker* self, PyObject* /*type*/, PyObject* /*value*/, PyObject* /*traceback*/) { self->unlock(); }
     </inject-code>
   </value-type>
+  <!-- QMutexLocker is a template in Qt6, we need to figure out what to do with it... -->
+  <rejection class="QMutexLocker" since-version="6"/>
   <value-type name="QReadLocker">
     <!-- special handling for context handlers -->
     <inject-code class="pywrap-operators">PythonQt::Type_EnterExit</inject-code>
@@ -1436,6 +1554,7 @@ public:
     <modify-function signature="disconnectNotify(const char *)" remove="all"/>
 
     <modify-function signature="setData(const char*,int)" remove="all"/>
+    <modify-function signature="setData(const char*,qsizetype)" remove="all"/>
   </object-type>
 
   <object-type name="QTimer"/>
@@ -1464,6 +1583,9 @@ public:
   <enum-type name="QProcess::UnixProcessFlag" flags="QProcess::UnixProcessFlags" since-version="6.6"/>
   <value-type name="QProcess::UnixProcessParameters" since-version="6.6"/>
   -->
+  <rejection class="QProcess" enum-name="UnixProcessFlag" since-version="6.6"/>
+  <rejection class="QProcess::UnixProcessParameters" since-version="6.6"/>
+  <rejection class="QProcess::Use_setChildProcessModifier_Instead" since-version="6.6"/>
 
   <object-type name="QSignalMapper">
   </object-type>
@@ -1839,6 +1961,9 @@ public:
   <object-type name="QResource"/>
   <enum-type name="QResource::Compression"/>
   <object-type name="QSharedMemory"/>
+  <object-type name="QNativeIpcKey" since-version="6.6"/>
+  <enum-type name="QNativeIpcKey::Type" since-version="6.6"/>
+  <rejection class="QNativeIpcKey::TypeAndFlags" since-version="6.6"/>
   <object-type name="QMetaObject"/>
   <object-type name="QMetaMethod"/>
   <object-type name="QMetaEnum">
@@ -1857,6 +1982,83 @@ public:
     <modify-function signature="registerConverter()" remove="all"/>
     <modify-function signature="registerDebugStreamOperator()" remove="all"/>
   </object-type>
+
+  <!-- Don't know if QCborNegativeInteger can be sensibly supported in Python: -->
+  <rejection enum-name="QCborNegativeInteger" since-version="5.12"/>
+  
+  <object-type name="QCborStreamWriter" since-version="5.12">
+    <modify-function signature="append(QCborTag)" remove="all"/> 
+    <modify-function signature="append(const char*,qsizetype)" remove="all"/> 
+    <modify-function signature="QCborStreamWriter(const QCborStreamWriter&amp;)" remove="all"/> 
+    <modify-function signature="operator=(const QCborStreamWriter&amp;)" remove="all"/> 
+  </object-type>
+  <object-type name="QCborStreamReader" since-version="5.12">
+    <modify-function signature="readByteArray()" remove="all"/> 
+    <modify-function signature="readString()" remove="all"/> 
+    <modify-function signature="readStringChunk(char*,qsizetype)" remove="all"/> 
+    <modify-function signature="toTag()const" remove="all"/> 
+    <modify-function signature="QCborStreamReader(const QCborStreamReader&amp;)" remove="all"/> 
+    <modify-function signature="operator=(const QCborStreamReader&amp;)" remove="all"/> 
+    <inject-code class="pywrap-h">
+  QByteArray readByteArray(QCborStreamReader* theWrappedObject) {
+    auto result = theWrappedObject->readByteArray();
+    return result.status == QCborStreamReader::Ok ? result.data : QByteArray();
+  }
+    
+  QString readString(QCborStreamReader* theWrappedObject) {
+    auto result = theWrappedObject->readString();
+    return result.status == QCborStreamReader::Ok ? result.data : QString();
+  }
+    
+  qint64 toTag(QCborStreamReader* theWrappedObject) const {
+    return static_cast&lt;qint64&gt;(theWrappedObject->toTag());
+  }
+    </inject-code>
+  </object-type>
+  <object-type name="QCborValue" since-version="5.12">
+    <modify-function signature="QCborValue(QCborTag, const QCborValue&amp;)" remove="all"/>
+    <modify-function signature="tag(QCborTag)const" remove="all"/>
+    <inject-code class="pywrap-h">
+  // replace QCborTag with qint64:
+  QCborValue* new_QCborValue(qint64  tag, const QCborValue&amp; taggedValue) {
+    return new QCborValue(QCborTag(tag), taggedValue);
+  }
+  
+  qint64 tag(QCborValue* theWrappedObject, qint64 defaultValue) const {
+    return static_cast&lt;qint64&gt;(theWrappedObject->tag(QCborTag(defaultValue)));
+  }
+    </inject-code>
+  </object-type>
+  <enum-type name="QCborValue::DiagnosticNotationOption" flags="QCborValue::DiagnosticNotationOptions" since-version="5.12"/>
+  <enum-type name="QCborValue::EncodingOption" flags="QCborValue::EncodingOptions" since-version="5.12"/>
+  <enum-type name="QCborValue::Type" since-version="5.12"/>
+  <object-type name="QCborArray" since-version="5.12">
+  </object-type>
+  <rejection class="QCborArray::Iterator"/>
+  <rejection class="QCborArray::ConstIterator"/>
+  <object-type name="QCborMap" since-version="5.12">
+    <inject-code class="pywrap-h">
+  void insert(QCborMap* theWrappedObject, qint64 key, const QCborValue&amp; value_)
+  {
+    theWrappedObject->insert(key, value_);
+  }
+
+  void insert(QCborMap* theWrappedObject, const QString&amp; key, const QCborValue&amp; value_)
+  {
+    theWrappedObject->insert(key, value_);
+  }
+    </inject-code>
+  </object-type>
+  <rejection class="QCborMap::Iterator"/>
+  <rejection class="QCborMap::ConstIterator"/>
+  <object-type name="QCborError" since-version="5.12">
+    <modify-function signature="operator Code()const" remove="all"/>
+  </object-type>
+  <enum-type name="QCborError::Code" since-version="5.12"/>
+  <object-type name="QCborParserError" since-version="5.12"/>
+  <rejection class="QCborValueRef" since-version="5.12"/>
+  <rejection class="QCborValueConstRef" since-version="5.12"/>
+
 
   <!-- Inefficient hash codes -->
   <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QUuid' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
@@ -2075,6 +2277,9 @@ public:
   <object-type name="QRandomGenerator"/>
   <object-type name="QRandomGenerator64"/>
   <enum-type name="QDeadlineTimer::ForeverConstant"/>
+  <object-type name="QHashSeed" since-version="6.2">
+    <modify-function signature="operator size_t()const" remove="all"/>
+  </object-type>
   
   <enum-type name="QCommandLineOption::Flag"/>
   <enum-type name="QFileDevice::FileTime"/>

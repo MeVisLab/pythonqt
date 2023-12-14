@@ -7,6 +7,8 @@
 <rejection class="QAudioBuffer::StereoFrame"/>
 <rejection class="QVideoFilterRunnable"/>
 <rejection class="QAbstractVideoFilter"/>
+<rejection class="QAudioFrame"/>   <!-- template class -->
+<rejection class="QWaveDecoder"/>   <!-- not documented, probably should use QAudioDecoder instead -->
 
 <enum-type name="QAudioFormat::Endian"/>
 <enum-type name="QAudioFormat::SampleType"/>
@@ -126,11 +128,14 @@
 <enum-type name="QVideoFrame::HandleType"/>
 <enum-type name="QVideoFrame::MapMode"/>
 <enum-type name="QVideoFrame::RotationAngle"/>
+<object-type name="QVideoFrame::PaintOptions"/>
+<enum-type name="QVideoFrame::PaintOptions::PaintFlag" flags="QVideoFrame::PaintOptions::PaintFlags"/>
 </group>
 <object-type name="QVideoProbe"/>
 <object-type name="QVideoSurfaceFormat"/>
 <object-type name="QCameraViewfinder"/>
 <object-type name="QGraphicsVideoItem"/>
+<rejection class="QGraphicsVideoItem" enum-name="enum_1"/>
 <object-type name="QVideoWidget"/>
 <object-type name="QAbstractAudioDeviceInfo"/>
 <object-type name="QAbstractAudioInput"/>

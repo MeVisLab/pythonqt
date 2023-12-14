@@ -5,9 +5,13 @@
     </object-type>
     <object-type name="QWebEnginePage">
     </object-type>
+
+  <object-type name="QWebChannel"/>
+  <object-type name="QWebChannelAbstractTransport"/>
   
   <object-type name="QWebEngineCertificateError"/>
   <object-type name="QWebEngineCookieStore"/>
+  <value-type name="QWebEngineCookieStore::FilterRequest" since-version="5.11"/>
   <object-type name="QWebEngineDownloadItem"/>
   <object-type name="QWebEngineFullScreenRequest"/>
   <object-type name="QWebEngineHistory"/>
@@ -22,8 +26,14 @@
   <object-type name="QWebEngineUrlRequestInterceptor"/>
   <object-type name="QWebEngineUrlRequestJob"/>
   <object-type name="QWebEngineUrlSchemeHandler"/>
+  <object-type name="QWebEngineUrlScheme" since-version="5.12"/>
+  <enum-type name="QWebEngineUrlScheme::Flag" flags="QWebEngineUrlScheme::Flags" since-version="5.12"/>
+  <enum-type name="QWebEngineUrlScheme::SpecialPort" since-version="5.12"/>
+  <enum-type name="QWebEngineUrlScheme::Syntax" since-version="5.12"/>
   <object-type name="QWebEngineNotification" since-version="5.13"/>
+  <object-type name="QWebEngineClientCertificateSelection" since-version="5.12"/>
   <object-type name="QWebEngineClientCertificateStore" since-version="5.13"/>
+  <object-type name="QWebEngineFindTextResult" since-version="5.14"/>
   <object-type name="QWebEngineLoadingInfo" since-version="6.2"/>
   <enum-type name="QWebEngineLoadingInfo::ErrorDomain" since-version="6.2"/>
   <enum-type name="QWebEngineLoadingInfo::LoadStatus" since-version="6.2"/>
@@ -31,12 +41,20 @@
   <enum-type name="QWebEngineContextMenuRequest::EditFlag" flags="QWebEngineContextMenuRequest::EditFlags" since-version="6.2"/>
   <enum-type name="QWebEngineContextMenuRequest::MediaFlag" flags="QWebEngineContextMenuRequest::MediaFlags" since-version="6.2"/>
   <enum-type name="QWebEngineContextMenuRequest::MediaType" since-version="6.2"/>
+  <object-type name="QWebEngineDownloadRequest" since-version="6"/>
+  <enum-type name="QWebEngineDownloadRequest::DownloadInterruptReason" since-version="6"/>
+  <enum-type name="QWebEngineDownloadRequest::DownloadState" since-version="6"/>
+  <enum-type name="QWebEngineDownloadRequest::SavePageFormat" since-version="6"/>
   <object-type name="QWebEngineNavigationRequest" since-version="6.2"/>
   <object-type name="QWebEngineNewWindowRequest" since-version="6.2"/>
   <enum-type name="QWebEngineNewWindowRequest::DestinationType" since-version="6.2"/>
   <object-type name="QWebEngineFileSystemAccessRequest" since-version="6.4"/>
   <enum-type name="QWebEngineFileSystemAccessRequest::AccessFlag" flags="QWebEngineFileSystemAccessRequest::AccessFlags" since-version="6.4"/>
   <enum-type name="QWebEngineFileSystemAccessRequest::HandleType" since-version="6.4"/>
+  <object-type name="QWebEngineHttpRequest" since-version="5.9"/>
+  <enum-type name="QWebEngineHttpRequest::Method" since-version="5.9"/>
+  <object-type name="QWebEngineQuotaRequest" since-version="5.11"/>
+  <object-type name="QWebEngineRegisterProtocolHandlerRequest" since-version="5.11"/>
 
   <enum-type name="QWebEngineCertificateError::Error"/>
   <enum-type name="QWebEngineDownloadItem::DownloadState"/>

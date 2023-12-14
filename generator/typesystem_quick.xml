@@ -29,9 +29,16 @@
 <object-type name="QQuickTextDocument"></object-type>
 <object-type name="QQuickTransform"></object-type>
 <object-type name="QQuickView"></object-type>
-<object-type name="QQuickWindow"></object-type>
+<object-type name="QQuickWindow"/>
+<object-type name="QQuickWindow::GraphicsStateInfo" since-version="5.14"/>
 
-<object-type name="QQuickWidget"></object-type>
+<object-type name="QQuickWidget"/>
+
+<object-type name="QQuickGraphicsConfiguration" since-version="6"/>
+<rejection class="QQuickGraphicsDevice" since-version="6"/>
+<object-type name="QQuickRenderTarget" since-version="6"/>
+<!-- Linker error on GitHub CI (Windows, Qt 6.5): -->
+<rejection class="QQuickRenderTarget" function-name="fromVulkanImage" since-version="6"/>
 
 <object-type name="QSGAbstractRenderer"></object-type>
 <object-type name="QSGBasicGeometryNode"></object-type>
