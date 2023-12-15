@@ -337,6 +337,8 @@ void SetupGenerator::generate()
         }
         if (cls->isQObject()) {
           s << "PythonQt::priv()->registerClass(&" << cls->qualifiedCppName() << "::staticMetaObject, \"" << qtPackageName <<"\", PythonQtCreateObject<PythonQtWrapper_" << cls->name() << ">" << shellCreator << ", module, " << operatorCodes <<");" << endl;
+        } else if (cls->isGlobalNamespace()) {
+          s << "PythonQt::priv()->registerGlobalNamespace(\"" << cls->qualifiedCppName() << "\", \"" << qtPackageName << "\", PythonQtCreateObject<PythonQtWrapper_" << cls->name() << ">, PythonQtWrapper_" << cls->name() << "::staticMetaObject, module); " << endl;
         } else {
           QString baseName = cls->baseClass()?cls->baseClass()->qualifiedCppName():"";
           s << "PythonQt::priv()->registerCPPClass(\""<< cls->qualifiedCppName() << "\", \"" << baseName << "\", \"" << qtPackageName <<"\", PythonQtCreateObject<PythonQtWrapper_" << cls->name() << ">" << shellCreator << ", module, " << operatorCodes <<");" << endl;

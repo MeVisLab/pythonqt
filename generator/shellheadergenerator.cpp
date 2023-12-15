@@ -312,7 +312,8 @@ void ShellHeaderGenerator::write(QTextStream& s, const AbstractMetaClass* meta_c
       bool isEnumClass = enum1->typeEntry()->isEnumClass();
       s << "enum " << (isEnumClass ? "class " : "") << enum1->name() << "{" << endl;
       bool first = true;
-      QString scope = enum1->wasProtected() ? promoterClassName(meta_class) : meta_class->qualifiedCppName();
+      QString scope = meta_class->isGlobalNamespace() ? QString() :
+          (enum1->wasProtected() ? promoterClassName(meta_class) : meta_class->qualifiedCppName());
       if (isEnumClass) {
         scope += "::" + enum1->name();
       }

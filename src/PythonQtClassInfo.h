@@ -239,7 +239,10 @@ public:
 
   //! Sometimes enum values use a reserved name in Python. In this case
   //! replace it with something that is not reserved
-  QByteArray escapeReservedNames(const QByteArray& name);
+  static QByteArray escapeReservedNames(const QByteArray& name);
+
+  //! Add a wrapper that contains global enums
+  static void addGlobalNamespaceWrapper(PythonQtClassInfo* namespaceWrapper);
 
 private:
   void updateRefCountingCBs();
@@ -304,7 +307,9 @@ private:
   bool _searchPolymorphicHandlerOnParent;
   bool _searchRefCountCB;
 
-  static QSet<QByteArray> _reservedNames;
+  static QList<PythonQtClassInfo*>     _globalNamespaceWrappers;
+
+  static QSet<QByteArray>              _reservedNames;
 };
 
 //---------------------------------------------------------------

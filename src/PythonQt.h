@@ -742,6 +742,9 @@ public:
    */
   void registerCPPClass(const char* typeName, const char* parentTypeName = nullptr, const char* package = nullptr, PythonQtQObjectCreatorFunctionCB* wrapperCreator = nullptr, PythonQtShellSetInstanceWrapperCB* shell = nullptr, PyObject* module = nullptr, int typeSlots = 0);
 
+  //! Same as above, but all enums of the created wrapper will also be added to the given package and to the "Qt" package
+  void registerGlobalNamespace(const char* typeName, const char* package, PythonQtQObjectCreatorFunctionCB* wrapperCreator, const QMetaObject& metaObject, PyObject* module = nullptr);
+
   //! as an alternative to registerClass, you can tell PythonQt the names of QObject derived classes
   //! and it will register the classes when it first sees a pointer to such a derived class
   void registerQObjectClassNames(const QStringList& names);

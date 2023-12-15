@@ -1835,8 +1835,9 @@ FlagsTypeEntry *TypeDatabase::findFlagsType(const QString &name) const
     return fte ? fte : (FlagsTypeEntry *) m_flags_entries.value(name);
 }
 
-QString TypeDatabase::globalNamespaceClassName(const TypeEntry * /*entry*/) {
-    return QLatin1String("Global");
+QString TypeDatabase::globalNamespaceClassName(const TypeEntry * entry)
+{
+    return "Qt" + entry->javaPackage().split('.').back();
 }
 
 

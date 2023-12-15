@@ -2060,6 +2060,73 @@ void PythonQtPrivate::registerCPPClass(const char* typeName, const char* parentT
   }
 }
 
+namespace {
+
+  void addObjectToPackage(PyObject* obj, const char* name, const char* packageName, PyObject* package)
+  {
+    if (PyModule_AddObject(package, name, obj) < 0) {
+      Py_DECREF(obj);
+      std::cerr << "failed to add " << name << " to " << packageName << "\n";
+    }
+  }
+
+};
+
+void PythonQtPrivate::registerGlobalNamespace(const char* typeName, const char* packageName, PythonQtQObjectCreatorFunctionCB* wrapperCreator, const QMetaObject& metaObject, PyObject* module)
+{
+  registerCPPClass(typeName, "", packageName, wrapperCreator, nullptr, module, 0);
+
+  PyObject* package = module ? module : PythonQt::priv()->packageByName(packageName);
+  PythonQtClassInfo* classInfo = PythonQt::priv()->getClassInfo(typeName);
+  PyObject* globalNamespace = classInfo->pythonQtClassWrapper();
+
+  // Collect the names of global methods
+  QSet<QByteArray> methodNames;
+  for (int i = metaObject.methodOffset(); i < metaObject.methodCount(); i++) {
+    methodNames.insert(metaObject.method(i).name());
+  }
+  QByteArray staticPrefix = "static_" + QByteArray(typeName) + "_"; // every static method starts with this string
+  for (auto name: methodNames) {
+    if (name.startsWith(staticPrefix)) {  // non-static methods wouldn't work (and should not exists)
+      name = name.mid(staticPrefix.length());
+      PyObject* obj = PyObject_GetAttrString(globalNamespace, name.constData());
+      if (obj) {
+        addObjectToPackage(obj, name, packageName, package);
+      }
+      else {
+        std::cerr << "method not found " << name.constData() << " in " << typeName << std::endl;
+      }
+    }
+  }
+
+  // Global enums
+  for (int i = metaObject.enumeratorOffset(); i < metaObject.enumeratorCount(); i++) {
+    QMetaEnum metaEnum = metaObject.enumerator(i);
+    PyObject* obj = PyObject_GetAttrString(globalNamespace, metaEnum.name());
+    if (obj) {
+      addObjectToPackage(obj, metaEnum.name(), packageName, package);
+    }
+    else {
+      std::cerr << "enum type not found " << metaEnum.name() << " in " << typeName << std::endl;
+    }
+#if QT_VERSION > 0x050800
+    bool isScoped = metaEnum.isScoped();
+#else
+    bool isScoped = false;
+#endif
+    if (!isScoped) {
+      for (int j = 0; j < metaEnum.keyCount(); j++) {
+        QByteArray key = PythonQtClassInfo::escapeReservedNames(metaEnum.key(j));
+        int value = metaEnum.value(j);
+        PyObject* obj = PyInt_FromLong(value);
+        addObjectToPackage(obj, key, packageName, package);
+      }
+    }
+  }
+
+  PythonQtClassInfo::addGlobalNamespaceWrapper(classInfo);
+}
+
 PyObject* PythonQtPrivate::packageByName(const char* name)
 {
   if (name==nullptr || name[0]==0) {
