@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<typesystem package="com.trolltech.qt.network">
+<typesystem package="com.trolltech.qt.Network">
   <namespace-type name="QSsl">
     <include file-name="qssl.h" location="global"/>
   </namespace-type>

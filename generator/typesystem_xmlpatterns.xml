@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
-<typesystem package="com.trolltech.qt.xmlpatterns"><suppress-warning text="WARNING(MetaJavaBuilder) :: unhandled enum value: ForwardAxis in QXmlNodeModelIndex::Axis"/><suppress-warning text="WARNING(MetaJavaBuilder) :: unhandled enum value: ReverseAxis in QXmlNodeModelIndex::Axis"/>
-
+<typesystem package="com.trolltech.qt.XmlPatterns">
 
   <namespace-type name="QPatternist"/>
   <namespace-type name="QPatternistSDK"/>
@@ -112,6 +111,8 @@
   </object-type>
 
 
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: unhandled enum value: ForwardAxis in QXmlNodeModelIndex::Axis"/>
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: unhandled enum value: ReverseAxis in QXmlNodeModelIndex::Axis"/>
 
   <suppress-warning text="WARNING(MetaJavaBuilder) :: horribly broken type ''"/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: template baseclass 'QExplicitlySharedDataPointer&lt;QXmlSerializer&gt;' of 'QXmlSerializerPointer' is not known"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<typesystem package="com.trolltech.qt.svg">
+<typesystem package="com.trolltech.qt.Svg">
   
   <namespace-type name="QSvg"/>
 

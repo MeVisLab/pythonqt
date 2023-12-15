@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<typesystem package="com.trolltech.qt.multimedia">
+<typesystem package="com.trolltech.qt.Multimedia">
 
 <rejection class="QAbstractVideoBuffer" function-name="mapPlanes"/>
 <rejection class="QAbstractPlanarVideoBuffer"/>

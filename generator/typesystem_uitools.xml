@@ -1,4 +1,4 @@
-<typesystem package="com.trolltech.qt.uitools">
+<typesystem package="com.trolltech.qt.UiTools">
 
   <object-type name="QUiLoader"/>
   

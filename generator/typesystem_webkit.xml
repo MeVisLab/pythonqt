@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<typesystem package="com.trolltech.qt.webkit">
+<typesystem package="com.trolltech.qt.WebKit">
 <rejection class="WebCore"/>
 <suppress-warning text="WARNING(MetaJavaBuilder) :: skipping field 'QWebPluginFactory_Plugin::mimeTypes' with unmatched type 'QList&lt;MimeType&gt;'"/>
     <namespace-type name="WebCore"/>
