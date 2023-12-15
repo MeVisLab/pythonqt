@@ -49,6 +49,9 @@
 
 QHash<QByteArray, int> PythonQtMethodInfo::_parameterTypeDict;
 
+// List of registered global namespace wrappers that might contain a top-level enum definition
+QList<PythonQtClassInfo*> PythonQtClassInfo::_globalNamespaceWrappers;
+
 // List of words that are reserved in Python, but not in C++, so they need escaping
 QSet<QByteArray> PythonQtClassInfo::_reservedNames{
   "None", "True", "False"
@@ -851,11 +854,20 @@ PyObject* PythonQtClassInfo::findEnumWrapper(const QByteArray& name, PythonQtCla
       return nullptr;
     }
   }
+  PyObject* enumWrapper = nullptr;
   if (localScope) {
-    return localScope->findEnumWrapper(name);
-  } else {
-    return nullptr;
+    enumWrapper = localScope->findEnumWrapper(name);
+  } 
+  if (!enumWrapper) {
+    // it might be a top-level enum - search in all currently registered global namespace wrappers
+    for (PythonQtClassInfo* globalWrapper : _globalNamespaceWrappers) {
+      enumWrapper = globalWrapper->findEnumWrapper(name);
+      if (enumWrapper) {
+        break;
+      }
+    }
   }
+  return enumWrapper;
 }
 
 // required for the code below (for versions before Qt 6)
@@ -1031,6 +1043,11 @@ QByteArray PythonQtClassInfo::escapeReservedNames(const QByteArray& name)
   else {
     return name;
   }
+}
+
+void PythonQtClassInfo::addGlobalNamespaceWrapper(PythonQtClassInfo* namespaceWrapper)
+{
+  _globalNamespaceWrappers.insert(0, namespaceWrapper);
 }
 
 void PythonQtClassInfo::updateRefCountingCBs()

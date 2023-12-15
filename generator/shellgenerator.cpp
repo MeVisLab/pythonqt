@@ -50,8 +50,6 @@
 bool ShellGenerator::shouldGenerate(const AbstractMetaClass *meta_class) const
 {
     uint cg = meta_class->typeEntry()->codeGeneration();
-    // ignore the "Global" namespace, which contains the QtMsgType enum
-    if (meta_class->name().startsWith("Global")) return false;
     return ((cg & TypeEntry::GenerateCode) != 0);
 }
 

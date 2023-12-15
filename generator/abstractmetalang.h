@@ -676,6 +676,7 @@ public:
           m_has_clone_operator(false),
           m_is_type_alias(false),
           m_has_actual_declaration(false),
+          m_is_global_namespace(false),
           m_qDebug_stream_function(0)
     {
     }
@@ -801,6 +802,9 @@ public:
     void setHasActualDeclaration(bool on) { m_has_actual_declaration = on; }
     bool hasActualDeclaration() const { return m_has_actual_declaration; }
 
+    void setIsGlobalNamespace(bool on) { m_is_global_namespace = on; }
+    bool isGlobalNamespace() const { return m_is_global_namespace; }
+
     QString getDefaultNonZeroFunction() const;
 
     void addPropertySpec(QPropertySpec *spec) { m_property_specs << spec; }
@@ -862,7 +866,8 @@ private:
     uint m_has_clone_operator :1;
     uint m_is_type_alias : 1;
     uint m_has_actual_declaration : 1;
-    uint m_reserved : 17;
+    uint m_is_global_namespace : 1;
+    uint m_reserved : 16;
     QString m_destructor_exception;
 
     const AbstractMetaClass *m_enclosing_class{};

@@ -149,6 +149,8 @@ protected:
 private:
     void sortLists();
 
+    AbstractMetaClass* getGlobalNamespace(const TypeEntry* typeEntry);
+
     QString m_file_name;
 
     AbstractMetaClassList m_meta_classes;

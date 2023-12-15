@@ -391,6 +391,28 @@ void AbstractMetaBuilder::sortLists()
    }
 }
 
+AbstractMetaClass* AbstractMetaBuilder::getGlobalNamespace(const TypeEntry* typeEntry)
+{
+  QString package = typeEntry->javaPackage();
+  QString globalName = TypeDatabase::globalNamespaceClassName(typeEntry);
+
+  AbstractMetaClass* global = m_meta_classes.findClass(package + "." + globalName);
+  if (!global) {
+    ComplexTypeEntry* gte = new NamespaceTypeEntry(globalName);
+    gte->setTargetLangPackage(typeEntry->javaPackage());
+    gte->setCodeGeneration(typeEntry->codeGeneration());
+    global = createMetaClass();
+    global->setIsGlobalNamespace(true);
+    global->setTypeEntry(gte);
+    *global += AbstractMetaAttributes::Final;
+    *global += AbstractMetaAttributes::Public;
+    *global += AbstractMetaAttributes::Fake;
+
+    m_meta_classes << global;
+  }
+  return global;
+}
+
 bool AbstractMetaBuilder::build()
 {
     Q_ASSERT(!m_file_name.isEmpty());
@@ -460,35 +482,20 @@ bool AbstractMetaBuilder::build()
         AbstractMetaEnum *meta_enum = traverseEnum(item, 0, QSet<QString>());
 
         if (meta_enum) {
-            QString package = meta_enum->typeEntry()->javaPackage();
-            QString globalName = TypeDatabase::globalNamespaceClassName(meta_enum->typeEntry());
-
-            AbstractMetaClass *global = m_meta_classes.findClass(package + "." + globalName);
-            if (!global) {
-                ComplexTypeEntry *gte = new ObjectTypeEntry(globalName);
-                gte->setTargetLangPackage(meta_enum->typeEntry()->javaPackage());
-                gte->setCodeGeneration(meta_enum->typeEntry()->codeGeneration());
-                global = createMetaClass();
-                global->setTypeEntry(gte);
-                *global += AbstractMetaAttributes::Final;
-                *global += AbstractMetaAttributes::Public;
-                *global += AbstractMetaAttributes::Fake;
-
-                m_meta_classes << global;
-            }
+            AbstractMetaClass* global = getGlobalNamespace(meta_enum->typeEntry());
 
             global->addEnum(meta_enum);
-            meta_enum->setEnclosingClass(global);
-            meta_enum->typeEntry()->setQualifier(globalName);
 
             // Global enums should be public despite not having public
             // identifiers so we'll fix the original attributes here.
             meta_enum->setOriginalAttributes(meta_enum->attributes());
+
+            // global enums have their own include
+            if (meta_enum->typeEntry()->include().isValid()) {
+              global->typeEntry()->addExtraInclude(meta_enum->typeEntry()->include());
+            }
         }
-
-
     }
-
 
     // Go through all typedefs to see if we have defined any
     // specific typedefs to be used as classes.
