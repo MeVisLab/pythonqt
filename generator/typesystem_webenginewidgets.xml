@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<typesystem package="com.trolltech.qt.webenginewidgets">
+<typesystem package="com.trolltech.qt.WebEngineWidgets">
 
     <object-type name="QWebEngineView">
     </object-type>

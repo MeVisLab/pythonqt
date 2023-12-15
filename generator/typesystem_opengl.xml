@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
-<typesystem package="com.trolltech.qt.opengl"><rejection class="QGL"/>
-
- 
+<typesystem package="com.trolltech.qt.OpenGL">
+  <rejection class="QGL"/>
 
   <rejection class="QGLColormap::QGLColormapData"/>
   <rejection class="QGLWidget" function-name="setMouseTracking"/>

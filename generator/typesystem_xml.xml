@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<typesystem package="com.trolltech.qt.xml"><rejection class="QXmlNamespaceSupport"/>
+<typesystem package="com.trolltech.qt.Xml">
+    <rejection class="QXmlNamespaceSupport"/>
     <rejection class="QXmlAttributes::Attribute"/>
     <rejection class="QDomNode" field-name="impl"/>
 

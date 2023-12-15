@@ -53,7 +53,7 @@ class ShellGenerator : public Generator
 public:
     virtual QString subDirectoryForClass(const AbstractMetaClass *cls) const
     {
-        return "generated_cpp/" + cls->package().replace(".", "_") + "/";
+        return "generated_cpp/" + toFileNameBase(cls->package()) + "/";
     }
 
     void writeTypeInfo(QTextStream &s, const AbstractMetaType *type, Option option = NoOption, TypeSystem::Ownership ownership = TypeSystem::InvalidOwnership);
@@ -95,7 +95,9 @@ public:
     static bool isBuiltIn(const QString& name);
 
     static bool isSpecialStreamingOperator(const AbstractMetaFunction *fun);
-    
+
+    static QString toFileNameBase(QString packageName) { return packageName.replace('.', '_').toLower(); }
+
     static void writeInclude(QTextStream &stream, const Include &inc);
   
     // this scope is used in writeFunctionArguments

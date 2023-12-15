@@ -52,10 +52,6 @@ void SetupGenerator::addClass(const QString& package, const AbstractMetaClass *c
   packHash[package].append(cls);
 }
 
-void maybeDeclareMetaType(QTextStream &stream, const QString &typeName,
-                          QSet<QString> &registeredTypeNames);
-bool hasDefaultConstructor(const AbstractMetaClass *meta_class);
-
 static QStringList getOperatorCodes(const AbstractMetaClass* cls) {
   QSet<QString> operatorCodes;
   AbstractMetaFunctionList returned;
@@ -247,34 +243,11 @@ void SetupGenerator::generate()
       continue;
     std::stable_sort(list.begin(), list.end(), AbstractMetaClass::less_than);
 
-    QString packKey = pack.key();
-    QString packName = pack.key();
-    QStringList components = packName.split("_");
-    if ((components.size() > 2) && (components.at(0) == "com")
-      && (components.at(1) == "trolltech")) {
-        // kill com.trolltech in key
-        components.removeAt(0);
-        components.removeAt(0);
-    }
-
-    QString shortPackName;
-    foreach (QString comp, components) {
-      comp[0] = comp[0].toUpper();
-      shortPackName += comp;
-    }
-    // add missing camel case (workaround..)
-    if (shortPackName == "QtWebkit") {
-      shortPackName = "QtWebKit";
-    } else if (shortPackName == "QtXmlpatterns") {
-      shortPackName = "QtXmlPatterns";
-    } else if (shortPackName == "QtWebenginewidgets") {
-      shortPackName = "QtWebEngineWidgets";
-    } else if (shortPackName == "QtOpengl") {
-      shortPackName = "QtOpenGL";
-    } else if (shortPackName == "QtUitools") {
-      shortPackName = "QtUiTools";
-    }
-
+    QString packKey = ShellGenerator::toFileNameBase(pack.key());
+    QString packName = packKey;
+    QString qtPackageName = "Qt" + pack.key().split('.').back().split('_').front();
+    bool isBuiltin = packKey.endsWith("_builtin");
+    QString initName = qtPackageName + (isBuiltin ? "Builtin" : "");
 
     {
       QString fileName(packName + "/" + packKey + "_init.cpp");
@@ -291,7 +264,7 @@ void SetupGenerator::generate()
       s << endl;
 
       QStringList polymorphicHandlers;
-      if (!packName.endsWith("_builtin")) {
+      if (!isBuiltin) {
         polymorphicHandlers = writePolymorphicHandler(s, list.at(0)->package(), classes_with_polymorphic_id, list);
         s << endl;
       }
@@ -328,11 +301,7 @@ void SetupGenerator::generate()
       s << endl;
 
       // declare individual class creation functions
-      s << "void PythonQt_init_" << shortPackName << "(PyObject* module) {" << endl;
-
-      if (shortPackName.endsWith("Builtin")) {
-        shortPackName = shortPackName.mid(0, shortPackName.length()-strlen("builtin"));
-      }
+      s << "void PythonQt_init_" << initName << "(PyObject* module) {" << endl;
 
       foreach (const AbstractMetaClass *cls, list) {
         if (cls->qualifiedCppName().contains("Ssl")) {
@@ -367,10 +336,10 @@ void SetupGenerator::generate()
           operatorCodes = "0";
         }
         if (cls->isQObject()) {
-          s << "PythonQt::priv()->registerClass(&" << cls->qualifiedCppName() << "::staticMetaObject, \"" << shortPackName <<"\", PythonQtCreateObject<PythonQtWrapper_" << cls->name() << ">" << shellCreator << ", module, " << operatorCodes <<");" << endl;
+          s << "PythonQt::priv()->registerClass(&" << cls->qualifiedCppName() << "::staticMetaObject, \"" << qtPackageName <<"\", PythonQtCreateObject<PythonQtWrapper_" << cls->name() << ">" << shellCreator << ", module, " << operatorCodes <<");" << endl;
         } else {
           QString baseName = cls->baseClass()?cls->baseClass()->qualifiedCppName():"";
-          s << "PythonQt::priv()->registerCPPClass(\""<< cls->qualifiedCppName() << "\", \"" << baseName << "\", \"" << shortPackName <<"\", PythonQtCreateObject<PythonQtWrapper_" << cls->name() << ">" << shellCreator << ", module, " << operatorCodes <<");" << endl;
+          s << "PythonQt::priv()->registerCPPClass(\""<< cls->qualifiedCppName() << "\", \"" << baseName << "\", \"" << qtPackageName <<"\", PythonQtCreateObject<PythonQtWrapper_" << cls->name() << ">" << shellCreator << ", module, " << operatorCodes <<");" << endl;
         }
         for (AbstractMetaClass* interface :  cls->interfaces()) {
           // the interface might be our own class... (e.g. QPaintDevice)

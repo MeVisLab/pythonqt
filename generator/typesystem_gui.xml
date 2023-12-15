@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<typesystem package="com.trolltech.qt.gui">
+<typesystem package="com.trolltech.qt.Gui">
   <rejection class="QColormap"/>
   <rejection class="QIconEngineV2"/>
   <rejection class="QTextBlock::iterator"/>

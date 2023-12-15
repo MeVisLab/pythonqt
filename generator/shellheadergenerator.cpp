@@ -102,9 +102,10 @@ void ShellHeaderGenerator::write(QTextStream& s, const AbstractMetaClass* meta_c
 {
   setCurrentScope(meta_class);
   QString builtIn = ShellGenerator::isBuiltIn(meta_class->name()) ? "_builtin" : "";
-  QString pro_file_name = meta_class->package().replace(".", "_") + builtIn + "/" + meta_class->package().replace(".", "_") + builtIn + ".pri";
+  QString fileBaseName = toFileNameBase(meta_class->package() + builtIn);
+  QString pro_file_name = fileBaseName + "/" + fileBaseName + ".pri";
   priGenerator->addHeader(pro_file_name, fileNameForClass(meta_class));
-  setupGenerator->addClass(meta_class->package().replace(".", "_") + builtIn, meta_class);
+  setupGenerator->addClass(meta_class->package() + builtIn, meta_class);
 
   QString include_block = "PYTHONQTWRAPPER_" + meta_class->name().toUpper() + "_H";
 

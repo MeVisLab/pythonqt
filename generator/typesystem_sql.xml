@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<typesystem package="com.trolltech.qt.sql">
+<typesystem package="com.trolltech.qt.Sql">
   <rejection class="QSqlDriverCreator"/>
   <rejection class="QSqlDriverPlugin"/>
   <rejection class="QSqlDriverFactoryInterface"/>

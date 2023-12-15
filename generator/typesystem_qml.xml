@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<typesystem package="com.trolltech.qt.qml">
+<typesystem package="com.trolltech.qt.Qml">
 
 <rejection class="QQmlEngine" function-name="singletonInstance&lt;QJSValue&gt;"/>
 
