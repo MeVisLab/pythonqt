@@ -129,6 +129,7 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
     PythonQtConv::registerPythonToMetaTypeConverter(objectPtrListId, PythonQtConv::convertToQListOfPythonQtObjectPtr);
 
     PythonQtRegisterToolClassesTemplateConverter(int);
+    PythonQtRegisterToolClassesTemplateConverter(bool);
     PythonQtRegisterToolClassesTemplateConverter(float);
     PythonQtRegisterToolClassesTemplateConverter(double);
     PythonQtRegisterToolClassesTemplateConverter(qint32);
