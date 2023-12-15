@@ -289,7 +289,7 @@ PyObject* PythonQtConvertListOfKnownClassToPythonList(const void* /*QList<T>* */
   ListType* list = (ListType*)inList;
   static PythonQtClassInfo* innerType = PythonQt::priv()->getClassInfo(PythonQtMethodInfo::getInnerListTypeName(QByteArray(QMetaType::typeName(metaTypeId))));
   if (innerType == nullptr) {
-    std::cerr << "PythonQtConvertListOfKnownClassToPythonList: unknown inner type " << innerType->className().constData() << std::endl;
+    std::cerr << "PythonQtConvertListOfKnownClassToPythonList: unknown inner type for " << QMetaType::typeName(metaTypeId) << std::endl;
   }
   PyObject* result = PyTuple_New(list->size());
   int i = 0;
@@ -309,7 +309,7 @@ bool PythonQtConvertPythonListToListOfKnownClass(PyObject* obj, void* /*QList<T>
   ListType* list = (ListType*)outList;
   static PythonQtClassInfo* innerType = PythonQt::priv()->getClassInfo(PythonQtMethodInfo::getInnerListTypeName(QByteArray(QMetaType::typeName(metaTypeId))));
   if (innerType == nullptr) {
-    std::cerr << "PythonQtConvertListOfKnownClassToPythonList: unknown inner type " << innerType->className().constData() << std::endl;
+    std::cerr << "PythonQtConvertListOfKnownClassToPythonList: unknown inner type for " << QMetaType::typeName(metaTypeId) << std::endl;
   }
   bool result = false;
   if (PySequence_Check(obj)) {
