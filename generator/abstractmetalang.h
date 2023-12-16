@@ -189,6 +189,8 @@ public:
     {
     }
 
+    ~AbstractMetaType();
+
     QString package() const { return m_type_entry->javaPackage(); }
     QString name() const { return m_type_entry->targetLangName(); }
     QString fullName() const { return m_type_entry->qualifiedTargetLangName(); }
@@ -311,6 +313,7 @@ class AbstractMetaVariable
 {
 public:
     AbstractMetaVariable() = default;
+    virtual ~AbstractMetaVariable();
 
     AbstractMetaType *type() const { return m_type; }
     void setType(AbstractMetaType *type) { m_type = type; }
@@ -599,6 +602,7 @@ class AbstractMetaEnum : public AbstractMetaAttributes
 {
 public:
     AbstractMetaEnum() : m_has_qenums_declaration(false) {}
+    ~AbstractMetaEnum() { qDeleteAll(m_enum_values); }
 
     AbstractMetaEnumValueList values() const { return m_enum_values; }
     void addEnumValue(AbstractMetaEnumValue *enumValue) { m_enum_values << enumValue; }

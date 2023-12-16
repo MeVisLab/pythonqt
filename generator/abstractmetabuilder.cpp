@@ -153,6 +153,7 @@ AbstractMetaBuilder::AbstractMetaBuilder()
 AbstractMetaBuilder::~AbstractMetaBuilder()
 {
     qDeleteAll(m_meta_classes);
+    qDeleteAll(m_enums);
 }
 
 void AbstractMetaBuilder::checkFunctionModifications()
@@ -1163,6 +1164,9 @@ void AbstractMetaBuilder::traverseFunctions(ScopeModelItem scope_item, AbstractM
                   meta_class->setHasPublicDestructor(false);
                 }
                 meta_class->setHasVirtualDestructor(meta_function->isVirtual());
+                delete meta_function;
+            } else {
+                delete meta_function;
             }
         }
     }
@@ -1503,6 +1507,7 @@ AbstractMetaFunction *AbstractMetaBuilder::traverseFunction(FunctionModelItem fu
                 UnmatchedArgumentType;
             }
             meta_function->setInvalid(true);
+            qDeleteAll(meta_arguments);
             return meta_function;
         }
         AbstractMetaArgument *meta_argument = createMetaArgument();
