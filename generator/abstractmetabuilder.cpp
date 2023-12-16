@@ -420,14 +420,14 @@ bool AbstractMetaBuilder::build()
     Binder binder(&model, p.location());
     m_dom = binder.run(ast);
 
-    pushScope(model_dynamic_cast<ScopeModelItem>(m_dom));
+    pushScope(m_dom.dynamicCast<_ScopeModelItem>());
 
     QHash<QString, ClassModelItem> typeMap = m_dom->classMap();
 
 
     // fix up QObject's in the type system..
     TypeDatabase *types = TypeDatabase::instance();
-    fixQObjectForScope(types, model_dynamic_cast<NamespaceModelItem>(m_dom));
+    fixQObjectForScope(types, m_dom.dynamicCast<_NamespaceModelItem>());
 
 
     // Start the generation...
@@ -700,8 +700,8 @@ AbstractMetaClass *AbstractMetaBuilder::traverseNamespace(NamespaceModelItem nam
                                .arg(meta_class->package())
                                .arg(namespace_item->name()));
 
-    traverseEnums(model_dynamic_cast<ScopeModelItem>(namespace_item), meta_class, namespace_item->qEnumDeclarations());
-    traverseFunctions(model_dynamic_cast<ScopeModelItem>(namespace_item), meta_class);
+    traverseEnums(namespace_item.dynamicCast<_ScopeModelItem>(), meta_class, namespace_item->qEnumDeclarations());
+    traverseFunctions(namespace_item.dynamicCast<_ScopeModelItem>(), meta_class);
 //     traverseClasses(model_dynamic_cast<ScopeModelItem>(namespace_item));
 
     // collect all include files (since namespace items might come from different files)
@@ -714,7 +714,7 @@ AbstractMetaClass *AbstractMetaBuilder::traverseNamespace(NamespaceModelItem nam
     }
     // (should we do this for typeAliases and inner namespaces too?)
 
-    pushScope(model_dynamic_cast<ScopeModelItem>(namespace_item));
+    pushScope(namespace_item.dynamicCast<_ScopeModelItem>());
     m_namespace_prefix = currentScope()->qualifiedName().join("::");
 
 
@@ -943,9 +943,9 @@ AbstractMetaClass *AbstractMetaBuilder::traverseClass(ClassModelItem class_item)
     meta_class->setTemplateArguments(template_args);
     meta_class->setHasActualDeclaration(class_item->hasActualDeclaration());
 
-    traverseFunctions(model_dynamic_cast<ScopeModelItem>(class_item), meta_class);
-    traverseEnums(model_dynamic_cast<ScopeModelItem>(class_item), meta_class, class_item->qEnumDeclarations());
-    traverseFields(model_dynamic_cast<ScopeModelItem>(class_item), meta_class);
+    traverseFunctions(class_item.dynamicCast<_ScopeModelItem>(), meta_class);
+    traverseEnums(class_item.dynamicCast<_ScopeModelItem>(), meta_class, class_item->qEnumDeclarations());
+    traverseFields(class_item.dynamicCast<_ScopeModelItem>(), meta_class);
 
     parseQ_Property(meta_class, class_item->propertyDeclarations());
 
@@ -1016,7 +1016,7 @@ AbstractMetaField *AbstractMetaBuilder::traverseField(VariableModelItem field, c
         ReportHandler::warning(QString("skipping field '%1::%2' with unmatched type '%3'")
                                .arg(m_current_class->name())
                                .arg(field_name)
-                               .arg(TypeInfo::resolveType(field_type, currentScope()->toItem()).qualifiedName().join("::")));
+                               .arg(TypeInfo::resolveType(field_type, currentScope()).qualifiedName().join("::")));
         delete meta_field;
         return 0;
     }
@@ -1589,7 +1589,7 @@ AbstractMetaType *AbstractMetaBuilder::translateType(const TypeInfo &_typei, boo
         // seemed non-trivial
         int i = m_scopes.size() - 1;
         while (i >= 0) {
-            typei = TypeInfo::resolveType(_typei, m_scopes.at(i--)->toItem());
+            typei = TypeInfo::resolveType(_typei, m_scopes.at(i--));
             if (typei.qualifiedName().join("::") != _typei.qualifiedName().join("::"))
                 break;
         }
@@ -1902,7 +1902,7 @@ bool AbstractMetaBuilder::isQObject(const QString &qualified_name)
 
     if (!class_item) {
       QStringList names = qualified_name.split(QLatin1String("::"));
-      NamespaceModelItem ns = model_dynamic_cast<NamespaceModelItem>(m_dom);
+      NamespaceModelItem ns = m_dom.dynamicCast<_NamespaceModelItem>();
       for (int i=0; i<names.size() - 1 && ns; ++i)
           ns = ns->namespaceMap().value(names.at(i));
       if (ns && names.size() >= 2)
@@ -1927,7 +1927,7 @@ bool AbstractMetaBuilder::isQObject(const QString &qualified_name)
 
 bool AbstractMetaBuilder::isEnum(const QStringList &qualified_name)
 {
-    CodeModelItem item = m_dom->model()->findItem(qualified_name, m_dom->toItem());
+    CodeModelItem item = m_dom->model()->findItem(qualified_name, m_dom);
     return item && item->kind() == _EnumModelItem::__node_kind;
 }
 

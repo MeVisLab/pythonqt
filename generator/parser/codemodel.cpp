@@ -99,7 +99,7 @@ CodeModelItem CodeModel::findItem(const QStringList &qualifiedName, CodeModelIte
     // ### Extend to look for members etc too.
     const QString &name = qualifiedName.at(i);
 
-    if (NamespaceModelItem ns = model_dynamic_cast<NamespaceModelItem>(scope))
+    if (NamespaceModelItem ns = scope.dynamicCast<_NamespaceModelItem>())
       {
         if (NamespaceModelItem tmp_ns = ns->findNamespace(name)) {
           scope = tmp_ns;
@@ -107,7 +107,7 @@ CodeModelItem CodeModel::findItem(const QStringList &qualifiedName, CodeModelIte
         }
       }
 
-    if (ScopeModelItem ss = model_dynamic_cast<ScopeModelItem>(scope))
+    if (ScopeModelItem ss = scope.dynamicCast<_ScopeModelItem>())
       {
         if (ClassModelItem cs = ss->findClass(name))
           {
@@ -116,12 +116,12 @@ CodeModelItem CodeModel::findItem(const QStringList &qualifiedName, CodeModelIte
         else if (EnumModelItem es = ss->findEnum(name))
           {
             if (i == qualifiedName.size () - 1)
-              return es->toItem();
+              return es;
           }
         else if (TypeAliasModelItem tp = ss->findTypeAlias(name))
           {
             if (i == qualifiedName.size () - 1)
-              return tp->toItem ();
+              return tp;
           }
         else
           {
@@ -169,7 +169,7 @@ TypeInfo TypeInfo::resolveType (TypeInfo const &__type, CodeModelItem __scope)
         otherType.setQualifiedName(__item->qualifiedName());
     }
 
-    if (TypeAliasModelItem __alias = model_dynamic_cast<TypeAliasModelItem> (__item))
+    if (TypeAliasModelItem __alias = __item.dynamicCast<_TypeAliasModelItem>())
         return resolveType (TypeInfo::combine (__alias->type (), otherType), __scope);
 
     return otherType;

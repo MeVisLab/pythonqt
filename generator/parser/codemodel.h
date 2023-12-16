@@ -403,7 +403,7 @@ public:
 
   NamespaceModelItem findNamespace(const QString &name) const;
 
-  inline QHash<QString, NamespaceModelItem> namespaceMap() const { return _M_namespaces; };
+  inline QHash<QString, NamespaceModelItem> namespaceMap() const { return _M_namespaces; }
 
 protected:
   _NamespaceModelItem(CodeModel *model, int kind = __node_kind)
