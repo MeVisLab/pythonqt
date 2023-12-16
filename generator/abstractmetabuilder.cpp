@@ -1751,7 +1751,7 @@ AbstractMetaType *AbstractMetaBuilder::translateType(const TypeInfo &_typei, boo
         if (container_type == ContainerTypeEntry::StringListContainer) {
             TypeInfo info;
             info.setQualifiedName(QStringList() << "QString");
-            AbstractMetaType *targ_type = translateType(info, ok);
+            AbstractMetaType::shared_pointer targ_type(translateType(info, ok));
 
             Q_ASSERT(*ok);
             Q_ASSERT(targ_type);
@@ -1769,7 +1769,7 @@ AbstractMetaType *AbstractMetaBuilder::translateType(const TypeInfo &_typei, boo
                 info.setFunctionPointer(false);
                 info.setQualifiedName(ta.instantiationName().split("::"));
 
-                AbstractMetaType *targ_type = translateType(info, ok);
+                AbstractMetaType::shared_pointer targ_type (translateType(info, ok));
                 if (!(*ok)) {
                     delete meta_type;
                     return 0;
@@ -1967,9 +1967,9 @@ AbstractMetaType *AbstractMetaBuilder::inheritTemplateType(const QList<AbstractM
     }
 
     if (returned->hasInstantiations()) {
-        QList<AbstractMetaType *> instantiations = returned->instantiations();
+        auto instantiations = returned->instantiations();
         for (int i=0; i<instantiations.count(); ++i) {
-            instantiations[i] = inheritTemplateType(template_types, instantiations.at(i), ok);
+            instantiations[i] = AbstractMetaType::shared_pointer(inheritTemplateType(template_types, instantiations[i].data(), ok));
             if (ok != 0 && !(*ok))
                 return 0;
         }

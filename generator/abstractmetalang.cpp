@@ -82,7 +82,7 @@ QString AbstractMetaType::cppSignature() const
     s += typeEntry()->qualifiedCppName();
 
     if (hasInstantiationInCpp()) {
-        QList<AbstractMetaType *> types = instantiations();
+        auto &types = instantiations();
         s += "<";
         for (int i=0; i<types.count(); ++i) {
             if (i > 0)
@@ -1633,9 +1633,9 @@ static void add_extra_include_for_type(AbstractMetaClass *meta_class, const Abst
     }
 
     if (type->hasInstantiations()) {
-        QList<AbstractMetaType *> instantiations = type->instantiations();
-        foreach (AbstractMetaType *instantiation, instantiations)
-            add_extra_include_for_type(meta_class, instantiation);
+        auto &instantiations = type->instantiations();
+        for(auto &&instantiation: instantiations)
+            add_extra_include_for_type(meta_class, instantiation.data());
     }
 }
 
@@ -1927,7 +1927,7 @@ QString AbstractMetaType::minimalSignature() const
         minimalSignature += "const ";
     minimalSignature += typeEntry()->qualifiedCppName();
     if (hasInstantiations()) {
-        QList<AbstractMetaType *> instantiations = this->instantiations();
+        auto &instantiations = this->instantiations();
         minimalSignature += "<";
         for (int i=0;i<instantiations.size();++i) {
             if (i > 0)

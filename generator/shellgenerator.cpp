@@ -98,13 +98,13 @@ void ShellGenerator::writeTypeInfo(QTextStream &s, const AbstractMetaType *type,
         && (!te->isContainer() 
             || (static_cast<const ContainerTypeEntry *>(te))->type() != ContainerTypeEntry::StringListContainer)) {
         s << '<';
-        QList<AbstractMetaType *> args = type->instantiations();
+        auto &args = type->instantiations();
         bool nested_template = false;
         for (int i=0; i<args.size(); ++i) {
             if (i != 0)
                 s << ", ";
             nested_template |= args.at(i)->isContainer();
-            writeTypeInfo(s, args.at(i));
+            writeTypeInfo(s, args.at(i).data());
         }
         if (nested_template)
             s << ' ';
