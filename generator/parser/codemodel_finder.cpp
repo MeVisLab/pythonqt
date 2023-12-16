@@ -106,15 +106,15 @@ void CodeModelFinder::visitUnqualifiedName(UnqualifiedNameAST *node)
     {
       _M_current_scope = klass;
     }
-  else if (NamespaceModelItem parentNamespace = model_safe_cast<NamespaceModelItem>(_M_current_scope))
+  else if (NamespaceModelItem parentNamespace = _M_current_scope.dynamicCast<_NamespaceModelItem>())
     {
       NamespaceModelItem ns = parentNamespace->findNamespace(id);
-      _M_current_scope = model_static_cast<ScopeModelItem>(ns);
+      _M_current_scope = ns.staticCast<_ScopeModelItem>();
     }
-  else if (FileModelItem file = model_safe_cast<FileModelItem>(_M_current_scope))
+  else if (FileModelItem file = _M_current_scope.dynamicCast<_FileModelItem>())
     {
       NamespaceModelItem ns = file->findNamespace(id);
-      _M_current_scope = model_static_cast<ScopeModelItem>(ns);
+      _M_current_scope = ns.staticCast<_ScopeModelItem>();
     }
   }
 
