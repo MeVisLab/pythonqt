@@ -133,6 +133,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a177d19d411fe79befe554afe7b424f1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a561db283c2ed41d3c995522499297838"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtPrivate.html#a561db283c2ed41d3c995522499297838">registerCPPClass</a> (const char *typeName, const char *parentTypeName=nullptr, const char *package=nullptr, <a class="el" href="PythonQt_8h.html#a1ef662748d0780f84ae324f141ae128f">PythonQtQObjectCreatorFunctionCB</a> *wrapperCreator=nullptr, <a class="el" href="PythonQt_8h.html#a40859e9296e9e0ee042509ccf9e6c18d">PythonQtShellSetInstanceWrapperCB</a> *shell=nullptr, <a class="el" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a> *module=nullptr, int typeSlots=0)</td></tr>
 <tr class="separator:a561db283c2ed41d3c995522499297838"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9f7f6f5341eb36168e7e4c83706f6ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtPrivate.html#ae9f7f6f5341eb36168e7e4c83706f6ea">registerGlobalNamespace</a> (const char *typeName, const char *package, <a class="el" href="PythonQt_8h.html#a1ef662748d0780f84ae324f141ae128f">PythonQtQObjectCreatorFunctionCB</a> *wrapperCreator, const QMetaObject &amp;metaObject, <a class="el" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a> *module=nullptr)</td></tr>
+<tr class="memdesc:ae9f7f6f5341eb36168e7e4c83706f6ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as above, but all enums of the created wrapper will also be added to the given package and to the "Qt" package.  <a href="classPythonQtPrivate.html#ae9f7f6f5341eb36168e7e4c83706f6ea">More...</a><br /></td></tr>
+<tr class="separator:ae9f7f6f5341eb36168e7e4c83706f6ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a376dc4556ff3f872fa2fcce395c04356"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtPrivate.html#a376dc4556ff3f872fa2fcce395c04356">registerQObjectClassNames</a> (const QStringList &amp;names)</td></tr>
 <tr class="separator:a376dc4556ff3f872fa2fcce395c04356"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af085f2c2646e6a6240141b7ccff093e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtPrivate.html#af085f2c2646e6a6240141b7ccff093e4">addDecorators</a> (QObject *o, int decoTypes)</td></tr>
@@ -1085,8 +1088,8 @@ Friends</h2></td></tr>
 
 <p>returns the profiling callback, which may be NULL </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00790">790</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00790"></a><span class="lineno">  790</span>&#160;{ <span class="keywordflow">return</span> _profilingCB; }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00793">793</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00793"></a><span class="lineno">  793</span>&#160;{ <span class="keywordflow">return</span> _profilingCB; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1115,8 +1118,8 @@ Friends</h2></td></tr>
 
 <p>get access to the <a class="el" href="classPythonQt.html" title="The main interface to the Python Qt binding, realized as a singleton.">PythonQt</a> module </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00787">787</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00787"></a><span class="lineno">  787</span>&#160;{ <span class="keywordflow">return</span> _pythonQtModule; }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00790">790</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00790"></a><span class="lineno">  790</span>&#160;{ <span class="keywordflow">return</span> _pythonQtModule; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1232,6 +1235,54 @@ Friends</h2></td></tr>
 <p>add a wrapper object for the given QMetaType typeName, also does an addClassDecorators() to add constructors for variants (ownership of wrapper is passed to <a class="el" href="classPythonQt.html" title="The main interface to the Python Qt binding, realized as a singleton.">PythonQt</a>)</p>
 <p>Make sure that you have done a qRegisterMetaType first, if typeName is a user type!</p>
 <p>This will add a wrapper object that is used to make calls to the given classname <code>typeName</code>. All slots that take a pointer to typeName as the first argument will be callable from Python on a variant object that contains such a type. </p>
+
+</div>
+</div>
+<a id="ae9f7f6f5341eb36168e7e4c83706f6ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9f7f6f5341eb36168e7e4c83706f6ea">&#9670;&nbsp;</a></span>registerGlobalNamespace()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PythonQtPrivate::registerGlobalNamespace </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>typeName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>package</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="PythonQt_8h.html#a1ef662748d0780f84ae324f141ae128f">PythonQtQObjectCreatorFunctionCB</a> *&#160;</td>
+          <td class="paramname"><em>wrapperCreator</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QMetaObject &amp;&#160;</td>
+          <td class="paramname"><em>metaObject</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a> *&#160;</td>
+          <td class="paramname"><em>module</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Same as above, but all enums of the created wrapper will also be added to the given package and to the "Qt" package. </p>
 
 </div>
 </div>
@@ -1606,7 +1657,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00888">888</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00891">891</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
 
 </div>
 </div>
@@ -1616,7 +1667,7 @@ Friends</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 18 2023 11:21:44 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Wed Dec 20 2023 13:55:33 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

@@ -190,14 +190,17 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a233ed14a58a368b5cdefc249cdaafdd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15f5656ca3b66097483b251b965f0fab"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtClassInfo.html#a15f5656ca3b66097483b251b965f0fab">supportsRichCompare</a> ()</td></tr>
 <tr class="separator:a15f5656ca3b66097483b251b965f0fab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9dea0ed2ff355746df3275d0d8d36b35"><td class="memItemLeft" align="right" valign="top">QByteArray&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtClassInfo.html#a9dea0ed2ff355746df3275d0d8d36b35">escapeReservedNames</a> (const QByteArray &amp;name)</td></tr>
-<tr class="separator:a9dea0ed2ff355746df3275d0d8d36b35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a9acf89ba836e42e7362859d7e3c30d66"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtClassInfo.html#a9acf89ba836e42e7362859d7e3c30d66">findEnumWrapper</a> (const QByteArray &amp;name, <a class="el" href="classPythonQtClassInfo.html">PythonQtClassInfo</a> *localScope, bool *isLocalEnum=nullptr)</td></tr>
 <tr class="memdesc:a9acf89ba836e42e7362859d7e3c30d66"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns if the localScope has an enum of that type name or if the enum contains a :: scope, if that class contails the enum  <a href="classPythonQtClassInfo.html#a9acf89ba836e42e7362859d7e3c30d66">More...</a><br /></td></tr>
 <tr class="separator:a9acf89ba836e42e7362859d7e3c30d66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ea118909498462e30c1a71fb598b98d"><td class="memItemLeft" align="right" valign="top">static QByteArray&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtClassInfo.html#a7ea118909498462e30c1a71fb598b98d">escapeReservedNames</a> (const QByteArray &amp;name)</td></tr>
+<tr class="separator:a7ea118909498462e30c1a71fb598b98d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed8aadc852d68405b6b3de1913a15419"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtClassInfo.html#aed8aadc852d68405b6b3de1913a15419">addGlobalNamespaceWrapper</a> (<a class="el" href="classPythonQtClassInfo.html">PythonQtClassInfo</a> *namespaceWrapper)</td></tr>
+<tr class="memdesc:aed8aadc852d68405b6b3de1913a15419"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a wrapper that contains global enums.  <a href="classPythonQtClassInfo.html#aed8aadc852d68405b6b3de1913a15419">More...</a><br /></td></tr>
+<tr class="separator:aed8aadc852d68405b6b3de1913a15419"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>a class that stores all required information about a Qt object (and an optional associated C++ class name) </p>
@@ -277,6 +280,34 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>add a decorator slot, ownership is passed to classinfo </p>
+
+</div>
+</div>
+<a id="aed8aadc852d68405b6b3de1913a15419"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed8aadc852d68405b6b3de1913a15419">&#9670;&nbsp;</a></span>addGlobalNamespaceWrapper()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void PythonQtClassInfo::addGlobalNamespaceWrapper </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classPythonQtClassInfo.html">PythonQtClassInfo</a> *&#160;</td>
+          <td class="paramname"><em>namespaceWrapper</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Add a wrapper that contains global enums. </p>
 
 </div>
 </div>
@@ -537,20 +568,28 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a9dea0ed2ff355746df3275d0d8d36b35"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9dea0ed2ff355746df3275d0d8d36b35">&#9670;&nbsp;</a></span>escapeReservedNames()</h2>
+<a id="a7ea118909498462e30c1a71fb598b98d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ea118909498462e30c1a71fb598b98d">&#9670;&nbsp;</a></span>escapeReservedNames()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">QByteArray PythonQtClassInfo::escapeReservedNames </td>
+          <td class="memname">static QByteArray PythonQtClassInfo::escapeReservedNames </td>
           <td>(</td>
           <td class="paramtype">const QByteArray &amp;&#160;</td>
           <td class="paramname"><em>name</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <p>Sometimes enum values use a reserved name in Python. In this case replace it with something that is not reserved </p>
 
@@ -1324,7 +1363,7 @@ Static Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 18 2023 11:21:44 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Wed Dec 20 2023 13:55:33 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>
