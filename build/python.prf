@@ -1,12 +1,12 @@
 # profile to include and link Python
 
 
-# Change this variable to your python version (2.6, 2.7, 3.3, ...)
+# Change this variable to your python version (3.7, 3.8, ...)
 isEmpty( PYTHON_VERSION ) {
   PYTHON_VERSION=$$(PYTHON_VERSION)
 }
 isEmpty( PYTHON_VERSION ) {
-  PYTHON_VERSION=2.7
+  PYTHON_VERSION=3.10
 }
 
 isEmpty( PYTHON_DIR ) {
@@ -36,7 +36,7 @@ equals(PYTHON_VERSION_MAJOR, 2) {
 }
 
 contains(PKGCONFIG, "python.*"){
-# If `pkg-config` is configured, use `qmake PKGCONFIG+=python3.8-embed CONFIG+=...`
+# If `pkg-config` is configured, use `qmake PKGCONFIG+=python3.10-embed CONFIG+=...`
 # or `PKGCONFIG+=python2.7m`-like form for older versions,
 # see `pkg-config --list-all | grep python` for details.
 # This can help with GNU/Linux (including macOS with Homebrew), MSYS2/MinGW environment,
@@ -54,16 +54,12 @@ contains(PKGCONFIG, "python.*"){
   # for windows install a Python development kit or build Python yourself from the sources
   # Make sure that you set the environment variable PYTHON_PATH to point to your
   # python installation (or the python sources/header files when building from source).
-  # Make sure that you set the environment variable PYTHON_LIB to point to
-  # the directory where the python libs are located.
   #
   # When using the prebuild Python installer, this will be:
-  # set PYTHON_PATH = c:\Python26
-  # set PYTHON_LIB  = c:\Python26\libs
+  # set PYTHON_PATH = c:\Python310
   #
   # When using the python sources, this will be something like:
-  # set PYTHON_PATH = c:\yourDir\Python-2.6.1\
-  # set PYTHON_LIB  = c:\yourDir\Python-2.6.1\PCbuild8\Win32
+  # set PYTHON_PATH = c:\yourDir\Python-3.10.12\
 
   # check if debug or release
   CONFIG(debug, debug|release) {

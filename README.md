@@ -36,14 +36,12 @@ updating the typesystems as well.
 ## Building on Windows with MinGW
 
 To build PythonQt, you need to set the environment variable `PYTHON_PATH` to
-point to the root dir of the python installation and `PYTHON_LIB` to point to 
-the directory where the python lib file is located. Then you should set the
+point to the root dir of the python installation. Then you should set the
 `PYTHON_VERSION` variable to the Python version number.
 
 When using the prebuild Python installer, this will be:
 
 ```cmd
-set PYTHON_PATH=c:\Python311
-set PYTHON_LIB=c:\Python311\libs
-set PYTHON_VERSION=3.11
+set PYTHON_PATH=c:\Python310
+set PYTHON_VERSION=3.10
 ```
