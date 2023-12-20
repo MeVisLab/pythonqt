@@ -112,12 +112,13 @@ Qt framework</a>.
   - QtCore
   - QtGui
   - QtNetwork
-  - QtOpenGL
+  - QtOpenGL (before Qt6)
   - QtSql
   - QtSvg
-  - QtWebKit
+  - QtWebEngineWidgets
+  - QtWebKit (when available)
   - QtXml
-  - QtXmlPatterns
+  - QtXmlPatterns (before Qt6)
   - QtMultimedia
   - QtQml
   - QtQuick
@@ -268,6 +269,27 @@ Qt framework</a>.
 
  \endcode
 
+ And this example shows how you can define your own signals and slots:
+
+ \code
+ class MySender(QtCore.QObject):
+   
+   emitProgress = QtCore.Signal(float)  # this is actually a double argument in C++
+   
+ class MyReceiver(QtCore.QObject):
+   
+   @QtCore.Slot(float)
+   def progress(self, value):
+     print(f"progress: {value}")
+
+ sender = MySender()
+ receiver = MyReceiver()
+ # connecting with the effective signature:
+ sender.connect("emitProgress(double)", receiver, "progress(double)")
+ sender.emitProgress(2.0)
+
+ \endcode
+
 \section CPP CPP Wrapping
 
 You can create dedicated wrapper QObjects for any C++ class. This is done by deriving from PythonQtCppWrapperFactory
@@ -307,6 +329,8 @@ QtCore.QDate.currentDate()
 
 # enum value
 QtCore.QFont.UltraCondensed
+# or, alternatively
+QtCore.QFont.Stretch.UltraCondensed
 
 \endcode
 
@@ -453,11 +477,11 @@ yourCpp = None
 
  \page Building Building
 
- PythonQt requires at least Qt 4.6.1 (for earlier Qt versions, you will need to run the pythonqt_generator, Qt 4.3 is the absolute minimum) and Python 2.6.x/2.7.x or Python 3.3 (or higher).
+ PythonQt requires at least Qt 5.0 and Python 2.7.x or Python 3.6 (or higher).
  To compile PythonQt, you will need a python developer installation which includes Python's header files and
 the python2x.[lib | dll | so | dynlib].
  The recommended way to build PythonQt is to use the QMake-based *.pro file.
- The build scripts a currently set to use Python 2.6.
+ The build scripts are currently set to use Python 3.10 by default.
  You may need to tweak the \b build/python.prf file to set the correct Python includes and libs on your system.
 
  \subsection Windows
@@ -468,21 +492,20 @@ the python2x.[lib | dll | so | dynlib].
  Python yourself, using your compiler.
 
  To build PythonQt, you need to set the environment variable \b PYTHON_PATH to point to the root
- dir of the python installation and \b PYTHON_LIB to point to
- the directory where the python lib file is located.
+ dir of the python installation and \b PYTHON_VERSION should state the used Python version.
 
  When using the prebuild Python installer, this will be:
 
  \code
- > set PYTHON_PATH = c:\Python26
- > set PYTHON_LIB  = c:\Python26\libs
+ > set PYTHON_PATH = c:\Python310
+ > set PYTHON_VERSION = 3.10
  \endcode
 
  When using the python sources, this will be something like:
 
  \code
-  > set PYTHON_PATH = c:\yourDir\Python-2.6.1\
-  > set PYTHON_LIB  = c:\yourDir\Python-2.6.1\PCbuild8\Win32
+ > set PYTHON_PATH = c:\yourDir\Python-3.10.12\
+ > set PYTHON_VERSION = 3.10
  \endcode
 
  To build all, do the following (after setting the above variables):
@@ -522,7 +545,7 @@ the python2x.[lib | dll | so | dynlib].
  You should add PythonQt/lib to your LD_LIBRARY_PATH so that the runtime
  linker can find the *.so files.
 
- \subsection MacOsX
+ \subsection MacOS
 
  On Mac, Python is installed as a Framework, so you should not need to install it.
  To build PythonQt, just do a:

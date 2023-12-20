@@ -117,9 +117,13 @@ jobs:
         which python 2>/dev/null && export PYTHON_VERSION_SUFFIX= || export PYTHON_VERSION_SUFFIX=3
         uname -a; gcc --version | grep "gcc"; python${PYTHON_VERSION_SUFFIX} --version; qmake-qt5 --version
         echo ============================
+        export PYTHON_VERSION_SHORT=`python${PYTHON_VERSION_SUFFIX} --version | cut -d " " -f 2 | cut -d "." -f1,2`
+        if [[ `echo ${PYTHON_VERSION_SHORT} | wc -w` = 0 ]]; then export PYTHON_VERSION_SHORT=2.7; fi
+        export PYTHON_DIR=`which python${PYTHON_VERSION_SUFFIX} | xargs dirname | xargs dirname`
+        echo PYTHON_VERSION_SHORT=${PYTHON_VERSION_SHORT}
+        echo PYTHON_DIR=${PYTHON_DIR}
         qmake-qt5 -r PythonQt.pro CONFIG+=${{ matrix.configuration }} \
-          PYTHON_VERSION=$(python${PYTHON_VERSION_SUFFIX} --version | cut -d " " -f 2 | cut -d "." -f1,2) \
-          PYTHON_DIR=$(which python${PYTHON_VERSION_SUFFIX} | xargs dirname | xargs dirname)
+          "PYTHON_VERSION=${PYTHON_VERSION_SHORT}" "PYTHON_DIR=${PYTHON_DIR}"
         make -j $(nproc) && make check TESTARGS="-platform offscreen"
 
     - name: Generate Wrappers
