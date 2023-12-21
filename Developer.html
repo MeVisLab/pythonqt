@@ -131,6 +131,23 @@ QObject Wrapping</h1>
 <div class="line"># button1 is a QPushButton that has been added to Python via addObject()</div>
 <div class="line"># connect the clicked signal to a python function:</div>
 <div class="line">button1.connect(<span class="stringliteral">&quot;clicked(bool)&quot;</span>, someFunction)</div>
+</div><!-- fragment --><p>And this example shows how you can define your own signals and slots:</p>
+<div class="fragment"><div class="line"><span class="keyword">class </span>MySender(QtCore.QObject):</div>
+<div class="line">  </div>
+<div class="line">  emitProgress = QtCore.Signal(float)  # this is actually a double argument in C++</div>
+<div class="line">  </div>
+<div class="line">class MyReceiver(QtCore.QObject):</div>
+<div class="line">  </div>
+<div class="line">  @QtCore.Slot(<span class="keywordtype">float</span>)</div>
+<div class="line">  def progress(<span class="keyword">self</span>, value):</div>
+<div class="line">    print(f<span class="stringliteral">&quot;progress: {value}&quot;</span>)</div>
+<div class="line"> </div>
+<div class="line">sender = MySender()</div>
+<div class="line">receiver = MyReceiver()</div>
+<div class="line"># connecting with the effective <a class="code" href="namespacePythonQtUtils.html#ade9f7b98a609131283047a38c5929258">signature</a>:</div>
+<div class="line">sender.connect(<span class="stringliteral">&quot;emitProgress(double)&quot;</span>, receiver, <span class="stringliteral">&quot;progress(double)&quot;</span>)</div>
+<div class="line">sender.emitProgress(2.0)</div>
+<div class="ttc" id="anamespacePythonQtUtils_html_ade9f7b98a609131283047a38c5929258"><div class="ttname"><a href="namespacePythonQtUtils.html#ade9f7b98a609131283047a38c5929258">PythonQtUtils::signature</a></div><div class="ttdeci">QByteArray signature(const QMetaMethod &amp;method)</div><div class="ttdef"><b>Definition:</b> <a href="PythonQtUtils_8h_source.html#l00053">PythonQtUtils.h:53</a></div></div>
 </div><!-- fragment --><h1><a class="anchor" id="CPP"></a>
 CPP Wrapping</h1>
 <p>You can create dedicated wrapper QObjects for any C++ class. This is done by deriving from <a class="el" href="classPythonQtCppWrapperFactory.html" title="Factory interface for C++ classes that can be wrapped by QObject objects.">PythonQtCppWrapperFactory</a> and adding your factory via addWrapperFactory(). Whenever <a class="el" href="classPythonQt.html" title="The main interface to the Python Qt binding, realized as a singleton.">PythonQt</a> encounters a CPP pointer (e.g. on a slot or signal) and it does not known it as a QObject derived class, it will create a generic CPP wrapper. So even unknown C++ objects can be passed through Python. If the wrapper factory supports the CPP class, a QObject wrapper will be created for each instance that enters Python. An alternative to a complete wrapper via the wrapper factory are decorators, see <a class="el" href="Developer.html#Decorators">Decorator slots</a></p>
@@ -159,7 +176,9 @@ Meta Object/Class access</h1>
 <div class="line">QtCore.QDate.currentDate()</div>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor"># enum value</span></div>
-<div class="line"><span class="preprocessor">QtCore.QFont.UltraCondensed</span></div>
+<div class="line">QtCore.QFont.UltraCondensed</div>
+<div class="line"><span class="preprocessor"># or, alternatively</span></div>
+<div class="line"><span class="preprocessor">QtCore.QFont.Stretch.UltraCondensed</span></div>
 <div class="ttc" id="aclassPythonQt_html"><div class="ttname"><a href="classPythonQt.html">PythonQt</a></div><div class="ttdoc">The main interface to the Python Qt binding, realized as a singleton.</div><div class="ttdef"><b>Definition:</b> <a href="PythonQt_8h_source.html#l00169">PythonQt.h:169</a></div></div>
 </div><!-- fragment --><h1><a class="anchor" id="Decorators"></a>
 Decorator slots</h1>
@@ -278,7 +297,7 @@ Ownership management</h1>
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 20 2023 16:00:29 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Thu Dec 21 2023 13:56:10 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>
