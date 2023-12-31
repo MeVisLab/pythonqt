@@ -43,7 +43,6 @@
 #ifndef CODEMODEL_FWD_H
 #define CODEMODEL_FWD_H
 
-#include <codemodel_pointer.h>
 #include <QtCore/QList>
 #include <QSharedPointer>
 

@@ -47,31 +47,6 @@
 /*******************************************************************************
  * AbstractMetaType
  */
-AbstractMetaType::~AbstractMetaType()
-{
-    delete m_original_template_type;
-}
-
-AbstractMetaType *AbstractMetaType::copy() const
-{
-    AbstractMetaType *cpy = new AbstractMetaType;
-
-    cpy->setTypeUsagePattern(typeUsagePattern());
-    cpy->setConstant(isConstant());
-    cpy->setReference(isReference());
-    cpy->setIndirections(indirections());
-    cpy->setInstantiations(instantiations());
-    cpy->setArrayElementCount(arrayElementCount());
-    cpy->setOriginalTypeDescription(originalTypeDescription());
-    cpy->setOriginalTemplateType(originalTemplateType() ? originalTemplateType()->copy() : 0);
-
-    cpy->setArrayElementType(arrayElementType() ? arrayElementType()->copy() : 0);
-
-    cpy->setTypeEntry(typeEntry());
-
-    return cpy;
-}
-
 QString AbstractMetaType::cppSignature() const
 {
     QString s;
@@ -107,7 +82,6 @@ QString AbstractMetaType::cppSignature() const
  */
 AbstractMetaVariable::~AbstractMetaVariable()
 {
-    delete m_type;
 }
 
 /*******************************************************************************
@@ -118,7 +92,7 @@ AbstractMetaArgument *AbstractMetaArgument::copy() const
     AbstractMetaArgument *cpy = new AbstractMetaArgument;
     cpy->setName(AbstractMetaVariable::name());
     cpy->setDefaultValueExpression(defaultValueExpression());
-    cpy->setType(type()->copy());
+    cpy->setType(type());
     cpy->setArgumentIndex(argumentIndex());
 
     return cpy;
@@ -156,7 +130,6 @@ QString AbstractMetaArgument::name() const
 AbstractMetaFunction::~AbstractMetaFunction()
 {
     qDeleteAll(m_arguments);
-    delete m_type;
 }
 
 /*******************************************************************************
@@ -257,8 +230,8 @@ uint AbstractMetaFunction::compareTo(const AbstractMetaFunction *other) const
     }
 
     // Compare types
-    AbstractMetaType *t = type();
-    AbstractMetaType *ot = other->type();
+    AbstractMetaType::shared_pointer t = type();
+    AbstractMetaType::shared_pointer ot = other->type();
     if ((!t && !ot) || ((t && ot && t->name() == ot->name()))) {
         result |= EqualReturnType;
     }
@@ -326,7 +299,7 @@ AbstractMetaFunction *AbstractMetaFunction::copy() const
     cpy->setAttributes(attributes());
     cpy->setDeclaringClass(declaringClass());
     if (type())
-        cpy->setType(type()->copy());
+        cpy->setType(type());
     cpy->setConstant(isConstant());
     cpy->setConstexpr(isConstexpr());
     cpy->setAuto(isAuto());
@@ -662,7 +635,7 @@ QString AbstractMetaFunction::minimalSignature() const
     AbstractMetaArgumentList arguments = this->arguments();
 
     for (int i=0; i<arguments.count(); ++i) {
-        AbstractMetaType *t = arguments.at(i)->type();
+        AbstractMetaType::shared_pointer t = arguments.at(i)->type();
 
         if (i > 0)
             minimalSignature += ",";
@@ -1236,7 +1209,7 @@ AbstractMetaField *AbstractMetaField::copy() const
     returned->setEnclosingClass(0);
     returned->setAttributes(attributes());
     returned->setName(name());
-    returned->setType(type()->copy());
+    returned->setType(type());
     returned->setOriginalAttributes(originalAttributes());
 
     return returned;
@@ -1314,7 +1287,7 @@ const AbstractMetaFunction *AbstractMetaField::setter() const
                                 AbstractMetaAttributes::SetterFunction);
         AbstractMetaArgumentList arguments;
         AbstractMetaArgument *argument = new AbstractMetaArgument;
-        argument->setType(type()->copy());
+        argument->setType(type());
         argument->setName(name());
         arguments.append(argument);
         m_setter->setArguments(arguments);
@@ -1328,7 +1301,7 @@ const AbstractMetaFunction *AbstractMetaField::getter() const
         m_getter = createXetter(this,
                                 name(),
                                 AbstractMetaAttributes::GetterFunction);
-        m_getter->setType(type()->copy());
+        m_getter->setType(type());
     }
 
     return m_getter;
@@ -1617,7 +1590,7 @@ AbstractMetaEnum *AbstractMetaClass::findEnumForValue(const QString &enumValueNa
 }
 
 
-static void add_extra_include_for_type(AbstractMetaClass *meta_class, const AbstractMetaType *type)
+static void add_extra_include_for_type(AbstractMetaClass *meta_class, AbstractMetaType::const_shared_pointer type)
 {
 
     if (type == 0)
@@ -1635,7 +1608,7 @@ static void add_extra_include_for_type(AbstractMetaClass *meta_class, const Abst
     if (type->hasInstantiations()) {
         auto &instantiations = type->instantiations();
         for(auto &&instantiation: instantiations)
-            add_extra_include_for_type(meta_class, instantiation.data());
+            add_extra_include_for_type(meta_class, instantiation);
     }
 }
 
