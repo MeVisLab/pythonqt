@@ -210,12 +210,11 @@ AbstractMetaClass *AbstractMetaBuilder::argumentToClass(ArgumentModelItem argume
 {
     AbstractMetaClass *returned = 0;
     bool ok = false;
-    AbstractMetaType *type = translateType(argument->type(), &ok);
+    AbstractMetaType::shared_pointer type = translateType(argument->type(), &ok);
     if (ok && type != 0 && type->typeEntry() != 0 && type->typeEntry()->isComplex()) {
         const TypeEntry *entry = type->typeEntry();
         returned = m_meta_classes.findClass(entry->name());
     }
-    delete type;
     return returned;
 }
 
@@ -1017,7 +1016,7 @@ AbstractMetaField *AbstractMetaBuilder::traverseField(VariableModelItem field, c
 
     bool ok;
     TypeInfo field_type = field->type();
-    AbstractMetaType *meta_type = translateType(field_type, &ok);
+    AbstractMetaType::shared_pointer meta_type = translateType(field_type, &ok);
 
     if (!meta_type || !ok) {
         ReportHandler::warning(QString("skipping field '%1::%2' with unmatched type '%3'")
@@ -1464,7 +1463,7 @@ AbstractMetaFunction *AbstractMetaBuilder::traverseFunction(FunctionModelItem fu
         meta_function->setName(m_current_class->name());
     } else {
         bool ok;
-        AbstractMetaType *type = 0;
+        AbstractMetaType::shared_pointer type = 0;
 
         if (!cast_type.isEmpty()) {
             TypeInfo info;
@@ -1502,7 +1501,7 @@ AbstractMetaFunction *AbstractMetaBuilder::traverseFunction(FunctionModelItem fu
         ArgumentModelItem arg = arguments.at(i);
 
         bool ok;
-        AbstractMetaType *meta_type = translateType(arg->type(), &ok);
+        AbstractMetaType::shared_pointer meta_type = translateType(arg->type(), &ok);
         if (!meta_type || !ok) {
             ReportHandler::warning(QString("skipping function '%1::%2', "
                                            "unmatched parameter type '%3'")
@@ -1571,7 +1570,7 @@ AbstractMetaFunction *AbstractMetaBuilder::traverseFunction(FunctionModelItem fu
 }
 
 
-AbstractMetaType *AbstractMetaBuilder::translateType(const TypeInfo &_typei, bool *ok, bool resolveType, bool resolveScope)
+AbstractMetaType::shared_pointer AbstractMetaBuilder::translateType(const TypeInfo &_typei, bool *ok, bool resolveType, bool resolveScope)
 {
     Q_ASSERT(ok);
     *ok = true;
@@ -1581,7 +1580,7 @@ AbstractMetaType *AbstractMetaBuilder::translateType(const TypeInfo &_typei, boo
     TypeInfo typei;
     if (resolveType) {
         bool isok;
-        AbstractMetaType *t = translateType(_typei, &isok, false, resolveScope);
+        AbstractMetaType::shared_pointer t = translateType(_typei, &isok, false, resolveScope);
         if (t != 0 && isok)
             return t;
     }
@@ -1632,7 +1631,7 @@ AbstractMetaType *AbstractMetaBuilder::translateType(const TypeInfo &_typei, boo
             newInfo.setVolatile(typei.isVolatile());
             newInfo.setMutable(typei.isMutable());
 
-            AbstractMetaType *elementType = translateType(newInfo, ok);
+            AbstractMetaType::shared_pointer elementType = translateType(newInfo, ok);
             if (!(*ok))
                 return 0;
 
@@ -1644,7 +1643,7 @@ AbstractMetaType *AbstractMetaBuilder::translateType(const TypeInfo &_typei, boo
                 if (!isok)
                     return 0;
 
-                AbstractMetaType *arrayType = createMetaType();
+                AbstractMetaType::shared_pointer arrayType = createMetaType();
                 arrayType->setArrayElementCount(elems);
                 arrayType->setArrayElementType(elementType);
                 arrayType->setTypeEntry(new ArrayTypeEntry(elementType->typeEntry()));
@@ -1714,7 +1713,7 @@ AbstractMetaType *AbstractMetaBuilder::translateType(const TypeInfo &_typei, boo
 
             bool isok;
             info.setQualifiedName(QStringList() << contexts.at(0) << qualified_name);
-            AbstractMetaType *t = translateType(info, &isok, true, false);
+            AbstractMetaType::shared_pointer t = translateType(info, &isok, true, false);
             if (t != 0 && isok)
                 return t;
 
@@ -1744,7 +1743,7 @@ AbstractMetaType *AbstractMetaBuilder::translateType(const TypeInfo &_typei, boo
     // These are only implicit and should not appear in code...
     Q_ASSERT(!type->isInterface());
 
-    AbstractMetaType *meta_type = createMetaType();
+    AbstractMetaType::shared_pointer meta_type = createMetaType();
     meta_type->setTypeEntry(type);
     meta_type->setIndirections(typeInfo.indirections);
     meta_type->setReference(typeInfo.is_reference);
@@ -1778,7 +1777,6 @@ AbstractMetaType *AbstractMetaBuilder::translateType(const TypeInfo &_typei, boo
 
                 AbstractMetaType::shared_pointer targ_type (translateType(info, ok));
                 if (!(*ok)) {
-                    delete meta_type;
                     return 0;
                 }
 
@@ -1796,7 +1794,7 @@ AbstractMetaType *AbstractMetaBuilder::translateType(const TypeInfo &_typei, boo
     return meta_type;
 }
 
-void AbstractMetaBuilder::decideUsagePattern(AbstractMetaType *meta_type)
+void AbstractMetaBuilder::decideUsagePattern(AbstractMetaType::shared_pointer meta_type)
 {
     const TypeEntry *type = meta_type->typeEntry();
 
@@ -1882,7 +1880,7 @@ void AbstractMetaBuilder::decideUsagePattern(AbstractMetaType *meta_type)
     }
 }
 
-QString AbstractMetaBuilder::translateDefaultValue(ArgumentModelItem item, AbstractMetaType *type,
+QString AbstractMetaBuilder::translateDefaultValue(ArgumentModelItem item, AbstractMetaType::shared_pointer type,
                                                AbstractMetaFunction *fnc, AbstractMetaClass *implementing_class,
                                                int argument_index)
 {
@@ -1938,16 +1936,16 @@ bool AbstractMetaBuilder::isEnum(const QStringList &qualified_name)
     return item && item->kind() == _EnumModelItem::__node_kind;
 }
 
-AbstractMetaType *AbstractMetaBuilder::inheritTemplateType(const QList<AbstractMetaType *> &template_types,
-                                                   AbstractMetaType *meta_type, bool *ok)
+AbstractMetaType::shared_pointer AbstractMetaBuilder::inheritTemplateType(const QList<AbstractMetaType::shared_pointer> &template_types,
+                                                   AbstractMetaType::shared_pointer meta_type, bool *ok)
 {
     if (ok != 0)
         *ok = true;
     if (!meta_type || (!meta_type->typeEntry()->isTemplateArgument() && !meta_type->hasInstantiations()))
-        return meta_type ? meta_type->copy() : 0;
+        return meta_type ? meta_type : 0;
 
-    AbstractMetaType *returned = meta_type->copy();
-    returned->setOriginalTemplateType(meta_type->copy());
+    AbstractMetaType::shared_pointer returned = meta_type;
+    returned->setOriginalTemplateType(meta_type);
 
     if (returned->typeEntry()->isTemplateArgument()) {
         const TemplateArgumentEntry *tae = static_cast<const TemplateArgumentEntry *>(returned->typeEntry());
@@ -1960,14 +1958,13 @@ AbstractMetaType *AbstractMetaBuilder::inheritTemplateType(const QList<AbstractM
             return 0;
         }
 
-        AbstractMetaType *t = returned->copy();
+        AbstractMetaType::shared_pointer t = returned;
         t->setTypeEntry(template_types.at(tae->ordinal())->typeEntry());
         t->setIndirections(template_types.at(tae->ordinal())->indirections() + t->indirections()
                            ? 1
                            : 0);
         decideUsagePattern(t);
 
-        delete returned;
         returned = inheritTemplateType(template_types, t, ok);
         if (ok != 0 && !(*ok))
             return 0;
@@ -1976,7 +1973,7 @@ AbstractMetaType *AbstractMetaBuilder::inheritTemplateType(const QList<AbstractM
     if (returned->hasInstantiations()) {
         auto instantiations = returned->instantiations();
         for (int i=0; i<instantiations.count(); ++i) {
-            instantiations[i] = AbstractMetaType::shared_pointer(inheritTemplateType(template_types, instantiations[i].data(), ok));
+            instantiations[i] = AbstractMetaType::shared_pointer(inheritTemplateType(template_types, instantiations[i], ok));
             if (ok != 0 && !(*ok))
                 return 0;
         }
@@ -1992,12 +1989,12 @@ bool AbstractMetaBuilder::inheritTemplate(AbstractMetaClass *subclass,
 {
     QList<TypeParser::Info> targs = info.template_instantiations;
 
-    QList<AbstractMetaType *> template_types;
+    QList<AbstractMetaType::shared_pointer> template_types;
     for (const TypeParser::Info &i :  targs) {
         TypeEntry *t = TypeDatabase::instance()->findType(i.qualified_name.join("::"));
 
         if (t != 0) {
-            AbstractMetaType *temporary_type = createMetaType();
+            AbstractMetaType::shared_pointer temporary_type = createMetaType();
             temporary_type->setTypeEntry(t);
             temporary_type->setConstant(i.is_constant);
             temporary_type->setReference(i.is_reference);
@@ -2016,7 +2013,7 @@ bool AbstractMetaBuilder::inheritTemplate(AbstractMetaClass *subclass,
         f->setArguments(AbstractMetaArgumentList());
 
         bool ok = true;
-        AbstractMetaType *ftype = function->type();
+        AbstractMetaType::shared_pointer ftype = function->type();
         f->setType(inheritTemplateType(template_types, ftype, &ok));
         if (!ok) {
             delete f;
@@ -2024,7 +2021,7 @@ bool AbstractMetaBuilder::inheritTemplate(AbstractMetaClass *subclass,
         }
 
         for (AbstractMetaArgument *argument :  function->arguments()) {
-            AbstractMetaType *atype = argument->type();
+            AbstractMetaType::shared_pointer atype = argument->type();
 
             AbstractMetaArgument *arg = argument->copy();
             arg->setType(inheritTemplateType(template_types, atype, &ok));
@@ -2096,12 +2093,6 @@ bool AbstractMetaBuilder::inheritTemplate(AbstractMetaClass *subclass,
         subclass->addFunction(f);
     }
 
-    // Clean up
-    for (AbstractMetaType *type :  template_types) {
-        delete type;
-    }
-
-
     {
         subclass->setTemplateBaseClass(template_class);
 
@@ -2122,7 +2113,7 @@ void AbstractMetaBuilder::parseQ_Property(AbstractMetaClass *meta_class, const Q
 
         QStringList qualifiedScopeName = currentScope()->qualifiedName();
         bool ok = false;
-        AbstractMetaType *type = 0;
+        AbstractMetaType::shared_pointer type = 0;
         int pIndex = 0;
         QString typeName = l.value(pIndex++);
         bool isConst = false;
@@ -2179,7 +2170,6 @@ void AbstractMetaBuilder::parseQ_Property(AbstractMetaClass *meta_class, const Q
         }
 
         meta_class->addPropertySpec(spec);
-        delete type;
     }
 }
 

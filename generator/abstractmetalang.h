@@ -163,6 +163,7 @@ class AbstractMetaType
 {
 public:
     typedef QSharedPointer<AbstractMetaType> shared_pointer;
+    typedef QSharedPointer<const AbstractMetaType> const_shared_pointer;
     enum TypeUsagePattern {
         InvalidPattern,
         PrimitivePattern,
@@ -189,8 +190,6 @@ public:
         m_reserved(0)
     {
     }
-
-    ~AbstractMetaType();
 
     QString package() const { return m_type_entry->javaPackage(); }
     QString name() const { return m_type_entry->targetLangName(); }
@@ -276,12 +275,10 @@ public:
     void setArrayElementCount(int n) { m_array_element_count = n; }
     int arrayElementCount() const { return m_array_element_count; }
 
-    AbstractMetaType *arrayElementType() const { return m_array_element_type; }
-    void setArrayElementType(AbstractMetaType *t) { m_array_element_type = t; }
+    AbstractMetaType::shared_pointer arrayElementType() const { return m_array_element_type; }
+    void setArrayElementType(AbstractMetaType::shared_pointer t) { m_array_element_type = t; }
 
     QString cppSignature() const;
-
-    AbstractMetaType *copy() const;
 
     const TypeEntry *typeEntry() const { return m_type_entry; }
     void setTypeEntry(const TypeEntry *type) { m_type_entry = type; }
@@ -289,8 +286,8 @@ public:
     void setOriginalTypeDescription(const QString &otd) { m_original_type_description = otd; }
     QString originalTypeDescription() const { return m_original_type_description; }
 
-    void setOriginalTemplateType(const AbstractMetaType *type) { m_original_template_type = type; }
-    const AbstractMetaType *originalTemplateType() const { return m_original_template_type; }
+    void setOriginalTemplateType(AbstractMetaType::const_shared_pointer type) { m_original_template_type =  type; }
+    AbstractMetaType::const_shared_pointer originalTemplateType() const { return m_original_template_type; }
 
 private:
     const TypeEntry *m_type_entry{};
@@ -299,8 +296,8 @@ private:
     QString m_original_type_description;
 
     int m_array_element_count{};
-    AbstractMetaType *m_array_element_type{};
-    const AbstractMetaType *m_original_template_type{};
+    AbstractMetaType::shared_pointer m_array_element_type{};
+    AbstractMetaType::const_shared_pointer m_original_template_type{};
 
     TypeUsagePattern m_pattern{InvalidPattern};
     uint m_constant : 1;
@@ -316,15 +313,15 @@ public:
     AbstractMetaVariable() = default;
     virtual ~AbstractMetaVariable();
 
-    AbstractMetaType *type() const { return m_type; }
-    void setType(AbstractMetaType *type) { m_type = type; }
+    AbstractMetaType::shared_pointer type() const { return m_type; }
+    void setType(AbstractMetaType::shared_pointer type) { m_type = type; }
 
     QString name() const { return m_name; }
     void setName(const QString &name) { m_name = name; }
 
 private:
     QString m_name;
-    AbstractMetaType *m_type{};
+    AbstractMetaType::shared_pointer m_type{};
 };
 
 
@@ -448,8 +445,8 @@ public:
 
     bool isModifiedRemoved(int types = TypeSystem::All) const;
 
-    AbstractMetaType *type() const { return m_type; }
-    void setType(AbstractMetaType *type) { m_type = type; }
+    AbstractMetaType::shared_pointer type() const { return m_type; }
+    void setType(AbstractMetaType::shared_pointer type) { m_type = type; }
 
     // The class that has this function as a member.
     const AbstractMetaClass *ownerClass() const { return m_class; }
@@ -553,7 +550,7 @@ private:
     mutable QString m_cached_modified_name;
 
     FunctionType m_function_type{NormalFunction};
-    AbstractMetaType *m_type{};
+    AbstractMetaType::shared_pointer m_type{};
     const AbstractMetaClass *m_class{};
     const AbstractMetaClass *m_implementing_class{};
     const AbstractMetaClass *m_declaring_class{};

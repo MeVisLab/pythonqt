@@ -113,17 +113,19 @@ public:
     void setupClonable(AbstractMetaClass *cls);
     void setupFunctionDefaults(AbstractMetaFunction *meta_function, AbstractMetaClass *meta_class);
 
-    QString translateDefaultValue(ArgumentModelItem item, AbstractMetaType *type,
+    QString translateDefaultValue(ArgumentModelItem item, AbstractMetaType::shared_pointer type,
                                                AbstractMetaFunction *fnc, AbstractMetaClass *,
                                                int argument_index);
-    AbstractMetaType *translateType(const TypeInfo &type, bool *ok, bool resolveType = true, bool resolveScope = true);
+    AbstractMetaType::shared_pointer translateType(const TypeInfo &type, bool *ok, bool resolveType = true, bool resolveScope = true);
 
-    void decideUsagePattern(AbstractMetaType *type);
+    void decideUsagePattern(AbstractMetaType::shared_pointer type);
 
     bool inheritTemplate(AbstractMetaClass *subclass,
                          const AbstractMetaClass *template_class,
                          const TypeParser::Info &info);
-    AbstractMetaType *inheritTemplateType(const QList<AbstractMetaType *> &template_types, AbstractMetaType *meta_type, bool *ok = 0);
+    AbstractMetaType::shared_pointer inheritTemplateType(const QList<AbstractMetaType::shared_pointer> &template_types,
+                                                         AbstractMetaType::shared_pointer meta_type,
+                                                         bool *ok = 0);
 
     bool isQObject(const QString &qualified_name);
     bool isEnum(const QStringList &qualified_name);
@@ -144,7 +146,7 @@ protected:
     virtual AbstractMetaField *createMetaField() = 0;
     virtual AbstractMetaFunction *createMetaFunction() = 0;
     virtual AbstractMetaArgument *createMetaArgument() = 0;
-    virtual AbstractMetaType *createMetaType() = 0;
+    virtual AbstractMetaType::shared_pointer createMetaType() = 0;
 
 private:
     void sortLists();
