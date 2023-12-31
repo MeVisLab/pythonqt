@@ -180,9 +180,9 @@ static QSet<QString> _builtinListTypes = QSet<QString>() << "QByteArray"
 << "QMatrix4x4"
 << "QVariant";
 
-static void addListRegistration(AbstractMetaType* type, QSet<QString>& output) {
+static void addListRegistration(AbstractMetaType::shared_pointer type, QSet<QString>& output) {
   if (type->instantiations().size() > 0) {
-    QList<AbstractMetaType::shared_pointer> args = type->instantiations();
+    auto &args = type->instantiations();
     
     /*
     QString debugStr;
