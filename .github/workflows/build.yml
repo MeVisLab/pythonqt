@@ -71,7 +71,7 @@ jobs:
         ./pythonqt_generator
 
     - name: Upload Wrappers
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: wrappers_ubuntu_${{ matrix.container_version }}
         path: generated_cpp
@@ -135,7 +135,7 @@ jobs:
         ./pythonqt_generator
 
     - name: Upload Wrappers
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: wrappers_${{ matrix.container_os }}-${{ matrix.container_os_version }}_${{ matrix.configuration }}
         path: generated_cpp
@@ -220,7 +220,7 @@ jobs:
         QTDIR=-UNDEFINED- ./pythonqt_generator --qt-version=${{ steps.versions.outputs.QT_VERSION_FULL }} --include-paths=$Qt5_Dir/lib
 
     - name: Upload Wrappers
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: wrappers_macos${{ steps.versions.outputs.MACOS_VERSION_SHORT }}_qt${{ steps.versions.outputs.QT_VERSION_SHORT }}
         path: generated_cpp
@@ -330,7 +330,7 @@ jobs:
         pythonqt_generator
 
     - name: Upload Wrappers
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: wrappers_${{ matrix.qt-arch }}_${{ steps.versions.outputs.QT_VERSION_SHORT }}
         path: generated_cpp
