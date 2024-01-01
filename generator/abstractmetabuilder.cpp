@@ -1966,7 +1966,7 @@ AbstractMetaType::shared_pointer AbstractMetaBuilder::inheritTemplateType(const 
     if (returned->hasInstantiations()) {
         auto instantiations = returned->instantiations();
         for (int i=0; i<instantiations.count(); ++i) {
-            instantiations[i] = AbstractMetaType::shared_pointer(inheritTemplateType(template_types, instantiations[i], ok));
+            instantiations[i] = inheritTemplateType(template_types, instantiations[i], ok);
             if (ok != 0 && !(*ok))
                 return 0;
         }
