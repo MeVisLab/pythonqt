@@ -38,9 +38,12 @@ PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp
       else: lessThan(QT_MINOR_VERSION, 11) { # 5.7, 5.8, 5.9, 5.10
         PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_56
       }
-      else { # >5.11
-        # LATEST Qt5 generated files:
+      else: lessThan(QT_MINOR_VERSION, 15) { # 5.11, 5.12, 5.13, 5.14
         PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_511
+      }
+      else { # 5.15
+        # LATEST Qt5 generated files:
+        PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp_515
       }
     }
 
