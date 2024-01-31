@@ -19,7 +19,11 @@
 </group>
 <enum-type name="QSoundEffect::Status"/>
 <enum-type name="QSoundEffect::Loop"/>
-<enum-type name="QAbstractVideoBuffer::HandleType"/>
+<enum-type name="QAbstractVideoBuffer::HandleType">
+  <!-- GLTextureRectangleHandle did not exist until Qt 5.15.8 (introduced for macOS it seems);
+       Ubuntu 22.04 only has Qt 5.15.3 by default. In Qt 6 QAbstractVideoBuffer is private anyway. -->
+  <reject-enum-value name="GLTextureRectangleHandle"/>
+</enum-type>
 <enum-type name="QAbstractVideoBuffer::MapMode"/>
 <enum-type name="QCameraImageCapture::Error"/>
 <enum-type name="QCameraImageCapture::DriveMode"/>
