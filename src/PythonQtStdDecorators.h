@@ -58,7 +58,7 @@
 #include <QMetaMethod>
 #include <QMetaEnum>
 #include <QMetaProperty>
-#if QT_VERSION >= 0x060000
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
 #include <QRandomGenerator>
 #endif
 
@@ -109,7 +109,7 @@ public Q_SLOTS:
 
   int static_Qt_qrand()
   {
-#if QT_VERSION < 0x060000
+#if (QT_VERSION < QT_VERSION_CHECK(5, 15, 0))
     return qrand();
 #else
     return QRandomGenerator::global()->generate();
@@ -118,7 +118,7 @@ public Q_SLOTS:
 
   void static_Qt_qsrand(uint a)
   {
-#if QT_VERSION < 0x060000
+#if (QT_VERSION < QT_VERSION_CHECK(5, 15, 0))
     qsrand(a);
 #else
     QRandomGenerator::global()->seed(a);
