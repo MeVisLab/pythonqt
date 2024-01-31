@@ -562,7 +562,7 @@ QStringList PythonQtClassInfo::memberList()
     }
   }
 
-#if QT_VERSION >= 0x060000
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
   QSet<QString> set(l.begin(), l.end());
   return set.values();
 #else

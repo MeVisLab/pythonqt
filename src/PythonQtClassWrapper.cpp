@@ -477,7 +477,7 @@ static PyObject *PythonQtClassWrapper_getattro(PyObject *obj, PyObject *name)
 
     auto members = wrapper->classInfo()->memberList();
     auto properties = wrapper->classInfo()->propertyList();
-#if QT_VERSION >= 0x060000
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
     QSet<QString> completeSet(members.begin(), members.end());
     completeSet.unite(QSet<QString>(properties.begin(), properties.end()));
 #else
