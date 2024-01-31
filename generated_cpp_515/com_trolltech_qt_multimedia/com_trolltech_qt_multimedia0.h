@@ -389,7 +389,7 @@ class PythonQtWrapper_QAbstractVideoBuffer : public QObject
 public:
 Q_ENUMS(HandleType MapMode )
 enum HandleType{
-  NoHandle = QAbstractVideoBuffer::NoHandle,   GLTextureHandle = QAbstractVideoBuffer::GLTextureHandle,   XvShmImageHandle = QAbstractVideoBuffer::XvShmImageHandle,   CoreImageHandle = QAbstractVideoBuffer::CoreImageHandle,   QPixmapHandle = QAbstractVideoBuffer::QPixmapHandle,   EGLImageHandle = QAbstractVideoBuffer::EGLImageHandle,   GLTextureRectangleHandle = QAbstractVideoBuffer::GLTextureRectangleHandle,   UserHandle = QAbstractVideoBuffer::UserHandle};
+  NoHandle = QAbstractVideoBuffer::NoHandle,   GLTextureHandle = QAbstractVideoBuffer::GLTextureHandle,   XvShmImageHandle = QAbstractVideoBuffer::XvShmImageHandle,   CoreImageHandle = QAbstractVideoBuffer::CoreImageHandle,   QPixmapHandle = QAbstractVideoBuffer::QPixmapHandle,   EGLImageHandle = QAbstractVideoBuffer::EGLImageHandle,   UserHandle = QAbstractVideoBuffer::UserHandle};
 enum MapMode{
   NotMapped = QAbstractVideoBuffer::NotMapped,   ReadOnly = QAbstractVideoBuffer::ReadOnly,   WriteOnly = QAbstractVideoBuffer::WriteOnly,   ReadWrite = QAbstractVideoBuffer::ReadWrite};
 public slots:
