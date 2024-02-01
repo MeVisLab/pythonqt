@@ -153,7 +153,7 @@ jobs:
         ./pythonqt_generator
 
     - name: Upload Wrappers
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: wrappers_${{ matrix.container_os }}-${{ matrix.container_os_version }}_${{ matrix.configuration }}
         path: generated_cpp
