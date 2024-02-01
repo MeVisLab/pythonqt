@@ -262,7 +262,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Reset PATH
-      uses: egor-tensin/cleanup-path@v3
+      uses: egor-tensin/cleanup-path@v4
 
     - name: Install MSVC++
       uses: ilammy/msvc-dev-cmd@v1
