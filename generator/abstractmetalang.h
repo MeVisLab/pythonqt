@@ -280,6 +280,8 @@ public:
 
     QString cppSignature() const;
 
+    AbstractMetaType::shared_pointer copy() const;
+
     const TypeEntry *typeEntry() const { return m_type_entry; }
     void setTypeEntry(const TypeEntry *type) { m_type_entry = type; }
 
