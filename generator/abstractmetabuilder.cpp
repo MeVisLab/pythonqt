@@ -1929,15 +1929,16 @@ bool AbstractMetaBuilder::isEnum(const QStringList &qualified_name)
     return item && item->kind() == _EnumModelItem::__node_kind;
 }
 
-AbstractMetaType::shared_pointer AbstractMetaBuilder::inheritTemplateType(const QList<AbstractMetaType::shared_pointer> &template_types,
+AbstractMetaType::shared_pointer AbstractMetaBuilder::inheritTemplateType(
+                                                const QList<AbstractMetaType::shared_pointer> &template_types,
                                                    AbstractMetaType::shared_pointer meta_type, bool *ok)
 {
     if (ok != 0)
         *ok = true;
     if (!meta_type || (!meta_type->typeEntry()->isTemplateArgument() && !meta_type->hasInstantiations()))
-        return meta_type ? meta_type : 0;
+        return meta_type ? meta_type->copy() : 0;
 
-    AbstractMetaType::shared_pointer returned = meta_type;
+    AbstractMetaType::shared_pointer returned = meta_type->copy();
     returned->setOriginalTemplateType(meta_type);
 
     if (returned->typeEntry()->isTemplateArgument()) {
@@ -1951,7 +1952,7 @@ AbstractMetaType::shared_pointer AbstractMetaBuilder::inheritTemplateType(const 
             return 0;
         }
 
-        AbstractMetaType::shared_pointer t = returned;
+        AbstractMetaType::shared_pointer t = returned->copy();
         t->setTypeEntry(template_types.at(tae->ordinal())->typeEntry());
         t->setIndirections(template_types.at(tae->ordinal())->indirections() + t->indirections()
                            ? 1

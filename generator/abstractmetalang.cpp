@@ -47,6 +47,26 @@
 /*******************************************************************************
  * AbstractMetaType
  */
+AbstractMetaType::shared_pointer AbstractMetaType::copy() const
+{
+    AbstractMetaType *cpy = new AbstractMetaType;
+
+    cpy->setTypeUsagePattern(typeUsagePattern());
+    cpy->setConstant(isConstant());
+    cpy->setReference(isReference());
+    cpy->setIndirections(indirections());
+    cpy->setInstantiations(instantiations());
+    cpy->setArrayElementCount(arrayElementCount());
+    cpy->setOriginalTypeDescription(originalTypeDescription());
+    cpy->setOriginalTemplateType(originalTemplateType() ? originalTemplateType()->copy() : 0);
+
+    cpy->setArrayElementType(arrayElementType() ? arrayElementType()->copy() : 0);
+
+    cpy->setTypeEntry(typeEntry());
+
+    return AbstractMetaType::shared_pointer(cpy);
+}
+
 QString AbstractMetaType::cppSignature() const
 {
     QString s;
