@@ -58,6 +58,7 @@ jobs:
         PYTHON_VERSION=$(python3 --version | cut -d " " -f 2 | cut -d "." -f1,2) \
         PYTHON_DIR=$(which python3 | xargs dirname | xargs dirname)
         make -j $(nproc)
+        PYTHONDEVMODE=1 PYTHONASYNCIODEBUG=1 PYTHONWARNINGS=error PYTHONMALLOC=malloc_debug \
         UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
           make check TESTARGS="-platform offscreen"
       
@@ -124,7 +125,9 @@ jobs:
         echo PYTHON_DIR=${PYTHON_DIR}
         qmake-qt5 -r PythonQt.pro CONFIG+=${{ matrix.configuration }} \
           "PYTHON_VERSION=${PYTHON_VERSION_SHORT}" "PYTHON_DIR=${PYTHON_DIR}"
-        make -j $(nproc) && make check TESTARGS="-platform offscreen"
+        make -j $(nproc) && \
+        PYTHONDEVMODE=1 PYTHONASYNCIODEBUG=1 PYTHONWARNINGS=error PYTHONMALLOC=malloc_debug \
+          make check TESTARGS="-platform offscreen"
 
     - name: Generate Wrappers
       run: |
@@ -208,6 +211,7 @@ jobs:
           PKGCONFIG+=$PYTHON_PKGCONFIG_NAME \
           -r PythonQt.pro
         make -j $(nproc)
+        PYTHONDEVMODE=1 PYTHONASYNCIODEBUG=1 PYTHONWARNINGS=error PYTHONMALLOC=malloc_debug \
         UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
           make check TESTARGS="-platform offscreen"
 
@@ -319,6 +323,9 @@ jobs:
            "PYTHON_PATH=%pythonLocation%" ^
            "PYTHON_VERSION=${{ steps.versions.outputs.PYTHON_VERSION_SHORT }}" ^
            PythonQt.pro
+        set PYTHONDEVMODE=1
+        set PYTHONASYNCIODEBUG=1
+        set PYTHONWARNINGS=error
         mingw32-make -j 2 && mingw32-make check "TESTARGS=-platform offscreen" ^
           || nmake && nmake check "TESTARGS=-platform offscreen"
 
