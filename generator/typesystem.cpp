@@ -1567,6 +1567,7 @@ TypeDatabase::TypeDatabase() : m_suppressWarnings(true)
     addType(new ContainerTypeEntry("QMap", ContainerTypeEntry::MapContainer));
     addType(new ContainerTypeEntry("QHash", ContainerTypeEntry::HashContainer));
     addType(new ContainerTypeEntry("QPair", ContainerTypeEntry::PairContainer));
+    addType(new ContainerTypeEntry("std::pair", ContainerTypeEntry::PairContainer));
     addType(new ContainerTypeEntry("QQueue", ContainerTypeEntry::QueueContainer));
     addType(new ContainerTypeEntry("QMultiMap", ContainerTypeEntry::MultiMapContainer));
 
