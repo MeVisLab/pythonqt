@@ -31,3 +31,6 @@
 #define Q_ENUM_NS(x)
 #define Q_FLAG_NS(x)
 #define Q_MOC_INCLUDE(...)
+
+// ignore static_assert
+#define static_assert(...)
