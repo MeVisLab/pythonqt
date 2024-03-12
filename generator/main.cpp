@@ -105,7 +105,7 @@ namespace
             includes << (frameworkDir + "/QtOpenGL.framework/Headers");
             includes << frameworkDir;
 #else
-        qWarning((reason + "This may cause problems with finding the necessary include files.").toUtf8().constData());
+        qWarning() << reason << "This may cause problems with finding the necessary include files.";
 #endif
       }
       else
