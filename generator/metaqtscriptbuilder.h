@@ -79,9 +79,9 @@ class MetaQtScriptBuilder : public AbstractMetaBuilder
             return new MetaQtScriptArgument(); 
         };
 
-    virtual MetaQtScriptType *createMetaType()
+    virtual AbstractMetaType::shared_pointer createMetaType()
         {
-            return new MetaQtScriptType(); 
+            return AbstractMetaType::shared_pointer(new MetaQtScriptType());
         };
 
 };

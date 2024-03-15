@@ -123,7 +123,7 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
 
     AbstractMetaFunctionList virtualsForShell = getVirtualFunctionsForShell(meta_class);
     foreach (const AbstractMetaFunction *fun, virtualsForShell) {
-      bool hasReturnValue = (fun->type());
+      bool hasReturnValue = !fun->type().isNull();
       writeFunctionSignature(s, fun, meta_class, QString(),
         Option(OriginalName | ShowStatic | UnderscoreSpaces | UseIndexedName),
         "PythonQtShell_");

@@ -176,9 +176,9 @@ static QSet<QString> _builtinListTypes = QSet<QString>() << "QByteArray"
 << "QMatrix4x4"
 << "QVariant";
 
-static void addListRegistration(AbstractMetaType* type, QSet<QString>& output) {
+static void addListRegistration(AbstractMetaType::shared_pointer type, QSet<QString>& output) {
   if (type->instantiations().size() > 0) {
-    QList<AbstractMetaType *> args = type->instantiations();
+    auto &args = type->instantiations();
     
     /*
     QString debugStr;
@@ -271,12 +271,12 @@ void SetupGenerator::generate()
 
       QSet<QString> listRegistration;
       QSet<QString> snips;
-      for (const AbstractMetaClass *cls :  list) {
-        Q_FOREACH(const AbstractMetaFunction* func, cls->functions()) {
+      for (auto cls: list) {
+          for(auto &&func: cls->functions()) {
           if (func->type() && func->type()->isContainer()) {
             addListRegistration(func->type(), listRegistration);
           }
-          Q_FOREACH(const AbstractMetaArgument* arg, func->arguments()) {
+          for(auto &&arg: func->arguments()) {
             if (arg->type() && arg->type()->isContainer()) {
               addListRegistration(arg->type(), listRegistration);
             }
@@ -365,7 +365,7 @@ void SetupGenerator::generate()
       QStringList list(listRegistration.begin(), listRegistration.end());
 #endif
       list.sort();
-      Q_FOREACH(QString name, list) {
+      for(auto &&name: list) {
         if (name.contains("Ssl")) {
           s << "#ifndef QT_NO_SSL" << endl;
         }

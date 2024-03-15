@@ -43,8 +43,8 @@
 #ifndef CODEMODEL_FWD_H
 #define CODEMODEL_FWD_H
 
-#include <codemodel_pointer.h>
 #include <QtCore/QList>
+#include <QSharedPointer>
 
 // forward declarations
 class CodeModel;
@@ -64,20 +64,20 @@ class _VariableModelItem;
 class _MemberModelItem;
 struct TypeInfo;
 
-typedef CodeModelPointer<_ArgumentModelItem> ArgumentModelItem;
-typedef CodeModelPointer<_ClassModelItem> ClassModelItem;
-typedef CodeModelPointer<_CodeModelItem> CodeModelItem;
-typedef CodeModelPointer<_EnumModelItem> EnumModelItem;
-typedef CodeModelPointer<_EnumeratorModelItem> EnumeratorModelItem;
-typedef CodeModelPointer<_FileModelItem> FileModelItem;
-typedef CodeModelPointer<_FunctionDefinitionModelItem> FunctionDefinitionModelItem;
-typedef CodeModelPointer<_FunctionModelItem> FunctionModelItem;
-typedef CodeModelPointer<_NamespaceModelItem> NamespaceModelItem;
-typedef CodeModelPointer<_ScopeModelItem> ScopeModelItem;
-typedef CodeModelPointer<_TemplateParameterModelItem> TemplateParameterModelItem;
-typedef CodeModelPointer<_TypeAliasModelItem> TypeAliasModelItem;
-typedef CodeModelPointer<_VariableModelItem> VariableModelItem;
-typedef CodeModelPointer<_MemberModelItem> MemberModelItem;
+typedef QSharedPointer<_ArgumentModelItem> ArgumentModelItem;
+typedef QSharedPointer<_ClassModelItem> ClassModelItem;
+typedef QSharedPointer<_CodeModelItem> CodeModelItem;
+typedef QSharedPointer<_EnumModelItem> EnumModelItem;
+typedef QSharedPointer<_EnumeratorModelItem> EnumeratorModelItem;
+typedef QSharedPointer<_FileModelItem> FileModelItem;
+typedef QSharedPointer<_FunctionDefinitionModelItem> FunctionDefinitionModelItem;
+typedef QSharedPointer<_FunctionModelItem> FunctionModelItem;
+typedef QSharedPointer<_NamespaceModelItem> NamespaceModelItem;
+typedef QSharedPointer<_ScopeModelItem> ScopeModelItem;
+typedef QSharedPointer<_TemplateParameterModelItem> TemplateParameterModelItem;
+typedef QSharedPointer<_TypeAliasModelItem> TypeAliasModelItem;
+typedef QSharedPointer<_VariableModelItem> VariableModelItem;
+typedef QSharedPointer<_MemberModelItem> MemberModelItem;
 
 typedef QList<ArgumentModelItem> ArgumentList;
 typedef QList<ClassModelItem> ClassList;
