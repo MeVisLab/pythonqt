@@ -2137,8 +2137,9 @@ PyObject* PythonQtPrivate::packageByName(const char* name)
     v = PyImport_AddModule((_pythonQtModuleName + "." + name).constData());
     _packages.insert(name, v);
     // AddObject steals the reference, so increment it!
-    Py_INCREF(v);
-    PyModule_AddObject(_pythonQtModule, name, v);
+    if (PyModule_AddObject(_pythonQtModule, name, v) == 0) {
+      Py_INCREF(v);
+    }
   }
   return v;
 }
