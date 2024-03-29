@@ -155,8 +155,8 @@ class Handler : public QXmlDefaultHandler
 public:
     Handler(TypeDatabase *database, unsigned int qtVersion, bool generate)
         : m_database(database)
-        , m_qtVersion(qtVersion)
         , m_generate(generate ? TypeEntry::GenerateAll : TypeEntry::GenerateForSubclass)
+        , m_qtVersion(qtVersion)
     {
         m_current_enum = 0;
         current = 0;

@@ -295,7 +295,7 @@ bool PythonQtClassInfo::lookForEnumAndCache(const QMetaObject* meta, const char*
           PythonQtMemberInfo newInfo(enumValuePtr);
           _cachedMembers.insert(memberName, newInfo);
   #ifdef PYTHONQT_DEBUG
-          std::cout << "caching enum " << memberName << " on " << meta->className()->constData() << std::endl;
+          std::cout << "caching enum " << memberName << " on " << meta->className() << std::endl;
   #endif
           found = true;
           break;

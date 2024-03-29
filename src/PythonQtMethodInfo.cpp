@@ -52,7 +52,7 @@ bool PythonQtSlotInfo::_globalShouldAllowThreads = false;
 PythonQtMethodInfo::PythonQtMethodInfo(const QMetaMethod& meta, PythonQtClassInfo* classInfo)
 {
 #ifdef PYTHONQT_DEBUG
-  QByteArray sig = PythonQtUtils::signature(meta));
+  QByteArray sig = PythonQtUtils::signature(meta);
   sig = sig.mid(sig.indexOf('('));
   QByteArray fullSig = QByteArray(meta.typeName()) + " " + sig;
   std::cout << "caching " << fullSig.data() << std::endl;
