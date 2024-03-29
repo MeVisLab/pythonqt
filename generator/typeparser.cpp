@@ -122,6 +122,7 @@ Scanner::Token Scanner::nextToken()
                     m_pos += 2;
                     break;
                 }
+            Q_FALLTHROUGH();
             default:
                 if (c.isLetterOrNumber() || c == '_')
                     tok = Identifier;

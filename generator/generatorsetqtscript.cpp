@@ -54,7 +54,7 @@ GeneratorSetQtScript::GeneratorSetQtScript()
 QString GeneratorSetQtScript::usage() {
     QString usage =
         "QtScript:\n" 
-        "  --nothing-to-report-yet                   \n";
+        "  --nothing-to-report-yet                   \n"
         "  --max-classes-per-file=<n>                \n";
 
     return usage;
