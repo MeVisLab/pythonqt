@@ -2272,6 +2272,7 @@ public:
   <object-type name="QDeadlineTimer"/>
   <object-type name="QOperatingSystemVersionBase"/>
   <enum-type name="QOperatingSystemVersionBase::OSType"/>
+  <object-type name="QOperatingSystemVersionUnexported" since-version="6.6.3"/>
   <object-type name="QOperatingSystemVersion"/>
   <enum-type name="QOperatingSystemVersion::OSType"/>
   <object-type name="QRandomGenerator"/>
