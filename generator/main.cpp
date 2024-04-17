@@ -80,7 +80,7 @@ namespace
       {
         if (!QDir(*it).exists())
         {
-          qWarning() << "Include path " << it->toUtf8() << "does not exist, ignoring it.";
+          qWarning() << "Include path " << it->toUtf8() << " does not exist, ignoring it.";
           it = includes.erase(it);
         }
         else
