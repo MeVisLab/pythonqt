@@ -94,7 +94,6 @@
 <rejection class="QUnhandledException"/>
 <rejection class="QUrlTwoFlags"/>
 <rejection class="QVector::AlignmentDummy"/>
-<rejection class="QVersionNumber"/>
 
 <rejection class="_Alloc_allocate"/>
 <rejection class="_Allocator_base"/>
@@ -1460,6 +1459,7 @@ public:
     <modify-function signature="addData(const char*,qsizetype)" remove="all"/>
   </object-type>
   <object-type name="QLibraryInfo"/>
+  <value-type name="QVersionNumber"/>
   <object-type name="QMutex"/>
   <object-type name="QRecursiveMutex" since-version="5.14"/>
   <value-type name="QMutexLocker" before-version="6">
