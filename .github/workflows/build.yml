@@ -246,7 +246,7 @@ jobs:
            qt-version: '5.11.*'
 #           msvc-toolset: '14.16'
 
-         - qt-arch: 'win64_msvc2017_64'
+         - qt-arch: 'win64_msvc2019_64'
            python-version: '3.12'
            python-arch: 'x64'
            qt-version: '5.15.*'
