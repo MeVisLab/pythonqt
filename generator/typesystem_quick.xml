@@ -73,7 +73,14 @@
 <object-type name="QSGRectangleNode"/>
 <object-type name="QSGRenderNode"/>
 <object-type name="QSGRenderNode::RenderState"/>
-<rejection class="QSGRendererInterface"/>
+<interface-type name="QSGRendererInterface"/>
+<enum-type name="QSGRendererInterface::GraphicsApi"/>
+<rejection class="QSGRendererInterface" function-name="getResource"/>
+<enum-type name="QSGRendererInterface::ShaderType"/>
+<enum-type name="QSGRendererInterface::ShaderCompilationType" flags="QSGRendererInterface::ShaderCompilationTypes"/>
+<enum-type name="QSGRendererInterface::ShaderSourceType" flags="QSGRendererInterface::ShaderSourceTypes"/>
+<enum-type name="QSGRendererInterface::RenderMode"/>
+<rejection class="QSGRendererInterface" enum-name="Resource"/>
 
 <enum-type name="QSGImageNode::TextureCoordinatesTransformFlag"/>
 <enum-type name="QSGRenderNode::RenderingFlag"/>

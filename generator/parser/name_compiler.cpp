@@ -138,7 +138,7 @@ void NameCompiler::visitTemplateArgument(TemplateArgumentAST *node)
           q = tp.qualifiedName ();
 #endif
 
-          if (CodeModelItem item = _M_binder->model ()->findItem (q, _M_binder->currentScope ()->toItem ()))
+          if (CodeModelItem item = _M_binder->model ()->findItem (q, _M_binder->currentScope ()))
             {
               if (item->name () == q.last ())
                 q = item->qualifiedName ();

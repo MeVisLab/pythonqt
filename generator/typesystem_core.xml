@@ -94,7 +94,6 @@
 <rejection class="QUnhandledException"/>
 <rejection class="QUrlTwoFlags"/>
 <rejection class="QVector::AlignmentDummy"/>
-<rejection class="QVersionNumber"/>
 
 <rejection class="_Alloc_allocate"/>
 <rejection class="_Allocator_base"/>
@@ -1460,6 +1459,7 @@ public:
     <modify-function signature="addData(const char*,qsizetype)" remove="all"/>
   </object-type>
   <object-type name="QLibraryInfo"/>
+  <value-type name="QVersionNumber"/>
   <object-type name="QMutex"/>
   <object-type name="QRecursiveMutex" since-version="5.14"/>
   <value-type name="QMutexLocker" before-version="6">
@@ -2272,6 +2272,7 @@ public:
   <object-type name="QDeadlineTimer"/>
   <object-type name="QOperatingSystemVersionBase"/>
   <enum-type name="QOperatingSystemVersionBase::OSType"/>
+  <object-type name="QOperatingSystemVersionUnexported" since-version="6.6.3"/>
   <object-type name="QOperatingSystemVersion"/>
   <enum-type name="QOperatingSystemVersion::OSType"/>
   <object-type name="QRandomGenerator"/>

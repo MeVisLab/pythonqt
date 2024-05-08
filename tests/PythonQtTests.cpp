@@ -193,7 +193,11 @@ void PythonQtTestSlotCalling::testPODSlotCalls()
   QVERIFY(_helper->runScript("if obj.getUInt(42)==42: obj.setPassed();\n"));
   QVERIFY(_helper->runScript("if obj.getShort(-43)==-43: obj.setPassed();\n"));
   QVERIFY(_helper->runScript("if obj.getUShort(43)==43: obj.setPassed();\n"));
+#if (CHAR_MIN + 0)
   QVERIFY(_helper->runScript("if obj.getChar(-12)==-12: obj.setPassed();\n"));
+#else
+  QVERIFY(_helper->runScript("if obj.getChar(250)==250: obj.setPassed();\n"));
+#endif
   QVERIFY(_helper->runScript("if obj.getUChar(12)==12: obj.setPassed();\n"));
   QVERIFY(_helper->runScript("if obj.getLong(-256*256*256)==-256*256*256: obj.setPassed();\n"));
   QVERIFY(_helper->runScript("if obj.getULong(256*256*256)==256*256*256: obj.setPassed();\n"));

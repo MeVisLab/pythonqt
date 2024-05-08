@@ -80,7 +80,7 @@ namespace
       {
         if (!QDir(*it).exists())
         {
-          qWarning("Include path %s does not exist, ignoring it.", it->toUtf8().constData());
+          qWarning() << "Include path " << it->toUtf8() << " does not exist, ignoring it.";
           it = includes.erase(it);
         }
         else
@@ -96,7 +96,7 @@ namespace
         QString reason = "The QTDIR environment variable " + qtdir.isEmpty() ?
                          "is not set. " : "points to a non-existing directory. ";
 #if defined(Q_OS_MAC)
-        qWarning((reason + "Assuming standard binary install using frameworks.").toUtf8().constData());
+        qWarning() << reason << "Assuming standard binary install using frameworks.";
             QString frameworkDir = "/Library/Frameworks";
             includes << (frameworkDir + "/QtXml.framework/Headers");
             includes << (frameworkDir + "/QtNetwork.framework/Headers");
