@@ -348,6 +348,7 @@ jobs:
         pythonqt_generator
 
     - name: Upload Wrappers
+      if: (matrix.pythonqtall-config || '') == ''
       uses: actions/upload-artifact@v4
       with:
         name: wrappers_${{ matrix.qt-arch }}_${{ steps.versions.outputs.QT_VERSION_SHORT }}
