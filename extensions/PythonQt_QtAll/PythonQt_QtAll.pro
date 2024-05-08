@@ -27,7 +27,7 @@ isEmpty( PYTHONQTALL_CONFIG ) {
 } else {
   message("using given PythonQt_QtAll Configuration: ")
   message("  $${PYTHONQTALL_CONFIG}")
-  CONFIG += $${PYTHONQTALL_CONFIG}
+  eval(CONFIG += $${PYTHONQTALL_CONFIG})
 }
 
 TARGET   = PythonQt_QtAll-Qt$${QT_MAJOR_VERSION}-PythonXY

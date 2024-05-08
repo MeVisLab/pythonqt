@@ -246,6 +246,17 @@ jobs:
            qt-version: '5.11.*'
 #           msvc-toolset: '14.16'
 
+         - qt-arch: 'win64_msvc2019_64'
+           python-version: '3.12'
+           python-arch: 'x64'
+           qt-version: '5.15.*'
+           pythonqtall-config: 'PythonQtCore PythonQtGui PythonQtMultimedia'
+
+         - qt-arch: 'win64_msvc2017_64'
+           python-version: '3.6'
+           python-arch: 'x64'
+           qt-version: '5.11.*'
+
          - qt-arch: 'win32_mingw53'
            python-version: '3.6'
            python-arch: 'x86'
@@ -318,8 +329,8 @@ jobs:
       run: |
         qmake -query
         python --version
+        set PYTHONQTALL_CONFIG=${{ matrix.pythonqtall-config }}
         qmake CONFIG+=release CONFIG-=debug_and_release CONFIG-=debug_and_release_target ^
-           "PYTHONQTALL_CONFIG=${{ matrix.pythonqtall-config }}" ^
            "PYTHON_PATH=%pythonLocation%" ^
            "PYTHON_VERSION=${{ steps.versions.outputs.PYTHON_VERSION_SHORT }}" ^
            PythonQt.pro
@@ -337,6 +348,7 @@ jobs:
         pythonqt_generator
 
     - name: Upload Wrappers
+      if: (matrix.pythonqtall-config || '') == ''
       uses: actions/upload-artifact@v4
       with:
         name: wrappers_${{ matrix.qt-arch }}_${{ steps.versions.outputs.QT_VERSION_SHORT }}
