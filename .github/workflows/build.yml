@@ -252,11 +252,6 @@ jobs:
            qt-version: '5.15.*'
            pythonqtall-config: 'PythonQtCore PythonQtGui PythonQtMultimedia'
 
-         - qt-arch: 'win64_msvc2017_64'
-           python-version: '3.6'
-           python-arch: 'x64'
-           qt-version: '5.11.*'
-
          - qt-arch: 'win32_mingw53'
            python-version: '3.6'
            python-arch: 'x86'
