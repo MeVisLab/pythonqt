@@ -1417,10 +1417,6 @@ PyObject* constScanLine(QImage* image, int line) {
   </object-type>
 
   <object-type name="QPixmapCache">
-    <modify-function signature="find(QString)">
-        <remove/>
-    </modify-function>
-    <modify-function signature="find(QString,QPixmap*)" remove="all"/>
   </object-type>
   <object-type name="QPlastiqueStyle">
     <modify-function signature="standardPixmap(QStyle::StandardPixmap, const QStyleOption*, const QWidget*)const" remove="all"/> <!--### Obsolete in 4.3-->
