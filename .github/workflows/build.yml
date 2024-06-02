@@ -159,9 +159,8 @@ jobs:
     runs-on: macos-${{ matrix.macos-version }}
     steps:
     - name: Install Qt
-      uses: jurplel/install-qt-action@v3
+      uses: jurplel/install-qt-action@v4
       with:
-        aqtversion: '==2.1.*'
         version: ${{ matrix.qt-version }}
         host: 'mac'
         target: 'desktop'
@@ -183,7 +182,7 @@ jobs:
         set -eu
         PYTHON_VERSION_FULL=$(python --version 2>&1 | cut -f 2 -d ' ')
         PYTHON_VERSION_SHORT=$(cut -f 1,2 -d . <<< $PYTHON_VERSION_FULL)
-        QT_VERSION_FULL=$($Qt5_Dir/bin/qmake -query QT_VERSION)
+        QT_VERSION_FULL=$($QT_ROOT_DIR/bin/qmake -query QT_VERSION)
         QT_VERSION_SHORT=$(cut -f 1,2 -d . <<< $QT_VERSION_FULL)
         MACOS_VERSION_FULL=$(sw_vers -productVersion)
         MACOS_VERSION_SHORT=$(cut -f 1,2 -d . <<< $MACOS_VERSION_FULL)
@@ -221,7 +220,7 @@ jobs:
         cd generator
         # workaround to allow to find the Qt include dirs for installed standard qt packages
         UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
-        QTDIR=-UNDEFINED- ./pythonqt_generator --qt-version=${{ steps.versions.outputs.QT_VERSION_FULL }} --include-paths=$Qt5_Dir/lib
+        QTDIR=-UNDEFINED- ./pythonqt_generator --qt-version=${{ steps.versions.outputs.QT_VERSION_FULL }} --include-paths=$QT_ROOT_DIR/lib
 
     - name: Upload Wrappers
       uses: actions/upload-artifact@v4
@@ -281,9 +280,8 @@ jobs:
         arch: amd64${{ contains(matrix.python-arch, 'x86') && '_x86' || '' }}
 
     - name: Install Qt
-      uses: jurplel/install-qt-action@v3
+      uses: jurplel/install-qt-action@v4
       with:
-        aqtversion: '==2.1.*'
         version: ${{ matrix.qt-version }}
         host: 'windows'
         target: 'desktop'
@@ -303,21 +301,13 @@ jobs:
       id: versions
       run: |
         set -eu
-        QT_VERSION_FULL=$("$Qt5_Dir/bin/qmake" -query QT_VERSION)
+        QT_VERSION_FULL=$("$QT_ROOT_DIR/bin/qmake" -query QT_VERSION)
         QT_VERSION_SHORT=$(cut -f 1,2 -d . <<< $QT_VERSION_FULL)
         PYTHON_VERSION_FULL=$(python --version 2>&1 | cut -f 2 -d ' ')
         PYTHON_VERSION_SHORT=$(cut -f 1,2 -d . <<< $PYTHON_VERSION_FULL)
         echo "QT_VERSION_FULL=$QT_VERSION_FULL" | tee -a $GITHUB_OUTPUT
         echo "QT_VERSION_SHORT=$QT_VERSION_SHORT" | tee -a $GITHUB_OUTPUT
         echo "PYTHON_VERSION_SHORT=$PYTHON_VERSION_SHORT" | tee -a $GITHUB_OUTPUT
-
-    - name: Add Qt and MinGW to PATH
-      shell: cmd
-      run: |
-        set "ADDPATH=%Qt5_Dir%\bin"
-        ${{ contains(matrix.qt-arch, 'mingw') && format('FOR /F "tokens=1,2 delims=_" %%I IN ("{0}") DO SET "ADDPATH=%ADDPATH%;%IQTA_TOOLS%\%%J0_{1}\bin', matrix.qt-arch, contains(matrix.qt-arch, 'win32') && '32' || '64') || '' }}
-        echo PATH=%ADDPATH%;%PATH% >> %GITHUB_ENV%
-        echo CL=/MP >> $GITHUB_ENV
 
     - name: Build PythonQt
       shell: cmd
@@ -333,13 +323,13 @@ jobs:
         set PYTHONASYNCIODEBUG=1
         set PYTHONWARNINGS=error
         mingw32-make -j 2 && mingw32-make check "TESTARGS=-platform offscreen" ^
-          || nmake && nmake check "TESTARGS=-platform offscreen"
+          || set CL=/MP && nmake && nmake check "TESTARGS=-platform offscreen"
 
     - name: Generate Wrappers
       shell: cmd
       run: |
         cd generator
-        set QTDIR=%Qt5_Dir%
+        set QTDIR=%QT_ROOT_DIR%
         pythonqt_generator
 
     - name: Upload Wrappers
