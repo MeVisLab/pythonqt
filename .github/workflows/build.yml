@@ -159,7 +159,7 @@ jobs:
     runs-on: macos-${{ matrix.macos-version }}
     steps:
     - name: Install Qt
-      uses: jurplel/install-qt-action@v3
+      uses: jurplel/install-qt-action@v4
       with:
         aqtversion: '==2.1.*'
         version: ${{ matrix.qt-version }}
@@ -281,7 +281,7 @@ jobs:
         arch: amd64${{ contains(matrix.python-arch, 'x86') && '_x86' || '' }}
 
     - name: Install Qt
-      uses: jurplel/install-qt-action@v3
+      uses: jurplel/install-qt-action@v4
       with:
         aqtversion: '==2.1.*'
         version: ${{ matrix.qt-version }}
