@@ -133,8 +133,8 @@ Qt framework</a>.
  - Python 2 (>= Python 2.7)
  - Python 3 (>= Python 3.6)
  - Qt 4.x (Qt 4.7 and Qt 4.8 recommended) (not in the master branch, see below)
- - Qt 5.x (Tested with Qt 5.0, 5.3, 5.4, 5.6, 5.11, 5.12 and 5.15)
- - Qt 6.x (Tested with Qt 6.5 and 6.6) - support may not be complete, support for optional modules may be added as needed
+ - Qt 5.x (Tested with Qt 5.6, 5.11, 5.12 and 5.15)
+ - Qt 6.x (Tested with Qt 6.5 - 6.7) - support may not be complete, support for optional modules may be added as needed
 
  The last working Qt4 version is available at svn branches/Qt4LastWorkingVersion or you can download the PythonQt 3.0 release.
  The current git master branch no longer supports Qt4, since we started to make use of some Qt5-only features.
