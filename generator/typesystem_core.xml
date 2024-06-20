@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <typesystem package="com.trolltech.qt.Core">
-  
+
   <rejection class="QSysInfo" enum-name="WinVersion"/>
   <rejection class="QSysInfo" enum-name="MacVersion"/>
 
@@ -14,7 +14,7 @@
   <rejection class="QSystemLocale"/>
   <rejection class="QFutureWatcherBase"/>
   <rejection class="QFutureSynchronizer"/>
-    
+
     <rejection class="QAbstractConcatenable"/>
 <rejection class="QAbstractNativeEventFilter"/>
 <rejection class="QAbstractOpenGLFunctions"/>
@@ -179,7 +179,7 @@
   <primitive-type name="GLvoid"/>
   <primitive-type name="GLboolean"/>
   <primitive-type name="GLuint64"/>
-  
+
   <primitive-type name="bool"/>
   <primitive-type name="double"/>
   <primitive-type name="qreal"/>
@@ -219,7 +219,7 @@
   <primitive-type name="qintptr"/>
   <primitive-type name="qptrdiff"/>
   <primitive-type name="qsizetype"/>
-  
+
   <rejection class="qfloat16"/>  <!-- only used in QRgbaFloat template and QCborStreamReader/Writer so far -->
 
   <value-type name="QModelIndex"/>
@@ -718,6 +718,7 @@
   <rejection class="QProcess" function-name="pid"/>
   <rejection class="QProcess" function-name="setInheritHandles"/>
   <rejection class="QProcess" function-name="inheritHandles"/>
+  <rejection class="QProcess" function-name="failChildProcessModifier"/>
   <rejection class="QRegion" function-name="cleanUp"/>
   <rejection class="QSettings" function-name="registerFormat"/>
   <rejection class="QVector" function-name="back"/>
@@ -744,7 +745,7 @@
   <rejection class="QAbstractFileEngineIterator" enum-name="EntryInfoType"/>
 
   <namespace-type name="Qt">
-  
+
     <extra-includes>
         <include file-name="QTextDocument" location="global"/>
     </extra-includes>
@@ -778,7 +779,7 @@
   <enum-type name="QSharedMemory::AccessMode"/>
   <enum-type name="QSharedMemory::SharedMemoryError"/>
   <enum-type name="QElapsedTimer::ClockType"/>
-  
+
   <enum-type name="QtMsgType">
   </enum-type>
 
@@ -909,7 +910,7 @@
 
   <enum-type name="QtConcurrent::ReduceOption" flags="QtConcurrent::ReduceOptions"/>
   <enum-type name="QtConcurrent::ThreadFunctionResult"/>
- 
+
 
   <enum-type name="QCoreApplication::Encoding">
   </enum-type>
@@ -983,7 +984,7 @@ public:
     </inject-code>
   </value-type>
   <value-type name="QCalendar::YearMonthDay" since-version="5.14"/>
-  
+
   <value-type name="QDateTime">
     <modify-function signature="operator=(QDateTime)" remove="all"/>
   </value-type>
@@ -999,18 +1000,18 @@ public:
   </value-type>
 
   <value-type name="QPoint">
-    <modify-function signature="rx()" remove="all"/> 
-    <modify-function signature="ry()" remove="all"/> 
+    <modify-function signature="rx()" remove="all"/>
+    <modify-function signature="ry()" remove="all"/>
   </value-type>
   <value-type name="QPointF">
-    <modify-function signature="rx()" remove="all"/> 
-    <modify-function signature="ry()" remove="all"/> 
+    <modify-function signature="rx()" remove="all"/>
+    <modify-function signature="ry()" remove="all"/>
   </value-type>
   <enum-type name="QLineF::IntersectType"/>
   <enum-type name="QLineF::IntersectionType"/>
   <value-type name="QLineF"/>
   <value-type name="QLine"/>
- 
+
   <value-type name="QRect">
     <modify-function signature="getCoords(int*,int*,int*,int*)const">
       <remove/>
@@ -1088,11 +1089,15 @@ public:
     <modify-function signature="toUInt(QString,bool*,int)const" remove="all"/>
     <modify-function signature="toULongLong(QString,bool*,int)const" remove="all"/>
     <modify-function signature="operator=(QLocale)" remove="all"/>
-  
+
     <extra-includes>
         <include file-name="QDate" location="global"/>
     </extra-includes>
 
+    <inject-code class="pywrap-h" since-version="6.7">
+public:
+    const static int DefaultTwoDigitBaseYear = QLocale::DefaultTwoDigitBaseYear;
+    </inject-code>
   </value-type>
 
 
@@ -1109,7 +1114,7 @@ public:
     <modify-function signature="operator^=(QBitArray)" access="private"/>
     <modify-function signature="operator|=(QBitArray)" access="private"/>
     <modify-function signature="operator~()const" access="private"/>
-  
+
     <modify-function signature="operator&amp;=(QBitArray)">
       <modify-argument index="0" replace-value="this"/>
     </modify-function>
@@ -1237,7 +1242,7 @@ public:
     <modify-function signature="operator=(QByteArray)" access="private"/>
     <modify-function signature="operator+=(QString)" remove="all"/>
     <modify-function signature="operator+=(char)" remove="all"/>
-  
+
     <inject-code class="pywrap-h">
   PyObject* data(QByteArray* b) {
     return PyBytes_FromStringAndSize(b-&gt;data(), b-&gt;size());
@@ -1436,7 +1441,7 @@ public:
     <!-- Can't provide same API and performance -->
     <modify-function signature="unmap(unsigned char*)" remove="all"/>
     <!-- Can't provide same API and performance -->
-  
+
     <modify-function signature="open(int,QFlags&lt;QIODevice::OpenModeFlag&gt;)" remove="all" before-version="6"/>
     <modify-function signature="open(int,QFlags&lt;QIODeviceBase::OpenModeFlag&gt;,QFlags&lt;QFileDevice::FileHandleFlag&gt;)" remove="all" since-version="6"/>
     <modify-function signature="decodeName(const char*)" remove="all"/>
@@ -1621,14 +1626,14 @@ public:
         <define-ownership owner="c++"/>
       </modify-argument>
     </modify-function>
-    
+
     <modify-function signature="argv()" remove="all"/>
     <!-- Obsolete -->
     <modify-function signature="argc()" remove="all"/>
     <!-- Obsolete -->
 
     <modify-function signature="QCoreApplication(int &amp;, char  **, int)" remove="all"/>
-  
+
     <modify-function signature="QCoreApplication(int &amp;, char **)" remove="all"/>
   </object-type>
 
@@ -1654,7 +1659,7 @@ public:
 
   <object-type name="QSignalBlocker"/>
   <object-type name="QStorageInfo"/>
-    
+
   <object-type name="QDataStream">
     <extra-includes>
       <include file-name="PythonQtConversion.h" location="global"/>
@@ -1701,28 +1706,28 @@ public:
     <modify-function signature="writeBytes(const char*,uint)">
       <remove/>
     </modify-function>
-  
+
       <modify-function signature="operator&gt;&gt;(signed char&amp;)" remove="all"/>
       <modify-function signature="operator&lt;&lt;(signed char)" remove="all"/>
 
-      <modify-function signature="operator&lt;&lt;(bool)" remove="all"/> 
-      <modify-function signature="operator&lt;&lt;(unsigned char)" remove="all"/> 
-      <modify-function signature="operator&lt;&lt;(int)" remove="all"/> 
-      <modify-function signature="operator&lt;&lt;(qint64)" remove="all"/> 
-      <modify-function signature="operator&lt;&lt;(float)" remove="all"/> 
-      <modify-function signature="operator&lt;&lt;(double)" remove="all"/> 
-      <modify-function signature="operator&lt;&lt;(short)" remove="all"/> 
+      <modify-function signature="operator&lt;&lt;(bool)" remove="all"/>
+      <modify-function signature="operator&lt;&lt;(unsigned char)" remove="all"/>
+      <modify-function signature="operator&lt;&lt;(int)" remove="all"/>
+      <modify-function signature="operator&lt;&lt;(qint64)" remove="all"/>
+      <modify-function signature="operator&lt;&lt;(float)" remove="all"/>
+      <modify-function signature="operator&lt;&lt;(double)" remove="all"/>
+      <modify-function signature="operator&lt;&lt;(short)" remove="all"/>
 
-      <modify-function signature="operator&gt;&gt;(bool &amp;)" remove="all"/> 
-      <modify-function signature="operator&gt;&gt;(unsigned char &amp;)" remove="all"/>   
-      <modify-function signature="operator&gt;&gt;(int &amp;)" remove="all"/> 
-      <modify-function signature="operator&gt;&gt;(uint &amp;)" remove="all"/> 
-      <modify-function signature="operator&gt;&gt;(qint64 &amp;)" remove="all"/> 
-      <modify-function signature="operator&gt;&gt;(unsigned long long &amp;)" remove="all"/> 
-      <modify-function signature="operator&gt;&gt;(float &amp;)" remove="all"/> 
-      <modify-function signature="operator&gt;&gt;(double &amp;)" remove="all"/> 
-      <modify-function signature="operator&gt;&gt;(short &amp;)" remove="all"/> 
-      <modify-function signature="operator&gt;&gt;(unsigned short &amp;)" remove="all"/> 
+      <modify-function signature="operator&gt;&gt;(bool &amp;)" remove="all"/>
+      <modify-function signature="operator&gt;&gt;(unsigned char &amp;)" remove="all"/>
+      <modify-function signature="operator&gt;&gt;(int &amp;)" remove="all"/>
+      <modify-function signature="operator&gt;&gt;(uint &amp;)" remove="all"/>
+      <modify-function signature="operator&gt;&gt;(qint64 &amp;)" remove="all"/>
+      <modify-function signature="operator&gt;&gt;(unsigned long long &amp;)" remove="all"/>
+      <modify-function signature="operator&gt;&gt;(float &amp;)" remove="all"/>
+      <modify-function signature="operator&gt;&gt;(double &amp;)" remove="all"/>
+      <modify-function signature="operator&gt;&gt;(short &amp;)" remove="all"/>
+      <modify-function signature="operator&gt;&gt;(unsigned short &amp;)" remove="all"/>
 
       <inject-code class="pywrap-h">
    QString readQString(QDataStream* d) { QString r; (*d) &gt;&gt; r; return r; }
@@ -1856,38 +1861,38 @@ public:
       <remove/>
     </modify-function>
 
-      <modify-function signature="operator&lt;&lt;(QBool)"> 
-          <rename to="writeBoolean"/> 
+      <modify-function signature="operator&lt;&lt;(QBool)">
+          <rename to="writeBoolean"/>
           <modify-argument index="0" replace-value="this"/>
       </modify-function>
-      <modify-function signature="operator&lt;&lt;(char)">  
+      <modify-function signature="operator&lt;&lt;(char)">
           <modify-argument index="0" replace-value="this"/>
-          <rename to="writeByte"/> 
+          <rename to="writeByte"/>
       </modify-function>
       <modify-function signature="operator&lt;&lt;(signed int)">
-          <rename to="writeInt"/>  
+          <rename to="writeInt"/>
           <modify-argument index="0" replace-value="this"/>
       </modify-function>
       <modify-function signature="operator&lt;&lt;(qlonglong)">
-          <rename to="writeLongLong"/> 
+          <rename to="writeLongLong"/>
           <modify-argument index="0" replace-value="this"/>
       </modify-function>
-      <modify-function signature="operator&lt;&lt;(float)"> 
-          <rename to="writeFloat"/>  
+      <modify-function signature="operator&lt;&lt;(float)">
+          <rename to="writeFloat"/>
           <modify-argument index="0" replace-value="this"/>
       </modify-function>
-      <modify-function signature="operator&lt;&lt;(double)"> 
-          <rename to="writeDouble"/>  
+      <modify-function signature="operator&lt;&lt;(double)">
+          <rename to="writeDouble"/>
           <modify-argument index="0" replace-value="this"/>
-      </modify-function> 
+      </modify-function>
       <modify-function signature="operator&lt;&lt;(signed short)">
-          <rename to="writeShort"/>  
+          <rename to="writeShort"/>
           <modify-argument index="0" replace-value="this"/>
       </modify-function>
       <modify-function signature="operator&lt;&lt;(const QByteArray&amp;)">
           <rename to="writeByteArray"/>
           <modify-argument index="0" replace-value="this"/>
-      </modify-function>   
+      </modify-function>
       <modify-function signature="operator&lt;&lt;(const QString&amp;)">
           <rename to="writeString"/>
           <modify-argument index="0" replace-value="this"/>
@@ -1921,8 +1926,8 @@ public:
           <rename to="readDouble"/>
       </modify-function>
 
-      <modify-function signature="operator&lt;&lt;(qulonglong)" remove="all"/> 
-      <modify-function signature="operator&gt;&gt;(qulonglong&amp;)" remove="all"/> 
+      <modify-function signature="operator&lt;&lt;(qulonglong)" remove="all"/>
+      <modify-function signature="operator&gt;&gt;(qulonglong&amp;)" remove="all"/>
   </object-type>
 
   <object-type name="QSystemSemaphore"/>
@@ -1967,14 +1972,14 @@ public:
   <object-type name="QMetaObject"/>
   <object-type name="QMetaMethod"/>
   <object-type name="QMetaEnum">
-    <modify-function signature="fromType()" remove="all"/> 
+    <modify-function signature="fromType()" remove="all"/>
   </object-type>
   <object-type name="QMetaProperty"/>
   <object-type name="QMetaClassInfo"/>
   <object-type name="QElapsedTimer"/>
   <object-type name="QMetaType">
     <!-- Qt 5 templates that need to be removed: -->
-    <modify-function signature="hasRegisteredConverterFunction()" remove="all"/> 
+    <modify-function signature="hasRegisteredConverterFunction()" remove="all"/>
     <modify-function signature="hasRegisteredDebugStreamOperator()" remove="all"/>
     <modify-function signature="hasRegisteredComparators()" remove="all"/>
     <modify-function signature="registerEqualsComparator()" remove="all"/>
@@ -1985,31 +1990,31 @@ public:
 
   <!-- Don't know if QCborNegativeInteger can be sensibly supported in Python: -->
   <rejection enum-name="QCborNegativeInteger" since-version="5.12"/>
-  
+
   <object-type name="QCborStreamWriter" since-version="5.12">
-    <modify-function signature="append(QCborTag)" remove="all"/> 
-    <modify-function signature="append(const char*,qsizetype)" remove="all"/> 
-    <modify-function signature="QCborStreamWriter(const QCborStreamWriter&amp;)" remove="all"/> 
-    <modify-function signature="operator=(const QCborStreamWriter&amp;)" remove="all"/> 
+    <modify-function signature="append(QCborTag)" remove="all"/>
+    <modify-function signature="append(const char*,qsizetype)" remove="all"/>
+    <modify-function signature="QCborStreamWriter(const QCborStreamWriter&amp;)" remove="all"/>
+    <modify-function signature="operator=(const QCborStreamWriter&amp;)" remove="all"/>
   </object-type>
   <object-type name="QCborStreamReader" since-version="5.12">
-    <modify-function signature="readByteArray()" remove="all"/> 
-    <modify-function signature="readString()" remove="all"/> 
-    <modify-function signature="readStringChunk(char*,qsizetype)" remove="all"/> 
-    <modify-function signature="toTag()const" remove="all"/> 
-    <modify-function signature="QCborStreamReader(const QCborStreamReader&amp;)" remove="all"/> 
-    <modify-function signature="operator=(const QCborStreamReader&amp;)" remove="all"/> 
+    <modify-function signature="readByteArray()" remove="all"/>
+    <modify-function signature="readString()" remove="all"/>
+    <modify-function signature="readStringChunk(char*,qsizetype)" remove="all"/>
+    <modify-function signature="toTag()const" remove="all"/>
+    <modify-function signature="QCborStreamReader(const QCborStreamReader&amp;)" remove="all"/>
+    <modify-function signature="operator=(const QCborStreamReader&amp;)" remove="all"/>
     <inject-code class="pywrap-h">
   QByteArray readByteArray(QCborStreamReader* theWrappedObject) {
     auto result = theWrappedObject->readByteArray();
     return result.status == QCborStreamReader::Ok ? result.data : QByteArray();
   }
-    
+
   QString readString(QCborStreamReader* theWrappedObject) {
     auto result = theWrappedObject->readString();
     return result.status == QCborStreamReader::Ok ? result.data : QString();
   }
-    
+
   qint64 toTag(QCborStreamReader* theWrappedObject) const {
     return static_cast&lt;qint64&gt;(theWrappedObject->toTag());
   }
@@ -2023,7 +2028,7 @@ public:
   QCborValue* new_QCborValue(qint64  tag, const QCborValue&amp; taggedValue) {
     return new QCborValue(QCborTag(tag), taggedValue);
   }
-  
+
   qint64 tag(QCborValue* theWrappedObject, qint64 defaultValue) const {
     return static_cast&lt;qint64&gt;(theWrappedObject->tag(QCborTag(defaultValue)));
   }
@@ -2281,7 +2286,7 @@ public:
   <object-type name="QHashSeed" since-version="6.2">
     <modify-function signature="operator size_t()const" remove="all"/>
   </object-type>
-  
+
   <enum-type name="QCommandLineOption::Flag"/>
   <enum-type name="QFileDevice::FileTime"/>
   <enum-type name="QLocale::DataSizeFormat"/>

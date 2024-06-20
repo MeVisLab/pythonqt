@@ -5,7 +5,7 @@ on:
     branches: 
        - master
   pull_request:
-      
+
 defaults:
   run:
     shell: bash
@@ -16,7 +16,7 @@ jobs:
       fail-fast: false
       matrix:
         os: ['ubuntu', 'windows']
-        qt-version: [ '5.12.*', '5.15.*', '6.5.*' ]
+        qt-version: [ '5.12.*', '5.15.*', '6.7.*' ]
         python-version: [ '3.12' ]
     runs-on: ${{ matrix.os }}-latest
     steps:
@@ -30,10 +30,10 @@ jobs:
     - name: Install Qt ${{matrix.qt-version}}
       uses: jurplel/install-qt-action@v4
       with:
-        version: ${{ matrix.qt-version }}
+        # 6.7.* currently does not work with ubuntu with this action
+        version: ${{ matrix.os == 'ubuntu' && matrix.qt-version == '6.7.*' && '6.6.*' || matrix.qt-version }}
         modules: ${{startsWith(matrix.qt-version, '6') && 'qt5compat qtscxml qtpositioning qtwebchannel qtmultimedia qtwebengine' || '' }}
         arch: ${{ matrix.os == 'ubuntu' && 'gcc_64' || (startsWith(matrix.qt-version, '5.12') && 'win64_msvc2017_64' || 'win64_msvc2019_64') }}
-        archives: "qtmultimedia qtbase qttools qtdeclarative ${{ matrix.os == 'windows' && 'qtwinextras' || 'qtlinuxextras qtwayland icu' }}"
 
     - name: Setup Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
@@ -117,4 +117,3 @@ jobs:
         set PYTHONASYNCIODEBUG=1
         set PYTHONWARNINGS=error
         nmake && nmake check "TESTARGS=-platform offscreen"
-          
