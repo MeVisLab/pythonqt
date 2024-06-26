@@ -219,7 +219,8 @@
   <primitive-type name="qintptr"/>
   <primitive-type name="qptrdiff"/>
   <primitive-type name="qsizetype"/>
-
+  <primitive-type name="Qt::Disambiguated_t"/>
+  
   <rejection class="qfloat16"/>  <!-- only used in QRgbaFloat template and QCborStreamReader/Writer so far -->
 
   <value-type name="QModelIndex"/>
