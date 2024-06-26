@@ -56,6 +56,10 @@
   <object-type name="QWebEngineQuotaRequest" since-version="5.11"/>
   <object-type name="QWebEngineRegisterProtocolHandlerRequest" since-version="5.11"/>
 
+  <object-type name="QWebEngineDesktopMediaRequest" since-version="6.7"/>
+  <object-type name="QWebEngineWebAuthPinRequest" since-version="6.7"/>
+  <object-type name="QWebEngineWebAuthUxRequest" since-version="6.7"/>
+
   <enum-type name="QWebEngineCertificateError::Error"/>
   <enum-type name="QWebEngineDownloadItem::DownloadState"/>
   <enum-type name="QWebEnginePage::Feature"/>
