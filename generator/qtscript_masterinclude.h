@@ -124,6 +124,7 @@
 // don't need this:
 #define Q_REVISION(v)
 #define Q_DECLARE_OPERATORS_FOR_FLAGS(x)
+#define Q_GADGET_EXPORT(x)
 
 #include <QtCore/QMetaType>
 
