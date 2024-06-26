@@ -1173,7 +1173,7 @@ bool Parser::parseSimpleTypeSpecifier(TypeSpecifierAST *&node,
             {
               ast->type_id = 0;
               rewind(saved);
-              parseConditionalExpression(ast->expression);
+              parseCommaExpression(ast->expression);
             }
           ADVANCE(')', ")");
         }
