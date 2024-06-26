@@ -292,6 +292,19 @@ void Binder::declare_symbol(SimpleDeclarationAST *node, InitDeclaratorAST *init_
       applyStorageSpecifiers(node->storage_specifiers, fun.staticCast<_MemberModelItem>());
       applyFunctionSpecifiers(node->function_specifiers, fun);
       
+      if (hasFriendSpecifier(node->storage_specifiers))
+      {
+        // check if this function declaration is a "friend" function.
+        // In this case we modify the scope, and remove the "friend" flag.
+        // This is for functions/operators that are only defined as friend
+        // inside of classes.
+        symbolScope = _M_current_file.staticCast<_ScopeModelItem>();
+        // unset the friend flag, as we treat this like a stand-alone function definition
+        fun->setFriend(false);
+        // also set the access policy to public, just in case
+        fun->setAccessPolicy(CodeModel::Public);
+      }
+
       if (const ListNode<InitDeclaratorAST*> *it = node->init_declarators)
       {
         it = it->toFront();
@@ -367,9 +380,9 @@ void Binder::visitFunctionDefinition(FunctionDefinitionAST *node)
   ScopeModelItem scope = currentScope();
   bool friendWithDefinition = false;
 
-  if (hasFriendSpecifier(node->storage_specifiers) && ast_cast<FunctionDefinitionAST*>(node))
+  if (hasFriendSpecifier(node->storage_specifiers))
     {
-      // check if this function declaration is a "friend" function with implementation body.
+      // check if this function declaration is a "friend" function.
       // In this case we modify the scope, and remove the "friend" flag later on.
       friendWithDefinition = true;
       scope = _M_current_file.staticCast<_ScopeModelItem>();
