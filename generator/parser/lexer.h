@@ -232,8 +232,12 @@ private:
   void scan_identifier_or_keyword();
   void scan_identifier_or_literal();
   void scan_int_constant();
-  void scan_char_constant();
-  void scan_string_constant();
+  void scan_char_constant() { scan_char_constant_with_prefix(nullptr); }
+  void scan_string_constant() { scan_string_constant_with_prefix(nullptr); }
+  // the _with_prefix variants take the start of an optional prefix (e.g., the R in R"")
+  void scan_char_constant_with_prefix(const unsigned char* prefix);
+  void scan_string_constant_with_prefix(const unsigned char* prefix);
+  void scan_raw_string_constant_with_prefix(const unsigned char* prefix);
   void scan_invalid_input();
   void scan_preprocessor();
 
