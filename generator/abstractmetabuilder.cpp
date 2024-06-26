@@ -324,12 +324,12 @@ void AbstractMetaBuilder::traverseStreamOperator(FunctionModelItem item)
     }
 }
 
-void AbstractMetaBuilder::traverseBinaryArithmeticOperator(FunctionModelItem item)
+void AbstractMetaBuilder::traverseArithmeticOperator(FunctionModelItem item)
 {
   ArgumentList arguments = item->arguments();
-  if (arguments.size() == 2 && item->accessPolicy() == CodeModel::Public) {
+  if ((arguments.size() == 1 || arguments.size() == 2) && item->accessPolicy() == CodeModel::Public) {
     AbstractMetaClass *aClass = argumentToClass(arguments.at(0));
-    AbstractMetaClass *bClass = argumentToClass(arguments.at(1));
+    AbstractMetaClass *bClass = arguments.size() == 2 ? argumentToClass(arguments.at(1)) : nullptr;
 
     if (!aClass) return;
 
@@ -597,9 +597,10 @@ bool AbstractMetaBuilder::build()
           m_dom->findFunctions("operator+") + m_dom->findFunctions("operator-")
         + m_dom->findFunctions("operator/") + m_dom->findFunctions("operator*")
         + m_dom->findFunctions("operator&") + m_dom->findFunctions("operator|")
-        + m_dom->findFunctions("operator%") + m_dom->findFunctions("operator^");
+        + m_dom->findFunctions("operator%") + m_dom->findFunctions("operator^")
+        + m_dom->findFunctions("operator!") + m_dom->findFunctions("operator~");
       for (FunctionModelItem item :  stream_operators) {
-        traverseBinaryArithmeticOperator(item);
+        traverseArithmeticOperator(item);
       }
     }
     {
