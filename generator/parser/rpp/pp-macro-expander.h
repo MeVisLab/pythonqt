@@ -404,8 +404,8 @@ public:
   {
     InputIterator arg_end = skip_argument (_first, _last);
 
-    while (_macro->is.variadics && _first != arg_end && arg_end != _last && *arg_end == ','
-        && (_actuals.size () + 1) == _macro->formals.size ())
+    while (_macro->is.variadics && arg_end != _last && *arg_end == ','
+        && _actuals.size () == _macro->formals.size ())
       {
         arg_end = skip_argument (++arg_end, _last);
       }
