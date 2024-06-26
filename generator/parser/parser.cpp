@@ -2363,6 +2363,8 @@ bool Parser::parseEnumerator(EnumeratorAST *&node)
   EnumeratorAST *ast = CreateNode<EnumeratorAST>(_M_pool);
   ast->id = id;
 
+  skipAttributes();
+
   if (token_stream.lookAhead() == '=')
     {
       nextToken();
