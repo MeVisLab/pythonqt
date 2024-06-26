@@ -1094,9 +1094,19 @@ bool AbstractMetaClass::hasDefaultToStringFunction() const
     return false;
 }
 
-void AbstractMetaClass::addFunction(AbstractMetaFunction *function)
+void AbstractMetaClass::addFunction(AbstractMetaFunction *function, bool check_duplicates)
 {
     function->setOwnerClass(this);
+
+    if (check_duplicates) {
+        for (const auto f : m_functions) {
+            if (f->name() == function->name() &&
+                f->minimalSignature() == function->minimalSignature())
+            {
+                return;
+            }
+        }
+    }
 
     if (!function->isDestructor()) {
         m_functions << function;

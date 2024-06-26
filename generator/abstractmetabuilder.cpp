@@ -315,7 +315,7 @@ void AbstractMetaBuilder::traverseStreamOperator(FunctionModelItem item)
 
                 setupFunctionDefaults(streamFunction, streamedClass);
 
-                streamedClass->addFunction(streamFunction);
+                streamedClass->addFunction(streamFunction, /*check_duplicates=*/true);
                 streamedClass->typeEntry()->addExtraInclude(streamClass->typeEntry()->include());
 
                 m_current_class = old_current_class;
@@ -354,7 +354,7 @@ void AbstractMetaBuilder::traverseArithmeticOperator(FunctionModelItem item)
 
       setupFunctionDefaults(streamFunction, aClass);
 
-      aClass->addFunction(streamFunction);
+      aClass->addFunction(streamFunction, /*check_duplicates=*/true);
       if (bClass) {
         aClass->typeEntry()->addExtraInclude(bClass->typeEntry()->include());
       }
