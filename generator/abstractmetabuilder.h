@@ -95,7 +95,7 @@ public:
     void traverseFields(ScopeModelItem item, AbstractMetaClass *parent);
     void traverseStreamOperator(FunctionModelItem function_item);
     void traverseCompareOperator(FunctionModelItem item);
-    void traverseBinaryArithmeticOperator(FunctionModelItem item);
+    void traverseArithmeticOperator(FunctionModelItem item);
     
     //! remove functions/methods that are overloads with equivalent parameter types
     //! when called from Python
