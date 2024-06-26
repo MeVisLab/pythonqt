@@ -73,6 +73,36 @@
 #   undef Q_CLANG_QDOC
 #endif
 
+
+#if QT_VERSION >= 0x060700
+// override Q_DECLARE_STRONGLY_ORDERED_LITERAL_TYPE et al to return something the parser understands:
+#include <QtCore/qcomparehelpers.h>
+#define Q_DECLARE_STRONGLY_ORDERED_LITERAL_TYPE(TYPE) \
+    friend bool operator==(const TYPE& lhs, const TYPE& rhs); \
+    friend bool operator!=(const TYPE& lhs, const TYPE& rhs); \
+    friend bool operator< (const TYPE& lhs, const TYPE& rhs); \
+    friend bool operator<=(const TYPE& lhs, const TYPE& rhs); \
+    friend bool operator> (const TYPE& lhs, const TYPE& rhs); \
+    friend bool operator>=(const TYPE& lhs, const TYPE& rhs);
+
+#define Q_DECLARE_WEAKLY_ORDERED_LITERAL_TYPE(TYPE) Q_DECLARE_STRONGLY_ORDERED_LITERAL_TYPE(TYPE)
+#define Q_DECLARE_PARTIALLY_ORDERED_LITERAL_TYPE(TYPE) Q_DECLARE_STRONGLY_ORDERED_LITERAL_TYPE(TYPE)
+
+#define Q_DECLARE_STRONGLY_ORDERED(TYPE) Q_DECLARE_STRONGLY_ORDERED_LITERAL_TYPE(TYPE)
+#define Q_DECLARE_WEAKLY_ORDERED(TYPE) Q_DECLARE_STRONGLY_ORDERED_LITERAL_TYPE(TYPE)
+#define Q_DECLARE_PARTIALLY_ORDERED Q_DECLARE_STRONGLY_ORDERED_LITERAL_TYPE(TYPE)
+
+#define Q_DECLARE_EQUALITY_COMPARABLE_LITERAL_TYPE(TYPE) \
+  public: \
+    bool operator==(const TYPE& rhs) const; \
+    bool operator!=(const TYPE& rhs) const; \
+  private:
+
+#define Q_DECLARE_EQUALITY_COMPARABLE(TYPE) Q_DECLARE_EQUALITY_COMPARABLE_LITERAL_TYPE(TYPE)
+ 
+#endif
+
+
 // it seems this can be safely ignored (otherwise generator currently stumbles over use of noexcept):
 #define Q_DECLARE_SHARED(TYPE)
 #define Q_DECLARE_SHARED_NOT_MOVABLE_UNTIL_QT6(TYPE)
