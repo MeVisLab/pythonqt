@@ -621,8 +621,13 @@ InputIterator pp::handle_define (InputIterator _first, InputIterator _last)
   while (_first != _last && *_first != '\n')
     {
       if (*_first == '/') {
+          const InputIterator _before = _first;
           _first = skip_comment(_first, _last);
           env.current_line += skip_comment.lines;
+          if (_first != _before) {
+              // do not indiscriminately add the character after comment
+              continue;
+          }
       }
 
       if (*_first == '\\')
