@@ -18,6 +18,8 @@
 <rejection class="QQuickImageResponse"/>
 <rejection class="QQuickAsyncImageProvider"/>
 <!-- end -->
+<rejection class="QQuickRhiItem" since-version="6.7"/>  <!-- rest of QRhi API currently not available -->
+<rejection class="QQuickRhiItemRenderer" since-version="6.7"/>  <!-- rest of QRhi API currently not available -->
 
   <object-type name="QQuickAsyncImageProvider"></object-type>
   <object-type name="QQuickFramebufferObject"></object-type>
@@ -57,6 +59,9 @@
 <object-type name="QSGTextureMaterial"></object-type>
 <object-type name="QSGTextureProvider"></object-type>
 <object-type name="QSGTransformNode"></object-type>
+<object-type name="QSGTextNode" create-shell="no" since-version="6.7"/>
+<enum-type name="QSGTextNode::RenderType" since-version="6.7"/>
+<enum-type name="QSGTextNode::TextStyle" since-version="6.7"/>
 
 <object-type name="QSGGeometry::Attribute"></object-type>
 <object-type name="QSGGeometry::AttributeSet"></object-type>

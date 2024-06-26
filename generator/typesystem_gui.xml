@@ -169,7 +169,9 @@
   <rejection class="QGradient" function-name="interpolationMode"/>
   <rejection class="QAbstractTextDocumentLayout" function-name="handlerForObject"/>
   <rejection class="QPixmap" function-name="fromImageInPlace"/>
-  
+
+  <rejection class="QRhiWidget" since-version="6.7"/> <!-- rest of QRhi API currently not available -->
+
   <enum-type name="QStaticText::PerformanceHint"/>
   <enum-type name="QTextBlockFormat::LineHeightTypes"/>
   <enum-type name="QStyleOptionTabWidgetFrameV2::StyleOptionVersion"/>
@@ -291,6 +293,7 @@
   <enum-type name="QGraphicsView::ViewportUpdateMode"/>
   <enum-type name="QIcon::Mode"/>
   <enum-type name="QIcon::State"/>
+  <enum-type name="QIcon::ThemeIcon" since-version="6.7"/>
   <enum-type name="QImage::Format"/>
   <enum-type name="QImage::InvertMode"/>
   <enum-type name="QImageIOHandler::ImageOption"/>
@@ -952,6 +955,25 @@
         <include file-name="QStringList" location="global"/>
     </extra-includes>
     <modify-function signature="operator=(QFont)" remove="all"/>
+  </value-type>
+
+  <value-type name="QFont::Tag" since-version="6.7">
+    <inject-code class="pywrap-h">
+    // a little bit complicated, since we currently dont't support std::optional:
+    QFont::Tag static_QFont__Tag_fromString(const QString&amp; name) {
+      return QFont::Tag::fromString(name).value_or(QFont::Tag());
+    }
+    QFont::Tag static_QFont__Tag_fromValue(unsigned int key) {
+      return QFont::Tag::fromValue(key).value_or(QFont::Tag());
+    }
+    // basically the same as above:
+    QFont::Tag* new_QFont__Tag(const QString&amp; name) {
+      return new QFont::Tag(static_QFont__Tag_fromString(name));
+    }
+    QFont::Tag* new_QFont__Tag(unsigned int key) {
+      return new QFont::Tag(static_QFont__Tag_fromValue(key));
+    }
+    </inject-code>
   </value-type>
 
   <value-type name="QTextTableCell">
@@ -1695,6 +1717,8 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QMouseEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::MouseButtonDblClick || %1-&gt;type() == QEvent::MouseButtonPress || %1-&gt;type() == QEvent::MouseButtonRelease || %1-&gt;type() == QEvent::MouseMove"/>
   <object-type name="QPaintEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::Paint"/>
   <object-type name="QAccessibleEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::AccessibilityDescription || %1-&gt;type() == QEvent::AccessibilityHelp"/>
+
+  <object-type name="QChildWindowEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::ChildWindowAdded || %1-&gt;type() == QEvent::ChildWindowRemoved" since-version="6.7"/>
 
   <object-type name="QAbstractButton"/>
 

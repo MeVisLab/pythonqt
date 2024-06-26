@@ -33,6 +33,7 @@
 <rejection class="QAtomicOps"/>
 <rejection class="QAtomicOpsSupport"/>
 <rejection class="QAtomicOpsSupport>"/>
+<rejection class="QAtomicScopedValueRollback" since-version="6.7"/>
 <rejection class="QAtomicTraits"/>
 <rejection class="QBaseIterator"/>
 <rejection class="QBasicAtomicInteger"/>
@@ -78,12 +79,14 @@
 <rejection class="QScopedPointerObjectDeleteLater"/>
 <rejection class="QScopedValueRollback"/>
 <rejection class="QSequentialIterable"/>
+<rejection class="QSpan"/>
 
 <rejection class="QStaticArrayData"/>
 <rejection class="QStaticAssertFailure"/>
 <rejection class="QStaticByteArrayData"/>
 <rejection class="QStaticPlugin"/>
 <rejection class="QStaticStringData"/>
+<rejection class="QStaticLatin1StringMatcher"/>
 <rejection class="QStringBuilderBase"/>
 <rejection class="QStringBuilderCommon"/>
 <rejection class="QStringDataPtr"/>
@@ -264,6 +267,11 @@
   <rejection class="Qt" enum-name="ReturnByValueConstant"/>
   <rejection class="Qt" function-name="qt_getEnumName"/>
   <rejection class="Qt" function-name="qt_getEnumMetaObject"/>
+
+  <!-- new Qt ordering regime (since 6.7) -->
+  <rejection class="Qt::strong_ordering"/>
+  <rejection class="Qt::weak_ordering"/>
+  <rejection class="Qt::partial_ordering"/>
 
   <rejection class="QSharedPointer"/>
   <rejection class="QWeakPointer"/>
@@ -990,6 +998,7 @@ public:
     <modify-function signature="operator=(QDateTime)" remove="all"/>
   </value-type>
   <enum-type name="QDateTime::YearRange"/>
+  <enum-type name="QDateTime::TransitionResolution" since-version="6.7"/>
 
   <value-type name="QDir">
     <modify-function signature="QDir(QString,QString,QFlags&lt;QDir::SortFlag&gt;,QFlags&lt;QDir::Filter&gt;)">
@@ -1466,6 +1475,7 @@ public:
   </object-type>
   <object-type name="QLibraryInfo"/>
   <value-type name="QVersionNumber"/>
+  <rejection class="QVersionNumber::SegmentStorage" since-version="6.7"/>
   <object-type name="QMutex"/>
   <object-type name="QRecursiveMutex" since-version="5.14"/>
   <value-type name="QMutexLocker" before-version="6">
@@ -2021,6 +2031,8 @@ public:
   }
     </inject-code>
   </object-type>
+  <rejection class="QCborStreamReader::StringResult" since-version="6.7"/>
+  
   <object-type name="QCborValue" since-version="5.12">
     <modify-function signature="QCborValue(QCborTag, const QCborValue&amp;)" remove="all"/>
     <modify-function signature="tag(QCborTag)const" remove="all"/>

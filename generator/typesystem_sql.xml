@@ -115,7 +115,9 @@
       <modify-function signature="virtual_hook(int,void*)">
         <remove/>
       </modify-function>
-
+      <modify-function signature="boundValues(Qt::Disambiguated_t)">
+        <remove/>
+      </modify-function>
   </object-type>
   <object-type name="QSqlTableModel">
     <extra-includes>

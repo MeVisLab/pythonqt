@@ -14,6 +14,9 @@
 <rejection class="QQmlTypeNotAvailable"/>
 <rejection class="QmlTypeAndRevisionsRegistration"/>
 <rejection enum-name="QQmlModuleImportSpecialVersions"/>
+<rejection class="QJSList" since-version="6.7"/>
+<rejection class="QJSListForInIterator" since-version="6.7"/>
+<rejection class="QJSListForOfIterator" since-version="6.7"/>
 
 <object-type name="QJSEngine">
   <modify-function signature="newQMetaObject()" remove="all"/>
