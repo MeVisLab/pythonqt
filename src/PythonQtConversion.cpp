@@ -823,6 +823,9 @@ QString PythonQtConv::PyObjGetRepresentation(PyObject* val)
 QString PythonQtConv::PyObjGetString(PyObject* val, bool strict, bool& ok) {
   QString r;
   ok = true;
+  if (val == nullptr) {
+    r = "None";
+  } else
 #ifndef PY3K
   // in Python 3, we don't want to convert to QString, since we don't know anything about the encoding
   // in Python 2, we assume the default for str is latin-1
