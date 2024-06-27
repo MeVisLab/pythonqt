@@ -540,6 +540,7 @@ bool Handler::startElement(const QString &, const QString &n,
 
         QHash<QString, QString> attributes;
         attributes["name"] = QString();
+        attributes["aliases"] = QString();
 
         switch (element->type) {
         case StackElement::PrimitiveTypeEntry:
@@ -586,14 +587,19 @@ bool Handler::startElement(const QString &, const QString &n,
         fetchAttributeValues(tagName, atts, &attributes);
 
         QString name = attributes["name"];
+        QStringList aliases = attributes["aliases"].split(',', Qt::SkipEmptyParts);
 
         // We need to be able to have duplicate primitive type entries, or it's not possible to
         // cover all primitive java types (which we need to do in order to support fake
         // meta objects)
         if (element->type != StackElement::PrimitiveTypeEntry) {
-            TypeEntry *tmp = m_database->findType(name);
-            if (tmp != 0) {
+            if (m_database->findType(name)) {
                 ReportHandler::warning(QString("Duplicate type entry: '%1'").arg(name));
+            }
+            for (const QString& alias : aliases) {
+                if (m_database->findType(alias)) {
+                    ReportHandler::warning(QString("Duplicate alias type entry: '%1'").arg(alias));
+                }
             }
         }
 
@@ -758,6 +764,7 @@ bool Handler::startElement(const QString &, const QString &n,
             Q_ASSERT(false);
         };
 
+        element->entry->setAliases(aliases);  // also add type under given aliases into type database
         if (element->entry)
             m_database->addType(element->entry);
         else
@@ -1829,6 +1836,14 @@ bool TypeDatabase::isFieldRejected(const QString &class_name, const QString &fie
             (r.class_name == class_name || r.class_name == "*"))
             return true;
     return false;
+}
+
+void TypeDatabase::addType(TypeEntry* e)
+{
+    m_entries[e->qualifiedCppName()].append(e);
+    for (const QString& alias : e->aliases()) {
+        m_entries[alias].append(e);
+    }
 }
 
 FlagsTypeEntry *TypeDatabase::findFlagsType(const QString &name) const
