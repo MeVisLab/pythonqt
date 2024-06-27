@@ -513,6 +513,10 @@ public:
     // The type's name in C++, fully qualified
     QString name() const { return m_name; }
 
+    //! Alias names for this type (need to be fully qualified)
+    QStringList aliases() const { return m_aliases; }
+    void setAliases(const QStringList& aliases) { m_aliases = aliases; }
+
     uint codeGeneration() const { return m_code_generation; }
     void setCodeGeneration(uint cg) { m_code_generation = cg; }
 
@@ -553,6 +557,7 @@ public:
 
 private:
     QString m_name;
+    QStringList m_aliases;
     Type m_type;
     uint m_code_generation;
     CustomFunction m_customConstructor;
@@ -1187,7 +1192,7 @@ public:
     bool isFieldRejected(const QString &class_name, const QString &field_name);
     bool isEnumRejected(const QString &class_name, const QString &enum_name);
 
-    void addType(TypeEntry *e) { m_entries[e->qualifiedCppName()].append(e); }
+    void addType(TypeEntry* e);
 
     SingleTypeEntryHash flagsEntries() const { return m_flags_entries; }
     FlagsTypeEntry *findFlagsType(const QString &name) const;
