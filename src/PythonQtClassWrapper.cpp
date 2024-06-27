@@ -71,6 +71,17 @@ static PyObject* PythonQtInstanceWrapper_negative(PythonQtInstanceWrapper* wrapp
   return result;
 }
 
+static PyObject* PythonQtInstanceWrapper_positive(PythonQtInstanceWrapper* wrapper)
+{
+  PyObject* result = nullptr;
+  static QByteArray memberName = "__add__";
+  PythonQtMemberInfo opSlot = wrapper->classInfo()->member(memberName);
+  if (opSlot._type == PythonQtMemberInfo::Slot) {
+    result = PythonQtSlotFunction_CallImpl(wrapper->classInfo(), wrapper->_obj, opSlot._slot, nullptr, nullptr, wrapper->_wrappedPtr);
+  }
+  return result;
+}
+
 static int PythonQtInstanceWrapper_nonzero(PythonQtInstanceWrapper* wrapper)
 {
   int result = (wrapper->_wrappedPtr == nullptr && wrapper->_obj == nullptr)?0:1;
@@ -239,6 +250,7 @@ static void initializeSlots(PythonQtClassWrapper* wrap)
 
     if (typeSlots & PythonQt::Type_Add) {
       wrap->_base.as_number.nb_add = (binaryfunc)PythonQtInstanceWrapper_add;
+      wrap->_base.as_number.nb_positive = (unaryfunc)PythonQtInstanceWrapper_positive;
     }
     if (typeSlots & PythonQt::Type_Subtract) {
       wrap->_base.as_number.nb_subtract = (binaryfunc)PythonQtInstanceWrapper_sub;
