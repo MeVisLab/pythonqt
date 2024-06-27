@@ -62,9 +62,9 @@ public:
   TranslationUnitAST *parse(const char *contents, std::size_t size, pool *p);
 
 private:
-  void reportError(const QString& msg);
-  void syntaxError();
-  void tokenRequiredError(int expected);
+  void reportError(const QString& msg, const char* functionName = nullptr);
+  void syntaxError(const char* functionName = nullptr);
+  void tokenRequiredError(int expected, const char* functionName = nullptr);
 
 public:
   bool skipFunctionBody(StatementAST *&node);

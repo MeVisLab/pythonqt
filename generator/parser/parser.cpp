@@ -52,10 +52,28 @@
 #include <iostream>
 #include <vector>
 
+#if defined(_MSC_VER) || defined(__GNUC__)
+#include <sstream>
+
+std::string _joinLocation(const char* name, int line)
+{
+  std::stringstream ss;
+  ss << name << ":" << line;
+  return ss.str();
+}
+
+#define PARSER_METHOD_NAME _joinLocation(__FUNCTION__, __LINE__).c_str()
+#else 
+#define PARSER_METHOD_NAME ""
+#endif 
+
+
+#define SYNTAX_ERROR() syntaxError(PARSER_METHOD_NAME)
+
 #define ADVANCE(tk, descr) \
 { \
   if (token_stream.lookAhead() != tk) { \
-      tokenRequiredError(tk); \
+      tokenRequiredError(tk, PARSER_METHOD_NAME); \
       return false; \
   } \
   nextToken(); \
@@ -64,7 +82,7 @@
 #define ADVANCE_NR(tk, descr) \
   do { \
     if (token_stream.lookAhead() != tk) { \
-      tokenRequiredError(tk); \
+      tokenRequiredError(tk, PARSER_METHOD_NAME); \
     } \
     else \
         nextToken(); \
@@ -165,7 +183,7 @@ bool Parser::parseWinDeclSpec(WinDeclSpecAST *&node)
   return true;
 }
 
-void Parser::tokenRequiredError(int token)
+void Parser::tokenRequiredError(int token, const char* functionName)
 {
   QString err;
 
@@ -176,11 +194,10 @@ void Parser::tokenRequiredError(int token)
   err += token_name(token_stream.lookAhead());
   err += "''";
 
-
-  reportError(err);
+  reportError(err, functionName);
 }
 
-void Parser::syntaxError()
+void Parser::syntaxError(const char* functionName)
 {
   QString err;
 
@@ -189,10 +206,10 @@ void Parser::syntaxError()
   err += token_name(token_stream.lookAhead());
   err += "''";
 
-  reportError(err);
+  reportError(err, functionName);
 }
 
-void Parser::reportError(const QString& msg)
+void Parser::reportError(const QString& msg, const char* functionName)
 {
     if (!_M_block_errors)
     {
@@ -208,6 +225,10 @@ void Parser::reportError(const QString& msg)
         errmsg.setColumn(column);
         errmsg.setFileName(fileName);
         errmsg.setMessage(QLatin1String("** PARSER ERROR ") + msg);
+        if (functionName && *functionName) {
+          errmsg.setMessage(errmsg.message() + " in " + functionName);
+        }
+
         control->reportError(errmsg);
     }
 }
@@ -852,7 +873,7 @@ bool Parser::parseOperatorFunctionId(OperatorFunctionIdAST *&node)
 
       if (!parseSimpleTypeSpecifier(ast->type_specifier))
         {
-          syntaxError();
+          SYNTAX_ERROR();
           return false;
         }
 
@@ -886,7 +907,7 @@ bool Parser::parseTemplateArgumentList(const ListNode<TemplateArgumentAST*> *&no
         {
           if (reportError)
             {
-              syntaxError();
+              SYNTAX_ERROR();
               break;
             }
 
@@ -1642,7 +1663,7 @@ bool Parser::parseTemplateParameterList(const ListNode<TemplateParameterAST*> *&
 
       if (!parseTemplateParameter(param))
         {
-          syntaxError();
+          SYNTAX_ERROR();
           break;
         }
       else
@@ -1721,7 +1742,7 @@ bool Parser::parseTypeParameter(TypeParameterAST *&node)
 
                 if(!parseTypeId(ast->type_id))
                   {
-                    //syntaxError();
+                    //SYNTAX_ERROR();
                     rewind(start);
                     return false;
                   }
@@ -1758,7 +1779,7 @@ bool Parser::parseTypeParameter(TypeParameterAST *&node)
 
                 if (!parseTypeId(ast->type_id))
                   {
-                    syntaxError();
+                    SYNTAX_ERROR();
                     return false;
                   }
               }
@@ -1857,7 +1878,7 @@ bool Parser::parseInitDeclaratorList(const ListNode<InitDeclaratorAST*> *&node)
 
       if (!parseInitDeclarator(decl))
         {
-          syntaxError();
+          SYNTAX_ERROR();
           break;
         }
       node = snoc(node, decl, _M_pool);
@@ -2933,7 +2954,7 @@ bool Parser::parseExpressionOrDeclarationStatement(StatementAST *&node)
   block_errors(blocked);
 
   if (!node)
-    syntaxError();
+    SYNTAX_ERROR();
 
   return node != 0;
 }
@@ -3203,7 +3224,7 @@ bool Parser::parseSwitchStatement(StatementAST *&node)
   StatementAST *stmt = 0;
   if (!parseCompoundStatement(stmt))
     {
-      syntaxError();
+      SYNTAX_ERROR();
       return false;
     }
 
@@ -3490,7 +3511,7 @@ bool Parser::parseDeclarationInternal(DeclarationAST *&node)
       const ListNode<InitDeclaratorAST*> *declarators = 0;
       if (!parseInitDeclaratorList(declarators))
         {
-          syntaxError();
+          SYNTAX_ERROR();
           return false;
         }
 
@@ -3534,7 +3555,7 @@ bool Parser::parseDeclarationInternal(DeclarationAST *&node)
               rewind(startDeclarator);
               if (!parseInitDeclaratorList(declarators))
                 {
-                  syntaxError();
+                  SYNTAX_ERROR();
                   return false;
                 }
             }
@@ -3546,7 +3567,7 @@ bool Parser::parseDeclarationInternal(DeclarationAST *&node)
         TypeSpecifierAST* trailingReturnTypeSpec = 0;
         if (!parseTypeSpecifier(trailingReturnTypeSpec)) {
           // todo: replace "auto" return type? But I doubt we can handle these return types anyway.
-          syntaxError();
+          SYNTAX_ERROR();
           return false;
         }
         maybeFunctionDefinition = true;
@@ -3575,7 +3596,7 @@ bool Parser::parseDeclarationInternal(DeclarationAST *&node)
           {
             if (!maybeFunctionDefinition)
               {
-                syntaxError();
+                SYNTAX_ERROR();
                 return false;
               }
 
@@ -3602,7 +3623,7 @@ bool Parser::parseDeclarationInternal(DeclarationAST *&node)
         } // end switch
     }
 
-  syntaxError();
+  SYNTAX_ERROR();
   return false;
 }
 
@@ -3670,7 +3691,7 @@ bool Parser::parseTryBlockStatement(StatementAST *&node)
   StatementAST *stmt = 0;
   if (!parseCompoundStatement(stmt))
     {
-      syntaxError();
+      SYNTAX_ERROR();
       return false;
     }
 
@@ -3699,7 +3720,7 @@ bool Parser::parseTryBlockStatement(StatementAST *&node)
       StatementAST *body = 0;
       if (!parseCompoundStatement(body))
         {
-          syntaxError();
+          SYNTAX_ERROR();
           return false;
         }
     }
@@ -3757,6 +3778,8 @@ bool Parser::parsePrimaryExpression(ExpressionAST *&node)
 
       CHECK('}');
       break;
+
+    // case '[': // TODO: parse lambda expression
 
     default:
       if (!parseName(ast->name, true))   // this can also be a template
