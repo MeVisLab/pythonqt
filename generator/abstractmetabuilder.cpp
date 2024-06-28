@@ -270,7 +270,7 @@ void AbstractMetaBuilder::traverseCompareOperator(FunctionModelItem item) {
                 meta_function->setOriginalAttributes(meta_function->attributes());
                 setupFunctionDefaults(meta_function, comparer_class);
 
-                comparer_class->addFunction(meta_function);
+                comparer_class->addFunction(meta_function, /*check_duplicates=*/true);
             } else if (meta_function != 0) {
                 delete meta_function;
             }
