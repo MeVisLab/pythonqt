@@ -93,6 +93,10 @@ jobs:
     runs-on: ubuntu-latest
     container: '${{ matrix.container_os }}:${{ matrix.container_os_version }}'
     steps:
+    - name: Change centos archive repository
+      run: sed -i s/mirror.centos.org/vault.centos.org/g /etc/yum.repos.d/*.repo
+      if: {{ matrix.container_os == "centos"}}
+      
     - name: Install Qt
       run: |
         yum update -y
@@ -147,9 +151,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-       macos-version:  ['11']
-       python-version: ['3.6']
-       qt-version: ['5.9.*']
+       macos-version:  ['12']
+       python-version: ['3.9']
+       qt-version: ['5.12.*']
        configuration: ['release','debug']
        include:
          - macos-version: '12'
