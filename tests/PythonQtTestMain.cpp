@@ -48,8 +48,13 @@ int main( int argc, char **argv )
 {
   QApplication qapp(argc, argv);
 
-  PythonQt::init(PythonQt::IgnoreSiteModule | PythonQt::RedirectStdOut);
+  if (QProcessEnvironment::systemEnvironment().contains("PYTHONQT_RUN_ONLY_MEMORY_TESTS")) {
+    PythonQtMemoryTests test;
+    QTest::qExec(&test, argc, argv);
+    return 0;
+  }
 
+  PythonQt::init(PythonQt::IgnoreSiteModule | PythonQt::RedirectStdOut);
   int failCount = 0;
   PythonQtTestApi api;
   failCount += QTest::qExec(&api, argc, argv);

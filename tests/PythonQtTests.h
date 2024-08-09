@@ -58,6 +58,18 @@ class PythonQtTestSlotCallingHelper;
 class PythonQtTestApiHelper;
 class QWidget;
 
+class PythonQtMemoryTests : public QObject
+{
+  Q_OBJECT
+
+private Q_SLOTS:
+  void testBaseCleanup();
+  void testCleanupWithFlags();
+  void testSeveralCleanup();
+  void testInitWithPreconfig();
+  void testInitAlreadyInitialized();
+};
+
 //! test the PythonQt api
 class PythonQtTestApi : public QObject
 {
