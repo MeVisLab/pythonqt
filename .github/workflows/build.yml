@@ -72,7 +72,7 @@ jobs:
     - name: Run memory tests with sanitizers
       run: |
         QT_VERSION_FULL=$(qmake -query QT_VERSION)
-        if [[ $QT_VERSION_FULL == 5.12* ]]; then
+        if [[ "$QT_VERSION_FULL" == 5.12* ]]; then
           export LSAN_OPTIONS="suppressions=leak:QPlatformIntegrationFactory::create"
         fi
         PYTHONDEVMODE=1 PYTHONASYNCIODEBUG=1 PYTHONWARNINGS=error PYTHONMALLOC=malloc_debug \
