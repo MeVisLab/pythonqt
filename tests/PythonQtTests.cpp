@@ -69,7 +69,7 @@ void PythonQtMemoryTests::testSeveralCleanup() {
 }
 
 void PythonQtMemoryTests::testInitWithPreconfig() {
-#if PY_VERSION_HEX >= 0x030800
+#if PY_VERSION_HEX >= 0x03080000
   PyConfig config;
   PyConfig_InitPythonConfig(&config);
   Py_InitializeFromConfig(&config);
