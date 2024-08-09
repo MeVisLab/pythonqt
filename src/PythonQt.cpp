@@ -1898,7 +1898,11 @@ void PythonQt::initPythonQtModule(bool redirectStdOut, const QByteArray& pythonQ
   Py_XDECREF(old_module_names);
 
 #ifdef PY3K
-  PyDict_SetItem(PyObject_GetAttrString(sys.object(), "modules"), PyUnicode_FromString(name.constData()), _p->_pythonQtModule.object());
+  PyObject* modulesAttr = PyObject_GetAttrString(sys.object(), "modules");
+  PyObject* pyUnicodeObject = PyUnicode_FromString(name.constData());
+  PyDict_SetItem(modulesAttr, pyUnicodeObject, _p->_pythonQtModule.object());
+  Py_XDECREF(modulesAttr);
+  Py_XDECREF(pyUnicodeObject);
 #endif
 }
 
