@@ -54,13 +54,18 @@ jobs:
     - name: Checkout PythonQt
       uses: actions/checkout@v4
 
+    - name: Ccache
+      uses: hendrikmuhs/ccache-action@v1.2.14
+      with:
+         key: ${{ runner.os }}-ubuntu-${{ matrix.container_version }} 
+         
     - name: Build PythonQt
       run: |
         export QT_SELECT=qt5
         echo ======= SYSTEM INFO ========
         uname -a; gcc --version | grep "gcc"; python3 --version; qmake --version
         echo ============================
-        qmake -r PythonQt.pro CONFIG+=release CONFIG+=force_debug_info \
+        qmake -r PythonQt.pro CONFIG+=ccache CONFIG+=release CONFIG+=force_debug_info \
         CONFIG+=sanitizer CONFIG+=sanitize_undefined CONFIG+=sanitize_address \
         PYTHON_VERSION=$(python3 --version | cut -d " " -f 2 | cut -d "." -f1,2) \
         PYTHON_DIR=$(which python3 | xargs dirname | xargs dirname)
@@ -202,6 +207,11 @@ jobs:
     - name: Checkout PythonQt
       uses: actions/checkout@v4
 
+    - name: Ccache
+      uses: hendrikmuhs/ccache-action@v1.2.14
+      with:
+         key: ${{ runner.os }}-${{ matrix.qt-version }} 
+         
     - name: Detect exact versions
       id : versions
       run : |
@@ -230,7 +240,7 @@ jobs:
         for i in "python${{ steps.versions.outputs.PYTHON_VERSION_SHORT }}-embed" "python${{ steps.versions.outputs.PYTHON_VERSION_SHORT }}" \
                  "python${PYTHON_VERSION_MAJOR}-embed" "python${PYTHON_VERSION_MAJOR}"
         do if pkg-config --exists "$i"; then PYTHON_PKGCONFIG_NAME="$i"; break; fi; done
-        qmake CONFIG+=${{ matrix.configuration }} CONFIG+=sanitizer CONFIG+=sanitize_undefined CONFIG+=sanitize_address \
+        qmake CONFIG+=ccache CONFIG+=${{ matrix.configuration }} CONFIG+=sanitizer CONFIG+=sanitize_undefined CONFIG+=sanitize_address \
           PYTHON_VERSION=${{ steps.versions.outputs.PYTHON_VERSION_SHORT }} \
           PYTHON_DIR="$pythonLocation" \
           PKGCONFIG+=$PYTHON_PKGCONFIG_NAME \

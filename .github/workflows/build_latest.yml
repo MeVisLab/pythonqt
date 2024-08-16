@@ -6,6 +6,10 @@ on:
        - master
   pull_request:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+  
 defaults:
   run:
     shell: bash
@@ -43,6 +47,12 @@ jobs:
     - name: Checkout PythonQt
       uses: actions/checkout@v4
 
+    - name: Ccache
+      uses: hendrikmuhs/ccache-action@v1.2.14
+      with:
+         key: ${{ runner.os }}-${{ matrix.qt-version }}
+      if: ${{ matrix.os == 'ubuntu' }}
+         
     - name: Set environment
       id: setenv
       run: |
@@ -60,7 +70,7 @@ jobs:
       if: ${{ matrix.os == 'ubuntu' }}
       run: |
         cd generator
-        qmake -r generator.pro CONFIG+=release CONFIG-=debug_and_release CONFIG+=force_debug_info \
+        qmake -r generator.pro CONFIG+=ccache CONFIG+=release CONFIG-=debug_and_release CONFIG+=force_debug_info \
         CONFIG+=sanitizer CONFIG+=sanitize_undefined CONFIG+=sanitize_address
         make -j $(nproc)
 
@@ -93,7 +103,7 @@ jobs:
         echo ======= SYSTEM INFO ========
         uname -a; gcc --version | grep "gcc"; python3 --version; qmake --version
         echo ============================
-        qmake -r PythonQt.pro CONFIG+=release CONFIG+=force_debug_info \
+        qmake -r PythonQt.pro CONFIG+=ccache CONFIG+=release CONFIG+=force_debug_info \
         CONFIG+=sanitizer CONFIG+=sanitize_undefined CONFIG+=sanitize_address \
         PYTHON_VERSION=$(python3 --version | cut -d " " -f 2 | cut -d "." -f1,2) \
         PYTHON_DIR=$(which python3 | xargs dirname | xargs dirname)
