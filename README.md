@@ -38,9 +38,10 @@ updating the typesystems as well.
 Building PythonQt requires a couple of steps.
 Follow these instructions in order to get a correctly built PythonQt runtime and Qt bindings.
 
-### ⚠️ Pregenerated Bindings Warning ⚠️
+### Recommendations
 
-It is highly recommended to build the Qt bindings yourself and not(!) use the pregenerated ones. To ensure that, delete the pregenerated directory starting with `generated_cpp_*`.
+It is recommended to build the Qt bindings yourself instead of using the pregenerated ones.
+This ensures the bindings are compatible with your Qt version.
 Do not build `PythonQt.pro` directly because it will only use the pregenerated bindings!
 
 ### Environment
@@ -115,15 +116,6 @@ As a last step, we need to build the extensions.
 
 After all these steps, you should now have a fully working PythonQt runtime and Qt bindings for your Python/Qt installation 🎉.
 
-## Building on Windows with MinGW
+## MinGW
 
-To build PythonQt, you need to set the environment variable `PYTHON_PATH` to
-point to the root dir of the python installation. Then you should set the
-`PYTHON_VERSION` variable to the Python version number.
-
-When using the prebuild Python installer, this will be:
-
-```cmd
-set PYTHON_PATH=c:\Python310
-set PYTHON_VERSION=3.10
-```
+It is possible to build PythonQt with MinGW on Windows instead of using MSVC.
