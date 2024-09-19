@@ -33,15 +33,89 @@ updating the typesystems as well.
 
 # Building
 
-## Building on Windows with MinGW
+## General
 
-To build PythonQt, you need to set the environment variable `PYTHON_PATH` to
-point to the root dir of the python installation. Then you should set the
-`PYTHON_VERSION` variable to the Python version number.
+Building PythonQt requires a couple of steps.
+Follow these instructions in order to get a correctly built PythonQt runtime and Qt bindings.
 
-When using the prebuild Python installer, this will be:
+### Recommendations
 
-```cmd
-set PYTHON_PATH=c:\Python310
-set PYTHON_VERSION=3.10
-```
+It is recommended to build the Qt bindings yourself instead of using the pregenerated ones.
+This ensures the bindings are compatible with your Qt version.
+Do not build `PythonQt.pro` directly because it will only use the pregenerated bindings!
+
+### Environment
+
+First, you need to set a couple of environment variables, which depend on your Python and Qt installation.
+
+- `PYTHON_VERSION`
+
+  Set the version of your Python interpreter. The syntax is `<major>.<minor>`, e.g., `3.10`.
+
+- `PYTHON_PATH`
+
+  This is the absolute path to the root directory of your Python installation.
+
+- `PYTHON_LIB`
+
+  The absolute path to the `libs` directory in your python installation `$PYTHON_PATH/libs`.
+
+- `PYTHON_DIR`
+
+  The `PYTHON_DIR` is required for non-Windows installations to find the `python-config` executable.
+  This should have the same value as `PYTHON_PATH`.
+
+- `QTDIR`
+
+  The absolute path to the root directory of your Qt installation.
+
+### Binding Generator
+
+1. cd into the `generator` directory
+2. Run qmake on `generator.pro`
+
+   `qmake CONFIG+=Release generator.pro`
+
+3. Make the generator
+
+   Use `nmake` for MSVC (Visual Studio; make sure to have the environment variables set for Visual Studio beforehand). Otherwise, use `make`.
+
+4. Generate the bindings
+
+   We use the generator executable from step 3 to generate the bindings.
+   The location of the generator executable can vary depending on your platform (the subdirectory is named after the current configuration, e.g., `release`).
+   On Windows, the generator is named `pythonqt_generator.exe`; on all other platforms, it is named `pythonqt_generator`.
+
+   `<generator-executable> qtscript_masterinclude.h build_all.txt`
+
+### PythonQt Runtime
+
+Next, we need the PythonQt runtime.
+
+1. cd into the `src` directory
+2. qmake `src.pro`
+
+   `qmake CONFIG+=Release src.pro`
+
+3. Make the runtime
+
+   Use `nmake` for MSVC (Visual Studio; make sure to have the environment variables set for Visual Studio beforehand). Otherwise, use `make`.
+
+### Extensions
+
+As a last step, we need to build the extensions.
+
+1. cd into `extensions`
+2. qmake `src.pro`
+
+   `qmake CONFIG+=Release extensions.pro`
+
+3. Make the extensions
+
+   Use `nmake` for MSVC (Visual Studio; make sure to have the environment variables set for Visual Studio beforehand). Otherwise, use `make`.
+
+After all these steps, you should now have a fully working PythonQt runtime and Qt bindings for your Python/Qt installation 🎉.
+
+## MinGW
+
+It is possible to build PythonQt with MinGW on Windows instead of using MSVC.
