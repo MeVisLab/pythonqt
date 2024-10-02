@@ -4,6 +4,11 @@
     <object-type name="QWebEngineView">
     </object-type>
     <object-type name="QWebEnginePage">
+      <inject-code class="pywrap-h" since-version="6">
+    void runJavaScript(QWebEnginePage* theWrappedObject, const QString&amp; scriptSource, quint32 worldId = 0) {
+      theWrappedObject->runJavaScript(scriptSource, worldId);
+    }
+      </inject-code>
     </object-type>
 
   <object-type name="QWebChannel"/>
