@@ -1507,9 +1507,7 @@ public:
   <object-type name="QSemaphore"/>
   <object-type name="QSocketNotifier"/>
   <object-type name="QSystemLocale"/>
-  <object-type name="QTemporaryFile">
-    <modify-function signature="fileName()const" rename="uniqueFilename"/>
-  </object-type>
+  <object-type name="QTemporaryFile"/>
   <object-type name="QMimeData">
     <extra-includes>
       <include file-name="QStringList" location="global"/>

@@ -797,9 +797,6 @@
   <value-type name="QTextFormat">
     <modify-function signature="operator=(QTextFormat)" remove="all"/>
     <modify-function signature="isValid()const" access="non-final"/>
-
-    <modify-function signature="setProperty(int,QVector&lt;QTextLength&gt;)" rename="setLengthVectorProperty" before-version="6"/>
-    <modify-function signature="setProperty(int,const QList&lt;QTextLength&gt;&amp;)" rename="setLengthVectorProperty" since-version="6"/>
   </value-type>
 
   <value-type name="QTextListFormat"/>
@@ -917,10 +914,6 @@
 
       <modify-function signature="operator*(QMatrix)const" access="private"/>
       <modify-function signature="operator*=(QMatrix)" access="private"/>
-      <modify-function signature="rotate(double)" access="private" rename="rotate_private"/>
-      <modify-function signature="scale(double,double)" access="private" rename="scale_private"/>
-      <modify-function signature="shear(double,double)" access="private" rename="shear_private"/>
-      <modify-function signature="translate(double,double)" access="private" rename="translate_private"/>
   </value-type>
 
   <value-type name="QConicalGradient" polymorphic-id-expression="%1-&gt;type() == QGradient::ConicalGradient">
@@ -1562,8 +1555,6 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QTextBlockUserData"/>
   <object-type name="QTextItem"/>
   <object-type name="QTextList">
-    <modify-function signature="format()const" rename="textListFormat"/>
-
       <modify-function signature="isEmpty()const" remove="all"/> <!--### Obsolete in 4.3-->
   </object-type>
   <object-type name="QTextObject"/>
@@ -1775,8 +1766,6 @@ PyObject* constScanLine(QImage* image, int line) {
       </modify-argument>
     </modify-function>
 
-    <modify-function signature="setSpacing(int)" rename="setWidgetSpacing"/>
-    <modify-function signature="spacing()const" rename="widgetSpacing"/>
     <modify-function signature="getContentsMargins(int*,int*,int*,int*)const" remove="all"/>
 
     <modify-function signature="margin()const" remove="all"/> <!--### Obsolete in 4.3-->
@@ -1903,9 +1892,6 @@ PyObject* constScanLine(QImage* image, int line) {
 
       <modify-function signature="isHeaderVisible()const" remove="all"/> <!--### Obsolete in 4.3-->
       <modify-function signature="setHeaderVisible(bool)" remove="all"/> <!--### Obsolete in 4.3-->
-  
-      <modify-function signature="sizeHint()const" rename="getSizeHint"/>
-      <modify-function signature="minimumSizeHint()const" rename="getMinimumSizeHint"/>
   </object-type>
 
   <object-type name="QTreeWidget">
@@ -2197,9 +2183,6 @@ PyObject* constScanLine(QImage* image, int line) {
       <modify-function signature="setShown(bool)" remove="all"/> <!--### Obsolete in 4.3-->
       <modify-function signature="topLevelWidget()const" remove="all"/> <!--### Obsolete in 4.3-->
       <modify-function signature="windowActivationChange(bool)" remove="all"/> <!--### Obsolete in 4.3-->
-  
-    <modify-function signature="sizeHint()const" rename="getSizeHint"/>
-    <modify-function signature="minimumSizeHint()const" rename="getMinimumSizeHint"/>
   </object-type>
 
   <object-type name="QMessageBox">
