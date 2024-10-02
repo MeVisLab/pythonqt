@@ -1137,10 +1137,15 @@ void AbstractMetaBuilder::traverseFunctions(ScopeModelItem scope_item, AbstractM
             if (meta_function->isDestructor() && !meta_function->isFinal())
                 meta_class->setForceShellClass(true);
 
-            if (!meta_function->isDestructor()
-                && !meta_function->isInvalid()
-                && (!meta_function->isConstructor() || !meta_function->isPrivate())) {
-
+            if (meta_function->name().startsWith("__") && meta_function->isStatic()) {
+                // static operators are not supported by PythonQt
+                // (this only seems to happen for static operators in namespaces)
+                delete meta_function;
+            }
+            else if (!meta_function->isDestructor()
+                     && !meta_function->isInvalid()
+                     && (!meta_function->isConstructor() || !meta_function->isPrivate()))
+            {
                 if (meta_class->typeEntry()->designatedInterface() && !meta_function->isPublic()
                     && !meta_function->isPrivate()) {
                     QString warn = QString("non-public function '%1' in interface '%2'")
