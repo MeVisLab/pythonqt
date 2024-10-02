@@ -80,7 +80,7 @@ void ShellHeaderGenerator::writeFieldAccessors(QTextStream& s, const AbstractMet
     addIndirection = true;
   }
   writeFunctionSignature(s, getter, 0, QString(),
-    Option(ConvertReferenceToPtr | FirstArgIsWrappedObject | IncludeDefaultExpression | OriginalName | ShowStatic | UnderscoreSpaces));
+    Option(ConvertReferenceToPtr | FirstArgIsWrappedObject | IncludeDefaultExpression | ShowStatic | UnderscoreSpaces));
   s << "{ return ";
   if (addIndirection) {
     s << "&";
@@ -145,7 +145,7 @@ void ShellHeaderGenerator::write(QTextStream& s, const AbstractMetaClass* meta_c
     for (AbstractMetaFunction * fun :  ctors) {
       s << "    ";
       writeFunctionSignature(s, fun, 0, "PythonQtShell_",
-        Option(IncludeDefaultExpression | OriginalName | ShowStatic | UnderscoreSpaces));
+        Option(IncludeDefaultExpression | ShowStatic | UnderscoreSpaces));
       s << ":" << meta_class->qualifiedCppName() << "(";
       QString scriptFunctionName = fun->originalName();
       AbstractMetaArgumentList args = fun->arguments();
@@ -164,7 +164,7 @@ void ShellHeaderGenerator::write(QTextStream& s, const AbstractMetaClass* meta_c
 
     for (AbstractMetaFunction * fun :  virtualsForShell) {
       writeFunctionSignature(s, fun, 0, QString(),
-        Option(IncludeDefaultExpression | OriginalName | ShowStatic | UnderscoreSpaces));
+        Option(IncludeDefaultExpression | ShowStatic | UnderscoreSpaces));
       s << " override;" << endl;
     }
     s << endl;
@@ -212,7 +212,7 @@ void ShellHeaderGenerator::write(QTextStream& s, const AbstractMetaClass* meta_c
         }
         s << "inline ";
         writeFunctionSignature(s, fun, 0, "promoted_",
-          Option(IncludeDefaultExpression | OriginalName | UnderscoreSpaces | ProtectedEnumAsInts));
+          Option(IncludeDefaultExpression | UnderscoreSpaces | ProtectedEnumAsInts));
         s << " { ";
         QString scriptFunctionName = fun->originalName();
         AbstractMetaArgumentList args = fun->arguments();
@@ -239,7 +239,7 @@ void ShellHeaderGenerator::write(QTextStream& s, const AbstractMetaClass* meta_c
       if (fun->isVirtual()) {
         s << "inline ";
         writeFunctionSignature(s, fun, 0, "py_q_",
-          Option(IncludeDefaultExpression | OriginalName | UnderscoreSpaces | ProtectedEnumAsInts));
+          Option(IncludeDefaultExpression | UnderscoreSpaces | ProtectedEnumAsInts));
         s << " { ";
         QString scriptFunctionName = fun->originalName();
         AbstractMetaArgumentList args = fun->arguments();
@@ -355,7 +355,7 @@ void ShellHeaderGenerator::write(QTextStream& s, const AbstractMetaClass* meta_c
 
       s << meta_class->qualifiedCppName() << "* ";
       writeFunctionSignature(s, fun, 0, "new_",
-        Option(IncludeDefaultExpression | OriginalName | ShowStatic | AddOwnershipTemplates));
+        Option(IncludeDefaultExpression | ShowStatic | AddOwnershipTemplates));
       s << ";" << endl;
       if (fun->arguments().size() == 1 && meta_class->qualifiedCppName() == fun->arguments().at(0)->type()->typeEntry()->qualifiedCppName()) {
         copyConstructorSeen = true;
@@ -387,14 +387,14 @@ void ShellHeaderGenerator::write(QTextStream& s, const AbstractMetaClass* meta_c
       //functionHasNonConstReferences(function);
       s << "   ";
       writeFunctionSignature(s, function, 0, QString(),
-        Option(AddOwnershipTemplates | ConvertReferenceToPtr | FirstArgIsWrappedObject | IncludeDefaultExpression | OriginalName | ShowStatic | UnderscoreSpaces | ProtectedEnumAsInts));
+        Option(AddOwnershipTemplates | ConvertReferenceToPtr | FirstArgIsWrappedObject | IncludeDefaultExpression | ShowStatic | UnderscoreSpaces | ProtectedEnumAsInts));
       s << ";" << endl;
     }
     if (function->isVirtual() && meta_class->typeEntry()->shouldCreatePromoter()) {
       // qualified version that calls the promoter/the qualified version
       s << "   ";
       writeFunctionSignature(s, function, 0, "py_q_",
-        Option(AddOwnershipTemplates | ConvertReferenceToPtr | FirstArgIsWrappedObject | IncludeDefaultExpression | OriginalName | ShowStatic | UnderscoreSpaces | ProtectedEnumAsInts));
+        Option(AddOwnershipTemplates | ConvertReferenceToPtr | FirstArgIsWrappedObject | IncludeDefaultExpression | ShowStatic | UnderscoreSpaces | ProtectedEnumAsInts));
       s << "{  ";
 
       QString scriptFunctionName = function->originalName();

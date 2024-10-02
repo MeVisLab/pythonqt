@@ -316,7 +316,7 @@ bool ShellGenerator::functionHasNonConstReferences(const AbstractMetaFunction* f
       QTextStream t(&s);
       t << function->implementingClass()->qualifiedCppName() << "::";
       writeFunctionSignature(t, function, 0, "",
-        Option(ConvertReferenceToPtr | FirstArgIsWrappedObject | IncludeDefaultExpression | OriginalName | ShowStatic | UnderscoreSpaces | ProtectedEnumAsInts));
+        Option(ConvertReferenceToPtr | FirstArgIsWrappedObject | IncludeDefaultExpression | ShowStatic | UnderscoreSpaces | ProtectedEnumAsInts));
       std::cout << s.toLatin1().constData() << std::endl;
       return true;
     }
