@@ -178,12 +178,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-       macos-version:  ['12']
+       macos-version:  ['latest']
        python-version: ['3.9']
        qt-version: ['5.9.*']
        configuration: ['release','debug']
        include:
-         - macos-version: '12'
+         - macos-version: 'latest'
            python-version: '3.11'
            qt-version: '5.12.*'
            configuration: 'debug'
