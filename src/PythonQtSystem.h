@@ -42,21 +42,17 @@
 */
 //----------------------------------------------------------------------------------
 
+#include <QtCore/qglobal.h>
 
-#if defined(WIN32)
-    #ifdef PYTHONQT_EXPORTS
-      #define PYTHONQT_EXPORT __declspec(dllexport)
-    #else
-      #define PYTHONQT_EXPORT __declspec(dllimport)
-    #endif
+#ifndef PYTHONQT_STATIC
+#  if defined(PYTHONQT_EXPORTS)
+#    define PYTHONQT_EXPORT Q_DECL_EXPORT
+#  else
+#    define PYTHONQT_EXPORT Q_DECL_IMPORT
+#  endif
 #else
-    #ifdef PYTHONQT_EXPORTS
-      #define PYTHONQT_EXPORT __attribute__((__visibility__("default")))
-    #else
-      #define PYTHONQT_EXPORT
-    #endif
+#  define PYTHONQT_EXPORT
 #endif
-
 
 #endif
 
