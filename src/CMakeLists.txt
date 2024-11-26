@@ -9,8 +9,10 @@ file(GLOB SOURCES *.h *.cpp)
 
 if(BUILD_SHARED_LIBS)
     add_library(${PROJECT_NAME} SHARED)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE PYTHONQT_EXPORTS)
 else()
     add_library(${PROJECT_NAME} STATIC)
+    target_compile_definitions(${PROJECT_NAME} PUBLIC PYTHONQT_STATIC)
 endif()
 
 file(GLOB GENERATE_SOURCES

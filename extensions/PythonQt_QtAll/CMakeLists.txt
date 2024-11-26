@@ -6,8 +6,10 @@ file(GLOB SOURCES *.h *.cpp)
 
 if(BUILD_SHARED_LIBS)
     add_library(${PROJECT_NAME} SHARED)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE PYTHONQT_QTALL_EXPORTS)
 else()
     add_library(${PROJECT_NAME} STATIC)
+    target_compile_definitions(${PROJECT_NAME} PUBLIC PYTHONQT_QTALL_STATIC)
 endif()
 
 target_sources(${PROJECT_NAME} PRIVATE
@@ -21,7 +23,6 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_LIST_DIR})
 
-target_compile_definitions(${PROJECT_NAME} PRIVATE PYTHONQT_QTALL_EXPORTS)
 
 list(APPEND QTMODULES Core Gui Svg Sql Network OpenGL Xml XmlPatterns Multimedia Qml Quick UiTools WebEngineWidgets WebKit)
 
