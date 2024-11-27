@@ -29,7 +29,7 @@ else()
 endif()
 
 add_subdirectory(src)
-# add_subdirectory(generator)
+add_subdirectory(generator)
 add_subdirectory(extensions)
 add_subdirectory(tests)
 # add_subdirectory(examples)
