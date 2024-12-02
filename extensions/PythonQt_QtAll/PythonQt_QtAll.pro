@@ -112,7 +112,7 @@ PythonQtNetwork {
 PythonQtOpengl {
   DEFINES += PYTHONQT_WITH_OPENGL
   QT += opengl
-  equals(QT_MAJOR_VERSION, 6){
+  greaterThan(QT_MAJOR_VERSION, 5){
     QT += openglwidgets
   }
   PythonQtCore: Xinclude (com_trolltech_qt_opengl)
