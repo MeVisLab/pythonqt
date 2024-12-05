@@ -24,15 +24,24 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_LIST_DIR})
 
-# file(GLOB resources_files *.txt *.xml)
-# foreach(resources_file IN LISTS resources_files)
-#     configure_file(${resources_file} ${CMAKE_CURRENT_BINARY_DIR} COPYONLY)
-# endforeach()
+set(PYTHONQT_GENERATED_PATH ${CMAKE_CURRENT_BINARY_DIR}/../generated_cpp PARENT_SCOPE)
 
-# file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/generated_cpp")
+if(NOT EXISTS ${PYTHONQT_GENERATED_PATH})
+    file(GLOB resources_files *.txt *.xml qtscript_masterinclude.h)
+    foreach(resources_file IN LISTS resources_files)
+        configure_file(${resources_file} ${CMAKE_CURRENT_BINARY_DIR} COPYONLY)
+    endforeach()
 
-# add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-#     COMMAND set Path="%Path%;"
-#     COMMAND $<TARGET_FILE:${PROJECT_NAME}>
-#     WORKING_DIRECTORY $<TARGET_FILE_DIR:${PROJECT_NAME}>
-# )
+    if(WIN32)
+        set(LIBRARY_SEARCH_PATH PATH)
+    else()
+        set(LIBRARY_SEARCH_PATH LD_LIBRARY_PATH)
+    endif()
+
+    add_custom_target(GenerateCpp
+        COMMAND ${CMAKE_COMMAND} -E env --modify ${LIBRARY_SEARCH_PATH}=path_list_prepend:$<TARGET_FILE_DIR:Qt${QT_VERSION_MAJOR}::Widgets> $<TARGET_FILE:${PROJECT_NAME}>
+        WORKING_DIRECTORY $<TARGET_FILE_DIR:${PROJECT_NAME}>
+        VERBATIM USES_TERMINAL
+    )
+endif()
+

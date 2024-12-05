@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.27)
 
+enable_testing()
+
 project(PythonQt LANGUAGES CXX VERSION 3.5.6)
 
 set(CMAKE_CXX_STANDARD 11)
@@ -12,8 +14,7 @@ set(PYTHONQT_SUFFIX Qt${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}-Python${Python3_VE
 
 add_subdirectory(generator)
 
-set(PYTHONQT_GENERATED_PATH ${CMAKE_CURRENT_LIST_DIR}/generated_cpp)
-if(NOT EXISTS ${PYTHONQT_GENERATED_PATH})
+if(NOT EXISTS "${PYTHONQT_GENERATED_PATH}")
     if(${QT_VERSION_MAJOR} VERSION_EQUAL 5)
         if(${QT_VERSION_MINOR} VERSION_LESS 3)
             set(PYTHONQT_GENERATED_PATH ${CMAKE_CURRENT_LIST_DIR}/generated_cpp_50)
