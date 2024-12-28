@@ -282,7 +282,7 @@ jobs:
 #           msvc-toolset: '14.16'
 
          - qt-arch: 'win64_msvc2019_64'
-           python-version: '3.12'
+           python-version: '3.13'
            python-arch: 'x64'
            qt-version: '5.15.*'
            pythonqtall-config: 'PythonQtCore PythonQtGui PythonQtMultimedia'
