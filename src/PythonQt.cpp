@@ -348,12 +348,6 @@ PythonQt::PythonQt(int flags, const QByteArray& pythonQtModuleName)
     Py_Initialize();
   }
 
-#ifdef PYTHONQT_FULL_THREAD_SUPPORT
-  if (!PyEval_ThreadsInitialized()) {
-    PyEval_InitThreads();
-  }
-#endif
-
   // add our own python object types for qt object slots
   if (PyType_Ready(&PythonQtSlotFunction_Type) < 0) {
     std::cerr << "could not initialize PythonQtSlotFunction_Type" << ", in " << __FILE__ << ":" << __LINE__ << std::endl;
