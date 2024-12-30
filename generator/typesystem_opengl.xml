@@ -1,43 +1,137 @@
 <?xml version="1.0"?>
 <typesystem package="com.trolltech.qt.OpenGL">
-  <rejection class="QGL"/>
+  <rejection class="QOpenGLDebugLogger" since-version="6" />
+<rejection class="QOpenGLDebugMessage" since-version="6" />
+<rejection class="QOpenGLExtraFunctions" since-version="6" />
+<rejection class="QOpenGLExtraFunctionsPrivate" since-version="6" />
+<rejection class="QOpenGLFunctionsPrivate" since-version="6" />
+<rejection class="QOpenGLFunctions_1_0_CoreBackend" since-version="6" />
+<rejection class="QOpenGLFunctions_1_0_DeprecatedBackend" since-version="6" />
+<rejection class="QOpenGLFunctions_1_1_CoreBackend" since-version="6" />
+<rejection class="QOpenGLFunctions_1_1_DeprecatedBackend" since-version="6" />
+<rejection class="QOpenGLFunctions_1_2_CoreBackend" since-version="6" />
+<rejection class="QOpenGLFunctions_1_2_DeprecatedBackend" since-version="6" />
+<rejection class="QOpenGLFunctions_1_3_CoreBackend" since-version="6" />
+<rejection class="QOpenGLFunctions_1_3_DeprecatedBackend" since-version="6" />
+<rejection class="QOpenGLFunctions_1_4_CoreBackend" since-version="6" />
+<rejection class="QOpenGLFunctions_1_4_DeprecatedBackend" since-version="6" />
+<rejection class="QOpenGLFunctions_1_5_CoreBackend" since-version="6" />
+<rejection class="QOpenGLFunctions_2_0_CoreBackend" since-version="6" />
+<rejection class="QOpenGLFunctions_2_0_DeprecatedBackend" since-version="6" />
+<rejection class="QOpenGLFunctions_2_1_CoreBackend" since-version="6" />
+<rejection class="QOpenGLFunctions_3_0_CoreBackend" since-version="6" />
+<rejection class="QOpenGLFunctions_3_0_DeprecatedBackend" since-version="6" />
+<rejection class="QOpenGLFunctions_3_1_CoreBackend" since-version="6" />
+<rejection class="QOpenGLFunctions_3_2_CoreBackend" since-version="6" />
+<rejection class="QOpenGLFunctions_3_3_CoreBackend" since-version="6" />
+<rejection class="QOpenGLFunctions_3_3_DeprecatedBackend" since-version="6" />
+<rejection class="QOpenGLFunctions_4_0_CoreBackend" since-version="6" />
+<rejection class="QOpenGLFunctions_4_1_CoreBackend" since-version="6" />
+<rejection class="QOpenGLFunctions_4_2_CoreBackend" since-version="6" />
+<rejection class="QOpenGLFunctions_4_3_CoreBackend" since-version="6" />
+<rejection class="QOpenGLFunctions_4_4_CoreBackend" since-version="6" />
+<rejection class="QOpenGLFunctions_4_5_CoreBackend" since-version="6" />
+<rejection class="QOpenGLFunctions_4_5_DeprecatedBackend" since-version="6" />
+<rejection class="QOpenGLPixelTransferOptions" since-version="6" />
+<rejection class="QOpenGLVersionFunctionsBackend" since-version="6" />
+<rejection class="QOpenGLVersionStatus" since-version="6" />
+<rejection class="QOpenGLVertexArrayObject::Binder" since-version="6" />
+<enum-type name="QOpenGLWidget::UpdateBehavior" since-version="6" />
+<enum-type name="QOpenGLWindow::UpdateBehavior" since-version="6" />
+<object-type name="QOpenGLBuffer" since-version="6" />
+  <enum-type name="QOpenGLBuffer::RangeAccessFlag" since-version="6" />
+  <enum-type name="QOpenGLTexture::ComparisonFunction" since-version="6" />
+  <enum-type name="QOpenGLTexture::ComparisonMode" since-version="6" />
+  <object-type name="QOpenGLContext" since-version="6" />
+  <object-type name="QOpenGLContextGroup" since-version="6" />
+  <object-type name="QOpenGLFramebufferObject" since-version="6" />
+  <object-type name="QOpenGLFramebufferObjectFormat" since-version="6" />
+  <object-type name="QOpenGLFunctions" since-version="6" />
+  <object-type name="QOpenGLShader" since-version="6" />
+  <object-type name="QOpenGLShaderProgram" since-version="6">
+    <modify-function signature="setUniformValue(const char*,Array)">
+        <remove />
+    </modify-function>
+    <modify-function signature="setUniformValue(int,Array)">
+        <remove />
+    </modify-function>
+  </object-type>
+  <object-type name="QOpenGLTexture" since-version="6" />
+  <object-type name="QOpenGLTimeMonitor" since-version="6" />
+  <object-type name="QOpenGLTimerQuery" since-version="6" />
+  <object-type name="QOpenGLVersionProfile" since-version="6" />
+  <object-type name="QOpenGLVersionFunctionsFactory" since-version="6" />
+  <object-type name="QOpenGLVertexArrayObject" since-version="6" />
+  <object-type name="QOpenGLPaintDevice" since-version="6">
+    <modify-function signature="QOpenGLPaintDevice(const QOpenGLPaintDevice&amp;)" remove="all" />
+    <modify-function signature="operator=(const QOpenGLPaintDevice&amp;)" remove="all" />
+  </object-type>
+  <object-type name="QOpenGLWindow" since-version="6" />
+  <object-type name="QOpenGLWidget" since-version="6" />
+  <enum-type name="QOpenGLContext::OpenGLModuleType" since-version="6" />
+  <enum-type name="QOpenGLTexture::MipMapGeneration" since-version="6" />
+  <enum-type name="QOpenGLTexture::TextureFormat" since-version="6" />
+  <enum-type name="QOpenGLTexture::CubeMapFace" since-version="6" />
+  <enum-type name="QOpenGLTexture::CoordinateDirection" since-version="6" />
+  <enum-type name="QOpenGLTexture::TextureFormatClass" since-version="6" />
+  <enum-type name="QOpenGLTexture::DepthStencilMode" since-version="6" />
+  <enum-type name="QOpenGLTexture::SwizzleValue" since-version="6" />
+  <enum-type name="QOpenGLTexture::Filter" since-version="6" />
+  <enum-type name="QOpenGLTexture::PixelFormat" since-version="6" />
+  <enum-type name="QOpenGLTexture::WrapMode" since-version="6" />
+  <enum-type name="QOpenGLTexture::TextureUnitReset" since-version="6" />
+  <enum-type name="QOpenGLTexture::BindingTarget" since-version="6" />
+  <enum-type name="QOpenGLTexture::SwizzleComponent" since-version="6" />
+  <enum-type name="QOpenGLTexture::Feature" flags="QOpenGLTexture::Features" since-version="6" />
+  <enum-type name="QOpenGLTexture::Target" since-version="6" />
+  <enum-type name="QOpenGLTexture::PixelType" since-version="6" />
+  <enum-type name="QOpenGLBuffer::UsagePattern" since-version="6" />
+  <enum-type name="QOpenGLBuffer::Type" since-version="6" />
+  <enum-type name="QOpenGLBuffer::Access" since-version="6" />
+  <enum-type name="QOpenGLFramebufferObject::Attachment" since-version="6" />
+  <enum-type name="QOpenGLShader::ShaderTypeBit" flags="QOpenGLShader::ShaderType" since-version="6" />
+  <enum-type name="QOpenGLFunctions::OpenGLFeature" flags="QOpenGLFunctions::OpenGLFeatures" since-version="6" />
+  <enum-type name="QOpenGLFramebufferObject::FramebufferRestorePolicy" since-version="6" />
+  <object-type name="QOpenGLTextureBlitter" since-version="6" />
+  <enum-type name="QOpenGLTextureBlitter::Origin" since-version="6" />
+  <rejection class="QGL" before-version="6" />
 
-  <rejection class="QGLColormap::QGLColormapData"/>
-  <rejection class="QGLWidget" function-name="setMouseTracking"/>
-  <rejection class="QGLFunctions" function-name="glBufferData"/>  <!-- Qt 5.0/3 differences -->
-  <rejection class="QGLFunctions" function-name="glBufferSubData"/>  <!-- Qt 5.0/3 differences -->
+  <rejection class="QGLColormap::QGLColormapData" before-version="6" />
+  <rejection class="QGLWidget" function-name="setMouseTracking" before-version="6" />
+  <rejection class="QGLFunctions" function-name="glBufferData" before-version="6" />  
+  <rejection class="QGLFunctions" function-name="glBufferSubData" before-version="6" />  
 
-  <enum-type name="QGL::FormatOption" flags="QGL::FormatOptions"/>
-  <enum-type name="QGLFormat::OpenGLVersionFlag" flags="QGLFormat::OpenGLVersionFlags"/>
-  <enum-type name="QGLFramebufferObject::Attachment"/>
-  <enum-type name="QGLContext::BindOption" flags="QGLContext::BindOptions"/>
-  <enum-type name="QGLShader::ShaderTypeBit" flags="QGLShader::ShaderType"/>
+  <enum-type name="QGL::FormatOption" flags="QGL::FormatOptions" before-version="6" />
+  <enum-type name="QGLFormat::OpenGLVersionFlag" flags="QGLFormat::OpenGLVersionFlags" before-version="6" />
+  <enum-type name="QGLFramebufferObject::Attachment" before-version="6" />
+  <enum-type name="QGLContext::BindOption" flags="QGLContext::BindOptions" before-version="6" />
+  <enum-type name="QGLShader::ShaderTypeBit" flags="QGLShader::ShaderType" before-version="6" />
 
-  <enum-type name="QGLBuffer::Access"/>
-  <enum-type name="QGLBuffer::Type"/>
-  <enum-type name="QGLBuffer::UsagePattern"/>
-  <enum-type name="QGLFormat::OpenGLContextProfile"/>
-  <enum-type name="QGLFunctions::OpenGLFeature" flags="QGLFunctions::OpenGLFeatures"/>
+  <enum-type name="QGLBuffer::Access" before-version="6" />
+  <enum-type name="QGLBuffer::Type" before-version="6" />
+  <enum-type name="QGLBuffer::UsagePattern" before-version="6" />
+  <enum-type name="QGLFormat::OpenGLContextProfile" before-version="6" />
+  <enum-type name="QGLFunctions::OpenGLFeature" flags="QGLFunctions::OpenGLFeatures" before-version="6" />
   
-  <namespace-type name="QGL">
+  <namespace-type name="QGL" before-version="6">
      <include file-name="qgl.h" location="global"/>
   </namespace-type>
 
-  <value-type name="QGLColormap">
+  <value-type name="QGLColormap" before-version="6">
     <modify-function signature="operator=(QGLColormap)" remove="all"/>
 
     <modify-function signature="setEntries(int,const unsigned int*,int)" remove="all"/>
   </value-type>
 
-  <value-type name="QGLFormat">
+  <value-type name="QGLFormat" before-version="6">
     <modify-function signature="operator=(QGLFormat)" remove="all"/>
   </value-type>
 
-  <value-type name="QGLFramebufferObjectFormat"/>
-  <object-type name="QGLFunctions"/>
-  <object-type name="QGLBuffer"/>
-  <object-type name="QGLShader"/>
-  <object-type name="QGLShaderProgram">
+  <value-type name="QGLFramebufferObjectFormat" before-version="6" />
+  <object-type name="QGLFunctions" before-version="6" />
+  <object-type name="QGLBuffer" before-version="6" />
+  <object-type name="QGLShader" before-version="6" />
+  <object-type name="QGLShaderProgram" before-version="6">
     <!-- Should be disambiguated later by fixing the native pointer API -->
     <modify-function signature="setAttributeArray(int, const QVector2D *, int)" rename="setAttributeArray_QVector2D"/>
     <modify-function signature="setAttributeArray(int, const QVector3D *, int)" rename="setAttributeArray_QVector3D"/>
@@ -61,7 +155,7 @@
     <modify-function signature="setUniformValue(int, Array)" remove="all"/>
     <modify-function signature="setUniformValue(const char*, Array)" remove="all"/>
   </object-type>
-  <object-type name="QGLContext">
+  <object-type name="QGLContext" before-version="6">
     <modify-function signature="getProcAddress(QString)const">
         <remove/>
     </modify-function>
@@ -71,13 +165,13 @@
     </modify-function>
     <modify-function signature="generateFontDisplayLists(QFont, int)" remove="all"/>
   </object-type>
-  <object-type name="QGLFramebufferObject"/>
-  <object-type name="QGLPixelBuffer">
+  <object-type name="QGLFramebufferObject" before-version="6" />
+  <object-type name="QGLPixelBuffer" before-version="6">
     <extra-includes>
         <include file-name="QImage" location="global"/>
     </extra-includes>
   </object-type>
-  <object-type name="QGLWidget">
+  <object-type name="QGLWidget" before-version="6">
     <extra-includes>
         <include file-name="QImage" location="global"/>
         <include file-name="QPixmap" location="global"/>
