@@ -10,9 +10,6 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
    
-env:
-  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
-    
 defaults:
   run:
     shell: bash
@@ -105,32 +102,19 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        container_os: ['centos']
-        container_os_version: ['7']
-        container_os_python_package: ['python-debug']
+        container_os: ['rockylinux']
+        container_os_version: ['9']
         configuration: ['debug', 'release']
-        include:
-          - container_os: 'rockylinux'
-            container_os_version: '9'
-            container_os_python_package: 'python3-devel'
-            configuration: 'release'
     runs-on: ubuntu-latest
     container: '${{ matrix.container_os }}:${{ matrix.container_os_version }}'
     steps:
-    - name: Change centos archive repository
-      run: |
-        sed -i s/mirror.centos.org/vault.centos.org/g /etc/yum.repos.d/*.repo
-        sed -i s/^#.*baseurl=http/baseurl=http/g /etc/yum.repos.d/*.repo
-        sed -i s/^mirrorlist=http/#mirrorlist=http/g /etc/yum.repos.d/*.repo
-      if: matrix.container_os == 'centos'
-      
     - name: Install Qt
       run: |
         yum update -y
         yum groupinstall "Development Tools" -y
         yum install -y \
         which \
-        ${{ matrix.container_os_python_package }} \
+        python-devel \
         qt5-qtbase-* \
         qt5-qttools* \
         qt5-qtsvg \
@@ -140,7 +124,7 @@ jobs:
         qt5-*-devel
 
     - name: Checkout PythonQt
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Build PythonQt
       run: |
