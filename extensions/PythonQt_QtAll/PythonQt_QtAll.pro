@@ -11,10 +11,7 @@ isEmpty( PYTHONQTALL_CONFIG ) {
   qtHaveModule(svg):CONFIG += PythonQtSvg
   qtHaveModule(sql):CONFIG += PythonQtSql
   qtHaveModule(network):CONFIG += PythonQtNetwork
-  lessThan(QT_MAJOR_VERSION, 6) {
-    # module is empty in Qt6
-    qtHaveModule(opengl):CONFIG += PythonQtOpengl
-  }
+  qtHaveModule(opengl):CONFIG += PythonQtOpengl
   qtHaveModule(xml):CONFIG += PythonQtXml
   qtHaveModule(xmlpatterns):CONFIG += PythonQtXmlpatterns
   qtHaveModule(multimedia):CONFIG += PythonQtMultimedia
@@ -115,6 +112,9 @@ PythonQtNetwork {
 PythonQtOpengl {
   DEFINES += PYTHONQT_WITH_OPENGL
   QT += opengl
+  greaterThan(QT_MAJOR_VERSION, 5){
+    QT += openglwidgets
+  }
   PythonQtCore: Xinclude (com_trolltech_qt_opengl)
   QT += xml
 }

@@ -39,42 +39,42 @@
 <rejection class="QAccessibleTextUpdateEvent"/>
 <rejection class="QAccessibleValueChangeEvent"/>
 <rejection class="QAccessibleWidget"/>
-<rejection class="QOpenGLDebugLogger"/>
-<rejection class="QOpenGLDebugMessage"/>
-<rejection class="QOpenGLExtraFunctions"/>
-<rejection class="QOpenGLExtraFunctionsPrivate"/>
-<rejection class="QOpenGLFunctionsPrivate"/>
-<rejection class="QOpenGLFunctions_1_0_CoreBackend"/>
-<rejection class="QOpenGLFunctions_1_0_DeprecatedBackend"/>
-<rejection class="QOpenGLFunctions_1_1_CoreBackend"/>
-<rejection class="QOpenGLFunctions_1_1_DeprecatedBackend"/>
-<rejection class="QOpenGLFunctions_1_2_CoreBackend"/>
-<rejection class="QOpenGLFunctions_1_2_DeprecatedBackend"/>
-<rejection class="QOpenGLFunctions_1_3_CoreBackend"/>
-<rejection class="QOpenGLFunctions_1_3_DeprecatedBackend"/>
-<rejection class="QOpenGLFunctions_1_4_CoreBackend"/>
-<rejection class="QOpenGLFunctions_1_4_DeprecatedBackend"/>
-<rejection class="QOpenGLFunctions_1_5_CoreBackend"/>
-<rejection class="QOpenGLFunctions_2_0_CoreBackend"/>
-<rejection class="QOpenGLFunctions_2_0_DeprecatedBackend"/>
-<rejection class="QOpenGLFunctions_2_1_CoreBackend"/>
-<rejection class="QOpenGLFunctions_3_0_CoreBackend"/>
-<rejection class="QOpenGLFunctions_3_0_DeprecatedBackend"/>
-<rejection class="QOpenGLFunctions_3_1_CoreBackend"/>
-<rejection class="QOpenGLFunctions_3_2_CoreBackend"/>
-<rejection class="QOpenGLFunctions_3_3_CoreBackend"/>
-<rejection class="QOpenGLFunctions_3_3_DeprecatedBackend"/>
-<rejection class="QOpenGLFunctions_4_0_CoreBackend"/>
-<rejection class="QOpenGLFunctions_4_1_CoreBackend"/>
-<rejection class="QOpenGLFunctions_4_2_CoreBackend"/>
-<rejection class="QOpenGLFunctions_4_3_CoreBackend"/>
-<rejection class="QOpenGLFunctions_4_4_CoreBackend"/>
-<rejection class="QOpenGLFunctions_4_5_CoreBackend"/>
-<rejection class="QOpenGLFunctions_4_5_DeprecatedBackend"/>
-<rejection class="QOpenGLPixelTransferOptions"/>
-<rejection class="QOpenGLVersionFunctionsBackend"/>
-<rejection class="QOpenGLVersionStatus"/>
-<rejection class="QOpenGLVertexArrayObject::Binder"/>
+<rejection class="QOpenGLDebugLogger" before-version="6" />
+<rejection class="QOpenGLDebugMessage" before-version="6" />
+<rejection class="QOpenGLExtraFunctions" before-version="6" />
+<rejection class="QOpenGLExtraFunctionsPrivate" before-version="6" />
+<rejection class="QOpenGLFunctionsPrivate" before-version="6" />
+<rejection class="QOpenGLFunctions_1_0_CoreBackend" before-version="6" />
+<rejection class="QOpenGLFunctions_1_0_DeprecatedBackend" before-version="6" />
+<rejection class="QOpenGLFunctions_1_1_CoreBackend" before-version="6" />
+<rejection class="QOpenGLFunctions_1_1_DeprecatedBackend" before-version="6" />
+<rejection class="QOpenGLFunctions_1_2_CoreBackend" before-version="6" />
+<rejection class="QOpenGLFunctions_1_2_DeprecatedBackend" before-version="6" />
+<rejection class="QOpenGLFunctions_1_3_CoreBackend" before-version="6" />
+<rejection class="QOpenGLFunctions_1_3_DeprecatedBackend" before-version="6" />
+<rejection class="QOpenGLFunctions_1_4_CoreBackend" before-version="6" />
+<rejection class="QOpenGLFunctions_1_4_DeprecatedBackend" before-version="6" />
+<rejection class="QOpenGLFunctions_1_5_CoreBackend" before-version="6" />
+<rejection class="QOpenGLFunctions_2_0_CoreBackend" before-version="6" />
+<rejection class="QOpenGLFunctions_2_0_DeprecatedBackend" before-version="6" />
+<rejection class="QOpenGLFunctions_2_1_CoreBackend" before-version="6" />
+<rejection class="QOpenGLFunctions_3_0_CoreBackend" before-version="6" />
+<rejection class="QOpenGLFunctions_3_0_DeprecatedBackend" before-version="6" />
+<rejection class="QOpenGLFunctions_3_1_CoreBackend" before-version="6" />
+<rejection class="QOpenGLFunctions_3_2_CoreBackend" before-version="6" />
+<rejection class="QOpenGLFunctions_3_3_CoreBackend" before-version="6" />
+<rejection class="QOpenGLFunctions_3_3_DeprecatedBackend" before-version="6" />
+<rejection class="QOpenGLFunctions_4_0_CoreBackend" before-version="6" />
+<rejection class="QOpenGLFunctions_4_1_CoreBackend" before-version="6" />
+<rejection class="QOpenGLFunctions_4_2_CoreBackend" before-version="6" />
+<rejection class="QOpenGLFunctions_4_3_CoreBackend" before-version="6" />
+<rejection class="QOpenGLFunctions_4_4_CoreBackend" before-version="6" />
+<rejection class="QOpenGLFunctions_4_5_CoreBackend" before-version="6" />
+<rejection class="QOpenGLFunctions_4_5_DeprecatedBackend" before-version="6" />
+<rejection class="QOpenGLPixelTransferOptions" before-version="6" />
+<rejection class="QOpenGLVersionFunctionsBackend" before-version="6" />
+<rejection class="QOpenGLVersionStatus" before-version="6" />
+<rejection class="QOpenGLVertexArrayObject::Binder" before-version="6" />
 <rejection class="QSizePolicy::Bits"/>
 
   <rejection class="QGenericMatrix"/>  
@@ -498,8 +498,8 @@
   <enum-type name="QImageIOPlugin::Capability" flags="QImageIOPlugin::Capabilities"/>
   <enum-type name="QStackedLayout::StackingMode"/>
 
-<enum-type name="QOpenGLWidget::UpdateBehavior"/>
-<enum-type name="QOpenGLWindow::UpdateBehavior"/>
+<enum-type name="QOpenGLWidget::UpdateBehavior" before-version="6" />
+<enum-type name="QOpenGLWindow::UpdateBehavior" before-version="6" />
 <enum-type name="QPixelFormat::AlphaPosition"/>
 <enum-type name="QPixelFormat::AlphaPremultiplied"/>
 <enum-type name="QPixelFormat::AlphaUsage"/>
@@ -3073,17 +3073,17 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QInputMethod"/>
   <object-type name="QNativeGestureEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::NativeGesture"/>
   <object-type name="QOffscreenSurface"/>
-  <object-type name="QOpenGLBuffer"/>
-  <enum-type name="QOpenGLBuffer::RangeAccessFlag"/>
-  <enum-type name="QOpenGLTexture::ComparisonFunction"/>
-  <enum-type name="QOpenGLTexture::ComparisonMode"/>
-  <object-type name="QOpenGLContext"/>
-  <object-type name="QOpenGLContextGroup"/>
-  <object-type name="QOpenGLFramebufferObject"/>
-  <object-type name="QOpenGLFramebufferObjectFormat"/>
-  <object-type name="QOpenGLFunctions"/>
-  <object-type name="QOpenGLShader"/>
-  <object-type name="QOpenGLShaderProgram">
+  <object-type name="QOpenGLBuffer" before-version="6" />
+  <enum-type name="QOpenGLBuffer::RangeAccessFlag" before-version="6" />
+  <enum-type name="QOpenGLTexture::ComparisonFunction" before-version="6" />
+  <enum-type name="QOpenGLTexture::ComparisonMode" before-version="6" />
+  <object-type name="QOpenGLContext" before-version="6" />
+  <object-type name="QOpenGLContextGroup" before-version="6" />
+  <object-type name="QOpenGLFramebufferObject" before-version="6" />
+  <object-type name="QOpenGLFramebufferObjectFormat" before-version="6" />
+  <object-type name="QOpenGLFunctions" before-version="6" />
+  <object-type name="QOpenGLShader" before-version="6" />
+  <object-type name="QOpenGLShaderProgram" before-version="6">
     <modify-function signature="setUniformValue(const char*,Array)">
         <remove/>
     </modify-function>
@@ -3091,12 +3091,12 @@ PyObject* constScanLine(QImage* image, int line) {
         <remove/>
     </modify-function>
   </object-type>
-  <object-type name="QOpenGLTexture"/>
-  <object-type name="QOpenGLTimeMonitor"/>
-  <object-type name="QOpenGLTimerQuery"/>
-  <object-type name="QOpenGLVersionProfile"/>
-  <object-type name="QOpenGLVersionFunctionsFactory" since-version="6"/>
-  <object-type name="QOpenGLVertexArrayObject"/>
+  <object-type name="QOpenGLTexture" before-version="6" />
+  <object-type name="QOpenGLTimeMonitor" before-version="6" />
+  <object-type name="QOpenGLTimerQuery" before-version="6" />
+  <object-type name="QOpenGLVersionProfile" before-version="6" />
+  <object-type name="QOpenGLVersionFunctionsFactory" since-version="6" before-version="6" />
+  <object-type name="QOpenGLVertexArrayObject" before-version="6" />
   <object-type name="QPageLayout"/>
   <object-type name="QPageSize"/>
   <object-type name="QPdfWriter"/>
@@ -3121,15 +3121,15 @@ PyObject* constScanLine(QImage* image, int line) {
    <interface-type name="QSurface"/>
    <object-type name="QSurfaceFormat"/>
   <value-type name="QPainter::PixmapFragment"/>
-  <object-type name="QOpenGLPaintDevice">
+  <object-type name="QOpenGLPaintDevice" before-version="6">
     <modify-function signature="QOpenGLPaintDevice(const QOpenGLPaintDevice&amp;)" remove="all"/>
     <modify-function signature="operator=(const QOpenGLPaintDevice&amp;)" remove="all"/>
   </object-type>
   <value-type name="QPagedPaintDevice::Margins"/>
 
   <object-type name="QKeySequenceEdit"/>
-  <object-type name="QOpenGLWindow"/>
-  <object-type name="QOpenGLWidget"/>
+  <object-type name="QOpenGLWindow" before-version="6" />
+  <object-type name="QOpenGLWidget" before-version="6" />
   <object-type name="QPaintDeviceWindow"/>
   <object-type name="QRasterWindow"/>
   <object-type name="QPixelFormat"/>
@@ -3155,34 +3155,34 @@ PyObject* constScanLine(QImage* image, int line) {
   <enum-type name="QPageSize::PageSizeId"/>
   <enum-type name="QRawFont::AntialiasingType"/>
   <enum-type name="QRawFont::LayoutFlag" flags="QRawFont::LayoutFlags"/>
-  <enum-type name="QOpenGLContext::OpenGLModuleType"/>
-  <enum-type name="QOpenGLTexture::MipMapGeneration"/>
-  <enum-type name="QOpenGLTexture::TextureFormat"/>
-  <enum-type name="QOpenGLTexture::CubeMapFace"/>
-  <enum-type name="QOpenGLTexture::CoordinateDirection"/>
-  <enum-type name="QOpenGLTexture::TextureFormatClass"/>
-  <enum-type name="QOpenGLTexture::DepthStencilMode"/>
-  <enum-type name="QOpenGLTexture::SwizzleValue"/>
-  <enum-type name="QOpenGLTexture::Filter"/>
-  <enum-type name="QOpenGLTexture::PixelFormat"/>
-  <enum-type name="QOpenGLTexture::WrapMode"/>
-  <enum-type name="QOpenGLTexture::TextureUnitReset"/>
-  <enum-type name="QOpenGLTexture::BindingTarget"/>
-  <enum-type name="QOpenGLTexture::SwizzleComponent"/>
-  <enum-type name="QOpenGLTexture::Feature" flags="QOpenGLTexture::Features"/>
-  <enum-type name="QOpenGLTexture::Target"/>
-  <enum-type name="QOpenGLTexture::PixelType"/>
-  <enum-type name="QOpenGLBuffer::UsagePattern"/>
-  <enum-type name="QOpenGLBuffer::Type"/>
-  <enum-type name="QOpenGLBuffer::Access"/>
+  <enum-type name="QOpenGLContext::OpenGLModuleType" before-version="6" />
+  <enum-type name="QOpenGLTexture::MipMapGeneration" before-version="6" />
+  <enum-type name="QOpenGLTexture::TextureFormat" before-version="6" />
+  <enum-type name="QOpenGLTexture::CubeMapFace" before-version="6" />
+  <enum-type name="QOpenGLTexture::CoordinateDirection" before-version="6" />
+  <enum-type name="QOpenGLTexture::TextureFormatClass" before-version="6" />
+  <enum-type name="QOpenGLTexture::DepthStencilMode" before-version="6" />
+  <enum-type name="QOpenGLTexture::SwizzleValue" before-version="6" />
+  <enum-type name="QOpenGLTexture::Filter" before-version="6" />
+  <enum-type name="QOpenGLTexture::PixelFormat" before-version="6" />
+  <enum-type name="QOpenGLTexture::WrapMode" before-version="6" />
+  <enum-type name="QOpenGLTexture::TextureUnitReset" before-version="6" />
+  <enum-type name="QOpenGLTexture::BindingTarget" before-version="6" />
+  <enum-type name="QOpenGLTexture::SwizzleComponent" before-version="6" />
+  <enum-type name="QOpenGLTexture::Feature" flags="QOpenGLTexture::Features" before-version="6" />
+  <enum-type name="QOpenGLTexture::Target" before-version="6" />
+  <enum-type name="QOpenGLTexture::PixelType" before-version="6" />
+  <enum-type name="QOpenGLBuffer::UsagePattern" before-version="6" />
+  <enum-type name="QOpenGLBuffer::Type" before-version="6" />
+  <enum-type name="QOpenGLBuffer::Access" before-version="6" />
   <enum-type name="QPageLayout::Unit"/>
   <enum-type name="QPageLayout::Mode"/>
   <enum-type name="QPageLayout::Orientation"/>
-  <enum-type name="QOpenGLFramebufferObject::Attachment"/>
-  <enum-type name="QOpenGLShader::ShaderTypeBit" flags="QOpenGLShader::ShaderType"/>
+  <enum-type name="QOpenGLFramebufferObject::Attachment" before-version="6" />
+  <enum-type name="QOpenGLShader::ShaderTypeBit" flags="QOpenGLShader::ShaderType" before-version="6" />
   <enum-type name="QWindow::Visibility"/>
   <enum-type name="QWindow::AncestorMode"/>
-  <enum-type name="QOpenGLFunctions::OpenGLFeature" flags="QOpenGLFunctions::OpenGLFeatures"/>
+  <enum-type name="QOpenGLFunctions::OpenGLFeature" flags="QOpenGLFunctions::OpenGLFeatures" before-version="6" />
   <enum-type name="QScrollEvent::ScrollState"/>
   <enum-type name="QTouchDevice::DeviceType"/>
   <enum-type name="QTouchDevice::CapabilityFlag" flags="QTouchDevice::Capabilities"/>
@@ -3193,11 +3193,11 @@ PyObject* constScanLine(QImage* image, int line) {
   <enum-type name="QSurfaceFormat::OpenGLContextProfile"/>
   <enum-type name="QSurfaceFormat::ColorSpace"/>
 
-  <enum-type name="QOpenGLFramebufferObject::FramebufferRestorePolicy"/>
+  <enum-type name="QOpenGLFramebufferObject::FramebufferRestorePolicy" before-version="6" />
   <enum-type name="QPagedPaintDevice::PdfVersion"/>
 
-  <object-type name="QOpenGLTextureBlitter"/>
-  <enum-type name="QOpenGLTextureBlitter::Origin"/>
+  <object-type name="QOpenGLTextureBlitter" before-version="6" />
+  <enum-type name="QOpenGLTextureBlitter::Origin" before-version="6" />
   
   <object-type name="QConcatenateTablesProxyModel" since-version="5.13"/>
   <object-type name="QTransposeProxyModel" since-version="5.13"/>
