@@ -69,6 +69,9 @@ void LocationManager::extract_line(int offset, int *line, QString *filename) con
   const unsigned char *cursor = begin_buffer + offset;
 
   ++cursor; // skip '#'
+  if (cursor[0] == 'l' && cursor[1] == 'i' && cursor[2] == 'n' && cursor[3] == 'e') {
+    cursor += 4;
+  }
   if (std::isspace(*cursor) && std::isdigit(*(cursor + 1)))
     {
       ++cursor;

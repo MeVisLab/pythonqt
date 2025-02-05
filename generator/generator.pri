@@ -16,7 +16,7 @@ RESOURCES += generator.qrc
 
 include($$GENERATORPATH/parser/rxx.pri)
 
-include($$GENERATORPATH/parser/rpp/rpp.pri)
+include($$GENERATORPATH/simplecpp/simplecpp.pri)
 
 CONFIG += strict_c++
 win32-msvc*{

@@ -15,6 +15,5 @@
 <file alias="typesystem_multimedia.txt">typesystem_multimedia.xml</file>
 <file alias="typesystem_qml.txt">typesystem_qml.xml</file>
 <file alias="typesystem_quick.txt">typesystem_quick.xml</file>
-<file>parser/rpp/pp-qt-configuration</file>
 </qresource>
 </RCC>

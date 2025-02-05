@@ -48,13 +48,15 @@
 #include "generatorset.h"
 #include "fileout.h"
 #include "control.h"
-#include "pp.h"
+#include "simplecpp.h"
 
 #include <QDir>
 #include <QFileInfo>
 #include <QFile>
 #include <QTextStream>
 #include <QRegularExpression>
+
+#include <memory>
 
 void displayHelp(GeneratorSet *generatorSet);
 
@@ -125,53 +127,86 @@ namespace
     }
 
     bool
-    preprocess(const QString &sourceFile, const QString &targetFile, const QString &commandLineIncludes = QString())
+    preprocess(const QString& sourceFile, const QString& targetFile, const QString& commandLineIncludes = QString())
     {
-      rpp::pp_environment env;
-      rpp::pp preprocess(env);
+      simplecpp::DUI dui; // settings
 
-      rpp::pp_null_output_iterator null_out;
+      for(QString include : getIncludeDirectories(commandLineIncludes)) {
+        dui.includePaths.push_back(QDir::toNativeSeparators(include).toStdString());
+      }
+      dui.defines.push_back("__cplusplus=1");
+      dui.defines.push_back("__STDC__");
+      dui.std = "c++20";
+      dui.removeComments = true;
 
-      const char *ppconfig = ":/trolltech/generator/parser/rpp/pp-qt-configuration";
-
-      QFile file(ppconfig);
+      QFile file(sourceFile);
       if (!file.open(QFile::ReadOnly))
       {
-        fprintf(stderr, "Preprocessor configuration file not found '%s'\n", ppconfig);
+        std::cerr << "Main file not found:" << sourceFile.toUtf8().constData() << std::endl;
         return false;
       }
 
       QByteArray ba = file.readAll();
       file.close();
-      preprocess.operator()(ba.constData(), ba.constData() + ba.size(), null_out);
 
-      foreach(QString
-      include, getIncludeDirectories(commandLineIncludes)) {
-        preprocess.push_include_path(QDir::toNativeSeparators(include).toStdString());
+      // Perform preprocessing (code originally taken from simplecpp/main.cpp and modified)
+      simplecpp::OutputList outputList;
+      std::vector<std::string> files;
+      std::unique_ptr<simplecpp::TokenList> rawtokens(new simplecpp::TokenList(ba.constData(), ba.size(), files, {}, &outputList));
+      rawtokens->removeComments();
+      simplecpp::TokenList outputTokens(files);
+      std::map<std::string, simplecpp::TokenList*> filedata;
+      simplecpp::preprocess(outputTokens, *rawtokens, files, filedata, dui, &outputList);
+      simplecpp::cleanup(filedata);
+      rawtokens.reset();
+
+      for (const simplecpp::Output& output : outputList) {
+        if (output.type == simplecpp::Output::MISSING_HEADER) {
+          // do not print these messages for now, we are not interested
+          continue;
+        }
+        std::cerr << output.location.file() << ':' << output.location.line << ": ";
+        switch (output.type) {
+        case simplecpp::Output::ERROR:
+          std::cerr << "#error: ";
+          break;
+        case simplecpp::Output::WARNING:
+          std::cerr << "#warning: ";
+          break;
+        case simplecpp::Output::MISSING_HEADER:
+          std::cerr << "missing header: ";
+          break;
+        case simplecpp::Output::INCLUDE_NESTED_TOO_DEEPLY:
+          std::cerr << "include nested too deeply: ";
+          break;
+        case simplecpp::Output::SYNTAX_ERROR:
+          std::cerr << "syntax error: ";
+          break;
+        case simplecpp::Output::PORTABILITY_BACKSLASH:
+          std::cerr << "portability: ";
+          break;
+        case simplecpp::Output::UNHANDLED_CHAR_ERROR:
+          std::cerr << "unhandled char error: ";
+          break;
+        case simplecpp::Output::EXPLICIT_INCLUDE_NOT_FOUND:
+          std::cerr << "explicit include not found: ";
+          break;
+        case simplecpp::Output::FILE_NOT_FOUND:
+          std::cerr << "file not found: ";
+          break;
+        case simplecpp::Output::DUI_ERROR:
+          std::cerr << "dui error: ";
+          break;
+        }
+        std::cerr << output.msg << std::endl;
       }
-
-      QString currentDir = QDir::current().absolutePath();
-      QFileInfo sourceInfo(sourceFile);
-      QDir::setCurrent(sourceInfo.absolutePath());
-
-      std::string result;
-      result.reserve(20 * 1024); // 20K
-
-      result += "# 1 \"builtins\"\n";
-      result += "# 1 \"";
-      result += sourceFile.toStdString();
-      result += "\"\n";
-
-      preprocess.file(sourceInfo.fileName().toStdString(),
-                      rpp::pp_output_iterator<std::string>(result));
-
-      QDir::setCurrent(currentDir);
 
       QFile f(targetFile);
       if (!f.open(QIODevice::WriteOnly | QIODevice::Text))
       {
         fprintf(stderr, "Failed to write preprocessed file: %s\n", qPrintable(targetFile));
       }
+      std::string result = outputTokens.stringify();
       f.write(result.c_str(), result.length());
 
       return true;
