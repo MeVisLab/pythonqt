@@ -20,7 +20,7 @@ jobs:
       fail-fast: false
       matrix:
         os: ['ubuntu', 'windows']
-        qt-version: [ '5.12.*', '5.15.*', '6.7.*' ]
+        qt-version: [ '5.12.*', '5.15.*', '6.7.*', '6.8.*' ]
         python-version: [ '3.12' ]
     runs-on: ${{ matrix.os }}-latest
     steps:
@@ -34,10 +34,9 @@ jobs:
     - name: Install Qt ${{matrix.qt-version}}
       uses: jurplel/install-qt-action@v4
       with:
-        # 6.7.* currently does not work with ubuntu with this action
-        version: ${{ matrix.os == 'ubuntu' && matrix.qt-version == '6.7.*' && '6.6.*' || matrix.qt-version }}
+        version: ${{ matrix.qt-version }}
         modules: ${{startsWith(matrix.qt-version, '6') && 'qt5compat qtscxml qtpositioning qtwebchannel qtmultimedia qtwebengine' || '' }}
-        arch: ${{ matrix.os == 'ubuntu' && 'gcc_64' || (startsWith(matrix.qt-version, '5.12') && 'win64_msvc2017_64' || 'win64_msvc2019_64') }}
+        arch: ${{ (matrix.os == 'ubuntu' && (startsWith(matrix.qt-version, '5') && 'gcc_64' || 'linux_gcc_64')) || startsWith(matrix.qt-version, '5.12') && 'win64_msvc2017_64' || startsWith(matrix.qt-version, '6.8') && 'win64_msvc2022_64' || 'win64_msvc2019_64' }}
 
     - name: Setup Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
