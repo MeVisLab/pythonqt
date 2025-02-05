@@ -69,6 +69,8 @@ unix {
 unix: target.path = $${INSTALL_PREFIX}/lib
 win32: target.path = /
 
+msvc:QMAKE_CXXFLAGS += /bigobj
+
 headers.files = $${HEADERS}
 headers.path = $${INSTALL_PREFIX}/include
 
