@@ -20,7 +20,6 @@ HEADERS += $$RXXPATH/ast.h \
            $$RXXPATH/dumptree.h \
            $$RXXPATH/binder.h \
            $$RXXPATH/codemodel.h \
-           $$RXXPATH/codemodel_pointer.h \
            $$RXXPATH/codemodel_fwd.h \
            $$RXXPATH/type_compiler.h \
            $$RXXPATH/name_compiler.h \

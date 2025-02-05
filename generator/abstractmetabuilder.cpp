@@ -1169,7 +1169,7 @@ void AbstractMetaBuilder::traverseFunctions(ScopeModelItem scope_item, AbstractM
                     ReportHandler::warning(warn);
                 }
 
-                meta_class->addFunction(meta_function);
+                meta_class->addFunction(meta_function, /*check_duplicates=*/true);
             } else if (meta_function->isDestructor()) {
                 meta_class->setDestructorException(meta_function->exception());
                 if (!meta_function->isPublic()) {

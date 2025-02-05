@@ -497,6 +497,7 @@
   <rejection class="QMapPayloadNode"/>
   <rejection class="QMapData"/>
   <rejection class="QMapIterator"/>
+  <rejection class="QMetaType" enum-name="Type"/>    <!-- causes build problems because of QByteArray/QString values, should be enum class -->
   <rejection class="QMetaTypeId"/>
   <rejection class="QMetaAssociation"/>
   <rejection class="QMetaClassInfo::Data"/>
@@ -2259,7 +2260,6 @@ public:
   <enum-type name="QProcess::InputChannelMode"/>
   <enum-type name="QByteArray::Base64Option" flags="QByteArray::Base64Options"/>
   <enum-type name="QByteArray::Base64DecodingStatus"/>
-  <enum-type name="QMetaType::Type"/>
   <enum-type name="QMetaType::TypeFlag" flags="QMetaType::TypeFlags"/>
   <enum-type name="QAbstractItemModel::CheckIndexOption"/>
   <enum-type name="QAbstractItemModel::LayoutChangeHint"/>

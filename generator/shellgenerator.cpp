@@ -135,6 +135,20 @@ namespace {
   }
 }
 
+namespace {
+
+  QString trimSpaces(const QString& expr)
+  {
+    QString result = expr;
+    if (!result.contains("\"") && !result.contains("'")) {
+      // assume all spaces are expendable (some new spaces were introduced by the new simplecpp preprocessor)
+      result.replace(" ", "");
+    }
+    return result;
+  }
+
+};
+
 
 void ShellGenerator::writeFunctionArguments(QTextStream &s,
                                             const AbstractMetaFunction *meta_function,
@@ -167,9 +181,9 @@ void ShellGenerator::writeFunctionArguments(QTextStream &s,
           }
         }
         if ((option & IncludeDefaultExpression) && !arg->defaultValueExpression().isEmpty()) {
-            s << " = "; 
+          s << " = "; 
 
-            QString expr = arg->defaultValueExpression();
+          QString expr = trimSpaces(arg->defaultValueExpression());
           if (expr == "NULL")
           {
             expr = "nullptr";

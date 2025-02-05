@@ -1,0 +1,9 @@
+isEmpty(SIMPLECPPPATH):SIMPLECPPPATH = $$PWD
+
+SOURCES += \
+        $$SIMPLECPPPATH/simplecpp.cpp
+
+HEADERS += \
+        $$SIMPLECPPPATH/simplecpp.h
+
+INCLUDEPATH += $$PWD $$SIMPLECPPPATH
