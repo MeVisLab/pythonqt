@@ -171,11 +171,11 @@
   </value-type>
   <value-type name="QHttpHeaders" since-version="6.7"/>
   <enum-type name="QHttpHeaders::WellKnownHeader" since-version="6.7"/>
-  <!-- preliminary in 6.7
-  <value-type name="QNetworkRequestFactory" since-version="6.7"/>
-  <value-type name="QRestAccessManager" since-version="6.7"/>
-  <value-type name="QRestReply" since-version="6.7"/>
-  -->
+  <!-- preliminary in 6.7:  -->
+  <value-type name="QNetworkRequestFactory" since-version="6.8"/>
+  <value-type name="QRestAccessManager" since-version="6.8"/>
+  <value-type name="QRestReply" since-version="6.8"/>
+  <!-- -->
 
   <enum-type name="QSslError::SslError"/>
   <enum-type name="QSslCertificate::PatternSyntax"/>
@@ -225,6 +225,14 @@
   <object-type name="QDnsMailExchangeRecord"/>
   <object-type name="QDnsServiceRecord"/>
   <object-type name="QDnsTextRecord"/>
+  <object-type name="QDnsTlsAssociationRecord" since-version="6.8"/>
+  <enum-type name="QDnsTlsAssociationRecord::CertificateUsage"/>
+  <enum-type name="QDnsTlsAssociationRecord::MatchingType"/>
+  <enum-type name="QDnsTlsAssociationRecord::Selector"/>
+
+  <object-type name="QFormDataBuilder" since-version="6.8"/>
+  <enum-type name="QFormDataBuilder::Option" since-version="6.8"/>
+  <object-type name="QFormDataPartBuilder" since-version="6.8"/>
 
   <enum-type name="QHostAddress::ConversionModeFlag"/>
   <enum-type name="QNetworkInterface::InterfaceType"/>

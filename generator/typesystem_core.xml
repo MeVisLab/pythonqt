@@ -164,6 +164,22 @@
 <rejection class="underlying_type"/>
 <rejection class="vector"/>
 
+<rejection class="ArgResolver"/>
+<rejection class="ArgsType"/>
+<rejection class="AsyncContinuation"/>
+<rejection class="CanceledHandler"/>
+<rejection class="Continuation"/>
+<rejection class="ContinuationWrapper"/>
+<rejection class="FailureHandler"/>
+<rejection class="Future"/>
+<rejection class="QHashHeterogeneousSearch"/>
+<rejection class="QPromise"/>
+<rejection class="QRunnable::QGenericRunnable"/>
+<rejection class="QVersionNumber::It"/>
+<rejection class="ResultTypeHelper"/>
+<rejection class="SyncContinuation"/>
+<rejection class="UnwrapHandler"/>
+
   <primitive-type name="qgl_GLsizeiptr"/>
   <primitive-type name="qgl_GLintptr"/>
   <primitive-type name="GLint"/>
@@ -272,6 +288,7 @@
   <rejection class="Qt::strong_ordering"/>
   <rejection class="Qt::weak_ordering"/>
   <rejection class="Qt::partial_ordering"/>
+  <rejection class="Qt::totally_ordered_wrapper"/>
 
   <rejection class="QSharedPointer"/>
   <rejection class="QWeakPointer"/>
@@ -668,8 +685,13 @@
   <rejection class="Qt" enum-name="Initialization"/>
   <rejection class="Qt::Disambiguated_t"/>
 
+  <rejection class="QAbstractEventDispatcherV2"/>  <!-- Currently not supported - can't cast to this type -->
   <rejection class="QAbstractEventDispatcher" function-name="filterEvent"/>
   <rejection class="QAbstractEventDispatcher" function-name="setEventFilter"/>
+
+  <rejection class="QChronoTimer"/>  <!-- std::chrono::nanoseconds arguments not supported at the moment -->
+  <rejection class="QDirListing"/> <!-- iterator-style interface not supported -->
+
 
   <rejection class="QAbstractFileEngine" function-name="extension"/>
   <rejection class="QCoreApplication" function-name="compressEvent"/>
@@ -2306,4 +2328,6 @@ public:
   <enum-type name="Qt::ChecksumType"/>
   <enum-type name="Qt::SplitBehaviorFlags" flags="Qt::SplitBehavior"/>
   <enum-type name="Qt::HighDpiScaleFactorRoundingPolicy"/>
+  <enum-type name="Qt::ContextMenuTrigger"/>
+  <enum-type name="Qt::TimerId"/>
   </typesystem>
