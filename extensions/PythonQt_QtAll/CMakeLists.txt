@@ -12,40 +12,28 @@ else()
     target_compile_definitions(${PROJECT_NAME} PUBLIC PYTHONQT_QTALL_STATIC)
 endif()
 
-target_sources(${PROJECT_NAME} PRIVATE
-    ${SOURCES}
-    ${GENERATE_SOURCES}
-)
+target_sources(${PROJECT_NAME} PRIVATE ${SOURCES})
 
-target_link_libraries(${PROJECT_NAME} PUBLIC
-    Core
-)
+target_link_libraries(${PROJECT_NAME} PUBLIC Core)
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_LIST_DIR})
-
 
 list(APPEND QTMODULES Core Gui Svg Sql Network OpenGL Xml XmlPatterns Multimedia Qml Quick UiTools WebEngineWidgets WebKit)
 
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${QTMODULES})
 
-foreach(QTMODULE IN LISTS QTMODULES)
-    if(NOT TARGET Qt${QT_VERSION_MAJOR}::${QTMODULE})
+foreach(QtModule IN LISTS QTMODULES)
+    if(NOT TARGET "Qt${QT_VERSION_MAJOR}::${QtModule}")
         continue()
     endif()
 
-    string(TOLOWER ${QTMODULE} qtmodule)
-    file(GLOB GENERATE_SOURCES
-        ${PYTHONQT_GENERATED_PATH}/com_trolltech_qt_${qtmodule}/*.h
-        ${PYTHONQT_GENERATED_PATH}/com_trolltech_qt_${qtmodule}/*.cpp
-    )
-    target_sources(${PROJECT_NAME} PRIVATE ${GENERATE_SOURCES})
-    target_link_libraries(${PROJECT_NAME} PUBLIC Qt${QT_VERSION_MAJOR}::${QTMODULE})
-
-    string(TOUPPER ${QTMODULE} qtmodule)
-    target_compile_definitions(${PROJECT_NAME} PRIVATE PYTHONQT_WITH_${qtmodule})
+    string(TOUPPER ${QtModule} QTMODULE)
+    target_sources(${PROJECT_NAME} PRIVATE ${PYTHONQT_WRAPPER_${QTMODULE}_SOURCES})
+    target_link_libraries(${PROJECT_NAME} PUBLIC Qt${QT_VERSION_MAJOR}::${QtModule})
+    target_compile_definitions(${PROJECT_NAME} PRIVATE PYTHONQT_WITH_${QTMODULE})
 endforeach()
 
-if(TARGET Qt${QT_VERSION_MAJOR}::Gui)
+if(TARGET "Qt${QT_VERSION_MAJOR}::Gui")
     find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets PrintSupport REQUIRED)
     target_link_libraries(${PROJECT_NAME} PUBLIC
         Qt${QT_VERSION_MAJOR}::Widgets
@@ -53,28 +41,28 @@ if(TARGET Qt${QT_VERSION_MAJOR}::Gui)
     )
 endif()
 
-if(TARGET Qt${QT_VERSION_MAJOR}::Svg AND QT_VERSION_MAJOR VERSION_GREATER_EQUAL 6)
+if(TARGET "Qt${QT_VERSION_MAJOR}::Svg" AND QT_VERSION_MAJOR VERSION_GREATER_EQUAL 6)
     find_package(Qt${QT_VERSION_MAJOR} COMPONENTS SvgWidgets REQUIRED)
     target_link_libraries(${PROJECT_NAME} PUBLIC
         Qt${QT_VERSION_MAJOR}::SvgWidgets
     )
 endif()
 
-if(TARGET Qt${QT_VERSION_MAJOR}::Multimedia)
+if(TARGET "Qt${QT_VERSION_MAJOR}::Multimedia")
     find_package(Qt${QT_VERSION_MAJOR} COMPONENTS MultimediaWidgets REQUIRED)
     target_link_libraries(${PROJECT_NAME} PUBLIC
         Qt${QT_VERSION_MAJOR}::MultimediaWidgets
     )
 endif()
 
-if(TARGET Qt${QT_VERSION_MAJOR}::Quick)
+if(TARGET "Qt${QT_VERSION_MAJOR}::Quick")
     find_package(Qt${QT_VERSION_MAJOR} COMPONENTS QuickWidgets REQUIRED)
     target_link_libraries(${PROJECT_NAME} PUBLIC
         Qt${QT_VERSION_MAJOR}::QuickWidgets
     )
 endif()
 
-if(TARGET Qt${QT_VERSION_MAJOR}::WebKit)
+if(TARGET "Qt${QT_VERSION_MAJOR}::WebKit")
     find_package(Qt${QT_VERSION_MAJOR} COMPONENTS WebKitWidgets REQUIRED)
     target_link_libraries(${PROJECT_NAME} PUBLIC
         Qt${QT_VERSION_MAJOR}::WebKitWidgets

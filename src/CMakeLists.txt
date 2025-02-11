@@ -15,17 +15,13 @@ else()
     target_compile_definitions(${PROJECT_NAME} PUBLIC PYTHONQT_STATIC)
 endif()
 
-file(GLOB GENERATE_SOURCES
-    ${PYTHONQT_GENERATED_PATH}/com_trolltech_qt_core_builtin/*.h
-    ${PYTHONQT_GENERATED_PATH}/com_trolltech_qt_core_builtin/*.cpp
-    ${PYTHONQT_GENERATED_PATH}/com_trolltech_qt_gui_builtin/*.h
-    ${PYTHONQT_GENERATED_PATH}/com_trolltech_qt_gui_builtin/*.cpp
-)
-
 target_sources(${PROJECT_NAME} PRIVATE
     ${SOURCES}
-    ${GENERATE_SOURCES}
+    ${PYTHONQT_WRAPPER_CORE_BUILTIN_SOURCES}
+    ${PYTHONQT_WRAPPER_GUI_BUILTIN_SOURCES}
 )
+
+add_dependencies(${PROJECT_NAME} PythonQtWrapper)
 
 file(GLOB PUBLIC_HEADER *.h)
 

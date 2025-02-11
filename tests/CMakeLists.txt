@@ -1,4 +1,4 @@
-project(tests LANGUAGES CXX)
+project(PythonQtTest LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 
@@ -24,6 +24,12 @@ add_test(NAME ${PROJECT_NAME}
     WORKING_DIRECTORY $<TARGET_FILE_DIR:${PROJECT_NAME}>
 )
 
+if(WIN32)
+    set(LIBRARY_SEARCH_PATH PATH)
+else()
+    set(LIBRARY_SEARCH_PATH LD_LIBRARY_PATH)
+endif()
+
 set_tests_properties(${PROJECT_NAME} PROPERTIES
-    ENVIRONMENT_MODIFICATION "Path=path_list_append:$<TARGET_FILE_DIR:Qt${QT_VERSION_MAJOR}::Widgets>"
+    ENVIRONMENT_MODIFICATION "${LIBRARY_SEARCH_PATH}=path_list_prepend:$<TARGET_FILE_DIR:Qt${QT_VERSION_MAJOR}::Widgets>"
 )
