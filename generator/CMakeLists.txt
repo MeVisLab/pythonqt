@@ -57,8 +57,13 @@ foreach(wrapper IN LISTS wrapper_list)
     list(APPEND PYTHONQT_WRAPPER_SOURCES ${PYTHONQT_WRAPPER_${WRAPPER}_SOURCES})
     set(PYTHONQT_WRAPPER_${WRAPPER}_SOURCES ${PYTHONQT_WRAPPER_${WRAPPER}_SOURCES} PARENT_SCOPE)
 endforeach()
+
+get_filename_component(_qt_install_prefix "${Qt${QT_VERSION_MAJOR}_DIR}" PATH)
+get_filename_component(_qt_install_prefix "${_qt_install_prefix}" PATH)
+get_filename_component(_qt_install_prefix "${_qt_install_prefix}" PATH)
+
 add_custom_command(OUTPUT ${PYTHONQT_WRAPPER_SOURCES}
-    COMMAND ${CMAKE_COMMAND} -E env --modify ${LIBRARY_SEARCH_PATH}=path_list_prepend:$<TARGET_FILE_DIR:Qt${QT_VERSION_MAJOR}::Widgets> $<TARGET_FILE:${PROJECT_NAME}>
+    COMMAND ${CMAKE_COMMAND} -E env QTDIR=${_qt_install_prefix} --modify ${LIBRARY_SEARCH_PATH}=path_list_prepend:$<TARGET_FILE_DIR:Qt${QT_VERSION_MAJOR}::Widgets> $<TARGET_FILE:${PROJECT_NAME}>
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR} #[[$<TARGET_FILE_DIR:${PROJECT_NAME}>]]
     DEPENDS ${PROJECT_NAME}
     VERBATIM
