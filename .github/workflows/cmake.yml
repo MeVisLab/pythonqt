@@ -42,7 +42,6 @@ jobs:
 
       - name: Configure CMake
         run: |
-          mkdir build
           cmake -S . -B build \
             -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_INSTALL_PREFIX=./install
