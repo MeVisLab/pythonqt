@@ -28,7 +28,11 @@ jobs:
         if: runner.os == 'Linux'
         run: |
           sudo apt-get update
-          sudo apt-get install -y qt${{ matrix.qt_version }}-base qt${{ matrix.qt_version }}-tools
+          if [ "${{ matrix.qt_version }}" = "5" ]; then
+            sudo apt-get install -y qtbase5-dev qt5-default
+          else
+            sudo apt-get install -y qt6-base-dev
+          fi
 
       - name: Install dependencies (Windows)
         if: runner.os == 'Windows'
