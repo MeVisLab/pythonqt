@@ -61,7 +61,7 @@ void displayHelp(GeneratorSet *generatorSet);
 namespace
 {
 
-    QStringList getIncludeDirectories(const QString &commandLineIncludes)
+    QStringList getIncludeDirectories(const QString &commandLineIncludes, const QString &qtIncludePrefix)
     {
       QStringList includes;
       includes << QString(".");
@@ -121,11 +121,20 @@ namespace
         includes << (qtdir + "/QtOpenGL");
         includes << qtdir;
       }
+      if (!qtIncludePrefix.isEmpty() && QFile::exists(qtIncludePrefix)) {
+          std::cout << "qt include prefix: " << qtIncludePrefix.toLocal8Bit().constData() << std::endl;
+          includes << (qtIncludePrefix + "/QtXml");
+          includes << (qtIncludePrefix + "/QtNetwork");
+          includes << (qtIncludePrefix + "/QtCore");
+          includes << (qtIncludePrefix + "/QtGui");
+          includes << (qtIncludePrefix + "/QtOpenGL");
+          includes << qtIncludePrefix;
+      }
       return includes;
     }
 
     bool
-    preprocess(const QString &sourceFile, const QString &targetFile, const QString &commandLineIncludes = QString())
+    preprocess(const QString &sourceFile, const QString &targetFile, const QString &commandLineIncludes = QString(), const QString &qtIncludPrefix = {})
     {
       rpp::pp_environment env;
       rpp::pp preprocess(env);
@@ -146,7 +155,7 @@ namespace
       preprocess.operator()(ba.constData(), ba.constData() + ba.size(), null_out);
 
       foreach(QString
-      include, getIncludeDirectories(commandLineIncludes)) {
+      include, getIncludeDirectories(commandLineIncludes, qtIncludPrefix)) {
         preprocess.push_include_path(QDir::toNativeSeparators(include).toStdString());
       }
 
@@ -177,10 +186,10 @@ namespace
       return true;
     }
 
-    unsigned int getQtVersion(const QString &commandLineIncludes)
+    unsigned int getQtVersion(const QString &commandLineIncludes, const QString &qtIncludPrefix = {})
     {
       QRegularExpression re("#define\\s+QTCORE_VERSION\\s+0x([0-9a-f]+)", QRegularExpression::CaseInsensitiveOption);
-      for (const QString &includeDir: getIncludeDirectories(commandLineIncludes))
+      for (const QString &includeDir: getIncludeDirectories(commandLineIncludes, qtIncludPrefix))
       {
         QFileInfo fi(QDir(includeDir), "qtcoreversion.h");
         if (fi.exists())
@@ -315,7 +324,7 @@ int main(int argc, char *argv[])
 
     if (!qtVersion) {
         printf("Trying to determine Qt version...\n");
-        qtVersion = getQtVersion(args.value("include-paths"));
+        qtVersion = getQtVersion(args.value("include-paths"), args.value("qt-include-prefix"));
         if (!qtVersion)
         {
             fprintf(stderr, "Aborting\n"); // the error message was printed by getQtVersion
@@ -337,7 +346,7 @@ int main(int argc, char *argv[])
     printf("PreProcessing - Generate [%s] using [%s] and include-paths [%s]\n",
       qPrintable(pp_file), qPrintable(fileName), qPrintable(args.value("include-paths")));
     ReportHandler::setContext("Preprocess");
-    if (!preprocess(fileName, pp_file, args.value("include-paths"))) {
+    if (!preprocess(fileName, pp_file, args.value("include-paths"), args.value("qt-include-prefix"))) {
         fprintf(stderr, "Preprocessor failed on file: '%s'\n", qPrintable(fileName));
         return 1;
     }
