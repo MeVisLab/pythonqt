@@ -32,16 +32,28 @@ jobs:
             sudo apt-get install -y qtbase5-dev qtbase5-private-dev qtchooser qt5-qmake qtbase5-dev-tools \
             libqt5svg5-dev qttools5-dev libqt5xmlpatterns5-dev qtmultimedia5-dev qtdeclarative5-dev \
             qtwebengine5-dev libqt5webkit5-dev
+            echo "QTDIR=/usr/lib/x86_64-linux-gnu/qt5" | tee -a $GITHUB_ENV
           else
             sudo apt-get install -y qt6-base-dev qt6-base-private-dev qt6-5compat-dev qt6-base-dev-tools \
             libqt6svg6-dev qt6-multimedia-dev qt6-declarative-dev qt6-webengine-dev
+            echo "QTDIR=/usr/lib/x86_64-linux-gnu/qt6" | tee -a $GITHUB_ENV
           fi
 
       - name: Install dependencies (Windows)
         if: runner.os == 'Windows'
         run: |
-          choco install qt${{ matrix.qt_version }} --version ${{ matrix.qt_version }}.0.0 --params "/InstallationFolder C:/Qt/${{ matrix.qt_version }}"
-          echo "C:/Qt/${{ matrix.qt_version }}/bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          if ("${{ matrix.qt_version }}" -eq "5") {
+            pip install aqtinstall
+            aqt install-qt windows desktop ${{ matrix.qt_version }}.15.2 win64_msvc2019 -m qtbase qtmultimedia qtdeclarative qttools qtsvg
+            $Qt5Dir = "$env:USERPROFILE\Qt\${{ matrix.qt_version }}.15.2\msvc2019_64"
+            echo "Qt5Dir=$Qt5Dir" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+            echo "$Qt5Dir\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+            echo "QTDIR=$Qt5Dir" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          } else {
+            choco install qt6 --version ${{ matrix.qt_version }}.0.0 --params "/InstallationFolder C:/Qt/${{ matrix.qt_version }}"
+            echo "C:/Qt/${{ matrix.qt_version }}/bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+            echo "QTDIR=C:/Qt/${{ matrix.qt_version }}" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          }
 
       - name: Configure CMake
         run: |
