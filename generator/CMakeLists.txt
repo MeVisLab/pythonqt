@@ -58,12 +58,17 @@ foreach(wrapper IN LISTS wrapper_list)
     set(PYTHONQT_WRAPPER_${WRAPPER}_SOURCES ${PYTHONQT_WRAPPER_${WRAPPER}_SOURCES} PARENT_SCOPE)
 endforeach()
 
-get_filename_component(_qt_install_prefix "${Qt${QT_VERSION_MAJOR}_DIR}" PATH)
-get_filename_component(_qt_install_prefix "${_qt_install_prefix}" PATH)
-get_filename_component(_qt_install_prefix "${_qt_install_prefix}" PATH)
+get_target_property(_qt_include_dirs Qt${QT_VERSION_MAJOR}::Core INTERFACE_INCLUDE_DIRECTORIES)
+foreach(_qt_include_dir IN LISTS _qt_include_dirs)
+    get_filename_component(_qt_install_prefix "${_qt_include_dir}" PATH)
+    if (EXISTS "${_qt_install_prefix}/include/QtCore")
+        set(_qt_dir "${_qt_install_prefix}")
+        break()
+    endif()
+endforeach()
 
 add_custom_command(OUTPUT ${PYTHONQT_WRAPPER_SOURCES}
-    COMMAND ${CMAKE_COMMAND} -E env QTDIR=${_qt_install_prefix} --modify ${LIBRARY_SEARCH_PATH}=path_list_prepend:$<TARGET_FILE_DIR:Qt${QT_VERSION_MAJOR}::Widgets> $<TARGET_FILE:${PROJECT_NAME}>
+    COMMAND ${CMAKE_COMMAND} -E env QTDIR=${_qt_dir} --modify ${LIBRARY_SEARCH_PATH}=path_list_prepend:$<TARGET_FILE_DIR:Qt${QT_VERSION_MAJOR}::Widgets> $<TARGET_FILE:${PROJECT_NAME}>
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR} #[[$<TARGET_FILE_DIR:${PROJECT_NAME}>]]
     DEPENDS ${PROJECT_NAME}
     VERBATIM
@@ -77,3 +82,5 @@ set_source_files_properties(${PYTHONQT_WRAPPER_SOURCES} PROPERTIES
 add_custom_target(PythonQtWrapper
     DEPENDS ${PROJECT_NAME} ${PYTHONQT_WRAPPER_SOURCES}
 )
+
+message("_qt5Core_install_prefix " ${_qt5Core_install_prefix})
