@@ -1,4 +1,4 @@
-e# PythonQt
+# PythonQt
 
 [![License](https://img.shields.io/github/license/mevislab/pythonqt.svg?color=blue)](LICENSE)
 
