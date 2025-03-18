@@ -1,4 +1,4 @@
-# PythonQt
+e# PythonQt
 
 [![License](https://img.shields.io/github/license/mevislab/pythonqt.svg?color=blue)](LICENSE)
 
@@ -111,7 +111,7 @@ Next, we need the PythonQt runtime.
 As a last step, we need to build the extensions.
 
 1. cd into `extensions`
-2. qmake `src.pro`
+2. qmake `extensions.pro`
 
    `qmake CONFIG+=Release extensions.pro`
 
