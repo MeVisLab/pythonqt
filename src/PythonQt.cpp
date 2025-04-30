@@ -558,14 +558,15 @@ void PythonQtPrivate::registerClass(const QMetaObject* metaobject, const char* p
         PythonQtClassInfo* parentInfo = lookupClassInfoAndCreateIfNotPresent(m->superClass()->className());
         info->addParentClass(PythonQtClassInfo::ParentClassInfo(parentInfo));
       }
-    } else if (first && module) {
+    } else if (first && (module || (package && package[0]))) {
       // There is a wrapper already, but if we got a module, we want to place the wrapper into that module as well,
       // since it might have been placed into "private" earlier on.
       // If the wrapper was already added to module before, it is just readded, which does no harm.
       PyObject* classWrapper = info->pythonQtClassWrapper();
       // AddObject steals a reference, so we need to INCREF
       Py_INCREF(classWrapper);
-      if (PyModule_AddObject(module, info->className(), classWrapper) < 0) {
+      PyObject* pack = module ? module : packageByName(package); // same logic like in createPythonQtClassWrapper
+      if (PyModule_AddObject(pack, info->className(), classWrapper) < 0) {
          Py_DECREF(classWrapper);
       }
     }
