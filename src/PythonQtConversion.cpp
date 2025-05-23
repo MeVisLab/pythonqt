@@ -989,7 +989,7 @@ quint64 PythonQtConv::PyObjGetULongLong(PyObject* val, bool strict, bool &ok) {
   } else
 #endif
   if (Py_TYPE(val) == &PyLong_Type) {
-    d = PyLong_AsLongLong(val);
+    d = PyLong_AsUnsignedLongLong(val);
   } else if (!strict) {
     if (PyObject_TypeCheck(val, &PyInt_Type)) {
       // support for derived int classes, e.g. for our enums
