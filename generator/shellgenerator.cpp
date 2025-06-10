@@ -199,7 +199,7 @@ void ShellGenerator::writeFunctionArguments(QTextStream &s,
               if (pos > 0) {
                 QString typeName = expr.left(pos);
                 AbstractMetaEnum* enumType = findEnumTypeOfClass(_currentScope, typeName);
-                if (enumType && enumType->typeEntry()->isEnumClass()) {
+                if (enumType) {
                   // prepend original class name, otherwise the new enum type from the wrapper will be used,
                   // which is not compatible
                   qualifier = _currentScope->name();
