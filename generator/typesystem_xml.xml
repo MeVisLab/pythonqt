@@ -75,6 +75,7 @@
     <value-type name="QDomNodeList">
         <modify-function signature="operator=(const QDomNodeList &amp;)" remove="all"/>
     </value-type>
+    <rejection class="QDomNodeList::It" since-version="6.9"/>
 
     <value-type name="QDomNotation">
         <modify-function signature="nodeType()const" remove="all"/>

@@ -168,6 +168,7 @@
 <rejection class="ArgsType"/>
 <rejection class="AsyncContinuation"/>
 <rejection class="CanceledHandler"/>
+<rejection class="CompactContinuation"  since-version="6.9"/>
 <rejection class="Continuation"/>
 <rejection class="ContinuationWrapper"/>
 <rejection class="FailureHandler"/>
@@ -239,7 +240,7 @@
   <primitive-type name="qptrdiff"/>
   <primitive-type name="qsizetype"/>
   <primitive-type name="Qt::Disambiguated_t"/>
-  
+
   <rejection class="qfloat16"/>  <!-- only used in QRgbaFloat template and QCborStreamReader/Writer so far -->
 
   <value-type name="QModelIndex"/>
@@ -1132,7 +1133,6 @@ public:
     const static int DefaultTwoDigitBaseYear = QLocale::DefaultTwoDigitBaseYear;
     </inject-code>
   </value-type>
-
 
   <value-type name="QBitArray">
     <modify-function signature="operator[](int)" remove="all"/>
@@ -2053,7 +2053,7 @@ public:
     </inject-code>
   </object-type>
   <rejection class="QCborStreamReader::StringResult" since-version="6.7"/>
-  
+
   <object-type name="QCborValue" since-version="5.12">
     <modify-function signature="QCborValue(QCborTag, const QCborValue&amp;)" remove="all"/>
     <modify-function signature="tag(QCborTag)const" remove="all"/>
@@ -2227,12 +2227,20 @@ public:
   <object-type name="QCommandLineOption"/>
   <object-type name="QCommandLineParser"/>
   <enum-type name="QCommandLineParser::OptionsAfterPositionalArgumentsMode"/>
+  <enum-type name="QCommandLineParser::MessageType" since-version="6.9"/>
   <object-type name="QIdentityProxyModel"/>
   <object-type name="QJsonArray"/>
   <object-type name="QJsonDocument"/>
   <object-type name="QJsonObject"/>
   <object-type name="QJsonParseError"/>
-  <object-type name="QJsonValue"/>
+  <object-type name="QJsonValue">
+    <!-- workaround to handle using declaration for an enum in another class -->
+    <!-- (currently not handled by the generator, handling needs to be added if this happens more often) -->
+    <inject-code class="pywrap-h" since-version="6.9">
+      public:
+      using JsonFormat = QJsonDocument::JsonFormat;
+    </inject-code>
+  </object-type>
   <object-type name="QFileSelector"/>
   <object-type name="QMarginsF"/>
   <object-type name="QLockFile"/>

@@ -79,7 +79,7 @@
 <rejection class="QOpenGLVertexArrayObject::Binder"/>
 <rejection class="QSizePolicy::Bits"/>
 
-  <rejection class="QGenericMatrix"/>  
+  <rejection class="QGenericMatrix"/>
   <rejection class="QPixmapFilterPrivate"/>
   <rejection class="QPenPrivate"/>
   <rejection class="QGtkStyle"/>
@@ -593,7 +593,7 @@
   <enum-type name="QPagedPaintDevice::PageSize"/>
 
   <object-type name="QGestureRecognizer" force-abstract="yes"/>
-  
+
   <value-type name="QPixmapCache::Key"/>
   <value-type name="QTileRules"/>
   <value-type name="QVector2D">
@@ -621,7 +621,7 @@
     <modify-function signature="operator*=(QTransform)" access="private"/>
 
     <modify-function signature="asAffineMatrix()" remove="all"/>
-  
+
       <modify-function signature="inverted(bool*)const">
         <modify-argument index="1">
             <remove-argument/>
@@ -703,7 +703,7 @@
     <modify-function signature="operator=(const QPixmap &amp;)" remove="all"/>
     <modify-function signature="QBitmap(QString,const char*)" access="private">
     </modify-function>
-  
+
     <modify-function signature="fromData(QSize,const uchar*,QImage::Format)" remove="all"/>
   </value-type>
   <value-type name="QTextInlineObject"/>
@@ -758,7 +758,7 @@
     <modify-function signature="inputFormats()" remove="all"/> <!--### Obsolete in 4.3-->
     <modify-function signature="outputFormatList()" remove="all"/> <!--### Obsolete in 4.3-->
     <modify-function signature="outputFormats()" remove="all"/> <!--### Obsolete in 4.3-->
-  
+
     <modify-function signature="setData(const char*,uint)" remove="all"/>
 
   </value-type>
@@ -870,7 +870,7 @@
     <modify-function signature="operator!()const" remove="all"/>
     <modify-function signature="QPixmap(const char **)" remove="all"/>
     <modify-function signature="serialNumber()const" remove="all"/> <!--### Obsolete in 4.3-->
-  
+
     <modify-function signature="loadFromData(const uchar *,uint,const char *,QFlags&lt;Qt::ImageConversionFlag&gt;)" remove="all"/>
   </value-type>
 
@@ -971,6 +971,10 @@
     </inject-code>
   </value-type>
 
+  <value-type name="QFontVariableAxis" since-version="6.9"/>
+  <value-type name="QPainterStateGuard" since-version="6.9"/>
+  <enum-type name="QPainterStateGuard::InitialState" since-version="6.9"/>
+
   <value-type name="QTextTableCell">
     <extra-includes>
         <include file-name="QTextCursor" location="global"/>
@@ -1024,7 +1028,7 @@
 
       <modify-function signature="serialNumber()const" remove="all"/> <!--### Obsolete in 4.3-->
       <modify-function signature="textLanguages()const" remove="all"/> <!--### Obsolete in 4.3-->
-  
+
     <modify-function signature="QImage(const char**)" remove="all"/>
     <modify-function signature="QImage(const uchar *,int,int,QImage::Format)" remove="all"/>
     <modify-function signature="QImage(const uchar *,int,int,int,QImage::Format)" remove="all"/>
@@ -1072,7 +1076,7 @@ PyObject* constScanLine(QImage* image, int line) {
 }
 #endif
 
-</inject-code>  
+</inject-code>
   </value-type>
 
   <value-type name="QColormap">
@@ -1117,6 +1121,12 @@ PyObject* constScanLine(QImage* image, int line) {
     <modify-function signature="operator=(QColor)" remove="all"/>
     <modify-function signature="operator=(Qt::GlobalColor)" remove="all"/>
 
+    <!-- these functions won't compile because of ambiguity due to implicit conversion of QPen and QBrush to QColor  -->
+    <modify-function signature="operator==(const QBrush &amp;)" remove="all" since-version="6.9"/>/>
+    <modify-function signature="operator==(const QPen &amp;)" remove="all" since-version="6.9"/>/>
+    <modify-function signature="operator!=(const QBrush &amp;)" remove="all" since-version="6.9"/>/>
+    <modify-function signature="operator!=(const QPen &amp;)" remove="all" since-version="6.9"/>/>
+
     <modify-function signature="QColor(const char*)">
         <remove/>
     </modify-function>
@@ -1160,7 +1170,7 @@ PyObject* constScanLine(QImage* image, int line) {
 
     <modify-function signature="operator=(QFontMetrics)" remove="all"/>
     <modify-function signature="operator=(QFontMetricsF)" remove="all"/>
-   
+
     <modify-function signature="QFontMetricsF(QFontMetricsF)" remove="all"/>
     <modify-function signature="QFontMetricsF(QFontMetrics)" remove="all"/>
     <modify-function signature="operator==(QFontMetricsF)const" remove="all"/>
@@ -1177,7 +1187,7 @@ PyObject* constScanLine(QImage* image, int line) {
     </modify-function>
 
     <modify-function signature="operator=(QFontMetrics)" remove="all"/>
-  
+
    <inject-code class="pywrap-h">
    QFontMetrics* new_QFontMetrics() { return new QFontMetrics(QFont()); }
    </inject-code>
@@ -1211,7 +1221,7 @@ PyObject* constScanLine(QImage* image, int line) {
         <define-ownership owner="new-owner-of-this" />
       </modify-argument>
     </modify-function>
-    
+
     <modify-function signature="setCursorForItemOnly(QCursor)" remove="all"/>
 
     <modify-function signature="setMatrix(QMatrix, bool)" remove="all"/>
@@ -1234,7 +1244,7 @@ PyObject* constScanLine(QImage* image, int line) {
         <define-ownership owner="c++" />
       </modify-argument>
     </modify-function>
-    
+
       <modify-function signature="update()" remove="all"/>
       <modify-function signature="horizontalStepsPerItem()const" remove="all"/> <!--### Obsolete in 4.3-->
       <modify-function signature="setHorizontalStepsPerItem(int)" remove="all"/> <!--### Obsolete in 4.3-->
@@ -1248,7 +1258,7 @@ PyObject* constScanLine(QImage* image, int line) {
   </object-type>
   <object-type name="QAbstractTextDocumentLayout">
   </object-type>
-  
+
   <!-- Removed because of problems in Qt5.0
   <object-type name="QAccessible">
     <modify-function signature="initialize()" remove="all"/>
@@ -1313,7 +1323,7 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QWizard">
     <!-- ### Requires correct class name in meta object -->
     <modify-function signature="setDefaultProperty(const char *, const char *, const char *)" remove="all"/>
-    
+
     <modify-function signature="addPage(QWizardPage*)">
       <modify-argument index="1">
         <define-ownership owner="c++" />
@@ -1393,7 +1403,7 @@ PyObject* constScanLine(QImage* image, int line) {
     <modify-function signature="setNoReplayFor(QWidget*)">
         <remove/>
     </modify-function>
-  
+
   <inject-code class="pywrap-h">
   QAction* addAction (QMenu* menu, const QString &amp; text, PyObject* callable, const QKeySequence &amp; shortcut = 0) {
     QAction* a = menu-&gt;addAction(text);
@@ -1401,7 +1411,7 @@ PyObject* constScanLine(QImage* image, int line) {
     PythonQt::self()-&gt;addSignalHandler(a, SIGNAL(triggered(bool)), callable);
     return a;
   }
-  
+
   QAction* addAction (QMenu* menu, const QIcon&amp; icon, const QString&amp; text, PyObject* callable, const QKeySequence&amp; shortcut = 0)
   {
     QAction* a = menu-&gt;addAction(text);
@@ -1560,7 +1570,7 @@ PyObject* constScanLine(QImage* image, int line) {
       <modify-function signature="isEmpty()const" remove="all"/> <!--### Obsolete in 4.3-->
   </object-type>
   <object-type name="QTextObject"/>
-    
+
   <object-type name="QTimeEdit"/>
   <object-type name="QToolBox">
     <modify-function signature="addItem(QWidget*, const QIcon&amp;, const QString&amp;)">
@@ -1704,7 +1714,7 @@ PyObject* constScanLine(QImage* image, int line) {
     <enum-type name="QPointingDevice::PointerType" flags="QPointingDevice::PointerTypes"/>
     <value-type name="QPointingDeviceUniqueId"/>
   </group>
-  
+
   <object-type name="QGestureEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::Gesture || %1-&gt;type() == QEvent::GestureOverride"/>
   <object-type name="QKeyEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::KeyPress || %1-&gt;type() == QEvent::KeyRelease || %1-&gt;type() == QEvent::ShortcutOverride"/>
   <object-type name="QMouseEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::MouseButtonDblClick || %1-&gt;type() == QEvent::MouseButtonPress || %1-&gt;type() == QEvent::MouseButtonRelease || %1-&gt;type() == QEvent::MouseMove"/>
@@ -1928,7 +1938,7 @@ PyObject* constScanLine(QImage* image, int line) {
         <define-ownership owner="python" />
       </modify-argument>
     </modify-function>
-    
+
     <modify-function signature="isSortingEnabled()const" remove="all"/>
     <modify-function signature="setSortingEnabled(bool)" remove="all"/>
     <modify-function signature="indexOfTopLevelItem(QTreeWidgetItem *)">
@@ -1953,7 +1963,7 @@ PyObject* constScanLine(QImage* image, int line) {
         <remove/>
     </modify-function>
       <modify-function signature="items(const QMimeData*)const" remove="all"/> <!--### Obsolete in 4.3-->
-  
+
     <modify-function signature="mimeData(const QList&lt;QTreeWidgetItem*&gt;)const">
       <modify-argument index="return">
         <define-ownership owner="python" />
@@ -1994,13 +2004,13 @@ PyObject* constScanLine(QImage* image, int line) {
         <define-ownership owner="new-owner-of-this" />
       </modify-argument>
     </modify-function>
-    
+
     <modify-function signature="operator=(const QListWidgetItem&amp;)" remove="all"/>
       <modify-function signature="backgroundColor()const" remove="all"/> <!--### Obsolete in 4.3-->
       <modify-function signature="setBackgroundColor(QColor)" remove="all"/> <!--### Obsolete in 4.3-->
       <modify-function signature="setTextColor(QColor)" remove="all"/> <!--### Obsolete in 4.3-->
       <modify-function signature="textColor()const" remove="all"/> <!--### Obsolete in 4.3-->
-  
+
     <modify-function signature="QListWidgetItem(QListWidgetItem)" remove="all"/>
     <modify-function signature="operator=(QListWidgetItem)" remove="all"/>
     <modify-function signature="operator&lt;(QListWidgetItem)const" remove="all"/>
@@ -2093,7 +2103,7 @@ PyObject* constScanLine(QImage* image, int line) {
         <define-ownership owner="c++" />
       </modify-argument>
     </modify-function>
-    
+
     <modify-function signature="QTreeWidgetItem(const QTreeWidgetItem &amp;)" remove="all"/>
     <modify-function signature="operator=(const QTreeWidgetItem&amp;)" remove="all"/>
 
@@ -2101,7 +2111,7 @@ PyObject* constScanLine(QImage* image, int line) {
       <modify-function signature="setBackgroundColor(int, QColor)" remove="all"/> <!--### Obsolete in 4.3-->
       <modify-function signature="setTextColor(int, QColor)" remove="all"/> <!--### Obsolete in 4.3-->
       <modify-function signature="textColor(int)const" remove="all"/> <!--### Obsolete in 4.3-->
-  
+
     <modify-function signature="QTreeWidgetItem(QTreeWidgetItem)" remove="all"/>
     <modify-function signature="operator=(QTreeWidgetItem)" remove="all"/>
     <modify-function signature="operator&lt;(QTreeWidgetItem)const" remove="all"/>
@@ -2130,7 +2140,7 @@ PyObject* constScanLine(QImage* image, int line) {
         <define-ownership owner="python" />
       </modify-argument>
     </modify-function>
-    
+
     <group before-version="6">
       <modify-function signature="setItemHidden(const QListWidgetItem*,bool)">
           <remove/>
@@ -2313,13 +2323,13 @@ PyObject* constScanLine(QImage* image, int line) {
         <include file-name="QPoint" location="global"/>
         <include file-name="QPixmap" location="global"/>
     </extra-includes>
-    
+
     <modify-function signature="setMimeData(QMimeData*)">
       <modify-argument index="1">
         <define-ownership owner="c++" />
       </modify-argument>
     </modify-function>
-    
+
     <modify-function signature="start(QFlags&lt;Qt::DropAction&gt;)" remove="all"/> <!--### Obsolete in 4.3-->
   </object-type>
 
@@ -2481,13 +2491,13 @@ PyObject* constScanLine(QImage* image, int line) {
         <include file-name="QImage" location="global"/>
         <include file-name="QPixmap" location="global"/>
     </extra-includes>
-    
+
     <modify-function signature="setMimeData(QMimeData *, QClipboard::Mode)">
       <modify-argument index="1">
         <define-ownership owner="c++" />
       </modify-argument>
     </modify-function>
-    
+
     <modify-function signature="event(QEvent*)" remove="all"/>
     <modify-function signature="connectNotify(const char*)" remove="all"/>
   </object-type>
@@ -2590,7 +2600,7 @@ PyObject* constScanLine(QImage* image, int line) {
         <define-ownership owner="c++" />
       </modify-argument>
     </modify-function>
-    
+
     <modify-function signature="isSortingEnabled()const" remove="all"/>
     <modify-function signature="setSortingEnabled(bool)" remove="all"/>
     <modify-function signature="setItemSelected(const QTableWidgetItem*,bool)">
@@ -2619,7 +2629,7 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QSplitter">
 
     <modify-function signature="getRange(int,int*,int*)const" remove="all"/>
-    
+
     <modify-function signature="addWidget(QWidget *)">
       <modify-argument index="1">
         <define-ownership owner="c++" />
@@ -2712,7 +2722,7 @@ PyObject* constScanLine(QImage* image, int line) {
     PythonQt::self()-&gt;addSignalHandler(a, SIGNAL(triggered(bool)), callable);
     return a;
   }
-  
+
   QAction* addAction (QToolBar* menu, const QIcon&amp; icon, const QString&amp; text, PyObject* callable)
   {
     QAction* a = menu-&gt;addAction(text);
@@ -2822,7 +2832,7 @@ PyObject* constScanLine(QImage* image, int line) {
     <modify-function signature="matrixEnabled()const" remove="all"/> <!--### Obsolete in 4.3-->
     <modify-function signature="setMatrix(QMatrix, bool)" remove="all"/> <!--### Obsolete in 4.3-->
     <modify-function signature="setMatrixEnabled(bool)" remove="all"/> <!--### Obsolete in 4.3-->
-  
+
     <modify-function signature="setBrush(Qt::BrushStyle)" remove="all"/> <!--### Problematic in PythonQt -->
   </object-type>
 
@@ -2955,7 +2965,7 @@ PyObject* constScanLine(QImage* image, int line) {
     </modify-function>
   </object-type>
   <value-type name="QFormLayout::TakeRowResult" since-version="5.8"/>
-    
+
   <object-type name="QGraphicsGridLayout">
     <modify-function signature="addItem(QGraphicsLayoutItem*,int,int,QFlags&lt;Qt::AlignmentFlag&gt;)">
       <modify-argument index="1">
@@ -3002,7 +3012,7 @@ PyObject* constScanLine(QImage* image, int line) {
       </modify-argument>
     </modify-function>
   </object-type>
-  
+
   <object-type name="QGraphicsWidget"
     polymorphic-id-expression="%1-&gt;isWidget()">
     <!-- Duplicate function to QObject::children() to override accidental shadowing which is not present in Jambi -->
@@ -3013,7 +3023,7 @@ PyObject* constScanLine(QImage* image, int line) {
       </modify-argument>
     </modify-function>
   </object-type>
-  
+
   <object-type name="QPlainTextDocumentLayout"/>
   <object-type name="QPlainTextEdit">
   </object-type>
@@ -3061,7 +3071,7 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QProxyStyle"/>
   <object-type name="QSwipeGesture"/>
   <object-type name="QTouchEvent" polymorphic-id-expression="%1-&gt;type() == QEvent::TouchBegin || %1-&gt;type() == QEvent::TouchUpdate || %1-&gt;type() == QEvent::TouchEnd"/>
-  
+
   <!-- Qt 5 additional classes -->
   <object-type name="QTextObjectInterface"/>
   <object-type name="QRawFont"/>
@@ -3202,7 +3212,7 @@ PyObject* constScanLine(QImage* image, int line) {
 
   <object-type name="QOpenGLTextureBlitter"/>
   <enum-type name="QOpenGLTextureBlitter::Origin"/>
-  
+
   <object-type name="QConcatenateTablesProxyModel" since-version="5.13"/>
   <object-type name="QTransposeProxyModel" since-version="5.13"/>
 
@@ -3211,6 +3221,7 @@ PyObject* constScanLine(QImage* image, int line) {
   <enum-type name="QColorSpace::Primaries" since-version="5.14"/>
   <enum-type name="QColorSpace::TransferFunction" since-version="5.14"/>
   <value-type name="QColorTransform" since-version="5.14"/>
+  <value-type name="QColorSpace::PrimaryPoints" since-version="6.9"/>
 
   <!-- Inefficient hash codes -->
   <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QTextFrame_iterator' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
@@ -3229,7 +3240,7 @@ PyObject* constScanLine(QImage* image, int line) {
   <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QFontMetrics' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QGradient' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QFontMetricsF' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
-  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QTextFormat' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>  
+  <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QTextFormat' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
     <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QEasingCurve' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
     <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QGenericMatrix' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
     <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QMatrix4x4' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
@@ -3245,7 +3256,7 @@ PyObject* constScanLine(QImage* image, int line) {
     <suppress-warning text="WARNING(MetaJavaBuilder) :: private virtual function 'eventFilter(QObject * receiver, QEvent * event)' in 'QSwipeGesture'"/>
     <suppress-warning text="WARNING(MetaJavaBuilder) :: private virtual function 'eventFilter(QObject * receiver, QEvent * event)' in 'QPinchGesture'"/>
     <suppress-warning text="WARNING(MetaJavaBuilder) :: private virtual function 'event(QEvent * event)' in 'QPinchGesture'"/>
-  
+
   <!-- Intentional omissions. See explanation for QtJambiTextObjectInterface class in typesystem and headers. -->
   <suppress-warning text="WARNING(MetaJavaBuilder) :: class 'QTextObjectInterface' inherits from unknown base class 'QTextObjectInterface'"/>
   <suppress-warning text="WARNING(MetaJavaBuilder) :: unknown interface for 'QTextObjectInterface': 'QTextObjectInterfaceInterface'"/>
