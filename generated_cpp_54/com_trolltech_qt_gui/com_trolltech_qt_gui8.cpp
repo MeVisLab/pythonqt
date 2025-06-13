@@ -28,7 +28,7 @@ PythonQtShell_QStyle::~PythonQtShell_QStyle() {
 }
 void PythonQtShell_QStyle::childEvent(QChildEvent*  arg__1)
 {
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
   static PyObject* name = PyString_FromString("childEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -47,7 +47,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
 void PythonQtShell_QStyle::customEvent(QEvent*  arg__1)
 {
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
   static PyObject* name = PyString_FromString("customEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -66,7 +66,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
 void PythonQtShell_QStyle::drawComplexControl(QStyle::ComplexControl  cc0, const QStyleOptionComplex*  opt1, QPainter*  p2, const QWidget*  widget3) const
 {
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
   static PyObject* name = PyString_FromString("drawComplexControl");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -85,7 +85,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
 void PythonQtShell_QStyle::drawControl(QStyle::ControlElement  element0, const QStyleOption*  opt1, QPainter*  p2, const QWidget*  w3) const
 {
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
   static PyObject* name = PyString_FromString("drawControl");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -104,7 +104,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
 void PythonQtShell_QStyle::drawItemPixmap(QPainter*  painter0, const QRect&  rect1, int  alignment2, const QPixmap&  pixmap3) const
 {
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
   static PyObject* name = PyString_FromString("drawItemPixmap");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -123,7 +123,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
 void PythonQtShell_QStyle::drawItemText(QPainter*  painter0, const QRect&  rect1, int  flags2, const QPalette&  pal3, bool  enabled4, const QString&  text5, QPalette::ColorRole  textRole6) const
 {
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
   static PyObject* name = PyString_FromString("drawItemText");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -142,7 +142,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
 void PythonQtShell_QStyle::drawPrimitive(QStyle::PrimitiveElement  pe0, const QStyleOption*  opt1, QPainter*  p2, const QWidget*  w3) const
 {
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
   static PyObject* name = PyString_FromString("drawPrimitive");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -161,7 +161,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
 bool  PythonQtShell_QStyle::event(QEvent*  arg__1)
 {
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
   static PyObject* name = PyString_FromString("event");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -191,7 +191,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
 bool  PythonQtShell_QStyle::eventFilter(QObject*  arg__1, QEvent*  arg__2)
 {
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
   static PyObject* name = PyString_FromString("eventFilter");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -221,7 +221,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
 QPixmap  PythonQtShell_QStyle::generatedIconPixmap(QIcon::Mode  iconMode0, const QPixmap&  pixmap1, const QStyleOption*  opt2) const
 {
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
   static PyObject* name = PyString_FromString("generatedIconPixmap");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -251,7 +251,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
 QStyle::SubControl  PythonQtShell_QStyle::hitTestComplexControl(QStyle::ComplexControl  cc0, const QStyleOptionComplex*  opt1, const QPoint&  pt2, const QWidget*  widget3) const
 {
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
   static PyObject* name = PyString_FromString("hitTestComplexControl");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -281,7 +281,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
 QRect  PythonQtShell_QStyle::itemPixmapRect(const QRect&  r0, int  flags1, const QPixmap&  pixmap2) const
 {
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
   static PyObject* name = PyString_FromString("itemPixmapRect");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -311,7 +311,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
 QRect  PythonQtShell_QStyle::itemTextRect(const QFontMetrics&  fm0, const QRect&  r1, int  flags2, bool  enabled3, const QString&  text4) const
 {
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
   static PyObject* name = PyString_FromString("itemTextRect");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -341,7 +341,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
 int  PythonQtShell_QStyle::layoutSpacing(QSizePolicy::ControlType  control10, QSizePolicy::ControlType  control21, Qt::Orientation  orientation2, const QStyleOption*  option3, const QWidget*  widget4) const
 {
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
   static PyObject* name = PyString_FromString("layoutSpacing");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -371,7 +371,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
 int  PythonQtShell_QStyle::pixelMetric(QStyle::PixelMetric  metric0, const QStyleOption*  option1, const QWidget*  widget2) const
 {
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
   static PyObject* name = PyString_FromString("pixelMetric");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -401,7 +401,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
 void PythonQtShell_QStyle::polish(QApplication*  arg__1)
 {
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
   static PyObject* name = PyString_FromString("polish");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -420,7 +420,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
 void PythonQtShell_QStyle::polish(QPalette&  arg__1)
 {
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
   static PyObject* name = PyString_FromString("polish");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -439,7 +439,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
 void PythonQtShell_QStyle::polish(QWidget*  arg__1)
 {
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
   static PyObject* name = PyString_FromString("polish");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -458,7 +458,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
 QSize  PythonQtShell_QStyle::sizeFromContents(QStyle::ContentsType  ct0, const QStyleOption*  opt1, const QSize&  contentsSize2, const QWidget*  w3) const
 {
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
   static PyObject* name = PyString_FromString("sizeFromContents");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -488,7 +488,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
 QIcon  PythonQtShell_QStyle::standardIcon(QStyle::StandardPixmap  standardIcon0, const QStyleOption*  option1, const QWidget*  widget2) const
 {
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
   static PyObject* name = PyString_FromString("standardIcon");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -518,7 +518,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
 QPalette  PythonQtShell_QStyle::standardPalette() const
 {
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
   static PyObject* name = PyString_FromString("standardPalette");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -548,7 +548,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
 QPixmap  PythonQtShell_QStyle::standardPixmap(QStyle::StandardPixmap  standardPixmap0, const QStyleOption*  opt1, const QWidget*  widget2) const
 {
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
   static PyObject* name = PyString_FromString("standardPixmap");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -578,7 +578,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
 int  PythonQtShell_QStyle::styleHint(QStyle::StyleHint  stylehint0, const QStyleOption*  opt1, const QWidget*  widget2, QStyleHintReturn*  returnData3) const
 {
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
   static PyObject* name = PyString_FromString("styleHint");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -608,7 +608,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
 QRect  PythonQtShell_QStyle::subControlRect(QStyle::ComplexControl  cc0, const QStyleOptionComplex*  opt1, QStyle::SubControl  sc2, const QWidget*  widget3) const
 {
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
   static PyObject* name = PyString_FromString("subControlRect");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -638,7 +638,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
 QRect  PythonQtShell_QStyle::subElementRect(QStyle::SubElement  subElement0, const QStyleOption*  option1, const QWidget*  widget2) const
 {
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
   static PyObject* name = PyString_FromString("subElementRect");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -668,7 +668,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
 void PythonQtShell_QStyle::timerEvent(QTimerEvent*  arg__1)
 {
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
   static PyObject* name = PyString_FromString("timerEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -687,7 +687,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
 void PythonQtShell_QStyle::unpolish(QApplication*  arg__1)
 {
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
   static PyObject* name = PyString_FromString("unpolish");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
@@ -706,7 +706,7 @@ if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
 }
 void PythonQtShell_QStyle::unpolish(QWidget*  arg__1)
 {
-if (_wrapper && (((PyObject*)_wrapper)->ob_refcnt > 0)) {
+if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
   static PyObject* name = PyString_FromString("unpolish");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {

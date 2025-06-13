@@ -56,7 +56,7 @@ int  PythonQtShell_QBitmap::devType() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("devType");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -89,7 +89,7 @@ int  PythonQtShell_QBitmap::metric(QPaintDevice::PaintDeviceMetric  arg__1) cons
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("metric");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -122,7 +122,7 @@ QPaintEngine*  PythonQtShell_QBitmap::paintEngine() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("paintEngine");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1503,7 +1503,7 @@ int  PythonQtShell_QImage::devType() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("devType");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1536,7 +1536,7 @@ void PythonQtShell_QImage::initPainter(QPainter*  painter0) const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("initPainter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1558,7 +1558,7 @@ int  PythonQtShell_QImage::metric(QPaintDevice::PaintDeviceMetric  metric0) cons
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("metric");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1591,7 +1591,7 @@ QPaintEngine*  PythonQtShell_QImage::paintEngine() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("paintEngine");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1624,7 +1624,7 @@ QPaintDevice*  PythonQtShell_QImage::redirected(QPoint*  offset0) const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("redirected");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1657,7 +1657,7 @@ QPainter*  PythonQtShell_QImage::sharedPainter() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("sharedPainter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -2874,7 +2874,7 @@ int  PythonQtShell_QPixmap::devType() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("devType");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -2907,7 +2907,7 @@ void PythonQtShell_QPixmap::initPainter(QPainter*  painter0) const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("initPainter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -2929,7 +2929,7 @@ int  PythonQtShell_QPixmap::metric(QPaintDevice::PaintDeviceMetric  arg__1) cons
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("metric");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -2962,7 +2962,7 @@ QPaintEngine*  PythonQtShell_QPixmap::paintEngine() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("paintEngine");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -2995,7 +2995,7 @@ QPaintDevice*  PythonQtShell_QPixmap::redirected(QPoint*  offset0) const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("redirected");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -3028,7 +3028,7 @@ QPainter*  PythonQtShell_QPixmap::sharedPainter() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("sharedPainter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {

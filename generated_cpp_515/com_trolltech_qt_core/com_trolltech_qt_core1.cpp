@@ -704,7 +704,7 @@ void PythonQtShell_QEventLoop::childEvent(QChildEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -726,7 +726,7 @@ void PythonQtShell_QEventLoop::customEvent(QEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -748,7 +748,7 @@ bool  PythonQtShell_QEventLoop::event(QEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -781,7 +781,7 @@ bool  PythonQtShell_QEventLoop::eventFilter(QObject*  watched0, QEvent*  event1)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -814,7 +814,7 @@ void PythonQtShell_QEventLoop::timerEvent(QTimerEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -889,7 +889,7 @@ void PythonQtShell_QEventTransition::childEvent(QChildEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -911,7 +911,7 @@ void PythonQtShell_QEventTransition::customEvent(QEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -933,7 +933,7 @@ bool  PythonQtShell_QEventTransition::event(QEvent*  e0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -966,7 +966,7 @@ bool  PythonQtShell_QEventTransition::eventFilter(QObject*  watched0, QEvent*  e
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -999,7 +999,7 @@ bool  PythonQtShell_QEventTransition::eventTest(QEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("eventTest");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1032,7 +1032,7 @@ void PythonQtShell_QEventTransition::onTransition(QEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("onTransition");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1054,7 +1054,7 @@ void PythonQtShell_QEventTransition::timerEvent(QTimerEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1123,7 +1123,7 @@ QStringList  PythonQtShell_QFactoryInterface::keys() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("keys");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1171,7 +1171,7 @@ bool  PythonQtShell_QFile::atEnd() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("atEnd");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1204,7 +1204,7 @@ qint64  PythonQtShell_QFile::bytesAvailable() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("bytesAvailable");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1237,7 +1237,7 @@ qint64  PythonQtShell_QFile::bytesToWrite() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("bytesToWrite");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1270,7 +1270,7 @@ bool  PythonQtShell_QFile::canReadLine() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("canReadLine");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1303,7 +1303,7 @@ void PythonQtShell_QFile::childEvent(QChildEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1325,7 +1325,7 @@ void PythonQtShell_QFile::close()
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("close");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1347,7 +1347,7 @@ void PythonQtShell_QFile::customEvent(QEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1369,7 +1369,7 @@ bool  PythonQtShell_QFile::event(QEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1402,7 +1402,7 @@ bool  PythonQtShell_QFile::eventFilter(QObject*  watched0, QEvent*  event1)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1435,7 +1435,7 @@ QString  PythonQtShell_QFile::fileName() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("fileName");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1468,7 +1468,7 @@ bool  PythonQtShell_QFile::isSequential() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("isSequential");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1501,7 +1501,7 @@ bool  PythonQtShell_QFile::open(QIODevice::OpenMode  flags0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("open");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1534,7 +1534,7 @@ QFileDevice::Permissions  PythonQtShell_QFile::permissions() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("permissions");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1567,7 +1567,7 @@ qint64  PythonQtShell_QFile::pos() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("pos");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1600,7 +1600,7 @@ qint64  PythonQtShell_QFile::readData(char*  data0, qint64  maxlen1)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("readData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1633,7 +1633,7 @@ qint64  PythonQtShell_QFile::readLineData(char*  data0, qint64  maxlen1)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("readLineData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1666,7 +1666,7 @@ bool  PythonQtShell_QFile::reset()
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("reset");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1699,7 +1699,7 @@ bool  PythonQtShell_QFile::resize(qint64  sz0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("resize");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1732,7 +1732,7 @@ bool  PythonQtShell_QFile::seek(qint64  offset0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("seek");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1765,7 +1765,7 @@ bool  PythonQtShell_QFile::setPermissions(QFileDevice::Permissions  permissionSp
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("setPermissions");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1798,7 +1798,7 @@ qint64  PythonQtShell_QFile::size() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("size");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1831,7 +1831,7 @@ void PythonQtShell_QFile::timerEvent(QTimerEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1853,7 +1853,7 @@ bool  PythonQtShell_QFile::waitForBytesWritten(int  msecs0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("waitForBytesWritten");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1886,7 +1886,7 @@ bool  PythonQtShell_QFile::waitForReadyRead(int  msecs0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("waitForReadyRead");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1919,7 +1919,7 @@ qint64  PythonQtShell_QFile::writeData(const char*  data0, qint64  len1)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("writeData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -2092,7 +2092,7 @@ bool  PythonQtShell_QFileDevice::atEnd() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("atEnd");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -2125,7 +2125,7 @@ qint64  PythonQtShell_QFileDevice::bytesAvailable() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("bytesAvailable");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -2158,7 +2158,7 @@ qint64  PythonQtShell_QFileDevice::bytesToWrite() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("bytesToWrite");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -2191,7 +2191,7 @@ bool  PythonQtShell_QFileDevice::canReadLine() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("canReadLine");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -2224,7 +2224,7 @@ void PythonQtShell_QFileDevice::childEvent(QChildEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -2246,7 +2246,7 @@ void PythonQtShell_QFileDevice::close()
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("close");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -2268,7 +2268,7 @@ void PythonQtShell_QFileDevice::customEvent(QEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -2290,7 +2290,7 @@ bool  PythonQtShell_QFileDevice::event(QEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -2323,7 +2323,7 @@ bool  PythonQtShell_QFileDevice::eventFilter(QObject*  watched0, QEvent*  event1
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -2356,7 +2356,7 @@ QString  PythonQtShell_QFileDevice::fileName() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("fileName");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -2389,7 +2389,7 @@ bool  PythonQtShell_QFileDevice::isSequential() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("isSequential");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -2422,7 +2422,7 @@ bool  PythonQtShell_QFileDevice::open(QIODevice::OpenMode  mode0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("open");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -2455,7 +2455,7 @@ QFileDevice::Permissions  PythonQtShell_QFileDevice::permissions() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("permissions");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -2488,7 +2488,7 @@ qint64  PythonQtShell_QFileDevice::pos() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("pos");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -2521,7 +2521,7 @@ qint64  PythonQtShell_QFileDevice::readData(char*  data0, qint64  maxlen1)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("readData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -2554,7 +2554,7 @@ qint64  PythonQtShell_QFileDevice::readLineData(char*  data0, qint64  maxlen1)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("readLineData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -2587,7 +2587,7 @@ bool  PythonQtShell_QFileDevice::reset()
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("reset");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -2620,7 +2620,7 @@ bool  PythonQtShell_QFileDevice::resize(qint64  sz0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("resize");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -2653,7 +2653,7 @@ bool  PythonQtShell_QFileDevice::seek(qint64  offset0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("seek");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -2686,7 +2686,7 @@ bool  PythonQtShell_QFileDevice::setPermissions(QFileDevice::Permissions  permis
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("setPermissions");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -2719,7 +2719,7 @@ qint64  PythonQtShell_QFileDevice::size() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("size");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -2752,7 +2752,7 @@ void PythonQtShell_QFileDevice::timerEvent(QTimerEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -2774,7 +2774,7 @@ bool  PythonQtShell_QFileDevice::waitForBytesWritten(int  msecs0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("waitForBytesWritten");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -2807,7 +2807,7 @@ bool  PythonQtShell_QFileDevice::waitForReadyRead(int  msecs0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("waitForReadyRead");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -2840,7 +2840,7 @@ qint64  PythonQtShell_QFileDevice::writeData(const char*  data0, qint64  len1)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("writeData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -3249,7 +3249,7 @@ void PythonQtShell_QFileSelector::childEvent(QChildEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -3271,7 +3271,7 @@ void PythonQtShell_QFileSelector::customEvent(QEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -3293,7 +3293,7 @@ bool  PythonQtShell_QFileSelector::event(QEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -3326,7 +3326,7 @@ bool  PythonQtShell_QFileSelector::eventFilter(QObject*  watched0, QEvent*  even
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -3359,7 +3359,7 @@ void PythonQtShell_QFileSelector::timerEvent(QTimerEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -3429,7 +3429,7 @@ void PythonQtShell_QFileSystemWatcher::childEvent(QChildEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -3451,7 +3451,7 @@ void PythonQtShell_QFileSystemWatcher::customEvent(QEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -3473,7 +3473,7 @@ bool  PythonQtShell_QFileSystemWatcher::event(QEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -3506,7 +3506,7 @@ bool  PythonQtShell_QFileSystemWatcher::eventFilter(QObject*  watched0, QEvent* 
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -3539,7 +3539,7 @@ void PythonQtShell_QFileSystemWatcher::timerEvent(QTimerEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -3618,7 +3618,7 @@ void PythonQtShell_QFinalState::childEvent(QChildEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -3640,7 +3640,7 @@ void PythonQtShell_QFinalState::customEvent(QEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -3662,7 +3662,7 @@ bool  PythonQtShell_QFinalState::event(QEvent*  e0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -3695,7 +3695,7 @@ bool  PythonQtShell_QFinalState::eventFilter(QObject*  watched0, QEvent*  event1
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -3728,7 +3728,7 @@ void PythonQtShell_QFinalState::onEntry(QEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("onEntry");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -3750,7 +3750,7 @@ void PythonQtShell_QFinalState::onExit(QEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("onExit");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -3772,7 +3772,7 @@ void PythonQtShell_QFinalState::timerEvent(QTimerEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -3817,7 +3817,7 @@ void PythonQtShell_QHistoryState::childEvent(QChildEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -3839,7 +3839,7 @@ void PythonQtShell_QHistoryState::customEvent(QEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -3861,7 +3861,7 @@ bool  PythonQtShell_QHistoryState::event(QEvent*  e0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -3894,7 +3894,7 @@ bool  PythonQtShell_QHistoryState::eventFilter(QObject*  watched0, QEvent*  even
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -3927,7 +3927,7 @@ void PythonQtShell_QHistoryState::onEntry(QEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("onEntry");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -3949,7 +3949,7 @@ void PythonQtShell_QHistoryState::onExit(QEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("onExit");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -3971,7 +3971,7 @@ void PythonQtShell_QHistoryState::timerEvent(QTimerEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -4050,7 +4050,7 @@ bool  PythonQtShell_QIODevice::atEnd() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("atEnd");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -4083,7 +4083,7 @@ qint64  PythonQtShell_QIODevice::bytesAvailable() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("bytesAvailable");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -4116,7 +4116,7 @@ qint64  PythonQtShell_QIODevice::bytesToWrite() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("bytesToWrite");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -4149,7 +4149,7 @@ bool  PythonQtShell_QIODevice::canReadLine() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("canReadLine");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -4182,7 +4182,7 @@ void PythonQtShell_QIODevice::childEvent(QChildEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -4204,7 +4204,7 @@ void PythonQtShell_QIODevice::close()
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("close");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -4226,7 +4226,7 @@ void PythonQtShell_QIODevice::customEvent(QEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -4248,7 +4248,7 @@ bool  PythonQtShell_QIODevice::event(QEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -4281,7 +4281,7 @@ bool  PythonQtShell_QIODevice::eventFilter(QObject*  watched0, QEvent*  event1)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -4314,7 +4314,7 @@ bool  PythonQtShell_QIODevice::isSequential() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("isSequential");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -4347,7 +4347,7 @@ bool  PythonQtShell_QIODevice::open(QIODevice::OpenMode  mode0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("open");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -4380,7 +4380,7 @@ qint64  PythonQtShell_QIODevice::pos() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("pos");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -4413,7 +4413,7 @@ qint64  PythonQtShell_QIODevice::readData(char*  data0, qint64  maxlen1)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("readData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -4446,7 +4446,7 @@ qint64  PythonQtShell_QIODevice::readLineData(char*  data0, qint64  maxlen1)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("readLineData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -4479,7 +4479,7 @@ bool  PythonQtShell_QIODevice::reset()
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("reset");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -4512,7 +4512,7 @@ bool  PythonQtShell_QIODevice::seek(qint64  pos0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("seek");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -4545,7 +4545,7 @@ qint64  PythonQtShell_QIODevice::size() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("size");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -4578,7 +4578,7 @@ void PythonQtShell_QIODevice::timerEvent(QTimerEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -4600,7 +4600,7 @@ bool  PythonQtShell_QIODevice::waitForBytesWritten(int  msecs0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("waitForBytesWritten");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -4633,7 +4633,7 @@ bool  PythonQtShell_QIODevice::waitForReadyRead(int  msecs0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("waitForReadyRead");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -4666,7 +4666,7 @@ qint64  PythonQtShell_QIODevice::writeData(const char*  data0, qint64  len1)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("writeData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -4951,7 +4951,7 @@ QModelIndex  PythonQtShell_QIdentityProxyModel::buddy(const QModelIndex&  index0
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("buddy");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -4984,7 +4984,7 @@ bool  PythonQtShell_QIdentityProxyModel::canDropMimeData(const QMimeData*  data0
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("canDropMimeData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -5017,7 +5017,7 @@ bool  PythonQtShell_QIdentityProxyModel::canFetchMore(const QModelIndex&  parent
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("canFetchMore");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -5050,7 +5050,7 @@ void PythonQtShell_QIdentityProxyModel::childEvent(QChildEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -5072,7 +5072,7 @@ int  PythonQtShell_QIdentityProxyModel::columnCount(const QModelIndex&  parent0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("columnCount");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -5105,7 +5105,7 @@ void PythonQtShell_QIdentityProxyModel::customEvent(QEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -5127,7 +5127,7 @@ QVariant  PythonQtShell_QIdentityProxyModel::data(const QModelIndex&  proxyIndex
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("data");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -5160,7 +5160,7 @@ bool  PythonQtShell_QIdentityProxyModel::dropMimeData(const QMimeData*  data0, Q
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("dropMimeData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -5193,7 +5193,7 @@ bool  PythonQtShell_QIdentityProxyModel::event(QEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -5226,7 +5226,7 @@ bool  PythonQtShell_QIdentityProxyModel::eventFilter(QObject*  watched0, QEvent*
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -5259,7 +5259,7 @@ void PythonQtShell_QIdentityProxyModel::fetchMore(const QModelIndex&  parent0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("fetchMore");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -5281,7 +5281,7 @@ Qt::ItemFlags  PythonQtShell_QIdentityProxyModel::flags(const QModelIndex&  inde
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("flags");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -5314,7 +5314,7 @@ bool  PythonQtShell_QIdentityProxyModel::hasChildren(const QModelIndex&  parent0
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("hasChildren");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -5347,7 +5347,7 @@ QVariant  PythonQtShell_QIdentityProxyModel::headerData(int  section0, Qt::Orien
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("headerData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -5380,7 +5380,7 @@ QModelIndex  PythonQtShell_QIdentityProxyModel::index(int  row0, int  column1, c
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("index");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -5413,7 +5413,7 @@ bool  PythonQtShell_QIdentityProxyModel::insertColumns(int  column0, int  count1
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("insertColumns");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -5446,7 +5446,7 @@ bool  PythonQtShell_QIdentityProxyModel::insertRows(int  row0, int  count1, cons
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("insertRows");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -5479,7 +5479,7 @@ QMap<int , QVariant >  PythonQtShell_QIdentityProxyModel::itemData(const QModelI
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("itemData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -5512,7 +5512,7 @@ QModelIndex  PythonQtShell_QIdentityProxyModel::mapFromSource(const QModelIndex&
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("mapFromSource");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -5545,7 +5545,7 @@ QItemSelection  PythonQtShell_QIdentityProxyModel::mapSelectionFromSource(const 
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("mapSelectionFromSource");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -5578,7 +5578,7 @@ QItemSelection  PythonQtShell_QIdentityProxyModel::mapSelectionToSource(const QI
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("mapSelectionToSource");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -5611,7 +5611,7 @@ QModelIndex  PythonQtShell_QIdentityProxyModel::mapToSource(const QModelIndex&  
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("mapToSource");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -5644,7 +5644,7 @@ QList<QModelIndex >  PythonQtShell_QIdentityProxyModel::match(const QModelIndex&
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("match");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -5677,7 +5677,7 @@ QMimeData*  PythonQtShell_QIdentityProxyModel::mimeData(const QList<QModelIndex 
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("mimeData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -5710,7 +5710,7 @@ QStringList  PythonQtShell_QIdentityProxyModel::mimeTypes() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("mimeTypes");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -5743,7 +5743,7 @@ bool  PythonQtShell_QIdentityProxyModel::moveColumns(const QModelIndex&  sourceP
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("moveColumns");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -5776,7 +5776,7 @@ bool  PythonQtShell_QIdentityProxyModel::moveRows(const QModelIndex&  sourcePare
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("moveRows");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -5809,7 +5809,7 @@ QModelIndex  PythonQtShell_QIdentityProxyModel::parent(const QModelIndex&  child
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("parent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -5842,7 +5842,7 @@ bool  PythonQtShell_QIdentityProxyModel::removeColumns(int  column0, int  count1
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("removeColumns");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -5875,7 +5875,7 @@ bool  PythonQtShell_QIdentityProxyModel::removeRows(int  row0, int  count1, cons
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("removeRows");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -5908,7 +5908,7 @@ void PythonQtShell_QIdentityProxyModel::revert()
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("revert");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -5930,7 +5930,7 @@ QHash<int , QByteArray >  PythonQtShell_QIdentityProxyModel::roleNames() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("roleNames");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -5963,7 +5963,7 @@ int  PythonQtShell_QIdentityProxyModel::rowCount(const QModelIndex&  parent0) co
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("rowCount");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -5996,7 +5996,7 @@ bool  PythonQtShell_QIdentityProxyModel::setData(const QModelIndex&  index0, con
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("setData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -6029,7 +6029,7 @@ bool  PythonQtShell_QIdentityProxyModel::setHeaderData(int  section0, Qt::Orient
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("setHeaderData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -6062,7 +6062,7 @@ bool  PythonQtShell_QIdentityProxyModel::setItemData(const QModelIndex&  index0,
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("setItemData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -6095,7 +6095,7 @@ void PythonQtShell_QIdentityProxyModel::setSourceModel(QAbstractItemModel*  sour
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("setSourceModel");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -6117,7 +6117,7 @@ QModelIndex  PythonQtShell_QIdentityProxyModel::sibling(int  row0, int  column1,
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("sibling");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -6150,7 +6150,7 @@ void PythonQtShell_QIdentityProxyModel::sort(int  column0, Qt::SortOrder  order1
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("sort");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -6172,7 +6172,7 @@ QSize  PythonQtShell_QIdentityProxyModel::span(const QModelIndex&  index0) const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("span");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -6205,7 +6205,7 @@ bool  PythonQtShell_QIdentityProxyModel::submit()
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("submit");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -6238,7 +6238,7 @@ Qt::DropActions  PythonQtShell_QIdentityProxyModel::supportedDragActions() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("supportedDragActions");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -6271,7 +6271,7 @@ Qt::DropActions  PythonQtShell_QIdentityProxyModel::supportedDropActions() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("supportedDropActions");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -6304,7 +6304,7 @@ void PythonQtShell_QIdentityProxyModel::timerEvent(QTimerEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -6995,7 +6995,7 @@ void PythonQtShell_QLibrary::childEvent(QChildEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -7017,7 +7017,7 @@ void PythonQtShell_QLibrary::customEvent(QEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -7039,7 +7039,7 @@ bool  PythonQtShell_QLibrary::event(QEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -7072,7 +7072,7 @@ bool  PythonQtShell_QLibrary::eventFilter(QObject*  watched0, QEvent*  event1)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -7105,7 +7105,7 @@ void PythonQtShell_QLibrary::timerEvent(QTimerEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {

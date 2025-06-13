@@ -509,7 +509,7 @@ void PythonQtShell_QStylePlugin::childEvent(QChildEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -531,7 +531,7 @@ QStyle*  PythonQtShell_QStylePlugin::create(const QString&  key0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("create");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -564,7 +564,7 @@ void PythonQtShell_QStylePlugin::customEvent(QEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -586,7 +586,7 @@ bool  PythonQtShell_QStylePlugin::event(QEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -619,7 +619,7 @@ bool  PythonQtShell_QStylePlugin::eventFilter(QObject*  watched0, QEvent*  event
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -652,7 +652,7 @@ void PythonQtShell_QStylePlugin::timerEvent(QTimerEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -702,7 +702,7 @@ void PythonQtShell_QStyledItemDelegate::childEvent(QChildEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -724,7 +724,7 @@ QWidget*  PythonQtShell_QStyledItemDelegate::createEditor(QWidget*  parent0, con
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("createEditor");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -757,7 +757,7 @@ void PythonQtShell_QStyledItemDelegate::customEvent(QEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -779,7 +779,7 @@ void PythonQtShell_QStyledItemDelegate::destroyEditor(QWidget*  editor0, const Q
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("destroyEditor");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -801,7 +801,7 @@ QString  PythonQtShell_QStyledItemDelegate::displayText(const QVariant&  value0,
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("displayText");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -834,7 +834,7 @@ bool  PythonQtShell_QStyledItemDelegate::editorEvent(QEvent*  event0, QAbstractI
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("editorEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -867,7 +867,7 @@ bool  PythonQtShell_QStyledItemDelegate::event(QEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -900,7 +900,7 @@ bool  PythonQtShell_QStyledItemDelegate::eventFilter(QObject*  object0, QEvent* 
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -933,7 +933,7 @@ bool  PythonQtShell_QStyledItemDelegate::helpEvent(QHelpEvent*  event0, QAbstrac
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("helpEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -966,7 +966,7 @@ void PythonQtShell_QStyledItemDelegate::initStyleOption(QStyleOptionViewItem*  o
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("initStyleOption");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -988,7 +988,7 @@ void PythonQtShell_QStyledItemDelegate::paint(QPainter*  painter0, const QStyleO
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("paint");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1010,7 +1010,7 @@ QVector<int >  PythonQtShell_QStyledItemDelegate::paintingRoles() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("paintingRoles");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1043,7 +1043,7 @@ void PythonQtShell_QStyledItemDelegate::setEditorData(QWidget*  editor0, const Q
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("setEditorData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1065,7 +1065,7 @@ void PythonQtShell_QStyledItemDelegate::setModelData(QWidget*  editor0, QAbstrac
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("setModelData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1087,7 +1087,7 @@ QSize  PythonQtShell_QStyledItemDelegate::sizeHint(const QStyleOptionViewItem&  
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("sizeHint");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1120,7 +1120,7 @@ void PythonQtShell_QStyledItemDelegate::timerEvent(QTimerEvent*  event0)
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1142,7 +1142,7 @@ void PythonQtShell_QStyledItemDelegate::updateEditorGeometry(QWidget*  editor0, 
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("updateEditorGeometry");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1207,7 +1207,7 @@ QSurfaceFormat  PythonQtShell_QSurface::format() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("format");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1240,7 +1240,7 @@ QSize  PythonQtShell_QSurface::size() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("size");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1273,7 +1273,7 @@ QPlatformSurface*  PythonQtShell_QSurface::surfaceHandle() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("surfaceHandle");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
@@ -1306,7 +1306,7 @@ QSurface::SurfaceType  PythonQtShell_QSurface::surfaceType() const
 {
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
-  if (((PyObject*)_wrapper)->ob_refcnt > 0) {
+  if (Py_REFCNT((PyObject*)_wrapper) > 0) {
     static PyObject* name = PyString_FromString("surfaceType");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
