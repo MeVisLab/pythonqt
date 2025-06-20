@@ -1,0 +1,174 @@
+Language:        Cpp
+IndentWidth:     2
+UseTab:		Never
+ColumnLimit:     120
+SortIncludes:    false
+AccessModifierOffset: -2
+ReflowComments:  false
+ConstructorInitializerIndentWidth: 2
+ContinuationIndentWidth: 2
+AllowShortFunctionsOnASingleLine: None
+BreakBeforeBraces: Custom
+BraceWrapping:
+    AfterExternBlock: true
+    AfterClass: true
+    AfterFunction: true
+    AfterNamespace: false
+    AfterEnum: false
+    AfterCaseLabel: false  
+    AfterControlStatement: Never
+    AfterStruct:     false
+    AfterUnion:      false
+    BeforeLambdaBody: false
+    BeforeElse: false
+    BeforeCatch:     false
+    BeforeWhile:     false
+    IndentBraces:    false
+    SplitEmptyFunction: true
+    SplitEmptyRecord: false
+    SplitEmptyNamespace: true
+PPIndentWidth: 2
+FixNamespaceComments: false
+# ??????
+IndentPPDirectives: BeforeHash
+SpaceBeforeParens: Custom
+SpaceBeforeParensOptions:
+  AfterControlStatements: true
+  AfterForeachMacros: true
+  AfterFunctionDefinitionName: false
+  AfterFunctionDeclarationName: false
+  AfterIfMacros:   true
+  AfterOverloadedOperator: false
+  AfterRequiresInClause: false
+  AfterRequiresInExpression: false
+  BeforeNonEmptyParentheses: false
+SpaceAfterCStyleCast: false
+SpaceAfterLogicalNot: false
+SpaceAfterTemplateKeyword: false
+SpaceAroundPointerQualifiers: Default
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeCaseColon: false
+SpaceBeforeCpp11BracedList: true
+SpaceBeforeCtorInitializerColon: true
+SpaceBeforeInheritanceColon: true
+SpaceBeforeRangeBasedForLoopColon: true
+SpaceBeforeSquareBrackets: false
+SpaceInEmptyBlock: false
+SpaceInEmptyParentheses: false
+# ??
+#SpacesBeforeTrailingComments: -1
+SpacesInAngles:  Never
+SpacesInConditionalStatement: false
+SpacesInContainerLiterals: true
+SpacesInCStyleCastParentheses: false
+SpacesInLineCommentPrefix:
+  Minimum:         1
+  Maximum:         -1
+IndentCaseBlocks: false
+IndentCaseLabels: false
+AlignAfterOpenBracket: DontAlign
+BreakConstructorInitializers: BeforeComma
+AlwaysBreakTemplateDeclarations: true
+NamespaceIndentation: None
+AlignArrayOfStructures: None
+AlignConsecutiveAssignments:
+  Enabled:         false
+  AcrossEmptyLines: false
+  AcrossComments:  false
+  AlignCompound:   false
+  PadOperators:    false
+AlignConsecutiveBitFields:
+  Enabled:         false
+  AcrossEmptyLines: false
+  AcrossComments:  false
+  AlignCompound:   false
+  PadOperators:    false
+AlignConsecutiveDeclarations:
+  Enabled:         false
+  AcrossEmptyLines: false
+  AcrossComments:  false
+  AlignCompound:   false
+  PadOperators:    false
+AlignConsecutiveMacros:
+  Enabled:         false
+  AcrossEmptyLines: true
+  AcrossComments:  false
+  AlignCompound:   false
+  PadOperators:    false
+AlignEscapedNewlines: DontAlign
+AlignOperands:   Align
+AlignTrailingComments: false
+# ??
+AllowAllArgumentsOnNextLine: false
+AllowAllParametersOfDeclarationOnNextLine: true
+AllowShortBlocksOnASingleLine: Empty
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortEnumsOnASingleLine: true
+# AllowShortIfStatementsOnASingleLine: Nevers
+AllowShortLambdasOnASingleLine: All
+AllowShortLoopsOnASingleLine: false
+AlwaysBreakAfterDefinitionReturnType: None
+AlwaysBreakAfterReturnType: None
+AlwaysBreakBeforeMultilineStrings: false
+BinPackArguments: true
+BinPackParameters: true
+BitFieldColonSpacing: After
+BreakBeforeBinaryOperators: NonAssignment
+BreakBeforeConceptDeclarations: Always
+BreakBeforeTernaryOperators: true
+BreakInheritanceList: BeforeColon
+BreakStringLiterals: true
+CompactNamespaces: false
+Cpp11BracedListStyle: true
+PointerAlignment: Right
+QualifierAlignment: Leave
+ReferenceAlignment: Pointer
+DerivePointerAlignment: false
+DisableFormat:   false
+EmptyLineAfterAccessModifier: Leave
+MaxEmptyLinesToKeep: 1
+EmptyLineBeforeAccessModifier: LogicalBlock
+ExperimentalAutoDetectBinPacking: false
+Macros:
+  - >-
+    PyObject_HEAD_INIT(type)={
+        { 0xFFFFFFFF },
+        (type)
+    },
+  - >-
+    PyVarObject_HEAD_INIT(type, size)={
+        {
+            { 0xFFFFFFFF },
+            (type)
+        },
+        (size)
+    },
+ForEachMacros:
+  - foreach
+  - Q_FOREACH
+StatementAttributeLikeMacros:
+  - Q_EMIT
+StatementMacros:
+  - Q_UNUSED
+  - QT_REQUIRE_VERSION
+  - Q_OBJECT
+  - PyObject_HEAD
+IndentAccessModifiers: false
+IndentExternBlock: AfterExternBlock
+IndentGotoLabels: true
+IndentRequiresClause: true
+IndentWrappedFunctionNames: false
+InsertBraces:    false
+InsertTrailingCommas: None
+KeepEmptyLinesAtTheStartOfBlocks: true
+# ???
+LambdaBodyIndentation: OuterScope
+PackConstructorInitializers: BinPack
+RemoveBracesLLVM: false
+RequiresClausePosition: OwnLine
+SeparateDefinitionBlocks: Leave
+ShortNamespaceLines: 1
+SortUsingDeclarations: false
+SpacesInParentheses: false
+SpacesInSquareBrackets: false
+Standard:        Latest
