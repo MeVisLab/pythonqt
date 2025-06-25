@@ -35,7 +35,7 @@ message(STATUS "QT_VERSION_MAJOR = ${QT_VERSION_MAJOR}")
 find_package(Python3 COMPONENTS Development)
 
 set(PYTHONQT_SUFFIX Qt${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}-Python${Python3_VERSION_MAJOR}.${Python3_VERSION_MINOR})
-
+include_directories(src)
 add_subdirectory(generator)
 add_subdirectory(src)
 add_subdirectory(extensions)
