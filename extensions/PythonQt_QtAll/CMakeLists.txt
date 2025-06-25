@@ -18,8 +18,10 @@ target_link_libraries(${PROJECT_NAME} PUBLIC Core)
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_LIST_DIR})
 
-list(APPEND QTMODULES Core Gui Svg Sql Network OpenGL Xml XmlPatterns Multimedia Qml Quick UiTools WebEngineWidgets WebKit)
-
+list(APPEND QTMODULES Core Gui Svg Sql Network OpenGL Xml Multimedia Qml Quick UiTools WebEngineWidgets)
+if(${QT_VERSION_MAJOR} EQUAL 5) #QT5
+        list(APPEND QTMODULES XmlPatterns WebKit)
+endif()
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${QTMODULES})
 
 foreach(QtModule IN LISTS QTMODULES)

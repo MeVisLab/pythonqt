@@ -6,8 +6,11 @@ add_subdirectory(parser)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Widgets Xml REQUIRED)
+if(FORCE_BUILD_QT5)
+  find_package(Qt5 NAMES Qt5 REQUIRED COMPONENTS Core Widgets Xml)
+else()
+  find_package(Qt6 NAMES Qt6 REQUIRED COMPONENTS Core Widgets Xml Core5Compat)
+endif()
 
 file(GLOB SOURCES *.h *.cpp *.qrc simplecpp/*.h simplecpp/*.cpp )
 list(REMOVE_ITEM SOURCES "${CMAKE_CURRENT_LIST_DIR}/qtscript_masterinclude.h")
@@ -26,7 +29,6 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
 )
 
 if (${QT_VERSION_MAJOR} VERSION_GREATER 5)
-    find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core5Compat REQUIRED)
     target_link_libraries(${PROJECT_NAME} PUBLIC Qt${QT_VERSION_MAJOR}::Core5Compat)
 endif()
 

@@ -3,8 +3,11 @@ project(rpp LANGUAGES CXX)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core REQUIRED)
+if(FORCE_BUILD_QT5)
+  find_package(Qt5 NAMES Qt5 REQUIRED COMPONENTS Core)
+else()
+  find_package(Qt6 NAMES Qt6 REQUIRED COMPONENTS Core)
+endif()
 
 file(GLOB SOURCES *.h preprocessor.cpp)
 

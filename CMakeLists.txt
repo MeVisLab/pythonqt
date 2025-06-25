@@ -18,7 +18,13 @@ enable_testing()
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core)
+option(FORCE_BUILD_QT5 "Force Qt5 build instead of Qt6" OFF)
+
+if(FORCE_BUILD_QT5)
+  find_package(Qt5 NAMES Qt5 REQUIRED COMPONENTS Core)
+else()
+  find_package(Qt6 NAMES Qt6 REQUIRED COMPONENTS Core)
+endif()
 find_package(Python3 COMPONENTS Development)
 
 set(PYTHONQT_SUFFIX Qt${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}-Python${Python3_VERSION_MAJOR}.${Python3_VERSION_MINOR})
