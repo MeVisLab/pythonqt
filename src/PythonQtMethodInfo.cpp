@@ -191,7 +191,11 @@ void PythonQtMethodInfo::fillParameterInfo(ParameterInfo& type, const QByteArray
 
     type.typeId = nameToType(name);
     if (type.typeId == Unknown) {
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+      type.typeId = QMetaType::fromName(name.constData()).id();
+#else
       type.typeId = QMetaType::type(name.constData());
+#endif
 #if( QT_VERSION >= QT_VERSION_CHECK(5,0,0) )
       if (type.typeId == QMetaType::UnknownType) {
 #else
@@ -234,7 +238,11 @@ int PythonQtMethodInfo::getInnerTemplateMetaType(const QByteArray& typeName)
     int idx2 = typeName.lastIndexOf(">");
     if (idx2 > 0) {
       QByteArray innerType = typeName.mid(idx + 1, idx2 - idx - 1).trimmed();
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+      return QMetaType::fromName(innerType.constData()).id();
+#else
       return QMetaType::type(innerType.constData());
+#endif
     }
   }
   return QMetaType::Void;
@@ -442,7 +450,11 @@ const PythonQtMethodInfo::ParameterInfo& PythonQtMethodInfo::getParameterInfoFor
     return it.value();
   }
   ParameterInfo info;
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+  fillParameterInfo(info, QMetaType(type).name());
+#else
   fillParameterInfo(info, QMetaType::typeName(type));
+#endif
   _cachedParameterInfos.insert(type, info);
   return _cachedParameterInfos[type];
 }
