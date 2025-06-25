@@ -95,8 +95,10 @@ namespace
       QString qtdir = getenv("QTDIR");
       if (qtdir.isEmpty() || !QDir(qtdir).exists(qtdir))
       {
-        QString reason = "The QTDIR environment variable " + qtdir.isEmpty() ?
-                         "is not set. " : "points to a non-existing directory. ";
+        const QString prefix = "The QTDIR environment variable " ;
+        const QString reason = qtdir.isEmpty()
+                         ? prefix + "is not set. "
+                         : prefix + "points to a non-existing directory. ";
 #if defined(Q_OS_MAC)
         qWarning() << reason << "Assuming standard binary install using frameworks.";
             QString frameworkDir = "/Library/Frameworks";
