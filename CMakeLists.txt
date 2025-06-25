@@ -22,9 +22,16 @@ option(FORCE_BUILD_QT5 "Force Qt5 build instead of Qt6" OFF)
 
 if(FORCE_BUILD_QT5)
   find_package(Qt5 NAMES Qt5 REQUIRED COMPONENTS Core)
+  string(REPLACE "." ";" qt_version_list ${Qt5_VERSION})
 else()
   find_package(Qt6 NAMES Qt6 REQUIRED COMPONENTS Core)
+  string(REPLACE "." ";" qt_version_list ${Qt6_VERSION})
 endif()
+list(GET qt_version_list 0 QT_VERSION_MAJOR)
+list(GET qt_version_list 1 QT_VERSION_MINOR)
+list(GET qt_version_list 1 QT_VERSION_PATCH)
+message(STATUS "QT_VERSION_MAJOR = ${QT_VERSION_MAJOR}")
+
 find_package(Python3 COMPONENTS Development)
 
 set(PYTHONQT_SUFFIX Qt${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}-Python${Python3_VERSION_MAJOR}.${Python3_VERSION_MINOR})
