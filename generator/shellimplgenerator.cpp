@@ -138,7 +138,11 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
         s << "if (_wrapper) {" << endl;
         s << "  PYTHONQT_GIL_SCOPE" << endl;
         s << "  if (Py_REFCNT((PyObject*)_wrapper) > 0) {" << endl;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        s << "    static PyObject* name = PyUnicode_FromString(\"" << fun->name() << "\");" << endl;
+#else
         s << "    static PyObject* name = PyString_FromString(\"" << fun->name() << "\");" << endl;
+#endif
         s << "    PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);" << endl;
         s << "    if (obj) {" << endl;
         s << "      static const char* argumentList[] ={\"";
