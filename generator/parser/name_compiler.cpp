@@ -108,7 +108,7 @@ void NameCompiler::visitUnqualifiedName(UnqualifiedNameAST *node)
       // ### cleanup
       _M_name.last() += QLatin1String("<");
       visitNodes(this, node->template_arguments);
-      _M_name.last().truncate(_M_name.last().count() - 1); // remove the last ','
+      _M_name.last().truncate(_M_name.last().length() - 1); // remove the last ','
       _M_name.last() += QLatin1String(">");
     }
 
