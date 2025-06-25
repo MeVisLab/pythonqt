@@ -70,7 +70,11 @@ static void PythonQtInstanceWrapper_deleteObject(PythonQtInstanceWrapper* self, 
       int type = self->classInfo()->metaTypeId();
       if (self->_useQMetaTypeDestroy && type>=0) {
         // use QMetaType to destroy the object
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+        QMetaType(type).destroy(self->_wrappedPtr);
+#else
         QMetaType::destroy(type, self->_wrappedPtr);
+#endif
       } else {
         PythonQtSlotInfo* slot = self->classInfo()->destructor();
         if (slot) {
@@ -82,7 +86,11 @@ static void PythonQtInstanceWrapper_deleteObject(PythonQtInstanceWrapper* self, 
         } else {
           if (type>=0) {
             // use QMetaType to destroy the object
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+            QMetaType(type).destroy(self->_wrappedPtr);
+#else
             QMetaType::destroy(type, self->_wrappedPtr);
+#endif
           } else {
             // TODO: warn about not being able to destroy the object?
           }
@@ -482,7 +490,11 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
   switch (member._type) {
   case PythonQtMemberInfo::Property:
     if (wrapper->_obj) {
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+      if (member._property.userType() != QMetaType::UnknownType) {
+#else
       if (member._property.userType() != QVariant::Invalid) {
+#endif
 
         PythonQt::ProfilingCB* profilingCB = PythonQt::priv()->profilingCB();
         if (profilingCB) {
@@ -762,7 +774,11 @@ static PyObject * PythonQtInstanceWrapper_str(PyObject * obj)
   PythonQtInstanceWrapper* wrapper = (PythonQtInstanceWrapper*)obj;
 
   // QByteArray should be directly returned as a str
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+  if (wrapper->classInfo()->metaTypeId() == QMetaType::QByteArray) {
+#else
   if (wrapper->classInfo()->metaTypeId()==QVariant::ByteArray) {
+#endif
     QByteArray* b = (QByteArray*) wrapper->_wrappedPtr;
 #ifdef PY3K
     // Note: In Python 2, this was used to access the data() of a byte array.
