@@ -223,7 +223,8 @@ namespace
 
     unsigned int getQtVersion(const QString &commandLineIncludes, const QString &qtIncludPrefix = {})
     {
-      QRegularExpression re("#define\\s+QTCORE_VERSION\\s+0x([0-9a-f]+)", QRegularExpression::CaseInsensitiveOption);
+      static const QRegularExpression re("#define\\s+QTCORE_VERSION\\s+0x([0-9a-f]+)",
+        QRegularExpression::CaseInsensitiveOption);
       for (const QString &includeDir: getIncludeDirectories(commandLineIncludes, qtIncludPrefix))
       {
         QFileInfo fi(QDir(includeDir), "qtcoreversion.h");
