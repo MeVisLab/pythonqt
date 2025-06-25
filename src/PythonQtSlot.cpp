@@ -553,7 +553,7 @@ meth_get__doc__(PythonQtSlotFunctionObject * m, void * /*closure*/)
   } else if (returnType.startsWith("QHash<") || returnType.startsWith("QMap<") ||
     returnType == "QVariantMap" || returnType == "QVariantHash") {
     pyReturnType = "dict";
-  } else if (returnTypeId == QVariant::Bool) {
+  } else if (returnTypeId == QMetaType::Bool) {
     pyReturnType = "bool";
   } else if (returnTypeId == PythonQtMethodInfo::Variant) {
     pyReturnType = "object";
