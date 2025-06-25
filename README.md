@@ -36,20 +36,22 @@ need to build and run the generator when you want to build additional wrappers
 or you want to upgrade/downgrade to another Qt version, but this requires
 updating the typesystems as well.
 
-# Building
+# Building 
 
-## General
+## Using qmake and manual steps
+
+### General
 
 Building PythonQt requires a couple of steps.
 Follow these instructions in order to get a correctly built PythonQt runtime and Qt bindings.
 
-### Recommendations
+#### Recommendations
 
 It is recommended to build the Qt bindings yourself instead of using the pregenerated ones.
 This ensures the bindings are compatible with your Qt version.
 Do not build `PythonQt.pro` directly because it will only use the pregenerated bindings!
 
-### Environment
+#### Environment
 
 First, you need to set a couple of environment variables, which depend on your Python and Qt installation.
 
@@ -74,7 +76,7 @@ First, you need to set a couple of environment variables, which depend on your P
 
   The absolute path to the root directory of your Qt installation.
 
-### Binding Generator
+#### Binding Generator
 
 1. cd into the `generator` directory
 2. Run qmake on `generator.pro`
@@ -93,7 +95,7 @@ First, you need to set a couple of environment variables, which depend on your P
 
    `<generator-executable> qtscript_masterinclude.h build_all.txt`
 
-### PythonQt Runtime
+#### PythonQt Runtime
 
 Next, we need the PythonQt runtime.
 
@@ -106,7 +108,7 @@ Next, we need the PythonQt runtime.
 
    Use `nmake` for MSVC (Visual Studio; make sure to have the environment variables set for Visual Studio beforehand). Otherwise, use `make`.
 
-### Extensions
+#### Extensions
 
 As a last step, we need to build the extensions.
 
@@ -121,6 +123,60 @@ As a last step, we need to build the extensions.
 
 After all these steps, you should now have a fully working PythonQt runtime and Qt bindings for your Python/Qt installation 🎉.
 
+
+## The CMake Build System replaces the qmake manual proceedure defined above
+
+Get the source code from the GitHub.
+```bash
+git clone git@github.com:MeVisLab/PythonQt.git
+cd PythonQt
+git checkout <desired_branch>
+```
+
+Build the PythonQt runtime and Qt bindings using CMake.
+```bash
+cmake -S $(pwd) -B ../PythonQt-build -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=ON -DCMAKE_BUILD_TYPE:STRING=Release
+cmake --build ../PythonQt-build --config Release
+```
+
+
+# Platform Notes
 ## MinGW
 
 It is possible to build PythonQt with MinGW on Windows instead of using MSVC.
+
+## Ubuntu 24.04 apt-get install QT6
+It is possible to build PythonQt on Ubuntu 24.04 using the `apt` package manager to install the required Qt6 packages.
+``` bash
+apt install qt6-base-dev qt6-tools-dev-tools libqt6* qt6-* qml6-module-qt*
+```
+
+## arm64 based MacOS
+It is possible to build PythonQt on arm64 based MacOS systems.
+
+Download and install qt6 from https://www.qt.io/download.  Install the desired Qt6.
+
+# Hints for developers
+
+## Upgrading Qt Versions
+
+### Use `clazy` for static analysis of Qt code
+```bash
+# NOTE: clazy uses the cmake output file generated when CMAKE_EXPORT_COMPILE_COMMANDS=ON
+export CLAZY_TEST="use-static-qregularexpression"
+
+clazy-standalone -p ../PythonQt-build \
+  --checks="${CLAZY_TEST}" \
+  --only-qt  \
+  $(find . -name "*.cpp" |fgrep -v "/examples/") \
+   2>&1 \
+  | fgrep -v "pragma-messages" \
+  | tee ../logger.${CLAZY_TEST}
+vim -q ../logger.${CLAZY_TEST}
+```
+
+
+# List clazy tests available
+```bash
+clazy-standalone -p ../PythonQt-build   --only-qt  generator/main.cpp     --list-checks >> ../MIGRATE_QT5_to_QT6
+```
