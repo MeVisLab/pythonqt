@@ -65,10 +65,18 @@ endforeach()
 
 get_target_property(_qtcore_include_dirs Qt${QT_VERSION_MAJOR}::Core INTERFACE_INCLUDE_DIRECTORIES)
 foreach(_qtcore_include_dir IN LISTS _qtcore_include_dirs)
+    # Some versions of Qt may have subdirectories like "QtCore" for header files
     if (IS_DIRECTORY "${_qtcore_include_dir}/QtCore")
         set(_qt_include_prefix "${_qtcore_include_dir}")
         break()
+    else()
+        # If frameworks, then no QtCore should be suffixed
+        if (IS_DIRECTORY "${_qtcore_include_dir}")
+            set(_qt_include_prefix "${_qtcore_include_dir}")
+            break()
+        endif()
     endif()
+
 endforeach()
 
 add_custom_command(OUTPUT ${PYTHONQT_WRAPPER_SOURCES}
