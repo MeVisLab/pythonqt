@@ -453,7 +453,9 @@ int main(int argc, char *argv[])
     ReportHandler::setContext("Build");
     gs->buildModel(pp_file);
     if (args.contains("dump-object-tree")) {
+        printf("Dumping object tree ------------------\n");
         gs->dumpObjectTree();
+        printf("Tree dumped, exiting.\n");
         return 0;
     }
     ReportHandler::setContext("Generate");
