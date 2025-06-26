@@ -40,11 +40,6 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_LIST_DIR}/sim
 get_filename_component(PYTHONQT_GENERATED_PATH "${CMAKE_CURRENT_BINARY_DIR}" PATH)
 set(PYTHONQT_GENERATED_PATH "${PYTHONQT_GENERATED_PATH}/generated_cpp")
 
-file(GLOB resources_files *.txt *.xml qtscript_masterinclude.h)
-foreach(resources_file IN LISTS resources_files)
-    configure_file(${resources_file} ${CMAKE_CURRENT_BINARY_DIR} COPYONLY)
-endforeach()
-
 if(WIN32)
     set(LIBRARY_SEARCH_PATH PATH)
 else()
@@ -63,6 +58,7 @@ foreach(wrapper IN LISTS wrapper_list)
     set(PYTHONQT_WRAPPER_${WRAPPER}_SOURCES ${PYTHONQT_WRAPPER_${WRAPPER}_SOURCES} PARENT_SCOPE)
 endforeach()
 
+# Determine the Qt include prefix
 get_target_property(_qtcore_include_dirs Qt${QT_VERSION_MAJOR}::Core INTERFACE_INCLUDE_DIRECTORIES)
 foreach(_qtcore_include_dir IN LISTS _qtcore_include_dirs)
     # Some versions of Qt may have subdirectories like "QtCore" for header files
@@ -76,12 +72,33 @@ foreach(_qtcore_include_dir IN LISTS _qtcore_include_dirs)
             break()
         endif()
     endif()
-
 endforeach()
 
+# Copy resource to the build tree
+message(STATUS "Copying resource files from ${CMAKE_CURRENT_LIST_DIR} to ${CMAKE_CURRENT_BINARY_DIR}")
+file(GLOB resources_files *.txt *.xml qtscript_masterinclude.h)
+foreach(resources_file IN LISTS resources_files)
+    configure_file(${resources_file} ${CMAKE_CURRENT_BINARY_DIR} COPYONLY)
+endforeach()
+set(gen_masterinclude_file "${CMAKE_CURRENT_BINARY_DIR}/qtscript_masterinclude.h")
+
+if(QT_VERSION_MAJOR EQUAL 5)
+    set(gen_build_all_file "${CMAKE_CURRENT_SOURCE_DIR}/build_all.txt")
+else()
+    # For Qt6, we need to generate a different master include file
+    set(gen_build_all_file "${CMAKE_CURRENT_BINARY_DIR}/build_all_qt6.txt")
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/build_all_qt6.txt ${gen_build_all_file} COPYONLY)
+endif()
+
 add_custom_command(OUTPUT ${PYTHONQT_WRAPPER_SOURCES}
-    COMMAND ${CMAKE_COMMAND} -E env --modify ${LIBRARY_SEARCH_PATH}=path_list_prepend:$<TARGET_FILE_DIR:Qt${QT_VERSION_MAJOR}::Widgets>
-    $<TARGET_FILE:${PROJECT_NAME}> --qt-include-prefix="${_qt_include_prefix}"
+    COMMAND ${CMAKE_COMMAND} -E env  QTDIR=${Qt${QT_VERSION_MAJOR}_DIR}
+        --modify ${LIBRARY_SEARCH_PATH}=path_list_prepend:$<TARGET_FILE_DIR:Qt${QT_VERSION_MAJOR}::Widgets>
+    $<TARGET_FILE:${PROJECT_NAME}>
+        --qt-include-prefix="${_qt_include_prefix}"
+        --debug-level=full
+        --output-dir=${PYTHONQT_GENERATED_PATH}
+        ${gen_masterinclude_file} ${gen_build_all_file}
+    COMMENT "Generating PythonQt wrapper sources:  $<TARGET_FILE:${PROJECT_NAME}>"
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
     DEPENDS ${PROJECT_NAME}
 )
