@@ -169,32 +169,29 @@
 
 #if QT_VERSION >= 0x050000
 #include <QtWidgets/QtWidgets>
+#if QT_VERSION < 0x060000
+//in Qt6 qprintengine.h:12:1: error: explicit specialization of 'QMetaTypeId<QMarginsF>' after instantiation
 #include <QtPrintSupport/QtPrintSupport>
+#endif
 #endif
 
 #include <QtMultimedia/QtMultimedia>
+
 
 #if QT_VERSION >= 0x050000
 #include <QtMultimediaWidgets/QtMultimediaWidgets>
 #include <QtQml/QtQml>
 #include <QtQuick/QtQuick>
-#include <QtQuickWidgets/QtQuickWidgets>
 #endif
 
 #if QT_VERSION < 0x060000
-#ifndef QT_NO_XMLPATTERNS
-#  include <QtXmlPatterns/QtXmlPatterns>
-#endif
-#endif
-
-#ifndef QT_NO_WEBKIT
-#  include <QtWebKit/QtWebKit>
 #if QT_VERSION >= 0x050000
-#  include <QtWebKitWidgets/QtWebKitWidgets>
+ //in Qt6 qprintengine.h:12:1: error: explicit specialization of 'QMetaTypeId<QMarginsF>' after instantiation
+ // <-- build error with Qt6 related to duplicate definitions
+ #include <QtQuickWidgets/QtQuickWidgets>
+ #include <QtWebEngineWidgets/QtWebEngineWidgets>
 #endif
 #endif
-
-#include <QtWebEngineWidgets/QtWebEngineWidgets>
 
 #ifndef QT_NO_PHONON
 #  include <phonon/phonon>
