@@ -66,6 +66,11 @@ static bool fileExistsAndReadable(const QString& filePath) {
            (QFile(filePath).permissions() & QFileDevice::ReadUser);
 }
 
+static bool dirExistsAndReadable(const QString& dirPath) {
+    QDir dir(dirPath);
+    return dir.exists() && dir.isReadable();
+}
+
 void displayHelp(GeneratorSet *generatorSet);
 
 
@@ -143,7 +148,21 @@ namespace
           includes << (qtIncludePrefix + "/QtOpenGL");
           includes << qtIncludePrefix;
       }
-      return includes;
+      QStringList found_includes;
+      for (auto &candidate_include : includes)
+      {
+        if (dirExistsAndReadable(candidate_include))
+        {
+            printf("INFO -- FOUND INCLUDE: %s\n", qPrintable(candidate_include));
+            found_includes << candidate_include;
+        }
+        else
+        {
+            printf("INFO -- NOT FOUND INCLUDE: %s\n", qPrintable(candidate_include));
+        }
+     }
+
+      return found_includes;
     }
 
     bool
@@ -457,6 +476,7 @@ void displayHelp(GeneratorSet* generatorSet) {
            "  --no-suppress-warnings                    \n"
            "  --output-directory=[dir]                  \n"
            "  --include-paths=<path>[%c<path>%c...]     \n"
+           "  --qt-include-prefix=<path>                \n"
            "  --qt-version=x.y.z                        \n"
            "  --print-stdout                            \n",
            path_splitter, path_splitter);
