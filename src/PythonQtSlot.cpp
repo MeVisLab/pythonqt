@@ -609,13 +609,6 @@ static PyObject *
 meth_get__self__(PythonQtSlotFunctionObject *m, void * /*closure*/)
 {
   PyObject *self;
-#ifndef PY3K
-  if (PyEval_GetRestricted()) {
-    PyErr_SetString(PyExc_RuntimeError,
-      "method.__self__ not accessible in restricted mode");
-    return nullptr;
-  }
-#endif
   self = m->m_self;
   if (self == nullptr)
     self = Py_None;
@@ -828,11 +821,7 @@ PyTypeObject PythonQtSlotFunction_Type = {
     0,                          /* tp_vectorcall_offset */
     nullptr,                    /* tp_getattr */
     nullptr,                    /* tp_setattr */
-#ifdef PY3K
     nullptr,
-#else
-    (cmpfunc)meth_compare,      /* tp_compare */
-#endif
     (reprfunc)meth_repr,        /* tp_repr */
     nullptr,                    /* tp_as_number */
     nullptr,                    /* tp_as_sequence */

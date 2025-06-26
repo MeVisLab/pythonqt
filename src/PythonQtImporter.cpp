@@ -284,7 +284,6 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
       }
 
       // set __package__ only for Python 3, because in Python 2 it causes the exception "__package__ set to non-string"
-#ifdef PY3K
       // The package attribute is needed to resolve the package name if it is referenced as '.'. For example,
       // when importing the encodings package, there is an import statement 'from . import aliases'. This import
       // would fail when reloading the encodings package with importlib.
@@ -294,10 +293,8 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
         Py_DECREF(mod);
         return nullptr;
       }
-#endif
     }
 
-#ifdef PY3K
     PyObject* fullnameObj = PyUnicode_FromString(fullname);
     PyObject* fullPathObj = PythonQtConv::QStringToPyObject(fullPath);
     PyObject* fullCachePathObj = !fullCachePath.isEmpty() ? PythonQtConv::QStringToPyObject(fullCachePath) : nullptr;
@@ -305,9 +302,7 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
     Py_XDECREF(fullnameObj);
     Py_XDECREF(fullPathObj);
     Py_XDECREF(fullCachePathObj);
-#else
-    mod = PyImport_ExecCodeModuleEx(fullname, code, fullPath.toLatin1().data());
-#endif
+
     if (PythonQt::importInterface()) {
       PythonQt::importInterface()->importedModule(fullname);
     }
@@ -576,11 +571,7 @@ void PythonQtImport::writeCompiledModule(PyCodeObject *co, const QString& filena
 #else
   PyMarshal_WriteLongToFile(0L, fp, Py_MARSHAL_VERSION);
 #endif
-#ifdef PY3K
   PyMarshal_WriteLongToFile(sourceSize, fp, Py_MARSHAL_VERSION);
-#else
-  Q_UNUSED(sourceSize)
-#endif
 #if PY_VERSION_HEX < 0x02040000
   PyMarshal_WriteObjectToFile((PyObject *)co, fp);
 #else
@@ -645,15 +636,11 @@ PythonQtImport::unmarshalCode(const QString& path, const QByteArray& data, time_
     }
   }
 
-#ifdef PY3K
   // Python 3 also stores the size of the *.py file, but we ignore it for now
   int sourceSize = getLong((unsigned char *)buf + 8); 
   Q_UNUSED(sourceSize)
   // read the module
   code = PyMarshal_ReadObjectFromString(buf + 12, size - 12);
-#else
-  code = PyMarshal_ReadObjectFromString(buf + 8, size - 8);
-#endif
   if (code == nullptr)
     return nullptr;
   if (!PyCode_Check(code)) {
@@ -673,15 +660,10 @@ PyObject *
 PythonQtImport::compileSource(const QString& path, const QByteArray& data)
 {
   PyObject *code;
-#ifdef PY3K
   PyObject* filename = PythonQtConv::QStringToPyObject(path);
   code = Py_CompileStringObject(data.data(), filename,
                                 Py_file_input, nullptr, -1);
   Py_DECREF(filename);
-#else
-  code = Py_CompileString(data.data(), QStringToPythonConstCharPointer(path),
-                          Py_file_input);
-#endif
   return code;
 }
 
@@ -808,14 +790,10 @@ PythonQtImport::getModuleCode(PythonQtImporter *self, const char* fullname, QStr
       }
       if (code != nullptr) {
         modpath = test;
-#ifdef PY3K
         if (isbytecode) {
           cachemodpath = modpath;
           modpath = getSourceFilename(modpath);
         }
-#else
-        Q_UNUSED(cachemodpath)
-#endif
       }
       return code;
     }
@@ -869,7 +847,6 @@ PyObject* PythonQtImport::getCodeFromPyc(const QString& file)
 PyDoc_STRVAR(mlabimport_doc,
 "Imports python files into PythonQt, completely replaces internal python import");
 
-#ifdef PY3K
 static struct PyModuleDef PythonQtImport_def = {
     PyModuleDef_HEAD_INIT,
     "PythonQtImport",   /* m_name */
@@ -881,7 +858,6 @@ static struct PyModuleDef PythonQtImport_def = {
     nullptr,               /* m_clear */
     nullptr                /* m_free */
 };
-#endif
 
 void PythonQtImport::init()
 {
@@ -911,12 +887,7 @@ void PythonQtImport::init()
     mlab_searchorder[4] = tmp;
   }
 
-#ifdef PY3K
   mod = PyModule_Create(&PythonQtImport_def);
-#else
-  mod = Py_InitModule4("PythonQtImport", NULL, mlabimport_doc,
-           NULL, PYTHON_API_VERSION);
-#endif
 
   PythonQtImportError = PyErr_NewException(const_cast<char*>("PythonQtImport.PythonQtImportError"),
               PyExc_ImportError, nullptr);

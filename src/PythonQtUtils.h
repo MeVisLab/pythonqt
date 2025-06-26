@@ -85,12 +85,7 @@ namespace PythonQtUtils
 
   //! Returns of the python object is a class type
   inline bool isPythonClassType(PyObject* obj) {
-#ifdef PY3K
     return PyType_Check(obj);
-#else
-    // support old-style classes and new style classes
-    return (obj->ob_type == &PyClass_Type || obj->ob_type == &PyType_Type);
-#endif
   }
 
   //! Returns the meta type ID from a type name

@@ -147,15 +147,9 @@ typedef QObject* PythonQtQObjectCreatorFunctionCB();
 template<class T> QObject* PythonQtCreateObject() { return new T(); }
 
 //! Helper define to convert from QString to Python C-API
-#ifdef PY3K
 #define QStringToPythonConstCharPointer(arg) ((arg).toUtf8().constData())
 #define QStringToPythonCharPointer(arg) ((arg).toUtf8().data())
 #define QStringToPythonEncoding(arg) ((arg).toUtf8())
-#else
-#define QStringToPythonConstCharPointer(arg) ((arg).toLatin1().constData())
-#define QStringToPythonCharPointer(arg) ((arg).toLatin1().data())
-#define QStringToPythonEncoding(arg) ((arg).toLatin1())
-#endif
 
 //! The main interface to the Python Qt binding, realized as a singleton
 /*!
@@ -368,7 +362,6 @@ public:
   //! Parses the given file and returns the python code object, this can then be used to call evalCode()
   //! It uses Python's importlib machinery to load the file's code and supports source and sourceless loading
   //! and generation of cache files.
-  //! This method is PY3K only!
   PythonQtObjectPtr parseFileWithPythonLoaders(const QString& filename);
 
   //! evaluates the given code and returns the result value (use Py_Compile etc. to create pycode from string)
