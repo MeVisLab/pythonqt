@@ -2,7 +2,6 @@ project(Core LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 
-file(GLOB SOURCES *.h *.cpp)
 
 if(BUILD_SHARED_LIBS)
     add_library(${PROJECT_NAME} SHARED)
@@ -12,20 +11,75 @@ else()
     target_compile_definitions(${PROJECT_NAME} PUBLIC PYTHONQT_STATIC)
 endif()
 
+# The sources are private, the headers are added publicly
+# explicitly set the source files the same as from
+# src.pri
+set(Core_SOURCES
+  gui/PythonQtScriptingConsole.cpp
+  PythonQt.cpp
+  PythonQtBoolResult.cpp
+  PythonQtClassInfo.cpp
+  PythonQtClassWrapper.cpp
+  PythonQtConversion.cpp
+  PythonQtImporter.cpp
+  PythonQtInstanceWrapper.cpp
+  PythonQtMethodInfo.cpp
+  PythonQtMisc.cpp
+  PythonQtObjectPtr.cpp
+  PythonQtProperty.cpp
+  PythonQtQFileImporter.cpp
+  PythonQtSignal.cpp
+  PythonQtSignalReceiver.cpp
+  PythonQtSlot.cpp
+  PythonQtSlotDecorator.cpp
+  PythonQtStdDecorators.cpp
+  PythonQtStdIn.cpp
+  PythonQtStdOut.cpp
+  PythonQtThreadSupport.cpp
+)
 target_sources(${PROJECT_NAME} PRIVATE
-    ${SOURCES}
+    ${Core_SOURCES}
     ${PYTHONQT_WRAPPER_CORE_BUILTIN_SOURCES}
     ${PYTHONQT_WRAPPER_GUI_BUILTIN_SOURCES}
 )
+unset(Core_SOURCES)
 
-add_dependencies(${PROJECT_NAME} PythonQtWrapper)
-
-file(GLOB PUBLIC_HEADER *.h)
-
+set(Core_PUBLIC_HEADER
+  PythonQt.h
+  PythonQtStdDecorators.h
+  PythonQtClassInfo.h
+  PythonQtImporter.h
+  PythonQtObjectPtr.h
+  PythonQtProperty.h
+  PythonQtSignal.h
+  PythonQtSlot.h
+  PythonQtSlotDecorator.h
+  PythonQtStdIn.h
+  PythonQtStdOut.h
+  PythonQtMisc.h
+  PythonQtMethodInfo.h
+  PythonQtImportFileInterface.h
+  PythonQtConversion.h
+  PythonQtSignalReceiver.h
+  PythonQtInstanceWrapper.h
+  PythonQtClassWrapper.h
+  PythonQtCppWrapperFactory.h
+  PythonQtQFileImporter.h
+  PythonQtQFileImporter.h
+  PythonQtVariants.h
+  gui/PythonQtScriptingConsole.h
+  PythonQtSystem.h
+  PythonQtUtils.h
+  PythonQtBoolResult.h
+  PythonQtThreadSupport.h
+)
 set_target_properties(${PROJECT_NAME} PROPERTIES
     OUTPUT_NAME PythonQt-${PYTHONQT_SUFFIX}
-    PUBLIC_HEADER "${PUBLIC_HEADER}"
+    PUBLIC_HEADER ${Core_PUBLIC_HEADER}
 )
+unset(Core_PUBLIC_HEADER)
+
+add_dependencies(${PROJECT_NAME} PythonQtWrapper)
 
 target_link_libraries(${PROJECT_NAME} PUBLIC
     Qt${QT_VERSION_MAJOR}::Core
