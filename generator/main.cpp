@@ -229,7 +229,20 @@ namespace
         QRegularExpression::CaseInsensitiveOption);
       for (const QString &includeDir: getIncludeDirectories(commandLineIncludes, qtIncludPrefix))
       {
-        QFileInfo fi(QDir(includeDir), "qtcoreversion.h");
+        std::list<std::string> candiate_paths;
+        candiate_paths.emplace_back("qtcoreversion.h");
+        candiate_paths.emplace_back("QtCore/qtcoreversion.h");
+        candiate_paths.emplace_back("QtCore.framework/Headers/qtcoreversion.h");
+        QFileInfo fi(QDir(includeDir), QString("qtcoreversion.h"));
+        for (const std::string &candidate : candiate_paths)
+        {
+          QFileInfo candidate_fi(QDir(includeDir), candidate.c_str());
+          if (candidate_fi.exists() && candidate_fi.isFile())
+          {
+              fi = candidate_fi;
+              break;
+          }
+        }
         if (fi.exists())
         {
           QString filePath = fi.absoluteFilePath();
