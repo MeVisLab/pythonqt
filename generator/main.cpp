@@ -58,7 +58,16 @@
 
 #include <memory>
 
+#include <QDebug>
+
+static bool fileExistsAndReadable(const QString& filePath) {
+    QFileInfo info(filePath);
+    return info.exists() && info.isFile() &&
+           (QFile(filePath).permissions() & QFileDevice::ReadUser);
+}
+
 void displayHelp(GeneratorSet *generatorSet);
+
 
 namespace
 {
@@ -284,8 +293,6 @@ int main(int argc, char *argv[])
     QString default_file = ":/trolltech/generator/qtscript_masterinclude.h";
     QString default_system = ":/trolltech/generator/build_all.txt";
 
-    QString fileName;
-    QString typesystemFileName;
     QString pp_file = ".preprocessed.tmp";
 
     QMap<QString, QString> args;
@@ -353,9 +360,11 @@ int main(int argc, char *argv[])
         }
     }
 
-    fileName = args.value("arg-1");
+    // fileName is a required input file
+    QString fileName = args.value("arg-1");
 
-    typesystemFileName = args.value("arg-2");
+    // typesystemFileName is a required input file
+    QString typesystemFileName = args.value("arg-2");
     if (args.contains("arg-3"))
         displayHelp(&*gs);
 
@@ -367,6 +376,17 @@ int main(int argc, char *argv[])
 
     if (fileName.isEmpty() || typesystemFileName.isEmpty() )
         displayHelp(&*gs);
+
+    if (!fileExistsAndReadable(fileName))
+    {
+        printf("ERROR: first argument file '%s' does not exist or is not readable.\n", qPrintable(fileName));
+        displayHelp(&*gs);
+    }
+    if (!fileExistsAndReadable(typesystemFileName))
+    {
+        printf("ERROR: second argument file '%s' does not exist or is not readable.\n", qPrintable(typesystemFileName));
+        displayHelp(&*gs);
+    }
 
     if (!gs->readParameters(args))
         displayHelp(&*gs);
