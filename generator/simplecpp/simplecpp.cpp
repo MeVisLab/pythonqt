@@ -3116,6 +3116,22 @@ static std::string getIncludePathFileName(const std::string &includePath, const 
     return path + header;
 }
 
+#ifdef __APPLE__
+static std::string get_apple_framework_relative_path(const std::string& header)
+{
+    std::string appleFrameworkHeader = {header};
+    // try the Framework path on Mac, if there is a path in front
+    // ### what about escaped slashes?
+    size_t slashPos = appleFrameworkHeader.find('/');
+    if (slashPos != std::string::npos)
+    {
+        constexpr auto framework_separator{ ".framework/Headers" };
+        appleFrameworkHeader.insert(slashPos, framework_separator);
+    }
+    return appleFrameworkHeader;
+}
+#endif // __APPLE__
+
 static std::string openHeaderIncludePath(std::ifstream &f, const simplecpp::DUI &dui, const std::string &header)
 {
     for (std::list<std::string>::const_iterator it = dui.includePaths.begin(); it != dui.includePaths.end(); ++it) {
@@ -3123,6 +3139,17 @@ static std::string openHeaderIncludePath(std::ifstream &f, const simplecpp::DUI 
         if (!simplePath.empty())
             return simplePath;
     }
+#ifdef __APPLE__
+    std::string appleFrameworkHeader = get_apple_framework_relative_path(header);
+    if (appleFrameworkHeader != header)
+    {
+        for (std::list<std::string>::const_iterator it = dui.includePaths.begin(); it != dui.includePaths.end(); ++it) {
+            std::string simplePath = openHeader(f, getIncludePathFileName(*it, appleFrameworkHeader));
+            if (!simplePath.empty())
+                return simplePath;
+        }
+    }
+#endif // __APPLE__
     return "";
 }
 
