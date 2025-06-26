@@ -13,24 +13,26 @@ else()
 endif()
 
 file(GLOB SOURCES *.h *.cpp *.qrc simplecpp/*.h simplecpp/*.cpp )
+# Explicitly exclude qtscript_masterinclude.h
 list(REMOVE_ITEM SOURCES "${CMAKE_CURRENT_LIST_DIR}/qtscript_masterinclude.h")
 
 add_executable(${PROJECT_NAME})
-  
 target_sources(${PROJECT_NAME} PRIVATE
     ${SOURCES}
 )
+
+set(QT5_COMPATIBILITY_LIBS "")
+if (${QT_VERSION_MAJOR} VERSION_GREATER_EQUAL 6)
+    set(QT5_COMPATIBILITY_LIBS Qt${QT_VERSION_MAJOR}::Core5Compat)
+endif()
 
 target_link_libraries(${PROJECT_NAME} PUBLIC
     Qt${QT_VERSION_MAJOR}::Core
     Qt${QT_VERSION_MAJOR}::Widgets
     Qt${QT_VERSION_MAJOR}::Xml
+    ${QT5_COMPATIBILITY_LIBS}
     rxx
 )
-
-if (${QT_VERSION_MAJOR} VERSION_GREATER 5)
-    target_link_libraries(${PROJECT_NAME} PUBLIC Qt${QT_VERSION_MAJOR}::Core5Compat)
-endif()
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_LIST_DIR})
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_LIST_DIR}/simplecpp)
