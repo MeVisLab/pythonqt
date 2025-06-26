@@ -73,7 +73,7 @@ jobs:
         fi
         PYTHONDEVMODE=1 PYTHONASYNCIODEBUG=1 PYTHONWARNINGS=error PYTHONMALLOC=malloc_debug \
         UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
-          make check TESTARGS="-platform offscreen"
+          make check
       
     - name: Generate Wrappers
       run: |
@@ -224,7 +224,7 @@ jobs:
         make -j $(nproc)
         PYTHONDEVMODE=1 PYTHONASYNCIODEBUG=1 PYTHONWARNINGS=error PYTHONMALLOC=malloc_debug \
         UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
-          make check TESTARGS="-platform offscreen"
+          make check
 
     - name: Generate Wrappers
       if: ${{ contains(matrix.configuration, 'release') }}
@@ -334,8 +334,8 @@ jobs:
         set PYTHONDEVMODE=1
         set PYTHONASYNCIODEBUG=1
         set PYTHONWARNINGS=error
-        mingw32-make -j 2 && mingw32-make check "TESTARGS=-platform offscreen" ^
-          || set CL=/MP && nmake && nmake check "TESTARGS=-platform offscreen"
+        mingw32-make -j 2 && mingw32-make check ^
+          || set CL=/MP && nmake && nmake check
 
     - name: Generate Wrappers
       shell: cmd
