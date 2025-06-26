@@ -2,7 +2,7 @@ project(PythonQtTest LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Test REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Widgets Test REQUIRED)
 
 file(GLOB SOURCES *.h *.cpp)
 

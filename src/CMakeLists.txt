@@ -2,9 +2,6 @@ project(Core LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Widgets REQUIRED)
-find_package(Python3 COMPONENTS Development REQUIRED)
-
 file(GLOB SOURCES *.h *.cpp)
 
 if(BUILD_SHARED_LIBS)

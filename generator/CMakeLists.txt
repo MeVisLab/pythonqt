@@ -1,16 +1,9 @@
-cmake_minimum_required(VERSION 3.27)
 project(PythonQtGenerator LANGUAGES CXX)
 
 add_subdirectory(parser)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
-
-if(FORCE_BUILD_QT5)
-  find_package(Qt5 NAMES Qt5 REQUIRED COMPONENTS Core Widgets Xml)
-else()
-  find_package(Qt6 NAMES Qt6 REQUIRED COMPONENTS Core Widgets Xml Core5Compat)
-endif()
 
 file(GLOB SOURCES *.h *.cpp *.qrc simplecpp/*.h simplecpp/*.cpp )
 # Explicitly exclude qtscript_masterinclude.h
