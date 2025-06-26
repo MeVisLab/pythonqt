@@ -354,10 +354,10 @@ PythonQt::PythonQt(int flags, const QByteArray& pythonQtModuleName)
     Py_Initialize();
   }
 
-#ifdef PYTHONQT_FULL_THREAD_SUPPORT
-  if (!PyEval_ThreadsInitialized()) {
-    PyEval_InitThreads();
-  }
+#if defined(PYTHONQT_FULL_THREAD_SUPPORT) && PY_VERSION_HEX < 0x03090000
+    if (!PyEval_ThreadsInitialized()) {
+        PyEval_InitThreads();
+    }
 #endif
 
   // add our own python object types for qt object slots
