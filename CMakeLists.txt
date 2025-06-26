@@ -34,6 +34,31 @@ message(STATUS "QT_VERSION_MAJOR = ${QT_VERSION_MAJOR}")
 
 find_package(Python3 COMPONENTS Development)
 
+# Set the environment as defined in Readme.md
+# Set environment variables for Python
+if(Python3_FOUND)
+  set(PYTHON_VERSION "${Python3_VERSION_MAJOR}.${Python3_VERSION_MINOR}")
+  set(PYTHON_PATH "${Python3_PREFIX}")
+  set(PYTHON_LIB "${Python3_PREFIX}/libs")
+  set(PYTHON_DIR "${Python3_PREFIX}")
+  set(ENV{PYTHON_VERSION} "${PYTHON_VERSION}")
+  set(ENV{PYTHON_PATH} "${PYTHON_PATH}")
+  set(ENV{PYTHON_LIB} "${PYTHON_LIB}")
+  set(ENV{PYTHON_DIR} "${PYTHON_DIR}")
+endif()
+
+# Set QTDIR environment variable to Qt installation root
+if(FORCE_BUILD_QT5)
+  if(DEFINED Qt5_DIR)
+    set(ENV{QTDIR} "${Qt5_DIR}")
+  endif()
+else()
+  if(DEFINED Qt6_DIR)
+    set(ENV{QTDIR} "${Qt6_DIR}")
+  endif()
+endif()
+
+
 set(PYTHONQT_SUFFIX Qt${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}-Python${Python3_VERSION_MAJOR}.${Python3_VERSION_MINOR})
 include_directories(src)
 add_subdirectory(generator)
