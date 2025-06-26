@@ -561,23 +561,11 @@ void PythonQtImport::writeCompiledModule(PyCodeObject *co, const QString& filena
       "# can't create %s\n", QStringToPythonConstCharPointer(filename));
     return;
   }
-#if PY_VERSION_HEX < 0x02040000
-  PyMarshal_WriteLongToFile(PyImport_GetMagicNumber(), fp);
-#else
   PyMarshal_WriteLongToFile(PyImport_GetMagicNumber(), fp, Py_MARSHAL_VERSION);
-#endif
   /* First write a 0 for mtime */
-#if PY_VERSION_HEX < 0x02040000
-  PyMarshal_WriteLongToFile(0L, fp);
-#else
   PyMarshal_WriteLongToFile(0L, fp, Py_MARSHAL_VERSION);
-#endif
   PyMarshal_WriteLongToFile(sourceSize, fp, Py_MARSHAL_VERSION);
-#if PY_VERSION_HEX < 0x02040000
-  PyMarshal_WriteObjectToFile((PyObject *)co, fp);
-#else
   PyMarshal_WriteObjectToFile((PyObject *)co, fp, Py_MARSHAL_VERSION);
-#endif
   if (ferror(fp)) {
     if (Py_VerboseFlag)
       PySys_WriteStderr("# can't write %s\n", QStringToPythonConstCharPointer(filename));
@@ -588,11 +576,7 @@ void PythonQtImport::writeCompiledModule(PyCodeObject *co, const QString& filena
   }
   /* Now write the true mtime */
   fseek(fp, 4L, 0);
-#if PY_VERSION_HEX < 0x02040000
-  PyMarshal_WriteLongToFile(mtime, fp);
-#else
   PyMarshal_WriteLongToFile(mtime, fp, Py_MARSHAL_VERSION);
-#endif
   fflush(fp);
   fclose(fp);
   if (Py_VerboseFlag) {
