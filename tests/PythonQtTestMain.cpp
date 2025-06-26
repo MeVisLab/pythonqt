@@ -48,6 +48,7 @@ int main( int argc, char **argv )
 {
   QCoreApplication qapp(argc, argv);
   int failCount = 0;
+  if (QProcessEnvironment::systemEnvironment().contains("PYTHONQT_RUN_ONLY_MEMORY_TESTS"))
   {
     PythonQtMemoryTests test;
     failCount += QTest::qExec(&test, argc, argv);

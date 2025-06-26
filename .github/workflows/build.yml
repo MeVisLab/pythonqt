@@ -71,6 +71,14 @@ jobs:
           echo "leak:QPlatformIntegrationFactory::create" >> $PWD/lsan.supp
           export LSAN_OPTIONS="suppressions=$PWD/lsan.supp"
         fi
+        FULL_VERSION=$(python3 --version | cut -d " " -f 2 | cut -d "." -f1,2,3)
+
+        MIN_VERSION="3.12.0"
+        MAX_VERSION="3.12.4"
+        export PYTHONQT_RUN_ONLY_MEMORY_TESTS=1
+        if printf "%s\n" "$MIN_VERSION" "$FULL_VERSION" "$MAX_VERSION" | sort -V -C; then
+          unset PYTHONQT_RUN_ONLY_MEMORY_TESTS
+        fi
         PYTHONDEVMODE=1 PYTHONASYNCIODEBUG=1 PYTHONWARNINGS=error PYTHONMALLOC=malloc_debug \
         UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
           make check
