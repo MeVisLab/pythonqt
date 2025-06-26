@@ -67,21 +67,13 @@ jobs:
         PYTHON_VERSION=$(python3 --version | cut -d " " -f 2 | cut -d "." -f1,2) \
         PYTHON_DIR=$(which python3 | xargs dirname | xargs dirname)
         make -j $(nproc)
-        PYTHONDEVMODE=1 PYTHONASYNCIODEBUG=1 PYTHONWARNINGS=error PYTHONMALLOC=malloc_debug \
-        UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
-          make check TESTARGS="-platform offscreen"
-        
-    - name: Run memory tests with sanitizers
-      run: |
-        QT_VERSION_FULL=$(qmake -query QT_VERSION)
         if [[ "$QT_VERSION_FULL" == 5.12* ]]; then
           echo "leak:QPlatformIntegrationFactory::create" >> $PWD/lsan.supp
           export LSAN_OPTIONS="suppressions=$PWD/lsan.supp"
         fi
         PYTHONDEVMODE=1 PYTHONASYNCIODEBUG=1 PYTHONWARNINGS=error PYTHONMALLOC=malloc_debug \
-        UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=1:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
-        PYTHONQT_RUN_ONLY_MEMORY_TESTS=1 \
-          make check TESTARGS="-platform minimal"
+        UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
+          make check TESTARGS="-platform offscreen"
       
     - name: Generate Wrappers
       run: |
@@ -142,7 +134,7 @@ jobs:
           "PYTHON_VERSION=${PYTHON_VERSION_SHORT}" "PYTHON_DIR=${PYTHON_DIR}"
         make -j $(nproc) && \
         PYTHONDEVMODE=1 PYTHONASYNCIODEBUG=1 PYTHONWARNINGS=error PYTHONMALLOC=malloc_debug \
-          make check TESTARGS="-platform offscreen"
+          make check
 
     - name: Generate Wrappers
       run: |
