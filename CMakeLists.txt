@@ -18,6 +18,25 @@ enable_testing()
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Force errors for dangerous operations
+add_compile_definitions( -DQT_NO_CAST_TO_ASCII )
+
+option(PythonQt_NO_IMPLICIT_CASTING "Disable implicit casts related to dangerous implicit conversions" OFF)
+if(PythonQt_NO_IMPLICIT_CASTING) # Definitions to force
+  # errors on dangerous implicit operations
+  # to be addressed at a later time
+add_compile_definitions( -DQT_NO_CAST_FROM_ASCII
+                         -DQT_NO_CAST_FROM_ASCII
+                         -DQT_NO_CAST_TO_BYTEARRAY
+                         -DQT_NO_CAST_FROM_BYTEARRAY
+                         -DQT_NO_CAST_TO_QSTRING
+                         -DQT_NO_CAST_FROM_QSTRING
+                         -DQT_NO_CAST_TO_QSTRINGREF
+                         -DQT_NO_CAST_FROM_QSTRINGREF
+                         -DQT_NO_CAST_TO_QVARIANT
+                         -DQT_NO_CAST_FROM_QVARIANT )
+endif()
+
 option(FORCE_BUILD_QT5 "Force Qt5 build instead of Qt6" OFF)
 
 if(FORCE_BUILD_QT5)
