@@ -53,19 +53,52 @@ endforeach()
 
 # Determine the Qt include prefix
 get_target_property(_qtcore_include_dirs Qt${QT_VERSION_MAJOR}::Core INTERFACE_INCLUDE_DIRECTORIES)
+get_target_property(all_qt_include_dirs Qt${QT_VERSION_MAJOR}::Widgets INTERFACE_INCLUDE_DIRECTORIES)
+set(all_qt_include_dirs "")
+set(include_path_seperator ":")
 foreach(_qtcore_include_dir IN LISTS _qtcore_include_dirs)
     # Some versions of Qt may have subdirectories like "QtCore" for header files
     if (IS_DIRECTORY "${_qtcore_include_dir}/QtCore")
         set(_qt_include_prefix "${_qtcore_include_dir}")
+        list(APPEND all_qt_include_dirs "${_qt_include_prefix}")
         break()
     else()
         # If frameworks, then no QtCore should be suffixed
         if (IS_DIRECTORY "${_qtcore_include_dir}")
             set(_qt_include_prefix "${_qtcore_include_dir}")
+            list(APPEND all_qt_include_dirs "${_qt_include_prefix}")
             break()
         endif()
     endif()
 endforeach()
+
+
+
+find_package(Qt6 COMPONENTS Core Gui Widgets Xml OpenGL Network Core5Compat REQUIRED)
+set(QT6_COMPONENTS Core Gui Widgets Xml OpenGL Network)
+set(QT6_COMPONENTS_FOUND)
+foreach(comp IN LISTS QT6_COMPONENTS)
+    if(Qt6${comp}_FOUND)
+        list(APPEND QT6_COMPONENTS_FOUND Qt6::${comp})
+    endif()
+endforeach()
+unset(QT6_COMPONENTS)
+message(STATUS "Found Qt6 components: ${QT6_COMPONENTS_FOUND}")
+
+# Initialize include directory list
+set(ALL_QT6_INCLUDE_DIRS)
+# Loop through each Qt6 target and collect its INTERFACE_INCLUDE_DIRECTORIES
+foreach(qt_target IN LISTS QT6_COMPONENTS_FOUND)
+    get_target_property(_incs ${qt_target} INTERFACE_INCLUDE_DIRECTORIES)
+    if(_incs)
+        list(APPEND ALL_QT6_INCLUDE_DIRS ${_incs})
+    endif()
+endforeach()
+unset(QT6_COMPONENTS_FOUND)
+
+# Optionally remove duplicates
+list(REMOVE_DUPLICATES ALL_QT6_INCLUDE_DIRS)
+
 
 # Copy resource to the build tree
 message(STATUS "Copying resource files from ${CMAKE_CURRENT_LIST_DIR} to ${CMAKE_CURRENT_BINARY_DIR}")
@@ -79,16 +112,20 @@ if(QT_VERSION_MAJOR EQUAL 5)
     set(gen_build_all_file "${CMAKE_CURRENT_SOURCE_DIR}/build_all.txt")
 else()
     # For Qt6, we need to generate a different master include file
-    set(gen_build_all_file "${CMAKE_CURRENT_BINARY_DIR}/build_all_qt6.txt")
+    set(gen_build_all_file "${CMAKE_CURRENT_BINARY_DIR}/build_all.txt")
     configure_file(${CMAKE_CURRENT_SOURCE_DIR}/build_all_qt6.txt ${gen_build_all_file} COPYONLY)
 endif()
 
+
+string(JOIN ":" CMD_LINE_COLON_SEPARATED_INCLUDE_DIRS ${ALL_QT6_INCLUDE_DIRS})
+set(QTDIR ${QT${QT_VERSION_MAJOR}_INSTALL_PREFIX} )
 add_custom_command(OUTPUT ${PYTHONQT_WRAPPER_SOURCES}
-    COMMAND ${CMAKE_COMMAND} -E env  QTDIR=${Qt${QT_VERSION_MAJOR}_DIR}
+    COMMAND ${CMAKE_COMMAND} -E env  QTDIR=${QTDIR} PYTHONQT_INCLUDE=${_qt_include_prefix}
         --modify ${LIBRARY_SEARCH_PATH}=path_list_prepend:$<TARGET_FILE_DIR:Qt${QT_VERSION_MAJOR}::Widgets>
     $<TARGET_FILE:${PROJECT_NAME}>
-        --qt-include-prefix="${_qt_include_prefix}"
-        --debug-level=full
+        # FOR DEBUGGING --dump-object-tree
+        # FOR DEBUGGING --debug-level=full
+        --include-paths="${CMD_LINE_COLON_SEPARATED_INCLUDE_DIRS}"
         --output-dir=${PYTHONQT_GENERATED_PATH}
         ${gen_masterinclude_file} ${gen_build_all_file}
     COMMENT "Generating PythonQt wrapper sources:  $<TARGET_FILE:${PROJECT_NAME}>"
