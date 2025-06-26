@@ -103,7 +103,7 @@ jobs:
         uname -a; gcc --version | grep "gcc"; python3 --version; qmake --version
         echo ============================
         qmake -r PythonQt.pro CONFIG+=ccache CONFIG+=release CONFIG+=force_debug_info \
-        CONFIG+=sanitizer CONFIG+=sanitize_undefined CONFIG+=sanitize_address \
+        CONFIG+=sanitizer CONFIG+=sanitize_undefined CONFIG+=tests CONFIG+=sanitize_address \
         PYTHON_VERSION=$(python3 --version | cut -d " " -f 2 | cut -d "." -f1,2) \
         PYTHON_DIR=$(which python3 | xargs dirname | xargs dirname)
         make -j $(nproc)
@@ -117,7 +117,7 @@ jobs:
       run: |
         qmake -query
         python --version
-        qmake CONFIG+=release CONFIG-=debug_and_release CONFIG-=debug_and_release_target ^
+        qmake CONFIG+=release CONFIG-=debug_and_release CONFIG-=debug_and_release_target CONFIG+=tests ^
            "PYTHONQTALL_CONFIG=${{ matrix.pythonqtall-config }}" ^
            "PYTHON_PATH=%pythonLocation%" ^
            "PYTHON_VERSION=${{ steps.setenv.outputs.PYTHON_VERSION_SHORT }}" ^
