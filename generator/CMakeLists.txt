@@ -31,7 +31,9 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_LIST_DIR})
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_LIST_DIR}/simplecpp)
 
 get_filename_component(PYTHONQT_GENERATED_PATH "${CMAKE_CURRENT_BINARY_DIR}" PATH)
-set(PYTHONQT_GENERATED_PATH "${PYTHONQT_GENERATED_PATH}/generated_cpp_${QT_VERSION_MAJOR}${QT_VERSION_MINOR}")
+# NOTE: 'generated_cpp' is hardcoded in setupgenerator.cpp, so do not add version suffix here.
+set(PYTHONQT_GENERATED_PATH "${PYTHONQT_GENERATED_PATH}/generated_cpp")
+#set(PYTHONQT_GENERATED_PATH "${PYTHONQT_GENERATED_PATH}/generated_cpp_${QT_VERSION_MAJOR}${QT_VERSION_MINOR}")
 
 if(WIN32)
     set(LIBRARY_SEARCH_PATH PATH)
