@@ -69,9 +69,6 @@ static PyNumberMethods PythonQtBoolResult_as_number = {
   nullptr,      /* nb_add */
   nullptr,      /* nb_subtract */
   nullptr,      /* nb_multiply */
-#ifndef PY3K
-  nullptr,      /* nb_divide */
-#endif
   nullptr,      /* nb_remainder */
   nullptr,      /* nb_divmod */
   nullptr,      /* nb_power */
@@ -85,22 +82,12 @@ static PyNumberMethods PythonQtBoolResult_as_number = {
   nullptr,      /* nb_and */
   nullptr,      /* nb_xor */
   nullptr,      /* nb_or */
-#ifndef PY3K   
-  nullptr,      /* nb_coerce */
-#endif
   nullptr,      /* nb_int */
   nullptr,      /* nb_long  / nb_reserved in Py3K */
   nullptr,      /* nb_float */
-#ifndef PY3K
-  nullptr,      /* nb_oct */
-  nullptr,      /* nb_hex */
-#endif
   nullptr,      /* nb_inplace_add */
   nullptr,      /* nb_inplace_subtract */
   nullptr,      /* nb_inplace_multiply */
-#ifndef PY3K
-  nullptr,      /* nb_inplace_divide */
-#endif
   nullptr,      /* nb_inplace_remainder */
   nullptr,      /* nb_inplace_power */
   nullptr,      /* nb_inplace_lshift */
@@ -112,9 +99,7 @@ static PyNumberMethods PythonQtBoolResult_as_number = {
   nullptr,      /* nb_true_divide */
   nullptr,      /* nb_inplace_floor_divide */
   nullptr,      /* nb_inplace_true_divide */
-#ifdef PY3K
   nullptr,      /* nb_index in Py3K */
-#endif
 };
 
 PyTypeObject PythonQtBoolResult_Type = {
@@ -155,4 +140,3 @@ PyTypeObject PythonQtBoolResult_Type = {
     0,            /* tp_dictoffset */
     (initproc)&PythonQtBoolResult_init,      /* tp_init */
 };
-

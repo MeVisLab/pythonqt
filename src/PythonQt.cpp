@@ -101,7 +101,6 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
       _self->_p->_pySourcelessFileLoader = importlib.getVariable("SourcelessFileLoader");
     }
 
-#ifdef PY3K
     PythonQtObjectPtr asyncio;
     asyncio.setNewRef(PyImport_ImportModule("asyncio"));
     if (asyncio)
@@ -109,7 +108,6 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
       _self->_p->_pyEnsureFuture = asyncio.getVariable("ensure_future");
       _self->_p->_pyFutureClass = asyncio.getVariable("Future");
     }
-#endif
 
     PythonQt::priv()->setupSharedLibrarySuffixes();
 
@@ -336,11 +334,8 @@ PythonQt::PythonQt(int flags, const QByteArray& pythonQtModuleName)
   _p->_initFlags = flags;
 
   if ((flags & PythonAlreadyInitialized) == 0) {
-#ifdef PY3K
     Py_SetProgramName(const_cast<wchar_t*>(L"PythonQt"));
-#else
-    Py_SetProgramName(const_cast<char*>("PythonQt"));
-#endif
+
     if (flags & IgnoreSiteModule) {
       // this prevents the automatic importing of Python site files
       Py_NoSiteFlag = 1;
@@ -430,7 +425,6 @@ void PythonQtPrivate::setTaskDoneCallback(const PythonQtObjectPtr & callable)
 PythonQtObjectPtr PythonQtPrivate::checkAndRunCoroutine(const PythonQtObjectPtr& object)
 {
   PythonQtObjectPtr result;
-#ifdef PY3K
   if (!PyCoro_CheckExact(object))
   {
     return result;
@@ -453,9 +447,6 @@ PythonQtObjectPtr PythonQtPrivate::checkAndRunCoroutine(const PythonQtObjectPtr&
     Py_XDECREF(methodName);
   }
   Py_XDECREF(args);
-#else
-  Q_UNUSED(object)
-#endif
   return result;
 }
 
@@ -989,11 +980,7 @@ QVariant PythonQt::evalCode(PyObject* object, PyObject* pycode) {
     }
     PyObject* r = nullptr;
     if (dict) {
-#ifdef PY3K
       r = PyEval_EvalCode(pycode, globals, dict);
-#else
-      r = PyEval_EvalCode((PyCodeObject*)pycode, globals, dict);
-#endif
     }
     if (r) {
       result = PythonQtConv::PyObjToQVariant(r);
@@ -1253,14 +1240,7 @@ QStringList PythonQt::introspectObject(PyObject* object, ObjectType type)
       keys = PyDict_Keys(object);
       isDict = true;
     } else {
-#if defined(MEVISLAB) && !defined(PY3K)
-      int oldPy3kWarningFlag = Py_Py3kWarningFlag;
-      Py_Py3kWarningFlag = 0;  // temporarily disable Python 3 warnings
       keys = PyObject_Dir(object);
-      Py_Py3kWarningFlag = oldPy3kWarningFlag;
-#else
-      keys = PyObject_Dir(object);
-#endif
     }
     if (keys) {
       int count = PyList_Size(keys);
@@ -1296,9 +1276,6 @@ QStringList PythonQt::introspectObject(PyObject* object, ObjectType type)
               && value->ob_type != &PyModule_Type
               && value->ob_type != &PyType_Type
               && value->ob_type != &PythonQtSlotFunction_Type
-#ifndef PY3K
-              && value->ob_type != &PyClass_Type
-#endif
               ) {
               results << keystr;
             }
@@ -1647,13 +1624,8 @@ int custom_system_exit_exception_handler()
 //    return exitcode;
 
   PyErr_Fetch(&exception, &value, &tb);
-#ifndef PY3K
-  if (Py_FlushLine()) {
-    PyErr_Clear();
-  }
-#else
+
   // TODO: unclear what to do, since Py_FlushLine is gone...
-#endif
   fflush(stdout);
   if (value == nullptr || value == Py_None)
     goto done;
@@ -1831,7 +1803,6 @@ static PyMethodDef PythonQtMethods[] = {
   {nullptr, nullptr, 0, nullptr}
 };
 
-#ifdef PY3K
 static PyModuleDef PythonQtModuleDef = {
   PyModuleDef_HEAD_INIT,
   "",
@@ -1843,7 +1814,6 @@ static PyModuleDef PythonQtModuleDef = {
   nullptr,
   nullptr
 };
-#endif
 
 void PythonQt::initPythonQtModule(bool redirectStdOut, const QByteArray& pythonQtModuleName)
 {
@@ -1851,12 +1821,8 @@ void PythonQt::initPythonQtModule(bool redirectStdOut, const QByteArray& pythonQ
   if (!pythonQtModuleName.isEmpty()) {
     name = pythonQtModuleName;
   }
-#ifdef PY3K
   PythonQtModuleDef.m_name = name.constData();
   _p->_pythonQtModule = PyModule_Create(&PythonQtModuleDef);
-#else
-  _p->_pythonQtModule = Py_InitModule(name.constData(), PythonQtMethods);
-#endif
   _p->_pythonQtModuleName = name;
 
   Py_INCREF((PyObject*)&PythonQtBoolResult_Type);
@@ -1892,13 +1858,11 @@ void PythonQt::initPythonQtModule(bool redirectStdOut, const QByteArray& pythonQ
   }
   Py_XDECREF(old_module_names);
 
-#ifdef PY3K
   PyObject* modulesAttr = PyObject_GetAttrString(sys.object(), "modules");
   PyObject* pyUnicodeObject = PyUnicode_FromString(name.constData());
   PyDict_SetItem(modulesAttr, pyUnicodeObject, _p->_pythonQtModule.object());
   Py_XDECREF(modulesAttr);
   Py_XDECREF(pyUnicodeObject);
-#endif
 }
 
 QString PythonQt::getReturnTypeOfWrappedMethod(PyObject* module, const QString& name)
@@ -2232,9 +2196,6 @@ bool PythonQtPrivate::isMethodDescriptor(PyObject* object) const
       !PyObject_HasAttrString(object, "__set__") &&
       !PyMethod_Check(object) &&
       !PyFunction_Check(object)
-#ifndef PY3K
-      && !PyClass_Check(object)
-#endif
       ) {
     return true;
   }
@@ -2596,20 +2557,12 @@ void PythonQtPrivate::shellClassDeleted( void* shellClass )
 
 PyObject* PythonQtPrivate::wrapMemoryAsBuffer( const void* data, Py_ssize_t size )
 {
-#ifdef PY3K
   return PyMemoryView_FromMemory((char*)data, size, PyBUF_READ);
-#else
-  return PyBuffer_FromMemory((char*)data, size);
-#endif
 }
 
 PyObject* PythonQtPrivate::wrapMemoryAsBuffer( void* data, Py_ssize_t size )
 {
-#ifdef PY3K
   return PyMemoryView_FromMemory((char*)data, size, PyBUF_WRITE);
-#else
-  return PyBuffer_FromReadWriteMemory((char*)data, size);
-#endif
 }
 
 PythonQtClassInfo* PythonQtPrivate::getClassInfo( const QMetaObject* meta )

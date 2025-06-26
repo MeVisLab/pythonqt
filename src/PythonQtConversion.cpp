@@ -824,11 +824,7 @@ QString PythonQtConv::PyObjGetRepresentation(PyObject* val)
   QString r;
   PyObject* str =  PyObject_Repr(val);
   if (str) {
-    #ifdef PY3K
       r = PyObjGetString(str);
-    #else
-      r = QString(PyString_AS_STRING(str));
-    #endif
     Py_DECREF(str);
   }
   return r;
@@ -840,31 +836,12 @@ QString PythonQtConv::PyObjGetString(PyObject* val, bool strict, bool& ok) {
   if (val == nullptr) {
     r = "None";
   } else
-#ifndef PY3K
-  // in Python 3, we don't want to convert to QString, since we don't know anything about the encoding
-  // in Python 2, we assume the default for str is latin-1
-  if (val->ob_type == &PyBytes_Type) {
-    r = QString::fromLatin1(PyBytes_AS_STRING(val));
-  } else
-#endif
   if (PyUnicode_Check(val)) {
-#ifdef PY3K
     r = QString::fromUtf8(PyUnicode_AsUTF8(val));
-#else
-    PyObject *ptmp = PyUnicode_AsUTF8String(val);
-    if(ptmp) {
-      r = QString::fromUtf8(PyString_AS_STRING(ptmp));
-      Py_DECREF(ptmp);
-    }
-#endif
   } else if (!strict) {
     PyObject* str =  PyObject_Str(val);
     if (str) {
-#ifdef PY3K
       r = QString::fromUtf8(PyUnicode_AsUTF8(str));
-#else
-      r = QString(PyString_AS_STRING(str));
-#endif
       Py_DECREF(str);
     } else {
       ok = false;
@@ -962,11 +939,6 @@ int PythonQtConv::PyObjGetInt(PyObject* val, bool strict, bool &ok) {
 qint64 PythonQtConv::PyObjGetLongLong(PyObject* val, bool strict, bool &ok) {
   qint64 d = 0;
   ok = true;
-#ifndef PY3K
-  if (val->ob_type == &PyInt_Type) {
-    d = PyInt_AS_LONG(val);
-  } else
-#endif
   if (val->ob_type == &PyLong_Type) {
     d = PyLong_AsLongLong(val);
   } else if (!strict) {
@@ -997,11 +969,6 @@ qint64 PythonQtConv::PyObjGetLongLong(PyObject* val, bool strict, bool &ok) {
 quint64 PythonQtConv::PyObjGetULongLong(PyObject* val, bool strict, bool &ok) {
   quint64 d = 0;
   ok = true;
-#ifndef PY3K
-  if (Py_TYPE(val) == &PyInt_Type) {
-    d = PyInt_AS_LONG(val);
-  } else
-#endif
   if (Py_TYPE(val) == &PyLong_Type) {
     d = PyLong_AsUnsignedLongLong(val);
   } else if (!strict) {
@@ -1035,11 +1002,6 @@ double PythonQtConv::PyObjGetDouble(PyObject* val, bool strict, bool &ok) {
   if (val->ob_type == &PyFloat_Type) {
     d = PyFloat_AS_DOUBLE(val);
   } else if (!strict) {
-#ifndef PY3K
-    if (PyObject_TypeCheck(val, &PyInt_Type)) {
-      d = PyInt_AS_LONG(val);
-    } else
-#endif
     if (PyLong_Check(val)) {
       d = static_cast<double>(PyLong_AsLongLong(val));
     } else if (val == Py_False) {
@@ -1114,21 +1076,12 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
       type = 0;  // Equivalent to QVariant::Invalid or unregistered type
 #endif
     } else if (PyBytes_Check(val)) {
-#ifdef PY3K
       // In Python 3, it is a ByteArray
       type = QMetaType::QByteArray;
-#else
-      // In Python 2, we need to use String, since it might be a string
-      type = QMetaType::QString;
-#endif
     } else if (PyUnicode_Check(val)) {
       type = QMetaType::QString;
     } else if (val == Py_False || val == Py_True) {
       type = QMetaType::Bool;
-#ifndef PY3K
-    } else if (PyObject_TypeCheck(val, &PyInt_Type)) {
-      type = QMetaType::Int;
-#endif
     } else if (PyLong_Check(val)) {
       // return int if the value fits into that range,
       // otherwise it would not be possible to get an int from Python 3
@@ -1268,11 +1221,7 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
   case QMetaType::QByteArray:
     {
       bool ok;
-#ifdef PY3K
       v = QVariant(PyObjGetBytes(val, false, ok));
-#else
-      v = QVariant(PyObjGetString(val, false, ok));
-#endif
     }
     break;
   case QMetaType::QString:
@@ -1674,10 +1623,6 @@ QByteArray PythonQtConv::getCPPTypeName(PyObject* type)
         result = "double";
       } else if (typeObject == &PyBool_Type) {
         result = "bool";
-#ifndef PY3K
-      } else if (typeObject == &PyInt_Type) {
-        result = "qint32";
-#endif
       } else if (typeObject == &PyLong_Type) {
         result = "qint64";
       } else if (isStringType(typeObject)) {
@@ -1697,11 +1642,7 @@ QByteArray PythonQtConv::getCPPTypeName(PyObject* type)
 
 bool PythonQtConv::isStringType(PyTypeObject* type)
 {
-#ifdef PY3K
   return type == &PyUnicode_Type;
-#else
-  return type == &PyUnicode_Type || type == &PyString_Type;
-#endif
 }
 
 void PythonQtConv::registerStringViewTypes()
