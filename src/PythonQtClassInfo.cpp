@@ -86,7 +86,7 @@ PythonQtClassInfo::~PythonQtClassInfo()
   if (_destructor) {
     _destructor->deleteOverloadsAndThis();
   }
-  Q_FOREACH(PythonQtSlotInfo* info, _decoratorSlots) {
+  for( PythonQtSlotInfo* info :  _decoratorSlots ) {
     info->deleteOverloadsAndThis();
   }
 }
@@ -178,7 +178,7 @@ bool PythonQtClassInfo::lookForPropertyAndCache(const char* memberName)
 PythonQtSlotInfo* PythonQtClassInfo::recursiveFindDecoratorSlotsFromDecoratorProvider(const char* memberName, PythonQtSlotInfo* inputInfo, bool &found, QHash<QByteArray, PythonQtMemberInfo>& memberCache, int upcastingOffset)
 {
   inputInfo = findDecoratorSlotsFromDecoratorProvider(memberName, inputInfo, found, memberCache, upcastingOffset);
-  Q_FOREACH(const ParentClassInfo& info, _parentClasses) {
+  for( const ParentClassInfo& info :  _parentClasses ) {
     inputInfo = info._parent->recursiveFindDecoratorSlotsFromDecoratorProvider(memberName, inputInfo, found, memberCache, upcastingOffset+info._upcastingOffset);
   }
   return inputInfo;
@@ -330,7 +330,7 @@ PythonQtMemberInfo PythonQtClassInfo::member(const char* memberName)
         // look for dynamic decorators in this class and in derived classes
         QList<QObject*> decoObjects;
         recursiveCollectDecoratorObjects(decoObjects);
-        Q_FOREACH(QObject* deco, decoObjects) {
+        for( QObject* deco :  decoObjects ) {
           // call on ourself for caching, but with different metaObject():
           found = lookForEnumAndCache(deco->metaObject(), memberName);
           if (found) {
@@ -349,7 +349,7 @@ PythonQtMemberInfo PythonQtClassInfo::member(const char* memberName)
         found = true;
       }
       // maybe it is a nested class?
-      Q_FOREACH(PythonQtClassInfo* nestedClass, _nestedClasses) {
+      for( PythonQtClassInfo* nestedClass :  _nestedClasses ) {
         PyObject* pyClass = nestedClass->pythonQtClassWrapper();
         if (pyClass) {
           if (strcmp(memberName, nestedClass->unscopedClassName().constData()) == 0) {
@@ -391,14 +391,14 @@ void PythonQtClassInfo::recursiveCollectDecoratorObjects(QList<QObject*>& decora
   if (deco) {
     decoratorObjects.append(deco);
   }
-  Q_FOREACH(const ParentClassInfo& info, _parentClasses) {
+  for( const ParentClassInfo& info :  _parentClasses ) {
     info._parent->recursiveCollectDecoratorObjects(decoratorObjects);
   }
 }
 
 void PythonQtClassInfo::recursiveCollectClassInfos(QList<PythonQtClassInfo*>& classInfoObjects) {
   classInfoObjects.append(this);
-  Q_FOREACH(const ParentClassInfo& info, _parentClasses) {
+  for( const ParentClassInfo& info :  _parentClasses ) {
     info._parent->recursiveCollectClassInfos(classInfoObjects);
   }
 }
@@ -493,7 +493,7 @@ QStringList PythonQtClassInfo::propertyList()
     }
   }
   QStringList members = memberList();
-  foreach(QString member, members) {
+  for(const QString& member : members) {
     if (member.startsWith("py_get_")) {
       l << member.mid(7);
     }
@@ -524,7 +524,7 @@ QStringList PythonQtClassInfo::memberList()
     // look for dynamic decorators in this class and in derived classes
     QList<PythonQtClassInfo*> infos;
     recursiveCollectClassInfos(infos);
-    Q_FOREACH(PythonQtClassInfo* info, infos) {
+    for( PythonQtClassInfo* info :  infos ) {
       info->listDecoratorSlotsFromDecoratorProvider(l, false);
     }
   }
@@ -537,11 +537,11 @@ QStringList PythonQtClassInfo::memberList()
   // check enums in the class hierachy of CPP classes
   QList<QObject*> decoObjects;
   recursiveCollectDecoratorObjects(decoObjects);
-  Q_FOREACH(QObject* deco, decoObjects) {
+  for( QObject* deco :  decoObjects ) {
     enumMetaObjects << deco->metaObject();
   }
   
-  Q_FOREACH(const QMetaObject* meta, enumMetaObjects) {
+  for( const QMetaObject* meta :  enumMetaObjects ) {
     for (int i = 0; i<meta->enumeratorCount(); i++) {
       QMetaEnum e = meta->enumerator(i);
       l << e.name();
@@ -554,7 +554,7 @@ QStringList PythonQtClassInfo::memberList()
     }
   }
 
-  Q_FOREACH(PythonQtClassInfo* nestedClass, _nestedClasses) {
+  for( PythonQtClassInfo* nestedClass :  _nestedClasses ) {
     PyObject* pyClass = nestedClass->pythonQtClassWrapper();
     if (pyClass) {
       QByteArray name = nestedClass->unscopedClassName();
@@ -583,7 +583,7 @@ void* PythonQtClassInfo::castTo(void* ptr, const char* classname)
   if (_wrappedClassName == classname) {
     return ptr;
   }
-  Q_FOREACH(const ParentClassInfo& info, _parentClasses) {
+  for( const ParentClassInfo& info :  _parentClasses ) {
     void* result = info._parent->castTo((char*)ptr + info._upcastingOffset, classname);
     if (result) {
       return result;
@@ -597,7 +597,7 @@ bool PythonQtClassInfo::inherits(const char* name)
   if (_wrappedClassName == name) {
     return true;
   }
-  Q_FOREACH(const ParentClassInfo& info, _parentClasses) {
+  for( const ParentClassInfo& info :  _parentClasses ) {
     if (info._parent->inherits(name)) {
       return true;
     }
@@ -610,7 +610,7 @@ bool PythonQtClassInfo::inherits(PythonQtClassInfo* classInfo)
   if (classInfo == this) {
     return true;
   }
-  Q_FOREACH(const ParentClassInfo& info, _parentClasses) {
+  for( const ParentClassInfo& info :  _parentClasses ) {
     if (info._parent->inherits(classInfo)) {
       return true;
     }
@@ -767,14 +767,14 @@ QObject* PythonQtClassInfo::decorator()
 void* PythonQtClassInfo::recursiveCastDownIfPossible(void* ptr, const char** resultClassName)
 {
   if (!_polymorphicHandlers.isEmpty()) {
-    Q_FOREACH(PythonQtPolymorphicHandlerCB* cb, _polymorphicHandlers) {
+    for( PythonQtPolymorphicHandlerCB* cb :  _polymorphicHandlers ) {
       void* resultPtr = (*cb)(ptr, resultClassName);
       if (resultPtr) {
         return resultPtr;
       }
     }
   }
-  Q_FOREACH(const ParentClassInfo& info, _parentClasses) {
+  for( const ParentClassInfo& info :  _parentClasses ) {
     if (!info._parent->isQObject()) {
       void* resultPtr = info._parent->recursiveCastDownIfPossible((char*)ptr + info._upcastingOffset, resultClassName);
       if (resultPtr) {
@@ -818,7 +818,7 @@ void* PythonQtClassInfo::castDownIfPossible(void* ptr, PythonQtClassInfo** resul
   // we only do downcasting on the base object, not on the whole inheritance tree...
   void* resultPtr = nullptr;
   if (!_polymorphicHandlers.isEmpty()) {
-    Q_FOREACH(PythonQtPolymorphicHandlerCB* cb, _polymorphicHandlers) {
+    for( PythonQtPolymorphicHandlerCB* cb :  _polymorphicHandlers ) {
       resultPtr = (*cb)(ptr, &className);
       if (resultPtr) {
         break;
@@ -897,7 +897,7 @@ void PythonQtClassInfo::createEnumWrappers(const QObject* decoratorProvider)
     if (decoratorProvider) {
       createEnumWrappers(decoratorProvider->metaObject());
     }
-    Q_FOREACH(const ParentClassInfo& info, _parentClasses) {
+    for( const ParentClassInfo& info :  _parentClasses ) {
       // trigger decorator() instead of createEnumWrappers(),
       // which will then call createEnumWrappers().
       info._parent->decorator();
@@ -912,13 +912,13 @@ PyObject* PythonQtClassInfo::findEnumWrapper(const char* name) {
     // which will then call createEnumWrappers().
     decorator();
   }
-  Q_FOREACH(const PythonQtObjectPtr& p, _enumWrappers) {
+  for( const PythonQtObjectPtr& p :  _enumWrappers ) {
     const char* className = ((PyTypeObject*)p.object())->tp_name;
     if (qstrcmp(className, name)==0) {
       return p.object();
     }
   }
-  Q_FOREACH(const ParentClassInfo& info, _parentClasses) {
+  for( const ParentClassInfo& info :  _parentClasses ) {
     PyObject* p = info._parent->findEnumWrapper(name);
     if (p) return p;
   }

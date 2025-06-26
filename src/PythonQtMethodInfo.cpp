@@ -62,7 +62,7 @@ PythonQtMethodInfo::PythonQtMethodInfo(const QMetaMethod& meta, PythonQtClassInf
   fillParameterInfo(type, QByteArray(meta.typeName()), classInfo);
   _parameters.append(type);
   QList<QByteArray> names = meta.parameterTypes();
-  Q_FOREACH (const QByteArray& name, names) {
+  for( const QByteArray& name :  names ) {
     fillParameterInfo(type, name, classInfo);
     _parameters.append(type);
   }
@@ -75,7 +75,7 @@ PythonQtMethodInfo::PythonQtMethodInfo(const QByteArray& typeName, const QList<Q
   ParameterInfo type;
   fillParameterInfo(type, typeName, nullptr);
   _parameters.append(type);
-  Q_FOREACH (const QByteArray& name, args) {
+  for( const QByteArray& name :  args ) {
     fillParameterInfo(type, name, nullptr);
     _parameters.append(type);
   }
@@ -622,7 +622,7 @@ QStringList PythonQtSlotInfo::overloads(bool skipReturnValue) const
     }
     if (slotsWithSameArgs.size() > 1) {
       results << maxArgSlot->fullSignature(skipReturnValue, minSameArgs);
-      foreach(const PythonQtSlotInfo* o, slotsWithSameArgs) {
+      for(const PythonQtSlotInfo* o : slotsWithSameArgs) {
         list.removeOne(o);
       }
     } else {

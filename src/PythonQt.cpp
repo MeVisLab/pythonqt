@@ -1540,7 +1540,7 @@ void PythonQtPrivate::setupSharedLibrarySuffixes()
   _sharedLibrarySuffixes << "_d.so";
   #endif
 #endif
-  Q_FOREACH (QVariant entry, result.toList()) {
+  for( QVariant entry :  result.toList( )) {
     QVariantList suffixEntry = entry.toList();
     if (suffixEntry.count()==3) {
       int code = suffixEntry.at(2).toInt();
@@ -1609,7 +1609,7 @@ void PythonQtPrivate::addDecorators(QObject* o, int decoTypes)
 
 void PythonQtPrivate::registerQObjectClassNames(const QStringList& names)
 {
-  Q_FOREACH(QString name, names) {
+  for( QString name :  names ) {
     _knownQObjectClassNames.insert(name.toUtf8(), true);
   }
 }
@@ -1624,7 +1624,7 @@ void PythonQt::removeSignalHandlers()
   QList<PythonQtSignalReceiver*> signalReceivers = _p->_signalReceivers.values();
 
   // just delete all signal receivers, they will remove themselves via removeSignalEmitter()
-  foreach(PythonQtSignalReceiver* receiver, signalReceivers) {
+  for(PythonQtSignalReceiver* receiver : signalReceivers) {
     delete receiver;
   }
   // just to be sure, clear the receiver map as well
@@ -2162,7 +2162,7 @@ PyObject* PythonQt::helpCalled(PythonQtClassInfo* info)
 
 void PythonQt::clearNotFoundCachedMembers()
 {
-  Q_FOREACH(PythonQtClassInfo* info, _p->_knownClassInfos) {
+  for( PythonQtClassInfo* info :  _p->_knownClassInfos ) {
     info->clearNotFoundCachedMembers();
   }
 }

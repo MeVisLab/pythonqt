@@ -1365,8 +1365,8 @@ PyObject* PythonQtConv::QStringListToPyObject(const QStringList& list)
 {
   PyObject* result = PyTuple_New(list.count());
   int i = 0;
-  QString str;
-  Q_FOREACH (str, list) {
+
+  for( QString str :  list ) {
     PyTuple_SET_ITEM(result, i, PythonQtConv::QStringToPyObject(str));
     i++;
   }
@@ -1432,8 +1432,7 @@ PyObject* PythonQtConv::QVariantHashToPyObject(const QVariantHash& m) {
 PyObject* PythonQtConv::QVariantListToPyObject(const QVariantList& l) {
   PyObject* result = PyTuple_New(l.count());
   int i = 0;
-  QVariant v;
-  Q_FOREACH (v, l) {
+  for( QVariant v :  l ) {
     PyTuple_SET_ITEM(result, i, PythonQtConv::QVariantToPyObject(v));
     i++;
   }
@@ -1446,7 +1445,7 @@ PyObject* PythonQtConv::ConvertQListOfPointerTypeToPythonList(QList<void*>* list
 {
   PyObject* result = PyTuple_New(list->count());
   int i = 0;
-  Q_FOREACH (void* value, *list) {
+  for( void* value :  *list ) {
     PyObject* wrap = PythonQt::priv()->wrapPtr(value, info.innerName);
     if (wrap) {
       PythonQtInstanceWrapper* wrapper = (PythonQtInstanceWrapper*)wrap;

@@ -101,7 +101,7 @@ PythonQtImport::ModuleInfo PythonQtImport::getModuleInfo(PythonQtImporter* self,
 
   QString test;
   // test if it is a shared library (they have precedence over *.py files and this is used in eggs)
-  Q_FOREACH(const QString& suffix, PythonQt::priv()->sharedLibrarySuffixes()) {
+  for( const QString& suffix :  PythonQt::priv( )->sharedLibrarySuffixes()) {
     test = path + suffix;
     if (PythonQt::importInterface()->exists(test)) {
       info.fullPath = test;
@@ -143,7 +143,7 @@ int PythonQtImporter_init(PythonQtImporter *self, PyObject *args, PyObject * /*k
       return -1;
     } else {
       const QStringList& ignorePaths = PythonQt::self()->getImporterIgnorePaths();
-      Q_FOREACH(QString ignorePath, ignorePaths) {
+      for( QString ignorePath :  ignorePaths ) {
         if (path.startsWith(ignorePath)) {
           PyErr_SetString(PythonQtImportError,
             "path ignored");
