@@ -1341,7 +1341,8 @@ bool Handler::startElement(const QString &, const QString &n,
 
                 if (rc.action == ReferenceCount::Invalid) {
                     m_error = "unrecognized value for action attribute. supported actions:";
-                    foreach (QString action, actions.keys())
+                    QStringList actionKeys = actions.keys();
+                    for (QString action : actionKeys)
                         m_error += " " + action;
                 }
 
@@ -1654,8 +1655,8 @@ ContainerTypeEntry *TypeDatabase::findContainerType(const QString &name)
 
 PrimitiveTypeEntry *TypeDatabase::findTargetLangPrimitiveType(const QString &java_name)
 {
-    foreach (QList<TypeEntry *> entries, m_entries.values()) {
-        foreach (TypeEntry *e, entries) {
+    for (QList<TypeEntry*> entries : m_entries.values()) {
+        for (TypeEntry* e : entries) {
             if (e && e->isPrimitive()) {
                 PrimitiveTypeEntry *pe = static_cast<PrimitiveTypeEntry *>(e);
                 if (pe->targetLangName() == java_name && pe->preferredConversion())
@@ -1800,7 +1801,7 @@ bool TypeDatabase::isClassRejected(const QString &class_name)
     if (!m_rebuild_classes.isEmpty())
         return !m_rebuild_classes.contains(class_name);
 
-    foreach (const TypeRejection &r, m_rejections)
+    for (const TypeRejection& r : m_rejections)
         if (r.class_name == class_name && r.function_name == "*" && r.field_name == "*" && r.enum_name == "*") {
             return true;
         }
@@ -1809,7 +1810,7 @@ bool TypeDatabase::isClassRejected(const QString &class_name)
 
 bool TypeDatabase::isEnumRejected(const QString &class_name, const QString &enum_name)
 {
-    foreach (const TypeRejection &r, m_rejections) {
+    for (const TypeRejection& r : m_rejections) {
         if (r.enum_name == enum_name
             && (r.class_name == class_name || r.class_name == "*")) {
             return true;
@@ -1821,7 +1822,7 @@ bool TypeDatabase::isEnumRejected(const QString &class_name, const QString &enum
 
 bool TypeDatabase::isFunctionRejected(const QString &class_name, const QString &function_name)
 {
-    foreach (const TypeRejection &r, m_rejections)
+    for (const TypeRejection& r : m_rejections)
         if (r.function_name == function_name &&
             (r.class_name == class_name || r.class_name == "*"))
             return true;
@@ -1831,7 +1832,7 @@ bool TypeDatabase::isFunctionRejected(const QString &class_name, const QString &
 
 bool TypeDatabase::isFieldRejected(const QString &class_name, const QString &field_name)
 {
-    foreach (const TypeRejection &r, m_rejections)
+    for (const TypeRejection& r : m_rejections)
         if (r.field_name == field_name &&
             (r.class_name == class_name || r.class_name == "*"))
             return true;
@@ -1991,7 +1992,7 @@ QString FunctionModification::toString() const
     if (modifiers & Writable) str += QLatin1String("writable");
 
     if (modifiers & CodeInjection) {
-        foreach (CodeSnip s, snips) {
+        for (CodeSnip s : snips) {
             str += QLatin1String("\n//code injection:\n");
             str += s.code();
         }
