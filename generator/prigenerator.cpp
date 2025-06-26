@@ -145,7 +145,7 @@ void PriGenerator::generate()
         }
       
         file.stream << "HEADERS += \\\n";
-        foreach (const QString &entry, list) {
+        for (const QString& entry : list) {
           file.stream << "           $$PWD/" << entry << " \\\n";
         }
 
@@ -156,7 +156,7 @@ void PriGenerator::generate()
         if (compact) {
           list = compactFiles(list, ".cpp", m_out_dir + "/generated_cpp/" + folder, folder); 
         }
-        foreach (const QString &entry, list) {
+        for (const QString& entry : list) {
             file.stream << "           $$PWD/" << entry << " \\\n";
         }
         file.stream << "           $$PWD/" << folder << "_init.cpp\n";

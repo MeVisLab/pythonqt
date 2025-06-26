@@ -331,7 +331,7 @@ void Binder::declare_symbol(SimpleDeclarationAST *node, InitDeclaratorAST *init_
       fun->setVariadics (decl_cc.isVariadics ());
 
       // ... and the signature
-      foreach (DeclaratorCompiler::Parameter p, decl_cc.parameters())
+      for (DeclaratorCompiler::Parameter p : decl_cc.parameters())
         {
           ArgumentModelItem arg = model()->create<ArgumentModelItem>();
           arg->setType(qualifyType(p.type, _M_context));
@@ -361,8 +361,9 @@ void Binder::declare_symbol(SimpleDeclarationAST *node, InitDeclaratorAST *init_
         {
           typeInfo.setFunctionPointer (true);
           decl_cc.run (init_declarator->declarator);
-          foreach (DeclaratorCompiler::Parameter p, decl_cc.parameters())
+          for (DeclaratorCompiler::Parameter p : decl_cc.parameters()) {
             typeInfo.addArgument(p.type);
+          }
         }
 
       var->setType(qualifyType(typeInfo, _M_context));
@@ -426,7 +427,7 @@ void Binder::visitFunctionDefinition(FunctionDefinitionAST *node)
     }
 
   decl_cc.run(declarator);
-  foreach (DeclaratorCompiler::Parameter p, decl_cc.parameters()) {
+  for (DeclaratorCompiler::Parameter p : decl_cc.parameters()) {
     if (p.type.isRvalueReference()) {
       //warnHere();
       //std::cerr << "** Skipping function with rvalue reference parameter: "
@@ -481,7 +482,7 @@ void Binder::visitFunctionDefinition(FunctionDefinitionAST *node)
   }
   _M_current_function->setVariadics (decl_cc.isVariadics ());
 
-  foreach (DeclaratorCompiler::Parameter p, decl_cc.parameters())
+  for (DeclaratorCompiler::Parameter p : decl_cc.parameters())
     {
       ArgumentModelItem arg = model()->create<ArgumentModelItem>();
       
@@ -650,8 +651,9 @@ void Binder::visitTypedef(TypedefAST *node)
         {
           typeInfo.setFunctionPointer (true);
           decl_cc.run (init_declarator->declarator);
-          foreach (DeclaratorCompiler::Parameter p, decl_cc.parameters())
+          for (DeclaratorCompiler::Parameter p : decl_cc.parameters()) {
             typeInfo.addArgument(p.type);
+          }
         }
 
       ScopeModelItem scope = currentScope();
@@ -1029,7 +1031,7 @@ TypeInfo Binder::qualifyType(const TypeInfo &type, const QStringList &context) c
 
           if (ClassModelItem klass = scope.dynamicCast<_ClassModelItem> ())
             {
-              foreach (QString base, klass->baseClasses ())
+              for (QString base : klass->baseClasses())
                 {
                   QStringList ctx = context;
                   ctx.removeLast();

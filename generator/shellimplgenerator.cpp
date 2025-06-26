@@ -88,7 +88,7 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
 
   IncludeList list = meta_class->typeEntry()->extraIncludes();
   std::sort(list.begin(), list.end());
-  foreach (const Include &inc, list) {
+  for (const Include& inc : list) {
     ShellGenerator::writeInclude(s, inc);
   }  
   s << endl;
@@ -122,7 +122,7 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
     s << "}" << endl;
 
     AbstractMetaFunctionList virtualsForShell = getVirtualFunctionsForShell(meta_class);
-    foreach (const AbstractMetaFunction *fun, virtualsForShell) {
+    for (const AbstractMetaFunction* fun : virtualsForShell) {
       bool hasReturnValue = !fun->type().isNull();
       writeFunctionSignature(s, fun, meta_class, QString(),
         Option(ShowStatic | UnderscoreSpaces | UseIndexedName),
@@ -234,7 +234,7 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
   if (meta_class->generateShellClass() || !meta_class->isAbstract()) {
 
     // write constructors
-    foreach (const AbstractMetaFunction *ctor, ctors) {
+    for (const AbstractMetaFunction* ctor : ctors) {
       if (ctor->isAbstract() || (!meta_class->generateShellClass() && !ctor->isPublic())) { continue; }
 
       s << meta_class->qualifiedCppName() << "* ";
@@ -382,7 +382,7 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
 void ShellImplGenerator::writeInjectedCode(QTextStream &s, const AbstractMetaClass *meta_class)
 {
   CodeSnipList code_snips = meta_class->typeEntry()->codeSnips();
-  foreach (const CodeSnip &cs, code_snips) {
+  for (const CodeSnip& cs : code_snips) {
     if (cs.language == TypeSystem::PyWrapperCode) {
       s << cs.code() << endl;
     }

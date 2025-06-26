@@ -63,7 +63,7 @@ void Generator::generate()
 
     m_classes.sort();
 
-    foreach (AbstractMetaClass *cls, m_classes) {
+    for (AbstractMetaClass* cls : m_classes) {
         if (!shouldGenerate(cls))
             continue;
 
@@ -87,7 +87,7 @@ void Generator::printClasses()
     AbstractMetaClassList classes = m_classes;
     classes.sort();
 
-    foreach (AbstractMetaClass *cls, classes) {
+    for (AbstractMetaClass* cls : classes) {
         if (!shouldGenerate(cls))
             continue;
         write(s, cls);
@@ -127,10 +127,10 @@ bool Generator::hasDefaultConstructor(const AbstractMetaType *type)
     QString full_name = type->typeEntry()->qualifiedTargetLangName();
     QString class_name = type->typeEntry()->targetLangName();
 
-    foreach (const AbstractMetaClass *java_class, m_classes) {
+    for (const AbstractMetaClass* java_class : m_classes) {
         if (java_class->typeEntry()->qualifiedTargetLangName() == full_name) {
             AbstractMetaFunctionList functions = java_class->functions();
-            foreach (const AbstractMetaFunction *function, functions) {
+            for (const AbstractMetaFunction* function : functions) {
                 if (function->arguments().size() == 0 && function->name() == class_name)
                     return true;
             }

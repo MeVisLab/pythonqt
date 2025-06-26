@@ -243,7 +243,7 @@ PyObject* PythonQtConvertListOfValueTypeToPythonList(const void* /*QList<T>* */ 
   }
   PyObject* result = PyTuple_New(list->size());
   int i = 0;
-  Q_FOREACH (const T& value, *list) {
+  for (const T& value : *list) {
     PyTuple_SET_ITEM(result, i, PythonQtConv::convertQtValueToPythonInternal(innerType, &value));
     i++;
   }
@@ -293,7 +293,7 @@ PyObject* PythonQtConvertListOfKnownClassToPythonList(const void* /*QList<T>* */
   }
   PyObject* result = PyTuple_New(list->size());
   int i = 0;
-  Q_FOREACH(const T& value, *list) {
+  for (const T& value : *list) {
     T* newObject = new T(value);
     PythonQtInstanceWrapper* wrap = (PythonQtInstanceWrapper*)PythonQt::priv()->wrapPtr(newObject, innerType->className());
     wrap->_ownedByPythonQt = true;
@@ -423,7 +423,7 @@ PyObject* PythonQtConvertListOfPairToPythonList(const void* /*QList<QPair<T1,T2>
   PyObject* result = PyTuple_New(list->size());
   int i = 0;
   typedef const QPair<T1, T2> Pair;
-  Q_FOREACH(Pair& value, *list) {
+  for (Pair& value : *list) {
     PyObject* object = PythonQtConvertPairToPython<T1, T2>(&value, innerType);
     PyTuple_SET_ITEM(result, i, object);
     i++;

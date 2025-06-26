@@ -1160,7 +1160,7 @@ public:
 
     TypeEntry *findType(const QString &name) const {
         QList<TypeEntry *> entries = findTypes(name);
-        foreach (TypeEntry *entry, entries) {
+        for (TypeEntry* entry : entries) {
             if (entry != 0 &&
                 (!entry->isPrimitive() || static_cast<PrimitiveTypeEntry *>(entry)->preferredTargetLangType())) {
                 return entry;
@@ -1212,7 +1212,7 @@ public:
         if (!m_suppressWarnings)
             return false;
 
-        foreach (const QString &_warning, m_suppressedWarnings) {
+        for (const QString& _warning : m_suppressedWarnings) {
             QString warning(QString(_warning).replace("\\*", "&place_holder_for_asterisk;"));
 
             QStringList segs = warning.split("*", Qt::SkipEmptyParts);
@@ -1256,7 +1256,7 @@ inline PrimitiveTypeEntry *TypeDatabase::findPrimitiveType(const QString &name)
 {
     QList<TypeEntry *> entries = findTypes(name);
 
-    foreach (TypeEntry *entry, entries) {
+    for (TypeEntry* entry : entries) {
         if (entry != 0 && entry->isPrimitive() && static_cast<PrimitiveTypeEntry *>(entry)->preferredTargetLangType())
             return static_cast<PrimitiveTypeEntry *>(entry);
     }
