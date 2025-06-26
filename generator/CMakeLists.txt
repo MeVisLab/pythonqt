@@ -91,14 +91,27 @@ set(ALL_QT6_INCLUDE_DIRS)
 foreach(qt_target IN LISTS QT6_COMPONENTS_FOUND)
     get_target_property(_incs ${qt_target} INTERFACE_INCLUDE_DIRECTORIES)
     if(_incs)
-        list(APPEND ALL_QT6_INCLUDE_DIRS ${_incs})
+        foreach(_inc IN LISTS _incs)
+            # Check if the string ends with ".framework/Headers"
+            if(_inc MATCHES "\\.framework/Headers$")
+                # Remove the suffix
+                string(REGEX REPLACE "/[^/]+\\.framework/Headers$" "" framework_path "${_inc}")
+                list(APPEND ALL_QT6_INCLUDE_DIRS ${framework_path})
+            elseif(_inc MATCHES "\\.framework$")
+                # Remove the suffix
+                string(REGEX REPLACE "/[^/]+\\.framework$" "" framework_path "${_inc}")
+                list(APPEND ALL_QT6_INCLUDE_DIRS ${framework_path})
+            else()
+                list(APPEND ALL_QT6_INCLUDE_DIRS ${_inc})
+            endif()
+        endforeach()
+
     endif()
 endforeach()
 unset(QT6_COMPONENTS_FOUND)
 
 # Optionally remove duplicates
 list(REMOVE_DUPLICATES ALL_QT6_INCLUDE_DIRS)
-
 
 # Copy resource to the build tree
 message(STATUS "Copying resource files from ${CMAKE_CURRENT_LIST_DIR} to ${CMAKE_CURRENT_BINARY_DIR}")
