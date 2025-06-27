@@ -75,7 +75,7 @@
 #else
 
 #define PythonQtArgumentFrame_ADD_VARIANT_VALUE_BY_ID(store, id, ptr) \
-  PythonQtArgumentFrame_ADD_VARIANT_VALUE(store, QVariant::Type(id), ptr)
+  PythonQtArgumentFrame_ADD_VARIANT_VALUE(store, QMetaType::Type(id), ptr)
 
 #endif
 
@@ -94,7 +94,7 @@
 #else
 
 #define PythonQtArgumentFrame_ADD_VARIANT_VALUE_BY_ID_IF_NEEDED(alreadyAllocatedPtr,store, id, ptr) \
-  PythonQtArgumentFrame_ADD_VARIANT_VALUE_IF_NEEDED(alreadyAllocatedPtr,store, QVariant::Type(id), ptr)
+  PythonQtArgumentFrame_ADD_VARIANT_VALUE_IF_NEEDED(alreadyAllocatedPtr,store, QMetaType::Type(id), ptr)
 
 #endif
 
