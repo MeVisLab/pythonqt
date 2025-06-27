@@ -28,7 +28,7 @@ jobs:
     - name: Install Qt
       run: |
         apt-get update
-        DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes \
+        DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes -m \
         build-essential \
         python3 \
         python3-dev \
