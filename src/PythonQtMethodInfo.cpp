@@ -85,7 +85,7 @@ PythonQtMethodInfo::PythonQtMethodInfo(const QByteArray& typeName, const QList<Q
 void PythonQtMethodInfo::setupAllowThreads()
 {
   bool allowThreads = true;
-  for (const ParameterInfo& info : qAsConst(_parameters)) {
+  for (const ParameterInfo& info : std::as_const(_parameters)) {
     if (info.name == "PyObject" || info.name == "PythonQtObjectPtr" ||
       info.innerName == "PyObject" || info.innerName == "PythonQtObjectPtr") {
       allowThreads = false;

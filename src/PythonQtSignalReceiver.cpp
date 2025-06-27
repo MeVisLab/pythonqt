@@ -266,7 +266,7 @@ int PythonQtSignalReceiver::qt_metacall(QMetaObject::Call c, int id, void **argu
   }
 
   bool shouldDelete = false;
-  for(const PythonQtSignalTarget& t : qAsConst(_targets)) {
+  for(const PythonQtSignalTarget& t : std::as_const(_targets)) {
     if (t.slotId() == id) {
       const int sigId = t.signalId();
       t.call(arguments);
