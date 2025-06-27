@@ -175,6 +175,8 @@ namespace
       }
       dui.defines.push_back("__cplusplus=1");
       dui.defines.push_back("__STDC__");
+      // Do not wrap deprecated items for Qt 6.
+      dui.defines.push_back("QT_DISABLE_DEPRECATED_BEFORE=QT_VERSION_CHECK(6, 0, 0)");
       dui.std = "c++20";
       dui.removeComments = true;
 
