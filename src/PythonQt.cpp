@@ -1148,7 +1148,18 @@ void PythonQt::removeVariable(PyObject* object, const QString& name)
   if (PyDict_Check(object)) {
     PyDict_DelItemString(object, QStringToPythonCharPointer(name));
   } else {
-    PyObject_DelAttrString(object, QStringToPythonCharPointer(name));
+
+    /* Implemented as a macro:
+
+       int PyObject_DelAttrString(PyObject *o, const char *attr_name);
+
+       Delete attribute named attr_name, for object o. Returns
+       -1 on failure.
+
+       This is the equivalent of the Python statement: del o.attr_name. */
+#define XXPyObject_DelAttrString(O, A) PyObject_SetAttrString((O), (A), NULL)
+
+    XXPyObject_DelAttrString(object, QStringToPythonCharPointer(name));
   }
 }
 
