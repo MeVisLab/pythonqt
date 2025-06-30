@@ -12,6 +12,7 @@ IGNORED_DIRS=(
     "./generated_cpp_54"
     "./generated_cpp_56"
     "./examples"
+    "./generator/simplecpp"
     "./build"
 )
 
