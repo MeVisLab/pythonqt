@@ -613,7 +613,7 @@ meth_get__self__(PythonQtSlotFunctionObject *m, void * /*closure*/)
   if (PyEval_GetRestricted()) {
     PyErr_SetString(PyExc_RuntimeError,
       "method.__self__ not accessible in restricted mode");
-    return NULL;
+    return nullptr;
   }
 #endif
   self = m->m_self;
