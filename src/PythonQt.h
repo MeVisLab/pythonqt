@@ -147,15 +147,9 @@ typedef QObject* PythonQtQObjectCreatorFunctionCB();
 template<class T> QObject* PythonQtCreateObject() { return new T(); }
 
 //! Helper define to convert from QString to Python C-API
-#ifdef PY3K
 #define QStringToPythonConstCharPointer(arg) ((arg).toUtf8().constData())
 #define QStringToPythonCharPointer(arg) ((arg).toUtf8().data())
 #define QStringToPythonEncoding(arg) ((arg).toUtf8())
-#else
-#define QStringToPythonConstCharPointer(arg) ((arg).toLatin1().constData())
-#define QStringToPythonCharPointer(arg) ((arg).toLatin1().data())
-#define QStringToPythonEncoding(arg) ((arg).toLatin1())
-#endif
 
 //! The main interface to the Python Qt binding, realized as a singleton
 /*!

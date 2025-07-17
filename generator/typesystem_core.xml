@@ -230,7 +230,7 @@
   <primitive-type name="unsigned long"/>
   <primitive-type name="WId"/>
   <primitive-type name="Qt::HANDLE"/>
-  <primitive-type name="QVariant::Type"/>
+  <primitive-type name="QMetaType::Type"/>
   <primitive-type name="QByteRef"/>
   <primitive-type name="QBitRef"/>
   <primitive-type name="QBool"/>

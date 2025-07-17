@@ -101,7 +101,7 @@ PythonQtImport::ModuleInfo PythonQtImport::getModuleInfo(PythonQtImporter* self,
 
   QString test;
   // test if it is a shared library (they have precedence over *.py files and this is used in eggs)
-  Q_FOREACH(const QString& suffix, PythonQt::priv()->sharedLibrarySuffixes()) {
+  for( const QString& suffix :  PythonQt::priv( )->sharedLibrarySuffixes()) {
     test = path + suffix;
     if (PythonQt::importInterface()->exists(test)) {
       info.fullPath = test;
@@ -143,7 +143,7 @@ int PythonQtImporter_init(PythonQtImporter *self, PyObject *args, PyObject * /*k
       return -1;
     } else {
       const QStringList& ignorePaths = PythonQt::self()->getImporterIgnorePaths();
-      Q_FOREACH(QString ignorePath, ignorePaths) {
+      for( QString ignorePath :  ignorePaths ) {
         if (path.startsWith(ignorePath)) {
           PyErr_SetString(PythonQtImportError,
             "path ignored");
@@ -285,7 +285,6 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
       }
 
       // set __package__ only for Python 3, because in Python 2 it causes the exception "__package__ set to non-string"
-#ifdef PY3K
       // The package attribute is needed to resolve the package name if it is referenced as '.'. For example,
       // when importing the encodings package, there is an import statement 'from . import aliases'. This import
       // would fail when reloading the encodings package with importlib.
@@ -295,10 +294,8 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
         Py_DECREF(mod);
         return nullptr;
       }
-#endif
     }
 
-#ifdef PY3K
     PyObject* fullnameObj = PyUnicode_FromString(fullname);
     PyObject* fullPathObj = PythonQtConv::QStringToPyObject(fullPath);
     PyObject* fullCachePathObj = !fullCachePath.isEmpty() ? PythonQtConv::QStringToPyObject(fullCachePath) : nullptr;
@@ -306,15 +303,18 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
     Py_XDECREF(fullnameObj);
     Py_XDECREF(fullPathObj);
     Py_XDECREF(fullCachePathObj);
-#else
-    mod = PyImport_ExecCodeModuleEx(fullname, code, fullPath.toLatin1().data());
-#endif
+
     if (PythonQt::importInterface()) {
       PythonQt::importInterface()->importedModule(fullname);
     }
 
     Py_DECREF(code);
+#if PY_VERSION_HEX < 0x030B0000  // Python < 3.11
     if (Py_VerboseFlag) {
+#else
+    PyObject* verbose_flag = PySys_GetObject("verbose");
+    if (verbose_flag && PyLong_AsLong(verbose_flag) > 0) {
+#endif
       PySys_WriteStderr("import %s # loaded from %s\n",
         fullname, QStringToPythonConstCharPointer(fullPath));
     }
@@ -561,35 +561,31 @@ void PythonQtImport::writeCompiledModule(PyCodeObject *co, const QString& filena
   }
   fp = open_exclusive(filename);
   if (fp == nullptr) {
-    if (Py_VerboseFlag)
+#if PY_VERSION_HEX < 0x030B0000  // Python < 3.11
+    if (Py_VerboseFlag) {
+#else
+    PyObject* verbose_flag = PySys_GetObject("verbose");
+    if (verbose_flag && PyLong_AsLong(verbose_flag) > 0) {
+#endif
       PySys_WriteStderr(
       "# can't create %s\n", QStringToPythonConstCharPointer(filename));
+    }
     return;
   }
-#if PY_VERSION_HEX < 0x02040000
-  PyMarshal_WriteLongToFile(PyImport_GetMagicNumber(), fp);
-#else
   PyMarshal_WriteLongToFile(PyImport_GetMagicNumber(), fp, Py_MARSHAL_VERSION);
-#endif
   /* First write a 0 for mtime */
-#if PY_VERSION_HEX < 0x02040000
-  PyMarshal_WriteLongToFile(0L, fp);
-#else
   PyMarshal_WriteLongToFile(0L, fp, Py_MARSHAL_VERSION);
-#endif
-#ifdef PY3K
   PyMarshal_WriteLongToFile(sourceSize, fp, Py_MARSHAL_VERSION);
-#else
-  Q_UNUSED(sourceSize)
-#endif
-#if PY_VERSION_HEX < 0x02040000
-  PyMarshal_WriteObjectToFile((PyObject *)co, fp);
-#else
   PyMarshal_WriteObjectToFile((PyObject *)co, fp, Py_MARSHAL_VERSION);
-#endif
   if (ferror(fp)) {
-    if (Py_VerboseFlag)
+#if PY_VERSION_HEX < 0x030B0000  // Python < 3.11
+    if (Py_VerboseFlag) {
+#else
+    PyObject* verbose_flag = PySys_GetObject("verbose");
+    if (verbose_flag && PyLong_AsLong(verbose_flag) > 0) {
+#endif
       PySys_WriteStderr("# can't write %s\n", QStringToPythonConstCharPointer(filename));
+    }
     /* Don't keep partial file */
     fclose(fp);
     QFile::remove(filename);
@@ -597,14 +593,15 @@ void PythonQtImport::writeCompiledModule(PyCodeObject *co, const QString& filena
   }
   /* Now write the true mtime */
   fseek(fp, 4L, 0);
-#if PY_VERSION_HEX < 0x02040000
-  PyMarshal_WriteLongToFile(mtime, fp);
-#else
   PyMarshal_WriteLongToFile(mtime, fp, Py_MARSHAL_VERSION);
-#endif
   fflush(fp);
   fclose(fp);
-  if (Py_VerboseFlag) {
+#if PY_VERSION_HEX < 0x030B0000  // Python < 3.11
+    if (Py_VerboseFlag) {
+#else
+    PyObject* verbose_flag = PySys_GetObject("verbose");
+    if (verbose_flag && PyLong_AsLong(verbose_flag) > 0) {
+#endif
     PySys_WriteStderr("# wrote %s\n", QStringToPythonConstCharPointer(filename));
   }
 }
@@ -630,9 +627,15 @@ PythonQtImport::unmarshalCode(const QString& path, const QByteArray& data, time_
   }
 
   if (getLong((unsigned char *)buf) != PyImport_GetMagicNumber()) {
-    if (Py_VerboseFlag)
+#if PY_VERSION_HEX < 0x030B0000  // Python < 3.11
+    if (Py_VerboseFlag) {
+#else
+    PyObject* verbose_flag = PySys_GetObject("verbose");
+    if (verbose_flag && PyLong_AsLong(verbose_flag) > 0) {
+#endif
       PySys_WriteStderr("# %s has bad magic\n",
-            QStringToPythonConstCharPointer(path));
+                        QStringToPythonConstCharPointer(path));
+    }
     Py_INCREF(Py_None);
     return Py_None;
   }
@@ -641,23 +644,25 @@ PythonQtImport::unmarshalCode(const QString& path, const QByteArray& data, time_
     time_t timeDiff = getLong((unsigned char *)buf + 4) - mtime;
     if (timeDiff<0) { timeDiff = -timeDiff; }
     if (timeDiff > 1) {
-      if (Py_VerboseFlag)
+#if PY_VERSION_HEX < 0x030B0000  // Python < 3.11
+      if (Py_VerboseFlag) {
+#else
+      PyObject* verbose_flag = PySys_GetObject("verbose");
+      if (verbose_flag && PyLong_AsLong(verbose_flag) > 0) {
+#endif
         PySys_WriteStderr("# %s has bad mtime\n",
-        QStringToPythonConstCharPointer(path));
+                          QStringToPythonConstCharPointer(path));
+      }
       Py_INCREF(Py_None);
       return Py_None;
     }
   }
 
-#ifdef PY3K
   // Python 3 also stores the size of the *.py file, but we ignore it for now
   int sourceSize = getLong((unsigned char *)buf + 8); 
   Q_UNUSED(sourceSize)
   // read the module
   code = PyMarshal_ReadObjectFromString(buf + 12, size - 12);
-#else
-  code = PyMarshal_ReadObjectFromString(buf + 8, size - 8);
-#endif
   if (code == nullptr)
     return nullptr;
   if (!PyCode_Check(code)) {
@@ -677,15 +682,10 @@ PyObject *
 PythonQtImport::compileSource(const QString& path, const QByteArray& data)
 {
   PyObject *code;
-#ifdef PY3K
   PyObject* filename = PythonQtConv::QStringToPyObject(path);
   code = Py_CompileStringObject(data.data(), filename,
                                 Py_file_input, nullptr, -1);
   Py_DECREF(filename);
-#else
-  code = Py_CompileString(data.data(), QStringToPythonConstCharPointer(path),
-                          Py_file_input);
-#endif
   return code;
 }
 
@@ -789,9 +789,15 @@ PythonQtImport::getModuleCode(PythonQtImporter *self, const char* fullname, QStr
     PyObject *code = nullptr;
     test = path + zso->suffix;
 
-    if (Py_VerboseFlag > 1)
+#if PY_VERSION_HEX < 0x030B0000  // Python < 3.11
+    if (Py_VerboseFlag > 1) {
+#else
+    PyObject* verbose_flag = PySys_GetObject("verbose");
+    if (verbose_flag && PyLong_AsLong(verbose_flag) > 1) {
+#endif
       PySys_WriteStderr("# trying %s\n",
                         QStringToPythonConstCharPointer(test));
+    }
     if (PythonQt::importInterface()->exists(test)) {
       time_t mtime = 0;
       int ispackage = zso->type & IS_PACKAGE;
@@ -812,14 +818,10 @@ PythonQtImport::getModuleCode(PythonQtImporter *self, const char* fullname, QStr
       }
       if (code != nullptr) {
         modpath = test;
-#ifdef PY3K
         if (isbytecode) {
           cachemodpath = modpath;
           modpath = getSourceFilename(modpath);
         }
-#else
-        Q_UNUSED(cachemodpath)
-#endif
       }
       return code;
     }
@@ -873,7 +875,6 @@ PyObject* PythonQtImport::getCodeFromPyc(const QString& file)
 PyDoc_STRVAR(mlabimport_doc,
 "Imports python files into PythonQt, completely replaces internal python import");
 
-#ifdef PY3K
 static struct PyModuleDef PythonQtImport_def = {
     PyModuleDef_HEAD_INIT,
     "PythonQtImport",   /* m_name */
@@ -885,7 +886,6 @@ static struct PyModuleDef PythonQtImport_def = {
     nullptr,               /* m_clear */
     nullptr                /* m_free */
 };
-#endif
 
 void PythonQtImport::init()
 {
@@ -904,7 +904,24 @@ void PythonQtImport::init()
   mlab_searchorder[0].suffix[0] = SEP;
   mlab_searchorder[1].suffix[0] = SEP;
   mlab_searchorder[2].suffix[0] = SEP;
-  if (Py_OptimizeFlag) {
+#if PY_VERSION_HEX < 0x030B0000  // Python < 3.11
+    if (Py_OptimizeFlag) {
+#else
+  const bool do_optimize = []() -> bool
+  {
+    PyObject* flags = PySys_GetObject("flags");
+    if (flags) {
+      PyObject* optimize = PyObject_GetAttrString(flags, "optimize");
+      if (optimize && PyLong_AsLong(optimize) > 0)
+      {
+        return true;
+      }
+      Py_XDECREF(optimize);
+    }
+    return false;
+  } ();
+  if (do_optimize) {
+#endif
     /* Reverse *.pyc and *.pyo */
     struct st_mlab_searchorder tmp;
     tmp = mlab_searchorder[0];
@@ -915,12 +932,7 @@ void PythonQtImport::init()
     mlab_searchorder[4] = tmp;
   }
 
-#ifdef PY3K
   mod = PyModule_Create(&PythonQtImport_def);
-#else
-  mod = Py_InitModule4("PythonQtImport", NULL, mlabimport_doc,
-           NULL, PYTHON_API_VERSION);
-#endif
 
   PythonQtImportError = PyErr_NewException(const_cast<char*>("PythonQtImport.PythonQtImportError"),
               PyExc_ImportError, nullptr);

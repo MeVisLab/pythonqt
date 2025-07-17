@@ -88,7 +88,7 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
 
   IncludeList list = meta_class->typeEntry()->extraIncludes();
   std::sort(list.begin(), list.end());
-  foreach (const Include &inc, list) {
+  for (const Include &inc : list) {
     ShellGenerator::writeInclude(s, inc);
   }  
   s << endl;
@@ -122,7 +122,7 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
     s << "}" << endl;
 
     AbstractMetaFunctionList virtualsForShell = getVirtualFunctionsForShell(meta_class);
-    foreach (const AbstractMetaFunction *fun, virtualsForShell) {
+    for (const AbstractMetaFunction *fun : virtualsForShell) {
       bool hasReturnValue = !fun->type().isNull();
       writeFunctionSignature(s, fun, meta_class, QString(),
         Option(ShowStatic | UnderscoreSpaces | UseIndexedName),
@@ -138,7 +138,11 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
         s << "if (_wrapper) {" << endl;
         s << "  PYTHONQT_GIL_SCOPE" << endl;
         s << "  if (Py_REFCNT((PyObject*)_wrapper) > 0) {" << endl;
-        s << "    static PyObject* name = PyString_FromString(\"" << fun->name() << "\");" << endl;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        s << "    static PyObject* name = PyUnicode_FromString(\"" << fun->name() << "\");" << endl;
+#else
+        s << "    static PyObject* name = PyUnicode_FromString(\"" << fun->name() << "\");" << endl;
+#endif
         s << "    PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);" << endl;
         s << "    if (obj) {" << endl;
         s << "      static const char* argumentList[] ={\"";
@@ -234,7 +238,7 @@ void ShellImplGenerator::write(QTextStream &s, const AbstractMetaClass *meta_cla
   if (meta_class->generateShellClass() || !meta_class->isAbstract()) {
 
     // write constructors
-    foreach (const AbstractMetaFunction *ctor, ctors) {
+    for (const AbstractMetaFunction *ctor : ctors) {
       if (ctor->isAbstract() || (!meta_class->generateShellClass() && !ctor->isPublic())) { continue; }
 
       s << meta_class->qualifiedCppName() << "* ";

@@ -62,7 +62,7 @@ PythonQtMethodInfo::PythonQtMethodInfo(const QMetaMethod& meta, PythonQtClassInf
   fillParameterInfo(type, QByteArray(meta.typeName()), classInfo);
   _parameters.append(type);
   QList<QByteArray> names = meta.parameterTypes();
-  Q_FOREACH (const QByteArray& name, names) {
+  for( const QByteArray& name :  names ) {
     fillParameterInfo(type, name, classInfo);
     _parameters.append(type);
   }
@@ -75,7 +75,7 @@ PythonQtMethodInfo::PythonQtMethodInfo(const QByteArray& typeName, const QList<Q
   ParameterInfo type;
   fillParameterInfo(type, typeName, nullptr);
   _parameters.append(type);
-  Q_FOREACH (const QByteArray& name, args) {
+  for( const QByteArray& name :  args ) {
     fillParameterInfo(type, name, nullptr);
     _parameters.append(type);
   }
@@ -85,7 +85,7 @@ PythonQtMethodInfo::PythonQtMethodInfo(const QByteArray& typeName, const QList<Q
 void PythonQtMethodInfo::setupAllowThreads()
 {
   bool allowThreads = true;
-  for (const ParameterInfo& info : qAsConst(_parameters)) {
+  for (const ParameterInfo& info : std::as_const(_parameters)) {
     if (info.name == "PyObject" || info.name == "PythonQtObjectPtr" ||
       info.innerName == "PyObject" || info.innerName == "PythonQtObjectPtr") {
       allowThreads = false;
@@ -191,7 +191,11 @@ void PythonQtMethodInfo::fillParameterInfo(ParameterInfo& type, const QByteArray
 
     type.typeId = nameToType(name);
     if (type.typeId == Unknown) {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+      type.typeId = QMetaType::fromName(name.constData()).id();
+#else
       type.typeId = QMetaType::type(name.constData());
+#endif
 #if( QT_VERSION >= QT_VERSION_CHECK(5,0,0) )
       if (type.typeId == QMetaType::UnknownType) {
 #else
@@ -234,7 +238,11 @@ int PythonQtMethodInfo::getInnerTemplateMetaType(const QByteArray& typeName)
     int idx2 = typeName.lastIndexOf(">");
     if (idx2 > 0) {
       QByteArray innerType = typeName.mid(idx + 1, idx2 - idx - 1).trimmed();
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+      return QMetaType::fromName(innerType.constData()).id();
+#else
       return QMetaType::type(innerType.constData());
+#endif
     }
   }
   return QMetaType::Void;
@@ -442,7 +450,11 @@ const PythonQtMethodInfo::ParameterInfo& PythonQtMethodInfo::getParameterInfoFor
     return it.value();
   }
   ParameterInfo info;
-  fillParameterInfo(info, QMetaType::typeName(type));
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    fillParameterInfo(info, QMetaType(type).name());
+#else
+    fillParameterInfo(info, QMetaType::typeName(type));
+#endif
   _cachedParameterInfos.insert(type, info);
   return _cachedParameterInfos[type];
 }
@@ -622,7 +634,7 @@ QStringList PythonQtSlotInfo::overloads(bool skipReturnValue) const
     }
     if (slotsWithSameArgs.size() > 1) {
       results << maxArgSlot->fullSignature(skipReturnValue, minSameArgs);
-      foreach(const PythonQtSlotInfo* o, slotsWithSameArgs) {
+      for(const PythonQtSlotInfo* o : slotsWithSameArgs) {
         list.removeOne(o);
       }
     } else {

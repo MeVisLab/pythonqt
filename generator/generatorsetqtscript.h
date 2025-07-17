@@ -62,7 +62,7 @@ public:
 
 private:
     MetaQtScriptBuilder builder;
-    int maxClassesPerFile{30};
+    int maxClassesPerFile{std::numeric_limits<int>::max() >> 1};
   
 };
 

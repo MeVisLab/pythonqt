@@ -58,12 +58,26 @@
 
 #include <memory>
 
+#include <QDebug>
+
+static bool fileExistsAndReadable(const QString& filePath) {
+    QFileInfo info(filePath);
+    return info.exists() && info.isFile() &&
+           (QFile(filePath).permissions() & QFileDevice::ReadUser);
+}
+
+static bool dirExistsAndReadable(const QString& dirPath) {
+    QDir dir(dirPath);
+    return dir.exists() && dir.isReadable();
+}
+
 void displayHelp(GeneratorSet *generatorSet);
+
 
 namespace
 {
 
-    QStringList getIncludeDirectories(const QString &commandLineIncludes)
+    QStringList getIncludeDirectories(const QString &commandLineIncludes, const QString &qtIncludePrefix)
     {
       QStringList includes;
       includes << QString(".");
@@ -95,8 +109,10 @@ namespace
       QString qtdir = getenv("QTDIR");
       if (qtdir.isEmpty() || !QDir(qtdir).exists(qtdir))
       {
-        QString reason = "The QTDIR environment variable " + qtdir.isEmpty() ?
-                         "is not set. " : "points to a non-existing directory. ";
+        const QString prefix = "The QTDIR environment variable " ;
+        const QString reason = qtdir.isEmpty()
+                         ? prefix + "is not set. "
+                         : prefix + "points to a non-existing directory. ";
 #if defined(Q_OS_MAC)
         qWarning() << reason << "Assuming standard binary install using frameworks.";
             QString frameworkDir = "/Library/Frameworks";
@@ -123,19 +139,44 @@ namespace
         includes << (qtdir + "/QtOpenGL");
         includes << qtdir;
       }
-      return includes;
+      if (!qtIncludePrefix.isEmpty() && QFile::exists(qtIncludePrefix)) {
+          std::cout << "qt include prefix: " << qtIncludePrefix.toLocal8Bit().constData() << std::endl;
+          includes << (qtIncludePrefix + "/QtXml");
+          includes << (qtIncludePrefix + "/QtNetwork");
+          includes << (qtIncludePrefix + "/QtCore");
+          includes << (qtIncludePrefix + "/QtGui");
+          includes << (qtIncludePrefix + "/QtOpenGL");
+          includes << qtIncludePrefix;
+      }
+      QStringList found_includes;
+      for (auto &candidate_include : includes)
+      {
+        if (dirExistsAndReadable(candidate_include))
+        {
+            printf("INFO -- FOUND INCLUDE: %s\n", qPrintable(candidate_include));
+            found_includes << candidate_include;
+        }
+        else
+        {
+            printf("INFO -- NOT FOUND INCLUDE: %s\n", qPrintable(candidate_include));
+        }
+     }
+
+      return found_includes;
     }
 
     bool
-    preprocess(const QString& sourceFile, const QString& targetFile, const QString& commandLineIncludes = QString())
+    preprocess(const QString &sourceFile, const QString &targetFile, const QString &commandLineIncludes = QString(), const QString &qtIncludPrefix = {})
     {
       simplecpp::DUI dui; // settings
 
-      for(QString include : getIncludeDirectories(commandLineIncludes)) {
+      for(QString include : getIncludeDirectories(commandLineIncludes, qtIncludPrefix)) {
         dui.includePaths.push_back(QDir::toNativeSeparators(include).toStdString());
       }
       dui.defines.push_back("__cplusplus=1");
       dui.defines.push_back("__STDC__");
+      // Do not wrap deprecated items for Qt 6.
+      dui.defines.push_back("QT_DISABLE_DEPRECATED_BEFORE=QT_VERSION_CHECK(6, 0, 0)");
       dui.std = "c++20";
       dui.removeComments = true;
 
@@ -212,12 +253,26 @@ namespace
       return true;
     }
 
-    unsigned int getQtVersion(const QString &commandLineIncludes)
+    unsigned int getQtVersion(const QString &commandLineIncludes, const QString &qtIncludPrefix = {})
     {
-      QRegularExpression re("#define\\s+QTCORE_VERSION\\s+0x([0-9a-f]+)", QRegularExpression::CaseInsensitiveOption);
-      for (const QString &includeDir: getIncludeDirectories(commandLineIncludes))
+      static const QRegularExpression re("#define\\s+QTCORE_VERSION\\s+0x([0-9a-f]+)",
+        QRegularExpression::CaseInsensitiveOption);
+      for (const QString &includeDir: getIncludeDirectories(commandLineIncludes, qtIncludPrefix))
       {
-        QFileInfo fi(QDir(includeDir), "qtcoreversion.h");
+        std::list<std::string> candiate_paths;
+        candiate_paths.emplace_back("qtcoreversion.h");
+        candiate_paths.emplace_back("QtCore/qtcoreversion.h");
+        candiate_paths.emplace_back("QtCore.framework/Headers/qtcoreversion.h");
+        QFileInfo fi(QDir(includeDir), QString("qtcoreversion.h"));
+        for (const std::string &candidate : candiate_paths)
+        {
+          QFileInfo candidate_fi(QDir(includeDir), candidate.c_str());
+          if (candidate_fi.exists() && candidate_fi.isFile())
+          {
+              fi = candidate_fi;
+              break;
+          }
+        }
         if (fi.exists())
         {
           QString filePath = fi.absoluteFilePath();
@@ -259,8 +314,6 @@ int main(int argc, char *argv[])
     QString default_file = ":/trolltech/generator/qtscript_masterinclude.h";
     QString default_system = ":/trolltech/generator/build_all.txt";
 
-    QString fileName;
-    QString typesystemFileName;
     QString pp_file = ".preprocessed.tmp";
 
     QMap<QString, QString> args;
@@ -328,9 +381,11 @@ int main(int argc, char *argv[])
         }
     }
 
-    fileName = args.value("arg-1");
+    // fileName is a required input file
+    QString fileName = args.value("arg-1");
 
-    typesystemFileName = args.value("arg-2");
+    // typesystemFileName is a required input file
+    QString typesystemFileName = args.value("arg-2");
     if (args.contains("arg-3"))
         displayHelp(&*gs);
 
@@ -343,6 +398,17 @@ int main(int argc, char *argv[])
     if (fileName.isEmpty() || typesystemFileName.isEmpty() )
         displayHelp(&*gs);
 
+    if (!fileExistsAndReadable(fileName))
+    {
+        printf("ERROR: first argument file '%s' does not exist or is not readable.\n", qPrintable(fileName));
+        displayHelp(&*gs);
+    }
+    if (!fileExistsAndReadable(typesystemFileName))
+    {
+        printf("ERROR: second argument file '%s' does not exist or is not readable.\n", qPrintable(typesystemFileName));
+        displayHelp(&*gs);
+    }
+
     if (!gs->readParameters(args))
         displayHelp(&*gs);
 
@@ -350,7 +416,7 @@ int main(int argc, char *argv[])
 
     if (!qtVersion) {
         printf("Trying to determine Qt version...\n");
-        qtVersion = getQtVersion(args.value("include-paths"));
+        qtVersion = getQtVersion(args.value("include-paths"), args.value("qt-include-prefix"));
         if (!qtVersion)
         {
             fprintf(stderr, "Aborting\n"); // the error message was printed by getQtVersion
@@ -372,7 +438,7 @@ int main(int argc, char *argv[])
     printf("PreProcessing - Generate [%s] using [%s] and include-paths [%s]\n",
       qPrintable(pp_file), qPrintable(fileName), qPrintable(args.value("include-paths")));
     ReportHandler::setContext("Preprocess");
-    if (!preprocess(fileName, pp_file, args.value("include-paths"))) {
+    if (!preprocess(fileName, pp_file, args.value("include-paths"), args.value("qt-include-prefix"))) {
         fprintf(stderr, "Preprocessor failed on file: '%s'\n", qPrintable(fileName));
         return 1;
     }
@@ -389,7 +455,9 @@ int main(int argc, char *argv[])
     ReportHandler::setContext("Build");
     gs->buildModel(pp_file);
     if (args.contains("dump-object-tree")) {
+        printf("Dumping object tree ------------------\n");
         gs->dumpObjectTree();
+        printf("Tree dumped, exiting.\n");
         return 0;
     }
     ReportHandler::setContext("Generate");
@@ -412,6 +480,7 @@ void displayHelp(GeneratorSet* generatorSet) {
            "  --no-suppress-warnings                    \n"
            "  --output-directory=[dir]                  \n"
            "  --include-paths=<path>[%c<path>%c...]     \n"
+           "  --qt-include-prefix=<path>                \n"
            "  --qt-version=x.y.z                        \n"
            "  --print-stdout                            \n",
            path_splitter, path_splitter);

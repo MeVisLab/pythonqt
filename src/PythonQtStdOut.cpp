@@ -61,27 +61,13 @@ static PyObject *PythonQtStdOutRedirect_write(PyObject *self, PyObject *args)
     if (PyTuple_GET_SIZE(args)>=1) {
       PyObject* obj = PyTuple_GET_ITEM(args,0);
       if (PyUnicode_Check(obj)) {
-#ifdef PY3K
         output = QString::fromUtf8(PyUnicode_AsUTF8(obj));
-#else
-        PyObject *tmp = PyUnicode_AsUTF8String(obj);
-        if(tmp) {
-          output = QString::fromUtf8(PyString_AS_STRING(tmp));
-          Py_DECREF(tmp);
-        } else {
-          return NULL;
-        }
-#endif
       } else {
         char *string;
         if (!PyArg_ParseTuple(args, "s", &string)) {
           return nullptr;
         }
-#ifdef PY3K
         output = QString::fromUtf8(string);
-#else
-        output = QString::fromLatin1(string);
-#endif
       }
     }
 

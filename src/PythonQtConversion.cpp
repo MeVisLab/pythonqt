@@ -270,7 +270,11 @@ PyObject* PythonQtConv::convertQtValueToPythonInternal(int type, const void* dat
      default:
        // check if we have a QList of pointers, which we can circumvent with a QList<void*>
        if (info.isQList && (info.innerNamePointerCount == 1)) {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+         static int id = QMetaType::fromName("QList<void*>").id();
+#else
          static int id = QMetaType::type("QList<void*>");
+#endif
          PythonQtArgumentFrame_ADD_VARIANT_VALUE_BY_ID(frame, id, ptr);
          // return the constData pointer that will be filled with the result value later on
          ptr = (void*)((QVariant*)ptr)->constData();
@@ -310,11 +314,17 @@ PyObject* PythonQtConv::convertQtValueToPythonInternal(int type, const void* dat
 void* PythonQtConv::handlePythonToQtAutoConversion(int typeId, PyObject* obj, void* alreadyAllocatedCPPObject, PythonQtArgumentFrame* frame)
 {
   void* ptr = alreadyAllocatedCPPObject;
-
-  static int penId = QMetaType::type("QPen");
-  static int brushId = QMetaType::type("QBrush");
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+  static int penId    = QMetaType::fromName("QPen").id();
+  static int brushId  = QMetaType::fromName("QBrush").id();
+  static int cursorId = QMetaType::fromName("QCursor").id();
+  static int colorId  = QMetaType::fromName("QColor").id();
+#else
+  static int penId    = QMetaType::type("QPen");
+  static int brushId  = QMetaType::type("QBrush");
   static int cursorId = QMetaType::type("QCursor");
-  static int colorId = QMetaType::type("QColor");
+  static int colorId  = QMetaType::type("QColor");
+#endif
   static PyObject* qtGlobalColorEnum = PythonQtClassInfo::findEnumWrapper("Qt::GlobalColor", nullptr);
   if (typeId == cursorId) {
     static PyObject* qtCursorShapeEnum = PythonQtClassInfo::findEnumWrapper("Qt::CursorShape", nullptr);
@@ -728,7 +738,11 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
          if (info.typeId == PythonQtMethodInfo::Unknown || info.typeId >= QMetaType::User) {
            // check for QList<AnyPtr*> case, where we will use a QList<void*> QVariant
            if (info.isQList && (info.innerNamePointerCount == 1)) {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+             static int id = QMetaType::fromName("QList<void*>").id();
+#else
              static int id = QMetaType::type("QList<void*>");
+#endif
              if (!alreadyAllocatedCPPObject) {
                PythonQtArgumentFrame_ADD_VARIANT_VALUE_BY_ID_IF_NEEDED(alreadyAllocatedCPPObject, frame, id, ptr);
                ptr = (void*)((QVariant*)ptr)->constData();
@@ -810,11 +824,7 @@ QString PythonQtConv::PyObjGetRepresentation(PyObject* val)
   QString r;
   PyObject* str =  PyObject_Repr(val);
   if (str) {
-    #ifdef PY3K
       r = PyObjGetString(str);
-    #else
-      r = QString(PyString_AS_STRING(str));
-    #endif
     Py_DECREF(str);
   }
   return r;
@@ -826,31 +836,12 @@ QString PythonQtConv::PyObjGetString(PyObject* val, bool strict, bool& ok) {
   if (val == nullptr) {
     r = "None";
   } else
-#ifndef PY3K
-  // in Python 3, we don't want to convert to QString, since we don't know anything about the encoding
-  // in Python 2, we assume the default for str is latin-1
-  if (val->ob_type == &PyBytes_Type) {
-    r = QString::fromLatin1(PyBytes_AS_STRING(val));
-  } else
-#endif
   if (PyUnicode_Check(val)) {
-#ifdef PY3K
     r = QString::fromUtf8(PyUnicode_AsUTF8(val));
-#else
-    PyObject *ptmp = PyUnicode_AsUTF8String(val);
-    if(ptmp) {
-      r = QString::fromUtf8(PyString_AS_STRING(ptmp));
-      Py_DECREF(ptmp);
-    }
-#endif
   } else if (!strict) {
     PyObject* str =  PyObject_Str(val);
     if (str) {
-#ifdef PY3K
       r = QString::fromUtf8(PyUnicode_AsUTF8(str));
-#else
-      r = QString(PyString_AS_STRING(str));
-#endif
       Py_DECREF(str);
     } else {
       ok = false;
@@ -948,11 +939,6 @@ int PythonQtConv::PyObjGetInt(PyObject* val, bool strict, bool &ok) {
 qint64 PythonQtConv::PyObjGetLongLong(PyObject* val, bool strict, bool &ok) {
   qint64 d = 0;
   ok = true;
-#ifndef PY3K
-  if (val->ob_type == &PyInt_Type) {
-    d = PyInt_AS_LONG(val);
-  } else
-#endif
   if (val->ob_type == &PyLong_Type) {
     d = PyLong_AsLongLong(val);
   } else if (!strict) {
@@ -983,11 +969,6 @@ qint64 PythonQtConv::PyObjGetLongLong(PyObject* val, bool strict, bool &ok) {
 quint64 PythonQtConv::PyObjGetULongLong(PyObject* val, bool strict, bool &ok) {
   quint64 d = 0;
   ok = true;
-#ifndef PY3K
-  if (Py_TYPE(val) == &PyInt_Type) {
-    d = PyInt_AS_LONG(val);
-  } else
-#endif
   if (Py_TYPE(val) == &PyLong_Type) {
     d = PyLong_AsUnsignedLongLong(val);
   } else if (!strict) {
@@ -1021,11 +1002,6 @@ double PythonQtConv::PyObjGetDouble(PyObject* val, bool strict, bool &ok) {
   if (val->ob_type == &PyFloat_Type) {
     d = PyFloat_AS_DOUBLE(val);
   } else if (!strict) {
-#ifndef PY3K
-    if (PyObject_TypeCheck(val, &PyInt_Type)) {
-      d = PyInt_AS_LONG(val);
-    } else
-#endif
     if (PyLong_Check(val)) {
       d = static_cast<double>(PyLong_AsLongLong(val));
     } else if (val == Py_False) {
@@ -1094,35 +1070,30 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
     ) {
     // no special type requested
     if (val == nullptr) {
-      type = QVariant::Invalid;
-    } else if (PyBytes_Check(val)) {
-#ifdef PY3K
-      // In Python 3, it is a ByteArray
-      type = QVariant::ByteArray;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+      type = QMetaType::UnknownType;
 #else
-      // In Python 2, we need to use String, since it might be a string
-      type = QVariant::String;
+      type = 0;  // Equivalent to QVariant::Invalid or unregistered type
 #endif
+    } else if (PyBytes_Check(val)) {
+      // In Python 3, it is a ByteArray
+      type = QMetaType::QByteArray;
     } else if (PyUnicode_Check(val)) {
-      type = QVariant::String;
+      type = QMetaType::QString;
     } else if (val == Py_False || val == Py_True) {
-      type = QVariant::Bool;
-#ifndef PY3K
-    } else if (PyObject_TypeCheck(val, &PyInt_Type)) {
-      type = QVariant::Int;
-#endif
+      type = QMetaType::Bool;
     } else if (PyLong_Check(val)) {
       // return int if the value fits into that range,
       // otherwise it would not be possible to get an int from Python 3
       qint64 d = PyLong_AsLongLong(val);
       if (d > std::numeric_limits<int>::max() ||
           d < std::numeric_limits<int>::min()) {
-        type = QVariant::LongLong;
+        type = QMetaType::LongLong;
       } else {
-        type = QVariant::Int;
+        type = QMetaType::Int;
       }
     } else if (PyFloat_Check(val)) {
-      type = QVariant::Double;
+      type = QMetaType::Double;
     } else if (PyObject_TypeCheck(val, &PythonQtInstanceWrapper_Type)) {
       PythonQtInstanceWrapper* wrap = (PythonQtInstanceWrapper*)val;
       // c++ wrapper, check if the class names of the c++ objects match
@@ -1144,11 +1115,15 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
       return v;
     } else if (val == Py_None) {
       // none is invalid
-      type = QVariant::Invalid;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+      type = QMetaType::UnknownType;
+#else
+      type = 0;  // Equivalent to QVariant::Invalid or unregistered type
+#endif
     } else if (PyDict_Check(val)) {
-      type = QVariant::Map;
+      type = QMetaType::QVariantMap;
     } else if (PyList_Check(val) || PyTuple_Check(val) || PySequence_Check(val)) {
-      type = QVariant::List;
+      type = QMetaType::QVariantList;
     } else {
       // transport the Python objects directly inside of QVariant:
       v = PythonQtObjectPtr(val).toVariant();
@@ -1157,28 +1132,32 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
   }
   // special type request:
   switch (type) {
-  case QVariant::Invalid:
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+  case QMetaType::UnknownType:
+#else
+  case 0:  // Equivalent to QVariant::Invalid or unregistered type
+#endif
     return v;
     break;
-  case QVariant::Int:
+  case QMetaType::Int:
     {
       int d = PyObjGetInt(val, false, ok);
       if (ok) return QVariant(d);
     }
     break;
-  case QVariant::UInt:
+  case QMetaType::UInt:
     {
       int d = PyObjGetInt(val, false,ok);
       if (ok) v = QVariant((unsigned int)d);
     }
     break;
-  case QVariant::Bool:
+  case QMetaType::Bool:
     {
       int d = PyObjGetBool(val,false,ok);
       if (ok) v =  QVariant((bool)(d!=0));
     }
     break;
-  case QVariant::Double:
+  case QMetaType::Double:
     {
       double d = PyObjGetDouble(val,false,ok);
       if (ok) v =  QVariant(d);
@@ -1239,30 +1218,26 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
     }
     break;
 
-  case QVariant::ByteArray:
+  case QMetaType::QByteArray:
     {
       bool ok;
-#ifdef PY3K
       v = QVariant(PyObjGetBytes(val, false, ok));
-#else
-      v = QVariant(PyObjGetString(val, false, ok));
-#endif
     }
     break;
-  case QVariant::String:
+  case QMetaType::QString:
     {
       bool ok;
       v = QVariant(PyObjGetString(val, false, ok));
     }
     break;
 
-  case QVariant::Map:
+  case QMetaType::QVariantMap:
     pythonToMapVariant<QVariantMap>(val, v);
     break;
-  case QVariant::Hash:
+  case QMetaType::QVariantHash:
     pythonToMapVariant<QVariantHash>(val, v);
     break;
-  case QVariant::List:
+  case QMetaType::QVariantList:
   {
     bool isListOrTuple = PyList_Check(val) || PyTuple_Check(val);
     if (isListOrTuple || PySequence_Check(val)) {
@@ -1288,7 +1263,7 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
     }
   }
     break;
-  case QVariant::StringList:
+  case QMetaType::QStringList:
     {
       bool ok;
       QStringList l = PyObjToStringList(val, false, ok);
@@ -1308,7 +1283,11 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
         // Try to convert the object to a QVariant based on the typeName
         bool ok;
         bool isPtr = false;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        QByteArray typeName = QMetaType(type).name();
+#else
         QByteArray typeName = QMetaType::typeName(type);
+#endif
         if (typeName.endsWith("*")) {
           isPtr = true;
           typeName.truncate(typeName.length() - 1);
@@ -1323,7 +1302,7 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
           }
         }
       }
-    } else if (static_cast<std::uint32_t>(type) >= QVariant::UserType) {
+    } else if (static_cast<std::uint32_t>(type) >= QMetaType::User) {
       // not an instance wrapper, but there might be other converters 
       // Maybe we have a special converter that is registered for that type:
       PythonQtConvertPythonToMetaTypeCB* converter = _pythonToMetaTypeConverters.value(type);
@@ -1365,8 +1344,8 @@ PyObject* PythonQtConv::QStringListToPyObject(const QStringList& list)
 {
   PyObject* result = PyTuple_New(list.count());
   int i = 0;
-  QString str;
-  Q_FOREACH (str, list) {
+
+  for( QString str :  list ) {
     PyTuple_SET_ITEM(result, i, PythonQtConv::QStringToPyObject(str));
     i++;
   }
@@ -1432,8 +1411,7 @@ PyObject* PythonQtConv::QVariantHashToPyObject(const QVariantHash& m) {
 PyObject* PythonQtConv::QVariantListToPyObject(const QVariantList& l) {
   PyObject* result = PyTuple_New(l.count());
   int i = 0;
-  QVariant v;
-  Q_FOREACH (v, l) {
+  for( QVariant v :  l ) {
     PyTuple_SET_ITEM(result, i, PythonQtConv::QVariantToPyObject(v));
     i++;
   }
@@ -1446,7 +1424,7 @@ PyObject* PythonQtConv::ConvertQListOfPointerTypeToPythonList(QList<void*>* list
 {
   PyObject* result = PyTuple_New(list->count());
   int i = 0;
-  Q_FOREACH (void* value, *list) {
+  for( void* value :  *list ) {
     PyObject* wrap = PythonQt::priv()->wrapPtr(value, info.innerName);
     if (wrap) {
       PythonQtInstanceWrapper* wrapper = (PythonQtInstanceWrapper*)wrap;
@@ -1505,66 +1483,66 @@ bool PythonQtConv::ConvertPythonListToQListOfPointerType(PyObject* obj, QList<vo
 QString PythonQtConv::CPPObjectToString(int type, const void* data) {
   QString r;
   switch (type) {
-    case QVariant::Size: {
+    case QMetaType::QSize: {
       const QSize* s = static_cast<const QSize*>(data);
       r = QString::number(s->width()) + ", " + QString::number(s->height());
       }
       break;
-    case QVariant::SizeF: {
+    case QMetaType::QSizeF: {
       const QSizeF* s = static_cast<const QSizeF*>(data);
       r = QString::number(s->width()) + ", " + QString::number(s->height());
       }
       break;
-    case QVariant::Point: {
+    case QMetaType::QPoint: {
       const QPoint* s = static_cast<const QPoint*>(data);
       r = QString::number(s->x()) + ", " + QString::number(s->y());
       }
       break;
-    case QVariant::PointF: {
+    case QMetaType::QPointF: {
       const QPointF* s = static_cast<const QPointF*>(data);
       r = QString::number(s->x()) + ", " + QString::number(s->y());
       }
       break;
-    case QVariant::Rect: {
+    case QMetaType::QRect: {
       const QRect* s = static_cast<const QRect*>(data);
       r = QString::number(s->x()) + ", " + QString::number(s->y());
       r += ", " + QString::number(s->width()) + ", " + QString::number(s->height());
       }
       break;
-    case QVariant::RectF: {
+    case QMetaType::QRectF: {
       const QRectF* s = static_cast<const QRectF*>(data);
       r = QString::number(s->x()) + ", " + QString::number(s->y());
       r += ", " + QString::number(s->width()) + ", " + QString::number(s->height());
       }
       break;
-    case QVariant::Date: {
+    case QMetaType::QDate: {
       const QDate* s = static_cast<const QDate*>(data);
       r = s->toString(Qt::ISODate);
       }
       break;
-    case QVariant::DateTime: {
+    case QMetaType::QDateTime: {
       const QDateTime* s = static_cast<const QDateTime*>(data);
       r = s->toString(Qt::ISODate);
       }
       break;
-    case QVariant::Time: {
+    case QMetaType::QTime: {
       const QTime* s = static_cast<const QTime*>(data);
       r = s->toString(Qt::ISODate);
     }
       break;
-    case QVariant::Pixmap:
+    case QMetaType::QPixmap:
     {
       const QPixmap* s = static_cast<const QPixmap*>(data);
       r = QString("Pixmap ") + QString::number(s->width()) + ", " + QString::number(s->height());
     }
       break;
-    case QVariant::Image:
+    case QMetaType::QImage:
     {
       const QImage* s = static_cast<const QImage*>(data);
       r = QString("Image ") + QString::number(s->width()) + ", " + QString::number(s->height());
     }
       break;
-    case QVariant::Url:
+    case QMetaType::QUrl:
       {
         const QUrl* s = static_cast<const QUrl*>(data);
         r = s->toString();
@@ -1574,7 +1552,7 @@ QString PythonQtConv::CPPObjectToString(int type, const void* data) {
     default:
       // this creates a copy, but that should not be expensive for typical simple variants
       // (but we do not want to do this for our own user types!)
-      if (type>0 && type < (int)QVariant::UserType) {
+      if (type>0 && type < (int)QMetaType::User) {
         r = variantFromType(type, data).toString();
       }
   }
@@ -1584,13 +1562,19 @@ QString PythonQtConv::CPPObjectToString(int type, const void* data) {
 PyObject* PythonQtConv::createCopyFromMetaType( int type, const void* data )
 {
   // if the type is known, we can construct it via QMetaType::construct
-#if( QT_VERSION >= QT_VERSION_CHECK(5,0,0) )
-  void* newCPPObject = QMetaType::create(type, data);
-#else
-  void* newCPPObject = QMetaType::construct(type, data);
-#endif
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    void* newCPPObject = QMetaType(type).create(data);
+  // XXX this could be optimized by using metatypeid directly
+  PythonQtInstanceWrapper* wrap = (PythonQtInstanceWrapper*)PythonQt::priv()->wrapPtr(newCPPObject, QMetaType(type).name());
+#elif QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+    void* newCPPObject = QMetaType::create(type, data);
   // XXX this could be optimized by using metatypeid directly
   PythonQtInstanceWrapper* wrap = (PythonQtInstanceWrapper*)PythonQt::priv()->wrapPtr(newCPPObject, QMetaType::typeName(type));
+#else
+    void* newCPPObject = QMetaType::construct(type, data);
+  // XXX this could be optimized by using metatypeid directly
+  PythonQtInstanceWrapper* wrap = (PythonQtInstanceWrapper*)PythonQt::priv()->wrapPtr(newCPPObject, QMetaType::typeName(type));
+#endif
   wrap->_ownedByPythonQt = true;
   wrap->_useQMetaTypeDestroy = true;
   return (PyObject*)wrap;
@@ -1639,10 +1623,6 @@ QByteArray PythonQtConv::getCPPTypeName(PyObject* type)
         result = "double";
       } else if (typeObject == &PyBool_Type) {
         result = "bool";
-#ifndef PY3K
-      } else if (typeObject == &PyInt_Type) {
-        result = "qint32";
-#endif
       } else if (typeObject == &PyLong_Type) {
         result = "qint64";
       } else if (isStringType(typeObject)) {
@@ -1662,11 +1642,7 @@ QByteArray PythonQtConv::getCPPTypeName(PyObject* type)
 
 bool PythonQtConv::isStringType(PyTypeObject* type)
 {
-#ifdef PY3K
   return type == &PyUnicode_Type;
-#else
-  return type == &PyUnicode_Type || type == &PyString_Type;
-#endif
 }
 
 void PythonQtConv::registerStringViewTypes()

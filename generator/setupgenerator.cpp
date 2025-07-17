@@ -182,7 +182,7 @@ static void addListRegistration(AbstractMetaType::shared_pointer type, QSet<QStr
     
     /*
     QString debugStr;
-    Q_FOREACH(AbstractMetaType* arg, args) {
+    for( AbstractMetaType* arg :  args ) {
       debugStr += QString(arg->typeEntry()->isEnum()?"ENUM ":"") + arg->typeEntry()->qualifiedCppName() + ",";
       if (arg->typeEntry()->qualifiedCppName() == "QPair") {
         debugStr += "(" + arg->instantiations().at(0)->typeEntry()->qualifiedCppName() + ",";

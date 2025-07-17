@@ -1,162 +1,158 @@
-cmake_minimum_required(VERSION 2.8)
+project(PythonQtGenerator LANGUAGES CXX)
 
-#-----------------------------------------------------------------------------
-project(PythonQtGenerator)
-#-----------------------------------------------------------------------------
+add_subdirectory(parser)
 
-include(CTestUseLaunchers OPTIONAL)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
 
-#-----------------------------------------------------------------------------
-# Setup Qt
+file(GLOB SOURCES *.h *.cpp *.qrc simplecpp/*.h simplecpp/*.cpp )
+# Explicitly exclude qtscript_masterinclude.h
+list(REMOVE_ITEM SOURCES "${CMAKE_CURRENT_LIST_DIR}/qtscript_masterinclude.h")
 
-set(minimum_required_qt_version "4.6.2")
-
-find_package(Qt4)
-
-if(QT4_FOUND)
-
-  set(found_qt_version ${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}.${QT_VERSION_PATCH})
-
-  if(${found_qt_version} VERSION_LESS ${minimum_required_qt_version})
-      message(FATAL_ERROR "error: PythonQt requires Qt >= ${minimum_required_qt_version} -- you cannot use Qt ${found_qt_version}.")
-  endif()
-  
-  set(QT_USE_QTXML ON)
-  
-  include(${QT_USE_FILE})
-else()
-  message(FATAL_ERROR "error: Qt4 was not found on your system. You probably need to set the QT_QMAKE_EXECUTABLE variable")
-endif()
-
-#-----------------------------------------------------------------------------
-# Sources
-
-set(sources
-  parser/ast.cpp
-  parser/binder.cpp
-  parser/class_compiler.cpp
-  parser/codemodel.cpp
-  parser/codemodel_finder.cpp
-  parser/compiler_utils.cpp
-  parser/control.cpp
-  parser/declarator_compiler.cpp
-  parser/default_visitor.cpp
-  parser/dumptree.cpp
-  parser/lexer.cpp
-  parser/list.cpp
-  parser/name_compiler.cpp
-  parser/parser.cpp
-  parser/smallobject.cpp
-  parser/tokens.cpp
-  parser/type_compiler.cpp
-  parser/visitor.cpp
-  
-  abstractmetabuilder.cpp
-  abstractmetalang.cpp
-  asttoxml.cpp
-  customtypes.cpp
-  fileout.cpp
-  generator.cpp
-  generatorset.cpp
-  generatorsetqtscript.cpp
-  main.cpp
-  metajava.cpp
-  metaqtscriptbuilder.cpp
-  metaqtscript.cpp
-  prigenerator.cpp
-  reporthandler.cpp
-  setupgenerator.cpp
-  shellgenerator.cpp
-  shellheadergenerator.cpp
-  shellimplgenerator.cpp
-  typeparser.cpp
-  typesystem.cpp
-  )
-  
-#-----------------------------------------------------------------------------
-# List headers.  This list is used for the install command.
-
-set(headers
-  )
-
-#-----------------------------------------------------------------------------
-# Headers that should run through moc
-
-set(moc_sources
-  fileout.h
-  generator.h
-  generatorset.h
-  generatorsetqtscript.h
-  prigenerator.h
-  setupgenerator.h
-  shellgenerator.h
-  shellheadergenerator.h
-  shellimplgenerator.h
-  )
-  
-#-----------------------------------------------------------------------------
-# UI files
-
-set(ui_sources )
-
-#-----------------------------------------------------------------------------
-# Resources
-
-set(qrc_sources
-  generator.qrc
-  )
-
-#-----------------------------------------------------------------------------
-# Do wrapping
-qt4_wrap_cpp(gen_moc_sources ${moc_sources})
-qt4_wrap_ui(gen_ui_sources ${ui_sources})
-qt4_add_resources(gen_qrc_sources ${qrc_sources})
-
-#-----------------------------------------------------------------------------
-# Copy file expected by the generator and specify install rules
-
-file(GLOB files_to_copy RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "build_*.txt" "typesystem_*.xml")
-list(APPEND files_to_copy qtscript_masterinclude.h parser/rpp/pp-qt-configuration)
-foreach(file ${files_to_copy})
-  configure_file(
-    ${file}
-    ${CMAKE_CURRENT_BINARY_DIR}/${file}
-    COPYONLY
-    )
-  get_filename_component(destination_dir ${file} PATH)
-  install(FILES ${file} DESTINATION bin/${destination_dir})
-endforeach()
-
-#-----------------------------------------------------------------------------
-# Build the library
-
-SOURCE_GROUP("Resources" FILES
-  ${qrc_sources}
-  ${ui_sources}
-  ${files_to_copy}
-  )
-
-include_directories(
-  ${CMAKE_CURRENT_SOURCE_DIR}
-  ${CMAKE_CURRENT_SOURCE_DIR}/parser
-  ${CMAKE_CURRENT_SOURCE_DIR}/parser/rpp
-  )
-  
-add_definitions(-DRXX_ALLOCATOR_INIT_0)
-  
-add_executable(${PROJECT_NAME}
-  ${sources}
-  ${gen_moc_sources}
-  ${gen_ui_sources}
-  ${gen_qrc_sources}
+add_executable(${PROJECT_NAME})
+target_sources(${PROJECT_NAME} PRIVATE
+    ${SOURCES}
 )
 
-target_link_libraries(${PROJECT_NAME} ${QT_LIBRARIES})
+set(QT5_COMPATIBILITY_LIBS "")
+if (${QT_VERSION_MAJOR} VERSION_GREATER_EQUAL 6)
+    set(QT5_COMPATIBILITY_LIBS Qt${QT_VERSION_MAJOR}::Core5Compat)
+endif()
 
-#-----------------------------------------------------------------------------
-# Install library (on windows, put the dll in 'bin' and the archive in 'lib')
+target_link_libraries(${PROJECT_NAME} PUBLIC
+    Qt${QT_VERSION_MAJOR}::Core
+    Qt${QT_VERSION_MAJOR}::Widgets
+    Qt${QT_VERSION_MAJOR}::Xml
+    ${QT5_COMPATIBILITY_LIBS}
+    rxx
+)
 
-install(TARGETS ${PROJECT_NAME}
-        RUNTIME DESTINATION bin
-        LIBRARY DESTINATION lib
-        ARCHIVE DESTINATION lib)
+target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_LIST_DIR})
+target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_LIST_DIR}/simplecpp)
+
+get_filename_component(PYTHONQT_GENERATED_PATH "${CMAKE_CURRENT_BINARY_DIR}" PATH)
+# NOTE: 'generated_cpp' is hardcoded in setupgenerator.cpp, so do not add version suffix here.
+set(PYTHONQT_GENERATED_PATH "${PYTHONQT_GENERATED_PATH}/generated_cpp")
+#set(PYTHONQT_GENERATED_PATH "${PYTHONQT_GENERATED_PATH}/generated_cpp_${QT_VERSION_MAJOR}${QT_VERSION_MINOR}")
+
+if(WIN32)
+    set(LIBRARY_SEARCH_PATH PATH)
+else()
+    set(LIBRARY_SEARCH_PATH LD_LIBRARY_PATH)
+endif()
+
+list(APPEND wrapper_list core core_builtin gui gui_builtin multimedia network qml quick sql svg uitools xml)
+foreach(wrapper IN LISTS wrapper_list)
+    string(TOUPPER ${wrapper} WRAPPER)
+    set(PYTHONQT_WRAPPER_${WRAPPER}_SOURCES
+        "${PYTHONQT_GENERATED_PATH}/com_trolltech_qt_${wrapper}/com_trolltech_qt_${wrapper}0.h"
+        "${PYTHONQT_GENERATED_PATH}/com_trolltech_qt_${wrapper}/com_trolltech_qt_${wrapper}0.cpp"
+        "${PYTHONQT_GENERATED_PATH}/com_trolltech_qt_${wrapper}/com_trolltech_qt_${wrapper}_init.cpp"
+    )
+    list(APPEND PYTHONQT_WRAPPER_SOURCES ${PYTHONQT_WRAPPER_${WRAPPER}_SOURCES})
+    set(PYTHONQT_WRAPPER_${WRAPPER}_SOURCES ${PYTHONQT_WRAPPER_${WRAPPER}_SOURCES} PARENT_SCOPE)
+endforeach()
+
+# Determine the Qt include prefix
+get_target_property(_qtcore_include_dirs Qt${QT_VERSION_MAJOR}::Core INTERFACE_INCLUDE_DIRECTORIES)
+get_target_property(all_qt_include_dirs Qt${QT_VERSION_MAJOR}::Widgets INTERFACE_INCLUDE_DIRECTORIES)
+set(all_qt_include_dirs "")
+set(include_path_seperator ":")
+foreach(_qtcore_include_dir IN LISTS _qtcore_include_dirs)
+    # Some versions of Qt may have subdirectories like "QtCore" for header files
+    if (IS_DIRECTORY "${_qtcore_include_dir}/QtCore")
+        set(_qt_include_prefix "${_qtcore_include_dir}")
+        list(APPEND all_qt_include_dirs "${_qt_include_prefix}")
+        break()
+    else()
+        # If frameworks, then no QtCore should be suffixed
+        if (IS_DIRECTORY "${_qtcore_include_dir}")
+            set(_qt_include_prefix "${_qtcore_include_dir}")
+            list(APPEND all_qt_include_dirs "${_qt_include_prefix}")
+            break()
+        endif()
+    endif()
+endforeach()
+
+
+
+find_package(Qt6 COMPONENTS Core Gui Widgets Xml OpenGL Network Core5Compat REQUIRED)
+set(QT6_COMPONENTS Core Gui Widgets Xml OpenGL Network)
+set(QT6_COMPONENTS_FOUND)
+foreach(comp IN LISTS QT6_COMPONENTS)
+    if(Qt6${comp}_FOUND)
+        list(APPEND QT6_COMPONENTS_FOUND Qt6::${comp})
+    endif()
+endforeach()
+unset(QT6_COMPONENTS)
+message(STATUS "Found Qt6 components: ${QT6_COMPONENTS_FOUND}")
+
+# Initialize include directory list
+set(ALL_QT6_INCLUDE_DIRS)
+# Loop through each Qt6 target and collect its INTERFACE_INCLUDE_DIRECTORIES
+foreach(qt_target IN LISTS QT6_COMPONENTS_FOUND)
+    get_target_property(_incs ${qt_target} INTERFACE_INCLUDE_DIRECTORIES)
+    if(_incs)
+        foreach(_inc IN LISTS _incs)
+            # Check if the string ends with ".framework/Headers"
+            if(_inc MATCHES "\\.framework/Headers$")
+                # Remove the suffix
+                string(REGEX REPLACE "/[^/]+\\.framework/Headers$" "" framework_path "${_inc}")
+                list(APPEND ALL_QT6_INCLUDE_DIRS ${framework_path})
+            elseif(_inc MATCHES "\\.framework$")
+                # Remove the suffix
+                string(REGEX REPLACE "/[^/]+\\.framework$" "" framework_path "${_inc}")
+                list(APPEND ALL_QT6_INCLUDE_DIRS ${framework_path})
+            else()
+                list(APPEND ALL_QT6_INCLUDE_DIRS ${_inc})
+            endif()
+        endforeach()
+
+    endif()
+endforeach()
+unset(QT6_COMPONENTS_FOUND)
+
+# Optionally remove duplicates
+list(REMOVE_DUPLICATES ALL_QT6_INCLUDE_DIRS)
+
+# Copy resource to the build tree
+message(STATUS "Copying resource files from ${CMAKE_CURRENT_LIST_DIR} to ${CMAKE_CURRENT_BINARY_DIR}")
+file(GLOB resources_files *.txt *.xml qtscript_masterinclude.h)
+foreach(resources_file IN LISTS resources_files)
+    configure_file(${resources_file} ${CMAKE_CURRENT_BINARY_DIR} COPYONLY)
+endforeach()
+set(gen_masterinclude_file "${CMAKE_CURRENT_BINARY_DIR}/qtscript_masterinclude.h")
+
+if(QT_VERSION_MAJOR EQUAL 5)
+    set(gen_build_all_file "${CMAKE_CURRENT_SOURCE_DIR}/build_all.txt")
+else()
+    # For Qt6, we need to generate a different master include file
+    set(gen_build_all_file "${CMAKE_CURRENT_BINARY_DIR}/build_all.txt")
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/build_all_qt6.txt ${gen_build_all_file} COPYONLY)
+endif()
+
+
+string(JOIN ":" CMD_LINE_COLON_SEPARATED_INCLUDE_DIRS ${ALL_QT6_INCLUDE_DIRS})
+set(QTDIR ${QT${QT_VERSION_MAJOR}_INSTALL_PREFIX} )
+add_custom_command(OUTPUT ${PYTHONQT_WRAPPER_SOURCES}
+    COMMAND ${CMAKE_COMMAND} -E env  QTDIR=${QTDIR} PYTHONQT_INCLUDE=${_qt_include_prefix}
+        --modify ${LIBRARY_SEARCH_PATH}=path_list_prepend:$<TARGET_FILE_DIR:Qt${QT_VERSION_MAJOR}::Widgets>
+    $<TARGET_FILE:${PROJECT_NAME}>
+        # FOR DEBUGGING --dump-object-tree
+        # FOR DEBUGGING --debug-level=full
+        --include-paths="${CMD_LINE_COLON_SEPARATED_INCLUDE_DIRS}"
+        --output-dir=${PYTHONQT_GENERATED_PATH}
+        ${gen_masterinclude_file} ${gen_build_all_file}
+    COMMENT "Generating PythonQt wrapper sources:  $<TARGET_FILE:${PROJECT_NAME}>"
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+    DEPENDS ${PROJECT_NAME}
+)
+
+set_source_files_properties(${PYTHONQT_WRAPPER_SOURCES} PROPERTIES
+    SKIP_AUTOMOC TRUE
+    SKIP_AUTOUIC TRUE
+)
+
+add_custom_target(PythonQtWrapper
+    DEPENDS ${PROJECT_NAME} ${PYTHONQT_WRAPPER_SOURCES}
+)

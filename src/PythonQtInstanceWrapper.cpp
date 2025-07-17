@@ -70,7 +70,11 @@ static void PythonQtInstanceWrapper_deleteObject(PythonQtInstanceWrapper* self, 
       int type = self->classInfo()->metaTypeId();
       if (self->_useQMetaTypeDestroy && type>=0) {
         // use QMetaType to destroy the object
-        QMetaType::destroy(type, self->_wrappedPtr);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    QMetaType(type).destroy(self->_wrappedPtr);
+#else
+    QMetaType::destroy(type, self->_wrappedPtr);
+#endif
       } else {
         PythonQtSlotInfo* slot = self->classInfo()->destructor();
         if (slot) {
@@ -82,7 +86,11 @@ static void PythonQtInstanceWrapper_deleteObject(PythonQtInstanceWrapper* self, 
         } else {
           if (type>=0) {
             // use QMetaType to destroy the object
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+            QMetaType(type).destroy(self->_wrappedPtr);
+#else
             QMetaType::destroy(type, self->_wrappedPtr);
+#endif
           } else {
             // TODO: warn about not being able to destroy the object?
           }
@@ -390,7 +398,7 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
     if (wrapper->_obj) {
       // we need to replace the properties with their real values...
       QStringList l = wrapper->classInfo()->propertyList();
-      Q_FOREACH (QString name, l) {
+      for( QString name :  l ) {
         PyObject* o = PyObject_GetAttrString(obj, QStringToPythonConstCharPointer(name));
         if (o) {
           PyDict_SetItemString(dict, QStringToPythonConstCharPointer(name), o);
@@ -401,7 +409,7 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
       }
 
       QList<QByteArray> dynamicProps = wrapper->_obj->dynamicPropertyNames();
-      Q_FOREACH (QByteArray name, dynamicProps) {
+      for( QByteArray name :  dynamicProps ) {
         PyObject* o = PyObject_GetAttrString(obj, name.data());
         if (o) {
           PyDict_SetItemString(dict, name.data(), o);
@@ -482,8 +490,11 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
   switch (member._type) {
   case PythonQtMemberInfo::Property:
     if (wrapper->_obj) {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+      if (member._property.userType() != QMetaType::UnknownType) {
+#else
       if (member._property.userType() != QVariant::Invalid) {
-
+#endif
         PythonQt::ProfilingCB* profilingCB = PythonQt::priv()->profilingCB();
         if (profilingCB) {
           QString methodName = "getProperty('";
@@ -575,11 +586,7 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
   }
 
   // look for the internal methods (className(), help())
-#ifdef PY3K
   PyObject* internalMethod = PyObject_GenericGetAttr(obj, name);
-#else
-  PyObject* internalMethod = Py_FindMethod( PythonQtInstanceWrapper_methods, obj, (char*)attributeName);
-#endif
   if (internalMethod) {
     return internalMethod;
   }
@@ -762,9 +769,12 @@ static PyObject * PythonQtInstanceWrapper_str(PyObject * obj)
   PythonQtInstanceWrapper* wrapper = (PythonQtInstanceWrapper*)obj;
 
   // QByteArray should be directly returned as a str
-  if (wrapper->classInfo()->metaTypeId()==QVariant::ByteArray) {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+  if (wrapper->classInfo()->metaTypeId() == QMetaType::QByteArray) {
+#else
+  if (wrapper->classInfo()->metaTypeId() == QVariant::ByteArray) {
+#endif
     QByteArray* b = (QByteArray*) wrapper->_wrappedPtr;
-#ifdef PY3K
     // Note: In Python 2, this was used to access the data() of a byte array.
     // Since in Python 3 str() will return a unicode, this is no longer possible.
     // The user needs to call .data() to get access to the data as bytes.
@@ -776,13 +786,6 @@ static PyObject * PythonQtInstanceWrapper_str(PyObject * obj)
     } else {
       return PyUnicode_New(0, 0);
     }
-#else
-    if (b->data()) {
-      return PyString_FromStringAndSize(b->data(), b->size());
-    } else {
-      return PyString_FromString("");
-    }
-#endif
   }
 
   const char* typeName = obj->ob_type->tp_name;
@@ -851,9 +854,7 @@ static PyNumberMethods PythonQtInstanceWrapper_as_number = {
     nullptr,      /* nb_add */
     nullptr,      /* nb_subtract */
     nullptr,      /* nb_multiply */
-#ifndef PY3K
-    nullptr,      /* nb_divide */
-#endif
+
     nullptr,      /* nb_remainder */
     nullptr,      /* nb_divmod */
     nullptr,      /* nb_power */
@@ -867,22 +868,15 @@ static PyNumberMethods PythonQtInstanceWrapper_as_number = {
     nullptr,      /* nb_and */
     nullptr,      /* nb_xor */
     nullptr,      /* nb_or */
-#ifndef PY3K
-    nullptr,      /* nb_coerce */
-#endif
+
     nullptr,      /* nb_int */
     nullptr,      /* nb_long  / nb_reserved in Py3K */
     nullptr,      /* nb_float */
-#ifndef PY3K
-    nullptr,      /* nb_oct */
-    nullptr,      /* nb_hex */
-#endif
+
     nullptr,      /* nb_inplace_add */
     nullptr,      /* nb_inplace_subtract */
     nullptr,      /* nb_inplace_multiply */
-#ifndef PY3K
-    nullptr,      /* nb_inplace_divide */
-#endif
+
     nullptr,      /* nb_inplace_remainder */
     nullptr,      /* nb_inplace_power */
     nullptr,      /* nb_inplace_lshift */
@@ -894,9 +888,7 @@ static PyNumberMethods PythonQtInstanceWrapper_as_number = {
     nullptr,      /* nb_true_divide */
     nullptr,      /* nb_inplace_floor_divide */
     nullptr,      /* nb_inplace_true_divide */
-#ifdef PY3K
     nullptr,      /* nb_index in Py3K */
-#endif
 };
 
 PyTypeObject PythonQtInstanceWrapper_Type = {
@@ -919,11 +911,7 @@ PyTypeObject PythonQtInstanceWrapper_Type = {
     PythonQtInstanceWrapper_getattro,            /*tp_getattro*/
     PythonQtInstanceWrapper_setattro,            /*tp_setattro*/
     nullptr,                                     /*tp_as_buffer*/
-    Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE
-#ifndef PY3K
-    | Py_TPFLAGS_CHECKTYPES
-#endif
-    , /*tp_flags*/
+    Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE, /*tp_flags*/
     "PythonQtInstanceWrapper object",            /* tp_doc */
     nullptr,                                     /* tp_traverse */
     nullptr,                                     /* tp_clear */
@@ -931,11 +919,8 @@ PyTypeObject PythonQtInstanceWrapper_Type = {
     0,                                           /* tp_weaklistoffset */
     nullptr,                                     /* tp_iter */
     nullptr,                                     /* tp_iternext */
-#ifdef PY3K                                      
-    PythonQtInstanceWrapper_methods,             
-#else                                            
-    0,                                           /* tp_methods */
-#endif                                           
+    PythonQtInstanceWrapper_methods,
+
     nullptr,                                     /* tp_members */
     nullptr,                                     /* tp_getset */
     nullptr,                                     /* tp_base */
