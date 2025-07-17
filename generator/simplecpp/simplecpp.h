@@ -39,6 +39,9 @@
 #endif
 
 namespace simplecpp {
+
+    std::string get_apple_framework_relative_path(const std::string& header);
+
     /** C code standard */
     enum cstd_t { CUnknown=-1, C89, C99, C11, C17, C23 };
 
