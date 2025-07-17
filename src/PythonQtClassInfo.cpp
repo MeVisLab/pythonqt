@@ -102,7 +102,11 @@ void PythonQtClassInfo::setupCPPObject(const QByteArray& classname)
 {
   _isQObject = false;
   _wrappedClassName = classname;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+  _metaTypeId = QMetaType::fromName(classname).id();
+#else
   _metaTypeId = QMetaType::type(classname);
+#endif
   if (_metaTypeId == 0) {
     _metaTypeId = -1;
   }
