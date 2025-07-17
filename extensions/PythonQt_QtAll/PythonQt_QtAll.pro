@@ -77,94 +77,45 @@ headers.path = $${INSTALL_PREFIX}/include
 INSTALLS += target headers
 
 defineTest(Xinclude) {
-  f=$$PYTHONQT_GENERATED_PATH/$$1/$${1}.pri
-  exists($$f):include($$f):export(HEADERS):export(SOURCES):export(DEFINES)
-
+  exists($$f) {
+    DEFINES += $$2 # shoud be in the included (generated) .pri file
+    QT += $$3 # shoud be in the included (generated) .pri file
+    include($$f)
+    export(HEADERS)
+    export(SOURCES)
+    export(DEFINES)
+    export(QT)
+    return(true)
+  }
+  return(false)
 }
 
+PythonQtCore:Xinclude(com_trolltech_qt_core, PYTHONQT_WITH_CORE, core)
 
-PythonQtCore {
-  DEFINES += PYTHONQT_WITH_CORE
-  Xinclude (com_trolltech_qt_core)
-  QT += core
-}
+PythonQtGui:Xinclude(com_trolltech_qt_gui, PYTHONQT_WITH_GUI, gui widgets printsupport)
 
-PythonQtGui  {
-  DEFINES += PYTHONQT_WITH_GUI
-  Xinclude (com_trolltech_qt_gui)
-  QT += gui widgets printsupport
-}
-
-PythonQtSvg {
-  DEFINES += PYTHONQT_WITH_SVG
-  Xinclude (com_trolltech_qt_svg)
-  QT += svg
+PythonQtSvg:Xinclude(com_trolltech_qt_svg, PYTHONQT_WITH_SVG, svg) {
   !lessThan(QT_MAJOR_VERSION,6): QT += svgwidgets
 }
 
-PythonQtSql {
-  DEFINES += PYTHONQT_WITH_SQL
-  Xinclude (com_trolltech_qt_sql)
-  QT += sql
-}
+PythonQtSql:Xinclude(com_trolltech_qt_sql, PYTHONQT_WITH_SQL, sql)
 
-PythonQtNetwork {
-  DEFINES += PYTHONQT_WITH_NETWORK
-  Xinclude (com_trolltech_qt_network)
-  QT += network
-}
+PythonQtNetwork:Xinclude(com_trolltech_qt_network, PYTHONQT_WITH_NETWORK, network)
 
-PythonQtOpengl {
-  DEFINES += PYTHONQT_WITH_OPENGL
-  QT += opengl
-  PythonQtCore: Xinclude (com_trolltech_qt_opengl)
-  QT += xml
-}
+PythonQtOpengl:Xinclude(com_trolltech_qt_opengl, PYTHONQT_WITH_OPENGL, opengl xml)
 
-PythonQtXml {
-  DEFINES += PYTHONQT_WITH_XML
-  Xinclude (com_trolltech_qt_xml)
-  QT += xml
-}
+PythonQtXml:Xinclude(com_trolltech_qt_xml, PYTHONQT_WITH_XML, xml)
 
-PythonQtXmlpatterns {
-  DEFINES += PYTHONQT_WITH_XMLPATTERNS
-  Xinclude (com_trolltech_qt_xmlpatterns)
-  QT += xmlpatterns
-}
+PythonQtXmlpatterns:Xinclude(com_trolltech_qt_xmlpatterns, PYTHONQT_WITH_XMLPATTERNS, xmlpatterns)
 
-PythonQtMultimedia {
-  DEFINES += PYTHONQT_WITH_MULTIMEDIA
-  Xinclude (com_trolltech_qt_multimedia)
-  QT += multimedia multimediawidgets
-}
+PythonQtMultimedia:Xinclude(com_trolltech_qt_multimedia, PYTHONQT_WITH_MULTIMEDIA, multimedia multimediawidgets)
 
-PythonQtQml {
-  DEFINES += PYTHONQT_WITH_QML
-  Xinclude (com_trolltech_qt_qml)
-  QT += qml
-}
+PythonQtQml:Xinclude(com_trolltech_qt_qml, PYTHONQT_WITH_QML, qml)
 
-PythonQtQuick {
-  DEFINES += PYTHONQT_WITH_QUICK
-  Xinclude (com_trolltech_qt_quick)
-  QT += quick quickwidgets
-}
+PythonQtQuick:Xinclude(com_trolltech_qt_quick, PYTHONQT_WITH_QUICK, quick quickwidgets)
 
-PythonQtUiTools {
-  DEFINES += PYTHONQT_WITH_UITOOLS
-  Xinclude (com_trolltech_qt_uitools)
-  QT += uitools
-}
+PythonQtUiTools:Xinclude(com_trolltech_qt_uitools, PYTHONQT_WITH_UITOOLS, uitools)
 
-PythonQtWebEngineWidgets {
-  DEFINES += PYTHONQT_WITH_WEBENGINEWIDGETS
-  Xinclude (com_trolltech_qt_webenginewidgets)
-  QT += webenginewidgets
-}
+PythonQtWebEngineWidgets:Xinclude(com_trolltech_qt_webenginewidgets, PYTHONQT_WITH_WEBENGINEWIDGETS, webenginewidgets)
 
-PythonQtWebKit {
-  DEFINES += PYTHONQT_WITH_WEBKIT
-  Xinclude (com_trolltech_qt_webkit)
-  QT += webkit webkitwidgets
-}
+PythonQtWebKit:Xinclude(com_trolltech_qt_webkit, PYTHONQT_WITH_WEBKIT, webkit webkitwidgets)
