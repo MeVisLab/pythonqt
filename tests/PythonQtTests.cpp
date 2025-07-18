@@ -41,31 +41,44 @@
 
 #include "PythonQtTests.h"
 
+void PythonQtMemoryTests::cleanup()
+{
+  if(PythonQt::self()) {
+    PythonQt::preCleanup();
+#if PY_VERSION_HEX < 0x03060000
+      Py_Finalize();
+#else
+      Py_FinalizeEx();
+#endif
+    PythonQt::cleanup();
+  }
+}
+
 void PythonQtMemoryTests::testBaseCleanup()
 {
   PythonQt::init();
-  PythonQt::cleanup();
+  cleanup();
 }
 
 void PythonQtMemoryTests::testCleanupWithFlags()
 {
   PythonQt::init(PythonQt::IgnoreSiteModule | PythonQt::RedirectStdOut);
-  PythonQt::cleanup();
+  cleanup();
 }
 
 void PythonQtMemoryTests::testInitAlreadyInitialized()
 {
   Py_InitializeEx(true);
   PythonQt::init(PythonQt::PythonAlreadyInitialized);
-  PythonQt::cleanup();
+  cleanup();
 }
 
 void PythonQtMemoryTests::testSeveralCleanup() {
   PythonQt::init();
-  PythonQt::cleanup();
+  cleanup();
 
   PythonQt::init();
-  PythonQt::cleanup();
+  cleanup();
 }
 
 void PythonQtMemoryTests::testInitWithPreconfig() {
@@ -74,7 +87,7 @@ void PythonQtMemoryTests::testInitWithPreconfig() {
   PyConfig_InitPythonConfig(&config);
   Py_InitializeFromConfig(&config);
   PythonQt::init(PythonQt::RedirectStdOut | PythonQt::PythonAlreadyInitialized);
-  PythonQt::cleanup();
+  cleanup();
 #endif
 }
 
@@ -90,6 +103,11 @@ void PythonQtTestSlotCalling::init() {
 
 }
 
+void PythonQtTestSlotCalling::cleanupTestCase()
+{
+  cleanupPtr();
+  delete _helper; _helper = nullptr;
+}
 
 void* polymorphic_ClassB_Handler(const void* ptr, const char** className) {
   ClassB* o = (ClassB*)ptr;
@@ -302,13 +320,13 @@ void PythonQtTestSlotCalling::testObjectSlotCalls()
 
 void PythonQtTestSlotCalling::testCppFactory()
 {
-  PythonQtTestCppFactory* f = new PythonQtTestCppFactory;
+  PythonQtTestCppFactory f;
   PythonQt::self()->addInstanceDecorators(new PQCppObjectDecorator);
   // do not register, since we want to know if that works as well
   //qRegisterMetaType<PQCppObjectNoWrap>("PQCppObjectNoWrap");
   PythonQt::self()->addDecorators(new PQCppObjectNoWrapDecorator);
 
-  PythonQt::self()->addWrapperFactory(f);
+  PythonQt::self()->addWrapperFactory(&f);
   QVERIFY(_helper->runScript("if obj.createPQCppObject(12).getHeight()==12: obj.setPassed();\n"));
   QVERIFY(_helper->runScript("if obj.createPQCppObject(12).getH()==12: obj.setPassed();\n"));
   QVERIFY(_helper->runScript("pq1 = obj.createPQCppObject(12);\n"
@@ -346,7 +364,7 @@ void PythonQtTestSlotCalling::testCppFactory()
   QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt.private import PQCppObject2\na = PQCppObject2()\nif a.testEnumFlag2(PQCppObject2.TestEnumValue2)==PQCppObject2.TestEnumValue2: obj.setPassed();\n"));
   // with int overload to check overloading
   QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt.private import PQCppObject2\na = PQCppObject2()\nif a.testEnumFlag3(PQCppObject2.TestEnumValue2)==PQCppObject2.TestEnumValue2: obj.setPassed();\n"));
-
+  PythonQt::self()->removeWrapperFactory(&f);
 }
 
 PQCppObject2Decorator::TestEnumFlag PQCppObject2Decorator::testEnumFlag1(PQCppObject2* /*obj*/, PQCppObject2Decorator::TestEnumFlag flag) {
@@ -399,6 +417,11 @@ void PythonQtTestSignalHandler::initTestCase()
   _helper = new PythonQtTestSignalHandlerHelper(this);
   PythonQtObjectPtr main = PythonQt::self()->getMainModule();
   PythonQt::self()->addObject(main, "obj", _helper);
+}
+
+void PythonQtTestSignalHandler::cleanupTestCase()
+{
+    delete _helper;
 }
 
 void PythonQtTestSignalHandler::testSignalHandler()
@@ -457,15 +480,23 @@ void PythonQtTestSignalHandler::testRecursiveSignalHandler()
   QVERIFY(PythonQt::self()->addSignalHandler(_helper, SIGNAL(signal2(const QString&)), main, "testSignal2"));
   QVERIFY(PythonQt::self()->addSignalHandler(_helper, SIGNAL(signal3(float)), main, "testSignal3"));
   QVERIFY(_helper->emitSignal1(12));
+
+  QVERIFY(PythonQt::self()->removeSignalHandler(_helper, SIGNAL(signal1(int)), main, "testSignal1"));
+  QVERIFY(PythonQt::self()->removeSignalHandler(_helper, SIGNAL(signal2(const QString&)), main, "testSignal2"));
+  QVERIFY(PythonQt::self()->removeSignalHandler(_helper, SIGNAL(signal3(float)), main, "testSignal3"));
 }
 
 
 void PythonQtTestApi::initTestCase()
 {
-  _helper = new PythonQtTestApiHelper();
+  _helper = new PythonQtTestApiHelper(this);
   _main = PythonQt::self()->getMainModule();
   _main.evalScript("import PythonQt");
   _main.addObject("obj", _helper);
+}
+
+void PythonQtTestApi::cleanupTestCase()
+{
 }
 
 void PythonQtTestApi::testProperties()
@@ -681,7 +712,9 @@ void PythonQtTestApiHelper::stdErr(const QString& s)
 QObject* PythonQtTestCppFactory::create(const QByteArray& name, void *ptr)
 {
   if (name == "PQCppObject") {
-    return new PQCppObjectWrapper(ptr);
+    auto wrapper = new PQCppObjectWrapper(ptr);
+    wrapper->setParent(&_genericParent);
+    return wrapper;
   }
   return NULL;
 }

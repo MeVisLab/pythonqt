@@ -52,7 +52,7 @@ int PythonQtSignalReceiver::_destroyedSignal2Id = -2;
 
 void PythonQtSignalTarget::call(void **arguments) const {
   PYTHONQT_GIL_SCOPE
-  PyObject* result = call(_callable, methodInfo(), arguments);
+  PyObject* result = call(_callable.object(), methodInfo(), arguments);
   if (result) {
     PythonQt::priv()->checkAndRunCoroutine(result);
     Py_DECREF(result);
@@ -144,7 +144,7 @@ PyObject* PythonQtSignalTarget::call(PyObject* callable, const PythonQtMethodInf
 
 bool PythonQtSignalTarget::isSame( int signalId, PyObject* callable ) const
 {
-  return PyObject_RichCompareBool(callable, _callable, Py_EQ) && (signalId == _signalId);
+  return PyObject_RichCompareBool(callable, _callable.object(), Py_EQ) && (signalId == _signalId);
 }
 
 //------------------------------------------------------------------------------
