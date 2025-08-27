@@ -127,11 +127,11 @@ namespace
     }
 
     bool
-    preprocess(const QString& sourceFile, const QString& targetFile, const QString& commandLineIncludes = QString())
+    preprocess(const QString& sourceFile, const QString& targetFile, const QStringList& includePaths)
     {
       simplecpp::DUI dui; // settings
 
-      for(QString include : getIncludeDirectories(commandLineIncludes)) {
+      for(QString include : includePaths) {
         dui.includePaths.push_back(QDir::toNativeSeparators(include).toStdString());
       }
       dui.defines.push_back("__cplusplus=1");
@@ -212,10 +212,10 @@ namespace
       return true;
     }
 
-    unsigned int getQtVersion(const QString &commandLineIncludes)
+    unsigned int getQtVersion(const QStringList& includePaths)
     {
       QRegularExpression re("#define\\s+QTCORE_VERSION\\s+0x([0-9a-f]+)", QRegularExpression::CaseInsensitiveOption);
-      for (const QString &includeDir: getIncludeDirectories(commandLineIncludes))
+      for (const QString &includeDir: includePaths)
       {
         QFileInfo fi(QDir(includeDir), "qtcoreversion.h");
         if (fi.exists())
@@ -244,7 +244,7 @@ namespace
         }
       }
       printf("Error: Could not find Qt version (looked for qtcoreversion.h in %s)\n",
-             qPrintable(commandLineIncludes));
+             qPrintable(includePaths.join(QDir::listSeparator())));
       return 0;
     }
 };
@@ -348,9 +348,10 @@ int main(int argc, char *argv[])
 
     printf("Please wait while source files are being generated...\n");
 
+    QStringList includePaths = getIncludeDirectories(args.value("include-paths"));
     if (!qtVersion) {
         printf("Trying to determine Qt version...\n");
-        qtVersion = getQtVersion(args.value("include-paths"));
+        qtVersion = getQtVersion(includePaths);
         if (!qtVersion)
         {
             fprintf(stderr, "Aborting\n"); // the error message was printed by getQtVersion
@@ -372,7 +373,8 @@ int main(int argc, char *argv[])
     printf("PreProcessing - Generate [%s] using [%s] and include-paths [%s]\n",
       qPrintable(pp_file), qPrintable(fileName), qPrintable(args.value("include-paths")));
     ReportHandler::setContext("Preprocess");
-    if (!preprocess(fileName, pp_file, args.value("include-paths"))) {
+    
+    if (!preprocess(fileName, pp_file, includePaths)) {
         fprintf(stderr, "Preprocessor failed on file: '%s'\n", qPrintable(fileName));
         return 1;
     }
@@ -387,6 +389,7 @@ int main(int argc, char *argv[])
 
     printf("Building model using [%s]\n", qPrintable(pp_file));
     ReportHandler::setContext("Build");
+    gs->setIncludePaths(includePaths);
     gs->buildModel(pp_file);
     if (args.contains("dump-object-tree")) {
         gs->dumpObjectTree();

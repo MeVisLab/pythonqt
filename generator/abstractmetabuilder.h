@@ -78,6 +78,9 @@ public:
     QString fileName() const { return m_file_name; }
     void setFileName(const QString &fileName) { m_file_name = fileName; }
 
+    //! Set list of include directories. This will be used to make absolute include paths relative.
+    void setIncludePaths(const QStringList& includePaths) { m_include_paths = includePaths; }
+
     void dumpLog();
 
     bool build();
@@ -153,7 +156,11 @@ private:
 
     AbstractMetaClass* getGlobalNamespace(const TypeEntry* typeEntry);
 
+    // turn absolute file path into a relative include
+    Include getRelativeInclude(const QString& path);
+
     QString m_file_name;
+    QStringList m_include_paths;
 
     AbstractMetaClassList m_meta_classes;
     QHash<QString,AbstractMetaClass*> m_templates;

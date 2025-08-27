@@ -85,6 +85,11 @@ void GeneratorSetQtScript::dumpObjectTree() {
  
 }
 
+void GeneratorSetQtScript::setIncludePaths(const QStringList& includePaths)
+{
+    builder.setIncludePaths(includePaths);
+}
+
 QString GeneratorSetQtScript::generate() {
     AbstractMetaClassList classes = builder.classesTopologicalSorted();
     QSet<QString> declaredTypeNames = builder.qtMetaTypeDeclaredTypeNames();
