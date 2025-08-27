@@ -52,13 +52,14 @@ class GeneratorSetQtScript : public GeneratorSet
 public:
     GeneratorSetQtScript();
 
-    QString usage();
-    bool readParameters(const QMap<QString, QString> args);
+    QString usage() override;
+    bool readParameters(const QMap<QString, QString> args) override;
 
-    void buildModel(const QString pp_file);
-    void dumpObjectTree();
+    void buildModel(const QString pp_file) override;
+    void dumpObjectTree() override;
+    void setIncludePaths(const QStringList& includePaths) override;
 
-    QString generate(                                       );
+    QString generate() override;
 
 private:
     MetaQtScriptBuilder builder;

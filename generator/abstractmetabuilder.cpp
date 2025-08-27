@@ -59,6 +59,7 @@
 #endif
 #include <QtCore/QTextStream>
 #include <QtCore/QVariant>
+#include <QtCore/QDir>
 
 static QString strip_template_args(const QString &name)
 {
@@ -413,6 +414,39 @@ AbstractMetaClass* AbstractMetaBuilder::getGlobalNamespace(const TypeEntry* type
   return global;
 }
 
+Include AbstractMetaBuilder::getRelativeInclude(const QString& path)
+{
+    QString bestRelativePath;
+    int bestNumDirectories = 0;
+    // find the shortest relative path relative to all given include directories
+    for (QString includePath : m_include_paths) {
+        QDir includeDir(includePath);
+        QString relativePath = includeDir.relativeFilePath(path);
+        QFileInfo info(relativePath);
+        if (!info.isRelative()) {
+            // not relative - different drives?
+            continue;
+        }
+        int numDirectories = relativePath.count('/');
+        if (bestRelativePath.isEmpty() || numDirectories < bestNumDirectories) {
+            bestRelativePath = relativePath;
+            bestNumDirectories = numDirectories;
+            if (numDirectories == 0) {
+                // optimal relative path
+                break;
+            }
+        }
+    }
+    if (bestRelativePath.isEmpty()) {
+        // This shouldn't happen
+        QFileInfo info(path);
+        return Include(Include::IncludePath, info.fileName());
+    }
+    else {
+        return Include(Include::IncludePath, bestRelativePath);
+    }
+}
+
 bool AbstractMetaBuilder::build()
 {
     Q_ASSERT(!m_file_name.isEmpty());
@@ -756,13 +790,11 @@ AbstractMetaClass *AbstractMetaBuilder::traverseNamespace(NamespaceModelItem nam
     m_namespace_prefix = currentScope()->qualifiedName().join("::");
 
     if (!type->include().isValid()) {
-        QFileInfo info(namespace_item->fileName());
-        type->setInclude(Include(Include::IncludePath, info.fileName()));
+        type->setInclude(getRelativeInclude(namespace_item->fileName()));
     }
     // namespace items might come from different include files:
     for (const QString& oneIncludeFile : includeFiles) {
-      QFileInfo info(oneIncludeFile);
-      type->addExtraInclude(Include(Include::IncludePath, info.fileName()));
+      type->addExtraInclude(getRelativeInclude(oneIncludeFile));
     }
 
     return meta_class;
@@ -837,8 +869,7 @@ AbstractMetaEnum *AbstractMetaBuilder::traverseEnum(EnumModelItem enum_item, Abs
             m_enum_values[meta_enum_value->name()] = meta_enum_value;
     }
 
-    QFileInfo info(enum_item->fileName());
-    meta_enum->typeEntry()->setInclude(Include(Include::IncludePath, info.fileName()));
+    meta_enum->typeEntry()->setInclude(getRelativeInclude(enum_item->fileName()));
 
     m_enums << meta_enum;
 
@@ -872,8 +903,7 @@ AbstractMetaClass *AbstractMetaBuilder::traverseTypeAlias(TypeAliasModelItem typ
 
     // Set the default include file name
     if (!type->include().isValid()) {
-        QFileInfo info(typeAlias->fileName());
-        type->setInclude(Include(Include::IncludePath, info.fileName()));
+        type->setInclude(getRelativeInclude(typeAlias->fileName()));
     }
 
     return meta_class;
@@ -986,8 +1016,7 @@ AbstractMetaClass *AbstractMetaBuilder::traverseClass(ClassModelItem class_item)
     // Set the default include file name. In case we saw an template instance earlier,
     // overwrite the include file when we see the actual declaration.
     if (!type->include().isValid() || class_item->hasActualDeclaration()) {
-        QFileInfo info(class_item->fileName());
-        type->setInclude(Include(Include::IncludePath, info.fileName()));
+        type->setInclude(getRelativeInclude(class_item->fileName()));
     }
 
     return meta_class;
