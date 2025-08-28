@@ -95,6 +95,7 @@ jobs:
       with:
         name: wrappers_${{ matrix.os }}_${{ steps.setenv.outputs.QT_VERSION_SHORT }}
         path: generated_cpp
+        if-no-files-found: error
 
     - name: Build PythonQt Ubuntu
       if: ${{ matrix.os == 'ubuntu' }}
