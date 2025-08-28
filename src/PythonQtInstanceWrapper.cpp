@@ -770,11 +770,7 @@ static PyObject * PythonQtInstanceWrapper_str(PyObject * obj)
   PythonQtInstanceWrapper* wrapper = (PythonQtInstanceWrapper*)obj;
 
   // QByteArray should be directly returned as a str
-#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
   if (wrapper->classInfo()->metaTypeId() == QMetaType::QByteArray) {
-#else
-  if (wrapper->classInfo()->metaTypeId()==QVariant::ByteArray) {
-#endif
     QByteArray* b = (QByteArray*) wrapper->_wrappedPtr;
 #ifdef PY3K
     // Note: In Python 2, this was used to access the data() of a byte array.
