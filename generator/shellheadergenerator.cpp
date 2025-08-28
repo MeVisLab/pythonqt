@@ -345,7 +345,7 @@ void ShellHeaderGenerator::write(QTextStream& s, const AbstractMetaClass* meta_c
       }
     }
   }
-  s << "public slots:" << endl;
+  s << "public Q_SLOTS:" << endl;
   if (meta_class->generateShellClass() || !meta_class->isAbstract()) {
 
     bool copyConstructorSeen = false;
