@@ -5,9 +5,6 @@
 isEmpty( PYTHON_VERSION ) {
   PYTHON_VERSION=$$(PYTHON_VERSION)
 }
-isEmpty( PYTHON_VERSION ) {
-  PYTHON_VERSION=3.10
-}
 
 isEmpty( PYTHON_DIR ) {
   PYTHON_DIR=$$(PYTHON_DIR)
@@ -15,6 +12,11 @@ isEmpty( PYTHON_DIR ) {
 !isEmpty( PYTHON_DIR ) {
   PYTHON_DIR=$${PYTHON_DIR}/
 }
+
+isEmpty( PYTHON_VERSION ) {
+  error(Missing PYTHON_VERSION)
+}
+
 
 PYTHON_VERSION_MAJOR=$$section(PYTHON_VERSION, ., 0, 0)
 PYTHON_VERSION_MINOR=$$section(PYTHON_VERSION, ., 1, 1)
@@ -42,7 +44,17 @@ contains(PKGCONFIG, "python.*"){
 # This can help with GNU/Linux (including macOS with Homebrew), MSYS2/MinGW environment,
 # and also with OpenEmbedded and other cross-builds
   CONFIG += link_pkgconfig
-  PYTHON_PKGCONFIG = $$member($$unique($$find(PKGCONFIG, "python.*")), 1, 1)
+  PYTHON_PKGCONFIG = $$unique(PKGCONFIG)
+  PYTHON_PKGCONFIG = $$find(PYTHON_PKGCONFIG, "python.*")
+  PYTHON_PKGCONFIG = $$member(PYTHON_PKGCONFIG)
+  !system($$pkgConfigExecutable() --modversion $$PYTHON_PKGCONFIG) {
+    message(PKGCONFIG is $$PKGCONFIG)
+    error(Bad or missing Python development package $$PYTHON_PKGCONFIG passed via PKGCONFIG argument)
+  }
+  PYTHON_VERSION_BY_PKGCONFIG = $$system($$pkgConfigExecutable() --modversion $$PYTHON_PKGCONFIG)
+  !equals(PYTHON_VERSION, $$PYTHON_VERSION_BY_PKGCONFIG):error(PYTHON_VERSION $$PYTHON_VERSION \
+         must be equal to the corresponding one from PKGCONFIG $$PYTHON_VERSION_BY_PKGCONFIG)
+
   # add rpath
   PYTHON_LIBDIR = $$system($$pkgConfigExecutable() --libs-only-L $$PYTHON_PKGCONFIG)
   QMAKE_RPATHDIR += $$replace(PYTHON_LIBDIR,-L,)
