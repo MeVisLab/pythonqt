@@ -490,11 +490,7 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
   switch (member._type) {
   case PythonQtMemberInfo::Property:
     if (wrapper->_obj) {
-#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
       if (member._property.userType() != QMetaType::UnknownType) {
-#else
-      if (member._property.userType() != QVariant::Invalid) {
-#endif
 
         PythonQt::ProfilingCB* profilingCB = PythonQt::priv()->profilingCB();
         if (profilingCB) {

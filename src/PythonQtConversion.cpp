@@ -1094,11 +1094,7 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
     ) {
     // no special type requested
     if (val == nullptr) {
-#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
-      type = QMetaType::UnknownType;
-#else
-      type = 0; // Equivalent to QVariant::Invalid or unregistered type
-#endif
+      type = QMetaType::UnknownType; // Equivalent to QVariant::Invalid or unregistered type
     } else if (PyBytes_Check(val)) {
 #ifdef PY3K
       // In Python 3, it is a ByteArray
@@ -1148,11 +1144,7 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
       return v;
     } else if (val == Py_None) {
       // none is invalid
-#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
-      type = QMetaType::UnknownType;
-#else
-      type = 0; // Equivalent to QVariant::Invalid or unregistered type
-#endif
+      type = QMetaType::UnknownType; // Equivalent to QVariant::Invalid or unregistered type
     } else if (PyDict_Check(val)) {
       type = QMetaType::QVariantMap;
     } else if (PyList_Check(val) || PyTuple_Check(val) || PySequence_Check(val)) {
@@ -1165,11 +1157,7 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
   }
   // special type request:
   switch (type) {
-#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
-  case QMetaType::UnknownType:
-#else
-  case 0: // Equivalent to QVariant::Invalid or unregistered type
-#endif
+  case QMetaType::UnknownType: // Equivalent to QVariant::Invalid or unregistered type
     return v;
     break;
   case QMetaType::Int:
