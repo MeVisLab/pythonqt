@@ -270,11 +270,7 @@ PyObject* PythonQtConv::convertQtValueToPythonInternal(int type, const void* dat
      default:
        // check if we have a QList of pointers, which we can circumvent with a QList<void*>
        if (info.isQList && (info.innerNamePointerCount == 1)) {
-#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
-         static int id = QMetaType::fromName("QList<void*>").id();
-#else
-         static int id = QMetaType::type("QList<void*>");
-#endif
+         static int id = PythonQtUtils::metaTypeIdFromTypeName("QList<void*>");
          PythonQtArgumentFrame_ADD_VARIANT_VALUE_BY_ID(frame, id, ptr);
          // return the constData pointer that will be filled with the result value later on
          ptr = (void*)((QVariant*)ptr)->constData();
@@ -315,17 +311,10 @@ void* PythonQtConv::handlePythonToQtAutoConversion(int typeId, PyObject* obj, vo
 {
   void* ptr = alreadyAllocatedCPPObject;
 
-#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
-  static int penId = QMetaType::fromName("QPen").id();
-  static int brushId = QMetaType::fromName("QBrush").id();
-  static int cursorId = QMetaType::fromName("QCursor").id();
-  static int colorId = QMetaType::fromName("QColor").id();
-#else
-  static int penId = QMetaType::type("QPen");
-  static int brushId = QMetaType::type("QBrush");
-  static int cursorId = QMetaType::type("QCursor");
-  static int colorId = QMetaType::type("QColor");
-#endif
+  static int penId = PythonQtUtils::metaTypeIdFromTypeName("QPen");
+  static int brushId = PythonQtUtils::metaTypeIdFromTypeName("QBrush");
+  static int cursorId = PythonQtUtils::metaTypeIdFromTypeName("QCursor");
+  static int colorId = PythonQtUtils::metaTypeIdFromTypeName("QColor");
   static PyObject* qtGlobalColorEnum = PythonQtClassInfo::findEnumWrapper("Qt::GlobalColor", nullptr);
   if (typeId == cursorId) {
     static PyObject* qtCursorShapeEnum = PythonQtClassInfo::findEnumWrapper("Qt::CursorShape", nullptr);
@@ -739,11 +728,7 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
          if (info.typeId == PythonQtMethodInfo::Unknown || info.typeId >= QMetaType::User) {
            // check for QList<AnyPtr*> case, where we will use a QList<void*> QVariant
            if (info.isQList && (info.innerNamePointerCount == 1)) {
-#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
-             static int id = QMetaType::fromName("QList<void*>").id();
-#else
-             static int id = QMetaType::type("QList<void*>");
-#endif
+             static int id = PythonQtUtils::metaTypeIdFromTypeName("QList<void*>");
              if (!alreadyAllocatedCPPObject) {
                PythonQtArgumentFrame_ADD_VARIANT_VALUE_BY_ID_IF_NEEDED(alreadyAllocatedCPPObject, frame, id, ptr);
                ptr = (void*)((QVariant*)ptr)->constData();
@@ -1335,11 +1320,7 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
         // Try to convert the object to a QVariant based on the typeName
         bool ok;
         bool isPtr = false;
-#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
-        QByteArray typeName = QMetaType(type).name();
-#else
-        QByteArray typeName = QMetaType::typeName(type);
-#endif
+        QByteArray typeName = QByteArray(PythonQtUtils::typeNameFromMetaTypeId(type));
         if (typeName.endsWith("*")) {
           isPtr = true;
           typeName.truncate(typeName.length() - 1);
@@ -1617,17 +1598,13 @@ PyObject* PythonQtConv::createCopyFromMetaType( int type, const void* data )
   // if the type is known, we can construct it via QMetaType::construct
 #if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
   void* newCPPObject = QMetaType(type).create(data);
-  // XXX this could be optimized by using metatypeid directly
-  PythonQtInstanceWrapper* wrap = (PythonQtInstanceWrapper*)PythonQt::priv()->wrapPtr(newCPPObject, QMetaType(type).name());
 #elif QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
   void* newCPPObject = QMetaType::create(type, data);
-  // XXX this could be optimized by using metatypeid directly
-  PythonQtInstanceWrapper* wrap = (PythonQtInstanceWrapper*)PythonQt::priv()->wrapPtr(newCPPObject, QMetaType::typeName(type));
 #else
   void* newCPPObject = QMetaType::construct(type, data);
-  // XXX this could be optimized by using metatypeid directly
-  PythonQtInstanceWrapper* wrap = (PythonQtInstanceWrapper*)PythonQt::priv()->wrapPtr(newCPPObject, QMetaType::typeName(type));
 #endif
+  // XXX this could be optimized by using metatypeid directly
+  PythonQtInstanceWrapper* wrap = (PythonQtInstanceWrapper*)PythonQt::priv()->wrapPtr(newCPPObject, QByteArray(PythonQtUtils::typeNameFromMetaTypeId(type)));
   wrap->_ownedByPythonQt = true;
   wrap->_useQMetaTypeDestroy = true;
   return (PyObject*)wrap;

@@ -47,6 +47,7 @@
 
 #include <QByteArray>
 #include <QMetaMethod>
+#include <QMetaType>
 
 namespace PythonQtUtils
 {
@@ -89,6 +90,24 @@ namespace PythonQtUtils
 #else
     // support old-style classes and new style classes
     return (obj->ob_type == &PyClass_Type || obj->ob_type == &PyType_Type);
+#endif
+  }
+
+  //! Returns the meta type ID from a type name
+  inline int metaTypeIdFromTypeName(const QByteArray& className) {
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+    return QMetaType::fromName(className.constData()).id();
+#else
+    return QMetaType::type(className.constData());
+#endif
+  }
+
+  //! Returns the type name from a meta type ID
+  inline const char * typeNameFromMetaTypeId(int metaTypeId) {
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+    return QMetaType(metaTypeId).name();
+#else
+    return QMetaType::typeName(metaTypeId);
 #endif
   }
 }
