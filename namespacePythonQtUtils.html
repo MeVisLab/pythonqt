@@ -56,6 +56,12 @@ Functions</h2></td></tr>
 <tr class="memitem:ab0e6cbe88dacadce307cbb20836ba5bd" id="r_ab0e6cbe88dacadce307cbb20836ba5bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacePythonQtUtils.html#ab0e6cbe88dacadce307cbb20836ba5bd">isPythonClassType</a> (<a class="el" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a> *<a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">obj</a>)</td></tr>
 <tr class="memdesc:ab0e6cbe88dacadce307cbb20836ba5bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns of the python object is a class type.  <br /></td></tr>
 <tr class="separator:ab0e6cbe88dacadce307cbb20836ba5bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6ca760de1a20ef1a270be6ca862738c" id="r_af6ca760de1a20ef1a270be6ca862738c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacePythonQtUtils.html#af6ca760de1a20ef1a270be6ca862738c">metaTypeIdFromTypeName</a> (<a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">const</a> <a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">QByteArray</a> &amp;className)</td></tr>
+<tr class="memdesc:af6ca760de1a20ef1a270be6ca862738c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the meta type ID from a type name.  <br /></td></tr>
+<tr class="separator:af6ca760de1a20ef1a270be6ca862738c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e014240802935b737cf7569e2cfe8f0" id="r_a2e014240802935b737cf7569e2cfe8f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">const</a> <a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">char</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacePythonQtUtils.html#a2e014240802935b737cf7569e2cfe8f0">typeNameFromMetaTypeId</a> (<a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">int</a> metaTypeId)</td></tr>
+<tr class="memdesc:a2e014240802935b737cf7569e2cfe8f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the type name from a meta type ID.  <br /></td></tr>
+<tr class="separator:a2e014240802935b737cf7569e2cfe8f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ab0e6cbe88dacadce307cbb20836ba5bd" name="ab0e6cbe88dacadce307cbb20836ba5bd"></a>
@@ -84,18 +90,57 @@ Functions</h2></td></tr>
 
 <p>Returns of the python object is a class type. </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQtUtils_8h_source.html#l00086">86</a> of file <a class="el" href="PythonQtUtils_8h_source.html">PythonQtUtils.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   86</span>                                               {</div>
-<div class="line"><span class="lineno">   87</span><span class="preprocessor">#ifdef PY3K</span></div>
-<div class="line"><span class="lineno">   88</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">PyType_Check</a>(<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">obj</a>);</div>
-<div class="line"><span class="lineno">   89</span><span class="preprocessor">#else</span></div>
-<div class="line"><span class="lineno">   90</span>    <span class="comment">// support old-style classes and new style classes</span></div>
-<div class="line"><span class="lineno">   91</span>    <span class="keywordflow">return</span> (<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">obj</a>-&gt;ob_type == &amp;<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">PyClass_Type</a> || <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">obj</a>-&gt;ob_type == &amp;<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">PyType_Type</a>);</div>
-<div class="line"><span class="lineno">   92</span><span class="preprocessor">#endif</span></div>
-<div class="line"><span class="lineno">   93</span>  }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQtUtils_8h_source.html#l00087">87</a> of file <a class="el" href="PythonQtUtils_8h_source.html">PythonQtUtils.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   87</span>                                               {</div>
+<div class="line"><span class="lineno">   88</span><span class="preprocessor">#ifdef PY3K</span></div>
+<div class="line"><span class="lineno">   89</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">PyType_Check</a>(<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">obj</a>);</div>
+<div class="line"><span class="lineno">   90</span><span class="preprocessor">#else</span></div>
+<div class="line"><span class="lineno">   91</span>    <span class="comment">// support old-style classes and new style classes</span></div>
+<div class="line"><span class="lineno">   92</span>    <span class="keywordflow">return</span> (<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">obj</a>-&gt;ob_type == &amp;<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">PyClass_Type</a> || <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">obj</a>-&gt;ob_type == &amp;<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">PyType_Type</a>);</div>
+<div class="line"><span class="lineno">   93</span><span class="preprocessor">#endif</span></div>
+<div class="line"><span class="lineno">   94</span>  }</div>
 <div class="ttc" id="aPythonQtConversion_8h_html_a1974947fc423c7148fb94a3b1188dbe6"><div class="ttname"><a href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">PythonQtConvertPairToPython</a></div><div class="ttdeci">PyObject * PythonQtConvertPairToPython(const void *inPair, int metaTypeId)</div><div class="ttdef"><b>Definition</b> <a href="PythonQtConversion_8h_source.html#l00347">PythonQtConversion.h:347</a></div></div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="PythonQtConversion_8h_source.html#l00347">PythonQtConvertPairToPython()</a>.</p>
+
+</div>
+</div>
+<a id="af6ca760de1a20ef1a270be6ca862738c" name="af6ca760de1a20ef1a270be6ca862738c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6ca760de1a20ef1a270be6ca862738c">&#9670;&#160;</a></span>metaTypeIdFromTypeName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">int</a> PythonQtUtils::metaTypeIdFromTypeName </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">const</a> <a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">QByteArray</a> &amp;&#160;</td>
+          <td class="paramname"><em>className</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the meta type ID from a type name. </p>
+
+<p class="definition">Definition at line <a class="el" href="PythonQtUtils_8h_source.html#l00097">97</a> of file <a class="el" href="PythonQtUtils_8h_source.html">PythonQtUtils.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   97</span>                                                                 {</div>
+<div class="line"><span class="lineno">   98</span><span class="preprocessor">#if QT_VERSION &gt;= QT_VERSION_CHECK(6,0,0)</span></div>
+<div class="line"><span class="lineno">   99</span>    <span class="keywordflow">return</span> QMetaType::fromName(className.constData()).id();</div>
+<div class="line"><span class="lineno">  100</span><span class="preprocessor">#else</span></div>
+<div class="line"><span class="lineno">  101</span>    <span class="keywordflow">return</span> QMetaType::type(className.constData());</div>
+<div class="line"><span class="lineno">  102</span><span class="preprocessor">#endif</span></div>
+<div class="line"><span class="lineno">  103</span>  }</div>
+</div><!-- fragment -->
+<p class="reference">Referenced by <a class="el" href="PythonQtConversion_8h_source.html#l00468">PythonQtConvertIntegerMapToPython()</a>, <a class="el" href="PythonQtConversion_8h_source.html#l00347">PythonQtConvertPairToPython()</a>, <a class="el" href="PythonQtConversion_8h_source.html#l00496">PythonQtConvertPythonToIntegerMap()</a>, and <a class="el" href="PythonQtConversion_8h_source.html#l00368">PythonQtConvertPythonToPair()</a>.</p>
 
 </div>
 </div>
@@ -123,17 +168,17 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PythonQtUtils_8h_source.html#l00061">61</a> of file <a class="el" href="PythonQtUtils_8h_source.html">PythonQtUtils.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   61</span>                                                          {</div>
-<div class="line"><span class="lineno">   62</span><span class="preprocessor">#if( QT_VERSION &gt;= QT_VERSION_CHECK(5,0,0) )</span></div>
-<div class="line"><span class="lineno">   63</span>    <span class="keywordflow">return</span> method.name();</div>
-<div class="line"><span class="lineno">   64</span><span class="preprocessor">#else</span></div>
-<div class="line"><span class="lineno">   65</span>    <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">QByteArray</a> <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">sig</a>(method.signature());</div>
-<div class="line"><span class="lineno">   66</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">idx</a> = <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">sig</a>.indexOf(<span class="charliteral">&#39;(&#39;</span>);</div>
-<div class="line"><span class="lineno">   67</span>    <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">sig</a> = <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">sig</a>.left(<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">idx</a>);</div>
-<div class="line"><span class="lineno">   68</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">sig</a>;</div>
-<div class="line"><span class="lineno">   69</span><span class="preprocessor">#endif</span></div>
-<div class="line"><span class="lineno">   70</span>  }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQtUtils_8h_source.html#l00062">62</a> of file <a class="el" href="PythonQtUtils_8h_source.html">PythonQtUtils.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   62</span>                                                          {</div>
+<div class="line"><span class="lineno">   63</span><span class="preprocessor">#if( QT_VERSION &gt;= QT_VERSION_CHECK(5,0,0) )</span></div>
+<div class="line"><span class="lineno">   64</span>    <span class="keywordflow">return</span> method.name();</div>
+<div class="line"><span class="lineno">   65</span><span class="preprocessor">#else</span></div>
+<div class="line"><span class="lineno">   66</span>    <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">QByteArray</a> <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">sig</a>(method.signature());</div>
+<div class="line"><span class="lineno">   67</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">idx</a> = <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">sig</a>.indexOf(<span class="charliteral">&#39;(&#39;</span>);</div>
+<div class="line"><span class="lineno">   68</span>    <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">sig</a> = <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">sig</a>.left(<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">idx</a>);</div>
+<div class="line"><span class="lineno">   69</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">sig</a>;</div>
+<div class="line"><span class="lineno">   70</span><span class="preprocessor">#endif</span></div>
+<div class="line"><span class="lineno">   71</span>  }</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="PythonQtConversion_8h_source.html#l00347">PythonQtConvertPairToPython()</a>.</p>
 
@@ -163,14 +208,14 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PythonQtUtils_8h_source.html#l00053">53</a> of file <a class="el" href="PythonQtUtils_8h_source.html">PythonQtUtils.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   53</span>                                                         {</div>
-<div class="line"><span class="lineno">   54</span><span class="preprocessor">#if( QT_VERSION &gt;= QT_VERSION_CHECK(5,0,0) )</span></div>
-<div class="line"><span class="lineno">   55</span>    <span class="keywordflow">return</span> method.methodSignature();</div>
-<div class="line"><span class="lineno">   56</span><span class="preprocessor">#else</span></div>
-<div class="line"><span class="lineno">   57</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">QByteArray</a>(method.signature());</div>
-<div class="line"><span class="lineno">   58</span><span class="preprocessor">#endif</span></div>
-<div class="line"><span class="lineno">   59</span>  }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQtUtils_8h_source.html#l00054">54</a> of file <a class="el" href="PythonQtUtils_8h_source.html">PythonQtUtils.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   54</span>                                                         {</div>
+<div class="line"><span class="lineno">   55</span><span class="preprocessor">#if( QT_VERSION &gt;= QT_VERSION_CHECK(5,0,0) )</span></div>
+<div class="line"><span class="lineno">   56</span>    <span class="keywordflow">return</span> method.methodSignature();</div>
+<div class="line"><span class="lineno">   57</span><span class="preprocessor">#else</span></div>
+<div class="line"><span class="lineno">   58</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">QByteArray</a>(method.signature());</div>
+<div class="line"><span class="lineno">   59</span><span class="preprocessor">#endif</span></div>
+<div class="line"><span class="lineno">   60</span>  }</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="PythonQtConversion_8h_source.html#l00347">PythonQtConvertPairToPython()</a>.</p>
 
@@ -200,28 +245,69 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PythonQtUtils_8h_source.html#l00072">72</a> of file <a class="el" href="PythonQtUtils_8h_source.html">PythonQtUtils.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   72</span>                                                        {</div>
-<div class="line"><span class="lineno">   73</span><span class="preprocessor">#if( QT_VERSION &gt;= QT_VERSION_CHECK(5,0,0) )</span></div>
-<div class="line"><span class="lineno">   74</span>    <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">QByteArray</a> <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">result</a> = method.typeName();</div>
-<div class="line"><span class="lineno">   75</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">result</a> == <span class="stringliteral">&quot;void&quot;</span>) {</div>
-<div class="line"><span class="lineno">   76</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">QByteArray</a>();</div>
-<div class="line"><span class="lineno">   77</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">   78</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">result</a>;</div>
-<div class="line"><span class="lineno">   79</span>    }</div>
-<div class="line"><span class="lineno">   80</span><span class="preprocessor">#else</span></div>
-<div class="line"><span class="lineno">   81</span>    <span class="keywordflow">return</span> method.typeName();</div>
-<div class="line"><span class="lineno">   82</span><span class="preprocessor">#endif</span></div>
-<div class="line"><span class="lineno">   83</span>  }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQtUtils_8h_source.html#l00073">73</a> of file <a class="el" href="PythonQtUtils_8h_source.html">PythonQtUtils.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   73</span>                                                        {</div>
+<div class="line"><span class="lineno">   74</span><span class="preprocessor">#if( QT_VERSION &gt;= QT_VERSION_CHECK(5,0,0) )</span></div>
+<div class="line"><span class="lineno">   75</span>    <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">QByteArray</a> <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">result</a> = method.typeName();</div>
+<div class="line"><span class="lineno">   76</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">result</a> == <span class="stringliteral">&quot;void&quot;</span>) {</div>
+<div class="line"><span class="lineno">   77</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">QByteArray</a>();</div>
+<div class="line"><span class="lineno">   78</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">   79</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">result</a>;</div>
+<div class="line"><span class="lineno">   80</span>    }</div>
+<div class="line"><span class="lineno">   81</span><span class="preprocessor">#else</span></div>
+<div class="line"><span class="lineno">   82</span>    <span class="keywordflow">return</span> method.typeName();</div>
+<div class="line"><span class="lineno">   83</span><span class="preprocessor">#endif</span></div>
+<div class="line"><span class="lineno">   84</span>  }</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="PythonQtConversion_8h_source.html#l00347">PythonQtConvertPairToPython()</a>.</p>
+
+</div>
+</div>
+<a id="a2e014240802935b737cf7569e2cfe8f0" name="a2e014240802935b737cf7569e2cfe8f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e014240802935b737cf7569e2cfe8f0">&#9670;&#160;</a></span>typeNameFromMetaTypeId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">const</a> <a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">char</a> * PythonQtUtils::typeNameFromMetaTypeId </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">int</a>&#160;</td>
+          <td class="paramname"><em>metaTypeId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the type name from a meta type ID. </p>
+
+<p class="definition">Definition at line <a class="el" href="PythonQtUtils_8h_source.html#l00106">106</a> of file <a class="el" href="PythonQtUtils_8h_source.html">PythonQtUtils.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  106</span>                                                             {</div>
+<div class="line"><span class="lineno">  107</span><span class="preprocessor">#if QT_VERSION &gt;= QT_VERSION_CHECK(6,0,0)</span></div>
+<div class="line"><span class="lineno">  108</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">QMetaType</a>(metaTypeId).name();</div>
+<div class="line"><span class="lineno">  109</span><span class="preprocessor">#else</span></div>
+<div class="line"><span class="lineno">  110</span>    <span class="keywordflow">return</span> QMetaType::typeName(metaTypeId);</div>
+<div class="line"><span class="lineno">  111</span><span class="preprocessor">#endif</span></div>
+<div class="line"><span class="lineno">  112</span>  }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="PythonQtConversion_8h_source.html#l00347">PythonQtConvertPairToPython()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="PythonQtConversion_8h_source.html#l00468">PythonQtConvertIntegerMapToPython()</a>, <a class="el" href="PythonQtConversion_8h_source.html#l00287">PythonQtConvertListOfKnownClassToPythonList()</a>, <a class="el" href="PythonQtConversion_8h_source.html#l00416">PythonQtConvertListOfPairToPythonList()</a>, <a class="el" href="PythonQtConversion_8h_source.html#l00237">PythonQtConvertListOfValueTypeToPythonList()</a>, <a class="el" href="PythonQtConversion_8h_source.html#l00347">PythonQtConvertPairToPython()</a>, <a class="el" href="PythonQtConversion_8h_source.html#l00307">PythonQtConvertPythonListToListOfKnownClass()</a>, <a class="el" href="PythonQtConversion_8h_source.html#l00435">PythonQtConvertPythonListToListOfPair()</a>, <a class="el" href="PythonQtConversion_8h_source.html#l00254">PythonQtConvertPythonListToListOfValueType()</a>, <a class="el" href="PythonQtConversion_8h_source.html#l00496">PythonQtConvertPythonToIntegerMap()</a>, and <a class="el" href="PythonQtConversion_8h_source.html#l00368">PythonQtConvertPythonToPair()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Aug 28 2025 09:43:17 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Aug 28 2025 10:54:25 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
