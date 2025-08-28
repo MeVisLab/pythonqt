@@ -155,7 +155,7 @@ namespace
       std::unique_ptr<simplecpp::TokenList> rawtokens(new simplecpp::TokenList(ba.constData(), ba.size(), files, {}, &outputList));
       rawtokens->removeComments();
       simplecpp::TokenList outputTokens(files);
-      std::map<std::string, simplecpp::TokenList*> filedata;
+      simplecpp::FileDataCache filedata;
       simplecpp::preprocess(outputTokens, *rawtokens, files, filedata, dui, &outputList);
       simplecpp::cleanup(filedata);
       rawtokens.reset();
