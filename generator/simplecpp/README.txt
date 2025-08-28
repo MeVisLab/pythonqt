@@ -1,4 +1,4 @@
-This code is taken from https://github.com/danmar/simplecpp, version 1.2.0
+This code is taken from https://github.com/danmar/simplecpp, version 1.2.0 (a853253)
 
 The code was released under the 0BSD license (see LICENSE file).
 
