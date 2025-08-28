@@ -218,6 +218,18 @@ static void addListRegistration(AbstractMetaType::shared_pointer type, QSet<QStr
   }
 }
 
+namespace {
+  QStringList capitalize(QStringList parts)
+  {
+    for (QString& p : parts) {
+      if (p.length() > 0) {
+        p[0] = p[0].toUpper();
+      }
+    }
+    return parts;
+  }
+}
+
 void SetupGenerator::generate()
 {
   AbstractMetaClassList classes_with_polymorphic_id;
@@ -245,9 +257,19 @@ void SetupGenerator::generate()
 
     QString packKey = ShellGenerator::toFileNameBase(pack.key());
     QString packName = packKey;
-    QString qtPackageName = "Qt" + pack.key().split('.').back().split('_').front();
-    bool isBuiltin = packKey.endsWith("_builtin");
-    QString initName = qtPackageName + (isBuiltin ? "Builtin" : "");
+    QString packageName = pack.key();
+    QString trolltechPrefix = "com.trolltech.";
+    if (packageName.startsWith(trolltechPrefix)) {
+      // remove this prefix
+      packageName = packageName.mid(trolltechPrefix.length());
+    }
+    packageName = capitalize(packageName.split('.')).join("");
+    bool isBuiltin = packageName.endsWith("_builtin");
+    if (isBuiltin) {
+      // remove trailing _builtin from packageName:
+      packageName = packageName.left(packageName.length() - 8);
+    }
+    QString initName = packageName + (isBuiltin ? "Builtin" : "");
 
     {
       QString fileName(packName + "/" + packKey + "_init.cpp");
@@ -336,12 +358,12 @@ void SetupGenerator::generate()
           operatorCodes = "0";
         }
         if (cls->isQObject()) {
-          s << "PythonQt::priv()->registerClass(&" << cls->qualifiedCppName() << "::staticMetaObject, \"" << qtPackageName <<"\", PythonQtCreateObject<PythonQtWrapper_" << cls->name() << ">" << shellCreator << ", module, " << operatorCodes <<");" << endl;
+          s << "PythonQt::priv()->registerClass(&" << cls->qualifiedCppName() << "::staticMetaObject, \"" << packageName <<"\", PythonQtCreateObject<PythonQtWrapper_" << cls->name() << ">" << shellCreator << ", module, " << operatorCodes <<");" << endl;
         } else if (cls->isGlobalNamespace()) {
-          s << "PythonQt::priv()->registerGlobalNamespace(\"" << cls->qualifiedCppName() << "\", \"" << qtPackageName << "\", PythonQtCreateObject<PythonQtWrapper_" << cls->name() << ">, PythonQtWrapper_" << cls->name() << "::staticMetaObject, module); " << endl;
+          s << "PythonQt::priv()->registerGlobalNamespace(\"" << cls->qualifiedCppName() << "\", \"" << packageName << "\", PythonQtCreateObject<PythonQtWrapper_" << cls->name() << ">, PythonQtWrapper_" << cls->name() << "::staticMetaObject, module); " << endl;
         } else {
           QString baseName = cls->baseClass()?cls->baseClass()->qualifiedCppName():"";
-          s << "PythonQt::priv()->registerCPPClass(\""<< cls->qualifiedCppName() << "\", \"" << baseName << "\", \"" << qtPackageName <<"\", PythonQtCreateObject<PythonQtWrapper_" << cls->name() << ">" << shellCreator << ", module, " << operatorCodes <<");" << endl;
+          s << "PythonQt::priv()->registerCPPClass(\""<< cls->qualifiedCppName() << "\", \"" << baseName << "\", \"" << packageName <<"\", PythonQtCreateObject<PythonQtWrapper_" << cls->name() << ">" << shellCreator << ", module, " << operatorCodes <<");" << endl;
         }
         for (AbstractMetaClass* interface :  cls->interfaces()) {
           // the interface might be our own class... (e.g. QPaintDevice)
