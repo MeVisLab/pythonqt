@@ -171,6 +171,10 @@ jobs:
            python-version: '3.11'
            qt-version: '5.12.*'
            configuration: 'debug'
+         - macos-version: 'latest'
+           python-version: '3.11'
+           qt-version: '6.9.*'
+           configuration: 'debug'
     runs-on: macos-${{ matrix.macos-version }}
     steps:
     - name: Install Qt
@@ -269,6 +273,12 @@ jobs:
            python-version: '3.13'
            python-arch: 'x64'
            qt-version: '5.15.*'
+           pythonqtall-config: 'PythonQtCore PythonQtGui PythonQtMultimedia'
+
+         - qt-arch: 'win64_msvc2019_64'
+           python-version: '3.13'
+           python-arch: 'x64'
+           qt-version: '6.9.*'
            pythonqtall-config: 'PythonQtCore PythonQtGui PythonQtMultimedia'
 
          - qt-arch: 'win32_mingw53'
