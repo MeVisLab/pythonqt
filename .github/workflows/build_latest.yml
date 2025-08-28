@@ -19,7 +19,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ['ubuntu', 'windows']
+        os: ['ubuntu', 'macos', 'windows']
         qt-version: [ '5.12.*', '5.15.*', '6.8.*', '6.9.*' ]
         python-version: [ '3.12' ]
     runs-on: ${{ matrix.os }}-latest
@@ -73,6 +73,14 @@ jobs:
         CONFIG+=sanitizer CONFIG+=sanitize_undefined CONFIG+=sanitize_address
         make -j $(nproc)
 
+    - name: Build generator MacOS
+      shell: cmd
+      if: ${{ matrix.os == 'macos' }}
+      run: |
+        cd generator
+        qmake CONFIG+=release CONFIG-=debug_and_release CONFIG-=debug_and_release_target generator.pro
+        make -j $(nproc)
+
     - name: Build generator Windows
       shell: cmd
       if: ${{ matrix.os == 'windows' }}
@@ -110,7 +118,28 @@ jobs:
         PYTHONDEVMODE=1 PYTHONASYNCIODEBUG=1 PYTHONWARNINGS=error PYTHONMALLOC=malloc_debug \
         UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
           make check TESTARGS="-platform offscreen"
-          
+ 
+    - name: Build PythonQt Macos
+      if: ${{ matrix.os == 'macos' }}
+      run: |
+        set -ue
+        echo ======= SYSTEM INFO ========
+        uname -a; gcc --version | head -n 1; python --version; qmake --version
+        echo ============================
+        PYTHON_VERSION_MAJOR=$(cut -d . -f1 <<< ${{ steps.versions.outputs.PYTHON_VERSION_SHORT }})
+        for i in "python${{ steps.versions.outputs.PYTHON_VERSION_SHORT }}-embed" "python${{ steps.versions.outputs.PYTHON_VERSION_SHORT }}" \
+                 "python${PYTHON_VERSION_MAJOR}-embed" "python${PYTHON_VERSION_MAJOR}"
+        do if pkg-config --exists "$i"; then PYTHON_PKGCONFIG_NAME="$i"; break; fi; done
+        qmake CONFIG+=ccache CONFIG+=${{ matrix.configuration }} CONFIG+=sanitizer CONFIG+=sanitize_undefined CONFIG+=sanitize_address \
+          PYTHON_VERSION=${{ steps.versions.outputs.PYTHON_VERSION_SHORT }} \
+          PYTHON_DIR="$pythonLocation" \
+          PKGCONFIG+=$PYTHON_PKGCONFIG_NAME \
+          -r PythonQt.pro
+        make -j $(nproc)
+        PYTHONDEVMODE=1 PYTHONASYNCIODEBUG=1 PYTHONWARNINGS=error PYTHONMALLOC=malloc_debug \
+        UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
+          make check TESTARGS="-platform offscreen"
+ 
     - name: Build PythonQt Windows
       shell: cmd
       if: ${{ matrix.os == 'windows' }}
