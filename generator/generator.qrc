@@ -2,6 +2,7 @@
 <qresource prefix="/trolltech/generator/">
 <file>qtscript_masterinclude.h</file>
 <file>build_all.txt</file>
+<file alias="typesystem_general.txt">typesystem_general.xml</file>
 <file alias="typesystem_core.txt">typesystem_core.xml</file>
 <file alias="typesystem_gui.txt">typesystem_gui.xml</file>
 <file alias="typesystem_sql.txt">typesystem_sql.xml</file>
