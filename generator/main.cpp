@@ -48,6 +48,11 @@
 #include "generatorset.h"
 #include "fileout.h"
 #include "control.h"
+
+// Enable simplecpp’s legacy raw-pointer TokenList API so that the PythonQt
+// generator can keep using its existing integration.
+// Reference: https://github.com/danmar/simplecpp/pull/496
+#define SIMPLECPP_TOKENLIST_ALLOW_PTR
 #include "simplecpp.h"
 
 #include <QDir>

@@ -466,17 +466,10 @@ simplecpp::TokenList::TokenList(std::istream &istr, std::vector<std::string> &fi
     readfile(stream,filename,outputList);
 }
 
-simplecpp::TokenList::TokenList(const unsigned char* data, std::size_t size, std::vector<std::string> &filenames, const std::string &filename, OutputList *outputList)
+simplecpp::TokenList::TokenList(const unsigned char* data, std::size_t size, std::vector<std::string> &filenames, const std::string &filename, OutputList *outputList, int /*unused*/)
     : frontToken(nullptr), backToken(nullptr), files(filenames)
 {
     StdCharBufStream stream(data, size);
-    readfile(stream,filename,outputList);
-}
-
-simplecpp::TokenList::TokenList(const char* data, std::size_t size, std::vector<std::string> &filenames, const std::string &filename, OutputList *outputList)
-    : frontToken(nullptr), backToken(nullptr), files(filenames)
-{
-    StdCharBufStream stream(reinterpret_cast<const unsigned char*>(data), size);
     readfile(stream,filename,outputList);
 }
 
@@ -611,7 +604,7 @@ static void portabilityBackslash(simplecpp::OutputList *outputList, const std::v
     err.type = simplecpp::Output::PORTABILITY_BACKSLASH;
     err.location = location;
     err.msg = "Combination 'backslash space newline' is not portable.";
-    outputList->push_back(err);
+    outputList->push_back(std::move(err));
 }
 
 static bool isStringLiteralPrefix(const std::string &str)
@@ -761,18 +754,18 @@ void simplecpp::TokenList::readfile(Stream &stream, const std::string &filename,
             while (stream.good() && ch != '\n') {
                 currentToken += ch;
                 ch = stream.readChar();
-                if(ch == '\\') {
+                if (ch == '\\') {
                     TokenString tmp;
                     char tmp_ch = ch;
-                    while((stream.good()) && (tmp_ch == '\\' || tmp_ch == ' ' || tmp_ch == '\t')) {
+                    while ((stream.good()) && (tmp_ch == '\\' || tmp_ch == ' ' || tmp_ch == '\t')) {
                         tmp += tmp_ch;
                         tmp_ch = stream.readChar();
                     }
-                    if(!stream.good()) {
+                    if (!stream.good()) {
                         break;
                     }
 
-                    if(tmp_ch != '\n') {
+                    if (tmp_ch != '\n') {
                         currentToken += tmp;
                     } else {
                         const TokenString check_portability = currentToken + tmp;
@@ -855,7 +848,7 @@ void simplecpp::TokenList::readfile(Stream &stream, const std::string &filename,
                         err.type = Output::SYNTAX_ERROR;
                         err.location = location;
                         err.msg = "Raw string missing terminating delimiter.";
-                        outputList->push_back(err);
+                        outputList->push_back(std::move(err));
                     }
                     return;
                 }
@@ -1397,7 +1390,7 @@ std::string simplecpp::TokenList::readUntil(Stream &stream, const Location &loca
             err.type = Output::SYNTAX_ERROR;
             err.location = location;
             err.msg = std::string("No pair for character (") + start + "). Can't process file. File is either invalid or unicode, which is currently not supported.";
-            outputList->push_back(err);
+            outputList->push_back(std::move(err));
         }
         return "";
     }
@@ -1667,7 +1660,7 @@ namespace simplecpp {
             }
 
             invalidHashHash(const Location &loc, const std::string &macroName, const std::string &message)
-                : Error(loc, format(macroName, message)) { }
+                : Error(loc, format(macroName, message)) {}
 
             static inline invalidHashHash unexpectedToken(const Location &loc, const std::string &macroName, const Token *tokenA) {
                 return invalidHashHash(loc, macroName, "Unexpected token '"+ tokenA->str()+"'");
@@ -2178,7 +2171,7 @@ namespace simplecpp {
                 if (it != macros.end() && !partok->isExpandedFrom(&it->second) && (partok->str() == name() || expandedmacros.find(partok->str()) == expandedmacros.end())) {
                     std::set<TokenString> expandedmacros2(expandedmacros); // temporary amnesia to allow reexpansion of currently expanding macros during argument evaluation
                     expandedmacros2.erase(name());
-                    partok = it->second.expand(output, loc, partok, macros, expandedmacros2);
+                    partok = it->second.expand(output, loc, partok, macros, std::move(expandedmacros2));
                 } else {
                     output->push_back(newMacroToken(partok->str(), loc, isReplaced(expandedmacros), partok));
                     output->back()->macro = partok->macro;
@@ -2385,12 +2378,17 @@ namespace simplecpp {
 namespace simplecpp {
 
 #ifdef __CYGWIN__
+    static bool startsWith(const std::string &s, const std::string &p)
+    {
+        return (s.size() >= p.size()) && std::equal(p.begin(), p.end(), s.begin());
+    }
+
     std::string convertCygwinToWindowsPath(const std::string &cygwinPath)
     {
         std::string windowsPath;
 
         std::string::size_type pos = 0;
-        if (cygwinPath.size() >= 11 && startsWith_(cygwinPath, "/cygdrive/")) {
+        if (cygwinPath.size() >= 11 && startsWith(cygwinPath, "/cygdrive/")) {
             const unsigned char driveLetter = cygwinPath[10];
             if (std::isalpha(driveLetter)) {
                 if (cygwinPath.size() == 11) {
@@ -2667,7 +2665,7 @@ static unsigned long long stringToULLbounded(
     int base = 0,
     std::ptrdiff_t minlen = 1,
     std::size_t maxlen = std::string::npos
-)
+    )
 {
     const std::string sub = s.substr(pos, maxlen);
     const char * const start = sub.c_str();
@@ -3024,8 +3022,7 @@ std::pair<simplecpp::FileData *, bool> simplecpp::FileDataCache::tryload(FileDat
         return {id_it->second, false};
     }
 
-    std::ifstream f(path);
-    FileData *const data = new FileData {path, TokenList(f, filenames, path, outputList)};
+    FileData *const data = new FileData {path, TokenList(path, filenames, outputList)};
 
     if (dui.removeComments)
         data->tokens.removeComments();
@@ -3132,7 +3129,7 @@ simplecpp::FileDataCache simplecpp::load(const simplecpp::TokenList &rawtokens, 
                 err.type = simplecpp::Output::EXPLICIT_INCLUDE_NOT_FOUND;
                 err.location = Location(filenames);
                 err.msg = "Can not open include file '" + filename + "' that is explicitly included.";
-                outputList->push_back(err);
+                outputList->push_back(std::move(err));
             }
             continue;
         }
@@ -3205,7 +3202,7 @@ static bool preprocessToken(simplecpp::TokenList &output, const simplecpp::Token
                 out.type = simplecpp::Output::SYNTAX_ERROR;
                 out.location = err.location;
                 out.msg = "failed to expand \'" + tok->str() + "\', " + err.what;
-                outputList->push_back(out);
+                outputList->push_back(std::move(out));
             }
             return false;
         }
@@ -3349,7 +3346,7 @@ void simplecpp::preprocess(simplecpp::TokenList &output, const simplecpp::TokenL
             includetokenstack.push(filedata->tokens.cfront());
     }
 
-    std::map<std::string, std::list<Location> > maybeUsedMacros;
+    std::map<std::string, std::list<Location>> maybeUsedMacros;
 
     for (const Token *rawtok = nullptr; rawtok || !includetokenstack.empty();) {
         if (rawtok == nullptr) {
@@ -3392,7 +3389,7 @@ void simplecpp::preprocess(simplecpp::TokenList &output, const simplecpp::TokenL
                         err.msg += tok->str();
                     }
                     err.msg = '#' + rawtok->str() + ' ' + err.msg;
-                    outputList->push_back(err);
+                    outputList->push_back(std::move(err));
                 }
 /* Patched for PythonQt generator: Do not stop on #error directive:
                 if (rawtok->str() == ERROR) {
@@ -3554,7 +3551,7 @@ void simplecpp::preprocess(simplecpp::TokenList &output, const simplecpp::TokenL
                                     out.type = Output::SYNTAX_ERROR;
                                     out.location = rawtok->location;
                                     out.msg = "failed to evaluate " + std::string(rawtok->str() == IF ? "#if" : "#elif") + " condition";
-                                    outputList->push_back(out);
+                                    outputList->push_back(std::move(out));
                                 }
                                 output.clear();
                                 return;
@@ -3733,7 +3730,7 @@ void simplecpp::preprocess(simplecpp::TokenList &output, const simplecpp::TokenL
                 mu.macroName = macro.name();
                 mu.macroLocation = macro.defineLocation();
                 mu.useLocation = *usageIt;
-                macroUsage->push_back(mu);
+                macroUsage->push_back(std::move(mu));
             }
         }
     }
@@ -3748,11 +3745,11 @@ simplecpp::cstd_t simplecpp::getCStd(const std::string &std)
 {
     if (std == "c90" || std == "c89" || std == "iso9899:1990" || std == "iso9899:199409" || std == "gnu90" || std == "gnu89")
         return C89;
-    if (std == "c99" || std == "c9x" || std == "iso9899:1999" || std == "iso9899:199x" || std == "gnu99"|| std == "gnu9x")
+    if (std == "c99" || std == "c9x" || std == "iso9899:1999" || std == "iso9899:199x" || std == "gnu99" || std == "gnu9x")
         return C99;
     if (std == "c11" || std == "c1x" || std == "iso9899:2011" || std == "gnu11" || std == "gnu1x")
         return C11;
-    if (std == "c17" || std == "c18" || std == "iso9899:2017" || std == "iso9899:2018" || std == "gnu17"|| std == "gnu18")
+    if (std == "c17" || std == "c18" || std == "iso9899:2017" || std == "iso9899:2018" || std == "gnu17" || std == "gnu18")
         return C17;
     if (std == "c23" || std == "gnu23" || std == "c2x" || std == "gnu2x")
         return C23;
