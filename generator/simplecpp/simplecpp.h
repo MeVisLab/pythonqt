@@ -20,6 +20,16 @@
 #include <string>
 #include <unordered_map>
 #include <vector>
+#if __cplusplus >= 202002L
+#  include <version>
+#endif
+
+#if defined(__cpp_lib_string_view) && !defined(__cpp_lib_span)
+#include <string_view>
+#endif
+#ifdef __cpp_lib_span
+#include <span>
+#endif
 
 #ifdef _WIN32
 #  ifdef SIMPLECPP_EXPORT
@@ -44,6 +54,15 @@
 // suppress warnings about "conversion from 'type1' to 'type2', possible loss of data"
 #  pragma warning(disable : 4267)
 #  pragma warning(disable : 4244)
+#endif
+
+// provide legacy (i.e. raw pointer) API for TokenList
+// note: std::istream has an overhead compared to raw pointers
+#ifndef SIMPLECPP_TOKENLIST_ALLOW_PTR
+// still provide the legacy API in case we lack the performant wrappers
+#  if !defined(__cpp_lib_string_view) && !defined(__cpp_lib_span)
+#    define SIMPLECPP_TOKENLIST_ALLOW_PTR
+#  endif
 #endif
 
 namespace simplecpp {
@@ -114,8 +133,7 @@ namespace simplecpp {
         }
 
         Token(const Token &tok) :
-            macro(tok.macro), op(tok.op), comment(tok.comment), name(tok.name), number(tok.number), whitespaceahead(tok.whitespaceahead), location(tok.location), previous(nullptr), next(nullptr), nextcond(nullptr), string(tok.string), mExpandedFrom(tok.mExpandedFrom) {
-        }
+            macro(tok.macro), op(tok.op), comment(tok.comment), name(tok.name), number(tok.number), whitespaceahead(tok.whitespaceahead), location(tok.location), previous(nullptr), next(nullptr), nextcond(nullptr), string(tok.string), mExpandedFrom(tok.mExpandedFrom) {}
 
         void flags() {
             name = (std::isalpha(static_cast<unsigned char>(string[0])) || string[0] == '_' || string[0] == '$')
@@ -217,10 +235,45 @@ namespace simplecpp {
         explicit TokenList(std::vector<std::string> &filenames);
         /** generates a token list from the given std::istream parameter */
         TokenList(std::istream &istr, std::vector<std::string> &filenames, const std::string &filename=std::string(), OutputList *outputList = nullptr);
+#ifdef SIMPLECPP_TOKENLIST_ALLOW_PTR
         /** generates a token list from the given buffer */
-        TokenList(const unsigned char* data, std::size_t size, std::vector<std::string> &filenames, const std::string &filename=std::string(), OutputList *outputList = nullptr);
+        template<size_t size>
+        TokenList(const char (&data)[size], std::vector<std::string> &filenames, const std::string &filename=std::string(), OutputList *outputList = nullptr)
+            : TokenList(reinterpret_cast<const unsigned char*>(data), size-1, filenames, filename, outputList, 0)
+        {}
         /** generates a token list from the given buffer */
-        TokenList(const char* data, std::size_t size, std::vector<std::string> &filenames, const std::string &filename=std::string(), OutputList *outputList = nullptr);
+        template<size_t size>
+        TokenList(const unsigned char (&data)[size], std::vector<std::string> &filenames, const std::string &filename=std::string(), OutputList *outputList = nullptr)
+            : TokenList(data, size-1, filenames, filename, outputList, 0)
+        {}
+
+        /** generates a token list from the given buffer */
+        TokenList(const unsigned char* data, std::size_t size, std::vector<std::string> &filenames, const std::string &filename=std::string(), OutputList *outputList = nullptr)
+            : TokenList(data, size, filenames, filename, outputList, 0)
+        {}
+        /** generates a token list from the given buffer */
+        TokenList(const char* data, std::size_t size, std::vector<std::string> &filenames, const std::string &filename=std::string(), OutputList *outputList = nullptr)
+            : TokenList(reinterpret_cast<const unsigned char*>(data), size, filenames, filename, outputList, 0)
+        {}
+#endif
+#if defined(__cpp_lib_string_view) && !defined(__cpp_lib_span)
+        /** generates a token list from the given buffer */
+        TokenList(std::string_view data, std::vector<std::string> &filenames, const std::string &filename=std::string(), OutputList *outputList = nullptr)
+            : TokenList(reinterpret_cast<const unsigned char*>(data.data()), data.size(), filenames, filename, outputList, 0)
+        {}
+#endif
+#ifdef __cpp_lib_span
+        /** generates a token list from the given buffer */
+        TokenList(std::span<const char> data, std::vector<std::string> &filenames, const std::string &filename=std::string(), OutputList *outputList = nullptr)
+            : TokenList(reinterpret_cast<const unsigned char*>(data.data()), data.size(), filenames, filename, outputList, 0)
+        {}
+
+        /** generates a token list from the given buffer */
+        TokenList(std::span<const unsigned char> data, std::vector<std::string> &filenames, const std::string &filename=std::string(), OutputList *outputList = nullptr)
+            : TokenList(data.data(), data.size(), filenames, filename, outputList, 0)
+        {}
+#endif
+
         /** generates a token list from the given filename parameter */
         TokenList(const std::string &filename, std::vector<std::string> &filenames, OutputList *outputList = nullptr);
         TokenList(const TokenList &other);
@@ -296,6 +349,8 @@ namespace simplecpp {
         }
 
     private:
+        TokenList(const unsigned char* data, std::size_t size, std::vector<std::string> &filenames, const std::string &filename, OutputList *outputList, int unused);
+
         void combineOperators();
 
         void constFoldUnaryNotPosNeg(Token *tok);
@@ -325,9 +380,9 @@ namespace simplecpp {
     struct SIMPLECPP_LIB MacroUsage {
         explicit MacroUsage(const std::vector<std::string> &f, bool macroValueKnown_) : macroLocation(f), useLocation(f), macroValueKnown(macroValueKnown_) {}
         std::string macroName;
-        Location    macroLocation;
-        Location    useLocation;
-        bool        macroValueKnown;
+        Location macroLocation;
+        Location useLocation;
+        bool macroValueKnown;
     };
 
     /** Tracking #if/#elif expressions */
@@ -505,6 +560,8 @@ namespace simplecpp {
     SIMPLECPP_LIB std::string getCppStdString(const std::string &std);
     SIMPLECPP_LIB std::string getCppStdString(cppstd_t std);
 }
+
+#undef SIMPLECPP_TOKENLIST_ALLOW_PTR
 
 #if defined(_MSC_VER)
 #  pragma warning(pop)

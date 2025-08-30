@@ -1,4 +1,4 @@
-This code is taken from https://github.com/danmar/simplecpp, version post-1.5.2 (538c5c4)
+This code is taken from https://github.com/danmar/simplecpp, version post-1.5.2 (37fa4f4)
 
 The code was released under the 0BSD license (see LICENSE file).
 
