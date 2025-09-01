@@ -1226,7 +1226,7 @@ Public Slots</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="PythonQtStdDecorators_8h_source.html#l00110">110</a> of file <a class="el" href="PythonQtStdDecorators_8h_source.html">PythonQtStdDecorators.h</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  111</span>  {</div>
-<div class="line"><span class="lineno">  112</span><span class="preprocessor">#if QT_VERSION &lt; 0x060000</span></div>
+<div class="line"><span class="lineno">  112</span><span class="preprocessor">#if (QT_VERSION &lt; QT_VERSION_CHECK(5, 15, 0))</span></div>
 <div class="line"><span class="lineno">  113</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">qrand</a>();</div>
 <div class="line"><span class="lineno">  114</span><span class="preprocessor">#else</span></div>
 <div class="line"><span class="lineno">  115</span>    <span class="keywordflow">return</span> QRandomGenerator::global()-&gt;generate();</div>
@@ -1325,7 +1325,7 @@ Public Slots</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="PythonQtStdDecorators_8h_source.html#l00119">119</a> of file <a class="el" href="PythonQtStdDecorators_8h_source.html">PythonQtStdDecorators.h</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  120</span>  {</div>
-<div class="line"><span class="lineno">  121</span><span class="preprocessor">#if QT_VERSION &lt; 0x060000</span></div>
+<div class="line"><span class="lineno">  121</span><span class="preprocessor">#if (QT_VERSION &lt; QT_VERSION_CHECK(5, 15, 0))</span></div>
 <div class="line"><span class="lineno">  122</span>    <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">qsrand</a>(<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">a</a>);</div>
 <div class="line"><span class="lineno">  123</span><span class="preprocessor">#else</span></div>
 <div class="line"><span class="lineno">  124</span>    QRandomGenerator::global()-&gt;seed(<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">a</a>);</div>
@@ -1549,7 +1549,7 @@ Public Slots</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Aug 31 2025 07:26:33 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Sep 1 2025 04:47:37 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
