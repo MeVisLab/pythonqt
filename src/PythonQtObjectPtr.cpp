@@ -109,7 +109,7 @@ PythonQtObjectPtr::PythonQtObjectPtr(PythonQtSafeObjectPtr &&p) :_object(p.takeO
 
 PythonQtObjectPtr::~PythonQtObjectPtr()
 {
-  if (_object && Py_IsInitialized()) Py_XDECREF(_object);
+  if (Py_IsInitialized()) Py_XDECREF(_object);
 }
 
 void PythonQtObjectPtr::setNewRef(PyObject* o)
@@ -172,7 +172,7 @@ PythonQtSafeObjectPtr::~PythonQtSafeObjectPtr()
 {
   if (_object) {
     PYTHONQT_GIL_SCOPE
-    if (_object && Py_IsInitialized()) Py_DECREF(_object);
+    if (Py_IsInitialized()) Py_DECREF(_object);
   }
 }
 
