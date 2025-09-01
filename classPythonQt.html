@@ -119,6 +119,13 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a778d24f5a68d1038483d5f8f48c258be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a531b249881ff4b3b8b3ed8b6781a3e04" id="r_a531b249881ff4b3b8b3ed8b6781a3e04"><td class="memItemLeft" align="right" valign="top"><a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQt.html#a531b249881ff4b3b8b3ed8b6781a3e04">setRedirectStdInCallbackEnabled</a> (<a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">bool</a> <a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">enabled</a>)</td></tr>
 <tr class="separator:a531b249881ff4b3b8b3ed8b6781a3e04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Standard output handling</div></td></tr>
+<tr class="memitem:ac824d40f69b272e80c9cfbff940bf8a6" id="r_ac824d40f69b272e80c9cfbff940bf8a6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQt.html#ac824d40f69b272e80c9cfbff940bf8a6">redirectStdOutCallbackEnabled</a> () <a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">const</a></td></tr>
+<tr class="memdesc:ac824d40f69b272e80c9cfbff940bf8a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">return <em>true</em> if std out/err redirection is enabled.  <br /></td></tr>
+<tr class="separator:ac824d40f69b272e80c9cfbff940bf8a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8767eb418886af541ff0029c93ac5e7" id="r_ab8767eb418886af541ff0029c93ac5e7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQt.html#ab8767eb418886af541ff0029c93ac5e7">setRedirectStdOutCallbackEnabled</a> (<a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">bool</a> <a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">enabled</a>)</td></tr>
+<tr class="memdesc:ab8767eb418886af541ff0029c93ac5e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">enable or disable std out/err redirection to <a class="el" href="classPythonQt.html#ad7b67af6c8fe2f90936f56647eef7f6c" title="emitted when python outputs something to stdout (and redirection is turned on)">pythonStdOut()</a> and <a class="el" href="classPythonQt.html#a841922522ed91de81aa0b52b5390d16c" title="emitted when python outputs something to stderr (and redirection is turned on)">pythonStdErr()</a> signals.  <br /></td></tr>
+<tr class="separator:ab8767eb418886af541ff0029c93ac5e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Modules</div></td></tr>
 <tr class="memitem:a95f68cbdfb7503b40361c6967e241de4" id="r_a95f68cbdfb7503b40361c6967e241de4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPythonQtObjectPtr.html">PythonQtObjectPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQt.html#a95f68cbdfb7503b40361c6967e241de4">getMainModule</a> ()</td></tr>
 <tr class="memdesc:a95f68cbdfb7503b40361c6967e241de4"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the <b>main</b> module of python  <br /></td></tr>
@@ -1645,8 +1652,8 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>this installs the default QFile importer (which effectively does a setImporter(NULL)) (without calling setImporter or installDefaultImporter at least once, the default python import mechanism is in place) the default importer allows to import files from anywhere QFile can read from, including the Qt resource system using ":". Keep in mind that you need to extend "sys.path" with ":" to be able to import from the Qt resources. </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00539">539</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  539</span>{ <a class="code hl_function" href="classPythonQt.html#a7887ccc0daf281f429123d243085b0fc">setImporter</a>(<span class="keyword">nullptr</span>); }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00551">551</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  551</span>{ <a class="code hl_function" href="classPythonQt.html#a7887ccc0daf281f429123d243085b0fc">setImporter</a>(<span class="keyword">nullptr</span>); }</div>
 <div class="ttc" id="aclassPythonQt_html_a7887ccc0daf281f429123d243085b0fc"><div class="ttname"><a href="classPythonQt.html#a7887ccc0daf281f429123d243085b0fc">PythonQt::setImporter</a></div><div class="ttdeci">void setImporter(PythonQtImportFileInterface *importInterface)</div></div>
 </div><!-- fragment -->
 </div>
@@ -1888,8 +1895,8 @@ Public Member Functions</h2></td></tr>
 
 <p>get access to internal data (should not be used on the public API, but is used by some C functions) </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00557">557</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  557</span>{ <span class="keywordflow">return</span> _self-&gt;_p; }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00569">569</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  569</span>{ <span class="keywordflow">return</span> _self-&gt;_p; }</div>
 </div><!-- fragment -->
 <p class="reference">Referenced by <a class="el" href="PythonQtConversion_8h_source.html#l00287">PythonQtConvertListOfKnownClassToPythonList()</a>, and <a class="el" href="PythonQtConversion_8h_source.html#l00307">PythonQtConvertPythonListToListOfKnownClass()</a>.</p>
 
@@ -2042,6 +2049,25 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>call the callback if it is set </p>
+
+</div>
+</div>
+<a id="ac824d40f69b272e80c9cfbff940bf8a6" name="ac824d40f69b272e80c9cfbff940bf8a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac824d40f69b272e80c9cfbff940bf8a6">&#9670;&#160;</a></span>redirectStdOutCallbackEnabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">bool</a> PythonQt::redirectStdOutCallbackEnabled </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>return <em>true</em> if std out/err redirection is enabled. </p>
 
 </div>
 </div>
@@ -2573,6 +2599,26 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ab8767eb418886af541ff0029c93ac5e7" name="ab8767eb418886af541ff0029c93ac5e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8767eb418886af541ff0029c93ac5e7">&#9670;&#160;</a></span>setRedirectStdOutCallbackEnabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">void</a> PythonQt::setRedirectStdOutCallbackEnabled </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">bool</a>&#160;</td>
+          <td class="paramname"><em>enabled</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>enable or disable std out/err redirection to <a class="el" href="classPythonQt.html#ad7b67af6c8fe2f90936f56647eef7f6c" title="emitted when python outputs something to stdout (and redirection is turned on)">pythonStdOut()</a> and <a class="el" href="classPythonQt.html#a841922522ed91de81aa0b52b5390d16c" title="emitted when python outputs something to stderr (and redirection is turned on)">pythonStdErr()</a> signals. </p>
+
+</div>
+</div>
 <a id="a1a3b7ff8320bd7bb00a80f603677bd50" name="a1a3b7ff8320bd7bb00a80f603677bd50"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1a3b7ff8320bd7bb00a80f603677bd50">&#9670;&#160;</a></span>setSystemExitExceptionHandlerEnabled()</h2>
 
@@ -2643,7 +2689,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Sep 1 2025 09:14:15 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Sep 1 2025 13:05:45 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
