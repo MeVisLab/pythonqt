@@ -223,6 +223,9 @@ int PythonQtInstanceWrapper_init(PythonQtInstanceWrapper * self, PyObject * args
 
 static PyObject *PythonQtInstanceWrapper_richcompare(PythonQtInstanceWrapper* wrapper, PyObject* other, int code)
 {
+  if (PythonQt::self() == nullptr || PythonQt::priv() == nullptr) {
+    Py_RETURN_NOTIMPLEMENTED;
+  }
   bool validPtrs = false;
   bool areSamePtrs = false;
   if (PyObject_TypeCheck((PyObject*)wrapper, &PythonQtInstanceWrapper_Type)) {
@@ -335,6 +338,10 @@ static PyObject *PythonQtInstanceWrapper_classname(PythonQtInstanceWrapper* obj)
 
 PyObject *PythonQtInstanceWrapper_inherits(PythonQtInstanceWrapper* obj, PyObject *args)
 {
+  if (PythonQt::self() == nullptr || PythonQt::priv() == nullptr) {
+    PyErr_SetString(PyExc_RuntimeError, "PythonQt is not initialized (or has been finalized)");
+    return nullptr;
+  }
   char *name = nullptr;
   if (!PyArg_ParseTuple(args, "s:PythonQtInstanceWrapper.inherits",&name)) {
     return nullptr;
@@ -344,11 +351,17 @@ PyObject *PythonQtInstanceWrapper_inherits(PythonQtInstanceWrapper* obj, PyObjec
 
 static PyObject *PythonQtInstanceWrapper_help(PythonQtInstanceWrapper* obj)
 {
+  if (PythonQt::self() == nullptr || PythonQt::priv() == nullptr) {
+    Py_RETURN_NONE;
+  }
   return PythonQt::self()->helpCalled(obj->classInfo());
 }
 
 PyObject *PythonQtInstanceWrapper_delete(PythonQtInstanceWrapper * self)
 {
+  if (PythonQt::self() == nullptr || PythonQt::priv() == nullptr) {
+    Py_RETURN_NONE;
+  }
   PythonQtMemberInfo deleteSlot = self->classInfo()->member("py_delete");
   if (deleteSlot._type == PythonQtMemberInfo::Slot) {
     // call the py_delete slot instead of internal C++ destructor...
@@ -380,6 +393,9 @@ static PyMethodDef PythonQtInstanceWrapper_methods[] = {
 
 static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
 {
+  if (PythonQt::self() == nullptr || PythonQt::priv() == nullptr) {
+    return PyObject_GenericGetAttr(obj, name);
+  }
   const char *attributeName;
   PythonQtInstanceWrapper *wrapper = (PythonQtInstanceWrapper *)obj;
 
@@ -611,6 +627,10 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
 
 static int PythonQtInstanceWrapper_setattro(PyObject *obj,PyObject *name,PyObject *value)
 {
+  if (PythonQt::self() == nullptr || PythonQt::priv() == nullptr) {
+    PyErr_SetString(PyExc_AttributeError, "PythonQt is not initialized (or has been finalized); cannot set attributes on this wrapper");
+    return -1;
+  }
   QString error;
   const char *attributeName;
   PythonQtInstanceWrapper *wrapper = (PythonQtInstanceWrapper *)obj;
@@ -763,6 +783,9 @@ static QString getStringFromObject(PythonQtInstanceWrapper* wrapper) {
 
 static PyObject * PythonQtInstanceWrapper_str(PyObject * obj)
 {
+  if (PythonQt::self() == nullptr || PythonQt::priv() == nullptr) {
+    return PyUnicode_New(0, 0);
+  }
   PythonQtInstanceWrapper* wrapper = (PythonQtInstanceWrapper*)obj;
 
   // QByteArray should be directly returned as a str
@@ -808,6 +831,9 @@ static PyObject * PythonQtInstanceWrapper_str(PyObject * obj)
 
 static PyObject * PythonQtInstanceWrapper_repr(PyObject * obj)
 {
+  if (PythonQt::self() == nullptr || PythonQt::priv() == nullptr) {
+    return PyUnicode_New(0, 0);
+  }
   PythonQtInstanceWrapper* wrapper = (PythonQtInstanceWrapper*)obj;
   const char* typeName = obj->ob_type->tp_name;
 
