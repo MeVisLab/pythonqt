@@ -102,12 +102,17 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
     }
 
 #ifdef PY3K
-    PythonQtObjectPtr asyncio;
-    asyncio.setNewRef(PyImport_ImportModule("asyncio"));
-    if (asyncio)
-    {
-      _self->_p->_pyEnsureFuture = asyncio.getVariable("ensure_future");
-      _self->_p->_pyFutureClass = asyncio.getVariable("Future");
+    // Import asyncio only when not explicitly disabled.
+    // Importing asyncio on Py3.12+ pulls in ssl/_ssl; some environments/tests
+    // want to avoid that during early embedded init.
+    if (!qEnvironmentVariableIsSet("PYTHONQT_DISABLE_ASYNCIO")) {
+        PythonQtObjectPtr asyncio;
+        asyncio.setNewRef(PyImport_ImportModule("asyncio"));
+        if (asyncio)
+        {
+          _self->_p->_pyEnsureFuture = asyncio.getVariable("ensure_future");
+          _self->_p->_pyFutureClass = asyncio.getVariable("Future");
+        }
     }
 #endif
 
