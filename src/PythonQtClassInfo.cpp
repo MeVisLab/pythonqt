@@ -1043,6 +1043,11 @@ void PythonQtClassInfo::addGlobalNamespaceWrapper(PythonQtClassInfo* namespaceWr
   _globalNamespaceWrappers.insert(0, namespaceWrapper);
 }
 
+void PythonQtClassInfo::clearGlobalNamespaceWrappers()
+{
+  _globalNamespaceWrappers.clear();
+}
+
 void PythonQtClassInfo::updateRefCountingCBs()
 {
   if (!_refCallback) {

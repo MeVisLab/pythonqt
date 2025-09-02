@@ -421,9 +421,10 @@ PythonQtPrivate::~PythonQtPrivate() {
   delete _defaultImporter;
   _defaultImporter = nullptr;
 
-  {
-    qDeleteAll(_knownClassInfos);
-  }
+  PythonQtClassInfo::clearGlobalNamespaceWrappers();
+
+  qDeleteAll(_knownClassInfos);
+  _knownClassInfos.clear();
 
   PythonQtMethodInfo::cleanupCachedMethodInfos();
   PythonQtArgumentFrame::cleanupFreeList();
