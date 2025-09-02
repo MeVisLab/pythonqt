@@ -55,6 +55,12 @@ int main( int argc, char **argv )
     return 0;
   }
 
+  if (QProcessEnvironment::systemEnvironment().contains("PYTHONQT_RUN_ONLY_CLEANUP_TESTS")) {
+    PythonQtTestCleanup cleanup;
+    QTest::qExec(&cleanup, argc, argv);
+    return 0;
+  }
+
   PythonQt::init(PythonQt::IgnoreSiteModule | PythonQt::RedirectStdOut);
   int failCount = 0;
   PythonQtTestApi api;
@@ -69,9 +75,6 @@ int main( int argc, char **argv )
   if (Py_IsInitialized()) {
     Py_Finalize();
   }
-
-  PythonQtTestCleanup cleanup;
-  failCount += QTest::qExec(&cleanup, argc, argv);
 
   if (failCount) {
     std::cerr << "Tests failed: " << failCount << std::endl;
