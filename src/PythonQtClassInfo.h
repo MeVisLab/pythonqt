@@ -244,6 +244,10 @@ public:
   //! Add a wrapper that contains global enums
   static void addGlobalNamespaceWrapper(PythonQtClassInfo* namespaceWrapper);
 
+  //! Clear the registry of global-namespace wrappers (used for top-level enums).
+  //! Must be called before destroying PythonQtClassInfo instances and before a fresh init.
+  static void clearGlobalNamespaceWrappers();
+
 private:
   void updateRefCountingCBs();
 
