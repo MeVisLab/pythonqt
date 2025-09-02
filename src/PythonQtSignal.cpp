@@ -116,8 +116,7 @@ meth_dealloc(PyObject *o)
 static PyObject *
 meth_get__doc__(PythonQtSignalFunctionObject * /*m*/, void * /*closure*/)
 {
-  Py_INCREF(Py_None);
-  return Py_None;
+  Py_RETURN_NONE;
 }
 
 static PyObject *

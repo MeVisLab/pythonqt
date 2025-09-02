@@ -253,8 +253,7 @@ static PyObject *PythonQtInstanceWrapper_richcompare(PythonQtInstanceWrapper* wr
     } else if (validPtrs && code == Py_NE) {
       return PythonQtConv::GetPyBool(!areSamePtrs);
     }
-    Py_INCREF(Py_NotImplemented);
-    return Py_NotImplemented;
+    Py_RETURN_NOTIMPLEMENTED;
   }
 
   QByteArray memberName;
@@ -313,19 +312,16 @@ static PyObject *PythonQtInstanceWrapper_richcompare(PythonQtInstanceWrapper* wr
       // special handling of EQ and NE, if call fails we just return EQ == false / NE == true.
       if (code == Py_EQ) {
         PyErr_Clear();
-        Py_INCREF(Py_False);
-        return Py_False;
+        Py_RETURN_FALSE;
       } else if (code == Py_NE) {
         PyErr_Clear();
-        Py_INCREF(Py_True);
-        return Py_True;
+        Py_RETURN_TRUE;
       }
     }
     return result;
   } else {
     // not implemented, let python try something else!
-    Py_INCREF(Py_NotImplemented);
-    return Py_NotImplemented;
+    Py_RETURN_NOTIMPLEMENTED;
   }
 }
 
@@ -359,8 +355,7 @@ PyObject *PythonQtInstanceWrapper_delete(PythonQtInstanceWrapper * self)
   } else {
     PythonQtInstanceWrapper_deleteObject(self, true);
   }
-  Py_INCREF(Py_None);
-  return Py_None;
+  Py_RETURN_NONE;
 }
 
 
@@ -509,8 +504,7 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
         return value;
 
       } else {
-        Py_INCREF(Py_None);
-        return Py_None;
+        Py_RETURN_NONE;
       }
     } else {
       QString error = QString("Trying to read property '") + attributeName + "' from a destroyed " + wrapper->classInfo()->className() + " object";

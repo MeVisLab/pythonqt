@@ -449,8 +449,7 @@ static PyObject* PythonQtClassWrapper_getDummyInstanceForProperty(PythonQtClassW
   if (info) {
     return (PyObject*)PythonQt::priv()->createNewPythonQtInstanceWrapper(nullptr, info);
   }
-  Py_INCREF(Py_None);
-  return Py_None;
+  Py_RETURN_NONE;
 }
 
 static PyObject *PythonQtClassWrapper_getattro(PyObject *obj, PyObject *name)
