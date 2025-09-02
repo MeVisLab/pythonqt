@@ -82,6 +82,13 @@ jobs:
         UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=1:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
         PYTHONQT_RUN_ONLY_MEMORY_TESTS=1 \
           make check TESTARGS="-platform minimal"
+
+    - name: Run cleanup tests with sanitizers
+      run: |
+        PYTHONDEVMODE=1 PYTHONASYNCIODEBUG=1 PYTHONWARNINGS=error PYTHONMALLOC=malloc_debug \
+        UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=1:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
+        PYTHONQT_RUN_ONLY_CLEANUP_TESTS=1 \
+          make check TESTARGS="-platform minimal"
       
     - name: Generate Wrappers
       run: |
