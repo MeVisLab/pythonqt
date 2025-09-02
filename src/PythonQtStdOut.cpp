@@ -102,8 +102,7 @@ static PyObject *PythonQtStdOutRedirect_flush(PyObject * /*self*/, PyObject * /*
 
 static PyObject *PythonQtStdOutRedirect_isatty(PyObject * /*self*/, PyObject * /*args*/)
 {
-  Py_INCREF(Py_False);
-  return Py_False;
+  Py_RETURN_FALSE;
 }
 
 static PyMethodDef PythonQtStdOutRedirect_methods[] = {

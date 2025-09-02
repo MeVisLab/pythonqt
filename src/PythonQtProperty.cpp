@@ -179,8 +179,7 @@ static PyObject *PythonQtProperty_get_doc(PythonQtProperty* self, void * /*closu
     return self->data->doc;
   } else {
     //TODO: we could get the doc string from the fget method if no doc string is given...
-    Py_INCREF(Py_None);
-    return Py_None;
+    Py_RETURN_NONE;
   }
 }
 

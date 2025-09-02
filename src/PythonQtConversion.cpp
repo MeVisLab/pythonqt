@@ -83,22 +83,19 @@ PyObject* PythonQtConv::ConvertQtValueToPython(const PythonQtMethodInfo::Paramet
       return PythonQtPrivate::createEnumValueInstance(info.enumWrapper, *((unsigned int*)data));
     } else {
       // we do not support pointers to enums (who needs them?)
-      Py_INCREF(Py_None);
-      return Py_None;
+      Py_RETURN_NONE;
     }
   }
 
   if (info.typeId == QMetaType::Void) {
-    Py_INCREF(Py_None);
-    return Py_None;
+    Py_RETURN_NONE;
   } else if ((info.pointerCount == 1) && (info.typeId == QMetaType::Char)) {
     // a char ptr will probably be a null terminated string, so we support that:
     char* charPtr = *((char**)data);
     if (charPtr) {
       return PyString_FromString(charPtr);
     } else {
-      Py_INCREF(Py_None);
-      return Py_None;
+      Py_RETURN_NONE;
     }
   } else if ((info.typeId == PythonQtMethodInfo::Unknown || info.typeId >= QMetaType::User) &&
              info.isQList && (info.innerNamePointerCount == 1)) {
@@ -151,15 +148,13 @@ PyObject* PythonQtConv::ConvertQtValueToPython(const PythonQtMethodInfo::Paramet
       }
     }
   }
-  Py_INCREF(Py_None);
-  return Py_None;
+  Py_RETURN_NONE;
 }
 
 PyObject* PythonQtConv::convertQtValueToPythonInternal(int type, const void* data) {
   switch (type) {
   case QMetaType::Void:
-    Py_INCREF(Py_None);
-    return Py_None;
+    Py_RETURN_NONE;
   case QMetaType::Char:
     return PyInt_FromLong(*((char*)data));
   case QMetaType::UChar:
@@ -232,8 +227,7 @@ PyObject* PythonQtConv::convertQtValueToPythonInternal(int type, const void* dat
       }
     }
   }
-  Py_INCREF(Py_None);
-  return Py_None;
+  Py_RETURN_NONE;
  }
 
  void* PythonQtConv::CreateQtReturnValue(const PythonQtMethodInfo::ParameterInfo& info, PythonQtArgumentFrame* frame) {
@@ -1389,8 +1383,7 @@ PyObject* PythonQtConv::QStringListToPyList(const QStringList& list)
 PyObject* PythonQtConv::QVariantToPyObject(const QVariant& v)
 {
   if (!v.isValid()) {
-    Py_INCREF(Py_None);
-    return Py_None;
+    Py_RETURN_NONE;
   }
   PyObject* obj = nullptr;
   if (v.userType() >= QMetaType::User && !PythonQt::priv()->isPythonQtAnyObjectPtrMetaId(v.userType())) {

@@ -191,8 +191,7 @@ PythonQtImporter_find_module(PyObject *obj, PyObject *args)
     Py_INCREF(self);
     return (PyObject *)self;
   } else {
-    Py_INCREF(Py_None);
-    return Py_None;
+    Py_RETURN_NONE;
   }
 }
 
@@ -625,16 +624,14 @@ PythonQtImport::unmarshalCode(const QString& path, const QByteArray& data, time_
   if (size <= 9) {
     PySys_WriteStderr("# %s has bad pyc data\n",
                       QStringToPythonConstCharPointer(path));
-    Py_INCREF(Py_None);
-    return Py_None;
+    Py_RETURN_NONE;
   }
 
   if (getLong((unsigned char *)buf) != PyImport_GetMagicNumber()) {
     if (Py_VerboseFlag)
       PySys_WriteStderr("# %s has bad magic\n",
             QStringToPythonConstCharPointer(path));
-    Py_INCREF(Py_None);
-    return Py_None;
+    Py_RETURN_NONE;
   }
 
   if (mtime != 0) {
@@ -644,8 +641,7 @@ PythonQtImport::unmarshalCode(const QString& path, const QByteArray& data, time_
       if (Py_VerboseFlag)
         PySys_WriteStderr("# %s has bad mtime\n",
         QStringToPythonConstCharPointer(path));
-      Py_INCREF(Py_None);
-      return Py_None;
+      Py_RETURN_NONE;
     }
   }
 

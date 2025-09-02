@@ -622,8 +622,7 @@ void PythonQtPrivate::createPythonQtClassWrapper(PythonQtClassInfo* info, const 
 PyObject* PythonQtPrivate::wrapQObject(QObject* obj)
 {
   if (!obj) {
-    Py_INCREF(Py_None);
-    return Py_None;
+    Py_RETURN_NONE;
   }
   PythonQtInstanceWrapper* wrap = findWrapperAndRemoveUnused(obj);
   if (wrap && wrap->_wrappedPtr) {
@@ -652,8 +651,7 @@ PyObject* PythonQtPrivate::wrapQObject(QObject* obj)
 PyObject* PythonQtPrivate::wrapPtr(void* ptr, const QByteArray& name, bool passOwnership)
 {
   if (!ptr) {
-    Py_INCREF(Py_None);
-    return Py_None;
+    Py_RETURN_NONE;
   }
 
   PythonQtInstanceWrapper* wrap = findWrapperAndRemoveUnused(ptr);
