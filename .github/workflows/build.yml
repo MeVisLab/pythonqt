@@ -85,6 +85,14 @@ jobs:
 
     - name: Run cleanup tests with sanitizers
       run: |
+        # CPython 3.12 only: suppress its known interned-unicode leak that
+        # shows up as allocations via PyUnicode_New (python/cpython#113190).
+        # Fixed in 3.13 (python/cpython#113601), so we scope this to 3.12.
+        PYVER=$(python3 -c 'import sys; print(".".join(map(str, sys.version_info[:2])))')
+        if [[ "$PYVER" == "3.12" ]]; then
+          echo "leak:PyUnicode_New" >> $PWD/lsan.supp
+          export LSAN_OPTIONS="suppressions=$PWD/lsan.supp"
+        fi
         PYTHONDEVMODE=1 PYTHONASYNCIODEBUG=1 PYTHONWARNINGS=error PYTHONMALLOC=malloc_debug \
         UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=1:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
         PYTHONQT_RUN_ONLY_CLEANUP_TESTS=1 \
