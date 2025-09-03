@@ -68,7 +68,29 @@ private Q_SLOTS:
   void testSeveralCleanup();
   void testInitWithPreconfig();
   void testInitAlreadyInitialized();
+  void cleanup();
 };
+
+// For the moment, it's not critical for tests;
+// the main thing is to be able to build with the correct g++ and sanitizers.
+template <typename T>
+class PtrRegistry {
+public:
+    static T* registerPtr(T* object) {
+      _objects.append(object);
+      return object;
+    }
+
+    static void clear() {
+      qDeleteAll(_objects);
+    }
+
+private:
+    static QList<T*> _objects;
+};
+
+template<typename T>
+QList<T*> PtrRegistry<T>::_objects;
 
 //! test the PythonQt api
 class PythonQtTestApi : public QObject
@@ -77,6 +99,7 @@ class PythonQtTestApi : public QObject
 
 private Q_SLOTS:
   void initTestCase();
+  void cleanupTestCase();
   void testCall();
   void testVariables();
   void testRedirect();
@@ -98,19 +121,21 @@ class ClassA {
 public:
   ClassA() { x = 1; }
   int x;
+  virtual ~ClassA() = default;
 };
 
 class ClassB {
 public:
   ClassB() { y = 2; }
   int y;
-
+  virtual ~ClassB() = default;
   virtual int type() { return 2; }
 };
 
 class ClassC : public ClassA, public ClassB {
 public:
   ClassC() { z = 3; }
+  virtual ~ClassC() override = default;
   int z;
 
   virtual int type() { return 3; }
@@ -120,6 +145,7 @@ class ClassD : public QObject, public ClassA, public ClassB {
   Q_OBJECT
 public:
   ClassD() { d = 4; }
+  virtual ~ClassD() override = default;
   public Q_SLOTS:
     int getD() { return d; }
 private:
@@ -133,6 +159,7 @@ class ClassAWrapper : public QObject {
 public Q_SLOTS:
   ClassA* new_ClassA() { return new ClassA; }
   int getX(ClassA* o) { return o->x; }
+  void delete_ClassA(ClassA* o) { delete o; }
 };
 
 class ClassBWrapper : public QObject {
@@ -140,6 +167,8 @@ class ClassBWrapper : public QObject {
 public Q_SLOTS:
   ClassB* new_ClassB() { return new ClassB; }
   int getY(ClassB* o) { return o->y; }
+  void delete_ClassB(ClassB* o) { delete o; }
+
 };
 
 class ClassCWrapper : public QObject {
@@ -147,12 +176,14 @@ class ClassCWrapper : public QObject {
 public Q_SLOTS:
   ClassC* new_ClassC() { return new ClassC; }
   int getZ(ClassC* o) { return o->z; }
+  void delete_ClassC(ClassC* o) { delete o; }
 };
 
 class ClassDWrapper : public QObject {
   Q_OBJECT
     public Q_SLOTS:
       ClassD* new_ClassD() { return new ClassD; }
+      void delete_ClassD(ClassD* o) { delete o; }
 };
 
 
@@ -161,8 +192,7 @@ class PythonQtTestApiHelper : public QObject , public PythonQtImportFileInterfac
 {
   Q_OBJECT
 public:
-  PythonQtTestApiHelper() {
-  };
+  PythonQtTestApiHelper(QObject* parent = nullptr): QObject(parent) {}
 
   bool call(const QString& function, const QVariantList& args, const QVariant& expectedResult);
 
@@ -192,6 +222,7 @@ private:
 // test implementation of the wrapper factory
 class PythonQtTestCppFactory : public PythonQtCppWrapperFactory 
 {
+  QObject _genericParent;
 public:
   virtual QObject* create(const QByteArray& name, void *ptr);
 };
@@ -260,6 +291,8 @@ public Q_SLOTS:
     return new PQCppObjectNoWrap(2);
   }
 
+  void delete_PQCppObjectNoWrap(PQCppObjectNoWrap* o) { delete o; }
+
   int  getH(PQCppObjectNoWrap* obj) { return obj->getHeight(); }
 
 };
@@ -297,6 +330,8 @@ public:
     return new PQCppObject2();
   }
 
+  void delete_PQCppObject2(PQCppObject2* o) { delete o; }
+
   TestEnumFlag testEnumFlag1(PQCppObject2* obj, TestEnumFlag flag);
 
   PQCppObject2::TestEnumFlag testEnumFlag2(PQCppObject2* obj, PQCppObject2::TestEnumFlag flag);
@@ -327,7 +362,7 @@ class PythonQtTestSlotCalling : public QObject
 private Q_SLOTS:
   void initTestCase();
   void init();
-
+  void cleanupTestCase();
   void testNoArgSlotCall();
   void testPODSlotCalls();
   void testCPPSlotCalls();
@@ -502,18 +537,18 @@ public Q_SLOTS:
   QObject* getQObject(QObject* obj) { _called = true; return obj; }
   QWidget* getQWidget(QWidget* obj) { _called = true; return obj; }
   //! testing if an object that was not wrapped is wrapped earlier is wrapped correctly
-  QObject* getNewObject() { _called = true; return new PythonQtTestSlotCallingHelper(NULL); }
+  QObject* getNewObject() { _called = true; return PtrRegistry<PythonQtTestSlotCallingHelper>::registerPtr(new PythonQtTestSlotCallingHelper(NULL)); }
 
   QVariantList getMultiArgs(int a, double b, const QString& str) { _called = true; return (QVariantList() << a << b << str); }
 
   //! cpp wrapper factory test
-  PQCppObject* createPQCppObject(int h) { _called = true; return new PQCppObject(h); }
+  PQCppObject* createPQCppObject(int h) { _called = true; return PtrRegistry<PQCppObject>::registerPtr(new PQCppObject(h)); }
 
   //! cpp wrapper factory test
   PQCppObject* getPQCppObject(PQCppObject* p) { _called = true; return p; }
 
   //! cpp wrapper factory test
-  PQCppObjectNoWrap* createPQCppObjectNoWrap(int h) { _called = true; return new PQCppObjectNoWrap(h); }
+  PQCppObjectNoWrap* createPQCppObjectNoWrap(int h) { _called = true; return PtrRegistry<PQCppObjectNoWrap>::registerPtr(new PQCppObjectNoWrap(h)); }
 
   //! cpp wrapper factory test
   PQCppObjectNoWrap* getPQCppObjectNoWrap(PQCppObjectNoWrap* p) { _called = true; return p; }
@@ -524,22 +559,24 @@ public Q_SLOTS:
   PQUnknownButRegisteredValueObject getUnknownButRegisteredValueObjectAsValue() { _called = true; return PQUnknownButRegisteredValueObject(); }
   PQUnknownValueObject              getUnknownValueObjectAsValue() { _called = true; return PQUnknownValueObject(); }
 
-  PQUnknownButRegisteredValueObject* getUnknownButRegisteredValueObjectAsPtr() { _called = true; return new PQUnknownButRegisteredValueObject(); }
-  PQUnknownValueObject*              getUnknownValueObjectAsPtr() { _called = true; return new PQUnknownValueObject(); }
+  PQUnknownButRegisteredValueObject* getUnknownButRegisteredValueObjectAsPtr() { _called = true;
+     return PtrRegistry<PQUnknownButRegisteredValueObject>::registerPtr(new PQUnknownButRegisteredValueObject()); }
+  PQUnknownValueObject*              getUnknownValueObjectAsPtr() { _called = true;
+     return PtrRegistry<PQUnknownValueObject>::registerPtr(new PQUnknownValueObject()); }
 
   ClassA* getClassAPtr(ClassA* o) { _called = true; return o; }
   ClassB* getClassBPtr(ClassB* o) { _called = true; return o; }
   ClassC* getClassCPtr(ClassC* o) { _called = true; return o; }
   ClassD* getClassDPtr(ClassD* o) { _called = true; return o; }
 
-  ClassA* createClassA() { _called = true; return new ClassA; }
-  ClassB* createClassB() { _called = true; return new ClassB; }
-  ClassC* createClassC() { _called = true; return new ClassC; }
-  ClassD* createClassD() { _called = true; return new ClassD; }
-  ClassA* createClassCAsA() { _called = true; return new ClassC; }
-  ClassB* createClassCAsB() { _called = true; return new ClassC; }
-  ClassA* createClassDAsA() { _called = true; return new ClassD; }
-  ClassB* createClassDAsB() { _called = true; return new ClassD; }
+  ClassA* createClassA() { _called = true; return PtrRegistry<ClassA>::registerPtr(new ClassA); }
+  ClassB* createClassB() { _called = true; return PtrRegistry<ClassB>::registerPtr(new ClassB); }
+  ClassC* createClassC() { _called = true; return PtrRegistry<ClassC>::registerPtr(new ClassC); }
+  ClassD* createClassD() { _called = true; return PtrRegistry<ClassD>::registerPtr(new ClassD); }
+  ClassA* createClassCAsA() { _called = true; return PtrRegistry<ClassC>::registerPtr(new ClassC); }
+  ClassB* createClassCAsB() { _called = true; return PtrRegistry<ClassC>::registerPtr(new ClassC);  }
+  ClassA* createClassDAsA() { _called = true; return PtrRegistry<ClassD>::registerPtr(new ClassD);  }
+  ClassB* createClassDAsB() { _called = true; return PtrRegistry<ClassD>::registerPtr(new ClassD);  }
 
   QColor  setAutoConvertColor(const QColor& color) { _called = true; return color; }
   QBrush  setAutoConvertBrush(const QBrush& brush) { _called = true; return brush; }
@@ -562,7 +599,7 @@ class PythonQtTestSignalHandler : public QObject
 
 private Q_SLOTS:
   void initTestCase();
-
+  void cleanupTestCase();
   void testSignalHandler();
   void testRecursiveSignalHandler();
 
@@ -577,9 +614,8 @@ class PythonQtTestSignalHandlerHelper : public QObject
   Q_OBJECT
 
 public:
-  PythonQtTestSignalHandlerHelper(PythonQtTestSignalHandler* test) {
-    _test = test;
-  }
+  PythonQtTestSignalHandlerHelper(PythonQtTestSignalHandler* test): _test(test)
+   {}
 
 public Q_SLOTS:
   void setPassed() { _passed = true; }
@@ -615,5 +651,19 @@ private:
 
   PythonQtTestSignalHandler* _test;
 };
+
+
+inline void cleanupPtr()
+{
+  PtrRegistry<ClassA>::clear();
+  PtrRegistry<ClassB>::clear();
+  PtrRegistry<ClassC>::clear();
+  PtrRegistry<ClassD>::clear();
+  PtrRegistry<PQUnknownValueObject>::clear();
+  PtrRegistry<PQUnknownButRegisteredValueObject>::clear();
+  PtrRegistry<PQCppObjectNoWrap>::clear();
+  PtrRegistry<PQCppObject>::clear();
+  PtrRegistry<PythonQtTestSlotCallingHelper>::clear();
+}
 
 #endif

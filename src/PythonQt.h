@@ -241,6 +241,8 @@ public:
   //! get the singleton instance
   static PythonQt* self();
 
+  static void preCleanup();
+
   //@}
 
   //! defines the object types for introspection
@@ -673,6 +675,8 @@ class PYTHONQT_EXPORT PythonQtPrivate : public QObject {
 public:
   PythonQtPrivate();
   ~PythonQtPrivate() override;
+
+  void preCleanup();
 
   enum DecoratorTypes {
     StaticDecorator = 1,

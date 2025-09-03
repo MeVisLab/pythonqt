@@ -197,15 +197,15 @@ private:
 class PYTHONQT_EXPORT PythonQtSafeObjectPtr
 {
 public:
-  PythonQtSafeObjectPtr() :_object(nullptr) {}
+  PythonQtSafeObjectPtr() = default;
 
   PythonQtSafeObjectPtr(const PythonQtSafeObjectPtr &p)
-    :_object(nullptr) {
+  {
     setObject(p.object());
   }
 
   PythonQtSafeObjectPtr(const PythonQtObjectPtr &p)
-    :_object(nullptr) {
+  {
     setObject(p.object());
   }
 
@@ -299,7 +299,7 @@ protected:
   void setObjectUnsafe(PyObject* o);
 
 private:
-  PyObject* _object;
+  PyObject* _object {};
 };
 
 // We don't want QVariant to take PythonQtObjectPtr via QVariant::fromValue, because it is unsafe when using multi-threading/GIL

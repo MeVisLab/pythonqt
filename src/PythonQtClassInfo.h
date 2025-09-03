@@ -41,16 +41,12 @@
 #include <QByteArray>
 #include <QList>
 
-class PythonQtSlotInfo;
-class PythonQtClassInfo;
+#include <PythonQtMethodInfo.h>
 
 struct PythonQtDynamicClassInfo
 {
-  PythonQtDynamicClassInfo() { _dynamicMetaObject = nullptr; _classInfo = nullptr; }
-  ~PythonQtDynamicClassInfo();
-
-  const QMetaObject* _dynamicMetaObject;
-  PythonQtClassInfo* _classInfo;
+  const QMetaObject* _dynamicMetaObject {};
+  QScopedPointer<PythonQtClassInfo> _classInfo;
 };
 
 struct PythonQtMemberInfo {
@@ -58,20 +54,27 @@ struct PythonQtMemberInfo {
     Invalid, Slot, Signal, EnumValue, EnumWrapper, Property, NestedClass, NotFound
   };
 
-  PythonQtMemberInfo():_type(Invalid),_slot(nullptr),_pythonType(nullptr),_enumValue(nullptr) { }
+  PythonQtMemberInfo() = default;
 
-  PythonQtMemberInfo(PythonQtSlotInfo* info);
+  explicit PythonQtMemberInfo(PythonQtSlotInfo* info)
+    : _type(info->metaMethod()->methodType() == QMetaMethod::Signal? Signal : Slot)
+    , _slot(info)
+  {}
 
-  PythonQtMemberInfo(const PythonQtObjectPtr& enumValue);
+  explicit PythonQtMemberInfo(PyObject* enumValue)
+    : _type (EnumValue), _enumValue(enumValue)
+  {}
 
-  PythonQtMemberInfo(const QMetaProperty& prop);
+  explicit PythonQtMemberInfo(const QMetaProperty& prop)
+     : _type (Property), _property(prop)
+   {}
 
-  Type              _type;
+  Type              _type { Invalid };
 
   // TODO: this could be a union...
-  PythonQtSlotInfo* _slot;
-  PyObject*         _pythonType;
-  PythonQtObjectPtr _enumValue;
+  PythonQtSlotInfo* _slot {};
+  PyObject*         _pythonType {};
+  PyObject* _enumValue {};
   QMetaProperty     _property;
 };
 
@@ -177,10 +180,10 @@ public:
   void addParentClass(const ParentClassInfo& info) { _parentClasses.append(info); }
 
   //! set the associated PythonQtClassWrapper (which handles instance creation of this type)
-  void setPythonQtClassWrapper(PyObject* obj) { _pythonQtClassWrapper = obj; }
+  void setPythonQtClassWrapper(PyObject* obj) { _pythonQtClassWrapper.setNewRef(obj); }
 
   //! get the associated PythonQtClassWrapper (which handles instance creation of this type)
-  PyObject* pythonQtClassWrapper() { return _pythonQtClassWrapper; }
+  PyObject* pythonQtClassWrapper() { return _pythonQtClassWrapper.object(); }
 
   //! set the shell set instance wrapper cb
   void setShellSetInstanceWrapperCB(PythonQtShellSetInstanceWrapperCB* cb) {
@@ -244,6 +247,9 @@ public:
   //! Add a wrapper that contains global enums
   static void addGlobalNamespaceWrapper(PythonQtClassInfo* namespaceWrapper);
 
+  //! Clear all statically allocated caches and wrappers
+  static void clearInteralStaticData();
+
 private:
   void updateRefCountingCBs();
 
@@ -294,7 +300,7 @@ private:
   QObject*                             _decoratorProvider;
   PythonQtQObjectCreatorFunctionCB*    _decoratorProviderCB;
 
-  PyObject*                            _pythonQtClassWrapper;
+  PythonQtObjectPtr                            _pythonQtClassWrapper;
 
   PythonQtShellSetInstanceWrapperCB*   _shellSetInstanceWrapperCB;
 

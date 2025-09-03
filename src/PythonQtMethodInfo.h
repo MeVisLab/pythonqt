@@ -139,7 +139,7 @@ protected:
   static QHash<QByteArray, QByteArray> _parameterNameAliases;
 
   //! stores the cached signatures of methods to speedup mapping from Qt to Python types
-  static QHash<QByteArray, PythonQtMethodInfo*> _cachedSignatures;
+  static QHash<QByteArray, QSharedPointer<PythonQtMethodInfo>> _cachedSignatures;
 
   static QHash<int, ParameterInfo> _cachedParameterInfos;
 

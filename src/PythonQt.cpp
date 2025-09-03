@@ -326,9 +326,15 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
 void PythonQt::cleanup()
 {
   if (_self) {
+    _self->removeSignalHandlers();
     delete _self;
     _self = nullptr;
   }
+}
+
+void PythonQt::preCleanup()
+{
+   _self->priv()->preCleanup();
 }
 
 PythonQt* PythonQt::self() { return _self; }
@@ -350,6 +356,12 @@ PythonQt::PythonQt(int flags, const QByteArray& pythonQtModuleName)
     }
     Py_Initialize();
   }
+
+#if defined(PYTHONQT_FULL_THREAD_SUPPORT) && PY_VERSION_HEX < 0x03090000
+    if (!PyEval_ThreadsInitialized()) {
+        PyEval_InitThreads();
+    }
+#endif
 
   // add our own python object types for qt object slots
   if (PyType_Ready(&PythonQtSlotFunction_Type) < 0) {
@@ -417,9 +429,9 @@ PythonQtPrivate::~PythonQtPrivate() {
   delete _defaultImporter;
   _defaultImporter = nullptr;
 
-  {
-    qDeleteAll(_knownClassInfos);
-  }
+  qDeleteAll(_knownClassInfos);
+  _knownClassInfos.clear();
+  PythonQtClassInfo::clearInteralStaticData();
 
   PythonQtMethodInfo::cleanupCachedMethodInfos();
   PythonQtArgumentFrame::cleanupFreeList();
@@ -1559,6 +1571,16 @@ PythonQtClassInfo* PythonQtPrivate::currentClassInfoForClassWrapperCreation()
   return info;
 }
 
+void PythonQtPrivate::preCleanup()
+{
+  _pySourceFileLoader = nullptr;
+  _pySourcelessFileLoader = nullptr;
+  _pyEnsureFuture = nullptr;
+  _pyFutureClass = nullptr;
+  _pyTaskDoneCallback = nullptr;
+  _pythonQtModule = nullptr;
+}
+
 void PythonQtPrivate::addDecorators(QObject* o, int decoTypes)
 {
   if (o == nullptr)
@@ -2398,7 +2420,7 @@ const QMetaObject* PythonQtPrivate::buildDynamicMetaObject(PythonQtClassWrapper*
   }
   if (needsMetaObject) {
     type->_dynamicClassInfo->_dynamicMetaObject = builder.toMetaObject();
-    type->_dynamicClassInfo->_classInfo = new PythonQtClassInfo();
+    type->_dynamicClassInfo->_classInfo.reset(new PythonQtClassInfo());
     type->_dynamicClassInfo->_classInfo->setupQObject(type->_dynamicClassInfo->_dynamicMetaObject);
   } else {
     // we don't need an own meta object, just use the one from our base class
@@ -2678,6 +2700,23 @@ PythonQtClassInfo* PythonQtPrivate::getClassInfo( const QByteArray& className )
           std::cerr << "PythonQt lazy import " << module.constData() << " did not resolve " << className.constData() <<std::endl;
         }
       }
+    }
+  }
+
+  if (!result) {
+    bool ambiguity = false;
+    for(auto &&key: _knownClassInfos.keys()) {
+      if (key.indexOf(QByteArray("::") + className) >= 0) {
+        if (!result) {
+          result = _knownClassInfos.value(key);
+        } else {
+          ambiguity = true;
+          std::cerr << "Multiple candidates found for" << '\n';
+        }
+      }
+    }
+    if (ambiguity) {
+      return nullptr;
     }
   }
   return result;

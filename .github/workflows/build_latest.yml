@@ -110,7 +110,7 @@ jobs:
         make -j $(nproc)
         PYTHONDEVMODE=1 PYTHONASYNCIODEBUG=1 PYTHONWARNINGS=error PYTHONMALLOC=malloc_debug \
         UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
-          make check TESTARGS="-platform offscreen"
+          make check
           
     - name: Build PythonQt Windows
       shell: cmd
@@ -126,4 +126,4 @@ jobs:
         set PYTHONDEVMODE=1
         set PYTHONASYNCIODEBUG=1
         set PYTHONWARNINGS=error
-        nmake && nmake check "TESTARGS=-platform offscreen"
+        nmake && nmake check
