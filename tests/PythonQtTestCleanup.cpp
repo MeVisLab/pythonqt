@@ -24,13 +24,12 @@ void PythonQtTestCleanup::init()
 
 void PythonQtTestCleanup::cleanup()
 {
-  // Finalize and cleanup after each test
+  // Cleanup PythonQt resources before finalizing Python
+  PythonQt::cleanup();
 
   if (Py_IsInitialized()) {
     Py_Finalize();
   }
-
-  PythonQt::cleanup();
 
   delete _helper;
   _helper = nullptr;
