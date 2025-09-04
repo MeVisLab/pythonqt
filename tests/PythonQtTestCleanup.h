@@ -17,7 +17,8 @@ private Q_SLOTS:
   void cleanup();
 
   void testQtEnum();
-  void testCallQtMethodInDel();
+  void testCallQtMethodInDestructorOwnedQTimer();
+  void testCallQtMethodInDestructorWeakRefGuarded();
   void testSignalReceiverCleanup();
 
 private:
