@@ -142,20 +142,11 @@
 #define PyBytes_FromStringAndSize PyString_FromStringAndSize
 #endif
 
-/*
- * The following undefs for C standard library macros prevent
- * build errors of the following type on macOS 10.7.4 and XCode 4.3.3
- *
-/usr/include/c++/4.2.1/bits/localefwd.h:57:21: error: too many arguments provided to function-like macro invocation
-    isspace(_CharT, const locale&);
-                    ^
-/usr/include/c++/4.2.1/bits/localefwd.h:56:5: error: 'inline' can only appear on functions
-    inline bool
-    ^
-/usr/include/c++/4.2.1/bits/localefwd.h:57:5: error: variable 'isspace' declared as a template
-    isspace(_CharT, const locale&);
-    ^
-*/
+// Avoid clashes with libstdc++ <locale> by undefining ctype macros
+// that CPython may introduce on macOS when the UTF-8 ctype quirk is enabled.
+// (_PY_PORT_CTYPE_UTF8_ISSUE is defined by CPython’s pyport.h; we apply these
+// undefs only in C++ builds.)
+#if defined(_PY_PORT_CTYPE_UTF8_ISSUE) && defined(__cplusplus)
 #undef isalnum
 #undef isalpha
 #undef islower
@@ -163,6 +154,7 @@
 #undef isupper
 #undef tolower
 #undef toupper
+#endif
 
 #endif
 
