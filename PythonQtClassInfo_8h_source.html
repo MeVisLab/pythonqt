@@ -253,78 +253,80 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span> </div>
 <div class="line"><a id="l00245" name="l00245"></a><span class="lineno"><a class="line" href="classPythonQtClassInfo.html#aed8aadc852d68405b6b3de1913a15419">  245</a></span>  <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classPythonQtClassInfo.html#aed8aadc852d68405b6b3de1913a15419">addGlobalNamespaceWrapper</a>(<a class="code hl_class" href="classPythonQtClassInfo.html">PythonQtClassInfo</a>* namespaceWrapper);</div>
 <div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span> </div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>  <span class="keywordtype">void</span> updateRefCountingCBs();</div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> </div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>  <span class="keywordtype">void</span> createEnumWrappers(<span class="keyword">const</span> QObject* decoratorProvider);</div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>  <span class="keywordtype">void</span> createEnumWrappers(<span class="keyword">const</span> QMetaObject* meta);</div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>  <a class="code hl_typedef" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a>* findEnumWrapper(<span class="keyword">const</span> <span class="keywordtype">char</span>* name);</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno"><a class="line" href="classPythonQtClassInfo.html#acf8f8d10519144069156a829713bdda3">  249</a></span>  <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classPythonQtClassInfo.html#acf8f8d10519144069156a829713bdda3">clearGlobalNamespaceWrappers</a>();</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span> </div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>  <span class="keywordtype">void</span> updateRefCountingCBs();</div>
 <div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>  <span class="keywordtype">void</span> clearCachedMembers();</div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span> </div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>  <span class="keywordtype">void</span>* recursiveCastDownIfPossible(<span class="keywordtype">void</span>* ptr, <span class="keyword">const</span> <span class="keywordtype">char</span>** resultClassName);</div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span> </div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>  <a class="code hl_class" href="classPythonQtSlotInfo.html">PythonQtSlotInfo</a>* findDecoratorSlotsFromDecoratorProvider(<span class="keyword">const</span> <span class="keywordtype">char</span>* memberName, <a class="code hl_class" href="classPythonQtSlotInfo.html">PythonQtSlotInfo</a>* inputInfo, <span class="keywordtype">bool</span> &amp;found, QHash&lt;QByteArray, PythonQtMemberInfo&gt;&amp; memberCache, <span class="keywordtype">int</span> upcastingOffset);</div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>  <span class="keywordtype">void</span> listDecoratorSlotsFromDecoratorProvider(QStringList&amp; list, <span class="keywordtype">bool</span> metaOnly);</div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>  <a class="code hl_class" href="classPythonQtSlotInfo.html">PythonQtSlotInfo</a>* recursiveFindDecoratorSlotsFromDecoratorProvider(<span class="keyword">const</span> <span class="keywordtype">char</span>* memberName, <a class="code hl_class" href="classPythonQtSlotInfo.html">PythonQtSlotInfo</a>* inputInfo, <span class="keywordtype">bool</span> &amp;found, QHash&lt;QByteArray, PythonQtMemberInfo&gt;&amp; memberCache, <span class="keywordtype">int</span> upcastingOffset);</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>  <span class="keywordtype">void</span> createEnumWrappers(<span class="keyword">const</span> QObject* decoratorProvider);</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>  <span class="keywordtype">void</span> createEnumWrappers(<span class="keyword">const</span> QMetaObject* meta);</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>  <a class="code hl_typedef" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a>* findEnumWrapper(<span class="keyword">const</span> <span class="keywordtype">char</span>* name);</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span> </div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>  <span class="keywordtype">void</span> clearCachedMembers();</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span> </div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>  <span class="keywordtype">void</span>* recursiveCastDownIfPossible(<span class="keywordtype">void</span>* ptr, <span class="keyword">const</span> <span class="keywordtype">char</span>** resultClassName);</div>
 <div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span> </div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>  <span class="keywordtype">void</span> recursiveCollectClassInfos(QList&lt;PythonQtClassInfo*&gt;&amp; classInfoObjects);</div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>  <span class="keywordtype">void</span> recursiveCollectDecoratorObjects(QList&lt;QObject*&gt;&amp; decoratorObjects);</div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span> </div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>  <span class="keywordtype">bool</span> lookForPropertyAndCache(<span class="keyword">const</span> <span class="keywordtype">char</span>* memberName);</div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>  <span class="keywordtype">bool</span> lookForMethodAndCache(<span class="keyword">const</span> <span class="keywordtype">char</span>* memberName);</div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>  <span class="keywordtype">bool</span> lookForEnumAndCache(<span class="keyword">const</span> QMetaObject* m, <span class="keyword">const</span> <span class="keywordtype">char</span>* memberName);</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>  <a class="code hl_class" href="classPythonQtSlotInfo.html">PythonQtSlotInfo</a>* findDecoratorSlotsFromDecoratorProvider(<span class="keyword">const</span> <span class="keywordtype">char</span>* memberName, <a class="code hl_class" href="classPythonQtSlotInfo.html">PythonQtSlotInfo</a>* inputInfo, <span class="keywordtype">bool</span> &amp;found, QHash&lt;QByteArray, PythonQtMemberInfo&gt;&amp; memberCache, <span class="keywordtype">int</span> upcastingOffset);</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>  <span class="keywordtype">void</span> listDecoratorSlotsFromDecoratorProvider(QStringList&amp; list, <span class="keywordtype">bool</span> metaOnly);</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>  <a class="code hl_class" href="classPythonQtSlotInfo.html">PythonQtSlotInfo</a>* recursiveFindDecoratorSlotsFromDecoratorProvider(<span class="keyword">const</span> <span class="keywordtype">char</span>* memberName, <a class="code hl_class" href="classPythonQtSlotInfo.html">PythonQtSlotInfo</a>* inputInfo, <span class="keywordtype">bool</span> &amp;found, QHash&lt;QByteArray, PythonQtMemberInfo&gt;&amp; memberCache, <span class="keywordtype">int</span> upcastingOffset);</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span> </div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>  <span class="keywordtype">void</span> recursiveCollectClassInfos(QList&lt;PythonQtClassInfo*&gt;&amp; classInfoObjects);</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>  <span class="keywordtype">void</span> recursiveCollectDecoratorObjects(QList&lt;QObject*&gt;&amp; decoratorObjects);</div>
 <div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>  <a class="code hl_class" href="classPythonQtSlotInfo.html">PythonQtSlotInfo</a>* findDecoratorSlots(<span class="keyword">const</span> <span class="keywordtype">char</span>* memberName, <a class="code hl_class" href="classPythonQtSlotInfo.html">PythonQtSlotInfo</a>* tail, <span class="keywordtype">bool</span> &amp;found, QHash&lt;QByteArray, PythonQtMemberInfo&gt;&amp; memberCache, <span class="keywordtype">int</span> upcastingOffset);</div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>  <span class="keywordtype">int</span> findCharOffset(<span class="keyword">const</span> <span class="keywordtype">char</span>* sigStart, <span class="keywordtype">char</span> someChar);</div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span> </div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>  QHash&lt;QByteArray, PythonQtMemberInfo&gt; _cachedMembers;</div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span> </div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>  <a class="code hl_class" href="classPythonQtSlotInfo.html">PythonQtSlotInfo</a>*                    _constructors;</div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>  <a class="code hl_class" href="classPythonQtSlotInfo.html">PythonQtSlotInfo</a>*                    _destructor;</div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span> </div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>  <a class="code hl_typedef" href="PythonQt_8h.html#a985bcd8bb2776735acdedffa8027fa06">PythonQtVoidPtrCB</a>*                   _refCallback;</div>
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>  <a class="code hl_typedef" href="PythonQt_8h.html#a985bcd8bb2776735acdedffa8027fa06">PythonQtVoidPtrCB</a>*                   _unrefCallback;</div>
-<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
-<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>  QList&lt;PythonQtSlotInfo*&gt;             _decoratorSlots;</div>
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span> </div>
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>  QList&lt;PythonQtObjectPtr&gt;             _enumWrappers;</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>  <span class="keywordtype">bool</span> lookForPropertyAndCache(<span class="keyword">const</span> <span class="keywordtype">char</span>* memberName);</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>  <span class="keywordtype">bool</span> lookForMethodAndCache(<span class="keyword">const</span> <span class="keywordtype">char</span>* memberName);</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>  <span class="keywordtype">bool</span> lookForEnumAndCache(<span class="keyword">const</span> QMetaObject* m, <span class="keyword">const</span> <span class="keywordtype">char</span>* memberName);</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span> </div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>  <a class="code hl_class" href="classPythonQtSlotInfo.html">PythonQtSlotInfo</a>* findDecoratorSlots(<span class="keyword">const</span> <span class="keywordtype">char</span>* memberName, <a class="code hl_class" href="classPythonQtSlotInfo.html">PythonQtSlotInfo</a>* tail, <span class="keywordtype">bool</span> &amp;found, QHash&lt;QByteArray, PythonQtMemberInfo&gt;&amp; memberCache, <span class="keywordtype">int</span> upcastingOffset);</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>  <span class="keywordtype">int</span> findCharOffset(<span class="keyword">const</span> <span class="keywordtype">char</span>* sigStart, <span class="keywordtype">char</span> someChar);</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span> </div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>  QHash&lt;QByteArray, PythonQtMemberInfo&gt; _cachedMembers;</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span> </div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>  <a class="code hl_class" href="classPythonQtSlotInfo.html">PythonQtSlotInfo</a>*                    _constructors;</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>  <a class="code hl_class" href="classPythonQtSlotInfo.html">PythonQtSlotInfo</a>*                    _destructor;</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span> </div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>  <a class="code hl_typedef" href="PythonQt_8h.html#a985bcd8bb2776735acdedffa8027fa06">PythonQtVoidPtrCB</a>*                   _refCallback;</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>  <a class="code hl_typedef" href="PythonQt_8h.html#a985bcd8bb2776735acdedffa8027fa06">PythonQtVoidPtrCB</a>*                   _unrefCallback;</div>
 <div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span> </div>
-<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>  <span class="keyword">const</span> QMetaObject*                   _meta;</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>  QList&lt;PythonQtSlotInfo*&gt;             _decoratorSlots;</div>
 <div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span> </div>
-<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>  QByteArray                           _wrappedClassName;</div>
-<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>  QList&lt;ParentClassInfo&gt;               _parentClasses;</div>
-<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
-<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>  QList&lt;PythonQtPolymorphicHandlerCB*&gt; _polymorphicHandlers;</div>
-<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span> </div>
-<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>  QList&lt;PythonQtClassInfo*&gt;            _nestedClasses;</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>  QList&lt;PythonQtObjectPtr&gt;             _enumWrappers;</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span> </div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>  <span class="keyword">const</span> QMetaObject*                   _meta;</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span> </div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>  QByteArray                           _wrappedClassName;</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>  QList&lt;ParentClassInfo&gt;               _parentClasses;</div>
 <div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> </div>
-<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>  QObject*                             _decoratorProvider;</div>
-<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>  <a class="code hl_typedef" href="PythonQt_8h.html#af3d8d633335d865c3668f881682182ad">PythonQtQObjectCreatorFunctionCB</a>*    _decoratorProviderCB;</div>
-<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span> </div>
-<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>  <a class="code hl_typedef" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a>*                            _pythonQtClassWrapper;</div>
-<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span> </div>
-<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>  <a class="code hl_typedef" href="PythonQt_8h.html#a40859e9296e9e0ee042509ccf9e6c18d">PythonQtShellSetInstanceWrapperCB</a>*   _shellSetInstanceWrapperCB;</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>  QList&lt;PythonQtPolymorphicHandlerCB*&gt; _polymorphicHandlers;</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span> </div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>  QList&lt;PythonQtClassInfo*&gt;            _nestedClasses;</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span> </div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>  QObject*                             _decoratorProvider;</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>  <a class="code hl_typedef" href="PythonQt_8h.html#af3d8d633335d865c3668f881682182ad">PythonQtQObjectCreatorFunctionCB</a>*    _decoratorProviderCB;</div>
 <div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span> </div>
-<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>  <span class="keywordtype">int</span>  _metaTypeId;</div>
-<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>  <span class="keywordtype">int</span>  _typeSlots;</div>
-<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span> </div>
-<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>  <span class="keywordtype">bool</span> _isQObject;</div>
-<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>  <span class="keywordtype">bool</span> _enumsCreated;</div>
-<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>  <span class="keywordtype">bool</span> _richCompareDetectionDone;</div>
-<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>  <span class="keywordtype">bool</span> _searchPolymorphicHandlerOnParent;</div>
-<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>  <span class="keywordtype">bool</span> _searchRefCountCB;</div>
-<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span> </div>
-<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>  <span class="keyword">static</span> QList&lt;PythonQtClassInfo*&gt;     _globalNamespaceWrappers;</div>
-<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span> </div>
-<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>  <span class="keyword">static</span> QSet&lt;QByteArray&gt;              _reservedNames;</div>
-<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>};</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>  <a class="code hl_typedef" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a>*                            _pythonQtClassWrapper;</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span> </div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>  <a class="code hl_typedef" href="PythonQt_8h.html#a40859e9296e9e0ee042509ccf9e6c18d">PythonQtShellSetInstanceWrapperCB</a>*   _shellSetInstanceWrapperCB;</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span> </div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>  <span class="keywordtype">int</span>  _metaTypeId;</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>  <span class="keywordtype">int</span>  _typeSlots;</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span> </div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>  <span class="keywordtype">bool</span> _isQObject;</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>  <span class="keywordtype">bool</span> _enumsCreated;</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>  <span class="keywordtype">bool</span> _richCompareDetectionDone;</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>  <span class="keywordtype">bool</span> _searchPolymorphicHandlerOnParent;</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>  <span class="keywordtype">bool</span> _searchRefCountCB;</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span> </div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>  <span class="keyword">static</span> QList&lt;PythonQtClassInfo*&gt;     _globalNamespaceWrappers;</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span> </div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>  <span class="keyword">static</span> QSet&lt;QByteArray&gt;              _reservedNames;</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>};</div>
 </div>
-<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span> </div>
-<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span><span class="comment">//---------------------------------------------------------------</span></div>
-<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span> </div>
-<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span> </div>
-<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span> </div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span><span class="comment">//---------------------------------------------------------------</span></div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span> </div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span> </div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aPythonQtMethodInfo_8h_html_afcb7b4d4ac414eefbeef02c60e6acb52"><div class="ttname"><a href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a></div><div class="ttdeci">struct _object PyObject</div><div class="ttdef"><b>Definition</b> <a href="PythonQtMethodInfo_8h_source.html#l00055">PythonQtMethodInfo.h:55</a></div></div>
 <div class="ttc" id="aPythonQtPythonInclude_8h_html"><div class="ttname"><a href="PythonQtPythonInclude_8h.html">PythonQtPythonInclude.h</a></div></div>
 <div class="ttc" id="aPythonQtSystem_8h_html_aff4d7ea1f5587fea5ee644fd4367891c"><div class="ttname"><a href="PythonQtSystem_8h.html#aff4d7ea1f5587fea5ee644fd4367891c">PYTHONQT_EXPORT</a></div><div class="ttdeci">#define PYTHONQT_EXPORT</div><div class="ttdef"><b>Definition</b> <a href="PythonQtSystem_8h_source.html#l00056">PythonQtSystem.h:56</a></div></div>
@@ -376,6 +378,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="ttc" id="aclassPythonQtClassInfo_html_abf96e5f09df2ab41a03d342a0886a381"><div class="ttname"><a href="classPythonQtClassInfo.html#abf96e5f09df2ab41a03d342a0886a381">PythonQtClassInfo::referenceCountingUnrefCB</a></div><div class="ttdeci">PythonQtVoidPtrCB * referenceCountingUnrefCB()</div><div class="ttdoc">Returns the unref counting CB, if there is any.</div></div>
 <div class="ttc" id="aclassPythonQtClassInfo_html_ac0dc22bd1257982c5a3af8f56a4784b8"><div class="ttname"><a href="classPythonQtClassInfo.html#ac0dc22bd1257982c5a3af8f56a4784b8">PythonQtClassInfo::setTypeSlots</a></div><div class="ttdeci">void setTypeSlots(int typeSlots)</div><div class="ttdoc">set the type capabilities</div><div class="ttdef"><b>Definition</b> <a href="PythonQtClassInfo_8h_source.html#l00104">PythonQtClassInfo.h:104</a></div></div>
 <div class="ttc" id="aclassPythonQtClassInfo_html_ac20823ef3763bda4455895df8b08f640"><div class="ttname"><a href="classPythonQtClassInfo.html#ac20823ef3763bda4455895df8b08f640">PythonQtClassInfo::constructors</a></div><div class="ttdeci">PythonQtSlotInfo * constructors()</div><div class="ttdoc">get access to the constructor slot (which may be overloaded if there are multiple constructors)</div></div>
+<div class="ttc" id="aclassPythonQtClassInfo_html_acf8f8d10519144069156a829713bdda3"><div class="ttname"><a href="classPythonQtClassInfo.html#acf8f8d10519144069156a829713bdda3">PythonQtClassInfo::clearGlobalNamespaceWrappers</a></div><div class="ttdeci">static void clearGlobalNamespaceWrappers()</div></div>
 <div class="ttc" id="aclassPythonQtClassInfo_html_ad12ea4f42ce2f95b3424611a6acae617"><div class="ttname"><a href="classPythonQtClassInfo.html#ad12ea4f42ce2f95b3424611a6acae617">PythonQtClassInfo::setPythonQtClassWrapper</a></div><div class="ttdeci">void setPythonQtClassWrapper(PyObject *obj)</div><div class="ttdoc">set the associated PythonQtClassWrapper (which handles instance creation of this type)</div><div class="ttdef"><b>Definition</b> <a href="PythonQtClassInfo_8h_source.html#l00180">PythonQtClassInfo.h:180</a></div></div>
 <div class="ttc" id="aclassPythonQtClassInfo_html_ad749c20777cda856ec7047126b2b7b45"><div class="ttname"><a href="classPythonQtClassInfo.html#ad749c20777cda856ec7047126b2b7b45">PythonQtClassInfo::setupQObject</a></div><div class="ttdeci">void setupQObject(const QMetaObject *meta)</div><div class="ttdoc">setup as a QObject, taking the meta object as meta information about the QObject</div></div>
 <div class="ttc" id="aclassPythonQtClassInfo_html_ad831408128b4c53702d46dc04b192c9d"><div class="ttname"><a href="classPythonQtClassInfo.html#ad831408128b4c53702d46dc04b192c9d">PythonQtClassInfo::className</a></div><div class="ttdeci">const QByteArray &amp; className() const</div><div class="ttdoc">get the classname (either of the QObject or of the wrapped CPP object)</div></div>
@@ -415,7 +418,7 @@ $(document).ready(function() { init_codefold(0); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 3 2025 04:45:59 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Sep 4 2025 05:10:28 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
