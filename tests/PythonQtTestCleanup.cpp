@@ -54,6 +54,7 @@ void PythonQtTestCleanup::testCallQtMethodInDel()
     "  def __del__(self):\n" \
     "    self.timer.setSingleShot(True)\n" \
     "x = TimerWrapper()\n" \
+    "del x\n" \
     "obj.setPassed()\n"
     ));
 }
