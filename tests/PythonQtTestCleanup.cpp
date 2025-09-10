@@ -81,11 +81,12 @@ void PythonQtTestCleanup::testSignalReceiverCleanup()
 
   // Test that PythonQtSignalReceiver is cleaned up properly,
   // i.e. PythonQt::cleanup() doesn't segfault
-  main.evalScript(
+  QVERIFY(_helper->runScript(
     "import PythonQt.QtCore\n" \
     "timer = PythonQt.QtCore.QTimer(obj)\n" \
-    "timer.connect('destroyed()', obj.onDestroyed)\n"
-    );
+    "timer.connect('destroyed()', obj.onDestroyed)\n" \
+    "obj.setPassed()\n"
+    ));
 }
 
 bool PythonQtTestCleanupHelper::runScript(const char* script)
