@@ -61,18 +61,18 @@ void PythonQtTestCleanup::testCallQtMethodInDestructorOwnedQTimer()
 
 void PythonQtTestCleanup::testCallQtMethodInDestructorWeakRefGuarded()
 {
-    QVERIFY(_helper->runScript(
-        "import weakref\n" \
-        "import PythonQt.QtCore\n" \
-        "class TimerWrapper(object):\n" \
-        "  def __init__(self):\n" \
-        "    self.timerWeakRef = weakref.ref(PythonQt.QtCore.QTimer())\n" \
-        "  def __del__(self):\n" \
-        "    if self.timerWeakRef():\n" \
-        "      self.timerWeakRef().setSingleShot(True)\n" \
-        "x = TimerWrapper()\n" \
-        "obj.setPassed()\n"
-        ));
+  QVERIFY(_helper->runScript(
+    "import weakref\n" \
+    "import PythonQt.QtCore\n" \
+    "class TimerWrapper(object):\n" \
+    "  def __init__(self):\n" \
+    "    self.timerWeakRef = weakref.ref(PythonQt.QtCore.QTimer())\n" \
+    "  def __del__(self):\n" \
+    "    if self.timerWeakRef():\n" \
+    "      self.timerWeakRef().setSingleShot(True)\n" \
+    "x = TimerWrapper()\n" \
+    "obj.setPassed()\n"
+    ));
 }
 
 void PythonQtTestCleanup::testSignalReceiverCleanup()
