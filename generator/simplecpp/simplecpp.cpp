@@ -13,6 +13,7 @@
 #include "simplecpp.h"
 
 #include <algorithm>
+#include <array>
 #include <cassert>
 #include <cctype>
 #include <climits>
@@ -2429,6 +2430,27 @@ static bool isAbsolutePath(const std::string &path)
 }
 #endif
 
+namespace {
+    // "<Pkg/Hdr.h>" -> "<Pkg.framework/Headers/Hdr.h>" (and PrivateHeaders variant).
+    // Returns candidates in priority order (Headers, then PrivateHeaders).
+    inline std::array<std::string,2>
+    toAppleFrameworkRelatives(const std::string& header)
+    {
+        const std::size_t slash = header.find('/');
+        if (slash == std::string::npos)
+            return { header, header }; // no transformation applicable
+        const std::string pkg = header.substr(0, slash);
+        const std::string tail = header.substr(slash); // includes '/'
+        return { pkg + ".framework/Headers" + tail,
+                 pkg + ".framework/PrivateHeaders" + tail };
+    }
+
+    inline void push_unique(std::vector<std::string> &v, std::string p) {
+        if (!p.empty() && (v.empty() || v.back() != p))
+            v.push_back(std::move(p));
+    }
+}
+
 namespace simplecpp {
     /**
      * perform path simplifications for . and ..
@@ -2999,12 +3021,61 @@ static std::string openHeader(std::ifstream &f, const simplecpp::DUI &dui, const
         }
     }
 
-    // search the header on the include paths (provided by the flags "-I...")
-    for (const auto &includePath : dui.includePaths) {
-        std::string path = openHeaderDirect(f, simplecpp::simplifyPath(includePath + "/" + header));
-        if (!path.empty())
-            return path;
+    // Build an ordered, typed path list:
+    // - Prefer DUI::searchPaths when provided (interleaved -I/-F/-iframework).
+    // - Otherwise mirror legacy includePaths into Include entries (back-compat).
+    std::vector<simplecpp::DUI::SearchPath> searchPaths;
+    if (!dui.searchPaths.empty()) {
+        searchPaths = dui.searchPaths;
+    } else {
+        searchPaths.reserve(dui.includePaths.size());
+        for (const auto &includePath : dui.includePaths)
+            searchPaths.push_back({includePath, simplecpp::DUI::PathKind::Include});
     }
+
+    // Interleave -I and -F in CLI order
+    for (const auto &searchPath : searchPaths) {
+        if (searchPath.kind == simplecpp::DUI::PathKind::Include) {
+            const std::string path = openHeaderDirect(f, simplecpp::simplifyPath(searchPath.path + "/" + header));
+            if (!path.empty())
+                return path;
+        } else if (searchPath.kind == simplecpp::DUI::PathKind::Framework) {
+            // try Headers then PrivateHeaders
+            const auto relatives = toAppleFrameworkRelatives(header);
+            if (relatives[0] != header) { // Skip if no framework rewrite was applied.
+                for (const auto &rel : relatives) {
+                    const std::string frameworkPath = openHeaderDirect(f, simplecpp::simplifyPath(searchPath.path + "/" + rel));
+                    if (!frameworkPath.empty())
+                        return frameworkPath;
+                }
+            }
+        }
+    }
+
+    // -isystem
+    for (const auto &searchPath : searchPaths) {
+        if (searchPath.kind == simplecpp::DUI::PathKind::SystemInclude) {
+            std::string path = openHeaderDirect(f, simplecpp::simplifyPath(searchPath.path + "/" + header));
+            if (!path.empty())
+                return path;
+        }
+    }
+
+    // -iframework
+    for (const auto &searchPath : searchPaths) {
+        if (searchPath.kind == simplecpp::DUI::PathKind::SystemFramework) {
+            const auto relatives = toAppleFrameworkRelatives(header);
+            if (relatives[0] != header) { // Skip if no framework rewrite was applied.
+                // Try Headers then PrivateHeaders
+                for (const auto &rel : relatives) {
+                    const std::string frameworkPath = openHeaderDirect(f, simplecpp::simplifyPath(searchPath.path + "/" + rel));
+                    if (!frameworkPath.empty())
+                        return frameworkPath;
+                }
+            }
+        }
+    }
+
     return "";
 }
 
@@ -3036,6 +3107,7 @@ std::pair<simplecpp::FileData *, bool> simplecpp::FileDataCache::tryload(FileDat
 
 std::pair<simplecpp::FileData *, bool> simplecpp::FileDataCache::get(const std::string &sourcefile, const std::string &header, const simplecpp::DUI &dui, bool systemheader, std::vector<std::string> &filenames, simplecpp::OutputList *outputList)
 {
+    // Absolute path: load directly
     if (isAbsolutePath(header)) {
         auto ins = mNameMap.emplace(simplecpp::simplifyPath(header), nullptr);
 
@@ -3051,32 +3123,78 @@ std::pair<simplecpp::FileData *, bool> simplecpp::FileDataCache::get(const std::
         return {nullptr, false};
     }
 
+    // Build ordered candidates.
+    std::vector<std::string> candidates;
+
+    // Prefer first to search the header relatively to source file if found, when not a system header
     if (!systemheader) {
-        auto ins = mNameMap.emplace(simplecpp::simplifyPath(dirPath(sourcefile) + header), nullptr);
+        push_unique(candidates, simplecpp::simplifyPath(dirPath(sourcefile) + header));
+    }
 
-        if (ins.second) {
-            const auto ret = tryload(ins.first, dui, filenames, outputList);
-            if (ret.first != nullptr) {
-                return ret;
+    // Build an ordered, typed path list:
+    // - Prefer DUI::searchPaths when provided (interleaved -I/-F/-iframework).
+    // - Otherwise mirror legacy includePaths into Include entries (back-compat).
+    std::vector<simplecpp::DUI::SearchPath> searchPaths;
+    if (!dui.searchPaths.empty()) {
+        searchPaths = dui.searchPaths;
+    } else {
+        searchPaths.reserve(dui.includePaths.size());
+        for (const auto &p : dui.includePaths)
+            searchPaths.push_back({p, simplecpp::DUI::PathKind::Include});
+    }
+
+    // Interleave -I and -F in CLI order
+    for (const auto &searchPath : searchPaths) {
+        if (searchPath.kind == simplecpp::DUI::PathKind::Include) {
+            push_unique(candidates, simplecpp::simplifyPath(searchPath.path + "/" + header));
+        } else if (searchPath.kind == simplecpp::DUI::PathKind::Framework) {
+            // Try Headers then PrivateHeaders
+            const auto relatives = toAppleFrameworkRelatives(header);
+            if (relatives[0] != header) { // Skip if no framework rewrite was applied.
+                push_unique(candidates, simplecpp::simplifyPath(searchPath.path + "/" + relatives[0]));
+                push_unique(candidates, simplecpp::simplifyPath(searchPath.path + "/" + relatives[1]));
             }
-        } else if (ins.first->second != nullptr) {
-            return {ins.first->second, false};
         }
     }
 
-    for (const auto &includePath : dui.includePaths) {
-        auto ins = mNameMap.emplace(simplecpp::simplifyPath(includePath + "/" + header), nullptr);
-
-        if (ins.second) {
-            const auto ret = tryload(ins.first, dui, filenames, outputList);
-            if (ret.first != nullptr) {
-                return ret;
-            }
-        } else if (ins.first->second != nullptr) {
-            return {ins.first->second, false};
+    // -isystem
+    for (const auto &searchPath : searchPaths) {
+        if (searchPath.kind == DUI::PathKind::SystemInclude) {
+            push_unique(candidates, simplecpp::simplifyPath(searchPath.path + "/" + header));
         }
     }
 
+    // -iframework
+    for (const auto &searchPath : searchPaths) {
+        if (searchPath.kind == simplecpp::DUI::PathKind::SystemFramework) {
+            // Try Headers then PrivateHeaders
+            const auto relatives = toAppleFrameworkRelatives(header);
+            if (relatives[0] != header) { // Skip if no framework rewrite was applied.
+                push_unique(candidates, simplecpp::simplifyPath(searchPath.path + "/" + relatives[0]));
+                push_unique(candidates, simplecpp::simplifyPath(searchPath.path + "/" + relatives[1]));
+            }
+        }
+    }
+
+    // Try loading each candidate path (left-to-right).
+    for (const std::string &candidate : candidates) {
+        // Already loaded?
+        auto it = mNameMap.find(candidate);
+        if (it != mNameMap.end()) {
+            return {it->second, false};
+        }
+
+        auto ins = mNameMap.emplace(candidate, static_cast<FileData *>(nullptr));
+        const auto ret = tryload(ins.first, dui, filenames, outputList);
+        if (ret.first != nullptr) {
+            return ret;
+        }
+
+        // Failed: remove placeholder so we can retry later if needed.
+        mNameMap.erase(ins.first);
+    }
+
+    // Not found.
     return {nullptr, false};
 }
 

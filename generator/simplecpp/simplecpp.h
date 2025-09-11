@@ -395,13 +395,70 @@ namespace simplecpp {
 
     /**
      * Command line preprocessor settings.
-     * On the command line these are configured by -D, -U, -I, --include, -std
+     *
+     * Mirrors typical compiler options:
+     *   -D <name>=<value>       Add macro definition
+     *   -U <name>               Undefine macro
+     *   -I <dir>                Add include search directory
+     *   -isystem <dir>          Add system include search directory
+     *   -F <dir>                Add framework search directory (Darwin)
+     *   -iframework <dir>       Add system framework search directory (Darwin)
+     *   --include <file>        Force inclusion of a header
+     *   -std=<version>          Select language standard (C++17, C23, etc.)
+     *
+     * Path search behavior:
+     *   - If searchPaths is non-empty, it is used directly, preserving the
+     *     left-to-right order and distinguishing between Include, Framework,
+     *     and SystemFramework kinds.
+     *   - If searchPaths is empty, legacy includePaths is used instead, and
+     *     each entry is treated as a normal Include path (for backward
+     *     compatibility).
      */
     struct SIMPLECPP_LIB DUI {
         DUI() : clearIncludeCache(false), removeComments(false) {}
+
+        // Typed search path entry. Mirrors GCC behavior for -I, -isystem, -F, -iframework.
+        enum class PathKind { Include, SystemInclude, Framework, SystemFramework };
+        struct SearchPath {
+            std::string path;
+            PathKind kind;
+        };
+
+        /**
+         *  Mirrors compiler option -I<dir>
+         *
+         *  If 'legacy' is true, the path is added to the 'includePaths' vector;
+         *  otherwise, it is added to 'searchPaths' with 'PathKind::Include'.
+         */
+        void addIncludePath(const std::string& path, bool legacy=false) {
+            if (legacy) {
+                includePaths.push_back(path);
+            } else {
+                searchPaths.push_back({path, PathKind::Include});
+            }
+        }
+        /** Mirrors compiler option -I<dir> */
+        void addSystemIncludePath(const std::string& path) {
+            searchPaths.push_back({path, PathKind::SystemInclude});
+        }
+        /** Mirrors compiler option -F<dir> */
+        void addFrameworkPath(const std::string& path) {
+            searchPaths.push_back({path, PathKind::Framework});
+        }
+        /** Mirrors compiler option -iframework<dir> */
+        void addSystemFrameworkPath(const std::string& path) {
+            searchPaths.push_back({path, PathKind::SystemFramework});
+        }
+
         std::list<std::string> defines;
         std::set<std::string> undefined;
+
+        // Back-compat: legacy -I list. If searchPaths is empty at use time,
+        // consumers should mirror includePaths -> searchPaths as Include.
         std::list<std::string> includePaths;
+        // New: ordered, interleaved search paths with kind.
+        std::vector<SearchPath> searchPaths;
+
         std::list<std::string> includes;
         std::string std;
         bool clearIncludeCache;
