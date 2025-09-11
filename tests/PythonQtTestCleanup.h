@@ -20,6 +20,7 @@ private Q_SLOTS:
   void testCallQtMethodInDestructorOwnedQTimer();
   void testCallQtMethodInDestructorWeakRefGuarded();
   void testSignalReceiverCleanup();
+  void testPyFinalizeThenPythonQtCleanup();
 
 private:
   PythonQtTestCleanupHelper* _helper;

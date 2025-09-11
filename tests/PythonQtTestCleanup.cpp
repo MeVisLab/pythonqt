@@ -89,6 +89,15 @@ void PythonQtTestCleanup::testSignalReceiverCleanup()
     ));
 }
 
+void PythonQtTestCleanup::testPyFinalizeThenPythonQtCleanup()
+{
+  if (Py_IsInitialized()) {
+      Py_Finalize();
+  }
+
+  PythonQt::cleanup();
+}
+
 bool PythonQtTestCleanupHelper::runScript(const char* script)
 {
   _passed = false;
