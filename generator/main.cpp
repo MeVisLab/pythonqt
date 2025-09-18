@@ -58,6 +58,7 @@
 #include <QDir>
 #include <QFileInfo>
 #include <QFile>
+#include <QLibraryInfo>
 #include <QTextStream>
 #include <QRegularExpression>
 
@@ -67,67 +68,85 @@ void displayHelp(GeneratorSet *generatorSet);
 
 namespace
 {
+    static const QStringList candidatesQtModules {
+      QStringLiteral("QtCore"),
+      QStringLiteral("QtGui"),
+      QStringLiteral("QtNetwork"),
+      QStringLiteral("QtOpenGL"),
+      QStringLiteral("QtXml"),
+    };
+
+    static bool isDir(const QString& p) { return QFileInfo(p).isDir(); }
+    static QString joinPath(const QString& base, const QString& child) {
+      return QDir(base).filePath(child);
+    }
+#if QT_VERSION < QT_VERSION_CHECK(5,10,0)
+    QString qEnvironmentVariable(const char *varName){
+      return QString::fromLocal8Bit(qgetenv(varName));
+    }
+#endif
 
     QStringList getIncludeDirectories(const QString &commandLineIncludes)
     {
       QStringList includes;
-      includes << QString(".");
+      includes << QStringLiteral(".");
 
-      QChar pathSplitter = QDir::listSeparator();
+      const QChar pathSplitter = QDir::listSeparator();
 
-      // Environment PYTHONQT_INCLUDE
-      QString includePath = getenv("PYTHONQT_INCLUDE");
-      if (!includePath.isEmpty())
-        includes += includePath.split(pathSplitter, Qt::SkipEmptyParts);
-
-      // Includes from the command line
-      if (!commandLineIncludes.isEmpty())
-        includes += commandLineIncludes.split(pathSplitter, Qt::SkipEmptyParts);
-      for (auto it = includes.begin(); it != includes.end();)
-      {
-        if (!QDir(*it).exists())
-        {
-          qWarning() << "Include path " << it->toUtf8() << " does not exist, ignoring it.";
-          it = includes.erase(it);
-        }
-        else
-        {
-          ++it;
+      // From env var PYTHONQT_INCLUDE
+      const QString envInclude = qEnvironmentVariable("PYTHONQT_INCLUDE");
+      if (!envInclude.isEmpty()) {
+        QStringList envIncludes = envInclude.split(pathSplitter, Qt::SkipEmptyParts);
+        for(const QString& include: qAsConst(envIncludes)) {
+          if (isDir(include)) {
+            includes << include;
+          }
+          else {
+            qWarning() << "Include path" << include << "does not exist, ignoring.";
+          }
         }
       }
 
-      // Include Qt
-      QString qtdir = getenv("QTDIR");
-      if (qtdir.isEmpty() || !QDir(qtdir).exists(qtdir))
-      {
-        QString reason = "The QTDIR environment variable " + qtdir.isEmpty() ?
-                         "is not set. " : "points to a non-existing directory. ";
-#if defined(Q_OS_MAC)
-        qWarning() << reason << "Assuming standard binary install using frameworks.";
-            QString frameworkDir = "/Library/Frameworks";
-            includes << (frameworkDir + "/QtXml.framework/Headers");
-            includes << (frameworkDir + "/QtNetwork.framework/Headers");
-            includes << (frameworkDir + "/QtCore.framework/Headers");
-            includes << (frameworkDir + "/QtGui.framework/Headers");
-            includes << (frameworkDir + "/QtOpenGL.framework/Headers");
-            includes << frameworkDir;
-#else
-        qWarning() << reason << "This may cause problems with finding the necessary include files.";
-#endif
+      // CLI-provided include paths
+      if (!commandLineIncludes.isEmpty()) {
+        const QStringList cliIncludes = commandLineIncludes.split(QDir::listSeparator(), Qt::SkipEmptyParts);
+        for (const QString& include : cliIncludes) {
+          if (isDir(include)) {
+            includes << QDir::cleanPath(include);
+          }
+          else {
+            qWarning() << "Include path" << include << "does not exist, ignoring.";
+          }
+        }
       }
-      else
-      {
-        std::cout << "-------------------------------------------------------------" << std::endl;
-        std::cout << "Using QT at: " << qtdir.toLocal8Bit().constData() << std::endl;
-        std::cout << "-------------------------------------------------------------" << std::endl;
-        qtdir += "/include";
-        includes << (qtdir + "/QtXml");
-        includes << (qtdir + "/QtNetwork");
-        includes << (qtdir + "/QtCore");
-        includes << (qtdir + "/QtGui");
-        includes << (qtdir + "/QtOpenGL");
-        includes << qtdir;
+
+      // Prefer QLibraryInfo (works without QTDIR)
+      QString qtInclude = QLibraryInfo::location(QLibraryInfo::HeadersPath);
+      if (!isDir(qtInclude)) {
+        // Fallback to QTDIR/include
+        const QString qtDir = qEnvironmentVariable("QTDIR");
+        if (qtDir.isEmpty() || !isDir(qtDir)) {
+          const QString reason = QStringLiteral("The QTDIR environment variable ")
+                                 + (qtDir.isEmpty()
+                                        ? "is not set."
+                                        : "points to a non-existing directory.");
+          qWarning() << reason << "This may cause problems with finding the necessary include files.";
+        } else {
+          qtInclude = joinPath(qtDir, QStringLiteral("include"));
+        }
       }
+      if (!qtInclude.isEmpty() && isDir(qtInclude)) {
+        qInfo() << "Using Qt headers at:" << qtInclude;
+        // Check for <qtInclude>/<Module>
+        for (const QString& qtModule : qAsConst(candidatesQtModules)) {
+          const QString qtModuleInclude = joinPath(qtInclude, qtModule);
+          if (isDir(qtModuleInclude)) {
+            includes << qtModuleInclude;
+          }
+        }
+        includes << qtInclude;
+      }
+
       return includes;
     }
 
@@ -136,8 +155,8 @@ namespace
     {
       simplecpp::DUI dui; // settings
 
-      for(QString include : includePaths) {
-        dui.includePaths.push_back(QDir::toNativeSeparators(include).toStdString());
+      for(const QString& include : includePaths) {
+        dui.addIncludePath(QDir::toNativeSeparators(include).toStdString());
       }
       dui.defines.push_back("__cplusplus=1");
       dui.defines.push_back("__STDC__");
