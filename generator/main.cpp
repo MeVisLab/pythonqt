@@ -303,15 +303,19 @@ namespace
       return true;
     }
 
-    unsigned int getQtVersion(const QStringList& includePaths)
+    unsigned int getQtVersion(const QStringList& paths)
     {
       QRegularExpression re("#define\\s+QTCORE_VERSION\\s+0x([0-9a-f]+)", QRegularExpression::CaseInsensitiveOption);
-      for (const QString &includeDir: includePaths)
+      for (const QString &path: paths)
       {
-        QFileInfo fi(QDir(includeDir), "qtcoreversion.h");
-        if (fi.exists())
+#ifdef Q_OS_MACOS
+        QString qtCoreVersionHeader = joinPath(path, "Versions/A/Headers/qtcoreversion.h");
+#else
+        QString qtCoreVersionHeader = joinPath(path, "qtcoreversion.h");
+#endif
+        if (QFile::exists(qtCoreVersionHeader))
         {
-          QString filePath = fi.absoluteFilePath();
+          QString filePath = QFileInfo(qtCoreVersionHeader).absoluteFilePath();
           QFile f(filePath);
           if (f.open(QIODevice::ReadOnly))
           {
@@ -335,7 +339,7 @@ namespace
         }
       }
       printf("Error: Could not find Qt version (looked for qtcoreversion.h in %s)\n",
-             qPrintable(includePaths.join(QDir::listSeparator())));
+             qPrintable(paths.join(QDir::listSeparator())));
       return 0;
     }
 };
@@ -440,17 +444,29 @@ int main(int argc, char *argv[])
     printf("Please wait while source files are being generated...\n");
 
     QStringList includePaths = getIncludeDirectories(args.value("include-paths"));
-    if (!qtVersion) {
-        printf("Trying to determine Qt version...\n");
-        qtVersion = getQtVersion(includePaths);
-        if (!qtVersion)
-        {
-            fprintf(stderr, "Aborting\n"); // the error message was printed by getQtVersion
-            return 1;
-        }
-        printf("Determined Qt version is %d.%d.%d\n", qtVersion >> 16, (qtVersion >> 8) & 0xFF, qtVersion & 0xFF);
+    if (!qtVersion && !includePaths.empty()) {
+      printf("Trying to determine Qt version...\n");
+      qtVersion = getQtVersion(includePaths);
     }
+#ifdef Q_OS_MACOS
     QStringList frameworkPaths = getFrameworkDirectories(args.value("framework-paths"));
+    if (!qtVersion && !frameworkPaths.empty()) {
+      printf("Trying to determine Qt version...\n");
+      qtVersion = getQtVersion(frameworkPaths);
+    }
+    if (!qtVersion) {
+      fprintf(stderr, "Aborting. Could not determine Qt version from include or framework paths.\n");
+      return 1;
+    }
+#else
+    Q_UNUSED(getFrameworkDirectories);
+    QStringList frameworkPaths;
+    if (!qtVersion) {
+      fprintf(stderr, "Aborting. Could not determine Qt version from include paths.\n");
+      return 1;
+    }
+#endif
+    printf("Determined Qt version is %d.%d.%d\n", qtVersion >> 16, (qtVersion >> 8) & 0xFF, qtVersion & 0xFF);
 
     printf("Parsing typesystem file [%s]\n", qPrintable(typesystemFileName));
     fflush(stdout);
