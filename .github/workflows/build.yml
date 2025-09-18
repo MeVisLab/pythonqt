@@ -55,6 +55,9 @@ jobs:
       uses: hendrikmuhs/ccache-action@v1.2.18
       with:
          key: ${{ runner.os }}-ubuntu-${{ matrix.container_version }} 
+         max-size: "250M"
+         evict-old-files: 'job'
+         append-timestamp: false
          
     - name: Build PythonQt
       run: |
@@ -214,6 +217,9 @@ jobs:
       uses: hendrikmuhs/ccache-action@v1.2.18
       with:
          key: ${{ runner.os }}-${{ matrix.qt-version }} 
+         max-size: "250M"
+         evict-old-files: 'job'
+         append-timestamp: false
          
     - name: Detect exact versions
       id : versions
