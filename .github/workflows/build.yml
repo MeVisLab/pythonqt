@@ -55,6 +55,7 @@ jobs:
       uses: hendrikmuhs/ccache-action@v1.2.18
       with:
          key: ${{ runner.os }}-ubuntu-${{ matrix.container_version }} 
+         evict-old-files: 'job'
          
     - name: Build PythonQt
       run: |
@@ -214,6 +215,7 @@ jobs:
       uses: hendrikmuhs/ccache-action@v1.2.18
       with:
          key: ${{ runner.os }}-${{ matrix.qt-version }} 
+         evict-old-files: 'job'
          
     - name: Detect exact versions
       id : versions
