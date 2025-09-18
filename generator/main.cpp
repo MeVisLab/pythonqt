@@ -150,13 +150,80 @@ namespace
       return includes;
     }
 
+    QStringList getFrameworkDirectories(const QString &commandLineFrameworks)
+    {
+      QStringList frameworks;
+      frameworks << QStringLiteral(".");
+
+      const QChar pathSplitter = QDir::listSeparator();
+
+      // From env var PYTHONQT_FRAMEWORK
+      const QString envFramework = qEnvironmentVariable("PYTHONQT_FRAMEWORK");
+      if (!envFramework.isEmpty()) {
+        QStringList envFrameworks = envFramework.split(pathSplitter, Qt::SkipEmptyParts);
+        for(const QString& framework: qAsConst(envFrameworks)) {
+          if (isDir(framework)) {
+            frameworks << framework;
+          }
+          else {
+            qWarning() << "Framework path" << framework << "does not exist, ignoring.";
+          }
+        }
+      }
+
+      // CLI-provided framework paths
+      if (!commandLineFrameworks.isEmpty()) {
+        const QStringList cliFrameworks = commandLineFrameworks.split(QDir::listSeparator(), Qt::SkipEmptyParts);
+        for (const QString& framework : cliFrameworks) {
+          if (isDir(framework)) {
+            frameworks << QDir::cleanPath(framework);
+          }
+          else {
+            qWarning() << "Framework path" << framework << "does not exist, ignoring.";
+          }
+        }
+      }
+
+      // Prefer QLibraryInfo (works without QTDIR)
+      QString qtLib = QLibraryInfo::location(QLibraryInfo::LibrariesPath);
+      if (!isDir(qtLib)) {
+        // Fallback to QTDIR/include
+        const QString qtDir = qEnvironmentVariable("QTDIR");
+        if (qtDir.isEmpty() || !isDir(qtDir)) {
+          const QString reason = QStringLiteral("The QTDIR environment variable ")
+                                 + (qtDir.isEmpty()
+                                        ? "is not set."
+                                        : "points to a non-existing directory.");
+          qWarning() << reason << "This may cause problems with finding the necessary framework files.";
+        } else {
+          qtLib = joinPath(qtDir, QStringLiteral("lib"));
+        }
+      }
+      if (!qtLib.isEmpty() && isDir(qtLib)) {
+        qInfo() << "Using Qt frameworks at:" << qtLib;
+        // Check for <lib>/<Module>.framework bundles
+        for (const QString& qtModule : qAsConst(candidatesQtModules)) {
+          const QString qtModuleFramework = QDir(qtLib).filePath(qtModule + ".framework");
+          if (QDir(qtModuleFramework).exists()) {
+            frameworks << qtModuleFramework;
+          }
+        }
+        frameworks << qtLib;
+      }
+
+      return frameworks;
+    }
+
     bool
-    preprocess(const QString& sourceFile, const QString& targetFile, const QStringList& includePaths)
+    preprocess(const QString& sourceFile, const QString& targetFile, const QStringList& includePaths, const QStringList& frameworkPaths)
     {
       simplecpp::DUI dui; // settings
 
       for(const QString& include : includePaths) {
         dui.addIncludePath(QDir::toNativeSeparators(include).toStdString());
+      }
+      for(const QString& framework : frameworkPaths) {
+        dui.addFrameworkPath(QDir::toNativeSeparators(framework).toStdString());
       }
       dui.defines.push_back("__cplusplus=1");
       dui.defines.push_back("__STDC__");
@@ -383,6 +450,7 @@ int main(int argc, char *argv[])
         }
         printf("Determined Qt version is %d.%d.%d\n", qtVersion >> 16, (qtVersion >> 8) & 0xFF, qtVersion & 0xFF);
     }
+    QStringList frameworkPaths = getFrameworkDirectories(args.value("framework-paths"));
 
     printf("Parsing typesystem file [%s]\n", qPrintable(typesystemFileName));
     fflush(stdout);
@@ -398,7 +466,7 @@ int main(int argc, char *argv[])
       qPrintable(pp_file), qPrintable(fileName), qPrintable(args.value("include-paths")));
     ReportHandler::setContext("Preprocess");
     
-    if (!preprocess(fileName, pp_file, includePaths)) {
+    if (!preprocess(fileName, pp_file, includePaths, frameworkPaths)) {
         fprintf(stderr, "Preprocessor failed on file: '%s'\n", qPrintable(fileName));
         return 1;
     }
@@ -439,6 +507,9 @@ void displayHelp(GeneratorSet* generatorSet) {
            "  --no-suppress-warnings                    \n"
            "  --output-directory=[dir]                  \n"
            "  --include-paths=<path>[%c<path>%c...]     \n"
+#ifdef Q_OS_MACOS
+           "  --framework-paths=<path>[%c<path>%c...]   \n"
+#endif
            "  --qt-version=x.y.z                        \n"
            "  --print-stdout                            \n",
            path_splitter, path_splitter);
