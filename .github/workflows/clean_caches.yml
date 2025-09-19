@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       actions: write
-      contens: read
+      contents: read
     steps:
       - name: Cleanup caches
         run: |
