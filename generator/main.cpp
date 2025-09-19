@@ -306,13 +306,30 @@ namespace
     unsigned int getQtVersion(const QStringList& paths)
     {
       QRegularExpression re("#define\\s+QTCORE_VERSION\\s+0x([0-9a-f]+)", QRegularExpression::CaseInsensitiveOption);
+
+      // Iterate through provided paths to find the qtcoreversion.h header file
       for (const QString &path: paths)
       {
 #ifdef Q_OS_MACOS
-        QString qtCoreVersionHeader = joinPath(path, "Versions/A/Headers/qtcoreversion.h");
+        // Define potential locations for the header file on macOS
+        const QStringList candidates = {
+          joinPath(path, "Versions/A/Headers/qtcoreversion.h"),
+          joinPath(path, "Versions/5/Headers/qtcoreversion.h"),
+          joinPath(path, "Headers/qtcoreversion.h"), // top-level Headers (often a symlink into Versions)
+        };
 #else
-        QString qtCoreVersionHeader = joinPath(path, "qtcoreversion.h");
+        // Define the location for other platforms
+        const QStringList candidates = { joinPath(path, "qtcoreversion.h") };
 #endif
+        // Pick the first existing candidate
+        QString qtCoreVersionHeader;
+        for (const QString& candidate : candidates) {
+          if (QFile::exists(candidate)) {
+            qtCoreVersionHeader = candidate;
+            break;
+          }
+        }
+
         if (QFile::exists(qtCoreVersionHeader))
         {
           QString filePath = QFileInfo(qtCoreVersionHeader).absoluteFilePath();
