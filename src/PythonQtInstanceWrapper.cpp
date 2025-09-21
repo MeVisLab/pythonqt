@@ -333,7 +333,7 @@ static PyObject *PythonQtInstanceWrapper_richcompare(PythonQtInstanceWrapper* wr
 
 static PyObject *PythonQtInstanceWrapper_classname(PythonQtInstanceWrapper* obj)
 {
-  return PyString_FromString(Py_TYPE(obj)->tp_name);
+  return PyUnicode_FromString(Py_TYPE(obj)->tp_name);
 }
 
 PyObject *PythonQtInstanceWrapper_inherits(PythonQtInstanceWrapper* obj, PyObject *args)

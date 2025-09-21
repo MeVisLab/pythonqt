@@ -384,7 +384,7 @@ static int PythonQtClassWrapper_init(PythonQtClassWrapper* self, PyObject* args,
 
 static PyObject *PythonQtClassWrapper_classname(PythonQtClassWrapper* type)
 {
-  return PyString_FromString((QByteArray("Class_") + type->classInfo()->className()).constData());
+  return PyUnicode_FromString((QByteArray("Class_") + type->classInfo()->className()).constData());
 }
 
 static PyObject *PythonQtClassWrapper_help(PythonQtClassWrapper* type)
@@ -490,7 +490,7 @@ static PyObject *PythonQtClassWrapper_getattro(PyObject *obj, PyObject *name)
     }
 
     if (wrapper->classInfo()->constructors()) {
-      PyObject* initName = PyString_FromString("__init__");
+      PyObject* initName = PyUnicode_FromString("__init__");
       PyObject* func = PyType_Type.tp_getattro(obj, initName);
       Py_DECREF(initName);
       PyDict_SetItemString(dict, "__init__", func);

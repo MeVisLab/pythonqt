@@ -123,9 +123,9 @@ static PyObject *
 meth_get__name__(PythonQtSignalFunctionObject *m, void * /*closure*/)
 {
   if (m->m_ml) {
-    return PyString_FromString(m->m_ml->signature());
+    return PyUnicode_FromString(m->m_ml->signature());
   } else {
-    return PyString_FromString("Signal");
+    return PyUnicode_FromString("Signal");
   }
 }
 
@@ -318,7 +318,7 @@ meth_repr(PythonQtSignalFunctionObject *f)
 {
   if (!f->m_ml) {
     // TODO
-    return PyString_FromString("Signal");
+    return PyUnicode_FromString("Signal");
   }
   if (f->m_self->ob_type == &PythonQtClassWrapper_Type) {
     PythonQtClassWrapper* self = (PythonQtClassWrapper*) f->m_self;
