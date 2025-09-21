@@ -766,7 +766,7 @@ PyObject* PythonQtPrivate::dummyTuple() {
   static PyObject* dummyTuple = nullptr;
   if (dummyTuple==nullptr) {
     dummyTuple = PyTuple_New(1);
-    PyTuple_SET_ITEM(dummyTuple, 0 , PyString_FromString("dummy"));
+    PyTuple_SET_ITEM(dummyTuple, 0 , PyUnicode_FromString("dummy"));
   }
   return dummyTuple;
 }
@@ -805,7 +805,7 @@ PythonQtInstanceWrapper* PythonQtPrivate::createNewPythonQtInstanceWrapper(QObje
 PythonQtClassWrapper* PythonQtPrivate::createNewPythonQtClassWrapper(PythonQtClassInfo* info, PyObject* parentModule, const QByteArray& pythonClassName) {
   PythonQtClassWrapper* result;
 
-  PyObject* className = PyString_FromString(pythonClassName.constData());
+  PyObject* className = PyUnicode_FromString(pythonClassName.constData());
 
   PyObject* baseClasses = PyTuple_New(1);
   Py_INCREF((PyObject*)&PythonQtInstanceWrapper_Type);
@@ -842,7 +842,7 @@ PyObject*  PythonQtPrivate::createEnumValueInstance(PyObject* enumType, unsigned
 PyObject* PythonQtPrivate::createNewPythonQtEnumWrapper(const char* enumName, PyObject* parentObject) {
   PyObject* result;
 
-  PyObject* className = PyString_FromString(enumName);
+  PyObject* className = PyUnicode_FromString(enumName);
 
   PyObject* baseClasses = PyTuple_New(1);
   Py_INCREF(&PyLong_Type);
@@ -1872,7 +1872,7 @@ void PythonQt::initPythonQtModule(bool redirectStdOut, const QByteArray& pythonQ
       Py_INCREF(val);
       PyTuple_SetItem(module_names, i, val);
     }
-    PyTuple_SetItem(module_names, old_size, PyString_FromString(name.constData()));
+    PyTuple_SetItem(module_names, old_size, PyUnicode_FromString(name.constData()));
     PyModule_AddObject(sys.object(), "builtin_module_names", module_names);
   }
   Py_XDECREF(old_module_names);
@@ -2175,7 +2175,7 @@ PyObject* PythonQt::helpCalled(PythonQtClassInfo* info)
     Q_EMIT pythonHelpRequest(QByteArray(info->className()));
     return Py_BuildValue("");
   } else {
-    return PyString_FromString(QStringToPythonCharPointer(info->help()));
+    return PyUnicode_FromString(QStringToPythonCharPointer(info->help()));
   }
 }
 
@@ -2299,7 +2299,7 @@ const QMetaObject* PythonQtPrivate::buildDynamicMetaObject(PythonQtClassWrapper*
   Py_ssize_t pos = 0;
   PyObject* value = nullptr;
   PyObject* key = nullptr;
-  static PyObject* qtSlots = PyString_FromString("_qtSlots");
+  static PyObject* qtSlots = PyUnicode_FromString("_qtSlots");
 
   bool needsMetaObject = false;
   // Iterate over all members and check if they affect the QMetaObject:
@@ -2400,7 +2400,7 @@ int PythonQtPrivate::handleMetaCall(QObject* object, PythonQtInstanceWrapper* wr
     }
     PythonQtProperty* prop = nullptr;
     // Get directly from the Python class, since we don't want to get the value of the property
-    PyObject* maybeProp = PyBaseObject_Type.tp_getattro((PyObject*)wrapper, PyString_FromString(metaProp.name()));
+    PyObject* maybeProp = PyBaseObject_Type.tp_getattro((PyObject*)wrapper, PyUnicode_FromString(metaProp.name()));
     if (maybeProp && PythonQtProperty_Check(maybeProp)) {
       prop = (PythonQtProperty*)maybeProp;
     } else {

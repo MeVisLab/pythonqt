@@ -96,7 +96,7 @@ PyObject* PythonQtSlotDecorator_call(PyObject* object, PyObject* args, PyObject*
     QByteArray returnType = QMetaObject::normalizedType(self->returnType->constData());
     QByteArray signature = returnType + " " + slotName + "(" + *self->args + ")";
 
-    static PyObject* qtSlots = PyString_FromString("_qtSlots");
+    static PyObject* qtSlots = PyUnicode_FromString("_qtSlots");
     PyObject* signatures = nullptr;
     if (!PyObject_HasAttr(function, qtSlots)) {
       // create a new list
@@ -109,7 +109,7 @@ PyObject* PythonQtSlotDecorator_call(PyObject* object, PyObject* args, PyObject*
     }
 
     // append the signature to the list
-    PyObject* pySignature = PyString_FromString(signature);
+    PyObject* pySignature = PyUnicode_FromString(signature);
     PyList_Append(signatures, pySignature);
     Py_DECREF(pySignature);
 

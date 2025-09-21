@@ -93,7 +93,7 @@ PyObject* PythonQtConv::ConvertQtValueToPython(const PythonQtMethodInfo::Paramet
     // a char ptr will probably be a null terminated string, so we support that:
     char* charPtr = *((char**)data);
     if (charPtr) {
-      return PyString_FromString(charPtr);
+      return PyUnicode_FromString(charPtr);
     } else {
       Py_RETURN_NONE;
     }
@@ -1297,7 +1297,7 @@ QVariant PythonQtConv::PyObjToQVariant(PyObject* val, int type)
 PyObject* PythonQtConv::QStringToPyObject(const QString& str)
 {
   if (str.isNull()) {
-    return PyString_FromString("");
+    return PyUnicode_FromString("");
   } else {
     return PyUnicode_DecodeUTF16((const char*)str.utf16(), str.length()*2, nullptr, nullptr);
   }

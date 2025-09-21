@@ -55,7 +55,7 @@ static int PythonQtBoolResult_init(PythonQtBoolResultObject *self, PyObject* arg
 static PyObject *PythonQtBoolResult_repr(PythonQtBoolResultObject *obj)
 {
   PythonQtBoolResultObject* wrapper = (PythonQtBoolResultObject*)obj;
-  return PyString_FromString(wrapper->_value?"BoolResult(True)":"BoolResult(False)");
+  return PyUnicode_FromString(wrapper->_value?"BoolResult(True)":"BoolResult(False)");
 }
 
 static int PythonQtBoolResult_bool(PyObject *obj)

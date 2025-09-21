@@ -579,13 +579,13 @@ meth_get__doc__(PythonQtSlotFunctionObject * m, void * /*closure*/)
   if (!pyReturnType.isEmpty()) {
     doc += " -> " + pyReturnType;
   }
-  return PyString_FromString(doc.constData());
+  return PyUnicode_FromString(doc.constData());
 }
 
 static PyObject *
 meth_get__name__(PythonQtSlotFunctionObject *m, void * /*closure*/)
 {
-  return PyString_FromString(m->m_ml->slotName(true));
+  return PyUnicode_FromString(m->m_ml->slotName(true));
 }
 
 static int
@@ -663,7 +663,7 @@ PyObject *PythonQtMemberFunction_parameterTypes(PythonQtSlotInfo* theInfo)
     QList<QByteArray> types = info->metaMethod()->parameterTypes();
     PyObject* tuple = PyTuple_New(types.count());
     for (int i = 0; i<types.count();i++) {
-      PyTuple_SET_ITEM(tuple, i, PyString_FromString(types.at(i).constData()));
+      PyTuple_SET_ITEM(tuple, i, PyUnicode_FromString(types.at(i).constData()));
     }
     info = info->nextInfo();
     PyTuple_SET_ITEM(result, j, tuple);
@@ -685,7 +685,7 @@ PyObject *PythonQtMemberFunction_parameterNames(PythonQtSlotInfo* theInfo)
     QList<QByteArray> names = info->metaMethod()->parameterNames();
     PyObject* tuple = PyTuple_New(names.count());
     for (int i = 0; i<names.count();i++) {
-      PyTuple_SET_ITEM(tuple, i, PyString_FromString(names.at(i).constData()));
+      PyTuple_SET_ITEM(tuple, i, PyUnicode_FromString(names.at(i).constData()));
     }
     info = info->nextInfo();
     PyTuple_SET_ITEM(result, j, tuple);
@@ -705,7 +705,7 @@ PyObject *PythonQtMemberFunction_typeName(PythonQtSlotInfo* theInfo)
   PyObject* result = PyTuple_New(count);
   for (int j = 0;j<count;j++) {
     QByteArray name = PythonQtUtils::typeName(*info->metaMethod());
-    PyTuple_SET_ITEM(result, j, PyString_FromString(name.constData()));
+    PyTuple_SET_ITEM(result, j, PyUnicode_FromString(name.constData()));
     info = info->nextInfo();
   }
   return result;
