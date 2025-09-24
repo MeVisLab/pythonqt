@@ -122,9 +122,8 @@ static int PythonQtInstanceWrapper_setitem(PyObject* self, PyObject* index, PyOb
 {
   PythonQtInstanceWrapper* wrapper = (PythonQtInstanceWrapper*)self;
   bool isSetItem = value;
-  PythonQtMemberInfo opSlot = isSetItem ?
-        wrapper->classInfo()->member("__setitem__")
-        : wrapper->classInfo()->member("__delitem__");
+  const char* methodName = isSetItem ? "__setitem__" : "__delitem__";
+  PythonQtMemberInfo opSlot = wrapper->classInfo()->member(methodName);
 
   if (opSlot._type == PythonQtMemberInfo::Slot) {
     PyObject* args = PyTuple_New(isSetItem?2:1);
@@ -141,6 +140,8 @@ static int PythonQtInstanceWrapper_setitem(PyObject* self, PyObject* index, PyOb
     Py_DECREF(args);
     return PyErr_Occurred()?-1:0;
   } else {
+    QString e = QString("No method '%1' on class '%2'").arg(methodName).arg(QString(wrapper->classInfo()->className()));
+    PyErr_SetString(PyExc_AttributeError, QStringToPythonConstCharPointer(e));
     return -1;
   }
 }
