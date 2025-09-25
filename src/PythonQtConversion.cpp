@@ -313,7 +313,7 @@ void* PythonQtConv::handlePythonToQtAutoConversion(int typeId, PyObject* obj, vo
   if (typeId == cursorId) {
     static PyObject* qtCursorShapeEnum = PythonQtClassInfo::findEnumWrapper("Qt::CursorShape", nullptr);
     if ((PyObject*)obj->ob_type == qtCursorShapeEnum) {
-      Qt::CursorShape val = (Qt::CursorShape)PyInt_AsLong(obj);
+      Qt::CursorShape val = (Qt::CursorShape)PyLong_AsLong(obj);
       if (!ptr) {
         PythonQtArgumentFrame_ADD_VARIANT_VALUE(frame, QCursor(), ptr);
         ptr = (void*)((QVariant*)ptr)->constData();
@@ -325,7 +325,7 @@ void* PythonQtConv::handlePythonToQtAutoConversion(int typeId, PyObject* obj, vo
     // brushes can be created from QColor and from Qt::GlobalColor (and from brushes, but that's the default)
     static PyObject* qtColorClass = PythonQt::priv()->getClassInfo("QColor")->pythonQtClassWrapper();
     if ((PyObject*)obj->ob_type == qtGlobalColorEnum) {
-      Qt::GlobalColor val = (Qt::GlobalColor)PyInt_AsLong(obj);
+      Qt::GlobalColor val = (Qt::GlobalColor)PyLong_AsLong(obj);
       if (!ptr) {
         PythonQtArgumentFrame_ADD_VARIANT_VALUE(frame, QPen(), ptr);
         ptr = (void*)((QVariant*)ptr)->constData();
@@ -344,7 +344,7 @@ void* PythonQtConv::handlePythonToQtAutoConversion(int typeId, PyObject* obj, vo
     // brushes can be created from QColor and from Qt::GlobalColor (and from brushes, but that's the default)
     static PyObject* qtColorClass = PythonQt::priv()->getClassInfo("QColor")->pythonQtClassWrapper();
     if ((PyObject*)obj->ob_type == qtGlobalColorEnum) {
-      Qt::GlobalColor val = (Qt::GlobalColor)PyInt_AsLong(obj);
+      Qt::GlobalColor val = (Qt::GlobalColor)PyLong_AsLong(obj);
       if (!ptr) {
         PythonQtArgumentFrame_ADD_VARIANT_VALUE(frame, QBrush(), ptr);
         ptr = (void*)((QVariant*)ptr)->constData();
@@ -362,7 +362,7 @@ void* PythonQtConv::handlePythonToQtAutoConversion(int typeId, PyObject* obj, vo
   } else if (typeId == colorId) {
     // colors can be created from Qt::GlobalColor (and from colors, but that's the default)
     if ((PyObject*)obj->ob_type == qtGlobalColorEnum) {
-      Qt::GlobalColor val = (Qt::GlobalColor)PyInt_AsLong(obj);
+      Qt::GlobalColor val = (Qt::GlobalColor)PyLong_AsLong(obj);
       if (!ptr) {
         PythonQtArgumentFrame_ADD_VARIANT_VALUE(frame, QColor(), ptr);
         ptr = (void*)((QVariant*)ptr)->constData();
@@ -903,8 +903,8 @@ int PythonQtConv::PyObjGetInt(PyObject* val, bool strict, bool &ok) {
       d = 1;
     } else {
       PyErr_Clear();
-      // PyInt_AsLong will try conversion to an int if the object is not an int:
-      d = PyInt_AsLong(val);
+      // PyLong_AsLong will try conversion to an int if the object is not an int:
+      d = PyLong_AsLong(val);
       if (PyErr_Occurred()) {
         ok = false;
         PyErr_Clear();

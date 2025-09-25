@@ -1657,7 +1657,7 @@ int custom_system_exit_exception_handler()
        just let the else clause below print the error. */
   }
   if (PyLong_Check(value))
-    exitcode = (int)PyInt_AsLong(value);
+    exitcode = (int)PyLong_AsLong(value);
   else {
     PyObject *sys_stderr = PySys_GetObject(const_cast<char*>("stderr"));
     if (sys_stderr != nullptr && sys_stderr != Py_None) {
