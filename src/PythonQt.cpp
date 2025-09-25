@@ -304,7 +304,7 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
     };
     
     for (auto i = 0u; i < sizeof(enumValues)/sizeof(int); i++) {
-      PyObject* obj = PyInt_FromLong(enumValues[i]);
+      PyObject* obj = PyLong_FromLong(enumValues[i]);
       if (PyModule_AddObject(pack, enumNames[i], obj) == 0) {
         Py_INCREF(obj);
       }
@@ -2136,7 +2136,7 @@ void PythonQtPrivate::registerGlobalNamespace(const char* typeName, const char* 
       for (int j = 0; j < metaEnum.keyCount(); j++) {
         QByteArray key = PythonQtClassInfo::escapeReservedNames(metaEnum.key(j));
         int value = metaEnum.value(j);
-        PyObject* obj = PyInt_FromLong(value);
+        PyObject* obj = PyLong_FromLong(value);
         addObjectToPackage(obj, key, packageName, package);
       }
     }
