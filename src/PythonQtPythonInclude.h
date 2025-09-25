@@ -117,17 +117,13 @@
 #undef PYTHONQT_RESTORE_KEYWORDS
 #endif
 
-#if PY_MAJOR_VERSION >= 3
+#if PY_MAJOR_VERSION < 3
+#error "PythonQt requires Python >= 3.x"
+#endif
+
 #define PY3K
 // Helper defines to facilitate porting
 #define PyString_FromString PyUnicode_FromString
-
-#else
-// Defines to use Python 3 names in Python 2 code
-#define PyBytes_Type      PyString_Type
-#define PyBytes_GET_SIZE  PyString_GET_SIZE
-#define PyBytes_FromStringAndSize PyString_FromStringAndSize
-#endif
 
 // Avoid clashes with libstdc++ <locale> by undefining ctype macros
 // that CPython may introduce on macOS when the UTF-8 ctype quirk is enabled.
