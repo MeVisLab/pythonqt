@@ -1656,7 +1656,7 @@ int custom_system_exit_exception_handler()
     /* If we failed to dig out the 'code' attribute,
        just let the else clause below print the error. */
   }
-  if (PyInt_Check(value))
+  if (PyLong_Check(value))
     exitcode = (int)PyInt_AsLong(value);
   else {
     PyObject *sys_stderr = PySys_GetObject(const_cast<char*>("stderr"));
