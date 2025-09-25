@@ -126,7 +126,6 @@
 #define PyString_FromFormat PyUnicode_FromFormat
 #define PyString_Check      PyUnicode_Check
 
-#define PyInt_Check    PyLong_Check
 #define PyInt_AsLong   PyLong_AsLong
 
 #else
