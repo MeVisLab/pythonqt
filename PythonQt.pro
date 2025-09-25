@@ -1,6 +1,18 @@
 TEMPLATE = subdirs
 
-SUBDIRS = generator src extensions tests examples
-tests.depends += src extensions
+SUBDIRS = src extensions
 extensions.depends += src
-examples.depends += src extensions
+
+CONFIG(tests) {
+    SUBDIRS += tests
+    tests.depends += extensions
+}
+
+CONFIG(generator) {
+    SUBDIRS += generator
+}
+
+CONFIG(examples) {
+    SUBDIRS += examples
+    examples.depends += extensions
+}
