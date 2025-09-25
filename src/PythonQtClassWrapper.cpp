@@ -582,12 +582,12 @@ static PyObject * PythonQtClassWrapper_repr(PyObject * obj)
       }
     }
     if (meta) {
-      return PyString_FromFormat("%s Class (C++ wrapped by %s)", wrapper->classInfo()->className(), meta->className());
+      return PyUnicode_FromFormat("%s Class (C++ wrapped by %s)", wrapper->classInfo()->className(), meta->className());
     } else {
-      return PyString_FromFormat("%s Class (C++ unwrapped)", wrapper->classInfo()->className());
+      return PyUnicode_FromFormat("%s Class (C++ unwrapped)", wrapper->classInfo()->className());
     }
   } else {
-    return PyString_FromFormat("%s Class", wrapper->classInfo()->className());
+    return PyUnicode_FromFormat("%s Class", wrapper->classInfo()->className());
   }
 }
 
