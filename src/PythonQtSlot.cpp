@@ -571,7 +571,7 @@ meth_get__doc__(PythonQtSlotFunctionObject * m, void * /*closure*/)
     if (returnTypeClassInfo && returnTypeClassInfo->pythonQtClassWrapper()) {
       PyObject* s = PyObject_GetAttrString(returnTypeClassInfo->pythonQtClassWrapper(), "__module__");
       if (s) {
-        pyReturnType = QByteArray(PyString_AsString(s)) + "." + returnType;
+        pyReturnType = QByteArray(PyUnicode_AsUTF8(s)) + "." + returnType;
         Py_DECREF(s);
       }
     }
