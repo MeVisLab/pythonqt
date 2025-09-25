@@ -412,7 +412,7 @@ PythonQtShell_QStylePlugin::~PythonQtShell_QStylePlugin() {
 void PythonQtShell_QStylePlugin::childEvent(QChildEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("childEvent");
+  static PyObject* name = PyUnicode_FromString("childEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QChildEvent*"};
@@ -431,7 +431,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 QStyle*  PythonQtShell_QStylePlugin::create(const QString&  key0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("create");
+  static PyObject* name = PyUnicode_FromString("create");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"QStyle*" , "const QString&"};
@@ -461,7 +461,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QStylePlugin::customEvent(QEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("customEvent");
+  static PyObject* name = PyUnicode_FromString("customEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QEvent*"};
@@ -480,7 +480,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 bool  PythonQtShell_QStylePlugin::event(QEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("event");
+  static PyObject* name = PyUnicode_FromString("event");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"bool" , "QEvent*"};
@@ -510,7 +510,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 bool  PythonQtShell_QStylePlugin::eventFilter(QObject*  arg__1, QEvent*  arg__2)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("eventFilter");
+  static PyObject* name = PyUnicode_FromString("eventFilter");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
@@ -540,7 +540,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QStylePlugin::timerEvent(QTimerEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("timerEvent");
+  static PyObject* name = PyUnicode_FromString("timerEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QTimerEvent*"};
@@ -574,7 +574,7 @@ PythonQtShell_QStyledItemDelegate::~PythonQtShell_QStyledItemDelegate() {
 void PythonQtShell_QStyledItemDelegate::childEvent(QChildEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("childEvent");
+  static PyObject* name = PyUnicode_FromString("childEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QChildEvent*"};
@@ -593,7 +593,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 QWidget*  PythonQtShell_QStyledItemDelegate::createEditor(QWidget*  parent0, const QStyleOptionViewItem&  option1, const QModelIndex&  index2) const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("createEditor");
+  static PyObject* name = PyUnicode_FromString("createEditor");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"QWidget*" , "QWidget*" , "const QStyleOptionViewItem&" , "const QModelIndex&"};
@@ -623,7 +623,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QStyledItemDelegate::customEvent(QEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("customEvent");
+  static PyObject* name = PyUnicode_FromString("customEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QEvent*"};
@@ -642,7 +642,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QStyledItemDelegate::destroyEditor(QWidget*  editor0, const QModelIndex&  index1) const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("destroyEditor");
+  static PyObject* name = PyUnicode_FromString("destroyEditor");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QWidget*" , "const QModelIndex&"};
@@ -661,7 +661,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 QString  PythonQtShell_QStyledItemDelegate::displayText(const QVariant&  value0, const QLocale&  locale1) const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("displayText");
+  static PyObject* name = PyUnicode_FromString("displayText");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"QString" , "const QVariant&" , "const QLocale&"};
@@ -691,7 +691,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 bool  PythonQtShell_QStyledItemDelegate::editorEvent(QEvent*  event0, QAbstractItemModel*  model1, const QStyleOptionViewItem&  option2, const QModelIndex&  index3)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("editorEvent");
+  static PyObject* name = PyUnicode_FromString("editorEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"bool" , "QEvent*" , "QAbstractItemModel*" , "const QStyleOptionViewItem&" , "const QModelIndex&"};
@@ -721,7 +721,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 bool  PythonQtShell_QStyledItemDelegate::event(QEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("event");
+  static PyObject* name = PyUnicode_FromString("event");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"bool" , "QEvent*"};
@@ -751,7 +751,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 bool  PythonQtShell_QStyledItemDelegate::eventFilter(QObject*  object0, QEvent*  event1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("eventFilter");
+  static PyObject* name = PyUnicode_FromString("eventFilter");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
@@ -781,7 +781,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 bool  PythonQtShell_QStyledItemDelegate::helpEvent(QHelpEvent*  event0, QAbstractItemView*  view1, const QStyleOptionViewItem&  option2, const QModelIndex&  index3)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("helpEvent");
+  static PyObject* name = PyUnicode_FromString("helpEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"bool" , "QHelpEvent*" , "QAbstractItemView*" , "const QStyleOptionViewItem&" , "const QModelIndex&"};
@@ -811,7 +811,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QStyledItemDelegate::initStyleOption(QStyleOptionViewItem*  option0, const QModelIndex&  index1) const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("initStyleOption");
+  static PyObject* name = PyUnicode_FromString("initStyleOption");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QStyleOptionViewItem*" , "const QModelIndex&"};
@@ -830,7 +830,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QStyledItemDelegate::paint(QPainter*  painter0, const QStyleOptionViewItem&  option1, const QModelIndex&  index2) const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("paint");
+  static PyObject* name = PyUnicode_FromString("paint");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QPainter*" , "const QStyleOptionViewItem&" , "const QModelIndex&"};
@@ -849,7 +849,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 QVector<int >  PythonQtShell_QStyledItemDelegate::paintingRoles() const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("paintingRoles");
+  static PyObject* name = PyUnicode_FromString("paintingRoles");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"QVector<int >"};
@@ -879,7 +879,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QStyledItemDelegate::setEditorData(QWidget*  editor0, const QModelIndex&  index1) const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("setEditorData");
+  static PyObject* name = PyUnicode_FromString("setEditorData");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QWidget*" , "const QModelIndex&"};
@@ -898,7 +898,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QStyledItemDelegate::setModelData(QWidget*  editor0, QAbstractItemModel*  model1, const QModelIndex&  index2) const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("setModelData");
+  static PyObject* name = PyUnicode_FromString("setModelData");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QWidget*" , "QAbstractItemModel*" , "const QModelIndex&"};
@@ -917,7 +917,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 QSize  PythonQtShell_QStyledItemDelegate::sizeHint(const QStyleOptionViewItem&  option0, const QModelIndex&  index1) const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("sizeHint");
+  static PyObject* name = PyUnicode_FromString("sizeHint");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"QSize" , "const QStyleOptionViewItem&" , "const QModelIndex&"};
@@ -947,7 +947,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QStyledItemDelegate::timerEvent(QTimerEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("timerEvent");
+  static PyObject* name = PyUnicode_FromString("timerEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QTimerEvent*"};
@@ -966,7 +966,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QStyledItemDelegate::updateEditorGeometry(QWidget*  editor0, const QStyleOptionViewItem&  option1, const QModelIndex&  index2) const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("updateEditorGeometry");
+  static PyObject* name = PyUnicode_FromString("updateEditorGeometry");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QWidget*" , "const QStyleOptionViewItem&" , "const QModelIndex&"};
@@ -1055,7 +1055,7 @@ PythonQtShell_QSurface::~PythonQtShell_QSurface() {
 QSurfaceFormat  PythonQtShell_QSurface::format() const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("format");
+  static PyObject* name = PyUnicode_FromString("format");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"QSurfaceFormat"};
@@ -1085,7 +1085,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 QSize  PythonQtShell_QSurface::size() const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("size");
+  static PyObject* name = PyUnicode_FromString("size");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"QSize"};
@@ -1115,7 +1115,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 QPlatformSurface*  PythonQtShell_QSurface::surfaceHandle() const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("surfaceHandle");
+  static PyObject* name = PyUnicode_FromString("surfaceHandle");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"QPlatformSurface*"};
@@ -1145,7 +1145,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 QSurface::SurfaceType  PythonQtShell_QSurface::surfaceType() const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("surfaceType");
+  static PyObject* name = PyUnicode_FromString("surfaceType");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"QSurface::SurfaceType"};
@@ -1431,7 +1431,7 @@ PythonQtShell_QSwipeGesture::~PythonQtShell_QSwipeGesture() {
 void PythonQtShell_QSwipeGesture::childEvent(QChildEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("childEvent");
+  static PyObject* name = PyUnicode_FromString("childEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QChildEvent*"};
@@ -1450,7 +1450,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QSwipeGesture::customEvent(QEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("customEvent");
+  static PyObject* name = PyUnicode_FromString("customEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QEvent*"};
@@ -1469,7 +1469,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 bool  PythonQtShell_QSwipeGesture::event(QEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("event");
+  static PyObject* name = PyUnicode_FromString("event");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"bool" , "QEvent*"};
@@ -1499,7 +1499,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 bool  PythonQtShell_QSwipeGesture::eventFilter(QObject*  arg__1, QEvent*  arg__2)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("eventFilter");
+  static PyObject* name = PyUnicode_FromString("eventFilter");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
@@ -1529,7 +1529,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QSwipeGesture::timerEvent(QTimerEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("timerEvent");
+  static PyObject* name = PyUnicode_FromString("timerEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QTimerEvent*"};
@@ -1578,7 +1578,7 @@ PythonQtShell_QSyntaxHighlighter::~PythonQtShell_QSyntaxHighlighter() {
 void PythonQtShell_QSyntaxHighlighter::childEvent(QChildEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("childEvent");
+  static PyObject* name = PyUnicode_FromString("childEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QChildEvent*"};
@@ -1597,7 +1597,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QSyntaxHighlighter::customEvent(QEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("customEvent");
+  static PyObject* name = PyUnicode_FromString("customEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QEvent*"};
@@ -1616,7 +1616,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 bool  PythonQtShell_QSyntaxHighlighter::event(QEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("event");
+  static PyObject* name = PyUnicode_FromString("event");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"bool" , "QEvent*"};
@@ -1646,7 +1646,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 bool  PythonQtShell_QSyntaxHighlighter::eventFilter(QObject*  arg__1, QEvent*  arg__2)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("eventFilter");
+  static PyObject* name = PyUnicode_FromString("eventFilter");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
@@ -1676,7 +1676,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QSyntaxHighlighter::highlightBlock(const QString&  text0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("highlightBlock");
+  static PyObject* name = PyUnicode_FromString("highlightBlock");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "const QString&"};
@@ -1695,7 +1695,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QSyntaxHighlighter::timerEvent(QTimerEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("timerEvent");
+  static PyObject* name = PyUnicode_FromString("timerEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QTimerEvent*"};
@@ -1793,7 +1793,7 @@ PythonQtShell_QSystemTrayIcon::~PythonQtShell_QSystemTrayIcon() {
 void PythonQtShell_QSystemTrayIcon::childEvent(QChildEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("childEvent");
+  static PyObject* name = PyUnicode_FromString("childEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QChildEvent*"};
@@ -1812,7 +1812,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QSystemTrayIcon::customEvent(QEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("customEvent");
+  static PyObject* name = PyUnicode_FromString("customEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QEvent*"};
@@ -1831,7 +1831,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 bool  PythonQtShell_QSystemTrayIcon::event(QEvent*  event0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("event");
+  static PyObject* name = PyUnicode_FromString("event");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"bool" , "QEvent*"};
@@ -1861,7 +1861,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 bool  PythonQtShell_QSystemTrayIcon::eventFilter(QObject*  arg__1, QEvent*  arg__2)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("eventFilter");
+  static PyObject* name = PyUnicode_FromString("eventFilter");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
@@ -1891,7 +1891,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QSystemTrayIcon::timerEvent(QTimerEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("timerEvent");
+  static PyObject* name = PyUnicode_FromString("timerEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QTimerEvent*"};
@@ -1979,7 +1979,7 @@ PythonQtShell_QTabBar::~PythonQtShell_QTabBar() {
 void PythonQtShell_QTabBar::actionEvent(QActionEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("actionEvent");
+  static PyObject* name = PyUnicode_FromString("actionEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QActionEvent*"};
@@ -1998,7 +1998,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabBar::changeEvent(QEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("changeEvent");
+  static PyObject* name = PyUnicode_FromString("changeEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QEvent*"};
@@ -2017,7 +2017,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabBar::childEvent(QChildEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("childEvent");
+  static PyObject* name = PyUnicode_FromString("childEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QChildEvent*"};
@@ -2036,7 +2036,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabBar::closeEvent(QCloseEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("closeEvent");
+  static PyObject* name = PyUnicode_FromString("closeEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QCloseEvent*"};
@@ -2055,7 +2055,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabBar::contextMenuEvent(QContextMenuEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("contextMenuEvent");
+  static PyObject* name = PyUnicode_FromString("contextMenuEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QContextMenuEvent*"};
@@ -2074,7 +2074,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabBar::customEvent(QEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("customEvent");
+  static PyObject* name = PyUnicode_FromString("customEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QEvent*"};
@@ -2093,7 +2093,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 int  PythonQtShell_QTabBar::devType() const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("devType");
+  static PyObject* name = PyUnicode_FromString("devType");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"int"};
@@ -2123,7 +2123,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabBar::dragEnterEvent(QDragEnterEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("dragEnterEvent");
+  static PyObject* name = PyUnicode_FromString("dragEnterEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QDragEnterEvent*"};
@@ -2142,7 +2142,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabBar::dragLeaveEvent(QDragLeaveEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("dragLeaveEvent");
+  static PyObject* name = PyUnicode_FromString("dragLeaveEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QDragLeaveEvent*"};
@@ -2161,7 +2161,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabBar::dragMoveEvent(QDragMoveEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("dragMoveEvent");
+  static PyObject* name = PyUnicode_FromString("dragMoveEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QDragMoveEvent*"};
@@ -2180,7 +2180,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabBar::dropEvent(QDropEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("dropEvent");
+  static PyObject* name = PyUnicode_FromString("dropEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QDropEvent*"};
@@ -2199,7 +2199,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabBar::enterEvent(QEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("enterEvent");
+  static PyObject* name = PyUnicode_FromString("enterEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QEvent*"};
@@ -2218,7 +2218,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 bool  PythonQtShell_QTabBar::event(QEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("event");
+  static PyObject* name = PyUnicode_FromString("event");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"bool" , "QEvent*"};
@@ -2248,7 +2248,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 bool  PythonQtShell_QTabBar::eventFilter(QObject*  arg__1, QEvent*  arg__2)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("eventFilter");
+  static PyObject* name = PyUnicode_FromString("eventFilter");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
@@ -2278,7 +2278,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabBar::focusInEvent(QFocusEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("focusInEvent");
+  static PyObject* name = PyUnicode_FromString("focusInEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QFocusEvent*"};
@@ -2297,7 +2297,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 bool  PythonQtShell_QTabBar::focusNextPrevChild(bool  next0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("focusNextPrevChild");
+  static PyObject* name = PyUnicode_FromString("focusNextPrevChild");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"bool" , "bool"};
@@ -2327,7 +2327,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabBar::focusOutEvent(QFocusEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("focusOutEvent");
+  static PyObject* name = PyUnicode_FromString("focusOutEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QFocusEvent*"};
@@ -2346,7 +2346,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 bool  PythonQtShell_QTabBar::hasHeightForWidth() const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("hasHeightForWidth");
+  static PyObject* name = PyUnicode_FromString("hasHeightForWidth");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"bool"};
@@ -2376,7 +2376,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 int  PythonQtShell_QTabBar::heightForWidth(int  arg__1) const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("heightForWidth");
+  static PyObject* name = PyUnicode_FromString("heightForWidth");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"int" , "int"};
@@ -2406,7 +2406,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabBar::hideEvent(QHideEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("hideEvent");
+  static PyObject* name = PyUnicode_FromString("hideEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QHideEvent*"};
@@ -2425,7 +2425,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabBar::initPainter(QPainter*  painter0) const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("initPainter");
+  static PyObject* name = PyUnicode_FromString("initPainter");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QPainter*"};
@@ -2444,7 +2444,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabBar::inputMethodEvent(QInputMethodEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("inputMethodEvent");
+  static PyObject* name = PyUnicode_FromString("inputMethodEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QInputMethodEvent*"};
@@ -2463,7 +2463,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 QVariant  PythonQtShell_QTabBar::inputMethodQuery(Qt::InputMethodQuery  arg__1) const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("inputMethodQuery");
+  static PyObject* name = PyUnicode_FromString("inputMethodQuery");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"QVariant" , "Qt::InputMethodQuery"};
@@ -2493,7 +2493,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabBar::keyPressEvent(QKeyEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("keyPressEvent");
+  static PyObject* name = PyUnicode_FromString("keyPressEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QKeyEvent*"};
@@ -2512,7 +2512,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabBar::keyReleaseEvent(QKeyEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("keyReleaseEvent");
+  static PyObject* name = PyUnicode_FromString("keyReleaseEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QKeyEvent*"};
@@ -2531,7 +2531,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabBar::leaveEvent(QEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("leaveEvent");
+  static PyObject* name = PyUnicode_FromString("leaveEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QEvent*"};
@@ -2550,7 +2550,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 int  PythonQtShell_QTabBar::metric(QPaintDevice::PaintDeviceMetric  arg__1) const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("metric");
+  static PyObject* name = PyUnicode_FromString("metric");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"int" , "QPaintDevice::PaintDeviceMetric"};
@@ -2580,7 +2580,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 QSize  PythonQtShell_QTabBar::minimumTabSizeHint(int  index0) const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("minimumTabSizeHint");
+  static PyObject* name = PyUnicode_FromString("minimumTabSizeHint");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"QSize" , "int"};
@@ -2610,7 +2610,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabBar::mouseDoubleClickEvent(QMouseEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("mouseDoubleClickEvent");
+  static PyObject* name = PyUnicode_FromString("mouseDoubleClickEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -2629,7 +2629,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabBar::mouseMoveEvent(QMouseEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("mouseMoveEvent");
+  static PyObject* name = PyUnicode_FromString("mouseMoveEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -2648,7 +2648,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabBar::mousePressEvent(QMouseEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("mousePressEvent");
+  static PyObject* name = PyUnicode_FromString("mousePressEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -2667,7 +2667,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabBar::mouseReleaseEvent(QMouseEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("mouseReleaseEvent");
+  static PyObject* name = PyUnicode_FromString("mouseReleaseEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -2686,7 +2686,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabBar::moveEvent(QMoveEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("moveEvent");
+  static PyObject* name = PyUnicode_FromString("moveEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QMoveEvent*"};
@@ -2705,7 +2705,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 bool  PythonQtShell_QTabBar::nativeEvent(const QByteArray&  eventType0, void*  message1, long*  result2)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("nativeEvent");
+  static PyObject* name = PyUnicode_FromString("nativeEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"bool" , "const QByteArray&" , "void*" , "long*"};
@@ -2735,7 +2735,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 QPaintEngine*  PythonQtShell_QTabBar::paintEngine() const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("paintEngine");
+  static PyObject* name = PyUnicode_FromString("paintEngine");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"QPaintEngine*"};
@@ -2765,7 +2765,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabBar::paintEvent(QPaintEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("paintEvent");
+  static PyObject* name = PyUnicode_FromString("paintEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QPaintEvent*"};
@@ -2784,7 +2784,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 QPaintDevice*  PythonQtShell_QTabBar::redirected(QPoint*  offset0) const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("redirected");
+  static PyObject* name = PyUnicode_FromString("redirected");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"QPaintDevice*" , "QPoint*"};
@@ -2814,7 +2814,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabBar::resizeEvent(QResizeEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("resizeEvent");
+  static PyObject* name = PyUnicode_FromString("resizeEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QResizeEvent*"};
@@ -2833,7 +2833,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 QPainter*  PythonQtShell_QTabBar::sharedPainter() const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("sharedPainter");
+  static PyObject* name = PyUnicode_FromString("sharedPainter");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"QPainter*"};
@@ -2863,7 +2863,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabBar::showEvent(QShowEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("showEvent");
+  static PyObject* name = PyUnicode_FromString("showEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QShowEvent*"};
@@ -2882,7 +2882,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabBar::tabInserted(int  index0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("tabInserted");
+  static PyObject* name = PyUnicode_FromString("tabInserted");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "int"};
@@ -2901,7 +2901,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabBar::tabLayoutChange()
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("tabLayoutChange");
+  static PyObject* name = PyUnicode_FromString("tabLayoutChange");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={""};
@@ -2920,7 +2920,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabBar::tabRemoved(int  index0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("tabRemoved");
+  static PyObject* name = PyUnicode_FromString("tabRemoved");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "int"};
@@ -2939,7 +2939,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 QSize  PythonQtShell_QTabBar::tabSizeHint(int  index0) const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("tabSizeHint");
+  static PyObject* name = PyUnicode_FromString("tabSizeHint");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"QSize" , "int"};
@@ -2969,7 +2969,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabBar::tabletEvent(QTabletEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("tabletEvent");
+  static PyObject* name = PyUnicode_FromString("tabletEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QTabletEvent*"};
@@ -2988,7 +2988,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabBar::timerEvent(QTimerEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("timerEvent");
+  static PyObject* name = PyUnicode_FromString("timerEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QTimerEvent*"};
@@ -3007,7 +3007,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabBar::wheelEvent(QWheelEvent*  event0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("wheelEvent");
+  static PyObject* name = PyUnicode_FromString("wheelEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QWheelEvent*"};
@@ -3361,7 +3361,7 @@ PythonQtShell_QTabWidget::~PythonQtShell_QTabWidget() {
 void PythonQtShell_QTabWidget::actionEvent(QActionEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("actionEvent");
+  static PyObject* name = PyUnicode_FromString("actionEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QActionEvent*"};
@@ -3380,7 +3380,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabWidget::changeEvent(QEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("changeEvent");
+  static PyObject* name = PyUnicode_FromString("changeEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QEvent*"};
@@ -3399,7 +3399,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabWidget::childEvent(QChildEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("childEvent");
+  static PyObject* name = PyUnicode_FromString("childEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QChildEvent*"};
@@ -3418,7 +3418,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabWidget::closeEvent(QCloseEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("closeEvent");
+  static PyObject* name = PyUnicode_FromString("closeEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QCloseEvent*"};
@@ -3437,7 +3437,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabWidget::contextMenuEvent(QContextMenuEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("contextMenuEvent");
+  static PyObject* name = PyUnicode_FromString("contextMenuEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QContextMenuEvent*"};
@@ -3456,7 +3456,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabWidget::customEvent(QEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("customEvent");
+  static PyObject* name = PyUnicode_FromString("customEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QEvent*"};
@@ -3475,7 +3475,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 int  PythonQtShell_QTabWidget::devType() const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("devType");
+  static PyObject* name = PyUnicode_FromString("devType");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"int"};
@@ -3505,7 +3505,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabWidget::dragEnterEvent(QDragEnterEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("dragEnterEvent");
+  static PyObject* name = PyUnicode_FromString("dragEnterEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QDragEnterEvent*"};
@@ -3524,7 +3524,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabWidget::dragLeaveEvent(QDragLeaveEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("dragLeaveEvent");
+  static PyObject* name = PyUnicode_FromString("dragLeaveEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QDragLeaveEvent*"};
@@ -3543,7 +3543,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabWidget::dragMoveEvent(QDragMoveEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("dragMoveEvent");
+  static PyObject* name = PyUnicode_FromString("dragMoveEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QDragMoveEvent*"};
@@ -3562,7 +3562,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabWidget::dropEvent(QDropEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("dropEvent");
+  static PyObject* name = PyUnicode_FromString("dropEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QDropEvent*"};
@@ -3581,7 +3581,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabWidget::enterEvent(QEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("enterEvent");
+  static PyObject* name = PyUnicode_FromString("enterEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QEvent*"};
@@ -3600,7 +3600,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 bool  PythonQtShell_QTabWidget::event(QEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("event");
+  static PyObject* name = PyUnicode_FromString("event");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"bool" , "QEvent*"};
@@ -3630,7 +3630,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 bool  PythonQtShell_QTabWidget::eventFilter(QObject*  arg__1, QEvent*  arg__2)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("eventFilter");
+  static PyObject* name = PyUnicode_FromString("eventFilter");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
@@ -3660,7 +3660,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabWidget::focusInEvent(QFocusEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("focusInEvent");
+  static PyObject* name = PyUnicode_FromString("focusInEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QFocusEvent*"};
@@ -3679,7 +3679,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 bool  PythonQtShell_QTabWidget::focusNextPrevChild(bool  next0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("focusNextPrevChild");
+  static PyObject* name = PyUnicode_FromString("focusNextPrevChild");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"bool" , "bool"};
@@ -3709,7 +3709,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabWidget::focusOutEvent(QFocusEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("focusOutEvent");
+  static PyObject* name = PyUnicode_FromString("focusOutEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QFocusEvent*"};
@@ -3728,7 +3728,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 bool  PythonQtShell_QTabWidget::hasHeightForWidth() const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("hasHeightForWidth");
+  static PyObject* name = PyUnicode_FromString("hasHeightForWidth");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"bool"};
@@ -3758,7 +3758,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 int  PythonQtShell_QTabWidget::heightForWidth(int  width0) const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("heightForWidth");
+  static PyObject* name = PyUnicode_FromString("heightForWidth");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"int" , "int"};
@@ -3788,7 +3788,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabWidget::hideEvent(QHideEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("hideEvent");
+  static PyObject* name = PyUnicode_FromString("hideEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QHideEvent*"};
@@ -3807,7 +3807,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabWidget::initPainter(QPainter*  painter0) const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("initPainter");
+  static PyObject* name = PyUnicode_FromString("initPainter");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QPainter*"};
@@ -3826,7 +3826,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabWidget::inputMethodEvent(QInputMethodEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("inputMethodEvent");
+  static PyObject* name = PyUnicode_FromString("inputMethodEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QInputMethodEvent*"};
@@ -3845,7 +3845,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 QVariant  PythonQtShell_QTabWidget::inputMethodQuery(Qt::InputMethodQuery  arg__1) const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("inputMethodQuery");
+  static PyObject* name = PyUnicode_FromString("inputMethodQuery");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"QVariant" , "Qt::InputMethodQuery"};
@@ -3875,7 +3875,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabWidget::keyPressEvent(QKeyEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("keyPressEvent");
+  static PyObject* name = PyUnicode_FromString("keyPressEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QKeyEvent*"};
@@ -3894,7 +3894,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabWidget::keyReleaseEvent(QKeyEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("keyReleaseEvent");
+  static PyObject* name = PyUnicode_FromString("keyReleaseEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QKeyEvent*"};
@@ -3913,7 +3913,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabWidget::leaveEvent(QEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("leaveEvent");
+  static PyObject* name = PyUnicode_FromString("leaveEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QEvent*"};
@@ -3932,7 +3932,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 int  PythonQtShell_QTabWidget::metric(QPaintDevice::PaintDeviceMetric  arg__1) const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("metric");
+  static PyObject* name = PyUnicode_FromString("metric");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"int" , "QPaintDevice::PaintDeviceMetric"};
@@ -3962,7 +3962,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabWidget::mouseDoubleClickEvent(QMouseEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("mouseDoubleClickEvent");
+  static PyObject* name = PyUnicode_FromString("mouseDoubleClickEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -3981,7 +3981,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabWidget::mouseMoveEvent(QMouseEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("mouseMoveEvent");
+  static PyObject* name = PyUnicode_FromString("mouseMoveEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -4000,7 +4000,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabWidget::mousePressEvent(QMouseEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("mousePressEvent");
+  static PyObject* name = PyUnicode_FromString("mousePressEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -4019,7 +4019,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabWidget::mouseReleaseEvent(QMouseEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("mouseReleaseEvent");
+  static PyObject* name = PyUnicode_FromString("mouseReleaseEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -4038,7 +4038,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabWidget::moveEvent(QMoveEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("moveEvent");
+  static PyObject* name = PyUnicode_FromString("moveEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QMoveEvent*"};
@@ -4057,7 +4057,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 bool  PythonQtShell_QTabWidget::nativeEvent(const QByteArray&  eventType0, void*  message1, long*  result2)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("nativeEvent");
+  static PyObject* name = PyUnicode_FromString("nativeEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"bool" , "const QByteArray&" , "void*" , "long*"};
@@ -4087,7 +4087,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 QPaintEngine*  PythonQtShell_QTabWidget::paintEngine() const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("paintEngine");
+  static PyObject* name = PyUnicode_FromString("paintEngine");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"QPaintEngine*"};
@@ -4117,7 +4117,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabWidget::paintEvent(QPaintEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("paintEvent");
+  static PyObject* name = PyUnicode_FromString("paintEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QPaintEvent*"};
@@ -4136,7 +4136,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 QPaintDevice*  PythonQtShell_QTabWidget::redirected(QPoint*  offset0) const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("redirected");
+  static PyObject* name = PyUnicode_FromString("redirected");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"QPaintDevice*" , "QPoint*"};
@@ -4166,7 +4166,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabWidget::resizeEvent(QResizeEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("resizeEvent");
+  static PyObject* name = PyUnicode_FromString("resizeEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QResizeEvent*"};
@@ -4185,7 +4185,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 QPainter*  PythonQtShell_QTabWidget::sharedPainter() const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("sharedPainter");
+  static PyObject* name = PyUnicode_FromString("sharedPainter");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"QPainter*"};
@@ -4215,7 +4215,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabWidget::showEvent(QShowEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("showEvent");
+  static PyObject* name = PyUnicode_FromString("showEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QShowEvent*"};
@@ -4234,7 +4234,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabWidget::tabInserted(int  index0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("tabInserted");
+  static PyObject* name = PyUnicode_FromString("tabInserted");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "int"};
@@ -4253,7 +4253,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabWidget::tabRemoved(int  index0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("tabRemoved");
+  static PyObject* name = PyUnicode_FromString("tabRemoved");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "int"};
@@ -4272,7 +4272,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabWidget::tabletEvent(QTabletEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("tabletEvent");
+  static PyObject* name = PyUnicode_FromString("tabletEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QTabletEvent*"};
@@ -4291,7 +4291,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabWidget::timerEvent(QTimerEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("timerEvent");
+  static PyObject* name = PyUnicode_FromString("timerEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QTimerEvent*"};
@@ -4310,7 +4310,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTabWidget::wheelEvent(QWheelEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("wheelEvent");
+  static PyObject* name = PyUnicode_FromString("wheelEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QWheelEvent*"};
@@ -4609,7 +4609,7 @@ PythonQtShell_QTableView::~PythonQtShell_QTableView() {
 void PythonQtShell_QTableView::actionEvent(QActionEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("actionEvent");
+  static PyObject* name = PyUnicode_FromString("actionEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QActionEvent*"};
@@ -4628,7 +4628,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::changeEvent(QEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("changeEvent");
+  static PyObject* name = PyUnicode_FromString("changeEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QEvent*"};
@@ -4647,7 +4647,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::childEvent(QChildEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("childEvent");
+  static PyObject* name = PyUnicode_FromString("childEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QChildEvent*"};
@@ -4666,7 +4666,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::closeEditor(QWidget*  editor0, QAbstractItemDelegate::EndEditHint  hint1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("closeEditor");
+  static PyObject* name = PyUnicode_FromString("closeEditor");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QWidget*" , "QAbstractItemDelegate::EndEditHint"};
@@ -4685,7 +4685,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::closeEvent(QCloseEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("closeEvent");
+  static PyObject* name = PyUnicode_FromString("closeEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QCloseEvent*"};
@@ -4704,7 +4704,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::commitData(QWidget*  editor0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("commitData");
+  static PyObject* name = PyUnicode_FromString("commitData");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QWidget*"};
@@ -4723,7 +4723,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::contextMenuEvent(QContextMenuEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("contextMenuEvent");
+  static PyObject* name = PyUnicode_FromString("contextMenuEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QContextMenuEvent*"};
@@ -4742,7 +4742,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::currentChanged(const QModelIndex&  current0, const QModelIndex&  previous1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("currentChanged");
+  static PyObject* name = PyUnicode_FromString("currentChanged");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "const QModelIndex&" , "const QModelIndex&"};
@@ -4761,7 +4761,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::customEvent(QEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("customEvent");
+  static PyObject* name = PyUnicode_FromString("customEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QEvent*"};
@@ -4780,7 +4780,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::dataChanged(const QModelIndex&  topLeft0, const QModelIndex&  bottomRight1, const QVector<int >&  roles2)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("dataChanged");
+  static PyObject* name = PyUnicode_FromString("dataChanged");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "const QModelIndex&" , "const QModelIndex&" , "const QVector<int >&"};
@@ -4799,7 +4799,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 int  PythonQtShell_QTableView::devType() const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("devType");
+  static PyObject* name = PyUnicode_FromString("devType");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"int"};
@@ -4829,7 +4829,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::doItemsLayout()
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("doItemsLayout");
+  static PyObject* name = PyUnicode_FromString("doItemsLayout");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={""};
@@ -4848,7 +4848,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::dragEnterEvent(QDragEnterEvent*  event0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("dragEnterEvent");
+  static PyObject* name = PyUnicode_FromString("dragEnterEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QDragEnterEvent*"};
@@ -4867,7 +4867,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::dragLeaveEvent(QDragLeaveEvent*  event0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("dragLeaveEvent");
+  static PyObject* name = PyUnicode_FromString("dragLeaveEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QDragLeaveEvent*"};
@@ -4886,7 +4886,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::dragMoveEvent(QDragMoveEvent*  event0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("dragMoveEvent");
+  static PyObject* name = PyUnicode_FromString("dragMoveEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QDragMoveEvent*"};
@@ -4905,7 +4905,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::dropEvent(QDropEvent*  event0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("dropEvent");
+  static PyObject* name = PyUnicode_FromString("dropEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QDropEvent*"};
@@ -4924,7 +4924,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 bool  PythonQtShell_QTableView::edit(const QModelIndex&  index0, QAbstractItemView::EditTrigger  trigger1, QEvent*  event2)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("edit");
+  static PyObject* name = PyUnicode_FromString("edit");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"bool" , "const QModelIndex&" , "QAbstractItemView::EditTrigger" , "QEvent*"};
@@ -4954,7 +4954,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::editorDestroyed(QObject*  editor0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("editorDestroyed");
+  static PyObject* name = PyUnicode_FromString("editorDestroyed");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QObject*"};
@@ -4973,7 +4973,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::enterEvent(QEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("enterEvent");
+  static PyObject* name = PyUnicode_FromString("enterEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QEvent*"};
@@ -4992,7 +4992,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 bool  PythonQtShell_QTableView::event(QEvent*  event0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("event");
+  static PyObject* name = PyUnicode_FromString("event");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"bool" , "QEvent*"};
@@ -5022,7 +5022,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 bool  PythonQtShell_QTableView::eventFilter(QObject*  arg__1, QEvent*  arg__2)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("eventFilter");
+  static PyObject* name = PyUnicode_FromString("eventFilter");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
@@ -5052,7 +5052,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::focusInEvent(QFocusEvent*  event0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("focusInEvent");
+  static PyObject* name = PyUnicode_FromString("focusInEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QFocusEvent*"};
@@ -5071,7 +5071,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 bool  PythonQtShell_QTableView::focusNextPrevChild(bool  next0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("focusNextPrevChild");
+  static PyObject* name = PyUnicode_FromString("focusNextPrevChild");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"bool" , "bool"};
@@ -5101,7 +5101,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::focusOutEvent(QFocusEvent*  event0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("focusOutEvent");
+  static PyObject* name = PyUnicode_FromString("focusOutEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QFocusEvent*"};
@@ -5120,7 +5120,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 bool  PythonQtShell_QTableView::hasHeightForWidth() const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("hasHeightForWidth");
+  static PyObject* name = PyUnicode_FromString("hasHeightForWidth");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"bool"};
@@ -5150,7 +5150,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 int  PythonQtShell_QTableView::heightForWidth(int  arg__1) const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("heightForWidth");
+  static PyObject* name = PyUnicode_FromString("heightForWidth");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"int" , "int"};
@@ -5180,7 +5180,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::hideEvent(QHideEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("hideEvent");
+  static PyObject* name = PyUnicode_FromString("hideEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QHideEvent*"};
@@ -5199,7 +5199,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 int  PythonQtShell_QTableView::horizontalOffset() const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("horizontalOffset");
+  static PyObject* name = PyUnicode_FromString("horizontalOffset");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"int"};
@@ -5229,7 +5229,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::horizontalScrollbarAction(int  action0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("horizontalScrollbarAction");
+  static PyObject* name = PyUnicode_FromString("horizontalScrollbarAction");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "int"};
@@ -5248,7 +5248,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::horizontalScrollbarValueChanged(int  value0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("horizontalScrollbarValueChanged");
+  static PyObject* name = PyUnicode_FromString("horizontalScrollbarValueChanged");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "int"};
@@ -5267,7 +5267,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 QModelIndex  PythonQtShell_QTableView::indexAt(const QPoint&  p0) const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("indexAt");
+  static PyObject* name = PyUnicode_FromString("indexAt");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"QModelIndex" , "const QPoint&"};
@@ -5297,7 +5297,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::initPainter(QPainter*  painter0) const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("initPainter");
+  static PyObject* name = PyUnicode_FromString("initPainter");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QPainter*"};
@@ -5316,7 +5316,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::inputMethodEvent(QInputMethodEvent*  event0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("inputMethodEvent");
+  static PyObject* name = PyUnicode_FromString("inputMethodEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QInputMethodEvent*"};
@@ -5335,7 +5335,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 QVariant  PythonQtShell_QTableView::inputMethodQuery(Qt::InputMethodQuery  query0) const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("inputMethodQuery");
+  static PyObject* name = PyUnicode_FromString("inputMethodQuery");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"QVariant" , "Qt::InputMethodQuery"};
@@ -5365,7 +5365,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 bool  PythonQtShell_QTableView::isIndexHidden(const QModelIndex&  index0) const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("isIndexHidden");
+  static PyObject* name = PyUnicode_FromString("isIndexHidden");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"bool" , "const QModelIndex&"};
@@ -5395,7 +5395,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::keyPressEvent(QKeyEvent*  event0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("keyPressEvent");
+  static PyObject* name = PyUnicode_FromString("keyPressEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QKeyEvent*"};
@@ -5414,7 +5414,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::keyReleaseEvent(QKeyEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("keyReleaseEvent");
+  static PyObject* name = PyUnicode_FromString("keyReleaseEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QKeyEvent*"};
@@ -5433,7 +5433,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::keyboardSearch(const QString&  search0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("keyboardSearch");
+  static PyObject* name = PyUnicode_FromString("keyboardSearch");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "const QString&"};
@@ -5452,7 +5452,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::leaveEvent(QEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("leaveEvent");
+  static PyObject* name = PyUnicode_FromString("leaveEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QEvent*"};
@@ -5471,7 +5471,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 int  PythonQtShell_QTableView::metric(QPaintDevice::PaintDeviceMetric  arg__1) const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("metric");
+  static PyObject* name = PyUnicode_FromString("metric");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"int" , "QPaintDevice::PaintDeviceMetric"};
@@ -5501,7 +5501,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::mouseDoubleClickEvent(QMouseEvent*  event0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("mouseDoubleClickEvent");
+  static PyObject* name = PyUnicode_FromString("mouseDoubleClickEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -5520,7 +5520,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::mouseMoveEvent(QMouseEvent*  event0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("mouseMoveEvent");
+  static PyObject* name = PyUnicode_FromString("mouseMoveEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -5539,7 +5539,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::mousePressEvent(QMouseEvent*  event0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("mousePressEvent");
+  static PyObject* name = PyUnicode_FromString("mousePressEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -5558,7 +5558,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::mouseReleaseEvent(QMouseEvent*  event0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("mouseReleaseEvent");
+  static PyObject* name = PyUnicode_FromString("mouseReleaseEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -5577,7 +5577,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::moveEvent(QMoveEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("moveEvent");
+  static PyObject* name = PyUnicode_FromString("moveEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QMoveEvent*"};
@@ -5596,7 +5596,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 bool  PythonQtShell_QTableView::nativeEvent(const QByteArray&  eventType0, void*  message1, long*  result2)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("nativeEvent");
+  static PyObject* name = PyUnicode_FromString("nativeEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"bool" , "const QByteArray&" , "void*" , "long*"};
@@ -5626,7 +5626,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 QPaintEngine*  PythonQtShell_QTableView::paintEngine() const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("paintEngine");
+  static PyObject* name = PyUnicode_FromString("paintEngine");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"QPaintEngine*"};
@@ -5656,7 +5656,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::paintEvent(QPaintEvent*  e0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("paintEvent");
+  static PyObject* name = PyUnicode_FromString("paintEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QPaintEvent*"};
@@ -5675,7 +5675,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 QPaintDevice*  PythonQtShell_QTableView::redirected(QPoint*  offset0) const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("redirected");
+  static PyObject* name = PyUnicode_FromString("redirected");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"QPaintDevice*" , "QPoint*"};
@@ -5705,7 +5705,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::reset()
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("reset");
+  static PyObject* name = PyUnicode_FromString("reset");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={""};
@@ -5724,7 +5724,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::resizeEvent(QResizeEvent*  event0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("resizeEvent");
+  static PyObject* name = PyUnicode_FromString("resizeEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QResizeEvent*"};
@@ -5743,7 +5743,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::rowsAboutToBeRemoved(const QModelIndex&  parent0, int  start1, int  end2)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("rowsAboutToBeRemoved");
+  static PyObject* name = PyUnicode_FromString("rowsAboutToBeRemoved");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "const QModelIndex&" , "int" , "int"};
@@ -5762,7 +5762,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::rowsInserted(const QModelIndex&  parent0, int  start1, int  end2)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("rowsInserted");
+  static PyObject* name = PyUnicode_FromString("rowsInserted");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "const QModelIndex&" , "int" , "int"};
@@ -5781,7 +5781,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::scrollContentsBy(int  dx0, int  dy1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("scrollContentsBy");
+  static PyObject* name = PyUnicode_FromString("scrollContentsBy");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "int" , "int"};
@@ -5800,7 +5800,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::scrollTo(const QModelIndex&  index0, QAbstractItemView::ScrollHint  hint1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("scrollTo");
+  static PyObject* name = PyUnicode_FromString("scrollTo");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "const QModelIndex&" , "QAbstractItemView::ScrollHint"};
@@ -5819,7 +5819,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::selectAll()
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("selectAll");
+  static PyObject* name = PyUnicode_FromString("selectAll");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={""};
@@ -5838,7 +5838,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 QList<QModelIndex >  PythonQtShell_QTableView::selectedIndexes() const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("selectedIndexes");
+  static PyObject* name = PyUnicode_FromString("selectedIndexes");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"QList<QModelIndex >"};
@@ -5868,7 +5868,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::selectionChanged(const QItemSelection&  selected0, const QItemSelection&  deselected1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("selectionChanged");
+  static PyObject* name = PyUnicode_FromString("selectionChanged");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "const QItemSelection&" , "const QItemSelection&"};
@@ -5887,7 +5887,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 QItemSelectionModel::SelectionFlags  PythonQtShell_QTableView::selectionCommand(const QModelIndex&  index0, const QEvent*  event1) const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("selectionCommand");
+  static PyObject* name = PyUnicode_FromString("selectionCommand");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"QItemSelectionModel::SelectionFlags" , "const QModelIndex&" , "const QEvent*"};
@@ -5917,7 +5917,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::setModel(QAbstractItemModel*  model0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("setModel");
+  static PyObject* name = PyUnicode_FromString("setModel");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QAbstractItemModel*"};
@@ -5936,7 +5936,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::setRootIndex(const QModelIndex&  index0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("setRootIndex");
+  static PyObject* name = PyUnicode_FromString("setRootIndex");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "const QModelIndex&"};
@@ -5955,7 +5955,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::setSelection(const QRect&  rect0, QItemSelectionModel::SelectionFlags  command1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("setSelection");
+  static PyObject* name = PyUnicode_FromString("setSelection");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "const QRect&" , "QItemSelectionModel::SelectionFlags"};
@@ -5974,7 +5974,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::setSelectionModel(QItemSelectionModel*  selectionModel0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("setSelectionModel");
+  static PyObject* name = PyUnicode_FromString("setSelectionModel");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QItemSelectionModel*"};
@@ -5993,7 +5993,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::setupViewport(QWidget*  viewport0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("setupViewport");
+  static PyObject* name = PyUnicode_FromString("setupViewport");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QWidget*"};
@@ -6012,7 +6012,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 QPainter*  PythonQtShell_QTableView::sharedPainter() const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("sharedPainter");
+  static PyObject* name = PyUnicode_FromString("sharedPainter");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"QPainter*"};
@@ -6042,7 +6042,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::showEvent(QShowEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("showEvent");
+  static PyObject* name = PyUnicode_FromString("showEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QShowEvent*"};
@@ -6061,7 +6061,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 int  PythonQtShell_QTableView::sizeHintForColumn(int  column0) const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("sizeHintForColumn");
+  static PyObject* name = PyUnicode_FromString("sizeHintForColumn");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"int" , "int"};
@@ -6091,7 +6091,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 int  PythonQtShell_QTableView::sizeHintForRow(int  row0) const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("sizeHintForRow");
+  static PyObject* name = PyUnicode_FromString("sizeHintForRow");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"int" , "int"};
@@ -6121,7 +6121,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::startDrag(Qt::DropActions  supportedActions0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("startDrag");
+  static PyObject* name = PyUnicode_FromString("startDrag");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "Qt::DropActions"};
@@ -6140,7 +6140,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::tabletEvent(QTabletEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("tabletEvent");
+  static PyObject* name = PyUnicode_FromString("tabletEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QTabletEvent*"};
@@ -6159,7 +6159,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::timerEvent(QTimerEvent*  event0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("timerEvent");
+  static PyObject* name = PyUnicode_FromString("timerEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QTimerEvent*"};
@@ -6178,7 +6178,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::updateEditorData()
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("updateEditorData");
+  static PyObject* name = PyUnicode_FromString("updateEditorData");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={""};
@@ -6197,7 +6197,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::updateEditorGeometries()
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("updateEditorGeometries");
+  static PyObject* name = PyUnicode_FromString("updateEditorGeometries");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={""};
@@ -6216,7 +6216,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::updateGeometries()
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("updateGeometries");
+  static PyObject* name = PyUnicode_FromString("updateGeometries");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={""};
@@ -6235,7 +6235,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 int  PythonQtShell_QTableView::verticalOffset() const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("verticalOffset");
+  static PyObject* name = PyUnicode_FromString("verticalOffset");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"int"};
@@ -6265,7 +6265,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::verticalScrollbarAction(int  action0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("verticalScrollbarAction");
+  static PyObject* name = PyUnicode_FromString("verticalScrollbarAction");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "int"};
@@ -6284,7 +6284,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::verticalScrollbarValueChanged(int  value0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("verticalScrollbarValueChanged");
+  static PyObject* name = PyUnicode_FromString("verticalScrollbarValueChanged");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "int"};
@@ -6303,7 +6303,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 QStyleOptionViewItem  PythonQtShell_QTableView::viewOptions() const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("viewOptions");
+  static PyObject* name = PyUnicode_FromString("viewOptions");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"QStyleOptionViewItem"};
@@ -6333,7 +6333,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 bool  PythonQtShell_QTableView::viewportEvent(QEvent*  event0)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("viewportEvent");
+  static PyObject* name = PyUnicode_FromString("viewportEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"bool" , "QEvent*"};
@@ -6363,7 +6363,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 QSize  PythonQtShell_QTableView::viewportSizeHint() const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("viewportSizeHint");
+  static PyObject* name = PyUnicode_FromString("viewportSizeHint");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"QSize"};
@@ -6393,7 +6393,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 QRect  PythonQtShell_QTableView::visualRect(const QModelIndex&  index0) const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("visualRect");
+  static PyObject* name = PyUnicode_FromString("visualRect");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"QRect" , "const QModelIndex&"};
@@ -6423,7 +6423,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 QRegion  PythonQtShell_QTableView::visualRegionForSelection(const QItemSelection&  selection0) const
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("visualRegionForSelection");
+  static PyObject* name = PyUnicode_FromString("visualRegionForSelection");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"QRegion" , "const QItemSelection&"};
@@ -6453,7 +6453,7 @@ if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
 void PythonQtShell_QTableView::wheelEvent(QWheelEvent*  arg__1)
 {
 if (_wrapper && (Py_REFCNT((PyObject*)_wrapper) > 0)) {
-  static PyObject* name = PyString_FromString("wheelEvent");
+  static PyObject* name = PyUnicode_FromString("wheelEvent");
   PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
   if (obj) {
     static const char* argumentList[] ={"" , "QWheelEvent*"};

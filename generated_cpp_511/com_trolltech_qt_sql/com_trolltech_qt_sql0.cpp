@@ -278,7 +278,7 @@ bool  PythonQtShell_QSqlDriver::beginTransaction()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("beginTransaction");
+    static PyObject* name = PyUnicode_FromString("beginTransaction");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -311,7 +311,7 @@ bool  PythonQtShell_QSqlDriver::cancelQuery()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("cancelQuery");
+    static PyObject* name = PyUnicode_FromString("cancelQuery");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -344,7 +344,7 @@ void PythonQtShell_QSqlDriver::childEvent(QChildEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("childEvent");
+    static PyObject* name = PyUnicode_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QChildEvent*"};
@@ -366,7 +366,7 @@ void PythonQtShell_QSqlDriver::close()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("close");
+    static PyObject* name = PyUnicode_FromString("close");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={""};
@@ -388,7 +388,7 @@ bool  PythonQtShell_QSqlDriver::commitTransaction()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("commitTransaction");
+    static PyObject* name = PyUnicode_FromString("commitTransaction");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -421,7 +421,7 @@ QSqlResult*  PythonQtShell_QSqlDriver::createResult() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("createResult");
+    static PyObject* name = PyUnicode_FromString("createResult");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSqlResult*"};
@@ -454,7 +454,7 @@ void PythonQtShell_QSqlDriver::customEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("customEvent");
+    static PyObject* name = PyUnicode_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -476,7 +476,7 @@ QString  PythonQtShell_QSqlDriver::escapeIdentifier(const QString&  identifier0,
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("escapeIdentifier");
+    static PyObject* name = PyUnicode_FromString("escapeIdentifier");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QString" , "const QString&" , "QSqlDriver::IdentifierType"};
@@ -509,7 +509,7 @@ bool  PythonQtShell_QSqlDriver::event(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("event");
+    static PyObject* name = PyUnicode_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
@@ -542,7 +542,7 @@ bool  PythonQtShell_QSqlDriver::eventFilter(QObject*  watched0, QEvent*  event1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("eventFilter");
+    static PyObject* name = PyUnicode_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
@@ -575,7 +575,7 @@ QString  PythonQtShell_QSqlDriver::formatValue(const QSqlField&  field0, bool  t
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("formatValue");
+    static PyObject* name = PyUnicode_FromString("formatValue");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QString" , "const QSqlField&" , "bool"};
@@ -608,7 +608,7 @@ QVariant  PythonQtShell_QSqlDriver::handle() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("handle");
+    static PyObject* name = PyUnicode_FromString("handle");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QVariant"};
@@ -641,7 +641,7 @@ bool  PythonQtShell_QSqlDriver::hasFeature(QSqlDriver::DriverFeature  f0) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("hasFeature");
+    static PyObject* name = PyUnicode_FromString("hasFeature");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QSqlDriver::DriverFeature"};
@@ -674,7 +674,7 @@ bool  PythonQtShell_QSqlDriver::isIdentifierEscaped(const QString&  identifier0,
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("isIdentifierEscaped");
+    static PyObject* name = PyUnicode_FromString("isIdentifierEscaped");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&" , "QSqlDriver::IdentifierType"};
@@ -707,7 +707,7 @@ bool  PythonQtShell_QSqlDriver::isOpen() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("isOpen");
+    static PyObject* name = PyUnicode_FromString("isOpen");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -740,7 +740,7 @@ bool  PythonQtShell_QSqlDriver::open(const QString&  db0, const QString&  user1,
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("open");
+    static PyObject* name = PyUnicode_FromString("open");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&" , "const QString&" , "const QString&" , "const QString&" , "int" , "const QString&"};
@@ -773,7 +773,7 @@ QSqlIndex  PythonQtShell_QSqlDriver::primaryIndex(const QString&  tableName0) co
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("primaryIndex");
+    static PyObject* name = PyUnicode_FromString("primaryIndex");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSqlIndex" , "const QString&"};
@@ -806,7 +806,7 @@ QSqlRecord  PythonQtShell_QSqlDriver::record(const QString&  tableName0) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("record");
+    static PyObject* name = PyUnicode_FromString("record");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSqlRecord" , "const QString&"};
@@ -839,7 +839,7 @@ bool  PythonQtShell_QSqlDriver::rollbackTransaction()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("rollbackTransaction");
+    static PyObject* name = PyUnicode_FromString("rollbackTransaction");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -872,7 +872,7 @@ void PythonQtShell_QSqlDriver::setLastError(const QSqlError&  e0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setLastError");
+    static PyObject* name = PyUnicode_FromString("setLastError");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "const QSqlError&"};
@@ -894,7 +894,7 @@ void PythonQtShell_QSqlDriver::setOpen(bool  o0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setOpen");
+    static PyObject* name = PyUnicode_FromString("setOpen");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "bool"};
@@ -916,7 +916,7 @@ void PythonQtShell_QSqlDriver::setOpenError(bool  e0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setOpenError");
+    static PyObject* name = PyUnicode_FromString("setOpenError");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "bool"};
@@ -938,7 +938,7 @@ QString  PythonQtShell_QSqlDriver::sqlStatement(QSqlDriver::StatementType  type0
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("sqlStatement");
+    static PyObject* name = PyUnicode_FromString("sqlStatement");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QString" , "QSqlDriver::StatementType" , "const QString&" , "const QSqlRecord&" , "bool"};
@@ -971,7 +971,7 @@ QString  PythonQtShell_QSqlDriver::stripDelimiters(const QString&  identifier0, 
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("stripDelimiters");
+    static PyObject* name = PyUnicode_FromString("stripDelimiters");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QString" , "const QString&" , "QSqlDriver::IdentifierType"};
@@ -1004,7 +1004,7 @@ bool  PythonQtShell_QSqlDriver::subscribeToNotification(const QString&  name0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("subscribeToNotification");
+    static PyObject* name = PyUnicode_FromString("subscribeToNotification");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&"};
@@ -1037,7 +1037,7 @@ QStringList  PythonQtShell_QSqlDriver::subscribedToNotifications() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("subscribedToNotifications");
+    static PyObject* name = PyUnicode_FromString("subscribedToNotifications");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QStringList"};
@@ -1070,7 +1070,7 @@ QStringList  PythonQtShell_QSqlDriver::tables(QSql::TableType  tableType0) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("tables");
+    static PyObject* name = PyUnicode_FromString("tables");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QStringList" , "QSql::TableType"};
@@ -1103,7 +1103,7 @@ void PythonQtShell_QSqlDriver::timerEvent(QTimerEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("timerEvent");
+    static PyObject* name = PyUnicode_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QTimerEvent*"};
@@ -1125,7 +1125,7 @@ bool  PythonQtShell_QSqlDriver::unsubscribeFromNotification(const QString&  name
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("unsubscribeFromNotification");
+    static PyObject* name = PyUnicode_FromString("unsubscribeFromNotification");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&"};
@@ -1321,7 +1321,7 @@ QSqlDriver*  PythonQtShell_QSqlDriverCreatorBase::createObject() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("createObject");
+    static PyObject* name = PyUnicode_FromString("createObject");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSqlDriver*"};
@@ -1894,7 +1894,7 @@ QModelIndex  PythonQtShell_QSqlQueryModel::buddy(const QModelIndex&  index0) con
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("buddy");
+    static PyObject* name = PyUnicode_FromString("buddy");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QModelIndex" , "const QModelIndex&"};
@@ -1927,7 +1927,7 @@ bool  PythonQtShell_QSqlQueryModel::canDropMimeData(const QMimeData*  data0, Qt:
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("canDropMimeData");
+    static PyObject* name = PyUnicode_FromString("canDropMimeData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QMimeData*" , "Qt::DropAction" , "int" , "int" , "const QModelIndex&"};
@@ -1960,7 +1960,7 @@ bool  PythonQtShell_QSqlQueryModel::canFetchMore(const QModelIndex&  parent0) co
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("canFetchMore");
+    static PyObject* name = PyUnicode_FromString("canFetchMore");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QModelIndex&"};
@@ -1993,7 +1993,7 @@ void PythonQtShell_QSqlQueryModel::childEvent(QChildEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("childEvent");
+    static PyObject* name = PyUnicode_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QChildEvent*"};
@@ -2015,7 +2015,7 @@ void PythonQtShell_QSqlQueryModel::clear()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("clear");
+    static PyObject* name = PyUnicode_FromString("clear");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={""};
@@ -2037,7 +2037,7 @@ int  PythonQtShell_QSqlQueryModel::columnCount(const QModelIndex&  parent0) cons
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("columnCount");
+    static PyObject* name = PyUnicode_FromString("columnCount");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int" , "const QModelIndex&"};
@@ -2070,7 +2070,7 @@ void PythonQtShell_QSqlQueryModel::customEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("customEvent");
+    static PyObject* name = PyUnicode_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -2092,7 +2092,7 @@ QVariant  PythonQtShell_QSqlQueryModel::data(const QModelIndex&  item0, int  rol
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("data");
+    static PyObject* name = PyUnicode_FromString("data");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QVariant" , "const QModelIndex&" , "int"};
@@ -2125,7 +2125,7 @@ bool  PythonQtShell_QSqlQueryModel::dropMimeData(const QMimeData*  data0, Qt::Dr
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dropMimeData");
+    static PyObject* name = PyUnicode_FromString("dropMimeData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QMimeData*" , "Qt::DropAction" , "int" , "int" , "const QModelIndex&"};
@@ -2158,7 +2158,7 @@ bool  PythonQtShell_QSqlQueryModel::event(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("event");
+    static PyObject* name = PyUnicode_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
@@ -2191,7 +2191,7 @@ bool  PythonQtShell_QSqlQueryModel::eventFilter(QObject*  watched0, QEvent*  eve
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("eventFilter");
+    static PyObject* name = PyUnicode_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
@@ -2224,7 +2224,7 @@ void PythonQtShell_QSqlQueryModel::fetchMore(const QModelIndex&  parent0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("fetchMore");
+    static PyObject* name = PyUnicode_FromString("fetchMore");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "const QModelIndex&"};
@@ -2246,7 +2246,7 @@ Qt::ItemFlags  PythonQtShell_QSqlQueryModel::flags(const QModelIndex&  index0) c
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("flags");
+    static PyObject* name = PyUnicode_FromString("flags");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"Qt::ItemFlags" , "const QModelIndex&"};
@@ -2279,7 +2279,7 @@ QVariant  PythonQtShell_QSqlQueryModel::headerData(int  section0, Qt::Orientatio
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("headerData");
+    static PyObject* name = PyUnicode_FromString("headerData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QVariant" , "int" , "Qt::Orientation" , "int"};
@@ -2312,7 +2312,7 @@ QModelIndex  PythonQtShell_QSqlQueryModel::index(int  row0, int  column1, const 
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("index");
+    static PyObject* name = PyUnicode_FromString("index");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QModelIndex" , "int" , "int" , "const QModelIndex&"};
@@ -2345,7 +2345,7 @@ QModelIndex  PythonQtShell_QSqlQueryModel::indexInQuery(const QModelIndex&  item
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("indexInQuery");
+    static PyObject* name = PyUnicode_FromString("indexInQuery");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QModelIndex" , "const QModelIndex&"};
@@ -2378,7 +2378,7 @@ bool  PythonQtShell_QSqlQueryModel::insertColumns(int  column0, int  count1, con
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("insertColumns");
+    static PyObject* name = PyUnicode_FromString("insertColumns");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "int" , "int" , "const QModelIndex&"};
@@ -2411,7 +2411,7 @@ bool  PythonQtShell_QSqlQueryModel::insertRows(int  row0, int  count1, const QMo
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("insertRows");
+    static PyObject* name = PyUnicode_FromString("insertRows");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "int" , "int" , "const QModelIndex&"};
@@ -2444,7 +2444,7 @@ QMap<int , QVariant >  PythonQtShell_QSqlQueryModel::itemData(const QModelIndex&
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("itemData");
+    static PyObject* name = PyUnicode_FromString("itemData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QMap<int , QVariant >" , "const QModelIndex&"};
@@ -2477,7 +2477,7 @@ QList<QModelIndex >  PythonQtShell_QSqlQueryModel::match(const QModelIndex&  sta
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("match");
+    static PyObject* name = PyUnicode_FromString("match");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QList<QModelIndex >" , "const QModelIndex&" , "int" , "const QVariant&" , "int" , "Qt::MatchFlags"};
@@ -2510,7 +2510,7 @@ QMimeData*  PythonQtShell_QSqlQueryModel::mimeData(const QList<QModelIndex >&  i
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mimeData");
+    static PyObject* name = PyUnicode_FromString("mimeData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QMimeData*" , "const QList<QModelIndex >&"};
@@ -2543,7 +2543,7 @@ QStringList  PythonQtShell_QSqlQueryModel::mimeTypes() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mimeTypes");
+    static PyObject* name = PyUnicode_FromString("mimeTypes");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QStringList"};
@@ -2576,7 +2576,7 @@ bool  PythonQtShell_QSqlQueryModel::moveColumns(const QModelIndex&  sourceParent
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("moveColumns");
+    static PyObject* name = PyUnicode_FromString("moveColumns");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QModelIndex&" , "int" , "int" , "const QModelIndex&" , "int"};
@@ -2609,7 +2609,7 @@ bool  PythonQtShell_QSqlQueryModel::moveRows(const QModelIndex&  sourceParent0, 
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("moveRows");
+    static PyObject* name = PyUnicode_FromString("moveRows");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QModelIndex&" , "int" , "int" , "const QModelIndex&" , "int"};
@@ -2642,7 +2642,7 @@ void PythonQtShell_QSqlQueryModel::queryChange()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("queryChange");
+    static PyObject* name = PyUnicode_FromString("queryChange");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={""};
@@ -2664,7 +2664,7 @@ bool  PythonQtShell_QSqlQueryModel::removeColumns(int  column0, int  count1, con
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("removeColumns");
+    static PyObject* name = PyUnicode_FromString("removeColumns");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "int" , "int" , "const QModelIndex&"};
@@ -2697,7 +2697,7 @@ bool  PythonQtShell_QSqlQueryModel::removeRows(int  row0, int  count1, const QMo
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("removeRows");
+    static PyObject* name = PyUnicode_FromString("removeRows");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "int" , "int" , "const QModelIndex&"};
@@ -2730,7 +2730,7 @@ void PythonQtShell_QSqlQueryModel::revert()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("revert");
+    static PyObject* name = PyUnicode_FromString("revert");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={""};
@@ -2752,7 +2752,7 @@ QHash<int , QByteArray >  PythonQtShell_QSqlQueryModel::roleNames() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("roleNames");
+    static PyObject* name = PyUnicode_FromString("roleNames");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QHash<int , QByteArray >"};
@@ -2785,7 +2785,7 @@ int  PythonQtShell_QSqlQueryModel::rowCount(const QModelIndex&  parent0) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("rowCount");
+    static PyObject* name = PyUnicode_FromString("rowCount");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int" , "const QModelIndex&"};
@@ -2818,7 +2818,7 @@ bool  PythonQtShell_QSqlQueryModel::setData(const QModelIndex&  index0, const QV
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setData");
+    static PyObject* name = PyUnicode_FromString("setData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QModelIndex&" , "const QVariant&" , "int"};
@@ -2851,7 +2851,7 @@ bool  PythonQtShell_QSqlQueryModel::setHeaderData(int  section0, Qt::Orientation
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setHeaderData");
+    static PyObject* name = PyUnicode_FromString("setHeaderData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "int" , "Qt::Orientation" , "const QVariant&" , "int"};
@@ -2884,7 +2884,7 @@ bool  PythonQtShell_QSqlQueryModel::setItemData(const QModelIndex&  index0, cons
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setItemData");
+    static PyObject* name = PyUnicode_FromString("setItemData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QModelIndex&" , "const QMap<int , QVariant >&"};
@@ -2917,7 +2917,7 @@ QModelIndex  PythonQtShell_QSqlQueryModel::sibling(int  row0, int  column1, cons
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("sibling");
+    static PyObject* name = PyUnicode_FromString("sibling");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QModelIndex" , "int" , "int" , "const QModelIndex&"};
@@ -2950,7 +2950,7 @@ void PythonQtShell_QSqlQueryModel::sort(int  column0, Qt::SortOrder  order1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("sort");
+    static PyObject* name = PyUnicode_FromString("sort");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "int" , "Qt::SortOrder"};
@@ -2972,7 +2972,7 @@ QSize  PythonQtShell_QSqlQueryModel::span(const QModelIndex&  index0) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("span");
+    static PyObject* name = PyUnicode_FromString("span");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSize" , "const QModelIndex&"};
@@ -3005,7 +3005,7 @@ bool  PythonQtShell_QSqlQueryModel::submit()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("submit");
+    static PyObject* name = PyUnicode_FromString("submit");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -3038,7 +3038,7 @@ Qt::DropActions  PythonQtShell_QSqlQueryModel::supportedDragActions() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("supportedDragActions");
+    static PyObject* name = PyUnicode_FromString("supportedDragActions");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"Qt::DropActions"};
@@ -3071,7 +3071,7 @@ Qt::DropActions  PythonQtShell_QSqlQueryModel::supportedDropActions() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("supportedDropActions");
+    static PyObject* name = PyUnicode_FromString("supportedDropActions");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"Qt::DropActions"};
@@ -3104,7 +3104,7 @@ void PythonQtShell_QSqlQueryModel::timerEvent(QTimerEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("timerEvent");
+    static PyObject* name = PyUnicode_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QTimerEvent*"};
@@ -3441,7 +3441,7 @@ QModelIndex  PythonQtShell_QSqlRelationalTableModel::buddy(const QModelIndex&  i
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("buddy");
+    static PyObject* name = PyUnicode_FromString("buddy");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QModelIndex" , "const QModelIndex&"};
@@ -3474,7 +3474,7 @@ bool  PythonQtShell_QSqlRelationalTableModel::canDropMimeData(const QMimeData*  
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("canDropMimeData");
+    static PyObject* name = PyUnicode_FromString("canDropMimeData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QMimeData*" , "Qt::DropAction" , "int" , "int" , "const QModelIndex&"};
@@ -3507,7 +3507,7 @@ bool  PythonQtShell_QSqlRelationalTableModel::canFetchMore(const QModelIndex&  p
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("canFetchMore");
+    static PyObject* name = PyUnicode_FromString("canFetchMore");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QModelIndex&"};
@@ -3540,7 +3540,7 @@ void PythonQtShell_QSqlRelationalTableModel::childEvent(QChildEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("childEvent");
+    static PyObject* name = PyUnicode_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QChildEvent*"};
@@ -3562,7 +3562,7 @@ void PythonQtShell_QSqlRelationalTableModel::clear()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("clear");
+    static PyObject* name = PyUnicode_FromString("clear");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={""};
@@ -3584,7 +3584,7 @@ int  PythonQtShell_QSqlRelationalTableModel::columnCount(const QModelIndex&  par
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("columnCount");
+    static PyObject* name = PyUnicode_FromString("columnCount");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int" , "const QModelIndex&"};
@@ -3617,7 +3617,7 @@ void PythonQtShell_QSqlRelationalTableModel::customEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("customEvent");
+    static PyObject* name = PyUnicode_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -3639,7 +3639,7 @@ QVariant  PythonQtShell_QSqlRelationalTableModel::data(const QModelIndex&  item0
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("data");
+    static PyObject* name = PyUnicode_FromString("data");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QVariant" , "const QModelIndex&" , "int"};
@@ -3672,7 +3672,7 @@ bool  PythonQtShell_QSqlRelationalTableModel::deleteRowFromTable(int  row0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("deleteRowFromTable");
+    static PyObject* name = PyUnicode_FromString("deleteRowFromTable");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "int"};
@@ -3705,7 +3705,7 @@ bool  PythonQtShell_QSqlRelationalTableModel::dropMimeData(const QMimeData*  dat
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dropMimeData");
+    static PyObject* name = PyUnicode_FromString("dropMimeData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QMimeData*" , "Qt::DropAction" , "int" , "int" , "const QModelIndex&"};
@@ -3738,7 +3738,7 @@ bool  PythonQtShell_QSqlRelationalTableModel::event(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("event");
+    static PyObject* name = PyUnicode_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
@@ -3771,7 +3771,7 @@ bool  PythonQtShell_QSqlRelationalTableModel::eventFilter(QObject*  watched0, QE
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("eventFilter");
+    static PyObject* name = PyUnicode_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
@@ -3804,7 +3804,7 @@ void PythonQtShell_QSqlRelationalTableModel::fetchMore(const QModelIndex&  paren
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("fetchMore");
+    static PyObject* name = PyUnicode_FromString("fetchMore");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "const QModelIndex&"};
@@ -3826,7 +3826,7 @@ Qt::ItemFlags  PythonQtShell_QSqlRelationalTableModel::flags(const QModelIndex& 
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("flags");
+    static PyObject* name = PyUnicode_FromString("flags");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"Qt::ItemFlags" , "const QModelIndex&"};
@@ -3859,7 +3859,7 @@ QVariant  PythonQtShell_QSqlRelationalTableModel::headerData(int  section0, Qt::
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("headerData");
+    static PyObject* name = PyUnicode_FromString("headerData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QVariant" , "int" , "Qt::Orientation" , "int"};
@@ -3892,7 +3892,7 @@ QModelIndex  PythonQtShell_QSqlRelationalTableModel::index(int  row0, int  colum
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("index");
+    static PyObject* name = PyUnicode_FromString("index");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QModelIndex" , "int" , "int" , "const QModelIndex&"};
@@ -3925,7 +3925,7 @@ QModelIndex  PythonQtShell_QSqlRelationalTableModel::indexInQuery(const QModelIn
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("indexInQuery");
+    static PyObject* name = PyUnicode_FromString("indexInQuery");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QModelIndex" , "const QModelIndex&"};
@@ -3958,7 +3958,7 @@ bool  PythonQtShell_QSqlRelationalTableModel::insertColumns(int  column0, int  c
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("insertColumns");
+    static PyObject* name = PyUnicode_FromString("insertColumns");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "int" , "int" , "const QModelIndex&"};
@@ -3991,7 +3991,7 @@ bool  PythonQtShell_QSqlRelationalTableModel::insertRowIntoTable(const QSqlRecor
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("insertRowIntoTable");
+    static PyObject* name = PyUnicode_FromString("insertRowIntoTable");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QSqlRecord&"};
@@ -4024,7 +4024,7 @@ bool  PythonQtShell_QSqlRelationalTableModel::insertRows(int  row0, int  count1,
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("insertRows");
+    static PyObject* name = PyUnicode_FromString("insertRows");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "int" , "int" , "const QModelIndex&"};
@@ -4057,7 +4057,7 @@ QMap<int , QVariant >  PythonQtShell_QSqlRelationalTableModel::itemData(const QM
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("itemData");
+    static PyObject* name = PyUnicode_FromString("itemData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QMap<int , QVariant >" , "const QModelIndex&"};
@@ -4090,7 +4090,7 @@ QList<QModelIndex >  PythonQtShell_QSqlRelationalTableModel::match(const QModelI
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("match");
+    static PyObject* name = PyUnicode_FromString("match");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QList<QModelIndex >" , "const QModelIndex&" , "int" , "const QVariant&" , "int" , "Qt::MatchFlags"};
@@ -4123,7 +4123,7 @@ QMimeData*  PythonQtShell_QSqlRelationalTableModel::mimeData(const QList<QModelI
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mimeData");
+    static PyObject* name = PyUnicode_FromString("mimeData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QMimeData*" , "const QList<QModelIndex >&"};
@@ -4156,7 +4156,7 @@ QStringList  PythonQtShell_QSqlRelationalTableModel::mimeTypes() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mimeTypes");
+    static PyObject* name = PyUnicode_FromString("mimeTypes");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QStringList"};
@@ -4189,7 +4189,7 @@ bool  PythonQtShell_QSqlRelationalTableModel::moveColumns(const QModelIndex&  so
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("moveColumns");
+    static PyObject* name = PyUnicode_FromString("moveColumns");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QModelIndex&" , "int" , "int" , "const QModelIndex&" , "int"};
@@ -4222,7 +4222,7 @@ bool  PythonQtShell_QSqlRelationalTableModel::moveRows(const QModelIndex&  sourc
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("moveRows");
+    static PyObject* name = PyUnicode_FromString("moveRows");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QModelIndex&" , "int" , "int" , "const QModelIndex&" , "int"};
@@ -4255,7 +4255,7 @@ QString  PythonQtShell_QSqlRelationalTableModel::orderByClause() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("orderByClause");
+    static PyObject* name = PyUnicode_FromString("orderByClause");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QString"};
@@ -4288,7 +4288,7 @@ void PythonQtShell_QSqlRelationalTableModel::queryChange()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("queryChange");
+    static PyObject* name = PyUnicode_FromString("queryChange");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={""};
@@ -4310,7 +4310,7 @@ QSqlTableModel*  PythonQtShell_QSqlRelationalTableModel::relationModel(int  colu
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("relationModel");
+    static PyObject* name = PyUnicode_FromString("relationModel");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSqlTableModel*" , "int"};
@@ -4343,7 +4343,7 @@ bool  PythonQtShell_QSqlRelationalTableModel::removeColumns(int  column0, int  c
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("removeColumns");
+    static PyObject* name = PyUnicode_FromString("removeColumns");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "int" , "int" , "const QModelIndex&"};
@@ -4376,7 +4376,7 @@ bool  PythonQtShell_QSqlRelationalTableModel::removeRows(int  row0, int  count1,
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("removeRows");
+    static PyObject* name = PyUnicode_FromString("removeRows");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "int" , "int" , "const QModelIndex&"};
@@ -4409,7 +4409,7 @@ void PythonQtShell_QSqlRelationalTableModel::revert()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("revert");
+    static PyObject* name = PyUnicode_FromString("revert");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={""};
@@ -4431,7 +4431,7 @@ void PythonQtShell_QSqlRelationalTableModel::revertRow(int  row0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("revertRow");
+    static PyObject* name = PyUnicode_FromString("revertRow");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "int"};
@@ -4453,7 +4453,7 @@ QHash<int , QByteArray >  PythonQtShell_QSqlRelationalTableModel::roleNames() co
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("roleNames");
+    static PyObject* name = PyUnicode_FromString("roleNames");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QHash<int , QByteArray >"};
@@ -4486,7 +4486,7 @@ int  PythonQtShell_QSqlRelationalTableModel::rowCount(const QModelIndex&  parent
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("rowCount");
+    static PyObject* name = PyUnicode_FromString("rowCount");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int" , "const QModelIndex&"};
@@ -4519,7 +4519,7 @@ bool  PythonQtShell_QSqlRelationalTableModel::select()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("select");
+    static PyObject* name = PyUnicode_FromString("select");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -4552,7 +4552,7 @@ bool  PythonQtShell_QSqlRelationalTableModel::selectRow(int  row0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("selectRow");
+    static PyObject* name = PyUnicode_FromString("selectRow");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "int"};
@@ -4585,7 +4585,7 @@ QString  PythonQtShell_QSqlRelationalTableModel::selectStatement() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("selectStatement");
+    static PyObject* name = PyUnicode_FromString("selectStatement");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QString"};
@@ -4618,7 +4618,7 @@ bool  PythonQtShell_QSqlRelationalTableModel::setData(const QModelIndex&  item0,
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setData");
+    static PyObject* name = PyUnicode_FromString("setData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QModelIndex&" , "const QVariant&" , "int"};
@@ -4651,7 +4651,7 @@ void PythonQtShell_QSqlRelationalTableModel::setEditStrategy(QSqlTableModel::Edi
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setEditStrategy");
+    static PyObject* name = PyUnicode_FromString("setEditStrategy");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QSqlTableModel::EditStrategy"};
@@ -4673,7 +4673,7 @@ void PythonQtShell_QSqlRelationalTableModel::setFilter(const QString&  filter0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setFilter");
+    static PyObject* name = PyUnicode_FromString("setFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "const QString&"};
@@ -4695,7 +4695,7 @@ bool  PythonQtShell_QSqlRelationalTableModel::setHeaderData(int  section0, Qt::O
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setHeaderData");
+    static PyObject* name = PyUnicode_FromString("setHeaderData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "int" , "Qt::Orientation" , "const QVariant&" , "int"};
@@ -4728,7 +4728,7 @@ bool  PythonQtShell_QSqlRelationalTableModel::setItemData(const QModelIndex&  in
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setItemData");
+    static PyObject* name = PyUnicode_FromString("setItemData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QModelIndex&" , "const QMap<int , QVariant >&"};
@@ -4761,7 +4761,7 @@ void PythonQtShell_QSqlRelationalTableModel::setRelation(int  column0, const QSq
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setRelation");
+    static PyObject* name = PyUnicode_FromString("setRelation");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "int" , "const QSqlRelation&"};
@@ -4783,7 +4783,7 @@ void PythonQtShell_QSqlRelationalTableModel::setSort(int  column0, Qt::SortOrder
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setSort");
+    static PyObject* name = PyUnicode_FromString("setSort");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "int" , "Qt::SortOrder"};
@@ -4805,7 +4805,7 @@ void PythonQtShell_QSqlRelationalTableModel::setTable(const QString&  tableName0
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setTable");
+    static PyObject* name = PyUnicode_FromString("setTable");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "const QString&"};
@@ -4827,7 +4827,7 @@ QModelIndex  PythonQtShell_QSqlRelationalTableModel::sibling(int  row0, int  col
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("sibling");
+    static PyObject* name = PyUnicode_FromString("sibling");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QModelIndex" , "int" , "int" , "const QModelIndex&"};
@@ -4860,7 +4860,7 @@ void PythonQtShell_QSqlRelationalTableModel::sort(int  column0, Qt::SortOrder  o
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("sort");
+    static PyObject* name = PyUnicode_FromString("sort");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "int" , "Qt::SortOrder"};
@@ -4882,7 +4882,7 @@ QSize  PythonQtShell_QSqlRelationalTableModel::span(const QModelIndex&  index0) 
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("span");
+    static PyObject* name = PyUnicode_FromString("span");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSize" , "const QModelIndex&"};
@@ -4915,7 +4915,7 @@ bool  PythonQtShell_QSqlRelationalTableModel::submit()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("submit");
+    static PyObject* name = PyUnicode_FromString("submit");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -4948,7 +4948,7 @@ Qt::DropActions  PythonQtShell_QSqlRelationalTableModel::supportedDragActions() 
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("supportedDragActions");
+    static PyObject* name = PyUnicode_FromString("supportedDragActions");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"Qt::DropActions"};
@@ -4981,7 +4981,7 @@ Qt::DropActions  PythonQtShell_QSqlRelationalTableModel::supportedDropActions() 
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("supportedDropActions");
+    static PyObject* name = PyUnicode_FromString("supportedDropActions");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"Qt::DropActions"};
@@ -5014,7 +5014,7 @@ void PythonQtShell_QSqlRelationalTableModel::timerEvent(QTimerEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("timerEvent");
+    static PyObject* name = PyUnicode_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QTimerEvent*"};
@@ -5036,7 +5036,7 @@ bool  PythonQtShell_QSqlRelationalTableModel::updateRowInTable(int  row0, const 
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("updateRowInTable");
+    static PyObject* name = PyUnicode_FromString("updateRowInTable");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "int" , "const QSqlRecord&"};
@@ -5112,7 +5112,7 @@ void PythonQtShell_QSqlResult::bindValue(const QString&  placeholder0, const QVa
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("bindValue");
+    static PyObject* name = PyUnicode_FromString("bindValue");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "const QString&" , "const QVariant&" , "QSql::ParamType"};
@@ -5134,7 +5134,7 @@ void PythonQtShell_QSqlResult::bindValue(int  pos0, const QVariant&  val1, QSql:
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("bindValue");
+    static PyObject* name = PyUnicode_FromString("bindValue");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "int" , "const QVariant&" , "QSql::ParamType"};
@@ -5156,7 +5156,7 @@ QVariant  PythonQtShell_QSqlResult::data(int  i0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("data");
+    static PyObject* name = PyUnicode_FromString("data");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QVariant" , "int"};
@@ -5189,7 +5189,7 @@ void PythonQtShell_QSqlResult::detachFromResultSet()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("detachFromResultSet");
+    static PyObject* name = PyUnicode_FromString("detachFromResultSet");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={""};
@@ -5211,7 +5211,7 @@ bool  PythonQtShell_QSqlResult::exec()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("exec");
+    static PyObject* name = PyUnicode_FromString("exec");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -5244,7 +5244,7 @@ bool  PythonQtShell_QSqlResult::execBatch(bool  arrayBind0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("execBatch");
+    static PyObject* name = PyUnicode_FromString("execBatch");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "bool"};
@@ -5277,7 +5277,7 @@ bool  PythonQtShell_QSqlResult::fetch(int  i0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("fetch");
+    static PyObject* name = PyUnicode_FromString("fetch");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "int"};
@@ -5310,7 +5310,7 @@ bool  PythonQtShell_QSqlResult::fetchFirst()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("fetchFirst");
+    static PyObject* name = PyUnicode_FromString("fetchFirst");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -5343,7 +5343,7 @@ bool  PythonQtShell_QSqlResult::fetchLast()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("fetchLast");
+    static PyObject* name = PyUnicode_FromString("fetchLast");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -5376,7 +5376,7 @@ bool  PythonQtShell_QSqlResult::fetchNext()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("fetchNext");
+    static PyObject* name = PyUnicode_FromString("fetchNext");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -5409,7 +5409,7 @@ bool  PythonQtShell_QSqlResult::fetchPrevious()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("fetchPrevious");
+    static PyObject* name = PyUnicode_FromString("fetchPrevious");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -5442,7 +5442,7 @@ QVariant  PythonQtShell_QSqlResult::handle() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("handle");
+    static PyObject* name = PyUnicode_FromString("handle");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QVariant"};
@@ -5475,7 +5475,7 @@ bool  PythonQtShell_QSqlResult::isNull(int  i0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("isNull");
+    static PyObject* name = PyUnicode_FromString("isNull");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "int"};
@@ -5508,7 +5508,7 @@ QVariant  PythonQtShell_QSqlResult::lastInsertId() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("lastInsertId");
+    static PyObject* name = PyUnicode_FromString("lastInsertId");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QVariant"};
@@ -5541,7 +5541,7 @@ bool  PythonQtShell_QSqlResult::nextResult()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("nextResult");
+    static PyObject* name = PyUnicode_FromString("nextResult");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -5574,7 +5574,7 @@ int  PythonQtShell_QSqlResult::numRowsAffected()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("numRowsAffected");
+    static PyObject* name = PyUnicode_FromString("numRowsAffected");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int"};
@@ -5607,7 +5607,7 @@ bool  PythonQtShell_QSqlResult::prepare(const QString&  query0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("prepare");
+    static PyObject* name = PyUnicode_FromString("prepare");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&"};
@@ -5640,7 +5640,7 @@ QSqlRecord  PythonQtShell_QSqlResult::record() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("record");
+    static PyObject* name = PyUnicode_FromString("record");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSqlRecord"};
@@ -5673,7 +5673,7 @@ bool  PythonQtShell_QSqlResult::reset(const QString&  sqlquery0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("reset");
+    static PyObject* name = PyUnicode_FromString("reset");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&"};
@@ -5706,7 +5706,7 @@ bool  PythonQtShell_QSqlResult::savePrepare(const QString&  sqlquery0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("savePrepare");
+    static PyObject* name = PyUnicode_FromString("savePrepare");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&"};
@@ -5739,7 +5739,7 @@ void PythonQtShell_QSqlResult::setActive(bool  a0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setActive");
+    static PyObject* name = PyUnicode_FromString("setActive");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "bool"};
@@ -5761,7 +5761,7 @@ void PythonQtShell_QSqlResult::setAt(int  at0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setAt");
+    static PyObject* name = PyUnicode_FromString("setAt");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "int"};
@@ -5783,7 +5783,7 @@ void PythonQtShell_QSqlResult::setForwardOnly(bool  forward0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setForwardOnly");
+    static PyObject* name = PyUnicode_FromString("setForwardOnly");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "bool"};
@@ -5805,7 +5805,7 @@ void PythonQtShell_QSqlResult::setLastError(const QSqlError&  e0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setLastError");
+    static PyObject* name = PyUnicode_FromString("setLastError");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "const QSqlError&"};
@@ -5827,7 +5827,7 @@ void PythonQtShell_QSqlResult::setNumericalPrecisionPolicy(QSql::NumericalPrecis
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setNumericalPrecisionPolicy");
+    static PyObject* name = PyUnicode_FromString("setNumericalPrecisionPolicy");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QSql::NumericalPrecisionPolicy"};
@@ -5849,7 +5849,7 @@ void PythonQtShell_QSqlResult::setQuery(const QString&  query0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setQuery");
+    static PyObject* name = PyUnicode_FromString("setQuery");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "const QString&"};
@@ -5871,7 +5871,7 @@ void PythonQtShell_QSqlResult::setSelect(bool  s0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setSelect");
+    static PyObject* name = PyUnicode_FromString("setSelect");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "bool"};
@@ -5893,7 +5893,7 @@ int  PythonQtShell_QSqlResult::size()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("size");
+    static PyObject* name = PyUnicode_FromString("size");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int"};
@@ -6186,7 +6186,7 @@ QModelIndex  PythonQtShell_QSqlTableModel::buddy(const QModelIndex&  index0) con
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("buddy");
+    static PyObject* name = PyUnicode_FromString("buddy");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QModelIndex" , "const QModelIndex&"};
@@ -6219,7 +6219,7 @@ bool  PythonQtShell_QSqlTableModel::canDropMimeData(const QMimeData*  data0, Qt:
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("canDropMimeData");
+    static PyObject* name = PyUnicode_FromString("canDropMimeData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QMimeData*" , "Qt::DropAction" , "int" , "int" , "const QModelIndex&"};
@@ -6252,7 +6252,7 @@ bool  PythonQtShell_QSqlTableModel::canFetchMore(const QModelIndex&  parent0) co
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("canFetchMore");
+    static PyObject* name = PyUnicode_FromString("canFetchMore");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QModelIndex&"};
@@ -6285,7 +6285,7 @@ void PythonQtShell_QSqlTableModel::childEvent(QChildEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("childEvent");
+    static PyObject* name = PyUnicode_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QChildEvent*"};
@@ -6307,7 +6307,7 @@ void PythonQtShell_QSqlTableModel::clear()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("clear");
+    static PyObject* name = PyUnicode_FromString("clear");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={""};
@@ -6329,7 +6329,7 @@ int  PythonQtShell_QSqlTableModel::columnCount(const QModelIndex&  parent0) cons
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("columnCount");
+    static PyObject* name = PyUnicode_FromString("columnCount");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int" , "const QModelIndex&"};
@@ -6362,7 +6362,7 @@ void PythonQtShell_QSqlTableModel::customEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("customEvent");
+    static PyObject* name = PyUnicode_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -6384,7 +6384,7 @@ QVariant  PythonQtShell_QSqlTableModel::data(const QModelIndex&  idx0, int  role
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("data");
+    static PyObject* name = PyUnicode_FromString("data");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QVariant" , "const QModelIndex&" , "int"};
@@ -6417,7 +6417,7 @@ bool  PythonQtShell_QSqlTableModel::deleteRowFromTable(int  row0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("deleteRowFromTable");
+    static PyObject* name = PyUnicode_FromString("deleteRowFromTable");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "int"};
@@ -6450,7 +6450,7 @@ bool  PythonQtShell_QSqlTableModel::dropMimeData(const QMimeData*  data0, Qt::Dr
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dropMimeData");
+    static PyObject* name = PyUnicode_FromString("dropMimeData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QMimeData*" , "Qt::DropAction" , "int" , "int" , "const QModelIndex&"};
@@ -6483,7 +6483,7 @@ bool  PythonQtShell_QSqlTableModel::event(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("event");
+    static PyObject* name = PyUnicode_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
@@ -6516,7 +6516,7 @@ bool  PythonQtShell_QSqlTableModel::eventFilter(QObject*  watched0, QEvent*  eve
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("eventFilter");
+    static PyObject* name = PyUnicode_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
@@ -6549,7 +6549,7 @@ void PythonQtShell_QSqlTableModel::fetchMore(const QModelIndex&  parent0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("fetchMore");
+    static PyObject* name = PyUnicode_FromString("fetchMore");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "const QModelIndex&"};
@@ -6571,7 +6571,7 @@ Qt::ItemFlags  PythonQtShell_QSqlTableModel::flags(const QModelIndex&  index0) c
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("flags");
+    static PyObject* name = PyUnicode_FromString("flags");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"Qt::ItemFlags" , "const QModelIndex&"};
@@ -6604,7 +6604,7 @@ QVariant  PythonQtShell_QSqlTableModel::headerData(int  section0, Qt::Orientatio
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("headerData");
+    static PyObject* name = PyUnicode_FromString("headerData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QVariant" , "int" , "Qt::Orientation" , "int"};
@@ -6637,7 +6637,7 @@ QModelIndex  PythonQtShell_QSqlTableModel::index(int  row0, int  column1, const 
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("index");
+    static PyObject* name = PyUnicode_FromString("index");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QModelIndex" , "int" , "int" , "const QModelIndex&"};
@@ -6670,7 +6670,7 @@ QModelIndex  PythonQtShell_QSqlTableModel::indexInQuery(const QModelIndex&  item
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("indexInQuery");
+    static PyObject* name = PyUnicode_FromString("indexInQuery");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QModelIndex" , "const QModelIndex&"};
@@ -6703,7 +6703,7 @@ bool  PythonQtShell_QSqlTableModel::insertColumns(int  column0, int  count1, con
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("insertColumns");
+    static PyObject* name = PyUnicode_FromString("insertColumns");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "int" , "int" , "const QModelIndex&"};
@@ -6736,7 +6736,7 @@ bool  PythonQtShell_QSqlTableModel::insertRowIntoTable(const QSqlRecord&  values
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("insertRowIntoTable");
+    static PyObject* name = PyUnicode_FromString("insertRowIntoTable");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QSqlRecord&"};
@@ -6769,7 +6769,7 @@ bool  PythonQtShell_QSqlTableModel::insertRows(int  row0, int  count1, const QMo
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("insertRows");
+    static PyObject* name = PyUnicode_FromString("insertRows");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "int" , "int" , "const QModelIndex&"};
@@ -6802,7 +6802,7 @@ QMap<int , QVariant >  PythonQtShell_QSqlTableModel::itemData(const QModelIndex&
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("itemData");
+    static PyObject* name = PyUnicode_FromString("itemData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QMap<int , QVariant >" , "const QModelIndex&"};
@@ -6835,7 +6835,7 @@ QList<QModelIndex >  PythonQtShell_QSqlTableModel::match(const QModelIndex&  sta
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("match");
+    static PyObject* name = PyUnicode_FromString("match");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QList<QModelIndex >" , "const QModelIndex&" , "int" , "const QVariant&" , "int" , "Qt::MatchFlags"};
@@ -6868,7 +6868,7 @@ QMimeData*  PythonQtShell_QSqlTableModel::mimeData(const QList<QModelIndex >&  i
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mimeData");
+    static PyObject* name = PyUnicode_FromString("mimeData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QMimeData*" , "const QList<QModelIndex >&"};
@@ -6901,7 +6901,7 @@ QStringList  PythonQtShell_QSqlTableModel::mimeTypes() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mimeTypes");
+    static PyObject* name = PyUnicode_FromString("mimeTypes");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QStringList"};
@@ -6934,7 +6934,7 @@ bool  PythonQtShell_QSqlTableModel::moveColumns(const QModelIndex&  sourceParent
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("moveColumns");
+    static PyObject* name = PyUnicode_FromString("moveColumns");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QModelIndex&" , "int" , "int" , "const QModelIndex&" , "int"};
@@ -6967,7 +6967,7 @@ bool  PythonQtShell_QSqlTableModel::moveRows(const QModelIndex&  sourceParent0, 
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("moveRows");
+    static PyObject* name = PyUnicode_FromString("moveRows");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QModelIndex&" , "int" , "int" , "const QModelIndex&" , "int"};
@@ -7000,7 +7000,7 @@ QString  PythonQtShell_QSqlTableModel::orderByClause() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("orderByClause");
+    static PyObject* name = PyUnicode_FromString("orderByClause");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QString"};
@@ -7033,7 +7033,7 @@ void PythonQtShell_QSqlTableModel::queryChange()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("queryChange");
+    static PyObject* name = PyUnicode_FromString("queryChange");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={""};
@@ -7055,7 +7055,7 @@ bool  PythonQtShell_QSqlTableModel::removeColumns(int  column0, int  count1, con
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("removeColumns");
+    static PyObject* name = PyUnicode_FromString("removeColumns");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "int" , "int" , "const QModelIndex&"};
@@ -7088,7 +7088,7 @@ bool  PythonQtShell_QSqlTableModel::removeRows(int  row0, int  count1, const QMo
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("removeRows");
+    static PyObject* name = PyUnicode_FromString("removeRows");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "int" , "int" , "const QModelIndex&"};
@@ -7121,7 +7121,7 @@ void PythonQtShell_QSqlTableModel::revert()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("revert");
+    static PyObject* name = PyUnicode_FromString("revert");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={""};
@@ -7143,7 +7143,7 @@ void PythonQtShell_QSqlTableModel::revertRow(int  row0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("revertRow");
+    static PyObject* name = PyUnicode_FromString("revertRow");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "int"};
@@ -7165,7 +7165,7 @@ QHash<int , QByteArray >  PythonQtShell_QSqlTableModel::roleNames() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("roleNames");
+    static PyObject* name = PyUnicode_FromString("roleNames");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QHash<int , QByteArray >"};
@@ -7198,7 +7198,7 @@ int  PythonQtShell_QSqlTableModel::rowCount(const QModelIndex&  parent0) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("rowCount");
+    static PyObject* name = PyUnicode_FromString("rowCount");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int" , "const QModelIndex&"};
@@ -7231,7 +7231,7 @@ bool  PythonQtShell_QSqlTableModel::select()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("select");
+    static PyObject* name = PyUnicode_FromString("select");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -7264,7 +7264,7 @@ bool  PythonQtShell_QSqlTableModel::selectRow(int  row0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("selectRow");
+    static PyObject* name = PyUnicode_FromString("selectRow");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "int"};
@@ -7297,7 +7297,7 @@ QString  PythonQtShell_QSqlTableModel::selectStatement() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("selectStatement");
+    static PyObject* name = PyUnicode_FromString("selectStatement");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QString"};
@@ -7330,7 +7330,7 @@ bool  PythonQtShell_QSqlTableModel::setData(const QModelIndex&  index0, const QV
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setData");
+    static PyObject* name = PyUnicode_FromString("setData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QModelIndex&" , "const QVariant&" , "int"};
@@ -7363,7 +7363,7 @@ void PythonQtShell_QSqlTableModel::setEditStrategy(QSqlTableModel::EditStrategy 
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setEditStrategy");
+    static PyObject* name = PyUnicode_FromString("setEditStrategy");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QSqlTableModel::EditStrategy"};
@@ -7385,7 +7385,7 @@ void PythonQtShell_QSqlTableModel::setFilter(const QString&  filter0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setFilter");
+    static PyObject* name = PyUnicode_FromString("setFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "const QString&"};
@@ -7407,7 +7407,7 @@ bool  PythonQtShell_QSqlTableModel::setHeaderData(int  section0, Qt::Orientation
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setHeaderData");
+    static PyObject* name = PyUnicode_FromString("setHeaderData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "int" , "Qt::Orientation" , "const QVariant&" , "int"};
@@ -7440,7 +7440,7 @@ bool  PythonQtShell_QSqlTableModel::setItemData(const QModelIndex&  index0, cons
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setItemData");
+    static PyObject* name = PyUnicode_FromString("setItemData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QModelIndex&" , "const QMap<int , QVariant >&"};
@@ -7473,7 +7473,7 @@ void PythonQtShell_QSqlTableModel::setSort(int  column0, Qt::SortOrder  order1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setSort");
+    static PyObject* name = PyUnicode_FromString("setSort");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "int" , "Qt::SortOrder"};
@@ -7495,7 +7495,7 @@ void PythonQtShell_QSqlTableModel::setTable(const QString&  tableName0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setTable");
+    static PyObject* name = PyUnicode_FromString("setTable");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "const QString&"};
@@ -7517,7 +7517,7 @@ QModelIndex  PythonQtShell_QSqlTableModel::sibling(int  row0, int  column1, cons
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("sibling");
+    static PyObject* name = PyUnicode_FromString("sibling");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QModelIndex" , "int" , "int" , "const QModelIndex&"};
@@ -7550,7 +7550,7 @@ void PythonQtShell_QSqlTableModel::sort(int  column0, Qt::SortOrder  order1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("sort");
+    static PyObject* name = PyUnicode_FromString("sort");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "int" , "Qt::SortOrder"};
@@ -7572,7 +7572,7 @@ QSize  PythonQtShell_QSqlTableModel::span(const QModelIndex&  index0) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("span");
+    static PyObject* name = PyUnicode_FromString("span");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSize" , "const QModelIndex&"};
@@ -7605,7 +7605,7 @@ bool  PythonQtShell_QSqlTableModel::submit()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("submit");
+    static PyObject* name = PyUnicode_FromString("submit");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -7638,7 +7638,7 @@ Qt::DropActions  PythonQtShell_QSqlTableModel::supportedDragActions() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("supportedDragActions");
+    static PyObject* name = PyUnicode_FromString("supportedDragActions");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"Qt::DropActions"};
@@ -7671,7 +7671,7 @@ Qt::DropActions  PythonQtShell_QSqlTableModel::supportedDropActions() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("supportedDropActions");
+    static PyObject* name = PyUnicode_FromString("supportedDropActions");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"Qt::DropActions"};
@@ -7704,7 +7704,7 @@ void PythonQtShell_QSqlTableModel::timerEvent(QTimerEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("timerEvent");
+    static PyObject* name = PyUnicode_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QTimerEvent*"};
@@ -7726,7 +7726,7 @@ bool  PythonQtShell_QSqlTableModel::updateRowInTable(int  row0, const QSqlRecord
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("updateRowInTable");
+    static PyObject* name = PyUnicode_FromString("updateRowInTable");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "int" , "const QSqlRecord&"};

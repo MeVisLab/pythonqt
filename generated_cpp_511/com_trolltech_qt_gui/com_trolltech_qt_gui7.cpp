@@ -87,7 +87,7 @@ void PythonQtShell_QPrintPreviewDialog::accept()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("accept");
+    static PyObject* name = PyUnicode_FromString("accept");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={""};
@@ -109,7 +109,7 @@ void PythonQtShell_QPrintPreviewDialog::actionEvent(QActionEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("actionEvent");
+    static PyObject* name = PyUnicode_FromString("actionEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QActionEvent*"};
@@ -131,7 +131,7 @@ void PythonQtShell_QPrintPreviewDialog::changeEvent(QEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("changeEvent");
+    static PyObject* name = PyUnicode_FromString("changeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -153,7 +153,7 @@ void PythonQtShell_QPrintPreviewDialog::childEvent(QChildEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("childEvent");
+    static PyObject* name = PyUnicode_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QChildEvent*"};
@@ -175,7 +175,7 @@ void PythonQtShell_QPrintPreviewDialog::closeEvent(QCloseEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("closeEvent");
+    static PyObject* name = PyUnicode_FromString("closeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QCloseEvent*"};
@@ -197,7 +197,7 @@ void PythonQtShell_QPrintPreviewDialog::contextMenuEvent(QContextMenuEvent*  arg
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("contextMenuEvent");
+    static PyObject* name = PyUnicode_FromString("contextMenuEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QContextMenuEvent*"};
@@ -219,7 +219,7 @@ void PythonQtShell_QPrintPreviewDialog::customEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("customEvent");
+    static PyObject* name = PyUnicode_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -241,7 +241,7 @@ int  PythonQtShell_QPrintPreviewDialog::devType() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("devType");
+    static PyObject* name = PyUnicode_FromString("devType");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int"};
@@ -274,7 +274,7 @@ void PythonQtShell_QPrintPreviewDialog::done(int  result0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("done");
+    static PyObject* name = PyUnicode_FromString("done");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "int"};
@@ -296,7 +296,7 @@ void PythonQtShell_QPrintPreviewDialog::dragEnterEvent(QDragEnterEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dragEnterEvent");
+    static PyObject* name = PyUnicode_FromString("dragEnterEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDragEnterEvent*"};
@@ -318,7 +318,7 @@ void PythonQtShell_QPrintPreviewDialog::dragLeaveEvent(QDragLeaveEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dragLeaveEvent");
+    static PyObject* name = PyUnicode_FromString("dragLeaveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDragLeaveEvent*"};
@@ -340,7 +340,7 @@ void PythonQtShell_QPrintPreviewDialog::dragMoveEvent(QDragMoveEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dragMoveEvent");
+    static PyObject* name = PyUnicode_FromString("dragMoveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDragMoveEvent*"};
@@ -362,7 +362,7 @@ void PythonQtShell_QPrintPreviewDialog::dropEvent(QDropEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dropEvent");
+    static PyObject* name = PyUnicode_FromString("dropEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDropEvent*"};
@@ -384,7 +384,7 @@ void PythonQtShell_QPrintPreviewDialog::enterEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("enterEvent");
+    static PyObject* name = PyUnicode_FromString("enterEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -406,7 +406,7 @@ bool  PythonQtShell_QPrintPreviewDialog::event(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("event");
+    static PyObject* name = PyUnicode_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
@@ -439,7 +439,7 @@ bool  PythonQtShell_QPrintPreviewDialog::eventFilter(QObject*  arg__1, QEvent*  
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("eventFilter");
+    static PyObject* name = PyUnicode_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
@@ -472,7 +472,7 @@ int  PythonQtShell_QPrintPreviewDialog::exec()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("exec");
+    static PyObject* name = PyUnicode_FromString("exec");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int"};
@@ -505,7 +505,7 @@ void PythonQtShell_QPrintPreviewDialog::focusInEvent(QFocusEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("focusInEvent");
+    static PyObject* name = PyUnicode_FromString("focusInEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QFocusEvent*"};
@@ -527,7 +527,7 @@ bool  PythonQtShell_QPrintPreviewDialog::focusNextPrevChild(bool  next0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("focusNextPrevChild");
+    static PyObject* name = PyUnicode_FromString("focusNextPrevChild");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "bool"};
@@ -560,7 +560,7 @@ void PythonQtShell_QPrintPreviewDialog::focusOutEvent(QFocusEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("focusOutEvent");
+    static PyObject* name = PyUnicode_FromString("focusOutEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QFocusEvent*"};
@@ -582,7 +582,7 @@ bool  PythonQtShell_QPrintPreviewDialog::hasHeightForWidth() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("hasHeightForWidth");
+    static PyObject* name = PyUnicode_FromString("hasHeightForWidth");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -615,7 +615,7 @@ int  PythonQtShell_QPrintPreviewDialog::heightForWidth(int  arg__1) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("heightForWidth");
+    static PyObject* name = PyUnicode_FromString("heightForWidth");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int" , "int"};
@@ -648,7 +648,7 @@ void PythonQtShell_QPrintPreviewDialog::hideEvent(QHideEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("hideEvent");
+    static PyObject* name = PyUnicode_FromString("hideEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QHideEvent*"};
@@ -670,7 +670,7 @@ void PythonQtShell_QPrintPreviewDialog::initPainter(QPainter*  painter0) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("initPainter");
+    static PyObject* name = PyUnicode_FromString("initPainter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QPainter*"};
@@ -692,7 +692,7 @@ void PythonQtShell_QPrintPreviewDialog::inputMethodEvent(QInputMethodEvent*  arg
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("inputMethodEvent");
+    static PyObject* name = PyUnicode_FromString("inputMethodEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QInputMethodEvent*"};
@@ -714,7 +714,7 @@ QVariant  PythonQtShell_QPrintPreviewDialog::inputMethodQuery(Qt::InputMethodQue
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("inputMethodQuery");
+    static PyObject* name = PyUnicode_FromString("inputMethodQuery");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QVariant" , "Qt::InputMethodQuery"};
@@ -747,7 +747,7 @@ void PythonQtShell_QPrintPreviewDialog::keyPressEvent(QKeyEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("keyPressEvent");
+    static PyObject* name = PyUnicode_FromString("keyPressEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QKeyEvent*"};
@@ -769,7 +769,7 @@ void PythonQtShell_QPrintPreviewDialog::keyReleaseEvent(QKeyEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("keyReleaseEvent");
+    static PyObject* name = PyUnicode_FromString("keyReleaseEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QKeyEvent*"};
@@ -791,7 +791,7 @@ void PythonQtShell_QPrintPreviewDialog::leaveEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("leaveEvent");
+    static PyObject* name = PyUnicode_FromString("leaveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -813,7 +813,7 @@ int  PythonQtShell_QPrintPreviewDialog::metric(QPaintDevice::PaintDeviceMetric  
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("metric");
+    static PyObject* name = PyUnicode_FromString("metric");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int" , "QPaintDevice::PaintDeviceMetric"};
@@ -846,7 +846,7 @@ QSize  PythonQtShell_QPrintPreviewDialog::minimumSizeHint() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("minimumSizeHint");
+    static PyObject* name = PyUnicode_FromString("minimumSizeHint");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSize"};
@@ -879,7 +879,7 @@ void PythonQtShell_QPrintPreviewDialog::mouseDoubleClickEvent(QMouseEvent*  even
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mouseDoubleClickEvent");
+    static PyObject* name = PyUnicode_FromString("mouseDoubleClickEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -901,7 +901,7 @@ void PythonQtShell_QPrintPreviewDialog::mouseMoveEvent(QMouseEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mouseMoveEvent");
+    static PyObject* name = PyUnicode_FromString("mouseMoveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -923,7 +923,7 @@ void PythonQtShell_QPrintPreviewDialog::mousePressEvent(QMouseEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mousePressEvent");
+    static PyObject* name = PyUnicode_FromString("mousePressEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -945,7 +945,7 @@ void PythonQtShell_QPrintPreviewDialog::mouseReleaseEvent(QMouseEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mouseReleaseEvent");
+    static PyObject* name = PyUnicode_FromString("mouseReleaseEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -967,7 +967,7 @@ void PythonQtShell_QPrintPreviewDialog::moveEvent(QMoveEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("moveEvent");
+    static PyObject* name = PyUnicode_FromString("moveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMoveEvent*"};
@@ -989,7 +989,7 @@ bool  PythonQtShell_QPrintPreviewDialog::nativeEvent(const QByteArray&  eventTyp
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("nativeEvent");
+    static PyObject* name = PyUnicode_FromString("nativeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QByteArray&" , "void*" , "long*"};
@@ -1022,7 +1022,7 @@ QPaintEngine*  PythonQtShell_QPrintPreviewDialog::paintEngine() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("paintEngine");
+    static PyObject* name = PyUnicode_FromString("paintEngine");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPaintEngine*"};
@@ -1055,7 +1055,7 @@ void PythonQtShell_QPrintPreviewDialog::paintEvent(QPaintEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("paintEvent");
+    static PyObject* name = PyUnicode_FromString("paintEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QPaintEvent*"};
@@ -1077,7 +1077,7 @@ QPaintDevice*  PythonQtShell_QPrintPreviewDialog::redirected(QPoint*  offset0) c
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("redirected");
+    static PyObject* name = PyUnicode_FromString("redirected");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPaintDevice*" , "QPoint*"};
@@ -1110,7 +1110,7 @@ void PythonQtShell_QPrintPreviewDialog::reject()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("reject");
+    static PyObject* name = PyUnicode_FromString("reject");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={""};
@@ -1132,7 +1132,7 @@ void PythonQtShell_QPrintPreviewDialog::resizeEvent(QResizeEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("resizeEvent");
+    static PyObject* name = PyUnicode_FromString("resizeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QResizeEvent*"};
@@ -1154,7 +1154,7 @@ void PythonQtShell_QPrintPreviewDialog::setVisible(bool  visible0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setVisible");
+    static PyObject* name = PyUnicode_FromString("setVisible");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "bool"};
@@ -1176,7 +1176,7 @@ QPainter*  PythonQtShell_QPrintPreviewDialog::sharedPainter() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("sharedPainter");
+    static PyObject* name = PyUnicode_FromString("sharedPainter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPainter*"};
@@ -1209,7 +1209,7 @@ void PythonQtShell_QPrintPreviewDialog::showEvent(QShowEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("showEvent");
+    static PyObject* name = PyUnicode_FromString("showEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QShowEvent*"};
@@ -1231,7 +1231,7 @@ QSize  PythonQtShell_QPrintPreviewDialog::sizeHint() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("sizeHint");
+    static PyObject* name = PyUnicode_FromString("sizeHint");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSize"};
@@ -1264,7 +1264,7 @@ void PythonQtShell_QPrintPreviewDialog::tabletEvent(QTabletEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("tabletEvent");
+    static PyObject* name = PyUnicode_FromString("tabletEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QTabletEvent*"};
@@ -1286,7 +1286,7 @@ void PythonQtShell_QPrintPreviewDialog::timerEvent(QTimerEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("timerEvent");
+    static PyObject* name = PyUnicode_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QTimerEvent*"};
@@ -1308,7 +1308,7 @@ void PythonQtShell_QPrintPreviewDialog::wheelEvent(QWheelEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("wheelEvent");
+    static PyObject* name = PyUnicode_FromString("wheelEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QWheelEvent*"};
@@ -1367,7 +1367,7 @@ void PythonQtShell_QPrintPreviewWidget::actionEvent(QActionEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("actionEvent");
+    static PyObject* name = PyUnicode_FromString("actionEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QActionEvent*"};
@@ -1389,7 +1389,7 @@ void PythonQtShell_QPrintPreviewWidget::changeEvent(QEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("changeEvent");
+    static PyObject* name = PyUnicode_FromString("changeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -1411,7 +1411,7 @@ void PythonQtShell_QPrintPreviewWidget::childEvent(QChildEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("childEvent");
+    static PyObject* name = PyUnicode_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QChildEvent*"};
@@ -1433,7 +1433,7 @@ void PythonQtShell_QPrintPreviewWidget::closeEvent(QCloseEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("closeEvent");
+    static PyObject* name = PyUnicode_FromString("closeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QCloseEvent*"};
@@ -1455,7 +1455,7 @@ void PythonQtShell_QPrintPreviewWidget::contextMenuEvent(QContextMenuEvent*  eve
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("contextMenuEvent");
+    static PyObject* name = PyUnicode_FromString("contextMenuEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QContextMenuEvent*"};
@@ -1477,7 +1477,7 @@ void PythonQtShell_QPrintPreviewWidget::customEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("customEvent");
+    static PyObject* name = PyUnicode_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -1499,7 +1499,7 @@ int  PythonQtShell_QPrintPreviewWidget::devType() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("devType");
+    static PyObject* name = PyUnicode_FromString("devType");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int"};
@@ -1532,7 +1532,7 @@ void PythonQtShell_QPrintPreviewWidget::dragEnterEvent(QDragEnterEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dragEnterEvent");
+    static PyObject* name = PyUnicode_FromString("dragEnterEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDragEnterEvent*"};
@@ -1554,7 +1554,7 @@ void PythonQtShell_QPrintPreviewWidget::dragLeaveEvent(QDragLeaveEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dragLeaveEvent");
+    static PyObject* name = PyUnicode_FromString("dragLeaveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDragLeaveEvent*"};
@@ -1576,7 +1576,7 @@ void PythonQtShell_QPrintPreviewWidget::dragMoveEvent(QDragMoveEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dragMoveEvent");
+    static PyObject* name = PyUnicode_FromString("dragMoveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDragMoveEvent*"};
@@ -1598,7 +1598,7 @@ void PythonQtShell_QPrintPreviewWidget::dropEvent(QDropEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dropEvent");
+    static PyObject* name = PyUnicode_FromString("dropEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDropEvent*"};
@@ -1620,7 +1620,7 @@ void PythonQtShell_QPrintPreviewWidget::enterEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("enterEvent");
+    static PyObject* name = PyUnicode_FromString("enterEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -1642,7 +1642,7 @@ bool  PythonQtShell_QPrintPreviewWidget::event(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("event");
+    static PyObject* name = PyUnicode_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
@@ -1675,7 +1675,7 @@ bool  PythonQtShell_QPrintPreviewWidget::eventFilter(QObject*  watched0, QEvent*
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("eventFilter");
+    static PyObject* name = PyUnicode_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
@@ -1708,7 +1708,7 @@ void PythonQtShell_QPrintPreviewWidget::focusInEvent(QFocusEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("focusInEvent");
+    static PyObject* name = PyUnicode_FromString("focusInEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QFocusEvent*"};
@@ -1730,7 +1730,7 @@ bool  PythonQtShell_QPrintPreviewWidget::focusNextPrevChild(bool  next0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("focusNextPrevChild");
+    static PyObject* name = PyUnicode_FromString("focusNextPrevChild");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "bool"};
@@ -1763,7 +1763,7 @@ void PythonQtShell_QPrintPreviewWidget::focusOutEvent(QFocusEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("focusOutEvent");
+    static PyObject* name = PyUnicode_FromString("focusOutEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QFocusEvent*"};
@@ -1785,7 +1785,7 @@ bool  PythonQtShell_QPrintPreviewWidget::hasHeightForWidth() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("hasHeightForWidth");
+    static PyObject* name = PyUnicode_FromString("hasHeightForWidth");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -1818,7 +1818,7 @@ int  PythonQtShell_QPrintPreviewWidget::heightForWidth(int  arg__1) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("heightForWidth");
+    static PyObject* name = PyUnicode_FromString("heightForWidth");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int" , "int"};
@@ -1851,7 +1851,7 @@ void PythonQtShell_QPrintPreviewWidget::hideEvent(QHideEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("hideEvent");
+    static PyObject* name = PyUnicode_FromString("hideEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QHideEvent*"};
@@ -1873,7 +1873,7 @@ void PythonQtShell_QPrintPreviewWidget::initPainter(QPainter*  painter0) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("initPainter");
+    static PyObject* name = PyUnicode_FromString("initPainter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QPainter*"};
@@ -1895,7 +1895,7 @@ void PythonQtShell_QPrintPreviewWidget::inputMethodEvent(QInputMethodEvent*  arg
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("inputMethodEvent");
+    static PyObject* name = PyUnicode_FromString("inputMethodEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QInputMethodEvent*"};
@@ -1917,7 +1917,7 @@ QVariant  PythonQtShell_QPrintPreviewWidget::inputMethodQuery(Qt::InputMethodQue
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("inputMethodQuery");
+    static PyObject* name = PyUnicode_FromString("inputMethodQuery");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QVariant" , "Qt::InputMethodQuery"};
@@ -1950,7 +1950,7 @@ void PythonQtShell_QPrintPreviewWidget::keyPressEvent(QKeyEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("keyPressEvent");
+    static PyObject* name = PyUnicode_FromString("keyPressEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QKeyEvent*"};
@@ -1972,7 +1972,7 @@ void PythonQtShell_QPrintPreviewWidget::keyReleaseEvent(QKeyEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("keyReleaseEvent");
+    static PyObject* name = PyUnicode_FromString("keyReleaseEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QKeyEvent*"};
@@ -1994,7 +1994,7 @@ void PythonQtShell_QPrintPreviewWidget::leaveEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("leaveEvent");
+    static PyObject* name = PyUnicode_FromString("leaveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -2016,7 +2016,7 @@ int  PythonQtShell_QPrintPreviewWidget::metric(QPaintDevice::PaintDeviceMetric  
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("metric");
+    static PyObject* name = PyUnicode_FromString("metric");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int" , "QPaintDevice::PaintDeviceMetric"};
@@ -2049,7 +2049,7 @@ QSize  PythonQtShell_QPrintPreviewWidget::minimumSizeHint() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("getMinimumSizeHint");
+    static PyObject* name = PyUnicode_FromString("getMinimumSizeHint");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSize"};
@@ -2082,7 +2082,7 @@ void PythonQtShell_QPrintPreviewWidget::mouseDoubleClickEvent(QMouseEvent*  even
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mouseDoubleClickEvent");
+    static PyObject* name = PyUnicode_FromString("mouseDoubleClickEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -2104,7 +2104,7 @@ void PythonQtShell_QPrintPreviewWidget::mouseMoveEvent(QMouseEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mouseMoveEvent");
+    static PyObject* name = PyUnicode_FromString("mouseMoveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -2126,7 +2126,7 @@ void PythonQtShell_QPrintPreviewWidget::mousePressEvent(QMouseEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mousePressEvent");
+    static PyObject* name = PyUnicode_FromString("mousePressEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -2148,7 +2148,7 @@ void PythonQtShell_QPrintPreviewWidget::mouseReleaseEvent(QMouseEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mouseReleaseEvent");
+    static PyObject* name = PyUnicode_FromString("mouseReleaseEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -2170,7 +2170,7 @@ void PythonQtShell_QPrintPreviewWidget::moveEvent(QMoveEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("moveEvent");
+    static PyObject* name = PyUnicode_FromString("moveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMoveEvent*"};
@@ -2192,7 +2192,7 @@ bool  PythonQtShell_QPrintPreviewWidget::nativeEvent(const QByteArray&  eventTyp
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("nativeEvent");
+    static PyObject* name = PyUnicode_FromString("nativeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QByteArray&" , "void*" , "long*"};
@@ -2225,7 +2225,7 @@ QPaintEngine*  PythonQtShell_QPrintPreviewWidget::paintEngine() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("paintEngine");
+    static PyObject* name = PyUnicode_FromString("paintEngine");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPaintEngine*"};
@@ -2258,7 +2258,7 @@ void PythonQtShell_QPrintPreviewWidget::paintEvent(QPaintEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("paintEvent");
+    static PyObject* name = PyUnicode_FromString("paintEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QPaintEvent*"};
@@ -2280,7 +2280,7 @@ QPaintDevice*  PythonQtShell_QPrintPreviewWidget::redirected(QPoint*  offset0) c
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("redirected");
+    static PyObject* name = PyUnicode_FromString("redirected");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPaintDevice*" , "QPoint*"};
@@ -2313,7 +2313,7 @@ void PythonQtShell_QPrintPreviewWidget::resizeEvent(QResizeEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("resizeEvent");
+    static PyObject* name = PyUnicode_FromString("resizeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QResizeEvent*"};
@@ -2335,7 +2335,7 @@ void PythonQtShell_QPrintPreviewWidget::setVisible(bool  visible0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setVisible");
+    static PyObject* name = PyUnicode_FromString("setVisible");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "bool"};
@@ -2357,7 +2357,7 @@ QPainter*  PythonQtShell_QPrintPreviewWidget::sharedPainter() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("sharedPainter");
+    static PyObject* name = PyUnicode_FromString("sharedPainter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPainter*"};
@@ -2390,7 +2390,7 @@ void PythonQtShell_QPrintPreviewWidget::showEvent(QShowEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("showEvent");
+    static PyObject* name = PyUnicode_FromString("showEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QShowEvent*"};
@@ -2412,7 +2412,7 @@ QSize  PythonQtShell_QPrintPreviewWidget::sizeHint() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("getSizeHint");
+    static PyObject* name = PyUnicode_FromString("getSizeHint");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSize"};
@@ -2445,7 +2445,7 @@ void PythonQtShell_QPrintPreviewWidget::tabletEvent(QTabletEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("tabletEvent");
+    static PyObject* name = PyUnicode_FromString("tabletEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QTabletEvent*"};
@@ -2467,7 +2467,7 @@ void PythonQtShell_QPrintPreviewWidget::timerEvent(QTimerEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("timerEvent");
+    static PyObject* name = PyUnicode_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QTimerEvent*"};
@@ -2489,7 +2489,7 @@ void PythonQtShell_QPrintPreviewWidget::wheelEvent(QWheelEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("wheelEvent");
+    static PyObject* name = PyUnicode_FromString("wheelEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QWheelEvent*"};
@@ -2568,7 +2568,7 @@ int  PythonQtShell_QPrinter::devType() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("devType");
+    static PyObject* name = PyUnicode_FromString("devType");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int"};
@@ -2601,7 +2601,7 @@ void PythonQtShell_QPrinter::initPainter(QPainter*  painter0) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("initPainter");
+    static PyObject* name = PyUnicode_FromString("initPainter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QPainter*"};
@@ -2623,7 +2623,7 @@ int  PythonQtShell_QPrinter::metric(QPaintDevice::PaintDeviceMetric  arg__1) con
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("metric");
+    static PyObject* name = PyUnicode_FromString("metric");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int" , "QPaintDevice::PaintDeviceMetric"};
@@ -2656,7 +2656,7 @@ bool  PythonQtShell_QPrinter::newPage()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("newPage");
+    static PyObject* name = PyUnicode_FromString("newPage");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -2689,7 +2689,7 @@ QPaintEngine*  PythonQtShell_QPrinter::paintEngine() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("paintEngine");
+    static PyObject* name = PyUnicode_FromString("paintEngine");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPaintEngine*"};
@@ -2722,7 +2722,7 @@ QPaintDevice*  PythonQtShell_QPrinter::redirected(QPoint*  offset0) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("redirected");
+    static PyObject* name = PyUnicode_FromString("redirected");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPaintDevice*" , "QPoint*"};
@@ -2755,7 +2755,7 @@ void PythonQtShell_QPrinter::setMargins(const QPagedPaintDevice::Margins&  m0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setMargins");
+    static PyObject* name = PyUnicode_FromString("setMargins");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "const QPagedPaintDevice::Margins&"};
@@ -2777,7 +2777,7 @@ void PythonQtShell_QPrinter::setPageSize(QPagedPaintDevice::PageSize  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setPageSize");
+    static PyObject* name = PyUnicode_FromString("setPageSize");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QPagedPaintDevice::PageSize"};
@@ -2799,7 +2799,7 @@ void PythonQtShell_QPrinter::setPageSizeMM(const QSizeF&  size0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setPageSizeMM");
+    static PyObject* name = PyUnicode_FromString("setPageSizeMM");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "const QSizeF&"};
@@ -2821,7 +2821,7 @@ QPainter*  PythonQtShell_QPrinter::sharedPainter() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("sharedPainter");
+    static PyObject* name = PyUnicode_FromString("sharedPainter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPainter*"};
@@ -3327,7 +3327,7 @@ void PythonQtShell_QProgressBar::actionEvent(QActionEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("actionEvent");
+    static PyObject* name = PyUnicode_FromString("actionEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QActionEvent*"};
@@ -3349,7 +3349,7 @@ void PythonQtShell_QProgressBar::changeEvent(QEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("changeEvent");
+    static PyObject* name = PyUnicode_FromString("changeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -3371,7 +3371,7 @@ void PythonQtShell_QProgressBar::childEvent(QChildEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("childEvent");
+    static PyObject* name = PyUnicode_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QChildEvent*"};
@@ -3393,7 +3393,7 @@ void PythonQtShell_QProgressBar::closeEvent(QCloseEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("closeEvent");
+    static PyObject* name = PyUnicode_FromString("closeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QCloseEvent*"};
@@ -3415,7 +3415,7 @@ void PythonQtShell_QProgressBar::contextMenuEvent(QContextMenuEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("contextMenuEvent");
+    static PyObject* name = PyUnicode_FromString("contextMenuEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QContextMenuEvent*"};
@@ -3437,7 +3437,7 @@ void PythonQtShell_QProgressBar::customEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("customEvent");
+    static PyObject* name = PyUnicode_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -3459,7 +3459,7 @@ int  PythonQtShell_QProgressBar::devType() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("devType");
+    static PyObject* name = PyUnicode_FromString("devType");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int"};
@@ -3492,7 +3492,7 @@ void PythonQtShell_QProgressBar::dragEnterEvent(QDragEnterEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dragEnterEvent");
+    static PyObject* name = PyUnicode_FromString("dragEnterEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDragEnterEvent*"};
@@ -3514,7 +3514,7 @@ void PythonQtShell_QProgressBar::dragLeaveEvent(QDragLeaveEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dragLeaveEvent");
+    static PyObject* name = PyUnicode_FromString("dragLeaveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDragLeaveEvent*"};
@@ -3536,7 +3536,7 @@ void PythonQtShell_QProgressBar::dragMoveEvent(QDragMoveEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dragMoveEvent");
+    static PyObject* name = PyUnicode_FromString("dragMoveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDragMoveEvent*"};
@@ -3558,7 +3558,7 @@ void PythonQtShell_QProgressBar::dropEvent(QDropEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dropEvent");
+    static PyObject* name = PyUnicode_FromString("dropEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDropEvent*"};
@@ -3580,7 +3580,7 @@ void PythonQtShell_QProgressBar::enterEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("enterEvent");
+    static PyObject* name = PyUnicode_FromString("enterEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -3602,7 +3602,7 @@ bool  PythonQtShell_QProgressBar::event(QEvent*  e0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("event");
+    static PyObject* name = PyUnicode_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
@@ -3635,7 +3635,7 @@ bool  PythonQtShell_QProgressBar::eventFilter(QObject*  watched0, QEvent*  event
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("eventFilter");
+    static PyObject* name = PyUnicode_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
@@ -3668,7 +3668,7 @@ void PythonQtShell_QProgressBar::focusInEvent(QFocusEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("focusInEvent");
+    static PyObject* name = PyUnicode_FromString("focusInEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QFocusEvent*"};
@@ -3690,7 +3690,7 @@ bool  PythonQtShell_QProgressBar::focusNextPrevChild(bool  next0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("focusNextPrevChild");
+    static PyObject* name = PyUnicode_FromString("focusNextPrevChild");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "bool"};
@@ -3723,7 +3723,7 @@ void PythonQtShell_QProgressBar::focusOutEvent(QFocusEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("focusOutEvent");
+    static PyObject* name = PyUnicode_FromString("focusOutEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QFocusEvent*"};
@@ -3745,7 +3745,7 @@ bool  PythonQtShell_QProgressBar::hasHeightForWidth() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("hasHeightForWidth");
+    static PyObject* name = PyUnicode_FromString("hasHeightForWidth");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -3778,7 +3778,7 @@ int  PythonQtShell_QProgressBar::heightForWidth(int  arg__1) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("heightForWidth");
+    static PyObject* name = PyUnicode_FromString("heightForWidth");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int" , "int"};
@@ -3811,7 +3811,7 @@ void PythonQtShell_QProgressBar::hideEvent(QHideEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("hideEvent");
+    static PyObject* name = PyUnicode_FromString("hideEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QHideEvent*"};
@@ -3833,7 +3833,7 @@ void PythonQtShell_QProgressBar::initPainter(QPainter*  painter0) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("initPainter");
+    static PyObject* name = PyUnicode_FromString("initPainter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QPainter*"};
@@ -3855,7 +3855,7 @@ void PythonQtShell_QProgressBar::inputMethodEvent(QInputMethodEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("inputMethodEvent");
+    static PyObject* name = PyUnicode_FromString("inputMethodEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QInputMethodEvent*"};
@@ -3877,7 +3877,7 @@ QVariant  PythonQtShell_QProgressBar::inputMethodQuery(Qt::InputMethodQuery  arg
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("inputMethodQuery");
+    static PyObject* name = PyUnicode_FromString("inputMethodQuery");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QVariant" , "Qt::InputMethodQuery"};
@@ -3910,7 +3910,7 @@ void PythonQtShell_QProgressBar::keyPressEvent(QKeyEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("keyPressEvent");
+    static PyObject* name = PyUnicode_FromString("keyPressEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QKeyEvent*"};
@@ -3932,7 +3932,7 @@ void PythonQtShell_QProgressBar::keyReleaseEvent(QKeyEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("keyReleaseEvent");
+    static PyObject* name = PyUnicode_FromString("keyReleaseEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QKeyEvent*"};
@@ -3954,7 +3954,7 @@ void PythonQtShell_QProgressBar::leaveEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("leaveEvent");
+    static PyObject* name = PyUnicode_FromString("leaveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -3976,7 +3976,7 @@ int  PythonQtShell_QProgressBar::metric(QPaintDevice::PaintDeviceMetric  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("metric");
+    static PyObject* name = PyUnicode_FromString("metric");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int" , "QPaintDevice::PaintDeviceMetric"};
@@ -4009,7 +4009,7 @@ QSize  PythonQtShell_QProgressBar::minimumSizeHint() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("minimumSizeHint");
+    static PyObject* name = PyUnicode_FromString("minimumSizeHint");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSize"};
@@ -4042,7 +4042,7 @@ void PythonQtShell_QProgressBar::mouseDoubleClickEvent(QMouseEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mouseDoubleClickEvent");
+    static PyObject* name = PyUnicode_FromString("mouseDoubleClickEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -4064,7 +4064,7 @@ void PythonQtShell_QProgressBar::mouseMoveEvent(QMouseEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mouseMoveEvent");
+    static PyObject* name = PyUnicode_FromString("mouseMoveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -4086,7 +4086,7 @@ void PythonQtShell_QProgressBar::mousePressEvent(QMouseEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mousePressEvent");
+    static PyObject* name = PyUnicode_FromString("mousePressEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -4108,7 +4108,7 @@ void PythonQtShell_QProgressBar::mouseReleaseEvent(QMouseEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mouseReleaseEvent");
+    static PyObject* name = PyUnicode_FromString("mouseReleaseEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -4130,7 +4130,7 @@ void PythonQtShell_QProgressBar::moveEvent(QMoveEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("moveEvent");
+    static PyObject* name = PyUnicode_FromString("moveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMoveEvent*"};
@@ -4152,7 +4152,7 @@ bool  PythonQtShell_QProgressBar::nativeEvent(const QByteArray&  eventType0, voi
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("nativeEvent");
+    static PyObject* name = PyUnicode_FromString("nativeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QByteArray&" , "void*" , "long*"};
@@ -4185,7 +4185,7 @@ QPaintEngine*  PythonQtShell_QProgressBar::paintEngine() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("paintEngine");
+    static PyObject* name = PyUnicode_FromString("paintEngine");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPaintEngine*"};
@@ -4218,7 +4218,7 @@ void PythonQtShell_QProgressBar::paintEvent(QPaintEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("paintEvent");
+    static PyObject* name = PyUnicode_FromString("paintEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QPaintEvent*"};
@@ -4240,7 +4240,7 @@ QPaintDevice*  PythonQtShell_QProgressBar::redirected(QPoint*  offset0) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("redirected");
+    static PyObject* name = PyUnicode_FromString("redirected");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPaintDevice*" , "QPoint*"};
@@ -4273,7 +4273,7 @@ void PythonQtShell_QProgressBar::resizeEvent(QResizeEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("resizeEvent");
+    static PyObject* name = PyUnicode_FromString("resizeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QResizeEvent*"};
@@ -4295,7 +4295,7 @@ void PythonQtShell_QProgressBar::setVisible(bool  visible0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setVisible");
+    static PyObject* name = PyUnicode_FromString("setVisible");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "bool"};
@@ -4317,7 +4317,7 @@ QPainter*  PythonQtShell_QProgressBar::sharedPainter() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("sharedPainter");
+    static PyObject* name = PyUnicode_FromString("sharedPainter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPainter*"};
@@ -4350,7 +4350,7 @@ void PythonQtShell_QProgressBar::showEvent(QShowEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("showEvent");
+    static PyObject* name = PyUnicode_FromString("showEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QShowEvent*"};
@@ -4372,7 +4372,7 @@ QSize  PythonQtShell_QProgressBar::sizeHint() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("sizeHint");
+    static PyObject* name = PyUnicode_FromString("sizeHint");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSize"};
@@ -4405,7 +4405,7 @@ void PythonQtShell_QProgressBar::tabletEvent(QTabletEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("tabletEvent");
+    static PyObject* name = PyUnicode_FromString("tabletEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QTabletEvent*"};
@@ -4427,7 +4427,7 @@ QString  PythonQtShell_QProgressBar::text() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("text");
+    static PyObject* name = PyUnicode_FromString("text");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QString"};
@@ -4460,7 +4460,7 @@ void PythonQtShell_QProgressBar::timerEvent(QTimerEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("timerEvent");
+    static PyObject* name = PyUnicode_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QTimerEvent*"};
@@ -4482,7 +4482,7 @@ void PythonQtShell_QProgressBar::wheelEvent(QWheelEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("wheelEvent");
+    static PyObject* name = PyUnicode_FromString("wheelEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QWheelEvent*"};
@@ -4622,7 +4622,7 @@ void PythonQtShell_QProgressDialog::accept()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("accept");
+    static PyObject* name = PyUnicode_FromString("accept");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={""};
@@ -4644,7 +4644,7 @@ void PythonQtShell_QProgressDialog::actionEvent(QActionEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("actionEvent");
+    static PyObject* name = PyUnicode_FromString("actionEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QActionEvent*"};
@@ -4666,7 +4666,7 @@ void PythonQtShell_QProgressDialog::changeEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("changeEvent");
+    static PyObject* name = PyUnicode_FromString("changeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -4688,7 +4688,7 @@ void PythonQtShell_QProgressDialog::childEvent(QChildEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("childEvent");
+    static PyObject* name = PyUnicode_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QChildEvent*"};
@@ -4710,7 +4710,7 @@ void PythonQtShell_QProgressDialog::closeEvent(QCloseEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("closeEvent");
+    static PyObject* name = PyUnicode_FromString("closeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QCloseEvent*"};
@@ -4732,7 +4732,7 @@ void PythonQtShell_QProgressDialog::contextMenuEvent(QContextMenuEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("contextMenuEvent");
+    static PyObject* name = PyUnicode_FromString("contextMenuEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QContextMenuEvent*"};
@@ -4754,7 +4754,7 @@ void PythonQtShell_QProgressDialog::customEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("customEvent");
+    static PyObject* name = PyUnicode_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -4776,7 +4776,7 @@ int  PythonQtShell_QProgressDialog::devType() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("devType");
+    static PyObject* name = PyUnicode_FromString("devType");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int"};
@@ -4809,7 +4809,7 @@ void PythonQtShell_QProgressDialog::done(int  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("done");
+    static PyObject* name = PyUnicode_FromString("done");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "int"};
@@ -4831,7 +4831,7 @@ void PythonQtShell_QProgressDialog::dragEnterEvent(QDragEnterEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dragEnterEvent");
+    static PyObject* name = PyUnicode_FromString("dragEnterEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDragEnterEvent*"};
@@ -4853,7 +4853,7 @@ void PythonQtShell_QProgressDialog::dragLeaveEvent(QDragLeaveEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dragLeaveEvent");
+    static PyObject* name = PyUnicode_FromString("dragLeaveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDragLeaveEvent*"};
@@ -4875,7 +4875,7 @@ void PythonQtShell_QProgressDialog::dragMoveEvent(QDragMoveEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dragMoveEvent");
+    static PyObject* name = PyUnicode_FromString("dragMoveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDragMoveEvent*"};
@@ -4897,7 +4897,7 @@ void PythonQtShell_QProgressDialog::dropEvent(QDropEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dropEvent");
+    static PyObject* name = PyUnicode_FromString("dropEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDropEvent*"};
@@ -4919,7 +4919,7 @@ void PythonQtShell_QProgressDialog::enterEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("enterEvent");
+    static PyObject* name = PyUnicode_FromString("enterEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -4941,7 +4941,7 @@ bool  PythonQtShell_QProgressDialog::event(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("event");
+    static PyObject* name = PyUnicode_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
@@ -4974,7 +4974,7 @@ bool  PythonQtShell_QProgressDialog::eventFilter(QObject*  arg__1, QEvent*  arg_
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("eventFilter");
+    static PyObject* name = PyUnicode_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
@@ -5007,7 +5007,7 @@ int  PythonQtShell_QProgressDialog::exec()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("exec");
+    static PyObject* name = PyUnicode_FromString("exec");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int"};
@@ -5040,7 +5040,7 @@ void PythonQtShell_QProgressDialog::focusInEvent(QFocusEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("focusInEvent");
+    static PyObject* name = PyUnicode_FromString("focusInEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QFocusEvent*"};
@@ -5062,7 +5062,7 @@ bool  PythonQtShell_QProgressDialog::focusNextPrevChild(bool  next0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("focusNextPrevChild");
+    static PyObject* name = PyUnicode_FromString("focusNextPrevChild");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "bool"};
@@ -5095,7 +5095,7 @@ void PythonQtShell_QProgressDialog::focusOutEvent(QFocusEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("focusOutEvent");
+    static PyObject* name = PyUnicode_FromString("focusOutEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QFocusEvent*"};
@@ -5117,7 +5117,7 @@ bool  PythonQtShell_QProgressDialog::hasHeightForWidth() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("hasHeightForWidth");
+    static PyObject* name = PyUnicode_FromString("hasHeightForWidth");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -5150,7 +5150,7 @@ int  PythonQtShell_QProgressDialog::heightForWidth(int  arg__1) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("heightForWidth");
+    static PyObject* name = PyUnicode_FromString("heightForWidth");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int" , "int"};
@@ -5183,7 +5183,7 @@ void PythonQtShell_QProgressDialog::hideEvent(QHideEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("hideEvent");
+    static PyObject* name = PyUnicode_FromString("hideEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QHideEvent*"};
@@ -5205,7 +5205,7 @@ void PythonQtShell_QProgressDialog::initPainter(QPainter*  painter0) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("initPainter");
+    static PyObject* name = PyUnicode_FromString("initPainter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QPainter*"};
@@ -5227,7 +5227,7 @@ void PythonQtShell_QProgressDialog::inputMethodEvent(QInputMethodEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("inputMethodEvent");
+    static PyObject* name = PyUnicode_FromString("inputMethodEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QInputMethodEvent*"};
@@ -5249,7 +5249,7 @@ QVariant  PythonQtShell_QProgressDialog::inputMethodQuery(Qt::InputMethodQuery  
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("inputMethodQuery");
+    static PyObject* name = PyUnicode_FromString("inputMethodQuery");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QVariant" , "Qt::InputMethodQuery"};
@@ -5282,7 +5282,7 @@ void PythonQtShell_QProgressDialog::keyPressEvent(QKeyEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("keyPressEvent");
+    static PyObject* name = PyUnicode_FromString("keyPressEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QKeyEvent*"};
@@ -5304,7 +5304,7 @@ void PythonQtShell_QProgressDialog::keyReleaseEvent(QKeyEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("keyReleaseEvent");
+    static PyObject* name = PyUnicode_FromString("keyReleaseEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QKeyEvent*"};
@@ -5326,7 +5326,7 @@ void PythonQtShell_QProgressDialog::leaveEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("leaveEvent");
+    static PyObject* name = PyUnicode_FromString("leaveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -5348,7 +5348,7 @@ int  PythonQtShell_QProgressDialog::metric(QPaintDevice::PaintDeviceMetric  arg_
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("metric");
+    static PyObject* name = PyUnicode_FromString("metric");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int" , "QPaintDevice::PaintDeviceMetric"};
@@ -5381,7 +5381,7 @@ QSize  PythonQtShell_QProgressDialog::minimumSizeHint() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("minimumSizeHint");
+    static PyObject* name = PyUnicode_FromString("minimumSizeHint");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSize"};
@@ -5414,7 +5414,7 @@ void PythonQtShell_QProgressDialog::mouseDoubleClickEvent(QMouseEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mouseDoubleClickEvent");
+    static PyObject* name = PyUnicode_FromString("mouseDoubleClickEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -5436,7 +5436,7 @@ void PythonQtShell_QProgressDialog::mouseMoveEvent(QMouseEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mouseMoveEvent");
+    static PyObject* name = PyUnicode_FromString("mouseMoveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -5458,7 +5458,7 @@ void PythonQtShell_QProgressDialog::mousePressEvent(QMouseEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mousePressEvent");
+    static PyObject* name = PyUnicode_FromString("mousePressEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -5480,7 +5480,7 @@ void PythonQtShell_QProgressDialog::mouseReleaseEvent(QMouseEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mouseReleaseEvent");
+    static PyObject* name = PyUnicode_FromString("mouseReleaseEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -5502,7 +5502,7 @@ void PythonQtShell_QProgressDialog::moveEvent(QMoveEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("moveEvent");
+    static PyObject* name = PyUnicode_FromString("moveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMoveEvent*"};
@@ -5524,7 +5524,7 @@ bool  PythonQtShell_QProgressDialog::nativeEvent(const QByteArray&  eventType0, 
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("nativeEvent");
+    static PyObject* name = PyUnicode_FromString("nativeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QByteArray&" , "void*" , "long*"};
@@ -5557,7 +5557,7 @@ QPaintEngine*  PythonQtShell_QProgressDialog::paintEngine() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("paintEngine");
+    static PyObject* name = PyUnicode_FromString("paintEngine");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPaintEngine*"};
@@ -5590,7 +5590,7 @@ void PythonQtShell_QProgressDialog::paintEvent(QPaintEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("paintEvent");
+    static PyObject* name = PyUnicode_FromString("paintEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QPaintEvent*"};
@@ -5612,7 +5612,7 @@ QPaintDevice*  PythonQtShell_QProgressDialog::redirected(QPoint*  offset0) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("redirected");
+    static PyObject* name = PyUnicode_FromString("redirected");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPaintDevice*" , "QPoint*"};
@@ -5645,7 +5645,7 @@ void PythonQtShell_QProgressDialog::reject()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("reject");
+    static PyObject* name = PyUnicode_FromString("reject");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={""};
@@ -5667,7 +5667,7 @@ void PythonQtShell_QProgressDialog::resizeEvent(QResizeEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("resizeEvent");
+    static PyObject* name = PyUnicode_FromString("resizeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QResizeEvent*"};
@@ -5689,7 +5689,7 @@ void PythonQtShell_QProgressDialog::setVisible(bool  visible0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setVisible");
+    static PyObject* name = PyUnicode_FromString("setVisible");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "bool"};
@@ -5711,7 +5711,7 @@ QPainter*  PythonQtShell_QProgressDialog::sharedPainter() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("sharedPainter");
+    static PyObject* name = PyUnicode_FromString("sharedPainter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPainter*"};
@@ -5744,7 +5744,7 @@ void PythonQtShell_QProgressDialog::showEvent(QShowEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("showEvent");
+    static PyObject* name = PyUnicode_FromString("showEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QShowEvent*"};
@@ -5766,7 +5766,7 @@ QSize  PythonQtShell_QProgressDialog::sizeHint() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("sizeHint");
+    static PyObject* name = PyUnicode_FromString("sizeHint");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSize"};
@@ -5799,7 +5799,7 @@ void PythonQtShell_QProgressDialog::tabletEvent(QTabletEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("tabletEvent");
+    static PyObject* name = PyUnicode_FromString("tabletEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QTabletEvent*"};
@@ -5821,7 +5821,7 @@ void PythonQtShell_QProgressDialog::timerEvent(QTimerEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("timerEvent");
+    static PyObject* name = PyUnicode_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QTimerEvent*"};
@@ -5843,7 +5843,7 @@ void PythonQtShell_QProgressDialog::wheelEvent(QWheelEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("wheelEvent");
+    static PyObject* name = PyUnicode_FromString("wheelEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QWheelEvent*"};
@@ -5962,7 +5962,7 @@ void PythonQtShell_QProxyStyle::childEvent(QChildEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("childEvent");
+    static PyObject* name = PyUnicode_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QChildEvent*"};
@@ -5984,7 +5984,7 @@ void PythonQtShell_QProxyStyle::customEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("customEvent");
+    static PyObject* name = PyUnicode_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -6006,7 +6006,7 @@ void PythonQtShell_QProxyStyle::drawComplexControl(QStyle::ComplexControl  contr
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("drawComplexControl");
+    static PyObject* name = PyUnicode_FromString("drawComplexControl");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QStyle::ComplexControl" , "const QStyleOptionComplex*" , "QPainter*" , "const QWidget*"};
@@ -6028,7 +6028,7 @@ void PythonQtShell_QProxyStyle::drawControl(QStyle::ControlElement  element0, co
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("drawControl");
+    static PyObject* name = PyUnicode_FromString("drawControl");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QStyle::ControlElement" , "const QStyleOption*" , "QPainter*" , "const QWidget*"};
@@ -6050,7 +6050,7 @@ void PythonQtShell_QProxyStyle::drawItemPixmap(QPainter*  painter0, const QRect&
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("drawItemPixmap");
+    static PyObject* name = PyUnicode_FromString("drawItemPixmap");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QPainter*" , "const QRect&" , "int" , "const QPixmap&"};
@@ -6072,7 +6072,7 @@ void PythonQtShell_QProxyStyle::drawItemText(QPainter*  painter0, const QRect&  
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("drawItemText");
+    static PyObject* name = PyUnicode_FromString("drawItemText");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QPainter*" , "const QRect&" , "int" , "const QPalette&" , "bool" , "const QString&" , "QPalette::ColorRole"};
@@ -6094,7 +6094,7 @@ void PythonQtShell_QProxyStyle::drawPrimitive(QStyle::PrimitiveElement  element0
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("drawPrimitive");
+    static PyObject* name = PyUnicode_FromString("drawPrimitive");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QStyle::PrimitiveElement" , "const QStyleOption*" , "QPainter*" , "const QWidget*"};
@@ -6116,7 +6116,7 @@ bool  PythonQtShell_QProxyStyle::event(QEvent*  e0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("event");
+    static PyObject* name = PyUnicode_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
@@ -6149,7 +6149,7 @@ bool  PythonQtShell_QProxyStyle::eventFilter(QObject*  watched0, QEvent*  event1
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("eventFilter");
+    static PyObject* name = PyUnicode_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
@@ -6182,7 +6182,7 @@ QPixmap  PythonQtShell_QProxyStyle::generatedIconPixmap(QIcon::Mode  iconMode0, 
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("generatedIconPixmap");
+    static PyObject* name = PyUnicode_FromString("generatedIconPixmap");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPixmap" , "QIcon::Mode" , "const QPixmap&" , "const QStyleOption*"};
@@ -6215,7 +6215,7 @@ QStyle::SubControl  PythonQtShell_QProxyStyle::hitTestComplexControl(QStyle::Com
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("hitTestComplexControl");
+    static PyObject* name = PyUnicode_FromString("hitTestComplexControl");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QStyle::SubControl" , "QStyle::ComplexControl" , "const QStyleOptionComplex*" , "const QPoint&" , "const QWidget*"};
@@ -6248,7 +6248,7 @@ QRect  PythonQtShell_QProxyStyle::itemPixmapRect(const QRect&  r0, int  flags1, 
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("itemPixmapRect");
+    static PyObject* name = PyUnicode_FromString("itemPixmapRect");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QRect" , "const QRect&" , "int" , "const QPixmap&"};
@@ -6281,7 +6281,7 @@ QRect  PythonQtShell_QProxyStyle::itemTextRect(const QFontMetrics&  fm0, const Q
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("itemTextRect");
+    static PyObject* name = PyUnicode_FromString("itemTextRect");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QRect" , "const QFontMetrics&" , "const QRect&" , "int" , "bool" , "const QString&"};
@@ -6314,7 +6314,7 @@ int  PythonQtShell_QProxyStyle::layoutSpacing(QSizePolicy::ControlType  control1
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("layoutSpacing");
+    static PyObject* name = PyUnicode_FromString("layoutSpacing");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int" , "QSizePolicy::ControlType" , "QSizePolicy::ControlType" , "Qt::Orientation" , "const QStyleOption*" , "const QWidget*"};
@@ -6347,7 +6347,7 @@ int  PythonQtShell_QProxyStyle::pixelMetric(QStyle::PixelMetric  metric0, const 
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("pixelMetric");
+    static PyObject* name = PyUnicode_FromString("pixelMetric");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int" , "QStyle::PixelMetric" , "const QStyleOption*" , "const QWidget*"};
@@ -6380,7 +6380,7 @@ void PythonQtShell_QProxyStyle::polish(QApplication*  app0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("polish");
+    static PyObject* name = PyUnicode_FromString("polish");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QApplication*"};
@@ -6402,7 +6402,7 @@ void PythonQtShell_QProxyStyle::polish(QPalette&  pal0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("polish");
+    static PyObject* name = PyUnicode_FromString("polish");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QPalette&"};
@@ -6424,7 +6424,7 @@ void PythonQtShell_QProxyStyle::polish(QWidget*  widget0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("polish");
+    static PyObject* name = PyUnicode_FromString("polish");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QWidget*"};
@@ -6446,7 +6446,7 @@ QSize  PythonQtShell_QProxyStyle::sizeFromContents(QStyle::ContentsType  type0, 
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("sizeFromContents");
+    static PyObject* name = PyUnicode_FromString("sizeFromContents");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSize" , "QStyle::ContentsType" , "const QStyleOption*" , "const QSize&" , "const QWidget*"};
@@ -6479,7 +6479,7 @@ QIcon  PythonQtShell_QProxyStyle::standardIcon(QStyle::StandardPixmap  standardI
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("standardIcon");
+    static PyObject* name = PyUnicode_FromString("standardIcon");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QIcon" , "QStyle::StandardPixmap" , "const QStyleOption*" , "const QWidget*"};
@@ -6512,7 +6512,7 @@ QPalette  PythonQtShell_QProxyStyle::standardPalette() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("standardPalette");
+    static PyObject* name = PyUnicode_FromString("standardPalette");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPalette"};
@@ -6545,7 +6545,7 @@ QPixmap  PythonQtShell_QProxyStyle::standardPixmap(QStyle::StandardPixmap  stand
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("standardPixmap");
+    static PyObject* name = PyUnicode_FromString("standardPixmap");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPixmap" , "QStyle::StandardPixmap" , "const QStyleOption*" , "const QWidget*"};
@@ -6578,7 +6578,7 @@ int  PythonQtShell_QProxyStyle::styleHint(QStyle::StyleHint  hint0, const QStyle
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("styleHint");
+    static PyObject* name = PyUnicode_FromString("styleHint");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int" , "QStyle::StyleHint" , "const QStyleOption*" , "const QWidget*" , "QStyleHintReturn*"};
@@ -6611,7 +6611,7 @@ QRect  PythonQtShell_QProxyStyle::subControlRect(QStyle::ComplexControl  cc0, co
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("subControlRect");
+    static PyObject* name = PyUnicode_FromString("subControlRect");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QRect" , "QStyle::ComplexControl" , "const QStyleOptionComplex*" , "QStyle::SubControl" , "const QWidget*"};
@@ -6644,7 +6644,7 @@ QRect  PythonQtShell_QProxyStyle::subElementRect(QStyle::SubElement  element0, c
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("subElementRect");
+    static PyObject* name = PyUnicode_FromString("subElementRect");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QRect" , "QStyle::SubElement" , "const QStyleOption*" , "const QWidget*"};
@@ -6677,7 +6677,7 @@ void PythonQtShell_QProxyStyle::timerEvent(QTimerEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("timerEvent");
+    static PyObject* name = PyUnicode_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QTimerEvent*"};
@@ -6699,7 +6699,7 @@ void PythonQtShell_QProxyStyle::unpolish(QApplication*  app0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("unpolish");
+    static PyObject* name = PyUnicode_FromString("unpolish");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QApplication*"};
@@ -6721,7 +6721,7 @@ void PythonQtShell_QProxyStyle::unpolish(QWidget*  widget0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("unpolish");
+    static PyObject* name = PyUnicode_FromString("unpolish");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QWidget*"};
@@ -6785,7 +6785,7 @@ void PythonQtShell_QPushButton::actionEvent(QActionEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("actionEvent");
+    static PyObject* name = PyUnicode_FromString("actionEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QActionEvent*"};
@@ -6807,7 +6807,7 @@ void PythonQtShell_QPushButton::changeEvent(QEvent*  e0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("changeEvent");
+    static PyObject* name = PyUnicode_FromString("changeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -6829,7 +6829,7 @@ void PythonQtShell_QPushButton::checkStateSet()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("checkStateSet");
+    static PyObject* name = PyUnicode_FromString("checkStateSet");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={""};
@@ -6851,7 +6851,7 @@ void PythonQtShell_QPushButton::childEvent(QChildEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("childEvent");
+    static PyObject* name = PyUnicode_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QChildEvent*"};
@@ -6873,7 +6873,7 @@ void PythonQtShell_QPushButton::closeEvent(QCloseEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("closeEvent");
+    static PyObject* name = PyUnicode_FromString("closeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QCloseEvent*"};
@@ -6895,7 +6895,7 @@ void PythonQtShell_QPushButton::contextMenuEvent(QContextMenuEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("contextMenuEvent");
+    static PyObject* name = PyUnicode_FromString("contextMenuEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QContextMenuEvent*"};
@@ -6917,7 +6917,7 @@ void PythonQtShell_QPushButton::customEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("customEvent");
+    static PyObject* name = PyUnicode_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -6939,7 +6939,7 @@ int  PythonQtShell_QPushButton::devType() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("devType");
+    static PyObject* name = PyUnicode_FromString("devType");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int"};
@@ -6972,7 +6972,7 @@ void PythonQtShell_QPushButton::dragEnterEvent(QDragEnterEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dragEnterEvent");
+    static PyObject* name = PyUnicode_FromString("dragEnterEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDragEnterEvent*"};
@@ -6994,7 +6994,7 @@ void PythonQtShell_QPushButton::dragLeaveEvent(QDragLeaveEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dragLeaveEvent");
+    static PyObject* name = PyUnicode_FromString("dragLeaveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDragLeaveEvent*"};
@@ -7016,7 +7016,7 @@ void PythonQtShell_QPushButton::dragMoveEvent(QDragMoveEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dragMoveEvent");
+    static PyObject* name = PyUnicode_FromString("dragMoveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDragMoveEvent*"};
@@ -7038,7 +7038,7 @@ void PythonQtShell_QPushButton::dropEvent(QDropEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dropEvent");
+    static PyObject* name = PyUnicode_FromString("dropEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDropEvent*"};
@@ -7060,7 +7060,7 @@ void PythonQtShell_QPushButton::enterEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("enterEvent");
+    static PyObject* name = PyUnicode_FromString("enterEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -7082,7 +7082,7 @@ bool  PythonQtShell_QPushButton::event(QEvent*  e0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("event");
+    static PyObject* name = PyUnicode_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
@@ -7115,7 +7115,7 @@ bool  PythonQtShell_QPushButton::eventFilter(QObject*  watched0, QEvent*  event1
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("eventFilter");
+    static PyObject* name = PyUnicode_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
@@ -7148,7 +7148,7 @@ void PythonQtShell_QPushButton::focusInEvent(QFocusEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("focusInEvent");
+    static PyObject* name = PyUnicode_FromString("focusInEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QFocusEvent*"};
@@ -7170,7 +7170,7 @@ bool  PythonQtShell_QPushButton::focusNextPrevChild(bool  next0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("focusNextPrevChild");
+    static PyObject* name = PyUnicode_FromString("focusNextPrevChild");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "bool"};
@@ -7203,7 +7203,7 @@ void PythonQtShell_QPushButton::focusOutEvent(QFocusEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("focusOutEvent");
+    static PyObject* name = PyUnicode_FromString("focusOutEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QFocusEvent*"};
@@ -7225,7 +7225,7 @@ bool  PythonQtShell_QPushButton::hasHeightForWidth() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("hasHeightForWidth");
+    static PyObject* name = PyUnicode_FromString("hasHeightForWidth");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -7258,7 +7258,7 @@ int  PythonQtShell_QPushButton::heightForWidth(int  arg__1) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("heightForWidth");
+    static PyObject* name = PyUnicode_FromString("heightForWidth");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int" , "int"};
@@ -7291,7 +7291,7 @@ void PythonQtShell_QPushButton::hideEvent(QHideEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("hideEvent");
+    static PyObject* name = PyUnicode_FromString("hideEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QHideEvent*"};
@@ -7313,7 +7313,7 @@ bool  PythonQtShell_QPushButton::hitButton(const QPoint&  pos0) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("hitButton");
+    static PyObject* name = PyUnicode_FromString("hitButton");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QPoint&"};
@@ -7346,7 +7346,7 @@ void PythonQtShell_QPushButton::initPainter(QPainter*  painter0) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("initPainter");
+    static PyObject* name = PyUnicode_FromString("initPainter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QPainter*"};
@@ -7368,7 +7368,7 @@ void PythonQtShell_QPushButton::inputMethodEvent(QInputMethodEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("inputMethodEvent");
+    static PyObject* name = PyUnicode_FromString("inputMethodEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QInputMethodEvent*"};
@@ -7390,7 +7390,7 @@ QVariant  PythonQtShell_QPushButton::inputMethodQuery(Qt::InputMethodQuery  arg_
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("inputMethodQuery");
+    static PyObject* name = PyUnicode_FromString("inputMethodQuery");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QVariant" , "Qt::InputMethodQuery"};
@@ -7423,7 +7423,7 @@ void PythonQtShell_QPushButton::keyPressEvent(QKeyEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("keyPressEvent");
+    static PyObject* name = PyUnicode_FromString("keyPressEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QKeyEvent*"};
@@ -7445,7 +7445,7 @@ void PythonQtShell_QPushButton::keyReleaseEvent(QKeyEvent*  e0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("keyReleaseEvent");
+    static PyObject* name = PyUnicode_FromString("keyReleaseEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QKeyEvent*"};
@@ -7467,7 +7467,7 @@ void PythonQtShell_QPushButton::leaveEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("leaveEvent");
+    static PyObject* name = PyUnicode_FromString("leaveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -7489,7 +7489,7 @@ int  PythonQtShell_QPushButton::metric(QPaintDevice::PaintDeviceMetric  arg__1) 
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("metric");
+    static PyObject* name = PyUnicode_FromString("metric");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int" , "QPaintDevice::PaintDeviceMetric"};
@@ -7522,7 +7522,7 @@ QSize  PythonQtShell_QPushButton::minimumSizeHint() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("minimumSizeHint");
+    static PyObject* name = PyUnicode_FromString("minimumSizeHint");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSize"};
@@ -7555,7 +7555,7 @@ void PythonQtShell_QPushButton::mouseDoubleClickEvent(QMouseEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mouseDoubleClickEvent");
+    static PyObject* name = PyUnicode_FromString("mouseDoubleClickEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -7577,7 +7577,7 @@ void PythonQtShell_QPushButton::mouseMoveEvent(QMouseEvent*  e0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mouseMoveEvent");
+    static PyObject* name = PyUnicode_FromString("mouseMoveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -7599,7 +7599,7 @@ void PythonQtShell_QPushButton::mousePressEvent(QMouseEvent*  e0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mousePressEvent");
+    static PyObject* name = PyUnicode_FromString("mousePressEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -7621,7 +7621,7 @@ void PythonQtShell_QPushButton::mouseReleaseEvent(QMouseEvent*  e0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mouseReleaseEvent");
+    static PyObject* name = PyUnicode_FromString("mouseReleaseEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -7643,7 +7643,7 @@ void PythonQtShell_QPushButton::moveEvent(QMoveEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("moveEvent");
+    static PyObject* name = PyUnicode_FromString("moveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMoveEvent*"};
@@ -7665,7 +7665,7 @@ bool  PythonQtShell_QPushButton::nativeEvent(const QByteArray&  eventType0, void
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("nativeEvent");
+    static PyObject* name = PyUnicode_FromString("nativeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QByteArray&" , "void*" , "long*"};
@@ -7698,7 +7698,7 @@ void PythonQtShell_QPushButton::nextCheckState()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("nextCheckState");
+    static PyObject* name = PyUnicode_FromString("nextCheckState");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={""};
@@ -7720,7 +7720,7 @@ QPaintEngine*  PythonQtShell_QPushButton::paintEngine() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("paintEngine");
+    static PyObject* name = PyUnicode_FromString("paintEngine");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPaintEngine*"};
@@ -7753,7 +7753,7 @@ void PythonQtShell_QPushButton::paintEvent(QPaintEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("paintEvent");
+    static PyObject* name = PyUnicode_FromString("paintEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QPaintEvent*"};
@@ -7775,7 +7775,7 @@ QPaintDevice*  PythonQtShell_QPushButton::redirected(QPoint*  offset0) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("redirected");
+    static PyObject* name = PyUnicode_FromString("redirected");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPaintDevice*" , "QPoint*"};
@@ -7808,7 +7808,7 @@ void PythonQtShell_QPushButton::resizeEvent(QResizeEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("resizeEvent");
+    static PyObject* name = PyUnicode_FromString("resizeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QResizeEvent*"};
@@ -7830,7 +7830,7 @@ void PythonQtShell_QPushButton::setVisible(bool  visible0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setVisible");
+    static PyObject* name = PyUnicode_FromString("setVisible");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "bool"};
@@ -7852,7 +7852,7 @@ QPainter*  PythonQtShell_QPushButton::sharedPainter() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("sharedPainter");
+    static PyObject* name = PyUnicode_FromString("sharedPainter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPainter*"};
@@ -7885,7 +7885,7 @@ void PythonQtShell_QPushButton::showEvent(QShowEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("showEvent");
+    static PyObject* name = PyUnicode_FromString("showEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QShowEvent*"};
@@ -7907,7 +7907,7 @@ QSize  PythonQtShell_QPushButton::sizeHint() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("sizeHint");
+    static PyObject* name = PyUnicode_FromString("sizeHint");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSize"};
@@ -7940,7 +7940,7 @@ void PythonQtShell_QPushButton::tabletEvent(QTabletEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("tabletEvent");
+    static PyObject* name = PyUnicode_FromString("tabletEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QTabletEvent*"};
@@ -7962,7 +7962,7 @@ void PythonQtShell_QPushButton::timerEvent(QTimerEvent*  e0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("timerEvent");
+    static PyObject* name = PyUnicode_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QTimerEvent*"};
@@ -7984,7 +7984,7 @@ void PythonQtShell_QPushButton::wheelEvent(QWheelEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("wheelEvent");
+    static PyObject* name = PyUnicode_FromString("wheelEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QWheelEvent*"};
@@ -8462,7 +8462,7 @@ void PythonQtShell_QRadioButton::actionEvent(QActionEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("actionEvent");
+    static PyObject* name = PyUnicode_FromString("actionEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QActionEvent*"};
@@ -8484,7 +8484,7 @@ void PythonQtShell_QRadioButton::changeEvent(QEvent*  e0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("changeEvent");
+    static PyObject* name = PyUnicode_FromString("changeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -8506,7 +8506,7 @@ void PythonQtShell_QRadioButton::checkStateSet()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("checkStateSet");
+    static PyObject* name = PyUnicode_FromString("checkStateSet");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={""};
@@ -8528,7 +8528,7 @@ void PythonQtShell_QRadioButton::childEvent(QChildEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("childEvent");
+    static PyObject* name = PyUnicode_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QChildEvent*"};
@@ -8550,7 +8550,7 @@ void PythonQtShell_QRadioButton::closeEvent(QCloseEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("closeEvent");
+    static PyObject* name = PyUnicode_FromString("closeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QCloseEvent*"};
@@ -8572,7 +8572,7 @@ void PythonQtShell_QRadioButton::contextMenuEvent(QContextMenuEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("contextMenuEvent");
+    static PyObject* name = PyUnicode_FromString("contextMenuEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QContextMenuEvent*"};
@@ -8594,7 +8594,7 @@ void PythonQtShell_QRadioButton::customEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("customEvent");
+    static PyObject* name = PyUnicode_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -8616,7 +8616,7 @@ int  PythonQtShell_QRadioButton::devType() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("devType");
+    static PyObject* name = PyUnicode_FromString("devType");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int"};
@@ -8649,7 +8649,7 @@ void PythonQtShell_QRadioButton::dragEnterEvent(QDragEnterEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dragEnterEvent");
+    static PyObject* name = PyUnicode_FromString("dragEnterEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDragEnterEvent*"};
@@ -8671,7 +8671,7 @@ void PythonQtShell_QRadioButton::dragLeaveEvent(QDragLeaveEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dragLeaveEvent");
+    static PyObject* name = PyUnicode_FromString("dragLeaveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDragLeaveEvent*"};
@@ -8693,7 +8693,7 @@ void PythonQtShell_QRadioButton::dragMoveEvent(QDragMoveEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dragMoveEvent");
+    static PyObject* name = PyUnicode_FromString("dragMoveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDragMoveEvent*"};
@@ -8715,7 +8715,7 @@ void PythonQtShell_QRadioButton::dropEvent(QDropEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dropEvent");
+    static PyObject* name = PyUnicode_FromString("dropEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDropEvent*"};
@@ -8737,7 +8737,7 @@ void PythonQtShell_QRadioButton::enterEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("enterEvent");
+    static PyObject* name = PyUnicode_FromString("enterEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -8759,7 +8759,7 @@ bool  PythonQtShell_QRadioButton::event(QEvent*  e0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("event");
+    static PyObject* name = PyUnicode_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
@@ -8792,7 +8792,7 @@ bool  PythonQtShell_QRadioButton::eventFilter(QObject*  watched0, QEvent*  event
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("eventFilter");
+    static PyObject* name = PyUnicode_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
@@ -8825,7 +8825,7 @@ void PythonQtShell_QRadioButton::focusInEvent(QFocusEvent*  e0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("focusInEvent");
+    static PyObject* name = PyUnicode_FromString("focusInEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QFocusEvent*"};
@@ -8847,7 +8847,7 @@ bool  PythonQtShell_QRadioButton::focusNextPrevChild(bool  next0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("focusNextPrevChild");
+    static PyObject* name = PyUnicode_FromString("focusNextPrevChild");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "bool"};
@@ -8880,7 +8880,7 @@ void PythonQtShell_QRadioButton::focusOutEvent(QFocusEvent*  e0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("focusOutEvent");
+    static PyObject* name = PyUnicode_FromString("focusOutEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QFocusEvent*"};
@@ -8902,7 +8902,7 @@ bool  PythonQtShell_QRadioButton::hasHeightForWidth() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("hasHeightForWidth");
+    static PyObject* name = PyUnicode_FromString("hasHeightForWidth");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -8935,7 +8935,7 @@ int  PythonQtShell_QRadioButton::heightForWidth(int  arg__1) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("heightForWidth");
+    static PyObject* name = PyUnicode_FromString("heightForWidth");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int" , "int"};
@@ -8968,7 +8968,7 @@ void PythonQtShell_QRadioButton::hideEvent(QHideEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("hideEvent");
+    static PyObject* name = PyUnicode_FromString("hideEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QHideEvent*"};
@@ -8990,7 +8990,7 @@ bool  PythonQtShell_QRadioButton::hitButton(const QPoint&  arg__1) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("hitButton");
+    static PyObject* name = PyUnicode_FromString("hitButton");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QPoint&"};
@@ -9023,7 +9023,7 @@ void PythonQtShell_QRadioButton::initPainter(QPainter*  painter0) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("initPainter");
+    static PyObject* name = PyUnicode_FromString("initPainter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QPainter*"};
@@ -9045,7 +9045,7 @@ void PythonQtShell_QRadioButton::inputMethodEvent(QInputMethodEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("inputMethodEvent");
+    static PyObject* name = PyUnicode_FromString("inputMethodEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QInputMethodEvent*"};
@@ -9067,7 +9067,7 @@ QVariant  PythonQtShell_QRadioButton::inputMethodQuery(Qt::InputMethodQuery  arg
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("inputMethodQuery");
+    static PyObject* name = PyUnicode_FromString("inputMethodQuery");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QVariant" , "Qt::InputMethodQuery"};
@@ -9100,7 +9100,7 @@ void PythonQtShell_QRadioButton::keyPressEvent(QKeyEvent*  e0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("keyPressEvent");
+    static PyObject* name = PyUnicode_FromString("keyPressEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QKeyEvent*"};
@@ -9122,7 +9122,7 @@ void PythonQtShell_QRadioButton::keyReleaseEvent(QKeyEvent*  e0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("keyReleaseEvent");
+    static PyObject* name = PyUnicode_FromString("keyReleaseEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QKeyEvent*"};
@@ -9144,7 +9144,7 @@ void PythonQtShell_QRadioButton::leaveEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("leaveEvent");
+    static PyObject* name = PyUnicode_FromString("leaveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -9166,7 +9166,7 @@ int  PythonQtShell_QRadioButton::metric(QPaintDevice::PaintDeviceMetric  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("metric");
+    static PyObject* name = PyUnicode_FromString("metric");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int" , "QPaintDevice::PaintDeviceMetric"};
@@ -9199,7 +9199,7 @@ QSize  PythonQtShell_QRadioButton::minimumSizeHint() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("minimumSizeHint");
+    static PyObject* name = PyUnicode_FromString("minimumSizeHint");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSize"};
@@ -9232,7 +9232,7 @@ void PythonQtShell_QRadioButton::mouseDoubleClickEvent(QMouseEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mouseDoubleClickEvent");
+    static PyObject* name = PyUnicode_FromString("mouseDoubleClickEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -9254,7 +9254,7 @@ void PythonQtShell_QRadioButton::mouseMoveEvent(QMouseEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mouseMoveEvent");
+    static PyObject* name = PyUnicode_FromString("mouseMoveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -9276,7 +9276,7 @@ void PythonQtShell_QRadioButton::mousePressEvent(QMouseEvent*  e0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mousePressEvent");
+    static PyObject* name = PyUnicode_FromString("mousePressEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -9298,7 +9298,7 @@ void PythonQtShell_QRadioButton::mouseReleaseEvent(QMouseEvent*  e0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mouseReleaseEvent");
+    static PyObject* name = PyUnicode_FromString("mouseReleaseEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -9320,7 +9320,7 @@ void PythonQtShell_QRadioButton::moveEvent(QMoveEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("moveEvent");
+    static PyObject* name = PyUnicode_FromString("moveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMoveEvent*"};
@@ -9342,7 +9342,7 @@ bool  PythonQtShell_QRadioButton::nativeEvent(const QByteArray&  eventType0, voi
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("nativeEvent");
+    static PyObject* name = PyUnicode_FromString("nativeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QByteArray&" , "void*" , "long*"};
@@ -9375,7 +9375,7 @@ void PythonQtShell_QRadioButton::nextCheckState()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("nextCheckState");
+    static PyObject* name = PyUnicode_FromString("nextCheckState");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={""};
@@ -9397,7 +9397,7 @@ QPaintEngine*  PythonQtShell_QRadioButton::paintEngine() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("paintEngine");
+    static PyObject* name = PyUnicode_FromString("paintEngine");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPaintEngine*"};
@@ -9430,7 +9430,7 @@ void PythonQtShell_QRadioButton::paintEvent(QPaintEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("paintEvent");
+    static PyObject* name = PyUnicode_FromString("paintEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QPaintEvent*"};
@@ -9452,7 +9452,7 @@ QPaintDevice*  PythonQtShell_QRadioButton::redirected(QPoint*  offset0) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("redirected");
+    static PyObject* name = PyUnicode_FromString("redirected");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPaintDevice*" , "QPoint*"};
@@ -9485,7 +9485,7 @@ void PythonQtShell_QRadioButton::resizeEvent(QResizeEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("resizeEvent");
+    static PyObject* name = PyUnicode_FromString("resizeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QResizeEvent*"};
@@ -9507,7 +9507,7 @@ void PythonQtShell_QRadioButton::setVisible(bool  visible0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setVisible");
+    static PyObject* name = PyUnicode_FromString("setVisible");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "bool"};
@@ -9529,7 +9529,7 @@ QPainter*  PythonQtShell_QRadioButton::sharedPainter() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("sharedPainter");
+    static PyObject* name = PyUnicode_FromString("sharedPainter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPainter*"};
@@ -9562,7 +9562,7 @@ void PythonQtShell_QRadioButton::showEvent(QShowEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("showEvent");
+    static PyObject* name = PyUnicode_FromString("showEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QShowEvent*"};
@@ -9584,7 +9584,7 @@ QSize  PythonQtShell_QRadioButton::sizeHint() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("sizeHint");
+    static PyObject* name = PyUnicode_FromString("sizeHint");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSize"};
@@ -9617,7 +9617,7 @@ void PythonQtShell_QRadioButton::tabletEvent(QTabletEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("tabletEvent");
+    static PyObject* name = PyUnicode_FromString("tabletEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QTabletEvent*"};
@@ -9639,7 +9639,7 @@ void PythonQtShell_QRadioButton::timerEvent(QTimerEvent*  e0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("timerEvent");
+    static PyObject* name = PyUnicode_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QTimerEvent*"};
@@ -9661,7 +9661,7 @@ void PythonQtShell_QRadioButton::wheelEvent(QWheelEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("wheelEvent");
+    static PyObject* name = PyUnicode_FromString("wheelEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QWheelEvent*"};
@@ -9725,7 +9725,7 @@ void PythonQtShell_QRasterWindow::childEvent(QChildEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("childEvent");
+    static PyObject* name = PyUnicode_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QChildEvent*"};
@@ -9747,7 +9747,7 @@ void PythonQtShell_QRasterWindow::customEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("customEvent");
+    static PyObject* name = PyUnicode_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -9769,7 +9769,7 @@ bool  PythonQtShell_QRasterWindow::event(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("event");
+    static PyObject* name = PyUnicode_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
@@ -9802,7 +9802,7 @@ bool  PythonQtShell_QRasterWindow::eventFilter(QObject*  watched0, QEvent*  even
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("eventFilter");
+    static PyObject* name = PyUnicode_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
@@ -9835,7 +9835,7 @@ void PythonQtShell_QRasterWindow::exposeEvent(QExposeEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("exposeEvent");
+    static PyObject* name = PyUnicode_FromString("exposeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QExposeEvent*"};
@@ -9857,7 +9857,7 @@ void PythonQtShell_QRasterWindow::focusInEvent(QFocusEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("focusInEvent");
+    static PyObject* name = PyUnicode_FromString("focusInEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QFocusEvent*"};
@@ -9879,7 +9879,7 @@ QObject*  PythonQtShell_QRasterWindow::focusObject() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("focusObject");
+    static PyObject* name = PyUnicode_FromString("focusObject");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QObject*"};
@@ -9912,7 +9912,7 @@ void PythonQtShell_QRasterWindow::focusOutEvent(QFocusEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("focusOutEvent");
+    static PyObject* name = PyUnicode_FromString("focusOutEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QFocusEvent*"};
@@ -9934,7 +9934,7 @@ QSurfaceFormat  PythonQtShell_QRasterWindow::format() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("format");
+    static PyObject* name = PyUnicode_FromString("format");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSurfaceFormat"};
@@ -9967,7 +9967,7 @@ void PythonQtShell_QRasterWindow::hideEvent(QHideEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("hideEvent");
+    static PyObject* name = PyUnicode_FromString("hideEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QHideEvent*"};
@@ -9989,7 +9989,7 @@ void PythonQtShell_QRasterWindow::keyPressEvent(QKeyEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("keyPressEvent");
+    static PyObject* name = PyUnicode_FromString("keyPressEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QKeyEvent*"};
@@ -10011,7 +10011,7 @@ void PythonQtShell_QRasterWindow::keyReleaseEvent(QKeyEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("keyReleaseEvent");
+    static PyObject* name = PyUnicode_FromString("keyReleaseEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QKeyEvent*"};
@@ -10033,7 +10033,7 @@ int  PythonQtShell_QRasterWindow::metric(QPaintDevice::PaintDeviceMetric  metric
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("metric");
+    static PyObject* name = PyUnicode_FromString("metric");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int" , "QPaintDevice::PaintDeviceMetric"};
@@ -10066,7 +10066,7 @@ void PythonQtShell_QRasterWindow::mouseDoubleClickEvent(QMouseEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mouseDoubleClickEvent");
+    static PyObject* name = PyUnicode_FromString("mouseDoubleClickEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -10088,7 +10088,7 @@ void PythonQtShell_QRasterWindow::mouseMoveEvent(QMouseEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mouseMoveEvent");
+    static PyObject* name = PyUnicode_FromString("mouseMoveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -10110,7 +10110,7 @@ void PythonQtShell_QRasterWindow::mousePressEvent(QMouseEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mousePressEvent");
+    static PyObject* name = PyUnicode_FromString("mousePressEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -10132,7 +10132,7 @@ void PythonQtShell_QRasterWindow::mouseReleaseEvent(QMouseEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mouseReleaseEvent");
+    static PyObject* name = PyUnicode_FromString("mouseReleaseEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -10154,7 +10154,7 @@ void PythonQtShell_QRasterWindow::moveEvent(QMoveEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("moveEvent");
+    static PyObject* name = PyUnicode_FromString("moveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMoveEvent*"};
@@ -10176,7 +10176,7 @@ bool  PythonQtShell_QRasterWindow::nativeEvent(const QByteArray&  eventType0, vo
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("nativeEvent");
+    static PyObject* name = PyUnicode_FromString("nativeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QByteArray&" , "void*" , "long*"};
@@ -10209,7 +10209,7 @@ void PythonQtShell_QRasterWindow::paintEvent(QPaintEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("paintEvent");
+    static PyObject* name = PyUnicode_FromString("paintEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QPaintEvent*"};
@@ -10231,7 +10231,7 @@ QPaintDevice*  PythonQtShell_QRasterWindow::redirected(QPoint*  arg__1) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("redirected");
+    static PyObject* name = PyUnicode_FromString("redirected");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPaintDevice*" , "QPoint*"};
@@ -10264,7 +10264,7 @@ void PythonQtShell_QRasterWindow::resizeEvent(QResizeEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("resizeEvent");
+    static PyObject* name = PyUnicode_FromString("resizeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QResizeEvent*"};
@@ -10286,7 +10286,7 @@ void PythonQtShell_QRasterWindow::showEvent(QShowEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("showEvent");
+    static PyObject* name = PyUnicode_FromString("showEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QShowEvent*"};
@@ -10308,7 +10308,7 @@ QSize  PythonQtShell_QRasterWindow::size() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("size");
+    static PyObject* name = PyUnicode_FromString("size");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSize"};
@@ -10341,7 +10341,7 @@ QSurface::SurfaceType  PythonQtShell_QRasterWindow::surfaceType() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("surfaceType");
+    static PyObject* name = PyUnicode_FromString("surfaceType");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSurface::SurfaceType"};
@@ -10374,7 +10374,7 @@ void PythonQtShell_QRasterWindow::tabletEvent(QTabletEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("tabletEvent");
+    static PyObject* name = PyUnicode_FromString("tabletEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QTabletEvent*"};
@@ -10396,7 +10396,7 @@ void PythonQtShell_QRasterWindow::timerEvent(QTimerEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("timerEvent");
+    static PyObject* name = PyUnicode_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QTimerEvent*"};
@@ -10418,7 +10418,7 @@ void PythonQtShell_QRasterWindow::touchEvent(QTouchEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("touchEvent");
+    static PyObject* name = PyUnicode_FromString("touchEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QTouchEvent*"};
@@ -10440,7 +10440,7 @@ void PythonQtShell_QRasterWindow::wheelEvent(QWheelEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("wheelEvent");
+    static PyObject* name = PyUnicode_FromString("wheelEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QWheelEvent*"};
@@ -10698,7 +10698,7 @@ void PythonQtShell_QRegExpValidator::childEvent(QChildEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("childEvent");
+    static PyObject* name = PyUnicode_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QChildEvent*"};
@@ -10720,7 +10720,7 @@ void PythonQtShell_QRegExpValidator::customEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("customEvent");
+    static PyObject* name = PyUnicode_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -10742,7 +10742,7 @@ bool  PythonQtShell_QRegExpValidator::event(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("event");
+    static PyObject* name = PyUnicode_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
@@ -10775,7 +10775,7 @@ bool  PythonQtShell_QRegExpValidator::eventFilter(QObject*  watched0, QEvent*  e
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("eventFilter");
+    static PyObject* name = PyUnicode_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
@@ -10808,7 +10808,7 @@ void PythonQtShell_QRegExpValidator::fixup(QString&  arg__1) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("fixup");
+    static PyObject* name = PyUnicode_FromString("fixup");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QString&"};
@@ -10830,7 +10830,7 @@ void PythonQtShell_QRegExpValidator::timerEvent(QTimerEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("timerEvent");
+    static PyObject* name = PyUnicode_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QTimerEvent*"};
@@ -10852,7 +10852,7 @@ QValidator::State  PythonQtShell_QRegExpValidator::validate(QString&  input0, in
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("validate");
+    static PyObject* name = PyUnicode_FromString("validate");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QValidator::State" , "QString&" , "int&"};
@@ -10922,7 +10922,7 @@ void PythonQtShell_QRegularExpressionValidator::childEvent(QChildEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("childEvent");
+    static PyObject* name = PyUnicode_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QChildEvent*"};
@@ -10944,7 +10944,7 @@ void PythonQtShell_QRegularExpressionValidator::customEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("customEvent");
+    static PyObject* name = PyUnicode_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -10966,7 +10966,7 @@ bool  PythonQtShell_QRegularExpressionValidator::event(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("event");
+    static PyObject* name = PyUnicode_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
@@ -10999,7 +10999,7 @@ bool  PythonQtShell_QRegularExpressionValidator::eventFilter(QObject*  watched0,
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("eventFilter");
+    static PyObject* name = PyUnicode_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
@@ -11032,7 +11032,7 @@ void PythonQtShell_QRegularExpressionValidator::fixup(QString&  arg__1) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("fixup");
+    static PyObject* name = PyUnicode_FromString("fixup");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QString&"};
@@ -11054,7 +11054,7 @@ void PythonQtShell_QRegularExpressionValidator::timerEvent(QTimerEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("timerEvent");
+    static PyObject* name = PyUnicode_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QTimerEvent*"};
@@ -11076,7 +11076,7 @@ QValidator::State  PythonQtShell_QRegularExpressionValidator::validate(QString& 
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("validate");
+    static PyObject* name = PyUnicode_FromString("validate");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QValidator::State" , "QString&" , "int&"};
@@ -11278,7 +11278,7 @@ void PythonQtShell_QRubberBand::actionEvent(QActionEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("actionEvent");
+    static PyObject* name = PyUnicode_FromString("actionEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QActionEvent*"};
@@ -11300,7 +11300,7 @@ void PythonQtShell_QRubberBand::changeEvent(QEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("changeEvent");
+    static PyObject* name = PyUnicode_FromString("changeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -11322,7 +11322,7 @@ void PythonQtShell_QRubberBand::childEvent(QChildEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("childEvent");
+    static PyObject* name = PyUnicode_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QChildEvent*"};
@@ -11344,7 +11344,7 @@ void PythonQtShell_QRubberBand::closeEvent(QCloseEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("closeEvent");
+    static PyObject* name = PyUnicode_FromString("closeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QCloseEvent*"};
@@ -11366,7 +11366,7 @@ void PythonQtShell_QRubberBand::contextMenuEvent(QContextMenuEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("contextMenuEvent");
+    static PyObject* name = PyUnicode_FromString("contextMenuEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QContextMenuEvent*"};
@@ -11388,7 +11388,7 @@ void PythonQtShell_QRubberBand::customEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("customEvent");
+    static PyObject* name = PyUnicode_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -11410,7 +11410,7 @@ int  PythonQtShell_QRubberBand::devType() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("devType");
+    static PyObject* name = PyUnicode_FromString("devType");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int"};
@@ -11443,7 +11443,7 @@ void PythonQtShell_QRubberBand::dragEnterEvent(QDragEnterEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dragEnterEvent");
+    static PyObject* name = PyUnicode_FromString("dragEnterEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDragEnterEvent*"};
@@ -11465,7 +11465,7 @@ void PythonQtShell_QRubberBand::dragLeaveEvent(QDragLeaveEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dragLeaveEvent");
+    static PyObject* name = PyUnicode_FromString("dragLeaveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDragLeaveEvent*"};
@@ -11487,7 +11487,7 @@ void PythonQtShell_QRubberBand::dragMoveEvent(QDragMoveEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dragMoveEvent");
+    static PyObject* name = PyUnicode_FromString("dragMoveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDragMoveEvent*"};
@@ -11509,7 +11509,7 @@ void PythonQtShell_QRubberBand::dropEvent(QDropEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dropEvent");
+    static PyObject* name = PyUnicode_FromString("dropEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDropEvent*"};
@@ -11531,7 +11531,7 @@ void PythonQtShell_QRubberBand::enterEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("enterEvent");
+    static PyObject* name = PyUnicode_FromString("enterEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -11553,7 +11553,7 @@ bool  PythonQtShell_QRubberBand::event(QEvent*  e0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("event");
+    static PyObject* name = PyUnicode_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
@@ -11586,7 +11586,7 @@ bool  PythonQtShell_QRubberBand::eventFilter(QObject*  watched0, QEvent*  event1
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("eventFilter");
+    static PyObject* name = PyUnicode_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
@@ -11619,7 +11619,7 @@ void PythonQtShell_QRubberBand::focusInEvent(QFocusEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("focusInEvent");
+    static PyObject* name = PyUnicode_FromString("focusInEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QFocusEvent*"};
@@ -11641,7 +11641,7 @@ bool  PythonQtShell_QRubberBand::focusNextPrevChild(bool  next0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("focusNextPrevChild");
+    static PyObject* name = PyUnicode_FromString("focusNextPrevChild");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "bool"};
@@ -11674,7 +11674,7 @@ void PythonQtShell_QRubberBand::focusOutEvent(QFocusEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("focusOutEvent");
+    static PyObject* name = PyUnicode_FromString("focusOutEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QFocusEvent*"};
@@ -11696,7 +11696,7 @@ bool  PythonQtShell_QRubberBand::hasHeightForWidth() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("hasHeightForWidth");
+    static PyObject* name = PyUnicode_FromString("hasHeightForWidth");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -11729,7 +11729,7 @@ int  PythonQtShell_QRubberBand::heightForWidth(int  arg__1) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("heightForWidth");
+    static PyObject* name = PyUnicode_FromString("heightForWidth");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int" , "int"};
@@ -11762,7 +11762,7 @@ void PythonQtShell_QRubberBand::hideEvent(QHideEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("hideEvent");
+    static PyObject* name = PyUnicode_FromString("hideEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QHideEvent*"};
@@ -11784,7 +11784,7 @@ void PythonQtShell_QRubberBand::initPainter(QPainter*  painter0) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("initPainter");
+    static PyObject* name = PyUnicode_FromString("initPainter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QPainter*"};
@@ -11806,7 +11806,7 @@ void PythonQtShell_QRubberBand::inputMethodEvent(QInputMethodEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("inputMethodEvent");
+    static PyObject* name = PyUnicode_FromString("inputMethodEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QInputMethodEvent*"};
@@ -11828,7 +11828,7 @@ QVariant  PythonQtShell_QRubberBand::inputMethodQuery(Qt::InputMethodQuery  arg_
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("inputMethodQuery");
+    static PyObject* name = PyUnicode_FromString("inputMethodQuery");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QVariant" , "Qt::InputMethodQuery"};
@@ -11861,7 +11861,7 @@ void PythonQtShell_QRubberBand::keyPressEvent(QKeyEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("keyPressEvent");
+    static PyObject* name = PyUnicode_FromString("keyPressEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QKeyEvent*"};
@@ -11883,7 +11883,7 @@ void PythonQtShell_QRubberBand::keyReleaseEvent(QKeyEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("keyReleaseEvent");
+    static PyObject* name = PyUnicode_FromString("keyReleaseEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QKeyEvent*"};
@@ -11905,7 +11905,7 @@ void PythonQtShell_QRubberBand::leaveEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("leaveEvent");
+    static PyObject* name = PyUnicode_FromString("leaveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -11927,7 +11927,7 @@ int  PythonQtShell_QRubberBand::metric(QPaintDevice::PaintDeviceMetric  arg__1) 
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("metric");
+    static PyObject* name = PyUnicode_FromString("metric");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int" , "QPaintDevice::PaintDeviceMetric"};
@@ -11960,7 +11960,7 @@ QSize  PythonQtShell_QRubberBand::minimumSizeHint() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("getMinimumSizeHint");
+    static PyObject* name = PyUnicode_FromString("getMinimumSizeHint");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSize"};
@@ -11993,7 +11993,7 @@ void PythonQtShell_QRubberBand::mouseDoubleClickEvent(QMouseEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mouseDoubleClickEvent");
+    static PyObject* name = PyUnicode_FromString("mouseDoubleClickEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -12015,7 +12015,7 @@ void PythonQtShell_QRubberBand::mouseMoveEvent(QMouseEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mouseMoveEvent");
+    static PyObject* name = PyUnicode_FromString("mouseMoveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -12037,7 +12037,7 @@ void PythonQtShell_QRubberBand::mousePressEvent(QMouseEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mousePressEvent");
+    static PyObject* name = PyUnicode_FromString("mousePressEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -12059,7 +12059,7 @@ void PythonQtShell_QRubberBand::mouseReleaseEvent(QMouseEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mouseReleaseEvent");
+    static PyObject* name = PyUnicode_FromString("mouseReleaseEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -12081,7 +12081,7 @@ void PythonQtShell_QRubberBand::moveEvent(QMoveEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("moveEvent");
+    static PyObject* name = PyUnicode_FromString("moveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMoveEvent*"};
@@ -12103,7 +12103,7 @@ bool  PythonQtShell_QRubberBand::nativeEvent(const QByteArray&  eventType0, void
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("nativeEvent");
+    static PyObject* name = PyUnicode_FromString("nativeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QByteArray&" , "void*" , "long*"};
@@ -12136,7 +12136,7 @@ QPaintEngine*  PythonQtShell_QRubberBand::paintEngine() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("paintEngine");
+    static PyObject* name = PyUnicode_FromString("paintEngine");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPaintEngine*"};
@@ -12169,7 +12169,7 @@ void PythonQtShell_QRubberBand::paintEvent(QPaintEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("paintEvent");
+    static PyObject* name = PyUnicode_FromString("paintEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QPaintEvent*"};
@@ -12191,7 +12191,7 @@ QPaintDevice*  PythonQtShell_QRubberBand::redirected(QPoint*  offset0) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("redirected");
+    static PyObject* name = PyUnicode_FromString("redirected");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPaintDevice*" , "QPoint*"};
@@ -12224,7 +12224,7 @@ void PythonQtShell_QRubberBand::resizeEvent(QResizeEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("resizeEvent");
+    static PyObject* name = PyUnicode_FromString("resizeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QResizeEvent*"};
@@ -12246,7 +12246,7 @@ void PythonQtShell_QRubberBand::setVisible(bool  visible0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setVisible");
+    static PyObject* name = PyUnicode_FromString("setVisible");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "bool"};
@@ -12268,7 +12268,7 @@ QPainter*  PythonQtShell_QRubberBand::sharedPainter() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("sharedPainter");
+    static PyObject* name = PyUnicode_FromString("sharedPainter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPainter*"};
@@ -12301,7 +12301,7 @@ void PythonQtShell_QRubberBand::showEvent(QShowEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("showEvent");
+    static PyObject* name = PyUnicode_FromString("showEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QShowEvent*"};
@@ -12323,7 +12323,7 @@ QSize  PythonQtShell_QRubberBand::sizeHint() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("getSizeHint");
+    static PyObject* name = PyUnicode_FromString("getSizeHint");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSize"};
@@ -12356,7 +12356,7 @@ void PythonQtShell_QRubberBand::tabletEvent(QTabletEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("tabletEvent");
+    static PyObject* name = PyUnicode_FromString("tabletEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QTabletEvent*"};
@@ -12378,7 +12378,7 @@ void PythonQtShell_QRubberBand::timerEvent(QTimerEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("timerEvent");
+    static PyObject* name = PyUnicode_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QTimerEvent*"};
@@ -12400,7 +12400,7 @@ void PythonQtShell_QRubberBand::wheelEvent(QWheelEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("wheelEvent");
+    static PyObject* name = PyUnicode_FromString("wheelEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QWheelEvent*"};
@@ -12680,7 +12680,7 @@ void PythonQtShell_QScrollArea::actionEvent(QActionEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("actionEvent");
+    static PyObject* name = PyUnicode_FromString("actionEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QActionEvent*"};
@@ -12702,7 +12702,7 @@ void PythonQtShell_QScrollArea::changeEvent(QEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("changeEvent");
+    static PyObject* name = PyUnicode_FromString("changeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -12724,7 +12724,7 @@ void PythonQtShell_QScrollArea::childEvent(QChildEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("childEvent");
+    static PyObject* name = PyUnicode_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QChildEvent*"};
@@ -12746,7 +12746,7 @@ void PythonQtShell_QScrollArea::closeEvent(QCloseEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("closeEvent");
+    static PyObject* name = PyUnicode_FromString("closeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QCloseEvent*"};
@@ -12768,7 +12768,7 @@ void PythonQtShell_QScrollArea::contextMenuEvent(QContextMenuEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("contextMenuEvent");
+    static PyObject* name = PyUnicode_FromString("contextMenuEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QContextMenuEvent*"};
@@ -12790,7 +12790,7 @@ void PythonQtShell_QScrollArea::customEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("customEvent");
+    static PyObject* name = PyUnicode_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -12812,7 +12812,7 @@ int  PythonQtShell_QScrollArea::devType() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("devType");
+    static PyObject* name = PyUnicode_FromString("devType");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int"};
@@ -12845,7 +12845,7 @@ void PythonQtShell_QScrollArea::dragEnterEvent(QDragEnterEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dragEnterEvent");
+    static PyObject* name = PyUnicode_FromString("dragEnterEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDragEnterEvent*"};
@@ -12867,7 +12867,7 @@ void PythonQtShell_QScrollArea::dragLeaveEvent(QDragLeaveEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dragLeaveEvent");
+    static PyObject* name = PyUnicode_FromString("dragLeaveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDragLeaveEvent*"};
@@ -12889,7 +12889,7 @@ void PythonQtShell_QScrollArea::dragMoveEvent(QDragMoveEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dragMoveEvent");
+    static PyObject* name = PyUnicode_FromString("dragMoveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDragMoveEvent*"};
@@ -12911,7 +12911,7 @@ void PythonQtShell_QScrollArea::dropEvent(QDropEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dropEvent");
+    static PyObject* name = PyUnicode_FromString("dropEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDropEvent*"};
@@ -12933,7 +12933,7 @@ void PythonQtShell_QScrollArea::enterEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("enterEvent");
+    static PyObject* name = PyUnicode_FromString("enterEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -12955,7 +12955,7 @@ bool  PythonQtShell_QScrollArea::event(QEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("event");
+    static PyObject* name = PyUnicode_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
@@ -12988,7 +12988,7 @@ bool  PythonQtShell_QScrollArea::eventFilter(QObject*  arg__1, QEvent*  arg__2)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("eventFilter");
+    static PyObject* name = PyUnicode_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
@@ -13021,7 +13021,7 @@ void PythonQtShell_QScrollArea::focusInEvent(QFocusEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("focusInEvent");
+    static PyObject* name = PyUnicode_FromString("focusInEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QFocusEvent*"};
@@ -13043,7 +13043,7 @@ bool  PythonQtShell_QScrollArea::focusNextPrevChild(bool  next0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("focusNextPrevChild");
+    static PyObject* name = PyUnicode_FromString("focusNextPrevChild");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "bool"};
@@ -13076,7 +13076,7 @@ void PythonQtShell_QScrollArea::focusOutEvent(QFocusEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("focusOutEvent");
+    static PyObject* name = PyUnicode_FromString("focusOutEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QFocusEvent*"};
@@ -13098,7 +13098,7 @@ bool  PythonQtShell_QScrollArea::hasHeightForWidth() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("hasHeightForWidth");
+    static PyObject* name = PyUnicode_FromString("hasHeightForWidth");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -13131,7 +13131,7 @@ int  PythonQtShell_QScrollArea::heightForWidth(int  arg__1) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("heightForWidth");
+    static PyObject* name = PyUnicode_FromString("heightForWidth");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int" , "int"};
@@ -13164,7 +13164,7 @@ void PythonQtShell_QScrollArea::hideEvent(QHideEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("hideEvent");
+    static PyObject* name = PyUnicode_FromString("hideEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QHideEvent*"};
@@ -13186,7 +13186,7 @@ void PythonQtShell_QScrollArea::initPainter(QPainter*  painter0) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("initPainter");
+    static PyObject* name = PyUnicode_FromString("initPainter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QPainter*"};
@@ -13208,7 +13208,7 @@ void PythonQtShell_QScrollArea::inputMethodEvent(QInputMethodEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("inputMethodEvent");
+    static PyObject* name = PyUnicode_FromString("inputMethodEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QInputMethodEvent*"};
@@ -13230,7 +13230,7 @@ QVariant  PythonQtShell_QScrollArea::inputMethodQuery(Qt::InputMethodQuery  arg_
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("inputMethodQuery");
+    static PyObject* name = PyUnicode_FromString("inputMethodQuery");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QVariant" , "Qt::InputMethodQuery"};
@@ -13263,7 +13263,7 @@ void PythonQtShell_QScrollArea::keyPressEvent(QKeyEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("keyPressEvent");
+    static PyObject* name = PyUnicode_FromString("keyPressEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QKeyEvent*"};
@@ -13285,7 +13285,7 @@ void PythonQtShell_QScrollArea::keyReleaseEvent(QKeyEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("keyReleaseEvent");
+    static PyObject* name = PyUnicode_FromString("keyReleaseEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QKeyEvent*"};
@@ -13307,7 +13307,7 @@ void PythonQtShell_QScrollArea::leaveEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("leaveEvent");
+    static PyObject* name = PyUnicode_FromString("leaveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -13329,7 +13329,7 @@ int  PythonQtShell_QScrollArea::metric(QPaintDevice::PaintDeviceMetric  arg__1) 
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("metric");
+    static PyObject* name = PyUnicode_FromString("metric");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int" , "QPaintDevice::PaintDeviceMetric"};
@@ -13362,7 +13362,7 @@ QSize  PythonQtShell_QScrollArea::minimumSizeHint() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("minimumSizeHint");
+    static PyObject* name = PyUnicode_FromString("minimumSizeHint");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSize"};
@@ -13395,7 +13395,7 @@ void PythonQtShell_QScrollArea::mouseDoubleClickEvent(QMouseEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mouseDoubleClickEvent");
+    static PyObject* name = PyUnicode_FromString("mouseDoubleClickEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -13417,7 +13417,7 @@ void PythonQtShell_QScrollArea::mouseMoveEvent(QMouseEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mouseMoveEvent");
+    static PyObject* name = PyUnicode_FromString("mouseMoveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -13439,7 +13439,7 @@ void PythonQtShell_QScrollArea::mousePressEvent(QMouseEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mousePressEvent");
+    static PyObject* name = PyUnicode_FromString("mousePressEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -13461,7 +13461,7 @@ void PythonQtShell_QScrollArea::mouseReleaseEvent(QMouseEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mouseReleaseEvent");
+    static PyObject* name = PyUnicode_FromString("mouseReleaseEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -13483,7 +13483,7 @@ void PythonQtShell_QScrollArea::moveEvent(QMoveEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("moveEvent");
+    static PyObject* name = PyUnicode_FromString("moveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMoveEvent*"};
@@ -13505,7 +13505,7 @@ bool  PythonQtShell_QScrollArea::nativeEvent(const QByteArray&  eventType0, void
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("nativeEvent");
+    static PyObject* name = PyUnicode_FromString("nativeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QByteArray&" , "void*" , "long*"};
@@ -13538,7 +13538,7 @@ QPaintEngine*  PythonQtShell_QScrollArea::paintEngine() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("paintEngine");
+    static PyObject* name = PyUnicode_FromString("paintEngine");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPaintEngine*"};
@@ -13571,7 +13571,7 @@ void PythonQtShell_QScrollArea::paintEvent(QPaintEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("paintEvent");
+    static PyObject* name = PyUnicode_FromString("paintEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QPaintEvent*"};
@@ -13593,7 +13593,7 @@ QPaintDevice*  PythonQtShell_QScrollArea::redirected(QPoint*  offset0) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("redirected");
+    static PyObject* name = PyUnicode_FromString("redirected");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPaintDevice*" , "QPoint*"};
@@ -13626,7 +13626,7 @@ void PythonQtShell_QScrollArea::resizeEvent(QResizeEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("resizeEvent");
+    static PyObject* name = PyUnicode_FromString("resizeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QResizeEvent*"};
@@ -13648,7 +13648,7 @@ void PythonQtShell_QScrollArea::scrollContentsBy(int  dx0, int  dy1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("scrollContentsBy");
+    static PyObject* name = PyUnicode_FromString("scrollContentsBy");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "int" , "int"};
@@ -13670,7 +13670,7 @@ void PythonQtShell_QScrollArea::setVisible(bool  visible0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setVisible");
+    static PyObject* name = PyUnicode_FromString("setVisible");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "bool"};
@@ -13692,7 +13692,7 @@ void PythonQtShell_QScrollArea::setupViewport(QWidget*  viewport0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setupViewport");
+    static PyObject* name = PyUnicode_FromString("setupViewport");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QWidget*"};
@@ -13714,7 +13714,7 @@ QPainter*  PythonQtShell_QScrollArea::sharedPainter() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("sharedPainter");
+    static PyObject* name = PyUnicode_FromString("sharedPainter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPainter*"};
@@ -13747,7 +13747,7 @@ void PythonQtShell_QScrollArea::showEvent(QShowEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("showEvent");
+    static PyObject* name = PyUnicode_FromString("showEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QShowEvent*"};
@@ -13769,7 +13769,7 @@ QSize  PythonQtShell_QScrollArea::sizeHint() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("sizeHint");
+    static PyObject* name = PyUnicode_FromString("sizeHint");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSize"};
@@ -13802,7 +13802,7 @@ void PythonQtShell_QScrollArea::tabletEvent(QTabletEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("tabletEvent");
+    static PyObject* name = PyUnicode_FromString("tabletEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QTabletEvent*"};
@@ -13824,7 +13824,7 @@ void PythonQtShell_QScrollArea::timerEvent(QTimerEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("timerEvent");
+    static PyObject* name = PyUnicode_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QTimerEvent*"};
@@ -13846,7 +13846,7 @@ bool  PythonQtShell_QScrollArea::viewportEvent(QEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("viewportEvent");
+    static PyObject* name = PyUnicode_FromString("viewportEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
@@ -13879,7 +13879,7 @@ QSize  PythonQtShell_QScrollArea::viewportSizeHint() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("viewportSizeHint");
+    static PyObject* name = PyUnicode_FromString("viewportSizeHint");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSize"};
@@ -13912,7 +13912,7 @@ void PythonQtShell_QScrollArea::wheelEvent(QWheelEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("wheelEvent");
+    static PyObject* name = PyUnicode_FromString("wheelEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QWheelEvent*"};
@@ -14002,7 +14002,7 @@ void PythonQtShell_QScrollBar::actionEvent(QActionEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("actionEvent");
+    static PyObject* name = PyUnicode_FromString("actionEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QActionEvent*"};
@@ -14024,7 +14024,7 @@ void PythonQtShell_QScrollBar::changeEvent(QEvent*  e0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("changeEvent");
+    static PyObject* name = PyUnicode_FromString("changeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -14046,7 +14046,7 @@ void PythonQtShell_QScrollBar::childEvent(QChildEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("childEvent");
+    static PyObject* name = PyUnicode_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QChildEvent*"};
@@ -14068,7 +14068,7 @@ void PythonQtShell_QScrollBar::closeEvent(QCloseEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("closeEvent");
+    static PyObject* name = PyUnicode_FromString("closeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QCloseEvent*"};
@@ -14090,7 +14090,7 @@ void PythonQtShell_QScrollBar::contextMenuEvent(QContextMenuEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("contextMenuEvent");
+    static PyObject* name = PyUnicode_FromString("contextMenuEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QContextMenuEvent*"};
@@ -14112,7 +14112,7 @@ void PythonQtShell_QScrollBar::customEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("customEvent");
+    static PyObject* name = PyUnicode_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -14134,7 +14134,7 @@ int  PythonQtShell_QScrollBar::devType() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("devType");
+    static PyObject* name = PyUnicode_FromString("devType");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int"};
@@ -14167,7 +14167,7 @@ void PythonQtShell_QScrollBar::dragEnterEvent(QDragEnterEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dragEnterEvent");
+    static PyObject* name = PyUnicode_FromString("dragEnterEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDragEnterEvent*"};
@@ -14189,7 +14189,7 @@ void PythonQtShell_QScrollBar::dragLeaveEvent(QDragLeaveEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dragLeaveEvent");
+    static PyObject* name = PyUnicode_FromString("dragLeaveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDragLeaveEvent*"};
@@ -14211,7 +14211,7 @@ void PythonQtShell_QScrollBar::dragMoveEvent(QDragMoveEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dragMoveEvent");
+    static PyObject* name = PyUnicode_FromString("dragMoveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDragMoveEvent*"};
@@ -14233,7 +14233,7 @@ void PythonQtShell_QScrollBar::dropEvent(QDropEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("dropEvent");
+    static PyObject* name = PyUnicode_FromString("dropEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QDropEvent*"};
@@ -14255,7 +14255,7 @@ void PythonQtShell_QScrollBar::enterEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("enterEvent");
+    static PyObject* name = PyUnicode_FromString("enterEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -14277,7 +14277,7 @@ bool  PythonQtShell_QScrollBar::event(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("event");
+    static PyObject* name = PyUnicode_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
@@ -14310,7 +14310,7 @@ bool  PythonQtShell_QScrollBar::eventFilter(QObject*  watched0, QEvent*  event1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("eventFilter");
+    static PyObject* name = PyUnicode_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
@@ -14343,7 +14343,7 @@ void PythonQtShell_QScrollBar::focusInEvent(QFocusEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("focusInEvent");
+    static PyObject* name = PyUnicode_FromString("focusInEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QFocusEvent*"};
@@ -14365,7 +14365,7 @@ bool  PythonQtShell_QScrollBar::focusNextPrevChild(bool  next0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("focusNextPrevChild");
+    static PyObject* name = PyUnicode_FromString("focusNextPrevChild");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "bool"};
@@ -14398,7 +14398,7 @@ void PythonQtShell_QScrollBar::focusOutEvent(QFocusEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("focusOutEvent");
+    static PyObject* name = PyUnicode_FromString("focusOutEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QFocusEvent*"};
@@ -14420,7 +14420,7 @@ bool  PythonQtShell_QScrollBar::hasHeightForWidth() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("hasHeightForWidth");
+    static PyObject* name = PyUnicode_FromString("hasHeightForWidth");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -14453,7 +14453,7 @@ int  PythonQtShell_QScrollBar::heightForWidth(int  arg__1) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("heightForWidth");
+    static PyObject* name = PyUnicode_FromString("heightForWidth");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int" , "int"};
@@ -14486,7 +14486,7 @@ void PythonQtShell_QScrollBar::hideEvent(QHideEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("hideEvent");
+    static PyObject* name = PyUnicode_FromString("hideEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QHideEvent*"};
@@ -14508,7 +14508,7 @@ void PythonQtShell_QScrollBar::initPainter(QPainter*  painter0) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("initPainter");
+    static PyObject* name = PyUnicode_FromString("initPainter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QPainter*"};
@@ -14530,7 +14530,7 @@ void PythonQtShell_QScrollBar::inputMethodEvent(QInputMethodEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("inputMethodEvent");
+    static PyObject* name = PyUnicode_FromString("inputMethodEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QInputMethodEvent*"};
@@ -14552,7 +14552,7 @@ QVariant  PythonQtShell_QScrollBar::inputMethodQuery(Qt::InputMethodQuery  arg__
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("inputMethodQuery");
+    static PyObject* name = PyUnicode_FromString("inputMethodQuery");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QVariant" , "Qt::InputMethodQuery"};
@@ -14585,7 +14585,7 @@ void PythonQtShell_QScrollBar::keyPressEvent(QKeyEvent*  ev0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("keyPressEvent");
+    static PyObject* name = PyUnicode_FromString("keyPressEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QKeyEvent*"};
@@ -14607,7 +14607,7 @@ void PythonQtShell_QScrollBar::keyReleaseEvent(QKeyEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("keyReleaseEvent");
+    static PyObject* name = PyUnicode_FromString("keyReleaseEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QKeyEvent*"};
@@ -14629,7 +14629,7 @@ void PythonQtShell_QScrollBar::leaveEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("leaveEvent");
+    static PyObject* name = PyUnicode_FromString("leaveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -14651,7 +14651,7 @@ int  PythonQtShell_QScrollBar::metric(QPaintDevice::PaintDeviceMetric  arg__1) c
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("metric");
+    static PyObject* name = PyUnicode_FromString("metric");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int" , "QPaintDevice::PaintDeviceMetric"};
@@ -14684,7 +14684,7 @@ QSize  PythonQtShell_QScrollBar::minimumSizeHint() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("getMinimumSizeHint");
+    static PyObject* name = PyUnicode_FromString("getMinimumSizeHint");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSize"};
@@ -14717,7 +14717,7 @@ void PythonQtShell_QScrollBar::mouseDoubleClickEvent(QMouseEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mouseDoubleClickEvent");
+    static PyObject* name = PyUnicode_FromString("mouseDoubleClickEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -14739,7 +14739,7 @@ void PythonQtShell_QScrollBar::mouseMoveEvent(QMouseEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mouseMoveEvent");
+    static PyObject* name = PyUnicode_FromString("mouseMoveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -14761,7 +14761,7 @@ void PythonQtShell_QScrollBar::mousePressEvent(QMouseEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mousePressEvent");
+    static PyObject* name = PyUnicode_FromString("mousePressEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -14783,7 +14783,7 @@ void PythonQtShell_QScrollBar::mouseReleaseEvent(QMouseEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("mouseReleaseEvent");
+    static PyObject* name = PyUnicode_FromString("mouseReleaseEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMouseEvent*"};
@@ -14805,7 +14805,7 @@ void PythonQtShell_QScrollBar::moveEvent(QMoveEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("moveEvent");
+    static PyObject* name = PyUnicode_FromString("moveEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QMoveEvent*"};
@@ -14827,7 +14827,7 @@ bool  PythonQtShell_QScrollBar::nativeEvent(const QByteArray&  eventType0, void*
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("nativeEvent");
+    static PyObject* name = PyUnicode_FromString("nativeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QByteArray&" , "void*" , "long*"};
@@ -14860,7 +14860,7 @@ QPaintEngine*  PythonQtShell_QScrollBar::paintEngine() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("paintEngine");
+    static PyObject* name = PyUnicode_FromString("paintEngine");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPaintEngine*"};
@@ -14893,7 +14893,7 @@ void PythonQtShell_QScrollBar::paintEvent(QPaintEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("paintEvent");
+    static PyObject* name = PyUnicode_FromString("paintEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QPaintEvent*"};
@@ -14915,7 +14915,7 @@ QPaintDevice*  PythonQtShell_QScrollBar::redirected(QPoint*  offset0) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("redirected");
+    static PyObject* name = PyUnicode_FromString("redirected");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPaintDevice*" , "QPoint*"};
@@ -14948,7 +14948,7 @@ void PythonQtShell_QScrollBar::resizeEvent(QResizeEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("resizeEvent");
+    static PyObject* name = PyUnicode_FromString("resizeEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QResizeEvent*"};
@@ -14970,7 +14970,7 @@ void PythonQtShell_QScrollBar::setVisible(bool  visible0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setVisible");
+    static PyObject* name = PyUnicode_FromString("setVisible");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "bool"};
@@ -14992,7 +14992,7 @@ QPainter*  PythonQtShell_QScrollBar::sharedPainter() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("sharedPainter");
+    static PyObject* name = PyUnicode_FromString("sharedPainter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QPainter*"};
@@ -15025,7 +15025,7 @@ void PythonQtShell_QScrollBar::showEvent(QShowEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("showEvent");
+    static PyObject* name = PyUnicode_FromString("showEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QShowEvent*"};
@@ -15047,7 +15047,7 @@ QSize  PythonQtShell_QScrollBar::sizeHint() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("sizeHint");
+    static PyObject* name = PyUnicode_FromString("sizeHint");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSize"};
@@ -15080,7 +15080,7 @@ void PythonQtShell_QScrollBar::sliderChange(QAbstractSlider::SliderChange  chang
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("sliderChange");
+    static PyObject* name = PyUnicode_FromString("sliderChange");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QAbstractSlider::SliderChange"};
@@ -15102,7 +15102,7 @@ void PythonQtShell_QScrollBar::tabletEvent(QTabletEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("tabletEvent");
+    static PyObject* name = PyUnicode_FromString("tabletEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QTabletEvent*"};
@@ -15124,7 +15124,7 @@ void PythonQtShell_QScrollBar::timerEvent(QTimerEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("timerEvent");
+    static PyObject* name = PyUnicode_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QTimerEvent*"};
@@ -15146,7 +15146,7 @@ void PythonQtShell_QScrollBar::wheelEvent(QWheelEvent*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("wheelEvent");
+    static PyObject* name = PyUnicode_FromString("wheelEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QWheelEvent*"};
@@ -15495,7 +15495,7 @@ void PythonQtShell_QShortcut::childEvent(QChildEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("childEvent");
+    static PyObject* name = PyUnicode_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QChildEvent*"};
@@ -15517,7 +15517,7 @@ void PythonQtShell_QShortcut::customEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("customEvent");
+    static PyObject* name = PyUnicode_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -15539,7 +15539,7 @@ bool  PythonQtShell_QShortcut::event(QEvent*  e0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("event");
+    static PyObject* name = PyUnicode_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
@@ -15572,7 +15572,7 @@ bool  PythonQtShell_QShortcut::eventFilter(QObject*  watched0, QEvent*  event1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("eventFilter");
+    static PyObject* name = PyUnicode_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
@@ -15605,7 +15605,7 @@ void PythonQtShell_QShortcut::timerEvent(QTimerEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("timerEvent");
+    static PyObject* name = PyUnicode_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QTimerEvent*"};

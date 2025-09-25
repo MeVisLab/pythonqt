@@ -518,7 +518,7 @@ void PythonQtShell_QStylePlugin::childEvent(QChildEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("childEvent");
+    static PyObject* name = PyUnicode_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QChildEvent*"};
@@ -540,7 +540,7 @@ QStyle*  PythonQtShell_QStylePlugin::create(const QString&  key0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("create");
+    static PyObject* name = PyUnicode_FromString("create");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QStyle*" , "const QString&"};
@@ -573,7 +573,7 @@ void PythonQtShell_QStylePlugin::customEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("customEvent");
+    static PyObject* name = PyUnicode_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -595,7 +595,7 @@ bool  PythonQtShell_QStylePlugin::event(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("event");
+    static PyObject* name = PyUnicode_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
@@ -628,7 +628,7 @@ bool  PythonQtShell_QStylePlugin::eventFilter(QObject*  watched0, QEvent*  event
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("eventFilter");
+    static PyObject* name = PyUnicode_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
@@ -661,7 +661,7 @@ void PythonQtShell_QStylePlugin::timerEvent(QTimerEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("timerEvent");
+    static PyObject* name = PyUnicode_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QTimerEvent*"};
@@ -711,7 +711,7 @@ void PythonQtShell_QStyledItemDelegate::childEvent(QChildEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("childEvent");
+    static PyObject* name = PyUnicode_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QChildEvent*"};
@@ -733,7 +733,7 @@ QWidget*  PythonQtShell_QStyledItemDelegate::createEditor(QWidget*  parent0, con
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("createEditor");
+    static PyObject* name = PyUnicode_FromString("createEditor");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QWidget*" , "QWidget*" , "const QStyleOptionViewItem&" , "const QModelIndex&"};
@@ -766,7 +766,7 @@ void PythonQtShell_QStyledItemDelegate::customEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("customEvent");
+    static PyObject* name = PyUnicode_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -788,7 +788,7 @@ void PythonQtShell_QStyledItemDelegate::destroyEditor(QWidget*  editor0, const Q
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("destroyEditor");
+    static PyObject* name = PyUnicode_FromString("destroyEditor");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QWidget*" , "const QModelIndex&"};
@@ -810,7 +810,7 @@ QString  PythonQtShell_QStyledItemDelegate::displayText(const QVariant&  value0,
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("displayText");
+    static PyObject* name = PyUnicode_FromString("displayText");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QString" , "const QVariant&" , "const QLocale&"};
@@ -843,7 +843,7 @@ bool  PythonQtShell_QStyledItemDelegate::editorEvent(QEvent*  event0, QAbstractI
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("editorEvent");
+    static PyObject* name = PyUnicode_FromString("editorEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QEvent*" , "QAbstractItemModel*" , "const QStyleOptionViewItem&" , "const QModelIndex&"};
@@ -876,7 +876,7 @@ bool  PythonQtShell_QStyledItemDelegate::event(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("event");
+    static PyObject* name = PyUnicode_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
@@ -909,7 +909,7 @@ bool  PythonQtShell_QStyledItemDelegate::eventFilter(QObject*  object0, QEvent* 
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("eventFilter");
+    static PyObject* name = PyUnicode_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
@@ -942,7 +942,7 @@ bool  PythonQtShell_QStyledItemDelegate::helpEvent(QHelpEvent*  event0, QAbstrac
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("helpEvent");
+    static PyObject* name = PyUnicode_FromString("helpEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QHelpEvent*" , "QAbstractItemView*" , "const QStyleOptionViewItem&" , "const QModelIndex&"};
@@ -975,7 +975,7 @@ void PythonQtShell_QStyledItemDelegate::initStyleOption(QStyleOptionViewItem*  o
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("initStyleOption");
+    static PyObject* name = PyUnicode_FromString("initStyleOption");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QStyleOptionViewItem*" , "const QModelIndex&"};
@@ -997,7 +997,7 @@ void PythonQtShell_QStyledItemDelegate::paint(QPainter*  painter0, const QStyleO
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("paint");
+    static PyObject* name = PyUnicode_FromString("paint");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QPainter*" , "const QStyleOptionViewItem&" , "const QModelIndex&"};
@@ -1019,7 +1019,7 @@ QVector<int >  PythonQtShell_QStyledItemDelegate::paintingRoles() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("paintingRoles");
+    static PyObject* name = PyUnicode_FromString("paintingRoles");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QVector<int >"};
@@ -1052,7 +1052,7 @@ void PythonQtShell_QStyledItemDelegate::setEditorData(QWidget*  editor0, const Q
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setEditorData");
+    static PyObject* name = PyUnicode_FromString("setEditorData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QWidget*" , "const QModelIndex&"};
@@ -1074,7 +1074,7 @@ void PythonQtShell_QStyledItemDelegate::setModelData(QWidget*  editor0, QAbstrac
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setModelData");
+    static PyObject* name = PyUnicode_FromString("setModelData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QWidget*" , "QAbstractItemModel*" , "const QModelIndex&"};
@@ -1096,7 +1096,7 @@ QSize  PythonQtShell_QStyledItemDelegate::sizeHint(const QStyleOptionViewItem&  
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("sizeHint");
+    static PyObject* name = PyUnicode_FromString("sizeHint");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSize" , "const QStyleOptionViewItem&" , "const QModelIndex&"};
@@ -1129,7 +1129,7 @@ void PythonQtShell_QStyledItemDelegate::timerEvent(QTimerEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("timerEvent");
+    static PyObject* name = PyUnicode_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QTimerEvent*"};
@@ -1151,7 +1151,7 @@ void PythonQtShell_QStyledItemDelegate::updateEditorGeometry(QWidget*  editor0, 
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("updateEditorGeometry");
+    static PyObject* name = PyUnicode_FromString("updateEditorGeometry");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QWidget*" , "const QStyleOptionViewItem&" , "const QModelIndex&"};

@@ -1177,7 +1177,7 @@ bool  PythonQtShell_QXmlContentHandler::characters(const QString&  ch0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("characters");
+    static PyObject* name = PyUnicode_FromString("characters");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&"};
@@ -1210,7 +1210,7 @@ bool  PythonQtShell_QXmlContentHandler::endDocument()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("endDocument");
+    static PyObject* name = PyUnicode_FromString("endDocument");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -1243,7 +1243,7 @@ bool  PythonQtShell_QXmlContentHandler::endElement(const QString&  namespaceURI0
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("endElement");
+    static PyObject* name = PyUnicode_FromString("endElement");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&" , "const QString&" , "const QString&"};
@@ -1276,7 +1276,7 @@ bool  PythonQtShell_QXmlContentHandler::endPrefixMapping(const QString&  prefix0
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("endPrefixMapping");
+    static PyObject* name = PyUnicode_FromString("endPrefixMapping");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&"};
@@ -1309,7 +1309,7 @@ QString  PythonQtShell_QXmlContentHandler::errorString() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("errorString");
+    static PyObject* name = PyUnicode_FromString("errorString");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QString"};
@@ -1342,7 +1342,7 @@ bool  PythonQtShell_QXmlContentHandler::ignorableWhitespace(const QString&  ch0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("ignorableWhitespace");
+    static PyObject* name = PyUnicode_FromString("ignorableWhitespace");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&"};
@@ -1375,7 +1375,7 @@ bool  PythonQtShell_QXmlContentHandler::processingInstruction(const QString&  ta
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("processingInstruction");
+    static PyObject* name = PyUnicode_FromString("processingInstruction");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&" , "const QString&"};
@@ -1408,7 +1408,7 @@ void PythonQtShell_QXmlContentHandler::setDocumentLocator(QXmlLocator*  locator0
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setDocumentLocator");
+    static PyObject* name = PyUnicode_FromString("setDocumentLocator");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QXmlLocator*"};
@@ -1430,7 +1430,7 @@ bool  PythonQtShell_QXmlContentHandler::skippedEntity(const QString&  name0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("skippedEntity");
+    static PyObject* name = PyUnicode_FromString("skippedEntity");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&"};
@@ -1463,7 +1463,7 @@ bool  PythonQtShell_QXmlContentHandler::startDocument()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("startDocument");
+    static PyObject* name = PyUnicode_FromString("startDocument");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -1496,7 +1496,7 @@ bool  PythonQtShell_QXmlContentHandler::startElement(const QString&  namespaceUR
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("startElement");
+    static PyObject* name = PyUnicode_FromString("startElement");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&" , "const QString&" , "const QString&" , "const QXmlAttributes&"};
@@ -1529,7 +1529,7 @@ bool  PythonQtShell_QXmlContentHandler::startPrefixMapping(const QString&  prefi
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("startPrefixMapping");
+    static PyObject* name = PyUnicode_FromString("startPrefixMapping");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&" , "const QString&"};
@@ -1632,7 +1632,7 @@ QString  PythonQtShell_QXmlDTDHandler::errorString() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("errorString");
+    static PyObject* name = PyUnicode_FromString("errorString");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QString"};
@@ -1665,7 +1665,7 @@ bool  PythonQtShell_QXmlDTDHandler::notationDecl(const QString&  name0, const QS
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("notationDecl");
+    static PyObject* name = PyUnicode_FromString("notationDecl");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&" , "const QString&" , "const QString&"};
@@ -1698,7 +1698,7 @@ bool  PythonQtShell_QXmlDTDHandler::unparsedEntityDecl(const QString&  name0, co
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("unparsedEntityDecl");
+    static PyObject* name = PyUnicode_FromString("unparsedEntityDecl");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&" , "const QString&" , "const QString&" , "const QString&"};
@@ -1756,7 +1756,7 @@ bool  PythonQtShell_QXmlDeclHandler::attributeDecl(const QString&  eName0, const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("attributeDecl");
+    static PyObject* name = PyUnicode_FromString("attributeDecl");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&" , "const QString&" , "const QString&" , "const QString&" , "const QString&"};
@@ -1789,7 +1789,7 @@ QString  PythonQtShell_QXmlDeclHandler::errorString() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("errorString");
+    static PyObject* name = PyUnicode_FromString("errorString");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QString"};
@@ -1822,7 +1822,7 @@ bool  PythonQtShell_QXmlDeclHandler::externalEntityDecl(const QString&  name0, c
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("externalEntityDecl");
+    static PyObject* name = PyUnicode_FromString("externalEntityDecl");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&" , "const QString&" , "const QString&"};
@@ -1855,7 +1855,7 @@ bool  PythonQtShell_QXmlDeclHandler::internalEntityDecl(const QString&  name0, c
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("internalEntityDecl");
+    static PyObject* name = PyUnicode_FromString("internalEntityDecl");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&" , "const QString&"};
@@ -1918,7 +1918,7 @@ bool  PythonQtShell_QXmlDefaultHandler::attributeDecl(const QString&  eName0, co
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("attributeDecl");
+    static PyObject* name = PyUnicode_FromString("attributeDecl");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&" , "const QString&" , "const QString&" , "const QString&" , "const QString&"};
@@ -1951,7 +1951,7 @@ bool  PythonQtShell_QXmlDefaultHandler::characters(const QString&  ch0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("characters");
+    static PyObject* name = PyUnicode_FromString("characters");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&"};
@@ -1984,7 +1984,7 @@ bool  PythonQtShell_QXmlDefaultHandler::comment(const QString&  ch0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("comment");
+    static PyObject* name = PyUnicode_FromString("comment");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&"};
@@ -2017,7 +2017,7 @@ bool  PythonQtShell_QXmlDefaultHandler::endCDATA()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("endCDATA");
+    static PyObject* name = PyUnicode_FromString("endCDATA");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -2050,7 +2050,7 @@ bool  PythonQtShell_QXmlDefaultHandler::endDTD()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("endDTD");
+    static PyObject* name = PyUnicode_FromString("endDTD");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -2083,7 +2083,7 @@ bool  PythonQtShell_QXmlDefaultHandler::endDocument()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("endDocument");
+    static PyObject* name = PyUnicode_FromString("endDocument");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -2116,7 +2116,7 @@ bool  PythonQtShell_QXmlDefaultHandler::endElement(const QString&  namespaceURI0
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("endElement");
+    static PyObject* name = PyUnicode_FromString("endElement");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&" , "const QString&" , "const QString&"};
@@ -2149,7 +2149,7 @@ bool  PythonQtShell_QXmlDefaultHandler::endEntity(const QString&  name0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("endEntity");
+    static PyObject* name = PyUnicode_FromString("endEntity");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&"};
@@ -2182,7 +2182,7 @@ bool  PythonQtShell_QXmlDefaultHandler::endPrefixMapping(const QString&  prefix0
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("endPrefixMapping");
+    static PyObject* name = PyUnicode_FromString("endPrefixMapping");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&"};
@@ -2215,7 +2215,7 @@ bool  PythonQtShell_QXmlDefaultHandler::error(const QXmlParseException&  excepti
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("error");
+    static PyObject* name = PyUnicode_FromString("error");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QXmlParseException&"};
@@ -2248,7 +2248,7 @@ QString  PythonQtShell_QXmlDefaultHandler::errorString() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("errorString");
+    static PyObject* name = PyUnicode_FromString("errorString");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QString"};
@@ -2281,7 +2281,7 @@ bool  PythonQtShell_QXmlDefaultHandler::externalEntityDecl(const QString&  name0
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("externalEntityDecl");
+    static PyObject* name = PyUnicode_FromString("externalEntityDecl");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&" , "const QString&" , "const QString&"};
@@ -2314,7 +2314,7 @@ bool  PythonQtShell_QXmlDefaultHandler::fatalError(const QXmlParseException&  ex
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("fatalError");
+    static PyObject* name = PyUnicode_FromString("fatalError");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QXmlParseException&"};
@@ -2347,7 +2347,7 @@ bool  PythonQtShell_QXmlDefaultHandler::ignorableWhitespace(const QString&  ch0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("ignorableWhitespace");
+    static PyObject* name = PyUnicode_FromString("ignorableWhitespace");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&"};
@@ -2380,7 +2380,7 @@ bool  PythonQtShell_QXmlDefaultHandler::internalEntityDecl(const QString&  name0
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("internalEntityDecl");
+    static PyObject* name = PyUnicode_FromString("internalEntityDecl");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&" , "const QString&"};
@@ -2413,7 +2413,7 @@ bool  PythonQtShell_QXmlDefaultHandler::notationDecl(const QString&  name0, cons
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("notationDecl");
+    static PyObject* name = PyUnicode_FromString("notationDecl");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&" , "const QString&" , "const QString&"};
@@ -2446,7 +2446,7 @@ bool  PythonQtShell_QXmlDefaultHandler::processingInstruction(const QString&  ta
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("processingInstruction");
+    static PyObject* name = PyUnicode_FromString("processingInstruction");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&" , "const QString&"};
@@ -2479,7 +2479,7 @@ bool  PythonQtShell_QXmlDefaultHandler::resolveEntity(const QString&  publicId0,
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("resolveEntity");
+    static PyObject* name = PyUnicode_FromString("resolveEntity");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&" , "const QString&" , "QXmlInputSource*&"};
@@ -2512,7 +2512,7 @@ void PythonQtShell_QXmlDefaultHandler::setDocumentLocator(QXmlLocator*  locator0
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setDocumentLocator");
+    static PyObject* name = PyUnicode_FromString("setDocumentLocator");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QXmlLocator*"};
@@ -2534,7 +2534,7 @@ bool  PythonQtShell_QXmlDefaultHandler::skippedEntity(const QString&  name0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("skippedEntity");
+    static PyObject* name = PyUnicode_FromString("skippedEntity");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&"};
@@ -2567,7 +2567,7 @@ bool  PythonQtShell_QXmlDefaultHandler::startCDATA()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("startCDATA");
+    static PyObject* name = PyUnicode_FromString("startCDATA");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -2600,7 +2600,7 @@ bool  PythonQtShell_QXmlDefaultHandler::startDTD(const QString&  name0, const QS
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("startDTD");
+    static PyObject* name = PyUnicode_FromString("startDTD");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&" , "const QString&" , "const QString&"};
@@ -2633,7 +2633,7 @@ bool  PythonQtShell_QXmlDefaultHandler::startDocument()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("startDocument");
+    static PyObject* name = PyUnicode_FromString("startDocument");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -2666,7 +2666,7 @@ bool  PythonQtShell_QXmlDefaultHandler::startElement(const QString&  namespaceUR
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("startElement");
+    static PyObject* name = PyUnicode_FromString("startElement");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&" , "const QString&" , "const QString&" , "const QXmlAttributes&"};
@@ -2699,7 +2699,7 @@ bool  PythonQtShell_QXmlDefaultHandler::startEntity(const QString&  name0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("startEntity");
+    static PyObject* name = PyUnicode_FromString("startEntity");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&"};
@@ -2732,7 +2732,7 @@ bool  PythonQtShell_QXmlDefaultHandler::startPrefixMapping(const QString&  prefi
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("startPrefixMapping");
+    static PyObject* name = PyUnicode_FromString("startPrefixMapping");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&" , "const QString&"};
@@ -2765,7 +2765,7 @@ bool  PythonQtShell_QXmlDefaultHandler::unparsedEntityDecl(const QString&  name0
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("unparsedEntityDecl");
+    static PyObject* name = PyUnicode_FromString("unparsedEntityDecl");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&" , "const QString&" , "const QString&" , "const QString&"};
@@ -2798,7 +2798,7 @@ bool  PythonQtShell_QXmlDefaultHandler::warning(const QXmlParseException&  excep
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("warning");
+    static PyObject* name = PyUnicode_FromString("warning");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QXmlParseException&"};
@@ -2841,7 +2841,7 @@ QString  PythonQtShell_QXmlEntityResolver::errorString() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("errorString");
+    static PyObject* name = PyUnicode_FromString("errorString");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QString"};
@@ -2874,7 +2874,7 @@ bool  PythonQtShell_QXmlEntityResolver::resolveEntity(const QString&  publicId0,
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("resolveEntity");
+    static PyObject* name = PyUnicode_FromString("resolveEntity");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&" , "const QString&" , "QXmlInputSource*&"};
@@ -2927,7 +2927,7 @@ bool  PythonQtShell_QXmlErrorHandler::error(const QXmlParseException&  exception
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("error");
+    static PyObject* name = PyUnicode_FromString("error");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QXmlParseException&"};
@@ -2960,7 +2960,7 @@ QString  PythonQtShell_QXmlErrorHandler::errorString() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("errorString");
+    static PyObject* name = PyUnicode_FromString("errorString");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QString"};
@@ -2993,7 +2993,7 @@ bool  PythonQtShell_QXmlErrorHandler::fatalError(const QXmlParseException&  exce
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("fatalError");
+    static PyObject* name = PyUnicode_FromString("fatalError");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QXmlParseException&"};
@@ -3026,7 +3026,7 @@ bool  PythonQtShell_QXmlErrorHandler::warning(const QXmlParseException&  excepti
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("warning");
+    static PyObject* name = PyUnicode_FromString("warning");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QXmlParseException&"};
@@ -3089,7 +3089,7 @@ QString  PythonQtShell_QXmlInputSource::data() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("data");
+    static PyObject* name = PyUnicode_FromString("data");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QString"};
@@ -3122,7 +3122,7 @@ void PythonQtShell_QXmlInputSource::fetchData()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("fetchData");
+    static PyObject* name = PyUnicode_FromString("fetchData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={""};
@@ -3144,7 +3144,7 @@ QString  PythonQtShell_QXmlInputSource::fromRawData(const QByteArray&  data0, bo
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("fromRawData");
+    static PyObject* name = PyUnicode_FromString("fromRawData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QString" , "const QByteArray&" , "bool"};
@@ -3177,7 +3177,7 @@ QChar  PythonQtShell_QXmlInputSource::next()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("next");
+    static PyObject* name = PyUnicode_FromString("next");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QChar"};
@@ -3210,7 +3210,7 @@ void PythonQtShell_QXmlInputSource::reset()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("reset");
+    static PyObject* name = PyUnicode_FromString("reset");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={""};
@@ -3232,7 +3232,7 @@ void PythonQtShell_QXmlInputSource::setData(const QByteArray&  dat0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setData");
+    static PyObject* name = PyUnicode_FromString("setData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "const QByteArray&"};
@@ -3254,7 +3254,7 @@ void PythonQtShell_QXmlInputSource::setData(const QString&  dat0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setData");
+    static PyObject* name = PyUnicode_FromString("setData");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "const QString&"};
@@ -3325,7 +3325,7 @@ bool  PythonQtShell_QXmlLexicalHandler::comment(const QString&  ch0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("comment");
+    static PyObject* name = PyUnicode_FromString("comment");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&"};
@@ -3358,7 +3358,7 @@ bool  PythonQtShell_QXmlLexicalHandler::endCDATA()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("endCDATA");
+    static PyObject* name = PyUnicode_FromString("endCDATA");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -3391,7 +3391,7 @@ bool  PythonQtShell_QXmlLexicalHandler::endDTD()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("endDTD");
+    static PyObject* name = PyUnicode_FromString("endDTD");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -3424,7 +3424,7 @@ bool  PythonQtShell_QXmlLexicalHandler::endEntity(const QString&  name0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("endEntity");
+    static PyObject* name = PyUnicode_FromString("endEntity");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&"};
@@ -3457,7 +3457,7 @@ QString  PythonQtShell_QXmlLexicalHandler::errorString() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("errorString");
+    static PyObject* name = PyUnicode_FromString("errorString");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QString"};
@@ -3490,7 +3490,7 @@ bool  PythonQtShell_QXmlLexicalHandler::startCDATA()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("startCDATA");
+    static PyObject* name = PyUnicode_FromString("startCDATA");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -3523,7 +3523,7 @@ bool  PythonQtShell_QXmlLexicalHandler::startDTD(const QString&  name0, const QS
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("startDTD");
+    static PyObject* name = PyUnicode_FromString("startDTD");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&" , "const QString&" , "const QString&"};
@@ -3556,7 +3556,7 @@ bool  PythonQtShell_QXmlLexicalHandler::startEntity(const QString&  name0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("startEntity");
+    static PyObject* name = PyUnicode_FromString("startEntity");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&"};
@@ -3639,7 +3639,7 @@ int  PythonQtShell_QXmlLocator::columnNumber() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("columnNumber");
+    static PyObject* name = PyUnicode_FromString("columnNumber");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int"};
@@ -3672,7 +3672,7 @@ int  PythonQtShell_QXmlLocator::lineNumber() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("lineNumber");
+    static PyObject* name = PyUnicode_FromString("lineNumber");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int"};
@@ -3760,7 +3760,7 @@ QXmlDTDHandler*  PythonQtShell_QXmlReader::DTDHandler() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("DTDHandler");
+    static PyObject* name = PyUnicode_FromString("DTDHandler");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QXmlDTDHandler*"};
@@ -3793,7 +3793,7 @@ QXmlContentHandler*  PythonQtShell_QXmlReader::contentHandler() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("contentHandler");
+    static PyObject* name = PyUnicode_FromString("contentHandler");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QXmlContentHandler*"};
@@ -3826,7 +3826,7 @@ QXmlDeclHandler*  PythonQtShell_QXmlReader::declHandler() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("declHandler");
+    static PyObject* name = PyUnicode_FromString("declHandler");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QXmlDeclHandler*"};
@@ -3859,7 +3859,7 @@ QXmlEntityResolver*  PythonQtShell_QXmlReader::entityResolver() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("entityResolver");
+    static PyObject* name = PyUnicode_FromString("entityResolver");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QXmlEntityResolver*"};
@@ -3892,7 +3892,7 @@ QXmlErrorHandler*  PythonQtShell_QXmlReader::errorHandler() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("errorHandler");
+    static PyObject* name = PyUnicode_FromString("errorHandler");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QXmlErrorHandler*"};
@@ -3925,7 +3925,7 @@ bool  PythonQtShell_QXmlReader::feature(const QString&  name0, bool*  ok1) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("feature");
+    static PyObject* name = PyUnicode_FromString("feature");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&" , "bool*"};
@@ -3958,7 +3958,7 @@ bool  PythonQtShell_QXmlReader::hasFeature(const QString&  name0) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("hasFeature");
+    static PyObject* name = PyUnicode_FromString("hasFeature");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&"};
@@ -3991,7 +3991,7 @@ bool  PythonQtShell_QXmlReader::hasProperty(const QString&  name0) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("hasProperty");
+    static PyObject* name = PyUnicode_FromString("hasProperty");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&"};
@@ -4024,7 +4024,7 @@ QXmlLexicalHandler*  PythonQtShell_QXmlReader::lexicalHandler() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("lexicalHandler");
+    static PyObject* name = PyUnicode_FromString("lexicalHandler");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QXmlLexicalHandler*"};
@@ -4057,7 +4057,7 @@ bool  PythonQtShell_QXmlReader::parse(const QXmlInputSource&  input0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("parse");
+    static PyObject* name = PyUnicode_FromString("parse");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QXmlInputSource&"};
@@ -4090,7 +4090,7 @@ bool  PythonQtShell_QXmlReader::parse(const QXmlInputSource*  input0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("parse");
+    static PyObject* name = PyUnicode_FromString("parse");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QXmlInputSource*"};
@@ -4123,7 +4123,7 @@ void*  PythonQtShell_QXmlReader::property(const QString&  name0, bool*  ok1) con
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("property");
+    static PyObject* name = PyUnicode_FromString("property");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"void*" , "const QString&" , "bool*"};
@@ -4156,7 +4156,7 @@ void PythonQtShell_QXmlReader::setContentHandler(QXmlContentHandler*  handler0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setContentHandler");
+    static PyObject* name = PyUnicode_FromString("setContentHandler");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QXmlContentHandler*"};
@@ -4178,7 +4178,7 @@ void PythonQtShell_QXmlReader::setDTDHandler(QXmlDTDHandler*  handler0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setDTDHandler");
+    static PyObject* name = PyUnicode_FromString("setDTDHandler");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QXmlDTDHandler*"};
@@ -4200,7 +4200,7 @@ void PythonQtShell_QXmlReader::setDeclHandler(QXmlDeclHandler*  handler0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setDeclHandler");
+    static PyObject* name = PyUnicode_FromString("setDeclHandler");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QXmlDeclHandler*"};
@@ -4222,7 +4222,7 @@ void PythonQtShell_QXmlReader::setEntityResolver(QXmlEntityResolver*  handler0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setEntityResolver");
+    static PyObject* name = PyUnicode_FromString("setEntityResolver");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QXmlEntityResolver*"};
@@ -4244,7 +4244,7 @@ void PythonQtShell_QXmlReader::setErrorHandler(QXmlErrorHandler*  handler0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setErrorHandler");
+    static PyObject* name = PyUnicode_FromString("setErrorHandler");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QXmlErrorHandler*"};
@@ -4266,7 +4266,7 @@ void PythonQtShell_QXmlReader::setFeature(const QString&  name0, bool  value1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setFeature");
+    static PyObject* name = PyUnicode_FromString("setFeature");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "const QString&" , "bool"};
@@ -4288,7 +4288,7 @@ void PythonQtShell_QXmlReader::setLexicalHandler(QXmlLexicalHandler*  handler0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setLexicalHandler");
+    static PyObject* name = PyUnicode_FromString("setLexicalHandler");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QXmlLexicalHandler*"};
@@ -4310,7 +4310,7 @@ void PythonQtShell_QXmlReader::setProperty(const QString&  name0, void*  value1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setProperty");
+    static PyObject* name = PyUnicode_FromString("setProperty");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "const QString&" , "void*"};
@@ -4442,7 +4442,7 @@ QXmlDTDHandler*  PythonQtShell_QXmlSimpleReader::DTDHandler() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("DTDHandler");
+    static PyObject* name = PyUnicode_FromString("DTDHandler");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QXmlDTDHandler*"};
@@ -4475,7 +4475,7 @@ QXmlContentHandler*  PythonQtShell_QXmlSimpleReader::contentHandler() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("contentHandler");
+    static PyObject* name = PyUnicode_FromString("contentHandler");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QXmlContentHandler*"};
@@ -4508,7 +4508,7 @@ QXmlDeclHandler*  PythonQtShell_QXmlSimpleReader::declHandler() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("declHandler");
+    static PyObject* name = PyUnicode_FromString("declHandler");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QXmlDeclHandler*"};
@@ -4541,7 +4541,7 @@ QXmlEntityResolver*  PythonQtShell_QXmlSimpleReader::entityResolver() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("entityResolver");
+    static PyObject* name = PyUnicode_FromString("entityResolver");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QXmlEntityResolver*"};
@@ -4574,7 +4574,7 @@ QXmlErrorHandler*  PythonQtShell_QXmlSimpleReader::errorHandler() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("errorHandler");
+    static PyObject* name = PyUnicode_FromString("errorHandler");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QXmlErrorHandler*"};
@@ -4607,7 +4607,7 @@ bool  PythonQtShell_QXmlSimpleReader::feature(const QString&  name0, bool*  ok1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("feature");
+    static PyObject* name = PyUnicode_FromString("feature");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&" , "bool*"};
@@ -4640,7 +4640,7 @@ bool  PythonQtShell_QXmlSimpleReader::hasFeature(const QString&  name0) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("hasFeature");
+    static PyObject* name = PyUnicode_FromString("hasFeature");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&"};
@@ -4673,7 +4673,7 @@ bool  PythonQtShell_QXmlSimpleReader::hasProperty(const QString&  name0) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("hasProperty");
+    static PyObject* name = PyUnicode_FromString("hasProperty");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QString&"};
@@ -4706,7 +4706,7 @@ QXmlLexicalHandler*  PythonQtShell_QXmlSimpleReader::lexicalHandler() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("lexicalHandler");
+    static PyObject* name = PyUnicode_FromString("lexicalHandler");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QXmlLexicalHandler*"};
@@ -4739,7 +4739,7 @@ bool  PythonQtShell_QXmlSimpleReader::parse(const QXmlInputSource&  input0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("parse");
+    static PyObject* name = PyUnicode_FromString("parse");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QXmlInputSource&"};
@@ -4772,7 +4772,7 @@ bool  PythonQtShell_QXmlSimpleReader::parse(const QXmlInputSource*  input0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("parse");
+    static PyObject* name = PyUnicode_FromString("parse");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QXmlInputSource*"};
@@ -4805,7 +4805,7 @@ bool  PythonQtShell_QXmlSimpleReader::parse(const QXmlInputSource*  input0, bool
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("parse");
+    static PyObject* name = PyUnicode_FromString("parse");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "const QXmlInputSource*" , "bool"};
@@ -4838,7 +4838,7 @@ bool  PythonQtShell_QXmlSimpleReader::parseContinue()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("parseContinue");
+    static PyObject* name = PyUnicode_FromString("parseContinue");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -4871,7 +4871,7 @@ void*  PythonQtShell_QXmlSimpleReader::property(const QString&  name0, bool*  ok
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("property");
+    static PyObject* name = PyUnicode_FromString("property");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"void*" , "const QString&" , "bool*"};
@@ -4904,7 +4904,7 @@ void PythonQtShell_QXmlSimpleReader::setContentHandler(QXmlContentHandler*  hand
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setContentHandler");
+    static PyObject* name = PyUnicode_FromString("setContentHandler");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QXmlContentHandler*"};
@@ -4926,7 +4926,7 @@ void PythonQtShell_QXmlSimpleReader::setDTDHandler(QXmlDTDHandler*  handler0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setDTDHandler");
+    static PyObject* name = PyUnicode_FromString("setDTDHandler");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QXmlDTDHandler*"};
@@ -4948,7 +4948,7 @@ void PythonQtShell_QXmlSimpleReader::setDeclHandler(QXmlDeclHandler*  handler0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setDeclHandler");
+    static PyObject* name = PyUnicode_FromString("setDeclHandler");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QXmlDeclHandler*"};
@@ -4970,7 +4970,7 @@ void PythonQtShell_QXmlSimpleReader::setEntityResolver(QXmlEntityResolver*  hand
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setEntityResolver");
+    static PyObject* name = PyUnicode_FromString("setEntityResolver");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QXmlEntityResolver*"};
@@ -4992,7 +4992,7 @@ void PythonQtShell_QXmlSimpleReader::setErrorHandler(QXmlErrorHandler*  handler0
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setErrorHandler");
+    static PyObject* name = PyUnicode_FromString("setErrorHandler");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QXmlErrorHandler*"};
@@ -5014,7 +5014,7 @@ void PythonQtShell_QXmlSimpleReader::setFeature(const QString&  name0, bool  val
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setFeature");
+    static PyObject* name = PyUnicode_FromString("setFeature");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "const QString&" , "bool"};
@@ -5036,7 +5036,7 @@ void PythonQtShell_QXmlSimpleReader::setLexicalHandler(QXmlLexicalHandler*  hand
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setLexicalHandler");
+    static PyObject* name = PyUnicode_FromString("setLexicalHandler");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QXmlLexicalHandler*"};
@@ -5058,7 +5058,7 @@ void PythonQtShell_QXmlSimpleReader::setProperty(const QString&  name0, void*  v
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setProperty");
+    static PyObject* name = PyUnicode_FromString("setProperty");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "const QString&" , "void*"};
