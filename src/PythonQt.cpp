@@ -986,7 +986,7 @@ QVariant PythonQt::evalCode(PyObject* object, PyObject* pycode) {
       globals = dict;
     } else {
       dict = PyObject_GetAttrString(object, "__dict__");
-      globals = PyObject_GetAttrString(PyImport_ImportModule(PyString_AS_STRING(PyObject_GetAttrString(object, "__module__"))),"__dict__");
+      globals = PyObject_GetAttrString(PyImport_ImportModule(PyUnicode_AsUTF8(PyObject_GetAttrString(object, "__module__"))),"__dict__");
     }
     PyObject* r = nullptr;
     if (dict) {
