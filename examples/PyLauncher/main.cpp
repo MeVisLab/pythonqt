@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
   }
   PythonQtScriptingConsole console(NULL, mainContext);
 
-  for (QString file : files) {
+  for (const QString& file : qAsConst(files)) {
     mainContext.evalFile(file);
   }
   if (showConsole || console.hadError()) {

@@ -1111,7 +1111,7 @@ bool PythonQtClassInfo::supportsRichCompare()
       names << "__gt__";
       names << "__ge__";
     }
-    for (const QByteArray& name : names) {
+    for (const QByteArray& name : qAsConst(names)) {
       if (member(name)._type == PythonQtMemberInfo::Slot) {
         // we found one of the operators, so we can support the type slot
         _typeSlots |= PythonQt::Type_RichCompare;
