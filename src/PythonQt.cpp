@@ -845,8 +845,8 @@ PyObject* PythonQtPrivate::createNewPythonQtEnumWrapper(const char* enumName, Py
   PyObject* className = PyString_FromString(enumName);
 
   PyObject* baseClasses = PyTuple_New(1);
-  Py_INCREF(&PyInt_Type);
-  PyTuple_SET_ITEM(baseClasses, 0, (PyObject*)&PyInt_Type);
+  Py_INCREF(&PyLong_Type);
+  PyTuple_SET_ITEM(baseClasses, 0, (PyObject*)&PyLong_Type);
 
   PyObject* module = PyObject_GetAttrString(parentObject, "__module__");
   PyObject* typeDict = PyDict_New();
