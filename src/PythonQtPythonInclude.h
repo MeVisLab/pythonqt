@@ -121,7 +121,6 @@
 #define PY3K
 // Helper defines to facilitate porting
 #define PyString_FromString PyUnicode_FromString
-#define PyString_FromFormat PyUnicode_FromFormat
 #define PyString_Check      PyUnicode_Check
 
 #else

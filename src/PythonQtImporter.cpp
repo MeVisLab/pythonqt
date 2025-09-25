@@ -299,7 +299,7 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
       QString subname = info.moduleName;
       int err;
 
-      fullpath = PyString_FromFormat("%s%c%s",
+      fullpath = PyUnicode_FromFormat("%s%c%s",
                                      QStringToPythonConstCharPointer(*self->_path),
                                      SEP,
                                      QStringToPythonConstCharPointer(subname));
