@@ -29,7 +29,7 @@ bool  PythonQtShell_QSGNode::isSubtreeBlocked() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("isSubtreeBlocked");
+    static PyObject* name = PyUnicode_FromString("isSubtreeBlocked");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -62,7 +62,7 @@ void PythonQtShell_QSGNode::preprocess()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("preprocess");
+    static PyObject* name = PyUnicode_FromString("preprocess");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={""};
@@ -210,7 +210,7 @@ void PythonQtShell_QSGNodeVisitor::enterClipNode(QSGClipNode*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("enterClipNode");
+    static PyObject* name = PyUnicode_FromString("enterClipNode");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QSGClipNode*"};
@@ -232,7 +232,7 @@ void PythonQtShell_QSGNodeVisitor::enterGeometryNode(QSGGeometryNode*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("enterGeometryNode");
+    static PyObject* name = PyUnicode_FromString("enterGeometryNode");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QSGGeometryNode*"};
@@ -254,7 +254,7 @@ void PythonQtShell_QSGNodeVisitor::enterOpacityNode(QSGOpacityNode*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("enterOpacityNode");
+    static PyObject* name = PyUnicode_FromString("enterOpacityNode");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QSGOpacityNode*"};
@@ -276,7 +276,7 @@ void PythonQtShell_QSGNodeVisitor::enterTransformNode(QSGTransformNode*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("enterTransformNode");
+    static PyObject* name = PyUnicode_FromString("enterTransformNode");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QSGTransformNode*"};
@@ -298,7 +298,7 @@ void PythonQtShell_QSGNodeVisitor::leaveClipNode(QSGClipNode*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("leaveClipNode");
+    static PyObject* name = PyUnicode_FromString("leaveClipNode");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QSGClipNode*"};
@@ -320,7 +320,7 @@ void PythonQtShell_QSGNodeVisitor::leaveGeometryNode(QSGGeometryNode*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("leaveGeometryNode");
+    static PyObject* name = PyUnicode_FromString("leaveGeometryNode");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QSGGeometryNode*"};
@@ -342,7 +342,7 @@ void PythonQtShell_QSGNodeVisitor::leaveOpacityNode(QSGOpacityNode*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("leaveOpacityNode");
+    static PyObject* name = PyUnicode_FromString("leaveOpacityNode");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QSGOpacityNode*"};
@@ -364,7 +364,7 @@ void PythonQtShell_QSGNodeVisitor::leaveTransformNode(QSGTransformNode*  arg__1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("leaveTransformNode");
+    static PyObject* name = PyUnicode_FromString("leaveTransformNode");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QSGTransformNode*"};
@@ -386,7 +386,7 @@ void PythonQtShell_QSGNodeVisitor::visitChildren(QSGNode*  n0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("visitChildren");
+    static PyObject* name = PyUnicode_FromString("visitChildren");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QSGNode*"};
@@ -408,7 +408,7 @@ void PythonQtShell_QSGNodeVisitor::visitNode(QSGNode*  n0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("visitNode");
+    static PyObject* name = PyUnicode_FromString("visitNode");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QSGNode*"};
@@ -490,7 +490,7 @@ bool  PythonQtShell_QSGOpacityNode::isSubtreeBlocked() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("isSubtreeBlocked");
+    static PyObject* name = PyUnicode_FromString("isSubtreeBlocked");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -523,7 +523,7 @@ void PythonQtShell_QSGOpacityNode::preprocess()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("preprocess");
+    static PyObject* name = PyUnicode_FromString("preprocess");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={""};
@@ -582,7 +582,7 @@ QColor  PythonQtShell_QSGRectangleNode::color() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("color");
+    static PyObject* name = PyUnicode_FromString("color");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QColor"};
@@ -615,7 +615,7 @@ bool  PythonQtShell_QSGRectangleNode::isSubtreeBlocked() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("isSubtreeBlocked");
+    static PyObject* name = PyUnicode_FromString("isSubtreeBlocked");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -648,7 +648,7 @@ void PythonQtShell_QSGRectangleNode::preprocess()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("preprocess");
+    static PyObject* name = PyUnicode_FromString("preprocess");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={""};
@@ -670,7 +670,7 @@ QRectF  PythonQtShell_QSGRectangleNode::rect() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("rect");
+    static PyObject* name = PyUnicode_FromString("rect");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QRectF"};
@@ -703,7 +703,7 @@ void PythonQtShell_QSGRectangleNode::setColor(const QColor&  color0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setColor");
+    static PyObject* name = PyUnicode_FromString("setColor");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "const QColor&"};
@@ -725,7 +725,7 @@ void PythonQtShell_QSGRectangleNode::setRect(const QRectF&  rect0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("setRect");
+    static PyObject* name = PyUnicode_FromString("setRect");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "const QRectF&"};
@@ -782,7 +782,7 @@ bool  PythonQtShell_QSGRenderNode::isSubtreeBlocked() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("isSubtreeBlocked");
+    static PyObject* name = PyUnicode_FromString("isSubtreeBlocked");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -815,7 +815,7 @@ void PythonQtShell_QSGRenderNode::preprocess()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("preprocess");
+    static PyObject* name = PyUnicode_FromString("preprocess");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={""};
@@ -837,7 +837,7 @@ QRectF  PythonQtShell_QSGRenderNode::rect() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("rect");
+    static PyObject* name = PyUnicode_FromString("rect");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QRectF"};
@@ -870,7 +870,7 @@ void PythonQtShell_QSGRenderNode::releaseResources()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("releaseResources");
+    static PyObject* name = PyUnicode_FromString("releaseResources");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={""};
@@ -892,7 +892,7 @@ void PythonQtShell_QSGRenderNode::render(const QSGRenderNode::RenderState*  stat
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("render");
+    static PyObject* name = PyUnicode_FromString("render");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "const QSGRenderNode::RenderState*"};
@@ -954,7 +954,7 @@ const QRegion*  PythonQtShell_QSGRenderNode__RenderState::clipRegion() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("clipRegion");
+    static PyObject* name = PyUnicode_FromString("clipRegion");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"const QRegion*"};
@@ -987,7 +987,7 @@ void*  PythonQtShell_QSGRenderNode__RenderState::get(const char*  state0) const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("get");
+    static PyObject* name = PyUnicode_FromString("get");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"void*" , "const char*"};
@@ -1020,7 +1020,7 @@ const QMatrix4x4*  PythonQtShell_QSGRenderNode__RenderState::projectionMatrix() 
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("projectionMatrix");
+    static PyObject* name = PyUnicode_FromString("projectionMatrix");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"const QMatrix4x4*"};
@@ -1053,7 +1053,7 @@ bool  PythonQtShell_QSGRenderNode__RenderState::scissorEnabled() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("scissorEnabled");
+    static PyObject* name = PyUnicode_FromString("scissorEnabled");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -1086,7 +1086,7 @@ QRect  PythonQtShell_QSGRenderNode__RenderState::scissorRect() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("scissorRect");
+    static PyObject* name = PyUnicode_FromString("scissorRect");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QRect"};
@@ -1119,7 +1119,7 @@ bool  PythonQtShell_QSGRenderNode__RenderState::stencilEnabled() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("stencilEnabled");
+    static PyObject* name = PyUnicode_FromString("stencilEnabled");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -1152,7 +1152,7 @@ int  PythonQtShell_QSGRenderNode__RenderState::stencilValue() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("stencilValue");
+    static PyObject* name = PyUnicode_FromString("stencilValue");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int"};
@@ -1230,7 +1230,7 @@ bool  PythonQtShell_QSGRootNode::isSubtreeBlocked() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("isSubtreeBlocked");
+    static PyObject* name = PyUnicode_FromString("isSubtreeBlocked");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -1263,7 +1263,7 @@ void PythonQtShell_QSGRootNode::preprocess()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("preprocess");
+    static PyObject* name = PyUnicode_FromString("preprocess");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={""};
@@ -1302,7 +1302,7 @@ void PythonQtShell_QSGTexture::bind()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("bind");
+    static PyObject* name = PyUnicode_FromString("bind");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={""};
@@ -1324,7 +1324,7 @@ void PythonQtShell_QSGTexture::childEvent(QChildEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("childEvent");
+    static PyObject* name = PyUnicode_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QChildEvent*"};
@@ -1346,7 +1346,7 @@ void PythonQtShell_QSGTexture::customEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("customEvent");
+    static PyObject* name = PyUnicode_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -1368,7 +1368,7 @@ bool  PythonQtShell_QSGTexture::event(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("event");
+    static PyObject* name = PyUnicode_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
@@ -1401,7 +1401,7 @@ bool  PythonQtShell_QSGTexture::eventFilter(QObject*  watched0, QEvent*  event1)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("eventFilter");
+    static PyObject* name = PyUnicode_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
@@ -1434,7 +1434,7 @@ bool  PythonQtShell_QSGTexture::hasAlphaChannel() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("hasAlphaChannel");
+    static PyObject* name = PyUnicode_FromString("hasAlphaChannel");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -1467,7 +1467,7 @@ bool  PythonQtShell_QSGTexture::hasMipmaps() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("hasMipmaps");
+    static PyObject* name = PyUnicode_FromString("hasMipmaps");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -1500,7 +1500,7 @@ bool  PythonQtShell_QSGTexture::isAtlasTexture() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("isAtlasTexture");
+    static PyObject* name = PyUnicode_FromString("isAtlasTexture");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -1533,7 +1533,7 @@ QRectF  PythonQtShell_QSGTexture::normalizedTextureSubRect() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("normalizedTextureSubRect");
+    static PyObject* name = PyUnicode_FromString("normalizedTextureSubRect");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QRectF"};
@@ -1566,7 +1566,7 @@ QSGTexture*  PythonQtShell_QSGTexture::removedFromAtlas() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("removedFromAtlas");
+    static PyObject* name = PyUnicode_FromString("removedFromAtlas");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSGTexture*"};
@@ -1599,7 +1599,7 @@ int  PythonQtShell_QSGTexture::textureId() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("textureId");
+    static PyObject* name = PyUnicode_FromString("textureId");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"int"};
@@ -1632,7 +1632,7 @@ QSize  PythonQtShell_QSGTexture::textureSize() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("textureSize");
+    static PyObject* name = PyUnicode_FromString("textureSize");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSize"};
@@ -1665,7 +1665,7 @@ void PythonQtShell_QSGTexture::timerEvent(QTimerEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("timerEvent");
+    static PyObject* name = PyUnicode_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QTimerEvent*"};
@@ -1815,7 +1815,7 @@ QSGMaterialType*  PythonQtShell_QSGTextureMaterial::type() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("type");
+    static PyObject* name = PyUnicode_FromString("type");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSGMaterialType*"};
@@ -1863,7 +1863,7 @@ void PythonQtShell_QSGTextureProvider::childEvent(QChildEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("childEvent");
+    static PyObject* name = PyUnicode_FromString("childEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QChildEvent*"};
@@ -1885,7 +1885,7 @@ void PythonQtShell_QSGTextureProvider::customEvent(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("customEvent");
+    static PyObject* name = PyUnicode_FromString("customEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QEvent*"};
@@ -1907,7 +1907,7 @@ bool  PythonQtShell_QSGTextureProvider::event(QEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("event");
+    static PyObject* name = PyUnicode_FromString("event");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QEvent*"};
@@ -1940,7 +1940,7 @@ bool  PythonQtShell_QSGTextureProvider::eventFilter(QObject*  watched0, QEvent* 
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("eventFilter");
+    static PyObject* name = PyUnicode_FromString("eventFilter");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool" , "QObject*" , "QEvent*"};
@@ -1973,7 +1973,7 @@ QSGTexture*  PythonQtShell_QSGTextureProvider::texture() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("texture");
+    static PyObject* name = PyUnicode_FromString("texture");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"QSGTexture*"};
@@ -2006,7 +2006,7 @@ void PythonQtShell_QSGTextureProvider::timerEvent(QTimerEvent*  event0)
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("timerEvent");
+    static PyObject* name = PyUnicode_FromString("timerEvent");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"" , "QTimerEvent*"};
@@ -2056,7 +2056,7 @@ bool  PythonQtShell_QSGTransformNode::isSubtreeBlocked() const
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("isSubtreeBlocked");
+    static PyObject* name = PyUnicode_FromString("isSubtreeBlocked");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={"bool"};
@@ -2089,7 +2089,7 @@ void PythonQtShell_QSGTransformNode::preprocess()
 if (_wrapper) {
   PYTHONQT_GIL_SCOPE
   if (Py_REFCNT((PyObject*)_wrapper) > 0) {
-    static PyObject* name = PyString_FromString("preprocess");
+    static PyObject* name = PyUnicode_FromString("preprocess");
     PyObject* obj = PyBaseObject_Type.tp_getattro((PyObject*)_wrapper, name);
     if (obj) {
       static const char* argumentList[] ={""};
