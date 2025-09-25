@@ -25,14 +25,9 @@ PYTHON_VERSION_MINOR=$$section(PYTHON_VERSION, ., 1, 1)
   message(Using Python version $${PYTHON_VERSION})
 }
 
-
-# Python 2.x has problems:
-# 1) https://wiki.gentoo.org/wiki/Project:Python/Strict_aliasing
-# 2) deprecated implicit cast of string literals to char*
+# Python 3.x is required
 equals(PYTHON_VERSION_MAJOR, 2) {
-   gcc:QMAKE_CXXFLAGS *= -fno-strict-aliasing -Wno-write-strings
-   # Qt 5.4 adds this option, but this is not compatible with the Python API
-   msvc: QMAKE_CXXFLAGS -= -Zc:strictStrings
+  error("Python >= 3.x is required")
 }
 
 contains(PKGCONFIG, "python.*"){
@@ -72,13 +67,6 @@ contains(PKGCONFIG, "python.*"){
   isEmpty(PYTHON_PATH)|!exists("$$PYTHON_PATH\\include") | !exists("$$PYTHON_PATH\\libs\\") {
      error("PYTHON_PATH must be set to correct folder with \\libs and \\include subfolders ")
   }
-
-  #We need to destinguish 64-bit build to add a workaround option
-  #The only known problematic case is MinGW with external (MSVC-built) Python2
-  mingw:equals(PYTHON_VERSION_MAJOR, 2): isEmpty(QMAKE_TARGET.arch):system(\
-  $$system_quote($$system_path($${PYTHON_PATH}/python.exe)) -c \
-  $$system_quote(import sysconfig;exit(0 if 0 <= sysconfig.get_platform().find(\'win-amd64\') else 1))\
-  ):DEFINES += MS_WIN64
 
   INCLUDEPATH += $$shell_path($${PYTHON_PATH}/include)
 
