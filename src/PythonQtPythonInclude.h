@@ -126,8 +126,6 @@
 #define PyString_FromFormat PyUnicode_FromFormat
 #define PyString_Check      PyUnicode_Check
 
-#define PyInt_AsLong   PyLong_AsLong
-
 #else
 // Defines to use Python 3 names in Python 2 code
 #define PyBytes_Type      PyString_Type
