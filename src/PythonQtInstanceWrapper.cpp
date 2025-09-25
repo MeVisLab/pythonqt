@@ -410,8 +410,8 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
 
     if (wrapper->_obj) {
       // we need to replace the properties with their real values...
-      QStringList l = wrapper->classInfo()->propertyList();
-      for (QString name : l) {
+      const QStringList l = wrapper->classInfo()->propertyList();
+      for (const QString& name : l) {
         PyObject* o = PyObject_GetAttrString(obj, QStringToPythonConstCharPointer(name));
         if (o) {
           PyDict_SetItemString(dict, QStringToPythonConstCharPointer(name), o);
@@ -421,8 +421,8 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
         }
       }
 
-      QList<QByteArray> dynamicProps = wrapper->_obj->dynamicPropertyNames();
-      for (QByteArray name : dynamicProps) {
+      const QList<QByteArray> dynamicProps = wrapper->_obj->dynamicPropertyNames();
+      for (const QByteArray& name : dynamicProps) {
         PyObject* o = PyObject_GetAttrString(obj, name.data());
         if (o) {
           PyDict_SetItemString(dict, name.data(), o);

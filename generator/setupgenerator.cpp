@@ -63,7 +63,7 @@ static QStringList getOperatorCodes(const AbstractMetaClass* cls) {
     }
   }
   QSet<QString> r;
-  for (QString op :
+  for (const QString& op :
 #       if QT_VERSION < QT_VERSION_CHECK(5,14,0)
               operatorCodes.toList()
 #       else

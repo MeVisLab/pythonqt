@@ -143,7 +143,7 @@ int PythonQtImporter_init(PythonQtImporter *self, PyObject *args, PyObject * /*k
       return -1;
     } else {
       const QStringList& ignorePaths = PythonQt::self()->getImporterIgnorePaths();
-      for (QString ignorePath : ignorePaths) {
+      for (const QString& ignorePath : ignorePaths) {
         if (path.startsWith(ignorePath)) {
           PyErr_SetString(PythonQtImportError,
             "path ignored");

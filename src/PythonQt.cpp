@@ -1527,8 +1527,8 @@ void PythonQtPrivate::setupSharedLibrarySuffixes()
   _sharedLibrarySuffixes << "_d.so";
   #endif
 #endif
-  QVariantList entries = result.toList();
-  for (QVariant entry : entries) {
+  const QVariantList entries = result.toList();
+  for (const QVariant& entry : entries) {
     QVariantList suffixEntry = entry.toList();
     if (suffixEntry.count()==3) {
       int code = suffixEntry.at(2).toInt();
@@ -1601,7 +1601,7 @@ void PythonQtPrivate::addDecorators(QObject* o, int decoTypes)
 
 void PythonQtPrivate::registerQObjectClassNames(const QStringList& names)
 {
-  for (QString name : names) {
+  for (const QString& name : names) {
     _knownQObjectClassNames.insert(name.toUtf8(), true);
   }
 }
@@ -1616,7 +1616,7 @@ void PythonQt::removeSignalHandlers()
   QList<PythonQtSignalReceiver*> signalReceivers = _p->_signalReceivers.values();
 
   // just delete all signal receivers, they will remove themselves via removeSignalEmitter()
-  for (PythonQtSignalReceiver* receiver : signalReceivers) {
+  for (PythonQtSignalReceiver* receiver : qAsConst(signalReceivers)) {
     delete receiver;
   }
   // just to be sure, clear the receiver map as well
@@ -1747,7 +1747,7 @@ void PythonQt::overwriteSysPath(const QStringList& paths)
   // Since Python uses os.path.sep at various places,
   // makse sure that we use the native path separators.
   QStringList nativePaths;
-  for (QString path : paths) {
+  for (const QString& path : paths) {
     nativePaths << QDir::toNativeSeparators(path);
   }
   PyModule_AddObject(sys, "path", PythonQtConv::QStringListToPyList(nativePaths));
@@ -2181,7 +2181,7 @@ PyObject* PythonQt::helpCalled(PythonQtClassInfo* info)
 
 void PythonQt::clearNotFoundCachedMembers()
 {
-  for (PythonQtClassInfo* info : _p->_knownClassInfos) {
+  for (PythonQtClassInfo* info : qAsConst(_p->_knownClassInfos)) {
     info->clearNotFoundCachedMembers();
   }
 }
@@ -2310,7 +2310,7 @@ const QMetaObject* PythonQtPrivate::buildDynamicMetaObject(PythonQtClassWrapper*
       PythonQtSignalFunctionObject* signal = (PythonQtSignalFunctionObject*)value;
       if (signal->_dynamicInfo) {
         signal->_dynamicInfo->name = PyString_AsString(key);
-        for (QByteArray sig : signal->_dynamicInfo->signatures) {
+        for (const QByteArray& sig : qAsConst(signal->_dynamicInfo->signatures)) {
           builder.addSignal(signal->_dynamicInfo->name + "(" + sig + ")");
           needsMetaObject = true;
         }

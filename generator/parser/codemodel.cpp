@@ -212,7 +212,8 @@ QString TypeInfo::toString(bool parsable) const
       tmp += QLatin1String(")");
     }
 
-  for (QString elt : this->arrayElements())
+  const QStringList arrayElements = this->arrayElements();
+  for (const QString& elt : arrayElements)
     {
       tmp += QLatin1String ("[");
       tmp += elt;
@@ -398,9 +399,9 @@ void _ClassModelItem::addPropertyDeclaration(const QString &propertyDeclaration)
 // ---------------------------------------------------------------------------
 FunctionModelItem _ScopeModelItem::declaredFunction(FunctionModelItem item)
 {
-  FunctionList function_list = findFunctions(item->name());
+  const FunctionList function_list = findFunctions(item->name());
 
-  for (FunctionModelItem fun : function_list)
+  for (const FunctionModelItem& fun : function_list)
     {
       if (fun->isSimilar(item))
         return fun;

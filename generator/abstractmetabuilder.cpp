@@ -368,7 +368,7 @@ void AbstractMetaBuilder::traverseArithmeticOperator(FunctionModelItem item)
 void AbstractMetaBuilder::fixQObjectForScope(TypeDatabase *types,
            NamespaceModelItem scope)
 {
-    for (ClassModelItem item :  scope->classes()) {
+    for (const ClassModelItem& item : scope->classes()) {
         QString qualified_name = item->qualifiedName().join("::");
         TypeEntry *entry = types->findType(qualified_name);
         if (entry) {
@@ -378,7 +378,7 @@ void AbstractMetaBuilder::fixQObjectForScope(TypeDatabase *types,
         }
     }
 
-    for (NamespaceModelItem item :  scope->namespaceMap().values()) {
+    for (const NamespaceModelItem& item : scope->namespaceMap().values()) {
         if (scope != item)
             fixQObjectForScope(types, item);
     }
@@ -490,24 +490,21 @@ bool AbstractMetaBuilder::build()
     // First automatically add all enums marked as QEnum into the TypeDatabase
     // (if they don't contain an entry already). If there is an QEnum entry,
     // the enum is obviously meant for scripting.
-    for (ClassModelItem item : typeMap.values()) {
+    for (const ClassModelItem& item : typeMap.values()) {
         autoAddQEnumsForClassItem(item);
     }
 
-
-    for (ClassModelItem item :  typeMap.values()) {
+    for (const ClassModelItem& item : typeMap.values()) {
         AbstractMetaClass *cls = traverseClass(item);
         addAbstractMetaClass(cls);
     }
 
-
     QHash<QString, NamespaceModelItem> namespaceMap = m_dom->namespaceMap();
-    for (NamespaceModelItem item :  namespaceMap.values()) {
+    for (const NamespaceModelItem& item :  namespaceMap.values()) {
         AbstractMetaClass *meta_class = traverseNamespace(item);
         if (meta_class)
             m_meta_classes << meta_class;
     }
-
 
     // Some trickery to support global-namespace enums...
     QHash<QString, EnumModelItem> enumMap = m_dom->enumMap();
@@ -848,7 +845,7 @@ AbstractMetaEnum *AbstractMetaBuilder::traverseEnum(EnumModelItem enum_item, Abs
 
     ReportHandler::debugMedium(QString(" - traversing enum %1").arg(meta_enum->fullName()));
 
-    for (EnumeratorModelItem value :  enum_item->enumerators()) {
+    for (const EnumeratorModelItem& value : enum_item->enumerators()) {
         if (meta_enum->typeEntry()->isEnumValueRejected(value->name())) {
           continue;
         }
@@ -1077,7 +1074,7 @@ AbstractMetaField *AbstractMetaBuilder::traverseField(VariableModelItem field, c
 
 void AbstractMetaBuilder::traverseFields(ScopeModelItem scope_item, AbstractMetaClass *meta_class)
 {
-    for (VariableModelItem field :  scope_item->variables()) {
+    for (const VariableModelItem& field : scope_item->variables()) {
         AbstractMetaField *meta_field = traverseField(field, meta_class);
 
         if (meta_field) {
@@ -1108,7 +1105,7 @@ void AbstractMetaBuilder::setupFunctionDefaults(AbstractMetaFunction *meta_funct
 
 void AbstractMetaBuilder::traverseFunctions(ScopeModelItem scope_item, AbstractMetaClass *meta_class)
 {
-    for (FunctionModelItem function :  scope_item->functions()) {
+    for (const FunctionModelItem& function : scope_item->functions()) {
         AbstractMetaFunction *meta_function = traverseFunction(function);
 
         if (meta_function) {
@@ -2040,7 +2037,7 @@ bool AbstractMetaBuilder::inheritTemplate(AbstractMetaClass *subclass,
     }
 
     AbstractMetaFunctionList funcs = subclass->functions();
-    for (const AbstractMetaFunction *function :  template_class->functions()) {
+    for (const AbstractMetaFunction* function : template_class->functions()) {
 
         if (function->isModifiedRemoved(TypeSystem::All))
             continue;
@@ -2056,7 +2053,7 @@ bool AbstractMetaBuilder::inheritTemplate(AbstractMetaClass *subclass,
             continue;
         }
 
-        for (AbstractMetaArgument *argument :  function->arguments()) {
+        for (const AbstractMetaArgument* argument : function->arguments()) {
             AbstractMetaType::shared_pointer atype = argument->type();
 
             AbstractMetaArgument *arg = argument->copy();

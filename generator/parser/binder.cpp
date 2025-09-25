@@ -331,7 +331,8 @@ void Binder::declare_symbol(SimpleDeclarationAST *node, InitDeclaratorAST *init_
       fun->setVariadics (decl_cc.isVariadics ());
 
       // ... and the signature
-      for (DeclaratorCompiler::Parameter p : decl_cc.parameters())
+      const QList<DeclaratorCompiler::Parameter> parameters = decl_cc.parameters();
+      for (const DeclaratorCompiler::Parameter& p : parameters)
         {
           ArgumentModelItem arg = model()->create<ArgumentModelItem>();
           arg->setType(qualifyType(p.type, _M_context));
@@ -361,7 +362,8 @@ void Binder::declare_symbol(SimpleDeclarationAST *node, InitDeclaratorAST *init_
         {
           typeInfo.setFunctionPointer (true);
           decl_cc.run (init_declarator->declarator);
-          for (DeclaratorCompiler::Parameter p : decl_cc.parameters()) {
+          const QList<DeclaratorCompiler::Parameter> parameters = decl_cc.parameters();
+          for (const DeclaratorCompiler::Parameter& p : parameters) {
             typeInfo.addArgument(p.type);
           }
         }
@@ -427,7 +429,8 @@ void Binder::visitFunctionDefinition(FunctionDefinitionAST *node)
     }
 
   decl_cc.run(declarator);
-  for (DeclaratorCompiler::Parameter p : decl_cc.parameters()) {
+  const QList<DeclaratorCompiler::Parameter> parameters = decl_cc.parameters();
+  for (const DeclaratorCompiler::Parameter& p : parameters) {
     if (p.type.isRvalueReference()) {
       //warnHere();
       //std::cerr << "** Skipping function with rvalue reference parameter: "
@@ -482,22 +485,25 @@ void Binder::visitFunctionDefinition(FunctionDefinitionAST *node)
   }
   _M_current_function->setVariadics (decl_cc.isVariadics ());
 
-  for (DeclaratorCompiler::Parameter p : decl_cc.parameters())
+  for (const DeclaratorCompiler::Parameter& p : parameters)
     {
       ArgumentModelItem arg = model()->create<ArgumentModelItem>();
-      
+
+      // Work on a local copy of the type only
+      TypeInfo parameter_type = p.type;
+
       if (_M_current_class && _M_current_class->isTemplateClass())
         {
-          QStringList qualifiedName = p.type.qualifiedName();
+          QStringList qualifiedName = parameter_type.qualifiedName();
           if (qualifiedName.size() == 1 && !qualifiedName.last().contains('<') &&
               qualifiedName.last() == _M_current_class->name().split('<').first())
             {
               // Fix: add template arguments if the argument type is the current class
               // name without template arguments
-              p.type.setQualifiedName(QStringList(_M_current_class->name()));
+              parameter_type.setQualifiedName(QStringList(_M_current_class->name()));
             }
         }
-      arg->setType(qualifyType(p.type, functionScope->qualifiedName()));
+      arg->setType(qualifyType(parameter_type, functionScope->qualifiedName()));
       arg->setName(p.name);
       arg->setDefaultValue(p.defaultValue);
       if (p.defaultValue)
@@ -651,7 +657,8 @@ void Binder::visitTypedef(TypedefAST *node)
         {
           typeInfo.setFunctionPointer (true);
           decl_cc.run (init_declarator->declarator);
-          for (DeclaratorCompiler::Parameter p : decl_cc.parameters()) {
+          const QList<DeclaratorCompiler::Parameter> parameters = decl_cc.parameters();
+          for (const DeclaratorCompiler::Parameter& p : parameters) {
             typeInfo.addArgument(p.type);
           }
         }
@@ -1031,7 +1038,8 @@ TypeInfo Binder::qualifyType(const TypeInfo &type, const QStringList &context) c
 
           if (ClassModelItem klass = scope.dynamicCast<_ClassModelItem> ())
             {
-              for (QString base : klass->baseClasses())
+              const QStringList baseClasses = klass->baseClasses();
+              for (const QString& base : baseClasses)
                 {
                   QStringList ctx = context;
                   ctx.removeLast();

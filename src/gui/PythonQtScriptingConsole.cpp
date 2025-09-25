@@ -299,8 +299,8 @@ void PythonQtScriptingConsole::handleTabCompletion()
   if (!lookup.isEmpty() || !compareText.isEmpty()) {
     compareText = compareText.toLower();
     QStringList found;
-    QStringList l = PythonQt::self()->introspection(_context, lookup, PythonQt::Anything);
-    for (QString n : l) {
+    const QStringList l = PythonQt::self()->introspection(_context, lookup, PythonQt::Anything);
+    for (const QString& n : l) {
       if (n.toLower().startsWith(compareText)) {
         found << n;
       }
