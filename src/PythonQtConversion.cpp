@@ -156,27 +156,27 @@ PyObject* PythonQtConv::convertQtValueToPythonInternal(int type, const void* dat
   case QMetaType::Void:
     Py_RETURN_NONE;
   case QMetaType::Char:
-    return PyInt_FromLong(*((char*)data));
+    return PyLong_FromLong(*((char*)data));
   case QMetaType::UChar:
-    return PyInt_FromLong(*((unsigned char*)data));
+    return PyLong_FromLong(*((unsigned char*)data));
   case QMetaType::Short:
-    return PyInt_FromLong(*((short*)data));
+    return PyLong_FromLong(*((short*)data));
   case QMetaType::UShort:
-    return PyInt_FromLong(*((unsigned short*)data));
+    return PyLong_FromLong(*((unsigned short*)data));
   case QMetaType::Long:
-    return PyInt_FromLong(*((long*)data));
+    return PyLong_FromLong(*((long*)data));
   case QMetaType::ULong:
     // does not fit into simple int of python
     return PyLong_FromUnsignedLong(*((unsigned long*)data));
   case QMetaType::Bool:
     return PythonQtConv::GetPyBool(*((bool*)data));
   case QMetaType::Int:
-    return PyInt_FromLong(*((int*)data));
+    return PyLong_FromLong(*((int*)data));
   case QMetaType::UInt:
     // does not fit into simple int of python
     return PyLong_FromUnsignedLong(*((unsigned int*)data));
   case QMetaType::QChar:
-    return PyInt_FromLong(*((unsigned short*)data));
+    return PyLong_FromLong(*((unsigned short*)data));
   case QMetaType::Float:
     return PyFloat_FromDouble(*((float*)data));
   case QMetaType::Double:

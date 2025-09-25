@@ -483,7 +483,7 @@ PyObject* PythonQtConvertIntegerMapToPython(const void* /*QMap<int, T>* */ inMap
   PyObject* key;
   PyObject* val;
   for (; t != map->constEnd(); t++) {
-    key = PyInt_FromLong(t.key());
+    key = PyLong_FromLong(t.key());
     val = PythonQtConv::convertQtValueToPythonInternal(innerType, &t.value());
     PyDict_SetItem(result, key, val);
     Py_DECREF(key);
