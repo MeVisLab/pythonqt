@@ -1230,7 +1230,7 @@ QStringList PythonQt::introspectObject(PyObject* object, ObjectType type)
       } else {
         PyObject* doc = PyObject_GetAttrString(object, "__doc__");
         if (doc) {
-          QString docString = QString::fromUtf8(PyString_AsString(doc));
+          QString docString = QString::fromUtf8(PyUnicode_AsUTF8(doc));
           Py_DECREF(doc);
           int idx = docString.indexOf("\n");
           if (idx != -1) {
@@ -1266,7 +1266,7 @@ QStringList PythonQt::introspectObject(PyObject* object, ObjectType type)
           value = PyObject_GetAttr(object, key);
         }
         if (!value) continue;
-        keystr = PyString_AsString(key);
+        keystr = PyUnicode_AsUTF8(key);
         static const QString underscoreStr("__tmp");
         if (!keystr.startsWith(underscoreStr)) {
           switch (type) {
@@ -1978,7 +1978,7 @@ QString PythonQt::getReturnTypeOfWrappedMethodHelper(const PythonQtObjectPtr& va
           if (typeInfo && typeInfo->pythonQtClassWrapper()) {
             PyObject* s = PyObject_GetAttrString(typeInfo->pythonQtClassWrapper(), "__module__");
             Q_ASSERT(PyString_Check(s));
-            type = QString(PyString_AsString(s)) + "." + type;
+            type = QString(PyUnicode_AsUTF8(s)) + "." + type;
             Py_DECREF(s);
           }
         }
@@ -2309,7 +2309,7 @@ const QMetaObject* PythonQtPrivate::buildDynamicMetaObject(PythonQtClassWrapper*
       // A signal object, register with the meta object
       PythonQtSignalFunctionObject* signal = (PythonQtSignalFunctionObject*)value;
       if (signal->_dynamicInfo) {
-        signal->_dynamicInfo->name = PyString_AsString(key);
+        signal->_dynamicInfo->name = PyUnicode_AsUTF8(key);
         for (const QByteArray& sig : qAsConst(signal->_dynamicInfo->signatures)) {
           builder.addSignal(signal->_dynamicInfo->name + "(" + sig + ")");
           needsMetaObject = true;
@@ -2325,7 +2325,7 @@ const QMetaObject* PythonQtPrivate::buildDynamicMetaObject(PythonQtClassWrapper*
     if (PythonQtProperty_Check(value)) {
       needsMetaObject = true;
       PythonQtProperty* prop = (PythonQtProperty*)value;
-      QMetaPropertyBuilder newProp = builder.addProperty(PyString_AsString(key), prop->data->cppType);
+      QMetaPropertyBuilder newProp = builder.addProperty(PyUnicode_AsUTF8(key), prop->data->cppType);
       newProp.setReadable(true);
       newProp.setWritable(prop->data->fset != nullptr);
       newProp.setResettable(prop->data->freset != nullptr);
@@ -2355,7 +2355,7 @@ const QMetaObject* PythonQtPrivate::buildDynamicMetaObject(PythonQtClassWrapper*
       Py_ssize_t count = PyList_Size(signatures);
       for (Py_ssize_t i = 0; i < count; i++) {
         PyObject* signature = PyList_GET_ITEM(signatures, i);
-        QByteArray sig = PyString_AsString(signature);
+        QByteArray sig = PyUnicode_AsUTF8(signature);
         // Split the return type and the rest of the signature,
         // no spaces should be in the rest of the signature...
         QList<QByteArray> parts = sig.split(' ');
@@ -2474,14 +2474,14 @@ QString PythonQtPrivate::getSignature(PyObject* object)
         QString docstr;
         PyObject* doc = PyObject_GetAttrString(object, "__doc__");
         if (doc) {
-          docstr = PyString_AsString(doc);
+          docstr = PyUnicode_AsUTF8(doc);
           Py_DECREF(doc);
         }
 
         PyObject* s = PyObject_GetAttrString(object, "__name__");
         if (s) {
           Q_ASSERT(PyString_Check(s));
-          signature = PyString_AsString(s);
+          signature = PyUnicode_AsUTF8(s);
           if (docstr.startsWith(signature + "(")) {
             signature = docstr;
           } else {
@@ -2500,14 +2500,14 @@ QString PythonQtPrivate::getSignature(PyObject* object)
       PyObject* s = PyObject_GetAttrString((PyObject*)func, "__name__");
       if (s) {
         Q_ASSERT(PyString_Check(s));
-        funcName = PyString_AsString(s);
+        funcName = PyUnicode_AsUTF8(s);
         Py_DECREF(s);
       }
       if (method && funcName == "__init__") {
         PyObject* s = PyObject_GetAttrString(object, "__name__");
         if (s) {
           Q_ASSERT(PyString_Check(s));
-          funcName = PyString_AsString(s);
+          funcName = PyUnicode_AsUTF8(s);
           Py_DECREF(s);
         }
       }
@@ -2526,18 +2526,18 @@ QString PythonQtPrivate::getSignature(PyObject* object)
         for (int i=0; i<nargs; i++) {
           PyObject* name = PyTuple_GetItem(co_varnames, i);
           Q_ASSERT(PyString_Check(name));
-          arguments << PyString_AsString(name);
+          arguments << PyUnicode_AsUTF8(name);
         }
         if (code->co_flags & CO_VARARGS) {
           PyObject* s = PyTuple_GetItem(co_varnames, nargs);
           Q_ASSERT(PyString_Check(s));
-          varargs = PyString_AsString(s);
+          varargs = PyUnicode_AsUTF8(s);
           nargs += 1;
         }
         if (code->co_flags & CO_VARKEYWORDS) {
           PyObject* s = PyTuple_GetItem(co_varnames, nargs);
           Q_ASSERT(PyString_Check(s));
-          varkeywords = PyString_AsString(s);
+          varkeywords = PyUnicode_AsUTF8(s);
         }
         Py_DECREF(co_varnames);
       }
@@ -2549,7 +2549,7 @@ QString PythonQtPrivate::getSignature(PyObject* object)
           PyObject* d = PyTuple_GetItem(defaultsTuple, i);
           PyObject* s = PyObject_Repr(d);
           Q_ASSERT(PyString_Check(s));
-          defaults << PyString_AsString(s);
+          defaults << PyUnicode_AsUTF8(s);
           Py_DECREF(s);
         }
       }

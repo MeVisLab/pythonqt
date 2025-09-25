@@ -91,7 +91,7 @@ PyObject* PythonQtSlotDecorator_call(PyObject* object, PyObject* args, PyObject*
 
   if (PyFunction_Check(function)) {
     PyObject* funcName = ((PyFunctionObject*)function)->func_name;
-    QByteArray slotName = PyString_AsString(funcName);
+    QByteArray slotName = PyUnicode_AsUTF8(funcName);
 
     QByteArray returnType = QMetaObject::normalizedType(self->returnType->constData());
     QByteArray signature = returnType + " " + slotName + "(" + *self->args + ")";

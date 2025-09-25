@@ -448,7 +448,7 @@ static PyObject *PythonQtClassWrapper_getattro(PyObject *obj, PyObject *name)
   const char *attributeName;
   PythonQtClassWrapper *wrapper = (PythonQtClassWrapper *)obj;
 
-  if ((attributeName = PyString_AsString(name)) == nullptr) {
+  if ((attributeName = PyUnicode_AsUTF8(name)) == nullptr) {
     return nullptr;
   }
   if (obj == (PyObject*)&PythonQtInstanceWrapper_Type) {

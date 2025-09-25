@@ -399,7 +399,7 @@ static PyObject *PythonQtInstanceWrapper_getattro(PyObject *obj,PyObject *name)
   const char *attributeName;
   PythonQtInstanceWrapper *wrapper = (PythonQtInstanceWrapper *)obj;
 
-  if ((attributeName = PyString_AsString(name)) == nullptr) {
+  if ((attributeName = PyUnicode_AsUTF8(name)) == nullptr) {
     return nullptr;
   }
 
@@ -631,7 +631,7 @@ static int PythonQtInstanceWrapper_setattro(PyObject *obj,PyObject *name,PyObjec
   const char *attributeName;
   PythonQtInstanceWrapper *wrapper = (PythonQtInstanceWrapper *)obj;
 
-  if ((attributeName = PyString_AsString(name)) == nullptr)
+  if ((attributeName = PyUnicode_AsUTF8(name)) == nullptr)
     return -1;
 
   PythonQtMemberInfo member = wrapper->classInfo()->member(attributeName);
