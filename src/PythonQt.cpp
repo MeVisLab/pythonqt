@@ -1977,7 +1977,7 @@ QString PythonQt::getReturnTypeOfWrappedMethodHelper(const PythonQtObjectPtr& va
           PythonQtClassInfo* typeInfo = _p->_knownClassInfos.value(QStringToPythonConstCharPointer(type));
           if (typeInfo && typeInfo->pythonQtClassWrapper()) {
             PyObject* s = PyObject_GetAttrString(typeInfo->pythonQtClassWrapper(), "__module__");
-            Q_ASSERT(PyString_Check(s));
+            Q_ASSERT(PyUnicode_Check(s));
             type = QString(PyUnicode_AsUTF8(s)) + "." + type;
             Py_DECREF(s);
           }
@@ -2480,7 +2480,7 @@ QString PythonQtPrivate::getSignature(PyObject* object)
 
         PyObject* s = PyObject_GetAttrString(object, "__name__");
         if (s) {
-          Q_ASSERT(PyString_Check(s));
+          Q_ASSERT(PyUnicode_Check(s));
           signature = PyUnicode_AsUTF8(s);
           if (docstr.startsWith(signature + "(")) {
             signature = docstr;
@@ -2499,14 +2499,14 @@ QString PythonQtPrivate::getSignature(PyObject* object)
       QString funcName;
       PyObject* s = PyObject_GetAttrString((PyObject*)func, "__name__");
       if (s) {
-        Q_ASSERT(PyString_Check(s));
+        Q_ASSERT(PyUnicode_Check(s));
         funcName = PyUnicode_AsUTF8(s);
         Py_DECREF(s);
       }
       if (method && funcName == "__init__") {
         PyObject* s = PyObject_GetAttrString(object, "__name__");
         if (s) {
-          Q_ASSERT(PyString_Check(s));
+          Q_ASSERT(PyUnicode_Check(s));
           funcName = PyUnicode_AsUTF8(s);
           Py_DECREF(s);
         }
@@ -2525,18 +2525,18 @@ QString PythonQtPrivate::getSignature(PyObject* object)
         Q_ASSERT(PyTuple_Check(co_varnames));
         for (int i=0; i<nargs; i++) {
           PyObject* name = PyTuple_GetItem(co_varnames, i);
-          Q_ASSERT(PyString_Check(name));
+          Q_ASSERT(PyUnicode_Check(name));
           arguments << PyUnicode_AsUTF8(name);
         }
         if (code->co_flags & CO_VARARGS) {
           PyObject* s = PyTuple_GetItem(co_varnames, nargs);
-          Q_ASSERT(PyString_Check(s));
+          Q_ASSERT(PyUnicode_Check(s));
           varargs = PyUnicode_AsUTF8(s);
           nargs += 1;
         }
         if (code->co_flags & CO_VARKEYWORDS) {
           PyObject* s = PyTuple_GetItem(co_varnames, nargs);
-          Q_ASSERT(PyString_Check(s));
+          Q_ASSERT(PyUnicode_Check(s));
           varkeywords = PyUnicode_AsUTF8(s);
         }
         Py_DECREF(co_varnames);
@@ -2548,7 +2548,7 @@ QString PythonQtPrivate::getSignature(PyObject* object)
         for (Py_ssize_t i=0; i<PyTuple_Size(defaultsTuple); i++) {
           PyObject* d = PyTuple_GetItem(defaultsTuple, i);
           PyObject* s = PyObject_Repr(d);
-          Q_ASSERT(PyString_Check(s));
+          Q_ASSERT(PyUnicode_Check(s));
           defaults << PyUnicode_AsUTF8(s);
           Py_DECREF(s);
         }
