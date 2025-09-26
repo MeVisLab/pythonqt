@@ -82,6 +82,8 @@ PyObject *PythonQtImportError;
 
 namespace
 {
+
+#if PY_VERSION_HEX >= 0x030C0000  // Python >= 3.12
 int getSysFlag(const char* flag_name)
 {
   PyObject* flags = PySys_GetObject("flags");
@@ -96,6 +98,25 @@ int getSysFlag(const char* flag_name)
   Py_DECREF(flag);
   if (PyErr_Occurred()) { PyErr_Clear(); return 0; };
   return flag_value;
+}
+#endif
+
+int getSysVerbose()
+{
+#if PY_VERSION_HEX >= 0x030C0000  // Python >= 3.12
+  return getSysFlag("verbose");
+#else
+  return Py_VerboseFlag;
+#endif
+}
+
+int getSysOptimizationLevel()
+{
+#if PY_VERSION_HEX >= 0x030C0000  // Python >= 3.12
+  return getSysFlag("optimize");
+#else
+  return Py_OptimizeFlag;
+#endif
 }
 
 }
@@ -328,11 +349,7 @@ PythonQtImporter_load_module(PyObject *obj, PyObject *args)
     }
 
     Py_DECREF(code);
-#if PY_VERSION_HEX >= 0x030C0000  // Python >= 3.12
-    if (getSysFlag("verbose")) {
-#else
-    if (Py_VerboseFlag) {
-#endif
+    if (getSysVerbose()) {
       PySys_WriteStderr("import %s # loaded from %s\n",
         fullname, QStringToPythonConstCharPointer(fullPath));
     }
@@ -579,11 +596,7 @@ void PythonQtImport::writeCompiledModule(PyCodeObject *co, const QString& filena
   }
   fp = open_exclusive(filename);
   if (fp == nullptr) {
-#if PY_VERSION_HEX >= 0x030C0000  // Python >= 3.12
-    if (getSysFlag("verbose")) {
-#else
-    if (Py_VerboseFlag) {
-#endif
+    if (getSysVerbose()) {
       PySys_WriteStderr(
       "# can't create %s\n", QStringToPythonConstCharPointer(filename));
     }
@@ -595,11 +608,7 @@ void PythonQtImport::writeCompiledModule(PyCodeObject *co, const QString& filena
   PyMarshal_WriteLongToFile(sourceSize, fp, Py_MARSHAL_VERSION);
   PyMarshal_WriteObjectToFile((PyObject *)co, fp, Py_MARSHAL_VERSION);
   if (ferror(fp)) {
-#if PY_VERSION_HEX >= 0x030C0000  // Python >= 3.12
-    if (getSysFlag("verbose")) {
-#else
-    if (Py_VerboseFlag) {
-#endif
+    if (getSysVerbose()) {
       PySys_WriteStderr("# can't write %s\n", QStringToPythonConstCharPointer(filename));
     }
     /* Don't keep partial file */
@@ -612,11 +621,7 @@ void PythonQtImport::writeCompiledModule(PyCodeObject *co, const QString& filena
   PyMarshal_WriteLongToFile(mtime, fp, Py_MARSHAL_VERSION);
   fflush(fp);
   fclose(fp);
-#if PY_VERSION_HEX >= 0x030C0000  // Python >= 3.12
-  if (getSysFlag("verbose")) {
-#else
-  if (Py_VerboseFlag) {
-#endif
+  if (getSysVerbose()) {
     PySys_WriteStderr("# wrote %s\n", QStringToPythonConstCharPointer(filename));
   }
 }
@@ -641,11 +646,7 @@ PythonQtImport::unmarshalCode(const QString& path, const QByteArray& data, time_
   }
 
   if (getLong((unsigned char *)buf) != PyImport_GetMagicNumber()) {
-#if PY_VERSION_HEX >= 0x030C0000  // Python >= 3.12
-    if (getSysFlag("verbose")) {
-#else
-    if (Py_VerboseFlag) {
-#endif
+    if (getSysVerbose()) {
       PySys_WriteStderr("# %s has bad magic\n",
             QStringToPythonConstCharPointer(path));
     }
@@ -656,11 +657,7 @@ PythonQtImport::unmarshalCode(const QString& path, const QByteArray& data, time_
     time_t timeDiff = getLong((unsigned char *)buf + 4) - mtime;
     if (timeDiff<0) { timeDiff = -timeDiff; }
     if (timeDiff > 1) {
-#if PY_VERSION_HEX >= 0x030C0000  // Python >= 3.12
-      if (getSysFlag("verbose")) {
-#else
-      if (Py_VerboseFlag) {
-#endif
+      if (getSysVerbose()) {
         PySys_WriteStderr("# %s has bad mtime\n",
         QStringToPythonConstCharPointer(path));
       }
@@ -799,11 +796,7 @@ PythonQtImport::getModuleCode(PythonQtImporter *self, const char* fullname, QStr
     PyObject *code = nullptr;
     test = path + zso->suffix;
 
-#if PY_VERSION_HEX >= 0x030C0000  // Python >= 3.12
-    if (getSysFlag("verbose") > 1) {
-#else
-    if (Py_VerboseFlag > 1) {
-#endif
+    if (getSysVerbose() > 1) {
       PySys_WriteStderr("# trying %s\n",
                         QStringToPythonConstCharPointer(test));
     }
@@ -913,11 +906,7 @@ void PythonQtImport::init()
   mlab_searchorder[0].suffix[0] = SEP;
   mlab_searchorder[1].suffix[0] = SEP;
   mlab_searchorder[2].suffix[0] = SEP;
-#if PY_VERSION_HEX >= 0x030C0000  // Python >= 3.12
-  if (getSysFlag("optimize")) {
-#else
-  if (Py_OptimizeFlag) {
-#endif
+  if (getSysOptimizationLevel()) {
     /* Reverse *.pyc and *.pyo */
     struct st_mlab_searchorder tmp;
     tmp = mlab_searchorder[0];
