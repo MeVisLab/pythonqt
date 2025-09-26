@@ -6,7 +6,6 @@
 
   <rejection class="QTextCodec::ConverterState"/>
   <rejection class="QTextCodecFactoryInterface"/>
-  <rejection class="QAbstractEventDispatcher"/>
   <rejection class="QAbstractFileEngine"/>
   <rejection class="QAbstractFileEngineHandler"/>
   <rejection class="QAbstractFileEngineIterator"/>
@@ -626,6 +625,7 @@
   <rejection class="Qt::Disambiguated_t"/>
 
   <rejection class="QAbstractEventDispatcherV2"/>  <!-- Currently not supported - can't cast to this type -->
+  <rejection class="QAbstractEventDispatcher::TimerInfoV2"/>
   <rejection class="QAbstractEventDispatcher" function-name="filterEvent"/>
   <rejection class="QAbstractEventDispatcher" function-name="setEventFilter"/>
 
@@ -1398,11 +1398,9 @@ public:
   <object-type name="QFinalState"/>
 
   <object-type name="QXmlStreamEntityResolver"/>
-  <object-type name="QAbstractEventDispatcher">
-    <extra-includes>
-        <include file-name="QPair" location="global"/>
-    </extra-includes>
-  </object-type>
+  <object-type name="QAbstractEventDispatcher" create-promoter="no" create-shell="no" before-version="6"/>
+  <object-type name="QAbstractEventDispatcher" since-version="6"/>
+  <object-type name="QAbstractEventDispatcher::TimerInfo"/>
   <object-type name="QEventLoop"/>
   <object-type name="QFile">
     <modify-function signature="readLink()const" remove="all"/>
