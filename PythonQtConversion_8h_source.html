@@ -269,7 +269,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>  }</div>
 <div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>  <a class="code hl_typedef" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a>* result = PyTuple_New(list-&gt;size());</div>
 <div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>  <span class="keywordtype">int</span> i = 0;</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>  Q_FOREACH (<span class="keyword">const</span> T&amp; value, *list) {</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>  <span class="keywordflow">for</span> (<span class="keyword">const</span> T&amp; value : *list) {</div>
 <div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    PyTuple_SET_ITEM(result, i, <a class="code hl_function" href="classPythonQtConv.html#aca808ab8c33f1a5f01610daa6d1a0fd4">PythonQtConv::convertQtValueToPythonInternal</a>(innerType, &amp;value));</div>
 <div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    i++;</div>
 <div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>  }</div>
@@ -323,7 +323,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>  }</div>
 <div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>  <a class="code hl_typedef" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a>* result = PyTuple_New(list-&gt;size());</div>
 <div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>  <span class="keywordtype">int</span> i = 0;</div>
-<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>  Q_FOREACH(<span class="keyword">const</span> T&amp; value, *list) {</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>  <span class="keywordflow">for</span> (<span class="keyword">const</span> T&amp; value : *list) {</div>
 <div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    T* newObject = <span class="keyword">new</span> T(value);</div>
 <div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    <a class="code hl_struct" href="structPythonQtInstanceWrapper.html">PythonQtInstanceWrapper</a>* wrap = (<a class="code hl_struct" href="structPythonQtInstanceWrapper.html">PythonQtInstanceWrapper</a>*)<a class="code hl_function" href="classPythonQt.html#ab07e80aa05006eeff5f411c5f5f550c8">PythonQt::priv</a>()-&gt;<a class="code hl_function" href="classPythonQtPrivate.html#aaf596849f5dd00f1e2f08c0511a0c870">wrapPtr</a>(newObject, innerType-&gt;<a class="code hl_function" href="classPythonQtClassInfo.html#ad831408128b4c53702d46dc04b192c9d">className</a>());</div>
 <div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>    wrap-&gt;<a class="code hl_variable" href="structPythonQtInstanceWrapper.html#a6b91d5d9813665a1e459242de435c349">_ownedByPythonQt</a> = <span class="keyword">true</span>;</div>
@@ -461,7 +461,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span>  <a class="code hl_typedef" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a>* result = PyTuple_New(list-&gt;size());</div>
 <div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span>  <span class="keywordtype">int</span> i = 0;</div>
 <div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span>  <span class="keyword">typedef</span> <span class="keyword">const</span> QPair&lt;T1, T2&gt; Pair;</div>
-<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>  Q_FOREACH(Pair&amp; value, *list) {</div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>  <span class="keywordflow">for</span> (Pair&amp; value : *list) {</div>
 <div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>    <a class="code hl_typedef" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a>* <span class="keywordtype">object</span> = <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">PythonQtConvertPairToPython&lt;T1, T2&gt;</a>(&amp;<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">value</a>, <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">innerType</a>);</div>
 <div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span>    <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">PyTuple_SET_ITEM</a>(<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">result</a>, <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">i</a>, <span class="keywordtype">object</span>);</div>
 <div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>    <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">i</a>++;</div>
@@ -671,7 +671,7 @@ $(document).ready(function() { init_codefold(0); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 26 2025 13:45:46 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Sep 26 2025 16:44:02 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
