@@ -98,7 +98,7 @@ jobs:
         path: generated_cpp
         if-no-files-found: error
 
-    - name: Build PythonQt Ubuntu
+    - name: Build PythonQt Ubuntu (exclude_generator)
       if: ${{ matrix.os == 'ubuntu' }}
       run: |
         echo ======= SYSTEM INFO ========
@@ -106,6 +106,7 @@ jobs:
         echo ============================
         qmake -r PythonQt.pro CONFIG+=ccache CONFIG+=release CONFIG+=force_debug_info \
         CONFIG+=sanitizer CONFIG+=sanitize_undefined CONFIG+=sanitize_address \
+        CONFIG+=exclude_generator \
         PYTHON_VERSION=$(python3 --version | cut -d " " -f 2 | cut -d "." -f1,2) \
         PYTHON_DIR=$(which python3 | xargs dirname | xargs dirname)
         make -j $(nproc)
@@ -113,13 +114,14 @@ jobs:
         UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
           make check TESTARGS="-platform offscreen"
           
-    - name: Build PythonQt Windows
+    - name: Build PythonQt Windows (exclude_generator)
       shell: cmd
       if: ${{ matrix.os == 'windows' }}
       run: |
         qmake -query
         python --version
         qmake CONFIG+=release CONFIG-=debug_and_release CONFIG-=debug_and_release_target ^
+           CONFIG+=exclude_generator ^
            "PYTHONQTALL_CONFIG=${{ matrix.pythonqtall-config }}" ^
            "PYTHON_PATH=%pythonLocation%" ^
            "PYTHON_VERSION=${{ steps.setenv.outputs.PYTHON_VERSION_SHORT }}" ^
