@@ -56,8 +56,28 @@ jobs:
       with:
          key: ${{ runner.os }}-ubuntu-${{ matrix.container_version }} 
          evict-old-files: 'job'
-         
-    - name: Build PythonQt
+
+    - name: Build PythonQt (generator_only)
+      run: |
+        export QT_SELECT=qt5
+        echo ======= SYSTEM INFO ========
+        uname -a; gcc --version | grep "gcc"; qmake --version
+        echo ============================
+        qmake -r PythonQt.pro CONFIG+=ccache CONFIG+=release CONFIG+=force_debug_info \
+        CONFIG+=sanitizer CONFIG+=sanitize_undefined CONFIG+=sanitize_address \
+        CONFIG+=generator_only
+        make -j $(nproc)
+
+    - name: Generate Wrappers
+      run: |
+        # workaround to allow to find the Qt include dirs for installed standard qt packages
+        mkdir /usr/include/qt5; ln -s /usr/include/x86_64-linux-gnu/qt5 /usr/include/qt5/include
+        export QTDIR=/usr/include/qt5
+        cd generator
+        UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
+        ./pythonqt_generator
+
+    - name: Build PythonQt (exclude_generator)
       run: |
         export QT_SELECT=qt5
         echo ======= SYSTEM INFO ========
@@ -65,13 +85,14 @@ jobs:
         echo ============================
         qmake -r PythonQt.pro CONFIG+=ccache CONFIG+=release CONFIG+=force_debug_info \
         CONFIG+=sanitizer CONFIG+=sanitize_undefined CONFIG+=sanitize_address \
+        CONFIG+=exclude_generator \
         PYTHON_VERSION=$(python3 --version | cut -d " " -f 2 | cut -d "." -f1,2) \
         PYTHON_DIR=$(which python3 | xargs dirname | xargs dirname)
         make -j $(nproc)
         PYTHONDEVMODE=1 PYTHONASYNCIODEBUG=1 PYTHONWARNINGS=error PYTHONMALLOC=malloc_debug \
         UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
           make check TESTARGS="-platform offscreen"
-        
+
     - name: Run memory tests with sanitizers
       run: |
         QT_VERSION_FULL=$(qmake -query QT_VERSION)
@@ -99,15 +120,6 @@ jobs:
         PYTHONQT_RUN_ONLY_CLEANUP_TESTS=1 \
         PYTHONQT_DISABLE_ASYNCIO=1 \
           make check TESTARGS="-platform minimal"
-      
-    - name: Generate Wrappers
-      run: |
-        # workaround to allow to find the Qt include dirs for installed standard qt packages
-        mkdir /usr/include/qt5; ln -s /usr/include/x86_64-linux-gnu/qt5 /usr/include/qt5/include
-        export QTDIR=/usr/include/qt5
-        cd generator
-        UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
-        ./pythonqt_generator
 
     - name: Upload Wrappers
       uses: actions/upload-artifact@v4
@@ -144,7 +156,25 @@ jobs:
     - name: Checkout PythonQt
       uses: actions/checkout@v5
 
-    - name: Build PythonQt
+    - name: Build PythonQt (generator_only)
+      run: |
+        export QT_SELECT=qt5
+        echo ======= SYSTEM INFO ========
+        uname -a; gcc --version | grep "gcc"; qmake-qt5 --version
+        echo ============================
+        qmake-qt5 -r PythonQt.pro CONFIG+=${{ matrix.configuration }} \
+          CONFIG+=generator_only
+        make -j $(nproc)
+
+    - name: Generate Wrappers
+      run: |
+        # workaround to allow to find the Qt include dirs for installed standard qt packages
+        mkdir /usr/include/qt5ln; ln -s /usr/include/qt5 /usr/include/qt5ln/include
+        export QTDIR=/usr/include/qt5ln
+        cd generator
+        ./pythonqt_generator
+
+    - name: Build PythonQt (exclude_generator)
       run: |
         export QT_SELECT=qt5
         echo ======= SYSTEM INFO ========
@@ -157,18 +187,11 @@ jobs:
         echo PYTHON_VERSION_SHORT=${PYTHON_VERSION_SHORT}
         echo PYTHON_DIR=${PYTHON_DIR}
         qmake-qt5 -r PythonQt.pro CONFIG+=${{ matrix.configuration }} \
+          CONFIG+=exclude_generator \
           "PYTHON_VERSION=${PYTHON_VERSION_SHORT}" "PYTHON_DIR=${PYTHON_DIR}"
         make -j $(nproc) && \
         PYTHONDEVMODE=1 PYTHONASYNCIODEBUG=1 PYTHONWARNINGS=error PYTHONMALLOC=malloc_debug \
           make check TESTARGS="-platform offscreen"
-
-    - name: Generate Wrappers
-      run: |
-        # workaround to allow to find the Qt include dirs for installed standard qt packages
-        mkdir /usr/include/qt5ln; ln -s /usr/include/qt5 /usr/include/qt5ln/include
-        export QTDIR=/usr/include/qt5ln
-        cd generator
-        ./pythonqt_generator
 
     - name: Upload Wrappers
       uses: actions/upload-artifact@v4
@@ -235,7 +258,25 @@ jobs:
         echo "MACOS_VERSION_FULL=$MACOS_VERSION_FULL" | tee -a $GITHUB_OUTPUT
         echo "MACOS_VERSION_SHORT=$MACOS_VERSION_SHORT" | tee -a $GITHUB_OUTPUT
 
-    - name: Build PythonQt
+    - name: Build PythonQt (generator_only)
+      run: |
+        set -ue
+        echo ======= SYSTEM INFO ========
+        uname -a; gcc --version | head -n 1; qmake --version
+        echo ============================
+        qmake CONFIG+=ccache CONFIG+=${{ matrix.configuration }} CONFIG+=sanitizer CONFIG+=sanitize_undefined CONFIG+=sanitize_address \
+          CONFIG+=generator_only \
+          -r PythonQt.pro
+        make -j $(nproc)
+
+    - name: Generate Wrappers
+      if: ${{ contains(matrix.configuration, 'release') }}
+      run: |
+        cd generator
+        UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
+        ./pythonqt_generator
+
+    - name: Build PythonQt (exclude_generator)
       run: |
         set -ue
         echo ======= SYSTEM INFO ========
@@ -246,6 +287,7 @@ jobs:
                  "python${PYTHON_VERSION_MAJOR}-embed" "python${PYTHON_VERSION_MAJOR}"
         do if pkg-config --exists "$i"; then PYTHON_PKGCONFIG_NAME="$i"; break; fi; done
         qmake CONFIG+=ccache CONFIG+=${{ matrix.configuration }} CONFIG+=sanitizer CONFIG+=sanitize_undefined CONFIG+=sanitize_address \
+          CONFIG+=exclude_generator \
           PYTHON_VERSION=${{ steps.versions.outputs.PYTHON_VERSION_SHORT }} \
           PYTHON_DIR="$pythonLocation" \
           PKGCONFIG+=$PYTHON_PKGCONFIG_NAME \
@@ -254,13 +296,6 @@ jobs:
         PYTHONDEVMODE=1 PYTHONASYNCIODEBUG=1 PYTHONWARNINGS=error PYTHONMALLOC=malloc_debug \
         UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
           make check TESTARGS="-platform offscreen"
-
-    - name: Generate Wrappers
-      if: ${{ contains(matrix.configuration, 'release') }}
-      run: |
-        cd generator
-        UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
-        ./pythonqt_generator
 
     - name: Upload Wrappers
       if: ${{ contains(matrix.configuration, 'release') }}
@@ -351,13 +386,31 @@ jobs:
         echo "QT_VERSION_SHORT=$QT_VERSION_SHORT" | tee -a $GITHUB_OUTPUT
         echo "PYTHON_VERSION_SHORT=$PYTHON_VERSION_SHORT" | tee -a $GITHUB_OUTPUT
 
-    - name: Build PythonQt
+    - name: Build PythonQt (generator_only)
+      shell: cmd
+      run: |
+        qmake -query
+        qmake CONFIG+=release CONFIG-=debug_and_release CONFIG-=debug_and_release_target ^
+           CONFIG+=generator_only ^
+           PythonQt.pro
+        mingw32-make -j 2 ^
+          || set CL=/MP && nmake
+
+    - name: Generate Wrappers
+      shell: cmd
+      run: |
+        cd generator
+        set QTDIR=%QT_ROOT_DIR%
+        pythonqt_generator
+
+    - name: Build PythonQt (exclude_generator)
       shell: cmd
       run: |
         qmake -query
         python --version
         set PYTHONQTALL_CONFIG=${{ matrix.pythonqtall-config }}
         qmake CONFIG+=release CONFIG-=debug_and_release CONFIG-=debug_and_release_target ^
+           CONFIG+=exclude_generator ^
            "PYTHON_PATH=%pythonLocation%" ^
            "PYTHON_VERSION=${{ steps.versions.outputs.PYTHON_VERSION_SHORT }}" ^
            PythonQt.pro
@@ -366,13 +419,6 @@ jobs:
         set PYTHONWARNINGS=error
         mingw32-make -j 2 && mingw32-make check "TESTARGS=-platform offscreen" ^
           || set CL=/MP && nmake && nmake check "TESTARGS=-platform offscreen"
-
-    - name: Generate Wrappers
-      shell: cmd
-      run: |
-        cd generator
-        set QTDIR=%QT_ROOT_DIR%
-        pythonqt_generator
 
     - name: Upload Wrappers
       if: (matrix.pythonqtall-config || '') == ''
