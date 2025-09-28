@@ -32,32 +32,6 @@ isEmpty(PYTHONQT_GENERATED_PATH) {
 }
 
 !exists($$PYTHONQT_GENERATED_PATH) {
-  # For Qt5 we know that the older generated wrappers work with the later
-  # versions, even (apparently) Qt5.15, so:
-  equals(QT_MAJOR_VERSION, 5) {
-    # Qt5: have 5.0, 5.3, 5.4, 5.6 and 5.11 at present:
-    lessThan(QT_MINOR_VERSION, 3) { # 5.1, 5.2
-      PYTHONQT_GENERATED_PATH_VERSIONED = $$PWD/../generated_cpp_50
-    }
-    else: lessThan(QT_MINOR_VERSION, 6) { # 5.3, 5.4, 5.5
-      PYTHONQT_GENERATED_PATH_VERSIONED = $$PWD/../generated_cpp_54
-    }
-    else: lessThan(QT_MINOR_VERSION, 11) { # 5.6, 5.7, 5.8, 5.9, 5.10
-      PYTHONQT_GENERATED_PATH_VERSIONED = $$PWD/../generated_cpp_56
-    }
-    else: lessThan(QT_MINOR_VERSION, 15) { # 5.11, 5.12, 5.13, 5.14
-      PYTHONQT_GENERATED_PATH_VERSIONED = $$PWD/../generated_cpp_511
-    }
-    else { # >= 5.15
-      PYTHONQT_GENERATED_PATH_VERSIONED = $$PWD/../generated_cpp_515
-    }
-    exists($$PYTHONQT_GENERATED_PATH_VERSIONED) {
-      PYTHONQT_GENERATED_PATH = $$PYTHONQT_GENERATED_PATH_VERSIONED
-    }
-  }
-}
-
-!exists($$PYTHONQT_GENERATED_PATH) {
   error("No generated wrapper sources for Qt $${QT_VERSION}.\n" \
         "Looked in:\n" \
         "  - $$PWD/../generated_cpp\n" \
