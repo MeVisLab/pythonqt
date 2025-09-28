@@ -60,6 +60,7 @@
 #include <QtCore/QTextStream>
 #include <QtCore/QVariant>
 #include <QtCore/QDir>
+#include <QtCore/QRegularExpression>
 
 static QString strip_template_args(const QString &name)
 {
@@ -416,6 +417,22 @@ AbstractMetaClass* AbstractMetaBuilder::getGlobalNamespace(const TypeEntry* type
 
 Include AbstractMetaBuilder::getRelativeInclude(const QString& path)
 {
+#ifdef Q_OS_MACOS
+    // If the parsed header lives inside a macOS framework bundle, emit just the
+    // bare header name (e.g., "qbytearray.h") so generators will produce <...>.
+    //
+    // Match both:
+    //   .../QtCore.framework/Headers/...
+    //   .../QtCore.framework/Versions/<X>/Headers/...
+    static const QRegularExpression fwHeadersRe(
+        QStringLiteral(R"(\.framework/(Versions/[^/]+/)?Headers/)")
+    );
+    if (fwHeadersRe.match(path).hasMatch()) {
+        const QString base = QFileInfo(path).fileName();  // e.g., "qbytearray.h"
+        return Include(Include::IncludePath, base);     // choose <> style
+    }
+#endif
+
     QString bestRelativePath;
     int bestNumDirectories = 0;
     // find the shortest relative path relative to all given include directories
