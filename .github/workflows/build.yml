@@ -270,7 +270,6 @@ jobs:
         make -j $(nproc)
 
     - name: Generate Wrappers
-      if: ${{ contains(matrix.configuration, 'release') }}
       run: |
         cd generator
         UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
