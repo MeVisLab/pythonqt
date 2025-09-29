@@ -649,11 +649,14 @@
   <rejection class="QJsonArray" function-name="erase"/>
   <rejection class="QJsonArray" function-name="insert"/>
   <rejection class="QJsonObject" function-name="begin"/>
+  <rejection class="QJsonObject" function-name="asKeyValueRange" since-version="6.10"/>
   <rejection class="QJsonObject" function-name="cbegin"/>
   <rejection class="QJsonObject" function-name="cend"/>
   <rejection class="QJsonObject" function-name="constBegin"/>
   <rejection class="QJsonObject" function-name="constEnd"/>
   <rejection class="QJsonObject" function-name="constFind"/>
+  <rejection class="QJsonObject" function-name="constKeyValueBegin" since-version="6.10"/>
+  <rejection class="QJsonObject" function-name="constKeyValueEnd" since-version="6.10"/>
   <rejection class="QJsonObject" function-name="end"/>
   <rejection class="QJsonObject" function-name="erase"/>
   <rejection class="QJsonObject" function-name="find"/>
@@ -2026,6 +2029,9 @@ public:
   }
     </inject-code>
   </object-type>
+  <rejection class="QCborMap" function-name="asKeyValueRange" since-version="6.10"/>
+  <rejection class="QCborMap" function-name="constKeyValueBegin" since-version="6.10"/>
+  <rejection class="QCborMap" function-name="constKeyValueEnd" since-version="6.10"/>
   <rejection class="QCborMap::Iterator"/>
   <rejection class="QCborMap::ConstIterator"/>
   <object-type name="QCborError" since-version="5.12">
