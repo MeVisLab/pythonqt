@@ -31,10 +31,9 @@ see https://github.com/danmar/simplecpp. It is licensed under the `0BSDL` licens
 see the `LICENSE` file in the generator/simplecpp directory.
 Copyright (C) 2016-2023 simplecpp team
 
-The generated wrappers are pre-generated and checked-in, so you only
-need to build and run the generator when you want to build additional wrappers
-or you want to upgrade/downgrade to another Qt version, but this requires
-updating the typesystems as well.
+Wrappers are **not** shipped pre-generated. You must run the generator to
+create wrappers for your Qt version. The repository may keep a
+single example tree (e.g., `generated_cpp_515`) only as a reference.
 
 # Building
 
@@ -42,12 +41,6 @@ updating the typesystems as well.
 
 Building PythonQt requires a couple of steps.
 Follow these instructions in order to get a correctly built PythonQt runtime and Qt bindings.
-
-### Recommendations
-
-It is recommended to build the Qt bindings yourself instead of using the pregenerated ones.
-This ensures the bindings are compatible with your Qt version.
-Do not build `PythonQt.pro` directly because it will only use the pregenerated bindings!
 
 ### Environment
 
@@ -76,48 +69,58 @@ First, you need to set a couple of environment variables, which depend on your P
 
 ### Binding Generator
 
-1. cd into the `generator` directory
-2. Run qmake on `generator.pro`
+1. Configure the generator at the top level
 
-   `qmake CONFIG+=Release generator.pro`
+   ```bash
+   qmake CONFIG+=generator_only CONFIG+=Release PythonQt.pro
+   ```
 
-3. Make the generator
+2. Build the generator
 
    Use `nmake` for MSVC (Visual Studio; make sure to have the environment variables set for Visual Studio beforehand). Otherwise, use `make`.
 
-4. Generate the bindings
+3. Generate the bindings
 
-   We use the generator executable from step 3 to generate the bindings.
+   Use the generator executable from step 2 to generate the bindings.
    The location of the generator executable can vary depending on your platform (the subdirectory is named after the current configuration, e.g., `release`).
    On Windows, the generator is named `pythonqt_generator.exe`; on all other platforms, it is named `pythonqt_generator`.
 
-   `<generator-executable> qtscript_masterinclude.h build_all.txt`
+   ```bash
+   <generator-executable> qtscript_masterinclude.h build_all.txt
+   ```
+
+
+**Output location:** by default the generator emits to `../generated_cpp`
+(relative to the build). You can override this with:
+
+```bash
+qmake PYTHONQT_GENERATED_PATH=/abs/path/to/generated_cpp
+```
+
+#### qmake toggles (optional)
+
+* `CONFIG+=generator_only`: build only the wrapper generator.
+* `CONFIG+=exclude_generator`: build everything **except** the generator.
+
+Use these to (1) build the generator, (2) run it to produce `generated_cpp`, then (3) build the rest without rebuilding the generator.
+
 
 ### PythonQt Runtime
 
-Next, we need the PythonQt runtime.
+Next, build the runtime (and extensions) without the generator.
 
-1. cd into the `src` directory
-2. qmake `src.pro`
+1. Configure at the top level
 
-   `qmake CONFIG+=Release src.pro`
+   ```
+   qmake CONFIG+=Release CONFIG+=exclude_generator PythonQt.pro
+   ```
 
-3. Make the runtime
-
-   Use `nmake` for MSVC (Visual Studio; make sure to have the environment variables set for Visual Studio beforehand). Otherwise, use `make`.
-
-### Extensions
-
-As a last step, we need to build the extensions.
-
-1. cd into `extensions`
-2. qmake `extensions.pro`
-
-   `qmake CONFIG+=Release extensions.pro`
-
-3. Make the extensions
+2. Build
 
    Use `nmake` for MSVC (Visual Studio; make sure to have the environment variables set for Visual Studio beforehand). Otherwise, use `make`.
+
+> The build will fail early if wrappers are missing from `../generated_cpp`
+> or the path specified via `PYTHONQT_GENERATED_PATH`.
 
 After all these steps, you should now have a fully working PythonQt runtime and Qt bindings for your Python/Qt installation 🎉.
 
