@@ -1196,6 +1196,7 @@ public:
     <modify-function signature="operator[](uint)const" remove="all"/>
     <modify-function signature="operator[](qsizetype)" remove="all"/>
     <modify-function signature="operator[](qsizetype)const" remove="all"/>
+    <modify-function signature="operator std::string_view()const" remove="all"/>
     <modify-function signature="push_back(char)" remove="all"/>
     <modify-function signature="push_back(const char*)" remove="all"/>
     <modify-function signature="push_front(char)" remove="all"/>
