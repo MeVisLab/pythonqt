@@ -227,6 +227,9 @@ namespace
       }
       dui.defines.push_back("__cplusplus=1");
       dui.defines.push_back("__STDC__");
+#ifdef Q_PROCESSOR_X86_64
+      dui.defines.push_back("__x86_64__");
+#endif
       dui.std = "c++20";
       dui.removeComments = true;
 
