@@ -226,7 +226,7 @@ jobs:
         archives: 'qtmultimedia qtmacextras qtbase qttools'
 
     - name: Setup Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v6
       with:
         python-version: '${{ matrix.python-version }}'
 
@@ -366,7 +366,7 @@ jobs:
         tools: ${{ contains(matrix.qt-arch, 'mingw') && format('tools_mingw,qt.tools.{0}0', matrix.qt-arch) || '' }}
 
     - name: Setup Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v6
       with:
         python-version: '${{ matrix.python-version }}'
         architecture: ${{ matrix.python-arch }}
