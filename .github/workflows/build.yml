@@ -168,11 +168,11 @@ jobs:
 
     - name: Generate Wrappers
       run: |
-        # workaround to allow to find the Qt include dirs for installed standard qt packages
-        mkdir /usr/include/qt5ln; ln -s /usr/include/qt5 /usr/include/qt5ln/include
-        export QTDIR=/usr/include/qt5ln
+        export QTDIR=/usr/include/qt5
         cd generator
-        ./pythonqt_generator
+        # Specify "/usr/include" so that header "bits/wordsize.h" included from "qconfig.h" is found.
+        # See https://git.rockylinux.org/staging/rpms/qt5-qtbase/-/blob/r8/SOURCES/qconfig-multilib.h
+        ./pythonqt_generator --include-paths=/usr/include
 
     - name: Build PythonQt (exclude_generator)
       run: |
@@ -198,8 +198,7 @@ jobs:
       with:
         name: wrappers_${{ matrix.container_os }}-${{ matrix.container_os_version }}_${{ matrix.configuration }}
         path: generated_cpp
-        # comment in after #291 is fixed
-        # if-no-files-found: error
+        if-no-files-found: error
 
   macOS:
     strategy:
