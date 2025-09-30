@@ -3,7 +3,7 @@ name: Build and Deploy Documentation
 on:
   push:
     branches: 
-      - master
+      - main
 
 defaults:
   run:
@@ -13,7 +13,7 @@ jobs:
   build_docs:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout master
+      - name: Checkout main
         uses: actions/checkout@v5
 
       - name: Install Doxygen
