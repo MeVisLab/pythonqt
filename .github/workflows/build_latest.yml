@@ -39,7 +39,7 @@ jobs:
         arch: ${{ (matrix.os == 'ubuntu' && (startsWith(matrix.qt-version, '5') && 'gcc_64' || 'linux_gcc_64')) || startsWith(matrix.qt-version, '5.12') && 'win64_msvc2017_64' || startsWith(matrix.qt-version, '6') && 'win64_msvc2022_64' || 'win64_msvc2019_64' }}
 
     - name: Setup Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v6
       with:
         python-version: '${{ matrix.python-version }}'
 
