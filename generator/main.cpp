@@ -120,20 +120,23 @@ namespace
         }
       }
 
-      // Prefer QLibraryInfo (works without QTDIR)
-      QString qtInclude = QLibraryInfo::location(QLibraryInfo::HeadersPath);
-      if (!isDir(qtInclude)) {
-        // Fallback to QTDIR/include
-        const QString qtDir = qEnvironmentVariable("QTDIR");
-        if (qtDir.isEmpty() || !isDir(qtDir)) {
-          const QString reason = QStringLiteral("The QTDIR environment variable ")
-                                 + (qtDir.isEmpty()
-                                        ? "is not set."
-                                        : "points to a non-existing directory.");
-          qWarning() << reason << "This may cause problems with finding the necessary include files.";
-        } else {
-          qtInclude = joinPath(qtDir, QStringLiteral("include"));
-        }
+      // Prefer QTDIR first (allows targeting a different Qt).
+      // If QTDIR/include exists use it, otherwise treat QTDIR as the include root
+      QString qtInclude;
+      const QString qtDir = qEnvironmentVariable("QTDIR");
+      if (!qtDir.isEmpty() && isDir(qtDir)) {
+        const QString qtIncludeUnder = joinPath(qtDir, QStringLiteral("include"));
+        qtInclude = isDir(qtIncludeUnder) ? qtIncludeUnder : qtDir;
+      } else {
+        const QString reason = QStringLiteral("The QTDIR environment variable ")
+                               + (qtDir.isEmpty()
+                                      ? "is not set."
+                                      : "points to a non-existing directory.");
+        qWarning().noquote() << reason << "Falling back to QLibraryInfo includes path.";
+      }
+      // Fallback to QLibraryInfo (works without QTDIR or when QTDIR unusable)
+      if (qtInclude.isEmpty()) {
+        qtInclude = QLibraryInfo::location(QLibraryInfo::HeadersPath);
       }
       if (!qtInclude.isEmpty() && isDir(qtInclude)) {
         qInfo() << "Using Qt headers at:" << qtInclude;
@@ -184,20 +187,21 @@ namespace
         }
       }
 
-      // Prefer QLibraryInfo (works without QTDIR)
-      QString qtLib = QLibraryInfo::location(QLibraryInfo::LibrariesPath);
-      if (!isDir(qtLib)) {
-        // Fallback to QTDIR/include
-        const QString qtDir = qEnvironmentVariable("QTDIR");
-        if (qtDir.isEmpty() || !isDir(qtDir)) {
-          const QString reason = QStringLiteral("The QTDIR environment variable ")
-                                 + (qtDir.isEmpty()
-                                        ? "is not set."
-                                        : "points to a non-existing directory.");
-          qWarning() << reason << "This may cause problems with finding the necessary framework files.";
-        } else {
-          qtLib = joinPath(qtDir, QStringLiteral("lib"));
-        }
+      // Prefer QTDIR/lib first (allows targeting a different Qt)
+      QString qtLib;
+      const QString qtDir = qEnvironmentVariable("QTDIR");
+      if (!qtDir.isEmpty() && isDir(qtDir)) {
+        qtLib = joinPath(qtDir, QStringLiteral("lib"));
+      } else {
+        const QString reason = QStringLiteral("The QTDIR environment variable ")
+                               + (qtDir.isEmpty()
+                                      ? "is not set."
+                                      : "points to a non-existing directory.");
+        qWarning().noquote() << reason << "Falling back to QLibraryInfo libraries path.";
+      }
+      // Fallback to QLibraryInfo (works without QTDIR or when QTDIR unusable)
+      if(qtLib.isEmpty()) {
+        qtLib = QLibraryInfo::location(QLibraryInfo::LibrariesPath);
       }
       if (!qtLib.isEmpty() && isDir(qtLib)) {
         qInfo() << "Using Qt frameworks at:" << qtLib;
