@@ -48,24 +48,10 @@
 
 #include <memory>
 
-#include <QtXml>
+#include <QFile>
+#include <QTextStream>
+#include <QXmlStreamReader>
 #include <qcompilerdetection.h> // Q_FALLTHROUGH
-
-/* This file needs to be rewritten as documented here:
- *
- * See: https://doc.qt.io/qt-6/xml-changes-qt6.html
- *
- * The rewrite may be backward compatible to Qt4.3 APIs because the base
- * facilites (QXmlStreamReader) used to relace the 'SAX' parser were apparently
- * available then.  Use of Xml5Compat is a work round until such a rewrite has
- * been done.
- */
-#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
-#   if defined(__GNUC__)
-#       pragma GCC warning "Qt6: implement Qt6 compatible XML reading"
-#   endif
-#   include <QtCore5Compat/QXmlDefaultHandler>
-#endif
 
 QString strings_Object = QLatin1String("Object");
 QString strings_String = QLatin1String("String");
@@ -150,9 +136,48 @@ class StackElement
     } value;
 };
 
-class Handler : public QXmlDefaultHandler
+class Handler
 {
 public:
+    class Attributes
+    {
+    public:
+        Attributes() = default;
+        explicit Attributes(const QXmlStreamAttributes &attributes)
+            : m_attributes(attributes) {}
+
+        int length() const { return m_attributes.size(); }
+
+        QString localName(int index) const
+        {
+            return m_attributes.at(index).name().toString();
+        }
+
+        QString value(int index) const
+        {
+            return m_attributes.at(index).value().toString();
+        }
+
+        QString value(const QString &qualifiedName) const
+        {
+            return m_attributes.hasAttribute(qualifiedName)
+                ? m_attributes.value(qualifiedName).toString()
+                : QString();
+        }
+
+        int index(const QString &qualifiedName) const
+        {
+            for (int i = 0; i < m_attributes.size(); ++i) {
+                if (m_attributes.at(i).name().toString() == qualifiedName)
+                    return i;
+            }
+            return -1;
+        }
+
+    private:
+        QXmlStreamAttributes m_attributes;
+    };
+
     Handler(TypeDatabase *database, unsigned int qtVersion, bool generate)
         : m_database(database)
         , m_generate(generate ? TypeEntry::GenerateAll : TypeEntry::GenerateForSubclass)
@@ -197,25 +222,23 @@ public:
         tagNames["reference-count"] = StackElement::ReferenceCount;
     }
 
+    bool parse(QXmlStreamReader &reader);
     bool startDocument() { m_nestingLevel = 0; m_disabledLevel = -1; return true; }
     bool startElement(const QString &namespaceURI, const QString &localName,
-                      const QString &qName, const QXmlAttributes &atts);
+                      const QString &qName, const Attributes &atts);
     bool endElement(const QString &namespaceURI, const QString &localName, const QString &qName);
 
     QString errorString() const { return m_error; }
-    bool error(const QXmlParseException &exception);
-    bool fatalError(const QXmlParseException &exception);
-    bool warning(const QXmlParseException &exception);
 
     bool characters(const QString &ch);
 
 private:
-    void fetchAttributeValues(const QString &name, const QXmlAttributes &atts,
+    void fetchAttributeValues(const QString &name, const Attributes &atts,
                               QHash<QString, QString> *acceptedAttributes);
 
-    bool importFileElement(const QXmlAttributes &atts);
+    bool importFileElement(const Attributes &atts);
     bool convertBoolean(const QString &, const QString &, bool);
-    bool qtVersionMatches(const QXmlAttributes& atts, bool& ok);
+    bool qtVersionMatches(const Attributes& atts, bool& ok);
 
     TypeDatabase *m_database;
     StackElement* current;
@@ -237,31 +260,55 @@ private:
     int m_disabledLevel{}; // if this is != 0, elements should be ignored
 };
 
-bool Handler::error(const QXmlParseException &e)
+bool Handler::parse(QXmlStreamReader &reader)
 {
-    qWarning() << "Error: line=" << e.lineNumber()
-        << ", column=" << e.columnNumber()
-        << ", message=" << e.message() << "\n";
-    return false;
+    if (!startDocument())
+        return false;
+
+    while (!reader.atEnd()) {
+        const auto token = reader.readNext();
+        switch (token) {
+        case QXmlStreamReader::StartElement: {
+            Attributes attributes(reader.attributes());
+            if (!startElement(reader.namespaceUri().toString(),
+                              reader.name().toString(),
+                              reader.qualifiedName().toString(),
+                              attributes)) {
+                return false;
+            }
+            break;
+        }
+        case QXmlStreamReader::EndElement:
+            if (!endElement(reader.namespaceUri().toString(),
+                            reader.name().toString(),
+                            reader.qualifiedName().toString())) {
+                return false;
+            }
+            break;
+        case QXmlStreamReader::Characters:
+        case QXmlStreamReader::EntityReference:
+            if (!characters(reader.text().toString())) {
+                return false;
+            }
+            break;
+        default:
+            break;
+        }
+    }
+
+    if (reader.hasError()) {
+        m_error = QStringLiteral("Parse error at line %1, column %2: %3")
+                      .arg(reader.lineNumber())
+                      .arg(reader.columnNumber())
+                      .arg(reader.errorString());
+        qWarning() << m_error;
+        return false;
+    }
+
+    return true;
 }
 
-bool Handler::fatalError(const QXmlParseException &e)
-{
-    qWarning() << "Fatal error: line=" << e.lineNumber()
-        << ", column=" << e.columnNumber()
-        << ", message=" << e.message() << "\n";
-    return false;
-}
-
-bool Handler::warning(const QXmlParseException &e)
-{
-    qWarning() << "Warning: line=" << e.lineNumber()
-        << ", column=" << e.columnNumber()
-        << ", message=" << e.message() << "\n";
-    return false;
-}
-
-void Handler::fetchAttributeValues(const QString &name, const QXmlAttributes &atts,
+void Handler::fetchAttributeValues(const QString &name, const Attributes &atts,
                                    QHash<QString, QString> *acceptedAttributes)
 {
     Q_ASSERT(acceptedAttributes != 0);
@@ -398,7 +445,7 @@ bool Handler::characters(const QString &ch)
     return true;
 }
 
-bool Handler::importFileElement(const QXmlAttributes &atts)
+bool Handler::importFileElement(const Attributes &atts)
 {
     QString fileName = atts.value("name");
     if(fileName.isEmpty()){
@@ -470,7 +517,7 @@ bool Handler::convertBoolean(const QString &_value, const QString &attributeName
     }
 }
 
-bool Handler::qtVersionMatches(const QXmlAttributes& atts, bool& ok)
+bool Handler::qtVersionMatches(const Attributes& atts, bool& ok)
 {
   ok = true;
   int beforeIndex = atts.index("before-version");
@@ -501,7 +548,7 @@ bool Handler::qtVersionMatches(const QXmlAttributes& atts, bool& ok)
 }
 
 bool Handler::startElement(const QString &, const QString &n,
-                           const QString &, const QXmlAttributes &atts)
+                           const QString &, const Attributes &atts)
 {
     QString tagName = n.toLower();
     m_nestingLevel++;
@@ -1605,22 +1652,19 @@ bool TypeDatabase::parseFile(const QString &filename, unsigned int qtVersion, bo
         // If opening fails, attempt to load from Qt resources
         file.setFileName(":/trolltech/generator/" + filename);
         if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            qWarning() << "Could not open file:" << filename;
+            ReportHandler::warning(QString::fromLatin1("Could not open typesystem file: '%1'").arg(filename));
             return false;
         }
     }
 
-    QXmlInputSource source(&file);
-
     int count = m_entries.size();
 
-    QXmlSimpleReader reader;
     Handler handler(this, qtVersion, generate);
+    QXmlStreamReader reader(&file);
 
-    reader.setContentHandler(&handler);
-    reader.setErrorHandler(&handler);
-
-    bool ok = reader.parse(&source, false);
+    bool ok = handler.parse(reader);
+    if (!ok && !handler.errorString().isEmpty())
+        ReportHandler::warning(handler.errorString());
 
     int newCount = m_entries.size();
 
