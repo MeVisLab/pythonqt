@@ -794,6 +794,7 @@ class ComplexTypeEntry : public TypeEntry
 {
 public:
     enum TypeFlag {
+        NoTypeFlags        = 0x0,
         ForceAbstract      = 0x1,
         DeleteInMainThread = 0x2,
         Deprecated         = 0x4
@@ -809,7 +810,7 @@ public:
           m_createShell(false),
           m_createPromoter(false),
           m_noCopy(false),
-          m_type_flags(0)
+          m_type_flags(TypeFlag::NoTypeFlags)
     {
         Include inc;
         inc.name = "QVariant";
