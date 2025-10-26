@@ -277,18 +277,18 @@ void SetupGenerator::generate()
       ReportHandler::debugSparse(QString("generating: %1").arg(fileName));
       QTextStream &s = initFile.stream;
 
-      s << "#include <PythonQt.h>" << endl;
-      s << "#include <PythonQtConversion.h>" << endl;
+      s << "#include <PythonQt.h>" << Qt::endl;
+      s << "#include <PythonQtConversion.h>" << Qt::endl;
 
       for (int i=0; i<(list.count()+ maxClassesPerFile -1) / maxClassesPerFile; i++) {
-        s << "#include \"" << packKey << QString::number(i) << ".h\"" << endl;
+        s << "#include \"" << packKey << QString::number(i) << ".h\"" << Qt::endl;
       }
-      s << endl;
+      s << Qt::endl;
 
       QStringList polymorphicHandlers;
       if (!isBuiltin) {
         polymorphicHandlers = writePolymorphicHandler(s, list.at(0)->package(), classes_with_polymorphic_id, list);
-        s << endl;
+        s << Qt::endl;
       }
 
       QSet<QString> listRegistration;
@@ -320,14 +320,14 @@ void SetupGenerator::generate()
       for (QString snip :  snips) {
         s << snip;
       }
-      s << endl;
+      s << Qt::endl;
 
       // declare individual class creation functions
-      s << "void PythonQt_init_" << initName << "(PyObject* module) {" << endl;
+      s << "void PythonQt_init_" << initName << "(PyObject* module) {" << Qt::endl;
 
       for (const AbstractMetaClass* cls : list) {
         if (cls->qualifiedCppName().contains("Ssl")) {
-          s << "#ifndef QT_NO_SSL"  << endl;
+          s << "#ifndef QT_NO_SSL"  << Qt::endl;
         }
         AbstractMetaFunctionList ctors = cls->queryFunctions(AbstractMetaClass::Constructors
           | AbstractMetaClass::WasVisible
@@ -358,28 +358,28 @@ void SetupGenerator::generate()
           operatorCodes = "0";
         }
         if (cls->isQObject()) {
-          s << "PythonQt::priv()->registerClass(&" << cls->qualifiedCppName() << "::staticMetaObject, \"" << packageName <<"\", PythonQtCreateObject<PythonQtWrapper_" << cls->name() << ">" << shellCreator << ", module, " << operatorCodes <<");" << endl;
+          s << "PythonQt::priv()->registerClass(&" << cls->qualifiedCppName() << "::staticMetaObject, \"" << packageName <<"\", PythonQtCreateObject<PythonQtWrapper_" << cls->name() << ">" << shellCreator << ", module, " << operatorCodes <<");" << Qt::endl;
         } else if (cls->isGlobalNamespace()) {
-          s << "PythonQt::priv()->registerGlobalNamespace(\"" << cls->qualifiedCppName() << "\", \"" << packageName << "\", PythonQtCreateObject<PythonQtWrapper_" << cls->name() << ">, PythonQtWrapper_" << cls->name() << "::staticMetaObject, module); " << endl;
+          s << "PythonQt::priv()->registerGlobalNamespace(\"" << cls->qualifiedCppName() << "\", \"" << packageName << "\", PythonQtCreateObject<PythonQtWrapper_" << cls->name() << ">, PythonQtWrapper_" << cls->name() << "::staticMetaObject, module); " << Qt::endl;
         } else {
           QString baseName = cls->baseClass()?cls->baseClass()->qualifiedCppName():"";
-          s << "PythonQt::priv()->registerCPPClass(\""<< cls->qualifiedCppName() << "\", \"" << baseName << "\", \"" << packageName <<"\", PythonQtCreateObject<PythonQtWrapper_" << cls->name() << ">" << shellCreator << ", module, " << operatorCodes <<");" << endl;
+          s << "PythonQt::priv()->registerCPPClass(\""<< cls->qualifiedCppName() << "\", \"" << baseName << "\", \"" << packageName <<"\", PythonQtCreateObject<PythonQtWrapper_" << cls->name() << ">" << shellCreator << ", module, " << operatorCodes <<");" << Qt::endl;
         }
         for (AbstractMetaClass* interface :  cls->interfaces()) {
           // the interface might be our own class... (e.g. QPaintDevice)
           if (interface->qualifiedCppName() != cls->qualifiedCppName()) {
-            s << "PythonQt::self()->addParentClass(\""<< cls->qualifiedCppName() << "\", \"" << interface->qualifiedCppName() << "\",PythonQtUpcastingOffset<" << cls->qualifiedCppName() <<","<<interface->qualifiedCppName()<<">());" << endl;
+            s << "PythonQt::self()->addParentClass(\""<< cls->qualifiedCppName() << "\", \"" << interface->qualifiedCppName() << "\",PythonQtUpcastingOffset<" << cls->qualifiedCppName() <<","<<interface->qualifiedCppName()<<">());" << Qt::endl;
           }
         }
         if (cls->qualifiedCppName().contains("Ssl")) {
-          s << "#endif"  << endl;
+          s << "#endif"  << Qt::endl;
         }
       }
-      s << endl;
+      s << Qt::endl;
       for (QString handler : polymorphicHandlers) {
-        s << "PythonQt::self()->addPolymorphicHandler(\""<< handler << "\", polymorphichandler_" << handler << ");" << endl;
+        s << "PythonQt::self()->addPolymorphicHandler(\""<< handler << "\", polymorphichandler_" << handler << ");" << Qt::endl;
       }
-      s << endl;
+      s << Qt::endl;
 
 #if QT_VERSION < QT_VERSION_CHECK(5,14,0)
       QStringList list = listRegistration.toList();
@@ -389,16 +389,16 @@ void SetupGenerator::generate()
       list.sort();
       for(auto &&name: list) {
         if (name.contains("Ssl")) {
-          s << "#ifndef QT_NO_SSL" << endl;
+          s << "#ifndef QT_NO_SSL" << Qt::endl;
         }
-        s << name << endl;
+        s << name << Qt::endl;
         if (name.contains("Ssl")) {
-          s << "#endif" << endl;
+          s << "#endif" << Qt::endl;
         }
       }
 
       s << "}";
-      s << endl;
+      s << Qt::endl;
     }
   }
 }
@@ -440,21 +440,21 @@ QStringList SetupGenerator::writePolymorphicHandler(QTextStream &s, const QStrin
             handlers.append(handler);
 
             s << "static void* polymorphichandler_" << handler
-              << "(const void *ptr, const char **class_name)" << endl
-              << "{" << endl
-              << "    Q_ASSERT(ptr != nullptr);" << endl
+              << "(const void *ptr, const char **class_name)" << Qt::endl
+              << "{" << Qt::endl
+              << "    Q_ASSERT(ptr != nullptr);" << Qt::endl
               << "    " << cls->qualifiedCppName() << " *object = ("
-              << cls->qualifiedCppName() << " *)ptr;" << endl;
+              << cls->qualifiedCppName() << " *)ptr;" << Qt::endl;
           }
 
           // For each, add case label
           QString polyId = clazz->typeEntry()->polymorphicIdValue();
           s << "    if ("
             << polyId.replace("%1", "object")
-            << ") {" << endl
-            << "        *class_name = \"" << clazz->name() << "\";" << endl
-            << "        return (" << clazz->qualifiedCppName() << "*)object;" << endl
-            << "    }" << endl;
+            << ") {" << Qt::endl
+            << "        *class_name = \"" << clazz->name() << "\";" << Qt::endl
+            << "        return (" << clazz->qualifiedCppName() << "*)object;" << Qt::endl
+            << "    }" << Qt::endl;
         } else {
           QString warning = QString("class '%1' inherits from polymorphic class '%2', but has no polymorphic id set")
             .arg(clazz->name())
@@ -467,8 +467,8 @@ QStringList SetupGenerator::writePolymorphicHandler(QTextStream &s, const QStrin
 
     // Close the function if it has been opened
     if (!first) {
-      s << "    return nullptr;" << endl
-        << "}" << endl;
+      s << "    return nullptr;" << Qt::endl
+        << "}" << Qt::endl;
     }
   }
 

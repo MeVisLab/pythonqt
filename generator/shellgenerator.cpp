@@ -432,7 +432,7 @@ void ShellGenerator::writeInclude(QTextStream &stream, const Include &inc)
     stream << ">";
   else
     stream << "\"";
-  stream << endl;
+  stream << Qt::endl;
 }
 
 const AbstractMetaClass* ShellGenerator::setCurrentScope(const AbstractMetaClass* scope)

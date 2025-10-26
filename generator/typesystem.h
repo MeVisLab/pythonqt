@@ -61,24 +61,14 @@
     };
 #endif
 
-/* Global endl (::endl) is used extensively in the generator .cpp files.  This
- * was supported by Qt until Qt6.  In Qt5.14 Qt::endl was added in anticipation
- * of the Qt6 change and the use of global endl could be avoided (it does not
- * seem to have been explicitly deprecated).  This gives backward compatibility
- * for global endl in Qt6 (not Qt5, where global endl was still available).
- *
- * Note that 'constexpr' is available in Qt6 because Qt6 requires C++17;
- * constexpr was introduced in C++11.  Likewise for decltype.  Qt::endl is a
- * function so ::endl is a pointer to the function and the implicit conversion
- * is used; this is to cause an compiler error in the future if the base type
- * of Qt::endl changes.
- *
- * When versions of Qt older than 5.14 are no longer supported this can be
- * removed however all the 'endl' references in the code will need to be
- * changed to Qt::endl.
+/* Qt < 5.14 only provided ::endl (global). Create a namespaced alias so code
+ * can uniformly use Qt::endl across Qt versions.
  */
-#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
-    static constexpr decltype (Qt::endl) *endl = Qt::endl;
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
+    namespace Qt {
+        using qt_endl_t = QTextStream& (*)(QTextStream&);
+        static constexpr qt_endl_t endl = ::endl;
+    }
 #endif
 /* END: Qt compatibility. */
 
