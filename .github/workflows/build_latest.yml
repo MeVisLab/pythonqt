@@ -85,11 +85,11 @@ jobs:
     - name: Generate Wrappers
       shell: bash
       run: |
-        cd generator
         QTDIR="$QT_ROOT_DIR" \
         UBSAN_OPTIONS="halt_on_error=1" \
         ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
-        ./pythonqt_generator
+        ./generator/pythonqt_generator \
+           --output-directory=.
 
     - name: Upload Wrappers
       uses: actions/upload-artifact@v4

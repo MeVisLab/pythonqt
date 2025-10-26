@@ -73,9 +73,9 @@ jobs:
         # workaround to allow to find the Qt include dirs for installed standard qt packages
         mkdir /usr/include/qt5; ln -s /usr/include/x86_64-linux-gnu/qt5 /usr/include/qt5/include
         export QTDIR=/usr/include/qt5
-        cd generator
         UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
-        ./pythonqt_generator
+        ./generator/pythonqt_generator \
+           --output-directory=.
 
     - name: Build PythonQt (exclude_generator)
       run: |
@@ -169,10 +169,11 @@ jobs:
     - name: Generate Wrappers
       run: |
         export QTDIR=/usr/include/qt5
-        cd generator
         # Specify "/usr/include" so that header "bits/wordsize.h" included from "qconfig.h" is found.
         # See https://git.rockylinux.org/staging/rpms/qt5-qtbase/-/blob/r8/SOURCES/qconfig-multilib.h
-        ./pythonqt_generator --include-paths=/usr/include
+        ./generator/pythonqt_generator \
+          --include-paths=/usr/include \
+          --output-directory=.
 
     - name: Build PythonQt (exclude_generator)
       run: |
@@ -270,9 +271,9 @@ jobs:
 
     - name: Generate Wrappers
       run: |
-        cd generator
         UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
-        ./pythonqt_generator
+        ./generator/pythonqt_generator \
+          --output-directory=.
 
     - name: Build PythonQt (exclude_generator)
       run: |
@@ -397,9 +398,9 @@ jobs:
     - name: Generate Wrappers
       shell: cmd
       run: |
-        cd generator
         set QTDIR=%QT_ROOT_DIR%
-        pythonqt_generator
+        generator\pythonqt_generator ^
+          --output-directory=.
 
     - name: Build PythonQt (exclude_generator)
       shell: cmd
