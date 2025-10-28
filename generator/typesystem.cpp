@@ -1600,7 +1600,16 @@ bool TypeDatabase::parseFile(const QString &filename, unsigned int qtVersion, bo
 {
     QFile file(filename);
 
-    Q_ASSERT(file.exists());
+    // Attempt to open the file from the specified path
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        // If opening fails, attempt to load from Qt resources
+        file.setFileName(":/trolltech/generator/" + filename);
+        if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            qWarning() << "Could not open file:" << filename;
+            return false;
+        }
+    }
+
     QXmlInputSource source(&file);
 
     int count = m_entries.size();
