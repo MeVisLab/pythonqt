@@ -92,7 +92,7 @@ jobs:
            --output-directory=.
 
     - name: Upload Wrappers
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       with:
         name: wrappers_${{ matrix.os }}_${{ steps.setenv.outputs.QT_VERSION_SHORT }}
         path: generated_cpp
