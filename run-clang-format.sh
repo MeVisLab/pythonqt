@@ -5,12 +5,7 @@ which -a clang-format-20 > /dev/null \
 		|| { echo "use '${0} <clang-format-version-not-less-than-20>' to call exact proper version" ; exit 1 ; }
 
 IGNORED_DIRS=(
-    "./generated_cpp_50"
-    "./generated_cpp_511"
     "./generated_cpp_515"
-    "./generated_cpp_53"
-    "./generated_cpp_54"
-    "./generated_cpp_56"
     "./examples"
     "./generator/simplecpp"
     "./build"
