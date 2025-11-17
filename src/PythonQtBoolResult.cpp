@@ -103,15 +103,15 @@ static PyNumberMethods PythonQtBoolResult_as_number = {
 };
 
 PyTypeObject PythonQtBoolResult_Type = {
-    PyVarObject_HEAD_INIT(&PyType_Type, 0)
-    "BoolResult",
-    sizeof(PythonQtBoolResultObject),
-    0,
+    PyVarObject_HEAD_INIT(&PyType_Type, 0) /*tp_base*/
+    "BoolResult", /* tp_name */
+    sizeof(PythonQtBoolResultObject), /* tp_basicsize */
+    0, /* tp_itemsize */
     nullptr,      /* tp_dealloc */
     0,            /* tp_vectorcall_offset */
     nullptr,      /* tp_getattr */
     nullptr,      /* tp_setattr */
-    nullptr,
+    nullptr,   /* tp_as_async */
     (reprfunc)PythonQtBoolResult_repr,      /* tp_repr */
     &PythonQtBoolResult_as_number,          /* tp_as_number */
     nullptr,      /* tp_as_sequence */

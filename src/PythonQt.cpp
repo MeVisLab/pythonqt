@@ -1819,15 +1819,15 @@ static PyMethodDef PythonQtMethods[] = {
 };
 
 static PyModuleDef PythonQtModuleDef = {
-  PyModuleDef_HEAD_INIT,
-  "",
-  nullptr,
-  -1,
-  PythonQtMethods,
-  nullptr,
-  nullptr,
-  nullptr,
-  nullptr
+  PyModuleDef_HEAD_INIT, /* m_base */
+  "",  /* m_name */
+  nullptr, /* m_doc */
+  -1, /* m_size */
+  PythonQtMethods, /* m_methods */
+  nullptr, /* m_slots */
+  nullptr, /* m_traverse */
+  nullptr, /* m_clear */
+  nullptr  /* m_free */
 };
 
 void PythonQt::initPythonQtModule(bool redirectStdOut, const QByteArray& pythonQtModuleName)
