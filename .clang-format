@@ -7,7 +7,7 @@ AccessModifierOffset: -2
 ReflowComments:  false
 ConstructorInitializerIndentWidth: 2
 ContinuationIndentWidth: 2
-AllowShortFunctionsOnASingleLine: None
+AllowShortFunctionsOnASingleLine: Inline
 BreakBeforeBraces: Custom
 BraceWrapping:
     AfterExternBlock: true
@@ -15,8 +15,8 @@ BraceWrapping:
     AfterFunction: true
     AfterNamespace: false
     AfterEnum: false
-    AfterCaseLabel: false  
-    AfterControlStatement: Never
+    AfterCaseLabel: true
+    AfterControlStatement: MultiLine
     AfterStruct:     false
     AfterUnion:      false
     BeforeLambdaBody: false
@@ -29,7 +29,6 @@ BraceWrapping:
     SplitEmptyNamespace: true
 PPIndentWidth: 2
 FixNamespaceComments: false
-# ??????
 IndentPPDirectives: BeforeHash
 SpaceBeforeParens: Custom
 SpaceBeforeParensOptions:
@@ -96,14 +95,13 @@ AlignConsecutiveMacros:
   PadOperators:    false
 AlignEscapedNewlines: DontAlign
 AlignOperands:   Align
-AlignTrailingComments: false
-# ??
+AlignTrailingComments: true
 AllowAllArgumentsOnNextLine: false
 AllowAllParametersOfDeclarationOnNextLine: true
 AllowShortBlocksOnASingleLine: Empty
 AllowShortCaseLabelsOnASingleLine: false
 AllowShortEnumsOnASingleLine: true
-# AllowShortIfStatementsOnASingleLine: Nevers
+AllowShortIfStatementsOnASingleLine: Never
 AllowShortLambdasOnASingleLine: All
 AllowShortLoopsOnASingleLine: false
 AlwaysBreakAfterDefinitionReturnType: None
@@ -128,20 +126,6 @@ EmptyLineAfterAccessModifier: Leave
 MaxEmptyLinesToKeep: 1
 EmptyLineBeforeAccessModifier: LogicalBlock
 ExperimentalAutoDetectBinPacking: false
-Macros:
-  - >-
-    PyObject_HEAD_INIT(type)={
-        { 0xFFFFFFFF },
-        (type)
-    },
-  - >-
-    PyVarObject_HEAD_INIT(type, size)={
-        {
-            { 0xFFFFFFFF },
-            (type)
-        },
-        (size)
-    },
 ForEachMacros:
   - foreach
   - Q_FOREACH
@@ -160,7 +144,6 @@ IndentWrappedFunctionNames: false
 InsertBraces:    false
 InsertTrailingCommas: None
 KeepEmptyLinesAtTheStartOfBlocks: true
-# ???
 LambdaBodyIndentation: OuterScope
 PackConstructorInitializers: BinPack
 RemoveBracesLLVM: false
