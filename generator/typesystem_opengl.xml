@@ -18,7 +18,7 @@
   <enum-type name="QGLBuffer::UsagePattern"/>
   <enum-type name="QGLFormat::OpenGLContextProfile"/>
   <enum-type name="QGLFunctions::OpenGLFeature" flags="QGLFunctions::OpenGLFeatures"/>
-  
+
   <namespace-type name="QGL">
      <include file-name="qgl.h" location="global"/>
   </namespace-type>
@@ -50,7 +50,7 @@
     <modify-function signature="setUniformValueArray(int, const QVector2D *, int)" rename="setUniformValueArray_QVector2D"/>
     <modify-function signature="setUniformValueArray(int, const QVector3D *, int)" rename="setUniformValueArray_QVector3D"/>
     <modify-function signature="setUniformValueArray(int, const QVector4D *, int)" rename="setUniformValueArray_QVector4D"/>
-    
+
     <modify-function signature="setUniformValueArray(const char*, const GLint *, int)" rename="setUniformValueArray_int"/>
     <modify-function signature="setUniformValueArray(const char*, const GLuint *, int)" remove="all"/>
     <modify-function signature="setUniformValueArray(const char*, const QVector2D *, int)" rename="setUniformValueArray_QVector2D"/>

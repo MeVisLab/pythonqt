@@ -221,8 +221,8 @@ Qt framework</a>.
   -# \anchor qvariant QVariants are mapped recursively as given above, e.g. a dictionary can
   contain lists of dictionaries of doubles.
   -# \anchor pyobject PyObject is passed as direct pointer, which allows to pass/return any Python object directly to/from
-  a Qt slot that uses PyObject* as its argument/return value.  
-  
+  a Qt slot that uses PyObject* as its argument/return value.
+
   All Qt QVariant types are implemented, PythonQt supports the complete Qt API for these objects.
 
 
@@ -273,11 +273,11 @@ Qt framework</a>.
 
  \code
  class MySender(QtCore.QObject):
-   
+
    emitProgress = QtCore.Signal(float)  # this is actually a double argument in C++
-   
+
  class MyReceiver(QtCore.QObject):
-   
+
    @QtCore.Slot(float)
    def progress(self, value):
      print(f"progress: {value}")

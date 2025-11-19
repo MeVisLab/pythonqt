@@ -2458,7 +2458,7 @@ if (_wrapper) {
   QTreeWidget::wheelEvent(arg__1);
 }
 QTreeWidget* PythonQtWrapper_QTreeWidget::new_QTreeWidget(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QTreeWidget(parent); }
 
 const QMetaObject* PythonQtShell_QTreeWidget::metaObject() const {
@@ -2838,35 +2838,35 @@ if (_wrapper) {
   QTreeWidgetItem::write(out0);
 }
 QTreeWidgetItem* PythonQtWrapper_QTreeWidgetItem::new_QTreeWidgetItem(PythonQtNewOwnerOfThis<QTreeWidget* >  treeview, QTreeWidgetItem*  after, int  type)
-{ 
+{
 return new PythonQtShell_QTreeWidgetItem(treeview, after, type); }
 
 QTreeWidgetItem* PythonQtWrapper_QTreeWidgetItem::new_QTreeWidgetItem(PythonQtNewOwnerOfThis<QTreeWidget* >  treeview, const QStringList&  strings, int  type)
-{ 
+{
 return new PythonQtShell_QTreeWidgetItem(treeview, strings, type); }
 
 QTreeWidgetItem* PythonQtWrapper_QTreeWidgetItem::new_QTreeWidgetItem(PythonQtNewOwnerOfThis<QTreeWidget* >  treeview, int  type)
-{ 
+{
 return new PythonQtShell_QTreeWidgetItem(treeview, type); }
 
 QTreeWidgetItem* PythonQtWrapper_QTreeWidgetItem::new_QTreeWidgetItem(PythonQtNewOwnerOfThis<QTreeWidgetItem* >  parent, QTreeWidgetItem*  after, int  type)
-{ 
+{
 return new PythonQtShell_QTreeWidgetItem(parent, after, type); }
 
 QTreeWidgetItem* PythonQtWrapper_QTreeWidgetItem::new_QTreeWidgetItem(PythonQtNewOwnerOfThis<QTreeWidgetItem* >  parent, const QStringList&  strings, int  type)
-{ 
+{
 return new PythonQtShell_QTreeWidgetItem(parent, strings, type); }
 
 QTreeWidgetItem* PythonQtWrapper_QTreeWidgetItem::new_QTreeWidgetItem(PythonQtNewOwnerOfThis<QTreeWidgetItem* >  parent, int  type)
-{ 
+{
 return new PythonQtShell_QTreeWidgetItem(parent, type); }
 
 QTreeWidgetItem* PythonQtWrapper_QTreeWidgetItem::new_QTreeWidgetItem(const QStringList&  strings, int  type)
-{ 
+{
 return new PythonQtShell_QTreeWidgetItem(strings, type); }
 
 QTreeWidgetItem* PythonQtWrapper_QTreeWidgetItem::new_QTreeWidgetItem(int  type)
-{ 
+{
 return new PythonQtShell_QTreeWidgetItem(type); }
 
 void PythonQtWrapper_QTreeWidgetItem::addChild(QTreeWidgetItem* theWrappedObject, PythonQtPassOwnershipToCPP<QTreeWidgetItem* >  child)
@@ -3281,11 +3281,11 @@ if (_wrapper) {
   QUndoCommand::undo();
 }
 QUndoCommand* PythonQtWrapper_QUndoCommand::new_QUndoCommand(QUndoCommand*  parent)
-{ 
+{
 return new PythonQtShell_QUndoCommand(parent); }
 
 QUndoCommand* PythonQtWrapper_QUndoCommand::new_QUndoCommand(const QString&  text, QUndoCommand*  parent)
-{ 
+{
 return new PythonQtShell_QUndoCommand(text, parent); }
 
 QString  PythonQtWrapper_QUndoCommand::actionText(QUndoCommand* theWrappedObject) const
@@ -3482,7 +3482,7 @@ if (_wrapper) {
   QUndoGroup::timerEvent(event0);
 }
 QUndoGroup* PythonQtWrapper_QUndoGroup::new_QUndoGroup(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QUndoGroup(parent); }
 
 const QMetaObject* PythonQtShell_QUndoGroup::metaObject() const {
@@ -3692,7 +3692,7 @@ if (_wrapper) {
   QUndoStack::timerEvent(event0);
 }
 QUndoStack* PythonQtWrapper_QUndoStack::new_QUndoStack(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QUndoStack(parent); }
 
 const QMetaObject* PythonQtShell_QUndoStack::metaObject() const {
@@ -6043,15 +6043,15 @@ if (_wrapper) {
   QUndoView::wheelEvent(e0);
 }
 QUndoView* PythonQtWrapper_QUndoView::new_QUndoView(QUndoGroup*  group, QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QUndoView(group, parent); }
 
 QUndoView* PythonQtWrapper_QUndoView::new_QUndoView(QUndoStack*  stack, QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QUndoView(stack, parent); }
 
 QUndoView* PythonQtWrapper_QUndoView::new_QUndoView(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QUndoView(parent); }
 
 const QMetaObject* PythonQtShell_QUndoView::metaObject() const {
@@ -6863,11 +6863,11 @@ if (_wrapper) {
   return QVBoxLayout::widget();
 }
 QVBoxLayout* PythonQtWrapper_QVBoxLayout::new_QVBoxLayout()
-{ 
+{
 return new PythonQtShell_QVBoxLayout(); }
 
 QVBoxLayout* PythonQtWrapper_QVBoxLayout::new_QVBoxLayout(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QVBoxLayout(parent); }
 
 const QMetaObject* PythonQtShell_QVBoxLayout::metaObject() const {
@@ -7077,7 +7077,7 @@ if (_wrapper) {
   return QValidator::State();
 }
 QValidator* PythonQtWrapper_QValidator::new_QValidator(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QValidator(parent); }
 
 const QMetaObject* PythonQtShell_QValidator::metaObject() const {
@@ -7116,27 +7116,27 @@ QValidator::State  PythonQtWrapper_QValidator::validate(QValidator* theWrappedOb
 
 
 QVector2D* PythonQtWrapper_QVector2D::new_QVector2D()
-{ 
+{
 return new QVector2D(); }
 
 QVector2D* PythonQtWrapper_QVector2D::new_QVector2D(const QPoint&  point)
-{ 
+{
 return new QVector2D(point); }
 
 QVector2D* PythonQtWrapper_QVector2D::new_QVector2D(const QPointF&  point)
-{ 
+{
 return new QVector2D(point); }
 
 QVector2D* PythonQtWrapper_QVector2D::new_QVector2D(const QVector3D&  vector)
-{ 
+{
 return new QVector2D(vector); }
 
 QVector2D* PythonQtWrapper_QVector2D::new_QVector2D(const QVector4D&  vector)
-{ 
+{
 return new QVector2D(vector); }
 
 QVector2D* PythonQtWrapper_QVector2D::new_QVector2D(float  xpos, float  ypos)
-{ 
+{
 return new QVector2D(xpos, ypos); }
 
 float  PythonQtWrapper_QVector2D::distanceToLine(QVector2D* theWrappedObject, const QVector2D&  point, const QVector2D&  direction) const
@@ -7314,31 +7314,31 @@ QString PythonQtWrapper_QVector2D::py_toString(QVector2D* obj) {
 
 
 QVector3D* PythonQtWrapper_QVector3D::new_QVector3D()
-{ 
+{
 return new QVector3D(); }
 
 QVector3D* PythonQtWrapper_QVector3D::new_QVector3D(const QPoint&  point)
-{ 
+{
 return new QVector3D(point); }
 
 QVector3D* PythonQtWrapper_QVector3D::new_QVector3D(const QPointF&  point)
-{ 
+{
 return new QVector3D(point); }
 
 QVector3D* PythonQtWrapper_QVector3D::new_QVector3D(const QVector2D&  vector)
-{ 
+{
 return new QVector3D(vector); }
 
 QVector3D* PythonQtWrapper_QVector3D::new_QVector3D(const QVector2D&  vector, float  zpos)
-{ 
+{
 return new QVector3D(vector, zpos); }
 
 QVector3D* PythonQtWrapper_QVector3D::new_QVector3D(const QVector4D&  vector)
-{ 
+{
 return new QVector3D(vector); }
 
 QVector3D* PythonQtWrapper_QVector3D::new_QVector3D(float  xpos, float  ypos, float  zpos)
-{ 
+{
 return new QVector3D(xpos, ypos, zpos); }
 
 QVector3D  PythonQtWrapper_QVector3D::static_QVector3D_crossProduct(const QVector3D&  v1, const QVector3D&  v2)
@@ -7566,35 +7566,35 @@ QString PythonQtWrapper_QVector3D::py_toString(QVector3D* obj) {
 
 
 QVector4D* PythonQtWrapper_QVector4D::new_QVector4D()
-{ 
+{
 return new QVector4D(); }
 
 QVector4D* PythonQtWrapper_QVector4D::new_QVector4D(const QPoint&  point)
-{ 
+{
 return new QVector4D(point); }
 
 QVector4D* PythonQtWrapper_QVector4D::new_QVector4D(const QPointF&  point)
-{ 
+{
 return new QVector4D(point); }
 
 QVector4D* PythonQtWrapper_QVector4D::new_QVector4D(const QVector2D&  vector)
-{ 
+{
 return new QVector4D(vector); }
 
 QVector4D* PythonQtWrapper_QVector4D::new_QVector4D(const QVector2D&  vector, float  zpos, float  wpos)
-{ 
+{
 return new QVector4D(vector, zpos, wpos); }
 
 QVector4D* PythonQtWrapper_QVector4D::new_QVector4D(const QVector3D&  vector)
-{ 
+{
 return new QVector4D(vector); }
 
 QVector4D* PythonQtWrapper_QVector4D::new_QVector4D(const QVector3D&  vector, float  wpos)
-{ 
+{
 return new QVector4D(vector, wpos); }
 
 QVector4D* PythonQtWrapper_QVector4D::new_QVector4D(float  xpos, float  ypos, float  zpos, float  wpos)
-{ 
+{
 return new QVector4D(xpos, ypos, zpos, wpos); }
 
 float  PythonQtWrapper_QVector4D::static_QVector4D_dotProduct(const QVector4D&  v1, const QVector4D&  v2)
@@ -7829,7 +7829,7 @@ void PythonQtWrapper_QWhatsThis::static_QWhatsThis_showText(const QPoint&  pos, 
 
 
 QWhatsThisClickedEvent* PythonQtWrapper_QWhatsThisClickedEvent::new_QWhatsThisClickedEvent(const QString&  href)
-{ 
+{
 return new QWhatsThisClickedEvent(href); }
 
 QString  PythonQtWrapper_QWhatsThisClickedEvent::href(QWhatsThisClickedEvent* theWrappedObject) const
@@ -7844,31 +7844,31 @@ PythonQtShell_QWheelEvent::~PythonQtShell_QWheelEvent() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QWheelEvent* PythonQtWrapper_QWheelEvent::new_QWheelEvent(QPointF  pos, QPointF  globalPos, QPoint  pixelDelta, QPoint  angleDelta, Qt::MouseButtons  buttons, Qt::KeyboardModifiers  modifiers, Qt::ScrollPhase  phase, bool  inverted, Qt::MouseEventSource  source)
-{ 
+{
 return new PythonQtShell_QWheelEvent(pos, globalPos, pixelDelta, angleDelta, buttons, modifiers, phase, inverted, source); }
 
 QWheelEvent* PythonQtWrapper_QWheelEvent::new_QWheelEvent(const QPointF&  pos, const QPointF&  globalPos, QPoint  pixelDelta, QPoint  angleDelta, int  qt4Delta, Qt::Orientation  qt4Orientation, Qt::MouseButtons  buttons, Qt::KeyboardModifiers  modifiers)
-{ 
+{
 return new PythonQtShell_QWheelEvent(pos, globalPos, pixelDelta, angleDelta, qt4Delta, qt4Orientation, buttons, modifiers); }
 
 QWheelEvent* PythonQtWrapper_QWheelEvent::new_QWheelEvent(const QPointF&  pos, const QPointF&  globalPos, QPoint  pixelDelta, QPoint  angleDelta, int  qt4Delta, Qt::Orientation  qt4Orientation, Qt::MouseButtons  buttons, Qt::KeyboardModifiers  modifiers, Qt::ScrollPhase  phase)
-{ 
+{
 return new PythonQtShell_QWheelEvent(pos, globalPos, pixelDelta, angleDelta, qt4Delta, qt4Orientation, buttons, modifiers, phase); }
 
 QWheelEvent* PythonQtWrapper_QWheelEvent::new_QWheelEvent(const QPointF&  pos, const QPointF&  globalPos, QPoint  pixelDelta, QPoint  angleDelta, int  qt4Delta, Qt::Orientation  qt4Orientation, Qt::MouseButtons  buttons, Qt::KeyboardModifiers  modifiers, Qt::ScrollPhase  phase, Qt::MouseEventSource  source)
-{ 
+{
 return new PythonQtShell_QWheelEvent(pos, globalPos, pixelDelta, angleDelta, qt4Delta, qt4Orientation, buttons, modifiers, phase, source); }
 
 QWheelEvent* PythonQtWrapper_QWheelEvent::new_QWheelEvent(const QPointF&  pos, const QPointF&  globalPos, QPoint  pixelDelta, QPoint  angleDelta, int  qt4Delta, Qt::Orientation  qt4Orientation, Qt::MouseButtons  buttons, Qt::KeyboardModifiers  modifiers, Qt::ScrollPhase  phase, Qt::MouseEventSource  source, bool  inverted)
-{ 
+{
 return new PythonQtShell_QWheelEvent(pos, globalPos, pixelDelta, angleDelta, qt4Delta, qt4Orientation, buttons, modifiers, phase, source, inverted); }
 
 QWheelEvent* PythonQtWrapper_QWheelEvent::new_QWheelEvent(const QPointF&  pos, const QPointF&  globalPos, int  delta, Qt::MouseButtons  buttons, Qt::KeyboardModifiers  modifiers, Qt::Orientation  orient)
-{ 
+{
 return new PythonQtShell_QWheelEvent(pos, globalPos, delta, buttons, modifiers, orient); }
 
 QWheelEvent* PythonQtWrapper_QWheelEvent::new_QWheelEvent(const QPointF&  pos, int  delta, Qt::MouseButtons  buttons, Qt::KeyboardModifiers  modifiers, Qt::Orientation  orient)
-{ 
+{
 return new PythonQtShell_QWheelEvent(pos, delta, buttons, modifiers, orient); }
 
 QPoint  PythonQtWrapper_QWheelEvent::angleDelta(QWheelEvent* theWrappedObject) const
@@ -9112,7 +9112,7 @@ if (_wrapper) {
   QWidget::wheelEvent(event0);
 }
 QWidget* PythonQtWrapper_QWidget::new_QWidget(QWidget*  parent, Qt::WindowFlags  f)
-{ 
+{
 return new PythonQtShell_QWidget(parent, f); }
 
 const QMetaObject* PythonQtShell_QWidget::metaObject() const {
@@ -10584,7 +10584,7 @@ if (_wrapper) {
   QWidgetAction::timerEvent(event0);
 }
 QWidgetAction* PythonQtWrapper_QWidgetAction::new_QWidgetAction(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QWidgetAction(parent); }
 
 const QMetaObject* PythonQtShell_QWidgetAction::metaObject() const {
@@ -11115,7 +11115,7 @@ if (_wrapper) {
   return QWidgetItem::widget();
 }
 QWidgetItem* PythonQtWrapper_QWidgetItem::new_QWidgetItem(QWidget*  w)
-{ 
+{
 return new PythonQtShell_QWidgetItem(w); }
 
 
@@ -11774,11 +11774,11 @@ if (_wrapper) {
   QWindow::wheelEvent(arg__1);
 }
 QWindow* PythonQtWrapper_QWindow::new_QWindow(QScreen*  screen)
-{ 
+{
 return new PythonQtShell_QWindow(screen); }
 
 QWindow* PythonQtWrapper_QWindow::new_QWindow(QWindow*  parent)
-{ 
+{
 return new PythonQtShell_QWindow(parent); }
 
 const QMetaObject* PythonQtShell_QWindow::metaObject() const {
@@ -12279,7 +12279,7 @@ QString PythonQtWrapper_QWindow::py_toString(QWindow* obj) {
 
 
 QWindowStateChangeEvent* PythonQtWrapper_QWindowStateChangeEvent::new_QWindowStateChangeEvent(Qt::WindowStates  aOldState, bool  isOverride)
-{ 
+{
 return new QWindowStateChangeEvent(aOldState, isOverride); }
 
 bool  PythonQtWrapper_QWindowStateChangeEvent::isOverride(QWindowStateChangeEvent* theWrappedObject) const
@@ -13674,7 +13674,7 @@ if (_wrapper) {
   QWizard::wheelEvent(event0);
 }
 QWizard* PythonQtWrapper_QWizard::new_QWizard(QWidget*  parent, Qt::WindowFlags  flags)
-{ 
+{
 return new PythonQtShell_QWizard(parent, flags); }
 
 const QMetaObject* PythonQtShell_QWizard::metaObject() const {
@@ -15169,7 +15169,7 @@ if (_wrapper) {
   QWizardPage::wheelEvent(event0);
 }
 QWizardPage* PythonQtWrapper_QWizardPage::new_QWizardPage(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QWizardPage(parent); }
 
 const QMetaObject* PythonQtShell_QWizardPage::metaObject() const {

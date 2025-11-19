@@ -121,7 +121,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractNetworkCache::customEvent(QEvent*  event0)
 {
@@ -264,7 +264,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 QNetworkCacheMetaData  PythonQtShell_QAbstractNetworkCache::metaData(const QUrl&  url0)
 {
@@ -407,10 +407,10 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 QAbstractNetworkCache* PythonQtWrapper_QAbstractNetworkCache::new_QAbstractNetworkCache(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QAbstractNetworkCache(parent); }
 
 const QMetaObject* PythonQtShell_QAbstractNetworkCache::metaObject() const {
@@ -1414,7 +1414,7 @@ if (_wrapper) {
   return QAbstractSocket::writeData(data0, len1);
 }
 QAbstractSocket* PythonQtWrapper_QAbstractSocket::new_QAbstractSocket(QAbstractSocket::SocketType  socketType, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QAbstractSocket(socketType, parent); }
 
 const QMetaObject* PythonQtShell_QAbstractSocket::metaObject() const {
@@ -1623,11 +1623,11 @@ bool  PythonQtWrapper_QAbstractSocket::waitForDisconnected(QAbstractSocket* theW
 
 
 QAuthenticator* PythonQtWrapper_QAuthenticator::new_QAuthenticator()
-{ 
+{
 return new QAuthenticator(); }
 
 QAuthenticator* PythonQtWrapper_QAuthenticator::new_QAuthenticator(const QAuthenticator&  other)
-{ 
+{
 return new QAuthenticator(other); }
 
 bool  PythonQtWrapper_QAuthenticator::isNull(QAuthenticator* theWrappedObject) const
@@ -1693,11 +1693,11 @@ QString  PythonQtWrapper_QAuthenticator::user(QAuthenticator* theWrappedObject) 
 
 
 QDnsDomainNameRecord* PythonQtWrapper_QDnsDomainNameRecord::new_QDnsDomainNameRecord()
-{ 
+{
 return new QDnsDomainNameRecord(); }
 
 QDnsDomainNameRecord* PythonQtWrapper_QDnsDomainNameRecord::new_QDnsDomainNameRecord(const QDnsDomainNameRecord&  other)
-{ 
+{
 return new QDnsDomainNameRecord(other); }
 
 QString  PythonQtWrapper_QDnsDomainNameRecord::name(QDnsDomainNameRecord* theWrappedObject) const
@@ -1728,11 +1728,11 @@ QString  PythonQtWrapper_QDnsDomainNameRecord::value(QDnsDomainNameRecord* theWr
 
 
 QDnsHostAddressRecord* PythonQtWrapper_QDnsHostAddressRecord::new_QDnsHostAddressRecord()
-{ 
+{
 return new QDnsHostAddressRecord(); }
 
 QDnsHostAddressRecord* PythonQtWrapper_QDnsHostAddressRecord::new_QDnsHostAddressRecord(const QDnsHostAddressRecord&  other)
-{ 
+{
 return new QDnsHostAddressRecord(other); }
 
 QString  PythonQtWrapper_QDnsHostAddressRecord::name(QDnsHostAddressRecord* theWrappedObject) const
@@ -1899,15 +1899,15 @@ if (_wrapper) {
   QDnsLookup::timerEvent(event0);
 }
 QDnsLookup* PythonQtWrapper_QDnsLookup::new_QDnsLookup(QDnsLookup::Type  type, const QString&  name, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QDnsLookup(type, name, parent); }
 
 QDnsLookup* PythonQtWrapper_QDnsLookup::new_QDnsLookup(QDnsLookup::Type  type, const QString&  name, const QHostAddress&  nameserver, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QDnsLookup(type, name, nameserver, parent); }
 
 QDnsLookup* PythonQtWrapper_QDnsLookup::new_QDnsLookup(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QDnsLookup(parent); }
 
 const QMetaObject* PythonQtShell_QDnsLookup::metaObject() const {
@@ -2006,11 +2006,11 @@ QDnsLookup::Type  PythonQtWrapper_QDnsLookup::type(QDnsLookup* theWrappedObject)
 
 
 QDnsMailExchangeRecord* PythonQtWrapper_QDnsMailExchangeRecord::new_QDnsMailExchangeRecord()
-{ 
+{
 return new QDnsMailExchangeRecord(); }
 
 QDnsMailExchangeRecord* PythonQtWrapper_QDnsMailExchangeRecord::new_QDnsMailExchangeRecord(const QDnsMailExchangeRecord&  other)
-{ 
+{
 return new QDnsMailExchangeRecord(other); }
 
 QString  PythonQtWrapper_QDnsMailExchangeRecord::exchange(QDnsMailExchangeRecord* theWrappedObject) const
@@ -2046,11 +2046,11 @@ unsigned int  PythonQtWrapper_QDnsMailExchangeRecord::timeToLive(QDnsMailExchang
 
 
 QDnsServiceRecord* PythonQtWrapper_QDnsServiceRecord::new_QDnsServiceRecord()
-{ 
+{
 return new QDnsServiceRecord(); }
 
 QDnsServiceRecord* PythonQtWrapper_QDnsServiceRecord::new_QDnsServiceRecord(const QDnsServiceRecord&  other)
-{ 
+{
 return new QDnsServiceRecord(other); }
 
 QString  PythonQtWrapper_QDnsServiceRecord::name(QDnsServiceRecord* theWrappedObject) const
@@ -2096,11 +2096,11 @@ unsigned short  PythonQtWrapper_QDnsServiceRecord::weight(QDnsServiceRecord* the
 
 
 QDnsTextRecord* PythonQtWrapper_QDnsTextRecord::new_QDnsTextRecord()
-{ 
+{
 return new QDnsTextRecord(); }
 
 QDnsTextRecord* PythonQtWrapper_QDnsTextRecord::new_QDnsTextRecord(const QDnsTextRecord&  other)
-{ 
+{
 return new QDnsTextRecord(other); }
 
 QString  PythonQtWrapper_QDnsTextRecord::name(QDnsTextRecord* theWrappedObject) const
@@ -2267,7 +2267,7 @@ if (_wrapper) {
   QDtls::timerEvent(event0);
 }
 QDtls* PythonQtWrapper_QDtls::new_QDtls(QSslSocket::SslMode  mode, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QDtls(mode, parent); }
 
 const QMetaObject* PythonQtShell_QDtls::metaObject() const {
@@ -2557,7 +2557,7 @@ if (_wrapper) {
   QDtlsClientVerifier::timerEvent(event0);
 }
 QDtlsClientVerifier* PythonQtWrapper_QDtlsClientVerifier::new_QDtlsClientVerifier(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QDtlsClientVerifier(parent); }
 
 const QMetaObject* PythonQtShell_QDtlsClientVerifier::metaObject() const {
@@ -2610,41 +2610,41 @@ PythonQtShell_QDtlsClientVerifier__GeneratorParameters::~PythonQtShell_QDtlsClie
   if (priv) { priv->shellClassDeleted(this); }
 }
 QDtlsClientVerifier::GeneratorParameters* PythonQtWrapper_QDtlsClientVerifier__GeneratorParameters::new_QDtlsClientVerifier__GeneratorParameters()
-{ 
+{
 return new PythonQtShell_QDtlsClientVerifier__GeneratorParameters(); }
 
 QDtlsClientVerifier::GeneratorParameters* PythonQtWrapper_QDtlsClientVerifier__GeneratorParameters::new_QDtlsClientVerifier__GeneratorParameters(QCryptographicHash::Algorithm  a, const QByteArray&  s)
-{ 
+{
 return new PythonQtShell_QDtlsClientVerifier__GeneratorParameters(a, s); }
 
 
 
 QHostAddress* PythonQtWrapper_QHostAddress::new_QHostAddress()
-{ 
+{
 return new QHostAddress(); }
 
 QHostAddress* PythonQtWrapper_QHostAddress::new_QHostAddress(QHostAddress::SpecialAddress  address)
-{ 
+{
 return new QHostAddress(address); }
 
 QHostAddress* PythonQtWrapper_QHostAddress::new_QHostAddress(const QHostAddress&  copy)
-{ 
+{
 return new QHostAddress(copy); }
 
 QHostAddress* PythonQtWrapper_QHostAddress::new_QHostAddress(const QIPv6Address&  ip6Addr)
-{ 
+{
 return new QHostAddress(ip6Addr); }
 
 QHostAddress* PythonQtWrapper_QHostAddress::new_QHostAddress(const QString&  address)
-{ 
+{
 return new QHostAddress(address); }
 
 QHostAddress* PythonQtWrapper_QHostAddress::new_QHostAddress(const unsigned char*  ip6Addr)
-{ 
+{
 return new QHostAddress(ip6Addr); }
 
 QHostAddress* PythonQtWrapper_QHostAddress::new_QHostAddress(unsigned int  ip4Addr)
-{ 
+{
 return new QHostAddress(ip4Addr); }
 
 void PythonQtWrapper_QHostAddress::clear(QHostAddress* theWrappedObject)
@@ -2811,11 +2811,11 @@ QString PythonQtWrapper_QHostAddress::py_toString(QHostAddress* obj) { return ob
 
 
 QHostInfo* PythonQtWrapper_QHostInfo::new_QHostInfo(const QHostInfo&  d)
-{ 
+{
 return new QHostInfo(d); }
 
 QHostInfo* PythonQtWrapper_QHostInfo::new_QHostInfo(int  lookupId)
-{ 
+{
 return new QHostInfo(lookupId); }
 
 void PythonQtWrapper_QHostInfo::static_QHostInfo_abortHostLookup(int  lookupId)
@@ -2901,11 +2901,11 @@ void PythonQtWrapper_QHostInfo::swap(QHostInfo* theWrappedObject, QHostInfo&  ot
 
 
 QHstsPolicy* PythonQtWrapper_QHstsPolicy::new_QHstsPolicy()
-{ 
+{
 return new QHstsPolicy(); }
 
 QHstsPolicy* PythonQtWrapper_QHstsPolicy::new_QHstsPolicy(const QHstsPolicy&  rhs)
-{ 
+{
 return new QHstsPolicy(rhs); }
 
 QDateTime  PythonQtWrapper_QHstsPolicy::expiry(QHstsPolicy* theWrappedObject) const
@@ -2966,11 +2966,11 @@ void PythonQtWrapper_QHstsPolicy::swap(QHstsPolicy* theWrappedObject, QHstsPolic
 
 
 QHttp2Configuration* PythonQtWrapper_QHttp2Configuration::new_QHttp2Configuration()
-{ 
+{
 return new QHttp2Configuration(); }
 
 QHttp2Configuration* PythonQtWrapper_QHttp2Configuration::new_QHttp2Configuration(const QHttp2Configuration&  other)
-{ 
+{
 return new QHttp2Configuration(other); }
 
 bool  PythonQtWrapper_QHttp2Configuration::huffmanCompressionEnabled(QHttp2Configuration* theWrappedObject) const
@@ -3152,11 +3152,11 @@ if (_wrapper) {
   QHttpMultiPart::timerEvent(event0);
 }
 QHttpMultiPart* PythonQtWrapper_QHttpMultiPart::new_QHttpMultiPart(QHttpMultiPart::ContentType  contentType, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QHttpMultiPart(contentType, parent); }
 
 QHttpMultiPart* PythonQtWrapper_QHttpMultiPart::new_QHttpMultiPart(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QHttpMultiPart(parent); }
 
 const QMetaObject* PythonQtShell_QHttpMultiPart::metaObject() const {
@@ -3195,11 +3195,11 @@ void PythonQtWrapper_QHttpMultiPart::setContentType(QHttpMultiPart* theWrappedOb
 
 
 QHttpPart* PythonQtWrapper_QHttpPart::new_QHttpPart()
-{ 
+{
 return new QHttpPart(); }
 
 QHttpPart* PythonQtWrapper_QHttpPart::new_QHttpPart(const QHttpPart&  other)
-{ 
+{
 return new QHttpPart(other); }
 
 bool  PythonQtWrapper_QHttpPart::__ne__(QHttpPart* theWrappedObject, const QHttpPart&  other) const
@@ -3249,7 +3249,7 @@ PythonQtShell_QIPv6Address::~PythonQtShell_QIPv6Address() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QIPv6Address* PythonQtWrapper_QIPv6Address::new_QIPv6Address()
-{ 
+{
 return new PythonQtShell_QIPv6Address(); }
 
 
@@ -3479,7 +3479,7 @@ if (_wrapper) {
   QLocalServer::timerEvent(event0);
 }
 QLocalServer* PythonQtWrapper_QLocalServer::new_QLocalServer(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QLocalServer(parent); }
 
 const QMetaObject* PythonQtShell_QLocalServer::metaObject() const {
@@ -4241,7 +4241,7 @@ if (_wrapper) {
   return QLocalSocket::writeData(arg__1, arg__2);
 }
 QLocalSocket* PythonQtWrapper_QLocalSocket::new_QLocalSocket(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QLocalSocket(parent); }
 
 const QMetaObject* PythonQtShell_QLocalSocket::metaObject() const {
@@ -4514,7 +4514,7 @@ if (_wrapper) {
   QNetworkAccessManager::timerEvent(event0);
 }
 QNetworkAccessManager* PythonQtWrapper_QNetworkAccessManager::new_QNetworkAccessManager(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QNetworkAccessManager(parent); }
 
 const QMetaObject* PythonQtShell_QNetworkAccessManager::metaObject() const {
@@ -4753,11 +4753,11 @@ int  PythonQtWrapper_QNetworkAccessManager::transferTimeout(QNetworkAccessManage
 
 
 QNetworkAddressEntry* PythonQtWrapper_QNetworkAddressEntry::new_QNetworkAddressEntry()
-{ 
+{
 return new QNetworkAddressEntry(); }
 
 QNetworkAddressEntry* PythonQtWrapper_QNetworkAddressEntry::new_QNetworkAddressEntry(const QNetworkAddressEntry&  other)
-{ 
+{
 return new QNetworkAddressEntry(other); }
 
 QHostAddress  PythonQtWrapper_QNetworkAddressEntry::broadcast(QNetworkAddressEntry* theWrappedObject) const
@@ -4863,11 +4863,11 @@ QDeadlineTimer  PythonQtWrapper_QNetworkAddressEntry::validityLifetime(QNetworkA
 
 
 QNetworkCacheMetaData* PythonQtWrapper_QNetworkCacheMetaData::new_QNetworkCacheMetaData()
-{ 
+{
 return new QNetworkCacheMetaData(); }
 
 QNetworkCacheMetaData* PythonQtWrapper_QNetworkCacheMetaData::new_QNetworkCacheMetaData(const QNetworkCacheMetaData&  other)
-{ 
+{
 return new QNetworkCacheMetaData(other); }
 
 QHash<QNetworkRequest::Attribute , QVariant >  PythonQtWrapper_QNetworkCacheMetaData::attributes(QNetworkCacheMetaData* theWrappedObject) const
@@ -4963,11 +4963,11 @@ QUrl  PythonQtWrapper_QNetworkCacheMetaData::url(QNetworkCacheMetaData* theWrapp
 
 
 QNetworkConfiguration* PythonQtWrapper_QNetworkConfiguration::new_QNetworkConfiguration()
-{ 
+{
 return new QNetworkConfiguration(); }
 
 QNetworkConfiguration* PythonQtWrapper_QNetworkConfiguration::new_QNetworkConfiguration(const QNetworkConfiguration&  other)
-{ 
+{
 return new QNetworkConfiguration(other); }
 
 QNetworkConfiguration::BearerType  PythonQtWrapper_QNetworkConfiguration::bearerType(QNetworkConfiguration* theWrappedObject) const
@@ -5194,7 +5194,7 @@ if (_wrapper) {
   QNetworkConfigurationManager::timerEvent(event0);
 }
 QNetworkConfigurationManager* PythonQtWrapper_QNetworkConfigurationManager::new_QNetworkConfigurationManager(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QNetworkConfigurationManager(parent); }
 
 const QMetaObject* PythonQtShell_QNetworkConfigurationManager::metaObject() const {
@@ -5238,11 +5238,11 @@ bool  PythonQtWrapper_QNetworkConfigurationManager::isOnline(QNetworkConfigurati
 
 
 QNetworkCookie* PythonQtWrapper_QNetworkCookie::new_QNetworkCookie(const QByteArray&  name, const QByteArray&  value)
-{ 
+{
 return new QNetworkCookie(name, value); }
 
 QNetworkCookie* PythonQtWrapper_QNetworkCookie::new_QNetworkCookie(const QNetworkCookie&  other)
-{ 
+{
 return new QNetworkCookie(other); }
 
 QString  PythonQtWrapper_QNetworkCookie::domain(QNetworkCookie* theWrappedObject) const
@@ -5699,7 +5699,7 @@ if (_wrapper) {
   return QNetworkCookieJar::validateCookie(cookie0, url1);
 }
 QNetworkCookieJar* PythonQtWrapper_QNetworkCookieJar::new_QNetworkCookieJar(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QNetworkCookieJar(parent); }
 
 const QMetaObject* PythonQtShell_QNetworkCookieJar::metaObject() const {
@@ -5758,15 +5758,15 @@ bool  PythonQtWrapper_QNetworkCookieJar::validateCookie(QNetworkCookieJar* theWr
 
 
 QNetworkDatagram* PythonQtWrapper_QNetworkDatagram::new_QNetworkDatagram()
-{ 
+{
 return new QNetworkDatagram(); }
 
 QNetworkDatagram* PythonQtWrapper_QNetworkDatagram::new_QNetworkDatagram(const QByteArray&  data, const QHostAddress&  destinationAddress, unsigned short  port)
-{ 
+{
 return new QNetworkDatagram(data, destinationAddress, port); }
 
 QNetworkDatagram* PythonQtWrapper_QNetworkDatagram::new_QNetworkDatagram(const QNetworkDatagram&  other)
-{ 
+{
 return new QNetworkDatagram(other); }
 
 void PythonQtWrapper_QNetworkDatagram::clear(QNetworkDatagram* theWrappedObject)
@@ -6262,7 +6262,7 @@ if (_wrapper) {
   QNetworkDiskCache::updateMetaData(metaData0);
 }
 QNetworkDiskCache* PythonQtWrapper_QNetworkDiskCache::new_QNetworkDiskCache(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QNetworkDiskCache(parent); }
 
 const QMetaObject* PythonQtShell_QNetworkDiskCache::metaObject() const {

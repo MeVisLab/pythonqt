@@ -2,14 +2,14 @@ name: Check generated_cpp
 
 on:
   push:
-    branches: 
+    branches:
        - main
   pull_request:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
-  
+
 defaults:
   run:
     shell: bash
@@ -24,7 +24,7 @@ jobs:
         python-version: [ '3.12' ]
     runs-on: ${{ matrix.os }}-latest
     steps:
-      
+
     - name: Install MSVC
       if: ${{ matrix.os == 'windows' }}
       uses: ilammy/msvc-dev-cmd@v1
@@ -52,7 +52,7 @@ jobs:
          key: ${{ runner.os }}-${{ matrix.qt-version }}
          evict-old-files: 'job'
       if: ${{ matrix.os == 'ubuntu' }}
-         
+
     - name: Set environment
       id: setenv
       run: |
@@ -113,7 +113,7 @@ jobs:
         PYTHONDEVMODE=1 PYTHONASYNCIODEBUG=1 PYTHONWARNINGS=error PYTHONMALLOC=malloc_debug \
         UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
           make check TESTARGS="-platform offscreen"
-          
+
     - name: Build PythonQt Windows (exclude_generator)
       shell: cmd
       if: ${{ matrix.os == 'windows' }}

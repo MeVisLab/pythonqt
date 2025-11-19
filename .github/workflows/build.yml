@@ -2,14 +2,14 @@ name: Build
 
 on:
   push:
-    branches: 
+    branches:
       - main
   pull_request:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
-   
+
 defaults:
   run:
     shell: bash
@@ -47,14 +47,14 @@ jobs:
         libqt5quickwidgets5* \
         qtmultimedia5-dev
         apt-get clean
-      
+
     - name: Checkout PythonQt
       uses: actions/checkout@v5
 
     - name: Ccache
       uses: hendrikmuhs/ccache-action@v1.2.19
       with:
-         key: ${{ runner.os }}-ubuntu-${{ matrix.container_version }} 
+         key: ${{ runner.os }}-ubuntu-${{ matrix.container_version }}
          evict-old-files: 'job'
 
     - name: Build PythonQt (generator_only)
@@ -237,9 +237,9 @@ jobs:
     - name: Ccache
       uses: hendrikmuhs/ccache-action@v1.2.19
       with:
-         key: ${{ runner.os }}-${{ matrix.qt-version }} 
+         key: ${{ runner.os }}-${{ matrix.qt-version }}
          evict-old-files: 'job'
-         
+
     - name: Detect exact versions
       id : versions
       run : |

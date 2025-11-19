@@ -42,19 +42,19 @@ PythonQtShell_QSqlDatabase::~PythonQtShell_QSqlDatabase() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QSqlDatabase* PythonQtWrapper_QSqlDatabase::new_QSqlDatabase()
-{ 
+{
 return new PythonQtShell_QSqlDatabase(); }
 
 QSqlDatabase* PythonQtWrapper_QSqlDatabase::new_QSqlDatabase(QSqlDriver*  driver)
-{ 
+{
 return new PythonQtShell_QSqlDatabase(driver); }
 
 QSqlDatabase* PythonQtWrapper_QSqlDatabase::new_QSqlDatabase(const QSqlDatabase&  other)
-{ 
+{
 return new PythonQtShell_QSqlDatabase(other); }
 
 QSqlDatabase* PythonQtWrapper_QSqlDatabase::new_QSqlDatabase(const QString&  type)
-{ 
+{
 return new PythonQtShell_QSqlDatabase(type); }
 
 QSqlDatabase  PythonQtWrapper_QSqlDatabase::static_QSqlDatabase_addDatabase(QSqlDriver*  driver, const QString&  connectionName)
@@ -388,7 +388,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 bool  PythonQtShell_QSqlDriver::commitTransaction()
 {
@@ -1161,7 +1161,7 @@ if (_wrapper) {
   return QSqlDriver::unsubscribeFromNotification(name0);
 }
 QSqlDriver* PythonQtWrapper_QSqlDriver::new_QSqlDriver(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QSqlDriver(parent); }
 
 const QMetaObject* PythonQtShell_QSqlDriver::metaObject() const {
@@ -1357,7 +1357,7 @@ if (_wrapper) {
   return nullptr;
 }
 QSqlDriverCreatorBase* PythonQtWrapper_QSqlDriverCreatorBase::new_QSqlDriverCreatorBase()
-{ 
+{
 return new PythonQtShell_QSqlDriverCreatorBase(); }
 
 QSqlDriver*  PythonQtWrapper_QSqlDriverCreatorBase::createObject(QSqlDriverCreatorBase* theWrappedObject) const
@@ -1368,15 +1368,15 @@ QSqlDriver*  PythonQtWrapper_QSqlDriverCreatorBase::createObject(QSqlDriverCreat
 
 
 QSqlError* PythonQtWrapper_QSqlError::new_QSqlError(const QSqlError&  other)
-{ 
+{
 return new QSqlError(other); }
 
 QSqlError* PythonQtWrapper_QSqlError::new_QSqlError(const QString&  driverText, const QString&  databaseText, QSqlError::ErrorType  type, const QString&  errorCode)
-{ 
+{
 return new QSqlError(driverText, databaseText, type, errorCode); }
 
 QSqlError* PythonQtWrapper_QSqlError::new_QSqlError(const QString&  driverText, const QString&  databaseText, QSqlError::ErrorType  type, int  number)
-{ 
+{
 return new QSqlError(driverText, databaseText, type, number); }
 
 QString  PythonQtWrapper_QSqlError::databaseText(QSqlError* theWrappedObject) const
@@ -1459,15 +1459,15 @@ QString PythonQtWrapper_QSqlError::py_toString(QSqlError* obj) {
 
 
 QSqlField* PythonQtWrapper_QSqlField::new_QSqlField(const QSqlField&  other)
-{ 
+{
 return new QSqlField(other); }
 
 QSqlField* PythonQtWrapper_QSqlField::new_QSqlField(const QString&  fieldName, QVariant::Type  type)
-{ 
+{
 return new QSqlField(fieldName, type); }
 
 QSqlField* PythonQtWrapper_QSqlField::new_QSqlField(const QString&  fieldName, QVariant::Type  type, const QString&  tableName)
-{ 
+{
 return new QSqlField(fieldName, type, tableName); }
 
 void PythonQtWrapper_QSqlField::clear(QSqlField* theWrappedObject)
@@ -1630,11 +1630,11 @@ QString PythonQtWrapper_QSqlField::py_toString(QSqlField* obj) {
 
 
 QSqlIndex* PythonQtWrapper_QSqlIndex::new_QSqlIndex(const QSqlIndex&  other)
-{ 
+{
 return new QSqlIndex(other); }
 
 QSqlIndex* PythonQtWrapper_QSqlIndex::new_QSqlIndex(const QString&  cursorName, const QString&  name)
-{ 
+{
 return new QSqlIndex(cursorName, name); }
 
 void PythonQtWrapper_QSqlIndex::append(QSqlIndex* theWrappedObject, const QSqlField&  field)
@@ -1680,19 +1680,19 @@ void PythonQtWrapper_QSqlIndex::setName(QSqlIndex* theWrappedObject, const QStri
 
 
 QSqlQuery* PythonQtWrapper_QSqlQuery::new_QSqlQuery(QSqlDatabase  db)
-{ 
+{
 return new QSqlQuery(db); }
 
 QSqlQuery* PythonQtWrapper_QSqlQuery::new_QSqlQuery(QSqlResult*  r)
-{ 
+{
 return new QSqlQuery(r); }
 
 QSqlQuery* PythonQtWrapper_QSqlQuery::new_QSqlQuery(const QSqlQuery&  other)
-{ 
+{
 return new QSqlQuery(other); }
 
 QSqlQuery* PythonQtWrapper_QSqlQuery::new_QSqlQuery(const QString&  query, QSqlDatabase  db)
-{ 
+{
 return new QSqlQuery(query, db); }
 
 void PythonQtWrapper_QSqlQuery::addBindValue(QSqlQuery* theWrappedObject, const QVariant&  val, QSql::ParamType  type)
@@ -3129,7 +3129,7 @@ if (_wrapper) {
   QSqlQueryModel::timerEvent(event0);
 }
 QSqlQueryModel* PythonQtWrapper_QSqlQueryModel::new_QSqlQueryModel(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QSqlQueryModel(parent); }
 
 const QMetaObject* PythonQtShell_QSqlQueryModel::metaObject() const {
@@ -3248,11 +3248,11 @@ void PythonQtWrapper_QSqlQueryModel::setQuery(QSqlQueryModel* theWrappedObject, 
 
 
 QSqlRecord* PythonQtWrapper_QSqlRecord::new_QSqlRecord()
-{ 
+{
 return new QSqlRecord(); }
 
 QSqlRecord* PythonQtWrapper_QSqlRecord::new_QSqlRecord(const QSqlRecord&  other)
-{ 
+{
 return new QSqlRecord(other); }
 
 void PythonQtWrapper_QSqlRecord::append(QSqlRecord* theWrappedObject, const QSqlField&  field)
@@ -3405,11 +3405,11 @@ QString PythonQtWrapper_QSqlRecord::py_toString(QSqlRecord* obj) {
 
 
 QSqlRelation* PythonQtWrapper_QSqlRelation::new_QSqlRelation()
-{ 
+{
 return new QSqlRelation(); }
 
 QSqlRelation* PythonQtWrapper_QSqlRelation::new_QSqlRelation(const QString&  aTableName, const QString&  indexCol, const QString&  displayCol)
-{ 
+{
 return new QSqlRelation(aTableName, indexCol, displayCol); }
 
 QString  PythonQtWrapper_QSqlRelation::displayColumn(QSqlRelation* theWrappedObject) const
@@ -5072,7 +5072,7 @@ if (_wrapper) {
   return QSqlRelationalTableModel::updateRowInTable(row0, values1);
 }
 QSqlRelationalTableModel* PythonQtWrapper_QSqlRelationalTableModel::new_QSqlRelationalTableModel(QObject*  parent, QSqlDatabase  db)
-{ 
+{
 return new PythonQtShell_QSqlRelationalTableModel(parent, db); }
 
 const QMetaObject* PythonQtShell_QSqlRelationalTableModel::metaObject() const {
@@ -5929,7 +5929,7 @@ if (_wrapper) {
   return int();
 }
 QSqlResult* PythonQtWrapper_QSqlResult::new_QSqlResult(const QSqlDriver*  db)
-{ 
+{
 return new PythonQtShell_QSqlResult(db); }
 
 void PythonQtWrapper_QSqlResult::addBindValue(QSqlResult* theWrappedObject, const QVariant&  val, QSql::ParamType  type)
@@ -7762,7 +7762,7 @@ if (_wrapper) {
   return QSqlTableModel::updateRowInTable(row0, values1);
 }
 QSqlTableModel* PythonQtWrapper_QSqlTableModel::new_QSqlTableModel(QObject*  parent, QSqlDatabase  db)
-{ 
+{
 return new PythonQtShell_QSqlTableModel(parent, db); }
 
 const QMetaObject* PythonQtShell_QSqlTableModel::metaObject() const {

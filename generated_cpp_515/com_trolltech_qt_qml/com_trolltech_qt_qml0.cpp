@@ -165,11 +165,11 @@ if (_wrapper) {
   QJSEngine::timerEvent(event0);
 }
 QJSEngine* PythonQtWrapper_QJSEngine::new_QJSEngine()
-{ 
+{
 return new PythonQtShell_QJSEngine(); }
 
 QJSEngine* PythonQtWrapper_QJSEngine::new_QJSEngine(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QJSEngine(parent); }
 
 const QMetaObject* PythonQtShell_QJSEngine::metaObject() const {
@@ -268,35 +268,35 @@ QString  PythonQtWrapper_QJSEngine::uiLanguage(QJSEngine* theWrappedObject) cons
 
 
 QJSValue* PythonQtWrapper_QJSValue::new_QJSValue(QJSValue::SpecialValue  value)
-{ 
+{
 return new QJSValue(value); }
 
 QJSValue* PythonQtWrapper_QJSValue::new_QJSValue(bool  value)
-{ 
+{
 return new QJSValue(value); }
 
 QJSValue* PythonQtWrapper_QJSValue::new_QJSValue(const QJSValue&  other)
-{ 
+{
 return new QJSValue(other); }
 
 QJSValue* PythonQtWrapper_QJSValue::new_QJSValue(const QString&  value)
-{ 
+{
 return new QJSValue(value); }
 
 QJSValue* PythonQtWrapper_QJSValue::new_QJSValue(const char*  str)
-{ 
+{
 return new QJSValue(str); }
 
 QJSValue* PythonQtWrapper_QJSValue::new_QJSValue(double  value)
-{ 
+{
 return new QJSValue(value); }
 
 QJSValue* PythonQtWrapper_QJSValue::new_QJSValue(int  value)
-{ 
+{
 return new QJSValue(value); }
 
 QJSValue* PythonQtWrapper_QJSValue::new_QJSValue(uint  value)
-{ 
+{
 return new QJSValue(value); }
 
 QJSValue  PythonQtWrapper_QJSValue::call(QJSValue* theWrappedObject, const QList<QJSValue >&  args)
@@ -540,7 +540,7 @@ if (_wrapper) {
   return QUrl();
 }
 QQmlAbstractUrlInterceptor* PythonQtWrapper_QQmlAbstractUrlInterceptor::new_QQmlAbstractUrlInterceptor()
-{ 
+{
 return new PythonQtShell_QQmlAbstractUrlInterceptor(); }
 
 QUrl  PythonQtWrapper_QQmlAbstractUrlInterceptor::intercept(QQmlAbstractUrlInterceptor* theWrappedObject, const QUrl&  path, QQmlAbstractUrlInterceptor::DataType  type)
@@ -687,15 +687,15 @@ if (_wrapper) {
   QQmlApplicationEngine::timerEvent(event0);
 }
 QQmlApplicationEngine* PythonQtWrapper_QQmlApplicationEngine::new_QQmlApplicationEngine(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QQmlApplicationEngine(parent); }
 
 QQmlApplicationEngine* PythonQtWrapper_QQmlApplicationEngine::new_QQmlApplicationEngine(const QString&  filePath, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QQmlApplicationEngine(filePath, parent); }
 
 QQmlApplicationEngine* PythonQtWrapper_QQmlApplicationEngine::new_QQmlApplicationEngine(const QUrl&  url, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QQmlApplicationEngine(url, parent); }
 
 const QMetaObject* PythonQtShell_QQmlApplicationEngine::metaObject() const {
@@ -948,27 +948,27 @@ if (_wrapper) {
   QQmlComponent::timerEvent(event0);
 }
 QQmlComponent* PythonQtWrapper_QQmlComponent::new_QQmlComponent(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QQmlComponent(parent); }
 
 QQmlComponent* PythonQtWrapper_QQmlComponent::new_QQmlComponent(QQmlEngine*  arg__1, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QQmlComponent(arg__1, parent); }
 
 QQmlComponent* PythonQtWrapper_QQmlComponent::new_QQmlComponent(QQmlEngine*  arg__1, const QString&  fileName, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QQmlComponent(arg__1, fileName, parent); }
 
 QQmlComponent* PythonQtWrapper_QQmlComponent::new_QQmlComponent(QQmlEngine*  arg__1, const QString&  fileName, QQmlComponent::CompilationMode  mode, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QQmlComponent(arg__1, fileName, mode, parent); }
 
 QQmlComponent* PythonQtWrapper_QQmlComponent::new_QQmlComponent(QQmlEngine*  arg__1, const QUrl&  url, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QQmlComponent(arg__1, url, parent); }
 
 QQmlComponent* PythonQtWrapper_QQmlComponent::new_QQmlComponent(QQmlEngine*  arg__1, const QUrl&  url, QQmlComponent::CompilationMode  mode, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QQmlComponent(arg__1, url, mode, parent); }
 
 const QMetaObject* PythonQtShell_QQmlComponent::metaObject() const {
@@ -1208,11 +1208,11 @@ if (_wrapper) {
   QQmlContext::timerEvent(event0);
 }
 QQmlContext* PythonQtWrapper_QQmlContext::new_QQmlContext(QQmlContext*  parent, QObject*  objParent)
-{ 
+{
 return new PythonQtShell_QQmlContext(parent, objParent); }
 
 QQmlContext* PythonQtWrapper_QQmlContext::new_QQmlContext(QQmlEngine*  parent, QObject*  objParent)
-{ 
+{
 return new PythonQtShell_QQmlContext(parent, objParent); }
 
 const QMetaObject* PythonQtShell_QQmlContext::metaObject() const {
@@ -1291,7 +1291,7 @@ void PythonQtWrapper_QQmlContext::setContextProperty(QQmlContext* theWrappedObje
 
 
 QQmlDebuggingEnabler* PythonQtWrapper_QQmlDebuggingEnabler::new_QQmlDebuggingEnabler(bool  printWarning)
-{ 
+{
 return new QQmlDebuggingEnabler(printWarning); }
 
 bool  PythonQtWrapper_QQmlDebuggingEnabler::static_QQmlDebuggingEnabler_connectToLocalDebugger(const QString&  socketFileName, QQmlDebuggingEnabler::StartMode  mode)
@@ -1473,7 +1473,7 @@ if (_wrapper) {
   QQmlEngine::timerEvent(event0);
 }
 QQmlEngine* PythonQtWrapper_QQmlEngine::new_QQmlEngine(QObject*  p)
-{ 
+{
 return new PythonQtShell_QQmlEngine(p); }
 
 const QMetaObject* PythonQtShell_QQmlEngine::metaObject() const {
@@ -1642,11 +1642,11 @@ QQmlAbstractUrlInterceptor*  PythonQtWrapper_QQmlEngine::urlInterceptor(QQmlEngi
 
 
 QQmlError* PythonQtWrapper_QQmlError::new_QQmlError()
-{ 
+{
 return new QQmlError(); }
 
 QQmlError* PythonQtWrapper_QQmlError::new_QQmlError(const QQmlError&  arg__1)
-{ 
+{
 return new QQmlError(arg__1); }
 
 int  PythonQtWrapper_QQmlError::column(QQmlError* theWrappedObject) const
@@ -1864,15 +1864,15 @@ if (_wrapper) {
   QQmlExpression::timerEvent(event0);
 }
 QQmlExpression* PythonQtWrapper_QQmlExpression::new_QQmlExpression()
-{ 
+{
 return new PythonQtShell_QQmlExpression(); }
 
 QQmlExpression* PythonQtWrapper_QQmlExpression::new_QQmlExpression(QQmlContext*  arg__1, QObject*  arg__2, const QString&  arg__3, QObject*  arg__4)
-{ 
+{
 return new PythonQtShell_QQmlExpression(arg__1, arg__2, arg__3, arg__4); }
 
 QQmlExpression* PythonQtWrapper_QQmlExpression::new_QQmlExpression(const QQmlScriptString&  arg__1, QQmlContext*  arg__2, QObject*  arg__3, QObject*  arg__4)
-{ 
+{
 return new PythonQtShell_QQmlExpression(arg__1, arg__2, arg__3, arg__4); }
 
 const QMetaObject* PythonQtShell_QQmlExpression::metaObject() const {
@@ -1989,7 +1989,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QQmlExtensionInterface::registerTypes(const char*  uri0)
 {
@@ -2011,10 +2011,10 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 QQmlExtensionInterface* PythonQtWrapper_QQmlExtensionInterface::new_QQmlExtensionInterface()
-{ 
+{
 return new PythonQtShell_QQmlExtensionInterface(); }
 
 void PythonQtWrapper_QQmlExtensionInterface::initializeEngine(QQmlExtensionInterface* theWrappedObject, QQmlEngine*  engine, const char*  uri)
@@ -2070,10 +2070,10 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 QQmlExtensionPlugin* PythonQtWrapper_QQmlExtensionPlugin::new_QQmlExtensionPlugin(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QQmlExtensionPlugin(parent); }
 
 const QMetaObject* PythonQtShell_QQmlExtensionPlugin::metaObject() const {
@@ -2107,15 +2107,15 @@ void PythonQtWrapper_QQmlExtensionPlugin::registerTypes(QQmlExtensionPlugin* the
 
 
 QQmlFile* PythonQtWrapper_QQmlFile::new_QQmlFile()
-{ 
+{
 return new QQmlFile(); }
 
 QQmlFile* PythonQtWrapper_QQmlFile::new_QQmlFile(QQmlEngine*  arg__1, const QString&  arg__2)
-{ 
+{
 return new QQmlFile(arg__1, arg__2); }
 
 QQmlFile* PythonQtWrapper_QQmlFile::new_QQmlFile(QQmlEngine*  arg__1, const QUrl&  arg__2)
-{ 
+{
 return new QQmlFile(arg__1, arg__2); }
 
 void PythonQtWrapper_QQmlFile::clear(QQmlFile* theWrappedObject)
@@ -2377,7 +2377,7 @@ if (_wrapper) {
   QQmlFileSelector::timerEvent(event0);
 }
 QQmlFileSelector* PythonQtWrapper_QQmlFileSelector::new_QQmlFileSelector(QQmlEngine*  engine, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QQmlFileSelector(engine, parent); }
 
 const QMetaObject* PythonQtShell_QQmlFileSelector::metaObject() const {
@@ -2447,7 +2447,7 @@ if (_wrapper) {
   QQmlIncubationController::incubatingObjectCountChanged(arg__1);
 }
 QQmlIncubationController* PythonQtWrapper_QQmlIncubationController::new_QQmlIncubationController()
-{ 
+{
 return new PythonQtShell_QQmlIncubationController(); }
 
 QQmlEngine*  PythonQtWrapper_QQmlIncubationController::engine(QQmlIncubationController* theWrappedObject) const
@@ -2526,7 +2526,7 @@ if (_wrapper) {
   QQmlIncubator::statusChanged(arg__1);
 }
 QQmlIncubator* PythonQtWrapper_QQmlIncubator::new_QQmlIncubator(QQmlIncubator::IncubationMode  arg__1)
-{ 
+{
 return new PythonQtShell_QQmlIncubator(arg__1); }
 
 void PythonQtWrapper_QQmlIncubator::clear(QQmlIncubator* theWrappedObject)
@@ -2597,7 +2597,7 @@ void PythonQtWrapper_QQmlIncubator::statusChanged(QQmlIncubator* theWrappedObjec
 
 
 QQmlInfo* PythonQtWrapper_QQmlInfo::new_QQmlInfo(const QQmlInfo&  arg__1)
-{ 
+{
 return new QQmlInfo(arg__1); }
 
 QQmlInfo*  PythonQtWrapper_QQmlInfo::__lshift__(QQmlInfo* theWrappedObject, QChar  t)
@@ -2693,15 +2693,15 @@ QQmlInfo*  PythonQtWrapper_QQmlInfo::__lshift__(QQmlInfo* theWrappedObject, unsi
 
 
 QQmlListReference* PythonQtWrapper_QQmlListReference::new_QQmlListReference()
-{ 
+{
 return new QQmlListReference(); }
 
 QQmlListReference* PythonQtWrapper_QQmlListReference::new_QQmlListReference(QObject*  arg__1, const char*  property, QQmlEngine*  arg__3)
-{ 
+{
 return new QQmlListReference(arg__1, property, arg__3); }
 
 QQmlListReference* PythonQtWrapper_QQmlListReference::new_QQmlListReference(const QQmlListReference&  arg__1)
-{ 
+{
 return new QQmlListReference(arg__1); }
 
 bool  PythonQtWrapper_QQmlListReference::append(QQmlListReference* theWrappedObject, QObject*  arg__1) const
@@ -2834,7 +2834,7 @@ if (_wrapper) {
   return nullptr;
 }
 QQmlNetworkAccessManagerFactory* PythonQtWrapper_QQmlNetworkAccessManagerFactory::new_QQmlNetworkAccessManagerFactory()
-{ 
+{
 return new PythonQtShell_QQmlNetworkAccessManagerFactory(); }
 
 QNetworkAccessManager*  PythonQtWrapper_QQmlNetworkAccessManagerFactory::create(QQmlNetworkAccessManagerFactory* theWrappedObject, QObject*  parent)
@@ -2868,7 +2868,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QQmlParserStatus::componentComplete()
 {
@@ -2890,10 +2890,10 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 QQmlParserStatus* PythonQtWrapper_QQmlParserStatus::new_QQmlParserStatus()
-{ 
+{
 return new PythonQtShell_QQmlParserStatus(); }
 
 void PythonQtWrapper_QQmlParserStatus::classBegin(QQmlParserStatus* theWrappedObject)
@@ -2909,35 +2909,35 @@ void PythonQtWrapper_QQmlParserStatus::componentComplete(QQmlParserStatus* theWr
 
 
 QQmlProperty* PythonQtWrapper_QQmlProperty::new_QQmlProperty()
-{ 
+{
 return new QQmlProperty(); }
 
 QQmlProperty* PythonQtWrapper_QQmlProperty::new_QQmlProperty(QObject*  arg__1)
-{ 
+{
 return new QQmlProperty(arg__1); }
 
 QQmlProperty* PythonQtWrapper_QQmlProperty::new_QQmlProperty(QObject*  arg__1, QQmlContext*  arg__2)
-{ 
+{
 return new QQmlProperty(arg__1, arg__2); }
 
 QQmlProperty* PythonQtWrapper_QQmlProperty::new_QQmlProperty(QObject*  arg__1, QQmlEngine*  arg__2)
-{ 
+{
 return new QQmlProperty(arg__1, arg__2); }
 
 QQmlProperty* PythonQtWrapper_QQmlProperty::new_QQmlProperty(QObject*  arg__1, const QString&  arg__2)
-{ 
+{
 return new QQmlProperty(arg__1, arg__2); }
 
 QQmlProperty* PythonQtWrapper_QQmlProperty::new_QQmlProperty(QObject*  arg__1, const QString&  arg__2, QQmlContext*  arg__3)
-{ 
+{
 return new QQmlProperty(arg__1, arg__2, arg__3); }
 
 QQmlProperty* PythonQtWrapper_QQmlProperty::new_QQmlProperty(QObject*  arg__1, const QString&  arg__2, QQmlEngine*  arg__3)
-{ 
+{
 return new QQmlProperty(arg__1, arg__2, arg__3); }
 
 QQmlProperty* PythonQtWrapper_QQmlProperty::new_QQmlProperty(const QQmlProperty&  arg__1)
-{ 
+{
 return new QQmlProperty(arg__1); }
 
 bool  PythonQtWrapper_QQmlProperty::connectNotifySignal(QQmlProperty* theWrappedObject, QObject*  dest, const char*  slot) const
@@ -3262,7 +3262,7 @@ if (_wrapper) {
   return QQmlPropertyMap::updateValue(key0, input1);
 }
 QQmlPropertyMap* PythonQtWrapper_QQmlPropertyMap::new_QQmlPropertyMap(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QQmlPropertyMap(parent); }
 
 const QMetaObject* PythonQtShell_QQmlPropertyMap::metaObject() const {
@@ -3354,10 +3354,10 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 QQmlPropertyValueSource* PythonQtWrapper_QQmlPropertyValueSource::new_QQmlPropertyValueSource()
-{ 
+{
 return new PythonQtShell_QQmlPropertyValueSource(); }
 
 void PythonQtWrapper_QQmlPropertyValueSource::setTarget(QQmlPropertyValueSource* theWrappedObject, const QQmlProperty&  arg__1)
@@ -3368,11 +3368,11 @@ void PythonQtWrapper_QQmlPropertyValueSource::setTarget(QQmlPropertyValueSource*
 
 
 QQmlScriptString* PythonQtWrapper_QQmlScriptString::new_QQmlScriptString()
-{ 
+{
 return new QQmlScriptString(); }
 
 QQmlScriptString* PythonQtWrapper_QQmlScriptString::new_QQmlScriptString(const QQmlScriptString&  arg__1)
-{ 
+{
 return new QQmlScriptString(arg__1); }
 
 bool  PythonQtWrapper_QQmlScriptString::booleanLiteral(QQmlScriptString* theWrappedObject, bool*  ok) const
@@ -3446,10 +3446,10 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 QQmlTypesExtensionInterface* PythonQtWrapper_QQmlTypesExtensionInterface::new_QQmlTypesExtensionInterface()
-{ 
+{
 return new PythonQtShell_QQmlTypesExtensionInterface(); }
 
 void PythonQtWrapper_QQmlTypesExtensionInterface::registerTypes(QQmlTypesExtensionInterface* theWrappedObject, const char*  uri)

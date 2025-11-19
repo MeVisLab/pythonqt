@@ -11,11 +11,11 @@
 #include <qxmlstream.h>
 
 QDomAttr* PythonQtWrapper_QDomAttr::new_QDomAttr()
-{ 
+{
 return new QDomAttr(); }
 
 QDomAttr* PythonQtWrapper_QDomAttr::new_QDomAttr(const QDomAttr&  x)
-{ 
+{
 return new QDomAttr(x); }
 
 QString  PythonQtWrapper_QDomAttr::name(QDomAttr* theWrappedObject) const
@@ -46,21 +46,21 @@ QString  PythonQtWrapper_QDomAttr::value(QDomAttr* theWrappedObject) const
 
 
 QDomCDATASection* PythonQtWrapper_QDomCDATASection::new_QDomCDATASection()
-{ 
+{
 return new QDomCDATASection(); }
 
 QDomCDATASection* PythonQtWrapper_QDomCDATASection::new_QDomCDATASection(const QDomCDATASection&  x)
-{ 
+{
 return new QDomCDATASection(x); }
 
 
 
 QDomCharacterData* PythonQtWrapper_QDomCharacterData::new_QDomCharacterData()
-{ 
+{
 return new QDomCharacterData(); }
 
 QDomCharacterData* PythonQtWrapper_QDomCharacterData::new_QDomCharacterData(const QDomCharacterData&  x)
-{ 
+{
 return new QDomCharacterData(x); }
 
 void PythonQtWrapper_QDomCharacterData::appendData(QDomCharacterData* theWrappedObject, const QString&  arg)
@@ -106,29 +106,29 @@ QString  PythonQtWrapper_QDomCharacterData::substringData(QDomCharacterData* the
 
 
 QDomComment* PythonQtWrapper_QDomComment::new_QDomComment()
-{ 
+{
 return new QDomComment(); }
 
 QDomComment* PythonQtWrapper_QDomComment::new_QDomComment(const QDomComment&  x)
-{ 
+{
 return new QDomComment(x); }
 
 
 
 QDomDocument* PythonQtWrapper_QDomDocument::new_QDomDocument()
-{ 
+{
 return new QDomDocument(); }
 
 QDomDocument* PythonQtWrapper_QDomDocument::new_QDomDocument(const QDomDocument&  x)
-{ 
+{
 return new QDomDocument(x); }
 
 QDomDocument* PythonQtWrapper_QDomDocument::new_QDomDocument(const QDomDocumentType&  doctype)
-{ 
+{
 return new QDomDocument(doctype); }
 
 QDomDocument* PythonQtWrapper_QDomDocument::new_QDomDocument(const QString&  name)
-{ 
+{
 return new QDomDocument(name); }
 
 QDomAttr  PythonQtWrapper_QDomDocument::createAttribute(QDomDocument* theWrappedObject, const QString&  name)
@@ -275,21 +275,21 @@ QString PythonQtWrapper_QDomDocument::py_toString(QDomDocument* obj) { return ob
 
 
 QDomDocumentFragment* PythonQtWrapper_QDomDocumentFragment::new_QDomDocumentFragment()
-{ 
+{
 return new QDomDocumentFragment(); }
 
 QDomDocumentFragment* PythonQtWrapper_QDomDocumentFragment::new_QDomDocumentFragment(const QDomDocumentFragment&  x)
-{ 
+{
 return new QDomDocumentFragment(x); }
 
 
 
 QDomDocumentType* PythonQtWrapper_QDomDocumentType::new_QDomDocumentType()
-{ 
+{
 return new QDomDocumentType(); }
 
 QDomDocumentType* PythonQtWrapper_QDomDocumentType::new_QDomDocumentType(const QDomDocumentType&  x)
-{ 
+{
 return new QDomDocumentType(x); }
 
 QDomNamedNodeMap  PythonQtWrapper_QDomDocumentType::entities(QDomDocumentType* theWrappedObject) const
@@ -325,11 +325,11 @@ QString  PythonQtWrapper_QDomDocumentType::systemId(QDomDocumentType* theWrapped
 
 
 QDomElement* PythonQtWrapper_QDomElement::new_QDomElement()
-{ 
+{
 return new QDomElement(); }
 
 QDomElement* PythonQtWrapper_QDomElement::new_QDomElement(const QDomElement&  x)
-{ 
+{
 return new QDomElement(x); }
 
 QString  PythonQtWrapper_QDomElement::attribute(QDomElement* theWrappedObject, const QString&  name, const QString&  defValue) const
@@ -465,11 +465,11 @@ QString  PythonQtWrapper_QDomElement::text(QDomElement* theWrappedObject) const
 
 
 QDomEntity* PythonQtWrapper_QDomEntity::new_QDomEntity()
-{ 
+{
 return new QDomEntity(); }
 
 QDomEntity* PythonQtWrapper_QDomEntity::new_QDomEntity(const QDomEntity&  x)
-{ 
+{
 return new QDomEntity(x); }
 
 QString  PythonQtWrapper_QDomEntity::notationName(QDomEntity* theWrappedObject) const
@@ -490,21 +490,21 @@ QString  PythonQtWrapper_QDomEntity::systemId(QDomEntity* theWrappedObject) cons
 
 
 QDomEntityReference* PythonQtWrapper_QDomEntityReference::new_QDomEntityReference()
-{ 
+{
 return new QDomEntityReference(); }
 
 QDomEntityReference* PythonQtWrapper_QDomEntityReference::new_QDomEntityReference(const QDomEntityReference&  x)
-{ 
+{
 return new QDomEntityReference(x); }
 
 
 
 QDomImplementation* PythonQtWrapper_QDomImplementation::new_QDomImplementation()
-{ 
+{
 return new QDomImplementation(); }
 
 QDomImplementation* PythonQtWrapper_QDomImplementation::new_QDomImplementation(const QDomImplementation&  arg__1)
-{ 
+{
 return new QDomImplementation(arg__1); }
 
 QDomDocument  PythonQtWrapper_QDomImplementation::createDocument(QDomImplementation* theWrappedObject, const QString&  nsURI, const QString&  qName, const QDomDocumentType&  doctype)
@@ -550,11 +550,11 @@ void PythonQtWrapper_QDomImplementation::static_QDomImplementation_setInvalidDat
 
 
 QDomNamedNodeMap* PythonQtWrapper_QDomNamedNodeMap::new_QDomNamedNodeMap()
-{ 
+{
 return new QDomNamedNodeMap(); }
 
 QDomNamedNodeMap* PythonQtWrapper_QDomNamedNodeMap::new_QDomNamedNodeMap(const QDomNamedNodeMap&  arg__1)
-{ 
+{
 return new QDomNamedNodeMap(arg__1); }
 
 bool  PythonQtWrapper_QDomNamedNodeMap::contains(QDomNamedNodeMap* theWrappedObject, const QString&  name) const
@@ -630,11 +630,11 @@ int  PythonQtWrapper_QDomNamedNodeMap::size(QDomNamedNodeMap* theWrappedObject) 
 
 
 QDomNode* PythonQtWrapper_QDomNode::new_QDomNode()
-{ 
+{
 return new QDomNode(); }
 
 QDomNode* PythonQtWrapper_QDomNode::new_QDomNode(const QDomNode&  arg__1)
-{ 
+{
 return new QDomNode(arg__1); }
 
 QDomNode  PythonQtWrapper_QDomNode::appendChild(QDomNode* theWrappedObject, const QDomNode&  newChild)
@@ -960,11 +960,11 @@ QDomText  PythonQtWrapper_QDomNode::toText(QDomNode* theWrappedObject) const
 
 
 QDomNodeList* PythonQtWrapper_QDomNodeList::new_QDomNodeList()
-{ 
+{
 return new QDomNodeList(); }
 
 QDomNodeList* PythonQtWrapper_QDomNodeList::new_QDomNodeList(const QDomNodeList&  arg__1)
-{ 
+{
 return new QDomNodeList(arg__1); }
 
 QDomNode  PythonQtWrapper_QDomNodeList::at(QDomNodeList* theWrappedObject, int  index) const
@@ -1010,11 +1010,11 @@ int  PythonQtWrapper_QDomNodeList::size(QDomNodeList* theWrappedObject) const
 
 
 QDomNotation* PythonQtWrapper_QDomNotation::new_QDomNotation()
-{ 
+{
 return new QDomNotation(); }
 
 QDomNotation* PythonQtWrapper_QDomNotation::new_QDomNotation(const QDomNotation&  x)
-{ 
+{
 return new QDomNotation(x); }
 
 QString  PythonQtWrapper_QDomNotation::publicId(QDomNotation* theWrappedObject) const
@@ -1030,11 +1030,11 @@ QString  PythonQtWrapper_QDomNotation::systemId(QDomNotation* theWrappedObject) 
 
 
 QDomProcessingInstruction* PythonQtWrapper_QDomProcessingInstruction::new_QDomProcessingInstruction()
-{ 
+{
 return new QDomProcessingInstruction(); }
 
 QDomProcessingInstruction* PythonQtWrapper_QDomProcessingInstruction::new_QDomProcessingInstruction(const QDomProcessingInstruction&  x)
-{ 
+{
 return new QDomProcessingInstruction(x); }
 
 QString  PythonQtWrapper_QDomProcessingInstruction::data(QDomProcessingInstruction* theWrappedObject) const
@@ -1055,11 +1055,11 @@ QString  PythonQtWrapper_QDomProcessingInstruction::target(QDomProcessingInstruc
 
 
 QDomText* PythonQtWrapper_QDomText::new_QDomText()
-{ 
+{
 return new QDomText(); }
 
 QDomText* PythonQtWrapper_QDomText::new_QDomText(const QDomText&  x)
-{ 
+{
 return new QDomText(x); }
 
 QDomText  PythonQtWrapper_QDomText::splitText(QDomText* theWrappedObject, int  offset)
@@ -1074,11 +1074,11 @@ PythonQtShell_QXmlAttributes::~PythonQtShell_QXmlAttributes() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QXmlAttributes* PythonQtWrapper_QXmlAttributes::new_QXmlAttributes()
-{ 
+{
 return new PythonQtShell_QXmlAttributes(); }
 
 QXmlAttributes* PythonQtWrapper_QXmlAttributes::new_QXmlAttributes(const QXmlAttributes&  arg__1)
-{ 
+{
 return new PythonQtShell_QXmlAttributes(arg__1); }
 
 void PythonQtWrapper_QXmlAttributes::append(QXmlAttributes* theWrappedObject, const QString&  qName, const QString&  uri, const QString&  localPart, const QString&  value)
@@ -1423,7 +1423,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 bool  PythonQtShell_QXmlContentHandler::skippedEntity(const QString&  name0)
 {
@@ -1558,7 +1558,7 @@ if (_wrapper) {
   return bool();
 }
 QXmlContentHandler* PythonQtWrapper_QXmlContentHandler::new_QXmlContentHandler()
-{ 
+{
 return new PythonQtShell_QXmlContentHandler(); }
 
 bool  PythonQtWrapper_QXmlContentHandler::characters(QXmlContentHandler* theWrappedObject, const QString&  ch)
@@ -1727,7 +1727,7 @@ if (_wrapper) {
   return bool();
 }
 QXmlDTDHandler* PythonQtWrapper_QXmlDTDHandler::new_QXmlDTDHandler()
-{ 
+{
 return new PythonQtShell_QXmlDTDHandler(); }
 
 QString  PythonQtWrapper_QXmlDTDHandler::errorString(QXmlDTDHandler* theWrappedObject) const
@@ -1884,7 +1884,7 @@ if (_wrapper) {
   return bool();
 }
 QXmlDeclHandler* PythonQtWrapper_QXmlDeclHandler::new_QXmlDeclHandler()
-{ 
+{
 return new PythonQtShell_QXmlDeclHandler(); }
 
 bool  PythonQtWrapper_QXmlDeclHandler::attributeDecl(QXmlDeclHandler* theWrappedObject, const QString&  eName, const QString&  aName, const QString&  type, const QString&  valueDefault, const QString&  value)
@@ -2827,7 +2827,7 @@ if (_wrapper) {
   return QXmlDefaultHandler::warning(exception0);
 }
 QXmlDefaultHandler* PythonQtWrapper_QXmlDefaultHandler::new_QXmlDefaultHandler()
-{ 
+{
 return new PythonQtShell_QXmlDefaultHandler(); }
 
 
@@ -2903,7 +2903,7 @@ if (_wrapper) {
   return bool();
 }
 QXmlEntityResolver* PythonQtWrapper_QXmlEntityResolver::new_QXmlEntityResolver()
-{ 
+{
 return new PythonQtShell_QXmlEntityResolver(); }
 
 QString  PythonQtWrapper_QXmlEntityResolver::errorString(QXmlEntityResolver* theWrappedObject) const
@@ -3055,7 +3055,7 @@ if (_wrapper) {
   return bool();
 }
 QXmlErrorHandler* PythonQtWrapper_QXmlErrorHandler::new_QXmlErrorHandler()
-{ 
+{
 return new PythonQtShell_QXmlErrorHandler(); }
 
 bool  PythonQtWrapper_QXmlErrorHandler::error(QXmlErrorHandler* theWrappedObject, const QXmlParseException&  exception)
@@ -3272,11 +3272,11 @@ if (_wrapper) {
   QXmlInputSource::setData(dat0);
 }
 QXmlInputSource* PythonQtWrapper_QXmlInputSource::new_QXmlInputSource()
-{ 
+{
 return new PythonQtShell_QXmlInputSource(); }
 
 QXmlInputSource* PythonQtWrapper_QXmlInputSource::new_QXmlInputSource(QIODevice*  dev)
-{ 
+{
 return new PythonQtShell_QXmlInputSource(dev); }
 
 QString  PythonQtWrapper_QXmlInputSource::data(QXmlInputSource* theWrappedObject) const
@@ -3585,7 +3585,7 @@ if (_wrapper) {
   return bool();
 }
 QXmlLexicalHandler* PythonQtWrapper_QXmlLexicalHandler::new_QXmlLexicalHandler()
-{ 
+{
 return new PythonQtShell_QXmlLexicalHandler(); }
 
 bool  PythonQtWrapper_QXmlLexicalHandler::comment(QXmlLexicalHandler* theWrappedObject, const QString&  ch)
@@ -3701,7 +3701,7 @@ if (_wrapper) {
   return int();
 }
 QXmlLocator* PythonQtWrapper_QXmlLocator::new_QXmlLocator()
-{ 
+{
 return new PythonQtShell_QXmlLocator(); }
 
 int  PythonQtWrapper_QXmlLocator::columnNumber(QXmlLocator* theWrappedObject) const
@@ -3717,11 +3717,11 @@ int  PythonQtWrapper_QXmlLocator::lineNumber(QXmlLocator* theWrappedObject) cons
 
 
 QXmlParseException* PythonQtWrapper_QXmlParseException::new_QXmlParseException(const QString&  name, int  c, int  l, const QString&  p, const QString&  s)
-{ 
+{
 return new QXmlParseException(name, c, l, p, s); }
 
 QXmlParseException* PythonQtWrapper_QXmlParseException::new_QXmlParseException(const QXmlParseException&  other)
-{ 
+{
 return new QXmlParseException(other); }
 
 int  PythonQtWrapper_QXmlParseException::columnNumber(QXmlParseException* theWrappedObject) const
@@ -4171,7 +4171,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QXmlReader::setDTDHandler(QXmlDTDHandler*  handler0)
 {
@@ -4193,7 +4193,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QXmlReader::setDeclHandler(QXmlDeclHandler*  handler0)
 {
@@ -4215,7 +4215,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QXmlReader::setEntityResolver(QXmlEntityResolver*  handler0)
 {
@@ -4237,7 +4237,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QXmlReader::setErrorHandler(QXmlErrorHandler*  handler0)
 {
@@ -4259,7 +4259,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QXmlReader::setFeature(const QString&  name0, bool  value1)
 {
@@ -4281,7 +4281,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QXmlReader::setLexicalHandler(QXmlLexicalHandler*  handler0)
 {
@@ -4303,7 +4303,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QXmlReader::setProperty(const QString&  name0, void*  value1)
 {
@@ -4325,10 +4325,10 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 QXmlReader* PythonQtWrapper_QXmlReader::new_QXmlReader()
-{ 
+{
 return new PythonQtShell_QXmlReader(); }
 
 QXmlDTDHandler*  PythonQtWrapper_QXmlReader::DTDHandler(QXmlReader* theWrappedObject) const
@@ -5076,7 +5076,7 @@ if (_wrapper) {
   QXmlSimpleReader::setProperty(name0, value1);
 }
 QXmlSimpleReader* PythonQtWrapper_QXmlSimpleReader::new_QXmlSimpleReader()
-{ 
+{
 return new PythonQtShell_QXmlSimpleReader(); }
 
 bool  PythonQtWrapper_QXmlSimpleReader::parse(QXmlSimpleReader* theWrappedObject, const QXmlInputSource*  input, bool  incremental)

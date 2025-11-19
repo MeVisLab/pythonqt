@@ -235,7 +235,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractAnimation::updateDirection(QAbstractAnimation::Direction  direction0)
 {
@@ -282,7 +282,7 @@ if (_wrapper) {
   QAbstractAnimation::updateState(newState0, oldState1);
 }
 QAbstractAnimation* PythonQtWrapper_QAbstractAnimation::new_QAbstractAnimation(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QAbstractAnimation(parent); }
 
 const QMetaObject* PythonQtShell_QAbstractAnimation::metaObject() const {
@@ -1596,7 +1596,7 @@ if (_wrapper) {
   QAbstractItemModel::timerEvent(event0);
 }
 QAbstractItemModel* PythonQtWrapper_QAbstractItemModel::new_QAbstractItemModel(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QAbstractItemModel(parent); }
 
 const QMetaObject* PythonQtShell_QAbstractItemModel::metaObject() const {
@@ -3041,7 +3041,7 @@ if (_wrapper) {
   QAbstractListModel::timerEvent(event0);
 }
 QAbstractListModel* PythonQtWrapper_QAbstractListModel::new_QAbstractListModel(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QAbstractListModel(parent); }
 
 const QMetaObject* PythonQtShell_QAbstractListModel::metaObject() const {
@@ -3193,7 +3193,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractState::onExit(QEvent*  event0)
 {
@@ -3215,7 +3215,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractState::timerEvent(QTimerEvent*  event0)
 {
@@ -3240,7 +3240,7 @@ if (_wrapper) {
   QAbstractState::timerEvent(event0);
 }
 QAbstractState* PythonQtWrapper_QAbstractState::new_QAbstractState(QState*  parent)
-{ 
+{
 return new PythonQtShell_QAbstractState(parent); }
 
 const QMetaObject* PythonQtShell_QAbstractState::metaObject() const {
@@ -3450,7 +3450,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractTransition::timerEvent(QTimerEvent*  event0)
 {
@@ -3475,7 +3475,7 @@ if (_wrapper) {
   QAbstractTransition::timerEvent(event0);
 }
 QAbstractTransition* PythonQtWrapper_QAbstractTransition::new_QAbstractTransition(QState*  sourceState)
-{ 
+{
 return new PythonQtShell_QAbstractTransition(sourceState); }
 
 const QMetaObject* PythonQtShell_QAbstractTransition::metaObject() const {
@@ -3747,7 +3747,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAnimationGroup::updateDirection(QAbstractAnimation::Direction  direction0)
 {
@@ -3794,7 +3794,7 @@ if (_wrapper) {
   QAnimationGroup::updateState(newState0, oldState1);
 }
 QAnimationGroup* PythonQtWrapper_QAnimationGroup::new_QAnimationGroup(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QAnimationGroup(parent); }
 
 const QMetaObject* PythonQtShell_QAnimationGroup::metaObject() const {
@@ -3853,7 +3853,7 @@ PythonQtPassOwnershipToPython<QAbstractAnimation*  > PythonQtWrapper_QAnimationG
 
 
 QApplicationStateChangeEvent* PythonQtWrapper_QApplicationStateChangeEvent::new_QApplicationStateChangeEvent(Qt::ApplicationState  state)
-{ 
+{
 return new QApplicationStateChangeEvent(state); }
 
 Qt::ApplicationState  PythonQtWrapper_QApplicationStateChangeEvent::applicationState(QApplicationStateChangeEvent* theWrappedObject) const
@@ -3868,7 +3868,7 @@ PythonQtShell_QBasicMutex::~PythonQtShell_QBasicMutex() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QBasicMutex* PythonQtWrapper_QBasicMutex::new_QBasicMutex()
-{ 
+{
 return new PythonQtShell_QBasicMutex(); }
 
 bool  PythonQtWrapper_QBasicMutex::isRecursive(QBasicMutex* theWrappedObject)
@@ -3904,11 +3904,11 @@ void PythonQtWrapper_QBasicMutex::unlock(QBasicMutex* theWrappedObject)
 
 
 QBasicTimer* PythonQtWrapper_QBasicTimer::new_QBasicTimer()
-{ 
+{
 return new QBasicTimer(); }
 
 QBasicTimer* PythonQtWrapper_QBasicTimer::new_QBasicTimer(const QBasicTimer&  arg__1)
-{ 
+{
 return new QBasicTimer(arg__1); }
 
 bool  PythonQtWrapper_QBasicTimer::isActive(QBasicTimer* theWrappedObject) const
@@ -4646,11 +4646,11 @@ if (_wrapper) {
   return QBuffer::writeData(data0, len1);
 }
 QBuffer* PythonQtWrapper_QBuffer::new_QBuffer(QByteArray*  buf, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QBuffer(buf, parent); }
 
 QBuffer* PythonQtWrapper_QBuffer::new_QBuffer(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QBuffer(parent); }
 
 const QMetaObject* PythonQtShell_QBuffer::metaObject() const {
@@ -4699,19 +4699,19 @@ void PythonQtWrapper_QBuffer::setData(QBuffer* theWrappedObject, const QByteArra
 
 
 QByteArrayMatcher* PythonQtWrapper_QByteArrayMatcher::new_QByteArrayMatcher()
-{ 
+{
 return new QByteArrayMatcher(); }
 
 QByteArrayMatcher* PythonQtWrapper_QByteArrayMatcher::new_QByteArrayMatcher(const QByteArray&  pattern)
-{ 
+{
 return new QByteArrayMatcher(pattern); }
 
 QByteArrayMatcher* PythonQtWrapper_QByteArrayMatcher::new_QByteArrayMatcher(const QByteArrayMatcher&  other)
-{ 
+{
 return new QByteArrayMatcher(other); }
 
 QByteArrayMatcher* PythonQtWrapper_QByteArrayMatcher::new_QByteArrayMatcher(const char*  pattern, int  length)
-{ 
+{
 return new QByteArrayMatcher(pattern, length); }
 
 int  PythonQtWrapper_QByteArrayMatcher::indexIn(QByteArrayMatcher* theWrappedObject, const QByteArray&  ba, int  from) const
@@ -4741,7 +4741,7 @@ PythonQtShell_QByteArray__FromBase64Result::~PythonQtShell_QByteArray__FromBase6
   if (priv) { priv->shellClassDeleted(this); }
 }
 QByteArray::FromBase64Result* PythonQtWrapper_QByteArray__FromBase64Result::new_QByteArray__FromBase64Result()
-{ 
+{
 return new PythonQtShell_QByteArray__FromBase64Result(); }
 
 bool  PythonQtWrapper_QByteArray__FromBase64Result::operator_cast_bool(QByteArray::FromBase64Result* theWrappedObject) const
@@ -4777,19 +4777,19 @@ void PythonQtWrapper_QByteArray__FromBase64Result::swap(QByteArray::FromBase64Re
 
 
 QCalendar* PythonQtWrapper_QCalendar::new_QCalendar()
-{ 
+{
 return new QCalendar(); }
 
 QCalendar* PythonQtWrapper_QCalendar::new_QCalendar(QCalendar::System  system)
-{ 
+{
 return new QCalendar(system); }
 
 QCalendar* PythonQtWrapper_QCalendar::new_QCalendar(QLatin1String  name)
-{ 
+{
 return new QCalendar(name); }
 
 QCalendar* PythonQtWrapper_QCalendar::new_QCalendar(QStringView  name)
-{ 
+{
 return new QCalendar(name); }
 
 QStringList  PythonQtWrapper_QCalendar::static_QCalendar_availableCalendars()
@@ -4929,11 +4929,11 @@ PythonQtShell_QCalendar__YearMonthDay::~PythonQtShell_QCalendar__YearMonthDay() 
   if (priv) { priv->shellClassDeleted(this); }
 }
 QCalendar::YearMonthDay* PythonQtWrapper_QCalendar__YearMonthDay::new_QCalendar__YearMonthDay()
-{ 
+{
 return new PythonQtShell_QCalendar__YearMonthDay(); }
 
 QCalendar::YearMonthDay* PythonQtWrapper_QCalendar__YearMonthDay::new_QCalendar__YearMonthDay(int  y, int  m, int  d)
-{ 
+{
 return new PythonQtShell_QCalendar__YearMonthDay(y, m, d); }
 
 bool  PythonQtWrapper_QCalendar__YearMonthDay::isValid(QCalendar::YearMonthDay* theWrappedObject) const
@@ -4944,11 +4944,11 @@ bool  PythonQtWrapper_QCalendar__YearMonthDay::isValid(QCalendar::YearMonthDay* 
 
 
 QCborArray* PythonQtWrapper_QCborArray::new_QCborArray()
-{ 
+{
 return new QCborArray(); }
 
 QCborArray* PythonQtWrapper_QCborArray::new_QCborArray(const QCborArray&  other)
-{ 
+{
 return new QCborArray(other); }
 
 void PythonQtWrapper_QCborArray::append(QCborArray* theWrappedObject, const QCborValue&  value)
@@ -5160,7 +5160,7 @@ PythonQtShell_QCborError::~PythonQtShell_QCborError() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QCborError* PythonQtWrapper_QCborError::new_QCborError()
-{ 
+{
 return new PythonQtShell_QCborError(); }
 
 QString  PythonQtWrapper_QCborError::toString(QCborError* theWrappedObject) const
@@ -5172,11 +5172,11 @@ QString PythonQtWrapper_QCborError::py_toString(QCborError* obj) { return obj->t
 
 
 QCborMap* PythonQtWrapper_QCborMap::new_QCborMap()
-{ 
+{
 return new QCborMap(); }
 
 QCborMap* PythonQtWrapper_QCborMap::new_QCborMap(const QCborMap&  other)
-{ 
+{
 return new QCborMap(other); }
 
 void PythonQtWrapper_QCborMap::clear(QCborMap* theWrappedObject)
@@ -5368,7 +5368,7 @@ PythonQtShell_QCborParserError::~PythonQtShell_QCborParserError() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QCborParserError* PythonQtWrapper_QCborParserError::new_QCborParserError()
-{ 
+{
 return new PythonQtShell_QCborParserError(); }
 
 QString  PythonQtWrapper_QCborParserError::errorString(QCborParserError* theWrappedObject) const
@@ -5379,23 +5379,23 @@ QString  PythonQtWrapper_QCborParserError::errorString(QCborParserError* theWrap
 
 
 QCborStreamReader* PythonQtWrapper_QCborStreamReader::new_QCborStreamReader()
-{ 
+{
 return new QCborStreamReader(); }
 
 QCborStreamReader* PythonQtWrapper_QCborStreamReader::new_QCborStreamReader(QIODevice*  device)
-{ 
+{
 return new QCborStreamReader(device); }
 
 QCborStreamReader* PythonQtWrapper_QCborStreamReader::new_QCborStreamReader(const QByteArray&  data)
-{ 
+{
 return new QCborStreamReader(data); }
 
 QCborStreamReader* PythonQtWrapper_QCborStreamReader::new_QCborStreamReader(const char*  data, qsizetype  len)
-{ 
+{
 return new QCborStreamReader(data, len); }
 
 QCborStreamReader* PythonQtWrapper_QCborStreamReader::new_QCborStreamReader(const unsigned char*  data, qsizetype  len)
-{ 
+{
 return new QCborStreamReader(data, len); }
 
 void PythonQtWrapper_QCborStreamReader::addData(QCborStreamReader* theWrappedObject, const QByteArray&  data)
@@ -5636,11 +5636,11 @@ QCborStreamReader::Type  PythonQtWrapper_QCborStreamReader::type(QCborStreamRead
 
 
 QCborStreamWriter* PythonQtWrapper_QCborStreamWriter::new_QCborStreamWriter(QByteArray*  data)
-{ 
+{
 return new QCborStreamWriter(data); }
 
 QCborStreamWriter* PythonQtWrapper_QCborStreamWriter::new_QCborStreamWriter(QIODevice*  device)
-{ 
+{
 return new QCborStreamWriter(device); }
 
 void PythonQtWrapper_QCborStreamWriter::append(QCborStreamWriter* theWrappedObject, QCborKnownTags  tag)
@@ -5766,75 +5766,75 @@ void PythonQtWrapper_QCborStreamWriter::startMap(QCborStreamWriter* theWrappedOb
 
 
 QCborValue* PythonQtWrapper_QCborValue::new_QCborValue()
-{ 
+{
 return new QCborValue(); }
 
 QCborValue* PythonQtWrapper_QCborValue::new_QCborValue(QCborKnownTags  t_, const QCborValue&  tv)
-{ 
+{
 return new QCborValue(t_, tv); }
 
 QCborValue* PythonQtWrapper_QCborValue::new_QCborValue(QCborSimpleType  st)
-{ 
+{
 return new QCborValue(st); }
 
 QCborValue* PythonQtWrapper_QCborValue::new_QCborValue(QCborValue::Type  t_)
-{ 
+{
 return new QCborValue(t_); }
 
 QCborValue* PythonQtWrapper_QCborValue::new_QCborValue(bool  b_)
-{ 
+{
 return new QCborValue(b_); }
 
 QCborValue* PythonQtWrapper_QCborValue::new_QCborValue(const QByteArray&  ba)
-{ 
+{
 return new QCborValue(ba); }
 
 QCborValue* PythonQtWrapper_QCborValue::new_QCborValue(const QCborArray&  a)
-{ 
+{
 return new QCborValue(a); }
 
 QCborValue* PythonQtWrapper_QCborValue::new_QCborValue(const QCborMap&  m)
-{ 
+{
 return new QCborValue(m); }
 
 QCborValue* PythonQtWrapper_QCborValue::new_QCborValue(const QCborValue&  other)
-{ 
+{
 return new QCborValue(other); }
 
 QCborValue* PythonQtWrapper_QCborValue::new_QCborValue(const QDateTime&  dt)
-{ 
+{
 return new QCborValue(dt); }
 
 QCborValue* PythonQtWrapper_QCborValue::new_QCborValue(const QRegularExpression&  rx)
-{ 
+{
 return new QCborValue(rx); }
 
 QCborValue* PythonQtWrapper_QCborValue::new_QCborValue(const QString&  s)
-{ 
+{
 return new QCborValue(s); }
 
 QCborValue* PythonQtWrapper_QCborValue::new_QCborValue(const QUrl&  url)
-{ 
+{
 return new QCborValue(url); }
 
 QCborValue* PythonQtWrapper_QCborValue::new_QCborValue(const QUuid&  uuid)
-{ 
+{
 return new QCborValue(uuid); }
 
 QCborValue* PythonQtWrapper_QCborValue::new_QCborValue(const char*  s)
-{ 
+{
 return new QCborValue(s); }
 
 QCborValue* PythonQtWrapper_QCborValue::new_QCborValue(double  v)
-{ 
+{
 return new QCborValue(v); }
 
 QCborValue* PythonQtWrapper_QCborValue::new_QCborValue(int  i)
-{ 
+{
 return new QCborValue(i); }
 
 QCborValue* PythonQtWrapper_QCborValue::new_QCborValue(qint64  i)
-{ 
+{
 return new QCborValue(i); }
 
 int  PythonQtWrapper_QCborValue::compare(QCborValue* theWrappedObject, const QCborValue&  other) const
@@ -6130,7 +6130,7 @@ PythonQtShell_QChildEvent::~PythonQtShell_QChildEvent() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QChildEvent* PythonQtWrapper_QChildEvent::new_QChildEvent(QEvent::Type  type, QObject*  child)
-{ 
+{
 return new PythonQtShell_QChildEvent(type, child); }
 
 bool  PythonQtWrapper_QChildEvent::added(QChildEvent* theWrappedObject) const
@@ -6156,15 +6156,15 @@ bool  PythonQtWrapper_QChildEvent::removed(QChildEvent* theWrappedObject) const
 
 
 QCollator* PythonQtWrapper_QCollator::new_QCollator()
-{ 
+{
 return new QCollator(); }
 
 QCollator* PythonQtWrapper_QCollator::new_QCollator(const QCollator&  arg__1)
-{ 
+{
 return new QCollator(arg__1); }
 
 QCollator* PythonQtWrapper_QCollator::new_QCollator(const QLocale&  locale)
-{ 
+{
 return new QCollator(locale); }
 
 Qt::CaseSensitivity  PythonQtWrapper_QCollator::caseSensitivity(QCollator* theWrappedObject) const
@@ -6240,7 +6240,7 @@ void PythonQtWrapper_QCollator::swap(QCollator* theWrappedObject, QCollator&  ot
 
 
 QCollatorSortKey* PythonQtWrapper_QCollatorSortKey::new_QCollatorSortKey(const QCollatorSortKey&  other)
-{ 
+{
 return new QCollatorSortKey(other); }
 
 int  PythonQtWrapper_QCollatorSortKey::compare(QCollatorSortKey* theWrappedObject, const QCollatorSortKey&  key) const
@@ -6266,23 +6266,23 @@ void PythonQtWrapper_QCollatorSortKey::swap(QCollatorSortKey* theWrappedObject, 
 
 
 QCommandLineOption* PythonQtWrapper_QCommandLineOption::new_QCommandLineOption(const QCommandLineOption&  other)
-{ 
+{
 return new QCommandLineOption(other); }
 
 QCommandLineOption* PythonQtWrapper_QCommandLineOption::new_QCommandLineOption(const QString&  name)
-{ 
+{
 return new QCommandLineOption(name); }
 
 QCommandLineOption* PythonQtWrapper_QCommandLineOption::new_QCommandLineOption(const QString&  name, const QString&  description, const QString&  valueName, const QString&  defaultValue)
-{ 
+{
 return new QCommandLineOption(name, description, valueName, defaultValue); }
 
 QCommandLineOption* PythonQtWrapper_QCommandLineOption::new_QCommandLineOption(const QStringList&  names)
-{ 
+{
 return new QCommandLineOption(names); }
 
 QCommandLineOption* PythonQtWrapper_QCommandLineOption::new_QCommandLineOption(const QStringList&  names, const QString&  description, const QString&  valueName, const QString&  defaultValue)
-{ 
+{
 return new QCommandLineOption(names, description, valueName, defaultValue); }
 
 QStringList  PythonQtWrapper_QCommandLineOption::defaultValues(QCommandLineOption* theWrappedObject) const
@@ -6348,7 +6348,7 @@ QString  PythonQtWrapper_QCommandLineOption::valueName(QCommandLineOption* theWr
 
 
 QCommandLineParser* PythonQtWrapper_QCommandLineParser::new_QCommandLineParser()
-{ 
+{
 return new QCommandLineParser(); }
 
 QCommandLineOption  PythonQtWrapper_QCommandLineParser::addHelpOption(QCommandLineParser* theWrappedObject)
@@ -6701,7 +6701,7 @@ QString  PythonQtWrapper_QCoreApplication::static_QCoreApplication_translate(con
 
 
 QCryptographicHash* PythonQtWrapper_QCryptographicHash::new_QCryptographicHash(QCryptographicHash::Algorithm  method)
-{ 
+{
 return new QCryptographicHash(method); }
 
 bool  PythonQtWrapper_QCryptographicHash::addData(QCryptographicHash* theWrappedObject, QIODevice*  device)
@@ -6737,19 +6737,19 @@ QByteArray  PythonQtWrapper_QCryptographicHash::result(QCryptographicHash* theWr
 
 
 QDataStream* PythonQtWrapper_QDataStream::new_QDataStream()
-{ 
+{
 return new QDataStream(); }
 
 QDataStream* PythonQtWrapper_QDataStream::new_QDataStream(QByteArray*  arg__1, QIODevice::OpenMode  flags)
-{ 
+{
 return new QDataStream(arg__1, flags); }
 
 QDataStream* PythonQtWrapper_QDataStream::new_QDataStream(QIODevice*  arg__1)
-{ 
+{
 return new QDataStream(arg__1); }
 
 QDataStream* PythonQtWrapper_QDataStream::new_QDataStream(const QByteArray&  arg__1)
-{ 
+{
 return new QDataStream(arg__1); }
 
 void PythonQtWrapper_QDataStream::abortTransaction(QDataStream* theWrappedObject)
@@ -6845,15 +6845,15 @@ int  PythonQtWrapper_QDataStream::version(QDataStream* theWrappedObject) const
 
 
 QDeadlineTimer* PythonQtWrapper_QDeadlineTimer::new_QDeadlineTimer(QDeadlineTimer::ForeverConstant  arg__1, Qt::TimerType  type_)
-{ 
+{
 return new QDeadlineTimer(arg__1, type_); }
 
 QDeadlineTimer* PythonQtWrapper_QDeadlineTimer::new_QDeadlineTimer(Qt::TimerType  type_)
-{ 
+{
 return new QDeadlineTimer(type_); }
 
 QDeadlineTimer* PythonQtWrapper_QDeadlineTimer::new_QDeadlineTimer(qint64  msecs, Qt::TimerType  type)
-{ 
+{
 return new QDeadlineTimer(msecs, type); }
 
 QDeadlineTimer  PythonQtWrapper_QDeadlineTimer::static_QDeadlineTimer_addNSecs(QDeadlineTimer  dt, qint64  nsecs)

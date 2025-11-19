@@ -1340,7 +1340,7 @@ void delete_QMenu(QMenu* obj) { delete obj; }
     PythonQt::self()->addSignalHandler(a, SIGNAL(triggered(bool)), callable);
     return a;
   }
-  
+
   QAction* addAction (QMenu* menu, const QIcon& icon, const QString& text, PyObject* callable, const QKeySequence& shortcut = 0)
   {
     QAction* a = menu->addAction(text);
@@ -1349,7 +1349,7 @@ void delete_QMenu(QMenu* obj) { delete obj; }
     PythonQt::self()->addSignalHandler(a, SIGNAL(triggered(bool)), callable);
     return a;
   }
-  
+
 };
 
 
@@ -1504,7 +1504,7 @@ void delete_QMenuBar(QMenuBar* obj) { delete obj; }
     PythonQt::self()->addSignalHandler(a, SIGNAL(triggered(bool)), callable);
     return a;
   }
-  
+
 };
 
 

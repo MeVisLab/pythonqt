@@ -480,7 +480,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QCameraFocusControl::setFocusMode(QCameraFocus::FocusModes  mode0)
 {
@@ -502,7 +502,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QCameraFocusControl::setFocusPointMode(QCameraFocus::FocusPointMode  mode0)
 {
@@ -524,7 +524,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QCameraFocusControl::timerEvent(QTimerEvent*  event0)
 {
@@ -549,7 +549,7 @@ if (_wrapper) {
   QCameraFocusControl::timerEvent(event0);
 }
 QCameraFocusControl* PythonQtWrapper_QCameraFocusControl::new_QCameraFocusControl(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QCameraFocusControl(parent); }
 
 const QMetaObject* PythonQtShell_QCameraFocusControl::metaObject() const {
@@ -613,15 +613,15 @@ void PythonQtWrapper_QCameraFocusControl::setFocusPointMode(QCameraFocusControl*
 
 
 QCameraFocusZone* PythonQtWrapper_QCameraFocusZone::new_QCameraFocusZone()
-{ 
+{
 return new QCameraFocusZone(); }
 
 QCameraFocusZone* PythonQtWrapper_QCameraFocusZone::new_QCameraFocusZone(const QCameraFocusZone&  other)
-{ 
+{
 return new QCameraFocusZone(other); }
 
 QCameraFocusZone* PythonQtWrapper_QCameraFocusZone::new_QCameraFocusZone(const QRectF&  area, QCameraFocusZone::FocusZoneStatus  status)
-{ 
+{
 return new QCameraFocusZone(area, status); }
 
 QRectF  PythonQtWrapper_QCameraFocusZone::area(QCameraFocusZone* theWrappedObject) const
@@ -864,7 +864,7 @@ if (_wrapper) {
   QCameraImageCapture::timerEvent(event0);
 }
 QCameraImageCapture* PythonQtWrapper_QCameraImageCapture::new_QCameraImageCapture(QMediaObject*  mediaObject, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QCameraImageCapture(mediaObject, parent); }
 
 const QMetaObject* PythonQtShell_QCameraImageCapture::metaObject() const {
@@ -986,7 +986,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 int  PythonQtShell_QCameraImageCaptureControl::capture(const QString&  fileName0)
 {
@@ -1217,7 +1217,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QCameraImageCaptureControl::timerEvent(QTimerEvent*  event0)
 {
@@ -1242,7 +1242,7 @@ if (_wrapper) {
   QCameraImageCaptureControl::timerEvent(event0);
 }
 QCameraImageCaptureControl* PythonQtWrapper_QCameraImageCaptureControl::new_QCameraImageCaptureControl(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QCameraImageCaptureControl(parent); }
 
 const QMetaObject* PythonQtShell_QCameraImageCaptureControl::metaObject() const {
@@ -1615,7 +1615,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QCameraImageProcessingControl::timerEvent(QTimerEvent*  event0)
 {
@@ -1640,7 +1640,7 @@ if (_wrapper) {
   QCameraImageProcessingControl::timerEvent(event0);
 }
 QCameraImageProcessingControl* PythonQtWrapper_QCameraImageProcessingControl::new_QCameraImageProcessingControl(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QCameraImageProcessingControl(parent); }
 
 const QMetaObject* PythonQtShell_QCameraImageProcessingControl::metaObject() const {
@@ -1679,15 +1679,15 @@ void PythonQtWrapper_QCameraImageProcessingControl::setParameter(QCameraImagePro
 
 
 QCameraInfo* PythonQtWrapper_QCameraInfo::new_QCameraInfo(const QByteArray&  name)
-{ 
+{
 return new QCameraInfo(name); }
 
 QCameraInfo* PythonQtWrapper_QCameraInfo::new_QCameraInfo(const QCamera&  camera)
-{ 
+{
 return new QCameraInfo(camera); }
 
 QCameraInfo* PythonQtWrapper_QCameraInfo::new_QCameraInfo(const QCameraInfo&  other)
-{ 
+{
 return new QCameraInfo(other); }
 
 QList<QCameraInfo >  PythonQtWrapper_QCameraInfo::static_QCameraInfo_availableCameras(QCamera::Position  position)
@@ -1952,7 +1952,7 @@ if (_wrapper) {
   QCameraInfoControl::timerEvent(event0);
 }
 QCameraInfoControl* PythonQtWrapper_QCameraInfoControl::new_QCameraInfoControl(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QCameraInfoControl(parent); }
 
 const QMetaObject* PythonQtShell_QCameraInfoControl::metaObject() const {
@@ -2147,7 +2147,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 QCamera::LockTypes  PythonQtShell_QCameraLocksControl::supportedLocks() const
 {
@@ -2224,10 +2224,10 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 QCameraLocksControl* PythonQtWrapper_QCameraLocksControl::new_QCameraLocksControl(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QCameraLocksControl(parent); }
 
 const QMetaObject* PythonQtShell_QCameraLocksControl::metaObject() const {
@@ -3480,7 +3480,7 @@ if (_wrapper) {
   QCameraViewfinder::wheelEvent(event0);
 }
 QCameraViewfinder* PythonQtWrapper_QCameraViewfinder::new_QCameraViewfinder(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QCameraViewfinder(parent); }
 
 const QMetaObject* PythonQtShell_QCameraViewfinder::metaObject() const {
@@ -3499,11 +3499,11 @@ int PythonQtShell_QCameraViewfinder::qt_metacall(QMetaObject::Call call, int id,
 
 
 QCameraViewfinderSettings* PythonQtWrapper_QCameraViewfinderSettings::new_QCameraViewfinderSettings()
-{ 
+{
 return new QCameraViewfinderSettings(); }
 
 QCameraViewfinderSettings* PythonQtWrapper_QCameraViewfinderSettings::new_QCameraViewfinderSettings(const QCameraViewfinderSettings&  other)
-{ 
+{
 return new QCameraViewfinderSettings(other); }
 
 bool  PythonQtWrapper_QCameraViewfinderSettings::isNull(QCameraViewfinderSettings* theWrappedObject) const
@@ -3755,7 +3755,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QCameraViewfinderSettingsControl::timerEvent(QTimerEvent*  event0)
 {
@@ -3813,7 +3813,7 @@ if (_wrapper) {
   return QVariant();
 }
 QCameraViewfinderSettingsControl* PythonQtWrapper_QCameraViewfinderSettingsControl::new_QCameraViewfinderSettingsControl(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QCameraViewfinderSettingsControl(parent); }
 
 const QMetaObject* PythonQtShell_QCameraViewfinderSettingsControl::metaObject() const {
@@ -3980,7 +3980,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 QList<QCameraViewfinderSettings >  PythonQtShell_QCameraViewfinderSettingsControl2::supportedViewfinderSettings() const
 {
@@ -4071,7 +4071,7 @@ if (_wrapper) {
   return QCameraViewfinderSettings();
 }
 QCameraViewfinderSettingsControl2* PythonQtWrapper_QCameraViewfinderSettingsControl2::new_QCameraViewfinderSettingsControl2(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QCameraViewfinderSettingsControl2(parent); }
 
 const QMetaObject* PythonQtShell_QCameraViewfinderSettingsControl2::metaObject() const {
@@ -4458,10 +4458,10 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 QCameraZoomControl* PythonQtWrapper_QCameraZoomControl::new_QCameraZoomControl(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QCameraZoomControl(parent); }
 
 const QMetaObject* PythonQtShell_QCameraZoomControl::metaObject() const {
@@ -4519,11 +4519,11 @@ PythonQtShell_QCamera__FrameRateRange::~PythonQtShell_QCamera__FrameRateRange() 
   if (priv) { priv->shellClassDeleted(this); }
 }
 QCamera::FrameRateRange* PythonQtWrapper_QCamera__FrameRateRange::new_QCamera__FrameRateRange()
-{ 
+{
 return new PythonQtShell_QCamera__FrameRateRange(); }
 
 QCamera::FrameRateRange* PythonQtWrapper_QCamera__FrameRateRange::new_QCamera__FrameRateRange(qreal  minimum, qreal  maximum)
-{ 
+{
 return new PythonQtShell_QCamera__FrameRateRange(minimum, maximum); }
 
 bool  PythonQtWrapper_QCamera__FrameRateRange::__ne__(QCamera::FrameRateRange* theWrappedObject, const QCamera::FrameRateRange&  r2)
@@ -5174,7 +5174,7 @@ if (_wrapper) {
       Py_DECREF(obj);
       if (change0 == QGraphicsItem::ItemParentChange || change0 == QGraphicsItem::ItemSceneChange) {
         returnValue = value1;
-      } 
+      }
       return returnValue;
     } else {
       PyErr_Clear();
@@ -5668,7 +5668,7 @@ if (_wrapper) {
   QGraphicsVideoItem::wheelEvent(event0);
 }
 QGraphicsVideoItem* PythonQtWrapper_QGraphicsVideoItem::new_QGraphicsVideoItem(QGraphicsItem*  parent)
-{ 
+{
 return new PythonQtShell_QGraphicsVideoItem(parent); }
 
 const QMetaObject* PythonQtShell_QGraphicsVideoItem::metaObject() const {
@@ -5926,7 +5926,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 QStringList  PythonQtShell_QImageEncoderControl::supportedImageCodecs() const
 {
@@ -6017,7 +6017,7 @@ if (_wrapper) {
   QImageEncoderControl::timerEvent(event0);
 }
 QImageEncoderControl* PythonQtWrapper_QImageEncoderControl::new_QImageEncoderControl(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QImageEncoderControl(parent); }
 
 const QMetaObject* PythonQtShell_QImageEncoderControl::metaObject() const {
@@ -6061,11 +6061,11 @@ QList<QSize >  PythonQtWrapper_QImageEncoderControl::supportedResolutions(QImage
 
 
 QImageEncoderSettings* PythonQtWrapper_QImageEncoderSettings::new_QImageEncoderSettings()
-{ 
+{
 return new QImageEncoderSettings(); }
 
 QImageEncoderSettings* PythonQtWrapper_QImageEncoderSettings::new_QImageEncoderSettings(const QImageEncoderSettings&  other)
-{ 
+{
 return new QImageEncoderSettings(other); }
 
 QString  PythonQtWrapper_QImageEncoderSettings::codec(QImageEncoderSettings* theWrappedObject) const
@@ -6282,7 +6282,7 @@ if (_wrapper) {
   QMediaAudioProbeControl::timerEvent(event0);
 }
 QMediaAudioProbeControl* PythonQtWrapper_QMediaAudioProbeControl::new_QMediaAudioProbeControl(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QMediaAudioProbeControl(parent); }
 
 const QMetaObject* PythonQtShell_QMediaAudioProbeControl::metaObject() const {
@@ -6470,7 +6470,7 @@ if (_wrapper) {
   QMediaAvailabilityControl::timerEvent(event0);
 }
 QMediaAvailabilityControl* PythonQtWrapper_QMediaAvailabilityControl::new_QMediaAvailabilityControl(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QMediaAvailabilityControl(parent); }
 
 const QMetaObject* PythonQtShell_QMediaAvailabilityControl::metaObject() const {
@@ -6564,7 +6564,7 @@ if (_wrapper) {
   return bool();
 }
 QMediaBindableInterface* PythonQtWrapper_QMediaBindableInterface::new_QMediaBindableInterface()
-{ 
+{
 return new PythonQtShell_QMediaBindableInterface(); }
 
 QMediaObject*  PythonQtWrapper_QMediaBindableInterface::mediaObject(QMediaBindableInterface* theWrappedObject) const
@@ -6779,7 +6779,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 QStringList  PythonQtShell_QMediaContainerControl::supportedContainers() const
 {
@@ -6837,7 +6837,7 @@ if (_wrapper) {
   QMediaContainerControl::timerEvent(event0);
 }
 QMediaContainerControl* PythonQtWrapper_QMediaContainerControl::new_QMediaContainerControl(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QMediaContainerControl(parent); }
 
 const QMetaObject* PythonQtShell_QMediaContainerControl::metaObject() const {
@@ -6876,31 +6876,31 @@ QStringList  PythonQtWrapper_QMediaContainerControl::supportedContainers(QMediaC
 
 
 QMediaContent* PythonQtWrapper_QMediaContent::new_QMediaContent()
-{ 
+{
 return new QMediaContent(); }
 
 QMediaContent* PythonQtWrapper_QMediaContent::new_QMediaContent(QMediaPlaylist*  playlist, const QUrl&  contentUrl, bool  takeOwnership)
-{ 
+{
 return new QMediaContent(playlist, contentUrl, takeOwnership); }
 
 QMediaContent* PythonQtWrapper_QMediaContent::new_QMediaContent(const QList<QMediaResource >&  resources)
-{ 
+{
 return new QMediaContent(resources); }
 
 QMediaContent* PythonQtWrapper_QMediaContent::new_QMediaContent(const QMediaContent&  other)
-{ 
+{
 return new QMediaContent(other); }
 
 QMediaContent* PythonQtWrapper_QMediaContent::new_QMediaContent(const QMediaResource&  contentResource)
-{ 
+{
 return new QMediaContent(contentResource); }
 
 QMediaContent* PythonQtWrapper_QMediaContent::new_QMediaContent(const QNetworkRequest&  contentRequest)
-{ 
+{
 return new QMediaContent(contentRequest); }
 
 QMediaContent* PythonQtWrapper_QMediaContent::new_QMediaContent(const QUrl&  contentUrl)
-{ 
+{
 return new QMediaContent(contentUrl); }
 
 QNetworkRequest  PythonQtWrapper_QMediaContent::canonicalRequest(QMediaContent* theWrappedObject) const
@@ -7092,7 +7092,7 @@ if (_wrapper) {
   QMediaControl::timerEvent(event0);
 }
 QMediaControl* PythonQtWrapper_QMediaControl::new_QMediaControl(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QMediaControl(parent); }
 
 const QMetaObject* PythonQtShell_QMediaControl::metaObject() const {
@@ -7343,7 +7343,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QMediaGaplessPlaybackControl::setNextMedia(const QMediaContent&  media0)
 {
@@ -7365,7 +7365,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QMediaGaplessPlaybackControl::timerEvent(QTimerEvent*  event0)
 {
@@ -7390,7 +7390,7 @@ if (_wrapper) {
   QMediaGaplessPlaybackControl::timerEvent(event0);
 }
 QMediaGaplessPlaybackControl* PythonQtWrapper_QMediaGaplessPlaybackControl::new_QMediaGaplessPlaybackControl(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QMediaGaplessPlaybackControl(parent); }
 
 const QMetaObject* PythonQtShell_QMediaGaplessPlaybackControl::metaObject() const {
@@ -7600,7 +7600,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QMediaNetworkAccessControl::timerEvent(QTimerEvent*  event0)
 {
@@ -7625,7 +7625,7 @@ if (_wrapper) {
   QMediaNetworkAccessControl::timerEvent(event0);
 }
 QMediaNetworkAccessControl* PythonQtWrapper_QMediaNetworkAccessControl::new_QMediaNetworkAccessControl(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QMediaNetworkAccessControl(parent); }
 
 const QMetaObject* PythonQtShell_QMediaNetworkAccessControl::metaObject() const {
@@ -7944,7 +7944,7 @@ if (_wrapper) {
   QMediaObject::unbind(arg__1);
 }
 QMediaObject* PythonQtWrapper_QMediaObject::new_QMediaObject(QObject*  parent, QMediaService*  service)
-{ 
+{
 return new PythonQtShell_QMediaObject(parent, service); }
 
 const QMetaObject* PythonQtShell_QMediaObject::metaObject() const {
@@ -8313,7 +8313,7 @@ if (_wrapper) {
   QMediaPlayer::unbind(arg__1);
 }
 QMediaPlayer* PythonQtWrapper_QMediaPlayer::new_QMediaPlayer(QObject*  parent, QMediaPlayer::Flags  flags)
-{ 
+{
 return new PythonQtShell_QMediaPlayer(parent, flags); }
 
 const QMetaObject* PythonQtShell_QMediaPlayer::metaObject() const {
@@ -8945,7 +8945,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QMediaPlayerControl::play()
 {
@@ -8967,7 +8967,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 qreal  PythonQtShell_QMediaPlayerControl::playbackRate() const
 {
@@ -9055,7 +9055,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QMediaPlayerControl::setMuted(bool  mute0)
 {
@@ -9077,7 +9077,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QMediaPlayerControl::setPlaybackRate(qreal  rate0)
 {
@@ -9099,7 +9099,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QMediaPlayerControl::setPosition(qint64  position0)
 {
@@ -9121,7 +9121,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QMediaPlayerControl::setVolume(int  volume0)
 {
@@ -9143,7 +9143,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 QMediaPlayer::State  PythonQtShell_QMediaPlayerControl::state() const
 {
@@ -9198,7 +9198,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QMediaPlayerControl::timerEvent(QTimerEvent*  event0)
 {
@@ -9256,7 +9256,7 @@ if (_wrapper) {
   return int();
 }
 QMediaPlayerControl* PythonQtWrapper_QMediaPlayerControl::new_QMediaPlayerControl(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QMediaPlayerControl(parent); }
 
 const QMetaObject* PythonQtShell_QMediaPlayerControl::metaObject() const {

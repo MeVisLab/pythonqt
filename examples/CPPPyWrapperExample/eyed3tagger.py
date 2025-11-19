@@ -5,6 +5,6 @@ class EyeD3Tagger():
 
     def fileName(self):
         return self.fn
-        
+
     def setFileName(self, fileName):
         self.fn = fileName

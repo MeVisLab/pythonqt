@@ -77,7 +77,7 @@
   <object-type name="QHttp">
       <modify-function signature="closeConnection()" remove="all"/>
   </object-type>
-  
+
   <object-type name="QTcpServer">
     <modify-function signature="waitForNewConnection(int,bool*)">
       <modify-argument index="2">
@@ -93,7 +93,7 @@
 
   <object-type name="QHttpHeader">
     <modify-function signature="operator=(QHttpHeader)" remove="all"/>
-  
+
     <modify-function signature="QHttpHeader(QHttpHeader)" remove="all"/>
   </object-type>
   <object-type name="QLocalServer">
@@ -161,7 +161,7 @@
   </value-type>
   <value-type name="QNetworkCookie">
     <modify-function signature="operator=(QNetworkCookie)" remove="all"/>
-  
+
     <extra-includes>
         <include file-name="QDateTime" location="global"/>
     </extra-includes>
@@ -241,12 +241,12 @@
   <object-type name="QHstsPolicy"/>
   <enum-type name="QHstsPolicy::PolicyFlag"/>
   <object-type name="QNetworkDatagram"/>
-  
+
   <object-type name="QDtls" since-version="5.12"/>
   <enum-type name="QDtls::HandshakeState" since-version="5.12"/>
   <object-type name="QDtlsClientVerifier" since-version="5.12"/>
   <value-type name="QDtlsClientVerifier::GeneratorParameters" since-version="5.12"/>
-  
+
   <object-type name="QHttp1Configuration" since-version="6.5"/>
   <rejection class="QHttp1Configuration::ShortData" since-version="6.5"/>
   <rejection class="QHttp1Configuration::U" since-version="6.5"/>

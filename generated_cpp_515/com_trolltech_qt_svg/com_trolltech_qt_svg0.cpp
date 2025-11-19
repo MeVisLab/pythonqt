@@ -694,7 +694,7 @@ if (_wrapper) {
       Py_DECREF(obj);
       if (change0 == QGraphicsItem::ItemParentChange || change0 == QGraphicsItem::ItemSceneChange) {
         returnValue = value1;
-      } 
+      }
       return returnValue;
     } else {
       PyErr_Clear();
@@ -1122,11 +1122,11 @@ if (_wrapper) {
   QGraphicsSvgItem::wheelEvent(event0);
 }
 QGraphicsSvgItem* PythonQtWrapper_QGraphicsSvgItem::new_QGraphicsSvgItem(QGraphicsItem*  parentItem)
-{ 
+{
 return new PythonQtShell_QGraphicsSvgItem(parentItem); }
 
 QGraphicsSvgItem* PythonQtWrapper_QGraphicsSvgItem::new_QGraphicsSvgItem(const QString&  fileName, QGraphicsItem*  parentItem)
-{ 
+{
 return new PythonQtShell_QGraphicsSvgItem(fileName, parentItem); }
 
 const QMetaObject* PythonQtShell_QGraphicsSvgItem::metaObject() const {
@@ -1376,7 +1376,7 @@ if (_wrapper) {
   return QSvgGenerator::sharedPainter();
 }
 QSvgGenerator* PythonQtWrapper_QSvgGenerator::new_QSvgGenerator()
-{ 
+{
 return new PythonQtShell_QSvgGenerator(); }
 
 QString  PythonQtWrapper_QSvgGenerator::description(QSvgGenerator* theWrappedObject) const
@@ -1598,19 +1598,19 @@ if (_wrapper) {
   QSvgRenderer::timerEvent(event0);
 }
 QSvgRenderer* PythonQtWrapper_QSvgRenderer::new_QSvgRenderer(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QSvgRenderer(parent); }
 
 QSvgRenderer* PythonQtWrapper_QSvgRenderer::new_QSvgRenderer(QXmlStreamReader*  contents, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QSvgRenderer(contents, parent); }
 
 QSvgRenderer* PythonQtWrapper_QSvgRenderer::new_QSvgRenderer(const QByteArray&  contents, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QSvgRenderer(contents, parent); }
 
 QSvgRenderer* PythonQtWrapper_QSvgRenderer::new_QSvgRenderer(const QString&  filename, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QSvgRenderer(filename, parent); }
 
 const QMetaObject* PythonQtShell_QSvgRenderer::metaObject() const {
@@ -2867,11 +2867,11 @@ if (_wrapper) {
   QSvgWidget::wheelEvent(event0);
 }
 QSvgWidget* PythonQtWrapper_QSvgWidget::new_QSvgWidget(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QSvgWidget(parent); }
 
 QSvgWidget* PythonQtWrapper_QSvgWidget::new_QSvgWidget(const QString&  file, QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QSvgWidget(file, parent); }
 
 const QMetaObject* PythonQtShell_QSvgWidget::metaObject() const {

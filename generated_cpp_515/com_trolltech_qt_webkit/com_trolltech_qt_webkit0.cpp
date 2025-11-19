@@ -894,7 +894,7 @@ if (_wrapper) {
       Py_DECREF(obj);
       if (change0 == QGraphicsItem::ItemParentChange || change0 == QGraphicsItem::ItemSceneChange) {
         returnValue = value1;
-      } 
+      }
       return returnValue;
     } else {
       PyErr_Clear();
@@ -1652,7 +1652,7 @@ if (_wrapper) {
   return QGraphicsWebView::windowFrameSectionAt(pos0);
 }
 QGraphicsWebView* PythonQtWrapper_QGraphicsWebView::new_QGraphicsWebView(QGraphicsItem*  parent)
-{ 
+{
 return new PythonQtShell_QGraphicsWebView(parent); }
 
 const QMetaObject* PythonQtShell_QGraphicsWebView::metaObject() const {
@@ -1796,7 +1796,7 @@ qreal  PythonQtWrapper_QGraphicsWebView::zoomFactor(QGraphicsWebView* theWrapped
 
 
 QWebDatabase* PythonQtWrapper_QWebDatabase::new_QWebDatabase(const QWebDatabase&  other)
-{ 
+{
 return new QWebDatabase(other); }
 
 QString  PythonQtWrapper_QWebDatabase::displayName(QWebDatabase* theWrappedObject) const
@@ -1847,11 +1847,11 @@ qint64  PythonQtWrapper_QWebDatabase::size(QWebDatabase* theWrappedObject) const
 
 
 QWebElement* PythonQtWrapper_QWebElement::new_QWebElement()
-{ 
+{
 return new QWebElement(); }
 
 QWebElement* PythonQtWrapper_QWebElement::new_QWebElement(const QWebElement&  arg__1)
-{ 
+{
 return new QWebElement(arg__1); }
 
 void PythonQtWrapper_QWebElement::addClass(QWebElement* theWrappedObject, const QString&  name)
@@ -2177,15 +2177,15 @@ QWebFrame*  PythonQtWrapper_QWebElement::webFrame(QWebElement* theWrappedObject)
 
 
 QWebElementCollection* PythonQtWrapper_QWebElementCollection::new_QWebElementCollection()
-{ 
+{
 return new QWebElementCollection(); }
 
 QWebElementCollection* PythonQtWrapper_QWebElementCollection::new_QWebElementCollection(const QWebElement&  contextElement, const QString&  query)
-{ 
+{
 return new QWebElementCollection(contextElement, query); }
 
 QWebElementCollection* PythonQtWrapper_QWebElementCollection::new_QWebElementCollection(const QWebElementCollection&  arg__1)
-{ 
+{
 return new QWebElementCollection(arg__1); }
 
 void PythonQtWrapper_QWebElementCollection::append(QWebElementCollection* theWrappedObject, const QWebElementCollection&  collection)
@@ -2603,7 +2603,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QWebHistoryInterface::childEvent(QChildEvent*  event0)
 {
@@ -2771,7 +2771,7 @@ if (_wrapper) {
   QWebHistoryInterface::timerEvent(event0);
 }
 QWebHistoryInterface* PythonQtWrapper_QWebHistoryInterface::new_QWebHistoryInterface(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QWebHistoryInterface(parent); }
 
 const QMetaObject* PythonQtShell_QWebHistoryInterface::metaObject() const {
@@ -2810,7 +2810,7 @@ void PythonQtWrapper_QWebHistoryInterface::static_QWebHistoryInterface_setDefaul
 
 
 QWebHistoryItem* PythonQtWrapper_QWebHistoryItem::new_QWebHistoryItem(const QWebHistoryItem&  other)
-{ 
+{
 return new QWebHistoryItem(other); }
 
 QIcon  PythonQtWrapper_QWebHistoryItem::icon(QWebHistoryItem* theWrappedObject) const
@@ -2866,11 +2866,11 @@ QVariant  PythonQtWrapper_QWebHistoryItem::userData(QWebHistoryItem* theWrappedO
 
 
 QWebHitTestResult* PythonQtWrapper_QWebHitTestResult::new_QWebHitTestResult()
-{ 
+{
 return new QWebHitTestResult(); }
 
 QWebHitTestResult* PythonQtWrapper_QWebHitTestResult::new_QWebHitTestResult(const QWebHitTestResult&  other)
-{ 
+{
 return new QWebHitTestResult(other); }
 
 QString  PythonQtWrapper_QWebHitTestResult::alternateText(QWebHitTestResult* theWrappedObject) const
@@ -4119,7 +4119,7 @@ if (_wrapper) {
   QWebInspector::wheelEvent(event0);
 }
 QWebInspector* PythonQtWrapper_QWebInspector::new_QWebInspector(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QWebInspector(parent); }
 
 const QMetaObject* PythonQtShell_QWebInspector::metaObject() const {
@@ -4685,7 +4685,7 @@ if (_wrapper) {
   return QWebPage::userAgentForUrl(url0);
 }
 QWebPage* PythonQtWrapper_QWebPage::new_QWebPage(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QWebPage(parent); }
 
 const QMetaObject* PythonQtShell_QWebPage::metaObject() const {
@@ -5013,7 +5013,7 @@ PythonQtShell_QWebPage__ChooseMultipleFilesExtensionOption::~PythonQtShell_QWebP
   if (priv) { priv->shellClassDeleted(this); }
 }
 QWebPage::ChooseMultipleFilesExtensionOption* PythonQtWrapper_QWebPage__ChooseMultipleFilesExtensionOption::new_QWebPage__ChooseMultipleFilesExtensionOption()
-{ 
+{
 return new PythonQtShell_QWebPage__ChooseMultipleFilesExtensionOption(); }
 
 
@@ -5023,7 +5023,7 @@ PythonQtShell_QWebPage__ChooseMultipleFilesExtensionReturn::~PythonQtShell_QWebP
   if (priv) { priv->shellClassDeleted(this); }
 }
 QWebPage::ChooseMultipleFilesExtensionReturn* PythonQtWrapper_QWebPage__ChooseMultipleFilesExtensionReturn::new_QWebPage__ChooseMultipleFilesExtensionReturn()
-{ 
+{
 return new PythonQtShell_QWebPage__ChooseMultipleFilesExtensionReturn(); }
 
 
@@ -5033,7 +5033,7 @@ PythonQtShell_QWebPage__ErrorPageExtensionOption::~PythonQtShell_QWebPage__Error
   if (priv) { priv->shellClassDeleted(this); }
 }
 QWebPage::ErrorPageExtensionOption* PythonQtWrapper_QWebPage__ErrorPageExtensionOption::new_QWebPage__ErrorPageExtensionOption()
-{ 
+{
 return new PythonQtShell_QWebPage__ErrorPageExtensionOption(); }
 
 
@@ -5043,7 +5043,7 @@ PythonQtShell_QWebPage__ErrorPageExtensionReturn::~PythonQtShell_QWebPage__Error
   if (priv) { priv->shellClassDeleted(this); }
 }
 QWebPage::ErrorPageExtensionReturn* PythonQtWrapper_QWebPage__ErrorPageExtensionReturn::new_QWebPage__ErrorPageExtensionReturn()
-{ 
+{
 return new PythonQtShell_QWebPage__ErrorPageExtensionReturn(); }
 
 
@@ -5053,7 +5053,7 @@ PythonQtShell_QWebPage__ExtensionOption::~PythonQtShell_QWebPage__ExtensionOptio
   if (priv) { priv->shellClassDeleted(this); }
 }
 QWebPage::ExtensionOption* PythonQtWrapper_QWebPage__ExtensionOption::new_QWebPage__ExtensionOption()
-{ 
+{
 return new PythonQtShell_QWebPage__ExtensionOption(); }
 
 
@@ -5063,7 +5063,7 @@ PythonQtShell_QWebPage__ExtensionReturn::~PythonQtShell_QWebPage__ExtensionRetur
   if (priv) { priv->shellClassDeleted(this); }
 }
 QWebPage::ExtensionReturn* PythonQtWrapper_QWebPage__ExtensionReturn::new_QWebPage__ExtensionReturn()
-{ 
+{
 return new PythonQtShell_QWebPage__ExtensionReturn(); }
 
 
@@ -5359,7 +5359,7 @@ if (_wrapper) {
   QWebPluginFactory::timerEvent(event0);
 }
 QWebPluginFactory* PythonQtWrapper_QWebPluginFactory::new_QWebPluginFactory(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QWebPluginFactory(parent); }
 
 const QMetaObject* PythonQtShell_QWebPluginFactory::metaObject() const {
@@ -5407,7 +5407,7 @@ PythonQtShell_QWebPluginFactory__ExtensionOption::~PythonQtShell_QWebPluginFacto
   if (priv) { priv->shellClassDeleted(this); }
 }
 QWebPluginFactory::ExtensionOption* PythonQtWrapper_QWebPluginFactory__ExtensionOption::new_QWebPluginFactory__ExtensionOption()
-{ 
+{
 return new PythonQtShell_QWebPluginFactory__ExtensionOption(); }
 
 
@@ -5417,7 +5417,7 @@ PythonQtShell_QWebPluginFactory__ExtensionReturn::~PythonQtShell_QWebPluginFacto
   if (priv) { priv->shellClassDeleted(this); }
 }
 QWebPluginFactory::ExtensionReturn* PythonQtWrapper_QWebPluginFactory__ExtensionReturn::new_QWebPluginFactory__ExtensionReturn()
-{ 
+{
 return new PythonQtShell_QWebPluginFactory__ExtensionReturn(); }
 
 
@@ -5427,7 +5427,7 @@ PythonQtShell_QWebPluginFactory__MimeType::~PythonQtShell_QWebPluginFactory__Mim
   if (priv) { priv->shellClassDeleted(this); }
 }
 QWebPluginFactory::MimeType* PythonQtWrapper_QWebPluginFactory__MimeType::new_QWebPluginFactory__MimeType()
-{ 
+{
 return new PythonQtShell_QWebPluginFactory__MimeType(); }
 
 bool  PythonQtWrapper_QWebPluginFactory__MimeType::__ne__(QWebPluginFactory::MimeType* theWrappedObject, const QWebPluginFactory::MimeType&  other) const
@@ -5447,17 +5447,17 @@ PythonQtShell_QWebPluginFactory__Plugin::~PythonQtShell_QWebPluginFactory__Plugi
   if (priv) { priv->shellClassDeleted(this); }
 }
 QWebPluginFactory::Plugin* PythonQtWrapper_QWebPluginFactory__Plugin::new_QWebPluginFactory__Plugin()
-{ 
+{
 return new PythonQtShell_QWebPluginFactory__Plugin(); }
 
 
 
 QWebSecurityOrigin* PythonQtWrapper_QWebSecurityOrigin::new_QWebSecurityOrigin(const QUrl&  url)
-{ 
+{
 return new QWebSecurityOrigin(url); }
 
 QWebSecurityOrigin* PythonQtWrapper_QWebSecurityOrigin::new_QWebSecurityOrigin(const QWebSecurityOrigin&  other)
-{ 
+{
 return new QWebSecurityOrigin(other); }
 
 void PythonQtWrapper_QWebSecurityOrigin::addAccessWhitelistEntry(QWebSecurityOrigin* theWrappedObject, const QString&  scheme, const QString&  host, QWebSecurityOrigin::SubdomainSetting  subdomainSetting)
@@ -6926,7 +6926,7 @@ if (_wrapper) {
   QWebView::wheelEvent(arg__1);
 }
 QWebView* PythonQtWrapper_QWebView::new_QWebView(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QWebView(parent); }
 
 const QMetaObject* PythonQtShell_QWebView::metaObject() const {

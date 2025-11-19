@@ -820,7 +820,7 @@ void delete_QCalendar(QCalendar* obj) { delete obj; }
 
 public:
     const static int Unspecified = QCalendar::Unspecified;
-    
+
 };
 
 
@@ -1002,7 +1002,7 @@ void delete_QCborMap(QCborMap* obj) { delete obj; }
   {
     theWrappedObject->insert(key, value_);
   }
-    
+
 };
 
 
@@ -1105,16 +1105,16 @@ void delete_QCborStreamReader(QCborStreamReader* obj) { delete obj; }
     auto result = theWrappedObject->readByteArray();
     return result.status == QCborStreamReader::Ok ? result.data : QByteArray();
   }
-    
+
   QString readString(QCborStreamReader* theWrappedObject) {
     auto result = theWrappedObject->readString();
     return result.status == QCborStreamReader::Ok ? result.data : QString();
   }
-    
+
   qint64 toTag(QCborStreamReader* theWrappedObject) const {
     return static_cast<qint64>(theWrappedObject->toTag());
   }
-    
+
 };
 
 
@@ -1255,11 +1255,11 @@ void delete_QCborValue(QCborValue* obj) { delete obj; }
   QCborValue* new_QCborValue(qint64  tag, const QCborValue& taggedValue) {
     return new QCborValue(QCborTag(tag), taggedValue);
   }
-  
+
   qint64 tag(QCborValue* theWrappedObject, qint64 defaultValue) const {
     return static_cast<qint64>(theWrappedObject->tag(QCborTag(defaultValue)));
   }
-    
+
 };
 
 
@@ -1586,7 +1586,7 @@ void delete_QDataStream(QDataStream* obj) { delete obj; }
        return Py_None;
      }
    }
-    
+
 };
 
 

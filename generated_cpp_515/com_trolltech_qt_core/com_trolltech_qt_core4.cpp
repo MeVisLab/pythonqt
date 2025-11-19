@@ -162,7 +162,7 @@ if (_wrapper) {
   QTimer::timerEvent(arg__1);
 }
 QTimer* PythonQtWrapper_QTimer::new_QTimer(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QTimer(parent); }
 
 const QMetaObject* PythonQtShell_QTimer::metaObject() const {
@@ -240,7 +240,7 @@ PythonQtShell_QTimerEvent::~PythonQtShell_QTimerEvent() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QTimerEvent* PythonQtWrapper_QTimerEvent::new_QTimerEvent(int  timerId)
-{ 
+{
 return new PythonQtShell_QTimerEvent(timerId); }
 
 int  PythonQtWrapper_QTimerEvent::timerId(QTimerEvent* theWrappedObject) const
@@ -453,7 +453,7 @@ if (_wrapper) {
   return QTranslator::translate(context0, sourceText1, disambiguation2, n3);
 }
 QTranslator* PythonQtWrapper_QTranslator::new_QTranslator(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QTranslator(parent); }
 
 const QMetaObject* PythonQtShell_QTranslator::metaObject() const {
@@ -507,19 +507,19 @@ QString  PythonQtWrapper_QTranslator::translate(QTranslator* theWrappedObject, c
 
 
 QUrlQuery* PythonQtWrapper_QUrlQuery::new_QUrlQuery()
-{ 
+{
 return new QUrlQuery(); }
 
 QUrlQuery* PythonQtWrapper_QUrlQuery::new_QUrlQuery(const QString&  queryString)
-{ 
+{
 return new QUrlQuery(queryString); }
 
 QUrlQuery* PythonQtWrapper_QUrlQuery::new_QUrlQuery(const QUrl&  url)
-{ 
+{
 return new QUrlQuery(url); }
 
 QUrlQuery* PythonQtWrapper_QUrlQuery::new_QUrlQuery(const QUrlQuery&  other)
-{ 
+{
 return new QUrlQuery(other); }
 
 void PythonQtWrapper_QUrlQuery::addQueryItem(QUrlQuery* theWrappedObject, const QString&  key, const QString&  value)
@@ -640,19 +640,19 @@ PythonQtShell_QUuid::~PythonQtShell_QUuid() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QUuid* PythonQtWrapper_QUuid::new_QUuid()
-{ 
+{
 return new PythonQtShell_QUuid(); }
 
 QUuid* PythonQtWrapper_QUuid::new_QUuid(const QByteArray&  arg__1)
-{ 
+{
 return new PythonQtShell_QUuid(arg__1); }
 
 QUuid* PythonQtWrapper_QUuid::new_QUuid(const QString&  arg__1)
-{ 
+{
 return new PythonQtShell_QUuid(arg__1); }
 
 QUuid* PythonQtWrapper_QUuid::new_QUuid(uint  l, ushort  w1, ushort  w2, uchar  b1, uchar  b2, uchar  b3, uchar  b4, uchar  b5, uchar  b6, uchar  b7, uchar  b8)
-{ 
+{
 return new PythonQtShell_QUuid(l, w1, w2, b1, b2, b3, b4, b5, b6, b7, b8); }
 
 QUuid  PythonQtWrapper_QUuid::static_QUuid_createUuid()
@@ -1069,7 +1069,7 @@ if (_wrapper) {
   QVariantAnimation::updateState(newState0, oldState1);
 }
 QVariantAnimation* PythonQtWrapper_QVariantAnimation::new_QVariantAnimation(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QVariantAnimation(parent); }
 
 const QMetaObject* PythonQtShell_QVariantAnimation::metaObject() const {
@@ -1158,7 +1158,7 @@ void PythonQtWrapper_QVariantAnimation::updateCurrentValue(QVariantAnimation* th
 
 
 QWaitCondition* PythonQtWrapper_QWaitCondition::new_QWaitCondition()
-{ 
+{
 return new QWaitCondition(); }
 
 void PythonQtWrapper_QWaitCondition::notify_all(QWaitCondition* theWrappedObject)
@@ -1204,7 +1204,7 @@ void PythonQtWrapper_QWaitCondition::wakeOne(QWaitCondition* theWrappedObject)
 
 
 QWriteLocker* PythonQtWrapper_QWriteLocker::new_QWriteLocker(QReadWriteLock*  readWriteLock)
-{ 
+{
 return new QWriteLocker(readWriteLock); }
 
 QReadWriteLock*  PythonQtWrapper_QWriteLocker::readWriteLock(QWriteLocker* theWrappedObject) const
@@ -1295,7 +1295,7 @@ if (_wrapper) {
   return QXmlStreamEntityResolver::resolveUndeclaredEntity(name0);
 }
 QXmlStreamEntityResolver* PythonQtWrapper_QXmlStreamEntityResolver::new_QXmlStreamEntityResolver()
-{ 
+{
 return new PythonQtShell_QXmlStreamEntityResolver(); }
 
 QString  PythonQtWrapper_QXmlStreamEntityResolver::resolveEntity(QXmlStreamEntityResolver* theWrappedObject, const QString&  publicId, const QString&  systemId)

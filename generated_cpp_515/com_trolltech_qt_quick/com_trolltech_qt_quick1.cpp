@@ -80,11 +80,11 @@ if (_wrapper) {
   QSGNode::preprocess();
 }
 QSGNode* PythonQtWrapper_QSGNode::new_QSGNode()
-{ 
+{
 return new PythonQtShell_QSGNode(); }
 
 QSGNode* PythonQtWrapper_QSGNode::new_QSGNode(QSGNode::NodeType  type)
-{ 
+{
 return new PythonQtShell_QSGNode(type); }
 
 void PythonQtWrapper_QSGNode::appendChildNode(QSGNode* theWrappedObject, QSGNode*  node)
@@ -426,7 +426,7 @@ if (_wrapper) {
   QSGNodeVisitor::visitNode(n0);
 }
 QSGNodeVisitor* PythonQtWrapper_QSGNodeVisitor::new_QSGNodeVisitor()
-{ 
+{
 return new PythonQtShell_QSGNodeVisitor(); }
 
 void PythonQtWrapper_QSGNodeVisitor::enterClipNode(QSGNodeVisitor* theWrappedObject, QSGClipNode*  arg__1)
@@ -541,7 +541,7 @@ if (_wrapper) {
   QSGOpacityNode::preprocess();
 }
 QSGOpacityNode* PythonQtWrapper_QSGOpacityNode::new_QSGOpacityNode()
-{ 
+{
 return new PythonQtShell_QSGOpacityNode(); }
 
 qreal  PythonQtWrapper_QSGOpacityNode::combinedOpacity(QSGOpacityNode* theWrappedObject) const
@@ -718,7 +718,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QSGRectangleNode::setRect(const QRectF&  rect0)
 {
@@ -740,10 +740,10 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 QSGRectangleNode* PythonQtWrapper_QSGRectangleNode::new_QSGRectangleNode()
-{ 
+{
 return new PythonQtShell_QSGRectangleNode(); }
 
 QColor  PythonQtWrapper_QSGRectangleNode::color(QSGRectangleNode* theWrappedObject) const
@@ -907,10 +907,10 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 QSGRenderNode* PythonQtWrapper_QSGRenderNode::new_QSGRenderNode()
-{ 
+{
 return new PythonQtShell_QSGRenderNode(); }
 
 const QSGClipNode*  PythonQtWrapper_QSGRenderNode::clipList(QSGRenderNode* theWrappedObject) const
@@ -1181,7 +1181,7 @@ if (_wrapper) {
   return int();
 }
 QSGRenderNode::RenderState* PythonQtWrapper_QSGRenderNode__RenderState::new_QSGRenderNode__RenderState()
-{ 
+{
 return new PythonQtShell_QSGRenderNode__RenderState(); }
 
 const QRegion*  PythonQtWrapper_QSGRenderNode__RenderState::clipRegion(QSGRenderNode::RenderState* theWrappedObject) const
@@ -1281,7 +1281,7 @@ if (_wrapper) {
   QSGRootNode::preprocess();
 }
 QSGRootNode* PythonQtWrapper_QSGRootNode::new_QSGRootNode()
-{ 
+{
 return new PythonQtShell_QSGRootNode(); }
 
 QString PythonQtWrapper_QSGRootNode::py_toString(QSGRootNode* obj) {
@@ -1317,7 +1317,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QSGTexture::childEvent(QChildEvent*  event0)
 {
@@ -1683,7 +1683,7 @@ if (_wrapper) {
   QSGTexture::timerEvent(event0);
 }
 QSGTexture* PythonQtWrapper_QSGTexture::new_QSGTexture()
-{ 
+{
 return new PythonQtShell_QSGTexture(); }
 
 const QMetaObject* PythonQtShell_QSGTexture::metaObject() const {
@@ -1844,7 +1844,7 @@ if (_wrapper) {
   return QSGTextureMaterial::type();
 }
 QSGTextureMaterial* PythonQtWrapper_QSGTextureMaterial::new_QSGTextureMaterial()
-{ 
+{
 return new PythonQtShell_QSGTextureMaterial(); }
 
 QSGMaterialType*  PythonQtWrapper_QSGTextureMaterial::type(QSGTextureMaterial* theWrappedObject) const
@@ -2024,7 +2024,7 @@ if (_wrapper) {
   QSGTextureProvider::timerEvent(event0);
 }
 QSGTextureProvider* PythonQtWrapper_QSGTextureProvider::new_QSGTextureProvider()
-{ 
+{
 return new PythonQtShell_QSGTextureProvider(); }
 
 const QMetaObject* PythonQtShell_QSGTextureProvider::metaObject() const {
@@ -2107,7 +2107,7 @@ if (_wrapper) {
   QSGTransformNode::preprocess();
 }
 QSGTransformNode* PythonQtWrapper_QSGTransformNode::new_QSGTransformNode()
-{ 
+{
 return new PythonQtShell_QSGTransformNode(); }
 
 const QMatrix4x4*  PythonQtWrapper_QSGTransformNode::combinedMatrix(QSGTransformNode* theWrappedObject) const

@@ -9,8 +9,8 @@ TEMPLATE = app
 
 DESTDIR           = ../../lib
 
-include ( ../../build/common.prf )  
-include ( ../../build/PythonQt.prf )  
+include ( ../../build/common.prf )
+include ( ../../build/PythonQt.prf )
 
 QT += widgets
 

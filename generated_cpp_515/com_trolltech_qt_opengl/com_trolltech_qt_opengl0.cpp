@@ -57,15 +57,15 @@
 #include <qwindow.h>
 
 QGLBuffer* PythonQtWrapper_QGLBuffer::new_QGLBuffer()
-{ 
+{
 return new QGLBuffer(); }
 
 QGLBuffer* PythonQtWrapper_QGLBuffer::new_QGLBuffer(QGLBuffer::Type  type)
-{ 
+{
 return new QGLBuffer(type); }
 
 QGLBuffer* PythonQtWrapper_QGLBuffer::new_QGLBuffer(const QGLBuffer&  other)
-{ 
+{
 return new QGLBuffer(other); }
 
 void PythonQtWrapper_QGLBuffer::allocate(QGLBuffer* theWrappedObject, const void*  data, int  count)
@@ -165,11 +165,11 @@ PythonQtShell_QGLColormap::~PythonQtShell_QGLColormap() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QGLColormap* PythonQtWrapper_QGLColormap::new_QGLColormap()
-{ 
+{
 return new PythonQtShell_QGLColormap(); }
 
 QGLColormap* PythonQtWrapper_QGLColormap::new_QGLColormap(const QGLColormap&  arg__1)
-{ 
+{
 return new PythonQtShell_QGLColormap(arg__1); }
 
 QColor  PythonQtWrapper_QGLColormap::entryColor(QGLColormap* theWrappedObject, int  idx) const
@@ -361,11 +361,11 @@ if (_wrapper) {
   QGLContext::swapBuffers();
 }
 QGLContext* PythonQtWrapper_QGLContext::new_QGLContext(const QGLFormat&  format)
-{ 
+{
 return new PythonQtShell_QGLContext(format); }
 
 QGLContext* PythonQtWrapper_QGLContext::new_QGLContext(const QGLFormat&  format, QPaintDevice*  device)
-{ 
+{
 return new PythonQtShell_QGLContext(format, device); }
 
 bool  PythonQtWrapper_QGLContext::static_QGLContext_areSharing(const QGLContext*  context1, const QGLContext*  context2)
@@ -551,15 +551,15 @@ bool  PythonQtWrapper_QGLContext::windowCreated(QGLContext* theWrappedObject) co
 
 
 QGLFormat* PythonQtWrapper_QGLFormat::new_QGLFormat()
-{ 
+{
 return new QGLFormat(); }
 
 QGLFormat* PythonQtWrapper_QGLFormat::new_QGLFormat(QGL::FormatOptions  options, int  plane)
-{ 
+{
 return new QGLFormat(options, plane); }
 
 QGLFormat* PythonQtWrapper_QGLFormat::new_QGLFormat(const QGLFormat&  other)
-{ 
+{
 return new QGLFormat(other); }
 
 bool  PythonQtWrapper_QGLFormat::accum(QGLFormat* theWrappedObject) const
@@ -1053,27 +1053,27 @@ if (_wrapper) {
   return QGLFramebufferObject::sharedPainter();
 }
 QGLFramebufferObject* PythonQtWrapper_QGLFramebufferObject::new_QGLFramebufferObject(const QSize&  size, GLenum  target)
-{ 
+{
 return new PythonQtShell_QGLFramebufferObject(size, target); }
 
 QGLFramebufferObject* PythonQtWrapper_QGLFramebufferObject::new_QGLFramebufferObject(const QSize&  size, QGLFramebufferObject::Attachment  attachment, GLenum  target, GLenum  internal_format)
-{ 
+{
 return new PythonQtShell_QGLFramebufferObject(size, attachment, target, internal_format); }
 
 QGLFramebufferObject* PythonQtWrapper_QGLFramebufferObject::new_QGLFramebufferObject(const QSize&  size, const QGLFramebufferObjectFormat&  format)
-{ 
+{
 return new PythonQtShell_QGLFramebufferObject(size, format); }
 
 QGLFramebufferObject* PythonQtWrapper_QGLFramebufferObject::new_QGLFramebufferObject(int  width, int  height, GLenum  target)
-{ 
+{
 return new PythonQtShell_QGLFramebufferObject(width, height, target); }
 
 QGLFramebufferObject* PythonQtWrapper_QGLFramebufferObject::new_QGLFramebufferObject(int  width, int  height, QGLFramebufferObject::Attachment  attachment, GLenum  target, GLenum  internal_format)
-{ 
+{
 return new PythonQtShell_QGLFramebufferObject(width, height, attachment, target, internal_format); }
 
 QGLFramebufferObject* PythonQtWrapper_QGLFramebufferObject::new_QGLFramebufferObject(int  width, int  height, const QGLFramebufferObjectFormat&  format)
-{ 
+{
 return new PythonQtShell_QGLFramebufferObject(width, height, format); }
 
 QGLFramebufferObject::Attachment  PythonQtWrapper_QGLFramebufferObject::attachment(QGLFramebufferObject* theWrappedObject) const
@@ -1159,11 +1159,11 @@ QImage  PythonQtWrapper_QGLFramebufferObject::toImage(QGLFramebufferObject* theW
 
 
 QGLFramebufferObjectFormat* PythonQtWrapper_QGLFramebufferObjectFormat::new_QGLFramebufferObjectFormat()
-{ 
+{
 return new QGLFramebufferObjectFormat(); }
 
 QGLFramebufferObjectFormat* PythonQtWrapper_QGLFramebufferObjectFormat::new_QGLFramebufferObjectFormat(const QGLFramebufferObjectFormat&  other)
-{ 
+{
 return new QGLFramebufferObjectFormat(other); }
 
 QGLFramebufferObject::Attachment  PythonQtWrapper_QGLFramebufferObjectFormat::attachment(QGLFramebufferObjectFormat* theWrappedObject) const
@@ -1234,11 +1234,11 @@ GLenum  PythonQtWrapper_QGLFramebufferObjectFormat::textureTarget(QGLFramebuffer
 
 
 QGLFunctions* PythonQtWrapper_QGLFunctions::new_QGLFunctions()
-{ 
+{
 return new QGLFunctions(); }
 
 QGLFunctions* PythonQtWrapper_QGLFunctions::new_QGLFunctions(const QGLContext*  context)
-{ 
+{
 return new QGLFunctions(context); }
 
 void PythonQtWrapper_QGLFunctions::glActiveTexture(QGLFunctions* theWrappedObject, GLenum  texture)
@@ -1925,11 +1925,11 @@ if (_wrapper) {
   return QGLPixelBuffer::sharedPainter();
 }
 QGLPixelBuffer* PythonQtWrapper_QGLPixelBuffer::new_QGLPixelBuffer(const QSize&  size, const QGLFormat&  format, QGLWidget*  shareWidget)
-{ 
+{
 return new PythonQtShell_QGLPixelBuffer(size, format, shareWidget); }
 
 QGLPixelBuffer* PythonQtWrapper_QGLPixelBuffer::new_QGLPixelBuffer(int  width, int  height, const QGLFormat&  format, QGLWidget*  shareWidget)
-{ 
+{
 return new PythonQtShell_QGLPixelBuffer(width, height, format, shareWidget); }
 
 uint  PythonQtWrapper_QGLPixelBuffer::bindTexture(QGLPixelBuffer* theWrappedObject, const QImage&  image, GLenum  target)
@@ -2166,11 +2166,11 @@ if (_wrapper) {
   QGLShader::timerEvent(event0);
 }
 QGLShader* PythonQtWrapper_QGLShader::new_QGLShader(QGLShader::ShaderType  type, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QGLShader(type, parent); }
 
 QGLShader* PythonQtWrapper_QGLShader::new_QGLShader(QGLShader::ShaderType  type, const QGLContext*  context, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QGLShader(type, context, parent); }
 
 const QMetaObject* PythonQtShell_QGLShader::metaObject() const {
@@ -2408,11 +2408,11 @@ if (_wrapper) {
   QGLShaderProgram::timerEvent(event0);
 }
 QGLShaderProgram* PythonQtWrapper_QGLShaderProgram::new_QGLShaderProgram(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QGLShaderProgram(parent); }
 
 QGLShaderProgram* PythonQtWrapper_QGLShaderProgram::new_QGLShaderProgram(const QGLContext*  context, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QGLShaderProgram(context, parent); }
 
 const QMetaObject* PythonQtShell_QGLShaderProgram::metaObject() const {
@@ -4354,15 +4354,15 @@ if (_wrapper) {
   QGLWidget::wheelEvent(event0);
 }
 QGLWidget* PythonQtWrapper_QGLWidget::new_QGLWidget(QGLContext*  context, QWidget*  parent, const QGLWidget*  shareWidget, Qt::WindowFlags  f)
-{ 
+{
 return new PythonQtShell_QGLWidget(context, parent, shareWidget, f); }
 
 QGLWidget* PythonQtWrapper_QGLWidget::new_QGLWidget(QWidget*  parent, const QGLWidget*  shareWidget, Qt::WindowFlags  f)
-{ 
+{
 return new PythonQtShell_QGLWidget(parent, shareWidget, f); }
 
 QGLWidget* PythonQtWrapper_QGLWidget::new_QGLWidget(const QGLFormat&  format, QWidget*  parent, const QGLWidget*  shareWidget, Qt::WindowFlags  f)
-{ 
+{
 return new PythonQtShell_QGLWidget(format, parent, shareWidget, f); }
 
 const QMetaObject* PythonQtShell_QGLWidget::metaObject() const {

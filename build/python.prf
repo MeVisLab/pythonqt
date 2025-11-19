@@ -58,9 +58,9 @@ contains(PKGCONFIG, "python.*"){
 
   # check if debug or release
   CONFIG(debug, debug|release) {
-    DEBUG_EXT = _d 
+    DEBUG_EXT = _d
   } else {
-    DEBUG_EXT = 
+    DEBUG_EXT =
   }
 
   isEmpty(PYTHON_PATH):PYTHON_PATH=$(PYTHON_PATH)
@@ -79,7 +79,7 @@ contains(PKGCONFIG, "python.*"){
 } else:unix {
   # on linux, python-config is used to autodetect Python.
   # make sure that you have installed a matching python-dev package.
-  
+
   PYTHON_CONFIG = $${PYTHON_DIR}/bin/python$${PYTHON_VERSION}-config
   PYTHON_CONFIG_OPTIONS_LIBS = --libs
   equals(PYTHON_VERSION_MAJOR, 3):!lessThan(PYTHON_VERSION_MINOR, 8) {

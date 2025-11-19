@@ -73,7 +73,7 @@
 
 <object-type name="QQuickFramebufferObject::Renderer"></object-type>
 <object-type name="QQuickItem::UpdatePaintNodeData"></object-type>
-  
+
 <object-type name="QSGImageNode" create-shell="no"/>
 <object-type name="QSGNinePatchNode"/>
 <object-type name="QSGRectangleNode"/>

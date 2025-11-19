@@ -11,19 +11,19 @@
 #include <qxmlstream.h>
 
 QXmlStreamAttribute* PythonQtWrapper_QXmlStreamAttribute::new_QXmlStreamAttribute()
-{ 
+{
 return new QXmlStreamAttribute(); }
 
 QXmlStreamAttribute* PythonQtWrapper_QXmlStreamAttribute::new_QXmlStreamAttribute(const QString&  namespaceUri, const QString&  name, const QString&  value)
-{ 
+{
 return new QXmlStreamAttribute(namespaceUri, name, value); }
 
 QXmlStreamAttribute* PythonQtWrapper_QXmlStreamAttribute::new_QXmlStreamAttribute(const QString&  qualifiedName, const QString&  value)
-{ 
+{
 return new QXmlStreamAttribute(qualifiedName, value); }
 
 QXmlStreamAttribute* PythonQtWrapper_QXmlStreamAttribute::new_QXmlStreamAttribute(const QXmlStreamAttribute&  arg__1)
-{ 
+{
 return new QXmlStreamAttribute(arg__1); }
 
 bool  PythonQtWrapper_QXmlStreamAttribute::isDefault(QXmlStreamAttribute* theWrappedObject) const
@@ -69,7 +69,7 @@ QStringRef  PythonQtWrapper_QXmlStreamAttribute::value(QXmlStreamAttribute* theW
 
 
 QXmlStreamAttributes* PythonQtWrapper_QXmlStreamAttributes::new_QXmlStreamAttributes()
-{ 
+{
 return new QXmlStreamAttributes(); }
 
 void PythonQtWrapper_QXmlStreamAttributes::append(QXmlStreamAttributes* theWrappedObject, const QString&  namespaceUri, const QString&  name, const QString&  value)
@@ -330,11 +330,11 @@ QStringRef  PythonQtWrapper_QXmlStreamAttributes::value(QXmlStreamAttributes* th
 
 
 QXmlStreamEntityDeclaration* PythonQtWrapper_QXmlStreamEntityDeclaration::new_QXmlStreamEntityDeclaration()
-{ 
+{
 return new QXmlStreamEntityDeclaration(); }
 
 QXmlStreamEntityDeclaration* PythonQtWrapper_QXmlStreamEntityDeclaration::new_QXmlStreamEntityDeclaration(const QXmlStreamEntityDeclaration&  arg__1)
-{ 
+{
 return new QXmlStreamEntityDeclaration(arg__1); }
 
 QStringRef  PythonQtWrapper_QXmlStreamEntityDeclaration::name(QXmlStreamEntityDeclaration* theWrappedObject) const
@@ -375,15 +375,15 @@ QStringRef  PythonQtWrapper_QXmlStreamEntityDeclaration::value(QXmlStreamEntityD
 
 
 QXmlStreamNamespaceDeclaration* PythonQtWrapper_QXmlStreamNamespaceDeclaration::new_QXmlStreamNamespaceDeclaration()
-{ 
+{
 return new QXmlStreamNamespaceDeclaration(); }
 
 QXmlStreamNamespaceDeclaration* PythonQtWrapper_QXmlStreamNamespaceDeclaration::new_QXmlStreamNamespaceDeclaration(const QString&  prefix, const QString&  namespaceUri)
-{ 
+{
 return new QXmlStreamNamespaceDeclaration(prefix, namespaceUri); }
 
 QXmlStreamNamespaceDeclaration* PythonQtWrapper_QXmlStreamNamespaceDeclaration::new_QXmlStreamNamespaceDeclaration(const QXmlStreamNamespaceDeclaration&  arg__1)
-{ 
+{
 return new QXmlStreamNamespaceDeclaration(arg__1); }
 
 QStringRef  PythonQtWrapper_QXmlStreamNamespaceDeclaration::namespaceUri(QXmlStreamNamespaceDeclaration* theWrappedObject) const
@@ -409,11 +409,11 @@ QStringRef  PythonQtWrapper_QXmlStreamNamespaceDeclaration::prefix(QXmlStreamNam
 
 
 QXmlStreamNotationDeclaration* PythonQtWrapper_QXmlStreamNotationDeclaration::new_QXmlStreamNotationDeclaration()
-{ 
+{
 return new QXmlStreamNotationDeclaration(); }
 
 QXmlStreamNotationDeclaration* PythonQtWrapper_QXmlStreamNotationDeclaration::new_QXmlStreamNotationDeclaration(const QXmlStreamNotationDeclaration&  arg__1)
-{ 
+{
 return new QXmlStreamNotationDeclaration(arg__1); }
 
 QStringRef  PythonQtWrapper_QXmlStreamNotationDeclaration::name(QXmlStreamNotationDeclaration* theWrappedObject) const
@@ -444,19 +444,19 @@ QStringRef  PythonQtWrapper_QXmlStreamNotationDeclaration::systemId(QXmlStreamNo
 
 
 QXmlStreamReader* PythonQtWrapper_QXmlStreamReader::new_QXmlStreamReader()
-{ 
+{
 return new QXmlStreamReader(); }
 
 QXmlStreamReader* PythonQtWrapper_QXmlStreamReader::new_QXmlStreamReader(QIODevice*  device)
-{ 
+{
 return new QXmlStreamReader(device); }
 
 QXmlStreamReader* PythonQtWrapper_QXmlStreamReader::new_QXmlStreamReader(const QByteArray&  data)
-{ 
+{
 return new QXmlStreamReader(data); }
 
 QXmlStreamReader* PythonQtWrapper_QXmlStreamReader::new_QXmlStreamReader(const QString&  data)
-{ 
+{
 return new QXmlStreamReader(data); }
 
 void PythonQtWrapper_QXmlStreamReader::addData(QXmlStreamReader* theWrappedObject, const QByteArray&  data)
@@ -737,15 +737,15 @@ QXmlStreamReader::TokenType  PythonQtWrapper_QXmlStreamReader::tokenType(QXmlStr
 
 
 QXmlStreamWriter* PythonQtWrapper_QXmlStreamWriter::new_QXmlStreamWriter()
-{ 
+{
 return new QXmlStreamWriter(); }
 
 QXmlStreamWriter* PythonQtWrapper_QXmlStreamWriter::new_QXmlStreamWriter(QByteArray*  array)
-{ 
+{
 return new QXmlStreamWriter(array); }
 
 QXmlStreamWriter* PythonQtWrapper_QXmlStreamWriter::new_QXmlStreamWriter(QIODevice*  device)
-{ 
+{
 return new QXmlStreamWriter(device); }
 
 bool  PythonQtWrapper_QXmlStreamWriter::autoFormatting(QXmlStreamWriter* theWrappedObject) const

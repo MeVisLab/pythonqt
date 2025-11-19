@@ -1295,15 +1295,15 @@ if (_wrapper) {
   QCommandLinkButton::wheelEvent(event0);
 }
 QCommandLinkButton* PythonQtWrapper_QCommandLinkButton::new_QCommandLinkButton(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QCommandLinkButton(parent); }
 
 QCommandLinkButton* PythonQtWrapper_QCommandLinkButton::new_QCommandLinkButton(const QString&  text, QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QCommandLinkButton(text, parent); }
 
 QCommandLinkButton* PythonQtWrapper_QCommandLinkButton::new_QCommandLinkButton(const QString&  text, const QString&  description, QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QCommandLinkButton(text, description, parent); }
 
 const QMetaObject* PythonQtShell_QCommandLinkButton::metaObject() const {
@@ -2084,7 +2084,7 @@ if (_wrapper) {
   QCommonStyle::unpolish(widget0);
 }
 QCommonStyle* PythonQtWrapper_QCommonStyle::new_QCommonStyle()
-{ 
+{
 return new PythonQtShell_QCommonStyle(); }
 
 const QMetaObject* PythonQtShell_QCommonStyle::metaObject() const {
@@ -2305,15 +2305,15 @@ if (_wrapper) {
   QCompleter::timerEvent(event0);
 }
 QCompleter* PythonQtWrapper_QCompleter::new_QCompleter(QAbstractItemModel*  model, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QCompleter(model, parent); }
 
 QCompleter* PythonQtWrapper_QCompleter::new_QCompleter(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QCompleter(parent); }
 
 QCompleter* PythonQtWrapper_QCompleter::new_QCompleter(const QStringList&  completions, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QCompleter(completions, parent); }
 
 const QMetaObject* PythonQtShell_QCompleter::metaObject() const {
@@ -3707,7 +3707,7 @@ if (_wrapper) {
   QConcatenateTablesProxyModel::timerEvent(event0);
 }
 QConcatenateTablesProxyModel* PythonQtWrapper_QConcatenateTablesProxyModel::new_QConcatenateTablesProxyModel(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QConcatenateTablesProxyModel(parent); }
 
 const QMetaObject* PythonQtShell_QConcatenateTablesProxyModel::metaObject() const {
@@ -3751,15 +3751,15 @@ QList<QAbstractItemModel* >  PythonQtWrapper_QConcatenateTablesProxyModel::sourc
 
 
 QConicalGradient* PythonQtWrapper_QConicalGradient::new_QConicalGradient()
-{ 
+{
 return new QConicalGradient(); }
 
 QConicalGradient* PythonQtWrapper_QConicalGradient::new_QConicalGradient(const QPointF&  center, qreal  startAngle)
-{ 
+{
 return new QConicalGradient(center, startAngle); }
 
 QConicalGradient* PythonQtWrapper_QConicalGradient::new_QConicalGradient(qreal  cx, qreal  cy, qreal  startAngle)
-{ 
+{
 return new QConicalGradient(cx, cy, startAngle); }
 
 qreal  PythonQtWrapper_QConicalGradient::angle(QConicalGradient* theWrappedObject) const
@@ -3794,15 +3794,15 @@ PythonQtShell_QContextMenuEvent::~PythonQtShell_QContextMenuEvent() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QContextMenuEvent* PythonQtWrapper_QContextMenuEvent::new_QContextMenuEvent(QContextMenuEvent::Reason  reason, const QPoint&  pos)
-{ 
+{
 return new PythonQtShell_QContextMenuEvent(reason, pos); }
 
 QContextMenuEvent* PythonQtWrapper_QContextMenuEvent::new_QContextMenuEvent(QContextMenuEvent::Reason  reason, const QPoint&  pos, const QPoint&  globalPos)
-{ 
+{
 return new PythonQtShell_QContextMenuEvent(reason, pos, globalPos); }
 
 QContextMenuEvent* PythonQtWrapper_QContextMenuEvent::new_QContextMenuEvent(QContextMenuEvent::Reason  reason, const QPoint&  pos, const QPoint&  globalPos, Qt::KeyboardModifiers  modifiers)
-{ 
+{
 return new PythonQtShell_QContextMenuEvent(reason, pos, globalPos, modifiers); }
 
 const QPoint*  PythonQtWrapper_QContextMenuEvent::globalPos(QContextMenuEvent* theWrappedObject) const
@@ -4001,7 +4001,7 @@ if (_wrapper) {
   QDataWidgetMapper::timerEvent(event0);
 }
 QDataWidgetMapper* PythonQtWrapper_QDataWidgetMapper::new_QDataWidgetMapper(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QDataWidgetMapper(parent); }
 
 const QMetaObject* PythonQtShell_QDataWidgetMapper::metaObject() const {
@@ -5456,11 +5456,11 @@ if (_wrapper) {
   QDateEdit::wheelEvent(event0);
 }
 QDateEdit* PythonQtWrapper_QDateEdit::new_QDateEdit(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QDateEdit(parent); }
 
 QDateEdit* PythonQtWrapper_QDateEdit::new_QDateEdit(const QDate&  date, QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QDateEdit(date, parent); }
 
 const QMetaObject* PythonQtShell_QDateEdit::metaObject() const {
@@ -6825,27 +6825,27 @@ if (_wrapper) {
   QDateTimeEdit::wheelEvent(event0);
 }
 QDateTimeEdit* PythonQtWrapper_QDateTimeEdit::new_QDateTimeEdit(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QDateTimeEdit(parent); }
 
 QDateTimeEdit* PythonQtWrapper_QDateTimeEdit::new_QDateTimeEdit(const QDate&  d, QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QDateTimeEdit(d, parent); }
 
 QDateTimeEdit* PythonQtWrapper_QDateTimeEdit::new_QDateTimeEdit(const QDateTime&  dt, QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QDateTimeEdit(dt, parent); }
 
 QDateTimeEdit* PythonQtWrapper_QDateTimeEdit::new_QDateTimeEdit(const QTime&  t, QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QDateTimeEdit(t, parent); }
 
 QDateTimeEdit* PythonQtWrapper_QDateTimeEdit::new_QDateTimeEdit(const QVariant&  val, QMetaType::Type  parserType, QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QDateTimeEdit(val, parserType, parent); }
 
 QDateTimeEdit* PythonQtWrapper_QDateTimeEdit::new_QDateTimeEdit(const QVariant&  val, QVariant::Type  parserType, QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QDateTimeEdit(val, parserType, parent); }
 
 const QMetaObject* PythonQtShell_QDateTimeEdit::metaObject() const {
@@ -7098,7 +7098,7 @@ PythonQtShell_QDesktopServices::~PythonQtShell_QDesktopServices() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QDesktopServices* PythonQtWrapper_QDesktopServices::new_QDesktopServices()
-{ 
+{
 return new PythonQtShell_QDesktopServices(); }
 
 bool  PythonQtWrapper_QDesktopServices::static_QDesktopServices_openUrl(const QUrl&  url)
@@ -8267,7 +8267,7 @@ if (_wrapper) {
   QDesktopWidget::wheelEvent(event0);
 }
 QDesktopWidget* PythonQtWrapper_QDesktopWidget::new_QDesktopWidget()
-{ 
+{
 return new PythonQtShell_QDesktopWidget(); }
 
 const QMetaObject* PythonQtShell_QDesktopWidget::metaObject() const {
@@ -9521,7 +9521,7 @@ if (_wrapper) {
   QDial::wheelEvent(e0);
 }
 QDial* PythonQtWrapper_QDial::new_QDial(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QDial(parent); }
 
 const QMetaObject* PythonQtShell_QDial::metaObject() const {
@@ -10849,7 +10849,7 @@ if (_wrapper) {
   QDialog::wheelEvent(event0);
 }
 QDialog* PythonQtWrapper_QDialog::new_QDialog(QWidget*  parent, Qt::WindowFlags  f)
-{ 
+{
 return new PythonQtShell_QDialog(parent, f); }
 
 const QMetaObject* PythonQtShell_QDialog::metaObject() const {
@@ -12056,19 +12056,19 @@ if (_wrapper) {
   QDialogButtonBox::wheelEvent(event0);
 }
 QDialogButtonBox* PythonQtWrapper_QDialogButtonBox::new_QDialogButtonBox(QDialogButtonBox::StandardButtons  buttons, QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QDialogButtonBox(buttons, parent); }
 
 QDialogButtonBox* PythonQtWrapper_QDialogButtonBox::new_QDialogButtonBox(QDialogButtonBox::StandardButtons  buttons, Qt::Orientation  orientation, QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QDialogButtonBox(buttons, orientation, parent); }
 
 QDialogButtonBox* PythonQtWrapper_QDialogButtonBox::new_QDialogButtonBox(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QDialogButtonBox(parent); }
 
 QDialogButtonBox* PythonQtWrapper_QDialogButtonBox::new_QDialogButtonBox(Qt::Orientation  orientation, QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QDialogButtonBox(orientation, parent); }
 
 const QMetaObject* PythonQtShell_QDialogButtonBox::metaObject() const {
@@ -13387,11 +13387,11 @@ if (_wrapper) {
   QDirModel::timerEvent(event0);
 }
 QDirModel* PythonQtWrapper_QDirModel::new_QDirModel(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QDirModel(parent); }
 
 QDirModel* PythonQtWrapper_QDirModel::new_QDirModel(const QStringList&  nameFilters, QDir::Filters  filters, QDir::SortFlags  sort, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QDirModel(nameFilters, filters, sort, parent); }
 
 const QMetaObject* PythonQtShell_QDirModel::metaObject() const {
@@ -14673,11 +14673,11 @@ if (_wrapper) {
   QDockWidget::wheelEvent(event0);
 }
 QDockWidget* PythonQtWrapper_QDockWidget::new_QDockWidget(QWidget*  parent, Qt::WindowFlags  flags)
-{ 
+{
 return new PythonQtShell_QDockWidget(parent, flags); }
 
 QDockWidget* PythonQtWrapper_QDockWidget::new_QDockWidget(const QString&  title, QWidget*  parent, Qt::WindowFlags  flags)
-{ 
+{
 return new PythonQtShell_QDockWidget(title, parent, flags); }
 
 const QMetaObject* PythonQtShell_QDockWidget::metaObject() const {
@@ -16107,7 +16107,7 @@ if (_wrapper) {
   QDoubleSpinBox::wheelEvent(event0);
 }
 QDoubleSpinBox* PythonQtWrapper_QDoubleSpinBox::new_QDoubleSpinBox(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QDoubleSpinBox(parent); }
 
 const QMetaObject* PythonQtShell_QDoubleSpinBox::metaObject() const {
@@ -16434,11 +16434,11 @@ if (_wrapper) {
   return QDoubleValidator::validate(arg__1, arg__2);
 }
 QDoubleValidator* PythonQtWrapper_QDoubleValidator::new_QDoubleValidator(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QDoubleValidator(parent); }
 
 QDoubleValidator* PythonQtWrapper_QDoubleValidator::new_QDoubleValidator(double  bottom, double  top, int  decimals, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QDoubleValidator(bottom, top, decimals, parent); }
 
 const QMetaObject* PythonQtShell_QDoubleValidator::metaObject() const {
@@ -16638,7 +16638,7 @@ if (_wrapper) {
   QDrag::timerEvent(event0);
 }
 QDrag* PythonQtWrapper_QDrag::new_QDrag(QObject*  dragSource)
-{ 
+{
 return new PythonQtShell_QDrag(dragSource); }
 
 const QMetaObject* PythonQtShell_QDrag::metaObject() const {
@@ -16732,13 +16732,13 @@ QObject*  PythonQtWrapper_QDrag::target(QDrag* theWrappedObject) const
 
 
 QDragEnterEvent* PythonQtWrapper_QDragEnterEvent::new_QDragEnterEvent(const QPoint&  pos, Qt::DropActions  actions, const QMimeData*  data, Qt::MouseButtons  buttons, Qt::KeyboardModifiers  modifiers)
-{ 
+{
 return new QDragEnterEvent(pos, actions, data, buttons, modifiers); }
 
 
 
 QDragLeaveEvent* PythonQtWrapper_QDragLeaveEvent::new_QDragLeaveEvent()
-{ 
+{
 return new QDragLeaveEvent(); }
 
 
@@ -16748,7 +16748,7 @@ PythonQtShell_QDragMoveEvent::~PythonQtShell_QDragMoveEvent() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QDragMoveEvent* PythonQtWrapper_QDragMoveEvent::new_QDragMoveEvent(const QPoint&  pos, Qt::DropActions  actions, const QMimeData*  data, Qt::MouseButtons  buttons, Qt::KeyboardModifiers  modifiers, QEvent::Type  type)
-{ 
+{
 return new PythonQtShell_QDragMoveEvent(pos, actions, data, buttons, modifiers, type); }
 
 void PythonQtWrapper_QDragMoveEvent::accept(QDragMoveEvent* theWrappedObject, const QRect&  r)
@@ -16773,7 +16773,7 @@ PythonQtShell_QDropEvent::~PythonQtShell_QDropEvent() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QDropEvent* PythonQtWrapper_QDropEvent::new_QDropEvent(const QPointF&  pos, Qt::DropActions  actions, const QMimeData*  data, Qt::MouseButtons  buttons, Qt::KeyboardModifiers  modifiers, QEvent::Type  type)
-{ 
+{
 return new PythonQtShell_QDropEvent(pos, actions, data, buttons, modifiers, type); }
 
 void PythonQtWrapper_QDropEvent::acceptProposedAction(QDropEvent* theWrappedObject)
@@ -16838,7 +16838,7 @@ PythonQtShell_QEnterEvent::~PythonQtShell_QEnterEvent() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QEnterEvent* PythonQtWrapper_QEnterEvent::new_QEnterEvent(const QPointF&  localPos, const QPointF&  windowPos, const QPointF&  screenPos)
-{ 
+{
 return new PythonQtShell_QEnterEvent(localPos, windowPos, screenPos); }
 
 QPoint  PythonQtWrapper_QEnterEvent::globalPos(QEnterEvent* theWrappedObject) const
@@ -18158,7 +18158,7 @@ if (_wrapper) {
   QErrorMessage::wheelEvent(event0);
 }
 QErrorMessage* PythonQtWrapper_QErrorMessage::new_QErrorMessage(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QErrorMessage(parent); }
 
 const QMetaObject* PythonQtShell_QErrorMessage::metaObject() const {
@@ -18186,7 +18186,7 @@ PythonQtShell_QExposeEvent::~PythonQtShell_QExposeEvent() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QExposeEvent* PythonQtWrapper_QExposeEvent::new_QExposeEvent(const QRegion&  rgn)
-{ 
+{
 return new PythonQtShell_QExposeEvent(rgn); }
 
 const QRegion*  PythonQtWrapper_QExposeEvent::region(QExposeEvent* theWrappedObject) const
@@ -19444,11 +19444,11 @@ if (_wrapper) {
   QFileDialog::wheelEvent(event0);
 }
 QFileDialog* PythonQtWrapper_QFileDialog::new_QFileDialog(QWidget*  parent, Qt::WindowFlags  f)
-{ 
+{
 return new PythonQtShell_QFileDialog(parent, f); }
 
 QFileDialog* PythonQtWrapper_QFileDialog::new_QFileDialog(QWidget*  parent, const QString&  caption, const QString&  directory, const QString&  filter)
-{ 
+{
 return new PythonQtShell_QFileDialog(parent, caption, directory, filter); }
 
 const QMetaObject* PythonQtShell_QFileDialog::metaObject() const {
@@ -19900,7 +19900,7 @@ if (_wrapper) {
   return QFileIconProvider::type(info0);
 }
 QFileIconProvider* PythonQtWrapper_QFileIconProvider::new_QFileIconProvider()
-{ 
+{
 return new PythonQtShell_QFileIconProvider(); }
 
 QIcon  PythonQtWrapper_QFileIconProvider::icon(QFileIconProvider* theWrappedObject, QFileIconProvider::IconType  type) const
@@ -19931,11 +19931,11 @@ QString  PythonQtWrapper_QFileIconProvider::type(QFileIconProvider* theWrappedOb
 
 
 QFileOpenEvent* PythonQtWrapper_QFileOpenEvent::new_QFileOpenEvent(const QString&  file)
-{ 
+{
 return new QFileOpenEvent(file); }
 
 QFileOpenEvent* PythonQtWrapper_QFileOpenEvent::new_QFileOpenEvent(const QUrl&  url)
-{ 
+{
 return new QFileOpenEvent(url); }
 
 QString  PythonQtWrapper_QFileOpenEvent::file(QFileOpenEvent* theWrappedObject) const
@@ -21181,7 +21181,7 @@ if (_wrapper) {
   QFileSystemModel::timerEvent(event0);
 }
 QFileSystemModel* PythonQtWrapper_QFileSystemModel::new_QFileSystemModel(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QFileSystemModel(parent); }
 
 const QMetaObject* PythonQtShell_QFileSystemModel::metaObject() const {

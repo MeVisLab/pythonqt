@@ -20,9 +20,9 @@ if(QT4_FOUND)
   if(${found_qt_version} VERSION_LESS ${minimum_required_qt_version})
       message(FATAL_ERROR "error: PythonQt requires Qt >= ${minimum_required_qt_version} -- you cannot use Qt ${found_qt_version}.")
   endif()
-  
+
   set(QT_USE_QTXML ON)
-  
+
   include(${QT_USE_FILE})
 else()
   message(FATAL_ERROR "error: Qt4 was not found on your system. You probably need to set the QT_QMAKE_EXECUTABLE variable")
@@ -50,7 +50,7 @@ set(sources
   parser/tokens.cpp
   parser/type_compiler.cpp
   parser/visitor.cpp
-  
+
   abstractmetabuilder.cpp
   abstractmetalang.cpp
   asttoxml.cpp
@@ -72,7 +72,7 @@ set(sources
   typeparser.cpp
   typesystem.cpp
   )
-  
+
 #-----------------------------------------------------------------------------
 # List headers.  This list is used for the install command.
 
@@ -93,7 +93,7 @@ set(moc_sources
   shellheadergenerator.h
   shellimplgenerator.h
   )
-  
+
 #-----------------------------------------------------------------------------
 # UI files
 
@@ -141,9 +141,9 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/parser
   ${CMAKE_CURRENT_SOURCE_DIR}/parser/rpp
   )
-  
+
 add_definitions(-DRXX_ALLOCATOR_INIT_0)
-  
+
 add_executable(${PROJECT_NAME}
   ${sources}
   ${gen_moc_sources}

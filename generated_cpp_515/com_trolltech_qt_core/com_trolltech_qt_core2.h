@@ -461,7 +461,7 @@ void delete_QMutexLocker(QMutexLocker* obj) { delete obj; }
 
     void __enter__(QMutexLocker* /*self*/) {}
     void __exit__(QMutexLocker* self, PyObject* /*type*/, PyObject* /*value*/, PyObject* /*traceback*/) { self->unlock(); }
-    
+
 };
 
 
@@ -993,7 +993,7 @@ void delete_QReadLocker(QReadLocker* obj) { delete obj; }
 
     void __enter__(QReadLocker* /*self*/) {}
     void __exit__(QReadLocker* self, PyObject* /*type*/, PyObject* /*value*/, PyObject* /*traceback*/) { self->unlock(); }
-    
+
 };
 
 

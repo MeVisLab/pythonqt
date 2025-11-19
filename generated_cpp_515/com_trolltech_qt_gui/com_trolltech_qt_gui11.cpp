@@ -73,11 +73,11 @@
 #include <qwindow.h>
 
 QTextFragment* PythonQtWrapper_QTextFragment::new_QTextFragment()
-{ 
+{
 return new QTextFragment(); }
 
 QTextFragment* PythonQtWrapper_QTextFragment::new_QTextFragment(const QTextFragment&  o)
-{ 
+{
 return new QTextFragment(o); }
 
 QTextCharFormat  PythonQtWrapper_QTextFragment::charFormat(QTextFragment* theWrappedObject) const
@@ -274,7 +274,7 @@ if (_wrapper) {
   QTextFrame::timerEvent(event0);
 }
 QTextFrame* PythonQtWrapper_QTextFrame::new_QTextFrame(QTextDocument*  doc)
-{ 
+{
 return new PythonQtShell_QTextFrame(doc); }
 
 const QMetaObject* PythonQtShell_QTextFrame::metaObject() const {
@@ -347,11 +347,11 @@ PythonQtShell_QTextFrameFormat::~PythonQtShell_QTextFrameFormat() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QTextFrameFormat* PythonQtWrapper_QTextFrameFormat::new_QTextFrameFormat()
-{ 
+{
 return new PythonQtShell_QTextFrameFormat(); }
 
 QTextFrameFormat* PythonQtWrapper_QTextFrameFormat::new_QTextFrameFormat(const QTextFormat&  fmt)
-{ 
+{
 return new PythonQtShell_QTextFrameFormat(fmt); }
 
 qreal  PythonQtWrapper_QTextFrameFormat::border(QTextFrameFormat* theWrappedObject) const
@@ -506,11 +506,11 @@ PythonQtShell_QTextImageFormat::~PythonQtShell_QTextImageFormat() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QTextImageFormat* PythonQtWrapper_QTextImageFormat::new_QTextImageFormat()
-{ 
+{
 return new PythonQtShell_QTextImageFormat(); }
 
 QTextImageFormat* PythonQtWrapper_QTextImageFormat::new_QTextImageFormat(const QTextFormat&  format)
-{ 
+{
 return new PythonQtShell_QTextImageFormat(format); }
 
 qreal  PythonQtWrapper_QTextImageFormat::height(QTextImageFormat* theWrappedObject) const
@@ -561,7 +561,7 @@ qreal  PythonQtWrapper_QTextImageFormat::width(QTextImageFormat* theWrappedObjec
 
 
 QTextInlineObject* PythonQtWrapper_QTextInlineObject::new_QTextInlineObject()
-{ 
+{
 return new QTextInlineObject(); }
 
 qreal  PythonQtWrapper_QTextInlineObject::ascent(QTextInlineObject* theWrappedObject) const
@@ -636,7 +636,7 @@ PythonQtShell_QTextItem::~PythonQtShell_QTextItem() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QTextItem* PythonQtWrapper_QTextItem::new_QTextItem()
-{ 
+{
 return new PythonQtShell_QTextItem(); }
 
 qreal  PythonQtWrapper_QTextItem::ascent(QTextItem* theWrappedObject) const
@@ -672,19 +672,19 @@ qreal  PythonQtWrapper_QTextItem::width(QTextItem* theWrappedObject) const
 
 
 QTextLayout* PythonQtWrapper_QTextLayout::new_QTextLayout()
-{ 
+{
 return new QTextLayout(); }
 
 QTextLayout* PythonQtWrapper_QTextLayout::new_QTextLayout(const QString&  text)
-{ 
+{
 return new QTextLayout(text); }
 
 QTextLayout* PythonQtWrapper_QTextLayout::new_QTextLayout(const QString&  text, const QFont&  font, QPaintDevice*  paintdevice)
-{ 
+{
 return new QTextLayout(text, font, paintdevice); }
 
 QTextLayout* PythonQtWrapper_QTextLayout::new_QTextLayout(const QTextBlock&  b)
-{ 
+{
 return new QTextLayout(b); }
 
 QList<QTextLayout::FormatRange >  PythonQtWrapper_QTextLayout::additionalFormats(QTextLayout* theWrappedObject) const
@@ -904,13 +904,13 @@ PythonQtShell_QTextLayout__FormatRange::~PythonQtShell_QTextLayout__FormatRange(
   if (priv) { priv->shellClassDeleted(this); }
 }
 QTextLayout::FormatRange* PythonQtWrapper_QTextLayout__FormatRange::new_QTextLayout__FormatRange()
-{ 
+{
 return new PythonQtShell_QTextLayout__FormatRange(); }
 
 
 
 QTextLine* PythonQtWrapper_QTextLine::new_QTextLine()
-{ 
+{
 return new QTextLine(); }
 
 qreal  PythonQtWrapper_QTextLine::ascent(QTextLine* theWrappedObject) const
@@ -1248,7 +1248,7 @@ if (_wrapper) {
   QTextList::timerEvent(event0);
 }
 QTextList* PythonQtWrapper_QTextList::new_QTextList(QTextDocument*  doc)
-{ 
+{
 return new PythonQtShell_QTextList(doc); }
 
 const QMetaObject* PythonQtShell_QTextList::metaObject() const {
@@ -1316,11 +1316,11 @@ PythonQtShell_QTextListFormat::~PythonQtShell_QTextListFormat() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QTextListFormat* PythonQtWrapper_QTextListFormat::new_QTextListFormat()
-{ 
+{
 return new PythonQtShell_QTextListFormat(); }
 
 QTextListFormat* PythonQtWrapper_QTextListFormat::new_QTextListFormat(const QTextFormat&  fmt)
-{ 
+{
 return new PythonQtShell_QTextListFormat(fmt); }
 
 int  PythonQtWrapper_QTextListFormat::indent(QTextListFormat* theWrappedObject) const
@@ -1507,7 +1507,7 @@ if (_wrapper) {
   QTextObject::timerEvent(event0);
 }
 QTextObject* PythonQtWrapper_QTextObject::new_QTextObject(QTextDocument*  doc)
-{ 
+{
 return new PythonQtShell_QTextObject(doc); }
 
 const QMetaObject* PythonQtShell_QTextObject::metaObject() const {
@@ -1551,15 +1551,15 @@ void PythonQtWrapper_QTextObject::setFormat(QTextObject* theWrappedObject, const
 
 
 QTextOption* PythonQtWrapper_QTextOption::new_QTextOption()
-{ 
+{
 return new QTextOption(); }
 
 QTextOption* PythonQtWrapper_QTextOption::new_QTextOption(Qt::Alignment  alignment)
-{ 
+{
 return new QTextOption(alignment); }
 
 QTextOption* PythonQtWrapper_QTextOption::new_QTextOption(const QTextOption&  o)
-{ 
+{
 return new QTextOption(o); }
 
 Qt::Alignment  PythonQtWrapper_QTextOption::alignment(QTextOption* theWrappedObject) const
@@ -1659,11 +1659,11 @@ PythonQtShell_QTextOption__Tab::~PythonQtShell_QTextOption__Tab() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QTextOption::Tab* PythonQtWrapper_QTextOption__Tab::new_QTextOption__Tab()
-{ 
+{
 return new PythonQtShell_QTextOption__Tab(); }
 
 QTextOption::Tab* PythonQtWrapper_QTextOption__Tab::new_QTextOption__Tab(qreal  pos, QTextOption::TabType  tabType, QChar  delim)
-{ 
+{
 return new PythonQtShell_QTextOption__Tab(pos, tabType, delim); }
 
 bool  PythonQtWrapper_QTextOption__Tab::__ne__(QTextOption::Tab* theWrappedObject, const QTextOption::Tab&  other) const
@@ -1815,7 +1815,7 @@ if (_wrapper) {
   QTextTable::timerEvent(event0);
 }
 QTextTable* PythonQtWrapper_QTextTable::new_QTextTable(QTextDocument*  doc)
-{ 
+{
 return new PythonQtShell_QTextTable(doc); }
 
 const QMetaObject* PythonQtShell_QTextTable::metaObject() const {
@@ -1929,11 +1929,11 @@ void PythonQtWrapper_QTextTable::splitCell(QTextTable* theWrappedObject, int  ro
 
 
 QTextTableCell* PythonQtWrapper_QTextTableCell::new_QTextTableCell()
-{ 
+{
 return new QTextTableCell(); }
 
 QTextTableCell* PythonQtWrapper_QTextTableCell::new_QTextTableCell(const QTextTableCell&  o)
-{ 
+{
 return new QTextTableCell(o); }
 
 QTextFrame::iterator  PythonQtWrapper_QTextTableCell::begin(QTextTableCell* theWrappedObject) const
@@ -2023,11 +2023,11 @@ PythonQtShell_QTextTableCellFormat::~PythonQtShell_QTextTableCellFormat() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QTextTableCellFormat* PythonQtWrapper_QTextTableCellFormat::new_QTextTableCellFormat()
-{ 
+{
 return new PythonQtShell_QTextTableCellFormat(); }
 
 QTextTableCellFormat* PythonQtWrapper_QTextTableCellFormat::new_QTextTableCellFormat(const QTextFormat&  fmt)
-{ 
+{
 return new PythonQtShell_QTextTableCellFormat(fmt); }
 
 qreal  PythonQtWrapper_QTextTableCellFormat::bottomBorder(QTextTableCellFormat* theWrappedObject) const
@@ -2222,11 +2222,11 @@ PythonQtShell_QTextTableFormat::~PythonQtShell_QTextTableFormat() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QTextTableFormat* PythonQtWrapper_QTextTableFormat::new_QTextTableFormat()
-{ 
+{
 return new PythonQtShell_QTextTableFormat(); }
 
 QTextTableFormat* PythonQtWrapper_QTextTableFormat::new_QTextTableFormat(const QTextFormat&  fmt)
-{ 
+{
 return new PythonQtShell_QTextTableFormat(fmt); }
 
 Qt::Alignment  PythonQtWrapper_QTextTableFormat::alignment(QTextTableFormat* theWrappedObject) const
@@ -2316,11 +2316,11 @@ PythonQtShell_QTileRules::~PythonQtShell_QTileRules() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QTileRules* PythonQtWrapper_QTileRules::new_QTileRules(Qt::TileRule  horizontalRule, Qt::TileRule  verticalRule)
-{ 
+{
 return new PythonQtShell_QTileRules(horizontalRule, verticalRule); }
 
 QTileRules* PythonQtWrapper_QTileRules::new_QTileRules(Qt::TileRule  rule)
-{ 
+{
 return new PythonQtShell_QTileRules(rule); }
 
 
@@ -3672,11 +3672,11 @@ if (_wrapper) {
   QTimeEdit::wheelEvent(event0);
 }
 QTimeEdit* PythonQtWrapper_QTimeEdit::new_QTimeEdit(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QTimeEdit(parent); }
 
 QTimeEdit* PythonQtWrapper_QTimeEdit::new_QTimeEdit(const QTime&  time, QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QTimeEdit(time, parent); }
 
 const QMetaObject* PythonQtShell_QTimeEdit::metaObject() const {
@@ -4843,11 +4843,11 @@ if (_wrapper) {
   QToolBar::wheelEvent(event0);
 }
 QToolBar* PythonQtWrapper_QToolBar::new_QToolBar(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QToolBar(parent); }
 
 QToolBar* PythonQtWrapper_QToolBar::new_QToolBar(const QString&  title, QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QToolBar(title, parent); }
 
 const QMetaObject* PythonQtShell_QToolBar::metaObject() const {
@@ -5001,7 +5001,7 @@ QWidget*  PythonQtWrapper_QToolBar::widgetForAction(QToolBar* theWrappedObject, 
 
 
 QToolBarChangeEvent* PythonQtWrapper_QToolBarChangeEvent::new_QToolBarChangeEvent(bool  t)
-{ 
+{
 return new QToolBarChangeEvent(t); }
 
 bool  PythonQtWrapper_QToolBarChangeEvent::toggle(QToolBarChangeEvent* theWrappedObject) const
@@ -6204,7 +6204,7 @@ if (_wrapper) {
   QToolBox::wheelEvent(event0);
 }
 QToolBox* PythonQtWrapper_QToolBox::new_QToolBox(QWidget*  parent, Qt::WindowFlags  f)
-{ 
+{
 return new PythonQtShell_QToolBox(parent, f); }
 
 const QMetaObject* PythonQtShell_QToolBox::metaObject() const {
@@ -7548,7 +7548,7 @@ if (_wrapper) {
   QToolButton::wheelEvent(event0);
 }
 QToolButton* PythonQtWrapper_QToolButton::new_QToolButton(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QToolButton(parent); }
 
 const QMetaObject* PythonQtShell_QToolButton::metaObject() const {
@@ -7684,7 +7684,7 @@ QString  PythonQtWrapper_QToolTip::static_QToolTip_text()
 
 
 QTouchDevice* PythonQtWrapper_QTouchDevice::new_QTouchDevice()
-{ 
+{
 return new QTouchDevice(); }
 
 QTouchDevice::Capabilities  PythonQtWrapper_QTouchDevice::capabilities(QTouchDevice* theWrappedObject) const
@@ -7746,7 +7746,7 @@ PythonQtShell_QTouchEvent::~PythonQtShell_QTouchEvent() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QTouchEvent* PythonQtWrapper_QTouchEvent::new_QTouchEvent(QEvent::Type  eventType, QTouchDevice*  device, Qt::KeyboardModifiers  modifiers, Qt::TouchPointStates  touchPointStates, const QList<QTouchEvent::TouchPoint >&  touchPoints)
-{ 
+{
 return new PythonQtShell_QTouchEvent(eventType, device, modifiers, touchPointStates, touchPoints); }
 
 QTouchDevice*  PythonQtWrapper_QTouchEvent::device(QTouchEvent* theWrappedObject) const
@@ -7802,11 +7802,11 @@ QWindow*  PythonQtWrapper_QTouchEvent::window(QTouchEvent* theWrappedObject) con
 
 
 QTouchEvent::TouchPoint* PythonQtWrapper_QTouchEvent__TouchPoint::new_QTouchEvent__TouchPoint(const QTouchEvent::TouchPoint&  other)
-{ 
+{
 return new QTouchEvent::TouchPoint(other); }
 
 QTouchEvent::TouchPoint* PythonQtWrapper_QTouchEvent__TouchPoint::new_QTouchEvent__TouchPoint(int  id)
-{ 
+{
 return new QTouchEvent::TouchPoint(id); }
 
 QSizeF  PythonQtWrapper_QTouchEvent__TouchPoint::ellipseDiameters(QTouchEvent::TouchPoint* theWrappedObject) const
@@ -9443,7 +9443,7 @@ if (_wrapper) {
   QTransposeProxyModel::timerEvent(event0);
 }
 QTransposeProxyModel* PythonQtWrapper_QTransposeProxyModel::new_QTransposeProxyModel(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QTransposeProxyModel(parent); }
 
 const QMetaObject* PythonQtShell_QTransposeProxyModel::metaObject() const {
@@ -11743,7 +11743,7 @@ if (_wrapper) {
   QTreeView::wheelEvent(arg__1);
 }
 QTreeView* PythonQtWrapper_QTreeView::new_QTreeView(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QTreeView(parent); }
 
 const QMetaObject* PythonQtShell_QTreeView::metaObject() const {

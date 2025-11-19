@@ -13,5 +13,5 @@ index 84e4b54b..88cedd4e 100644
                  }
 +*/
              }
- 
+
              if (rawtok->str() == DEFINE) {

@@ -35,11 +35,11 @@ macx {
   }
 }
 
-include ( ../build/common.prf )  
+include ( ../build/common.prf )
 include ( ../build/python.prf )
 TARGET = $$replace(TARGET, PythonXY, Python$${PYTHON_VERSION})
 
-include ( src.pri )  
+include ( src.pri )
 
 include($${PYTHONQT_GENERATED_PATH}/com_trolltech_qt_core_builtin/com_trolltech_qt_core_builtin.pri)
 include($${PYTHONQT_GENERATED_PATH}/com_trolltech_qt_gui_builtin/com_trolltech_qt_gui_builtin.pri)

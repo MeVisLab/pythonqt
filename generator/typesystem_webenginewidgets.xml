@@ -13,7 +13,7 @@
 
   <object-type name="QWebChannel"/>
   <object-type name="QWebChannelAbstractTransport"/>
-  
+
   <object-type name="QWebEngineCertificateError"/>
   <object-type name="QWebEngineCookieStore"/>
   <value-type name="QWebEngineCookieStore::FilterRequest" since-version="5.11"/>

@@ -216,7 +216,7 @@ if (_wrapper) {
   QWebChannel::timerEvent(event0);
 }
 QWebChannel* PythonQtWrapper_QWebChannel::new_QWebChannel(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QWebChannel(parent); }
 
 const QMetaObject* PythonQtShell_QWebChannel::metaObject() const {
@@ -398,7 +398,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QWebChannelAbstractTransport::timerEvent(QTimerEvent*  event0)
 {
@@ -423,7 +423,7 @@ if (_wrapper) {
   QWebChannelAbstractTransport::timerEvent(event0);
 }
 QWebChannelAbstractTransport* PythonQtWrapper_QWebChannelAbstractTransport::new_QWebChannelAbstractTransport(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QWebChannelAbstractTransport(parent); }
 
 const QMetaObject* PythonQtShell_QWebChannelAbstractTransport::metaObject() const {
@@ -442,11 +442,11 @@ int PythonQtShell_QWebChannelAbstractTransport::qt_metacall(QMetaObject::Call ca
 
 
 QWebEngineCertificateError* PythonQtWrapper_QWebEngineCertificateError::new_QWebEngineCertificateError(const QWebEngineCertificateError&  other)
-{ 
+{
 return new QWebEngineCertificateError(other); }
 
 QWebEngineCertificateError* PythonQtWrapper_QWebEngineCertificateError::new_QWebEngineCertificateError(int  error, QUrl  url, bool  overridable, QString  errorDescription)
-{ 
+{
 return new QWebEngineCertificateError(error, url, overridable, errorDescription); }
 
 bool  PythonQtWrapper_QWebEngineCertificateError::answered(QWebEngineCertificateError* theWrappedObject) const
@@ -507,7 +507,7 @@ QUrl  PythonQtWrapper_QWebEngineCertificateError::url(QWebEngineCertificateError
 
 
 QWebEngineClientCertificateSelection* PythonQtWrapper_QWebEngineClientCertificateSelection::new_QWebEngineClientCertificateSelection(const QWebEngineClientCertificateSelection&  arg__1)
-{ 
+{
 return new QWebEngineClientCertificateSelection(arg__1); }
 
 QVector<QSslCertificate >  PythonQtWrapper_QWebEngineClientCertificateSelection::certificates(QWebEngineClientCertificateSelection* theWrappedObject) const
@@ -591,7 +591,7 @@ PythonQtShell_QWebEngineCookieStore__FilterRequest::~PythonQtShell_QWebEngineCoo
   if (priv) { priv->shellClassDeleted(this); }
 }
 QWebEngineCookieStore::FilterRequest* PythonQtWrapper_QWebEngineCookieStore__FilterRequest::new_QWebEngineCookieStore__FilterRequest()
-{ 
+{
 return new PythonQtShell_QWebEngineCookieStore__FilterRequest(); }
 
 
@@ -709,11 +709,11 @@ QUrl  PythonQtWrapper_QWebEngineDownloadItem::url(QWebEngineDownloadItem* theWra
 
 
 QWebEngineFindTextResult* PythonQtWrapper_QWebEngineFindTextResult::new_QWebEngineFindTextResult()
-{ 
+{
 return new QWebEngineFindTextResult(); }
 
 QWebEngineFindTextResult* PythonQtWrapper_QWebEngineFindTextResult::new_QWebEngineFindTextResult(const QWebEngineFindTextResult&  other)
-{ 
+{
 return new QWebEngineFindTextResult(other); }
 
 int  PythonQtWrapper_QWebEngineFindTextResult::activeMatch(QWebEngineFindTextResult* theWrappedObject) const
@@ -843,7 +843,7 @@ void PythonQtWrapper_QWebEngineHistory::readFrom(QWebEngineHistory* theWrappedOb
 
 
 QWebEngineHistoryItem* PythonQtWrapper_QWebEngineHistoryItem::new_QWebEngineHistoryItem(const QWebEngineHistoryItem&  other)
-{ 
+{
 return new QWebEngineHistoryItem(other); }
 
 QUrl  PythonQtWrapper_QWebEngineHistoryItem::iconUrl(QWebEngineHistoryItem* theWrappedObject) const
@@ -889,11 +889,11 @@ QUrl  PythonQtWrapper_QWebEngineHistoryItem::url(QWebEngineHistoryItem* theWrapp
 
 
 QWebEngineHttpRequest* PythonQtWrapper_QWebEngineHttpRequest::new_QWebEngineHttpRequest(const QUrl&  url, const QWebEngineHttpRequest::Method&  method)
-{ 
+{
 return new QWebEngineHttpRequest(url, method); }
 
 QWebEngineHttpRequest* PythonQtWrapper_QWebEngineHttpRequest::new_QWebEngineHttpRequest(const QWebEngineHttpRequest&  other)
-{ 
+{
 return new QWebEngineHttpRequest(other); }
 
 bool  PythonQtWrapper_QWebEngineHttpRequest::hasHeader(QWebEngineHttpRequest* theWrappedObject, const QByteArray&  headerName) const
@@ -1421,11 +1421,11 @@ if (_wrapper) {
   QWebEnginePage::triggerAction(action0, checked1);
 }
 QWebEnginePage* PythonQtWrapper_QWebEnginePage::new_QWebEnginePage(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QWebEnginePage(parent); }
 
 QWebEnginePage* PythonQtWrapper_QWebEnginePage::new_QWebEnginePage(QWebEngineProfile*  profile, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QWebEnginePage(profile, parent); }
 
 const QMetaObject* PythonQtShell_QWebEnginePage::metaObject() const {
@@ -1875,11 +1875,11 @@ if (_wrapper) {
   QWebEngineProfile::timerEvent(event0);
 }
 QWebEngineProfile* PythonQtWrapper_QWebEngineProfile::new_QWebEngineProfile(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QWebEngineProfile(parent); }
 
 QWebEngineProfile* PythonQtWrapper_QWebEngineProfile::new_QWebEngineProfile(const QString&  name, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QWebEngineProfile(name, parent); }
 
 const QMetaObject* PythonQtShell_QWebEngineProfile::metaObject() const {
@@ -2098,7 +2098,7 @@ bool  PythonQtWrapper_QWebEngineProfile::visitedLinksContainsUrl(QWebEngineProfi
 
 
 QWebEngineQuotaRequest* PythonQtWrapper_QWebEngineQuotaRequest::new_QWebEngineQuotaRequest()
-{ 
+{
 return new QWebEngineQuotaRequest(); }
 
 void PythonQtWrapper_QWebEngineQuotaRequest::accept(QWebEngineQuotaRequest* theWrappedObject)
@@ -2134,7 +2134,7 @@ qint64  PythonQtWrapper_QWebEngineQuotaRequest::requestedSize(QWebEngineQuotaReq
 
 
 QWebEngineRegisterProtocolHandlerRequest* PythonQtWrapper_QWebEngineRegisterProtocolHandlerRequest::new_QWebEngineRegisterProtocolHandlerRequest()
-{ 
+{
 return new QWebEngineRegisterProtocolHandlerRequest(); }
 
 void PythonQtWrapper_QWebEngineRegisterProtocolHandlerRequest::accept(QWebEngineRegisterProtocolHandlerRequest* theWrappedObject)
@@ -2170,11 +2170,11 @@ QString  PythonQtWrapper_QWebEngineRegisterProtocolHandlerRequest::scheme(QWebEn
 
 
 QWebEngineScript* PythonQtWrapper_QWebEngineScript::new_QWebEngineScript()
-{ 
+{
 return new QWebEngineScript(); }
 
 QWebEngineScript* PythonQtWrapper_QWebEngineScript::new_QWebEngineScript(const QWebEngineScript&  other)
-{ 
+{
 return new QWebEngineScript(other); }
 
 QWebEngineScript::InjectionPoint  PythonQtWrapper_QWebEngineScript::injectionPoint(QWebEngineScript* theWrappedObject) const
@@ -2586,7 +2586,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QWebEngineUrlRequestInterceptor::timerEvent(QTimerEvent*  event0)
 {
@@ -2611,7 +2611,7 @@ if (_wrapper) {
   QWebEngineUrlRequestInterceptor::timerEvent(event0);
 }
 QWebEngineUrlRequestInterceptor* PythonQtWrapper_QWebEngineUrlRequestInterceptor::new_QWebEngineUrlRequestInterceptor(QObject*  p)
-{ 
+{
 return new PythonQtShell_QWebEngineUrlRequestInterceptor(p); }
 
 const QMetaObject* PythonQtShell_QWebEngineUrlRequestInterceptor::metaObject() const {
@@ -2672,15 +2672,15 @@ QUrl  PythonQtWrapper_QWebEngineUrlRequestJob::requestUrl(QWebEngineUrlRequestJo
 
 
 QWebEngineUrlScheme* PythonQtWrapper_QWebEngineUrlScheme::new_QWebEngineUrlScheme()
-{ 
+{
 return new QWebEngineUrlScheme(); }
 
 QWebEngineUrlScheme* PythonQtWrapper_QWebEngineUrlScheme::new_QWebEngineUrlScheme(const QByteArray&  name)
-{ 
+{
 return new QWebEngineUrlScheme(name); }
 
 QWebEngineUrlScheme* PythonQtWrapper_QWebEngineUrlScheme::new_QWebEngineUrlScheme(const QWebEngineUrlScheme&  that)
-{ 
+{
 return new QWebEngineUrlScheme(that); }
 
 int  PythonQtWrapper_QWebEngineUrlScheme::defaultPort(QWebEngineUrlScheme* theWrappedObject) const
@@ -2884,7 +2884,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QWebEngineUrlSchemeHandler::timerEvent(QTimerEvent*  event0)
 {
@@ -2909,7 +2909,7 @@ if (_wrapper) {
   QWebEngineUrlSchemeHandler::timerEvent(event0);
 }
 QWebEngineUrlSchemeHandler* PythonQtWrapper_QWebEngineUrlSchemeHandler::new_QWebEngineUrlSchemeHandler(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QWebEngineUrlSchemeHandler(parent); }
 
 const QMetaObject* PythonQtShell_QWebEngineUrlSchemeHandler::metaObject() const {
@@ -4114,7 +4114,7 @@ if (_wrapper) {
   QWebEngineView::wheelEvent(event0);
 }
 QWebEngineView* PythonQtWrapper_QWebEngineView::new_QWebEngineView(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QWebEngineView(parent); }
 
 const QMetaObject* PythonQtShell_QWebEngineView::metaObject() const {

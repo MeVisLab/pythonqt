@@ -158,7 +158,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractMessageHandler::timerEvent(QTimerEvent*  event0)
 {
@@ -183,7 +183,7 @@ if (_wrapper) {
   QAbstractMessageHandler::timerEvent(event0);
 }
 QAbstractMessageHandler* PythonQtWrapper_QAbstractMessageHandler::new_QAbstractMessageHandler(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QAbstractMessageHandler(parent); }
 
 const QMetaObject* PythonQtShell_QAbstractMessageHandler::metaObject() const {
@@ -381,7 +381,7 @@ if (_wrapper) {
   QAbstractUriResolver::timerEvent(event0);
 }
 QAbstractUriResolver* PythonQtWrapper_QAbstractUriResolver::new_QAbstractUriResolver(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QAbstractUriResolver(parent); }
 
 const QMetaObject* PythonQtShell_QAbstractUriResolver::metaObject() const {
@@ -904,7 +904,7 @@ if (_wrapper) {
   return QVariant();
 }
 QAbstractXmlNodeModel* PythonQtWrapper_QAbstractXmlNodeModel::new_QAbstractXmlNodeModel()
-{ 
+{
 return new PythonQtShell_QAbstractXmlNodeModel(); }
 
 QVector<QXmlNodeModelIndex >  PythonQtWrapper_QAbstractXmlNodeModel::attributes(QAbstractXmlNodeModel* theWrappedObject, const QXmlNodeModelIndex&  element) const
@@ -1028,7 +1028,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractXmlReceiver::attribute(const QXmlName&  name0, const QStringRef&  value1)
 {
@@ -1050,7 +1050,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractXmlReceiver::characters(const QStringRef&  value0)
 {
@@ -1072,7 +1072,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractXmlReceiver::comment(const QString&  value0)
 {
@@ -1094,7 +1094,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractXmlReceiver::endDocument()
 {
@@ -1116,7 +1116,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractXmlReceiver::endElement()
 {
@@ -1138,7 +1138,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractXmlReceiver::endOfSequence()
 {
@@ -1160,7 +1160,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractXmlReceiver::namespaceBinding(const QXmlName&  name0)
 {
@@ -1182,7 +1182,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractXmlReceiver::processingInstruction(const QXmlName&  target0, const QString&  value1)
 {
@@ -1204,7 +1204,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractXmlReceiver::startDocument()
 {
@@ -1226,7 +1226,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractXmlReceiver::startElement(const QXmlName&  name0)
 {
@@ -1248,7 +1248,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractXmlReceiver::startOfSequence()
 {
@@ -1270,7 +1270,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractXmlReceiver::whitespaceOnly(const QStringRef&  value0)
 {
@@ -1295,7 +1295,7 @@ if (_wrapper) {
   QAbstractXmlReceiver::whitespaceOnly(value0);
 }
 QAbstractXmlReceiver* PythonQtWrapper_QAbstractXmlReceiver::new_QAbstractXmlReceiver()
-{ 
+{
 return new PythonQtShell_QAbstractXmlReceiver(); }
 
 void PythonQtWrapper_QAbstractXmlReceiver::atomicValue(QAbstractXmlReceiver* theWrappedObject, const QVariant&  value)
@@ -1869,7 +1869,7 @@ if (_wrapper) {
   return QVariant();
 }
 QSimpleXmlNodeModel* PythonQtWrapper_QSimpleXmlNodeModel::new_QSimpleXmlNodeModel(const QXmlNamePool&  namePool)
-{ 
+{
 return new PythonQtShell_QSimpleXmlNodeModel(namePool); }
 
 QXmlNamePool*  PythonQtWrapper_QSimpleXmlNodeModel::namePool(QSimpleXmlNodeModel* theWrappedObject) const
@@ -1880,15 +1880,15 @@ QXmlNamePool*  PythonQtWrapper_QSimpleXmlNodeModel::namePool(QSimpleXmlNodeModel
 
 
 QSourceLocation* PythonQtWrapper_QSourceLocation::new_QSourceLocation()
-{ 
+{
 return new QSourceLocation(); }
 
 QSourceLocation* PythonQtWrapper_QSourceLocation::new_QSourceLocation(const QSourceLocation&  other)
-{ 
+{
 return new QSourceLocation(other); }
 
 QSourceLocation* PythonQtWrapper_QSourceLocation::new_QSourceLocation(const QUrl&  uri, int  line, int  column)
-{ 
+{
 return new QSourceLocation(uri, line, column); }
 
 qint64  PythonQtWrapper_QSourceLocation::column(QSourceLocation* theWrappedObject) const
@@ -2236,7 +2236,7 @@ if (_wrapper) {
   QXmlFormatter::whitespaceOnly(value0);
 }
 QXmlFormatter* PythonQtWrapper_QXmlFormatter::new_QXmlFormatter(const QXmlQuery&  query, QIODevice*  outputDevice)
-{ 
+{
 return new PythonQtShell_QXmlFormatter(query, outputDevice); }
 
 int  PythonQtWrapper_QXmlFormatter::indentationDepth(QXmlFormatter* theWrappedObject) const
@@ -2252,19 +2252,19 @@ void PythonQtWrapper_QXmlFormatter::setIndentationDepth(QXmlFormatter* theWrappe
 
 
 QXmlItem* PythonQtWrapper_QXmlItem::new_QXmlItem()
-{ 
+{
 return new QXmlItem(); }
 
 QXmlItem* PythonQtWrapper_QXmlItem::new_QXmlItem(const QVariant&  atomicValue)
-{ 
+{
 return new QXmlItem(atomicValue); }
 
 QXmlItem* PythonQtWrapper_QXmlItem::new_QXmlItem(const QXmlItem&  other)
-{ 
+{
 return new QXmlItem(other); }
 
 QXmlItem* PythonQtWrapper_QXmlItem::new_QXmlItem(const QXmlNodeModelIndex&  node)
-{ 
+{
 return new QXmlItem(node); }
 
 bool  PythonQtWrapper_QXmlItem::isAtomicValue(QXmlItem* theWrappedObject) const
@@ -2295,15 +2295,15 @@ QXmlNodeModelIndex  PythonQtWrapper_QXmlItem::toNodeModelIndex(QXmlItem* theWrap
 
 
 QXmlName* PythonQtWrapper_QXmlName::new_QXmlName()
-{ 
+{
 return new QXmlName(); }
 
 QXmlName* PythonQtWrapper_QXmlName::new_QXmlName(QXmlNamePool&  namePool, const QString&  localName, const QString&  namespaceURI, const QString&  prefix)
-{ 
+{
 return new QXmlName(namePool, localName, namespaceURI, prefix); }
 
 QXmlName* PythonQtWrapper_QXmlName::new_QXmlName(const QXmlName&  other)
-{ 
+{
 return new QXmlName(other); }
 
 QXmlName  PythonQtWrapper_QXmlName::static_QXmlName_fromClarkName(const QString&  clarkName, const QXmlNamePool&  namePool)
@@ -2354,21 +2354,21 @@ QString  PythonQtWrapper_QXmlName::toClarkName(QXmlName* theWrappedObject, const
 
 
 QXmlNamePool* PythonQtWrapper_QXmlNamePool::new_QXmlNamePool()
-{ 
+{
 return new QXmlNamePool(); }
 
 QXmlNamePool* PythonQtWrapper_QXmlNamePool::new_QXmlNamePool(const QXmlNamePool&  other)
-{ 
+{
 return new QXmlNamePool(other); }
 
 
 
 QXmlNodeModelIndex* PythonQtWrapper_QXmlNodeModelIndex::new_QXmlNodeModelIndex()
-{ 
+{
 return new QXmlNodeModelIndex(); }
 
 QXmlNodeModelIndex* PythonQtWrapper_QXmlNodeModelIndex::new_QXmlNodeModelIndex(const QXmlNodeModelIndex&  other)
-{ 
+{
 return new QXmlNodeModelIndex(other); }
 
 qint64  PythonQtWrapper_QXmlNodeModelIndex::additionalData(QXmlNodeModelIndex* theWrappedObject) const
@@ -2409,19 +2409,19 @@ bool  PythonQtWrapper_QXmlNodeModelIndex::__eq__(QXmlNodeModelIndex* theWrappedO
 
 
 QXmlQuery* PythonQtWrapper_QXmlQuery::new_QXmlQuery()
-{ 
+{
 return new QXmlQuery(); }
 
 QXmlQuery* PythonQtWrapper_QXmlQuery::new_QXmlQuery(QXmlQuery::QueryLanguage  queryLanguage, const QXmlNamePool&  np)
-{ 
+{
 return new QXmlQuery(queryLanguage, np); }
 
 QXmlQuery* PythonQtWrapper_QXmlQuery::new_QXmlQuery(const QXmlNamePool&  np)
-{ 
+{
 return new QXmlQuery(np); }
 
 QXmlQuery* PythonQtWrapper_QXmlQuery::new_QXmlQuery(const QXmlQuery&  other)
-{ 
+{
 return new QXmlQuery(other); }
 
 void PythonQtWrapper_QXmlQuery::bindVariable(QXmlQuery* theWrappedObject, const QString&  localName, QIODevice*  arg__2)
@@ -2576,7 +2576,7 @@ PythonQtShell_QXmlResultItems::~PythonQtShell_QXmlResultItems() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QXmlResultItems* PythonQtWrapper_QXmlResultItems::new_QXmlResultItems()
-{ 
+{
 return new PythonQtShell_QXmlResultItems(); }
 
 QXmlItem  PythonQtWrapper_QXmlResultItems::current(QXmlResultItems* theWrappedObject) const
@@ -2597,11 +2597,11 @@ QXmlItem  PythonQtWrapper_QXmlResultItems::next(QXmlResultItems* theWrappedObjec
 
 
 QXmlSchema* PythonQtWrapper_QXmlSchema::new_QXmlSchema()
-{ 
+{
 return new QXmlSchema(); }
 
 QXmlSchema* PythonQtWrapper_QXmlSchema::new_QXmlSchema(const QXmlSchema&  other)
-{ 
+{
 return new QXmlSchema(other); }
 
 QUrl  PythonQtWrapper_QXmlSchema::documentUri(QXmlSchema* theWrappedObject) const
@@ -2672,11 +2672,11 @@ const QAbstractUriResolver*  PythonQtWrapper_QXmlSchema::uriResolver(QXmlSchema*
 
 
 QXmlSchemaValidator* PythonQtWrapper_QXmlSchemaValidator::new_QXmlSchemaValidator()
-{ 
+{
 return new QXmlSchemaValidator(); }
 
 QXmlSchemaValidator* PythonQtWrapper_QXmlSchemaValidator::new_QXmlSchemaValidator(const QXmlSchema&  schema)
-{ 
+{
 return new QXmlSchemaValidator(schema); }
 
 QAbstractMessageHandler*  PythonQtWrapper_QXmlSchemaValidator::messageHandler(QXmlSchemaValidator* theWrappedObject) const
@@ -3027,7 +3027,7 @@ if (_wrapper) {
   QXmlSerializer::whitespaceOnly(value0);
 }
 QXmlSerializer* PythonQtWrapper_QXmlSerializer::new_QXmlSerializer(const QXmlQuery&  query, QIODevice*  outputDevice)
-{ 
+{
 return new PythonQtShell_QXmlSerializer(query, outputDevice); }
 
 const QTextCodec*  PythonQtWrapper_QXmlSerializer::codec(QXmlSerializer* theWrappedObject) const

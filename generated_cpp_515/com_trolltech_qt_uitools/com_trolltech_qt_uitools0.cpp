@@ -286,7 +286,7 @@ if (_wrapper) {
   QUiLoader::timerEvent(event0);
 }
 QUiLoader* PythonQtWrapper_QUiLoader::new_QUiLoader(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QUiLoader(parent); }
 
 const QMetaObject* PythonQtShell_QUiLoader::metaObject() const {

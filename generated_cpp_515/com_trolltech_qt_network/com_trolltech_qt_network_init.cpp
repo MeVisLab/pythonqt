@@ -80,7 +80,7 @@ PythonQt::priv()->registerClass(&QSslSocket::staticMetaObject, "QtNetwork", Pyth
 PythonQt::priv()->registerClass(&QTcpServer::staticMetaObject, "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QTcpServer>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QTcpServer>, module, 0);
 PythonQt::priv()->registerClass(&QTcpSocket::staticMetaObject, "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QTcpSocket>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QTcpSocket>, module, PythonQt::Type_NonZero);
 PythonQt::priv()->registerClass(&QUdpSocket::staticMetaObject, "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QUdpSocket>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QUdpSocket>, module, PythonQt::Type_NonZero);
-PythonQt::priv()->registerGlobalNamespace("QtNetwork", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QtNetwork>, PythonQtWrapper_QtNetwork::staticMetaObject, module); 
+PythonQt::priv()->registerGlobalNamespace("QtNetwork", "QtNetwork", PythonQtCreateObject<PythonQtWrapper_QtNetwork>, PythonQtWrapper_QtNetwork::staticMetaObject, module);
 
 
 PythonQtRegisterListTemplateConverterForKnownClass(QList, QDnsDomainNameRecord);
