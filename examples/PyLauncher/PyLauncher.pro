@@ -13,9 +13,9 @@ DESTDIR           = ../../lib
 
 QT += widgets
 
-include ( ../../build/common.prf )  
-include ( ../../build/PythonQt.prf )  
-include ( ../../build/PythonQt_QtAll.prf )  
+include ( ../../build/common.prf )
+include ( ../../build/PythonQt.prf )
+include ( ../../build/PythonQt_QtAll.prf )
 
 SOURCES +=                    \
-  main.cpp        
+  main.cpp

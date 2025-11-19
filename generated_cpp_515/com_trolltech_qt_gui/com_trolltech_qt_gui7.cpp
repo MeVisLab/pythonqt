@@ -80,7 +80,7 @@ PythonQtShell_QPlatformSurfaceEvent::~PythonQtShell_QPlatformSurfaceEvent() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QPlatformSurfaceEvent* PythonQtWrapper_QPlatformSurfaceEvent::new_QPlatformSurfaceEvent(QPlatformSurfaceEvent::SurfaceEventType  surfaceEventType)
-{ 
+{
 return new PythonQtShell_QPlatformSurfaceEvent(surfaceEventType); }
 
 QPlatformSurfaceEvent::SurfaceEventType  PythonQtWrapper_QPlatformSurfaceEvent::surfaceEventType(QPlatformSurfaceEvent* theWrappedObject) const
@@ -91,27 +91,27 @@ QPlatformSurfaceEvent::SurfaceEventType  PythonQtWrapper_QPlatformSurfaceEvent::
 
 
 QPolygonF* PythonQtWrapper_QPolygonF::new_QPolygonF()
-{ 
+{
 return new QPolygonF(); }
 
 QPolygonF* PythonQtWrapper_QPolygonF::new_QPolygonF(const QPolygon&  a)
-{ 
+{
 return new QPolygonF(a); }
 
 QPolygonF* PythonQtWrapper_QPolygonF::new_QPolygonF(const QPolygonF&  a)
-{ 
+{
 return new QPolygonF(a); }
 
 QPolygonF* PythonQtWrapper_QPolygonF::new_QPolygonF(const QRectF&  r)
-{ 
+{
 return new QPolygonF(r); }
 
 QPolygonF* PythonQtWrapper_QPolygonF::new_QPolygonF(const QVector<QPointF >&  v)
-{ 
+{
 return new QPolygonF(v); }
 
 QPolygonF* PythonQtWrapper_QPolygonF::new_QPolygonF(int  size)
-{ 
+{
 return new QPolygonF(size); }
 
 void PythonQtWrapper_QPolygonF::append(QPolygonF* theWrappedObject, const QPointF&  t)
@@ -1721,11 +1721,11 @@ if (_wrapper) {
   QPrintDialog::wheelEvent(event0);
 }
 QPrintDialog* PythonQtWrapper_QPrintDialog::new_QPrintDialog(QPrinter*  printer, QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QPrintDialog(printer, parent); }
 
 QPrintDialog* PythonQtWrapper_QPrintDialog::new_QPrintDialog(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QPrintDialog(parent); }
 
 const QMetaObject* PythonQtShell_QPrintDialog::metaObject() const {
@@ -1957,10 +1957,10 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 QPrintEngine* PythonQtWrapper_QPrintEngine::new_QPrintEngine()
-{ 
+{
 return new PythonQtShell_QPrintEngine(); }
 
 bool  PythonQtWrapper_QPrintEngine::abort(QPrintEngine* theWrappedObject)
@@ -3243,11 +3243,11 @@ if (_wrapper) {
   QPrintPreviewDialog::wheelEvent(event0);
 }
 QPrintPreviewDialog* PythonQtWrapper_QPrintPreviewDialog::new_QPrintPreviewDialog(QPrinter*  printer, QWidget*  parent, Qt::WindowFlags  flags)
-{ 
+{
 return new PythonQtShell_QPrintPreviewDialog(printer, parent, flags); }
 
 QPrintPreviewDialog* PythonQtWrapper_QPrintPreviewDialog::new_QPrintPreviewDialog(QWidget*  parent, Qt::WindowFlags  flags)
-{ 
+{
 return new PythonQtShell_QPrintPreviewDialog(parent, flags); }
 
 const QMetaObject* PythonQtShell_QPrintPreviewDialog::metaObject() const {
@@ -4424,11 +4424,11 @@ if (_wrapper) {
   QPrintPreviewWidget::wheelEvent(event0);
 }
 QPrintPreviewWidget* PythonQtWrapper_QPrintPreviewWidget::new_QPrintPreviewWidget(QPrinter*  printer, QWidget*  parent, Qt::WindowFlags  flags)
-{ 
+{
 return new PythonQtShell_QPrintPreviewWidget(printer, parent, flags); }
 
 QPrintPreviewWidget* PythonQtWrapper_QPrintPreviewWidget::new_QPrintPreviewWidget(QWidget*  parent, Qt::WindowFlags  flags)
-{ 
+{
 return new PythonQtShell_QPrintPreviewWidget(parent, flags); }
 
 const QMetaObject* PythonQtShell_QPrintPreviewWidget::metaObject() const {
@@ -4767,11 +4767,11 @@ if (_wrapper) {
   return QPrinter::sharedPainter();
 }
 QPrinter* PythonQtWrapper_QPrinter::new_QPrinter(QPrinter::PrinterMode  mode)
-{ 
+{
 return new PythonQtShell_QPrinter(mode); }
 
 QPrinter* PythonQtWrapper_QPrinter::new_QPrinter(const QPrinterInfo&  printer, QPrinter::PrinterMode  mode)
-{ 
+{
 return new PythonQtShell_QPrinter(printer, mode); }
 
 bool  PythonQtWrapper_QPrinter::abort(QPrinter* theWrappedObject)
@@ -5107,15 +5107,15 @@ int  PythonQtWrapper_QPrinter::winPageSize(QPrinter* theWrappedObject) const
 
 
 QPrinterInfo* PythonQtWrapper_QPrinterInfo::new_QPrinterInfo()
-{ 
+{
 return new QPrinterInfo(); }
 
 QPrinterInfo* PythonQtWrapper_QPrinterInfo::new_QPrinterInfo(const QPrinter&  printer)
-{ 
+{
 return new QPrinterInfo(printer); }
 
 QPrinterInfo* PythonQtWrapper_QPrinterInfo::new_QPrinterInfo(const QPrinterInfo&  other)
-{ 
+{
 return new QPrinterInfo(other); }
 
 QStringList  PythonQtWrapper_QPrinterInfo::static_QPrinterInfo_availablePrinterNames()
@@ -6427,7 +6427,7 @@ if (_wrapper) {
   QProgressBar::wheelEvent(event0);
 }
 QProgressBar* PythonQtWrapper_QProgressBar::new_QProgressBar(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QProgressBar(parent); }
 
 const QMetaObject* PythonQtShell_QProgressBar::metaObject() const {
@@ -7788,11 +7788,11 @@ if (_wrapper) {
   QProgressDialog::wheelEvent(event0);
 }
 QProgressDialog* PythonQtWrapper_QProgressDialog::new_QProgressDialog(QWidget*  parent, Qt::WindowFlags  flags)
-{ 
+{
 return new PythonQtShell_QProgressDialog(parent, flags); }
 
 QProgressDialog* PythonQtWrapper_QProgressDialog::new_QProgressDialog(const QString&  labelText, const QString&  cancelButtonText, int  minimum, int  maximum, QWidget*  parent, Qt::WindowFlags  flags)
-{ 
+{
 return new PythonQtShell_QProgressDialog(labelText, cancelButtonText, minimum, maximum, parent, flags); }
 
 const QMetaObject* PythonQtShell_QProgressDialog::metaObject() const {
@@ -8666,11 +8666,11 @@ if (_wrapper) {
   QProxyStyle::unpolish(widget0);
 }
 QProxyStyle* PythonQtWrapper_QProxyStyle::new_QProxyStyle(QStyle*  style)
-{ 
+{
 return new PythonQtShell_QProxyStyle(style); }
 
 QProxyStyle* PythonQtWrapper_QProxyStyle::new_QProxyStyle(const QString&  key)
-{ 
+{
 return new PythonQtShell_QProxyStyle(key); }
 
 const QMetaObject* PythonQtShell_QProxyStyle::metaObject() const {
@@ -9929,15 +9929,15 @@ if (_wrapper) {
   QPushButton::wheelEvent(event0);
 }
 QPushButton* PythonQtWrapper_QPushButton::new_QPushButton(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QPushButton(parent); }
 
 QPushButton* PythonQtWrapper_QPushButton::new_QPushButton(const QIcon&  icon, const QString&  text, QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QPushButton(icon, text, parent); }
 
 QPushButton* PythonQtWrapper_QPushButton::new_QPushButton(const QString&  text, QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QPushButton(text, parent); }
 
 const QMetaObject* PythonQtShell_QPushButton::metaObject() const {
@@ -10011,19 +10011,19 @@ QSize  PythonQtWrapper_QPushButton::sizeHint(QPushButton* theWrappedObject) cons
 
 
 QQuaternion* PythonQtWrapper_QQuaternion::new_QQuaternion()
-{ 
+{
 return new QQuaternion(); }
 
 QQuaternion* PythonQtWrapper_QQuaternion::new_QQuaternion(const QVector4D&  vector)
-{ 
+{
 return new QQuaternion(vector); }
 
 QQuaternion* PythonQtWrapper_QQuaternion::new_QQuaternion(float  scalar, const QVector3D&  vector)
-{ 
+{
 return new QQuaternion(scalar, vector); }
 
 QQuaternion* PythonQtWrapper_QQuaternion::new_QQuaternion(float  scalar, float  xpos, float  ypos, float  zpos)
-{ 
+{
 return new QQuaternion(scalar, xpos, ypos, zpos); }
 
 QQuaternion  PythonQtWrapper_QQuaternion::conjugate(QQuaternion* theWrappedObject) const
@@ -10296,31 +10296,31 @@ QString PythonQtWrapper_QQuaternion::py_toString(QQuaternion* obj) {
 
 
 QRadialGradient* PythonQtWrapper_QRadialGradient::new_QRadialGradient()
-{ 
+{
 return new QRadialGradient(); }
 
 QRadialGradient* PythonQtWrapper_QRadialGradient::new_QRadialGradient(const QPointF&  center, qreal  centerRadius, const QPointF&  focalPoint, qreal  focalRadius)
-{ 
+{
 return new QRadialGradient(center, centerRadius, focalPoint, focalRadius); }
 
 QRadialGradient* PythonQtWrapper_QRadialGradient::new_QRadialGradient(const QPointF&  center, qreal  radius)
-{ 
+{
 return new QRadialGradient(center, radius); }
 
 QRadialGradient* PythonQtWrapper_QRadialGradient::new_QRadialGradient(const QPointF&  center, qreal  radius, const QPointF&  focalPoint)
-{ 
+{
 return new QRadialGradient(center, radius, focalPoint); }
 
 QRadialGradient* PythonQtWrapper_QRadialGradient::new_QRadialGradient(qreal  cx, qreal  cy, qreal  centerRadius, qreal  fx, qreal  fy, qreal  focalRadius)
-{ 
+{
 return new QRadialGradient(cx, cy, centerRadius, fx, fy, focalRadius); }
 
 QRadialGradient* PythonQtWrapper_QRadialGradient::new_QRadialGradient(qreal  cx, qreal  cy, qreal  radius)
-{ 
+{
 return new QRadialGradient(cx, cy, radius); }
 
 QRadialGradient* PythonQtWrapper_QRadialGradient::new_QRadialGradient(qreal  cx, qreal  cy, qreal  radius, qreal  fx, qreal  fy)
-{ 
+{
 return new QRadialGradient(cx, cy, radius, fx, fy); }
 
 QPointF  PythonQtWrapper_QRadialGradient::center(QRadialGradient* theWrappedObject) const
@@ -11611,11 +11611,11 @@ if (_wrapper) {
   QRadioButton::wheelEvent(event0);
 }
 QRadioButton* PythonQtWrapper_QRadioButton::new_QRadioButton(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QRadioButton(parent); }
 
 QRadioButton* PythonQtWrapper_QRadioButton::new_QRadioButton(const QString&  text, QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QRadioButton(text, parent); }
 
 const QMetaObject* PythonQtShell_QRadioButton::metaObject() const {
@@ -12478,7 +12478,7 @@ if (_wrapper) {
   QRasterWindow::wheelEvent(arg__1);
 }
 QRasterWindow* PythonQtWrapper_QRasterWindow::new_QRasterWindow(QWindow*  parent)
-{ 
+{
 return new PythonQtShell_QRasterWindow(parent); }
 
 const QMetaObject* PythonQtShell_QRasterWindow::metaObject() const {
@@ -12497,19 +12497,19 @@ int PythonQtShell_QRasterWindow::qt_metacall(QMetaObject::Call call, int id, voi
 
 
 QRawFont* PythonQtWrapper_QRawFont::new_QRawFont()
-{ 
+{
 return new QRawFont(); }
 
 QRawFont* PythonQtWrapper_QRawFont::new_QRawFont(const QByteArray&  fontData, qreal  pixelSize, QFont::HintingPreference  hintingPreference)
-{ 
+{
 return new QRawFont(fontData, pixelSize, hintingPreference); }
 
 QRawFont* PythonQtWrapper_QRawFont::new_QRawFont(const QRawFont&  other)
-{ 
+{
 return new QRawFont(other); }
 
 QRawFont* PythonQtWrapper_QRawFont::new_QRawFont(const QString&  fileName, qreal  pixelSize, QFont::HintingPreference  hintingPreference)
-{ 
+{
 return new QRawFont(fileName, pixelSize, hintingPreference); }
 
 QVector<QPointF >  PythonQtWrapper_QRawFont::advancesForGlyphIndexes(QRawFont* theWrappedObject, const QVector<unsigned int >&  glyphIndexes) const
@@ -12896,11 +12896,11 @@ if (_wrapper) {
   return QRegExpValidator::validate(input0, pos1);
 }
 QRegExpValidator* PythonQtWrapper_QRegExpValidator::new_QRegExpValidator(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QRegExpValidator(parent); }
 
 QRegExpValidator* PythonQtWrapper_QRegExpValidator::new_QRegExpValidator(const QRegExp&  rx, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QRegExpValidator(rx, parent); }
 
 const QMetaObject* PythonQtShell_QRegExpValidator::metaObject() const {
@@ -13120,11 +13120,11 @@ if (_wrapper) {
   return QRegularExpressionValidator::validate(input0, pos1);
 }
 QRegularExpressionValidator* PythonQtWrapper_QRegularExpressionValidator::new_QRegularExpressionValidator(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QRegularExpressionValidator(parent); }
 
 QRegularExpressionValidator* PythonQtWrapper_QRegularExpressionValidator::new_QRegularExpressionValidator(const QRegularExpression&  re, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QRegularExpressionValidator(re, parent); }
 
 const QMetaObject* PythonQtShell_QRegularExpressionValidator::metaObject() const {
@@ -13152,7 +13152,7 @@ PythonQtShell_QResizeEvent::~PythonQtShell_QResizeEvent() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QResizeEvent* PythonQtWrapper_QResizeEvent::new_QResizeEvent(const QSize&  size, const QSize&  oldSize)
-{ 
+{
 return new PythonQtShell_QResizeEvent(size, oldSize); }
 
 const QSize*  PythonQtWrapper_QResizeEvent::oldSize(QResizeEvent* theWrappedObject) const
@@ -13168,7 +13168,7 @@ const QSize*  PythonQtWrapper_QResizeEvent::size(QResizeEvent* theWrappedObject)
 
 
 QRgba64* PythonQtWrapper_QRgba64::new_QRgba64()
-{ 
+{
 return new QRgba64(); }
 
 unsigned short  PythonQtWrapper_QRgba64::alpha(QRgba64* theWrappedObject) const
@@ -14437,7 +14437,7 @@ if (_wrapper) {
   QRubberBand::wheelEvent(event0);
 }
 QRubberBand* PythonQtWrapper_QRubberBand::new_QRubberBand(QRubberBand::Shape  arg__1, QWidget*  arg__2)
-{ 
+{
 return new PythonQtShell_QRubberBand(arg__1, arg__2); }
 
 const QMetaObject* PythonQtShell_QRubberBand::metaObject() const {
@@ -14680,7 +14680,7 @@ QString PythonQtWrapper_QScreen::py_toString(QScreen* obj) {
 
 
 QScreenOrientationChangeEvent* PythonQtWrapper_QScreenOrientationChangeEvent::new_QScreenOrientationChangeEvent(QScreen*  screen, Qt::ScreenOrientation  orientation)
-{ 
+{
 return new QScreenOrientationChangeEvent(screen, orientation); }
 
 Qt::ScreenOrientation  PythonQtWrapper_QScreenOrientationChangeEvent::orientation(QScreenOrientationChangeEvent* theWrappedObject) const
@@ -15954,7 +15954,7 @@ if (_wrapper) {
   QScrollArea::wheelEvent(arg__1);
 }
 QScrollArea* PythonQtWrapper_QScrollArea::new_QScrollArea(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QScrollArea(parent); }
 
 const QMetaObject* PythonQtShell_QScrollArea::metaObject() const {
@@ -17188,11 +17188,11 @@ if (_wrapper) {
   QScrollBar::wheelEvent(arg__1);
 }
 QScrollBar* PythonQtWrapper_QScrollBar::new_QScrollBar(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QScrollBar(parent); }
 
 QScrollBar* PythonQtWrapper_QScrollBar::new_QScrollBar(Qt::Orientation  arg__1, QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QScrollBar(arg__1, parent); }
 
 const QMetaObject* PythonQtShell_QScrollBar::metaObject() const {
@@ -17221,7 +17221,7 @@ QSize  PythonQtWrapper_QScrollBar::sizeHint(QScrollBar* theWrappedObject) const
 
 
 QScrollEvent* PythonQtWrapper_QScrollEvent::new_QScrollEvent(const QPointF&  contentPos, const QPointF&  overshoot, QScrollEvent::ScrollState  scrollState)
-{ 
+{
 return new QScrollEvent(contentPos, overshoot, scrollState); }
 
 QPointF  PythonQtWrapper_QScrollEvent::contentPos(QScrollEvent* theWrappedObject) const
@@ -17242,7 +17242,7 @@ QScrollEvent::ScrollState  PythonQtWrapper_QScrollEvent::scrollState(QScrollEven
 
 
 QScrollPrepareEvent* PythonQtWrapper_QScrollPrepareEvent::new_QScrollPrepareEvent(const QPointF&  startPos)
-{ 
+{
 return new QScrollPrepareEvent(startPos); }
 
 QPointF  PythonQtWrapper_QScrollPrepareEvent::contentPos(QScrollPrepareEvent* theWrappedObject) const
@@ -17384,11 +17384,11 @@ PythonQtShell_QScrollerProperties::~PythonQtShell_QScrollerProperties() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QScrollerProperties* PythonQtWrapper_QScrollerProperties::new_QScrollerProperties()
-{ 
+{
 return new PythonQtShell_QScrollerProperties(); }
 
 QScrollerProperties* PythonQtWrapper_QScrollerProperties::new_QScrollerProperties(const QScrollerProperties&  sp)
-{ 
+{
 return new PythonQtShell_QScrollerProperties(sp); }
 
 bool  PythonQtWrapper_QScrollerProperties::__ne__(QScrollerProperties* theWrappedObject, const QScrollerProperties&  sp) const

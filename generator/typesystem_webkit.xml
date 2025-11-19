@@ -29,7 +29,7 @@
     <enum-type name="QWebHistory::HistoryStateVersion">
     </enum-type>
     <enum-type name="QWebPage::ErrorDomain"/>
-    
+
     <value-type name="QWebElementCollection"/>
 
     <object-type name="QGraphicsWebView">
@@ -94,7 +94,7 @@
     <suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QWebElement' has equals operators but no qHash() function. Hashcode of objects will consistently be 0."/>
 
     <!-- Needed to avoid warnings on compilers that don't support webkit -->
-    <suppress-warning text="WARNING(MetaJavaBuilder) :: type 'QWebPluginFactory::Plugin' is specified in typesystem, but not defined. This could potentially lead to compilation errors."/>                            
+    <suppress-warning text="WARNING(MetaJavaBuilder) :: type 'QWebPluginFactory::Plugin' is specified in typesystem, but not defined. This could potentially lead to compilation errors."/>
     <suppress-warning text="WARNING(MetaJavaBuilder) :: type 'QWebPluginFactory::ExtensionReturn' is specified in typesystem, but not defined. This could potentially lead to compilation errors."/>
     <suppress-warning text="WARNING(MetaJavaBuilder) :: type 'QWebPluginFactory::MimeType' is specified in typesystem, but not defined. This could potentially lead to compilation errors."/>
     <suppress-warning text="WARNING(MetaJavaBuilder) :: namespace 'com.trolltech.qt.webkit.QWebPage' for enum 'Extension' is not declared"/>
@@ -124,8 +124,8 @@
     <suppress-warning text="WARNING(MetaJavaBuilder) :: type 'QWebDatabase' is specified in typesystem, but not defined. This could potentially lead to compilation errors."/>
     <suppress-warning text="WARNING(MetaJavaBuilder) :: type 'QWebPage::ExtensionReturn' is specified in typesystem, but not defined. This could potentially lead to compilation errors."/>
     <suppress-warning text="WARNING(MetaJavaBuilder) :: type 'QWebPage::ExtensionOption' is specified in typesystem, but not defined. This could potentially lead to compilation errors."/>
-    <suppress-warning text="WARNING(MetaJavaBuilder) :: type 'QWebPage::ChooseMultipleFilesExtensionOption' is specified in typesystem, but not defined. This could potentially lead to compilation errors."/>                            
+    <suppress-warning text="WARNING(MetaJavaBuilder) :: type 'QWebPage::ChooseMultipleFilesExtensionOption' is specified in typesystem, but not defined. This could potentially lead to compilation errors."/>
     <suppress-warning text="WARNING(MetaJavaBuilder) :: type 'QWebSecurityOrigin' is specified in typesystem, but not defined. This could potentially lead to compilation errors."/>
     <suppress-warning text="WARNING(MetaJavaBuilder) :: type 'QWebPage::ChooseMultipleFilesExtensionReturn' is specified in typesystem, but not defined. This could potentially lead to compilation errors."/>
-    
+
 </typesystem>

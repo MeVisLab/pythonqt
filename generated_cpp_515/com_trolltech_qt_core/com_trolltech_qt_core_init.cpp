@@ -176,7 +176,7 @@ PythonQt::priv()->registerClass(&QVariantAnimation::staticMetaObject, "QtCore", 
 PythonQt::priv()->registerCPPClass("QWaitCondition", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QWaitCondition>, nullptr, module, 0);
 PythonQt::priv()->registerCPPClass("QWriteLocker", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QWriteLocker>, nullptr, module, PythonQt::Type_EnterExit);
 PythonQt::priv()->registerCPPClass("QXmlStreamEntityResolver", "", "QtCore", PythonQtCreateObject<PythonQtWrapper_QXmlStreamEntityResolver>, PythonQtSetInstanceWrapperOnShell<PythonQtShell_QXmlStreamEntityResolver>, module, 0);
-PythonQt::priv()->registerGlobalNamespace("QtCore", "QtCore", PythonQtCreateObject<PythonQtWrapper_QtCore>, PythonQtWrapper_QtCore::staticMetaObject, module); 
+PythonQt::priv()->registerGlobalNamespace("QtCore", "QtCore", PythonQtCreateObject<PythonQtWrapper_QtCore>, PythonQtWrapper_QtCore::staticMetaObject, module);
 
 PythonQt::self()->addPolymorphicHandler("QEvent", polymorphichandler_QEvent);
 

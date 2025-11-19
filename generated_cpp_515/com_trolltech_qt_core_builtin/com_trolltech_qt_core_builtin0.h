@@ -214,7 +214,7 @@ void delete_QByteArray(QByteArray* obj) { delete obj; }
   PyObject* data(QByteArray* b) {
     return PyBytes_FromStringAndSize(b->data(), b->size());
   }
-    
+
 };
 
 

@@ -11,12 +11,12 @@ DESTDIR           = ../../lib
 
 CONFIG += console
 
-include ( ../../build/common.prf )  
-include ( ../../build/PythonQt.prf )  
+include ( ../../build/common.prf )
+include ( ../../build/PythonQt.prf )
 
 QT += widgets
 
 SOURCES +=                    \
-  main.cpp        
+  main.cpp
 
 RESOURCES += PyGettingStarted.qrc

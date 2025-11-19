@@ -55,7 +55,7 @@ QString ShellImplGenerator::fileNameForClass(const AbstractMetaClass* meta_class
 }
 
 /* UNUSED
-static bool include_less_than(const Include &a, const Include &b) 
+static bool include_less_than(const Include &a, const Include &b)
 {
   return a.name < b.name;
 }

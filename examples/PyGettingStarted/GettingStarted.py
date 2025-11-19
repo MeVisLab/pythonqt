@@ -7,7 +7,7 @@ box.title = 'PythonQt Example'
 box.browser.html = 'Hello <b>Qt</b>!'
 
 # set the title of the button
-box.button1.text = 'Append Text' 
+box.button1.text = 'Append Text'
 
 # set the text of the line edit
 box.edit.text = '42'
@@ -16,7 +16,7 @@ box.edit.text = '42'
 # to the text browser
 def appendLine():
   box.browser.append(box.edit.text)
-    
+
 # connect the button's clicked signal to our python method
 box.button1.connect('clicked()', appendLine)
 # connect the lineedit's returnPressed signal to our python method

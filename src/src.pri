@@ -42,7 +42,7 @@ HEADERS +=                    \
   $$PWD/PythonQtUtils.h \
   $$PWD/PythonQtBoolResult.h \
   $$PWD/PythonQtThreadSupport.h \
-  
+
 SOURCES +=                    \
   $$PWD/PythonQtStdDecorators.cpp   \
   $$PWD/PythonQt.cpp                \

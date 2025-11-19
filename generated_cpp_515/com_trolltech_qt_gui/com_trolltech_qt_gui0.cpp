@@ -1092,7 +1092,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 QPaintDevice*  PythonQtShell_QAbstractButton::redirected(QPoint*  offset0) const
 {
@@ -1326,7 +1326,7 @@ if (_wrapper) {
   QAbstractButton::wheelEvent(event0);
 }
 QAbstractButton* PythonQtWrapper_QAbstractButton::new_QAbstractButton(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QAbstractButton(parent); }
 
 const QMetaObject* PythonQtShell_QAbstractButton::metaObject() const {
@@ -1990,7 +1990,7 @@ if (_wrapper) {
       Py_DECREF(obj);
       if (change0 == QGraphicsItem::ItemParentChange || change0 == QGraphicsItem::ItemSceneChange) {
         returnValue = value1;
-      } 
+      }
       return returnValue;
     } else {
       PyErr_Clear();
@@ -2184,7 +2184,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 bool  PythonQtShell_QAbstractGraphicsShapeItem::sceneEvent(QEvent*  event0)
 {
@@ -2396,7 +2396,7 @@ if (_wrapper) {
   QAbstractGraphicsShapeItem::wheelEvent(event0);
 }
 QAbstractGraphicsShapeItem* PythonQtWrapper_QAbstractGraphicsShapeItem::new_QAbstractGraphicsShapeItem(QGraphicsItem*  parent)
-{ 
+{
 return new PythonQtShell_QAbstractGraphicsShapeItem(parent); }
 
 QBrush  PythonQtWrapper_QAbstractGraphicsShapeItem::brush(QAbstractGraphicsShapeItem* theWrappedObject) const
@@ -2676,7 +2676,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 QVector<int >  PythonQtShell_QAbstractItemDelegate::paintingRoles() const
 {
@@ -2833,7 +2833,7 @@ if (_wrapper) {
   QAbstractItemDelegate::updateEditorGeometry(editor0, option1, index2);
 }
 QAbstractItemDelegate* PythonQtWrapper_QAbstractItemDelegate::new_QAbstractItemDelegate(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QAbstractItemDelegate(parent); }
 
 const QMetaObject* PythonQtShell_QAbstractItemDelegate::metaObject() const {
@@ -4344,7 +4344,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractItemView::selectAll()
 {
@@ -4520,7 +4520,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractItemView::setSelectionModel(QItemSelectionModel*  selectionModel0)
 {
@@ -5139,7 +5139,7 @@ if (_wrapper) {
   QAbstractItemView::wheelEvent(arg__1);
 }
 QAbstractItemView* PythonQtWrapper_QAbstractItemView::new_QAbstractItemView(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QAbstractItemView(parent); }
 
 const QMetaObject* PythonQtShell_QAbstractItemView::metaObject() const {
@@ -6832,7 +6832,7 @@ if (_wrapper) {
   QAbstractPrintDialog::wheelEvent(event0);
 }
 QAbstractPrintDialog* PythonQtWrapper_QAbstractPrintDialog::new_QAbstractPrintDialog(QPrinter*  printer, QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QAbstractPrintDialog(printer, parent); }
 
 const QMetaObject* PythonQtShell_QAbstractPrintDialog::metaObject() const {
@@ -8300,7 +8300,7 @@ if (_wrapper) {
   QAbstractProxyModel::timerEvent(event0);
 }
 QAbstractProxyModel* PythonQtWrapper_QAbstractProxyModel::new_QAbstractProxyModel(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QAbstractProxyModel(parent); }
 
 const QMetaObject* PythonQtShell_QAbstractProxyModel::metaObject() const {
@@ -9607,7 +9607,7 @@ if (_wrapper) {
   QAbstractScrollArea::wheelEvent(arg__1);
 }
 QAbstractScrollArea* PythonQtWrapper_QAbstractScrollArea::new_QAbstractScrollArea(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QAbstractScrollArea(parent); }
 
 const QMetaObject* PythonQtShell_QAbstractScrollArea::metaObject() const {
@@ -10921,7 +10921,7 @@ if (_wrapper) {
   QAbstractSlider::wheelEvent(e0);
 }
 QAbstractSlider* PythonQtWrapper_QAbstractSlider::new_QAbstractSlider(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QAbstractSlider(parent); }
 
 const QMetaObject* PythonQtShell_QAbstractSlider::metaObject() const {
@@ -12340,7 +12340,7 @@ if (_wrapper) {
   QAbstractSpinBox::wheelEvent(event0);
 }
 QAbstractSpinBox* PythonQtWrapper_QAbstractSpinBox::new_QAbstractSpinBox(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QAbstractSpinBox(parent); }
 
 const QMetaObject* PythonQtShell_QAbstractSpinBox::metaObject() const {
@@ -13678,7 +13678,7 @@ if (_wrapper) {
   QAbstractTableModel::timerEvent(event0);
 }
 QAbstractTableModel* PythonQtWrapper_QAbstractTableModel::new_QAbstractTableModel(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QAbstractTableModel(parent); }
 
 const QMetaObject* PythonQtShell_QAbstractTableModel::metaObject() const {
@@ -13797,7 +13797,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 QSizeF  PythonQtShell_QAbstractTextDocumentLayout::documentSize() const
 {
@@ -13852,7 +13852,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractTextDocumentLayout::drawInlineObject(QPainter*  painter0, const QRectF&  rect1, QTextInlineObject  object2, int  posInDocument3, const QTextFormat&  format4)
 {
@@ -14108,7 +14108,7 @@ if (_wrapper) {
   QAbstractTextDocumentLayout::timerEvent(event0);
 }
 QAbstractTextDocumentLayout* PythonQtWrapper_QAbstractTextDocumentLayout::new_QAbstractTextDocumentLayout(QTextDocument*  doc)
-{ 
+{
 return new PythonQtShell_QAbstractTextDocumentLayout(doc); }
 
 const QMetaObject* PythonQtShell_QAbstractTextDocumentLayout::metaObject() const {
@@ -14236,7 +14236,7 @@ PythonQtShell_QAbstractTextDocumentLayout__PaintContext::~PythonQtShell_QAbstrac
   if (priv) { priv->shellClassDeleted(this); }
 }
 QAbstractTextDocumentLayout::PaintContext* PythonQtWrapper_QAbstractTextDocumentLayout__PaintContext::new_QAbstractTextDocumentLayout__PaintContext()
-{ 
+{
 return new PythonQtShell_QAbstractTextDocumentLayout__PaintContext(); }
 
 
@@ -14246,7 +14246,7 @@ PythonQtShell_QAbstractTextDocumentLayout__Selection::~PythonQtShell_QAbstractTe
   if (priv) { priv->shellClassDeleted(this); }
 }
 QAbstractTextDocumentLayout::Selection* PythonQtWrapper_QAbstractTextDocumentLayout__Selection::new_QAbstractTextDocumentLayout__Selection()
-{ 
+{
 return new PythonQtShell_QAbstractTextDocumentLayout__Selection(); }
 
 
@@ -14256,7 +14256,7 @@ PythonQtShell_QAccessibleEvent::~PythonQtShell_QAccessibleEvent() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QAccessibleEvent* PythonQtWrapper_QAccessibleEvent::new_QAccessibleEvent(QObject*  obj, QAccessible::Event  typ)
-{ 
+{
 return new PythonQtShell_QAccessibleEvent(obj, typ); }
 
 int  PythonQtWrapper_QAccessibleEvent::child(QAccessibleEvent* theWrappedObject) const
@@ -14425,15 +14425,15 @@ if (_wrapper) {
   QAction::timerEvent(event0);
 }
 QAction* PythonQtWrapper_QAction::new_QAction(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QAction(parent); }
 
 QAction* PythonQtWrapper_QAction::new_QAction(const QIcon&  icon, const QString&  text, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QAction(icon, text, parent); }
 
 QAction* PythonQtWrapper_QAction::new_QAction(const QString&  text, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QAction(text, parent); }
 
 const QMetaObject* PythonQtShell_QAction::metaObject() const {
@@ -14704,7 +14704,7 @@ QString PythonQtWrapper_QAction::py_toString(QAction* obj) {
 
 
 QActionEvent* PythonQtWrapper_QActionEvent::new_QActionEvent(int  type, QAction*  action, QAction*  before)
-{ 
+{
 return new QActionEvent(type, action, before); }
 
 QAction*  PythonQtWrapper_QActionEvent::action(QActionEvent* theWrappedObject) const
@@ -14856,7 +14856,7 @@ if (_wrapper) {
   QActionGroup::timerEvent(event0);
 }
 QActionGroup* PythonQtWrapper_QActionGroup::new_QActionGroup(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QActionGroup(parent); }
 
 const QMetaObject* PythonQtShell_QActionGroup::metaObject() const {
@@ -15152,7 +15152,7 @@ QIcon  PythonQtWrapper_QApplication::static_QApplication_windowIcon()
 
 
 QBackingStore* PythonQtWrapper_QBackingStore::new_QBackingStore(QWindow*  window)
-{ 
+{
 return new QBackingStore(window); }
 
 void PythonQtWrapper_QBackingStore::beginPaint(QBackingStore* theWrappedObject, const QRegion&  arg__1)
@@ -15976,7 +15976,7 @@ if (_wrapper) {
   return QBoxLayout::widget();
 }
 QBoxLayout* PythonQtWrapper_QBoxLayout::new_QBoxLayout(QBoxLayout::Direction  arg__1, QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QBoxLayout(arg__1, parent); }
 
 const QMetaObject* PythonQtShell_QBoxLayout::metaObject() const {
@@ -16231,7 +16231,7 @@ if (_wrapper) {
   QButtonGroup::timerEvent(event0);
 }
 QButtonGroup* PythonQtWrapper_QButtonGroup::new_QButtonGroup(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QButtonGroup(parent); }
 
 const QMetaObject* PythonQtShell_QButtonGroup::metaObject() const {
@@ -17470,7 +17470,7 @@ if (_wrapper) {
   QCalendarWidget::wheelEvent(event0);
 }
 QCalendarWidget* PythonQtWrapper_QCalendarWidget::new_QCalendarWidget(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QCalendarWidget(parent); }
 
 const QMetaObject* PythonQtShell_QCalendarWidget::metaObject() const {
@@ -18879,11 +18879,11 @@ if (_wrapper) {
   QCheckBox::wheelEvent(event0);
 }
 QCheckBox* PythonQtWrapper_QCheckBox::new_QCheckBox(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QCheckBox(parent); }
 
 QCheckBox* PythonQtWrapper_QCheckBox::new_QCheckBox(const QString&  text, QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QCheckBox(text, parent); }
 
 const QMetaObject* PythonQtShell_QCheckBox::metaObject() const {
@@ -19014,7 +19014,7 @@ QString  PythonQtWrapper_QClipboard::text(QClipboard* theWrappedObject, QString&
 
 
 QCloseEvent* PythonQtWrapper_QCloseEvent::new_QCloseEvent()
-{ 
+{
 return new QCloseEvent(); }
 
 
@@ -20267,11 +20267,11 @@ if (_wrapper) {
   QColorDialog::wheelEvent(event0);
 }
 QColorDialog* PythonQtWrapper_QColorDialog::new_QColorDialog(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QColorDialog(parent); }
 
 QColorDialog* PythonQtWrapper_QColorDialog::new_QColorDialog(const QColor&  initial, QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QColorDialog(initial, parent); }
 
 const QMetaObject* PythonQtShell_QColorDialog::metaObject() const {
@@ -20365,27 +20365,27 @@ bool  PythonQtWrapper_QColorDialog::testOption(QColorDialog* theWrappedObject, Q
 
 
 QColorSpace* PythonQtWrapper_QColorSpace::new_QColorSpace()
-{ 
+{
 return new QColorSpace(); }
 
 QColorSpace* PythonQtWrapper_QColorSpace::new_QColorSpace(QColorSpace::NamedColorSpace  namedColorSpace)
-{ 
+{
 return new QColorSpace(namedColorSpace); }
 
 QColorSpace* PythonQtWrapper_QColorSpace::new_QColorSpace(QColorSpace::Primaries  primaries, QColorSpace::TransferFunction  transferFunction, float  gamma)
-{ 
+{
 return new QColorSpace(primaries, transferFunction, gamma); }
 
 QColorSpace* PythonQtWrapper_QColorSpace::new_QColorSpace(QColorSpace::Primaries  primaries, float  gamma)
-{ 
+{
 return new QColorSpace(primaries, gamma); }
 
 QColorSpace* PythonQtWrapper_QColorSpace::new_QColorSpace(const QColorSpace&  colorSpace)
-{ 
+{
 return new QColorSpace(colorSpace); }
 
 QColorSpace* PythonQtWrapper_QColorSpace::new_QColorSpace(const QPointF&  whitePoint, const QPointF&  redPoint, const QPointF&  greenPoint, const QPointF&  bluePoint, QColorSpace::TransferFunction  transferFunction, float  gamma)
-{ 
+{
 return new QColorSpace(whitePoint, redPoint, greenPoint, bluePoint, transferFunction, gamma); }
 
 QColorSpace  PythonQtWrapper_QColorSpace::static_QColorSpace_fromIccProfile(const QByteArray&  iccProfile)
@@ -20483,11 +20483,11 @@ QString PythonQtWrapper_QColorSpace::py_toString(QColorSpace* obj) {
 
 
 QColorTransform* PythonQtWrapper_QColorTransform::new_QColorTransform()
-{ 
+{
 return new QColorTransform(); }
 
 QColorTransform* PythonQtWrapper_QColorTransform::new_QColorTransform(const QColorTransform&  colorTransform)
-{ 
+{
 return new QColorTransform(colorTransform); }
 
 QRgba64  PythonQtWrapper_QColorTransform::map(QColorTransform* theWrappedObject, QRgba64  rgba64) const
@@ -22788,7 +22788,7 @@ if (_wrapper) {
   QColumnView::wheelEvent(arg__1);
 }
 QColumnView* PythonQtWrapper_QColumnView::new_QColumnView(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QColumnView(parent); }
 
 const QMetaObject* PythonQtShell_QColumnView::metaObject() const {
@@ -24039,7 +24039,7 @@ if (_wrapper) {
   QComboBox::wheelEvent(e0);
 }
 QComboBox* PythonQtWrapper_QComboBox::new_QComboBox(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QComboBox(parent); }
 
 const QMetaObject* PythonQtShell_QComboBox::metaObject() const {

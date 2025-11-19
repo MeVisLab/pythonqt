@@ -95,21 +95,21 @@ PythonQtShell_QStyleOptionViewItemV4::~PythonQtShell_QStyleOptionViewItemV4() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QStyleOptionViewItemV4* PythonQtWrapper_QStyleOptionViewItemV4::new_QStyleOptionViewItemV4()
-{ 
+{
 return new PythonQtShell_QStyleOptionViewItemV4(); }
 
 
 
 QStylePainter* PythonQtWrapper_QStylePainter::new_QStylePainter()
-{ 
+{
 return new QStylePainter(); }
 
 QStylePainter* PythonQtWrapper_QStylePainter::new_QStylePainter(QPaintDevice*  pd, QWidget*  w)
-{ 
+{
 return new QStylePainter(pd, w); }
 
 QStylePainter* PythonQtWrapper_QStylePainter::new_QStylePainter(QWidget*  w)
-{ 
+{
 return new QStylePainter(w); }
 
 bool  PythonQtWrapper_QStylePainter::begin(QStylePainter* theWrappedObject, QPaintDevice*  pd, QWidget*  w)
@@ -324,7 +324,7 @@ if (_wrapper) {
   QStylePlugin::timerEvent(event0);
 }
 QStylePlugin* PythonQtWrapper_QStylePlugin::new_QStylePlugin(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QStylePlugin(parent); }
 
 const QMetaObject* PythonQtShell_QStylePlugin::metaObject() const {
@@ -814,7 +814,7 @@ if (_wrapper) {
   QStyledItemDelegate::updateEditorGeometry(editor0, option1, index2);
 }
 QStyledItemDelegate* PythonQtWrapper_QStyledItemDelegate::new_QStyledItemDelegate(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QStyledItemDelegate(parent); }
 
 const QMetaObject* PythonQtShell_QStyledItemDelegate::metaObject() const {
@@ -989,7 +989,7 @@ if (_wrapper) {
   return QSurface::SurfaceType();
 }
 QSurface* PythonQtWrapper_QSurface::new_QSurface(QSurface::SurfaceClass  type)
-{ 
+{
 return new PythonQtShell_QSurface(type); }
 
 QSurfaceFormat  PythonQtWrapper_QSurface::format(QSurface* theWrappedObject) const
@@ -1025,15 +1025,15 @@ QSurface::SurfaceType  PythonQtWrapper_QSurface::surfaceType(QSurface* theWrappe
 
 
 QSurfaceFormat* PythonQtWrapper_QSurfaceFormat::new_QSurfaceFormat()
-{ 
+{
 return new QSurfaceFormat(); }
 
 QSurfaceFormat* PythonQtWrapper_QSurfaceFormat::new_QSurfaceFormat(QSurfaceFormat::FormatOptions  options)
-{ 
+{
 return new QSurfaceFormat(options); }
 
 QSurfaceFormat* PythonQtWrapper_QSurfaceFormat::new_QSurfaceFormat(const QSurfaceFormat&  other)
-{ 
+{
 return new QSurfaceFormat(other); }
 
 int  PythonQtWrapper_QSurfaceFormat::alphaBufferSize(QSurfaceFormat* theWrappedObject) const
@@ -1402,7 +1402,7 @@ if (_wrapper) {
   QSwipeGesture::timerEvent(event0);
 }
 QSwipeGesture* PythonQtWrapper_QSwipeGesture::new_QSwipeGesture(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QSwipeGesture(parent); }
 
 const QMetaObject* PythonQtShell_QSwipeGesture::metaObject() const {
@@ -1574,7 +1574,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QSyntaxHighlighter::timerEvent(QTimerEvent*  event0)
 {
@@ -1599,11 +1599,11 @@ if (_wrapper) {
   QSyntaxHighlighter::timerEvent(event0);
 }
 QSyntaxHighlighter* PythonQtWrapper_QSyntaxHighlighter::new_QSyntaxHighlighter(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QSyntaxHighlighter(parent); }
 
 QSyntaxHighlighter* PythonQtWrapper_QSyntaxHighlighter::new_QSyntaxHighlighter(QTextDocument*  parent)
-{ 
+{
 return new PythonQtShell_QSyntaxHighlighter(parent); }
 
 const QMetaObject* PythonQtShell_QSyntaxHighlighter::metaObject() const {
@@ -1823,11 +1823,11 @@ if (_wrapper) {
   QSystemTrayIcon::timerEvent(event0);
 }
 QSystemTrayIcon* PythonQtWrapper_QSystemTrayIcon::new_QSystemTrayIcon(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QSystemTrayIcon(parent); }
 
 QSystemTrayIcon* PythonQtWrapper_QSystemTrayIcon::new_QSystemTrayIcon(const QIcon&  icon, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QSystemTrayIcon(icon, parent); }
 
 const QMetaObject* PythonQtShell_QSystemTrayIcon::metaObject() const {
@@ -3176,7 +3176,7 @@ if (_wrapper) {
   QTabBar::wheelEvent(event0);
 }
 QTabBar* PythonQtWrapper_QTabBar::new_QTabBar(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QTabBar(parent); }
 
 const QMetaObject* PythonQtShell_QTabBar::metaObject() const {
@@ -4697,7 +4697,7 @@ if (_wrapper) {
   QTabWidget::wheelEvent(event0);
 }
 QTabWidget* PythonQtWrapper_QTabWidget::new_QTabWidget(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QTabWidget(parent); }
 
 const QMetaObject* PythonQtShell_QTabWidget::metaObject() const {
@@ -7203,7 +7203,7 @@ if (_wrapper) {
   QTableView::wheelEvent(arg__1);
 }
 QTableView* PythonQtWrapper_QTableView::new_QTableView(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QTableView(parent); }
 
 const QMetaObject* PythonQtShell_QTableView::metaObject() const {
@@ -9714,11 +9714,11 @@ if (_wrapper) {
   QTableWidget::wheelEvent(arg__1);
 }
 QTableWidget* PythonQtWrapper_QTableWidget::new_QTableWidget(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QTableWidget(parent); }
 
 QTableWidget* PythonQtWrapper_QTableWidget::new_QTableWidget(int  rows, int  columns, QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QTableWidget(rows, columns, parent); }
 
 const QMetaObject* PythonQtShell_QTableWidget::metaObject() const {
@@ -10128,15 +10128,15 @@ if (_wrapper) {
   QTableWidgetItem::write(out0);
 }
 QTableWidgetItem* PythonQtWrapper_QTableWidgetItem::new_QTableWidgetItem(const QIcon&  icon, const QString&  text, int  type)
-{ 
+{
 return new PythonQtShell_QTableWidgetItem(icon, text, type); }
 
 QTableWidgetItem* PythonQtWrapper_QTableWidgetItem::new_QTableWidgetItem(const QString&  text, int  type)
-{ 
+{
 return new PythonQtShell_QTableWidgetItem(text, type); }
 
 QTableWidgetItem* PythonQtWrapper_QTableWidgetItem::new_QTableWidgetItem(int  type)
-{ 
+{
 return new PythonQtShell_QTableWidgetItem(type); }
 
 QBrush  PythonQtWrapper_QTableWidgetItem::background(QTableWidgetItem* theWrappedObject) const
@@ -10327,15 +10327,15 @@ void PythonQtWrapper_QTableWidgetItem::write(QTableWidgetItem* theWrappedObject,
 
 
 QTableWidgetSelectionRange* PythonQtWrapper_QTableWidgetSelectionRange::new_QTableWidgetSelectionRange()
-{ 
+{
 return new QTableWidgetSelectionRange(); }
 
 QTableWidgetSelectionRange* PythonQtWrapper_QTableWidgetSelectionRange::new_QTableWidgetSelectionRange(const QTableWidgetSelectionRange&  other)
-{ 
+{
 return new QTableWidgetSelectionRange(other); }
 
 QTableWidgetSelectionRange* PythonQtWrapper_QTableWidgetSelectionRange::new_QTableWidgetSelectionRange(int  top, int  left, int  bottom, int  right)
-{ 
+{
 return new QTableWidgetSelectionRange(top, left, bottom, right); }
 
 int  PythonQtWrapper_QTableWidgetSelectionRange::bottomRow(QTableWidgetSelectionRange* theWrappedObject) const
@@ -10380,11 +10380,11 @@ PythonQtShell_QTabletEvent::~PythonQtShell_QTabletEvent() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QTabletEvent* PythonQtWrapper_QTabletEvent::new_QTabletEvent(QEvent::Type  t, const QPointF&  pos, const QPointF&  globalPos, int  device, int  pointerType, qreal  pressure, int  xTilt, int  yTilt, qreal  tangentialPressure, qreal  rotation, int  z, Qt::KeyboardModifiers  keyState, qint64  uniqueID)
-{ 
+{
 return new PythonQtShell_QTabletEvent(t, pos, globalPos, device, pointerType, pressure, xTilt, yTilt, tangentialPressure, rotation, z, keyState, uniqueID); }
 
 QTabletEvent* PythonQtWrapper_QTabletEvent::new_QTabletEvent(QEvent::Type  t, const QPointF&  pos, const QPointF&  globalPos, int  device, int  pointerType, qreal  pressure, int  xTilt, int  yTilt, qreal  tangentialPressure, qreal  rotation, int  z, Qt::KeyboardModifiers  keyState, qint64  uniqueID, Qt::MouseButton  button, Qt::MouseButtons  buttons)
-{ 
+{
 return new PythonQtShell_QTabletEvent(t, pos, globalPos, device, pointerType, pressure, xTilt, yTilt, tangentialPressure, rotation, z, keyState, uniqueID, button, buttons); }
 
 Qt::MouseButton  PythonQtWrapper_QTabletEvent::button(QTabletEvent* theWrappedObject) const
@@ -10636,7 +10636,7 @@ if (_wrapper) {
   QTapAndHoldGesture::timerEvent(event0);
 }
 QTapAndHoldGesture* PythonQtWrapper_QTapAndHoldGesture::new_QTapAndHoldGesture(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QTapAndHoldGesture(parent); }
 
 const QMetaObject* PythonQtShell_QTapAndHoldGesture::metaObject() const {
@@ -10811,7 +10811,7 @@ if (_wrapper) {
   QTapGesture::timerEvent(event0);
 }
 QTapGesture* PythonQtWrapper_QTapGesture::new_QTapGesture(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QTapGesture(parent); }
 
 const QMetaObject* PythonQtShell_QTapGesture::metaObject() const {
@@ -10840,11 +10840,11 @@ void PythonQtWrapper_QTapGesture::setPosition(QTapGesture* theWrappedObject, con
 
 
 QTextBlock* PythonQtWrapper_QTextBlock::new_QTextBlock()
-{ 
+{
 return new QTextBlock(); }
 
 QTextBlock* PythonQtWrapper_QTextBlock::new_QTextBlock(const QTextBlock&  o)
-{ 
+{
 return new QTextBlock(o); }
 
 QTextBlock::iterator  PythonQtWrapper_QTextBlock::begin(QTextBlock* theWrappedObject) const
@@ -11029,11 +11029,11 @@ PythonQtShell_QTextBlockFormat::~PythonQtShell_QTextBlockFormat() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QTextBlockFormat* PythonQtWrapper_QTextBlockFormat::new_QTextBlockFormat()
-{ 
+{
 return new PythonQtShell_QTextBlockFormat(); }
 
 QTextBlockFormat* PythonQtWrapper_QTextBlockFormat::new_QTextBlockFormat(const QTextFormat&  fmt)
-{ 
+{
 return new PythonQtShell_QTextBlockFormat(fmt); }
 
 Qt::Alignment  PythonQtWrapper_QTextBlockFormat::alignment(QTextBlockFormat* theWrappedObject) const
@@ -11386,7 +11386,7 @@ if (_wrapper) {
   QTextBlockGroup::timerEvent(event0);
 }
 QTextBlockGroup* PythonQtWrapper_QTextBlockGroup::new_QTextBlockGroup(QTextDocument*  doc)
-{ 
+{
 return new PythonQtShell_QTextBlockGroup(doc); }
 
 const QMetaObject* PythonQtShell_QTextBlockGroup::metaObject() const {
@@ -11429,7 +11429,7 @@ PythonQtShell_QTextBlockUserData::~PythonQtShell_QTextBlockUserData() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QTextBlockUserData* PythonQtWrapper_QTextBlockUserData::new_QTextBlockUserData()
-{ 
+{
 return new PythonQtShell_QTextBlockUserData(); }
 
 
@@ -12946,7 +12946,7 @@ if (_wrapper) {
   QTextBrowser::wheelEvent(e0);
 }
 QTextBrowser* PythonQtWrapper_QTextBrowser::new_QTextBrowser(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QTextBrowser(parent); }
 
 const QMetaObject* PythonQtShell_QTextBrowser::metaObject() const {
@@ -13049,11 +13049,11 @@ PythonQtShell_QTextCharFormat::~PythonQtShell_QTextCharFormat() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QTextCharFormat* PythonQtWrapper_QTextCharFormat::new_QTextCharFormat()
-{ 
+{
 return new PythonQtShell_QTextCharFormat(); }
 
 QTextCharFormat* PythonQtWrapper_QTextCharFormat::new_QTextCharFormat(const QTextFormat&  fmt)
-{ 
+{
 return new PythonQtShell_QTextCharFormat(fmt); }
 
 QString  PythonQtWrapper_QTextCharFormat::anchorHref(QTextCharFormat* theWrappedObject) const
@@ -13369,23 +13369,23 @@ QTextCharFormat::VerticalAlignment  PythonQtWrapper_QTextCharFormat::verticalAli
 
 
 QTextCursor* PythonQtWrapper_QTextCursor::new_QTextCursor()
-{ 
+{
 return new QTextCursor(); }
 
 QTextCursor* PythonQtWrapper_QTextCursor::new_QTextCursor(QTextDocument*  document)
-{ 
+{
 return new QTextCursor(document); }
 
 QTextCursor* PythonQtWrapper_QTextCursor::new_QTextCursor(QTextFrame*  frame)
-{ 
+{
 return new QTextCursor(frame); }
 
 QTextCursor* PythonQtWrapper_QTextCursor::new_QTextCursor(const QTextBlock&  block)
-{ 
+{
 return new QTextCursor(block); }
 
 QTextCursor* PythonQtWrapper_QTextCursor::new_QTextCursor(const QTextCursor&  cursor)
-{ 
+{
 return new QTextCursor(cursor); }
 
 int  PythonQtWrapper_QTextCursor::anchor(QTextCursor* theWrappedObject) const
@@ -13975,11 +13975,11 @@ if (_wrapper) {
   QTextDocument::timerEvent(event0);
 }
 QTextDocument* PythonQtWrapper_QTextDocument::new_QTextDocument(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QTextDocument(parent); }
 
 QTextDocument* PythonQtWrapper_QTextDocument::new_QTextDocument(const QString&  text, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QTextDocument(text, parent); }
 
 const QMetaObject* PythonQtShell_QTextDocument::metaObject() const {
@@ -14398,19 +14398,19 @@ bool  PythonQtWrapper_QTextDocument::useDesignMetrics(QTextDocument* theWrappedO
 
 
 QTextDocumentFragment* PythonQtWrapper_QTextDocumentFragment::new_QTextDocumentFragment()
-{ 
+{
 return new QTextDocumentFragment(); }
 
 QTextDocumentFragment* PythonQtWrapper_QTextDocumentFragment::new_QTextDocumentFragment(const QTextCursor&  range)
-{ 
+{
 return new QTextDocumentFragment(range); }
 
 QTextDocumentFragment* PythonQtWrapper_QTextDocumentFragment::new_QTextDocumentFragment(const QTextDocument*  document)
-{ 
+{
 return new QTextDocumentFragment(document); }
 
 QTextDocumentFragment* PythonQtWrapper_QTextDocumentFragment::new_QTextDocumentFragment(const QTextDocumentFragment&  rhs)
-{ 
+{
 return new QTextDocumentFragment(rhs); }
 
 QTextDocumentFragment  PythonQtWrapper_QTextDocumentFragment::static_QTextDocumentFragment_fromHtml(const QString&  html)
@@ -14446,15 +14446,15 @@ QString  PythonQtWrapper_QTextDocumentFragment::toPlainText(QTextDocumentFragmen
 
 
 QTextDocumentWriter* PythonQtWrapper_QTextDocumentWriter::new_QTextDocumentWriter()
-{ 
+{
 return new QTextDocumentWriter(); }
 
 QTextDocumentWriter* PythonQtWrapper_QTextDocumentWriter::new_QTextDocumentWriter(QIODevice*  device, const QByteArray&  format)
-{ 
+{
 return new QTextDocumentWriter(device, format); }
 
 QTextDocumentWriter* PythonQtWrapper_QTextDocumentWriter::new_QTextDocumentWriter(const QString&  fileName, const QByteArray&  format)
-{ 
+{
 return new QTextDocumentWriter(fileName, format); }
 
 QTextCodec*  PythonQtWrapper_QTextDocumentWriter::codec(QTextDocumentWriter* theWrappedObject) const
@@ -15916,11 +15916,11 @@ if (_wrapper) {
   QTextEdit::wheelEvent(e0);
 }
 QTextEdit* PythonQtWrapper_QTextEdit::new_QTextEdit(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QTextEdit(parent); }
 
 QTextEdit* PythonQtWrapper_QTextEdit::new_QTextEdit(const QString&  text, QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QTextEdit(text, parent); }
 
 const QMetaObject* PythonQtShell_QTextEdit::metaObject() const {
@@ -16298,7 +16298,7 @@ PythonQtShell_QTextEdit__ExtraSelection::~PythonQtShell_QTextEdit__ExtraSelectio
   if (priv) { priv->shellClassDeleted(this); }
 }
 QTextEdit::ExtraSelection* PythonQtWrapper_QTextEdit__ExtraSelection::new_QTextEdit__ExtraSelection()
-{ 
+{
 return new PythonQtShell_QTextEdit__ExtraSelection(); }
 
 

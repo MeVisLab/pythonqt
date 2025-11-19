@@ -14,7 +14,7 @@
 
 # for all debug builds, add "_d" extension to target
 CONFIG(debug, debug|release) {
-  TARGET = $${TARGET}_d 
+  TARGET = $${TARGET}_d
 }
 
 # Allow override (e.g., qmake PYTHONQT_GENERATED_PATH=/abs/path)

@@ -176,7 +176,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 QAbstractVideoSurface*  PythonQtShell_QVideoRendererControl::surface() const
 {
@@ -234,7 +234,7 @@ if (_wrapper) {
   QVideoRendererControl::timerEvent(event0);
 }
 QVideoRendererControl* PythonQtWrapper_QVideoRendererControl::new_QVideoRendererControl(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QVideoRendererControl(parent); }
 
 const QMetaObject* PythonQtShell_QVideoRendererControl::metaObject() const {
@@ -263,15 +263,15 @@ QAbstractVideoSurface*  PythonQtWrapper_QVideoRendererControl::surface(QVideoRen
 
 
 QVideoSurfaceFormat* PythonQtWrapper_QVideoSurfaceFormat::new_QVideoSurfaceFormat()
-{ 
+{
 return new QVideoSurfaceFormat(); }
 
 QVideoSurfaceFormat* PythonQtWrapper_QVideoSurfaceFormat::new_QVideoSurfaceFormat(const QSize&  size, QVideoFrame::PixelFormat  pixelFormat, QAbstractVideoBuffer::HandleType  handleType)
-{ 
+{
 return new QVideoSurfaceFormat(size, pixelFormat, handleType); }
 
 QVideoSurfaceFormat* PythonQtWrapper_QVideoSurfaceFormat::new_QVideoSurfaceFormat(const QVideoSurfaceFormat&  format)
-{ 
+{
 return new QVideoSurfaceFormat(format); }
 
 int  PythonQtWrapper_QVideoSurfaceFormat::frameHeight(QVideoSurfaceFormat* theWrappedObject) const
@@ -1638,7 +1638,7 @@ if (_wrapper) {
   QVideoWidget::wheelEvent(event0);
 }
 QVideoWidget* PythonQtWrapper_QVideoWidget::new_QVideoWidget(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QVideoWidget(parent); }
 
 const QMetaObject* PythonQtShell_QVideoWidget::metaObject() const {
@@ -2023,7 +2023,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QVideoWidgetControl::setBrightness(int  brightness0)
 {
@@ -2045,7 +2045,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QVideoWidgetControl::setContrast(int  contrast0)
 {
@@ -2067,7 +2067,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QVideoWidgetControl::setFullScreen(bool  fullScreen0)
 {
@@ -2089,7 +2089,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QVideoWidgetControl::setHue(int  hue0)
 {
@@ -2111,7 +2111,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QVideoWidgetControl::setSaturation(int  saturation0)
 {
@@ -2133,7 +2133,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QVideoWidgetControl::timerEvent(QTimerEvent*  event0)
 {
@@ -2191,7 +2191,7 @@ if (_wrapper) {
   return nullptr;
 }
 QVideoWidgetControl* PythonQtWrapper_QVideoWidgetControl::new_QVideoWidgetControl(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QVideoWidgetControl(parent); }
 
 const QMetaObject* PythonQtShell_QVideoWidgetControl::metaObject() const {
@@ -2639,7 +2639,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 int  PythonQtShell_QVideoWindowControl::saturation() const
 {
@@ -2694,7 +2694,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QVideoWindowControl::setBrightness(int  brightness0)
 {
@@ -2716,7 +2716,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QVideoWindowControl::setContrast(int  contrast0)
 {
@@ -2738,7 +2738,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QVideoWindowControl::setDisplayRect(const QRect&  rect0)
 {
@@ -2760,7 +2760,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QVideoWindowControl::setFullScreen(bool  fullScreen0)
 {
@@ -2782,7 +2782,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QVideoWindowControl::setHue(int  hue0)
 {
@@ -2804,7 +2804,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QVideoWindowControl::setSaturation(int  saturation0)
 {
@@ -2826,7 +2826,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QVideoWindowControl::setWinId(WId  id0)
 {
@@ -2848,7 +2848,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QVideoWindowControl::timerEvent(QTimerEvent*  event0)
 {
@@ -2906,7 +2906,7 @@ if (_wrapper) {
   return WId();
 }
 QVideoWindowControl* PythonQtWrapper_QVideoWindowControl::new_QVideoWindowControl(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QVideoWindowControl(parent); }
 
 const QMetaObject* PythonQtShell_QVideoWindowControl::metaObject() const {

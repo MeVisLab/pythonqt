@@ -364,7 +364,7 @@ void delete_QWriteLocker(QWriteLocker* obj) { delete obj; }
 
     void __enter__(QWriteLocker* /*self*/) {}
     void __exit__(QWriteLocker* self, PyObject* /*type*/, PyObject* /*value*/, PyObject* /*traceback*/) { self->unlock(); }
-    
+
 };
 
 

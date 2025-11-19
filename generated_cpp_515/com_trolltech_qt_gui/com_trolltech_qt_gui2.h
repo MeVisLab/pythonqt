@@ -455,7 +455,7 @@ void delete_QFontInfo(QFontInfo* obj) { delete obj; }
    int  weight(QFontInfo* theWrappedObject) const;
 
    QFontInfo* new_QFontInfo() { return new QFontInfo(QFont()); }
-   
+
 };
 
 
@@ -506,7 +506,7 @@ void delete_QFontMetrics(QFontMetrics* obj) { delete obj; }
    int  xHeight(QFontMetrics* theWrappedObject) const;
 
    QFontMetrics* new_QFontMetrics() { return new QFontMetrics(QFont()); }
-   
+
 };
 
 

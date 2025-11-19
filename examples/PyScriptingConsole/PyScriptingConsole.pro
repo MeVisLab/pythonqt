@@ -11,17 +11,17 @@ DESTDIR           = ../../lib
 
 mac:CONFIG-= app_bundle
 
-include ( ../../build/common.prf )  
-include ( ../../build/PythonQt.prf )  
-include ( ../../build/PythonQt_QtAll.prf )  
+include ( ../../build/common.prf )
+include ( ../../build/PythonQt.prf )
+include ( ../../build/PythonQt_QtAll.prf )
 
 QT += widgets
 
 HEADERS +=                    \
-  PyExampleObject.h             
-  
+  PyExampleObject.h
+
 SOURCES +=                    \
-  PyExampleObject.cpp         \  
-  main.cpp        
+  PyExampleObject.cpp         \
+  main.cpp
 
 RESOURCES += PyScriptingConsole.qrc

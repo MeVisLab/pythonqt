@@ -469,7 +469,7 @@ if (_wrapper) {
   QAbstractAudioDeviceInfo::timerEvent(event0);
 }
 QAbstractAudioDeviceInfo* PythonQtWrapper_QAbstractAudioDeviceInfo::new_QAbstractAudioDeviceInfo()
-{ 
+{
 return new PythonQtShell_QAbstractAudioDeviceInfo(); }
 
 const QMetaObject* PythonQtShell_QAbstractAudioDeviceInfo::metaObject() const {
@@ -930,7 +930,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractAudioInput::resume()
 {
@@ -952,7 +952,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractAudioInput::setBufferSize(int  value0)
 {
@@ -974,7 +974,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractAudioInput::setFormat(const QAudioFormat&  fmt0)
 {
@@ -996,7 +996,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractAudioInput::setNotifyInterval(int  milliSeconds0)
 {
@@ -1018,7 +1018,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractAudioInput::setVolume(qreal  arg__1)
 {
@@ -1040,7 +1040,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 QIODevice*  PythonQtShell_QAbstractAudioInput::start()
 {
@@ -1095,7 +1095,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 QAudio::State  PythonQtShell_QAbstractAudioInput::state() const
 {
@@ -1150,7 +1150,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractAudioInput::suspend()
 {
@@ -1172,7 +1172,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractAudioInput::timerEvent(QTimerEvent*  event0)
 {
@@ -1230,7 +1230,7 @@ if (_wrapper) {
   return qreal();
 }
 QAbstractAudioInput* PythonQtWrapper_QAbstractAudioInput::new_QAbstractAudioInput()
-{ 
+{
 return new PythonQtShell_QAbstractAudioInput(); }
 
 const QMetaObject* PythonQtShell_QAbstractAudioInput::metaObject() const {
@@ -1779,7 +1779,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractAudioOutput::resume()
 {
@@ -1801,7 +1801,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractAudioOutput::setBufferSize(int  value0)
 {
@@ -1823,7 +1823,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractAudioOutput::setCategory(const QString&  arg__1)
 {
@@ -1867,7 +1867,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractAudioOutput::setNotifyInterval(int  milliSeconds0)
 {
@@ -1889,7 +1889,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractAudioOutput::setVolume(qreal  arg__1)
 {
@@ -1966,7 +1966,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 QAudio::State  PythonQtShell_QAbstractAudioOutput::state() const
 {
@@ -2021,7 +2021,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractAudioOutput::suspend()
 {
@@ -2043,7 +2043,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAbstractAudioOutput::timerEvent(QTimerEvent*  event0)
 {
@@ -2101,7 +2101,7 @@ if (_wrapper) {
   return QAbstractAudioOutput::volume();
 }
 QAbstractAudioOutput* PythonQtWrapper_QAbstractAudioOutput::new_QAbstractAudioOutput()
-{ 
+{
 return new PythonQtShell_QAbstractAudioOutput(); }
 
 const QMetaObject* PythonQtShell_QAbstractAudioOutput::metaObject() const {
@@ -2374,10 +2374,10 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 QAbstractVideoBuffer* PythonQtWrapper_QAbstractVideoBuffer::new_QAbstractVideoBuffer(QAbstractVideoBuffer::HandleType  type)
-{ 
+{
 return new PythonQtShell_QAbstractVideoBuffer(type); }
 
 QVariant  PythonQtWrapper_QAbstractVideoBuffer::handle(QAbstractVideoBuffer* theWrappedObject) const
@@ -2736,7 +2736,7 @@ if (_wrapper) {
   QAbstractVideoSurface::timerEvent(event0);
 }
 QAbstractVideoSurface* PythonQtWrapper_QAbstractVideoSurface::new_QAbstractVideoSurface(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QAbstractVideoSurface(parent); }
 
 const QMetaObject* PythonQtShell_QAbstractVideoSurface::metaObject() const {
@@ -2822,19 +2822,19 @@ qreal  PythonQtWrapper_QAudio::static_QAudio_convertVolume(qreal  volume, QAudio
 
 
 QAudioBuffer* PythonQtWrapper_QAudioBuffer::new_QAudioBuffer()
-{ 
+{
 return new QAudioBuffer(); }
 
 QAudioBuffer* PythonQtWrapper_QAudioBuffer::new_QAudioBuffer(const QAudioBuffer&  other)
-{ 
+{
 return new QAudioBuffer(other); }
 
 QAudioBuffer* PythonQtWrapper_QAudioBuffer::new_QAudioBuffer(const QByteArray&  data, const QAudioFormat&  format, qint64  startTime)
-{ 
+{
 return new QAudioBuffer(data, format, startTime); }
 
 QAudioBuffer* PythonQtWrapper_QAudioBuffer::new_QAudioBuffer(int  numFrames, const QAudioFormat&  format, qint64  startTime)
-{ 
+{
 return new QAudioBuffer(numFrames, format, startTime); }
 
 int  PythonQtWrapper_QAudioBuffer::byteCount(QAudioBuffer* theWrappedObject) const
@@ -3185,7 +3185,7 @@ if (_wrapper) {
   QAudioDecoder::unbind(arg__1);
 }
 QAudioDecoder* PythonQtWrapper_QAudioDecoder::new_QAudioDecoder(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QAudioDecoder(parent); }
 
 const QMetaObject* PythonQtShell_QAudioDecoder::metaObject() const {
@@ -3572,7 +3572,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAudioDecoderControl::setSourceDevice(QIODevice*  device0)
 {
@@ -3594,7 +3594,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAudioDecoderControl::setSourceFilename(const QString&  fileName0)
 {
@@ -3616,7 +3616,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 QIODevice*  PythonQtShell_QAudioDecoderControl::sourceDevice() const
 {
@@ -3704,7 +3704,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 QAudioDecoder::State  PythonQtShell_QAudioDecoderControl::state() const
 {
@@ -3759,7 +3759,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAudioDecoderControl::timerEvent(QTimerEvent*  event0)
 {
@@ -3784,7 +3784,7 @@ if (_wrapper) {
   QAudioDecoderControl::timerEvent(event0);
 }
 QAudioDecoderControl* PythonQtWrapper_QAudioDecoderControl::new_QAudioDecoderControl(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QAudioDecoderControl(parent); }
 
 const QMetaObject* PythonQtShell_QAudioDecoderControl::metaObject() const {
@@ -3868,11 +3868,11 @@ void PythonQtWrapper_QAudioDecoderControl::stop(QAudioDecoderControl* theWrapped
 
 
 QAudioDeviceInfo* PythonQtWrapper_QAudioDeviceInfo::new_QAudioDeviceInfo()
-{ 
+{
 return new QAudioDeviceInfo(); }
 
 QAudioDeviceInfo* PythonQtWrapper_QAudioDeviceInfo::new_QAudioDeviceInfo(const QAudioDeviceInfo&  other)
-{ 
+{
 return new QAudioDeviceInfo(other); }
 
 QList<QAudioDeviceInfo >  PythonQtWrapper_QAudioDeviceInfo::static_QAudioDeviceInfo_availableDevices(QAudio::Mode  mode)
@@ -3968,11 +3968,11 @@ QList<QAudioFormat::SampleType >  PythonQtWrapper_QAudioDeviceInfo::supportedSam
 
 
 QAudioEncoderSettings* PythonQtWrapper_QAudioEncoderSettings::new_QAudioEncoderSettings()
-{ 
+{
 return new QAudioEncoderSettings(); }
 
 QAudioEncoderSettings* PythonQtWrapper_QAudioEncoderSettings::new_QAudioEncoderSettings(const QAudioEncoderSettings&  other)
-{ 
+{
 return new QAudioEncoderSettings(other); }
 
 int  PythonQtWrapper_QAudioEncoderSettings::bitRate(QAudioEncoderSettings* theWrappedObject) const
@@ -4277,7 +4277,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 QStringList  PythonQtShell_QAudioEncoderSettingsControl::supportedAudioCodecs() const
 {
@@ -4368,7 +4368,7 @@ if (_wrapper) {
   QAudioEncoderSettingsControl::timerEvent(event0);
 }
 QAudioEncoderSettingsControl* PythonQtWrapper_QAudioEncoderSettingsControl::new_QAudioEncoderSettingsControl(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QAudioEncoderSettingsControl(parent); }
 
 const QMetaObject* PythonQtShell_QAudioEncoderSettingsControl::metaObject() const {
@@ -4412,11 +4412,11 @@ QList<int >  PythonQtWrapper_QAudioEncoderSettingsControl::supportedSampleRates(
 
 
 QAudioFormat* PythonQtWrapper_QAudioFormat::new_QAudioFormat()
-{ 
+{
 return new QAudioFormat(); }
 
 QAudioFormat* PythonQtWrapper_QAudioFormat::new_QAudioFormat(const QAudioFormat&  other)
-{ 
+{
 return new QAudioFormat(other); }
 
 QAudioFormat::Endian  PythonQtWrapper_QAudioFormat::byteOrder(QAudioFormat* theWrappedObject) const
@@ -4680,11 +4680,11 @@ if (_wrapper) {
   QAudioInput::timerEvent(event0);
 }
 QAudioInput* PythonQtWrapper_QAudioInput::new_QAudioInput(const QAudioDeviceInfo&  audioDeviceInfo, const QAudioFormat&  format, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QAudioInput(audioDeviceInfo, format, parent); }
 
 QAudioInput* PythonQtWrapper_QAudioInput::new_QAudioInput(const QAudioFormat&  format, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QAudioInput(format, parent); }
 
 const QMetaObject* PythonQtShell_QAudioInput::metaObject() const {
@@ -5063,7 +5063,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAudioInputSelectorControl::timerEvent(QTimerEvent*  event0)
 {
@@ -5088,7 +5088,7 @@ if (_wrapper) {
   QAudioInputSelectorControl::timerEvent(event0);
 }
 QAudioInputSelectorControl* PythonQtWrapper_QAudioInputSelectorControl::new_QAudioInputSelectorControl(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QAudioInputSelectorControl(parent); }
 
 const QMetaObject* PythonQtShell_QAudioInputSelectorControl::metaObject() const {
@@ -5263,11 +5263,11 @@ if (_wrapper) {
   QAudioOutput::timerEvent(event0);
 }
 QAudioOutput* PythonQtWrapper_QAudioOutput::new_QAudioOutput(const QAudioDeviceInfo&  audioDeviceInfo, const QAudioFormat&  format, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QAudioOutput(audioDeviceInfo, format, parent); }
 
 QAudioOutput* PythonQtWrapper_QAudioOutput::new_QAudioOutput(const QAudioFormat&  format, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QAudioOutput(format, parent); }
 
 const QMetaObject* PythonQtShell_QAudioOutput::metaObject() const {
@@ -5656,7 +5656,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QAudioOutputSelectorControl::timerEvent(QTimerEvent*  event0)
 {
@@ -5681,7 +5681,7 @@ if (_wrapper) {
   QAudioOutputSelectorControl::timerEvent(event0);
 }
 QAudioOutputSelectorControl* PythonQtWrapper_QAudioOutputSelectorControl::new_QAudioOutputSelectorControl(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QAudioOutputSelectorControl(parent); }
 
 const QMetaObject* PythonQtShell_QAudioOutputSelectorControl::metaObject() const {
@@ -5856,7 +5856,7 @@ if (_wrapper) {
   QAudioProbe::timerEvent(event0);
 }
 QAudioProbe* PythonQtWrapper_QAudioProbe::new_QAudioProbe(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QAudioProbe(parent); }
 
 const QMetaObject* PythonQtShell_QAudioProbe::metaObject() const {
@@ -6092,7 +6092,7 @@ if (_wrapper) {
   QAudioRecorder::timerEvent(event0);
 }
 QAudioRecorder* PythonQtWrapper_QAudioRecorder::new_QAudioRecorder(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QAudioRecorder(parent); }
 
 const QMetaObject* PythonQtShell_QAudioRecorder::metaObject() const {
@@ -6297,7 +6297,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 QList<QAudio::Role >  PythonQtShell_QAudioRoleControl::supportedAudioRoles() const
 {
@@ -6355,7 +6355,7 @@ if (_wrapper) {
   QAudioRoleControl::timerEvent(event0);
 }
 QAudioRoleControl* PythonQtWrapper_QAudioRoleControl::new_QAudioRoleControl(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QAudioRoleControl(parent); }
 
 const QMetaObject* PythonQtShell_QAudioRoleControl::metaObject() const {
@@ -6525,7 +6525,7 @@ if (_wrapper) {
   return nullptr;
 }
 QAudioSystemFactoryInterface* PythonQtWrapper_QAudioSystemFactoryInterface::new_QAudioSystemFactoryInterface()
-{ 
+{
 return new PythonQtShell_QAudioSystemFactoryInterface(); }
 
 QList<QByteArray >  PythonQtWrapper_QAudioSystemFactoryInterface::availableDevices(QAudioSystemFactoryInterface* theWrappedObject, QAudio::Mode  arg__1) const
@@ -6687,7 +6687,7 @@ if (_wrapper) {
   return nullptr;
 }
 QAudioSystemPlugin* PythonQtWrapper_QAudioSystemPlugin::new_QAudioSystemPlugin(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QAudioSystemPlugin(parent); }
 
 const QMetaObject* PythonQtShell_QAudioSystemPlugin::metaObject() const {
@@ -7016,19 +7016,19 @@ if (_wrapper) {
   QCamera::unbind(arg__1);
 }
 QCamera* PythonQtWrapper_QCamera::new_QCamera(QCamera::Position  position, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QCamera(position, parent); }
 
 QCamera* PythonQtWrapper_QCamera::new_QCamera(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QCamera(parent); }
 
 QCamera* PythonQtWrapper_QCamera::new_QCamera(const QByteArray&  deviceName, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QCamera(deviceName, parent); }
 
 QCamera* PythonQtWrapper_QCamera::new_QCamera(const QCameraInfo&  cameraInfo, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QCamera(cameraInfo, parent); }
 
 const QMetaObject* PythonQtShell_QCamera::metaObject() const {
@@ -7333,7 +7333,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 QList<QVideoFrame::PixelFormat >  PythonQtShell_QCameraCaptureBufferFormatControl::supportedBufferFormats() const
 {
@@ -7391,7 +7391,7 @@ if (_wrapper) {
   QCameraCaptureBufferFormatControl::timerEvent(event0);
 }
 QCameraCaptureBufferFormatControl* PythonQtWrapper_QCameraCaptureBufferFormatControl::new_QCameraCaptureBufferFormatControl(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QCameraCaptureBufferFormatControl(parent); }
 
 const QMetaObject* PythonQtShell_QCameraCaptureBufferFormatControl::metaObject() const {
@@ -7624,7 +7624,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QCameraCaptureDestinationControl::timerEvent(QTimerEvent*  event0)
 {
@@ -7649,7 +7649,7 @@ if (_wrapper) {
   QCameraCaptureDestinationControl::timerEvent(event0);
 }
 QCameraCaptureDestinationControl* PythonQtWrapper_QCameraCaptureDestinationControl::new_QCameraCaptureDestinationControl(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QCameraCaptureDestinationControl(parent); }
 
 const QMetaObject* PythonQtShell_QCameraCaptureDestinationControl::metaObject() const {
@@ -7915,7 +7915,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QCameraControl::setState(QCamera::State  state0)
 {
@@ -7937,7 +7937,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 QCamera::State  PythonQtShell_QCameraControl::state() const
 {
@@ -8028,7 +8028,7 @@ if (_wrapper) {
   QCameraControl::timerEvent(event0);
 }
 QCameraControl* PythonQtWrapper_QCameraControl::new_QCameraControl(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QCameraControl(parent); }
 
 const QMetaObject* PythonQtShell_QCameraControl::metaObject() const {
@@ -8485,7 +8485,7 @@ if (_wrapper) {
   QCameraExposureControl::timerEvent(event0);
 }
 QCameraExposureControl* PythonQtWrapper_QCameraExposureControl::new_QCameraExposureControl(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QCameraExposureControl(parent); }
 
 const QMetaObject* PythonQtShell_QCameraExposureControl::metaObject() const {
@@ -8728,7 +8728,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 bool  PythonQtShell_QCameraFeedbackControl::setEventFeedbackEnabled(QCameraFeedbackControl::EventType  arg__1, bool  arg__2)
 {
@@ -8819,7 +8819,7 @@ if (_wrapper) {
   QCameraFeedbackControl::timerEvent(event0);
 }
 QCameraFeedbackControl* PythonQtWrapper_QCameraFeedbackControl::new_QCameraFeedbackControl(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QCameraFeedbackControl(parent); }
 
 const QMetaObject* PythonQtShell_QCameraFeedbackControl::metaObject() const {
@@ -9095,7 +9095,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 void PythonQtShell_QCameraFlashControl::timerEvent(QTimerEvent*  event0)
 {
@@ -9120,7 +9120,7 @@ if (_wrapper) {
   QCameraFlashControl::timerEvent(event0);
 }
 QCameraFlashControl* PythonQtWrapper_QCameraFlashControl::new_QCameraFlashControl(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QCameraFlashControl(parent); }
 
 const QMetaObject* PythonQtShell_QCameraFlashControl::metaObject() const {

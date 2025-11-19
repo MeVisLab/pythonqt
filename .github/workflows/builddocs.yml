@@ -2,7 +2,7 @@ name: Build and Deploy Documentation
 
 on:
   push:
-    branches: 
+    branches:
       - main
 
 defaults:
@@ -21,11 +21,11 @@ jobs:
 
       - name: Build documentation
         run: |
-          cd doxygen 
+          cd doxygen
           doxygen
           touch html/.nojekyll
           cd ..
-        
+
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:

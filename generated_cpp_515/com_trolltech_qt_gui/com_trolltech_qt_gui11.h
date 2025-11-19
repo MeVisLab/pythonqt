@@ -1073,7 +1073,7 @@ void delete_QToolBar(QToolBar* obj) { delete obj; }
     PythonQt::self()->addSignalHandler(a, SIGNAL(triggered(bool)), callable);
     return a;
   }
-  
+
   QAction* addAction (QToolBar* menu, const QIcon& icon, const QString& text, PyObject* callable)
   {
     QAction* a = menu->addAction(text);
@@ -1081,7 +1081,7 @@ void delete_QToolBar(QToolBar* obj) { delete obj; }
     PythonQt::self()->addSignalHandler(a, SIGNAL(triggered(bool)), callable);
     return a;
   }
-  
+
 };
 
 

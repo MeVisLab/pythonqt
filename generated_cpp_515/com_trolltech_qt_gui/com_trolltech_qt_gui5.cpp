@@ -92,15 +92,15 @@
 #include <qwindow.h>
 
 QLinearGradient* PythonQtWrapper_QLinearGradient::new_QLinearGradient()
-{ 
+{
 return new QLinearGradient(); }
 
 QLinearGradient* PythonQtWrapper_QLinearGradient::new_QLinearGradient(const QPointF&  start, const QPointF&  finalStop)
-{ 
+{
 return new QLinearGradient(start, finalStop); }
 
 QLinearGradient* PythonQtWrapper_QLinearGradient::new_QLinearGradient(qreal  xStart, qreal  yStart, qreal  xFinalStop, qreal  yFinalStop)
-{ 
+{
 return new QLinearGradient(xStart, yStart, xFinalStop, yFinalStop); }
 
 QPointF  PythonQtWrapper_QLinearGradient::finalStop(QLinearGradient* theWrappedObject) const
@@ -2373,7 +2373,7 @@ if (_wrapper) {
   QListView::wheelEvent(e0);
 }
 QListView* PythonQtWrapper_QListView::new_QListView(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QListView(parent); }
 
 const QMetaObject* PythonQtShell_QListView::metaObject() const {
@@ -4914,7 +4914,7 @@ if (_wrapper) {
   QListWidget::wheelEvent(e0);
 }
 QListWidget* PythonQtWrapper_QListWidget::new_QListWidget(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QListWidget(parent); }
 
 const QMetaObject* PythonQtShell_QListWidget::metaObject() const {
@@ -5264,15 +5264,15 @@ if (_wrapper) {
   QListWidgetItem::write(out0);
 }
 QListWidgetItem* PythonQtWrapper_QListWidgetItem::new_QListWidgetItem(PythonQtNewOwnerOfThis<QListWidget* >  listview, int  type)
-{ 
+{
 return new PythonQtShell_QListWidgetItem(listview, type); }
 
 QListWidgetItem* PythonQtWrapper_QListWidgetItem::new_QListWidgetItem(const QIcon&  icon, const QString&  text, PythonQtNewOwnerOfThis<QListWidget* >  listview, int  type)
-{ 
+{
 return new PythonQtShell_QListWidgetItem(icon, text, listview, type); }
 
 QListWidgetItem* PythonQtWrapper_QListWidgetItem::new_QListWidgetItem(const QString&  text, PythonQtNewOwnerOfThis<QListWidget* >  listview, int  type)
-{ 
+{
 return new PythonQtShell_QListWidgetItem(text, listview, type); }
 
 QBrush  PythonQtWrapper_QListWidgetItem::background(QListWidgetItem* theWrappedObject) const
@@ -6644,7 +6644,7 @@ if (_wrapper) {
   QMainWindow::wheelEvent(event0);
 }
 QMainWindow* PythonQtWrapper_QMainWindow::new_QMainWindow(QWidget*  parent, Qt::WindowFlags  flags)
-{ 
+{
 return new PythonQtShell_QMainWindow(parent, flags); }
 
 const QMetaObject* PythonQtShell_QMainWindow::metaObject() const {
@@ -6908,11 +6908,11 @@ bool  PythonQtWrapper_QMainWindow::unifiedTitleAndToolBarOnMac(QMainWindow* theW
 
 
 QMargins* PythonQtWrapper_QMargins::new_QMargins()
-{ 
+{
 return new QMargins(); }
 
 QMargins* PythonQtWrapper_QMargins::new_QMargins(int  left, int  top, int  right, int  bottom)
-{ 
+{
 return new QMargins(left, top, right, bottom); }
 
 int  PythonQtWrapper_QMargins::bottom(QMargins* theWrappedObject) const
@@ -7075,15 +7075,15 @@ QString PythonQtWrapper_QMargins::py_toString(QMargins* obj) {
 
 
 QMatrix* PythonQtWrapper_QMatrix::new_QMatrix()
-{ 
+{
 return new QMatrix(); }
 
 QMatrix* PythonQtWrapper_QMatrix::new_QMatrix(const QMatrix&  other)
-{ 
+{
 return new QMatrix(other); }
 
 QMatrix* PythonQtWrapper_QMatrix::new_QMatrix(qreal  m11, qreal  m12, qreal  m21, qreal  m22, qreal  dx, qreal  dy)
-{ 
+{
 return new QMatrix(m11, m12, m21, m22, dx, dy); }
 
 qreal  PythonQtWrapper_QMatrix::determinant(QMatrix* theWrappedObject) const
@@ -8519,7 +8519,7 @@ if (_wrapper) {
   QMdiArea::wheelEvent(arg__1);
 }
 QMdiArea* PythonQtWrapper_QMdiArea::new_QMdiArea(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QMdiArea(parent); }
 
 const QMetaObject* PythonQtShell_QMdiArea::metaObject() const {
@@ -9801,7 +9801,7 @@ if (_wrapper) {
   QMdiSubWindow::wheelEvent(event0);
 }
 QMdiSubWindow* PythonQtWrapper_QMdiSubWindow::new_QMdiSubWindow(QWidget*  parent, Qt::WindowFlags  flags)
-{ 
+{
 return new PythonQtShell_QMdiSubWindow(parent, flags); }
 
 const QMetaObject* PythonQtShell_QMdiSubWindow::metaObject() const {
@@ -11048,11 +11048,11 @@ if (_wrapper) {
   QMenu::wheelEvent(arg__1);
 }
 QMenu* PythonQtWrapper_QMenu::new_QMenu(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QMenu(parent); }
 
 QMenu* PythonQtWrapper_QMenu::new_QMenu(const QString&  title, QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QMenu(title, parent); }
 
 const QMetaObject* PythonQtShell_QMenu::metaObject() const {
@@ -12439,7 +12439,7 @@ if (_wrapper) {
   QMenuBar::wheelEvent(event0);
 }
 QMenuBar* PythonQtWrapper_QMenuBar::new_QMenuBar(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QMenuBar(parent); }
 
 const QMetaObject* PythonQtShell_QMenuBar::metaObject() const {
@@ -13815,11 +13815,11 @@ if (_wrapper) {
   QMessageBox::wheelEvent(event0);
 }
 QMessageBox* PythonQtWrapper_QMessageBox::new_QMessageBox(QMessageBox::Icon  icon, const QString&  title, const QString&  text, QMessageBox::StandardButtons  buttons, QWidget*  parent, Qt::WindowFlags  flags)
-{ 
+{
 return new PythonQtShell_QMessageBox(icon, title, text, buttons, parent, flags); }
 
 QMessageBox* PythonQtWrapper_QMessageBox::new_QMessageBox(QWidget*  parent)
-{ 
+{
 return new PythonQtShell_QMessageBox(parent); }
 
 const QMetaObject* PythonQtShell_QMessageBox::metaObject() const {
@@ -14062,19 +14062,19 @@ PythonQtShell_QMouseEvent::~PythonQtShell_QMouseEvent() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QMouseEvent* PythonQtWrapper_QMouseEvent::new_QMouseEvent(QEvent::Type  type, const QPointF&  localPos, Qt::MouseButton  button, Qt::MouseButtons  buttons, Qt::KeyboardModifiers  modifiers)
-{ 
+{
 return new PythonQtShell_QMouseEvent(type, localPos, button, buttons, modifiers); }
 
 QMouseEvent* PythonQtWrapper_QMouseEvent::new_QMouseEvent(QEvent::Type  type, const QPointF&  localPos, const QPointF&  screenPos, Qt::MouseButton  button, Qt::MouseButtons  buttons, Qt::KeyboardModifiers  modifiers)
-{ 
+{
 return new PythonQtShell_QMouseEvent(type, localPos, screenPos, button, buttons, modifiers); }
 
 QMouseEvent* PythonQtWrapper_QMouseEvent::new_QMouseEvent(QEvent::Type  type, const QPointF&  localPos, const QPointF&  windowPos, const QPointF&  screenPos, Qt::MouseButton  button, Qt::MouseButtons  buttons, Qt::KeyboardModifiers  modifiers)
-{ 
+{
 return new PythonQtShell_QMouseEvent(type, localPos, windowPos, screenPos, button, buttons, modifiers); }
 
 QMouseEvent* PythonQtWrapper_QMouseEvent::new_QMouseEvent(QEvent::Type  type, const QPointF&  localPos, const QPointF&  windowPos, const QPointF&  screenPos, Qt::MouseButton  button, Qt::MouseButtons  buttons, Qt::KeyboardModifiers  modifiers, Qt::MouseEventSource  source)
-{ 
+{
 return new PythonQtShell_QMouseEvent(type, localPos, windowPos, screenPos, button, buttons, modifiers, source); }
 
 Qt::MouseButton  PythonQtWrapper_QMouseEvent::button(QMouseEvent* theWrappedObject) const
@@ -14341,11 +14341,11 @@ if (_wrapper) {
   QMouseEventTransition::timerEvent(event0);
 }
 QMouseEventTransition* PythonQtWrapper_QMouseEventTransition::new_QMouseEventTransition(QObject*  object, QEvent::Type  type, Qt::MouseButton  button, QState*  sourceState)
-{ 
+{
 return new PythonQtShell_QMouseEventTransition(object, type, button, sourceState); }
 
 QMouseEventTransition* PythonQtWrapper_QMouseEventTransition::new_QMouseEventTransition(QState*  sourceState)
-{ 
+{
 return new PythonQtShell_QMouseEventTransition(sourceState); }
 
 const QMetaObject* PythonQtShell_QMouseEventTransition::metaObject() const {
@@ -14398,7 +14398,7 @@ PythonQtShell_QMoveEvent::~PythonQtShell_QMoveEvent() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QMoveEvent* PythonQtWrapper_QMoveEvent::new_QMoveEvent(const QPoint&  pos, const QPoint&  oldPos)
-{ 
+{
 return new PythonQtShell_QMoveEvent(pos, oldPos); }
 
 const QPoint*  PythonQtWrapper_QMoveEvent::oldPos(QMoveEvent* theWrappedObject) const
@@ -14550,15 +14550,15 @@ if (_wrapper) {
   QMovie::timerEvent(event0);
 }
 QMovie* PythonQtWrapper_QMovie::new_QMovie(QIODevice*  device, const QByteArray&  format, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QMovie(device, format, parent); }
 
 QMovie* PythonQtWrapper_QMovie::new_QMovie(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QMovie(parent); }
 
 QMovie* PythonQtWrapper_QMovie::new_QMovie(const QString&  fileName, const QByteArray&  format, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QMovie(fileName, format, parent); }
 
 const QMetaObject* PythonQtShell_QMovie::metaObject() const {
@@ -14711,11 +14711,11 @@ PythonQtShell_QNativeGestureEvent::~PythonQtShell_QNativeGestureEvent() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QNativeGestureEvent* PythonQtWrapper_QNativeGestureEvent::new_QNativeGestureEvent(Qt::NativeGestureType  type, const QPointF&  localPos, const QPointF&  windowPos, const QPointF&  screenPos, qreal  value, ulong  sequenceId, quint64  intArgument)
-{ 
+{
 return new PythonQtShell_QNativeGestureEvent(type, localPos, windowPos, screenPos, value, sequenceId, intArgument); }
 
 QNativeGestureEvent* PythonQtWrapper_QNativeGestureEvent::new_QNativeGestureEvent(Qt::NativeGestureType  type, const QTouchDevice*  dev, const QPointF&  localPos, const QPointF&  windowPos, const QPointF&  screenPos, qreal  value, ulong  sequenceId, quint64  intArgument)
-{ 
+{
 return new PythonQtShell_QNativeGestureEvent(type, dev, localPos, windowPos, screenPos, value, sequenceId, intArgument); }
 
 const QTouchDevice*  PythonQtWrapper_QNativeGestureEvent::device(QNativeGestureEvent* theWrappedObject) const
@@ -14996,11 +14996,11 @@ if (_wrapper) {
   QOffscreenSurface::timerEvent(event0);
 }
 QOffscreenSurface* PythonQtWrapper_QOffscreenSurface::new_QOffscreenSurface(QScreen*  screen)
-{ 
+{
 return new PythonQtShell_QOffscreenSurface(screen); }
 
 QOffscreenSurface* PythonQtWrapper_QOffscreenSurface::new_QOffscreenSurface(QScreen*  screen, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QOffscreenSurface(screen, parent); }
 
 const QMetaObject* PythonQtShell_QOffscreenSurface::metaObject() const {
@@ -15064,15 +15064,15 @@ void PythonQtWrapper_QOffscreenSurface::setScreen(QOffscreenSurface* theWrappedO
 
 
 QOpenGLBuffer* PythonQtWrapper_QOpenGLBuffer::new_QOpenGLBuffer()
-{ 
+{
 return new QOpenGLBuffer(); }
 
 QOpenGLBuffer* PythonQtWrapper_QOpenGLBuffer::new_QOpenGLBuffer(QOpenGLBuffer::Type  type)
-{ 
+{
 return new QOpenGLBuffer(type); }
 
 QOpenGLBuffer* PythonQtWrapper_QOpenGLBuffer::new_QOpenGLBuffer(const QOpenGLBuffer&  other)
-{ 
+{
 return new QOpenGLBuffer(other); }
 
 void PythonQtWrapper_QOpenGLBuffer::allocate(QOpenGLBuffer* theWrappedObject, const void*  data, int  count)
@@ -15304,7 +15304,7 @@ if (_wrapper) {
   QOpenGLContext::timerEvent(event0);
 }
 QOpenGLContext* PythonQtWrapper_QOpenGLContext::new_QOpenGLContext(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QOpenGLContext(parent); }
 
 const QMetaObject* PythonQtShell_QOpenGLContext::metaObject() const {
@@ -15483,27 +15483,27 @@ PythonQtShell_QOpenGLFramebufferObject::~PythonQtShell_QOpenGLFramebufferObject(
   if (priv) { priv->shellClassDeleted(this); }
 }
 QOpenGLFramebufferObject* PythonQtWrapper_QOpenGLFramebufferObject::new_QOpenGLFramebufferObject(const QSize&  size, GLenum  target)
-{ 
+{
 return new PythonQtShell_QOpenGLFramebufferObject(size, target); }
 
 QOpenGLFramebufferObject* PythonQtWrapper_QOpenGLFramebufferObject::new_QOpenGLFramebufferObject(const QSize&  size, QOpenGLFramebufferObject::Attachment  attachment, GLenum  target, GLenum  internalFormat)
-{ 
+{
 return new PythonQtShell_QOpenGLFramebufferObject(size, attachment, target, internalFormat); }
 
 QOpenGLFramebufferObject* PythonQtWrapper_QOpenGLFramebufferObject::new_QOpenGLFramebufferObject(const QSize&  size, const QOpenGLFramebufferObjectFormat&  format)
-{ 
+{
 return new PythonQtShell_QOpenGLFramebufferObject(size, format); }
 
 QOpenGLFramebufferObject* PythonQtWrapper_QOpenGLFramebufferObject::new_QOpenGLFramebufferObject(int  width, int  height, GLenum  target)
-{ 
+{
 return new PythonQtShell_QOpenGLFramebufferObject(width, height, target); }
 
 QOpenGLFramebufferObject* PythonQtWrapper_QOpenGLFramebufferObject::new_QOpenGLFramebufferObject(int  width, int  height, QOpenGLFramebufferObject::Attachment  attachment, GLenum  target, GLenum  internalFormat)
-{ 
+{
 return new PythonQtShell_QOpenGLFramebufferObject(width, height, attachment, target, internalFormat); }
 
 QOpenGLFramebufferObject* PythonQtWrapper_QOpenGLFramebufferObject::new_QOpenGLFramebufferObject(int  width, int  height, const QOpenGLFramebufferObjectFormat&  format)
-{ 
+{
 return new PythonQtShell_QOpenGLFramebufferObject(width, height, format); }
 
 void PythonQtWrapper_QOpenGLFramebufferObject::addColorAttachment(QOpenGLFramebufferObject* theWrappedObject, const QSize&  size, GLenum  internalFormat)
@@ -15649,11 +15649,11 @@ int  PythonQtWrapper_QOpenGLFramebufferObject::width(QOpenGLFramebufferObject* t
 
 
 QOpenGLFramebufferObjectFormat* PythonQtWrapper_QOpenGLFramebufferObjectFormat::new_QOpenGLFramebufferObjectFormat()
-{ 
+{
 return new QOpenGLFramebufferObjectFormat(); }
 
 QOpenGLFramebufferObjectFormat* PythonQtWrapper_QOpenGLFramebufferObjectFormat::new_QOpenGLFramebufferObjectFormat(const QOpenGLFramebufferObjectFormat&  other)
-{ 
+{
 return new QOpenGLFramebufferObjectFormat(other); }
 
 QOpenGLFramebufferObject::Attachment  PythonQtWrapper_QOpenGLFramebufferObjectFormat::attachment(QOpenGLFramebufferObjectFormat* theWrappedObject) const
@@ -15937,15 +15937,15 @@ if (_wrapper) {
   return QOpenGLPaintDevice::sharedPainter();
 }
 QOpenGLPaintDevice* PythonQtWrapper_QOpenGLPaintDevice::new_QOpenGLPaintDevice()
-{ 
+{
 return new PythonQtShell_QOpenGLPaintDevice(); }
 
 QOpenGLPaintDevice* PythonQtWrapper_QOpenGLPaintDevice::new_QOpenGLPaintDevice(const QSize&  size)
-{ 
+{
 return new PythonQtShell_QOpenGLPaintDevice(size); }
 
 QOpenGLPaintDevice* PythonQtWrapper_QOpenGLPaintDevice::new_QOpenGLPaintDevice(int  width, int  height)
-{ 
+{
 return new PythonQtShell_QOpenGLPaintDevice(width, height); }
 
 QOpenGLContext*  PythonQtWrapper_QOpenGLPaintDevice::context(QOpenGLPaintDevice* theWrappedObject) const
@@ -16142,7 +16142,7 @@ if (_wrapper) {
   QOpenGLShader::timerEvent(event0);
 }
 QOpenGLShader* PythonQtWrapper_QOpenGLShader::new_QOpenGLShader(QOpenGLShader::ShaderType  type, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QOpenGLShader(type, parent); }
 
 const QMetaObject* PythonQtShell_QOpenGLShader::metaObject() const {
@@ -16380,7 +16380,7 @@ if (_wrapper) {
   QOpenGLShaderProgram::timerEvent(event0);
 }
 QOpenGLShaderProgram* PythonQtWrapper_QOpenGLShaderProgram::new_QOpenGLShaderProgram(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QOpenGLShaderProgram(parent); }
 
 const QMetaObject* PythonQtShell_QOpenGLShaderProgram::metaObject() const {
@@ -16979,11 +16979,11 @@ int  PythonQtWrapper_QOpenGLShaderProgram::uniformLocation(QOpenGLShaderProgram*
 
 
 QOpenGLTexture* PythonQtWrapper_QOpenGLTexture::new_QOpenGLTexture(QOpenGLTexture::Target  target)
-{ 
+{
 return new QOpenGLTexture(target); }
 
 QOpenGLTexture* PythonQtWrapper_QOpenGLTexture::new_QOpenGLTexture(const QImage&  image, QOpenGLTexture::MipMapGeneration  genMipMaps)
-{ 
+{
 return new QOpenGLTexture(image, genMipMaps); }
 
 void PythonQtWrapper_QOpenGLTexture::allocateStorage(QOpenGLTexture* theWrappedObject)
@@ -17406,7 +17406,7 @@ QString PythonQtWrapper_QOpenGLTexture::py_toString(QOpenGLTexture* obj) {
 
 
 QOpenGLTextureBlitter* PythonQtWrapper_QOpenGLTextureBlitter::new_QOpenGLTextureBlitter()
-{ 
+{
 return new QOpenGLTextureBlitter(); }
 
 void PythonQtWrapper_QOpenGLTextureBlitter::bind(QOpenGLTextureBlitter* theWrappedObject, GLenum  target)
@@ -17598,7 +17598,7 @@ if (_wrapper) {
   QOpenGLTimeMonitor::timerEvent(event0);
 }
 QOpenGLTimeMonitor* PythonQtWrapper_QOpenGLTimeMonitor::new_QOpenGLTimeMonitor(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QOpenGLTimeMonitor(parent); }
 
 const QMetaObject* PythonQtShell_QOpenGLTimeMonitor::metaObject() const {
@@ -17808,7 +17808,7 @@ if (_wrapper) {
   QOpenGLTimerQuery::timerEvent(event0);
 }
 QOpenGLTimerQuery* PythonQtWrapper_QOpenGLTimerQuery::new_QOpenGLTimerQuery(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QOpenGLTimerQuery(parent); }
 
 const QMetaObject* PythonQtShell_QOpenGLTimerQuery::metaObject() const {

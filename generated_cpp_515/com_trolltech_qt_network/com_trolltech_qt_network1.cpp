@@ -40,11 +40,11 @@
 #include <qvector.h>
 
 QNetworkInterface* PythonQtWrapper_QNetworkInterface::new_QNetworkInterface()
-{ 
+{
 return new QNetworkInterface(); }
 
 QNetworkInterface* PythonQtWrapper_QNetworkInterface::new_QNetworkInterface(const QNetworkInterface&  other)
-{ 
+{
 return new QNetworkInterface(other); }
 
 QList<QNetworkAddressEntry >  PythonQtWrapper_QNetworkInterface::addressEntries(QNetworkInterface* theWrappedObject) const
@@ -137,15 +137,15 @@ QString PythonQtWrapper_QNetworkInterface::py_toString(QNetworkInterface* obj) {
 
 
 QNetworkProxy* PythonQtWrapper_QNetworkProxy::new_QNetworkProxy()
-{ 
+{
 return new QNetworkProxy(); }
 
 QNetworkProxy* PythonQtWrapper_QNetworkProxy::new_QNetworkProxy(QNetworkProxy::ProxyType  type, const QString&  hostName, unsigned short  port, const QString&  user, const QString&  password)
-{ 
+{
 return new QNetworkProxy(type, hostName, port, user, password); }
 
 QNetworkProxy* PythonQtWrapper_QNetworkProxy::new_QNetworkProxy(const QNetworkProxy&  other)
-{ 
+{
 return new QNetworkProxy(other); }
 
 QNetworkProxy  PythonQtWrapper_QNetworkProxy::static_QNetworkProxy_applicationProxy()
@@ -320,7 +320,7 @@ if (_wrapper) {
   return QList<QNetworkProxy >();
 }
 QNetworkProxyFactory* PythonQtWrapper_QNetworkProxyFactory::new_QNetworkProxyFactory()
-{ 
+{
 return new PythonQtShell_QNetworkProxyFactory(); }
 
 QList<QNetworkProxy >  PythonQtWrapper_QNetworkProxyFactory::static_QNetworkProxyFactory_proxyForQuery(const QNetworkProxyQuery&  query)
@@ -356,35 +356,35 @@ bool  PythonQtWrapper_QNetworkProxyFactory::static_QNetworkProxyFactory_usesSyst
 
 
 QNetworkProxyQuery* PythonQtWrapper_QNetworkProxyQuery::new_QNetworkProxyQuery()
-{ 
+{
 return new QNetworkProxyQuery(); }
 
 QNetworkProxyQuery* PythonQtWrapper_QNetworkProxyQuery::new_QNetworkProxyQuery(const QNetworkConfiguration&  networkConfiguration, const QString&  hostname, int  port, const QString&  protocolTag, QNetworkProxyQuery::QueryType  queryType)
-{ 
+{
 return new QNetworkProxyQuery(networkConfiguration, hostname, port, protocolTag, queryType); }
 
 QNetworkProxyQuery* PythonQtWrapper_QNetworkProxyQuery::new_QNetworkProxyQuery(const QNetworkConfiguration&  networkConfiguration, const QUrl&  requestUrl, QNetworkProxyQuery::QueryType  queryType)
-{ 
+{
 return new QNetworkProxyQuery(networkConfiguration, requestUrl, queryType); }
 
 QNetworkProxyQuery* PythonQtWrapper_QNetworkProxyQuery::new_QNetworkProxyQuery(const QNetworkConfiguration&  networkConfiguration, unsigned short  bindPort, const QString&  protocolTag, QNetworkProxyQuery::QueryType  queryType)
-{ 
+{
 return new QNetworkProxyQuery(networkConfiguration, bindPort, protocolTag, queryType); }
 
 QNetworkProxyQuery* PythonQtWrapper_QNetworkProxyQuery::new_QNetworkProxyQuery(const QNetworkProxyQuery&  other)
-{ 
+{
 return new QNetworkProxyQuery(other); }
 
 QNetworkProxyQuery* PythonQtWrapper_QNetworkProxyQuery::new_QNetworkProxyQuery(const QString&  hostname, int  port, const QString&  protocolTag, QNetworkProxyQuery::QueryType  queryType)
-{ 
+{
 return new QNetworkProxyQuery(hostname, port, protocolTag, queryType); }
 
 QNetworkProxyQuery* PythonQtWrapper_QNetworkProxyQuery::new_QNetworkProxyQuery(const QUrl&  requestUrl, QNetworkProxyQuery::QueryType  queryType)
-{ 
+{
 return new QNetworkProxyQuery(requestUrl, queryType); }
 
 QNetworkProxyQuery* PythonQtWrapper_QNetworkProxyQuery::new_QNetworkProxyQuery(unsigned short  bindPort, const QString&  protocolTag, QNetworkProxyQuery::QueryType  queryType)
-{ 
+{
 return new QNetworkProxyQuery(bindPort, protocolTag, queryType); }
 
 int  PythonQtWrapper_QNetworkProxyQuery::localPort(QNetworkProxyQuery* theWrappedObject) const
@@ -505,7 +505,7 @@ if (_wrapper) {
     }
   }
 }
-  
+
 }
 bool  PythonQtShell_QNetworkReply::atEnd() const
 {
@@ -1267,7 +1267,7 @@ if (_wrapper) {
   return QNetworkReply::writeData(data0, len1);
 }
 QNetworkReply* PythonQtWrapper_QNetworkReply::new_QNetworkReply(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QNetworkReply(parent); }
 
 const QMetaObject* PythonQtShell_QNetworkReply::metaObject() const {
@@ -1426,15 +1426,15 @@ QUrl  PythonQtWrapper_QNetworkReply::url(QNetworkReply* theWrappedObject) const
 
 
 QNetworkRequest* PythonQtWrapper_QNetworkRequest::new_QNetworkRequest()
-{ 
+{
 return new QNetworkRequest(); }
 
 QNetworkRequest* PythonQtWrapper_QNetworkRequest::new_QNetworkRequest(const QNetworkRequest&  other)
-{ 
+{
 return new QNetworkRequest(other); }
 
 QNetworkRequest* PythonQtWrapper_QNetworkRequest::new_QNetworkRequest(const QUrl&  url)
-{ 
+{
 return new QNetworkRequest(url); }
 
 QVariant  PythonQtWrapper_QNetworkRequest::attribute(QNetworkRequest* theWrappedObject, QNetworkRequest::Attribute  code, const QVariant&  defaultValue) const
@@ -1755,7 +1755,7 @@ if (_wrapper) {
   QNetworkSession::timerEvent(event0);
 }
 QNetworkSession* PythonQtWrapper_QNetworkSession::new_QNetworkSession(const QNetworkConfiguration&  connConfig, QObject*  parent)
-{ 
+{
 return new PythonQtShell_QNetworkSession(connConfig, parent); }
 
 const QMetaObject* PythonQtShell_QNetworkSession::metaObject() const {
@@ -1849,11 +1849,11 @@ bool  PythonQtWrapper_QNetworkSession::waitForOpened(QNetworkSession* theWrapped
 
 
 QOcspResponse* PythonQtWrapper_QOcspResponse::new_QOcspResponse()
-{ 
+{
 return new QOcspResponse(); }
 
 QOcspResponse* PythonQtWrapper_QOcspResponse::new_QOcspResponse(const QOcspResponse&  other)
-{ 
+{
 return new QOcspResponse(other); }
 
 QOcspCertificateStatus  PythonQtWrapper_QOcspResponse::certificateStatus(QOcspResponse* theWrappedObject) const
@@ -1899,15 +1899,15 @@ void PythonQtWrapper_QOcspResponse::swap(QOcspResponse* theWrappedObject, QOcspR
 
 #ifndef QT_NO_SSL
 QSslCertificate* PythonQtWrapper_QSslCertificate::new_QSslCertificate(QIODevice*  device, QSsl::EncodingFormat  format)
-{ 
+{
 return new QSslCertificate(device, format); }
 
 QSslCertificate* PythonQtWrapper_QSslCertificate::new_QSslCertificate(const QByteArray&  data, QSsl::EncodingFormat  format)
-{ 
+{
 return new QSslCertificate(data, format); }
 
 QSslCertificate* PythonQtWrapper_QSslCertificate::new_QSslCertificate(const QSslCertificate&  other)
-{ 
+{
 return new QSslCertificate(other); }
 
 void PythonQtWrapper_QSslCertificate::clear(QSslCertificate* theWrappedObject)
@@ -2092,11 +2092,11 @@ QString PythonQtWrapper_QSslCertificate::py_toString(QSslCertificate* obj) {
 
 #ifndef QT_NO_SSL
 QSslCertificateExtension* PythonQtWrapper_QSslCertificateExtension::new_QSslCertificateExtension()
-{ 
+{
 return new QSslCertificateExtension(); }
 
 QSslCertificateExtension* PythonQtWrapper_QSslCertificateExtension::new_QSslCertificateExtension(const QSslCertificateExtension&  other)
-{ 
+{
 return new QSslCertificateExtension(other); }
 
 bool  PythonQtWrapper_QSslCertificateExtension::isCritical(QSslCertificateExtension* theWrappedObject) const
@@ -2139,19 +2139,19 @@ QVariant  PythonQtWrapper_QSslCertificateExtension::value(QSslCertificateExtensi
 
 #ifndef QT_NO_SSL
 QSslCipher* PythonQtWrapper_QSslCipher::new_QSslCipher()
-{ 
+{
 return new QSslCipher(); }
 
 QSslCipher* PythonQtWrapper_QSslCipher::new_QSslCipher(const QSslCipher&  other)
-{ 
+{
 return new QSslCipher(other); }
 
 QSslCipher* PythonQtWrapper_QSslCipher::new_QSslCipher(const QString&  name)
-{ 
+{
 return new QSslCipher(name); }
 
 QSslCipher* PythonQtWrapper_QSslCipher::new_QSslCipher(const QString&  name, QSsl::SslProtocol  protocol)
-{ 
+{
 return new QSslCipher(name, protocol); }
 
 QString  PythonQtWrapper_QSslCipher::authenticationMethod(QSslCipher* theWrappedObject) const
@@ -2235,11 +2235,11 @@ PythonQtShell_QSslConfiguration::~PythonQtShell_QSslConfiguration() {
   if (priv) { priv->shellClassDeleted(this); }
 }
 QSslConfiguration* PythonQtWrapper_QSslConfiguration::new_QSslConfiguration()
-{ 
+{
 return new PythonQtShell_QSslConfiguration(); }
 
 QSslConfiguration* PythonQtWrapper_QSslConfiguration::new_QSslConfiguration(const QSslConfiguration&  other)
-{ 
+{
 return new PythonQtShell_QSslConfiguration(other); }
 
 void PythonQtWrapper_QSslConfiguration::addCaCertificate(QSslConfiguration* theWrappedObject, const QSslCertificate&  certificate)
@@ -2537,11 +2537,11 @@ bool  PythonQtWrapper_QSslConfiguration::testSslOption(QSslConfiguration* theWra
 
 #ifndef QT_NO_SSL
 QSslDiffieHellmanParameters* PythonQtWrapper_QSslDiffieHellmanParameters::new_QSslDiffieHellmanParameters()
-{ 
+{
 return new QSslDiffieHellmanParameters(); }
 
 QSslDiffieHellmanParameters* PythonQtWrapper_QSslDiffieHellmanParameters::new_QSslDiffieHellmanParameters(const QSslDiffieHellmanParameters&  other)
-{ 
+{
 return new QSslDiffieHellmanParameters(other); }
 
 QSslDiffieHellmanParameters  PythonQtWrapper_QSslDiffieHellmanParameters::static_QSslDiffieHellmanParameters_defaultParameters()
@@ -2611,7 +2611,7 @@ QString PythonQtWrapper_QSslDiffieHellmanParameters::py_toString(QSslDiffieHellm
 
 #ifndef QT_NO_SSL
 QSslEllipticCurve* PythonQtWrapper_QSslEllipticCurve::new_QSslEllipticCurve()
-{ 
+{
 return new QSslEllipticCurve(); }
 
 QSslEllipticCurve  PythonQtWrapper_QSslEllipticCurve::static_QSslEllipticCurve_fromLongName(const QString&  name)
@@ -2666,19 +2666,19 @@ QString PythonQtWrapper_QSslEllipticCurve::py_toString(QSslEllipticCurve* obj) {
 
 #ifndef QT_NO_SSL
 QSslError* PythonQtWrapper_QSslError::new_QSslError()
-{ 
+{
 return new QSslError(); }
 
 QSslError* PythonQtWrapper_QSslError::new_QSslError(QSslError::SslError  error)
-{ 
+{
 return new QSslError(error); }
 
 QSslError* PythonQtWrapper_QSslError::new_QSslError(QSslError::SslError  error, const QSslCertificate&  certificate)
-{ 
+{
 return new QSslError(error, certificate); }
 
 QSslError* PythonQtWrapper_QSslError::new_QSslError(const QSslError&  other)
-{ 
+{
 return new QSslError(other); }
 
 QSslCertificate  PythonQtWrapper_QSslError::certificate(QSslError* theWrappedObject) const
@@ -2728,23 +2728,23 @@ QString PythonQtWrapper_QSslError::py_toString(QSslError* obj) {
 
 #ifndef QT_NO_SSL
 QSslKey* PythonQtWrapper_QSslKey::new_QSslKey()
-{ 
+{
 return new QSslKey(); }
 
 QSslKey* PythonQtWrapper_QSslKey::new_QSslKey(QIODevice*  device, QSsl::KeyAlgorithm  algorithm, QSsl::EncodingFormat  format, QSsl::KeyType  type, const QByteArray&  passPhrase)
-{ 
+{
 return new QSslKey(device, algorithm, format, type, passPhrase); }
 
 QSslKey* PythonQtWrapper_QSslKey::new_QSslKey(Qt::HANDLE  handle, QSsl::KeyType  type)
-{ 
+{
 return new QSslKey(handle, type); }
 
 QSslKey* PythonQtWrapper_QSslKey::new_QSslKey(const QByteArray&  encoded, QSsl::KeyAlgorithm  algorithm, QSsl::EncodingFormat  format, QSsl::KeyType  type, const QByteArray&  passPhrase)
-{ 
+{
 return new QSslKey(encoded, algorithm, format, type, passPhrase); }
 
 QSslKey* PythonQtWrapper_QSslKey::new_QSslKey(const QSslKey&  other)
-{ 
+{
 return new QSslKey(other); }
 
 QSsl::KeyAlgorithm  PythonQtWrapper_QSslKey::algorithm(QSslKey* theWrappedObject) const
@@ -2819,11 +2819,11 @@ QString PythonQtWrapper_QSslKey::py_toString(QSslKey* obj) {
 
 #ifndef QT_NO_SSL
 QSslPreSharedKeyAuthenticator* PythonQtWrapper_QSslPreSharedKeyAuthenticator::new_QSslPreSharedKeyAuthenticator()
-{ 
+{
 return new QSslPreSharedKeyAuthenticator(); }
 
 QSslPreSharedKeyAuthenticator* PythonQtWrapper_QSslPreSharedKeyAuthenticator::new_QSslPreSharedKeyAuthenticator(const QSslPreSharedKeyAuthenticator&  authenticator)
-{ 
+{
 return new QSslPreSharedKeyAuthenticator(authenticator); }
 
 QByteArray  PythonQtWrapper_QSslPreSharedKeyAuthenticator::identity(QSslPreSharedKeyAuthenticator* theWrappedObject) const
@@ -3809,7 +3809,7 @@ if (_wrapper) {
   return QSslSocket::writeData(data0, len1);
 }
 QSslSocket* PythonQtWrapper_QSslSocket::new_QSslSocket(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QSslSocket(parent); }
 
 const QMetaObject* PythonQtShell_QSslSocket::metaObject() const {
@@ -4338,7 +4338,7 @@ if (_wrapper) {
   QTcpServer::timerEvent(event0);
 }
 QTcpServer* PythonQtWrapper_QTcpServer::new_QTcpServer(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QTcpServer(parent); }
 
 const QMetaObject* PythonQtShell_QTcpServer::metaObject() const {
@@ -5407,7 +5407,7 @@ if (_wrapper) {
   return QTcpSocket::writeData(data0, len1);
 }
 QTcpSocket* PythonQtWrapper_QTcpSocket::new_QTcpSocket(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QTcpSocket(parent); }
 
 const QMetaObject* PythonQtShell_QTcpSocket::metaObject() const {
@@ -6376,7 +6376,7 @@ if (_wrapper) {
   return QUdpSocket::writeData(data0, len1);
 }
 QUdpSocket* PythonQtWrapper_QUdpSocket::new_QUdpSocket(QObject*  parent)
-{ 
+{
 return new PythonQtShell_QUdpSocket(parent); }
 
 const QMetaObject* PythonQtShell_QUdpSocket::metaObject() const {
