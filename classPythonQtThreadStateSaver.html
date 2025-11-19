@@ -88,12 +88,10 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="PythonQtThreadSupport_8h_source.html#l00108">108</a> of file <a class="el" href="PythonQtThreadSupport_8h_source.html">PythonQtThreadSupport.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  108</span>                             {</div>
-<div class="line"><span class="lineno">  109</span>    <a class="code hl_function" href="classPythonQtThreadStateSaver.html#ab305d2dd8cac5e7753b38bf7e8898ccd">save</a>();</div>
-<div class="line"><span class="lineno">  110</span>  }</div>
-<div class="ttc" id="aclassPythonQtThreadStateSaver_html_ab305d2dd8cac5e7753b38bf7e8898ccd"><div class="ttname"><a href="classPythonQtThreadStateSaver.html#ab305d2dd8cac5e7753b38bf7e8898ccd">PythonQtThreadStateSaver::save</a></div><div class="ttdeci">void save()</div><div class="ttdef"><b>Definition</b> <a href="PythonQtThreadSupport_8h_source.html#l00116">PythonQtThreadSupport.h:116</a></div></div>
+<div class="fragment"><div class="line"><span class="lineno">  108</span>{ <a class="code hl_function" href="classPythonQtThreadStateSaver.html#ab305d2dd8cac5e7753b38bf7e8898ccd">save</a>(); }</div>
+<div class="ttc" id="aclassPythonQtThreadStateSaver_html_ab305d2dd8cac5e7753b38bf7e8898ccd"><div class="ttname"><a href="classPythonQtThreadStateSaver.html#ab305d2dd8cac5e7753b38bf7e8898ccd">PythonQtThreadStateSaver::save</a></div><div class="ttdeci">void save()</div><div class="ttdef"><b>Definition</b> <a href="PythonQtThreadSupport_8h_source.html#l00112">PythonQtThreadSupport.h:112</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="PythonQtThreadSupport_8h_source.html#l00116">save()</a>.</p>
+<p class="reference">References <a class="el" href="PythonQtThreadSupport_8h_source.html#l00112">save()</a>.</p>
 
 </div>
 </div>
@@ -120,13 +118,11 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PythonQtThreadSupport_8h_source.html#l00112">112</a> of file <a class="el" href="PythonQtThreadSupport_8h_source.html">PythonQtThreadSupport.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  112</span>                              {</div>
-<div class="line"><span class="lineno">  113</span>    <a class="code hl_function" href="classPythonQtThreadStateSaver.html#a9ca03c78375d6126fcc688dba21b3f3f">restore</a>();</div>
-<div class="line"><span class="lineno">  114</span>  }</div>
-<div class="ttc" id="aclassPythonQtThreadStateSaver_html_a9ca03c78375d6126fcc688dba21b3f3f"><div class="ttname"><a href="classPythonQtThreadStateSaver.html#a9ca03c78375d6126fcc688dba21b3f3f">PythonQtThreadStateSaver::restore</a></div><div class="ttdeci">void restore()</div><div class="ttdef"><b>Definition</b> <a href="PythonQtThreadSupport_8h_source.html#l00120">PythonQtThreadSupport.h:120</a></div></div>
+<p class="definition">Definition at line <a class="el" href="PythonQtThreadSupport_8h_source.html#l00110">110</a> of file <a class="el" href="PythonQtThreadSupport_8h_source.html">PythonQtThreadSupport.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  110</span>{ <a class="code hl_function" href="classPythonQtThreadStateSaver.html#a9ca03c78375d6126fcc688dba21b3f3f">restore</a>(); }</div>
+<div class="ttc" id="aclassPythonQtThreadStateSaver_html_a9ca03c78375d6126fcc688dba21b3f3f"><div class="ttname"><a href="classPythonQtThreadStateSaver.html#a9ca03c78375d6126fcc688dba21b3f3f">PythonQtThreadStateSaver::restore</a></div><div class="ttdeci">void restore()</div><div class="ttdef"><b>Definition</b> <a href="PythonQtThreadSupport_8h_source.html#l00114">PythonQtThreadSupport.h:114</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="PythonQtThreadSupport_8h_source.html#l00120">restore()</a>.</p>
+<p class="reference">References <a class="el" href="PythonQtThreadSupport_8h_source.html#l00114">restore()</a>.</p>
 
 </div>
 </div>
@@ -154,18 +150,18 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PythonQtThreadSupport_8h_source.html#l00120">120</a> of file <a class="el" href="PythonQtThreadSupport_8h_source.html">PythonQtThreadSupport.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  120</span>                 {</div>
-<div class="line"><span class="lineno">  121</span>    <span class="keywordflow">if</span> (_state) {</div>
-<div class="line"><span class="lineno">  122</span>      <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">PyEval_RestoreThread</a>(_state);</div>
-<div class="line"><span class="lineno">  123</span>      _state = <span class="keyword">nullptr</span>;</div>
-<div class="line"><span class="lineno">  124</span>    }</div>
-<div class="line"><span class="lineno">  125</span>  }</div>
-<div class="ttc" id="aPythonQtConversion_8h_html_a1974947fc423c7148fb94a3b1188dbe6"><div class="ttname"><a href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">PythonQtConvertPairToPython</a></div><div class="ttdeci">PyObject * PythonQtConvertPairToPython(const void *inPair, int metaTypeId)</div><div class="ttdef"><b>Definition</b> <a href="PythonQtConversion_8h_source.html#l00347">PythonQtConversion.h:347</a></div></div>
+<p class="definition">Definition at line <a class="el" href="PythonQtThreadSupport_8h_source.html#l00114">114</a> of file <a class="el" href="PythonQtThreadSupport_8h_source.html">PythonQtThreadSupport.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  115</span>  {</div>
+<div class="line"><span class="lineno">  116</span>    <span class="keywordflow">if</span> (_state) {</div>
+<div class="line"><span class="lineno">  117</span>      <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">PyEval_RestoreThread</a>(_state);</div>
+<div class="line"><span class="lineno">  118</span>      _state = <span class="keyword">nullptr</span>;</div>
+<div class="line"><span class="lineno">  119</span>    }</div>
+<div class="line"><span class="lineno">  120</span>  }</div>
+<div class="ttc" id="aPythonQtConversion_8h_html_a1974947fc423c7148fb94a3b1188dbe6"><div class="ttname"><a href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">PythonQtConvertPairToPython</a></div><div class="ttdeci">PyObject * PythonQtConvertPairToPython(const void *inPair, int metaTypeId)</div><div class="ttdef"><b>Definition</b> <a href="PythonQtConversion_8h_source.html#l00393">PythonQtConversion.h:393</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="PythonQtConversion_8h_source.html#l00347">PythonQtConvertPairToPython()</a>.</p>
+<p class="reference">References <a class="el" href="PythonQtConversion_8h_source.html#l00393">PythonQtConvertPairToPython()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="PythonQtThreadSupport_8h_source.html#l00112">~PythonQtThreadStateSaver()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="PythonQtThreadSupport_8h_source.html#l00110">~PythonQtThreadStateSaver()</a>.</p>
 
 </div>
 </div>
@@ -192,12 +188,10 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PythonQtThreadSupport_8h_source.html#l00116">116</a> of file <a class="el" href="PythonQtThreadSupport_8h_source.html">PythonQtThreadSupport.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  116</span>              {</div>
-<div class="line"><span class="lineno">  117</span>    _state = <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">PyEval_SaveThread</a>();</div>
-<div class="line"><span class="lineno">  118</span>  }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQtThreadSupport_8h_source.html#l00112">112</a> of file <a class="el" href="PythonQtThreadSupport_8h_source.html">PythonQtThreadSupport.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  112</span>{ _state = <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">PyEval_SaveThread</a>(); }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="PythonQtConversion_8h_source.html#l00347">PythonQtConvertPairToPython()</a>.</p>
+<p class="reference">References <a class="el" href="PythonQtConversion_8h_source.html#l00393">PythonQtConvertPairToPython()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="PythonQtThreadSupport_8h_source.html#l00108">PythonQtThreadStateSaver()</a>.</p>
 
@@ -209,7 +203,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Nov 19 2025 10:15:59 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Nov 19 2025 15:36:23 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

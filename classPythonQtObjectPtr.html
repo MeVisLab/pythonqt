@@ -176,7 +176,9 @@ Protected Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00059">59</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   59</span>:_object(<span class="keyword">nullptr</span>) {}</div>
+<div class="fragment"><div class="line"><span class="lineno">   60</span>    : _object(<span class="keyword">nullptr</span>)</div>
+<div class="line"><span class="lineno">   61</span>  {</div>
+<div class="line"><span class="lineno">   62</span>  }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -204,14 +206,15 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00061">61</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   62</span>  :_object(<span class="keyword">nullptr</span>) {</div>
-<div class="line"><span class="lineno">   63</span>    <a class="code hl_function" href="classPythonQtObjectPtr.html#a36bac469bd9fd03c3af7f492b67ee35d">setObject</a>(<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">p</a>.object());</div>
-<div class="line"><span class="lineno">   64</span>  }</div>
-<div class="ttc" id="aPythonQtConversion_8h_html_a1974947fc423c7148fb94a3b1188dbe6"><div class="ttname"><a href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">PythonQtConvertPairToPython</a></div><div class="ttdeci">PyObject * PythonQtConvertPairToPython(const void *inPair, int metaTypeId)</div><div class="ttdef"><b>Definition</b> <a href="PythonQtConversion_8h_source.html#l00347">PythonQtConversion.h:347</a></div></div>
+<p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00064">64</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   65</span>    : _object(<span class="keyword">nullptr</span>)</div>
+<div class="line"><span class="lineno">   66</span>  {</div>
+<div class="line"><span class="lineno">   67</span>    <a class="code hl_function" href="classPythonQtObjectPtr.html#a36bac469bd9fd03c3af7f492b67ee35d">setObject</a>(<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">p</a>.object());</div>
+<div class="line"><span class="lineno">   68</span>  }</div>
+<div class="ttc" id="aPythonQtConversion_8h_html_a1974947fc423c7148fb94a3b1188dbe6"><div class="ttname"><a href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">PythonQtConvertPairToPython</a></div><div class="ttdeci">PyObject * PythonQtConvertPairToPython(const void *inPair, int metaTypeId)</div><div class="ttdef"><b>Definition</b> <a href="PythonQtConversion_8h_source.html#l00393">PythonQtConversion.h:393</a></div></div>
 <div class="ttc" id="aclassPythonQtObjectPtr_html_a36bac469bd9fd03c3af7f492b67ee35d"><div class="ttname"><a href="classPythonQtObjectPtr.html#a36bac469bd9fd03c3af7f492b67ee35d">PythonQtObjectPtr::setObject</a></div><div class="ttdeci">void setObject(PyObject *o)</div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="PythonQtConversion_8h_source.html#l00347">PythonQtConvertPairToPython()</a>.</p>
+<p class="reference">References <a class="el" href="PythonQtConversion_8h_source.html#l00393">PythonQtConvertPairToPython()</a>.</p>
 
 </div>
 </div>
@@ -241,9 +244,10 @@ Protected Member Functions</h2></td></tr>
 
 <p>rvalue copy constructor, does not need any incref/decref. </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00067">67</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   68</span>    :_object(<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">p</a>.takeObject()) {</div>
-<div class="line"><span class="lineno">   69</span>  }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00071">71</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   72</span>    : _object(<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">p</a>.takeObject())</div>
+<div class="line"><span class="lineno">   73</span>  {</div>
+<div class="line"><span class="lineno">   74</span>  }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -293,13 +297,14 @@ Protected Member Functions</h2></td></tr>
 
 <p>If the given variant holds a <a class="el" href="classPythonQtObjectPtr.html" title="a smart pointer that stores a PyObject pointer and that handles reference counting automatically">PythonQtObjectPtr</a>, extract the value from it and hold onto the reference. This results in an increment of the reference count. </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00075">75</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   75</span>                                            :_object(<span class="keyword">nullptr</span>) {</div>
-<div class="line"><span class="lineno">   76</span>    <a class="code hl_function" href="classPythonQtObjectPtr.html#ae051cfaafaeeefd1f6940df269cf7ade">fromVariant</a>(<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">variant</a>);</div>
-<div class="line"><span class="lineno">   77</span>  }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00080">80</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   81</span>    : _object(<span class="keyword">nullptr</span>)</div>
+<div class="line"><span class="lineno">   82</span>  {</div>
+<div class="line"><span class="lineno">   83</span>    <a class="code hl_function" href="classPythonQtObjectPtr.html#ae051cfaafaeeefd1f6940df269cf7ade">fromVariant</a>(<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">variant</a>);</div>
+<div class="line"><span class="lineno">   84</span>  }</div>
 <div class="ttc" id="aclassPythonQtObjectPtr_html_ae051cfaafaeeefd1f6940df269cf7ade"><div class="ttname"><a href="classPythonQtObjectPtr.html#ae051cfaafaeeefd1f6940df269cf7ade">PythonQtObjectPtr::fromVariant</a></div><div class="ttdeci">bool fromVariant(const QVariant &amp;variant)</div><div class="ttdoc">If the given variant holds a PythonQtObjectPtr, extract the value from it and hold onto the reference...</div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="PythonQtConversion_8h_source.html#l00347">PythonQtConvertPairToPython()</a>.</p>
+<p class="reference">References <a class="el" href="PythonQtConversion_8h_source.html#l00393">PythonQtConvertPairToPython()</a>.</p>
 
 </div>
 </div>
@@ -597,9 +602,9 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00137">137</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  137</span>{ <span class="keywordflow">return</span> !<a class="code hl_function" href="classPythonQtObjectPtr.html#ae5d7962534bb511f0c6fbc85c7d7dca2">object</a>(); }</div>
-<div class="ttc" id="aclassPythonQtObjectPtr_html_ae5d7962534bb511f0c6fbc85c7d7dca2"><div class="ttname"><a href="classPythonQtObjectPtr.html#ae5d7962534bb511f0c6fbc85c7d7dca2">PythonQtObjectPtr::object</a></div><div class="ttdeci">PyObject * object() const</div><div class="ttdef"><b>Definition</b> <a href="PythonQtObjectPtr_8h_source.html#l00148">PythonQtObjectPtr.h:148</a></div></div>
+<p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00138">138</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  138</span>{ <span class="keywordflow">return</span> !<a class="code hl_function" href="classPythonQtObjectPtr.html#ae5d7962534bb511f0c6fbc85c7d7dca2">object</a>(); }</div>
+<div class="ttc" id="aclassPythonQtObjectPtr_html_ae5d7962534bb511f0c6fbc85c7d7dca2"><div class="ttname"><a href="classPythonQtObjectPtr.html#ae5d7962534bb511f0c6fbc85c7d7dca2">PythonQtObjectPtr::object</a></div><div class="ttdeci">PyObject * object() const</div><div class="ttdef"><b>Definition</b> <a href="PythonQtObjectPtr_8h_source.html#l00149">PythonQtObjectPtr.h:149</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -626,10 +631,8 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00148">148</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  148</span>                           {</div>
-<div class="line"><span class="lineno">  149</span>    <span class="keywordflow">return</span> _object;</div>
-<div class="line"><span class="lineno">  150</span>  }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00149">149</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  149</span>{ <span class="keywordflow">return</span> _object; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -656,8 +659,8 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00143">143</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  143</span>{ <span class="keywordflow">return</span> <a class="code hl_function" href="classPythonQtObjectPtr.html#ae5d7962534bb511f0c6fbc85c7d7dca2">object</a>(); }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00144">144</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  144</span>{ <span class="keywordflow">return</span> <a class="code hl_function" href="classPythonQtObjectPtr.html#ae5d7962534bb511f0c6fbc85c7d7dca2">object</a>(); }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -685,12 +688,10 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00125">125</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  125</span>                                                       {</div>
-<div class="line"><span class="lineno">  126</span>    <span class="keywordflow">return</span> !( *<span class="keyword">this</span> == <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">p</a> );</div>
-<div class="line"><span class="lineno">  127</span>  }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00132">132</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  132</span>{ <span class="keywordflow">return</span> !(*<span class="keyword">this</span> == <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">p</a>); }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="PythonQtConversion_8h_source.html#l00347">PythonQtConvertPairToPython()</a>.</p>
+<p class="reference">References <a class="el" href="PythonQtConversion_8h_source.html#l00393">PythonQtConvertPairToPython()</a>.</p>
 
 </div>
 </div>
@@ -718,12 +719,10 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00133">133</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  133</span>                                        {</div>
-<div class="line"><span class="lineno">  134</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="classPythonQtObjectPtr.html#ae5d7962534bb511f0c6fbc85c7d7dca2">object</a>() != <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">p</a>;</div>
-<div class="line"><span class="lineno">  135</span>  }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00136">136</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  136</span>{ <span class="keywordflow">return</span> <a class="code hl_function" href="classPythonQtObjectPtr.html#ae5d7962534bb511f0c6fbc85c7d7dca2">object</a>() != <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">p</a>; }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="PythonQtConversion_8h_source.html#l00347">PythonQtConvertPairToPython()</a>.</p>
+<p class="reference">References <a class="el" href="PythonQtConversion_8h_source.html#l00393">PythonQtConvertPairToPython()</a>.</p>
 
 </div>
 </div>
@@ -750,8 +749,8 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00141">141</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  141</span>{ <span class="keywordflow">return</span> *( <a class="code hl_function" href="classPythonQtObjectPtr.html#ae5d7962534bb511f0c6fbc85c7d7dca2">object</a>() ); }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00142">142</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  142</span>{ <span class="keywordflow">return</span> *(<a class="code hl_function" href="classPythonQtObjectPtr.html#ae5d7962534bb511f0c6fbc85c7d7dca2">object</a>()); }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -778,8 +777,8 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00139">139</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  139</span>{ <span class="keywordflow">return</span> <a class="code hl_function" href="classPythonQtObjectPtr.html#ae5d7962534bb511f0c6fbc85c7d7dca2">object</a>(); }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00140">140</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  140</span>{ <span class="keywordflow">return</span> <a class="code hl_function" href="classPythonQtObjectPtr.html#ae5d7962534bb511f0c6fbc85c7d7dca2">object</a>(); }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -807,13 +806,13 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00092">92</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   92</span>                                                           {</div>
-<div class="line"><span class="lineno">   93</span>    <a class="code hl_function" href="classPythonQtObjectPtr.html#a36bac469bd9fd03c3af7f492b67ee35d">setObject</a>(<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">p</a>.object());</div>
-<div class="line"><span class="lineno">   94</span>    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><span class="lineno">   95</span>  }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00099">99</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  100</span>  {</div>
+<div class="line"><span class="lineno">  101</span>    <a class="code hl_function" href="classPythonQtObjectPtr.html#a36bac469bd9fd03c3af7f492b67ee35d">setObject</a>(<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">p</a>.object());</div>
+<div class="line"><span class="lineno">  102</span>    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><span class="lineno">  103</span>  }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="PythonQtConversion_8h_source.html#l00347">PythonQtConvertPairToPython()</a>.</p>
+<p class="reference">References <a class="el" href="PythonQtConversion_8h_source.html#l00393">PythonQtConvertPairToPython()</a>.</p>
 
 </div>
 </div>
@@ -841,13 +840,13 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00115">115</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  115</span>                                                        {</div>
-<div class="line"><span class="lineno">  116</span>    <a class="code hl_function" href="classPythonQtObjectPtr.html#ae051cfaafaeeefd1f6940df269cf7ade">fromVariant</a>(<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">variant</a>);</div>
-<div class="line"><span class="lineno">  117</span>    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><span class="lineno">  118</span>  }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00124">124</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  125</span>  {</div>
+<div class="line"><span class="lineno">  126</span>    <a class="code hl_function" href="classPythonQtObjectPtr.html#ae051cfaafaeeefd1f6940df269cf7ade">fromVariant</a>(<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">variant</a>);</div>
+<div class="line"><span class="lineno">  127</span>    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><span class="lineno">  128</span>  }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="PythonQtConversion_8h_source.html#l00347">PythonQtConvertPairToPython()</a>.</p>
+<p class="reference">References <a class="el" href="PythonQtConversion_8h_source.html#l00393">PythonQtConvertPairToPython()</a>.</p>
 
 </div>
 </div>
@@ -875,13 +874,13 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00109">109</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  109</span>                                            {</div>
-<div class="line"><span class="lineno">  110</span>    <a class="code hl_function" href="classPythonQtObjectPtr.html#a36bac469bd9fd03c3af7f492b67ee35d">setObject</a>(<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">o</a>);</div>
-<div class="line"><span class="lineno">  111</span>    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><span class="lineno">  112</span>  }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00118">118</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  119</span>  {</div>
+<div class="line"><span class="lineno">  120</span>    <a class="code hl_function" href="classPythonQtObjectPtr.html#a36bac469bd9fd03c3af7f492b67ee35d">setObject</a>(<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">o</a>);</div>
+<div class="line"><span class="lineno">  121</span>    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><span class="lineno">  122</span>  }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="PythonQtConversion_8h_source.html#l00347">PythonQtConvertPairToPython()</a>.</p>
+<p class="reference">References <a class="el" href="PythonQtConversion_8h_source.html#l00393">PythonQtConvertPairToPython()</a>.</p>
 
 </div>
 </div>
@@ -911,16 +910,16 @@ Protected Member Functions</h2></td></tr>
 
 <p>rvalue assignment operator that steals the reference from p </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00098">98</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   98</span>                                                               {</div>
-<div class="line"><span class="lineno">   99</span>    <span class="keywordflow">if</span> (_object) {</div>
-<div class="line"><span class="lineno">  100</span>      <a class="code hl_function" href="classPythonQtObjectPtr.html#a36bac469bd9fd03c3af7f492b67ee35d">setObject</a>(<span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  101</span>    }</div>
-<div class="line"><span class="lineno">  102</span>    _object = <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">p</a>.takeObject();</div>
-<div class="line"><span class="lineno">  103</span>    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><span class="lineno">  104</span>  }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00106">106</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  107</span>  {</div>
+<div class="line"><span class="lineno">  108</span>    <span class="keywordflow">if</span> (_object) {</div>
+<div class="line"><span class="lineno">  109</span>      <a class="code hl_function" href="classPythonQtObjectPtr.html#a36bac469bd9fd03c3af7f492b67ee35d">setObject</a>(<span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  110</span>    }</div>
+<div class="line"><span class="lineno">  111</span>    _object = <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">p</a>.takeObject();</div>
+<div class="line"><span class="lineno">  112</span>    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><span class="lineno">  113</span>  }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="PythonQtConversion_8h_source.html#l00347">PythonQtConvertPairToPython()</a>.</p>
+<p class="reference">References <a class="el" href="PythonQtConversion_8h_source.html#l00393">PythonQtConvertPairToPython()</a>.</p>
 
 </div>
 </div>
@@ -968,12 +967,10 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00121">121</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  121</span>                                                      {</div>
-<div class="line"><span class="lineno">  122</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="classPythonQtObjectPtr.html#ae5d7962534bb511f0c6fbc85c7d7dca2">object</a>() == <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">p</a>.object();</div>
-<div class="line"><span class="lineno">  123</span>  }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00130">130</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  130</span>{ <span class="keywordflow">return</span> <a class="code hl_function" href="classPythonQtObjectPtr.html#ae5d7962534bb511f0c6fbc85c7d7dca2">object</a>() == <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">p</a>.object(); }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="PythonQtConversion_8h_source.html#l00347">PythonQtConvertPairToPython()</a>.</p>
+<p class="reference">References <a class="el" href="PythonQtConversion_8h_source.html#l00393">PythonQtConvertPairToPython()</a>.</p>
 
 </div>
 </div>
@@ -1001,12 +998,10 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00129">129</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  129</span>                                       {</div>
-<div class="line"><span class="lineno">  130</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="classPythonQtObjectPtr.html#ae5d7962534bb511f0c6fbc85c7d7dca2">object</a>() == <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">p</a>;</div>
-<div class="line"><span class="lineno">  131</span>  }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00134">134</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  134</span>{ <span class="keywordflow">return</span> <a class="code hl_function" href="classPythonQtObjectPtr.html#ae5d7962534bb511f0c6fbc85c7d7dca2">object</a>() == <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">p</a>; }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="PythonQtConversion_8h_source.html#l00347">PythonQtConvertPairToPython()</a>.</p>
+<p class="reference">References <a class="el" href="PythonQtConversion_8h_source.html#l00393">PythonQtConvertPairToPython()</a>.</p>
 
 </div>
 </div>
@@ -1101,14 +1096,14 @@ Protected Member Functions</h2></td></tr>
 <p>takes the object from the pointer, leaving the pointer empty. the caller has to take care about the decref of the taken object! </p>
 
 <p class="definition">Definition at line <a class="el" href="PythonQtObjectPtr_8h_source.html#l00182">182</a> of file <a class="el" href="PythonQtObjectPtr_8h_source.html">PythonQtObjectPtr.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  182</span>                         {</div>
-<div class="line"><span class="lineno">  183</span>    <a class="code hl_typedef" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a>* <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">o</a> = _object;</div>
-<div class="line"><span class="lineno">  184</span>    _object = <span class="keyword">nullptr</span>;</div>
-<div class="line"><span class="lineno">  185</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">o</a>;</div>
-<div class="line"><span class="lineno">  186</span>  }</div>
+<div class="fragment"><div class="line"><span class="lineno">  183</span>  {</div>
+<div class="line"><span class="lineno">  184</span>    <a class="code hl_typedef" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a>* <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">o</a> = _object;</div>
+<div class="line"><span class="lineno">  185</span>    _object = <span class="keyword">nullptr</span>;</div>
+<div class="line"><span class="lineno">  186</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">o</a>;</div>
+<div class="line"><span class="lineno">  187</span>  }</div>
 <div class="ttc" id="aPythonQtMethodInfo_8h_html_afcb7b4d4ac414eefbeef02c60e6acb52"><div class="ttname"><a href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a></div><div class="ttdeci">struct _object PyObject</div><div class="ttdef"><b>Definition</b> <a href="PythonQtMethodInfo_8h_source.html#l00055">PythonQtMethodInfo.h:55</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="PythonQtConversion_8h_source.html#l00347">PythonQtConvertPairToPython()</a>.</p>
+<p class="reference">References <a class="el" href="PythonQtConversion_8h_source.html#l00393">PythonQtConvertPairToPython()</a>.</p>
 
 </div>
 </div>
@@ -1156,7 +1151,7 @@ Protected Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Nov 19 2025 10:15:59 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Nov 19 2025 15:36:23 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

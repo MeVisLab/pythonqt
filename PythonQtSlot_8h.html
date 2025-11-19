@@ -68,7 +68,7 @@ Classes</h2></td></tr>
 Macros</h2></td></tr>
 <tr class="memitem:ac03118f67849d573a31a93d7d572fafd" id="r_ac03118f67849d573a31a93d7d572fafd"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PythonQtSlot_8h.html#ac03118f67849d573a31a93d7d572fafd">PythonQtSlotFunction_Check</a>(<a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">op</a>)&#160;&#160;&#160;(<a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">Py_TYPE</a>(<a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">op</a>) == &amp;<a class="el" href="PythonQtSlot_8h.html#abbf5c31b544e2c04da41e26daea4d254">PythonQtSlotFunction_Type</a>)</td></tr>
 <tr class="separator:ac03118f67849d573a31a93d7d572fafd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad057d3f5b2149e2a71f0c9fffa3530a6" id="r_ad057d3f5b2149e2a71f0c9fffa3530a6"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PythonQtSlot_8h.html#ad057d3f5b2149e2a71f0c9fffa3530a6">PythonQtSlotFunction_GET_SELF</a>(<a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">func</a>)&#160;&#160;&#160;  (((<a class="el" href="structPythonQtSlotFunctionObject.html">PythonQtSlotFunctionObject</a> *)<a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">func</a>) -&gt; m_self)</td></tr>
+<tr class="memitem:ad057d3f5b2149e2a71f0c9fffa3530a6" id="r_ad057d3f5b2149e2a71f0c9fffa3530a6"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PythonQtSlot_8h.html#ad057d3f5b2149e2a71f0c9fffa3530a6">PythonQtSlotFunction_GET_SELF</a>(<a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">func</a>)&#160;&#160;&#160;(((<a class="el" href="structPythonQtSlotFunctionObject.html">PythonQtSlotFunctionObject</a>*)<a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">func</a>)-&gt;m_self)</td></tr>
 <tr class="separator:ad057d3f5b2149e2a71f0c9fffa3530a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
@@ -130,7 +130,7 @@ Last changed by </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PythonQtSlot_8h_source.html#l00061">61</a> of file <a class="el" href="PythonQtSlot_8h_source.html">PythonQtSlot.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PythonQtSlot_8h_source.html#l00056">56</a> of file <a class="el" href="PythonQtSlot_8h_source.html">PythonQtSlot.h</a>.</p>
 
 </div>
 </div>
@@ -145,25 +145,13 @@ Last changed by </dd></dl>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">func</a></td><td>)</td>
-          <td>&#160;&#160;&#160;  (((<a class="el" href="structPythonQtSlotFunctionObject.html">PythonQtSlotFunctionObject</a> *)<a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">func</a>) -&gt; m_self)</td>
+          <td>&#160;&#160;&#160;(((<a class="el" href="structPythonQtSlotFunctionObject.html">PythonQtSlotFunctionObject</a>*)<a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">func</a>)-&gt;m_self)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PythonQtSlot_8h_source.html#l00068">68</a> of file <a class="el" href="PythonQtSlot_8h_source.html">PythonQtSlot.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   83</span>                                  {</div>
-<div class="line"><span class="lineno">   84</span>    <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">PyObject_HEAD</a></div>
-<div class="line"><span class="lineno">   85</span>    <a class="code hl_class" href="classPythonQtSlotInfo.html">PythonQtSlotInfo</a> *m_ml; <span class="comment">/* Description of the C function to call */</span></div>
-<div class="line"><span class="lineno">   86</span>    <a class="code hl_typedef" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a>    *m_self; <span class="comment">/* Passed as &#39;self&#39; arg to the C func, can be NULL */</span></div>
-<div class="line"><span class="lineno">   87</span>    <a class="code hl_typedef" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a>    *m_module; <span class="comment">/* The __module__ attribute, can be anything */</span></div>
-<div class="line"><span class="lineno">   88</span>};</div>
-<div class="line"><span class="lineno">   89</span> </div>
-<div class="line"><span class="lineno">   90</span> </div>
-<div class="line"><span class="lineno">   91</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aPythonQtConversion_8h_html_a1974947fc423c7148fb94a3b1188dbe6"><div class="ttname"><a href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">PythonQtConvertPairToPython</a></div><div class="ttdeci">PyObject * PythonQtConvertPairToPython(const void *inPair, int metaTypeId)</div><div class="ttdef"><b>Definition</b> <a href="PythonQtConversion_8h_source.html#l00347">PythonQtConversion.h:347</a></div></div>
-<div class="ttc" id="aPythonQtMethodInfo_8h_html_afcb7b4d4ac414eefbeef02c60e6acb52"><div class="ttname"><a href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a></div><div class="ttdeci">struct _object PyObject</div><div class="ttdef"><b>Definition</b> <a href="PythonQtMethodInfo_8h_source.html#l00055">PythonQtMethodInfo.h:55</a></div></div>
-<div class="ttc" id="aclassPythonQtSlotInfo_html"><div class="ttname"><a href="classPythonQtSlotInfo.html">PythonQtSlotInfo</a></div><div class="ttdoc">stores information about a slot, including a next pointer to overloaded slots</div><div class="ttdef"><b>Definition</b> <a href="PythonQtMethodInfo_8h_source.html#l00152">PythonQtMethodInfo.h:153</a></div></div>
-</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="PythonQtSlot_8h_source.html#l00063">63</a> of file <a class="el" href="PythonQtSlot_8h_source.html">PythonQtSlot.h</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
@@ -185,14 +173,10 @@ Last changed by </dd></dl>
 </table>
 
 <p class="definition">Definition at line <a class="el" href="PythonQtSlot_8h_source.html#l00052">52</a> of file <a class="el" href="PythonQtSlot_8h_source.html">PythonQtSlot.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   53</span>{</div>
-<div class="line"><span class="lineno">   54</span>  <a class="code hl_enumvalue" href="PythonQtSlot_8h.html#aedcdbf7913cb45beb96231faee8444a2a80bee19f79903fbe5ba811d8182ab773">IgnoreOwnership</a>,</div>
-<div class="line"><span class="lineno">   55</span>  <a class="code hl_enumvalue" href="PythonQtSlot_8h.html#aedcdbf7913cb45beb96231faee8444a2ac1f0b88fcf2541669354d7a13f167a28">PassOwnershipToCPP</a>,</div>
-<div class="line"><span class="lineno">   56</span>  <a class="code hl_enumvalue" href="PythonQtSlot_8h.html#aedcdbf7913cb45beb96231faee8444a2a5d697f41732cf825f33c67780ab8414f">PassOwnershipToPython</a></div>
-<div class="line"><span class="lineno">   57</span>};</div>
-<div class="ttc" id="aPythonQtSlot_8h_html_aedcdbf7913cb45beb96231faee8444a2a5d697f41732cf825f33c67780ab8414f"><div class="ttname"><a href="PythonQtSlot_8h.html#aedcdbf7913cb45beb96231faee8444a2a5d697f41732cf825f33c67780ab8414f">PassOwnershipToPython</a></div><div class="ttdeci">@ PassOwnershipToPython</div><div class="ttdef"><b>Definition</b> <a href="PythonQtSlot_8h_source.html#l00057">PythonQtSlot.h:56</a></div></div>
-<div class="ttc" id="aPythonQtSlot_8h_html_aedcdbf7913cb45beb96231faee8444a2a80bee19f79903fbe5ba811d8182ab773"><div class="ttname"><a href="PythonQtSlot_8h.html#aedcdbf7913cb45beb96231faee8444a2a80bee19f79903fbe5ba811d8182ab773">IgnoreOwnership</a></div><div class="ttdeci">@ IgnoreOwnership</div><div class="ttdef"><b>Definition</b> <a href="PythonQtSlot_8h_source.html#l00054">PythonQtSlot.h:54</a></div></div>
-<div class="ttc" id="aPythonQtSlot_8h_html_aedcdbf7913cb45beb96231faee8444a2ac1f0b88fcf2541669354d7a13f167a28"><div class="ttname"><a href="PythonQtSlot_8h.html#aedcdbf7913cb45beb96231faee8444a2ac1f0b88fcf2541669354d7a13f167a28">PassOwnershipToCPP</a></div><div class="ttdeci">@ PassOwnershipToCPP</div><div class="ttdef"><b>Definition</b> <a href="PythonQtSlot_8h_source.html#l00055">PythonQtSlot.h:55</a></div></div>
+<div class="fragment"><div class="line"><span class="lineno">   52</span>{ <a class="code hl_enumvalue" href="PythonQtSlot_8h.html#aedcdbf7913cb45beb96231faee8444a2a80bee19f79903fbe5ba811d8182ab773">IgnoreOwnership</a>, <a class="code hl_enumvalue" href="PythonQtSlot_8h.html#aedcdbf7913cb45beb96231faee8444a2ac1f0b88fcf2541669354d7a13f167a28">PassOwnershipToCPP</a>, <a class="code hl_enumvalue" href="PythonQtSlot_8h.html#aedcdbf7913cb45beb96231faee8444a2a5d697f41732cf825f33c67780ab8414f">PassOwnershipToPython</a> };</div>
+<div class="ttc" id="aPythonQtSlot_8h_html_aedcdbf7913cb45beb96231faee8444a2a5d697f41732cf825f33c67780ab8414f"><div class="ttname"><a href="PythonQtSlot_8h.html#aedcdbf7913cb45beb96231faee8444a2a5d697f41732cf825f33c67780ab8414f">PassOwnershipToPython</a></div><div class="ttdeci">@ PassOwnershipToPython</div><div class="ttdef"><b>Definition</b> <a href="PythonQtSlot_8h_source.html#l00052">PythonQtSlot.h:52</a></div></div>
+<div class="ttc" id="aPythonQtSlot_8h_html_aedcdbf7913cb45beb96231faee8444a2a80bee19f79903fbe5ba811d8182ab773"><div class="ttname"><a href="PythonQtSlot_8h.html#aedcdbf7913cb45beb96231faee8444a2a80bee19f79903fbe5ba811d8182ab773">IgnoreOwnership</a></div><div class="ttdeci">@ IgnoreOwnership</div><div class="ttdef"><b>Definition</b> <a href="PythonQtSlot_8h_source.html#l00052">PythonQtSlot.h:52</a></div></div>
+<div class="ttc" id="aPythonQtSlot_8h_html_aedcdbf7913cb45beb96231faee8444a2ac1f0b88fcf2541669354d7a13f167a28"><div class="ttname"><a href="PythonQtSlot_8h.html#aedcdbf7913cb45beb96231faee8444a2ac1f0b88fcf2541669354d7a13f167a28">PassOwnershipToCPP</a></div><div class="ttdeci">@ PassOwnershipToCPP</div><div class="ttdef"><b>Definition</b> <a href="PythonQtSlot_8h_source.html#l00052">PythonQtSlot.h:52</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -485,7 +469,7 @@ Last changed by </dd></dl>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Nov 19 2025 10:15:59 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Nov 19 2025 15:36:23 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

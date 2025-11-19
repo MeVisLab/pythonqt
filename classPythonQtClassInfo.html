@@ -208,7 +208,7 @@ Static Public Member Functions</h2></td></tr>
 <div class="textblock"><p>a class that stores all required information about a Qt object (and an optional associated C++ class name) </p>
 <p>for fast lookup of slots when calling the object from Python </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQtClassInfo_8h_source.html#l00081">81</a> of file <a class="el" href="PythonQtClassInfo_8h_source.html">PythonQtClassInfo.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PythonQtClassInfo_8h_source.html#l00088">88</a> of file <a class="el" href="PythonQtClassInfo_8h_source.html">PythonQtClassInfo.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a692d955f38cce87819a6119825774faa" name="a692d955f38cce87819a6119825774faa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a692d955f38cce87819a6119825774faa">&#9670;&#160;</a></span>PythonQtClassInfo()</h2>
@@ -359,9 +359,9 @@ Static Public Member Functions</h2></td></tr>
 
 <p>add the parent class info of a CPP object </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQtClassInfo_8h_source.html#l00177">177</a> of file <a class="el" href="PythonQtClassInfo_8h_source.html">PythonQtClassInfo.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  177</span>{ _parentClasses.append(<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">info</a>); }</div>
-<div class="ttc" id="aPythonQtConversion_8h_html_a1974947fc423c7148fb94a3b1188dbe6"><div class="ttname"><a href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">PythonQtConvertPairToPython</a></div><div class="ttdeci">PyObject * PythonQtConvertPairToPython(const void *inPair, int metaTypeId)</div><div class="ttdef"><b>Definition</b> <a href="PythonQtConversion_8h_source.html#l00347">PythonQtConversion.h:347</a></div></div>
+<p class="definition">Definition at line <a class="el" href="PythonQtClassInfo_8h_source.html#l00185">185</a> of file <a class="el" href="PythonQtClassInfo_8h_source.html">PythonQtClassInfo.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  185</span>{ _parentClasses.append(<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">info</a>); }</div>
+<div class="ttc" id="aPythonQtConversion_8h_html_a1974947fc423c7148fb94a3b1188dbe6"><div class="ttname"><a href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">PythonQtConvertPairToPython</a></div><div class="ttdeci">PyObject * PythonQtConvertPairToPython(const void *inPair, int metaTypeId)</div><div class="ttdef"><b>Definition</b> <a href="PythonQtConversion_8h_source.html#l00393">PythonQtConversion.h:393</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -391,8 +391,8 @@ Static Public Member Functions</h2></td></tr>
 
 <p>add a handler for polymorphic downcasting </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQtClassInfo_8h_source.html#l00196">196</a> of file <a class="el" href="PythonQtClassInfo_8h_source.html">PythonQtClassInfo.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  196</span>{ _polymorphicHandlers.append(<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">cb</a>); }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQtClassInfo_8h_source.html#l00200">200</a> of file <a class="el" href="PythonQtClassInfo_8h_source.html">PythonQtClassInfo.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  200</span>{ _polymorphicHandlers.append(<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">cb</a>); }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -472,7 +472,7 @@ Static Public Member Functions</h2></td></tr>
 
 <p>get the classname (either of the QObject or of the wrapped CPP object) </p>
 
-<p class="reference">Referenced by <a class="el" href="PythonQtConversion_8h_source.html#l00287">PythonQtConvertListOfKnownClassToPythonList()</a>, and <a class="el" href="PythonQtConversion_8h_source.html#l00307">PythonQtConvertPythonListToListOfKnownClass()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="PythonQtConversion_8h_source.html#l00327">PythonQtConvertListOfKnownClassToPythonList()</a>, and <a class="el" href="PythonQtConversion_8h_source.html#l00350">PythonQtConvertPythonListToListOfKnownClass()</a>.</p>
 
 </div>
 </div>
@@ -810,8 +810,8 @@ Static Public Member Functions</h2></td></tr>
 
 <p>returns if the class is a CPP wrapper </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQtClassInfo_8h_source.html#l00139">139</a> of file <a class="el" href="PythonQtClassInfo_8h_source.html">PythonQtClassInfo.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  139</span>{ <span class="keywordflow">return</span> !_isQObject; }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQtClassInfo_8h_source.html#l00147">147</a> of file <a class="el" href="PythonQtClassInfo_8h_source.html">PythonQtClassInfo.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  147</span>{ <span class="keywordflow">return</span> !_isQObject; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -840,8 +840,8 @@ Static Public Member Functions</h2></td></tr>
 
 <p>returns if the QObject </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQtClassInfo_8h_source.html#l00136">136</a> of file <a class="el" href="PythonQtClassInfo_8h_source.html">PythonQtClassInfo.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  136</span>{ <span class="keywordflow">return</span> _isQObject; }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQtClassInfo_8h_source.html#l00144">144</a> of file <a class="el" href="PythonQtClassInfo_8h_source.html">PythonQtClassInfo.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  144</span>{ <span class="keywordflow">return</span> _isQObject; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -909,8 +909,8 @@ Static Public Member Functions</h2></td></tr>
 
 <p>get the meta object </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQtClassInfo_8h_source.html#l00142">142</a> of file <a class="el" href="PythonQtClassInfo_8h_source.html">PythonQtClassInfo.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  142</span>{ <span class="keywordflow">return</span> _meta; }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQtClassInfo_8h_source.html#l00150">150</a> of file <a class="el" href="PythonQtClassInfo_8h_source.html">PythonQtClassInfo.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  150</span>{ <span class="keywordflow">return</span> _meta; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -939,8 +939,8 @@ Static Public Member Functions</h2></td></tr>
 
 <p>get the meta type id of this class (only valid for <a class="el" href="classPythonQtClassInfo.html#a240c96009b6ec2fce15fc744cc33810b" title="returns if the class is a CPP wrapper">isCPPWrapper()</a> == true) </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQtClassInfo_8h_source.html#l00168">168</a> of file <a class="el" href="PythonQtClassInfo_8h_source.html">PythonQtClassInfo.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  168</span>{ <span class="keywordflow">return</span> _metaTypeId; }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQtClassInfo_8h_source.html#l00176">176</a> of file <a class="el" href="PythonQtClassInfo_8h_source.html">PythonQtClassInfo.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  176</span>{ <span class="keywordflow">return</span> _metaTypeId; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -969,8 +969,8 @@ Static Public Member Functions</h2></td></tr>
 
 <p>get nested classes </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQtClassInfo_8h_source.html#l00208">208</a> of file <a class="el" href="PythonQtClassInfo_8h_source.html">PythonQtClassInfo.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  208</span>{ <span class="keywordflow">return</span> _nestedClasses; }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQtClassInfo_8h_source.html#l00212">212</a> of file <a class="el" href="PythonQtClassInfo_8h_source.html">PythonQtClassInfo.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  212</span>{ <span class="keywordflow">return</span> _nestedClasses; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1018,8 +1018,8 @@ Static Public Member Functions</h2></td></tr>
 
 <p>get the associated <a class="el" href="structPythonQtClassWrapper.html">PythonQtClassWrapper</a> (which handles instance creation of this type) </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQtClassInfo_8h_source.html#l00183">183</a> of file <a class="el" href="PythonQtClassInfo_8h_source.html">PythonQtClassInfo.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  183</span>{ <span class="keywordflow">return</span> _pythonQtClassWrapper; }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQtClassInfo_8h_source.html#l00191">191</a> of file <a class="el" href="PythonQtClassInfo_8h_source.html">PythonQtClassInfo.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  191</span>{ <span class="keywordflow">return</span> _pythonQtClassWrapper; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1147,8 +1147,8 @@ Static Public Member Functions</h2></td></tr>
 
 <p>set the associated <a class="el" href="structPythonQtClassWrapper.html">PythonQtClassWrapper</a> (which handles instance creation of this type) </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQtClassInfo_8h_source.html#l00180">180</a> of file <a class="el" href="PythonQtClassInfo_8h_source.html">PythonQtClassInfo.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  180</span>{ _pythonQtClassWrapper = <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">obj</a>; }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQtClassInfo_8h_source.html#l00188">188</a> of file <a class="el" href="PythonQtClassInfo_8h_source.html">PythonQtClassInfo.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  188</span>{ _pythonQtClassWrapper = <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">obj</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1208,10 +1208,8 @@ Static Public Member Functions</h2></td></tr>
 
 <p>set the shell set instance wrapper cb </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQtClassInfo_8h_source.html#l00186">186</a> of file <a class="el" href="PythonQtClassInfo_8h_source.html">PythonQtClassInfo.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  186</span>                                                                           {</div>
-<div class="line"><span class="lineno">  187</span>    _shellSetInstanceWrapperCB = <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">cb</a>;</div>
-<div class="line"><span class="lineno">  188</span>  }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQtClassInfo_8h_source.html#l00194">194</a> of file <a class="el" href="PythonQtClassInfo_8h_source.html">PythonQtClassInfo.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  194</span>{ _shellSetInstanceWrapperCB = <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">cb</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1241,9 +1239,9 @@ Static Public Member Functions</h2></td></tr>
 
 <p>set the type capabilities </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQtClassInfo_8h_source.html#l00104">104</a> of file <a class="el" href="PythonQtClassInfo_8h_source.html">PythonQtClassInfo.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  104</span>{ _typeSlots = <a class="code hl_function" href="classPythonQtClassInfo.html#a4952e50bfa166818160fcdf7b51b1463">typeSlots</a>; }</div>
-<div class="ttc" id="aclassPythonQtClassInfo_html_a4952e50bfa166818160fcdf7b51b1463"><div class="ttname"><a href="classPythonQtClassInfo.html#a4952e50bfa166818160fcdf7b51b1463">PythonQtClassInfo::typeSlots</a></div><div class="ttdeci">int typeSlots() const</div><div class="ttdoc">get the type capabilities</div><div class="ttdef"><b>Definition</b> <a href="PythonQtClassInfo_8h_source.html#l00106">PythonQtClassInfo.h:106</a></div></div>
+<p class="definition">Definition at line <a class="el" href="PythonQtClassInfo_8h_source.html#l00112">112</a> of file <a class="el" href="PythonQtClassInfo_8h_source.html">PythonQtClassInfo.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  112</span>{ _typeSlots = <a class="code hl_function" href="classPythonQtClassInfo.html#a4952e50bfa166818160fcdf7b51b1463">typeSlots</a>; }</div>
+<div class="ttc" id="aclassPythonQtClassInfo_html_a4952e50bfa166818160fcdf7b51b1463"><div class="ttname"><a href="classPythonQtClassInfo.html#a4952e50bfa166818160fcdf7b51b1463">PythonQtClassInfo::typeSlots</a></div><div class="ttdeci">int typeSlots() const</div><div class="ttdoc">get the type capabilities</div><div class="ttdef"><b>Definition</b> <a href="PythonQtClassInfo_8h_source.html#l00114">PythonQtClassInfo.h:114</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1312,10 +1310,8 @@ Static Public Member Functions</h2></td></tr>
 
 <p>get the shell set instance wrapper cb </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQtClassInfo_8h_source.html#l00191">191</a> of file <a class="el" href="PythonQtClassInfo_8h_source.html">PythonQtClassInfo.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  191</span>                                                                 {</div>
-<div class="line"><span class="lineno">  192</span>    <span class="keywordflow">return</span> _shellSetInstanceWrapperCB;</div>
-<div class="line"><span class="lineno">  193</span>  }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQtClassInfo_8h_source.html#l00197">197</a> of file <a class="el" href="PythonQtClassInfo_8h_source.html">PythonQtClassInfo.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  197</span>{ <span class="keywordflow">return</span> _shellSetInstanceWrapperCB; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1362,8 +1358,8 @@ Static Public Member Functions</h2></td></tr>
 
 <p>get the type capabilities </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQtClassInfo_8h_source.html#l00106">106</a> of file <a class="el" href="PythonQtClassInfo_8h_source.html">PythonQtClassInfo.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  106</span>{ <span class="keywordflow">return</span> _typeSlots; }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQtClassInfo_8h_source.html#l00114">114</a> of file <a class="el" href="PythonQtClassInfo_8h_source.html">PythonQtClassInfo.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  114</span>{ <span class="keywordflow">return</span> _typeSlots; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1392,7 +1388,7 @@ Static Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Nov 19 2025 10:15:59 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Nov 19 2025 15:36:23 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

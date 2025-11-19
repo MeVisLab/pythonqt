@@ -67,7 +67,7 @@ Public Attributes</h2></td></tr>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">class</a> <a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">T</a>&gt;<br />
 class PythonQtPassOwnershipToPython&lt; T &gt;</div><p>Helper template that allows to pass the ownership of a C++ instance between C++ and Python (it is used as a slot return type or parameter type so that it can be detected by the <a class="el" href="classPythonQt.html" title="The main interface to the Python Qt binding, realized as a singleton.">PythonQt</a> slot calling code). </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00106">106</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00110">110</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aaad0d16be54de03dbd53c5184f1318eb" name="aaad0d16be54de03dbd53c5184f1318eb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aaad0d16be54de03dbd53c5184f1318eb">&#9670;&#160;</a></span>PythonQtPassOwnershipToPython()</h2>
@@ -97,10 +97,12 @@ template&lt;<a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb9
 
 <p>Allow conversion from T to PythonQtPassOwnershipToPython&lt;T&gt; </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00110">110</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  110</span>:<a class="code hl_variable" href="classPythonQtPassOwnershipToPython.html#a2b1813bc1f3d2b540ddcd22b43563a8f">_t</a>(<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">t</a>) {}</div>
-<div class="ttc" id="aPythonQtConversion_8h_html_a1974947fc423c7148fb94a3b1188dbe6"><div class="ttname"><a href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">PythonQtConvertPairToPython</a></div><div class="ttdeci">PyObject * PythonQtConvertPairToPython(const void *inPair, int metaTypeId)</div><div class="ttdef"><b>Definition</b> <a href="PythonQtConversion_8h_source.html#l00347">PythonQtConversion.h:347</a></div></div>
-<div class="ttc" id="aclassPythonQtPassOwnershipToPython_html_a2b1813bc1f3d2b540ddcd22b43563a8f"><div class="ttname"><a href="classPythonQtPassOwnershipToPython.html#a2b1813bc1f3d2b540ddcd22b43563a8f">PythonQtPassOwnershipToPython::_t</a></div><div class="ttdeci">T _t</div><div class="ttdef"><b>Definition</b> <a href="PythonQt_8h_source.html#l00116">PythonQt.h:116</a></div></div>
+<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00114">114</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  115</span>    : <a class="code hl_variable" href="classPythonQtPassOwnershipToPython.html#a2b1813bc1f3d2b540ddcd22b43563a8f">_t</a>(<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">t</a>)</div>
+<div class="line"><span class="lineno">  116</span>  {</div>
+<div class="line"><span class="lineno">  117</span>  }</div>
+<div class="ttc" id="aPythonQtConversion_8h_html_a1974947fc423c7148fb94a3b1188dbe6"><div class="ttname"><a href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">PythonQtConvertPairToPython</a></div><div class="ttdeci">PyObject * PythonQtConvertPairToPython(const void *inPair, int metaTypeId)</div><div class="ttdef"><b>Definition</b> <a href="PythonQtConversion_8h_source.html#l00393">PythonQtConversion.h:393</a></div></div>
+<div class="ttc" id="aclassPythonQtPassOwnershipToPython_html_a2b1813bc1f3d2b540ddcd22b43563a8f"><div class="ttname"><a href="classPythonQtPassOwnershipToPython.html#a2b1813bc1f3d2b540ddcd22b43563a8f">PythonQtPassOwnershipToPython::_t</a></div><div class="ttdeci">T _t</div><div class="ttdef"><b>Definition</b> <a href="PythonQt_8h_source.html#l00123">PythonQt.h:123</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -132,10 +134,10 @@ template&lt;<a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb9
 
 <p>Allow conversion from PythonQtPassOwnershipToPython&lt;T&gt; to T. </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00112">112</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  112</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classPythonQtPassOwnershipToPython.html#a2b1813bc1f3d2b540ddcd22b43563a8f">_t</a>; }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00119">119</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  119</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classPythonQtPassOwnershipToPython.html#a2b1813bc1f3d2b540ddcd22b43563a8f">_t</a>; }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="PythonQt_8h_source.html#l00116">PythonQtPassOwnershipToPython&lt; T &gt;::_t</a>.</p>
+<p class="reference">References <a class="el" href="PythonQt_8h_source.html#l00123">PythonQtPassOwnershipToPython&lt; T &gt;::_t</a>.</p>
 
 </div>
 </div>
@@ -155,9 +157,9 @@ template&lt;<a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb9
 </div><div class="memdoc">
 <p>Stored value. This is important so that it has the same memory layout as a pointer if T is a pointer type (which is the typical use case for this class). </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00116">116</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00123">123</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="PythonQt_8h_source.html#l00112">PythonQtPassOwnershipToPython&lt; T &gt;::operator T()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="PythonQt_8h_source.html#l00119">PythonQtPassOwnershipToPython&lt; T &gt;::operator T()</a>.</p>
 
 </div>
 </div>
@@ -167,7 +169,7 @@ template&lt;<a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb9
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Nov 19 2025 10:15:59 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Nov 19 2025 15:36:23 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
