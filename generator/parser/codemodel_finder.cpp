@@ -39,25 +39,22 @@
 **
 ****************************************************************************/
 
-
 #include "codemodel_finder.h"
 #include "codemodel.h"
 #include "binder.h"
 
-CodeModelFinder::CodeModelFinder(CodeModel *model, Binder *binder)
-  : _M_model(model),
-    _M_binder (binder),
-    _M_token_stream(binder->tokenStream ()),
-    name_cc(_M_binder),
-    _M_resolve_policy(ResolveItem)
+CodeModelFinder::CodeModelFinder(CodeModel* model, Binder* binder)
+  : _M_model(model)
+  , _M_binder(binder)
+  , _M_token_stream(binder->tokenStream())
+  , name_cc(_M_binder)
+  , _M_resolve_policy(ResolveItem)
 {
 }
 
-CodeModelFinder::~CodeModelFinder()
-{
-}
+CodeModelFinder::~CodeModelFinder() {}
 
-ScopeModelItem CodeModelFinder::resolveScope(NameAST *name, ScopeModelItem scope)
+ScopeModelItem CodeModelFinder::resolveScope(NameAST* name, ScopeModelItem scope)
 {
   Q_ASSERT(scope.data() != 0);
 
@@ -83,7 +80,7 @@ ScopeModelItem CodeModelFinder::changeCurrentScope(ScopeModelItem scope)
   return old;
 }
 
-void CodeModelFinder::visitName(NameAST *node)
+void CodeModelFinder::visitName(NameAST* node)
 {
   visitNodes(this, node->qualified_names);
 
@@ -91,32 +88,25 @@ void CodeModelFinder::visitName(NameAST *node)
     visit(node->unqualified_name);
 }
 
-void CodeModelFinder::visitUnqualifiedName(UnqualifiedNameAST *node)
+void CodeModelFinder::visitUnqualifiedName(UnqualifiedNameAST* node)
 {
-  if (!_M_current_scope)
-    {
-      // nothing to do
-      return;
-    }
+  if (!_M_current_scope) {
+    // nothing to do
+    return;
+  }
 
   name_cc.run(node);
   QString id = name_cc.name();
 
-  if (ClassModelItem klass = _M_current_scope->findClass(id))
-    {
-      _M_current_scope = klass;
-    }
-  else if (NamespaceModelItem parentNamespace = _M_current_scope.dynamicCast<_NamespaceModelItem>())
-    {
-      NamespaceModelItem ns = parentNamespace->findNamespace(id);
-      _M_current_scope = ns.staticCast<_ScopeModelItem>();
-    }
-  else if (FileModelItem file = _M_current_scope.dynamicCast<_FileModelItem>())
-    {
-      NamespaceModelItem ns = file->findNamespace(id);
-      _M_current_scope = ns.staticCast<_ScopeModelItem>();
-    }
+  if (ClassModelItem klass = _M_current_scope->findClass(id)) {
+    _M_current_scope = klass;
+  } else if (NamespaceModelItem parentNamespace = _M_current_scope.dynamicCast<_NamespaceModelItem>()) {
+    NamespaceModelItem ns = parentNamespace->findNamespace(id);
+    _M_current_scope = ns.staticCast<_ScopeModelItem>();
+  } else if (FileModelItem file = _M_current_scope.dynamicCast<_FileModelItem>()) {
+    NamespaceModelItem ns = file->findNamespace(id);
+    _M_current_scope = ns.staticCast<_ScopeModelItem>();
   }
+}
 
 // kate: space-indent on; indent-width 2; replace-tabs on;
-

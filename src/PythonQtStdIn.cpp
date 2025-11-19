@@ -42,21 +42,21 @@
 #include "PythonQtStdIn.h"
 #include "PythonQt.h"
 
-static PyObject *PythonQtStdInRedirect_new(PyTypeObject *type, PyObject * /*args*/, PyObject * /*kwds*/)
+static PyObject* PythonQtStdInRedirect_new(PyTypeObject* type, PyObject* /*args*/, PyObject* /*kwds*/)
 {
-  PythonQtStdInRedirect *self;
-  self = (PythonQtStdInRedirect *)type->tp_alloc(type, 0);
+  PythonQtStdInRedirect* self;
+  self = (PythonQtStdInRedirect*)type->tp_alloc(type, 0);
   self->_cb = nullptr;
   self->_callData = nullptr;
   self->_isatty = false;
 
-  return (PyObject *)self;
+  return (PyObject*)self;
 }
 
-static PyObject *PythonQtStdInRedirect_readline(PyObject * self, PyObject * args)
+static PyObject* PythonQtStdInRedirect_readline(PyObject* self, PyObject* args)
 {
   Q_UNUSED(args)
-  PythonQtStdInRedirect*  s = (PythonQtStdInRedirect*)self;
+  PythonQtStdInRedirect* s = (PythonQtStdInRedirect*)self;
   QString string;
   if (s->_cb) {
     string = (*s->_cb)(s->_callData);
@@ -64,7 +64,7 @@ static PyObject *PythonQtStdInRedirect_readline(PyObject * self, PyObject * args
   return Py_BuildValue("s", QStringToPythonConstCharPointer(string));
 }
 
-static PyObject *PythonQtStdInRedirect_isatty(PyObject * self, PyObject * /*args*/)
+static PyObject* PythonQtStdInRedirect_isatty(PyObject* self, PyObject* /*args*/)
 {
   PythonQtStdInRedirect* s = (PythonQtStdInRedirect*)self;
   PyObject* r = s->_isatty ? Py_True : Py_False;
@@ -73,55 +73,53 @@ static PyObject *PythonQtStdInRedirect_isatty(PyObject * self, PyObject * /*args
 }
 
 static PyMethodDef PythonQtStdInRedirect_methods[] = {
-  {"readline", (PyCFunction)PythonQtStdInRedirect_readline, METH_VARARGS,
-   "read input line"},
-  {"isatty", (PyCFunction)PythonQtStdInRedirect_isatty,   METH_NOARGS,
-   "returns True if this is a tty-like device. False by default."
-  },
-  {nullptr,    nullptr, 0 , nullptr} /* sentinel */
+  {"readline", (PyCFunction)PythonQtStdInRedirect_readline, METH_VARARGS, "read input line"},
+  {"isatty", (PyCFunction)PythonQtStdInRedirect_isatty, METH_NOARGS,
+    "returns True if this is a tty-like device. False by default."},
+  {nullptr, nullptr, 0, nullptr} /* sentinel */
 };
 
 static PyMemberDef PythonQtStdInRedirect_members[] = {
-  {nullptr}  /* Sentinel */
+  {nullptr} /* Sentinel */
 };
 
 PyTypeObject PythonQtStdInRedirectType = {
-    PyVarObject_HEAD_INIT(nullptr, 0) /*tp_base*/
-    "PythonQtStdInRedirect",        /*tp_name*/
-    sizeof(PythonQtStdInRedirect),  /*tp_basicsize*/
-    0,                         /*tp_itemsize*/
-    nullptr,                   /*tp_dealloc*/
-    0,                         /*tp_vectorcall_offset*/
-    nullptr,                   /*tp_getattr*/
-    nullptr,                   /*tp_setattr*/
-    nullptr,                   /*tp_compare*/
-    nullptr,                   /*tp_repr*/
-    nullptr,                   /*tp_as_number*/
-    nullptr,                   /*tp_as_sequence*/
-    nullptr,                   /*tp_as_mapping*/
-    nullptr,                   /*tp_hash */
-    nullptr,                   /*tp_call*/
-    nullptr,                   /*tp_str*/
-    nullptr,                   /*tp_getattro*/
-    nullptr,                   /*tp_setattro*/
-    nullptr,                   /*tp_as_buffer*/
-    Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE, /*tp_flags*/
-    "PythonQtStdInRedirect",   /* tp_doc */
-    nullptr,                   /* tp_traverse */
-    nullptr,                   /* tp_clear */
-    nullptr,                   /* tp_richcompare */
-    0,                         /* tp_weaklistoffset */
-    nullptr,                   /* tp_iter */
-    nullptr,                   /* tp_iternext */
-    PythonQtStdInRedirect_methods,   /* tp_methods */
-    PythonQtStdInRedirect_members,   /* tp_members */
-    nullptr,                   /* tp_getset */
-    nullptr,                   /* tp_base */
-    nullptr,                   /* tp_dict */
-    nullptr,                   /* tp_descr_get */
-    nullptr,                   /* tp_descr_set */
-    0,                         /* tp_dictoffset */
-    nullptr,                   /* tp_init */
-    nullptr,                   /* tp_alloc */
-    PythonQtStdInRedirect_new,       /* tp_new */
+  PyVarObject_HEAD_INIT(nullptr, 0)         /*tp_base*/
+  "PythonQtStdInRedirect",                  /*tp_name*/
+  sizeof(PythonQtStdInRedirect),            /*tp_basicsize*/
+  0,                                        /*tp_itemsize*/
+  nullptr,                                  /*tp_dealloc*/
+  0,                                        /*tp_vectorcall_offset*/
+  nullptr,                                  /*tp_getattr*/
+  nullptr,                                  /*tp_setattr*/
+  nullptr,                                  /*tp_compare*/
+  nullptr,                                  /*tp_repr*/
+  nullptr,                                  /*tp_as_number*/
+  nullptr,                                  /*tp_as_sequence*/
+  nullptr,                                  /*tp_as_mapping*/
+  nullptr,                                  /*tp_hash */
+  nullptr,                                  /*tp_call*/
+  nullptr,                                  /*tp_str*/
+  nullptr,                                  /*tp_getattro*/
+  nullptr,                                  /*tp_setattro*/
+  nullptr,                                  /*tp_as_buffer*/
+  Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE, /*tp_flags*/
+  "PythonQtStdInRedirect",                  /* tp_doc */
+  nullptr,                                  /* tp_traverse */
+  nullptr,                                  /* tp_clear */
+  nullptr,                                  /* tp_richcompare */
+  0,                                        /* tp_weaklistoffset */
+  nullptr,                                  /* tp_iter */
+  nullptr,                                  /* tp_iternext */
+  PythonQtStdInRedirect_methods,            /* tp_methods */
+  PythonQtStdInRedirect_members,            /* tp_members */
+  nullptr,                                  /* tp_getset */
+  nullptr,                                  /* tp_base */
+  nullptr,                                  /* tp_dict */
+  nullptr,                                  /* tp_descr_get */
+  nullptr,                                  /* tp_descr_set */
+  0,                                        /* tp_dictoffset */
+  nullptr,                                  /* tp_init */
+  nullptr,                                  /* tp_alloc */
+  PythonQtStdInRedirect_new,                /* tp_new */
 };

@@ -44,7 +44,8 @@
 
 bool PythonQtGILScope::_enableGILScope = false;
 
-PythonQtGILScope::PythonQtGILScope() : _ensured(false)
+PythonQtGILScope::PythonQtGILScope()
+  : _ensured(false)
 {
   if (_enableGILScope) {
     _state = PyGILState_Ensure();

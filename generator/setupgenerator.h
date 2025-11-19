@@ -47,26 +47,28 @@
 
 class SetupGenerator : public Generator
 {
-    Q_OBJECT
+  Q_OBJECT
 
- public:
-   SetupGenerator(int classesPerFile) : maxClassesPerFile(classesPerFile) {}
+public:
+  SetupGenerator(int classesPerFile)
+    : maxClassesPerFile(classesPerFile)
+  {
+  }
 
-   virtual void generate();
+  virtual void generate();
 
-   void addClass(const QString& package, const AbstractMetaClass *cls);
+  void addClass(const QString& package, const AbstractMetaClass* cls);
 
-   static void writeInclude(QTextStream &stream, const Include &inc);
-  
-   static bool isSpecialStreamingOperator(const AbstractMetaFunction *fun);
-  
- private:
-   QStringList writePolymorphicHandler(QTextStream &s, const QString &package,
-     const AbstractMetaClassList &polyBaseClasses, QList<const AbstractMetaClass*>& allClasses);
+  static void writeInclude(QTextStream& stream, const Include& inc);
 
-   QHash<QString, QList<const AbstractMetaClass*> > packHash;
+  static bool isSpecialStreamingOperator(const AbstractMetaFunction* fun);
 
-   int maxClassesPerFile;
+private:
+  QStringList writePolymorphicHandler(QTextStream& s, const QString& package,
+    const AbstractMetaClassList& polyBaseClasses, QList<const AbstractMetaClass*>& allClasses);
+
+  QHash<QString, QList<const AbstractMetaClass*>> packHash;
+
+  int maxClassesPerFile;
 };
 #endif // SETUPGENERATOR_H
-

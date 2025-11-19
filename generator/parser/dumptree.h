@@ -39,21 +39,20 @@
 **
 ****************************************************************************/
 
-
 #ifndef DUMPTREE_H
-#define DUMPTREE_H
+  #define DUMPTREE_H
 
-#include "default_visitor.h"
+  #include "default_visitor.h"
 
-class DumpTree: protected DefaultVisitor
+class DumpTree : protected DefaultVisitor
 {
 public:
   DumpTree();
 
-  void dump(AST *node) { visit(node); }
+  void dump(AST* node) { visit(node); }
 
 protected:
-  virtual void visit(AST *node);
+  virtual void visit(AST* node);
 };
 
 #endif // DUMPTREE_H

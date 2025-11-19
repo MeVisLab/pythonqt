@@ -41,17 +41,19 @@
 
 #include "generatorset.h"
 
-GeneratorSet::GeneratorSet() :
-    outDir(".."),
-    printStdout(false)
-{}
+GeneratorSet::GeneratorSet()
+  : outDir("..")
+  , printStdout(false)
+{
+}
 
-bool GeneratorSet::readParameters(const QMap<QString, QString> args) {
-    if (args.contains("output-directory")) {
-        outDir = args.value("output-directory");
-    }
+bool GeneratorSet::readParameters(const QMap<QString, QString> args)
+{
+  if (args.contains("output-directory")) {
+    outDir = args.value("output-directory");
+  }
 
-    printStdout = args.contains("print-stdout");
+  printStdout = args.contains("print-stdout");
 
-    return !(args.contains("help") || args.contains("h") || args.contains("?"));
+  return !(args.contains("help") || args.contains("h") || args.contains("?"));
 }

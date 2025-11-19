@@ -56,9 +56,7 @@ PythonQtArgumentFrame::PythonQtArgumentFrame()
   _podArgs.reserve(PYTHONQT_MAX_ARGUMENT_FRAME_SIZE);
 }
 
-PythonQtArgumentFrame::~PythonQtArgumentFrame()
-{
-}
+PythonQtArgumentFrame::~PythonQtArgumentFrame() {}
 
 PythonQtArgumentFrame* PythonQtArgumentFrame::newFrame()
 {
@@ -101,7 +99,8 @@ void PythonQtArgumentFrame::reset()
 QVariant* PythonQtArgumentFrame::nextVariantPtr()
 {
   if (_variantArgs.size() >= PYTHONQT_MAX_ARGUMENT_FRAME_SIZE) {
-    std::cerr << "PYTHONQT_MAX_ARGUMENT_FRAME_SIZE QVariants exceeded, use less complex slots or increase size!" << std::endl;
+    std::cerr << "PYTHONQT_MAX_ARGUMENT_FRAME_SIZE QVariants exceeded, use less complex slots or increase size!"
+              << std::endl;
   }
   _variantArgs.push_back(QVariant());
   return &_variantArgs[_variantArgs.size() - 1];
@@ -110,7 +109,8 @@ QVariant* PythonQtArgumentFrame::nextVariantPtr()
 quint64* PythonQtArgumentFrame::nextPODPtr()
 {
   if (_podArgs.size() >= PYTHONQT_MAX_ARGUMENT_FRAME_SIZE) {
-    std::cerr << "PYTHONQT_MAX_ARGUMENT_FRAME_SIZE PODs exceeded, use less complex slots or increase size!" << std::endl;
+    std::cerr << "PYTHONQT_MAX_ARGUMENT_FRAME_SIZE PODs exceeded, use less complex slots or increase size!"
+              << std::endl;
   }
   _podArgs.push_back(0);
   return &_podArgs[_podArgs.size() - 1];

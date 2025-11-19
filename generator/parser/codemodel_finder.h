@@ -39,43 +39,38 @@
 **
 ****************************************************************************/
 
-
 #ifndef CODEMODEL_FINDER_H
-#define CODEMODEL_FINDER_H
+  #define CODEMODEL_FINDER_H
 
-#include "default_visitor.h"
-#include "codemodel_fwd.h"
-#include "name_compiler.h"
+  #include "default_visitor.h"
+  #include "codemodel_fwd.h"
+  #include "name_compiler.h"
 
 class TokenStream;
 class Binder;
 
-class CodeModelFinder: protected DefaultVisitor
+class CodeModelFinder : protected DefaultVisitor
 {
-  enum ResolvePolicy
-  {
-    ResolveScope,
-    ResolveItem
-  };
+  enum ResolvePolicy { ResolveScope, ResolveItem };
 
 public:
-  CodeModelFinder(CodeModel *model, Binder *binder);
+  CodeModelFinder(CodeModel* model, Binder* binder);
   virtual ~CodeModelFinder();
 
-  ScopeModelItem resolveScope(NameAST *name, ScopeModelItem scope);
+  ScopeModelItem resolveScope(NameAST* name, ScopeModelItem scope);
 
-  inline CodeModel *model() const { return _M_model; }
+  inline CodeModel* model() const { return _M_model; }
 
 protected:
-  virtual void visitName(NameAST *node);
-  virtual void visitUnqualifiedName(UnqualifiedNameAST *node);
+  virtual void visitName(NameAST* node);
+  virtual void visitUnqualifiedName(UnqualifiedNameAST* node);
 
   ScopeModelItem changeCurrentScope(ScopeModelItem scope);
 
 private:
-  CodeModel *_M_model;
-  Binder *_M_binder;
-  TokenStream *_M_token_stream;
+  CodeModel* _M_model;
+  Binder* _M_binder;
+  TokenStream* _M_token_stream;
   NameCompiler name_cc;
 
   ScopeModelItem _M_current_scope;

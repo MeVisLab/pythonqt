@@ -46,35 +46,37 @@
 #include "reporthandler.h"
 #include "fileout.h"
 
-void PriGenerator::addHeader(const QString &folder, const QString &header)
+void PriGenerator::addHeader(const QString& folder, const QString& header)
 {
-    priHash[folder].headers << header;
+  priHash[folder].headers << header;
 }
 
-void PriGenerator::addSource(const QString &folder, const QString &source)
+void PriGenerator::addSource(const QString& folder, const QString& source)
 {
-    priHash[folder].sources << source;
+  priHash[folder].sources << source;
 }
 
-static void collectAndRemoveFile(QTextStream& stream, const QString& file) {
+static void collectAndRemoveFile(QTextStream& stream, const QString& file)
+{
   QFile f(file);
   if (f.open(QIODevice::ReadOnly | QIODevice::Text)) {
     QString s = QString::fromLatin1(f.readAll());
     if (file.endsWith(".cpp")) {
       // remove first line include
-      s = s.mid(s.indexOf('\n')+1);
+      s = s.mid(s.indexOf('\n') + 1);
     }
     stream << s;
     f.close();
     QFile::remove(file);
   }
 }
-                   
-static QString combineIncludes(const QString& text) {
+
+static QString combineIncludes(const QString& text)
+{
   QStringList lines = text.split('\n');
   QSet<QString> includes;
   QString result;
-  for (QString line :  lines) {
+  for (QString line : lines) {
     if (line.startsWith("#include")) {
       includes.insert(line);
     } else if (line.startsWith("#") && line.contains("PYTHONQTWRAPPER_")) {
@@ -83,25 +85,27 @@ static QString combineIncludes(const QString& text) {
       result += line + "\n";
     }
   }
-#if QT_VERSION < QT_VERSION_CHECK(5,14,0)
-      QStringList includeList = includes.toList();
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
+  QStringList includeList = includes.toList();
 #else
-      QStringList includeList(includes.begin(), includes.end());
+  QStringList includeList(includes.begin(), includes.end());
 #endif
   std::sort(includeList.begin(), includeList.end());
   result = includeList.join("\n") + result;
   return result;
 }
 
-QStringList PriGenerator::compactFiles(const QStringList& list, const QString& ext, const QString& dir, const QString& prefix) {
+QStringList PriGenerator::compactFiles(const QStringList& list, const QString& ext, const QString& dir,
+  const QString& prefix)
+{
   QStringList outList;
   int count = list.count();
   int fileNum = 0;
   QString srcDir = dir;
   if (dir.endsWith("_builtin")) {
-    srcDir = dir.left(dir.length()-strlen("_builtin"));
+    srcDir = dir.left(dir.length() - strlen("_builtin"));
   }
-  while (count>0) {
+  while (count > 0) {
     QString outFileName = prefix + QString::number(fileNum) + ext;
     FileOut file(dir + "/" + outFileName);
     if (ext == ".cpp") {
@@ -110,8 +114,8 @@ QStringList PriGenerator::compactFiles(const QStringList& list, const QString& e
     outList << outFileName;
     QString allText;
     QTextStream ts(&allText);
-    for (int i = 0; i< maxClassesPerFile && count>0; i++) {
-      collectAndRemoveFile(ts,  srcDir + "/" + list.at(list.count()-count));
+    for (int i = 0; i < maxClassesPerFile && count > 0; i++) {
+      collectAndRemoveFile(ts, srcDir + "/" + list.at(list.count() - count));
       count--;
     }
     allText = combineIncludes(allText);
@@ -123,46 +127,46 @@ QStringList PriGenerator::compactFiles(const QStringList& list, const QString& e
 
 void PriGenerator::generate()
 {
-    QHashIterator<QString, Pri> pri(priHash);
-    while (pri.hasNext()) {
-        pri.next();
-        QStringList list = pri.value().headers;
-        if (list.isEmpty())
-            continue;
+  QHashIterator<QString, Pri> pri(priHash);
+  while (pri.hasNext()) {
+    pri.next();
+    QStringList list = pri.value().headers;
+    if (list.isEmpty())
+      continue;
 
-        QString folder = pri.key();
-        folder.replace('\\','/');
-        int idx = folder.indexOf('/');
-        folder = folder.left(idx);
+    QString folder = pri.key();
+    folder.replace('\\', '/');
+    int idx = folder.indexOf('/');
+    folder = folder.left(idx);
 
-        std::sort(list.begin(), list.end());
-        FileOut file(m_out_dir + "/generated_cpp/" + pri.key());
-      
-        // strange idea to do the file compacting so late, but it is the most effective way without patching the generator a lot
-        bool compact = true;
-        if (compact) {
-          list = compactFiles(list, ".h", m_out_dir + "/generated_cpp/" + folder, folder); 
-        }
-      
-        file.stream << "HEADERS += \\\n";
-        for (const QString& entry : list) {
-          file.stream << "           $$PWD/" << entry << " \\\n";
-        }
+    std::sort(list.begin(), list.end());
+    FileOut file(m_out_dir + "/generated_cpp/" + pri.key());
 
-        file.stream << "\n";
-        file.stream << "SOURCES += \\\n";
-        list = pri.value().sources;
-        std::sort(list.begin(), list.end());
-        if (compact) {
-          list = compactFiles(list, ".cpp", m_out_dir + "/generated_cpp/" + folder, folder); 
-        }
-        for (const QString& entry : list) {
-            file.stream << "           $$PWD/" << entry << " \\\n";
-        }
-        file.stream << "           $$PWD/" << folder << "_init.cpp\n";
-
-        if (file.done())
-            ++m_num_generated_written;
-        ++m_num_generated;
+    // strange idea to do the file compacting so late, but it is the most effective way without patching the generator a lot
+    bool compact = true;
+    if (compact) {
+      list = compactFiles(list, ".h", m_out_dir + "/generated_cpp/" + folder, folder);
     }
+
+    file.stream << "HEADERS += \\\n";
+    for (const QString& entry : list) {
+      file.stream << "           $$PWD/" << entry << " \\\n";
+    }
+
+    file.stream << "\n";
+    file.stream << "SOURCES += \\\n";
+    list = pri.value().sources;
+    std::sort(list.begin(), list.end());
+    if (compact) {
+      list = compactFiles(list, ".cpp", m_out_dir + "/generated_cpp/" + folder, folder);
+    }
+    for (const QString& entry : list) {
+      file.stream << "           $$PWD/" << entry << " \\\n";
+    }
+    file.stream << "           $$PWD/" << folder << "_init.cpp\n";
+
+    if (file.done())
+      ++m_num_generated_written;
+    ++m_num_generated;
+  }
 }

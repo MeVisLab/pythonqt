@@ -52,9 +52,8 @@ extern PYTHONQT_EXPORT PyTypeObject PythonQtBoolResult_Type;
 
 //! defines a python object that stores a single bool
 struct PythonQtBoolResultObject {
-    PyObject_HEAD
-    bool _value;
+  PyObject_HEAD
+  bool _value;
 };
-
 
 #endif

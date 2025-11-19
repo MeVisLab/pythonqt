@@ -46,21 +46,24 @@
 #include "PythonQtCppWrapperFactory.h"
 #include <QObject>
 
-
 // declare our own custom object
-class CustomObject {
+class CustomObject
+{
 public:
   CustomObject() {}
-  CustomObject(const QString& first, const QString& last) { _firstName = first; _lastName = last; }
+  CustomObject(const QString& first, const QString& last)
+  {
+    _firstName = first;
+    _lastName = last;
+  }
 
   QString _firstName;
   QString _lastName;
-
 };
 
-
 // add a decorator that allows to access the CustomObject from PythonQt
-class CustomObjectWrapper : public QObject {
+class CustomObjectWrapper : public QObject
+{
 
   Q_OBJECT
 
@@ -79,7 +82,6 @@ public Q_SLOTS:
   void setFirstName(CustomObject* o, const QString& name) { o->_firstName = name; }
 
   void setLastName(CustomObject* o, const QString& name) { o->_lastName = name; }
-
 };
 
 #endif

@@ -51,8 +51,8 @@
 #include <QVariant>
 #include <QLayout>
 
-
-class PyExampleObject : public QObject {
+class PyExampleObject : public QObject
+{
 
   Q_OBJECT
 
@@ -61,7 +61,7 @@ public:
 
 public Q_SLOTS:
 
-  //! example for passing a PyObject directly from Qt to Python (without extra mashalling) 
+  //! example for passing a PyObject directly from Qt to Python (without extra mashalling)
   PyObject* getMainModule();
 
   void showInformation(const QString& str);
@@ -73,7 +73,6 @@ public Q_SLOTS:
   QObject* findChild(QObject* o, const QString& name);
 
   QVariantMap testMap();
-
 };
 
 #endif

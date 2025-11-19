@@ -39,16 +39,17 @@
 **
 ****************************************************************************/
 
-
 #ifndef RXX_ALLOCATOR_H
-#define RXX_ALLOCATOR_H
+  #define RXX_ALLOCATOR_H
 
-#include <cstddef>
-#include <cstdlib>
-#include <cstring>
-#include <memory>
+  #include <cstddef>
+  #include <cstdlib>
+  #include <cstring>
+  #include <memory>
 
-template <class _Tp> class rxx_allocator {
+template<class _Tp>
+class rxx_allocator
+{
 public:
   typedef _Tp value_type;
   typedef _Tp* pointer;
@@ -61,14 +62,16 @@ public:
   static const size_type max_block_count = size_type(-1);
   static const size_type _S_block_size = 1 << 16; // 64K
 
-  rxx_allocator() {
+  rxx_allocator()
+  {
     _M_block_index = max_block_count;
     _M_current_index = 0;
     _M_storage = 0;
     _M_current_block = 0;
   }
 
-  ~rxx_allocator() {
+  ~rxx_allocator()
+  {
     for (size_type index = 0; index < _M_block_index + 1; ++index)
       delete[] _M_storage[index];
 
@@ -78,28 +81,24 @@ public:
   pointer address(reference __val) { return &__val; }
   const_pointer address(const_reference __val) const { return &__val; }
 
-  pointer allocate(size_type __n, const void* = 0) {
+  pointer allocate(size_type __n, const void* = 0)
+  {
     const size_type bytes = __n * sizeof(_Tp);
 
-    if (_M_current_block == 0
-        || _S_block_size < _M_current_index + bytes)
-      {
-        ++_M_block_index;
+    if (_M_current_block == 0 || _S_block_size < _M_current_index + bytes) {
+      ++_M_block_index;
 
-        _M_storage = reinterpret_cast<char**>
-          (::realloc(_M_storage, sizeof(char*) * (1 + _M_block_index)));
+      _M_storage = reinterpret_cast<char**>(::realloc(_M_storage, sizeof(char*) * (1 + _M_block_index)));
 
-        _M_current_block = _M_storage[_M_block_index] = reinterpret_cast<char*>
-          (new char[_S_block_size]);
+      _M_current_block = _M_storage[_M_block_index] = reinterpret_cast<char*>(new char[_S_block_size]);
 
-#if defined(RXX_ALLOCATOR_INIT_0) // ### make it a policy
-        ::memset(_M_current_block, 0, _S_block_size);
-#endif
-        _M_current_index = 0;
-      }
+  #if defined(RXX_ALLOCATOR_INIT_0) // ### make it a policy
+      ::memset(_M_current_block, 0, _S_block_size);
+  #endif
+      _M_current_index = 0;
+    }
 
-    pointer p = reinterpret_cast<pointer>
-      (_M_current_block + _M_current_index);
+    pointer p = reinterpret_cast<pointer>(_M_current_block + _M_current_index);
 
     _M_current_index += bytes;
     // Hack for modern C++ to get aligned allocations
@@ -117,17 +116,21 @@ public:
   void destruct(pointer __p) { __p->~_Tp(); }
 
 private:
-  template <class _Tp1> struct rebind {
+  template<class _Tp1>
+  struct rebind {
     typedef rxx_allocator<_Tp1> other;
   };
 
-  template <class _Tp1> rxx_allocator(const rxx_allocator<_Tp1> &/*__o*/) {}
+  template<class _Tp1>
+  rxx_allocator(const rxx_allocator<_Tp1>& /*__o*/)
+  {
+  }
 
 private:
   size_type _M_block_index;
   size_type _M_current_index;
-  char *_M_current_block;
-  char **_M_storage;
+  char* _M_current_block;
+  char** _M_storage;
 };
 
 #endif // RXX_ALLOCATOR_H

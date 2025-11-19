@@ -48,30 +48,30 @@
 
 class FileOut : public QObject
 {
-    Q_OBJECT
+  Q_OBJECT
 
 private:
-    QByteArray tmp;
-    QString name;
+  QByteArray tmp;
+  QString name;
 
 public:
-    FileOut(QString name);
-    ~FileOut() 
-        {
-            if( !isDone )
-                done();
-        }
+  FileOut(QString name);
+  ~FileOut()
+  {
+    if (!isDone)
+      done();
+  }
 
-    bool done();
-    
-    QTextStream stream;
+  bool done();
 
-    static bool dummy;
-    static bool diff;
-    static bool license;
+  QTextStream stream;
 
- private:
-    bool isDone;
+  static bool dummy;
+  static bool diff;
+  static bool license;
+
+private:
+  bool isDone;
 };
 
 #endif // FILEOUT_H

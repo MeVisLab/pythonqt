@@ -53,8 +53,6 @@ class MetaJavaArgument;
 class MetaJavaEnumValue;
 class MetaJavaEnum;
 
-
-
 class MetaJavaType : public AbstractMetaType
 {};
 

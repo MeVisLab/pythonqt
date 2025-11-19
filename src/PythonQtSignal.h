@@ -53,23 +53,20 @@ extern PYTHONQT_EXPORT PyTypeObject PythonQtSignalFunction_Type;
 
 #define PythonQtSignalFunction_Check(op) (Py_TYPE(op) == &PythonQtSignalFunction_Type)
 
-PyObject* PythonQtSignalFunction_New(PythonQtSlotInfo *, PyObject *,
-           PyObject *);
+PyObject* PythonQtSignalFunction_New(PythonQtSlotInfo*, PyObject*, PyObject*);
 
-struct PythonQtDynamicSignalInfo
-{
+struct PythonQtDynamicSignalInfo {
   QByteArray name;
   QList<QByteArray> signatures;
 };
 
 //! defines a python object that stores a Qt signal info
 struct PythonQtSignalFunctionObject {
-    PyObject_HEAD
-    PythonQtSlotInfo *m_ml; /* Description of the C function to call */
-    PyObject    *m_self; /* Passed as 'self' arg to the C func, can be NULL */
-    PyObject    *m_module; /* The __module__ attribute, can be anything */
-    PythonQtDynamicSignalInfo* _dynamicInfo;
+  PyObject_HEAD
+  PythonQtSlotInfo* m_ml; /* Description of the C function to call */
+  PyObject* m_self;       /* Passed as 'self' arg to the C func, can be NULL */
+  PyObject* m_module;     /* The __module__ attribute, can be anything */
+  PythonQtDynamicSignalInfo* _dynamicInfo;
 };
-
 
 #endif

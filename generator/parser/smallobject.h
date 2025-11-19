@@ -39,22 +39,21 @@
 **
 ****************************************************************************/
 
-
 #ifndef SMALLOBJECT_H
-#define SMALLOBJECT_H
+  #define SMALLOBJECT_H
 
-#include "rxx_allocator.h"
-#include <cstring>
+  #include "rxx_allocator.h"
+  #include <cstring>
 
 class pool
 {
   rxx_allocator<char> __alloc;
 
 public:
-  inline void *allocate(std::size_t __size);
+  inline void* allocate(std::size_t __size);
 };
 
-inline void *pool::allocate(std::size_t __size)
+inline void* pool::allocate(std::size_t __size)
 {
   return __alloc.allocate(__size);
 }

@@ -39,30 +39,27 @@
 **
 ****************************************************************************/
 
-
 #ifndef CONTROL_H
-#define CONTROL_H
+  #define CONTROL_H
 
-#include "symbol.h"
-#include "smallobject.h"
+  #include "symbol.h"
+  #include "smallobject.h"
 
-#include <QtCore/QHash>
+  #include <QtCore/QHash>
 
 struct Declarator;
 struct Type;
 class Lexer;
 class Parser;
 
-struct Context
-{
-  Context *parent;
+struct Context {
+  Context* parent;
 
-  inline void bind(const NameSymbol *name, Type *type)
-  { symbol_table.insert(name, type); }
+  inline void bind(const NameSymbol* name, Type* type) { symbol_table.insert(name, type); }
 
-  inline Type *resolve(const NameSymbol *name) const
+  inline Type* resolve(const NameSymbol* name) const
   {
-    if (Type *type = symbol_table.value(name))
+    if (Type* type = symbol_table.value(name))
       return type;
     else if (parent)
       return parent->resolve(name);
@@ -81,21 +78,23 @@ public:
   class ErrorMessage
   {
   public:
-    ErrorMessage ():
-      _M_line (0),
-      _M_column (0) {}
+    ErrorMessage()
+      : _M_line(0)
+      , _M_column(0)
+    {
+    }
 
-    inline int line () const { return _M_line; }
-    inline void setLine (int line) { _M_line = line; }
+    inline int line() const { return _M_line; }
+    inline void setLine(int line) { _M_line = line; }
 
-    inline int column () const { return _M_column; }
-    inline void setColumn (int column) { _M_column = column; }
+    inline int column() const { return _M_column; }
+    inline void setColumn(int column) { _M_column = column; }
 
-    inline QString fileName () const { return _M_fileName; }
-    inline void setFileName (const QString &fileName) { _M_fileName = fileName; }
+    inline QString fileName() const { return _M_fileName; }
+    inline void setFileName(const QString& fileName) { _M_fileName = fileName; }
 
-    inline QString message () const { return _M_message; }
-    inline void setMessage (const QString &message) { _M_message = message; }
+    inline QString message() const { return _M_message; }
+    inline void setMessage(const QString& message) { _M_message = message; }
 
   private:
     int _M_line;
@@ -110,43 +109,44 @@ public:
   inline bool skipFunctionBody() const { return _M_skipFunctionBody; }
   inline void setSkipFunctionBody(bool skip) { _M_skipFunctionBody = skip; }
 
-  Lexer *changeLexer(Lexer *lexer);
-  Parser *changeParser(Parser *parser);
+  Lexer* changeLexer(Lexer* lexer);
+  Parser* changeParser(Parser* parser);
 
-  Lexer *currentLexer() const { return _M_lexer; }
-  Parser *currentParser() const { return _M_parser; }
+  Lexer* currentLexer() const { return _M_lexer; }
+  Parser* currentParser() const { return _M_parser; }
 
-  Context *current_context;
+  Context* current_context;
 
-  inline Context *currentContext() const
-    { return current_context; }
+  inline Context* currentContext() const { return current_context; }
 
   void pushContext();
   void popContext();
 
-  Type *lookupType(const NameSymbol *name) const;
-  void declare(const NameSymbol *name, Type *type);
+  Type* lookupType(const NameSymbol* name) const;
+  void declare(const NameSymbol* name, Type* type);
 
-  inline const NameSymbol *findOrInsertName(const char *data, size_t count)
-  { return name_table.findOrInsert(data, count); }
+  inline const NameSymbol* findOrInsertName(const char* data, size_t count)
+  {
+    return name_table.findOrInsert(data, count);
+  }
 
-  void declareTypedef(const NameSymbol *name, Declarator *d);
-  bool isTypedef(const NameSymbol *name) const;
+  void declareTypedef(const NameSymbol* name, Declarator* d);
+  bool isTypedef(const NameSymbol* name) const;
 
   static bool printErrors() { return _M_printErrors; }
   static void setPrintErrors(bool on) { _M_printErrors = on; }
 
-  void reportError (const ErrorMessage &errmsg);
-  QList<ErrorMessage> errorMessages () const;
-  void clearErrorMessages ();
+  void reportError(const ErrorMessage& errmsg);
+  QList<ErrorMessage> errorMessages() const;
+  void clearErrorMessages();
 
 private:
   NameTable name_table;
   QHash<const NameSymbol*, Declarator*> stl_typedef_table;
   bool _M_skipFunctionBody;
   static bool _M_printErrors;
-  Lexer *_M_lexer;
-  Parser *_M_parser;
+  Lexer* _M_lexer;
+  Parser* _M_parser;
 
   QList<ErrorMessage> _M_error_messages;
 };

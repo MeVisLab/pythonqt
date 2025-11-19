@@ -1,5 +1,5 @@
 #ifndef _PYTHONQTDOC_H
-#define _PYTHONQTDOC_H
+  #define _PYTHONQTDOC_H
 
 /*
  *

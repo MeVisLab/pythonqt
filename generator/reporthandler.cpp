@@ -48,27 +48,26 @@ QString ReportHandler::m_context;
 ReportHandler::DebugLevel ReportHandler::m_debug_level = NoDebug;
 QSet<QString> ReportHandler::m_reported_warnings;
 
-
-void ReportHandler::warning(const QString &text)
+void ReportHandler::warning(const QString& text)
 {
-    QString warningText = QString("WARNING(%1) :: %2").arg(m_context).arg(text);
+  QString warningText = QString("WARNING(%1) :: %2").arg(m_context).arg(text);
 
-    TypeDatabase *db = TypeDatabase::instance();
-    if (db && db->isSuppressedWarning(warningText)) {
-        ++m_suppressed_count;
-    } else if (!m_reported_warnings.contains(warningText)) {
-        qDebug("%s", qPrintable(warningText));
-        ++m_warning_count;
+  TypeDatabase* db = TypeDatabase::instance();
+  if (db && db->isSuppressedWarning(warningText)) {
+    ++m_suppressed_count;
+  } else if (!m_reported_warnings.contains(warningText)) {
+    qDebug("%s", qPrintable(warningText));
+    ++m_warning_count;
 
-        m_reported_warnings.insert(warningText);
-    }
+    m_reported_warnings.insert(warningText);
+  }
 }
 
-void ReportHandler::debug(DebugLevel level, const QString &text)
+void ReportHandler::debug(DebugLevel level, const QString& text)
 {
-    if (m_debug_level == NoDebug)
-        return;
+  if (m_debug_level == NoDebug)
+    return;
 
-    if (level <= m_debug_level)
-        qDebug(" - DEBUG(%s) :: %s", qPrintable(m_context), qPrintable(text));
+  if (level <= m_debug_level)
+    qDebug(" - DEBUG(%s) :: %s", qPrintable(m_context), qPrintable(text));
 }

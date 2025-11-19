@@ -49,117 +49,113 @@
 
 class Generator : public QObject
 {
-    Q_OBJECT
+  Q_OBJECT
 
-    Q_PROPERTY(QString outputDirectory READ outputDirectory WRITE setOutputDirectory)
+  Q_PROPERTY(QString outputDirectory READ outputDirectory WRITE setOutputDirectory)
 
 public:
-    enum Option:uint32_t {
-        NoOption                 = 0x00000000,
-        BoxedPrimitive           = 0x00000001,
-        ExcludeConst             = 0x00000002,
-        ExcludeReference         = 0x00000004,
-        UseNativeIds             = 0x00000008,
+  enum Option : uint32_t {
+    NoOption = 0x00000000,
+    BoxedPrimitive = 0x00000001,
+    ExcludeConst = 0x00000002,
+    ExcludeReference = 0x00000004,
+    UseNativeIds = 0x00000008,
 
-        EnumAsInts               = 0x00000010,
-        SkipName                 = 0x00000020,
-        NoCasts                  = 0x00000040,
-        SkipReturnType           = 0x00000080,
-        OriginalName             = 0x00000100,
-        ShowStatic               = 0x00000200,
-        UnderscoreSpaces         = 0x00000400,
-        ForceEnumCast            = 0x00000800,
-        ArrayAsPointer           = 0x00001000,
-        VirtualCall              = 0x00002000,
-        SkipTemplateParameters   = 0x00004000,
-        SkipAttributes           = 0x00008000,
-        OriginalTypeDescription  = 0x00010000,
-        SkipRemovedArguments     = 0x00020000,
-        IncludeDefaultExpression = 0x00040000,
-        NoReturnStatement        = 0x00080000,
-        NoBlockedSlot            = 0x00100000,
+    EnumAsInts = 0x00000010,
+    SkipName = 0x00000020,
+    NoCasts = 0x00000040,
+    SkipReturnType = 0x00000080,
+    OriginalName = 0x00000100,
+    ShowStatic = 0x00000200,
+    UnderscoreSpaces = 0x00000400,
+    ForceEnumCast = 0x00000800,
+    ArrayAsPointer = 0x00001000,
+    VirtualCall = 0x00002000,
+    SkipTemplateParameters = 0x00004000,
+    SkipAttributes = 0x00008000,
+    OriginalTypeDescription = 0x00010000,
+    SkipRemovedArguments = 0x00020000,
+    IncludeDefaultExpression = 0x00040000,
+    NoReturnStatement = 0x00080000,
+    NoBlockedSlot = 0x00100000,
 
-        SuperCall                = 0x00200000,
-        // The following options have been added for PythonQt:
-        FirstArgIsWrappedObject  = 0x00400000,
-        ConvertReferenceToPtr    = 0x00800000,
-        UseIndexedName           = 0x01000000,
-        ProtectedEnumAsInts      = 0x02000000,
-        AddOwnershipTemplates    = 0x04000000,
+    SuperCall = 0x00200000,
+    // The following options have been added for PythonQt:
+    FirstArgIsWrappedObject = 0x00400000,
+    ConvertReferenceToPtr = 0x00800000,
+    UseIndexedName = 0x01000000,
+    ProtectedEnumAsInts = 0x02000000,
+    AddOwnershipTemplates = 0x04000000,
 
-        ForceValueType           = ExcludeReference | ExcludeConst
-    };
+    ForceValueType = ExcludeReference | ExcludeConst
+  };
 
-    Generator();
+  Generator();
 
-    void setClasses(const AbstractMetaClassList &classes) { m_classes = classes; }
-    AbstractMetaClassList classes() const { return m_classes; }
+  void setClasses(const AbstractMetaClassList& classes) { m_classes = classes; }
+  AbstractMetaClassList classes() const { return m_classes; }
 
-    QString outputDirectory() const { return m_out_dir; }
-    void setOutputDirectory(const QString &outDir) { m_out_dir = outDir; }
-    virtual void generate();
-    void printClasses();
+  QString outputDirectory() const { return m_out_dir; }
+  void setOutputDirectory(const QString& outDir) { m_out_dir = outDir; }
+  virtual void generate();
+  void printClasses();
 
-    int numGenerated() { return m_num_generated; }
-    int numGeneratedAndWritten() { return m_num_generated_written; }
+  int numGenerated() { return m_num_generated; }
+  int numGeneratedAndWritten() { return m_num_generated_written; }
 
-    virtual bool shouldGenerate(const AbstractMetaClass *) const { return true; }
-    virtual QString subDirectoryForClass(const AbstractMetaClass *java_class) const;
-    virtual QString fileNameForClass(const AbstractMetaClass *java_class) const;
-    virtual void write(QTextStream &s, const AbstractMetaClass *java_class);
+  virtual bool shouldGenerate(const AbstractMetaClass*) const { return true; }
+  virtual QString subDirectoryForClass(const AbstractMetaClass* java_class) const;
+  virtual QString fileNameForClass(const AbstractMetaClass* java_class) const;
+  virtual void write(QTextStream& s, const AbstractMetaClass* java_class);
 
-    bool hasDefaultConstructor(const AbstractMetaType *type);
+  bool hasDefaultConstructor(const AbstractMetaType* type);
 
-    // QtScript
-    void setQtMetaTypeDeclaredTypeNames(const QSet<QString> &names)
-        { m_qmetatype_declared_typenames = names; }
-    QSet<QString> qtMetaTypeDeclaredTypeNames() const
-        { return m_qmetatype_declared_typenames; }
+  // QtScript
+  void setQtMetaTypeDeclaredTypeNames(const QSet<QString>& names) { m_qmetatype_declared_typenames = names; }
+  QSet<QString> qtMetaTypeDeclaredTypeNames() const { return m_qmetatype_declared_typenames; }
 
 protected:
-    
 
-    void verifyDirectoryFor(const QFile &file);
+  void verifyDirectoryFor(const QFile& file);
 
-    AbstractMetaClassList m_classes;
-    int m_num_generated;
-    int m_num_generated_written;
-    QString m_out_dir;
+  AbstractMetaClassList m_classes;
+  int m_num_generated;
+  int m_num_generated_written;
+  QString m_out_dir;
 
-    // QtScript
-    QSet<QString> m_qmetatype_declared_typenames;
+  // QtScript
+  QSet<QString> m_qmetatype_declared_typenames;
 };
 
-class Indentor {
+class Indentor
+{
 public:
-    Indentor():
-        indent(0)
-        {}
-    int indent;
+  Indentor()
+    : indent(0)
+  {
+  }
+  int indent;
 };
 
-class Indentation {
+class Indentation
+{
 public:
-    Indentation(Indentor &indentor):
-        indentor(indentor)
-        {
-            indentor.indent++;
-        }
-    ~Indentation()
-        {
-            indentor.indent--;
-        }
+  Indentation(Indentor& indentor)
+    : indentor(indentor)
+  {
+    indentor.indent++;
+  }
+  ~Indentation() { indentor.indent--; }
 
 private:
-    Indentor &indentor;
+  Indentor& indentor;
 };
 
-inline QTextStream &operator <<(QTextStream &s, const Indentor &indentor)
+inline QTextStream& operator<<(QTextStream& s, const Indentor& indentor)
 {
-    for (int i=0; i<indentor.indent; ++i)
-        s << "    ";
-    return s;
+  for (int i = 0; i < indentor.indent; ++i)
+    s << "    ";
+  return s;
 }
-
 
 #endif // GENERATOR_H

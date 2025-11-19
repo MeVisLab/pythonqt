@@ -63,20 +63,23 @@ struct PythonQtInstanceWrapper {
   PyObject_HEAD
 
   //! the class information, this is set even if the _obj or _wrappedPtr is NULL to support typed NULL pointers
-  inline PythonQtClassInfo* classInfo()
-  {  return ((PythonQtClassWrapper*)Py_TYPE(this))->_classInfo; }
+  inline PythonQtClassInfo* classInfo() { return ((PythonQtClassWrapper*)Py_TYPE(this))->_classInfo; }
 
   inline PythonQtDynamicClassInfo* dynamicClassInfo()
-  { return ((PythonQtClassWrapper*)Py_TYPE(this))->_dynamicClassInfo; }
+  {
+    return ((PythonQtClassWrapper*)Py_TYPE(this))->_dynamicClassInfo;
+  }
 
   //! set the QObject pointer
-  void setQObject(QObject* object) {
+  void setQObject(QObject* object)
+  {
     _obj = object;
     _objPointerCopy = object;
   }
 
   //! Passes the ownership of the wrapped object to C++
-  void passOwnershipToCPP() {
+  void passOwnershipToCPP()
+  {
     // we pass the ownership to C++
     _ownedByPythonQt = false;
     // handle shell instance
@@ -91,7 +94,8 @@ struct PythonQtInstanceWrapper {
   }
 
   //! Passes the ownership to Python
-  void passOwnershipToPython() {
+  void passOwnershipToPython()
+  {
     _ownedByPythonQt = true;
     // if the shell instance was owned by C++ and the ownership goes to Python,
     // we need to remove the extra ref count that kept the Python part alive from the C++ side.
@@ -101,7 +105,6 @@ struct PythonQtInstanceWrapper {
     }
   }
 
-
   //! pointer to the wrapped Qt object or if _wrappedPtr is set, the Qt object that wraps the C++ Ptr
   QPointer<QObject> _obj;
   //! a copy of the _obj pointer, which is required because the wrapper needs to
@@ -109,7 +112,7 @@ struct PythonQtInstanceWrapper {
   void* _objPointerCopy;
 
   //! optional C++ object Ptr that is wrapped by the above _obj
-  void*    _wrappedPtr;
+  void* _wrappedPtr;
 
   // TODO xxx: put booleans into int that holds flags
 
@@ -124,12 +127,10 @@ struct PythonQtInstanceWrapper {
 
   //! stores if the shell instance (C++) owns the wrapper with its ref count
   bool _shellInstanceRefCountsWrapper;
-
 };
 
-int PythonQtInstanceWrapper_init(PythonQtInstanceWrapper * self, PyObject * args, PyObject * kwds);
+int PythonQtInstanceWrapper_init(PythonQtInstanceWrapper* self, PyObject* args, PyObject* kwds);
 
-PyObject *PythonQtInstanceWrapper_delete(PythonQtInstanceWrapper * self);
+PyObject* PythonQtInstanceWrapper_delete(PythonQtInstanceWrapper* self);
 
 #endif
-

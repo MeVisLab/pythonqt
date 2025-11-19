@@ -53,10 +53,12 @@
 #include <QByteArray>
 
 #if defined(__GNUG__) && !defined(__clang__)
-#include <cxxabi.h>
+  #include <cxxabi.h>
 #endif
 
-bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObject* args, bool strict, PythonQtSlotInfo* info, void* firstArgument, PyObject** pythonReturnValue, void** directReturnValuePointer, PythonQtPassThisOwnershipType* passThisOwnershipToCPP)
+bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObject* args, bool strict,
+  PythonQtSlotInfo* info, void* firstArgument, PyObject** pythonReturnValue, void** directReturnValuePointer,
+  PythonQtPassThisOwnershipType* passThisOwnershipToCPP)
 {
   if (directReturnValuePointer) {
     *directReturnValuePointer = nullptr;
@@ -74,7 +76,7 @@ bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObj
 
   // set return argument to NULL
   argList[0] = nullptr;
-  
+
   bool ok = true;
   PythonQtPassThisOwnershipType passThisOwnership = IgnoreOwnership;
 
@@ -92,21 +94,22 @@ bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObj
     }
     if (arg1) {
       // upcast to correct parent class
-      arg1 = ((char*)arg1)+info->upcastingOffset();
+      arg1 = ((char*)arg1) + info->upcastingOffset();
     }
 
     argList[1] = &arg1;
   }
-  for (int i = 1 + instanceDecoOffset; i<argc && ok; i++) {
+  for (int i = 1 + instanceDecoOffset; i < argc && ok; i++) {
     const PythonQtSlotInfo::ParameterInfo& param = params.at(i);
-    argList[i] = PythonQtConv::ConvertPythonToQt(param, PyTuple_GET_ITEM(args, i - 1 - instanceDecoOffset), strict, classInfo, nullptr, frame);
-    if (argList[i]==nullptr) {
+    argList[i] = PythonQtConv::ConvertPythonToQt(param, PyTuple_GET_ITEM(args, i - 1 - instanceDecoOffset), strict,
+      classInfo, nullptr, frame);
+    if (argList[i] == nullptr) {
       ok = false;
       break;
     }
     if (param.newOwnerOfThis) {
       // (typical use case: setParent(someObject) -> pass ownership of this to someObject)
-      if (argList[i] && (*(void**)argList[i])==nullptr) {
+      if (argList[i] && (*(void**)argList[i]) == nullptr) {
         // if the object to which the ownership should be passed is NULL,
         // we need to pass the ownership to Python
         passThisOwnership = PassOwnershipToPython;
@@ -128,7 +131,7 @@ bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObj
       if (!directReturnValuePointer) {
         // create empty default value for the return value
         argList[0] = PythonQtConv::CreateQtReturnValue(returnValueParam, frame);
-        if (argList[0]==nullptr) {
+        if (argList[0] == nullptr) {
           // return value could not be created, maybe we have a registered class with a default constructor, so that we can construct the pythonqt wrapper object and
           // pass its internal pointer
           PythonQtClassInfo* info = PythonQt::priv()->getClassInfo(returnValueParam.name);
@@ -148,7 +151,6 @@ bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObj
       }
     }
 
-
     PythonQt::ProfilingCB* profilingCB = PythonQt::priv()->profilingCB();
     if (profilingCB) {
       const char* className = nullptr;
@@ -163,29 +165,29 @@ bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObj
 
     // invoke the slot via metacall
     bool hadException = false;
-    QObject* obj = info->decorator()?info->decorator():objectToCall;
+    QObject* obj = info->decorator() ? info->decorator() : objectToCall;
     if (!obj) {
       hadException = true;
       PyErr_SetString(PyExc_RuntimeError, "Trying to call a slot on a deleted QObject!");
     } else {
       try {
         PythonQtSlotInfo::invokeQtMethod(obj, info, argList);
-      } catch (std::out_of_range & e) {
+      } catch (std::out_of_range& e) {
         hadException = true;
         QByteArray what("std::out_of_range: ");
         what += e.what();
         PyErr_SetString(PyExc_IndexError, what.constData());
-      } catch (std::bad_alloc & e) {
+      } catch (std::bad_alloc& e) {
         hadException = true;
         QByteArray what("std::bad_alloc: ");
         what += e.what();
         PyErr_SetString(PyExc_MemoryError, what.constData());
-      } catch (std::runtime_error & e) {
+      } catch (std::runtime_error& e) {
         hadException = true;
         QByteArray what("std::runtime_error: ");
         what += e.what();
         PyErr_SetString(PyExc_RuntimeError, what.constData());
-      } catch (std::logic_error & e) {
+      } catch (std::logic_error& e) {
         hadException = true;
         QByteArray what("std::logic_error: ");
         what += e.what();
@@ -197,7 +199,7 @@ bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObj
         PyErr_SetString(PyExc_RuntimeError, what.constData());
 #ifdef PYTHONQT_CATCH_ALL_EXCEPTIONS
   #if defined(__GNUG__) && !defined(__clang__)
-      } catch (abi::__forced_unwind &) {
+      } catch (abi::__forced_unwind&) {
         throw;
   #endif
       } catch (...) {
@@ -206,7 +208,7 @@ bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObj
 #endif
       }
     }
-  
+
     if (profilingCB) {
       profilingCB(PythonQt::Leave, nullptr, nullptr, nullptr);
     }
@@ -223,7 +225,9 @@ bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObj
           }
         }
       } else {
-        QString e = QString("Called ") + info->fullSignature() + ", return type '" + returnValueParam.name + "' is ignored because it is unknown to PythonQt. Probably you should register it using qRegisterMetaType() or add a default constructor decorator to the class.";
+        QString e = QString("Called ") + info->fullSignature() + ", return type '" + returnValueParam.name
+                    + "' is ignored because it is unknown to PythonQt. Probably you should register it using "
+                      "qRegisterMetaType() or add a default constructor decorator to the class.";
         PyErr_SetString(PyExc_ValueError, QStringToPythonConstCharPointer(e));
         result = nullptr;
         ok = false;
@@ -237,7 +241,7 @@ bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObj
   PythonQtArgumentFrame::deleteFrame(frame);
 
   *pythonReturnValue = result;
-  
+
   if (result && returnValueParam.passOwnershipToPython) {
     // if the ownership should be passed to PythonQt, it has to be a PythonQtInstanceWrapper,
     // cast it and pass the ownership
@@ -247,7 +251,7 @@ bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObj
     }
     // NOTE: a return value can not pass the ownership to CPP, it would not make sense...
   }
-  // Either we have a 
+  // Either we have a
   // a) a result value
   // b) a directReturnValuePointer and it has a value or the return value is void
   // NOTE: it is important to only return here, otherwise the stack will not be popped!!!
@@ -256,25 +260,27 @@ bool PythonQtCallSlot(PythonQtClassInfo* classInfo, QObject* objectToCall, PyObj
 
 //-----------------------------------------------------------------------------------
 
-static PythonQtSlotFunctionObject *pythonqtslot_free_list = nullptr;
+static PythonQtSlotFunctionObject* pythonqtslot_free_list = nullptr;
 
-PyObject *PythonQtSlotFunction_Call(PyObject *func, PyObject *args, PyObject *kw)
+PyObject* PythonQtSlotFunction_Call(PyObject* func, PyObject* args, PyObject* kw)
 {
   PythonQtSlotFunctionObject* f = (PythonQtSlotFunctionObject*)func;
   return PythonQtMemberFunction_Call(f->m_ml, f->m_self, args, kw);
 }
 
-PyObject *PythonQtMemberFunction_Call(PythonQtSlotInfo* info, PyObject* m_self, PyObject *args, PyObject *kw)
+PyObject* PythonQtMemberFunction_Call(PythonQtSlotInfo* info, PyObject* m_self, PyObject* args, PyObject* kw)
 {
   if (PyObject_TypeCheck(m_self, &PythonQtInstanceWrapper_Type)) {
-    PythonQtInstanceWrapper* self = (PythonQtInstanceWrapper*) m_self;
-    if (!info->isClassDecorator() && (self->_obj==nullptr && self->_wrappedPtr==nullptr)) {
-      QString error = QString("Trying to call '") + info->slotName() + "' on a destroyed " + self->classInfo()->className() + " object";
+    PythonQtInstanceWrapper* self = (PythonQtInstanceWrapper*)m_self;
+    if (!info->isClassDecorator() && (self->_obj == nullptr && self->_wrappedPtr == nullptr)) {
+      QString error = QString("Trying to call '") + info->slotName() + "' on a destroyed "
+                      + self->classInfo()->className() + " object";
       PyErr_SetString(PyExc_ValueError, QStringToPythonConstCharPointer(error));
       return nullptr;
     } else {
       PythonQtPassThisOwnershipType ownership;
-      PyObject* result = PythonQtSlotFunction_CallImpl(self->classInfo(), self->_obj, info, args, kw, self->_wrappedPtr, nullptr, &ownership);
+      PyObject* result = PythonQtSlotFunction_CallImpl(self->classInfo(), self->_obj, info, args, kw, self->_wrappedPtr,
+        nullptr, &ownership);
       if (ownership == PassOwnershipToCPP) {
         self->passOwnershipToCPP();
       } else if (ownership == PassOwnershipToPython) {
@@ -283,26 +289,29 @@ PyObject *PythonQtMemberFunction_Call(PythonQtSlotInfo* info, PyObject* m_self, 
       return result;
     }
   } else if (m_self->ob_type == &PythonQtClassWrapper_Type) {
-    PythonQtClassWrapper* type = (PythonQtClassWrapper*) m_self;
+    PythonQtClassWrapper* type = (PythonQtClassWrapper*)m_self;
     if (info->isClassDecorator()) {
       return PythonQtSlotFunction_CallImpl(type->classInfo(), nullptr, info, args, kw);
     } else {
       // otherwise, it is an unbound call and we have an instanceDecorator or normal slot...
       Py_ssize_t argc = PyTuple_Size(args);
-      if (argc>0) {
+      if (argc > 0) {
         PyObject* firstArg = PyTuple_GET_ITEM(args, 0);
         if (PyObject_TypeCheck(firstArg, (PyTypeObject*)&PythonQtInstanceWrapper_Type)
-          && ((PythonQtInstanceWrapper*)firstArg)->classInfo()->inherits(type->classInfo())) {
+            && ((PythonQtInstanceWrapper*)firstArg)->classInfo()->inherits(type->classInfo()))
+        {
           PythonQtInstanceWrapper* self = (PythonQtInstanceWrapper*)firstArg;
-          if (!info->isClassDecorator() && (self->_obj==nullptr && self->_wrappedPtr==nullptr)) {
-            QString error = QString("Trying to call '") + info->slotName() + "' on a destroyed " + self->classInfo()->className() + " object";
+          if (!info->isClassDecorator() && (self->_obj == nullptr && self->_wrappedPtr == nullptr)) {
+            QString error = QString("Trying to call '") + info->slotName() + "' on a destroyed "
+                            + self->classInfo()->className() + " object";
             PyErr_SetString(PyExc_ValueError, QStringToPythonConstCharPointer(error));
             return nullptr;
           }
           // strip the first argument...
           PyObject* newargs = PyTuple_GetSlice(args, 1, argc);
           PythonQtPassThisOwnershipType ownership;
-          PyObject* result = PythonQtSlotFunction_CallImpl(self->classInfo(), self->_obj, info, newargs, kw, self->_wrappedPtr, nullptr, &ownership);
+          PyObject* result = PythonQtSlotFunction_CallImpl(self->classInfo(), self->_obj, info, newargs, kw,
+            self->_wrappedPtr, nullptr, &ownership);
           if (ownership == PassOwnershipToCPP) {
             self->passOwnershipToCPP();
           } else if (ownership == PassOwnershipToPython) {
@@ -312,13 +321,15 @@ PyObject *PythonQtMemberFunction_Call(PythonQtSlotInfo* info, PyObject* m_self, 
           return result;
         } else {
           // first arg is not of correct type!
-          QString error = "slot " + info->fullSignature() + " requires " + type->classInfo()->className() + " instance as first argument, got " + firstArg->ob_type->tp_name;
+          QString error = "slot " + info->fullSignature() + " requires " + type->classInfo()->className()
+                          + " instance as first argument, got " + firstArg->ob_type->tp_name;
           PyErr_SetString(PyExc_ValueError, QStringToPythonConstCharPointer(error));
           return nullptr;
         }
       } else {
         // wrong number of args
-        QString error = "slot " + info->fullSignature() + " requires " + type->classInfo()->className() + " instance as first argument.";
+        QString error = "slot " + info->fullSignature() + " requires " + type->classInfo()->className()
+                        + " instance as first argument.";
         PyErr_SetString(PyExc_ValueError, QStringToPythonConstCharPointer(error));
         return nullptr;
       }
@@ -328,22 +339,24 @@ PyObject *PythonQtMemberFunction_Call(PythonQtSlotInfo* info, PyObject* m_self, 
 }
 
 namespace {
-  QString limitString(const QString& aString, int maxLength = 2000, const QString& ellipsis = "...")
-  {
-    if (aString.length() <= maxLength)
-      return aString;
+QString limitString(const QString& aString, int maxLength = 2000, const QString& ellipsis = "...")
+{
+  if (aString.length() <= maxLength)
+    return aString;
 
-    const int beforeSize = (maxLength - ellipsis.length()) / 2;
-    auto beforeEllipsis = aString.left(beforeSize);
-    auto afterEllipsis = aString.right(maxLength - ellipsis.length() - beforeSize);
+  const int beforeSize = (maxLength - ellipsis.length()) / 2;
+  auto beforeEllipsis = aString.left(beforeSize);
+  auto afterEllipsis = aString.right(maxLength - ellipsis.length() - beforeSize);
 
-    return beforeEllipsis + ellipsis + afterEllipsis;
-  }
+  return beforeEllipsis + ellipsis + afterEllipsis;
+}
 };
 
-PyObject *PythonQtSlotFunction_CallImpl(PythonQtClassInfo* classInfo, QObject* objectToCall, PythonQtSlotInfo* info, PyObject *args, PyObject * kw, void* firstArg, void** directReturnValuePointer,  PythonQtPassThisOwnershipType* passThisOwnershipToCPP)
+PyObject* PythonQtSlotFunction_CallImpl(PythonQtClassInfo* classInfo, QObject* objectToCall, PythonQtSlotInfo* info,
+  PyObject* args, PyObject* kw, void* firstArg, void** directReturnValuePointer,
+  PythonQtPassThisOwnershipType* passThisOwnershipToCPP)
 {
-  int argc = args?PyTuple_Size(args):0;
+  int argc = args ? PyTuple_Size(args) : 0;
 
   if (passThisOwnershipToCPP) {
     *passThisOwnershipToCPP = IgnoreOwnership;
@@ -356,9 +369,9 @@ PyObject *PythonQtSlotFunction_CallImpl(PythonQtClassInfo* classInfo, QObject* o
     *directReturnValuePointer = nullptr;
   }
 
-  if( (kw != nullptr && PyDict_Check(kw) && (PyDict_Size(kw) > 0)) ) {
+  if ((kw != nullptr && PyDict_Check(kw) && (PyDict_Size(kw) > 0))) {
     // -------------------keyword args slot call -------------------------
-    
+
     // keyword arguments are given as dict, must be mapped to arguments in correct order
     // very complicated, so call them only on a slot with last variable name kwargs
     // slot must be implemented as
@@ -366,10 +379,10 @@ PyObject *PythonQtSlotFunction_CallImpl(PythonQtClassInfo* classInfo, QObject* o
     int numCombinedArgs = argc + 1;
     PyObject* combinedArgs = PyTuple_New(numCombinedArgs);
 
-    for (int i = 0; i<argc; i++) {
-      PyObject* p = PyTuple_GetItem(args,i);
+    for (int i = 0; i < argc; i++) {
+      PyObject* p = PyTuple_GetItem(args, i);
       Py_INCREF(p);
-      PyTuple_SetItem(combinedArgs,i,p);
+      PyTuple_SetItem(combinedArgs, i, p);
     }
 
     Py_INCREF(kw);
@@ -390,32 +403,38 @@ PyObject *PythonQtSlotFunction_CallImpl(PythonQtClassInfo* classInfo, QObject* o
     }
     if (kwSlotFound) {
 #ifdef PYTHONQT_DEBUG
-      std::cout << "called " << slotInfo->metaMethod()->typeName() << " " << slotInfo->signature().constData() << std::endl;
+      std::cout << "called " << slotInfo->metaMethod()->typeName() << " " << slotInfo->signature().constData()
+                << std::endl;
 #endif
 
-      ok = PythonQtCallSlot(classInfo, objectToCall, combinedArgs, false, slotInfo, firstArg, &r, directReturnValuePointer, passThisOwnershipToCPP);
+      ok = PythonQtCallSlot(classInfo, objectToCall, combinedArgs, false, slotInfo, firstArg, &r,
+        directReturnValuePointer, passThisOwnershipToCPP);
       if (!ok && !PyErr_Occurred()) {
-        QString e = QString("Called ") + info->fullSignature() + " with wrong arguments: " + limitString(PythonQtConv::PyObjGetString(args));
+        QString e = QString("Called ") + info->fullSignature()
+                    + " with wrong arguments: " + limitString(PythonQtConv::PyObjGetString(args));
         PyErr_SetString(PyExc_ValueError, QStringToPythonConstCharPointer(e));
       }
     } else {
-      QString e = QString("Called ") + info->fullSignature() + " with keyword arguments, but called slot does not support kwargs.";
+      QString e = QString("Called ") + info->fullSignature()
+                  + " with keyword arguments, but called slot does not support kwargs.";
       PyErr_SetString(PyExc_ValueError, QStringToPythonConstCharPointer(e));
     }
 
     Py_DECREF(combinedArgs);
   } else {
-  // -------------------Normal slot call -------------------------
+    // -------------------Normal slot call -------------------------
     if (info->nextInfo()) {
       // overloaded slot call, try on all slots with strict conversion first
       bool strict = true;
       PythonQtSlotInfo* i = info;
       while (i) {
         bool skipFirst = i->isInstanceDecorator();
-        if (i->parameterCount()-1-(skipFirst?1:0) == argc) {
+        if (i->parameterCount() - 1 - (skipFirst ? 1 : 0) == argc) {
           PyErr_Clear();
-          ok = PythonQtCallSlot(classInfo, objectToCall, args, strict, i, firstArg, &r, directReturnValuePointer, passThisOwnershipToCPP);
-          if (PyErr_Occurred() || ok) break;
+          ok = PythonQtCallSlot(classInfo, objectToCall, args, strict, i, firstArg, &r, directReturnValuePointer,
+            passThisOwnershipToCPP);
+          if (PyErr_Occurred() || ok)
+            break;
         }
         i = i->nextInfo();
         if (!i) {
@@ -427,7 +446,9 @@ PyObject *PythonQtSlotFunction_CallImpl(PythonQtClassInfo* classInfo, QObject* o
         }
       }
       if (!ok && !PyErr_Occurred()) {
-        QString e = QString("Could not find matching overload for given arguments:\n" + limitString(PythonQtConv::PyObjGetString(args)) + "\n The following slots are available:\n");
+        QString e =
+          QString("Could not find matching overload for given arguments:\n"
+                  + limitString(PythonQtConv::PyObjGetString(args)) + "\n The following slots are available:\n");
         PythonQtSlotInfo* i = info;
         while (i) {
           e += QString(i->fullSignature()) + "\n";
@@ -438,18 +459,21 @@ PyObject *PythonQtSlotFunction_CallImpl(PythonQtClassInfo* classInfo, QObject* o
     } else {
       // simple (non-overloaded) slot call
       bool skipFirst = info->isInstanceDecorator();
-      if (info->parameterCount()-1-(skipFirst?1:0) == argc) {
+      if (info->parameterCount() - 1 - (skipFirst ? 1 : 0) == argc) {
         PyErr_Clear();
-  #ifdef PYTHONQT_DEBUG
+#ifdef PYTHONQT_DEBUG
         std::cout << "called " << info->metaMethod()->typeName() << " " << info->signature().constData() << std::endl;
-  #endif
-        ok = PythonQtCallSlot(classInfo, objectToCall, args, false, info, firstArg, &r, directReturnValuePointer, passThisOwnershipToCPP);
+#endif
+        ok = PythonQtCallSlot(classInfo, objectToCall, args, false, info, firstArg, &r, directReturnValuePointer,
+          passThisOwnershipToCPP);
         if (!ok && !PyErr_Occurred()) {
-          QString e = QString("Called ") + info->fullSignature() + " with wrong arguments: " + limitString(PythonQtConv::PyObjGetString(args));
+          QString e = QString("Called ") + info->fullSignature()
+                      + " with wrong arguments: " + limitString(PythonQtConv::PyObjGetString(args));
           PyErr_SetString(PyExc_ValueError, QStringToPythonConstCharPointer(e));
         }
       } else {
-        QString e = QString("Called ") + info->fullSignature() + " with wrong number of arguments: " + limitString(PythonQtConv::PyObjGetString(args));
+        QString e = QString("Called ") + info->fullSignature()
+                    + " with wrong number of arguments: " + limitString(PythonQtConv::PyObjGetString(args));
         PyErr_SetString(PyExc_ValueError, QStringToPythonConstCharPointer(e));
       }
     }
@@ -458,16 +482,14 @@ PyObject *PythonQtSlotFunction_CallImpl(PythonQtClassInfo* classInfo, QObject* o
   return r;
 }
 
-PyObject *
-PythonQtSlotFunction_New(PythonQtSlotInfo *ml, PyObject *self, PyObject *module)
+PyObject* PythonQtSlotFunction_New(PythonQtSlotInfo* ml, PyObject* self, PyObject* module)
 {
-  PythonQtSlotFunctionObject *op;
+  PythonQtSlotFunctionObject* op;
   op = pythonqtslot_free_list;
   if (op != nullptr) {
-    pythonqtslot_free_list = (PythonQtSlotFunctionObject *)(op->m_self);
+    pythonqtslot_free_list = (PythonQtSlotFunctionObject*)(op->m_self);
     PyObject_INIT(op, &PythonQtSlotFunction_Type);
-  }
-  else {
+  } else {
     op = PyObject_GC_New(PythonQtSlotFunctionObject, &PythonQtSlotFunction_Type);
     if (op == nullptr)
       return nullptr;
@@ -478,44 +500,40 @@ PythonQtSlotFunction_New(PythonQtSlotInfo *ml, PyObject *self, PyObject *module)
   Py_XINCREF(module);
   op->m_module = module;
   PyObject_GC_Track(op);
-  return (PyObject *)op;
+  return (PyObject*)op;
 }
 
-PythonQtSlotInfo*
-PythonQtSlotFunction_GetSlotInfo(PyObject *op)
+PythonQtSlotInfo* PythonQtSlotFunction_GetSlotInfo(PyObject* op)
 {
   if (!PythonQtSlotFunction_Check(op)) {
     PyErr_Format(PyExc_SystemError, "%s:%d: bad argument to internal function", __FILE__, __LINE__);
     return nullptr;
   }
-  return ((PythonQtSlotFunctionObject *)op) -> m_ml;
+  return ((PythonQtSlotFunctionObject*)op)->m_ml;
 }
 
-PyObject *
-PythonQtSlotFunction_GetSelf(PyObject *op)
+PyObject* PythonQtSlotFunction_GetSelf(PyObject* op)
 {
   if (!PythonQtSlotFunction_Check(op)) {
     PyErr_Format(PyExc_SystemError, "%s:%d: bad argument to internal function", __FILE__, __LINE__);
     return nullptr;
   }
-  return ((PythonQtSlotFunctionObject *)op) -> m_self;
+  return ((PythonQtSlotFunctionObject*)op)->m_self;
 }
 
 /* Methods (the standard built-in methods, that is) */
 
-static void
-meth_dealloc(PyObject *o)
+static void meth_dealloc(PyObject* o)
 {
   PyObject_GC_UnTrack(o);
-  auto m = static_cast<PythonQtSlotFunctionObject *>(static_cast<void *>(o));
+  auto m = static_cast<PythonQtSlotFunctionObject*>(static_cast<void*>(o));
   Py_XDECREF(m->m_self);
   Py_XDECREF(m->m_module);
-  m->m_self = (PyObject *)pythonqtslot_free_list;
+  m->m_self = (PyObject*)pythonqtslot_free_list;
   pythonqtslot_free_list = m;
 }
 
-static PyObject *
-meth_get__doc__(PythonQtSlotFunctionObject * m, void * /*closure*/)
+static PyObject* meth_get__doc__(PythonQtSlotFunctionObject* m, void* /*closure*/)
 {
   QByteArray doc;
   PythonQtSlotInfo* info = m->m_ml;
@@ -540,28 +558,30 @@ meth_get__doc__(PythonQtSlotFunctionObject * m, void * /*closure*/)
     if (!names.at(i - 1).isEmpty()) {
       doc += names.at(i - 1);
     } else {
-      doc += QString(QChar((char) ('a' + i - firstArgOffset))).toLatin1();
+      doc += QString(QChar((char)('a' + i - firstArgOffset))).toLatin1();
     }
   }
   doc += ")";
   QByteArray pyReturnType;
   if (returnType == "QString" || returnType == "SbName" || returnType == "SbString") {
     pyReturnType = "str";
-  } else if (returnType.startsWith("QVector<") || returnType.startsWith("QList<") ||
-             returnType == "QStringList" || returnType == "QObjectList" || returnType == "QVariantList") {
+  } else if (returnType.startsWith("QVector<") || returnType.startsWith("QList<") || returnType == "QStringList"
+             || returnType == "QObjectList" || returnType == "QVariantList")
+  {
     pyReturnType = "tuple";
-  } else if (returnType.startsWith("QHash<") || returnType.startsWith("QMap<") ||
-    returnType == "QVariantMap" || returnType == "QVariantHash") {
+  } else if (returnType.startsWith("QHash<") || returnType.startsWith("QMap<") || returnType == "QVariantMap"
+             || returnType == "QVariantHash")
+  {
     pyReturnType = "dict";
   } else if (returnTypeId == QMetaType::Bool) {
     pyReturnType = "bool";
   } else if (returnTypeId == PythonQtMethodInfo::Variant) {
     pyReturnType = "object";
-  } else if (returnTypeId == QMetaType::Char || returnTypeId == QMetaType::UChar ||
-    returnTypeId == QMetaType::Short || returnTypeId == QMetaType::UShort ||
-    returnTypeId == QMetaType::Int || returnTypeId == QMetaType::UInt ||
-    returnTypeId == QMetaType::Long || returnTypeId == QMetaType::ULong ||
-    returnTypeId == QMetaType::LongLong || returnTypeId == QMetaType::ULongLong) {
+  } else if (returnTypeId == QMetaType::Char || returnTypeId == QMetaType::UChar || returnTypeId == QMetaType::Short
+             || returnTypeId == QMetaType::UShort || returnTypeId == QMetaType::Int || returnTypeId == QMetaType::UInt
+             || returnTypeId == QMetaType::Long || returnTypeId == QMetaType::ULong
+             || returnTypeId == QMetaType::LongLong || returnTypeId == QMetaType::ULongLong)
+  {
     pyReturnType = "int";
   } else if (returnTypeId == QMetaType::Float || returnTypeId == QMetaType::Double) {
     pyReturnType = "float";
@@ -582,14 +602,12 @@ meth_get__doc__(PythonQtSlotFunctionObject * m, void * /*closure*/)
   return PyUnicode_FromString(doc.constData());
 }
 
-static PyObject *
-meth_get__name__(PythonQtSlotFunctionObject *m, void * /*closure*/)
+static PyObject* meth_get__name__(PythonQtSlotFunctionObject* m, void* /*closure*/)
 {
   return PyUnicode_FromString(m->m_ml->slotName(true));
 }
 
-static int
-meth_traverse(PythonQtSlotFunctionObject *m, visitproc visit, void *arg)
+static int meth_traverse(PythonQtSlotFunctionObject* m, visitproc visit, void* arg)
 {
   int err;
   if (m->m_self != nullptr) {
@@ -605,10 +623,9 @@ meth_traverse(PythonQtSlotFunctionObject *m, visitproc visit, void *arg)
   return 0;
 }
 
-static PyObject *
-meth_get__self__(PythonQtSlotFunctionObject *m, void * /*closure*/)
+static PyObject* meth_get__self__(PythonQtSlotFunctionObject* m, void* /*closure*/)
 {
-  PyObject *self;
+  PyObject* self;
   self = m->m_self;
   if (self == nullptr)
     self = Py_None;
@@ -616,40 +633,38 @@ meth_get__self__(PythonQtSlotFunctionObject *m, void * /*closure*/)
   return self;
 }
 
-static PyGetSetDef meth_getsets [] = {
-  {const_cast<char*>("__doc__"),  (getter)meth_get__doc__,  nullptr, nullptr},
+static PyGetSetDef meth_getsets[] = {
+  {const_cast<char*>("__doc__"), (getter)meth_get__doc__, nullptr, nullptr},
   {const_cast<char*>("__name__"), (getter)meth_get__name__, nullptr, nullptr},
   {const_cast<char*>("__self__"), (getter)meth_get__self__, nullptr, nullptr},
-  {nullptr, nullptr, nullptr,nullptr},
+  {nullptr, nullptr, nullptr, nullptr},
 };
 
 #if PY_MAJOR_VERSION == 2 && PY_MINOR_VERSION < 6
-#define PY_WRITE_RESTRICTED WRITE_RESTRICTED
+  #define PY_WRITE_RESTRICTED WRITE_RESTRICTED
 #endif
 
 #define OFF(x) offsetof(PythonQtSlotFunctionObject, x)
 
-static PyMemberDef meth_members[] = {
-  {const_cast<char*>("__module__"),    T_OBJECT,     OFF(m_module), PY_WRITE_RESTRICTED},
-  {nullptr}
-};
+static PyMemberDef meth_members[] = {{const_cast<char*>("__module__"), T_OBJECT, OFF(m_module), PY_WRITE_RESTRICTED},
+  {nullptr}};
 
-static PyObject *PythonQtSlotFunction_parameterTypes(PythonQtSlotFunctionObject* type)
+static PyObject* PythonQtSlotFunction_parameterTypes(PythonQtSlotFunctionObject* type)
 {
   return PythonQtMemberFunction_parameterTypes(type->m_ml);
 }
 
-static PyObject *PythonQtSlotFunction_parameterNames(PythonQtSlotFunctionObject* type)
+static PyObject* PythonQtSlotFunction_parameterNames(PythonQtSlotFunctionObject* type)
 {
   return PythonQtMemberFunction_parameterNames(type->m_ml);
 }
 
-static PyObject *PythonQtSlotFunction_typeName(PythonQtSlotFunctionObject* type)
+static PyObject* PythonQtSlotFunction_typeName(PythonQtSlotFunctionObject* type)
 {
   return PythonQtMemberFunction_typeName(type->m_ml);
 }
 
-PyObject *PythonQtMemberFunction_parameterTypes(PythonQtSlotInfo* theInfo)
+PyObject* PythonQtMemberFunction_parameterTypes(PythonQtSlotInfo* theInfo)
 {
   PythonQtSlotInfo* info = theInfo;
   int count = 0;
@@ -659,10 +674,10 @@ PyObject *PythonQtMemberFunction_parameterTypes(PythonQtSlotInfo* theInfo)
   }
   info = theInfo;
   PyObject* result = PyTuple_New(count);
-  for (int j = 0;j<count;j++) {
+  for (int j = 0; j < count; j++) {
     QList<QByteArray> types = info->metaMethod()->parameterTypes();
     PyObject* tuple = PyTuple_New(types.count());
-    for (int i = 0; i<types.count();i++) {
+    for (int i = 0; i < types.count(); i++) {
       PyTuple_SET_ITEM(tuple, i, PyUnicode_FromString(types.at(i).constData()));
     }
     info = info->nextInfo();
@@ -671,7 +686,7 @@ PyObject *PythonQtMemberFunction_parameterTypes(PythonQtSlotInfo* theInfo)
   return result;
 }
 
-PyObject *PythonQtMemberFunction_parameterNames(PythonQtSlotInfo* theInfo)
+PyObject* PythonQtMemberFunction_parameterNames(PythonQtSlotInfo* theInfo)
 {
   PythonQtSlotInfo* info = theInfo;
   int count = 0;
@@ -681,10 +696,10 @@ PyObject *PythonQtMemberFunction_parameterNames(PythonQtSlotInfo* theInfo)
   }
   info = theInfo;
   PyObject* result = PyTuple_New(count);
-  for (int j = 0;j<count;j++) {
+  for (int j = 0; j < count; j++) {
     QList<QByteArray> names = info->metaMethod()->parameterNames();
     PyObject* tuple = PyTuple_New(names.count());
-    for (int i = 0; i<names.count();i++) {
+    for (int i = 0; i < names.count(); i++) {
       PyTuple_SET_ITEM(tuple, i, PyUnicode_FromString(names.at(i).constData()));
     }
     info = info->nextInfo();
@@ -693,7 +708,7 @@ PyObject *PythonQtMemberFunction_parameterNames(PythonQtSlotInfo* theInfo)
   return result;
 }
 
-PyObject *PythonQtMemberFunction_typeName(PythonQtSlotInfo* theInfo)
+PyObject* PythonQtMemberFunction_typeName(PythonQtSlotInfo* theInfo)
 {
   PythonQtSlotInfo* info = theInfo;
   int count = 0;
@@ -703,7 +718,7 @@ PyObject *PythonQtMemberFunction_typeName(PythonQtSlotInfo* theInfo)
   }
   info = theInfo;
   PyObject* result = PyTuple_New(count);
-  for (int j = 0;j<count;j++) {
+  for (int j = 0; j < count; j++) {
     QByteArray name = PythonQtUtils::typeName(*info->metaMethod());
     PyTuple_SET_ITEM(result, j, PyUnicode_FromString(name.constData()));
     info = info->nextInfo();
@@ -712,36 +727,29 @@ PyObject *PythonQtMemberFunction_typeName(PythonQtSlotInfo* theInfo)
 }
 
 static PyMethodDef meth_methods[] = {
-  {"parameterTypes", reinterpret_cast<PyCFunction>(reinterpret_cast<void*>(PythonQtSlotFunction_parameterTypes)), METH_NOARGS,
-  "Returns a tuple of tuples of the C++ parameter types for all overloads of the slot"
-  },
-  {"parameterNames", reinterpret_cast<PyCFunction>(reinterpret_cast<void*>(PythonQtSlotFunction_parameterNames)), METH_NOARGS,
-  "Returns a tuple of tuples of the C++ parameter type names (if available), for all overloads of the slot"
-  },
+  {"parameterTypes", reinterpret_cast<PyCFunction>(reinterpret_cast<void*>(PythonQtSlotFunction_parameterTypes)),
+    METH_NOARGS, "Returns a tuple of tuples of the C++ parameter types for all overloads of the slot"},
+  {"parameterNames", reinterpret_cast<PyCFunction>(reinterpret_cast<void*>(PythonQtSlotFunction_parameterNames)),
+    METH_NOARGS,
+    "Returns a tuple of tuples of the C++ parameter type names (if available), for all overloads of the slot"},
   {"typeName", reinterpret_cast<PyCFunction>(reinterpret_cast<void*>(PythonQtSlotFunction_typeName)), METH_NOARGS,
-  "Returns a tuple of the C++ return value types of each slot overload"
-  },
-  {nullptr, nullptr, 0 , nullptr}  /* Sentinel */
+    "Returns a tuple of the C++ return value types of each slot overload"},
+  {nullptr, nullptr, 0, nullptr} /* Sentinel */
 };
 
-static PyObject *
-meth_repr(PythonQtSlotFunctionObject *f)
+static PyObject* meth_repr(PythonQtSlotFunctionObject* f)
 {
   if (f->m_self->ob_type == &PythonQtClassWrapper_Type) {
-    PythonQtClassWrapper* self = (PythonQtClassWrapper*) f->m_self;
-    return PyUnicode_FromFormat("<unbound qt slot %s of %s type>",
-      f->m_ml->slotName().constData(),
+    PythonQtClassWrapper* self = (PythonQtClassWrapper*)f->m_self;
+    return PyUnicode_FromFormat("<unbound qt slot %s of %s type>", f->m_ml->slotName().constData(),
       self->classInfo()->className().constData());
   } else {
-    return PyUnicode_FromFormat("<qt slot %s of %s instance at %p>",
-      f->m_ml->slotName().constData(),
-      f->m_self->ob_type->tp_name,
-      f->m_self);
+    return PyUnicode_FromFormat("<qt slot %s of %s instance at %p>", f->m_ml->slotName().constData(),
+      f->m_self->ob_type->tp_name, f->m_self);
   }
 }
 
-static int
-meth_compare(PythonQtSlotFunctionObject *a, PythonQtSlotFunctionObject *b)
+static int meth_compare(PythonQtSlotFunctionObject* a, PythonQtSlotFunctionObject* b)
 {
   if (a->m_self != b->m_self)
     return (a->m_self < b->m_self) ? -1 : 1;
@@ -753,10 +761,9 @@ meth_compare(PythonQtSlotFunctionObject *a, PythonQtSlotFunctionObject *b)
     return 1;
 }
 
-static long
-meth_hash(PythonQtSlotFunctionObject *a)
+static long meth_hash(PythonQtSlotFunctionObject* a)
 {
-  long x,y;
+  long x, y;
   if (a->m_self == nullptr)
     x = 0;
   else {
@@ -774,8 +781,7 @@ meth_hash(PythonQtSlotFunctionObject *a)
 }
 
 // for python 3.x
-static PyObject*
-meth_richcompare(PythonQtSlotFunctionObject *a, PythonQtSlotFunctionObject *b, int op)
+static PyObject* meth_richcompare(PythonQtSlotFunctionObject* a, PythonQtSlotFunctionObject* b, int op)
 {
   int x = meth_compare(a, b);
   bool r = false;
@@ -797,15 +803,13 @@ meth_richcompare(PythonQtSlotFunctionObject *a, PythonQtSlotFunctionObject *b, i
     Py_RETURN_FALSE;
 }
 
-static PyObject*
-meth_descr_get(PyObject *descr, PyObject *obj, PyObject* type)
+static PyObject* meth_descr_get(PyObject* descr, PyObject* obj, PyObject* type)
 {
   Q_UNUSED(type)
   if (PythonQtSlotFunction_Check(descr)) {
-    PythonQtSlotFunctionObject *slotObj = (PythonQtSlotFunctionObject*)descr;
+    PythonQtSlotFunctionObject* slotObj = (PythonQtSlotFunctionObject*)descr;
     return PythonQtSlotFunction_New(slotObj->m_ml, obj, nullptr);
-  }
-  else {
+  } else {
     // wrong type
     Py_IncRef(descr);
     return descr;
@@ -813,50 +817,48 @@ meth_descr_get(PyObject *descr, PyObject *obj, PyObject* type)
 }
 
 PyTypeObject PythonQtSlotFunction_Type = {
-    PyVarObject_HEAD_INIT(&PyType_Type, 0) /*tp_base*/
-    "builtin_qt_slot", /* tp_itemsize */
-    sizeof(PythonQtSlotFunctionObject), /* tp_basicsize */
-    0, /* tp_itemsize */
-    (destructor)meth_dealloc,   /* tp_dealloc */
-    0,                          /* tp_vectorcall_offset */
-    nullptr,                    /* tp_getattr */
-    nullptr,                    /* tp_setattr */
-    nullptr,
-    (reprfunc)meth_repr,        /* tp_repr */
-    nullptr,                    /* tp_as_number */
-    nullptr,                    /* tp_as_sequence */
-    nullptr,                    /* tp_as_mapping */
-    (hashfunc)meth_hash,        /* tp_hash */
-    PythonQtSlotFunction_Call,  /* tp_call */
-    nullptr,                    /* tp_str */
-    PyObject_GenericGetAttr,    /* tp_getattro */
-    nullptr,                    /* tp_setattro */
-    nullptr,                    /* tp_as_buffer */
-    Py_TPFLAGS_DEFAULT | Py_TPFLAGS_HAVE_GC,/* tp_flags */
-    nullptr,                    /* tp_doc */
-    (traverseproc)meth_traverse,      /* tp_traverse */
-    nullptr,                    /* tp_clear */
-    (richcmpfunc)meth_richcompare,    /* tp_richcompare */
-    0,                          /* tp_weaklistoffset */
-    nullptr,                    /* tp_iter */
-    nullptr,                    /* tp_iternext */
-    meth_methods,               /* tp_methods */
-    meth_members,               /* tp_members */
-    meth_getsets,               /* tp_getset */
-    nullptr,                    /* tp_base */
-    nullptr,                    /* tp_dict */
-    meth_descr_get,             /* tp_descr_get */
+  PyVarObject_HEAD_INIT(&PyType_Type, 0) /*tp_base*/
+  "builtin_qt_slot",                     /* tp_itemsize */
+  sizeof(PythonQtSlotFunctionObject),    /* tp_basicsize */
+  0,                                     /* tp_itemsize */
+  (destructor)meth_dealloc,              /* tp_dealloc */
+  0,                                     /* tp_vectorcall_offset */
+  nullptr,                               /* tp_getattr */
+  nullptr,                               /* tp_setattr */
+  nullptr,
+  (reprfunc)meth_repr,                     /* tp_repr */
+  nullptr,                                 /* tp_as_number */
+  nullptr,                                 /* tp_as_sequence */
+  nullptr,                                 /* tp_as_mapping */
+  (hashfunc)meth_hash,                     /* tp_hash */
+  PythonQtSlotFunction_Call,               /* tp_call */
+  nullptr,                                 /* tp_str */
+  PyObject_GenericGetAttr,                 /* tp_getattro */
+  nullptr,                                 /* tp_setattro */
+  nullptr,                                 /* tp_as_buffer */
+  Py_TPFLAGS_DEFAULT | Py_TPFLAGS_HAVE_GC, /* tp_flags */
+  nullptr,                                 /* tp_doc */
+  (traverseproc)meth_traverse,             /* tp_traverse */
+  nullptr,                                 /* tp_clear */
+  (richcmpfunc)meth_richcompare,           /* tp_richcompare */
+  0,                                       /* tp_weaklistoffset */
+  nullptr,                                 /* tp_iter */
+  nullptr,                                 /* tp_iternext */
+  meth_methods,                            /* tp_methods */
+  meth_members,                            /* tp_members */
+  meth_getsets,                            /* tp_getset */
+  nullptr,                                 /* tp_base */
+  nullptr,                                 /* tp_dict */
+  meth_descr_get,                          /* tp_descr_get */
 };
 
 /* Clear out the free list */
 
-void
-PythonQtSlotFunction_Fini(void)
+void PythonQtSlotFunction_Fini(void)
 {
   while (pythonqtslot_free_list) {
-    PythonQtSlotFunctionObject *v = pythonqtslot_free_list;
-    pythonqtslot_free_list = (PythonQtSlotFunctionObject *)(v->m_self);
+    PythonQtSlotFunctionObject* v = pythonqtslot_free_list;
+    pythonqtslot_free_list = (PythonQtSlotFunctionObject*)(v->m_self);
     PyObject_GC_Del(v);
   }
 }
-

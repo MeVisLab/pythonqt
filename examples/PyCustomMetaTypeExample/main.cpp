@@ -45,19 +45,19 @@
 
 #include <QApplication>
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
   QApplication qapp(argc, argv);
 
   PythonQt::init(PythonQt::IgnoreSiteModule | PythonQt::RedirectStdOut);
 
-  PythonQtObjectPtr  mainContext = PythonQt::self()->getMainModule();
+  PythonQtObjectPtr mainContext = PythonQt::self()->getMainModule();
   PythonQtScriptingConsole console(NULL, mainContext);
 
   // register the type with QMetaType
   qRegisterMetaType<CustomObject>("CustomObject");
   // add a wrapper object for the new variant type
-  PythonQt::self()->registerCPPClass("CustomObject","","example", PythonQtCreateObject<CustomObjectWrapper>);
+  PythonQt::self()->registerCPPClass("CustomObject", "", "example", PythonQtCreateObject<CustomObjectWrapper>);
 
   mainContext.evalFile(":example.py");
 
@@ -66,4 +66,3 @@ int main(int argc, char *argv[])
 
   return qapp.exec();
 }
-

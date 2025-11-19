@@ -56,36 +56,48 @@ typedef bool PythonQtConvertPythonToMetaTypeCB(PyObject* inObject, void* outObje
 typedef QVariant PythonQtConvertPythonSequenceToQVariantListCB(PyObject* inObject);
 
 #define PythonQtRegisterListTemplateConverter(type, innertype) \
-{ int typeId = qRegisterMetaType<type<innertype > >(#type"<"#innertype">"); \
-PythonQtConv::registerPythonToMetaTypeConverter(typeId, PythonQtConvertPythonListToListOfValueType<type<innertype >, innertype>); \
-PythonQtConv::registerMetaTypeToPythonConverter(typeId, PythonQtConvertListOfValueTypeToPythonList<type<innertype >, innertype>); \
-}
+  { \
+    int typeId = qRegisterMetaType<type<innertype>>(#type "<" #innertype ">"); \
+    PythonQtConv::registerPythonToMetaTypeConverter(typeId, \
+      PythonQtConvertPythonListToListOfValueType<type<innertype>, innertype>); \
+    PythonQtConv::registerMetaTypeToPythonConverter(typeId, \
+      PythonQtConvertListOfValueTypeToPythonList<type<innertype>, innertype>); \
+  }
 
 #define PythonQtRegisterListTemplateConverterForKnownClass(type, innertype) \
-{ int typeId = qRegisterMetaType<type<innertype > >(#type"<"#innertype">"); \
-  PythonQtConv::registerPythonToMetaTypeConverter(typeId, PythonQtConvertPythonListToListOfKnownClass<type<innertype >, innertype>); \
-  PythonQtConv::registerMetaTypeToPythonConverter(typeId, PythonQtConvertListOfKnownClassToPythonList<type<innertype >, innertype>); \
-}
+  { \
+    int typeId = qRegisterMetaType<type<innertype>>(#type "<" #innertype ">"); \
+    PythonQtConv::registerPythonToMetaTypeConverter(typeId, \
+      PythonQtConvertPythonListToListOfKnownClass<type<innertype>, innertype>); \
+    PythonQtConv::registerMetaTypeToPythonConverter(typeId, \
+      PythonQtConvertListOfKnownClassToPythonList<type<innertype>, innertype>); \
+  }
 
 #define PythonQtRegisterQPairConverter(type1, type2) \
-{ int typeId = qRegisterMetaType<QPair<type1, type2> >("QPair<"#type1","#type2">"); \
-  PythonQtConv::registerPythonToMetaTypeConverter(typeId, PythonQtConvertPythonToPair<type1, type2>); \
-  PythonQtConv::registerMetaTypeToPythonConverter(typeId, PythonQtConvertPairToPython<type1, type2>); \
-}
+  { \
+    int typeId = qRegisterMetaType<QPair<type1, type2>>("QPair<" #type1 "," #type2 ">"); \
+    PythonQtConv::registerPythonToMetaTypeConverter(typeId, PythonQtConvertPythonToPair<type1, type2>); \
+    PythonQtConv::registerMetaTypeToPythonConverter(typeId, PythonQtConvertPairToPython<type1, type2>); \
+  }
 
 #define PythonQtRegisterIntegerMapConverter(type, innertype) \
-{ int typeId = qRegisterMetaType<type<int, innertype > >(#type"<int, "#innertype">"); \
-  PythonQtConv::registerPythonToMetaTypeConverter(typeId, PythonQtConvertPythonToIntegerMap<type<int, innertype >, innertype>); \
-  PythonQtConv::registerMetaTypeToPythonConverter(typeId, PythonQtConvertIntegerMapToPython<type<int, innertype >, innertype>); \
-}
+  { \
+    int typeId = qRegisterMetaType<type<int, innertype>>(#type "<int, " #innertype ">"); \
+    PythonQtConv::registerPythonToMetaTypeConverter(typeId, \
+      PythonQtConvertPythonToIntegerMap<type<int, innertype>, innertype>); \
+    PythonQtConv::registerMetaTypeToPythonConverter(typeId, \
+      PythonQtConvertIntegerMapToPython<type<int, innertype>, innertype>); \
+  }
 
 #define PythonQtRegisterListTemplateQPairConverter(listtype, type1, type2) \
-{ \
-  qRegisterMetaType<QPair<type1, type2> >("QPair<"#type1","#type2">"); \
-  int typeId = qRegisterMetaType<listtype<QPair<type1, type2> > >(#listtype"<QPair<"#type1","#type2">>"); \
-  PythonQtConv::registerPythonToMetaTypeConverter(typeId, PythonQtConvertPythonListToListOfPair<listtype<QPair<type1, type2> >, type1, type2>); \
-  PythonQtConv::registerMetaTypeToPythonConverter(typeId, PythonQtConvertListOfPairToPythonList<listtype<QPair<type1, type2> >, type1, type2>); \
-}
+  { \
+    qRegisterMetaType<QPair<type1, type2>>("QPair<" #type1 "," #type2 ">"); \
+    int typeId = qRegisterMetaType<listtype<QPair<type1, type2>>>(#listtype "<QPair<" #type1 "," #type2 ">>"); \
+    PythonQtConv::registerPythonToMetaTypeConverter(typeId, \
+      PythonQtConvertPythonListToListOfPair<listtype<QPair<type1, type2>>, type1, type2>); \
+    PythonQtConv::registerMetaTypeToPythonConverter(typeId, \
+      PythonQtConvertListOfPairToPythonList<listtype<QPair<type1, type2>>, type1, type2>); \
+  }
 
 #define PythonQtRegisterToolClassesTemplateConverter(innertype) \
   PythonQtRegisterListTemplateConverter(QList, innertype); \
@@ -98,7 +110,8 @@ PythonQtConv::registerMetaTypeToPythonConverter(typeId, PythonQtConvertListOfVal
   PythonQtRegisterListTemplateConverterForKnownClass(std::vector, innertype);
 
 //! a static class that offers methods for type conversion
-class PYTHONQT_EXPORT PythonQtConv {
+class PYTHONQT_EXPORT PythonQtConv
+{
 
 public:
 
@@ -109,7 +122,8 @@ public:
   static PyObject* ConvertQtValueToPython(const PythonQtMethodInfo::ParameterInfo& info, const void* data);
 
   //! convert python object to Qt (according to the given parameter) and if the conversion should be strict (classInfo is currently not used anymore)
-  static void* ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& info, PyObject* obj, bool strict, PythonQtClassInfo* classInfo, void* alreadyAllocatedCPPObject, PythonQtArgumentFrame* frame = nullptr);
+  static void* ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& info, PyObject* obj, bool strict,
+    PythonQtClassInfo* classInfo, void* alreadyAllocatedCPPObject, PythonQtArgumentFrame* frame = nullptr);
 
   //! creates a data storage for the passed parameter type and returns a void pointer to be set as arg[0] of qt_metacall
   static void* CreateQtReturnValue(const PythonQtMethodInfo::ParameterInfo& info, PythonQtArgumentFrame* frame);
@@ -123,27 +137,32 @@ public:
   //! converts QStringList to Python list
   static PyObject* QStringListToPyList(const QStringList& list);
 
-    //! get string representation of py object
+  //! get string representation of py object
   static QString PyObjGetRepresentation(PyObject* val);
 
   //! get string value from py object
-  static QString PyObjGetString(PyObject* val) { bool ok; QString s = PyObjGetString(val, false, ok); return s; }
+  static QString PyObjGetString(PyObject* val)
+  {
+    bool ok;
+    QString s = PyObjGetString(val, false, ok);
+    return s;
+  }
   //! get string value from py object
-  static QString PyObjGetString(PyObject* val, bool strict, bool &ok);
+  static QString PyObjGetString(PyObject* val, bool strict, bool& ok);
   //! get bytes from py object
-  static QByteArray PyObjGetBytes(PyObject* val, bool strict, bool &ok);
+  static QByteArray PyObjGetBytes(PyObject* val, bool strict, bool& ok);
   //! get bytes from py object, also allows Python string
   static QByteArray PyObjGetBytesAllowString(PyObject* val, bool strict, bool& ok);
   //! get int from py object
-  static int     PyObjGetInt(PyObject* val, bool strict, bool &ok);
+  static int PyObjGetInt(PyObject* val, bool strict, bool& ok);
   //! get int64 from py object
-  static qint64  PyObjGetLongLong(PyObject* val, bool strict, bool &ok);
+  static qint64 PyObjGetLongLong(PyObject* val, bool strict, bool& ok);
   //! get int64 from py object
-  static quint64  PyObjGetULongLong(PyObject* val, bool strict, bool &ok);
+  static quint64 PyObjGetULongLong(PyObject* val, bool strict, bool& ok);
   //! get double from py object
-  static double  PyObjGetDouble(PyObject* val, bool strict, bool &ok);
+  static double PyObjGetDouble(PyObject* val, bool strict, bool& ok);
   //! get bool from py object
-  static bool    PyObjGetBool(PyObject* val, bool strict, bool &ok);
+  static bool PyObjGetBool(PyObject* val, bool strict, bool& ok);
 
   //! create a string list from python sequence
   static QStringList PyObjToStringList(PyObject* val, bool strict, bool& ok);
@@ -163,30 +182,43 @@ public:
   static QString CPPObjectToString(int type, const void* data);
 
   //! register a converter callback from python to cpp for given metatype
-  static void registerPythonToMetaTypeConverter(int metaTypeId, PythonQtConvertPythonToMetaTypeCB* cb) { _pythonToMetaTypeConverters.insert(metaTypeId, cb); }
+  static void registerPythonToMetaTypeConverter(int metaTypeId, PythonQtConvertPythonToMetaTypeCB* cb)
+  {
+    _pythonToMetaTypeConverters.insert(metaTypeId, cb);
+  }
 
   //! register a converter callback from cpp to python for given metatype
-  static void registerMetaTypeToPythonConverter(int metaTypeId, PythonQtConvertMetaTypeToPythonCB* cb) { _metaTypeToPythonConverters.insert(metaTypeId, cb); }
+  static void registerMetaTypeToPythonConverter(int metaTypeId, PythonQtConvertMetaTypeToPythonCB* cb)
+  {
+    _metaTypeToPythonConverters.insert(metaTypeId, cb);
+  }
 
   //! set a callback that is called when a Python sequence should be converted to a QVariantList
   //! to allow special conversion.
-  static void setPythonSequenceToQVariantListCallback(PythonQtConvertPythonSequenceToQVariantListCB* cb) { _pythonSequenceToQVariantListCB = cb; }
+  static void setPythonSequenceToQVariantListCallback(PythonQtConvertPythonSequenceToQVariantListCB* cb)
+  {
+    _pythonSequenceToQVariantListCB = cb;
+  }
 
   //! converts the Qt parameter given in \c data, interpreting it as a \c type registered qvariant/meta type, into a Python object,
   static PyObject* convertQtValueToPythonInternal(int type, const void* data);
 
   //! creates a copy of given object, using the QMetaType
-  static PyObject* createCopyFromMetaType( int type, const void* object );
+  static PyObject* createCopyFromMetaType(int type, const void* object);
 
   //! cast wrapper to given className if possible
   static void* castWrapperTo(PythonQtInstanceWrapper* wrapper, const QByteArray& className, bool& ok);
 
-  static bool      convertToPythonQtObjectPtr(PyObject* obj, void* /* PythonQtObjectPtr* */ outPtr, int /*metaTypeId*/, bool /*strict*/);
+  static bool convertToPythonQtObjectPtr(PyObject* obj, void* /* PythonQtObjectPtr* */ outPtr, int /*metaTypeId*/,
+    bool /*strict*/);
   static PyObject* convertFromPythonQtObjectPtr(const void* /* PythonQtObjectPtr* */ inObject, int /*metaTypeId*/);
-  static bool      convertToPythonQtSafeObjectPtr(PyObject* obj, void* /* PythonQtObjectPtr* */ outPtr, int /*metaTypeId*/, bool /*strict*/);
+  static bool convertToPythonQtSafeObjectPtr(PyObject* obj, void* /* PythonQtObjectPtr* */ outPtr, int /*metaTypeId*/,
+    bool /*strict*/);
   static PyObject* convertFromPythonQtSafeObjectPtr(const void* /* PythonQtObjectPtr* */ inObject, int /*metaTypeId*/);
-  static bool      convertToQListOfPythonQtObjectPtr(PyObject* obj, void* /* QList<PythonQtObjectPtr>* */ outList, int /*metaTypeId*/, bool /*strict*/);
-  static PyObject* convertFromQListOfPythonQtObjectPtr(const void* /* QList<PythonQtObjectPtr>* */ inObject, int /*metaTypeId*/);
+  static bool convertToQListOfPythonQtObjectPtr(PyObject* obj, void* /* QList<PythonQtObjectPtr>* */ outList,
+    int /*metaTypeId*/, bool /*strict*/);
+  static PyObject* convertFromQListOfPythonQtObjectPtr(const void* /* QList<PythonQtObjectPtr>* */ inObject,
+    int /*metaTypeId*/);
 #if QT_VERSION < 0x060000
   static PyObject* convertFromStringRef(const void* inObject, int /*metaTypeId*/);
 #else
@@ -207,22 +239,25 @@ public:
 protected:
   static QHash<int, PythonQtConvertMetaTypeToPythonCB*> _metaTypeToPythonConverters;
   static QHash<int, PythonQtConvertPythonToMetaTypeCB*> _pythonToMetaTypeConverters;
-  static PythonQtConvertPythonSequenceToQVariantListCB*  _pythonSequenceToQVariantListCB;
+  static PythonQtConvertPythonSequenceToQVariantListCB* _pythonSequenceToQVariantListCB;
 
   //! handle automatic conversion of some special types (QColor, QBrush, ...)
-  static void* handlePythonToQtAutoConversion(int typeId, PyObject* obj, void* alreadyAllocatedCPPObject, PythonQtArgumentFrame* frame);
+  static void* handlePythonToQtAutoConversion(int typeId, PyObject* obj, void* alreadyAllocatedCPPObject,
+    PythonQtArgumentFrame* frame);
 
   //! converts the list of pointers of given type to Python
-  static PyObject* ConvertQListOfPointerTypeToPythonList(QList<void*>* list, const PythonQtMethodInfo::ParameterInfo& info);
+  static PyObject* ConvertQListOfPointerTypeToPythonList(QList<void*>* list,
+    const PythonQtMethodInfo::ParameterInfo& info);
   //! tries to convert the python object to a QList of pointers to \c type objects, returns true on success
-  static bool      ConvertPythonListToQListOfPointerType(PyObject* obj, QList<void*>* list, const PythonQtMethodInfo::ParameterInfo& info, bool strict);
+  static bool ConvertPythonListToQListOfPointerType(PyObject* obj, QList<void*>* list,
+    const PythonQtMethodInfo::ParameterInfo& info, bool strict);
 
   //! helper template method for conversion from Python to QVariantMap/Hash
-  template <typename Map>
+  template<typename Map>
   static void pythonToMapVariant(PyObject* val, QVariant& result);
   //! helper template function for QVariantMapToPyObject/QVariantHashToPyObject
-  template <typename Map>
-  static PyObject* mapToPython (const Map& m);
+  template<typename Map>
+  static PyObject* mapToPython(const Map& m);
 
 #if QT_VERSION < 0x060000
   static int stringRefTypeId;
@@ -237,9 +272,11 @@ template<class ListType, class T>
 PyObject* PythonQtConvertListOfValueTypeToPythonList(const void* /*QList<T>* */ inList, int metaTypeId)
 {
   ListType* list = (ListType*)inList;
-  static const int innerType = PythonQtMethodInfo::getInnerTemplateMetaType(QByteArray(PythonQtUtils::typeNameFromMetaTypeId(metaTypeId)));
+  static const int innerType =
+    PythonQtMethodInfo::getInnerTemplateMetaType(QByteArray(PythonQtUtils::typeNameFromMetaTypeId(metaTypeId)));
   if (innerType == QMetaType::UnknownType) {
-    std::cerr << "PythonQtConvertListOfValueTypeToPythonList: unknown inner type " << PythonQtUtils::typeNameFromMetaTypeId(metaTypeId) << std::endl;
+    std::cerr << "PythonQtConvertListOfValueTypeToPythonList: unknown inner type "
+              << PythonQtUtils::typeNameFromMetaTypeId(metaTypeId) << std::endl;
   }
   PyObject* result = PyTuple_New(list->size());
   int i = 0;
@@ -251,12 +288,15 @@ PyObject* PythonQtConvertListOfValueTypeToPythonList(const void* /*QList<T>* */ 
 }
 
 template<class ListType, class T>
-bool PythonQtConvertPythonListToListOfValueType(PyObject* obj, void* /*QList<T>* */ outList, int metaTypeId, bool /*strict*/)
+bool PythonQtConvertPythonListToListOfValueType(PyObject* obj, void* /*QList<T>* */ outList, int metaTypeId,
+  bool /*strict*/)
 {
   ListType* list = (ListType*)outList;
-  static const int innerType = PythonQtMethodInfo::getInnerTemplateMetaType(QByteArray(PythonQtUtils::typeNameFromMetaTypeId(metaTypeId)));
+  static const int innerType =
+    PythonQtMethodInfo::getInnerTemplateMetaType(QByteArray(PythonQtUtils::typeNameFromMetaTypeId(metaTypeId)));
   if (innerType == QMetaType::UnknownType) {
-    std::cerr << "PythonQtConvertPythonListToListOfValueType: unknown inner type " << PythonQtUtils::typeNameFromMetaTypeId(metaTypeId) << std::endl;
+    std::cerr << "PythonQtConvertPythonListToListOfValueType: unknown inner type "
+              << PythonQtUtils::typeNameFromMetaTypeId(metaTypeId) << std::endl;
   }
   bool result = false;
   if (PySequence_Check(obj)) {
@@ -264,8 +304,8 @@ bool PythonQtConvertPythonListToListOfValueType(PyObject* obj, void* /*QList<T>*
     if (count >= 0) {
       result = true;
       PyObject* value;
-      for (int i = 0;i<count;i++) {
-        value = PySequence_GetItem(obj,i);
+      for (int i = 0; i < count; i++) {
+        value = PySequence_GetItem(obj, i);
         // this is quite some overhead, but it avoids having another large switch...
         QVariant v = PythonQtConv::PyObjToQVariant(value, innerType);
         Py_XDECREF(value);
@@ -287,15 +327,18 @@ template<class ListType, class T>
 PyObject* PythonQtConvertListOfKnownClassToPythonList(const void* /*QList<T>* */ inList, int metaTypeId)
 {
   ListType* list = (ListType*)inList;
-  static PythonQtClassInfo* innerType = PythonQt::priv()->getClassInfo(PythonQtMethodInfo::getInnerListTypeName(QByteArray(PythonQtUtils::typeNameFromMetaTypeId(metaTypeId))));
+  static PythonQtClassInfo* innerType = PythonQt::priv()->getClassInfo(
+    PythonQtMethodInfo::getInnerListTypeName(QByteArray(PythonQtUtils::typeNameFromMetaTypeId(metaTypeId))));
   if (innerType == nullptr) {
-    std::cerr << "PythonQtConvertListOfKnownClassToPythonList: unknown inner type for " << PythonQtUtils::typeNameFromMetaTypeId(metaTypeId) << std::endl;
+    std::cerr << "PythonQtConvertListOfKnownClassToPythonList: unknown inner type for "
+              << PythonQtUtils::typeNameFromMetaTypeId(metaTypeId) << std::endl;
   }
   PyObject* result = PyTuple_New(list->size());
   int i = 0;
   for (const T& value : *list) {
     T* newObject = new T(value);
-    PythonQtInstanceWrapper* wrap = (PythonQtInstanceWrapper*)PythonQt::priv()->wrapPtr(newObject, innerType->className());
+    PythonQtInstanceWrapper* wrap =
+      (PythonQtInstanceWrapper*)PythonQt::priv()->wrapPtr(newObject, innerType->className());
     wrap->_ownedByPythonQt = true;
     PyTuple_SET_ITEM(result, i, (PyObject*)wrap);
     i++;
@@ -304,12 +347,15 @@ PyObject* PythonQtConvertListOfKnownClassToPythonList(const void* /*QList<T>* */
 }
 
 template<class ListType, class T>
-bool PythonQtConvertPythonListToListOfKnownClass(PyObject* obj, void* /*QList<T>* */ outList, int metaTypeId, bool /*strict*/)
+bool PythonQtConvertPythonListToListOfKnownClass(PyObject* obj, void* /*QList<T>* */ outList, int metaTypeId,
+  bool /*strict*/)
 {
   ListType* list = (ListType*)outList;
-  static PythonQtClassInfo* innerType = PythonQt::priv()->getClassInfo(PythonQtMethodInfo::getInnerListTypeName(QByteArray(PythonQtUtils::typeNameFromMetaTypeId(metaTypeId))));
+  static PythonQtClassInfo* innerType = PythonQt::priv()->getClassInfo(
+    PythonQtMethodInfo::getInnerListTypeName(QByteArray(PythonQtUtils::typeNameFromMetaTypeId(metaTypeId))));
   if (innerType == nullptr) {
-    std::cerr << "PythonQtConvertListOfKnownClassToPythonList: unknown inner type for " << PythonQtUtils::typeNameFromMetaTypeId(metaTypeId) << std::endl;
+    std::cerr << "PythonQtConvertListOfKnownClassToPythonList: unknown inner type for "
+              << PythonQtUtils::typeNameFromMetaTypeId(metaTypeId) << std::endl;
   }
   bool result = false;
   if (PySequence_Check(obj)) {
@@ -349,14 +395,16 @@ PyObject* PythonQtConvertPairToPython(const void* /*QPair<T1,T2>* */ inPair, int
   QPair<T1, T2>* pair = (QPair<T1, T2>*)inPair;
   static int innerType1 = -1;
   static int innerType2 = -1;
-  if (innerType1==-1) {
-    QByteArray innerTypes = PythonQtMethodInfo::getInnerTemplateTypeName(QByteArray(PythonQtUtils::typeNameFromMetaTypeId(metaTypeId)));
+  if (innerType1 == -1) {
+    QByteArray innerTypes =
+      PythonQtMethodInfo::getInnerTemplateTypeName(QByteArray(PythonQtUtils::typeNameFromMetaTypeId(metaTypeId)));
     QList<QByteArray> names = innerTypes.split(',');
     innerType1 = PythonQtUtils::metaTypeIdFromTypeName(names.at(0).trimmed());
     innerType2 = PythonQtUtils::metaTypeIdFromTypeName(names.at(1).trimmed());
   }
   if (innerType1 == QMetaType::UnknownType || innerType2 == QMetaType::UnknownType) {
-    std::cerr << "PythonQtConvertPairToPython: unknown inner type " << PythonQtUtils::typeNameFromMetaTypeId(metaTypeId) << std::endl;
+    std::cerr << "PythonQtConvertPairToPython: unknown inner type " << PythonQtUtils::typeNameFromMetaTypeId(metaTypeId)
+              << std::endl;
   }
   PyObject* result = PyTuple_New(2);
   PyTuple_SET_ITEM(result, 0, PythonQtConv::convertQtValueToPythonInternal(innerType1, &pair->first));
@@ -371,13 +419,15 @@ bool PythonQtConvertPythonToPair(PyObject* obj, void* /*QPair<T1,T2>* */ outPair
   static int innerType1 = -1;
   static int innerType2 = -1;
   if (innerType1 == -1) {
-    QByteArray innerTypes = PythonQtMethodInfo::getInnerTemplateTypeName(QByteArray(PythonQtUtils::typeNameFromMetaTypeId(metaTypeId)));
+    QByteArray innerTypes =
+      PythonQtMethodInfo::getInnerTemplateTypeName(QByteArray(PythonQtUtils::typeNameFromMetaTypeId(metaTypeId)));
     QList<QByteArray> names = innerTypes.split(',');
     innerType1 = PythonQtUtils::metaTypeIdFromTypeName(names.at(0).trimmed());
     innerType2 = PythonQtUtils::metaTypeIdFromTypeName(names.at(1).trimmed());
   }
   if (innerType1 == QMetaType::UnknownType || innerType2 == QMetaType::UnknownType) {
-    std::cerr << "PythonQtConvertPythonToPair: unknown inner type " << PythonQtUtils::typeNameFromMetaTypeId(metaTypeId) << std::endl;
+    std::cerr << "PythonQtConvertPythonToPair: unknown inner type " << PythonQtUtils::typeNameFromMetaTypeId(metaTypeId)
+              << std::endl;
   }
   bool result = false;
   if (PySequence_Check(obj)) {
@@ -416,9 +466,11 @@ template<class ListType, class T1, class T2>
 PyObject* PythonQtConvertListOfPairToPythonList(const void* /*QList<QPair<T1,T2> >* */ inList, int metaTypeId)
 {
   ListType* list = (ListType*)inList;
-  static int innerType = PythonQtMethodInfo::getInnerTemplateMetaType(QByteArray(PythonQtUtils::typeNameFromMetaTypeId(metaTypeId)));
+  static int innerType =
+    PythonQtMethodInfo::getInnerTemplateMetaType(QByteArray(PythonQtUtils::typeNameFromMetaTypeId(metaTypeId)));
   if (innerType == QMetaType::UnknownType) {
-    std::cerr << "PythonQtConvertListOfPairToPythonList: unknown inner type " << PythonQtUtils::typeNameFromMetaTypeId(metaTypeId) << std::endl;
+    std::cerr << "PythonQtConvertListOfPairToPythonList: unknown inner type "
+              << PythonQtUtils::typeNameFromMetaTypeId(metaTypeId) << std::endl;
   }
   PyObject* result = PyTuple_New(list->size());
   int i = 0;
@@ -432,12 +484,15 @@ PyObject* PythonQtConvertListOfPairToPythonList(const void* /*QList<QPair<T1,T2>
 }
 
 template<class ListType, class T1, class T2>
-bool PythonQtConvertPythonListToListOfPair(PyObject* obj, void* /*QList<QPair<T1,T2> >* */ outList, int metaTypeId, bool /*strict*/)
+bool PythonQtConvertPythonListToListOfPair(PyObject* obj, void* /*QList<QPair<T1,T2> >* */ outList, int metaTypeId,
+  bool /*strict*/)
 {
   ListType* list = (ListType*)outList;
-  static int innerType = PythonQtMethodInfo::getInnerTemplateMetaType(QByteArray(PythonQtUtils::typeNameFromMetaTypeId(metaTypeId)));
+  static int innerType =
+    PythonQtMethodInfo::getInnerTemplateMetaType(QByteArray(PythonQtUtils::typeNameFromMetaTypeId(metaTypeId)));
   if (innerType == QMetaType::UnknownType) {
-    std::cerr << "PythonQtConvertPythonListToListOfPair: unknown inner type " << PythonQtUtils::typeNameFromMetaTypeId(metaTypeId) << std::endl;
+    std::cerr << "PythonQtConvertPythonListToListOfPair: unknown inner type "
+              << PythonQtUtils::typeNameFromMetaTypeId(metaTypeId) << std::endl;
   }
   bool result = false;
   if (PySequence_Check(obj)) {
@@ -448,7 +503,7 @@ bool PythonQtConvertPythonListToListOfPair(PyObject* obj, void* /*QList<QPair<T1
       for (int i = 0; i < count; i++) {
         QPair<T1, T2> pair;
         value = PySequence_GetItem(obj, i);
-        if (PythonQtConvertPythonToPair<T1,T2>(value, &pair, innerType, false)) {
+        if (PythonQtConvertPythonToPair<T1, T2>(value, &pair, innerType, false)) {
           Py_XDECREF(value);
           list->push_back(pair);
         } else {
@@ -470,12 +525,14 @@ PyObject* PythonQtConvertIntegerMapToPython(const void* /*QMap<int, T>* */ inMap
   MapType* map = (MapType*)inMap;
   static int innerType = -1;
   if (innerType == -1) {
-    QByteArray innerTypes = PythonQtMethodInfo::getInnerTemplateTypeName(QByteArray(PythonQtUtils::typeNameFromMetaTypeId(metaTypeId)));
+    QByteArray innerTypes =
+      PythonQtMethodInfo::getInnerTemplateTypeName(QByteArray(PythonQtUtils::typeNameFromMetaTypeId(metaTypeId)));
     QList<QByteArray> names = innerTypes.split(',');
     innerType = PythonQtUtils::metaTypeIdFromTypeName(names.at(1).trimmed());
   }
   if (innerType == QMetaType::UnknownType) {
-    std::cerr << "PythonQtConvertIntegerMapToPython: unknown inner type " << PythonQtUtils::typeNameFromMetaTypeId(metaTypeId) << std::endl;
+    std::cerr << "PythonQtConvertIntegerMapToPython: unknown inner type "
+              << PythonQtUtils::typeNameFromMetaTypeId(metaTypeId) << std::endl;
   }
 
   PyObject* result = PyDict_New();
@@ -498,12 +555,14 @@ bool PythonQtConvertPythonToIntegerMap(PyObject* val, void* /*QMap<int, T>* */ o
   MapType* map = (MapType*)outMap;
   static int innerType = -1;
   if (innerType == -1) {
-    QByteArray innerTypes = PythonQtMethodInfo::getInnerTemplateTypeName(QByteArray(PythonQtUtils::typeNameFromMetaTypeId(metaTypeId)));
+    QByteArray innerTypes =
+      PythonQtMethodInfo::getInnerTemplateTypeName(QByteArray(PythonQtUtils::typeNameFromMetaTypeId(metaTypeId)));
     QList<QByteArray> names = innerTypes.split(',');
     innerType = PythonQtUtils::metaTypeIdFromTypeName(names.at(1).trimmed());
   }
   if (innerType == QMetaType::UnknownType) {
-    std::cerr << "PythonQtConvertPythonToIntegerMap: unknown inner type " << PythonQtUtils::typeNameFromMetaTypeId(metaTypeId) << std::endl;
+    std::cerr << "PythonQtConvertPythonToIntegerMap: unknown inner type "
+              << PythonQtUtils::typeNameFromMetaTypeId(metaTypeId) << std::endl;
   }
   bool result = false;
   if (PyMapping_Check(val)) {
@@ -535,6 +594,5 @@ bool PythonQtConvertPythonToIntegerMap(PyObject* val, void* /*QMap<int, T>* */ o
   }
   return result;
 }
-
 
 #endif

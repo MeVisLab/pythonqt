@@ -50,7 +50,8 @@
 int PythonQtSignalReceiver::_destroyedSignal1Id = -2;
 int PythonQtSignalReceiver::_destroyedSignal2Id = -2;
 
-void PythonQtSignalTarget::call(void **arguments) const {
+void PythonQtSignalTarget::call(void** arguments) const
+{
   PYTHONQT_GIL_SCOPE
   PyObject* result = call(_callable, methodInfo(), arguments);
   if (result) {
@@ -59,7 +60,8 @@ void PythonQtSignalTarget::call(void **arguments) const {
   }
 }
 
-PyObject* PythonQtSignalTarget::call(PyObject* callable, const PythonQtMethodInfo* methodInfos, void **arguments, bool skipFirstArgumentOfMethodInfo)
+PyObject* PythonQtSignalTarget::call(PyObject* callable, const PythonQtMethodInfo* methodInfos, void** arguments,
+  bool skipFirstArgumentOfMethodInfo)
 {
   Q_UNUSED(skipFirstArgumentOfMethodInfo)
 
@@ -93,16 +95,16 @@ PyObject* PythonQtSignalTarget::call(PyObject* callable, const PythonQtMethodInf
   const PythonQtMethodInfo* m = methodInfos;
   // parameterCount includes return value:
   int count = m->parameterCount();
-  if (numPythonArgs!=-1) {
-    if (count>numPythonArgs+1) {
+  if (numPythonArgs != -1) {
+    if (count > numPythonArgs + 1) {
       // take less arguments
-      count = numPythonArgs+1;
+      count = numPythonArgs + 1;
     }
   }
 
   PyObject* pargs = nullptr;
-  if (count>1) {
-    pargs = PyTuple_New(count-1);
+  if (count > 1) {
+    pargs = PyTuple_New(count - 1);
   }
   bool err = false;
   // transform Qt values to Python
@@ -117,7 +119,7 @@ PyObject* PythonQtSignalTarget::call(PyObject* callable, const PythonQtMethodInf
     }
     if (arg) {
       // steals reference, no unref
-      PyTuple_SetItem(pargs, i-1, arg);
+      PyTuple_SetItem(pargs, i - 1, arg);
     } else {
       err = true;
       break;
@@ -142,14 +144,15 @@ PyObject* PythonQtSignalTarget::call(PyObject* callable, const PythonQtMethodInf
   return result;
 }
 
-bool PythonQtSignalTarget::isSame( int signalId, PyObject* callable ) const
+bool PythonQtSignalTarget::isSame(int signalId, PyObject* callable) const
 {
   return PyObject_RichCompareBool(callable, _callable, Py_EQ) && (signalId == _signalId);
 }
 
 //------------------------------------------------------------------------------
 
-PythonQtSignalReceiver::PythonQtSignalReceiver(QObject* obj):PythonQtSignalReceiverBase(obj)
+PythonQtSignalReceiver::PythonQtSignalReceiver(QObject* obj)
+  : PythonQtSignalReceiverBase(obj)
 {
   if (_destroyedSignal1Id == -2) {
     // initialize these once
@@ -186,12 +189,11 @@ PythonQtSignalReceiver::~PythonQtSignalReceiver()
   }
 }
 
-
 bool PythonQtSignalReceiver::addSignalHandler(const char* signal, PyObject* callable)
 {
   bool flag = false;
   int sigId = getSignalIndex(signal);
-  if (sigId>=0) {
+  if (sigId >= 0) {
     // create PythonQtMethodInfo from signal
     QMetaMethod meta = _obj->metaObject()->method(sigId);
     const PythonQtMethodInfo* signalInfo = PythonQtMethodInfo::getCachedMethodInfo(meta, _objClassInfo);
@@ -205,7 +207,7 @@ bool PythonQtSignalReceiver::addSignalHandler(const char* signal, PyObject* call
 
     if (sigId == _destroyedSignal1Id || sigId == _destroyedSignal2Id) {
       _destroyedSignalCount++;
-      if (_destroyedSignalCount==1) {
+      if (_destroyedSignalCount == 1) {
         // make ourself parent of PythonQt, to not get deleted as a child of the QObject we are
         // listening to, since we do that manually when we receive the destroyed signal
         this->setParent(PythonQt::priv());
@@ -219,7 +221,7 @@ bool PythonQtSignalReceiver::removeSignalHandler(const char* signal, PyObject* c
 {
   int foundCount = 0;
   int sigId = getSignalIndex(signal);
-  if (sigId>=0) {
+  if (sigId >= 0) {
     QMutableListIterator<PythonQtSignalTarget> i(_targets);
     if (callable) {
       while (i.hasNext()) {
@@ -240,35 +242,35 @@ bool PythonQtSignalReceiver::removeSignalHandler(const char* signal, PyObject* c
       }
     }
   }
-  if ((foundCount>0) && ((sigId == _destroyedSignal1Id) || (sigId == _destroyedSignal2Id))) {
+  if ((foundCount > 0) && ((sigId == _destroyedSignal1Id) || (sigId == _destroyedSignal2Id))) {
     _destroyedSignalCount -= foundCount;
-    if (_destroyedSignalCount==0) {
+    if (_destroyedSignalCount == 0) {
       // make ourself child of QObject again, to get deleted when the object gets deleted
       this->setParent(_obj);
     }
   }
-  return foundCount>0;
+  return foundCount > 0;
 }
 
 int PythonQtSignalReceiver::getSignalIndex(const char* signal)
 {
-  int sigId = _obj->metaObject()->indexOfSignal(signal+1);
-  if (sigId<0) {
-    QByteArray tmpSig = QMetaObject::normalizedSignature(signal+1);
+  int sigId = _obj->metaObject()->indexOfSignal(signal + 1);
+  if (sigId < 0) {
+    QByteArray tmpSig = QMetaObject::normalizedSignature(signal + 1);
     sigId = _obj->metaObject()->indexOfSignal(tmpSig);
   }
   return sigId;
 }
 
-int PythonQtSignalReceiver::qt_metacall(QMetaObject::Call c, int id, void **arguments)
+int PythonQtSignalReceiver::qt_metacall(QMetaObject::Call c, int id, void** arguments)
 {
-//  mlabDebugConst("PythonQt", "PythonQtSignalReceiver invoke " << _obj->className() << " " << _obj->name() << " " << id);
+  //  mlabDebugConst("PythonQt", "PythonQtSignalReceiver invoke " << _obj->className() << " " << _obj->name() << " " << id);
   if (c != QMetaObject::InvokeMetaMethod) {
     QObject::qt_metacall(c, id, arguments);
   }
 
   bool shouldDelete = false;
-  for(const PythonQtSignalTarget& t : qAsConst(_targets)) {
+  for (const PythonQtSignalTarget& t : qAsConst(_targets)) {
     if (t.slotId() == id) {
       const int sigId = t.signalId();
       t.call(arguments);
@@ -287,4 +289,3 @@ int PythonQtSignalReceiver::qt_metacall(QMetaObject::Call c, int id, void **argu
   }
   return 0;
 }
-

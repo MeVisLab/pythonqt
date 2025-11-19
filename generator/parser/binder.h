@@ -39,59 +39,58 @@
 **
 ****************************************************************************/
 
-
 #ifndef BINDER_H
-#define BINDER_H
+  #define BINDER_H
 
-#include "default_visitor.h"
-#include "codemodel.h"
-#include "type_compiler.h"
-#include "name_compiler.h"
-#include "declarator_compiler.h"
+  #include "default_visitor.h"
+  #include "codemodel.h"
+  #include "type_compiler.h"
+  #include "name_compiler.h"
+  #include "declarator_compiler.h"
 
 class TokenStream;
 class LocationManager;
 class Control;
 struct NameSymbol;
 
-class Binder: protected DefaultVisitor
+class Binder : protected DefaultVisitor
 {
 public:
-  Binder(CodeModel *__model, LocationManager &__location, Control *__control = 0);
+  Binder(CodeModel* __model, LocationManager& __location, Control* __control = 0);
   virtual ~Binder();
 
-  inline TokenStream *tokenStream() const { return _M_token_stream; }
-  inline CodeModel *model() const { return _M_model; }
+  inline TokenStream* tokenStream() const { return _M_token_stream; }
+  inline CodeModel* model() const { return _M_model; }
   ScopeModelItem currentScope() const;
 
-  FileModelItem run(AST *node);
+  FileModelItem run(AST* node);
 
-// utils
-  TypeInfo qualifyType(const TypeInfo &type, const QStringList &context) const;
+  // utils
+  TypeInfo qualifyType(const TypeInfo& type, const QStringList& context) const;
 
 protected:
-  virtual void visitAccessSpecifier(AccessSpecifierAST *);
-  virtual void visitClassSpecifier(ClassSpecifierAST *);
-  virtual void visitEnumSpecifier(EnumSpecifierAST *);
-  virtual void visitEnumerator(EnumeratorAST *);
-  virtual void visitFunctionDefinition(FunctionDefinitionAST *);
-  virtual void visitLinkageSpecification(LinkageSpecificationAST *);
-  virtual void visitNamespace(NamespaceAST *);
-  virtual void visitSimpleDeclaration(SimpleDeclarationAST *);
-  virtual void visitTemplateDeclaration(TemplateDeclarationAST *);
-  virtual void visitTypedef(TypedefAST *);
-  virtual void visitUsing(UsingAST *);
-  virtual void visitUsingDirective(UsingDirectiveAST *);
-  virtual void visitQProperty(QPropertyAST *);
-  virtual void visitForwardDeclarationSpecifier(ForwardDeclarationSpecifierAST *);
-  virtual void visitQEnums(QEnumsAST *);
+  virtual void visitAccessSpecifier(AccessSpecifierAST*);
+  virtual void visitClassSpecifier(ClassSpecifierAST*);
+  virtual void visitEnumSpecifier(EnumSpecifierAST*);
+  virtual void visitEnumerator(EnumeratorAST*);
+  virtual void visitFunctionDefinition(FunctionDefinitionAST*);
+  virtual void visitLinkageSpecification(LinkageSpecificationAST*);
+  virtual void visitNamespace(NamespaceAST*);
+  virtual void visitSimpleDeclaration(SimpleDeclarationAST*);
+  virtual void visitTemplateDeclaration(TemplateDeclarationAST*);
+  virtual void visitTypedef(TypedefAST*);
+  virtual void visitUsing(UsingAST*);
+  virtual void visitUsingDirective(UsingDirectiveAST*);
+  virtual void visitQProperty(QPropertyAST*);
+  virtual void visitForwardDeclarationSpecifier(ForwardDeclarationSpecifierAST*);
+  virtual void visitQEnums(QEnumsAST*);
 
   void warnHere() const;
 
 private:
 
   int decode_token(std::size_t index) const;
-  const NameSymbol *decode_symbol(std::size_t index) const;
+  const NameSymbol* decode_symbol(std::size_t index) const;
   CodeModel::AccessPolicy decode_access_policy(std::size_t index) const;
   CodeModel::ClassType decode_class_type(std::size_t index) const;
 
@@ -102,21 +101,21 @@ private:
   FunctionDefinitionModelItem changeCurrentFunction(FunctionDefinitionModelItem item);
   TemplateParameterList changeTemplateParameters(TemplateParameterList templateParameters);
 
-  void declare_symbol(SimpleDeclarationAST *node, InitDeclaratorAST *init_declarator);
+  void declare_symbol(SimpleDeclarationAST* node, InitDeclaratorAST* init_declarator);
 
   bool hasFriendSpecifier(const ListNode<std::size_t>* it);
-  void applyStorageSpecifiers(const ListNode<std::size_t> *storage_specifiers, MemberModelItem item);
-  void applyFunctionSpecifiers(const ListNode<std::size_t> *it, FunctionModelItem item);
+  void applyStorageSpecifiers(const ListNode<std::size_t>* storage_specifiers, MemberModelItem item);
+  void applyFunctionSpecifiers(const ListNode<std::size_t>* it, FunctionModelItem item);
 
-  void updateItemPosition(CodeModelItem item, AST *node);
+  void updateItemPosition(CodeModelItem item, AST* node);
 
-  QString exceptionSpecToString(ExceptionSpecificationAST *exception_spec);
+  QString exceptionSpecToString(ExceptionSpecificationAST* exception_spec);
 
 private:
-  CodeModel *_M_model;
-  LocationManager &_M_location;
-  TokenStream *_M_token_stream;
-  Control *_M_control;
+  CodeModel* _M_model;
+  LocationManager& _M_location;
+  TokenStream* _M_token_stream;
+  Control* _M_control;
 
   CodeModel::FunctionType _M_current_function_type;
   CodeModel::AccessPolicy _M_current_access;

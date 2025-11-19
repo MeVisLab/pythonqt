@@ -73,8 +73,7 @@
 #include <QTextLength>
 #include <QTextFormat>
 #if QT_VERSION < 0x060000
-#include <QMatrix>
+  #include <QMatrix>
 #endif
 
 #endif
-

@@ -45,17 +45,17 @@
 
 #include <QApplication>
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
   QApplication qapp(argc, argv);
 
   PythonQt::init(PythonQt::IgnoreSiteModule | PythonQt::RedirectStdOut);
 
-  PythonQtObjectPtr  mainContext = PythonQt::self()->getMainModule();
+  PythonQtObjectPtr mainContext = PythonQt::self()->getMainModule();
   PythonQtScriptingConsole console(NULL, mainContext);
 
   // register the new object as a known classname and add it's wrapper object
-  PythonQt::self()->registerCPPClass("CustomObject", "","example", PythonQtCreateObject<CustomObjectWrapper>);
+  PythonQt::self()->registerCPPClass("CustomObject", "", "example", PythonQtCreateObject<CustomObjectWrapper>);
 
   mainContext.evalFile(":example.py");
 
@@ -64,4 +64,3 @@ int main(int argc, char *argv[])
 
   return qapp.exec();
 }
-

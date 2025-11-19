@@ -47,19 +47,15 @@
 
 class ShellImplGenerator : public ShellGenerator
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-    ShellImplGenerator(PriGenerator *pri)
-    {
-        priGenerator = pri;
-    }
+  ShellImplGenerator(PriGenerator* pri) { priGenerator = pri; }
 
-    virtual QString fileNameForClass(const AbstractMetaClass *cls) const;
+  virtual QString fileNameForClass(const AbstractMetaClass* cls) const;
 
-    void write(QTextStream &s, const AbstractMetaClass *meta_class);
-    void writeInjectedCode(QTextStream &s, const AbstractMetaClass *meta_class);
-
+  void write(QTextStream& s, const AbstractMetaClass* meta_class);
+  void writeInjectedCode(QTextStream& s, const AbstractMetaClass* meta_class);
 };
 
 #endif // SHELLIMPLGENERATOR_H

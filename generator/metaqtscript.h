@@ -53,8 +53,6 @@ class MetaQtScriptArgument;
 class MetaQtScriptEnumValue;
 class MetaQtScriptEnum;
 
-
-
 class MetaQtScriptType : public AbstractMetaType
 {};
 
@@ -75,7 +73,7 @@ class MetaQtScriptEnum : public AbstractMetaEnum
 
 class MetaQtScriptClass : public AbstractMetaClass
 {
-    virtual bool hasDefaultToStringFunction() const;
+  virtual bool hasDefaultToStringFunction() const;
 };
 
 #endif // METAQTSCRIPT_H

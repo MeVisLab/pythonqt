@@ -48,13 +48,18 @@
 #include <QPushButton>
 
 // an example CPP object
-class YourCPPObject {
+class YourCPPObject
+{
 public:
-  YourCPPObject(int arg1, float arg2) { a = arg1; b = arg2; }
+  YourCPPObject(int arg1, float arg2)
+  {
+    a = arg1;
+    b = arg2;
+  }
 
-  float doSomething(int arg1) { return arg1*a*b; };
+  float doSomething(int arg1) { return arg1 * a * b; };
 
-  private:
+private:
 
   int a;
   float b;
@@ -70,7 +75,7 @@ public Q_SLOTS:
   QSize* new_QSize(const QPoint& p) { return new QSize(p.x(), p.y()); }
 
   // add a constructor for QPushButton that takes a text and a parent widget
-  QPushButton* new_QPushButton(const QString& text, QWidget* parent=NULL) { return new QPushButton(text, parent); }
+  QPushButton* new_QPushButton(const QString& text, QWidget* parent = NULL) { return new QPushButton(text, parent); }
 
   // add a constructor for a CPP object
   YourCPPObject* new_YourCPPObject(int arg1, float arg2) { return new YourCPPObject(arg1, arg2); }
@@ -85,11 +90,10 @@ public Q_SLOTS:
   void move(QWidget* w, const QPoint& p) { w->move(p); }
 
   // add an additional slot to QWidget, overloading the above move method
-  void move(QWidget* w, int x, int y) { w->move(x,y); }
+  void move(QWidget* w, int x, int y) { w->move(x, y); }
 
   // add a method to your own CPP object
   int doSomething(YourCPPObject* obj, int arg1) { return obj->doSomething(arg1); }
 };
-
 
 #endif

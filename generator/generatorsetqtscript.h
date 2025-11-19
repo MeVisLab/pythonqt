@@ -47,24 +47,23 @@
 
 class GeneratorSetQtScript : public GeneratorSet
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-    GeneratorSetQtScript();
+  GeneratorSetQtScript();
 
-    QString usage() override;
-    bool readParameters(const QMap<QString, QString> args) override;
+  QString usage() override;
+  bool readParameters(const QMap<QString, QString> args) override;
 
-    void buildModel(const QString pp_file) override;
-    void dumpObjectTree() override;
-    void setIncludePaths(const QStringList& includePaths) override;
+  void buildModel(const QString pp_file) override;
+  void dumpObjectTree() override;
+  void setIncludePaths(const QStringList& includePaths) override;
 
-    QString generate() override;
+  QString generate() override;
 
 private:
-    MetaQtScriptBuilder builder;
-    int maxClassesPerFile{30};
-  
+  MetaQtScriptBuilder builder;
+  int maxClassesPerFile {30};
 };
 
 #endif // GENERATOR_SET_QT_SCRIPT_H
