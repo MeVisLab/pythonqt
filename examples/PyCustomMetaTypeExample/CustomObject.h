@@ -45,23 +45,27 @@
 #include "PythonQt.h"
 #include <QObject>
 
-
 // declare our own copyable custom object
-class CustomObject {
+class CustomObject
+{
 public:
   CustomObject() {}
-  CustomObject(const QString& first, const QString& last) { _firstName = first; _lastName = last; }
+  CustomObject(const QString& first, const QString& last)
+  {
+    _firstName = first;
+    _lastName = last;
+  }
 
   QString _firstName;
   QString _lastName;
-
 };
 
 // register it to the meta type system
 Q_DECLARE_METATYPE(CustomObject)
 
 // add a wrapper that allows to access the CustomObject from PythonQt
-class CustomObjectWrapper : public QObject {
+class CustomObjectWrapper : public QObject
+{
 
   Q_OBJECT
 
@@ -78,8 +82,6 @@ public Q_SLOTS:
   void setFirstName(CustomObject* o, const QString& name) { o->_firstName = name; }
 
   void setLastName(CustomObject* o, const QString& name) { o->_lastName = name; }
-
 };
-
 
 #endif

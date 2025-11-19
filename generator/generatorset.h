@@ -49,21 +49,21 @@
 
 class GeneratorSet : public QObject
 {
-    Q_OBJECT
+  Q_OBJECT
 
- public:
-    GeneratorSet();
+public:
+  GeneratorSet();
 
-    virtual QString usage() = 0;
-    virtual bool readParameters(const QMap<QString, QString> args) = 0;
-    virtual void buildModel(const QString pp_file) = 0;
-    virtual void dumpObjectTree() = 0;
-    virtual void setIncludePaths(const QStringList& includePaths) = 0;
-    virtual QString generate() = 0;
+  virtual QString usage() = 0;
+  virtual bool readParameters(const QMap<QString, QString> args) = 0;
+  virtual void buildModel(const QString pp_file) = 0;
+  virtual void dumpObjectTree() = 0;
+  virtual void setIncludePaths(const QStringList& includePaths) = 0;
+  virtual QString generate() = 0;
 
-    static GeneratorSet *getInstance();
-    QString outDir;
-    bool printStdout;
+  static GeneratorSet* getInstance();
+  QString outDir;
+  bool printStdout;
 };
 
 #endif // GENERATOR_SET_H

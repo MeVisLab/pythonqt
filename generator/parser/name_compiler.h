@@ -39,37 +39,36 @@
 **
 ****************************************************************************/
 
-
 #ifndef NAME_COMPILER_H
-#define NAME_COMPILER_H
+  #define NAME_COMPILER_H
 
-#include "default_visitor.h"
-#include <QtCore/QStringList>
+  #include "default_visitor.h"
+  #include <QtCore/QStringList>
 
 class TokenStream;
 class Binder;
 
-class NameCompiler: protected DefaultVisitor
+class NameCompiler : protected DefaultVisitor
 {
 public:
-  NameCompiler(Binder *binder);
+  NameCompiler(Binder* binder);
 
-  void run(NameAST *node) { internal_run(node); }
-  void run(UnqualifiedNameAST *node) { internal_run(node); }
+  void run(NameAST* node) { internal_run(node); }
+  void run(UnqualifiedNameAST* node) { internal_run(node); }
 
   QString name() const { return _M_name.join("::"); }
   QStringList qualifiedName() const { return _M_name; }
 
 protected:
-  virtual void visitUnqualifiedName(UnqualifiedNameAST *node);
-  virtual void visitTemplateArgument(TemplateArgumentAST *node);
+  virtual void visitUnqualifiedName(UnqualifiedNameAST* node);
+  virtual void visitTemplateArgument(TemplateArgumentAST* node);
 
-  QString internal_run(AST *node);
+  QString internal_run(AST* node);
   QString decode_operator(std::size_t index) const;
 
 private:
-  Binder *_M_binder;
-  TokenStream *_M_token_stream;
+  Binder* _M_binder;
+  TokenStream* _M_token_stream;
   QStringList _M_name;
 };
 

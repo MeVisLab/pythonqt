@@ -39,13 +39,12 @@
 **
 ****************************************************************************/
 
-
 #ifndef COMPILER_UTILS_H
-#define COMPILER_UTILS_H
+  #define COMPILER_UTILS_H
 
-#include <utility>
+  #include <utility>
 
-#include "codemodel.h"
+  #include "codemodel.h"
 
 class QString;
 struct TypeSpecifierAST;
@@ -53,10 +52,9 @@ struct DeclaratorAST;
 class TokenStream;
 class Binder;
 
-namespace CompilerUtils
-{
+namespace CompilerUtils {
 
-TypeInfo typeDescription(TypeSpecifierAST *type_specifier, DeclaratorAST *declarator, Binder *binder);
+TypeInfo typeDescription(TypeSpecifierAST* type_specifier, DeclaratorAST* declarator, Binder* binder);
 
 } // namespace CompilerUtils
 

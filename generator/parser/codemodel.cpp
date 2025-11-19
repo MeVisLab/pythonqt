@@ -39,7 +39,6 @@
 **
 ****************************************************************************/
 
-
 #include "codemodel.h"
 
 // ---------------------------------------------------------------------------
@@ -49,9 +48,7 @@ CodeModel::CodeModel()
   _M_globalNamespace = create<NamespaceModelItem>();
 }
 
-CodeModel::~CodeModel()
-{
-}
+CodeModel::~CodeModel() {}
 
 void CodeModel::wipeout()
 {
@@ -83,7 +80,7 @@ void CodeModel::removeFile(FileModelItem item)
     _M_files.erase(it);
 }
 
-FileModelItem CodeModel::findFile(const QString &name) const
+FileModelItem CodeModel::findFile(const QString& name) const
 {
   return _M_files.value(name);
 }
@@ -93,86 +90,76 @@ QHash<QString, FileModelItem> CodeModel::fileMap() const
   return _M_files;
 }
 
-CodeModelItem CodeModel::findItem(const QStringList &qualifiedName, CodeModelItem scope) const
+CodeModelItem CodeModel::findItem(const QStringList& qualifiedName, CodeModelItem scope) const
 {
-  for (int i=0; i<qualifiedName.size(); ++i) {
+  for (int i = 0; i < qualifiedName.size(); ++i) {
     // ### Extend to look for members etc too.
-    const QString &name = qualifiedName.at(i);
+    const QString& name = qualifiedName.at(i);
 
-    if (NamespaceModelItem ns = scope.dynamicCast<_NamespaceModelItem>())
-      {
-        if (NamespaceModelItem tmp_ns = ns->findNamespace(name)) {
-          scope = tmp_ns;
-          continue;
-        }
+    if (NamespaceModelItem ns = scope.dynamicCast<_NamespaceModelItem>()) {
+      if (NamespaceModelItem tmp_ns = ns->findNamespace(name)) {
+        scope = tmp_ns;
+        continue;
       }
+    }
 
-    if (ScopeModelItem ss = scope.dynamicCast<_ScopeModelItem>())
-      {
-        if (ClassModelItem cs = ss->findClass(name))
-          {
-            scope = cs;
-          }
-        else if (EnumModelItem es = ss->findEnum(name))
-          {
-            if (i == qualifiedName.size () - 1)
-              return es;
-          }
-        else if (TypeAliasModelItem tp = ss->findTypeAlias(name))
-          {
-            if (i == qualifiedName.size () - 1)
-              return tp;
-          }
-        else
-          {
-              // If we don't find the name in the scope chain we
-              // need to return an empty item to indicate failure...
-              return CodeModelItem();
-          }
+    if (ScopeModelItem ss = scope.dynamicCast<_ScopeModelItem>()) {
+      if (ClassModelItem cs = ss->findClass(name)) {
+        scope = cs;
+      } else if (EnumModelItem es = ss->findEnum(name)) {
+        if (i == qualifiedName.size() - 1)
+          return es;
+      } else if (TypeAliasModelItem tp = ss->findTypeAlias(name)) {
+        if (i == qualifiedName.size() - 1)
+          return tp;
+      } else {
+        // If we don't find the name in the scope chain we
+        // need to return an empty item to indicate failure...
+        return CodeModelItem();
       }
+    }
   }
 
   return scope;
 }
 
-
 // ---------------------------------------------------------------------------
-TypeInfo TypeInfo::combine (const TypeInfo &__lhs, const TypeInfo &__rhs)
+TypeInfo TypeInfo::combine(const TypeInfo& __lhs, const TypeInfo& __rhs)
 {
   TypeInfo __result = __lhs;
 
-  __result.setConstant (__result.isConstant () || __rhs.isConstant ());
-  __result.setVolatile (__result.isVolatile () || __rhs.isVolatile ());
-  __result.setMutable (__result.isMutable () || __rhs.isMutable ());
-  __result.setReference (__result.isReference () || __rhs.isReference ());
-  __result.setRvalueReference (__result.isRvalueReference () || __rhs.isRvalueReference ());
-  __result.setIndirections (__result.indirections () + __rhs.indirections ());
-  __result.setArrayElements (__result.arrayElements () + __rhs.arrayElements ());
+  __result.setConstant(__result.isConstant() || __rhs.isConstant());
+  __result.setVolatile(__result.isVolatile() || __rhs.isVolatile());
+  __result.setMutable(__result.isMutable() || __rhs.isMutable());
+  __result.setReference(__result.isReference() || __rhs.isReference());
+  __result.setRvalueReference(__result.isRvalueReference() || __rhs.isRvalueReference());
+  __result.setIndirections(__result.indirections() + __rhs.indirections());
+  __result.setArrayElements(__result.arrayElements() + __rhs.arrayElements());
 
   return __result;
 }
 
-TypeInfo TypeInfo::resolveType (TypeInfo const &__type, CodeModelItem __scope)
+TypeInfo TypeInfo::resolveType(TypeInfo const& __type, CodeModelItem __scope)
 {
-    CodeModel *__model = __scope->model ();
-    Q_ASSERT (__model != 0);
+  CodeModel* __model = __scope->model();
+  Q_ASSERT(__model != 0);
 
-    CodeModelItem __item = __model->findItem (__type.qualifiedName (), __scope);
+  CodeModelItem __item = __model->findItem(__type.qualifiedName(), __scope);
 
-    // Copy the type and replace with the proper qualified name. This
-    // only makes sence to do if we're actually getting a resolved
-    // type with a namespace. We only get this if the returned type
-    // has more than 2 entries in the qualified name... This test
-    // could be improved by returning if the type was found or not.
-    TypeInfo otherType(__type);
-    if (__item && __item->qualifiedName().size() > 1) {
-        otherType.setQualifiedName(__item->qualifiedName());
-    }
+  // Copy the type and replace with the proper qualified name. This
+  // only makes sence to do if we're actually getting a resolved
+  // type with a namespace. We only get this if the returned type
+  // has more than 2 entries in the qualified name... This test
+  // could be improved by returning if the type was found or not.
+  TypeInfo otherType(__type);
+  if (__item && __item->qualifiedName().size() > 1) {
+    otherType.setQualifiedName(__item->qualifiedName());
+  }
 
-    if (TypeAliasModelItem __alias = __item.dynamicCast<_TypeAliasModelItem>())
-        return resolveType (TypeInfo::combine (__alias->type (), otherType), __scope);
+  if (TypeAliasModelItem __alias = __item.dynamicCast<_TypeAliasModelItem>())
+    return resolveType(TypeInfo::combine(__alias->type(), otherType), __scope);
 
-    return otherType;
+  return otherType;
 }
 
 QString TypeInfo::toString(bool parsable) const
@@ -199,66 +186,59 @@ QString TypeInfo::toString(bool parsable) const
   else if (isReference())
     tmp += QLatin1Char('&');
 
-  if (isFunctionPointer())
-    {
-      tmp += QLatin1String(" (*)(");
-      for (int i=0; i<m_arguments.count(); ++i)
-        {
-          if (i != 0)
-            tmp += QLatin1String(", ");
+  if (isFunctionPointer()) {
+    tmp += QLatin1String(" (*)(");
+    for (int i = 0; i < m_arguments.count(); ++i) {
+      if (i != 0)
+        tmp += QLatin1String(", ");
 
-          tmp += m_arguments.at(i).toString(parsable);
-        }
-      tmp += QLatin1String(")");
+      tmp += m_arguments.at(i).toString(parsable);
     }
+    tmp += QLatin1String(")");
+  }
 
   const QStringList arrayElements = this->arrayElements();
-  for (const QString& elt : arrayElements)
-    {
-      tmp += QLatin1String ("[");
-      tmp += elt;
-      tmp += QLatin1String ("]");
-    }
+  for (const QString& elt : arrayElements) {
+    tmp += QLatin1String("[");
+    tmp += elt;
+    tmp += QLatin1String("]");
+  }
 
   return tmp;
 }
 
-bool TypeInfo::operator==(const TypeInfo &other) const
+bool TypeInfo::operator==(const TypeInfo& other) const
 {
   if (arrayElements().count() != other.arrayElements().count())
     return false;
 
-#if defined (RXX_CHECK_ARRAY_ELEMENTS) // ### it'll break
-  for (int i=0; i<arrayElements().count(); ++i)
-    {
-      QString elt1 = arrayElements ().at (i).trimmed ();
-      QString elt2 = other.arrayElements ().at (i).trimmed ();
+#if defined(RXX_CHECK_ARRAY_ELEMENTS) // ### it'll break
+  for (int i = 0; i < arrayElements().count(); ++i) {
+    QString elt1 = arrayElements().at(i).trimmed();
+    QString elt2 = other.arrayElements().at(i).trimmed();
 
-      if (elt1 != elt2)
-        return false;
-    }
+    if (elt1 != elt2)
+      return false;
+  }
 #endif
 
-  return m_flags.equals(other.m_flags)
-    && m_qualifiedName == other.m_qualifiedName
-    && (!m_flags.m_functionPointer || m_arguments == other.m_arguments);
+  return m_flags.equals(other.m_flags) && m_qualifiedName == other.m_qualifiedName
+         && (!m_flags.m_functionPointer || m_arguments == other.m_arguments);
 }
 
 // ---------------------------------------------------------------------------
-_CodeModelItem::_CodeModelItem(CodeModel *model, int kind)
-  : _M_model(model),
-    _M_kind(kind),
-    _M_startLine(0),
-    _M_startColumn(0),
-    _M_endLine(0),
-    _M_endColumn(0),
-    _M_creation_id(0)
+_CodeModelItem::_CodeModelItem(CodeModel* model, int kind)
+  : _M_model(model)
+  , _M_kind(kind)
+  , _M_startLine(0)
+  , _M_startColumn(0)
+  , _M_endLine(0)
+  , _M_endColumn(0)
+  , _M_creation_id(0)
 {
 }
 
-_CodeModelItem::~_CodeModelItem()
-{
-}
+_CodeModelItem::~_CodeModelItem() {}
 
 CodeModelItem _CodeModelItem::toItem() const
 {
@@ -290,7 +270,7 @@ QString _CodeModelItem::name() const
   return _M_name;
 }
 
-void _CodeModelItem::setName(const QString &name)
+void _CodeModelItem::setName(const QString& name)
 {
   _M_name = name;
 }
@@ -300,7 +280,7 @@ QStringList _CodeModelItem::scope() const
   return _M_scope;
 }
 
-void _CodeModelItem::setScope(const QStringList &scope)
+void _CodeModelItem::setScope(const QStringList& scope)
 {
   _M_scope = scope;
 }
@@ -310,7 +290,7 @@ QString _CodeModelItem::fileName() const
   return _M_fileName;
 }
 
-void _CodeModelItem::setFileName(const QString &fileName)
+void _CodeModelItem::setFileName(const QString& fileName)
 {
   _M_fileName = fileName;
 }
@@ -320,7 +300,7 @@ FileModelItem _CodeModelItem::file() const
   return model()->findFile(fileName());
 }
 
-void _CodeModelItem::getStartPosition(int *line, int *column) const
+void _CodeModelItem::getStartPosition(int* line, int* column) const
 {
   *line = _M_startLine;
   *column = _M_startColumn;
@@ -332,7 +312,7 @@ void _CodeModelItem::setStartPosition(int line, int column)
   _M_startColumn = column;
 }
 
-void _CodeModelItem::getEndPosition(int *line, int *column) const
+void _CodeModelItem::getEndPosition(int* line, int* column) const
 {
   *line = _M_endLine;
   *column = _M_endColumn;
@@ -350,7 +330,7 @@ QStringList _ClassModelItem::baseClasses() const
   return _M_baseClasses;
 }
 
-void _ClassModelItem::setBaseClasses(const QStringList &baseClasses)
+void _ClassModelItem::setBaseClasses(const QStringList& baseClasses)
 {
   _M_baseClasses = baseClasses;
 }
@@ -360,22 +340,22 @@ TemplateParameterList _ClassModelItem::templateParameters() const
   return _M_templateParameters;
 }
 
-void _ClassModelItem::setTemplateParameters(const TemplateParameterList &templateParameters)
+void _ClassModelItem::setTemplateParameters(const TemplateParameterList& templateParameters)
 {
   _M_templateParameters = templateParameters;
 }
 
-void _ClassModelItem::addBaseClass(const QString &baseClass)
+void _ClassModelItem::addBaseClass(const QString& baseClass)
 {
   _M_baseClasses.append(baseClass);
 }
 
-void _ClassModelItem::removeBaseClass(const QString &baseClass)
+void _ClassModelItem::removeBaseClass(const QString& baseClass)
 {
   _M_baseClasses.removeAt(_M_baseClasses.indexOf(baseClass));
 }
 
-bool _ClassModelItem::extendsClass(const QString &name) const
+bool _ClassModelItem::extendsClass(const QString& name) const
 {
   return _M_baseClasses.contains(name);
 }
@@ -390,22 +370,20 @@ CodeModel::ClassType _ClassModelItem::classType() const
   return _M_classType;
 }
 
-void _ClassModelItem::addPropertyDeclaration(const QString &propertyDeclaration)
+void _ClassModelItem::addPropertyDeclaration(const QString& propertyDeclaration)
 {
-    _M_propertyDeclarations << propertyDeclaration;
+  _M_propertyDeclarations << propertyDeclaration;
 }
-
 
 // ---------------------------------------------------------------------------
 FunctionModelItem _ScopeModelItem::declaredFunction(FunctionModelItem item)
 {
   const FunctionList function_list = findFunctions(item->name());
 
-  for (const FunctionModelItem& fun : function_list)
-    {
-      if (fun->isSimilar(item))
-        return fun;
-    }
+  for (const FunctionModelItem& fun : function_list) {
+    if (fun->isSimilar(item))
+      return fun;
+  }
 
   return FunctionModelItem();
 }
@@ -430,7 +408,7 @@ FunctionList _ScopeModelItem::functions() const
   return _M_functions.values();
 }
 
-void _ScopeModelItem::addQEnumDeclaration(const QString &qEnumDeclaration)
+void _ScopeModelItem::addQEnumDeclaration(const QString& qEnumDeclaration)
 {
   _M_qEnumDeclarations.insert(qEnumDeclaration);
 }
@@ -447,10 +425,10 @@ EnumList _ScopeModelItem::enums() const
 
 void _ScopeModelItem::addClass(ClassModelItem item)
 {
- QString name = item->name();
- int idx = name.indexOf("<");
- if (idx > 0)
-     _M_classes.insert(name.left(idx), item);
+  QString name = item->name();
+  int idx = name.indexOf("<");
+  if (idx > 0)
+    _M_classes.insert(name.left(idx), item);
   _M_classes.insert(name, item);
 }
 
@@ -491,32 +469,26 @@ void _ScopeModelItem::removeFunction(FunctionModelItem item)
 {
   QMultiHash<QString, FunctionModelItem>::Iterator it = _M_functions.find(item->name());
 
-  while (it != _M_functions.end() && it.key() == item->name()
-         && it.value() != item)
-    {
-      ++it;
-    }
+  while (it != _M_functions.end() && it.key() == item->name() && it.value() != item) {
+    ++it;
+  }
 
-  if (it != _M_functions.end() && it.value() == item)
-    {
-      _M_functions.erase(it);
-    }
+  if (it != _M_functions.end() && it.value() == item) {
+    _M_functions.erase(it);
+  }
 }
 
 void _ScopeModelItem::removeFunctionDefinition(FunctionDefinitionModelItem item)
 {
   QMultiHash<QString, FunctionDefinitionModelItem>::Iterator it = _M_functionDefinitions.find(item->name());
 
-  while (it != _M_functionDefinitions.end() && it.key() == item->name()
-         && it.value() != item)
-    {
-      ++it;
-    }
+  while (it != _M_functionDefinitions.end() && it.key() == item->name() && it.value() != item) {
+    ++it;
+  }
 
-  if (it != _M_functionDefinitions.end() && it.value() == item)
-    {
-      _M_functionDefinitions.erase(it);
-    }
+  if (it != _M_functionDefinitions.end() && it.value() == item) {
+    _M_functionDefinitions.erase(it);
+  }
 }
 
 void _ScopeModelItem::removeVariable(VariableModelItem item)
@@ -543,32 +515,32 @@ void _ScopeModelItem::removeEnum(EnumModelItem item)
     _M_enums.erase(it);
 }
 
-ClassModelItem _ScopeModelItem::findClass(const QString &name) const
+ClassModelItem _ScopeModelItem::findClass(const QString& name) const
 {
   return _M_classes.value(name);
 }
 
-VariableModelItem _ScopeModelItem::findVariable(const QString &name) const
+VariableModelItem _ScopeModelItem::findVariable(const QString& name) const
 {
   return _M_variables.value(name);
 }
 
-TypeAliasModelItem _ScopeModelItem::findTypeAlias(const QString &name) const
+TypeAliasModelItem _ScopeModelItem::findTypeAlias(const QString& name) const
 {
   return _M_typeAliases.value(name);
 }
 
-EnumModelItem _ScopeModelItem::findEnum(const QString &name) const
+EnumModelItem _ScopeModelItem::findEnum(const QString& name) const
 {
   return _M_enums.value(name);
 }
 
-FunctionList _ScopeModelItem::findFunctions(const QString &name) const
+FunctionList _ScopeModelItem::findFunctions(const QString& name) const
 {
   return _M_functions.values(name);
 }
 
-FunctionDefinitionList _ScopeModelItem::findFunctionDefinitions(const QString &name) const
+FunctionDefinitionList _ScopeModelItem::findFunctionDefinitions(const QString& name) const
 {
   return _M_functionDefinitions.values(name);
 }
@@ -590,7 +562,7 @@ void _NamespaceModelItem::removeNamespace(NamespaceModelItem item)
     _M_namespaces.erase(it);
 }
 
-NamespaceModelItem _NamespaceModelItem::findNamespace(const QString &name) const
+NamespaceModelItem _NamespaceModelItem::findNamespace(const QString& name) const
 {
   return _M_namespaces.value(name);
 }
@@ -601,7 +573,7 @@ TypeInfo _ArgumentModelItem::type() const
   return _M_type;
 }
 
-void _ArgumentModelItem::setType(const TypeInfo &type)
+void _ArgumentModelItem::setType(const TypeInfo& type)
 {
   _M_type = type;
 }
@@ -633,14 +605,13 @@ bool _FunctionModelItem::isSimilar(FunctionModelItem other) const
 
   // ### check the template parameters
 
-  for (int i=0; i<arguments().count(); ++i)
-    {
-      ArgumentModelItem arg1 = arguments().at(i);
-      ArgumentModelItem arg2 = other->arguments().at(i);
+  for (int i = 0; i < arguments().count(); ++i) {
+    ArgumentModelItem arg1 = arguments().at(i);
+    ArgumentModelItem arg2 = other->arguments().at(i);
 
-      if (arg1->type() != arg2->type())
-        return false;
-    }
+    if (arg1->type() != arg2->type())
+      return false;
+  }
 
   return true;
 }
@@ -675,7 +646,7 @@ QString _FunctionModelItem::exception() const
   return _M_exception;
 }
 
-void _FunctionModelItem::setException(const QString &exception)
+void _FunctionModelItem::setException(const QString& exception)
 {
   _M_exception = exception;
 }
@@ -743,12 +714,12 @@ void _FunctionModelItem::setDeleted(bool isDeleted)
 // Qt
 bool _FunctionModelItem::isInvokable() const
 {
-    return _M.isInvokable;
+  return _M.isInvokable;
 }
 
 void _FunctionModelItem::setInvokable(bool isInvokable)
 {
-    _M.isInvokable = isInvokable;
+  _M.isInvokable = isInvokable;
 }
 
 // ---------------------------------------------------------------------------
@@ -757,7 +728,7 @@ TypeInfo _TypeAliasModelItem::type() const
   return _M_type;
 }
 
-void _TypeAliasModelItem::setType(const TypeInfo &type)
+void _TypeAliasModelItem::setType(const TypeInfo& type)
 {
   _M_type = type;
 }
@@ -794,7 +765,7 @@ QString _EnumeratorModelItem::value() const
   return _M_value;
 }
 
-void _EnumeratorModelItem::setValue(const QString &value)
+void _EnumeratorModelItem::setValue(const QString& value)
 {
   _M_value = value;
 }
@@ -805,7 +776,7 @@ TypeInfo _TemplateParameterModelItem::type() const
   return _M_type;
 }
 
-void _TemplateParameterModelItem::setType(const TypeInfo &type)
+void _TemplateParameterModelItem::setType(const TypeInfo& type)
 {
   _M_type = type;
 }
@@ -821,73 +792,73 @@ void _TemplateParameterModelItem::setDefaultValue(bool defaultValue)
 }
 
 // ---------------------------------------------------------------------------
-ScopeModelItem _ScopeModelItem::create(CodeModel *model)
+ScopeModelItem _ScopeModelItem::create(CodeModel* model)
 {
   ScopeModelItem item(new _ScopeModelItem(model));
   return item;
 }
 
-ClassModelItem _ClassModelItem::create(CodeModel *model)
+ClassModelItem _ClassModelItem::create(CodeModel* model)
 {
   ClassModelItem item(new _ClassModelItem(model));
   return item;
 }
 
-NamespaceModelItem _NamespaceModelItem::create(CodeModel *model)
+NamespaceModelItem _NamespaceModelItem::create(CodeModel* model)
 {
   NamespaceModelItem item(new _NamespaceModelItem(model));
   return item;
 }
 
-FileModelItem _FileModelItem::create(CodeModel *model)
+FileModelItem _FileModelItem::create(CodeModel* model)
 {
   FileModelItem item(new _FileModelItem(model));
   return item;
 }
 
-ArgumentModelItem _ArgumentModelItem::create(CodeModel *model)
+ArgumentModelItem _ArgumentModelItem::create(CodeModel* model)
 {
   ArgumentModelItem item(new _ArgumentModelItem(model));
   return item;
 }
 
-FunctionModelItem _FunctionModelItem::create(CodeModel *model)
+FunctionModelItem _FunctionModelItem::create(CodeModel* model)
 {
   FunctionModelItem item(new _FunctionModelItem(model));
   return item;
 }
 
-FunctionDefinitionModelItem _FunctionDefinitionModelItem::create(CodeModel *model)
+FunctionDefinitionModelItem _FunctionDefinitionModelItem::create(CodeModel* model)
 {
   FunctionDefinitionModelItem item(new _FunctionDefinitionModelItem(model));
   return item;
 }
 
-VariableModelItem _VariableModelItem::create(CodeModel *model)
+VariableModelItem _VariableModelItem::create(CodeModel* model)
 {
   VariableModelItem item(new _VariableModelItem(model));
   return item;
 }
 
-TypeAliasModelItem _TypeAliasModelItem::create(CodeModel *model)
+TypeAliasModelItem _TypeAliasModelItem::create(CodeModel* model)
 {
   TypeAliasModelItem item(new _TypeAliasModelItem(model));
   return item;
 }
 
-EnumModelItem _EnumModelItem::create(CodeModel *model)
+EnumModelItem _EnumModelItem::create(CodeModel* model)
 {
   EnumModelItem item(new _EnumModelItem(model));
   return item;
 }
 
-EnumeratorModelItem _EnumeratorModelItem::create(CodeModel *model)
+EnumeratorModelItem _EnumeratorModelItem::create(CodeModel* model)
 {
   EnumeratorModelItem item(new _EnumeratorModelItem(model));
   return item;
 }
 
-TemplateParameterModelItem _TemplateParameterModelItem::create(CodeModel *model)
+TemplateParameterModelItem _TemplateParameterModelItem::create(CodeModel* model)
 {
   TemplateParameterModelItem item(new _TemplateParameterModelItem(model));
   return item;
@@ -899,7 +870,7 @@ TypeInfo _MemberModelItem::type() const
   return _M_type;
 }
 
-void _MemberModelItem::setType(const TypeInfo &type)
+void _MemberModelItem::setType(const TypeInfo& type)
 {
   _M_type = type;
 }
@@ -1005,4 +976,3 @@ void _MemberModelItem::setMutable(bool isMutable)
 }
 
 // kate: space-indent on; indent-width 2; replace-tabs on;
-

@@ -39,100 +39,34 @@
 **
 ****************************************************************************/
 
-
 #include "dumptree.h"
 
 #include <QtCore/QString>
 #include <QtCore/qdebug.h>
 
-static char const * const names[] = {
-  0,
-  "AccessSpecifier",
-  "AsmDefinition",
-  "BaseClause",
-  "BaseSpecifier",
-  "BinaryExpression",
-  "CastExpression",
-  "ClassMemberAccess",
-  "ClassSpecifier",
-  "CompoundStatement",
-  "Condition",
-  "ConditionalExpression",
-  "CppCastExpression",
-  "CtorInitializer",
-  "DeclarationStatement",
-  "Declarator",
-  "DeleteExpression",
-  "DoStatement",
-  "ElaboratedTypeSpecifier",
-  "EnumSpecifier",
-  "Enumerator",
-  "ExceptionSpecification",
-  "ExpressionOrDeclarationStatement",
-  "ExpressionStatement",
-  "ForStatement",
-  "FunctionCall",
-  "FunctionDefinition",
-  "IfStatement",
-  "IncrDecrExpression",
-  "InitDeclarator",
-  "Initializer",
-  "InitializerClause",
-  "LabeledStatement",
-  "LinkageBody",
-  "LinkageSpecification",
-  "MemInitializer",
-  "Name",
-  "Namespace",
-  "NamespaceAliasDefinition",
-  "NewDeclarator",
-  "NewExpression",
-  "NewInitializer",
-  "NewTypeId",
-  "Operator",
-  "OperatorFunctionId",
-  "ParameterDeclaration",
-  "ParameterDeclarationClause",
-  "PostfixExpression",
-  "PrimaryExpression",
-  "PtrOperator",
-  "PtrToMember",
-  "ReturnStatement",
-  "SimpleDeclaration",
-  "SimpleTypeSpecifier",
-  "SizeofExpression",
-  "StringLiteral",
-  "SubscriptExpression",
-  "SwitchStatement",
-  "TemplateArgument",
-  "TemplateDeclaration",
-  "TemplateParameter",
-  "ThrowExpression",
-  "TranslationUnit",
-  "TryBlockStatement",
-  "TypeId",
-  "TypeIdentification",
-  "TypeParameter",
-  "Typedef",
-  "UnaryExpression",
-  "UnqualifiedName",
-  "Using",
-  "UsingDirective",
-  "WhileStatement",
-  "WinDeclSpec"
-};
+static char const* const names[] = {0, "AccessSpecifier", "AsmDefinition", "BaseClause", "BaseSpecifier",
+  "BinaryExpression", "CastExpression", "ClassMemberAccess", "ClassSpecifier", "CompoundStatement", "Condition",
+  "ConditionalExpression", "CppCastExpression", "CtorInitializer", "DeclarationStatement", "Declarator",
+  "DeleteExpression", "DoStatement", "ElaboratedTypeSpecifier", "EnumSpecifier", "Enumerator", "ExceptionSpecification",
+  "ExpressionOrDeclarationStatement", "ExpressionStatement", "ForStatement", "FunctionCall", "FunctionDefinition",
+  "IfStatement", "IncrDecrExpression", "InitDeclarator", "Initializer", "InitializerClause", "LabeledStatement",
+  "LinkageBody", "LinkageSpecification", "MemInitializer", "Name", "Namespace", "NamespaceAliasDefinition",
+  "NewDeclarator", "NewExpression", "NewInitializer", "NewTypeId", "Operator", "OperatorFunctionId",
+  "ParameterDeclaration", "ParameterDeclarationClause", "PostfixExpression", "PrimaryExpression", "PtrOperator",
+  "PtrToMember", "ReturnStatement", "SimpleDeclaration", "SimpleTypeSpecifier", "SizeofExpression", "StringLiteral",
+  "SubscriptExpression", "SwitchStatement", "TemplateArgument", "TemplateDeclaration", "TemplateParameter",
+  "ThrowExpression", "TranslationUnit", "TryBlockStatement", "TypeId", "TypeIdentification", "TypeParameter", "Typedef",
+  "UnaryExpression", "UnqualifiedName", "Using", "UsingDirective", "WhileStatement", "WinDeclSpec"};
 
-DumpTree::DumpTree()
-{
-}
+DumpTree::DumpTree() {}
 
-void DumpTree::visit(AST *node)
+void DumpTree::visit(AST* node)
 {
   static int indent = 0;
 
   if (node)
-    qDebug() << QString(indent * 2, ' ').toLatin1().constData() << names[node->kind]
-             << '[' << node->start_token << ", " << node->end_token << ']';
+    qDebug() << QString(indent * 2, ' ').toLatin1().constData() << names[node->kind] << '[' << node->start_token << ", "
+             << node->end_token << ']';
 
   ++indent;
   DefaultVisitor::visit(node);

@@ -42,7 +42,6 @@
 */
 //----------------------------------------------------------------------------------
 
-
 #include "PythonQtPythonInclude.h"
 
 #include "structmember.h"

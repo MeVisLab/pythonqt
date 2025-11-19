@@ -39,24 +39,21 @@
 **
 ****************************************************************************/
 
-
 #include "class_compiler.h"
 #include "lexer.h"
 #include "binder.h"
 
-ClassCompiler::ClassCompiler(Binder *binder)
-  : _M_binder (binder),
-     _M_token_stream(binder->tokenStream ()),
-     name_cc(_M_binder),
-     type_cc(_M_binder)
+ClassCompiler::ClassCompiler(Binder* binder)
+  : _M_binder(binder)
+  , _M_token_stream(binder->tokenStream())
+  , name_cc(_M_binder)
+  , type_cc(_M_binder)
 {
 }
 
-ClassCompiler::~ClassCompiler()
-{
-}
+ClassCompiler::~ClassCompiler() {}
 
-void ClassCompiler::run(ClassSpecifierAST *node)
+void ClassCompiler::run(ClassSpecifierAST* node)
 {
   name_cc.run(node->name);
   _M_name = name_cc.name();
@@ -65,19 +62,18 @@ void ClassCompiler::run(ClassSpecifierAST *node)
   visit(node);
 }
 
-void ClassCompiler::visitClassSpecifier(ClassSpecifierAST *node)
+void ClassCompiler::visitClassSpecifier(ClassSpecifierAST* node)
 {
   visit(node->base_clause);
 }
 
-void ClassCompiler::visitBaseSpecifier(BaseSpecifierAST *node)
+void ClassCompiler::visitBaseSpecifier(BaseSpecifierAST* node)
 {
   name_cc.run(node->name);
   QString name = name_cc.name();
 
-  if (! name.isEmpty())
+  if (!name.isEmpty())
     _M_base_classes.append(name);
 }
-
 
 // kate: space-indent on; indent-width 2; replace-tabs on;

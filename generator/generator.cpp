@@ -48,94 +48,91 @@
 
 Generator::Generator()
 {
-    m_num_generated = 0;
-    m_num_generated_written = 0;
-    m_out_dir = ".";
+  m_num_generated = 0;
+  m_num_generated_written = 0;
+  m_out_dir = ".";
 }
 
 void Generator::generate()
 {
-    if (m_classes.size() == 0) {
-        ReportHandler::warning(QString("%1: no java classes, skipping")
-                               .arg(metaObject()->className()));
-        return;
-    }
+  if (m_classes.size() == 0) {
+    ReportHandler::warning(QString("%1: no java classes, skipping").arg(metaObject()->className()));
+    return;
+  }
 
-    m_classes.sort();
+  m_classes.sort();
 
-    for (AbstractMetaClass* cls : m_classes) {
-        if (!shouldGenerate(cls))
-            continue;
+  for (AbstractMetaClass* cls : m_classes) {
+    if (!shouldGenerate(cls))
+      continue;
 
-        QString fileName = fileNameForClass(cls);
-        ReportHandler::debugSparse(QString("generating: %1").arg(fileName));
+    QString fileName = fileNameForClass(cls);
+    ReportHandler::debugSparse(QString("generating: %1").arg(fileName));
 
-        FileOut fileOut(outputDirectory() + "/" + subDirectoryForClass(cls) + "/" + fileName);
-        write(fileOut.stream, cls);
+    FileOut fileOut(outputDirectory() + "/" + subDirectoryForClass(cls) + "/" + fileName);
+    write(fileOut.stream, cls);
 
-        if( fileOut.done() )
-            ++m_num_generated_written;
-        ++m_num_generated;
-    }
+    if (fileOut.done())
+      ++m_num_generated_written;
+    ++m_num_generated;
+  }
 }
-
 
 void Generator::printClasses()
 {
-    QTextStream s(stdout);
+  QTextStream s(stdout);
 
-    AbstractMetaClassList classes = m_classes;
-    classes.sort();
+  AbstractMetaClassList classes = m_classes;
+  classes.sort();
 
-    for (AbstractMetaClass* cls : classes) {
-        if (!shouldGenerate(cls))
-            continue;
-        write(s, cls);
-        s << Qt::endl << Qt::endl;
+  for (AbstractMetaClass* cls : classes) {
+    if (!shouldGenerate(cls))
+      continue;
+    write(s, cls);
+    s << Qt::endl << Qt::endl;
+  }
+}
+
+void Generator::verifyDirectoryFor(const QFile& file)
+{
+  QDir dir = QFileInfo(file).dir();
+  if (!dir.exists()) {
+    if (!dir.mkpath(dir.absolutePath()))
+      ReportHandler::warning(QString("unable to create directory '%1'").arg(dir.absolutePath()));
+  }
+}
+
+QString Generator::subDirectoryForClass(const AbstractMetaClass*) const
+{
+  Q_ASSERT(false);
+  return QString();
+}
+
+QString Generator::fileNameForClass(const AbstractMetaClass*) const
+{
+  Q_ASSERT(false);
+  return QString();
+}
+
+void Generator::write(QTextStream&, const AbstractMetaClass*)
+{
+  Q_ASSERT(false);
+}
+
+bool Generator::hasDefaultConstructor(const AbstractMetaType* type)
+{
+  QString full_name = type->typeEntry()->qualifiedTargetLangName();
+  QString class_name = type->typeEntry()->targetLangName();
+
+  for (const AbstractMetaClass* java_class : m_classes) {
+    if (java_class->typeEntry()->qualifiedTargetLangName() == full_name) {
+      AbstractMetaFunctionList functions = java_class->functions();
+      for (const AbstractMetaFunction* function : functions) {
+        if (function->arguments().size() == 0 && function->name() == class_name)
+          return true;
+      }
+      return false;
     }
-}
-
-void Generator::verifyDirectoryFor(const QFile &file)
-{
-    QDir dir = QFileInfo(file).dir();
-    if (!dir.exists()) {
-        if (!dir.mkpath(dir.absolutePath()))
-            ReportHandler::warning(QString("unable to create directory '%1'")
-                                   .arg(dir.absolutePath()));
-    }
-}
-
-QString Generator::subDirectoryForClass(const AbstractMetaClass *) const
-{
-    Q_ASSERT(false);
-    return QString();
-}
-
-QString Generator::fileNameForClass(const AbstractMetaClass *) const
-{
-    Q_ASSERT(false);
-    return QString();
-}
-
-void Generator::write(QTextStream &, const AbstractMetaClass *)
-{
-    Q_ASSERT(false);
-}
-
-bool Generator::hasDefaultConstructor(const AbstractMetaType *type)
-{
-    QString full_name = type->typeEntry()->qualifiedTargetLangName();
-    QString class_name = type->typeEntry()->targetLangName();
-
-    for (const AbstractMetaClass* java_class : m_classes) {
-        if (java_class->typeEntry()->qualifiedTargetLangName() == full_name) {
-            AbstractMetaFunctionList functions = java_class->functions();
-            for (const AbstractMetaFunction* function : functions) {
-                if (function->arguments().size() == 0 && function->name() == class_name)
-                    return true;
-            }
-            return false;
-        }
-    }
-    return false;
+  }
+  return false;
 }

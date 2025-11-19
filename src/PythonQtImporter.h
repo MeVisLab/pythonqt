@@ -53,13 +53,11 @@
 #include <qobject.h>
 #include <qstring.h>
 
-
 //! defines a python object that stores a Qt slot info
 struct PythonQtImporter {
   PyObject_HEAD
   QString* _path;
 };
-
 
 //! implements importing of python files into PythonQt
 /*! also compiles/marshalls/unmarshalls py/pyc files and handles time stamps correctly
@@ -68,19 +66,12 @@ class PythonQtImport
 {
 public:
 
-  enum ModuleType {
-    MI_NOT_FOUND,
-    MI_MODULE,
-    MI_PACKAGE,
-    MI_SHAREDLIBRARY
-  };
+  enum ModuleType { MI_NOT_FOUND, MI_MODULE, MI_PACKAGE, MI_SHAREDLIBRARY };
 
   struct ModuleInfo {
-    ModuleInfo() {
-      type  = MI_NOT_FOUND;
-    }
-    QString    fullPath;   //!< the full path to the found file
-    QString    moduleName; //!< the module name without the package prefix
+    ModuleInfo() { type = MI_NOT_FOUND; }
+    QString fullPath;   //!< the full path to the found file
+    QString moduleName; //!< the module name without the package prefix
     ModuleType type;
   };
 
@@ -88,30 +79,27 @@ public:
   static void init();
 
   //! writes the python code to disk, marshalling and writing the time stamp
-  static void writeCompiledModule(PyCodeObject *co, const QString& filename, long mtime, long sourceSize);
+  static void writeCompiledModule(PyCodeObject* co, const QString& filename, long mtime, long sourceSize);
 
   /*! Given the contents of a .py[co] file in a buffer, unmarshal the data
    and return the code object. Return None if it the magic word doesn't
    match (we do this instead of raising an exception as we fall back
    to .py if available and we don't want to mask other errors).
    Returns a new reference. */
-  static PyObject *unmarshalCode(const QString& path, const QByteArray& data, time_t mtime);
+  static PyObject* unmarshalCode(const QString& path, const QByteArray& data, time_t mtime);
 
   //! Given a string buffer containing Python source code, compile it
   //! return and return a code object as a new reference.
-  static PyObject *compileSource(const QString& path, const QByteArray& data);
+  static PyObject* compileSource(const QString& path, const QByteArray& data);
 
   //! Return the code object for the module named by 'fullname' from the
   //! Zip archive as a new reference.
-  static PyObject *getCodeFromData(const QString& path, int isbytecode = 0, int ispackage = 0,
-                                      time_t mtime = 0);
+  static PyObject* getCodeFromData(const QString& path, int isbytecode = 0, int ispackage = 0, time_t mtime = 0);
 
   //! Get the code object associated with the module specified by
   //! 'fullname'. In Python3, modpath will always be the path to the *.py file and cachemodpath the path
   //! to the *.pyc file (if it exists).
-  static PyObject * getModuleCode(PythonQtImporter *self,
-                                  const char* fullname, QString& modpath, QString& cachemodpath);
-
+  static PyObject* getModuleCode(PythonQtImporter* self, const char* fullname, QString& modpath, QString& cachemodpath);
 
   //! gets the compiled code for the given *.py file if there is a valid pyc file, otherwise compiles the file and writes the pyc
   static PyObject* getCodeFromPyc(const QString& file);
@@ -125,7 +113,7 @@ public:
   //! Given a buffer, return the long that is represented by the first
   //!   4 bytes, encoded as little endian. This partially reimplements
   //!   marshal.c:r_long()
-  static long getLong(unsigned char *buf);
+  static long getLong(unsigned char* buf);
 
   //! get time stamp of file
   static time_t getMTimeOfSource(const QString& path);
@@ -141,4 +129,3 @@ public:
 };
 
 #endif
-

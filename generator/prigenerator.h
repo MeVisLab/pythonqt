@@ -47,29 +47,29 @@
 #include <QStringList>
 #include <QHash>
 
-struct Pri
-{
-    QStringList headers;
-    QStringList sources;
+struct Pri {
+  QStringList headers;
+  QStringList sources;
 };
 
 class PriGenerator : public Generator
 {
-    Q_OBJECT
+  Q_OBJECT
 
- public:
-    PriGenerator(int classesPerFile) : maxClassesPerFile(classesPerFile) {}
-    virtual void generate();
+public:
+  PriGenerator(int classesPerFile)
+    : maxClassesPerFile(classesPerFile)
+  {
+  }
+  virtual void generate();
 
-    void addHeader(const QString &folder, const QString &header);
-    void addSource(const QString &folder, const QString &source);
+  void addHeader(const QString& folder, const QString& header);
+  void addSource(const QString& folder, const QString& source);
 
- private:
-    QStringList compactFiles(const QStringList& list, const QString& ext, const QString& dir, const QString& prefix);
+private:
+  QStringList compactFiles(const QStringList& list, const QString& ext, const QString& dir, const QString& prefix);
 
-    QHash<QString, Pri> priHash;
-    int maxClassesPerFile;
-
+  QHash<QString, Pri> priHash;
+  int maxClassesPerFile;
 };
 #endif // PRIGENERATOR_H
-

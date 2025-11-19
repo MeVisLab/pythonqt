@@ -64,16 +64,20 @@ public Q_SLOTS:
   void executeLine(bool storeOnly);
 
   //! derived key press event
-  void keyPressEvent (QKeyEvent * e) override;
+  void keyPressEvent(QKeyEvent* e) override;
 
   //! output from console
-  void consoleMessage(const QString & message);
+  void consoleMessage(const QString& message);
 
   //! get history
   QStringList history() { return _history; }
 
   //! set history
-  void setHistory(const QStringList& h) { _history = h; _historyPosition = h.count(); }
+  void setHistory(const QStringList& h)
+  {
+    _history = h;
+    _historyPosition = h.count();
+  }
 
   //! clear the console
   void clear();
@@ -96,9 +100,7 @@ public:
   bool hadError() { return _hadError; }
 
   //! returns true if python cerr had an error
-  void clearError() {
-    _hadError = false;
-  }
+  void clearError() { _hadError = false; }
 
 protected:
   //! handle the pressing of tab
@@ -112,7 +114,7 @@ protected:
   bool verifySelectionBeforeDeletion();
 
   //! Sets the current font
-  void setCurrentFont(const QColor& color = QColor(0,0,0), bool bold = false);
+  void setCurrentFont(const QColor& color = QColor(0, 0, 0), bool bold = false);
 
   //! change the history according to _historyPos
   void changeHistory();
@@ -120,14 +122,13 @@ protected:
   //! flush output that was not yet printed
   void flushStdOut();
 
-
 private:
   void executeCode(const QString& code);
 
   PythonQtObjectPtr _context;
 
   QStringList _history;
-  int         _historyPosition;
+  int _historyPosition;
 
   QString _clickedAnchor;
   QString _storageKey;
@@ -144,7 +145,4 @@ private:
   bool _hadError;
 };
 
-
-
 #endif
-

@@ -45,7 +45,7 @@
 
 #include <QApplication>
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
   QApplication qapp(argc, argv);
 
@@ -83,4 +83,3 @@ int main(int argc, char *argv[])
   }
   return failCount != 0 ? EXIT_FAILURE : EXIT_SUCCESS;
 }
-

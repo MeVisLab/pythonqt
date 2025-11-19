@@ -39,11 +39,9 @@
 **
 ****************************************************************************/
 
-
 #include "visitor.h"
 
-Visitor::visitor_fun_ptr Visitor::_S_table[AST::NODE_KIND_COUNT] = {
-  0,
+Visitor::visitor_fun_ptr Visitor::_S_table[AST::NODE_KIND_COUNT] = {0,
   reinterpret_cast<Visitor::visitor_fun_ptr>(&Visitor::visitAccessSpecifier),
   reinterpret_cast<Visitor::visitor_fun_ptr>(&Visitor::visitAsmDefinition),
   reinterpret_cast<Visitor::visitor_fun_ptr>(&Visitor::visitBaseClause),
@@ -119,18 +117,13 @@ Visitor::visitor_fun_ptr Visitor::_S_table[AST::NODE_KIND_COUNT] = {
   reinterpret_cast<Visitor::visitor_fun_ptr>(&Visitor::visitWinDeclSpec),
   reinterpret_cast<Visitor::visitor_fun_ptr>(&Visitor::visitQProperty),
   reinterpret_cast<Visitor::visitor_fun_ptr>(&Visitor::visitForwardDeclarationSpecifier),
-  reinterpret_cast<Visitor::visitor_fun_ptr>(&Visitor::visitQEnums)
-};
+  reinterpret_cast<Visitor::visitor_fun_ptr>(&Visitor::visitQEnums)};
 
-Visitor::Visitor()
-{
-}
+Visitor::Visitor() {}
 
-Visitor::~Visitor()
-{
-}
+Visitor::~Visitor() {}
 
-void Visitor::visit(AST *node)
+void Visitor::visit(AST* node)
 {
   if (node)
     (this->*_S_table[node->kind])(node);

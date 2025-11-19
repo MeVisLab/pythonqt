@@ -44,96 +44,95 @@
 #include "shellheadergenerator.h"
 #include "shellimplgenerator.h"
 
-GeneratorSet *GeneratorSet::getInstance() {
-    return new GeneratorSetQtScript();
+GeneratorSet* GeneratorSet::getInstance()
+{
+  return new GeneratorSetQtScript();
 }
 
-GeneratorSetQtScript::GeneratorSetQtScript() 
-{}
+GeneratorSetQtScript::GeneratorSetQtScript() {}
 
-QString GeneratorSetQtScript::usage() {
-    QString usage =
-        "QtScript:\n" 
-        "  --nothing-to-report-yet                   \n"
-        "  --max-classes-per-file=<n>                \n";
+QString GeneratorSetQtScript::usage()
+{
+  QString usage = "QtScript:\n"
+                  "  --nothing-to-report-yet                   \n"
+                  "  --max-classes-per-file=<n>                \n";
 
-    return usage;
+  return usage;
 }
 
-bool GeneratorSetQtScript::readParameters(const QMap<QString, QString> args) {
-    if (args.contains("max-classes-per-file")) {
-        bool ok;
-        int n = args.value("max-classes-per-file").toInt(&ok);
-        if (ok && n > 0) {
-            maxClassesPerFile = n;
-        }
-        else {
-          printf("Invalid value for option --max-classes-per-file (must be number > 0)\n");
-        }
+bool GeneratorSetQtScript::readParameters(const QMap<QString, QString> args)
+{
+  if (args.contains("max-classes-per-file")) {
+    bool ok;
+    int n = args.value("max-classes-per-file").toInt(&ok);
+    if (ok && n > 0) {
+      maxClassesPerFile = n;
+    } else {
+      printf("Invalid value for option --max-classes-per-file (must be number > 0)\n");
     }
-    return GeneratorSet::readParameters(args);
+  }
+  return GeneratorSet::readParameters(args);
 }
 
-void GeneratorSetQtScript::buildModel(const QString pp_file) {
-    // Building the code inforamation...
-    ReportHandler::setContext("MetaJavaBuilder");
-    builder.setFileName(pp_file);
-    builder.build();
+void GeneratorSetQtScript::buildModel(const QString pp_file)
+{
+  // Building the code inforamation...
+  ReportHandler::setContext("MetaJavaBuilder");
+  builder.setFileName(pp_file);
+  builder.build();
 }
 
-void GeneratorSetQtScript::dumpObjectTree() {
- 
-}
+void GeneratorSetQtScript::dumpObjectTree() {}
 
 void GeneratorSetQtScript::setIncludePaths(const QStringList& includePaths)
 {
-    builder.setIncludePaths(includePaths);
+  builder.setIncludePaths(includePaths);
 }
 
-QString GeneratorSetQtScript::generate() {
-    AbstractMetaClassList classes = builder.classesTopologicalSorted();
-    QSet<QString> declaredTypeNames = builder.qtMetaTypeDeclaredTypeNames();
+QString GeneratorSetQtScript::generate()
+{
+  AbstractMetaClassList classes = builder.classesTopologicalSorted();
+  QSet<QString> declaredTypeNames = builder.qtMetaTypeDeclaredTypeNames();
 
-    PriGenerator priGenerator(maxClassesPerFile);
-    priGenerator.setOutputDirectory(outDir);
+  PriGenerator priGenerator(maxClassesPerFile);
+  priGenerator.setOutputDirectory(outDir);
 
-    SetupGenerator setupGenerator(maxClassesPerFile);
-    setupGenerator.setOutputDirectory(outDir);
-    setupGenerator.setQtMetaTypeDeclaredTypeNames(declaredTypeNames);
-    setupGenerator.setClasses(classes);
+  SetupGenerator setupGenerator(maxClassesPerFile);
+  setupGenerator.setOutputDirectory(outDir);
+  setupGenerator.setQtMetaTypeDeclaredTypeNames(declaredTypeNames);
+  setupGenerator.setClasses(classes);
 
-    ShellImplGenerator shellImplGenerator(&priGenerator);
-    shellImplGenerator.setOutputDirectory(outDir);
-    shellImplGenerator.setClasses(classes);
-    shellImplGenerator.setQtMetaTypeDeclaredTypeNames(declaredTypeNames);
-    shellImplGenerator.generate();
+  ShellImplGenerator shellImplGenerator(&priGenerator);
+  shellImplGenerator.setOutputDirectory(outDir);
+  shellImplGenerator.setClasses(classes);
+  shellImplGenerator.setQtMetaTypeDeclaredTypeNames(declaredTypeNames);
+  shellImplGenerator.generate();
 
-    ShellHeaderGenerator shellHeaderGenerator(&priGenerator, &setupGenerator);
-    shellHeaderGenerator.setOutputDirectory(outDir);
-    shellHeaderGenerator.setClasses(classes);
-    shellHeaderGenerator.generate();
+  ShellHeaderGenerator shellHeaderGenerator(&priGenerator, &setupGenerator);
+  shellHeaderGenerator.setOutputDirectory(outDir);
+  shellHeaderGenerator.setClasses(classes);
+  shellHeaderGenerator.generate();
 
-    priGenerator.generate();
-    setupGenerator.generate();
+  priGenerator.generate();
+  setupGenerator.generate();
 
-    return QString("Classes in typesystem: %1\n"
-                   "Generated:\n"
-                   "  - header....: %2 (%3)\n"
-                   "  - impl......: %4 (%5)\n"
-                   "  - modules...: %6 (%7)\n"
-                   "  - pri.......: %8 (%9)\n"
-                   )
-        .arg(builder.classes().size())
+  return QString("Classes in typesystem: %1\n"
+                 "Generated:\n"
+                 "  - header....: %2 (%3)\n"
+                 "  - impl......: %4 (%5)\n"
+                 "  - modules...: %6 (%7)\n"
+                 "  - pri.......: %8 (%9)\n")
+    .arg(builder.classes().size())
 
-        .arg(shellHeaderGenerator.numGenerated())
-        .arg(shellHeaderGenerator.numGeneratedAndWritten())
+    .arg(shellHeaderGenerator.numGenerated())
+    .arg(shellHeaderGenerator.numGeneratedAndWritten())
 
-        .arg(shellImplGenerator.numGenerated())
-        .arg(shellImplGenerator.numGeneratedAndWritten())
+    .arg(shellImplGenerator.numGenerated())
+    .arg(shellImplGenerator.numGeneratedAndWritten())
 
-        .arg(setupGenerator.numGenerated())
-        .arg(setupGenerator.numGeneratedAndWritten())
+    .arg(setupGenerator.numGenerated())
+    .arg(setupGenerator.numGeneratedAndWritten())
 
-        .arg(priGenerator.numGenerated())
-        .arg(priGenerator.numGeneratedAndWritten());
+    .arg(priGenerator.numGenerated())
+    .arg(priGenerator.numGeneratedAndWritten());
 }

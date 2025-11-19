@@ -31,15 +31,14 @@ class PythonQtTestCleanupHelper : public QObject
 {
   Q_OBJECT
 public:
-  PythonQtTestCleanupHelper() :
-    _passed(false) {
-  };
+  PythonQtTestCleanupHelper()
+    : _passed(false) {};
 
   bool runScript(const char* script);
 
 public Q_SLOTS:
   void setPassed() { _passed = true; }
-  void onDestroyed(QObject *) { }
+  void onDestroyed(QObject*) {}
 
 private:
   bool _passed;

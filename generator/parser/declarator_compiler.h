@@ -39,37 +39,35 @@
 **
 ****************************************************************************/
 
-
 #ifndef DECLARATOR_COMPILER_H
-#define DECLARATOR_COMPILER_H
+  #define DECLARATOR_COMPILER_H
 
-#include "default_visitor.h"
-#include "codemodel.h"
+  #include "default_visitor.h"
+  #include "codemodel.h"
 
-#include <QtCore/QString>
-#include <QtCore/QList>
+  #include <QtCore/QString>
+  #include <QtCore/QList>
 
 class TokenStream;
 class Binder;
 
-class DeclaratorCompiler: protected DefaultVisitor
+class DeclaratorCompiler : protected DefaultVisitor
 {
 public:
-  struct Parameter
-  {
+  struct Parameter {
     TypeInfo type;
     QString name;
     QString defaultValueExpression;
-    bool defaultValue{};
-    bool packedParameter{};
+    bool defaultValue {};
+    bool packedParameter {};
 
     Parameter() {}
   };
 
 public:
-  DeclaratorCompiler(Binder *binder);
+  DeclaratorCompiler(Binder* binder);
 
-  void run(DeclaratorAST *node);
+  void run(DeclaratorAST* node);
 
   inline QString id() const { return _M_id; }
   inline QStringList arrayElements() const { return _M_array; }
@@ -82,12 +80,12 @@ public:
   inline QList<Parameter> parameters() const { return _M_parameters; }
 
 protected:
-  virtual void visitPtrOperator(PtrOperatorAST *node);
-  virtual void visitParameterDeclaration(ParameterDeclarationAST *node);
+  virtual void visitPtrOperator(PtrOperatorAST* node);
+  virtual void visitParameterDeclaration(ParameterDeclarationAST* node);
 
 private:
-  Binder *_M_binder;
-  TokenStream *_M_token_stream;
+  Binder* _M_binder;
+  TokenStream* _M_token_stream;
 
   bool _M_function;
   bool _M_reference;

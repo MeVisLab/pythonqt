@@ -51,15 +51,14 @@
 #include <QPushButton>
 #include <QLayout>
 
-
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
   QApplication qapp(argc, argv);
 
   PythonQt::init(PythonQt::IgnoreSiteModule | PythonQt::RedirectStdOut);
   PythonQt_QtAll::init();
 
-  PythonQtObjectPtr  mainContext = PythonQt::self()->getMainModule();
+  PythonQtObjectPtr mainContext = PythonQt::self()->getMainModule();
   PythonQtScriptingConsole console(NULL, mainContext);
 
   // add a QObject to the namespace of the main python context
@@ -71,4 +70,3 @@ int main(int argc, char *argv[])
   console.show();
   return qapp.exec();
 }
-

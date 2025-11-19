@@ -59,7 +59,7 @@
 #include <QMetaEnum>
 #include <QMetaProperty>
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
-#include <QRandomGenerator>
+  #include <QRandomGenerator>
 #endif
 
 class PYTHONQT_EXPORT PythonQtStdDecorators : public QObject
@@ -68,30 +68,48 @@ class PYTHONQT_EXPORT PythonQtStdDecorators : public QObject
 
 public Q_SLOTS:
   bool connect(QObject* sender, const QByteArray& signal, PyObject* callable);
-  bool connect(QObject* sender, const QByteArray& signal, QObject* receiver, const QByteArray& slot,  Qt::ConnectionType type = Qt::AutoConnection);
-  bool connect(QObject* receiver, QObject* sender, const QByteArray& signal, const QByteArray& slot,  Qt::ConnectionType type = Qt::AutoConnection) { return connect(sender, signal, receiver, slot, type); }
-  bool static_QObject_connect(QObject* sender, const QByteArray& signal, PyObject* callable) { return connect(sender, signal, callable); }
-  bool static_QObject_connect(QObject* sender, const QByteArray& signal, QObject* receiver, const QByteArray& slot,  Qt::ConnectionType type = Qt::AutoConnection)  { return connect(sender, signal, receiver, slot, type); }
+  bool connect(QObject* sender, const QByteArray& signal, QObject* receiver, const QByteArray& slot,
+    Qt::ConnectionType type = Qt::AutoConnection);
+  bool connect(QObject* receiver, QObject* sender, const QByteArray& signal, const QByteArray& slot,
+    Qt::ConnectionType type = Qt::AutoConnection)
+  {
+    return connect(sender, signal, receiver, slot, type);
+  }
+  bool static_QObject_connect(QObject* sender, const QByteArray& signal, PyObject* callable)
+  {
+    return connect(sender, signal, callable);
+  }
+  bool static_QObject_connect(QObject* sender, const QByteArray& signal, QObject* receiver, const QByteArray& slot,
+    Qt::ConnectionType type = Qt::AutoConnection)
+  {
+    return connect(sender, signal, receiver, slot, type);
+  }
   bool disconnect(QObject* sender, const QByteArray& signal, PyObject* callable = nullptr);
   bool disconnect(QObject* sender, const QByteArray& signal, QObject* receiver, const QByteArray& slot);
-  bool static_QObject_disconnect(QObject* sender, const QByteArray& signal, PyObject* callable = nullptr) { return disconnect(sender, signal, callable); }
-  bool static_QObject_disconnect(QObject* sender, const QByteArray& signal, QObject* receiver, const QByteArray& slot) { return disconnect(sender, signal, receiver, slot); }
+  bool static_QObject_disconnect(QObject* sender, const QByteArray& signal, PyObject* callable = nullptr)
+  {
+    return disconnect(sender, signal, callable);
+  }
+  bool static_QObject_disconnect(QObject* sender, const QByteArray& signal, QObject* receiver, const QByteArray& slot)
+  {
+    return disconnect(sender, signal, receiver, slot);
+  }
 
-  const QMetaObject* metaObject( QObject* obj );
+  const QMetaObject* metaObject(QObject* obj);
 
   QObject* parent(QObject* o);
   void setParent(QObject* o, PythonQtNewOwnerOfThis<QObject*> parent);
 
   const QObjectList* children(QObject* o);
   QObject* findChild(QObject* parent, PyObject* type, const QString& name = QString());
-  QList<QObject*> findChildren(QObject* parent, PyObject* type, const QString& name= QString());
+  QList<QObject*> findChildren(QObject* parent, PyObject* type, const QString& name = QString());
   QList<QObject*> findChildren(QObject* parent, PyObject* type, const QRegularExpression& regExp);
 
   bool setProperty(QObject* o, const char* name, const QVariant& value);
   QVariant property(QObject* o, const char* name);
 
   double static_Qt_qAbs(double a) { return qAbs(a); }
-  double static_Qt_qBound(double a,double b,double c) { return qBound(a,b,c); }
+  double static_Qt_qBound(double a, double b, double c) { return qBound(a, b, c); }
   void static_Qt_qDebug(const QByteArray& msg) { qDebug("%s", msg.constData()); }
   // TODO: multi arg qDebug...
   void static_Qt_qWarning(const QByteArray& msg) { qWarning("%s", msg.constData()); }
@@ -134,8 +152,10 @@ public Q_SLOTS:
 
 private:
   QObject* findChild(QObject* parent, const char* typeName, const QMetaObject* meta, const QString& name);
-  int findChildren(QObject* parent, const char* typeName, const QMetaObject* meta, const QString& name, QList<QObject*>& list);
-  int findChildren(QObject* parent, const char* typeName, const QMetaObject* meta, const QRegularExpression& regExp, QList<QObject*>& list);
+  int findChildren(QObject* parent, const char* typeName, const QMetaObject* meta, const QString& name,
+    QList<QObject*>& list);
+  int findChildren(QObject* parent, const char* typeName, const QMetaObject* meta, const QRegularExpression& regExp,
+    QList<QObject*>& list);
 };
 
 class PythonQtSingleShotTimer : public QTimer
@@ -145,7 +165,7 @@ public:
   PythonQtSingleShotTimer(int msec, const PythonQtObjectPtr& callable);
   ~PythonQtSingleShotTimer() override;
 
-public Q_SLOTS :
+public Q_SLOTS:
   void slotTimeout();
 
 private:
@@ -158,8 +178,8 @@ class PythonQtWrapper_QMetaObject : public QObject
 
 public Q_SLOTS:
   // Python 3: PythonQt shadows className, so we need an extra getClassName method...
-  const char *getClassName(QMetaObject* obj) const { return obj->className(); }
-  const QMetaObject *superClass(QMetaObject* obj) const { return obj->superClass(); }
+  const char* getClassName(QMetaObject* obj) const { return obj->className(); }
+  const QMetaObject* superClass(QMetaObject* obj) const { return obj->superClass(); }
 
   int methodOffset(QMetaObject* obj) const { return obj->methodOffset(); }
   int enumeratorOffset(QMetaObject* obj) const { return obj->enumeratorOffset(); }
@@ -172,13 +192,16 @@ public Q_SLOTS:
   int propertyCount(QMetaObject* obj) const { return obj->propertyCount(); }
   int classInfoCount(QMetaObject* obj) const { return obj->classInfoCount(); }
 
-  int indexOfConstructor(QMetaObject* obj, const char *constructor) const { return obj->indexOfConstructor(constructor); }
-  int indexOfMethod(QMetaObject* obj, const char *method) const { return obj->indexOfMethod(method); }
-  int indexOfSignal(QMetaObject* obj, const char *signal) const { return obj->indexOfSignal(signal); }
-  int indexOfSlot(QMetaObject* obj, const char *slot) const { return obj->indexOfSlot(slot); }
-  int indexOfEnumerator(QMetaObject* obj, const char *name) const { return obj->indexOfEnumerator(name); }
-  int indexOfProperty(QMetaObject* obj, const char *name) const { return obj->indexOfProperty(name); }
-  int indexOfClassInfo(QMetaObject* obj, const char *name) const { return obj->indexOfClassInfo(name); }
+  int indexOfConstructor(QMetaObject* obj, const char* constructor) const
+  {
+    return obj->indexOfConstructor(constructor);
+  }
+  int indexOfMethod(QMetaObject* obj, const char* method) const { return obj->indexOfMethod(method); }
+  int indexOfSignal(QMetaObject* obj, const char* signal) const { return obj->indexOfSignal(signal); }
+  int indexOfSlot(QMetaObject* obj, const char* slot) const { return obj->indexOfSlot(slot); }
+  int indexOfEnumerator(QMetaObject* obj, const char* name) const { return obj->indexOfEnumerator(name); }
+  int indexOfProperty(QMetaObject* obj, const char* name) const { return obj->indexOfProperty(name); }
+  int indexOfClassInfo(QMetaObject* obj, const char* name) const { return obj->indexOfClassInfo(name); }
 
   QMetaMethod constructor(QMetaObject* obj, int index) const { return obj->constructor(index); }
   QMetaMethod method(QMetaObject* obj, int index) const { return obj->method(index); }
@@ -187,10 +210,15 @@ public Q_SLOTS:
   QMetaClassInfo classInfo(QMetaObject* obj, int index) const { return obj->classInfo(index); }
   QMetaProperty userProperty(QMetaObject* obj) const { return obj->userProperty(); }
 
-  bool static_QMetaObject_checkConnectArgs(const char *signal, const char *method) { return QMetaObject::checkConnectArgs(signal, method); }
-  QByteArray static_QMetaObject_normalizedSignature(const char *method) { return QMetaObject::normalizedSignature(method); }
-  QByteArray static_QMetaObject_normalizedType(const char *type) { return QMetaObject::normalizedType(type); }
-
+  bool static_QMetaObject_checkConnectArgs(const char* signal, const char* method)
+  {
+    return QMetaObject::checkConnectArgs(signal, method);
+  }
+  QByteArray static_QMetaObject_normalizedSignature(const char* method)
+  {
+    return QMetaObject::normalizedSignature(method);
+  }
+  QByteArray static_QMetaObject_normalizedType(const char* type) { return QMetaObject::normalizedType(type); }
 };
 
 //! Some methods to set properties of PythonQt from Python
@@ -198,7 +226,8 @@ class PYTHONQT_EXPORT PythonQtConfigAPI : public QObject
 {
   Q_OBJECT
 public:
-  PythonQtConfigAPI(QObject* parent):QObject(parent) {};
+  PythonQtConfigAPI(QObject* parent)
+    : QObject(parent) {};
 
 public slots:
   //! Set a callable that is used as the argument for the add_done_callback for the Task/Future
@@ -206,31 +235,31 @@ public slots:
   void setTaskDoneCallback(PyObject* object);
 };
 
-
 //! Some helper methods that allow testing of the ownership
 class PYTHONQT_EXPORT PythonQtDebugAPI : public QObject
 {
   Q_OBJECT
-  public:
-    PythonQtDebugAPI(QObject* parent):QObject(parent) {};
+public:
+  PythonQtDebugAPI(QObject* parent)
+    : QObject(parent) {};
 
-  public slots:
-    //! Returns if the C++ object is owned by PythonQt and will be deleted when the reference goes away.
-    bool isOwnedByPython(PyObject* object);
-    //! Returns if the C++ object is an instance of a Python class that derives a C++ class.
-    bool isDerivedShellInstance(PyObject* object);
-    //! Returns if the shell instance has an extra ref count from the C++ side.
-    bool hasExtraShellRefCount(PyObject* object);
+public slots:
+  //! Returns if the C++ object is owned by PythonQt and will be deleted when the reference goes away.
+  bool isOwnedByPython(PyObject* object);
+  //! Returns if the C++ object is an instance of a Python class that derives a C++ class.
+  bool isDerivedShellInstance(PyObject* object);
+  //! Returns if the shell instance has an extra ref count from the C++ side.
+  bool hasExtraShellRefCount(PyObject* object);
 
-    //! Pass the ownership of the given object to CPP (so that it will not be deleted by Python if the reference goes away)
-    bool passOwnershipToCPP(PyObject* object);
-    //! Pass the ownership of the given object to Python (so that the C++ object will be deleted when the Python reference goes away)
-    bool passOwnershipToPython(PyObject* object);
+  //! Pass the ownership of the given object to CPP (so that it will not be deleted by Python if the reference goes away)
+  bool passOwnershipToCPP(PyObject* object);
+  //! Pass the ownership of the given object to Python (so that the C++ object will be deleted when the Python reference goes away)
+  bool passOwnershipToPython(PyObject* object);
 
-    //! Returns if the given object is a PythonQt instance wrapper (or derived class)
-    bool isPythonQtInstanceWrapper(PyObject* object);
-    //! Returns if the given object is a PythonQt class wrapper (or derived class)
-    bool isPythonQtClassWrapper(PyObject* object);
+  //! Returns if the given object is a PythonQt instance wrapper (or derived class)
+  bool isPythonQtInstanceWrapper(PyObject* object);
+  //! Returns if the given object is a PythonQt class wrapper (or derived class)
+  bool isPythonQtClassWrapper(PyObject* object);
 };
 
 #endif

@@ -41,7 +41,6 @@
 
 #include "metaqtscript.h"
 
-
 bool MetaQtScriptClass::hasDefaultToStringFunction() const
 {
   return AbstractMetaClass::hasDefaultToStringFunction();

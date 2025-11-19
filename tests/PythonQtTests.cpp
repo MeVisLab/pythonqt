@@ -60,7 +60,8 @@ void PythonQtMemoryTests::testInitAlreadyInitialized()
   PythonQt::cleanup();
 }
 
-void PythonQtMemoryTests::testSeveralCleanup() {
+void PythonQtMemoryTests::testSeveralCleanup()
+{
   PythonQt::init();
   PythonQt::cleanup();
 
@@ -68,7 +69,8 @@ void PythonQtMemoryTests::testSeveralCleanup() {
   PythonQt::cleanup();
 }
 
-void PythonQtMemoryTests::testInitWithPreconfig() {
+void PythonQtMemoryTests::testInitWithPreconfig()
+{
 #if PY_VERSION_HEX >= 0x03080000
   PyConfig config;
   PyConfig_InitPythonConfig(&config);
@@ -86,37 +88,36 @@ void PythonQtTestSlotCalling::initTestCase()
   PythonQt::self()->addObject(main, "obj", _helper);
 }
 
-void PythonQtTestSlotCalling::init() {
+void PythonQtTestSlotCalling::init() {}
 
-}
-
-
-void* polymorphic_ClassB_Handler(const void* ptr, const char** className) {
+void* polymorphic_ClassB_Handler(const void* ptr, const char** className)
+{
   ClassB* o = (ClassB*)ptr;
-  if (o->type()==2) {
+  if (o->type() == 2) {
     *className = "ClassB";
     return (ClassB*)o;
   }
-  if (o->type()==3) {
+  if (o->type() == 3) {
     *className = "ClassC";
     return (ClassC*)o;
   }
-  if (o->type()==4) {
+  if (o->type() == 4) {
     *className = "ClassD";
     return (ClassD*)o;
   }
   return NULL;
 }
 
-void PythonQtTestSlotCalling::testInheritance() {
-  PythonQt::self()->registerCPPClass("ClassA",NULL,NULL, PythonQtCreateObject<ClassAWrapper>);
-  PythonQt::self()->registerCPPClass("ClassB",NULL,NULL, PythonQtCreateObject<ClassBWrapper>);
-  PythonQt::self()->registerCPPClass("ClassC",NULL,NULL, PythonQtCreateObject<ClassCWrapper>);
-  PythonQt::self()->addParentClass("ClassC", "ClassA", PythonQtUpcastingOffset<ClassC,ClassA>());
-  PythonQt::self()->addParentClass("ClassC", "ClassB", PythonQtUpcastingOffset<ClassC,ClassB>());
+void PythonQtTestSlotCalling::testInheritance()
+{
+  PythonQt::self()->registerCPPClass("ClassA", NULL, NULL, PythonQtCreateObject<ClassAWrapper>);
+  PythonQt::self()->registerCPPClass("ClassB", NULL, NULL, PythonQtCreateObject<ClassBWrapper>);
+  PythonQt::self()->registerCPPClass("ClassC", NULL, NULL, PythonQtCreateObject<ClassCWrapper>);
+  PythonQt::self()->addParentClass("ClassC", "ClassA", PythonQtUpcastingOffset<ClassC, ClassA>());
+  PythonQt::self()->addParentClass("ClassC", "ClassB", PythonQtUpcastingOffset<ClassC, ClassB>());
   PythonQt::self()->registerClass(&ClassD::staticMetaObject, NULL, PythonQtCreateObject<ClassDWrapper>);
-  PythonQt::self()->addParentClass("ClassD", "ClassA", PythonQtUpcastingOffset<ClassD,ClassA>());
-  PythonQt::self()->addParentClass("ClassD", "ClassB", PythonQtUpcastingOffset<ClassD,ClassB>());
+  PythonQt::self()->addParentClass("ClassD", "ClassA", PythonQtUpcastingOffset<ClassD, ClassA>());
+  PythonQt::self()->addParentClass("ClassD", "ClassB", PythonQtUpcastingOffset<ClassD, ClassB>());
 
   PythonQtObjectPtr classA = PythonQt::self()->getMainModule().getVariable("PythonQt.private.ClassA");
   PythonQtObjectPtr classB = PythonQt::self()->getMainModule().getVariable("PythonQt.private.ClassB");
@@ -157,20 +158,34 @@ void PythonQtTestSlotCalling::testInheritance() {
 
   PythonQt::self()->addPolymorphicHandler("ClassB", polymorphic_ClassB_Handler);
 
-  QVERIFY(_helper->runScript("if type(obj.getClassBPtr(obj.createClassB()))==PythonQt.private.ClassB: obj.setPassed();\n"));
+  QVERIFY(
+    _helper->runScript("if type(obj.getClassBPtr(obj.createClassB()))==PythonQt.private.ClassB: obj.setPassed();\n"));
   QVERIFY(_helper->runScript("if type(obj.createClassCAsB())==PythonQt.private.ClassC: obj.setPassed();\n"));
   QVERIFY(_helper->runScript("if type(obj.createClassDAsB())==PythonQt.private.ClassD: obj.setPassed();\n"));
-
 }
 
-void PythonQtTestSlotCalling::testAutoConversion() {
-  QVERIFY(_helper->runScript("if obj.setAutoConvertColor(PythonQt.QtCore.Qt.red)==PythonQt.Qt.QColor(PythonQt.QtCore.Qt.red): obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("if obj.setAutoConvertBrush(PythonQt.QtCore.Qt.red)==PythonQt.Qt.QBrush(PythonQt.QtCore.Qt.red): obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("if obj.setAutoConvertPen(PythonQt.QtCore.Qt.red)==PythonQt.Qt.QPen(PythonQt.QtCore.Qt.red): obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("if obj.setAutoConvertBrush(PythonQt.Qt.QColor(PythonQt.QtCore.Qt.red))==PythonQt.Qt.QBrush(PythonQt.QtCore.Qt.red): obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("if obj.setAutoConvertPen(PythonQt.Qt.QColor(PythonQt.QtCore.Qt.red))==PythonQt.Qt.QPen(PythonQt.QtCore.Qt.red): obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("if obj.setAutoConvertCursor(PythonQt.Qt.QCursor(PythonQt.QtCore.Qt.UpArrowCursor)).shape()==PythonQt.Qt.QCursor(PythonQt.QtCore.Qt.UpArrowCursor).shape(): obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("if obj.setAutoConvertCursor(PythonQt.QtCore.Qt.UpArrowCursor).shape()==PythonQt.Qt.QCursor(PythonQt.QtCore.Qt.UpArrowCursor).shape(): obj.setPassed();\n"));
+void PythonQtTestSlotCalling::testAutoConversion()
+{
+  QVERIFY(_helper->runScript(
+    "if obj.setAutoConvertColor(PythonQt.QtCore.Qt.red)==PythonQt.Qt.QColor(PythonQt.QtCore.Qt.red): "
+    "obj.setPassed();\n"));
+  QVERIFY(_helper->runScript(
+    "if obj.setAutoConvertBrush(PythonQt.QtCore.Qt.red)==PythonQt.Qt.QBrush(PythonQt.QtCore.Qt.red): "
+    "obj.setPassed();\n"));
+  QVERIFY(_helper->runScript(
+    "if obj.setAutoConvertPen(PythonQt.QtCore.Qt.red)==PythonQt.Qt.QPen(PythonQt.QtCore.Qt.red): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if "
+                             "obj.setAutoConvertBrush(PythonQt.Qt.QColor(PythonQt.QtCore.Qt.red))==PythonQt.Qt.QBrush("
+                             "PythonQt.QtCore.Qt.red): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript(
+    "if obj.setAutoConvertPen(PythonQt.Qt.QColor(PythonQt.QtCore.Qt.red))==PythonQt.Qt.QPen(PythonQt.QtCore.Qt.red): "
+    "obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if "
+                             "obj.setAutoConvertCursor(PythonQt.Qt.QCursor(PythonQt.QtCore.Qt.UpArrowCursor)).shape()=="
+                             "PythonQt.Qt.QCursor(PythonQt.QtCore.Qt.UpArrowCursor).shape(): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if "
+                             "obj.setAutoConvertCursor(PythonQt.QtCore.Qt.UpArrowCursor).shape()==PythonQt.Qt.QCursor("
+                             "PythonQt.QtCore.Qt.UpArrowCursor).shape(): obj.setPassed();\n"));
 }
 
 void PythonQtTestSlotCalling::testNoArgSlotCall()
@@ -191,7 +206,6 @@ void PythonQtTestSlotCalling::testOverloadedCall()
   QVERIFY(_helper->runScript("obj.overload(12,13); obj.setPassed();\n", 6));
 }
 
-
 void PythonQtTestSlotCalling::testKeywordCall()
 {
   QVERIFY(_helper->runScript("if obj.keywordInt(5,value=6)==11: obj.setPassed();\n"));
@@ -205,20 +219,26 @@ void PythonQtTestSlotCalling::testPyObjectSlotCall()
   QVERIFY(_helper->runScript("if obj.getPyObject('Hello')=='Hello': obj.setPassed();\n"));
   QVERIFY(_helper->runScript("if obj.getPyObjectFromVariant(PythonQt)==PythonQt: obj.setPassed();\n"));
   QVERIFY(_helper->runScript("if obj.getPyObjectFromVariant2(PythonQt)==PythonQt: obj.setPassed();\n"));
-//  QVERIFY(_helper->runScript("if obj.getPyObjectFromPtr(PythonQt)==PythonQt: obj.setPassed();\n"));
+  //  QVERIFY(_helper->runScript("if obj.getPyObjectFromPtr(PythonQt)==PythonQt: obj.setPassed();\n"));
 }
 
 void PythonQtTestSlotCalling::testCPPSlotCalls()
 {
   // test QColor compare operation
-  QVERIFY(_helper->runScript("if PythonQt.QtGui.QColor(1,2,3)==PythonQt.QtGui.QColor(1,2,3): obj.setPassed();obj.testNoArg()\n"));
-  QVERIFY(_helper->runScript("if PythonQt.QtGui.QColor(1,2,3)!=PythonQt.QtGui.QColor(3,2,1): obj.setPassed();obj.testNoArg()\n"));
+  QVERIFY(_helper->runScript(
+    "if PythonQt.QtGui.QColor(1,2,3)==PythonQt.QtGui.QColor(1,2,3): obj.setPassed();obj.testNoArg()\n"));
+  QVERIFY(_helper->runScript(
+    "if PythonQt.QtGui.QColor(1,2,3)!=PythonQt.QtGui.QColor(3,2,1): obj.setPassed();obj.testNoArg()\n"));
 
   // test passing/returning QColors
-  QVERIFY(_helper->runScript("if obj.getQColor1(PythonQt.QtGui.QColor(1,2,3))==PythonQt.QtGui.QColor(1,2,3): obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("if obj.getQColor2(PythonQt.QtGui.QColor(1,2,3))==PythonQt.QtGui.QColor(1,2,3): obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("if obj.getQColor3(PythonQt.QtGui.QColor(1,2,3))==PythonQt.QtGui.QColor(1,2,3): obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("if obj.getQColor4(PythonQt.QtGui.QColor(1,2,3))==PythonQt.QtGui.QColor(1,2,3): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript(
+    "if obj.getQColor1(PythonQt.QtGui.QColor(1,2,3))==PythonQt.QtGui.QColor(1,2,3): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript(
+    "if obj.getQColor2(PythonQt.QtGui.QColor(1,2,3))==PythonQt.QtGui.QColor(1,2,3): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript(
+    "if obj.getQColor3(PythonQt.QtGui.QColor(1,2,3))==PythonQt.QtGui.QColor(1,2,3): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript(
+    "if obj.getQColor4(PythonQt.QtGui.QColor(1,2,3))==PythonQt.QtGui.QColor(1,2,3): obj.setPassed();\n"));
   QVERIFY(_helper->runScript("if obj.getQColor5()==PythonQt.QtGui.QColor(1,2,3): obj.setPassed();\n"));
 }
 
@@ -254,9 +274,11 @@ void PythonQtTestSlotCalling::testQVariantSlotCalls()
   QVERIFY(_helper->runScript("if obj.getQVariant('testStr')=='testStr': obj.setPassed();\n"));
   QVERIFY(_helper->runScript("if obj.getQVariant(('test','test2'))==('test','test2'): obj.setPassed();\n"));
   QVERIFY(_helper->runScript("if obj.getQVariant(('test',12, 47.11))==('test',12, 47.11): obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("if obj.getQVariant({'test':'bla','test2':47.11})=={'test':'bla','test2':47.11}: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript(
+    "if obj.getQVariant({'test':'bla','test2':47.11})=={'test':'bla','test2':47.11}: obj.setPassed();\n"));
   QEXPECT_FAIL("", "Testing to pass a map and compare with a different map", Continue);
-  QVERIFY(_helper->runScript("if obj.getQVariant({'test':'bla2','test2':47.11})=={'test':'bla','test2':47.11}: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript(
+    "if obj.getQVariant({'test':'bla2','test2':47.11})=={'test':'bla','test2':47.11}: obj.setPassed();\n"));
   QVERIFY(_helper->runScript("if obj.getQVariant(obj)==obj: obj.setPassed();\n"));
 }
 
@@ -264,8 +286,8 @@ void PythonQtTestSlotCalling::testQListSlotCalls()
 {
   QVERIFY(_helper->runScript("if obj.getQListInt()==(1,2,3): obj.setPassed();\n"));
   QVERIFY(_helper->runScript("if obj.getQListUnsignedInt()==(1,2,3): obj.setPassed();\n"));
-//  QVERIFY(_helper->runScript("if obj.getQListGLuint()==(1,2,3): obj.setPassed();\n"));
-//  QVERIFY(_helper->runScript("if obj.getQListGLuint64()==(1,2,3): obj.setPassed();\n"));
+  //  QVERIFY(_helper->runScript("if obj.getQListGLuint()==(1,2,3): obj.setPassed();\n"));
+  //  QVERIFY(_helper->runScript("if obj.getQListGLuint64()==(1,2,3): obj.setPassed();\n"));
   QVERIFY(_helper->runScript("if obj.getQListqint64()==(1,2,3): obj.setPassed();\n"));
   QVERIFY(_helper->runScript("if obj.getQListquint64()==(1,2,3): obj.setPassed();\n"));
 
@@ -273,22 +295,33 @@ void PythonQtTestSlotCalling::testQListSlotCalls()
   QVERIFY(_helper->runScript("if obj.getQListdouble()==(1.1,2.2,3.3): obj.setPassed();\n"));
   QVERIFY(_helper->runScript("if obj.getQListfloat()==(1,2,3): obj.setPassed();\n"));
 
-  QVERIFY(_helper->runScript("if obj.getQListDayOfWeek((PythonQt.QtCore.Qt.Monday, PythonQt.QtCore.Qt.Friday))==(PythonQt.QtCore.Qt.Monday, PythonQt.QtCore.Qt.Friday): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript(
+    "if obj.getQListDayOfWeek((PythonQt.QtCore.Qt.Monday, PythonQt.QtCore.Qt.Friday))==(PythonQt.QtCore.Qt.Monday, "
+    "PythonQt.QtCore.Qt.Friday): obj.setPassed();\n"));
 
-  QVERIFY(_helper->runScript("if obj.getQPair((1.2, PythonQt.QtGui.QColor(PythonQt.QtCore.Qt.red)))==(1.2, PythonQt.QtGui.QColor(PythonQt.QtCore.Qt.red)): obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("if obj.getQPairVariant((1.2, PythonQt.QtGui.QColor(PythonQt.QtCore.Qt.red)))==(1.2, PythonQt.QtGui.QColor(PythonQt.QtCore.Qt.red)): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if obj.getQPair((1.2, PythonQt.QtGui.QColor(PythonQt.QtCore.Qt.red)))==(1.2, "
+                             "PythonQt.QtGui.QColor(PythonQt.QtCore.Qt.red)): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if obj.getQPairVariant((1.2, PythonQt.QtGui.QColor(PythonQt.QtCore.Qt.red)))==(1.2, "
+                             "PythonQt.QtGui.QColor(PythonQt.QtCore.Qt.red)): obj.setPassed();\n"));
 
-  QVERIFY(_helper->runScript("if obj.getQVectorQPair1(((1.2, PythonQt.QtGui.QColor(PythonQt.QtCore.Qt.red)),))==((1.2, PythonQt.QtGui.QColor(PythonQt.QtCore.Qt.red)),): obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("if obj.getQVectorQPair2(((1.2, PythonQt.QtGui.QColor(PythonQt.QtCore.Qt.red)),))==((1.2, PythonQt.QtGui.QColor(PythonQt.QtCore.Qt.red)),): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if obj.getQVectorQPair1(((1.2, PythonQt.QtGui.QColor(PythonQt.QtCore.Qt.red)),))==((1.2, "
+                             "PythonQt.QtGui.QColor(PythonQt.QtCore.Qt.red)),): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("if obj.getQVectorQPair2(((1.2, PythonQt.QtGui.QColor(PythonQt.QtCore.Qt.red)),))==((1.2, "
+                             "PythonQt.QtGui.QColor(PythonQt.QtCore.Qt.red)),): obj.setPassed();\n"));
 
-  QVERIFY(_helper->runScript("if obj.getQListQSize()==(PythonQt.QtCore.QSize(1,2), PythonQt.QtCore.QSize(3,4)): obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("if obj.getQListQSize((PythonQt.QtCore.QSize(1,2), PythonQt.QtCore.QSize(3,4)))==(PythonQt.QtCore.QSize(1,2), PythonQt.QtCore.QSize(3,4)): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript(
+    "if obj.getQListQSize()==(PythonQt.QtCore.QSize(1,2), PythonQt.QtCore.QSize(3,4)): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript(
+    "if obj.getQListQSize((PythonQt.QtCore.QSize(1,2), PythonQt.QtCore.QSize(3,4)))==(PythonQt.QtCore.QSize(1,2), "
+    "PythonQt.QtCore.QSize(3,4)): obj.setPassed();\n"));
 }
 
 void PythonQtTestSlotCalling::testQMapSlotCalls()
 {
-  QVERIFY(_helper->runScript("if obj.getQMapIntVariant({1:'test', 47:48, 49:47.11})=={1:'test', 47:48, 49:47.11}: obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("if obj.getQMapIntString({1:'test', 47:'a', 49:'bcd'})=={1:'test', 47:'a', 49:'bcd'}: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript(
+    "if obj.getQMapIntVariant({1:'test', 47:48, 49:47.11})=={1:'test', 47:48, 49:47.11}: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript(
+    "if obj.getQMapIntString({1:'test', 47:'a', 49:'bcd'})=={1:'test', 47:'a', 49:'bcd'}: obj.setPassed();\n"));
 }
 
 void PythonQtTestSlotCalling::testObjectSlotCalls()
@@ -312,56 +345,75 @@ void PythonQtTestSlotCalling::testCppFactory()
   QVERIFY(_helper->runScript("if obj.createPQCppObject(12).getHeight()==12: obj.setPassed();\n"));
   QVERIFY(_helper->runScript("if obj.createPQCppObject(12).getH()==12: obj.setPassed();\n"));
   QVERIFY(_helper->runScript("pq1 = obj.createPQCppObject(12);\n"
-    "pq2 = obj.createPQCppObject(13);\n"
-    "pq3 = obj.getPQCppObject(pq1);\n"
-    "pq4 = obj.getPQCppObject(pq2);\n"
-    "if pq3.getHeight()==12 and pq4.getHeight()==13: obj.setPassed();\n"
-    ));
+                             "pq2 = obj.createPQCppObject(13);\n"
+                             "pq3 = obj.getPQCppObject(pq1);\n"
+                             "pq4 = obj.getPQCppObject(pq2);\n"
+                             "if pq3.getHeight()==12 and pq4.getHeight()==13: obj.setPassed();\n"));
 
   QVERIFY(_helper->runScript("if obj.createPQCppObjectNoWrap(12).getH()==12: obj.setPassed();\n"));
-  
+
   QVERIFY(_helper->runScript("if obj.getPQCppObjectNoWrapAsValue().getH()==47: obj.setPassed();\n"));
-  
+
   qRegisterMetaType<PQUnknownButRegisteredValueObject>("PQUnknownButRegisteredValueObject");
-  QVERIFY(_helper->runScript("a = obj.getUnknownButRegisteredValueObjectAsPtr();print(a);\nif a!=None: obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("a = obj.getUnknownButRegisteredValueObjectAsValue();print(a);\nif a!=None: obj.setPassed();\n"));
+  QVERIFY(
+    _helper->runScript("a = obj.getUnknownButRegisteredValueObjectAsPtr();print(a);\nif a!=None: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript(
+    "a = obj.getUnknownButRegisteredValueObjectAsValue();print(a);\nif a!=None: obj.setPassed();\n"));
   QVERIFY(_helper->runScript("a = obj.getUnknownValueObjectAsPtr();print(a);\nif a!=None: obj.setPassed();\n"));
-  QEXPECT_FAIL("", "Testing by value return without the object being registered as QMetaType or having registered a default constructor decorator", Continue);
+  QEXPECT_FAIL("",
+    "Testing by value return without the object being registered as QMetaType or having registered a default "
+    "constructor decorator",
+    Continue);
   QVERIFY(_helper->runScript("a = obj.getUnknownValueObjectAsValue();print(a);\nif a!=None: obj.setPassed();\n"));
-  
+
   // expect to get strict call to double overload
-  QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt.private import PQCppObjectNoWrap\na = PQCppObjectNoWrap(22.2)\nif a.getH()==2: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt.private import PQCppObjectNoWrap\na = "
+                             "PQCppObjectNoWrap(22.2)\nif a.getH()==2: obj.setPassed();\n"));
   // expect to get un-strict call to double overload
-  QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt.private import PQCppObjectNoWrap\na = PQCppObjectNoWrap(22)\nif a.getH()==2: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt.private import PQCppObjectNoWrap\na = "
+                             "PQCppObjectNoWrap(22)\nif a.getH()==2: obj.setPassed();\n"));
   // expect to get strict call to copy constructor overload
-  QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt.private import PQCppObjectNoWrap\na = PQCppObjectNoWrap(PQCppObjectNoWrap())\nprint(a.getH())\nif a.getH()==1: obj.setPassed();\n"));
+  QVERIFY(
+    _helper->runScript("obj.testNoArg()\nfrom PythonQt.private import PQCppObjectNoWrap\na = "
+                       "PQCppObjectNoWrap(PQCppObjectNoWrap())\nprint(a.getH())\nif a.getH()==1: obj.setPassed();\n"));
 
   // test decorated enums
   // already registered by signals test
   //PythonQt::self()->registerCPPClass("PQCppObject2",NULL,NULL, PythonQtCreateObject<PQCppObject2Decorator>);
-  
-  // local enum (decorated)
-  QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt.private import PQCppObject2\na = PQCppObject2()\nprint(a.testEnumFlag1)\nif a.testEnumFlag1(PQCppObject2.TestEnumValue2)==PQCppObject2.TestEnumValue2: obj.setPassed();\n"));
-  // enum with namespace (decorated)
-  QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt.private import PQCppObject2\na = PQCppObject2()\nif a.testEnumFlag2(PQCppObject2.TestEnumValue2)==PQCppObject2.TestEnumValue2: obj.setPassed();\n"));
-  // with int overload to check overloading
-  QVERIFY(_helper->runScript("obj.testNoArg()\nfrom PythonQt.private import PQCppObject2\na = PQCppObject2()\nif a.testEnumFlag3(PQCppObject2.TestEnumValue2)==PQCppObject2.TestEnumValue2: obj.setPassed();\n"));
 
+  // local enum (decorated)
+  QVERIFY(_helper->runScript(
+    "obj.testNoArg()\nfrom PythonQt.private import PQCppObject2\na = PQCppObject2()\nprint(a.testEnumFlag1)\nif "
+    "a.testEnumFlag1(PQCppObject2.TestEnumValue2)==PQCppObject2.TestEnumValue2: obj.setPassed();\n"));
+  // enum with namespace (decorated)
+  QVERIFY(_helper->runScript(
+    "obj.testNoArg()\nfrom PythonQt.private import PQCppObject2\na = PQCppObject2()\nif "
+    "a.testEnumFlag2(PQCppObject2.TestEnumValue2)==PQCppObject2.TestEnumValue2: obj.setPassed();\n"));
+  // with int overload to check overloading
+  QVERIFY(_helper->runScript(
+    "obj.testNoArg()\nfrom PythonQt.private import PQCppObject2\na = PQCppObject2()\nif "
+    "a.testEnumFlag3(PQCppObject2.TestEnumValue2)==PQCppObject2.TestEnumValue2: obj.setPassed();\n"));
 }
 
-PQCppObject2Decorator::TestEnumFlag PQCppObject2Decorator::testEnumFlag1(PQCppObject2* /*obj*/, PQCppObject2Decorator::TestEnumFlag flag) {
+PQCppObject2Decorator::TestEnumFlag PQCppObject2Decorator::testEnumFlag1(PQCppObject2* /*obj*/,
+  PQCppObject2Decorator::TestEnumFlag flag)
+{
   return flag;
 }
 
-PQCppObject2::TestEnumFlag PQCppObject2Decorator::testEnumFlag2(PQCppObject2* /*obj*/, PQCppObject2::TestEnumFlag flag) {
+PQCppObject2::TestEnumFlag PQCppObject2Decorator::testEnumFlag2(PQCppObject2* /*obj*/, PQCppObject2::TestEnumFlag flag)
+{
   return flag;
 }
 
 // with int overload
-PQCppObject2Decorator::TestEnumFlag PQCppObject2Decorator::testEnumFlag3(PQCppObject2* /*obj*/, int /*flag*/) {
+PQCppObject2Decorator::TestEnumFlag PQCppObject2Decorator::testEnumFlag3(PQCppObject2* /*obj*/, int /*flag*/)
+{
   return (TestEnumFlag)-1;
 }
-PQCppObject2Decorator::TestEnumFlag PQCppObject2Decorator::testEnumFlag3(PQCppObject2* /*obj*/, PQCppObject2Decorator::TestEnumFlag flag) {
+PQCppObject2Decorator::TestEnumFlag PQCppObject2Decorator::testEnumFlag3(PQCppObject2* /*obj*/,
+  PQCppObject2Decorator::TestEnumFlag flag)
+{
   return flag;
 }
 
@@ -374,14 +426,19 @@ void PythonQtTestSlotCalling::testProperties()
 {
   QVERIFY(_helper->runScript("obj.intProp = 47\nif obj.intProp == 47: obj.setPassed();\n"));
   QVERIFY(_helper->runScript("obj.floatProp = 47\nif obj.floatProp == 47: obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("obj.variantListProp = (1,'test')\nif obj.variantListProp == (1,'test'): obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("obj.variantMapProp = {'test':'a', 'bla':'blubb'}\nif obj.variantMapProp == {'test':'a', 'bla':'blubb'}: obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("obj.variantProp = {'test':'a', 'bla':'blubb'}\nif obj.variantProp == {'test':'a', 'bla':'blubb'}: obj.setPassed();\n"));
+  QVERIFY(
+    _helper->runScript("obj.variantListProp = (1,'test')\nif obj.variantListProp == (1,'test'): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("obj.variantMapProp = {'test':'a', 'bla':'blubb'}\nif obj.variantMapProp == {'test':'a', "
+                             "'bla':'blubb'}: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("obj.variantProp = {'test':'a', 'bla':'blubb'}\nif obj.variantProp == {'test':'a', "
+                             "'bla':'blubb'}: obj.setPassed();\n"));
   QVERIFY(_helper->runScript("obj.variantProp = 'test'\nif obj.variantProp == 'test': obj.setPassed();\n"));
   QVERIFY(_helper->runScript("obj.variantProp = 47.11\nif obj.variantProp == 47.11: obj.setPassed();\n"));
   QVERIFY(_helper->runScript("obj.qObjectProp = obj\nif obj.qObjectProp == obj: obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("obj.qObjectListProp = (obj,obj,obj)\nif obj.qObjectListProp == (obj,obj,obj): obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("obj.sizeProp = PythonQt.QtCore.QSize(1,2)\nif obj.sizeProp == PythonQt.QtCore.QSize(1,2): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript(
+    "obj.qObjectListProp = (obj,obj,obj)\nif obj.qObjectListProp == (obj,obj,obj): obj.setPassed();\n"));
+  QVERIFY(_helper->runScript(
+    "obj.sizeProp = PythonQt.QtCore.QSize(1,2)\nif obj.sizeProp == PythonQt.QtCore.QSize(1,2): obj.setPassed();\n"));
 }
 
 bool PythonQtTestSlotCallingHelper::runScript(const char* script, int expectedOverload)
@@ -390,9 +447,8 @@ bool PythonQtTestSlotCallingHelper::runScript(const char* script, int expectedOv
   _passed = false;
   _calledOverload = -1;
   PyRun_SimpleString(script);
-  return _called && _passed && _calledOverload==expectedOverload;
+  return _called && _passed && _calledOverload == expectedOverload;
 }
-
 
 void PythonQtTestSignalHandler::initTestCase()
 {
@@ -413,12 +469,13 @@ void PythonQtTestSignalHandler::testSignalHandler()
   QVERIFY(_helper->emitFloatSignal(12));
 
   // test decorated enums
-  PythonQt::self()->registerCPPClass("PQCppObject2",NULL,NULL, PythonQtCreateObject<PQCppObject2Decorator>);
+  PythonQt::self()->registerCPPClass("PQCppObject2", NULL, NULL, PythonQtCreateObject<PQCppObject2Decorator>);
 
   PyRun_SimpleString("def testEnumSignal(a):\n  if a==1: obj.setPassed();\n");
-  QVERIFY(PythonQt::self()->addSignalHandler(_helper, SIGNAL(enumSignal(PQCppObject2::TestEnumFlag)), main, "testEnumSignal"));
+  QVERIFY(PythonQt::self()->addSignalHandler(_helper, SIGNAL(enumSignal(PQCppObject2::TestEnumFlag)), main,
+    "testEnumSignal"));
   QVERIFY(_helper->emitEnumSignal(PQCppObject2::TestEnumValue2));
-  
+
   PyRun_SimpleString("def testVariantSignal(a):\n  if a==obj.expectedVariant(): obj.setPassed();\n");
   QVERIFY(PythonQt::self()->addSignalHandler(_helper, SIGNAL(variantSignal(QVariant)), main, "testVariantSignal"));
   _helper->setExpectedVariant(QString("Test"));
@@ -430,21 +487,24 @@ void PythonQtTestSignalHandler::testSignalHandler()
   _helper->setExpectedVariant(QVariant::fromValue((QObject*)_helper));
   QVERIFY(_helper->emitVariantSignal(QVariant::fromValue((QObject*)_helper)));
 
-  PyRun_SimpleString("def testComplexSignal(a,b,l,o):\n  if a==12 and b==13 and l==('test1','test2') and o == obj: obj.setPassed();\n");
+  PyRun_SimpleString(
+    "def testComplexSignal(a,b,l,o):\n  if a==12 and b==13 and l==('test1','test2') and o == obj: obj.setPassed();\n");
   // intentionally not normalized signal:
-  QVERIFY(PythonQt::self()->addSignalHandler(_helper, SIGNAL(complexSignal( int, float , const QStringList  , QObject*)), main, "testComplexSignal"));
-  QVERIFY(_helper->emitComplexSignal(12,13,QStringList() << "test1" << "test2", _helper));
+  QVERIFY(PythonQt::self()->addSignalHandler(_helper, SIGNAL(complexSignal(int, float, const QStringList, QObject*)),
+    main, "testComplexSignal"));
+  QVERIFY(_helper->emitComplexSignal(12, 13, QStringList() << "test1" << "test2", _helper));
 
   // try removing the handler
-  QVERIFY(PythonQt::self()->removeSignalHandler(_helper, SIGNAL(complexSignal( int, float , const QStringList  , QObject*)), main, "testComplexSignal"));
+  QVERIFY(PythonQt::self()->removeSignalHandler(_helper, SIGNAL(complexSignal(int, float, const QStringList, QObject*)),
+    main, "testComplexSignal"));
   // and emit the signal, which should fail because the handler was removed
-  QVERIFY(!_helper->emitComplexSignal(12,13,QStringList() << "test1" << "test2", _helper));
+  QVERIFY(!_helper->emitComplexSignal(12, 13, QStringList() << "test1" << "test2", _helper));
 
   QVERIFY(PythonQt::self()->removeSignalHandler(_helper, SIGNAL(intSignal(int)), main, "testIntSignal"));
   QVERIFY(PythonQt::self()->removeSignalHandler(_helper, SIGNAL(floatSignal(float)), main, "testFloatSignal"));
   QVERIFY(PythonQt::self()->removeSignalHandler(_helper, SIGNAL(variantSignal(QVariant)), main, "testVariantSignal"));
-  QVERIFY(PythonQt::self()->removeSignalHandler(_helper, SIGNAL(enumSignal(PQCppObject2::TestEnumFlag)), main, "testEnumSignal"));
-
+  QVERIFY(PythonQt::self()->removeSignalHandler(_helper, SIGNAL(enumSignal(PQCppObject2::TestEnumFlag)), main,
+    "testEnumSignal"));
 }
 
 void PythonQtTestSignalHandler::testRecursiveSignalHandler()
@@ -458,7 +518,6 @@ void PythonQtTestSignalHandler::testRecursiveSignalHandler()
   QVERIFY(PythonQt::self()->addSignalHandler(_helper, SIGNAL(signal3(float)), main, "testSignal3"));
   QVERIFY(_helper->emitSignal1(12));
 }
-
 
 void PythonQtTestApi::initTestCase()
 {
@@ -479,7 +538,6 @@ void PythonQtTestApi::testProperties()
 
   main.evalScript("obj.objectName = 'hello2'");
   QVERIFY(QString("hello2") == main.getVariable("obj.objectName").toString());
-
 }
 
 void PythonQtTestApi::testDynamicProperties()
@@ -488,7 +546,7 @@ void PythonQtTestApi::testDynamicProperties()
 
   // this fails and should fail, but how could that be tested?
   // main.evalScript("obj.testProp = 1");
-  
+
   // create a new dynamic property
   main.evalScript("obj.setProperty('testProp','testValue')");
 
@@ -504,7 +562,7 @@ void PythonQtTestApi::testDynamicProperties()
   // check if dynamic property is in introspection
   QStringList l = PythonQt::self()->introspection(PythonQt::self()->getMainModule(), "obj", PythonQt::Anything);
   QVERIFY(l.contains("testProp"));
-  
+
   // check with None, previous value expected
   main.evalScript("obj.testProp = None");
   QVERIFY(12 == main.getVariable("obj.testProp").toInt());
@@ -515,21 +573,20 @@ void PythonQtTestApi::testDynamicProperties()
   // check if dynamic property is really gone
   QStringList l2 = PythonQt::self()->introspection(PythonQt::self()->getMainModule(), "obj", PythonQt::Anything);
   QVERIFY(!l2.contains("testProp"));
-  
 }
 
-
-bool PythonQtTestApiHelper::call(const QString& function, const QVariantList& args, const QVariant& expectedResult) {
+bool PythonQtTestApiHelper::call(const QString& function, const QVariantList& args, const QVariant& expectedResult)
+{
   _passed = false;
   QVariant r = PythonQt::self()->call(PythonQt::self()->getMainModule(), function, args);
-  return _passed && expectedResult==r;
+  return _passed && expectedResult == r;
 }
 
 void PythonQtTestApi::testCall()
 {
   PythonQtObjectPtr main = PythonQt::self()->getMainModule();
 
-  QVERIFY(qvariant_cast<QObject*>(PythonQt::self()->getVariable(main, "obj"))==_helper);
+  QVERIFY(qvariant_cast<QObject*>(PythonQt::self()->getVariable(main, "obj")) == _helper);
 
   PyRun_SimpleString("def testCallNoArgs():\n  obj.setPassed();\n");
   QVERIFY(_helper->call("testCallNoArgs", QVariantList(), QVariant()));
@@ -538,9 +595,10 @@ void PythonQtTestApi::testCall()
   QVERIFY(_helper->call("testCall1", QVariantList() << QVariant("test"), QVariant(QString("test2"))));
 
   PyRun_SimpleString("def testCall2(a, b):\n if a=='test' and b==obj: obj.setPassed();\n return obj;\n");
-  QVariant r = PythonQt::self()->call(PythonQt::self()->getMainModule(), "testCall2", QVariantList() << QVariant("test") << QVariant::fromValue((QObject*)_helper));
+  QVariant r = PythonQt::self()->call(PythonQt::self()->getMainModule(), "testCall2",
+    QVariantList() << QVariant("test") << QVariant::fromValue((QObject*)_helper));
   QObject* p = qvariant_cast<QObject*>(r);
-  QVERIFY(p==_helper);
+  QVERIFY(p == _helper);
 }
 
 void PythonQtTestApi::testVariables()
@@ -548,10 +606,10 @@ void PythonQtTestApi::testVariables()
   PythonQt::self()->addObject(PythonQt::self()->getMainModule(), "someObject", _helper);
   QVariant v = PythonQt::self()->getVariable(PythonQt::self()->getMainModule(), "someObject");
   QObject* p = qvariant_cast<QObject*>(v);
-  QVERIFY(p==_helper);
+  QVERIFY(p == _helper);
   // test for unset variable
   QVariant v2 = PythonQt::self()->getVariable(PythonQt::self()->getMainModule(), "someObject2");
-  QVERIFY(v2==QVariant());
+  QVERIFY(v2 == QVariant());
 
   QVariant someValue = QStringList() << "test1" << "test2";
   PythonQt::self()->addVariable(PythonQt::self()->getMainModule(), "someValue", someValue);
@@ -568,7 +626,7 @@ void PythonQtTestApi::testVariables()
   // check that at least these three variables are set
   s << "obj" << "someObject" << "someValue";
   for (const QString& value : s) {
-    QVERIFY(l.indexOf(value)!=-1);
+    QVERIFY(l.indexOf(value) != -1);
   }
 
   // insert a second time!
@@ -577,7 +635,7 @@ void PythonQtTestApi::testVariables()
   PythonQt::self()->removeVariable(PythonQt::self()->getMainModule(), "someObject");
   // we expect to find no variable
   QVariant v4 = PythonQt::self()->getVariable(PythonQt::self()->getMainModule(), "someObject");
-  QVERIFY(v4==QVariant());
+  QVERIFY(v4 == QVariant());
 }
 
 void PythonQtTestApi::testImporter()
@@ -589,8 +647,8 @@ void PythonQtTestApi::testImporter()
 
 void PythonQtTestApi::testQtNamespace()
 {
-  QVERIFY(_main.getVariable("PythonQt.QtCore.Qt.red").toInt()==Qt::red);
-  QVERIFY(_main.getVariable("PythonQt.QtCore.Qt.FlatCap").toInt()==Qt::FlatCap);
+  QVERIFY(_main.getVariable("PythonQt.QtCore.Qt.red").toInt() == Qt::red);
+  QVERIFY(_main.getVariable("PythonQt.QtCore.Qt.FlatCap").toInt() == Qt::FlatCap);
   QVERIFY(PythonQtObjectPtr(_main.getVariable("PythonQt.QtCore.Qt.mightBeRichText")));
   // check for an enum type wrapper
   QVERIFY(PythonQtObjectPtr(_main.getVariable("PythonQt.QtCore.Qt.AlignmentFlag")));
@@ -600,7 +658,7 @@ void PythonQtTestApi::testQtNamespace()
 
 void PythonQtTestApi::testConnects()
 {
-//  QVERIFY(qvariant_cast<QColor>(_main.evalScript("PythonQt.Qt.QColor(PythonQt.Qt.Qt.red)" ,Py_eval_input)) == QColor(Qt::red));
+  //  QVERIFY(qvariant_cast<QColor>(_main.evalScript("PythonQt.Qt.QColor(PythonQt.Qt.Qt.red)" ,Py_eval_input)) == QColor(Qt::red));
   //TODO: add signal/slot connect both with QObject.connect and connect
 }
 
@@ -614,28 +672,29 @@ void PythonQtTestApi::testQColorDecorators()
   colorClass = _main.getVariable("PythonQt.Qt.QColor");
   QVERIFY(colorClass);
   // constructors
-  QVERIFY(qvariant_cast<QColor>(colorClass.call(QVariantList() << 1 << 2 << 3)) == QColor(1,2,3));
+  QVERIFY(qvariant_cast<QColor>(colorClass.call(QVariantList() << 1 << 2 << 3)) == QColor(1, 2, 3));
   QVERIFY(qvariant_cast<QColor>(colorClass.call()) == QColor());
   QEXPECT_FAIL("", "Testing non-existing constructor", Continue);
   QVERIFY(colorClass.call(QVariantList() << 1 << 2) != QVariant());
 
   // check that enum overload is taken over int
-  QVERIFY(qvariant_cast<QColor>(_main.evalScript("PythonQt.Qt.QColor(PythonQt.Qt.Qt.red)" ,Py_eval_input)) == QColor(Qt::red));
+  QVERIFY(qvariant_cast<QColor>(_main.evalScript("PythonQt.Qt.QColor(PythonQt.Qt.Qt.red)", Py_eval_input))
+          == QColor(Qt::red));
   // check that int overload is taken over enum
-  QVERIFY(qvariant_cast<QColor>(_main.evalScript("PythonQt.Qt.QColor(0x112233)" ,Py_eval_input)) == QColor(0x112233));
+  QVERIFY(qvariant_cast<QColor>(_main.evalScript("PythonQt.Qt.QColor(0x112233)", Py_eval_input)) == QColor(0x112233));
 
   // check for decorated Cmyk enum value
   QVERIFY(colorClass.getVariable("Cmyk").toInt() == QColor::Cmyk);
   PythonQtObjectPtr staticMethod = colorClass.getVariable("fromRgb");
   QVERIFY(staticMethod);
   // direct call of static method via class
-  QVERIFY(qvariant_cast<QColor>(colorClass.call("fromRgb", QVariantList() << 1 << 2 << 3)) == QColor(1,2,3));
+  QVERIFY(qvariant_cast<QColor>(colorClass.call("fromRgb", QVariantList() << 1 << 2 << 3)) == QColor(1, 2, 3));
   // direct call of static method
-  QVERIFY(qvariant_cast<QColor>(staticMethod.call(QVariantList() << 1 << 2 << 3)) == QColor(1,2,3));
+  QVERIFY(qvariant_cast<QColor>(staticMethod.call(QVariantList() << 1 << 2 << 3)) == QColor(1, 2, 3));
   PythonQtObjectPtr publicMethod = colorClass.getVariable("red");
   QVERIFY(publicMethod);
   // call with passing self in:
-  QVERIFY(colorClass.call("red", QVariantList() << QColor(255,0,0)).toInt() == 255);
+  QVERIFY(colorClass.call("red", QVariantList() << QColor(255, 0, 0)).toInt() == 255);
 }
 
 QByteArray PythonQtTestApiHelper::readFileAsBytes(const QString& /*filename*/)
@@ -656,10 +715,10 @@ bool PythonQtTestApiHelper::exists(const QString& /*filename*/)
   return true;
 }
 
-QDateTime PythonQtTestApiHelper::lastModifiedDate(const QString& /*filename*/) {
+QDateTime PythonQtTestApiHelper::lastModifiedDate(const QString& /*filename*/)
+{
   return QDateTime::currentDateTime();
 }
-
 
 void PythonQtTestApi::testRedirect()
 {
@@ -678,7 +737,7 @@ void PythonQtTestApiHelper::stdErr(const QString& s)
   qDebug() << s;
 }
 
-QObject* PythonQtTestCppFactory::create(const QByteArray& name, void *ptr)
+QObject* PythonQtTestCppFactory::create(const QByteArray& name, void* ptr)
 {
   if (name == "PQCppObject") {
     return new PQCppObjectWrapper(ptr);

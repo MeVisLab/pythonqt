@@ -53,15 +53,17 @@ class PythonQtClassInfo;
 //! stores information about a signal target
 /*! copy construction and assignment works fine with the C++ standard behavior and are thus not implemented
 */
-class PYTHONQT_EXPORT PythonQtSignalTarget {
+class PYTHONQT_EXPORT PythonQtSignalTarget
+{
 public:
-  PythonQtSignalTarget() {
+  PythonQtSignalTarget()
+  {
     _signalId = -1;
     _methodInfo = nullptr;
     _slotId = -1;
   }
 
-  PythonQtSignalTarget(int signalId,const PythonQtMethodInfo* methodInfo, int slotId, PyObject* callable)
+  PythonQtSignalTarget(int signalId, const PythonQtMethodInfo* methodInfo, int slotId, PyObject* callable)
   {
     _signalId = signalId;
     _slotId = slotId;
@@ -69,30 +71,30 @@ public:
     _callable = callable;
   };
 
-  ~PythonQtSignalTarget() {
-  };
+  ~PythonQtSignalTarget() {};
 
   //! get the id of the original signal
   int signalId() const { return _signalId; }
 
   //! get the id that was assigned to this simulated slot
-  int slotId()  const { return _slotId; }
+  int slotId() const { return _slotId; }
 
   //! get the signals parameter info
-  const PythonQtMethodInfo* methodInfo()  const { return _methodInfo; }
+  const PythonQtMethodInfo* methodInfo() const { return _methodInfo; }
 
   //! call the python callable with the given arguments (as defined in methodInfo)
-  void call(void **arguments) const;
+  void call(void** arguments) const;
 
   //! check if it is the same signal target
   bool isSame(int signalId, PyObject* callable) const;
 
   //! call the given callable with arguments described by PythonQtMethodInfo, returns a new reference as result value (or NULL)
-  static PyObject* call(PyObject* callable, const PythonQtMethodInfo* methodInfo, void **arguments, bool skipFirstArgumentOfMethodInfo = false);
+  static PyObject* call(PyObject* callable, const PythonQtMethodInfo* methodInfo, void** arguments,
+    bool skipFirstArgumentOfMethodInfo = false);
 
 private:
-  int       _signalId;
-  int       _slotId;
+  int _signalId;
+  int _slotId;
   const PythonQtMethodInfo* _methodInfo;
   PythonQtSafeObjectPtr _callable;
 };
@@ -100,16 +102,19 @@ private:
 //! base class for signal receivers
 /*!
 */
-class PythonQtSignalReceiverBase : public QObject {
+class PythonQtSignalReceiverBase : public QObject
+{
   Q_OBJECT
 public:
-  PythonQtSignalReceiverBase(QObject* obj):QObject(obj) {};
+  PythonQtSignalReceiverBase(QObject* obj)
+    : QObject(obj) {};
 };
 
 //! receives all signals for one QObject
 /*! we derive from our base but do not declare the QObject macro because we want to reimplement qt_metacall only.
 */
-class PythonQtSignalReceiver : public PythonQtSignalReceiverBase {
+class PythonQtSignalReceiver : public PythonQtSignalReceiverBase
+{
 
 public:
   PythonQtSignalReceiver(QObject* obj);
@@ -122,7 +127,7 @@ public:
   bool removeSignalHandler(const char* signal, PyObject* callable = nullptr);
 
   //! we implement this method to simulate a number of slots that match the ids in _targets
-  int qt_metacall(QMetaObject::Call c, int id, void **arguments) override;
+  int qt_metacall(QMetaObject::Call c, int id, void** arguments) override;
 
 private:
   //! get the index of the signal
@@ -139,6 +144,4 @@ private:
   static int _destroyedSignal2Id;
 };
 
-
 #endif
-

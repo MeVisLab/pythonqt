@@ -48,24 +48,24 @@
 
 class ShellHeaderGenerator : public ShellGenerator
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-    ShellHeaderGenerator(PriGenerator *pri, SetupGenerator *setup)
-    {
-        priGenerator = pri;
-        setupGenerator = setup;
-    }
+  ShellHeaderGenerator(PriGenerator* pri, SetupGenerator* setup)
+  {
+    priGenerator = pri;
+    setupGenerator = setup;
+  }
 
-    virtual QString fileNameForClass(const AbstractMetaClass *cls) const;
+  virtual QString fileNameForClass(const AbstractMetaClass* cls) const;
 
-    void write(QTextStream &s, const AbstractMetaClass *meta_class);
+  void write(QTextStream& s, const AbstractMetaClass* meta_class);
 
-    void writePromoterArgs(AbstractMetaArgumentList &args, QTextStream & s);
+  void writePromoterArgs(AbstractMetaArgumentList& args, QTextStream& s);
 
-    void writeInjectedCode(QTextStream &s, const AbstractMetaClass *meta_class, int type, bool recursive = false);
+  void writeInjectedCode(QTextStream& s, const AbstractMetaClass* meta_class, int type, bool recursive = false);
 
-  void writeFieldAccessors(QTextStream &s, const AbstractMetaField *field);
+  void writeFieldAccessors(QTextStream& s, const AbstractMetaField* field);
 
   SetupGenerator* setupGenerator;
 };

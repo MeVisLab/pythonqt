@@ -41,7 +41,6 @@
 
 /* -*- Mode: C++; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
 
-
 #include "type_compiler.h"
 #include "name_compiler.h"
 #include "lexer.h"
@@ -51,76 +50,69 @@
 
 #include <QtCore/QString>
 
-TypeCompiler::TypeCompiler(Binder *binder)
-  : _M_binder (binder), _M_token_stream(binder->tokenStream ())
+TypeCompiler::TypeCompiler(Binder* binder)
+  : _M_binder(binder)
+  , _M_token_stream(binder->tokenStream())
 {
 }
 
-void TypeCompiler::run(TypeSpecifierAST *node)
+void TypeCompiler::run(TypeSpecifierAST* node)
 {
   _M_type.clear();
   _M_cv.clear();
 
   visit(node);
 
-  if (node && node->cv)
-    {
-      const ListNode<std::size_t> *it = node->cv->toFront();
-      const ListNode<std::size_t> *end = it;
-      do
-        {
-          int kind = _M_token_stream->kind(it->element);
-          if (! _M_cv.contains(kind))
-            _M_cv.append(kind);
+  if (node && node->cv) {
+    const ListNode<std::size_t>* it = node->cv->toFront();
+    const ListNode<std::size_t>* end = it;
+    do {
+      int kind = _M_token_stream->kind(it->element);
+      if (!_M_cv.contains(kind))
+        _M_cv.append(kind);
 
-          it = it->next;
-        }
-      while (it != end);
-    }
+      it = it->next;
+    } while (it != end);
+  }
 }
 
-void TypeCompiler::visitClassSpecifier(ClassSpecifierAST *node)
+void TypeCompiler::visitClassSpecifier(ClassSpecifierAST* node)
 {
   visit(node->name);
 }
 
-void TypeCompiler::visitEnumSpecifier(EnumSpecifierAST *node)
+void TypeCompiler::visitEnumSpecifier(EnumSpecifierAST* node)
 {
   visit(node->name);
 }
 
-void TypeCompiler::visitElaboratedTypeSpecifier(ElaboratedTypeSpecifierAST *node)
+void TypeCompiler::visitElaboratedTypeSpecifier(ElaboratedTypeSpecifierAST* node)
 {
   visit(node->name);
 }
 
-void TypeCompiler::visitSimpleTypeSpecifier(SimpleTypeSpecifierAST *node)
+void TypeCompiler::visitSimpleTypeSpecifier(SimpleTypeSpecifierAST* node)
 {
-  if (const ListNode<std::size_t> *it = node->integrals)
-    {
-      it = it->toFront();
-      const ListNode<std::size_t> *end = it;
-      QString current_item;
-      do
-        {
-          std::size_t token = it->element;
-          current_item += token_name(_M_token_stream->kind(token));
-          current_item += " ";
-          it = it->next;
-        }
-      while (it != end);
-      _M_type += current_item.trimmed();
-    }
-  else if (node->type_of)
-    {
-      // ### implement me
-      _M_type += QLatin1String("typeof<...>");
-    }
+  if (const ListNode<std::size_t>* it = node->integrals) {
+    it = it->toFront();
+    const ListNode<std::size_t>* end = it;
+    QString current_item;
+    do {
+      std::size_t token = it->element;
+      current_item += token_name(_M_token_stream->kind(token));
+      current_item += " ";
+      it = it->next;
+    } while (it != end);
+    _M_type += current_item.trimmed();
+  } else if (node->type_of) {
+    // ### implement me
+    _M_type += QLatin1String("typeof<...>");
+  }
 
   visit(node->name);
 }
 
-void TypeCompiler::visitName(NameAST *node)
+void TypeCompiler::visitName(NameAST* node)
 {
   NameCompiler name_cc(_M_binder);
   name_cc.run(node);

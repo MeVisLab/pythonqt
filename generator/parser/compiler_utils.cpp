@@ -39,7 +39,6 @@
 **
 ****************************************************************************/
 
-
 #include "compiler_utils.h"
 #include "type_compiler.h"
 #include "name_compiler.h"
@@ -47,23 +46,23 @@
 #include "ast.h"
 #include "binder.h"
 
-TypeInfo CompilerUtils::typeDescription(TypeSpecifierAST *type_specifier, DeclaratorAST *declarator, Binder *binder)
+TypeInfo CompilerUtils::typeDescription(TypeSpecifierAST* type_specifier, DeclaratorAST* declarator, Binder* binder)
 {
-  TypeCompiler type_cc (binder);
-  DeclaratorCompiler decl_cc (binder);
+  TypeCompiler type_cc(binder);
+  DeclaratorCompiler decl_cc(binder);
 
-  type_cc.run (type_specifier);
-  decl_cc.run (declarator);
+  type_cc.run(type_specifier);
+  decl_cc.run(declarator);
 
   TypeInfo typeInfo;
-  typeInfo.setQualifiedName (type_cc.qualifiedName ());
-  typeInfo.setConstant (type_cc.isConstant ());
-  typeInfo.setVolatile (type_cc.isVolatile ());
-  typeInfo.setMutable (type_cc.isMutable ());
-  typeInfo.setReference (decl_cc.isReference ());
-  typeInfo.setRvalueReference (decl_cc.isRvalueReference ());
-  typeInfo.setIndirections (decl_cc.indirection ());
-  typeInfo.setArrayElements (decl_cc.arrayElements ());
+  typeInfo.setQualifiedName(type_cc.qualifiedName());
+  typeInfo.setConstant(type_cc.isConstant());
+  typeInfo.setVolatile(type_cc.isVolatile());
+  typeInfo.setMutable(type_cc.isMutable());
+  typeInfo.setReference(decl_cc.isReference());
+  typeInfo.setRvalueReference(decl_cc.isRvalueReference());
+  typeInfo.setIndirections(decl_cc.indirection());
+  typeInfo.setArrayElements(decl_cc.arrayElements());
 
   return typeInfo;
 }

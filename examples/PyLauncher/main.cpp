@@ -47,15 +47,14 @@
 #include <QDir>
 #include <QMessageBox>
 
-
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
   QApplication qapp(argc, argv);
 
   PythonQt::init(PythonQt::IgnoreSiteModule | PythonQt::RedirectStdOut);
   PythonQt_QtAll::init();
 
-  PythonQtObjectPtr  mainContext = PythonQt::self()->getMainModule();
+  PythonQtObjectPtr mainContext = PythonQt::self()->getMainModule();
 
   bool showConsole = false;
   QStringList files;
@@ -87,4 +86,3 @@ int main(int argc, char *argv[])
 
   return qapp.exec();
 }
-

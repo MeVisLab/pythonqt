@@ -39,22 +39,20 @@
 **
 ****************************************************************************/
 
-
 #include "control.h"
 #include "lexer.h"
 
 bool Control::_M_printErrors = false;
 
 Control::Control()
-  : current_context(0),
-    _M_skipFunctionBody(false),
-    _M_lexer(0),
-    _M_parser(0)
+  : current_context(0)
+  , _M_skipFunctionBody(false)
+  , _M_lexer(0)
+  , _M_parser(0)
 {
   pushContext();
 
-  declareTypedef(findOrInsertName("__builtin_va_list",
-                 strlen("__builtin_va_list")), 0);
+  declareTypedef(findOrInsertName("__builtin_va_list", strlen("__builtin_va_list")), 0);
 }
 
 Control::~Control()
@@ -64,28 +62,28 @@ Control::~Control()
   Q_ASSERT(current_context == 0);
 }
 
-Lexer *Control::changeLexer(Lexer *lexer)
+Lexer* Control::changeLexer(Lexer* lexer)
 {
-  Lexer *old = _M_lexer;
+  Lexer* old = _M_lexer;
   _M_lexer = lexer;
   return old;
 }
 
-Parser *Control::changeParser(Parser *parser)
+Parser* Control::changeParser(Parser* parser)
 {
-  Parser *old = _M_parser;
+  Parser* old = _M_parser;
   _M_parser = parser;
   return old;
 }
 
-Type *Control::lookupType(const NameSymbol *name) const
+Type* Control::lookupType(const NameSymbol* name) const
 {
   Q_ASSERT(current_context != 0);
 
   return current_context->resolve(name);
 }
 
-void Control::declare(const NameSymbol *name, Type *type)
+void Control::declare(const NameSymbol* name, Type* type)
 {
   //printf("*** Declare:");
   //printSymbol(name);
@@ -98,7 +96,7 @@ void Control::declare(const NameSymbol *name, Type *type)
 void Control::pushContext()
 {
   // printf("+Context\n");
-  Context *new_context = new Context;
+  Context* new_context = new Context;
   new_context->parent = current_context;
   current_context = new_context;
 }
@@ -108,13 +106,13 @@ void Control::popContext()
   // printf("-Context\n");
   Q_ASSERT(current_context != 0);
 
-  Context *old_context = current_context;
+  Context* old_context = current_context;
   current_context = current_context->parent;
 
   delete old_context;
 }
 
-void Control::declareTypedef(const NameSymbol *name, Declarator *d)
+void Control::declareTypedef(const NameSymbol* name, Declarator* d)
 {
   //  printf("declared typedef:");
   //  printSymbol(name);
@@ -122,7 +120,7 @@ void Control::declareTypedef(const NameSymbol *name, Declarator *d)
   stl_typedef_table.insert(name, d);
 }
 
-bool Control::isTypedef(const NameSymbol *name) const
+bool Control::isTypedef(const NameSymbol* name) const
 {
   //  printf("is typedef:");
   //  printSymbol(name);
@@ -131,21 +129,22 @@ bool Control::isTypedef(const NameSymbol *name) const
   return stl_typedef_table.contains(name);
 }
 
-QList<Control::ErrorMessage> Control::errorMessages () const
+QList<Control::ErrorMessage> Control::errorMessages() const
 {
   return _M_error_messages;
 }
 
-void Control::clearErrorMessages ()
+void Control::clearErrorMessages()
 {
-  _M_error_messages.clear ();
+  _M_error_messages.clear();
 }
 
-void Control::reportError (const ErrorMessage &errmsg)
+void Control::reportError(const ErrorMessage& errmsg)
 {
   _M_error_messages.append(errmsg);
   if (_M_printErrors) {
-    printf("%s (%s:%d:%d)\n", qPrintable(errmsg.message()), qPrintable(errmsg.fileName()), errmsg.line(), errmsg.column());
+    printf("%s (%s:%d:%d)\n", qPrintable(errmsg.message()), qPrintable(errmsg.fileName()), errmsg.line(),
+      errmsg.column());
   }
 }
 

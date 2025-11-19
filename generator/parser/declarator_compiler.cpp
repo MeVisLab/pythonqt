@@ -39,7 +39,6 @@
 **
 ****************************************************************************/
 
-
 #include "declarator_compiler.h"
 #include "name_compiler.h"
 #include "type_compiler.h"
@@ -50,12 +49,13 @@
 
 #include <qdebug.h>
 
-DeclaratorCompiler::DeclaratorCompiler(Binder *binder)
-  : _M_binder (binder), _M_token_stream (binder->tokenStream ())
+DeclaratorCompiler::DeclaratorCompiler(Binder* binder)
+  : _M_binder(binder)
+  , _M_token_stream(binder->tokenStream())
 {
 }
 
-void DeclaratorCompiler::run(DeclaratorAST *node)
+void DeclaratorCompiler::run(DeclaratorAST* node)
 {
   _M_id.clear();
   _M_parameters.clear();
@@ -67,82 +67,76 @@ void DeclaratorCompiler::run(DeclaratorAST *node)
   _M_packed_parameter = false;
   _M_indirection = 0;
 
-  if (node)
-    {
-      NameCompiler name_cc(_M_binder);
+  if (node) {
+    NameCompiler name_cc(_M_binder);
 
-      DeclaratorAST *decl = node;
-      while (decl && decl->sub_declarator)
-        decl = decl->sub_declarator;
+    DeclaratorAST* decl = node;
+    while (decl && decl->sub_declarator)
+      decl = decl->sub_declarator;
 
-      Q_ASSERT (decl != 0);
+    Q_ASSERT(decl != 0);
 
-      name_cc.run(decl->id);
-      _M_id = name_cc.name();
-      _M_function = (node->parameter_declaration_clause != 0);
-      if (node->parameter_declaration_clause && node->parameter_declaration_clause->ellipsis)
-        _M_variadics = true;
-      _M_packed_parameter = node->packedParameter;
+    name_cc.run(decl->id);
+    _M_id = name_cc.name();
+    _M_function = (node->parameter_declaration_clause != 0);
+    if (node->parameter_declaration_clause && node->parameter_declaration_clause->ellipsis)
+      _M_variadics = true;
+    _M_packed_parameter = node->packedParameter;
 
-      visitNodes(this, node->ptr_ops);
-      visit(node->parameter_declaration_clause);
+    visitNodes(this, node->ptr_ops);
+    visit(node->parameter_declaration_clause);
 
-      if (const ListNode<ExpressionAST*> *it = node->array_dimensions)
-        {
-          it->toFront();
-          const ListNode<ExpressionAST*> *end = it;
+    if (const ListNode<ExpressionAST*>* it = node->array_dimensions) {
+      it->toFront();
+      const ListNode<ExpressionAST*>* end = it;
 
-          do
-            {
-              QString elt;
-              if (ExpressionAST *expr = it->element)
-                {
-                  const Token &start_token = _M_token_stream->token((int) expr->start_token);
-                  const Token &end_token = _M_token_stream->token((int) expr->end_token);
+      do {
+        QString elt;
+        if (ExpressionAST* expr = it->element) {
+          const Token& start_token = _M_token_stream->token((int)expr->start_token);
+          const Token& end_token = _M_token_stream->token((int)expr->end_token);
 
-                  elt += QString::fromUtf8(&start_token.text[start_token.position],
-                                           (int) (end_token.position - start_token.position)).trimmed();
-                }
-
-              _M_array.append (elt);
-
-              it = it->next;
-            }
-          while (it != end);
+          elt +=
+            QString::fromUtf8(&start_token.text[start_token.position], (int)(end_token.position - start_token.position))
+              .trimmed();
         }
+
+        _M_array.append(elt);
+
+        it = it->next;
+      } while (it != end);
     }
+  }
 }
 
-void DeclaratorCompiler::visitPtrOperator(PtrOperatorAST *node)
+void DeclaratorCompiler::visitPtrOperator(PtrOperatorAST* node)
 {
-  std::size_t op =  _M_token_stream->kind(node->op);
+  std::size_t op = _M_token_stream->kind(node->op);
 
-  switch (op)
-    {
-      case Token_and:
-        _M_rvalue_reference = true;
-        _M_reference = false;
-        break;
-      case '&':
-        _M_reference = true;
-        break;
-      case '*':
-        ++_M_indirection;
-        break;
+  switch (op) {
+  case Token_and:
+    _M_rvalue_reference = true;
+    _M_reference = false;
+    break;
+  case '&':
+    _M_reference = true;
+    break;
+  case '*':
+    ++_M_indirection;
+    break;
 
-      default:
-        break;
-    }
+  default:
+    break;
+  }
 
-  if (node->mem_ptr)
-    {
+  if (node->mem_ptr) {
 #if defined(__GNUC__)
-#pragma GCC warning "ptr to mem -- not implemented"
+  #pragma GCC warning "ptr to mem -- not implemented"
 #endif
-    }
+  }
 }
 
-void DeclaratorCompiler::visitParameterDeclaration(ParameterDeclarationAST *node)
+void DeclaratorCompiler::visitParameterDeclaration(ParameterDeclarationAST* node)
 {
   Parameter p;
 
@@ -156,30 +150,26 @@ void DeclaratorCompiler::visitParameterDeclaration(ParameterDeclarationAST *node
   p.packedParameter = decl_cc.isPackedParameter();
 
   // ignore case a single void parameter
-  if (_M_parameters.isEmpty() && p.name.isEmpty() && p.type.toString() == "void")
-  {
+  if (_M_parameters.isEmpty() && p.name.isEmpty() && p.type.toString() == "void") {
     return;
   }
 
-  if (node->expression != 0)
-    {
-      const Token &start = _M_token_stream->token((int) node->expression->start_token);
-      const Token &end = _M_token_stream->token((int) node->expression->end_token);
-      int length = (int) (end.position - start.position);
+  if (node->expression != 0) {
+    const Token& start = _M_token_stream->token((int)node->expression->start_token);
+    const Token& end = _M_token_stream->token((int)node->expression->end_token);
+    int length = (int)(end.position - start.position);
 
-      p.defaultValueExpression = QString();
-      QString source = QString::fromUtf8(&start.text[start.position], length).trimmed();
-      QStringList list = source.split("\n");
+    p.defaultValueExpression = QString();
+    QString source = QString::fromUtf8(&start.text[start.position], length).trimmed();
+    QStringList list = source.split("\n");
 
-
-      for (int i=0; i<list.size(); ++i) {
-          if (!list.at(i).startsWith("#"))
-              p.defaultValueExpression += list.at(i).trimmed();
-      }
-
-      p.defaultValue = p.defaultValueExpression.size() > 0;
-
+    for (int i = 0; i < list.size(); ++i) {
+      if (!list.at(i).startsWith("#"))
+        p.defaultValueExpression += list.at(i).trimmed();
     }
+
+    p.defaultValue = p.defaultValueExpression.size() > 0;
+  }
 
   _M_parameters.append(p);
 }

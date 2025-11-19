@@ -49,57 +49,60 @@
 #define PYTHONQT_MAX_ARGS 32
 
 #define PythonQtArgumentFrame_ADD_VALUE(store, type, value, ptr) \
-{  type* item = (type*)store->nextPODPtr(); \
-   *item = value; \
-   ptr = (void*)item; \
-}
+  { \
+    type* item = (type*)store->nextPODPtr(); \
+    *item = value; \
+    ptr = (void*)item; \
+  }
 
-#define PythonQtArgumentFrame_ADD_VALUE_IF_NEEDED(alreadyAllocatedPtr,store, type, value, ptr) \
-{ \
-  type* item = (type*)(alreadyAllocatedPtr?alreadyAllocatedPtr:store->nextPODPtr()); \
-  *item = value; \
-  ptr = (void*)item; \
-}
+#define PythonQtArgumentFrame_ADD_VALUE_IF_NEEDED(alreadyAllocatedPtr, store, type, value, ptr) \
+  { \
+    type* item = (type*)(alreadyAllocatedPtr ? alreadyAllocatedPtr : store->nextPODPtr()); \
+    *item = value; \
+    ptr = (void*)item; \
+  }
 
 #define PythonQtArgumentFrame_ADD_VARIANT_VALUE(store, value, ptr) \
-{  QVariant* item = store->nextVariantPtr(); \
-   *item = value; \
-   ptr = (void*)item; \
-}
+  { \
+    QVariant* item = store->nextVariantPtr(); \
+    *item = value; \
+    ptr = (void*)item; \
+  }
 
 #if QT_VERSION >= 0x060000
 
-#define PythonQtArgumentFrame_ADD_VARIANT_VALUE_BY_ID(store, id, ptr) \
-  PythonQtArgumentFrame_ADD_VARIANT_VALUE(store, QVariant(QMetaType(id)), ptr)
+  #define PythonQtArgumentFrame_ADD_VARIANT_VALUE_BY_ID(store, id, ptr) \
+    PythonQtArgumentFrame_ADD_VARIANT_VALUE(store, QVariant(QMetaType(id)), ptr)
 
 #else
 
-#define PythonQtArgumentFrame_ADD_VARIANT_VALUE_BY_ID(store, id, ptr) \
-  PythonQtArgumentFrame_ADD_VARIANT_VALUE(store, QVariant::Type(id), ptr)
+  #define PythonQtArgumentFrame_ADD_VARIANT_VALUE_BY_ID(store, id, ptr) \
+    PythonQtArgumentFrame_ADD_VARIANT_VALUE(store, QVariant::Type(id), ptr)
 
 #endif
 
-#define PythonQtArgumentFrame_ADD_VARIANT_VALUE_IF_NEEDED(alreadyAllocatedPtr,store, value, ptr) \
-{ \
-  QVariant* item = (QVariant*)(alreadyAllocatedPtr?alreadyAllocatedPtr:store->nextVariantPtr()); \
-  *item = value; \
-  ptr = (void*)item; \
-}
+#define PythonQtArgumentFrame_ADD_VARIANT_VALUE_IF_NEEDED(alreadyAllocatedPtr, store, value, ptr) \
+  { \
+    QVariant* item = (QVariant*)(alreadyAllocatedPtr ? alreadyAllocatedPtr : store->nextVariantPtr()); \
+    *item = value; \
+    ptr = (void*)item; \
+  }
 
 #if QT_VERSION >= 0x060000
 
-#define PythonQtArgumentFrame_ADD_VARIANT_VALUE_BY_ID_IF_NEEDED(alreadyAllocatedPtr,store, id, ptr) \
-  PythonQtArgumentFrame_ADD_VARIANT_VALUE_IF_NEEDED(alreadyAllocatedPtr,store, QVariant(QMetaType(id)), ptr)
+  #define PythonQtArgumentFrame_ADD_VARIANT_VALUE_BY_ID_IF_NEEDED(alreadyAllocatedPtr, store, id, ptr) \
+    PythonQtArgumentFrame_ADD_VARIANT_VALUE_IF_NEEDED(alreadyAllocatedPtr, store, QVariant(QMetaType(id)), ptr)
 
 #else
 
-#define PythonQtArgumentFrame_ADD_VARIANT_VALUE_BY_ID_IF_NEEDED(alreadyAllocatedPtr,store, id, ptr) \
-  PythonQtArgumentFrame_ADD_VARIANT_VALUE_IF_NEEDED(alreadyAllocatedPtr,store, QVariant::Type(id), ptr)
+  #define PythonQtArgumentFrame_ADD_VARIANT_VALUE_BY_ID_IF_NEEDED(alreadyAllocatedPtr, store, id, ptr) \
+    PythonQtArgumentFrame_ADD_VARIANT_VALUE_IF_NEEDED(alreadyAllocatedPtr, store, QVariant::Type(id), ptr)
 
 #endif
 
 //! Stores C++ arguments for a qt_metacall (which are created when converting data from Python to C++)
-class PythonQtArgumentFrame {
+class PythonQtArgumentFrame
+{
 
 public:
   //! Create a new (empty) frame (which is typically reused from a freelist)
@@ -116,13 +119,13 @@ public:
   //! Get next pointer to a variant
   QVariant* nextVariantPtr();
   //! Get next pointer to a POD.
-  quint64*  nextPODPtr();
+  quint64* nextPODPtr();
 
 private:
   PythonQtArgumentFrame();
   ~PythonQtArgumentFrame();
 
-  std::vector<quint64>  _podArgs;
+  std::vector<quint64> _podArgs;
   std::vector<QVariant> _variantArgs;
 
   PythonQtArgumentFrame* _freeListNext;

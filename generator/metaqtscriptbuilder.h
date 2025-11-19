@@ -48,42 +48,23 @@
 class MetaQtScriptBuilder : public AbstractMetaBuilder
 {
 
- protected:
-    virtual MetaQtScriptClass *createMetaClass()
-        {
-            return new MetaQtScriptClass();            
-        };
+protected:
+  virtual MetaQtScriptClass* createMetaClass() { return new MetaQtScriptClass(); };
 
-    virtual MetaQtScriptEnum *createMetaEnum()
-        {
-            return new MetaQtScriptEnum();    
-        };
+  virtual MetaQtScriptEnum* createMetaEnum() { return new MetaQtScriptEnum(); };
 
-    virtual MetaQtScriptEnumValue *createMetaEnumValue()
-        {
-            return new MetaQtScriptEnumValue();    
-        };
-    
-    virtual MetaQtScriptField *createMetaField()
-        {
-            return new MetaQtScriptField();    
-        };
+  virtual MetaQtScriptEnumValue* createMetaEnumValue() { return new MetaQtScriptEnumValue(); };
 
-    virtual MetaQtScriptFunction *createMetaFunction()
-        {
-            return new MetaQtScriptFunction(); 
-        };
+  virtual MetaQtScriptField* createMetaField() { return new MetaQtScriptField(); };
 
-    virtual MetaQtScriptArgument *createMetaArgument()
-        {
-            return new MetaQtScriptArgument(); 
-        };
+  virtual MetaQtScriptFunction* createMetaFunction() { return new MetaQtScriptFunction(); };
 
-    virtual AbstractMetaType::shared_pointer createMetaType()
-        {
-            return AbstractMetaType::shared_pointer(new MetaQtScriptType());
-        };
+  virtual MetaQtScriptArgument* createMetaArgument() { return new MetaQtScriptArgument(); };
 
+  virtual AbstractMetaType::shared_pointer createMetaType()
+  {
+    return AbstractMetaType::shared_pointer(new MetaQtScriptType());
+  };
 };
 
 #endif // METAQTSCRIPTBUILDER_H

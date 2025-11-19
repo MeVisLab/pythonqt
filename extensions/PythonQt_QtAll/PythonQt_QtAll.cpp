@@ -75,47 +75,47 @@ void PythonQt_init_QtUiTools(PyObject*);
 void PythonQt_init_QtWebKit(PyObject*);
 #endif
 
-namespace PythonQt_QtAll
+namespace PythonQt_QtAll {
+PYTHONQT_QTALL_EXPORT void init()
 {
-  PYTHONQT_QTALL_EXPORT void init() {
 #ifdef PYTHONQT_WITH_CORE
-    PythonQt_init_QtCore(0);
+  PythonQt_init_QtCore(0);
 #endif
 #ifdef PYTHONQT_WITH_NETWORK
-    PythonQt_init_QtNetwork(0);
+  PythonQt_init_QtNetwork(0);
 #endif
 #ifdef PYTHONQT_WITH_GUI
-    PythonQt_init_QtGui(0);
+  PythonQt_init_QtGui(0);
 #endif
 #ifdef PYTHONQT_WITH_XML
-    PythonQt_init_QtXml(0);
+  PythonQt_init_QtXml(0);
 #endif
 #ifdef PYTHONQT_WITH_SVG
-    PythonQt_init_QtSvg(0);
+  PythonQt_init_QtSvg(0);
 #endif
 #ifdef PYTHONQT_WITH_SQL
-    PythonQt_init_QtSql(0);
+  PythonQt_init_QtSql(0);
 #endif
 #ifdef PYTHONQT_WITH_WEBKIT
-    PythonQt_init_QtWebKit(0);
+  PythonQt_init_QtWebKit(0);
 #endif
 #ifdef PYTHONQT_WITH_OPENGL
-    PythonQt_init_QtOpenGL(0);
+  PythonQt_init_QtOpenGL(0);
 #endif
 #ifdef PYTHONQT_WITH_XMLPATTERNS
-    PythonQt_init_QtXmlPatterns(0);
+  PythonQt_init_QtXmlPatterns(0);
 #endif
 #ifdef PYTHONQT_WITH_MULTIMEDIA
-    PythonQt_init_QtMultimedia(0);
+  PythonQt_init_QtMultimedia(0);
 #endif
 #ifdef PYTHONQT_WITH_QML
-    PythonQt_init_QtQml(0);
+  PythonQt_init_QtQml(0);
 #endif
 #ifdef PYTHONQT_WITH_QUICK
-    PythonQt_init_QtQuick(0);
+  PythonQt_init_QtQuick(0);
 #endif
 #ifdef PYTHONQT_WITH_UITOOLS
-    PythonQt_init_QtUiTools(0);
+  PythonQt_init_QtUiTools(0);
 #endif
-  }
+}
 }

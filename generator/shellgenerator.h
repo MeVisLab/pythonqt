@@ -48,68 +48,64 @@
 
 class ShellGenerator : public Generator
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-    virtual QString subDirectoryForClass(const AbstractMetaClass *cls) const
-    {
-        return "generated_cpp/" + toFileNameBase(cls->package()) + "/";
-    }
+  virtual QString subDirectoryForClass(const AbstractMetaClass* cls) const
+  {
+    return "generated_cpp/" + toFileNameBase(cls->package()) + "/";
+  }
 
-    void writeTypeInfo(QTextStream &s, AbstractMetaType::const_shared_pointer type, Option option = NoOption, TypeSystem::Ownership ownership = TypeSystem::InvalidOwnership);
-    void writeFunctionSignature(QTextStream &s, const AbstractMetaFunction *meta_function,
-                                const AbstractMetaClass *implementor = 0,
-                                const QString &name_prefix = QString(),
-                                Option option = NoOption,
-                                const QString &classname_prefix = QString(),
-                                const QStringList &extra_arguments = QStringList(),
-                                int numArguments = -1);
+  void writeTypeInfo(QTextStream& s, AbstractMetaType::const_shared_pointer type, Option option = NoOption,
+    TypeSystem::Ownership ownership = TypeSystem::InvalidOwnership);
+  void writeFunctionSignature(QTextStream& s, const AbstractMetaFunction* meta_function,
+    const AbstractMetaClass* implementor = 0, const QString& name_prefix = QString(), Option option = NoOption,
+    const QString& classname_prefix = QString(), const QStringList& extra_arguments = QStringList(),
+    int numArguments = -1);
 
-    TypeSystem::Ownership writeOwnershipTemplate(QTextStream & s, const AbstractMetaFunction * meta_function, int argumentIndex);
+  TypeSystem::Ownership writeOwnershipTemplate(QTextStream& s, const AbstractMetaFunction* meta_function,
+    int argumentIndex);
 
-    void writeFunctionArguments(QTextStream &s, const AbstractMetaFunction *meta_function,
-                                Option option = NoOption,
-                                int numArguments = -1);
+  void writeFunctionArguments(QTextStream& s, const AbstractMetaFunction* meta_function, Option option = NoOption,
+    int numArguments = -1);
 
-    bool shouldGenerate(const AbstractMetaClass *meta_class) const;
+  bool shouldGenerate(const AbstractMetaClass* meta_class) const;
 
-    bool functionHasNonConstReferences(const AbstractMetaFunction* func);
+  bool functionHasNonConstReferences(const AbstractMetaFunction* func);
 
-    bool functionNeedsNormalWrapperSlot(const AbstractMetaFunction* func, const AbstractMetaClass* currentClass);
+  bool functionNeedsNormalWrapperSlot(const AbstractMetaFunction* func, const AbstractMetaClass* currentClass);
 
-    static QString shellClassName(const AbstractMetaClass *meta_class) {
-      return "PythonQtShell_" + meta_class->name();
-    }
-    static QString wrapperClassName(const AbstractMetaClass *meta_class) {
-      return "PythonQtWrapper_" + meta_class->name();
-    }
-    static QString promoterClassName(const AbstractMetaClass *meta_class) {
-      return "PythonQtPublicPromoter_" + meta_class->name();
-    }
+  static QString shellClassName(const AbstractMetaClass* meta_class) { return "PythonQtShell_" + meta_class->name(); }
+  static QString wrapperClassName(const AbstractMetaClass* meta_class)
+  {
+    return "PythonQtWrapper_" + meta_class->name();
+  }
+  static QString promoterClassName(const AbstractMetaClass* meta_class)
+  {
+    return "PythonQtPublicPromoter_" + meta_class->name();
+  }
 
-    AbstractMetaFunctionList getFunctionsToWrap(const AbstractMetaClass* cls);
-    AbstractMetaFunctionList getVirtualFunctionsForShell(const AbstractMetaClass* cls);
-    AbstractMetaFunctionList getProtectedFunctionsThatNeedPromotion(const AbstractMetaClass* cls);
+  AbstractMetaFunctionList getFunctionsToWrap(const AbstractMetaClass* cls);
+  AbstractMetaFunctionList getVirtualFunctionsForShell(const AbstractMetaClass* cls);
+  AbstractMetaFunctionList getProtectedFunctionsThatNeedPromotion(const AbstractMetaClass* cls);
 
-    // PythonQt builtins..., dont put them in pri files and dont register them, but generate the code
-    static bool isBuiltIn(const QString& name);
+  // PythonQt builtins..., dont put them in pri files and dont register them, but generate the code
+  static bool isBuiltIn(const QString& name);
 
-    static bool isSpecialStreamingOperator(const AbstractMetaFunction *fun);
+  static bool isSpecialStreamingOperator(const AbstractMetaFunction* fun);
 
-    static QString toFileNameBase(QString packageName) { return packageName.replace('.', '_').toLower(); }
+  static QString toFileNameBase(QString packageName) { return packageName.replace('.', '_').toLower(); }
 
-    static void writeInclude(QTextStream &stream, const Include &inc);
-  
-    // this scope is used in writeFunctionArguments
-    const AbstractMetaClass* setCurrentScope(const AbstractMetaClass* scope);
-    const AbstractMetaClass* currentScope() const { return _currentScope; }
+  static void writeInclude(QTextStream& stream, const Include& inc);
 
- protected:
-    PriGenerator* priGenerator{};
+  // this scope is used in writeFunctionArguments
+  const AbstractMetaClass* setCurrentScope(const AbstractMetaClass* scope);
+  const AbstractMetaClass* currentScope() const { return _currentScope; }
 
-    const AbstractMetaClass* _currentScope{};
+protected:
+  PriGenerator* priGenerator {};
 
+  const AbstractMetaClass* _currentScope {};
 };
-
 
 #endif // SHELLGENERATOR_H

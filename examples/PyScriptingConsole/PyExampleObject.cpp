@@ -43,17 +43,19 @@
 #include <QMessageBox>
 #include <QDir>
 
-PyExampleObject::PyExampleObject():QObject(NULL)
+PyExampleObject::PyExampleObject()
+  : QObject(NULL)
 {
 }
 
-PyObject* PyExampleObject::getMainModule() {
+PyObject* PyExampleObject::getMainModule()
+{
   return PythonQt::self()->getMainModule();
 }
 
 void PyExampleObject::showInformation(const QString& str)
 {
- QMessageBox::information ( NULL, "Test", str);
+  QMessageBox::information(NULL, "Test", str);
 }
 
 QStringList PyExampleObject::readDirectory(const QString& dir)

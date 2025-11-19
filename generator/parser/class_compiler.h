@@ -39,38 +39,37 @@
 **
 ****************************************************************************/
 
-
 #ifndef CLASS_COMPILER_H
-#define CLASS_COMPILER_H
+  #define CLASS_COMPILER_H
 
-#include <QtCore/qglobal.h>
-#include <QtCore/QStringList>
+  #include <QtCore/qglobal.h>
+  #include <QtCore/QStringList>
 
-#include "default_visitor.h"
-#include "name_compiler.h"
-#include "type_compiler.h"
+  #include "default_visitor.h"
+  #include "name_compiler.h"
+  #include "type_compiler.h"
 
 class TokenStream;
 class Binder;
 
-class ClassCompiler: protected DefaultVisitor
+class ClassCompiler : protected DefaultVisitor
 {
 public:
-  ClassCompiler(Binder *binder);
+  ClassCompiler(Binder* binder);
   virtual ~ClassCompiler();
 
   inline QString name() const { return _M_name; }
   inline QStringList baseClasses() const { return _M_base_classes; }
 
-  void run(ClassSpecifierAST *node);
+  void run(ClassSpecifierAST* node);
 
 protected:
-  virtual void visitClassSpecifier(ClassSpecifierAST *node);
-  virtual void visitBaseSpecifier(BaseSpecifierAST *node);
+  virtual void visitClassSpecifier(ClassSpecifierAST* node);
+  virtual void visitBaseSpecifier(BaseSpecifierAST* node);
 
 private:
-  Binder *_M_binder;
-  TokenStream *_M_token_stream;
+  Binder* _M_binder;
+  TokenStream* _M_token_stream;
   QString _M_name;
   QStringList _M_base_classes;
   NameCompiler name_cc;

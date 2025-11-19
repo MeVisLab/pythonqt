@@ -45,18 +45,18 @@
 
 #include <QApplication>
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
   QApplication qapp(argc, argv);
 
   PythonQt::init(PythonQt::IgnoreSiteModule | PythonQt::RedirectStdOut);
 
-  PythonQtObjectPtr  mainContext = PythonQt::self()->getMainModule();
+  PythonQtObjectPtr mainContext = PythonQt::self()->getMainModule();
   PythonQtScriptingConsole console(NULL, mainContext);
-  
+
   PythonQt::self()->addDecorators(new PyExampleDecorators());
   PythonQt::self()->registerClass(&QPushButton::staticMetaObject, "QtGui");
-  PythonQt::self()->registerCPPClass("YourCPPObject","", "example");
+  PythonQt::self()->registerCPPClass("YourCPPObject", "", "example");
 
   mainContext.evalFile(":example.py");
 
@@ -65,4 +65,3 @@ int main(int argc, char *argv[])
 
   return qapp.exec();
 }
-

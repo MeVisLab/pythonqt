@@ -46,20 +46,20 @@
 #include "PythonQtImportFileInterface.h"
 
 //! default importer implementation using QFile to load python code
-class PythonQtQFileImporter : public PythonQtImportFileInterface {
+class PythonQtQFileImporter : public PythonQtImportFileInterface
+{
 public:
-    PythonQtQFileImporter();
-    ~PythonQtQFileImporter() override;
+  PythonQtQFileImporter();
+  ~PythonQtQFileImporter() override;
 
-    QByteArray readFileAsBytes (const QString &filename) override;
+  QByteArray readFileAsBytes(const QString& filename) override;
 
-    QByteArray readSourceFile (const QString &filename, bool &ok) override;
+  QByteArray readSourceFile(const QString& filename, bool& ok) override;
 
-    bool exists (const QString &filename) override;
-    bool isEggArchive(const QString& filename) override;
+  bool exists(const QString& filename) override;
+  bool isEggArchive(const QString& filename) override;
 
-    QDateTime lastModifiedDate (const QString &filename) override;
-
+  QDateTime lastModifiedDate(const QString& filename) override;
 };
 
 #endif
