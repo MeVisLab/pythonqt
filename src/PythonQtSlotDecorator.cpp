@@ -127,7 +127,7 @@ PyDoc_STRVAR(PythonQtSlotDecorator_doc,
   "Slot(*types, result=type) -> Slot\n");
 
 PyTypeObject PythonQtSlotDecorator_Type = {
-    PyVarObject_HEAD_INIT(&PyType_Type, 0)
+    PyVarObject_HEAD_INIT(&PyType_Type, 0) /*tp_base*/
     "PythonQt.QtCore.Slot",          /*tp_name*/
     sizeof(PythonQtSlotDecorator),   /*tp_basicsize*/
     0,                          /*tp_itemsize*/

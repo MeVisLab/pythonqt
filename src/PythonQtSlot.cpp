@@ -813,10 +813,10 @@ meth_descr_get(PyObject *descr, PyObject *obj, PyObject* type)
 }
 
 PyTypeObject PythonQtSlotFunction_Type = {
-    PyVarObject_HEAD_INIT(&PyType_Type, 0)
-    "builtin_qt_slot",
-    sizeof(PythonQtSlotFunctionObject),
-    0,
+    PyVarObject_HEAD_INIT(&PyType_Type, 0) /*tp_base*/
+    "builtin_qt_slot", /* tp_itemsize */
+    sizeof(PythonQtSlotFunctionObject), /* tp_basicsize */
+    0, /* tp_itemsize */
     (destructor)meth_dealloc,   /* tp_dealloc */
     0,                          /* tp_vectorcall_offset */
     nullptr,                    /* tp_getattr */

@@ -114,7 +114,7 @@ static PyMemberDef PythonQtStdOutRedirect_members[] = {
 };
 
 PyTypeObject PythonQtStdOutRedirectType = {
-    PyVarObject_HEAD_INIT(nullptr, 0)
+    PyVarObject_HEAD_INIT(nullptr, 0) /*tp_base*/
     "PythonQtStdOutRedirect",             /*tp_name*/
     sizeof(PythonQtStdOutRedirect),       /*tp_basicsize*/
     0,                         /*tp_itemsize*/

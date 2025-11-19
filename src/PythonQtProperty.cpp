@@ -194,7 +194,7 @@ PyDoc_STRVAR(PythonQtProperty_doc,
   "         constant=False, final=False, notify=None) -> Property\n");
 
 PyTypeObject PythonQtProperty_Type = {
-    PyVarObject_HEAD_INIT(&PyType_Type, 0)
+    PyVarObject_HEAD_INIT(&PyType_Type, 0) /*tp_base*/
     "PythonQt.QtCore.Property", /*tp_name*/
     sizeof(PythonQtProperty),   /*tp_basicsize*/
     0,                          /*tp_itemsize*/

@@ -394,10 +394,10 @@ PyDoc_STRVAR(PythonQtSignalFunction_doc,
   "Signal(*types) -> Signal\n");
 
 PyTypeObject PythonQtSignalFunction_Type = {
-    PyVarObject_HEAD_INIT(&PyType_Type, 0)
-    "QtCore.Signal",
-    sizeof(PythonQtSignalFunctionObject),
-    0,
+    PyVarObject_HEAD_INIT(&PyType_Type, 0) /*tp_base*/
+    "QtCore.Signal", /* tp_name */
+    sizeof(PythonQtSignalFunctionObject), /* tp_basicsize */
+    0, /* tp_itemsize */
     (destructor)meth_dealloc, /* tp_dealloc */
     0,                        /* tp_vectorcall_offset */
     nullptr,                  /* tp_getattr */

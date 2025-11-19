@@ -495,9 +495,9 @@ Create a new PythonQtImporter instance. 'path' must be a valid path on disk/or i
 #define DEFERRED_ADDRESS(ADDR) nullptr
 
 PyTypeObject PythonQtImporter_Type = {
-  PyVarObject_HEAD_INIT(DEFERRED_ADDRESS(&PyType_Type), 0)
-  "PythonQtImport.PythonQtImporter",
-  sizeof(PythonQtImporter),
+  PyVarObject_HEAD_INIT(DEFERRED_ADDRESS(&PyType_Type), 0) /*tp_base*/
+  "PythonQtImport.PythonQtImporter", /* tp_name */
+  sizeof(PythonQtImporter), /* tp_basicsize */
   0,                        /* tp_itemsize */
   (destructor)PythonQtImporter_dealloc, /* tp_dealloc */
   0,                        /* tp_vectorcall_offset */
@@ -878,7 +878,7 @@ PyDoc_STRVAR(mlabimport_doc,
 "Imports python files into PythonQt, completely replaces internal python import");
 
 static struct PyModuleDef PythonQtImport_def = {
-    PyModuleDef_HEAD_INIT,
+    PyModuleDef_HEAD_INIT,  /* m_base */
     "PythonQtImport",   /* m_name */
     mlabimport_doc,     /* m_doc */
     -1,                 /* m_size */
