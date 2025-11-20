@@ -20,7 +20,7 @@ jobs:
       fail-fast: false
       matrix:
         os: ['ubuntu', 'windows']
-        qt-version: [ '5.12.*', '5.15.*', '6.10.0' ]
+        qt-version: [ '5.12.*', '5.15.*', '6.10.*' ]
         python-version: [ '3.12' ]
     runs-on: ${{ matrix.os }}-latest
     steps:
