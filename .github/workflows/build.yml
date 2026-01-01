@@ -122,7 +122,7 @@ jobs:
           make check TESTARGS="-platform minimal"
 
     - name: Upload Wrappers
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       with:
         name: wrappers_ubuntu_${{ matrix.container_version }}
         path: generated_cpp
@@ -195,7 +195,7 @@ jobs:
           make check TESTARGS="-platform offscreen"
 
     - name: Upload Wrappers
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       with:
         name: wrappers_${{ matrix.container_os }}-${{ matrix.container_os_version }}_${{ matrix.configuration }}
         path: generated_cpp
@@ -298,7 +298,7 @@ jobs:
 
     - name: Upload Wrappers
       if: ${{ contains(matrix.configuration, 'release') }}
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       with:
         name: wrappers_macos${{ steps.versions.outputs.MACOS_VERSION_SHORT }}_qt${{ steps.versions.outputs.QT_VERSION_SHORT }}
         path: generated_cpp
@@ -421,7 +421,7 @@ jobs:
 
     - name: Upload Wrappers
       if: (matrix.pythonqtall-config || '') == ''
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       with:
         name: wrappers_${{ matrix.qt-arch }}_${{ steps.versions.outputs.QT_VERSION_SHORT }}
         path: generated_cpp
