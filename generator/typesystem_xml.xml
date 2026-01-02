@@ -10,6 +10,7 @@
     <enum-type name="QXmlStreamReader::Error"/>
     <enum-type name="QXmlStreamReader::TokenType"/>
     <enum-type name="QXmlStreamReader::ReadElementTextBehaviour"/>
+    <enum-type name="QXmlStreamWriter::Error" since-version="6.10"/>
 
 
     <value-type name="QDomAttr">

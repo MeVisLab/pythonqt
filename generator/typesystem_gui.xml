@@ -974,6 +974,7 @@
   <value-type name="QFontVariableAxis" since-version="6.9"/>
   <value-type name="QPainterStateGuard" since-version="6.9"/>
   <enum-type name="QPainterStateGuard::InitialState" since-version="6.9"/>
+  <object-type name="QAccessibilityHints" since-version="6.10"/>
 
   <value-type name="QTextTableCell">
     <extra-includes>
@@ -2336,6 +2337,7 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QDateTimeEdit">
   </object-type>
 
+  <enum-type name="QSortFilterProxyModel::Direction" since-version="6.10"/>
   <object-type name="QSortFilterProxyModel">
      <modify-function signature="parent()const" remove="all"/>
     <extra-includes>
