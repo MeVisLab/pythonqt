@@ -75,6 +75,7 @@
 <rejection class="QMetaTypeIdQObject"/>
 <rejection class="QPalette::Data"/>
 
+<rejection class="QRangeModel" since-version="6.10"/> <!-- templated range-based class -->
 <rejection class="QScopedPointerObjectDeleteLater"/>
 <rejection class="QScopedValueRollback"/>
 <rejection class="QSequentialIterable"/>
@@ -973,6 +974,24 @@ public:
     <modify-function signature="operator=(QString)" remove="all"/>
     <modify-function signature="addResourceSearchPath(QString)" remove="all"/>
     <!--### Obsolete in 4.3-->
+
+    <!-- Qt 6.10 changed mkpath/mkdir signatures to use std::optional<QFile::Permissions>
+         Since we don't support std::optional, we need to provide wrapper methods -->
+    <inject-code class="pywrap-h" since-version="6.10">
+    // Workaround for std::optional parameters in Qt 6.10
+    bool mkpath(QDir* theWrappedObject, const QString&amp; dirPath) const {
+      return theWrappedObject->mkpath(dirPath);
+    }
+    bool mkdir(QDir* theWrappedObject, const QString&amp; dirName) const {
+      return theWrappedObject->mkdir(dirName);
+    }
+    bool mkpath(QDir* theWrappedObject, const QString&amp; dirPath, QFile::Permissions permissions) const {
+      return theWrappedObject->mkpath(dirPath, permissions);
+    }
+    bool mkdir(QDir* theWrappedObject, const QString&amp; dirName, QFile::Permissions permissions) const {
+      return theWrappedObject->mkdir(dirName, permissions);
+    }
+    </inject-code>
   </value-type>
 
   <value-type name="QPoint">
