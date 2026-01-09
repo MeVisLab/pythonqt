@@ -2181,7 +2181,25 @@ public:
   <object-type name="QJsonArray"/>
   <object-type name="QJsonDocument"/>
   <object-type name="QJsonObject"/>
-  <object-type name="QJsonParseError"/>
+  <object-type name="QJsonParseError">
+    <!-- generator can't handle std::conditional_t introduced with Qt 6.10 -->
+    <inject-code class="pywrap-h" since-version="6.10" before-version="7">
+      void py_set_offset(QJsonParseError* theWrappedObject, int offset){
+        theWrappedObject->offset = offset;
+      }
+      int py_get_offset(QJsonParseError* theWrappedObject){
+        return theWrappedObject->offset;
+      }
+    </inject-code>
+    <inject-code class="pywrap-h" since-version="7">
+      void py_set_offset(QJsonParseError* theWrappedObject, qint64 offset){
+        theWrappedObject->offset = offset;
+      }
+      qint64 py_get_offset(QJsonParseError* theWrappedObject){
+        return theWrappedObject->offset;
+      }
+    </inject-code>
+  </object-type>
   <object-type name="QJsonValue">
     <!-- workaround to handle using declaration for an enum in another class -->
     <!-- (currently not handled by the generator, handling needs to be added if this happens more often) -->
