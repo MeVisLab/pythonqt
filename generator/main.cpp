@@ -307,7 +307,8 @@ bool preprocess(const QString& sourceFile, const QString& targetFile, const QStr
 
 unsigned int getQtVersion(const QStringList& paths)
 {
-  QRegularExpression re("#define\\s+QTCORE_VERSION\\s+0x([0-9a-f]+)", QRegularExpression::CaseInsensitiveOption);
+  QRegularExpression re(R"*(#define\s+QTCORE_VERSION_STR\s+"(\d+)\.(\d+)\.(\d+)")*",
+    QRegularExpression::CaseInsensitiveOption);
 
   // Iterate through provided paths to find the qtcoreversion.h header file
   for (const QString& path : paths) {
@@ -340,14 +341,7 @@ unsigned int getQtVersion(const QStringList& paths)
         f.close();
         auto match = re.match(content);
         if (match.isValid()) {
-          unsigned int result;
-          bool ok;
-          result = match.captured(1).toUInt(&ok, 16);
-          if (!ok) {
-            printf("Could not parse Qt version in file [%s] (looked for #define QTCORE_VERSION)\n",
-              qPrintable(filePath));
-          }
-          return result;
+          return (match.captured(1).toUInt() << 16) + (match.captured(2).toUInt() << 8) + match.captured(3).toUInt();
         }
       }
     }
