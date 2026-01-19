@@ -121,7 +121,9 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
 
     PythonQtMethodInfo::addParameterTypeAlias("QObjectList", "QList<QObject*>");
     qRegisterMetaType<QList<QObject*>>("QList<void*>");
-    qRegisterMetaType<QObjectList>("QObjectList");
+    if (QMetaType::type("QObjectList") == QMetaType::UnknownType) {
+      qRegisterMetaType<QObjectList>("QObjectList");
+    }
     qRegisterMetaType<QList<QObject*>>("QList<QObject*>");
     if (QT_POINTER_SIZE == 8) {
       qRegisterMetaType<quint64>("size_t");
