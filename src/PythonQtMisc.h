@@ -121,6 +121,35 @@ public:
   //! Get next pointer to a POD.
   quint64* nextPODPtr();
 
+  template<typename Class>
+  void* establishPersistentPtr(void* alreadyAllocatedPtr, const Class& value)
+  {
+    if (alreadyAllocatedPtr) {
+      *reinterpret_cast<Class*>(alreadyAllocatedPtr) = value;
+      return alreadyAllocatedPtr;
+    } else {
+      QVariant* item = nextVariantPtr();
+      *item = QVariant(value);
+      return const_cast<void*>(item->constData());
+    }
+  }
+
+  template<typename Class, typename ViewClass>
+  void* establishPersistentViewPtr(void* alreadyAllocatedPtr, const Class& value)
+  {
+    QVariant* itemStore = nextVariantPtr();
+    *itemStore = QVariant(value);
+    if (alreadyAllocatedPtr) {
+      *reinterpret_cast<ViewClass*>(alreadyAllocatedPtr) =
+        ViewClass(*reinterpret_cast<const Class*>(itemStore->constData()));
+      return alreadyAllocatedPtr;
+    } else {
+      QVariant* item = nextVariantPtr();
+      *item = QVariant::fromValue(ViewClass(*reinterpret_cast<const Class*>(itemStore->constData())));
+      return const_cast<void*>(item->constData());
+    }
+  }
+
 private:
   PythonQtArgumentFrame();
   ~PythonQtArgumentFrame();

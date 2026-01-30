@@ -122,6 +122,7 @@ public:
   static PyObject* ConvertQtValueToPython(const PythonQtMethodInfo::ParameterInfo& info, const void* data);
 
   //! convert python object to Qt (according to the given parameter) and if the conversion should be strict (classInfo is currently not used anymore)
+  //! If an alreadyAllocatedCPPObject is used it must have the same type as given by info.typeId
   static void* ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& info, PyObject* obj, bool strict,
     PythonQtClassInfo* classInfo, void* alreadyAllocatedCPPObject, PythonQtArgumentFrame* frame = nullptr);
 
