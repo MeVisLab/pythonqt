@@ -592,24 +592,21 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
     {
       QByteArray bytes = PyObjGetBytesAllowString(obj, strict, ok);
       if (ok) {
-        PythonQtArgumentFrame_ADD_VARIANT_VALUE_IF_NEEDED(alreadyAllocatedCPPObject, frame, QVariant(bytes), ptr);
-        ptr = (void*)((QVariant*)ptr)->constData();
+        ptr = ConversionUtils::getPtrAndUpdateCppObject<QByteArray>(alreadyAllocatedCPPObject, frame, bytes);
       }
     } break;
     case QMetaType::QString:
     {
       QString str = PyObjGetString(obj, strict, ok);
       if (ok) {
-        PythonQtArgumentFrame_ADD_VARIANT_VALUE_IF_NEEDED(alreadyAllocatedCPPObject, frame, QVariant(str), ptr);
-        ptr = (void*)((QVariant*)ptr)->constData();
+        ptr = ConversionUtils::getPtrAndUpdateCppObject<QString>(alreadyAllocatedCPPObject, frame, str);
       }
     } break;
     case QMetaType::QStringList:
     {
       QStringList l = PyObjToStringList(obj, strict, ok);
       if (ok) {
-        PythonQtArgumentFrame_ADD_VARIANT_VALUE_IF_NEEDED(alreadyAllocatedCPPObject, frame, QVariant(l), ptr);
-        ptr = (void*)((QVariant*)ptr)->constData();
+        ptr = ConversionUtils::getPtrAndUpdateCppObject<QStringList>(alreadyAllocatedCPPObject, frame, l);
       }
     } break;
 
@@ -649,7 +646,7 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
         QString str = PyObjGetString(obj, strict, ok);
         if (ok) {
           void* ptr2 = nullptr;
-          PythonQtArgumentFrame_ADD_VARIANT_VALUE_IF_NEEDED(nullptr, frame, QVariant(str), ptr2);
+          PythonQtArgumentFrame_ADD_VARIANT_VALUE(frame, QVariant(str), ptr2);
           PythonQtArgumentFrame_ADD_VARIANT_VALUE_IF_NEEDED(alreadyAllocatedCPPObject, frame,
             QVariant::fromValue(QStringRef((const QString*)((QVariant*)ptr2)->constData())), ptr);
           ptr = (void*)((QVariant*)ptr)->constData();
@@ -663,12 +660,8 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
         // Handle QStringView, which needs a reference to a persistent QString
         QString str = PyObjGetString(obj, strict, ok);
         if (ok) {
-          void* ptr2 = nullptr;
-          PythonQtArgumentFrame_ADD_VARIANT_VALUE_IF_NEEDED(nullptr, frame, QVariant(str), ptr2);
-          PythonQtArgumentFrame_ADD_VARIANT_VALUE_IF_NEEDED(alreadyAllocatedCPPObject, frame,
-            QVariant::fromValue(QStringView(*((const QString*)((QVariant*)ptr2)->constData()))), ptr);
-          ptr = (void*)((QVariant*)ptr)->constData();
-          return ptr;
+          return ConversionUtils::getPtrAndUpdateCppViewObject<QString, QStringView>(alreadyAllocatedCPPObject, frame,
+            str);
         } else {
           return nullptr;
         }
@@ -676,12 +669,8 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
         // Handle QAnyStringView, which needs a reference to a persistent QString
         QString str = PyObjGetString(obj, strict, ok);
         if (ok) {
-          void* ptr2 = nullptr;
-          PythonQtArgumentFrame_ADD_VARIANT_VALUE_IF_NEEDED(nullptr, frame, QVariant(str), ptr2);
-          PythonQtArgumentFrame_ADD_VARIANT_VALUE_IF_NEEDED(alreadyAllocatedCPPObject, frame,
-            QVariant::fromValue(QAnyStringView(*((const QString*)((QVariant*)ptr2)->constData()))), ptr);
-          ptr = (void*)((QVariant*)ptr)->constData();
-          return ptr;
+          return ConversionUtils::getPtrAndUpdateCppViewObject<QString, QAnyStringView>(alreadyAllocatedCPPObject,
+            frame, str);
         } else {
           return nullptr;
         }
@@ -689,12 +678,8 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
         // Handle QByteArrayView, which needs a reference to a persistent QByteArray
         QByteArray ba = PyObjGetBytesAllowString(obj, strict, ok);
         if (ok) {
-          void* ptr2 = nullptr;
-          PythonQtArgumentFrame_ADD_VARIANT_VALUE_IF_NEEDED(nullptr, frame, QVariant(ba), ptr2);
-          PythonQtArgumentFrame_ADD_VARIANT_VALUE_IF_NEEDED(alreadyAllocatedCPPObject, frame,
-            QVariant::fromValue(QByteArrayView(*((const QByteArray*)((QVariant*)ptr2)->constData()))), ptr);
-          ptr = (void*)((QVariant*)ptr)->constData();
-          return ptr;
+          return ConversionUtils::getPtrAndUpdateCppViewObject<QByteArray, QByteArrayView>(alreadyAllocatedCPPObject,
+            frame, ba);
         } else {
           return nullptr;
         }

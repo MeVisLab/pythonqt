@@ -133,4 +133,35 @@ private:
   static PythonQtArgumentFrame* _freeListHead;
 };
 
+namespace ConversionUtils {
+template<typename Class>
+void* getPtrAndUpdateCppObject(void* alreadyAllocatedPtr, PythonQtArgumentFrame* store, const Class& value)
+{
+  if (alreadyAllocatedPtr) {
+    *reinterpret_cast<Class*>(alreadyAllocatedPtr) = value;
+    return alreadyAllocatedPtr;
+  } else {
+    QVariant* item = store->nextVariantPtr();
+    *item = QVariant(value);
+    return const_cast<void*>(item->constData());
+  }
+}
+
+template<typename Class, typename ViewClass>
+void* getPtrAndUpdateCppViewObject(void* alreadyAllocatedPtr, PythonQtArgumentFrame* store, const Class& value)
+{
+  QVariant* itemStore = store->nextVariantPtr();
+  *itemStore = QVariant(value);
+  if (alreadyAllocatedPtr) {
+    *reinterpret_cast<ViewClass*>(alreadyAllocatedPtr) =
+      ViewClass(*reinterpret_cast<const Class*>(itemStore->constData()));
+    return alreadyAllocatedPtr;
+  } else {
+    QVariant* item = store->nextVariantPtr();
+    *item = QVariant::fromValue(ViewClass(*reinterpret_cast<const Class*>(itemStore->constData())));
+    return const_cast<void*>(item->constData());
+  }
+}
+}
+
 #endif
