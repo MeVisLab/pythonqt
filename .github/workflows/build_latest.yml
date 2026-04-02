@@ -47,7 +47,7 @@ jobs:
       uses: actions/checkout@v6
 
     - name: Ccache
-      uses: hendrikmuhs/ccache-action@v1.2.20
+      uses: hendrikmuhs/ccache-action@v1.2.22
       with:
          key: ${{ runner.os }}-${{ matrix.qt-version }}
          evict-old-files: 'job'
