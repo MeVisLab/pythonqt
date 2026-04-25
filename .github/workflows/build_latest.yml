@@ -37,6 +37,9 @@ jobs:
         version: ${{ matrix.qt-version }}
         modules: ${{startsWith(matrix.qt-version, '6') && 'qt5compat qtscxml qtpositioning qtwebchannel qtmultimedia qtwebengine' || '' }}
         arch: ${{ (matrix.os == 'ubuntu' && (startsWith(matrix.qt-version, '5') && 'gcc_64' || 'linux_gcc_64')) || startsWith(matrix.qt-version, '5.12') && 'win64_msvc2017_64' || startsWith(matrix.qt-version, '6') && 'win64_msvc2022_64' || 'win64_msvc2019_64' }}
+        # aqtinstall 3.3.0 (latest release) lacks Qt 6.11 folder-structure support.
+        # Use git 151f6f4 until aqtinstall 3.4.0 is released (miurahr/aqtinstall#1000).
+        aqtsource: ${{ startsWith(matrix.qt-version, '6.11') && 'git+https://github.com/miurahr/aqtinstall.git@151f6f436c2f5a5ceb7890ad970ca6f3b4d83512' || '' }}
 
     - name: Setup Python ${{ matrix.python-version }}
       uses: actions/setup-python@v6
