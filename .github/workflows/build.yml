@@ -1,4 +1,4 @@
-name: Build
+name: Build (QMake, Legacy Platforms)
 
 on:
   push:
@@ -16,6 +16,7 @@ defaults:
 
 jobs:
   ubuntu:
+    name: "QMake | Ubuntu ${{ matrix.container_version }} | Qt5 (system)"
     strategy:
       fail-fast: false
       matrix:
@@ -129,6 +130,7 @@ jobs:
         if-no-files-found: error
 
   oldschool:
+    name: "QMake | RockyLinux ${{ matrix.container_os_version }} | Qt5 | ${{ matrix.configuration }}"
     strategy:
       fail-fast: false
       matrix:
@@ -202,6 +204,7 @@ jobs:
         if-no-files-found: error
 
   macOS:
+    name: "QMake | macOS | Qt ${{ matrix.qt-version }} | ${{ matrix.configuration }}"
     strategy:
       fail-fast: false
       matrix:
@@ -305,6 +308,7 @@ jobs:
         if-no-files-found: error
 
   windows:
+    name: "QMake | Windows | ${{ matrix.qt-arch }} | Qt ${{ matrix.qt-version }}"
     strategy:
       fail-fast: false
       matrix:

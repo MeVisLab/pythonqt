@@ -1,4 +1,4 @@
-name: Build (CMake)
+name: Build (CMake, Latest Qt)
 
 on:
   push:
@@ -16,6 +16,7 @@ defaults:
 
 jobs:
   build:
+    name: "CMake | ${{ matrix.os }} | Qt ${{ matrix.qt-version }}"
     strategy:
       fail-fast: false
       matrix:

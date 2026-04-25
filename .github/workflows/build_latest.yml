@@ -1,4 +1,4 @@
-name: Check generated_cpp
+name: Build (QMake, Latest Qt)
 
 on:
   push:
@@ -16,6 +16,7 @@ defaults:
 
 jobs:
   build:
+    name: "QMake | ${{ matrix.os }} | Qt ${{ matrix.qt-version }}"
     strategy:
       fail-fast: false
       matrix:
