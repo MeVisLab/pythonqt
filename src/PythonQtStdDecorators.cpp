@@ -270,17 +270,14 @@ QList<QObject*> PythonQtStdDecorators::findChildren(QObject* parent, PyObject* t
   return list;
 }
 
-QObject* PythonQtStdDecorators::findChild(QObject* parent, const char* typeName, const QMetaObject* meta,
+QObject* PythonQtStdDecorators::findChild(const QObject* parent, const char* typeName, const QMetaObject* meta,
   const QString& name)
 {
   const QObjectList& children = parent->children();
 
-  int i;
-  for (i = 0; i < children.size(); ++i) {
-    QObject* obj = children.at(i);
-
+  for (QObject* obj : children) {
     if (!obj)
-      return nullptr;
+      continue;
 
     // Skip if the name doesn't match.
     if (!name.isNull() && obj->objectName() != name)
@@ -290,69 +287,55 @@ QObject* PythonQtStdDecorators::findChild(QObject* parent, const char* typeName,
       return obj;
   }
 
-  for (i = 0; i < children.size(); ++i) {
-    QObject* obj = findChild(children.at(i), typeName, meta, name);
+  for (QObject* child : children) {
+    if (child) {
+      QObject* obj = findChild(child, typeName, meta, name);
 
-    if (obj != nullptr)
-      return obj;
+      if (obj != nullptr)
+        return obj;
+    }
   }
 
   return nullptr;
 }
 
-int PythonQtStdDecorators::findChildren(QObject* parent, const char* typeName, const QMetaObject* meta,
+void PythonQtStdDecorators::findChildren(const QObject* parent, const char* typeName, const QMetaObject* meta,
   const QString& name, QList<QObject*>& list)
 {
   const QObjectList& children = parent->children();
-  int i;
 
-  for (i = 0; i < children.size(); ++i) {
-    QObject* obj = children.at(i);
-
+  for (QObject* obj : children) {
     if (!obj)
-      return -1;
-
-    // Skip if the name doesn't match.
-    if (!name.isNull() && obj->objectName() != name)
       continue;
 
-    if ((typeName && obj->inherits(typeName)) || (meta && meta->cast(obj))) {
-      list += obj;
+    if (name.isNull() || obj->objectName() == name) {
+      if ((typeName && obj->inherits(typeName)) || (meta && meta->cast(obj))) {
+        list += obj;
+      }
     }
 
-    if (findChildren(obj, typeName, meta, name, list) < 0)
-      return -1;
+    findChildren(obj, typeName, meta, name, list);
   }
-
-  return 0;
 }
 
-int PythonQtStdDecorators::findChildren(QObject* parent, const char* typeName, const QMetaObject* meta,
+void PythonQtStdDecorators::findChildren(const QObject* parent, const char* typeName, const QMetaObject* meta,
   const QRegularExpression& regExp, QList<QObject*>& list)
 {
   const QObjectList& children = parent->children();
-  int i;
 
-  for (i = 0; i < children.size(); ++i) {
-    QObject* obj = children.at(i);
-
+  for (QObject* obj : children) {
     if (!obj)
-      return -1;
-
-    // Skip if the name doesn't match.
-    QRegularExpressionMatch match = regExp.match(obj->objectName());
-    if (match.hasMatch() == false)
       continue;
 
-    if ((typeName && obj->inherits(typeName)) || (meta && meta->cast(obj))) {
-      list += obj;
+    QRegularExpressionMatch match = regExp.match(obj->objectName());
+    if (match.hasMatch()) {
+      if ((typeName && obj->inherits(typeName)) || (meta && meta->cast(obj))) {
+        list += obj;
+      }
     }
 
-    if (findChildren(obj, typeName, meta, regExp, list) < 0)
-      return -1;
+    findChildren(obj, typeName, meta, regExp, list);
   }
-
-  return 0;
 }
 
 const QMetaObject* PythonQtStdDecorators::metaObject(QObject* obj)
