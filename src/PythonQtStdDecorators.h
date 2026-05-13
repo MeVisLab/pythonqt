@@ -151,11 +151,11 @@ public Q_SLOTS:
   void static_QTimer_singleShot(int msec, PyObject* callable);
 
 private:
-  QObject* findChild(QObject* parent, const char* typeName, const QMetaObject* meta, const QString& name);
-  int findChildren(QObject* parent, const char* typeName, const QMetaObject* meta, const QString& name,
+  QObject* findChild(const QObject* parent, const char* typeName, const QMetaObject* meta, const QString& name);
+  void findChildren(const QObject* parent, const char* typeName, const QMetaObject* meta, const QString& name,
     QList<QObject*>& list);
-  int findChildren(QObject* parent, const char* typeName, const QMetaObject* meta, const QRegularExpression& regExp,
-    QList<QObject*>& list);
+  void findChildren(const QObject* parent, const char* typeName, const QMetaObject* meta,
+    const QRegularExpression& regExp, QList<QObject*>& list);
 };
 
 class PythonQtSingleShotTimer : public QTimer
