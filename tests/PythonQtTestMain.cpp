@@ -41,7 +41,9 @@
 
 #include "PythonQt.h"
 #include "PythonQtTests.h"
-#include "PythonQtTestCleanup.h"
+#ifdef PythonQt_Wrap_QtCore
+  #include "PythonQtTestCleanup.h"
+#endif
 
 #include <QApplication>
 
@@ -54,10 +56,13 @@ int main(int argc, char* argv[])
     QTest::qExec(&test, argc, argv);
     return 0;
   }
-
   if (QProcessEnvironment::systemEnvironment().contains("PYTHONQT_RUN_ONLY_CLEANUP_TESTS")) {
+#ifdef PythonQt_Wrap_QtCore
     PythonQtTestCleanup cleanup;
     QTest::qExec(&cleanup, argc, argv);
+#else
+    std::cout << "Cleanup tests require PythonQt_Wrap_QtCore" << std::endl;
+#endif
     return 0;
   }
 
