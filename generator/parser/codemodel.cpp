@@ -156,8 +156,13 @@ TypeInfo TypeInfo::resolveType(TypeInfo const& __type, CodeModelItem __scope)
     otherType.setQualifiedName(__item->qualifiedName());
   }
 
-  if (TypeAliasModelItem __alias = __item.dynamicCast<_TypeAliasModelItem>())
-    return resolveType(TypeInfo::combine(__alias->type(), otherType), __scope);
+  if (TypeAliasModelItem __alias = __item.dynamicCast<_TypeAliasModelItem>()) {
+    TypeInfo updatedTypeInfo = TypeInfo::combine(__alias->type(), otherType);
+    // avoid endless recursion on trivial identity (because this model doesn't, e.g., handle templates)
+    if (updatedTypeInfo != __type) {
+      return resolveType(updatedTypeInfo, __scope);
+    }
+  }
 
   return otherType;
 }
