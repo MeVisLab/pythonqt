@@ -11,6 +11,8 @@
      <include file-name="qtsqlglobal.h" location="global" since-version="6"/>
   </namespace-type>
 
+  <value-type name="QSqlDatabaseDefaultConnectionName" since-version="6.11"/>
+
   <value-type name="QSqlDatabase">
     <extra-includes>
         <include file-name="QSqlQuery" location="global"/>
