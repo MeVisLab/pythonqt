@@ -340,7 +340,7 @@ jobs:
 #           qt-version: '5.9.*'
 #           pythonqtall-config: 'PythonQtCore PythonQtGui PythonQtMultimedia'
 
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
 
     - name: Checkout PythonQt

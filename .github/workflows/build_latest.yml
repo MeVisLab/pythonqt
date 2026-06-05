@@ -22,7 +22,7 @@ jobs:
         os: ['ubuntu', 'windows']
         qt-version: [ '5.12.*', '5.15.*', '6.11.*' ]
         python-version: [ '3.12' ]
-    runs-on: ${{ matrix.os }}-latest
+    runs-on: ${{ matrix.os == 'windows' && 'windows-2022' || 'ubuntu-latest' }}
     steps:
 
     - name: Install MSVC
