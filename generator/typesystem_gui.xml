@@ -41,6 +41,7 @@
 <rejection class="QAccessibleTextUpdateEvent"/>
 <rejection class="QAccessibleValueChangeEvent"/>
 <rejection class="QAccessibleWidget"/>
+<rejection class="QAccessibleWidgetV2" since-version="6.11"/>
 <rejection class="QOpenGLDebugLogger"/>
 <rejection class="QOpenGLDebugMessage"/>
 <rejection class="QOpenGLExtraFunctions"/>
@@ -407,6 +408,7 @@
   <enum-type name="QStyleOptionMenuItem::MenuItemType"/>
   <enum-type name="QStyleOptionMenuItem::StyleOptionType"/>
   <enum-type name="QStyleOptionMenuItem::StyleOptionVersion"/>
+  <enum-type name="QStyleOptionMenuItemV2::StyleOptionVersion" since-version="6.11"/>
   <enum-type name="QStyleOptionProgressBar::StyleOptionType"/>
   <enum-type name="QStyleOptionProgressBar::StyleOptionVersion"/>
   <enum-type name="QStyleOptionProgressBarV2::StyleOptionType"/>
@@ -657,6 +659,7 @@
   <value-type name="QStyleOptionHeader" polymorphic-id-expression="%1-&gt;type == QStyleOptionHeader::Type &amp;&amp; %1-&gt;version == QStyleOptionHeader::Version"/>
   <value-type name="QStyleOptionHeaderV2" polymorphic-id-expression="%1-&gt;type == QStyleOptionHeaderV2::Type &amp;&amp; %1-&gt;version == QStyleOptionHeaderV2::Version"/>
   <value-type name="QStyleOptionMenuItem" polymorphic-id-expression="%1-&gt;type == QStyleOptionMenuItem::Type &amp;&amp; %1-&gt;version == QStyleOptionMenuItem::Version"/>
+  <value-type name="QStyleOptionMenuItemV2" polymorphic-id-expression="%1-&gt;type == QStyleOptionMenuItem::Type &amp;&amp; %1-&gt;version == QStyleOptionMenuItemV2::Version" since-version="6.11"/>
   <value-type name="QStyleOptionProgressBar" polymorphic-id-expression="%1-&gt;type == QStyleOptionProgressBar::Type &amp;&amp; %1-&gt;version == QStyleOptionProgressBar::Version"/>
 
   <value-type name="QStyleOptionProgressBarV2" polymorphic-id-expression="%1-&gt;type == QStyleOptionProgressBarV2::Type &amp;&amp; %1-&gt;version == QStyleOptionProgressBarV2::Version">
@@ -2873,6 +2876,10 @@ PyObject* constScanLine(QImage* image, int line) {
   <object-type name="QMouseEventTransition"/>
   <object-type name="QKeyEventTransition"/>
   <value-type name="QQuaternion"/>
+  <value-type name="QQuaternion::Axis" since-version="6.11"/>
+  <value-type name="QQuaternion::Axes" since-version="6.11"/>
+  <!-- QQuaternion::EulerAngles is a templated type -->
+  <rejection class="QQuaternion::EulerAngles" since-version="6.11"/>
 
   <object-type name="QCommandLinkButton"/>
   <object-type name="QFileSystemModel">

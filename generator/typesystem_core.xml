@@ -526,6 +526,7 @@
   <rejection class="QTaggedPointer"/>
   <rejection class="QTextStreamManipulator"/>
   <rejection class="QThreadStorage"/>
+  <rejection class="QThreadStorageTraits" since-version="6.11"/>
   <rejection class="QThreadStorageData"/>
   <rejection class="QTimeZone::Data"/>
   <rejection class="QTimeZone::ShortData"/>
@@ -719,6 +720,38 @@
   <rejection class="QtConcurrent::ThreadEngineBarrier"/>
 
   <rejection class="QAbstractFileEngineIterator" enum-name="EntryInfoType"/>
+
+  <group since-version="6.11">
+    <!-- qrangemodeladapter_impl.h -->
+    <rejection class="AdapterStorage"/>
+    <rejection class="AsConstData"/>
+    <rejection class="AsConstRow"/>
+    <rejection class="AutoConnectContext"/>
+    <rejection class="ConnectionStorage"/>
+    <rejection class="DefaultTreeProtocol"/>
+    <rejection class="ListProtocol"/>
+    <rejection class="ModelData"/>
+    <rejection class="ParentIndex"/>
+    <rejection class="PropertyCache"/>
+    <rejection class="PropertyData"/>
+    <rejection class="QGenericTableItemModelImpl"/>
+    <rejection class="QGenericTreeItemModelImpl"/>
+    <rejection class="QRangeModelAdapter"/>
+    <rejection class="QRangeModelImpl"/>
+    <rejection class="QRangeModelImplBase"/>
+    <rejection class="RowView"/>
+    <rejection class="Storage"/>
+    <rejection class="TableProtocol"/>
+    <rejection class="is_tree_range"/>
+    <rejection class="item_traits"/>
+    <rejection class="protocol_deleteRow"/>
+    <rejection class="protocol_newRow"/>
+    <rejection class="protocol_traits"/>
+    <rejection class="row_traits"/>
+  </group>
+
+
+
 
   <namespace-type name="Qt">
 
@@ -1123,6 +1156,7 @@ public:
     </modify-function>
   </value-type>
 
+  <object-type name="QBasicReadWriteLock" since-version="6.11"/>
   <object-type name="QReadWriteLock"/>
   <object-type name="QDirIterator"/>
   <object-type name="QAbstractFileEngineIterator"/>
@@ -2235,6 +2269,7 @@ public:
     <modify-function signature="operator()()" remove="all"/>
     <modify-function signature="operator()()const" remove="all"/>
   </object-type>
+  <rejection class="QLoggingCategory::UnregisteredInitialization" since-version="6.11"/>
 
 
   <!-- <object-type name="QAccessibleActionInterface"/> -->
@@ -2281,6 +2316,7 @@ public:
   <enum-type name="Qt::TimerType"/>
   <enum-type name="Qt::Edge"/>
   <enum-type name="Qt::ColorScheme" since-version="6"/>
+  <enum-type name="Qt::ContrastPreference" since-version="6.11"/>
 
   <object-type name="QDeadlineTimer"/>
   <object-type name="QOperatingSystemVersionBase"/>
