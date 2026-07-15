@@ -205,16 +205,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-       macos-version:  ['latest']
-       python-version: ['3.9']
-       qt-version: ['5.9.*']
+       python-version: ['3.13']
+       qt-version: ['6.11.*']
        configuration: ['release','debug']
-       include:
-         - macos-version: 'latest'
-           python-version: '3.11'
-           qt-version: '5.12.*'
-           configuration: 'debug'
-    runs-on: macos-${{ matrix.macos-version }}
+    runs-on: macos-latest
     steps:
     - name: Install Qt
       uses: jurplel/install-qt-action@v4
@@ -223,8 +217,7 @@ jobs:
         host: 'mac'
         target: 'desktop'
         arch: 'clang_64'
-        modules: 'qtscript'
-        archives: 'qtmultimedia qtmacextras qtbase qttools'
+        modules: 'qt5compat qtscxml qtpositioning qtwebchannel qtmultimedia qtwebengine'
 
     - name: Setup Python ${{ matrix.python-version }}
       uses: actions/setup-python@v6
