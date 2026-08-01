@@ -220,7 +220,7 @@ jobs:
         modules: 'qt5compat qtscxml qtpositioning qtwebchannel qtmultimedia qtwebengine'
 
     - name: Setup Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v6
+      uses: actions/setup-python@v7
       with:
         python-version: '${{ matrix.python-version }}'
 
@@ -360,7 +360,7 @@ jobs:
         tools: ${{ contains(matrix.qt-arch, 'mingw') && format('tools_mingw,qt.tools.{0}0', matrix.qt-arch) || '' }}
 
     - name: Setup Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v6
+      uses: actions/setup-python@v7
       with:
         python-version: '${{ matrix.python-version }}'
         architecture: ${{ matrix.python-arch }}

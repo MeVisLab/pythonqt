@@ -42,7 +42,7 @@ jobs:
         aqtsource: ${{ startsWith(matrix.qt-version, '6.11') && 'git+https://github.com/miurahr/aqtinstall.git@151f6f436c2f5a5ceb7890ad970ca6f3b4d83512' || '' }}
 
     - name: Setup Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v6
+      uses: actions/setup-python@v7
       with:
         python-version: '${{ matrix.python-version }}'
 
