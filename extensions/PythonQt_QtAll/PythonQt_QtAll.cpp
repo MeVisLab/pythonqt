@@ -71,6 +71,10 @@ void PythonQt_init_QtQuick(PyObject*);
 void PythonQt_init_QtUiTools(PyObject*);
 #endif
 
+#ifdef PYTHONQT_WITH_WEBENGINEWIDGETS
+void PythonQt_init_QtWebEngineWidgets(PyObject*);
+#endif
+
 #ifdef PYTHONQT_WITH_WEBKIT
 void PythonQt_init_QtWebKit(PyObject*);
 #endif
@@ -116,6 +120,9 @@ PYTHONQT_QTALL_EXPORT void init()
 #endif
 #ifdef PYTHONQT_WITH_UITOOLS
   PythonQt_init_QtUiTools(0);
+#endif
+#ifdef PYTHONQT_WITH_WEBENGINEWIDGETS
+  PythonQt_init_QtWebEngineWidgets(0);
 #endif
 }
 }

@@ -1,9 +1,7 @@
-#ifndef _PYTHONQT_QTALL_H
-#define _PYTHONQT_QTALL_H
-
 /*
  *
- *  Copyright (C) 2010 MeVis Medical Solutions AG All Rights Reserved.
+ *  Copyright (C) 2025 MeVis Medical Solutions AG All Rights Reserved.
+ *  Copyright (C) 2025 Kitware, Inc.
  *
  *  This library is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU Lesser General Public
@@ -33,26 +31,15 @@
  *
  */
 
-// Export macro for the PythonQt_QtAll symbols.
-// Both qmake and CMake builds define PYTHONQT_QTALL_EXPORTS while building
-// the dedicated PythonQt_QtAll shared library.
-#if defined(WIN32)
-  #if defined(PYTHONQT_QTALL_EXPORTS)
-    #define PYTHONQT_QTALL_EXPORT __declspec(dllexport)
-  #else
-    #define PYTHONQT_QTALL_EXPORT __declspec(dllimport)
-  #endif
-#else
-  #if defined(PYTHONQT_QTALL_EXPORTS)
-    #define PYTHONQT_QTALL_EXPORT __attribute__((__visibility__("default")))
-  #else
-    #define PYTHONQT_QTALL_EXPORT
-  #endif
-#endif
+#ifndef _PYTHONQTCONFIGURE_H
+#define _PYTHONQTCONFIGURE_H
 
-namespace PythonQt_QtAll {
-//! Initialize the Qt bindings enabled at configuration time
-PYTHONQT_QTALL_EXPORT void init();
-}
+// If the user has not pre-defined the macro, derive it from the CMake
+// configure-time variable `PYTHONQT_USE_RELEASE_PYTHON_FALLBACK`, which
+// mirrors the `PythonQt_USE_RELEASE_PYTHON_FALLBACK` (camelCase)  CMake
+// option.
+#ifndef PYTHONQT_USE_RELEASE_PYTHON_FALLBACK
+#cmakedefine PYTHONQT_USE_RELEASE_PYTHON_FALLBACK
+#endif
 
 #endif

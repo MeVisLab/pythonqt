@@ -29,6 +29,17 @@ QT += widgets core-private
 
 INCLUDEPATH += $$PWD
 
+# Generate PythonQtConfigure.h from template at qmake-configure time.
+# The script turns #cmakedefine directives (CMake syntax) into #undef comments,
+# enabling a pure qmake build without forcing CMake option defaults.
+!exists($$PWD/PythonQtConfigure.h) {
+    win32: PYTHONQT_PYTHON = python
+    else:  PYTHONQT_PYTHON = python3
+    system($$PYTHONQT_PYTHON $$PWD/generate_configure_h.py \
+        $$PWD/PythonQtConfigure.h.in \
+        $$PWD/PythonQtConfigure.h)
+}
+
 macx {
   contains(QT_MAJOR_VERSION, 6) {
     QMAKE_APPLE_DEVICE_ARCHS = x86_64 arm64
