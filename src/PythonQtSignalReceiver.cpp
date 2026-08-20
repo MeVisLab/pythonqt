@@ -46,6 +46,8 @@
 #include <QMetaObject>
 #include <QMetaMethod>
 
+#include <algorithm>
+
 // use -2 to signal that the variable is uninitialized
 int PythonQtSignalReceiver::_destroyedSignal1Id = -2;
 int PythonQtSignalReceiver::_destroyedSignal2Id = -2;
@@ -306,18 +308,18 @@ int PythonQtSignalReceiver::qt_metacall(QMetaObject::Call c, int id, void** argu
   // while _targets is modified because a connect/disconnect is done from Python code (which would also hold the GIL)
   PYTHONQT_GIL_SCOPE
   bool shouldDelete = false;
-  for (const PythonQtSignalTarget& t : qAsConst(_targets)) {
-    if (t.slotId() == id) {
-      const int sigId = t.signalId();
-      t.call(arguments);
-      // if the signal is the last destroyed signal, we delete ourselves
-      if ((sigId == _destroyedSignal1Id) || (sigId == _destroyedSignal2Id)) {
-        _destroyedSignalCount--;
-        if (_destroyedSignalCount == 0) {
-          shouldDelete = true;
-        }
+  auto it = std::lower_bound(_targets.begin(), _targets.end(), id,
+    [](const PythonQtSignalTarget& t, int id) -> bool { return t.slotId() < id; });
+  if (it != _targets.end() && it->slotId() == id) {
+    const PythonQtSignalTarget& t = *it;
+    const int sigId = t.signalId();
+    t.call(arguments);
+    // if the signal is the last destroyed signal, we delete ourselves
+    if ((sigId == _destroyedSignal1Id) || (sigId == _destroyedSignal2Id)) {
+      _destroyedSignalCount--;
+      if (_destroyedSignalCount == 0) {
+        shouldDelete = true;
       }
-      break;
     }
   }
   if (shouldDelete) {
