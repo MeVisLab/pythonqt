@@ -176,7 +176,8 @@ PythonQtSignalReceiver::PythonQtSignalReceiver(QObject* obj)
   // force decorator/enum creation
   _objClassInfo->decorator();
 
-  _slotCount = staticMetaObject.methodOffset();
+  _nextSlotID = staticMetaObject.methodOffset();
+  _nextTargetIndex = 0;
 }
 
 PythonQtSignalReceiver::~PythonQtSignalReceiver()
@@ -189,20 +190,49 @@ PythonQtSignalReceiver::~PythonQtSignalReceiver()
   }
 }
 
+#define MAX_SLOT_ID 32768
+
 bool PythonQtSignalReceiver::addSignalHandler(const char* signal, PyObject* callable)
 {
   bool flag = false;
   int sigId = getSignalIndex(signal);
   if (sigId >= 0) {
+    // find next free slot ID:
+    const int firstIndex = staticMetaObject.methodOffset();
+    if (firstIndex + _targets.size() >= MAX_SLOT_ID) {
+      // no free slot anymore
+      std::cerr << "Too many callables connected to signals of object " << _obj << std::endl;
+      return false;
+    }
+    // this loop is only triggered in case _nextTargetIndex was reset by removeSignalHandler:
+    while (_nextTargetIndex < _targets.size() && _targets[_nextTargetIndex].slotId() < _nextSlotID) {
+      _nextTargetIndex++;
+    }
+    // find a free slot ID (and the position in the target list)
+    while (_nextTargetIndex < _targets.size() && _targets[_nextTargetIndex].slotId() == _nextSlotID) {
+      _nextTargetIndex++;
+      _nextSlotID++;
+      if (_nextSlotID == MAX_SLOT_ID) {
+        // wrap around
+        _nextSlotID = firstIndex;
+        _nextTargetIndex = 0;
+      }
+    }
     // create PythonQtMethodInfo from signal
     QMetaMethod meta = _obj->metaObject()->method(sigId);
     const PythonQtMethodInfo* signalInfo = PythonQtMethodInfo::getCachedMethodInfo(meta, _objClassInfo);
-    PythonQtSignalTarget t(sigId, signalInfo, _slotCount, callable);
-    _targets.append(t);
+    PythonQtSignalTarget t(sigId, signalInfo, _nextSlotID, callable);
+    _targets.insert(_nextTargetIndex, t);
     // now connect to ourselves with the new slot id
-    QMetaObject::connect(_obj, sigId, this, _slotCount, Qt::AutoConnection, nullptr);
+    QMetaObject::connect(_obj, sigId, this, _nextSlotID, Qt::DirectConnection, nullptr);
 
-    _slotCount++;
+    _nextTargetIndex++;
+    _nextSlotID++;
+    if (_nextSlotID == MAX_SLOT_ID) {
+      // wrap around
+      _nextSlotID = firstIndex;
+      _nextTargetIndex = 0;
+    }
     flag = true;
 
     if (sigId == _destroyedSignal1Id || sigId == _destroyedSignal2Id) {
@@ -242,11 +272,14 @@ bool PythonQtSignalReceiver::removeSignalHandler(const char* signal, PyObject* c
       }
     }
   }
-  if ((foundCount > 0) && ((sigId == _destroyedSignal1Id) || (sigId == _destroyedSignal2Id))) {
-    _destroyedSignalCount -= foundCount;
-    if (_destroyedSignalCount == 0) {
-      // make ourself child of QObject again, to get deleted when the object gets deleted
-      this->setParent(_obj);
+  if (foundCount > 0) {
+    _nextTargetIndex = 0; //< must find _nextTargetIndex anew on next addSignalHandler call
+    if ((sigId == _destroyedSignal1Id) || (sigId == _destroyedSignal2Id)) {
+      _destroyedSignalCount -= foundCount;
+      if (_destroyedSignalCount == 0) {
+        // make ourself child of QObject again, to get deleted when the object gets deleted
+        this->setParent(_obj);
+      }
     }
   }
   return foundCount > 0;
@@ -269,6 +302,9 @@ int PythonQtSignalReceiver::qt_metacall(QMetaObject::Call c, int id, void** argu
     QObject::qt_metacall(c, id, arguments);
   }
 
+  // Get Global Interpreter Lock, as a safeguard against cases when an signal is emitted from a thread
+  // while _targets is modified because a connect/disconnect is done from Python code (which would also hold the GIL)
+  PYTHONQT_GIL_SCOPE
   bool shouldDelete = false;
   for (const PythonQtSignalTarget& t : qAsConst(_targets)) {
     if (t.slotId() == id) {
