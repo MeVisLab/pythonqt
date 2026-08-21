@@ -233,18 +233,71 @@ static PyObject* PythonQtSignalFunction_typeName(PythonQtSignalFunctionObject* t
   return PythonQtMemberFunction_typeName(type->m_ml);
 }
 
+// Find out if we can connect directly to the given Python object, without creating a separate receiver.
+// If yes, provide target object and signature for the connect call.
+static bool extractSignalTarget(PyObject* object, QObject*& targetObj, QByteArray& targetSignature)
+{
+  static PyObject* qtSlots = PyUnicode_FromString("_qtSlots");
+  if (PyObject_TypeCheck(object, &PythonQtSignalFunction_Type)) {
+    PythonQtSignalFunctionObject* type = (PythonQtSignalFunctionObject*)object;
+    PythonQtInstanceWrapper* self = (PythonQtInstanceWrapper*)type->m_self;
+    if (self->_obj) {
+      // connecting to another signal
+      targetObj = self->_obj;
+      targetSignature = QByteArray("2") + type->m_ml->signature();
+      return true;
+    }
+  } else if (PyMethod_Check(object)) {
+    PyObject* instance = PyMethod_Self(object);
+    if (PyObject_TypeCheck(instance, &PythonQtInstanceWrapper_Type)) {
+      PythonQtInstanceWrapper* typedInstance = (PythonQtInstanceWrapper*)instance;
+      if (!typedInstance->_wrappedPtr) {
+        // It's a QObject-derived class
+        targetObj = typedInstance->_obj;
+        PyObject* function = PyMethod_Function(object);
+        if (PyObject_HasAttr(function, qtSlots)) {
+          // connecting to a slot
+          PyObject* signatures = PyObject_GetAttr(function, qtSlots);
+          Py_ssize_t count = PyList_Size(signatures);
+          // TODO: Find the best matching signature;
+          // currently we only connect to the actual slot if only one slot signature is associated
+          // with this callable - if there are more, we just connect to the callable and let
+          // the callable figure the arguments out - but in this case Qt::DirectConnection is
+          // used instead of Qt::AutoConnection, which can be suprising if threads are involved.
+          if (count == 1) {
+            PyObject* signature = PyList_GET_ITEM(signatures, 0);
+            // Retrieve slot signature
+            QByteArray sig = PyUnicode_AsUTF8(signature);
+            targetSignature = QByteArray("1") + sig.split(' ')[1]; // include slot prefix
+            return true;
+          }
+        }
+      }
+    }
+  }
+  return false;
+}
+
 static PyObject* PythonQtSignalFunction_connect(PythonQtSignalFunctionObject* type, PyObject* args)
 {
   if (PyObject_TypeCheck(type->m_self, &PythonQtInstanceWrapper_Type)) {
     PythonQtInstanceWrapper* self = (PythonQtInstanceWrapper*)type->m_self;
     if (self->_obj) {
       Py_ssize_t argc = PyTuple_Size(args);
+      QByteArray sourceSignature = QByteArray("2") + type->m_ml->signature();
       if (argc == 1) {
         // connect with Python callable
         PyObject* callable = PyTuple_GET_ITEM(args, 0);
-        bool result =
-          PythonQt::self()->addSignalHandler(self->_obj, QByteArray("2") + type->m_ml->signature(), callable);
-        return PythonQtConv::GetPyBool(result);
+        QObject* targetObj;
+        QByteArray targetSignature;
+        if (extractSignalTarget(callable, targetObj, targetSignature)) {
+          // Do a regular signal/slot (or signal/signal) connect.
+          QObject::connect(self->_obj, sourceSignature, targetObj, targetSignature, Qt::AutoConnection);
+          return PythonQtConv::GetPyBool(true);
+        } else {
+          bool result = PythonQt::self()->addSignalHandler(self->_obj, sourceSignature, callable);
+          return PythonQtConv::GetPyBool(result);
+        }
       } else {
         PyErr_SetString(PyExc_ValueError, "Called connect with wrong number of arguments");
       }
@@ -259,15 +312,23 @@ static PyObject* PythonQtSignalFunction_disconnect(PythonQtSignalFunctionObject*
     PythonQtInstanceWrapper* self = (PythonQtInstanceWrapper*)type->m_self;
     if (self->_obj) {
       Py_ssize_t argc = PyTuple_Size(args);
-      QByteArray signal = QByteArray("2") + type->m_ml->signature();
+      QByteArray sourceSignature = QByteArray("2") + type->m_ml->signature();
       if (argc == 1) {
         // disconnect with Python callable
         PyObject* callable = PyTuple_GET_ITEM(args, 0);
-        bool result = PythonQt::self()->removeSignalHandler(self->_obj, signal, callable);
-        return PythonQtConv::GetPyBool(result);
+        QObject* targetObj;
+        QByteArray targetSignature;
+        if (extractSignalTarget(callable, targetObj, targetSignature)) {
+          // Do a regular signal/slot (or signal/signal) disconnect.
+          QObject::disconnect(self->_obj, sourceSignature, targetObj, targetSignature);
+          return PythonQtConv::GetPyBool(true);
+        } else {
+          bool result = PythonQt::self()->removeSignalHandler(self->_obj, sourceSignature, callable);
+          return PythonQtConv::GetPyBool(result);
+        }
       } else if (argc == 0) {
-        bool result = PythonQt::self()->removeSignalHandler(self->_obj, signal, nullptr);
-        result |= QObject::disconnect(self->_obj, signal, nullptr, nullptr);
+        bool result = PythonQt::self()->removeSignalHandler(self->_obj, sourceSignature, nullptr);
+        result |= QObject::disconnect(self->_obj, sourceSignature, nullptr, nullptr);
         return PythonQtConv::GetPyBool(result);
       } else {
         PyErr_SetString(PyExc_ValueError, "Called disconnect with wrong number of arguments");
