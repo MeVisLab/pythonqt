@@ -34,7 +34,6 @@
 /*!
 // \file    PythonQtSignalReceiver.cpp
 // \author  Florian Link
-// \author  Last changed by $Author: florian $
 // \date    2006-05
 */
 //----------------------------------------------------------------------------------
@@ -45,10 +44,6 @@
 #include "PythonQtConversion.h"
 #include <QMetaObject>
 #include <QMetaMethod>
-
-// use -2 to signal that the variable is uninitialized
-int PythonQtSignalReceiver::_destroyedSignal1Id = -2;
-int PythonQtSignalReceiver::_destroyedSignal2Id = -2;
 
 void PythonQtSignalTarget::call(void** arguments) const
 {
@@ -144,148 +139,116 @@ PyObject* PythonQtSignalTarget::call(PyObject* callable, const PythonQtMethodInf
   return result;
 }
 
-bool PythonQtSignalTarget::isSame(int signalId, PyObject* callable) const
+bool PythonQtSignalTarget::isSame(PyObject* callable) const
 {
-  return PyObject_RichCompareBool(callable, _callable, Py_EQ) && (signalId == _signalId);
+  return PyObject_RichCompareBool(callable, _callable, Py_EQ);
 }
 
 //------------------------------------------------------------------------------
 
-PythonQtSignalReceiver::PythonQtSignalReceiver(QObject* obj)
-  : PythonQtSignalReceiverBase(obj)
+int PythonQtSignalReceiver::_slotCount = 0;
+
+PythonQtSignalReceiver::PythonQtSignalReceiver(QObject* sender, int signalId, PyObject* callable)
+  : _sender(sender)
+  , _signalId(signalId)
+  , _alreadyRemoved(false)
 {
-  if (_destroyedSignal1Id == -2) {
-    // initialize these once
-    _destroyedSignal1Id = QObject::staticMetaObject.indexOfSignal("destroyed()");
-    _destroyedSignal2Id = QObject::staticMetaObject.indexOfSignal("destroyed(QObject*)");
-    if (_destroyedSignal1Id == -1 || _destroyedSignal2Id == -1) {
+  static int destroyedSignalId = []() -> int {
+    int id = QObject::staticMetaObject.indexOfSignal("destroyed(QObject*)");
+    if (id == -1) {
       std::cerr << "PythonQt: could not find destroyed signal index, should never happen!" << std::endl;
     }
-  }
+    // while we are already thread-safe: also determine _slotCount
+    _slotCount = PythonQtSignalReceiver::staticMetaObject.methodOffset();
+    return id;
+  }();
 
-  _destroyedSignalCount = 0;
-  _obj = obj;
-
-  // fetch the class info for object, since we will need to for correct enum resolution in
-  // signals
-  _objClassInfo = PythonQt::priv()->getClassInfo(obj->metaObject());
-  if (!_objClassInfo || !_objClassInfo->isQObject()) {
-    PythonQt::self()->registerClass(obj->metaObject());
-    _objClassInfo = PythonQt::priv()->getClassInfo(obj->metaObject());
+  // fetch the class info for object, since we will need it for correct enum resolution in signals
+  auto metaObject = _sender->metaObject();
+  PythonQtClassInfo* senderClassInfo = PythonQt::priv()->getClassInfo(metaObject);
+  if (!senderClassInfo || !senderClassInfo->isQObject()) {
+    PythonQt::self()->registerClass(metaObject);
+    senderClassInfo = PythonQt::priv()->getClassInfo(metaObject);
   }
   // force decorator/enum creation
-  _objClassInfo->decorator();
+  senderClassInfo->decorator();
 
-  _slotCount = staticMetaObject.methodOffset();
+  QMetaMethod meta = _sender->metaObject()->method(_signalId);
+  const PythonQtMethodInfo* signalInfo = PythonQtMethodInfo::getCachedMethodInfo(meta, senderClassInfo);
+  _target = PythonQtSignalTarget(signalInfo, callable);
+  // now connect to ourself with the next free slot id
+  QMetaObject::connect(_sender, _signalId, this, _slotCount, Qt::AutoConnection, nullptr);
+  // also connect to destroyed signal of sender, so we can remove the receiver accordingly
+  // (but with QueuedConnection, in case the original connect is to the destroyed signal too,
+  // so that the callable is guaranteed to be called before this receiver is destroyed!)
+  QMetaObject::connect(_sender, destroyedSignalId, this, _slotCount + 1, Qt::QueuedConnection, nullptr);
+
+  // Check if the callable is a method of a QObject instance:
+  if (PyMethod_Check(callable)) {
+    PyObject* instance = PyMethod_Self(callable);
+    if (PyObject_TypeCheck(instance, &PythonQtInstanceWrapper_Type)) {
+      PythonQtInstanceWrapper* typedInstance = (PythonQtInstanceWrapper*)instance;
+      if (!typedInstance->_wrappedPtr) {
+        // It's a QObject-derived class
+        QObject* targetObj = typedInstance->_obj;
+        // move the receiver to the same thread as the "self" of the callable
+        moveToThread(targetObj->thread());
+        // make the receiver a child of this object, so it will automatically change threads with it,
+        // and also will be deleted with it
+        setParent(targetObj);
+      }
+    }
+  }
 }
 
 PythonQtSignalReceiver::~PythonQtSignalReceiver()
 {
-  if (PythonQt::priv()) {
-    // we need the GIL scope here, because the targets keep references to Python objects
-    PYTHONQT_GIL_SCOPE;
-    PythonQt::priv()->removeSignalEmitter(_obj);
-    _targets.clear();
+  if (!_alreadyRemoved) {
+    // remove from list of all receiver objects
+    PythonQt::self()->priv()->removeSignalReceiver(this);
   }
 }
 
-bool PythonQtSignalReceiver::addSignalHandler(const char* signal, PyObject* callable)
+bool PythonQtSignalReceiver::isSameCallable(PyObject* callable) const
 {
-  bool flag = false;
-  int sigId = getSignalIndex(signal);
-  if (sigId >= 0) {
-    // create PythonQtMethodInfo from signal
-    QMetaMethod meta = _obj->metaObject()->method(sigId);
-    const PythonQtMethodInfo* signalInfo = PythonQtMethodInfo::getCachedMethodInfo(meta, _objClassInfo);
-    PythonQtSignalTarget t(sigId, signalInfo, _slotCount, callable);
-    _targets.append(t);
-    // now connect to ourselves with the new slot id
-    QMetaObject::connect(_obj, sigId, this, _slotCount, Qt::AutoConnection, nullptr);
-
-    _slotCount++;
-    flag = true;
-
-    if (sigId == _destroyedSignal1Id || sigId == _destroyedSignal2Id) {
-      _destroyedSignalCount++;
-      if (_destroyedSignalCount == 1) {
-        // make ourself parent of PythonQt, to not get deleted as a child of the QObject we are
-        // listening to, since we do that manually when we receive the destroyed signal
-        this->setParent(PythonQt::priv());
-      }
-    }
-  }
-  return flag;
+  return _target.isSame(callable);
 }
 
-bool PythonQtSignalReceiver::removeSignalHandler(const char* signal, PyObject* callable)
+int PythonQtSignalReceiver::getSignalIndex(QObject* sender, const char* signal)
 {
-  int foundCount = 0;
-  int sigId = getSignalIndex(signal);
-  if (sigId >= 0) {
-    QMutableListIterator<PythonQtSignalTarget> i(_targets);
-    if (callable) {
-      while (i.hasNext()) {
-        if (i.next().isSame(sigId, callable)) {
-          QMetaObject::disconnect(_obj, sigId, this, i.value().slotId());
-          i.remove();
-          foundCount++;
-          break;
-        }
-      }
-    } else {
-      while (i.hasNext()) {
-        if (i.next().signalId() == sigId) {
-          QMetaObject::disconnect(_obj, sigId, this, i.value().slotId());
-          i.remove();
-          foundCount++;
-        }
-      }
-    }
-  }
-  if ((foundCount > 0) && ((sigId == _destroyedSignal1Id) || (sigId == _destroyedSignal2Id))) {
-    _destroyedSignalCount -= foundCount;
-    if (_destroyedSignalCount == 0) {
-      // make ourself child of QObject again, to get deleted when the object gets deleted
-      this->setParent(_obj);
-    }
-  }
-  return foundCount > 0;
-}
-
-int PythonQtSignalReceiver::getSignalIndex(const char* signal)
-{
-  int sigId = _obj->metaObject()->indexOfSignal(signal + 1);
+  int sigId = sender->metaObject()->indexOfSignal(signal + 1);
   if (sigId < 0) {
     QByteArray tmpSig = QMetaObject::normalizedSignature(signal + 1);
-    sigId = _obj->metaObject()->indexOfSignal(tmpSig);
+    sigId = sender->metaObject()->indexOfSignal(tmpSig);
   }
   return sigId;
 }
 
+void PythonQtSignalReceiver::markAsRemoved()
+{
+  _alreadyRemoved = true;
+  // disconnect from potential parent, to prevent situations where the receiver is deleted recursively
+  // a second time via the connected callable, whose refcount might go to 0 in the destructor
+  setParent(nullptr);
+}
+
 int PythonQtSignalReceiver::qt_metacall(QMetaObject::Call c, int id, void** arguments)
 {
-  //  mlabDebugConst("PythonQt", "PythonQtSignalReceiver invoke " << _obj->className() << " " << _obj->name() << " " << id);
+  //  mlabDebugConst("PythonQt", "PythonQtSignalReceiver invoke " << _sender->className() << " " << _sender->name() << " " << id);
   if (c != QMetaObject::InvokeMetaMethod) {
-    QObject::qt_metacall(c, id, arguments);
+    return QObject::qt_metacall(c, id, arguments);
   }
 
-  bool shouldDelete = false;
-  for (const PythonQtSignalTarget& t : qAsConst(_targets)) {
-    if (t.slotId() == id) {
-      const int sigId = t.signalId();
-      t.call(arguments);
-      // if the signal is the last destroyed signal, we delete ourselves
-      if ((sigId == _destroyedSignal1Id) || (sigId == _destroyedSignal2Id)) {
-        _destroyedSignalCount--;
-        if (_destroyedSignalCount == 0) {
-          shouldDelete = true;
-        }
-      }
-      break;
+  if (!_alreadyRemoved) {
+    if (id == _slotCount) {
+      _target.call(arguments);
+    } else if (id == _slotCount + 1) {
+      // disconnect from potential parent, to prevent situations where the receiver is deleted recursively
+      // a second time via the connected callable, whose refcount might go to 0 in the destructor
+      setParent(nullptr);
+      // sender was destroyed
+      delete this;
     }
-  }
-  if (shouldDelete) {
-    delete this;
   }
   return 0;
 }

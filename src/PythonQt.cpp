@@ -34,7 +34,6 @@
 /*!
 // \file    PythonQt.cpp
 // \author  Florian Link
-// \author  Last changed by $Author: florian $
 // \date    2006-05
 */
 //----------------------------------------------------------------------------------
@@ -324,8 +323,7 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
 void PythonQt::cleanup()
 {
   if (_self) {
-    // Remove signal handlers in advance, since destroying them calls back into
-    // PythonQt::priv()->removeSignalEmitter()
+    // Remove all created signal receivers
     _self->removeSignalHandlers();
 
     delete _self;
@@ -879,65 +877,34 @@ PyObject* PythonQtPrivate::createNewPythonQtEnumWrapper(const char* enumName, Py
   return result;
 }
 
-PythonQtSignalReceiver* PythonQt::getSignalReceiver(QObject* obj)
-{
-  PythonQtSignalReceiver* r = _p->_signalReceivers[obj];
-  if (!r) {
-    r = new PythonQtSignalReceiver(obj);
-    _p->_signalReceivers.insert(obj, r);
-  }
-  return r;
-}
-
 bool PythonQt::addSignalHandler(QObject* obj, const char* signal, PyObject* module, const QString& objectname)
 {
-  bool flag = false;
   PythonQtObjectPtr callable = lookupCallable(module, objectname);
   if (callable) {
-    PythonQtSignalReceiver* r = getSignalReceiver(obj);
-    flag = r->addSignalHandler(signal, callable);
-    if (!flag) {
-      // signal not found
-    }
-  } else {
-    // callable not found
+    return _p->addSignalHandler(obj, signal, callable);
   }
-  return flag;
+  // callable not found
+  return false;
 }
 
-bool PythonQt::addSignalHandler(QObject* obj, const char* signal, PyObject* receiver)
+bool PythonQt::addSignalHandler(QObject* obj, const char* signal, PyObject* callable)
 {
-  bool flag = false;
-  PythonQtSignalReceiver* r = getSignalReceiver(obj);
-  if (r) {
-    flag = r->addSignalHandler(signal, receiver);
-  }
-  return flag;
+  return _p->addSignalHandler(obj, signal, callable);
 }
 
 bool PythonQt::removeSignalHandler(QObject* obj, const char* signal, PyObject* module, const QString& objectname)
 {
-  bool flag = false;
   PythonQtObjectPtr callable = lookupCallable(module, objectname);
   if (callable) {
-    PythonQtSignalReceiver* r = _p->_signalReceivers[obj];
-    if (r) {
-      flag = r->removeSignalHandler(signal, callable);
-    }
-  } else {
-    // callable not found
+    return _p->removeSignalHandler(obj, signal, callable);
   }
-  return flag;
+  // callable not found
+  return false;
 }
 
-bool PythonQt::removeSignalHandler(QObject* obj, const char* signal, PyObject* receiver)
+bool PythonQt::removeSignalHandler(QObject* obj, const char* signal, PyObject* callable)
 {
-  bool flag = false;
-  PythonQtSignalReceiver* r = _p->_signalReceivers[obj];
-  if (r) {
-    flag = r->removeSignalHandler(signal, receiver);
-  }
-  return flag;
+  return _p->removeSignalHandler(obj, signal, callable);
 }
 
 PythonQtObjectPtr PythonQt::lookupCallable(PyObject* module, const QString& name)
@@ -1619,20 +1586,14 @@ void PythonQtPrivate::registerQObjectClassNames(const QStringList& names)
   }
 }
 
-void PythonQtPrivate::removeSignalEmitter(QObject* obj)
-{
-  _signalReceivers.remove(obj);
-}
-
 void PythonQt::removeSignalHandlers()
 {
-  QList<PythonQtSignalReceiver*> signalReceivers = _p->_signalReceivers.values();
-
-  // just delete all signal receivers, they will remove themselves via removeSignalEmitter()
-  for (PythonQtSignalReceiver* receiver : qAsConst(signalReceivers)) {
-    delete receiver;
+  auto it = _p->_signalReceivers.begin();
+  while (it != _p->_signalReceivers.end()) {
+    it.value()->markAsRemoved();
+    delete it.value();
+    it++;
   }
-  // just to be sure, clear the receiver map as well
   _p->_signalReceivers.clear();
 }
 
@@ -2010,6 +1971,56 @@ PythonQtClassInfo* PythonQtPrivate::lookupClassInfoAndCreateIfNotPresent(const c
     _knownClassInfos.insert(typeName, info);
   }
   return info;
+}
+
+bool PythonQtPrivate::addSignalHandler(QObject* sender, const char* signal, PyObject* callable)
+{
+  PYTHONQT_GIL_SCOPE
+  int sigId = PythonQtSignalReceiver::getSignalIndex(sender, signal);
+  if (sigId >= 0) {
+    // create PythonQtMethodInfo from signal
+    auto* receiver = new PythonQtSignalReceiver(sender, sigId, callable);
+    _signalReceivers.insert(SignalKey(sender, sigId), receiver);
+    return true;
+  }
+  return false;
+}
+
+bool PythonQtPrivate::removeSignalHandler(QObject* sender, const char* signal, PyObject* callable)
+{
+  PYTHONQT_GIL_SCOPE
+  int foundCount = 0;
+  int sigId = PythonQtSignalReceiver::getSignalIndex(sender, signal);
+  if (sigId >= 0) {
+    SignalKey hashKey(sender, sigId);
+    auto it = _signalReceivers.find(hashKey);
+    while (it != _signalReceivers.end() && it.key() == hashKey) {
+      if (!callable || it.value()->isSameCallable(callable)) {
+        it.value()->markAsRemoved();
+        // delete later in case the connection is removed from the receiver callable itself
+        it.value()->deleteLater();
+        foundCount++;
+        it = _signalReceivers.erase(it);
+      } else {
+        it++;
+      }
+    }
+  }
+  return foundCount > 0;
+}
+
+void PythonQtPrivate::removeSignalReceiver(PythonQtSignalReceiver* receiver)
+{
+  PYTHONQT_GIL_SCOPE
+  SignalKey hashKey(receiver->sender(), receiver->signalId());
+  auto it = _signalReceivers.find(hashKey);
+  while (it != _signalReceivers.end() && it.key() == hashKey) {
+    if (it.value() == receiver) {
+      _signalReceivers.erase(it);
+      break; // each receiver is only entered once
+    }
+    it++;
+  }
 }
 
 void PythonQt::addPolymorphicHandler(const char* typeName, PythonQtPolymorphicHandlerCB* cb)
