@@ -37,7 +37,6 @@
 /*!
 // \file    PythonQt.h
 // \author  Florian Link
-// \author  Last changed by $Author: florian $
 // \date    2006-05
 */
 //----------------------------------------------------------------------------------
@@ -55,6 +54,7 @@
 #include <QVariant>
 #include <QList>
 #include <QHash>
+#include <QMultiHash>
 #include <QByteArray>
 #include <QStringList>
 #include <QtDebug>
@@ -654,9 +654,6 @@ private:
   //! callback for stderr redirection, emits pythonStdErr signal
   static void stdErrRedirectCB(const QString& str);
 
-  //! get (and create if not available) the signal receiver of that QObject, signal receiver is made child of the passed \c obj
-  PythonQtSignalReceiver* getSignalReceiver(QObject* obj);
-
   PythonQt(int flags, const QByteArray& pythonQtModuleName);
   ~PythonQt() override;
   static PythonQt* _self;
@@ -729,8 +726,14 @@ public:
   //! lookup existing classinfo and return new if not yet present
   PythonQtClassInfo* lookupClassInfoAndCreateIfNotPresent(const char* typeName);
 
-  //! called when a signal emitting QObject is destroyed to remove the signal handler from the hash map
-  void removeSignalEmitter(QObject* obj);
+  //! add a signal handler
+  bool addSignalHandler(QObject* sender, const char* signal, PyObject* callable);
+
+  //! remove a signal handler for given callable (or all callables on that signal if callable is NULL)
+  bool removeSignalHandler(QObject* sender, const char* signal, PyObject* callable = nullptr);
+
+  //! called when a signal receiver is deleted to remove it from the hash map
+  void removeSignalReceiver(PythonQtSignalReceiver* receiver);
 
   //! wrap the given QObject into a Python object (or return existing wrapper!)
   PyObject* wrapQObject(QObject* obj);
@@ -865,7 +868,8 @@ private:
   QHash<QByteArray, QByteArray> _knownLazyClasses;
 
   //! stores signal receivers for QObjects
-  QHash<QObject*, PythonQtSignalReceiver*> _signalReceivers;
+  typedef QPair<QObject*, int> SignalKey;
+  QMultiHash<SignalKey, PythonQtSignalReceiver*> _signalReceivers;
 
   //! the PythonQt python module
   PythonQtObjectPtr _pythonQtModule;
