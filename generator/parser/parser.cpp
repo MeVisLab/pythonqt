@@ -1351,29 +1351,29 @@ bool Parser::parseAbstractDeclarator(DeclaratorAST*& node)
   }
 
 label1:
-{
-  bool isVector = true;
+  {
+    bool isVector = true;
 
-  while (token_stream.lookAhead() == '[') {
-    nextToken();
+    while (token_stream.lookAhead() == '[') {
+      nextToken();
 
-    ExpressionAST* expr = 0;
-    parseCommaExpression(expr);
+      ExpressionAST* expr = 0;
+      parseCommaExpression(expr);
 
-    ADVANCE(']', "]");
+      ADVANCE(']', "]");
 
-    ast->array_dimensions = snoc(ast->array_dimensions, expr, _M_pool);
-    isVector = true;
+      ast->array_dimensions = snoc(ast->array_dimensions, expr, _M_pool);
+      isVector = true;
+    }
+
+    int tok = token_stream.lookAhead();
+    if (ast->sub_declarator && !(isVector || tok == '(' || tok == ',' || tok == ';' || tok == '=')) {
+      rewind(start);
+      return false;
+    }
+
+    parseDeclaratorParametersAndSuffix(ast);
   }
-
-  int tok = token_stream.lookAhead();
-  if (ast->sub_declarator && !(isVector || tok == '(' || tok == ',' || tok == ';' || tok == '=')) {
-    rewind(start);
-    return false;
-  }
-
-  parseDeclaratorParametersAndSuffix(ast);
-}
 
 update_pos:
   if (token_stream.cursor() == start)

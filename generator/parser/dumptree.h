@@ -40,9 +40,9 @@
 ****************************************************************************/
 
 #ifndef DUMPTREE_H
-  #define DUMPTREE_H
+#define DUMPTREE_H
 
-  #include "default_visitor.h"
+#include "default_visitor.h"
 
 class DumpTree : protected DefaultVisitor
 {

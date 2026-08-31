@@ -40,12 +40,12 @@
 ****************************************************************************/
 
 #ifndef RXX_ALLOCATOR_H
-  #define RXX_ALLOCATOR_H
+#define RXX_ALLOCATOR_H
 
-  #include <cstddef>
-  #include <cstdlib>
-  #include <cstring>
-  #include <memory>
+#include <cstddef>
+#include <cstdlib>
+#include <cstring>
+#include <memory>
 
 template<class _Tp>
 class rxx_allocator
@@ -92,9 +92,9 @@ public:
 
       _M_current_block = _M_storage[_M_block_index] = reinterpret_cast<char*>(new char[_S_block_size]);
 
-  #if defined(RXX_ALLOCATOR_INIT_0) // ### make it a policy
+#if defined(RXX_ALLOCATOR_INIT_0) // ### make it a policy
       ::memset(_M_current_block, 0, _S_block_size);
-  #endif
+#endif
       _M_current_index = 0;
     }
 

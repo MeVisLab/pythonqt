@@ -40,11 +40,11 @@
 ****************************************************************************/
 
 #ifndef CODEMODEL_FINDER_H
-  #define CODEMODEL_FINDER_H
+#define CODEMODEL_FINDER_H
 
-  #include "default_visitor.h"
-  #include "codemodel_fwd.h"
-  #include "name_compiler.h"
+#include "default_visitor.h"
+#include "codemodel_fwd.h"
+#include "name_compiler.h"
 
 class TokenStream;
 class Binder;

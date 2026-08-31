@@ -40,13 +40,13 @@
 ****************************************************************************/
 
 #ifndef BINDER_H
-  #define BINDER_H
+#define BINDER_H
 
-  #include "default_visitor.h"
-  #include "codemodel.h"
-  #include "type_compiler.h"
-  #include "name_compiler.h"
-  #include "declarator_compiler.h"
+#include "default_visitor.h"
+#include "codemodel.h"
+#include "type_compiler.h"
+#include "name_compiler.h"
+#include "declarator_compiler.h"
 
 class TokenStream;
 class LocationManager;

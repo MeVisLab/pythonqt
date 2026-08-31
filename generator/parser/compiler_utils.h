@@ -40,11 +40,11 @@
 ****************************************************************************/
 
 #ifndef COMPILER_UTILS_H
-  #define COMPILER_UTILS_H
+#define COMPILER_UTILS_H
 
-  #include <utility>
+#include <utility>
 
-  #include "codemodel.h"
+#include "codemodel.h"
 
 class QString;
 struct TypeSpecifierAST;

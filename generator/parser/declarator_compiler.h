@@ -40,13 +40,13 @@
 ****************************************************************************/
 
 #ifndef DECLARATOR_COMPILER_H
-  #define DECLARATOR_COMPILER_H
+#define DECLARATOR_COMPILER_H
 
-  #include "default_visitor.h"
-  #include "codemodel.h"
+#include "default_visitor.h"
+#include "codemodel.h"
 
-  #include <QtCore/QString>
-  #include <QtCore/QList>
+#include <QtCore/QString>
+#include <QtCore/QList>
 
 class TokenStream;
 class Binder;

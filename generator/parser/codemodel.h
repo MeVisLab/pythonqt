@@ -40,19 +40,19 @@
 ****************************************************************************/
 
 #ifndef CODEMODEL_H
-  #define CODEMODEL_H
+#define CODEMODEL_H
 
-  #include "codemodel_fwd.h"
+#include "codemodel_fwd.h"
 
-  #include <QtCore/QHash>
-  #include <QtCore/QList>
-  #include <QtCore/QString>
-  #include <QtCore/QStringList>
-  #include <QtCore/QVector>
-  #include <QtCore/QSet>
-  #include <QSharedPointer>
+#include <QtCore/QHash>
+#include <QtCore/QList>
+#include <QtCore/QString>
+#include <QtCore/QStringList>
+#include <QtCore/QVector>
+#include <QtCore/QSet>
+#include <QSharedPointer>
 
-  #define DECLARE_MODEL_NODE(k) enum { __node_kind = Kind_##k };
+#define DECLARE_MODEL_NODE(k) enum { __node_kind = Kind_##k };
 
 class CodeModel
 {

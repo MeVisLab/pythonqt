@@ -40,9 +40,9 @@
 ****************************************************************************/
 
 #ifndef DEFAULT_VISITOR_H
-  #define DEFAULT_VISITOR_H
+#define DEFAULT_VISITOR_H
 
-  #include "visitor.h"
+#include "visitor.h"
 
 class DefaultVisitor : public Visitor
 {

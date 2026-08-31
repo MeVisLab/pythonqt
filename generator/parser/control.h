@@ -40,12 +40,12 @@
 ****************************************************************************/
 
 #ifndef CONTROL_H
-  #define CONTROL_H
+#define CONTROL_H
 
-  #include "symbol.h"
-  #include "smallobject.h"
+#include "symbol.h"
+#include "smallobject.h"
 
-  #include <QtCore/QHash>
+#include <QtCore/QHash>
 
 struct Declarator;
 struct Type;

@@ -40,12 +40,12 @@
 ****************************************************************************/
 
 #ifndef PARSER_H
-  #define PARSER_H
+#define PARSER_H
 
-  #include "ast.h"
-  #include "lexer.h"
+#include "ast.h"
+#include "lexer.h"
 
-  #include <QtCore/QString>
+#include <QtCore/QString>
 
 class FileSymbol;
 class Control;

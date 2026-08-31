@@ -40,10 +40,10 @@
 ****************************************************************************/
 
 #ifndef SMALLOBJECT_H
-  #define SMALLOBJECT_H
+#define SMALLOBJECT_H
 
-  #include "rxx_allocator.h"
-  #include <cstring>
+#include "rxx_allocator.h"
+#include <cstring>
 
 class pool
 {
