@@ -40,7 +40,7 @@
 ****************************************************************************/
 
 #ifndef TOKENS_H
-  #define TOKENS_H
+#define TOKENS_H
 
 enum TOKEN_KIND {
   Token_EOF = 0,

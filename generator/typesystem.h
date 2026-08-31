@@ -135,7 +135,7 @@ enum Language {
   PyInheritShellConstructorCode = 0x8000,
   // masks
   All = TargetLangCode | NativeCode | ShellCode | ShellDeclaration | PackageInitializer | Constructors | Interface
-        | DestructorFunction,
+    | DestructorFunction,
 
   JavaAndNativeCode = TargetLangCode | NativeCode,
   TargetLangAndNativeCode = TargetLangCode | NativeCode

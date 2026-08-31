@@ -40,9 +40,9 @@
 ****************************************************************************/
 
 #ifndef FASTLIST_H
-  #define FASTLIST_H
+#define FASTLIST_H
 
-  #include "smallobject.h"
+#include "smallobject.h"
 
 template<typename Tp>
 struct ListNode {

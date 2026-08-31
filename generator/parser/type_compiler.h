@@ -40,13 +40,13 @@
 ****************************************************************************/
 
 #ifndef TYPE_COMPILER_H
-  #define TYPE_COMPILER_H
+#define TYPE_COMPILER_H
 
-  #include "default_visitor.h"
+#include "default_visitor.h"
 
-  #include <QtCore/QString>
-  #include <QtCore/QStringList>
-  #include <QtCore/QList>
+#include <QtCore/QString>
+#include <QtCore/QStringList>
+#include <QtCore/QList>
 
 class TokenStream;
 class Binder;

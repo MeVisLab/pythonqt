@@ -40,13 +40,13 @@
 ****************************************************************************/
 
 #ifndef LEXER_H
-  #define LEXER_H
+#define LEXER_H
 
-  #include "symbol.h"
+#include "symbol.h"
 
-  #include <QtCore/QString>
-  #include <cstdlib>
-  #include <cassert>
+#include <QtCore/QString>
+#include <cstdlib>
+#include <cassert>
 
 struct NameSymbol;
 class Lexer;

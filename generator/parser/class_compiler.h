@@ -40,14 +40,14 @@
 ****************************************************************************/
 
 #ifndef CLASS_COMPILER_H
-  #define CLASS_COMPILER_H
+#define CLASS_COMPILER_H
 
-  #include <QtCore/qglobal.h>
-  #include <QtCore/QStringList>
+#include <QtCore/qglobal.h>
+#include <QtCore/QStringList>
 
-  #include "default_visitor.h"
-  #include "name_compiler.h"
-  #include "type_compiler.h"
+#include "default_visitor.h"
+#include "name_compiler.h"
+#include "type_compiler.h"
 
 class TokenStream;
 class Binder;

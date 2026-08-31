@@ -40,10 +40,10 @@
 ****************************************************************************/
 
 #ifndef NAME_COMPILER_H
-  #define NAME_COMPILER_H
+#define NAME_COMPILER_H
 
-  #include "default_visitor.h"
-  #include <QtCore/QStringList>
+#include "default_visitor.h"
+#include <QtCore/QStringList>
 
 class TokenStream;
 class Binder;

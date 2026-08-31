@@ -40,13 +40,13 @@
 ****************************************************************************/
 
 #ifndef SYMBOL_H
-  #define SYMBOL_H
+#define SYMBOL_H
 
-  #include <QtCore/QString>
-  #include <cstring>
+#include <QtCore/QString>
+#include <cstring>
 
-  #include <QtCore/QHash>
-  #include <QtCore/QPair>
+#include <QtCore/QHash>
+#include <QtCore/QPair>
 
 struct NameSymbol {
   const char* data;
