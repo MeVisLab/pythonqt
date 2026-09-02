@@ -142,11 +142,11 @@ QObject Wrapping</h1>
 <div class="line">  <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">def</a> <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">progress</a>(self, <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">value</a>):</div>
 <div class="line">    <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">print</a>(<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">f</a><span class="stringliteral">&quot;progress: {value}&quot;</span>)</div>
 <div class="line"> </div>
-<div class="line"><a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">sender</a> = <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">MySender</a>()</div>
+<div class="line">sender = <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">MySender</a>()</div>
 <div class="line"><a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">receiver</a> = <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">MyReceiver</a>()</div>
 <div class="line"># <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">connecting</a> <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">with</a> <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">the</a> <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">effective</a> signature:</div>
-<div class="line"><a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">sender</a>.connect(<span class="stringliteral">&quot;emitProgress(double)&quot;</span>, <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">receiver</a>, <span class="stringliteral">&quot;progress(double)&quot;</span>)</div>
-<div class="line"><a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">sender</a>.<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">emitProgress</a>(2.0)</div>
+<div class="line">sender.connect(<span class="stringliteral">&quot;emitProgress(double)&quot;</span>, <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">receiver</a>, <span class="stringliteral">&quot;progress(double)&quot;</span>)</div>
+<div class="line">sender.<a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">emitProgress</a>(2.0)</div>
 </div><!-- fragment --><h1><a class="anchor" id="CPP"></a>
 CPP Wrapping</h1>
 <p>You can create dedicated wrapper QObjects for any C++ class. This is done by deriving from <a class="el" href="classPythonQtCppWrapperFactory.html" title="Factory interface for C++ classes that can be wrapped by QObject objects.">PythonQtCppWrapperFactory</a> and adding your factory via addWrapperFactory(). Whenever <a class="el" href="classPythonQt.html" title="The main interface to the Python Qt binding, realized as a singleton.">PythonQt</a> encounters a CPP pointer (e.g. on a slot or signal) and it does not known it as a QObject derived class, it will create a generic CPP wrapper. So even unknown C++ objects can be passed through Python. If the wrapper factory supports the CPP class, a QObject wrapper will be created for each instance that enters Python. An alternative to a complete wrapper via the wrapper factory are decorators, see <a class="el" href="Developer.html#Decorators">Decorator slots</a></p>
@@ -296,7 +296,7 @@ Ownership management</h1>
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 1 2026 16:13:58 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Sep 2 2026 10:37:19 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

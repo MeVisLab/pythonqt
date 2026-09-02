@@ -120,9 +120,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a901f1df0a0cdbd22c0105717abeb5f58" id="r_a901f1df0a0cdbd22c0105717abeb5f58"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPythonQtClassInfo.html">PythonQtClassInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtPrivate.html#a901f1df0a0cdbd22c0105717abeb5f58">lookupClassInfoAndCreateIfNotPresent</a> (<a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">const</a> <a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">char</a> *typeName)</td></tr>
 <tr class="memdesc:a901f1df0a0cdbd22c0105717abeb5f58"><td class="mdescLeft">&#160;</td><td class="mdescRight">lookup existing classinfo and return new if not yet present  <br /></td></tr>
 <tr class="separator:a901f1df0a0cdbd22c0105717abeb5f58"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef4874956d69c8bc4619fe3f49821ab2" id="r_aef4874956d69c8bc4619fe3f49821ab2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtPrivate.html#aef4874956d69c8bc4619fe3f49821ab2">removeSignalEmitter</a> (QObject *<a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">obj</a>)</td></tr>
-<tr class="memdesc:aef4874956d69c8bc4619fe3f49821ab2"><td class="mdescLeft">&#160;</td><td class="mdescRight">called when a signal emitting QObject is destroyed to remove the signal handler from the hash map  <br /></td></tr>
-<tr class="separator:aef4874956d69c8bc4619fe3f49821ab2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1a84d60911f40cdcb2a6242ce2cb743" id="r_aa1a84d60911f40cdcb2a6242ce2cb743"><td class="memItemLeft" align="right" valign="top"><a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtPrivate.html#aa1a84d60911f40cdcb2a6242ce2cb743">addSignalHandler</a> (QObject *sender, <a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">const</a> <a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">char</a> *<a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">signal</a>, <a class="el" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a> *<a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">callable</a>)</td></tr>
+<tr class="memdesc:aa1a84d60911f40cdcb2a6242ce2cb743"><td class="mdescLeft">&#160;</td><td class="mdescRight">add a signal handler  <br /></td></tr>
+<tr class="separator:aa1a84d60911f40cdcb2a6242ce2cb743"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d102500e4874f6173c2a914265f0efd" id="r_a2d102500e4874f6173c2a914265f0efd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtPrivate.html#a2d102500e4874f6173c2a914265f0efd">removeSignalHandler</a> (QObject *sender, <a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">const</a> <a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">char</a> *<a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">signal</a>, <a class="el" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a> *<a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">callable</a>=<a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">nullptr</a>)</td></tr>
+<tr class="memdesc:a2d102500e4874f6173c2a914265f0efd"><td class="mdescLeft">&#160;</td><td class="mdescRight">remove a signal handler for given callable (or all callables on that signal if callable is NULL)  <br /></td></tr>
+<tr class="separator:a2d102500e4874f6173c2a914265f0efd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14baaadb66f65f966b5269fb9b5b7973" id="r_a14baaadb66f65f966b5269fb9b5b7973"><td class="memItemLeft" align="right" valign="top"><a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtPrivate.html#a14baaadb66f65f966b5269fb9b5b7973">removeSignalReceiver</a> (<a class="el" href="classPythonQtSignalReceiver.html">PythonQtSignalReceiver</a> *<a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">receiver</a>)</td></tr>
+<tr class="memdesc:a14baaadb66f65f966b5269fb9b5b7973"><td class="mdescLeft">&#160;</td><td class="mdescRight">called when a signal receiver is deleted to remove it from the hash map  <br /></td></tr>
+<tr class="separator:a14baaadb66f65f966b5269fb9b5b7973"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ecd1d5bcd10466b5a87ff241bd141c4" id="r_a4ecd1d5bcd10466b5a87ff241bd141c4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPythonQtPrivate.html#a4ecd1d5bcd10466b5a87ff241bd141c4">wrapQObject</a> (QObject *<a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">obj</a>)</td></tr>
 <tr class="memdesc:a4ecd1d5bcd10466b5a87ff241bd141c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">wrap the given QObject into a Python object (or return existing wrapper!)  <br /></td></tr>
 <tr class="separator:a4ecd1d5bcd10466b5a87ff241bd141c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -218,7 +224,7 @@ Friends</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>internal <a class="el" href="classPythonQt.html" title="The main interface to the Python Qt binding, realized as a singleton.">PythonQt</a> details </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00672">672</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00669">669</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="a2ba68b8767781c090335834bdd1df87f" name="a2ba68b8767781c090335834bdd1df87f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2ba68b8767781c090335834bdd1df87f">&#9670;&#160;</a></span>DecoratorTypes</h2>
@@ -239,19 +245,19 @@ Friends</h2></td></tr>
 <tr><td class="fieldname"><a id="a2ba68b8767781c090335834bdd1df87fa1c4433385e804345c9e94ff4413afa2e" name="a2ba68b8767781c090335834bdd1df87fa1c4433385e804345c9e94ff4413afa2e"></a>AllDecorators&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00681">681</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  681</span>                      {</div>
-<div class="line"><span class="lineno">  682</span>    <a class="code hl_enumvalue" href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87faeea46a1c7dc73925616faa04937f5037">StaticDecorator</a> = 1,</div>
-<div class="line"><span class="lineno">  683</span>    <a class="code hl_enumvalue" href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87fa4b9ded55fcabb6fc26056baf933d24f6">ConstructorDecorator</a> = 2,</div>
-<div class="line"><span class="lineno">  684</span>    <a class="code hl_enumvalue" href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87fa97be46d080d6145a4cb98dd7bb86215c">DestructorDecorator</a> = 4,</div>
-<div class="line"><span class="lineno">  685</span>    <a class="code hl_enumvalue" href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87fac45f152dc968707a8dc91b595b0285c4">InstanceDecorator</a> = 8,</div>
-<div class="line"><span class="lineno">  686</span>    <a class="code hl_enumvalue" href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87fa1c4433385e804345c9e94ff4413afa2e">AllDecorators</a> = 0xffff</div>
-<div class="line"><span class="lineno">  687</span>  };</div>
-<div class="ttc" id="aclassPythonQtPrivate_html_a2ba68b8767781c090335834bdd1df87fa1c4433385e804345c9e94ff4413afa2e"><div class="ttname"><a href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87fa1c4433385e804345c9e94ff4413afa2e">PythonQtPrivate::AllDecorators</a></div><div class="ttdeci">@ AllDecorators</div><div class="ttdef"><b>Definition</b> <a href="PythonQt_8h_source.html#l00687">PythonQt.h:686</a></div></div>
-<div class="ttc" id="aclassPythonQtPrivate_html_a2ba68b8767781c090335834bdd1df87fa4b9ded55fcabb6fc26056baf933d24f6"><div class="ttname"><a href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87fa4b9ded55fcabb6fc26056baf933d24f6">PythonQtPrivate::ConstructorDecorator</a></div><div class="ttdeci">@ ConstructorDecorator</div><div class="ttdef"><b>Definition</b> <a href="PythonQt_8h_source.html#l00683">PythonQt.h:683</a></div></div>
-<div class="ttc" id="aclassPythonQtPrivate_html_a2ba68b8767781c090335834bdd1df87fa97be46d080d6145a4cb98dd7bb86215c"><div class="ttname"><a href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87fa97be46d080d6145a4cb98dd7bb86215c">PythonQtPrivate::DestructorDecorator</a></div><div class="ttdeci">@ DestructorDecorator</div><div class="ttdef"><b>Definition</b> <a href="PythonQt_8h_source.html#l00684">PythonQt.h:684</a></div></div>
-<div class="ttc" id="aclassPythonQtPrivate_html_a2ba68b8767781c090335834bdd1df87fac45f152dc968707a8dc91b595b0285c4"><div class="ttname"><a href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87fac45f152dc968707a8dc91b595b0285c4">PythonQtPrivate::InstanceDecorator</a></div><div class="ttdeci">@ InstanceDecorator</div><div class="ttdef"><b>Definition</b> <a href="PythonQt_8h_source.html#l00685">PythonQt.h:685</a></div></div>
-<div class="ttc" id="aclassPythonQtPrivate_html_a2ba68b8767781c090335834bdd1df87faeea46a1c7dc73925616faa04937f5037"><div class="ttname"><a href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87faeea46a1c7dc73925616faa04937f5037">PythonQtPrivate::StaticDecorator</a></div><div class="ttdeci">@ StaticDecorator</div><div class="ttdef"><b>Definition</b> <a href="PythonQt_8h_source.html#l00682">PythonQt.h:682</a></div></div>
+<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00678">678</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  678</span>                      {</div>
+<div class="line"><span class="lineno">  679</span>    <a class="code hl_enumvalue" href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87faeea46a1c7dc73925616faa04937f5037">StaticDecorator</a> = 1,</div>
+<div class="line"><span class="lineno">  680</span>    <a class="code hl_enumvalue" href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87fa4b9ded55fcabb6fc26056baf933d24f6">ConstructorDecorator</a> = 2,</div>
+<div class="line"><span class="lineno">  681</span>    <a class="code hl_enumvalue" href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87fa97be46d080d6145a4cb98dd7bb86215c">DestructorDecorator</a> = 4,</div>
+<div class="line"><span class="lineno">  682</span>    <a class="code hl_enumvalue" href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87fac45f152dc968707a8dc91b595b0285c4">InstanceDecorator</a> = 8,</div>
+<div class="line"><span class="lineno">  683</span>    <a class="code hl_enumvalue" href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87fa1c4433385e804345c9e94ff4413afa2e">AllDecorators</a> = 0xffff</div>
+<div class="line"><span class="lineno">  684</span>  };</div>
+<div class="ttc" id="aclassPythonQtPrivate_html_a2ba68b8767781c090335834bdd1df87fa1c4433385e804345c9e94ff4413afa2e"><div class="ttname"><a href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87fa1c4433385e804345c9e94ff4413afa2e">PythonQtPrivate::AllDecorators</a></div><div class="ttdeci">@ AllDecorators</div><div class="ttdef"><b>Definition</b> <a href="PythonQt_8h_source.html#l00684">PythonQt.h:683</a></div></div>
+<div class="ttc" id="aclassPythonQtPrivate_html_a2ba68b8767781c090335834bdd1df87fa4b9ded55fcabb6fc26056baf933d24f6"><div class="ttname"><a href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87fa4b9ded55fcabb6fc26056baf933d24f6">PythonQtPrivate::ConstructorDecorator</a></div><div class="ttdeci">@ ConstructorDecorator</div><div class="ttdef"><b>Definition</b> <a href="PythonQt_8h_source.html#l00680">PythonQt.h:680</a></div></div>
+<div class="ttc" id="aclassPythonQtPrivate_html_a2ba68b8767781c090335834bdd1df87fa97be46d080d6145a4cb98dd7bb86215c"><div class="ttname"><a href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87fa97be46d080d6145a4cb98dd7bb86215c">PythonQtPrivate::DestructorDecorator</a></div><div class="ttdeci">@ DestructorDecorator</div><div class="ttdef"><b>Definition</b> <a href="PythonQt_8h_source.html#l00681">PythonQt.h:681</a></div></div>
+<div class="ttc" id="aclassPythonQtPrivate_html_a2ba68b8767781c090335834bdd1df87fac45f152dc968707a8dc91b595b0285c4"><div class="ttname"><a href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87fac45f152dc968707a8dc91b595b0285c4">PythonQtPrivate::InstanceDecorator</a></div><div class="ttdeci">@ InstanceDecorator</div><div class="ttdef"><b>Definition</b> <a href="PythonQt_8h_source.html#l00682">PythonQt.h:682</a></div></div>
+<div class="ttc" id="aclassPythonQtPrivate_html_a2ba68b8767781c090335834bdd1df87faeea46a1c7dc73925616faa04937f5037"><div class="ttname"><a href="classPythonQtPrivate.html#a2ba68b8767781c090335834bdd1df87faeea46a1c7dc73925616faa04937f5037">PythonQtPrivate::StaticDecorator</a></div><div class="ttdeci">@ StaticDecorator</div><div class="ttdef"><b>Definition</b> <a href="PythonQt_8h_source.html#l00679">PythonQt.h:679</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -392,6 +398,42 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>add a handler for polymorphic downcasting </p>
+
+</div>
+</div>
+<a id="aa1a84d60911f40cdcb2a6242ce2cb743" name="aa1a84d60911f40cdcb2a6242ce2cb743"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1a84d60911f40cdcb2a6242ce2cb743">&#9670;&#160;</a></span>addSignalHandler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">bool</a> PythonQtPrivate::addSignalHandler </td>
+          <td>(</td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>sender</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">const</a> <a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">char</a> *&#160;</td>
+          <td class="paramname"><em>signal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a> *&#160;</td>
+          <td class="paramname"><em>callable</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>add a signal handler </p>
 
 </div>
 </div>
@@ -976,10 +1018,10 @@ Friends</h2></td></tr>
 
 <p>returns if the id is either <a class="el" href="classPythonQtObjectPtr.html" title="a smart pointer that stores a PyObject pointer and that handles reference counting automatically">PythonQtObjectPtr</a> or <a class="el" href="classPythonQtSafeObjectPtr.html" title="a smart pointer that stores a PyObject pointer and that handles reference counting automatically">PythonQtSafeObjectPtr</a> </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00707">707</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  708</span>  {</div>
-<div class="line"><span class="lineno">  709</span>    <span class="keywordflow">return</span> _PythonQtObjectPtr_metaId == <span class="keywordtype">id</span> || _PythonQtSafeObjectPtr_metaId == <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">id</a>;</div>
-<div class="line"><span class="lineno">  710</span>  }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00704">704</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  705</span>  {</div>
+<div class="line"><span class="lineno">  706</span>    <span class="keywordflow">return</span> _PythonQtObjectPtr_metaId == <span class="keywordtype">id</span> || _PythonQtSafeObjectPtr_metaId == <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">id</a>;</div>
+<div class="line"><span class="lineno">  707</span>  }</div>
 <div class="ttc" id="aPythonQtConversion_8h_html_a1974947fc423c7148fb94a3b1188dbe6"><div class="ttname"><a href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">PythonQtConvertPairToPython</a></div><div class="ttdeci">PyObject * PythonQtConvertPairToPython(const void *inPair, int metaTypeId)</div><div class="ttdef"><b>Definition</b> <a href="PythonQtConversion_8h_source.html#l00394">PythonQtConversion.h:394</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -1010,8 +1052,8 @@ Friends</h2></td></tr>
 
 <p>returns if the id is the id for <a class="el" href="classPythonQtObjectPtr.html" title="a smart pointer that stores a PyObject pointer and that handles reference counting automatically">PythonQtObjectPtr</a> </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00703">703</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  703</span>{ <span class="keywordflow">return</span> _PythonQtObjectPtr_metaId == <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">id</a>; }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00700">700</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  700</span>{ <span class="keywordflow">return</span> _PythonQtObjectPtr_metaId == <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">id</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1041,8 +1083,8 @@ Friends</h2></td></tr>
 
 <p>returns if the id is the id for <a class="el" href="classPythonQtSafeObjectPtr.html" title="a smart pointer that stores a PyObject pointer and that handles reference counting automatically">PythonQtSafeObjectPtr</a> </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00705">705</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  705</span>{ <span class="keywordflow">return</span> _PythonQtSafeObjectPtr_metaId == <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">id</a>; }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00702">702</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  702</span>{ <span class="keywordflow">return</span> _PythonQtSafeObjectPtr_metaId == <a class="code hl_function" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">id</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1091,8 +1133,8 @@ Friends</h2></td></tr>
 
 <p>returns the profiling callback, which may be NULL </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00819">819</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  819</span>{ <span class="keywordflow">return</span> _profilingCB; }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00822">822</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  822</span>{ <span class="keywordflow">return</span> _profilingCB; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1121,8 +1163,8 @@ Friends</h2></td></tr>
 
 <p>get access to the <a class="el" href="classPythonQt.html" title="The main interface to the Python Qt binding, realized as a singleton.">PythonQt</a> module </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00816">816</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  816</span>{ <span class="keywordflow">return</span> _pythonQtModule; }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00819">819</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  819</span>{ <span class="keywordflow">return</span> _pythonQtModule; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1337,23 +1379,59 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="aef4874956d69c8bc4619fe3f49821ab2" name="aef4874956d69c8bc4619fe3f49821ab2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aef4874956d69c8bc4619fe3f49821ab2">&#9670;&#160;</a></span>removeSignalEmitter()</h2>
+<a id="a2d102500e4874f6173c2a914265f0efd" name="a2d102500e4874f6173c2a914265f0efd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d102500e4874f6173c2a914265f0efd">&#9670;&#160;</a></span>removeSignalHandler()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">void</a> PythonQtPrivate::removeSignalEmitter </td>
+          <td class="memname"><a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">bool</a> PythonQtPrivate::removeSignalHandler </td>
           <td>(</td>
           <td class="paramtype">QObject *&#160;</td>
-          <td class="paramname"><em>obj</em></td><td>)</td>
+          <td class="paramname"><em>sender</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">const</a> <a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">char</a> *&#160;</td>
+          <td class="paramname"><em>signal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="PythonQtMethodInfo_8h.html#afcb7b4d4ac414eefbeef02c60e6acb52">PyObject</a> *&#160;</td>
+          <td class="paramname"><em>callable</em> = <code><a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">nullptr</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>remove a signal handler for given callable (or all callables on that signal if callable is NULL) </p>
+
+</div>
+</div>
+<a id="a14baaadb66f65f966b5269fb9b5b7973" name="a14baaadb66f65f966b5269fb9b5b7973"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14baaadb66f65f966b5269fb9b5b7973">&#9670;&#160;</a></span>removeSignalReceiver()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="PythonQtConversion_8h.html#a1974947fc423c7148fb94a3b1188dbe6">void</a> PythonQtPrivate::removeSignalReceiver </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classPythonQtSignalReceiver.html">PythonQtSignalReceiver</a> *&#160;</td>
+          <td class="paramname"><em>receiver</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>called when a signal emitting QObject is destroyed to remove the signal handler from the hash map </p>
+<p>called when a signal receiver is deleted to remove it from the hash map </p>
 
 </div>
 </div>
@@ -1451,8 +1529,8 @@ Friends</h2></td></tr>
 
 <p>get the suffixes that are used for shared libraries </p>
 
-<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00700">700</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  700</span>{ <span class="keywordflow">return</span> _sharedLibrarySuffixes; }</div>
+<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00697">697</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  697</span>{ <span class="keywordflow">return</span> _sharedLibrarySuffixes; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1660,7 +1738,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00917">917</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PythonQt_8h_source.html#l00921">921</a> of file <a class="el" href="PythonQt_8h_source.html">PythonQt.h</a>.</p>
 
 </div>
 </div>
@@ -1670,7 +1748,7 @@ Friends</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 1 2026 16:13:58 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed Sep 2 2026 10:37:19 for PythonQt by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
