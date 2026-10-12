@@ -1,4 +1,4 @@
-name: Check generated_cpp
+name: Build (QMake, Latest Qt)
 
 on:
   push:
@@ -16,6 +16,7 @@ defaults:
 
 jobs:
   build:
+    name: "QMake | ${{ matrix.os }} | Qt ${{ matrix.qt-version }}"
     strategy:
       fail-fast: false
       matrix:
@@ -125,7 +126,6 @@ jobs:
         python --version
         qmake CONFIG+=release CONFIG-=debug_and_release CONFIG-=debug_and_release_target ^
            CONFIG+=exclude_generator ^
-           "PYTHONQTALL_CONFIG=${{ matrix.pythonqtall-config }}" ^
            "PYTHON_PATH=%pythonLocation%" ^
            "PYTHON_VERSION=${{ steps.setenv.outputs.PYTHON_VERSION_SHORT }}" ^
            PythonQt.pro
