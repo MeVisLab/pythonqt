@@ -79,6 +79,11 @@ void PythonQtTestCleanup::testSignalReceiverCleanup()
 
 void PythonQtTestCleanup::testPyFinalizeThenPythonQtCleanup()
 {
+  QVERIFY(_helper->runScript("import PythonQt.QtCore\n"
+                             "timer = PythonQt.QtCore.QTimer(obj)\n"
+                             "timer.connect('destroyed()', obj.onDestroyed)\n"
+                             "obj.setPassed()\n"));
+
   if (Py_IsInitialized()) {
     Py_Finalize();
   }

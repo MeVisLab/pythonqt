@@ -49,16 +49,16 @@ int main(int argc, char* argv[])
 {
   QApplication qapp(argc, argv);
 
+  PythonQt::setEnableThreadSupport(QProcessEnvironment::systemEnvironment().contains("PYTHONQT_ENABLE_THREAD_SUPPORT"));
+
   if (QProcessEnvironment::systemEnvironment().contains("PYTHONQT_RUN_ONLY_MEMORY_TESTS")) {
     PythonQtMemoryTests test;
-    QTest::qExec(&test, argc, argv);
-    return 0;
+    return QTest::qExec(&test, argc, argv);
   }
 
   if (QProcessEnvironment::systemEnvironment().contains("PYTHONQT_RUN_ONLY_CLEANUP_TESTS")) {
     PythonQtTestCleanup cleanup;
-    QTest::qExec(&cleanup, argc, argv);
-    return 0;
+    return QTest::qExec(&cleanup, argc, argv);
   }
 
   PythonQt::init(PythonQt::IgnoreSiteModule | PythonQt::RedirectStdOut);
