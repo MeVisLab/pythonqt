@@ -1,0 +1,150 @@
+name: Build (CMake, Latest Qt)
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    name: "CMake | ${{ matrix.os }} | Qt ${{ matrix.qt-version }}"
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ['ubuntu', 'windows']
+        # Qt 5.12.* is excluded: CMakeLists.txt requires Qt >= 5.15.0.
+        qt-version: [ '5.15.*', '6.10.*' ]
+        python-version: [ '3.12' ]
+    runs-on: ${{ matrix.os }}-latest
+    steps:
+
+    - name: Install MSVC
+      if: ${{ matrix.os == 'windows' }}
+      uses: ilammy/msvc-dev-cmd@v1
+      with:
+        arch: amd64
+
+    - name: Install Qt ${{ matrix.qt-version }}
+      uses: jurplel/install-qt-action@v4
+      with:
+        version: ${{ matrix.qt-version }}
+        modules: ${{ startsWith(matrix.qt-version, '6') && 'qt5compat qtscxml qtpositioning qtwebchannel qtmultimedia qtwebengine' || '' }}
+        arch: ${{ (matrix.os == 'ubuntu' && (startsWith(matrix.qt-version, '5') && 'gcc_64' || 'linux_gcc_64')) || startsWith(matrix.qt-version, '6') && 'win64_msvc2022_64' || 'win64_msvc2019_64' }}
+
+    - name: Setup Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v6
+      with:
+        python-version: '${{ matrix.python-version }}'
+
+    - name: Checkout PythonQt
+      uses: actions/checkout@v6
+
+    - name: Ccache
+      if: ${{ matrix.os == 'ubuntu' }}
+      uses: hendrikmuhs/ccache-action@v1.2.20
+      with:
+        key: ${{ runner.os }}-cmake-${{ matrix.qt-version }}
+        evict-old-files: 'job'
+
+    - name: Set environment
+      id: setenv
+      run: |
+        QT_VERSION_MAJOR=$(cut -f 1 -d . <<< "${{ matrix.qt-version }}")
+        echo "QT_VERSION_MAJOR=$QT_VERSION_MAJOR" >> $GITHUB_ENV
+        QT_VERSION_SHORT=$(cut -f 1,2 -d . <<< "${{ matrix.qt-version }}")
+        echo "QT_VERSION_SHORT=$QT_VERSION_SHORT" >> $GITHUB_OUTPUT
+        PYTHON_VERSION_FULL=$(python --version 2>&1 | cut -f 2 -d ' ')
+        PYTHON_VERSION_SHORT=$(cut -f 1,2 -d . <<< $PYTHON_VERSION_FULL)
+        echo "PYTHON_VERSION_SHORT=$PYTHON_VERSION_SHORT" >> $GITHUB_OUTPUT
+        echo "$pythonLocation/bin" >> $GITHUB_PATH
+
+    - name: Build generator (Ubuntu)
+      if: ${{ matrix.os == 'ubuntu' }}
+      run: |
+        cmake -G Ninja -S generator -B generator/build \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DCMAKE_PREFIX_PATH="$QT_ROOT_DIR" \
+          -DPythonQtGenerator_QT_VERSION=$QT_VERSION_MAJOR
+        cmake --build generator/build
+
+    - name: Build generator (Windows)
+      if: ${{ matrix.os == 'windows' }}
+      shell: cmd
+      run: |
+        set QT_CMAKE_DIR=%QT_ROOT_DIR%\lib\cmake\Qt%QT_VERSION_MAJOR%
+        cmake -G "Visual Studio 17 2022" -S generator -B generator\build ^
+          "-DCMAKE_PREFIX_PATH=%QT_ROOT_DIR%;%QT_ROOT_DIR%\lib\cmake" ^
+          "-DQt%QT_VERSION_MAJOR%_DIR=%QT_CMAKE_DIR%" ^
+          -DPythonQtGenerator_QT_VERSION=%QT_VERSION_MAJOR% || exit /b 1
+        cmake --build generator\build --config Release || exit /b 1
+
+    - name: Generate Wrappers (Ubuntu)
+      if: ${{ matrix.os == 'ubuntu' }}
+      run: |
+        QTDIR="$QT_ROOT_DIR" \
+        UBSAN_OPTIONS="halt_on_error=1" \
+        ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
+        ./generator/build/PythonQtGenerator \
+          --output-directory=.
+
+    - name: Generate Wrappers (Windows)
+      if: ${{ matrix.os == 'windows' }}
+      shell: cmd
+      run: |
+        set QTDIR=%QT_ROOT_DIR%
+        generator\build\Release\PythonQtGenerator.exe --output-directory=. || exit /b 1
+
+    - name: Upload Wrappers
+      uses: actions/upload-artifact@v7
+      with:
+        name: cmake_wrappers_${{ matrix.os }}_${{ steps.setenv.outputs.QT_VERSION_SHORT }}
+        path: generated_cpp
+        if-no-files-found: error
+
+    - name: Build and test PythonQt (Ubuntu)
+      if: ${{ matrix.os == 'ubuntu' }}
+      run: |
+        cmake -G Ninja -S . -B build \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DCMAKE_PREFIX_PATH="$QT_ROOT_DIR" \
+          -DPythonQt_QT_VERSION=$QT_VERSION_MAJOR \
+          "-DPythonQt_GENERATED_PATH=$(pwd)/generated_cpp" \
+          -DPythonQt_Wrap_QtCore=ON \
+          -DBUILD_TESTING=ON \
+          -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
+          "-DCMAKE_CXX_FLAGS=-fsanitize=address,undefined -fno-sanitize-recover=undefined" \
+          "-DCMAKE_EXE_LINKER_FLAGS=-fsanitize=address,undefined" \
+          "-DCMAKE_SHARED_LINKER_FLAGS=-fsanitize=address,undefined"
+        cmake --build build --parallel $(nproc)
+        PYTHONDEVMODE=1 PYTHONASYNCIODEBUG=1 PYTHONWARNINGS=error PYTHONMALLOC=malloc_debug \
+        UBSAN_OPTIONS="halt_on_error=1" ASAN_OPTIONS="detect_leaks=0:detect_stack_use_after_return=1:fast_unwind_on_malloc=0" \
+        QT_QPA_PLATFORM=offscreen \
+        ctest --test-dir build --output-on-failure
+
+    - name: Build and test PythonQt (Windows)
+      if: ${{ matrix.os == 'windows' }}
+      shell: cmd
+      run: |
+        set QT_CMAKE_DIR=%QT_ROOT_DIR%\lib\cmake\Qt%QT_VERSION_MAJOR%
+        cmake -G "Visual Studio 17 2022" -S . -B build ^
+          "-DCMAKE_PREFIX_PATH=%QT_ROOT_DIR%;%QT_ROOT_DIR%\lib\cmake" ^
+          "-DQt%QT_VERSION_MAJOR%_DIR=%QT_CMAKE_DIR%" ^
+          -DPythonQt_QT_VERSION=%QT_VERSION_MAJOR% ^
+          "-DPythonQt_GENERATED_PATH=%CD%\generated_cpp" ^
+          -DPythonQt_Wrap_QtCore=ON ^
+          -DBUILD_TESTING=ON || exit /b 1
+        cmake --build build --config Release || exit /b 1
+        set PYTHONDEVMODE=1
+        set PYTHONASYNCIODEBUG=1
+        set PYTHONWARNINGS=error
+        set QT_QPA_PLATFORM=offscreen
+        ctest --test-dir build --output-on-failure -C Release || exit /b 1

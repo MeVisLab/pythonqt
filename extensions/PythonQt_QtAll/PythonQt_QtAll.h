@@ -33,18 +33,25 @@
  *
  */
 
-#ifdef WIN32
-  #ifdef PYTHONQT_QTALL_EXPORTS
+// Export macro for the PythonQt_QtAll symbols.
+// Both qmake and CMake builds define PYTHONQT_QTALL_EXPORTS while building
+// the dedicated PythonQt_QtAll shared library.
+#if defined(WIN32)
+  #if defined(PYTHONQT_QTALL_EXPORTS)
     #define PYTHONQT_QTALL_EXPORT __declspec(dllexport)
   #else
     #define PYTHONQT_QTALL_EXPORT __declspec(dllimport)
   #endif
 #else
-  #define PYTHONQT_QTALL_EXPORT
+  #if defined(PYTHONQT_QTALL_EXPORTS)
+    #define PYTHONQT_QTALL_EXPORT __attribute__((__visibility__("default")))
+  #else
+    #define PYTHONQT_QTALL_EXPORT
+  #endif
 #endif
 
 namespace PythonQt_QtAll {
-//! initialize the Qt binding
+//! Initialize the Qt bindings enabled at configuration time
 PYTHONQT_QTALL_EXPORT void init();
 }
 
