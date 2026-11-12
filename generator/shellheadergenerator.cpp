@@ -135,7 +135,8 @@ void ShellHeaderGenerator::write(QTextStream& s, const AbstractMetaClass* meta_c
   }
 
   // Shell-------------------------------------------------------------------
-  if (meta_class->generateShellClass() && !ctors.isEmpty()) {
+  bool generateShell = meta_class->generateShellClass() && !ctors.isEmpty();
+  if (generateShell) {
 
     AbstractMetaFunctionList virtualsForShell = getVirtualFunctionsForShell(meta_class);
 
@@ -348,12 +349,12 @@ void ShellHeaderGenerator::write(QTextStream& s, const AbstractMetaClass* meta_c
     }
   }
   s << "public Q_SLOTS:" << Qt::endl;
-  if (meta_class->generateShellClass() || !meta_class->isAbstract()) {
+  if (generateShell || !meta_class->isAbstract()) {
 
     bool copyConstructorSeen = false;
     bool defaultConstructorSeen = false;
     for (const AbstractMetaFunction* fun : ctors) {
-      if (fun->isAbstract() || (!meta_class->generateShellClass() && !fun->isPublic())) {
+      if (fun->isAbstract() || (!generateShell && !fun->isPublic())) {
         continue;
       }
 
@@ -373,8 +374,7 @@ void ShellHeaderGenerator::write(QTextStream& s, const AbstractMetaClass* meta_c
     if (meta_class->typeEntry()->isValue() && !copyConstructorSeen && defaultConstructorSeen
         && !meta_class->typeEntry()->hasNoCopy())
     {
-      QString className =
-        meta_class->generateShellClass() ? shellClassName(meta_class) : meta_class->qualifiedCppName();
+      QString className = generateShell ? shellClassName(meta_class) : meta_class->qualifiedCppName();
       s << meta_class->qualifiedCppName() << "* new_" << meta_class->name() << "(const "
         << meta_class->qualifiedCppName() << "& other) {" << Qt::endl;
       s << className << "* a = new " << className << "();" << Qt::endl;
