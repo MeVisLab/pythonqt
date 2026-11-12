@@ -1066,7 +1066,7 @@ void AbstractMetaClass::setFunctions(const AbstractMetaFunctionList& functions)
 bool AbstractMetaClass::hasFieldAccessors() const
 {
   for (const AbstractMetaField* field : fields()) {
-    if (field->getter() || field->setter())
+    if (field->isPublic() && (field->getter() || field->setter()))
       return true;
   }
 
