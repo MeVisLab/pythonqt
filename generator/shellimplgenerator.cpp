@@ -228,11 +228,11 @@ void ShellImplGenerator::write(QTextStream& s, const AbstractMetaClass* meta_cla
     }
   }
 
-  if (meta_class->generateShellClass() || !meta_class->isAbstract()) {
+  if (generateShell || !meta_class->isAbstract()) {
 
     // write constructors
     for (const AbstractMetaFunction* ctor : ctors) {
-      if (ctor->isAbstract() || (!meta_class->generateShellClass() && !ctor->isPublic())) {
+      if (ctor->isAbstract() || (!generateShell && !ctor->isPublic())) {
         continue;
       }
 
@@ -241,8 +241,7 @@ void ShellImplGenerator::write(QTextStream& s, const AbstractMetaClass* meta_cla
       writeFunctionSignature(s, ctor, 0, "new_", Option(AddOwnershipTemplates | ShowStatic));
       s << Qt::endl;
       s << "{ " << Qt::endl;
-      s << "return new "
-        << (meta_class->generateShellClass() ? shellClassName(meta_class) : meta_class->qualifiedCppName()) << "(";
+      s << "return new " << (generateShell ? shellClassName(meta_class) : meta_class->qualifiedCppName()) << "(";
       AbstractMetaArgumentList args = ctor->arguments();
       for (int i = 0; i < args.size(); ++i) {
         if (i > 0)
@@ -333,7 +332,6 @@ void ShellImplGenerator::write(QTextStream& s, const AbstractMetaClass* meta_cla
           }
         } else {
           if (fun->wasProtected()) {
-            //|| (fun->isVirtual() && meta_class->typeEntry()->shouldCreatePromoter())) {
             s << " ((" << promoterClassName(meta_class) << "*)theWrappedObject)->promoted_";
           } else {
             s << " theWrappedObject->";

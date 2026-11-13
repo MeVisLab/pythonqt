@@ -697,6 +697,7 @@ public:
   bool hasSignal(const AbstractMetaFunction* f) const;
 
   bool hasConstructors() const;
+  bool hasProtectedConstructors() const;
 
   void addDefaultConstructor();
 

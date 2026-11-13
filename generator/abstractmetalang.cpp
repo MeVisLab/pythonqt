@@ -1066,7 +1066,7 @@ void AbstractMetaClass::setFunctions(const AbstractMetaFunctionList& functions)
 bool AbstractMetaClass::hasFieldAccessors() const
 {
   for (const AbstractMetaField* field : fields()) {
-    if (field->getter() || field->setter())
+    if (field->isPublic() && (field->getter() || field->setter()))
       return true;
   }
 
@@ -1154,8 +1154,10 @@ bool AbstractMetaClass::hasProtectedFunctions() const
 bool AbstractMetaClass::generateShellClass() const
 {
   return typeEntry()->shouldCreateShell()
+         // require that classes that get a shell have a virtual destructor
+         // (required for proper working of derived class)
          && (m_force_shell_class
-             || (!isFinal() && (hasVirtualFunctions() || hasProtectedFunctions() || hasFieldAccessors())));
+             || (!isFinal() && hasVirtualDestructor() && (hasVirtualFunctions() || hasProtectedConstructors())));
 }
 
 QPropertySpec* AbstractMetaClass::propertySpecForRead(const QString& name) const
@@ -1313,6 +1315,11 @@ const AbstractMetaFunction* AbstractMetaField::getter() const
 bool AbstractMetaClass::hasConstructors() const
 {
   return queryFunctions(Constructors).size() != 0;
+}
+
+bool AbstractMetaClass::hasProtectedConstructors() const
+{
+  return queryFunctions(Constructors | WasProtected).size() != 0;
 }
 
 void AbstractMetaClass::addDefaultConstructor()
