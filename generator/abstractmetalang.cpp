@@ -875,103 +875,6 @@ QList<ReferenceCount> AbstractMetaClass::referenceCounts() const
   return returned;
 }
 
-/*******************************************************************************
- * Returns a list of all the functions retrieved during parsing which should
- * be added to the Java API.
- */
-AbstractMetaFunctionList AbstractMetaClass::functionsInTargetLang() const
-{
-  int default_flags = NormalFunctions | Visible | NotRemovedFromTargetLang;
-
-  // Interfaces don't implement functions
-  default_flags |= isInterface() ? 0 : ClassImplements;
-
-  // Only public functions in final classes
-  // default_flags |= isFinal() ? WasPublic : 0;
-  int public_flags = isFinal() ? WasPublic : 0;
-
-  // Constructors
-  AbstractMetaFunctionList returned = queryFunctions(Constructors | default_flags | public_flags);
-
-  // Final functions
-  returned += queryFunctions(FinalInTargetLangFunctions | NonStaticFunctions | default_flags | public_flags);
-
-  // Virtual functions
-  returned += queryFunctions(VirtualInTargetLangFunctions | NonStaticFunctions | default_flags | public_flags);
-
-  // Static functions
-  returned += queryFunctions(StaticFunctions | default_flags | public_flags);
-
-  // Empty, private functions, since they aren't caught by the other ones
-  returned += queryFunctions(Empty | Invisible);
-
-  return returned;
-}
-
-AbstractMetaFunctionList AbstractMetaClass::virtualFunctions() const
-{
-  const AbstractMetaFunctionList list = functionsInShellClass();
-
-  AbstractMetaFunctionList returned;
-  for (AbstractMetaFunction* f : list) {
-    if (!f->isFinalInCpp() || f->isVirtualSlot())
-      returned += f;
-  }
-
-  return returned;
-}
-
-AbstractMetaFunctionList AbstractMetaClass::nonVirtualShellFunctions() const
-{
-  AbstractMetaFunctionList list = functionsInShellClass();
-  AbstractMetaFunctionList returned;
-  for (AbstractMetaFunction* f : list) {
-    if (f->isFinalInCpp() && !f->isVirtualSlot())
-      returned += f;
-  }
-
-  return returned;
-}
-
-/*******************************************************************************
- * Returns a list of all functions that should be declared and implemented in
- * the shell class which is generated as a wrapper on top of the actual C++ class
- */
-AbstractMetaFunctionList AbstractMetaClass::functionsInShellClass() const
-{
-  // Only functions and only protected and public functions
-  int default_flags = NormalFunctions | Visible | WasVisible | NotRemovedFromShell;
-
-  // All virtual functions
-  AbstractMetaFunctionList returned = queryFunctions(VirtualFunctions | default_flags);
-
-  // All functions explicitly set to be implemented by the shell class
-  // (mainly superclass functions that are hidden by other declarations)
-  returned += queryFunctions(ForcedShellFunctions | default_flags);
-
-  // All functions explicitly set to be virtual slots
-  returned += queryFunctions(VirtualSlots | default_flags);
-
-  return returned;
-}
-
-/*******************************************************************************
- * Returns a list of all functions that require a public override function to
- * be generated in the shell class. This includes all functions that were originally
- * protected in the superclass.
- */
-AbstractMetaFunctionList AbstractMetaClass::publicOverrideFunctions() const
-{
-  return queryFunctions(NormalFunctions | WasProtected | FinalInCppFunctions | NotRemovedFromTargetLang)
-         + queryFunctions(Signals | WasProtected | FinalInCppFunctions | NotRemovedFromTargetLang);
-}
-
-AbstractMetaFunctionList AbstractMetaClass::virtualOverrideFunctions() const
-{
-  return queryFunctions(NormalFunctions | NonEmptyFunctions | Visible | VirtualInCppFunctions | NotRemovedFromShell)
-         + queryFunctions(Signals | NonEmptyFunctions | Visible | VirtualInCppFunctions | NotRemovedFromShell);
-}
-
 void AbstractMetaClass::sortFunctions()
 {
   std::sort(m_functions.begin(), m_functions.end(), function_sorter);
@@ -1063,16 +966,6 @@ void AbstractMetaClass::setFunctions(const AbstractMetaFunctionList& functions)
 #endif
 }
 
-bool AbstractMetaClass::hasFieldAccessors() const
-{
-  for (const AbstractMetaField* field : fields()) {
-    if (field->isPublic() && (field->getter() || field->setter()))
-      return true;
-  }
-
-  return false;
-}
-
 bool AbstractMetaClass::hasDefaultToStringFunction() const
 {
   for (AbstractMetaFunction* f : queryFunctionsByName("toString")) {
@@ -1134,20 +1027,6 @@ bool AbstractMetaClass::hasFunction(const QString& str) const
   for (const AbstractMetaFunction* f : functions())
     if (f->name() == str)
       return true;
-  return false;
-}
-
-/* Returns true if this class has one or more functions that are
-   protected. If a class has protected members we need to generate a
-   shell class with public accessors to the protected functions, so
-   they can be called from the native functions.
-*/
-bool AbstractMetaClass::hasProtectedFunctions() const
-{
-  for (AbstractMetaFunction* func : m_functions) {
-    if (func->isProtected())
-      return true;
-  }
   return false;
 }
 
@@ -1477,16 +1356,6 @@ AbstractMetaFunctionList AbstractMetaClass::queryFunctions(uint query) const
   //    qDebug() << "queried" << m_type_entry->qualifiedCppName() << "got" << functions.size() << "out of" << m_functions.size();
 
   return functions;
-}
-
-bool AbstractMetaClass::hasInconsistentFunctions() const
-{
-  return cppInconsistentFunctions().size() > 0;
-}
-
-bool AbstractMetaClass::hasSignals() const
-{
-  return cppSignalFunctions().size() > 0;
 }
 
 /**
