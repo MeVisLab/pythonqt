@@ -712,16 +712,6 @@ public:
   void setDestructorException(const QString& exception) { m_destructor_exception = exception; }
   AbstractMetaFunctionList queryFunctionsByName(const QString& name) const;
   AbstractMetaFunctionList queryFunctions(uint query) const;
-  inline AbstractMetaFunctionList allVirtualFunctions() const;
-  inline AbstractMetaFunctionList allFinalFunctions() const;
-  AbstractMetaFunctionList functionsInTargetLang() const;
-  AbstractMetaFunctionList functionsInShellClass() const;
-  inline AbstractMetaFunctionList cppInconsistentFunctions() const;
-  inline AbstractMetaFunctionList cppSignalFunctions() const;
-  AbstractMetaFunctionList publicOverrideFunctions() const;
-  AbstractMetaFunctionList virtualOverrideFunctions() const;
-  AbstractMetaFunctionList virtualFunctions() const;
-  AbstractMetaFunctionList nonVirtualShellFunctions() const;
 
   AbstractMetaFieldList fields() const { return m_fields; }
   void setFields(const AbstractMetaFieldList& fields) { m_fields = fields; }
@@ -761,8 +751,6 @@ public:
   bool isQtNamespace() const { return isNamespace() && name() == "Qt"; }
   QString qualifiedCppName() const { return m_type_entry->qualifiedCppName(); }
 
-  bool hasInconsistentFunctions() const;
-  bool hasSignals() const;
   bool inheritsFrom(const AbstractMetaClass* other) const;
 
   void setForceShellClass(bool on) { m_force_shell_class = on; }
@@ -770,12 +758,9 @@ public:
 
   bool hasVirtualSlots() const { return m_has_virtual_slots; }
   bool hasVirtualFunctions() const { return !isFinal() && m_has_virtuals; }
-  bool hasProtectedFunctions() const;
 
   QList<TypeEntry*> templateArguments() const { return m_template_args; }
   void setTemplateArguments(const QList<TypeEntry*>& args) { m_template_args = args; }
-
-  bool hasFieldAccessors() const;
 
   // only valid during metajavabuilder's run
   QStringList baseClassNames() const { return m_base_class_names; }
@@ -931,25 +916,5 @@ private:
   const TypeEntry* m_type {};
   int m_index {-1};
 };
-
-inline AbstractMetaFunctionList AbstractMetaClass::allVirtualFunctions() const
-{
-  return queryFunctions(VirtualFunctions | NotRemovedFromTargetLang);
-}
-
-inline AbstractMetaFunctionList AbstractMetaClass::allFinalFunctions() const
-{
-  return queryFunctions(FinalInTargetLangFunctions | FinalInCppFunctions | NotRemovedFromTargetLang);
-}
-
-inline AbstractMetaFunctionList AbstractMetaClass::cppInconsistentFunctions() const
-{
-  return queryFunctions(Inconsistent | NormalFunctions | Visible | NotRemovedFromTargetLang);
-}
-
-inline AbstractMetaFunctionList AbstractMetaClass::cppSignalFunctions() const
-{
-  return queryFunctions(Signals | Visible | NotRemovedFromTargetLang);
-}
 
 #endif // ABSTRACTMETALANG_H
