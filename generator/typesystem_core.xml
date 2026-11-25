@@ -1454,7 +1454,10 @@ public:
   <object-type name="QEventTransition"/>
   <object-type name="QFinalState"/>
 
-  <object-type name="QXmlStreamEntityResolver"/>
+  <object-type name="QXmlStreamEntityResolver">
+    <!-- Internal, unused function, declared final since Qt 6.12 -->
+    <modify-function signature="resolveEntity(const QString &amp;,const QString &amp;)" remove="all" since-version="6.12"/>
+  </object-type>
   <object-type name="QAbstractEventDispatcher" create-promoter="no" create-shell="no" before-version="6"/>
   <object-type name="QAbstractEventDispatcher" since-version="6"/>
   <object-type name="QAbstractEventDispatcher::TimerInfo"/>
